@@ -17,7 +17,7 @@ struct J3DAnmColor : public J3DAnmBase {
 	    , _12(0)
 	    , _14(0)
 	    , _18(nullptr)
-	    , m_nameTab()
+	    , mNameTab()
 	{
 	}
 
@@ -27,24 +27,24 @@ struct J3DAnmColor : public J3DAnmBase {
 
 	void searchUpdateMaterialID(struct J3DModelData*);
 
-	u16 _0C;              // _0C
-	u16 _0E;              // _0E
-	u16 _10;              // _10
-	u16 _12;              // _12
-	u16 _14;              // _14
-	u16* _18;             // _18
-	JUTNameTab m_nameTab; // _1C
+	u16 _0C;             // _0C
+	u16 _0E;             // _0E
+	u16 _10;             // _10
+	u16 _12;             // _12
+	u16 _14;             // _14
+	u16* _18;            // _18
+	JUTNameTab mNameTab; // _1C
 };
 
 struct J3DAnmColorFullTable {
-	const u16 m_data[4][2];
+	const u16 mData[4][2];
 
 	inline void getField(u32 fieldIndex, int p2, u8* result, u8* values)
 	{
-		if (p2 >= m_data[fieldIndex][0]) {
-			*result = values[m_data[fieldIndex][0] - 1 + m_data[fieldIndex][1]];
+		if (p2 >= mData[fieldIndex][0]) {
+			*result = values[mData[fieldIndex][0] - 1 + mData[fieldIndex][1]];
 		} else {
-			*result = values[m_data[fieldIndex][1] + p2];
+			*result = values[mData[fieldIndex][1] + p2];
 		}
 	}
 };
@@ -98,7 +98,7 @@ struct J3DAnmColorKey : public J3DAnmColor {
 	    , _30(nullptr)
 	    , _34(nullptr)
 	    , _38(nullptr)
-	    , m_table(nullptr)
+	    , mTable(nullptr)
 	{
 	}
 
@@ -106,11 +106,11 @@ struct J3DAnmColorKey : public J3DAnmColor {
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_ColorKey; } // _0C (weak)
 	virtual void getColor(unsigned short, GXColor*) const;             // _10
 
-	s16* _2C;                     // _2C
-	s16* _30;                     // _30
-	s16* _34;                     // _34
-	s16* _38;                     // _38
-	J3DAnmColorKeyTable* m_table; // _3C
+	s16* _2C;                    // _2C
+	s16* _30;                    // _30
+	s16* _34;                    // _34
+	s16* _38;                    // _38
+	J3DAnmColorKeyTable* mTable; // _3C
 };
 
 struct J3DAnmColorKeyData : J3DFileBlockBase {

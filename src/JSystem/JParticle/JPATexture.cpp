@@ -22,10 +22,10 @@
  * Size:	000068
  */
 JPATexture::JPATexture(const unsigned char* p1)
-    : m_texture()
+    : mTexture()
     , _44(p1)
 {
-	m_texture.storeTIMG(reinterpret_cast<const ResTIMG*>(_44 + 0x20), (u8)'\0');
+	mTexture.storeTIMG(reinterpret_cast<const ResTIMG*>(_44 + 0x20), (u8)'\0');
 }
 
 /*

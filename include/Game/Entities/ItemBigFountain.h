@@ -95,7 +95,7 @@ struct FountainParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms(); // probably
 
-		Parm<f32> m_p000; // _E8
+		Parm<f32> mP000; // _E8
 	};
 
 	FountainParms();
@@ -104,7 +104,7 @@ struct FountainParms : public CreatureParms {
 
 	// _00-_D8 = CreatureParms
 	// _D8		 = VTBL
-	Parms m_fountainParms;
+	Parms mFountainParms;
 };
 
 struct Item : public WorkItem<Item, FSM, State> {
@@ -119,7 +119,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	virtual void doDirectDraw(Graphics&);  // _50
 	virtual f32 getFaceDir()               // _64 (weak)
 	{
-		return m_faceDir;
+		return mFaceDir;
 	}
 	virtual bool sound_culling();                                       // _104 (weak)
 	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
@@ -141,12 +141,12 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	f32 m_faceDir;                   // _1EC
-	f32 _1F0;                        // _1F0
-	efx::TGeyserAct* m_efxGeyserAct; // _1F4
-	efx::TGeyserSet* m_efxGeyserSet; // _1F8
-	u8 _1FC[4];                      // _1FC, unknown
-	f32 _200;                        // _200
+	f32 mFaceDir;                   // _1EC
+	f32 _1F0;                       // _1F0
+	efx::TGeyserAct* mEfxGeyserAct; // _1F4
+	efx::TGeyserSet* mEfxGeyserSet; // _1F8
+	u8 _1FC[4];                     // _1FC, unknown
+	f32 _200;                       // _200
 };
 
 struct Mgr : public TNodeItemMgr {
@@ -162,8 +162,8 @@ struct Mgr : public TNodeItemMgr {
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr
-	Platform* m_platform;   // _88
-	FountainParms* m_parms; // _8C
+	Platform* mPlatform;   // _88
+	FountainParms* mParms; // _8C
 };
 
 extern Mgr* mgr;

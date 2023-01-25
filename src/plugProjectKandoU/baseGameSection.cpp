@@ -900,38 +900,38 @@ namespace Game {
  */
 BaseGameSection::BaseGameSection(JKRHeap* heap)
     : BaseHIOSection(heap)
-    , m_dvdThreadCommand()
+    , mDvdThreadCommand()
 {
-	m_xfbFlags = 0;
-	setDisplay(JFWDisplay::createManager(nullptr, m_displayHeap, JUTXfb::DoubleBuffer, true), 1);
-	m_playerMode         = 2;
-	m_draw2DCreature     = nullptr;
-	m_treasureZoomCamera = nullptr;
-	m_kanteiDelegate     = new Delegate1<BaseGameSection, Rectf&>(this, &BaseGameSection::onKanteiDone);
-	cameraMgrCallback    = new Delegate1<BaseGameSection, CameraArg*>(this, &BaseGameSection::onCameraBlendFinished);
-	m_blendCamera        = nullptr;
-	Game::cameraMgr      = nullptr;
-	Game::rumbleMgr      = nullptr;
-	Game::shadowMgr      = nullptr;
-	lifeGaugeMgr         = nullptr;
-	carryInfoMgr         = nullptr;
-	m_lightMgr           = nullptr;
-	m_splitter           = nullptr;
-	m_theExpHeap         = nullptr;
-	m_theExpHeap         = nullptr;
-	_100                 = nullptr;
-	_168                 = nullptr;
-	m_fbTexture          = nullptr;
-	m_xfbImage           = nullptr;
-	m_xfbTexture1        = 0;
-	m_xfbTexture2        = 0;
-	_170                 = 0;
-	m_texData1           = 0;
-	_E0                  = 0;
-	m_blackFader         = new BlackFader();
-	m_wipeInFader        = new WipeInFader();
-	m_wipeOutFader       = new WipeOutFader();
-	m_wipeOutInFader     = new WipeOutInFader();
+	mXfbFlags = 0;
+	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, true), 1);
+	mPlayerMode         = 2;
+	mDraw2DCreature     = nullptr;
+	mTreasureZoomCamera = nullptr;
+	mKanteiDelegate     = new Delegate1<BaseGameSection, Rectf&>(this, &BaseGameSection::onKanteiDone);
+	cameraMgrCallback   = new Delegate1<BaseGameSection, CameraArg*>(this, &BaseGameSection::onCameraBlendFinished);
+	mBlendCamera        = nullptr;
+	Game::cameraMgr     = nullptr;
+	Game::rumbleMgr     = nullptr;
+	Game::shadowMgr     = nullptr;
+	lifeGaugeMgr        = nullptr;
+	carryInfoMgr        = nullptr;
+	mLightMgr           = nullptr;
+	mSplitter           = nullptr;
+	mTheExpHeap         = nullptr;
+	mTheExpHeap         = nullptr;
+	_100                = nullptr;
+	_168                = nullptr;
+	mFbTexture          = nullptr;
+	mXfbImage           = nullptr;
+	mXfbTexture1        = 0;
+	mXfbTexture2        = 0;
+	_170                = 0;
+	mTexData1           = 0;
+	_E0                 = 0;
+	mBlackFader         = new BlackFader();
+	mWipeInFader        = new WipeInFader();
+	mWipeOutFader       = new WipeOutFader();
+	mWipeOutInFader     = new WipeOutInFader();
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -1227,10 +1227,10 @@ namespace Game {
  */
 void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
-	JUT_ASSERTLINE(1523, m_fbTexture == nullptr, "?¼’å›žã¯ç„¡ç??½—\n");
-	m_fbTexture                    = m_xfbImage;
-	m_xfbImage                     = texture;
-	Game::gameSystem->m_xfbTexture = m_xfbImage;
+	JUT_ASSERTLINE(1523, mFbTexture == nullptr, "?¼’å›žã¯ç„¡ç??½—\n");
+	mFbTexture                    = mXfbImage;
+	mXfbImage                     = texture;
+	Game::gameSystem->mXfbTexture = mXfbImage;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1273,10 +1273,10 @@ lbl_8014B140:
  */
 void BaseGameSection::restoreFBTexture()
 {
-	JUT_ASSERTLINE(1533, m_fbTexture == nullptr, "useSpecificFBTexture ã—ã¦ãªã??½—\n");
-	m_xfbImage                     = m_fbTexture;
-	m_fbTexture                    = nullptr;
-	Game::gameSystem->m_xfbTexture = m_xfbImage;
+	JUT_ASSERTLINE(1533, mFbTexture == nullptr, "useSpecificFBTexture ã—ã¦ãªã??½—\n");
+	mXfbImage                     = mFbTexture;
+	mFbTexture                    = nullptr;
+	Game::gameSystem->mXfbTexture = mXfbImage;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1405,7 +1405,7 @@ lbl_8014B2D0:
  */
 void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
 {
-	sys->dvdLoadUseCallBack(&m_dvdThreadCommand, delegate);
+	sys->dvdLoadUseCallBack(&mDvdThreadCommand, delegate);
 	waitSyncLoad(p2);
 	/*
 	stwu     r1, -0x10(r1)
@@ -2155,20 +2155,20 @@ void BaseGameSection::doDraw(Graphics& gfx)
 		Game::cameraMgr->update();
 		Game::cameraMgr->controllerUnLock(2);
 	}
-	sys->m_timers->_start("_draw3D_", true);
+	sys->mTimers->_start("_draw3D_", true);
 	draw3D(gfx);
-	sys->m_timers->_stop("_draw3D_");
-	if (Game::moviePlayer != nullptr && Game::gameSystem->m_isMoviePause == false) {
+	sys->mTimers->_stop("_draw3D_");
+	if (Game::moviePlayer != nullptr && Game::gameSystem->mIsMoviePause == false) {
 		Game::moviePlayer->drawLoading(gfx);
 	}
 	pre2dDraw(gfx);
 	gfx.setToken("2d");
 	draw2D(gfx);
-	if (m_draw2DCreature) {
+	if (mDraw2DCreature) {
 		drawOtakaraWindow(gfx);
 	}
 	Screen::gGame2DMgr->drawKanteiMsg(gfx);
-	if (Game::moviePlayer != nullptr && Game::gameSystem->m_isMoviePause == false) {
+	if (Game::moviePlayer != nullptr && Game::gameSystem->mIsMoviePause == false) {
 		Game::moviePlayer->draw(gfx);
 	}
 	/*
@@ -2920,32 +2920,32 @@ void BaseGameSection::initGenerators()
 {
 	Game::generatorCache->clearGeneratorList();
 	Generator::initializeSystem();
-	CourseInfo* courseInfo = Game::mapMgr->m_courseInfo;
+	CourseInfo* courseInfo = Game::mapMgr->mCourseInfo;
 
 	GeneratorMgr* mgr  = new GeneratorMgr();
 	Game::generatorMgr = mgr;
-	mgr->m_name        = "Generator(Default)";
+	mgr->mName         = "Generator(Default)";
 	addGenNode(Game::generatorMgr);
 
 	mgr                    = new GeneratorMgr();
 	Game::onceGeneratorMgr = mgr;
-	mgr->m_name            = "Generator(Init)";
+	mgr->mName             = "Generator(Init)";
 	addGenNode(Game::onceGeneratorMgr);
 
 	mgr                          = new GeneratorMgr();
 	Game::limitGeneratorMgr      = mgr;
-	mgr->m_name                  = "Generator(Limit)";
+	mgr->mName                   = "Generator(Limit)";
 	Game::limitGeneratorMgr->_6C = 1;
 	addGenNode(Game::limitGeneratorMgr);
 
 	mgr                      = new GeneratorMgr();
 	Game::plantsGeneratorMgr = mgr;
-	mgr->m_name              = "Generator(æ¤ç‰©)";
+	mgr->mName               = "Generator(æ¤ç‰©)";
 	addGenNode(Game::plantsGeneratorMgr);
 
 	mgr                   = new GeneratorMgr();
 	Game::dayGeneratorMgr = mgr;
-	mgr->m_name           = "Generator(DAY)";
+	mgr->mName            = "Generator(DAY)";
 	addGenNode(Game::dayGeneratorMgr);
 
 	GeneratorMgr::cursorCallback = new Delegate1<BaseGameSection, Vector3f&>(this, &BaseGameSection::changeGeneratorCursor);
@@ -2962,17 +2962,17 @@ void BaseGameSection::initGenerators()
 	int currentIndex;
 	if (courseInfo) {
 		Game::PelletBirthBuffer::clear();
-		Game::generatorCache->loadGenerators(courseInfo->m_courseIndex);
+		Game::generatorCache->loadGenerators(courseInfo->mCourseIndex);
 		Game::generatorCache->updateUseList();
 		currentIndex = 0;
-		sprintf(pathBuffer, "%s/defaultgen.txt", courseInfo->m_abeFolder);
+		sprintf(pathBuffer, "%s/defaultgen.txt", courseInfo->mAbeFolder);
 		void* data
 		    = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 		if (data) {
 			RamStream input(data, -1);
-			input.m_mode = STREAM_MODE_TEXT;
-			if (input.m_mode == STREAM_MODE_TEXT) {
-				input.m_tabCount = 0;
+			input.mMode = STREAM_MODE_TEXT;
+			if (input.mMode == STREAM_MODE_TEXT) {
+				input.mTabCount = 0;
 			}
 			Game::generatorMgr->read(input, false);
 			Game::generatorMgr->updateUseList();
@@ -2981,15 +2981,15 @@ void BaseGameSection::initGenerators()
 			mgrData[0]   = data;
 		}
 
-		sprintf(pathBuffer, "/%s/plantsgen.txt", courseInfo->m_abeFolder);
+		sprintf(pathBuffer, "/%s/plantsgen.txt", courseInfo->mAbeFolder);
 		if (DVDConvertPathToEntrynum(pathBuffer) != -1) {
 			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
 			                                         nullptr);
 			if (data) {
 				RamStream input(data, -1);
-				input.m_mode = STREAM_MODE_TEXT;
-				if (input.m_mode) {
-					input.m_tabCount = 0;
+				input.mMode = STREAM_MODE_TEXT;
+				if (input.mMode) {
+					input.mTabCount = 0;
 				}
 				Game::plantsGeneratorMgr->read(input, false);
 				Game::plantsGeneratorMgr->updateUseList();
@@ -2998,16 +2998,16 @@ void BaseGameSection::initGenerators()
 			}
 		}
 
-		if (Game::playData->courseVisited(courseInfo->m_courseIndex) == false) {
-			Game::playData->visitCourse(courseInfo->m_courseIndex);
-			sprintf(pathBuffer, "%s/initgen.txt", courseInfo->m_abeFolder);
+		if (Game::playData->courseVisited(courseInfo->mCourseIndex) == false) {
+			Game::playData->visitCourse(courseInfo->mCourseIndex);
+			sprintf(pathBuffer, "%s/initgen.txt", courseInfo->mAbeFolder);
 			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
 			                                         nullptr);
 			if (data) {
 				RamStream input(data, -1);
-				input.m_mode = STREAM_MODE_TEXT;
-				if (input.m_mode) {
-					input.m_tabCount = 0;
+				input.mMode = STREAM_MODE_TEXT;
+				if (input.mMode) {
+					input.mTabCount = 0;
 				}
 				Game::onceGeneratorMgr->read(input, false);
 				Game::onceGeneratorMgr->updateUseList();
@@ -3015,29 +3015,29 @@ void BaseGameSection::initGenerators()
 				mgrs[currentIndex++]  = Game::onceGeneratorMgr;
 			}
 		}
-		uint dayCount = Game::gameSystem->m_timeMgr->m_dayCount;
-		for (int i = 0; i < courseInfo->m_limitGenCount; i++) {
-			LimitGen* gen = (LimitGen*)courseInfo->m_limitGenOwner.getChildAt(i);
+		uint dayCount = Game::gameSystem->mTimeMgr->mDayCount;
+		for (int i = 0; i < courseInfo->mLimitGenCount; i++) {
+			LimitGen* gen = (LimitGen*)courseInfo->mLimitGenOwner.getChildAt(i);
 			if (gen->_18 <= dayCount && dayCount <= gen->_1C) {
-				if (Game::playData->m_limitGen[courseInfo->m_courseIndex].m_nonLoops.isFlag(i) == false) {
-					sprintf(pathBuffer, "%s/nonloop/%s", courseInfo->m_abeFolder, gen->m_name);
+				if (Game::playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.isFlag(i) == false) {
+					sprintf(pathBuffer, "%s/nonloop/%s", courseInfo->mAbeFolder, gen->mName);
 					void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
 					                                         nullptr, nullptr);
 					if (data) {
 						RamStream input(data, -1);
-						input.m_mode = STREAM_MODE_TEXT;
-						if (input.m_mode) {
-							input.m_tabCount = 0;
+						input.mMode = STREAM_MODE_TEXT;
+						if (input.mMode) {
+							input.mTabCount = 0;
 						}
 						GeneratorMgr* nonloopMgr = new GeneratorMgr();
 						nonloopMgr->_6C          = 1;
 						nonloopMgr->read(input, false);
-						nonloopMgr->setDayLimit(gen->m_dayLimit);
+						nonloopMgr->setDayLimit(gen->mDayLimit);
 						nonloopMgr->updateUseList();
 						mgrData[currentIndex] = data;
 						mgrs[currentIndex++]  = nonloopMgr;
 						Game::limitGeneratorMgr->addMgr(nonloopMgr);
-						Game::playData->m_limitGen[courseInfo->m_courseIndex].m_nonLoops.setFlag(i);
+						Game::playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.setFlag(i);
 					}
 				}
 			}
@@ -9869,8 +9869,8 @@ namespace Game {
  */
 bool BaseGameSection::forceFinish()
 {
-	m_isFinishedMaybe = true;
-	return m_isFinishedMaybe;
+	mIsFinishedMaybe = true;
+	return mIsFinishedMaybe;
 	/*
 	li       r0, 1
 	stb      r0, 0x37(r3)

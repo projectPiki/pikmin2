@@ -14,6 +14,6 @@ PikiAnimator::PikiAnimator() { }
  */
 void PikiAnimator::setAnimMgr(SysShape::AnimMgr* mgr)
 {
-	m_selfAnimator.m_animMgr  = mgr;
-	m_boundAnimator.m_animMgr = mgr;
+	mSelfAnimator.mAnimMgr  = mgr;
+	mBoundAnimator.mAnimMgr = mgr;
 }

@@ -147,9 +147,9 @@ JASCmdHeap::Header* JASTaskThread::allocCallStack(void (*cmd)(void*), const void
 	if (header == nullptr) {
 		return nullptr;
 	}
-	header->m_msgLength = 1;
+	header->mMsgLength = 1;
 	JASCalc::bcopy(msg, header + 1, msgLength);
-	header->m_command = cmd;
+	header->mCommand = cmd;
 	return header;
 }
 
@@ -174,7 +174,7 @@ int JASTaskThread::sendCmdMsg(void (*cmd)(void*), const void* msg, unsigned long
 	if (header == nullptr) {
 		return FALSE;
 	}
-	BOOL sendResult = OSSendMessage(&m_msgQueue, header, OS_MESSAGE_NON_BLOCKING);
+	BOOL sendResult = OSSendMessage(&mMsgQueue, header, OS_MESSAGE_NON_BLOCKING);
 	if (!sendResult) {
 		JASKernel::getCommandHeap()->free(header);
 	}

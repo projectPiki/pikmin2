@@ -11,7 +11,7 @@ namespace VsGame {
  * Address:	802352F0
  * Size:	000044
  */
-TekiMgr::TekiMgr() { m_nodeCount = 0; }
+TekiMgr::TekiMgr() { mNodeCount = 0; }
 
 /*
  * --INFO--
@@ -21,10 +21,10 @@ TekiMgr::TekiMgr() { m_nodeCount = 0; }
 void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
 {
 	TekiNode* newNode = new TekiNode();
-	newNode->m_id     = id;
+	newNode->mId      = id;
 	newNode->_1C      = a2;
-	newNode->m_nodeID = m_nodeCount++;
-	m_node.add(newNode);
+	newNode->mNodeID  = mNodeCount++;
+	mNode.add(newNode);
 
 	generalEnemyMgr->addEnemyNum(id, a2, nullptr);
 }
@@ -34,7 +34,7 @@ void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
  * Address:	........
  * Size:	000020
  */
-TekiNode* TekiMgr::getNode(int idx) { return static_cast<TekiNode*>(m_node.getChildAt(idx)); }
+TekiNode* TekiMgr::getNode(int idx) { return static_cast<TekiNode*>(mNode.getChildAt(idx)); }
 
 /*
  * --INFO--
@@ -60,12 +60,12 @@ EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool check)
 	TekiNode* node = getNode(idx);
 	if (node) {
 		EnemyBirthArg birthArg;
-		birthArg.m_faceDir  = TAU * randFloat();
-		birthArg.m_position = position;
+		birthArg.mFaceDir  = TAU * randFloat();
+		birthArg.mPosition = position;
 		if (check) {
-			birthArg.m_existenceLength = 50.0f;
+			birthArg.mExistenceLength = 50.0f;
 		}
-		EnemyBase* teki = generalEnemyMgr->birth(node->m_id, birthArg);
+		EnemyBase* teki = generalEnemyMgr->birth(node->mId, birthArg);
 		if (teki) {
 			teki->init(nullptr);
 		}

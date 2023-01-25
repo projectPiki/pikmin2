@@ -57,21 +57,21 @@ struct JUTGamePad : public JKRDisposer {
 		void setRepeat(u32, u32, u32);
 		void update(PADStatus const*, u32);
 
-		u32 m_mask;        // _00
-		u32 m_buttonDown;  // _04
-		u32 m_buttonUp;    // _08
-		u8 m_analogA;      // _0C
-		u8 m_analogB;      // _0D
-		u8 m_triggerLeft;  // _0E
-		u8 m_triggerRight; // _0F
-		f32 m_analogL;     // _10
-		f32 m_analogR;     // _14
-		u32 _18;           // _18
-		u32 _1C;           // _1C
-		u32 _20;           // _20
-		u32 _24;           // _24
-		u32 _28;           // _28
-		u32 _2C;           // _2C
+		u32 mMask;        // _00
+		u32 mButtonDown;  // _04
+		u32 mButtonUp;    // _08
+		u8 mAnalogA;      // _0C
+		u8 mAnalogB;      // _0D
+		u8 mTriggerLeft;  // _0E
+		u8 mTriggerRight; // _0F
+		f32 mAnalogL;     // _10
+		f32 mAnalogR;     // _14
+		u32 _18;          // _18
+		u32 _1C;          // _1C
+		u32 _20;          // _20
+		u32 _24;          // _24
+		u32 _28;          // _28
+		u32 _2C;          // _2C
 	};
 
 	struct CRumble {
@@ -116,12 +116,12 @@ struct JUTGamePad : public JKRDisposer {
 		u32 getButton(u32);
 		u32 update(s8, s8, EStickMode, EWhichStick, u32);
 
-		f32 m_xPos;     // _00
-		f32 m_yPos;     // _04
-		f32 m_stickMag; // _08
-		s16 _0C;        // _0C
-		u8 _0E;         // _0E
-		u8 _0F;         // _0F
+		f32 mXPos;     // _00
+		f32 mYPos;     // _04
+		f32 mStickMag; // _08
+		s16 _0C;       // _0C
+		u8 _0E;        // _0E
+		u8 _0F;        // _0F
 
 		static f32 sPressPoint;
 		static f32 sReleasePoint;
@@ -196,24 +196,24 @@ struct JUTGamePad : public JKRDisposer {
 	void removeButtonRepeat(u32);
 	void clearButtonRepeat(bool);
 
-	// #define JUTGamePadIsConnected(pad) ((0 <= pad->m_portNum && pad->m_portNum < 4))
+	// #define JUTGamePadIsConnected(pad) ((0 <= pad->mPortNum && pad->mPortNum < 4))
 	/** @fabricated */
-	inline bool isConnected() const { return (0 <= m_portNum && m_portNum < 4); }
-	inline bool isButtonDown(u32 buttons) { return m_padButton.m_buttonDown & buttons; }
+	inline bool isConnected() const { return (0 <= mPortNum && mPortNum < 4); }
+	inline bool isButtonDown(u32 buttons) { return mButton.mButtonDown & buttons; }
 
 	// _00 VTBL
-	JUTGamePad::CButton m_padButton;   // _18
-	JUTGamePad::CStick m_padMStick;    // _48
-	JUTGamePad::CStick m_padSStick;    // _58
-	JUTGamePad::CRumble m_padRumble;   // _68
-	s16 m_portNum;                     // _7C, -1 for INVALID
-	u8 m_padError;                     // _7E
-	JSULink<JUTGamePad> m_padListLink; // _80
-	JUTGamePad_0x90* _90;              // _90
-	JUTGamePad_0x90* _94;              // _94
-	u8 m_toReset;                      // _98
-	s64 m_osResetTime;                 // _A0
-	u8 _A8;                            // _A8
+	JUTGamePad::CButton mButton;   // _18
+	JUTGamePad::CStick mMStick;    // _48
+	JUTGamePad::CStick mSStick;    // _58
+	JUTGamePad::CRumble mRumble;   // _68
+	s16 mPortNum;                  // _7C, -1 for INVALID
+	u8 mError;                     // _7E
+	JSULink<JUTGamePad> mListLink; // _80
+	JUTGamePad_0x90* _90;          // _90
+	JUTGamePad_0x90* _94;          // _94
+	u8 mToReset;                   // _98
+	s64 mOsResetTime;              // _A0
+	u8 _A8;                        // _A8
 };
 
 struct JUTGamePadLongPress {
@@ -229,17 +229,17 @@ struct JUTGamePadLongPress {
 
 	static JSUPtrList sPatternList;
 
-	u8 _00[0x10];        // _00 - unknown
-	u8 _10;              // _10
-	u8 _11;              // _11
-	u32 _14;             // _14
-	u32 _18;             // _18
-	u32 _1C;             // _1C
-	u8 _20[4];           // _20
-	u64 m_time[4];       // _28
-	u8 _48[4];           // _48
-	Callback m_callback; // _4C
-	u32 _50;             // _50
+	u8 _00[0x10];       // _00 - unknown
+	u8 _10;             // _10
+	u8 _11;             // _11
+	u32 _14;            // _14
+	u32 _18;            // _18
+	u32 _1C;            // _1C
+	u8 _20[4];          // _20
+	u64 mTime[4];       // _28
+	u8 _48[4];          // _48
+	Callback mCallback; // _4C
+	u32 _50;            // _50
 };
 
 // entirely unused/inlined

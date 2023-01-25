@@ -114,34 +114,34 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Sys::MatTexAnimation* m_texAnimation;       // _44
-	Sys::MatTevRegAnimation* m_tevRegAnimation; // _48
-	Obj* m_obj;                                 // _4C, array of Objs
+	Sys::MatTexAnimation* mTexAnimation;       // _44
+	Sys::MatTevRegAnimation* mTevRegAnimation; // _48
+	Obj* mObj;                                 // _4C, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "基準飛行高さ", 90.0f, 0.0f, 150.0f)   // 'standard flight height'
-		    , m_fp02(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)         // 'rise factor'
-		    , m_fp03(this, 'fp03', "空中ウェイト時間", 3.0f, 0.0f, 10.0f) // 'air wait time'
-		    , m_fp10(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f) // 'ground wait time'
-		    , m_fp04(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)     // 'shake off time'
-		    , m_ip01(this, 'ip01', "落下最低ピキ数", 10, 1, 50)           // 'falling minimum number piki'
-		    , m_fp05(this, 'fp05', "上下の揺れ速度", 2.5f, 0.0f, 10.0f)   // 'vertical swing speed'
-		    , m_fp06(this, 'fp06', "上下の揺れ幅", 5.0f, 0.0f, 10.0f)     // 'vertical swing width'
+		    , mFp01(this, 'fp01', "基準飛行高さ", 90.0f, 0.0f, 150.0f)   // 'standard flight height'
+		    , mFp02(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)         // 'rise factor'
+		    , mFp03(this, 'fp03', "空中ウェイト時間", 3.0f, 0.0f, 10.0f) // 'air wait time'
+		    , mFp10(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f) // 'ground wait time'
+		    , mFp04(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)     // 'shake off time'
+		    , mIp01(this, 'ip01', "落下最低ピキ数", 10, 1, 50)           // 'falling minimum number piki'
+		    , mFp05(this, 'fp05', "上下の揺れ速度", 2.5f, 0.0f, 10.0f)   // 'vertical swing speed'
+		    , mFp06(this, 'fp06', "上下の揺れ幅", 5.0f, 0.0f, 10.0f)     // 'vertical swing width'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp10; // _87C
-		Parm<f32> m_fp04; // _8A4
-		Parm<int> m_ip01; // _8CC
-		Parm<f32> m_fp05; // _8F4
-		Parm<f32> m_fp06; // _91C
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp03; // _854
+		Parm<f32> mFp10; // _87C
+		Parm<f32> mFp04; // _8A4
+		Parm<int> mIp01; // _8CC
+		Parm<f32> mFp05; // _8F4
+		Parm<f32> mFp06; // _91C
 	};
 
 	Parms() { }
@@ -149,23 +149,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

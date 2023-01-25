@@ -107,53 +107,53 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x10];                           // _2BC, unknown
-	int m_freezeTimer;                       // _2CC
-	Vector3f _2D0;                           // _2D0
-	int m_postFlickState;                    // _2DC
-	int _2E0;                                // _2E0
-	u32 _2E4;                                // _2E4, unknown
-	u32 _2E8;                                // _2E8, unknown
-	u32 _2EC;                                // _2EC, unknown
-	u32 _2F0;                                // _2F0, unknown
-	u32 _2F4;                                // _2F4, unknown
-	Vector3f _2F8;                           // _2F8
-	u8 _304[0xC];                            // _304, unknown
-	Vector3f _310[2];                        // _310
-	Vector3f _328;                           // _328
-	u32 _334;                                // _334
-	bool _338;                               // _338
-	f32 _33C;                                // _33C, timer?
-	s16 _340;                                // _340, next or current waypoint idx?
-	s16 _342;                                // _342, next or current waypoint idx?
-	u8 _344[0x4];                            // _344, unknown
-	u32 _348;                                // _348
-	u8 _34C;                                 // _34C, unknown
-	WalkSmokeEffect::Mgr m_walkSmokeMgr;     // _350
-	Sys::MatLoopAnimator* m_matLoopAnimator; // _358
-	PathNode* _35C;                          // _35C
-	FSM* _360;                               // _360
-	Tyre::Obj* m_tyre;                       // _364
-	u16 _368;                                // _368, unknown
-	u16 m_chestJointIndex;                   // _36A
-	u16 m_leftHandJointIndex;                // _36C
-	u16 m_rightHandJointIndex;               // _36E
-	u16 m_leftFootJointIndex;                // _370
-	u16 m_rightFootJointIndex;               // _372
-	f32 _374;                                // _374
-	f32 _378;                                // _378
-	u8 _37C[0x14];                           // _37C
-	efx::TKageMove* m_efxMove;               // _390
-	efx::TKageRun* m_efxRun;                 // _394
-	efx::TKageTyreup* m_efxTyreup;           // _398
-	efx::TKageDead1* m_efxDead;              // _39C
-	efx::TKageFlick* _3A0;                   // _3A0
-	efx::TKageFlick* _3A4;                   // _3A4
-	u8 _3A8;                                 // _3A8, unknown
-	u8 _3A9;                                 // _3A9
-	u8 _3AA;                                 // _3AA
-	u8 _3AB;                                 // _3AB
-	                                         // _3AC = PelletView
+	u8 _2BC[0x10];                          // _2BC, unknown
+	int mFreezeTimer;                       // _2CC
+	Vector3f _2D0;                          // _2D0
+	int mPostFlickState;                    // _2DC
+	int _2E0;                               // _2E0
+	u32 _2E4;                               // _2E4, unknown
+	u32 _2E8;                               // _2E8, unknown
+	u32 _2EC;                               // _2EC, unknown
+	u32 _2F0;                               // _2F0, unknown
+	u32 _2F4;                               // _2F4, unknown
+	Vector3f _2F8;                          // _2F8
+	u8 _304[0xC];                           // _304, unknown
+	Vector3f _310[2];                       // _310
+	Vector3f _328;                          // _328
+	u32 _334;                               // _334
+	bool _338;                              // _338
+	f32 _33C;                               // _33C, timer?
+	s16 _340;                               // _340, next or current waypoint idx?
+	s16 _342;                               // _342, next or current waypoint idx?
+	u8 _344[0x4];                           // _344, unknown
+	u32 _348;                               // _348
+	u8 _34C;                                // _34C, unknown
+	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // _350
+	Sys::MatLoopAnimator* mMatLoopAnimator; // _358
+	PathNode* _35C;                         // _35C
+	FSM* _360;                              // _360
+	Tyre::Obj* mTyre;                       // _364
+	u16 _368;                               // _368, unknown
+	u16 mChestJointIndex;                   // _36A
+	u16 mLeftHandJointIndex;                // _36C
+	u16 mRightHandJointIndex;               // _36E
+	u16 mLeftFootJointIndex;                // _370
+	u16 mRightFootJointIndex;               // _372
+	f32 _374;                               // _374
+	f32 _378;                               // _378
+	u8 _37C[0x14];                          // _37C
+	efx::TKageMove* mEfxMove;               // _390
+	efx::TKageRun* mEfxRun;                 // _394
+	efx::TKageTyreup* mEfxTyreup;           // _398
+	efx::TKageDead1* mEfxDead;              // _39C
+	efx::TKageFlick* _3A0;                  // _3A0
+	efx::TKageFlick* _3A4;                  // _3A4
+	u8 _3A8;                                // _3A8, unknown
+	u8 _3A9;                                // _3A9
+	u8 _3AA;                                // _3AA
+	u8 _3AB;                                // _3AB
+	                                        // _3AC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -173,18 +173,18 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Sys::MatTexAnimation* m_texAnimation; // _44
-	Obj* m_obj;                           // _48
+	Sys::MatTexAnimation* mTexAnimation; // _44
+	Obj* mObj;                           // _48
 };
 
 struct Parms : public EnemyParmsBase {
@@ -192,38 +192,38 @@ struct Parms : public EnemyParmsBase {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
 		    // Pod?
-		    , m_podMoveSpeed(this, 'fp01', "ポッド移動速度", 10.0f, 0.0f, 100.0f)
+		    , mPodMoveSpeed(this, 'fp01', "ポッド移動速度", 10.0f, 0.0f, 100.0f)
 		    // Running away (escape)
-		    , m_escapeSpeed(this, 'fp02', "逃げ速度", 10.0f, 0.0f, 1000.0f)
-		    , m_escapeRotationSpeed(this, 'fp03', "逃げ回転速度率", 0.1f, 0.0f, 1.0f)
-		    , m_maxEscapeRotationStep(this, 'fp04', "逃げ回転最大速度", 10.0f, 0.0f, 360.0f)
+		    , mEscapeSpeed(this, 'fp02', "逃げ速度", 10.0f, 0.0f, 1000.0f)
+		    , mEscapeRotationSpeed(this, 'fp03', "逃げ回転速度率", 0.1f, 0.0f, 1.0f)
+		    , mMaxEscapeRotationStep(this, 'fp04', "逃げ回転最大速度", 10.0f, 0.0f, 360.0f)
 		    // Normal movement
-		    , m_travelSpeed(this, 'fp05', "2段階速度", 200.0f, 10.0f, 500.0f)
-		    , m_rotationSpeed(this, 'fp06', "2段階回転速度率", 0.1f, 0.0f, 1.0f)
-		    , m_maxRotationStep(this, 'fp07', "2段階回転最大速度", 10.0f, 0.0f, 360.0f)
+		    , mTravelSpeed(this, 'fp05', "2段階速度", 200.0f, 10.0f, 500.0f)
+		    , mRotationSpeed(this, 'fp06', "2段階回転速度率", 0.1f, 0.0f, 1.0f)
+		    , mMaxRotationStep(this, 'fp07', "2段階回転最大速度", 10.0f, 0.0f, 360.0f)
 		    // Walking speed
-		    , m_walkingSpeed(this, 'fp11', "歩き速度", 10.0f, 0.0f, 100.0f)
-		    , m_timerToTwoStep(this, 'ip01', "2段階へのタイマー", 300, 0, 3000)
-		    , m_dosinStopTimerLength(this, 'ip03', "ドシン停止タイマー", 200, 0, 600)
-		    , m_freezeTimerLength(this, 'ip04', "逃げ停止タイマー", 200, 0, 600)
-		    , m_continuousEscapeTimerLength(this, 'ip05', "連続逃げタイマー", 200, 0, 600)
-		    , m_standStillTimerLength(this, 'ip06', "つかれ停止タイマー", 200, 0, 600)
+		    , mWalkingSpeed(this, 'fp11', "歩き速度", 10.0f, 0.0f, 100.0f)
+		    , mTimerToTwoStep(this, 'ip01', "2段階へのタイマー", 300, 0, 3000)
+		    , mDosinStopTimerLength(this, 'ip03', "ドシン停止タイマー", 200, 0, 600)
+		    , mFreezeTimerLength(this, 'ip04', "逃げ停止タイマー", 200, 0, 600)
+		    , mContinuousEscapeTimerLength(this, 'ip05', "連続逃げタイマー", 200, 0, 600)
+		    , mStandStillTimerLength(this, 'ip06', "つかれ停止タイマー", 200, 0, 600)
 		{
 		}
 
-		Parm<f32> m_podMoveSpeed;                // _804
-		Parm<f32> m_escapeSpeed;                 // _82C
-		Parm<f32> m_escapeRotationSpeed;         // _854
-		Parm<f32> m_maxEscapeRotationStep;       // _87C
-		Parm<f32> m_travelSpeed;                 // _8A4
-		Parm<f32> m_rotationSpeed;               // _8CC
-		Parm<f32> m_maxRotationStep;             // _8F4
-		Parm<f32> m_walkingSpeed;                // _91C
-		Parm<int> m_timerToTwoStep;              // _944
-		Parm<int> m_dosinStopTimerLength;        // _96C
-		Parm<int> m_freezeTimerLength;           // _994
-		Parm<int> m_continuousEscapeTimerLength; // _9BC
-		Parm<int> m_standStillTimerLength;       // _9E4
+		Parm<f32> mPodMoveSpeed;                // _804
+		Parm<f32> mEscapeSpeed;                 // _82C
+		Parm<f32> mEscapeRotationSpeed;         // _854
+		Parm<f32> mMaxEscapeRotationStep;       // _87C
+		Parm<f32> mTravelSpeed;                 // _8A4
+		Parm<f32> mRotationSpeed;               // _8CC
+		Parm<f32> mMaxRotationStep;             // _8F4
+		Parm<f32> mWalkingSpeed;                // _91C
+		Parm<int> mTimerToTwoStep;              // _944
+		Parm<int> mDosinStopTimerLength;        // _96C
+		Parm<int> mFreezeTimerLength;           // _994
+		Parm<int> mContinuousEscapeTimerLength; // _9BC
+		Parm<int> mStandStillTimerLength;       // _9E4
 	};
 
 	Parms()
@@ -258,47 +258,47 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
-	u8 _A10;                   // _A10, unknown
-	u8 _A11;                   // _A11, unknown
-	u8 _A12;                   // _A12, unknown
-	u8 _A13;                   // _A13, unknown
-	u8 _A14;                   // _A14, unknown
-	u8 _A15;                   // _A15, unknown
-	u8 _A16;                   // _A16, unknown
-	u8 _A17;                   // _A17, unknown
-	u8 _A18;                   // _A18, unknown
-	s16 _A1A;                  // _A1A, unknown
-	f32 _A1C;                  // _A1C
-	f32 _A20;                  // _A20
-	f32 _A24;                  // _A24
-	f32 _A28;                  // _A28
-	f32 _A2C;                  // _A2C
-	f32 _A30;                  // _A30
-	f32 _A34;                  // _A34
-	f32 _A38;                  // _A38
-	f32 _A3C;                  // _A3C
-	f32 _A40;                  // _A40
-	f32 _A44;                  // _A44
-	f32 _A48;                  // _A48
-	f32 _A4C;                  // _A4C
-	f32 _A50;                  // _A50
-	f32 _A54;                  // _A54
-	f32 _A58;                  // _A58
+	ProperParms mProperParms; // _7F8
+	u8 _A10;                  // _A10, unknown
+	u8 _A11;                  // _A11, unknown
+	u8 _A12;                  // _A12, unknown
+	u8 _A13;                  // _A13, unknown
+	u8 _A14;                  // _A14, unknown
+	u8 _A15;                  // _A15, unknown
+	u8 _A16;                  // _A16, unknown
+	u8 _A17;                  // _A17, unknown
+	u8 _A18;                  // _A18, unknown
+	s16 _A1A;                 // _A1A, unknown
+	f32 _A1C;                 // _A1C
+	f32 _A20;                 // _A20
+	f32 _A24;                 // _A24
+	f32 _A28;                 // _A28
+	f32 _A2C;                 // _A2C
+	f32 _A30;                 // _A30
+	f32 _A34;                 // _A34
+	f32 _A38;                 // _A38
+	f32 _A3C;                 // _A3C
+	f32 _A40;                 // _A40
+	f32 _A44;                 // _A44
+	f32 _A48;                 // _A48
+	f32 _A4C;                 // _A4C
+	f32 _A50;                 // _A50
+	f32 _A54;                 // _A54
+	f32 _A58;                 // _A58
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

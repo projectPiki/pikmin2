@@ -10,9 +10,9 @@ namespace og {
  */
 inline Lib2D::Lib2D()
 {
-	m_message = nullptr;
-	m_message = new P2JME::SimpleMessage;
-	m_message->init();
+	mMessage = nullptr;
+	mMessage = new P2JME::SimpleMessage;
+	mMessage->init();
 }
 
 /*

@@ -9,9 +9,9 @@ namespace Game {
  */
 Cave::GateNode::GateNode()
 {
-	m_unit      = nullptr;
-	m_index     = 0;
-	m_direction = 0.0f;
+	mUnit      = nullptr;
+	mIndex     = 0;
+	mDirection = 0.0f;
 }
 
 /*
@@ -21,9 +21,9 @@ Cave::GateNode::GateNode()
  */
 Cave::GateNode::GateNode(Cave::GateUnit* unit, int index, int dir)
 {
-	m_unit      = unit;
-	m_index     = index;
-	m_direction = -HALF_PI * dir;
+	mUnit      = unit;
+	mIndex     = index;
+	mDirection = -HALF_PI * dir;
 }
 
 /*
@@ -33,8 +33,8 @@ Cave::GateNode::GateNode(Cave::GateUnit* unit, int index, int dir)
  */
 int Cave::GateNode::getObjectId()
 {
-	if (m_unit->m_info) {
-		return m_unit->m_info->m_caveID;
+	if (mUnit->mInfo) {
+		return mUnit->mInfo->mCaveID;
 	}
 
 	return -1;
@@ -59,12 +59,12 @@ int Cave::GateNode::getBirthCount() { return 1; }
  * Address:	8024FDF0
  * Size:	000008
  */
-float Cave::GateNode::getDirection() { return m_direction; }
+float Cave::GateNode::getDirection() { return mDirection; }
 
 /*
  * --INFO--
  * Address:	8024FDF8
  * Size:	000008
  */
-int Cave::GateNode::getBirthDoorIndex() { return m_index; }
+int Cave::GateNode::getBirthDoorIndex() { return mIndex; }
 } // namespace Game

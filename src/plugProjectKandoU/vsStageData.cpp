@@ -15,15 +15,15 @@ namespace ChallengeGame {
  */
 StageData::StageData()
 {
-	m_pikiContainer.clear();
-	sprintf(m_caveInfoFilename, "caveinfo.txt");
-	m_timeLimit            = 200.0f;
-	m_startNumSpicy        = 0;
-	m_startNumBitter       = 0;
-	m_floorCounts          = 1;
-	_70                    = 0;
-	m_stageIndex           = 0;
-	m_floorTimerExtentions = nullptr;
+	mPikiContainer.clear();
+	sprintf(mCaveInfoFilename, "caveinfo.txt");
+	mTimeLimit            = 200.0f;
+	mStartNumSpicy        = 0;
+	mStartNumBitter       = 0;
+	mFloorCounts          = 1;
+	_70                   = 0;
+	mStageIndex           = 0;
+	mFloorTimerExtentions = nullptr;
 }
 
 /*
@@ -36,32 +36,32 @@ void StageData::read(Stream& stream)
 	u32 version            = stream.readInt();
 	char* caveinfoFilename = stream.readString(nullptr, 0);
 	for (int i = 0; i < 64; i++) {
-		m_caveInfoFilename[i] = caveinfoFilename[i];
+		mCaveInfoFilename[i] = caveinfoFilename[i];
 		if (caveinfoFilename[i] == 0)
 			break;
 	}
-	m_pikiContainer.read(stream);
+	mPikiContainer.read(stream);
 	if (version >= 1) {
-		m_timeLimit      = stream.readFloat();
-		m_startNumBitter = stream.readInt();
-		m_startNumSpicy  = stream.readInt();
+		mTimeLimit      = stream.readFloat();
+		mStartNumBitter = stream.readInt();
+		mStartNumSpicy  = stream.readInt();
 	}
 	if (version >= 2) {
-		m_floorCounts = stream.readInt();
-		_70           = stream.readInt(); // unuused otakara num
+		mFloorCounts = stream.readInt();
+		_70          = stream.readInt(); // unuused otakara num
 	}
 	if (version >= 3) {
-		m_stageIndex = stream.readInt();
+		mStageIndex = stream.readInt();
 	}
 	if (version >= 4) {
-		m_floorTimerExtentions = new f32[m_floorCounts];
-		for (int i = 0; i < m_floorCounts; i++) {
-			m_floorTimerExtentions[i] = stream.readFloat();
+		mFloorTimerExtentions = new f32[mFloorCounts];
+		for (int i = 0; i < mFloorCounts; i++) {
+			mFloorTimerExtentions[i] = stream.readFloat();
 		}
 	} else {
-		m_floorTimerExtentions = new f32[m_floorCounts];
-		for (int i = 0; i < m_floorCounts; i++) {
-			m_floorTimerExtentions[i] = 100.0f;
+		mFloorTimerExtentions = new f32[mFloorCounts];
+		for (int i = 0; i < mFloorCounts; i++) {
+			mFloorTimerExtentions[i] = 100.0f;
 		}
 	}
 }
@@ -73,7 +73,7 @@ void StageData::read(Stream& stream)
  */
 StageList::StageList()
 {
-	m_name = "チャレンジステージ"; // challenge stage
+	mName = "チャレンジステージ"; // challenge stage
 }
 
 /*
@@ -83,15 +83,15 @@ StageList::StageList()
  */
 void StageList::read(Stream& stream)
 {
-	bool b       = (gameSystem) ? gameSystem->m_section->disableAllocHalt() : true;
+	bool b       = (gameSystem) ? gameSystem->mSection->disableAllocHalt() : true;
 	s32 stageNum = stream.readInt();
 	for (int i = 0; i < stageNum; i++) {
 		StageData* currStageData = new StageData;
 		currStageData->read(stream);
-		m_stageData.add(currStageData);
+		mStageData.add(currStageData);
 	}
 	if (gameSystem && b) {
-		gameSystem->m_section->enableAllocHalt();
+		gameSystem->mSection->enableAllocHalt();
 	}
 }
 
@@ -102,9 +102,9 @@ void StageList::read(Stream& stream)
  */
 StageData* StageList::getStageData(int idx)
 {
-	int childCount = m_stageData.getChildCount();
+	int childCount = mStageData.getChildCount();
 	JUT_ASSERTLINE(213, 0 <= idx && idx < childCount, "illegal stage index %d\n", idx); // doesn't match if using bounds inclusive
-	return static_cast<StageData*>(m_stageData.getChildAt(idx));
+	return static_cast<StageData*>(mStageData.getChildAt(idx));
 }
 
 } // namespace ChallengeGame
@@ -118,14 +118,14 @@ namespace VsGame {
  */
 StageData::StageData()
 {
-	m_pikiContainer.clear();
-	sprintf(m_caveInfoFilename, "caveinfo.txt");
-	m_timeLimit      = 200.0f;
-	m_startNumSpicy  = 0;
-	m_startNumBitter = 0;
-	m_index2D        = 0;
-	sprintf(m_stageLayoutFilePath, "random");
-	m_startNumYellowMarbles = 7;
+	mPikiContainer.clear();
+	sprintf(mCaveInfoFilename, "caveinfo.txt");
+	mTimeLimit      = 200.0f;
+	mStartNumSpicy  = 0;
+	mStartNumBitter = 0;
+	mIndex2D        = 0;
+	sprintf(mStageLayoutFilePath, "random");
+	mStartNumYellowMarbles = 7;
 }
 
 /*
@@ -138,28 +138,28 @@ void StageData::read(Stream& stream)
 	u32 version            = stream.readInt();
 	char* caveinfoFilename = stream.readString(nullptr, 0);
 	for (int i = 0; i < 64; i++) {
-		m_caveInfoFilename[i] = caveinfoFilename[i];
+		mCaveInfoFilename[i] = caveinfoFilename[i];
 		if (caveinfoFilename[i] == 0)
 			break;
 	}
-	m_pikiContainer.read(stream);
-	m_timeLimit      = stream.readFloat();
-	m_startNumBitter = stream.readInt();
-	m_startNumSpicy  = stream.readInt();
+	mPikiContainer.read(stream);
+	mTimeLimit      = stream.readFloat();
+	mStartNumBitter = stream.readInt();
+	mStartNumSpicy  = stream.readInt();
 
 	if (version >= 2) {
-		m_index2D = stream.readInt();
+		mIndex2D = stream.readInt();
 	}
 	if (version >= 3) {
 		char* layoutFileName = stream.readString(nullptr, 0);
 		for (int i = 0; i < 64; i++) {
-			m_stageLayoutFilePath[i] = layoutFileName[i];
+			mStageLayoutFilePath[i] = layoutFileName[i];
 			if (layoutFileName[i] == 0)
 				break;
 		}
 	}
 	if (version >= 4) {
-		m_startNumYellowMarbles = stream.readInt();
+		mStartNumYellowMarbles = stream.readInt();
 	}
 }
 
@@ -170,7 +170,7 @@ void StageData::read(Stream& stream)
  */
 StageList::StageList()
 {
-	m_name = "対戦用ステージ"; // battle stage
+	mName = "対戦用ステージ"; // battle stage
 }
 
 /*
@@ -180,15 +180,15 @@ StageList::StageList()
  */
 void StageList::read(Stream& stream)
 {
-	bool b       = (gameSystem) ? gameSystem->m_section->disableAllocHalt() : true;
+	bool b       = (gameSystem) ? gameSystem->mSection->disableAllocHalt() : true;
 	s32 stageNum = stream.readInt();
 	for (int i = 0; i < stageNum; i++) {
 		StageData* currStageData = new StageData;
 		currStageData->read(stream);
-		m_stageData.add(currStageData);
+		mStageData.add(currStageData);
 	}
 	if (gameSystem && b) {
-		gameSystem->m_section->enableAllocHalt();
+		gameSystem->mSection->enableAllocHalt();
 	}
 }
 
@@ -199,9 +199,9 @@ void StageList::read(Stream& stream)
  */
 StageData* StageList::getStageData(int idx)
 {
-	int childCount = m_stageData.getChildCount();
+	int childCount = mStageData.getChildCount();
 	JUT_ASSERTLINE(427, 0 <= idx && idx < childCount, "illegal stage index %d\n", idx); // doesn't match if using bounds inclusive
-	return static_cast<StageData*>(m_stageData.getChildAt(idx));
+	return static_cast<StageData*>(mStageData.getChildAt(idx));
 }
 
 } // namespace VsGame

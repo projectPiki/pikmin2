@@ -13,7 +13,7 @@
 namespace ebi {
 struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 	inline E2DCallBack_Base()
-	    : m_isEnabled(1)
+	    : mIsEnabled(1)
 	{
 	}
 	virtual ~E2DCallBack_Base();                      // _08 (weak)
@@ -22,7 +22,7 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 	virtual void do_update();                         // _1C (weak)
 	virtual void do_draw(Graphics&, J2DGrafContext&); // _20 (weak)
 
-	bool m_isEnabled; // _1C
+	bool mIsEnabled; // _1C
 };
 
 // Size: 0x3C
@@ -42,9 +42,9 @@ struct E2DCallBack_AnmBase : public E2DCallBack_Base {
 	f32 getPlayFinRate();
 	bool isFinish();
 
-	J3DFrameCtrl m_frameCtrl; // _20
-	J2DAnmBase* m_anim;       // _34
-	bool m_isFinished;        // _38
+	J3DFrameCtrl mFrameCtrl; // _20
+	J2DAnmBase* mAnim;       // _34
+	bool mIsFinished;        // _38
 };
 
 struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {
@@ -74,32 +74,32 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 
 	inline void setColors(int i, J2DTextBox* pane)
 	{
-		m_fonts[i].m_col1.set(pane->m_charColor);
-		m_fonts[i].m_col2.set(pane->m_gradientColor);
-		m_fonts[i].m_white = pane->getWhite();
-		m_fonts[i].m_black = pane->getBlack();
+		mFonts[i].mCol1.set(pane->mCharColor);
+		mFonts[i].mCol2.set(pane->mGradientColor);
+		mFonts[i].mWhite = pane->getWhite();
+		mFonts[i].mBlack = pane->getBlack();
 	}
 
 	// needs tweaking
 	inline void setPaneColors()
 	{
-		m_isEnabled      = false;
-		J2DTextBox* pane = static_cast<J2DTextBox*>(m_pane);
+		mIsEnabled       = false;
+		J2DTextBox* pane = static_cast<J2DTextBox*>(mPane);
 		if (pane) {
-			pane->m_charColor.set(m_fonts[0].m_col1);
-			pane->m_gradientColor.set(m_fonts[0].m_col2);
-			JUtility::TColor white = m_fonts[0].m_white;
+			pane->mCharColor.set(mFonts[0].mCol1);
+			pane->mGradientColor.set(mFonts[0].mCol2);
+			JUtility::TColor white = mFonts[0].mWhite;
 			pane->setWhite(white);
-			JUtility::TColor black = m_fonts[0].m_black;
+			JUtility::TColor black = mFonts[0].mBlack;
 			pane->setBlack(black);
 		}
 	}
 
-	E2DFullFontColor m_fonts[2]; // _20
-	f32 _40;                     // _40
-	f32 m_speed;                 // _44
-	u8 _48;                      // _48
-	u8 _49;                      // _49
+	E2DFullFontColor mFonts[2]; // _20
+	f32 _40;                    // _40
+	f32 mSpeed;                 // _44
+	u8 _48;                     // _48
+	u8 _49;                     // _49
 };
 
 struct E2DCallBack_CalcAnimation : public E2DCallBack_Base {
@@ -116,8 +116,8 @@ struct E2DCallBack_Purupuru : public E2DCallBack_Base {
 	virtual ~E2DCallBack_Purupuru(); // _08 (weak)
 	virtual void do_update();        // _1C
 
-	og::Screen::ScaleMgr m_scaleMgr; // _20
-	// TODO: Rename to `m_scale`
+	og::Screen::ScaleMgr mScaleMgr; // _20
+	// TODO: Rename to `mScale`
 	f32 _3C; // _3C
 };
 

@@ -8,28 +8,28 @@ struct J2DPane;
 namespace ebi {
 struct TYesNoCursor : public efx2d::T2DCursor {
 	TYesNoCursor()
-	    : T2DCursor(&m_pos)
+	    : T2DCursor(&mPos)
 	{
-		m_pane1 = nullptr;
-		m_pane2 = nullptr;
+		mPane1 = nullptr;
+		mPane2 = nullptr;
 	}
 
 	void update();
 
 	inline void setPanes(J2DPane* pane1, J2DPane* pane2)
 	{
-		m_pane1 = pane1;
-		m_pane2 = pane2;
+		mPane1 = pane1;
+		mPane2 = pane2;
 	}
 
 	// _00     = VTBL
 	// _00-_1C = T2DCursor
-	Vector2f m_pos;   // _1C
-	f32 m_speed;      // _24
-	f32 m_timer;      // _28
-	bool m_selected;  // _2C
-	J2DPane* m_pane1; // _30
-	J2DPane* m_pane2; // _34
+	Vector2f mPos;   // _1C
+	f32 mSpeed;      // _24
+	f32 mTimer;      // _28
+	bool mSelected;  // _2C
+	J2DPane* mPane1; // _30
+	J2DPane* mPane2; // _34
 };
 } // namespace ebi
 

@@ -21,9 +21,9 @@ struct SeaMgr : public NodeObjectMgr<WaterBox> {
 	// Unused/inlined:
 	void directDraw(Graphics&);
 
-	int _3C;                            // _3C
-	J3DModelData** m_modelData;         // _40
-	Sys::MatTexAnimation* m_animations; // _44
+	int _3C;                           // _3C
+	J3DModelData** mModelData;         // _40
+	Sys::MatTexAnimation* mAnimations; // _44
 };
 } // namespace Game
 

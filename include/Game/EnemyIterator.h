@@ -8,63 +8,63 @@
 template <typename T>
 struct EnemyIterator {
 	inline EnemyIterator<T>(Container<T>* container, void* startIndex = 0, Condition<T>* condition = nullptr)
-	    : m_condition(condition)
+	    : mCondition(condition)
 	{
-		m_index     = startIndex;
-		m_container = container;
+		mIndex     = startIndex;
+		mContainer = container;
 	}
 
 	///////////////// VTABLE
 	virtual void first() // _08
 	{
-		if (m_condition == nullptr) {
-			m_index = m_container->getStart();
+		if (mCondition == nullptr) {
+			mIndex = mContainer->getStart();
 		} else {
-			m_index = m_container->getStart();
+			mIndex = mContainer->getStart();
 			while (!isDone()) {
-				if (m_condition->satisfy(m_container->get(m_index))) {
+				if (mCondition->satisfy(mContainer->get(mIndex))) {
 					return;
 				}
-				m_index = m_container->getNext(m_index);
+				mIndex = mContainer->getNext(mIndex);
 			}
 		}
 	}
 	virtual void next() // _0C
 	{
-		if (m_condition == nullptr) {
-			m_index = m_container->getNext(m_index);
+		if (mCondition == nullptr) {
+			mIndex = mContainer->getNext(mIndex);
 		} else {
-			m_index = m_container->getNext(m_index);
+			mIndex = mContainer->getNext(mIndex);
 			while (!isDone()) {
-				if (m_condition->satisfy(m_container->get(m_index))) {
+				if (mCondition->satisfy(mContainer->get(mIndex))) {
 					return;
 				}
-				m_index = m_container->getNext(m_index);
+				mIndex = mContainer->getNext(mIndex);
 			}
 		}
 	}
 	virtual bool isDone() // _10
 	{
-		return (m_index == m_container->getEnd());
+		return (mIndex == mContainer->getEnd());
 	}
 	virtual T* operator*() // _14
 	{
-		return m_container->get(m_index);
+		return mContainer->get(mIndex);
 	}
 	///////////////// VTABLE END
 
 	inline Iterator<T>& operator++()
 	{
-		m_index = m_container->getNext(m_index);
+		mIndex = mContainer->getNext(mIndex);
 		return *this;
 	}
 
-	inline bool satisfy() { return m_condition->satisfy(m_container->get(m_index)); }
+	inline bool satisfy() { return mCondition->satisfy(mContainer->get(mIndex)); }
 
 	// VTBL _00
-	void* m_index;             // _04;
-	Container<T>* m_container; // _08
-	Condition<T>* m_condition; // _0C
+	void* mIndex;             // _04;
+	Container<T>* mContainer; // _08
+	Condition<T>* mCondition; // _0C
 };
 
 #endif

@@ -45,35 +45,35 @@ struct MailSaveData {
 struct IncP {
 	IncP();
 
-	int m_yesterdayRed;         // _00
-	int m_yesterdayYellow;      // _04
-	int m_yesterdayBlue;        // _08
-	int m_yesterdayWhite;       // _0C
-	int m_yesterdayPurple;      // _10
-	int m_yesterdayTotal;       // _14
-	int m_todayRed;             // _18
-	int m_todayYellow;          // _1C
-	int m_todayBlue;            // _20
-	int m_todayWhite;           // _24
-	int m_todayPurple;          // _28
-	int m_todayTotal;           // _2C
-	int _30;                    // _30, deaths from ?
-	int _34;                    // _34, deaths from ?
-	int _38;                    // _38, deaths from ?
-	int m_deathsFromWaterToday; // _3C
-	int _40;                    // _40, deaths from ?
-	int _44;                    // _44, deaths from ?
-	int _48;                    // _48, deaths from ?
-	int m_totalDeathsToday;     // _4C
-	int _50;                    // _50, deaths from ? total?
-	int _54;                    // _54, deaths from ? total?
-	int _58;                    // _58, deaths from ? total?
-	int m_deathsFromWaterTotal; // _5C
-	int _60;                    // _60, deaths from ? total?
-	int _64;                    // _64, deaths from ? total?
-	int _68;                    // _68, deaths from ? total?
-	int m_totalDeaths;          // _6C
-	u8 m_pikminUnlockedFlag;    // _70
+	int mYesterdayRed;         // _00
+	int mYesterdayYellow;      // _04
+	int mYesterdayBlue;        // _08
+	int mYesterdayWhite;       // _0C
+	int mYesterdayPurple;      // _10
+	int mYesterdayTotal;       // _14
+	int mTodayRed;             // _18
+	int mTodayYellow;          // _1C
+	int mTodayBlue;            // _20
+	int mTodayWhite;           // _24
+	int mTodayPurple;          // _28
+	int mTodayTotal;           // _2C
+	int _30;                   // _30, deaths from ?
+	int _34;                   // _34, deaths from ?
+	int _38;                   // _38, deaths from ?
+	int mDeathsFromWaterToday; // _3C
+	int _40;                   // _40, deaths from ?
+	int _44;                   // _44, deaths from ?
+	int _48;                   // _48, deaths from ?
+	int mTotalDeathsToday;     // _4C
+	int _50;                   // _50, deaths from ? total?
+	int _54;                   // _54, deaths from ? total?
+	int _58;                   // _58, deaths from ? total?
+	int mDeathsFromWaterTotal; // _5C
+	int _60;                   // _60, deaths from ? total?
+	int _64;                   // _64, deaths from ? total?
+	int _68;                   // _68, deaths from ? total?
+	int mTotalDeaths;          // _6C
+	u8 mPikminUnlockedFlag;    // _70
 };
 
 ////////////////////////////////////////////
@@ -89,9 +89,9 @@ struct DispDayEndResultIncP : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	IncP* m_pikminInfo; // _08
-	u8 _0C;             // _0C
-	u8 _0D;             // _0D
+	IncP* mPikminInfo; // _08
+	u8 _0C;            // _0C
+	u8 _0D;            // _0D
 };
 
 // Treasure collected screen
@@ -103,14 +103,14 @@ struct DispDayEndResultItem : public og::Screen::DispMemberBase {
 	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT_ITEM; } // _10 (weak)
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	Game::Result::TNode* m_resultNode; // _08
-	u32 _0C;                           // _0C, unknown
-	u32 _10;                           // _10, unknown
-	int _14;                           // _14
-	int _18;                           // _18
-	int _1C;                           // _1C
-	bool _20;                          // _20
-	bool _21;                          // _21
+	Game::Result::TNode* mResultNode; // _08
+	u32 _0C;                          // _0C, unknown
+	u32 _10;                          // _10, unknown
+	int _14;                          // _14
+	int _18;                          // _18
+	int _1C;                          // _1C
+	bool _20;                         // _20
+	bool _21;                         // _21
 };
 
 // Mail screen
@@ -123,13 +123,13 @@ struct DispDayEndResultMail : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	JKRHeap* m_heap;             // _08
-	u32 _0C;                     // _0C, unknown
-	MailCategory m_mailCategory; // _10
-	u32 _14;                     // _14, unknown
-	u8 _18;                      // _18
-	int _1C;                     // _1C
-	uint m_dayCount;             // _20
+	JKRHeap* mHeap;             // _08
+	u32 _0C;                    // _0C, unknown
+	MailCategory mMailCategory; // _10
+	u32 _14;                    // _14, unknown
+	u8 _18;                     // _18
+	int _1C;                    // _1C
+	uint mDayCount;             // _20
 };
 
 // 'End of Day Results' screen
@@ -152,10 +152,10 @@ struct DispDayEndResult : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DispDayEndResultTitl m_title; // _08
-	DispDayEndResultItem m_item;  // _10
-	DispDayEndResultIncP m_incP;  // _34
-	DispDayEndResultMail m_mail;  // _44
+	DispDayEndResultTitl mTitle; // _08
+	DispDayEndResultItem mItem;  // _10
+	DispDayEndResultIncP mIncP;  // _34
+	DispDayEndResultMail mMail;  // _44
 };
 
 ////////////////////////////////////////////
@@ -225,36 +225,36 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	void setFadeinFrm();
 	void setFadeoutFrm();
 
-	inline bool isFlag(u32 flag) const { return m_flags & flag; }
+	inline bool isFlag(u32 flag) const { return mFlags & flag; }
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	P2DScreen::Mgr_tuning* m_resultTitleMgr;    // _38
-	J2DAnmTransform* m_resultTitleAnmTransform; // _3C
-	J2DAnmColor* m_resultTitleAnmColor;         // _40
-	f32 _44;                                    // _44
-	f32 _48;                                    // _48
-	P2DScreen::Mgr_tuning* _4C;                 // _4C
-	J2DAnmTransform* _50;                       // _50
-	J2DAnmTransform* _54;                       // _54
-	J2DAnmTextureSRTKey* _58;                   // _58
-	J2DAnmTevRegKey* _5C;                       // _5C
-	f32 _60;                                    // _60
-	f32 _64;                                    // _64
-	f32 _68;                                    // _68
-	f32 _6C;                                    // _6C
-	P2DScreen::Mgr_tuning* _70;                 // _70
-	J2DAnmColor* _74;                           // _74
-	f32 _78;                                    // _78
-	f32 _7C;                                    // _7C
-	f32 _80;                                    // _80
-	f32 _84;                                    // _84
-	f32 _88;                                    // _88
-	khUtilFadePane* m_nextBtnFadePane;          // _8C
-	u32 m_flags;                                // _90
-	u8 _94;                                     // _94
-	u8 _95;                                     // _95
+	P2DScreen::Mgr_tuning* mResultTitleMgr;    // _38
+	J2DAnmTransform* mResultTitleAnmTransform; // _3C
+	J2DAnmColor* mResultTitleAnmColor;         // _40
+	f32 _44;                                   // _44
+	f32 _48;                                   // _48
+	P2DScreen::Mgr_tuning* _4C;                // _4C
+	J2DAnmTransform* _50;                      // _50
+	J2DAnmTransform* _54;                      // _54
+	J2DAnmTextureSRTKey* _58;                  // _58
+	J2DAnmTevRegKey* _5C;                      // _5C
+	f32 _60;                                   // _60
+	f32 _64;                                   // _64
+	f32 _68;                                   // _68
+	f32 _6C;                                   // _6C
+	P2DScreen::Mgr_tuning* _70;                // _70
+	J2DAnmColor* _74;                          // _74
+	f32 _78;                                   // _78
+	f32 _7C;                                   // _7C
+	f32 _80;                                   // _80
+	f32 _84;                                   // _84
+	f32 _88;                                   // _88
+	khUtilFadePane* mNextBtnFadePane;          // _8C
+	u32 mFlags;                                // _90
+	u8 _94;                                    // _94
+	u8 _95;                                    // _95
 
 	struct StaticValues {
 		inline StaticValues()
@@ -358,7 +358,7 @@ struct ObjDayEndResultIncP : public ObjDayEndResultBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_98 = ObjDayEndResultBase
-	int m_status;                           // _98
+	int mStatus;                            // _98
 	J2DAnmTransform* _9C;                   // _9C
 	J2DAnmTransform* _A0;                   // _A0
 	f32 _A4;                                // _A4
@@ -370,7 +370,7 @@ struct ObjDayEndResultIncP : public ObjDayEndResultBase {
 	og::Screen::CallBack_CounterSlot** _BC; // _BC, array of 14 ptrs?
 	og::Screen::CallBack_CounterRV* _C0;    // _C0
 	og::Screen::CallBack_CounterRV* _C4;    // _C4
-	og::Screen::ScaleMgr* m_scaleMgr;       // _C8
+	og::Screen::ScaleMgr* mScaleMgr;        // _C8
 	u32 _CC;                                // _CC
 	u32 _D0;                                // _D0
 	u32 _D4;                                // _D4
@@ -463,18 +463,18 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_98 = ObjDayEndResultBase
-	Status m_status;                      // _98
+	Status mStatus;                       // _98
 	P2DScreen::Mgr_tuning* _9C;           // _9C
 	J2DAnmTransform* _A0;                 // _A0
-	ebi::Save::TMgr* m_saveMgr;           // _A4
+	ebi::Save::TMgr* mSaveMgr;            // _A4
 	J2DAnmTransform* _A8;                 // _A8
 	J2DAnmTransform* _AC;                 // _AC
 	f32 _B0;                              // _B0
 	og::Screen::CallBack_CounterDay* _B4; // _B4
 	int _B8;                              // _B8
 	u32 _BC;                              // _BC
-	JKRMemArchive* m_memArchive;          // _C0
-	MailIconAnm* m_mailIconAnms;          // _C4, array of 20 icon anms
+	JKRMemArchive* mMemArchive;           // _C0
+	MailIconAnm* mMailIconAnms;           // _C4, array of 20 icon anms
 	u32 _C8;                              // _C8, unknown
 	khUtilFadePane* _CC;                  // _CC
 	khUtilFadePane* _D0;                  // _D0
@@ -528,32 +528,32 @@ struct ObjDayEndResultItem : public ObjDayEndResultBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_98 = ObjDayEndResultBase
-	Status m_status;                          // _98
-	J2DAnmTransform* _9C;                     // _9C
-	f32 _A0;                                  // _A0
-	og::Screen::CallBack_CounterRV* _A4;      // _A4
-	og::Screen::CallBack_CounterRV* _A8;      // _A8
-	og::Screen::CallBack_CounterRV* _AC;      // _AC
-	og::Screen::CallBack_CounterRV* _B0;      // _B0
-	og::Screen::StickAnimMgr* m_stickAnimMgr; // _B4
-	khUtilFadePane* _B8;                      // _B8
-	khUtilFadePane* _BC;                      // _BC
-	khUtilFadePane* _C0;                      // _C0
-	u32 _C4;                                  // _C4
-	u32 _C8;                                  // _C8
-	u32 _CC;                                  // _CC
-	u32 _D0;                                  // _D0
-	f32 _D4;                                  // _D4
-	int _D8;                                  // _D8
-	f32 _DC;                                  // _DC
-	int _E0;                                  // _E0
-	int _E4;                                  // _E4
-	int _E8;                                  // _E8
-	u32 _EC;                                  // _EC
-	u32 _F0;                                  // _F0
-	int _F4;                                  // _F4
-	u8 _F8;                                   // _F8
-	u8 _F9;                                   // _F9
+	Status mStatus;                          // _98
+	J2DAnmTransform* _9C;                    // _9C
+	f32 _A0;                                 // _A0
+	og::Screen::CallBack_CounterRV* _A4;     // _A4
+	og::Screen::CallBack_CounterRV* _A8;     // _A8
+	og::Screen::CallBack_CounterRV* _AC;     // _AC
+	og::Screen::CallBack_CounterRV* _B0;     // _B0
+	og::Screen::StickAnimMgr* mStickAnimMgr; // _B4
+	khUtilFadePane* _B8;                     // _B8
+	khUtilFadePane* _BC;                     // _BC
+	khUtilFadePane* _C0;                     // _C0
+	u32 _C4;                                 // _C4
+	u32 _C8;                                 // _C8
+	u32 _CC;                                 // _CC
+	u32 _D0;                                 // _D0
+	f32 _D4;                                 // _D4
+	int _D8;                                 // _D8
+	f32 _DC;                                 // _DC
+	int _E0;                                 // _E0
+	int _E4;                                 // _E4
+	int _E8;                                 // _E8
+	u32 _EC;                                 // _EC
+	u32 _F0;                                 // _F0
+	int _F4;                                 // _F4
+	u8 _F8;                                  // _F8
+	u8 _F9;                                  // _F9
 };
 
 struct ObjDayEndResultTitl : public ::Screen::ObjBase {
@@ -637,9 +637,9 @@ struct SceneDayEndResultMail : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	u32 _220;                    // _220, unknown
-	JKRMemArchive* m_memArchive; // _224
-	u8 _228[0x14];               // _228, unknown
+	u32 _220;                   // _220, unknown
+	JKRMemArchive* mMemArchive; // _224
+	u8 _228[0x14];              // _228, unknown
 };
 
 struct SceneDayEndResultTitl : public ::Screen::SceneBase {

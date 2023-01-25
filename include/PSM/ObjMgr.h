@@ -18,7 +18,7 @@ struct ObjMgr : public JSUPtrList, public PSSystem::SingletonBase<ObjMgr>, publi
 	// _28     = VTBL 2
 	// _00-_10 = JSUPtrList
 	// _10-_28 = JKRDisposer
-	Scene_Objects* m_scenes; // _2C, probably an array of scenes
+	Scene_Objects* mScenes; // _2C, probably an array of scenes
 };
 } // namespace PSM
 

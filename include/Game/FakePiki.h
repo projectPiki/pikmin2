@@ -98,9 +98,9 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	FakePiki();
 
 	// these are here so they can be used in vtable methods
-	inline void setFPFlag(u32 flag) { m_fakePikiFlags.typeView |= flag; }
-	inline void resetFPFlag(u32 flag) { m_fakePikiFlags.typeView &= ~flag; }
-	inline bool isFPFlag(u32 flag) { return m_fakePikiFlags.typeView & flag; }
+	inline void setFPFlag(u32 flag) { mFakePikiFlags.typeView |= flag; }
+	inline void resetFPFlag(u32 flag) { mFakePikiFlags.typeView &= ~flag; }
+	inline bool isFPFlag(u32 flag) { return mFakePikiFlags.typeView & flag; }
 
 	// vtable 1 (Creature)
 	virtual Vector3f getPosition();                           // _08
@@ -182,32 +182,32 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	// _000      = VTBL
 	// _000-_178 = Creature
 	// _178-_17C = MotionListener
-	BitFlag<u32> m_fakePikiFlags;     // _17C
-	f32 _180;                         // _180
-	u32 _184;                         // _184
-	IDelegate* m_doAnimCallback;      // _188
-	short m_roomIndex;                // _18C
-	WaterBox* m_waterBox;             // _190
-	CollPart* m_targetCollObj;        // _194
-	f32 m_neckTheta;                  // _198
-	f32 m_neckPhi;                    // _19C
-	Vector3f* m_lookAtPosition;       // _1A0
-	u8 _1A4;                          // _1A4
-	Creature* m_lookAtTargetCreature; // _1A8
-	PikiAnimator m_animator;          // _1AC
-	Vector3f m_velocity;              // _1E4
-	Vector3f _1F0;                    // _1F0
-	f32 m_faceDir;                    // _1FC
-	Vector3f m_position2;             // _200
-	Vector3f m_position3;             // _20C, was m_shadowParam.m_position
-	Sys::Sphere m_boundingSphere;     // _218, was m_shadowParam.m_boundingSphere
-	u32 m_boundAnimIdx;               // _228, current animIdx for held/bound object
-	u8 _22C[8];                       // _22C
-	f32 m_animSpeed;                  // _234
-	Vector3f _238;                    // _238
-	f32 m_faceDirOffset;              // _244
-	Sys::Triangle* _248;              // _248
-	u32 _24C;                         // _24C, unknown
+	BitFlag<u32> mFakePikiFlags;     // _17C
+	f32 _180;                        // _180
+	u32 _184;                        // _184
+	IDelegate* mDoAnimCallback;      // _188
+	short mRoomIndex;                // _18C
+	WaterBox* mWaterBox;             // _190
+	CollPart* mTargetCollObj;        // _194
+	f32 mNeckTheta;                  // _198
+	f32 mNeckPhi;                    // _19C
+	Vector3f* mLookAtPosition;       // _1A0
+	u8 _1A4;                         // _1A4
+	Creature* mLookAtTargetCreature; // _1A8
+	PikiAnimator mAnimator;          // _1AC
+	Vector3f mVelocity;              // _1E4
+	Vector3f _1F0;                   // _1F0
+	f32 mFaceDir;                    // _1FC
+	Vector3f mPosition2;             // _200
+	Vector3f mPosition3;             // _20C, was mShadowParam.mPosition
+	Sys::Sphere mBoundingSphere;     // _218, was mShadowParam.mBoundingSphere
+	u32 mBoundAnimIdx;               // _228, current animIdx for held/bound object
+	u8 _22C[8];                      // _22C
+	f32 mAnimSpeed;                  // _234
+	Vector3f _238;                   // _238
+	f32 mFaceDirOffset;              // _244
+	Sys::Triangle* _248;             // _248
+	u32 _24C;                        // _24C, unknown
 };
 
 struct FakePikiParms : public CreatureParms {
@@ -234,7 +234,7 @@ struct FakePikiParms : public CreatureParms {
 
 	// _00-_D8 = CreatureParms
 	// _D8 		 = VTBL
-	Parms m_fakePikiParms; // _DC
+	Parms mFakePikiParms; // _DC
 };
 
 } // namespace Game

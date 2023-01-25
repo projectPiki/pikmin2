@@ -18,15 +18,15 @@ struct StageData : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	PikiContainer m_pikiContainer; // _18
-	char m_caveInfoFilename[64];   // _20, default = "caveinfo.txt"
-	f32 m_timeLimit;               // _60
-	int m_startNumBitter;          // _64
-	int m_startNumSpicy;           // _68
-	int m_floorCounts;             // _6C
-	s32 _70;                       // _70
-	int m_stageIndex;              // _74
-	f32* m_floorTimerExtentions;   // _78
+	PikiContainer mPikiContainer; // _18
+	char mCaveInfoFilename[64];   // _20, default = "caveinfo.txt"
+	f32 mTimeLimit;               // _60
+	int mStartNumBitter;          // _64
+	int mStartNumSpicy;           // _68
+	int mFloorCounts;             // _6C
+	s32 _70;                      // _70
+	int mStageIndex;              // _74
+	f32* mFloorTimerExtentions;   // _78
 };
 
 struct StageList : public CNode {
@@ -40,7 +40,7 @@ struct StageList : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	StageData m_stageData; // _18
+	StageData mStageData; // _18
 };
 } // namespace ChallengeGame
 } // namespace Game

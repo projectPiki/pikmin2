@@ -53,10 +53,10 @@ template <typename T>
 struct ArrayContainer : public Container<T> {
 	inline ArrayContainer()
 	{
-		_18       = 1;
-		m_limit   = 0;
-		m_count   = 0;
-		m_objects = nullptr;
+		_18      = 1;
+		mLimit   = 0;
+		mCount   = 0;
+		mObjects = nullptr;
 	}
 
 	/////////////////// VTABLE
@@ -74,22 +74,22 @@ struct ArrayContainer : public Container<T> {
 
 	virtual void* getEnd() // _1C (weak)
 	{
-		return (void*)m_count;
+		return (void*)mCount;
 	}
 
 	virtual T* get(void* index) // _20 (weak)
 	{
-		return &m_objects[(s32)index];
+		return &mObjects[(s32)index];
 	}
 
 	virtual T* getAt(int index) // _24 (weak)
 	{
-		return &m_objects[index];
+		return &mObjects[index];
 	}
 
 	virtual int getTo() // _28 (weak)
 	{
-		return m_limit;
+		return mLimit;
 	}
 
 	virtual void writeObject(Stream&, T&) { } // _2C (weak)
@@ -97,62 +97,62 @@ struct ArrayContainer : public Container<T> {
 
 	virtual void write(Stream& output) // _34 (weak)
 	{
-		output.textBeginGroup(const_cast<char*>(m_name));
-		output.textWriteTab(output.m_tabCount);
-		output.writeInt(m_limit);
+		output.textBeginGroup(const_cast<char*>(mName));
+		output.textWriteTab(output.mTabCount);
+		output.writeInt(mLimit);
 		output.textWriteText("\r\n");
-		for (int i = 0; i < m_limit; i++) {
-			output.textWriteTab(output.m_tabCount);
-			writeObject(output, m_objects[i]);
-			output.textWriteText("# %d/%d\r\n", i, m_limit);
+		for (int i = 0; i < mLimit; i++) {
+			output.textWriteTab(output.mTabCount);
+			writeObject(output, mObjects[i]);
+			output.textWriteText("# %d/%d\r\n", i, mLimit);
 		}
 		output.textEndGroup();
 	}
 
 	virtual void read(Stream& output) // _38 (weak)
 	{
-		m_limit = output.readInt();
-		alloc(m_limit);
-		m_count = m_limit;
-		for (int i = 0; i < m_limit; ++i) {
-			readObject(output, m_objects[i]);
+		mLimit = output.readInt();
+		alloc(mLimit);
+		mCount = mLimit;
+		for (int i = 0; i < mLimit; ++i) {
+			readObject(output, mObjects[i]);
 		}
 	}
 
 	virtual void alloc(int limit) // _3C (weak)
 	{
-		m_objects = new T[limit];
-		m_limit   = limit;
-		m_count   = 0;
+		mObjects = new T[limit];
+		mLimit   = limit;
+		mCount   = 0;
 	}
 
 	virtual void addOne(T& object) // _40 (weak)
 	{
-		int index = m_count;
-		if (index >= m_limit) {
+		int index = mCount;
+		if (index >= mLimit) {
 			return;
 		}
-		T& arrayObject = m_objects[index];
-		m_count++;
+		T& arrayObject = mObjects[index];
+		mCount++;
 		arrayObject = object;
 	}
 
 	virtual void setArray(T* objects, int count) // _44 (weak)
 	{
-		m_objects = objects;
-		m_limit   = count;
-		m_count   = count;
+		mObjects = objects;
+		mLimit   = count;
+		mCount   = count;
 	}
 	/////////////////// END VTABLE
 
 	// The number of used objects.
-	int m_count; // _1C
+	int mCount; // _1C
 
 	// The number of allocated objects.
-	int m_limit; // _20
+	int mLimit; // _20
 
 	// Pointer to the array of objects.
-	T* m_objects; // _24
+	T* mObjects; // _24
 };
 
 #endif

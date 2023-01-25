@@ -21,11 +21,11 @@ struct PelletCarry {
 	void giveup(u16);
 	bool frameWork(Vector3f&); // work done in a frame (pellet displacement)
 
-	u16 m_state;         // _00
-	f32 m_carryStrength; // _04, the amount of pikmin pulling force (amt of
-	                     // pikis) applied to the object
-	Vector3f m_position; // _08
-	f32 m_timer;         // _14, decremented by seconds per frame (deltaTime)
+	u16 mState;         // _00
+	f32 mCarryStrength; // _04, the amount of pikmin pulling force (amt of
+	                    // pikis) applied to the object
+	Vector3f mPosition; // _08
+	f32 mTimer;         // _14, decremented by seconds per frame (deltaTime)
 };
 } // namespace Game
 

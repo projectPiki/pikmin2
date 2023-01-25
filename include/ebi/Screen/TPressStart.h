@@ -22,15 +22,15 @@ struct TPressStart : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_0C = TScreenBase
-	Controller* m_control;                 // _0C
-	bool m_isOpen;                         // _10
-	int m_currentScreen;                   // _14
-	P2DScreen::Mgr_tuning* m_screens[4];   // _18
-	u32 m_alpha;                           // _28
-	u32 m_alphaMax;                        // _2C
-	E2DCallBack_AnmBase m_anims1[4];       // _30
-	E2DCallBack_AnmBase m_anims2[4];       // _34
-	E2DCallBack_CalcAnimation m_anims3[4]; // _38
+	Controller* mControl;                 // _0C
+	bool mIsOpen;                         // _10
+	int mCurrentScreen;                   // _14
+	P2DScreen::Mgr_tuning* mScreens[4];   // _18
+	u32 mAlpha;                           // _28
+	u32 mAlphaMax;                        // _2C
+	E2DCallBack_AnmBase mAnims1[4];       // _30
+	E2DCallBack_AnmBase mAnims2[4];       // _34
+	E2DCallBack_CalcAnimation mAnims3[4]; // _38
 };
 } // namespace Screen
 } // namespace ebi

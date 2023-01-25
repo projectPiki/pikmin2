@@ -70,13 +70,13 @@
  */
 JKRCompArchive::JKRCompArchive(long p1, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(p1, EMM_Comp)
-    , m_mountDirection(mountDirection)
+    , mMountDirection(mountDirection)
 {
 	if (!open(p1)) {
 		return;
 	}
-	m_magicWord = 'RARC';
-	_28         = _54 + _48->_04;
+	mMagicWord = 'RARC';
+	_28        = _54 + _48->_04;
 	sVolumeList.prepend(&_18);
 	_30 = 1;
 
@@ -302,16 +302,16 @@ bool JKRCompArchive::open(long inode)
 	// _78           = 0;
 	// _7C           = 0;
 	// _48           = nullptr;
-	// m_fileEntries = nullptr;
+	// mFileEntries = nullptr;
 	// _54           = 0;
 	// _70           = new (JKRHeap::sSystemHeap, 0) JKRDvdFile(inode);
 	// if (_70 == nullptr) {
-	// 	m_mountMode = EMM_Unk0;
+	// 	mMountMode = EMM_Unk0;
 	// 	return false;
 	// }
 	// void* memory = JKRHeap::sSystemHeap->alloc(0x20, -0x20);
 	// if (memory == nullptr) {
-	// 	m_mountMode = EMM_Unk0;
+	// 	mMountMode = EMM_Unk0;
 	// }
 	/*
 	stwu     r1, -0x30(r1)
@@ -994,8 +994,8 @@ void* JKRCompArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEnt
  */
 void JKRCompArchive::removeResourceAll()
 {
-	if (_44 != nullptr && m_mountMode != EMM_Mem) {
-		SDIFileEntry* entry = m_fileEntries;
+	if (_44 != nullptr && mMountMode != EMM_Mem) {
+		SDIFileEntry* entry = mFileEntries;
 		for (u32 i = 0; i < _44->_08; i++) {
 			if (entry->_10 != nullptr) {
 				if (!entry->getFlag10()) {

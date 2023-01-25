@@ -8,87 +8,87 @@ struct GameConfig {
 	struct Parms : public TagParameters {
 		Parms()
 		    : TagParameters("GameConfig")
-		    , m_gamePrint(this, "gamePrint")
-		    , m_Print(this, "Print")
-		    , m_ogawaPrint(this, "ogawaPrint")
-		    , m_shimizuPrint(this, "shimizuPrint")
-		    , m_yamashitaPrint(this, "yamashitaPrint")
-		    , m_kandoPrint(this, "kandoPrint")
-		    , m_nishimuraPrint(this, "nishimuraPrint")
-		    , m_ebisawaPrint(this, "ebisawaPrint")
-		    , m_morimuraPrint(this, "morimuraPrint")
-		    , m_konoPrint(this, "konoPrint")
-		    , m_fujinoPrint(this, "fujinoPrint")
-		    , m_psoundPrint(this, "psoundPrint")
-		    , m_shortCutUp(this, "shortCutUp")
-		    , m_shortCutDown(this, "shortCutDown")
-		    , m_shortCutLeft(this, "shortCutLeft")
-		    , m_shortCutRight(this, "shortCutRight")
-		    , m_allocAllEnemy(this, "allocAllEnemy")
-		    , m_mapparts_path(this, "mapparts_path")
-		    , m_publicity(this, "publicity")
-		    , m_pelletMultiLang(this, "pelletMultiLang")
-		    , m_AI(this, "AI")
-		    , m_timers(this, "timers")
-		    , m_vsTest(this, "vsTest")
-		    , m_vsDeathType(this, "vsDeathType")
-		    , m_vsHiba(this, "vsHiba")
-		    , m_vsY(this, "vsY")
-		    , m_E3version(this, "E3version")
-		    , m_mukki_cherry(this, "mukki_cherry")
-		    , m_marioClubDevelop(this, "marioClubDevelop")
-		    , m_heapStatusPrint(this, "heapStatusPrint")
-		    , m_heapFreeSize(this, "heapFreeSize")
-		    , m_baseGameNewCheck(this, "baseGameNewCheck")
-		    , m_KFesVersion(this, "KFesVersion")
-		    , m_nintendoVersion(this, "nintendoVersion")
-		    , m_language(this, "language")
-		    , m_autosaveOff(this, "autosaveOff")
-		    , m_vsDebugSelectPattern(this, "vsDebugSelectPattern")
-		    , m_vsFifo(this, "vsFifo")
+		    , mGamePrint(this, "gamePrint")
+		    , mPrint(this, "Print")
+		    , mOgawaPrint(this, "ogawaPrint")
+		    , mShimizuPrint(this, "shimizuPrint")
+		    , mYamashitaPrint(this, "yamashitaPrint")
+		    , mKandoPrint(this, "kandoPrint")
+		    , mNishimuraPrint(this, "nishimuraPrint")
+		    , mEbisawaPrint(this, "ebisawaPrint")
+		    , mMorimuraPrint(this, "morimuraPrint")
+		    , mKonoPrint(this, "konoPrint")
+		    , mFujinoPrint(this, "fujinoPrint")
+		    , mPsoundPrint(this, "psoundPrint")
+		    , mShortCutUp(this, "shortCutUp")
+		    , mShortCutDown(this, "shortCutDown")
+		    , mShortCutLeft(this, "shortCutLeft")
+		    , mShortCutRight(this, "shortCutRight")
+		    , mAllocAllEnemy(this, "allocAllEnemy")
+		    , mMapparts_path(this, "mapparts_path")
+		    , mPublicity(this, "publicity")
+		    , mPelletMultiLang(this, "pelletMultiLang")
+		    , mAI(this, "AI")
+		    , mTimers(this, "timers")
+		    , mVsTest(this, "vsTest")
+		    , mVsDeathType(this, "vsDeathType")
+		    , mVsHiba(this, "vsHiba")
+		    , mVsY(this, "vsY")
+		    , mE3version(this, "E3version")
+		    , mMukki_cherry(this, "mukki_cherry")
+		    , mMarioClubDevelop(this, "marioClubDevelop")
+		    , mHeapStatusPrint(this, "heapStatusPrint")
+		    , mHeapFreeSize(this, "heapFreeSize")
+		    , mBaseGameNewCheck(this, "baseGameNewCheck")
+		    , mKFesVersion(this, "KFesVersion")
+		    , mNintendoVersion(this, "nintendoVersion")
+		    , mLanguage(this, "language")
+		    , mAutosaveOff(this, "autosaveOff")
+		    , mVsDebugSelectPattern(this, "vsDebugSelectPattern")
+		    , mVsFifo(this, "vsFifo")
 		{
 		}
 
 		virtual ~Parms() { } // _08 (weak)
 
-		PrimTagParm<int> m_gamePrint;            // _01C
-		PrimTagParm<int> m_Print;                // _02C
-		PrimTagParm<int> m_ogawaPrint;           // _03C
-		PrimTagParm<int> m_shimizuPrint;         // _04C
-		PrimTagParm<int> m_yamashitaPrint;       // _05C
-		PrimTagParm<int> m_kandoPrint;           // _06C
-		PrimTagParm<int> m_nishimuraPrint;       // _07C
-		PrimTagParm<int> m_ebisawaPrint;         // _08C
-		PrimTagParm<int> m_morimuraPrint;        // _09C
-		PrimTagParm<int> m_konoPrint;            // _0AC
-		PrimTagParm<int> m_fujinoPrint;          // _0BC
-		PrimTagParm<int> m_psoundPrint;          // _0CC
-		PrimTagParm<int> m_shortCutUp;           // _0DC
-		PrimTagParm<int> m_shortCutDown;         // _0EC
-		PrimTagParm<int> m_shortCutLeft;         // _0FC
-		PrimTagParm<int> m_shortCutRight;        // _10C
-		PrimTagParm<int> m_allocAllEnemy;        // _11C
-		StringTagParm m_mapparts_path;           // _12C
-		PrimTagParm<int> m_publicity;            // _13C
-		PrimTagParm<int> m_pelletMultiLang;      // _14C
-		PrimTagParm<int> m_AI;                   // _15C
-		PrimTagParm<int> m_timers;               // _16C
-		PrimTagParm<int> m_vsTest;               // _17C
-		PrimTagParm<int> m_vsDeathType;          // _18C
-		PrimTagParm<int> m_vsHiba;               // _19C
-		PrimTagParm<int> m_vsY;                  // _1AC
-		PrimTagParm<int> m_E3version;            // _1BC
-		PrimTagParm<int> m_mukki_cherry;         // _1CC
-		PrimTagParm<int> m_marioClubDevelop;     // _1DC
-		PrimTagParm<int> m_heapStatusPrint;      // _1EC
-		PrimTagParm<int> m_heapFreeSize;         // _1FC
-		PrimTagParm<int> m_baseGameNewCheck;     // _20C
-		PrimTagParm<int> m_KFesVersion;          // _21C
-		PrimTagParm<int> m_nintendoVersion;      // _22C
-		StringTagParm m_language;                // _23C
-		PrimTagParm<int> m_autosaveOff;          // _24C
-		PrimTagParm<int> m_vsDebugSelectPattern; // _25C
-		PrimTagParm<int> m_vsFifo;               // _26C
+		PrimTagParm<int> mGamePrint;            // _01C
+		PrimTagParm<int> mPrint;                // _02C
+		PrimTagParm<int> mOgawaPrint;           // _03C
+		PrimTagParm<int> mShimizuPrint;         // _04C
+		PrimTagParm<int> mYamashitaPrint;       // _05C
+		PrimTagParm<int> mKandoPrint;           // _06C
+		PrimTagParm<int> mNishimuraPrint;       // _07C
+		PrimTagParm<int> mEbisawaPrint;         // _08C
+		PrimTagParm<int> mMorimuraPrint;        // _09C
+		PrimTagParm<int> mKonoPrint;            // _0AC
+		PrimTagParm<int> mFujinoPrint;          // _0BC
+		PrimTagParm<int> mPsoundPrint;          // _0CC
+		PrimTagParm<int> mShortCutUp;           // _0DC
+		PrimTagParm<int> mShortCutDown;         // _0EC
+		PrimTagParm<int> mShortCutLeft;         // _0FC
+		PrimTagParm<int> mShortCutRight;        // _10C
+		PrimTagParm<int> mAllocAllEnemy;        // _11C
+		StringTagParm mMapparts_path;           // _12C
+		PrimTagParm<int> mPublicity;            // _13C
+		PrimTagParm<int> mPelletMultiLang;      // _14C
+		PrimTagParm<int> mAI;                   // _15C
+		PrimTagParm<int> mTimers;               // _16C
+		PrimTagParm<int> mVsTest;               // _17C
+		PrimTagParm<int> mVsDeathType;          // _18C
+		PrimTagParm<int> mVsHiba;               // _19C
+		PrimTagParm<int> mVsY;                  // _1AC
+		PrimTagParm<int> mE3version;            // _1BC
+		PrimTagParm<int> mMukki_cherry;         // _1CC
+		PrimTagParm<int> mMarioClubDevelop;     // _1DC
+		PrimTagParm<int> mHeapStatusPrint;      // _1EC
+		PrimTagParm<int> mHeapFreeSize;         // _1FC
+		PrimTagParm<int> mBaseGameNewCheck;     // _20C
+		PrimTagParm<int> mKFesVersion;          // _21C
+		PrimTagParm<int> mNintendoVersion;      // _22C
+		StringTagParm mLanguage;                // _23C
+		PrimTagParm<int> mAutosaveOff;          // _24C
+		PrimTagParm<int> mVsDebugSelectPattern; // _25C
+		PrimTagParm<int> mVsFifo;               // _26C
 	};
 
 	GameConfig();
@@ -99,7 +99,7 @@ struct GameConfig {
 	// Unused/inlined:
 	void setConstSetting();
 
-	Parms m_parms; // _00
+	Parms mParms; // _00
 };
 
 extern GameConfig gGameConfig;

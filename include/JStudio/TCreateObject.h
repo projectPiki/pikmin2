@@ -14,7 +14,7 @@ struct TCreateObject {
 	virtual bool create(TObject** newObject, const stb::data::TParse_TBlock_object& data) = 0; // _0C
 
 	// _00 = VTBL
-	JGadget::TLinkListNode m_linkListNode; // _04
+	JGadget::TLinkListNode mLinkListNode; // _04
 };
 } // namespace JStudio
 

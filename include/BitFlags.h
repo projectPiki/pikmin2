@@ -6,9 +6,9 @@
 
 // TODO
 struct BitFlags {
-	u8* m_flagArr; // _00 flag array
-	u16 _04;       // _04
-	u16 m_flagCnt; // _06 flag count
+	u8* mFlagArr; // _00 flag array
+	u16 _04;      // _04
+	u16 mFlagCnt; // _06 flag count
 
 	BitFlags();
 	void dump();
@@ -22,8 +22,8 @@ struct BitFlags {
 
 	inline void set_all(u8 value)
 	{
-		for (s32 i = 0; i < m_flagCnt; i++) {
-			m_flagArr[i] = value;
+		for (s32 i = 0; i < mFlagCnt; i++) {
+			mFlagArr[i] = value;
 		}
 	}
 

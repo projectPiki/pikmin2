@@ -19,10 +19,10 @@ EnemyEffectNodeHamon::EnemyEffectNodeHamon() { }
 void EnemyEffectNodeHamon::create(EnemyBase* enemy)
 {
 	if (enemy->inWater()) {
-		efx::ArgEnemyType fxArg(enemy->getPosition(), enemy->getEnemyTypeID(), enemy->m_scaleModifier);
-		m_enemyHamon.create(&fxArg);
+		efx::ArgEnemyType fxArg(enemy->getPosition(), enemy->getEnemyTypeID(), enemy->mScaleModifier);
+		mEnemyHamon.create(&fxArg);
 
-		m_enemyHamon.m_seaHeightPtr = enemy->m_waterBox->getSeaHeightPtr();
+		mEnemyHamon.mSeaHeightPtr = enemy->mWaterBox->getSeaHeightPtr();
 	}
 }
 
@@ -31,14 +31,14 @@ void EnemyEffectNodeHamon::create(EnemyBase* enemy)
  * Address:	8012E8F8
  * Size:	00002C
  */
-void EnemyEffectNodeHamon::fade(EnemyBase* enemy) { m_enemyHamon.fade(); }
+void EnemyEffectNodeHamon::fade(EnemyBase* enemy) { mEnemyHamon.fade(); }
 
 /*
  * --INFO--
  * Address:	8012E9B8
  * Size:	00002C
  */
-void EnemyEffectNodeHamon::forceKill(EnemyBase* enemy) { m_enemyHamon.forceKill(); }
+void EnemyEffectNodeHamon::forceKill(EnemyBase* enemy) { mEnemyHamon.forceKill(); }
 
 /*
  * --INFO--
@@ -49,7 +49,7 @@ void EnemyEffectNodeHamon::update(EnemyBase* enemy)
 {
 	Vector3f position;
 	enemy->getEfxHamonPos(&position);
-	m_enemyHamon.update(position);
+	mEnemyHamon.update(position);
 }
 
 } // namespace Game

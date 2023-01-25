@@ -77,8 +77,8 @@ namespace Screen {
 ObjBase::ObjBase()
     : IObjBase()
 {
-	_30     = 0;
-	m_owner = nullptr;
+	_30    = 0;
+	mOwner = nullptr;
 }
 
 /*
@@ -394,7 +394,7 @@ void ObjBase::doDraw(Graphics& gfx)
 	// print._44.g = 0xFF;
 	// print._44.b = 0xFF;
 	// print._44.a = 0xFF;
-	// print.print(100.0f, m_name); // TODO: What's the other double param?
+	// print.print(100.0f, mName); // TODO: What's the other double param?
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -458,7 +458,7 @@ void ObjBase::doDraw(Graphics& gfx)
  * Address:	80453FA8
  * Size:	00000C
  */
-og::Screen::DispMemberBase* ObjBase::getDispMember() { return m_owner->m_dispMember; }
+og::Screen::DispMemberBase* ObjBase::getDispMember() { return mOwner->mDispMember; }
 
 /*
  * --INFO--
@@ -519,7 +519,7 @@ void ObjMgrBase::registObj(Screen::IObjBase* obj, Screen::SceneBase* scene)
 bool ObjMgrBase::update()
 {
 	bool result = true;
-	for (IObjBase* obj = (IObjBase*)_00.m_child; obj != nullptr; obj = (IObjBase*)obj->m_next) {
+	for (IObjBase* obj = (IObjBase*)_00.mChild; obj != nullptr; obj = (IObjBase*)obj->mNext) {
 		if (!obj->update()) {
 			result = false;
 		}
@@ -569,7 +569,7 @@ lbl_80454150:
  */
 void ObjMgrBase::draw(Graphics& gfx)
 {
-	for (IObjBase* obj = (IObjBase*)_00.m_child; obj != nullptr; obj = (IObjBase*)obj->m_next) {
+	for (IObjBase* obj = (IObjBase*)_00.mChild; obj != nullptr; obj = (IObjBase*)obj->mNext) {
 		obj->draw(gfx);
 	}
 	/*

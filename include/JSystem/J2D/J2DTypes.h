@@ -28,15 +28,15 @@ struct J2DAlphaCompInfo {
 struct J2DAlphaComp {
 	/** @fabricated */
 	J2DAlphaComp()
-	    : m_alphaComp(j2dDefaultAlphaCmp)
-	    , m_ref0(0)
-	    , m_ref1(0)
+	    : mAlphaComp(j2dDefaultAlphaCmp)
+	    , mRef0(0)
+	    , mRef1(0)
 	{
 	}
 
-	u16 m_alphaComp; // _00
-	u8 m_ref0;       // _02
-	u8 m_ref1;       // _03
+	u16 mAlphaComp; // _00
+	u8 mRef0;       // _02
+	u8 mRef1;       // _03
 };
 
 struct J2DBlendInfo {
@@ -44,30 +44,30 @@ struct J2DBlendInfo {
 
 	J2DBlendInfo(u8 type, u8 srcFactor, u8 destFactor)
 	{
-		m_type       = type;
-		m_srcFactor  = srcFactor;
-		m_destFactor = destFactor;
+		mType       = type;
+		mSrcFactor  = srcFactor;
+		mDestFactor = destFactor;
 	}
 
 	void operator=(J2DBlendInfo const& other)
 	{
-		m_type       = other.m_type;
-		m_srcFactor  = other.m_srcFactor;
-		m_destFactor = other.m_destFactor;
+		mType       = other.mType;
+		mSrcFactor  = other.mSrcFactor;
+		mDestFactor = other.mDestFactor;
 	}
 
-	u8 m_type;       // _00
-	u8 m_srcFactor;  // _01
-	u8 m_destFactor; // _02
+	u8 mType;       // _00
+	u8 mSrcFactor;  // _01
+	u8 mDestFactor; // _02
 };
 
 extern J2DBlendInfo j2dDefaultBlendInfo;
 
 struct J2DBlend {
-	J2DBlend() { m_blendInfo = j2dDefaultBlendInfo; }
+	J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
 
-	J2DBlendInfo m_blendInfo; // _00
-	u8 m_op;                  // _03
+	J2DBlendInfo mBlendInfo; // _00
+	u8 mOp;                  // _03
 };
 
 struct J2DColorChanInfo {
@@ -81,50 +81,50 @@ extern J2DColorChanInfo j2dDefaultColorChanInfo;
  * @size{0x2}
  */
 struct J2DColorChan {
-	J2DColorChan() { m_data = j2dDefaultColorChanInfo._01; }
+	J2DColorChan() { mData = j2dDefaultColorChanInfo._01; }
 
-	u16 m_data; // _00, should this be J2DColorChanInfo?
+	u16 mData; // _00, should this be J2DColorChanInfo?
 };
 
 struct J2DTevOrderInfo {
-	u8 m_texCoord; // _00
-	u8 m_texMap;   // _01
-	u8 m_color;    // _02
+	u8 mTexCoord; // _00
+	u8 mTexMap;   // _01
+	u8 mColor;    // _02
 };
 
 extern J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
 
 struct J2DTevOrder {
-	J2DTevOrder() { m_tevOrderInfo = j2dDefaultTevOrderInfoNull; }
+	J2DTevOrder() { mTevOrderInfo = j2dDefaultTevOrderInfoNull; }
 
 	/** @fabricated */
 	inline J2DTevOrder(u8 texCoord, u8 texMap, u8 color)
 	{
-		m_tevOrderInfo.m_texCoord = texCoord;
-		m_tevOrderInfo.m_texMap   = texMap;
-		m_tevOrderInfo.m_color    = color;
+		mTevOrderInfo.mTexCoord = texCoord;
+		mTevOrderInfo.mTexMap   = texMap;
+		mTevOrderInfo.mColor    = color;
 	}
 
 	/** @fabricated */
 	inline J2DTevOrder& operator=(const J2DTevOrderInfo& other)
 	{
-		m_tevOrderInfo = other;
+		mTevOrderInfo = other;
 		return *this;
 	}
 
 	/** @fabricated */
 	inline J2DTevOrder& operator=(const J2DTevOrder& other)
 	{
-		m_tevOrderInfo = other.m_tevOrderInfo;
+		mTevOrderInfo = other.mTevOrderInfo;
 		return *this;
 	}
 
-	inline GXChannelID getColor() const { return (GXChannelID)m_tevOrderInfo.m_color; }
-	inline GXTexMapID getTexMap() const { return (GXTexMapID)m_tevOrderInfo.m_texMap; }
-	inline GXTexCoordID getTexCoord() const { return (GXTexCoordID)m_tevOrderInfo.m_texCoord; }
+	inline GXChannelID getColor() const { return (GXChannelID)mTevOrderInfo.mColor; }
+	inline GXTexMapID getTexMap() const { return (GXTexMapID)mTevOrderInfo.mTexMap; }
+	inline GXTexCoordID getTexCoord() const { return (GXTexCoordID)mTevOrderInfo.mTexCoord; }
 
-	J2DTevOrderInfo m_tevOrderInfo; // _00
-	u8 _03;                         // _03
+	J2DTevOrderInfo mTevOrderInfo; // _00
+	u8 _03;                        // _03
 };
 
 struct J2DTevStageInfo {
@@ -278,23 +278,23 @@ struct J2DIndTevStage {
 
 	void load(u8);
 
-	GXIndTexStageID getIndStage() const { return (GXIndTexStageID)(m_flags & 0x03); }
-	GXIndTexFormat getIndFormat() const { return (GXIndTexFormat)((m_flags >> 2) & 0x03); }
-	GXIndTexBiasSel getBiasSel() const { return (GXIndTexBiasSel)((m_flags >> 4) & 0x07); }
-	GXIndTexWrap getWrapS() const { return (GXIndTexWrap)((m_flags >> 8) & 0x07); }
-	GXIndTexWrap getWrapT() const { return (GXIndTexWrap)((m_flags >> 11) & 0x07); }
-	GXIndTexMtxID getMtxSel() const { return (GXIndTexMtxID)((m_flags >> 16) & 0x0F); }
-	GXBool getPrev() const { return (GXBool)((m_flags >> 20) & 0x01); }
-	GXBool getLod() const { return (GXBool)((m_flags >> 21) & 0x01); }
-	GXIndTexAlphaSel getAlphaSel() const { return (GXIndTexAlphaSel)((m_flags >> 22) & 0x03); }
+	GXIndTexStageID getIndStage() const { return (GXIndTexStageID)(mFlags & 0x03); }
+	GXIndTexFormat getIndFormat() const { return (GXIndTexFormat)((mFlags >> 2) & 0x03); }
+	GXIndTexBiasSel getBiasSel() const { return (GXIndTexBiasSel)((mFlags >> 4) & 0x07); }
+	GXIndTexWrap getWrapS() const { return (GXIndTexWrap)((mFlags >> 8) & 0x07); }
+	GXIndTexWrap getWrapT() const { return (GXIndTexWrap)((mFlags >> 11) & 0x07); }
+	GXIndTexMtxID getMtxSel() const { return (GXIndTexMtxID)((mFlags >> 16) & 0x0F); }
+	GXBool getPrev() const { return (GXBool)((mFlags >> 20) & 0x01); }
+	GXBool getLod() const { return (GXBool)((mFlags >> 21) & 0x01); }
+	GXIndTexAlphaSel getAlphaSel() const { return (GXIndTexAlphaSel)((mFlags >> 22) & 0x03); }
 
-	u32 m_flags; // _00
+	u32 mFlags; // _00
 };
 
 struct J2DTexCoordInfo {
-	u8 m_texGenType; // _00
-	u8 m_texGenSrc;  // _01
-	u8 m_texGenMtx;  // _02
+	u8 mTexGenType; // _00
+	u8 mTexGenSrc;  // _01
+	u8 mTexGenMtx;  // _02
 
 	u8 _03; // _03 - padding?
 };
@@ -303,7 +303,7 @@ struct J2DTexCoord {
 	J2DTexCoord();
 	// J2DTexCoordInfo _00;
 
-	J2DTexCoordInfo m_texCoordInfo; // _00
+	J2DTexCoordInfo mTexCoordInfo; // _00
 };
 
 struct J2DTextureSRTInfo {

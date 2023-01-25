@@ -46,13 +46,13 @@ struct JUTXfb {
 		return GXGetNumXfbLines(GXGetYScaleFactor(gxObj->efbHeight, gxObj->xfbHeight), gxObj->efbHeight);
 	}
 
-	u8* m_buffers[3];  // _00
-	bool m_enabled[3]; // _0C
-	EXfbNumber _10;    // _10
-	short _14;         // _14
-	short _16;         // _16
-	short _18;         // _18
-	int _1C;           // _1C
+	u8* mBuffers[3];  // _00
+	bool mEnabled[3]; // _0C
+	EXfbNumber _10;   // _10
+	short _14;        // _14
+	short _16;        // _16
+	short _18;        // _18
+	int _1C;          // _1C
 
 	static JUTXfb* sManager;
 };

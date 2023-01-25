@@ -14,7 +14,7 @@ struct TParse : public stb::TParse {
 
 	void parseBlock_block_fvb_(const JStudio::stb::data::TParse_TBlock&, unsigned long);
 
-	fvb::TParse m_fvbParse; // _08
+	fvb::TParse mFvbParse; // _08
 };
 } // namespace JStudio
 

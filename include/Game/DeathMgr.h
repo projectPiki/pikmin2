@@ -30,8 +30,8 @@ struct DeathCounter {
 	void read(Stream&);
 	void write(Stream&);
 
-	int m_counts[COD_SourceCount + 1]; // _00
-	int m_total;                       // _20
+	int mCounts[COD_SourceCount + 1]; // _00
+	int mTotal;                       // _20
 };
 struct DeathMgr {
 	inline DeathMgr();

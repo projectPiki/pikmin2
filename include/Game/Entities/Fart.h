@@ -37,8 +37,8 @@ struct Obj : public Kogane::Obj {
 	 */
 	inline void getFartDistance2D(Vector3f& point, Vector2f& sep)
 	{
-		sep.x = m_fartPosition.x - point.x;
-		sep.y = m_fartPosition.z - point.z;
+		sep.x = mFartPosition.x - point.x;
+		sep.y = mFartPosition.z - point.z;
 	}
 
 	void interactFartGasAttack();
@@ -46,10 +46,10 @@ struct Obj : public Kogane::Obj {
 
 	// _00 		= VTBL
 	// _00-_2DC	= Kogane::Obj
-	f32 m_fartTimer;                   // _2DC
-	Vector3f m_fartPosition;           // _2E0
-	efx::TBabaFly_ver01* m_bodyEffect; // _2EC
-	                                   // _2F0 = PelletView
+	f32 mFartTimer;                   // _2DC
+	Vector3f mFartPosition;           // _2E0
+	efx::TBabaFly_ver01* mBodyEffect; // _2EC
+	                                  // _2F0 = PelletView
 };
 
 struct Mgr : public Kogane::Mgr {
@@ -66,12 +66,12 @@ struct Mgr : public Kogane::Mgr {
 	}
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
-		return m_changeTexture;
+		return mChangeTexture;
 	}
 
 	// _00 		= VTBL
 	// _00-_48	= Kogane::Mgr
-	Obj* m_obj; // _48, array of Objs
+	Obj* mObj; // _48, array of Objs
 };
 } // namespace Fart
 } // namespace Game

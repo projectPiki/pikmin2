@@ -24,23 +24,23 @@ void ObjFinalFloor::doCreate(JKRArchive* arc)
 		JUT_PANICLINE(57, "disp member err");
 	}
 
-	if (static_cast<DispFinalFloor*>(getDispMember())->m_is2Player) {
-		m_screenNum  = 2;
-		m_yOffset[0] = msVal.m_yOffsetP1;
-		m_yOffset[1] = msVal.m_yOffsetP2;
+	if (static_cast<DispFinalFloor*>(getDispMember())->mIs2Player) {
+		mScreenNum  = 2;
+		mYOffset[0] = msVal.mYOffsetP1;
+		mYOffset[1] = msVal.mYOffsetP2;
 	}
 
-	for (int i = 0; i < m_screenNum; i++) {
-		m_screen[i] = new P2DScreen::Mgr_tuning;
-		m_screen[i]->set("final_floor.blo", 0x40000, arc);
+	for (int i = 0; i < mScreenNum; i++) {
+		mScreen[i] = new P2DScreen::Mgr_tuning;
+		mScreen[i]->set("final_floor.blo", 0x40000, arc);
 		void* file = JKRFileLoader::getGlbResource("final_floor.bck", arc);
-		m_anim1[i] = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+		mAnim1[i]  = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
 
-		file       = JKRFileLoader::getGlbResource("final_floor.bpk", arc);
-		m_anim2[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+		file      = JKRFileLoader::getGlbResource("final_floor.bpk", arc);
+		mAnim2[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
 
-		m_screen[i]->setAnimation(m_anim1[i]);
-		m_screen[i]->setAnimation(m_anim2[i]);
+		mScreen[i]->setAnimation(mAnim1[i]);
+		mScreen[i]->setAnimation(mAnim2[i]);
 	}
 	startBGM();
 }
@@ -59,11 +59,11 @@ bool ObjFinalFloor::doUpdate() { return updateAnimation(); }
  */
 void ObjFinalFloor::doDraw(Graphics& gfx)
 {
-	gfx.m_orthoGraph.setPort();
+	gfx.mOrthoGraph.setPort();
 
-	for (int i = 0; i < m_screenNum; i++) {
-		m_screen[i]->search('ROOT')->setOffset(0.0f, m_yOffset[i]);
-		m_screen[i]->draw(gfx, gfx.m_orthoGraph);
+	for (int i = 0; i < mScreenNum; i++) {
+		mScreen[i]->search('ROOT')->setOffset(0.0f, mYOffset[i]);
+		mScreen[i]->draw(gfx, gfx.mOrthoGraph);
 	}
 }
 
@@ -74,7 +74,7 @@ void ObjFinalFloor::doDraw(Graphics& gfx)
  */
 bool ObjFinalFloor::doUpdateFadein()
 {
-	PSSystem::spSysIF->playSystemSe(PSSE_FINALLEVEL_COME, &m_sound, 0);
+	PSSystem::spSysIF->playSystemSe(PSSE_FINALLEVEL_COME, &mSound, 0);
 	return true;
 }
 
@@ -93,7 +93,7 @@ bool ObjFinalFloor::doUpdateFadeout()
 
 	DispFinalFloor* disp = static_cast<DispFinalFloor*>(getDispMember());
 	if (isCh) {
-		if (disp->m_is2Player) {
+		if (disp->mIs2Player) {
 			og::newScreen::SArgChallenge2P arg(1.5f);
 			::Screen::SceneBase* scene = getOwner();
 			if (scene->setBackupScene()) {
@@ -124,7 +124,7 @@ bool ObjFinalFloor::doUpdateFadeout()
  * Address:	80402280
  * Size:	000034
  */
-void ObjFinalFloor::doUpdateFadeoutFinish() { Game::gameSystem->m_section->startMainBgm(); }
+void ObjFinalFloor::doUpdateFadeoutFinish() { Game::gameSystem->mSection->startMainBgm(); }
 
 /*
  * --INFO--
@@ -134,27 +134,27 @@ void ObjFinalFloor::doUpdateFadeoutFinish() { Game::gameSystem->m_section->start
 bool ObjFinalFloor::updateAnimation()
 {
 	bool ret = false;
-	for (int i = 0; i < m_screenNum; i++) {
-		m_anim1[i]->m_currentFrame = m_animTime1[i];
-		m_anim2[i]->m_currentFrame = m_animTime2[i];
-		m_screen[i]->animation();
+	for (int i = 0; i < mScreenNum; i++) {
+		mAnim1[i]->mCurrentFrame = mAnimTime1[i];
+		mAnim2[i]->mCurrentFrame = mAnimTime2[i];
+		mScreen[i]->animation();
 
-		if (::Screen::gGame2DMgr && ::Screen::gGame2DMgr->m_screenMgr->m_inDemo) {
-			m_screen[i]->hide();
-			if (m_animTime1[i] > (m_anim1[i]->m_maxFrame * 3) >> 2) {
-				m_animTime1[i] = m_anim1[i]->m_maxFrame;
-				m_animTime2[i] = m_anim2[i]->m_maxFrame;
+		if (::Screen::gGame2DMgr && ::Screen::gGame2DMgr->mScreenMgr->mInDemo) {
+			mScreen[i]->hide();
+			if (mAnimTime1[i] > (mAnim1[i]->mMaxFrame * 3) >> 2) {
+				mAnimTime1[i] = mAnim1[i]->mMaxFrame;
+				mAnimTime2[i] = mAnim2[i]->mMaxFrame;
 			} else {
-				m_animTime2[i] = 0.0f;
-				m_animTime1[i] = 0.0f;
+				mAnimTime2[i] = 0.0f;
+				mAnimTime1[i] = 0.0f;
 			}
 		} else {
-			m_screen[i]->show();
+			mScreen[i]->show();
 		}
-		m_animTime1[i] += msVal.m_animSpeed;
-		m_animTime2[i] += msVal.m_animSpeed;
+		mAnimTime1[i] += msVal.mAnimSpeed;
+		mAnimTime2[i] += msVal.mAnimSpeed;
 
-		if (m_animTime1[i] >= m_anim1[i]->m_maxFrame || m_animTime2[i] >= m_anim2[i]->m_maxFrame) {
+		if (mAnimTime1[i] >= mAnim1[i]->mMaxFrame || mAnimTime2[i] >= mAnim2[i]->mMaxFrame) {
 			ret = true;
 		}
 	}
@@ -168,8 +168,8 @@ bool ObjFinalFloor::updateAnimation()
  */
 void ObjFinalFloor::stopSound()
 {
-	if (m_sound) {
-		m_sound->stop(0);
+	if (mSound) {
+		mSound->stop(0);
 	}
 	PSStop2DStream();
 }
@@ -181,8 +181,8 @@ void ObjFinalFloor::stopSound()
  */
 void ObjFinalFloor::restartSound()
 {
-	if (m_animTime1[0] <= (m_anim1[0]->m_maxFrame * 3) >> 2) {
-		PSSystem::spSysIF->playSystemSe(PSSE_FINALLEVEL_COME, &m_sound, 0);
+	if (mAnimTime1[0] <= (mAnim1[0]->mMaxFrame * 3) >> 2) {
+		PSSystem::spSysIF->playSystemSe(PSSE_FINALLEVEL_COME, &mSound, 0);
 		startBGM();
 	}
 }

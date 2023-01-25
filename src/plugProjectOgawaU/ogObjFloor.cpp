@@ -27,30 +27,30 @@ u64 vsRuleMsgId[6] = {
  * Size:	0000E8
  */
 ObjFloor::ObjFloor(const char* name)
-    : m_fadeLevel(0.0f)
-    , m_alpha(0.0f)
+    : mFadeLevel(0.0f)
+    , mAlpha(0.0f)
 {
-	m_name         = name;
-	m_disp         = nullptr;
-	m_screenName   = nullptr;
-	m_screenFont   = nullptr;
-	m_sublevelPane = nullptr;
-	m_timer        = msVal._0C;
-	m_doFadeout    = false;
-	m_color.set(0, 0, 0, 255);
-	m_doEnd            = 0;
-	m_BackgroundAlpha  = 0.0f;
-	m_sublevelXoffs    = 0.0f;
-	m_sublevelYoffs    = 0.0f;
-	m_counterFloor     = nullptr;
-	m_anims            = nullptr;
-	m_screenRules      = nullptr;
-	m_ruleMesgPane     = nullptr;
-	m_isButtonShown    = false;
-	m_buttonPane       = nullptr;
-	m_loadingPane      = nullptr;
-	m_buttonAlphaTimer = 1.0f;
-	sprintf(m_textTag, "");
+	mName         = name;
+	mDisp         = nullptr;
+	mScreenName   = nullptr;
+	mScreenFont   = nullptr;
+	mSublevelPane = nullptr;
+	mTimer        = msVal._0C;
+	mDoFadeout    = false;
+	mColor.set(0, 0, 0, 255);
+	mDoEnd            = 0;
+	mBackgroundAlpha  = 0.0f;
+	mSublevelXoffs    = 0.0f;
+	mSublevelYoffs    = 0.0f;
+	mCounterFloor     = nullptr;
+	mAnims            = nullptr;
+	mScreenRules      = nullptr;
+	mRuleMesgPane     = nullptr;
+	mIsButtonShown    = false;
+	mButtonPane       = nullptr;
+	mLoadingPane      = nullptr;
+	mButtonAlphaTimer = 1.0f;
+	sprintf(mTextTag, "");
 }
 
 /*
@@ -69,7 +69,7 @@ ObjFloor::~ObjFloor() { }
 bool newScreen::ObjFloor::isFLOOR()
 {
 	bool ret = false;
-	switch (m_disp->m_caveID) {
+	switch (mDisp->mCaveID) {
 	case 't_01':
 	case 't_02':
 	case 't_03':
@@ -98,7 +98,7 @@ bool newScreen::ObjFloor::isFLOOR()
 bool newScreen::ObjFloor::isCHALLENGE()
 {
 	bool ret = false;
-	switch (m_disp->m_caveID) {
+	switch (mDisp->mCaveID) {
 	case 'c_00':
 	case 'c_01':
 	case 'c_02':
@@ -144,7 +144,7 @@ bool newScreen::ObjFloor::isCHALLENGE()
 inline bool newScreen::ObjFloor::isVS()
 {
 	bool ret = false;
-	switch (m_disp->m_caveID) {
+	switch (mDisp->mCaveID) {
 	case 'vs00':
 	case 'vs01':
 	case 'vs02':
@@ -349,85 +349,85 @@ void ObjFloor::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_FLOOR)) {
-		m_disp = disp;
+		mDisp = disp;
 
 	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		m_disp = new og::Screen::DispMemberFloor;
+		mDisp = new og::Screen::DispMemberFloor;
 
 	} else {
 		JUT_PANICLINE(452, "ERR! in ObjFloor CreateŽ¸”sI\n");
 	}
 
-	m_screenFont = new P2DScreen::Mgr_tuning;
-	if (sys->m_region == System::LANG_JAPANESE) {
-		m_screenFont->set("new_font_0.blo", 0x1040000, arc);
+	mScreenFont = new P2DScreen::Mgr_tuning;
+	if (sys->mRegion == System::LANG_JAPANESE) {
+		mScreenFont->set("new_font_0.blo", 0x1040000, arc);
 	} else {
-		m_screenFont->set("new_font_0_eng_pal.blo", 0x1040000, arc);
+		mScreenFont->set("new_font_0_eng_pal.blo", 0x1040000, arc);
 	}
 
-	m_screenName = new P2DScreen::Mgr_tuning;
-	m_screenName->set("font_name.blo", 0x1040000, arc);
+	mScreenName = new P2DScreen::Mgr_tuning;
+	mScreenName->set("font_name.blo", 0x1040000, arc);
 
 	if (isVS()) { // needs fixing
-		m_screenRules = new P2DScreen::Mgr_tuning;
-		m_screenRules->set("vs_title_rule_window.blo", 0x1040000, arc);
-		m_ruleMesgPane = og::Screen::TagSearch(m_screenRules, 'Trule_m5');
-		m_buttonPane   = og::Screen::TagSearch(m_screenRules, 'Pabutton');
-		m_loadingPane  = og::Screen::TagSearch(m_screenRules, 'Tloading');
-		m_buttonPane->hide();
-		m_loadingPane->show();
+		mScreenRules = new P2DScreen::Mgr_tuning;
+		mScreenRules->set("vs_title_rule_window.blo", 0x1040000, arc);
+		mRuleMesgPane = og::Screen::TagSearch(mScreenRules, 'Trule_m5');
+		mButtonPane   = og::Screen::TagSearch(mScreenRules, 'Pabutton');
+		mLoadingPane  = og::Screen::TagSearch(mScreenRules, 'Tloading');
+		mButtonPane->hide();
+		mLoadingPane->show();
 
 		for (int i = 0; i < 6; i++) {
-			u64 tag            = 'Nsub_i00' + i % 10 + (i / 10 * 0x100);
-			m_rulesPaneList[i] = og::Screen::TagSearch(m_screenRules, tag);
-			m_rulesPaneList[i]->hide();
+			u64 tag           = 'Nsub_i00' + i % 10 + (i / 10 * 0x100);
+			mRulesPaneList[i] = og::Screen::TagSearch(mScreenRules, tag);
+			mRulesPaneList[i]->hide();
 		}
 		int ruleMsgIndex;
-		if (msVal.m_shouldNotRandomizeRuleMsgMaybe) {
-			ruleMsgIndex = msVal.m_ruleMsgIndex;
+		if (msVal.mShouldNotRandomizeRuleMsgMaybe) {
+			ruleMsgIndex = msVal.mRuleMsgIndex;
 		} else {
 			ruleMsgIndex = randFloat() * 6.0f;
 		}
 
-		m_ruleMesgPane->setMsgID(vsRuleMsgId[ruleMsgIndex]);
-		m_rulesPaneList[ruleMsgIndex]->show();
-		m_buttonAlpha = new og::Screen::AlphaMgr;
+		mRuleMesgPane->setMsgID(vsRuleMsgId[ruleMsgIndex]);
+		mRulesPaneList[ruleMsgIndex]->show();
+		mButtonAlpha = new og::Screen::AlphaMgr;
 	} else {
-		m_screenRules  = nullptr;
-		m_ruleMesgPane = nullptr;
+		mScreenRules  = nullptr;
+		mRuleMesgPane = nullptr;
 	}
 
-	if (m_screenName) {
-		J2DPane* fc_c = m_screenName->search('fc_c');
+	if (mScreenName) {
+		J2DPane* fc_c = mScreenName->search('fc_c');
 		if (fc_c->getParentPane()) {
 			fc_c->getParentPane()->removeChild(fc_c);
 		}
-		m_counterFloor = og::Screen::setCallBack_CounterRV(m_screenName, 'fc_r', 'fc_l', 'fc_l', &m_disp->m_sublevel, 3, 2, false, arc);
-		m_counterFloor->setCenteringMode(Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
+		mCounterFloor = og::Screen::setCallBack_CounterRV(mScreenName, 'fc_r', 'fc_l', 'fc_l', &mDisp->mSublevel, 3, 2, false, arc);
+		mCounterFloor->setCenteringMode(Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
 	}
 
-	og::Screen::setAlphaScreen(m_screenName);
+	og::Screen::setAlphaScreen(mScreenName);
 
-	if (m_screenRules) {
-		og::Screen::setAlphaScreen(m_screenRules);
+	if (mScreenRules) {
+		og::Screen::setAlphaScreen(mScreenRules);
 	}
 
-	if (m_screenRules) {
-		og::Screen::setCallBackMessage(m_screenRules);
+	if (mScreenRules) {
+		og::Screen::setCallBackMessage(mScreenRules);
 	}
 
-	if (m_screenRules) {
-		m_anims = new og::Screen::AnimGroup(2);
-		registAnimGroupScreen(m_anims, arc, m_screenRules, "vs_title_rule_window.btk", 1.0f);
-		registAnimGroupScreen(m_anims, arc, m_screenRules, "vs_title_rule_window_02.btk", 1.0f);
-		m_anims->setFrame(0.0f);
-		m_anims->setRepeat(true);
-		m_anims->setSpeed(1.0f);
-		m_anims->start();
+	if (mScreenRules) {
+		mAnims = new og::Screen::AnimGroup(2);
+		registAnimGroupScreen(mAnims, arc, mScreenRules, "vs_title_rule_window.btk", 1.0f);
+		registAnimGroupScreen(mAnims, arc, mScreenRules, "vs_title_rule_window_02.btk", 1.0f);
+		mAnims->setFrame(0.0f);
+		mAnims->setRepeat(true);
+		mAnims->setSpeed(1.0f);
+		mAnims->start();
 	}
 
 	int caveType = 0;
-	int caveID   = m_disp->m_caveID;
+	int caveID   = mDisp->mCaveID;
 
 	if (isFLOOR()) {
 		caveType = FLOOR_Challenge;
@@ -437,40 +437,40 @@ void ObjFloor::doCreate(JKRArchive* arc)
 		caveType = FLOOR_Versus;
 	}
 
-	setCaveMsgID(m_disp->m_caveID, m_textTag);
+	setCaveMsgID(mDisp->mCaveID, mTextTag);
 
 	switch (caveType) {
 	case FLOOR_Challenge:
-		m_title            = new TitleMsgDrop(m_screenFont, m_screenName->search('title'), m_textTag);
-		m_title->m_yOffset = msVal._50;
+		mTitle           = new TitleMsgDrop(mScreenFont, mScreenName->search('title'), mTextTag);
+		mTitle->mYOffset = msVal._50;
 		break;
 
 	case FLOOR_Story:
-		TitleMsgWave* msg = new TitleMsgWave(m_screenFont, m_screenName->search('title'), m_textTag);
+		TitleMsgWave* msg = new TitleMsgWave(mScreenFont, mScreenName->search('title'), mTextTag);
 		msg->setParam(msVal._40, msVal._44, msVal._48, msVal._4C);
-		msg->m_yOffset = msVal._54;
-		m_title        = msg;
+		msg->mYOffset = msVal._54;
+		mTitle        = msg;
 		break;
 
 	case FLOOR_Versus:
-		m_title            = new TitleMsgClash(m_screenFont, m_screenName->search('title'), m_textTag);
-		m_title->m_yOffset = msVal._58;
+		mTitle           = new TitleMsgClash(mScreenFont, mScreenName->search('title'), mTextTag);
+		mTitle->mYOffset = msVal._58;
 		break;
 
 	default:
-		m_title = new TitleMsg(m_screenFont, m_screenName->search('title'), m_textTag);
+		mTitle = new TitleMsg(mScreenFont, mScreenName->search('title'), mTextTag);
 		break;
 	}
 
-	m_title->setCentering(TitleMsg::ECM_2);
-	m_title->init();
+	mTitle->setCentering(TitleMsg::ECM_2);
+	mTitle->init();
 
-	m_sublevelMsg = new TitleMsg(m_screenFont, m_screenName->search('chika'), "8382_00"); // "Sublevel"
-	m_sublevelMsg->setCentering(TitleMsg::ECM_1);
+	mSublevelMsg = new TitleMsg(mScreenFont, mScreenName->search('chika'), "8382_00"); // "Sublevel"
+	mSublevelMsg->setCentering(TitleMsg::ECM_1);
 
-	m_sublevelPane  = m_screenName->search('kaisuu');
-	m_sublevelXoffs = m_sublevelPane->m_offset.x;
-	m_sublevelYoffs = m_sublevelPane->m_offset.y;
+	mSublevelPane  = mScreenName->search('kaisuu');
+	mSublevelXoffs = mSublevelPane->mOffset.x;
+	mSublevelYoffs = mSublevelPane->mOffset.y;
 }
 
 /*
@@ -488,44 +488,44 @@ bool newScreen::ObjFloor::commonUpdate()
 	}
 
 	bool vs = isVS();
-	if (vs && disp && !m_isButtonShown && disp->m_enableButton) {
-		m_isButtonShown = true;
-		m_buttonPane->show();
-		m_buttonAlpha->setBlinkArea(0.5f, 1.0f);
-		m_buttonAlpha->blink(1.0f);
+	if (vs && disp && !mIsButtonShown && disp->mEnableButton) {
+		mIsButtonShown = true;
+		mButtonPane->show();
+		mButtonAlpha->setBlinkArea(0.5f, 1.0f);
+		mButtonAlpha->blink(1.0f);
 	}
 
-	if (m_screenRules) {
-		if (m_isButtonShown) {
-			u8 alphaCalc = m_buttonAlpha->calc();
-			m_buttonPane->setAlpha(alphaCalc);
-			if (m_buttonAlphaTimer > 0.0f) {
-				m_buttonAlphaTimer -= sys->m_deltaTime / 0.5f;
-				if (m_buttonAlphaTimer < 0.0f) {
-					m_buttonAlphaTimer = 0.0f;
+	if (mScreenRules) {
+		if (mIsButtonShown) {
+			u8 alphaCalc = mButtonAlpha->calc();
+			mButtonPane->setAlpha(alphaCalc);
+			if (mButtonAlphaTimer > 0.0f) {
+				mButtonAlphaTimer -= sys->mDeltaTime / 0.5f;
+				if (mButtonAlphaTimer < 0.0f) {
+					mButtonAlphaTimer = 0.0f;
 				}
 			}
-			m_loadingPane->setAlpha(m_buttonAlphaTimer * 255.0f);
+			mLoadingPane->setAlpha(mButtonAlphaTimer * 255.0f);
 		}
-		m_anims->update();
+		mAnims->update();
 	}
 
 	if (!vs) {
-		f32 subX = m_sublevelXoffs + msVal._2C;
-		f32 subY = m_sublevelYoffs + msVal._30;
-		if (disp->m_sublevel < 10) {
+		f32 subX = mSublevelXoffs + msVal._2C;
+		f32 subY = mSublevelYoffs + msVal._30;
+		if (disp->mSublevel < 10) {
 			subX += msVal._3C;
 		}
-		m_sublevelPane->setOffset(subX, subY);
-		m_sublevelPane->updateScale(msVal._34);
+		mSublevelPane->setOffset(subX, subY);
+		mSublevelPane->updateScale(msVal._34);
 	}
 
-	if (m_screenRules) {
-		m_screenRules->update();
+	if (mScreenRules) {
+		mScreenRules->update();
 	}
 
 	int caveType = 0;
-	int caveID   = m_disp->m_caveID;
+	int caveID   = mDisp->mCaveID;
 
 	if (isFLOOR()) {
 		caveType = FLOOR_Story;
@@ -535,38 +535,38 @@ bool newScreen::ObjFloor::commonUpdate()
 		caveType = FLOOR_Versus;
 	}
 
-	m_title->setColor(msVal.m_colors1[caveType], msVal.m_colors2[caveType]);
-	m_sublevelMsg->setColor(msVal.m_colors1[caveType], msVal.m_colors2[caveType]);
+	mTitle->setColor(msVal.mColors1[caveType], msVal.mColors2[caveType]);
+	mSublevelMsg->setColor(msVal.mColors1[caveType], msVal.mColors2[caveType]);
 
-	J2DPictureEx* pic = m_counterFloor->m_pic1;
-	pic->setWhite(msVal.m_colors1[caveType]);
-	pic->setBlack(msVal.m_colors2[caveType]);
+	J2DPictureEx* pic = mCounterFloor->mPic1;
+	pic->setWhite(msVal.mColors1[caveType]);
+	pic->setBlack(msVal.mColors2[caveType]);
 
 	if (vs) {
-		m_screenName->setXY(msVal._20, msVal._24);
-		m_screenName->scaleScreen(msVal._28);
+		mScreenName->setXY(msVal._20, msVal._24);
+		mScreenName->scaleScreen(msVal._28);
 	} else {
-		m_screenName->setXY(msVal._10, msVal._14);
-		m_screenName->scaleScreen(msVal._18);
+		mScreenName->setXY(msVal._10, msVal._14);
+		mScreenName->scaleScreen(msVal._18);
 	}
-	m_screenName->update();
-	m_title->update();
-	m_sublevelMsg->update();
+	mScreenName->update();
+	mTitle->update();
+	mSublevelMsg->update();
 
-	if (m_doFadeout) {
-		m_timer -= sys->m_deltaTime;
-		if (m_timer < 0.0f)
+	if (mDoFadeout) {
+		mTimer -= sys->mDeltaTime;
+		if (mTimer < 0.0f)
 			ret = true;
 	} else {
 		og::Screen::DispMemberFloor* disp2 = static_cast<og::Screen::DispMemberFloor*>(getDispMember());
 		if (disp2->isID(OWNER_OGA, MEMBER_FLOOR)) {
-			if (disp2->m_doEnd) {
-				m_doFadeout = true;
-				m_doEnd     = true;
-				m_title->end();
+			if (disp2->mDoEnd) {
+				mDoFadeout = true;
+				mDoEnd     = true;
+				mTitle->end();
 			}
-			if (disp2->m_doForceEnd) {
-				m_doEnd = true;
+			if (disp2->mDoForceEnd) {
+				mDoEnd = true;
 			}
 		}
 	}
@@ -590,22 +590,22 @@ void ObjFloor::doDraw(Graphics& gfx)
 	j3dSys.reinitGX();
 	drawBG(gfx);
 
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
 
-	if (m_screenRules) {
-		m_screenRules->setAlpha(m_alpha * 255.0f);
-		m_screenRules->draw(gfx, *graf);
+	if (mScreenRules) {
+		mScreenRules->setAlpha(mAlpha * 255.0f);
+		mScreenRules->draw(gfx, *graf);
 	}
-	gfx.m_perspGraph.setPort();
+	gfx.mPerspGraph.setPort();
 	particle2dMgr->draw(2, 0);
-	m_screenName->setAlpha(m_alpha * 255.0f);
-	m_screenName->draw(gfx, *graf);
+	mScreenName->setAlpha(mAlpha * 255.0f);
+	mScreenName->draw(gfx, *graf);
 	graf->setPort();
 
 	if (!isVS()) { // needs fixing
-		m_sublevelPane->show();
+		mSublevelPane->show();
 	} else {
-		m_sublevelPane->hide();
+		mSublevelPane->hide();
 	}
 
 	graf->setPort();
@@ -619,8 +619,8 @@ void ObjFloor::doDraw(Graphics& gfx)
  */
 bool newScreen::ObjFloor::doStart(::Screen::StartSceneArg const* arg)
 {
-	m_fadeLevel = 0.0f;
-	m_alpha     = 0.0f;
+	mFadeLevel = 0.0f;
+	mAlpha     = 0.0f;
 	particle2dMgr->killAll();
 	return true;
 }
@@ -632,7 +632,7 @@ bool newScreen::ObjFloor::doStart(::Screen::StartSceneArg const* arg)
  */
 bool newScreen::ObjFloor::doEnd(::Screen::EndSceneArg const* arg)
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	return true;
 }
 
@@ -650,7 +650,7 @@ void ObjFloor::doUpdateFadeinFinish() { }
  */
 void ObjFloor::doUpdateFinish()
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	particle2dMgr->killGroup(2);
 }
 
@@ -669,12 +669,12 @@ void ObjFloor::doUpdateFadeoutFinish() { }
 bool newScreen::ObjFloor::doUpdateFadein()
 {
 	bool result = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > msVal._04) {
-		m_fadeLevel = msVal._04;
-		result      = true;
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > msVal._04) {
+		mFadeLevel = msVal._04;
+		result     = true;
 	}
-	m_alpha = m_fadeLevel / msVal._04;
+	mAlpha = mFadeLevel / msVal._04;
 	commonUpdate();
 	return result;
 }
@@ -687,15 +687,15 @@ bool newScreen::ObjFloor::doUpdateFadein()
 bool newScreen::ObjFloor::doUpdateFadeout()
 {
 	bool check = false;
-	m_fadeLevel += sys->m_deltaTime;
+	mFadeLevel += sys->mDeltaTime;
 
-	if (m_fadeLevel > msVal._08) {
-		m_fadeLevel = msVal._08;
-		if (!m_doEnd) {
+	if (mFadeLevel > msVal._08) {
+		mFadeLevel = msVal._08;
+		if (!mDoEnd) {
 			check = true;
 		}
 	}
-	m_alpha = 1.0f - m_fadeLevel / msVal._08;
+	mAlpha = 1.0f - mFadeLevel / msVal._08;
 	commonUpdate();
 	return check;
 }
@@ -707,23 +707,23 @@ bool newScreen::ObjFloor::doUpdateFadeout()
  */
 void ObjFloor::drawBG(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
-	if (m_doEnd) {
-		m_BackgroundAlpha += sys->m_deltaTime;
-		f32 temp = 1.0f - m_BackgroundAlpha / msVal._00;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
+	if (mDoEnd) {
+		mBackgroundAlpha += sys->mDeltaTime;
+		f32 temp = 1.0f - mBackgroundAlpha / msVal._00;
 		if (temp > 0.0f) {
-			m_color.a = temp * 255.0f;
+			mColor.a = temp * 255.0f;
 		} else {
-			m_color.a = 0;
-			m_doEnd   = false;
+			mColor.a = 0;
+			mDoEnd   = false;
 		}
 	}
 
-	if (m_color.a != 0) {
+	if (mColor.a != 0) {
 		graf->setPort();
 		u16 w = System::getRenderModeObj()->fbWidth;
 		u16 h = System::getRenderModeObj()->efbHeight;
-		graf->setColor(m_color);
+		graf->setColor(mColor);
 		GXSetAlphaUpdate(GX_FALSE);
 
 		f32 offs = 0.0f;

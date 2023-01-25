@@ -16,24 +16,24 @@ static const char movieConfigName[]       = "movieConfig";
  */
 MovieConfig::MovieConfig()
 {
-	m_drawFlags.bytesView[0] = 0;
-	m_drawFlags.bytesView[1] = 0;
-	m_positionFlag           = 2;
-	m_movieNameBuffer1[0]    = 0;
-	m_movieNameBuffer2[0]    = 0;
-	m_origin                 = Vector3f(0.0f);
-	m_angle                  = 0.0f;
-	m_drawFlags.bytesView[0] = 0;
-	m_drawFlags.bytesView[1] = 0;
-	m_flags                  = 1;
-	m_drawFlags.bytesView[0] = 0;
-	m_drawFlags.bytesView[1] = 0;
-	m_drawType               = 3;
-	m_name                   = m_movieNameBuffer1;
-	m_courseIndex            = -1;
-	m_mapName                = "nomap";
-	m_id.setID('v0.5');
-	m_msgPauseNum = 0;
+	mDrawFlags.bytesView[0] = 0;
+	mDrawFlags.bytesView[1] = 0;
+	mPositionFlag           = 2;
+	mMovieNameBuffer1[0]    = 0;
+	mMovieNameBuffer2[0]    = 0;
+	mOrigin                 = Vector3f(0.0f);
+	mAngle                  = 0.0f;
+	mDrawFlags.bytesView[0] = 0;
+	mDrawFlags.bytesView[1] = 0;
+	mFlags                  = 1;
+	mDrawFlags.bytesView[0] = 0;
+	mDrawFlags.bytesView[1] = 0;
+	mDrawType               = 3;
+	mName                   = mMovieNameBuffer1;
+	mCourseIndex            = -1;
+	mMapName                = "nomap";
+	mId.setID('v0.5');
+	mMsgPauseNum = 0;
 }
 
 /*
@@ -50,10 +50,10 @@ void MovieConfig::dump() { }
  */
 bool MovieConfig::isSkippable()
 {
-	if (m_flags & 2) {
+	if (mFlags & 2) {
 		return false;
 	}
-	return m_flags & 1;
+	return mFlags & 1;
 }
 
 /*
@@ -61,14 +61,14 @@ bool MovieConfig::isSkippable()
  * Address:	804318C0
  * Size:	00000C
  */
-bool MovieConfig::isNeverSkippable() { return m_flags >> 1 & 1; }
+bool MovieConfig::isNeverSkippable() { return mFlags >> 1 & 1; }
 
 /*
  * --INFO--
  * Address:	804318CC
  * Size:	000054
  */
-bool MovieConfig::is(char* name) { return strncmp(m_movieNameBuffer2, name, strlen(name)) == 0; }
+bool MovieConfig::is(char* name) { return strncmp(mMovieNameBuffer2, name, strlen(name)) == 0; }
 
 /*
  * --INFO--
@@ -81,52 +81,52 @@ void MovieConfig::read(Stream& data)
 	id.read(data);
 
 	if (id.getID() >= 'v0.2') {
-		m_param.read(data);
+		mParam.read(data);
 		for (int i = 0; i < 32; i++) {
-			m_movieNameBuffer1[i] = m_param.m_demoName.m_data[i];
-			m_movieNameBuffer2[i] = m_param.m_folderName.m_data[i];
+			mMovieNameBuffer1[i] = mParam.mDemoName.mData[i];
+			mMovieNameBuffer2[i] = mParam.mFolderName.mData[i];
 		}
 	} else {
 		for (int i = 0; i < 32; i++) {
-			m_movieNameBuffer1[i] = data.readByte();
+			mMovieNameBuffer1[i] = data.readByte();
 		}
 		for (int i = 0; i < 32; i++) {
-			m_movieNameBuffer2[i] = data.readByte();
+			mMovieNameBuffer2[i] = data.readByte();
 		}
 	}
 
-	m_positionFlag = data.readByte();
-	m_origin.read(data);
-	m_angle = data.readFloat();
-	m_flags = data.readShort();
+	mPositionFlag = data.readByte();
+	mOrigin.read(data);
+	mAngle = data.readFloat();
+	mFlags = data.readShort();
 
 	if (id.getID() > 'v0.0') {
-		m_drawFlags.bytesView[0] = 0;
-		m_drawFlags.bytesView[1] = 0;
+		mDrawFlags.bytesView[0] = 0;
+		mDrawFlags.bytesView[1] = 0;
 		if (id.getID() < 'v0.4') {
 			data.readShort();
 			data.readShort();
-			m_drawFlags.bytesView[0] = 0;
-			m_drawFlags.bytesView[1] = 0;
+			mDrawFlags.bytesView[0] = 0;
+			mDrawFlags.bytesView[1] = 0;
 			if (id.getID() >= 'v0.3') {
-				m_drawType = data.readShort();
+				mDrawType = data.readShort();
 			}
 		} else {
-			m_drawFlags.shortView |= (u16)data.readShort();
-			m_drawType = data.readShort();
+			mDrawFlags.shortView |= (u16)data.readShort();
+			mDrawType = data.readShort();
 		}
 	}
 
 	if (id.getID() >= 'v0.5') {
-		m_msgPauseNum = data.readInt();
+		mMsgPauseNum = data.readInt();
 	}
 
-	m_mapName = data.readString(nullptr, 0);
+	mMapName = data.readString(nullptr, 0);
 
-	if (!strcmp(m_mapName, "nomap")) {
-		m_courseIndex = -1;
+	if (!strcmp(mMapName, "nomap")) {
+		mCourseIndex = -1;
 	} else {
-		m_courseIndex = stageList->getCourseInfo(m_mapName)->m_courseIndex;
+		mCourseIndex = stageList->getCourseInfo(mMapName)->mCourseIndex;
 	}
 }
 
@@ -144,19 +144,19 @@ void MovieList::construct() { movieList = new MovieList; }
  */
 MovieList::MovieList()
 {
-	m_name            = "MovieList";
-	m_config.m_child  = nullptr;
-	m_config.m_parent = nullptr;
-	m_config.m_prev   = nullptr;
-	m_config.m_next   = nullptr;
+	mName           = "MovieList";
+	mConfig.mChild  = nullptr;
+	mConfig.mParent = nullptr;
+	mConfig.mPrev   = nullptr;
+	mConfig.mNext   = nullptr;
 
 	void* file = JKRDvdRipper::loadToMainRAM("user/Mukki/movie/demos.txt", nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
 	                                         nullptr, nullptr);
 	if (file) {
 		RamStream stream(file, -1);
-		stream.m_mode = STREAM_MODE_TEXT;
-		if (stream.m_mode == STREAM_MODE_TEXT) {
-			stream.m_tabCount = 0;
+		stream.mMode = STREAM_MODE_TEXT;
+		if (stream.mMode == STREAM_MODE_TEXT) {
+			stream.mTabCount = 0;
 		}
 		read(stream);
 		delete[] file;
@@ -176,10 +176,10 @@ MovieConfig* MovieList::findConfig(char* movieName, char* mapName)
 		maplen = strlen(mapName);
 	}
 
-	FOREACH_NODE(MovieConfig, m_config.m_child, cNode)
+	FOREACH_NODE(MovieConfig, mConfig.mChild, cNode)
 	{
-		if (!strncmp(movieName, cNode->m_movieNameBuffer2, movielen)) {
-			if (mapName == nullptr || !strncmp(mapName, cNode->m_mapName, maplen)) {
+		if (!strncmp(movieName, cNode->mMovieNameBuffer2, movielen)) {
+			if (mapName == nullptr || !strncmp(mapName, cNode->mMapName, maplen)) {
 				return cNode;
 			}
 		}
@@ -204,15 +204,15 @@ void MovieList::read(Stream& data)
 {
 	int nodes = data.readInt();
 
-	m_config.m_child  = nullptr;
-	m_config.m_parent = nullptr;
-	m_config.m_prev   = nullptr;
-	m_config.m_next   = nullptr;
+	mConfig.mChild  = nullptr;
+	mConfig.mParent = nullptr;
+	mConfig.mPrev   = nullptr;
+	mConfig.mNext   = nullptr;
 
 	for (int i = 0; i < nodes; i++) {
 		MovieConfig* config = new MovieConfig;
 		config->read(data);
-		m_config.add(config);
+		mConfig.add(config);
 	}
 }
 } // namespace Game

@@ -28,25 +28,25 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);               // _30
-	virtual void doDirectDraw(Graphics& gfx);                     // _50
-	virtual void getShadowParam(ShadowParam& settings);           // _134
-	virtual ~Obj() { }                                            // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);       // _1C4
-	virtual void doUpdate();                                      // _1CC
-	virtual void doDebugDraw(Graphics&);                          // _1EC
-	virtual void initMouthSlots();                                // _22C
-	virtual MouthSlots* getMouthSlots() { return &m_mouthSlots; } // _25C (weak)
-	virtual bool damageCallBack(Creature*, f32, CollPart*);       // _278
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*);      // _284
-	virtual void doStartStoneState();                             // _2A4
-	virtual void doFinishStoneState();                            // _2A8
-	virtual void startCarcassMotion();                            // _2C4
-	virtual void doStartMovie();                                  // _2F0
-	virtual void doEndMovie();                                    // _2F4
-	virtual void setFSM(FSM*);                                    // _2F8
-	virtual f32 getDownSmokeScale() { return 0.9f; }              // _2EC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()            // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);              // _30
+	virtual void doDirectDraw(Graphics& gfx);                    // _50
+	virtual void getShadowParam(ShadowParam& settings);          // _134
+	virtual ~Obj() { }                                           // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*);      // _1C4
+	virtual void doUpdate();                                     // _1CC
+	virtual void doDebugDraw(Graphics&);                         // _1EC
+	virtual void initMouthSlots();                               // _22C
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; } // _25C (weak)
+	virtual bool damageCallBack(Creature*, f32, CollPart*);      // _278
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*);     // _284
+	virtual void doStartStoneState();                            // _2A4
+	virtual void doFinishStoneState();                           // _2A8
+	virtual void startCarcassMotion();                           // _2C4
+	virtual void doStartMovie();                                 // _2F0
+	virtual void doEndMovie();                                   // _2F4
+	virtual void setFSM(FSM*);                                   // _2F8
+	virtual f32 getDownSmokeScale() { return 0.9f; }             // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()           // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Armor;
 	}
@@ -77,16 +77,16 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                          // _2BC
-	u8 _2C0;                             // _2C0, might be bool?
-	int _2C4;                            // _2C4
-	f32 _2C8;                            // _2C8
-	MouthSlots m_mouthSlots;             // _2CC
-	efx::TYoroiAttack* m_efxYoroiAttack; // _2D4
-	ItemBridge::Item* m_bridge;          // _2D8
-	f32 _2DC;                            // _2DC
-	f32 _2E0;                            // _2E0
-	                                     // _2E4 = PelletView
+	FSM* mFsm;                          // _2BC
+	u8 _2C0;                            // _2C0, might be bool?
+	int _2C4;                           // _2C4
+	f32 _2C8;                           // _2C8
+	MouthSlots mMouthSlots;             // _2CC
+	efx::TYoroiAttack* mEfxYoroiAttack; // _2D4
+	ItemBridge::Item* mBridge;          // _2D8
+	f32 _2DC;                           // _2DC
+	f32 _2E0;                           // _2E0
+	                                    // _2E4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -103,22 +103,22 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, likely an array of Objs
+	Obj* mObj; // _44, likely an array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_poisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f)   // 'white pikmin'
-		    , m_attackLoopTimer(this, 'fp11', "攻撃ループ時間", 0.0f, 0.0f, 10.0f) // 'attack loop time'
-		    , m_bridgeDamage(this, 'fp12', "橋食いパワー", 100.0f, 0.0f, 100.0f)   // 'bridge eating power'
+		    , mPoisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f)   // 'white pikmin'
+		    , mAttackLoopTimer(this, 'fp11', "攻撃ループ時間", 0.0f, 0.0f, 10.0f) // 'attack loop time'
+		    , mBridgeDamage(this, 'fp12', "橋食いパワー", 100.0f, 0.0f, 100.0f)   // 'bridge eating power'
 		{
 		}
 
-		Parm<f32> m_poisonDamage;    // _804, fp01
-		Parm<f32> m_attackLoopTimer; // _82C
-		Parm<f32> m_bridgeDamage;    // _854, fp12
+		Parm<f32> mPoisonDamage;    // _804, fp01
+		Parm<f32> mAttackLoopTimer; // _82C
+		Parm<f32> mBridgeDamage;    // _854, fp12
 	};
 
 	Parms() { }
@@ -126,23 +126,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -176,7 +176,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

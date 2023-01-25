@@ -233,11 +233,11 @@ namespace Game {
 GenBase::GenBase(u32 typeID, char* labelData, char* objTypeName)
     : Parameters(nullptr, "gen base")
 {
-	m_typeID      = typeID;
-	m_labelData   = labelData;
-	m_objTypeName = objTypeName;
-	m_rawID       = '____';
-	_20           = 0;
+	mTypeID      = typeID;
+	mLabelData   = labelData;
+	mObjTypeName = objTypeName;
+	mRawID       = '____';
+	_20          = 0;
 }
 
 /*
@@ -269,8 +269,8 @@ u32 GenBase::getLatestVersion() { return 'udef'; }
 void GenBase::write(Stream& output)
 {
 	// INLINED FUNCTION
-	ID32 type(m_typeID);
-	output.textWriteTab(output.m_tabCount);
+	ID32 type(mTypeID);
+	output.textWriteTab(output.mTabCount);
 	type.write(output);
 	if (Generator::ramMode == 0) {
 		writeVersion(output);
@@ -339,16 +339,16 @@ void GenBase::doRead(Stream&) { }
  */
 u32 GenObject::getLatestVersion()
 {
-	int count = GenObjectFactory::factory->m_count;
+	int count = GenObjectFactory::factory->mCount;
 	for (int i = 0; count > 0; i++, count--) {
-		if (m_typeID == GenObjectFactory::factory->m_factories[i].m_typeID) {
-			return GenObjectFactory::factory->m_factories[i].m_version;
+		if (mTypeID == GenObjectFactory::factory->mFactories[i].mTypeID) {
+			return GenObjectFactory::factory->mFactories[i].mVersion;
 		}
 	}
-	return m_typeID;
+	return mTypeID;
 	// i++;
 	// } while (--count != 0);
-	// return m_typeID;
+	// return mTypeID;
 	/*
 	lwz      r7, factory__Q24Game16GenObjectFactory@sda21(r13)
 	li       r4, 0
@@ -403,28 +403,28 @@ void Generator::initialiseSystem() { GenObjectFactory::factory = nullptr; }
 Generator::Generator()
     : CNode()
     , _40()
-    , m_version()
-    , m_position(0.0f, 0.0f, 0.0f)
+    , mVersion()
+    , mPosition(0.0f, 0.0f, 0.0f)
 {
-	_18           = nullptr;
-	_1C           = '____';
-	m_reservedNum = 0;
+	_18          = nullptr;
+	_1C          = '____';
+	mReservedNum = 0;
 	_40.setID('    ');
-	m_version.setID(GeneratorCurrentVersion);
-	strcpy(m_genObjName, "unset");
-	_64                    = 0;
-	_60                    = 0;
-	m_creature             = nullptr;
-	_7C                    = 0;
-	m_child                = nullptr;
-	m_parent               = nullptr;
-	m_prev                 = nullptr;
-	m_next                 = nullptr;
-	_AC                    = 1;
-	m_dayLimitMaybe        = -1;
-	_74                    = 0;
-	_78                    = 0;
-	m_daysTillRessurection = 0;
+	mVersion.setID(GeneratorCurrentVersion);
+	strcpy(mGenObjName, "unset");
+	_64                   = 0;
+	_60                   = 0;
+	mCreature             = nullptr;
+	_7C                   = 0;
+	mChild                = nullptr;
+	mParent               = nullptr;
+	mPrev                 = nullptr;
+	mNext                 = nullptr;
+	_AC                   = 1;
+	mDayLimitMaybe        = -1;
+	_74                   = 0;
+	_78                   = 0;
+	mDaysTillRessurection = 0;
 }
 
 /*
@@ -503,10 +503,10 @@ void GenObject::updateUseList(Generator*, int) { }
  */
 bool Generator::isExpired()
 {
-	if (m_dayLimitMaybe == -1) {
+	if (mDayLimitMaybe == -1) {
 		return false;
 	}
-	return (uint)m_dayLimitMaybe < gameSystem->m_timeMgr->m_dayCount;
+	return (uint)mDayLimitMaybe < gameSystem->mTimeMgr->mDayCount;
 }
 
 /*
@@ -517,17 +517,17 @@ bool Generator::isExpired()
 bool Generator::loadCreature(Stream& input)
 {
 	if (_18) {
-		m_creature = _18->generate(this);
+		mCreature = _18->generate(this);
 		// TODO: This might be part of an inlined dump function?
-		if (m_creature) {
-			m_creature->getTypeName();
+		if (mCreature) {
+			mCreature->getTypeName();
 		}
 	}
-	if (m_creature) {
-		m_creature->m_generator = this;
-		m_creature->load(input, (m_reservedNum & 8U) != 0);
+	if (mCreature) {
+		mCreature->mGenerator = this;
+		mCreature->load(input, (mReservedNum & 8U) != 0);
 	}
-	return (m_creature != nullptr);
+	return (mCreature != nullptr);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -604,10 +604,10 @@ bool Generator::need_saveCreature()
 {
 	// FIRST TRY! ^_^
 	bool shouldSave;
-	if (m_creature == nullptr) {
+	if (mCreature == nullptr) {
 		shouldSave = true;
 	} else {
-		if ((!m_creature->isAlive() && m_creature->isPellet())) {
+		if ((!mCreature->isAlive() && mCreature->isPellet())) {
 			shouldSave = false;
 		} else {
 			shouldSave = true;
@@ -624,8 +624,8 @@ bool Generator::need_saveCreature()
  */
 void Generator::saveCreature(Stream& output)
 {
-	if (m_creature) {
-		u16 flags = m_reservedNum;
+	if (mCreature) {
+		u16 flags = mReservedNum;
 		// u8 saveFlag = (flags & 8);
 		bool conversion = false;
 		if (flags & 8) {
@@ -634,10 +634,10 @@ void Generator::saveCreature(Stream& output)
 		// bool conversion = saveFlag == 0 ? false : true;
 		// bool conversion = saveFlag != 0;
 		// ??? I guess there was some debug usage of these that was removed?
-		m_creature->getTypeName();
-		m_creature->getCreatureName();
-		m_creature->getCreatureID();
-		m_creature->save(output, conversion);
+		mCreature->getTypeName();
+		mCreature->getCreatureName();
+		mCreature->getCreatureID();
+		mCreature->save(output, conversion);
 		return;
 	}
 	// sic
@@ -713,26 +713,26 @@ void Generator::generate()
 {
 	// TODO: inlined isExpired does not match for this function
 	if (isExpired()) {
-		_7C        = 0;
-		m_creature = nullptr;
+		_7C       = 0;
+		mCreature = nullptr;
 	} else {
 		if (ramMode == 0) {
 			_7C = 0;
 			_74 = 0;
-			_78 = gameSystem->m_timeMgr->m_dayCount;
-		} else if ((m_reservedNum & 4) == 0) {
+			_78 = gameSystem->mTimeMgr->mDayCount;
+		} else if ((mReservedNum & 4) == 0) {
 			_7C = 0;
 			return;
 		}
-		m_creature = nullptr;
+		mCreature = nullptr;
 		if (_18) {
-			if (ramMode != 0 && (m_reservedNum & 4) != 0 && gameSystem->m_timeMgr->m_dayCount >= _78 + m_daysTillRessurection) {
-				_78 = gameSystem->m_timeMgr->m_dayCount;
+			if (ramMode != 0 && (mReservedNum & 4) != 0 && gameSystem->mTimeMgr->mDayCount >= _78 + mDaysTillRessurection) {
+				_78 = gameSystem->mTimeMgr->mDayCount;
 				_74 = 0;
 			}
-			m_creature = _18->generate(this);
-			if (m_creature) {
-				m_creature->m_generator = this;
+			mCreature = _18->generate(this);
+			if (mCreature) {
+				mCreature->mGenerator = this;
 			}
 		}
 	}
@@ -841,8 +841,8 @@ lbl_801AACE0:
  */
 void Generator::informDeath(Game::Creature* creature)
 {
-	if (creature == m_creature) {
-		m_creature = nullptr;
+	if (creature == mCreature) {
+		mCreature = nullptr;
 	}
 	_74++;
 }
@@ -876,83 +876,83 @@ void Generator::render(Graphics&)
  */
 void Generator::read(Stream& input)
 {
-	m_version.read(input);
-	if (m_version.getID() >= 'v0.0') {
-		m_reservedNum = input.readShort();
+	mVersion.read(input);
+	if (mVersion.getID() >= 'v0.0') {
+		mReservedNum = input.readShort();
 	} else {
-		m_reservedNum = input.readInt();
+		mReservedNum = input.readInt();
 	}
-	if (m_version.getID() >= 'v0.3') {
-		m_daysTillRessurection = input.readShort();
+	if (mVersion.getID() >= 'v0.3') {
+		mDaysTillRessurection = input.readShort();
 	} else {
-		if (m_version.getID() >= 'v0.1') {
-			m_daysTillRessurection = input.readInt();
+		if (mVersion.getID() >= 'v0.1') {
+			mDaysTillRessurection = input.readInt();
 		} else {
-			m_daysTillRessurection = 0;
+			mDaysTillRessurection = 0;
 		}
 	}
 	if (ramMode == 0) {
 		int i = 0;
 		do {
-			m_genObjName[i] = input.readByte();
+			mGenObjName[i] = input.readByte();
 		} while (++i < 0x20);
 	} else {
-		if (m_version.getID() >= 'v0.2') {
+		if (mVersion.getID() >= 'v0.2') {
 			if (input.readByte() != '\0') {
 				int i = 0;
 				do {
-					m_genObjName[i] = input.readByte();
+					mGenObjName[i] = input.readByte();
 				} while (++i < 0x20);
 			} else {
-				m_genObjName[0] = '\0';
+				mGenObjName[0] = '\0';
 			}
 		} else {
-			m_genObjName[0] = '\0';
+			mGenObjName[0] = '\0';
 		}
-		_74             = input.readShort();
-		_78             = input.readShort();
-		m_dayLimitMaybe = input.readShort();
+		_74            = input.readShort();
+		_78            = input.readShort();
+		mDayLimitMaybe = input.readShort();
 	}
 	if (ramMode != 0) {
-		m_position.x = input.readShort();
-		m_position.y = input.readShort();
-		m_position.z = input.readShort();
+		mPosition.x = input.readShort();
+		mPosition.y = input.readShort();
+		mPosition.z = input.readShort();
 	} else {
 		// TODO: Is this Vector3::read()?
-		// m_position.read(input);
-		m_position.x = input.readFloat();
-		m_position.y = input.readFloat();
-		m_position.z = input.readFloat();
+		// mPosition.read(input);
+		mPosition.x = input.readFloat();
+		mPosition.y = input.readFloat();
+		mPosition.z = input.readFloat();
 	}
 	if (ramMode != 0) {
-		m_offset.x = 0.0f;
-		m_offset.y = 0.0f;
-		m_offset.z = 0.0f;
+		mOffset.x = 0.0f;
+		mOffset.y = 0.0f;
+		mOffset.z = 0.0f;
 	} else {
 		// TODO: Is this Vector3::read()?
-		// m_offset.read(input);
-		m_offset.x = input.readFloat();
-		m_offset.y = input.readFloat();
-		m_offset.z = input.readFloat();
+		// mOffset.read(input);
+		mOffset.x = input.readFloat();
+		mOffset.y = input.readFloat();
+		mOffset.z = input.readFloat();
 	}
 	_18 = nullptr;
 	ID32 temp;
 	temp.read(input);
 	// int i                 = 0;
-	s32 count             = GenObjectFactory::factory->m_count;
+	s32 count             = GenObjectFactory::factory->mCount;
 	GenObject* makeResult = nullptr;
 	// if (0 < count) {
 	// 	do {
-	// 		if (temp.getID() == GenObjectFactory::factory->m_factories[i].m_typeID) {
-	// 			makeResult = GenObjectFactory::factory->m_factories[i].m_makeFunction();
+	// 		if (temp.getID() == GenObjectFactory::factory->mFactories[i].mTypeID) {
+	// 			makeResult = GenObjectFactory::factory->mFactories[i].mMakeFunction();
 	// 			break;
 	// 		}
 	// 	} while (--count != 0);
 	// }
 	if (0 < count) {
 		for (int i = 0; i < count; i++) {
-			if (temp.getID() == GenObjectFactory::factory->m_factories[i].m_typeID) {
-				makeResult = GenObjectFactory::factory->m_factories[i].m_makeFunction();
+			if (temp.getID() == GenObjectFactory::factory->mFactories[i].mTypeID) {
+				makeResult = GenObjectFactory::factory->mFactories[i].mMakeFunction();
 				break;
 			}
 		}
@@ -962,9 +962,9 @@ void Generator::read(Stream& input)
 		if (Generator::ramMode == 0) {
 			ID32 temp2;
 			temp2.read(input);
-			_18->m_rawID = temp2.getID();
+			_18->mRawID = temp2.getID();
 		} else {
-			_18->m_rawID = _18->getLatestVersion();
+			_18->mRawID = _18->getLatestVersion();
 		}
 		_18->doRead(input);
 		if (Generator::ramMode != 0) {
@@ -1274,50 +1274,50 @@ lbl_801AB09C:
  */
 void Generator::write(Stream& output)
 {
-	output.textWriteTab(output.m_tabCount);
+	output.textWriteTab(output.mTabCount);
 	ID32(GeneratorCurrentVersion).write(output);
 	output.textWriteText("\t# version\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeShort(m_reservedNum);
+	output.textWriteTab(output.mTabCount);
+	output.writeShort(mReservedNum);
 	output.textWriteText("\t# reserved\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeShort(m_daysTillRessurection);
+	output.textWriteTab(output.mTabCount);
+	output.writeShort(mDaysTillRessurection);
 	output.textWriteText("\t# ïúäàì˙êî∞\r\n");
 
 	if (ramMode == 0) {
 		// generator files as stored on disc
-		output.textWriteTab(output.m_tabCount);
+		output.textWriteTab(output.mTabCount);
 		int i = 0;
 		do {
-			output.writeByte(m_genObjName[i]);
-		} while (++i < sizeof(m_genObjName));
-		output.textWriteText("\t# <%s>\r\n", m_genObjName);
+			output.writeByte(mGenObjName[i]);
+		} while (++i < sizeof(mGenObjName));
+		output.textWriteText("\t# <%s>\r\n", mGenObjName);
 	} else {
 		// gencache?
 		output.writeByte('\0');
 		output.writeShort(_74);
 		output.writeShort(_78);
-		output.writeShort(m_dayLimitMaybe);
+		output.writeShort(mDayLimitMaybe);
 	}
 	if (ramMode != 0) {
-		output.writeShort((u16)m_position.x + m_offset.x);
-		output.writeShort((u16)m_position.y + m_offset.y);
-		output.writeShort((u16)m_position.z + m_offset.z);
+		output.writeShort((u16)mPosition.x + mOffset.x);
+		output.writeShort((u16)mPosition.y + mOffset.y);
+		output.writeShort((u16)mPosition.z + mOffset.z);
 	} else {
-		output.textWriteTab(output.m_tabCount);
-		// TODO: m_position.write()?
-		output.writeFloat(m_position.x);
-		output.writeFloat(m_position.y);
-		output.writeFloat(m_position.z);
+		output.textWriteTab(output.mTabCount);
+		// TODO: mPosition.write()?
+		output.writeFloat(mPosition.x);
+		output.writeFloat(mPosition.y);
+		output.writeFloat(mPosition.z);
 		output.textWriteText("\t# pos\r\n");
 
-		output.textWriteTab(output.m_tabCount);
-		// TODO: m_offset.write()?
-		output.writeFloat(m_offset.x);
-		output.writeFloat(m_offset.y);
-		output.writeFloat(m_offset.z);
+		output.textWriteTab(output.mTabCount);
+		// TODO: mOffset.write()?
+		output.writeFloat(mOffset.x);
+		output.writeFloat(mOffset.y);
+		output.writeFloat(mOffset.z);
 		output.textWriteText("\t# offset\r\n");
 	}
 	if (_18) {
@@ -1588,21 +1588,21 @@ lbl_801AB438:
 GeneratorMgr::GeneratorMgr()
     : CNode("genMgr")
     , _34()
-    , m_versionID()
+    , mVersionID()
     , _50()
 {
-	m_parentMgr      = nullptr;
-	m_childMgr       = nullptr;
-	m_nextMgr        = nullptr;
-	_6D              = 0;
-	m_startPos       = 0.0f;
-	_60              = 0.0f;
-	_64              = 0.0f;
-	m_startDir       = 0.0f;
-	m_generatorCount = 0;
-	m_generator      = nullptr;
+	mParentMgr      = nullptr;
+	mChildMgr       = nullptr;
+	mNextMgr        = nullptr;
+	_6D             = 0;
+	mStartPos       = 0.0f;
+	_60             = 0.0f;
+	_64             = 0.0f;
+	mStartDir       = 0.0f;
+	mGeneratorCount = 0;
+	mGenerator      = nullptr;
 	_34.setID('v0.1');
-	m_versionID.setID('v0.0');
+	mVersionID.setID('v0.0');
 	GenObjectFactoryFactory* factory = GenObjectFactory::factory;
 	if (factory == nullptr) {
 		factory = new GenObjectFactoryFactory();
@@ -1610,7 +1610,7 @@ GeneratorMgr::GeneratorMgr()
 	GenObjectFactory::factory = factory;
 	_6C                       = 0;
 	// TODO: Is there an erased parent type?
-	m_name = "GeneratorMgr";
+	mName = "GeneratorMgr";
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1698,23 +1698,23 @@ lbl_801AB548:
  */
 void GeneratorMgr::addMgr(Game::GeneratorMgr* newMgr)
 {
-	if (m_childMgr == nullptr) {
-		m_childMgr          = newMgr;
-		newMgr->m_parentMgr = this;
+	if (mChildMgr == nullptr) {
+		mChildMgr          = newMgr;
+		newMgr->mParentMgr = this;
 		return;
 	}
-	GeneratorMgr* speculativeChild = m_childMgr;
+	GeneratorMgr* speculativeChild = mChildMgr;
 	// GeneratorMgr* certainChild;
 	// while (speculativeChild ) {
 	// 	certainChild = speculativeChild;
-	// 	speculativeChild = certainChild->m_nextMgr;
+	// 	speculativeChild = certainChild->mNextMgr;
 	// }
-	// certainChild->m_nextMgr = newMgr;
-	while (speculativeChild->m_nextMgr) {
-		speculativeChild = speculativeChild->m_nextMgr;
+	// certainChild->mNextMgr = newMgr;
+	while (speculativeChild->mNextMgr) {
+		speculativeChild = speculativeChild->mNextMgr;
 	}
-	speculativeChild->m_nextMgr = newMgr;
-	newMgr->m_parentMgr         = this;
+	speculativeChild->mNextMgr = newMgr;
+	newMgr->mParentMgr         = this;
 }
 
 /*
@@ -1734,7 +1734,7 @@ bool GeneratorMgr::isRootMgr()
  */
 void GeneratorMgr::generate()
 {
-	for (Generator* gen = m_generator; gen != nullptr; gen = gen->_64) {
+	for (Generator* gen = mGenerator; gen != nullptr; gen = gen->_64) {
 		gen->generate();
 	}
 	/*
@@ -1850,8 +1850,8 @@ lbl_801AB6E0:
  */
 void GeneratorMgr::setDayLimit(int dayLimit)
 {
-	for (Generator* generator = m_generator; generator != nullptr; generator = generator->_64) {
-		generator->m_dayLimitMaybe = dayLimit;
+	for (Generator* generator = mGenerator; generator != nullptr; generator = generator->_64) {
+		generator->mDayLimitMaybe = dayLimit;
 	}
 }
 
@@ -1862,7 +1862,7 @@ void GeneratorMgr::setDayLimit(int dayLimit)
  */
 void GeneratorMgr::updateUseList()
 {
-	for (Generator* gen = m_generator; gen != nullptr; gen = gen->_64) {
+	for (Generator* gen = mGenerator; gen != nullptr; gen = gen->_64) {
 		gen->updateUseList();
 	}
 	/*
@@ -1944,14 +1944,14 @@ void GeneratorMgr::render(Graphics&)
  * Address:	801AB7B0
  * Size:	000008
  */
-GeneratorMgr* GeneratorMgr::getNext() { return m_nextMgr; }
+GeneratorMgr* GeneratorMgr::getNext() { return mNextMgr; }
 
 /*
  * --INFO--
  * Address:	801AB7B8
  * Size:	000008
  */
-GeneratorMgr* GeneratorMgr::getChild() { return m_childMgr; }
+GeneratorMgr* GeneratorMgr::getChild() { return mChildMgr; }
 
 /*
  * --INFO--
@@ -1960,7 +1960,7 @@ GeneratorMgr* GeneratorMgr::getChild() { return m_childMgr; }
  */
 void GeneratorMgr::updateCursorPos(Vector3f& position)
 {
-	m_cursorPosition = position;
+	mCursorPosition = position;
 	if (getChild()) {
 		getChild()->updateCursorPos(position);
 	}
@@ -1997,29 +1997,29 @@ void GeneratorMgr::updateCursorPos(Vector3f& position)
  */
 void GeneratorMgr::read(Stream& input, bool)
 {
-	if (m_generator) {
-		delete m_generator;
-		m_generatorCount = 0;
+	if (mGenerator) {
+		delete mGenerator;
+		mGeneratorCount = 0;
 	}
 
-	m_versionID.read(input);
-	m_startPos.read(input);
-	if (m_versionID == 'v0.1') {
-		m_startDir = input.readFloat();
+	mVersionID.read(input);
+	mStartPos.read(input);
+	if (mVersionID == 'v0.1') {
+		mStartDir = input.readFloat();
 	}
-	m_generatorCount = input.readInt();
-	m_generator      = nullptr;
-	for (int i = 0; i < m_generatorCount; i++) {
-		if (m_generator == nullptr) {
-			m_generator = new Generator();
-			m_generator->read(input);
-			m_generator->m_mgr = this;
-			generatorCache->addGenerator(m_generator);
+	mGeneratorCount = input.readInt();
+	mGenerator      = nullptr;
+	for (int i = 0; i < mGeneratorCount; i++) {
+		if (mGenerator == nullptr) {
+			mGenerator = new Generator();
+			mGenerator->read(input);
+			mGenerator->mMgr = this;
+			generatorCache->addGenerator(mGenerator);
 		} else {
 			Generator* newGenerator = new Generator();
-			newGenerator->m_mgr     = this;
+			newGenerator->mMgr      = this;
 			newGenerator->read(input);
-			Generator* next = m_generator;
+			Generator* next = mGenerator;
 			Generator* priorToNext;
 			do {
 				priorToNext = next;
@@ -2459,11 +2459,11 @@ lbl_801AC10C:
  */
 void GeneratorMgr::doAnimation()
 {
-	if (m_generator) {
-		m_generator->doAnimation();
+	if (mGenerator) {
+		mGenerator->doAnimation();
 	}
-	if (m_childMgr) {
-		m_childMgr->doAnimation();
+	if (mChildMgr) {
+		mChildMgr->doAnimation();
 	}
 	if (getNext()) {
 		getNext()->doAnimation();
@@ -2479,11 +2479,11 @@ void GeneratorMgr::doAnimation()
  */
 void GeneratorMgr::doEntry()
 {
-	if (m_generator) {
-		m_generator->doEntry();
+	if (mGenerator) {
+		mGenerator->doEntry();
 	}
-	if (m_childMgr) {
-		m_childMgr->doEntry();
+	if (mChildMgr) {
+		mChildMgr->doEntry();
 	}
 	if (getNext()) {
 		getNext()->doEntry();
@@ -2499,11 +2499,11 @@ void GeneratorMgr::doEntry()
  */
 void GeneratorMgr::doSetView(int index)
 {
-	if (m_generator) {
-		m_generator->doSetView(index);
+	if (mGenerator) {
+		mGenerator->doSetView(index);
 	}
-	if (m_childMgr) {
-		m_childMgr->doSetView(index);
+	if (mChildMgr) {
+		mChildMgr->doSetView(index);
 	}
 	if (getNext()) {
 		getNext()->doSetView(index);
@@ -2519,11 +2519,11 @@ void GeneratorMgr::doSetView(int index)
  */
 void GeneratorMgr::doViewCalc()
 {
-	if (m_generator) {
-		m_generator->doViewCalc();
+	if (mGenerator) {
+		mGenerator->doViewCalc();
 	}
-	if (m_childMgr) {
-		m_childMgr->doViewCalc();
+	if (mChildMgr) {
+		mChildMgr->doViewCalc();
 	}
 	if (getNext()) {
 		getNext()->doViewCalc();

@@ -48,8 +48,8 @@ struct J3DColorBlock {
 struct J3DColorBlockLightOff : public J3DColorBlock {
 	inline J3DColorBlockLightOff()
 	    : J3DColorBlock()
-	    , m_materialColors()
-	    , m_colorChannels()
+	    , mMaterialColors()
+	    , mColorChannels()
 	{
 		initialize();
 	}
@@ -88,19 +88,19 @@ struct J3DColorBlockLightOff : public J3DColorBlock {
 
 	void initialize();
 
-	J3DGXColor m_materialColors[2];  // _04
-	u8 m_colorChannelNum;            // _0C
-	u8 _0D;                          // _0D
-	J3DColorChan m_colorChannels[4]; // _0E
-	u8 m_cullMode;                   // _16
-	u32 m_materialColorOffset;       // _18
-	u32 m_colorChannelOffset;        // _1C
+	J3DGXColor mMaterialColors[2];  // _04
+	u8 mColorChannelNum;            // _0C
+	u8 _0D;                         // _0D
+	J3DColorChan mColorChannels[4]; // _0E
+	u8 mCullMode;                   // _16
+	u32 mMaterialColorOffset;       // _18
+	u32 mColorChannelOffset;        // _1C
 };
 
 struct J3DColorBlockAmbientOn : public J3DColorBlockLightOff {
 	inline J3DColorBlockAmbientOn()
 	    : J3DColorBlockLightOff()
-	    , m_ambientColors()
+	    , mAmbientColors()
 	{
 		initialize();
 	}
@@ -116,15 +116,15 @@ struct J3DColorBlockAmbientOn : public J3DColorBlockLightOff {
 
 	void initialize();
 
-	J3DGXColor m_ambientColors[2]; // _20
+	J3DGXColor mAmbientColors[2]; // _20
 };
 
 struct J3DColorBlockLightOn : public J3DColorBlock {
 	inline J3DColorBlockLightOn()
 	    : J3DColorBlock()
-	    , m_materialColors()
-	    , m_ambientColors()
-	    , m_colorChannels()
+	    , mMaterialColors()
+	    , mAmbientColors()
+	    , mColorChannels()
 	{
 		initialize();
 	}
@@ -164,15 +164,15 @@ struct J3DColorBlockLightOn : public J3DColorBlock {
 
 	void initialize();
 
-	J3DGXColor m_materialColors[2];  // _04
-	J3DGXColor m_ambientColors[2];   // _0C
-	u8 m_colorChannelNum;            // _14
-	u8 _15;                          // _15
-	J3DColorChan m_colorChannels[4]; // _16
-	J3DLightObj* m_lights[8];        // _20
-	u8 m_cullMode;                   // _40
-	u32 m_materialColorOffset;       // _44
-	u32 m_colorChannelOffset;        // _48
+	J3DGXColor mMaterialColors[2];  // _04
+	J3DGXColor mAmbientColors[2];   // _0C
+	u8 mColorChannelNum;            // _14
+	u8 _15;                         // _15
+	J3DColorChan mColorChannels[4]; // _16
+	J3DLightObj* mLights[8];        // _20
+	u8 mCullMode;                   // _40
+	u32 mMaterialColorOffset;       // _44
+	u32 mColorChannelOffset;        // _48
 };
 
 struct J3DColorBlockNull : public J3DColorBlock {

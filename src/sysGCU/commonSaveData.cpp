@@ -23,20 +23,20 @@ Mgr::Mgr() { setDefault(); }
  */
 void Mgr::setDefault()
 {
-	m_flags.clear();
-	m_cardSerialNo  = 0;
-	_28             = 0;
-	m_soundMode     = 0;
-	m_musicVol      = 0xFF;
-	m_seVol         = -1;
-	m_rumble        = true;
-	m_rubyFont      = true;
-	m_deflicker     = true;
-	m_region        = (u8)sys->m_region;
-	_18             = 0;
-	m_time          = 0;
-	m_fileIndex     = -1;
-	m_challengeOpen = false;
+	mFlags.clear();
+	mCardSerialNo  = 0;
+	_28            = 0;
+	mSoundMode     = 0;
+	mMusicVol      = 0xFF;
+	mSeVol         = -1;
+	mRumble        = true;
+	mRubyFont      = true;
+	mDeflicker     = true;
+	mRegion        = (u8)sys->mRegion;
+	_18            = 0;
+	mTime          = 0;
+	mFileIndex     = -1;
+	mChallengeOpen = false;
 	reset();
 }
 
@@ -47,8 +47,8 @@ void Mgr::setDefault()
  */
 void CommonSaveData::Mgr::setCardSerialNo(u64 tag)
 {
-	m_cardSerialNo = tag;
-	m_flags.typeView |= 1;
+	mCardSerialNo = tag;
+	mFlags.typeView |= 1;
 }
 
 /*
@@ -58,8 +58,8 @@ void CommonSaveData::Mgr::setCardSerialNo(u64 tag)
  */
 void CommonSaveData::Mgr::resetCardSerialNo()
 {
-	m_cardSerialNo = 0xcdcdcdcdcdcdcdcd;
-	m_flags.typeView &= ~1;
+	mCardSerialNo = 0xcdcdcdcdcdcdcdcd;
+	mFlags.typeView &= ~1;
 }
 
 /*
@@ -69,17 +69,17 @@ void CommonSaveData::Mgr::resetCardSerialNo()
  */
 void CommonSaveData::Mgr::write(Stream& output)
 {
-	output.m_mode = STREAM_MODE_BINARY;
-	if (output.m_mode == STREAM_MODE_TEXT) {
-		output.m_tabCount = 0;
+	output.mMode = STREAM_MODE_BINARY;
+	if (output.mMode == STREAM_MODE_TEXT) {
+		output.mTabCount = 0;
 	}
-	output.writeByte(m_soundMode);
-	output.writeByte(m_musicVol);
-	output.writeByte(m_seVol);
-	output.writeByte(m_rumble);
-	output.writeByte(m_rubyFont);
-	output.writeByte(m_deflicker);
-	output.writeByte(m_region);
+	output.writeByte(mSoundMode);
+	output.writeByte(mMusicVol);
+	output.writeByte(mSeVol);
+	output.writeByte(mRumble);
+	output.writeByte(mRubyFont);
+	output.writeByte(mDeflicker);
+	output.writeByte(mRegion);
 	PlayCommonData::write(output);
 }
 
@@ -90,17 +90,17 @@ void CommonSaveData::Mgr::write(Stream& output)
  */
 void CommonSaveData::Mgr::read(Stream& input)
 {
-	input.m_mode = STREAM_MODE_BINARY;
-	if (input.m_mode == STREAM_MODE_TEXT) {
-		input.m_tabCount = 0;
+	input.mMode = STREAM_MODE_BINARY;
+	if (input.mMode == STREAM_MODE_TEXT) {
+		input.mTabCount = 0;
 	}
-	m_soundMode = input.readByte();
-	m_musicVol  = input.readByte();
-	m_seVol     = input.readByte();
-	m_rumble    = input.readByte();
-	m_rubyFont  = input.readByte();
-	m_deflicker = input.readByte();
-	m_region    = input.readByte();
+	mSoundMode = input.readByte();
+	mMusicVol  = input.readByte();
+	mSeVol     = input.readByte();
+	mRumble    = input.readByte();
+	mRubyFont  = input.readByte();
+	mDeflicker = input.readByte();
+	mRegion    = input.readByte();
 	PlayCommonData::read(input);
 }
 
@@ -117,7 +117,7 @@ void CommonSaveData::Mgr::setup()
 		setSoundModeMono();
 		break;
 	case true:
-		switch (m_soundMode) {
+		switch (mSoundMode) {
 		case SM_Mono:
 		case SM_Stereo:
 			setSoundModeStereo();
@@ -127,16 +127,16 @@ void CommonSaveData::Mgr::setup()
 			break;
 		default:
 #if BUILDTARGET == USADEMO1
-			JUT_PANICLINE(271, "Unknown sound mode:%d \n", m_soundMode);
+			JUT_PANICLINE(271, "Unknown sound mode:%d \n", mSoundMode);
 #else
-			JUT_PANICLINE(268, "Unknown sound mode:%d \n", m_soundMode);
+			JUT_PANICLINE(268, "Unknown sound mode:%d \n", mSoundMode);
 #endif
 			break;
 		}
 		break;
 	}
-	setBgmVolume(m_musicVol / 255.0f);
-	setSeVolume(m_seVol / 255.0f);
+	setBgmVolume(mMusicVol / 255.0f);
+	setSeVolume(mSeVol / 255.0f);
 	setDeflicker();
 }
 
@@ -147,9 +147,9 @@ void CommonSaveData::Mgr::setup()
  */
 void CommonSaveData::Mgr::resetPlayer(signed char fileIndex)
 {
-	m_fileIndex = fileIndex;
-	m_time      = 0;
-	_18         = 0;
+	mFileIndex = fileIndex;
+	mTime      = 0;
+	_18        = 0;
 }
 
 /*
@@ -157,7 +157,7 @@ void CommonSaveData::Mgr::resetPlayer(signed char fileIndex)
  * Address:	80446FC8
  * Size:	000030
  */
-void CommonSaveData::Mgr::setDeflicker() { setDeflicker(m_deflicker); }
+void CommonSaveData::Mgr::setDeflicker() { setDeflicker(mDeflicker); }
 
 /*
  * --INFO--
@@ -167,7 +167,7 @@ void CommonSaveData::Mgr::setDeflicker() { setDeflicker(m_deflicker); }
 void CommonSaveData::Mgr::setDeflicker(bool deflicker)
 {
 	_GXRenderModeObj* obj = System::getRenderModeObj();
-	m_deflicker           = deflicker;
+	mDeflicker            = deflicker;
 
 	if ((u32)OSGetProgressiveMode() == 1) {
 		obj->vfilter[0] = 0;
@@ -205,7 +205,7 @@ void CommonSaveData::Mgr::setDeflicker(bool deflicker)
  */
 void CommonSaveData::Mgr::setSoundModeMono()
 {
-	m_soundMode = SM_Mono;
+	mSoundMode = SM_Mono;
 	JAIGlobalParameter::setParamSoundOutputMode(SM_Mono);
 	OSSetSoundMode(false);
 }
@@ -217,7 +217,7 @@ void CommonSaveData::Mgr::setSoundModeMono()
  */
 void CommonSaveData::Mgr::setSoundModeStereo()
 {
-	m_soundMode = SM_Stereo;
+	mSoundMode = SM_Stereo;
 	JAIGlobalParameter::setParamSoundOutputMode(SM_Stereo);
 	OSSetSoundMode(true);
 }
@@ -229,7 +229,7 @@ void CommonSaveData::Mgr::setSoundModeStereo()
  */
 void CommonSaveData::Mgr::setSoundModeSurround()
 {
-	m_soundMode = SM_SurroundSound;
+	mSoundMode = SM_SurroundSound;
 	JAIGlobalParameter::setParamSoundOutputMode(SM_SurroundSound);
 	OSSetSoundMode(true);
 }
@@ -262,7 +262,7 @@ void CommonSaveData::Mgr::setBgmVolume(f32 volume)
 		} else {
 			newCalc = calc - 0.5f;
 		}
-		m_musicVol = newCalc;
+		mMusicVol = newCalc;
 		PSSystem::getSysIF()->setConfigVol_Bgm(volume);
 	}
 	OSEnableScheduler();
@@ -297,7 +297,7 @@ void CommonSaveData::Mgr::setSeVolume(f32 volume)
 		} else {
 			newCalc = calc - 0.5f;
 		}
-		m_seVol = newCalc;
+		mSeVol = newCalc;
 		PSSystem::getSysIF()->setConfigVol_Se(volume);
 	}
 

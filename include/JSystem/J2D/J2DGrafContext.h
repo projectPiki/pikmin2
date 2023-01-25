@@ -39,7 +39,7 @@ struct J2DGrafContext {
 	void lineTo(f32 x, f32 y) { lineTo(JGeometry::TVec2f(x, y)); }
 	void moveTo(f32 x, f32 y) { moveTo(JGeometry::TVec2f(x, y)); }
 
-	void moveTo(JGeometry::TVec2f pos) { m_prevPos = pos; }
+	void moveTo(JGeometry::TVec2f pos) { mPrevPos = pos; }
 
 	void scissor(const JGeometry::TBox2f&);
 	void setColor(JUtility::TColor c) { setColor(c, c, c, c); }
@@ -50,19 +50,19 @@ struct J2DGrafContext {
 	void line(JGeometry::TVec2f, JGeometry::TVec2f);
 
 	// _00 VTBL
-	JGeometry::TBox2f m_bounds;        // _04
-	JGeometry::TBox2f m_scissorBounds; // _14
-	JUtility::TColor m_colorTL;        // _24, top left
-	JUtility::TColor m_colorTR;        // _28, top right
-	JUtility::TColor m_colorBR;        // _2C, bottom right
-	JUtility::TColor m_colorBL;        // _30, bottom left
-	u8 m_lineWidth;                    // _34
-	JGeometry::TVec2f m_prevPos;       // _38
-	Mtx44 m_mtx44;                     // _40
-	Mtx m_posMtx;                      // _80
-	J2DBlendInfo _B0;                  // _B0
-	J2DBlendInfo m_linePart;           // _B3
-	J2DBlendInfo m_boxPart;            // _B6
+	JGeometry::TBox2f mBounds;        // _04
+	JGeometry::TBox2f mScissorBounds; // _14
+	JUtility::TColor mColorTL;        // _24, top left
+	JUtility::TColor mColorTR;        // _28, top right
+	JUtility::TColor mColorBR;        // _2C, bottom right
+	JUtility::TColor mColorBL;        // _30, bottom left
+	u8 mLineWidth;                    // _34
+	JGeometry::TVec2f mPrevPos;       // _38
+	Mtx44 mMtx44;                     // _40
+	Mtx mPosMtx;                      // _80
+	J2DBlendInfo _B0;                 // _B0
+	J2DBlendInfo mLinePart;           // _B3
+	J2DBlendInfo mBoxPart;            // _B6
 };
 
 struct J2DPerspGraph : public J2DGrafContext {
@@ -79,10 +79,10 @@ struct J2DPerspGraph : public J2DGrafContext {
 
 	// _00 		= VTBL
 	// _00-_BC	= J2DGrafContext
-	f32 m_fovY; // _BC
-	f32 _C0;    // _C0
-	f32 _C4;    // _C4
-	f32 _C8;    // _C8
+	f32 mFovY; // _BC
+	f32 _C0;   // _C0
+	f32 _C4;   // _C4
+	f32 _C8;   // _C8
 };
 
 struct J2DOrthoGraph : public J2DGrafContext {
@@ -97,8 +97,8 @@ struct J2DOrthoGraph : public J2DGrafContext {
 	void setOrtho(JGeometry::TBox2f const&, f32, f32);
 	void scissorBounds(JGeometry::TBox2f*, JGeometry::TBox2f const*);
 
-	f32 getWidthPower() const { return m_bounds.getWidth() / m_ortho.getWidth(); }
-	f32 getHeightPower() const { return m_bounds.getHeight() / m_ortho.getHeight(); }
+	f32 getWidthPower() const { return mBounds.getWidth() / mOrtho.getWidth(); }
+	f32 getHeightPower() const { return mBounds.getHeight() / mOrtho.getHeight(); }
 
 	void setOrtho(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 param_5)
 	{
@@ -108,9 +108,9 @@ struct J2DOrthoGraph : public J2DGrafContext {
 
 	// _00 		= VTBL
 	// _00-_BC	= J2DGrafContext
-	JGeometry::TBox2f m_ortho; // _BC
-	f32 m_near;                // _CC
-	f32 m_far;                 // _D0
+	JGeometry::TBox2f mOrtho; // _BC
+	f32 mNear;                // _CC
+	f32 mFar;                 // _D0
 };
 
 void J2DFillBox(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color);

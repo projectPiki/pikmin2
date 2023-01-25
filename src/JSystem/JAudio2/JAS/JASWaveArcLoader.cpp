@@ -113,11 +113,11 @@ const char* JASWaveArcLoader::getCurrentDir()
  */
 JASWaveArc::JASWaveArc()
     : JASDisposer()
-    , m_heap(this)
+    , mHeap(this)
     , _48(0)
     , _4C(0)
-    , m_fileNumber(-1)
-    , m_fileSize(0)
+    , mFileNumber(-1)
+    , mFileSize(0)
     , _58(0)
 {
 }
@@ -179,10 +179,10 @@ bool JASWaveArc::eraseSetup()
 void JASWaveArc::loadToAramCallback(void* args)
 {
 	LoadToAramCallbackArgs* castedArgs = static_cast<LoadToAramCallbackArgs*>(args);
-	if (JKRDvdAramRipper::loadToAram(castedArgs->m_fileNumber, (u32)castedArgs->_08, Switch_0, 0, 0, nullptr) == 0) {
+	if (JKRDvdAramRipper::loadToAram(castedArgs->mFileNumber, (u32)castedArgs->_08, Switch_0, 0, 0, nullptr) == 0) {
 		return;
 	}
-	JASWaveArc* arc = castedArgs->m_arc;
+	JASWaveArc* arc = castedArgs->mArc;
 	if (arc->loadSetup(castedArgs->_0C)) {
 		arc->onLoadDone();
 	}
@@ -200,12 +200,12 @@ bool JASWaveArc::sendLoadCmd()
 	_48 = 0;
 	_4C = 1;
 	LoadToAramCallbackArgs args;
-	args.m_arc        = this;
-	args.m_fileNumber = m_fileNumber;
-	args._08          = m_heap._38;
-	args._0C          = ++_58;
+	args.mArc        = this;
+	args.mFileNumber = mFileNumber;
+	args._08         = mHeap._38;
+	args._0C         = ++_58;
 	if (JASDvd::getThreadPointer()->sendCmdMsg(loadToAramCallback, &args, 0x10) == false) {
-		m_heap.free();
+		mHeap.free();
 		return false;
 	}
 	return true;
@@ -229,7 +229,7 @@ void JASWaveArc::execLoad()
  */
 bool JASWaveArc::load(JASHeap* fileHeap)
 {
-	if (m_fileNumber < 0) {
+	if (mFileNumber < 0) {
 		return false;
 	}
 	JASCriticalSection criticalSection;
@@ -239,7 +239,7 @@ bool JASWaveArc::load(JASHeap* fileHeap)
 	if (fileHeap == nullptr) {
 		fileHeap = JASWaveArcLoader::sAramHeap;
 	}
-	if (m_heap.alloc(fileHeap, m_fileSize) == false) {
+	if (mHeap.alloc(fileHeap, mFileSize) == false) {
 		return false;
 	}
 	return sendLoadCmd();
@@ -253,7 +253,7 @@ bool JASWaveArc::load(JASHeap* fileHeap)
  */
 bool JASWaveArc::loadTail(JASHeap* fileHeap)
 {
-	if (m_fileNumber < 0) {
+	if (mFileNumber < 0) {
 		return false;
 	}
 	JASCriticalSection criticalSection;
@@ -263,7 +263,7 @@ bool JASWaveArc::loadTail(JASHeap* fileHeap)
 	if (fileHeap == nullptr) {
 		fileHeap = JASWaveArcLoader::sAramHeap;
 	}
-	if (m_heap.allocTail(fileHeap, m_fileSize) == false) {
+	if (mHeap.allocTail(fileHeap, mFileSize) == false) {
 		return false;
 	}
 	return sendLoadCmd();
@@ -297,7 +297,7 @@ bool JASWaveArc::loadBlockTail(JASHeap*)
  * Size:	000024
  * erase__10JASWaveArcFv
  */
-bool JASWaveArc::erase() { return m_heap.free(); }
+bool JASWaveArc::erase() { return mHeap.free(); }
 
 /*
  * --INFO--
@@ -327,9 +327,9 @@ void JASWaveArc::setEntryNum(long entryNum)
 	if (DVDFastOpen(entryNum, &player) == FALSE) {
 		return;
 	}
-	m_fileSize = player.m_fileSize;
+	mFileSize = player.mFileSize;
 	DVDClose(&player);
-	m_fileNumber = entryNum;
+	mFileNumber = entryNum;
 }
 
 /*

@@ -22,12 +22,12 @@ namespace Game {
 void GenObjectNavi::initialise()
 {
 	GenObjectFactoryFactory* factory = GenObjectFactory::factory;
-	if (factory->m_count < factory->m_limit) {
-		factory->m_factories[factory->m_count].m_typeID       = 'navi';
-		factory->m_factories[factory->m_count].m_makeFunction = makeObjectNavi;
-		factory->m_factories[factory->m_count].m_name         = "ナビを発生"; // generate navi(gation)
-		factory->m_factories[factory->m_count].m_version      = '0000';
-		factory->m_count++;
+	if (factory->mCount < factory->mLimit) {
+		factory->mFactories[factory->mCount].mTypeID       = 'navi';
+		factory->mFactories[factory->mCount].mMakeFunction = makeObjectNavi;
+		factory->mFactories[factory->mCount].mName         = "ナビを発生"; // generate navi(gation)
+		factory->mFactories[factory->mCount].mVersion      = '0000';
+		factory->mCount++;
 	}
 }
 
@@ -53,10 +53,10 @@ void GenObjectNavi::ramLoadParameters(Stream&) { }
  */
 Creature* GenObjectNavi::generate(Generator* gen)
 {
-	Vector3f finalPos(gen->m_position.x + gen->m_offset.x, gen->m_position.y + gen->m_offset.y, gen->m_position.z + gen->m_offset.z);
+	Vector3f finalPos(gen->mPosition.x + gen->mOffset.x, gen->mPosition.y + gen->mOffset.y, gen->mPosition.z + gen->mOffset.z);
 
 	GenArg arg;
-	arg.m_position = finalPos;
+	arg.mPosition = finalPos;
 	return birth(&arg);
 }
 
@@ -73,20 +73,20 @@ Creature* GenObjectNavi::birth(GenArg* arg)
 	if (newNavi) {
 		newNavi->init(nullptr);
 
-		newNavi->m_animator.m_selfAnimator.getCalc();
-		newNavi->m_animator.m_boundAnimator.getCalc();
+		newNavi->mAnimator.mSelfAnimator.getCalc();
+		newNavi->mAnimator.mBoundAnimator.getCalc();
 
 		// fabricated inline that has a futile loop in it?
 		newNavi->setCalcs();
 
-		SysShape::Model* tempModel = newNavi->m_model;
+		SysShape::Model* tempModel = newNavi->mModel;
 
 		// fabricated inlined futile loops??
-		newNavi->m_model->loopTimer();
+		newNavi->mModel->loopTimer();
 		tempModel->loopTimer();
 
-		newNavi->setPosition(arg->m_position, false);
-		newNavi->m_faceDir = PI * (DEG2RAD * m_rotation.m_value);
+		newNavi->setPosition(arg->mPosition, false);
+		newNavi->mFaceDir = PI * (DEG2RAD * mRotation.mValue);
 	}
 	return newNavi;
 }

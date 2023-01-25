@@ -22,30 +22,30 @@ struct MapCounter : public P2DScreen::Mgr_tuning {
 
 	// _00      = VTBL
 	// _00-_148 = P2DScreen::Mgr_tuning
-	DataMap* m_dataMap;         // _148
-	J2DPane* m_paneRPikiOnyon;  // _14C, reds in onyon
-	J2DPane* m_paneYPikiOnyon;  // _150, yellows in onyon
-	J2DPane* m_paneBPikiOnyon;  // _154, blues in onyon
-	J2DPane* m_paneWPikiShip;   // _158, whites in ship
-	J2DPane* m_panePPikiShip;   // _15C, purples in ship
-	J2DPane* m_paneRPikiLeader; // _160, reds with leader
-	J2DPane* m_paneYPikiLeader; // _164, yellows with leader
-	J2DPane* m_paneBPikiLeader; // _168, blues with leader
-	J2DPane* m_paneWPikiLeader; // _16C, whites with leader
-	J2DPane* m_panePPikiLeader; // _170, purples with leader
-	J2DPane* m_paneFreePiki;    // _174, free pikmin
-	u32* m_onyonRedPikmin;      // _178
-	u32* m_onyonYellowPikmin;   // _17C
-	u32* m_onyonBluePikmin;     // _180
-	u32* m_shipWhitePikmin;     // _184
-	u32* m_shipPurplePikmin;    // _188
-	u32* m_leaderRedPikmin;     // _18C
-	u32* m_leaderYellowPikmin;  // _190
-	u32* m_leaderBluePikmin;    // _194
-	u32* m_leaderWhitePikmin;   // _198
-	u32* m_leaderPurplePikmin;  // _19C
-	u32* m_freePikmin;          // _1A0
-	u32* m_pokos;               // _1A4
+	DataMap* mDataMap;         // _148
+	J2DPane* mPaneRPikiOnyon;  // _14C, reds in onyon
+	J2DPane* mPaneYPikiOnyon;  // _150, yellows in onyon
+	J2DPane* mPaneBPikiOnyon;  // _154, blues in onyon
+	J2DPane* mPaneWPikiShip;   // _158, whites in ship
+	J2DPane* mPanePPikiShip;   // _15C, purples in ship
+	J2DPane* mPaneRPikiLeader; // _160, reds with leader
+	J2DPane* mPaneYPikiLeader; // _164, yellows with leader
+	J2DPane* mPaneBPikiLeader; // _168, blues with leader
+	J2DPane* mPaneWPikiLeader; // _16C, whites with leader
+	J2DPane* mPanePPikiLeader; // _170, purples with leader
+	J2DPane* mPaneFreePiki;    // _174, free pikmin
+	u32* mOnyonRedPikmin;      // _178
+	u32* mOnyonYellowPikmin;   // _17C
+	u32* mOnyonBluePikmin;     // _180
+	u32* mShipWhitePikmin;     // _184
+	u32* mShipPurplePikmin;    // _188
+	u32* mLeaderRedPikmin;     // _18C
+	u32* mLeaderYellowPikmin;  // _190
+	u32* mLeaderBluePikmin;    // _194
+	u32* mLeaderWhitePikmin;   // _198
+	u32* mLeaderPurplePikmin;  // _19C
+	u32* mFreePikmin;          // _1A0
+	u32* mPokos;               // _1A4
 };
 } // namespace Screen
 } // namespace og

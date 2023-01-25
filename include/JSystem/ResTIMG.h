@@ -12,52 +12,52 @@ struct ResTIMG {
 
 	inline void copyTo(ResTIMG* dest)
 	{
-		dest->m_textureFormat     = m_textureFormat;
-		dest->m_transparency      = m_transparency;
-		dest->m_sizeX             = m_sizeX;
-		dest->m_sizeY             = m_sizeY;
-		dest->m_wrapS             = m_wrapS;
-		dest->m_wrapT             = m_wrapT;
-		dest->m_paletteFormat     = m_paletteFormat;
-		dest->m_lutFormat         = m_lutFormat;
-		dest->m_paletteEntryCount = m_paletteEntryCount;
-		dest->m_paletteOffset     = m_paletteOffset;
-		dest->_10                 = _10;
-		dest->_11                 = _11;
-		dest->_12                 = _12;
-		dest->_13                 = _13;
-		dest->m_magFilterType     = m_magFilterType;
-		dest->m_minFilterType     = m_minFilterType;
-		dest->_16                 = _16;
-		dest->_17                 = _17;
-		dest->m_totalImageCount   = m_totalImageCount;
-		dest->_19                 = _19;
-		dest->_1A                 = _1A;
-		dest->m_imageDataOffset   = m_imageDataOffset;
+		dest->mTextureFormat     = mTextureFormat;
+		dest->mTransparency      = mTransparency;
+		dest->mSizeX             = mSizeX;
+		dest->mSizeY             = mSizeY;
+		dest->mWrapS             = mWrapS;
+		dest->mWrapT             = mWrapT;
+		dest->mPaletteFormat     = mPaletteFormat;
+		dest->mLutFormat         = mLutFormat;
+		dest->mPaletteEntryCount = mPaletteEntryCount;
+		dest->mPaletteOffset     = mPaletteOffset;
+		dest->_10                = _10;
+		dest->_11                = _11;
+		dest->_12                = _12;
+		dest->_13                = _13;
+		dest->mMagFilterType     = mMagFilterType;
+		dest->mMinFilterType     = mMinFilterType;
+		dest->_16                = _16;
+		dest->_17                = _17;
+		dest->mTotalImageCount   = mTotalImageCount;
+		dest->_19                = _19;
+		dest->_1A                = _1A;
+		dest->mImageDataOffset   = mImageDataOffset;
 	}
 
-	u8 m_textureFormat;              // _00
-	_JUTTransparency m_transparency; // _01
-	u16 m_sizeX;                     // _02
-	u16 m_sizeY;                     // _04
-	u8 m_wrapS;                      // _06
-	u8 m_wrapT;                      // _07
-	u8 m_paletteFormat;              // _08
-	u8 m_lutFormat;                  // _09
-	u16 m_paletteEntryCount;         // _0A
-	u32 m_paletteOffset;             // _0C
-	GXBool _10;                      // _10
-	GXBool _11;                      // _11
-	GXBool _12;                      // _12
-	GXBool _13;                      // _13
-	u8 m_magFilterType;              // _14
-	u8 m_minFilterType;              // _15
-	char _16;                        // _16
-	char _17;                        // _17
-	u8 m_totalImageCount;            // _18
-	u8 _19;                          // _19, unknown
-	short _1A;                       // _1A
-	int m_imageDataOffset;           // _1C
+	u8 mTextureFormat;              // _00
+	_JUTTransparency mTransparency; // _01
+	u16 mSizeX;                     // _02
+	u16 mSizeY;                     // _04
+	u8 mWrapS;                      // _06
+	u8 mWrapT;                      // _07
+	u8 mPaletteFormat;              // _08
+	u8 mLutFormat;                  // _09
+	u16 mPaletteEntryCount;         // _0A
+	u32 mPaletteOffset;             // _0C
+	GXBool _10;                     // _10
+	GXBool _11;                     // _11
+	GXBool _12;                     // _12
+	GXBool _13;                     // _13
+	u8 mMagFilterType;              // _14
+	u8 mMinFilterType;              // _15
+	char _16;                       // _16
+	char _17;                       // _17
+	u8 mTotalImageCount;            // _18
+	u8 _19;                         // _19, unknown
+	short _1A;                      // _1A
+	int mImageDataOffset;           // _1C
 };
 
 struct ResTIMGPair {

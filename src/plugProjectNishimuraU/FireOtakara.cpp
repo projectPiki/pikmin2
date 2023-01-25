@@ -17,14 +17,14 @@ Obj::Obj() { createEffect(); }
 void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
-	J3DModel* j3dModel = m_model->m_j3dModel;
-	modelData          = j3dModel->m_modelData;
-	ResTIMG* texture   = static_cast<Mgr*>(m_mgr)->getChangeTexture();
+	J3DModel* j3dModel = mModel->mJ3dModel;
+	modelData          = j3dModel->mModelData;
+	ResTIMG* texture   = static_cast<Mgr*>(mMgr)->getChangeTexture();
 
 	j3dModel->calcMaterial();
 
 	ResTIMG* newTexture;
-	J3DTexture* j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+	J3DTexture* j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
 	newTexture             = j3dTexture->_04;
 
 	texture->copyTo(newTexture);
@@ -32,10 +32,10 @@ void Obj::changeMaterial()
 	j3dTexture->setImageOffset((u32)texture);
 	j3dTexture->setPaletteOffset((u32)texture);
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket    = packet;
-		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket     = packet;
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
 		material->diff(packet->_2C->_34);
 	}
 }
@@ -47,7 +47,7 @@ void Obj::changeMaterial()
  */
 void Obj::interactCreature(Creature* creature)
 {
-	f32 damage = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_attackDamage.m_value;
+	f32 damage = static_cast<OtakaraBase::Parms*>(mParms)->mGeneral.mAttackDamage.mValue;
 	InteractFire fire(this, damage);
 	creature->stimulate(fire);
 }
@@ -57,7 +57,7 @@ void Obj::interactCreature(Creature* creature)
  * Address:	802B8470
  * Size:	000060
  */
-void Obj::createEffect() { m_efxChargeFire = new efx::TOtaChargefire; }
+void Obj::createEffect() { mEfxChargeFire = new efx::TOtaChargefire; }
 
 /*
  * --INFO--
@@ -66,8 +66,8 @@ void Obj::createEffect() { m_efxChargeFire = new efx::TOtaChargefire; }
  */
 void Obj::setupEffect()
 {
-	Matrixf* centerJointMtx = m_model->getJoint("center")->getWorldMatrix();
-	m_efxChargeFire->setMtxptr(centerJointMtx->m_matrix.mtxView);
+	Matrixf* centerJointMtx = mModel->getJoint("center")->getWorldMatrix();
+	mEfxChargeFire->setMtxptr(centerJointMtx->mMatrix.mtxView);
 }
 
 /*
@@ -75,14 +75,14 @@ void Obj::setupEffect()
  * Address:	802B8518
  * Size:	000034
  */
-void Obj::startChargeEffect() { m_efxChargeFire->create(nullptr); }
+void Obj::startChargeEffect() { mEfxChargeFire->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802B854C
  * Size:	000030
  */
-void Obj::finishChargeEffect() { m_efxChargeFire->fade(); }
+void Obj::finishChargeEffect() { mEfxChargeFire->fade(); }
 
 /*
  * --INFO--
@@ -91,7 +91,7 @@ void Obj::finishChargeEffect() { m_efxChargeFire->fade(); }
  */
 void Obj::createDisChargeEffect()
 {
-	efx::Arg fxArg(m_position);
+	efx::Arg fxArg(mPosition);
 	efx::TOtaFire dischargeFX;
 	dischargeFX.create(&fxArg);
 }
@@ -101,14 +101,14 @@ void Obj::createDisChargeEffect()
  * Address:	802B862C
  * Size:	000030
  */
-void Obj::effectDrawOn() { m_efxChargeFire->endDemoDrawOn(); }
+void Obj::effectDrawOn() { mEfxChargeFire->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	802B865C
  * Size:	000030
  */
-void Obj::effectDrawOff() { m_efxChargeFire->startDemoDrawOff(); }
+void Obj::effectDrawOff() { mEfxChargeFire->startDemoDrawOff(); }
 
 /*
  * --INFO--

@@ -33,45 +33,45 @@ void Section::init() { }
  */
 Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 {
-	m_isLoadingDVD = false;
-	m_displayHeap  = nullptr;
-	m_oldHeap      = nullptr;
-	m_display      = nullptr;
-	m_fader        = nullptr;
-	m_displayWiper = nullptr;
-	m_timeStep     = 0.5f;
-	m_isMainActive = true;
-	_36            = 0;
-	m_isDisplayNew = false;
-	_38            = 0;
+	mIsLoadingDVD = false;
+	mDisplayHeap  = nullptr;
+	mOldHeap      = nullptr;
+	mDisplay      = nullptr;
+	mFader        = nullptr;
+	mDisplayWiper = nullptr;
+	mTimeStep     = 0.5f;
+	mIsMainActive = true;
+	_36           = 0;
+	mIsDisplayNew = false;
+	_38           = 0;
 
 	if (heap) {
-		m_displayHeap = JKRExpHeap::create(heap->getFreeSize(), heap, true);
-		m_oldHeap     = m_displayHeap->becomeCurrentHeap();
+		mDisplayHeap = JKRExpHeap::create(heap->getFreeSize(), heap, true);
+		mOldHeap     = mDisplayHeap->becomeCurrentHeap();
 	} else {
-		m_displayHeap = JKRExpHeap::create(JKRHeap::sRootHeap->getFreeSize(), nullptr, true);
-		m_oldHeap     = m_displayHeap->becomeCurrentHeap();
+		mDisplayHeap = JKRExpHeap::create(JKRHeap::sRootHeap->getFreeSize(), nullptr, true);
+		mOldHeap     = mDisplayHeap->becomeCurrentHeap();
 	}
 
 	if (b) {
 		if (display) {
-			m_display      = display;
-			m_fader        = display->m_fader;
-			m_isDisplayNew = false;
+			mDisplay      = display;
+			mFader        = display->mFader;
+			mIsDisplayNew = false;
 		} else {
-			m_display = JFWDisplay::createManager(nullptr, m_displayHeap, JUTXfb::DoubleBuffer, false);
-			m_fader   = new JUTFader(0, 0, JUTVideo::sManager->m_renderModeObj->fbWidth, JUTVideo::sManager->m_renderModeObj->efbHeight,
-                                   JUtility::TColor(0, 0, 0, 0)); // TODO: HELP
-			m_display->m_fader = m_fader;
-			m_isDisplayNew     = true;
+			mDisplay = JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false);
+			mFader   = new JUTFader(0, 0, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight,
+                                  JUtility::TColor(0, 0, 0, 0)); // TODO: HELP
+			mDisplay->mFader = mFader;
+			mIsDisplayNew    = true;
 
-			sys->setCurrentDisplay(m_display);
+			sys->setCurrentDisplay(mDisplay);
 			sys->setFrameRate(1);
 		}
 	}
 
-	m_graphics = new Graphics();
-	sys->m_gfx = m_graphics;
+	mGraphics = new Graphics();
+	sys->mGfx = mGraphics;
 }
 
 /*
@@ -88,26 +88,26 @@ ISection::~ISection() { }
  */
 Section::~Section()
 {
-	if (m_isDisplayNew && m_display) {
-		delete m_fader;
+	if (mIsDisplayNew && mDisplay) {
+		delete mFader;
 		JUTXfb::sManager->clearIndex();
 		JFWDisplay::destroyManager();
-		sys->clearCurrentDisplay(m_display);
-		m_display = nullptr;
+		sys->clearCurrentDisplay(mDisplay);
+		mDisplay = nullptr;
 	}
 
-	if (m_displayHeap) {
-		m_displayHeap->freeAll();
-		JKRHeap* heap = m_displayHeap;
+	if (mDisplayHeap) {
+		mDisplayHeap->freeAll();
+		JKRHeap* heap = mDisplayHeap;
 
-		void* address = (void*)m_displayHeap;
+		void* address = (void*)mDisplayHeap;
 		u32 size      = heap->getFreeSize() + 4;
 
-		m_displayHeap->destroy();
+		mDisplayHeap->destroy();
 		DCStoreRange(address, size);
 	}
 
-	sys->m_gfx = nullptr;
+	sys->mGfx = nullptr;
 }
 
 inline f32 getX(f32 x)
@@ -150,18 +150,18 @@ void Section::loading()
  */
 void Section::fadeIn()
 {
-	drawInit(*m_graphics, Section::Zero);
+	drawInit(*mGraphics, Section::Zero);
 
-	s32 fadeTimer = getX(m_timeStep);
-	if (m_display->m_fader) {
-		m_display->m_fader->startFadeIn(fadeTimer);
+	s32 fadeTimer = getX(mTimeStep);
+	if (mDisplay->mFader) {
+		mDisplay->mFader->startFadeIn(fadeTimer);
 	}
 
-	for (f32 x = 0.0f; x < m_timeStep;) {
+	for (f32 x = 0.0f; x < mTimeStep;) {
 		beginFrame();
 		beginRender();
 
-		draw(*m_graphics);
+		draw(*mGraphics);
 
 		endRender();
 		endFrame();
@@ -179,38 +179,38 @@ void Section::fadeIn()
  */
 void Section::main()
 {
-	drawInit(*m_graphics, Section::One);
+	drawInit(*mGraphics, Section::One);
 	do {
-		sys->m_timers->newFrame();
+		sys->mTimers->newFrame();
 
 		beginFrame();
 		beginRender();
 
-		sys->m_timers->_start("draw", true);
-		draw(*m_graphics);
-		sys->m_timers->_stop("draw");
+		sys->mTimers->_start("draw", true);
+		draw(*mGraphics);
+		sys->mTimers->_stop("draw");
 		endRender();
 
-		sys->m_timers->_start("update", true);
+		sys->mTimers->_start("update", true);
 		update();
-		sys->m_timers->_stop("update");
+		sys->mTimers->_stop("update");
 		endFrame();
-	} while (!m_isLoadingDVD && m_isMainActive);
+	} while (!mIsLoadingDVD && mIsMainActive);
 	// Don't draw or render while loading from DVD
 
-	s32 timer = getX(m_timeStep);
+	s32 timer = getX(mTimeStep);
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
 	mgr->checkScene();
 
-	PSSystem::Scene* scene = mgr->m_scenes->m_child;
+	PSSystem::Scene* scene = mgr->mScenes->mChild;
 	if (scene) {
 		scene->stopMainSeq(timer);
 	}
 
-	if (m_display->m_fader) {
-		m_display->m_fader->startFadeOut(timer);
+	if (mDisplay->mFader) {
+		mDisplay->mFader->startFadeOut(timer);
 	}
 }
 
@@ -221,12 +221,12 @@ void Section::main()
  */
 void Section::fadeOut()
 {
-	drawInit(*m_graphics, Section::Two);
-	for (f32 x = 0.0f; x < m_timeStep;) {
+	drawInit(*mGraphics, Section::Two);
+	for (f32 x = 0.0f; x < mTimeStep;) {
 		beginFrame();
 
 		beginRender();
-		draw(*m_graphics);
+		draw(*mGraphics);
 		endRender();
 
 		update();
@@ -253,16 +253,16 @@ void Section::fadeOut()
  */
 void Section::run()
 {
-	JUT_ASSERTLINE(543, m_display, "no Display manager.\n");
+	JUT_ASSERTLINE(543, mDisplay, "no Display manager.\n");
 
-	m_display->waitBlanking(1);
+	mDisplay->waitBlanking(1);
 
 	loading();
 	fadeIn();
 	main();
 	fadeOut();
 
-	if (m_isLoadingDVD) {
+	if (mIsLoadingDVD) {
 		do {
 			do {
 				beginFrame();
@@ -282,7 +282,7 @@ void Section::run()
 void Section::exit()
 {
 	doExit();
-	m_oldHeap->becomeCurrentHeap();
+	mOldHeap->becomeCurrentHeap();
 	sys->initGenNode();
 	sys->refreshGenNode();
 }
@@ -315,8 +315,8 @@ void Section::beginRender() { sys->beginRender(); }
  */
 void Section::endRender()
 {
-	if (m_displayWiper) {
-		m_displayWiper->update();
+	if (mDisplayWiper) {
+		mDisplayWiper->update();
 	}
 
 	sys->endRender();
@@ -334,7 +334,7 @@ bool Section::update()
 	if (!sys->isDvdErrorOccured()) {
 		isActive = doUpdate();
 	} else {
-		sys->m_cardMgr->update();
+		sys->mCardMgr->update();
 	}
 
 	return isActive;

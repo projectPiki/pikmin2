@@ -18,9 +18,9 @@ struct CaveOtakara : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	ID32 m_id;         // _18
-	u8 m_otakaraCount; // _24
-	char* m_filename;  // _28
+	ID32 mId;         // _18
+	u8 mOtakaraCount; // _24
+	char* mFilename;  // _28
 };
 
 struct CaveOtakaraInfo {
@@ -34,8 +34,8 @@ struct CaveOtakaraInfo {
 	int getCaveIndex_FromID(ID32&);
 	ID32* getCaveID_FromIndex(int);
 
-	int m_count;         // _00
-	CaveOtakara m_owner; // _04
+	int mCount;         // _00
+	CaveOtakara mOwner; // _04
 };
 
 /**
@@ -46,9 +46,9 @@ struct LimitGen : public CNode {
 
 	virtual ~LimitGen(); // _08 (weak)
 
-	u32 _18;        // _18
-	u32 _1C;        // _1C
-	u32 m_dayLimit; // _20
+	u32 _18;       // _18
+	u32 _1C;       // _1C
+	u32 mDayLimit; // _20
 };
 
 struct LimitGenInfo {
@@ -57,8 +57,8 @@ struct LimitGenInfo {
 
 	void read(Stream&);
 
-	int m_count;      // _00
-	LimitGen m_owner; // _04
+	int mCount;      // _00
+	LimitGen mOwner; // _04
 };
 
 /**
@@ -78,23 +78,23 @@ struct CourseInfo : public CNode {
 	ID32* getCaveID_FromIndex(int);
 	int getCaveNum();
 
-	char* m_folder;           // _18
-	char* m_abeFolder;        // _1C
-	char* m_modelPath;        // _20
-	char* m_collisionPath;    // _24
-	char* m_waterboxPath;     // _28
-	char* m_mapcodePath;      // _2C
-	char* m_farmPath;         // _30
-	char* m_routePath;        // _34
-	Vector3f m_startPosition; // _38
-	f32 m_startAngle;         // _44
-	u32 m_courseIndex;        // _48
+	char* mFolder;           // _18
+	char* mAbeFolder;        // _1C
+	char* mModelPath;        // _20
+	char* mCollisionPath;    // _24
+	char* mWaterboxPath;     // _28
+	char* mMapcodePath;      // _2C
+	char* mFarmPath;         // _30
+	char* mRoutePath;        // _34
+	Vector3f mStartPosition; // _38
+	f32 mStartAngle;         // _44
+	u32 mCourseIndex;        // _48
 
-	LimitGenInfo m_limitGenInfo;       // _4C
-	LimitGenInfo m_loopGenInfo;        // _78
-	CaveOtakaraInfo m_caveOtakaraInfo; // _9C
-	int m_groundOtakaraMax;            // _CC
-	Matrixf _D0;                       // _D0
+	LimitGenInfo mLimitGenInfo;       // _4C
+	LimitGenInfo mLoopGenInfo;        // _78
+	CaveOtakaraInfo mCaveOtakaraInfo; // _9C
+	int mGroundOtakaraMax;            // _CC
+	Matrixf _D0;                      // _D0
 };
 
 struct Stages {
@@ -109,11 +109,11 @@ struct Stages {
 
 	static void createMapMgr(CourseInfo*, RouteMgr*);
 
-	CourseInfo m_courseInfo; // _00
-	u16 m_courseCount;       // _100
-	u32 _104;                // _104
-	u16 _108;                // _108
-	u8 _10A;                 // _10A
+	CourseInfo mCourseInfo; // _00
+	u16 mCourseCount;       // _100
+	u32 _104;               // _104
+	u16 _108;               // _108
+	u8 _10A;                // _10A
 };
 
 extern Stages* stageList;

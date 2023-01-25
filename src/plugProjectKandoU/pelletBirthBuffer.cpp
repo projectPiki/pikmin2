@@ -23,7 +23,7 @@ void PelletBirthBuffer::entry(Game::PelletInitArg& initArg)
 		return;
 	}
 
-	if (initArg.m_pelletType != PELTYPE_TREASURE && initArg.m_pelletType != PELTYPE_UPGRADE) {
+	if (initArg.mPelletType != PELTYPE_TREASURE && initArg.mPelletType != PELTYPE_UPGRADE) {
 		return;
 	}
 
@@ -49,7 +49,7 @@ void PelletBirthBuffer::birthAll()
 		Pellet* newPel = pelletMgr->birth(&PelletBirthBuffer::sArgs[i]);
 		if (newPel) {
 			newPel->kill(nullptr);
-			newPel->m_mgr->setFromTeki(newPel);
+			newPel->mMgr->setFromTeki(newPel);
 		}
 	}
 

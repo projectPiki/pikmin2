@@ -125,10 +125,10 @@ u32 __flush_all()
 	FILE* __stream;
 	__stream = &__files[0];
 	while (__stream) {
-		if ((__stream->m_mode.file_kind) && (fflush(__stream))) {
+		if ((__stream->mMode.file_kind) && (fflush(__stream))) {
 			retval = -1;
 		}
-		__stream = __stream->m_nextFile;
+		__stream = __stream->mNextFile;
 	};
 	return retval;
 }
@@ -146,18 +146,18 @@ void __close_all()
 	__begin_critical_region(2);
 
 	while (p) {
-		if (p->m_mode.file_kind != __closed_file) {
+		if (p->mMode.file_kind != __closed_file) {
 			fclose(p);
 		}
 
 		plast = p;
-		p     = p->m_nextFile;
-		if (plast->m_isDynamicallyAllocated)
+		p     = p->mNextFile;
+		if (plast->mIsDynamicallyAllocated)
 			free(plast);
 		else {
-			plast->m_mode.file_kind = __unavailable_file;
-			if ((p != NULL) && p->m_isDynamicallyAllocated)
-				plast->m_nextFile = nullptr;
+			plast->mMode.file_kind = __unavailable_file;
+			if ((p != NULL) && p->mIsDynamicallyAllocated)
+				plast->mNextFile = nullptr;
 		}
 	}
 

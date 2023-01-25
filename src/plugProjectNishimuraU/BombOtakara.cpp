@@ -19,14 +19,14 @@ Obj::Obj() { }
 void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
-	J3DModel* j3dModel = m_model->m_j3dModel;
-	modelData          = j3dModel->m_modelData;
-	ResTIMG* texture   = static_cast<Mgr*>(m_mgr)->getChangeTexture();
+	J3DModel* j3dModel = mModel->mJ3dModel;
+	modelData          = j3dModel->mModelData;
+	ResTIMG* texture   = static_cast<Mgr*>(mMgr)->getChangeTexture();
 
 	j3dModel->calcMaterial();
 
 	ResTIMG* newTexture;
-	J3DTexture* j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+	J3DTexture* j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
 	newTexture             = j3dTexture->_04;
 
 	texture->copyTo(newTexture);
@@ -34,10 +34,10 @@ void Obj::changeMaterial()
 	j3dTexture->setImageOffset((u32)texture);
 	j3dTexture->setPaletteOffset((u32)texture);
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket    = packet;
-		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket     = packet;
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
 		material->diff(packet->_2C->_34);
 	}
 }
@@ -49,13 +49,13 @@ void Obj::changeMaterial()
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (m_targetCreature != nullptr && m_targetCreature->isAlive()) {
+	if (mTargetCreature != nullptr && mTargetCreature->isAlive()) {
 		if (isEvent(0, EB_IsBittered)) {
 			// If we're bittered, then register the damage
-			static_cast<Bomb::Obj*>(m_targetCreature)->damageCallBack(creature, damage, collpart);
+			static_cast<Bomb::Obj*>(mTargetCreature)->damageCallBack(creature, damage, collpart);
 		} else {
 			// If not, then explode
-			static_cast<Bomb::Obj*>(m_targetCreature)->forceBomb();
+			static_cast<Bomb::Obj*>(mTargetCreature)->forceBomb();
 		}
 		return true;
 	}
@@ -77,8 +77,8 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { 
  */
 bool Obj::earthquakeCallBack(Creature* creature, f32 p1)
 {
-	if ((m_targetCreature != nullptr) && m_targetCreature->isAlive()) {
-		static_cast<Bomb::Obj*>(m_targetCreature)->forceBomb();
+	if ((mTargetCreature != nullptr) && mTargetCreature->isAlive()) {
+		static_cast<Bomb::Obj*>(mTargetCreature)->forceBomb();
 	}
 
 	return EnemyBase::earthquakeCallBack(creature, p1);
@@ -98,13 +98,13 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage) { return d
  */
 void Obj::startEscapeSE()
 {
-	if (m_escapeSfxTimer > 2.5f) {
+	if (mEscapeSfxTimer > 2.5f) {
 		getJAIObject()->startSound(PSSE_EN_OTAKARA_STANDUP, 0);
-		m_escapeSfxTimer = 0.0f;
+		mEscapeSfxTimer = 0.0f;
 		return;
 	}
 
-	m_escapeSfxTimer += sys->m_deltaTime;
+	mEscapeSfxTimer += sys->mDeltaTime;
 }
 } // namespace BombOtakara
 } // namespace Game

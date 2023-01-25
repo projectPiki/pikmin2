@@ -14,7 +14,7 @@ namespace Tadpole {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 }
 
@@ -36,7 +36,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2C4 = 0.0f;
 	_2C8 = -1;
 	_2C0 = 1;
-	m_fsm->start(this, TADPOLE_Wait, nullptr);
+	mFsm->start(this, TADPOLE_Wait, nullptr);
 }
 
 /*
@@ -44,7 +44,7 @@ void Obj::onInit(CreatureInitArg* initArg)
  * Address:	80278768
  * Size:	000034
  */
-void Obj::doUpdate() { m_fsm->exec(this); }
+void Obj::doUpdate() { mFsm->exec(this); }
 
 /*
  * --INFO--
@@ -67,9 +67,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -79,15 +79,15 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	param.m_position = getPosition();
-	param.m_position.y += 2.5f;
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mPosition = getPosition();
+	param.mPosition.y += 2.5f;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isEvent(1, EB2_IsEarthquake)) {
-		param.m_boundingSphere.m_radius = 50.0f;
+		param.mBoundingSphere.mRadius = 50.0f;
 	} else {
-		param.m_boundingSphere.m_radius = 7.5f;
+		param.mBoundingSphere.mRadius = 7.5f;
 	}
-	param.m_size = 7.5f;
+	param.mSize = 7.5f;
 }
 
 /*
@@ -98,7 +98,7 @@ void Obj::getShadowParam(ShadowParam& param)
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (isAlive() && !isEvent(0, EB_IsBittered)) {
-		addDamage(m_health, 1.0f);
+		addDamage(mHealth, 1.0f);
 		return true;
 	}
 
@@ -121,16 +121,16 @@ void Obj::setRandTarget(bool check)
 {
 	f32 p1 = 0.0f;
 	if (!check) {
-		p1 = C_PARMS->m_general.m_territoryRadius.m_value - C_PARMS->m_general.m_homeRadius.m_value;
+		p1 = C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue;
 	}
 
-	f32 radius          = randWeightFloat(p1) + C_PARMS->m_general.m_homeRadius.m_value;
+	f32 radius          = randWeightFloat(p1) + C_PARMS->mGeneral.mHomeRadius.mValue;
 	Vector3f tadpolePos = getPosition();
-	Vector3f homePos    = m_homePosition;
+	Vector3f homePos    = mHomePosition;
 	f32 angle           = JMath::atanTable_.atan2_(tadpolePos.x - homePos.x, tadpolePos.z - homePos.z);
 	angle               = randWeightFloat(PI) + angle + HALF_PI;
 
-	m_targetPosition = Vector3f(radius * pikmin2_sinf(angle) + homePos.x, homePos.y, radius * pikmin2_cosf(angle) + homePos.z);
+	mTargetPosition = Vector3f(radius * pikmin2_sinf(angle) + homePos.x, homePos.y, radius * pikmin2_cosf(angle) + homePos.z);
 }
 
 /*
@@ -147,7 +147,7 @@ Vector3f Obj::getTargetPosition(Creature* creature)
 	diff.y        = 0.0f;
 	_normalise(diff);
 
-	f32 moveSpeed = C_PARMS->m_general.m_moveSpeed.m_value;
+	f32 moveSpeed = C_PARMS->mGeneral.mMoveSpeed.mValue;
 	diff          = Vector3f(diff.x * moveSpeed + creaturePos.x, diff.y * moveSpeed + creaturePos.y, diff.z * moveSpeed + creaturePos.z);
 	_normalise(diff);
 
@@ -291,10 +291,10 @@ lbl_80278CB8:
  */
 void Obj::createLeapEffect()
 {
-	if (m_waterBox) {
-		Vector3f position = m_position;
-		position.y        = *m_waterBox->getSeaHeightPtr();
-		if (position.y - m_position.y < 22.0f) {
+	if (mWaterBox) {
+		Vector3f position = mPosition;
+		position.y        = *mWaterBox->getSeaHeightPtr();
+		if (position.y - mPosition.y < 22.0f) {
 			efx::ArgScale argDive(position, 1.2f);
 			efx::TEnemyDive diveFX;
 

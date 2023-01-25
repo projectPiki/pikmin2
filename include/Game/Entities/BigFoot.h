@@ -123,34 +123,34 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                                  // _2BC
-	f32 m_stateTimer;                            // _2C0
-	StateID m_nextState;                         // _2C4
-	Vector3f m_targetPosition;                   // _2C8
-	f32 m_shadowScale;                           // _2D4
-	f32 m_flickWalkTimeMax;                      // _2D8
-	bool _2DC;                                   // _2DC
-	bool m_isSmoking;                            // _2DD
-	bool m_isEnraged;                            // _2DE, next walk cycle will be fast
-	IKSystemMgr* m_ikSystemMgr;                  // _2E0
-	IKSystemParms* m_ikSystemParms;              // _2E4
-	BigFootGroundCallBack* m_groundCallBack;     // _2E8
-	BigFootShadowMgr* m_shadowMgr;               // _2EC
-	Vector3f m_jointPositions[4][4];             // _2F0
-	efx::TOdamaFoot* m_footFX[4];                // _3B0, stepping on ground
-	efx::TDamaFootw* m_footWFX[4];               // _3C0, stepping in water
-	efx::TDamaSmoke* m_smokeFX[3];               // _3D0, smoke
-	efx::TOdamaHahen* m_hahenFX[4][3];           // _3DC, shards
-	efx::TDamaDeadElecA* m_deadElecAFX[4][3];    // _40C, death electricity A
-	efx::TDamaDeadElecB* m_deadElecBFX[4][2];    // _43C, death electricity B
-	efx::TOdamaDeadHahenA* m_deadHahenAFX[4][2]; // _45C, death shards A
-	efx::TOdamaDeadHahenB* m_deadHahenBFX[4];    // _47C, death shards B
-	efx::TOdamaDeadHahenC1* m_deadHahenC1FX;     // _48C, death shards C1
-	efx::TOdamaDeadHahenC2* m_deadHahenC2FX;     // _490, death shards C2
-	efx::TOdamaFur1* m_bodyHairFX;               // _494
-	efx::TOdamaFur2* m_legHairFX[4];             // _498
-	Sys::MatLoopAnimator* m_matLoopAnimator;     // _4A8
-	                                             // _4AC = PelletView
+	FSM* mFsm;                                  // _2BC
+	f32 mStateTimer;                            // _2C0
+	StateID mNextState;                         // _2C4
+	Vector3f mTargetPosition;                   // _2C8
+	f32 mShadowScale;                           // _2D4
+	f32 mFlickWalkTimeMax;                      // _2D8
+	bool _2DC;                                  // _2DC
+	bool mIsSmoking;                            // _2DD
+	bool mIsEnraged;                            // _2DE, next walk cycle will be fast
+	IKSystemMgr* mIkSystemMgr;                  // _2E0
+	IKSystemParms* mIkSystemParms;              // _2E4
+	BigFootGroundCallBack* mGroundCallBack;     // _2E8
+	BigFootShadowMgr* mShadowMgr;               // _2EC
+	Vector3f mJointPositions[4][4];             // _2F0
+	efx::TOdamaFoot* mFootFX[4];                // _3B0, stepping on ground
+	efx::TDamaFootw* mFootWFX[4];               // _3C0, stepping in water
+	efx::TDamaSmoke* mSmokeFX[3];               // _3D0, smoke
+	efx::TOdamaHahen* mHahenFX[4][3];           // _3DC, shards
+	efx::TDamaDeadElecA* mDeadElecAFX[4][3];    // _40C, death electricity A
+	efx::TDamaDeadElecB* mDeadElecBFX[4][2];    // _43C, death electricity B
+	efx::TOdamaDeadHahenA* mDeadHahenAFX[4][2]; // _45C, death shards A
+	efx::TOdamaDeadHahenB* mDeadHahenBFX[4];    // _47C, death shards B
+	efx::TOdamaDeadHahenC1* mDeadHahenC1FX;     // _48C, death shards C1
+	efx::TOdamaDeadHahenC2* mDeadHahenC2FX;     // _490, death shards C2
+	efx::TOdamaFur1* mBodyHairFX;               // _494
+	efx::TOdamaFur2* mLegHairFX[4];             // _498
+	Sys::MatLoopAnimator* mMatLoopAnimator;     // _4A8
+	                                            // _4AC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -176,51 +176,51 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Sys::MatTevRegAnimation* m_tevRegAnimation; // _44
-	Obj* m_obj;                                 // _48
+	Sys::MatTevRegAnimation* mTevRegAnimation; // _44
+	Obj* mObj;                                 // _48
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_baseCoefficient(this, 'fp01', "ÉxÅ[ÉXåWêî", 3.0f, 0.0f, 10.0f)        // 'base factor'
-		    , m_raiseSlowdownFactor(this, 'fp02', "è„Ç∞å∏ë¨åWêî", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor'
-		    , m_downwardAccelFactor(this, 'fp03', "â∫Ç∞â¡ë¨åWêî", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor'
-		    , m_minDecelFactor(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -2.5f, -10.0f,
-		                       10.0f) // 'minimum deceleration acceleration factor'
-		    , m_maxDecelFactor(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f,
-		                       10.0f)                                              // 'maximum deceleration acceleration factor'
-		    , m_legSwing(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 120.0f, 0.0f, 200.0f)       // 'leg swing'
-		    , m_baseCoefficients(this, 'fp11', "ÉxÅ[ÉXåWêî(s)", 3.0f, 0.0f, 10.0f) // 'base factor(s)'
-		    , m_fp12(this, 'fp12', "è„Ç∞å∏ë¨åWêî(s)", -0.2f, -5.0f, 5.0f)          // 'raising deceleration factor(s)'
-		    , m_fp13(this, 'fp13', "â∫Ç∞â¡ë¨åWêî(s)", 0.5f, -5.0f, 5.0f)           // 'downward acceleration factor(s)'
-		    , m_fp14(this, 'fp14', "ç≈í·å∏â¡ë¨åWêî(s)", -2.0f, -10.0f,
-		             10.0f) // 'minimum deceleration acceleration factor(s)'
-		    , m_fp15(this, 'fp15', "ç≈çÇå∏â¡ë¨åWêî(s)", 10.0f, -10.0f,
-		             10.0f)                                                             // 'maximum deceleration acceleration factor(s)'
-		    , m_fp16(this, 'fp16', "ë´ÇÃêUÇËè„Ç∞(s)", 120.0f, 0.0f, 200.0f)             // 'leg swing(s)'
-		    , m_movementOffset(this, 'fp17', "à⁄ìÆÉIÉtÉZÉbÉg(s)", 50.0f, 0.0f, 200.0f)  // 'movement offset(s)'
-		    , m_normalTravelTime(this, 'fp20', "í èÌà⁄ìÆéûä‘", 10.0f, 0.0f, 100.0f)     // 'normal travel time'
-		    , m_postShakeTravelTime(this, 'fp21', "êUï•å„à⁄ìÆéûä‘", 3.0f, 0.0f, 100.0f) // 'post-shakeoff travel time'
+		    , mBaseCoefficient(this, 'fp01', "ÉxÅ[ÉXåWêî", 3.0f, 0.0f, 10.0f)        // 'base factor'
+		    , mRaiseSlowdownFactor(this, 'fp02', "è„Ç∞å∏ë¨åWêî", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor'
+		    , mDownwardAccelFactor(this, 'fp03', "â∫Ç∞â¡ë¨åWêî", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor'
+		    , mMinDecelFactor(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -2.5f, -10.0f,
+		                      10.0f) // 'minimum deceleration acceleration factor'
+		    , mMaxDecelFactor(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f,
+		                      10.0f)                                              // 'maximum deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 120.0f, 0.0f, 200.0f)       // 'leg swing'
+		    , mBaseCoefficients(this, 'fp11', "ÉxÅ[ÉXåWêî(s)", 3.0f, 0.0f, 10.0f) // 'base factor(s)'
+		    , mFp12(this, 'fp12', "è„Ç∞å∏ë¨åWêî(s)", -0.2f, -5.0f, 5.0f)          // 'raising deceleration factor(s)'
+		    , mFp13(this, 'fp13', "â∫Ç∞â¡ë¨åWêî(s)", 0.5f, -5.0f, 5.0f)           // 'downward acceleration factor(s)'
+		    , mFp14(this, 'fp14', "ç≈í·å∏â¡ë¨åWêî(s)", -2.0f, -10.0f,
+		            10.0f) // 'minimum deceleration acceleration factor(s)'
+		    , mFp15(this, 'fp15', "ç≈çÇå∏â¡ë¨åWêî(s)", 10.0f, -10.0f,
+		            10.0f)                                                             // 'maximum deceleration acceleration factor(s)'
+		    , mFp16(this, 'fp16', "ë´ÇÃêUÇËè„Ç∞(s)", 120.0f, 0.0f, 200.0f)             // 'leg swing(s)'
+		    , mMovementOffset(this, 'fp17', "à⁄ìÆÉIÉtÉZÉbÉg(s)", 50.0f, 0.0f, 200.0f)  // 'movement offset(s)'
+		    , mNormalTravelTime(this, 'fp20', "í èÌà⁄ìÆéûä‘", 10.0f, 0.0f, 100.0f)     // 'normal travel time'
+		    , mPostShakeTravelTime(this, 'fp21', "êUï•å„à⁄ìÆéûä‘", 3.0f, 0.0f, 100.0f) // 'post-shakeoff travel time'
 		{
 		}
 
-		Parm<f32> m_baseCoefficient;     // _804, fp01
-		Parm<f32> m_raiseSlowdownFactor; // _82C, fp02
-		Parm<f32> m_downwardAccelFactor; // _854, fp03
-		Parm<f32> m_minDecelFactor;      // _87C, fp04
-		Parm<f32> m_maxDecelFactor;      // _8A4, fp05
-		Parm<f32> m_legSwing;            // _8CC, fp06
-		Parm<f32> m_baseCoefficients;    // _8F4, fp11
-		Parm<f32> m_fp12;                // _91C
-		Parm<f32> m_fp13;                // _944
-		Parm<f32> m_fp14;                // _96C
-		Parm<f32> m_fp15;                // _994
-		Parm<f32> m_fp16;                // _9BC
-		Parm<f32> m_movementOffset;      // _9E4, fp17
-		Parm<f32> m_normalTravelTime;    // _A0C, fp20
-		Parm<f32> m_postShakeTravelTime; // _A34, fp21
+		Parm<f32> mBaseCoefficient;     // _804, fp01
+		Parm<f32> mRaiseSlowdownFactor; // _82C, fp02
+		Parm<f32> mDownwardAccelFactor; // _854, fp03
+		Parm<f32> mMinDecelFactor;      // _87C, fp04
+		Parm<f32> mMaxDecelFactor;      // _8A4, fp05
+		Parm<f32> mLegSwing;            // _8CC, fp06
+		Parm<f32> mBaseCoefficients;    // _8F4, fp11
+		Parm<f32> mFp12;                // _91C
+		Parm<f32> mFp13;                // _944
+		Parm<f32> mFp14;                // _96C
+		Parm<f32> mFp15;                // _994
+		Parm<f32> mFp16;                // _9BC
+		Parm<f32> mMovementOffset;      // _9E4, fp17
+		Parm<f32> mNormalTravelTime;    // _A0C, fp20
+		Parm<f32> mPostShakeTravelTime; // _A34, fp21
 	};
 
 	Parms() { }
@@ -228,23 +228,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() {};                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() {};                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 struct BigFootShadowMgr {
@@ -254,22 +254,22 @@ struct BigFootShadowMgr {
 	void setJointPosPtr(int, int, Vector3f*);
 	void update();
 
-	Matrixf* m_matrix;                        // _00
-	Obj* m_obj;                               // _04
-	Vector3f* m_jointPosPtrs[4][4];           // _08
-	JointShadowRootNode* m_rootNode;          // _48
-	SphereShadowNode* m_bodySphereShadow;     // _4C
-	TubeShadowTransNode* m_legTubeShadow1[4]; // _50, rhand=0, lhand=1, rfoot=2, lfoot=3
-	TubeShadowSetNode* m_legTubeShadow2[4];   // _60, rhand=0, lhand=1, rfoot=2, lfoot=3
-	TubeShadowSetNode* m_legTubeShadow3[4];   // _70, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_legSphereShadow1[4];  // _80, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_legSphereShadow2[4];  // _90, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_legSphereShadow3[4];  // _A0, rhand=0, lhand=1, rfoot=2, lfoot=3
+	Matrixf* mMatrix;                        // _00
+	Obj* mObj;                               // _04
+	Vector3f* mJointPosPtrs[4][4];           // _08
+	JointShadowRootNode* mRootNode;          // _48
+	SphereShadowNode* mBodySphereShadow;     // _4C
+	TubeShadowTransNode* mLegTubeShadow1[4]; // _50, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* mLegTubeShadow2[4];   // _60, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* mLegTubeShadow3[4];   // _70, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mLegSphereShadow1[4];  // _80, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mLegSphereShadow2[4];  // _90, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mLegSphereShadow3[4];  // _A0, rhand=0, lhand=1, rfoot=2, lfoot=3
 };
 
 struct BigFootGroundCallBack : public JointGroundCallBack {
 	inline BigFootGroundCallBack(Obj* obj)
-	    : m_obj(obj)
+	    : mObj(obj)
 	{
 	}
 
@@ -277,7 +277,7 @@ struct BigFootGroundCallBack : public JointGroundCallBack {
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 
 	// _00	= VTBL
-	Obj* m_obj; // _04
+	Obj* mObj; // _04
 };
 
 /////////////////////////////////////////////////////////////////
@@ -293,7 +293,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

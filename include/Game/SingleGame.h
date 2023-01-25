@@ -135,7 +135,7 @@ struct CaveResultState : public State {
 	u8 _78[4];                      // _78
 	Delegate<CaveResultState>* _7C; // _7C
 	DvdThreadCommand _80;           // _80
-	SingleGameSection* m_section;   // _EC
+	SingleGameSection* mSection;    // _EC
 	JKRHeap* _F0;                   // _F0
 	JKRHeap* _F4;                   // _F4
 	u8 _F8;                         // _F8
@@ -169,11 +169,11 @@ struct CaveState : public State {
 	// Unused/inlined:
 	void gameStart(SingleGameSection*);
 
-	bool m_losePellets; // _10
-	bool m_fadeout;     // _11
+	bool mLosePellets; // _10
+	bool mFadeout;     // _11
 	u32 : 0;
-	u8 _14[4];       // _14
-	bool m_drawSave; // _18
+	u8 _14[4];      // _14
+	bool mDrawSave; // _18
 };
 
 /**
@@ -250,10 +250,10 @@ struct FileState : public State {
 	JKRHeap* _20;             // _20
 	u8 _24;                   // _24
 	u32 : 0;
-	u8 _28[4];                           // _28
-	struct ebi::FileSelect::TMgr* m_mgr; // _2C
-	u8 _30[4];                           // _30
-	Controller* _34;                     // _34
+	u8 _28[4];                          // _28
+	struct ebi::FileSelect::TMgr* mMgr; // _2C
+	u8 _30[4];                          // _30
+	Controller* _34;                    // _34
 };
 
 struct GameArg : public StateArg {
@@ -317,16 +317,16 @@ struct LoadArg : public StateArg {
 
 	inline LoadArg(u16 a, bool b, bool c, bool d)
 	    : _04(a)
-	    , m_inCave(b)
+	    , mInCave(b)
 	    , _01(c)
 	    , _02(d)
 	{
 	}
 
-	bool m_inCave; // _00
-	bool _01;      // _01
-	bool _02;      // _02
-	u16 _04;       // _04
+	bool mInCave; // _00
+	bool _01;     // _01
+	bool _02;     // _02
+	u16 _04;      // _04
 };
 
 struct LoadStateArg : public StateArg {
@@ -405,7 +405,7 @@ struct MainResultState : public State {
 };
 
 struct MovieArg : public StateArg {
-	THPPlayer::EMovieIndex m_movieIndex; // _00
+	THPPlayer::EMovieIndex mMovieIndex; // _00
 };
 
 /**
@@ -447,19 +447,19 @@ struct SelectState : public State {
 	void dvdload();
 	void initNext(SingleGameSection*);
 
-	kh::Screen::WorldMap* m_worldMap;         // _10
-	Delegate<SelectState>* m_dvdLoadCallback; // _14
-	JKRExpHeap* m_wMapHeap;                   // _18
-	JKRHeap* m_parentHeap;                    // _1C
-	Controller* m_controller;                 // _20
-	StateID m_state;                          // _24
-	int m_previousCourseID;                   // _28
-	bool m_newLevelOpen;                      // _2C
+	kh::Screen::WorldMap* mWorldMap;         // _10
+	Delegate<SelectState>* mDvdLoadCallback; // _14
+	JKRExpHeap* mWMapHeap;                   // _18
+	JKRHeap* mParentHeap;                    // _1C
+	Controller* mController;                 // _20
+	StateID mState;                          // _24
+	int mPreviousCourseID;                   // _28
+	bool mNewLevelOpen;                      // _2C
 };
 
 struct ZukanStateArg : public StateArg {
-	u8 m_zukanType;
-	int m_courseID;
+	u8 mZukanType;
+	int mCourseID;
 };
 
 /**
@@ -475,8 +475,8 @@ struct ZukanState : public State {
 	 * @fabricated
 	 */
 	struct Arg {
-		u8 _00;            // _00
-		int m_courseIndex; // _04
+		u8 _00;           // _00
+		int mCourseIndex; // _04
 	};
 
 	ZukanState();
@@ -526,7 +526,7 @@ struct ZukanState : public State {
 	BaseGameSection* _94;              // _94
 	IllustratedBook::Camera* _98;      // _98
 	CMode _9C;                         // _9C
-	int m_tekiInfoIndex;               // _A0
+	int mTekiInfoIndex;                // _A0
 	Creature* _A4;                     // _A4
 	int _A8;                           // _A8
 	Creature* _AC;                     // _AC

@@ -171,8 +171,8 @@ const TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ TAdaptor_actor::saoVVOutput_ANI
  */
 TAdaptor_actor::TAdaptor_actor(const JStage::TSystem* system, JStage::TActor* actor)
     : JStudio::TAdaptor_actor()
-    , m_system(system)
-    , m_object(actor)
+    , mSystem(system)
+    , mObject(actor)
     , _12C(0)
     , _130(0)
     , _134(0)
@@ -199,11 +199,11 @@ TAdaptor_actor::~TAdaptor_actor() { adaptor_do_end(nullptr); }
  */
 void TAdaptor_actor::adaptor_do_prepare(const JStudio::TObject*)
 {
-	for (const TVVOutputObject* output = saoVVOutput_; output->m_valueIndex != -1; output++) {
-		_04[output->m_valueIndex].setOutput(output);
+	for (const TVVOutputObject* output = saoVVOutput_; output->mValueIndex != -1; output++) {
+		_04[output->mValueIndex].setOutput(output);
 	}
-	for (const TVVOutput_ANIMATION_FRAME_* output = saoVVOutput_ANIMATION_FRAME_; output->m_valueIndex != -1; output++) {
-		_04[output->m_valueIndex].setOutput(output);
+	for (const TVVOutput_ANIMATION_FRAME_* output = saoVVOutput_ANIMATION_FRAME_; output->mValueIndex != -1; output++) {
+		_04[output->mValueIndex].setOutput(output);
 	}
 	/*
 	lis      r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
@@ -267,13 +267,13 @@ lbl_80012354:
  */
 void TAdaptor_actor::adaptor_do_begin(const JStudio::TObject* object)
 {
-	m_object->setFlagOn(1);
+	mObject->setFlagOn(1);
 	getJSG_SRT_((const JStudio::TControl*)object->pControl);
-	for (const TVVOutputObject* output = saoVVOutput_; output->m_valueIndex != -1; output++) {
-		_04[output->m_valueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (m_object->*(output->m_getter))());
+	for (const TVVOutputObject* output = saoVVOutput_; output->mValueIndex != -1; output++) {
+		_04[output->mValueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (mObject->*(output->mGetter))());
 	}
-	for (const TVVOutput_ANIMATION_FRAME_* output = saoVVOutput_ANIMATION_FRAME_; output->m_valueIndex != -1; output++) {
-		_04[output->m_valueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (m_object->*(output->m_getter))());
+	for (const TVVOutput_ANIMATION_FRAME_* output = saoVVOutput_ANIMATION_FRAME_; output->mValueIndex != -1; output++) {
+		_04[output->mValueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (mObject->*(output->mGetter))());
 	}
 }
 
@@ -282,7 +282,7 @@ void TAdaptor_actor::adaptor_do_begin(const JStudio::TObject* object)
  * Address:	80012494
  * Size:	000054
  */
-void TAdaptor_actor::adaptor_do_end(const JStudio::TObject*) { m_object->setFlagOff(1); }
+void TAdaptor_actor::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagOff(1); }
 
 /*
  * --INFO--
@@ -292,7 +292,7 @@ void TAdaptor_actor::adaptor_do_end(const JStudio::TObject*) { m_object->setFlag
 void TAdaptor_actor::adaptor_do_update(const JStudio::TObject* object, unsigned long p2)
 {
 	setJSG_SRT_(static_cast<JStudio::TControl*>(object->pControl));
-	m_object->JSGUpdate();
+	mObject->JSGUpdate();
 }
 
 /*
@@ -302,7 +302,7 @@ void TAdaptor_actor::adaptor_do_update(const JStudio::TObject* object, unsigned 
  */
 void TAdaptor_actor::adaptor_do_data(const JStudio::TObject* object, const void* p2, unsigned long p3, const void* p4, unsigned long p5)
 {
-	TAdaptor_object_::adaptor_data_(m_object, p2, p3, p4, p5);
+	TAdaptor_object_::adaptor_data_(mObject, p2, p3, p4, p5);
 }
 
 /*
@@ -370,7 +370,7 @@ void TAdaptor_actor::adaptor_do_PARENT(JStudio::data::TEOperationData operation,
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
-		_138 = TAdaptor_object_::adaptor_findJSGObject_(m_system, (const char*)p2);
+		_138 = TAdaptor_object_::adaptor_findJSGObject_(mSystem, (const char*)p2);
 		break;
 	}
 }
@@ -414,7 +414,7 @@ void TAdaptor_actor::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData ope
 					object = _138;
 					v1     = _13C;
 				}
-				m_object->JSGSetParent(object, v1);
+				mObject->JSGSetParent(object, v1);
 				break;
 			}
 		}
@@ -444,7 +444,7 @@ void TAdaptor_actor::adaptor_do_RELATION(JStudio::data::TEOperationData operatio
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
-		_144 = TAdaptor_object_::adaptor_findJSGObject_(m_system, (const char*)p2);
+		_144 = TAdaptor_object_::adaptor_findJSGObject_(mSystem, (const char*)p2);
 		break;
 	}
 }
@@ -475,7 +475,7 @@ void TAdaptor_actor::adaptor_do_RELATION_ENABLE(JStudio::data::TEOperationData o
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_02:
-		m_object->JSGSetRelation(*(u32*)p2, _144, _148);
+		mObject->JSGSetRelation(*(u32*)p2, _144, _148);
 		break;
 	}
 }
@@ -490,7 +490,7 @@ void TAdaptor_actor::setJSG_ID_(IDFunction function, JStudio::data::TEOperationD
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_19:
-		(m_object->*function)(*(u32*)p3);
+		(mObject->*function)(*(u32*)p3);
 		break;
 	}
 }
@@ -502,12 +502,12 @@ void TAdaptor_actor::setJSG_ID_(IDFunction function, JStudio::data::TEOperationD
  */
 void TAdaptor_actor::setJSG_SRT_(const JStudio::TControl* control)
 {
-	JStudio::TControl::TTransform_translation_rotation_scaling transform;
-	JStudio::TControl::TTransform_translation_rotation_scaling multipliedTransform;
+	JStudio::TControl::TTransformTranslation_rotation_scaling transform;
+	JStudio::TControl::TTransformTranslation_rotation_scaling multipliedTransform;
 	adaptor_getVariableValue_Vec(&transform.getTranslation(), sauVariableValue_3_TRANSLATION_XYZ);
 	adaptor_getVariableValue_Vec(&transform.getRotation(), sauVariableValue_3_ROTATION_XYZ);
 	adaptor_getVariableValue_Vec(&transform.getScaling(), sauVariableValue_3_SCALING_XYZ);
-	JStudio::TControl::TTransform_translation_rotation_scaling* pTransform;
+	JStudio::TControl::TTransformTranslation_rotation_scaling* pTransform;
 	if (_140 == 0) {
 		if (control->_74 == 0) {
 			pTransform = &transform;
@@ -523,7 +523,7 @@ void TAdaptor_actor::setJSG_SRT_(const JStudio::TControl* control)
 		switch (_134) {
 		case 0: {
 			Mtx mtx;
-			if (transform_toGlobalFromLocal(mtx, *pTransform, _138, _13C) == false) {
+			if (transformToGlobalFromLocal(mtx, *pTransform, _138, _13C) == false) {
 				return;
 			}
 			JStudio::math::getFromTransformation_SRxyzT(&multipliedTransform.getScaling(), &multipliedTransform.getRotation(),
@@ -535,9 +535,9 @@ void TAdaptor_actor::setJSG_SRT_(const JStudio::TControl* control)
 			break;
 		}
 	}
-	m_object->JSGSetTranslation(pTransform->getTranslation());
-	m_object->JSGSetRotation(pTransform->getRotation());
-	m_object->JSGSetScaling(pTransform->getScaling());
+	mObject->JSGSetTranslation(pTransform->getTranslation());
+	mObject->JSGSetRotation(pTransform->getRotation());
+	mObject->JSGSetScaling(pTransform->getScaling());
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -597,7 +597,7 @@ lbl_800129C4:
 	lwz      r6, 0x13c(r30)
 	addi     r3, r1, 8
 	bl
-transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
+transformToGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransformTranslation_rotation_scalingPCQ26JStage7TObjectUl
 	clrlwi.  r0, r3, 0x18
 	bne      lbl_800129E8
 	li       r0, 0
@@ -723,7 +723,7 @@ lbl_80012B4C:
 	lwz      r6, 0x13c(r30)
 	addi     r3, r1, 8
 	bl
-transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
+transformToLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransformTranslation_rotation_scalingPCQ26JStage7TObjectUl
 	clrlwi.  r0, r3, 0x18
 	bne      lbl_80012B70
 	li       r0, 0

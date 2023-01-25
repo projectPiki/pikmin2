@@ -5,8 +5,8 @@
 #include "Dolphin/os.h"
 
 struct DVDQueue {
-	struct DVDQueue* m_head; // _00
-	struct DVDQueue* m_tail; // _04
+	struct DVDQueue* mHead; // _00
+	struct DVDQueue* mTail; // _04
 };
 
 #ifdef __cplusplus
@@ -19,17 +19,17 @@ struct DVDPlayer {
 	struct DVDPlayer* _04; // _04
 	int _08;               // _08
 	int _0C;               // _0C
-	u8* m_startAddress;    // _10
-	long m_byteCount;      // _14
-	void* m_inputBuffer;   // _18
+	u8* mStartAddress;     // _10
+	long mByteCount;       // _14
+	void* mInputBuffer;    // _18
 	u8 _1C[4];             // _1C
 	u32 _20;               // _20
 	u8 _24[4];             // _24
 	void* _28;             // _28
 	u8 _2C[4];             // _2C
 	u32 _30;               // _30
-	u32 m_fileSize;        // _34
-	void* m_func;          // _38
+	u32 mFileSize;         // _34
+	void* mFunc;           // _38
 };
 #pragma cplusplus reset
 

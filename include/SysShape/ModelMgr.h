@@ -17,13 +17,13 @@ struct ModelMgr {
 	int calcModelSize(J3DModelData*);
 	Model* createModel(int, int);
 
-	int m_modelDataLimit;           // _00
-	J3DModelData** m_modelData;     // _04
-	int m_heapLimit;                // _08
-	JKRSolidHeap** m_heaps;         // _0C
-	u32 _10;                        // _10
-	u32 _14;                        // _14
-	IDelegate1<Model*>* m_delegate; // _18
+	int mModelDataLimit;           // _00
+	J3DModelData** mModelData;     // _04
+	int mHeapLimit;                // _08
+	JKRSolidHeap** mHeaps;         // _0C
+	u32 _10;                       // _10
+	u32 _14;                       // _14
+	IDelegate1<Model*>* mDelegate; // _18
 };
 } // namespace SysShape
 

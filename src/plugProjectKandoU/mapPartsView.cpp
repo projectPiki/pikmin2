@@ -15,19 +15,19 @@ namespace Game {
  */
 PartsView::PartsView()
 {
-	m_mapUnit = nullptr;
-	m_model   = nullptr;
-	_60       = 8;
-	_5C       = 8;
-	_58       = 0;
-	_50       = 0.0f;
-	_54       = 0.0f;
+	mMapUnit = nullptr;
+	mModel   = nullptr;
+	_60      = 8;
+	_5C      = 8;
+	_58      = 0;
+	_50      = 0.0f;
+	_54      = 0.0f;
 
-	m_aStarContext.init(&m_routeMgr, 0x80);
-	m_pathFinder.setContext(&m_aStarContext);
-	m_unitKind = 1;
+	mAStarContext.init(&mRouteMgr, 0x80);
+	mPathFinder.setContext(&mAStarContext);
+	mUnitKind = 1;
 	_6E.clear();
-	m_baseGen = new Cave::BaseGen();
+	mBaseGen = new Cave::BaseGen();
 }
 
 /*
@@ -44,10 +44,10 @@ void PartsView::doDirectDraw(Graphics&) { }
  */
 void PartsView::doAnimation()
 {
-	if (m_model) {
-		PSMTXCopy(_20, m_model->m_j3dModel->m_posMtx);
-		m_model->m_j3dModel->calc();
-		m_model->m_j3dModel->entry();
+	if (mModel) {
+		PSMTXCopy(_20, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->calc();
+		mModel->mJ3dModel->entry();
 	}
 }
 
@@ -65,8 +65,8 @@ void PartsView::doEntry() { }
  */
 void PartsView::doSetView(int index)
 {
-	if (m_model) {
-		m_model->setCurrentViewNo(index);
+	if (mModel) {
+		mModel->setCurrentViewNo(index);
 	}
 }
 
@@ -77,8 +77,8 @@ void PartsView::doSetView(int index)
  */
 void PartsView::doViewCalc()
 {
-	if (m_model) {
-		m_model->viewCalc();
+	if (mModel) {
+		mModel->viewCalc();
 	}
 }
 
@@ -89,13 +89,13 @@ void PartsView::doViewCalc()
  */
 void PartsView::read(Stream& input)
 {
-	m_mapUnit           = new MapUnit();
+	mMapUnit            = new MapUnit();
 	u32 shouldReadFlags = input.readInt();
 	char* name          = input.readString(nullptr, 0);
-	m_name              = name;
-	m_mapUnit->m_name   = name;
-	m_mapUnit->load(input);
-	m_unitKind = input.readShort();
+	mName               = name;
+	mMapUnit->mName     = name;
+	mMapUnit->load(input);
+	mUnitKind = input.readShort();
 
 	if (shouldReadFlags >= 1) {
 		BitFlag<u16>* flags = &_6E;
@@ -104,11 +104,11 @@ void PartsView::read(Stream& input)
 		_6E.clear();
 	}
 
-	m_doorCount = input.readInt();
-	for (int i = 0; i < m_doorCount; i++) {
+	mDoorCount = input.readInt();
+	for (int i = 0; i < mDoorCount; i++) {
 		Door* door = new Door();
 		door->read(input);
-		m_door.add(door);
+		mDoor.add(door);
 	}
 }
 

@@ -115,12 +115,12 @@ struct BarrelParms : public CreatureParms {
 
 	virtual void read(Stream& input) // _00
 	{
-		m_barrelParms.read(input);
+		mBarrelParms.read(input);
 	}
 
 	// _00-_D8 = CreatureParms
 	// _D8		 = VTBL
-	Parms m_barrelParms; // _DC
+	Parms mBarrelParms; // _DC
 };
 
 /**
@@ -130,7 +130,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	inline Item()
 	    : WorkItem(0x410)
 	{
-		m_mass = 0.0f;
+		mMass = 0.0f;
 	}
 
 	// vtable 1
@@ -175,7 +175,7 @@ struct Mgr : public TNodeItemMgr {
 	virtual ~Mgr() { }                               // _B8 (weak, thunked at _00)
 	virtual BaseItem* birth();                       // _BC (Yes, TNodeItemMgr::birth() isn't virtual, but this is. Deal with it.)
 
-	BarrelParms* m_parms; // _88
+	BarrelParms* mParms; // _88
 };
 
 extern Mgr* mgr;

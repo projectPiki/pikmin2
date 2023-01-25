@@ -24,8 +24,8 @@ LoadState::LoadState()
     , _24(0)
     , _28(0)
 {
-	m_controller = new Controller(JUTGamePad::PORT_0);
-	m_delegate   = new Delegate<Game::VsGame::LoadState>(this, &dvdLoad);
+	mController = new Controller(JUTGamePad::PORT_0);
+	mDelegate   = new Delegate<Game::VsGame::LoadState>(this, &dvdLoad);
 }
 
 /*
@@ -39,8 +39,8 @@ void LoadState::init(Game::VsGameSection* section, StateArg* args)
 		Radar::mgr->clear();
 	}
 
-	Screen::gGame2DMgr->m_screenMgr->reset();
-	m_section = section;
+	Screen::gGame2DMgr->mScreenMgr->reset();
+	mSection = section;
 	Game::GameStat::clear();
 
 	LoadArg* loadArg = static_cast<LoadArg*>(args);
@@ -54,7 +54,7 @@ void LoadState::init(Game::VsGameSection* section, StateArg* args)
 	_A0 = 15.0f;
 
 	for (int i = 0; i < 7; i++) {
-		section->m_marbleYellow[i] = nullptr;
+		section->mMarbleYellow[i] = nullptr;
 	}
 }
 
@@ -63,7 +63,7 @@ void LoadState::init(Game::VsGameSection* section, StateArg* args)
  * Address:	8022D2A8
  * Size:	000024
  */
-void LoadState::dvdLoad() { m_section->setupFloatMemory(); }
+void LoadState::dvdLoad() { mSection->setupFloatMemory(); }
 
 /*
  * --INFO--
@@ -79,17 +79,17 @@ void LoadState::exec(VsGameSection* section)
 			sys->heapStatusDump(true);
 		}
 		og::Screen::DispMemberFloor floor;
-		floor.m_sublevel = section->getCurrFloor() + 1;
+		floor.mSublevel = section->getCurrFloor() + 1;
 		ID32 id;
 		if (gameSystem->isChallengeMode()) {
-			sprintf(id.getStr(), "c_%02d", section->m_challengeStageData->m_stageIndex);
+			sprintf(id.getStr(), "c_%02d", section->mChallengeStageData->mStageIndex);
 		} else {
-			sprintf(id.getStr(), "vs%02d", section->m_VsStageData->m_index2D);
+			sprintf(id.getStr(), "vs%02d", section->mVsStageData->mIndex2D);
 		}
 		id.updateID();
-		floor.m_caveID = id.getID();
+		floor.mCaveID = id.getID();
 		Screen::gGame2DMgr->open_Floor(floor);
-		sys->dvdLoadUseCallBack(&m_dvdThreadCommand, m_delegate);
+		sys->dvdLoadUseCallBack(&mDvdThreadCommand, mDelegate);
 		_1C = true;
 		_9C = false;
 	} else {
@@ -99,16 +99,16 @@ void LoadState::exec(VsGameSection* section)
 		}
 		Screen::gGame2DMgr->update();
 		if (gameSystem->isVersusMode() && (_A0 > 0.0f)) {
-			if (m_dvdThreadCommand.m_mode == 2) { // probably an enum
+			if (mDvdThreadCommand.mMode == 2) { // probably an enum
 				Screen::gGame2DMgr->set_FloorVS_LoadEnd();
-				if (m_controller->isButtonDown(JUTGamePad::PRESS_A | JUTGamePad::PRESS_START)) {
+				if (mController->isButtonDown(JUTGamePad::PRESS_A | JUTGamePad::PRESS_START)) {
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_FLOOR_COMPLETE, nullptr);
 					_A0 = 0.0f;
 				}
 			}
-			_A0 -= sys->m_deltaTime;
+			_A0 -= sys->mDeltaTime;
 		}
-		if (!_9C && m_dvdThreadCommand.m_mode == 2) {
+		if (!_9C && mDvdThreadCommand.mMode == 2) {
 			if (gameSystem->isChallengeMode() || (gameSystem->isVersusMode() && _A0 <= 0.0f)) {
 				section->postSetupFloatMemory();
 				_9C = true;
@@ -129,10 +129,10 @@ void LoadState::exec(VsGameSection* section)
  */
 void LoadState::draw(VsGameSection* section, Graphics& graphic)
 {
-	graphic.m_perspGraph.setPort();
+	graphic.mPerspGraph.setPort();
 	particle2dMgr->draw(1, 0); // I bet these are booleans
 	Screen::gGame2DMgr->draw(graphic);
-	graphic.m_perspGraph.setPort();
+	graphic.mPerspGraph.setPort();
 	particle2dMgr->draw(0, 0);
 }
 

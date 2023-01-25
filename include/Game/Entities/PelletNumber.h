@@ -26,7 +26,7 @@ struct Object : public Pellet {
 
 	// _00      = VTBL
 	// _00-_458 = Pellet
-	efx::TPelkira_ver01* m_pelkira; // _458
+	efx::TPelkira_ver01* mPelkira; // _458
 };
 
 struct Mgr : public FixedSizePelletMgr<Object> {

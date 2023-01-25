@@ -11,8 +11,8 @@ TRKResult TRKDispatchMessage(TRKBuffer* param_1)
 
 	uVar1 = 0x500;
 	TRKSetBufferPosition(param_1, 0);
-	MWTRACE(1, "Dispatch command 0x%08x\n", param_1->m_buffer[0]);
-	switch (param_1->m_buffer[0]) {
+	MWTRACE(1, "Dispatch command 0x%08x\n", param_1->mBuffer[0]);
+	switch (param_1->mBuffer[0]) {
 	case 1:
 		uVar1 = TRKDoConnect(param_1);
 		break;

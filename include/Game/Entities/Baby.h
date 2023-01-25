@@ -63,11 +63,11 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                    // _2BC
-	MouthSlots m_mouthSlots;       // _2C0
-	Vector3f m_targetPos;          // _2C8
-	efx::TBabyBorn* m_efxBabyBorn; // _2D4
-	                               // _2D8 = PelletView
+	FSM* mFsm;                    // _2BC
+	MouthSlots mMouthSlots;       // _2C0
+	Vector3f mTargetPos;          // _2C8
+	efx::TBabyBorn* mEfxBabyBorn; // _2D4
+	                              // _2D8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -84,20 +84,20 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, likely an array of Objs
+	Obj* mObj; // _44, likely an array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_poisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , m_nectarChance(this, 'fp11', "蜜出し確率", 0.2f, 0.0f, 1.0f)       // 'probability of getting out honey'
+		    , mPoisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mNectarChance(this, 'fp11', "蜜出し確率", 0.2f, 0.0f, 1.0f)       // 'probability of getting out honey'
 		{
 		}
 
-		Parm<f32> m_poisonDamage; // _804, fp01
-		Parm<f32> m_nectarChance; // _82C, fp11
+		Parm<f32> mPoisonDamage; // _804, fp01
+		Parm<f32> mNectarChance; // _82C, fp11
 	};
 
 	Parms() { }
@@ -105,24 +105,24 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
 	virtual SysShape::Animator& getAnimator(int idx);
 	; // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -147,7 +147,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

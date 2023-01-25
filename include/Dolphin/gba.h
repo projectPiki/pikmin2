@@ -33,7 +33,7 @@ typedef struct GBA {
 	unknown _10;
 	u8* _14;
 	u8* _18;
-	GBASyncCallback m_syncCallback; // _1C
+	GBASyncCallback mSyncCallback; // _1C
 	int _20;
 	OSThreadQueue _24;
 	u8 _2C[4];
@@ -41,7 +41,7 @@ typedef struct GBA {
 	u32 _34;
 	GBAProcHandler _38;
 	u8 _3C[0xBC];
-	SecParam* m_secParam; // _F8
+	SecParam* mSecParam; // _F8
 	u8 _FC[4];
 } GBA;
 

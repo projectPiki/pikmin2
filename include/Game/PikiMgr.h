@@ -65,26 +65,26 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 
 	static int mBirthMode;
 
-	s32 m_dopedPikis;               // _30
-	s32* m_storedPikis;             // _34
-	u8 m_flags[4];                  // _38
-	J3DModelData* m_bluPikiModel;   // _3C, blue
-	J3DModelData* m_redPikiModel;   // _40, red
-	J3DModelData* m_yelPikiModel;   // _44, yellow
-	J3DModelData* m_prpPikiModel;   // _48, purple
-	J3DModelData* m_wtePikiModel;   // _4C, white
-	J3DModelData* m_blbPikiModel;   // _50, bulbmin
-	J3DModelData* m_crtPikiModel;   // _54, carrot
-	J3DModelData* m_leafModel;      // _58
-	J3DModelData* m_budModel;       // _5C
-	J3DModelData* m_flowerModel;    // _60
-	J3DModelData* m_redBudModel;    // _64
-	J3DModelData* m_redFlowerModel; // _68
-	PikiParms* m_parms;             // _6C
-	SysShape::ModelMgr* m_modelMgr; // _70
-	UpdateMgr* m_updateMgr;         // _74
-	UpdateMgr* m_updateMgr2;        // _78, unsure of type
-	JKRArchive* m_modelArchive;     // _7C
+	s32 mDopedPikis;               // _30
+	s32* mStoredPikis;             // _34
+	u8 mFlags[4];                  // _38
+	J3DModelData* mBluPikiModel;   // _3C, blue
+	J3DModelData* mRedPikiModel;   // _40, red
+	J3DModelData* mYelPikiModel;   // _44, yellow
+	J3DModelData* mPrpPikiModel;   // _48, purple
+	J3DModelData* mWtePikiModel;   // _4C, white
+	J3DModelData* mBlbPikiModel;   // _50, bulbmin
+	J3DModelData* mCrtPikiModel;   // _54, carrot
+	J3DModelData* mLeafModel;      // _58
+	J3DModelData* mBudModel;       // _5C
+	J3DModelData* mFlowerModel;    // _60
+	J3DModelData* mRedBudModel;    // _64
+	J3DModelData* mRedFlowerModel; // _68
+	PikiParms* mParms;             // _6C
+	SysShape::ModelMgr* mModelMgr; // _70
+	UpdateMgr* mUpdateMgr;         // _74
+	UpdateMgr* mUpdateMgr2;        // _78, unsure of type
+	JKRArchive* mModelArchive;     // _7C
 };
 
 extern PikiMgr* pikiMgr;

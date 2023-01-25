@@ -10,9 +10,9 @@ struct T2DCvnameCave : public TForeverN {
 	inline T2DCvnameCave()
 	    : TForeverN(3)
 	{
-		m_forevers[0].m_efxID = PID_2DCvnameCave_1;
-		m_forevers[1].m_efxID = PID_2DCvnameCave_2;
-		m_forevers[2].m_efxID = PID_2DCvnameCave_3;
+		mForevers[0].mEfxID = PID_2DCvnameCave_1;
+		mForevers[1].mEfxID = PID_2DCvnameCave_2;
+		mForevers[2].mEfxID = PID_2DCvnameCave_3;
 	}
 	// _00     = VTBL
 	// _00-_0C = TForeverN
@@ -33,8 +33,8 @@ struct T2DCvnameVs : public TForeverN {
 	inline T2DCvnameVs()
 	    : TForeverN(2)
 	{
-		m_forevers[0].m_efxID = PID_2DCvnameVs_1;
-		m_forevers[1].m_efxID = PID_2DCvnameVs_2;
+		mForevers[0].mEfxID = PID_2DCvnameVs_1;
+		mForevers[1].mEfxID = PID_2DCvnameVs_2;
 	}
 	// _00     = VTBL
 	// _00-_0C = TForeverN

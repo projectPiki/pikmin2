@@ -346,7 +346,7 @@ void PlayData::prepareSave()
  */
 void PlayData::write(Stream& output)
 {
-	int startPosition = output.m_position;
+	int startPosition = output.mPosition;
 	output.textBeginGroup("* Version *");
 	ID32 IStack312(PlayData::mVersion);
 	IStack312.write(output);
@@ -368,60 +368,60 @@ void PlayData::write(Stream& output)
 	output.writeByte(_2F);
 	output.textEndGroup();
 	output.textBeginGroup("* セーブフラグ/オニョンフラグ *");
-	output.textWriteTab(output.m_tabCount);
+	output.textWriteTab(output.mTabCount);
 	output.writeByte(_19);
 	output.textWriteText("\r\n");
-	output.textWriteTab(output.m_tabCount);
-	output.writeByte(m_hasContainerFlags);
+	output.textWriteTab(output.mTabCount);
+	output.writeByte(mHasContainerFlags);
 	output.textWriteText("# has container flag\r\n");
-	output.textWriteTab(output.m_tabCount);
-	output.writeByte(m_hasBootContainerFlags);
+	output.textWriteTab(output.mTabCount);
+	output.writeByte(mHasBootContainerFlags);
 	output.textWriteText("# has boot container flag\r\n");
-	output.textWriteTab(output.m_tabCount);
-	output.writeByte(m_meetPikminFlags);
+	output.textWriteTab(output.mTabCount);
+	output.writeByte(mMeetPikminFlags);
 	output.textWriteText("# meet pikmin flag\r\n");
 	output.textEndGroup();
 	output.textBeginGroup("* 日にち *");
-	m_tekiStatMgr.write(output);
+	mTekiStatMgr.write(output);
 	output.textEndGroup();
 	output.textBeginGroup("* 日にち *");
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(gameSystem->m_timeMgr->m_dayCount);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(gameSystem->mTimeMgr->mDayCount);
 	output.textWriteText("\r\n");
 	output.textEndGroup();
 	output.textBeginGroup("* オリマ�?��?備�?/OlimarData *");
-	m_olimarData[0].write(output);
-	m_olimarData[1].write(output);
+	mOlimarData[0].write(output);
+	mOlimarData[1].write(output);
 	output.textEndGroup();
 	output.textBeginGroup("* 洞窟状�?/CaveSaveData *");
-	m_caveSaveData.write(output);
+	mCaveSaveData.write(output);
 	output.textEndGroup();
 	output.textBeginGroup("* メール/MailSaveData *");
-	m_mailSaveData.write(output);
+	mMailSaveData.write(output);
 	output.textEndGroup();
 	output.textBeginGroup("* コン�?�?/ContainerPikmin *");
-	m_pikiContainer.write(output);
+	mPikiContainer.write(output);
 	output.textEndGroup();
 	output.textBeginGroup("* ペレ�?�?/PelletMemory *");
 	_B0->write(output);
 	output.textEndGroup();
 	output.textBeginGroup("* ペレ�?�?/?��日にとったもの(Main) *");
-	m_mainCropMemory->write(output);
+	mMainCropMemory->write(output);
 	output.textEndGroup();
 	output.textBeginGroup("* ペレ�?�?/地下でとったもの(Cave) *");
-	m_caveCropMemory->write(output);
+	mCaveCropMemory->write(output);
 	output.textEndGroup();
 	output.textBeginGroup("* ド�?�ピング�?報/Doping *");
 	char acStack300[272];
 	for (u32 i = 0; i < 2; i++) {
-		output.textWriteTab(output.m_tabCount);
+		output.textWriteTab(output.mTabCount);
 		output.writeInt(_C0[i]);
 		sprintf(acStack300, "\t# dope[%d]\r\n", i);
 		output.textWriteText(acStack300);
 	}
 	for (u32 i = 0; i < 2; i++) {
-		output.textWriteTab(output.m_tabCount);
-		output.writeInt(m_berryCount[i]);
+		output.textWriteTab(output.mTabCount);
+		output.writeInt(mBerryCount[i]);
 		sprintf(acStack300, "\t# dope-実[%d]\r\n", i);
 		output.textWriteText(acStack300);
 		i++;
@@ -429,7 +429,7 @@ void PlayData::write(Stream& output)
 	// // int i = 0;
 	// i = 0;
 	// do {
-	// 	output.textWriteTab(output.m_tabCount);
+	// 	output.textWriteTab(output.mTabCount);
 	// 	output.writeInt(_C0[i]);
 	// 	sprintf(acStack300,"\t# dope[%d]\r\n", i);
 	// 	output.textWriteText(acStack300);
@@ -437,16 +437,16 @@ void PlayData::write(Stream& output)
 	// } while (i < 2);
 	// i = 0;
 	// do {
-	// 	output.textWriteTab(output.m_tabCount);
-	// 	output.writeInt(m_berryCount[i]);
+	// 	output.textWriteTab(output.mTabCount);
+	// 	output.writeInt(mBerryCount[i]);
 	// 	sprintf(acStack300,"\t# dope-実[%d]\r\n", i);
 	// 	output.textWriteText(acStack300);
 	// 	i++;
 	// } while (i < 2);
 	output.textEndGroup();
 	output.textBeginGroup("* コース�?報 *");
-	u32 courseCount = stageList->m_courseCount;
-	output.textWriteTab(output.m_tabCount);
+	u32 courseCount = stageList->mCourseCount;
+	output.textWriteTab(output.mTabCount);
 	output.writeInt((uint)courseCount);
 	output.textWriteText("\t# コース数\r\n");
 	int courseIndex = 0;
@@ -457,14 +457,14 @@ void PlayData::write(Stream& output)
 			write_CaveOtakara(output);
 			output.textEndGroup();
 			output.textBeginGroup("* LimitGen *");
-			for (u32 i = 0; i < stageList->m_courseCount; i += 1) {
-				m_limitGen[i].write(output);
+			for (u32 i = 0; i < stageList->mCourseCount; i += 1) {
+				mLimitGen[i].write(output);
 			}
 			output.textEndGroup();
 			output.textBeginGroup("* お��/洞窟で取得した一時的なお�� *");
-			output.textWriteTab(output.m_tabCount);
-			output.writeInt(m_pokoCount);
-			output.writeInt(m_cavePokoCount);
+			output.textWriteTab(output.mTabCount);
+			output.writeInt(mPokoCount);
+			output.writeInt(mCavePokoCount);
 			output.textWriteText("\r\n");
 			output.textEndGroup();
 			output.textBeginGroup("* 出生数 *");
@@ -474,40 +474,40 @@ void PlayData::write(Stream& output)
 			Game::DeathMgr::write(output);
 			output.textEndGroup();
 			output.textBeginGroup("* オリマ�?�死亡フラグ *");
-			output.textWriteTab(output.m_tabCount);
+			output.textWriteTab(output.mTabCount);
 			output.writeByte(_20);
 			output.textWriteText("\r\n");
-			output.textWriteTab(output.m_tabCount);
-			output.writeFloat(m_naviLifeMax[0]);
-			output.writeFloat(m_naviLifeMax[1]);
+			output.textWriteTab(output.mTabCount);
+			output.writeFloat(mNaviLifeMax[0]);
+			output.writeFloat(mNaviLifeMax[1]);
 			output.textWriteText("\r\n");
 			output.textEndGroup();
 			output.textBeginGroup("* �?モフラグ/特殊発見デモフラグ *");
-			output.textWriteTab(output.m_tabCount);
-			m_demoFlags.write(output);
-			m_findItemFlags.write(output);
+			output.textWriteTab(output.mTabCount);
+			mDemoFlags.write(output);
+			mFindItemFlags.write(output);
 			output.textWriteText("\r\n");
 			output.textEndGroup();
 			output.textBeginGroup("* WorldMap 演�?�用 *");
-			for (u32 i = 0; i < stageList->m_courseCount; i += 1) {
-				output.writeByte(m_groundOtakaraCollectedOld[i]);
+			for (u32 i = 0; i < stageList->mCourseCount; i += 1) {
+				output.writeByte(mGroundOtakaraCollectedOld[i]);
 			}
-			output.writeInt(m_pokoCountOld);
+			output.writeInt(mPokoCountOld);
 			write_CaveOtakara_Old(output);
 			output.textEndGroup();
-			int dataSize = (output.m_position - startPosition) + (generatorCache->m_heapSize - generatorCache->m_freeSize);
+			int dataSize = (output.mPosition - startPosition) + (generatorCache->mHeapSize - generatorCache->mFreeSize);
 			output.textBeginGroup("* DayEndResult用 *");
 			for (u32 i = 0; i < 6; i++) {
-				output.writeInt(m_pikminYesterday[i]);
-				output.writeInt(m_pikminToday[i]);
+				output.writeInt(mPikminYesterday[i]);
+				output.writeInt(mPikminToday[i]);
 				output.textWriteText("\r\n");
 				i++;
 			}
 			// int iVar8 = 0; // following loop uses iVar8
 			// i = 0;
 			// do {
-			// 	output.writeInt(m_pikminYesterday[i]);
-			// 	output.writeInt(m_pikminToday[i]);
+			// 	output.writeInt(mPikminYesterday[i]);
+			// 	output.writeInt(mPikminToday[i]);
 			// 	output.textWriteText("\r\n");
 			// 	i++;
 			// 	// iVar8 += 1;
@@ -524,13 +524,13 @@ void PlayData::write(Stream& output)
 			PlayData::sCurrPlayDataSize = dataSize;
 			return;
 		}
-		output.textWriteTab(output.m_tabCount);
-		output.writeByte(m_bitfieldPerCourse[courseIndex]);
-		output.writeByte(m_groundOtakaraCollected[courseIndex]);
+		output.textWriteTab(output.mTabCount);
+		output.writeByte(mBitfieldPerCourse[courseIndex]);
+		output.writeByte(mGroundOtakaraCollected[courseIndex]);
 		CourseInfo* courseInfo = stageList->getCourseInfo(courseIndex);
 		// if (courseInfo == nullptr) break;
 		P2ASSERTLINE(325, courseInfo == nullptr);
-		sprintf(acStack300, "\t# %s\r\n", courseInfo->m_name);
+		sprintf(acStack300, "\t# %s\r\n", courseInfo->mName);
 		output.textWriteText(acStack300);
 		courseIndex++;
 	}
@@ -1035,10 +1035,10 @@ lbl_8021D720:
  */
 void PlayData::read(Stream& input)
 {
-	int startPosition = input.m_position;
+	int startPosition = input.mPosition;
 	u64 osTime        = OSGetTime();
-	m_osTimeLo        = (int)osTime;
-	m_osTimeHi        = (int)(osTime >> 0x20);
+	mOsTimeLo         = (int)osTime;
+	mOsTimeHi         = (int)(osTime >> 0x20);
 	ID32 version;
 	version.read(input);
 	if (mVersion != version.getID()) {
@@ -1054,68 +1054,68 @@ void PlayData::read(Stream& input)
 			_F0[i] = input.readByte();
 		}
 	}
-	_2F                     = input.readByte();
-	_19                     = input.readByte();
-	m_hasContainerFlags     = input.readByte();
-	m_hasBootContainerFlags = input.readByte();
+	_2F                    = input.readByte();
+	_19                    = input.readByte();
+	mHasContainerFlags     = input.readByte();
+	mHasBootContainerFlags = input.readByte();
 	if ('j007' <= version.getID()) {
-		m_meetPikminFlags = input.readByte();
+		mMeetPikminFlags = input.readByte();
 	}
-	m_tekiStatMgr.read(input);
-	gameSystem->m_timeMgr->m_dayCount = input.readInt();
-	m_olimarData[0].read(input);
-	m_olimarData[1].read(input);
-	m_caveSaveData.read(input, version.getID());
-	m_mailSaveData.read(input);
-	m_pikiContainer.read(input);
+	mTekiStatMgr.read(input);
+	gameSystem->mTimeMgr->mDayCount = input.readInt();
+	mOlimarData[0].read(input);
+	mOlimarData[1].read(input);
+	mCaveSaveData.read(input, version.getID());
+	mMailSaveData.read(input);
+	mPikiContainer.read(input);
 	_B0->read(input);
-	m_mainCropMemory->read(input);
-	m_caveCropMemory->read(input);
+	mMainCropMemory->read(input);
+	mCaveCropMemory->read(input);
 	for (int i = 0; i < 2; i++) {
 		_C0[i] = input.readInt();
 	}
 	for (int i = 0; i < 2; i++) {
-		m_berryCount[i] = input.readInt();
+		mBerryCount[i] = input.readInt();
 	}
-	// u32 courseNum = stageList->m_courseCount;
+	// u32 courseNum = stageList->mCourseCount;
 	// u32 cardNum = input.readInt();
 	// JUT_ASSERTLINE(633, courseNum == cardNum, "SaveData ERROR : CourseNum=%d
 	// (card num=%d)\n", courseNum, cardNum); for (int i = 0; i < courseNum;
 	// i++) {
-	JUT_ASSERTLINE(633, input.readInt() == stageList->m_courseCount, "SaveData ERROR : CourseNum=%d (card num=%d)\n", courseNum, cardNum);
-	for (int i = 0; i < stageList->m_courseCount; i++) {
-		m_bitfieldPerCourse[i] = input.readByte();
+	JUT_ASSERTLINE(633, input.readInt() == stageList->mCourseCount, "SaveData ERROR : CourseNum=%d (card num=%d)\n", courseNum, cardNum);
+	for (int i = 0; i < stageList->mCourseCount; i++) {
+		mBitfieldPerCourse[i] = input.readByte();
 		if ('j005' <= (long)version.getID()) {
-			m_groundOtakaraCollected[i] = input.readByte();
+			mGroundOtakaraCollected[i] = input.readByte();
 		}
 	}
 	read_CaveOtakara(input);
-	for (int i = 0; i < stageList->m_courseCount; i++) {
-		m_limitGen[i].read(input);
+	for (int i = 0; i < stageList->mCourseCount; i++) {
+		mLimitGen[i].read(input);
 	}
-	m_pokoCount     = input.readInt();
-	m_cavePokoCount = input.readInt();
+	mPokoCount     = input.readInt();
+	mCavePokoCount = input.readInt();
 	BirthMgr::read(input);
 	DeathMgr::read(input);
 	_20 = input.readByte();
 	if ('j006' <= version.getID()) {
-		m_naviLifeMax[0] = input.readFloat();
-		m_naviLifeMax[1] = input.readFloat();
+		mNaviLifeMax[0] = input.readFloat();
+		mNaviLifeMax[1] = input.readFloat();
 	}
-	m_demoFlags.read(input);
-	m_findItemFlags.read(input);
+	mDemoFlags.read(input);
+	mFindItemFlags.read(input);
 	if ('j008' <= version.getID()) {
-		for (int i = 0; i < stageList->m_courseCount; i++) {
-			m_groundOtakaraCollectedOld[i] = input.readByte();
+		for (int i = 0; i < stageList->mCourseCount; i++) {
+			mGroundOtakaraCollectedOld[i] = input.readByte();
 		}
-		m_pokoCountOld = input.readInt();
+		mPokoCountOld = input.readInt();
 		read_CaveOtakara_Old(input);
 	}
 	for (u32 i = 0; i < 6; i++) {
-		m_pikminYesterday[i] = input.readInt();
-		m_pikminToday[i]     = input.readInt();
+		mPikminYesterday[i] = input.readInt();
+		mPikminToday[i]     = input.readInt();
 	}
-	int dataSize = (input.m_position - startPosition) + (generatorCache->m_heapSize - generatorCache->m_freeSize);
+	int dataSize = (input.mPosition - startPosition) + (generatorCache->mHeapSize - generatorCache->mFreeSize);
 	generatorCache->read(input);
 	if (PlayData::sMaxPlayDataSize < dataSize) {
 		PlayData::sMaxPlayDataSize = dataSize;
@@ -1431,8 +1431,8 @@ lbl_8021DB24:
  */
 void PlayData::LimitGen::read(Stream& input)
 {
-	m_nonLoops.read(input);
-	m_loops.read(input);
+	mNonLoops.read(input);
+	mLoops.read(input);
 }
 
 /*
@@ -1444,10 +1444,10 @@ void PlayData::LimitGen::read(Stream& input)
 void PlayData::LimitGen::write(Stream& output)
 {
 	output.textBeginGroup("nonloops");
-	m_nonLoops.write(output);
+	mNonLoops.write(output);
 	output.textEndGroup();
 	output.textBeginGroup("loops");
-	m_loops.write(output);
+	mLoops.write(output);
 	output.textEndGroup();
 }
 
@@ -1459,12 +1459,12 @@ void PlayData::LimitGen::write(Stream& output)
  */
 void KindCounter::write(Stream& output)
 {
-	output.textWriteTab(output.m_tabCount);
-	output.writeShort(m_numKinds);
+	output.textWriteTab(output.mTabCount);
+	output.writeShort(mNumKinds);
 	output.textBeginGroup("KindCounter");
-	for (int i = 0; i < m_numKinds; i++) {
-		output.textWriteTab(output.m_tabCount);
-		output.writeByte(m_kinds[i]);
+	for (int i = 0; i < mNumKinds; i++) {
+		output.textWriteTab(output.mTabCount);
+		output.writeByte(mKinds[i]);
 		output.textWriteText("\t# [%d]\r\n", i);
 	}
 	output.textEndGroup();
@@ -1480,9 +1480,9 @@ void KindCounter::read(Stream& input)
 {
 	// UNUSED FUNCTION
 	u16 count = input.readShort();
-	JUT_ASSERTLINE(794, count == (int)m_numKinds, "read count %d : mNumKinds %d : mismatch !\n", count, m_numKinds);
-	for (int i = 0; i < m_numKinds; i++) {
-		m_kinds[i] = input.readByte();
+	JUT_ASSERTLINE(794, count == (int)mNumKinds, "read count %d : mNumKinds %d : mismatch !\n", count, mNumKinds);
+	for (int i = 0; i < mNumKinds; i++) {
+		mKinds[i] = input.readByte();
 	}
 }
 
@@ -1494,13 +1494,13 @@ void KindCounter::read(Stream& input)
  */
 void PelletCropMemory::write(Stream& output)
 {
-	output.textWriteTab(output.m_tabCount);
+	output.textWriteTab(output.mTabCount);
 	output.textWriteText("# mOtakaraCounter\r\n");
 	_04.write(output);
-	output.textWriteTab(output.m_tabCount);
+	output.textWriteTab(output.mTabCount);
 	output.textWriteText("# mItemCounter\r\n");
 	_0C.write(output);
-	output.textWriteTab(output.m_tabCount);
+	output.textWriteTab(output.mTabCount);
 	output.textWriteText("# mCarcassCounter\r\n");
 	_14.write(output);
 	/*
@@ -1670,9 +1670,9 @@ void PelletCropMemory::read(Stream& input)
  */
 void OlimarData::write(Stream& output)
 {
-	output.textWriteTab(output.m_tabCount);
+	output.textWriteTab(output.mTabCount);
 	for (u32 i = 0; i < 2; i++) {
-		output.writeByte(m_flags[i]);
+		output.writeByte(mFlags[i]);
 	}
 	output.textWriteText("\t# itemFlag\r\n");
 }
@@ -1686,7 +1686,7 @@ void OlimarData::write(Stream& output)
 void OlimarData::read(Stream& input)
 {
 	for (u32 i = 0; i < 2; i++) {
-		m_flags[i] = input.readByte();
+		mFlags[i] = input.readByte();
 	}
 }
 
@@ -1698,29 +1698,29 @@ void OlimarData::read(Stream& input)
  */
 void CaveSaveData::write(Stream& output)
 {
-	output.textWriteTab(output.m_tabCount);
+	output.textWriteTab(output.mTabCount);
 	output.textWriteText("# formationPikmin\r\n");
-	m_cavePikis.write(output);
-	output.textWriteTab(output.m_tabCount);
-	output.writeFloat(m_time);
+	mCavePikis.write(output);
+	output.textWriteTab(output.mTabCount);
+	output.writeFloat(mTime);
 	output.textWriteText("\t# time\r\n");
-	output.textWriteTab(output.m_tabCount);
-	output.writeByte(m_courseIdx);
+	output.textWriteTab(output.mTabCount);
+	output.writeByte(mCourseIdx);
 	output.textWriteText("\t# curr course\r\n");
-	output.textWriteTab(output.m_tabCount);
-	m_currentCaveID.write(output);
+	output.textWriteTab(output.mTabCount);
+	mCurrentCaveID.write(output);
 	output.textWriteText("\t# curr cave\r\n");
-	output.textWriteTab(output.m_tabCount);
-	output.writeByte(m_currentFloor);
+	output.textWriteTab(output.mTabCount);
+	output.writeByte(mCurrentFloor);
 	output.textWriteText("\t# curr cave\r\n");
-	output.textWriteTab(output.m_tabCount);
-	output.writeByte(m_isWaterwraithAlive);
+	output.textWriteTab(output.mTabCount);
+	output.writeByte(mIsWaterwraithAlive);
 	output.textWriteText("\t# blackman alive\r\n");
-	output.textWriteTab(output.m_tabCount);
-	output.writeFloat(m_waterwraithTimer);
+	output.textWriteTab(output.mTabCount);
+	output.writeFloat(mWaterwraithTimer);
 	output.textWriteText("\t# blackman timer\r\n");
-	output.textWriteTab(output.m_tabCount);
-	output.writeByte(m_activeNaviID);
+	output.textWriteTab(output.mTabCount);
+	output.writeByte(mActiveNaviID);
 	output.textWriteText("\t# active player id\r\n");
 }
 

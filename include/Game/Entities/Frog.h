@@ -70,15 +70,15 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                // _2BC
-	f32 _2C0;                  // _2C0
-	f32 _2C4;                  // _2C4
-	Vector3f m_targetPosition; // _2C8
-	int _2D4;                  // _2D4
-	bool _2D8;                 // _2D8, unknown
-	bool _2D9;                 // _2D9, unknown
-	efx::TFrogPota* m_efxPota; // _2DC
-	                           // _2E0 = PelletView
+	FSM* mFsm;                // _2BC
+	f32 _2C0;                 // _2C0
+	f32 _2C4;                 // _2C4
+	Vector3f mTargetPosition; // _2C8
+	int _2D4;                 // _2D4
+	bool _2D8;                // _2D8, unknown
+	bool _2D9;                // _2D9, unknown
+	efx::TFrogPota* mEfxPota; // _2DC
+	                          // _2E0 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -95,24 +95,24 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _48, array of Objs
+	Obj* mObj; // _48, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "FrogParms")
-		    , m_fp01(this, 'fp01', "空中時間", 1.5f, 0.0f, 5.0f)          // 'air time'
-		    , m_fp02(this, 'fp02', "ジャンプ速度", 400.0f, 0.0f, 1000.0f) // 'jump speed'
-		    , m_fp03(this, 'fp03', "失敗確率", 0.2f, 0.0f, 1.0f)          // 'probability of failure'
-		    , m_fp04(this, 'fp04', "落下初速度", 300.0f, 0.0f, 500.0f)    // 'initial fall velocity'
+		    , mFp01(this, 'fp01', "空中時間", 1.5f, 0.0f, 5.0f)          // 'air time'
+		    , mFp02(this, 'fp02', "ジャンプ速度", 400.0f, 0.0f, 1000.0f) // 'jump speed'
+		    , mFp03(this, 'fp03', "失敗確率", 0.2f, 0.0f, 1.0f)          // 'probability of failure'
+		    , mFp04(this, 'fp04', "落下初速度", 300.0f, 0.0f, 500.0f)    // 'initial fall velocity'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp04; // _87C
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp03; // _854
+		Parm<f32> mFp04; // _87C
 	};
 
 	Parms() { }
@@ -120,23 +120,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

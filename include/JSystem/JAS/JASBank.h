@@ -46,8 +46,8 @@ struct JASBasicBank : public JASBank {
 	void setInstCount(u32);
 	void setInst(int, JASInst*);
 
-	JASInst** m_insts; // _08
-	u32 m_instCount;   // _0C
+	JASInst** mInsts; // _08
+	u32 mInstCount;   // _0C
 };
 
 namespace JASBankMgr {

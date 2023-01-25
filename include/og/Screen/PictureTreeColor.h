@@ -14,25 +14,25 @@ namespace Screen {
 struct PictureTreeColorInfo {
 	PictureTreeColorInfo()
 	{
-		m_pane = 0;
-		m_white.set(0xFF, 0xFF, 0xFF, 0xFF);
-		m_black.set(0, 0, 0, 0);
+		mPane = 0;
+		mWhite.set(0xFF, 0xFF, 0xFF, 0xFF);
+		mBlack.set(0, 0, 0, 0);
 	}
 
-	J2DPane* m_pane;          // _00
-	JUtility::TColor m_white; // _04
-	JUtility::TColor m_black; // _08
+	J2DPane* mPane;          // _00
+	JUtility::TColor mWhite; // _04
+	JUtility::TColor mBlack; // _08
 };
 
 struct PictureTreeColorCaptureInfo {
 	inline PictureTreeColorCaptureInfo(int count, PictureTreeColorInfo* infoArray)
 	{
-		m_count          = count;
-		m_colorInfoArray = infoArray;
+		mCount          = count;
+		mColorInfoArray = infoArray;
 	}
 
-	int m_count;                            // _00
-	PictureTreeColorInfo* m_colorInfoArray; // _04 - array of size m_count
+	int mCount;                            // _00
+	PictureTreeColorInfo* mColorInfoArray; // _04 - array of size mCount
 };
 
 } // namespace Screen

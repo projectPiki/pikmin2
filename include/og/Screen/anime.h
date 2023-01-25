@@ -25,24 +25,24 @@ struct AnimBaseBase {
 	bool updateSub();
 
 	// _00 = VTBL
-	int m_type;           // _04 1 =AnimScreen, 2 = AnimPane
-	bool _08;             // _08
-	f32 _0C;              // _0C
-	u8 _10;               // _10
-	u8 m_alpha;           // _11
-	bool m_doSetAlpha;    // _12
-	J2DAnmBase* m_anm;    // _14
-	f32 m_currentFrame;   // _18
-	f32 m_lastFrame;      // _1C
-	f32 m_speed;          // _20
-	f32 _24;              // _24
-	f32 _28;              // _28
-	f32 _2C;              // _2C
-	f32 m_area;           // _30
-	f32 _34;              // _34
-	bool m_isRepeating;   // _38
-	bool _39;             // _39
-	char* m_resourcePath; // _3C
+	int mType;           // _04 1 =AnimScreen, 2 = AnimPane
+	bool _08;            // _08
+	f32 _0C;             // _0C
+	u8 _10;              // _10
+	u8 mAlpha;           // _11
+	bool mDoSetAlpha;    // _12
+	J2DAnmBase* mAnm;    // _14
+	f32 mCurrentFrame;   // _18
+	f32 mLastFrame;      // _1C
+	f32 mSpeed;          // _20
+	f32 _24;             // _24
+	f32 _28;             // _28
+	f32 _2C;             // _2C
+	f32 mArea;           // _30
+	f32 _34;             // _34
+	bool mIsRepeating;   // _38
+	bool _39;            // _39
+	char* mResourcePath; // _3C
 };
 
 struct AnimScreen : public AnimBaseBase {
@@ -55,14 +55,14 @@ struct AnimScreen : public AnimBaseBase {
 
 	inline void updateScreen(J2DScreen* screen, J2DAnmBase* anm)
 	{
-		m_screen = screen;
-		m_screen->setAnimation(anm);
+		mScreen = screen;
+		mScreen->setAnimation(anm);
 		anm->searchUpdateMaterialID(screen);
 	}
 
 	// _00     = VTBL
 	// _00-_40 = AnimBaseBase
-	J2DScreen* m_screen; // _40
+	J2DScreen* mScreen; // _40
 };
 
 struct AnimPane : public AnimBaseBase {
@@ -75,14 +75,14 @@ struct AnimPane : public AnimBaseBase {
 
 	inline void updatePane(J2DScreen* screen, u64 tag, J2DAnmBase* anm)
 	{
-		m_pane = TagSearch(screen, tag);
-		m_pane->setAnimation(anm);
+		mPane = TagSearch(screen, tag);
+		mPane->setAnimation(anm);
 		anm->searchUpdateMaterialID(screen);
 	}
 
 	// _00     = VTBL
 	// _00-_40 = AnimBaseBase
-	J2DPane* m_pane; // _40
+	J2DPane* mPane; // _40
 };
 
 struct AnimGroup {
@@ -103,13 +103,13 @@ struct AnimGroup {
 
 	inline f32 getVal() { return _10; }
 
-	AnimBaseBase** m_animPanes; // _00
-	int m_paneCount;            // _04
-	int m_paneLimit;            // _08
-	u8 _0C;                     // _0C
-	f32 _10;                    // _10
-	f32 _14;                    // _14
-	f32 _18;                    // _18
+	AnimBaseBase** mAnimPanes; // _00
+	int mPaneCount;            // _04
+	int mPaneLimit;            // _08
+	u8 _0C;                    // _0C
+	f32 _10;                   // _10
+	f32 _14;                   // _14
+	f32 _18;                   // _18
 };
 
 struct AnimList {

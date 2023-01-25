@@ -37,10 +37,10 @@ struct DamageDirector : public OneShotDirector {
 
 	// _00     = VTBL
 	// _00-_48 = OneShotDirector
-	PSSystem::DirectorCopyActor* m_actor; // _48
-	f32 _4C;                              // _4C
-	f32 _50;                              // _50
-	u32 _54;                              // _54
+	PSSystem::DirectorCopyActor* mActor; // _48
+	f32 _4C;                             // _4C
+	f32 _50;                             // _50
+	u32 _54;                             // _54
 };
 
 struct SwitcherDirector : public PSSystem::SwitcherDirector {
@@ -60,7 +60,7 @@ struct PikminNumberDirector : public SwitcherDirector {
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
-	PSSystem::DirectorCopyActor* m_actor; // _48
+	PSSystem::DirectorCopyActor* mActor; // _48
 };
 
 /**
@@ -77,8 +77,8 @@ struct PikminNumberDirector_AutoBgm : public PikminNumberDirector {
 
 	// _00     = VTBL
 	// _00-_4C = PikminNumberDirector
-	u8 _4C;                               // _4C
-	PSSystem::DirectedBgm* m_directedBgm; // _50
+	u8 _4C;                              // _4C
+	PSSystem::DirectedBgm* mDirectedBgm; // _50
 };
 
 struct TempoChangeDirectorBase : public SwitcherDirector {
@@ -101,8 +101,8 @@ struct ActorDirector_TempoChange : public TempoChangeDirectorBase {
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
-	u8 _48[8];                            // _48, unknown
-	PSSystem::DirectorCopyActor* m_actor; // _50
+	u8 _48[8];                           // _48, unknown
+	PSSystem::DirectorCopyActor* mActor; // _50
 };
 
 struct TrackOnDirectorBase : public SwitcherDirector {
@@ -178,8 +178,8 @@ struct ActorDirector_TrackOn : public TrackOnDirectorBase {
 
 	// _00     = VTBL
 	// _00-_48 = TrackOnDirectorBase
-	u8 _48[0xC];                          // _48
-	PSSystem::DirectorCopyActor* m_actor; // _54
+	u8 _48[0xC];                         // _48
+	PSSystem::DirectorCopyActor* mActor; // _54
 };
 
 /**
@@ -207,14 +207,14 @@ struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
 
 	// _00     = VTBL
 	// _00-_48 = TrackOnDirector_Scaled
-	long _48;                             // _48
-	long _4C;                             // _4C
-	u8 _50;                               // _50
-	f32 _54;                              // _54
-	f32 _58;                              // _58
-	f32 _5C;                              // _5C
-	u32 _60;                              // _60
-	PSSystem::DirectorCopyActor* m_actor; // _64
+	long _48;                            // _48
+	long _4C;                            // _4C
+	u8 _50;                              // _50
+	f32 _54;                             // _54
+	f32 _58;                             // _58
+	f32 _5C;                             // _5C
+	u32 _60;                             // _60
+	PSSystem::DirectorCopyActor* mActor; // _64
 };
 
 /**
@@ -263,7 +263,7 @@ struct ActorDirector_Kehai : public ActorDirector_Enemy {
  */
 struct DirectorUpdator {
 	struct Type {
-		u32 m_type; // _00, I guess?
+		u32 mType; // _00, I guess?
 	};
 
 	DirectorUpdator(PSSystem::DirectorBase*, u8, Type);
@@ -272,11 +272,11 @@ struct DirectorUpdator {
 	void directOff(u8);
 	void frameEndWork();
 
-	u8 _00;                             // _00
-	Type m_type;                        // _04
-	u8 _08;                             // _08
-	u8 _09;                             // _09
-	PSSystem::DirectorBase* m_director; // _0C
+	u8 _00;                            // _00
+	Type mType;                        // _04
+	u8 _08;                            // _08
+	u8 _09;                            // _09
+	PSSystem::DirectorBase* mDirector; // _0C
 };
 
 struct ListDirectorActor : public PSSystem::DirectorCopyActor {

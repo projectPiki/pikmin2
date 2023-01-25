@@ -325,7 +325,7 @@ namespace Game {
  */
 KumaChappy::Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 	createChappyRelation();
 }
@@ -346,12 +346,12 @@ void KumaChappy::Obj::onInit(Game::CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
 	disableEvent(0, EB_IsCullable);
-	m_reviveTimer = 0.0f;
-	m_timer       = 0.0f;
-	m_nextState   = -1;
+	mReviveTimer = 0.0f;
+	mTimer       = 0.0f;
+	mNextState   = -1;
 	resetWayPoint();
 	setNearestWayPoint();
-	m_fsm->start(this, KUMACHAPPY_TurnPath, nullptr);
+	mFsm->start(this, KUMACHAPPY_TurnPath, nullptr);
 }
 
 /*
@@ -361,10 +361,10 @@ void KumaChappy::Obj::onInit(Game::CreatureInitArg* arg)
  */
 void KumaChappy::Obj::doUpdate()
 {
-	m_reviveTimer += sys->m_deltaTime;
+	mReviveTimer += sys->mDeltaTime;
 	updateTargetDistance();
-	m_fsm->exec(this);
-	m_mouthSlots.update();
+	mFsm->exec(this);
+	mMouthSlots.update();
 }
 
 /*
@@ -388,9 +388,9 @@ void KumaChappy::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); 
  */
 void KumaChappy::Obj::setFSM(Game::KumaChappy::FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -400,22 +400,22 @@ void KumaChappy::Obj::setFSM(Game::KumaChappy::FSM* fsm)
  */
 void KumaChappy::Obj::getShadowParam(Game::ShadowParam& param)
 {
-	Matrixf* mtx     = m_model->getJoint("ago")->getWorldMatrix();
-	param.m_position = Vector3f(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
-	param.m_position.y -= 17.5f;
+	Matrixf* mtx    = mModel->getJoint("ago")->getWorldMatrix();
+	param.mPosition = Vector3f(mtx->mMatrix.structView.tx, mtx->mMatrix.structView.ty, mtx->mMatrix.structView.tz);
+	param.mPosition.y -= 17.5f;
 
-	f32 temp = m_position.y + 5.0f;
-	if (param.m_position.y < temp) {
-		param.m_position.y = temp;
+	f32 temp = mPosition.y + 5.0f;
+	if (param.mPosition.y < temp) {
+		param.mPosition.y = temp;
 	}
 
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isEvent(1, EB2_IsEarthquake)) {
-		param.m_boundingSphere.m_radius = 100.0f;
+		param.mBoundingSphere.mRadius = 100.0f;
 	} else {
-		param.m_boundingSphere.m_radius = 75.0f;
+		param.mBoundingSphere.mRadius = 75.0f;
 	}
-	param.m_size = 30.0f;
+	param.mSize = 30.0f;
 }
 
 /*
@@ -449,8 +449,8 @@ Vector3f KumaChappy::Obj::getOffsetForMapCollision()
 	if (isAlive()) {
 		return Vector3f(Vector3f::zero);
 	} else {
-		Matrixf* mtx = m_model->getJoint("ago")->getWorldMatrix();
-		return Vector3f(mtx->m_matrix.structView.tx - m_position.x, 0.0f, mtx->m_matrix.structView.tz - m_position.z);
+		Matrixf* mtx = mModel->getJoint("ago")->getWorldMatrix();
+		return Vector3f(mtx->mMatrix.structView.tx - mPosition.x, 0.0f, mtx->mMatrix.structView.tz - mPosition.z);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -509,15 +509,15 @@ lbl_80299AF8:
  */
 void KumaChappy::Obj::initMouthSlots()
 {
-	m_mouthSlots.alloc(5);
-	m_mouthSlots.setup(0, m_model, "kamu1");
-	m_mouthSlots.setup(1, m_model, "kamu2");
-	m_mouthSlots.setup(2, m_model, "kamu3");
-	m_mouthSlots.setup(3, m_model, "kamu4");
-	m_mouthSlots.setup(4, m_model, "kamu5");
+	mMouthSlots.alloc(5);
+	mMouthSlots.setup(0, mModel, "kamu1");
+	mMouthSlots.setup(1, mModel, "kamu2");
+	mMouthSlots.setup(2, mModel, "kamu3");
+	mMouthSlots.setup(3, mModel, "kamu4");
+	mMouthSlots.setup(4, mModel, "kamu5");
 	f32 size = 35.0f;
-	for (int i = 0; i < m_mouthSlots.m_max; i++) {
-		m_mouthSlots.getSlot(i)->m_radius = size;
+	for (int i = 0; i < mMouthSlots.mMax; i++) {
+		mMouthSlots.getSlot(i)->mRadius = size;
 	}
 }
 
@@ -528,9 +528,9 @@ void KumaChappy::Obj::initMouthSlots()
  */
 void KumaChappy::Obj::initWalkSmokeEffect()
 {
-	m_walkSmokeMgr.alloc(2);
-	m_walkSmokeMgr.setup(0, m_model, "asiL", 10.0f);
-	m_walkSmokeMgr.setup(1, m_model, "asiR", 10.0f);
+	mWalkSmokeMgr.alloc(2);
+	mWalkSmokeMgr.setup(0, mModel, "asiL", 10.0f);
+	mWalkSmokeMgr.setup(1, mModel, "asiR", 10.0f);
 }
 
 /*
@@ -538,7 +538,7 @@ void KumaChappy::Obj::initWalkSmokeEffect()
  * Address:	80299C50
  * Size:	000008
  */
-WalkSmokeEffect::Mgr* KumaChappy::Obj::getWalkSmokeEffectMgr() { return &m_walkSmokeMgr; }
+WalkSmokeEffect::Mgr* KumaChappy::Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
 /*
  * --INFO--
@@ -547,8 +547,8 @@ WalkSmokeEffect::Mgr* KumaChappy::Obj::getWalkSmokeEffectMgr() { return &m_walkS
  */
 bool KumaChappy::Obj::doBecomeCarcass()
 {
-	m_reviveTimer = 0.0f;
-	m_health      = 0.0f;
+	mReviveTimer = 0.0f;
+	mHealth      = 0.0f;
 	return true;
 }
 
@@ -559,36 +559,36 @@ bool KumaChappy::Obj::doBecomeCarcass()
  */
 void KumaChappy::Obj::doUpdateCarcass()
 {
-	if (m_pellet->isAlive()) {
-		if (m_reviveTimer < C_PARMS->m_properParms.m_fp11) {
-			m_reviveTimer += sys->m_deltaTime;
-			if (lifeGaugeMgr && m_reviveTimer >= C_PARMS->m_properParms.m_fp11) {
+	if (mPellet->isAlive()) {
+		if (mReviveTimer < C_PARMS->mProperParms.mFp11) {
+			mReviveTimer += sys->mDeltaTime;
+			if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mFp11) {
 				lifeGaugeMgr->activeLifeGauge(this, 0.0f);
 			}
 		} else {
-			if (m_health < m_maxHealth) {
-				m_health += (m_maxHealth / C_PARMS->m_properParms.m_fp12.m_value) * sys->m_deltaTime;
-				if (m_health >= m_maxHealth) {
-					m_pellet->kill(nullptr);
-					f32 x = m_objMatrix.m_matrix.structView.zx;
-					f32 z = m_objMatrix.m_matrix.structView.zz;
+			if (mHealth < mMaxHealth) {
+				mHealth += (mMaxHealth / C_PARMS->mProperParms.mFp12.mValue) * sys->mDeltaTime;
+				if (mHealth >= mMaxHealth) {
+					mPellet->kill(nullptr);
+					f32 x = mObjMatrix.mMatrix.structView.zx;
+					f32 z = mObjMatrix.mMatrix.structView.zz;
 					EnemyBirthArg arg;
-					arg.m_position        = m_position;
-					arg.m_faceDir         = JMath::atanTable_.atan2_(x, z);
-					arg.m_existenceLength = m_existDuration;
-					arg.m_isInPiklopedia  = (u8)m_inPiklopedia;
-					EnemyBase* obj        = generalEnemyMgr->birth(getEnemyTypeID(), arg);
+					arg.mPosition        = mPosition;
+					arg.mFaceDir         = JMath::atanTable_.atan2_(x, z);
+					arg.mExistenceLength = mExistDuration;
+					arg.mIsInPiklopedia  = (u8)mInPiklopedia;
+					EnemyBase* obj       = generalEnemyMgr->birth(getEnemyTypeID(), arg);
 					if (obj) {
 						obj->init(nullptr);
-						m_fsm->transit(this, KUMACHAPPY_Dead, nullptr);
+						mFsm->transit(this, KUMACHAPPY_Dead, nullptr);
 					}
 				}
 			}
 		}
 	} else {
-		if (lifeGaugeMgr && m_reviveTimer >= C_PARMS->m_properParms.m_fp11) {
-			m_reviveTimer = 0.0f;
-			m_health      = 0.0f;
+		if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mFp11) {
+			mReviveTimer = 0.0f;
+			mHealth      = 0.0f;
 			lifeGaugeMgr->inactiveLifeGauge(this);
 		}
 	}
@@ -736,15 +736,15 @@ lbl_80299E44:
  */
 void KumaChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	param.m_position.x = m_position.x;
-	if (m_pellet) {
-		param.m_position.y = m_position.y + 50.0f;
+	param.mPosition.x = mPosition.x;
+	if (mPellet) {
+		param.mPosition.y = mPosition.y + 50.0f;
 	} else {
-		param.m_position.y = m_position.y + C_PARMS->m_general.m_lifeMeterHeight.m_value;
+		param.mPosition.y = mPosition.y + C_PARMS->mGeneral.mLifeMeterHeight.mValue;
 	}
-	param.m_position.z          = m_position.z;
-	param.m_curHealthPercentage = m_health / m_maxHealth;
-	param.m_radius              = 10.0f;
+	param.mPosition.z          = mPosition.z;
+	param.mCurHealthPercentage = mHealth / mMaxHealth;
+	param.mRadius              = 10.0f;
 }
 
 /*
@@ -755,10 +755,10 @@ void KumaChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 f32 KumaChappy::Obj::getViewAngle()
 {
 	Parms* parms = C_PARMS;
-	if (m_reviveTimer < parms->m_general.m_alertDuration) {
+	if (mReviveTimer < parms->mGeneral.mAlertDuration) {
 		return 180.0f;
 	}
-	return parms->m_general.m_viewAngle;
+	return parms->mGeneral.mViewAngle;
 }
 
 /*
@@ -768,8 +768,8 @@ f32 KumaChappy::Obj::getViewAngle()
  */
 void KumaChappy::Obj::resetWayPoint()
 {
-	m_currWP = nullptr;
-	m_prevWP = nullptr;
+	mCurrWP = nullptr;
+	mPrevWP = nullptr;
 	/*
 	li       r0, 0
 	stw      r0, 0x2ec(r3)
@@ -785,16 +785,16 @@ void KumaChappy::Obj::resetWayPoint()
  */
 void KumaChappy::Obj::setNearestWayPoint()
 {
-	m_prevWP = m_currWP;
-	WPSearchArg arg(m_position, nullptr, false, 10.0f);
+	mPrevWP = mCurrWP;
+	WPSearchArg arg(mPosition, nullptr, false, 10.0f);
 
-	m_currWP = mapMgr->m_routeMgr->getNearestWayPoint(arg);
+	mCurrWP = mapMgr->mRouteMgr->getNearestWayPoint(arg);
 
-	WayPoint* wp = m_currWP;
+	WayPoint* wp = mCurrWP;
 	if (wp) {
-		m_targetPos = Vector3f(wp->m_position);
+		mTargetPos = Vector3f(wp->mPosition);
 	} else {
-		m_targetPos = m_homePosition;
+		mTargetPos = mHomePosition;
 	}
 }
 
@@ -805,21 +805,21 @@ void KumaChappy::Obj::setNearestWayPoint()
  */
 void KumaChappy::Obj::setLinkWayPoint()
 {
-	if (m_currWP) {
+	if (mCurrWP) {
 		int wpNum = 0;
 		int wpID  = -1;
-		if (m_prevWP) {
-			wpID = m_prevWP->m_index;
+		if (mPrevWP) {
+			wpID = mPrevWP->mIndex;
 		}
 		// create collection of all children of the current WP
 		WayPoint* wpList[9];
-		WayPointIterator it(m_currWP, true);
+		WayPointIterator it(mCurrWP, true);
 		CI_LOOP(it)
 		{
 			int id = *it;
 			if (id != wpID) {
-				WayPoint* wp = mapMgr->m_routeMgr->getWayPoint(id);
-				if (wp && !(wp->m_flags & WPF_Closed)) {
+				WayPoint* wp = mapMgr->mRouteMgr->getWayPoint(id);
+				if (wp && !(wp->mFlags & WPF_Closed)) {
 					wpList[wpNum] = wp;
 					wpNum++;
 				}
@@ -828,20 +828,20 @@ void KumaChappy::Obj::setLinkWayPoint()
 
 		// children of the current waypoint were found
 		if (wpNum) {
-			m_prevWP    = m_currWP;
-			int id      = randWeightFloat(wpNum);
-			m_currWP    = wpList[id];
-			m_targetPos = Vector3f(m_currWP->m_position);
+			mPrevWP    = mCurrWP;
+			int id     = randWeightFloat(wpNum);
+			mCurrWP    = wpList[id];
+			mTargetPos = Vector3f(mCurrWP->mPosition);
 			return;
 		}
 
 		// no children at current waypoint, backtrack to previous point
 		if (wpID >= 0) {
-			WayPoint* wp = mapMgr->m_routeMgr->getWayPoint(wpID);
-			if (wp && !(wp->m_flags & WPF_Closed)) {
-				m_prevWP    = m_currWP;
-				m_currWP    = wp;
-				m_targetPos = Vector3f(m_currWP->m_position);
+			WayPoint* wp = mapMgr->mRouteMgr->getWayPoint(wpID);
+			if (wp && !(wp->mFlags & WPF_Closed)) {
+				mPrevWP    = mCurrWP;
+				mCurrWP    = wp;
+				mTargetPos = Vector3f(mCurrWP->mPosition);
 				return;
 			}
 		}
@@ -1030,9 +1030,9 @@ void KumaChappy::Obj::getSearchedTarget()
 {
 	f32 angle = getViewAngle();
 
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, angle, C_PARMS->m_general.m_sightRadius, nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, angle, C_PARMS->mGeneral.mSightRadius, nullptr, nullptr, nullptr);
 	if (target) {
-		m_reviveTimer = 0.0f;
+		mReviveTimer = 0.0f;
 	}
 }
 
@@ -1044,19 +1044,19 @@ void KumaChappy::Obj::getSearchedTarget()
 void KumaChappy::Obj::updateTargetDistance()
 {
 	f32 radius;
-	if (m_currWP) {
-		radius = m_currWP->m_radius;
+	if (mCurrWP) {
+		radius = mCurrWP->mRadius;
 	} else {
-		radius = C_PARMS->m_general.m_homeRadius;
+		radius = C_PARMS->mGeneral.mHomeRadius;
 	}
 
-	if (sqrDistanceXZ(m_position, m_targetPos) < radius * radius) {
+	if (sqrDistanceXZ(mPosition, mTargetPos) < radius * radius) {
 		setLinkWayPoint();
-		m_timer = 0.0f;
+		mTimer = 0.0f;
 	}
 
-	if (m_timer > 5.0f) {
-		m_timer = 0.0f;
+	if (mTimer > 5.0f) {
+		mTimer = 0.0f;
 		setNearestWayPoint();
 		updateHomePosition();
 	}
@@ -1069,8 +1069,8 @@ void KumaChappy::Obj::updateTargetDistance()
  */
 void KumaChappy::Obj::updateHomePosition()
 {
-	m_homePosition = Vector3f(pikmin2_sinf(m_faceDir) * C_PARMS->m_general.m_homeRadius.m_value + m_position.x, m_position.y,
-	                          pikmin2_cosf(m_faceDir) * C_PARMS->m_general.m_homeRadius.m_value + m_position.z);
+	mHomePosition = Vector3f(pikmin2_sinf(mFaceDir) * C_PARMS->mGeneral.mHomeRadius.mValue + mPosition.x, mPosition.y,
+	                         pikmin2_cosf(mFaceDir) * C_PARMS->mGeneral.mHomeRadius.mValue + mPosition.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lfs      f0, lbl_8051BB68@sda21(r2)
@@ -1135,8 +1135,8 @@ lbl_8029A444:
  */
 void KumaChappy::Obj::createChappyRelation()
 {
-	m_chappyRelation = new ChappyRelation(this);
-	m_chappyRelation->clearRelations();
+	mChappyRelation = new ChappyRelation(this);
+	mChappyRelation->clearRelations();
 }
 
 /*
@@ -1146,9 +1146,9 @@ void KumaChappy::Obj::createChappyRelation()
  */
 void KumaChappy::Obj::startEnemyRumble()
 {
-	Matrixf* mtx = m_model->getJoint("ago")->getWorldMatrix();
-	Vector3f vec(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
-	vec.y = m_position.y;
+	Matrixf* mtx = mModel->getJoint("ago")->getWorldMatrix();
+	Vector3f vec(mtx->mMatrix.structView.tx, mtx->mMatrix.structView.ty, mtx->mMatrix.structView.tz);
+	vec.y = mPosition.y;
 
 	rumbleMgr->startRumble(11, vec, 2);
 	createBounceEffect(vec, 0.75f);
@@ -1168,7 +1168,7 @@ void KumaChappy::Obj::startEnemyRumble()
  * Address:	8029A5AC
  * Size:	000008
  */
-MouthSlots* KumaChappy::Obj::getMouthSlots() { return &m_mouthSlots; }
+MouthSlots* KumaChappy::Obj::getMouthSlots() { return &mMouthSlots; }
 
 /*
  * --INFO--
@@ -1182,7 +1182,7 @@ f32 KumaChappy::Obj::getDownSmokeScale() { return 1.0f; }
  * Address:	8029A5BC
  * Size:	000008
  */
-ChappyRelation* KumaChappy::Obj::getChappyRelation() { return m_chappyRelation; }
+ChappyRelation* KumaChappy::Obj::getChappyRelation() { return mChappyRelation; }
 
 /*
  * --INFO--

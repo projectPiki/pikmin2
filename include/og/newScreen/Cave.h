@@ -56,29 +56,29 @@ struct ObjCave : public ::Screen::ObjBase {
 
 	void setSensorParam(u8 allTreasureGotten, u8 radarEnabled, u32 radarState, f32 treasureDist)
 	{
-		m_otakara->setParam(treasureDist, radarState, radarEnabled, allTreasureGotten);
+		mOtakara->setParam(treasureDist, radarState, radarEnabled, allTreasureGotten);
 	}
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberCave* m_disp;           // _38
-	og::Screen::OtakaraSensor* m_otakara;         // _3C
-	og::Screen::BloGroup* m_bloGroup;             // _40
-	og::Screen::DopingScreen* m_doping;           // _44
-	og::Screen::NaviLifeGauge* m_lifeGauge1;      // _48
-	og::Screen::NaviLifeGauge* m_lifeGauge2;      // _4C
-	og::Screen::PikminCounterCave* m_pikiCounter; // _50
-	og::Screen::TotalPokoScreen* m_totalPoko;     // _54
-	P2DScreen::Mgr_tuning* m_sensorScreen;        // _58
-	f32 m_fadeLevel;                              // _5C
-	f32 m_scale;                                  // _60
-	bool m_totalPokoActive;                       // _64
-	u32 m_pokos;                                  // _68
-	f32 m_totalPokoTimer;                         // _6C
-	J2DPane* m_paneChika;                         // _70
-	J2DPane* m_paneFinalf;                        // _74
-	bool m_doSensorEff;                           // _78
+	og::Screen::DispMemberCave* mDisp;           // _38
+	og::Screen::OtakaraSensor* mOtakara;         // _3C
+	og::Screen::BloGroup* mBloGroup;             // _40
+	og::Screen::DopingScreen* mDoping;           // _44
+	og::Screen::NaviLifeGauge* mLifeGauge1;      // _48
+	og::Screen::NaviLifeGauge* mLifeGauge2;      // _4C
+	og::Screen::PikminCounterCave* mPikiCounter; // _50
+	og::Screen::TotalPokoScreen* mTotalPoko;     // _54
+	P2DScreen::Mgr_tuning* mSensorScreen;        // _58
+	f32 mFadeLevel;                              // _5C
+	f32 mScale;                                  // _60
+	bool mTotalPokoActive;                       // _64
+	u32 mPokos;                                  // _68
+	f32 mTotalPokoTimer;                         // _6C
+	J2DPane* mPaneChika;                         // _70
+	J2DPane* mPaneFinalf;                        // _74
+	bool mDoSensorEff;                           // _78
 
 	static struct StaticValues {
 		inline StaticValues()

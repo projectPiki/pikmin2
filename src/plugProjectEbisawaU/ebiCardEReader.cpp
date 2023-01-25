@@ -438,12 +438,12 @@ void CardEReader::TMgr::loadResource()
 		}
 		JKRDvdFile file;
 		file.open(path);
-		m_gameDatas[i] = JKRDvdRipper::loadToMainRAM(&file, nullptr, (JKRExpandSwitch)0, 0, nullptr, (JKRDvdRipper::ALLOC_DIR_BOTTOM), 0,
-		                                             nullptr, nullptr);
-		P2ASSERTLINE(462, m_gameDatas[i]);
-		m_sizes[i] = file.m_dvdPlayer.m_fileSize;
+		mGameDatas[i] = JKRDvdRipper::loadToMainRAM(&file, nullptr, (JKRExpandSwitch)0, 0, nullptr, (JKRDvdRipper::ALLOC_DIR_BOTTOM), 0,
+		                                            nullptr, nullptr);
+		P2ASSERTLINE(462, mGameDatas[i]);
+		mSizes[i] = file.mDvdPlayer.mFileSize;
 		file.close();
-		m_sizes[i] = (m_sizes[i] + 3) & ~3;
+		mSizes[i] = (mSizes[i] + 3) & ~3;
 	}
 }
 
@@ -455,8 +455,8 @@ void CardEReader::TMgr::loadResource()
 void CardEReader::TMgr::init()
 {
 	GBAInit();
-	OSInitMutex(&m_mutex);
-	OSInitCond(&m_cond);
+	OSInitMutex(&mMutex);
+	OSInitCond(&mCond);
 }
 
 /*
@@ -466,10 +466,10 @@ void CardEReader::TMgr::init()
  */
 void CardEReader::TMgr::uploadToGBA(long data)
 {
-	_38       = 1;
-	m_state   = 1;
-	m_counter = 0;
-	m_gameID  = data;
+	_38      = 1;
+	mState   = 1;
+	mCounter = 0;
+	mGameID  = data;
 }
 
 /*
@@ -479,9 +479,9 @@ void CardEReader::TMgr::uploadToGBA(long data)
  */
 void CardEReader::TMgr::probeAGB()
 {
-	_38       = 0;
-	m_state   = 1;
-	m_counter = 0;
+	_38      = 0;
+	mState   = 1;
+	mCounter = 0;
 }
 
 /*
@@ -491,7 +491,7 @@ void CardEReader::TMgr::probeAGB()
  */
 void CardEReader::TMgr::update()
 {
-	switch (m_state) {
+	switch (mState) {
 	case 1: {
 		int stat;
 		if (SIProbe(1) == 0x40000) {
@@ -503,13 +503,13 @@ void CardEReader::TMgr::update()
 		} else {
 			stat = -1;
 		}
-		m_gbaPort = stat;
-		m_counter++;
-		if (m_gbaPort != -1) {
+		mGbaPort = stat;
+		mCounter++;
+		if (mGbaPort != -1) {
 			goEnd_(Error_0);
 		} else if (_38 == 0) {
-			m_counter = 0;
-			m_state   = 2;
+			mCounter = 0;
+			mState   = 2;
 		} else {
 			goEnd_(Error_1);
 		}
@@ -517,12 +517,12 @@ void CardEReader::TMgr::update()
 	}
 	case 2:
 		bool stat = tryUploadToGBA_();
-		m_counter++;
+		mCounter++;
 		if (stat) {
-			m_counter = 0;
-			m_state   = 3;
+			mCounter = 0;
+			mState   = 3;
 		} else {
-			if (m_counter >= 1) {
+			if (mCounter >= 1) {
 				goEnd_(Error_2);
 			}
 		}
@@ -643,7 +643,7 @@ lbl_803ED1AC:
  */
 bool CardEReader::TMgr::isFinish()
 {
-	u8 test = m_state;
+	u8 test = mState;
 	return test;
 	/*
 	lwz      r0, 0x34(r3)
@@ -661,14 +661,14 @@ bool CardEReader::TMgr::isFinish()
 void CardEReader::TMgr::threadProc(void* data)
 {
 	while (true) {
-		OSLockMutex(&m_mutex);
-		OSWaitCond(&m_cond, &m_mutex);
-		if (CardE_uploadToGBA(m_gbaPort, (u8*)m_gameDatas[m_gameID], m_sizes[m_gameID])) {
+		OSLockMutex(&mMutex);
+		OSWaitCond(&mCond, &mMutex);
+		if (CardE_uploadToGBA(mGbaPort, (u8*)mGameDatas[mGameID], mSizes[mGameID])) {
 			goEnd_(Error_0);
 		} else {
 			goEnd_(Error_2);
 		}
-		OSUnlockMutex(&m_mutex);
+		OSUnlockMutex(&mMutex);
 	}
 }
 
@@ -679,9 +679,9 @@ void CardEReader::TMgr::threadProc(void* data)
  */
 bool CardEReader::TMgr::tryUploadToGBA_()
 {
-	if (OSTryLockMutex(&m_mutex)) {
-		OSUnlockMutex(&m_mutex);
-		OSSignalCond(&m_cond);
+	if (OSTryLockMutex(&mMutex)) {
+		OSUnlockMutex(&mMutex);
+		OSSignalCond(&mCond);
 		return true;
 	}
 	return false;
@@ -694,7 +694,7 @@ bool CardEReader::TMgr::tryUploadToGBA_()
  */
 void CardEReader::TMgr::goEnd_(enumErr stat)
 {
-	m_endStat = stat;
-	m_state   = 0;
+	mEndStat = stat;
+	mState   = 0;
 }
 } // namespace ebi

@@ -23,18 +23,18 @@ struct TypedProc {
 	void getBossFadeVolume();
 
 	// _00 VTBL
-	f32 _04;                                 // _04
-	f32 _08;                                 // _08
-	f32 _0C;                                 // _0C
-	f32 _10;                                 // _10
-	u32 _14;                                 // _14, unknown
-	u32 _18;                                 // _18, unknown
-	u32 _1C;                                 // _1C, unknown
-	u32 _20;                                 // _20
-	PSM::DirectorUpdator* m_directorUpdator; // _24
-	u8 _28;                                  // _28
-	u8 _29[0x3];                             // _29, unknown/padding
-	f32 _2C;                                 // _2C
+	f32 _04;                                // _04
+	f32 _08;                                // _08
+	f32 _0C;                                // _0C
+	f32 _10;                                // _10
+	u32 _14;                                // _14, unknown
+	u32 _18;                                // _18, unknown
+	u32 _1C;                                // _1C, unknown
+	u32 _20;                                // _20
+	PSM::DirectorUpdator* mDirectorUpdator; // _24
+	u8 _28;                                 // _28
+	u8 _29[0x3];                            // _29, unknown/padding
+	f32 _2C;                                // _2C
 };
 
 /**
@@ -65,8 +65,8 @@ struct Mgr {
 	void exec();
 
 	// _00 VTBL
-	JSUList<PSM::EnemyBoss> m_enemyBossList; // _04
-	TypedProc_MidBoss m_typedProc;           // _10
+	JSUList<PSM::EnemyBoss> mEnemyBossList; // _04
+	TypedProc_MidBoss mTypedProc;           // _10
 };
 } // namespace BossBgmFader
 } // namespace PSM

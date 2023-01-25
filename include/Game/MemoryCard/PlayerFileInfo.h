@@ -26,7 +26,7 @@ struct PlayerFileInfo {
 	u8 isBrokenFile(int idx);
 	bool isNewFile(int idx);
 
-	Player m_players[3]; // _00
+	Player mPlayers[3]; // _00
 };
 } // namespace MemoryCard
 } // namespace Game

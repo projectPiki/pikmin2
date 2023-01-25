@@ -80,21 +80,21 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor
-	f32 _38;                        // _38
-	f32 _3C;                        // _3C
-	int _40;                        // _40
-	Matrixf* _44;                   // _44
-	Matrixf* _48;                   // _48
-	JUTFont* _4C;                   // _4C
-	JUTFont* m_jmeFont;             // _50
-	f32 _54;                        // _54
-	f32 _58;                        // _58
-	int _5C;                        // _5C
-	u32 _60;                        // _60
-	u8 m_colorData[0x14];           // _64
-	f32 _78;                        // _78
-	JGeometry::TBox2f m_mesgBounds; // _7C
-	u8 _8C[0x84];                   // _8C - padding/unknown/in ghidra
+	f32 _38;                       // _38
+	f32 _3C;                       // _3C
+	int _40;                       // _40
+	Matrixf* _44;                  // _44
+	Matrixf* _48;                  // _48
+	JUTFont* _4C;                  // _4C
+	JUTFont* mJmeFont;             // _50
+	f32 _54;                       // _54
+	f32 _58;                       // _58
+	int _5C;                       // _5C
+	u32 _60;                       // _60
+	u8 mColorData[0x14];           // _64
+	f32 _78;                       // _78
+	JGeometry::TBox2f mMesgBounds; // _7C
+	u8 _8C[0x84];                  // _8C - padding/unknown/in ghidra
 };
 } // namespace P2JME
 

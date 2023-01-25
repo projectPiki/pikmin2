@@ -90,7 +90,7 @@ struct EnemyTexMgr : public IconTexture::Mgr {
 
 	virtual ~EnemyTexMgr(); // _08 (weak)
 
-	IconTexture::Loader m_loader;
+	IconTexture::Loader mLoader;
 
 	// Unused/inlined:
 	unknown create(); // might be static?
@@ -100,24 +100,24 @@ struct CameraParms {
 	struct Parms : public Parameters {
 		Parms();
 
-		Parm<f32> m_radius;           // _0C, f000
-		Parm<f32> m_initialHeight;    // _34, f001
-		Parm<f32> m_minHeight;        // _5C, f002
-		Parm<f32> m_maxHeight;        // _84, f003
-		Parm<f32> m_offsetX;          // _AC, f004
-		Parm<f32> m_offsetY;          // _D4, f005
-		Parm<f32> m_offsetZ;          // _FC, f006
-		Parm<f32> m_initialViewAngle; // _124, f009
-		Parm<f32> m_minViewAngle;     // _14C, f007
-		Parm<f32> m_maxViewAngle;     // _174, f008
-		Parm<f32> m_initialRotation;  // _19C, f010
+		Parm<f32> mRadius;           // _0C, f000
+		Parm<f32> mInitialHeight;    // _34, f001
+		Parm<f32> mMinHeight;        // _5C, f002
+		Parm<f32> mMaxHeight;        // _84, f003
+		Parm<f32> mOffsetX;          // _AC, f004
+		Parm<f32> mOffsetY;          // _D4, f005
+		Parm<f32> mOffsetZ;          // _FC, f006
+		Parm<f32> mInitialViewAngle; // _124, f009
+		Parm<f32> mMinViewAngle;     // _14C, f007
+		Parm<f32> mMaxViewAngle;     // _174, f008
+		Parm<f32> mInitialRotation;  // _19C, f010
 	};
 
 	CameraParms();
 
 	virtual void read(Stream&); // _08
 
-	Parms m_parms; // _00
+	Parms mParms; // _00
 };
 
 struct ColorSetting : public CNode {
@@ -162,8 +162,8 @@ struct PositionParms : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Parms m_parms; // _18
-	u8 _A0[0x20];  // _A0, unknown
+	Parms mParms; // _18
+	u8 _A0[0x20]; // _A0, unknown
 };
 
 struct PositionParmsList : public CNode {
@@ -173,16 +173,16 @@ struct PositionParmsList : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	PositionParms m_parms[10]; // _18
+	PositionParms mParms[10]; // _18
 };
 
 struct EnemyParms : public CNode {
 	struct Parms : public Parameters {
 		inline Parms(); // probably
 
-		Parm<f32> m_f001; // _24
-		Parm<f32> m_f002; // _4C
-		Parm<int> m_i001; // _74
+		Parm<f32> mF001; // _24
+		Parm<f32> mF002; // _4C
+		Parm<int> mI001; // _74
 	};
 
 	EnemyParms();
@@ -192,10 +192,10 @@ struct EnemyParms : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Parms m_parms;                     // _18
-	u8 _A0[0x4];                       // _A0, unknown
-	CameraParms m_cameraParms;         // _A4
-	PositionParmsList* m_posParmsList; // _270
+	Parms mParms;                     // _18
+	u8 _A0[0x4];                      // _A0, unknown
+	CameraParms mCameraParms;         // _A4
+	PositionParmsList* mPosParmsList; // _270
 };
 
 struct EnemyModeParms : public CNode {
@@ -204,16 +204,16 @@ struct EnemyModeParms : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	EnemyParms m_enemyParms[102]; // _18, array of parms for each enemy, 0-101
+	EnemyParms mEnemyParms[102]; // _18, array of parms for each enemy, 0-101
 };
 
 struct ItemParms : public CNode {
 	struct Parms : public Parameters {
 		inline Parms(); // probably
 
-		Parm<f32> m_f000; // _24
-		Parm<f32> m_f001; // _4C
-		Parm<f32> m_f002; // _74
+		Parm<f32> mF000; // _24
+		Parm<f32> mF001; // _4C
+		Parm<f32> mF002; // _74
 	};
 
 	ItemParms();
@@ -223,11 +223,11 @@ struct ItemParms : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Parms m_parms;                     // _18
-	u8 _A0[0x4];                       // _A0, unknown
-	CameraParms m_cameraParms;         // _A4
-	PositionParmsList* m_posParmsList; // _270
-	int m_index;                       // _274
+	Parms mParms;                     // _18
+	u8 _A0[0x4];                      // _A0, unknown
+	CameraParms mCameraParms;         // _A4
+	PositionParmsList* mPosParmsList; // _270
+	int mIndex;                       // _274
 };
 
 struct ItemModeParms : public CNode {
@@ -236,8 +236,8 @@ struct ItemModeParms : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	ItemParms* m_itemParms; // _18, array of parms for each treasure
-	u32 m_itemCount;        // _1C, number of items in m_itemParms array
+	ItemParms* mItemParms; // _18, array of parms for each treasure
+	u32 mItemCount;        // _1C, number of items in mItemParms array
 };
 
 struct Parms : public CNode {
@@ -250,10 +250,10 @@ struct Parms : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	ColorSetting m_colorSetting;       // _18
-	PositionParmsList m_positionParms; // _78
-	EnemyModeParms m_enemyParms;       // _810
-	ItemModeParms m_itemParms;         // _10260
+	ColorSetting mColorSetting;       // _18
+	PositionParmsList mPositionParms; // _78
+	EnemyModeParms mEnemyParms;       // _810
+	ItemModeParms mItemParms;         // _10260
 };
 } // namespace IllustratedBook
 } // namespace Game

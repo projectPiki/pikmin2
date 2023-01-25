@@ -11,7 +11,7 @@ namespace Tyre {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "タイヤマネージャ"; // tire manager
+	mName = "タイヤマネージャ"; // tire manager
 }
 
 /*
@@ -37,10 +37,10 @@ void Mgr::loadModelData()
 {
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-		shape = m_modelData->m_shapeTable.m_items[j];
+	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		shape = mModelData->mShapeTable.mItems[j];
 		P2ASSERTLINE(56, shape != nullptr);
-		shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
 }
 

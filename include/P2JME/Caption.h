@@ -20,9 +20,9 @@ struct TControl : public P2JME::Window::TControl {
 
 	// _00     = VTBL
 	// _00-_5C = P2JME::Window::TControl
-	u32 _5C;        // _5C, unknown
-	u32 m_msgID[2]; // _60
-	u32 _68;        // _68, unknown
+	u32 _5C;       // _5C, unknown
+	u32 mMsgID[2]; // _60
+	u32 _68;       // _68, unknown
 };
 
 struct TRenderingProcessor : public P2JME::Window::TRenderingProcessor {

@@ -9,40 +9,40 @@ struct Pellet;
 
 struct ConditionNotStickClient : public Condition<Piki> {
 	inline ConditionNotStickClient(Creature* client)
-	    : m_client(client)
+	    : mClient(client)
 	{
 	}
 
 	virtual bool satisfy(Piki* piki) // _08 (weak)
 	{
-		if (piki->isAlive() && piki->isPikmin() && piki->m_sticker != m_client) {
+		if (piki->isAlive() && piki->isPikmin() && piki->mSticker != mClient) {
 			return true;
 		}
 		return false;
 	}
 
 	// _00 VTBL
-	Creature* m_client; // _04
+	Creature* mClient; // _04
 };
 
 struct ConditionNotStickClientAndItem : public Condition<Piki> {
 	inline ConditionNotStickClientAndItem(Creature* client, Creature* item)
-	    : m_client(client)
-	    , m_item(item)
+	    : mClient(client)
+	    , mItem(item)
 	{
 	}
 
 	virtual bool satisfy(Piki* piki) // _08 (weak)
 	{
-		if (piki->isAlive() && piki->isPikmin() && piki->m_sticker != m_client && (m_item == nullptr || piki->m_sticker != m_item)) {
+		if (piki->isAlive() && piki->isPikmin() && piki->mSticker != mClient && (mItem == nullptr || piki->mSticker != mItem)) {
 			return true;
 		}
 		return false;
 	}
 
 	// _00 VTBL
-	Creature* m_client; // _04, dweevil
-	Creature* m_item;   // _08, pellet
+	Creature* mClient; // _04, dweevil
+	Creature* mItem;   // _08, pellet
 };
 
 struct ConditionNotStickSlot : public Condition<Piki> {

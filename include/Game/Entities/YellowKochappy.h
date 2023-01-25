@@ -34,7 +34,7 @@ struct Mgr : public KochappyBase::Mgr {
 	virtual void loadTexData();         // _D0
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
-		return m_changeTexture;
+		return mChangeTexture;
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -42,18 +42,18 @@ struct Mgr : public KochappyBase::Mgr {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* m_changeTexture; // _44
-	Obj* m_obj;               // _48, array of Objs
+	ResTIMG* mChangeTexture; // _44
+	Obj* mObj;               // _48, array of Objs
 };
 
 } // namespace YellowKochappy

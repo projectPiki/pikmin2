@@ -18,23 +18,23 @@ namespace Screen {
 ObjWinLose::ObjWinLose()
 {
 	for (int i = 0; i < 2; i++) {
-		m_screenA[i]   = nullptr;
-		m_screenB[i]   = nullptr;
-		m_anim1[i]     = nullptr;
-		m_anim2[i]     = nullptr;
-		m_anim3[i]     = nullptr;
-		m_anim4[i]     = nullptr;
-		m_animTime4[i] = 0.0f;
-		m_animTime3[i] = 0.0f;
-		m_animTime2[i] = 0.0f;
-		m_animTime1[i] = 0.0f;
-		m_yOffset[i]   = 0.0f;
+		mScreenA[i]   = nullptr;
+		mScreenB[i]   = nullptr;
+		mAnim1[i]     = nullptr;
+		mAnim2[i]     = nullptr;
+		mAnim3[i]     = nullptr;
+		mAnim4[i]     = nullptr;
+		mAnimTime4[i] = 0.0f;
+		mAnimTime3[i] = 0.0f;
+		mAnimTime2[i] = 0.0f;
+		mAnimTime1[i] = 0.0f;
+		mYOffset[i]   = 0.0f;
 	}
 
-	m_doUpdateAnim = false;
-	m_frameTimer   = 0;
-	m_screenNum    = 2;
-	m_alpha        = 0;
+	mDoUpdateAnim = false;
+	mFrameTimer   = 0;
+	mScreenNum    = 2;
+	mAlpha        = 0;
 }
 
 /*
@@ -58,7 +58,7 @@ void ObjWinLose::doCreate(JKRArchive* arc)
 	}
 
 	DispWinLose* disp = static_cast<DispWinLose*>(getDispMember());
-	switch (disp->m_outcome) {
+	switch (disp->mOutcome) {
 	case WinPlayer1:
 		arg[0] = 0;
 		arg[1] = 1;
@@ -72,9 +72,9 @@ void ObjWinLose::doCreate(JKRArchive* arc)
 		arg[1] = 3;
 		break;
 	case Timeup1P: // time out 1p
-		arg[0]      = 2;
-		arg[1]      = -1;
-		m_screenNum = 1;
+		arg[0]     = 2;
+		arg[1]     = -1;
+		mScreenNum = 1;
 		break;
 	case Timeup2P: // time out 2p
 		arg[0] = 2;
@@ -82,45 +82,45 @@ void ObjWinLose::doCreate(JKRArchive* arc)
 		break;
 	}
 
-	for (int i = 0; i < m_screenNum; i++) {
-		if (disp->m_outcome != Draw) {
-			m_screenA[i] = new P2DScreen::Mgr_tuning;
-			m_screenA[i]->set(winLoseList[arg[i]][0], 0x40000, arc);
+	for (int i = 0; i < mScreenNum; i++) {
+		if (disp->mOutcome != Draw) {
+			mScreenA[i] = new P2DScreen::Mgr_tuning;
+			mScreenA[i]->set(winLoseList[arg[i]][0], 0x40000, arc);
 
 			void* file = JKRFileLoader::getGlbResource(winLoseList[arg[i]][1], arc);
-			m_anim1[i] = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+			mAnim1[i]  = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
 
-			file       = JKRFileLoader::getGlbResource(winLoseList[arg[i]][2], arc);
-			m_anim3[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
-			m_screenA[i]->setAnimation(m_anim1[i]);
-			m_screenA[i]->setAnimation(m_anim3[i]);
+			file      = JKRFileLoader::getGlbResource(winLoseList[arg[i]][2], arc);
+			mAnim3[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+			mScreenA[i]->setAnimation(mAnim1[i]);
+			mScreenA[i]->setAnimation(mAnim3[i]);
 
 		} else {
-			m_doUpdateAnim = true;
+			mDoUpdateAnim = true;
 		}
 
-		m_screenB[i] = new P2DScreen::Mgr_tuning;
-		m_screenB[i]->set(drawList[arg[i]][0], 0x40000, arc);
+		mScreenB[i] = new P2DScreen::Mgr_tuning;
+		mScreenB[i]->set(drawList[arg[i]][0], 0x40000, arc);
 
 		void* file = JKRFileLoader::getGlbResource(drawList[arg[i]][1], arc);
-		m_anim2[i] = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+		mAnim2[i]  = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
 
-		file       = JKRFileLoader::getGlbResource(drawList[arg[i]][2], arc);
-		m_anim4[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
-		m_screenB[i]->setAnimation(m_anim2[i]);
-		m_screenB[i]->setAnimation(m_anim4[i]);
+		file      = JKRFileLoader::getGlbResource(drawList[arg[i]][2], arc);
+		mAnim4[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+		mScreenB[i]->setAnimation(mAnim2[i]);
+		mScreenB[i]->setAnimation(mAnim4[i]);
 
-		setInfAlpha(m_screenB[i]->search('ROOT'));
-		m_screenB[i]->search('ROOT')->setAlpha(m_alpha);
+		setInfAlpha(mScreenB[i]->search('ROOT'));
+		mScreenB[i]->search('ROOT')->setAlpha(mAlpha);
 	}
 
-	if (m_screenNum == 2) {
-		m_yOffset[0] = msVal.m_yOffsetP1;
-		m_yOffset[1] = msVal.m_yOffsetP2;
+	if (mScreenNum == 2) {
+		mYOffset[0] = msVal.mYOffsetP1;
+		mYOffset[1] = msVal.mYOffsetP2;
 	}
 
 	getOwner()->setColorBG(0, 0, 0, 160);
-	switch (disp->m_outcome) {
+	switch (disp->mOutcome) {
 	case Timeup1P:
 	case Timeup2P:
 		PSStartChallengeTimeUpStream();
@@ -142,13 +142,13 @@ bool ObjWinLose::doUpdate() { return updateAnimation(); }
  */
 void ObjWinLose::doDraw(Graphics& gfx)
 {
-	gfx.m_orthoGraph.setPort();
+	gfx.mOrthoGraph.setPort();
 
-	for (int i = 0; i < m_screenNum; i++) {
-		if (m_screenA[i])
-			m_screenA[i]->draw(gfx, gfx.m_orthoGraph);
+	for (int i = 0; i < mScreenNum; i++) {
+		if (mScreenA[i])
+			mScreenA[i]->draw(gfx, gfx.mOrthoGraph);
 
-		m_screenB[i]->draw(gfx, gfx.m_orthoGraph);
+		mScreenB[i]->draw(gfx, gfx.mOrthoGraph);
 	}
 }
 
@@ -159,45 +159,45 @@ void ObjWinLose::doDraw(Graphics& gfx)
  */
 bool ObjWinLose::updateAnimation()
 {
-	for (int i = 0; i < m_screenNum; i++) {
-		if (m_screenA[i]) {
-			m_anim1[i]->m_currentFrame = m_animTime1[i];
-			m_anim3[i]->m_currentFrame = m_animTime3[i];
-			m_screenA[i]->animation();
-			m_animTime1[i] += msVal.m_animSpeed;
-			m_animTime3[i] += msVal.m_animSpeed;
+	for (int i = 0; i < mScreenNum; i++) {
+		if (mScreenA[i]) {
+			mAnim1[i]->mCurrentFrame = mAnimTime1[i];
+			mAnim3[i]->mCurrentFrame = mAnimTime3[i];
+			mScreenA[i]->animation();
+			mAnimTime1[i] += msVal.mAnimSpeed;
+			mAnimTime3[i] += msVal.mAnimSpeed;
 
-			if (m_animTime1[i] >= msVal.m_duration) {
-				m_doUpdateAnim = true;
+			if (mAnimTime1[i] >= msVal.mDuration) {
+				mDoUpdateAnim = true;
 			}
 
-			if (m_animTime1[i] >= m_anim1[i]->m_maxFrame || m_animTime3[i] >= m_anim3[i]->m_maxFrame) {
-				m_animTime3[i] = 0.0f;
-				m_animTime1[i] = 0.0f;
-				m_screenA[i]->hide();
+			if (mAnimTime1[i] >= mAnim1[i]->mMaxFrame || mAnimTime3[i] >= mAnim3[i]->mMaxFrame) {
+				mAnimTime3[i] = 0.0f;
+				mAnimTime1[i] = 0.0f;
+				mScreenA[i]->hide();
 			}
-			m_screenA[i]->search('ROOT')->add(0.0f, m_yOffset[i]);
+			mScreenA[i]->search('ROOT')->add(0.0f, mYOffset[i]);
 		}
 
-		if (m_doUpdateAnim) {
-			m_anim2[i]->m_currentFrame = m_animTime2[i];
-			m_anim4[i]->m_currentFrame = m_animTime4[i];
-			m_screenB[i]->animation();
-			m_animTime2[i] += 1.0f;
-			m_animTime4[i] += 1.0f;
+		if (mDoUpdateAnim) {
+			mAnim2[i]->mCurrentFrame = mAnimTime2[i];
+			mAnim4[i]->mCurrentFrame = mAnimTime4[i];
+			mScreenB[i]->animation();
+			mAnimTime2[i] += 1.0f;
+			mAnimTime4[i] += 1.0f;
 
-			if (m_animTime2[i] >= m_anim2[i]->m_maxFrame) {
-				m_animTime2[i] = 0.0f;
+			if (mAnimTime2[i] >= mAnim2[i]->mMaxFrame) {
+				mAnimTime2[i] = 0.0f;
 			}
-			if (m_animTime4[i] >= m_anim4[i]->m_maxFrame) {
-				m_animTime4[i] = 0.0f;
+			if (mAnimTime4[i] >= mAnim4[i]->mMaxFrame) {
+				mAnimTime4[i] = 0.0f;
 			}
-			m_screenB[i]->search('ROOT')->setOffset(0.0f, m_yOffset[i]);
-			m_screenB[i]->search('ROOT')->setAlpha(m_alpha);
-			if (m_alpha < 255 - msVal.m_alphaInc) {
-				m_alpha += msVal.m_alphaInc;
+			mScreenB[i]->search('ROOT')->setOffset(0.0f, mYOffset[i]);
+			mScreenB[i]->search('ROOT')->setAlpha(mAlpha);
+			if (mAlpha < 255 - msVal.mAlphaInc) {
+				mAlpha += msVal.mAlphaInc;
 			} else {
-				m_alpha = 255;
+				mAlpha = 255;
 			}
 		}
 	}
@@ -207,13 +207,13 @@ bool ObjWinLose::updateAnimation()
 	}
 
 	DispWinLose* disp = static_cast<DispWinLose*>(getDispMember());
-	int old           = m_frameTimer + 1;
-	m_frameTimer      = old;
-	if (old > msVal.m_endBGMFrame) {
+	int old           = mFrameTimer + 1;
+	mFrameTimer       = old;
+	if (old > msVal.mEndBGMFrame) {
 		disp->_0C = 3;
 		PSStop2DStream();
 		PSMuteOffSE_on2D();
-	} else if (m_frameTimer > msVal.m_finishFrame) {
+	} else if (mFrameTimer > msVal.mFinishFrame) {
 		disp->_0C = 2;
 	}
 	return false;

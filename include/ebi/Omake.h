@@ -78,16 +78,16 @@ struct TMgr {
 	void start();
 	void update();
 
-	Controller* m_controller;              // _000
-	u8 _004[4];                            // _004
-	ebi::Screen::TOmake m_omake;           // _008
-	ebi::Screen::TOmakeCardE m_omakeCardE; // _468
-	u8 _5D8[4];                            // _5D8
-	ebi::Screen::TOmakeGame m_omakeGame;   // _5DC
-	u8 _890;                               // _890
-	u32 _894;                              // _894
-	u32 _898;                              // _898
-	FSMStateMachine m_stateMachine;        // _89C
+	Controller* mController;              // _000
+	u8 _004[4];                           // _004
+	ebi::Screen::TOmake mOmake;           // _008
+	ebi::Screen::TOmakeCardE mOmakeCardE; // _468
+	u8 _5D8[4];                           // _5D8
+	ebi::Screen::TOmakeGame mOmakeGame;   // _5DC
+	u8 _890;                              // _890
+	u32 _894;                             // _894
+	u32 _898;                             // _898
+	FSMStateMachine mStateMachine;        // _89C
 	u32 _8B8;
 };
 } // namespace Omake

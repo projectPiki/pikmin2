@@ -12,7 +12,7 @@ struct TResourceObserver : public JKRDisposer {
 
 	// _00 = VTBL
 	// _00-_18 = JKRDisposer
-	TMemoryCard* m_owner; // _18
+	TMemoryCard* mOwner; // _18
 };
 } // namespace Screen
 } // namespace ebi

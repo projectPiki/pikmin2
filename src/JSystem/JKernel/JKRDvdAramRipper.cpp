@@ -505,7 +505,7 @@ bool JKRDvdAramRipper::syncAram(JKRADCommand* command, int p2)
 	if (command->_50 != nullptr) {
 		delete command->_50;
 	}
-	delete file->m_inputStream;
+	delete file->mInputStream;
 	file->_50 = nullptr;
 	OSUnlockMutex(&file->_34);
 	return true;

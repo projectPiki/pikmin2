@@ -20,10 +20,10 @@ Save::Save() { }
  */
 void Save::doUserCallBackFunc(Resource::MgrCommand*)
 {
-	m_saveMgr = ebi::Save::TMgr::createInstance();
+	mSaveMgr = ebi::Save::TMgr::createInstance();
 
 	ebi::Save::TMgr* saveMgr = getSaveMgr();
-	saveMgr->m_saveMenu.loadResource();
+	saveMgr->mSaveMenu.loadResource();
 	saveMgr->doLoadResource(JKRHeap::sCurrentHeap);
 
 	doCreateObjUserCallBackFunc(nullptr);
@@ -43,8 +43,8 @@ void Save::doCreateObj(JKRArchive*) { setColorBG(0, 0, 255, 255); }
  */
 void Save::doCreateObjUserCallBackFunc(JKRArchive* archive)
 {
-	ObjSave* obj   = new ObjSave("save menu");
-	obj->m_saveMgr = m_saveMgr;
+	ObjSave* obj  = new ObjSave("save menu");
+	obj->mSaveMgr = mSaveMgr;
 	registObj(obj, archive);
 }
 

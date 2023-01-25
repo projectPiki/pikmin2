@@ -12,10 +12,10 @@ namespace Screen {
 struct DispReadyGo : public og::Screen::DispMemberBase {
 	DispReadyGo()
 	{
-		m_status       = 0;
-		m_is2Player    = false;
-		m_isFinalFloor = false;
-		m_gameType     = 0;
+		mStatus       = 0;
+		mIs2Player    = false;
+		mIsFinalFloor = false;
+		mGameType     = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispReadyGo); } // _08 (weak)
@@ -24,27 +24,27 @@ struct DispReadyGo : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int m_status;        // _08
-	bool m_is2Player;    // _0C
-	bool m_isFinalFloor; // _0D
-	int m_gameType;      // _10
+	int mStatus;        // _08
+	bool mIs2Player;    // _0C
+	bool mIsFinalFloor; // _0D
+	int mGameType;      // _10
 };
 
 struct ObjReadyGo : public ::Screen::ObjBase {
 	ObjReadyGo()
 	{
 		for (int i = 0; i < 2; i++) {
-			m_screen[i]    = nullptr;
-			m_anim1[i]     = nullptr;
-			m_anim2[i]     = nullptr;
-			m_animTime2[i] = 0.0f;
-			m_animTime1[i] = 0.0f;
-			m_yOffset[i]   = 0.0f;
-			m_makeEfx[i]   = false;
+			mScreen[i]    = nullptr;
+			mAnim1[i]     = nullptr;
+			mAnim2[i]     = nullptr;
+			mAnimTime2[i] = 0.0f;
+			mAnimTime1[i] = 0.0f;
+			mYOffset[i]   = 0.0f;
+			mMakeEfx[i]   = false;
 		}
-		m_screenNum      = 1;
-		m_isAnimComplete = false;
-		m_isOver         = false;
+		mScreenNum      = 1;
+		mIsAnimComplete = false;
+		mIsOver         = false;
 	}
 
 	virtual ~ObjReadyGo() { }           // _08 (weak)
@@ -59,33 +59,33 @@ struct ObjReadyGo : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	P2DScreen::Mgr_tuning* m_screen[2]; // _38
-	J2DAnmTransform* m_anim1[2];        // _40
-	J2DAnmColor* m_anim2[2];            // _48
-	f32 m_animTime1[2];                 // _50
-	f32 m_animTime2[2];                 // _58
-	f32 m_yOffset[2];                   // _60
-	u8 m_makeEfx[2];                    // _68
-	bool m_isAnimComplete;              // _6A
-	bool m_isOver;                      // _6B
-	int m_screenNum;                    // _6C
+	P2DScreen::Mgr_tuning* mScreen[2]; // _38
+	J2DAnmTransform* mAnim1[2];        // _40
+	J2DAnmColor* mAnim2[2];            // _48
+	f32 mAnimTime1[2];                 // _50
+	f32 mAnimTime2[2];                 // _58
+	f32 mYOffset[2];                   // _60
+	u8 mMakeEfx[2];                    // _68
+	bool mIsAnimComplete;              // _6A
+	bool mIsOver;                      // _6B
+	int mScreenNum;                    // _6C
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			m_yOffsetP1  = -120.0f;
-			m_yOffsetP2  = 120.0f;
-			m_animSpeed  = 0.7f;
-			m_efxOffsetX = -12.0f;
-			m_efxOffsetY = -22.0f;
+			mYOffsetP1  = -120.0f;
+			mYOffsetP2  = 120.0f;
+			mAnimSpeed  = 0.7f;
+			mEfxOffsetX = -12.0f;
+			mEfxOffsetY = -22.0f;
 		}
 
-		f32 m_animSpeed;  // _00
-		f32 m_yOffsetP1;  // _04
-		f32 m_yOffsetP2;  // _08
-		f32 m_efxOffsetX; // _0C
-		f32 m_efxOffsetY; // _10
-		f32 _14;          // _14
+		f32 mAnimSpeed;  // _00
+		f32 mYOffsetP1;  // _04
+		f32 mYOffsetP2;  // _08
+		f32 mEfxOffsetX; // _0C
+		f32 mEfxOffsetY; // _10
+		f32 _14;         // _14
 	} msVal;
 };
 

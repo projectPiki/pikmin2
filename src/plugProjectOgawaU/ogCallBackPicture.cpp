@@ -14,7 +14,7 @@ namespace Screen {
 CallBack_Picture::CallBack_Picture(P2DScreen::Mgr* mgr, u64 tag)
     : CallBack_Screen(mgr, tag)
 {
-	m_animGroup = nullptr;
+	mAnimGroup = nullptr;
 }
 
 /*
@@ -24,12 +24,12 @@ CallBack_Picture::CallBack_Picture(P2DScreen::Mgr* mgr, u64 tag)
  */
 void CallBack_Picture::update()
 {
-	if (m_partsScreen) {
-		if (m_animGroup) {
-			m_animGroup->update();
+	if (mPartsScreen) {
+		if (mAnimGroup) {
+			mAnimGroup->update();
 		}
-		m_partsScreen->animation();
-		m_partsScreen->update();
+		mPartsScreen->animation();
+		mPartsScreen->update();
 	}
 }
 
@@ -40,30 +40,30 @@ void CallBack_Picture::update()
  */
 void CallBack_Picture::draw(Graphics& gfx, J2DGrafContext& graf)
 {
-	if (m_partsScreen) {
-		J2DPane* pane = m_textBox;
-		m_pane->resize(pane->m_bounds.f.x - pane->m_bounds.i.x, pane->m_bounds.f.y - pane->m_bounds.i.y);
-		f32 scaleMod = m_scale;
-		Matrixf mtx  = m_textBox->m_globalMtx;
+	if (mPartsScreen) {
+		J2DPane* pane = mTextBox;
+		mPane->resize(pane->mBounds.f.x - pane->mBounds.i.x, pane->mBounds.f.y - pane->mBounds.i.y);
+		f32 scaleMod = mScale;
+		Matrixf mtx  = mTextBox->mGlobalMtx;
 		Matrixf scale;
-		PSMTXScale(scale.m_matrix.mtxView, scaleMod, scaleMod, 0.0f);
-		PSMTXConcat(mtx.m_matrix.mtxView, scale.m_matrix.mtxView, scale.m_matrix.mtxView);
+		PSMTXScale(scale.mMatrix.mtxView, scaleMod, scaleMod, 0.0f);
+		PSMTXConcat(mtx.mMatrix.mtxView, scale.mMatrix.mtxView, scale.mMatrix.mtxView);
 		Matrixf trans;
-		PSMTXTrans(trans.m_matrix.mtxView, m_xOffs, m_yOffs, 0.0f);
-		PSMTXConcat(scale.m_matrix.mtxView, trans.m_matrix.mtxView, mtx.m_matrix.mtxView);
-		PSMTXCopy(mtx.m_matrix.mtxView, m_textBox->m_positionMtx);
+		PSMTXTrans(trans.mMatrix.mtxView, mXOffs, mYOffs, 0.0f);
+		PSMTXConcat(scale.mMatrix.mtxView, trans.mMatrix.mtxView, mtx.mMatrix.mtxView);
+		PSMTXCopy(mtx.mMatrix.mtxView, mTextBox->mPositionMtx);
 
-		J2DPictureEx* pane1    = static_cast<J2DPictureEx*>(m_pane);
-		J2DPictureEx* pane2    = static_cast<J2DPictureEx*>(m_textBox);
+		J2DPictureEx* pane1    = static_cast<J2DPictureEx*>(mPane);
+		J2DPictureEx* pane2    = static_cast<J2DPictureEx*>(mTextBox);
 		JUtility::TColor color = pane1->getWhite();
 		pane2->setWhite(color);
 		color = pane1->getBlack();
 		pane2->setBlack(color);
-		pane2->m_cornerColors[0] = pane1->m_cornerColors[0];
-		pane2->m_cornerColors[1] = pane1->m_cornerColors[1];
-		pane2->m_cornerColors[2] = pane1->m_cornerColors[2];
-		pane2->m_cornerColors[3] = pane1->m_cornerColors[3];
-		m_partsScreen->draw(gfx, graf);
+		pane2->mCornerColors[0] = pane1->mCornerColors[0];
+		pane2->mCornerColors[1] = pane1->mCornerColors[1];
+		pane2->mCornerColors[2] = pane1->mCornerColors[2];
+		pane2->mCornerColors[3] = pane1->mCornerColors[3];
+		mPartsScreen->draw(gfx, graf);
 	}
 	/*
 stwu     r1, -0xd0(r1)
@@ -257,9 +257,9 @@ CallBack_Picture* setCallBack_Picture(JKRArchive* arc, char* name, u64 tag1, P2D
 	mgr->set(name, 0x40000, arc);
 	CallBack_Picture* pic = new CallBack_Picture(mgr, tag1);
 
-	J2DPane* pane     = TagSearch(screen, tag2);
-	pane->m_isVisible = false;
-	pic->m_textBox    = pane;
+	J2DPane* pane    = TagSearch(screen, tag2);
+	pane->mIsVisible = false;
+	pic->mTextBox    = pane;
 
 	screen->addCallBack(tag2, pic);
 
@@ -273,11 +273,11 @@ CallBack_Picture* setCallBack_Picture(JKRArchive* arc, char* name, u64 tag1, P2D
  */
 CallBack_Picture* setCallBack_3DStick(JKRArchive* arc, P2DScreen::Mgr* screen, u64 tag)
 {
-	CallBack_Picture* pic = setCallBack_Picture(arc, "tga_3d_anim_otah.blo", 'ota3dl', screen, tag);
+	CallBack_Picture* pic = setCallBack_Picture(arc, "tga_3d_animOtah.blo", 'ota3dl', screen, tag);
 	J2DScreen* scrn       = pic->getPartsScreen();
 	AnimGroup* anim       = new AnimGroup(1);
-	registAnimGroupScreen(anim, arc, scrn, "tga_3d_anim_otah.btp", 0.25);
-	pic->m_animGroup = anim;
+	registAnimGroupScreen(anim, arc, scrn, "tga_3d_animOtah.btp", 0.25);
+	pic->mAnimGroup = anim;
 	return pic;
 }
 
@@ -289,11 +289,11 @@ CallBack_Picture* setCallBack_3DStick(JKRArchive* arc, P2DScreen::Mgr* screen, u
  */
 CallBack_Picture* setCallBack_3DStickSmall(JKRArchive* arc, P2DScreen::Mgr* screen, u64 tag)
 {
-	CallBack_Picture* pic = setCallBack_Picture(arc, "tga_3d_anim_otah_32.blo", 'ota3ds', screen, tag);
+	CallBack_Picture* pic = setCallBack_Picture(arc, "tga_3d_animOtah_32.blo", 'ota3ds', screen, tag);
 	J2DScreen* scrn       = pic->getPartsScreen();
 	AnimGroup* anim       = new AnimGroup(1);
-	registAnimGroupScreen(anim, arc, scrn, "tga_3d_anim_otah_32.btp", 0.25f);
-	pic->m_animGroup = anim;
+	registAnimGroupScreen(anim, arc, scrn, "tga_3d_animOtah_32.btp", 0.25f);
+	pic->mAnimGroup = anim;
 	return pic;
 }
 
@@ -304,8 +304,8 @@ CallBack_Picture* setCallBack_3DStickSmall(JKRArchive* arc, P2DScreen::Mgr* scre
  */
 StickAnimMgr::StickAnimMgr(og::Screen::CallBack_Picture* pic)
 {
-	m_callBackPicture = pic;
-	m_state           = STICKANIM_Disabled;
+	mCallBackPicture = pic;
+	mState           = STICKANIM_Disabled;
 }
 
 /*
@@ -316,7 +316,7 @@ StickAnimMgr::StickAnimMgr(og::Screen::CallBack_Picture* pic)
 void StickAnimMgr::stickStop()
 {
 	// this absolutely was more involved originally, but this is just to fix the float ordering
-	m_callBackPicture->m_animGroup->reservAnim(21.0f, 0.0f, 40.0f);
+	mCallBackPicture->mAnimGroup->reservAnim(21.0f, 0.0f, 40.0f);
 }
 
 /*
@@ -326,10 +326,10 @@ void StickAnimMgr::stickStop()
  */
 void StickAnimMgr::stickUp()
 {
-	if ((int)m_state != STICKANIM_Up) {
-		AnimGroup* anim = m_callBackPicture->m_animGroup;
+	if ((int)mState != STICKANIM_Up) {
+		AnimGroup* anim = mCallBackPicture->mAnimGroup;
 		f32 frame       = anim->getFrame();
-		switch (m_state) {
+		switch (mState) {
 		case STICKANIM_Down:
 			anim->reservAnim(20.0f, 21.0f, 40.0f);
 			break;
@@ -349,7 +349,7 @@ void StickAnimMgr::stickUp()
 			anim->start();
 			break;
 		}
-		m_state = STICKANIM_Up;
+		mState = STICKANIM_Up;
 	}
 }
 
@@ -360,10 +360,10 @@ void StickAnimMgr::stickUp()
  */
 void StickAnimMgr::stickDown()
 {
-	if ((int)m_state != STICKANIM_Down) {
-		AnimGroup* anim = m_callBackPicture->m_animGroup;
+	if ((int)mState != STICKANIM_Down) {
+		AnimGroup* anim = mCallBackPicture->mAnimGroup;
 		f32 frame       = anim->getFrame();
-		switch (m_state) {
+		switch (mState) {
 		case STICKANIM_Up:
 			anim->reservAnim(40.0f, 0.0f, 20.0f);
 			break;
@@ -383,7 +383,7 @@ void StickAnimMgr::stickDown()
 			anim->start();
 			break;
 		}
-		m_state = STICKANIM_Down;
+		mState = STICKANIM_Down;
 	}
 }
 
@@ -394,11 +394,11 @@ void StickAnimMgr::stickDown()
  */
 void StickAnimMgr::stickUpDown()
 {
-	if ((int)m_state != STICKANIM_UpDown) {
-		AnimGroup* anim = m_callBackPicture->m_animGroup;
+	if ((int)mState != STICKANIM_UpDown) {
+		AnimGroup* anim = mCallBackPicture->mAnimGroup;
 		anim->getFrame();
-		f32 frame = m_callBackPicture->m_animGroup->getLastFrame();
-		switch (m_state) {
+		f32 frame = mCallBackPicture->mAnimGroup->getLastFrame();
+		switch (mState) {
 		case STICKANIM_Up:
 			anim->reservAnim(40.0f, 0.0f, frame);
 			break;
@@ -410,7 +410,7 @@ void StickAnimMgr::stickUpDown()
 			anim->start();
 			break;
 		}
-		m_state = STICKANIM_UpDown;
+		mState = STICKANIM_UpDown;
 	}
 }
 

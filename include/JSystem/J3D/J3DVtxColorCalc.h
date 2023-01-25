@@ -10,11 +10,11 @@ struct J3DVtxColorCalc {
 
 	void calc(struct J3DModel*);
 
-	inline bool checkFlag(u32 flag) { return m_flag & flag; }
+	inline bool checkFlag(u32 flag) { return mFlag & flag; }
 
 	// _00 VTBL
-	u32 m_flag;                    // _04
-	J3DAnmVtxColor* m_AnmVtxColor; // _08
+	u32 mFlag;                    // _04
+	J3DAnmVtxColor* mAnmVtxColor; // _08
 };
 
 #endif

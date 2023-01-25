@@ -30,9 +30,9 @@ bool Navi::stimulate(Game::Interaction& interaction)
  */
 bool InteractSarai::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->m_flags & GAMESYS_Unk6) {
+	if (!gameSystem || gameSystem->mFlags & GAMESYS_Unk6) {
 		if (!navi->isStickTo()) {
-			navi->startStick(m_creature, m_collPart);
+			navi->startStick(mCreature, mCollPart);
 			navi->transit(NSID_Sarai, nullptr);
 		}
 
@@ -47,11 +47,11 @@ bool InteractSarai::actNavi(Game::Navi* navi)
  */
 bool InteractBomb::actNavi(Game::Navi* navi)
 {
-	if ((gameSystem->m_flags & GAMESYS_Unk6) == FALSE) {
+	if ((gameSystem->mFlags & GAMESYS_Unk6) == FALSE) {
 		return false;
 	}
 
-	NaviFlickArg flickArg(m_creature, m_direction, m_damage);
+	NaviFlickArg flickArg(mCreature, mDirection, mDamage);
 	navi->transit(NSID_Flick, &flickArg);
 	return true;
 }
@@ -68,13 +68,13 @@ bool InteractWind::actNavi(Game::Navi* navi)
 		return false;
 	}
 
-	NaviFlickArg flickArg(m_creature, m_direction, m_damage);
+	NaviFlickArg flickArg(mCreature, mDirection, mDamage);
 
-	if (navi->m_currentState->m_id == NSID_Flick && ((NaviFlickState*)navi->m_currentState)->m_flicker == m_creature) {
+	if (navi->mCurrentState->mId == NSID_Flick && ((NaviFlickState*)navi->mCurrentState)->mFlicker == mCreature) {
 		return false;
 	}
 
-	if (navi->m_currentState->m_id == NSID_KokeDamage && ((NaviKokeDamageState*)navi->m_currentState)->m_creature == m_creature) {
+	if (navi->mCurrentState->mId == NSID_KokeDamage && ((NaviKokeDamageState*)navi->mCurrentState)->mCreature == mCreature) {
 		return false;
 	}
 
@@ -89,9 +89,9 @@ bool InteractWind::actNavi(Game::Navi* navi)
  */
 bool InteractDenki::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->m_flags & 0x20) {
-		if (!playData->m_olimarData->hasItem(OlimarData::ODII_DreamMaterial)) {
-			NaviFlickArg flickArg(m_creature, m_direction, m_damage);
+	if (!gameSystem || gameSystem->mFlags & 0x20) {
+		if (!playData->mOlimarData->hasItem(OlimarData::ODII_DreamMaterial)) {
+			NaviFlickArg flickArg(mCreature, mDirection, mDamage);
 			navi->transit(NSID_Flick, &flickArg);
 			return true;
 		}
@@ -107,7 +107,7 @@ bool InteractDenki::actNavi(Game::Navi* navi)
  */
 bool InteractFallMeck::actNavi(Game::Navi* navi)
 {
-	NaviFallMeckArg fmArg(m_damage);
+	NaviFallMeckArg fmArg(mDamage);
 	navi->transit(NSID_FallMeck, &fmArg);
 	return true;
 }
@@ -119,12 +119,12 @@ bool InteractFallMeck::actNavi(Game::Navi* navi)
  */
 bool InteractFlick::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->m_flags & GAMESYS_Unk6) {
+	if (!gameSystem || gameSystem->mFlags & GAMESYS_Unk6) {
 		if (!playData->isDemoFlag(DEMO_Reunite_Captains)) {
 			return false;
 		}
 
-		f32 dir = m_angle;
+		f32 dir = mAngle;
 		if (dir < -10.0f) {
 			dir = navi->getFaceDir();
 		}
@@ -132,10 +132,10 @@ bool InteractFlick::actNavi(Game::Navi* navi)
 		f32 zRot = -pikmin2_cosf(dir);
 		f32 xRot = -pikmin2_sinf(dir);
 
-		f32 knockBack = (m_knockback * 0.1f) * randFloat() + m_knockback;
+		f32 knockBack = (mKnockback * 0.1f) * randFloat() + mKnockback;
 
 		Vector3f direction(xRot * knockBack, randFloat() * 50.0f + 100.0f, zRot * knockBack);
-		NaviFlickArg flickArg(m_creature, direction, m_intensity);
+		NaviFlickArg flickArg(mCreature, direction, mIntensity);
 		navi->transit(NSID_Flick, &flickArg);
 		return true;
 	}
@@ -148,17 +148,17 @@ bool InteractFlick::actNavi(Game::Navi* navi)
  */
 bool InteractPress::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->m_flags & GAMESYS_Unk6) {
+	if (!gameSystem || gameSystem->mFlags & GAMESYS_Unk6) {
 		bool alive = navi->isAlive();
 		if (!alive) {
 			return false;
 		}
 
-		NaviState* naviState = navi->m_currentState;
+		NaviState* naviState = navi->mCurrentState;
 
 		if (!naviState->invincible() && naviState->pressable()) {
-			navi->addDamage(m_damage, true);
-			navi->m_fsm->transit(navi, NSID_Pressed, nullptr);
+			navi->addDamage(mDamage, true);
+			navi->mFsm->transit(navi, NSID_Pressed, nullptr);
 		} else {
 			return false;
 		}
@@ -174,7 +174,7 @@ bool InteractPress::actNavi(Game::Navi* navi)
  */
 bool InteractFire::actNavi(Game::Navi* navi)
 {
-	if (playData->m_olimarData[0].hasItem(OlimarData::ODII_ForgedCourage)) {
+	if (playData->mOlimarData[0].hasItem(OlimarData::ODII_ForgedCourage)) {
 		return false;
 	}
 
@@ -186,8 +186,8 @@ bool InteractFire::actNavi(Game::Navi* navi)
 		return false;
 	}
 
-	navi->m_soundObj->startSound(PSSE_PL_ORIMA_FIRED, 0);
-	navi->startDamage(m_damage);
+	navi->mSoundObj->startSound(PSSE_PL_ORIMA_FIRED, 0);
+	navi->startDamage(mDamage);
 	return true;
 }
 
@@ -198,7 +198,7 @@ bool InteractFire::actNavi(Game::Navi* navi)
  */
 bool InteractBubble::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->m_flags & GAMESYS_Unk6) {
+	if (!gameSystem || gameSystem->mFlags & GAMESYS_Unk6) {
 		if (gameSystem && gameSystem->isVersusMode()) {
 			return false;
 		}
@@ -207,7 +207,7 @@ bool InteractBubble::actNavi(Game::Navi* navi)
 			return false;
 		}
 
-		navi->startDamage(m_damage);
+		navi->startDamage(mDamage);
 		return true;
 	}
 }
@@ -230,7 +230,7 @@ bool InteractBury::actNavi(Game::Navi* navi)
 		return false;
 	}
 
-	navi->startDamage(m_damage);
+	navi->startDamage(mDamage);
 	return true;
 }
 
@@ -242,13 +242,13 @@ bool InteractBury::actNavi(Game::Navi* navi)
  */
 bool InteractFue::actNavi(Game::Navi* navi)
 {
-	NaviState* naviState = navi->m_currentState;
+	NaviState* naviState = navi->mCurrentState;
 
 	if (!navi->isAlive()) {
 		return false;
 	}
 
-	if (navi->m_controller1) {
+	if (navi->mController1) {
 		return false;
 	}
 
@@ -256,7 +256,7 @@ bool InteractFue::actNavi(Game::Navi* navi)
 		return false;
 	}
 
-	if (!gameSystem->m_mode && !gameSystem->m_timeMgr->m_dayCount && !playData->isDemoFlag(DEMO_Reunite_Captains)) {
+	if (!gameSystem->mMode && !gameSystem->mTimeMgr->mDayCount && !playData->isDemoFlag(DEMO_Reunite_Captains)) {
 		return false;
 	}
 
@@ -265,10 +265,10 @@ bool InteractFue::actNavi(Game::Navi* navi)
 		followArg._00 = _09;
 		navi->transit(NSID_Follow, &followArg);
 
-		Navi* otherNavi = naviMgr->getAt(1 - navi->m_naviIndex);
+		Navi* otherNavi = naviMgr->getAt(1 - navi->mNaviIndex);
 		InteractFue fue(otherNavi, true, true);
 
-		Iterator<Creature> cellIt((Container<Creature>*)navi->m_cPlateMgr);
+		Iterator<Creature> cellIt((Container<Creature>*)navi->mCPlateMgr);
 
 		Creature* entities[110];
 
@@ -290,7 +290,7 @@ bool InteractFue::actNavi(Game::Navi* navi)
  */
 bool InteractKaisan::actNavi(Game::Navi* navi)
 {
-	if (navi->m_controller1) {
+	if (navi->mController1) {
 		return false;
 	}
 
@@ -317,11 +317,11 @@ bool InteractAttack::actNavi(Game::Navi* navi)
 		return false;
 	}
 
-	if (m_creature->isPiki()) {
-		m_damage = 0.0f;
+	if (mCreature->isPiki()) {
+		mDamage = 0.0f;
 	}
 
-	navi->startDamage(m_damage);
+	navi->startDamage(mDamage);
 	return true;
 }
 } // namespace Game

@@ -36,12 +36,12 @@ struct RandGateUnit {
 	MapNode* getRoomLowScoreDoor(int&);
 	MapNode* getRandomScoreDoor(int&);
 
-	MapUnitGenerator* m_generator; // _00
-	RandMapScore* m_mapScore;      // _04
-	RandItemUnit* m_itemUnit;      // _08
-	int m_gatePlacedCount;         // _0C
-	int m_gateMax;                 // _10
-	int m_gateWeightSum;           // _14
+	MapUnitGenerator* mGenerator; // _00
+	RandMapScore* mMapScore;      // _04
+	RandItemUnit* mItemUnit;      // _08
+	int mGatePlacedCount;         // _0C
+	int mGateMax;                 // _10
+	int mGateWeightSum;           // _14
 };
 
 /**
@@ -55,9 +55,9 @@ struct RandPlantUnit {
 	EnemyUnit* getPlantUnit(BaseGen*);
 	bool isPlantSet(MapNode*, BaseGen*);
 
-	MapUnitGenerator* m_generator; // _00
-	int m_currentPlantCount;       // _04
-	int m_desiredPlantCount;       // _08
+	MapUnitGenerator* mGenerator; // _00
+	int mCurrentPlantCount;       // _04
+	int mDesiredPlantCount;       // _08
 };
 
 /**
@@ -85,12 +85,12 @@ struct RandItemUnit {
 	Vector3f getItemBaseGenPosition(MapNode**, BaseGen**, int, int, int);
 	void getItemDropSortingList(MapNode**, BaseGen**, int*, int);
 
-	int m_items;                          // _00
-	int m_max;                            // _04
-	MapUnitGenerator* m_mapUnitGenerator; // _08
-	RandMapScore* m_randMapScore;         // _0C
-	MapNode** m_mapNode;                  // _10
-	BaseGen** m_baseGen;                  // _14
+	int mItems;                          // _00
+	int mMax;                            // _04
+	MapUnitGenerator* mMapUnitGenerator; // _08
+	RandMapScore* mRandMapScore;         // _0C
+	MapNode** mMapNode;                  // _10
+	BaseGen** mBaseGen;                  // _14
 };
 
 /**
@@ -104,10 +104,10 @@ struct RandCapEnemyUnit {
 	void setCapCommonEnemySlot(MapNode*, int);
 	void setCapEnemy(MapNode*, EnemyUnit*, int, int);
 
-	MapUnitGenerator* m_mapUnitGenerator; // _00
-	RandItemUnit* m_randItemUnit;         // _04
-	EnemyNode* m_enemyNode[2];            // _08
-	int m_perSpawn[2];                    // _10
+	MapUnitGenerator* mMapUnitGenerator; // _00
+	RandItemUnit* mRandItemUnit;         // _04
+	EnemyNode* mEnemyNode[2];            // _08
+	int mPerSpawn[2];                    // _10
 };
 
 /**
@@ -139,18 +139,18 @@ struct RandMapMgr : public CNode {
 	void getBaseGenData(Vector3f*, f32*);
 	void drawFrameBuffer(Graphics&);
 
-	MapUnitGenerator* m_mapUnitGenerator; // _18
-	RandMapUnit* m_randMapUnit;           // _1C
-	RandEnemyUnit* m_randEnemyUnit;       // _20
-	RandCapEnemyUnit* m_randCapEnemyUnit; // _24
-	RandPlantUnit* m_randPlantUnit;       // _28
-	RandGateUnit* m_randGateUnit;         // _2C
-	RandItemUnit* m_randItemUnit;         // _30
-	RandMapScore* m_randMapScore;         // _34
-	RandMapDraw* m_randMapDraw;           // _38
-	bool m_isCaptureOn;                   // _3C
-	JUTTexture* m_radarMapTexture;        // _40
-	bool m_isVersusHiba;                  // _44
+	MapUnitGenerator* mMapUnitGenerator; // _18
+	RandMapUnit* mRandMapUnit;           // _1C
+	RandEnemyUnit* mRandEnemyUnit;       // _20
+	RandCapEnemyUnit* mRandCapEnemyUnit; // _24
+	RandPlantUnit* mRandPlantUnit;       // _28
+	RandGateUnit* mRandGateUnit;         // _2C
+	RandItemUnit* mRandItemUnit;         // _30
+	RandMapScore* mRandMapScore;         // _34
+	RandMapDraw* mRandMapDraw;           // _38
+	bool mIsCaptureOn;                   // _3C
+	JUTTexture* mRadarMapTexture;        // _40
+	bool mIsVersusHiba;                  // _44
 };
 
 /**
@@ -162,7 +162,7 @@ struct RandMapDraw {
 	void radarMapPartsOpen(Vector3f& vec);
 	void draw(struct Graphics& gfx, f32 x, f32 y, f32 z);
 
-	MapUnitGenerator* m_generator; // _00
+	MapUnitGenerator* mGenerator; // _00
 };
 
 struct RandMapScore {
@@ -193,11 +193,11 @@ struct RandMapScore {
 	bool isGoalSetHard();
 	bool isFixObjSet(MapNode*, BaseGen*);
 
-	MapUnitGenerator* m_generator; // _00
-	MapNode** m_fixObjNodes;       // _04, array of 5 map nodes
-	BaseGen** m_fixObjGens;        // _08, array of 5 gens
-	u32 m_versusHighScore;         // _0C
-	u32 m_versusLowScore;          // _10
+	MapUnitGenerator* mGenerator; // _00
+	MapNode** mFixObjNodes;       // _04, array of 5 map nodes
+	BaseGen** mFixObjGens;        // _08, array of 5 gens
+	u32 mVersusHighScore;         // _0C
+	u32 mVersusLowScore;          // _10
 };
 
 // instantiated in Nishimura/MapCreator.cpp

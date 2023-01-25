@@ -8,7 +8,7 @@ namespace PSSystem {
 struct BankRandPrm {
 	BankRandPrm();
 
-	JASInstRand m_inst;
+	JASInstRand mInst;
 
 	static BankRandPrm* sInstance;
 };

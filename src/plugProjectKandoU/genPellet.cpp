@@ -18,15 +18,15 @@ namespace Game {
  */
 void GenPellet::initialise()
 {
-	if (GenObjectFactory::factory->m_count >= GenObjectFactory::factory->m_limit)
+	if (GenObjectFactory::factory->mCount >= GenObjectFactory::factory->mLimit)
 		return;
 
-	GenObjectFactoryFactory* obj                  = GenObjectFactory::factory;
-	obj->m_factories[obj->m_count].m_typeID       = 'pelt';
-	obj->m_factories[obj->m_count].m_makeFunction = (GenObjectFactory::MakeFunction*)makePellet;
-	obj->m_factories[obj->m_count].m_name         = "PELLET‚ð”­¶";
-	obj->m_factories[obj->m_count].m_version      = '0000';
-	obj->m_count++;
+	GenObjectFactoryFactory* obj               = GenObjectFactory::factory;
+	obj->mFactories[obj->mCount].mTypeID       = 'pelt';
+	obj->mFactories[obj->mCount].mMakeFunction = (GenObjectFactory::MakeFunction*)makePellet;
+	obj->mFactories[obj->mCount].mName         = "PELLET‚ð”­¶";
+	obj->mFactories[obj->mCount].mVersion      = '0000';
+	obj->mCount++;
 }
 
 /*
@@ -37,12 +37,12 @@ void GenPellet::initialise()
 void GenPellet::doEvent(u32 flag)
 {
 	// weird check?
-	if (flag == (int)&m_pelType) {
-		if (m_genParm) {
-			delete m_genParm;
+	if (flag == (int)&mPelType) {
+		if (mGenParm) {
+			delete mGenParm;
 		}
-		m_manager = pelletMgr->getMgrByID(m_pelType);
-		m_genParm = m_manager->generatorNewPelletParm();
+		mManager = pelletMgr->getMgrByID(mPelType);
+		mGenParm = mManager->generatorNewPelletParm();
 	}
 }
 
@@ -54,9 +54,9 @@ void GenPellet::doEvent(u32 flag)
 void GenPellet::generatorMakeMatrix(Matrixf& mtx, Vector3f& pos)
 {
 	f32 x, y, z;
-	y = m_rotation.y * DEG2RAD * PI;
-	z = m_rotation.z * DEG2RAD * PI;
-	x = m_rotation.x * DEG2RAD * PI;
+	y = mRotation.y * DEG2RAD * PI;
+	z = mRotation.z * DEG2RAD * PI;
+	x = mRotation.x * DEG2RAD * PI;
 
 	Vector3f ang(x, y, z);
 	mtx.makeTR(pos, ang);
@@ -69,8 +69,8 @@ void GenPellet::generatorMakeMatrix(Matrixf& mtx, Vector3f& pos)
  */
 J3DModelData* GenPellet::getShape()
 {
-	if (m_manager && m_genParm) {
-		return m_manager->generatorGetShape(m_genParm);
+	if (mManager && mGenParm) {
+		return mManager->generatorGetShape(mGenParm);
 	} else {
 		return nullptr;
 	}
@@ -83,24 +83,24 @@ J3DModelData* GenPellet::getShape()
  */
 void GenPellet::doWrite(Stream& data)
 {
-	if (m_manager) {
-		data.textBeginGroup(m_manager->getMgrName());
-		data.textWriteTab(data.m_tabCount);
-		data.writeByte(m_pelType);
+	if (mManager) {
+		data.textBeginGroup(mManager->getMgrName());
+		data.textWriteTab(data.mTabCount);
+		data.writeByte(mPelType);
 		data.textWriteText("\t# mgr id\r\n");
 
-		data.textWriteTab(data.m_tabCount);
-		data.writeFloat(m_rotation.x);
-		data.writeFloat(m_rotation.y);
-		data.writeFloat(m_rotation.z);
+		data.textWriteTab(data.mTabCount);
+		data.writeFloat(mRotation.x);
+		data.writeFloat(mRotation.y);
+		data.writeFloat(mRotation.z);
 		data.textWriteText("\t# rotation\r\n");
 
-		u32 temp = m_manager->generatorLocalVersion();
+		u32 temp = mManager->generatorLocalVersion();
 		ID32 id(temp);
 		id.write(data);
 		data.textWriteText("\t# pellet local version\r\n");
 
-		m_manager->generatorWrite(data, m_genParm);
+		mManager->generatorWrite(data, mGenParm);
 		data.textEndGroup();
 	}
 }
@@ -112,25 +112,25 @@ void GenPellet::doWrite(Stream& data)
  */
 void GenPellet::doRead(Stream& data)
 {
-	if (m_genParm) {
-		delete m_genParm;
-		m_genParm = nullptr;
+	if (mGenParm) {
+		delete mGenParm;
+		mGenParm = nullptr;
 	}
 
-	m_manager = nullptr;
-	m_pelType = data.readByte();
-	m_manager = pelletMgr->getMgrByID(m_pelType);
-	if (!m_manager || m_pelType == 255) {
-		JUT_PANICLINE(161, "no basePelletMgr for %d\n", m_pelType);
+	mManager = nullptr;
+	mPelType = data.readByte();
+	mManager = pelletMgr->getMgrByID(mPelType);
+	if (!mManager || mPelType == 255) {
+		JUT_PANICLINE(161, "no basePelletMgr for %d\n", mPelType);
 	}
-	m_genParm    = m_manager->generatorNewPelletParm();
-	m_rotation.x = data.readFloat();
-	m_rotation.y = data.readFloat();
-	m_rotation.z = data.readFloat();
+	mGenParm    = mManager->generatorNewPelletParm();
+	mRotation.x = data.readFloat();
+	mRotation.y = data.readFloat();
+	mRotation.z = data.readFloat();
 
 	ID32 id;
 	id.read(data);
-	m_manager->generatorRead(data, m_genParm, id.getID());
+	mManager->generatorRead(data, mGenParm, id.getID());
 }
 
 /*
@@ -154,9 +154,9 @@ void GenPellet::ramLoadParameters(Stream&) { }
  */
 void GenPellet::updateUseList(Generator*, int)
 {
-	m_manager = pelletMgr->getMgrByID(m_pelType);
-	m_manager->setUse(m_genParm->m_index);
-	m_manager->getPelletConfig(m_genParm->m_index);
+	mManager = pelletMgr->getMgrByID(mPelType);
+	mManager->setUse(mGenParm->mIndex);
+	mManager->getPelletConfig(mGenParm->mIndex);
 }
 
 /*
@@ -167,11 +167,11 @@ void GenPellet::updateUseList(Generator*, int)
 Creature* GenPellet::generate(Generator* gen)
 {
 	f32 y, z, x;
-	z = gen->m_position.z + gen->m_offset.z;
-	y = gen->m_position.y + gen->m_offset.y;
-	x = gen->m_position.x + gen->m_offset.x;
+	z = gen->mPosition.z + gen->mOffset.z;
+	y = gen->mPosition.y + gen->mOffset.y;
+	x = gen->mPosition.x + gen->mOffset.x;
 	GenArg arg;
-	arg.m_position = Vector3f(x, y, z);
+	arg.mPosition = Vector3f(x, y, z);
 	return birth(&arg);
 }
 
@@ -180,7 +180,7 @@ Creature* GenPellet::generate(Generator* gen)
  * Address:	80202D00
  * Size:	000040
  */
-void GenPellet::getDebugInfo(char* str) { sprintf(str, "mgr%d:%d", m_pelType, m_genParm->m_index); }
+void GenPellet::getDebugInfo(char* str) { sprintf(str, "mgr%d:%d", mPelType, mGenParm->mIndex); }
 
 /*
  * --INFO--
@@ -190,16 +190,16 @@ void GenPellet::getDebugInfo(char* str) { sprintf(str, "mgr%d:%d", m_pelType, m_
 Creature* GenPellet::birth(Game::GenArg* arg)
 {
 	Pellet* pelt = nullptr;
-	if (m_manager) {
-		Vector3f pos = arg->m_position;
+	if (mManager) {
+		Vector3f pos = arg->mPosition;
 		f32 x, y, z;
-		z = m_rotation.z * DEG2RAD * PI;
-		y = m_rotation.y * DEG2RAD * PI;
-		x = m_rotation.x * DEG2RAD * PI;
+		z = mRotation.z * DEG2RAD * PI;
+		y = mRotation.y * DEG2RAD * PI;
+		x = mRotation.x * DEG2RAD * PI;
 
 		Vector3f ang(x, y, z);
 
-		pelt = m_manager->generatorBirth(pos, ang, m_genParm);
+		pelt = mManager->generatorBirth(pos, ang, mGenParm);
 		if (pelt) {
 			pelt->allocateTexCaster();
 		} else {

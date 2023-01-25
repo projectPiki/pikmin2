@@ -22,7 +22,7 @@ struct CreatureAnime : public Creature, public JAIAnimeSound {
 	virtual void onCalcOn();                 // _18
 	virtual JAISound** getHandleArea(u8 idx) // _2C
 	{
-		return &m_sounds[idx];
+		return &mSounds[idx];
 	}
 	// vtable 3 (JAIAnimeSound + self, _28)
 	virtual JAISound* startSound(u32, u32);                            // _88

@@ -9,8 +9,8 @@ struct TKechappyTest;
 
 namespace EffectAnimator {
 struct KeyData {
-	f32 m_frame; // _00, probably
-	f32 m_scale; // _04, probably
+	f32 mFrame; // _00, probably
+	f32 mScale; // _04, probably
 };
 
 struct Obj : public CNode {
@@ -24,14 +24,14 @@ struct Obj : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	KeyData* m_data; // _18, array of length m_count
-	int m_count;     // _1C
+	KeyData* mData; // _18, array of length mCount
+	int mCount;     // _1C
 };
 
 struct ObjMgrData {
-	KeyData* m_vibrationData; // _00, array of KeyData
-	KeyData* m_bristleData;   // _04, array of KeyData
-	KeyData* m_lengthData;    // _08, array of KeyData
+	KeyData* mVibrationData; // _00, array of KeyData
+	KeyData* mBristleData;   // _04, array of KeyData
+	KeyData* mLengthData;    // _08, array of KeyData
 };
 
 struct ObjMgr {
@@ -40,7 +40,7 @@ struct ObjMgr {
 	void setup(ObjMgrData*);
 	void update(efx::TKechappyTest*, f32);
 
-	CNode m_nodes; // _00
+	CNode mNodes; // _00
 };
 
 struct Mgr {
@@ -49,7 +49,7 @@ struct Mgr {
 	void setup();
 	void update(efx::TKechappyTest*, int, f32);
 
-	ObjMgr** m_mgrs; // _00, array of 9 Mgrs
+	ObjMgr** mMgrs; // _00, array of 9 Mgrs
 };
 } // namespace EffectAnimator
 

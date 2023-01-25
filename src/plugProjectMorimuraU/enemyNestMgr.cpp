@@ -18,12 +18,12 @@ J2DGXColorS10 mMatColor;
 Mgr::Mgr(int p1, u8 p2)
     : EnemyMgrBase(p1, p2)
 {
-	m_houseModelData = nullptr;
-	m_name           = "巣マネージャ"; // 'nest manager'
-	mMatColor.a      = 0xFF;
-	mMatColor.b      = 0xFF;
-	mMatColor.g      = 0xFF;
-	mMatColor.r      = 0xFF;
+	mHouseModelData = nullptr;
+	mName           = "巣マネージャ"; // 'nest manager'
+	mMatColor.a     = 0xFF;
+	mMatColor.b     = 0xFF;
+	mMatColor.g     = 0xFF;
+	mMatColor.r     = 0xFF;
 }
 
 /*
@@ -50,28 +50,28 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 	void* enemyBMD = JKRFileLoader::getGlbResource("enemy.bmd", archive);
 
 	if (enemyBMD) {
-		m_modelData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
-		m_modelData->newSharedDisplayList(0x40000);
-		m_modelData->simpleCalcMaterial(0, j3dDefaultMtx);
-		m_modelData->makeSharedDL();
+		mModelData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
+		mModelData->newSharedDisplayList(0x40000);
+		mModelData->simpleCalcMaterial(0, j3dDefaultMtx);
+		mModelData->makeSharedDL();
 	}
 
 	LoadResource::ArgAramOnly loadArg("/enemy/data/JigumoHouse/model.szs");
 	LoadResource::Node* loadNode = gLoadResourceMgr->mountArchive(loadArg);
 
 	P2ASSERTLINE(73, loadNode);
-	JKRArchive* nodeArchive = loadNode->m_archive;
+	JKRArchive* nodeArchive = loadNode->mArchive;
 	P2ASSERTLINE(75, nodeArchive);
 
 	enemyBMD = JKRFileLoader::getGlbResource("enemy.bmd", nodeArchive);
 	if (enemyBMD) {
-		m_houseModelData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
-		m_houseModelData->newSharedDisplayList(0x40000);
-		m_houseModelData->simpleCalcMaterial(0, j3dDefaultMtx);
-		m_houseModelData->makeSharedDL();
+		mHouseModelData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
+		mHouseModelData->newSharedDisplayList(0x40000);
+		mHouseModelData->simpleCalcMaterial(0, j3dDefaultMtx);
+		mHouseModelData->makeSharedDL();
 	}
 
-	return m_modelData;
+	return mModelData;
 }
 
 /*
@@ -95,9 +95,9 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 
 		P2ASSERTLINE(111, nest);
 
-		f32 scaleMod = nest->m_scaleModifier;
+		f32 scaleMod = nest->mScaleModifier;
 		if (nest->isAlive() && nest->isCullingOff()) {
-			Vector3f homePos = nest->m_homePosition;
+			Vector3f homePos = nest->mHomePosition;
 			mtx1[0][0]       = scaleMod;
 			mtx1[1][1]       = scaleMod;
 			mtx1[2][2]       = scaleMod;
@@ -105,11 +105,11 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 			mtx1[1][3]       = homePos.y;
 			mtx1[2][3]       = homePos.z;
 
-			PSMTXConcat(viewport->getMatrix(true)->m_matrix.mtxView, mtx1, mtx2);
+			PSMTXConcat(viewport->getMatrix(true)->mMatrix.mtxView, mtx1, mtx2);
 			GXLoadPosMtxImm(mtx2, 0);
 			GXLoadNrmMtxImm(mtx2, 0);
 
-			J3DModelData* modelData = (nest->m_houseType) ? m_modelData : m_houseModelData;
+			J3DModelData* modelData = (nest->mHouseType) ? mModelData : mHouseModelData;
 			J3DJoint* joint         = modelData->getJointNodePointer(0);
 			P2ASSERTLINE(134, joint);
 
@@ -122,7 +122,7 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 			j3dSys.setVtxCol(vtxData->getVtxColorArray(0));
 			J3DShape::sOldVcdVatCmd = nullptr;
 			material->loadSharedDL();
-			material->m_shape->loadPreDrawSetting();
+			material->mShape->loadPreDrawSetting();
 			material->calc(mtx1);
 
 			color.a = nest->_2EE;
@@ -144,7 +144,7 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 			}
 			GXSetTevColorS10(GX_TEVREG0, color);
 
-			material->m_shape->simpleDrawCache();
+			material->mShape->simpleDrawCache();
 		}
 	}
 }
@@ -158,7 +158,7 @@ void Mgr::initObjects()
 {
 	char path[256];
 	if (isValidEnemyTypeID()) {
-		char* collisionFolder = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->m_collName;
+		char* collisionFolder = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->mCollName;
 		if (*collisionFolder == '\0') {
 			collisionFolder = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 		}
@@ -169,20 +169,20 @@ void Mgr::initObjects()
 		for (int i = 0; i < getMaxObjects(); i++) {
 			Obj* enemy = static_cast<Obj*>(getEnemy(i));
 			P2ASSERTLINE(201, enemy);
-			enemy->m_creatureID = i;
-			enemy->m_mgr        = this;
-			enemy->m_model      = model;
+			enemy->mCreatureID = i;
+			enemy->mMgr        = this;
+			enemy->mModel      = model;
 		}
 
-		m_collPartFactory = CollPartFactory::load(gParmArc, "JigumoHouse/enemyColl.txt");
-		P2ASSERTLINE(220, m_collPartFactory);
+		mCollPartFactory = CollPartFactory::load(gParmArc, "JigumoHouse/enemyColl.txt");
+		P2ASSERTLINE(220, mCollPartFactory);
 
 		for (int i = 0; i < getMaxObjects(); i++) {
 			Obj* enemy = static_cast<Obj*>(getEnemy(i));
 			P2ASSERTLINE(224, enemy);
-			enemy->m_collTree = new CollTree();
-			enemy->m_collTree->createFromFactory(model, m_collPartFactory, nullptr);
-			enemy->m_collTree->attachModel(model);
+			enemy->mCollTree = new CollTree();
+			enemy->mCollTree->createFromFactory(model, mCollPartFactory, nullptr);
+			enemy->mCollTree->attachModel(model);
 		}
 	}
 }

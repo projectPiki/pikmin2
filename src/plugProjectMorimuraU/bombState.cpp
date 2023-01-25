@@ -29,7 +29,7 @@ void FSM::init(EnemyBase*)
 StateWait::StateWait(int stateID)
     : State(stateID)
 {
-	m_name = "wait";
+	mName = "wait";
 }
 
 /*
@@ -54,7 +54,7 @@ void Bomb::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void Bomb::StateWait::exec(EnemyBase* enemy)
 {
 	Obj* bomb = static_cast<Obj*>(enemy);
-	if ((bomb->_2BC != 0) && (bomb->m_captureMatrix == nullptr)) {
+	if ((bomb->_2BC != 0) && (bomb->mCaptureMatrix == nullptr)) {
 		_10++;
 		if (_10 > 200) {
 			bomb->kill(nullptr);
@@ -62,8 +62,8 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 	}
 
 	if (!bomb->isStopMotion()) {
-		bomb->addDamage(sys->m_deltaTime, 1.0f);
-		bomb->m_soundObj->startSound(PSSE_EN_BOMB_LOOP, 0);
+		bomb->addDamage(sys->mDeltaTime, 1.0f);
+		bomb->mSoundObj->startSound(PSSE_EN_BOMB_LOOP, 0);
 	} else if (bomb->isAnimStart()) {
 		bomb->enableEvent(0, EB_IsEnemyNotBitter);
 		bomb->startMotion();
@@ -71,8 +71,8 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 		bomb->setEmotionExcitement();
 	}
 
-	if (bomb->m_curAnim->m_isPlaying != 0) {
-		switch (bomb->m_curAnim->m_type) {
+	if (bomb->mCurAnim->mIsPlaying != 0) {
+		switch (bomb->mCurAnim->mType) {
 		case 2:
 			bomb->disableEvent(0, EB_IsEnemyNotBitter);
 			break;
@@ -91,7 +91,7 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 StateBomb::StateBomb(int stateID)
     : State(stateID)
 {
-	m_name = "bomb";
+	mName = "bomb";
 }
 
 /*
@@ -114,10 +114,10 @@ void Bomb::StateBomb::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBomb::exec(EnemyBase* enemy)
 {
-	enemy->m_soundObj->startSound(PSSE_EN_BOMB_LOOP, 0);
-	enemy->addDamage(sys->m_deltaTime, 1.0f);
+	enemy->mSoundObj->startSound(PSSE_EN_BOMB_LOOP, 0);
+	enemy->addDamage(sys->mDeltaTime, 1.0f);
 
-	if (enemy->m_health <= 0.0f) {
+	if (enemy->mHealth <= 0.0f) {
 		_10++;
 		if (!(_10 < 10)) {
 			_10 = 0;
@@ -127,16 +127,16 @@ void StateBomb::exec(EnemyBase* enemy)
 			EnemyTypeID::EEnemyTypeID id = static_cast<Obj*>(enemy)->getEnemyTypeID();
 			efx::ArgEnemyType fxArg(effectPos, id, 1.0f);
 			efx::TBombrock bombEffect;
-			efx::TBombrockABCD* abcdPtr = &bombEffect.m_efxBombABCD;
-			efx::TBombrockEFGH* efghPtr = &bombEffect.m_efxBombEFGH;
+			efx::TBombrockABCD* abcdPtr = &bombEffect.mEfxBombABCD;
+			efx::TBombrockEFGH* efghPtr = &bombEffect.mEfxBombEFGH;
 
 			if (abcdPtr->create(&fxArg)) {
 				efghPtr->create(&fxArg);
 			}
-			static_cast<Obj*>(enemy)->m_efxLight->forceKill();
-			enemy->m_soundObj->startSound(PSSE_PK_SE_BOMB, 0);
+			static_cast<Obj*>(enemy)->mEfxLight->forceKill();
+			enemy->mSoundObj->startSound(PSSE_PK_SE_BOMB, 0);
 
-			if (enemy->m_waterBox) {
+			if (enemy->mWaterBox) {
 				static_cast<Obj*>(enemy)->bombEffInWater();
 			}
 
@@ -144,14 +144,14 @@ void StateBomb::exec(EnemyBase* enemy)
 			rumbleMgr->startRumble(15, effectPos, 2);
 
 			Vector3f position = enemy->getPosition();
-			Parms* parms      = static_cast<Parms*>(enemy->m_parms);
-			f32 offset        = parms->m_properParms.m_blastRangeHeight.m_value;
+			Parms* parms      = static_cast<Parms*>(enemy->mParms);
+			f32 offset        = parms->mProperParms.mBlastRangeHeight.mValue;
 			f32 max           = position.y + offset;
 			f32 min           = position.y - offset;
 
 			Sys::Sphere sphere;
-			sphere.m_position = Vector3f(position);
-			sphere.m_radius   = parms->m_general.m_attackRadius.m_value;
+			sphere.mPosition = Vector3f(position);
+			sphere.mRadius   = parms->mGeneral.mAttackRadius.mValue;
 			CellIteratorArg iteratorArg(sphere);
 			iteratorArg._14 = 1;
 
@@ -165,15 +165,15 @@ void StateBomb::exec(EnemyBase* enemy)
 						if (creature->isTeki()) {
 
 							f32 weight = 1.0f;
-							f32 force  = weight * CG_PROPERPARMS(enemy).m_damageToEnemies.m_value;
+							f32 force  = weight * CG_PROPERPARMS(enemy).mDamageToEnemies.mValue;
 							InteractBomb interBomb(enemy, force, &Vector3f::zero);
 
 							creature->stimulate(interBomb);
 
 						} else if (creature->isNavi() || creature->isPiki()) {
-							Creature* target = static_cast<Obj*>(enemy)->m_otakara;
+							Creature* target = static_cast<Obj*>(enemy)->mOtakara;
 
-							if (static_cast<Obj*>(enemy)->m_otakara == nullptr) {
+							if (static_cast<Obj*>(enemy)->mOtakara == nullptr) {
 								target = enemy;
 							}
 
@@ -186,7 +186,7 @@ void StateBomb::exec(EnemyBase* enemy)
 								pikiWeight = 200.0f;
 							}
 
-							f32 force = static_cast<Parms*>(enemy->m_parms)->m_general.m_attackDamage.m_value;
+							f32 force = static_cast<Parms*>(enemy->mParms)->mGeneral.mAttackDamage.mValue;
 							sep.x *= pikiWeight;
 							sep.y = pikiWeight;
 							sep.z *= pikiWeight;

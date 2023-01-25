@@ -126,20 +126,20 @@ J2DWindow::J2DWindow()
     , _104(nullptr)
     , _108(nullptr)
     , _10C(nullptr)
-    , m_contentsTexture(nullptr)
-    , m_palette(nullptr)
-    , m_contentsColorA()
-    , m_contentsColorB()
-    , m_contentsColorC()
-    , m_contentsColorD()
-    , m_white()
-    , m_black()
+    , mContentsTexture(nullptr)
+    , mPalette(nullptr)
+    , mContentsColorA()
+    , mContentsColorB()
+    , mContentsColorC()
+    , mContentsColorD()
+    , mWhite()
+    , mBlack()
     , _144(0)
 {
 	JUtility::TColor color = 0xFFFFFFFF;
 	setContentsColor(color, color, color, color);
-	m_black = 0;
-	m_white = 0xFFFFFFFF;
+	mBlack = 0;
+	mWhite = 0xFFFFFFFF;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -218,14 +218,14 @@ J2DWindow::J2DWindow(J2DPane* parent, JSURandomInputStream* input, JKRArchive* a
     , _104(nullptr)
     , _108(nullptr)
     , _10C(nullptr)
-    , m_contentsTexture(nullptr)
-    , m_palette(nullptr)
-    , m_contentsColorA()
-    , m_contentsColorB()
-    , m_contentsColorC()
-    , m_contentsColorD()
-    , m_white()
-    , m_black()
+    , mContentsTexture(nullptr)
+    , mPalette(nullptr)
+    , mContentsColorA()
+    , mContentsColorB()
+    , mContentsColorC()
+    , mContentsColorD()
+    , mWhite()
+    , mBlack()
 {
 	private_readStream(parent, input, archive);
 }
@@ -1152,8 +1152,8 @@ J2DWindow::~J2DWindow()
 	delete _104;
 	delete _108;
 	delete _10C;
-	delete m_palette;
-	delete m_contentsTexture;
+	delete mPalette;
+	delete mContentsTexture;
 }
 
 /*
@@ -1757,10 +1757,10 @@ lbl_80043C30:
  */
 void J2DWindow::setContentsColor(JUtility::TColor p1, JUtility::TColor p2, JUtility::TColor p3, JUtility::TColor p4)
 {
-	m_contentsColorA.set(p1);
-	m_contentsColorB.set(p2);
-	m_contentsColorC.set(p3);
-	m_contentsColorD.set(p4);
+	mContentsColorA.set(p1);
+	mContentsColorB.set(p2);
+	mContentsColorC.set(p3);
+	mContentsColorD.set(p4);
 }
 
 /*
@@ -1782,11 +1782,11 @@ void J2DWindow::drawSelf(float offsetX, float offsetY)
  */
 void J2DWindow::drawSelf(float offsetX, float offsetY, float (*p3)[3][4])
 {
-	JGeometry::TBox2f box = m_bounds;
+	JGeometry::TBox2f box = mBounds;
 	box.addPos(offsetX, offsetY);
 	if (_140 <= box.getWidth() && _142 <= box.getHeight()) {
 		Mtx v1;
-		PSMTXConcat(*p3, m_globalMtx, v1);
+		PSMTXConcat(*p3, mGlobalMtx, v1);
 		GXLoadPosMtxImm(v1, 0);
 		draw_private(box, _114);
 	}
@@ -2809,7 +2809,7 @@ JUTTexture* J2DWindow::getFrameTexture(unsigned char frameMaterialIndex, unsigne
  */
 bool J2DWindow::isUsed(const ResTIMG* resource)
 {
-	JUTTexture* textures[5] = { _100, _104, _108, _10C, m_contentsTexture };
+	JUTTexture* textures[5] = { _100, _104, _108, _10C, mContentsTexture };
 	for (u8 i = 0; i < 5; i++) {
 		if (textures[i] != nullptr && textures[i]->_20 == resource) {
 			return true;
@@ -2861,7 +2861,7 @@ void J2DWindow::draw(float, float, float, float)
  */
 // bool J2DWindow::setBlack(JUtility::TColor black)
 // {
-// 	m_black = black;
+// 	mBlack = black;
 // 	return true;
 // }
 
@@ -2872,7 +2872,7 @@ void J2DWindow::draw(float, float, float, float)
  */
 // bool J2DWindow::setWhite(JUtility::TColor white)
 // {
-// 	m_white = white;
+// 	mWhite = white;
 // 	return true;
 // }
 
@@ -2883,8 +2883,8 @@ void J2DWindow::draw(float, float, float, float)
  */
 // bool J2DWindow::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 // {
-// 	m_black = black;
-// 	m_white = white;
+// 	mBlack = black;
+// 	mWhite = white;
 // 	return true;
 // }
 
@@ -2893,21 +2893,21 @@ void J2DWindow::draw(float, float, float, float)
  * Address:	80044DB4
  * Size:	00000C
  */
-// JUtility::TColor J2DWindow::getBlack() const { return m_black; }
+// JUtility::TColor J2DWindow::getBlack() const { return mBlack; }
 
 /*
  * --INFO--
  * Address:	80044DC0
  * Size:	00000C
  */
-// JUtility::TColor J2DWindow::getWhite() const { return m_white; }
+// JUtility::TColor J2DWindow::getWhite() const { return mWhite; }
 
 /*
  * --INFO--
  * Address:	80044DCC
  * Size:	000018
  */
-// JUTTexture* J2DWindow::getContentsTexture(unsigned char textureIndex) const { return (textureIndex != 0) ? nullptr : m_contentsTexture; }
+// JUTTexture* J2DWindow::getContentsTexture(unsigned char textureIndex) const { return (textureIndex != 0) ? nullptr : mContentsTexture; }
 
 /*
  * --INFO--

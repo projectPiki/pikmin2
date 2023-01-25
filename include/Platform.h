@@ -23,7 +23,7 @@ struct Platform : CNode {
 	void read(Stream&);
 	void load(char*);
 
-	Sys::OBBTree* m_triDivider; // _18
+	Sys::OBBTree* mTriDivider; // _18
 };
 
 #endif

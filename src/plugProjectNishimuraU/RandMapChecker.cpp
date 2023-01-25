@@ -11,7 +11,7 @@ namespace Cave {
  * Size:	000008
  * Matches!
  */
-RandMapChecker::RandMapChecker(MapNode* mapnode) { m_mapNode = mapnode; }
+RandMapChecker::RandMapChecker(MapNode* mapnode) { mMapNode = mapnode; }
 
 /*
  * --INFO--
@@ -44,15 +44,15 @@ bool RandMapChecker::isPartsOnParts(MapNode* mapnode)
 
 	outerX1 = mapnode->getNodeOffsetX();
 	outerY1 = mapnode->getNodeOffsetY();
-	outerX2 = outerX1 + mapnode->m_unitInfo->getUnitSizeX();
-	outerY2 = outerY1 + mapnode->m_unitInfo->getUnitSizeY();
+	outerX2 = outerX1 + mapnode->mUnitInfo->getUnitSizeX();
+	outerY2 = outerY1 + mapnode->mUnitInfo->getUnitSizeY();
 
-	for (CNode* node = m_mapNode->m_child; node != nullptr; node = node->m_next) {
+	for (CNode* node = mMapNode->mChild; node != nullptr; node = node->mNext) {
 		MapNode* nextMapNode = (MapNode*)node;
 		innerX1              = nextMapNode->getNodeOffsetX();
 		innerY1              = nextMapNode->getNodeOffsetY();
-		innerX2              = innerX1 + nextMapNode->m_unitInfo->getUnitSizeX();
-		innerY2              = innerY1 + nextMapNode->m_unitInfo->getUnitSizeY();
+		innerX2              = innerX1 + nextMapNode->mUnitInfo->getUnitSizeX();
+		innerY2              = innerY1 + nextMapNode->mUnitInfo->getUnitSizeY();
 
 		if (isInnerBox(outerX1, outerY1, outerX2, outerY2, innerX1, innerY1, innerX2, innerY2))
 			return true;
@@ -80,7 +80,7 @@ bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 		bool b_flag = false;
 		mapnode->getDoorOffset(doorIndex, outerX1, outerY1);
 
-		for (CNode* node = m_mapNode->m_child; node != nullptr; node = node->m_next) {
+		for (CNode* node = mMapNode->mChild; node != nullptr; node = node->mNext) {
 			MapNode* mapNode = (MapNode*)node;
 
 			int doorCount2 = mapNode->getNumDoors();
@@ -110,13 +110,13 @@ bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 			outerX2 = outerX1 + 1;
 			outerY2 = outerY1 + 1;
 
-			for (CNode* node = m_mapNode->m_child; node != nullptr; node = node->m_next) {
+			for (CNode* node = mMapNode->mChild; node != nullptr; node = node->mNext) {
 				MapNode* mapNode = (MapNode*)node;
 
 				innerX1 = mapNode->getNodeOffsetX();
 				innerY1 = mapNode->getNodeOffsetY();
-				innerX2 = innerX1 + mapNode->m_unitInfo->getUnitSizeX();
-				innerY2 = innerY1 + mapNode->m_unitInfo->getUnitSizeY();
+				innerX2 = innerX1 + mapNode->mUnitInfo->getUnitSizeX();
+				innerY2 = innerY1 + mapNode->mUnitInfo->getUnitSizeY();
 
 				if (isInnerBox(outerX1, outerY1, outerX2, outerY2, innerX1, innerY1, innerX2, innerY2))
 					return true;
@@ -140,10 +140,10 @@ bool RandMapChecker::isPartsOnDoor(MapNode* mapnode)
 
 	outerX1 = mapnode->getNodeOffsetX();
 	outerY1 = mapnode->getNodeOffsetY();
-	outerX2 = outerX1 + mapnode->m_unitInfo->getUnitSizeX();
-	outerY2 = outerY1 + mapnode->m_unitInfo->getUnitSizeY();
+	outerX2 = outerX1 + mapnode->mUnitInfo->getUnitSizeX();
+	outerY2 = outerY1 + mapnode->mUnitInfo->getUnitSizeY();
 
-	for (CNode* node = m_mapNode->m_child; node != nullptr; node = node->m_next) {
+	for (CNode* node = mMapNode->mChild; node != nullptr; node = node->mNext) {
 		MapNode* child = (MapNode*)node;
 
 		int doorCount1 = child->getNumDoors();

@@ -71,17 +71,17 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                 // _2BC
-	u8 _2C0;                    // _2C0, guess based on Ujia/b
-	bool m_isUnderground;       // _2C1, guess based on Ujia/b
-	u16 _2C2;                   // _2C2, guess based on Ujia/b
-	int _2C4;                   // _2C4
-	MouthSlots m_mouthSlots;    // _2C8
-	Vector3f _2D0;              // _2D0
-	ItemBridge::Item* m_bridge; // _2DC, guess based on Ujia/b
-	f32 _2E0;                   // _2E0, guess based on Ujia/b
-	f32 _2E4;                   // _2E4, guess based on Ujia/b
-	                            // _2E8 = PelletView
+	FSM* mFsm;                 // _2BC
+	u8 _2C0;                   // _2C0, guess based on Ujia/b
+	bool mIsUnderground;       // _2C1, guess based on Ujia/b
+	u16 _2C2;                  // _2C2, guess based on Ujia/b
+	int _2C4;                  // _2C4
+	MouthSlots mMouthSlots;    // _2C8
+	Vector3f _2D0;             // _2D0
+	ItemBridge::Item* mBridge; // _2DC, guess based on Ujia/b
+	f32 _2E0;                  // _2E0, guess based on Ujia/b
+	f32 _2E4;                  // _2E4, guess based on Ujia/b
+	                           // _2E8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -98,26 +98,26 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, likely an array of Objs
+	Obj* mObj; // _44, likely an array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "離陸ライフ", 0.5f, 0.0f, 1.0f)               // 'takeoff life'
-		    , m_fp02(this, 'fp02', "着陸ライフ", 0.7f, 0.0f, 1.0f)               // 'landing life'
-		    , m_fp03(this, 'fp03', "飛行オフセット", 60.0f, 0.0f, 300.0f)        // 'flight offset'
-		    , m_poisonDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , m_bridgeDamage(this, 'fp12', "橋食いパワー", 75.0f, 0.0f, 100.0f)  // 'bridge eating power'
+		    , mFp01(this, 'fp01', "離陸ライフ", 0.5f, 0.0f, 1.0f)               // 'takeoff life'
+		    , mFp02(this, 'fp02', "着陸ライフ", 0.7f, 0.0f, 1.0f)               // 'landing life'
+		    , mFp03(this, 'fp03', "飛行オフセット", 60.0f, 0.0f, 300.0f)        // 'flight offset'
+		    , mPoisonDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mBridgeDamage(this, 'fp12', "橋食いパワー", 75.0f, 0.0f, 100.0f)  // 'bridge eating power'
 		{
 		}
 
-		Parm<f32> m_fp01;         // _804
-		Parm<f32> m_fp02;         // _82C
-		Parm<f32> m_fp03;         // _854
-		Parm<f32> m_poisonDamage; // _87C, fp11
-		Parm<f32> m_bridgeDamage; // _8A4, fp12
+		Parm<f32> mFp01;         // _804
+		Parm<f32> mFp02;         // _82C
+		Parm<f32> mFp03;         // _854
+		Parm<f32> mPoisonDamage; // _87C, fp11
+		Parm<f32> mBridgeDamage; // _8A4, fp12
 	};
 
 	Parms() { }
@@ -125,23 +125,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

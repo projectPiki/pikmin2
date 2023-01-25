@@ -86,21 +86,21 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                           // _2BC
-	StateID m_nextState;                  // _2C0
-	f32 m_stateTimer;                     // _2C4
-	f32 _2C8;                             // _2C8
-	f32 m_fallTimer;                      // _2CC
-	Vector3f m_targetPosition;            // _2D0
-	bool m_isSucking;                     // _2DC
-	int _2E0;                             // _2E0
-	efx::TNewkurageEye* _2E4;             // _2E4
-	efx::TNewkurageEye* _2E8;             // _2E8
-	efx::TNewkurageHire* m_efxHire;       // _2EC
-	efx::TNewkurageKira* m_efxKira;       // _2F0
-	efx::TNewkurageSui* m_efxSui;         // _2F4
-	efx::TNewkurageDeadrun* m_efxDeadrun; // _2F8
-	                                      // _2FC = PelletView
+	FSM* mFsm;                           // _2BC
+	StateID mNextState;                  // _2C0
+	f32 mStateTimer;                     // _2C4
+	f32 _2C8;                            // _2C8
+	f32 mFallTimer;                      // _2CC
+	Vector3f mTargetPosition;            // _2D0
+	bool mIsSucking;                     // _2DC
+	int _2E0;                            // _2E0
+	efx::TNewkurageEye* _2E4;            // _2E4
+	efx::TNewkurageEye* _2E8;            // _2E8
+	efx::TNewkurageHire* mEfxHire;       // _2EC
+	efx::TNewkurageKira* mEfxKira;       // _2F0
+	efx::TNewkurageSui* mEfxSui;         // _2F4
+	efx::TNewkurageDeadrun* mEfxDeadrun; // _2F8
+	                                     // _2FC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -122,32 +122,32 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "飛行高さ", 90.0f, 0.0f, 150.0f)       // 'flight height'
-		    , m_fp02(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)         // 'rise factor'
-		    , m_fp10(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f) // 'ground wait time'
-		    , m_fp11(this, 'fp11', "吸い込み時間", 5.0f, 0.0f, 10.0f)     // 'suction time'
-		    , m_fp12(this, 'fp12', "吸い込み確率", 0.025f, 0.0f, 1.0f)    // 'suction probability'
-		    , m_fp04(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)     // 'shake off time'
-		    , m_ip01(this, 'ip01', "落下最低ピキ数", 10, 1, 50)           // 'falling minimum piki number'
-		    , m_ip11(this, 'ip11', "吸い込みピキ数", 10, 1, 100)          // 'sucking piki number'
+		    , mFp01(this, 'fp01', "飛行高さ", 90.0f, 0.0f, 150.0f)       // 'flight height'
+		    , mFp02(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)         // 'rise factor'
+		    , mFp10(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f) // 'ground wait time'
+		    , mFp11(this, 'fp11', "吸い込み時間", 5.0f, 0.0f, 10.0f)     // 'suction time'
+		    , mFp12(this, 'fp12', "吸い込み確率", 0.025f, 0.0f, 1.0f)    // 'suction probability'
+		    , mFp04(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)     // 'shake off time'
+		    , mIp01(this, 'ip01', "落下最低ピキ数", 10, 1, 50)           // 'falling minimum piki number'
+		    , mIp11(this, 'ip11', "吸い込みピキ数", 10, 1, 100)          // 'sucking piki number'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp10; // _854
-		Parm<f32> m_fp11; // _87C
-		Parm<f32> m_fp12; // _8A4
-		Parm<f32> m_fp04; // _8CC
-		Parm<int> m_ip01; // _8F4
-		Parm<int> m_ip11; // _91C
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp10; // _854
+		Parm<f32> mFp11; // _87C
+		Parm<f32> mFp12; // _8A4
+		Parm<f32> mFp04; // _8CC
+		Parm<int> mIp01; // _8F4
+		Parm<int> mIp11; // _91C
 	};
 
 	Parms() { }
@@ -155,23 +155,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -187,7 +187,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

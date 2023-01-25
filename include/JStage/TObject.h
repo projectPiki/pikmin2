@@ -63,17 +63,17 @@ struct TAmbientLight : public TObject {
 struct TFog : public TObject {
 	typedef JStudio::TObject_fog StudioObject;
 
-	inline virtual void virtual_3C() { }                                 // _3C
-	inline virtual void virtual_40() { }                                 // _40
-	inline virtual f32 virtual_44() const { return _04; }                // _44
-	inline virtual void virtual_48(f32 p1) { _04 = p1; }                 // _48
-	inline virtual f32 virtual_4C() const { return _04; }                // _4C
-	inline virtual void virtual_50(f32 p1) { _04 = p1; }                 // _50
-	inline virtual _GXColor JSGGetColor() const { return m_color; }      // _54
-	inline virtual void JSGSetColor(_GXColor color) { m_color = color; } // _58
+	inline virtual void virtual_3C() { }                                // _3C
+	inline virtual void virtual_40() { }                                // _40
+	inline virtual f32 virtual_44() const { return _04; }               // _44
+	inline virtual void virtual_48(f32 p1) { _04 = p1; }                // _48
+	inline virtual f32 virtual_4C() const { return _04; }               // _4C
+	inline virtual void virtual_50(f32 p1) { _04 = p1; }                // _50
+	inline virtual _GXColor JSGGetColor() const { return mColor; }      // _54
+	inline virtual void JSGSetColor(_GXColor color) { mColor = color; } // _58
 
 	f32 _04;
-	_GXColor m_color;
+	_GXColor mColor;
 };
 
 struct TLight : public TObject {

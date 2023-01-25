@@ -31,17 +31,17 @@ size_t JASResArcLoader::getResSize(JKRArchive* archive, unsigned short resourceI
 void JASResArcLoader::loadResourceCallback(void* args)
 {
 	CallbackArgs* castedArgs = static_cast<CallbackArgs*>(args);
-	u32 readResult           = castedArgs->m_archive->readResource(castedArgs->_08, castedArgs->_0C, castedArgs->_04);
-	if (castedArgs->m_callback != nullptr) {
-		castedArgs->m_callback(readResult, castedArgs->_14);
+	u32 readResult           = castedArgs->mArchive->readResource(castedArgs->_08, castedArgs->_0C, castedArgs->_04);
+	if (castedArgs->mCallback != nullptr) {
+		castedArgs->mCallback(readResult, castedArgs->_14);
 	}
 	if (readResult == 0) {
-		if (castedArgs->m_queue != nullptr) {
-			OSSendMessage(castedArgs->m_queue, (void*)-1, OS_MESSAGE_BLOCKING);
+		if (castedArgs->mQueue != nullptr) {
+			OSSendMessage(castedArgs->mQueue, (void*)-1, OS_MESSAGE_BLOCKING);
 		}
 	} else {
-		if (castedArgs->m_queue != nullptr) {
-			OSSendMessage(castedArgs->m_queue, (void*)0, OS_MESSAGE_BLOCKING);
+		if (castedArgs->mQueue != nullptr) {
+			OSSendMessage(castedArgs->mQueue, (void*)0, OS_MESSAGE_BLOCKING);
 		}
 	}
 }
@@ -61,15 +61,15 @@ int JASResArcLoader::loadResource(JKRArchive* archive, unsigned short p2, unsign
 	CallbackArgs args;
 
 	// TODO: Next line smells like inlining of some sort.
-	args.m_queue = nullptr;
+	args.mQueue = nullptr;
 
-	args.m_archive  = archive;
-	args._04        = p2;
-	args._08        = p3;
-	args._0C        = p4;
-	args.m_callback = nullptr;
-	args._14        = 0;
-	args.m_queue    = &queue;
+	args.mArchive  = archive;
+	args._04       = p2;
+	args._08       = p3;
+	args._0C       = p4;
+	args.mCallback = nullptr;
+	args._14       = 0;
+	args.mQueue    = &queue;
 	if (JASDvd::getThreadPointer()->sendCmdMsg(loadResourceCallback, &args, sizeof(CallbackArgs)) == false) {
 		return 0;
 	}
@@ -147,15 +147,15 @@ bool JASResArcLoader::loadResourceAsync(JKRArchive* archive, unsigned short p2, 
 	CallbackArgs args;
 
 	// TODO: Next two lines smells like inlining of some sort. Inlined ctor? Non-async version is different, though...
-	args.m_callback = nullptr;
-	args._14        = p6;
+	args.mCallback = nullptr;
+	args._14       = p6;
 
-	args.m_archive  = archive;
-	args._04        = p2;
-	args._08        = p3;
-	args._0C        = p4;
-	args.m_queue    = nullptr;
-	args.m_callback = callback;
-	args._14        = p6;
+	args.mArchive  = archive;
+	args._04       = p2;
+	args._08       = p3;
+	args._0C       = p4;
+	args.mQueue    = nullptr;
+	args.mCallback = callback;
+	args._14       = p6;
 	JASDvd::getThreadPointer()->sendCmdMsg(&loadResourceCallback, &args, sizeof(CallbackArgs));
 }

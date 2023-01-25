@@ -22,11 +22,11 @@ namespace EnemyStone {
  * Size:	000088
  */
 Mgr::Mgr()
-    : m_modelData(nullptr)
+    : mModelData(nullptr)
 {
-	m_flags.clear();
-	m_drawInfo.clearRelations();
-	m_obj.clearRelations();
+	mFlags.clear();
+	mDrawInfo.clearRelations();
+	mObj.clearRelations();
 }
 
 /*
@@ -40,7 +40,7 @@ void Mgr::loadResource()
 
 	sys->heapStatusStart("EnemyStone::Mgr::stoneModel", nullptr);
 
-	m_modelData = new J3DModelData*[2];
+	mModelData = new J3DModelData*[2];
 
 	LoadResource::ArgAramOnly argAram("/enemy/common/enemyCommon.szs");
 
@@ -51,12 +51,12 @@ void Mgr::loadResource()
 	J3DModelData* loadModDat;
 
 	for (int i = 0; i < 2; i++) {
-		modDat         = (J3DModelData*)archive->getResource(sStoneMdlName[i]);
-		loadModDat     = J3DModelLoaderDataBase::load(modDat, 0x240000 | 0x240000);
-		m_modelData[i] = loadModDat;
-		m_modelData[i]->newSharedDisplayList(0x40000);
-		m_modelData[i]->simpleCalcMaterial(0, j3dDefaultMtx);
-		m_modelData[i]->makeSharedDL();
+		modDat        = (J3DModelData*)archive->getResource(sStoneMdlName[i]);
+		loadModDat    = J3DModelLoaderDataBase::load(modDat, 0x240000 | 0x240000);
+		mModelData[i] = loadModDat;
+		mModelData[i]->newSharedDisplayList(0x40000);
+		mModelData[i]->simpleCalcMaterial(0, j3dDefaultMtx);
+		mModelData[i]->makeSharedDL();
 	}
 	sys->heapStatusEnd("EnemyStone::Mgr::stoneModel");
 
@@ -65,7 +65,7 @@ void Mgr::loadResource()
 	DrawInfo* infoArray = new DrawInfo[256];
 
 	for (int i = 0; i < (u32)256; i++) {
-		m_drawInfo.add((CNode*)&infoArray[i]);
+		mDrawInfo.add((CNode*)&infoArray[i]);
 	}
 
 	sys->heapStatusEnd("EnemyStone::Mgr::DrawInfo_buffer");
@@ -84,7 +84,7 @@ bool Mgr::regist(Obj* obj)
 
 	if (!(obj->isFlag(STONE_Registered))) {
 
-		if (obj->getInfoCount() <= m_drawInfo.getChildCount()) {
+		if (obj->getInfoCount() <= mDrawInfo.getChildCount()) {
 
 			obj->setFlag(STONE_Registered);
 			for (int i = 0; i < obj->getInfoCount(); i++) {
@@ -95,13 +95,13 @@ bool Mgr::regist(Obj* obj)
 					info->del();
 				}
 
-				info->m_matrix  = obj->m_enemy->m_model->getJoint(objInfo->m_name)->getWorldMatrix();
-				info->m_objInfo = objInfo;
+				info->mMatrix  = obj->mEnemy->mModel->getJoint(objInfo->mName)->getWorldMatrix();
+				info->mObjInfo = objInfo;
 
-				obj->m_nodeArray[objInfo->m_size].add(info);
+				obj->mNodeArray[objInfo->mSize].add(info);
 			}
 
-			m_obj.add(obj);
+			mObj.add(obj);
 
 		} else {
 			validCount = false;
@@ -123,14 +123,14 @@ void Mgr::release(Obj* obj)
 
 		Obj* currObj = obj;
 		for (int i = 0; i < 2; i++) {
-			DrawInfo* child = (DrawInfo*)currObj->m_nodeArray[0].m_child;
+			DrawInfo* child = (DrawInfo*)currObj->mNodeArray[0].mChild;
 			while (child) {
-				DrawInfo* nextChild = (DrawInfo*)child->m_next;
+				DrawInfo* nextChild = (DrawInfo*)child->mNext;
 				child->reset();
-				m_drawInfo.add(child);
+				mDrawInfo.add(child);
 				child = nextChild;
 			}
-			currObj = (Obj*)&currObj->m_info; // this makes no sense
+			currObj = (Obj*)&currObj->mInfo; // this makes no sense
 		}
 		obj->del();
 	}
@@ -144,24 +144,24 @@ void Mgr::release(Obj* obj)
 void Mgr::draw(Viewport* viewport)
 {
 	for (int i = 0; i < 2; i++) {
-		Obj* obj = (Obj*)m_obj.m_child;
+		Obj* obj = (Obj*)mObj.mChild;
 		if (obj) {
-			for (obj; obj; obj = (Obj*)obj->m_next) {
-				if (obj->m_enemy->m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
-					DrawInfo* baseInfo = static_cast<DrawInfo*>(&obj->m_nodeArray[i]);
+			for (obj; obj; obj = (Obj*)obj->mNext) {
+				if (obj->mEnemy->mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+					DrawInfo* baseInfo = static_cast<DrawInfo*>(&obj->mNodeArray[i]);
 
-					FOREACH_NODE(DrawInfo, static_cast<DrawInfo*>(baseInfo->m_child), drawInfo)
+					FOREACH_NODE(DrawInfo, static_cast<DrawInfo*>(baseInfo->mChild), drawInfo)
 					{
-						J3DModelData* modelData = m_modelData[i];
-						J3DMaterial* material   = modelData->m_jointTree.m_joints[0]->m_material;
-						j3dSys._10C             = (u32)modelData->m_vertexData._18;
-						j3dSys._110             = (u32)modelData->m_vertexData._1C;
-						j3dSys._114             = (u32)modelData->m_vertexData._24;
+						J3DModelData* modelData = mModelData[i];
+						J3DMaterial* material   = modelData->mJointTree.mJoints[0]->mMaterial;
+						j3dSys._10C             = (u32)modelData->mVertexData._18;
+						j3dSys._110             = (u32)modelData->mVertexData._1C;
+						j3dSys._114             = (u32)modelData->mVertexData._24;
 						J3DShape::sOldVcdVatCmd = 0;
 
 						for (material; material != nullptr; material = material->_04) {
 							material->loadSharedDL();
-							material->m_shape->loadPreDrawSetting();
+							material->mShape->loadPreDrawSetting();
 
 							Matrixf drawMtx;
 							drawInfo->makeMatrix(&drawMtx, true);
@@ -169,17 +169,17 @@ void Mgr::draw(Viewport* viewport)
 							Matrixf* viewMtx = viewport->getMatrix(true);
 
 							Matrixf combined;
-							PSMTXConcat(viewMtx->m_matrix.mtxView, drawMtx.m_matrix.mtxView, combined.m_matrix.mtxView);
+							PSMTXConcat(viewMtx->mMatrix.mtxView, drawMtx.mMatrix.mtxView, combined.mMatrix.mtxView);
 
 							Matrixf inverse;
-							PSMTXInverse(combined.m_matrix.mtxView, inverse.m_matrix.mtxView);
+							PSMTXInverse(combined.mMatrix.mtxView, inverse.mMatrix.mtxView);
 
 							Matrixf transpose;
-							PSMTXTranspose(inverse.m_matrix.mtxView, transpose.m_matrix.mtxView);
+							PSMTXTranspose(inverse.mMatrix.mtxView, transpose.mMatrix.mtxView);
 
-							GXLoadPosMtxImm(combined.m_matrix.mtxView, 0);
-							GXLoadNrmMtxImm(transpose.m_matrix.mtxView, 0);
-							material->m_shape->simpleDrawCache();
+							GXLoadPosMtxImm(combined.mMatrix.mtxView, 0);
+							GXLoadNrmMtxImm(transpose.mMatrix.mtxView, 0);
+							material->mShape->simpleDrawCache();
 						}
 					}
 				}

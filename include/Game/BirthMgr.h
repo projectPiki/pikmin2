@@ -15,9 +15,9 @@ struct BirthCounter {
 	void read(Stream&);
 	void write(Stream&);
 
-	// u32 m_counts[PikiColorCount]; // _00
-	int m_counts[PikiColorCount - 1];
-	int m_total;
+	// u32 mCounts[PikiColorCount]; // _00
+	int mCounts[PikiColorCount - 1];
+	int mTotal;
 };
 
 struct BirthTodayCounter : public BirthCounter {

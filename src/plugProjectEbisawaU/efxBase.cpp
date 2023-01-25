@@ -41,7 +41,7 @@ void TCallBack_StaticClipping::executeAfter(JPABaseEmitter* emitter)
 void TOneEmitter::add(Context* context)
 {
 	context->del();
-	m_context.add(context);
+	mContext.add(context);
 }
 
 /*
@@ -65,9 +65,9 @@ void TOneEmitter::del(efx::Context* context)
 void TOneEmitter::executeAfter(JPABaseEmitter* emitter)
 {
 	particleMgr->setGlobalColor(emitter);
-	for (Context* context = (Context*)m_context.m_child; context != nullptr; context = (Context*)context->m_next) {
+	for (Context* context = (Context*)mContext.mChild; context != nullptr; context = (Context*)context->mNext) {
 		Vector3f v1 = context->_18;
-		if (particleMgr->cullByResFlg(v1, m_effectID) == false) {
+		if (particleMgr->cullByResFlg(v1, mEffectID) == false) {
 			int createCount = emitter->getCurrentCreateNumber();
 			for (int i = 0; i < createCount; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
@@ -87,16 +87,16 @@ void TOneEmitter::executeAfter(JPABaseEmitter* emitter)
  */
 bool TOneEmitter::create(efx::Arg*)
 {
-	if (m_emitter) {
+	if (mEmitter) {
 		return false;
 	}
-	m_emitter = particleMgr->create(m_effectID, Vector3f::zero, 0);
-	if (m_emitter) {
-		m_emitter->_F4 |= 0x40;
-		m_emitter->_F4 |= 0x01;
-		m_emitter->m_emitterCallback = this;
+	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
+	if (mEmitter) {
+		mEmitter->_F4 |= 0x40;
+		mEmitter->_F4 |= 0x01;
+		mEmitter->mEmitterCallback = this;
 	}
-	return (m_emitter != nullptr);
+	return (mEmitter != nullptr);
 }
 
 /*
@@ -107,10 +107,10 @@ bool TOneEmitter::create(efx::Arg*)
  */
 void TOneEmitter::fade()
 {
-	m_context.clearRelations();
-	if (m_emitter) {
-		particleMgr->fade(m_emitter);
-		m_emitter = nullptr;
+	mContext.clearRelations();
+	if (mEmitter) {
+		particleMgr->fade(mEmitter);
+		mEmitter = nullptr;
 	}
 }
 
@@ -122,10 +122,10 @@ void TOneEmitter::fade()
  */
 void TOneEmitter::forceKill()
 {
-	m_context.clearRelations();
-	if (m_emitter) {
-		particleMgr->forceKill(m_emitter);
-		m_emitter = nullptr;
+	mContext.clearRelations();
+	if (mEmitter) {
+		particleMgr->forceKill(mEmitter);
+		mEmitter = nullptr;
 	}
 }
 
@@ -138,7 +138,7 @@ void TOneEmitter::forceKill()
 void TOneEmitterChasePos::add(efx::ContextChasePos* context)
 {
 	context->del();
-	m_context.add(context);
+	mContext.add(context);
 }
 
 /*
@@ -157,16 +157,16 @@ void TOneEmitterChasePos::del(efx::ContextChasePos* context) { context->del(); }
  */
 bool TOneEmitterChasePos::create(efx::Arg* arg)
 {
-	if (m_emitter) {
+	if (mEmitter) {
 		return false;
 	}
-	m_emitter = particleMgr->create(m_effectID, Vector3f::zero, 0);
-	if (m_emitter) {
-		m_emitter->_F4 |= 0x40;
-		m_emitter->_F4 |= 0x01;
-		m_emitter->m_emitterCallback = this;
+	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
+	if (mEmitter) {
+		mEmitter->_F4 |= 0x40;
+		mEmitter->_F4 |= 0x01;
+		mEmitter->mEmitterCallback = this;
 	}
-	return (m_emitter != nullptr);
+	return (mEmitter != nullptr);
 }
 
 /*
@@ -178,9 +178,9 @@ bool TOneEmitterChasePos::create(efx::Arg* arg)
 void TOneEmitterChasePos::executeAfter(JPABaseEmitter* emitter)
 {
 	particleMgr->setGlobalColor(emitter);
-	for (ContextChasePos* context = (ContextChasePos*)m_context.m_child; context != nullptr; context = (ContextChasePos*)context->m_next) {
-		Vector3f* v1 = context->m_position;
-		if (particleMgr->cullByResFlg(*v1, m_effectID) == false) {
+	for (ContextChasePos* context = (ContextChasePos*)mContext.mChild; context != nullptr; context = (ContextChasePos*)context->mNext) {
+		Vector3f* v1 = context->mPosition;
+		if (particleMgr->cullByResFlg(*v1, mEffectID) == false) {
 			int createCount = emitter->getCurrentCreateNumber();
 			for (int i = 0; i < createCount; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
@@ -200,10 +200,10 @@ void TOneEmitterChasePos::executeAfter(JPABaseEmitter* emitter)
  */
 void TOneEmitterChasePos::fade()
 {
-	m_context.clearRelations();
-	if (m_emitter) {
-		particleMgr->fade(m_emitter);
-		m_emitter = nullptr;
+	mContext.clearRelations();
+	if (mEmitter) {
+		particleMgr->fade(mEmitter);
+		mEmitter = nullptr;
 	}
 }
 
@@ -215,10 +215,10 @@ void TOneEmitterChasePos::fade()
  */
 void TOneEmitterChasePos::forceKill()
 {
-	m_context.clearRelations();
-	if (m_emitter) {
-		particleMgr->forceKill(m_emitter);
-		m_emitter = nullptr;
+	mContext.clearRelations();
+	if (mEmitter) {
+		particleMgr->forceKill(mEmitter);
+		mEmitter = nullptr;
 	}
 }
 
@@ -231,17 +231,17 @@ void TOneEmitterChasePos::forceKill()
 bool TOneEmitterSimple::create(efx::Arg* arg)
 {
 	_14 = 0;
-	if (m_emitter) {
+	if (mEmitter) {
 		return false;
 	}
-	m_emitter = particleMgr->create(m_effectID, Vector3f::zero, 0);
-	if (m_emitter) {
-		m_emitter->_F4 |= 0x40;
-		m_emitter->_F4 |= 0x01;
-		m_emitter->_24               = 0;
-		m_emitter->m_emitterCallback = this;
+	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
+	if (mEmitter) {
+		mEmitter->_F4 |= 0x40;
+		mEmitter->_F4 |= 0x01;
+		mEmitter->_24              = 0;
+		mEmitter->mEmitterCallback = this;
 	}
-	return (m_emitter != nullptr);
+	return (mEmitter != nullptr);
 }
 
 /*
@@ -256,7 +256,7 @@ void TOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 	P2ASSERTLINE(447, _14 <= _18);
 	for (int i = 0; i < _14; i++) {
 		Vector3f v1 = _10[i];
-		if (particleMgr->cullByResFlg(v1, m_effectID) == false) {
+		if (particleMgr->cullByResFlg(v1, mEffectID) == false) {
 			int createCount = (int)emitter->_28;
 			for (int i = 0; i < createCount; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
@@ -280,9 +280,9 @@ bool TSimple1::create(efx::Arg* arg)
 {
 	P2ASSERTLINE(558, arg);
 	for (int i = 0; i < 1; i++) {
-		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i]) {
-			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+		mEmitters[i] = particleMgr->create(mEffectIDs[i], arg->mPosition, 0);
+		if (mEmitters[i]) {
+			mEmitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
 		}
@@ -300,9 +300,9 @@ bool TSimple2::create(efx::Arg* arg)
 {
 	P2ASSERTLINE(574, arg);
 	for (int i = 0; i < 2; i++) {
-		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i]) {
-			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+		mEmitters[i] = particleMgr->create(mEffectIDs[i], arg->mPosition, 0);
+		if (mEmitters[i]) {
+			mEmitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
 		}
@@ -320,9 +320,9 @@ bool TSimple3::create(efx::Arg* arg)
 {
 	P2ASSERTLINE(591, arg != nullptr);
 	for (int i = 0; i < 3; i++) {
-		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i]) {
-			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+		mEmitters[i] = particleMgr->create(mEffectIDs[i], arg->mPosition, 0);
+		if (mEmitters[i]) {
+			mEmitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
 		}
@@ -340,9 +340,9 @@ bool TSimple4::create(efx::Arg* arg)
 {
 	P2ASSERTLINE(608, arg != nullptr);
 	for (int i = 0; i < 4; i++) {
-		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i]) {
-			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+		mEmitters[i] = particleMgr->create(mEffectIDs[i], arg->mPosition, 0);
+		if (mEmitters[i]) {
+			mEmitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
 		}
@@ -360,9 +360,9 @@ bool TSimple5::create(efx::Arg* arg)
 {
 	P2ASSERTLINE(625, arg != nullptr);
 	for (int i = 0; i < 5; i++) {
-		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i]) {
-			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+		mEmitters[i] = particleMgr->create(mEffectIDs[i], arg->mPosition, 0);
+		if (mEmitters[i]) {
+			mEmitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
 		}
@@ -381,9 +381,9 @@ bool TSimple5::create(efx::Arg* arg)
 bool TSimpleMtx1::create(Arg* arg)
 {
 	if (setEmitterCallbacks()) {
-		P2ASSERTLINE(646, m_mtx);
-		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
-			JPASetRMtxTVecfromMtx(m_mtx->m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
+		P2ASSERTLINE(646, mMtx);
+		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
+			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
 		}
 		return true;
 	} else {
@@ -400,9 +400,9 @@ bool TSimpleMtx1::create(Arg* arg)
 bool TSimpleMtx2::create(efx::Arg*)
 {
 	if (setEmitterCallbacks()) {
-		P2ASSERTLINE(660, m_mtx);
-		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
-			JPASetRMtxTVecfromMtx(m_mtx->m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
+		P2ASSERTLINE(660, mMtx);
+		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
+			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
 		}
 		return true;
 	} else {
@@ -419,9 +419,9 @@ bool TSimpleMtx2::create(efx::Arg*)
 bool TSimpleMtx3::create(efx::Arg*)
 {
 	if (setEmitterCallbacks()) {
-		P2ASSERTLINE(674, m_mtx);
-		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
-			JPASetRMtxTVecfromMtx(m_mtx->m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
+		P2ASSERTLINE(674, mMtx);
+		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
+			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
 		}
 		return true;
 	} else {
@@ -438,9 +438,9 @@ bool TSimpleMtx3::create(efx::Arg*)
 bool TSimpleMtx4::create(efx::Arg* arg)
 {
 	if (setEmitterCallbacks()) {
-		P2ASSERTLINE(688, m_mtx != nullptr);
-		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
-			JPASetRMtxTVecfromMtx(m_mtx->m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
+		P2ASSERTLINE(688, mMtx != nullptr);
+		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
+			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
 		}
 		return true;
 	} else {
@@ -456,23 +456,23 @@ bool TSimpleMtx4::create(efx::Arg* arg)
  */
 bool TSync::create(efx::Arg* arg)
 {
-	if (m_emitter) {
+	if (mEmitter) {
 		return false;
 	}
 	Vector3f position;
 	if (arg) {
-		position = arg->m_position;
+		position = arg->mPosition;
 	} else {
 		position = Vector3f::zero;
 	}
-	m_emitter = particleMgr->create(m_effectID, position, 0);
-	if (m_emitter) {
-		m_emitter->m_emitterCallback = this;
-		m_emitter->_F4 |= 0x40;
+	mEmitter = particleMgr->create(mEffectID, position, 0);
+	if (mEmitter) {
+		mEmitter->mEmitterCallback = this;
+		mEmitter->_F4 |= 0x40;
 	} else {
 		return false;
 	}
-	m_flags = 0;
+	mFlags = 0;
 	return true;
 }
 
@@ -506,7 +506,7 @@ void TSync::executeAfter(JPABaseEmitter* emitter)
 {
 	particleMgr->setGlobalColor(emitter);
 	if (particleMgr->cullByResFlg(emitter) == 0) {
-		if (m_flags & 1) {
+		if (mFlags & 1) {
 			emitter->_F4 |= 4;
 		} else {
 			emitter->_F4 &= ~4;
@@ -523,8 +523,8 @@ void TSync::executeAfter(JPABaseEmitter* emitter)
  */
 void TSync::forceKill()
 {
-	particleMgr->forceKill(m_emitter);
-	m_emitter = nullptr;
+	particleMgr->forceKill(mEmitter);
+	mEmitter = nullptr;
 }
 
 /*
@@ -535,13 +535,13 @@ void TSync::forceKill()
  */
 void TSync::fade()
 {
-	if (m_emitter) {
-		if (m_flags & 1) {
+	if (mEmitter) {
+		if (mFlags & 1) {
 			forceKill();
 		} else {
-			m_emitter->m_emitterCallback = &mCallBack_StaticClipping;
-			particleMgr->fade(m_emitter);
-			m_emitter = nullptr;
+			mEmitter->mEmitterCallback = &mCallBack_StaticClipping;
+			particleMgr->fade(mEmitter);
+			mEmitter = nullptr;
 		}
 	}
 }
@@ -554,8 +554,8 @@ void TSync::fade()
  */
 void TChasePos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
-	P2ASSERTLINE(785, m_position);
-	Vector3f* position = m_position;
+	P2ASSERTLINE(785, mPosition);
+	Vector3f* position = mPosition;
 	emitter->_A4.x     = position->x;
 	emitter->_A4.y     = position->y;
 	emitter->_A4.z     = position->z;
@@ -569,14 +569,14 @@ void TChasePos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
  */
 void TChasePosYRot::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
-	P2ASSERTLINE(794, m_position);
-	P2ASSERTLINE(795, m_rotation);
+	P2ASSERTLINE(794, mPosition);
+	P2ASSERTLINE(795, mRotation);
 	Matrixf mtx;
-	PSMTXRotRad(mtx.m_matrix.mtxView, 0x79, *m_rotation);
-	Vector3f* translation = m_position;
-	PSMTXRotRad(mtx.m_matrix.mtxView, 0x79, *m_rotation);
+	PSMTXRotRad(mtx.mMatrix.mtxView, 0x79, *mRotation);
+	Vector3f* translation = mPosition;
+	PSMTXRotRad(mtx.mMatrix.mtxView, 0x79, *mRotation);
 	mtx.setTranslation(*translation);
-	JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, emitter->_68, &emitter->_A4);
+	JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, emitter->_68, &emitter->_A4);
 }
 
 /*
@@ -587,8 +587,8 @@ void TChasePosYRot::doExecuteEmitterOperation(JPABaseEmitter* emitter)
  */
 void TChaseMtx::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
-	P2ASSERTLINE(809, m_mtx != nullptr);
-	JPASetRMtxTVecfromMtx(m_mtx->m_matrix.mtxView, emitter->_68, &emitter->_A4);
+	P2ASSERTLINE(809, mMtx != nullptr);
+	JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, emitter->_68, &emitter->_A4);
 }
 
 /*
@@ -599,9 +599,9 @@ void TChaseMtx::doExecuteEmitterOperation(JPABaseEmitter* emitter)
  */
 void TChaseMtxT::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
-	P2ASSERTLINE(818, m_mtx != nullptr);
+	P2ASSERTLINE(818, mMtx != nullptr);
 	Vector3f translation;
-	m_mtx->getTranslation(translation);
+	mMtx->getTranslation(translation);
 	emitter->_A4.x = translation.x;
 	emitter->_A4.y = translation.y;
 	emitter->_A4.z = translation.z;
@@ -942,8 +942,8 @@ lbl_803AFFD4:
 TForever2::TForever2(unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TForever>()
 {
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_effectID = effectID2;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mEffectID = effectID2;
 }
 
 /*
@@ -977,9 +977,9 @@ TForever::TForever()
 TForever3::TForever3(unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
     : TSyncGroup3<TForever>()
 {
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_effectID = effectID3;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mEffectID = effectID3;
 }
 
 /*
@@ -1002,10 +1002,10 @@ TForever3::TForever3(unsigned short effectID1, unsigned short effectID2, unsigne
 TForever4::TForever4(unsigned short effectID1, unsigned short effectID2, unsigned short effectID3, unsigned short effectID4)
     : TSyncGroup4<TForever>()
 {
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_effectID = effectID3;
-	m_items[3].m_effectID = effectID4;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mEffectID = effectID3;
+	mItems[3].mEffectID = effectID4;
 }
 
 /*
@@ -1028,10 +1028,10 @@ TForever4::TForever4(unsigned short effectID1, unsigned short effectID2, unsigne
 TChasePos2::TChasePos2(Vector3f* position, unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TChasePos>()
 {
-	m_items[0].m_position = position;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_position = position;
-	m_items[1].m_effectID = effectID2;
+	mItems[0].mPosition = position;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mPosition = position;
+	mItems[1].mEffectID = effectID2;
 }
 
 /*
@@ -1064,8 +1064,8 @@ TChasePos2::TChasePos2(Vector3f* position, unsigned short effectID1, unsigned sh
  */
 void TChasePos2::setPosptr(Vector3f* position)
 {
-	m_items[0].m_position = position;
-	m_items[1].m_position = position;
+	mItems[0].mPosition = position;
+	mItems[1].mPosition = position;
 }
 
 /*
@@ -1077,12 +1077,12 @@ void TChasePos2::setPosptr(Vector3f* position)
 TChasePos3::TChasePos3(Vector3f* position, unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
     : TSyncGroup3<TChasePos>()
 {
-	m_items[0].m_position = position;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_position = position;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_position = position;
-	m_items[2].m_effectID = effectID3;
+	mItems[0].mPosition = position;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mPosition = position;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mPosition = position;
+	mItems[2].mEffectID = effectID3;
 }
 
 /*
@@ -1106,9 +1106,9 @@ TChasePos3::TChasePos3(Vector3f* position, unsigned short effectID1, unsigned sh
 void TChasePos3::setPosptr(Vector3f* position)
 {
 	// UNUSED FUNCTION
-	m_items[0].m_position = position;
-	m_items[1].m_position = position;
-	m_items[2].m_position = position;
+	mItems[0].mPosition = position;
+	mItems[1].mPosition = position;
+	mItems[2].mPosition = position;
 }
 
 /*
@@ -1121,14 +1121,14 @@ TChasePos4::TChasePos4(Vector3f* position, unsigned short effectID1, unsigned sh
                        unsigned short effectID4)
     : TSyncGroup4<TChasePos>()
 {
-	m_items[0].m_position = position;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_position = position;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_position = position;
-	m_items[2].m_effectID = effectID3;
-	m_items[3].m_position = position;
-	m_items[3].m_effectID = effectID4;
+	mItems[0].mPosition = position;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mPosition = position;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mPosition = position;
+	mItems[2].mEffectID = effectID3;
+	mItems[3].mPosition = position;
+	mItems[3].mEffectID = effectID4;
 }
 
 /*
@@ -1152,10 +1152,10 @@ TChasePos4::TChasePos4(Vector3f* position, unsigned short effectID1, unsigned sh
 void TChasePos4::setPosptr(Vector3f* position)
 {
 	// UNUSED FUNCTION
-	m_items[0].m_position = position;
-	m_items[1].m_position = position;
-	m_items[2].m_position = position;
-	m_items[3].m_position = position;
+	mItems[0].mPosition = position;
+	mItems[1].mPosition = position;
+	mItems[2].mPosition = position;
+	mItems[3].mPosition = position;
 }
 
 /*
@@ -1167,10 +1167,10 @@ void TChasePos4::setPosptr(Vector3f* position)
 TChaseMtx2::TChaseMtx2(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TChaseMtx>()
 {
-	m_items[0].m_mtx      = (Matrixf*)mtx;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_mtx      = (Matrixf*)mtx;
-	m_items[1].m_effectID = effectID2;
+	mItems[0].mMtx      = (Matrixf*)mtx;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mMtx      = (Matrixf*)mtx;
+	mItems[1].mEffectID = effectID2;
 }
 
 /*
@@ -1200,8 +1200,8 @@ TChaseMtx2::TChaseMtx2(float (*mtx)[4], unsigned short effectID1, unsigned short
  */
 void TChaseMtx2::setMtxptr(float (*mtx)[4])
 {
-	m_items[0].m_mtx = (Matrixf*)mtx;
-	m_items[1].m_mtx = (Matrixf*)mtx;
+	mItems[0].mMtx = (Matrixf*)mtx;
+	mItems[1].mMtx = (Matrixf*)mtx;
 }
 
 /*
@@ -1212,12 +1212,12 @@ void TChaseMtx2::setMtxptr(float (*mtx)[4])
 TChaseMtx3::TChaseMtx3(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
     : TSyncGroup3<TChaseMtx>()
 {
-	m_items[0].m_mtx      = (Matrixf*)mtx;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_mtx      = (Matrixf*)mtx;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_mtx      = (Matrixf*)mtx;
-	m_items[2].m_effectID = effectID3;
+	mItems[0].mMtx      = (Matrixf*)mtx;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mMtx      = (Matrixf*)mtx;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mMtx      = (Matrixf*)mtx;
+	mItems[2].mEffectID = effectID3;
 }
 
 /*
@@ -1239,9 +1239,9 @@ TChaseMtx3::TChaseMtx3(float (*mtx)[4], unsigned short effectID1, unsigned short
  */
 void TChaseMtx3::setMtxptr(float (*mtx)[4])
 {
-	m_items[0].m_mtx = (Matrixf*)mtx;
-	m_items[1].m_mtx = (Matrixf*)mtx;
-	m_items[2].m_mtx = (Matrixf*)mtx;
+	mItems[0].mMtx = (Matrixf*)mtx;
+	mItems[1].mMtx = (Matrixf*)mtx;
+	mItems[2].mMtx = (Matrixf*)mtx;
 }
 
 /*
@@ -1253,14 +1253,14 @@ TChaseMtx4::TChaseMtx4(float (*mtx)[4], unsigned short effectID1, unsigned short
                        unsigned short effectID4)
     : TSyncGroup4<TChaseMtx>()
 {
-	m_items[0].m_mtx      = (Matrixf*)mtx;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_mtx      = (Matrixf*)mtx;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_mtx      = (Matrixf*)mtx;
-	m_items[2].m_effectID = effectID3;
-	m_items[3].m_mtx      = (Matrixf*)mtx;
-	m_items[3].m_effectID = effectID4;
+	mItems[0].mMtx      = (Matrixf*)mtx;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mMtx      = (Matrixf*)mtx;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mMtx      = (Matrixf*)mtx;
+	mItems[2].mEffectID = effectID3;
+	mItems[3].mMtx      = (Matrixf*)mtx;
+	mItems[3].mEffectID = effectID4;
 }
 
 /*
@@ -1282,10 +1282,10 @@ TChaseMtx4::TChaseMtx4(float (*mtx)[4], unsigned short effectID1, unsigned short
  */
 void TChaseMtx4::setMtxptr(float (*mtx)[4])
 {
-	m_items[0].m_mtx = (Matrixf*)mtx;
-	m_items[1].m_mtx = (Matrixf*)mtx;
-	m_items[2].m_mtx = (Matrixf*)mtx;
-	m_items[3].m_mtx = (Matrixf*)mtx;
+	mItems[0].mMtx = (Matrixf*)mtx;
+	mItems[1].mMtx = (Matrixf*)mtx;
+	mItems[2].mMtx = (Matrixf*)mtx;
+	mItems[3].mMtx = (Matrixf*)mtx;
 }
 
 /*
@@ -1300,16 +1300,16 @@ TChaseMtx5::TChaseMtx5(float (*mtx)[4], unsigned short effectID1, unsigned short
     : TSyncGroup5<TChaseMtx>()
 {
 	// UNUSED FUNCTION
-	m_items[0].m_mtx      = (Matrixf*)mtx;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_mtx      = (Matrixf*)mtx;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_mtx      = (Matrixf*)mtx;
-	m_items[2].m_effectID = effectID3;
-	m_items[3].m_mtx      = (Matrixf*)mtx;
-	m_items[3].m_effectID = effectID4;
-	m_items[4].m_mtx      = (Matrixf*)mtx;
-	m_items[4].m_effectID = effectID5;
+	mItems[0].mMtx      = (Matrixf*)mtx;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mMtx      = (Matrixf*)mtx;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mMtx      = (Matrixf*)mtx;
+	mItems[2].mEffectID = effectID3;
+	mItems[3].mMtx      = (Matrixf*)mtx;
+	mItems[3].mEffectID = effectID4;
+	mItems[4].mMtx      = (Matrixf*)mtx;
+	mItems[4].mEffectID = effectID5;
 }
 
 /*
@@ -1333,11 +1333,11 @@ TChaseMtx5::TChaseMtx5(float (*mtx)[4], unsigned short effectID1, unsigned short
 void TChaseMtx5::setMtxptr(float (*mtx)[4])
 {
 	// UNUSED FUNCTION
-	m_items[0].m_mtx = (Matrixf*)mtx;
-	m_items[1].m_mtx = (Matrixf*)mtx;
-	m_items[2].m_mtx = (Matrixf*)mtx;
-	m_items[3].m_mtx = (Matrixf*)mtx;
-	m_items[4].m_mtx = (Matrixf*)mtx;
+	mItems[0].mMtx = (Matrixf*)mtx;
+	mItems[1].mMtx = (Matrixf*)mtx;
+	mItems[2].mMtx = (Matrixf*)mtx;
+	mItems[3].mMtx = (Matrixf*)mtx;
+	mItems[4].mMtx = (Matrixf*)mtx;
 }
 
 /*
@@ -1350,18 +1350,18 @@ TChaseMtx6::TChaseMtx6(float (*mtx)[4], unsigned short effectID1, unsigned short
                        unsigned short effectID4, unsigned short effectID5, unsigned short effectID6)
     : TSyncGroup6<TChaseMtx>()
 {
-	m_items[0].m_mtx      = (Matrixf*)mtx;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_mtx      = (Matrixf*)mtx;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_mtx      = (Matrixf*)mtx;
-	m_items[2].m_effectID = effectID3;
-	m_items[3].m_mtx      = (Matrixf*)mtx;
-	m_items[3].m_effectID = effectID4;
-	m_items[4].m_mtx      = (Matrixf*)mtx;
-	m_items[4].m_effectID = effectID5;
-	m_items[5].m_mtx      = (Matrixf*)mtx;
-	m_items[5].m_effectID = effectID6;
+	mItems[0].mMtx      = (Matrixf*)mtx;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mMtx      = (Matrixf*)mtx;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mMtx      = (Matrixf*)mtx;
+	mItems[2].mEffectID = effectID3;
+	mItems[3].mMtx      = (Matrixf*)mtx;
+	mItems[3].mEffectID = effectID4;
+	mItems[4].mMtx      = (Matrixf*)mtx;
+	mItems[4].mEffectID = effectID5;
+	mItems[5].mMtx      = (Matrixf*)mtx;
+	mItems[5].mEffectID = effectID6;
 }
 
 /*
@@ -1383,12 +1383,12 @@ TChaseMtx6::TChaseMtx6(float (*mtx)[4], unsigned short effectID1, unsigned short
  */
 void TChaseMtx6::setMtxptr(float (*mtx)[4])
 {
-	m_items[0].m_mtx = (Matrixf*)mtx;
-	m_items[1].m_mtx = (Matrixf*)mtx;
-	m_items[2].m_mtx = (Matrixf*)mtx;
-	m_items[3].m_mtx = (Matrixf*)mtx;
-	m_items[4].m_mtx = (Matrixf*)mtx;
-	m_items[5].m_mtx = (Matrixf*)mtx;
+	mItems[0].mMtx = (Matrixf*)mtx;
+	mItems[1].mMtx = (Matrixf*)mtx;
+	mItems[2].mMtx = (Matrixf*)mtx;
+	mItems[3].mMtx = (Matrixf*)mtx;
+	mItems[4].mMtx = (Matrixf*)mtx;
+	mItems[5].mMtx = (Matrixf*)mtx;
 }
 
 /*
@@ -1400,10 +1400,10 @@ void TChaseMtx6::setMtxptr(float (*mtx)[4])
 TChaseMtxT2::TChaseMtxT2(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TChaseMtxT>()
 {
-	m_items[0].m_mtx      = (Matrixf*)mtx;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_mtx      = (Matrixf*)mtx;
-	m_items[1].m_effectID = effectID2;
+	mItems[0].mMtx      = (Matrixf*)mtx;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mMtx      = (Matrixf*)mtx;
+	mItems[1].mEffectID = effectID2;
 }
 
 /*
@@ -1433,8 +1433,8 @@ TChaseMtxT2::TChaseMtxT2(float (*mtx)[4], unsigned short effectID1, unsigned sho
  */
 void TChaseMtxT2::setMtxptr(float (*mtx)[4])
 {
-	m_items[0].m_mtx = (Matrixf*)mtx;
-	m_items[1].m_mtx = (Matrixf*)mtx;
+	mItems[0].mMtx = (Matrixf*)mtx;
+	mItems[1].mMtx = (Matrixf*)mtx;
 }
 
 /*
@@ -1448,12 +1448,12 @@ TChaseMtxT3::TChaseMtxT3(float (*mtx)[4], unsigned short effectID1, unsigned sho
     : TSyncGroup3<TChaseMtxT>()
 {
 	// UNUSED FUNCTION
-	m_items[0].m_mtx      = (Matrixf*)mtx;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_mtx      = (Matrixf*)mtx;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_mtx      = (Matrixf*)mtx;
-	m_items[2].m_effectID = effectID3;
+	mItems[0].mMtx      = (Matrixf*)mtx;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mMtx      = (Matrixf*)mtx;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mMtx      = (Matrixf*)mtx;
+	mItems[2].mEffectID = effectID3;
 }
 
 /*
@@ -1477,9 +1477,9 @@ TChaseMtxT3::TChaseMtxT3(float (*mtx)[4], unsigned short effectID1, unsigned sho
 void TChaseMtxT3::setMtxptr(float (*mtx)[4])
 {
 	// UNUSED FUNCTION
-	m_items[0].m_mtx = (Matrixf*)mtx;
-	m_items[1].m_mtx = (Matrixf*)mtx;
-	m_items[2].m_mtx = (Matrixf*)mtx;
+	mItems[0].mMtx = (Matrixf*)mtx;
+	mItems[1].mMtx = (Matrixf*)mtx;
+	mItems[2].mMtx = (Matrixf*)mtx;
 }
 
 /*
@@ -1492,14 +1492,14 @@ TChaseMtxT4::TChaseMtxT4(float (*mtx)[4], unsigned short effectID1, unsigned sho
                          unsigned short effectID4)
     : TSyncGroup4<TChaseMtxT>()
 {
-	m_items[0].m_mtx      = (Matrixf*)mtx;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_mtx      = (Matrixf*)mtx;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_mtx      = (Matrixf*)mtx;
-	m_items[2].m_effectID = effectID3;
-	m_items[3].m_mtx      = (Matrixf*)mtx;
-	m_items[3].m_effectID = effectID4;
+	mItems[0].mMtx      = (Matrixf*)mtx;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mMtx      = (Matrixf*)mtx;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mMtx      = (Matrixf*)mtx;
+	mItems[2].mEffectID = effectID3;
+	mItems[3].mMtx      = (Matrixf*)mtx;
+	mItems[3].mEffectID = effectID4;
 }
 
 /*
@@ -1521,10 +1521,10 @@ TChaseMtxT4::TChaseMtxT4(float (*mtx)[4], unsigned short effectID1, unsigned sho
  */
 void TChaseMtxT4::setMtxptr(float (*mtx)[4])
 {
-	m_items[0].m_mtx = (Matrixf*)mtx;
-	m_items[1].m_mtx = (Matrixf*)mtx;
-	m_items[2].m_mtx = (Matrixf*)mtx;
-	m_items[3].m_mtx = (Matrixf*)mtx;
+	mItems[0].mMtx = (Matrixf*)mtx;
+	mItems[1].mMtx = (Matrixf*)mtx;
+	mItems[2].mMtx = (Matrixf*)mtx;
+	mItems[3].mMtx = (Matrixf*)mtx;
 }
 
 /*
@@ -1536,12 +1536,12 @@ void TChaseMtxT4::setMtxptr(float (*mtx)[4])
 TChasePosYRot2::TChasePosYRot2(Vector3f* p1, float* p2, unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TChasePosYRot>()
 {
-	m_items[0].m_position = p1;
-	m_items[0].m_rotation = p2;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_position = p1;
-	m_items[1].m_rotation = p2;
-	m_items[1].m_effectID = effectID2;
+	mItems[0].mPosition = p1;
+	mItems[0].mRotation = p2;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mPosition = p1;
+	mItems[1].mRotation = p2;
+	mItems[1].mEffectID = effectID2;
 }
 
 /*
@@ -1576,8 +1576,8 @@ TChasePosYRot::TChasePosYRot()
 void TChasePosYRot2::setPosptr(Vector3f* position)
 {
 	// UNUSED FUNCTION
-	m_items[0].m_position = position;
-	m_items[1].m_position = position;
+	mItems[0].mPosition = position;
+	mItems[1].mPosition = position;
 }
 
 /*
@@ -1590,8 +1590,8 @@ void TChasePosYRot2::setPosptr(Vector3f* position)
 void TChasePosYRot2::setYRot(float* rotation)
 {
 	// UNUSED FUNCTION
-	m_items[0].m_rotation = rotation;
-	m_items[1].m_rotation = rotation;
+	mItems[0].mRotation = rotation;
+	mItems[1].mRotation = rotation;
 }
 
 /*
@@ -1603,15 +1603,15 @@ void TChasePosYRot2::setYRot(float* rotation)
 TChasePosYRot3::TChasePosYRot3(Vector3f* p1, float* p2, unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
     : TSyncGroup3<TChasePosYRot>()
 {
-	m_items[0].m_position = p1;
-	m_items[0].m_rotation = p2;
-	m_items[0].m_effectID = effectID1;
-	m_items[1].m_position = p1;
-	m_items[1].m_rotation = p2;
-	m_items[1].m_effectID = effectID2;
-	m_items[2].m_position = p1;
-	m_items[2].m_rotation = p2;
-	m_items[2].m_effectID = effectID3;
+	mItems[0].mPosition = p1;
+	mItems[0].mRotation = p2;
+	mItems[0].mEffectID = effectID1;
+	mItems[1].mPosition = p1;
+	mItems[1].mRotation = p2;
+	mItems[1].mEffectID = effectID2;
+	mItems[2].mPosition = p1;
+	mItems[2].mRotation = p2;
+	mItems[2].mEffectID = effectID3;
 }
 
 /*
@@ -1635,9 +1635,9 @@ TChasePosYRot3::TChasePosYRot3(Vector3f* p1, float* p2, unsigned short effectID1
 void TChasePosYRot3::setPosptr(Vector3f* position)
 {
 	// UNUSED FUNCTION
-	m_items[0].m_position = position;
-	m_items[1].m_position = position;
-	m_items[2].m_position = position;
+	mItems[0].mPosition = position;
+	mItems[1].mPosition = position;
+	mItems[2].mPosition = position;
 }
 
 /*
@@ -1650,9 +1650,9 @@ void TChasePosYRot3::setPosptr(Vector3f* position)
 void TChasePosYRot3::setYRot(float* rotation)
 {
 	// UNUSED FUNCTION
-	m_items[0].m_rotation = rotation;
-	m_items[1].m_rotation = rotation;
-	m_items[2].m_rotation = rotation;
+	mItems[0].mRotation = rotation;
+	mItems[1].mRotation = rotation;
+	mItems[2].mRotation = rotation;
 }
 
 /*
@@ -1666,14 +1666,14 @@ TChasePosPosLocalYScale2::TChasePosPosLocalYScale2(Vector3f* p1, Vector3f* p2, f
     : TSyncGroup2<TChasePosPosLocalYScale>()
 {
 	// UNUSED FUNCTION
-	m_items[0]._10        = p1;
-	m_items[0]._14        = p2;
-	m_items[0]._18        = p3;
-	m_items[0].m_effectID = effectID1;
-	m_items[1]._10        = p1;
-	m_items[1]._14        = p2;
-	m_items[1]._18        = p3;
-	m_items[1].m_effectID = effectID2;
+	mItems[0]._10       = p1;
+	mItems[0]._14       = p2;
+	mItems[0]._18       = p3;
+	mItems[0].mEffectID = effectID1;
+	mItems[1]._10       = p1;
+	mItems[1]._14       = p2;
+	mItems[1]._18       = p3;
+	mItems[1].mEffectID = effectID2;
 }
 
 /*
@@ -1708,10 +1708,10 @@ TChasePosPosLocalYScale::TChasePosPosLocalYScale()
 void TChasePosPosLocalYScale2::setPosptr(Vector3f* p1, Vector3f* p2)
 {
 	// UNUSED FUNCTION
-	m_items[0]._10 = p1;
-	m_items[0]._14 = p2;
-	m_items[1]._10 = p1;
-	m_items[1]._14 = p2;
+	mItems[0]._10 = p1;
+	mItems[0]._14 = p2;
+	mItems[1]._10 = p1;
+	mItems[1]._14 = p2;
 }
 
 /*
@@ -1724,18 +1724,18 @@ TChasePosPosLocalYScale3::TChasePosPosLocalYScale3(Vector3f* p1, Vector3f* p2, f
                                                    unsigned short effectID3)
     : TSyncGroup3<TChasePosPosLocalYScale>()
 {
-	m_items[0]._10        = p1;
-	m_items[0]._14        = p2;
-	m_items[0]._18        = p3;
-	m_items[0].m_effectID = effectID1;
-	m_items[1]._10        = p1;
-	m_items[1]._14        = p2;
-	m_items[1]._18        = p3;
-	m_items[1].m_effectID = effectID2;
-	m_items[2]._10        = p1;
-	m_items[2]._14        = p2;
-	m_items[2]._18        = p3;
-	m_items[2].m_effectID = effectID3;
+	mItems[0]._10       = p1;
+	mItems[0]._14       = p2;
+	mItems[0]._18       = p3;
+	mItems[0].mEffectID = effectID1;
+	mItems[1]._10       = p1;
+	mItems[1]._14       = p2;
+	mItems[1]._18       = p3;
+	mItems[1].mEffectID = effectID2;
+	mItems[2]._10       = p1;
+	mItems[2]._14       = p2;
+	mItems[2]._18       = p3;
+	mItems[2].mEffectID = effectID3;
 }
 
 /*
@@ -1757,12 +1757,12 @@ TChasePosPosLocalYScale3::TChasePosPosLocalYScale3(Vector3f* p1, Vector3f* p2, f
  */
 void TChasePosPosLocalYScale3::setPosptr(Vector3f* p1, Vector3f* p2)
 {
-	m_items[0]._10 = p1;
-	m_items[0]._14 = p2;
-	m_items[1]._10 = p1;
-	m_items[1]._14 = p2;
-	m_items[2]._10 = p1;
-	m_items[2]._14 = p2;
+	mItems[0]._10 = p1;
+	mItems[0]._14 = p2;
+	mItems[1]._10 = p1;
+	mItems[1]._14 = p2;
+	mItems[2]._10 = p1;
+	mItems[2]._14 = p2;
 }
 
 /*
@@ -1776,14 +1776,14 @@ TChasePosPosLocalZScale2::TChasePosPosLocalZScale2(Vector3f* p1, Vector3f* p2, f
     : TSyncGroup2<TChasePosPosLocalZScale>()
 {
 	// UNUSED FUNCTION
-	m_items[0]._10        = p1;
-	m_items[0]._14        = p2;
-	m_items[0]._18        = p3;
-	m_items[0].m_effectID = effectID1;
-	m_items[1]._10        = p1;
-	m_items[1]._14        = p2;
-	m_items[1]._18        = p3;
-	m_items[1].m_effectID = effectID2;
+	mItems[0]._10       = p1;
+	mItems[0]._14       = p2;
+	mItems[0]._18       = p3;
+	mItems[0].mEffectID = effectID1;
+	mItems[1]._10       = p1;
+	mItems[1]._14       = p2;
+	mItems[1]._18       = p3;
+	mItems[1].mEffectID = effectID2;
 }
 
 /*
@@ -1818,10 +1818,10 @@ TChasePosPosLocalZScale::TChasePosPosLocalZScale()
 void TChasePosPosLocalZScale2::setPosptr(Vector3f* p1, Vector3f* p2)
 {
 	// UNUSED FUNCTION
-	m_items[0]._10 = p1;
-	m_items[0]._14 = p2;
-	m_items[1]._10 = p1;
-	m_items[1]._14 = p2;
+	mItems[0]._10 = p1;
+	mItems[0]._14 = p2;
+	mItems[1]._10 = p1;
+	mItems[1]._14 = p2;
 }
 
 /*
@@ -1834,18 +1834,18 @@ TChasePosPosLocalZScale3::TChasePosPosLocalZScale3(Vector3f* p1, Vector3f* p2, f
                                                    unsigned short effectID3)
     : TSyncGroup3<TChasePosPosLocalZScale>()
 {
-	m_items[0]._10        = p1;
-	m_items[0]._14        = p2;
-	m_items[0]._18        = p3;
-	m_items[0].m_effectID = effectID1;
-	m_items[1]._10        = p1;
-	m_items[1]._14        = p2;
-	m_items[1]._18        = p3;
-	m_items[1].m_effectID = effectID2;
-	m_items[2]._10        = p1;
-	m_items[2]._14        = p2;
-	m_items[2]._18        = p3;
-	m_items[2].m_effectID = effectID3;
+	mItems[0]._10       = p1;
+	mItems[0]._14       = p2;
+	mItems[0]._18       = p3;
+	mItems[0].mEffectID = effectID1;
+	mItems[1]._10       = p1;
+	mItems[1]._14       = p2;
+	mItems[1]._18       = p3;
+	mItems[1].mEffectID = effectID2;
+	mItems[2]._10       = p1;
+	mItems[2]._14       = p2;
+	mItems[2]._18       = p3;
+	mItems[2].mEffectID = effectID3;
 }
 
 /*
@@ -1867,12 +1867,12 @@ TChasePosPosLocalZScale3::TChasePosPosLocalZScale3(Vector3f* p1, Vector3f* p2, f
  */
 void TChasePosPosLocalZScale3::setPosptr(Vector3f* p1, Vector3f* p2)
 {
-	m_items[0]._10 = p1;
-	m_items[0]._14 = p2;
-	m_items[1]._10 = p1;
-	m_items[1]._14 = p2;
-	m_items[2]._10 = p1;
-	m_items[2]._14 = p2;
+	mItems[0]._10 = p1;
+	mItems[0]._14 = p2;
+	mItems[1]._10 = p1;
+	mItems[1]._14 = p2;
+	mItems[2]._10 = p1;
+	mItems[2]._14 = p2;
 }
 
 /*
@@ -1934,10 +1934,10 @@ lbl_803B0E5C:
  */
 void TOneEmitterChasePos::startDemoDrawOff()
 {
-	if (m_emitter == nullptr) {
+	if (mEmitter == nullptr) {
 		return;
 	}
-	m_emitter->_F4 |= 4;
+	mEmitter->_F4 |= 4;
 }
 
 /*
@@ -1948,10 +1948,10 @@ void TOneEmitterChasePos::startDemoDrawOff()
  */
 void TOneEmitterChasePos::endDemoDrawOn()
 {
-	if (m_emitter == nullptr) {
+	if (mEmitter == nullptr) {
 		return;
 	}
-	m_emitter->_F4 &= ~4;
+	mEmitter->_F4 &= ~4;
 }
 
 /*

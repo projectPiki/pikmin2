@@ -23,8 +23,8 @@ void AnimInfo::attach(J3DModelData* modelData, void* animData)
 {
 	JUT_ASSERTLINE(64, animData != nullptr, "animData null!\n");
 
-	m_anm  = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(animData);
-	m_calc = J3DNewMtxCalcAnm(modelData->m_jointTree.m_08 & 0xf, m_anm);
+	mAnm  = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(animData);
+	mCalc = J3DNewMtxCalcAnm(modelData->mJointTree.m_08 & 0xf, mAnm);
 }
 
 /*
@@ -57,23 +57,23 @@ void AnimMgr::load(Stream& s, J3DModelData* md, JKRFileLoader* fl, char* folderN
 {
 	read(s);
 
-	for (AnimInfo* c = (AnimInfo*)m_animInfo.m_child; c; c = (AnimInfo*)c->m_next) {
+	for (AnimInfo* c = (AnimInfo*)mAnimInfo.mChild; c; c = (AnimInfo*)c->mNext) {
 		char path[512];
 		void* animData;
 
 		if (folderName) {
-			sprintf(path, "%s/%s", folderName, c->m_name);
+			sprintf(path, "%s/%s", folderName, c->mName);
 			animData = fl->getResource(path);
 		} else {
-			sprintf(path, "%s", c->m_name);
-			animData = JKRFileLoader::getGlbResource(c->m_name, fl);
+			sprintf(path, "%s", c->mName);
+			animData = JKRFileLoader::getGlbResource(c->mName, fl);
 		}
 
 		JUT_ASSERTLINE(119, animData, "nanda~~~~?\n");
 		JUT_ASSERTLINE(64, animData, "animData null!\n");
 
-		c->m_anm  = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(animData);
-		c->m_calc = J3DNewMtxCalcAnm(md->m_jointTree.m_08 & 0xF, c->m_anm);
+		c->mAnm  = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(animData);
+		c->mCalc = J3DNewMtxCalcAnm(md->mJointTree.m_08 & 0xF, c->mAnm);
 	}
 }
 
@@ -90,11 +90,11 @@ void AnimMgr::read(Stream& s)
 		AnimInfo* info = new AnimInfo(this);
 
 		info->read(s);
-		info->m_id  = m_count;
-		info->m_mgr = this;
+		info->mId  = mCount;
+		info->mMgr = this;
 
-		m_animInfo.add(info);
-		m_count++;
+		mAnimInfo.add(info);
+		mCount++;
 	}
 }
 
@@ -105,13 +105,13 @@ void AnimMgr::read(Stream& s)
  */
 void AnimMgr::connectBasArc(char* a2, char* a3, JKRFileLoader* a4)
 {
-	for (AnimInfo* c = (AnimInfo*)m_animInfo.m_child; c; c = (AnimInfo*)c->m_next) {
+	for (AnimInfo* c = (AnimInfo*)mAnimInfo.mChild; c; c = (AnimInfo*)c->mNext) {
 		char path[512];
 
 		if (a2) {
-			sprintf(path, "%s/%s", a2, c->m_name);
+			sprintf(path, "%s/%s", a2, c->mName);
 		} else {
-			sprintf(path, "%s", c->m_name);
+			sprintf(path, "%s", c->mName);
 		}
 
 		for (int i = 0; i < strlen(path); i++) {
@@ -127,7 +127,7 @@ void AnimMgr::connectBasArc(char* a2, char* a3, JKRFileLoader* a4)
 
 		void* basFile = a4->getResource(path);
 		if (basFile) {
-			c->m_basFile = (JAIAnimeFrameSoundData*)basFile;
+			c->mBasFile = (JAIAnimeFrameSoundData*)basFile;
 		}
 	}
 }
@@ -139,8 +139,8 @@ void AnimMgr::connectBasArc(char* a2, char* a3, JKRFileLoader* a4)
  */
 void AnimMgr::registerSoundViewer(PSGame::SoundCreatureMgr* scm)
 {
-	for (AnimInfo* c = (AnimInfo*)m_animInfo.m_child; c; c = (AnimInfo*)c->m_next) {
-		scm->registerAnime(c->m_anm, c->m_name);
+	for (AnimInfo* c = (AnimInfo*)mAnimInfo.mChild; c; c = (AnimInfo*)c->mNext) {
+		scm->registerAnime(c->mAnm, c->mName);
 	}
 }
 

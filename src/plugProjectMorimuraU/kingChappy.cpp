@@ -60,13 +60,13 @@ void Obj::setParameters()
 {
 	EnemyBase::setParameters();
 	if (_394 || C_PARMS->_BCC) {
-		_394            = 1;
-		f32 scale       = C_PROPERPARMS.m_fp15.m_value;
-		m_scaleModifier = scale;
-		m_scale         = Vector3f(scale);
-		m_collTree->m_part->setScale(scale);
-		m_curLodSphere.m_radius                            = scale * C_PARMS->m_general.m_offCameraRadius.m_value;
-		C_PARMS->m_general.m_heightOffsetFromFloor.m_value = 60.0f;
+		_394           = 1;
+		f32 scale      = C_PROPERPARMS.mFp15.mValue;
+		mScaleModifier = scale;
+		mScale         = Vector3f(scale);
+		mCollTree->mPart->setScale(scale);
+		mCurLodSphere.mRadius                           = scale * C_PARMS->mGeneral.mOffCameraRadius.mValue;
+		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
 	}
 }
 
@@ -86,72 +86,72 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	fadeEfxHamon();
-	m_mouthJoint1 = m_model->getJoint("kuti");
-	P2ASSERTLINE(90, m_mouthJoint1);
+	mMouthJoint1 = mModel->getJoint("kuti");
+	P2ASSERTLINE(90, mMouthJoint1);
 
-	m_bodyJoint = m_model->getJoint("kosijnt");
-	P2ASSERTLINE(93, m_bodyJoint);
+	mBodyJoint = mModel->getJoint("kosijnt");
+	P2ASSERTLINE(93, mBodyJoint);
 
-	m_tongueJoint1 = m_model->getJoint("bero6");
-	P2ASSERTLINE(96, m_tongueJoint1);
+	mTongueJoint1 = mModel->getJoint("bero6");
+	P2ASSERTLINE(96, mTongueJoint1);
 
-	m_tongueJoint2 = m_model->getJoint("bero5");
-	P2ASSERTLINE(99, m_tongueJoint2);
+	mTongueJoint2 = mModel->getJoint("bero5");
+	P2ASSERTLINE(99, mTongueJoint2);
 
-	m_mouthJoint2 = m_model->getJoint("kuti");
-	P2ASSERTLINE(102, m_mouthJoint2);
+	mMouthJoint2 = mModel->getJoint("kuti");
+	P2ASSERTLINE(102, mMouthJoint2);
 
-	m_fsm->start(this, KINGCHAPPY_HideWait, nullptr);
+	mFsm->start(this, KINGCHAPPY_HideWait, nullptr);
 
-	m_homePosition   = m_position;
-	_2BC             = m_homePosition;
-	m_homePosition.y = 0.0f;
-	_2EC             = 1;
-	_2F0             = 0;
-	_2F4             = m_homePosition;
-	_30C             = 0;
-	_338             = 0;
+	mHomePosition   = mPosition;
+	_2BC            = mHomePosition;
+	mHomePosition.y = 0.0f;
+	_2EC            = 1;
+	_2F0            = 0;
+	_2F4            = mHomePosition;
+	_30C            = 0;
+	_338            = 0;
 
-	P2ASSERTLINE(121, m_model);
+	P2ASSERTLINE(121, mModel);
 	J3DJoint* joint;
-	J3DModelData* modelData = m_model->m_j3dModel->m_modelData;
+	J3DModelData* modelData = mModel->mJ3dModel->mModelData;
 
-	m_lFootJointIndex = m_model->getJointIndex("asiL");
-	joint             = modelData->m_jointTree.m_joints[m_lFootJointIndex];
+	mLFootJointIndex = mModel->getJointIndex("asiL");
+	joint            = modelData->mJointTree.mJoints[mLFootJointIndex];
 	P2ASSERTLINE(127, joint);
-	joint->m_function = (J3DJointCallBack*)&lFootCallBack;
+	joint->mFunction = (J3DJointCallBack*)&lFootCallBack;
 
-	m_rFootJointIndex = m_model->getJointIndex("asiR");
-	J3DJoint* joint2  = modelData->m_jointTree.m_joints[m_rFootJointIndex];
+	mRFootJointIndex = mModel->getJointIndex("asiR");
+	J3DJoint* joint2 = modelData->mJointTree.mJoints[mRFootJointIndex];
 	P2ASSERTLINE(132, joint2);
-	joint2->m_function = (J3DJointCallBack*)&rFootCallBack;
+	joint2->mFunction = (J3DJointCallBack*)&rFootCallBack;
 
 	_320 = 0.0f;
 	_334 = 0.0f;
 
-	m_efxYodare->m_mtx     = m_mouthJoint2->getWorldMatrix();
-	m_efxCryInd->m_mtx     = m_mouthJoint2->getWorldMatrix();
-	m_efxSmoke->m_mtx      = m_model->getJoint("hana")->getWorldMatrix();
-	m_efxAttack->m_mtx     = m_model->getJoint("bero5")->getWorldMatrix();
-	m_efxDeadYodare->m_mtx = m_model->getJoint("kuti")->getWorldMatrix();
-	m_efxDeadHana->setMtxptr(m_model->getJoint("hana")->getWorldMatrix()->m_matrix.mtxView);
+	mEfxYodare->mMtx     = mMouthJoint2->getWorldMatrix();
+	mEfxCryInd->mMtx     = mMouthJoint2->getWorldMatrix();
+	mEfxSmoke->mMtx      = mModel->getJoint("hana")->getWorldMatrix();
+	mEfxAttack->mMtx     = mModel->getJoint("bero5")->getWorldMatrix();
+	mEfxDeadYodare->mMtx = mModel->getJoint("kuti")->getWorldMatrix();
+	mEfxDeadHana->setMtxptr(mModel->getJoint("hana")->getWorldMatrix()->mMatrix.mtxView);
 
-	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
 	soundObj->setAppearFlag(false);
 
 	_394 = 0;
 
 	// increase size of emperor if _BCC is set, or if we're in Bulblax Kingdom
-	SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->m_section);
+	SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 	if (C_PARMS->_BCC || (section && section->getCaveID() == 'f_03')) {
-		_394            = 1;
-		m_health        = C_PROPERPARMS.m_fp16.m_value;
-		f32 scale       = C_PROPERPARMS.m_fp15.m_value;
-		m_scaleModifier = scale;
-		m_scale         = Vector3f(scale);
-		m_collTree->m_part->setScale(scale);
-		m_curLodSphere.m_radius = scale * C_PARMS->m_general.m_offCameraRadius.m_value;
+		_394           = 1;
+		mHealth        = C_PROPERPARMS.mFp16.mValue;
+		f32 scale      = C_PROPERPARMS.mFp15.mValue;
+		mScaleModifier = scale;
+		mScale         = Vector3f(scale);
+		mCollTree->mPart->setScale(scale);
+		mCurLodSphere.mRadius = scale * C_PARMS->mGeneral.mOffCameraRadius.mValue;
 	}
 }
 
@@ -161,45 +161,45 @@ void Obj::onInit(CreatureInitArg* initArg)
  * Size:	0005AC
  */
 Obj::Obj()
-    : m_mouthJoint1(nullptr)
-    , m_bodyJoint(nullptr)
-    , m_tongueJoint1(nullptr)
-    , m_tongueJoint2(nullptr)
+    : mMouthJoint1(nullptr)
+    , mBodyJoint(nullptr)
+    , mTongueJoint1(nullptr)
+    , mTongueJoint2(nullptr)
     , _2E4(0)
     , _2EC(1)
     , _2F0(0)
     , _30C(0)
-    , m_lFootJointIndex(0)
-    , m_rFootJointIndex(0)
+    , mLFootJointIndex(0)
+    , mRFootJointIndex(0)
     , _340(nullptr)
-    , m_fsm(nullptr)
-    , m_efxYodare(nullptr)
-    , m_efxDiveSand(nullptr)
-    , m_efxDiveWater(nullptr)
-    , m_efxCryAB(nullptr)
-    , m_efxCryInd(nullptr)
-    , m_efxSmoke(nullptr)
-    , m_efxAttack(nullptr)
-    , m_efxDeadYodare(nullptr)
-    , m_efxDeadHana(nullptr)
+    , mFsm(nullptr)
+    , mEfxYodare(nullptr)
+    , mEfxDiveSand(nullptr)
+    , mEfxDiveWater(nullptr)
+    , mEfxCryAB(nullptr)
+    , mEfxCryInd(nullptr)
+    , mEfxSmoke(nullptr)
+    , mEfxAttack(nullptr)
+    , mEfxDeadYodare(nullptr)
+    , mEfxDeadHana(nullptr)
     , _374(nullptr)
     , _378(nullptr)
     , _394(0)
 {
 
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 	curK = nullptr;
 
-	m_efxYodare     = new efx::TKchYodare(nullptr);
-	m_efxDiveSand   = new efx::TKchDiveSand(&m_position, &m_faceDir);
-	m_efxDiveWater  = new efx::TKchDiveWat(&m_position, &m_faceDir);
-	m_efxCryAB      = new efx::TKchCryAB(&m_position);
-	m_efxCryInd     = new efx::TKchCryInd;
-	m_efxSmoke      = new efx::TKchSmokeHana;
-	m_efxAttack     = new efx::TKchAttackYodare(nullptr);
-	m_efxDeadYodare = new efx::TKchDeadYodare(nullptr);
-	m_efxDeadHana   = new efx::TKchDeadHana;
+	mEfxYodare     = new efx::TKchYodare(nullptr);
+	mEfxDiveSand   = new efx::TKchDiveSand(&mPosition, &mFaceDir);
+	mEfxDiveWater  = new efx::TKchDiveWat(&mPosition, &mFaceDir);
+	mEfxCryAB      = new efx::TKchCryAB(&mPosition);
+	mEfxCryInd     = new efx::TKchCryInd;
+	mEfxSmoke      = new efx::TKchSmokeHana;
+	mEfxAttack     = new efx::TKchAttackYodare(nullptr);
+	mEfxDeadYodare = new efx::TKchDeadYodare(nullptr);
+	mEfxDeadHana   = new efx::TKchDeadHana;
 
 	_374 = new efx::TEnemyHamonChasePos(&_37C);
 	_378 = new efx::TEnemyHamonChasePos(&_388);
@@ -250,9 +250,9 @@ namespace KingChappy {
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -263,20 +263,20 @@ void Obj::setFSM(FSM* fsm)
 void Obj::doUpdate()
 {
 	if (!_340) {
-		Sys::Sphere sphere(m_position, 500.0f);
-		P2ASSERTLINE(235, mapMgr->m_seaMgr);
-		_340 = mapMgr->m_seaMgr->findWater2d(sphere);
+		Sys::Sphere sphere(mPosition, 500.0f);
+		P2ASSERTLINE(235, mapMgr->mSeaMgr);
+		_340 = mapMgr->mSeaMgr->findWater2d(sphere);
 	}
 
-	_300 = m_position;
+	_300 = mPosition;
 
-	_300.x -= 10.0f * pikmin2_sinf(m_faceDir);
-	_300.z -= 10.0f * pikmin2_cosf(m_faceDir);
+	_300.x -= 10.0f * pikmin2_sinf(mFaceDir);
+	_300.z -= 10.0f * pikmin2_cosf(mFaceDir);
 
-	m_scale = Vector3f(m_scaleModifier);
-	m_collTree->m_part->setScale(m_scaleModifier);
+	mScale = Vector3f(mScaleModifier);
+	mCollTree->mPart->setScale(mScaleModifier);
 
-	m_fsm->exec(this);
+	mFsm->exec(this);
 }
 
 /*
@@ -300,16 +300,15 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::doAnimationUpdateAnimator()
 {
-	ProperAnimator* animator = static_cast<ProperAnimator*>(m_animator);
-	if (animator->m_animator._48) {
-		f32 frameRate = sys->m_deltaTime;
+	ProperAnimator* animator = static_cast<ProperAnimator*>(mAnimator);
+	if (animator->mAnimator._48) {
+		f32 frameRate = sys->mDeltaTime;
 		frameRate     = EnemyAnimatorBase::defaultAnimSpeed * frameRate;
 		SysShape::BlendLinearFun linearBlend;
-		animator->animate(&linearBlend, 60.0f * sys->m_deltaTime, frameRate, frameRate);
+		animator->animate(&linearBlend, 60.0f * sys->mDeltaTime, frameRate, frameRate);
 
-		SysShape::Model* model = m_model;
-		model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc
-		    = static_cast<J3DMtxCalcAnmBase*>(animator->m_animator.getCalc());
+		SysShape::Model* model                                        = mModel;
+		model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(animator->mAnimator.getCalc());
 	} else {
 		EnemyBase::doAnimationUpdateAnimator();
 	}
@@ -341,38 +340,38 @@ void Obj::doAnimationCullingOff()
 
 	if (C_PARMS->_BC8) {
 		C_PARMS->_BC8 = 0;
-		m_fsm->transit(this, KINGCHAPPY_Hide, nullptr);
+		mFsm->transit(this, KINGCHAPPY_Hide, nullptr);
 	}
 
-	m_curAnim->m_isPlaying = false;
+	mCurAnim->mIsPlaying = false;
 	doAnimationUpdateAnimator();
 
-	if (m_pellet) {
-		viewMakeMatrix(m_objMatrix);
+	if (mPellet) {
+		viewMakeMatrix(mObjMatrix);
 
 		Matrixf mtx;
-		PSMTXScale(mtx.m_matrix.mtxView, m_scale.x, m_scale.y, m_scale.z);
-		PSMTXConcat(m_objMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView, m_objMatrix.m_matrix.mtxView);
+		PSMTXScale(mtx.mMatrix.mtxView, mScale.x, mScale.y, mScale.z);
+		PSMTXConcat(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
 
 		Vector3f pos;
-		m_objMatrix.getTranslation(pos);
+		mObjMatrix.getTranslation(pos);
 		onSetPosition(pos);
 		onSetPositionPost(pos);
 	} else {
-		m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
+		mObjMatrix.makeSRT(mScale, mRotation, mPosition);
 	}
 
-	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-	m_model->m_j3dModel->calc();
+	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	mModel->mJ3dModel->calc();
 
 	// this is a really complicated way to adjust the world matrices when eating pikmin
-	for (int i = 0; i < m_mouthSlots.m_max; i++) {
+	for (int i = 0; i < mMouthSlots.mMax; i++) {
 		// this loop has regswaps, but not from the math for once!
 		Matrixf* mat;
-		Creature* stuckCreature = m_mouthSlots.getStuckCreature(i);
+		Creature* stuckCreature = mMouthSlots.getStuckCreature(i);
 		if (stuckCreature) {
-			mat = (Matrixf*)m_model->m_j3dModel->m_mtxBuffer->m_worldMatrices[m_jointIndices[i]];
-			// mat = m_model->m_j3dModel->m_mtxBuffer->getWorldMatrix(_33C[i]);
+			mat = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mJointIndices[i]];
+			// mat = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(_33C[i]);
 			Vector3f xBasis = mat->getBasis(0);
 			Vector3f yBasis = mat->getBasis(1);
 			Vector3f zBasis = mat->getBasis(2);
@@ -396,28 +395,28 @@ void Obj::doAnimationCullingOff()
 				PSVECCrossProduct((Vec*)&xBasis, (Vec*)&yBasis, (Vec*)&zBasis);
 				zBasis.normalise();
 
-				mat->m_matrix.structView.xx = xBasis.x * yLen;
-				mat->m_matrix.structView.xy = xBasis.y * yLen;
-				mat->m_matrix.structView.xz = xBasis.z * yLen;
+				mat->mMatrix.structView.xx = xBasis.x * yLen;
+				mat->mMatrix.structView.xy = xBasis.y * yLen;
+				mat->mMatrix.structView.xz = xBasis.z * yLen;
 
-				mat->m_matrix.structView.yx = yBasis.x * yLen;
-				mat->m_matrix.structView.yy = yBasis.y * yLen;
-				mat->m_matrix.structView.yz = yBasis.z * yLen;
+				mat->mMatrix.structView.yx = yBasis.x * yLen;
+				mat->mMatrix.structView.yy = yBasis.y * yLen;
+				mat->mMatrix.structView.yz = yBasis.z * yLen;
 
-				mat->m_matrix.structView.zx = zBasis.x * yLen;
-				mat->m_matrix.structView.zy = zBasis.y * yLen;
-				mat->m_matrix.structView.zz = zBasis.z * yLen;
+				mat->mMatrix.structView.zx = zBasis.x * yLen;
+				mat->mMatrix.structView.zy = zBasis.y * yLen;
+				mat->mMatrix.structView.zz = zBasis.z * yLen;
 			}
 		}
 	}
 
-	m_collTree->update();
+	mCollTree->update();
 
-	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj); // get sound object
-	PSM::checkBoss(soundObj);                                            // make sure we have sound object
-	if (soundObj) {                                                      // REALLY MAKE SURE WE HAVE SOUND OBJECT
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj); // get sound object
+	PSM::checkBoss(soundObj);                                           // make sure we have sound object
+	if (soundObj) {                                                     // REALLY MAKE SURE WE HAVE SOUND OBJECT
 		// POINTLESS IF STATEMENT
-		if (m_sticked) {
+		if (mSticked) {
 			soundObj->postPikiAttack(true);
 		} else {
 			soundObj->postPikiAttack(true);
@@ -855,11 +854,11 @@ void Obj::doSimulation(f32 rate)
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	m_bodyJoint->getWorldMatrix()->getTranslation(param.m_position);
-	param.m_position.y -= 20.0f;
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	param.m_boundingSphere.m_radius   = 100.0f * m_scaleModifier;
-	param.m_size                      = 45.0f * m_scaleModifier;
+	mBodyJoint->getWorldMatrix()->getTranslation(param.mPosition);
+	param.mPosition.y -= 20.0f;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mRadius   = 100.0f * mScaleModifier;
+	param.mSize                     = 45.0f * mScaleModifier;
 }
 
 /*
@@ -881,8 +880,8 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 		}
 	} else if (creature->isAlive()) {
 		Vector3f creaturePos = creature->getPosition();
-		if (creaturePos.y < 5.0f + m_position.y) {
-			if (sqrDistanceXZ(creaturePos, m_position) < 1600.0f) {
+		if (creaturePos.y < 5.0f + mPosition.y) {
+			if (sqrDistanceXZ(creaturePos, mPosition) < 1600.0f) {
 				addDamage(damage * 0.2f, 1.0f);
 				return true;
 			}
@@ -899,7 +898,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
  * Address:	8035EB88
  * Size:	000030
  */
-void Obj::collisionCallback(CollEvent& event) { event.m_hitPart->m_currentID == ('kuti'); }
+void Obj::collisionCallback(CollEvent& event) { event.mHitPart->mCurrentID == ('kuti'); }
 
 /*
  * --INFO--
@@ -908,8 +907,8 @@ void Obj::collisionCallback(CollEvent& event) { event.m_hitPart->m_currentID == 
  */
 void Obj::wallCallback(MoveInfo const& moveInfo)
 {
-	_2F0             = 120;
-	m_targetCreature = nullptr;
+	_2F0            = 120;
+	mTargetCreature = nullptr;
 	setNextGoal();
 }
 
@@ -946,9 +945,9 @@ void Obj::startCarcassMotion() { startMotion(13, nullptr); }
  */
 void Obj::initWalkSmokeEffect()
 {
-	m_walkSmokeMgr.alloc(2);
-	m_walkSmokeMgr.setup(0, m_model, "asiR", 2.0f);
-	m_walkSmokeMgr.setup(1, m_model, "asiL", 2.0f);
+	mWalkSmokeMgr.alloc(2);
+	mWalkSmokeMgr.setup(0, mModel, "asiR", 2.0f);
+	mWalkSmokeMgr.setup(1, mModel, "asiL", 2.0f);
 }
 
 /*
@@ -956,7 +955,7 @@ void Obj::initWalkSmokeEffect()
  * Address:	8035ECE8
  * Size:	000008
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &m_walkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
 /*
  * --INFO--
@@ -966,10 +965,10 @@ WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &m_walkSmokeMgr; }
 void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
-	CollPart* backPart    = m_collTree->getCollPart('back');
-	backPart->m_specialID = 'st__';
-	CollPart* buttPart    = m_collTree->getCollPart('ketu');
-	buttPart->m_specialID = 'st__';
+	CollPart* backPart   = mCollTree->getCollPart('back');
+	backPart->mSpecialID = 'st__';
+	CollPart* buttPart   = mCollTree->getCollPart('ketu');
+	buttPart->mSpecialID = 'st__';
 	fadeAllEffect();
 }
 
@@ -981,13 +980,13 @@ void Obj::doStartStoneState()
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	CollPart* backPart    = m_collTree->getCollPart('back');
-	backPart->m_specialID = '_t__';
-	CollPart* buttPart    = m_collTree->getCollPart('ketu');
-	buttPart->m_specialID = '_t__';
-	EnemyFunc::flickStickPikmin(this, C_PARMS->m_general.m_shakeRateMaybe.m_value, C_PARMS->m_general.m_shakeKnockback.m_value,
-	                            C_PARMS->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
-	m_toFlick = 0.0f;
+	CollPart* backPart   = mCollTree->getCollPart('back');
+	backPart->mSpecialID = '_t__';
+	CollPart* buttPart   = mCollTree->getCollPart('ketu');
+	buttPart->mSpecialID = '_t__';
+	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeRateMaybe.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
+	                            C_PARMS->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	mToFlick = 0.0f;
 	createEffect(0);
 }
 
@@ -998,15 +997,15 @@ void Obj::doFinishStoneState()
  */
 void Obj::doStartMovie()
 {
-	m_efxYodare->startDemoDrawOff();
-	m_efxDiveSand->startDemoDrawOff();
-	m_efxDiveWater->startDemoDrawOff();
-	m_efxCryAB->startDemoDrawOff();
-	m_efxCryInd->startDemoDrawOff();
-	m_efxSmoke->startDemoDrawOff();
-	m_efxAttack->startDemoDrawOff();
-	m_efxDeadYodare->startDemoDrawOff();
-	m_efxDeadHana->startDemoDrawOff();
+	mEfxYodare->startDemoDrawOff();
+	mEfxDiveSand->startDemoDrawOff();
+	mEfxDiveWater->startDemoDrawOff();
+	mEfxCryAB->startDemoDrawOff();
+	mEfxCryInd->startDemoDrawOff();
+	mEfxSmoke->startDemoDrawOff();
+	mEfxAttack->startDemoDrawOff();
+	mEfxDeadYodare->startDemoDrawOff();
+	mEfxDeadHana->startDemoDrawOff();
 	_374->startDemoDrawOff();
 	_378->startDemoDrawOff();
 }
@@ -1018,15 +1017,15 @@ void Obj::doStartMovie()
  */
 void Obj::doEndMovie()
 {
-	m_efxYodare->endDemoDrawOn();
-	m_efxDiveSand->endDemoDrawOn();
-	m_efxDiveWater->endDemoDrawOn();
-	m_efxCryAB->endDemoDrawOn();
-	m_efxCryInd->endDemoDrawOn();
-	m_efxSmoke->endDemoDrawOn();
-	m_efxAttack->endDemoDrawOn();
-	m_efxDeadYodare->endDemoDrawOn();
-	m_efxDeadHana->endDemoDrawOn();
+	mEfxYodare->endDemoDrawOn();
+	mEfxDiveSand->endDemoDrawOn();
+	mEfxDiveWater->endDemoDrawOn();
+	mEfxCryAB->endDemoDrawOn();
+	mEfxCryInd->endDemoDrawOn();
+	mEfxSmoke->endDemoDrawOn();
+	mEfxAttack->endDemoDrawOn();
+	mEfxDeadYodare->endDemoDrawOn();
+	mEfxDeadHana->endDemoDrawOn();
 	_374->endDemoDrawOn();
 	_378->endDemoDrawOn();
 }
@@ -1039,12 +1038,12 @@ void Obj::doEndMovie()
 void Obj::initMouthSlots()
 {
 	char* slotNames[] = { "kamu1", "kamu2", "kamu3", "kamu4", "kamu5", "kamu6", "kamu7", "kamu8", "kamu9" };
-	m_mouthSlots.alloc(9);
-	m_jointIndices = new u16[9];
-	for (int i = 0; i < m_mouthSlots.m_max; i++) {
-		m_mouthSlots.setup(i, m_model, slotNames[i]);
-		m_mouthSlots.getSlot(i)->m_radius = 25.0f * m_scaleModifier;
-		m_jointIndices[i]                 = m_model->getJointIndex(slotNames[i]);
+	mMouthSlots.alloc(9);
+	mJointIndices = new u16[9];
+	for (int i = 0; i < mMouthSlots.mMax; i++) {
+		mMouthSlots.setup(i, mModel, slotNames[i]);
+		mMouthSlots.getSlot(i)->mRadius = 25.0f * mScaleModifier;
+		mJointIndices[i]                = mModel->getJointIndex(slotNames[i]);
 	}
 }
 
@@ -1063,17 +1062,17 @@ int Obj::eatBomb()
 		for (int i = 0; i < bombMgr->getMaxObjects(); i++) {
 			bomb = static_cast<Bomb::Obj*>(bombMgr->getEnemy(i));
 			if (bomb->canEat() && !bomb->isStickToMouth()) {
-				for (int j = 0; j < slots->m_max; j++) {
+				for (int j = 0; j < slots->mMax; j++) {
 					MouthCollPart* slot = slots->getSlot(j);
-					if (!slot->m_stuckCreature) {
+					if (!slot->mStuckCreature) {
 						Vector3f slotPos;
 						slot->getPosition(slotPos);
 						Vector3f bombPos = bomb->getPosition();
 
 						f32 dist = _distanceBetween2(slotPos, bombPos);
-						if (dist < slot->m_radius) {
+						if (dist < slot->mRadius) {
 							bomb->startStickMouth(this, slot);
-							bomb->m_efxLight->fade();
+							bomb->mEfxLight->fade();
 							bomb->stopMotion();
 							count++;
 							break;
@@ -1092,7 +1091,7 @@ int Obj::eatBomb()
  * Address:	8035F40C
  * Size:	000008
  */
-MouthSlots* Obj::getMouthSlots() { return &m_mouthSlots; }
+MouthSlots* Obj::getMouthSlots() { return &mMouthSlots; }
 
 /*
  * --INFO--
@@ -1135,9 +1134,9 @@ int Obj::getPikminInMouth(bool doKill)
  */
 void Obj::getTonguePosVel(Vector3f& pos, Vector3f& vel)
 {
-	m_tongueJoint1->getWorldMatrix()->getTranslation(pos);
+	mTongueJoint1->getWorldMatrix()->getTranslation(pos);
 	Vector3f pos2;
-	m_tongueJoint2->getWorldMatrix()->getTranslation(pos2);
+	mTongueJoint2->getWorldMatrix()->getTranslation(pos2);
 	vel = pos - pos2;
 
 	vel.normalise();
@@ -1684,14 +1683,14 @@ bool Obj::forceTransit(int stateID)
 	switch (stateID) {
 	case KINGCHAPPY_Appear:
 		if (currStateID == KINGCHAPPY_HideWait) {
-			m_fsm->transit(this, stateID, nullptr);
+			mFsm->transit(this, stateID, nullptr);
 			break;
 		}
 		return false;
 	case KINGCHAPPY_WarCry:
-		if (currStateID == KINGCHAPPY_Walk && m_toFlick > 0.0f) {
+		if (currStateID == KINGCHAPPY_Walk && mToFlick > 0.0f) {
 			_2E4 = 1;
-			m_fsm->transit(this, stateID, nullptr);
+			mFsm->transit(this, stateID, nullptr);
 			break;
 		}
 		return false;
@@ -1707,7 +1706,7 @@ bool Obj::forceTransit(int stateID)
  * Address:	80360004
  * Size:	000030
  */
-void Obj::requestTransit(int stateID) { static_cast<Mgr*>(m_mgr)->requestState(this, stateID); }
+void Obj::requestTransit(int stateID) { static_cast<Mgr*>(mMgr)->requestState(this, stateID); }
 
 /*
  * --INFO--

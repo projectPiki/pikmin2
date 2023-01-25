@@ -136,9 +136,9 @@ void JUTCacheFont::deleteMemBlocks_CacheFont()
 	if (_B0 != 0) {
 		delete[] _90;
 	}
-	delete m_aramBlock;
-	delete m_infoBlock;
-	delete m_memBlocks;
+	delete mAramBlock;
+	delete mInfoBlock;
+	delete mMemBlocks;
 	delete _7C;
 	delete _80;
 	delete _84;
@@ -151,19 +151,19 @@ void JUTCacheFont::deleteMemBlocks_CacheFont()
  */
 void JUTCacheFont::initialize_state()
 {
-	_B0               = 0;
-	_90               = nullptr;
-	m_aramBlock       = nullptr;
-	m_infoBlock       = nullptr;
-	_7C               = nullptr;
-	_80               = nullptr;
-	_84               = nullptr;
-	m_memBlocks       = nullptr;
-	_8C               = 0;
-	m_maxPageByteSize = 0;
-	_90               = nullptr;
-	_9C               = nullptr;
-	_A0               = nullptr;
+	_B0              = 0;
+	_90              = nullptr;
+	mAramBlock       = nullptr;
+	mInfoBlock       = nullptr;
+	_7C              = nullptr;
+	_80              = nullptr;
+	_84              = nullptr;
+	mMemBlocks       = nullptr;
+	_8C              = 0;
+	mMaxPageByteSize = 0;
+	_90              = nullptr;
+	_9C              = nullptr;
+	_A0              = nullptr;
 }
 
 /*
@@ -178,7 +178,7 @@ bool JUTCacheFont::getMemorySize(const ResFONT* resource, unsigned short* widthB
 	if (resource == nullptr) {
 		return false;
 	}
-	const BlockHeader* pData = (const BlockHeader*)((const u8*)&resource->m_data);
+	const BlockHeader* pData = (const BlockHeader*)((const u8*)&resource->mData);
 	/* acc: accumulated */
 	u16 accWidthBlocksCount = 0;
 	u16 accGlyphBlocksCount = 0;
@@ -187,25 +187,25 @@ bool JUTCacheFont::getMemorySize(const ResFONT* resource, unsigned short* widthB
 	u32 accGlyphBlocksSize  = 0;
 	u32 accMapBlocksSize    = 0;
 	u32 accMaxPageByteSize  = 0;
-	// for (u32 i = 0; i < resource->m_chunkNum; i++, BlockHeader::advance(&pData)) {
-	for (u32 i = 0; i < resource->m_chunkNum; i++, pData = pData->getNext()) {
-		switch (pData->m_magic) {
+	// for (u32 i = 0; i < resource->mChunkNum; i++, BlockHeader::advance(&pData)) {
+	for (u32 i = 0; i < resource->mChunkNum; i++, pData = pData->getNext()) {
+		switch (pData->mMagic) {
 		case 'WID1':
 			accWidthBlocksCount++;
-			accWidthBlocksSize += pData->m_size;
+			accWidthBlocksSize += pData->mSize;
 			break;
 		case 'GLY1': {
 			accGlyphBlocksCount++;
-			accGlyphBlocksSize += pData->m_size;
+			accGlyphBlocksSize += pData->mSize;
 			const GlyphBlock* glyphBlock = (const GlyphBlock*)pData;
-			if (glyphBlock->m_pageByteSize > accMaxPageByteSize) {
-				accMaxPageByteSize = glyphBlock->m_pageByteSize;
+			if (glyphBlock->mPageByteSize > accMaxPageByteSize) {
+				accMaxPageByteSize = glyphBlock->mPageByteSize;
 			}
 			break;
 		}
 		case 'MAP1':
 			accMapBlocksCount++;
-			accMapBlocksSize += pData->m_size;
+			accMapBlocksSize += pData->mSize;
 			break;
 		case 'INF1':
 			break;
@@ -214,7 +214,7 @@ bool JUTCacheFont::getMemorySize(const ResFONT* resource, unsigned short* widthB
 			break;
 		}
 	}
-	// u8* pData = (u8*)&resource->m_data;
+	// u8* pData = (u8*)&resource->mData;
 	// /* acc: accumulated */
 	// u16 accWidthBlocksCount = 0;
 	// u16 accGlyphBlocksCount = 0;
@@ -223,24 +223,24 @@ bool JUTCacheFont::getMemorySize(const ResFONT* resource, unsigned short* widthB
 	// u32 accGlyphBlocksSize  = 0;
 	// u32 accMapBlocksSize    = 0;
 	// u32 accMaxPageByteSize  = 0;
-	// for (u32 i = 0; i < resource->m_chunkNum; i++, pData += ((BlockHeader*)pData)->m_size) {
-	// 	switch (((BlockHeader*)pData)->m_magic) {
+	// for (u32 i = 0; i < resource->mChunkNum; i++, pData += ((BlockHeader*)pData)->mSize) {
+	// 	switch (((BlockHeader*)pData)->mMagic) {
 	// 	case 'INF1':
 	// 		break;
 	// 	case 'WID1':
 	// 		accWidthBlocksCount++;
-	// 		accWidthBlocksSize += ((BlockHeader*)pData)->m_size;
+	// 		accWidthBlocksSize += ((BlockHeader*)pData)->mSize;
 	// 		break;
 	// 	case 'GLY1':
 	// 		accGlyphBlocksCount++;
-	// 		accGlyphBlocksSize += ((BlockHeader*)pData)->m_size;
-	// 		if (((GlyphBlock*)pData)->m_pageByteSize > accMaxPageByteSize) {
-	// 			accMaxPageByteSize = ((GlyphBlock*)pData)->m_pageByteSize;
+	// 		accGlyphBlocksSize += ((BlockHeader*)pData)->mSize;
+	// 		if (((GlyphBlock*)pData)->mPageByteSize > accMaxPageByteSize) {
+	// 			accMaxPageByteSize = ((GlyphBlock*)pData)->mPageByteSize;
 	// 		}
 	// 		break;
 	// 	case 'MAP1':
 	// 		accMapBlocksCount++;
-	// 		accMapBlocksSize += ((BlockHeader*)pData)->m_size;
+	// 		accMapBlocksSize += ((BlockHeader*)pData)->mSize;
 	// 		break;
 	// 	default:
 	// 		JUTReportConsole("JUTCacheFont: Unknown data block\n");
@@ -439,10 +439,10 @@ bool JUTCacheFont::internal_initiate(const ResFONT* resource, void* p2, unsigned
 	if (resource == nullptr) {
 		return false;
 	}
-	m_resource = resource;
-	_04        = true;
-	getMemorySize(resource, &m_widthBlockCount, &m_widthBlocksSize, &m_glyphBlockCount, &m_glyphBlocksSize, &m_mapBlockCount,
-	              &m_mapBlocksSize, &m_maxPageByteSize);
+	mResource = resource;
+	_04       = true;
+	getMemorySize(resource, &mWidthBlockCount, &mWidthBlocksSize, &mGlyphBlockCount, &mGlyphBlocksSize, &mMapBlockCount, &mMapBlocksSize,
+	              &mMaxPageByteSize);
 	if (!allocArea(p2, p3, heap)) {
 		return false;
 	}
@@ -460,34 +460,34 @@ bool JUTCacheFont::internal_initiate(const ResFONT* resource, void* p2, unsigned
  */
 bool JUTCacheFont::allocArea(void* p1, unsigned long p2, JKRHeap* heap)
 {
-	m_infoBlock = (FontHeader*)new (heap, 0) ResFONT();
-	if (m_infoBlock == nullptr) {
+	mInfoBlock = (FontHeader*)new (heap, 0) ResFONT();
+	if (mInfoBlock == nullptr) {
 		return false;
 	}
-	if (m_widthBlocksSize != 0) {
-		_7C = new (heap, 0) u8[m_widthBlocksSize];
+	if (mWidthBlocksSize != 0) {
+		_7C = new (heap, 0) u8[mWidthBlocksSize];
 		if (_7C == nullptr) {
 			return false;
 		}
 	}
-	if (m_glyphBlockCount != 0) {
-		_80 = new (heap, 0) GlyphBlock[m_glyphBlockCount];
+	if (mGlyphBlockCount != 0) {
+		_80 = new (heap, 0) GlyphBlock[mGlyphBlockCount];
 		if (_80 == nullptr) {
 			return false;
 		}
-		m_aramBlock
-		    = JKRAram::sAramObject->m_aramHeap->alloc(m_glyphBlocksSize - (m_glyphBlockCount * sizeof(GlyphBlock)), JKRAramHeap::AM_Head);
-		if (m_aramBlock == nullptr) {
+		mAramBlock
+		    = JKRAram::sAramObject->mAramHeap->alloc(mGlyphBlocksSize - (mGlyphBlockCount * sizeof(GlyphBlock)), JKRAramHeap::AM_Head);
+		if (mAramBlock == nullptr) {
 			return false;
 		}
 	}
-	if (m_mapBlocksSize != 0) {
-		_84 = new (heap, 0) u8[m_mapBlocksSize];
+	if (mMapBlocksSize != 0) {
+		_84 = new (heap, 0) u8[mMapBlocksSize];
 		if (_84 == nullptr) {
 			return false;
 		}
 	}
-	_94    = m_maxPageByteSize + 0x40;
+	_94    = mMaxPageByteSize + 0x40;
 	_98    = p2 / _94;
 	u32 v1 = _94 * _98;
 	if (_98 == 0) {
@@ -789,9 +789,9 @@ void JUTCacheFont::loadImage(int p1, _GXTexMapID id)
 	if (cacheInfo == nullptr) {
 		return;
 	}
-	m_width  = cacheInfo->_0C * (p1 - (p1 / cacheInfo->_16) * cacheInfo->_16);
-	m_height = cacheInfo->_0E * (p1 / cacheInfo->_16);
-	GXLoadTexObj(&cacheInfo->m_gxTexObj, id);
+	mWidth  = cacheInfo->_0C * (p1 - (p1 / cacheInfo->_16) * cacheInfo->_16);
+	mHeight = cacheInfo->_0E * (p1 / cacheInfo->_16);
+	GXLoadTexObj(&cacheInfo->mGxTexObj, id);
 	if (_8C == 1) {
 		unlink(cacheInfo);
 		prepend(cacheInfo);
@@ -1257,15 +1257,15 @@ lbl_80034E68:
  */
 void JUTCacheFont::unlink(JUTCacheFont::TGlyphCacheInfo* cacheInfo)
 {
-	if (cacheInfo->m_prev == nullptr) {
-		_9C = cacheInfo->m_next;
+	if (cacheInfo->mPrev == nullptr) {
+		_9C = cacheInfo->mNext;
 	} else {
-		cacheInfo->m_prev->m_next = cacheInfo->m_next;
+		cacheInfo->mPrev->mNext = cacheInfo->mNext;
 	}
-	if (cacheInfo->m_next == nullptr) {
-		_A0 = cacheInfo->m_prev;
+	if (cacheInfo->mNext == nullptr) {
+		_A0 = cacheInfo->mPrev;
 	} else {
-		cacheInfo->m_next->m_prev = cacheInfo->m_prev;
+		cacheInfo->mNext->mPrev = cacheInfo->mPrev;
 	}
 }
 
@@ -1278,11 +1278,11 @@ void JUTCacheFont::prepend(JUTCacheFont::TGlyphCacheInfo* cacheInfo)
 {
 	TGlyphCacheInfo* oldHead = _9C;
 	_9C                      = cacheInfo;
-	cacheInfo->m_prev        = nullptr;
-	cacheInfo->m_next        = oldHead;
+	cacheInfo->mPrev         = nullptr;
+	cacheInfo->mNext         = oldHead;
 	if (oldHead == nullptr) {
 		_A0 = cacheInfo;
 	} else {
-		oldHead->m_prev = cacheInfo;
+		oldHead->mPrev = cacheInfo;
 	}
 }

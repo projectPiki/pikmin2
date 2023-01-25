@@ -5,7 +5,7 @@
     Generated from dpostproc
 
     .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_JSTObjectSystem_cpp
+        .4byte __sinit_JSTObjectSystemCpp
 
     .section .rodata  # 0x804732E0 - 0x8049E220
     .global lbl_8049A300
@@ -1044,7 +1044,7 @@ void P2JST::ObjectSystem::JSGSetData(unsigned long, void const*, unsigned long)
  * Address:	80431370
  * Size:	000028
  */
-void __sinit_JSTObjectSystem_cpp()
+void __sinit_JSTObjectSystemCpp()
 {
 	/*
 	lis      r4, __float_nan@ha

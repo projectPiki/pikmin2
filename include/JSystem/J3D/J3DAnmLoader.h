@@ -25,7 +25,7 @@ struct J3DAnmLoader {
 	virtual ~J3DAnmLoader();                                // _10 (weak)
 
 	// _00 VTBL
-	J3DAnmBase* m_animation; // _04
+	J3DAnmBase* mAnimation; // _04
 };
 
 struct J3DAnmFullLoader_v15 : public J3DAnmLoader {

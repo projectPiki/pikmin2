@@ -106,8 +106,8 @@ namespace SysShape {
 Model::Model(J3DModelData* data, unsigned long p2, unsigned long modelType)
     : MtxObject()
 {
-	m_j3dModel   = new J3DModel(data, p2, modelType);
-	m_jointCount = m_j3dModel->m_modelData->m_jointTree.m_jointCnt;
+	mJ3dModel   = new J3DModel(data, p2, modelType);
+	mJointCount = mJ3dModel->mModelData->mJointTree.mJointCnt;
 	initJoints();
 	_05 = 1;
 	_04 = 0;
@@ -176,10 +176,10 @@ void Model::enableMaterialAnim(J3DModelData* data, int p2)
 {
 	switch (p2) {
 	case 0:
-		for (int i = 0; i < data->m_materialTable.m_count1; i++) {
+		for (int i = 0; i < data->mMaterialTable.mCount1; i++) {
 			J3DMaterialAnm* anm = new J3DMaterialAnm();
-			data->m_materialTable.m_materials1[i]->change();
-			data->m_materialTable.m_materials1[i]->m_anm = anm;
+			data->mMaterialTable.mMaterials1[i]->change();
+			data->mMaterialTable.mMaterials1[i]->mAnm = anm;
 		}
 		break;
 	case 1:
@@ -305,11 +305,11 @@ void Model::enableMaterialAnim(int p1)
 {
 	switch (p1) {
 	case 0:
-		J3DModelData* data = m_j3dModel->m_modelData;
-		for (int i = 0; i < data->m_materialTable.m_count1; i++) {
+		J3DModelData* data = mJ3dModel->mModelData;
+		for (int i = 0; i < data->mMaterialTable.mCount1; i++) {
 			J3DMaterialAnm* anm = new J3DMaterialAnm();
-			data->m_materialTable.m_materials1[i]->change();
-			data->m_materialTable.m_materials1[i]->m_anm = anm;
+			data->mMaterialTable.mMaterials1[i]->change();
+			data->mMaterialTable.mMaterials1[i]->mAnm = anm;
 		}
 		break;
 	case 1:
@@ -435,11 +435,11 @@ Matrixf* Model::getMatrix(int jointIndex)
 	if (jointIndex == -1) {
 		return nullptr;
 	}
-	return (m_joints[jointIndex] != nullptr) ? m_joints[jointIndex]->getWorldMatrix() : nullptr;
+	return (mJoints[jointIndex] != nullptr) ? mJoints[jointIndex]->getWorldMatrix() : nullptr;
 	// if (jointIndex == -1) {
 	// 	return nullptr;
-	// } else if (m_joints[jointIndex] ) {
-	// 	return m_joints[jointIndex]->getWorldMatrix();
+	// } else if (mJoints[jointIndex] ) {
+	// 	return mJoints[jointIndex]->getWorldMatrix();
 	// } else {
 	// 	return nullptr;
 	// }
@@ -732,17 +732,17 @@ bool Model::isVisible(Sys::Sphere& sphere)
 {
 	int i = 0;
 	while (true) {
-		if (sys->m_gfx->m_viewportCount <= i) {
-			m_isVisible = false;
+		if (sys->mGfx->mViewportCount <= i) {
+			mIsVisible = false;
 			return false;
 		}
-		Viewport* viewport = sys->m_gfx->getViewport(i);
-		if (viewport->viewable() && viewport->m_camera->isVisible(sphere)) {
+		Viewport* viewport = sys->mGfx->getViewport(i);
+		if (viewport->viewable() && viewport->mCamera->isVisible(sphere)) {
 			break;
 		}
 		i++;
 	}
-	m_isVisible = true;
+	mIsVisible = true;
 	return true;
 	/*
 	stwu     r1, -0x20(r1)
@@ -802,15 +802,15 @@ lbl_8043E928:
 void Model::jointVisible(bool newVisibility, int jointIndex)
 {
 	if (newVisibility != false) {
-		for (J3DMaterial* material = m_j3dModel->m_modelData->m_jointTree.m_joints[(u16)jointIndex]->m_material; material != nullptr;
+		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
 		     material              = material->_04) {
-			material->m_shape->m_flags &= ~J3DShape::IsHidden;
+			material->mShape->mFlags &= ~J3DShape::IsHidden;
 		}
 		return;
 	}
-	for (J3DMaterial* material = m_j3dModel->m_modelData->m_jointTree.m_joints[(u16)jointIndex]->m_material; material != nullptr;
+	for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
 	     material              = material->_04) {
-		material->m_shape->m_flags |= J3DShape::IsHidden;
+		material->mShape->mFlags |= J3DShape::IsHidden;
 	}
 	/*
 	clrlwi.  r0, r4, 0x18
@@ -866,10 +866,10 @@ lbl_8043E9B0:
  */
 void Model::hide()
 {
-	for (u16 i = 0; i < m_jointCount; i++) {
-		for (J3DMaterial* material = m_j3dModel->m_modelData->m_jointTree.m_joints[i]->m_material; material != nullptr;
+	for (u16 i = 0; i < mJointCount; i++) {
+		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
 		     material              = material->_04) {
-			material->m_shape->m_flags |= J3DShape::IsHidden;
+			material->mShape->mFlags |= J3DShape::IsHidden;
 		}
 	}
 }
@@ -881,10 +881,10 @@ void Model::hide()
  */
 void Model::show()
 {
-	for (u16 i = 0; i < m_jointCount; i++) {
-		for (J3DMaterial* material = m_j3dModel->m_modelData->m_jointTree.m_joints[i]->m_material; material != nullptr;
+	for (u16 i = 0; i < mJointCount; i++) {
+		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
 		     material              = material->_04) {
-			material->m_shape->m_flags &= ~J3DShape::IsHidden;
+			material->mShape->mFlags &= ~J3DShape::IsHidden;
 		}
 	}
 	/*
@@ -1359,7 +1359,7 @@ lbl_8043EF88:
  */
 // s16 J3DJoint::getJntNo() const
 // {
-// 	return m_jointIdx;
+// 	return mJointIdx;
 // 	/*
 // 	lhz      r3, 0x14(r3)
 // 	blr
@@ -1610,7 +1610,7 @@ bool Model::isModel() { return true; }
  */
 bool Model::isVisible()
 {
-	return m_isVisible;
+	return mIsVisible;
 	/*
 	lbz      r3, 6(r3)
 	blr

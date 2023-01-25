@@ -56,7 +56,7 @@ struct JAISe : public JAISound {
 
 	// _00      = VTABLE
 	// _04-_48  = JAISound
-	JAInter::SeParameter m_seParam; // _48
+	JAInter::SeParameter mSeParam; // _48
 };
 
 #endif

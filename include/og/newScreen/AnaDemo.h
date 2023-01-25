@@ -20,12 +20,12 @@ struct AnaDemo : public ::Screen::SceneBase {
 	AnaDemo(long);
 
 	virtual const char* getResName() const { return "res_ana_demo.szs"; } // _1C (weak)
-	virtual SceneType getSceneType() { return m_sceneType; }              // _08 (weak)
+	virtual SceneType getSceneType() { return mSceneType; }               // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }              // _0C (weak)
 	virtual ScreenMemberID getMemberID()
 	{
 		ScreenMemberID id = _MEMBER_EMPTY_STRING;
-		switch (m_sceneType) {
+		switch (mSceneType) {
 		case SCENE_CAVE_IN_MENU:
 			id = MEMBER_ANA_DEMO;
 			break;
@@ -44,7 +44,7 @@ struct AnaDemo : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	SceneType m_sceneType; // _220
+	SceneType mSceneType; // _220
 };
 
 struct ObjAnaDemo : public ::Screen::ObjBase {
@@ -90,29 +90,29 @@ struct ObjAnaDemo : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberAnaDemo* m_disp;       // _38
-	int m_anaType;                               // _3C
-	int m_state;                                 // _40
-	int m_anaTypeSub;                            // _44
-	int m_currMenuSel;                           // _48
-	P2DScreen::Mgr_tuning* m_screen;             // _4C
-	og::Screen::MenuMgr* m_menuMgr;              // _50
-	u32 _54;                                     // _54
-	og::Screen::AnimText_Screen* m_menuSelTitle; // _58
-	og::Screen::AnimText_Screen* m_menuSelYes;   // _5C
-	og::Screen::AnimText_Screen* m_menuSelNo;    // _60
-	og::Screen::AnimGroup* m_animGroup;          // _64
-	f32 _68;                                     // _68
-	u32 _6C;                                     // _6C
-	J2DPane* m_paneError;                        // _70
-	f32 m_timer3;                                // _74
-	f32 m_timer4;                                // _78
-	u8 m_alpha;                                  // _7C
-	f32 m_timer1;                                // _80
-	f32 m_timer2;                                // _84
-	u32 _88;                                     // _88
-	f32 _8C;                                     // _8C
-	f32 m_closeTimer;                            // _90
+	og::Screen::DispMemberAnaDemo* mDisp;       // _38
+	int mAnaType;                               // _3C
+	int mState;                                 // _40
+	int mAnaTypeSub;                            // _44
+	int mCurrMenuSel;                           // _48
+	P2DScreen::Mgr_tuning* mScreen;             // _4C
+	og::Screen::MenuMgr* mMenuMgr;              // _50
+	u32 _54;                                    // _54
+	og::Screen::AnimText_Screen* mMenuSelTitle; // _58
+	og::Screen::AnimText_Screen* mMenuSelYes;   // _5C
+	og::Screen::AnimText_Screen* mMenuSelNo;    // _60
+	og::Screen::AnimGroup* mAnimGroup;          // _64
+	f32 _68;                                    // _68
+	u32 _6C;                                    // _6C
+	J2DPane* mPaneError;                        // _70
+	f32 mTimer3;                                // _74
+	f32 mTimer4;                                // _78
+	u8 mAlpha;                                  // _7C
+	f32 mTimer1;                                // _80
+	f32 mTimer2;                                // _84
+	u32 _88;                                    // _88
+	f32 _8C;                                    // _8C
+	f32 mCloseTimer;                            // _90
 
 	static struct StaticValues {
 		inline StaticValues()

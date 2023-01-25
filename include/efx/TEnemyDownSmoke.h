@@ -8,7 +8,7 @@ namespace efx {
 struct TEnemyDownSmoke : public TSimple1 {
 	TEnemyDownSmoke()
 	    : TSimple1(PID_EnemyDownSmoke)
-	    , m_scale(1.0f)
+	    , mScale(1.0f)
 	{
 	}
 
@@ -16,7 +16,7 @@ struct TEnemyDownSmoke : public TSimple1 {
 
 	// _00		= VTBL
 	// _00-_0C	= TSimple1
-	f32 m_scale; // _0C
+	f32 mScale; // _0C
 };
 
 } // namespace efx

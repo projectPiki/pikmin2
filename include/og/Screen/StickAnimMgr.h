@@ -18,8 +18,8 @@ struct StickAnimMgr {
 	// unused/inlined:
 	void stickStop();
 
-	CallBack_Picture* m_callBackPicture; // _00
-	int m_state;                         // _04, unknown
+	CallBack_Picture* mCallBackPicture; // _00
+	int mState;                         // _04, unknown
 };
 } // namespace Screen
 } // namespace og

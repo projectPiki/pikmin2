@@ -17,10 +17,10 @@ struct VSFifo {
 	static u8 mGpStatus[5];
 
 	// _00 VTBL
-	GXFifoObj* m_fifo; // _04
-	void* m_base;      // _08
-	u32 m_size;        // _0C
-	u8 _10[0xC];       // _10, unknown
+	GXFifoObj* mFifo; // _04
+	void* mBase;      // _08
+	u32 mSize;        // _0C
+	u8 _10[0xC];      // _10, unknown
 };
 
 #endif

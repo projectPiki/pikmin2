@@ -6,10 +6,10 @@
 struct MenuSection : public Section {
 	MenuSection(struct JFWDisplay*, struct JKRHeap*, bool);
 
-	virtual ~MenuSection() { }                                        // _08 (weak)
-	virtual void run();                                               // _0C
-	virtual Section* getCurrentSection() { return m_currentSection; } // _30 (weak)
-	virtual ISection* setChildSection(JKRHeap*) = 0;                  // _48
+	virtual ~MenuSection() { }                                       // _08 (weak)
+	virtual void run();                                              // _0C
+	virtual Section* getCurrentSection() { return mCurrentSection; } // _30 (weak)
+	virtual ISection* setChildSection(JKRHeap*) = 0;                 // _48
 
 	bool runChildSection();
 
@@ -19,11 +19,11 @@ struct MenuSection : public Section {
 	// There is an extra unaccounted for space of data 0x1C long
 	u8 _39[0x1C]; // _39
 #endif
-	bool _3C;                  // _3C
-	u8 _3D;                    // _3D
-	u8 _3E;                    // _3E
-	u8 _3F;                    // _3F
-	Section* m_currentSection; // _40
+	bool _3C;                 // _3C
+	u8 _3D;                   // _3D
+	u8 _3E;                   // _3E
+	u8 _3F;                   // _3F
+	Section* mCurrentSection; // _40
 };
 
 struct RootMenuSection : public MenuSection {

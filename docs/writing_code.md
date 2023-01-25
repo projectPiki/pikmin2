@@ -34,7 +34,7 @@ Which, for enemies, you may want to look at the ```isCreatureWithinRange``` func
 - You can find more in types.h, trig.h, BuildSettings.h and Dolphin/Math.h.
 
 ### Enemies
-- ```CG_PARMS(x)``` is shorthand for ```static_cast<Parms*>(x->m_parms)```.
-- ```C_PARMS``` is shorthand for ```static_cast<Parms*>(this->m_parms)```.
-- ```CG_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(x->m_parms)->m_properParms```.
-- ```C_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(this->m_parms)->m_properParms```.
+- ```CG_PARMS(x)``` is shorthand for ```static_cast<Parms*>(x->mParms)```.
+- ```C_PARMS``` is shorthand for ```static_cast<Parms*>(this->mParms)```.
+- ```CG_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(x->mParms)->mProperParms```.
+- ```C_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(this->mParms)->mProperParms```.

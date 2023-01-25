@@ -303,7 +303,7 @@ const char* JUTException::sCpuExpName[OS_ERROR_MAX + 1]
  */
 JUTException::JUTException(JUTDirectPrint* directPrint)
     : JKRThread(0x4000, 0x10, 0)
-    , m_directPrint(directPrint)
+    , mDirectPrint(directPrint)
 {
 	// UNUSED FUNCTION
 	OSSetErrorHandler(OS_ERROR_DSI, errorHandler);
@@ -315,7 +315,7 @@ JUTException::JUTException(JUTDirectPrint* directPrint)
 	sPreUserCallback  = nullptr;
 	sPostUserCallback = nullptr;
 	_84               = 0;
-	m_padPort         = JUTGamePad::PORT_INVALID;
+	mPadPort          = JUTGamePad::PORT_INVALID;
 	_8C               = 10;
 	_90               = 10;
 	_94               = -1;
@@ -332,7 +332,7 @@ JUTException* JUTException::create(JUTDirectPrint* directPrint)
 {
 	if (sErrorManager == nullptr) {
 		sErrorManager = new (JKRHeap::sSystemHeap, 0) JUTException(directPrint);
-		OSResumeThread(sErrorManager->m_thread);
+		OSResumeThread(sErrorManager->mThread);
 	}
 	return sErrorManager;
 }
@@ -351,27 +351,27 @@ void* JUTException::run()
 		OSReceiveMessage(&sMessageQueue, (void**)&msg, OS_MESSAGE_BLOCKING);
 		VISetPreRetraceCallback(nullptr);
 		VISetPostRetraceCallback(nullptr);
-		OSError error          = msg->m_error;
-		OSErrorHandler handler = msg->m_errorHandler;
-		OSContext* context     = msg->m_context;
+		OSError error          = msg->mError;
+		OSErrorHandler handler = msg->mErrorHandler;
+		OSContext* context     = msg->mContext;
 		u32 v1                 = msg->_0C;
 		u32 v2                 = msg->_10;
 		if (error < OS_ERROR_MAX + 1) {
-			m_stackPointer = (void*)context->gpr[1];
+			mStackPointer = (void*)context->gpr[1];
 		}
-		m_frameBuffer = VIGetCurrentFrameBuffer();
-		if (m_frameBuffer == nullptr) {
+		mFrameBuffer = VIGetCurrentFrameBuffer();
+		if (mFrameBuffer == nullptr) {
 			sErrorManager->createFB();
 		}
-		sErrorManager->m_directPrint->changeFrameBuffer(m_frameBuffer, sErrorManager->m_directPrint->m_pixelWidth,
-		                                                sErrorManager->m_directPrint->m_pixelHeight);
+		sErrorManager->mDirectPrint->changeFrameBuffer(mFrameBuffer, sErrorManager->mDirectPrint->mPixelWidth,
+		                                               sErrorManager->mDirectPrint->mPixelHeight);
 		if (handler != nullptr) {
 			handler(error, context, v1, v2);
 		}
 		OSDisableInterrupts();
-		m_frameBuffer = VIGetCurrentFrameBuffer();
-		sErrorManager->m_directPrint->changeFrameBuffer(m_frameBuffer, sErrorManager->m_directPrint->m_pixelWidth,
-		                                                sErrorManager->m_directPrint->m_pixelHeight);
+		mFrameBuffer = VIGetCurrentFrameBuffer();
+		sErrorManager->mDirectPrint->changeFrameBuffer(mFrameBuffer, sErrorManager->mDirectPrint->mPixelWidth,
+		                                               sErrorManager->mDirectPrint->mPixelHeight);
 		sErrorManager->printContext(error, context, v1, v2);
 	}
 	/*
@@ -475,11 +475,11 @@ void JUTException::errorHandler(unsigned short error, OSContext* context, unsign
 		OSProtectRange(2, 0, 0, 3);
 		OSProtectRange(3, 0, 0, 3);
 	}
-	exCallbackObject.m_errorHandler = sPreUserCallback;
-	exCallbackObject.m_error        = error;
-	exCallbackObject.m_context      = context;
-	exCallbackObject._0C            = p3;
-	exCallbackObject._10            = p4;
+	exCallbackObject.mErrorHandler = sPreUserCallback;
+	exCallbackObject.mError        = error;
+	exCallbackObject.mContext      = context;
+	exCallbackObject._0C           = p3;
+	exCallbackObject._10           = p4;
 	// exCallbackObject[0] = (void*)sPreUserCallback;
 	// exCallbackObject[1] = (void*)error;
 	// exCallbackObject[2] = (void*)context;
@@ -506,12 +506,12 @@ void JUTException::panic_f_va(const char* fileName, int lineNumber, const char* 
 	}
 	static OSContext context;
 	memcpy(&context, OSGetCurrentContext(), sizeof(OSContext));
-	sErrorManager->m_stackPointer   = OSGetStackPointer();
-	exCallbackObject.m_error        = 0xFF; // TODO: Make define for invalid error?
-	exCallbackObject.m_errorHandler = sPreUserCallback;
-	exCallbackObject.m_context      = &context;
-	exCallbackObject._0C            = 0;
-	exCallbackObject._10            = 0;
+	sErrorManager->mStackPointer   = OSGetStackPointer();
+	exCallbackObject.mError        = 0xFF; // TODO: Make define for invalid error?
+	exCallbackObject.mErrorHandler = sPreUserCallback;
+	exCallbackObject.mContext      = &context;
+	exCallbackObject._0C           = 0;
+	exCallbackObject._10           = 0;
 	if (sConsole == nullptr || (sConsole != nullptr && (sConsole->getOutput() & JUTConsole::OUTPUT_CONSOLE) == 0)) {
 		OSReport("%s in \"%s\" on line %d\n", buffer, fileName, lineNumber);
 	}
@@ -746,7 +746,7 @@ void JUTException::showStack(OSContext* context)
 		return;
 	}
 	sConsole->print("-------------------------------- TRACE\n");
-	u32* stack = (u32*)m_stackPointer;
+	u32* stack = (u32*)mStackPointer;
 	sConsole->print_f("Address:   BackChain   LR save\n");
 	u32 frames = 0;
 	while (stack != nullptr && stack != (u32*)-1 && 0x10 > frames++) {
@@ -2922,12 +2922,12 @@ void JUTException::appendMapFile(const char* fileName)
 	}
 	// Ensure we don't already know about the given map file
 	for (JSULink<JUTExMapFile>* link = sMapFileList.getFirst(); link != nullptr; link = link->getNext()) {
-		if (strcmp(fileName, link->getObject()->m_fileName) == 0) {
+		if (strcmp(fileName, link->getObject()->mFileName) == 0) {
 			return;
 		}
 	}
 	JUTExMapFile* mapFile = new JUTExMapFile(fileName);
-	sMapFileList.append(&mapFile->m_link);
+	sMapFileList.append(&mapFile->mLink);
 }
 
 /*
@@ -2957,7 +2957,7 @@ bool JUTException::queryMapAddress(char* p1, unsigned long p2, long p3, unsigned
 		}
 	} else {
 		if (sMapFileList.getFirst() != nullptr
-		    && queryMapAddress_single(const_cast<char*>(sMapFileList.getFirst()->getObject()->m_fileName), p2, -1, p4, p5, p6, p7, p8, p9)
+		    && queryMapAddress_single(const_cast<char*>(sMapFileList.getFirst()->getObject()->mFileName), p2, -1, p4, p5, p6, p7, p8, p9)
 		           == true) {
 			return true;
 		}
@@ -3263,10 +3263,10 @@ void JUTException::createConsole(void* buffer, unsigned long bufferSize)
  * Size:	000020
  */
 JUTExternalFB::JUTExternalFB(_GXRenderModeObj* renderModeObj, _GXGamma gamma, void* p3, unsigned long p4)
-    : m_renderModeObj(renderModeObj)
+    : mRenderModeObj(renderModeObj)
     , _04(p4)
     , _0C(1)
-    , m_gamma(gamma)
+    , mGamma(gamma)
     , _10(0)
 {
 }

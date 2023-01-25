@@ -64,18 +64,18 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                      // _2BC
-	EnemyBase* m_sourceEnemy;        // _2C0
-	u8 _2C4;                         // _2C4, maybe isHoming?
-	f32 m_timer;                     // _2C8
-	f32 m_fallSpeed;                 // _2CC
-	f32 _2D0;                        // _2D0
-	f32 _2D4;                        // _2D4
-	efx::TRockRun* m_efxRun;         // _2D8
-	efx::TRockGrRun* m_efxGroundRun; // _2DC
-	efx::TRockWRun* m_efxWaterRun;   // _2E0
-	int m_rockType;                  // _2E4, 19/EnemyID_Rock or 74/EnemyID_Stone
-	                                 // _2E8 = PelletView
+	FSM* mFsm;                      // _2BC
+	EnemyBase* mSourceEnemy;        // _2C0
+	u8 _2C4;                        // _2C4, maybe isHoming?
+	f32 mTimer;                     // _2C8
+	f32 mFallSpeed;                 // _2CC
+	f32 _2D0;                       // _2D0
+	f32 _2D4;                       // _2D4
+	efx::TRockRun* mEfxRun;         // _2D8
+	efx::TRockGrRun* mEfxGroundRun; // _2DC
+	efx::TRockWRun* mEfxWaterRun;   // _2E0
+	int mRockType;                  // _2E4, 19/EnemyID_Rock or 74/EnemyID_Stone
+	                                // _2E8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -92,18 +92,18 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "ÉTÅ[É`ÉSÉçÉSÉçë¨ìx", 150.0f, 0.0f, 1000.0f) // 'search rumble speed'
+		    , mFp01(this, 'fp01', "ÉTÅ[É`ÉSÉçÉSÉçë¨ìx", 150.0f, 0.0f, 1000.0f) // 'search rumble speed'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
+		Parm<f32> mFp01; // _804
 	};
 
 	Parms() { }
@@ -111,12 +111,12 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct Generator : public EnemyGeneratorBase {
@@ -128,7 +128,7 @@ struct Generator : public EnemyGeneratorBase {
 	virtual u32 getLatestVersion(); // _18
 	virtual void* getInitialParam() // _20 (weak)
 	{
-		return &m_speed;
+		return &mSpeed;
 	}
 
 	void doReadLatestVersion(Stream&);
@@ -136,20 +136,20 @@ struct Generator : public EnemyGeneratorBase {
 
 	// _00 		= VTBL
 	// _00-_24  = EnemyGeneratorBase
-	f32 m_speed;  // _24
-	f32 m_offset; // _28
-	f32 m_scale;  // _2C
+	f32 mSpeed;  // _24
+	f32 mOffset; // _28
+	f32 mScale;  // _2C
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -175,7 +175,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

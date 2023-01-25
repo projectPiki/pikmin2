@@ -10,11 +10,11 @@ struct J3DFrameCtrl {
 	void update();
 
 	// _00 VTBL
-	u8 m_attr; // _04
-	u8 _05;    // _05
-	// TODO: Rename to m_startFrame
+	u8 mAttr; // _04
+	u8 _05;   // _05
+	// TODO: Rename to mStartFrame
 	short _06; // _06
-	// TODO: Rename to m_endFrame
+	// TODO: Rename to mEndFrame
 	short _08; // _08
 	short _0A; // _0A
 	f32 _0C;   // _0C

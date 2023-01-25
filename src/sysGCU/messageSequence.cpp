@@ -231,12 +231,12 @@ bool TSequenceProcessor::do_isReady()
 	}
 
 	if (flags & 2) {
-		_50 -= sys->m_deltaTime;
+		_50 -= sys->mDeltaTime;
 		if (_50 <= 0.0f) {
 			bool checkVars = (_54 || _58);
 			P2ASSERTLINE(381, checkVars);
 
-			if ((_54 && (_54->m_padButton.m_buttonDown & PAD_BUTTON_A)) || (_58 && (_58->m_padButton.m_buttonDown & PAD_BUTTON_A))) {
+			if ((_54 && (_54->mButton.mButtonDown & PAD_BUTTON_A)) || (_58 && (_58->mButton.mButtonDown & PAD_BUTTON_A))) {
 				resetAbtnWait();
 				_68.typeView &= 0xFFFFFFF7;
 			}
@@ -246,15 +246,15 @@ bool TSequenceProcessor::do_isReady()
 		if (flags & 8) {
 			frameCount = 10.0f;
 		} else {
-			if ((_54 && (_54->m_padButton.m_buttonDown & PAD_BUTTON_B)) || (_58 && (_58->m_padButton.m_buttonDown & PAD_BUTTON_B))) {
+			if ((_54 && (_54->mButton.mButtonDown & PAD_BUTTON_B)) || (_58 && (_58->mButton.mButtonDown & PAD_BUTTON_B))) {
 				doFastForwardSE();
 				_68.typeView |= 8;
-			} else if ((_54 && (_54->m_padButton.m_mask & PAD_BUTTON_A)) || (_58 && (_58->m_padButton.m_mask & PAD_BUTTON_A))) {
+			} else if ((_54 && (_54->mButton.mMask & PAD_BUTTON_A)) || (_58 && (_58->mButton.mMask & PAD_BUTTON_A))) {
 				frameCount = 2.5f;
 			}
 		}
 
-		_50 = -((frameCount * sys->m_deltaTime) - _50);
+		_50 = -((frameCount * sys->mDeltaTime) - _50);
 		if (_50 <= 0.0f) {
 			check = true;
 		}

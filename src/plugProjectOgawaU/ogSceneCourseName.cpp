@@ -26,23 +26,23 @@ CourseName::~CourseName() { }
  */
 void CourseName::doUserCallBackFunc(Resource::MgrCommand*)
 {
-	og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(m_dispMember);
+	og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(mDispMember);
 	if (disp->isID(OWNER_OGA, MEMBER_COURSE_NAME)) {
-		m_courseIndex = disp->m_courseIndex;
+		mCourseIndex = disp->mCourseIndex;
 	} else {
 		JUT_PANICLINE(58, "DispMember ERR!\n", 0);
 	}
 
-	if (m_courseIndex >= 4)
-		m_courseIndex = 0;
+	if (mCourseIndex >= 4)
+		mCourseIndex = 0;
 
-	og::newScreen::makeLanguageResName(m_name, CourseNumToSZS[m_courseIndex]);
-	LoadResource::Arg arg(m_name);
+	og::newScreen::makeLanguageResName(mName, CourseNumToSZS[mCourseIndex]);
+	LoadResource::Arg arg(mName);
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
 	JKRArchive* arc          = nullptr;
 	if (node) {
-		arc = node->m_archive;
-		if (!node->m_archive) {
+		arc = node->mArchive;
+		if (!node->mArchive) {
 			JUT_PANICLINE(98, "arc is NULL!!\n");
 		}
 	} else {

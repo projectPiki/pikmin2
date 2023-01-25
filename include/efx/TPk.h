@@ -156,14 +156,14 @@ struct TPkOneEmitterSimple : public JPAEmitterCallBack {
 };
 
 struct TPkEffectTane {
-	int m_pikiColor;  // _00
-	Vector3f* m_pos;  // _04, unknown
-	u32 _08;          // _08, unknown
-	Vector3f* m_pos2; // _0C, unknown
-	u32 _10;          // _10, unknown
-	TPkGlow1 m_glow;
-	ToeTanekira m_oeKira;
-	ToeKourin m_oeKourin;
+	int mPikiColor;  // _00
+	Vector3f* mPos;  // _04, unknown
+	u32 _08;         // _08, unknown
+	Vector3f* mPos2; // _0C, unknown
+	u32 _10;         // _10, unknown
+	TPkGlow1 mGlow;
+	ToeTanekira mOeKira;
+	ToeKourin mOeKourin;
 
 	void init();
 	void createTanekira_(Vector3f*);
@@ -203,36 +203,36 @@ struct TPkEffect {
 	void createHamonB_(Vector3f*);
 	void killHamonB_();
 
-	inline void setFlag(int flagID) { m_flags.typeView |= flagID; }
+	inline void setFlag(int flagID) { mFlags.typeView |= flagID; }
 
-	inline void resetFlag(int flagID) { m_flags.typeView &= ~flagID; }
+	inline void resetFlag(int flagID) { mFlags.typeView &= ~flagID; }
 
-	inline bool isFlag(int flagID) { return m_flags.typeView & flagID; }
+	inline bool isFlag(int flagID) { return mFlags.typeView & flagID; }
 
-	BitFlag<u32> m_flags;     // _00
-	u8 _04[4];                // _04, unknown
-	int m_pikiColor;          // _08, kourin color?
-	Vector3f* _0C;            // _0C, kourin position?
-	Vector3f* m_hamonPosPtr;  // _10
-	Vector3f* _14;            // _14
-	Matrixf* _18;             // _18
-	Matrixf* _1C;             // _1C
-	f32* m_height;            // _20, unknown
-	int m_moeSmokeTimer;      // _24, unknown
-	Vector3f m_hamonPosition; // _28, dive vector?
-	TPkNageBlur m_nageBlur;   // _34
-	TPkMoeA m_moeA;           // _48
-	TPkBlackDown m_blackDown; // _5C
-	ToeKourin m_oeKourin;     // _70
-	u8 _8C[4];                // _8C, unknown
-	ToeDoping m_oeDoping;     // _90
-	ToeNagekira m_oeNagekira; // _AC
-	ToeMoeBC m_oeMoeBC[2];    // _C8
-	ToeChudoku m_oeChudoku;   // _100
-	ToeWater m_oeWater[2];    // _11C
-	ToeHamonA m_oeHamonA;     // _154
-	ToeHamonB m_oeHamonB;     // _170
-	ToeMoeSmoke m_oeMoeSmoke; // _18C
+	BitFlag<u32> mFlags;     // _00
+	u8 _04[4];               // _04, unknown
+	int mPikiColor;          // _08, kourin color?
+	Vector3f* _0C;           // _0C, kourin position?
+	Vector3f* mHamonPosPtr;  // _10
+	Vector3f* _14;           // _14
+	Matrixf* _18;            // _18
+	Matrixf* _1C;            // _1C
+	f32* mHeight;            // _20, unknown
+	int mMoeSmokeTimer;      // _24, unknown
+	Vector3f mHamonPosition; // _28, dive vector?
+	TPkNageBlur mNageBlur;   // _34
+	TPkMoeA mMoeA;           // _48
+	TPkBlackDown mBlackDown; // _5C
+	ToeKourin mOeKourin;     // _70
+	u8 _8C[4];               // _8C, unknown
+	ToeDoping mOeDoping;     // _90
+	ToeNagekira mOeNagekira; // _AC
+	ToeMoeBC mOeMoeBC[2];    // _C8
+	ToeChudoku mOeChudoku;   // _100
+	ToeWater mOeWater[2];    // _11C
+	ToeHamonA mOeHamonA;     // _154
+	ToeHamonB mOeHamonB;     // _170
+	ToeMoeSmoke mOeMoeSmoke; // _18C
 };
 
 struct TPkEffectMgr {

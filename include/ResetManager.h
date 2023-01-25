@@ -22,15 +22,15 @@ struct ResetManager {
 	bool isWritingMemoryCard();
 	bool isSoundSystemStopped();
 
-	inline void setFlag(u32 flag) { m_flags.typeView |= flag; }
-	inline void resetFlag(u32 flag) { m_flags.typeView &= ~flag; }
-	inline bool isFlag(u32 flag) { return m_flags.typeView & flag; }
+	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
+	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
+	inline bool isFlag(u32 flag) { return mFlags.typeView & flag; }
 
 	// _00 VTBL
-	u32 m_state;          // _04
-	f32 m_statusTimer;    // _08
-	BitFlag<u32> m_flags; // _40
-	int m_counter;        // _10
+	u32 mState;          // _04
+	f32 mStatusTimer;    // _08
+	BitFlag<u32> mFlags; // _40
+	int mCounter;        // _10
 };
 
 #endif

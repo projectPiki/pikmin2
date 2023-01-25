@@ -212,8 +212,8 @@ bool J3DDrawBuffer::entryMatSort(J3DMatPacket* packet)
 	// packet->_2C->_08    = nullptr;
 	// J3DTexture* texture = j3dSys._58;
 	// if ((packet->_34 & 0x80000000) == 0) {
-	// 	s16 texNo = packet->_30->m_tevBlock->getTexNo(0);
-	// 	u32 index = (texNo == -1) ? 0 : texture->_04->_00.m_textureFormat + texture->_04->_00.m_imageDataOffset
+	// 	s16 texNo = packet->_30->mTevBlock->getTexNo(0);
+	// 	u32 index = (texNo == -1) ? 0 : texture->_04->_00.mTextureFormat + texture->_04->_00.mImageDataOffset
 	// }
 	/*
 	stwu     r1, -0x20(r1)

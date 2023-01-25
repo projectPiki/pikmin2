@@ -199,7 +199,7 @@ void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, float) const
  */
 void JPAFieldGravity::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* block)
 {
-	if ((*(u32*)(block->m_data + 8) >> 0x10 & 2) != 0) {
+	if ((*(u32*)(block->mData + 8) >> 0x10 & 2) != 0) {
 		f32 multiplier = block->_28;
 		_04.x          = block->_1C.x * multiplier;
 		_04.y          = block->_1C.y * multiplier;
@@ -880,7 +880,7 @@ void JPAFieldNewton::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 	_10.y = block->_10.y - data->_108.y;
 	_10.z = block->_10.z - data->_108.z;
 	PSMTXMultVecSR(data->_78, (Vec*)&_10, (Vec*)&_10);
-	_1C = SQUARE(*(f32*)(block->m_data + 0x2C));
+	_1C = SQUARE(*(f32*)(block->mData + 0x2C));
 }
 
 /*
@@ -2512,7 +2512,7 @@ lbl_80093378:
  */
 JPAFieldBlock::JPAFieldBlock(const unsigned char* data, JKRHeap* heap)
 {
-	m_data = data;
+	mData = data;
 	init(heap);
 }
 

@@ -21,7 +21,7 @@ static const char cMatAnimBrkTexName[] = "/enemy/data/BigTreasure/oootakara_mode
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "オオオタカラマネージャ"; // big otakara manager
+	mName = "オオオタカラマネージャ"; // big otakara manager
 
 	char* treasures[] = { "elec", "fire", "gas", "water", "loozy" };
 	int treasureCount = sizeof(treasures) / sizeof(char*);
@@ -46,14 +46,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	802DA27C
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	802DA398
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 /*
  * --INFO--
@@ -64,9 +64,9 @@ void Mgr::loadModelData()
 {
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-		shape          = m_modelData->m_shapeTable.m_items[j];
-		shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		shape         = mModelData->mShapeTable.mItems[j];
+		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
 }
 
@@ -77,7 +77,7 @@ void Mgr::loadModelData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(m_modelData, 0x40000, m_modelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, 0x40000, mModelType);
 	P2ASSERTLINE(120, model);
 	return model;
 }

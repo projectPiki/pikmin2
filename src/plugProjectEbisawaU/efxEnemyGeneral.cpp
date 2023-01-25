@@ -28,7 +28,7 @@ bool TEnemyPiyo::create(efx::Arg* arg)
 
 	bool docreate;
 	f32 scale;
-	switch (argt->m_typeID) {
+	switch (argt->mTypeID) {
 	case Game::EnemyTypeID::EnemyID_Chappy:
 	case Game::EnemyTypeID::EnemyID_BlueChappy:
 	case Game::EnemyTypeID::EnemyID_YellowChappy:
@@ -228,11 +228,11 @@ bool TEnemyPiyo::create(efx::Arg* arg)
 		return docreate;
 	}
 
-	scale *= argt->m_scale;
+	scale *= argt->mScale;
 
 	if (TSync::create(arg)) {
 		docreate = true;
-		m_emitter->setScaleOnly(scale);
+		mEmitter->setScaleOnly(scale);
 		f32 offs = (scale - 1.0f) * 0.5f + 1.0f;
 		volatile Vector3f vec1, vec2; // dumb way to get the stack in here.
 		vec1.x = scale;
@@ -241,7 +241,7 @@ bool TEnemyPiyo::create(efx::Arg* arg)
 		vec2.x = offs;
 		vec2.y = offs;
 		vec2.z = offs;
-		m_emitter->setGlobalScale(offs);
+		mEmitter->setGlobalScale(offs);
 
 	} else {
 		docreate = false;
@@ -262,7 +262,7 @@ bool TEnemyPoisonL::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -271,7 +271,7 @@ bool TEnemyPoisonL::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -291,7 +291,7 @@ bool TEnemyPoisonS::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -300,7 +300,7 @@ bool TEnemyPoisonS::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -319,7 +319,7 @@ bool TSekikaLOff::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -328,7 +328,7 @@ bool TSekikaLOff::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -347,7 +347,7 @@ bool TSekikaLOn::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -356,7 +356,7 @@ bool TSekikaLOn::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -375,7 +375,7 @@ bool TSekikaSOff::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -384,7 +384,7 @@ bool TSekikaSOff::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -403,7 +403,7 @@ bool TSekikaSOn::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -412,7 +412,7 @@ bool TSekikaSOn::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -431,7 +431,7 @@ bool TEnemyDead_ArgScale::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -440,7 +440,7 @@ bool TEnemyDead_ArgScale::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -461,7 +461,7 @@ bool TEnemyDead::create(efx::Arg* arg)
 	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
 
 	f32 scale;
-	switch (argt->m_typeID) {
+	switch (argt->mTypeID) {
 	case Game::EnemyTypeID::EnemyID_Chappy:
 	case Game::EnemyTypeID::EnemyID_BlueChappy:
 	case Game::EnemyTypeID::EnemyID_YellowChappy:
@@ -658,7 +658,7 @@ bool TEnemyDead::create(efx::Arg* arg)
 		return docreate;
 	}
 
-	scale *= argt->m_scale;
+	scale *= argt->mScale;
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
@@ -666,7 +666,7 @@ bool TEnemyDead::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -685,10 +685,10 @@ bool TEnemyWalkSmoke::create(efx::Arg* arg)
 	P2ASSERTLINE(491, nameCheck);
 
 	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
-	Vector3f pos            = arg->m_position;
+	Vector3f pos            = arg->mPosition;
 
 	f32 scale;
-	switch (argt->m_typeID) {
+	switch (argt->mTypeID) {
 	case Game::EnemyTypeID::EnemyID_Chappy:
 	case Game::EnemyTypeID::EnemyID_BlueChappy:
 	case Game::EnemyTypeID::EnemyID_YellowChappy:
@@ -872,7 +872,7 @@ bool TEnemyWalkSmoke::create(efx::Arg* arg)
 		return false;
 	}
 
-	scale *= argt->m_scale;
+	scale *= argt->mScale;
 	efx::ArgScale args(pos, scale);
 	if (isSmall == 0) {
 		efx::TEnemyWalkSmokeM effect(PID_EnemyWalkSmokeM);
@@ -897,7 +897,7 @@ bool TEnemyWalkSmokeM::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -906,7 +906,7 @@ bool TEnemyWalkSmokeM::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -921,7 +921,7 @@ bool TEnemyWalkSmokeM::create(efx::Arg* arg)
 bool TEnemyWalkSmokeS::create(efx::Arg* arg)
 {
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
-	f32 scale           = args->m_scale;
+	f32 scale           = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -930,7 +930,7 @@ bool TEnemyWalkSmokeS::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -946,13 +946,13 @@ bool TEnemyDownSmoke::create(efx::Arg* arg)
 {
 	bool docreate;
 	if (TSimple1::create(arg)) {
-		f32 scale = m_scale;
+		f32 scale = mScale;
 		docreate  = true;
 		volatile Vector3f scaleVec; // dumb.
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -971,7 +971,7 @@ bool TEnemyDownWat::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple3::create(arg)) {
@@ -980,9 +980,9 @@ bool TEnemyDownWat::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
-		m_emitters[2]->setScale(scale);
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
+		mEmitters[2]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -1001,7 +1001,7 @@ bool TEnemyDive::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple2::create(arg)) {
@@ -1010,8 +1010,8 @@ bool TEnemyDive::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -1030,235 +1030,235 @@ TEnemyBombScaleTable::TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID id)
 	case Game::EnemyTypeID::EnemyID_BlueChappy:
 	case Game::EnemyTypeID::EnemyID_YellowChappy:
 	case Game::EnemyTypeID::EnemyID_KumaChappy:
-		m_type  = 1;
-		m_scale = 0.92f;
+		mType  = 1;
+		mScale = 0.92f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Kochappy:
 	case Game::EnemyTypeID::EnemyID_BlueKochappy:
 	case Game::EnemyTypeID::EnemyID_YellowKochappy:
 	case Game::EnemyTypeID::EnemyID_KumaKochappy:
-		m_type  = 2;
-		m_scale = 1.4f;
+		mType  = 2;
+		mScale = 1.4f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_LeafChappy:
-		m_type  = 2;
-		m_scale = 1.65f;
+		mType  = 2;
+		mScale = 1.65f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_FireChappy:
-		m_type  = 1;
-		m_scale = 0.92f;
+		mType  = 1;
+		mScale = 0.92f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Baby:
-		m_type  = 2;
-		m_scale = 1.0f;
+		mType  = 2;
+		mScale = 1.0f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Tank:
 	case Game::EnemyTypeID::EnemyID_Wtank:
-		m_type  = 1;
-		m_scale = 0.6f;
+		mType  = 1;
+		mScale = 0.6f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Frog:
-		m_type  = 1;
-		m_scale = 0.7f;
+		mType  = 1;
+		mScale = 0.7f;
 		break;
 	case Game::EnemyTypeID::EnemyID_MaroFrog:
-		m_type  = 1;
-		m_scale = 0.6f;
+		mType  = 1;
+		mScale = 0.6f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Tadpole:
-		m_type  = 2;
-		m_scale = 1.2f;
+		mType  = 2;
+		mScale = 1.2f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Sarai:
 	case Game::EnemyTypeID::EnemyID_Demon:
-		m_type  = 1;
-		m_scale = 0.65f;
+		mType  = 1;
+		mScale = 0.65f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_BombSarai:
-		m_type  = 1;
-		m_scale = 0.8f;
+		mType  = 1;
+		mScale = 0.8f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_ElecBug:
-		m_type  = 1;
-		m_scale = 0.65f;
+		mType  = 1;
+		mScale = 0.65f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Catfish:
-		m_type  = 1;
-		m_scale = 0.75f;
+		mType  = 1;
+		mScale = 0.75f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_UjiA:
 	case Game::EnemyTypeID::EnemyID_UjiB:
 	case Game::EnemyTypeID::EnemyID_Tobi:
-		m_type  = 2;
-		m_scale = 1.0f;
+		mType  = 2;
+		mScale = 1.0f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Qurione:
-		m_type  = 2;
-		m_scale = 1.1f;
+		mType  = 2;
+		mScale = 1.1f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Egg:
-		m_type  = 2;
-		m_scale = 1.5f;
+		mType  = 2;
+		mScale = 1.5f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Armor:
-		m_type  = 1;
-		m_scale = 0.85f;
+		mType  = 1;
+		mScale = 0.85f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_PanModoki:
-		m_type  = 2;
-		m_scale = 1.6f;
+		mType  = 2;
+		mScale = 1.6f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Miulin:
-		m_type  = 1;
-		m_scale = 0.8f;
+		mType  = 1;
+		mScale = 0.8f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Imomushi:
-		m_type  = 0;
-		m_scale = 0.0f;
+		mType  = 0;
+		mScale = 0.0f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_TamagoMushi:
-		m_type  = 2;
-		m_scale = 1.2f;
+		mType  = 2;
+		mScale = 1.2f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Jigumo:
-		m_type  = 2;
-		m_scale = 1.5f;
+		mType  = 2;
+		mScale = 1.5f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_FireOtakara:
 	case Game::EnemyTypeID::EnemyID_WaterOtakara:
 	case Game::EnemyTypeID::EnemyID_GasOtakara:
 	case Game::EnemyTypeID::EnemyID_ElecOtakara:
-		m_type  = 2;
-		m_scale = 1.3f;
+		mType  = 2;
+		mScale = 1.3f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Fuefuki:
-		m_type  = 2;
-		m_scale = 1.4f;
+		mType  = 2;
+		mScale = 1.4f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Mar:
-		m_type  = 1;
-		m_scale = 1.2f;
+		mType  = 1;
+		mScale = 1.2f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Hanachirashi:
-		m_type  = 1;
-		m_scale = 0.72f;
+		mType  = 1;
+		mScale = 0.72f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Kurage:
-		m_type  = 1;
-		m_scale = 0.7f;
+		mType  = 1;
+		mScale = 0.7f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_OniKurage:
-		m_type  = 1;
-		m_scale = 0.9f;
+		mType  = 1;
+		mScale = 0.9f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_ShijimiChou:
-		m_type  = 2;
-		m_scale = 0.9f;
+		mType  = 2;
+		mScale = 0.9f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_SnakeCrow:
 	case Game::EnemyTypeID::EnemyID_SnakeWhole:
-		m_type  = 0;
-		m_scale = 0.0f;
+		mType  = 0;
+		mScale = 0.0f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_KingChappy:
-		m_type  = 1;
-		m_scale = 1.25f;
+		mType  = 1;
+		mScale = 1.25f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_MiniHoudai:
 	case Game::EnemyTypeID::EnemyID_FminiHoudai:
-		m_type  = 1;
-		m_scale = 0.85f;
+		mType  = 1;
+		mScale = 0.85f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Hana:
-		m_type  = 1;
-		m_scale = 0.9f;
+		mType  = 1;
+		mScale = 0.9f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Kabuto:
 	case Game::EnemyTypeID::EnemyID_Rkabuto:
 	case Game::EnemyTypeID::EnemyID_Fkabuto:
-		m_type  = 1;
-		m_scale = 0.8f;
+		mType  = 1;
+		mScale = 0.8f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Sokkuri:
-		m_type  = 2;
-		m_scale = 1.4f;
+		mType  = 2;
+		mScale = 1.4f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_OoPanModoki:
-		m_type  = 1;
-		m_scale = 0.85f;
+		mType  = 1;
+		mScale = 0.85f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_UmiMushi:
-		m_type  = 1;
-		m_scale = 1.2f;
+		mType  = 1;
+		mScale = 1.2f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Kogane:
 	case Game::EnemyTypeID::EnemyID_Wealthy:
 	case Game::EnemyTypeID::EnemyID_Fart:
-		m_type  = 2;
-		m_scale = 1.25f;
+		mType  = 2;
+		mScale = 1.25f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_BombOtakara:
-		m_type  = 2;
-		m_scale = 1.3f;
+		mType  = 2;
+		mScale = 1.3f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_BlackMan:
-		m_type  = 1;
-		m_scale = 0.75f;
+		mType  = 1;
+		mScale = 0.75f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Tyre:
-		m_type  = 0;
-		m_scale = 0.0f;
+		mType  = 0;
+		mScale = 0.0f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_DangoMushi:
-		m_type  = 1;
-		m_scale = 1.45f;
+		mType  = 1;
+		mScale = 1.45f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Hiba:
 	case Game::EnemyTypeID::EnemyID_GasHiba:
 	case Game::EnemyTypeID::EnemyID_ElecHiba:
-		m_type  = 2;
-		m_scale = 1.0f;
+		mType  = 2;
+		mScale = 1.0f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_BluePom:
@@ -1267,18 +1267,18 @@ TEnemyBombScaleTable::TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID id)
 	case Game::EnemyTypeID::EnemyID_BlackPom:
 	case Game::EnemyTypeID::EnemyID_WhitePom:
 	case Game::EnemyTypeID::EnemyID_RandPom:
-		m_type  = 1;
-		m_scale = 1.0f;
+		mType  = 1;
+		mScale = 1.0f;
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Bomb:
-		m_type  = 1;
-		m_scale = 0.65f;
+		mType  = 1;
+		mScale = 0.65f;
 		break;
 
 	default:
-		m_type  = 0;
-		m_scale = 0.0f;
+		mType  = 0;
+		mScale = 0.0f;
 		break;
 	}
 }
@@ -1295,19 +1295,19 @@ bool TEnemyBomb::create(efx::Arg* arg)
 
 	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
 
-	Vector3f pos = arg->m_position;
-	TEnemyBombScaleTable data(argt->m_typeID);
-	f32 scale = argt->m_scale * data.m_scale;
+	Vector3f pos = arg->mPosition;
+	TEnemyBombScaleTable data(argt->mTypeID);
+	f32 scale = argt->mScale * data.mScale;
 
 	efx::ArgScale args(pos, scale);
 
-	if (data.m_type == 0) {
+	if (data.mType == 0) {
 		return false;
 	} else {
-		if (data.m_type == 1) {
+		if (data.mType == 1) {
 			efx::TEnemyBombM effect;
 			return effect.create(&args);
-		} else if (data.m_type == 2) {
+		} else if (data.mType == 2) {
 			efx::TEnemyBombS effect;
 			return effect.create(&args);
 		} else {
@@ -1328,7 +1328,7 @@ bool TEnemyBombM::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple4::create(arg)) {
@@ -1337,10 +1337,10 @@ bool TEnemyBombM::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
-		m_emitters[2]->setScale(scale);
-		m_emitters[3]->setScale(scale);
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
+		mEmitters[2]->setScale(scale);
+		mEmitters[3]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -1359,7 +1359,7 @@ bool TEnemyBombS::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple4::create(arg)) {
@@ -1368,10 +1368,10 @@ bool TEnemyBombS::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
-		m_emitters[2]->setScale(scale);
-		m_emitters[3]->setScale(scale);
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
+		mEmitters[2]->setScale(scale);
+		mEmitters[3]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -1390,19 +1390,19 @@ bool TEnemyApsmoke::create(efx::Arg* arg)
 
 	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
 
-	Vector3f pos = arg->m_position;
-	TEnemyBombScaleTable data(argt->m_typeID);
-	f32 scale = argt->m_scale * data.m_scale;
+	Vector3f pos = arg->mPosition;
+	TEnemyBombScaleTable data(argt->mTypeID);
+	f32 scale = argt->mScale * data.mScale;
 
 	efx::ArgScale args(pos, scale);
 
-	if (data.m_type == 0) {
+	if (data.mType == 0) {
 		return false;
 	} else {
-		if (data.m_type == 1) {
+		if (data.mType == 1) {
 			efx::TEnemyApsmokeM effect;
 			return effect.create(&args);
-		} else if (data.m_type == 2) {
+		} else if (data.mType == 2) {
 			efx::TEnemyApsmokeS effect;
 			return effect.create(&args);
 		} else {
@@ -1423,7 +1423,7 @@ bool TEnemyApsmokeM::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -1432,7 +1432,7 @@ bool TEnemyApsmokeM::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -1452,7 +1452,7 @@ bool TEnemyApsmokeS::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSimple1::create(arg)) {
@@ -1461,7 +1461,7 @@ bool TEnemyApsmokeS::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -1481,7 +1481,7 @@ bool TEnemyHamonM::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSync::create(arg)) {
@@ -1490,7 +1490,7 @@ bool TEnemyHamonM::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitter->setScale(scale);
+		mEmitter->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -1509,7 +1509,7 @@ bool TEnemyHamonMInd::create(efx::Arg* arg)
 
 	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	bool docreate;
 
 	if (TSync::create(arg)) {
@@ -1518,7 +1518,7 @@ bool TEnemyHamonMInd::create(efx::Arg* arg)
 		scaleVec.x = scale;
 		scaleVec.y = scale;
 		scaleVec.z = scale;
-		m_emitter->setScale(scale);
+		mEmitter->setScale(scale);
 	} else {
 		docreate = false;
 	}
@@ -1537,11 +1537,11 @@ bool TEnemyHamonChasePos::create(efx::Arg* arg)
 
 	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
 
-	Vector3f pos = arg->m_position;
+	Vector3f pos = arg->mPosition;
 
 	bool docreate;
 	f32 scale;
-	switch (argt->m_typeID) {
+	switch (argt->mTypeID) {
 	case Game::EnemyTypeID::EnemyID_Chappy:
 	case Game::EnemyTypeID::EnemyID_BlueChappy:
 	case Game::EnemyTypeID::EnemyID_YellowChappy:
@@ -1756,12 +1756,12 @@ bool TEnemyHamonChasePos::create(efx::Arg* arg)
 		return docreate;
 	}
 
-	scale *= argt->m_scale;
+	scale *= argt->mScale;
 	ArgScale arg2(pos, scale);
 
-	if (!m_hamonM.create(&arg2)) {
+	if (!mHamonM.create(&arg2)) {
 		return false;
-	} else if (scale > 0.75 && !m_hamonMInd.create(&arg2)) {
+	} else if (scale > 0.75 && !mHamonMInd.create(&arg2)) {
 		return false;
 	} else {
 		return true;
@@ -1775,16 +1775,16 @@ bool TEnemyHamonChasePos::create(efx::Arg* arg)
  */
 void TEnemyHamon::update(Vector3f& pos)
 {
-	if (m_seaHeightPtr && m_active) {
-		f32 y  = *m_seaHeightPtr - pos.y;
-		f32 y2 = m_scale * getLimitDepth_();
+	if (mSeaHeightPtr && mActive) {
+		f32 y  = *mSeaHeightPtr - pos.y;
+		f32 y2 = mScale * getLimitDepth_();
 
 		if ((0.0f <= y) && y < y2) {
-			m_position = Vector3f(pos.x, *m_seaHeightPtr, pos.z);
-			efx::ArgEnemyType arg(Vector3f::zero, m_enemyID, m_scale);
-			m_hamonChasePos.create(&arg);
+			mPosition = Vector3f(pos.x, *mSeaHeightPtr, pos.z);
+			efx::ArgEnemyType arg(Vector3f::zero, mEnemyID, mScale);
+			mHamonChasePos.create(&arg);
 		} else {
-			m_hamonChasePos.fade();
+			mHamonChasePos.fade();
 		}
 	}
 }
@@ -1801,9 +1801,9 @@ bool TEnemyHamon::create(efx::Arg* arg)
 
 	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
 
-	m_enemyID = argt->m_typeID;
-	m_scale   = argt->m_scale;
-	m_active  = true;
+	mEnemyID = argt->mTypeID;
+	mScale   = argt->mScale;
+	mActive  = true;
 	return true;
 }
 
@@ -1816,7 +1816,7 @@ f32 TEnemyHamon::getLimitDepth_()
 {
 	f32 depth = 10000.0f;
 
-	switch (m_enemyID) {
+	switch (mEnemyID) {
 	case Game::EnemyTypeID::EnemyID_Chappy:
 	case Game::EnemyTypeID::EnemyID_KumaChappy:
 	case Game::EnemyTypeID::EnemyID_BlueChappy:

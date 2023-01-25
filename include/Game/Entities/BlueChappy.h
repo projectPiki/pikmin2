@@ -38,27 +38,27 @@ struct Mgr : public ChappyBase::Mgr {
 	}
 	virtual ResTIMG* getChangeTexture0() // _E0 (weak)
 	{
-		return m_changeTexture0;
+		return mChangeTexture0;
 	}
 	virtual ResTIMG* getChangeTexture1() // _E4 (weak)
 	{
-		return m_changeTexture1;
+		return mChangeTexture1;
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* m_changeTexture0; // _44
-	ResTIMG* m_changeTexture1; // _48
-	Obj* m_obj;                // _4C, an array of Objs
+	ResTIMG* mChangeTexture0; // _44
+	ResTIMG* mChangeTexture1; // _48
+	Obj* mObj;                // _4C, an array of Objs
 };
 
 } // namespace BlueChappy

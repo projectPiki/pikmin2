@@ -160,10 +160,10 @@ namespace PikiAI {
 ActEnter::ActEnter(Game::Piki* p)
     : Action(p)
 {
-	m_gotoPos = new ActGotoPos(p);
-	m_climb   = new ActClimb(p);
+	mGotoPos = new ActGotoPos(p);
+	mClimb   = new ActClimb(p);
 
-	m_name = "Enter";
+	mName = "Enter";
 }
 
 /*

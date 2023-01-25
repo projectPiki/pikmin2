@@ -26,44 +26,44 @@ static const char otakaraSensorName[] = "ogOtakaraSensor";
  */
 OtakaraSensor::OtakaraSensor()
 {
-	m_pane1             = nullptr;
-	m_pane2             = nullptr;
-	m_currReactionLevel = 0.0f;
-	m_angle             = 0.0f;
-	m_currAngle         = 0.0f;
-	m_reactTimer        = 0.0f;
-	m_panePos           = 0.0f;
-	m_doAngleOffset     = false;
-	m_scale             = 1.0f;
-	m_scaleMgr          = new ScaleMgr;
-	m_angleOffsetMod    = 3.0f;
-	m_efxActive         = false;
-	m_angleMgr          = new AngleMgr;
-	m_angleMgr->init(0.0f, 0.3f, 0.0f);
-	m_timer             = 0.0f;
-	m_angleOffs         = 0.0f;
-	m_angleOffsetMod2   = 0.3f;
-	m_doStartAppear     = false;
-	m_state             = 1;
-	m_sensorGetTimer    = 0.0f;
-	_4C.x               = 0.2f;
-	_4C.y               = 0.25f;
-	m_isFuefukid        = false;
-	m_randAngle         = 0.0f;
-	m_completeEfxOffset = 0.0f;
-	m_appearEfxOffset   = 0.0f;
-	m_enabled           = false;
-	m_notreasures       = true;
-	m_doIncNoise        = false;
-	m_isInit            = false;
-	m_treeColor         = nullptr;
-	m_noiseLevel        = 0.0f;
-	m_isPoweringOff     = false;
-	m_powerOffTimer     = 3.2f;
-	m_noiseTimer        = 0.0f;
-	m_canIncNoise       = false;
-	m_isPoweredOff      = false;
-	m_setGrayTimer      = 0.0f;
+	mPane1             = nullptr;
+	mPane2             = nullptr;
+	mCurrReactionLevel = 0.0f;
+	mAngle             = 0.0f;
+	mCurrAngle         = 0.0f;
+	mReactTimer        = 0.0f;
+	mPanePos           = 0.0f;
+	mDoAngleOffset     = false;
+	mScale             = 1.0f;
+	mScaleMgr          = new ScaleMgr;
+	mAngleOffsetMod    = 3.0f;
+	mEfxActive         = false;
+	mAngleMgr          = new AngleMgr;
+	mAngleMgr->init(0.0f, 0.3f, 0.0f);
+	mTimer             = 0.0f;
+	mAngleOffs         = 0.0f;
+	mAngleOffsetMod2   = 0.3f;
+	mDoStartAppear     = false;
+	mState             = 1;
+	mSensorGetTimer    = 0.0f;
+	_4C.x              = 0.2f;
+	_4C.y              = 0.25f;
+	mIsFuefukid        = false;
+	mRandAngle         = 0.0f;
+	mCompleteEfxOffset = 0.0f;
+	mAppearEfxOffset   = 0.0f;
+	mEnabled           = false;
+	mNotreasures       = true;
+	mDoIncNoise        = false;
+	mIsInit            = false;
+	mTreeColor         = nullptr;
+	mNoiseLevel        = 0.0f;
+	mIsPoweringOff     = false;
+	mPowerOffTimer     = 3.2f;
+	mNoiseTimer        = 0.0f;
+	mCanIncNoise       = false;
+	mIsPoweredOff      = false;
+	mSetGrayTimer      = 0.0f;
 }
 
 /*
@@ -74,19 +74,19 @@ OtakaraSensor::OtakaraSensor()
 void OtakaraSensor::init(J2DPane* pane1, J2DPane* pane2, int state)
 {
 	if (pane1 && pane2) {
-		m_pane1             = pane1;
-		m_pane2             = pane2;
-		m_currReactionLevel = 0.0f;
-		m_angle             = 0.0f;
-		m_panePos.x         = m_pane2->m_offset.x;
-		m_panePos.y         = m_pane2->m_offset.y;
-		m_state             = state;
-		m_isInit            = false;
-		m_treeColor         = og::Screen::capturePictureTreeColor(pane2, 30);
+		mPane1             = pane1;
+		mPane2             = pane2;
+		mCurrReactionLevel = 0.0f;
+		mAngle             = 0.0f;
+		mPanePos.x         = mPane2->mOffset.x;
+		mPanePos.y         = mPane2->mOffset.y;
+		mState             = state;
+		mIsInit            = false;
+		mTreeColor         = og::Screen::capturePictureTreeColor(pane2, 30);
 	} else {
 		JUT_PANICLINE(237, "NULL pane.\n");
 	}
-	m_notreasures = true;
+	mNotreasures = true;
 }
 
 /*
@@ -96,42 +96,42 @@ void OtakaraSensor::init(J2DPane* pane1, J2DPane* pane2, int state)
  */
 void OtakaraSensor::setParam(f32 dist, int state, bool enabled, bool complete)
 {
-	bool flag         = true;
-	m_isFuefukid      = false;
-	m_enabled         = enabled;
-	f32 temp          = 12.0f;
-	m_notreasures     = complete;
-	m_angleOffsetMod2 = 0.3f;
-	int old           = m_state;
-	m_state           = state;
+	bool flag        = true;
+	mIsFuefukid      = false;
+	mEnabled         = enabled;
+	f32 temp         = 12.0f;
+	mNotreasures     = complete;
+	mAngleOffsetMod2 = 0.3f;
+	int old          = mState;
+	mState           = state;
 
-	switch (m_state) {
+	switch (mState) {
 	case 0:
 		temp = 0.0f;
 		flag = false;
 		break;
 	case 1:
-		m_angleOffsetMod2 = 1.0f;
+		mAngleOffsetMod2 = 1.0f;
 		break;
 	case 2:
-		m_angleOffsetMod2 = 1.0f;
+		mAngleOffsetMod2 = 1.0f;
 		break;
 	case 3:
-		temp              = 100.0f;
-		m_angleOffsetMod2 = 0.4f;
+		temp             = 100.0f;
+		mAngleOffsetMod2 = 0.4f;
 		break;
 	case 4:
-		temp              = 100.0f;
-		m_angleOffsetMod2 = 0.4f;
-		m_isFuefukid      = true;
-		if (m_state != old) {
-			m_randAngle = randFloat() * 180.0f - 90.0f;
+		temp             = 100.0f;
+		mAngleOffsetMod2 = 0.4f;
+		mIsFuefukid      = true;
+		if (mState != old) {
+			mRandAngle = randFloat() * 180.0f - 90.0f;
 		}
 		break;
 	}
-	m_currReactionLevel = calcLevel(dist);
-	m_doAngleOffset     = flag;
-	m_angleOffsetMod    = temp;
+	mCurrReactionLevel = calcLevel(dist);
+	mDoAngleOffset     = flag;
+	mAngleOffsetMod    = temp;
 }
 
 /*
@@ -142,7 +142,7 @@ void OtakaraSensor::setParam(f32 dist, int state, bool enabled, bool complete)
 f32 OtakaraSensor::calcLevel(f32 distance)
 {
 	f32 level = 0.0f;
-	if (m_state != 0) {
+	if (mState != 0) {
 		level = 1.0f - (distance / 900.0f);
 
 		if (level < 0.0f) {
@@ -164,14 +164,14 @@ f32 OtakaraSensor::calcLevel(f32 distance)
  * Address:	8032DC7C
  * Size:	000010
  */
-void OtakaraSensor::show() { m_pane2->show(); }
+void OtakaraSensor::show() { mPane2->show(); }
 
 /*
  * --INFO--
  * Address:	8032DC8C
  * Size:	000010
  */
-void OtakaraSensor::hide() { m_pane2->hide(); }
+void OtakaraSensor::hide() { mPane2->hide(); }
 
 /*
  * --INFO--
@@ -180,8 +180,8 @@ void OtakaraSensor::hide() { m_pane2->hide(); }
  */
 void OtakaraSensor::startSensorEff()
 {
-	m_efxActive = true;
-	m_timer     = 0.3f;
+	mEfxActive = true;
+	mTimer     = 0.3f;
 }
 
 /*
@@ -192,11 +192,11 @@ void OtakaraSensor::startSensorEff()
 void OtakaraSensor::adjPos(f32 x, f32 y)
 {
 	f32 offs = 0.0f;
-	if (m_efxActive) {
-		f32 temp = m_angleMgr->calc();
+	if (mEfxActive) {
+		f32 temp = mAngleMgr->calc();
 		offs     = pikmin2_cosf(temp) * 100.0f;
 	}
-	m_pane2->setOffset(m_panePos.x + x, m_panePos.y + y + offs);
+	mPane2->setOffset(mPanePos.x + x, mPanePos.y + y + offs);
 }
 
 /*
@@ -204,7 +204,7 @@ void OtakaraSensor::adjPos(f32 x, f32 y)
  * Address:	8032DD88
  * Size:	000008
  */
-void OtakaraSensor::adjScale(f32 scale) { m_scale = scale; }
+void OtakaraSensor::adjScale(f32 scale) { mScale = scale; }
 
 /*
  * --INFO--
@@ -213,17 +213,17 @@ void OtakaraSensor::adjScale(f32 scale) { m_scale = scale; }
  */
 void OtakaraSensor::update()
 {
-	if (m_appearTimer > 0.0f) {
-		m_appearTimer -= sys->m_deltaTime;
+	if (mAppearTimer > 0.0f) {
+		mAppearTimer -= sys->mDeltaTime;
 	}
 
 	calcAppear();
 	calcGrayColor();
-	if (m_state != 5) {
+	if (mState != 5) {
 		calcAngle();
 	}
 	calcReaction();
-	PSStartTresureLaderNoiseSE(m_state, m_noiseLevel, m_currReactionLevel);
+	PSStartTresureLaderNoiseSE(mState, mNoiseLevel, mCurrReactionLevel);
 }
 
 /*
@@ -233,13 +233,13 @@ void OtakaraSensor::update()
  */
 void OtakaraSensor::updateInit()
 {
-	if (!m_isInit) {
-		m_isInit = true;
-		if (m_enabled && m_state == 0) {
-			m_doIncNoise = true;
-			if (m_notreasures) {
-				m_noiseLevel            = 0.0f;
-				m_isPoweringOff         = true;
+	if (!mIsInit) {
+		mIsInit = true;
+		if (mEnabled && mState == 0) {
+			mDoIncNoise = true;
+			if (mNotreasures) {
+				mNoiseLevel             = 0.0f;
+				mIsPoweringOff          = true;
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 				PSSystem::checkSceneMgr(mgr);
 				PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
@@ -248,7 +248,7 @@ void OtakaraSensor::updateInit()
 					scene->startPollutUpSe();
 				}
 			} else {
-				m_noiseLevel = 1.0f;
+				mNoiseLevel = 1.0f;
 			}
 		}
 	}
@@ -261,73 +261,73 @@ void OtakaraSensor::updateInit()
  */
 void OtakaraSensor::calcGrayColor()
 {
-	if (m_state != 5) {
-		if (m_isPoweringOff) {
-			if (m_powerOffTimer > 0.0f) {
-				m_powerOffTimer -= sys->m_deltaTime;
+	if (mState != 5) {
+		if (mIsPoweringOff) {
+			if (mPowerOffTimer > 0.0f) {
+				mPowerOffTimer -= sys->mDeltaTime;
 			} else {
-				m_isPoweringOff = false;
-				m_doIncNoise    = true;
+				mIsPoweringOff = false;
+				mDoIncNoise    = true;
 				ogSound->setFloorComplete();
-				m_isPoweredOff = true;
-				m_setGrayTimer = 1.5f;
+				mIsPoweredOff = true;
+				mSetGrayTimer = 1.5f;
 			}
 		} else {
-			if (m_doIncNoise) {
-				m_noiseLevel += 0.05f;
-				if (m_noiseLevel > 1.0f) {
-					m_noiseLevel = 1.0f;
+			if (mDoIncNoise) {
+				mNoiseLevel += 0.05f;
+				if (mNoiseLevel > 1.0f) {
+					mNoiseLevel = 1.0f;
 				}
-				if (m_state != 0) {
-					m_doIncNoise = false;
+				if (mState != 0) {
+					mDoIncNoise = false;
 				}
 			} else {
-				m_noiseLevel -= 0.05f;
-				if (m_noiseLevel < 0.0f) {
-					m_noiseLevel = 0.0f;
+				mNoiseLevel -= 0.05f;
+				if (mNoiseLevel < 0.0f) {
+					mNoiseLevel = 0.0f;
 				}
 			}
 		}
 
-		if (m_isPoweredOff && m_setGrayTimer > 0.0f) {
-			m_setGrayTimer -= sys->m_deltaTime;
-			if (m_setGrayTimer < 0.0f) {
+		if (mIsPoweredOff && mSetGrayTimer > 0.0f) {
+			mSetGrayTimer -= sys->mDeltaTime;
+			if (mSetGrayTimer < 0.0f) {
 				ogSound->setGraySensor();
 				startGraySensor();
 			}
 		}
 		JUtility::TColor col1(255, 255, 255, 255);
 		JUtility::TColor col2(0, 0, 0, 0);
-		switch (m_state) {
+		switch (mState) {
 		case 3:
 			col1.set(255, 0, 200, 255);
-			m_noiseTimer += sys->m_deltaTime * TAU * 2.5f;
-			if (m_noiseTimer > TAU) {
-				m_noiseTimer -= TAU;
+			mNoiseTimer += sys->mDeltaTime * TAU * 2.5f;
+			if (mNoiseTimer > TAU) {
+				mNoiseTimer -= TAU;
 			}
-			m_noiseLevel  = (pikmin2_sinf(m_noiseTimer) + 1.0f) * 0.3f / 2;
-			m_canIncNoise = true;
+			mNoiseLevel  = (pikmin2_sinf(mNoiseTimer) + 1.0f) * 0.3f / 2;
+			mCanIncNoise = true;
 			break;
 
 		case 4:
 			col1.set(255, 0, 200, 255);
-			f32 timeFactor = sys->m_deltaTime * TAU;
-			m_noiseTimer += newScreen::ObjCave::msVal._44 * timeFactor;
-			if (m_noiseTimer > TAU)
-				m_noiseTimer -= TAU;
-			m_noiseLevel  = (pikmin2_sinf(m_noiseTimer) + 1.0f) * newScreen::ObjCave::msVal._48 / 2;
-			m_canIncNoise = true;
+			f32 timeFactor = sys->mDeltaTime * TAU;
+			mNoiseTimer += newScreen::ObjCave::msVal._44 * timeFactor;
+			if (mNoiseTimer > TAU)
+				mNoiseTimer -= TAU;
+			mNoiseLevel  = (pikmin2_sinf(mNoiseTimer) + 1.0f) * newScreen::ObjCave::msVal._48 / 2;
+			mCanIncNoise = true;
 			break;
 
 		default:
-			if (m_canIncNoise && m_state == 0) {
-				m_canIncNoise = false;
-				m_doIncNoise  = true;
+			if (mCanIncNoise && mState == 0) {
+				mCanIncNoise = false;
+				mDoIncNoise  = true;
 			}
 			break;
 		}
 
-		og::Screen::blendPictureTreeColor(m_treeColor, col1, col2, m_noiseLevel);
+		og::Screen::blendPictureTreeColor(mTreeColor, col1, col2, mNoiseLevel);
 	}
 }
 
@@ -338,28 +338,28 @@ void OtakaraSensor::calcGrayColor()
  */
 void OtakaraSensor::calcAppear()
 {
-	if (m_efxActive) {
-		if (m_timer > 0.0f) {
-			m_timer -= sys->m_deltaTime;
-			if (m_timer < 0.0f) {
-				m_angleMgr->chase(HALF_PI, _4C.x);
-				m_doStartAppear  = true;
-				m_sensorGetTimer = _4C.y;
+	if (mEfxActive) {
+		if (mTimer > 0.0f) {
+			mTimer -= sys->mDeltaTime;
+			if (mTimer < 0.0f) {
+				mAngleMgr->chase(HALF_PI, _4C.x);
+				mDoStartAppear  = true;
+				mSensorGetTimer = _4C.y;
 			}
 		}
 	}
 
-	if (m_doStartAppear) {
-		if (m_sensorGetTimer > 0.0f) {
-			m_sensorGetTimer -= sys->m_deltaTime;
-			if (m_sensorGetTimer <= 0.0f) {
-				m_scaleMgr->up(0.7f, 40.0f, 0.5f, 0.0f);
-				m_appearTimer = 3.0f;
+	if (mDoStartAppear) {
+		if (mSensorGetTimer > 0.0f) {
+			mSensorGetTimer -= sys->mDeltaTime;
+			if (mSensorGetTimer <= 0.0f) {
+				mScaleMgr->up(0.7f, 40.0f, 0.5f, 0.0f);
+				mAppearTimer = 3.0f;
 				efx2d::T2DSensorGet efx;
-				Vector3f pos1   = m_pane1->getGlbVtx(0);
-				Vector3f pos2   = m_pane1->getGlbVtx(3);
+				Vector3f pos1   = mPane1->getGlbVtx(0);
+				Vector3f pos2   = mPane1->getGlbVtx(3);
 				Vector3f midPos = pos1 + pos2;
-				Vector2f argVec(midPos.x / 2 + m_appearEfxOffset.x, midPos.y / 2 + m_appearEfxOffset.y);
+				Vector2f argVec(midPos.x / 2 + mAppearEfxOffset.x, midPos.y / 2 + mAppearEfxOffset.y);
 				efx2d::Arg arg = argVec;
 				efx.create(&arg);
 				ogSound->setGetSensor();
@@ -376,10 +376,10 @@ void OtakaraSensor::calcAppear()
 void OtakaraSensor::startGraySensor()
 {
 	efx2d::T2DSensorComp efx;
-	Vector3f pos1   = m_pane1->getGlbVtx(0);
-	Vector3f pos2   = m_pane1->getGlbVtx(3);
+	Vector3f pos1   = mPane1->getGlbVtx(0);
+	Vector3f pos2   = mPane1->getGlbVtx(3);
 	Vector3f midPos = pos1 + pos2;
-	Vector2f argVec(midPos.x / 2 + m_completeEfxOffset.x, midPos.y / 2 + m_completeEfxOffset.y);
+	Vector2f argVec(midPos.x / 2 + mCompleteEfxOffset.x, midPos.y / 2 + mCompleteEfxOffset.y);
 	efx2d::Arg arg = argVec;
 	efx.create(&arg);
 }
@@ -391,18 +391,18 @@ void OtakaraSensor::startGraySensor()
  */
 void OtakaraSensor::calcAngle()
 {
-	m_angle += (m_currReactionLevel - m_angle) / 10.0f;
-	if (m_pane1) {
-		f32 angle = -(m_angle * 180.0f - 90.0f);
-		if (m_isFuefukid) {
-			angle = m_currAngle;
+	mAngle += (mCurrReactionLevel - mAngle) / 10.0f;
+	if (mPane1) {
+		f32 angle = -(mAngle * 180.0f - 90.0f);
+		if (mIsFuefukid) {
+			angle = mCurrAngle;
 		}
 		f32 initOffs = 0.0f;
 		f32 offs;
-		if (m_doAngleOffset) {
+		if (mDoAngleOffset) {
 			offs = initOffs;
 			f32 temp;
-			f32 angle2 = m_angleOffsetMod / 2;
+			f32 angle2 = mAngleOffsetMod / 2;
 			temp       = angle - angle2;
 			if (temp < -90.0f) {
 				offs = -90.0f - temp;
@@ -414,16 +414,16 @@ void OtakaraSensor::calcAngle()
 				}
 			}
 
-			initOffs = (m_angleOffsetMod / 2) * (randFloat() * 2.0f - 1.0f) + offs;
+			initOffs = (mAngleOffsetMod / 2) * (randFloat() * 2.0f - 1.0f) + offs;
 		}
 
-		m_angleOffs += m_angleOffsetMod2 * (initOffs - m_angleOffs);
+		mAngleOffs += mAngleOffsetMod2 * (initOffs - mAngleOffs);
 
-		if (m_isFuefukid) {
-			f32 temp = m_randAngle - m_currAngle;
+		if (mIsFuefukid) {
+			f32 temp = mRandAngle - mCurrAngle;
 			if (FABS(temp) < 15.0f) {
-				m_randAngle = randFloat() * 180.0f - 90.0f;
-				temp        = m_randAngle - m_currAngle;
+				mRandAngle = randFloat() * 180.0f - 90.0f;
+				temp       = mRandAngle - mCurrAngle;
 			}
 			f32 newangle = temp * 0.5f;
 			if (newangle < -30.0f) {
@@ -432,13 +432,13 @@ void OtakaraSensor::calcAngle()
 			if (newangle > 30.0f) {
 				newangle = 30.0f;
 			}
-			m_currAngle += newangle;
-			angle = m_currAngle;
+			mCurrAngle += newangle;
+			angle = mCurrAngle;
 		}
 
-		m_currAngle = angle;
-		if (!m_doIncNoise) {
-			angle += m_angleOffs;
+		mCurrAngle = angle;
+		if (!mDoIncNoise) {
+			angle += mAngleOffs;
 		}
 
 		if (angle < -90.0f) {
@@ -447,10 +447,10 @@ void OtakaraSensor::calcAngle()
 		if (angle > 90.0f) {
 			angle = 90.0f;
 		}
-		m_pane1->rotate(angle);
+		mPane1->rotate(angle);
 
 	} else {
-		m_currAngle = 0.0f;
+		mCurrAngle = 0.0f;
 	}
 }
 
@@ -461,30 +461,30 @@ void OtakaraSensor::calcAngle()
  */
 void OtakaraSensor::calcReaction()
 {
-	if (m_reactTimer > 0.0f) {
-		m_reactTimer -= sys->m_deltaTime;
-		if (m_reactTimer < 0.0f) {
-			m_reactTimer = 0.0f;
+	if (mReactTimer > 0.0f) {
+		mReactTimer -= sys->mDeltaTime;
+		if (mReactTimer < 0.0f) {
+			mReactTimer = 0.0f;
 			if (!og::newScreen::checkMovieActive()) {
-				PSStartTreasureLaderSE(m_currReactionLevel);
-				if (m_appearTimer <= 0.0f) {
-					m_scaleMgr->up(m_currReactionLevel * 0.1f, 30.0f, 0.8f, 0.0f);
+				PSStartTreasureLaderSE(mCurrReactionLevel);
+				if (mAppearTimer <= 0.0f) {
+					mScaleMgr->up(mCurrReactionLevel * 0.1f, 30.0f, 0.8f, 0.0f);
 					efx2d::T2DSensorAct efx;
-					Vector3f pos1   = m_pane1->getGlbVtx(0);
-					Vector3f pos2   = m_pane1->getGlbVtx(3);
+					Vector3f pos1   = mPane1->getGlbVtx(0);
+					Vector3f pos2   = mPane1->getGlbVtx(3);
 					Vector3f midPos = pos1 + pos2;
-					Vector2f argVec(midPos.x / 2 + m_completeEfxOffset.x, midPos.y / 2 + m_completeEfxOffset.y);
+					Vector2f argVec(midPos.x / 2 + mCompleteEfxOffset.x, midPos.y / 2 + mCompleteEfxOffset.y);
 					efx2d::Arg arg = argVec;
 					efx.create(&arg);
 				}
 			}
 		}
 	} else {
-		if (m_currReactionLevel > 0.3f) {
-			m_reactTimer = (1.0f - m_currReactionLevel) * 2.0f + 0.4f;
+		if (mCurrReactionLevel > 0.3f) {
+			mReactTimer = (1.0f - mCurrReactionLevel) * 2.0f + 0.4f;
 		}
 	}
-	m_pane2->updateScale(m_scale * m_scaleMgr->calc());
+	mPane2->updateScale(mScale * mScaleMgr->calc());
 }
 
 /*

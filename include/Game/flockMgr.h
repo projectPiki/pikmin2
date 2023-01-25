@@ -42,10 +42,10 @@ struct BaseFlockMgr {
 	void resolveCollision(f32);
 
 	// _00 VTBL
-	int _04;                // _04
-	u32 _08;                // _08
-	Sys::Sphere _0C;        // _0C
-	bool* m_isAgentVisible; // _1C
+	int _04;               // _04
+	u32 _08;               // _08
+	Sys::Sphere _0C;       // _0C
+	bool* mIsAgentVisible; // _1C
 };
 
 template <typename T>
@@ -64,7 +64,7 @@ struct TFlockMgr : public BaseFlockMgr, public Container<T> {
 	// _00     = VTBL
 	// _00-_20 = BaseFlockMgr
 	// _20-_3C = Container
-	MonoObjectMgr<T> m_monoObjectMgr; // _3C
+	MonoObjectMgr<T> mMonoObjectMgr; // _3C
 };
 } // namespace Game
 

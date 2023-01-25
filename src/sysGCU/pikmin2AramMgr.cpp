@@ -54,58 +54,58 @@
     str_mIMG_last:
         .asciz "/new_screen/cmn/res_map_image_last.szs"
         .skip 0x1
-    str_m_s00:
+    str_mS00:
         .asciz "/user/Mukki/movie/s00_coursein/demo.szs"
-    str_m_s0B:
+    str_mS0B:
         .asciz "/user/Mukki/movie/s0B_cv_coursein/demo.szs"
         .skip 0x1
-    str_m_s09:
+    str_mS09:
         .asciz "/user/Mukki/movie/s09_holein/demo.szs"
         .skip 0x2
-    str_m_g2F:
+    str_mG2F:
         .asciz "/user/Mukki/movie/g2F_appear_hole/demo.szs"
         .skip 0x1
-    str_m_g30:
+    str_mG30:
         .asciz "/user/Mukki/movie/g30_appear_fountain/demo.szs"
         .skip 0x1
-    str_m_s10:
+    str_mS10:
         .asciz "/user/Mukki/movie/s10_suck_treasure/demo.szs"
         .skip 0x3
-    str_m_s17:
+    str_mS17:
         .asciz "/user/Mukki/movie/s17_suck_equipment/demo.szs"
         .skip 0x2
-    str_m_s22_e:
+    str_mS22_e:
         .asciz "/user/Mukki/movie/s22_cv_suck_equipment/demo.szs"
         .skip 0x3
-    str_m_s22_t:
+    str_mS22_t:
         .asciz "/user/Mukki/movie/s22_cv_suck_treasure/demo.szs"
-    str_m_s01:
+    str_mS01:
         .asciz "/user/Mukki/movie/s01_dayend/demo.szs"
         .skip 0x2
-    str_m_s02:
+    str_mS02:
         .asciz "/user/Mukki/movie/s02_dayend_result/demo.szs"
         .skip 0x3
-    str_m_s03:
+    str_mS03:
         .asciz "/user/Mukki/movie/s03_orimadown/demo.szs"
         .skip 0x3
-    str_m_s04:
+    str_mS04:
         .asciz "/user/Mukki/movie/s04_dayend_orimadown/demo.szs"
-    str_m_s05:
+    str_mS05:
         .asciz "/user/Mukki/movie/s05_pikminzero/demo.szs"
         .skip 0x2
-    str_m_s06:
+    str_mS06:
         .asciz "/user/Mukki/movie/s06_dayend_pikminzero/demo.szs"
         .skip 0x3
-    str_m_s0C:
+    str_mS0C:
         .asciz "/user/Mukki/movie/s0C_cv_escape/demo.szs"
         .skip 0x3
-    str_m_s0E:
+    str_mS0E:
         .asciz "/user/Mukki/movie/s0E_return_cave/demo.szs"
         .skip 0x1
-    str_m_s12:
+    str_mS12:
         .asciz "/user/Mukki/movie/s12_cv_giveup/demo.szs"
         .skip 0x3
-    str_m_s21:
+    str_mS21:
         .asciz "/user/Mukki/movie/s21_dayend_takeoff/demo.szs"
         .skip 0x2
     str_k_onyon_A:
@@ -223,25 +223,25 @@
         .4byte str_mIMG_last
     .global "sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
     "sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
-        .4byte str_m_s00
-        .4byte str_m_s0B
-        .4byte str_m_s09
-        .4byte str_m_g2F
-        .4byte str_m_g30
-        .4byte str_m_s10
-        .4byte str_m_s17
-        .4byte str_m_s22_e
-        .4byte str_m_s22_t
-        .4byte str_m_s01
-        .4byte str_m_s02
-        .4byte str_m_s03
-        .4byte str_m_s04
-        .4byte str_m_s05
-        .4byte str_m_s06
-        .4byte str_m_s0C
-        .4byte str_m_s0E
-        .4byte str_m_s12
-        .4byte str_m_s21
+        .4byte str_mS00
+        .4byte str_mS0B
+        .4byte str_mS09
+        .4byte str_mG2F
+        .4byte str_mG30
+        .4byte str_mS10
+        .4byte str_mS17
+        .4byte str_mS22_e
+        .4byte str_mS22_t
+        .4byte str_mS01
+        .4byte str_mS02
+        .4byte str_mS03
+        .4byte str_mS04
+        .4byte str_mS05
+        .4byte str_mS06
+        .4byte str_mS0C
+        .4byte str_mS0E
+        .4byte str_mS12
+        .4byte str_mS21
     .global "sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
     "sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
         .4byte str_k_onyon_A

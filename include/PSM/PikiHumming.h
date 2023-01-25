@@ -22,14 +22,14 @@ struct PikiHumming {
 	void exec(HumType, bool);
 	void play(Piki*);
 
-	u32 _00;           // _00, unknown
-	SoundID m_soundID; // _04
-	int _08;           // _08
-	int _0C;           // _0C
-	int _10;           // _10
-	int _14;           // _14, maybe index?
-	u8 _18;            // _18
-	u8 _19[0x3];       // _19, unknown/padding probably
+	u32 _00;          // _00, unknown
+	SoundID mSoundID; // _04
+	int _08;          // _08
+	int _0C;          // _0C
+	int _10;          // _10
+	int _14;          // _14, maybe index?
+	u8 _18;           // _18
+	u8 _19[0x3];      // _19, unknown/padding probably
 };
 
 /**
@@ -44,12 +44,12 @@ struct PikiHummingMgr {
 	// inlined/unused:
 	void entryRequest();
 
-	u32 _00;                     // _00
-	u32 _04;                     // _04, unknown
-	int _08;                     // _08
-	PikiHumming* m_hummingArray; // _0C, ptr to array of 3 PikiHummings
-	u8 _10;                      // _10
-	u8 _11[0x3];                 // _11, unknown/padding probably
+	u32 _00;                    // _00
+	u32 _04;                    // _04, unknown
+	int _08;                    // _08
+	PikiHumming* mHummingArray; // _0C, ptr to array of 3 PikiHummings
+	u8 _10;                     // _10
+	u8 _11[0x3];                // _11, unknown/padding probably
 };
 
 } // namespace PSM

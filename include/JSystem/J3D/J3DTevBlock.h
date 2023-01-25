@@ -84,7 +84,7 @@ struct J3DTevBlock {
 
 	void indexToPtr_private(u32);
 
-	u32 m_texNoOffset; // _04
+	u32 mTexNoOffset; // _04
 };
 
 struct J3DTevBlock1 : public J3DTevBlock {
@@ -125,11 +125,11 @@ struct J3DTevBlock1 : public J3DTevBlock {
 
 	void initialize();
 
-	u16 m_texIndices[1];           // _08
-	J3DTevOrder m_orders[1];       // _0A
-	J3DTevStage m_stages[1];       // _0E
-	u8 _16[2];                     // _16
-	J3DIndTevStage m_indStages[1]; // _18
+	u16 mTexIndices[1];           // _08
+	J3DTevOrder mOrders[1];       // _0A
+	J3DTevStage mStages[1];       // _0E
+	u8 _16[2];                    // _16
+	J3DIndTevStage mIndStages[1]; // _18
 };
 
 /**
@@ -192,18 +192,18 @@ struct J3DTevBlock2 : public J3DTevBlock {
 
 	void initialize();
 
-	u16 m_texIndices[2];                     // _08
-	J3DTevOrder m_orders[2];                 // _0C
-	J3DGXColorS10 m_colors[4];               // _14
-	u8 m_stageNum;                           // _34
-	J3DTevStage m_stages[2];                 // _35
-	J3DGXColor m_kColors[4];                 // _45
-	u8 m_kColorSels[2];                      // _55
-	u8 m_kAlphaSels[2];                      // _57
-	J3DTevSwapModeTable m_swapModeTables[4]; // _59
-	u8 _5D[3];                               // _5D
-	J3DIndTevStage m_indStages[2];           // _60
-	u32 m_regOffset;                         // _68
+	u16 mTexIndices[2];                     // _08
+	J3DTevOrder mOrders[2];                 // _0C
+	J3DGXColorS10 mColors[4];               // _14
+	u8 mStageNum;                           // _34
+	J3DTevStage mStages[2];                 // _35
+	J3DGXColor mKColors[4];                 // _45
+	u8 mKColorSels[2];                      // _55
+	u8 mKAlphaSels[2];                      // _57
+	J3DTevSwapModeTable mSwapModeTables[4]; // _59
+	u8 _5D[3];                              // _5D
+	J3DIndTevStage mIndStages[2];           // _60
+	u32 mRegOffset;                         // _68
 };
 
 /**
@@ -266,19 +266,19 @@ struct J3DTevBlock4 : public J3DTevBlock {
 
 	void initialize();
 
-	u16 m_texIndices[4];                     // _08
-	J3DTevOrder m_orders[4];                 // _10
-	u8 m_stageNum;                           // _20
-	J3DTevStage m_stages[4];                 // _21
-	u8 _41;                                  // _41
-	J3DGXColorS10 m_colors[4];               // _42
-	J3DGXColor m_kColors[4];                 // _62
-	u8 m_kColorSels[4];                      // _72
-	u8 m_kAlphaSels[4];                      // _76
-	J3DTevSwapModeTable m_swapModeTables[4]; // _7A
-	u8 _7E[2];                               // _7E
-	J3DIndTevStage m_indStages[4];           // _80
-	u32 m_regOffset;                         // _90
+	u16 mTexIndices[4];                     // _08
+	J3DTevOrder mOrders[4];                 // _10
+	u8 mStageNum;                           // _20
+	J3DTevStage mStages[4];                 // _21
+	u8 _41;                                 // _41
+	J3DGXColorS10 mColors[4];               // _42
+	J3DGXColor mKColors[4];                 // _62
+	u8 mKColorSels[4];                      // _72
+	u8 mKAlphaSels[4];                      // _76
+	J3DTevSwapModeTable mSwapModeTables[4]; // _7A
+	u8 _7E[2];                              // _7E
+	J3DIndTevStage mIndStages[4];           // _80
+	u32 mRegOffset;                         // _90
 };
 
 /**
@@ -349,19 +349,19 @@ struct J3DTevBlock16 : public J3DTevBlock {
 
 	void initialize();
 
-	u16 m_texIndices[8];                     // _08
-	J3DTevOrder m_orders[16];                // _18
-	u8 m_stageNum;                           // _58
-	J3DTevStage m_stages[16];                // _59
-	u8 _D9;                                  // _D9
-	J3DGXColorS10 m_colors[4];               // _DA
-	J3DGXColor m_kColors[4];                 // _FA
-	u8 m_kColorSels[0x10];                   // _10A
-	u8 m_kAlphaSels[0x10];                   // _11A
-	J3DTevSwapModeTable m_swapModeTables[4]; // _12A
-	u8 _12E[2];                              // _12E
-	J3DIndTevStage m_indStages[16];          // _130
-	u32 m_regOffset;                         // _170
+	u16 mTexIndices[8];                     // _08
+	J3DTevOrder mOrders[16];                // _18
+	u8 mStageNum;                           // _58
+	J3DTevStage mStages[16];                // _59
+	u8 _D9;                                 // _D9
+	J3DGXColorS10 mColors[4];               // _DA
+	J3DGXColor mKColors[4];                 // _FA
+	u8 mKColorSels[0x10];                   // _10A
+	u8 mKAlphaSels[0x10];                   // _11A
+	J3DTevSwapModeTable mSwapModeTables[4]; // _12A
+	u8 _12E[2];                             // _12E
+	J3DIndTevStage mIndStages[16];          // _130
+	u32 mRegOffset;                         // _170
 };
 
 /**
@@ -388,7 +388,7 @@ struct J3DTevBlockNull : public J3DTevBlock {
 	 * @reifiedAddress{8006F4B8}
 	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}
 	 */
-	virtual void indexToPtr() { indexToPtr_private(m_texNoOffset); }; // _3C (weak)
+	virtual void indexToPtr() { indexToPtr_private(mTexNoOffset); }; // _3C (weak)
 	/**
 	 * @reifiedAddress{8006F4DC}
 	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}
@@ -453,15 +453,15 @@ struct J3DTevBlockPatched : public J3DTevBlock {
 
 	void initialize();
 
-	u16 m_texIndices[8];           // _08
-	J3DTevOrder m_orders[8];       // _18
-	J3DTevStage m_stages[8];       // _38
-	J3DIndTevStage m_indStages[8]; // _78
-	J3DGXColorS10 m_colors[4];     // _98
-	J3DGXColor m_kColors[4];       // _B8
-	u8 _C8[0x8];                   // _C8
-	u8 m_stageNum;                 // _D0
-	u32 m_regOffset;               // _D4
+	u16 mTexIndices[8];           // _08
+	J3DTevOrder mOrders[8];       // _18
+	J3DTevStage mStages[8];       // _38
+	J3DIndTevStage mIndStages[8]; // _78
+	J3DGXColorS10 mColors[4];     // _98
+	J3DGXColor mKColors[4];       // _B8
+	u8 _C8[0x8];                  // _C8
+	u8 mStageNum;                 // _D0
+	u32 mRegOffset;               // _D4
 };
 
 void loadTexNo(u32, const u16&);

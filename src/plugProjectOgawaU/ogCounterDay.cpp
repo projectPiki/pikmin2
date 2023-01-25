@@ -34,12 +34,12 @@ void CallBack_CounterDay::init(J2DScreen* mgr, u64 tag1, u64 tag2, u64 pictureTa
 	setCenteringMode(ECM_Unknown1);
 	setValue();
 
-	if (m_pic3) {
-		m_pic3->hide();
+	if (mPic3) {
+		mPic3->hide();
 	}
 
-	m_pic1->hide();
-	m_pic2->hide();
+	mPic1->hide();
+	mPic2->hide();
 }
 
 /*
@@ -49,12 +49,12 @@ void CallBack_CounterDay::init(J2DScreen* mgr, u64 tag1, u64 tag2, u64 pictureTa
  */
 void CallBack_CounterDay::setValue()
 {
-	if (m_isPuyoAnim) {
+	if (mIsPuyoAnim) {
 		bool v1 = false;
 		bool v2 = false;
-		if (m_initialDisplayValue > m_currDisplayValue) {
+		if (mInitialDisplayValue > mCurrDisplayValue) {
 			v1 = true;
-		} else if (m_initialDisplayValue < m_currDisplayValue) {
+		} else if (mInitialDisplayValue < mCurrDisplayValue) {
 			v2 = true;
 		}
 		CallBack_CounterRV::setValue(v1, v2);
@@ -63,14 +63,14 @@ void CallBack_CounterDay::setValue()
 		CallBack_CounterRV::setValue(false, false);
 	}
 
-	J2DPicture* picture = m_counters[0]->m_picture;
+	J2DPicture* picture = mCounters[0]->mPicture;
 	_A8->changeTexture(picture->getTexture(0)->_20, 0);
 
-	if (m_isHidden) {
+	if (mIsHidden) {
 		_A8->hide();
 		picture->hide();
 
-	} else if (m_initialDisplayValue >= 10) {
+	} else if (mInitialDisplayValue >= 10) {
 		_A8->hide();
 		picture->show();
 
@@ -78,7 +78,7 @@ void CallBack_CounterDay::setValue()
 		_A8->show();
 		picture->hide();
 
-		JGeometry::TVec2f scale(picture->m_scale);
+		JGeometry::TVec2f scale(picture->mScale);
 		_A8->setBasePosition(J2DPOS_Center);
 		_A8->updateScale(scale.x, scale.y);
 	}
@@ -91,8 +91,8 @@ void CallBack_CounterDay::setValue()
  */
 void CallBack_CounterDay::show()
 {
-	if (m_isHidden) {
-		m_isHidden = false;
+	if (mIsHidden) {
+		mIsHidden = false;
 		setValue();
 	}
 }
@@ -104,9 +104,9 @@ void CallBack_CounterDay::show()
  */
 void CallBack_CounterDay::hide()
 {
-	m_isHidden = true;
-	for (int i = 0; i < m_counterLimit; i++) {
-		m_counters[i]->m_picture->hide();
+	mIsHidden = true;
+	for (int i = 0; i < mCounterLimit; i++) {
+		mCounters[i]->mPicture->hide();
 	}
 	_A8->hide();
 }
@@ -118,8 +118,8 @@ void CallBack_CounterDay::hide()
  */
 void CallBack_CounterDay::update()
 {
-	m_currDisplayValue    = m_initialDisplayValue;
-	m_initialDisplayValue = *m_countPtr;
+	mCurrDisplayValue    = mInitialDisplayValue;
+	mInitialDisplayValue = *mCountPtr;
 	setValue();
 }
 

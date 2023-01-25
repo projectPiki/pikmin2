@@ -10,7 +10,7 @@ namespace newScreen {
  * Address:	80317F28
  * Size:	000024
  */
-bool checkMovieActive() { return ((Game::moviePlayer != nullptr) && (Game::moviePlayer->m_flags & Game::MoviePlayer::IS_ACTIVE)); }
+bool checkMovieActive() { return ((Game::moviePlayer != nullptr) && (Game::moviePlayer->mFlags & Game::MoviePlayer::IS_ACTIVE)); }
 
 /*
  * --INFO--
@@ -34,7 +34,7 @@ void getLanguageDir(char*& path)
 {
 	// UNUSED FUNCTION
 	if (LOCALIZED) {
-		switch (sys->m_region) {
+		switch (sys->mRegion) {
 		case System::LANG_ENGLISH:
 			path = "eng/";
 			break;

@@ -19,13 +19,13 @@ struct CategoryMgr {
 struct SePerspInfo {
 	void set(f32, f32, f32, f32, f32);
 
-	f32 _00;               // _00
-	f32 _04;               // _04
-	f32 _08;               // _08
-	f32 _0C;               // _0C
-	f32 _10;               // _10
-	bool m_isSpecialSound; // _14
-	bool m_noGetDist;      // _15
+	f32 _00;              // _00
+	f32 _04;              // _04
+	f32 _08;              // _08
+	f32 _0C;              // _0C
+	f32 _10;              // _10
+	bool mIsSpecialSound; // _14
+	bool mNoGetDist;      // _15
 };
 } // namespace SoundTable
 } // namespace PSGame

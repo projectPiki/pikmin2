@@ -12,12 +12,12 @@ namespace EnemyStone {
  */
 void Info::setup(Stream& stream)
 {
-	m_length  = stream.readByte();
-	m_objList = new ObjInfo[m_length];
+	mLength  = stream.readByte();
+	mObjList = new ObjInfo[mLength];
 
-	for (u8 i = 0; i < m_length; i++) {
-		m_objList[i].m_name = stream.readString(nullptr, 0);
-		m_objList[i].m_size = stream.readInt();
+	for (u8 i = 0; i < mLength; i++) {
+		mObjList[i].mName = stream.readString(nullptr, 0);
+		mObjList[i].mSize = stream.readInt();
 
 		Vector3f position;
 		position.read(stream);
@@ -30,7 +30,7 @@ void Info::setup(Stream& stream)
 
 		Vector3f scale;
 		scale.read(stream);
-		m_objList[i].m_modelMatrix.makeSRT(scale, rotation, position);
+		mObjList[i].mModelMatrix.makeSRT(scale, rotation, position);
 	}
 }
 
@@ -40,8 +40,8 @@ void Info::setup(Stream& stream)
  * Size:	000014
  */
 ObjInfo::ObjInfo()
-    : m_name(nullptr)
-    , m_size(-1)
+    : mName(nullptr)
+    , mSize(-1)
 {
 }
 } // namespace EnemyStone

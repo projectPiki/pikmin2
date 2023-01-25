@@ -24,11 +24,11 @@ ChallengeBase::~ChallengeBase() { }
  */
 void ChallengeBase::updateCountDown(f32 value, Screen::DispMemberDayEndCount* count)
 {
-	f32 temp    = ObjChallengeBase::msBaseVal.m_timerLimitLow + 1;
-	f32 temp_f1 = (ObjChallengeBase::msBaseVal.m_timerLimitLow + 1 - value) / temp;
+	f32 temp    = ObjChallengeBase::msBaseVal.mTimerLimitLow + 1;
+	f32 temp_f1 = (ObjChallengeBase::msBaseVal.mTimerLimitLow + 1 - value) / temp;
 	if (temp_f1 >= 0.0f) {
-		count->m_currSunRatio = temp_f1;
-		count->m_duration     = 0.0f;
+		count->mCurrSunRatio = temp_f1;
+		count->mDuration     = 0.0f;
 		if (!isCountingDown) {
 			isCountingDown = true;
 			startCountDown();

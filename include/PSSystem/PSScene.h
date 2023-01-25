@@ -31,10 +31,10 @@ struct Scene {
 	void getSeqMgr();
 	void getChildScene();
 
-	Scene* m_child;           // _04
-	WaveLoader* m_waveLoader; // _08
-	Scene** _0C;              // _0C
-	SeqMgr _10;               // _10
+	Scene* mChild;           // _04
+	WaveLoader* mWaveLoader; // _08
+	Scene** _0C;             // _0C
+	SeqMgr _10;              // _10
 };
 
 /**
@@ -52,12 +52,12 @@ struct SceneMgr {
 	// inline/unused
 	void deleteGlobalScene();
 
-	inline void checkScene() { P2ASSERTLINE(199, m_scenes != nullptr); }
+	inline void checkScene() { P2ASSERTLINE(199, mScenes != nullptr); }
 
 	inline Scene* getChildScene()
 	{
-		P2ASSERTLINE(207, m_scenes != nullptr);
-		Scene* child = m_scenes->m_child;
+		P2ASSERTLINE(207, mScenes != nullptr);
+		Scene* child = mScenes->mChild;
 		JUT_ASSERTLINE(209, child != nullptr, "get sound scene at\ninvalid timming\n");
 		return child;
 	}
@@ -65,24 +65,24 @@ struct SceneMgr {
 	inline void doFirstLoad()
 	{
 		checkScene();
-		m_scenes->m_child->scene1stLoadSync();
+		mScenes->mChild->scene1stLoadSync();
 	}
 
 	inline void doStartMainSeq()
 	{
 		checkScene();
-		m_scenes->m_child->startMainSeq();
+		mScenes->mChild->startMainSeq();
 	}
 
 	// _00	= VTBL
-	Scene* m_scenes; // _04
-	Scene* m_endScene;
+	Scene* mScenes; // _04
+	Scene* mEndScene;
 };
 
 inline Scene* checkChildScene(Scene* scene)
 {
-	P2ASSERTLINE(90, scene->m_child);
-	return scene->m_child;
+	P2ASSERTLINE(90, scene->mChild);
+	return scene->mChild;
 }
 
 extern SceneMgr* spSceneMgr;

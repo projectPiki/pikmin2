@@ -117,31 +117,31 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                                 // _2BC
-	f32 m_stateTimer;                           // _2C0, how long BLL has been in wait or walk state
-	f32 m_stateDuration;                        // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
-	int m_nextState;                            // _2C8
-	Vector3f m_targetPosition;                  // _2CC
-	f32 m_shadowScale;                          // _2D8
-	u8 _2DC;                                    // _2DC
-	bool m_isSmoking;                           // _2DD
-	IKSystemMgr* m_ikSystemMgr;                 // _2E0
-	IKSystemParms* m_ikSystemParms;             // _2E4
-	DamagumoGroundCallBack* m_groundCallBack;   // _2E8
-	DamagumoShadowMgr* m_shadowMgr;             // _2EC
-	Vector3f m_jointPositions[4][4];            // _2F0, guess based on BigFoot struct
-	efx::TDamaFoot* m_footFX[4];                // _3B0
-	efx::TDamaFootw* m_footWFX[4];              // _3C0
-	efx::TDamaSmoke* m_smokeFX[3];              // _3D0
-	efx::TDamaHahen* m_hahenFX[4][3];           // _3DC, guess based on BigFoot struct
-	efx::TDamaDeadElecA* m_deadElecAFX[4][3];   // _40C, guess based on BigFoot struct
-	efx::TDamaDeadElecB* m_deadElecBFX[4][2];   // _43C, guess based on BigFoot struct
-	efx::TDamaDeadHahenA* m_deadHahenAFX[4][2]; // _45C, guess based on BigFoot struct
-	efx::TDamaDeadHahenB* m_deadHahenBFX[4];    // _47C
-	efx::TDamaDeadHahenC1* m_deadHahenC1FX;     // _48C
-	efx::TDamaDeadHahenC2* m_deadHahenC2FX;     // _490
-	Sys::MatLoopAnimator* m_matLoopAnimator;    // _494, array of 2 MatLoopAnimators: 0 = tex, 1 = tev reg
-	                                            // _498 = PelletView
+	FSM* mFsm;                                 // _2BC
+	f32 mStateTimer;                           // _2C0, how long BLL has been in wait or walk state
+	f32 mStateDuration;                        // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
+	int mNextState;                            // _2C8
+	Vector3f mTargetPosition;                  // _2CC
+	f32 mShadowScale;                          // _2D8
+	u8 _2DC;                                   // _2DC
+	bool mIsSmoking;                           // _2DD
+	IKSystemMgr* mIkSystemMgr;                 // _2E0
+	IKSystemParms* mIkSystemParms;             // _2E4
+	DamagumoGroundCallBack* mGroundCallBack;   // _2E8
+	DamagumoShadowMgr* mShadowMgr;             // _2EC
+	Vector3f mJointPositions[4][4];            // _2F0, guess based on BigFoot struct
+	efx::TDamaFoot* mFootFX[4];                // _3B0
+	efx::TDamaFootw* mFootWFX[4];              // _3C0
+	efx::TDamaSmoke* mSmokeFX[3];              // _3D0
+	efx::TDamaHahen* mHahenFX[4][3];           // _3DC, guess based on BigFoot struct
+	efx::TDamaDeadElecA* mDeadElecAFX[4][3];   // _40C, guess based on BigFoot struct
+	efx::TDamaDeadElecB* mDeadElecBFX[4][2];   // _43C, guess based on BigFoot struct
+	efx::TDamaDeadHahenA* mDeadHahenAFX[4][2]; // _45C, guess based on BigFoot struct
+	efx::TDamaDeadHahenB* mDeadHahenBFX[4];    // _47C
+	efx::TDamaDeadHahenC1* mDeadHahenC1FX;     // _48C
+	efx::TDamaDeadHahenC2* mDeadHahenC2FX;     // _490
+	Sys::MatLoopAnimator* mMatLoopAnimator;    // _494, array of 2 MatLoopAnimators: 0 = tex, 1 = tev reg
+	                                           // _498 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -167,30 +167,30 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Sys::MatTexAnimation* m_texAnimation;       // _44
-	Sys::MatTevRegAnimation* m_tevRegAnimation; // _48
-	Obj* m_obj;                                 // _4C, array of Objs
+	Sys::MatTexAnimation* mTexAnimation;       // _44
+	Sys::MatTevRegAnimation* mTevRegAnimation; // _48
+	Obj* mObj;                                 // _4C, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "ÉxÅ[ÉXåWêî", 3.0f, 0.0f, 10.0f)        // 'base factor'
-		    , m_fp02(this, 'fp02', "è„Ç∞å∏ë¨åWêî", -0.2f, -5.0f, 5.0f)     // 'raising deceleration factor'
-		    , m_fp03(this, 'fp03', "â∫Ç∞â¡ë¨åWêî", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
-		    , m_fp04(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -2.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
-		    , m_fp05(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
-		    , m_fp06(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 120.0f, 0.0f, 200.0f)   // 'leg swing'
+		    , mFp01(this, 'fp01', "ÉxÅ[ÉXåWêî", 3.0f, 0.0f, 10.0f)        // 'base factor'
+		    , mFp02(this, 'fp02', "è„Ç∞å∏ë¨åWêî", -0.2f, -5.0f, 5.0f)     // 'raising deceleration factor'
+		    , mFp03(this, 'fp03', "â∫Ç∞â¡ë¨åWêî", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
+		    , mFp04(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -2.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
+		    , mFp05(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
+		    , mFp06(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 120.0f, 0.0f, 200.0f)   // 'leg swing'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp04; // _87C
-		Parm<f32> m_fp05; // _8A4
-		Parm<f32> m_fp06; // _8CC
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp03; // _854
+		Parm<f32> mFp04; // _87C
+		Parm<f32> mFp05; // _8A4
+		Parm<f32> mFp06; // _8CC
 	};
 
 	Parms() { }
@@ -198,23 +198,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 struct DamagumoShadowMgr {
@@ -224,22 +224,22 @@ struct DamagumoShadowMgr {
 	void setJointPosPtr(int, int, Vector3f*);
 	void update();
 
-	Matrixf* m_matrix;                        // _00
-	Obj* m_obj;                               // _04
-	Vector3f* m_jointPosPtrs[4][4];           // _08
-	JointShadowRootNode* m_rootNode;          // _48
-	SphereShadowNode* m_bodySphereShadow;     // _4C
-	TubeShadowTransNode* m_legTubeShadow1[4]; // _50, rhand=0, lhand=1, rfoot=2, lfoot=3
-	TubeShadowSetNode* m_legTubeShadow2[4];   // _60, rhand=0, lhand=1, rfoot=2, lfoot=3
-	TubeShadowSetNode* m_legTubeShadow3[4];   // _70, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_legSphereShadow1[4];  // _80, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_legSphereShadow2[4];  // _90, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_legSphereShadow3[4];  // _A0, rhand=0, lhand=1, rfoot=2, lfoot=3
+	Matrixf* mMatrix;                        // _00
+	Obj* mObj;                               // _04
+	Vector3f* mJointPosPtrs[4][4];           // _08
+	JointShadowRootNode* mRootNode;          // _48
+	SphereShadowNode* mBodySphereShadow;     // _4C
+	TubeShadowTransNode* mLegTubeShadow1[4]; // _50, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* mLegTubeShadow2[4];   // _60, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* mLegTubeShadow3[4];   // _70, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mLegSphereShadow1[4];  // _80, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mLegSphereShadow2[4];  // _90, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mLegSphereShadow3[4];  // _A0, rhand=0, lhand=1, rfoot=2, lfoot=3
 };
 
 struct DamagumoGroundCallBack : public JointGroundCallBack {
 	inline DamagumoGroundCallBack(Obj* obj)
-	    : m_obj(obj)
+	    : mObj(obj)
 	{
 	}
 
@@ -247,7 +247,7 @@ struct DamagumoGroundCallBack : public JointGroundCallBack {
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 
 	// _00	= VTBL
-	Obj* m_obj; // _04
+	Obj* mObj; // _04
 };
 
 /////////////////////////////////////////////////////////////////
@@ -263,7 +263,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

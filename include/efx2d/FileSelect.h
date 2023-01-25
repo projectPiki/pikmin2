@@ -15,7 +15,7 @@ struct ArgFilecopy : public Arg {
 	// _08 		= VTBL
 	int _0C;
 	int _10;
-	JUtility::TColor m_color; // _14
+	JUtility::TColor mColor; // _14
 };
 
 struct T2DFilecopyBase : public TForever {

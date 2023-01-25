@@ -17,15 +17,15 @@ struct Obj : public Sarai::Obj {
 	{
 		return EnemyTypeID::EnemyID_Demon;
 	}
-	virtual int getStickPikminNum() { return m_stuckPikminCount; }        // _2FC (weak)
-	virtual FakePiki* getAttackableTarget();                              // _300
-	virtual int catchTarget();                                            // _304
-	virtual void resetAttackableTimer(f32 time) { m_attackTimer = time; } // _308 (weak)
+	virtual int getStickPikminNum() { return mStuckPikminCount; }        // _2FC (weak)
+	virtual FakePiki* getAttackableTarget();                             // _300
+	virtual int catchTarget();                                           // _304
+	virtual void resetAttackableTimer(f32 time) { mAttackTimer = time; } // _308 (weak)
 
 	// _00 		= VTBL
 	// _00-_2D8	= Sarai::Obj
-	f32 m_attackTimer; // _2D8
-	                   // _2DC = PelletView
+	f32 mAttackTimer; // _2D8
+	                  // _2DC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -47,7 +47,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs, probably
+	Obj* mObj; // _44, array of Objs, probably
 };
 } // namespace Demon
 } // namespace Game

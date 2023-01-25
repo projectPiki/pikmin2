@@ -29,16 +29,16 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->resetUtilityTimer();
-	wisp->m_qurioneScale = 0.0f;
+	wisp->mQurioneScale = 0.0f;
 
-	Vector3f position = Vector3f(wisp->m_spawnPositions[wisp->m_spawnIndex]);
+	Vector3f position = Vector3f(wisp->mSpawnPositions[wisp->mSpawnIndex]);
 	wisp->onSetPosition(position);
 
 	wisp->setAtari(false);
 	wisp->disableEvent(0, EB_IsAnimating);
 	wisp->enableEvent(0, EB_IsModelHidden);
 
-	wisp->m_targetVelocity = Vector3f(0.0f);
+	wisp->mTargetVelocity = Vector3f(0.0f);
 	wisp->startMotion(3, nullptr);
 	wisp->stopMotion();
 }
@@ -51,9 +51,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
-	wisp->m_utilityTimer += sys->m_deltaTime;
+	wisp->mUtilityTimer += sys->mDeltaTime;
 
-	if ((wisp->m_utilityTimer > 1.0f) && wisp->isAppear()) {
+	if ((wisp->mUtilityTimer > 1.0f) && wisp->isAppear()) {
 		transit(wisp, QURIONE_Appear, nullptr);
 	}
 }
@@ -80,7 +80,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->setAtari(false);
-	wisp->m_targetVelocity = Vector3f(0.0f);
+	wisp->mTargetVelocity = Vector3f(0.0f);
 	wisp->startMotion(3, nullptr);
 
 	wisp->createAppearEffect();
@@ -97,7 +97,7 @@ void StateAppear::exec(EnemyBase* enemy)
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->addQurioneScale();
 	wisp->setGlowEffectScale();
-	if (wisp->m_curAnim->m_isPlaying && (u32)wisp->m_curAnim->m_type == KEYEVENT_END) {
+	if (wisp->mCurAnim->mIsPlaying && (u32)wisp->mCurAnim->mType == KEYEVENT_END) {
 		transit(wisp, QURIONE_Move, nullptr);
 	}
 }
@@ -111,7 +111,7 @@ void StateAppear::cleanup(EnemyBase* enemy)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->setAtari(true);
-	wisp->m_qurioneScale = 1.0f;
+	wisp->mQurioneScale = 1.0f;
 	wisp->setGlowEffectScale();
 }
 
@@ -124,7 +124,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->setAtari(false);
-	wisp->m_targetVelocity = Vector3f(0.0f);
+	wisp->mTargetVelocity = Vector3f(0.0f);
 	wisp->startMotion(4, nullptr);
 	wisp->createDisppearEffect();
 }
@@ -139,7 +139,7 @@ void StateDisappear::exec(EnemyBase* enemy)
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->subQurioneScale();
 	wisp->setGlowEffectScale();
-	if (wisp->m_curAnim->m_isPlaying && (u32)wisp->m_curAnim->m_type == KEYEVENT_END) {
+	if (wisp->mCurAnim->mIsPlaying && (u32)wisp->mCurAnim->mType == KEYEVENT_END) {
 		transit(wisp, QURIONE_Stay, nullptr);
 	}
 }
@@ -156,10 +156,10 @@ void StateDisappear::cleanup(EnemyBase* enemy)
 	if (faceDir >= TAU) {
 		faceDir -= TAU;
 	}
-	wisp->m_faceDir    = faceDir;
-	wisp->m_rotation.y = wisp->m_faceDir;
+	wisp->mFaceDir    = faceDir;
+	wisp->mRotation.y = wisp->mFaceDir;
 
-	wisp->m_spawnIndex ^= 1;
+	wisp->mSpawnIndex ^= 1;
 	wisp->setAtari(true);
 	wisp->finishGlowEffect();
 }
@@ -171,8 +171,8 @@ void StateDisappear::cleanup(EnemyBase* enemy)
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* wisp              = static_cast<Obj*>(enemy);
-	wisp->m_targetVelocity = Vector3f(0.0f);
+	Obj* wisp             = static_cast<Obj*>(enemy);
+	wisp->mTargetVelocity = Vector3f(0.0f);
 	wisp->startMotion(0, nullptr);
 }
 
@@ -187,7 +187,7 @@ void StateMove::exec(EnemyBase* enemy)
 	wisp->moveFaceDir();
 
 	Vector3f position      = wisp->getPosition();
-	Vector3f spawnPosition = wisp->m_spawnPositions[wisp->m_spawnIndex];
+	Vector3f spawnPosition = wisp->mSpawnPositions[wisp->mSpawnIndex];
 	f32 moveRadius         = wisp->getMoveRadius();
 
 	wisp->getJAIObject()->startSound(PSSE_EN_PIKIMAKI_FLY, 0);
@@ -215,7 +215,7 @@ void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->disableEvent(0, EB_IsCullable);
 	wisp->createHitEffect();
-	wisp->m_targetVelocity = Vector3f(0.0f);
+	wisp->mTargetVelocity = Vector3f(0.0f);
 	wisp->startMotion(1, nullptr);
 }
 
@@ -227,10 +227,10 @@ void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDrop::exec(EnemyBase* enemy)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
-	if (wisp->m_curAnim->m_isPlaying) {
-		if ((u32)wisp->m_curAnim->m_type == KEYEVENT_2) {
+	if (wisp->mCurAnim->mIsPlaying) {
+		if ((u32)wisp->mCurAnim->mType == KEYEVENT_2) {
 			wisp->dropItem();
-		} else if ((u32)wisp->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)wisp->mCurAnim->mType == KEYEVENT_END) {
 			transit(wisp, QURIONE_Dead, nullptr);
 		}
 	}
@@ -254,9 +254,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	wisp->setAlive(false);
 	wisp->disableEvent(0, EB_IsCullable);
 
-	Vector3f velocity(0.0f, static_cast<Parms*>(wisp->m_parms)->m_properParms.m_fp04.m_value, 0.0f);
+	Vector3f velocity(0.0f, static_cast<Parms*>(wisp->mParms)->mProperParms.mFp04.mValue, 0.0f);
 	wisp->setVelocity(velocity);
-	wisp->m_targetVelocity = velocity;
+	wisp->mTargetVelocity = velocity;
 
 	wisp->resetUtilityTimer();
 	wisp->startMotion(2, nullptr);
@@ -270,7 +270,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
-	wisp->m_utilityTimer += sys->m_deltaTime;
+	wisp->mUtilityTimer += sys->mDeltaTime;
 
 	if (wisp->isFlyKill()) {
 		wisp->finishGlowEffect();

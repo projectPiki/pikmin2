@@ -21,12 +21,12 @@ namespace Game {
 void GenObjectPiki::initialise()
 {
 	GenObjectFactoryFactory* factory = GenObjectFactory::factory;
-	if (factory->m_count < factory->m_limit) {
-		factory->m_factories[factory->m_count].m_typeID       = 'piki';
-		factory->m_factories[factory->m_count].m_makeFunction = makeObjectPiki;
-		factory->m_factories[factory->m_count].m_name         = "ピクミンを発生"; // generate Pikmin
-		factory->m_factories[factory->m_count].m_version      = '0001';
-		factory->m_count++;
+	if (factory->mCount < factory->mLimit) {
+		factory->mFactories[factory->mCount].mTypeID       = 'piki';
+		factory->mFactories[factory->mCount].mMakeFunction = makeObjectPiki;
+		factory->mFactories[factory->mCount].mName         = "ピクミンを発生"; // generate Pikmin
+		factory->mFactories[factory->mCount].mVersion      = '0001';
+		factory->mCount++;
 	}
 }
 
@@ -35,14 +35,14 @@ void GenObjectPiki::initialise()
  * Address:	801AC574
  * Size:	00002C
  */
-void GenObjectPiki::ramSaveParameters(Stream& stream) { stream.writeByte(m_colourParm.m_value); }
+void GenObjectPiki::ramSaveParameters(Stream& stream) { stream.writeByte(mColourParm.mValue); }
 
 /*
  * --INFO--
  * Address:	801AC5A0
  * Size:	000038
  */
-void GenObjectPiki::ramLoadParameters(Stream& stream) { m_colourParm.m_value = stream.readByte(); }
+void GenObjectPiki::ramLoadParameters(Stream& stream) { mColourParm.mValue = stream.readByte(); }
 
 /*
  * --INFO--
@@ -52,19 +52,19 @@ void GenObjectPiki::ramLoadParameters(Stream& stream) { m_colourParm.m_value = s
 Creature* GenObjectPiki::generate(Generator* gen)
 {
 
-	Vector3f pos = gen->m_position + gen->m_offset;
+	Vector3f pos = gen->mPosition + gen->mOffset;
 
-	for (int i = 0; i < m_amountParm.m_value; i++) {
+	for (int i = 0; i < mAmountParm.mValue; i++) {
 		f32 randRot    = TAU * randFloat();
 		f32 randRadius = 10.0f * randFloat();
 
-		if (m_colourParm.m_value == Yellow && m_isWildPikminParm.m_value == 1) {
+		if (mColourParm.mValue == Yellow && mIsWildPikminParm.mValue == 1) {
 			randRadius = 0.0f;
 		}
 
 		Vector3f offsetPos = Vector3f(randRadius * pikmin2_sinf(randRot), 0.0f, randRadius * pikmin2_cosf(randRot));
 		Game::GenArg genArg;
-		genArg.m_position = offsetPos + pos;
+		genArg.mPosition = offsetPos + pos;
 		birth(&genArg);
 	}
 
@@ -80,8 +80,8 @@ static const char unusedGenPikiArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
  */
 Creature* GenObjectPiki::birth(GenArg* arg)
 {
-	if (m_isWildPikminParm.m_value == 1) {
-		int color = m_colourParm.m_value;
+	if (mIsWildPikminParm.mValue == 1) {
+		int color = mColourParm.mValue;
 
 		if (playData->hasBootContainer(color)) {
 			return nullptr;
@@ -92,7 +92,7 @@ Creature* GenObjectPiki::birth(GenArg* arg)
 		Piki* newPiki = pikiMgr->birth();
 		if (newPiki) {
 			newPiki->init(nullptr);
-			newPiki->setPosition(arg->m_position, false);
+			newPiki->setPosition(arg->mPosition, false);
 			newPiki->changeShape(color);
 			newPiki->changeHappa(Leaf);
 
@@ -106,12 +106,12 @@ Creature* GenObjectPiki::birth(GenArg* arg)
 	}
 
 	getLatestVersion();
-	int color = m_colourParm.m_value;
+	int color = mColourParm.mValue;
 
 	Piki* newPiki = pikiMgr->birth();
 	if (newPiki) {
 		newPiki->init(nullptr);
-		newPiki->setPosition(arg->m_position, false);
+		newPiki->setPosition(arg->mPosition, false);
 		newPiki->changeShape(color);
 		newPiki->changeHappa(Leaf);
 		JUT_ASSERTLINE(184, !newPiki->isZikatu(), "dame\n"); // 'not good' lol

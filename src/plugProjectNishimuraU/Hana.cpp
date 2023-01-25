@@ -25,7 +25,7 @@ Obj::Obj() { createEffect(); }
 void Obj::onInit(CreatureInitArg* arg)
 {
 	ChappyBase::Obj::onInit(arg);
-	m_shadowJoint = m_model->getJoint("kosi");
+	mShadowJoint = mModel->getJoint("kosi");
 	setUnderGround();
 	setupEffect();
 }
@@ -45,22 +45,22 @@ void Obj::doDirectDraw(Graphics&) { }
 void Obj::getShadowParam(ShadowParam& param)
 {
 	if (getStateID() == ChappyBase::CHAPPY_Sleep) {
-		param.m_position                  = m_position;
-		param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-		param.m_boundingSphere.m_radius   = 0.1f;
-		param.m_size                      = 0.1f;
+		param.mPosition                 = mPosition;
+		param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+		param.mBoundingSphere.mRadius   = 0.1f;
+		param.mSize                     = 0.1f;
 	} else {
-		Matrixf* mtx     = m_shadowJoint->getWorldMatrix();
-		param.m_position = Vector3f(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+		Matrixf* mtx    = mShadowJoint->getWorldMatrix();
+		param.mPosition = Vector3f(mtx->mMatrix.structView.tx, mtx->mMatrix.structView.ty, mtx->mMatrix.structView.tz);
 
-		param.m_position.y                = m_position.y + 10.0f;
-		param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+		param.mPosition.y               = mPosition.y + 10.0f;
+		param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 		if (isEvent(1, EB2_IsEarthquake)) {
-			param.m_boundingSphere.m_radius = 75.0f;
+			param.mBoundingSphere.mRadius = 75.0f;
 		} else {
-			param.m_boundingSphere.m_radius = 50.0f;
+			param.mBoundingSphere.mRadius = 50.0f;
 		}
-		param.m_size = 25.0f;
+		param.mSize = 25.0f;
 	}
 }
 
@@ -71,13 +71,13 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 void Obj::initMouthSlots()
 {
-	m_mouthSlots.alloc(3);
-	m_mouthSlots.setup(0, m_model, "kamu1");
-	m_mouthSlots.setup(1, m_model, "kamu2");
-	m_mouthSlots.setup(2, m_model, "kamu3");
+	mMouthSlots.alloc(3);
+	mMouthSlots.setup(0, mModel, "kamu1");
+	mMouthSlots.setup(1, mModel, "kamu2");
+	mMouthSlots.setup(2, mModel, "kamu3");
 	f32 size = 30.0f;
-	for (int i = 0; i < m_mouthSlots.m_max; i++) {
-		m_mouthSlots.getSlot(i)->m_radius = size;
+	for (int i = 0; i < mMouthSlots.mMax; i++) {
+		mMouthSlots.getSlot(i)->mRadius = size;
 	}
 }
 
@@ -88,8 +88,8 @@ void Obj::initMouthSlots()
  */
 bool Obj::isWakeup()
 {
-	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
-	f32 rad                  = parms->m_general.m_privateRadius.m_value;
+	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
+	f32 rad                  = parms->mGeneral.mPrivateRadius.mValue;
 	bool ret;
 	if (EnemyFunc::isThereOlimar(this, rad, nullptr)) {
 		return true;
@@ -110,17 +110,17 @@ bool Obj::isWakeup()
  */
 void Obj::flickStatePikmin()
 {
-	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
-	EnemyFunc::flickStickPikmin(this, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
-	                            parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
+	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
-	parms = static_cast<ChappyBase::Parms*>(m_parms);
-	EnemyFunc::flickNearbyPikmin(this, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
-	                             parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+	parms = static_cast<ChappyBase::Parms*>(mParms);
+	EnemyFunc::flickNearbyPikmin(this, parms->mGeneral.mShakeRange.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	                             parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
-	parms = static_cast<ChappyBase::Parms*>(m_parms);
-	EnemyFunc::flickNearbyNavi(this, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
-	                           parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+	parms = static_cast<ChappyBase::Parms*>(mParms);
+	EnemyFunc::flickNearbyNavi(this, parms->mGeneral.mShakeRange.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	                           parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 }
 
 /*
@@ -130,13 +130,13 @@ void Obj::flickStatePikmin()
  */
 void Obj::flickAttackBomb()
 {
-	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
-	EnemyFunc::flickStickPikmin(this, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
-	                            parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
-	efx::THanaMiss efx(m_model->getJoint("kuti2")->getWorldMatrix());
+	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
+	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	efx::THanaMiss efx(mModel->getJoint("kuti2")->getWorldMatrix());
 	efx.create(nullptr);
 
-	Vector3f pos = m_position;
+	Vector3f pos = mPosition;
 	cameraMgr->startVibration(28, pos, 2);
 	rumbleMgr->startRumble(11, pos, 2);
 }
@@ -159,7 +159,7 @@ void Obj::eatAttackPikmin()
  */
 void Obj::resetUnderGround()
 {
-	m_buried = false;
+	mBuried = false;
 	disableEvent(0, EB_IsImmuneBitter);
 	disableEvent(0, EB_IsEnemyNotBitter);
 	hardConstraintOff();
@@ -174,11 +174,11 @@ void Obj::resetUnderGround()
  */
 void Obj::setUnderGround()
 {
-	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
-	EnemyFunc::flickStickPikmin(this, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
-	                            parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
+	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
-	m_buried = true;
+	mBuried = true;
 	enableEvent(0, EB_IsImmuneBitter);
 	hardConstraintOn();
 	enableEvent(0, EB_IsVulnerable);
@@ -192,10 +192,10 @@ void Obj::setUnderGround()
  */
 void Obj::createSmokeEffect()
 {
-	Vector3f pos = m_position;
+	Vector3f pos = mPosition;
 	int id       = getCurrAnimIndex();
 	if (id == 8) {
-		pos -= Vector3f(pikmin2_sinf(m_faceDir) * 60.0f, 0.0f, pikmin2_cosf(m_faceDir) * 60.0f);
+		pos -= Vector3f(pikmin2_sinf(mFaceDir) * 60.0f, 0.0f, pikmin2_cosf(mFaceDir) * 60.0f);
 
 		cameraMgr->startVibration(3, pos, 2);
 		rumbleMgr->startRumble(11, pos, 2);
@@ -203,13 +203,13 @@ void Obj::createSmokeEffect()
 	} else if (id == 4) {
 		setAtari(true);
 
-		ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
-		EnemyFunc::flickNearbyPikmin(this, parms->m_general.m_privateRadius.m_value, parms->m_general.m_shakeKnockback.m_value,
-		                             parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+		ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
+		EnemyFunc::flickNearbyPikmin(this, parms->mGeneral.mPrivateRadius.mValue, parms->mGeneral.mShakeKnockback.mValue,
+		                             parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
-		parms = static_cast<ChappyBase::Parms*>(m_parms);
-		EnemyFunc::flickNearbyNavi(this, parms->m_general.m_privateRadius.m_value, parms->m_general.m_shakeKnockback.m_value,
-		                           parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+		parms = static_cast<ChappyBase::Parms*>(mParms);
+		EnemyFunc::flickNearbyNavi(this, parms->mGeneral.mPrivateRadius.mValue, parms->mGeneral.mShakeKnockback.mValue,
+		                           parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 		rumbleMgr->startRumble(10, pos, 2);
 
 	} else {

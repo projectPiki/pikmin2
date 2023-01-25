@@ -8,11 +8,11 @@ namespace Game {
  * @size{0x28}
  */
 struct EnemyAnimKeyEvent : public SysShape::KeyEvent {
-	inline EnemyAnimKeyEvent() { m_isPlaying = false; }
+	inline EnemyAnimKeyEvent() { mIsPlaying = false; }
 
 	virtual ~EnemyAnimKeyEvent() { } // _08 (weak)
 
-	bool m_isPlaying; // _24
+	bool mIsPlaying; // _24
 };
 } // namespace Game
 

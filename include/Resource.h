@@ -29,10 +29,10 @@ struct Node : public CNode, JKRDisposer {
 
 	// CNode _00 - _18
 	// JKRDisposer _18 - _30
-	JKRHeap* _30;             // _30
-	u8 m_groupIDMaybe;        // _34
-	void* m_resource;         // _38
-	MgrCommand* m_mgrCommand; // _3C
+	JKRHeap* _30;            // _30
+	u8 mGroupIDMaybe;        // _34
+	void* mResource;         // _38
+	MgrCommand* mMgrCommand; // _3C
 };
 
 struct MgrCommand : public CNode, JKRDisposer {
@@ -90,11 +90,11 @@ struct Mgr {
 	void watchHeap();
 
 	// _00 = VTBL
-	JKRHeap* m_heap; // _04
-	u32 _08;         // _08
-	u32 _0C;         // _0C
-	CNode _10;       // _10
-	CNode _28;       // _28
+	JKRHeap* mHeap; // _04
+	u32 _08;        // _08
+	u32 _0C;        // _0C
+	CNode _10;      // _10
+	CNode _28;      // _28
 	union {
 		u8 bytesView[4];
 		u32 dwordView;

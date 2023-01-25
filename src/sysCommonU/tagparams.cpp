@@ -37,7 +37,7 @@ void TagParm::dump() { doDump(); }
 template <>
 void PrimTagParm<int>::doRead(Stream& stream)
 {
-	m_data = stream.readInt();
+	mData = stream.readInt();
 }
 
 /*
@@ -48,7 +48,7 @@ void PrimTagParm<int>::doRead(Stream& stream)
 template <>
 void PrimTagParm<int>::doWrite(Stream& stream)
 {
-	stream.writeInt(m_data);
+	stream.writeInt(mData);
 }
 
 /*
@@ -69,7 +69,7 @@ void PrimTagParm<int>::doDump()
 template <>
 void PrimTagParm<u16>::doRead(Stream& stream)
 {
-	m_data = stream.readShort();
+	mData = stream.readShort();
 }
 
 /*
@@ -80,7 +80,7 @@ void PrimTagParm<u16>::doRead(Stream& stream)
 template <>
 void PrimTagParm<u16>::doWrite(Stream& stream)
 {
-	stream.writeShort(m_data);
+	stream.writeShort(mData);
 }
 
 /*
@@ -103,7 +103,7 @@ void PrimTagParm<u64>::doRead(Stream& stream)
 {
 	char* str = stream.readString(nullptr, 0);
 	for (int i = 0; i < 8; i++) {
-		((char*)&m_data)[i] = str[i];
+		((char*)&mData)[i] = str[i];
 	}
 }
 
@@ -117,7 +117,7 @@ void PrimTagParm<u64>::doWrite(Stream& stream)
 {
 	char data[8];
 	for (int i = 0; i < 8; i++) {
-		data[i] = ((char*)&m_data)[i];
+		data[i] = ((char*)&mData)[i];
 	}
 	stream.writeString(data);
 }
@@ -140,7 +140,7 @@ void PrimTagParm<u64>::doDump()
 template <>
 void PrimTagParm<f32>::doRead(Stream& stream)
 {
-	m_data = stream.readFloat();
+	mData = stream.readFloat();
 }
 
 /*
@@ -151,7 +151,7 @@ void PrimTagParm<f32>::doRead(Stream& stream)
 template <>
 void PrimTagParm<f32>::doWrite(Stream& stream)
 {
-	stream.writeFloat(m_data);
+	stream.writeFloat(mData);
 }
 
 /*
@@ -172,7 +172,7 @@ void PrimTagParm<f32>::doDump()
 template <>
 void PrimTagParm<Vector3f>::doRead(Stream& stream)
 {
-	m_data.read(stream);
+	mData.read(stream);
 }
 
 /*
@@ -183,7 +183,7 @@ void PrimTagParm<Vector3f>::doRead(Stream& stream)
 template <>
 void PrimTagParm<Vector3f>::doWrite(Stream& stream)
 {
-	m_data.write(stream);
+	mData.write(stream);
 }
 
 /*
@@ -204,7 +204,7 @@ void PrimTagParm<Vector3f>::doDump()
 StringTagParm::StringTagParm(TagParameters* params, char* name)
     : TagParm(params, name)
 {
-	m_data = nullptr;
+	mData = nullptr;
 }
 
 /*
@@ -219,14 +219,14 @@ void StringTagParm::flushValue() { }
  * Address:	8041BFDC
  * Size:	00003C
  */
-void StringTagParm::doRead(Stream& stream) { m_data = stream.readString(nullptr, 0); }
+void StringTagParm::doRead(Stream& stream) { mData = stream.readString(nullptr, 0); }
 
 /*
  * --INFO--
  * Address:	8041C018
  * Size:	00002C
  */
-void StringTagParm::doWrite(Stream& stream) { stream.writeString(m_data); }
+void StringTagParm::doWrite(Stream& stream) { stream.writeString(mData); }
 
 /*
  * --INFO--
@@ -242,8 +242,8 @@ void StringTagParm::doDump() { }
  */
 TagParameters::TagParameters(char* name)
 {
-	m_head = nullptr;
-	m_name = name;
+	mHead = nullptr;
+	mName = name;
 }
 
 /*
@@ -271,15 +271,15 @@ void TagParameters::add(TagParm*)
  */
 TagParm::TagParm(TagParameters* container, char* name)
 {
-	m_name = name;
-	m_next = nullptr;
-	if (container->m_head) {
-		m_next            = container->m_head;
-		container->m_head = this;
+	mName = name;
+	mNext = nullptr;
+	if (container->mHead) {
+		mNext            = container->mHead;
+		container->mHead = this;
 		return;
 	}
 
-	container->m_head = this;
+	container->mHead = this;
 }
 
 /*
@@ -303,15 +303,15 @@ void TagParameters::read(Stream& stream)
 		if (is_end)
 			break;
 
-		for (TagParm* node = m_head; node; node = node->m_next) {
+		for (TagParm* node = mHead; node; node = node->mNext) {
 			strLen          = strlen(str);
-			int nodeNameLen = strlen(node->m_name);
+			int nodeNameLen = strlen(node->mName);
 			if (strLen != nodeNameLen) {
 				continue;
 			}
 
 			strLen = strlen(str);
-			if (strncmp(node->m_name, str, strLen) == 0) {
+			if (strncmp(node->mName, str, strLen) == 0) {
 				node->doRead(stream);
 			}
 		}

@@ -32,15 +32,15 @@ enum PauseMenuState {
 
 struct SceneSMenuBase : public ::Screen::SceneBase {
 	inline SceneSMenuBase()
-	    : m_finishState(1)
+	    : mFinishState(1)
 	{
 	}
 
-	virtual int doGetFinishState() { return m_finishState; } // _4C (weak)
+	virtual int doGetFinishState() { return mFinishState; } // _4C (weak)
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	int m_finishState; // _220
+	int mFinishState; // _220
 };
 
 struct SMenuCont : public SceneSMenuBase {
@@ -197,64 +197,64 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	void jump_LR(::Screen::SetSceneArg&, bool);
 	void startYaji();
 
-	inline u32 getButtonState(int i) { return m_buttonStates[i]; }
+	inline u32 getButtonState(int i) { return mButtonStates[i]; }
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	int m_state;                           // _38
-	int m_cancelToState;                   // _3C
-	f32 m_movePos;                         // _40
-	f32 m_fadeLevel;                       // _44
-	bool m_exiting;                        // _48
-	f32 m_angle;                           // _4C
-	u8 m_isDay1;                           // _50
-	J2DPictureEx* m_panePeffect;           // _54
-	u32 m_buttonStates[2];                 // _58
-	P2DScreen::Mgr_tuning* m_screenLR;     // _60
-	J2DPane* m_Nyaji_l;                    // _64
-	J2DPane* m_Nyaji_r;                    // _68
-	J2DTextBoxEx* m_Tyaji_l;               // _6C
-	J2DTextBoxEx* m_Tyaji_r;               // _70
-	bool m_enableYaji;                     // _74
-	Vector2f m_yajiLpos;                   // _78
-	Vector2f m_yajiRpos;                   // _80
-	f32 _88;                               // _88
-	u8 m_alpha;                            // _8C
-	Screen::ArrowAlphaBlink* m_arrowBlink; // _90
-	J2DPictureEx* m_panePeffect1;          // _94
-	J2DPictureEx* m_panePeffect2;          // _98
-	P2DScreen::Mgr* m_screenMain;          // _9C
-	J2DPane* m_paneNsize;                  // _A0
-	f32 _A4;                               // _A4
+	int mState;                           // _38
+	int mCancelToState;                   // _3C
+	f32 mMovePos;                         // _40
+	f32 mFadeLevel;                       // _44
+	bool mExiting;                        // _48
+	f32 mAngle;                           // _4C
+	u8 mIsDay1;                           // _50
+	J2DPictureEx* mPanePeffect;           // _54
+	u32 mButtonStates[2];                 // _58
+	P2DScreen::Mgr_tuning* mScreenLR;     // _60
+	J2DPane* mNyaji_l;                    // _64
+	J2DPane* mNyaji_r;                    // _68
+	J2DTextBoxEx* mTyaji_l;               // _6C
+	J2DTextBoxEx* mTyaji_r;               // _70
+	bool mEnableYaji;                     // _74
+	Vector2f mYajiLpos;                   // _78
+	Vector2f mYajiRpos;                   // _80
+	f32 _88;                              // _88
+	u8 mAlpha;                            // _8C
+	Screen::ArrowAlphaBlink* mArrowBlink; // _90
+	J2DPictureEx* mPanePeffect1;          // _94
+	J2DPictureEx* mPanePeffect2;          // _98
+	P2DScreen::Mgr* mScreenMain;          // _9C
+	J2DPane* mPaneNsize;                  // _A0
+	f32 _A4;                              // _A4
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00             = 1.0f;
-			m_animSpeed     = 1.0f;
-			_14             = 255;
-			_08             = 0.3f;
-			_0C             = 30.0f;
-			_10             = 0.1f;
-			_15             = 64;
-			_16             = 64;
-			_17             = 0;
-			m_useController = false;
-			m_updateYaji    = 0;
+			_00            = 1.0f;
+			mAnimSpeed     = 1.0f;
+			_14            = 255;
+			_08            = 0.3f;
+			_0C            = 30.0f;
+			_10            = 0.1f;
+			_15            = 64;
+			_16            = 64;
+			_17            = 0;
+			mUseController = false;
+			mUpdateYaji    = 0;
 		}
 
-		f32 _00;              // _00
-		f32 m_animSpeed;      // _04
-		f32 _08;              // _08
-		f32 _0C;              // _0C
-		f32 _10;              // _10
-		u8 _14;               // _14
-		u8 _15;               // _15
-		u8 _16;               // _16
-		u8 _17;               // _17
-		bool m_useController; // _18
-		bool m_updateYaji;    // _19
+		f32 _00;             // _00
+		f32 mAnimSpeed;      // _04
+		f32 _08;             // _08
+		f32 _0C;             // _0C
+		f32 _10;             // _10
+		u8 _14;              // _14
+		u8 _15;              // _15
+		u8 _16;              // _16
+		u8 _17;              // _17
+		bool mUseController; // _18
+		bool mUpdateYaji;    // _19
 	} msBaseVal;
 };
 
@@ -283,20 +283,20 @@ struct ObjSMenuCont : public ObjSMenuBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
-	og::Screen::DispMemberSMenuCont* m_disp; // _A8
-	P2DScreen::Mgr_tuning* m_screenCont;     // _AC
-	og::Screen::AnimGroup* m_animGroup;      // _B0
-	u8 _B4[0x8];                             // _B4, unknown
+	og::Screen::DispMemberSMenuCont* mDisp; // _A8
+	P2DScreen::Mgr_tuning* mScreenCont;     // _AC
+	og::Screen::AnimGroup* mAnimGroup;      // _B0
+	u8 _B4[0x8];                            // _B4, unknown
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			m_scaleX = 1.0f;
-			m_scaleY = 1.0f;
+			mScaleX = 1.0f;
+			mScaleY = 1.0f;
 		}
 
-		f32 m_scaleX; // _00
-		f32 m_scaleY; // _04
+		f32 mScaleX; // _00
+		f32 mScaleY; // _04
 	} msVal;
 };
 
@@ -324,16 +324,16 @@ struct ObjSMenuItem : public ObjSMenuBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
-	og::Screen::DispMemberSMenuItem* m_disp; // _A8
-	P2DScreen::Mgr_tuning* m_screenItems;    // _AC
-	P2DScreen::Mgr* m_screenSprays;          // _B0
-	og::Screen::AnimGroup* m_anims1;         // _B4
-	og::Screen::AnimGroup* m_anims2;         // _B8
-	J2DPane* m_paneSpray0;                   // _BC
-	J2DPane* m_paneSpray1;                   // _C0
-	J2DPane* m_paneSpraySub0;                // _C4
-	J2DPane* m_paneSpraySub1;                // _C8
-	u8 _CC[0x8];                             // _CC, unknown
+	og::Screen::DispMemberSMenuItem* mDisp; // _A8
+	P2DScreen::Mgr_tuning* mScreenItems;    // _AC
+	P2DScreen::Mgr* mScreenSprays;          // _B0
+	og::Screen::AnimGroup* mAnims1;         // _B4
+	og::Screen::AnimGroup* mAnims2;         // _B8
+	J2DPane* mPaneSpray0;                   // _BC
+	J2DPane* mPaneSpray1;                   // _C0
+	J2DPane* mPaneSpraySub0;                // _C4
+	J2DPane* mPaneSpraySub1;                // _C8
+	u8 _CC[0x8];                            // _CC, unknown
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -409,63 +409,63 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
-	og::Screen::DispMemberSMenuMap* m_disp;              // _A8
-	og::Screen::MapCounter* m_mapCounter;                // _AC
-	og::Screen::AnimGroup* m_animGroup;                  // _B0
-	J2DPictureEx* m_pane_map;                            // _B4, pane map_
-	u32 _B8;                                             // _B8, unknown
-	P2DScreen::Mgr_tuning* m_iconScreen;                 // _BC
-	JUTTexture* m_radarMapTexture;                       // _C0, the actual texture
-	J2DPane* m_rootPane;                                 // _C4, for icon_screen
-	J2DPictureEx* m_mapTexPane;                          // _C8
-	J2DPane*** m_radarPaneList;                          // _CC
-	J2DPictureEx* m_olimarArrow;                         // _D0, ic orima?
-	Game::Navi* m_olimarObj;                             // _D4
-	J2DPictureEx* m_louieArrow;                          // _D8, ic louzy?
-	Game::Navi* m_louieObj;                              // _DC, or president
-	Vector2f m_mapPosition;                              // _E0
-	f32 m_currentZoom;                                   // _E8
-	f32 m_mapAngle;                                      // _EC
-	Vector2f m_mapTexScale;                              // _F0
-	Vector2f m_mapTextureDimensions;                     // _F8
-	Vector2f m_mapBounds;                                // _100
-	Vector2f _108;                                       // _108, seems to be unused
-	Vector2f m_mapRotationOrigin;                        // _110
-	Controller* m_controller;                            // _118
-	int m_mapIconNum;                                    // _11C
-	u8 m_updateCaveTex;                                  // _120
-	P2DScreen::Mgr_tuning* m_iconScreen2;                // _124, not sure why the game loads two of this screen file
-	J2DPane* m_pane_Ncompas;                             // _128, pane Ncompas
-	J2DPictureEx* m_compassPic;                          // _12C, pane compass
-	J2DPictureEx* m_olimarGlow;                          // _130, the glow behind the olimar arrow pane
-	J2DPictureEx* m_louieGlow;                           // _134, same for louie
-	f32 m_startZoom;                                     // _138
-	u8 m_zoomCaveTextAlpha;                              // _13C
-	J2DTextBox* m_caveLabelTextBoxes[MAX_CAVEDISP_NAME]; // _140
-	int m_caveLabelCount;                                // _154
+	og::Screen::DispMemberSMenuMap* mDisp;              // _A8
+	og::Screen::MapCounter* mMapCounter;                // _AC
+	og::Screen::AnimGroup* mAnimGroup;                  // _B0
+	J2DPictureEx* mPane_map;                            // _B4, pane map_
+	u32 _B8;                                            // _B8, unknown
+	P2DScreen::Mgr_tuning* mIconScreen;                 // _BC
+	JUTTexture* mRadarMapTexture;                       // _C0, the actual texture
+	J2DPane* mRootPane;                                 // _C4, for icon_screen
+	J2DPictureEx* mMapTexPane;                          // _C8
+	J2DPane*** mRadarPaneList;                          // _CC
+	J2DPictureEx* mOlimarArrow;                         // _D0, ic orima?
+	Game::Navi* mOlimarObj;                             // _D4
+	J2DPictureEx* mLouieArrow;                          // _D8, ic louzy?
+	Game::Navi* mLouieObj;                              // _DC, or president
+	Vector2f mMapPosition;                              // _E0
+	f32 mCurrentZoom;                                   // _E8
+	f32 mMapAngle;                                      // _EC
+	Vector2f mMapTexScale;                              // _F0
+	Vector2f mMapTextureDimensions;                     // _F8
+	Vector2f mMapBounds;                                // _100
+	Vector2f _108;                                      // _108, seems to be unused
+	Vector2f mMapRotationOrigin;                        // _110
+	Controller* mController;                            // _118
+	int mMapIconNum;                                    // _11C
+	u8 mUpdateCaveTex;                                  // _120
+	P2DScreen::Mgr_tuning* mIconScreen2;                // _124, not sure why the game loads two of this screen file
+	J2DPane* mPane_Ncompas;                             // _128, pane Ncompas
+	J2DPictureEx* mCompassPic;                          // _12C, pane compass
+	J2DPictureEx* mOlimarGlow;                          // _130, the glow behind the olimar arrow pane
+	J2DPictureEx* mLouieGlow;                           // _134, same for louie
+	f32 mStartZoom;                                     // _138
+	u8 mZoomCaveTextAlpha;                              // _13C
+	J2DTextBox* mCaveLabelTextBoxes[MAX_CAVEDISP_NAME]; // _140
+	int mCaveLabelCount;                                // _154
 
 	static struct StaticValues {
-		f32 _00;                                 // _00
-		f32 m_animSpeed;                         // _04
-		u8 _08;                                  // _08
-		u8 _09;                                  // _09
-		u8 _0A;                                  // _0A
-		JUtility::TColor m_mapTexColorWhite;     // _0B
-		JUtility::TColor m_mapTexColorBlack;     // _0F
-		JUtility::TColor m_itemPelletWhiteColor; // _13
-		JUtility::TColor m_itemPelletBlackColor; // _17
-		u8 _1B;                                  // _1B
-		f32 m_mapMoveRate;                       // _1C
-		f32 m_mapMoveRate2;                      // _20
-		f32 m_mapIconScaleBase;                  // _24
-		f32 m_mapNaviArrowScaleMod;              // _28
-		f32 m_groundZoom;                        // _2C
-		f32 m_caveZoom;                          // _30
-		Vector2f m_mapTexOffset;                 // _34
-		f32 m_mapMoveInputReduction;             // _3C
-		Vector2f m_mapScreenScale;               // _40
-		JUtility::TColor m_tempPikiColorWhite;   // _48
-		JUtility::TColor m_tempPikiColorBlack;   // _4C
+		f32 _00;                                // _00
+		f32 mAnimSpeed;                         // _04
+		u8 _08;                                 // _08
+		u8 _09;                                 // _09
+		u8 _0A;                                 // _0A
+		JUtility::TColor mMapTexColorWhite;     // _0B
+		JUtility::TColor mMapTexColorBlack;     // _0F
+		JUtility::TColor mItemPelletWhiteColor; // _13
+		JUtility::TColor mItemPelletBlackColor; // _17
+		u8 _1B;                                 // _1B
+		f32 mMapMoveRate;                       // _1C
+		f32 mMapMoveRate2;                      // _20
+		f32 mMapIconScaleBase;                  // _24
+		f32 mMapNaviArrowScaleMod;              // _28
+		f32 mGroundZoom;                        // _2C
+		f32 mCaveZoom;                          // _30
+		Vector2f mMapTexOffset;                 // _34
+		f32 mMapMoveInputReduction;             // _3C
+		Vector2f mMapScreenScale;               // _40
+		JUtility::TColor mTempPikiColorWhite;   // _48
+		JUtility::TColor mTempPikiColorBlack;   // _4C
 	} msVal;
 };
 
@@ -475,24 +475,24 @@ struct ObjSMenuPause : public ObjSMenuBase {
 		{
 			_00 = 0.3f;
 
-			m_color1.set(253, 145, 21, 39);  // orange
-			m_color2.set(255, 107, 0, 255);  // orange
-			m_color3.set(255, 255, 255, 49); // white
+			mColor1.set(253, 145, 21, 39);  // orange
+			mColor2.set(255, 107, 0, 255);  // orange
+			mColor3.set(255, 255, 255, 49); // white
 
-			m_color6.set(253, 255, 255, 0); // white
-			m_color7.set(0, 73, 128, 200);  // dark blue
-			m_color8.set(175, 175, 255, 0); // white (light purple)
+			mColor6.set(253, 255, 255, 0); // white
+			mColor7.set(0, 73, 128, 200);  // dark blue
+			mColor8.set(175, 175, 255, 0); // white (light purple)
 
-			m_color11.set(0, 0, 255, 255);     // blue
-			m_color12.set(255, 255, 255, 0);   // white
-			m_color13.set(255, 255, 255, 255); // white
-			m_color14.set(0, 255, 255, 0);     // white (teal)
+			mColor11.set(0, 0, 255, 255);     // blue
+			mColor12.set(255, 255, 255, 0);   // white
+			mColor13.set(255, 255, 255, 255); // white
+			mColor14.set(0, 255, 255, 0);     // white (teal)
 
-			m_color4.set(0, 0, 255, 64);    // blue
-			m_color5.set(255, 255, 187, 0); // white (yellow)
+			mColor4.set(0, 0, 255, 64);    // blue
+			mColor5.set(255, 255, 187, 0); // white (yellow)
 
-			m_color9.set(76, 74, 0, 255);    // khaki
-			m_color10.set(255, 255, 255, 0); // white
+			mColor9.set(76, 74, 0, 255);    // khaki
+			mColor10.set(255, 255, 255, 0); // white
 
 			_3C = 1.0f;
 			_40 = 1.0f;
@@ -502,23 +502,23 @@ struct ObjSMenuPause : public ObjSMenuBase {
 		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
 		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*);
 
-		f32 _00;                    // _00
-		JUtility::TColor m_color1;  // _04
-		JUtility::TColor m_color2;  // _08
-		JUtility::TColor m_color3;  // _0C
-		JUtility::TColor m_color4;  // _10
-		JUtility::TColor m_color5;  // _14
-		JUtility::TColor m_color6;  // _18
-		JUtility::TColor m_color7;  // _1C
-		JUtility::TColor m_color8;  // _20
-		JUtility::TColor m_color9;  // _24
-		JUtility::TColor m_color10; // _28
-		JUtility::TColor m_color11; // _2C
-		JUtility::TColor m_color12; // _30
-		JUtility::TColor m_color13; // _34
-		JUtility::TColor m_color14; // _38
-		f32 _3C;                    // _3C
-		f32 _40;                    // _40
+		f32 _00;                   // _00
+		JUtility::TColor mColor1;  // _04
+		JUtility::TColor mColor2;  // _08
+		JUtility::TColor mColor3;  // _0C
+		JUtility::TColor mColor4;  // _10
+		JUtility::TColor mColor5;  // _14
+		JUtility::TColor mColor6;  // _18
+		JUtility::TColor mColor7;  // _1C
+		JUtility::TColor mColor8;  // _20
+		JUtility::TColor mColor9;  // _24
+		JUtility::TColor mColor10; // _28
+		JUtility::TColor mColor11; // _2C
+		JUtility::TColor mColor12; // _30
+		JUtility::TColor mColor13; // _34
+		JUtility::TColor mColor14; // _38
+		f32 _3C;                   // _3C
+		f32 _40;                   // _40
 	} msVal;
 
 	ObjSMenuPause(const char*);
@@ -562,34 +562,34 @@ struct ObjSMenuPause : public ObjSMenuBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
-	og::Screen::DispMemberSMenuPause* m_disp;    // _A8
-	int m_currSelPause;                          // _AC
-	int m_currSelSunset;                         // _B0
-	int m_currSelReturn;                         // _B4
-	int m_menuState;                             // _B8
-	s16 _BC;                                     // _BC
-	P2DScreen::Mgr_tuning* m_screenPause;        // _C0
-	og::Screen::MenuMgr* m_menuPause;            // _C4
-	og::Screen::MenuMgr* m_menuSunset;           // _C8
-	og::Screen::MenuMgr* m_menuReturn;           // _CC
-	u32 _D0;                                     // _D0, unknown
-	u32 _D4;                                     // _D4, unknown
-	og::Screen::AnimText_Screen* m_textContinue; // _D8, h_00?
-	og::Screen::AnimText_Screen* m_textGoSunset; // _DC, h_01?
-	og::Screen::AnimText_Screen* m_textReturn;   // _E0, h_02?
-	og::Screen::AnimText_Screen* m_textSunsetQ;  // _E4, h_03?
-	og::Screen::AnimText_Screen* m_textSunsetY;  // _E8, h_04?
-	og::Screen::AnimText_Screen* m_textSunsetN;  // _EC, h_05?
-	og::Screen::AnimText_Screen* m_textReturnQ;  // _F0, h_06?
-	og::Screen::AnimText_Screen* m_textReturnY;  // _F4, h_07?
-	og::Screen::AnimText_Screen* m_textReturnN;  // _F8, h_08?
-	og::Screen::AnimGroup* m_anims;              // _FC
-	u8 m_pauseOpened;                            // _100
-	f32 m_menuPauseTimer;                        // _104, timer?
-	u8 m_sunsetOpened;                           // _108
-	f32 m_menuSunsetTimer;                       // _10C
-	u8 m_returnOpened;                           // _110
-	f32 m_menuReturnTimer;                       // _114
+	og::Screen::DispMemberSMenuPause* mDisp;    // _A8
+	int mCurrSelPause;                          // _AC
+	int mCurrSelSunset;                         // _B0
+	int mCurrSelReturn;                         // _B4
+	int mMenuState;                             // _B8
+	s16 _BC;                                    // _BC
+	P2DScreen::Mgr_tuning* mScreenPause;        // _C0
+	og::Screen::MenuMgr* mMenuPause;            // _C4
+	og::Screen::MenuMgr* mMenuSunset;           // _C8
+	og::Screen::MenuMgr* mMenuReturn;           // _CC
+	u32 _D0;                                    // _D0, unknown
+	u32 _D4;                                    // _D4, unknown
+	og::Screen::AnimText_Screen* mTextContinue; // _D8, h_00?
+	og::Screen::AnimText_Screen* mTextGoSunset; // _DC, h_01?
+	og::Screen::AnimText_Screen* mTextReturn;   // _E0, h_02?
+	og::Screen::AnimText_Screen* mTextSunsetQ;  // _E4, h_03?
+	og::Screen::AnimText_Screen* mTextSunsetY;  // _E8, h_04?
+	og::Screen::AnimText_Screen* mTextSunsetN;  // _EC, h_05?
+	og::Screen::AnimText_Screen* mTextReturnQ;  // _F0, h_06?
+	og::Screen::AnimText_Screen* mTextReturnY;  // _F4, h_07?
+	og::Screen::AnimText_Screen* mTextReturnN;  // _F8, h_08?
+	og::Screen::AnimGroup* mAnims;              // _FC
+	u8 mPauseOpened;                            // _100
+	f32 mMenuPauseTimer;                        // _104, timer?
+	u8 mSunsetOpened;                           // _108
+	f32 mMenuSunsetTimer;                       // _10C
+	u8 mReturnOpened;                           // _110
+	f32 mMenuReturnTimer;                       // _114
 };
 
 struct ObjSMenuPauseDoukutu : public ObjSMenuBase {
@@ -626,27 +626,27 @@ struct ObjSMenuPauseDoukutu : public ObjSMenuBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
-	og::Screen::DispMemberSMenuPauseDoukutu* m_disp; // _A8
-	int m_menuState;                                 // _AC
-	int m_currPauseSel;                              // _B0
-	int m_currGiveupSel;                             // _B4
-	u16 _B8;                                         // _B8, unknown
-	P2DScreen::Mgr_tuning* m_screenPause;            // _BC
-	og::Screen::MenuMgr* m_menuPause;                // _C0
-	og::Screen::MenuMgr* m_menuGiveup;               // _C4
-	J2DPane* m_menuPane;                             // _C8
-	og::Screen::AnimText_Screen* m_textContinue;     // _CC
-	og::Screen::AnimText_Screen* m_textDoGiveup;     // _D0
-	og::Screen::AnimText_Screen* m_textGiveupQ;      // _D4
-	og::Screen::AnimText_Screen* m_textGiveupY;      // _D8
-	og::Screen::AnimText_Screen* m_textGiveupN;      // _DC
-	og::Screen::AnimGroup* m_anims;                  // _E0
-	u32 m_pokos;                                     // _E4
-	bool m_pauseOpened;                              // _E8
-	f32 m_menuPauseTimer;                            // _EC
-	bool m_giveupOpened;                             // _F0
-	f32 m_menuGiveupTimer;                           // _F4
-	f32 m_warningTimer;                              // _F8
+	og::Screen::DispMemberSMenuPauseDoukutu* mDisp; // _A8
+	int mMenuState;                                 // _AC
+	int mCurrPauseSel;                              // _B0
+	int mCurrGiveupSel;                             // _B4
+	u16 _B8;                                        // _B8, unknown
+	P2DScreen::Mgr_tuning* mScreenPause;            // _BC
+	og::Screen::MenuMgr* mMenuPause;                // _C0
+	og::Screen::MenuMgr* mMenuGiveup;               // _C4
+	J2DPane* mMenuPane;                             // _C8
+	og::Screen::AnimText_Screen* mTextContinue;     // _CC
+	og::Screen::AnimText_Screen* mTextDoGiveup;     // _D0
+	og::Screen::AnimText_Screen* mTextGiveupQ;      // _D4
+	og::Screen::AnimText_Screen* mTextGiveupY;      // _D8
+	og::Screen::AnimText_Screen* mTextGiveupN;      // _DC
+	og::Screen::AnimGroup* mAnims;                  // _E0
+	u32 mPokos;                                     // _E4
+	bool mPauseOpened;                              // _E8
+	f32 mMenuPauseTimer;                            // _EC
+	bool mGiveupOpened;                             // _F0
+	f32 mMenuGiveupTimer;                           // _F4
+	f32 mWarningTimer;                              // _F8
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -696,21 +696,21 @@ struct ObjSMenuPauseVS : public ObjSMenuBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
-	Screen::DispMemberSMenuPauseVS* m_disp; // _A8
-	int m_currMenuSel;                      // _AC
-	P2DScreen::Mgr_tuning* m_screenPause;   // _B0
-	Screen::MenuMgr* m_menuMgr;             // _B4
-	Screen::AnimText_Screen* m_animText1;   // _B8
-	Screen::AnimText_Screen* m_animText2;   // _BC
-	bool m_menuOpen;                        // _C0
-	f32 m_menuTimer;                        // _C4
-	u8 m_type;                              // _C8
+	Screen::DispMemberSMenuPauseVS* mDisp; // _A8
+	int mCurrMenuSel;                      // _AC
+	P2DScreen::Mgr_tuning* mScreenPause;   // _B0
+	Screen::MenuMgr* mMenuMgr;             // _B4
+	Screen::AnimText_Screen* mAnimText1;   // _B8
+	Screen::AnimText_Screen* mAnimText2;   // _BC
+	bool mMenuOpen;                        // _C0
+	f32 mMenuTimer;                        // _C4
+	u8 mType;                              // _C8
 };
 
 struct StartSceneArgSMenu : public ::Screen::StartSceneArgTemplate<StartSceneArgSMenu> {
 	virtual SceneType getSceneType() const // _08 (weak)
 	{
-		return m_sceneType;
+		return mSceneType;
 	}
 
 	// _00     = VTBL

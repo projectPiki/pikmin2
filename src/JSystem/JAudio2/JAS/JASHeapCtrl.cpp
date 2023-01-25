@@ -34,13 +34,13 @@
  * Size:	000074
  */
 JASHeap::JASHeap(JASDisposer* disposer)
-    : m_tree(this)
-    , m_disposer(disposer)
+    : mTree(this)
+    , mDisposer(disposer)
     , _38(nullptr)
     , _3C(0)
     , _40(0)
 {
-	OSInitMutex(&m_mutexObject);
+	OSInitMutex(&mMutexObject);
 }
 
 /*

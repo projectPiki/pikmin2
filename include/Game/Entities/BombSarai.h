@@ -64,15 +64,15 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                    // _2BC
-	f32 m_pitchRatio;              // _2C0
-	f32 _2C4;                      // _2C4, timer?
-	f32 _2C8;                      // _2C8, timer?
-	Vector3f m_targetPosition;     // _2CC
-	Bomb::Obj* m_heldBomb;         // _2D8
-	int _2DC;                      // _2DC
-	efx::TBsaraiSupli* m_efxSupli; // _2E0
-	                               // _2E4 = PelletView
+	FSM* mFsm;                    // _2BC
+	f32 mPitchRatio;              // _2C0
+	f32 _2C4;                     // _2C4, timer?
+	f32 _2C8;                     // _2C8, timer?
+	Vector3f mTargetPosition;     // _2CC
+	Bomb::Obj* mHeldBomb;         // _2D8
+	int _2DC;                     // _2DC
+	efx::TBsaraiSupli* mEfxSupli; // _2E0
+	                              // _2E4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -94,34 +94,34 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "îÚçsçÇÇ≥", 90.0f, 0.0f, 150.0f)     // 'flight height'
-		    , m_fp03(this, 'fp03', "èÛë‘ëJà⁄çÇÇ≥", 50.0f, 0.0f, 300.0f) // 'state transition height'
-		    , m_fp10(this, 'fp10', "è„â∫ÇÃóhÇÍë¨ìx", 2.5f, 0.0f, 10.0f) // 'vertical swing speed'
-		    , m_fp11(this, 'fp11', "è„â∫ÇÃóhÇÍïù", 20.0f, 0.0f, 50.0f)  // 'width of vertical swing'
-		    , m_fp21(this, 'fp21', "è„è∏åWêî(0)", 1.5f, 0.0f, 5.0f)     // 'climbing factor (0)'
-		    , m_fp22(this, 'fp22', "è„è∏åWêî(5)", 1.0f, 0.0f, 5.0f)     // 'climbing factor (5)'
-		    , m_fp31(this, 'fp31', "êUï•ämó¶(1)", 0.1f, 0.0f, 1.0f)     // 'payoff probability (1)'
-		    , m_fp32(this, 'fp32', "êUï•ämó¶(5)", 0.7f, 0.0f, 1.0f)     // 'payoff probability (5)'
-		    , m_fp40(this, 'fp40', "Ç‡Ç™Ç´éûä‘", 3.0f, 0.0f, 10.0f)     // 'struggling time'
+		    , mFp01(this, 'fp01', "îÚçsçÇÇ≥", 90.0f, 0.0f, 150.0f)     // 'flight height'
+		    , mFp03(this, 'fp03', "èÛë‘ëJà⁄çÇÇ≥", 50.0f, 0.0f, 300.0f) // 'state transition height'
+		    , mFp10(this, 'fp10', "è„â∫ÇÃóhÇÍë¨ìx", 2.5f, 0.0f, 10.0f) // 'vertical swing speed'
+		    , mFp11(this, 'fp11', "è„â∫ÇÃóhÇÍïù", 20.0f, 0.0f, 50.0f)  // 'width of vertical swing'
+		    , mFp21(this, 'fp21', "è„è∏åWêî(0)", 1.5f, 0.0f, 5.0f)     // 'climbing factor (0)'
+		    , mFp22(this, 'fp22', "è„è∏åWêî(5)", 1.0f, 0.0f, 5.0f)     // 'climbing factor (5)'
+		    , mFp31(this, 'fp31', "êUï•ämó¶(1)", 0.1f, 0.0f, 1.0f)     // 'payoff probability (1)'
+		    , mFp32(this, 'fp32', "êUï•ämó¶(5)", 0.7f, 0.0f, 1.0f)     // 'payoff probability (5)'
+		    , mFp40(this, 'fp40', "Ç‡Ç™Ç´éûä‘", 3.0f, 0.0f, 10.0f)     // 'struggling time'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp03; // _82C
-		Parm<f32> m_fp10; // _854
-		Parm<f32> m_fp11; // _87C
-		Parm<f32> m_fp21; // _8A4
-		Parm<f32> m_fp22; // _8CC
-		Parm<f32> m_fp31; // _8F4
-		Parm<f32> m_fp32; // _91C
-		Parm<f32> m_fp40; // _944
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp03; // _82C
+		Parm<f32> mFp10; // _854
+		Parm<f32> mFp11; // _87C
+		Parm<f32> mFp21; // _8A4
+		Parm<f32> mFp22; // _8CC
+		Parm<f32> mFp31; // _8F4
+		Parm<f32> mFp32; // _91C
+		Parm<f32> mFp40; // _944
 	};
 
 	Parms() { }
@@ -129,23 +129,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

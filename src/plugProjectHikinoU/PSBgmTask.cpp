@@ -83,17 +83,17 @@ float OuterParamTask::getPreParam(JASTrack& track)
 {
 	switch (_30) {
 	case 0x1:
-		return track.m_extBuffer->_04;
+		return track.mExtBuffer->_04;
 	case 0x2:
-		return track.m_extBuffer->_08;
+		return track.mExtBuffer->_08;
 	case 0x4:
-		return track.m_extBuffer->_0C;
+		return track.mExtBuffer->_0C;
 	case 0x10:
-		return track.m_extBuffer->_10;
+		return track.mExtBuffer->_10;
 	case 0x8:
-		return track.m_extBuffer->_14;
+		return track.mExtBuffer->_14;
 	case 0x40:
-		return track.m_extBuffer->_18;
+		return track.mExtBuffer->_18;
 	default:
 		JUT_PANICLINE(135, "P2Assert");
 		return 0.0f;
@@ -115,8 +115,8 @@ void OuterParamTask::timeTask(JASTrack& track, float param)
 		}
 	}
 
-	track.m_extBuffer->onSwitch(_30);
-	track.m_extBuffer->setParam(_30, param);
+	track.mExtBuffer->onSwitch(_30);
+	track.mExtBuffer->setParam(_30, param);
 }
 
 /*
@@ -139,11 +139,11 @@ int SimpleWaitTask::task(JASTrack& track)
  * Size:    000074
  */
 BankRandPrm::BankRandPrm()
-    : m_inst()
+    : mInst()
 {
-	m_inst.setTarget(1);
-	m_inst._08 = 1.0f;
-	m_inst._0C = 0.0f;
+	mInst.setTarget(1);
+	mInst._08 = 1.0f;
+	mInst._0C = 0.0f;
 }
 
 /*
@@ -154,15 +154,15 @@ BankRandPrm::BankRandPrm()
 void TaskEntry_OuterParam::makeEntry(float p1, u32 p2)
 {
 	OSDisableInterrupts();
-	m_outerParamTask._20 = p1;
-	m_outerParamTask._1C = p2;
-	m_outerParamTask._14 = 1;
-	m_outerParamTask._28 = 0;
-	m_outerParamTask._2C = 0.0f;
-	m_outerParamTask._24 = 0.0f;
+	mOuterParamTask._20 = p1;
+	mOuterParamTask._1C = p2;
+	mOuterParamTask._14 = 1;
+	mOuterParamTask._28 = 0;
+	mOuterParamTask._2C = 0.0f;
+	mOuterParamTask._24 = 0.0f;
 	OSEnableInterrupts();
 
-	append((TaskBase*)&m_outerParamTask);
+	append((TaskBase*)&mOuterParamTask);
 }
 
 /*
@@ -173,11 +173,11 @@ void TaskEntry_OuterParam::makeEntry(float p1, u32 p2)
 void TaskEntry_IdMask::makeEntry(u8 noteMask)
 {
 	OSDisableInterrupts();
-	m_idMaskTask.m_noteMask = noteMask;
-	m_idMaskTask._14        = 1;
+	mIdMaskTask.mNoteMask = noteMask;
+	mIdMaskTask._14       = 1;
 	OSEnableInterrupts();
 
-	append((TaskBase*)&m_idMaskTask);
+	append((TaskBase*)&mIdMaskTask);
 }
 
 /*
@@ -189,37 +189,37 @@ void TaskEntry_PitMod::makeEntry(float p1, float p2, u32 p3)
 {
 	if (p3 != 0) {
 		OSDisableInterrupts();
-		m_waitTask._1C = 0;
-		m_waitTask._20 = p3;
-		m_waitTask._14 = 1;
+		mWaitTask._1C = 0;
+		mWaitTask._20 = p3;
+		mWaitTask._14 = 1;
 		OSEnableInterrupts();
 
-		m_waitTask._15 = 1;
-		append(&m_waitTask);
+		mWaitTask._15 = 1;
+		append(&mWaitTask);
 
 		OSDisableInterrupts();
-		m_pitModTask._1C = p1;
-		m_pitModTask._20 = p2;
-		m_pitModTask._14 = 1;
-		m_pitModTask._24 = 0.0f;
+		mPitModTask._1C = p1;
+		mPitModTask._20 = p2;
+		mPitModTask._14 = 1;
+		mPitModTask._24 = 0.0f;
 		OSEnableInterrupts();
 
-		m_pitModTask._18 = &m_waitTask._04;
-		append(&m_pitModTask);
+		mPitModTask._18 = &mWaitTask._04;
+		append(&mPitModTask);
 	} else {
 		OSDisableInterrupts();
-		m_pitModTask._1C = p1;
-		m_pitModTask._20 = p2;
-		m_pitModTask._14 = 1;
-		m_pitModTask._24 = 0.0f;
+		mPitModTask._1C = p1;
+		mPitModTask._20 = p2;
+		mPitModTask._14 = 1;
+		mPitModTask._24 = 0.0f;
 		OSEnableInterrupts();
 
-		append(&m_pitModTask);
+		append(&mPitModTask);
 	}
 	OSDisableInterrupts();
-	m_pitResetTask._14 = 1;
+	mPitResetTask._14 = 1;
 	OSEnableInterrupts();
-	append(&m_pitResetTask);
+	append(&mPitResetTask);
 }
 
 /*
@@ -232,20 +232,20 @@ void TaskEntry_MuteVolume::makeEntry(float p1, u32 p2)
 	f32 temp_f0;
 
 	OSDisableInterrupts();
-	m_muteTask1._1C = 0;
-	m_muteTask1._14 = 1;
+	mMuteTask1._1C = 0;
+	mMuteTask1._14 = 1;
 	OSEnableInterrupts();
 
-	append(&m_muteTask1);
+	append(&mMuteTask1);
 	OSDisableInterrupts();
-	m_outerParamTask1._20 = p1;
-	m_outerParamTask1._1C = p2;
-	m_outerParamTask1._14 = 1;
-	m_outerParamTask1._28 = 0;
-	m_outerParamTask1._2C = 0.0f;
-	m_outerParamTask1._24 = 0.0f;
+	mOuterParamTask1._20 = p1;
+	mOuterParamTask1._1C = p2;
+	mOuterParamTask1._14 = 1;
+	mOuterParamTask1._28 = 0;
+	mOuterParamTask1._2C = 0.0f;
+	mOuterParamTask1._24 = 0.0f;
 	OSEnableInterrupts();
-	append(&m_outerParamTask1);
+	append(&mOuterParamTask1);
 }
 
 /*
@@ -256,21 +256,21 @@ void TaskEntry_MuteVolume::makeEntry(float p1, u32 p2)
 void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
 {
 	OSDisableInterrupts();
-	m_outerParamTask._20 = 0.0f;
-	m_outerParamTask._1C = p1;
-	m_outerParamTask._14 = 1;
-	m_outerParamTask._28 = 0;
-	m_outerParamTask._2C = 0.0f;
-	m_outerParamTask._24 = 0.0f;
+	mOuterParamTask._20 = 0.0f;
+	mOuterParamTask._1C = p1;
+	mOuterParamTask._14 = 1;
+	mOuterParamTask._28 = 0;
+	mOuterParamTask._2C = 0.0f;
+	mOuterParamTask._24 = 0.0f;
 	OSEnableInterrupts();
 
-	append(&m_outerParamTask);
+	append(&mOuterParamTask);
 	OSDisableInterrupts();
-	m_muteTask._1C = 1;
-	m_muteTask._14 = 1;
+	mMuteTask._1C = 1;
+	mMuteTask._14 = 1;
 	OSEnableInterrupts();
 
-	append(&m_muteTask);
+	append(&mMuteTask);
 }
 
 /*
@@ -281,14 +281,14 @@ void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
 void TaskEntry_Tempo::makeEntry(float p1, u32 p2)
 {
 	OSDisableInterrupts();
-	m_outerParamTask1._20 = p1;
-	m_outerParamTask1._1C = p2;
-	m_outerParamTask1._14 = 1;
-	m_outerParamTask1._28 = 0;
-	m_outerParamTask1._2C = 0.0f;
-	m_outerParamTask1._24 = 0.0f;
+	mOuterParamTask1._20 = p1;
+	mOuterParamTask1._1C = p2;
+	mOuterParamTask1._14 = 1;
+	mOuterParamTask1._28 = 0;
+	mOuterParamTask1._2C = 0.0f;
+	mOuterParamTask1._24 = 0.0f;
 	OSEnableInterrupts();
 
-	append(&m_outerParamTask1);
+	append(&mOuterParamTask1);
 }
 } // namespace PSSystem

@@ -187,25 +187,25 @@ namespace Screen {
  */
 void TOptionParameter::loadRam()
 {
-	Game::CommonSaveData::Mgr* mgr = sys->m_playData;
+	Game::CommonSaveData::Mgr* mgr = sys->mPlayData;
 	_00                            = mgr->_3C;
 	_01                            = mgr->_3B;
-	switch (mgr->m_soundMode) {
+	switch (mgr->mSoundMode) {
 	case 0:
 		if (true) {
-			m_soundMode = 0;
+			mSoundMode = 0;
 		}
 		break;
 	case 1:
-		m_soundMode = 1;
+		mSoundMode = 1;
 		break;
 	case 2:
-		m_soundMode = 2;
+		mSoundMode = 2;
 		break;
 	}
-	m_bgmVolume   = (float)mgr->_39 / 255.0f * 10.0f;
-	m_seVolume    = (float)mgr->_3A / 255.0f * 10.0f;
-	m_isDeflicker = mgr->_3D;
+	mBgmVolume   = (float)mgr->_39 / 255.0f * 10.0f;
+	mSeVolume    = (float)mgr->_3A / 255.0f * 10.0f;
+	mIsDeflicker = mgr->_3D;
 }
 
 /*
@@ -215,10 +215,10 @@ void TOptionParameter::loadRam()
  */
 void TOptionParameter::saveRam()
 {
-	Game::CommonSaveData::Mgr* mgr = sys->m_playData;
+	Game::CommonSaveData::Mgr* mgr = sys->mPlayData;
 	mgr->_3C                       = _00;
 	mgr->_3B                       = _01;
-	switch (m_soundMode) {
+	switch (mSoundMode) {
 	case 0:
 		mgr->setSoundModeMono();
 		break;
@@ -229,9 +229,9 @@ void TOptionParameter::saveRam()
 		mgr->setSoundModeSurround();
 		break;
 	}
-	mgr->setBgmVolume(m_bgmVolume / 10.0f);
-	mgr->setSeVolume(m_seVolume / 10.0f);
-	mgr->setDeflicker(m_isDeflicker);
+	mgr->setBgmVolume(mBgmVolume / 10.0f);
+	mgr->setSeVolume(mSeVolume / 10.0f);
+	mgr->setDeflicker(mIsDeflicker);
 
 	/*
 stwu     r1, -0x20(r1)
@@ -317,12 +317,12 @@ blr
  */
 void TOptionParameter::initParamForTest()
 {
-	_00           = false;
-	_01           = false;
-	m_soundMode   = 0;
-	m_bgmVolume   = 1;
-	m_seVolume    = 1;
-	m_isDeflicker = false;
+	_00          = false;
+	_01          = false;
+	mSoundMode   = 0;
+	mBgmVolume   = 1;
+	mSeVolume    = 1;
+	mIsDeflicker = false;
 }
 
 /*
@@ -388,29 +388,29 @@ void TOption::doSetArchive(JKRArchive* archive)
 	J2DTextBox* tb = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsin_y');
 	_1C4._00       = tb->_104;
 	_1C4._04       = tb->_108;
-	_1C4.m_white   = tb->getWhite();
-	_1C4.m_black   = tb->getBlack();
+	_1C4.mWhite    = tb->getWhite();
+	_1C4.mBlack    = tb->getBlack();
 	tb             = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Thscolor');
 	_1D4._00       = tb->_104;
 	_1D4._04       = tb->_108;
-	_1D4.m_white   = tb->getWhite();
-	_1D4.m_black   = tb->getBlack();
+	_1D4.mWhite    = tb->getWhite();
+	_1D4.mBlack    = tb->getBlack();
 	_240.set((J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsin_y'), (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tscolor'));
-	_240.m_isEnabled = 1;
-	_240._44         = sys->m_deltaTime * 3.3333333f;
-	_240._40         = 0.0f;
-	_240._48         = 1;
-	_240._49         = 0;
+	_240.mIsEnabled = 1;
+	_240._44        = sys->mDeltaTime * 3.3333333f;
+	_240._40        = 0.0f;
+	_240._48        = 1;
+	_240._49        = 0;
 	_10C->addCallBackPane(nullptr, &_240);
 	_10C->addCallBackPane(nullptr, &_28C);
-	_28C._2C         = 0xff;
-	_28C._2D         = 0x55;
-	_28C.m_isEnabled = 1;
-	_28C._24         = sys->m_deltaTime * 3.3333333f;
-	_28C._20         = 0.0f;
-	_28C._28         = 1;
-	_28C._29         = 0;
-	J2DPane* Nbotn   = E2DScreen_searchAssert(_10C, 'Nbotn');
+	_28C._2C        = 0xff;
+	_28C._2D        = 0x55;
+	_28C.mIsEnabled = 1;
+	_28C._24        = sys->mDeltaTime * 3.3333333f;
+	_28C._20        = 0.0f;
+	_28C._28        = 1;
+	_28C._29        = 0;
+	J2DPane* Nbotn  = E2DScreen_searchAssert(_10C, 'Nbotn');
 	_10C->addCallBackPane(Nbotn, &_2BC);
 	E2DPane_setTreeInfluencedAlpha(Nbotn, true);
 	_10C->addCallBack('Wselctw', &_EAC[0]);
@@ -1008,22 +1008,22 @@ blr
  */
 void TOption::doOpenScreen(ebi::Screen::ArgOpen*)
 {
-	_1E4.play(60.0f * sys->m_deltaTime, J3DAA_UNKNOWN_0, true);
+	_1E4.play(60.0f * sys->mDeltaTime, J3DAA_UNKNOWN_0, true);
 	setOptionParamToScreen_();
-	u32 uVar2                 = __cvt_fp2unsigned(E2DFader::kFadeTime / sys->m_deltaTime);
+	u32 uVar2                 = __cvt_fp2unsigned(E2DFader::kFadeTime / sys->mDeltaTime);
 	_0FC                      = uVar2;
 	_100                      = uVar2;
 	_0F8                      = 1;
 	_104                      = 1;
 	_108                      = 1;
-	_180[0]->m_isVisible      = false;
+	_180[0]->mIsVisible       = false;
 	JGeometry::TBox2f* bounds = _1A8[_104].getBounds();
-	uVar2                     = __cvt_fp2unsigned(0.1f / sys->m_deltaTime);
+	uVar2                     = __cvt_fp2unsigned(0.1f / sys->mDeltaTime);
 	_EAC->_40                 = uVar2;
 	_EAC->_44                 = uVar2;
 	_EAC->_20                 = *bounds;
 	_EAC->_30                 = *bounds;
-	_EAC->m_isEnabled         = 1;
+	_EAC->mIsEnabled          = 1;
 	_EAC->_68                 = _180[_104];
 	initScreen_();
 	/*
@@ -1114,7 +1114,7 @@ blr
  */
 void TOption::doCloseScreen(ebi::Screen::ArgClose*)
 {
-	u32 v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime / sys->m_deltaTime);
+	u32 v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime / sys->mDeltaTime);
 	_0FC   = v1;
 	_100   = v1;
 	_0F8   = 2;
@@ -2206,11 +2206,11 @@ void TOption::loadResource()
  */
 void TOption::setController(Controller* controller)
 {
-	m_controller = controller;
-	m_padInterfaces[0].init(controller, 0, 10, &_0C8.m_bgmVolume, EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f, 0.15f);
-	m_padInterfaces[1].init(controller, 0, 10, &_0C8.m_seVolume, EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f, 0.15f);
-	m_padInterfaces[2].init(controller, 0, 2, &_0C8.m_soundMode, EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f, 0.15f);
-	m_padInterfaces[3].init(controller, 0, 6, &_104, EUTPadInterface_countNum::MODE_UNKNOWN_3, 0.66f, 0.15f);
+	mController = controller;
+	mPadInterfaces[0].init(controller, 0, 10, &_0C8.mBgmVolume, EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f, 0.15f);
+	mPadInterfaces[1].init(controller, 0, 10, &_0C8.mSeVolume, EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f, 0.15f);
+	mPadInterfaces[2].init(controller, 0, 2, &_0C8.mSoundMode, EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f, 0.15f);
+	mPadInterfaces[3].init(controller, 0, 6, &_104, EUTPadInterface_countNum::MODE_UNKNOWN_3, 0.66f, 0.15f);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -2403,64 +2403,64 @@ void TOption::setOptionParamToScreen_()
 	// if (_0C8._01) {
 	// 	_110->_104.channels = JUtility::TColor(_1C4._00).channels;
 	// 	_110->_108.channels = JUtility::TColor(_1C4._04).channels;
-	// 	_110->setWhite(JUtility::TColor(_1C4.m_white));
-	// 	_110->setBlack(JUtility::TColor(_1C4.m_black));
+	// 	_110->setWhite(JUtility::TColor(_1C4.mWhite));
+	// 	_110->setBlack(JUtility::TColor(_1C4.mBlack));
 	// 	_114->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_114->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_114->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_114->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_114->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_114->setBlack(JUtility::TColor(_1D4.mBlack));
 	// } else {
 	// 	_110->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_110->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_110->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_110->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_110->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_110->setBlack(JUtility::TColor(_1D4.mBlack));
 	// 	_114->_104.channels = JUtility::TColor(_1C4._00).channels;
 	// 	_114->_108.channels = JUtility::TColor(_1C4._04).channels;
-	// 	_114->setWhite(JUtility::TColor(_1C4.m_white));
-	// 	_114->setBlack(JUtility::TColor(_1C4.m_black));
+	// 	_114->setWhite(JUtility::TColor(_1C4.mWhite));
+	// 	_114->setBlack(JUtility::TColor(_1C4.mBlack));
 	// }
-	// switch (_0C8.m_soundMode) {
+	// switch (_0C8.mSoundMode) {
 	// case 0:
 	// 	_118->_104.channels = JUtility::TColor(_1C4._00).channels;
 	// 	_118->_108.channels = JUtility::TColor(_1C4._04).channels;
-	// 	_118->setWhite(JUtility::TColor(_1C4.m_white));
-	// 	_118->setBlack(JUtility::TColor(_1C4.m_black));
+	// 	_118->setWhite(JUtility::TColor(_1C4.mWhite));
+	// 	_118->setBlack(JUtility::TColor(_1C4.mBlack));
 	// 	_11C->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_11C->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_11C->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_11C->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_11C->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_11C->setBlack(JUtility::TColor(_1D4.mBlack));
 	// 	_120->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_120->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_120->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_120->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_120->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_120->setBlack(JUtility::TColor(_1D4.mBlack));
 	// 	break;
 	// case 1:
 	// 	_118->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_118->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_118->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_118->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_118->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_118->setBlack(JUtility::TColor(_1D4.mBlack));
 	// 	_11C->_104.channels = JUtility::TColor(_1C4._00).channels;
 	// 	_11C->_108.channels = JUtility::TColor(_1C4._04).channels;
-	// 	_11C->setWhite(JUtility::TColor(_1C4.m_white));
-	// 	_11C->setBlack(JUtility::TColor(_1C4.m_black));
+	// 	_11C->setWhite(JUtility::TColor(_1C4.mWhite));
+	// 	_11C->setBlack(JUtility::TColor(_1C4.mBlack));
 	// 	_120->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_120->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_120->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_120->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_120->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_120->setBlack(JUtility::TColor(_1D4.mBlack));
 	// 	break;
 	// case 2:
 	// 	_118->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_118->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_118->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_118->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_118->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_118->setBlack(JUtility::TColor(_1D4.mBlack));
 	// 	_11C->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_11C->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_11C->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_11C->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_11C->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_11C->setBlack(JUtility::TColor(_1D4.mBlack));
 	// 	_120->_104.channels = JUtility::TColor(_1C4._00).channels;
 	// 	_120->_108.channels = JUtility::TColor(_1C4._04).channels;
-	// 	_120->setWhite(JUtility::TColor(_1C4.m_white));
-	// 	_120->setBlack(JUtility::TColor(_1C4.m_black));
+	// 	_120->setWhite(JUtility::TColor(_1C4.mWhite));
+	// 	_120->setBlack(JUtility::TColor(_1C4.mBlack));
 	// 	break;
 	// default:
 	// 	break;
@@ -2469,64 +2469,64 @@ void TOption::setOptionParamToScreen_()
 	// if (_0C8._01) {
 	// 	_110->_104.channels = _1C4._00.channels;
 	// 	_110->_108.channels = _1C4._04.channels;
-	// 	_110->setWhite(_1C4.m_white);
-	// 	_110->setBlack(_1C4.m_black);
+	// 	_110->setWhite(_1C4.mWhite);
+	// 	_110->setBlack(_1C4.mBlack);
 	// 	_114->_104.channels = _1D4._00.channels;
 	// 	_114->_108.channels = _1D4._04.channels;
-	// 	_114->setWhite(_1D4.m_white);
-	// 	_114->setBlack(_1D4.m_black);
+	// 	_114->setWhite(_1D4.mWhite);
+	// 	_114->setBlack(_1D4.mBlack);
 	// } else {
 	// 	_110->_104.channels = _1D4._00.channels;
 	// 	_110->_108.channels = _1D4._04.channels;
-	// 	_110->setWhite(_1D4.m_white);
-	// 	_110->setBlack(_1D4.m_black);
+	// 	_110->setWhite(_1D4.mWhite);
+	// 	_110->setBlack(_1D4.mBlack);
 	// 	_114->_104.channels = _1C4._00.channels;
 	// 	_114->_108.channels = _1C4._04.channels;
-	// 	_114->setWhite(_1C4.m_white);
-	// 	_114->setBlack(_1C4.m_black);
+	// 	_114->setWhite(_1C4.mWhite);
+	// 	_114->setBlack(_1C4.mBlack);
 	// }
-	// switch (_0C8.m_soundMode) {
+	// switch (_0C8.mSoundMode) {
 	// case 0:
 	// 	_118->_104.channels = _1C4._00.channels;
 	// 	_118->_108.channels = _1C4._04.channels;
-	// 	_118->setWhite(_1C4.m_white);
-	// 	_118->setBlack(_1C4.m_black);
+	// 	_118->setWhite(_1C4.mWhite);
+	// 	_118->setBlack(_1C4.mBlack);
 	// 	_11C->_104.channels = _1D4._00.channels;
 	// 	_11C->_108.channels = _1D4._04.channels;
-	// 	_11C->setWhite(_1D4.m_white);
-	// 	_11C->setBlack(_1D4.m_black);
+	// 	_11C->setWhite(_1D4.mWhite);
+	// 	_11C->setBlack(_1D4.mBlack);
 	// 	_120->_104.channels = _1D4._00.channels;
 	// 	_120->_108.channels = _1D4._04.channels;
-	// 	_120->setWhite(_1D4.m_white);
-	// 	_120->setBlack(_1D4.m_black);
+	// 	_120->setWhite(_1D4.mWhite);
+	// 	_120->setBlack(_1D4.mBlack);
 	// 	break;
 	// case 1:
 	// 	_118->_104.channels = _1D4._00.channels;
 	// 	_118->_108.channels = _1D4._04.channels;
-	// 	_118->setWhite(_1D4.m_white);
-	// 	_118->setBlack(_1D4.m_black);
+	// 	_118->setWhite(_1D4.mWhite);
+	// 	_118->setBlack(_1D4.mBlack);
 	// 	_11C->_104.channels = _1C4._00.channels;
 	// 	_11C->_108.channels = _1C4._04.channels;
-	// 	_11C->setWhite(_1C4.m_white);
-	// 	_11C->setBlack(_1C4.m_black);
+	// 	_11C->setWhite(_1C4.mWhite);
+	// 	_11C->setBlack(_1C4.mBlack);
 	// 	_120->_104.channels = _1D4._00.channels;
 	// 	_120->_108.channels = _1D4._04.channels;
-	// 	_120->setWhite(_1D4.m_white);
-	// 	_120->setBlack(_1D4.m_black);
+	// 	_120->setWhite(_1D4.mWhite);
+	// 	_120->setBlack(_1D4.mBlack);
 	// 	break;
 	// case 2:
 	// 	_118->_104.channels = _1D4._00.channels;
 	// 	_118->_108.channels = _1D4._04.channels;
-	// 	_118->setWhite(_1D4.m_white);
-	// 	_118->setBlack(_1D4.m_black);
+	// 	_118->setWhite(_1D4.mWhite);
+	// 	_118->setBlack(_1D4.mBlack);
 	// 	_11C->_104.channels = _1D4._00.channels;
 	// 	_11C->_108.channels = _1D4._04.channels;
-	// 	_11C->setWhite(_1D4.m_white);
-	// 	_11C->setBlack(_1D4.m_black);
+	// 	_11C->setWhite(_1D4.mWhite);
+	// 	_11C->setBlack(_1D4.mBlack);
 	// 	_120->_104.channels = _1C4._00.channels;
 	// 	_120->_108.channels = _1C4._04.channels;
-	// 	_120->setWhite(_1C4.m_white);
-	// 	_120->setBlack(_1C4.m_black);
+	// 	_120->setWhite(_1C4.mWhite);
+	// 	_120->setBlack(_1C4.mBlack);
 	// 	break;
 	// default:
 	// 	break;
@@ -2541,8 +2541,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_110->_108.channels.g = _1C4._04.channels.g;
 	// 	_110->_108.channels.b = _1C4._04.channels.b;
 	// 	_110->_108.channels.a = _1C4._04.channels.a;
-	// 	_110->setWhite(_1C4.m_white);
-	// 	_110->setBlack(_1C4.m_black);
+	// 	_110->setWhite(_1C4.mWhite);
+	// 	_110->setBlack(_1C4.mBlack);
 	// 	_114->_104.channels.r = _1D4._00.channels.r;
 	// 	_114->_104.channels.g = _1D4._00.channels.g;
 	// 	_114->_104.channels.b = _1D4._00.channels.b;
@@ -2551,8 +2551,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_114->_108.channels.g = _1D4._04.channels.g;
 	// 	_114->_108.channels.b = _1D4._04.channels.b;
 	// 	_114->_108.channels.a = _1D4._04.channels.a;
-	// 	_114->setWhite(_1D4.m_white);
-	// 	_114->setBlack(_1D4.m_black);
+	// 	_114->setWhite(_1D4.mWhite);
+	// 	_114->setBlack(_1D4.mBlack);
 	// } else {
 	// 	_110->_104.channels.r = _1D4._00.channels.r;
 	// 	_110->_104.channels.g = _1D4._00.channels.g;
@@ -2562,8 +2562,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_110->_108.channels.g = _1D4._04.channels.g;
 	// 	_110->_108.channels.b = _1D4._04.channels.b;
 	// 	_110->_108.channels.a = _1D4._04.channels.a;
-	// 	_110->setWhite(_1D4.m_white);
-	// 	_110->setBlack(_1D4.m_black);
+	// 	_110->setWhite(_1D4.mWhite);
+	// 	_110->setBlack(_1D4.mBlack);
 	// 	_114->_104.channels.r = _1C4._00.channels.r;
 	// 	_114->_104.channels.g = _1C4._00.channels.g;
 	// 	_114->_104.channels.b = _1C4._00.channels.b;
@@ -2572,10 +2572,10 @@ void TOption::setOptionParamToScreen_()
 	// 	_114->_108.channels.g = _1C4._04.channels.g;
 	// 	_114->_108.channels.b = _1C4._04.channels.b;
 	// 	_114->_108.channels.a = _1C4._04.channels.a;
-	// 	_114->setWhite(_1C4.m_white);
-	// 	_114->setBlack(_1C4.m_black);
+	// 	_114->setWhite(_1C4.mWhite);
+	// 	_114->setBlack(_1C4.mBlack);
 	// }
-	// switch (_0C8.m_soundMode) {
+	// switch (_0C8.mSoundMode) {
 	// case 0:
 	// 	_118->_104.channels.r = _1C4._00.channels.r;
 	// 	_118->_104.channels.g = _1C4._00.channels.g;
@@ -2585,8 +2585,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_118->_108.channels.g = _1C4._04.channels.g;
 	// 	_118->_108.channels.b = _1C4._04.channels.b;
 	// 	_118->_108.channels.a = _1C4._04.channels.a;
-	// 	_118->setWhite(_1C4.m_white);
-	// 	_118->setBlack(_1C4.m_black);
+	// 	_118->setWhite(_1C4.mWhite);
+	// 	_118->setBlack(_1C4.mBlack);
 	// 	_11C->_104.channels.r = _1D4._00.channels.r;
 	// 	_11C->_104.channels.g = _1D4._00.channels.g;
 	// 	_11C->_104.channels.b = _1D4._00.channels.b;
@@ -2595,8 +2595,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_11C->_108.channels.g = _1D4._04.channels.g;
 	// 	_11C->_108.channels.b = _1D4._04.channels.b;
 	// 	_11C->_108.channels.a = _1D4._04.channels.a;
-	// 	_11C->setWhite(_1D4.m_white);
-	// 	_11C->setBlack(_1D4.m_black);
+	// 	_11C->setWhite(_1D4.mWhite);
+	// 	_11C->setBlack(_1D4.mBlack);
 	// 	_120->_104.channels.r = _1D4._00.channels.r;
 	// 	_120->_104.channels.g = _1D4._00.channels.g;
 	// 	_120->_104.channels.b = _1D4._00.channels.b;
@@ -2605,8 +2605,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_120->_108.channels.g = _1D4._04.channels.g;
 	// 	_120->_108.channels.b = _1D4._04.channels.b;
 	// 	_120->_108.channels.a = _1D4._04.channels.a;
-	// 	_120->setWhite(_1D4.m_white);
-	// 	_120->setBlack(_1D4.m_black);
+	// 	_120->setWhite(_1D4.mWhite);
+	// 	_120->setBlack(_1D4.mBlack);
 	// 	break;
 	// case 1:
 	// 	_118->_104.channels.r = _1D4._00.channels.r;
@@ -2617,8 +2617,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_118->_108.channels.g = _1D4._04.channels.g;
 	// 	_118->_108.channels.b = _1D4._04.channels.b;
 	// 	_118->_108.channels.a = _1D4._04.channels.a;
-	// 	_118->setWhite(_1D4.m_white);
-	// 	_118->setBlack(_1D4.m_black);
+	// 	_118->setWhite(_1D4.mWhite);
+	// 	_118->setBlack(_1D4.mBlack);
 	// 	_11C->_104.channels.r = _1C4._00.channels.r;
 	// 	_11C->_104.channels.g = _1C4._00.channels.g;
 	// 	_11C->_104.channels.b = _1C4._00.channels.b;
@@ -2627,8 +2627,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_11C->_108.channels.g = _1C4._04.channels.g;
 	// 	_11C->_108.channels.b = _1C4._04.channels.b;
 	// 	_11C->_108.channels.a = _1C4._04.channels.a;
-	// 	_11C->setWhite(_1C4.m_white);
-	// 	_11C->setBlack(_1C4.m_black);
+	// 	_11C->setWhite(_1C4.mWhite);
+	// 	_11C->setBlack(_1C4.mBlack);
 	// 	_120->_104.channels.r = _1D4._00.channels.r;
 	// 	_120->_104.channels.g = _1D4._00.channels.g;
 	// 	_120->_104.channels.b = _1D4._00.channels.b;
@@ -2637,8 +2637,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_120->_108.channels.g = _1D4._04.channels.g;
 	// 	_120->_108.channels.b = _1D4._04.channels.b;
 	// 	_120->_108.channels.a = _1D4._04.channels.a;
-	// 	_120->setWhite(_1D4.m_white);
-	// 	_120->setBlack(_1D4.m_black);
+	// 	_120->setWhite(_1D4.mWhite);
+	// 	_120->setBlack(_1D4.mBlack);
 	// 	break;
 	// case 2:
 	// 	_118->_104.channels.r = _1D4._00.channels.r;
@@ -2649,8 +2649,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_118->_108.channels.g = _1D4._04.channels.g;
 	// 	_118->_108.channels.b = _1D4._04.channels.b;
 	// 	_118->_108.channels.a = _1D4._04.channels.a;
-	// 	_118->setWhite(_1D4.m_white);
-	// 	_118->setBlack(_1D4.m_black);
+	// 	_118->setWhite(_1D4.mWhite);
+	// 	_118->setBlack(_1D4.mBlack);
 	// 	_11C->_104.channels.r = _1D4._00.channels.r;
 	// 	_11C->_104.channels.g = _1D4._00.channels.g;
 	// 	_11C->_104.channels.b = _1D4._00.channels.b;
@@ -2659,8 +2659,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_11C->_108.channels.g = _1D4._04.channels.g;
 	// 	_11C->_108.channels.b = _1D4._04.channels.b;
 	// 	_11C->_108.channels.a = _1D4._04.channels.a;
-	// 	_11C->setWhite(_1D4.m_white);
-	// 	_11C->setBlack(_1D4.m_black);
+	// 	_11C->setWhite(_1D4.mWhite);
+	// 	_11C->setBlack(_1D4.mBlack);
 	// 	_120->_104.channels.r = _1C4._00.channels.r;
 	// 	_120->_104.channels.g = _1C4._00.channels.g;
 	// 	_120->_104.channels.b = _1C4._00.channels.b;
@@ -2669,8 +2669,8 @@ void TOption::setOptionParamToScreen_()
 	// 	_120->_108.channels.g = _1C4._04.channels.g;
 	// 	_120->_108.channels.b = _1C4._04.channels.b;
 	// 	_120->_108.channels.a = _1C4._04.channels.a;
-	// 	_120->setWhite(_1C4.m_white);
-	// 	_120->setBlack(_1C4.m_black);
+	// 	_120->setWhite(_1C4.mWhite);
+	// 	_120->setBlack(_1C4.mBlack);
 	// 	break;
 	// default:
 	// 	break;
@@ -2679,122 +2679,122 @@ void TOption::setOptionParamToScreen_()
 	if (_0C8._01) {
 		_110->_104 = _1C4._00;
 		_110->_108 = _1C4._04;
-		_110->setWhite(_1C4.m_white);
-		_110->setBlack(_1C4.m_black);
+		_110->setWhite(_1C4.mWhite);
+		_110->setBlack(_1C4.mBlack);
 		_114->_104 = _1D4._00;
 		_114->_108 = _1D4._04;
-		_114->setWhite(_1D4.m_white);
-		_114->setBlack(_1D4.m_black);
+		_114->setWhite(_1D4.mWhite);
+		_114->setBlack(_1D4.mBlack);
 	} else {
 		_110->_104 = _1D4._00;
 		_110->_108 = _1D4._04;
-		_110->setWhite(_1D4.m_white);
-		_110->setBlack(_1D4.m_black);
+		_110->setWhite(_1D4.mWhite);
+		_110->setBlack(_1D4.mBlack);
 		_114->_104 = _1C4._00;
 		_114->_108 = _1C4._04;
-		_114->setWhite(_1C4.m_white);
-		_114->setBlack(_1C4.m_black);
+		_114->setWhite(_1C4.mWhite);
+		_114->setBlack(_1C4.mBlack);
 	}
-	switch (_0C8.m_soundMode) {
+	switch (_0C8.mSoundMode) {
 	case 0:
 		_118->_104 = _1C4._00;
 		_118->_108 = _1C4._04;
-		_118->setWhite(_1C4.m_white);
-		_118->setBlack(_1C4.m_black);
+		_118->setWhite(_1C4.mWhite);
+		_118->setBlack(_1C4.mBlack);
 		_11C->_104 = _1D4._00;
 		_11C->_108 = _1D4._04;
-		_11C->setWhite(_1D4.m_white);
-		_11C->setBlack(_1D4.m_black);
+		_11C->setWhite(_1D4.mWhite);
+		_11C->setBlack(_1D4.mBlack);
 		_120->_104 = _1D4._00;
 		_120->_108 = _1D4._04;
-		_120->setWhite(_1D4.m_white);
-		_120->setBlack(_1D4.m_black);
+		_120->setWhite(_1D4.mWhite);
+		_120->setBlack(_1D4.mBlack);
 		break;
 	case 1:
 		_118->_104 = _1D4._00;
 		_118->_108 = _1D4._04;
-		_118->setWhite(_1D4.m_white);
-		_118->setBlack(_1D4.m_black);
+		_118->setWhite(_1D4.mWhite);
+		_118->setBlack(_1D4.mBlack);
 		_11C->_104 = _1C4._00;
 		_11C->_108 = _1C4._04;
-		_11C->setWhite(_1C4.m_white);
-		_11C->setBlack(_1C4.m_black);
+		_11C->setWhite(_1C4.mWhite);
+		_11C->setBlack(_1C4.mBlack);
 		_120->_104 = _1D4._00;
 		_120->_108 = _1D4._04;
-		_120->setWhite(_1D4.m_white);
-		_120->setBlack(_1D4.m_black);
+		_120->setWhite(_1D4.mWhite);
+		_120->setBlack(_1D4.mBlack);
 		break;
 	case 2:
 		_118->_104 = _1D4._00;
 		_118->_108 = _1D4._04;
-		_118->setWhite(_1D4.m_white);
-		_118->setBlack(_1D4.m_black);
+		_118->setWhite(_1D4.mWhite);
+		_118->setBlack(_1D4.mBlack);
 		_11C->_104 = _1D4._00;
 		_11C->_108 = _1D4._04;
-		_11C->setWhite(_1D4.m_white);
-		_11C->setBlack(_1D4.m_black);
+		_11C->setWhite(_1D4.mWhite);
+		_11C->setBlack(_1D4.mBlack);
 		_120->_104 = _1C4._00;
 		_120->_108 = _1C4._04;
-		_120->setWhite(_1C4.m_white);
-		_120->setBlack(_1C4.m_black);
+		_120->setWhite(_1C4.mWhite);
+		_120->setBlack(_1C4.mBlack);
 		break;
 	default:
 		break;
 	}
 #endif
 	for (int i = 0; i < 10; i++) {
-		if (i < _0C8.m_bgmVolume) {
-			_154[i]->m_isVisible = true;
+		if (i < _0C8.mBgmVolume) {
+			_154[i]->mIsVisible = true;
 			_154[i]->setAlpha(0xff);
 		} else {
-			_154[i]->m_isVisible = false;
+			_154[i]->mIsVisible = false;
 		}
 	}
 	for (int i = 0; i < 10; i++) {
-		if (i < _0C8.m_seVolume) {
-			_12C[i]->m_isVisible = true;
+		if (i < _0C8.mSeVolume) {
+			_12C[i]->mIsVisible = true;
 			_12C[i]->setAlpha(0xff);
 		} else {
-			_12C[i]->m_isVisible = false;
+			_12C[i]->mIsVisible = false;
 		}
 	}
-	// if (_0C8.m_isDeflicker) {
+	// if (_0C8.mIsDeflicker) {
 	// 	_124->_104.channels = JUtility::TColor(_1C4._00).channels;
 	// 	_124->_108.channels = JUtility::TColor(_1C4._04).channels;
-	// 	_124->setWhite(JUtility::TColor(_1C4.m_white));
-	// 	_124->setBlack(JUtility::TColor(_1C4.m_black));
+	// 	_124->setWhite(JUtility::TColor(_1C4.mWhite));
+	// 	_124->setBlack(JUtility::TColor(_1C4.mBlack));
 	// 	_128->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_128->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_128->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_128->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_128->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_128->setBlack(JUtility::TColor(_1D4.mBlack));
 	// } else {
 	// 	_124->_104.channels = JUtility::TColor(_1D4._00).channels;
 	// 	_124->_108.channels = JUtility::TColor(_1D4._04).channels;
-	// 	_124->setWhite(JUtility::TColor(_1D4.m_white));
-	// 	_124->setBlack(JUtility::TColor(_1D4.m_black));
+	// 	_124->setWhite(JUtility::TColor(_1D4.mWhite));
+	// 	_124->setBlack(JUtility::TColor(_1D4.mBlack));
 	// 	_128->_104.channels = JUtility::TColor(_1C4._00).channels;
 	// 	_128->_108.channels = JUtility::TColor(_1C4._04).channels;
-	// 	_128->setWhite(JUtility::TColor(_1C4.m_white));
-	// 	_128->setBlack(JUtility::TColor(_1C4.m_black));
+	// 	_128->setWhite(JUtility::TColor(_1C4.mWhite));
+	// 	_128->setBlack(JUtility::TColor(_1C4.mBlack));
 	// }
-	if (_0C8.m_isDeflicker) {
+	if (_0C8.mIsDeflicker) {
 		_124->_104 = _1C4._00;
 		_124->_108 = _1C4._04;
-		_124->setWhite(_1C4.m_white);
-		_124->setBlack(_1C4.m_black);
+		_124->setWhite(_1C4.mWhite);
+		_124->setBlack(_1C4.mBlack);
 		_128->_104 = _1D4._00;
 		_128->_108 = _1D4._04;
-		_128->setWhite(_1D4.m_white);
-		_128->setBlack(_1D4.m_black);
+		_128->setWhite(_1D4.mWhite);
+		_128->setBlack(_1D4.mBlack);
 	} else {
 		_124->_104 = _1D4._00;
 		_124->_108 = _1D4._04;
-		_124->setWhite(_1D4.m_white);
-		_124->setBlack(_1D4.m_black);
+		_124->setWhite(_1D4.mWhite);
+		_124->setBlack(_1D4.mBlack);
 		_128->_104 = _1C4._00;
 		_128->_108 = _1C4._04;
-		_128->setWhite(_1C4.m_white);
-		_128->setBlack(_1C4.m_black);
+		_128->setWhite(_1C4.mWhite);
+		_128->setBlack(_1C4.mBlack);
 	}
 	switch (_104) {
 	case 0:
@@ -2808,27 +2808,27 @@ void TOption::setOptionParamToScreen_()
 		_28C._18 = nullptr;
 		break;
 	case 2:
-		_240._18 = _118 + _0C8.m_soundMode;
+		_240._18 = _118 + _0C8.mSoundMode;
 		_28C._18 = nullptr;
 		break;
 	case 3:
 		_240._18 = nullptr;
-		if (_0C8.m_bgmVolume == 0) {
+		if (_0C8.mBgmVolume == 0) {
 			_28C._18 = nullptr;
 		} else {
-			_28C._18 = _12C[9 + _0C8.m_bgmVolume];
+			_28C._18 = _12C[9 + _0C8.mBgmVolume];
 		}
 		break;
 	case 4:
 		_240._18 = nullptr;
-		if (_0C8.m_seVolume == 0) {
+		if (_0C8.mSeVolume == 0) {
 			_28C._18 = nullptr;
 		} else {
-			_28C._18 = _128 + _0C8.m_seVolume;
+			_28C._18 = _128 + _0C8.mSeVolume;
 		}
 		break;
 	case 5:
-		if (_0C8.m_isDeflicker) {
+		if (_0C8.mIsDeflicker) {
 			_240._18 = _124;
 		} else {
 			_240._18 = _128;

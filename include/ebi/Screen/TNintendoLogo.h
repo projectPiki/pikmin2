@@ -14,7 +14,7 @@ struct TNintendoLogo : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
-	P2DScreen::Mgr_tuning* m_mgrTuning; // _0C
+	P2DScreen::Mgr_tuning* mMgrTuning; // _0C
 };
 } // namespace Screen
 } // namespace ebi

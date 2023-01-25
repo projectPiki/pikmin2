@@ -28,8 +28,8 @@ char Stream::skipSpace()
 	char byte;
 	bool isComment = false;
 
-	m_bufferPos = 0;
-	if (m_mode == STREAM_MODE_TEXT) {
+	mBufferPos = 0;
+	if (mMode == STREAM_MODE_TEXT) {
 		// check we're not at the end of the file
 		while (!eof()) {
 			char byte = _readByte(); // at 0x8
@@ -74,12 +74,12 @@ inline void Stream::copyToTextBuffer()
 	// panic if we hit eof
 	char nextByte;
 
-	m_buffer[m_bufferPos++] = skipSpace();
+	mBuffer[mBufferPos++] = skipSpace();
 	while (!eof()) {
 		nextByte = _readByte(); // at 0xA
 		// if we hit a newline, whitespace, hash, { or }, put 0s until we hit something else
 		if (isSpace(nextByte)) {
-			m_buffer[m_bufferPos++] = 0;
+			mBuffer[mBufferPos++] = 0;
 			// check if comment line
 			if (nextByte == '#') {
 				while (!eof()) {
@@ -97,7 +97,7 @@ inline void Stream::copyToTextBuffer()
 			return;
 		} else { // we hit something else!
 
-			m_buffer[m_bufferPos++] = nextByte;
+			mBuffer[mBufferPos++] = nextByte;
 
 			// if we hit a 0, exit
 			if (!nextByte) {
@@ -123,7 +123,7 @@ char* Stream::getNextToken()
 	//     - returns null pointer
 
 	// if we're in binary mode, exit
-	if (m_mode == STREAM_MODE_BINARY) {
+	if (mMode == STREAM_MODE_BINARY) {
 		return 0;
 	}
 
@@ -131,7 +131,7 @@ char* Stream::getNextToken()
 	copyToTextBuffer();
 
 	// return a pointer to beginning of buffer
-	return m_buffer;
+	return mBuffer;
 }
 
 /*
@@ -142,12 +142,12 @@ char* Stream::getNextToken()
 void Stream::textBeginGroup(char* groupName)
 {
 	// if in text mode, write 'beginning' characters
-	if (m_mode != STREAM_MODE_BINARY) {
-		textWriteTab(m_tabCount);
+	if (mMode != STREAM_MODE_BINARY) {
+		textWriteTab(mTabCount);
 		textWriteText("# %s\r\n", groupName);
-		textWriteTab(m_tabCount);
+		textWriteTab(mTabCount);
 		textWriteText("{\r\n");
-		m_tabCount++;
+		mTabCount++;
 	}
 }
 
@@ -159,9 +159,9 @@ void Stream::textBeginGroup(char* groupName)
 void Stream::textEndGroup()
 {
 	// if in text mode, write 'ending' characters
-	if (m_mode != STREAM_MODE_BINARY) {
-		m_tabCount--;
-		textWriteTab(m_tabCount);
+	if (mMode != STREAM_MODE_BINARY) {
+		mTabCount--;
+		textWriteTab(mTabCount);
 		textWriteText("}\r\n");
 	}
 }
@@ -204,7 +204,7 @@ void Stream::textWriteText(char* format, ...)
 	char tempText[0x400];
 	va_list args;
 
-	if (m_mode != STREAM_MODE_BINARY) {
+	if (mMode != STREAM_MODE_BINARY) {
 		va_start(args, format);
 		vsprintf(tempText, format, args);
 
@@ -253,7 +253,7 @@ void Stream::skipReading(u32 len)
 	// this version comes with a length 'len' for binary mode
 
 	// check mode
-	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode
+	if (mMode == STREAM_MODE_TEXT) { // we're in text mode
 		// 'skip' through, but need to look out for new lines
 		while (!eof()) {
 			s8 currByte = _readByte();
@@ -285,7 +285,7 @@ void Stream::skipReadingText()
 	// this version doesn't come with a length for binary mode
 
 	// check mode
-	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode
+	if (mMode == STREAM_MODE_TEXT) { // we're in text mode
 		// 'skip' through, but need to look out for 0xD and 0xA markers
 		while (!eof()) {
 			s8 currByte = _readByte();
@@ -334,7 +334,7 @@ void Stream::skipReadingText()
  */
 void Stream::textWriteTab(int tabCount)
 {
-	if (m_mode == 1) {
+	if (mMode == 1) {
 		for (int i = 0; i < tabCount; i++) {
 			_writeByte('\t');
 		}
@@ -356,7 +356,7 @@ u8 Stream::readByte()
 	int scanOut;
 
 	// check if we're in text mode or binary mode
-	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
+	if (mMode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
 
 		char* nextToken = getNextToken();
 		// if we have a null pointer, panic
@@ -386,7 +386,7 @@ u8 Stream::_readByte()
 
 	u8 currByte;
 	read(&currByte, 1);
-	m_position++;
+	mPosition++;
 	return currByte;
 }
 
@@ -404,7 +404,7 @@ short Stream::readShort()
 
 	u16 outVal;
 
-	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
+	if (mMode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
 
 		char* nextToken = getNextToken();
 		// if we have a null pointer, panic
@@ -421,9 +421,9 @@ short Stream::readShort()
 
 	// we're in binary mode, who needs checks
 	read(&outVal, 2);
-	m_position += 2;
+	mPosition += 2;
 	// swap endian if necessary
-	if (m_endian != STREAM_BIG_ENDIAN) {
+	if (mEndian != STREAM_BIG_ENDIAN) {
 		u32 byte1 = (outVal >> 8) & 0x000000FF;
 		u32 byte2 = (outVal << 8) & 0x0000FF00;
 		outVal    = (byte2 | byte1);
@@ -446,7 +446,7 @@ int Stream::readInt()
 
 	int outVal;
 
-	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
+	if (mMode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
 
 		char* nextToken = getNextToken();
 
@@ -463,9 +463,9 @@ int Stream::readInt()
 
 	// we're in binary mode, who needs checks
 	read(&outVal, 4);
-	m_position += 4;
+	mPosition += 4;
 	// swap endian if necessary
-	if (m_endian != STREAM_BIG_ENDIAN) {
+	if (mEndian != STREAM_BIG_ENDIAN) {
 		int byte1 = ((u32)outVal >> 24) & 0x000000FF;
 		int byte2 = ((u32)outVal >> 8) & 0x0000FF00;
 		int byte3 = ((u32)outVal << 8) & 0x00FF0000;
@@ -490,7 +490,7 @@ float Stream::readFloat()
 	float outFloat;
 	int outInt;
 
-	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
+	if (mMode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
 		char* nextToken = getNextToken();
 
 		// if we have a null pointer, panic
@@ -506,9 +506,9 @@ float Stream::readFloat()
 
 	// we're in binary mode, who needs checks
 	read(&outFloat, 4);
-	m_position += 4;
+	mPosition += 4;
 	// swap endian if necessary
-	if (m_endian != STREAM_BIG_ENDIAN) {
+	if (mEndian != STREAM_BIG_ENDIAN) {
 		int outInt = *(u32*)&outFloat;
 		int byte1  = ((u32)outInt >> 24) & 0x000000FF;
 		int byte2  = ((u32)outInt >> 8) & 0x0000FF00;
@@ -535,7 +535,7 @@ char* Stream::readString(char* str, int strLength)
 
 	char* outStr;
 
-	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
+	if (mMode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
 
 		// get text
 		char* nextToken = getNextToken();
@@ -616,7 +616,7 @@ void Stream::writeString(char* inputStr)
 		_writeByte(inputStr[i]);
 	}
 
-	if (m_mode == STREAM_MODE_TEXT) {
+	if (mMode == STREAM_MODE_TEXT) {
 		// end text mode output with space
 		printf(" ");
 		return;
@@ -647,11 +647,11 @@ void Stream::writeByte(u8 c)
 	// write next byte + increment position
 	// check if we're in text or binary and write "%d " if in text
 	u8 buffer = c;
-	if (m_mode == 1) {
+	if (mMode == 1) {
 		printf("%d ", c);
 	} else {
 		write(&buffer, 1);
-		m_position++;
+		mPosition++;
 	}
 }
 
@@ -666,7 +666,7 @@ void Stream::_writeByte(u8 c)
 	// no checks for mode type
 	u8 buffer = c;
 	write(&buffer, 1);
-	m_position++;
+	mPosition++;
 }
 
 /*
@@ -681,20 +681,20 @@ void Stream::writeShort(short inputShort)
 
 	// by default, value to write should be inputShort
 	s16 outVal = inputShort;
-	if (m_mode == STREAM_MODE_TEXT) {
+	if (mMode == STREAM_MODE_TEXT) {
 		// in text mode, write with "%d "
 		printf("%d ", inputShort);
 		return;
 	}
 	// make sure stream value is big endian
-	if (m_endian != STREAM_BIG_ENDIAN) {
+	if (mEndian != STREAM_BIG_ENDIAN) {
 		// if it's not big endian, swap bytes to make it big endian
 		outVal = bswap16((s16)inputShort);
 	}
 
 	// write short (2 bytes) and increment stream position
 	write(&outVal, 2);
-	m_position += 2;
+	mPosition += 2;
 }
 
 /*
@@ -709,13 +709,13 @@ void Stream::writeInt(int inputInt)
 
 	// by default, value to write should be inputInt
 	int outVal = inputInt;
-	if (m_mode == STREAM_MODE_TEXT) {
+	if (mMode == STREAM_MODE_TEXT) {
 		// in text mode, write with "%d "
 		printf("%d ", inputInt);
 		return;
 	}
 	// make sure stream value is big endian
-	if (m_endian != STREAM_BIG_ENDIAN) {
+	if (mEndian != STREAM_BIG_ENDIAN) {
 		// if it's not big endian, swap bytes to make it big endian
 		int byte1 = ((u32)inputInt >> 24) & 0x000000FF;
 		int byte2 = ((u32)inputInt >> 8) & 0x0000FF00;
@@ -725,7 +725,7 @@ void Stream::writeInt(int inputInt)
 	}
 	// write int (4 bytes) and increment stream position
 	write(&outVal, 4);
-	m_position += 4;
+	mPosition += 4;
 }
 
 /*
@@ -739,13 +739,13 @@ void Stream::writeFloat(float inputFloat)
 	// need to handle text and binary mode differently
 
 	// by default, value to write should be inputFloat
-	if (m_mode == STREAM_MODE_TEXT) {
+	if (mMode == STREAM_MODE_TEXT) {
 		// in text mode, write with "%f "
 		printf("%f ", inputFloat);
 		return;
 	}
 	// check if stream value is big endian
-	if (m_endian != STREAM_BIG_ENDIAN) {
+	if (mEndian != STREAM_BIG_ENDIAN) {
 		// if it's not big endian, swap bytes
 		u32 data   = *(u32*)&inputFloat;
 		int byte1  = (data >> 24) & 0x000000FF;
@@ -755,13 +755,13 @@ void Stream::writeFloat(float inputFloat)
 		int intVal = (byte4 | byte3 | byte2 | byte1);
 		// write float (4 bytes) and increment stream position
 		write(&intVal, 4);
-		m_position += 4;
+		mPosition += 4;
 		return;
 	}
 
 	// write float (4 bytes) and increment stream position
 	write(&inputFloat, 4);
-	m_position += 4;
+	mPosition += 4;
 }
 
 /*
@@ -771,9 +771,9 @@ void Stream::writeFloat(float inputFloat)
  */
 RamStream::RamStream(void* RamBufferPtr, int bounds)
 {
-	m_ramBufferStart = RamBufferPtr;
-	m_bounds         = bounds;
-	m_position       = 0;
+	mRamBufferStart = RamBufferPtr;
+	mBounds         = bounds;
+	mPosition       = 0;
 }
 
 /*
@@ -794,10 +794,10 @@ RamStream::RamStream(void* RamBufferPtr, int bounds)
 void RamStream::read(void* destMem, int numBytes)
 {
 	if (eof()) { // if we're past the end of the file, panic
-		JUT_PANICLINE(523, "RamStream::read out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
+		JUT_PANICLINE(523, "RamStream::read out of bounds (pos=%d,bound=%d)\n", mPosition, mBounds);
 	}
-	// read numBytes bytes from m_ramBufferStart + m_position to destMem in mem
-	memcpy(destMem, ((u8*)m_ramBufferStart) + m_position, numBytes);
+	// read numBytes bytes from mRamBufferStart + mPosition to destMem in mem
+	memcpy(destMem, ((u8*)mRamBufferStart) + mPosition, numBytes);
 }
 
 /*
@@ -809,10 +809,10 @@ void RamStream::read(void* destMem, int numBytes)
 void RamStream::write(void* srcMem, int numBytes)
 {
 	if (eof()) { // if we're past the end of the file, panic
-		JUT_PANICLINE(534, "RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
+		JUT_PANICLINE(534, "RamStream::write out of bounds (pos=%d,bound=%d)\n", mPosition, mBounds);
 	}
-	// write numBytes bytes from srcMem to m_ramBufferStart + m_position
-	memcpy(((u8*)m_ramBufferStart) + m_position, srcMem, numBytes);
+	// write numBytes bytes from srcMem to mRamBufferStart + mPosition
+	memcpy(((u8*)mRamBufferStart) + mPosition, srcMem, numBytes);
 }
 
 /*
@@ -823,8 +823,8 @@ void RamStream::write(void* srcMem, int numBytes)
 bool RamStream::eof()
 {
 	// check if we're at the end of the 'file'
-	if (m_bounds != -1) {
-		return (m_bounds <= m_position);
+	if (mBounds != -1) {
+		return (mBounds <= mPosition);
 	}
 	return 0;
 }

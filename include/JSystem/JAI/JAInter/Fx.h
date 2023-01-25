@@ -10,12 +10,12 @@ namespace Fx {
  * @fabricated
  */
 struct Init {
-	u32 m_sceneMax;             // _00
-	u32 m_bufferMax1;           // _04
-	u32 m_bufferMax2;           // _08
-	u32 m_bufferMax3;           // _0C
-	u32 m_bufferMax4;           // _10
-	s32* m_scenePointerOffsets; // _14
+	u32 mSceneMax;             // _00
+	u32 mBufferMax1;           // _04
+	u32 mBufferMax2;           // _08
+	u32 mBufferMax3;           // _0C
+	u32 mBufferMax4;           // _10
+	s32* mScenePointerOffsets; // _14
 };
 
 void init();

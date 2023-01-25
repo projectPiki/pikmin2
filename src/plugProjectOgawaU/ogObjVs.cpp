@@ -217,73 +217,73 @@ namespace newScreen {
  */
 ObjVs::ObjVs(char const* name)
 {
-	m_fadeLevel = 0.0f;
-	m_scale     = 0.0f;
-	m_name      = name;
-	m_disp      = nullptr;
-	m_bloGroup  = nullptr;
+	mFadeLevel = 0.0f;
+	mScale     = 0.0f;
+	mName      = name;
+	mDisp      = nullptr;
+	mBloGroup  = nullptr;
 
-	m_pane_bedama1P[0]    = nullptr;
-	m_pane_nodama1P[0]    = nullptr;
-	m_pane_bedama2P[0]    = nullptr;
-	m_pane_nodama2P[0]    = nullptr;
-	m_scaleMgrP1_1[0]     = nullptr;
-	m_scaleMgrP2_1[0]     = nullptr;
-	m_scaleMgrP1_2[0]     = nullptr;
-	m_scaleMgrP2_2[0]     = nullptr;
-	m_bedamaGotFlagsP1[0] = false;
-	m_bedamaGotFlagsP2[0] = false;
+	mPane_bedama1P[0]    = nullptr;
+	mPane_nodama1P[0]    = nullptr;
+	mPane_bedama2P[0]    = nullptr;
+	mPane_nodama2P[0]    = nullptr;
+	mScaleMgrP1_1[0]     = nullptr;
+	mScaleMgrP2_1[0]     = nullptr;
+	mScaleMgrP1_2[0]     = nullptr;
+	mScaleMgrP2_2[0]     = nullptr;
+	mBedamaGotFlagsP1[0] = false;
+	mBedamaGotFlagsP2[0] = false;
 
-	m_pane_bedama1P[1]    = nullptr;
-	m_pane_nodama1P[1]    = nullptr;
-	m_pane_bedama2P[1]    = nullptr;
-	m_pane_nodama2P[1]    = nullptr;
-	m_scaleMgrP1_1[1]     = nullptr;
-	m_scaleMgrP2_1[1]     = nullptr;
-	m_scaleMgrP1_2[1]     = nullptr;
-	m_scaleMgrP2_2[1]     = nullptr;
-	m_bedamaGotFlagsP1[1] = false;
-	m_bedamaGotFlagsP2[1] = false;
+	mPane_bedama1P[1]    = nullptr;
+	mPane_nodama1P[1]    = nullptr;
+	mPane_bedama2P[1]    = nullptr;
+	mPane_nodama2P[1]    = nullptr;
+	mScaleMgrP1_1[1]     = nullptr;
+	mScaleMgrP2_1[1]     = nullptr;
+	mScaleMgrP1_2[1]     = nullptr;
+	mScaleMgrP2_2[1]     = nullptr;
+	mBedamaGotFlagsP1[1] = false;
+	mBedamaGotFlagsP2[1] = false;
 
-	m_pane_bedama1P[2]    = nullptr;
-	m_pane_nodama1P[2]    = nullptr;
-	m_pane_bedama2P[2]    = nullptr;
-	m_pane_nodama2P[2]    = nullptr;
-	m_scaleMgrP1_1[2]     = nullptr;
-	m_scaleMgrP2_1[2]     = nullptr;
-	m_scaleMgrP1_2[2]     = nullptr;
-	m_scaleMgrP2_2[2]     = nullptr;
-	m_bedamaGotFlagsP1[2] = false;
-	m_bedamaGotFlagsP2[2] = false;
+	mPane_bedama1P[2]    = nullptr;
+	mPane_nodama1P[2]    = nullptr;
+	mPane_bedama2P[2]    = nullptr;
+	mPane_nodama2P[2]    = nullptr;
+	mScaleMgrP1_1[2]     = nullptr;
+	mScaleMgrP2_1[2]     = nullptr;
+	mScaleMgrP1_2[2]     = nullptr;
+	mScaleMgrP2_2[2]     = nullptr;
+	mBedamaGotFlagsP1[2] = false;
+	mBedamaGotFlagsP2[2] = false;
 
-	m_pane_bedama1P[3]    = nullptr;
-	m_pane_nodama1P[3]    = nullptr;
-	m_pane_bedama2P[3]    = nullptr;
-	m_pane_nodama2P[3]    = nullptr;
-	m_scaleMgrP1_1[3]     = nullptr;
-	m_scaleMgrP2_1[3]     = nullptr;
-	m_scaleMgrP1_2[3]     = nullptr;
-	m_scaleMgrP2_2[3]     = nullptr;
-	m_bedamaGotFlagsP1[3] = false;
-	m_bedamaGotFlagsP2[3] = false;
+	mPane_bedama1P[3]    = nullptr;
+	mPane_nodama1P[3]    = nullptr;
+	mPane_bedama2P[3]    = nullptr;
+	mPane_nodama2P[3]    = nullptr;
+	mScaleMgrP1_1[3]     = nullptr;
+	mScaleMgrP2_1[3]     = nullptr;
+	mScaleMgrP1_2[3]     = nullptr;
+	mScaleMgrP2_2[3]     = nullptr;
+	mBedamaGotFlagsP1[3] = false;
+	mBedamaGotFlagsP2[3] = false;
 
-	m_finishTimer      = 4.01667f;
-	m_doneState        = 0;
-	m_hasAllBedamaP1   = false;
-	m_hasAllBedamaP2   = false;
-	m_firstBedamaGetP1 = false;
-	m_firstBedamaGetP2 = false;
-	m_bedamaGetTimer   = 0.05f;
-	m_screenIcons      = nullptr;
-	m_setBedamaFlag    = true;
-	m_paneObake1P      = nullptr;
-	m_paneObake2P      = nullptr;
-	m_alphaObakeP1     = 0.0f;
-	m_alphaObakeP2     = 0.0f;
-	m_obakeEnabledP1   = false;
-	m_obakeEnabledP2   = false;
-	m_obakeMovePos     = 0.0f;
-	m_playWinSound     = false;
+	mFinishTimer      = 4.01667f;
+	mDoneState        = 0;
+	mHasAllBedamaP1   = false;
+	mHasAllBedamaP2   = false;
+	mFirstBedamaGetP1 = false;
+	mFirstBedamaGetP2 = false;
+	mBedamaGetTimer   = 0.05f;
+	mScreenIcons      = nullptr;
+	mSetBedamaFlag    = true;
+	mPaneObake1P      = nullptr;
+	mPaneObake2P      = nullptr;
+	mAlphaObakeP1     = 0.0f;
+	mAlphaObakeP2     = 0.0f;
+	mObakeEnabledP1   = false;
+	mObakeEnabledP2   = false;
+	mObakeMovePos     = 0.0f;
+	mPlayWinSound     = false;
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -441,31 +441,31 @@ lbl_80325C2C:
  */
 void ObjVs::doCreate(JKRArchive* arc)
 {
-	m_screenP1 = new ScreenSet;
-	m_screenP2 = new ScreenSet;
+	mScreenP1 = new ScreenSet;
+	mScreenP2 = new ScreenSet;
 
 	og::Screen::DispMemberVs* disp = static_cast<og::Screen::DispMemberVs*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_VS)) {
-		m_disp = disp;
+		mDisp = disp;
 	} else {
 		if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-			m_disp = new og::Screen::DispMemberVs;
+			mDisp = new og::Screen::DispMemberVs;
 		} else {
 			JUT_PANICLINE(246, "ERR! in ObjVS CreateŽ¸”sI\n");
 		}
 	}
 
-	m_bloGroup = new og::Screen::BloGroup(2);
-	m_bloGroup->addBlo("challenge_1P.blo", m_screenP1->m_screen, 0x1040000, arc);
-	m_bloGroup->addBlo("challenge_2P.blo", m_screenP2->m_screen, 0x1040000, arc);
-	m_screenP1->init(&m_disp->m_olimarData, arc, &m_disp->m_redPikminCount);
-	m_screenP2->init(&m_disp->m_louieData, arc, &m_disp->m_bluePikminCount);
+	mBloGroup = new og::Screen::BloGroup(2);
+	mBloGroup->addBlo("challenge_1P.blo", mScreenP1->mScreen, 0x1040000, arc);
+	mBloGroup->addBlo("challenge_2P.blo", mScreenP2->mScreen, 0x1040000, arc);
+	mScreenP1->init(&mDisp->mOlimarData, arc, &mDisp->mRedPikminCount);
+	mScreenP2->init(&mDisp->mLouieData, arc, &mDisp->mBluePikminCount);
 
 	P2DScreen::Mgr_tuning* bdamaScreen = new P2DScreen::Mgr_tuning;
 	bdamaScreen->set("b_dama.blo", 0x1040000, arc);
 
-	P2DScreen::Mgr_tuning* scrn1 = m_screenP1->m_screen;
-	P2DScreen::Mgr_tuning* scrn2 = m_screenP2->m_screen;
+	P2DScreen::Mgr_tuning* scrn1 = mScreenP1->mScreen;
+	P2DScreen::Mgr_tuning* scrn2 = mScreenP2->mScreen;
 
 	J2DPictureEx* paneBdamaR = static_cast<J2DPictureEx*>(bdamaScreen->search('Pb_red'));
 	J2DPictureEx* paneBdamaY = static_cast<J2DPictureEx*>(bdamaScreen->search('Pb_yello'));
@@ -475,41 +475,41 @@ void ObjVs::doCreate(JKRArchive* arc)
 	J2DPane* root = scrn1->search('ROOT');
 	u32 xoffs     = 0;
 	for (int i = 0; i < 4; i++) {
-		m_pane_bedama1P[i]
-		    = og::Screen::CopyPictureToPane(paneBdamaY, root, msVal.m_marbleBaseXOffs + xoffs, msVal.m_marbleP1YOffs, 'bd1P_000' + i);
-		m_pane_nodama1P[i]
-		    = og::Screen::CopyPictureToPane(panePcup, root, msVal.m_marbleBaseXOffs + xoffs, msVal.m_marbleP1YOffs, 'nd1P_000' + i);
-		m_pane_windama1P[i]
-		    = og::Screen::CopyPictureToPane(paneBdamaB, root, msVal.m_marbleBaseXOffs + xoffs, msVal.m_marbleP1YOffs, 'wd1P_000' + i);
-		m_scaleMgrP1_1[i] = new og::Screen::ScaleMgr;
-		m_scaleMgrP1_2[i] = new og::Screen::ScaleMgr;
+		mPane_bedama1P[i]
+		    = og::Screen::CopyPictureToPane(paneBdamaY, root, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP1YOffs, 'bd1P_000' + i);
+		mPane_nodama1P[i]
+		    = og::Screen::CopyPictureToPane(panePcup, root, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP1YOffs, 'nd1P_000' + i);
+		mPane_windama1P[i]
+		    = og::Screen::CopyPictureToPane(paneBdamaB, root, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP1YOffs, 'wd1P_000' + i);
+		mScaleMgrP1_1[i] = new og::Screen::ScaleMgr;
+		mScaleMgrP1_2[i] = new og::Screen::ScaleMgr;
 		xoffs += 40;
-		m_pane_windama1P[i]->hide();
+		mPane_windama1P[i]->hide();
 	}
 
 	J2DPane* root2 = scrn2->search('ROOT');
 	xoffs          = 0;
 	for (int i = 0; i < 4; i++) {
-		m_pane_bedama2P[i]
-		    = og::Screen::CopyPictureToPane(paneBdamaY, root2, msVal.m_marbleBaseXOffs + xoffs, msVal.m_marbleP2YOffs, 'bd2P_000' + i);
-		m_pane_nodama2P[i]
-		    = og::Screen::CopyPictureToPane(panePcup, root2, msVal.m_marbleBaseXOffs + xoffs, msVal.m_marbleP2YOffs, 'nd2P_000' + i);
-		m_pane_windama2P[i]
-		    = og::Screen::CopyPictureToPane(paneBdamaB, root2, msVal.m_marbleBaseXOffs + xoffs, msVal.m_marbleP2YOffs, 'wd2P_000' + i);
-		m_scaleMgrP2_1[i] = new og::Screen::ScaleMgr;
-		m_scaleMgrP2_2[i] = new og::Screen::ScaleMgr;
+		mPane_bedama2P[i]
+		    = og::Screen::CopyPictureToPane(paneBdamaY, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'bd2P_000' + i);
+		mPane_nodama2P[i]
+		    = og::Screen::CopyPictureToPane(panePcup, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'nd2P_000' + i);
+		mPane_windama2P[i]
+		    = og::Screen::CopyPictureToPane(paneBdamaB, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'wd2P_000' + i);
+		mScaleMgrP2_1[i] = new og::Screen::ScaleMgr;
+		mScaleMgrP2_2[i] = new og::Screen::ScaleMgr;
 		xoffs += 40;
-		m_pane_windama2P[i]->hide();
+		mPane_windama2P[i]->hide();
 	}
 
-	m_screenIcons = new P2DScreen::Mgr_tuning;
-	m_screenIcons->set("obake_icon.blo", 0x1040000, arc);
+	mScreenIcons = new P2DScreen::Mgr_tuning;
+	mScreenIcons->set("obake_icon.blo", 0x1040000, arc);
 
-	J2DPictureEx* paneObake = static_cast<J2DPictureEx*>(m_screenIcons->search('obake'));
-	m_paneObake1P           = og::Screen::CopyPictureToPane(paneObake, root, msVal.m_rouletteXOffs, msVal.m_rouletteP1YOffs, 'obake1P');
-	m_paneObake2P           = og::Screen::CopyPictureToPane(paneObake, root, msVal.m_rouletteXOffs, msVal.m_rouletteP2YOffs, 'obake2P');
-	m_paneObake1P->setAlpha(m_alphaObakeP1 * 255.0f);
-	m_paneObake2P->setAlpha(m_alphaObakeP2 * 255.0f);
+	J2DPictureEx* paneObake = static_cast<J2DPictureEx*>(mScreenIcons->search('obake'));
+	mPaneObake1P            = og::Screen::CopyPictureToPane(paneObake, root, msVal.mRouletteXOffs, msVal.mRouletteP1YOffs, 'obake1P');
+	mPaneObake2P            = og::Screen::CopyPictureToPane(paneObake, root, msVal.mRouletteXOffs, msVal.mRouletteP2YOffs, 'obake2P');
+	mPaneObake1P->setAlpha(mAlphaObakeP1 * 255.0f);
+	mPaneObake2P->setAlpha(mAlphaObakeP2 * 255.0f);
 	setOnOffBdama(false);
 	/*
 	stwu     r1, -0x80(r1)
@@ -1126,130 +1126,130 @@ void ObjVs::setOnOffBdama(bool doEfx)
 	bool p2win = false;
 
 	for (int i = 0; i < 4; i++) {
-		f32 scale1 = m_scaleMgrP1_1[i]->calc();
-		f32 scale2 = m_scaleMgrP2_1[i]->calc();
-		f32 scale3 = m_scaleMgrP1_2[i]->calc();
-		f32 scale4 = m_scaleMgrP2_2[i]->calc();
+		f32 scale1 = mScaleMgrP1_1[i]->calc();
+		f32 scale2 = mScaleMgrP2_1[i]->calc();
+		f32 scale3 = mScaleMgrP1_2[i]->calc();
+		f32 scale4 = mScaleMgrP2_2[i]->calc();
 
-		m_pane_windama1P[i]->updateScale(scale3);
-		m_pane_windama2P[i]->updateScale(scale4);
+		mPane_windama1P[i]->updateScale(scale3);
+		mPane_windama2P[i]->updateScale(scale4);
 
-		if (m_disp->m_flags[0] && m_disp->m_marbleCountP1 == i && m_bedamaGetTimer > 0.0f) {
-			m_bedamaGetTimer -= sys->m_deltaTime;
-			if (m_bedamaGetTimer <= 0.0f) {
-				m_pane_windama1P[i]->show();
-				if (!m_firstBedamaGetP1) {
-					m_firstBedamaGetP1 = true;
+		if (mDisp->mFlags[0] && mDisp->mMarbleCountP1 == i && mBedamaGetTimer > 0.0f) {
+			mBedamaGetTimer -= sys->mDeltaTime;
+			if (mBedamaGetTimer <= 0.0f) {
+				mPane_windama1P[i]->show();
+				if (!mFirstBedamaGetP1) {
+					mFirstBedamaGetP1 = true;
 					if (doEfx) {
 						Vector2f pos;
-						og::Screen::calcGlbCenter(m_pane_windama1P[i], &pos);
+						og::Screen::calcGlbCenter(mPane_windama1P[i], &pos);
 
 						efx2d::ArgScaleColorColor arg(&pos, 1.0f, 0x2020ffff, 0x5787ffff);
 						efx2d::T2DSprayset_forVS efx;
 						efx.create(&arg);
 						ogSound->setBdamaGet();
-						m_doneState = 1;
-						m_scaleMgrP1_2[i]->up();
+						mDoneState = 1;
+						mScaleMgrP1_2[i]->up();
 						p1win = true;
 					}
 				}
 			}
 		}
 
-		if (m_disp->m_flags[1] && m_disp->m_marbleCountP2 == i && m_bedamaGetTimer > 0.0f) {
-			m_bedamaGetTimer -= sys->m_deltaTime;
-			if (m_bedamaGetTimer <= 0.0f) {
-				m_pane_windama2P[i]->show();
-				if (!m_firstBedamaGetP2) {
-					m_firstBedamaGetP2 = true;
+		if (mDisp->mFlags[1] && mDisp->mMarbleCountP2 == i && mBedamaGetTimer > 0.0f) {
+			mBedamaGetTimer -= sys->mDeltaTime;
+			if (mBedamaGetTimer <= 0.0f) {
+				mPane_windama2P[i]->show();
+				if (!mFirstBedamaGetP2) {
+					mFirstBedamaGetP2 = true;
 					if (doEfx) {
 						Vector2f pos;
-						og::Screen::calcGlbCenter(m_pane_windama2P[i], &pos);
+						og::Screen::calcGlbCenter(mPane_windama2P[i], &pos);
 
 						efx2d::ArgScaleColorColor arg(&pos, 1.0f, 0xff0000ff, 0xff8787ff);
 						efx2d::T2DSprayset_forVS efx;
 						efx.create(&arg);
 						ogSound->setBdamaGet();
-						m_doneState = 1;
-						m_scaleMgrP2_2[i]->up();
+						mDoneState = 1;
+						mScaleMgrP2_2[i]->up();
 						p2win = true;
 					}
 				}
 			}
 		}
 
-		if (!m_firstBedamaGetP1 && !m_firstBedamaGetP2) {
-			if (m_disp->m_marbleCountP1 > i) {
-				m_pane_nodama1P[i]->hide();
-				m_pane_bedama1P[i]->show();
-				m_pane_bedama1P[i]->updateScale(scale1);
-				if (!m_bedamaGotFlagsP1[i]) {
+		if (!mFirstBedamaGetP1 && !mFirstBedamaGetP2) {
+			if (mDisp->mMarbleCountP1 > i) {
+				mPane_nodama1P[i]->hide();
+				mPane_bedama1P[i]->show();
+				mPane_bedama1P[i]->updateScale(scale1);
+				if (!mBedamaGotFlagsP1[i]) {
 					if (i == 3) {
-						m_doneState = 1;
+						mDoneState = 1;
 					}
-					m_hasAllBedamaP1 = (i == 3);
+					mHasAllBedamaP1 = (i == 3);
 					if (doEfx) {
-						if (m_doneState != 1) {
+						if (mDoneState != 1) {
 							ogSound->setBdamaGet();
 							Vector2f pos;
-							og::Screen::calcGlbCenter(m_pane_bedama1P[i], &pos);
+							og::Screen::calcGlbCenter(mPane_bedama1P[i], &pos);
 
 							efx2d::ArgScaleColorColor arg(&pos, 1.0f, 0xcfcf00ff, 0xe7e757ff);
 							efx2d::T2DSprayset_forVS efx;
 							efx.create(&arg);
 						}
-						m_scaleMgrP1_1[i]->up();
+						mScaleMgrP1_1[i]->up();
 					}
 				}
-				m_bedamaGotFlagsP1[i] = true;
+				mBedamaGotFlagsP1[i] = true;
 			} else {
-				m_pane_bedama1P[i]->hide();
-				m_pane_nodama1P[i]->show();
-				m_pane_nodama1P[i]->updateScale(scale1);
-				m_bedamaGotFlagsP1[i] = false;
+				mPane_bedama1P[i]->hide();
+				mPane_nodama1P[i]->show();
+				mPane_nodama1P[i]->updateScale(scale1);
+				mBedamaGotFlagsP1[i] = false;
 			}
 
-			if (m_disp->m_marbleCountP2 > i) {
-				m_pane_nodama2P[i]->hide();
-				m_pane_bedama2P[i]->show();
-				m_pane_bedama2P[i]->updateScale(scale1);
-				if (!m_bedamaGotFlagsP2[i]) {
+			if (mDisp->mMarbleCountP2 > i) {
+				mPane_nodama2P[i]->hide();
+				mPane_bedama2P[i]->show();
+				mPane_bedama2P[i]->updateScale(scale1);
+				if (!mBedamaGotFlagsP2[i]) {
 					if (i == 3) {
-						m_doneState = 1;
+						mDoneState = 1;
 					}
-					m_hasAllBedamaP2 = (i == 3);
+					mHasAllBedamaP2 = (i == 3);
 					if (doEfx) {
-						if (m_doneState != 1) {
+						if (mDoneState != 1) {
 							ogSound->setBdamaGet();
 							Vector2f pos;
-							og::Screen::calcGlbCenter(m_pane_bedama2P[i], &pos);
+							og::Screen::calcGlbCenter(mPane_bedama2P[i], &pos);
 
 							efx2d::ArgScaleColorColor arg(&pos, 1.0f, 0xcfcf00ff, 0xe7e757ff);
 							efx2d::T2DSprayset_forVS efx;
 							efx.create(&arg);
 						}
-						m_scaleMgrP2_1[i]->up();
+						mScaleMgrP2_1[i]->up();
 					}
 				}
-				m_bedamaGotFlagsP2[i] = true;
+				mBedamaGotFlagsP2[i] = true;
 			} else {
-				m_pane_bedama2P[i]->hide();
-				m_pane_nodama2P[i]->show();
-				m_pane_nodama2P[i]->updateScale(scale2);
-				m_bedamaGotFlagsP2[i] = false;
+				mPane_bedama2P[i]->hide();
+				mPane_nodama2P[i]->show();
+				mPane_nodama2P[i]->updateScale(scale2);
+				mBedamaGotFlagsP2[i] = false;
 			}
 		}
 	}
 
-	if (m_hasAllBedamaP1 && m_bedamaGetTimer > 0.0f) {
-		m_bedamaGetTimer -= sys->m_deltaTime;
-		if (m_bedamaGetTimer < 0.0f && doEfx) {
+	if (mHasAllBedamaP1 && mBedamaGetTimer > 0.0f) {
+		mBedamaGetTimer -= sys->mDeltaTime;
+		if (mBedamaGetTimer < 0.0f && doEfx) {
 			ogSound->setBdamaGet();
 			f32 scale = 0.6f;
 			for (int i = 0; i < 4; i++) {
-				m_scaleMgrP1_1[i]->up();
+				mScaleMgrP1_1[i]->up();
 				Vector2f pos;
-				og::Screen::calcGlbCenter(m_pane_bedama1P[i], &pos);
+				og::Screen::calcGlbCenter(mPane_bedama1P[i], &pos);
 
 				efx2d::ArgScale arg(&pos, scale);
 				efx2d::T2DSensorGet_forVS efx;
@@ -1259,15 +1259,15 @@ void ObjVs::setOnOffBdama(bool doEfx)
 		}
 	}
 
-	if (m_hasAllBedamaP2 && m_bedamaGetTimer > 0.0f) {
-		m_bedamaGetTimer -= sys->m_deltaTime;
-		if (m_bedamaGetTimer < 0.0f && doEfx) {
+	if (mHasAllBedamaP2 && mBedamaGetTimer > 0.0f) {
+		mBedamaGetTimer -= sys->mDeltaTime;
+		if (mBedamaGetTimer < 0.0f && doEfx) {
 			ogSound->setBdamaGet();
 			f32 scale = 0.6f;
 			for (int i = 0; i < 4; i++) {
-				m_scaleMgrP2_1[i]->up();
+				mScaleMgrP2_1[i]->up();
 				Vector2f pos;
-				og::Screen::calcGlbCenter(m_pane_bedama2P[i], &pos);
+				og::Screen::calcGlbCenter(mPane_bedama2P[i], &pos);
 
 				efx2d::ArgScale arg(&pos, scale);
 				efx2d::T2DSensorGet_forVS efx;
@@ -1277,15 +1277,15 @@ void ObjVs::setOnOffBdama(bool doEfx)
 		}
 	}
 
-	if (!m_playWinSound) {
+	if (!mPlayWinSound) {
 		if (p1win && p2win) {
-			m_playWinSound = true;
+			mPlayWinSound = true;
 			ogSound->setVsDraw();
 		} else if (p1win) {
-			m_playWinSound = true;
+			mPlayWinSound = true;
 			ogSound->setVsWin1P();
 		} else if (p2win) {
-			m_playWinSound = true;
+			mPlayWinSound = true;
 			ogSound->setVsWin2P();
 		}
 	}
@@ -1991,30 +1991,30 @@ lbl_80326E3C:
 void ObjVs::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc, u32* pikis)
 {
 	og::Screen::CallBack_CatchPiki* cpiki = new og::Screen::CallBack_CatchPiki;
-	cpiki->init(m_screen, 'piki', &data->m_nextThrowPiki, arc);
-	m_screen->addCallBack('piki', cpiki);
+	cpiki->init(mScreen, 'piki', &data->mNextThrowPiki, arc);
+	mScreen->addCallBack('piki', cpiki);
 
-	og::Screen::setCallBack_CounterRV(m_screen, 'c_mr', 'c_ml', 'c_ml', &data->m_followPikis, 3, 2, 1, arc);
+	og::Screen::setCallBack_CounterRV(mScreen, 'c_mr', 'c_ml', 'c_ml', &data->mFollowPikis, 3, 2, 1, arc);
 
-	og::Screen::CallBack_CounterRV* counter = og::Screen::setCallBack_CounterRV(m_screen, 'c_lr', 'c_ll', 'c_ll', pikis, 3, 2, 1, arc);
-	counter->m_scaleUpSoundID               = PSSE_SY_PIKI_INCREMENT;
-	counter->m_scaleDownSoundID             = PSSE_SY_PIKI_DECREMENT;
+	og::Screen::CallBack_CounterRV* counter = og::Screen::setCallBack_CounterRV(mScreen, 'c_lr', 'c_ll', 'c_ll', pikis, 3, 2, 1, arc);
+	counter->mScaleUpSoundID                = PSSE_SY_PIKI_INCREMENT;
+	counter->mScaleDownSoundID              = PSSE_SY_PIKI_DECREMENT;
 
-	counter = og::Screen::setCallBack_CounterRV(m_screen, 'dr_r', 'dr_l', 'dr_l', &data->m_dope1Count, 3, 2, 1, arc);
+	counter = og::Screen::setCallBack_CounterRV(mScreen, 'dr_r', 'dr_l', 'dr_l', &data->mDope1Count, 3, 2, 1, arc);
 	counter->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
-	m_screen->search('dr_c')->hide();
+	mScreen->search('dr_c')->hide();
 
-	counter = og::Screen::setCallBack_CounterRV(m_screen, 'dy_r', 'dy_l', 'dy_l', &data->m_dope0Count, 3, 2, 1, arc);
+	counter = og::Screen::setCallBack_CounterRV(mScreen, 'dy_r', 'dy_l', 'dy_l', &data->mDope0Count, 3, 2, 1, arc);
 	counter->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
-	m_screen->search('dy_c')->hide();
+	mScreen->search('dy_c')->hide();
 
-	m_paneToyo01 = og::Screen::TagSearch(m_screen, 'toyo_01');
-	m_paneToyo00 = og::Screen::TagSearch(m_screen, 'toyo_00');
-	m_doping->init(m_paneToyo01, m_paneToyo00, m_scaleMgr1, m_scaleMgr2);
-	m_lifeGauge->init(m_screen, data, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
-	m_screen->addCallBack('back', m_lifeGauge);
-	m_lifeGauge->setOffset(msVal.m_lifeGaugeXOffs, msVal.m_lifeGaugeYOffs);
-	og::Screen::setCallBack_DrawAfter(m_screen, 'mete');
+	mPaneToyo01 = og::Screen::TagSearch(mScreen, 'toyo_01');
+	mPaneToyo00 = og::Screen::TagSearch(mScreen, 'toyo_00');
+	mDoping->init(mPaneToyo01, mPaneToyo00, mScaleMgr1, mScaleMgr2);
+	mLifeGauge->init(mScreen, data, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
+	mScreen->addCallBack('back', mLifeGauge);
+	mLifeGauge->setOffset(msVal.mLifeGaugeXOffs, msVal.mLifeGaugeYOffs);
+	og::Screen::setCallBack_DrawAfter(mScreen, 'mete');
 
 	/*
 	.loc_0x0:
@@ -2204,20 +2204,20 @@ void ObjVs::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc, u32* pi
  */
 void ObjVs::ScreenSet::update(og::Screen::DataNavi& data)
 {
-	f32 scale1 = m_scaleMgr1->calc();
-	f32 scale2 = m_scaleMgr2->calc();
-	if (m_paneToyo01)
-		m_paneToyo01->updateScale(scale1);
-	if (m_paneToyo00)
-		m_paneToyo00->updateScale(scale2);
+	f32 scale1 = mScaleMgr1->calc();
+	f32 scale2 = mScaleMgr2->calc();
+	if (mPaneToyo01)
+		mPaneToyo01->updateScale(scale1);
+	if (mPaneToyo00)
+		mPaneToyo00->updateScale(scale2);
 
-	og::Screen::DopingCheck* dope = m_doping;
-	dope->m_naviLifeRatio         = data.m_naviLifeRatio;
-	dope->m_followPiki            = data.m_followPikis;
-	dope->m_nextThrowPiki         = data.m_nextThrowPiki;
-	dope->m_spicySprayCount       = data.m_dope1Count;
-	dope->m_bitterSprayCount      = data.m_dope0Count;
-	dope->m_activeNaviID          = data.m_activeNaviID;
+	og::Screen::DopingCheck* dope = mDoping;
+	dope->mNaviLifeRatio          = data.mNaviLifeRatio;
+	dope->mFollowPiki             = data.mFollowPikis;
+	dope->mNextThrowPiki          = data.mNextThrowPiki;
+	dope->mSpicySprayCount        = data.mDope1Count;
+	dope->mBitterSprayCount       = data.mDope0Count;
+	dope->mActiveNaviID           = data.mActiveNaviID;
 	dope->update();
 }
 
@@ -2228,52 +2228,52 @@ void ObjVs::ScreenSet::update(og::Screen::DataNavi& data)
  */
 void ObjVs::checkObake()
 {
-	if (m_obakeEnabledP1) {
-		m_alphaObakeP1 += sys->m_deltaTime;
-		if (m_alphaObakeP1 > 1.0f)
-			m_alphaObakeP1 = 1.0f;
+	if (mObakeEnabledP1) {
+		mAlphaObakeP1 += sys->mDeltaTime;
+		if (mAlphaObakeP1 > 1.0f)
+			mAlphaObakeP1 = 1.0f;
 
-		if (m_disp->m_ghostIconTimerP1 <= 0.0f) {
-			m_obakeEnabledP1 = false;
+		if (mDisp->mGhostIconTimerP1 <= 0.0f) {
+			mObakeEnabledP1 = false;
 		}
 	} else {
-		m_alphaObakeP1 -= sys->m_deltaTime;
-		if (m_alphaObakeP1 < 0.0f)
-			m_alphaObakeP1 = 0.0f;
+		mAlphaObakeP1 -= sys->mDeltaTime;
+		if (mAlphaObakeP1 < 0.0f)
+			mAlphaObakeP1 = 0.0f;
 
-		if (m_disp->m_flags[2]) {
-			m_obakeEnabledP1 = true;
+		if (mDisp->mFlags[2]) {
+			mObakeEnabledP1 = true;
 		}
 	}
 
-	if (m_obakeEnabledP2) {
-		m_alphaObakeP2 += sys->m_deltaTime;
-		if (m_alphaObakeP2 > 1.0f)
-			m_alphaObakeP2 = 1.0f;
+	if (mObakeEnabledP2) {
+		mAlphaObakeP2 += sys->mDeltaTime;
+		if (mAlphaObakeP2 > 1.0f)
+			mAlphaObakeP2 = 1.0f;
 
-		if (m_disp->m_ghostIconTimerP2 <= 0.0f) {
-			m_obakeEnabledP2 = false;
+		if (mDisp->mGhostIconTimerP2 <= 0.0f) {
+			mObakeEnabledP2 = false;
 		}
 	} else {
-		m_alphaObakeP2 -= sys->m_deltaTime;
-		if (m_alphaObakeP2 < 0.0f)
-			m_alphaObakeP2 = 0.0f;
+		mAlphaObakeP2 -= sys->mDeltaTime;
+		if (mAlphaObakeP2 < 0.0f)
+			mAlphaObakeP2 = 0.0f;
 
-		if (m_disp->m_flags[3]) {
-			m_obakeEnabledP2 = true;
+		if (mDisp->mFlags[3]) {
+			mObakeEnabledP2 = true;
 		}
 	}
 
-	f32 calc = m_obakeMovePos * 2.0f;
+	f32 calc = mObakeMovePos * 2.0f;
 	calc     = (pikmin2_sinf(calc) + 1.0f) * 0.5f;
 
 	f32 mod1 = 1.0f;
 	f32 mod2 = 1.0f;
 	f32 angle1, angle2;
-	if (!m_obakeEnabledP1) {
+	if (!mObakeEnabledP1) {
 		angle1 = 0.0f;
 	} else {
-		f32 temp = m_disp->m_ghostIconTimerP1;
+		f32 temp = mDisp->mGhostIconTimerP1;
 		angle1   = 1.0f;
 		if (temp < 10.0f) {
 			angle1 = temp / 10.0f;
@@ -2281,10 +2281,10 @@ void ObjVs::checkObake()
 		}
 	}
 
-	if (!m_obakeEnabledP2) {
+	if (!mObakeEnabledP2) {
 		angle2 = 0.0f;
 	} else {
-		f32 temp = m_disp->m_ghostIconTimerP2;
+		f32 temp = mDisp->mGhostIconTimerP2;
 		angle2   = 1.0f;
 		if (temp < 10.0f) {
 			angle2 = temp / 10.0f;
@@ -2292,25 +2292,25 @@ void ObjVs::checkObake()
 		}
 	}
 
-	m_paneObake1P->setAlpha(m_alphaObakeP1 * 255.0f * mod1);
-	m_paneObake2P->setAlpha(m_alphaObakeP2 * 255.0f * mod2);
+	mPaneObake1P->setAlpha(mAlphaObakeP1 * 255.0f * mod1);
+	mPaneObake2P->setAlpha(mAlphaObakeP2 * 255.0f * mod2);
 
-	m_obakeMovePos += sys->m_deltaTime * TAU;
-	if (m_obakeMovePos > TAU) {
-		m_obakeMovePos -= TAU;
+	mObakeMovePos += sys->mDeltaTime * TAU;
+	if (mObakeMovePos > TAU) {
+		mObakeMovePos -= TAU;
 	}
-	f32 sin = pikmin2_sinf(m_obakeMovePos);
-	f32 cos = pikmin2_cosf(m_obakeMovePos);
-	m_paneObake1P->rotate(angle1 * sin * 20.0f);
-	m_paneObake2P->rotate(angle2 * cos * 20.0f);
+	f32 sin = pikmin2_sinf(mObakeMovePos);
+	f32 cos = pikmin2_cosf(mObakeMovePos);
+	mPaneObake1P->rotate(angle1 * sin * 20.0f);
+	mPaneObake2P->rotate(angle2 * cos * 20.0f);
 
-	m_paneObake1P->setOffset(msVal.m_rouletteXOffs + (pikmin2_sinf(m_obakeMovePos) * angle1) * msVal._2C,
-	                         msVal.m_rouletteP1YOffs + (pikmin2_cosf(m_obakeMovePos) * angle1) * msVal._30);
-	m_paneObake2P->setOffset(msVal.m_rouletteXOffs + (pikmin2_sinf(m_obakeMovePos) * angle2) * msVal._2C,
-	                         msVal.m_rouletteP2YOffs + (pikmin2_cosf(m_obakeMovePos) * angle2) * msVal._30);
+	mPaneObake1P->setOffset(msVal.mRouletteXOffs + (pikmin2_sinf(mObakeMovePos) * angle1) * msVal._2C,
+	                        msVal.mRouletteP1YOffs + (pikmin2_cosf(mObakeMovePos) * angle1) * msVal._30);
+	mPaneObake2P->setOffset(msVal.mRouletteXOffs + (pikmin2_sinf(mObakeMovePos) * angle2) * msVal._2C,
+	                        msVal.mRouletteP2YOffs + (pikmin2_cosf(mObakeMovePos) * angle2) * msVal._30);
 
-	m_paneObake1P->updateScale(msVal.m_rouletteScale);
-	m_paneObake2P->updateScale(msVal.m_rouletteScale);
+	mPaneObake1P->updateScale(msVal.mRouletteScale);
+	mPaneObake2P->updateScale(msVal.mRouletteScale);
 
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2714,26 +2714,26 @@ lbl_803275A4:
  */
 void ObjVs::doUpdateCommon()
 {
-	f32 scale = m_scale * PI;
+	f32 scale = mScale * PI;
 	if (scale < 0.0f)
 		scale = -scale;
 
 	scale = pikmin2_sinf(scale);
-	setOnOffBdama(m_setBedamaFlag);
+	setOnOffBdama(mSetBedamaFlag);
 	checkObake();
-	if (m_doneState == 1) {
-		if (m_finishTimer <= 0.0f)
-			m_doneState = 2;
+	if (mDoneState == 1) {
+		if (mFinishTimer <= 0.0f)
+			mDoneState = 2;
 		else
-			m_finishTimer -= sys->m_deltaTime;
+			mFinishTimer -= sys->mDeltaTime;
 	}
-	m_disp->m_doneState = m_doneState;
-	m_screenP1->update(m_disp->m_olimarData);
-	m_screenP2->update(m_disp->m_louieData);
+	mDisp->mDoneState = mDoneState;
+	mScreenP1->update(mDisp->mOlimarData);
+	mScreenP2->update(mDisp->mLouieData);
 
-	m_screenP1->m_screen->setXY(0.0f, scale * -300.0f);
-	m_screenP2->m_screen->setXY(0.0f, scale * 300.0f);
-	m_bloGroup->update();
+	mScreenP1->mScreen->setXY(0.0f, scale * -300.0f);
+	mScreenP2->mScreen->setXY(0.0f, scale * 300.0f);
+	mBloGroup->update();
 
 	/*
 	stwu     r1, -0x50(r1)
@@ -2934,8 +2934,8 @@ lbl_8032788C:
 bool ObjVs::doUpdate()
 {
 	doUpdateCommon();
-	if (m_setBedamaFlag) {
-		m_setBedamaFlag = false;
+	if (mSetBedamaFlag) {
+		mSetBedamaFlag = false;
 	}
 	return false;
 	/*
@@ -2968,11 +2968,11 @@ lbl_8032796C:
  */
 void ObjVs::doDraw(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
 	graf->setPort();
 
 	JUtility::TColor color1 = ObjChallenge2P::msVal._20;
-	int test                = (f32)color1.a * m_scale;
+	int test                = (f32)color1.a * mScale;
 	color1.a                = test;
 	graf->setColor(color1);
 
@@ -2983,7 +2983,7 @@ void ObjVs::doDraw(Graphics& gfx)
 
 	graf->fillBox(box);
 
-	m_bloGroup->draw(graf);
+	mBloGroup->draw(graf);
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -3072,8 +3072,8 @@ void ObjVs::doDraw(Graphics& gfx)
  */
 bool ObjVs::doStart(::Screen::StartSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
-	m_scale     = 0.0f;
+	mFadeLevel = 0.0f;
+	mScale     = 0.0f;
 	return true;
 	/*
 	lfs      f0, lbl_8051DD98@sda21(r2)
@@ -3091,7 +3091,7 @@ bool ObjVs::doStart(::Screen::StartSceneArg const*)
  */
 bool ObjVs::doEnd(::Screen::EndSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	return true;
 	/*
 	lfs      f0, lbl_8051DD98@sda21(r2)
@@ -3115,7 +3115,7 @@ void ObjVs::doUpdateFadeinFinish() { }
  */
 void ObjVs::doUpdateFinish()
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	/*
 	lfs      f0, lbl_8051DD98@sda21(r2)
 	stfs     f0, 0x4c(r3)
@@ -3138,13 +3138,13 @@ void ObjVs::doUpdateFadeoutFinish() { }
 bool ObjVs::doUpdateFadein()
 {
 	bool check = false;
-	m_fadeLevel += sys->m_deltaTime;
+	mFadeLevel += sys->mDeltaTime;
 
-	if (m_fadeLevel > msVal.m_fadeInRate) {
-		m_fadeLevel = msVal.m_fadeInRate;
-		check       = true;
+	if (mFadeLevel > msVal.mFadeInRate) {
+		mFadeLevel = msVal.mFadeInRate;
+		check      = true;
 	}
-	m_scale = m_fadeLevel / msVal.m_fadeInRate;
+	mScale = mFadeLevel / msVal.mFadeInRate;
 	doUpdateCommon();
 	return check;
 	/*
@@ -3190,12 +3190,12 @@ lbl_80327B30:
 bool ObjVs::doUpdateFadeout()
 {
 	bool check = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > msVal.m_fadeOutRate) {
-		m_fadeLevel = msVal.m_fadeOutRate;
-		check       = true;
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > msVal.mFadeOutRate) {
+		mFadeLevel = msVal.mFadeOutRate;
+		check      = true;
 	}
-	m_scale = 1.0f - m_fadeLevel / msVal.m_fadeOutRate;
+	mScale = 1.0f - mFadeLevel / msVal.mFadeOutRate;
 	doUpdateCommon();
 	return check;
 	/*

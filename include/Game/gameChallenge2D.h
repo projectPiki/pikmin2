@@ -19,16 +19,16 @@ struct Challenge2D_TitleInfo {
 	struct Info {
 		Info();
 
-		inline void setDisplayFlag(u32 flag) { m_displayFlag.typeView |= flag; }
+		inline void setDisplayFlag(u32 flag) { mDisplayFlag.typeView |= flag; }
 
-		int m_floorCount;               // _00
-		int m_sprayCounts[2];           // _04
-		int m_timeLimit;                // _0C
-		PikiContainer* m_pikiContainer; // _10
-		Highscore* m_highscore1;        // _14
-		Highscore* m_highscore2;        // _18
-		u32 m_stageIndex;               // _1C
-		BitFlag<u8> m_displayFlag;      // _20
+		int mFloorCount;               // _00
+		int mSprayCounts[2];           // _04
+		int mTimeLimit;                // _0C
+		PikiContainer* mPikiContainer; // _10
+		Highscore* mHighscore1;        // _14
+		Highscore* mHighscore2;        // _18
+		u32 mStageIndex;               // _1C
+		BitFlag<u8> mDisplayFlag;      // _20
 	};
 
 	Challenge2D_TitleInfo(int stageNum);
@@ -36,28 +36,28 @@ struct Challenge2D_TitleInfo {
 	Challenge2D_TitleInfo::Info* operator()(int);
 
 	Info* pInfoArray; // _00
-	int m_count;      // _04
+	int mCount;       // _04
 };
 
 struct Challenge2D_ResultInfo {
 	Challenge2D_ResultInfo();
 
-	inline void setDisplayFlag(u32 flag) { m_displayFlag.typeView |= flag; }
+	inline void setDisplayFlag(u32 flag) { mDisplayFlag.typeView |= flag; }
 
-	BitFlag<u8> m_displayFlag; // _00, see Challenge2D_ResultFlags enum
-	u32 m_stageIndex;          // _04
-	u32 m_timeLeft;            // _08
-	u32 m_pokos;               // _0C
-	u32 m_pikminLeft;          // _10
-	u32 m_score;               // _14
-	u32 m_displayIndex;        // _18
-	Highscore* m_highScore;    // _1C
+	BitFlag<u8> mDisplayFlag; // _00, see Challenge2D_ResultFlags enum
+	u32 mStageIndex;          // _04
+	u32 mTimeLeft;            // _08
+	u32 mPokos;               // _0C
+	u32 mPikminLeft;          // _10
+	u32 mScore;               // _14
+	u32 mDisplayIndex;        // _18
+	Highscore* mHighScore;    // _1C
 };
 
 struct Vs2D_TitleInfo {
 	struct Info {
 		Info();
-		u32 m_info; // _00
+		u32 mInfo; // _00
 	};
 
 	Vs2D_TitleInfo(int stageNum);
@@ -65,7 +65,7 @@ struct Vs2D_TitleInfo {
 	Vs2D_TitleInfo::Info* operator()(int);
 
 	Info* pInfoArray; // _00
-	int m_infoCount;  // _04
+	int mInfoCount;   // _04
 };
 } // namespace Game
 

@@ -10,8 +10,8 @@ namespace efx {
 struct TEnemyBombScaleTable {
 	TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID);
 
-	int m_type;  // _00
-	f32 m_scale; // _04
+	int mType;  // _00
+	f32 mScale; // _04
 };
 
 struct TEnemyBomb : public TBase {

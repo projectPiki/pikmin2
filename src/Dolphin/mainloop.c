@@ -23,11 +23,11 @@ void TRKNubMainLoop(void)
 	while (var_r31 == FALSE) {
 		if (TRKGetNextEvent(&sp8) != FALSE) {
 			var_r30 = FALSE;
-			switch (sp8.m_eventType) { /* irregular */
+			switch (sp8.mEventType) { /* irregular */
 			case 0:
 				break;
 			case 2:
-				msg = TRKGetBuffer(sp8.m_bufferIndex);
+				msg = TRKGetBuffer(sp8.mBufferIndex);
 				TRKDispatchMessage(msg);
 				break;
 			case 1:

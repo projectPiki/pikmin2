@@ -21,12 +21,12 @@ void Obj::setParameters() { EnemyBase::setParameters(); }
  */
 void Obj::onStartCapture()
 {
-	m_fsm->start(this, BOMB_Wait, nullptr);
-	if (m_captureMatrix) {
-		Vector3f position = m_captureMatrix->getBasis(3);
+	mFsm->start(this, BOMB_Wait, nullptr);
+	if (mCaptureMatrix) {
+		Vector3f position = mCaptureMatrix->getBasis(3);
 		onSetPosition(position);
-		m_currentVelocity = Vector3f(0.0f);
-		m_targetVelocity  = Vector3f(0.0f);
+		mCurrentVelocity = Vector3f(0.0f);
+		mTargetVelocity  = Vector3f(0.0f);
 		enableEvent(0, EB_Constraint);
 		if (gameSystem && gameSystem->isVersusMode()) {
 			disableEvent(0, EB_IsVulnerable);
@@ -47,8 +47,8 @@ void Obj::onEndCapture()
 {
 	constraintOff();
 	disableEvent(0, EB_IsVulnerable);
-	_2BC            = 1;
-	m_captureMatrix = nullptr;
+	_2BC           = 1;
+	mCaptureMatrix = nullptr;
 }
 
 /*
@@ -70,33 +70,33 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_IsDamageAnimAllowed);
 	disableEvent(0, EB_IsDeathEffectEnabled);
 
-	_2BC      = 0;
-	_2BD      = 0;
-	_2C8      = 0;
-	_2C0      = 0;
-	_2C4      = 0;
-	m_otakara = nullptr;
+	_2BC     = 0;
+	_2BD     = 0;
+	_2C8     = 0;
+	_2C0     = 0;
+	_2C4     = 0;
+	mOtakara = nullptr;
 
-	m_fsm->start(this, BOMB_Wait, nullptr);
+	mFsm->start(this, BOMB_Wait, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
 		enableEvent(0, EB_Constraint);
 		if (mapMgr) {
-			Vector3f position = m_position;
+			Vector3f position = mPosition;
 			position.y += 20.0f;
-			m_position.y = mapMgr->getMinY(position);
+			mPosition.y = mapMgr->getMinY(position);
 		}
 	}
 
-	m_curAnim->m_isPlaying = false;
+	mCurAnim->mIsPlaying = false;
 	doAnimationUpdateAnimator();
 
-	m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
+	mObjMatrix.makeSRT(mScale, mRotation, mPosition);
 
-	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-	m_model->m_j3dModel->calc();
+	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	mModel->mJ3dModel->calc();
 
-	m_efxLight->m_mtx = m_model->getJoint("core1")->getWorldMatrix();
+	mEfxLight->mMtx = mModel->getJoint("core1")->getWorldMatrix();
 }
 
 /*
@@ -106,17 +106,17 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 Obj::Obj()
 {
-	_2BC       = 0;
-	_2BD       = 0;
-	_2C0       = 0;
-	_2C4       = 0;
-	_2C8       = 0;
-	_2C9       = 0;
-	m_fsm      = nullptr;
-	m_efxLight = nullptr;
-	m_animator = new ProperAnimator;
+	_2BC      = 0;
+	_2BD      = 0;
+	_2C0      = 0;
+	_2C4      = 0;
+	_2C8      = 0;
+	_2C9      = 0;
+	mFsm      = nullptr;
+	mEfxLight = nullptr;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
-	m_efxLight = new efx::TBombrockLight;
+	mEfxLight = new efx::TBombrockLight;
 }
 
 /*
@@ -127,23 +127,23 @@ Obj::Obj()
 void Obj::doUpdate()
 {
 	if (_2C9) {
-		m_acceleration.x *= 0.9f;
-		m_acceleration.y *= 0.9f;
-		m_acceleration.z *= 0.9f;
-		m_currentVelocity.x *= 0.9f;
-		if (m_currentVelocity.y > 0.0f) {
-			m_currentVelocity.y *= 0.9f;
+		mAcceleration.x *= 0.9f;
+		mAcceleration.y *= 0.9f;
+		mAcceleration.z *= 0.9f;
+		mCurrentVelocity.x *= 0.9f;
+		if (mCurrentVelocity.y > 0.0f) {
+			mCurrentVelocity.y *= 0.9f;
 		}
-		m_currentVelocity.z *= 0.9f;
+		mCurrentVelocity.z *= 0.9f;
 	}
 
-	if (m_bounceTriangle) {
-		m_targetVelocity = Vector3f(0.0f);
+	if (mBounceTriangle) {
+		mTargetVelocity = Vector3f(0.0f);
 	} else {
-		m_targetVelocity = m_currentVelocity;
+		mTargetVelocity = mCurrentVelocity;
 	}
 
-	m_fsm->exec(this);
+	mFsm->exec(this);
 }
 
 /*
@@ -179,29 +179,29 @@ void Obj::doEntry()
  */
 void Obj::doAnimationCullingOff()
 {
-	m_curAnim->m_isPlaying = 0;
+	mCurAnim->mIsPlaying = 0;
 	doAnimationUpdateAnimator();
 	bool check;
-	Vector3f vec = m_objMatrix.getBasis(3);
-	if (m_captureMatrix) {
+	Vector3f vec = mObjMatrix.getBasis(3);
+	if (mCaptureMatrix) {
 		check             = false;
-		Vector3f checkVec = m_captureMatrix->getBasis(3);
+		Vector3f checkVec = mCaptureMatrix->getBasis(3);
 		if (vec.x != checkVec.x || vec.y != checkVec.y || vec.z != checkVec.z) {
 			check = true;
-			PSMTXCopy(m_captureMatrix->m_matrix.mtxView, m_objMatrix.m_matrix.mtxView);
+			PSMTXCopy(mCaptureMatrix->mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
 		}
 	} else {
 		check = false;
-		if (m_position.x != vec.x || m_position.y != vec.y || m_position.z != vec.z) {
+		if (mPosition.x != vec.x || mPosition.y != vec.y || mPosition.z != vec.z) {
 			check = true;
-			m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
+			mObjMatrix.makeSRT(mScale, mRotation, mPosition);
 		}
 	}
 
 	if (check || !isStopMotion()) {
-		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-		m_model->m_j3dModel->calc();
-		m_collTree->update();
+		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->calc();
+		mCollTree->update();
 	}
 }
 
@@ -327,12 +327,12 @@ lbl_8034AB80:
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	param.m_position   = m_position;
-	param.m_position.y = m_position.y + 2.0f;
+	param.mPosition   = mPosition;
+	param.mPosition.y = mPosition.y + 2.0f;
 
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	param.m_boundingSphere.m_radius   = 30.0f;
-	param.m_size                      = 10.0f;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mRadius   = 30.0f;
+	param.mSize                     = 10.0f;
 }
 
 /*
@@ -340,7 +340,7 @@ void Obj::getShadowParam(ShadowParam& param)
  * Address:	8034ABEC
  * Size:	000048
  */
-bool Obj::needShadow() { return (!EnemyBase::needShadow()) ? false : m_captureMatrix == nullptr; }
+bool Obj::needShadow() { return (!EnemyBase::needShadow()) ? false : mCaptureMatrix == nullptr; }
 
 /*
  * --INFO--
@@ -355,7 +355,7 @@ void Obj::doFinishStoneState()
 	}
 
 	disableEvent(0, EB_IsVulnerable);
-	m_targetVelocity = Vector3f(0.0f);
+	mTargetVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -366,7 +366,7 @@ void Obj::doFinishStoneState()
 void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
-	m_efxLight->fade();
+	mEfxLight->fade();
 	_2C8 = 0;
 }
 
@@ -377,11 +377,11 @@ void Obj::doStartStoneState()
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
-	if (m_otakara && m_otakara->getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
-		m_otakara->m_targetCreature = nullptr;
+	if (mOtakara && mOtakara->getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
+		mOtakara->mTargetCreature = nullptr;
 	}
 
-	m_efxLight->fade();
+	mEfxLight->fade();
 	EnemyBase::onKill(killArg);
 }
 
@@ -390,14 +390,14 @@ void Obj::onKill(CreatureKillArg* killArg)
  * Address:	8034AD80
  * Size:	000030
  */
-void Obj::doStartMovie() { m_efxLight->startDemoDrawOff(); }
+void Obj::doStartMovie() { mEfxLight->startDemoDrawOff(); }
 
 /*
  * --INFO--
  * Address:	8034ADB0
  * Size:	000030
  */
-void Obj::doEndMovie() { m_efxLight->endDemoDrawOn(); }
+void Obj::doEndMovie() { mEfxLight->endDemoDrawOn(); }
 
 /*
  * --INFO--
@@ -406,7 +406,7 @@ void Obj::doEndMovie() { m_efxLight->endDemoDrawOn(); }
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (!_2BC || m_bounceTriangle) {
+	if (!_2BC || mBounceTriangle) {
 		if (isEvent(0, EB_IsBittered)) {
 			_2C4++;
 			if (_2C4 > 4) {
@@ -543,12 +543,12 @@ bool Obj::pressCallBack(Creature*, f32, CollPart*) { return false; }
 void Obj::bounceCallback(Sys::Triangle* triangle)
 {
 	if (_2BC) {
-		createBounceEffect(m_position, 0.5f);
+		createBounceEffect(mPosition, 0.5f);
 		return;
 	}
 
 	if (isBirthTypeDropGroup() && getStateID() == BOMB_Wait) {
-		createBounceEffect(m_position, 0.5f);
+		createBounceEffect(mPosition, 0.5f);
 		forceBomb();
 	}
 }
@@ -561,8 +561,8 @@ void Obj::bounceCallback(Sys::Triangle* triangle)
 void Obj::collisionCallback(CollEvent& collEvent)
 {
 	EnemyBase::collisionCallback(collEvent);
-	if (isBirthTypeDropGroup() && collEvent.m_collidingCreature && !collEvent.m_collidingCreature->isTeki() && getStateID() == BOMB_Wait) {
-		createBounceEffect(m_position, 0.5f);
+	if (isBirthTypeDropGroup() && collEvent.mCollidingCreature && !collEvent.mCollidingCreature->isTeki() && getStateID() == BOMB_Wait) {
+		createBounceEffect(mPosition, 0.5f);
 		forceBomb();
 		_2C9 = 1;
 	}
@@ -577,7 +577,7 @@ void Obj::forceBomb()
 {
 	if (getStateID() == BOMB_Wait) {
 		disableEvent(0, EB_IsVulnerable);
-		m_fsm->transit(this, BOMB_Bomb, nullptr);
+		mFsm->transit(this, BOMB_Bomb, nullptr);
 	}
 }
 
@@ -596,7 +596,7 @@ bool Obj::isBombStart()
  * Address:	8034B130
  * Size:	000028
  */
-void Obj::bombEffInWater() { EnemyBase::createSplashDownEffect(m_position, 1.3f); }
+void Obj::bombEffInWater() { EnemyBase::createSplashDownEffect(mPosition, 1.3f); }
 
 /*
  * --INFO--
@@ -620,15 +620,15 @@ bool Obj::canEat()
 bool Obj::isAnimStart()
 {
 	bool check;
-	if (isBirthTypeDropGroup() || !(m_toFlick >= C_PROPERPARMS.m_damageLimit.m_value)) {
-		if (!_2BC || !m_bounceTriangle) {
+	if (isBirthTypeDropGroup() || !(mToFlick >= C_PROPERPARMS.mDamageLimit.mValue)) {
+		if (!_2BC || !mBounceTriangle) {
 			if (!_2C0) {
 				check = false;
 			} else {
 
 				_2C0++;
 
-				if (_2C0 > C_PROPERPARMS.m_triggerLimit.m_value) {
+				if (_2C0 > C_PROPERPARMS.mTriggerLimit.mValue) {
 					_2C0  = 0;
 					check = true;
 				} else {

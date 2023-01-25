@@ -210,10 +210,10 @@ namespace Game {
  * Size:	000014
  */
 WayPointIterator::WayPointIterator(WayPoint* wp, bool r5)
-    : m_wayPoint(wp)
+    : mWayPoint(wp)
     , _08(r5)
 {
-	m_index = 0;
+	mIndex = 0;
 }
 
 /*
@@ -223,7 +223,7 @@ WayPointIterator::WayPointIterator(WayPoint* wp, bool r5)
  */
 void WayPointIterator::first()
 {
-	m_index = 0;
+	mIndex = 0;
 	forward();
 }
 
@@ -234,7 +234,7 @@ void WayPointIterator::first()
  */
 void WayPointIterator::next()
 {
-	m_index++;
+	mIndex++;
 	forward();
 }
 
@@ -246,10 +246,10 @@ void WayPointIterator::next()
 bool WayPointIterator::isDone()
 {
 	if (_08) {
-		if (m_index >= 16) {
+		if (mIndex >= 16) {
 			return true;
 		}
-	} else if (m_index >= 8) {
+	} else if (mIndex >= 8) {
 		return true;
 	}
 
@@ -264,11 +264,11 @@ bool WayPointIterator::isDone()
  */
 s16 WayPointIterator::operator*()
 {
-	if (m_index < 8) {
-		return m_wayPoint->m_fromLinks[m_index];
+	if (mIndex < 8) {
+		return mWayPoint->mFromLinks[mIndex];
 	}
 
-	return m_wayPoint->m_toLinks[m_index - 8];
+	return mWayPoint->mToLinks[mIndex - 8];
 }
 } // namespace Game
 
@@ -341,7 +341,7 @@ void Game::WayPointIterator::forward()
  */
 Game::WayPoint::WayPoint()
     : JKRDisposer()
-    , m_roomList()
+    , mRoomList()
 {
 
 	/*
@@ -481,16 +481,16 @@ void Game::WayPoint::includeRoom(short)
 void Game::WayPoint::reset()
 {
 	for (int i = 0; i < 8; ++i) {
-		m_fromLinks[i] = -1;
-		m_toLinks[i]   = -1;
+		mFromLinks[i] = -1;
+		mToLinks[i]   = -1;
 	}
-	m_position     = Vector3f::zero;
-	m_radius       = 1.0f;
-	m_index        = -1;
-	m_numFromLinks = 0;
-	m_numToLinks   = 0;
-	m_doFloorSnap  = 0;
-	m_flags        = WPF_Unset;
+	mPosition     = Vector3f::zero;
+	mRadius       = 1.0f;
+	mIndex        = -1;
+	mNumFromLinks = 0;
+	mNumToLinks   = 0;
+	mDoFloorSnap  = 0;
+	mFlags        = WPF_Unset;
 }
 
 /*
@@ -511,9 +511,9 @@ void Game::WayPoint::getLink(int)
 void Game::WayPoint::setOpen(bool open)
 {
 	if (open) {
-		m_flags &= ~WPF_Closed;
+		mFlags &= ~WPF_Closed;
 	} else {
-		m_flags |= WPF_Closed;
+		mFlags |= WPF_Closed;
 	}
 }
 
@@ -525,9 +525,9 @@ void Game::WayPoint::setOpen(bool open)
 void Game::WayPoint::setWater(bool water)
 {
 	if (water) {
-		m_flags |= WPF_Water;
+		mFlags |= WPF_Water;
 	} else {
-		m_flags &= ~WPF_Water;
+		mFlags &= ~WPF_Water;
 	}
 }
 
@@ -539,9 +539,9 @@ void Game::WayPoint::setWater(bool water)
 void Game::WayPoint::setBridge(bool bridge)
 {
 	if (bridge) {
-		m_flags |= WPF_Bridge;
+		mFlags |= WPF_Bridge;
 	} else {
-		m_flags &= ~WPF_Bridge;
+		mFlags &= ~WPF_Bridge;
 	}
 }
 
@@ -613,13 +613,13 @@ void Game::WayPoint::write(Stream&)
 void Game::WayPoint::read(Stream& input)
 {
 	// UNUSED FUNCTION
-	m_index        = input.readShort();
-	m_numFromLinks = input.readShort();
-	for (int i = 0; i < m_numFromLinks; i++) {
-		m_fromLinks[i] = input.readShort();
+	mIndex        = input.readShort();
+	mNumFromLinks = input.readShort();
+	for (int i = 0; i < mNumFromLinks; i++) {
+		mFromLinks[i] = input.readShort();
 	}
-	m_position.read(input);
-	m_radius = input.readFloat();
+	mPosition.read(input);
+	mRadius = input.readFloat();
 }
 
 /*
@@ -654,8 +654,8 @@ void Game::WayPoint::createOffPlane(Plane&, Game::WayPoint*)
 Game::RouteMgr::RouteMgr()
     : Container<Game::WayPoint>()
 {
-	m_count = 0;
-	m_name  = "RouteMgr";
+	mCount = 0;
+	mName  = "RouteMgr";
 	// UNUSED FUNCTION
 }
 
@@ -1019,19 +1019,19 @@ void Game::RouteMgr::refreshWater()
 	iterator.first();
 	while (!iterator.isDone()) {
 		WayPoint* wp = (*iterator);
-		wp->m_flags &= ~WPF_Water;
+		wp->mFlags &= ~WPF_Water;
 		if (Game::mapMgr) {
 			Sys::Sphere searchSphere;
-			searchSphere.m_position.y = wp->m_position.y;
-			searchSphere.m_position.z = wp->m_position.z;
-			searchSphere.m_position.x = wp->m_position.x;
-			if (wp->m_flags & WPF_Water) {
-				searchSphere.m_position.y = mapMgr->getMinY(searchSphere.m_position);
+			searchSphere.mPosition.y = wp->mPosition.y;
+			searchSphere.mPosition.z = wp->mPosition.z;
+			searchSphere.mPosition.x = wp->mPosition.x;
+			if (wp->mFlags & WPF_Water) {
+				searchSphere.mPosition.y = mapMgr->getMinY(searchSphere.mPosition);
 			}
-			searchSphere.m_radius = 4.0f;
-			WaterBox* waterBox    = mapMgr->findWater(searchSphere);
-			if ((waterBox) && (waterBox->m_flags & 1)) {
-				wp->m_flags |= WPF_Water;
+			searchSphere.mRadius = 4.0f;
+			WaterBox* waterBox   = mapMgr->findWater(searchSphere);
+			if ((waterBox) && (waterBox->mFlags & 1)) {
+				wp->mFlags |= WPF_Water;
 			}
 		}
 		iterator.next();
@@ -2194,7 +2194,7 @@ void Game::RouteMgr::setCloseAll()
 	iterator.first();
 	while (!iterator.isDone()) {
 		WayPoint* wp = (*iterator);
-		wp->m_flags |= WPF_Unknown8;
+		wp->mFlags |= WPF_Unknown8;
 		iterator.next();
 	}
 }
@@ -2210,10 +2210,10 @@ void Game::RouteMgr::openRoom(short p1)
 	iterator.first();
 	while (!iterator.isDone()) {
 		WayPoint* wp = (*iterator);
-		for (WayPoint::RoomList* node = (WayPoint::RoomList*)wp->m_roomList.m_child; node != nullptr;
-		     node                     = (WayPoint::RoomList*)node->m_next) {
+		for (WayPoint::RoomList* node = (WayPoint::RoomList*)wp->mRoomList.mChild; node != nullptr;
+		     node                     = (WayPoint::RoomList*)node->mNext) {
 			if (node->_18 == p1) {
-				wp->m_flags &= ~WPF_Closed;
+				wp->mFlags &= ~WPF_Closed;
 			}
 		}
 		iterator.next();
@@ -2638,7 +2638,7 @@ void Game::RouteMgr::directDraw(Graphics&, Game::WayPoint*, Game::WayPoint*, int
 Game::GameRouteMgr::GameRouteMgr()
     : RouteMgr()
 {
-	m_wayPoints = nullptr;
+	mWayPoints = nullptr;
 }
 
 /*
@@ -2714,10 +2714,10 @@ Game::GameRouteMgr::~GameRouteMgr()
  */
 void Game::GameRouteMgr::read(Stream& input)
 {
-	m_count     = input.readShort();
-	m_wayPoints = new WayPoint[m_count];
-	for (int i = 0; i < m_count; i++) {
-		WayPoint* wp = &m_wayPoints[i];
+	mCount     = input.readShort();
+	mWayPoints = new WayPoint[mCount];
+	for (int i = 0; i < mCount; i++) {
+		WayPoint* wp = &mWayPoints[i];
 		wp->read(input);
 	}
 	makeInvertLinks();
@@ -2802,8 +2802,8 @@ void Game::GameRouteMgr::read(Stream& input)
  */
 Game::WayPoint* Game::GameRouteMgr::getWayPoint(short index)
 {
-	P2ASSERTLINE(1124, -1 >= index || index >= m_count);
-	return &m_wayPoints[index];
+	P2ASSERTLINE(1124, -1 >= index || index >= mCount);
+	return &mWayPoints[index];
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -2909,7 +2909,7 @@ void* Game::GameRouteMgr::getStart()
  */
 void* Game::GameRouteMgr::getEnd()
 {
-	return &m_count;
+	return &mCount;
 	/*
 	.loc_0x0:
 	  lhz       r3, 0x1C(r3)
@@ -2924,7 +2924,7 @@ void* Game::GameRouteMgr::getEnd()
  */
 Game::EditorRouteMgr::EditorRouteMgr()
     : RouteMgr()
-    , m_node()
+    , mNode()
 {
 }
 
@@ -2973,11 +2973,11 @@ Game::EditorRouteMgr::WPNode::~WPNode()
  */
 void Game::EditorRouteMgr::read(Stream& input)
 {
-	for (WPNode* node = (WPNode*)m_node.m_child; node != nullptr; node = (WPNode*)node->m_next) {
-		delWayPoint(node->m_wayPoint);
+	for (WPNode* node = (WPNode*)mNode.mChild; node != nullptr; node = (WPNode*)node->mNext) {
+		delWayPoint(node->mWayPoint);
 	}
 	u16 count = input.readShort();
-	m_count   = 0;
+	mCount    = 0;
 	for (int i = 0; i < count; i++) {
 		WayPoint* wp = new WayPoint();
 		wp->read(input);
@@ -3119,11 +3119,11 @@ void Game::EditorRouteMgr::read(Stream& input)
  */
 void Game::EditorRouteMgr::addWayPoint(Game::WayPoint* wp)
 {
-	WPNode* node              = new WPNode();
-	node->m_wayPoint          = wp;
-	node->m_wayPoint->m_index = m_count;
-	m_node.add(node);
-	m_count++;
+	WPNode* node            = new WPNode();
+	node->mWayPoint         = wp;
+	node->mWayPoint->mIndex = mCount;
+	mNode.add(node);
+	mCount++;
 }
 
 /*

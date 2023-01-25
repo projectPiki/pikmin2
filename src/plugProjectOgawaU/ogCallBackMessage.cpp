@@ -3,7 +3,7 @@
 #include "og/ogLib2D.h"
 #include "og/Screen/ogScreen.h"
 
-inline u64 J2DPane::getTagName() const { return m_tag; }
+inline u64 J2DPane::getTagName() const { return mTag; }
 
 namespace og {
 namespace Screen {
@@ -15,16 +15,16 @@ namespace Screen {
  */
 CallBack_Message::CallBack_Message()
 {
-	m_message           = og::gLib2D->getMsgPtr();
-	m_messageIDAsULL    = 0;
-	m_messageIDAs2UL[0] = 0;
-	m_messageIDAs2UL[1] = 0;
-	_30                 = 0.0f;
-	_34                 = 0.0f;
-	m_maxY              = 1.0f;
-	m_maxX              = 1.0f;
-	m_minY              = 1.0f;
-	m_minX              = 1.0f;
+	mMessage           = og::gLib2D->getMsgPtr();
+	mMessageIDAsULL    = 0;
+	mMessageIDAs2UL[0] = 0;
+	mMessageIDAs2UL[1] = 0;
+	_30                = 0.0f;
+	_34                = 0.0f;
+	mMaxY              = 1.0f;
+	mMaxX              = 1.0f;
+	mMinY              = 1.0f;
+	mMinX              = 1.0f;
 }
 
 /*
@@ -35,19 +35,19 @@ CallBack_Message::CallBack_Message()
 void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 {
 	Matrixf mtx;
-	if (checkVisibleGlb(m_pane)) {
-		u64 tag = m_pane->m_messageID;
-		if (tag != m_messageIDAsULL) {
-			m_messageIDAsULL = tag;
-			P2JME::convertU64ToMessageID(m_messageIDAsULL, &m_messageIDAs2UL[0], &m_messageIDAs2UL[1]);
+	if (checkVisibleGlb(mPane)) {
+		u64 tag = mPane->mMessageID;
+		if (tag != mMessageIDAsULL) {
+			mMessageIDAsULL = tag;
+			P2JME::convertU64ToMessageID(mMessageIDAsULL, &mMessageIDAs2UL[0], &mMessageIDAs2UL[1]);
 		}
-		PSMTXConcat(graf.m_posMtx, m_pane->m_globalMtx, mtx.m_matrix.mtxView);
-		GXLoadPosMtxImm(mtx.m_matrix.mtxView, 0);
+		PSMTXConcat(graf.mPosMtx, mPane->mGlobalMtx, mtx.mMatrix.mtxView);
+		GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
 
-		J2DPane* pane = m_pane;
-		f32 x1        = pane->m_bounds.getWidth();
-		f32 y1        = pane->m_bounds.getHeight();
-		int flag      = pane->m_basePosition % 3;
+		J2DPane* pane = mPane;
+		f32 x1        = pane->mBounds.getWidth();
+		f32 y1        = pane->mBounds.getHeight();
+		int flag      = pane->mBasePosition % 3;
 
 		f32 y2, x2;
 		x2 = 0.0f;
@@ -59,7 +59,7 @@ void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 			x2 = x1;
 		}
 
-		flag = pane->m_basePosition / 3;
+		flag = pane->mBasePosition / 3;
 
 		if (flag == 1) {
 			y2 = y1 / 2;
@@ -69,14 +69,14 @@ void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 
 		_30                              = x2;
 		_34                              = y2;
-		P2JME::TRenderingProcessor* proc = m_message->m_processor;
+		P2JME::TRenderingProcessor* proc = mMessage->mProcessor;
 		proc->_54                        = -_30;
 		proc->_58                        = -_34;
-		proc->setTextBoxInfo(m_pane);
+		proc->setTextBoxInfo(mPane);
 
-		m_message->m_processor->m_mesgBounds.set(m_minX, m_minY, m_maxX, m_maxY);
+		mMessage->mProcessor->mMesgBounds.set(mMinX, mMinY, mMaxX, mMaxY);
 
-		m_message->drawMessageID(gfx, m_messageIDAs2UL[0], m_messageIDAs2UL[1]);
+		mMessage->drawMessageID(gfx, mMessageIDAs2UL[0], mMessageIDAs2UL[1]);
 	}
 }
 

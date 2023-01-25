@@ -15,11 +15,11 @@ struct J3DModelLoaderDataBase {
 
 struct J3DModelLoader {
 	inline J3DModelLoader()
-	    : m_modelData(nullptr)
-	    , m_materialTable(nullptr)
-	    , m_shapeBlock(nullptr)
-	    , m_materialBlock(nullptr)
-	    , m_hierarchy(nullptr)
+	    : mModelData(nullptr)
+	    , mMaterialTable(nullptr)
+	    , mShapeBlock(nullptr)
+	    , mMaterialBlock(nullptr)
+	    , mHierarchy(nullptr)
 	    , _18(0)
 	    , _1A(0)
 	{
@@ -67,13 +67,13 @@ struct J3DModelLoader {
 	int calcSizeMaterialDL(const J3DMaterialDLBlock*, u32);
 
 	// VT _00
-	J3DModelData* m_modelData;               // _04
-	J3DMaterialTable* m_materialTable;       // _08
-	J3DShapeBlock* m_shapeBlock;             // _0C
-	const J3DMaterialBlock* m_materialBlock; // _10
-	J3DModelHierarchy* m_hierarchy;          // _14
-	u8 _18;                                  // _18
-	u16 _1A;                                 // _1A
+	J3DModelData* mModelData;               // _04
+	J3DMaterialTable* mMaterialTable;       // _08
+	J3DShapeBlock* mShapeBlock;             // _0C
+	const J3DMaterialBlock* mMaterialBlock; // _10
+	J3DModelHierarchy* mHierarchy;          // _14
+	u8 _18;                                 // _18
+	u16 _1A;                                // _1A
 };
 
 struct J3DModelLoader_v21 : public J3DModelLoader {

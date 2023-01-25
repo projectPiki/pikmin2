@@ -32,37 +32,37 @@ struct J3DJoint {
 	 * @reifiedAddress{8043EF9C}
 	 * @reifiedFile{sysGCU/sysShapeModel.cpp}
 	 */
-	u16 getJntNo() const { return m_jointIdx; }
+	u16 getJntNo() const { return mJointIdx; }
 
 	/**
 	 * @reifiedAddress{8043EFA4}
 	 * @reifiedFile{sysGCU/sysShapeModel.cpp}
 	 */
-	J3DJoint* getYounger() { return m_parent; }
+	J3DJoint* getYounger() { return mParent; }
 
 	/**
 	 * @reifiedAddress{8043EFAC}
 	 * @reifiedFile{sysGCU/sysShapeModel.cpp}
 	 */
-	J3DJoint* getChild() { return m_child; }
+	J3DJoint* getChild() { return mChild; }
 
 	inline void setCurrentMtxCalc(J3DMtxCalc* calc) { mCurrentMtxCalc = calc; }
-	inline J3DMaterial* getMesh() { return m_material; };
+	inline J3DMaterial* getMesh() { return mMaterial; };
 
-	u32 _00;                          // _00
-	J3DJointCallBack m_function;      // _04
-	u32 _08;                          // _08
-	J3DJoint* m_child;                // _0C
-	J3DJoint* m_parent;               // _10
-	u16 m_jointIdx;                   // _14
-	s8 _16;                           // _16
-	u8 m_ignoreParentScaling;         // _17
-	J3DTransformInfo m_transformInfo; // _18
-	f32 _38;                          // _38
-	JGeometry::TVec3f m_yRotation;    // _3C
-	JGeometry::TVec3f _48;            // _48
-	J3DMtxCalcAnmBase* m_mtxCalc;     // _54
-	J3DMaterial* m_material;          // _58
+	u32 _00;                         // _00
+	J3DJointCallBack mFunction;      // _04
+	u32 _08;                         // _08
+	J3DJoint* mChild;                // _0C
+	J3DJoint* mParent;               // _10
+	u16 mJointIdx;                   // _14
+	s8 _16;                          // _16
+	u8 mIgnoreParentScaling;         // _17
+	J3DTransformInfo mTransformInfo; // _18
+	f32 _38;                         // _38
+	JGeometry::TVec3f mYRotation;    // _3C
+	JGeometry::TVec3f _48;           // _48
+	J3DMtxCalcAnmBase* mMtxCalc;     // _54
+	J3DMaterial* mMaterial;          // _58
 
 	static J3DMtxCalc* mCurrentMtxCalc;
 };

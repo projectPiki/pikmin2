@@ -61,10 +61,10 @@ struct Item : public WorkItem<Item, FSM, State> {
 	Item();
 
 	struct DummyShape : public SysShape::MtxObject {
-		virtual Matrixf* getMatrix(int) { return m_matrix; } // _08 (weak)
+		virtual Matrixf* getMatrix(int) { return mMatrix; } // _08 (weak)
 
 		// _00 VTBL
-		Matrixf* m_matrix; // _04
+		Matrixf* mMatrix; // _04
 	};
 
 	// will probably need this
@@ -97,36 +97,36 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTABLE
 	// _00-_1EC = WorkItem
-	DummyShape m_dummyShape; // _1EC
-	f32 m_currStageLife;     // _1F4
-	f32 m_totalLife;         // _1F8
-	Pellet* m_pellet;        // _1FC
-	Matrixf m_matrix;        // _200
-	f32 m_instantDamage;     // _230
+	DummyShape mDummyShape; // _1EC
+	f32 mCurrStageLife;     // _1F4
+	f32 mTotalLife;         // _1F8
+	Pellet* mPellet;        // _1FC
+	Matrixf mMatrix;        // _200
+	f32 mInstantDamage;     // _230
 };
 
 struct TreasureParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Plant::Property")
-		    , m_p000(this, 'p000', "ライフ(0)", 250.0f, 1.0f, 60000.0f)
-		    , m_p001(this, 'p001', "ライフ(1)", 750.0f, 1.0f, 60000.0f)
-		    , m_p002(this, 'p002', "ライフ(2)", 1200.0f, 1.0f, 60000.0f)
-		    , m_p003(this, 'p003', "ライフ(3)", 1500.0f, 1.0f, 60000.0f)
+		    , mP000(this, 'p000', "ライフ(0)", 250.0f, 1.0f, 60000.0f)
+		    , mP001(this, 'p001', "ライフ(1)", 750.0f, 1.0f, 60000.0f)
+		    , mP002(this, 'p002', "ライフ(2)", 1200.0f, 1.0f, 60000.0f)
+		    , mP003(this, 'p003', "ライフ(3)", 1500.0f, 1.0f, 60000.0f)
 		{
 		}
 
-		Parm<f32> m_p000; // _E8, max life when current depth >= 75% of max depth
-		Parm<f32> m_p001; // _110, max life when 75% > current depth >= 50% of max depth
-		Parm<f32> m_p002; // _138, max life when 50% > current depth >= 25% of max depth
-		Parm<f32> m_p003; // _160, max life when current depth < 25% of max depth
+		Parm<f32> mP000; // _E8, max life when current depth >= 75% of max depth
+		Parm<f32> mP001; // _110, max life when 75% > current depth >= 50% of max depth
+		Parm<f32> mP002; // _138, max life when 50% > current depth >= 25% of max depth
+		Parm<f32> mP003; // _160, max life when current depth < 25% of max depth
 	};
 
 	TreasureParms() { }
 
-	virtual void read(Stream& stream) { m_parms.read(stream); } // _08 (weak)
+	virtual void read(Stream& stream) { mParms.read(stream); } // _08 (weak)
 
-	Parms m_parms; // _DC
+	Parms mParms; // _DC
 };
 
 struct Mgr : public TNodeItemMgr {
@@ -141,7 +141,7 @@ struct Mgr : public TNodeItemMgr {
 
 	// _00      = VTBL
 	// _00-_88  = TNodeItemMgr
-	TreasureParms* m_parameters; // _88
+	TreasureParms* mParameters; // _88
 };
 
 extern Mgr* mgr;

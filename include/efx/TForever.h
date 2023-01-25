@@ -11,7 +11,7 @@ struct TForever : public TSync {
 	inline TForever(u16 effectID) // probably
 	    : TSync(effectID)
 	{
-		// m_effectID = effectID;
+		// mEffectID = effectID;
 	}
 
 	virtual ~TForever() { }                                     // _48 (weak, thunk at _1C)

@@ -12,13 +12,13 @@ static const char bigTreasureShadowName[] = "246-BigTreasureShadow";
  */
 BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
 {
-	m_obj      = obj;
-	m_rootNode = new JointShadowRootNode(obj);
-	_88        = new SphereShadowNode;
-	_8C        = new SphereShadowNode;
+	mObj      = obj;
+	mRootNode = new JointShadowRootNode(obj);
+	_88       = new SphereShadowNode;
+	_8C       = new SphereShadowNode;
 
-	m_rootNode->add(_88);
-	m_rootNode->add(_8C);
+	mRootNode->add(_88);
+	mRootNode->add(_8C);
 
 	for (int i = 0; i < 4; i++) {
 		_90[i] = new TubeShadowSetNode;
@@ -29,42 +29,42 @@ BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
 		_E0[i] = new SphereShadowNode;
 		_F0[i] = new SphereShadowNode;
 
-		m_rootNode->add(_90[i]);
-		m_rootNode->add(_A0[i]);
-		m_rootNode->add(_B0[i]);
-		m_rootNode->add(_C0[i]);
-		m_rootNode->add(_D0[i]);
-		m_rootNode->add(_E0[i]);
-		m_rootNode->add(_F0[i]);
+		mRootNode->add(_90[i]);
+		mRootNode->add(_A0[i]);
+		mRootNode->add(_B0[i]);
+		mRootNode->add(_C0[i]);
+		mRootNode->add(_D0[i]);
+		mRootNode->add(_E0[i]);
+		mRootNode->add(_F0[i]);
 
 		for (int j = 0; j < 4; j++) {
-			m_jointPositions[i][j] = nullptr;
+			mJointPositions[i][j] = nullptr;
 		}
 	}
 
 	for (int i = 0; i < 4; i++) {
 		_100[i] = new SphereShadowNode;
-		m_rootNode->add(_100[i]);
+		mRootNode->add(_100[i]);
 	}
 
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 4; j++) {
 			_110[i][j] = new TubeShadowPosNode;
-			m_rootNode->add(_110[i][j]);
+			mRootNode->add(_110[i][j]);
 
 			if (j < 2) {
 				_130[i][j] = new SphereShadowNode;
-				m_rootNode->add(_130[i][j]);
+				mRootNode->add(_130[i][j]);
 			}
 		}
 	}
 
 	for (int i = 0; i < 2; i++) {
 		_168[i] = new SphereShadowNode;
-		m_rootNode->add(_168[i]);
+		mRootNode->add(_168[i]);
 		for (int j = 0; j < 5; j++) {
 			_140[i][j] = new TubeShadowPosNode;
-			m_rootNode->add(_140[i][j]);
+			mRootNode->add(_140[i][j]);
 		}
 	}
 }
@@ -76,46 +76,46 @@ BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
  */
 void BigTreasure::BigTreasureShadowMgr::init()
 {
-	SysShape::Model* model = m_obj->m_model;
-	m_bodyMatrix           = model->getJoint("kosi")->getWorldMatrix();
-	_90[0]->m_joint        = model->getJoint("rhand1jnt");
-	_A0[0]->m_joint        = model->getJoint("rhand2jnt");
-	_B0[0]->m_joint        = model->getJoint("rhand2jnt");
-	_C0[0]->m_joint        = model->getJoint("rhand3jnt");
+	SysShape::Model* model = mObj->mModel;
+	mBodyMatrix            = model->getJoint("kosi")->getWorldMatrix();
+	_90[0]->mJoint         = model->getJoint("rhand1jnt");
+	_A0[0]->mJoint         = model->getJoint("rhand2jnt");
+	_B0[0]->mJoint         = model->getJoint("rhand2jnt");
+	_C0[0]->mJoint         = model->getJoint("rhand3jnt");
 
-	_90[1]->m_joint = model->getJoint("lhand1jnt");
-	_A0[1]->m_joint = model->getJoint("lhand2jnt");
-	_B0[1]->m_joint = model->getJoint("lhand2jnt");
-	_C0[1]->m_joint = model->getJoint("lhand3jnt");
+	_90[1]->mJoint = model->getJoint("lhand1jnt");
+	_A0[1]->mJoint = model->getJoint("lhand2jnt");
+	_B0[1]->mJoint = model->getJoint("lhand2jnt");
+	_C0[1]->mJoint = model->getJoint("lhand3jnt");
 
-	_90[2]->m_joint = model->getJoint("rfoot1jnt");
-	_A0[2]->m_joint = model->getJoint("rfoot2jnt");
-	_B0[2]->m_joint = model->getJoint("rfoot2jnt");
-	_C0[2]->m_joint = model->getJoint("rfoot3jnt");
+	_90[2]->mJoint = model->getJoint("rfoot1jnt");
+	_A0[2]->mJoint = model->getJoint("rfoot2jnt");
+	_B0[2]->mJoint = model->getJoint("rfoot2jnt");
+	_C0[2]->mJoint = model->getJoint("rfoot3jnt");
 
-	_90[3]->m_joint = model->getJoint("lfoot1jnt");
-	_A0[3]->m_joint = model->getJoint("lfoot2jnt");
-	_B0[3]->m_joint = model->getJoint("lfoot2jnt");
-	_C0[3]->m_joint = model->getJoint("lfoot3jnt");
+	_90[3]->mJoint = model->getJoint("lfoot1jnt");
+	_A0[3]->mJoint = model->getJoint("lfoot2jnt");
+	_B0[3]->mJoint = model->getJoint("lfoot2jnt");
+	_C0[3]->mJoint = model->getJoint("lfoot3jnt");
 
-	m_elecMatrix  = model->getJoint("otakara_elec")->getWorldMatrix();
-	m_fireMatrix  = model->getJoint("otakara_fire")->getWorldMatrix();
-	m_gasMatrix   = model->getJoint("otakara_gas")->getWorldMatrix();
-	m_waterMatrix = model->getJoint("otakara_water")->getWorldMatrix();
+	mElecMatrix  = model->getJoint("otakara_elec")->getWorldMatrix();
+	mFireMatrix  = model->getJoint("otakara_fire")->getWorldMatrix();
+	mGasMatrix   = model->getJoint("otakara_gas")->getWorldMatrix();
+	mWaterMatrix = model->getJoint("otakara_water")->getWorldMatrix();
 
-	m_leftArmMatrix[0] = model->getJoint("larm1")->getWorldMatrix();
-	m_leftArmMatrix[1] = model->getJoint("larm2")->getWorldMatrix();
-	m_leftArmMatrix[2] = model->getJoint("larm3")->getWorldMatrix();
+	mLeftArmMatrix[0] = model->getJoint("larm1")->getWorldMatrix();
+	mLeftArmMatrix[1] = model->getJoint("larm2")->getWorldMatrix();
+	mLeftArmMatrix[2] = model->getJoint("larm3")->getWorldMatrix();
 
-	m_rightArmMatrix[0] = model->getJoint("rarm1")->getWorldMatrix();
-	m_rightArmMatrix[1] = model->getJoint("rarm2")->getWorldMatrix();
-	m_rightArmMatrix[2] = model->getJoint("rarm3")->getWorldMatrix();
+	mRightArmMatrix[0] = model->getJoint("rarm1")->getWorldMatrix();
+	mRightArmMatrix[1] = model->getJoint("rarm2")->getWorldMatrix();
+	mRightArmMatrix[2] = model->getJoint("rarm3")->getWorldMatrix();
 
-	m_leftAntennaMatrix[0] = model->getJoint("lantenna1")->getWorldMatrix();
-	m_leftAntennaMatrix[1] = model->getJoint("lantenna2")->getWorldMatrix();
+	mLeftAntennaMatrix[0] = model->getJoint("lantenna1")->getWorldMatrix();
+	mLeftAntennaMatrix[1] = model->getJoint("lantenna2")->getWorldMatrix();
 
-	m_rightAntennaMatrix[0] = model->getJoint("rantenna1")->getWorldMatrix();
-	m_rightAntennaMatrix[1] = model->getJoint("rantenna2")->getWorldMatrix();
+	mRightAntennaMatrix[0] = model->getJoint("rantenna1")->getWorldMatrix();
+	mRightAntennaMatrix[1] = model->getJoint("rantenna2")->getWorldMatrix();
 }
 
 /*
@@ -123,14 +123,14 @@ void BigTreasure::BigTreasureShadowMgr::init()
  * Address:	802DAC94
  * Size:	000008
  */
-void BigTreasureShadowMgr::setKosiJointPosPtr(Vector3f* posPtr) { m_kosiPosition = posPtr; }
+void BigTreasureShadowMgr::setKosiJointPosPtr(Vector3f* posPtr) { mKosiPosition = posPtr; }
 
 /*
  * --INFO--
  * Address:	802DAC9C
  * Size:	000018
  */
-void BigTreasureShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { m_jointPositions[p1][p2] = posPtr; }
+void BigTreasureShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { mJointPositions[p1][p2] = posPtr; }
 
 /*
  * --INFO--
@@ -140,17 +140,17 @@ void BigTreasureShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { m_
 void BigTreasureShadowMgr::update()
 {
 	JointShadowParm parm;
-	parm._00 = m_obj->getTraceCentrePosition();
+	parm._00 = mObj->getTraceCentrePosition();
 	parm._0C = Vector3f(0.5f, 3.0f, 0.5f);
 	parm._0C.normalise();
-	*m_kosiPosition = m_bodyMatrix->getBasis(3);
-	m_kosiPosition->y += -20.0f;
+	*mKosiPosition = mBodyMatrix->getBasis(3);
+	mKosiPosition->y += -20.0f;
 
-	f32 p1 = 5.0f * m_obj->m_shadowScale;
-	f32 p2 = 2.5f * m_obj->m_shadowScale;
+	f32 p1 = 5.0f * mObj->mShadowScale;
+	f32 p2 = 2.5f * mObj->mShadowScale;
 
 	// this section needs fixing
-	const f32 theta = m_obj->getFaceDir();
+	const f32 theta = mObj->getFaceDir();
 	f32 cosTheta    = pikmin2_cosf(theta);
 	f32 sinTheta    = pikmin2_sinf(theta);
 	Vector3f vec1(20.0f * sinTheta, 0.0f, 20.0f * cosTheta);
@@ -158,15 +158,15 @@ void BigTreasureShadowMgr::update()
 
 	parm._18 = 0.0f;
 	parm._1C = 0.0f;
-	parm._20 = 20.0f * m_obj->m_shadowScale;
+	parm._20 = 20.0f * mObj->mShadowScale;
 	parm._24 = -75.0f;
 
-	Vector3f pos1 = vec1 + *m_kosiPosition;
-	Vector3f pos2 = vec2 + *m_kosiPosition;
+	Vector3f pos1 = vec1 + *mKosiPosition;
+	Vector3f pos2 = vec2 + *mKosiPosition;
 
 	_88->makeShadowSRT(parm, pos1);
 
-	parm._20 = 27.0f * m_obj->m_shadowScale;
+	parm._20 = 27.0f * mObj->mShadowScale;
 
 	_8C->makeShadowSRT(parm, pos2);
 
@@ -177,7 +177,7 @@ void BigTreasureShadowMgr::update()
 		parm._1C = -62.5f;
 		parm._20 = p1;
 		parm._24 = -10.0f;
-		_90[i]->makeShadowSRT(parm, *m_kosiPosition, shadowVecs[0]);
+		_90[i]->makeShadowSRT(parm, *mKosiPosition, shadowVecs[0]);
 
 		parm._18 = 0.0f;
 		parm._1C = 0.0f;
@@ -206,10 +206,10 @@ void BigTreasureShadowMgr::update()
 		_F0[i]->makeShadowSRT(parm, shadowVecs[2]);
 
 		for (int j = 0; j < 4; j++) {
-			if (m_jointPositions[i][j]) {
-				m_jointPositions[i][j]->x = shadowVecs[j].x;
-				m_jointPositions[i][j]->y = shadowVecs[j].y;
-				m_jointPositions[i][j]->z = shadowVecs[j].z;
+			if (mJointPositions[i][j]) {
+				mJointPositions[i][j]->x = shadowVecs[j].x;
+				mJointPositions[i][j]->y = shadowVecs[j].y;
+				mJointPositions[i][j]->z = shadowVecs[j].z;
 			}
 		}
 	}

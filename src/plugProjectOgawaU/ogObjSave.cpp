@@ -14,9 +14,9 @@ namespace newScreen {
  */
 ObjSave::ObjSave(const char* name)
 {
-	m_saveMgr = nullptr;
-	m_name    = name;
-	m_disp    = nullptr;
+	mSaveMgr = nullptr;
+	mName    = name;
+	mDisp    = nullptr;
 }
 
 /*
@@ -35,12 +35,12 @@ void ObjSave::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberSave* disp = static_cast<og::Screen::DispMemberSave*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_SAVE)) {
-		m_disp = disp;
+		mDisp = disp;
 	} else {
 		JUT_PANICLINE(84, "ERR! in ObjSave CreateŽ¸”sI\n");
 	}
-	m_state = SAVESTATE_StartDelay;
-	m_timer = 0.0f;
+	mState = SAVESTATE_StartDelay;
+	mTimer = 0.0f;
 }
 
 /*
@@ -51,36 +51,36 @@ void ObjSave::doCreate(JKRArchive* arc)
 bool ObjSave::doUpdate()
 {
 	bool check = false;
-	if (m_disp->m_doSound) {
+	if (mDisp->mDoSound) {
 		ogSound->setSaveCave();
 	}
-	m_saveMgr->update();
+	mSaveMgr->update();
 
-	switch (m_state) {
+	switch (mState) {
 	case SAVESTATE_StartDelay:
-		m_timer += sys->m_deltaTime;
-		if (m_timer > 0.1f) {
-			m_state = SAVESTATE_WaitForFinish;
-			m_saveMgr->setControllers(getGamePad());
-			m_saveMgr->_470       = 0;
-			m_saveMgr->m_saveType = 1;
-			if (!Game::gGameConfig.m_parms.m_autosaveOff.m_data) {
-				m_saveMgr->m_isAutosaveOn = true;
+		mTimer += sys->mDeltaTime;
+		if (mTimer > 0.1f) {
+			mState = SAVESTATE_WaitForFinish;
+			mSaveMgr->setControllers(getGamePad());
+			mSaveMgr->_470      = 0;
+			mSaveMgr->mSaveType = 1;
+			if (!Game::gGameConfig.mParms.mAutosaveOff.mData) {
+				mSaveMgr->mIsAutosaveOn = true;
 			}
-			m_saveMgr->start();
-			m_saveMgr->update();
+			mSaveMgr->start();
+			mSaveMgr->update();
 		}
 		break;
 
 	case SAVESTATE_WaitForFinish:
-		if (m_saveMgr->isFinish()) {
-			m_state = SAVESTATE_Finished;
+		if (mSaveMgr->isFinish()) {
+			mState = SAVESTATE_Finished;
 		}
 		break;
 
 	case SAVESTATE_Finished:
-		check   = true;
-		m_state = SAVESTATE_StartDelay;
+		check  = true;
+		mState = SAVESTATE_StartDelay;
 	}
 
 	return check;
@@ -93,8 +93,8 @@ bool ObjSave::doUpdate()
  */
 void ObjSave::doDraw(Graphics& gfx)
 {
-	if (m_state == SAVESTATE_WaitForFinish) {
-		m_saveMgr->draw();
+	if (mState == SAVESTATE_WaitForFinish) {
+		mSaveMgr->draw();
 	}
 }
 

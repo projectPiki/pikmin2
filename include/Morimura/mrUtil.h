@@ -24,10 +24,10 @@ struct TOffsetMsgSet {
 		offset -= calc2;
 	}
 
-	u64* m_tagList; // _00
-	int* _04;       // _04
-	u64 m_msgID;    // _08
-	int m_size;     // _10
+	u64* mTagList; // _00
+	int* _04;      // _04
+	u64 mMsgID;    // _08
+	int mSize;     // _10
 };
 
 struct TScaleUpCounter : public og::Screen::CallBack_CounterRV {
@@ -45,7 +45,7 @@ struct TScaleUpCounter : public og::Screen::CallBack_CounterRV {
 	virtual void init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u32* ptr, bool check) // _1C (weak)
 	{
 		og::Screen::CallBack_CounterRV::init(screen, tag1, tag2, tag3, ptr, check);
-		_AC = m_pane12DistX;
+		_AC = mPane12DistX;
 	}
 	virtual void setValue(bool, bool); // _28
 
@@ -69,13 +69,13 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 
 	// _00     = VTBL
 	// _00-_A8 = og::Screen::CallBack_CounterRV
-	u8 _A8;                                // _A8
-	u8 _A9;                                // _A9
-	u8 _AA;                                // _AA
-	u8 _AB;                                // _AB
-	efx2d::T2DCountKira** m_efxCountKiras; // _AC, array of ptrs?
-	u8 _B0;                                // _B0
-	u8 _B1;                                // _B1
+	u8 _A8;                               // _A8
+	u8 _A9;                               // _A9
+	u8 _AA;                               // _AA
+	u8 _AB;                               // _AB
+	efx2d::T2DCountKira** mEfxCountKiras; // _AC, array of ptrs?
+	u8 _B0;                               // _B0
+	u8 _B1;                               // _B1
 };
 
 struct TCallbackScissor : public P2DScreen::CallBackNode {
@@ -85,10 +85,10 @@ struct TCallbackScissor : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	f32 m_X1; // _1C
-	f32 m_Y1; // _20
-	f32 m_X2; // _24
-	f32 m_Y2; // _28
+	f32 mX1; // _1C
+	f32 mY1; // _20
+	f32 mX2; // _24
+	f32 mY2; // _28
 };
 
 struct TScissorPane : public J2DPictureEx {
@@ -159,16 +159,16 @@ struct TIndPane : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	JUTTexture* m_texture1; // _18
-	JUTTexture* m_texture2; // _1C
-	JUTTexture* m_texture3; // _20
-	Vector2f m_minPos;      // _24
-	Vector2f m_maxPos;      // _2C
-	f32 _34;                // _34
-	f32 _38;                // _38
-	s16 _3C;                // _3C
-	f32 _40;                // _40
-	u8 _44;                 // _44
+	JUTTexture* mTexture1; // _18
+	JUTTexture* mTexture2; // _1C
+	JUTTexture* mTexture3; // _20
+	Vector2f mMinPos;      // _24
+	Vector2f mMaxPos;      // _2C
+	f32 _34;               // _34
+	f32 _38;               // _38
+	s16 _3C;               // _3C
+	f32 _40;               // _40
+	u8 _44;                // _44
 };
 } // namespace Morimura
 

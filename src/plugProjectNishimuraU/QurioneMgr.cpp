@@ -12,8 +12,8 @@ static const char qurioneMgrName[] = "246-QurioneMgr";
  */
 Generator::Generator()
     : EnemyGeneratorBase("クリオネジェネレータ") // clione (sea angel) generator
-    , m_fly(200.0f)
-    , m_slide(30.0f)
+    , mFly(200.0f)
+    , mSlide(30.0f)
 {
 }
 
@@ -31,7 +31,7 @@ u32 Generator::getLatestVersion() { return '0000'; }
  */
 void Generator::doRead(Stream& stream)
 {
-	if (m_version == getLatestVersion()) {
+	if (mVersion == getLatestVersion()) {
 		doReadLatestVersion(stream);
 		return;
 	}
@@ -46,10 +46,10 @@ void Generator::doRead(Stream& stream)
  */
 void Generator::doWrite(Stream& stream)
 {
-	stream.textWriteTab(stream.m_tabCount);
-	stream.writeFloat(m_fly);
+	stream.textWriteTab(stream.mTabCount);
+	stream.writeFloat(mFly);
 	stream.textWriteText("\t\t# fly \r\n");
-	stream.writeFloat(m_slide);
+	stream.writeFloat(mSlide);
 	stream.textWriteText("\t\t# slide \r\n");
 }
 
@@ -60,8 +60,8 @@ void Generator::doWrite(Stream& stream)
  */
 void Generator::doReadLatestVersion(Stream& stream)
 {
-	m_fly   = stream.readFloat();
-	m_slide = stream.readFloat();
+	mFly   = stream.readFloat();
+	mSlide = stream.readFloat();
 }
 
 /*
@@ -79,7 +79,7 @@ void Generator::doReadOldVersion(Stream&) { }
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "クリオネマネージャ"; // clione (sea angel) manager
+	mName = "クリオネマネージャ"; // clione (sea angel) manager
 }
 
 /*
@@ -94,14 +94,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	8025FE98
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	8025FFB4
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 } // namespace Qurione
 } // namespace Game

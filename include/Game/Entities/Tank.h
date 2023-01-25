@@ -88,19 +88,19 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                          // _2BC
-	SysShape::Joint* m_joint;            // _2C0
-	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2C4
-	Vector3f _2CC;                       // _2CC
-	Vector3f _2D8;                       // _2D8
-	f32 _2E4;                            // _2E4
-	f32 _2E8;                            // _2E8
-	f32 m_cautionTimer;                  // _2EC
-	f32 _2F0;                            // _2F0
-	f32 _2F4;                            // _2F4
-	Vector3f _2F8;                       // _2F8
-	bool m_isBlowing;                    // _304, is blowing fire/water
-	                                     // _308 = PelletView
+	FSM* mFsm;                          // _2BC
+	SysShape::Joint* mJoint;            // _2C0
+	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2C4
+	Vector3f _2CC;                      // _2CC
+	Vector3f _2D8;                      // _2D8
+	f32 _2E4;                           // _2E4
+	f32 _2E8;                           // _2E8
+	f32 mCautionTimer;                  // _2EC
+	f32 _2F0;                           // _2F0
+	f32 _2F4;                           // _2F4
+	Vector3f _2F8;                      // _2F8
+	bool mIsBlowing;                    // _304, is blowing fire/water
+	                                    // _308 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -123,32 +123,32 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	Parms()
-	    : m_parameters(nullptr, "TankParms")
+	    : mParameters(nullptr, "TankParms")
 	{
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_parameters.read(stream);
+		mGeneral.read(stream);
+		mParameters.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
 	// this might be a sub-struct like other enemies
 	// but doesn't have any Parms in it, so...
-	Parameters m_parameters; // _7F8
+	Parameters mParameters; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -164,7 +164,7 @@ struct State : public EnemyFSMState {
 	inline State(int stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL
@@ -292,8 +292,8 @@ struct Obj : public Tank::Obj {
 
 	// _00 		= VTBL
 	// _00-_308	= Tank::Obj
-	efx::TTankEffect* m_tankEffect; // _308
-	                                // _30C = PelletView
+	efx::TTankEffect* mTankEffect; // _308
+	                               // _30C = PelletView
 };
 
 struct Mgr : public Tank::Mgr {
@@ -310,13 +310,13 @@ struct Mgr : public Tank::Mgr {
 	}
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
-		return m_changeTexture;
+		return mChangeTexture;
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* m_changeTexture; // _44, probably
-	Obj* m_obj;               // _48, array of Objs, probably
+	ResTIMG* mChangeTexture; // _44, probably
+	Obj* mObj;               // _48, array of Objs, probably
 };
 } // namespace Ftank
 
@@ -347,8 +347,8 @@ struct Obj : public Tank::Obj {
 
 	// _00 		= VTBL
 	// _00-_308	= Tank::Obj
-	efx::TWtankEffect* m_tankEffect; // _308
-	                                 // _30C = PelletView
+	efx::TWtankEffect* mTankEffect; // _308
+	                                // _30C = PelletView
 };
 
 struct Mgr : public Tank::Mgr {
@@ -365,13 +365,13 @@ struct Mgr : public Tank::Mgr {
 	}
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
-		return m_changeTexture;
+		return mChangeTexture;
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* m_changeTexture; // _44, probably
-	Obj* m_obj;               // _48, array of Objs, probably
+	ResTIMG* mChangeTexture; // _44, probably
+	Obj* mObj;               // _48, array of Objs, probably
 };
 } // namespace Wtank
 } // namespace Game

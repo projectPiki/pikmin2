@@ -10,16 +10,16 @@ namespace Cave {
  */
 RandGateUnit::RandGateUnit(MapUnitGenerator* generator)
 {
-	m_generator       = generator;
-	m_gatePlacedCount = 0;
+	mGenerator       = generator;
+	mGatePlacedCount = 0;
 
-	FloorInfo* floorInfo = m_generator->m_floorInfo;
+	FloorInfo* floorInfo = mGenerator->mFloorInfo;
 	if (floorInfo) {
-		m_gateMax       = floorInfo->getGateMax();
-		m_gateWeightSum = floorInfo->getGateWeightSum();
+		mGateMax       = floorInfo->getGateMax();
+		mGateWeightSum = floorInfo->getGateWeightSum();
 	} else {
-		m_gateMax       = 0;
-		m_gateWeightSum = 0;
+		mGateMax       = 0;
+		mGateWeightSum = 0;
 	}
 }
 
@@ -30,8 +30,8 @@ RandGateUnit::RandGateUnit(MapUnitGenerator* generator)
  */
 void RandGateUnit::setManageClassPtr(RandMapScore* score, RandItemUnit* item)
 {
-	m_mapScore = score;
-	m_itemUnit = item;
+	mMapScore = score;
+	mItemUnit = item;
 }
 
 /*
@@ -42,7 +42,7 @@ void RandGateUnit::setManageClassPtr(RandMapScore* score, RandItemUnit* item)
 void RandGateUnit::setGateDoor()
 {
 	MapNode* room;
-	if (m_gatePlacedCount < m_gateMax) {
+	if (mGatePlacedCount < mGateMax) {
 		for (int i = 0; i < 100; i++) {
 			GateUnit* gate = getGateUnit();
 			int roomNum;
@@ -50,10 +50,10 @@ void RandGateUnit::setGateDoor()
 
 			if (gate != nullptr && room) {
 				int doorDirect = room->getDoorDirect(roomNum);
-				room->m_gateNode->add(new GateNode(gate, roomNum, doorDirect));
-				m_gatePlacedCount++;
+				room->mGateNode->add(new GateNode(gate, roomNum, doorDirect));
+				mGatePlacedCount++;
 
-				if (m_gatePlacedCount < m_gateMax) {
+				if (mGatePlacedCount < mGateMax) {
 					continue;
 				} else {
 					return;
@@ -71,19 +71,19 @@ void RandGateUnit::setGateDoor()
  */
 GateUnit* RandGateUnit::getGateUnit()
 {
-	int weight     = m_gateWeightSum;
-	GateNode* node = static_cast<GateNode*>(m_generator->m_gateNode);
+	int weight     = mGateWeightSum;
+	GateNode* node = static_cast<GateNode*>(mGenerator->mGateNode);
 
 	int gateSum    = 0;
 	int randCutoff = (int)(weight * randFloat());
 
 	GateUnit* gate;
 	GateInfo* info;
-	for (GateNode* child = static_cast<GateNode*>(node->m_child); child != nullptr; child = static_cast<GateNode*>(child->m_next)) {
-		gate = child->m_unit;
-		info = gate->m_info;
+	for (GateNode* child = static_cast<GateNode*>(node->mChild); child != nullptr; child = static_cast<GateNode*>(child->mNext)) {
+		gate = child->mUnit;
+		info = gate->mInfo;
 		if (info) {
-			gateSum += info->m_weight;
+			gateSum += info->mWeight;
 		} else {
 			gateSum++;
 		}
@@ -132,9 +132,9 @@ MapNode* RandGateUnit::getItemSetCapDoor(int& idx)
 	int idxArray[512];
 	int validDoorCount = 0;
 
-	MapNode* node = static_cast<MapNode*>(m_generator->m_placedMapNodes->m_child);
-	for (node; node != nullptr; node = static_cast<MapNode*>(node->m_next)) {
-		if (node->m_unitInfo->getUnitKind() == 0 && !strncmp(node->getUnitName(), "item", 4) && m_itemUnit->isItemSetDone(node, nullptr)) {
+	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->mChild);
+	for (node; node != nullptr; node = static_cast<MapNode*>(node->mNext)) {
+		if (node->mUnitInfo->getUnitKind() == 0 && !strncmp(node->getUnitName(), "item", 4) && mItemUnit->isItemSetDone(node, nullptr)) {
 			for (int i = 0; i < node->getNumDoors(); i++) {
 				if (!node->isGateSetDoor(i)) {
 					nodeArray[validDoorCount] = node;
@@ -160,12 +160,12 @@ MapNode* RandGateUnit::getItemSetCapDoor(int& idx)
  */
 MapNode* RandGateUnit::getRoomMinScoreDoor(int& idx)
 {
-	MapNode* node = static_cast<MapNode*>(m_generator->m_placedMapNodes->m_child);
-	for (node; node != nullptr; node = static_cast<MapNode*>(node->m_next)) {
-		if (node->m_unitInfo->getUnitKind() == 1 && node != m_mapScore->getFixObjNode(0)) {
+	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->mChild);
+	for (node; node != nullptr; node = static_cast<MapNode*>(node->mNext)) {
+		if (node->mUnitInfo->getUnitKind() == 1 && node != mMapScore->getFixObjNode(0)) {
 			int minScore = 128000;
 			for (int i = 0; i < node->getNumDoors(); i++) {
-				int doorScore = node->m_adjustInfo[i].m_doorScore;
+				int doorScore = node->mAdjustInfo[i].mDoorScore;
 				if (doorScore < minScore) {
 					minScore = doorScore;
 					idx      = i;
@@ -190,24 +190,24 @@ Game::Cave::MapNode* Game::Cave::RandGateUnit::getRoomLowScoreDoor(int& idx)
 	int idxArray[512], scoreArray[512];
 	int total = 0, scoreSum = 0, score = 0;
 	// score = scoreSum = total = 0;
-	MapNode* placedNodes = m_generator->getPlacedNodes();
+	MapNode* placedNodes = mGenerator->getPlacedNodes();
 	for (MapNode* node = placedNodes->getChild(); node != nullptr; node = node->getNext()) {
-		if (node->m_unitInfo->getUnitKind() == 1) {
+		if (node->mUnitInfo->getUnitKind() == 1) {
 			for (int i = 0; i < node->getNumDoors(); i++) {
-				if ((node->m_adjustInfo[i].m_doorScore > score) && !node->isGateSetDoor(i)) {
-					score = node->m_adjustInfo[i].m_doorScore;
+				if ((node->mAdjustInfo[i].mDoorScore > score) && !node->isGateSetDoor(i)) {
+					score = node->mAdjustInfo[i].mDoorScore;
 				}
 			}
 		}
 	}
 
 	for (MapNode* node = placedNodes->getChild(); node != nullptr; node = node->getNext()) {
-		if (node->m_unitInfo->getUnitKind() == 1) {
+		if (node->mUnitInfo->getUnitKind() == 1) {
 			for (int i = 0; i < node->getNumDoors(); i++) {
 				if (!node->isGateSetDoor(i)) {
 					nodeArray[total]  = node;
 					idxArray[total]   = i;
-					scoreArray[total] = (score + 1) - node->m_adjustInfo[i].m_doorScore;
+					scoreArray[total] = (score + 1) - node->mAdjustInfo[i].mDoorScore;
 					scoreSum += scoreArray[total];
 					total++;
 				}
@@ -240,8 +240,8 @@ MapNode* RandGateUnit::getRandomScoreDoor(int& idx)
 
 	int total = 0, totalCount = 0;
 
-	for (MapNode* node = m_generator->m_placedMapNodes->getChild(); node != nullptr; node = node->getNext()) {
-		int kind      = node->m_unitInfo->getUnitKind();
+	for (MapNode* node = mGenerator->mPlacedMapNodes->getChild(); node != nullptr; node = node->getNext()) {
+		int kind      = node->mUnitInfo->getUnitKind();
 		int doorCount = node->getNumDoors();
 		if (kind == 1) {
 			for (int i = 0; i < doorCount; i++) {

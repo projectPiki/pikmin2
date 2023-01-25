@@ -228,9 +228,9 @@ void PlatInstance::setCollision(bool flag)
 Vector3f PlatInstance::getPosition()
 {
 	Vector3f result;
-	result.x = _B8->m_matrix.structView.tx;
-	result.y = _B8->m_matrix.structView.ty;
-	result.z = _B8->m_matrix.structView.tz;
+	result.x = _B8->mMatrix.structView.tx;
+	result.y = _B8->mMatrix.structView.ty;
+	result.z = _B8->mMatrix.structView.tz;
 	return result;
 }
 
@@ -239,7 +239,7 @@ Vector3f PlatInstance::getPosition()
  * Address:	801C4C1C
  * Size:	000050
  */
-void PlatInstance::getBoundingSphere(Sys::Sphere& sphere) { sphere = ((Sys::OBBTree*)_EC->getTriDivider())->m_obb._100; }
+void PlatInstance::getBoundingSphere(Sys::Sphere& sphere) { sphere = ((Sys::OBBTree*)_EC->getTriDivider())->mObb._100; }
 
 /*
  * --INFO--
@@ -654,10 +654,10 @@ void PlatInstance::traceMove(MoveInfo&, float)
  * Size:	000018
  */
 PlatInstanceAttacher::PlatInstanceAttacher()
-    : m_instanceCount(0)
-    , m_platInstances(nullptr)
-    , m_attacher(nullptr)
-    , m_model(nullptr)
+    : mInstanceCount(0)
+    , mPlatInstances(nullptr)
+    , mAttacher(nullptr)
+    , mModel(nullptr)
 {
 }
 
@@ -794,9 +794,9 @@ void PlatInstanceAttacher::addToMgr(Creature*, ID32&, PlatAttacher*, bool)
  */
 void PlatInstanceAttacher::setCollision(bool p1, unsigned short jointIndex)
 {
-	for (int i = 0; i < m_instanceCount; i++) {
-		if (jointIndex == m_attacher->getJointIndex(i)) {
-			PlatInstance* instance = m_platInstances[i];
+	for (int i = 0; i < mInstanceCount; i++) {
+		if (jointIndex == mAttacher->getJointIndex(i)) {
+			PlatInstance* instance = mPlatInstances[i];
 			if (p1) {
 				instance->_108 &= ~0x1;
 			} else {
@@ -871,13 +871,13 @@ void PlatInstanceAttacher::fixCollision(bool, unsigned short)
  */
 void PlatInstanceAttacher::fixCollision(bool p1)
 {
-	for (int i = 0; i < m_instanceCount; i++) {
-		PlatInstance* instance = m_platInstances[i];
+	for (int i = 0; i < mInstanceCount; i++) {
+		PlatInstance* instance = mPlatInstances[i];
 		if (p1) {
 			instance->_108 &= ~0x2;
 		} else {
 			instance->_108 |= 0x2;
-			PSMTXInverse(instance->_B8->m_matrix.mtxView, instance->_BC.m_matrix.mtxView);
+			PSMTXInverse(instance->_B8->mMatrix.mtxView, instance->_BC.mMatrix.mtxView);
 		}
 	}
 	/*
@@ -1347,14 +1347,14 @@ PlatMgr::PlatMgr()
  * Size:	000064
  */
 PlatAddInstanceArg::PlatAddInstanceArg()
-    : m_id()
+    : mId()
 {
-	m_item = nullptr;
-	m_id.setID('null');
-	m_platform = nullptr;
-	m_matrix   = nullptr;
-	_18        = false;
-	_1C        = 0.0f;
+	mItem = nullptr;
+	mId.setID('null');
+	mPlatform = nullptr;
+	mMatrix   = nullptr;
+	_18       = false;
+	_1C       = 0.0f;
 }
 
 /*
@@ -1365,32 +1365,32 @@ PlatAddInstanceArg::PlatAddInstanceArg()
 PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 {
 	PlatInstance* instance = new PlatInstance();
-	instance->_B8          = arg.m_matrix;
-	instance->m_id         = arg.m_id;
-	instance->_F4          = arg.m_item;
+	instance->_B8          = arg.mMatrix;
+	instance->mId          = arg.mId;
+	instance->_F4          = arg.mItem;
 	if (arg._18) {
-		instance->_EC = arg.m_platform;
-		instance->_F0 = arg.m_platform->clone(*arg.m_matrix);
+		instance->_EC = arg.mPlatform;
+		instance->_F0 = arg.mPlatform->clone(*arg.mMatrix);
 		instance->_108 |= 0x80;
 	} else {
-		instance->_EC = arg.m_platform;
+		instance->_EC = arg.mPlatform;
 	}
 	TObjectNode<PlatInstance>* node = new TObjectNode<PlatInstance>();
-	node->m_contents                = instance;
-	m_node.add(node);
-	node->m_contents->constructor();
+	node->mContents                 = instance;
+	mNode.add(node);
+	node->mContents->constructor();
 	if (Game::platCellMgr) {
 		Sys::Sphere sphere;
-		sphere.m_position.x = instance->_B8->m_matrix.structView.tx;
-		sphere.m_position.y = instance->_B8->m_matrix.structView.ty;
-		sphere.m_position.z = instance->_B8->m_matrix.structView.tz;
-		Sys::OBBTree* div   = (Sys::OBBTree*)instance->_EC->getTriDivider();
-		sphere.m_position.x += div->m_obb._100.m_position.x;
-		sphere.m_position.y += div->m_obb._100.m_position.y;
-		sphere.m_position.z += div->m_obb._100.m_position.z;
-		sphere.m_radius = div->m_obb._100.m_radius;
+		sphere.mPosition.x = instance->_B8->mMatrix.structView.tx;
+		sphere.mPosition.y = instance->_B8->mMatrix.structView.ty;
+		sphere.mPosition.z = instance->_B8->mMatrix.structView.tz;
+		Sys::OBBTree* div  = (Sys::OBBTree*)instance->_EC->getTriDivider();
+		sphere.mPosition.x += div->mObb._100.mPosition.x;
+		sphere.mPosition.y += div->mObb._100.mPosition.y;
+		sphere.mPosition.z += div->mObb._100.mPosition.z;
+		sphere.mRadius = div->mObb._100.mRadius;
 		if (0.0 < arg._1C) {
-			sphere.m_radius = arg._1C;
+			sphere.mRadius = arg._1C;
 		}
 		int v1;
 		Recti v2;

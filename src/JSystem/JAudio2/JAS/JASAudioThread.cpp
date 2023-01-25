@@ -71,7 +71,7 @@ JASAudioThread::JASAudioThread(int stackSize, int msgCount, unsigned long thread
 void JASAudioThread::create(long threadPriority)
 {
 	sAudioThread = new (JASDram, 0) JASAudioThread(0x1000, 0x10, threadPriority);
-	OSResumeThread(sAudioThread->m_thread);
+	OSResumeThread(sAudioThread->mThread);
 }
 
 /*
@@ -82,7 +82,7 @@ void JASAudioThread::create(long threadPriority)
 void JASAudioThread::stop()
 {
 	if (sAudioThread != nullptr) {
-		OSJamMessage(&sAudioThread->m_msgQueue, (void*)2, OS_MESSAGE_BLOCKING);
+		OSJamMessage(&sAudioThread->mMsgQueue, (void*)2, OS_MESSAGE_BLOCKING);
 	}
 }
 
@@ -235,7 +235,7 @@ void JASAudioThread::DMACallback()
 {
 	JASKernel::probeFinish(4);
 	JASKernel::probeStart(4, "UPDATE-DAC");
-	OSSendMessage(&sAudioThread->m_msgQueue, nullptr, OS_MESSAGE_NON_BLOCKING);
+	OSSendMessage(&sAudioThread->mMsgQueue, nullptr, OS_MESSAGE_NON_BLOCKING);
 }
 
 /*
@@ -249,7 +249,7 @@ void JASAudioThread::DSPCallback(void*)
 	u32 v1 = DSPReadMailFromDSP();
 	if (v1 >> 0x10 == 0xF355) {
 		if ((v1 & 0xFF00) == 0xFF00) {
-			OSSendMessage(&sAudioThread->m_msgQueue, (void*)1, OS_MESSAGE_NON_BLOCKING);
+			OSSendMessage(&sAudioThread->mMsgQueue, (void*)1, OS_MESSAGE_NON_BLOCKING);
 		} else {
 			JASDsp::finishWork(v1);
 		}

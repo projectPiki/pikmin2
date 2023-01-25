@@ -17,14 +17,14 @@ Obj::Obj() { createEffect(); }
 void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
-	J3DModel* j3dModel = m_model->m_j3dModel;
-	modelData          = j3dModel->m_modelData;
-	ResTIMG* texture   = static_cast<Mgr*>(m_mgr)->getChangeTexture();
+	J3DModel* j3dModel = mModel->mJ3dModel;
+	modelData          = j3dModel->mModelData;
+	ResTIMG* texture   = static_cast<Mgr*>(mMgr)->getChangeTexture();
 
 	j3dModel->calcMaterial();
 
 	ResTIMG* newTexture;
-	J3DTexture* j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+	J3DTexture* j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
 	newTexture             = j3dTexture->_04;
 
 	texture->copyTo(newTexture);
@@ -32,10 +32,10 @@ void Obj::changeMaterial()
 	j3dTexture->setImageOffset((u32)texture);
 	j3dTexture->setPaletteOffset((u32)texture);
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket    = packet;
-		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket     = packet;
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
 		material->diff(packet->_2C->_34);
 	}
 }
@@ -48,22 +48,22 @@ void Obj::changeMaterial()
 void Obj::interactCreature(Creature* creature)
 {
 	// Get direction from US -> Creature, then make it normalise it to a unit direction
-	Vector3f direction = creature->getPosition() - m_position;
+	Vector3f direction = creature->getPosition() - mPosition;
 	direction.y        = 0.0f;
 	_normalise(direction);
 
 	// Then scale the direction based on fp14's value
-	f32 scaling = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_searchDistance.m_value;
+	f32 scaling = static_cast<OtakaraBase::Parms*>(mParms)->mGeneral.mSearchDistance.mValue;
 	direction.x *= scaling;
 	direction.z *= scaling;
 
 	// If the creature is a Pikmin, change the up/down direction to fp26
 	if (creature->isPiki()) {
-		direction.y = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_searchHeight.m_value;
+		direction.y = static_cast<OtakaraBase::Parms*>(mParms)->mGeneral.mSearchHeight.mValue;
 	}
 
 	// Start the interaction
-	InteractDenki denki(this, static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_attackDamage.m_value, &direction);
+	InteractDenki denki(this, static_cast<OtakaraBase::Parms*>(mParms)->mGeneral.mAttackDamage.mValue, &direction);
 	creature->stimulate(denki);
 }
 
@@ -72,7 +72,7 @@ void Obj::interactCreature(Creature* creature)
  * Address:	802B9E88
  * Size:	000060
  */
-void Obj::createEffect() { m_efxChargeElec = new efx::TOtaChargeelec; }
+void Obj::createEffect() { mEfxChargeElec = new efx::TOtaChargeelec; }
 
 /*
  * --INFO--
@@ -81,8 +81,8 @@ void Obj::createEffect() { m_efxChargeElec = new efx::TOtaChargeelec; }
  */
 void Obj::setupEffect()
 {
-	Matrixf* centerJointMtx = m_model->getJoint("center")->getWorldMatrix();
-	m_efxChargeElec->setMtxptr(centerJointMtx->m_matrix.mtxView);
+	Matrixf* centerJointMtx = mModel->getJoint("center")->getWorldMatrix();
+	mEfxChargeElec->setMtxptr(centerJointMtx->mMatrix.mtxView);
 }
 
 /*
@@ -90,14 +90,14 @@ void Obj::setupEffect()
  * Address:	802B9F30
  * Size:	000034
  */
-void Obj::startChargeEffect() { m_efxChargeElec->create(nullptr); }
+void Obj::startChargeEffect() { mEfxChargeElec->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802B9F64
  * Size:	000030
  */
-void Obj::finishChargeEffect() { m_efxChargeElec->fade(); }
+void Obj::finishChargeEffect() { mEfxChargeElec->fade(); }
 
 /*
  * --INFO--
@@ -106,7 +106,7 @@ void Obj::finishChargeEffect() { m_efxChargeElec->fade(); }
  */
 void Obj::createDisChargeEffect()
 {
-	efx::Arg fxArg(m_position);
+	efx::Arg fxArg(mPosition);
 	efx::TOtaElec dischargeFX;
 	dischargeFX.create(&fxArg);
 }
@@ -116,14 +116,14 @@ void Obj::createDisChargeEffect()
  * Address:	802BA02C
  * Size:	000030
  */
-void Obj::effectDrawOn() { m_efxChargeElec->endDemoDrawOn(); }
+void Obj::effectDrawOn() { mEfxChargeElec->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	802BA05C
  * Size:	000030
  */
-void Obj::effectDrawOff() { m_efxChargeElec->startDemoDrawOff(); }
+void Obj::effectDrawOff() { mEfxChargeElec->startDemoDrawOff(); }
 
 /*
  * --INFO--

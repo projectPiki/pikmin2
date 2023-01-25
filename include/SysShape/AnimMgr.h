@@ -22,9 +22,9 @@ struct Model;
 struct AnimMgr : public CNode {
 	AnimMgr()
 	{
-		m_count = 0;
-		m_model = nullptr;
-		m_animInfo.clearRelations();
+		mCount = 0;
+		mModel = nullptr;
+		mAnimInfo.clearRelations();
 	}
 
 	virtual ~AnimMgr(); // _08 (weak)
@@ -38,9 +38,9 @@ struct AnimMgr : public CNode {
 	static AnimMgr* load(char*, J3DModelData*, JKRFileLoader*);
 	static AnimMgr* load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*);
 
-	Model* m_model;      // _18
-	AnimInfo m_animInfo; // _1C
-	u16 m_count;         // _70
+	Model* mModel;      // _18
+	AnimInfo mAnimInfo; // _1C
+	u16 mCount;         // _70
 };
 
 } // namespace SysShape

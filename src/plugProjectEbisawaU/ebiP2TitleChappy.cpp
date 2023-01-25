@@ -22,8 +22,8 @@ static const char ebiP2TitleChappyName[]  = "ebiP2TitleChappy";
 Chappy::TMgr::TMgr()
     : CNode("ChappyMgr")
 {
-	m_animator = new TAnimator;
-	m_object   = new TUnit;
+	mAnimator = new TAnimator;
+	mObject   = new TUnit;
 }
 
 // not sure why these are here - possibly structs declared in the file?????
@@ -32,20 +32,20 @@ static const char* parmStr = "Parms";
 
 static void fakeEbiTitleChappyFunc(char* format)
 {
-	Parm<f32> m_scale(nullptr, 'b000', "スケール", 2.0f, 0.0f, 10.0f);
-	Parm<f32> m_cullRadius(nullptr, 'b001', "カリング半径", 100.0f, 0.0f, 500.0f);
-	Parm<f32> m_collRadius(nullptr, 'b002', "コリジョン半径", 150.0f, 0.0f, 500.0f);
-	Parm<f32> m_pikiReactRadius(nullptr, 'b003', "ピクミン反応半径", 300.0f, 0.0f, 500.0f);
-	Parm<f32> m_hitOffset(nullptr, 'ch20', "当たりOffset", 80.0f, 0.0f, 500.0f);
-	Parm<f32> m_hitRadius(nullptr, 'ch21', "当たり半径", 100.0f, 0.0f, 500.0f);
-	Parm<f32> m_walkAngleRand(nullptr, 'ch00', "歩行ランダム角度", 30.0f, 0.0f, 90.0f);
-	Parm<f32> m_walkSpeed(nullptr, 'ch01', "歩行速度", 8.0f, 0.0f, 100.0f);
-	Parm<f32> m_turnSpeed(nullptr, 'ch23', "旋回性能\ ", 0.05f, 0.0f, 1.0f);
-	Parm<f32> m_minWaitTime(nullptr, 'ch10', "待ち時間最小(秒)", 0.3f, 0.0f, 10.0f);
-	Parm<f32> m_maxWaitTime(nullptr, 'ch11', "待ち時間最大(秒)", 1.0f, 0.0f, 10.0f);
-	Parm<f32> m_minWalkTime(nullptr, 'ch12', "移動時間最小(秒)", 0.5f, 0.0f, 10.0f);
-	Parm<f32> m_maxWalkTime(nullptr, 'ch13', "移動時間最大(秒)", 1.5f, 0.0f, 10.0f);
-	Parm<f32> m_controlledTime(nullptr, 'ch22', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f);
+	Parm<f32> mScale(nullptr, 'b000', "スケール", 2.0f, 0.0f, 10.0f);
+	Parm<f32> mCullRadius(nullptr, 'b001', "カリング半径", 100.0f, 0.0f, 500.0f);
+	Parm<f32> mCollRadius(nullptr, 'b002', "コリジョン半径", 150.0f, 0.0f, 500.0f);
+	Parm<f32> mPikiReactRadius(nullptr, 'b003', "ピクミン反応半径", 300.0f, 0.0f, 500.0f);
+	Parm<f32> mHitOffset(nullptr, 'ch20', "当たりOffset", 80.0f, 0.0f, 500.0f);
+	Parm<f32> mHitRadius(nullptr, 'ch21', "当たり半径", 100.0f, 0.0f, 500.0f);
+	Parm<f32> mWalkAngleRand(nullptr, 'ch00', "歩行ランダム角度", 30.0f, 0.0f, 90.0f);
+	Parm<f32> mWalkSpeed(nullptr, 'ch01', "歩行速度", 8.0f, 0.0f, 100.0f);
+	Parm<f32> mTurnSpeed(nullptr, 'ch23', "旋回性能\ ", 0.05f, 0.0f, 1.0f);
+	Parm<f32> mMinWaitTime(nullptr, 'ch10', "待ち時間最小(秒)", 0.3f, 0.0f, 10.0f);
+	Parm<f32> mMaxWaitTime(nullptr, 'ch11', "待ち時間最大(秒)", 1.0f, 0.0f, 10.0f);
+	Parm<f32> mMinWalkTime(nullptr, 'ch12', "移動時間最小(秒)", 0.5f, 0.0f, 10.0f);
+	Parm<f32> mMaxWalkTime(nullptr, 'ch13', "移動時間最大(秒)", 1.5f, 0.0f, 10.0f);
+	Parm<f32> mControlledTime(nullptr, 'ch22', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f);
 }
 
 /*
@@ -55,8 +55,8 @@ static void fakeEbiTitleChappyFunc(char* format)
  */
 void Chappy::TMgr::setArchive(JKRArchive* arc)
 {
-	m_params.loadSettingFile(arc, "param/param_chappy.txt");
-	m_animator->setArchive(arc);
+	mParams.loadSettingFile(arc, "param/paramChappy.txt");
+	mAnimator->setArchive(arc);
 }
 
 /*
@@ -64,7 +64,7 @@ void Chappy::TMgr::setArchive(JKRArchive* arc)
  * Address:	803E8778
  * Size:	000028
  */
-void Chappy::TMgr::initUnit() { m_object->init(this); }
+void Chappy::TMgr::initUnit() { mObject->init(this); }
 
 /*
  * --INFO--
@@ -73,18 +73,18 @@ void Chappy::TMgr::initUnit() { m_object->init(this); }
  */
 void Chappy::TAnimFolder::load(J3DModelData* data, JKRArchive* arc)
 {
-	m_anims[0].load(data, arc, "chappy/move1.bck");
-	m_anims[0].m_loopStart = 5.0f;
-	m_anims[0].m_loopEnd   = 34.0f;
-	m_anims[0].m_mode      = 1;
+	mAnims[0].load(data, arc, "chappy/move1.bck");
+	mAnims[0].mLoopStart = 5.0f;
+	mAnims[0].mLoopEnd   = 34.0f;
+	mAnims[0].mMode      = 1;
 
-	m_anims[1].load(data, arc, "chappy/waitact1.bck");
-	m_anims[1].m_loopStart = 8.0f;
-	m_anims[1].m_loopEnd   = 19.0f;
-	m_anims[1].m_mode      = 1;
+	mAnims[1].load(data, arc, "chappy/waitact1.bck");
+	mAnims[1].mLoopStart = 8.0f;
+	mAnims[1].mLoopEnd   = 19.0f;
+	mAnims[1].mMode      = 1;
 
-	m_anims[2].load(data, arc, "chappy/attack.bck");
-	m_anims[3].load(data, arc, "chappy/waitact2.bck");
+	mAnims[2].load(data, arc, "chappy/attack.bck");
+	mAnims[3].load(data, arc, "chappy/waitact2.bck");
 }
 
 /*
@@ -92,7 +92,7 @@ void Chappy::TAnimFolder::load(J3DModelData* data, JKRArchive* arc)
  * Address:	803E87A0
  * Size:	000068
  */
-Chappy::TAnimator::TAnimator() { m_modelData = nullptr; }
+Chappy::TAnimator::TAnimator() { mModelData = nullptr; }
 
 /*
  * --INFO--
@@ -103,11 +103,11 @@ void Chappy::TAnimator::setArchive(JKRArchive* arc)
 {
 	void* file = arc->getResource("chappy/swallow_model.bmd");
 	P2ASSERTLINE(122, file);
-	m_modelData = J3DModelLoaderDataBase::load(file, 0x100000);
-	m_modelData->newSharedDisplayList(0x40000);
-	m_modelData->makeSharedDL();
+	mModelData = J3DModelLoaderDataBase::load(file, 0x100000);
+	mModelData->newSharedDisplayList(0x40000);
+	mModelData->makeSharedDL();
 
-	m_animFolder.load(m_modelData, arc);
+	mAnimFolder.load(mModelData, arc);
 }
 
 /*
@@ -115,14 +115,14 @@ void Chappy::TAnimator::setArchive(JKRArchive* arc)
  * Address:	........
  * Size:	000078
  */
-J3DModel* Chappy::TAnimator::newJ3DModel() { return new J3DModel(m_modelData, 0x20000, 1); }
+J3DModel* Chappy::TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x20000, 1); }
 
 /*
  * --INFO--
  * Address:	803E8930
  * Size:	000008
  */
-void Chappy::TUnit::setController(Controller* control) { m_control = control; }
+void Chappy::TUnit::setController(Controller* control) { mControl = control; }
 
 /*
  * --INFO--
@@ -131,16 +131,16 @@ void Chappy::TUnit::setController(Controller* control) { m_control = control; }
  */
 void Chappy::TUnit::init(TMgr* mgr)
 {
-	m_manager = mgr;
-	m_model   = m_manager->m_animator->newJ3DModel();
-	m_anim.setAnimFolder(&m_manager->m_animator->m_animFolder);
+	mManager = mgr;
+	mModel   = mManager->mAnimator->newJ3DModel();
+	mAnim.setAnimFolder(&mManager->mAnimator->mAnimFolder);
 
-	m_pos      = titleMgr->getPosOutOfViewField();
-	m_parms[0] = m_manager->m_params.m_walkSpeed.m_value;
-	m_parms[1] = m_manager->m_params.m_scale.m_value;
-	m_parms[4] = m_manager->m_params.m_cullRadius.m_value;
-	m_parms[2] = m_manager->m_params.m_collRadius.m_value;
-	m_parms[3] = m_manager->m_params.m_pikiReactRadius.m_value;
+	mPos      = titleMgr->getPosOutOfViewField();
+	mParms[0] = mManager->mParams.mWalkSpeed.mValue;
+	mParms[1] = mManager->mParams.mScale.mValue;
+	mParms[4] = mManager->mParams.mCullRadius.mValue;
+	mParms[2] = mManager->mParams.mCollRadius.mValue;
+	mParms[3] = mManager->mParams.mPikiReactRadius.mValue;
 }
 
 /*
@@ -150,10 +150,10 @@ void Chappy::TUnit::init(TMgr* mgr)
  */
 void Chappy::TUnit::startZigzagWalk(Vector2f& pos1, Vector2f& pos2)
 {
-	m_pos       = pos1;
-	m_targetPos = pos2;
-	m_actionID  = CHAPPYACT_NULL;
-	_48         = 0;
+	mPos       = pos1;
+	mTargetPos = pos2;
+	mActionID  = CHAPPYACT_NULL;
+	_48        = 0;
 	startAIState_(CHAPPYAI_5);
 }
 
@@ -164,7 +164,7 @@ void Chappy::TUnit::startZigzagWalk(Vector2f& pos1, Vector2f& pos2)
  */
 void Chappy::TUnit::goHome()
 {
-	if (m_stateID != 0) {
+	if (mStateID != 0) {
 		startAIState_(CHAPPYAI_6);
 	}
 }
@@ -181,14 +181,14 @@ void Chappy::TUnit::outOfCalc() { startAIState_(CHAPPYAI_Inactive); }
  * Address:	803E8AD4
  * Size:	000014
  */
-bool Chappy::TUnit::isCalc() { return m_stateID != CHAPPYAI_Inactive; }
+bool Chappy::TUnit::isCalc() { return mStateID != CHAPPYAI_Inactive; }
 
 /*
  * --INFO--
  * Address:	803E8AE8
  * Size:	000014
  */
-bool Chappy::TUnit::isController() { return (u8)(m_stateID == CHAPPYAI_Controlled); }
+bool Chappy::TUnit::isController() { return (u8)(mStateID == CHAPPYAI_Controlled); }
 
 /*
  * --INFO--
@@ -197,63 +197,63 @@ bool Chappy::TUnit::isController() { return (u8)(m_stateID == CHAPPYAI_Controlle
  */
 void Chappy::TUnit::startAIState_(enumAIState state)
 {
-	if (m_stateID == state) {
-		if (m_stateID == CHAPPYAI_Controlled) {
-			u32 time   = m_manager->m_params.m_controlledTime.m_value / sys->m_deltaTime;
-			m_counter  = time;
-			m_counter2 = time;
+	if (mStateID == state) {
+		if (mStateID == CHAPPYAI_Controlled) {
+			u32 time  = mManager->mParams.mControlledTime.mValue / sys->mDeltaTime;
+			mCounter  = time;
+			mCounter2 = time;
 		} else {
 			return;
 		}
 	}
 
-	m_stateID = state;
+	mStateID = state;
 
 	switch (state) {
 	case CHAPPYAI_Inactive:
-		m_pos = title::titleMgr->getPosOutOfViewField();
+		mPos = title::titleMgr->getPosOutOfViewField();
 
 	case CHAPPYAI_Controlled:
-		u32 time   = m_manager->m_params.m_controlledTime.m_value / sys->m_deltaTime;
-		m_counter  = time;
-		m_counter2 = time;
+		u32 time  = mManager->mParams.mControlledTime.mValue / sys->mDeltaTime;
+		mCounter  = time;
+		mCounter2 = time;
 		break;
 
 	case CHAPPYAI_Wait:
 		f32 max, min;
-		min        = m_manager->m_params.m_minWaitTime.m_value;
-		max        = m_manager->m_params.m_maxWaitTime.m_value;
-		u32 time2  = ((max - min) * randFloat() + min) / sys->m_deltaTime;
-		m_counter  = time2;
-		m_counter2 = time2;
+		min       = mManager->mParams.mMinWaitTime.mValue;
+		max       = mManager->mParams.mMaxWaitTime.mValue;
+		u32 time2 = ((max - min) * randFloat() + min) / sys->mDeltaTime;
+		mCounter  = time2;
+		mCounter2 = time2;
 		break;
 
 	case CHAPPYAI_Turn:
-		f32 angle     = m_manager->m_params.m_walkAngleRand.m_value;
-		f32 line      = JMath::atanTable_.atan2_(m_targetPos.y - m_pos.y, m_targetPos.x - m_pos.x);
-		f32 test      = angle * DEG2RAD * PI * (randFloat() * 2.0f + -1.0f) + line;
-		m_targetAngle = Vector2f(pikmin2_cosf(test), pikmin2_sinf(test));
+		f32 angle    = mManager->mParams.mWalkAngleRand.mValue;
+		f32 line     = JMath::atanTable_.atan2_(mTargetPos.y - mPos.y, mTargetPos.x - mPos.x);
+		f32 test     = angle * DEG2RAD * PI * (randFloat() * 2.0f + -1.0f) + line;
+		mTargetAngle = Vector2f(pikmin2_cosf(test), pikmin2_sinf(test));
 		break;
 
 	case CHAPPYAI_Walk:
 		f32 max2, min2;
-		max2 = m_manager->m_params.m_maxWalkTime.m_value;
-		min2 = m_manager->m_params.m_minWalkTime.m_value;
+		max2 = mManager->mParams.mMaxWalkTime.mValue;
+		min2 = mManager->mParams.mMinWalkTime.mValue;
 
-		u32 time3  = ((max2 - min2) * randFloat() + min2) / sys->m_deltaTime;
-		m_counter  = time3;
-		m_counter2 = time3;
+		u32 time3 = ((max2 - min2) * randFloat() + min2) / sys->mDeltaTime;
+		mCounter  = time3;
+		mCounter2 = time3;
 		break;
 
 	case CHAPPYAI_5:
-		Vector2f negPos(-m_pos.x, -m_pos.y);
+		Vector2f negPos(-mPos.x, -mPos.y);
 		f32 len = _sqrtf(negPos.x * negPos.x + negPos.y * negPos.y);
 		if (len != 0.0f) {
 			f32 norm = 1.0f / len;
 			negPos.x *= norm;
 			negPos.y *= norm;
 		}
-		m_angle = negPos;
+		mAngle = negPos;
 		break;
 	}
 }
@@ -265,33 +265,33 @@ void Chappy::TUnit::startAIState_(enumAIState state)
  */
 void Chappy::TUnit::startAction_(Chappy::TUnit::enumAction actionID)
 {
-	m_actionID = actionID;
-	switch (m_actionID) {
+	mActionID = actionID;
+	switch (mActionID) {
 	case CHAPPYACT_0:
-		m_anim.init(1, 1.0f);
-		m_anim._04 = 0.1f;
-		m_anim.play();
+		mAnim.init(1, 1.0f);
+		mAnim._04 = 0.1f;
+		mAnim.play();
 		break;
 
 	case CHAPPYACT_1:
-		m_anim.init(1, 1.0f);
-		m_anim.play();
+		mAnim.init(1, 1.0f);
+		mAnim.play();
 		break;
 
 	case CHAPPYACT_4:
-		m_anim.init(0, 1.0f);
-		m_anim.play();
+		mAnim.init(0, 1.0f);
+		mAnim.play();
 		break;
 
 	case CHAPPYACT_2:
-		m_anim.init(2, 1.0f);
-		m_anim.play();
-		m_attacks = 0;
+		mAnim.init(2, 1.0f);
+		mAnim.play();
+		mAttacks = 0;
 		break;
 
 	case CHAPPYACT_3:
-		m_anim.init(3, 1.0f);
-		m_anim.play();
+		mAnim.init(3, 1.0f);
+		mAnim.play();
 		break;
 	}
 }
@@ -306,14 +306,14 @@ void Chappy::TUnit::update()
 	if (!isCalc())
 		return;
 
-	int id = m_stateID;
+	int id = mStateID;
 	if (id != CHAPPYAI_Inactive && id != CHAPPYAI_6 && id != CHAPPYAI_5) {
-		Controller* control = m_control;
+		Controller* control = mControl;
 		bool check          = false;
 		if (control) {
-			if (control->m_padSStick.m_stickMag > 0.7f) {
+			if (control->mSStick.mStickMag > 0.7f) {
 				check = true;
-			} else if (control->m_padButton.m_buttonDown & Controller::PRESS_Z) {
+			} else if (control->mButton.mButtonDown & Controller::PRESS_Z) {
 				check = true;
 			}
 		}
@@ -326,19 +326,19 @@ void Chappy::TUnit::update()
 	f32 stickX      = 0.0f;
 	f32 stickY      = stickX;
 
-	if (m_counter) {
-		m_counter--;
+	if (mCounter) {
+		mCounter--;
 	}
 
-	switch (m_stateID) {
+	switch (mStateID) {
 	case CHAPPYAI_Wait: {
-		Controller* control = m_control;
+		Controller* control = mControl;
 		if (control) {
-			stickX     = control->m_padSStick.m_xPos;
-			stickY     = control->m_padSStick.m_yPos;
-			buttonDown = control->m_padButton.m_buttonDown & Controller::PRESS_Z;
+			stickX     = control->mSStick.mXPos;
+			stickY     = control->mSStick.mYPos;
+			buttonDown = control->mButton.mButtonDown & Controller::PRESS_Z;
 		}
-		if (m_counter == 0) {
+		if (mCounter == 0) {
 			startAIState_(CHAPPYAI_6);
 		}
 		break;
@@ -348,14 +348,14 @@ void Chappy::TUnit::update()
 		stickX     = 0.0f;
 		buttonDown = false;
 		stickY     = stickX;
-		if (m_counter == 0) {
+		if (mCounter == 0) {
 			startAIState_(CHAPPYAI_Turn);
 		}
 		break;
 
 	case CHAPPYAI_Walk:
-		f32 initAngle = JMath::atanTable_.atan2_(m_angle.y, m_angle.x);
-		f32 angle     = initAngle - JMath::atanTable_.atan2_(m_targetAngle.y, m_targetAngle.x);
+		f32 initAngle = JMath::atanTable_.atan2_(mAngle.y, mAngle.x);
+		f32 angle     = initAngle - JMath::atanTable_.atan2_(mTargetAngle.y, mTargetAngle.x);
 		while (angle < -PI) {
 			angle += TAU;
 		}
@@ -378,7 +378,7 @@ void Chappy::TUnit::update()
 		break;
 
 	case CHAPPYAI_4:
-		if (m_counter != 0) {
+		if (mCounter != 0) {
 			stickX     = 0.0f;
 			buttonDown = false;
 			stickY     = 1.0f;
@@ -386,14 +386,14 @@ void Chappy::TUnit::update()
 			stickX     = 0.0f;
 			stickY     = 0.0f;
 			buttonDown = 0;
-			if (m_anim._08 == 3) {
+			if (mAnim._08 == 3) {
 				bool check = false;
 				for (int i = 0; i < 500; i++) {
 					EGECircle2f circle;
-					circle.m_radius = m_manager->m_params.m_hitRadius.m_value;
-					f32 factor      = m_manager->m_params.m_hitOffset.m_value;
-					circle.m_center = m_pos + (m_angle * factor);
-					Vector2f pos    = Vector2f(titleMgr->m_pikminMgr.getUnit(i)->m_pos);
+					circle.mRadius = mManager->mParams.mHitRadius.mValue;
+					f32 factor     = mManager->mParams.mHitOffset.mValue;
+					circle.mCenter = mPos + (mAngle * factor);
+					Vector2f pos   = Vector2f(titleMgr->mPikminMgr.getUnit(i)->mPos);
 					if (!circle.isOut(pos)) {
 						check = true;
 						break;
@@ -413,7 +413,7 @@ void Chappy::TUnit::update()
 		stickX     = 0.0f;
 		stickY     = 0.0f;
 		buttonDown = true;
-		if (m_anim._08 == 3) {
+		if (mAnim._08 == 3) {
 			startAIState_(CHAPPYAI_Turn);
 		}
 		break;
@@ -447,22 +447,22 @@ void Chappy::TUnit::update()
 		}
 	}
 
-	if (m_actionID != actionID) {
-		if (m_actionID >= 1 && m_actionID < 5) {
-			m_anim.playStopEnd();
+	if (mActionID != actionID) {
+		if (mActionID >= 1 && mActionID < 5) {
+			mAnim.playStopEnd();
 			_48 = true;
-			if (m_anim._08 == 3) {
+			if (mAnim._08 == 3) {
 				startAction_(CHAPPYACT_0);
 			}
-		} else if (actionID != m_actionID) {
+		} else if (actionID != mActionID) {
 			startAction_(actionID);
 		}
 	}
 
 	// more stuff here still.
 
-	m_model->calc();
-	m_model->entry();
+	mModel->calc();
+	mModel->entry();
 	/*
 stwu     r1, -0x80(r1)
 mflr     r0
@@ -1305,20 +1305,20 @@ blr
  * Size:	0003A4
  */
 Chappy::TParam::TParam()
-    : m_scale(this, 'b000', "スケール", 2.0f, 0.0f, 10.0f)
-    , m_cullRadius(this, 'b001', "カリング半径", 100.0f, 0.0f, 500.0f)
-    , m_collRadius(this, 'b002', "コリジョン半径", 150.0f, 0.0f, 500.0f)
-    , m_pikiReactRadius(this, 'b003', "ピクミン反応半径", 300.0f, 0.0f, 500.0f)
-    , m_hitOffset(this, 'ch20', "当たりOffset", 80.0f, 0.0f, 500.0f)
-    , m_hitRadius(this, 'ch21', "当たり半径", 100.0f, 0.0f, 500.0f)
-    , m_walkAngleRand(this, 'ch00', "歩行ランダム角度", 30.0f, 0.0f, 90.0f)
-    , m_walkSpeed(this, 'ch01', "歩行速度", 8.0f, 0.0f, 100.0f)
-    , m_turnSpeed(this, 'ch23', "旋回性能\ ", 0.05f, 0.0f, 1.0f)
-    , m_minWaitTime(this, 'ch10', "待ち時間最小(秒)", 0.3f, 0.0f, 10.0f)
-    , m_maxWaitTime(this, 'ch11', "待ち時間最大(秒)", 1.0f, 0.0f, 10.0f)
-    , m_minWalkTime(this, 'ch12', "移動時間最小(秒)", 0.5f, 0.0f, 10.0f)
-    , m_maxWalkTime(this, 'ch13', "移動時間最大(秒)", 1.5f, 0.0f, 10.0f)
-    , m_controlledTime(this, 'ch22', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f)
+    : mScale(this, 'b000', "スケール", 2.0f, 0.0f, 10.0f)
+    , mCullRadius(this, 'b001', "カリング半径", 100.0f, 0.0f, 500.0f)
+    , mCollRadius(this, 'b002', "コリジョン半径", 150.0f, 0.0f, 500.0f)
+    , mPikiReactRadius(this, 'b003', "ピクミン反応半径", 300.0f, 0.0f, 500.0f)
+    , mHitOffset(this, 'ch20', "当たりOffset", 80.0f, 0.0f, 500.0f)
+    , mHitRadius(this, 'ch21', "当たり半径", 100.0f, 0.0f, 500.0f)
+    , mWalkAngleRand(this, 'ch00', "歩行ランダム角度", 30.0f, 0.0f, 90.0f)
+    , mWalkSpeed(this, 'ch01', "歩行速度", 8.0f, 0.0f, 100.0f)
+    , mTurnSpeed(this, 'ch23', "旋回性能\ ", 0.05f, 0.0f, 1.0f)
+    , mMinWaitTime(this, 'ch10', "待ち時間最小(秒)", 0.3f, 0.0f, 10.0f)
+    , mMaxWaitTime(this, 'ch11', "待ち時間最大(秒)", 1.0f, 0.0f, 10.0f)
+    , mMinWalkTime(this, 'ch12', "移動時間最小(秒)", 0.5f, 0.0f, 10.0f)
+    , mMaxWalkTime(this, 'ch13', "移動時間最大(秒)", 1.5f, 0.0f, 10.0f)
+    , mControlledTime(this, 'ch22', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f)
 {
 }
 
@@ -1334,7 +1334,7 @@ Chappy::TParam::TParam()
  * Address:	803E9C24
  * Size:	000014
  */
-E3DAnimRes* Chappy::TAnimFolder::getAnimRes(long id) { return &m_anims[id]; }
+E3DAnimRes* Chappy::TAnimFolder::getAnimRes(long id) { return &mAnims[id]; }
 
 } // namespace title
 } // namespace ebi

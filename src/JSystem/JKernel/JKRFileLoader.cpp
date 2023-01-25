@@ -65,8 +65,8 @@ JKRFileLoader::JKRFileLoader()
     : JKRDisposer()
     , _18(this)
     , _28(nullptr)
-    , m_magicWord(0)
-    , m_mountCount(0)
+    , mMagicWord(0)
+    , mMountCount(0)
 {
 }
 
@@ -90,8 +90,8 @@ JKRFileLoader::~JKRFileLoader()
  */
 void JKRFileLoader::unmount()
 {
-	if (m_mountCount != 0) {
-		if (--m_mountCount == 0) {
+	if (mMountCount != 0) {
+		if (--mMountCount == 0) {
 			delete this;
 		}
 	}

@@ -38,12 +38,12 @@ CellIteratorArg::CellIteratorArg()
 	_10 = 0;
 	_14 = 0;
 
-	m_sphere.m_position.x = 0.0f;
-	m_sphere.m_position.y = 0.0f;
-	m_sphere.m_position.z = 0.0f;
-	m_sphere.m_radius     = 0.0f;
+	mSphere.mPosition.x = 0.0f;
+	mSphere.mPosition.y = 0.0f;
+	mSphere.mPosition.z = 0.0f;
+	mSphere.mRadius     = 0.0f;
 
-	m_cellMgr = cellMgr;
+	mCellMgr = cellMgr;
 
 	_1D = 0;
 	_1C = 0;
@@ -57,12 +57,12 @@ CellIteratorArg::CellIteratorArg()
  */
 CellIteratorArg::CellIteratorArg(Sys::Sphere& sphere)
 {
-	m_sphere  = sphere;
-	_10       = 0;
-	_14       = 0;
-	m_cellMgr = Game::cellMgr;
-	_1D       = 0;
-	_1C       = 0;
+	mSphere  = sphere;
+	_10      = 0;
+	_14      = 0;
+	mCellMgr = Game::cellMgr;
+	_1D      = 0;
+	_1C      = 0;
 }
 
 /*
@@ -71,7 +71,7 @@ CellIteratorArg::CellIteratorArg(Sys::Sphere& sphere)
  * Size:	00007C
  * Matches
  */
-CellIterator::CellIterator(Game::CellIteratorArg& arg) { m_arg = arg; }
+CellIterator::CellIterator(Game::CellIteratorArg& arg) { mArg = arg; }
 
 /*
  * --INFO--
@@ -82,12 +82,12 @@ void CellIterator::first()
 {
 	// TODO: figure out WTF is going on with the cellMgr->passID access and
 	// writes
-	CellPyramid* cellMgr = m_arg.m_cellMgr;
-	if (cellMgr->m_passID++ >= 0x4000000) {
-		cellMgr->m_passID = 0;
+	CellPyramid* cellMgr = mArg.mCellMgr;
+	if (cellMgr->mPassID++ >= 0x4000000) {
+		cellMgr->mPassID = 0;
 	}
 
-	m_passID = cellMgr->m_passID;
+	mPassID = cellMgr->mPassID;
 
 	_00 = 0;
 	_0C = 0;
@@ -95,7 +95,7 @@ void CellIterator::first()
 	calcExtent();
 
 	// TODO: this is wrong!
-	Cell* foundCell = &((Cell*)_0C)[cellMgr->m_passID];
+	Cell* foundCell = &((Cell*)_0C)[cellMgr->mPassID];
 	if (foundCell) {
 		_00 = foundCell->_1C;
 	}

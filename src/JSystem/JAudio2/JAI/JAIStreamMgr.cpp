@@ -1854,7 +1854,7 @@ void JAInter::StreamMgr::checkEntriedStream()
 	streamSound->_15 = 2;
 	streamUpdate->reset();
 	streamUpdate->_1C = streamSound;
-	u16 v1            = streamList[JAIBasic::msBasic->getSoundOffsetNumberFromID(streamSound->m_soundID) + 2];
+	u16 v1            = streamList[JAIBasic::msBasic->getSoundOffsetNumberFromID(streamSound->mSoundID) + 2];
 	char buffer[0x100];
 	strcpy(buffer, JAIGlobalParameter::getParamStreamPath());
 	strcat(buffer, (char*)(streamList + v1));
@@ -1963,8 +1963,8 @@ void JAInter::StreamMgr::prepareSystem(long inode)
 	u32 length;
 	if (allocCallback != nullptr) {
 		BufferInfo info = allocCallback(inode);
-		start           = (u32)info.m_start;
-		length          = info.m_length;
+		start           = (u32)info.mStart;
+		length          = info.mLength;
 	} else {
 		if (aramParentHeap != nullptr) {
 			aramBufferHeap->alloc(aramParentHeap, 10 * sChannelMax * JAIGlobalParameter::getParamStreamDecodedBufferBlocks() >> 1);
@@ -2185,7 +2185,7 @@ void JAInter::StreamMgr::stopDirect()
  */
 void JAInter::StreamMgr::initChannel()
 {
-	u32 v1 = streamSound->m_soundInfo->unk1;
+	u32 v1 = streamSound->mSoundInfo->unk1;
 	if (v1 == 0) {
 		return;
 	}

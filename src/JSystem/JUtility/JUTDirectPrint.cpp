@@ -366,20 +366,20 @@ void JUTDirectPrint::erase(int x, int y, int width, int height)
 	if (_00 == nullptr) {
 		return;
 	}
-	if (400 < m_pixelWidth) {
+	if (400 < mPixelWidth) {
 		x <<= 1;
 		width <<= 1;
 	}
-	if (300 < m_pixelHeight) {
+	if (300 < mPixelHeight) {
 		y <<= 1;
 		height <<= 1;
 	}
-	u16* buffer = m_glyphBuffer + m_width * y + x;
+	u16* buffer = mGlyphBuffer + mWidth * y + x;
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			buffer[j] = 0x1080;
 		}
-		buffer += m_width - width;
+		buffer += mWidth - width;
 	}
 	/*
 	lwz      r0, 0(r3)
@@ -685,12 +685,12 @@ lbl_80029F60:
  */
 void JUTDirectPrint::changeFrameBuffer(void* buffer, unsigned short pixelWidth, unsigned short pixelHeight)
 {
-	_00           = buffer;
-	m_glyphBuffer = (u16*)buffer;
-	m_pixelWidth  = pixelWidth;
-	m_pixelHeight = pixelHeight;
-	m_width       = ALIGN_NEXT(pixelWidth, 0x10);
-	_0C           = m_width * m_pixelHeight * sizeof(u16);
+	_00          = buffer;
+	mGlyphBuffer = (u16*)buffer;
+	mPixelWidth  = pixelWidth;
+	mPixelHeight = pixelHeight;
+	mWidth       = ALIGN_NEXT(pixelWidth, 0x10);
+	_0C          = mWidth * mPixelHeight * sizeof(u16);
 }
 
 /*

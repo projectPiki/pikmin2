@@ -33,13 +33,13 @@ struct JPADynamicsBlock {
 	/**
 	 * @fabricated
 	 */
-	inline const Data* castData() const { return reinterpret_cast<const Data*>(m_data); }
+	inline const Data* castData() const { return reinterpret_cast<const Data*>(mData); }
 
 	// unused/inlined:
 	void init_jpa(const unsigned char*, JKRHeap*);
 
-	u8* m_data;                      // _00
-	JPAVolumeFunc* m_volumeFunction; // _04
+	u8* mData;                      // _00
+	JPAVolumeFunc* mVolumeFunction; // _04
 };
 
 /**
@@ -67,8 +67,8 @@ struct JPAFieldBlock {
 	// unused/inlined:
 	void init_jpa(const unsigned char*, JKRHeap*);
 
-	const u8* m_data;      // _00
-	JPAFieldBase* m_field; // _04
+	const u8* mData;       // _00
+	JPAFieldBase* mField;  // _04
 	f32 _08;               // _08
 	f32 _0C;               // _0C
 	JGeometry::TVec3f _10; // _10
@@ -87,8 +87,8 @@ struct JPAKeyBlock {
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	const u8* m_dataStart; // _00
-	const f32* _04;        // _04
+	const u8* mDataStart; // _00
+	const f32* _04;       // _04
 };
 
 #endif

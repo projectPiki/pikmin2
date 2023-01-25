@@ -155,13 +155,13 @@ void LoadResource::Node::dump()
  * Size:	000044
  */
 LoadResource::Arg::Arg(char const* p1)
-    : m_path(p1)
+    : mPath(p1)
     , _04(nullptr)
     , _08(0)
     , _0C(0)
-    , m_expandSwitch(Switch_1)
+    , mExpandSwitch(Switch_1)
     , _14(0)
-    , m_heap(nullptr)
+    , mHeap(nullptr)
     , _1C(1)
     , _20(-1)
     , _24(nullptr)
@@ -190,8 +190,8 @@ LoadResource::ArgAramOnly::ArgAramOnly(char const* p1)
  * Size:	00009C
  */
 LoadResource::Mgr::Mgr()
-    : m_aramRoot("AramRoot")
-    , m_dvdRoot("DvdRoot")
+    : mAramRoot("AramRoot")
+    , mDvdRoot("DvdRoot")
 {
 	// UNUSED FUNCTION
 	P2ASSERTLINE(118, gLoadResourceMgr == nullptr);
@@ -289,13 +289,13 @@ LoadResource::Node* LoadResource::Mgr::mountArchive(LoadResource::Arg& arg)
 	Node* node = load(arg);
 	if (node) {
 		JKRArchive::EMountDirection mountDirection = JKRArchive::EMD_Unk2;
-		void* v1                                   = node->m_file;
-		JKRHeap* heap                              = arg.m_heap;
+		void* v1                                   = node->mFile;
+		JKRHeap* heap                              = arg.mHeap;
 		if (arg._1C == 1) {
 			mountDirection = JKRArchive::EMD_Unk1;
 		}
-		node->m_archive = JKRArchive::mount(v1, heap, mountDirection);
-		JUT_ASSERTLINE(221, node->m_archive != nullptr, "mount arc failure");
+		node->mArchive = JKRArchive::mount(v1, heap, mountDirection);
+		JUT_ASSERTLINE(221, node->mArchive != nullptr, "mount arc failure");
 	}
 	return node;
 }

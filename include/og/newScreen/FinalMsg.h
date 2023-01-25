@@ -57,15 +57,15 @@ struct ObjFinalMsg : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberFinalMessage* m_disp; // _38
-	int m_currSel;                              // _3C, unknown
-	P2DScreen::Mgr_tuning* m_screen;            // _40
-	og::Screen::MenuMgr* m_menuMgr;             // _44
-	og::Screen::AnimText_Screen* m_animTextQ;   // _48
-	og::Screen::AnimText_Screen* m_animTextY;   // _4C
-	og::Screen::AnimText_Screen* m_animTextN;   // _50
-	f32 m_movePos;                              // _54
-	f32 m_fadeLevel;                            // _58
+	og::Screen::DispMemberFinalMessage* mDisp; // _38
+	int mCurrSel;                              // _3C, unknown
+	P2DScreen::Mgr_tuning* mScreen;            // _40
+	og::Screen::MenuMgr* mMenuMgr;             // _44
+	og::Screen::AnimText_Screen* mAnimTextQ;   // _48
+	og::Screen::AnimText_Screen* mAnimTextY;   // _4C
+	og::Screen::AnimText_Screen* mAnimTextN;   // _50
+	f32 mMovePos;                              // _54
+	f32 mFadeLevel;                            // _58
 };
 } // namespace newScreen
 } // namespace og

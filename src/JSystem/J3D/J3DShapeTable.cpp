@@ -8,11 +8,11 @@
  */
 void J3DShapeTable::initShapeNodes(J3DDrawMtxData* drawMtxData, J3DVertexData* vtxData)
 {
-	u16 count = m_count;
+	u16 count = mCount;
 	for (u16 i = 0; i < count; i++) {
-		J3DShape* shape      = m_items[i];
-		shape->m_drawMtxData = drawMtxData;
-		shape->m_vtxData     = vtxData;
+		J3DShape* shape     = mItems[i];
+		shape->mDrawMtxData = drawMtxData;
+		shape->mVtxData     = vtxData;
 		shape->makeVcdVatCmd();
 	}
 }
@@ -24,11 +24,11 @@ void J3DShapeTable::initShapeNodes(J3DDrawMtxData* drawMtxData, J3DVertexData* v
  */
 void J3DShapeTable::sortVcdVatCmd()
 {
-	u16 count = m_count;
+	u16 count = mCount;
 	for (u16 outerI = 0; outerI < count; outerI++) {
 		for (u16 innerI = 0; innerI < outerI; innerI++) {
-			if (m_items[outerI]->isSameVcdVatCmd(m_items[innerI])) {
-				m_items[outerI]->_2C = m_items[innerI]->_2C;
+			if (mItems[outerI]->isSameVcdVatCmd(mItems[innerI])) {
+				mItems[outerI]->_2C = mItems[innerI]->_2C;
 			}
 		}
 	}

@@ -80,8 +80,8 @@ const TAdaptor_fog::TVVOutput TAdaptor_fog::saoVVOutput_[3]
  */
 TAdaptor_fog::TAdaptor_fog(const JStage::TSystem* system, JStage::TFog* fog)
     : JStudio::TAdaptor_fog()
-    , m_system(system)
-    , m_object(fog)
+    , mSystem(system)
+    , mObject(fog)
 {
 }
 
@@ -100,8 +100,8 @@ TAdaptor_fog::~TAdaptor_fog() { adaptor_do_end(nullptr); }
  */
 void TAdaptor_fog::adaptor_do_prepare(const JStudio::TObject*)
 {
-	for (const TVVOutput* output = saoVVOutput_; output->m_valueIndex != -1; output++) {
-		_04[output->m_valueIndex].setOutput(output);
+	for (const TVVOutput* output = saoVVOutput_; output->mValueIndex != -1; output++) {
+		_04[output->mValueIndex].setOutput(output);
 	}
 }
 
@@ -112,10 +112,10 @@ void TAdaptor_fog::adaptor_do_prepare(const JStudio::TObject*)
  */
 void TAdaptor_fog::adaptor_do_begin(const JStudio::TObject*)
 {
-	m_object->setFlagOn(1);
-	adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, m_object->JSGGetColor());
-	for (const TVVOutput* output = saoVVOutput_; output->m_valueIndex != -1; output++) {
-		_04[output->m_valueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (m_object->*(output->m_getter))());
+	mObject->setFlagOn(1);
+	adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, mObject->JSGGetColor());
+	for (const TVVOutput* output = saoVVOutput_; output->mValueIndex != -1; output++) {
+		_04[output->mValueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (mObject->*(output->mGetter))());
 	}
 }
 
@@ -124,7 +124,7 @@ void TAdaptor_fog::adaptor_do_begin(const JStudio::TObject*)
  * Address:	80014388
  * Size:	000054
  */
-void TAdaptor_fog::adaptor_do_end(const JStudio::TObject*) { m_object->setFlagOff(1); }
+void TAdaptor_fog::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagOff(1); }
 
 /*
  * --INFO--
@@ -135,8 +135,8 @@ void TAdaptor_fog::adaptor_do_update(const JStudio::TObject*, unsigned long)
 {
 	_GXColor color;
 	adaptor_getVariableValue_GXColor(&color, sauVariableValue_4_COLOR_RGBA);
-	m_object->JSGSetColor(color);
-	m_object->JSGUpdate();
+	mObject->JSGSetColor(color);
+	mObject->JSGUpdate();
 }
 
 /*
@@ -146,7 +146,7 @@ void TAdaptor_fog::adaptor_do_update(const JStudio::TObject*, unsigned long)
  */
 void TAdaptor_fog::adaptor_do_data(const JStudio::TObject* object, const void* p2, unsigned long p3, const void* p4, unsigned long p5)
 {
-	TAdaptor_object_::adaptor_data_(m_object, p2, p3, p4, p5);
+	TAdaptor_object_::adaptor_data_(mObject, p2, p3, p4, p5);
 }
 
 /*

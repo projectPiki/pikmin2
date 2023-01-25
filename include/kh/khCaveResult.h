@@ -29,19 +29,19 @@ struct DispCaveResult : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	JKRHeap* m_heap;                   // _08
-	Game::Result::TNode* m_resultNode; // _0C
-	u32 m_treasureNodeCount;           // _10
-	u32 _14;                           // _14, unknown
-	u32 m_lostTreasures;               // _18
-	u32 m_collectedOtakara;            // _1C
-	u32 m_maxOtakara;                  // _20
-	u32 m_cavePokos;                   // _24
-	u32 m_totalPokos;                  // _28
-	u32 m_deadPikis;                   // _2C
-	bool m_debtPayed;                  // _30
-	bool m_caveComp;                   // _31
-	u32 m_isFinished;                  // _34
+	JKRHeap* mHeap;                   // _08
+	Game::Result::TNode* mResultNode; // _0C
+	u32 mTreasureNodeCount;           // _10
+	u32 _14;                          // _14, unknown
+	u32 mLostTreasures;               // _18
+	u32 mCollectedOtakara;            // _1C
+	u32 mMaxOtakara;                  // _20
+	u32 mCavePokos;                   // _24
+	u32 mTotalPokos;                  // _28
+	u32 mDeadPikis;                   // _2C
+	bool mDebtPayed;                  // _30
+	bool mCaveComp;                   // _31
+	u32 mIsFinished;                  // _34
 };
 
 struct ObjCaveResult : public ::Screen::ObjBase {
@@ -91,68 +91,68 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 
 	inline void loadSaveMgrResources()
 	{
-		ebi::Save::TMgr* saveMgr = m_saveMgr;
-		saveMgr->m_saveMenu.loadResource();
+		ebi::Save::TMgr* saveMgr = mSaveMgr;
+		saveMgr->mSaveMenu.loadResource();
 		saveMgr->doLoadResource(getCurrentHeap());
 	}
 
-	inline bool isFlag(u32 flag) const { return m_flag & flag; }
+	inline bool isFlag(u32 flag) const { return mFlag & flag; }
 
-	inline void setFlag(u32 flag) { m_flag |= flag; }
+	inline void setFlag(u32 flag) { mFlag |= flag; }
 
-	inline void resetFlag(u32 flag) { m_flag &= ~flag; }
+	inline void resetFlag(u32 flag) { mFlag &= ~flag; }
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	ebi::Save::TMgr* m_saveMgr;                                 // _38
-	Game::Result::TNode* m_resultNode;                          // _3C
-	P2DScreen::Mgr_tuning* m_screenMain;                        // _40
-	P2DScreen::Mgr_tuning* m_screenDropItem;                    // _44
-	P2DScreen::Mgr_tuning* m_screenComplete;                    // _48
-	J2DAnmTransform* m_mainAnim;                                // _4C
-	J2DAnmTransform* m_completeAnim;                            // _50
-	J2DAnmColor* m_mainAnimColor;                               // _54
-	J2DAnmColor* m_completeAnimColor;                           // _58
-	J2DAnmTextureSRTKey* m_animTexSRT;                          // _5C
-	J2DAnmTevRegKey* m_animTevReg;                              // _60
-	f32 m_animTimers[6];                                        // _64
-	efx2d::T2DCavecompLoop* m_efxComp;                          // _7C
-	og::Screen::StickAnimMgr* m_stickAnim;                      // _80
-	og::Screen::ScaleMgr* m_scaleMgr;                           // _84
-	khUtilFadePane* m_fadePane1;                                // _88
-	khUtilFadePane* m_fadePaneUpArrow;                          // _8C
-	khUtilFadePane* m_fadePaneDownArrow;                        // _90
-	khUtilFadePane* m_fadePane4;                                // _94
-	og::Screen::CallBack_CounterRV* m_counterCavePokos;         // _98
-	og::Screen::CallBack_CounterRV* m_counterDeadPiki;          // _9C
-	og::Screen::CallBack_CounterRV* m_counterOtaValues[2];      // _A0
-	og::Screen::CallBack_CounterRV* m_counterTreasureCollected; // _A8
-	og::Screen::CallBack_CounterRV* m_counterTreasureMax;       // _AC
-	og::Screen::CallBack_CounterRV* m_counterTotalPokos;        // _B0
-	u32 m_cavePokos;                                            // _B4
-	u32 m_deadPiki;                                             // _B8
-	u32 m_currOtaValues[2];                                     // _BC
-	u32 m_otakaraCount;                                         // _C4
-	u32 m_maxOtakara;                                           // _C8
-	u32 m_totalPokos;                                           // _CC
-	f32 m_scrollPos;                                            // _D0
-	f32 m_scrollUpDown;                                         // _D4
-	int m_scrollSelIndex;                                       // _D8
-	int m_scrollSelIndexMax;                                    // _DC
-	int m_scrollTargetDist;                                     // _E0
-	int m_scrollMoveTimer;                                      // _E4
-	u32 m_scissorMin;                                           // _E8
-	u32 m_scissorMax;                                           // _EC
-	int m_status;                                               // _F0
-	int m_changeStateDelay;                                     // _F4
-	u32 _F8;                                                    // _F8, unknown
-	f32 _FC;                                                    // _FC
-	f32 _100;                                                   // _100
-	u8 m_flag;                                                  // _104
-	u8 m_alpha;                                                 // _105
-	u8 _106;                                                    // _106
-	u8 _107;                                                    // _107
+	ebi::Save::TMgr* mSaveMgr;                                 // _38
+	Game::Result::TNode* mResultNode;                          // _3C
+	P2DScreen::Mgr_tuning* mScreenMain;                        // _40
+	P2DScreen::Mgr_tuning* mScreenDropItem;                    // _44
+	P2DScreen::Mgr_tuning* mScreenComplete;                    // _48
+	J2DAnmTransform* mMainAnim;                                // _4C
+	J2DAnmTransform* mCompleteAnim;                            // _50
+	J2DAnmColor* mMainAnimColor;                               // _54
+	J2DAnmColor* mCompleteAnimColor;                           // _58
+	J2DAnmTextureSRTKey* mAnimTexSRT;                          // _5C
+	J2DAnmTevRegKey* mAnimTevReg;                              // _60
+	f32 mAnimTimers[6];                                        // _64
+	efx2d::T2DCavecompLoop* mEfxComp;                          // _7C
+	og::Screen::StickAnimMgr* mStickAnim;                      // _80
+	og::Screen::ScaleMgr* mScaleMgr;                           // _84
+	khUtilFadePane* mFadePane1;                                // _88
+	khUtilFadePane* mFadePaneUpArrow;                          // _8C
+	khUtilFadePane* mFadePaneDownArrow;                        // _90
+	khUtilFadePane* mFadePane4;                                // _94
+	og::Screen::CallBack_CounterRV* mCounterCavePokos;         // _98
+	og::Screen::CallBack_CounterRV* mCounterDeadPiki;          // _9C
+	og::Screen::CallBack_CounterRV* mCounterOtaValues[2];      // _A0
+	og::Screen::CallBack_CounterRV* mCounterTreasureCollected; // _A8
+	og::Screen::CallBack_CounterRV* mCounterTreasureMax;       // _AC
+	og::Screen::CallBack_CounterRV* mCounterTotalPokos;        // _B0
+	u32 mCavePokos;                                            // _B4
+	u32 mDeadPiki;                                             // _B8
+	u32 mCurrOtaValues[2];                                     // _BC
+	u32 mOtakaraCount;                                         // _C4
+	u32 mMaxOtakara;                                           // _C8
+	u32 mTotalPokos;                                           // _CC
+	f32 mScrollPos;                                            // _D0
+	f32 mScrollUpDown;                                         // _D4
+	int mScrollSelIndex;                                       // _D8
+	int mScrollSelIndexMax;                                    // _DC
+	int mScrollTargetDist;                                     // _E0
+	int mScrollMoveTimer;                                      // _E4
+	u32 mScissorMin;                                           // _E8
+	u32 mScissorMax;                                           // _EC
+	int mStatus;                                               // _F0
+	int mChangeStateDelay;                                     // _F4
+	u32 _F8;                                                   // _F8, unknown
+	f32 _FC;                                                   // _FC
+	f32 _100;                                                  // _100
+	u8 mFlag;                                                  // _104
+	u8 mAlpha;                                                 // _105
+	u8 _106;                                                   // _106
+	u8 _107;                                                   // _107
 
 	static struct StaticValues {
 		inline StaticValues()

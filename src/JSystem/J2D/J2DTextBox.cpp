@@ -94,12 +94,12 @@
  */
 J2DTextBox::J2DTextBox()
     : J2DPane()
-    , m_font(nullptr)
+    , mFont(nullptr)
     , _104(0xFFFFFFFF)
     , _108(0xFFFFFFFF)
     , _124(nullptr)
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
 {
 	initiate(nullptr, nullptr, 0, J2DHBIND_Left, J2DVBIND_Top);
 }
@@ -152,12 +152,12 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input)
  */
 J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive)
     : J2DPane()
-    , m_font(nullptr)
+    , mFont(nullptr)
     , _104(0xFFFFFFFF)
     , _108(0xFFFFFFFF)
     , _124(nullptr)
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
 {
 	private_readStream(parent, input, archive);
 }
@@ -170,17 +170,17 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, JKRArchive*
  */
 J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, unsigned long flags, J2DMaterial* materials)
     : J2DPane()
-    , m_font(nullptr)
+    , mFont(nullptr)
     , _104(0xFFFFFFFF)
     , _108(0xFFFFFFFF)
     , _124(nullptr)
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
 {
 	int initialPosition = input->getPosition();
 	J2DScrnBlockHeader header;
 	input->read(&header, sizeof(header));
-	m_bloBlockType = 'TBX1';
+	mBloBlockType = 'TBX1';
 
 	int paneExHeaderPosition = input->getPosition();
 	J2DScrnBlockHeader paneExHeader;
@@ -194,14 +194,14 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, unsigned lo
 	if (data._04 != 0xFFFF) {
 		material = materials + data._04;
 		if (material != nullptr) {
-			if (material->m_tevBlock != nullptr) {
-				JUTResFont* font = static_cast<JUTResFont*>(material->m_tevBlock->getFont());
+			if (material->mTevBlock != nullptr) {
+				JUTResFont* font = static_cast<JUTResFont*>(material->mTevBlock->getFont());
 				if (font != nullptr) {
-					m_font = font;
-					material->m_tevBlock->setFontUndeleteFlag();
+					mFont = font;
+					material->mTevBlock->setFontUndeleteFlag();
 				}
 			}
-			m_alpha = material->m_colorBlock.m_colors[0].a;
+			mAlpha = material->mColorBlock.mColors[0].a;
 		}
 	}
 	_114 = data._06;
@@ -211,7 +211,7 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, unsigned lo
 	_130 = data._0E << 2 | data._0F;
 	_104 = data._10;
 	_108 = data._14;
-	setConnectParent(data.m_doConnectParent);
+	setConnectParent(data.mDoConnectParent);
 	u32 strLength = 0;
 	if ((flags & 0x2000000) == 0) {
 		// int v1    = data._1C;
@@ -235,14 +235,14 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, unsigned lo
 		_124[v1] = '\0';
 	}
 	input->skip(data._1E);
-	input->seek(initialPosition + header.m_blockLength, SEEK_SET);
-	m_black = 0;
-	m_white = 0xFFFFFFFF;
-	if (material != nullptr && material->m_tevBlock != nullptr && material->m_tevBlock->getTevStageNum() != 1) {
-		J2DGXColorS10 black = *material->m_tevBlock->getTevColor(0);
-		J2DGXColorS10 white = *material->m_tevBlock->getTevColor(1);
-		m_black             = black;
-		m_white             = white;
+	input->seek(initialPosition + header.mBlockLength, SEEK_SET);
+	mBlack = 0;
+	mWhite = 0xFFFFFFFF;
+	if (material != nullptr && material->mTevBlock != nullptr && material->mTevBlock->getTevStageNum() != 1) {
+		J2DGXColorS10 black = *material->mTevBlock->getTevColor(0);
+		J2DGXColorS10 white = *material->mTevBlock->getTevColor(1);
+		mBlack              = black;
+		mWhite              = white;
 	}
 	_10C = 0.0f;
 	_110 = 0.0f;
@@ -568,12 +568,12 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, unsigned lo
 J2DTextBox::J2DTextBox(unsigned long long tag, const JGeometry::TBox2f& box, const ResFONT* resFont, const char* p4, short p5,
                        J2DTextBoxHBinding hb, J2DTextBoxVBinding vb)
     : J2DPane(tag, box)
-    , m_font(nullptr)
+    , mFont(nullptr)
     , _104(0xFFFFFFFF)
     , _108(0xFFFFFFFF)
     , _124(nullptr)
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
 {
 	initiate(resFont, p4, p5, hb, vb);
 	/*
@@ -637,32 +637,32 @@ J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&, const
 void J2DTextBox::initiate(const ResFONT* resFont, const char* p2, short p3, J2DTextBoxHBinding hb, J2DTextBoxVBinding vb)
 {
 	if (resFont != nullptr) {
-		m_font = new JUTResFont(resFont, nullptr);
+		mFont = new JUTResFont(resFont, nullptr);
 	}
 	_104.set(0xFFFFFFFF);
 	_108.set(0xFFFFFFFF);
-	m_black = 0;
-	m_white = 0xFFFFFFFF;
-	_130    = (hb << 2) | vb;
-	_132    = 0;
-	_124    = nullptr;
+	mBlack = 0;
+	mWhite = 0xFFFFFFFF;
+	_130   = (hb << 2) | vb;
+	_132   = 0;
+	_124   = nullptr;
 	if (p2 != nullptr && p3 != 0) {
 		copyString(p2, p3);
 	}
 	_10C = 0.0f;
 	_110 = 0.0f;
 	_114 = 0.0f;
-	if (m_font == nullptr) {
+	if (mFont == nullptr) {
 		_118 = 0.0f;
 		_11C = 0.0f;
 		_120 = 0.0f;
 	} else {
-		_118 = m_font->getLeading();
-		_11C = m_font->getWidth();
-		_120 = m_font->getHeight();
+		_118 = mFont->getLeading();
+		_11C = mFont->getWidth();
+		_120 = mFont->getHeight();
 	}
-	m_bloBlockType = 'TBX1';
-	_131           = 1;
+	mBloBlockType = 'TBX1';
+	_131          = 1;
 }
 
 /*
@@ -675,12 +675,12 @@ void J2DTextBox::private_readStream(J2DPane* parent, JSURandomInputStream* input
 	int initialPosition = input->getPosition();
 	J2DScrnBlockHeader header;
 	input->read(&header, sizeof(header));
-	m_bloBlockType = header.m_bloBlockType;
+	mBloBlockType = header.mBloBlockType;
 	makePaneStream(parent, input);
 	u8 bytesRemaining = input->readByte();
 	ResFONT* resFont  = (ResFONT*)getPointer(input, 'FONT', archive);
 	if (resFont != nullptr) {
-		m_font = new JUTResFont(resFont, nullptr);
+		mFont = new JUTResFont(resFont, nullptr);
 	}
 	// input->read(&_104, sizeof(JUtility::TColor));
 	// input->read(&_108, sizeof(JUtility::TColor));
@@ -709,21 +709,21 @@ void J2DTextBox::private_readStream(J2DPane* parent, JSURandomInputStream* input
 		}
 		bytesRemaining--;
 	}
-	m_black = 0;
-	m_white = 0xFFFFFFFF;
+	mBlack = 0;
+	mWhite = 0xFFFFFFFF;
 	if (bytesRemaining != 0) {
 		u32 black = input->readU32();
 		bytesRemaining--;
-		m_black.set(black);
+		mBlack.set(black);
 	}
 	if (bytesRemaining != 0) {
 		u32 white = input->readU32();
 		bytesRemaining--;
-		m_white.set(white);
+		mWhite.set(white);
 	}
 	_10C = 0.0f;
 	_110 = 0.0f;
-	input->seek(initialPosition + header.m_blockLength, SEEK_SET);
+	input->seek(initialPosition + header.mBlockLength, SEEK_SET);
 	_131 = 1;
 	/*
 	.loc_0x0:
@@ -967,7 +967,7 @@ void J2DTextBox::private_readStream(J2DPane* parent, JSURandomInputStream* input
 J2DTextBox::~J2DTextBox()
 {
 	if (_131 != 0) {
-		delete m_font;
+		delete mFont;
 	}
 	delete[] _124;
 }
@@ -987,7 +987,7 @@ void J2DTextBox::setFontSize()
  * Address:	80041B88
  * Size:	000008
  */
-// JUTResFont* J2DTextBox::getFont() const { return m_font; }
+// JUTResFont* J2DTextBox::getFont() const { return mFont; }
 
 /*
  * --INFO--
@@ -1001,10 +1001,10 @@ void J2DTextBox::setFont(JUTFont* font)
 		return;
 	}
 	if (_131 != 0) {
-		delete m_font;
+		delete mFont;
 	}
-	m_font = static_cast<JUTResFont*>(font);
-	_131   = 0;
+	mFont = static_cast<JUTResFont*>(font);
+	_131  = 0;
 }
 
 /*
@@ -1028,12 +1028,12 @@ void J2DTextBox::draw(float p1, float p2)
 	if (isVisible() == false) {
 		return;
 	}
-	J2DPrint printer(m_font, _114, _118, _104, _108, m_black, m_white);
+	J2DPrint printer(mFont, _114, _118, _104, _108, mBlack, mWhite);
 	printer.setFontSize(_11C, _120);
-	// printer.m_glyphWidth  = (_11C > 0.0f) ? _11C : 0.0f;
-	// printer.m_glyphHeight = (_120 > 0.0f) ? _120 : 0.0f;
+	// printer.mGlyphWidth  = (_11C > 0.0f) ? _11C : 0.0f;
+	// printer.mGlyphHeight = (_120 > 0.0f) ? _120 : 0.0f;
 	makeMatrix(p1, p2, 0.0f, 0.0f);
-	GXLoadPosMtxImm(m_positionMtx, 0);
+	GXLoadPosMtxImm(mPositionMtx, 0);
 	GXSetCurrentMtx(0);
 	GXSetNumIndStages(0);
 	for (int i = 0; i < 0x10; i++) {
@@ -1042,7 +1042,7 @@ void J2DTextBox::draw(float p1, float p2)
 	GXSetNumTexGens(1);
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
 	if (_124 != nullptr) {
-		printer.print(0.0f, 0.0f, m_alpha, "%s", _124);
+		printer.print(0.0f, 0.0f, mAlpha, "%s", _124);
 	}
 	Mtx mtx;
 	PSMTXIdentity(mtx);
@@ -1060,12 +1060,12 @@ void J2DTextBox::draw(float p1, float p2, float p3, J2DTextBoxHBinding hb)
 	if (isVisible() == false) {
 		return;
 	}
-	J2DPrint printer(m_font, _114, _118, _104, _108, m_black, m_white);
+	J2DPrint printer(mFont, _114, _118, _104, _108, mBlack, mWhite);
 	printer.setFontSize(_11C, _120);
-	// printer.m_glyphWidth  = (_11C > 0.0f) ? _11C : 0.0f;
-	// printer.m_glyphHeight = (_120 > 0.0f) ? _120 : 0.0f;
+	// printer.mGlyphWidth  = (_11C > 0.0f) ? _11C : 0.0f;
+	// printer.mGlyphHeight = (_120 > 0.0f) ? _120 : 0.0f;
 	makeMatrix(p1, p2, 0.0f, 0.0f);
-	GXLoadPosMtxImm(m_positionMtx, 0);
+	GXLoadPosMtxImm(mPositionMtx, 0);
 	GXSetCurrentMtx(0);
 	GXSetNumIndStages(0);
 	for (int i = 0; i < 0x10; i++) {
@@ -1074,7 +1074,7 @@ void J2DTextBox::draw(float p1, float p2, float p3, J2DTextBoxHBinding hb)
 	GXSetNumTexGens(1);
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
 	if (_124 != nullptr) {
-		printer.printReturn(_124, p3, 0.0f, hb, J2DVBIND_Top, 0.0f, -_120, m_alpha);
+		printer.printReturn(_124, p3, 0.0f, hb, J2DVBIND_Top, 0.0f, -_120, mAlpha);
 	}
 	Mtx mtx;
 	PSMTXIdentity(mtx);
@@ -1150,7 +1150,7 @@ bool J2DTextBox::setConnectParent(bool p1)
 	if (getPaneTree()->getParent()->getObject()->getTypeID() != 0x11) {
 		return false;
 	}
-	m_isConnected = p1;
+	mIsConnected = p1;
 	return p1;
 }
 
@@ -1174,10 +1174,10 @@ void J2DTextBox::drawSelf(float p1, float p2)
  */
 void J2DTextBox::drawSelf(float p1, float p2, float (*p3)[3][4])
 {
-	J2DPrint printer(m_font, _114, _118, _104, _108, m_black, m_white);
+	J2DPrint printer(mFont, _114, _118, _104, _108, mBlack, mWhite);
 	printer.setFontSize(_11C, _120);
 	Mtx v1;
-	PSMTXConcat(*p3, m_globalMtx, v1);
+	PSMTXConcat(*p3, mGlobalMtx, v1);
 	GXLoadPosMtxImm(v1, 0);
 	GXSetNumIndStages(0);
 	for (int i = 0; i < 0x10; i++) {
@@ -1185,10 +1185,10 @@ void J2DTextBox::drawSelf(float p1, float p2, float (*p3)[3][4])
 	}
 	GXSetNumTexGens(1);
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
-	printer.locate(p1 + m_bounds.i.x, p2 + m_bounds.i.y);
+	printer.locate(p1 + mBounds.i.x, p2 + mBounds.i.y);
 	if (_124 != nullptr) {
-		printer.printReturn(_124, m_bounds.getWidth() + 0.0001f, m_bounds.getHeight(), (J2DTextBoxHBinding)(_130 >> 2 & 3),
-		                    (J2DTextBoxVBinding)(_130 & 3), _10C, _110, m_colorAlpha);
+		printer.printReturn(_124, mBounds.getWidth() + 0.0001f, mBounds.getHeight(), (J2DTextBoxHBinding)(_130 >> 2 & 3),
+		                    (J2DTextBoxVBinding)(_130 & 3), _10C, _110, mColorAlpha);
 	}
 }
 
@@ -1199,16 +1199,16 @@ void J2DTextBox::drawSelf(float p1, float p2, float (*p3)[3][4])
  */
 void J2DTextBox::resize(float width, float height)
 {
-	if (m_isConnected != 0) {
+	if (mIsConnected != 0) {
 		JSUTree<J2DPane>* jsuSomething = getPaneTree()->getParent();
 		if (jsuSomething != nullptr) {
 			J2DPane* other = jsuSomething->getObject();
 			if (other->getTypeID() == 0x11) {
-				f32 deltaX = other->m_bounds.getWidth() - m_bounds.getWidth();
-				f32 deltaY = other->m_bounds.getHeight() - m_bounds.getHeight();
+				f32 deltaX = other->mBounds.getWidth() - mBounds.getWidth();
+				f32 deltaY = other->mBounds.getHeight() - mBounds.getHeight();
 				other->resize(deltaX + width, deltaY + height);
-				// other->resize(other->m_bounds.getWidth() - m_bounds.getWidth() + width, other->m_bounds.getHeight() -
-				// m_bounds.getHeight() + height);
+				// other->resize(other->mBounds.getWidth() - mBounds.getWidth() + width, other->mBounds.getHeight() -
+				// mBounds.getHeight() + height);
 				return;
 			}
 		}
@@ -1294,7 +1294,7 @@ lbl_800423CC:
  */
 bool J2DTextBox::isUsed(const ResFONT* resFont)
 {
-	if (m_font != nullptr && m_font->getResFont() == resFont) {
+	if (mFont != nullptr && mFont->getResFont() == resFont) {
 		return true;
 	}
 	return J2DPane::isUsed(resFont);
@@ -1314,7 +1314,7 @@ bool J2DTextBox::isUsed(const ResFONT* resFont)
  */
 // bool J2DTextBox::setBlack(JUtility::TColor black)
 // {
-// 	m_black = black;
+// 	mBlack = black;
 // 	return true;
 // }
 
@@ -1325,7 +1325,7 @@ bool J2DTextBox::isUsed(const ResFONT* resFont)
  */
 // bool J2DTextBox::setWhite(JUtility::TColor white)
 // {
-// 	m_white = white;
+// 	mWhite = white;
 // 	return true;
 // }
 
@@ -1336,8 +1336,8 @@ bool J2DTextBox::isUsed(const ResFONT* resFont)
  */
 // bool J2DTextBox::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 // {
-// 	m_black = black;
-// 	m_white = white;
+// 	mBlack = black;
+// 	mWhite = white;
 // 	return true;
 // }
 
@@ -1346,14 +1346,14 @@ bool J2DTextBox::isUsed(const ResFONT* resFont)
  * Address:	80042500
  * Size:	00000C
  */
-// JUtility::TColor J2DTextBox::getBlack() const { return m_black; }
+// JUtility::TColor J2DTextBox::getBlack() const { return mBlack; }
 
 /*
  * --INFO--
  * Address:	8004250C
  * Size:	00000C
  */
-// JUtility::TColor J2DTextBox::getWhite() const { return m_white; }
+// JUtility::TColor J2DTextBox::getWhite() const { return mWhite; }
 
 /*
  * --INFO--

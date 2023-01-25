@@ -17,14 +17,14 @@ Obj::Obj() { createEffect(); }
 void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
-	J3DModel* j3dModel = m_model->m_j3dModel;
-	modelData          = j3dModel->m_modelData;
-	ResTIMG* texture   = static_cast<Mgr*>(m_mgr)->getChangeTexture();
+	J3DModel* j3dModel = mModel->mJ3dModel;
+	modelData          = j3dModel->mModelData;
+	ResTIMG* texture   = static_cast<Mgr*>(mMgr)->getChangeTexture();
 
 	j3dModel->calcMaterial();
 
 	ResTIMG* newTexture;
-	J3DTexture* j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+	J3DTexture* j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
 	newTexture             = j3dTexture->_04;
 
 	texture->copyTo(newTexture);
@@ -32,10 +32,10 @@ void Obj::changeMaterial()
 	j3dTexture->setImageOffset((u32)texture);
 	j3dTexture->setPaletteOffset((u32)texture);
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket    = packet;
-		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket     = packet;
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
 		material->diff(packet->_2C->_34);
 	}
 }
@@ -47,7 +47,7 @@ void Obj::changeMaterial()
  */
 void Obj::interactCreature(Creature* creature)
 {
-	f32 damage = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_attackDamage.m_value;
+	f32 damage = static_cast<OtakaraBase::Parms*>(mParms)->mGeneral.mAttackDamage.mValue;
 	InteractGas gas(this, damage);
 	creature->stimulate(gas);
 }
@@ -57,7 +57,7 @@ void Obj::interactCreature(Creature* creature)
  * Address:	802B953C
  * Size:	000060
  */
-void Obj::createEffect() { m_efxChargeGas = new efx::TOtaChargegas; }
+void Obj::createEffect() { mEfxChargeGas = new efx::TOtaChargegas; }
 
 /*
  * --INFO--
@@ -66,8 +66,8 @@ void Obj::createEffect() { m_efxChargeGas = new efx::TOtaChargegas; }
  */
 void Obj::setupEffect()
 {
-	Matrixf* centerJointMtx = m_model->getJoint("center")->getWorldMatrix();
-	m_efxChargeGas->setMtxptr(centerJointMtx->m_matrix.mtxView);
+	Matrixf* centerJointMtx = mModel->getJoint("center")->getWorldMatrix();
+	mEfxChargeGas->setMtxptr(centerJointMtx->mMatrix.mtxView);
 }
 
 /*
@@ -75,14 +75,14 @@ void Obj::setupEffect()
  * Address:	802B95E4
  * Size:	000034
  */
-void Obj::startChargeEffect() { m_efxChargeGas->create(nullptr); }
+void Obj::startChargeEffect() { mEfxChargeGas->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802B9618
  * Size:	000030
  */
-void Obj::finishChargeEffect() { m_efxChargeGas->fade(); }
+void Obj::finishChargeEffect() { mEfxChargeGas->fade(); }
 
 /*
  * --INFO--
@@ -91,7 +91,7 @@ void Obj::finishChargeEffect() { m_efxChargeGas->fade(); }
  */
 void Obj::createDisChargeEffect()
 {
-	efx::Arg fxArg(m_position);
+	efx::Arg fxArg(mPosition);
 	efx::TOtaGas dischargeFX;
 	dischargeFX.create(&fxArg);
 }
@@ -101,14 +101,14 @@ void Obj::createDisChargeEffect()
  * Address:	802B96D4
  * Size:	000030
  */
-void Obj::effectDrawOn() { m_efxChargeGas->endDemoDrawOn(); }
+void Obj::effectDrawOn() { mEfxChargeGas->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	802B9704
  * Size:	000030
  */
-void Obj::effectDrawOff() { m_efxChargeGas->startDemoDrawOff(); }
+void Obj::effectDrawOff() { mEfxChargeGas->startDemoDrawOff(); }
 
 /*
  * --INFO--

@@ -34,7 +34,7 @@ struct FSMState : public Game::FSMState<TMgr> {
 	inline FSMState(int stateID, char* name)
 	    : Game::FSMState<TMgr>(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	virtual void init(TMgr*, Game::StateArg*);    // _08 (weak)
@@ -44,7 +44,7 @@ struct FSMState : public Game::FSMState<TMgr> {
 
 	// _00     = VTBL
 	// _00-_0C = Game::FSMState
-	char* m_name;
+	char* mName;
 };
 
 struct CardErrorStateArg : public Game::StateArg {
@@ -68,8 +68,8 @@ struct FSMState_EmptyUpdate : public FSMState {
 	inline FSMState_EmptyUpdate()
 	    : FSMState(FSSTATE_EmptyUpdate, "EnptyUpdate") // nice devs
 	{
-		m_counter = 0;
-		_14       = 0;
+		mCounter = 0;
+		_14      = 0;
 	}
 
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
@@ -77,7 +77,7 @@ struct FSMState_EmptyUpdate : public FSMState {
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	u32 m_counter;
+	u32 mCounter;
 	int _14;
 };
 
@@ -118,8 +118,8 @@ struct FSMState_CardRequest : public FSMState {
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	int m_state;
-	int m_cardStatus;
+	int mState;
+	int mCardStatus;
 };
 
 struct FSMState_GetPlayerHeader : public FSMState_CardRequest {
@@ -175,16 +175,16 @@ struct TMgr : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	FS::TMgr m_mgrFS;                          // _18
-	CardError::TMgr m_cardErrorMgr;            // _C78
-	u32 m_counter;                             // _F40
-	int _F44;                                  // _F44
-	Game::MemoryCard::PlayerFileInfo m_player; // _F48
-	int m_state;                               // _FE4
-	bool _FE8;                                 // _FE8
-	bool m_inError;                            // _FE9
-	FSMStateMachine m_fsm;                     // _FEC
-	FSMState* m_currentState;                  // _1008
+	FS::TMgr mMgrFS;                          // _18
+	CardError::TMgr mCardErrorMgr;            // _C78
+	u32 mCounter;                             // _F40
+	int _F44;                                 // _F44
+	Game::MemoryCard::PlayerFileInfo mPlayer; // _F48
+	int mState;                               // _FE4
+	bool _FE8;                                // _FE8
+	bool mInError;                            // _FE9
+	FSMStateMachine mFsm;                     // _FEC
+	FSMState* mCurrentState;                  // _1008
 };
 } // namespace FileSelect
 } // namespace ebi

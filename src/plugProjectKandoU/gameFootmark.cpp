@@ -11,8 +11,8 @@ namespace Game {
  */
 Footmark::Footmark()
 {
-	m_position = Vector3f(0.0f);
-	m_flags    = 0;
+	mPosition = Vector3f(0.0f);
+	mFlags    = 0;
 }
 
 /*
@@ -22,11 +22,11 @@ Footmark::Footmark()
  */
 Footmarks::Footmarks()
 {
-	m_marks = nullptr;
-	m_count = 0;
-	_08     = 0;
-	_04     = 0;
-	_10     = 0;
+	mMarks = nullptr;
+	mCount = 0;
+	_08    = 0;
+	_04    = 0;
+	_10    = 0;
 }
 
 /*
@@ -36,10 +36,10 @@ Footmarks::Footmarks()
  */
 void Footmarks::alloc(int amt)
 {
-	m_marks = new Footmark[amt];
-	m_count = amt;
-	_08     = 0;
-	_04     = 0;
+	mMarks = new Footmark[amt];
+	mCount = amt;
+	_08    = 0;
+	_04    = 0;
 }
 
 /*
@@ -49,24 +49,24 @@ void Footmarks::alloc(int amt)
  */
 void Footmarks::add(Footmark& mark)
 {
-	m_position = mark.m_position;
+	mPosition = mark.mPosition;
 	if (_08 >= 2) {
-		int adjIndex       = ((_04 + m_count) - 1) % m_count; // (_04 + (m_count - 1) % m_count);
-		Footmark* currMark = &m_marks[adjIndex];
+		int adjIndex       = ((_04 + mCount) - 1) % mCount; // (_04 + (mCount - 1) % mCount);
+		Footmark* currMark = &mMarks[adjIndex];
 
-		f32 dist = _distanceBetween(currMark->m_position, mark.m_position);
+		f32 dist = _distanceBetween(currMark->mPosition, mark.mPosition);
 		if (dist < 20.0f) {
 			return;
 		}
 	}
 
-	u32 timer            = gameSystem->m_frameTimer;
-	Footmark* testMark   = &m_marks[_04];
-	testMark->m_position = mark.m_position;
-	testMark->m_flags    = mark.m_flags;
-	m_marks[_04].m_flags = timer;
-	_04                  = (_04 + 1) % m_count;
-	if (_08 < m_count) {
+	u32 timer           = gameSystem->mFrameTimer;
+	Footmark* testMark  = &mMarks[_04];
+	testMark->mPosition = mark.mPosition;
+	testMark->mFlags    = mark.mFlags;
+	mMarks[_04].mFlags  = timer;
+	_04                 = (_04 + 1) % mCount;
+	if (_08 < mCount) {
 		_08++;
 	}
 	_10 = timer;
@@ -83,7 +83,7 @@ Footmark* Footmarks::get(int index)
 		return nullptr;
 	}
 
-	return &m_marks[(((m_count + _04) - (index + 1)) % m_count)];
+	return &mMarks[(((mCount + _04) - (index + 1)) % mCount)];
 }
 
 /*
@@ -96,11 +96,11 @@ Footmark* Footmarks::findNearest2(Vector3f& position, int idx)
 	int minIndex = -1;
 	f32 minDist  = 1280000.0f;
 	for (int i = 0; i < _08 - 1; i++) {
-		int adjIndex = (_04 + i) % m_count;
-		if (idx == -1 || (int)m_marks[adjIndex].m_flags > idx) {
-			Footmark* mark = &m_marks[adjIndex];
+		int adjIndex = (_04 + i) % mCount;
+		if (idx == -1 || (int)mMarks[adjIndex].mFlags > idx) {
+			Footmark* mark = &mMarks[adjIndex];
 
-			Vector3f diff = position - mark->m_position;
+			Vector3f diff = position - mark->mPosition;
 			f32 dist      = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
 			if (dist < minDist) {
 				minDist  = dist;
@@ -110,7 +110,7 @@ Footmark* Footmarks::findNearest2(Vector3f& position, int idx)
 	}
 
 	if (minIndex != -1) {
-		return &m_marks[minIndex];
+		return &mMarks[minIndex];
 	}
 
 	return nullptr;

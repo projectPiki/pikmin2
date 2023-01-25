@@ -558,11 +558,11 @@ void ItemHole::AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
  */
 void ItemHole::AppearState::exec(Game::CFSMItem* item)
 {
-	_10 += sys->m_deltaTime;
+	_10 += sys->mDeltaTime;
 	float v1 = -(_10 * 0.8333333f - 1.0f);
 	if (v1 <= 0.0f) {
 		efx::Arg arg;
-		arg.m_position = item->getPosition();
+		arg.mPosition = item->getPosition();
 		static_cast<Item*>(item)->_1E0->create(&arg);
 		transit(item, Hole_Normal, nullptr);
 		v1 = 0.0f;
@@ -711,7 +711,7 @@ void ItemHole::CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
  */
 void ItemHole::CloseState::exec(Game::CFSMItem* item)
 {
-	item->getSound_AILOD()->m_flags
+	item->getSound_AILOD()->mFlags
 	    &= AILOD::IsMid | AILOD::IsFar | AILOD::FLAG_UNKNOWN4 | AILOD::VisibleOnViewport2 | AILOD::VisibleOnViewport3;
 	/*
 	lbz      r3, 0xd8(r4)
@@ -752,15 +752,15 @@ void ItemHole::Item::movieUserCommand(unsigned long p1, Game::MoviePlayer* playe
 			}
 			iterator.next();
 		}
-		if (player->m_flags & 2) {
+		if (player->mFlags & 2) {
 			if (_1EC != 0.0f) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_WORK_FINISH, 0);
 			}
-			efx::Arg arg(m_position);
+			efx::Arg arg(mPosition);
 			_1E0->create(&arg);
-			m_stateMachine->transit(this, Hole_Normal, nullptr);
+			mStateMachine->transit(this, Hole_Normal, nullptr);
 		} else {
-			m_stateMachine->transit(this, Hole_Appear, nullptr);
+			mStateMachine->transit(this, Hole_Appear, nullptr);
 		}
 	}
 	/*
@@ -943,26 +943,26 @@ lbl_801D1CDC:
  */
 bool ItemHole::Item::interactGotKey(Game::InteractGotKey& interaction)
 {
-	if (getStateID() == Hole_Close && gameSystem->m_flags & 0x20) {
+	if (getStateID() == Hole_Close && gameSystem->mFlags & 0x20) {
 		MoviePlayArg arg;
-		arg.m_courseName            = nullptr;
-		arg.m_movieName             = "g2F_appear_hole";
-		arg._0C                     = nullptr;
-		arg.m_origin.x              = 0.0f;
-		arg.m_origin.y              = 0.0f;
-		arg.m_origin.z              = 0.0f;
-		arg.m_angle                 = 0.0f;
-		arg.m_naviID                = 0;
-		arg._10                     = nullptr;
-		arg._08                     = nullptr;
-		arg.m_streamID              = 0;
-		arg._14                     = 0;
-		arg.m_soundPosition         = nullptr;
-		arg.m_origin                = getPosition();
-		arg.m_angle                 = getFaceDir();
-		arg._10                     = gameSystem->m_section->_CC;
-		arg._0C                     = gameSystem->m_section->m_movieFinishCallback;
-		moviePlayer->m_targetObject = this;
+		arg.mCourseName            = nullptr;
+		arg.mMovieName             = "g2F_appear_hole";
+		arg._0C                    = nullptr;
+		arg.mOrigin.x              = 0.0f;
+		arg.mOrigin.y              = 0.0f;
+		arg.mOrigin.z              = 0.0f;
+		arg.mAngle                 = 0.0f;
+		arg.mNaviID                = 0;
+		arg._10                    = nullptr;
+		arg._08                    = nullptr;
+		arg.mStreamID              = 0;
+		arg._14                    = 0;
+		arg.mSoundPosition         = nullptr;
+		arg.mOrigin                = getPosition();
+		arg.mAngle                 = getFaceDir();
+		arg._10                    = gameSystem->mSection->_CC;
+		arg._0C                    = gameSystem->mSection->mMovieFinishCallback;
+		moviePlayer->mTargetObject = this;
 		moviePlayer->play(arg);
 		return true;
 	}
@@ -1048,7 +1048,7 @@ lbl_801D1DFC:
  */
 float ItemHole::Item::getFaceDir()
 {
-	return m_faceDirection;
+	return mFaceDirection;
 	/*
 	lfs      f1, 0x1e8(r3)
 	blr
@@ -1063,15 +1063,15 @@ float ItemHole::Item::getFaceDir()
  */
 void ItemHole::Item::onInit(Game::CreatureInitArg* arg)
 {
-	m_nodeItemMgr->setup(this);
+	mNodeItemMgr->setup(this);
 	setAlive(true);
 	if (arg) {
-		m_stateMachine->start(this, static_cast<InitArg*>(arg)->m_initialState, nullptr);
+		mStateMachine->start(this, static_cast<InitArg*>(arg)->mInitialState, nullptr);
 	} else {
-		m_stateMachine->start(this, Hole_Normal, nullptr);
+		mStateMachine->start(this, Hole_Normal, nullptr);
 	}
-	m_barrel        = nullptr;
-	m_faceDirection = 0.0f;
+	mBarrel        = nullptr;
+	mFaceDirection = 0.0f;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1164,7 +1164,7 @@ lbl_801D1EB0:
  */
 void ItemHole::Item::changeMaterial()
 {
-	m_model->jointVisible(false, m_model->getJoint("flag")->m_jointIndex);
+	mModel->jointVisible(false, mModel->getJoint("flag")->mJointIndex);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1197,34 +1197,34 @@ void ItemHole::Item::changeMaterial()
 void ItemHole::Item::onSetPosition()
 {
 	if (mapMgr) {
-		m_position.y = mapMgr->getMinY(m_position);
+		mPosition.y = mapMgr->getMinY(mPosition);
 	}
 	Radar::Mgr::entry(this, Radar_Hole, 0);
-	m_boundingSphere.m_position = m_position;
-	m_boundingSphere.m_radius   = 50.0f;
-	_1E0                        = new efx::WarpZone();
+	mBoundingSphere.mPosition = mPosition;
+	mBoundingSphere.mRadius   = 50.0f;
+	_1E0                      = new efx::WarpZone();
 	makeTrMatrix();
-	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-	m_model->m_j3dModel->calc();
-	Matrixf* worldMatrix = m_model->m_joints[0]->getWorldMatrix();
+	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	mModel->mJ3dModel->calc();
+	Matrixf* worldMatrix = mModel->mJoints[0]->getWorldMatrix();
 
 	ID32 futa('futa');
 	PlatAddInstanceArg arg1;
-	arg1.m_item     = this;
-	arg1.m_id       = futa;
-	arg1.m_platform = mgr->_88;
-	arg1._1C        = 75.0f;
-	arg1.m_matrix   = worldMatrix;
-	_1F0            = platMgr->addInstance(arg1);
+	arg1.mItem     = this;
+	arg1.mId       = futa;
+	arg1.mPlatform = mgr->_88;
+	arg1._1C       = 75.0f;
+	arg1.mMatrix   = worldMatrix;
+	_1F0           = platMgr->addInstance(arg1);
 
 	ID32 side('futa');
 	PlatAddInstanceArg arg2;
-	arg2.m_item     = this;
-	arg2.m_id       = side;
-	arg2.m_platform = mgr->_8C;
-	arg2._1C        = 75.0f;
-	arg2.m_matrix   = worldMatrix;
-	_1F4            = platMgr->addInstance(arg2);
+	arg2.mItem     = this;
+	arg2.mId       = side;
+	arg2.mPlatform = mgr->_8C;
+	arg2._1C       = 75.0f;
+	arg2.mMatrix   = worldMatrix;
+	_1F4           = platMgr->addInstance(arg2);
 
 	_1F0->setCollision(true);
 	_1F4->setCollision(true);
@@ -1372,17 +1372,17 @@ void ItemHole::Item::initDependency()
 			Vector3f holePos   = getPosition();
 			Vector3f barrelPos = item->getPosition();
 			if (qdist2(holePos.x, holePos.z, barrelPos.x, barrelPos.z) < 40.0f) {
-				m_barrel = static_cast<ItemBarrel::Item*>(item);
+				mBarrel = static_cast<ItemBarrel::Item*>(item);
 				return;
 			}
 		}
 		iterator.next();
 	}
 	if (getStateID() == Hole_Normal) {
-		efx::Arg arg(m_position);
+		efx::Arg arg(mPosition);
 		_1E0->create(&arg);
 	}
-	m_barrel = nullptr;
+	mBarrel = nullptr;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1620,8 +1620,8 @@ lbl_801D2478:
 void ItemHole::Item::makeTrMatrix()
 {
 	Vector3f t(0.0f, getFaceDir(), 0.0f);
-	Vector3f r(m_position.x, m_position.y - _1EC, m_position.z);
-	m_objMatrix.makeTR(t, r);
+	Vector3f r(mPosition.x, mPosition.y - _1EC, mPosition.z);
+	mObjMatrix.makeTR(t, r);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1690,8 +1690,8 @@ bool ItemHole::Item::canRide()
  */
 void ItemHole::Item::do_setLODParm(Game::AILODParm& parm)
 {
-	parm.m_far   = 0.075f;
-	parm.m_close = 0.0425f;
+	parm.mFar   = 0.075f;
+	parm.mClose = 0.0425f;
 	/*
 	lfs      f1, lbl_80519664@sda21(r2)
 	lfs      f0, lbl_80519668@sda21(r2)
@@ -1715,17 +1715,17 @@ bool ItemHole::Item::sound_culling() { return false; }
  */
 void ItemHole::Item::doAI()
 {
-	_1E0->setRateLOD(getSound_AILOD()->m_flags & (AILOD::IsFar | AILOD::IsMid), true);
+	_1E0->setRateLOD(getSound_AILOD()->mFlags & (AILOD::IsFar | AILOD::IsMid), true);
 	CFSMItem::doAI();
-	if (m_barrel) {
-		if (!m_barrel->isAlive()) {
-			m_barrel = nullptr;
+	if (mBarrel) {
+		if (!mBarrel->isAlive()) {
+			mBarrel = nullptr;
 			efx::Arg arg(getPosition());
 			return _1E0->create(&arg);
 		}
 	} else {
 		if (getStateID() != Hole_Close) {
-			return PSPlayCaveHoleSound(m_soundObj);
+			return PSPlayCaveHoleSound(mSoundObj);
 		}
 	}
 	/*
@@ -1802,12 +1802,12 @@ void ItemHole::Item::doDirectDraw(Graphics& gfx)
 {
 	Matrixf v1;
 	gfx.initPrimDraw(nullptr);
-	PSMTXCopy(m_objMatrix.m_matrix.mtxView, v1.m_matrix.mtxView);
-	v1.m_matrix.structView.ty += 10.0f;
+	PSMTXCopy(mObjMatrix.mMatrix.mtxView, v1.mMatrix.mtxView);
+	v1.mMatrix.structView.ty += 10.0f;
 	GXSetLineWidth(40, 0);
 	gfx.drawAxis(50.0f, &v1);
 	gfx.initPrimDraw(nullptr);
-	Vector3f infoPos = m_position;
+	Vector3f infoPos = mPosition;
 	infoPos.y += 40.0f;
 	drawLODInfo(gfx, infoPos);
 	/*
@@ -1907,7 +1907,7 @@ ItemHole::Mgr::Mgr()
 {
 	setName("Hole");
 	setModelSize(1);
-	m_objectPathComponent = "user/Kando/objects/dungeon_hole";
+	mObjectPathComponent = "user/Kando/objects/dungeon_hole";
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -1955,8 +1955,8 @@ void ItemHole::Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
 	loadBmd("dungeon_hole.bmd", 0, 0x20000);
-	m_modelData[0]->newSharedDisplayList(0x40000);
-	m_modelData[0]->makeSharedDL();
+	mModelData[0]->newSharedDisplayList(0x40000);
+	mModelData[0]->makeSharedDL();
 	JKRArchive* archive = openTextArc("texts.szs");
 	_88                 = loadPlatform(archive, "cap_platform.bin");
 	_88                 = loadPlatform(archive, "side_platform.bin");
@@ -2041,11 +2041,11 @@ void ItemHole::Mgr::onLoadResources()
  */
 void ItemHole::Mgr::setup(Game::BaseItem* item)
 {
-	item->m_model = new SysShape::Model(getModelData(0), 0x20000, 2);
-	item->m_model->m_j3dModel->calc();
-	item->m_model->m_j3dModel->calcMaterial();
-	item->m_model->m_j3dModel->makeDL();
-	item->m_model->m_j3dModel->lock();
+	item->mModel = new SysShape::Model(getModelData(0), 0x20000, 2);
+	item->mModel->mJ3dModel->calc();
+	item->mModel->mJ3dModel->calcMaterial();
+	item->mModel->mJ3dModel->makeDL();
+	item->mModel->mJ3dModel->lock();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

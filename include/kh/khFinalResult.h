@@ -15,13 +15,13 @@
 namespace kh {
 namespace Screen {
 struct TotalResultData {
-	P2DScreen::Mgr* m_screen; // _00
-	int m_score1;             // _04
-	int m_score2;
-	int m_score3;
-	int m_score4;
-	int m_score5; // _14
-	u8 _18;       // _18
+	P2DScreen::Mgr* mScreen; // _00
+	int mScore1;             // _04
+	int mScore2;
+	int mScore3;
+	int mScore4;
+	int mScore5; // _14
+	u8 _18;      // _18
 };
 
 struct DispFinalResult : public og::Screen::DispMemberBase {
@@ -35,10 +35,10 @@ struct DispFinalResult : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	TotalResultData* m_totalResultData; // _08
-	ResultType m_resultType;            // _0C
-	int m_exitStatus;                   // _10
-	JKRHeap* m_heap;                    // _14
+	TotalResultData* mTotalResultData; // _08
+	ResultType mResultType;            // _0C
+	int mExitStatus;                   // _10
+	JKRHeap* mHeap;                    // _14
 };
 
 struct ObjFinalResult : public ::Screen::ObjBase {
@@ -66,75 +66,75 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	ebi::Save::TMgr* m_saveMgr;                         // _38
-	P2DScreen::Mgr_tuning* m_screen;                    // _3C
-	J2DAnmTransform* m_anmTrans1;                       // _40
-	J2DAnmTransform* m_anmTrans2;                       // _44
-	J2DAnmTransform* m_anmTrans3;                       // _48
-	J2DAnmTransform* m_anmTrans4;                       // _4C
-	J2DAnmTransform* m_anmTrans5;                       // _50
-	J2DAnmTransform* m_anmTrans6;                       // _54
-	J2DAnmBase* m_anmCol1;                              // _58
-	J2DAnmBase* m_anmCol2;                              // _5C
-	J2DAnmBase* m_anmCol3;                              // _60
-	J2DAnmTextureSRTKey* m_anmSRT;                      // _64
-	J2DAnmTevRegKey* m_anmTev;                          // _68
-	f32 m_animTimers[8];                                // _6C
-	og::Screen::StickAnimMgr* m_stickAnimMgr;           // _8C
-	khUtilFadePane* m_fadePane3DStick;                  // _90
-	khUtilFadePane* m_fadePaneYameU;                    // _94
-	khUtilFadePane* m_fadePaneYameL;                    // _98
-	khUtilFadePane* m_fadePaneAButton;                  // _9C
-	og::Screen::CallBack_CounterRV* m_counters1[4];     // _A0
-	og::Screen::CallBack_CounterRV* m_counters2[4];     // _B0
-	og::Screen::CallBack_CounterRV* m_counterScore1[4]; // _C0
-	og::Screen::CallBack_CounterRV* m_counterScore2[4]; // _D0
-	u32 m_counterData1[4];                              // _E0
-	u32 m_counterData2[4];                              // _F0
-	u32 m_counterDataScore1[4];                         // _100
-	u32 m_counterDataScore2[4];                         // _110
-	f32 m_timer;                                        // _120
-	JUtility::TColor m_color;                           // _124
-	f32 m_scrollYPos;                                   // _128
-	f32 m_scrollMove;                                   // _12C
-	int m_currentPage;                                  // _130
-	int m_scrollTargetPos;                              // _134
-	int m_scrollMoveProgress;                           // _138
-	int m_autoScrollDelay;
+	ebi::Save::TMgr* mSaveMgr;                         // _38
+	P2DScreen::Mgr_tuning* mScreen;                    // _3C
+	J2DAnmTransform* mAnmTrans1;                       // _40
+	J2DAnmTransform* mAnmTrans2;                       // _44
+	J2DAnmTransform* mAnmTrans3;                       // _48
+	J2DAnmTransform* mAnmTrans4;                       // _4C
+	J2DAnmTransform* mAnmTrans5;                       // _50
+	J2DAnmTransform* mAnmTrans6;                       // _54
+	J2DAnmBase* mAnmCol1;                              // _58
+	J2DAnmBase* mAnmCol2;                              // _5C
+	J2DAnmBase* mAnmCol3;                              // _60
+	J2DAnmTextureSRTKey* mAnmSRT;                      // _64
+	J2DAnmTevRegKey* mAnmTev;                          // _68
+	f32 mAnimTimers[8];                                // _6C
+	og::Screen::StickAnimMgr* mStickAnimMgr;           // _8C
+	khUtilFadePane* mFadePane3DStick;                  // _90
+	khUtilFadePane* mFadePaneYameU;                    // _94
+	khUtilFadePane* mFadePaneYameL;                    // _98
+	khUtilFadePane* mFadePaneAButton;                  // _9C
+	og::Screen::CallBack_CounterRV* mCounters1[4];     // _A0
+	og::Screen::CallBack_CounterRV* mCounters2[4];     // _B0
+	og::Screen::CallBack_CounterRV* mCounterScore1[4]; // _C0
+	og::Screen::CallBack_CounterRV* mCounterScore2[4]; // _D0
+	u32 mCounterData1[4];                              // _E0
+	u32 mCounterData2[4];                              // _F0
+	u32 mCounterDataScore1[4];                         // _100
+	u32 mCounterDataScore2[4];                         // _110
+	f32 mTimer;                                        // _120
+	JUtility::TColor mColor;                           // _124
+	f32 mScrollYPos;                                   // _128
+	f32 mScrollMove;                                   // _12C
+	int mCurrentPage;                                  // _130
+	int mScrollTargetPos;                              // _134
+	int mScrollMoveProgress;                           // _138
+	int mAutoScrollDelay;
 	int _140;
 	int _144;
-	int m_state;    // _148
-	u8 _14C;        // _14C
-	u8 _14D;        // _14D
-	u8 m_flags;     // _14E
-	u8 m_fadeAlpha; // _14F
+	int mState;    // _148
+	u8 _14C;       // _14C
+	u8 _14D;       // _14D
+	u8 mFlags;     // _14E
+	u8 mFadeAlpha; // _14F
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			m_animSpeed     = 1.0f;
-			_04             = 16;
-			_08             = 90;
-			_1C             = 30;
-			_1D             = 100;
-			m_fadeAlphaRate = 10;
-			_1F             = 160;
-			_20             = 32;
-			_21             = 80;
-			_0C             = 0.05f;
-			m_colors[0].set(255, 0, 64, 0);
-			m_colors[1].set(255, 255, 0, 0);
-			m_colors[2].set(255, 48, 80, 0);
+			mAnimSpeed     = 1.0f;
+			_04            = 16;
+			_08            = 90;
+			_1C            = 30;
+			_1D            = 100;
+			mFadeAlphaRate = 10;
+			_1F            = 160;
+			_20            = 32;
+			_21            = 80;
+			_0C            = 0.05f;
+			mColors[0].set(255, 0, 64, 0);
+			mColors[1].set(255, 255, 0, 0);
+			mColors[2].set(255, 48, 80, 0);
 		}
 
-		f32 m_animSpeed; // _00
+		f32 mAnimSpeed; // _00
 		int _04;
 		int _08;
 		f32 _0C;
-		JUtility::TColor m_colors[3];
+		JUtility::TColor mColors[3];
 		u8 _1C;
 		u8 _1D;
-		u8 m_fadeAlphaRate;
+		u8 mFadeAlphaRate;
 		u8 _1F;
 		u8 _20;
 		u8 _21;

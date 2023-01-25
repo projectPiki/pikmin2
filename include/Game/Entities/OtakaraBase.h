@@ -47,7 +47,7 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual f32 getCellRadius() { return m_cellRadius; }    // _58 (weak)
+	virtual f32 getCellRadius() { return mCellRadius; }     // _58 (weak)
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
@@ -105,23 +105,23 @@ struct Obj : public EnemyBase {
 	bool stimulateBomb();
 	Creature* getChaseTargetCreature();
 
-	inline void getScaledRadius(f32 scale, f32* radius) { *radius = scale * (m_cellRadius - 10.0f); }
+	inline void getScaledRadius(f32 scale, f32* radius) { *radius = scale * (mCellRadius - 10.0f); }
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;              // _2BC
-	StateID m_nextState;     // _2C0
-	f32 _2C4;                // _2C4, timer?
-	f32 _2C8;                // _2C8
-	f32 m_escapeSfxTimer;    // _2CC
-	u8 _2D0;                 // _2D0
-	Vector3f m_movePosition; // _2D4
-	Creature* m_treasure;    // _2E0
-	f32 m_treasureHealth;    // _2E4
-	f32 _2E8;                // _2E8, timer?
-	f32 m_bodyHeightOffset;  // _2EC
-	f32 m_cellRadius;        // _2F0
-	                         // _2F4 = PelletView
+	FSM* mFsm;              // _2BC
+	StateID mNextState;     // _2C0
+	f32 _2C4;               // _2C4, timer?
+	f32 _2C8;               // _2C8
+	f32 mEscapeSfxTimer;    // _2CC
+	u8 _2D0;                // _2D0
+	Vector3f mMovePosition; // _2D4
+	Creature* mTreasure;    // _2E0
+	f32 mTreasureHealth;    // _2E4
+	f32 _2E8;               // _2E8, timer?
+	f32 mBodyHeightOffset;  // _2EC
+	f32 mCellRadius;        // _2F0
+	                        // _2F4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -140,24 +140,24 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* m_changeTexture; // _44
+	ResTIMG* mChangeTexture; // _44
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "OtakaraBaseParms")
-		    , m_fp01(this, 'fp01', "オタカラライフ", 100.0f, 0.0f, 10000.0f) // 'otakara life'
-		    , m_fp10(this, 'fp10', "ノーマルアタック", 1.0f, 0.0f, 10.0f)    // 'normal attack'
-		    , m_fp11(this, 'fp11', "オタカラアタック", 1.25f, 0.0f, 10.0f)   // 'otakara attack'
-		    , m_fp21(this, 'fp21', "オタカラキャッチ", 2.5f, 0.0f, 10.0f)    // 'treasure catch'
+		    , mFp01(this, 'fp01', "オタカラライフ", 100.0f, 0.0f, 10000.0f) // 'otakara life'
+		    , mFp10(this, 'fp10', "ノーマルアタック", 1.0f, 0.0f, 10.0f)    // 'normal attack'
+		    , mFp11(this, 'fp11', "オタカラアタック", 1.25f, 0.0f, 10.0f)   // 'otakara attack'
+		    , mFp21(this, 'fp21', "オタカラキャッチ", 2.5f, 0.0f, 10.0f)    // 'treasure catch'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp10; // _82C
-		Parm<f32> m_fp11; // _854
-		Parm<f32> m_fp21; // _87C
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp10; // _82C
+		Parm<f32> mFp11; // _854
+		Parm<f32> mFp21; // _87C
 	};
 
 	Parms() { }
@@ -165,23 +165,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -197,7 +197,7 @@ struct State : public EnemyFSMState {
 	inline State(int stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

@@ -7,7 +7,7 @@
  */
 TRKResult TRKMessageSend(TRK_Msg* msg)
 {
-	u32 write_val = TRKWriteUARTN(&msg->m_msg, msg->m_msgLength);
+	u32 write_val = TRKWriteUARTN(&msg->mMsg, msg->mMsgLength);
 	MWTRACE(1, "MessageSend : cc_write returned %ld\n", write_val);
 	return EXIT_SUCCESS;
 }

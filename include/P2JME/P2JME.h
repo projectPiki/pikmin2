@@ -31,14 +31,14 @@ struct Mgr : public JKRDisposer {
 	void setupColor(JKRArchive*, const char*);
 
 	// _00 VTBL
-	JUTFont* m_font;                // _18
-	u32 _1C;                        // _1C
-	u32** _20;                      // _20
-	u32* _24;                       // _24
-	u8 _28;                         // _28
-	u32 _2C;                        // _2C
-	u32 _30;                        // _30
-	JMessage::TReference* m_msgRef; // _34
+	JUTFont* mFont;                // _18
+	u32 _1C;                       // _1C
+	u32** _20;                     // _20
+	u32* _24;                      // _24
+	u8 _28;                        // _28
+	u32 _2C;                       // _2C
+	u32 _30;                       // _30
+	JMessage::TReference* mMsgRef; // _34
 };
 
 void convertU64ToMessageID(u64, u32*, u32*);

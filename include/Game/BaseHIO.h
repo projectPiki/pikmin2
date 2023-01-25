@@ -36,9 +36,9 @@ struct BaseHIOSection : public Section {
 #if BUILDTARGET == USADEMO1
 	u8 _DemoPadding1[0x1C];
 #endif
-	HIORootNode* m_rootNode; // _3C
-	u8 _40[4];               // _40
-	Controller* _44;         // _44
+	HIORootNode* mRootNode; // _3C
+	u8 _40[4];              // _40
+	Controller* _44;        // _44
 #if BUILDTARGET == USADEMO1
 	u8 _DemoPadding2[0x4];
 #endif
@@ -52,7 +52,7 @@ struct HIORootNode : public CNode {
 
 	virtual ~HIORootNode() { } // _08 (weak)
 
-	Section* m_section; // _18
+	Section* mSection; // _18
 };
 } // namespace Game
 

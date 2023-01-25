@@ -14,13 +14,13 @@ namespace EnemyStone {
  * Size:	0000A8
  */
 Obj::Obj(EnemyBase* enemy, Info* info)
-    : m_info(info)
-    , m_enemy(enemy)
-    , m_flags(0)
+    : mInfo(info)
+    , mEnemy(enemy)
+    , mFlags(0)
 {
 	resetFlags();
-	m_nodeArray[0].clearRelations();
-	m_nodeArray[1].clearRelations();
+	mNodeArray[0].clearRelations();
+	mNodeArray[1].clearRelations();
 }
 
 /*
@@ -33,17 +33,17 @@ bool Obj::start()
 	resetFlags();
 	bool result = false;
 
-	if (generalEnemyMgr->m_stoneMgr.regist(this)) {
+	if (generalEnemyMgr->mStoneMgr.regist(this)) {
 		setFlag(STONE_Unk6);
 		f32 appearVal = 0.0f;
-		f32 normVal   = 1.0f / (f32)m_info->m_length;
+		f32 normVal   = 1.0f / (f32)mInfo->mLength;
 
 		for (int i = 0; i < 2; i++) {
-			DrawInfo* currInfo = static_cast<DrawInfo*>(m_nodeArray[i].m_child);
+			DrawInfo* currInfo = static_cast<DrawInfo*>(mNodeArray[i].mChild);
 
 			while (currInfo) {
-				DrawInfo* nextInfo = static_cast<DrawInfo*>(currInfo->m_next);
-				currInfo->appear(m_enemy, appearVal);
+				DrawInfo* nextInfo = static_cast<DrawInfo*>(currInfo->mNext);
+				currInfo->appear(mEnemy, appearVal);
 				appearVal -= normVal;
 				currInfo = nextInfo;
 			}
@@ -64,15 +64,15 @@ void Obj::shake()
 	if (!isFlag(STONE_Shake)) {
 		setFlag(STONE_Shake);
 
-		f32 shakeVal = 0.0;                     // supplied to shake
-		f32 normVal  = 1.0f / m_info->m_length; // used to adjust shake for next DrawInfo node
+		f32 shakeVal = 0.0;                   // supplied to shake
+		f32 normVal  = 1.0f / mInfo->mLength; // used to adjust shake for next DrawInfo node
 
 		for (int i = 0; i < 2; i++) {
-			DrawInfo* currInfo = (DrawInfo*)m_nodeArray[i].m_child;
+			DrawInfo* currInfo = (DrawInfo*)mNodeArray[i].mChild;
 
 			while (currInfo != nullptr) {
-				DrawInfo* nextInfo = (DrawInfo*)currInfo->m_next;
-				currInfo->shake(m_enemy, shakeVal);
+				DrawInfo* nextInfo = (DrawInfo*)currInfo->mNext;
+				currInfo->shake(mEnemy, shakeVal);
 				shakeVal -= normVal;
 				currInfo = nextInfo;
 			}
@@ -88,11 +88,11 @@ void Obj::shake()
 void Obj::updateDrawInfo()
 {
 	for (int i = 0; i < 2; i++) {
-		DrawInfo* currInfo = (DrawInfo*)m_nodeArray[i].m_child;
+		DrawInfo* currInfo = (DrawInfo*)mNodeArray[i].mChild;
 
 		while (currInfo != nullptr) {
-			DrawInfo* nextInfo = (DrawInfo*)currInfo->m_next;
-			currInfo->update(m_enemy);
+			DrawInfo* nextInfo = (DrawInfo*)currInfo->mNext;
+			currInfo->update(mEnemy);
 			currInfo = nextInfo;
 		}
 	}
@@ -106,11 +106,11 @@ void Obj::updateDrawInfo()
 void Obj::fitDrawInfo()
 {
 	for (int i = 0; i < 2; i++) {
-		DrawInfo* currInfo = (DrawInfo*)m_nodeArray[i].m_child;
+		DrawInfo* currInfo = (DrawInfo*)mNodeArray[i].mChild;
 
 		while (currInfo != nullptr) {
-			DrawInfo* nextInfo = (DrawInfo*)currInfo->m_next;
-			currInfo->fit(m_enemy);
+			DrawInfo* nextInfo = (DrawInfo*)currInfo->mNext;
+			currInfo->fit(mEnemy);
 			currInfo = nextInfo;
 		}
 	}
@@ -124,11 +124,11 @@ void Obj::fitDrawInfo()
 void Obj::disappearDrawInfo()
 {
 	for (int i = 0; i < 2; i++) {
-		DrawInfo* currInfo = (DrawInfo*)m_nodeArray[i].m_child;
+		DrawInfo* currInfo = (DrawInfo*)mNodeArray[i].mChild;
 
 		while (currInfo != nullptr) {
-			DrawInfo* nextInfo = (DrawInfo*)currInfo->m_next;
-			currInfo->disappear(m_enemy);
+			DrawInfo* nextInfo = (DrawInfo*)currInfo->mNext;
+			currInfo->disappear(mEnemy);
 			currInfo = nextInfo;
 		}
 	}
@@ -144,7 +144,7 @@ void Obj::update()
 	updateDrawInfo();
 
 	if (!isFlag(STONE_Fit)) {
-		m_enemy->m_soundObj->startSound(PSSE_EN_DOPING_GAS_FREEZE, 0);
+		mEnemy->mSoundObj->startSound(PSSE_EN_DOPING_GAS_FREEZE, 0);
 		if (checkDrawInfoState(2)) {
 			setFlag(STONE_Fit);
 			fitDrawInfo();
@@ -153,12 +153,12 @@ void Obj::update()
 	} else if (!isFlag(STONE_HasViewedDemo)) {
 		if (checkDrawInfoState(4)) {
 			setFlag(STONE_HasViewedDemo);
-			if (gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_flags & 0x20 && !playData->isDemoFlag(DEMO_First_Bitter_Use)) {
+			if (gameSystem->mMode == GSM_STORY_MODE && gameSystem->mFlags & 0x20 && !playData->isDemoFlag(DEMO_First_Bitter_Use)) {
 				if (moviePlayer) {
 					MoviePlayArg playArg("g1B_black_doping", nullptr, nullptr, 0);
-					playArg.m_origin            = m_enemy->getPosition();
-					playArg.m_angle             = m_enemy->getFaceDir();
-					moviePlayer->m_targetObject = m_enemy;
+					playArg.mOrigin            = mEnemy->getPosition();
+					playArg.mAngle             = mEnemy->getFaceDir();
+					moviePlayer->mTargetObject = mEnemy;
 					moviePlayer->play(playArg);
 					playData->setDemoFlag(DEMO_First_Bitter_Use);
 				}
@@ -168,9 +168,9 @@ void Obj::update()
 	} else if (isFlag(STONE_Shake)) {
 		if (checkDrawInfoState(6)) {
 			disappearDrawInfo();
-			m_enemy->m_soundObj->startSound(PSSE_EN_DOPING_ROCK_BREAK, 0);
+			mEnemy->mSoundObj->startSound(PSSE_EN_DOPING_ROCK_BREAK, 0);
 			setFlag(STONE_Break);
-			generalEnemyMgr->m_stoneMgr.release(this);
+			generalEnemyMgr->mStoneMgr.release(this);
 		}
 	}
 }
@@ -183,10 +183,10 @@ void Obj::update()
 bool Obj::checkDrawInfoState(int state)
 {
 	for (int i = 0; i < 2; i++) {
-		DrawInfo* currInfo = (DrawInfo*)m_nodeArray[i].m_child;
+		DrawInfo* currInfo = (DrawInfo*)mNodeArray[i].mChild;
 
 		while (currInfo != nullptr) { // loop through all child DrawInfos and 'update' each one
-			DrawInfo* nextInfo = (DrawInfo*)currInfo->m_next;
+			DrawInfo* nextInfo = (DrawInfo*)currInfo->mNext;
 			if (currInfo->getStateID() != state) {
 				return false;
 			}
@@ -204,18 +204,18 @@ bool Obj::checkDrawInfoState(int state)
 void Obj::dead()
 {
 	for (int i = 0; i < 2; i++) {
-		DrawInfo* currInfo = (DrawInfo*)m_nodeArray[i].m_child;
+		DrawInfo* currInfo = (DrawInfo*)mNodeArray[i].mChild;
 
 		while (currInfo) {
-			DrawInfo* nextInfo = (DrawInfo*)currInfo->m_next;
-			currInfo->dead(m_enemy);
+			DrawInfo* nextInfo = (DrawInfo*)currInfo->mNext;
+			currInfo->dead(mEnemy);
 			currInfo = nextInfo;
 		}
 	}
 
-	m_enemy->m_soundObj->startSound(PSSE_EN_DOPING_ROCK_BREAK, 0);
+	mEnemy->mSoundObj->startSound(PSSE_EN_DOPING_ROCK_BREAK, 0);
 	setFlag(STONE_Break);
-	generalEnemyMgr->m_stoneMgr.release(this);
+	generalEnemyMgr->mStoneMgr.release(this);
 }
 
 } // namespace EnemyStone

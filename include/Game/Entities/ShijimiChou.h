@@ -98,31 +98,31 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	SpectralidType m_specType;           // _2BC
-	SpectralidSpawnSource m_spawnSource; // _2C0
-	u8 _2C4[0x4];                        // _2C4, unknown
-	EnemyBase* m_spawningEnemy;          // _2C8
-	Vector3f _2CC;                       // _2CC
-	FSM* m_fsm;                          // _2D8
-	UpdateContext m_updateContext;       // _2DC
-	Obj* m_groupLeader;                  // _2E8
-	u8 _2EC[0x4];                        // _2EC, unknown
-	f32 _2F0;                            // _2F0
-	f32 _2F4;                            // _2F4
-	f32 _2F8;                            // _2F8
-	u8 _2FC[0x8];                        // _2FC, unknown
-	Vector3f _304;                       // _304
-	Sys::Sphere _310;                    // _310
-	u8 _320;                             // _320
-	u8 _321;                             // _321
-	u8 _322[0x2];                        // _322, unknown/padding maybe
-	u8 _324[0x4];                        // _324, unknown
-	int m_groupCount;                    // _328
-	u32 m_flyType;                       // _32C
-	u8 _330[0x4];                        // _330, unknown
-	efx::TChouDown* m_efxDown;           // _334
-	PSM::Cluster* m_soundCluster;        // _338
-	                                     // _33C = PelletView
+	SpectralidType mSpecType;           // _2BC
+	SpectralidSpawnSource mSpawnSource; // _2C0
+	u8 _2C4[0x4];                       // _2C4, unknown
+	EnemyBase* mSpawningEnemy;          // _2C8
+	Vector3f _2CC;                      // _2CC
+	FSM* mFsm;                          // _2D8
+	UpdateContext mUpdateContext;       // _2DC
+	Obj* mGroupLeader;                  // _2E8
+	u8 _2EC[0x4];                       // _2EC, unknown
+	f32 _2F0;                           // _2F0
+	f32 _2F4;                           // _2F4
+	f32 _2F8;                           // _2F8
+	u8 _2FC[0x8];                       // _2FC, unknown
+	Vector3f _304;                      // _304
+	Sys::Sphere _310;                   // _310
+	u8 _320;                            // _320
+	u8 _321;                            // _321
+	u8 _322[0x2];                       // _322, unknown/padding maybe
+	u8 _324[0x4];                       // _324, unknown
+	int mGroupCount;                    // _328
+	u32 mFlyType;                       // _32C
+	u8 _330[0x4];                       // _330, unknown
+	efx::TChouDown* mEfxDown;           // _334
+	PSM::Cluster* mSoundCluster;        // _338
+	                                    // _33C = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -137,7 +137,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual void loadModelData();             // _C8
 	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -145,7 +145,7 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	//////////////// VTABLE END
 
@@ -158,13 +158,13 @@ struct Mgr : public EnemyMgrBase {
 	inline J3DModel* getModel()
 	{
 		Obj* chou = static_cast<Obj*>(getEnemy(0));
-		return chou->m_model->m_j3dModel;
+		return chou->mModel->mJ3dModel;
 	}
 
 	inline J3DAnmTransform* getTransform()
 	{
-		SysShape::AnimInfo* animInfo = static_cast<SysShape::AnimInfo*>(m_animMgr->m_animInfo.m_child)->getInfoByID(2);
-		return animInfo->m_anm;
+		SysShape::AnimInfo* animInfo = static_cast<SysShape::AnimInfo*>(mAnimMgr->mAnimInfo.mChild)->getInfoByID(2);
+		return animInfo->mAnm;
 	}
 
 	inline J3DUMtxAnmCacheTable* getCacheTable(J3DModel* model, J3DAnmTransform* transform)
@@ -174,91 +174,91 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	UpdateMgr* m_updateMgr;                               // _44
-	Obj* m_groupLeader;                                   // _48
-	J3DUMtxCacheRef<J3DUMtxAnmCacheTable>* m_mtxCacheRef; // _4C
-	Obj* m_obj;                                           // _50, array of objs
+	UpdateMgr* mUpdateMgr;                               // _44
+	Obj* mGroupLeader;                                   // _48
+	J3DUMtxCacheRef<J3DUMtxAnmCacheTable>* mMtxCacheRef; // _4C
+	Obj* mObj;                                           // _50, array of objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "飛行期間", 300.0f, 0.0f, 1000.0f)               // 'flight duration'
-		    , m_fp08(this, 'fp08', "プランツからの飛行期間", 100.0f, 0.0f, 1000.0f) // 'flight duration from plants'
-		    , m_fp02(this, 'fp02', "蜜レート", 1.0f, 0.0f, 1.0f)                    // 'honey rate'
-		    , m_fp03(this, 'fp03', "飛行高さ", 100.0f, 0.0f, 200.0f)                // 'flight height'
-		    , m_fp04(this, 'fp04', "飛行レート", 0.05f, 0.0f, 1.0f)                 // 'flight rate'
-		    , m_fp05(this, 'fp05', "飛行高低", 1.0f, 0.0f, 10.0f)                   // 'flight altitude'
-		    , m_fp06(this, 'fp06', "赤蝶率", 0.1f, 0.0f, 1.0f)                      // 'red butterfly rate
-		    , m_fp07(this, 'fp07', "黒蝶率", 0.1f, 0.0f, 1.0f)                      // 'black butterfly rate'
+		    , mFp01(this, 'fp01', "飛行期間", 300.0f, 0.0f, 1000.0f)               // 'flight duration'
+		    , mFp08(this, 'fp08', "プランツからの飛行期間", 100.0f, 0.0f, 1000.0f) // 'flight duration from plants'
+		    , mFp02(this, 'fp02', "蜜レート", 1.0f, 0.0f, 1.0f)                    // 'honey rate'
+		    , mFp03(this, 'fp03', "飛行高さ", 100.0f, 0.0f, 200.0f)                // 'flight height'
+		    , mFp04(this, 'fp04', "飛行レート", 0.05f, 0.0f, 1.0f)                 // 'flight rate'
+		    , mFp05(this, 'fp05', "飛行高低", 1.0f, 0.0f, 10.0f)                   // 'flight altitude'
+		    , mFp06(this, 'fp06', "赤蝶率", 0.1f, 0.0f, 1.0f)                      // 'red butterfly rate
+		    , mFp07(this, 'fp07', "黒蝶率", 0.1f, 0.0f, 1.0f)                      // 'black butterfly rate'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp08; // _82C
-		Parm<f32> m_fp02; // _854
-		Parm<f32> m_fp03; // _87C
-		Parm<f32> m_fp04; // _8A4
-		Parm<f32> m_fp05; // _8CC
-		Parm<f32> m_fp06; // _8F4
-		Parm<f32> m_fp07; // _91C
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp08; // _82C
+		Parm<f32> mFp02; // _854
+		Parm<f32> mFp03; // _87C
+		Parm<f32> mFp04; // _8A4
+		Parm<f32> mFp05; // _8CC
+		Parm<f32> mFp06; // _8F4
+		Parm<f32> mFp07; // _91C
 	};
 
 	Parms()
 	{
-		m_flyType    = 0;
-		_949         = 0;
-		_94A         = 0;
-		m_groupCount = 25;
-		_94C         = 1;
-		_94D         = 0;
-		_950         = 4.0f;
-		_954         = 0.8f;
-		_958         = 20.0f;
-		_95C         = 0.4f;
-		_960         = 1.0f;
-		_964         = 1.0f;
-		_968         = 0.3f;
-		_96C         = 70.0f;
-		_970         = 5.0f;
+		mFlyType    = 0;
+		_949        = 0;
+		_94A        = 0;
+		mGroupCount = 25;
+		_94C        = 1;
+		_94D        = 0;
+		_950        = 4.0f;
+		_954        = 0.8f;
+		_958        = 20.0f;
+		_95C        = 0.4f;
+		_960        = 1.0f;
+		_964        = 1.0f;
+		_968        = 0.3f;
+		_96C        = 70.0f;
+		_970        = 5.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
-	u8 m_flyType;              // _948
-	u8 _949;                   // _949, unknown
-	u8 _94A;                   // _94A, unknown
-	u8 m_groupCount;           // _94B
-	u8 _94C;                   // _94C, unknown
-	u8 _94D;                   // _94D, unknown
-	f32 _950;                  // _950
-	f32 _954;                  // _954
-	f32 _958;                  // _958
-	f32 _95C;                  // _95C
-	f32 _960;                  // _960
-	f32 _964;                  // _964
-	f32 _968;                  // _968
-	f32 _96C;                  // _96C
-	f32 _970;                  // _970
+	ProperParms mProperParms; // _7F8
+	u8 mFlyType;              // _948
+	u8 _949;                  // _949, unknown
+	u8 _94A;                  // _94A, unknown
+	u8 mGroupCount;           // _94B
+	u8 _94C;                  // _94C, unknown
+	u8 _94D;                  // _94D, unknown
+	f32 _950;                 // _950
+	f32 _954;                 // _954
+	f32 _958;                 // _958
+	f32 _95C;                 // _95C
+	f32 _960;                 // _960
+	f32 _964;                 // _964
+	f32 _968;                 // _968
+	f32 _96C;                 // _96C
+	f32 _970;                 // _970
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

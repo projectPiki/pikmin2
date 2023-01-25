@@ -37,13 +37,13 @@ void SMenuPauseVS::doCreateObj(JKRArchive* archive)
  */
 int SMenuPauseVS::doGetFinishState()
 {
-	Screen::DispMemberBase* dispAll = m_dispMember;
+	Screen::DispMemberBase* dispAll = mDispMember;
 	int state                       = 0;
 	if (dispAll->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
 		Screen::DispMemberSMenuPauseVS* dispVs
 		    = (Screen::DispMemberSMenuPauseVS*)dispAll->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_VS);
 		if (dispVs) {
-			state = dispVs->m_state;
+			state = dispVs->mState;
 		}
 	}
 	return state;

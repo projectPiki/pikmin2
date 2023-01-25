@@ -51,8 +51,8 @@ bool Challenge2P::doStart(::Screen::StartSceneArg* sceneArg)
 void Challenge2P::doUpdateActive()
 {
 	if (Game::gameSystem) {
-		Screen::DispMemberChallenge2P* dispMember = static_cast<Screen::DispMemberChallenge2P*>(m_dispMember);
-		updateCountDown(dispMember->m_timeLimit, &dispMember->m_dayEndCount);
+		Screen::DispMemberChallenge2P* dispMember = static_cast<Screen::DispMemberChallenge2P*>(mDispMember);
+		updateCountDown(dispMember->mTimeLimit, &dispMember->mDayEndCount);
 	}
 }
 

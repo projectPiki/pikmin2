@@ -14,9 +14,9 @@ struct TChaseMtx : public TSync {
 
 	inline TChaseMtx(u16 effectID, Matrixf* mtx) // probably
 	    : TSync()
-	    , m_mtx(mtx)
+	    , mMtx(mtx)
 	{
-		m_effectID = effectID;
+		mEffectID = effectID;
 	}
 
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
@@ -24,7 +24,7 @@ struct TChaseMtx : public TSync {
 
 	// _00		= VTBL
 	// _00-_10	= TSync
-	Matrixf* m_mtx; // _10
+	Matrixf* mMtx; // _10
 };
 
 struct TChaseMtx2 : public TSyncGroup2<TChaseMtx> {
@@ -81,9 +81,9 @@ struct TChaseMtxT : public TSync {
 
 	inline TChaseMtxT(u16 effectID) // probably
 	    : TSync()
-	    , m_mtx(nullptr)
+	    , mMtx(nullptr)
 	{
-		m_effectID = effectID;
+		mEffectID = effectID;
 	}
 
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
@@ -91,7 +91,7 @@ struct TChaseMtxT : public TSync {
 
 	// _00		= VTBL
 	// _00-_10	= TSync
-	Matrixf* m_mtx; // _10
+	Matrixf* mMtx; // _10
 };
 
 struct TChaseMtxT2 : public TSyncGroup2<TChaseMtxT> {

@@ -12,14 +12,14 @@ struct MapCollision : public CNode {
 	MapCollision() { }
 	virtual ~MapCollision() {};
 
-	virtual void getBoundBox(BoundBox& bb) { m_divider->getBoundBox(bb); }
+	virtual void getBoundBox(BoundBox& bb) { mDivider->getBoundBox(bb); }
 	virtual void getCurrTri(Game::CurrTriInfo&);
 	virtual void createTriangles(Sys::CreateTriangleArg&);
 
 	void read(Stream&);
 	MapCollision* clone(Matrixf&);
 
-	Sys::GridDivider* m_divider; // _18
+	Sys::GridDivider* mDivider; // _18
 };
 
 #endif

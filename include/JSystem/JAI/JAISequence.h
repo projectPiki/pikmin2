@@ -74,7 +74,7 @@ struct JAISequence : public JAISound {
 	void getTrackParameterF32(unsigned char, char);
 	void getTrackPortData(unsigned char, unsigned char);
 
-	JAInter::SeqParameter m_seqParameter; // _48
+	JAInter::SeqParameter mSeqParameter; // _48
 };
 
 #endif

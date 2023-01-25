@@ -37,7 +37,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->deathProcedure();
 	bigfoot->disableEvent(0, EB_IsCullable);
 
-	bigfoot->m_targetVelocity = 0.0f;
+	bigfoot->mTargetVelocity = 0.0f;
 	bigfoot->setEmotionCaution();
 	bigfoot->startMotion(0, nullptr);
 
@@ -56,13 +56,13 @@ void StateDead::exec(EnemyBase* enemy)
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->updateDeadFurEffect();
 
-	if (bigfoot->m_curAnim->m_isPlaying) {
-		if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_2) {
+	if (bigfoot->mCurAnim->mIsPlaying) {
+		if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_2) {
 			bigfoot->throwupItem();
 			bigfoot->createItemAndEnemy();
-		} else if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_3) {
+		} else if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_3) {
 			bigfoot->_2DC = 1;
-		} else if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_END) {
 			bigfoot->kill(nullptr);
 		}
 	}
@@ -82,14 +82,14 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot         = static_cast<Obj*>(enemy);
-	bigfoot->m_nextState = BIGFOOT_NULL;
+	Obj* bigfoot        = static_cast<Obj*>(enemy);
+	bigfoot->mNextState = BIGFOOT_NULL;
 	bigfoot->enableEvent(0, EB_IsImmuneBitter);
 	bigfoot->disableEvent(0, EB_IsAnimating);
 	bigfoot->enableEvent(0, EB_IsModelHidden);
-	bigfoot->m_targetCreature = nullptr;
+	bigfoot->mTargetCreature = nullptr;
 
-	bigfoot->m_targetVelocity = Vector3f(0.0f);
+	bigfoot->mTargetVelocity = Vector3f(0.0f);
 	bigfoot->startMotion(1, nullptr);
 	bigfoot->stopMotion();
 }
@@ -103,7 +103,7 @@ void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bool isTarget;
-	f32 detectRadius = static_cast<Parms*>(bigfoot->m_parms)->m_general.m_privateRadius.m_value;
+	f32 detectRadius = static_cast<Parms*>(bigfoot->mParms)->mGeneral.mPrivateRadius.mValue;
 	if (EnemyFunc::isThereOlimar(bigfoot, detectRadius, nullptr)) {
 		isTarget = true;
 	} else if (EnemyFunc::isTherePikmin(bigfoot, detectRadius, nullptr)) {
@@ -131,9 +131,9 @@ void StateStay::cleanup(EnemyBase* enemy) { }
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot           = static_cast<Obj*>(enemy);
-	bigfoot->m_nextState   = BIGFOOT_NULL;
-	bigfoot->m_shadowScale = 0.001f;
+	Obj* bigfoot          = static_cast<Obj*>(enemy);
+	bigfoot->mNextState   = BIGFOOT_NULL;
+	bigfoot->mShadowScale = 0.001f;
 
 	bigfoot->enableEvent(0, EB_IsImmuneBitter);
 	bigfoot->disableEvent(0, EB_IsCullable);
@@ -141,9 +141,9 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->disableEvent(0, EB_IsModelHidden);
 
 	bigfoot->setEmotionExcitement();
-	bigfoot->m_targetCreature = nullptr;
+	bigfoot->mTargetCreature = nullptr;
 
-	bigfoot->m_targetVelocity = Vector3f(0.0f);
+	bigfoot->mTargetVelocity = Vector3f(0.0f);
 	bigfoot->startMotion(1, nullptr);
 
 	shadowMgr->addJointShadow(bigfoot);
@@ -160,20 +160,20 @@ void StateLand::exec(EnemyBase* enemy)
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->addShadowScale();
 
-	if (bigfoot->m_curAnim->m_isPlaying) {
-		if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_2) {
+	if (bigfoot->mCurAnim->mIsPlaying) {
+		if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_2) {
 			bigfoot->disableEvent(0, EB_IsImmuneBitter);
 
 			for (int i = 0; i < 4; i++) {
-				bigfoot->createOnGroundEffect(i, bigfoot->m_waterBox);
+				bigfoot->createOnGroundEffect(i, bigfoot->mWaterBox);
 			}
 
 			Vector3f position = bigfoot->getPosition();
 			cameraMgr->startVibration(15, position, 2);
 			rumbleMgr->startRumble(15, position, 2);
 
-		} else if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_END) {
-			if (bigfoot->m_health <= 0.0f) {
+		} else if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_END) {
+			if (bigfoot->mHealth <= 0.0f) {
 				transit(bigfoot, BIGFOOT_Dead, nullptr);
 			} else if (EnemyFunc::isStartFlick(bigfoot, false)) {
 				transit(bigfoot, BIGFOOT_Flick, nullptr);
@@ -195,7 +195,7 @@ void StateLand::cleanup(EnemyBase* enemy)
 	bigfoot->startProgramedIK();
 	bigfoot->setBossAppearBGM();
 	bigfoot->enableEvent(0, EB_IsCullable);
-	bigfoot->m_shadowScale = 1.0f;
+	bigfoot->mShadowScale = 1.0f;
 	shadowMgr->setForceVisible(bigfoot, false);
 }
 
@@ -206,13 +206,13 @@ void StateLand::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot          = static_cast<Obj*>(enemy);
-	bigfoot->m_nextState  = BIGFOOT_NULL;
-	bigfoot->m_stateTimer = 0.0f;
+	Obj* bigfoot         = static_cast<Obj*>(enemy);
+	bigfoot->mNextState  = BIGFOOT_NULL;
+	bigfoot->mStateTimer = 0.0f;
 	bigfoot->resetFlickWalkTimeMax();
 	bigfoot->setIKParameter();
-	bigfoot->m_targetCreature = nullptr;
-	bigfoot->m_targetVelocity = Vector3f(0.0f);
+	bigfoot->mTargetCreature = nullptr;
+	bigfoot->mTargetVelocity = Vector3f(0.0f);
 	bigfoot->startMotion(2, nullptr);
 }
 
@@ -224,21 +224,21 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
-	bigfoot->m_stateTimer += sys->m_deltaTime;
+	bigfoot->mStateTimer += sys->mDeltaTime;
 
-	if (bigfoot->m_health <= 0.0f) {
-		bigfoot->m_nextState = BIGFOOT_Dead;
+	if (bigfoot->mHealth <= 0.0f) {
+		bigfoot->mNextState = BIGFOOT_Dead;
 		bigfoot->finishMotion();
 	} else if (EnemyFunc::isStartFlick(bigfoot, false)) {
-		bigfoot->m_nextState = BIGFOOT_Flick;
+		bigfoot->mNextState = BIGFOOT_Flick;
 		bigfoot->finishMotion();
-	} else if (bigfoot->m_stateTimer > 5.0f) {
-		bigfoot->m_nextState = BIGFOOT_Walk;
+	} else if (bigfoot->mStateTimer > 5.0f) {
+		bigfoot->mNextState = BIGFOOT_Walk;
 		bigfoot->finishMotion();
 	}
 
-	if (bigfoot->m_curAnim->m_isPlaying && (u32)bigfoot->m_curAnim->m_type == KEYEVENT_END) {
-		transit(bigfoot, bigfoot->m_nextState, nullptr);
+	if (bigfoot->mCurAnim->mIsPlaying && (u32)bigfoot->mCurAnim->mType == KEYEVENT_END) {
+		transit(bigfoot, bigfoot->mNextState, nullptr);
 	}
 }
 
@@ -256,11 +256,11 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot              = static_cast<Obj*>(enemy);
-	bigfoot->m_nextState      = BIGFOOT_NULL;
-	bigfoot->m_stateTimer     = 0.0f;
-	bigfoot->m_targetCreature = nullptr;
-	bigfoot->m_targetVelocity = Vector3f(0.0f);
+	Obj* bigfoot             = static_cast<Obj*>(enemy);
+	bigfoot->mNextState      = BIGFOOT_NULL;
+	bigfoot->mStateTimer     = 0.0f;
+	bigfoot->mTargetCreature = nullptr;
+	bigfoot->mTargetVelocity = Vector3f(0.0f);
 
 	bigfoot->startMotion(3, nullptr);
 	bigfoot->startBlendMotion();
@@ -275,14 +275,14 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
-	if (bigfoot->m_curAnim->m_isPlaying) {
-		if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_2) {
-			Parms* parms = static_cast<Parms*>(bigfoot->m_parms);
-			EnemyFunc::flickStickPikmin(bigfoot, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
-			                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
-			bigfoot->m_toFlick = 0.0f;
-		} else if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_END) {
-			if (bigfoot->m_health <= 0.0f) {
+	if (bigfoot->mCurAnim->mIsPlaying) {
+		if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_2) {
+			Parms* parms = static_cast<Parms*>(bigfoot->mParms);
+			EnemyFunc::flickStickPikmin(bigfoot, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
+			bigfoot->mToFlick = 0.0f;
+		} else if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_END) {
+			if (bigfoot->mHealth <= 0.0f) {
 				transit(bigfoot, BIGFOOT_Dead, nullptr);
 			} else {
 				transit(bigfoot, BIGFOOT_Walk, nullptr);
@@ -301,7 +301,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->finishBlendMotion();
 	bigfoot->setFlickWalkTimeMax();
-	bigfoot->m_isEnraged = true;
+	bigfoot->mIsEnraged = true;
 	bigfoot->setIKParameter();
 }
 
@@ -312,15 +312,15 @@ void StateFlick::cleanup(EnemyBase* enemy)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot              = static_cast<Obj*>(enemy);
-	bigfoot->m_nextState      = BIGFOOT_NULL;
-	bigfoot->m_stateTimer     = 0.0f;
-	bigfoot->m_targetCreature = nullptr;
-	bigfoot->m_targetVelocity = Vector3f(0.0f);
+	Obj* bigfoot             = static_cast<Obj*>(enemy);
+	bigfoot->mNextState      = BIGFOOT_NULL;
+	bigfoot->mStateTimer     = 0.0f;
+	bigfoot->mTargetCreature = nullptr;
+	bigfoot->mTargetVelocity = Vector3f(0.0f);
 	bigfoot->startIKMotion();
 	bigfoot->getTargetPosition();
 
-	if (bigfoot->m_isEnraged) {
+	if (bigfoot->mIsEnraged) {
 		bigfoot->startBossAttackLoopBGM();
 	}
 }
@@ -334,20 +334,20 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->getTargetPosition();
-	bigfoot->m_stateTimer += sys->m_deltaTime;
-	if (bigfoot->m_health <= 0.0f) {
+	bigfoot->mStateTimer += sys->mDeltaTime;
+	if (bigfoot->mHealth <= 0.0f) {
 		transit(bigfoot, BIGFOOT_Dead, nullptr);
 	} else {
 		if (EnemyFunc::isStartFlick(bigfoot, false)) {
-			bigfoot->m_nextState = BIGFOOT_Flick;
+			bigfoot->mNextState = BIGFOOT_Flick;
 			bigfoot->finishIKMotion();
-		} else if (bigfoot->m_stateTimer > bigfoot->m_flickWalkTimeMax) {
-			bigfoot->m_nextState = BIGFOOT_Wait;
+		} else if (bigfoot->mStateTimer > bigfoot->mFlickWalkTimeMax) {
+			bigfoot->mNextState = BIGFOOT_Wait;
 			bigfoot->finishIKMotion();
 		}
 
 		if (bigfoot->isFinishIKMotion()) {
-			transit(bigfoot, bigfoot->m_nextState, nullptr);
+			transit(bigfoot, bigfoot->mNextState, nullptr);
 		}
 	}
 }
@@ -360,8 +360,8 @@ void StateWalk::exec(EnemyBase* enemy)
 void StateWalk::cleanup(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
-	if (bigfoot->m_isEnraged) {
-		bigfoot->m_isEnraged = false;
+	if (bigfoot->mIsEnraged) {
+		bigfoot->mIsEnraged = false;
 		bigfoot->finishBossAttackLoopBGM();
 	}
 }

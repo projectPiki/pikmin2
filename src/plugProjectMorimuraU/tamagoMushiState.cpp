@@ -32,7 +32,7 @@ void FSM::init(EnemyBase* enemy)
 StateWalk::StateWalk(int stateID)
     : State(stateID)
 {
-	m_name = "walk";
+	mName = "walk";
 }
 
 /*
@@ -47,9 +47,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* mitite = static_cast<Obj*>(enemy);
 	mitite->startMotion(2, nullptr);
 	mitite->resetWalkParm();
-	Parms* parms = static_cast<Parms*>(mitite->m_parms);
-	p1           = parms->m_properParms.m_ip01.m_value;
-	diff         = parms->m_properParms.m_ip02.m_value - p1;
+	Parms* parms = static_cast<Parms*>(mitite->mParms);
+	p1           = parms->mProperParms.mIp01.mValue;
+	diff         = parms->mProperParms.mIp02.mValue - p1;
 
 	f32 r = (f32)diff * randFloat() + (f32)p1;
 	_14   = (int)r;
@@ -67,19 +67,19 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* mitite = static_cast<Obj*>(enemy);
 	_10++;
-	if (mitite->m_bounceTriangle) {
+	if (mitite->mBounceTriangle) {
 		mitite->walkFunc();
 	} else {
 		mitite->ballMove();
 	}
 
 	if (mitite->isReachToGoal(10.0f) || _10 > _14) {
-		mitite->m_targetVelocity  = Vector3f(0.0f);
-		mitite->m_currentVelocity = Vector3f(0.0f);
+		mitite->mTargetVelocity  = Vector3f(0.0f);
+		mitite->mCurrentVelocity = Vector3f(0.0f);
 		mitite->finishMotion();
 	}
 
-	if (mitite->m_curAnim->m_isPlaying && (u32)mitite->m_curAnim->m_type == KEYEVENT_END) {
+	if (mitite->mCurAnim->mIsPlaying && (u32)mitite->mCurAnim->mType == KEYEVENT_END) {
 		mitite->setGoalRandom();
 		transit(mitite, TAMAGOMUSHI_Turn, nullptr);
 	}
@@ -93,7 +93,7 @@ void StateWalk::exec(EnemyBase* enemy)
 StateTurn::StateTurn(int stateID)
     : State(stateID)
 {
-	m_name = "turn";
+	mName = "turn";
 }
 
 /*
@@ -104,8 +104,8 @@ StateTurn::StateTurn(int stateID)
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(4, nullptr);
-	enemy->m_targetVelocity  = Vector3f(0.0f);
-	enemy->m_currentVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -120,7 +120,7 @@ void StateTurn::exec(EnemyBase* enemy)
 		mitite->finishMotion();
 	}
 
-	if (mitite->m_curAnim->m_isPlaying && (u32)mitite->m_curAnim->m_type == KEYEVENT_END) {
+	if (mitite->mCurAnim->mIsPlaying && (u32)mitite->mCurAnim->mType == KEYEVENT_END) {
 		transit(mitite, TAMAGOMUSHI_Walk, nullptr);
 	}
 }
@@ -133,7 +133,7 @@ void StateTurn::exec(EnemyBase* enemy)
 StateAppear::StateAppear(int stateID)
     : State(stateID)
 {
-	m_name = "appear";
+	mName = "appear";
 }
 
 /*
@@ -151,9 +151,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->enableEvent(0, EB_IsImmuneBitter);
 
 	Obj* mitite  = static_cast<Obj*>(enemy);
-	Parms* parms = static_cast<Parms*>(mitite->m_parms);
-	p1           = parms->m_properParms.m_ip03.m_value;
-	diff         = parms->m_properParms.m_ip04.m_value - p1;
+	Parms* parms = static_cast<Parms*>(mitite->mParms);
+	p1           = parms->mProperParms.mIp03.mValue;
+	diff         = parms->mProperParms.mIp04.mValue - p1;
 
 	f32 r = (f32)diff * randFloat() + (f32)p1;
 	_18   = (int)r;
@@ -164,9 +164,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 
 	mitite->hardConstraintOn();
 
-	_10           = false;
-	_20           = true;
-	m_appearFrame = 15.0f * randFloat();
+	_10          = false;
+	_20          = true;
+	mAppearFrame = 15.0f * randFloat();
 }
 
 /*
@@ -194,22 +194,22 @@ void StateAppear::exec(EnemyBase* enemy)
 		mitite->startMotion();
 	}
 
-	if (mitite->m_curAnim->m_isPlaying) {
-		if ((u32)mitite->m_curAnim->m_type == KEYEVENT_2) {
+	if (mitite->mCurAnim->mIsPlaying) {
+		if ((u32)mitite->mCurAnim->mType == KEYEVENT_2) {
 			mitite->appearPanic();
 			mitite->setAtari(true);
 			mitite->setAlive(true);
 			mitite->disableEvent(0, EB_IsImmuneBitter);
 		}
-		if ((u32)mitite->m_curAnim->m_type == KEYEVENT_END) {
+		if ((u32)mitite->mCurAnim->mType == KEYEVENT_END) {
 			transit(mitite, TAMAGOMUSHI_Walk, nullptr);
 			mitite->hardConstraintOff();
 		}
 	}
 
-	if (_20 && !mitite->isStopMotion() && mitite->getMotionFrame() >= m_appearFrame) {
+	if (_20 && !mitite->isStopMotion() && mitite->getMotionFrame() >= mAppearFrame) {
 		_20 = false;
-		mitite->m_soundObj->startSound(PSSE_EN_TAMAGOMUSHI_APPEAR, 0);
+		mitite->mSoundObj->startSound(PSSE_EN_TAMAGOMUSHI_APPEAR, 0);
 	}
 }
 
@@ -221,7 +221,7 @@ void StateAppear::exec(EnemyBase* enemy)
 StateHide::StateHide(int stateID)
     : State(stateID)
 {
-	m_name = "hide";
+	mName = "hide";
 }
 
 /*
@@ -233,8 +233,8 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
 
 	enemy->startMotion(1, nullptr);
-	enemy->m_targetVelocity  = Vector3f(0.0f);
-	enemy->m_currentVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->hardConstraintOn();
 	enemy->setEmotionCaution();
 
@@ -249,7 +249,7 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateHide::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -262,7 +262,7 @@ void StateHide::exec(EnemyBase* enemy)
 StateDead::StateDead(int stateID)
     : State(stateID)
 {
-	m_name = "dead";
+	mName = "dead";
 }
 
 /*
@@ -273,8 +273,8 @@ StateDead::StateDead(int stateID)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(0, nullptr);
-	enemy->m_targetVelocity  = Vector3f(0.0f);
-	enemy->m_currentVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->enableEvent(0, EB_ToLeaveCarcass);
 	enemy->deathProcedure();
 	PSStartEnemyFatalHitSE(enemy, 0.0f);
@@ -295,7 +295,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* mitite = static_cast<Obj*>(enemy);
-	if (mitite->m_curAnim->m_isPlaying && (u32)mitite->m_curAnim->m_type == KEYEVENT_END) {
+	if (mitite->mCurAnim->mIsPlaying && (u32)mitite->mCurAnim->mType == KEYEVENT_END) {
 		mitite->genItem();
 		mitite->kill(nullptr);
 		PSStartEnemyGhostSE(mitite, 0.0f);
@@ -317,7 +317,7 @@ void StateDead::exec(EnemyBase* enemy)
 StateWait::StateWait(int stateID)
     : State(stateID)
 {
-	m_name = "Wait";
+	mName = "Wait";
 }
 
 /*

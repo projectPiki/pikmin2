@@ -24,14 +24,14 @@ Obj::Obj() { createFootmarks(); }
 void Obj::doUpdate()
 {
 	KumaChappy::Obj::doUpdate();
-	f32 timer = (m_footmarks->_10 - (int)gameSystem->m_frameTimer);
+	f32 timer = (mFootmarks->_10 - (int)gameSystem->mFrameTimer);
 
 	timer = (timer > 0.0f) ? timer : -timer;
 
 	if (timer > 2.5f) {
 		Footmark mark;
-		mark.m_position = getPosition();
-		m_footmarks->add(mark);
+		mark.mPosition = getPosition();
+		mFootmarks->add(mark);
 	}
 }
 
@@ -49,25 +49,24 @@ void Obj::doDirectDraw(Graphics&) { }
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	Matrixf* worldMatrix = m_model->getJoint("ago")->getWorldMatrix();
+	Matrixf* worldMatrix = mModel->getJoint("ago")->getWorldMatrix();
 
-	param.m_position
-	    = Vector3f(worldMatrix->m_matrix.mtxView[0][3], worldMatrix->m_matrix.mtxView[1][3], worldMatrix->m_matrix.mtxView[2][3]);
+	param.mPosition = Vector3f(worldMatrix->mMatrix.mtxView[0][3], worldMatrix->mMatrix.mtxView[1][3], worldMatrix->mMatrix.mtxView[2][3]);
 
-	param.m_position.y -= 7.0f;
-	f32 heightFloat = m_position.y + 5.0f;
-	if (param.m_position.y < heightFloat) {
-		param.m_position.y = heightFloat;
+	param.mPosition.y -= 7.0f;
+	f32 heightFloat = mPosition.y + 5.0f;
+	if (param.mPosition.y < heightFloat) {
+		param.mPosition.y = heightFloat;
 	}
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 
 	if (isEvent(1, EB2_IsEarthquake)) {
-		param.m_boundingSphere.m_radius = 50.0f;
+		param.mBoundingSphere.mRadius = 50.0f;
 	} else {
-		param.m_boundingSphere.m_radius = 30.0f;
+		param.mBoundingSphere.mRadius = 30.0f;
 	}
 
-	param.m_size = 12.5f;
+	param.mSize = 12.5f;
 }
 
 /*
@@ -77,13 +76,13 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 void Obj::initMouthSlots()
 {
-	m_mouthSlots.alloc(3);
-	m_mouthSlots.setup(0, Creature::m_model, "kamu1");
-	m_mouthSlots.setup(1, Creature::m_model, "kamu2");
-	m_mouthSlots.setup(2, Creature::m_model, "kamu3");
+	mMouthSlots.alloc(3);
+	mMouthSlots.setup(0, Creature::mModel, "kamu1");
+	mMouthSlots.setup(1, Creature::mModel, "kamu2");
+	mMouthSlots.setup(2, Creature::mModel, "kamu3");
 
-	for (int i = 0; i < m_mouthSlots.m_max; i++) {
-		m_mouthSlots.getSlot(i)->m_radius = 30.0f;
+	for (int i = 0; i < mMouthSlots.mMax; i++) {
+		mMouthSlots.getSlot(i)->mRadius = 30.0f;
 	}
 }
 
@@ -94,9 +93,9 @@ void Obj::initMouthSlots()
  */
 void Obj::initWalkSmokeEffect()
 {
-	m_walkSmokeMgr.alloc(2);
-	m_walkSmokeMgr.setup(0, m_model, "asiL", 5.0f);
-	m_walkSmokeMgr.setup(1, m_model, "asiR", 5.0f);
+	mWalkSmokeMgr.alloc(2);
+	mWalkSmokeMgr.setup(0, mModel, "asiL", 5.0f);
+	mWalkSmokeMgr.setup(1, mModel, "asiR", 5.0f);
 }
 
 /*
@@ -127,8 +126,8 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param) { EnemyBase::doGetLifeGauge
  */
 void Obj::birthChildren(EnemyBirthArg& birthArg)
 {
-	f32 angle          = birthArg.m_faceDir + PI;
-	Vector3f motherPos = birthArg.m_position;
+	f32 angle          = birthArg.mFaceDir + PI;
+	Vector3f motherPos = birthArg.mPosition;
 
 	Vector3f vec(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle));
 
@@ -137,7 +136,7 @@ void Obj::birthChildren(EnemyBirthArg& birthArg)
 		Vector3f bulbminPos = Vector3f(modifier * vec.x, 0.0f, modifier * vec.z);
 		Piki* bulbmin       = pikiMgr->birth();
 		PikiInitArg initArg(-1);
-		initArg.m_leader = this;
+		initArg.mLeader = this;
 
 		if (bulbmin) {
 			bulbmin->init(&initArg);
@@ -155,9 +154,9 @@ void Obj::birthChildren(EnemyBirthArg& birthArg)
  */
 void Obj::startEnemyRumble()
 {
-	Matrixf* worldMat = m_model->getJoint("ago")->getWorldMatrix();
-	Vector3f pos      = Vector3f(worldMat->m_matrix.mtxView[0][3], worldMat->m_matrix.mtxView[1][3], worldMat->m_matrix.mtxView[2][3]);
-	pos.y             = m_position.y;
+	Matrixf* worldMat = mModel->getJoint("ago")->getWorldMatrix();
+	Vector3f pos      = Vector3f(worldMat->mMatrix.mtxView[0][3], worldMat->mMatrix.mtxView[1][3], worldMat->mMatrix.mtxView[2][3]);
+	pos.y             = mPosition.y;
 	rumbleMgr->startRumble(8, pos, 2);
 	createBounceEffect(pos, 0.4f);
 }
@@ -169,8 +168,8 @@ void Obj::startEnemyRumble()
  */
 void Obj::createFootmarks()
 {
-	m_footmarks = new Footmarks();
-	m_footmarks->alloc(10);
+	mFootmarks = new Footmarks();
+	mFootmarks->alloc(10);
 }
 
 } // namespace LeafChappy

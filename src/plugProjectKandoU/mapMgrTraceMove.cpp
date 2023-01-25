@@ -55,17 +55,17 @@ void ShapeMapMgr::traceMove(Game::MoveInfo& info, float stepLength)
 	_14++;
 
 	s32 steps  = 1;
-	f32 length = _sqrtf(info.m_velocity->sqrMagnitude());
+	f32 length = _sqrtf(info.mVelocity->sqrMagnitude());
 
 	for (; steps <= 8;) {
-		if (stepLength * length > info._00->m_radius) {
+		if (stepLength * length > info._00->mRadius) {
 			steps *= 2;
 			stepLength *= 0.5f;
 		}
 	}
 
 	for (int i = 0; i < steps; i++) {
-		MapMgr::traceMove(info.m_mapCollision, info, stepLength);
+		MapMgr::traceMove(info.mMapCollision, info, stepLength);
 	}
 
 	_18 += steps;

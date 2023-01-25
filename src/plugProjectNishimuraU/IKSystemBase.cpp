@@ -53,15 +53,15 @@ namespace Game {
  */
 IKSystemBase::IKSystemBase()
 {
-	m_enabled     = false;
-	_03           = true;
-	m_onGround    = true;
-	m_scaleJoints = false;
+	mEnabled     = false;
+	_03          = true;
+	mOnGround    = true;
+	mScaleJoints = false;
 
-	m_bendRatio = 0.0f;
-	m_moveRatio = 0.0f;
+	mBendRatio = 0.0f;
+	mMoveRatio = 0.0f;
 
-	m_parameters = nullptr;
+	mParameters = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -101,16 +101,16 @@ IKSystemBase::IKSystemBase()
  */
 void IKSystemBase::init()
 {
-	m_enabled     = false;
-	_03           = true;
-	m_onGround    = true;
-	m_scaleJoints = false;
+	mEnabled     = false;
+	_03          = true;
+	mOnGround    = true;
+	mScaleJoints = false;
 
-	m_bendRatio = 0.0f;
-	m_moveRatio = 0.0f;
-	m_timer     = 0.0f;
+	mBendRatio = 0.0f;
+	mMoveRatio = 0.0f;
+	mTimer     = 0.0f;
 
-	m_parameters = nullptr;
+	mParameters = nullptr;
 
 	/*
 	li       r4, 0
@@ -135,7 +135,7 @@ void IKSystemBase::init()
  */
 void IKSystemBase::setLegJointMatrix(int index, Matrixf* joint)
 {
-	m_legJointMatrices[index] = joint;
+	mLegJointMatrices[index] = joint;
 	/*
 	slwi     r0, r4, 2
 	add      r3, r3, r0
@@ -149,7 +149,7 @@ void IKSystemBase::setLegJointMatrix(int index, Matrixf* joint)
  * Address:	802A9F0C
  * Size:	000008
  */
-void IKSystemBase::setParameters(IKSystemParms* params) { m_parameters = params; }
+void IKSystemBase::setParameters(IKSystemParms* params) { mParameters = params; }
 
 /*
  * --INFO--
@@ -158,22 +158,22 @@ void IKSystemBase::setParameters(IKSystemParms* params) { m_parameters = params;
  */
 void IKSystemBase::startProgramedIK()
 {
-	m_enabled     = true;
-	m_blendMotion = false;
-	m_scaleJoints = false;
+	mEnabled     = true;
+	mBlendMotion = false;
+	mScaleJoints = false;
 
-	m_bendRatio = 0.0f;
-	m_moveRatio = 2.0f;
-	m_timer     = 0.0f;
+	mBendRatio = 0.0f;
+	mMoveRatio = 2.0f;
+	mTimer     = 0.0f;
 
 	// TODO!
 
-	m_targetPosition.x = _50.m_matrix.mtxView[0][1];
-	m_targetPosition.y = _50.m_matrix.mtxView[1][1];
-	m_targetPosition.z = _50.m_matrix.mtxView[2][1];
+	mTargetPosition.x = _50.mMatrix.mtxView[0][1];
+	mTargetPosition.y = _50.mMatrix.mtxView[1][1];
+	mTargetPosition.z = _50.mMatrix.mtxView[2][1];
 
-	// m_distance1 = distance(m_legJointMatrices[0].m_matrix.flippedVectorView.z, m_targetPosition);
-	// m_distance2 = distance(m_targetPosition, _50.m_matrix.flippedVectorView.z);
+	// mDistance1 = distance(mLegJointMatrices[0].mMatrix.flippedVectorView.z, mTargetPosition);
+	// mDistance2 = distance(mTargetPosition, _50.mMatrix.flippedVectorView.z);
 
 	/*
 	li       r4, 1
@@ -254,29 +254,29 @@ lbl_802A9FFC:
  */
 void IKSystemBase::startMovePosition(Vector3f& pos)
 {
-	m_onGround = false;
+	mOnGround = false;
 
-	m_bendRatio = 0.0f;
-	m_moveRatio = 0.0f;
-	m_timer     = 0.0f;
+	mBendRatio = 0.0f;
+	mMoveRatio = 0.0f;
+	mTimer     = 0.0f;
 
 	// Set top position directly
-	m_ikPositions[0] = m_targetPosition;
+	mIkPositions[0] = mTargetPosition;
 
 	// Set end position to the floor
-	pos.y            = mapMgr->getMinY(pos);
-	m_ikPositions[2] = pos;
+	pos.y           = mapMgr->getMinY(pos);
+	mIkPositions[2] = pos;
 
 	// Work out the position inbetween using the parameters
-	f32 fc  = m_parameters->_0C;
-	f32 fcn = 1.0f - m_parameters->_0C;
+	f32 fc  = mParameters->_0C;
+	f32 fcn = 1.0f - mParameters->_0C;
 
-	m_ikPositions[1].x = (fc * m_ikPositions[2].x) + (fcn * m_ikPositions[0].x);
-	m_ikPositions[1].y = (fc * m_ikPositions[2].y) + (fcn * m_ikPositions[0].y);
-	m_ikPositions[1].z = (fc * m_ikPositions[2].z) + (fcn * m_ikPositions[0].z);
+	mIkPositions[1].x = (fc * mIkPositions[2].x) + (fcn * mIkPositions[0].x);
+	mIkPositions[1].y = (fc * mIkPositions[2].y) + (fcn * mIkPositions[0].y);
+	mIkPositions[1].z = (fc * mIkPositions[2].z) + (fcn * mIkPositions[0].z);
 
 	// Apply a vertical offset for the artists to change
-	m_ikPositions[1].y += m_parameters->m_heightOffset;
+	mIkPositions[1].y += mParameters->mHeightOffset;
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -348,21 +348,21 @@ void IKSystemBase::startMovePosition(Vector3f& pos)
  * Address:	802AA0F8
  * Size:	00000C
  */
-void IKSystemBase::startBlendMotion() { m_blendMotion = true; }
+void IKSystemBase::startBlendMotion() { mBlendMotion = true; }
 
 /*
  * --INFO--
  * Address:	802AA104
  * Size:	00000C
  */
-void IKSystemBase::finishBlendMotion() { m_blendMotion = false; }
+void IKSystemBase::finishBlendMotion() { mBlendMotion = false; }
 
 /*
  * --INFO--
  * Address:	802AA110
  * Size:	00000C
  */
-void IKSystemBase::checkJointScaleOn() { m_scaleJoints = true; }
+void IKSystemBase::checkJointScaleOn() { mScaleJoints = true; }
 
 /*
  * --INFO--
@@ -371,19 +371,19 @@ void IKSystemBase::checkJointScaleOn() { m_scaleJoints = true; }
  */
 void IKSystemBase::update()
 {
-	if (!m_enabled) {
+	if (!mEnabled) {
 		return;
 	}
 
-	if (!m_onGround) {
+	if (!mOnGround) {
 		moveBottomJointPosition();
-		if (m_moveRatio > 1 && onGroundPosition()) {
-			m_onGround = true;
+		if (mMoveRatio > 1 && onGroundPosition()) {
+			mOnGround = true;
 		}
 	}
 
 	makeBendRatio();
-	_03 = m_onGround;
+	_03 = mOnGround;
 
 	/*
 	stwu     r1, -0x10(r1)

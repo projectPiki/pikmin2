@@ -39,10 +39,10 @@
  */
 void J3DModelData::clear()
 {
-	m_bmd              = nullptr;
-	m_modelLoaderFlags = 0;
-	_0C                = 0;
-	m_jointSet         = 0;
+	mBmd              = nullptr;
+	mModelLoaderFlags = 0;
+	_0C               = 0;
+	mJointSet         = 0;
 }
 
 /*
@@ -51,11 +51,11 @@ void J3DModelData::clear()
  * Size:	000080
  */
 J3DModelData::J3DModelData()
-    : m_jointTree()
-    , m_materialTable()
-    , m_shapeTable()
+    : mJointTree()
+    , mMaterialTable()
+    , mShapeTable()
     , _84()
-    , m_vertexData()
+    , mVertexData()
 {
 	clear();
 }
@@ -87,21 +87,21 @@ J3DModelData::J3DModelData()
  */
 void J3DModelData::newSharedDisplayList(u32 flags)
 {
-	// u16 count = m_materialTable.m_count1;
+	// u16 count = mMaterialTable.mCount1;
 	// for (u16 i = 0; i < count; i++) {
 	// 	if (flags & J3DMLF_19) {
-	// 		m_materialTable.m_materials1[i]->newSingleSharedDisplayList(m_materialTable.m_materials1[i]->countDLSize());
+	// 		mMaterialTable.mMaterials1[i]->newSingleSharedDisplayList(mMaterialTable.mMaterials1[i]->countDLSize());
 	// 	} else {
-	// 		m_materialTable.m_materials1[i]->newSharedDisplayList(m_materialTable.m_materials1[i]->countDLSize());
+	// 		mMaterialTable.mMaterials1[i]->newSharedDisplayList(mMaterialTable.mMaterials1[i]->countDLSize());
 	// 	}
 	// }
-	u16 count = m_materialTable.m_count1;
+	u16 count = mMaterialTable.mCount1;
 	for (u16 i = 0; i < count; i++) {
 		if (flags & J3DMLF_19) {
-			J3DMaterial* material = m_materialTable.m_materials1[i];
+			J3DMaterial* material = mMaterialTable.mMaterials1[i];
 			material->newSingleSharedDisplayList(material->countDLSize());
 		} else {
-			J3DMaterial* material = m_materialTable.m_materials1[i];
+			J3DMaterial* material = mMaterialTable.mMaterials1[i];
 			material->newSharedDisplayList(material->countDLSize());
 		}
 	}
@@ -161,16 +161,16 @@ lbl_8008394C:
  */
 void J3DModelData::indexToPtr()
 {
-	j3dSys._58                = m_materialTable.m_texture;
+	j3dSys._58                = mMaterialTable.mTexture;
 	static int sInterruptFlag = OSDisableInterrupts();
 	OSDisableScheduler();
-	u16 count = m_materialTable.m_count1;
+	u16 count = mMaterialTable.mCount1;
 	for (u16 i = 0; i < count; i++) {
-		J3DMaterial* material = m_materialTable.m_materials1[i];
+		J3DMaterial* material = mMaterialTable.mMaterials1[i];
 		GDCurrentDL currentDL;
 		GDInitGDLObj(&currentDL, material->_48->_00, material->_48->_08);
 		__GDCurrentDL = &currentDL;
-		material->m_tevBlock->indexToPtr();
+		material->mTevBlock->indexToPtr();
 	}
 	__GDCurrentDL = nullptr;
 	OSEnableScheduler();
@@ -241,10 +241,10 @@ lbl_800839FC:
  */
 void J3DModelData::makeSharedDL()
 {
-	j3dSys._58 = m_materialTable.m_texture;
-	u16 count  = m_materialTable.m_count1;
+	j3dSys._58 = mMaterialTable.mTexture;
+	u16 count  = mMaterialTable.mCount1;
 	for (u16 i = 0; i < count; i++) {
-		J3DMaterial* material = m_materialTable.m_materials1[i];
+		J3DMaterial* material = mMaterialTable.mMaterials1[i];
 		material->makeSharedDisplayList();
 	}
 }
@@ -257,7 +257,7 @@ void J3DModelData::makeSharedDL()
 void J3DModelData::simpleCalcMaterial(u16 jointIndex, Mtx) // float (*)[4])
 {
 	syncJ3DSysFlags();
-	for (J3DMaterial* material = m_jointTree.m_joints[jointIndex]->m_material; material != nullptr; material = material->_04) {
+	for (J3DMaterial* material = mJointTree.mJoints[jointIndex]->mMaterial; material != nullptr; material = material->_04) {
 		// TODO: ???
 	}
 	/*
@@ -335,7 +335,7 @@ lbl_80083B54:
  */
 void J3DModelData::syncJ3DSysFlags() const
 {
-	if (m_modelLoaderFlags & J3DMLF_06) {
+	if (mModelLoaderFlags & J3DMLF_06) {
 		j3dSys._34 |= 0x40000000;
 	} else {
 		j3dSys._34 &= ~0x40000000;

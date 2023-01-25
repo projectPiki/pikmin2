@@ -71,13 +71,13 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                // _2BC
-	int m_hitCount;            // _2C0
-	f32 m_appearTimer;         // _2C4
-	f32 m_moveTimer;           // _2C8
-	f32 m_scaleTimer;          // _2CC
-	Vector3f m_targetPosition; // _2D0
-	                           // _2DC = body effect
+	FSM* mFsm;                // _2BC
+	int mHitCount;            // _2C0
+	f32 mAppearTimer;         // _2C4
+	f32 mMoveTimer;           // _2C8
+	f32 mScaleTimer;          // _2CC
+	Vector3f mTargetPosition; // _2D0
+	                          // _2DC = body effect
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -99,32 +99,32 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* m_changeTexture; // _44
+	ResTIMG* mChangeTexture; // _44
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "出現時間(Min)", 15.0f, 0.0f, 100.0f)
-		    , m_fp02(this, 'fp02', "出現時間(Max)", 30.0f, 0.0f, 100.0f)
-		    , m_fp10(this, 'fp10', "移動時間(Min)", 0.5f, 0.0f, 10.0f)
-		    , m_fp11(this, 'fp11', "移動時間(Max)", 2.0f, 0.0f, 10.0f)
-		    , m_fp20(this, 'fp20', "停止時間(Min)", 0.5f, 0.0f, 10.0f)
-		    , m_fp21(this, 'fp21', "停止時間(Max)", 2.0f, 0.0f, 10.0f)
-		    , m_fp30(this, 'fp30', "向き変え角度", 45.0f, 0.0f, 90.0f)
-		    , m_fp40(this, 'fp40', "スケール", 0.8f, 0.0f, 5.0f)
+		    , mFp01(this, 'fp01', "出現時間(Min)", 15.0f, 0.0f, 100.0f)
+		    , mFp02(this, 'fp02', "出現時間(Max)", 30.0f, 0.0f, 100.0f)
+		    , mFp10(this, 'fp10', "移動時間(Min)", 0.5f, 0.0f, 10.0f)
+		    , mFp11(this, 'fp11', "移動時間(Max)", 2.0f, 0.0f, 10.0f)
+		    , mFp20(this, 'fp20', "停止時間(Min)", 0.5f, 0.0f, 10.0f)
+		    , mFp21(this, 'fp21', "停止時間(Max)", 2.0f, 0.0f, 10.0f)
+		    , mFp30(this, 'fp30', "向き変え角度", 45.0f, 0.0f, 90.0f)
+		    , mFp40(this, 'fp40', "スケール", 0.8f, 0.0f, 5.0f)
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp10; // _854
-		Parm<f32> m_fp11; // _87C
-		Parm<f32> m_fp20; // _8A4
-		Parm<f32> m_fp21; // _8CC
-		Parm<f32> m_fp30; // _8F4
-		Parm<f32> m_fp40; // _91C
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp10; // _854
+		Parm<f32> mFp11; // _87C
+		Parm<f32> mFp20; // _8A4
+		Parm<f32> mFp21; // _8CC
+		Parm<f32> mFp30; // _8F4
+		Parm<f32> mFp40; // _91C
 	};
 
 	Parms() { }
@@ -132,23 +132,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -173,7 +173,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

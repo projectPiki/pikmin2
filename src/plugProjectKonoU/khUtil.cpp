@@ -110,10 +110,10 @@ khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, u64 tag, u8 c)
  */
 khUtilFadePane::khUtilFadePane(u8 c)
     : CallBackNode()
-    , m_paneNode(nullptr)
-    , m_state(0)
-    , m_currentAlpha('\0')
-    , m_changeAlpha(c)
+    , mPaneNode(nullptr)
+    , mState(0)
+    , mCurrentAlpha('\0')
+    , mChangeAlpha(c)
 {
 }
 
@@ -124,28 +124,28 @@ khUtilFadePane::khUtilFadePane(u8 c)
  */
 void khUtilFadePane::update()
 {
-	switch (m_state) {
+	switch (mState) {
 	case 0:
-		if (m_currentAlpha > 255 - m_changeAlpha) {
-			m_currentAlpha = 255;
-			m_state        = 1;
+		if (mCurrentAlpha > 255 - mChangeAlpha) {
+			mCurrentAlpha = 255;
+			mState        = 1;
 			fadein_finish();
 		} else {
-			m_currentAlpha += m_changeAlpha;
+			mCurrentAlpha += mChangeAlpha;
 		}
 		break;
 	case 2:
-		if (m_currentAlpha < m_changeAlpha) {
-			m_currentAlpha = 0;
-			m_state        = 3;
+		if (mCurrentAlpha < mChangeAlpha) {
+			mCurrentAlpha = 0;
+			mState        = 3;
 			fadeout_finish();
 		} else {
-			m_currentAlpha -= m_changeAlpha;
+			mCurrentAlpha -= mChangeAlpha;
 		}
 		break;
 	}
 
-	FOREACH_NODE(khPaneNode, m_paneNode.m_next, node) { node->m_pane->setAlpha(m_currentAlpha); }
+	FOREACH_NODE(khPaneNode, mPaneNode.mNext, node) { node->mPane->setAlpha(mCurrentAlpha); }
 }
 
 /*
@@ -157,16 +157,16 @@ bool khUtilFadePane::add(J2DPane* pane)
 {
 	bool result = false;
 	if (pane) {
-		khPaneNode* node = &m_paneNode;
+		khPaneNode* node = &mPaneNode;
 		khPaneNode* node2;
 		while (node) {
 			node2 = node;
-			node  = node2->m_next;
+			node  = node2->mNext;
 		}
 		node = new khPaneNode(pane);
 		P2ASSERTLINE(64, node);
-		node2->m_next = node;
-		result        = true;
+		node2->mNext = node;
+		result       = true;
 		setInfAlpha(pane);
 	}
 	return result;
@@ -237,8 +237,8 @@ blr
  */
 void khUtilFadePane::fadein()
 {
-	if (m_state == 2 || m_state == 3)
-		m_state = 0;
+	if (mState == 2 || mState == 3)
+		mState = 0;
 }
 
 /*
@@ -248,8 +248,8 @@ void khUtilFadePane::fadein()
  */
 void khUtilFadePane::fadeout()
 {
-	if (m_state == 0 || m_state == 1)
-		m_state = 2;
+	if (mState == 0 || mState == 1)
+		mState = 2;
 }
 
 /*
@@ -259,8 +259,8 @@ void khUtilFadePane::fadeout()
  */
 void khUtilFadePane::set_init_alpha(u8 a)
 {
-	m_currentAlpha = a;
-	FOREACH_NODE(khPaneNode, m_paneNode.m_next, node) { node->m_pane->setAlpha(m_currentAlpha); }
+	mCurrentAlpha = a;
+	FOREACH_NODE(khPaneNode, mPaneNode.mNext, node) { node->mPane->setAlpha(mCurrentAlpha); }
 }
 
 /*
@@ -270,16 +270,16 @@ void khUtilFadePane::set_init_alpha(u8 a)
  */
 khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int panes, int frames)
 {
-	m_paneNum  = panes;
-	m_maxFrame = frames;
-	m_counter  = 0;
-	m_color1.set(0, 0, 0, 0);
-	m_colorList = new JUtility::TColor[m_paneNum];
-	for (int i = 0; i < m_paneNum; i++) {
-		m_colorList[i].set(0, 0, 0, 0);
+	mPaneNum  = panes;
+	mMaxFrame = frames;
+	mCounter  = 0;
+	mColor1.set(0, 0, 0, 0);
+	mColorList = new JUtility::TColor[mPaneNum];
+	for (int i = 0; i < mPaneNum; i++) {
+		mColorList[i].set(0, 0, 0, 0);
 	}
-	m_color2.setRGBA(m_color1);
-	m_updateMode = 0;
+	mColor2.setRGBA(mColor1);
+	mUpdateMode = 0;
 	if (screen) {
 		screen->addCallBack(tag, this);
 	}
@@ -292,25 +292,25 @@ khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int panes, int f
  */
 void khUtilColorAnm::update()
 {
-	if (m_updateMode) {
-		f32 calc              = (m_counter * (m_paneNum - 1)) / (f32)m_maxFrame;
+	if (mUpdateMode) {
+		f32 calc              = (mCounter * (mPaneNum - 1)) / (f32)mMaxFrame;
 		int id                = calc;
-		JUtility::TColor col1 = m_colorList[id + 1];
-		JUtility::TColor col2 = m_colorList[id];
+		JUtility::TColor col1 = mColorList[id + 1];
+		JUtility::TColor col2 = mColorList[id];
 		calc -= (f32)id;
 		f32 calc2 = 1.0f - calc;
 
-		m_color1.r = (f32)col1.r * calc2 + (f32)col2.r * calc;
-		m_color1.g = (f32)col1.g * calc2 + (f32)col2.g * calc;
-		m_color1.b = (f32)col1.b * calc2 + (f32)col2.b * calc;
-		m_color1.a = (f32)col1.a * calc2 + (f32)col2.a * calc;
+		mColor1.r = (f32)col1.r * calc2 + (f32)col2.r * calc;
+		mColor1.g = (f32)col1.g * calc2 + (f32)col2.g * calc;
+		mColor1.b = (f32)col1.b * calc2 + (f32)col2.b * calc;
+		mColor1.a = (f32)col1.a * calc2 + (f32)col2.a * calc;
 
-		if (m_counter++ >= m_maxFrame) {
-			m_counter = 0;
+		if (mCounter++ >= mMaxFrame) {
+			mCounter = 0;
 		}
 	} else {
-		m_color1.setRGBA(m_color2);
-		m_counter = 0;
+		mColor1.setRGBA(mColor2);
+		mCounter = 0;
 	}
 	do_update();
 	/*

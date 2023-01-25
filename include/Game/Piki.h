@@ -74,7 +74,7 @@ typedef enum EMovieUserCommands {
 
 struct PikiInitArg : public CreatureInitArg {
 	inline PikiInitArg(int p1)
-	    : m_leader(nullptr)
+	    : mLeader(nullptr)
 	    , _04(p1)
 	{
 	}
@@ -85,8 +85,8 @@ struct PikiInitArg : public CreatureInitArg {
 	}
 
 	// _00 VTBL
-	int _04;            // _04
-	Creature* m_leader; // _08
+	int _04;           // _04
+	Creature* mLeader; // _08
 };
 
 struct PikiKillArg : public CreatureKillArg {
@@ -112,7 +112,7 @@ struct PikiFSM : public StateMachine<Piki> {
 
 	// _00			= VTBL
 	// _00-_1C	= StateMachine
-	int m_stateID; // _1C, state ID?
+	int mStateID; // _1C, state ID?
 };
 
 struct Piki : public FakePiki {
@@ -224,38 +224,38 @@ struct Piki : public FakePiki {
 	void updateDope();
 	void updateColor();
 
-	inline PikiParms* getParms() { return static_cast<PikiParms*>(m_parms); }
-	inline u16 getKind() { return (u16)m_pikiKind; }
-	inline u16 getHappa() { return (u16)m_happaKind; }
+	inline PikiParms* getParms() { return static_cast<PikiParms*>(mParms); }
+	inline u16 getKind() { return (u16)mPikiKind; }
+	inline u16 getHappa() { return (u16)mHappaKind; }
 
 	// _000			 = VTBL
 	// _000-_24C = FakePiki
-	PSM::Piki* m_soundObj;             // _250
-	f32 m_targetLookAngle;             // _254
-	efx::TPkEffect* m_effectsObj;      // _258
-	Vector3f _25C;                     // _25C
-	SysShape::Joint* m_happaJoint3;    // _268
-	Vector3f _26C;                     // _26C
-	SysShape::Joint* m_happaJoint1;    // _278
-	::efx::Context* m_effectsContext;  // _27C
-	u8 _280[4];                        // _280
-	short m_isDoped;                   // _284
-	f32 m_dopeTime;                    // _288
-	PikiFSM* m_fsm;                    // _28C
-	PikiState* m_currentState;         // _290
-	PikiAI::Brain* m_brain;            // _294
-	UpdateContext m_pikiUpdateContext; // _298
-	short m_tekiKillID;                // _2A4
-	u8 m_gasInvincible;                // _2A6
-	JUtility::TColor _2A7;             // _2A7
-	JUtility::TColor _2AB;             // _2AB
-	JUtility::TColor m_pikiColor;      // _2AF
-	f32 m_colorFloat;                  // _2B4
-	u8 m_pikiKind;                     // _2B8,  aka Piki kind (Blue, Yellow, Red, etc.)
-	u8 m_happaKind;                    // _2B9, aka Happa kind (leaf, bud, flower)
-	u32 m_leafModel;                   // _2BC
-	int m_mgrIndex;                    // _2C0
-	Navi* m_navi;                      // _2C4
+	PSM::Piki* mSoundObj;             // _250
+	f32 mTargetLookAngle;             // _254
+	efx::TPkEffect* mEffectsObj;      // _258
+	Vector3f _25C;                    // _25C
+	SysShape::Joint* mHappaJoint3;    // _268
+	Vector3f _26C;                    // _26C
+	SysShape::Joint* mHappaJoint1;    // _278
+	::efx::Context* mEffectsContext;  // _27C
+	u8 _280[4];                       // _280
+	short mIsDoped;                   // _284
+	f32 mDopeTime;                    // _288
+	PikiFSM* mFsm;                    // _28C
+	PikiState* mCurrentState;         // _290
+	PikiAI::Brain* mBrain;            // _294
+	UpdateContext mPikiUpdateContext; // _298
+	short mTekiKillID;                // _2A4
+	u8 mGasInvincible;                // _2A6
+	JUtility::TColor _2A7;            // _2A7
+	JUtility::TColor _2AB;            // _2AB
+	JUtility::TColor mPikiColor;      // _2AF
+	f32 mColorFloat;                  // _2B4
+	u8 mPikiKind;                     // _2B8,  aka Piki kind (Blue, Yellow, Red, etc.)
+	u8 mHappaKind;                    // _2B9, aka Happa kind (leaf, bud, flower)
+	u32 mLeafModel;                   // _2BC
+	int mMgrIndex;                    // _2C0
+	Navi* mNavi;                      // _2C4
 };
 } // namespace Game
 

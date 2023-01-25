@@ -44,27 +44,27 @@ struct J2DMaterial {
 	static J2DTevBlock* createTevBlock(int, bool);
 	static J2DIndBlock* createIndBlock(int, bool);
 
-	u16 getIndex() const { return m_index; }
-	J2DColorBlock* getColorBlock() { return &m_colorBlock; }
-	J2DTexGenBlock* getTexGenBlock() { return &m_texGenBlock; }
-	J2DPEBlock* getPEBlock() { return &m_peBlock; }
-	J2DTevBlock* getTevBlock() { return m_tevBlock; }
-	J2DIndBlock* getIndBlock() { return m_indBlock; }
-	bool isVisible() const { return m_isVisible; }
-	int getMaterialAlphaCalc() const { return m_materialAlphaCalc; }
+	u16 getIndex() const { return mIndex; }
+	J2DColorBlock* getColorBlock() { return &mColorBlock; }
+	J2DTexGenBlock* getTexGenBlock() { return &mTexGenBlock; }
+	J2DPEBlock* getPEBlock() { return &mPeBlock; }
+	J2DTevBlock* getTevBlock() { return mTevBlock; }
+	J2DIndBlock* getIndBlock() { return mIndBlock; }
+	bool isVisible() const { return mIsVisible; }
+	int getMaterialAlphaCalc() const { return mMaterialAlphaCalc; }
 
 	// _00 = VTBL
-	J2DPane* m_pane;                 // _04
-	int _08;                         // _08
-	u16 m_index;                     // _0C
-	u8 m_isVisible;                  // _0E
-	u8 m_materialAlphaCalc;          // _0F
-	J2DColorBlock m_colorBlock;      // _10
-	J2DTexGenBlock m_texGenBlock;    // _28
-	J2DTevBlock* m_tevBlock;         // _70
-	J2DIndBlock* m_indBlock;         // _74
-	J2DPEBlock m_peBlock;            // _78
-	J2DMaterialAnmPointer* m_anmPtr; // _84
+	J2DPane* mPane;                 // _04
+	int _08;                        // _08
+	u16 mIndex;                     // _0C
+	u8 mIsVisible;                  // _0E
+	u8 mMaterialAlphaCalc;          // _0F
+	J2DColorBlock mColorBlock;      // _10
+	J2DTexGenBlock mTexGenBlock;    // _28
+	J2DTevBlock* mTevBlock;         // _70
+	J2DIndBlock* mIndBlock;         // _74
+	J2DPEBlock mPeBlock;            // _78
+	J2DMaterialAnmPointer* mAnmPtr; // _84
 };
 
 #endif

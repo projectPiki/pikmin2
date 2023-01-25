@@ -11,10 +11,10 @@ struct TOneEmitter : public TBase, public JPAEmitterCallBack {
 	inline TOneEmitter() { }
 
 	inline TOneEmitter(u16 effectID)
-	    : m_emitter(nullptr)
-	    , m_effectID(effectID)
+	    : mEmitter(nullptr)
+	    , mEffectID(effectID)
 	{
-		m_context.clearRelations();
+		mContext.clearRelations();
 	}
 
 	// vtable 1 (TBase)
@@ -25,14 +25,14 @@ struct TOneEmitter : public TBase, public JPAEmitterCallBack {
 	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
 	virtual void startDemoDrawOff()             // _34 (weak)
 	{
-		if (m_emitter) {
-			m_emitter->setFlag(JPAEMIT_IsDemoOn);
+		if (mEmitter) {
+			mEmitter->setFlag(JPAEMIT_IsDemoOn);
 		}
 	}
 	virtual void endDemoDrawOn() // _38 (weak)
 	{
-		if (m_emitter) {
-			m_emitter->resetFlag(JPAEMIT_IsDemoOn);
+		if (mEmitter) {
+			mEmitter->resetFlag(JPAEMIT_IsDemoOn);
 		}
 	}
 	virtual ~TOneEmitter() { } // _3C (weak)
@@ -44,9 +44,9 @@ struct TOneEmitter : public TBase, public JPAEmitterCallBack {
 
 	// _00		= VTBL
 	// _04-_08	= JPAEmitterCallBack
-	JPABaseEmitter* m_emitter; // _08
-	u16 m_effectID;            // _0C
-	Context m_context;         // _10
+	JPABaseEmitter* mEmitter; // _08
+	u16 mEffectID;            // _0C
+	Context mContext;         // _10
 };
 
 /**
@@ -68,15 +68,15 @@ struct TOneEmitterChasePos : public TBase, public JPAEmitterCallBack {
 
 	// _00		= VTBL
 	// _04-_08	= JPAEmitterCallBack
-	ContextChasePos m_context; // _08
-	JPABaseEmitter* m_emitter; // _24
-	u16 m_effectID;            // _28
+	ContextChasePos mContext; // _08
+	JPABaseEmitter* mEmitter; // _24
+	u16 mEffectID;            // _28
 };
 
 struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	inline TOneEmitterSimple(u16 effectID) // something like this, may need reordering
-	    : m_emitter(nullptr)
-	    , m_effectID(effectID)
+	    : mEmitter(nullptr)
+	    , mEffectID(effectID)
 	    , _14(0)
 	{
 		_18 = 10;
@@ -87,41 +87,41 @@ struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	virtual bool create(Arg*); // _08
 	virtual void forceKill()   // _0C (weak)
 	{
-		if (m_emitter) {
-			particleMgr->forceKill(m_emitter);
-			m_emitter = nullptr;
+		if (mEmitter) {
+			particleMgr->forceKill(mEmitter);
+			mEmitter = nullptr;
 		}
 	}
 	virtual void fade() // _10 (weak)
 	{
-		if (m_emitter) {
-			particleMgr->fade(m_emitter);
-			m_emitter = nullptr;
+		if (mEmitter) {
+			particleMgr->fade(mEmitter);
+			mEmitter = nullptr;
 		}
 	}
 	// vtable 2 (JPAEmitterCallBack + self)
 	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
 	virtual void startDemoDrawOff()             // _34 (weak)
 	{
-		if (m_emitter) {
-			m_emitter->m_flags |= 0x4;
+		if (mEmitter) {
+			mEmitter->mFlags |= 0x4;
 		}
 	}
 	virtual void endDemoDrawOn() // _38 (weak)
 	{
-		if (m_emitter) {
-			m_emitter->m_flags &= ~0x4;
+		if (mEmitter) {
+			mEmitter->mFlags &= ~0x4;
 		}
 	}
 	virtual ~TOneEmitterSimple() { } // _3C (weak)
 
 	// _00		= VTBL
 	// _04-_08	= JPAEmitterCallBack
-	JPABaseEmitter* m_emitter; // _08
-	u16 m_effectID;            // _0C
-	Vector3f* _10;             // _10
-	int _14;                   // _14
-	int _18;                   // _18, vector count?
+	JPABaseEmitter* mEmitter; // _08
+	u16 mEffectID;            // _0C
+	Vector3f* _10;            // _10
+	int _14;                  // _14
+	int _18;                  // _18, vector count?
 };
 } // namespace efx
 

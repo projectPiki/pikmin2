@@ -21,26 +21,26 @@ struct GameMessage {
 
 struct GameMessagePelletBorn : public GameMessage {
 	inline GameMessagePelletBorn(Pellet* pellet)
-	    : m_pellet(pellet)
+	    : mPellet(pellet)
 	{
 	}
 
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	Pellet* m_pellet; // _04
+	Pellet* mPellet; // _04
 };
 
 struct GameMessagePelletDead : public GameMessage {
 	inline GameMessagePelletDead(Pellet* pellet)
-	    : m_pellet(pellet)
+	    : mPellet(pellet)
 	{
 	}
 
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	Pellet* m_pellet; // _04
+	Pellet* mPellet; // _04
 };
 
 struct GameMessageVsAddEnemy : public GameMessage {
@@ -55,30 +55,30 @@ struct GameMessageVsBattleFinished : public GameMessage {
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00      = VTABLE
-	int m_winningSide; // _04
+	int mWinningSide; // _04
 };
 
 struct GameMessageVsBirthTekiTreasure : public GameMessage {
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	Vector3f m_position; // _04
-	int _10;             // _10
-	bool _14;            // _14
+	Vector3f mPosition; // _04
+	int _10;            // _10
+	bool _14;           // _14
 };
 
 struct GameMessageVsGetDoping : public GameMessage {
 	GameMessageVsGetDoping(int naviIndex, int sprayType)
-	    : m_naviIndex(naviIndex)
-	    , m_sprayType(sprayType)
+	    : mNaviIndex(naviIndex)
+	    , mSprayType(sprayType)
 	{
 	}
 
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	int m_naviIndex; // _04
-	int m_sprayType; // _08
+	int mNaviIndex; // _04
+	int mSprayType; // _08
 };
 
 struct GameMessageVsGetOtakara : public GameMessage {
@@ -112,12 +112,12 @@ struct GameMessageVsPikminDead : public GameMessage {
 };
 
 struct GameMessageVsRedOrSuckStart : public GameMessage {
-	GameMessageVsRedOrSuckStart(int type) { m_color = type; }
+	GameMessageVsRedOrSuckStart(int type) { mColor = type; }
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	int m_color;     // _04 0 = blue 1 = red
-	bool m_isYellow; // _08 - unknown
+	int mColor;     // _04 0 = blue 1 = red
+	bool mIsYellow; // _08 - unknown
 };
 
 struct GameMessageVsUseCard : public GameMessage {

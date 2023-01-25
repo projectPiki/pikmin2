@@ -15,15 +15,15 @@ struct PikiCounter {
 
 	virtual operator int() // _08 (weak)
 	{
-		int count = m_pikiCounts[0];
+		int count = mPikiCounts[0];
 		for (int i = 1; i < PikiColorCount; i++) {
-			count += m_pikiCounts[i];
+			count += mPikiCounts[i];
 		}
 		return count;
 	}
 	virtual int operator()(int color) // _0C (weak)
 	{
-		return m_pikiCounts[color];
+		return mPikiCounts[color];
 	}
 
 	void clear();
@@ -33,7 +33,7 @@ struct PikiCounter {
 	void dec(int);
 
 	// _00 = VTBL
-	u32 m_pikiCounts[PikiColorCount]; // 04
+	u32 mPikiCounts[PikiColorCount]; // 04
 };
 
 struct PikiNaviCounter {
@@ -43,7 +43,7 @@ struct PikiNaviCounter {
 	void inc(Piki*);
 	void dec(Piki*);
 
-	PikiCounter m_counter[PikiColorCount]; // _00
+	PikiCounter mCounter[PikiColorCount]; // _00
 };
 
 int getMapPikmins(int);
@@ -72,7 +72,7 @@ extern PikiCounter alivePikis;
 /// @return Is there wild Pikmin of type 'pikiType' on the map?
 inline bool checkZikatu(EPikiKind pikiType)
 {
-	int zikatuCount = GameStat::zikatuPikis.m_pikiCounts[pikiType];
+	int zikatuCount = GameStat::zikatuPikis.mPikiCounts[pikiType];
 	return GameStat::getAllPikmins(pikiType) - zikatuCount > 0;
 }
 

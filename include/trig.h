@@ -12,9 +12,9 @@ inline bool checkASinCosBounds(f32 x) { return (x >= -1.0f) && (x <= 1.0f); }
 inline f32 pikmin2_sinf(f32 x)
 {
 	if (x < 0.0f) {
-		return -JMath::sincosTable_.m_table[((int)(x *= -325.9493f) & 0x7ffU)].first;
+		return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first;
 	}
-	return JMath::sincosTable_.m_table[((int)(x *= 325.9493f) & 0x7ffU)].first;
+	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first;
 }
 
 inline f32 pikmin2_cosf(f32 x)
@@ -22,7 +22,7 @@ inline f32 pikmin2_cosf(f32 x)
 	if (x < 0.0f) {
 		x = -x;
 	}
-	return JMath::sincosTable_.m_table[((int)(x *= 325.9493f) & 0x7ffU)].second;
+	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].second;
 }
 
 inline f32 pikmin2_acos(f32 x)
@@ -33,10 +33,10 @@ inline f32 pikmin2_acos(f32 x)
 		return PI;
 	} else if (x < 0.0f) {
 		f32 dumb = HALF_PI;
-		f32 acos = JMath::asinAcosTable_.m_table[(u32)(-x * 1023.5f)];
+		f32 acos = JMath::asinAcosTable_.mTable[(u32)(-x * 1023.5f)];
 		return acos + dumb;
 	} else {
-		return HALF_PI - JMath::asinAcosTable_.m_table[(u32)(x * 1023.5f)];
+		return HALF_PI - JMath::asinAcosTable_.mTable[(u32)(x * 1023.5f)];
 	}
 }
 
@@ -61,9 +61,9 @@ inline int GetTableIdxPos(f32 x) { return x *= 325.9493f; }
 inline f32 altSin(f32 x)
 {
 	if (x < 0.0f) {
-		return -JMath::sincosTable_.m_table[GetTableIdxNeg(x) & 0x7ffU].first;
+		return -JMath::sincosTable_.mTable[GetTableIdxNeg(x) & 0x7ffU].first;
 	}
-	return JMath::sincosTable_.m_table[GetTableIdxPos(x) & 0x7ffU].first;
+	return JMath::sincosTable_.mTable[GetTableIdxPos(x) & 0x7ffU].first;
 }
 
 inline f32 scaledSin(f32 theta) { return altSin(theta * TAU); }

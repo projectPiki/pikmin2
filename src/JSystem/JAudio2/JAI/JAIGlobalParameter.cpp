@@ -790,7 +790,7 @@ void JAIGlobalParameter::setParamSoundOutputMode(unsigned long value)
 		mode = 2;
 		break;
 	}
-	JAIBasic::msBasic->m_paramSoundOutputMode = value;
+	JAIBasic::msBasic->mParamSoundOutputMode = value;
 	JASDriver::setOutputMode(mode);
 }
 

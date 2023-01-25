@@ -36,7 +36,7 @@ static const char vsGSGameName[]        = "vsGS_Game";
 GameState::GameState()
     : State(VGS_Game)
 {
-	m_controller = new Controller(JUTGamePad::PORT_0);
+	mController = new Controller(JUTGamePad::PORT_0);
 }
 
 /*
@@ -47,7 +47,7 @@ GameState::GameState()
 void GameState::init(VsGameSection* section, StateArg* stateArg)
 {
 	_16 = 0;
-	m_flags.clear();
+	mFlags.clear();
 	section->refreshHIO();
 	do_init(section);
 	section->setFixNearFar(true, 1.0f, 12800.0f);
@@ -66,21 +66,21 @@ void GameState::init(VsGameSection* section, StateArg* stateArg)
 		Screen::gGame2DMgr->startFadeBG_Floor();
 	}
 
-	m_hasKeyDemoPlayed = false;
+	mHasKeyDemoPlayed = false;
 
 	if (gameSystem->isChallengeMode()) {
-		m_timer            = section->m_timeLimit;
-		m_floorExtendTimer = section->m_challengeStageData->m_floorTimerExtentions[section->getCurrFloor()];
-		m_displayTime      = m_timer / 4;
-		section->m_timeLimit += m_floorExtendTimer;
+		mTimer            = section->mTimeLimit;
+		mFloorExtendTimer = section->mChallengeStageData->mFloorTimerExtentions[section->getCurrFloor()];
+		mDisplayTime      = mTimer / 4;
+		section->mTimeLimit += mFloorExtendTimer;
 	}
 
-	section->m_marbleCountP2         = 0;
-	section->m_marbleCountP1         = 0;
-	section->m_yellowMarbleCounts[1] = 0;
-	section->m_yellowMarbleCounts[0] = 0;
-	section->m_ghostIconTimers[1]    = 0.0f;
-	section->m_ghostIconTimers[0]    = 0.0f;
+	section->mMarbleCountP2         = 0;
+	section->mMarbleCountP1         = 0;
+	section->mYellowMarbleCounts[1] = 0;
+	section->mYellowMarbleCounts[0] = 0;
+	section->mGhostIconTimers[1]    = 0.0f;
+	section->mGhostIconTimers[0]    = 0.0f;
 }
 
 /*
@@ -90,8 +90,8 @@ void GameState::init(VsGameSection* section, StateArg* stateArg)
  */
 void GameState::clearLoseCauses()
 {
-	m_loseCauses[0].clear();
-	m_loseCauses[1].clear();
+	mLoseCauses[0].clear();
+	mLoseCauses[1].clear();
 	_16 = 0;
 }
 
@@ -102,18 +102,18 @@ void GameState::clearLoseCauses()
  */
 void GameState::do_init(VsGameSection* section)
 {
-	moviePlayer->m_actingCamera = section->m_olimarCamera;
-	m_flags.clear();
+	moviePlayer->mActingCamera = section->mOlimarCamera;
+	mFlags.clear();
 
 	if (!gameSystem->isVersusMode()) {
-		MoviePlayArg arg("s0B_cv_coursein", nullptr, section->m_movieFinishCallback, 0);
-		arg.m_delegateStart = section->m_movieStartCallback;
-		mapMgr->getStartPosition(arg.m_origin, 0);
-		arg.m_origin.y = mapMgr->getMinY(arg.m_origin);
+		MoviePlayArg arg("s0B_cv_coursein", nullptr, section->mMovieFinishCallback, 0);
+		arg.mDelegateStart = section->mMovieStartCallback;
+		mapMgr->getStartPosition(arg.mOrigin, 0);
+		arg.mOrigin.y = mapMgr->getMinY(arg.mOrigin);
 
-		ItemOnyon::mgr->m_pod;
-		if (ItemOnyon::mgr->m_pod) {
-			arg.m_angle = ItemOnyon::mgr->m_pod->getFaceDir();
+		ItemOnyon::mgr->mPod;
+		if (ItemOnyon::mgr->mPod) {
+			arg.mAngle = ItemOnyon::mgr->mPod->getFaceDir();
 		}
 
 		moviePlayer->play(arg);
@@ -133,10 +133,10 @@ void GameState::do_init(VsGameSection* section)
 		section->createVsPikmins();
 		section->initCardGeneration();
 	} else {
-		section->createFallPikmins(section->m_container1, 0);
+		section->createFallPikmins(section->mContainer1, 0);
 	}
 
-	Screen::gGame2DMgr->m_screenMgr->m_inCave = 1;
+	Screen::gGame2DMgr->mScreenMgr->mInCave = 1;
 }
 
 /*
@@ -166,7 +166,7 @@ void GameState::exec(VsGameSection* section)
 
 	section->BaseGameSection::doUpdate();
 
-	if (section->m_state->m_id != VGS_Game) {
+	if (section->mState->mId != VGS_Game) {
 		return;
 	}
 
@@ -198,7 +198,7 @@ void GameState::exec(VsGameSection* section)
 		section->calcVsScores();
 		if (!gameSystem->paused()) {
 			section->updateCardGeneration();
-			section->m_cardMgr->update();
+			section->mCardMgr->update();
 		}
 
 		if (isFlag(VSGS_Unk9)) {
@@ -216,17 +216,17 @@ void GameState::exec(VsGameSection* section)
 				} else if (!redLost) { // red didn't lose
 					outcome = 1;       // red win
 					VsGameSection::mRedWinCount += 1;
-					section->m_vsWinner = 0;
+					section->mVsWinner = 0;
 
 				} else if (!blueLost) { // blue didn't lose
 					outcome = 2;        // blue win
 					VsGameSection::mBlueWinCount += 1;
-					section->m_vsWinner = 1;
+					section->mVsWinner = 1;
 
 				} else {         // both lost/something wacky happened
 					outcome = 3; // draw
 					VsGameSection::mDrawCount += 1;
-					section->m_vsWinner = -1;
+					section->mVsWinner = -1;
 				}
 
 				kh::Screen::DispWinLose winLose(outcome, 1);
@@ -281,18 +281,18 @@ void GameState::exec(VsGameSection* section)
 			case 3:
 				GameStat::alivePikis.clear();
 				ResultArg arg;
-				arg.m_endFlag.clear();
+				arg.mEndFlag.clear();
 				transit(section, VGS_Result, &arg);
 			}
 			return;
 		}
 
-		if (!gameSystem->paused() && section->m_timeLimit > 0.0f && isFlag(VSGS_Unk3) && !section->m_menuFlags
+		if (!gameSystem->paused() && section->mTimeLimit > 0.0f && isFlag(VSGS_Unk3) && !section->mMenuFlags
 		    && gameSystem->isFlag(GAMESYS_Unk6) && !gameSystem->paused_soft()
-		    && !moviePlayer->m_demoState) { // check game is in a state where timer should go down (not paused/menu/CS/etc)
+		    && !moviePlayer->mDemoState) { // check game is in a state where timer should go down (not paused/menu/CS/etc)
 
-			section->m_timeLimit -= sys->m_deltaTime * 0.5f;
-			if (section->m_timeLimit <= 0.0f && !(isFlag(VSGS_Unk4))) {
+			section->mTimeLimit -= sys->mDeltaTime * 0.5f;
+			if (section->mTimeLimit <= 0.0f && !(isFlag(VSGS_Unk4))) {
 				gameSystem->resetFlag(GAMESYS_Unk6);
 				gameSystem->setPause(true, "timeup", 3);
 				gameSystem->setMoviePause(true, "timeup");
@@ -308,7 +308,7 @@ void GameState::exec(VsGameSection* section)
 		}
 	}
 
-	if (!isFlag(VSGS_Unk1) && section->m_hole) {
+	if (!isFlag(VSGS_Unk1) && section->mHole) {
 		switch (Screen::gGame2DMgr->check_CaveMoreMenu()) {
 		case 0:
 			break;
@@ -317,7 +317,7 @@ void GameState::exec(VsGameSection* section)
 			gameSystem->resetFlag(GAMESYS_Unk6);
 			gameSystem->setPause(false, "cmore-yes", 3);
 			gameSystem->setMoviePause(false, "cmore-yes");
-			section->goNextFloor(section->m_hole);
+			section->goNextFloor(section->mHole);
 			setFlag(VSGS_Unk1);
 			return;
 
@@ -333,7 +333,7 @@ void GameState::exec(VsGameSection* section)
 		}
 	}
 
-	if (!section->m_menuFlags || section->updateCaveMenus()) {
+	if (!section->mMenuFlags || section->updateCaveMenus()) {
 		update_GameChallenge(section);
 		if (!_16) {
 			checkSMenu(section);
@@ -372,8 +372,8 @@ void GameState::exec(VsGameSection* section)
 			}
 
 			kh::Screen::DispWinLoseReason winLoseReason;
-			winLoseReason.m_outcomeP1 = redReason;
-			winLoseReason.m_outcomeP2 = blueReason;
+			winLoseReason.mOutcomeP1 = redReason;
+			winLoseReason.mOutcomeP2 = blueReason;
 
 			P2ASSERTLINE(513, Screen::gGame2DMgr->open_WinLoseReason(winLoseReason));
 		}
@@ -387,7 +387,7 @@ void GameState::exec(VsGameSection* section)
  */
 void GameState::checkFindKeyDemo(VsGameSection* section)
 {
-	if (!m_hasKeyDemoPlayed) {
+	if (!mHasKeyDemoPlayed) {
 		Navi* navi = naviMgr->getActiveNavi();
 		if (navi) {
 			Iterator<Game::PelletItem::Object> pelletIterator(PelletItem::mgr);
@@ -400,16 +400,16 @@ void GameState::checkFindKeyDemo(VsGameSection* section)
 					Sys::Sphere sphere(pos, 100.0f + obj->getBottomRadius());
 
 					if (navi->checkDemoNaviAndPiki(sphere) && sys->getPlayCommonData()->challenge_is_virgin()) {
-						MoviePlayArg arg("s16_find_key", nullptr, section->m_movieFinishCallback, 0);
-						arg.m_delegateStart = section->m_movieStartCallback;
-						arg.m_origin        = obj->getPosition();
+						MoviePlayArg arg("s16_find_key", nullptr, section->mMovieFinishCallback, 0);
+						arg.mDelegateStart = section->mMovieStartCallback;
+						arg.mOrigin        = obj->getPosition();
 
-						arg.m_angle = JMath::atanTable_.atan2_(obj->m_objMatrix(0, 2), obj->m_objMatrix(2, 2));
+						arg.mAngle = JMath::atanTable_.atan2_(obj->mObjMatrix(0, 2), obj->mObjMatrix(2, 2));
 
-						moviePlayer->m_targetObject = obj;
+						moviePlayer->mTargetObject = obj;
 						moviePlayer->play(arg);
 
-						m_hasKeyDemoPlayed = true;
+						mHasKeyDemoPlayed = true;
 					}
 				}
 			}
@@ -442,21 +442,21 @@ void GameState::checkSMenu(VsGameSection* section)
 	case 5:
 		gameSystem->setMoviePause(false, "sm-quit");
 		if (gameSystem->isVersusMode()) {
-			section->m_vsWinner = -1;
+			section->mVsWinner = -1;
 			gameSystem->resetFlag(GAMESYS_Unk6);
 			TitleArg titleArg;
 			titleArg._00 = 1;
 			transit(section, VGS_Title, &titleArg);
 			return;
 		}
-		if (moviePlayer->m_demoState == 0 && !isFlag(VSGS_Unk2)) {
+		if (moviePlayer->mDemoState == 0 && !isFlag(VSGS_Unk2)) {
 			gameSystem->resetFlag(GAMESYS_Unk6);
-			MoviePlayArg movieArgs("s12_cv_giveup", 0x0, section->m_movieFinishCallback, 0);
-			movieArgs.m_delegateStart = section->m_movieStartCallback;
-			Onyon* onyon              = ItemOnyon::mgr->m_pod;
+			MoviePlayArg movieArgs("s12_cv_giveup", 0x0, section->mMovieFinishCallback, 0);
+			movieArgs.mDelegateStart = section->mMovieStartCallback;
+			Onyon* onyon             = ItemOnyon::mgr->mPod;
 			JUT_ASSERTLINE(652, onyon, "no pod demo 12");
-			movieArgs.m_origin = onyon->getPosition();
-			movieArgs.m_angle  = onyon->getFaceDir();
+			movieArgs.mOrigin = onyon->getPosition();
+			movieArgs.mAngle  = onyon->getFaceDir();
 			for (int i = 0; i < 2; i++) {
 				Navi* navi = naviMgr->getAt(i);
 				if (navi->isAlive() && navi->isStickTo()) {
@@ -471,29 +471,29 @@ void GameState::checkSMenu(VsGameSection* section)
 		return;
 	}
 
-	if (moviePlayer->m_demoState == 0 && !gameSystem->paused_soft()) {
-		if (section->m_controllerP1->isButtonDown(JUTGamePad::PRESS_START)) {
+	if (moviePlayer->mDemoState == 0 && !gameSystem->paused_soft()) {
+		if (section->mControllerP1->isButtonDown(JUTGamePad::PRESS_START)) {
 			og::Screen::DispMemberSMenuAll sMenu;
 			int versus = 2;
 			if (gameSystem->isVersusMode()) {
 				versus = 1;
 			}
-			sMenu.m_openMode = versus;
-			Screen::gGame2DMgr->setGamePad(section->m_controllerP1);
+			sMenu.mOpenMode = versus;
+			Screen::gGame2DMgr->setGamePad(section->mControllerP1);
 			if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
 				gameSystem->setPause(true, "open-sm", 3);
 				gameSystem->setMoviePause(true, "open-sm");
 			}
 
 		} else if (gameSystem->isMultiplayerMode()) {
-			if ((section->m_controllerP2->isButtonDown(JUTGamePad::PRESS_START))) {
+			if ((section->mControllerP2->isButtonDown(JUTGamePad::PRESS_START))) {
 				og::Screen::DispMemberSMenuAll sMenu;
 				int versus = 2;
 				if (gameSystem->isVersusMode()) {
 					versus = 1;
 				}
-				sMenu.m_openMode = versus;
-				Screen::gGame2DMgr->setGamePad(section->m_controllerP2);
+				sMenu.mOpenMode = versus;
+				Screen::gGame2DMgr->setGamePad(section->mControllerP2);
 				if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
 					gameSystem->setPause(true, "open-sm", 3);
 					gameSystem->setMoviePause(true, "open-sm");
@@ -510,8 +510,8 @@ void GameState::checkSMenu(VsGameSection* section)
  */
 void GameState::pre2dDraw(Graphics& gfx, VsGameSection* section)
 {
-	if (gameSystem->isVersusMode() && !m_flags.typeView && !moviePlayer->m_demoState) {
-		section->m_cardMgr->draw(gfx);
+	if (gameSystem->isVersusMode() && !mFlags.typeView && !moviePlayer->mDemoState) {
+		section->mCardMgr->draw(gfx);
 	}
 }
 
@@ -572,8 +572,8 @@ bool GameState::isCardUsable(VsGameSection* section) { return (u32) !(_16); }
 void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool isYellow)
 {
 	if (isYellow) {
-		section->m_yellowMarbleCounts[player]++;
-		if (isYellow && section->m_yellowMarbleCounts[player] < 4) {
+		section->mYellowMarbleCounts[player]++;
+		if (isYellow && section->mYellowMarbleCounts[player] < 4) {
 			return;
 		}
 	}
@@ -589,15 +589,15 @@ void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool is
 		loseReason |= VSLOSE_Marble;
 	}
 
-	BitFlag<u8>& loseCauses = m_loseCauses[1 - player];
+	BitFlag<u8>& loseCauses = mLoseCauses[1 - player];
 	setLoseCause(loseCauses, loseReason);
 
 	Onyon* onyon                 = ItemOnyon::mgr->getOnyon(1 - player);
-	BaseGameSection* baseSection = gameSystem->m_section;
+	BaseGameSection* baseSection = gameSystem->mSection;
 
-	MoviePlayArg movieArgs("x19_vs_bedama", nullptr, baseSection->m_movieFinishCallback, 0);
-	movieArgs.m_pelletName    = const_cast<char*>(VsOtakaraName::cBedamaRed);
-	movieArgs.m_delegateStart = baseSection->m_movieStartCallback;
+	MoviePlayArg movieArgs("x19_vs_bedama", nullptr, baseSection->mMovieFinishCallback, 0);
+	movieArgs.mPelletName    = const_cast<char*>(VsOtakaraName::cBedamaRed);
+	movieArgs.mDelegateStart = baseSection->mMovieStartCallback;
 	movieArgs.setTarget(onyon);
 
 	moviePlayer->play(movieArgs);
@@ -616,7 +616,7 @@ void GameState::checkPikminZero(VsGameSection* section)
 		Navi* activeNavi = naviMgr->getActiveNavi();
 		if (!activeNavi) {
 			int naviIndex = 1;
-			if (!gameSystem->m_section->m_prevNaviIdx) {
+			if (!gameSystem->mSection->mPrevNaviIdx) {
 				naviIndex = 0;
 			}
 			activeNavi = naviMgr->getAt(naviIndex);
@@ -624,8 +624,8 @@ void GameState::checkPikminZero(VsGameSection* section)
 
 		setFlag(VSGS_Unk2);
 
-		MoviePlayArg movieArg("s05_pikminzero", nullptr, section->m_movieFinishCallback, 0);
-		movieArg.m_delegateStart = section->m_movieStartCallback;
+		MoviePlayArg movieArg("s05_pikminzero", nullptr, section->mMovieFinishCallback, 0);
+		movieArg.mDelegateStart = section->mMovieStartCallback;
 		movieArg.setTarget(activeNavi);
 		moviePlayer->play(movieArg);
 
@@ -666,7 +666,7 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* config, u32 p1
 	}
 
 	if (config->is("s12_cv_giveup")) {
-		Screen::gGame2DMgr->m_screenMgr->reset();
+		Screen::gGame2DMgr->mScreenMgr->reset();
 		Iterator<Piki> pikiIterator(pikiMgr);
 		CI_LOOP(pikiIterator)
 		{
@@ -674,26 +674,26 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* config, u32 p1
 			if (piki->isAlive() && !piki->isStickTo()) {
 				piki->movie_begin(false);
 				piki->endStick();
-				piki->m_brain->start(1, nullptr);
+				piki->mBrain->start(1, nullptr);
 			}
 		}
 	}
 
 	if (config->is("s09_holein")) {
-		Vector3f holePos = section->m_hole->getPosition();
+		Vector3f holePos = section->mHole->getPosition();
 		section->prepareHoleIn(holePos, true);
-		pikiMgr->saveAllPikmins(section->m_container1);
+		pikiMgr->saveAllPikmins(section->mContainer1);
 		for (int i = 0; i < 2; i++) {
 			Navi* navi = naviMgr->getAt(i);
 			if (navi->isAlive() && navi->isStickTo()) {
 				navi->endStick();
 			}
 		}
-		section->m_hole = nullptr;
+		section->mHole = nullptr;
 	}
 
 	if (config->is("s0C_cv_escape")) {
-		Vector3f fountainPos = section->m_fountain->getPosition();
+		Vector3f fountainPos = section->mFountain->getPosition();
 		section->prepareFountainOn(fountainPos);
 	}
 }
@@ -710,8 +710,8 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 	}
 
 	RoomMapMgr* mgr   = static_cast<RoomMapMgr*>(mapMgr);
-	int currFloor     = mgr->m_sublevel;
-	int floorMax      = mgr->m_caveInfo->getFloorMax();
+	int currFloor     = mgr->mSublevel;
+	int floorMax      = mgr->mCaveInfo->getFloorMax();
 	bool isFinalFloor = (currFloor == floorMax - 1);
 
 	if (gameSystem->isChallengeMode() && Radar::Mgr::getNumOtakaraItems() == 0
@@ -759,8 +759,8 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 			pikiPos.y        = mapMgr->getMinY(pikiPos);
 
 			piki->setPosition(pikiPos, false);
-			piki->m_position2 = Vector3f(0.0f);
-			piki->m_velocity  = Vector3f(0.0f);
+			piki->mPosition2 = Vector3f(0.0f);
+			piki->mVelocity  = Vector3f(0.0f);
 		}
 
 		Screen::gGame2DMgr->close_Floor();
@@ -768,19 +768,19 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 		if (currFloor == 0) {
 			if (sys->getPlayCommonData()->challenge_is_virgin_check_only()) {
 				if (!gameSystem->isVersusMode()) {
-					MoviePlayArg movieArg("e00_E3_cavestart", nullptr, section->m_movieFinishCallback, 0);
+					MoviePlayArg movieArg("e00_E3_cavestart", nullptr, section->mMovieFinishCallback, 0);
 					if (gameSystem->isMultiplayerMode()) {
 						section->setPlayerMode(0);
 					}
 					section->setCamController();
-					movieArg.m_delegateStart = section->m_movieStartCallback;
-					if (ItemOnyon::mgr->m_pod) {
-						Onyon* pod        = ItemOnyon::mgr->m_pod;
-						movieArg.m_angle  = pod->getFaceDir();
-						movieArg.m_origin = pod->getPosition();
+					movieArg.mDelegateStart = section->mMovieStartCallback;
+					if (ItemOnyon::mgr->mPod) {
+						Onyon* pod       = ItemOnyon::mgr->mPod;
+						movieArg.mAngle  = pod->getFaceDir();
+						movieArg.mOrigin = pod->getPosition();
 					}
 
-					movieArg.m_origin.y = mapMgr->getMinY(movieArg.m_origin);
+					movieArg.mOrigin.y = mapMgr->getMinY(movieArg.mOrigin);
 					moviePlayer->play(movieArg);
 					return;
 				}
@@ -809,12 +809,12 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 			PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
 			sceneMgr->checkScene();
 
-			sceneMgr->m_scenes->m_child->startMainSeq();
+			sceneMgr->mScenes->mChild->startMainSeq();
 		}
 
 	} else if (config->is("s09_holein")) {
 		PSMCancelToPauseOffMainBgm();
-		section->m_currentFloor++;
+		section->mCurrentFloor++;
 		LoadArg arg;
 		arg._04 = 0;
 		arg._08 = true;
@@ -838,7 +838,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 			GameStat::alivePikis.clear();
 			PSMCancelToPauseOffMainBgm();
 			ResultArg arg;
-			arg.m_endFlag.clear();
+			arg.mEndFlag.clear();
 			transit(section, VGS_Result, &arg);
 		}
 
@@ -846,14 +846,14 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 		PSMCancelToPauseOffMainBgm();
 		Screen::gGame2DMgr->close_GameOver();
 		ResultArg arg;
-		arg.m_endFlag.clear();
+		arg.mEndFlag.clear();
 		transit(section, VGS_Result, &arg);
 
 	} else if (config->is("s0C_cv_escape")) {
 		PSMCancelToPauseOffMainBgm();
 		ResultArg arg;
-		arg.m_endFlag.clear();
-		arg.m_endFlag.typeView |= 0x1;
+		arg.mEndFlag.clear();
+		arg.mEndFlag.typeView |= 0x1;
 		transit(section, VGS_Result, &arg);
 	}
 }
@@ -865,13 +865,13 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
  */
 void GameState::onNextFloor(VsGameSection* section, ItemHole::Item* hole)
 {
-	MoviePlayArg movieArg("s09_holein", nullptr, section->m_movieFinishCallback, 0);
+	MoviePlayArg movieArg("s09_holein", nullptr, section->mMovieFinishCallback, 0);
 
 	movieArg.setTarget(hole);
-	movieArg.m_delegateStart = section->m_movieStartCallback;
-	movieArg.m_delegateStart = section->m_movieStartCallback;
+	movieArg.mDelegateStart = section->mMovieStartCallback;
+	movieArg.mDelegateStart = section->mMovieStartCallback;
 
-	moviePlayer->m_targetObject = hole;
+	moviePlayer->mTargetObject = hole;
 
 	moviePlayer->play(movieArg);
 }
@@ -892,16 +892,16 @@ void GameState::onOrimaDown(VsGameSection* section, int naviIdx)
 		return;
 	}
 
-	MoviePlayArg movieArg("s03_orimadown", nullptr, section->m_movieFinishCallback, naviIdx);
-	movieArg.m_delegateStart = section->m_movieStartCallback;
+	MoviePlayArg movieArg("s03_orimadown", nullptr, section->mMovieFinishCallback, naviIdx);
+	movieArg.mDelegateStart = section->mMovieStartCallback;
 
 	Navi* deadNavi = naviMgr->getAt(naviIdx);
 	movieArg.setTarget(deadNavi);
-	moviePlayer->m_targetNavi = deadNavi;
+	moviePlayer->mTargetNavi = deadNavi;
 	if (naviIdx == 0) {
-		moviePlayer->m_actingCamera = section->m_olimarCamera;
+		moviePlayer->mActingCamera = section->mOlimarCamera;
 	} else {
-		moviePlayer->m_actingCamera = section->m_louieCamera;
+		moviePlayer->mActingCamera = section->mLouieCamera;
 	}
 
 	moviePlayer->play(movieArg);
@@ -916,8 +916,8 @@ void GameState::open_GameChallenge(VsGameSection* section, int in)
 {
 	if (!gameSystem->isMultiplayerMode()) {
 		og::Screen::DispMemberChallenge1P disp;
-		disp.m_dataGame.m_floorNum = section->getCurrFloor();
-		disp.m_floorExtendTimer    = m_floorExtendTimer;
+		disp.mDataGame.mFloorNum = section->getCurrFloor();
+		disp.mFloorExtendTimer   = mFloorExtendTimer;
 		Screen::gGame2DMgr->open_GameChallenge1P(disp, in);
 
 	} else if (gameSystem->isVersusMode()) {
@@ -926,8 +926,8 @@ void GameState::open_GameChallenge(VsGameSection* section, int in)
 
 	} else {
 		og::Screen::DispMemberChallenge2P disp;
-		disp.m_dataGame.m_floorNum = section->getCurrFloor();
-		disp.m_floorExtendTimer    = m_floorExtendTimer;
+		disp.mDataGame.mFloorNum = section->getCurrFloor();
+		disp.mFloorExtendTimer   = mFloorExtendTimer;
 		Screen::gGame2DMgr->open_GameChallenge2P(disp, in);
 	}
 }
@@ -942,56 +942,56 @@ void GameState::update_GameChallenge(VsGameSection* section)
 	if (!gameSystem->isMultiplayerMode()) {
 		og::Screen::DispMemberChallenge1P disp;
 
-		disp.m_dataGame.m_floorNum = section->getCurrFloor();
-		disp.m_deadPikiCount       = section->m_deadPikiCount;
-		disp.m_pokoCount           = section->m_pokoCount;
-		disp.m_floorExtendTimer    = m_floorExtendTimer;
-		disp.m_timeLimit           = section->m_timeLimit;
+		disp.mDataGame.mFloorNum = section->getCurrFloor();
+		disp.mDeadPikiCount      = section->mDeadPikiCount;
+		disp.mPokoCount          = section->mPokoCount;
+		disp.mFloorExtendTimer   = mFloorExtendTimer;
+		disp.mTimeLimit          = section->mTimeLimit;
 
-		Navi* olimar                      = naviMgr->getAt(0);
-		disp.m_olimarData.m_followPikis   = GameStat::formationPikis.m_counter[0];
-		disp.m_olimarData.m_nextThrowPiki = olimar->ogGetNextThrowPiki();
-		disp.m_olimarData.m_dope1Count    = playData->getDopeCount(1);
-		disp.m_olimarData.m_dope0Count    = playData->getDopeCount(0);
-		disp.m_olimarData.m_naviLifeRatio = olimar->getLifeRatio();
+		Navi* olimar                    = naviMgr->getAt(0);
+		disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
+		disp.mOlimarData.mNextThrowPiki = olimar->ogGetNextThrowPiki();
+		disp.mOlimarData.mDope1Count    = playData->getDopeCount(1);
+		disp.mOlimarData.mDope0Count    = playData->getDopeCount(0);
+		disp.mOlimarData.mNaviLifeRatio = olimar->getLifeRatio();
 
-		Navi* louie                      = naviMgr->getAt(1);
-		disp.m_louieData.m_followPikis   = GameStat::formationPikis.m_counter[1];
-		disp.m_louieData.m_nextThrowPiki = louie->ogGetNextThrowPiki();
-		disp.m_louieData.m_dope1Count    = playData->getDopeCount(1);
-		disp.m_louieData.m_dope0Count    = playData->getDopeCount(0);
-		disp.m_louieData.m_naviLifeRatio = louie->getLifeRatio();
+		Navi* louie                    = naviMgr->getAt(1);
+		disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
+		disp.mLouieData.mNextThrowPiki = louie->ogGetNextThrowPiki();
+		disp.mLouieData.mDope1Count    = playData->getDopeCount(1);
+		disp.mLouieData.mDope0Count    = playData->getDopeCount(0);
+		disp.mLouieData.mNaviLifeRatio = louie->getLifeRatio();
 
 		Navi* activeNavi = naviMgr->getActiveNavi();
 		int check        = 2;
 		if (activeNavi) {
-			check = activeNavi->m_naviIndex;
+			check = activeNavi->mNaviIndex;
 		}
 
 		if (check == 0) {
-			disp.m_olimarData.m_activeNaviID = 1;
-			disp.m_louieData.m_activeNaviID  = 0;
+			disp.mOlimarData.mActiveNaviID = 1;
+			disp.mLouieData.mActiveNaviID  = 0;
 
 		} else if (check == 1) {
-			disp.m_olimarData.m_activeNaviID = 0;
-			disp.m_louieData.m_activeNaviID  = 1;
+			disp.mOlimarData.mActiveNaviID = 0;
+			disp.mLouieData.mActiveNaviID  = 1;
 
-		} else if (section->m_prevNaviIdx == 0) {
-			disp.m_olimarData.m_activeNaviID = 0;
-			disp.m_louieData.m_activeNaviID  = 1;
+		} else if (section->mPrevNaviIdx == 0) {
+			disp.mOlimarData.mActiveNaviID = 0;
+			disp.mLouieData.mActiveNaviID  = 1;
 
 		} else {
-			disp.m_olimarData.m_activeNaviID = 1;
-			disp.m_louieData.m_activeNaviID  = 0;
+			disp.mOlimarData.mActiveNaviID = 1;
+			disp.mLouieData.mActiveNaviID  = 0;
 		}
 
-		disp.m_dataGame.m_mapPikminCount = GameStat::getMapPikmins(-1);
+		disp.mDataGame.mMapPikminCount = GameStat::getMapPikmins(-1);
 		Screen::gGame2DMgr->setDispMember(&disp);
 		return;
 	}
 
 	if (gameSystem->isVersusMode()) {
-		if (Screen::gGame2DMgr->check_VsStatus() == 2 && _16 == 1 && !(moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
+		if (Screen::gGame2DMgr->check_VsStatus() == 2 && _16 == 1 && !(moviePlayer->mFlags & MoviePlayer::IS_ACTIVE)) {
 			_16 = 2;
 		} else if (_16 == 1) {
 			Screen::gGame2DMgr->check_VsStatus(); // probably in a leftover && check
@@ -999,44 +999,44 @@ void GameState::update_GameChallenge(VsGameSection* section)
 
 		og::Screen::DispMemberVs disp;
 
-		Navi* olimar                      = naviMgr->getAt(0);
-		disp.m_olimarData.m_followPikis   = GameStat::formationPikis.m_counter[0];
-		disp.m_olimarData.m_nextThrowPiki = olimar->ogGetNextThrowPiki();
-		disp.m_olimarData.m_dope1Count    = olimar->getDopeCount(1);
-		disp.m_olimarData.m_dope0Count    = olimar->getDopeCount(0);
-		disp.m_olimarData.m_naviLifeRatio = olimar->getLifeRatio();
+		Navi* olimar                    = naviMgr->getAt(0);
+		disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
+		disp.mOlimarData.mNextThrowPiki = olimar->ogGetNextThrowPiki();
+		disp.mOlimarData.mDope1Count    = olimar->getDopeCount(1);
+		disp.mOlimarData.mDope0Count    = olimar->getDopeCount(0);
+		disp.mOlimarData.mNaviLifeRatio = olimar->getLifeRatio();
 
-		Navi* louie                      = naviMgr->getAt(1);
-		disp.m_louieData.m_followPikis   = GameStat::formationPikis.m_counter[1];
-		disp.m_louieData.m_nextThrowPiki = louie->ogGetNextThrowPiki();
-		disp.m_louieData.m_dope1Count    = louie->getDopeCount(1);
-		disp.m_louieData.m_dope0Count    = louie->getDopeCount(0);
-		disp.m_louieData.m_naviLifeRatio = louie->getLifeRatio();
+		Navi* louie                    = naviMgr->getAt(1);
+		disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
+		disp.mLouieData.mNextThrowPiki = louie->ogGetNextThrowPiki();
+		disp.mLouieData.mDope1Count    = louie->getDopeCount(1);
+		disp.mLouieData.mDope0Count    = louie->getDopeCount(0);
+		disp.mLouieData.mNaviLifeRatio = louie->getLifeRatio();
 
-		disp.m_redPikminCount  = GameStat::getMapPikmins(1);
-		disp.m_bluePikminCount = GameStat::getMapPikmins(0);
+		disp.mRedPikminCount  = GameStat::getMapPikmins(1);
+		disp.mBluePikminCount = GameStat::getMapPikmins(0);
 
-		disp.m_flags[2] = section->m_ghostIconTimers[0] > 0.0f;
-		disp.m_flags[3] = section->m_ghostIconTimers[1] > 0.0f;
+		disp.mFlags[2] = section->mGhostIconTimers[0] > 0.0f;
+		disp.mFlags[3] = section->mGhostIconTimers[1] > 0.0f;
 
-		disp.m_ghostIconTimerP1 = section->m_ghostIconTimers[0];
-		disp.m_ghostIconTimerP2 = section->m_ghostIconTimers[1];
+		disp.mGhostIconTimerP1 = section->mGhostIconTimers[0];
+		disp.mGhostIconTimerP2 = section->mGhostIconTimers[1];
 
-		int marbleCountP1 = section->m_marbleCountP1;
-		int marbleCountP2 = section->m_marbleCountP2;
+		int marbleCountP1 = section->mMarbleCountP1;
+		int marbleCountP2 = section->mMarbleCountP2;
 
-		if (section->m_marbleCountP1 == 4 && moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) {
-			marbleCountP1 = section->m_marbleCountP1 - 1;
+		if (section->mMarbleCountP1 == 4 && moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+			marbleCountP1 = section->mMarbleCountP1 - 1;
 		}
 
-		if (section->m_marbleCountP2 == 4 && moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) {
-			marbleCountP2 = section->m_marbleCountP2 - 1;
+		if (section->mMarbleCountP2 == 4 && moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+			marbleCountP2 = section->mMarbleCountP2 - 1;
 		}
 
-		disp.m_marbleCountP1 = marbleCountP1;
-		disp.m_marbleCountP2 = marbleCountP2;
+		disp.mMarbleCountP1 = marbleCountP1;
+		disp.mMarbleCountP2 = marbleCountP2;
 
-		bool moviePlayerActive = moviePlayer->m_flags & MoviePlayer::IS_ACTIVE;
+		bool moviePlayerActive = moviePlayer->mFlags & MoviePlayer::IS_ACTIVE;
 
 		bool blueMarble, redMarble;
 		getMarbleLoss(redMarble, blueMarble);
@@ -1049,27 +1049,27 @@ void GameState::update_GameChallenge(VsGameSection* section)
 
 	og::Screen::DispMemberChallenge2P disp;
 
-	disp.m_dataGame.m_floorNum = section->getCurrFloor();
+	disp.mDataGame.mFloorNum = section->getCurrFloor();
 
-	disp.m_pokos            = section->m_pokoCount;
-	disp.m_floorExtendTimer = m_floorExtendTimer;
-	disp.m_timeLimit        = section->m_timeLimit;
-	disp.m_deadPiki         = section->m_deadPikiCount;
+	disp.mPokos            = section->mPokoCount;
+	disp.mFloorExtendTimer = mFloorExtendTimer;
+	disp.mTimeLimit        = section->mTimeLimit;
+	disp.mDeadPiki         = section->mDeadPikiCount;
 
-	Navi* olimar                      = naviMgr->getAt(0);
-	disp.m_olimarData.m_followPikis   = GameStat::formationPikis.m_counter[0];
-	disp.m_olimarData.m_nextThrowPiki = olimar->ogGetNextThrowPiki();
-	disp.m_olimarData.m_dope1Count    = playData->getDopeCount(1);
-	disp.m_olimarData.m_dope0Count    = playData->getDopeCount(0);
-	disp.m_olimarData.m_naviLifeRatio = olimar->getLifeRatio();
+	Navi* olimar                    = naviMgr->getAt(0);
+	disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
+	disp.mOlimarData.mNextThrowPiki = olimar->ogGetNextThrowPiki();
+	disp.mOlimarData.mDope1Count    = playData->getDopeCount(1);
+	disp.mOlimarData.mDope0Count    = playData->getDopeCount(0);
+	disp.mOlimarData.mNaviLifeRatio = olimar->getLifeRatio();
 
-	Navi* louie                      = naviMgr->getAt(1);
-	disp.m_louieData.m_followPikis   = GameStat::formationPikis.m_counter[1];
-	disp.m_louieData.m_nextThrowPiki = louie->ogGetNextThrowPiki();
-	disp.m_louieData.m_dope1Count    = playData->getDopeCount(1);
-	disp.m_louieData.m_dope0Count    = playData->getDopeCount(0);
-	disp.m_louieData.m_naviLifeRatio = louie->getLifeRatio();
-	disp.m_dataGame.m_mapPikminCount = GameStat::getMapPikmins(-1);
+	Navi* louie                    = naviMgr->getAt(1);
+	disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
+	disp.mLouieData.mNextThrowPiki = louie->ogGetNextThrowPiki();
+	disp.mLouieData.mDope1Count    = playData->getDopeCount(1);
+	disp.mLouieData.mDope0Count    = playData->getDopeCount(0);
+	disp.mLouieData.mNaviLifeRatio = louie->getLifeRatio();
+	disp.mDataGame.mMapPikminCount = GameStat::getMapPikmins(-1);
 	Screen::gGame2DMgr->setDispMember(&disp);
 }
 

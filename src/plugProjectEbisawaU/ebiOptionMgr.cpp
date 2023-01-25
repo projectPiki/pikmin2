@@ -580,9 +580,9 @@ void Option::FSMState::do_exec(ebi::Option::TMgr*) { }
  */
 void Option::FSMState_ScreenOpen::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
-	obj->m_optionScreen._0C8.loadRam();
-	obj->m_optionScreen._0DC.loadRam();
-	obj->m_optionScreen.openScreen(nullptr);
+	obj->mOptionScreen._0C8.loadRam();
+	obj->mOptionScreen._0DC.loadRam();
+	obj->mOptionScreen.openScreen(nullptr);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -614,7 +614,7 @@ void Option::FSMState_ScreenOpen::do_init(ebi::Option::TMgr* obj, Game::StateArg
  */
 void Option::FSMState_ScreenOpen::do_exec(ebi::Option::TMgr* obj)
 {
-	if (!obj->m_optionScreen.isWaitScreen()) {
+	if (!obj->mOptionScreen.isWaitScreen()) {
 		transit(obj, ScreenWait, nullptr);
 	}
 	/*
@@ -686,7 +686,7 @@ namespace ebi {
  */
 void Option::FSMState_ScreenWait::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
-	obj->m_optionScreen._010 = 1;
+	obj->mOptionScreen._010 = 1;
 	/*
 	li       r0, 1
 	stb      r0, 0x10(r4)
@@ -812,7 +812,7 @@ lbl_803CEE48:
 void Option::FSMState_ScreenClose::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
 	obj->_F20 = 1;
-	obj->m_optionScreen.closeScreen(nullptr);
+	obj->mOptionScreen.closeScreen(nullptr);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -839,7 +839,7 @@ void Option::FSMState_ScreenClose::do_init(ebi::Option::TMgr* obj, Game::StateAr
  */
 void Option::FSMState_ScreenClose::do_exec(ebi::Option::TMgr* obj)
 {
-	if (obj->m_optionScreen.isFinishScreen()) {
+	if (obj->mOptionScreen.isFinishScreen()) {
 		obj->goEnd_();
 	}
 	/*
@@ -874,7 +874,7 @@ lbl_803CEED8:
  */
 void Option::FSMState_WaitCloseForNoCard::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
-	u32 v1 = __cvt_fp2unsigned(1.0f / sys->m_secondsPerFrame);
+	u32 v1 = __cvt_fp2unsigned(1.0f / sys->mSecondsPerFrame);
 	_10    = v1;
 	_14    = v1;
 	/*
@@ -961,7 +961,7 @@ lbl_803CEF9C:
  */
 void Option::FSMState_WorldMapInfoWindow::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
-	::Screen::gGame2DMgr->m_screenMgr->reset();
+	::Screen::gGame2DMgr->mScreenMgr->reset();
 	og::Screen::DispMemberWorldMapInfoWin0 disp;
 	::Screen::gGame2DMgr->open_WorldMapInfoWin0(disp);
 	/*
@@ -1027,7 +1027,7 @@ void Option::FSMState_WorldMapInfoWindow::do_exec(ebi::Option::TMgr* obj)
 		transit(obj, ScreenWait, nullptr);
 		break;
 	case 1:
-		obj->m_optionScreen._0DC.saveRam();
+		obj->mOptionScreen._0DC.saveRam();
 		transit(obj, ScreenClose, nullptr);
 		break;
 	default:
@@ -1237,8 +1237,8 @@ lbl_803CF29C:
  */
 void Option::FSMState_SaveMgr::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
-	obj->m_optionScreen._010 = 0;
-	obj->m_saveMgr->start();
+	obj->mOptionScreen._010 = 0;
+	obj->mSaveMgr->start();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1261,8 +1261,8 @@ void Option::FSMState_SaveMgr::do_init(ebi::Option::TMgr* obj, Game::StateArg* a
  */
 void Option::FSMState_SaveMgr::do_exec(ebi::Option::TMgr* obj)
 {
-	if (obj->m_saveMgr->isFinish()) {
-		switch (obj->m_saveMgr->_474) {
+	if (obj->mSaveMgr->isFinish()) {
+		switch (obj->mSaveMgr->_474) {
 		case 0:
 			transit(obj, ScreenClose, nullptr);
 			break;
@@ -1363,17 +1363,17 @@ lbl_803CF3CC:
  * Size:	0000C0
  */
 Option::TMgr::TMgr()
-    : m_optionScreen()
+    : mOptionScreen()
     , _F20(0)
-    , m_stateMachine()
+    , mStateMachine()
 {
-	m_stateMachine.init(this);
-	m_stateMachine.start(this, Standby, nullptr);
-	m_saveMgr                 = ebi::Save::TMgr::createInstance();
-	m_saveMgr->_470           = 1;
-	m_saveMgr->_478           = 1;
-	m_saveMgr->m_isAutosaveOn = true;
-	m_saveMgr->_47A           = 0;
+	mStateMachine.init(this);
+	mStateMachine.start(this, Standby, nullptr);
+	mSaveMgr                = ebi::Save::TMgr::createInstance();
+	mSaveMgr->_470          = 1;
+	mSaveMgr->_478          = 1;
+	mSaveMgr->mIsAutosaveOn = true;
+	mSaveMgr->_47A          = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1742,7 +1742,7 @@ blr
 Screen::TOption::TOption()
     : TScreenBase()
     , _010(1)
-    , m_padInterfaces()
+    , mPadInterfaces()
     , _0C8()
     , _0DC()
     , _0F0(0)
@@ -2240,8 +2240,8 @@ blr
 E2DFullFontColor::E2DFullFontColor()
     : _00(0xFFFFFFFF)
     , _04(0xFFFFFFFF)
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
 {
 	/*
 li       r0, -1
@@ -2419,11 +2419,11 @@ blr
 void Option::TMgr::loadResource()
 {
 	sys->heapStatusStart("Option::TMgr::loadResource", nullptr);
-	m_optionScreen.loadResource();
+	mOptionScreen.loadResource();
 	sys->heapStatusEnd("Option::TMgr::loadResource");
-	m_saveMgr->m_saveMenu->loadResource();
-	m_saveMgr->m_memoryCard->loadResource(JKRHeap::sCurrentHeap);
-	sys->m_cardMgr->loadResource(JKRHeap::sCurrentHeap);
+	mSaveMgr->mSaveMenu->loadResource();
+	mSaveMgr->mMemoryCard->loadResource(JKRHeap::sCurrentHeap);
+	sys->mCardMgr->loadResource(JKRHeap::sCurrentHeap);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2469,12 +2469,12 @@ void Option::TMgr::loadResource()
  */
 void Option::TMgr::setController(Controller* controller)
 {
-	m_controller = controller;
-	m_optionScreen.setController(controller);
+	mController = controller;
+	mOptionScreen.setController(controller);
 	// TODO: Did Save::TMgr have an inlined setController?
-	m_saveMgr->m_controller               = controller;
-	m_saveMgr->m_saveMenu->m_controller   = controller;
-	m_saveMgr->m_memoryCard->m_controller = controller;
+	mSaveMgr->mController              = controller;
+	mSaveMgr->mSaveMenu->mController   = controller;
+	mSaveMgr->mMemoryCard->mController = controller;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2505,7 +2505,7 @@ void Option::TMgr::setController(Controller* controller)
  */
 void Option::TMgr::start()
 {
-	m_stateMachine.transit(this, LoadOption, nullptr);
+	mStateMachine.transit(this, LoadOption, nullptr);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2533,9 +2533,9 @@ void Option::TMgr::start()
 void Option::TMgr::forceQuit()
 {
 	// UNUSED FUNCTION
-	m_optionScreen.killScreen();
-	m_saveMgr->forceQuit();
-	::Screen::gGame2DMgr->m_screenMgr->reset();
+	mOptionScreen.killScreen();
+	mSaveMgr->forceQuit();
+	::Screen::gGame2DMgr->mScreenMgr->reset();
 }
 
 /*
@@ -2566,7 +2566,7 @@ bool Option::TMgr::isFinish()
  */
 void Option::TMgr::goEnd_()
 {
-	m_stateMachine.transit(this, Standby, nullptr);
+	mStateMachine.transit(this, Standby, nullptr);
 	forceQuit();
 	/*
 	stwu     r1, -0x10(r1)
@@ -2611,11 +2611,11 @@ void Option::TMgr::goEnd_()
 void Option::TMgr::update()
 {
 	_F20 = 0;
-	m_stateMachine.exec(this);
+	mStateMachine.exec(this);
 	if (getStateID()) {
-		sys->m_cardMgr->update();
-		m_optionScreen.update();
-		m_saveMgr->update();
+		sys->mCardMgr->update();
+		mOptionScreen.update();
+		mSaveMgr->update();
 	}
 	::Screen::gGame2DMgr->update();
 	/*
@@ -2669,12 +2669,12 @@ lbl_803D02EC:
 void Option::TMgr::draw()
 {
 	if (getStateID()) {
-		sys->m_gfx->m_perspGraph.setPort();
-		m_optionScreen.draw();
-		sys->m_gfx->m_perspGraph.setPort();
-		m_saveMgr->draw();
+		sys->mGfx->mPerspGraph.setPort();
+		mOptionScreen.draw();
+		sys->mGfx->mPerspGraph.setPort();
+		mSaveMgr->draw();
 	}
-	::Screen::gGame2DMgr->draw(*sys->m_gfx);
+	::Screen::gGame2DMgr->draw(*sys->mGfx);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2807,7 +2807,7 @@ lbl_803D042C:
  */
 void E2DCallBack_Base::update()
 {
-	if (m_isEnabled) {
+	if (mIsEnabled) {
 		do_update();
 	}
 	/*
@@ -2844,7 +2844,7 @@ void E2DCallBack_Base::do_update() { }
  */
 void E2DCallBack_Base::draw(Graphics& gfx, J2DGrafContext& context)
 {
-	if (m_isEnabled) {
+	if (mIsEnabled) {
 		do_draw(gfx, context);
 	}
 	/*

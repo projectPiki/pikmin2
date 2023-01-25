@@ -18,9 +18,9 @@ namespace Game {
 void Plants::Obj::setParameters()
 {
 	EnemyBase::setParameters();
-	Vector3f pos = m_position;
-	pos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_territoryRadius.m_value;
-	m_curLodSphere.m_position = pos;
+	Vector3f pos = mPosition;
+	pos.y += static_cast<EnemyParmsBase*>(mParms)->mGeneral.mTerritoryRadius.mValue;
+	mCurLodSphere.mPosition = pos;
 }
 
 /*
@@ -51,17 +51,17 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 	hardConstraintOn();
 	_2BC = 0;
 	_2BD = 0;
-	m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
+	mObjMatrix.makeSRT(mScale, mRotation, mPosition);
 
-	P2ASSERTLINE(83, m_model);
+	P2ASSERTLINE(83, mModel);
 
 	startMotion(0, nullptr);
 
-	SysShape::Animator* animator                                       = &m_animator->getAnimator();
-	SysShape::Model* model                                             = m_model;
-	model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());
-	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-	m_model->m_j3dModel->calc();
+	SysShape::Animator* animator                                  = &mAnimator->getAnimator();
+	SysShape::Model* model                                        = mModel;
+	model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());
+	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	mModel->mJ3dModel->calc();
 
 	setCollisionFlick(false);
 
@@ -69,9 +69,9 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 		shadowMgr->killShadow(this);
 	}
 
-	m_spawnsSpectralids = false;
-	if (m_pelletInfo.m_color == 0 && m_pelletInfo.m_size == 1) {
-		m_spawnsSpectralids = true;
+	mSpawnsSpectralids = false;
+	if (mPelletInfo.mColor == 0 && mPelletInfo.mSize == 1) {
+		mSpawnsSpectralids = true;
 	}
 }
 
@@ -80,7 +80,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
  * Address:	803585E4
  * Size:	0000EC
  */
-Plants::Obj::Obj() { m_animator = new ProperAnimator; }
+Plants::Obj::Obj() { mAnimator = new ProperAnimator; }
 
 /*
  * --INFO--
@@ -102,7 +102,7 @@ void Plants::Obj::update()
 void Plants::Obj::doAnimation()
 {
 	EnemyBase::doAnimation();
-	if (_2BC && m_curAnim->m_isPlaying && (u32)m_curAnim->m_type == KEYEVENT_END) {
+	if (_2BC && mCurAnim->mIsPlaying && (u32)mCurAnim->mType == KEYEVENT_END) {
 		_2BC = 0;
 		_2BD = 0;
 		setZukanVisible(false);
@@ -117,12 +117,12 @@ void Plants::Obj::doAnimation()
 void Plants::Obj::doAnimationCullingOff()
 {
 	if (_2BC) {
-		m_curAnim->m_isPlaying = false;
+		mCurAnim->mIsPlaying = false;
 		doAnimationUpdateAnimator();
-		if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
-			m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
-			PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-			m_model->m_j3dModel->calc();
+		if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+			mObjMatrix.makeSRT(mScale, mRotation, mPosition);
+			PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+			mModel->mJ3dModel->calc();
 		}
 	}
 }
@@ -141,12 +141,12 @@ void Plants::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Plants::Obj::collisionCallback(CollEvent& collEvent)
 {
-	if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
+	if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
 		setCollEvent(collEvent);
-		Creature* creature = collEvent.m_collidingCreature;
+		Creature* creature = collEvent.mCollidingCreature;
 		if (creature) {
 			Vector3f creaturePos = creature->getPosition();
-			if (!(creaturePos.y < m_position.y - 5.0f)) {
+			if (!(creaturePos.y < mPosition.y - 5.0f)) {
 				Vector3f velocity = creature->getVelocity();
 
 				if (FABS(velocity.x) > 1.0f || FABS(velocity.z) > 1.0f) {
@@ -189,14 +189,14 @@ bool Plants::Obj::earthquakeCallBack(Creature* creature, f32 damage)
  */
 void Plants::Obj::touched()
 {
-	if (m_spawnsSpectralids) {
-		m_spawnsSpectralids   = false;
+	if (mSpawnsSpectralids) {
+		mSpawnsSpectralids    = false;
 		ShijimiChou::Mgr* mgr = static_cast<ShijimiChou::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ShijimiChou));
 		if (mgr) {
 			EnemyBirthArg birthArg;
-			birthArg.m_position   = m_position;
-			birthArg.m_position.y = m_position.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight.m_value;
-			birthArg.m_faceDir    = 0.0f;
+			birthArg.mPosition   = mPosition;
+			birthArg.mPosition.y = mPosition.y + static_cast<EnemyParmsBase*>(mParms)->mGeneral.mLifeMeterHeight.mValue;
+			birthArg.mFaceDir    = 0.0f;
 
 			mgr->createGroupByPlants(birthArg, 5);
 		}
@@ -211,7 +211,7 @@ void Plants::Obj::touched()
 void Plants::Obj::touchedSE(Navi* navi)
 {
 	if (navi) {
-		navi->m_soundObj->startSound(PSSE_PL_TOUCH_LEAF, 0);
+		navi->mSoundObj->startSound(PSSE_PL_TOUCH_LEAF, 0);
 	}
 }
 
@@ -223,7 +223,7 @@ void Plants::Obj::touchedSE(Navi* navi)
 void HikariKinoko::Obj::touchedSE(Navi* navi)
 {
 	if (navi) {
-		navi->m_soundObj->startSound(PSSE_PL_TOUCH_KINOKO, 0);
+		navi->mSoundObj->startSound(PSSE_PL_TOUCH_KINOKO, 0);
 	}
 }
 
@@ -246,21 +246,21 @@ void Watage::Obj::doEntry()
  */
 void Watage::Obj::touched()
 {
-	if (m_spawnsSpectralids) {
-		m_spawnsSpectralids   = false;
+	if (mSpawnsSpectralids) {
+		mSpawnsSpectralids    = false;
 		ShijimiChou::Mgr* mgr = static_cast<ShijimiChou::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ShijimiChou));
 		if (mgr) {
 			EnemyBirthArg birthArg;
-			birthArg.m_position   = m_position;
-			birthArg.m_position.y = m_position.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight.m_value;
-			birthArg.m_faceDir    = 0.0f;
+			birthArg.mPosition   = mPosition;
+			birthArg.mPosition.y = mPosition.y + static_cast<EnemyParmsBase*>(mParms)->mGeneral.mLifeMeterHeight.mValue;
+			birthArg.mFaceDir    = 0.0f;
 
 			mgr->createGroupByPlants(birthArg, 5);
 		}
 	}
 
 	efx::TWatage watageEFX;
-	efx::Arg arg(m_position);
+	efx::Arg arg(mPosition);
 
 	watageEFX.create(&arg);
 }
@@ -285,7 +285,7 @@ void Nekojarashi::Obj::doEntry()
 void DiodeRed::Obj::touchedSE(Navi* navi)
 {
 	if (navi) {
-		navi->m_soundObj->startSound(PSSE_PL_TOUCH_DIODE, 0);
+		navi->mSoundObj->startSound(PSSE_PL_TOUCH_DIODE, 0);
 	}
 }
 
@@ -309,7 +309,7 @@ void DiodeRed::Obj::doEntry()
 void DiodeGreen::Obj::touchedSE(Navi* navi)
 {
 	if (navi) {
-		navi->m_soundObj->startSound(PSSE_PL_TOUCH_DIODE, 0);
+		navi->mSoundObj->startSound(PSSE_PL_TOUCH_DIODE, 0);
 	}
 }
 

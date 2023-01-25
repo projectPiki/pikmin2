@@ -17,7 +17,7 @@ struct CreatureKillArg;
 
 struct Interaction {
 	Interaction(Creature* creature)
-	    : m_creature(creature)
+	    : mCreature(creature)
 	{
 	}
 
@@ -30,7 +30,7 @@ struct Interaction {
 	virtual bool actItem(BaseItem*) { return true; }   // _20 (weak)
 
 	// _00 = VTBL
-	Creature* m_creature; // _04
+	Creature* mCreature; // _04
 };
 
 struct InteractAbsorb : public Interaction {
@@ -74,7 +74,7 @@ struct InteractBattle : public Interaction {
 struct InteractBreakBridge : public Interaction {
 	inline InteractBreakBridge(Creature* creature, f32 damage)
 	    : Interaction(creature)
-	    , m_damage(damage)
+	    , mDamage(damage)
 	{
 	}
 
@@ -82,13 +82,13 @@ struct InteractBreakBridge : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_damage; // _08
+	f32 mDamage; // _08
 };
 
 struct InteractBubble : public Interaction {
 	inline InteractBubble(Creature* parent, f32 damage)
 	    : Interaction(parent)
-	    , m_damage(damage)
+	    , mDamage(damage)
 	{
 	}
 
@@ -97,13 +97,13 @@ struct InteractBubble : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_damage; // _08
+	f32 mDamage; // _08
 };
 
 struct InteractBury : public Interaction {
 	inline InteractBury(Creature* parent, f32 damage)
 	    : Interaction(parent)
-	    , m_damage(damage)
+	    , mDamage(damage)
 	{
 	}
 
@@ -112,13 +112,13 @@ struct InteractBury : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_damage; // _08, damage to Navi if hit
+	f32 mDamage; // _08, damage to Navi if hit
 };
 
 struct InteractDope : public Interaction {
 	inline InteractDope(Creature* parent, int sprayType)
 	    : Interaction(parent)
-	    , m_sprayType(sprayType)
+	    , mSprayType(sprayType)
 	{
 	}
 
@@ -127,7 +127,7 @@ struct InteractDope : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	int m_sprayType; // _08
+	int mSprayType; // _08
 };
 
 struct InteractDrop : public Interaction {
@@ -145,7 +145,7 @@ struct InteractDrop : public Interaction {
 struct InteractEarthquake : public Interaction {
 	inline InteractEarthquake(Creature* parent, f32 bounceFactor)
 	    : Interaction(parent)
-	    , m_bounceFactor(bounceFactor)
+	    , mBounceFactor(bounceFactor)
 	{
 	}
 
@@ -153,7 +153,7 @@ struct InteractEarthquake : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_bounceFactor; // _08
+	f32 mBounceFactor; // _08
 };
 
 struct InteractEat : public Interaction {
@@ -174,7 +174,7 @@ struct InteractEat : public Interaction {
 struct InteractFallMeck : public Interaction {
 	inline InteractFallMeck(Creature* parent, f32 damage)
 	    : Interaction(parent)
-	    , m_damage(damage)
+	    , mDamage(damage)
 	{
 	}
 
@@ -183,7 +183,7 @@ struct InteractFallMeck : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_damage; // _08
+	f32 mDamage; // _08
 };
 
 struct InteractFarmHaero : public Interaction {
@@ -219,7 +219,7 @@ struct InteractFarmKarero : public Interaction {
 struct InteractFire : public Interaction {
 	inline InteractFire(Creature* parent, f32 damage)
 	    : Interaction(parent)
-	    , m_damage(damage)
+	    , mDamage(damage)
 	{
 	}
 
@@ -228,15 +228,15 @@ struct InteractFire : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_damage; // _08
+	f32 mDamage; // _08
 };
 
 struct InteractFlick : public Interaction {
 	inline InteractFlick(Creature* parent, f32 knockback, f32 damage, f32 angle)
 	    : Interaction(parent)
-	    , m_knockback(knockback)
-	    , m_intensity(damage)
-	    , m_angle(angle)
+	    , mKnockback(knockback)
+	    , mIntensity(damage)
+	    , mAngle(angle)
 	{
 	}
 
@@ -246,9 +246,9 @@ struct InteractFlick : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_knockback; // _08
-	f32 m_intensity; // _0C
-	f32 m_angle;     // _10
+	f32 mKnockback; // _08
+	f32 mIntensity; // _0C
+	f32 mAngle;     // _10
 };
 
 struct InteractFlockAttack : public Interaction {
@@ -274,7 +274,7 @@ struct InteractFlyCollision : public Interaction {
 	inline InteractFlyCollision(Creature* parent, f32 p1, CollPart* collpart)
 	    : Interaction(parent)
 	    , _08(p1)
-	    , m_collPart(collpart)
+	    , mCollPart(collpart)
 	{
 	}
 
@@ -282,8 +282,8 @@ struct InteractFlyCollision : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 _08;              // _08
-	CollPart* m_collPart; // _0C
+	f32 _08;             // _08
+	CollPart* mCollPart; // _0C
 };
 
 // Whistle
@@ -332,7 +332,7 @@ struct InteractFuefukiTimerReset : public Interaction {
 struct InteractGas : public Interaction {
 	inline InteractGas(Creature* parent, f32 damage)
 	    : Interaction(parent)
-	    , m_damage(damage)
+	    , mDamage(damage)
 	{
 	}
 
@@ -341,7 +341,7 @@ struct InteractGas : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_damage; // _08
+	f32 mDamage; // _08
 };
 
 struct InteractGotKey : public Interaction {
@@ -371,7 +371,7 @@ struct InteractKaisan : public Interaction {
 struct InteractKill : public Interaction {
 	inline InteractKill(Creature* parent, CreatureKillArg* killArg)
 	    : Interaction(parent)
-	    , m_killArg(killArg)
+	    , mKillArg(killArg)
 	{
 	}
 
@@ -380,14 +380,14 @@ struct InteractKill : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	CreatureKillArg* m_killArg; // _08
+	CreatureKillArg* mKillArg; // _08
 };
 
 // Wait timer for carriable objects after they've been dropped
 struct InteractMattuan : public Interaction {
 	inline InteractMattuan(Creature* parent, f32 timerLength)
 	    : Interaction(parent)
-	    , m_waitTimer(timerLength)
+	    , mWaitTimer(timerLength)
 	{
 	}
 
@@ -395,14 +395,14 @@ struct InteractMattuan : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_waitTimer; // _08
+	f32 mWaitTimer; // _08
 };
 
 struct InteractPress : public Interaction {
 	inline InteractPress(Creature* parent, f32 damage, CollPart* collpart)
 	    : Interaction(parent)
-	    , m_damage(damage)
-	    , m_collPart(collpart)
+	    , mDamage(damage)
+	    , mCollPart(collpart)
 	{
 	}
 
@@ -412,8 +412,8 @@ struct InteractPress : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_damage;         // _08
-	CollPart* m_collPart; // _0C
+	f32 mDamage;         // _08
+	CollPart* mCollPart; // _0C
 };
 
 struct InteractSuck : public Interaction {
@@ -470,20 +470,20 @@ struct InteractSuikomi_Test : public Interaction {
 	inline InteractSuikomi_Test(Creature* parent, Vector3f* vec, u32 p1, CollPart* collpart) // probably
 	    : Interaction(parent)
 	{
-		_08.x      = vec->x;
-		_08.y      = vec->y;
-		_08.z      = vec->z;
-		_14        = p1;
-		m_collPart = collpart;
+		_08.x     = vec->x;
+		_08.y     = vec->y;
+		_08.z     = vec->z;
+		_14       = p1;
+		mCollPart = collpart;
 	}
 
 	virtual bool actPiki(Piki*); // _0C
 
 	// _00 = VTBL
 	// _04 = Creature* (EnemyBase*)
-	Vector3f _08;         // _08
-	u32 _14;              // _14, unknown
-	CollPart* m_collPart; // _18
+	Vector3f _08;        // _08
+	u32 _14;             // _14, unknown
+	CollPart* mCollPart; // _18
 };
 
 ///////////////////////////////////////
@@ -491,8 +491,8 @@ struct InteractSuikomi_Test : public Interaction {
 struct InteractAttack : public Interaction {
 	inline InteractAttack(Creature* parent, f32 damage, CollPart* collpart)
 	    : Interaction(parent)
-	    , m_damage(damage)
-	    , m_collPart(collpart)
+	    , mDamage(damage)
+	    , mCollPart(collpart)
 	{
 	}
 
@@ -503,8 +503,8 @@ struct InteractAttack : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_damage;         // _08
-	CollPart* m_collPart; // _0C
+	f32 mDamage;         // _08
+	CollPart* mCollPart; // _0C
 };
 
 struct InteractHipdrop : public InteractAttack {
@@ -553,10 +553,10 @@ struct InteractWind : public Interaction {
 	inline InteractWind(Creature* parent, f32 force, Vector3f* direction)
 	    : Interaction(parent)
 	{
-		m_damage      = force;
-		m_direction.x = direction->x;
-		m_direction.y = direction->y;
-		m_direction.z = direction->z;
+		mDamage      = force;
+		mDirection.x = direction->x;
+		mDirection.y = direction->y;
+		mDirection.z = direction->z;
 	}
 
 	virtual bool actPiki(Piki*); // _0C
@@ -564,8 +564,8 @@ struct InteractWind : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 m_damage;         // _08, damage or force?
-	Vector3f m_direction; // _0C
+	f32 mDamage;         // _08, damage or force?
+	Vector3f mDirection; // _0C
 };
 
 struct InteractBomb : public InteractWind {

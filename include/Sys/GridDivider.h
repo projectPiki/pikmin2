@@ -27,17 +27,17 @@ struct GridInfo {
  */
 struct GridDivider : public TriDivider {
 	GridDivider()
-	    : m_boundingBox()
+	    : mBoundingBox()
 	{
-		m_triIndexLists = nullptr;
-		m_maxZ          = 0;
-		m_maxX          = 0;
+		mTriIndexLists = nullptr;
+		mMaxZ          = 0;
+		mMaxX          = 0;
 	}
 
 	virtual ~GridDivider() // _08 (weak)
 	{
-		if (&m_maxX)
-			delete[] m_triIndexLists;
+		if (&mMaxX)
+			delete[] mTriIndexLists;
 	}
 	virtual f32 getMinY(Vector3f&);                                       // _10
 	virtual TriIndexList* findTriLists(Sphere&);                          // _14
@@ -54,17 +54,17 @@ struct GridDivider : public TriDivider {
 
 	inline void readIndexList(Stream& stream)
 	{
-		for (int i = 0; i < (m_maxX * m_maxZ); i++) {
-			m_triIndexLists[i].read(stream);
+		for (int i = 0; i < (mMaxX * mMaxZ); i++) {
+			mTriIndexLists[i].read(stream);
 		}
 	}
 
-	int m_maxX;                    // _20
-	int m_maxZ;                    // _24
-	TriIndexList* m_triIndexLists; // _28
-	BoundBox m_boundingBox;        // _2C
-	f32 m_scaleX;                  // _44
-	f32 m_scaleZ;                  // _48
+	int mMaxX;                    // _20
+	int mMaxZ;                    // _24
+	TriIndexList* mTriIndexLists; // _28
+	BoundBox mBoundingBox;        // _2C
+	f32 mScaleX;                  // _44
+	f32 mScaleZ;                  // _48
 };
 } // namespace Sys
 

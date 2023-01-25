@@ -16,13 +16,13 @@ namespace Game {
  * Size:	000070
  */
 EnemyBirthArg::EnemyBirthArg()
-    : m_position(Vector3f(0.0f))
-    , m_faceDir(0.0f)
-    , m_tekiBirthType(0)
-    , m_generator(nullptr)
-    , m_typeID(EnemyTypeID::EnemyID_NULL)
-    , m_existenceLength(0.0f)
-    , m_isInPiklopedia(true)
+    : mPosition(Vector3f(0.0f))
+    , mFaceDir(0.0f)
+    , mTekiBirthType(0)
+    , mGenerator(nullptr)
+    , mTypeID(EnemyTypeID::EnemyID_NULL)
+    , mExistenceLength(0.0f)
+    , mIsInPiklopedia(true)
 {
 }
 
@@ -33,16 +33,16 @@ EnemyBirthArg::EnemyBirthArg()
  */
 EnemyMgrBase::EnemyMgrBase(int objLimit, u8 modelType)
 {
-	m_modelData           = nullptr;
-	m_animMgr             = nullptr;
-	m_modelType           = modelType;
-	m_collPartFactory     = nullptr;
-	m_objLimit            = objLimit;
-	m_objCount            = 0;
-	m_parms               = nullptr;
-	m_generator           = nullptr;
-	m_stoneInfo.m_length  = 0;
-	m_stoneInfo.m_objList = nullptr;
+	mModelData          = nullptr;
+	mAnimMgr            = nullptr;
+	mModelType          = modelType;
+	mCollPartFactory    = nullptr;
+	mObjLimit           = objLimit;
+	mObjCount           = 0;
+	mParms              = nullptr;
+	mGenerator          = nullptr;
+	mStoneInfo.mLength  = 0;
+	mStoneInfo.mObjList = nullptr;
 }
 
 /*
@@ -52,7 +52,7 @@ EnemyMgrBase::EnemyMgrBase(int objLimit, u8 modelType)
  */
 void EnemyMgrBase::startMovie()
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive)) {
 			enemy->startMovie();
@@ -67,7 +67,7 @@ void EnemyMgrBase::startMovie()
  */
 void EnemyMgrBase::endMovie()
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive)) {
 			enemy->endMovie();
@@ -82,10 +82,10 @@ void EnemyMgrBase::endMovie()
  */
 void EnemyMgrBase::alloc()
 {
-	m_objCount = 0;
-	createObj(m_objLimit);
+	mObjCount = 0;
+	createObj(mObjLimit);
 
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		enemy->constructor();
 	}
@@ -100,16 +100,16 @@ void EnemyMgrBase::alloc()
  */
 void EnemyMgrBase::doAnimation()
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
-			sys->m_timers->_start("e-upd", true);
+			sys->mTimers->_start("e-upd", true);
 			enemy->update();
-			sys->m_timers->_stop("e-upd");
+			sys->mTimers->_stop("e-upd");
 
-			sys->m_timers->_start("e-doa", true);
+			sys->mTimers->_start("e-doa", true);
 			enemy->doAnimation();
-			sys->m_timers->_stop("e-doa");
+			sys->mTimers->_stop("e-doa");
 		}
 	}
 }
@@ -121,7 +121,7 @@ void EnemyMgrBase::doAnimation()
  */
 void EnemyMgrBase::doEntry()
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 			enemy->doEntry();
@@ -136,7 +136,7 @@ void EnemyMgrBase::doEntry()
  */
 void EnemyMgrBase::doSetView(int viewport)
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive)) {
 			enemy->doSetView(viewport);
@@ -151,7 +151,7 @@ void EnemyMgrBase::doSetView(int viewport)
  */
 void EnemyMgrBase::doViewCalc()
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive)) {
 			enemy->doViewCalc();
@@ -166,9 +166,9 @@ void EnemyMgrBase::doViewCalc()
  */
 void EnemyMgrBase::doSimulation(float arg)
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_pellet) {
+		if (enemy->mPellet) {
 			enemy->doSimulationCarcass(arg);
 		} else {
 			if (enemy->isEvent(0, EB_IsAlive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
@@ -185,7 +185,7 @@ void EnemyMgrBase::doSimulation(float arg)
  */
 void EnemyMgrBase::doDirectDraw(Graphics& graphics)
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 			enemy->doDirectDraw(graphics);
@@ -200,12 +200,12 @@ void EnemyMgrBase::doDirectDraw(Graphics& graphics)
  */
 void* EnemyMgrBase::getNext(void* object)
 {
-	for (int i = (int)object + 1; i < m_objLimit; i++) {
+	for (int i = (int)object + 1; i < mObjLimit; i++) {
 		if (getEnemy(i)->isEvent(0, EB_IsAlive)) {
 			return (void*)i;
 		}
 	}
-	return (void*)m_objLimit;
+	return (void*)mObjLimit;
 }
 
 /*
@@ -215,33 +215,33 @@ void* EnemyMgrBase::getNext(void* object)
  */
 EnemyBase* EnemyMgrBase::birth(Game::EnemyBirthArg& arg)
 {
-	if (arg.m_typeID == ~EnemyTypeID::EnemyID_Pelplant) {
-		arg.m_typeID = getEnemyTypeID();
+	if (arg.mTypeID == ~EnemyTypeID::EnemyID_Pelplant) {
+		arg.mTypeID = getEnemyTypeID();
 	}
 
-	EnemyBase* enemy = getEnemyByID(arg.m_typeID);
+	EnemyBase* enemy = getEnemyByID(arg.mTypeID);
 
 	if (enemy) {
-		int objs = m_objCount;
-		m_objCount++;
-		enemy->birth(arg.m_position, arg.m_faceDir);
-		enemy->m_existDuration = arg.m_existenceLength;
-		enemy->setOtakaraCode(arg.m_otakaraItemCode);
+		int objs = mObjCount;
+		mObjCount++;
+		enemy->birth(arg.mPosition, arg.mFaceDir);
+		enemy->mExistDuration = arg.mExistenceLength;
+		enemy->setOtakaraCode(arg.mOtakaraItemCode);
 
-		enemy->m_pelletInfo.m_color       = arg.m_pelletInfo.m_color;
-		enemy->m_pelletInfo.m_size        = arg.m_pelletInfo.m_size;
-		enemy->m_pelletInfo.m_minPellets  = arg.m_pelletInfo.m_minPellets;
-		enemy->m_pelletInfo.m_maxPellets  = arg.m_pelletInfo.m_maxPellets;
-		enemy->m_pelletInfo.m_spawnChance = arg.m_pelletInfo.m_spawnChance;
+		enemy->mPelletInfo.mColor       = arg.mPelletInfo.mColor;
+		enemy->mPelletInfo.mSize        = arg.mPelletInfo.mSize;
+		enemy->mPelletInfo.mMinPellets  = arg.mPelletInfo.mMinPellets;
+		enemy->mPelletInfo.mMaxPellets  = arg.mPelletInfo.mMaxPellets;
+		enemy->mPelletInfo.mSpawnChance = arg.mPelletInfo.mSpawnChance;
 
-		if (arg.m_isInPiklopedia) {
-			enemy->m_inPiklopedia = true;
+		if (arg.mIsInPiklopedia) {
+			enemy->mInPiklopedia = true;
 		} else {
-			enemy->m_inPiklopedia = false;
+			enemy->mInPiklopedia = false;
 		}
 
-		enemy->m_dropGroup            = arg.m_tekiBirthType;
-		EnemyGeneratorBase* generator = arg.m_generator;
+		enemy->mDropGroup             = arg.mTekiBirthType;
+		EnemyGeneratorBase* generator = arg.mGenerator;
 
 		if (generator) {
 			if (EnemyInitialParamBase* param = static_cast<EnemyInitialParamBase*>(generator->getInitialParam())) {
@@ -262,20 +262,20 @@ void EnemyMgrBase::kill(EnemyBase* enemy)
 {
 	if (enemy->isEvent(0, EB_IsAlive)) {
 		EnemyBase* currEnemy;
-		for (int i = 0; i < m_objLimit; i++) {
+		for (int i = 0; i < mObjLimit; i++) {
 			currEnemy = getEnemy(i);
 			if (currEnemy == enemy) {
 				currEnemy->disableEvent(0, EB_IsAlive);
-				m_objCount--;
+				mObjCount--;
 				break;
 			}
 		}
 		return;
 	}
 
-	EnemyFSMState* state = enemy->m_currentLifecycleState;
+	EnemyFSMState* state = enemy->mCurrentLifecycleState;
 	if (state) {
-		JUT_PANICLINE(447, "kill dead enemy. %s %d\n state:%s", enemy->getCreatureName(), enemy->getCreatureID(), state->m_name);
+		JUT_PANICLINE(447, "kill dead enemy. %s %d\n state:%s", enemy->getCreatureName(), enemy->getCreatureID(), state->mName);
 	} else {
 		JUT_PANICLINE(453, "kill dead enemy. %s %d\n state:%d", enemy->getCreatureName(), enemy->getCreatureID(), enemy->getStateID());
 	}
@@ -288,15 +288,15 @@ void EnemyMgrBase::kill(EnemyBase* enemy)
  */
 void EnemyMgrBase::killAll(CreatureKillArg* arg)
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive)) {
 			enemy->kill(arg);
 		}
 	}
 
-	if (m_objCount != 0) {
-		JUT_PANICLINE(480, "mNumObjects is not zero. [%d] \n", m_objCount);
+	if (mObjCount != 0) {
+		JUT_PANICLINE(480, "mNumObjects is not zero. [%d] \n", mObjCount);
 	}
 }
 
@@ -320,14 +320,14 @@ void Game::EnemyMgrBase::setupSoundViewerAndBas()
 {
 	PSGame::SoundCreatureMgr soundMgr;
 
-	if (isValidEnemyTypeID() && (m_animMgr != nullptr)) {
+	if (isValidEnemyTypeID() && (mAnimMgr != nullptr)) {
 		char* resName   = EnemyInfoFunc::getEnemyResName(getEnemyTypeID(), 0xFFFF);
 		char* enemyName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 
 		JKRFileLoader* fileLoader = PSSystem::getLoaderInstance();
 
-		m_animMgr->connectBasArc(resName, enemyName, fileLoader);
-		m_animMgr->registerSoundViewer(&soundMgr);
+		mAnimMgr->connectBasArc(resName, enemyName, fileLoader);
+		mAnimMgr->registerSoundViewer(&soundMgr);
 	}
 }
 
@@ -338,7 +338,7 @@ void Game::EnemyMgrBase::setupSoundViewerAndBas()
  */
 void EnemyMgrBase::init(EnemyParmsBase* parms)
 {
-	m_parms = parms;
+	mParms = parms;
 	loadResource();
 	initStoneSetting();
 	initParms();
@@ -351,14 +351,14 @@ void EnemyMgrBase::init(EnemyParmsBase* parms)
  * Address:	8012F928
  * Size:	000024
  */
-void EnemyMgrBase::setDebugParm(u32 debugParm) { m_parms->setDebugParm(debugParm); }
+void EnemyMgrBase::setDebugParm(u32 debugParm) { mParms->setDebugParm(debugParm); }
 
 /*
  * --INFO--
  * Address:	8012F94C
  * Size:	000024
  */
-void EnemyMgrBase::resetDebugParm(u32 debugParm) { m_parms->resetDebugParm(debugParm); }
+void EnemyMgrBase::resetDebugParm(u32 debugParm) { mParms->resetDebugParm(debugParm); }
 
 /*
  * --INFO--
@@ -367,13 +367,13 @@ void EnemyMgrBase::resetDebugParm(u32 debugParm) { m_parms->resetDebugParm(debug
  */
 SysShape::Model* EnemyMgrBase::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(m_modelData, 0x20000, m_modelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, 0x20000, mModelType);
 
 	Matrixf identity;
-	PSMTXIdentity(identity.m_matrix.mtxView);
-	PSMTXCopy(identity.m_matrix.mtxView, j3dSys._00);
+	PSMTXIdentity(identity.mMatrix.mtxView);
+	PSMTXCopy(identity.mMatrix.mtxView, j3dSys._00);
 
-	J3DModel* j3dModel = model->m_j3dModel;
+	J3DModel* j3dModel = model->mJ3dModel;
 	j3dModel->calc();
 	j3dModel->calcMaterial();
 	j3dModel->makeDL();
@@ -391,7 +391,7 @@ void EnemyMgrBase::initParms()
 {
 	if (isValidEnemyTypeID()) {
 		EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
-		char* paramName = info->m_paramName;
+		char* paramName = info->mParamName;
 		if (*paramName == 0) {
 			paramName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 		}
@@ -413,7 +413,7 @@ void EnemyMgrBase::loadStoneSetting(const char* filename)
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.resetPosition(STREAM_MODE_TEXT, STREAM_MODE_TEXT);
-		m_stoneInfo.setup(stream);
+		mStoneInfo.setup(stream);
 	}
 }
 
@@ -424,9 +424,9 @@ void EnemyMgrBase::loadStoneSetting(const char* filename)
  */
 bool EnemyMgrBase::setupParms(const char* filename)
 {
-	bool result = m_parms->loadSettingFile(gParmArc, (char*)filename);
-	for (int i = 0; i < m_objLimit; i++) {
-		getEnemy(i)->m_parms = m_parms;
+	bool result = mParms->loadSettingFile(gParmArc, (char*)filename);
+	for (int i = 0; i < mObjLimit; i++) {
+		getEnemy(i)->mParms = mParms;
 	}
 	return result;
 }
@@ -454,7 +454,7 @@ void EnemyMgrBase::initObjects()
 {
 	if (isValidEnemyTypeID()) {
 		EnemyInfo* info     = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
-		char* collisionName = info->m_collName;
+		char* collisionName = info->mCollName;
 		if (*collisionName == 0) {
 			collisionName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 		}
@@ -462,25 +462,25 @@ void EnemyMgrBase::initObjects()
 		char file[250];
 		sprintf(file, "%s/enemyColl.txt", collisionName);
 
-		for (int i = 0; i < m_objLimit; i++) {
+		for (int i = 0; i < mObjLimit; i++) {
 			SysShape::Model* model = createModel();
-			m_animMgr->m_model     = model;
+			mAnimMgr->mModel       = model;
 
 			getEnemy(i)->setCreatureID(i);
-			getEnemy(i)->m_mgr   = this;
-			getEnemy(i)->m_model = model;
-			getEnemy(i)->setAnimMgr(m_animMgr);
+			getEnemy(i)->mMgr   = this;
+			getEnemy(i)->mModel = model;
+			getEnemy(i)->setAnimMgr(mAnimMgr);
 			getEnemy(i)->initMouthSlots();
 			getEnemy(i)->initWalkSmokeEffect();
-			getEnemy(i)->m_enemyStoneObj = new EnemyStone::Obj(getEnemy(i), &m_stoneInfo);
+			getEnemy(i)->mEnemyStoneObj = new EnemyStone::Obj(getEnemy(i), &mStoneInfo);
 		}
 
-		m_collPartFactory = CollPartFactory::load(gParmArc, file);
+		mCollPartFactory = CollPartFactory::load(gParmArc, file);
 
-		for (int i = 0; i < m_objLimit; i++) {
-			getEnemy(i)->m_collTree = new CollTree();
-			getEnemy(i)->m_collTree->createFromFactory(getEnemy(i)->m_model, m_collPartFactory, nullptr);
-			getEnemy(i)->m_collTree->attachModel(getEnemy(i)->m_model);
+		for (int i = 0; i < mObjLimit; i++) {
+			getEnemy(i)->mCollTree = new CollTree();
+			getEnemy(i)->mCollTree->createFromFactory(getEnemy(i)->mModel, mCollPartFactory, nullptr);
+			getEnemy(i)->mCollTree->attachModel(getEnemy(i)->mModel);
 		}
 	}
 }
@@ -494,7 +494,7 @@ void EnemyMgrBase::initStoneSetting()
 {
 	if (isValidEnemyTypeID()) {
 		EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
-		char* stoneName = info->m_stoneName;
+		char* stoneName = info->mStoneName;
 		if (*stoneName == '\0') {
 			stoneName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 		}
@@ -525,9 +525,9 @@ J3DModelData* EnemyMgrBase::loadModelData(JKRArchive* archive)
 	}
 
 	if (modelData) {
-		m_modelData = modelData;
-		m_modelData->newSharedDisplayList(0x40000);
-		m_modelData->makeSharedDL();
+		mModelData = modelData;
+		mModelData->newSharedDisplayList(0x40000);
+		mModelData->makeSharedDL();
 	} else {
 		JUT_PANICLINE(815, "EnemyMgrBase:Can not make mdlData\n");
 	}
@@ -543,7 +543,7 @@ J3DModelData* EnemyMgrBase::loadModelData(JKRArchive* archive)
 void EnemyMgrBase::loadModelData()
 {
 	EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
-	char* modelName = info->m_modelName;
+	char* modelName = info->mModelName;
 	if (*modelName == 0) {
 		modelName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 	}
@@ -553,7 +553,7 @@ void EnemyMgrBase::loadModelData()
 
 	LoadResource::Arg arg(file);
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
-	loadModelData(node->m_archive);
+	loadModelData(node->mArchive);
 }
 
 /*
@@ -564,7 +564,7 @@ void EnemyMgrBase::loadModelData()
 void EnemyMgrBase::loadAnimData()
 {
 	EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
-	char* animName  = info->m_animName;
+	char* animName  = info->mAnimName;
 	if (*animName == 0) {
 		animName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 	}
@@ -577,19 +577,19 @@ void EnemyMgrBase::loadAnimData()
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
 
 	if (node) {
-		archive = node->m_archive;
+		archive = node->mArchive;
 	}
 	if (archive) {
 		info              = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
-		char* animMgrName = info->m_animMgrName;
+		char* animMgrName = info->mAnimMgrName;
 		if (*animMgrName == 0) {
 			animMgrName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 		}
 
 		sprintf(file, "%s/enemyAnimMgr.txt", animMgrName);
-		m_animMgr = SysShape::AnimMgr::load(gParmArc, file, m_modelData, archive, "");
+		mAnimMgr = SysShape::AnimMgr::load(gParmArc, file, mModelData, archive, "");
 	} else {
-		m_animMgr = nullptr;
+		mAnimMgr = nullptr;
 	}
 }
 
@@ -601,7 +601,7 @@ void EnemyMgrBase::loadAnimData()
 void EnemyMgrBase::loadTexData()
 {
 	EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
-	if (*info->m_textureName == 0) {
+	if (*info->mTextureName == 0) {
 		EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 	}
 }
@@ -625,7 +625,7 @@ J3DModelData* EnemyMgrBase::doLoadBdl(void* bdl) { return J3DModelLoaderDataBase
  * Address:	801303E8
  * Size:	000090
  */
-void EnemyMgrBase::initGenerator() { m_generator = new EnemyGeneratorBase("EnemyGenerator"); }
+void EnemyMgrBase::initGenerator() { mGenerator = new EnemyGeneratorBase("EnemyGenerator"); }
 
 /*
  * --INFO--
@@ -634,16 +634,16 @@ void EnemyMgrBase::initGenerator() { m_generator = new EnemyGeneratorBase("Enemy
  */
 void EnemyMgrBase::doAnimationAlwaysMovieActor()
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive)) {
-			sys->m_timers->_start("e-upd", true);
+			sys->mTimers->_start("e-upd", true);
 			enemy->update();
-			sys->m_timers->_stop("e-upd");
+			sys->mTimers->_stop("e-upd");
 
-			sys->m_timers->_start("e-doa", true);
+			sys->mTimers->_start("e-doa", true);
 			enemy->doAnimation();
-			sys->m_timers->_stop("e-doa");
+			sys->mTimers->_stop("e-doa");
 		}
 	}
 }
@@ -655,7 +655,7 @@ void EnemyMgrBase::doAnimationAlwaysMovieActor()
  */
 void EnemyMgrBase::doEntryAlwaysMovieActor()
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive)) {
 			enemy->doEntry();
@@ -670,9 +670,9 @@ void EnemyMgrBase::doEntryAlwaysMovieActor()
  */
 void EnemyMgrBase::doSimulationAlwaysMovieActor(float arg)
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if ((enemy->isEvent(0, EB_IsAlive)) && (enemy->m_pellet == nullptr)) {
+		if ((enemy->isEvent(0, EB_IsAlive)) && (enemy->mPellet == nullptr)) {
 			enemy->doSimulation(arg);
 		}
 	}
@@ -685,7 +685,7 @@ void EnemyMgrBase::doSimulationAlwaysMovieActor(float arg)
  */
 void EnemyMgrBase::doDirectDrawAlwaysMovieActor(Graphics& graphics)
 {
-	for (int i = 0; i < m_objLimit; i++) {
+	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_IsAlive)) {
 			enemy->doDirectDraw(graphics);

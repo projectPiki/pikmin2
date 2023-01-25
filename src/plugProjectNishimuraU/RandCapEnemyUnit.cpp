@@ -18,21 +18,21 @@ namespace Cave {
  */
 RandCapEnemyUnit::RandCapEnemyUnit(MapUnitGenerator* mapUnitGenerator)
 {
-	m_mapUnitGenerator = mapUnitGenerator;
-	m_enemyNode[0]     = m_mapUnitGenerator->m_enemyNodeB;
-	m_enemyNode[1]     = m_mapUnitGenerator->m_enemyNodeC;
-	m_perSpawn[0]      = 0;
-	m_perSpawn[1]      = 0;
+	mMapUnitGenerator = mapUnitGenerator;
+	mEnemyNode[0]     = mMapUnitGenerator->mEnemyNodeB;
+	mEnemyNode[1]     = mMapUnitGenerator->mEnemyNodeC;
+	mPerSpawn[0]      = 0;
+	mPerSpawn[1]      = 0;
 }
 
 /**
- * Sets RandItemUnit pointer (m_randItemUnit).
+ * Sets RandItemUnit pointer (mRandItemUnit).
  *
  * --INFO--
  * Address:	80300E94
  * Size:	000008
  */
-void RandCapEnemyUnit::setManageClassPtr(RandItemUnit* randItemUnit) { m_randItemUnit = randItemUnit; }
+void RandCapEnemyUnit::setManageClassPtr(RandItemUnit* randItemUnit) { mRandItemUnit = randItemUnit; }
 
 /**
  * Sets ground and falling teki slots in caps.
@@ -47,34 +47,34 @@ void RandCapEnemyUnit::setCapEnemySlot()
 	MapNode* groundNode;
 	MapNode* fallingNode;
 
-	placedMapNode = m_mapUnitGenerator->m_placedMapNodes;
-	groundNode    = (MapNode*)placedMapNode->m_child;
+	placedMapNode = mMapUnitGenerator->mPlacedMapNodes;
+	groundNode    = (MapNode*)placedMapNode->mChild;
 
 	// Ground teki check
 	while (groundNode) {
-		if (groundNode->m_unitInfo->getUnitKind() == 0) { // make sure we're in a cap
+		if (groundNode->mUnitInfo->getUnitKind() == 0) { // make sure we're in a cap
 			char* unitName = groundNode->getUnitName();
 			// make sure no treasure/hole placed && make sure no ground cap teki already placed
-			if ((strncmp(unitName, "item", 4) == 0) && (m_randItemUnit->isGroundCapEnemySetDone(groundNode) == false)) {
+			if ((strncmp(unitName, "item", 4) == 0) && (mRandItemUnit->isGroundCapEnemySetDone(groundNode) == false)) {
 				// set the enemy slot (0 for ground teki)
 				setCapCommonEnemySlot(groundNode, 0);
 			}
 		}
-		groundNode = (MapNode*)groundNode->m_next;
+		groundNode = (MapNode*)groundNode->mNext;
 	}
-	fallingNode = (MapNode*)placedMapNode->m_child;
+	fallingNode = (MapNode*)placedMapNode->mChild;
 
 	// Falling teki check
 	while (fallingNode) {
-		if (fallingNode->m_unitInfo->getUnitKind() == 0) { // make sure we're in a cap
+		if (fallingNode->mUnitInfo->getUnitKind() == 0) { // make sure we're in a cap
 			char* unitName = fallingNode->getUnitName();
 			// make sure no treasure/hole placed && make sure no falling cap teki already placed
-			if ((strncmp(unitName, "item", 4) == 0) && (m_randItemUnit->isFallCapEnemySetDone(fallingNode) == false)) {
+			if ((strncmp(unitName, "item", 4) == 0) && (mRandItemUnit->isFallCapEnemySetDone(fallingNode) == false)) {
 				// set the enemy slot (1 for falling teki)
 				setCapCommonEnemySlot(fallingNode, 1);
 			}
 		}
-		fallingNode = (MapNode*)fallingNode->m_next;
+		fallingNode = (MapNode*)fallingNode->mNext;
 	}
 }
 
@@ -92,21 +92,21 @@ void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* inputMapNode, int spawnTyp
 	int tekiWeight  = 0;
 	int tekiCount_1 = 0;
 
-	for (node = (EnemyNode*)m_enemyNode[spawnType]->m_child; node; node = (EnemyNode*)node->m_next) {
+	for (node = (EnemyNode*)mEnemyNode[spawnType]->mChild; node; node = (EnemyNode*)node->mNext) {
 		if (TekiInfo* tekiInfo = node->getTekiInfo()) {
 
-			tekiCount_1 += tekiInfo->m_weight / 10; // max number to place
-			tekiWeight += tekiInfo->m_weight % 10;  // weighting
+			tekiCount_1 += tekiInfo->mWeight / 10; // max number to place
+			tekiWeight += tekiInfo->mWeight % 10;  // weighting
 
 			// check if we have any left to place of that type
-			if (tekiCount_1 > m_perSpawn[spawnType]) {
+			if (tekiCount_1 > mPerSpawn[spawnType]) {
 				int setCount = 1; // default to 1
 				                  // if teki type is 0 and we have room for another, make it 2
-				if ((tekiInfo->m_type == 0) && ((tekiCount_1 - m_perSpawn[spawnType]) > 1)) {
+				if ((tekiInfo->mType == 0) && ((tekiCount_1 - mPerSpawn[spawnType]) > 1)) {
 					setCount = 2;
 				}
 				// set the cap enemy
-				setCapEnemy(inputMapNode, node->m_enemyUnit, spawnType, setCount);
+				setCapEnemy(inputMapNode, node->mEnemyUnit, spawnType, setCount);
 				return;
 			}
 		}
@@ -118,20 +118,20 @@ void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* inputMapNode, int spawnTyp
 	TekiInfo* tekiInfo;
 	int tekiCount_2 = 0;
 
-	for (EnemyNode* node = (EnemyNode*)m_enemyNode[spawnType]->m_child; node; node = (EnemyNode*)node->m_next) {
-		tekiInfo = node->m_enemyUnit->m_tekiInfo;
+	for (EnemyNode* node = (EnemyNode*)mEnemyNode[spawnType]->mChild; node; node = (EnemyNode*)node->mNext) {
+		tekiInfo = node->mEnemyUnit->mTekiInfo;
 		if (tekiInfo) {
-			tekiCount_2 += tekiInfo->m_weight % 10; // add up the weightings as we go
+			tekiCount_2 += tekiInfo->mWeight % 10; // add up the weightings as we go
 
 			// if we've gone past enough weights, time to set a teki
 			if (tekiCount_2 > randWeight) {
 				int setCount = 1; // default to 1
 				                  // if teki type is 0, we can place more, so make it 2
-				if (tekiInfo->m_type == 0) {
+				if (tekiInfo->mType == 0) {
 					setCount = 2;
 				}
 				// set the cap enemy
-				setCapEnemy(inputMapNode, node->m_enemyUnit, spawnType, setCount);
+				setCapEnemy(inputMapNode, node->mEnemyUnit, spawnType, setCount);
 				return;
 			}
 		}
@@ -154,10 +154,10 @@ void RandCapEnemyUnit::setCapEnemy(MapNode* inputMapNode, EnemyUnit* inputEnemyU
 		EnemyNode* newNode = new EnemyNode(inputEnemyUnit, nullptr, 1);
 		newNode->makeGlobalData(inputMapNode);
 
-		inputMapNode->m_enemyNode->add(newNode);
+		inputMapNode->mEnemyNode->add(newNode);
 
 		// increment total ground/falling teki count
-		m_perSpawn[spawnType]++;
+		mPerSpawn[spawnType]++;
 	}
 }
 

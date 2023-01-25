@@ -65,20 +65,20 @@ namespace SysShape {
  */
 ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, u32 p4, u32 p5, IDelegate1<Model*>* delegate)
 {
-	m_modelDataLimit = modelDataLimit;
-	m_modelData      = new J3DModelData*[modelDataLimit];
+	mModelDataLimit = modelDataLimit;
+	mModelData      = new J3DModelData*[modelDataLimit];
 	for (int i = 0; i < modelDataLimit; i++) {
-		m_modelData[i] = modelData[i];
+		mModelData[i] = modelData[i];
 	}
-	m_heapLimit = heapLimit;
+	mHeapLimit  = heapLimit;
 	_10         = p4;
 	_14         = p5;
-	m_delegate  = delegate;
-	m_heaps     = new JKRSolidHeap*[heapLimit];
+	mDelegate   = delegate;
+	mHeaps      = new JKRSolidHeap*[heapLimit];
 	int maxSize = calcMaximumModelSize();
 	for (int i = 0; i < heapLimit; i++) {
-		m_heaps[i] = JKRSolidHeap::create((maxSize + 0x1FU) & ~0x1F, JKRHeap::sCurrentHeap, true);
-		JUT_ASSERTLINE(82, m_heaps[i] != nullptr, "solid heap creation failed !\n");
+		mHeaps[i] = JKRSolidHeap::create((maxSize + 0x1FU) & ~0x1F, JKRHeap::sCurrentHeap, true);
+		JUT_ASSERTLINE(82, mHeaps[i] != nullptr, "solid heap creation failed !\n");
 	}
 }
 
@@ -90,8 +90,8 @@ ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, 
 int ModelMgr::calcMaximumModelSize()
 {
 	uint maximum = 0;
-	for (int i = 0; i < m_modelDataLimit; i++) {
-		uint size = calcModelSize(m_modelData[i]);
+	for (int i = 0; i < mModelDataLimit; i++) {
+		uint size = calcModelSize(mModelData[i]);
 		if (size > maximum) {
 			maximum = size;
 		}
@@ -112,8 +112,8 @@ int ModelMgr::calcModelSize(J3DModelData* data)
 	}
 	uint initialFreeSize   = JKRHeap::sCurrentHeap->getTotalFreeSize();
 	SysShape::Model* model = new SysShape::Model(data, _10, _14);
-	if (m_delegate) {
-		m_delegate->invoke(model);
+	if (mDelegate) {
+		mDelegate->invoke(model);
 	}
 	return initialFreeSize - JKRHeap::sCurrentHeap->getTotalFreeSize();
 }
@@ -125,22 +125,22 @@ int ModelMgr::calcModelSize(J3DModelData* data)
  */
 Model* ModelMgr::createModel(int modelIndex, int heapIndex)
 {
-	if (m_modelData[modelIndex] == nullptr) {
+	if (mModelData[modelIndex] == nullptr) {
 		return nullptr;
 	}
-	P2ASSERTBOUNDSLINE(152, 0, modelIndex, m_modelDataLimit);
-	P2ASSERTBOUNDSLINE(153, 0, heapIndex, m_heapLimit);
-	JKRSolidHeap* solidHeap = m_heaps[heapIndex];
+	P2ASSERTBOUNDSLINE(152, 0, modelIndex, mModelDataLimit);
+	P2ASSERTBOUNDSLINE(153, 0, heapIndex, mHeapLimit);
+	JKRSolidHeap* solidHeap = mHeaps[heapIndex];
 	sys->startChangeCurrentHeap(solidHeap);
 	if (solidHeap) {
 		solidHeap->freeAll();
 	} else {
-		for (int i = 0; i < m_heapLimit; i++) { }
+		for (int i = 0; i < mHeapLimit; i++) { }
 		JUT_PANICLINE(173, "solidHeap null!\n");
 	}
-	SysShape::Model* model = new SysShape::Model(m_modelData[modelIndex], _10, _14);
-	if (m_delegate) {
-		m_delegate->invoke(model);
+	SysShape::Model* model = new SysShape::Model(mModelData[modelIndex], _10, _14);
+	if (mDelegate) {
+		mDelegate->invoke(model);
 	}
 	JUT_ASSERTLINE(184, model != nullptr, "failed to new model ! id %d idx %d\n", modelIndex, heapIndex);
 	sys->endChangeCurrentHeap();

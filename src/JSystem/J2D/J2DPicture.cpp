@@ -135,18 +135,18 @@
 J2DPicture::J2DPicture()
     : J2DPane()
     , _112()
-    , m_palette(nullptr)
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
-    , m_cornerColors()
+    , mPalette(nullptr)
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
+    , mCornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
 	for (int i = 0; i < 4; i++) {
-		m_textures[i] = nullptr;
+		mTextures[i] = nullptr;
 	}
-	_111           = 0;
-	m_textureCount = 0;
+	_111          = 0;
+	mTextureCount = 0;
 	initinfo();
 }
 
@@ -172,10 +172,10 @@ J2DPicture::J2DPicture()
  */
 J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive)
     : J2DPane()
-    , m_palette(nullptr)
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
-    , m_cornerColors()
+    , mPalette(nullptr)
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
+    , mCornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
@@ -191,73 +191,73 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, JKRArchive*
 J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* materials)
     : J2DPane()
     , _112()
-    , m_palette(nullptr)
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
-    , m_cornerColors()
+    , mPalette(nullptr)
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
+    , mCornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
 	J2DScrnBlockHeader header;
 	int headerPosition = input->getPosition();
 	input->read(&header, sizeof(J2DScrnBlockHeader));
-	m_bloBlockType     = 'PIC1';
+	mBloBlockType      = 'PIC1';
 	int paneExPosition = input->getPosition();
 	J2DScrnBlockHeader paneExHeader;
 	input->peek(&paneExHeader, sizeof(J2DScrnBlockHeader));
 	makePaneExStream(parent, input);
-	input->seek(paneExPosition + paneExHeader.m_blockLength, SEEK_SET);
+	input->seek(paneExPosition + paneExHeader.mBlockLength, SEEK_SET);
 
 	J2DPictureBlockTrailer trailer;
 	input->read(&trailer, sizeof(J2DPictureBlockTrailer));
 	u16 v1 = trailer._04;
 	for (int i = 0; i < 4; i++) {
 		_112[i] = trailer._10[i];
-		m_cornerColors[i].set(trailer._20[i]);
+		mCornerColors[i].set(trailer._20[i]);
 	}
-	input->seek(headerPosition + header.m_blockLength, SEEK_SET);
+	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
 
 	J2DMaterial* material = (v1 != 0xFFFF) ? &materials[v1] : nullptr;
-	m_alpha               = 0xFF;
+	mAlpha                = 0xFF;
 	if (material != nullptr) {
-		m_alpha = material->m_colorBlock.m_colors[0].a;
+		mAlpha = material->mColorBlock.mColors[0].a;
 	}
-	m_black        = 0x0;
-	m_white        = 0xFFFFFFFF;
-	m_textureCount = 0;
-	if (material != nullptr && material->m_tevBlock != nullptr) {
-		u8 texGenNum   = material->m_texGenBlock.m_texGenNum;
-		u8 tevStageNum = material->m_tevBlock->getTevStageNum();
+	mBlack        = 0x0;
+	mWhite        = 0xFFFFFFFF;
+	mTextureCount = 0;
+	if (material != nullptr && material->mTevBlock != nullptr) {
+		u8 texGenNum   = material->mTexGenBlock.mTexGenNum;
+		u8 tevStageNum = material->mTevBlock->getTevStageNum();
 		if ((texGenNum == 1 && tevStageNum != 1) || (texGenNum != 1 && tevStageNum != texGenNum + 1)) {
-			J2DGXColorS10 black(*material->m_tevBlock->getTevColor(0));
-			J2DGXColorS10 white(*material->m_tevBlock->getTevColor(1));
-			m_black.set((GXColor)black);
-			m_white.setU64(white);
-			// m_black = black;
-			// m_white = white;
+			J2DGXColorS10 black(*material->mTevBlock->getTevColor(0));
+			J2DGXColorS10 white(*material->mTevBlock->getTevColor(1));
+			mBlack.set((GXColor)black);
+			mWhite.setU64(white);
+			// mBlack = black;
+			// mWhite = white;
 		}
-		m_textureCount = (texGenNum <= 4) ? texGenNum : 4;
+		mTextureCount = (texGenNum <= 4) ? texGenNum : 4;
 	}
 	_111 = 0;
 	for (int i = 0; i < 4; i++) {
-		m_textures[i] = nullptr;
-		if (material != nullptr && material->m_tevBlock != nullptr) {
-			JUTTexture* texture = material->m_tevBlock->getTexture(i);
+		mTextures[i] = nullptr;
+		if (material != nullptr && material->mTevBlock != nullptr) {
+			JUTTexture* texture = material->mTevBlock->getTexture(i);
 			if (texture != nullptr) {
-				m_textures[i] = texture;
-				_111          = _111 | (1 << i);
+				mTextures[i] = texture;
+				_111         = _111 | (1 << i);
 			}
 		}
 	}
-	if (material != nullptr && material->m_tevBlock != nullptr) {
-		material->m_tevBlock->setUndeleteFlag(0xF0);
+	if (material != nullptr && material->mTevBlock != nullptr) {
+		material->mTevBlock->setUndeleteFlag(0xF0);
 	}
-	m_palette           = nullptr;
+	mPalette            = nullptr;
 	JUtility::TColor v2 = 0xFFFFFFFF;
 	JUtility::TColor v3 = 0xFFFFFFFF;
-	if (material != nullptr && material->m_tevBlock != nullptr) {
-		v2 = *material->m_tevBlock->getTevKColor(3);
-		v3 = *material->m_tevBlock->getTevKColor(1);
+	if (material != nullptr && material->mTevBlock != nullptr) {
+		v2 = *material->mTevBlock->getTevKColor(3);
+		v3 = *material->mTevBlock->getTevKColor(1);
 	}
 	setBlendColorRatio(v2.a, v2.b, v2.g, v2.r, 1.0f, 1.0f, 1.0f, 1.0f);
 	setBlendAlphaRatio(v3.a, v3.b, v3.g, v3.r, 1.0f, 1.0f, 1.0f, 1.0f);
@@ -705,21 +705,21 @@ lbl_8003A14C:
 J2DPicture::J2DPicture(const ResTIMG* img)
     : J2DPane()
     , _112()
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
-    , m_cornerColors()
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
+    , mCornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
 	for (int i = 0; i < 4; i++) {
-		m_textures[i] = nullptr;
+		mTextures[i] = nullptr;
 	}
-	_111           = 0;
-	m_textureCount = 0;
+	_111          = 0;
+	mTextureCount = 0;
 	if (img != nullptr) {
 		append(img, 0.0f);
 	}
-	m_palette = nullptr;
+	mPalette = nullptr;
 	initinfo();
 }
 
@@ -729,7 +729,7 @@ J2DPicture::J2DPicture(const ResTIMG* img)
  * Size:	000030
  * append__10J2DPictureFPC7ResTIMGf
  */
-bool J2DPicture::append(const ResTIMG* resource, float p2) { return insert(resource, m_textureCount, p2); }
+bool J2DPicture::append(const ResTIMG* resource, float p2) { return insert(resource, mTextureCount, p2); }
 
 /*
  * --INFO--
@@ -748,21 +748,21 @@ bool J2DPicture::insert(const ResTIMG* resource, u8 textureCount, float p3) { re
 J2DPicture::J2DPicture(const char* p1)
     : J2DPane()
     , _112()
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
-    , m_cornerColors()
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
+    , mCornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
 	for (int i = 0; i < 4; i++) {
-		m_textures[i] = 0;
+		mTextures[i] = 0;
 	}
-	_111           = 0;
-	m_textureCount = 0;
+	_111          = 0;
+	mTextureCount = 0;
 	if (p1) {
 		append(p1, 0.0f);
 	}
-	m_palette = nullptr;
+	mPalette = nullptr;
 	initinfo();
 }
 
@@ -772,7 +772,7 @@ J2DPicture::J2DPicture(const char* p1)
  * Size:	000030
  * append__10J2DPictureFPCcf
  */
-bool J2DPicture::append(const char* p1, float p2) { return insert(p1, m_textureCount, p2); }
+bool J2DPicture::append(const char* p1, float p2) { return insert(p1, mTextureCount, p2); }
 
 /*
  * --INFO--
@@ -791,21 +791,21 @@ bool J2DPicture::insert(const char* p1, u8 p2, float p3) { return insert(p1, nul
 J2DPicture::J2DPicture(JUTTexture* texture)
     : J2DPane()
     , _112()
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
-    , m_cornerColors()
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
+    , mCornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
 	for (int i = 0; i < 4; i++) {
-		m_textures[i] = 0;
+		mTextures[i] = 0;
 	}
-	_111           = 0;
-	m_textureCount = 0;
+	_111          = 0;
+	mTextureCount = 0;
 	if (texture) {
 		append(texture, 0.0f);
 	}
-	m_palette = nullptr;
+	mPalette = nullptr;
 	initinfo();
 }
 
@@ -815,7 +815,7 @@ J2DPicture::J2DPicture(JUTTexture* texture)
  * Size:	000030
  * append__10J2DPictureFP10JUTTexturef
  */
-bool J2DPicture::append(JUTTexture* texture, float p2) { return insert(texture, m_textureCount, p2); }
+bool J2DPicture::append(JUTTexture* texture, float p2) { return insert(texture, mTextureCount, p2); }
 
 /*
  * --INFO--
@@ -826,19 +826,19 @@ bool J2DPicture::append(JUTTexture* texture, float p2) { return insert(texture, 
 J2DPicture::J2DPicture(u64 id, const JGeometry::TBox2f& bounds)
     : J2DPane(id, bounds)
     , _112()
-    , m_palette(nullptr)
-    , m_white(0xFFFFFFFF)
-    , m_black(0xFFFFFFFF)
-    , m_cornerColors()
+    , mPalette(nullptr)
+    , mWhite(0xFFFFFFFF)
+    , mBlack(0xFFFFFFFF)
+    , mCornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
 	initinfo();
 	for (int i = 0; i < 4; i++) {
-		m_textures[i] = 0;
+		mTextures[i] = 0;
 	}
-	_111           = 0;
-	m_textureCount = 0;
+	_111          = 0;
+	mTextureCount = 0;
 	setBlendRatio(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
 }
 
@@ -866,7 +866,7 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input
 	J2DScrnBlockHeader header;
 	int headerPosition = input->getPosition();
 	input->read(&header, sizeof(J2DScrnBlockHeader));
-	m_bloBlockType = header.m_bloBlockType;
+	mBloBlockType = header.mBloBlockType;
 	makePaneStream(parent, input);
 
 	u32 v1 = 0;
@@ -891,51 +891,51 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input
 		countdown--;
 	}
 
-	m_black = 0x0;
-	m_white = 0xFFFFFFFF;
+	mBlack = 0x0;
+	mWhite = 0xFFFFFFFF;
 
 	if (countdown != 0) {
 		GXColor black;
 		input->read(&black, sizeof(GXColor));
-		m_black = black;
+		mBlack = black;
 		countdown--;
 	}
 
 	if (countdown != 0) {
 		GXColor white;
 		input->read(&white, sizeof(GXColor));
-		m_white = white;
+		mWhite = white;
 		countdown--;
 	}
 
 	for (int i = 0; i < 4; i++) {
 		JUtility::TColor color(0xFFFFFFFF);
-		m_cornerColors[i] = color;
+		mCornerColors[i] = color;
 	}
 	for (int i = 0; countdown != 0 && i < 4; i++) {
 		JUtility::TColor color;
 		input->read(&color, sizeof(JUtility::TColor));
 		countdown--;
-		m_cornerColors[i] = color;
+		mCornerColors[i] = color;
 	}
 
-	input->seek(headerPosition + header.m_blockLength, SEEK_SET);
+	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
 
 	for (int i = 0; i < 4; i++) {
-		m_textures[i] = nullptr;
+		mTextures[i] = nullptr;
 	}
-	m_textureCount = 0;
-	_111           = 1;
+	mTextureCount = 0;
+	_111          = 1;
 	if (img != nullptr) {
-		m_textures[0] = new JUTTexture();
-		m_textureCount++;
+		mTextures[0] = new JUTTexture();
+		mTextureCount++;
 	}
 	if (lut != nullptr) {
-		m_palette = new JUTPalette();
-		m_textures[0]->attachPalette(m_palette);
+		mPalette = new JUTPalette();
+		mTextures[0]->attachPalette(mPalette);
 	}
 
-	setTexCoord(m_textures[0], (J2DBinding)v3, (J2DMirror)(v1 & 3), (bool)((v1 >> 2) & 1));
+	setTexCoord(mTextures[0], (J2DBinding)v3, (J2DMirror)(v1 & 3), (bool)((v1 >> 2) & 1));
 
 	setBlendRatio(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
 	/*
@@ -1226,10 +1226,10 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input
 void J2DPicture::initiate(const ResTIMG* img, const ResTLUT* lut)
 {
 	private_initiate(img, lut);
-	if (m_textures[0] == nullptr) {
+	if (mTextures[0] == nullptr) {
 		return;
 	}
-	place(JGeometry::TBox2f(0.0f, 0.0f, m_textures[0]->getSizeX(), m_textures[0]->getSizeY()));
+	place(JGeometry::TBox2f(0.0f, 0.0f, mTextures[0]->getSizeX(), mTextures[0]->getSizeY()));
 }
 
 /*
@@ -1339,11 +1339,11 @@ lbl_8003AD54:
  */
 void J2DPicture::initinfo()
 {
-	m_bloBlockType = 'PIC1';
+	mBloBlockType = 'PIC1';
 	setTexCoord(nullptr, J2DBIND_Unk15, J2DMIRROR_Unk0, false);
 	setBlendRatio(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
-	m_black = 0;
-	m_white = 0xFFFFFFFF;
+	mBlack = 0;
+	mWhite = 0xFFFFFFFF;
 	setCornerColor(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
 }
 
@@ -1357,10 +1357,10 @@ J2DPicture::~J2DPicture()
 {
 	for (int i = 0; i < 4; i++) {
 		if ((_111 & 1 << i) != 0) {
-			delete m_textures[i];
+			delete mTextures[i];
 		}
 	}
-	delete m_palette;
+	delete mPalette;
 }
 
 /*
@@ -1855,19 +1855,19 @@ lbl_8003B5B4:
  */
 int J2DPicture::remove(u8 textureIndex)
 {
-	if (textureIndex >= m_textureCount || m_textureCount == 1) {
+	if (textureIndex >= mTextureCount || mTextureCount == 1) {
 		return false;
 	}
 	if ((_111 & 1 << textureIndex) != 0) {
-		delete m_textures[textureIndex];
+		delete mTextures[textureIndex];
 	}
-	for (u8 i = textureIndex; m_textureCount - 1 > i; i++) {
-		m_textures[i] = m_textures[i + 1];
-		_124[i]       = _124[i + 1];
-		_134[i]       = _134[i + 1];
+	for (u8 i = textureIndex; mTextureCount - 1 > i; i++) {
+		mTextures[i] = mTextures[i + 1];
+		_124[i]      = _124[i + 1];
+		_134[i]      = _134[i + 1];
 	}
-	m_textures[m_textureCount - 1] = nullptr;
-	_111                           = (_111 & ~(1 << textureIndex)) >> 1;
+	mTextures[mTextureCount - 1] = nullptr;
+	_111                         = (_111 & ~(1 << textureIndex)) >> 1;
 	setBlendKonstColor();
 	setBlendKonstAlpha();
 	return true;
@@ -1972,7 +1972,7 @@ lbl_8003B6E8:
 int J2DPicture::remove(JUTTexture* texture)
 {
 	u8 i;
-	for (i = 0; i < m_textureCount && m_textures[i] != texture; i++) { }
+	for (i = 0; i < mTextureCount && mTextures[i] != texture; i++) { }
 	return remove(i);
 	/*
 	stwu     r1, -0x10(r1)
@@ -2015,15 +2015,15 @@ lbl_8003B744:
  */
 ResTIMG* J2DPicture::changeTexture(const ResTIMG* img, u8 textureIndex)
 {
-	if (textureIndex > m_textureCount || 4 <= textureIndex || img == nullptr) {
+	if (textureIndex > mTextureCount || 4 <= textureIndex || img == nullptr) {
 		return nullptr;
 	}
 	ResTIMG* result;
-	if (textureIndex < m_textureCount) {
+	if (textureIndex < mTextureCount) {
 		JUTTexture* texture = getTexture(textureIndex);
 		result              = texture->_20;
 		u8 v1               = 0;
-		if (img->m_paletteFormat != 0) {
+		if (img->mPaletteFormat != 0) {
 			v1 = getUsableTlut(textureIndex);
 		}
 		getTexture(textureIndex)->storeTIMG(img, v1);
@@ -2038,7 +2038,7 @@ ResTIMG* J2DPicture::changeTexture(const ResTIMG* img, u8 textureIndex)
  * Address:	8003B850
  * Size:	000024
  */
-JUTTexture* J2DPicture::getTexture(u8 index) const { return (index < 4) ? m_textures[index] : nullptr; }
+JUTTexture* J2DPicture::getTexture(u8 index) const { return (index < 4) ? mTextures[index] : nullptr; }
 
 /*
  * --INFO--
@@ -2144,7 +2144,7 @@ lbl_8003B9C0:
  * Size:	000030
  * append__10J2DPictureFPC7ResTIMGP10JUTPalettef
  */
-bool J2DPicture::append(const ResTIMG* img, JUTPalette* palette, float p3) { return insert(img, palette, m_textureCount, p3); }
+bool J2DPicture::append(const ResTIMG* img, JUTPalette* palette, float p3) { return insert(img, palette, mTextureCount, p3); }
 
 /*
  * --INFO--
@@ -2177,8 +2177,8 @@ void J2DPicture::drawSelf(float p1, float p2)
  */
 void J2DPicture::drawSelf(float p1, float p2, float (*mtx)[3][4])
 {
-	if (m_textures[0] != nullptr && m_textureCount != 0) {
-		drawFullSet(m_globalBounds.i.x + p1, m_globalBounds.i.y + p2, m_bounds.getWidth(), m_bounds.getHeight(), mtx);
+	if (mTextures[0] != nullptr && mTextureCount != 0) {
+		drawFullSet(mGlobalBounds.i.x + p1, mGlobalBounds.i.y + p2, mBounds.getWidth(), mBounds.getHeight(), mtx);
 	}
 }
 
@@ -2189,8 +2189,8 @@ void J2DPicture::drawSelf(float p1, float p2, float (*mtx)[3][4])
  */
 void J2DPicture::drawFullSet(float p1, float p2, float width, float height, float (*mtx)[3][4])
 {
-	if (m_textures[0] != nullptr && m_textureCount != 0) {
-		drawTexCoord(m_bounds.i.x, m_bounds.i.y, width, height, _112[0].x, _112[0].y, _112[1].x, _112[1].y, _112[2].x, _112[2].y, _112[3].x,
+	if (mTextures[0] != nullptr && mTextureCount != 0) {
+		drawTexCoord(mBounds.i.x, mBounds.i.y, width, height, _112[0].x, _112[0].y, _112[1].x, _112[1].y, _112[2].x, _112[2].y, _112[3].x,
 		             _112[3].y, mtx);
 	}
 }
@@ -2418,8 +2418,8 @@ void J2DPicture::load(unsigned char p1) { load((GXTexMapID)p1, p1); }
  */
 void J2DPicture::load(_GXTexMapID texMapID, u8 textureIndex)
 {
-	if (textureIndex < m_textureCount && textureIndex < 4 && m_textures[textureIndex] != nullptr) {
-		m_textures[textureIndex]->load(texMapID);
+	if (textureIndex < mTextureCount && textureIndex < 4 && mTextures[textureIndex] != nullptr) {
+		mTextures[textureIndex]->load(texMapID);
 	}
 }
 
@@ -3462,13 +3462,13 @@ lbl_8003CCC8:
 void J2DPicture::getNewColor(JUtility::TColor* newColor)
 {
 	for (int i = 0; i < 4; i++) {
-		newColor[i] = m_cornerColors[i];
+		newColor[i] = mCornerColors[i];
 	}
-	if (m_colorAlpha != 0xFF) {
-		newColor[0].a = newColor[0].a * m_colorAlpha / 0xFF;
-		newColor[1].a = newColor[1].a * m_colorAlpha / 0xFF;
-		newColor[2].a = newColor[2].a * m_colorAlpha / 0xFF;
-		newColor[3].a = newColor[3].a * m_colorAlpha / 0xFF;
+	if (mColorAlpha != 0xFF) {
+		newColor[0].a = newColor[0].a * mColorAlpha / 0xFF;
+		newColor[1].a = newColor[1].a * mColorAlpha / 0xFF;
+		newColor[2].a = newColor[2].a * mColorAlpha / 0xFF;
+		newColor[3].a = newColor[3].a * mColorAlpha / 0xFF;
 	}
 }
 
@@ -3781,8 +3781,8 @@ void J2DPicture::setTexCoord(JGeometry::TVec2<short>*, const JUTTexture*, J2DBin
  */
 bool J2DPicture::isUsed(const ResTIMG* resource)
 {
-	for (u8 i = 0; i < m_textureCount; i++) {
-		if (m_textures[i] != nullptr && m_textures[i]->_20 == resource) {
+	for (u8 i = 0; i < mTextureCount; i++) {
+		if (mTextures[i] != nullptr && mTextures[i]->_20 == resource) {
 			return true;
 		}
 	}
@@ -3873,7 +3873,7 @@ lbl_8003D2E0:
  */
 u8 J2DPicture::getTlutID(const ResTIMG* img, unsigned char index)
 {
-	if (0x100 < img->m_paletteEntryCount) {
+	if (0x100 < img->mPaletteEntryCount) {
 		return (index & 3) + GX_BIGTLUT0;
 	}
 	return index;
@@ -3909,7 +3909,7 @@ lbl_8003D31C:
  * Size:	000030
  * append__10J2DPictureFPCcP10JUTPalettef
  */
-bool J2DPicture::append(const char* p1, JUTPalette* palette, float p3) { return insert(p1, palette, m_textureCount, p3); }
+bool J2DPicture::append(const char* p1, JUTPalette* palette, float p3) { return insert(p1, palette, mTextureCount, p3); }
 
 /*
  * --INFO--
@@ -3957,7 +3957,7 @@ bool J2DPicture::prepend(const ResTIMG* img, float p2) { return insert(img, 0, p
  * Size:	000038
  * remove__10J2DPictureFv
  */
-int J2DPicture::remove() { return remove(m_textureCount - 1); }
+int J2DPicture::remove() { return remove(mTextureCount - 1); }
 
 /*
  * --INFO--
@@ -3967,11 +3967,11 @@ int J2DPicture::remove() { return remove(m_textureCount - 1); }
  */
 void J2DPicture::draw(float p1, float p2, unsigned char textureIndex, bool p4, bool p5, bool p6)
 {
-	if (textureIndex < m_textureCount && m_textures[textureIndex] != nullptr) {
-		// ResTIMG* img = m_textures[textureIndex]->_20;
-		// int height   = img->m_sizeY;
-		// int width    = img->m_sizeX;
-		draw(p1, p2, m_textures[textureIndex]->getSizeX(), m_textures[textureIndex]->getSizeY(), p4, p5, p6);
+	if (textureIndex < mTextureCount && mTextures[textureIndex] != nullptr) {
+		// ResTIMG* img = mTextures[textureIndex]->_20;
+		// int height   = img->mSizeY;
+		// int width    = img->mSizeX;
+		draw(p1, p2, mTextures[textureIndex]->getSizeX(), mTextures[textureIndex]->getSizeY(), p4, p5, p6);
 	}
 }
 
@@ -4003,11 +4003,11 @@ void J2DPicture::drawOut(float p1, float p2, float p3, float p4, float p5, float
  */
 void J2DPicture::drawOut(float p1, float p2, float p3, float p4, float p5, float p6)
 {
-	if (m_textures[0] == nullptr) {
+	if (mTextures[0] == nullptr) {
 		return;
 	}
 	drawOut(JGeometry::TBox2f(p1, p2, p1 + p3, p2 + p4),
-	        JGeometry::TBox2f(p5, p6, p5 + m_textures[0]->getSizeX(), p6 + m_textures[0]->getSizeY()));
+	        JGeometry::TBox2f(p5, p6, p5 + mTextures[0]->getSizeX(), p6 + mTextures[0]->getSizeY()));
 
 	/*
 	stwu     r1, -0x40(r1)
@@ -4063,7 +4063,7 @@ lbl_8003D65C:
  * Address:	8003D66C
  * Size:	000008
  */
-// u8 J2DPicture::getTextureCount() const { return m_textureCount; }
+// u8 J2DPicture::getTextureCount() const { return mTextureCount; }
 
 /*
  * --INFO--
@@ -4072,7 +4072,7 @@ lbl_8003D65C:
  */
 // bool J2DPicture::setBlack(JUtility::TColor black)
 // {
-// 	m_black = black;
+// 	mBlack = black;
 // 	return true;
 // }
 
@@ -4083,7 +4083,7 @@ lbl_8003D65C:
  */
 // bool J2DPicture::setWhite(JUtility::TColor white)
 // {
-// 	m_white = white;
+// 	mWhite = white;
 // 	return true;
 // }
 
@@ -4094,8 +4094,8 @@ lbl_8003D65C:
  */
 // bool J2DPicture::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 // {
-// 	m_black = black;
-// 	m_white = white;
+// 	mBlack = black;
+// 	mWhite = white;
 // 	return true;
 // }
 
@@ -4104,14 +4104,14 @@ lbl_8003D65C:
  * Address:	8003D70C
  * Size:	00000C
  */
-// JUtility::TColor J2DPicture::getBlack() const { return m_black; }
+// JUtility::TColor J2DPicture::getBlack() const { return mBlack; }
 
 /*
  * --INFO--
  * Address:	8003D718
  * Size:	00000C
  */
-// JUtility::TColor J2DPicture::getWhite() const { return m_white; }
+// JUtility::TColor J2DPicture::getWhite() const { return mWhite; }
 
 /*
  * --INFO--

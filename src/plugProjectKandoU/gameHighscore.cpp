@@ -14,8 +14,8 @@ namespace Game {
  */
 Highscore::Highscore()
 {
-	m_scoreCount = 0;
-	m_scores     = nullptr;
+	mScoreCount = 0;
+	mScores     = nullptr;
 }
 
 /*
@@ -25,8 +25,8 @@ Highscore::Highscore()
  */
 void Highscore::allocate(int count)
 {
-	m_scoreCount = count;
-	m_scores     = new int[m_scoreCount];
+	mScoreCount = count;
+	mScores     = new int[mScoreCount];
 	clear();
 }
 
@@ -37,9 +37,9 @@ void Highscore::allocate(int count)
  */
 int Highscore::getScore(int index)
 {
-	bool check = (0 <= index && index < m_scoreCount && m_scores);
+	bool check = (0 <= index && index < mScoreCount && mScores);
 	P2ASSERTLINE(23, check);
-	return m_scores[index];
+	return mScores[index];
 }
 
 /*
@@ -62,18 +62,18 @@ int Highscore::entryScore(int newScore)
 {
 	int newIndex  = -1;
 	int nextIndex = 0;
-	while (nextIndex < m_scoreCount) {
-		if (higher(newScore, m_scores[nextIndex])) {
+	while (nextIndex < mScoreCount) {
+		if (higher(newScore, mScores[nextIndex])) {
 			newIndex = nextIndex;
 			break;
 		}
 		nextIndex++;
 	}
 	if (newIndex != -1) {
-		for (int i = m_scoreCount - 1; i > newIndex; i--) {
-			m_scores[i] = m_scores[i - 1];
+		for (int i = mScoreCount - 1; i > newIndex; i--) {
+			mScores[i] = mScores[i - 1];
 		}
-		m_scores[newIndex] = newScore;
+		mScores[newIndex] = newScore;
 	}
 	return newIndex;
 }
@@ -108,10 +108,10 @@ bool Highscore::do_higher(int a, int b) { return a > b; }
  */
 void Highscore::read(Stream& input)
 {
-	bool test = (0 < m_scoreCount && m_scores);
+	bool test = (0 < mScoreCount && mScores);
 	P2ASSERTLINE(63, test);
-	for (int i = 0; i < m_scoreCount; i++) {
-		m_scores[i] = input.readInt();
+	for (int i = 0; i < mScoreCount; i++) {
+		mScores[i] = input.readInt();
 	}
 }
 
@@ -122,8 +122,8 @@ void Highscore::read(Stream& input)
  */
 void Highscore::write(Stream& output)
 {
-	for (int i = 0; i < m_scoreCount; i++) {
-		output.writeInt(m_scores[i]);
+	for (int i = 0; i < mScoreCount; i++) {
+		output.writeInt(mScores[i]);
 	}
 }
 
@@ -134,8 +134,8 @@ void Highscore::write(Stream& output)
  */
 void Highscore::clear()
 {
-	for (int i = 0; i < m_scoreCount; i++) {
-		m_scores[i] = -1;
+	for (int i = 0; i < mScoreCount; i++) {
+		mScores[i] = -1;
 	}
 }
 } // namespace Game

@@ -16,9 +16,8 @@
  * Address:	80011DCC
  * Size:	000098
  */
-bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4],
-                                                 const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
-                                                 const JStage::TObject* object, unsigned long p4)
+bool JStudio_JStage::transformToGlobalFromLocal(float (*p1)[4], const JStudio::TControl::TTransformTranslation_rotation_scaling& transform,
+                                                const JStage::TObject* object, unsigned long p4)
 {
 	if (object == nullptr) {
 		return false;
@@ -37,10 +36,10 @@ bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4],
  * --INFO--
  * Address:	80011E64
  * Size:	000098
- * transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
+ * transformToGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransformPositionPCQ26JStage7TObjectUl
  */
-bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4], const JStudio::TControl::TTransform_position& transform,
-                                                 const JStage::TObject* object, unsigned long p4)
+bool JStudio_JStage::transformToGlobalFromLocal(float (*p1)[4], const JStudio::TControl::TTransformPosition& transform,
+                                                const JStage::TObject* object, unsigned long p4)
 {
 	if (object == nullptr) {
 		return false;
@@ -50,7 +49,7 @@ bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4], const JStudio::
 		return false;
 	}
 	Mtx v2;
-	PSMTXTrans(v2, transform.m_position.x, transform.m_position.y, transform.m_position.z);
+	PSMTXTrans(v2, transform.mPosition.x, transform.mPosition.y, transform.mPosition.z);
 	PSMTXConcat(v1, v2, p1);
 	return true;
 }
@@ -60,9 +59,8 @@ bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4], const JStudio::
  * Address:	80011EFC
  * Size:	0000A4
  */
-bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4],
-                                                 const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
-                                                 const JStage::TObject* object, unsigned long p4)
+bool JStudio_JStage::transformToLocalFromGlobal(float (*p1)[4], const JStudio::TControl::TTransformTranslation_rotation_scaling& transform,
+                                                const JStage::TObject* object, unsigned long p4)
 {
 	if (object == nullptr) {
 		return false;
@@ -83,10 +81,10 @@ bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4],
  * --INFO--
  * Address:	80011FA0
  * Size:	0000A4
- * transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
+ * transformToLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransformPositionPCQ26JStage7TObjectUl
  */
-bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4], const JStudio::TControl::TTransform_position& transform,
-                                                 const JStage::TObject* object, unsigned long p4)
+bool JStudio_JStage::transformToLocalFromGlobal(float (*p1)[4], const JStudio::TControl::TTransformPosition& transform,
+                                                const JStage::TObject* object, unsigned long p4)
 {
 	if (object == nullptr) {
 		return false;
@@ -96,7 +94,7 @@ bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4], const JStudio::
 		return false;
 	}
 	Mtx v2;
-	PSMTXTrans(v2, transform.m_position.x, transform.m_position.y, transform.m_position.z);
+	PSMTXTrans(v2, transform.mPosition.x, transform.mPosition.y, transform.mPosition.z);
 	Mtx v3;
 	PSMTXInverse(v1, v3);
 	PSMTXConcat(v3, v2, p1);

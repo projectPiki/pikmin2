@@ -46,38 +46,38 @@ struct TEnemyHamonMInd : public TChasePos {
  */
 struct TEnemyHamonChasePos : public TBase {
 	inline TEnemyHamonChasePos(Vector3f* position)
-	    : m_hamonM(position)
-	    , m_hamonMInd(position)
+	    : mHamonM(position)
+	    , mHamonMInd(position)
 	{
 	}
 
 	virtual bool create(Arg*); // _08
 	virtual void forceKill()   // _0C (weak)
 	{
-		m_hamonM.forceKill();
-		m_hamonMInd.forceKill();
+		mHamonM.forceKill();
+		mHamonMInd.forceKill();
 	}
 	virtual void fade() // _10 (weak)
 	{
-		m_hamonM.fade();
-		m_hamonMInd.fade();
+		mHamonM.fade();
+		mHamonMInd.fade();
 	}
 
 	inline void startDemoDrawOff()
 	{
-		m_hamonM.startDemoDrawOff();
-		m_hamonMInd.startDemoDrawOff();
+		mHamonM.startDemoDrawOff();
+		mHamonMInd.startDemoDrawOff();
 	}
 
 	inline void endDemoDrawOn()
 	{
-		m_hamonM.endDemoDrawOn();
-		m_hamonMInd.endDemoDrawOn();
+		mHamonM.endDemoDrawOn();
+		mHamonMInd.endDemoDrawOn();
 	}
 
 	// _00      = VTABLE
-	TEnemyHamonM m_hamonM;       // _04
-	TEnemyHamonMInd m_hamonMInd; // _18
+	TEnemyHamonM mHamonM;       // _04
+	TEnemyHamonMInd mHamonMInd; // _18
 };
 
 /**
@@ -85,34 +85,34 @@ struct TEnemyHamonChasePos : public TBase {
  */
 struct TEnemyHamon : public TBase {
 	inline TEnemyHamon()
-	    : m_hamonChasePos(&m_position)
+	    : mHamonChasePos(&mPosition)
 	{
-		m_seaHeightPtr = nullptr;
-		m_active       = 0;
+		mSeaHeightPtr = nullptr;
+		mActive       = 0;
 	}
 
 	virtual bool create(Arg*); // _08
 	virtual void forceKill()   // _0C (weak)
 	{
-		m_hamonChasePos.forceKill();
-		m_active = 0;
+		mHamonChasePos.forceKill();
+		mActive = 0;
 	}
 	virtual void fade() // _10 (weak)
 	{
-		m_hamonChasePos.fade();
-		m_active = 0;
+		mHamonChasePos.fade();
+		mActive = 0;
 	}
 
 	void update(Vector3f&);
 	f32 getLimitDepth_();
 
 	// _00      = VTABLE
-	TEnemyHamonChasePos m_hamonChasePos;       // _04
-	f32* m_seaHeightPtr;                       // _30
-	Vector3f m_position;                       // _34
-	u8 m_active;                               // _40
-	Game::EnemyTypeID::EEnemyTypeID m_enemyID; // _44
-	f32 m_scale;                               // _48
+	TEnemyHamonChasePos mHamonChasePos;       // _04
+	f32* mSeaHeightPtr;                       // _30
+	Vector3f mPosition;                       // _34
+	u8 mActive;                               // _40
+	Game::EnemyTypeID::EEnemyTypeID mEnemyID; // _44
+	f32 mScale;                               // _48
 };
 
 } // namespace efx

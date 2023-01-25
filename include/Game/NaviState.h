@@ -46,14 +46,14 @@ struct FollowStateArg : public StateArg {
 struct NaviFlickArg : public StateArg {
 	NaviFlickArg(Creature* c, Vector3f& d, f32 i)
 	{
-		m_creature  = c;
-		m_direction = d;
-		m_intensity = i;
+		mCreature  = c;
+		mDirection = d;
+		mIntensity = i;
 	}
 
-	Creature* m_creature; // _0C
-	Vector3f m_direction; // _10
-	f32 m_intensity;      // _1C
+	Creature* mCreature; // _0C
+	Vector3f mDirection; // _10
+	f32 mIntensity;      // _1C
 };
 
 struct NaviFallMeckArg : public StateArg {
@@ -120,9 +120,9 @@ struct NaviChangeState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
-	char* m_name;      // _0C
-	Navi* m_newNavi;   // _10
-	bool m_isFinished; // _14
+	char* mName;      // _0C
+	Navi* mNewNavi;   // _10
+	bool mIsFinished; // _14
 };
 
 struct NaviClimbState : public NaviState {
@@ -254,10 +254,10 @@ struct NaviFlickState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
-	u32 _10;             // _10
-	u32 _14;             // _14
-	Creature* m_flicker; // _18
-	Vector3f _18;        // _1C
+	u32 _10;            // _10
+	u32 _14;            // _14
+	Creature* mFlicker; // _18
+	Vector3f _18;       // _1C
 };
 
 struct NaviFollowState : public NaviState {
@@ -271,13 +271,13 @@ struct NaviFollowState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
-	char* m_name;       // _0C
-	Navi* m_targetNavi; // _10
-	bool m_isFinished;  // _14
-	Navi* _18;          // _18, unk navi?
-	u8 _1C;             // _1C, counter?
-	u8 _1D;             // _1D, motion?
-	u8 _1E;             // _1E, counter 2?
+	char* mName;       // _0C
+	Navi* mTargetNavi; // _10
+	bool mIsFinished;  // _14
+	Navi* _18;         // _18, unk navi?
+	u8 _1C;            // _1C, counter?
+	u8 _1D;            // _1D, motion?
+	u8 _1E;            // _1E, counter 2?
 };
 
 struct NaviGatherState : public NaviState {
@@ -304,12 +304,12 @@ struct NaviKokeDamageState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
-	u32 _0C;              // _0C
-	u32 _10;              // _10
-	f32 _14;              // _14
-	u32 _18;              // _18
-	Creature* m_creature; // _1C
-	u8 _20;               // _20
+	u32 _0C;             // _0C
+	u32 _10;             // _10
+	f32 _14;             // _14
+	u32 _18;             // _18
+	Creature* mCreature; // _1C
+	u8 _20;              // _20
 };
 
 struct NaviNukuAdjustStateArg : public StateArg {
@@ -318,11 +318,11 @@ struct NaviNukuAdjustStateArg : public StateArg {
 	{
 	}
 
-	f32 _00;                        // _00
-	Vector3f _04;                   // _04
-	int _10;                        // _10
-	ItemPikihead::Item* m_pikihead; // _14
-	u8 _18;                         // _18
+	f32 _00;                       // _00
+	Vector3f _04;                  // _04
+	int _10;                       // _10
+	ItemPikihead::Item* mPikihead; // _14
+	u8 _18;                        // _18
 };
 
 struct NaviNukuAdjustState : public NaviState {
@@ -476,8 +476,8 @@ struct NaviThrowWaitState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
-	u8 _0C[0x8];  // _0C, unknown
-	Piki* m_piki; // _14, held piki to be thrown
+	u8 _0C[0x8]; // _0C, unknown
+	Piki* mPiki; // _14, held piki to be thrown
 };
 
 struct NaviWalkState : public NaviState {

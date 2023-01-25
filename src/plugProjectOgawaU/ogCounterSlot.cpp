@@ -16,18 +16,18 @@ namespace Screen {
 CallBack_CounterSlot::CallBack_CounterSlot(char** p1, u16 p2, u16 p3, JKRArchive* archive)
     : CallBack_CounterRV(p1, p2, p3, archive)
 {
-	_A8              = 0;
-	_A9              = 0;
-	_AA              = 0;
-	_AB              = 0;
-	_AC              = 0;
-	_B0              = 0;
-	m_timer          = 0.0f;
-	m_updateInterval = 0.1f;
-	m_puyoParm1      = 2.0f;
-	m_puyoParm2      = 35.0f;
-	m_puyoParm3      = 0.3f;
-	_C8              = PSSE_UNSET;
+	_A8             = 0;
+	_A9             = 0;
+	_AA             = 0;
+	_AB             = 0;
+	_AC             = 0;
+	_B0             = 0;
+	mTimer          = 0.0f;
+	mUpdateInterval = 0.1f;
+	mPuyoParm1      = 2.0f;
+	mPuyoParm2      = 35.0f;
+	mPuyoParm3      = 0.3f;
+	_C8             = PSSE_UNSET;
 }
 
 /*
@@ -47,9 +47,9 @@ void CallBack_CounterSlot::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3,
  */
 void CallBack_CounterSlot::setPuyoParam(f32 parm1, f32 parm2, f32 parm3)
 {
-	m_puyoParm1 = parm1;
-	m_puyoParm2 = parm2;
-	m_puyoParm3 = parm3;
+	mPuyoParm1 = parm1;
+	mPuyoParm2 = parm2;
+	mPuyoParm3 = parm3;
 }
 
 /*
@@ -59,26 +59,26 @@ void CallBack_CounterSlot::setPuyoParam(f32 parm1, f32 parm2, f32 parm3)
  */
 void CallBack_CounterSlot::update()
 {
-	int goal = m_currCounters;
-	if (goal > m_counterLimit) {
-		goal = m_counterLimit;
+	int goal = mCurrCounters;
+	if (goal > mCounterLimit) {
+		goal = mCounterLimit;
 	}
 
 	if (_A8 && !_AC) {
 		for (int i = 0; i < goal; i++) {
-			J2DPane* pane = m_counters[i]->m_picture;
+			J2DPane* pane = mCounters[i]->mPicture;
 			if (i <= (int)_B0 && _A9) {
 				pane->show();
 			} else {
 				pane->hide();
 			}
 		}
-		m_timer += sys->m_deltaTime;
-		if (m_timer >= m_updateInterval) {
-			m_timer = 0.0f;
+		mTimer += sys->mDeltaTime;
+		if (mTimer >= mUpdateInterval) {
+			mTimer = 0.0f;
 			_B0++;
-			if ((int)_B0 >= (int)m_currCounters) {
-				if ((int)_B0 >= (int)m_counterLimit) {
+			if ((int)_B0 >= (int)mCurrCounters) {
+				if ((int)_B0 >= (int)mCounterLimit) {
 					_A8 = false;
 					_AB = true;
 				}
@@ -105,10 +105,10 @@ void CallBack_CounterSlot::update()
  */
 void CallBack_CounterSlot::slot_up(int k)
 {
-	if (k > m_counterLimit) {
+	if (k > mCounterLimit) {
 		JUT_PANICLINE(169, "slot_up overflow ! (k=%d)\n", k);
-	} else if (k != m_counterLimit) {
-		m_counters[k]->m_scaleMgr->up(m_puyoParm1, m_puyoParm2, m_puyoParm3, 0.0f);
+	} else if (k != mCounterLimit) {
+		mCounters[k]->mScaleMgr->up(mPuyoParm1, mPuyoParm2, mPuyoParm3, 0.0f);
 		if ((u32)_C8 != 0) {
 			ogSound->setSE(_C8);
 		}
@@ -123,18 +123,18 @@ void CallBack_CounterSlot::slot_up(int k)
 void CallBack_CounterSlot::startSlot(f32 calc)
 {
 	if (!_AC) {
-		_A8              = true;
-		_A9              = true;
-		_AA              = false;
-		_B0              = 0;
-		m_timer          = 0.0f;
-		m_updateInterval = calc;
-		m_isPuyoAnim     = true;
+		_A8             = true;
+		_A9             = true;
+		_AA             = false;
+		_B0             = 0;
+		mTimer          = 0.0f;
+		mUpdateInterval = calc;
+		mIsPuyoAnim     = true;
 
-		if ((int)m_counterLimit < 0) {
+		if ((int)mCounterLimit < 0) {
 			JUT_PANICLINE(169, "slot_up overflow ! (k=%d)\n", 0);
-		} else if ((int)m_counterLimit != 0) {
-			m_counters[0]->m_scaleMgr->up(m_puyoParm1, m_puyoParm2, m_puyoParm3, 0.0f);
+		} else if ((int)mCounterLimit != 0) {
+			mCounters[0]->mScaleMgr->up(mPuyoParm1, mPuyoParm2, mPuyoParm3, 0.0f);
 			if ((u32)_C8 != 0) {
 				ogSound->setSE(_C8);
 			}
@@ -149,107 +149,107 @@ void CallBack_CounterSlot::startSlot(f32 calc)
  */
 void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 {
-	if (m_isBlind) {
-		m_initialDisplayValue = 0;
-		m_currDisplayValue    = 0;
+	if (mIsBlind) {
+		mInitialDisplayValue = 0;
+		mCurrDisplayValue    = 0;
 	}
-	m_currCounters = CalcKeta(m_initialDisplayValue);
+	mCurrCounters = CalcKeta(mInitialDisplayValue);
 
-	int counts = m_currCounters;
+	int counts = mCurrCounters;
 	if (counts < _30) {
 		counts = _30;
 	}
 
-	for (int i = 0; i < m_counterLimit; i++) {
+	for (int i = 0; i < mCounterLimit; i++) {
 		u32 power   = pow(10.0f, (f64)i);
-		u16 sujiVal = (m_initialDisplayValue / power) % 10;
-		if (m_isBlind) {
-			m_counters[i]->setSuji(m_imgResources, 10);
+		u16 sujiVal = (mInitialDisplayValue / power) % 10;
+		if (mIsBlind) {
+			mCounters[i]->setSuji(mImgResources, 10);
 		} else {
 			if (_89) {
-				m_counters[i]->setSuji(m_imgResources, (u16)(randFloat() * 9.0f));
+				mCounters[i]->setSuji(mImgResources, (u16)(randFloat() * 9.0f));
 			} else {
-				m_counters[i]->setSuji(m_imgResources, sujiVal);
+				mCounters[i]->setSuji(mImgResources, sujiVal);
 			}
 		}
-		J2DPicture* keta = m_counters[i]->m_picture;
+		J2DPicture* keta = mCounters[i]->mPicture;
 		if (keta) {
 			if (i < counts) {
 				if (_AC) {
-					keta->m_isVisible = true;
+					keta->mIsVisible = true;
 				}
-				if (i + 1 > m_currCounters) {
-					if (m_isBlind) {
+				if (i + 1 > mCurrCounters) {
+					if (mIsBlind) {
 						keta->setAlpha(255);
 					} else {
-						keta->setAlpha(m_zeroAlpha);
+						keta->setAlpha(mZeroAlpha);
 					}
 				} else {
 					keta->setAlpha(255);
-					ScaleMgr* smgr = m_counters[i]->m_scaleMgr;
+					ScaleMgr* smgr = mCounters[i]->mScaleMgr;
 					if (flag1) {
 						smgr->up(msVal._00, msVal._04, msVal._08, 0.025f * i);
 					} else if (flag2) {
 						smgr->down();
 					}
 				}
-				m_counters[i]->calcScale();
+				mCounters[i]->calcScale();
 			} else {
 				keta->hide();
 			}
 		}
 	}
 
-	f32 temp  = m_paneScale.x;
+	f32 temp  = mPaneScale.x;
 	f32 temp3 = 0.0f;
 
 	u16 changedCounts = counts;
-	if (changedCounts > m_counterLimit) {
-		changedCounts = m_counterLimit;
+	if (changedCounts > mCounterLimit) {
+		changedCounts = mCounterLimit;
 	}
 
 	if (changedCounts >= 2) {
-		f32 temp2 = m_pane12DistX * (f32)(changedCounts - 1) + m_paneSize.x;
-		if (temp2 > m_pane13DistX) {
-			temp  = (m_paneScale.x * m_pane13DistX) / temp2;
-			temp3 = m_paneSize.x / 2 * (1.0f - temp);
+		f32 temp2 = mPane12DistX * (f32)(changedCounts - 1) + mPaneSize.x;
+		if (temp2 > mPane13DistX) {
+			temp  = (mPaneScale.x * mPane13DistX) / temp2;
+			temp3 = mPaneSize.x / 2 * (1.0f - temp);
 		}
 	}
-	f32 xVal = m_panePosition.x + temp3;
-	m_pic1->updateScale(temp, m_paneScale.y);
-	m_pic1->setOffset(xVal, m_panePosition.y);
-	m_pic1->calcMtx();
+	f32 xVal = mPanePosition.x + temp3;
+	mPic1->updateScale(temp, mPaneScale.y);
+	mPic1->setOffset(xVal, mPanePosition.y);
+	mPic1->calcMtx();
 
-	f32 ang                = m_pic1->m_angle;
-	f32 newx               = m_pic1->_0B8;
-	f32 newy               = m_pic1->_0BC;
-	JUtility::TColor white = m_pic1->getWhite();
-	JUtility::TColor black = m_pic1->getBlack();
-	JGeometry::TBox2f* box = m_pic1->getBounds();
-	m_paneBounds.x         = box->i.x;
-	m_paneBounds.y         = box->i.y;
+	f32 ang                = mPic1->mAngle;
+	f32 newx               = mPic1->_0B8;
+	f32 newy               = mPic1->_0BC;
+	JUtility::TColor white = mPic1->getWhite();
+	JUtility::TColor black = mPic1->getBlack();
+	JGeometry::TBox2f* box = mPic1->getBounds();
+	mPaneBounds.x          = box->i.x;
+	mPaneBounds.y          = box->i.y;
 
-	for (int i = 0; i < m_counterLimit; i++) {
-		J2DPicture* cPane = m_counters[i]->m_picture;
+	for (int i = 0; i < mCounterLimit; i++) {
+		J2DPicture* cPane = mCounters[i]->mPicture;
 		if (cPane) {
-			f32 boxVal = (f32)i * (-m_pane12DistX * temp);
-			JGeometry::TBox2f cBox(boxVal + m_paneBounds.x, m_paneBounds.y, boxVal + (m_paneBounds.x + m_paneSize.x),
-			                       m_paneBounds.y + m_paneSize.y);
+			f32 boxVal = (f32)i * (-mPane12DistX * temp);
+			JGeometry::TBox2f cBox(boxVal + mPaneBounds.x, mPaneBounds.y, boxVal + (mPaneBounds.x + mPaneSize.x),
+			                       mPaneBounds.y + mPaneSize.y);
 			cPane->place(cBox);
 
-			if (m_isPuyoAnim && !_AC) {
+			if (mIsPuyoAnim && !_AC) {
 				cPane->setBasePosition(J2DPOS_Center);
-				CounterKeta* cKeta = m_counters[i];
-				cKeta->m_size      = Vector2f(temp, m_paneScale.y);
+				CounterKeta* cKeta = mCounters[i];
+				cKeta->mSize       = Vector2f(temp, mPaneScale.y);
 
 			} else {
-				cPane->setBasePosition((J2DBasePosition)m_basePosition);
-				cPane->updateScale(temp, m_paneScale.y);
+				cPane->setBasePosition((J2DBasePosition)mBasePosition);
+				cPane->updateScale(temp, mPaneScale.y);
 			}
 
-			cPane->_0B8    = newx;
-			cPane->_0BC    = newy;
-			cPane->m_angle = ang;
+			cPane->_0B8   = newx;
+			cPane->_0BC   = newy;
+			cPane->mAngle = ang;
 			cPane->calcMtx();
 			cPane->setWhite(white);
 			cPane->setBlack(black);

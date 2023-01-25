@@ -10,14 +10,14 @@ struct Sphere;
 struct BoundBox {
 	// define min big and max small so that 'include' will always 'snap' to point
 	BoundBox()
-	    : m_min(32768.0f)
-	    , m_max(-32768.0f)
+	    : mMin(32768.0f)
+	    , mMax(-32768.0f)
 	{
 	}
 
 	BoundBox(f32 min, f32 max)
-	    : m_min(min)
-	    , m_max(max)
+	    : mMin(min)
+	    , mMax(max)
 	{
 	}
 
@@ -30,28 +30,28 @@ struct BoundBox {
 	 */
 	inline void include(Vector3f& point)
 	{
-		if (point.x < m_min.x) {
-			m_min.x = point.x;
+		if (point.x < mMin.x) {
+			mMin.x = point.x;
 		}
-		if (point.y < m_min.y) {
-			m_min.y = point.y;
+		if (point.y < mMin.y) {
+			mMin.y = point.y;
 		}
-		if (point.z < m_min.z) {
-			m_min.z = point.z;
+		if (point.z < mMin.z) {
+			mMin.z = point.z;
 		}
-		if (point.x > m_max.x) {
-			m_max.x = point.x;
+		if (point.x > mMax.x) {
+			mMax.x = point.x;
 		}
-		if (point.y > m_max.y) {
-			m_max.y = point.y;
+		if (point.y > mMax.y) {
+			mMax.y = point.y;
 		}
-		if (point.z > m_max.z) {
-			m_max.z = point.z;
+		if (point.z > mMax.z) {
+			mMax.z = point.z;
 		}
 	}
 
-	Vector3f m_min; // _00
-	Vector3f m_max; // _0C
+	Vector3f mMin; // _00
+	Vector3f mMax; // _0C
 };
 
 struct BoundBox2d {

@@ -49,19 +49,19 @@ struct PersEnvManager {
 	void playOk(EnvSe_Perspective_AvoidY*);
 	void exec();
 
-	PSSystem::EnvSeMgr* m_envSeMgr; // _00
-	u8 _04;                         // _04
-	u8 _05[0x3];                    // _05, possibly padding
-	void* _08;                      // _08, unknown ptr
-	void* _0C;                      // _0C, unknown ptr
-	f32 _10;                        // _10
+	PSSystem::EnvSeMgr* mEnvSeMgr; // _00
+	u8 _04;                        // _04
+	u8 _05[0x3];                   // _05, possibly padding
+	void* _08;                     // _08, unknown ptr
+	void* _0C;                     // _0C, unknown ptr
+	f32 _10;                       // _10
 };
 
 struct EnvSeObjBuilder : public PSGame::Builder_EvnSe_Perspective {
 	// _00     = VTBL
 	// _00-_4C = PSGame::Builder_EvnSe_Perspective
-	void* _4C;                 // _4C, unknown ptr
-	PersEnvInfo m_persEnvInfo; // _50
+	void* _4C;                // _4C, unknown ptr
+	PersEnvInfo mPersEnvInfo; // _50
 };
 
 struct SeSound : public JAISe {
@@ -81,9 +81,9 @@ struct SeSound : public JAISe {
 
 	// _00      = VTABLE
 	// _00-_484 = JAISe
-	PSGame::SoundTable::SePerspInfo m_perspInfo; // _484
-	u8 _49C;                                     // _49C
-	f32 _4A0;                                    // _4A0
+	PSGame::SoundTable::SePerspInfo mPerspInfo; // _484
+	u8 _49C;                                    // _49C
+	f32 _4A0;                                   // _4A0
 };
 } // namespace PSM
 

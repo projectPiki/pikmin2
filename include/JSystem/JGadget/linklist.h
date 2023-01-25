@@ -9,47 +9,47 @@ namespace JGadget {
 struct TLinkListNode {
 	TLinkListNode()
 	{
-		m_next = nullptr;
-		m_prev = nullptr;
+		mNext = nullptr;
+		mPrev = nullptr;
 	}
 
-	TLinkListNode* m_next;
-	TLinkListNode* m_prev;
+	TLinkListNode* mNext;
+	TLinkListNode* mPrev;
 };
 
 struct TNodeLinkList {
 	struct iterator : public std::iterator<std::input_iterator_tag, TLinkListNode> {
-		iterator(TLinkListNode* pNode) { m_node = pNode; }
+		iterator(TLinkListNode* pNode) { mNode = pNode; }
 		iterator(const iterator& iter) { *this = iter; }
 
-		TLinkListNode* m_node;
+		TLinkListNode* mNode;
 	};
 
 	struct TPRIsEqual_pointer_ {
 		/** @fabricated */
-		bool operator()(TLinkListNode* other) { return other == m_node; }
+		bool operator()(TLinkListNode* other) { return other == mNode; }
 
-		TLinkListNode* m_node;
+		TLinkListNode* mNode;
 	};
 
 	TNodeLinkList()
-	    : m_linkListNode()
+	    : mLinkListNode()
 	{
 		Initialize_();
 	}
 	void Initialize_()
 	{
-		m_count               = 0;
-		m_linkListNode.m_next = &m_linkListNode;
-		m_linkListNode.m_prev = &m_linkListNode;
+		mCount              = 0;
+		mLinkListNode.mNext = &mLinkListNode;
+		mLinkListNode.mPrev = &mLinkListNode;
 	}
 
 	/** @fabricated */
-	iterator start() { return iterator(&m_linkListNode); }
+	iterator start() { return iterator(&mLinkListNode); }
 
 	iterator end()
 	{
-		iterator iter(m_linkListNode.m_next);
+		iterator iter(mLinkListNode.mNext);
 		return iter;
 	}
 
@@ -70,8 +70,8 @@ struct TNodeLinkList {
 	void reverse();
 	TLinkListNode* Find(const TLinkListNode*);
 
-	int m_count;                  // _00
-	TLinkListNode m_linkListNode; // _04
+	int mCount;                  // _00
+	TLinkListNode mLinkListNode; // _04
 };
 
 template <typename T, int I>
@@ -95,11 +95,11 @@ struct TLinkList : public TNodeLinkList {
 		/** @fabricated */
 		iterator& operator++()
 		{
-			++m_node;
+			++mNode;
 			return *this;
 		}
 		/** @fabricated */
-		reference operator*() const { return *(const T*)(((u8*)&m_node) + I); }
+		reference operator*() const { return *(const T*)(((u8*)&mNode) + I); }
 	};
 
 	TLinkListNode* Element_toNode(T* element) const { return reinterpret_cast<TLinkListNode*>(reinterpret_cast<u8*>(element) + I); }

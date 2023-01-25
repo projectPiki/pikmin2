@@ -24,7 +24,7 @@ void BeatMgr::proc()
  */
 bool SeqTrackBase::update()
 {
-	m_taskEntryMgr.update();
+	mTaskEntryMgr.update();
 	return false;
 }
 
@@ -33,14 +33,14 @@ bool SeqTrackBase::update()
  * Address:	803422FC
  * Size:	000008
  */
-void SeqTrackBase::init(JASTrack* track) { m_taskEntryMgr._24 = track; }
+void SeqTrackBase::init(JASTrack* track) { mTaskEntryMgr._24 = track; }
 
 /*
  * --INFO--
  * Address:	80342304
  * Size:	000008
  */
-TaskEntryMgr* SeqTrackBase::getTaskEntryList() { return &m_taskEntryMgr; }
+TaskEntryMgr* SeqTrackBase::getTaskEntryList() { return &mTaskEntryMgr; }
 
 /*
  * --INFO--
@@ -64,10 +64,10 @@ SeqTrackRoot::SeqTrackRoot()
 void SeqTrackRoot::init(JASTrack* track)
 {
 	P2ASSERTLINE(229, track != nullptr);
-	m_taskEntryMgr._24 = track;
-	_2C                = track->_352;
-	_2E                = _2C;
-	m_beatMgr._00      = 0;
+	mTaskEntryMgr._24 = track;
+	_2C               = track->_352;
+	_2E               = _2C;
+	mBeatMgr._00      = 0;
 	initSwingRatio();
 }
 
@@ -89,9 +89,9 @@ void SeqTrackRoot::initSwingRatio()
  */
 void SeqTrackRoot::pitchModulation(float f1, float f2, u32 arg, PSSystem::DirectorBase* base)
 {
-	m_taskEntryMgr.removeEntry(&_16C);
+	mTaskEntryMgr.removeEntry(&_16C);
 	_16C.makeEntry(f1, f2, arg);
-	m_taskEntryMgr.appendEntry(&_16C, base);
+	mTaskEntryMgr.appendEntry(&_16C, base);
 }
 
 /*
@@ -101,9 +101,9 @@ void SeqTrackRoot::pitchModulation(float f1, float f2, u32 arg, PSSystem::Direct
  */
 void SeqTrackRoot::tempoChange(float tempo, u32 arg, PSSystem::DirectorBase* base)
 {
-	m_taskEntryMgr.removeEntry(&_40);
+	mTaskEntryMgr.removeEntry(&_40);
 	_40.makeEntry(tempo, arg);
-	m_taskEntryMgr.appendEntry(&_40, base);
+	mTaskEntryMgr.appendEntry(&_40, base);
 }
 
 /*
@@ -111,7 +111,7 @@ void SeqTrackRoot::tempoChange(float tempo, u32 arg, PSSystem::DirectorBase* bas
  * Address:	803428A4
  * Size:	000024
  */
-void SeqTrackRoot::onStopSeq() { m_taskEntryMgr.removeAllEntry(); }
+void SeqTrackRoot::onStopSeq() { mTaskEntryMgr.removeAllEntry(); }
 
 /*
  * --INFO--
@@ -120,9 +120,9 @@ void SeqTrackRoot::onStopSeq() { m_taskEntryMgr.removeAllEntry(); }
  */
 u16 SeqTrackRoot::beatUpdate()
 {
-	m_beatMgr._00 = (m_beatMgr._00 & 1 ^ 1) & 0x00FF | 0x80;
+	mBeatMgr._00 = (mBeatMgr._00 & 1 ^ 1) & 0x00FF | 0x80;
 	if (_38 == 1) {
-		if (m_beatMgr._00 & 1) {
+		if (mBeatMgr._00 & 1) {
 			_2E = _30;
 		} else {
 			_2E = _32;
@@ -130,7 +130,7 @@ u16 SeqTrackRoot::beatUpdate()
 	} else {
 		_2E = _2C;
 	}
-	m_taskEntryMgr._24->setTempo(_2E);
+	mTaskEntryMgr._24->setTempo(_2E);
 	onBeatTop();
 	return _3E;
 }
@@ -153,10 +153,10 @@ SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
  */
 void SeqTrackChild::muteOffAndFadeIn(float arg1, u32 arg2, PSSystem::DirectorBase* base)
 {
-	m_taskEntryMgr.removeEntry(&_2C);
-	m_taskEntryMgr.removeEntry(&_12C);
+	mTaskEntryMgr.removeEntry(&_2C);
+	mTaskEntryMgr.removeEntry(&_12C);
 	_2C.makeEntry(arg1, arg2);
-	m_taskEntryMgr.appendEntry(&_2C, base);
+	mTaskEntryMgr.appendEntry(&_2C, base);
 }
 
 /*
@@ -166,10 +166,10 @@ void SeqTrackChild::muteOffAndFadeIn(float arg1, u32 arg2, PSSystem::DirectorBas
  */
 void SeqTrackChild::fadeoutAndMute(u32 arg, PSSystem::DirectorBase* base)
 {
-	m_taskEntryMgr.removeEntry(&_2C);
-	m_taskEntryMgr.removeEntry(&_12C);
+	mTaskEntryMgr.removeEntry(&_2C);
+	mTaskEntryMgr.removeEntry(&_12C);
 	_12C.makeEntry(arg);
-	m_taskEntryMgr.appendEntry(&_12C, base);
+	mTaskEntryMgr.appendEntry(&_12C, base);
 }
 
 /*
@@ -179,9 +179,9 @@ void SeqTrackChild::fadeoutAndMute(u32 arg, PSSystem::DirectorBase* base)
  */
 void SeqTrackChild::fade(float arg1, u32 arg2, PSSystem::DirectorBase* base)
 {
-	m_taskEntryMgr.removeEntry(&_1B8);
+	mTaskEntryMgr.removeEntry(&_1B8);
 	_1B8.makeEntry(arg1, arg2);
-	m_taskEntryMgr.appendEntry(&_1B8, base);
+	mTaskEntryMgr.appendEntry(&_1B8, base);
 }
 
 /*
@@ -191,9 +191,9 @@ void SeqTrackChild::fade(float arg1, u32 arg2, PSSystem::DirectorBase* base)
  */
 void SeqTrackChild::setIdMask(u8 mask, PSSystem::DirectorBase* base)
 {
-	m_taskEntryMgr.removeEntry(&_224);
+	mTaskEntryMgr.removeEntry(&_224);
 	_224.makeEntry(mask);
-	m_taskEntryMgr.appendEntry(&_224, base);
+	mTaskEntryMgr.appendEntry(&_224, base);
 }
 
 /*
@@ -201,5 +201,5 @@ void SeqTrackChild::setIdMask(u8 mask, PSSystem::DirectorBase* base)
  * Address:	80342E28
  * Size:	000024
  */
-void SeqTrackChild::onStopSeq() { m_taskEntryMgr.removeAllEntry(); }
+void SeqTrackChild::onStopSeq() { mTaskEntryMgr.removeAllEntry(); }
 } // namespace PSSystem

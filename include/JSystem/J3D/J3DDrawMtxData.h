@@ -7,10 +7,10 @@ struct J3DDrawMtxData {
 	J3DDrawMtxData();
 	~J3DDrawMtxData();
 
-	u16 m_count; // _00
-	u16 _02;     // _02
-	u8* _04;     // _04
-	u16* _08;    // _08
+	u16 mCount; // _00
+	u16 _02;    // _02
+	u8* _04;    // _04
+	u16* _08;   // _08
 };
 
 #endif

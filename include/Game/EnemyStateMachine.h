@@ -18,7 +18,7 @@ struct EnemyFSMState;
  */
 struct EnemyStateMachine {
 	inline EnemyStateMachine()
-	    : m_previousID(-1)
+	    : mPreviousID(-1)
 	{
 	}
 
@@ -40,36 +40,36 @@ struct EnemyStateMachine {
 	void resume(EnemyBase*);
 
 	// _00 VTBL
-	// Array of pointers to registered states, of length `m_limit`.
-	EnemyFSMState** m_states;
+	// Array of pointers to registered states, of length `mLimit`.
+	EnemyFSMState** mStates;
 
 	// Count of registered states.
-	int m_count; // _08
+	int mCount; // _08
 
 	// Maximum number of states that can be registered.
-	int m_limit; // _0C
+	int mLimit; // _0C
 
-	// Array of state IDs, indexed by their index in m_states.
-	int* m_indexToIDArray; // _10
+	// Array of state IDs, indexed by their index in mStates.
+	int* mIndexToIDArray; // _10
 
-	// Array of state indices in m_states, indexed by their state ID.
-	int* m_idToIndexArray; // _14
+	// Array of state indices in mStates, indexed by their state ID.
+	int* mIdToIndexArray; // _14
 
 	// ID of previous state.
-	int m_previousID; // _18
+	int mPreviousID; // _18
 };
 
 struct EnemyFSMState {
 	inline EnemyFSMState(int stateID, const char* name)
-	    : m_stateID(stateID)
-	    , m_stateMachine(nullptr)
-	    , m_name(name)
+	    : mStateID(stateID)
+	    , mStateMachine(nullptr)
+	    , mName(name)
 	{
 	}
 
 	inline EnemyFSMState(int stateID)
-	    : m_stateID(stateID)
-	    , m_stateMachine(nullptr)
+	    : mStateID(stateID)
+	    , mStateMachine(nullptr)
 	{
 	}
 
@@ -82,9 +82,9 @@ struct EnemyFSMState {
 	virtual void doDirectDraw(EnemyBase* base, Graphics& gfx) { }          // _20 (weak)
 
 	// _00 = VTBL
-	int m_stateID;                     // _04
-	EnemyStateMachine* m_stateMachine; // _08
-	const char* m_name;                // _0C
+	int mStateID;                     // _04
+	EnemyStateMachine* mStateMachine; // _08
+	const char* mName;                // _0C
 };
 } // namespace Game
 

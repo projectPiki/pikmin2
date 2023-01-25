@@ -18,26 +18,26 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 	    : _24()
 	    , _38()
 	{
-		m_countTevKColorAnm = 0;
-		m_countTevColorAnm  = 0;
-		_16                 = 0;
-		_14                 = 0;
-		_12                 = 0;
-		_10                 = 0;
-		_1E                 = 0;
-		_1C                 = 0;
-		_1A                 = 0;
-		_18                 = 0;
-		_34                 = nullptr;
-		_20                 = nullptr;
-		_5C                 = nullptr;
-		_58                 = nullptr;
-		_54                 = nullptr;
-		_50                 = nullptr;
-		_6C                 = nullptr;
-		_68                 = nullptr;
-		_64                 = nullptr;
-		_60                 = nullptr;
+		mCountTevKColorAnm = 0;
+		mCountTevColorAnm  = 0;
+		_16                = 0;
+		_14                = 0;
+		_12                = 0;
+		_10                = 0;
+		_1E                = 0;
+		_1C                = 0;
+		_1A                = 0;
+		_18                = 0;
+		_34                = nullptr;
+		_20                = nullptr;
+		_5C                = nullptr;
+		_58                = nullptr;
+		_54                = nullptr;
+		_50                = nullptr;
+		_6C                = nullptr;
+		_68                = nullptr;
+		_64                = nullptr;
+		_60                = nullptr;
 	}
 
 	virtual ~J3DAnmTevRegKey() { } // _08 (weak)
@@ -54,8 +54,8 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 	void getTevKonstReg(unsigned short, GXColor*) const;
 	void searchUpdateMaterialID(struct J3DModelData*);
 
-	u16 m_countTevColorAnm;  // _0C
-	u16 m_countTevKColorAnm; // _0E
+	u16 mCountTevColorAnm;   // _0C
+	u16 mCountTevKColorAnm;  // _0E
 	u16 _10;                 // _10
 	u16 _12;                 // _12
 	u16 _14;                 // _14

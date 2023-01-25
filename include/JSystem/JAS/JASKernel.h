@@ -46,8 +46,8 @@ extern JASHeap* audioAramHeap;
 struct JASCmdHeap {
 	typedef void (*Command)(void*);
 	struct Header {
-		Command m_command; // _00
-		int m_msgLength;   // _04 - I don't think this is right?
+		Command mCommand; // _00
+		int mMsgLength;   // _04 - I don't think this is right?
 	};
 	/**
 	 * @fabricated
@@ -55,56 +55,56 @@ struct JASCmdHeap {
 	 */
 	struct Block {
 		inline Block(Block* next)
-		    : m_next(next)
-		    , m_usedLength(0)
-		    , m_msgCount(0)
+		    : mNext(next)
+		    , mUsedLength(0)
+		    , mMsgCount(0)
 		{
 		}
 
 		inline bool contains(Header* msg)
 		{
-			if ((u32)m_buffer <= (u32)msg && (u32)msg < (u32)(this + 1)) {
+			if ((u32)mBuffer <= (u32)msg && (u32)msg < (u32)(this + 1)) {
 				return true;
 			}
 			return false;
 		}
 
-		Block* m_next;       // _00
-		size_t m_usedLength; // _04
-		int m_msgCount;      // _08
-		u8 m_buffer[0x400];  // _0C
+		Block* mNext;       // _00
+		size_t mUsedLength; // _04
+		int mMsgCount;      // _08
+		u8 mBuffer[0x400];  // _0C
 	};
 
 	inline bool grow()
 	{
-		JASCmdHeap::Block* previousHead = m_head;
+		JASCmdHeap::Block* previousHead = mHead;
 
-		if (previousHead != nullptr && previousHead->m_msgCount == 0) {
+		if (previousHead != nullptr && previousHead->mMsgCount == 0) {
 			// No need!
-			previousHead->m_usedLength = 0;
+			previousHead->mUsedLength = 0;
 			return true;
 		}
 		// Try to alloc into JASKernel sys heap:
-		m_head = new (JASKernel::getSystemHeap(), 0) Block(previousHead);
-		if (m_head != nullptr) {
+		mHead = new (JASKernel::getSystemHeap(), 0) Block(previousHead);
+		if (mHead != nullptr) {
 			return true;
 		}
 		// Failed to alloc into JASKernel sys heap. Use general sys heap instead.
-		m_head = new (JKRHeap::sSystemHeap, 0) Block(previousHead);
-		if (m_head != nullptr) {
+		mHead = new (JKRHeap::sSystemHeap, 0) Block(previousHead);
+		if (mHead != nullptr) {
 			return true;
 		}
 		// Failed to grow. Restore the previous head, and return false.
-		m_head = previousHead;
+		mHead = previousHead;
 		return false;
 	}
 
 	inline Header* alloc(size_t msgLength)
 	{
 		msgLength += sizeof(Header);
-		JASMutexLock lock(&m_mutex);
-		Block* previousHead = m_head;
-		if (0x400 - previousHead->m_usedLength < msgLength) {
+		JASMutexLock lock(&mMutex);
+		Block* previousHead = mHead;
+		if (0x400 - previousHead->mUsedLength < msgLength) {
 			if (0x400 < msgLength) {
 				// too large!
 				return nullptr;
@@ -114,34 +114,34 @@ struct JASCmdHeap {
 				return nullptr;
 			}
 		}
-		int startOffset = m_head->m_usedLength;
-		m_head->m_usedLength += msgLength;
-		m_head->m_msgCount++;
-		return (Header*)(m_head->m_buffer + startOffset);
+		int startOffset = mHead->mUsedLength;
+		mHead->mUsedLength += msgLength;
+		mHead->mMsgCount++;
+		return (Header*)(mHead->mBuffer + startOffset);
 	}
 
 	inline void free(Header* block)
 	{
-		JASMutexLock lock(&m_mutex);
-		Block* current = m_head;
+		JASMutexLock lock(&mMutex);
+		Block* current = mHead;
 		Block* prev    = nullptr;
 		while (current != nullptr) {
 			if (current->contains(block)) {
-				current->m_msgCount--;
-				if (current != m_head && current->m_msgCount == 0) {
-					Block* next = current->m_next;
+				current->mMsgCount--;
+				if (current != mHead && current->mMsgCount == 0) {
+					Block* next = current->mNext;
 					delete current;
-					prev->m_next = next;
+					prev->mNext = next;
 				}
 				return;
 			}
 			prev    = current;
-			current = current->m_next;
+			current = current->mNext;
 		}
 	}
 
-	Block* m_head;   // _00
-	OSMutex m_mutex; // _04
+	Block* mHead;   // _00
+	OSMutex mMutex; // _04
 };
 
 #endif

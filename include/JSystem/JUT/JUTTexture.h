@@ -18,7 +18,7 @@ enum TextureFlags {
 struct JUTTexture : public GXTexObj {
 	JUTTexture()
 	{
-		m_flags &= TEXFLAG_Unk2;
+		mFlags &= TEXFLAG_Unk2;
 		_28 = 0;
 		_20 = 0;
 	}
@@ -29,14 +29,14 @@ struct JUTTexture : public GXTexObj {
 		const ResTIMG* resource = static_cast<ResTIMG*>(J2DScreen::getNameResource(resName));
 		_28                     = nullptr;
 		storeTIMG(resource, (u8)0);
-		m_flags &= TEXFLAG_Unk2;
+		mFlags &= TEXFLAG_Unk2;
 	}
 
 	inline JUTTexture(ResTIMG* timg)
 	{
 		_28 = nullptr;
 		storeTIMG(timg, (u8)0);
-		m_flags &= TEXFLAG_Unk2;
+		mFlags &= TEXFLAG_Unk2;
 	}
 
 	~JUTTexture();
@@ -54,9 +54,9 @@ struct JUTTexture : public GXTexObj {
 	void storeTIMG(const ResTIMG*, JUTPalette*, _GXTlut);
 
 	/** @fabricated */
-	inline int getSizeX() const { return _20->m_sizeX; }
+	inline int getSizeX() const { return _20->mSizeX; }
 	/** @fabricated */
-	inline int getSizeY() const { return _20->m_sizeY; }
+	inline int getSizeY() const { return _20->mSizeY; }
 
 	ResTIMG* _20;    // _20
 	void* _24;       // _24 /* DCrange */
@@ -69,8 +69,8 @@ struct JUTTexture : public GXTexObj {
 	u16 _34;         // _34
 	u16 _36;         // _36
 	short _38;       // _38
-	u8 m_tlut;       // _3A
-	u8 m_flags;      // _3B
+	u8 mTlut;        // _3A
+	u8 mFlags;       // _3B
 	ResTIMG* _3C;    // _3C
 };
 

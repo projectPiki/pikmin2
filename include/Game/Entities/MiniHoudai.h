@@ -110,20 +110,20 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2B8	= EnemyBase
-	FSM* m_fsm;                           // _2BC
-	WalkSmokeEffect::Mgr m_walkSmokeMgr;  // _2C0
-	f32 _2C8;                             // _2C8, caution?
-	f32 _2CC;                             // _2CC
-	f32 _2D0;                             // _2D0
-	MiniHoudaiStateID m_houdaiStateID;    // _2D4
-	Vector3f m_targetPosition;            // _2D8
-	Vector3f _2E4;                        // _2E4, shotgun target distance maybe?
-	WayPoint* _2F0;                       // _2F0
-	WayPoint* _2F4;                       // _2F4
-	MiniHoudaiShotGunMgr* m_shotgunMgr;   // _2F8
-	u8 _2FC[0x4];                         // _2FC, unknown
-	efx::TChibiCharge* m_efxCharge;       // _300
-	efx::TChibiDeadLight* m_efxDeadLight; // _304
+	FSM* mFsm;                           // _2BC
+	WalkSmokeEffect::Mgr mWalkSmokeMgr;  // _2C0
+	f32 _2C8;                            // _2C8, caution?
+	f32 _2CC;                            // _2CC
+	f32 _2D0;                            // _2D0
+	MiniHoudaiStateID mHoudaiStateID;    // _2D4
+	Vector3f mTargetPosition;            // _2D8
+	Vector3f _2E4;                       // _2E4, shotgun target distance maybe?
+	WayPoint* _2F0;                      // _2F0
+	WayPoint* _2F4;                      // _2F4
+	MiniHoudaiShotGunMgr* mShotgunMgr;   // _2F8
+	u8 _2FC[0x4];                        // _2FC, unknown
+	efx::TChibiCharge* mEfxCharge;       // _300
+	efx::TChibiDeadLight* mEfxDeadLight; // _304
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -149,13 +149,13 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp11(this, 'fp11', "éÄñS Å` ÉQÅ[ÉWèoåª", 30.0f, 1.0f, 500.0f) // 'death ~ appearance of gauge'
-		    , m_fp12(this, 'fp12', "ÉQÅ[ÉWèoåª Å` ïúäà", 10.0f, 1.0f, 500.0f) // 'appearance of gauge ~ resurrection'
+		    , mFp11(this, 'fp11', "éÄñS Å` ÉQÅ[ÉWèoåª", 30.0f, 1.0f, 500.0f) // 'death ~ appearance of gauge'
+		    , mFp12(this, 'fp12', "ÉQÅ[ÉWèoåª Å` ïúäà", 10.0f, 1.0f, 500.0f) // 'appearance of gauge ~ resurrection'
 		{
 		}
 
-		Parm<f32> m_fp11; // _804
-		Parm<f32> m_fp12; // _82C
+		Parm<f32> mFp11; // _804
+		Parm<f32> mFp12; // _82C
 	};
 
 	Parms() { }
@@ -163,23 +163,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 struct MiniHoudaiShotGunNode : public CNode {
@@ -189,11 +189,11 @@ struct MiniHoudaiShotGunNode : public CNode {
 
 	// _00		= VTBL
 	// _00-_18 	= CNode
-	u8 _18;                       // _18
-	Obj* m_owner;                 // _1C
-	efx::TChibiShell* m_efxShell; // _20
-	Vector3f _24;                 // _24
-	Vector3f _30;                 // _30
+	u8 _18;                      // _18
+	Obj* mOwner;                 // _1C
+	efx::TChibiShell* mEfxShell; // _20
+	Vector3f _24;                // _24
+	Vector3f _30;                // _30
 };
 
 struct MiniHoudaiShotGunMgr {
@@ -219,10 +219,10 @@ struct MiniHoudaiShotGunMgr {
 	void effectDrawOn();
 	void effectDrawOff();
 
-	Obj* m_owner;               // _00
+	Obj* mOwner;                // _00
 	u8 _04[0xC];                // _04, unknown
 	Matrixf* _10;               // _10
-	Vector3f m_targetPosition;  // _14
+	Vector3f mTargetPosition;   // _14
 	u8 _20[0xC];                // _20, unknown
 	MiniHoudaiShotGunNode* _2C; // _2C
 	MiniHoudaiShotGunNode* _30; // _30
@@ -372,7 +372,7 @@ struct Mgr : public MiniHoudai::Mgr {
 
 	// _00 		= VTBL
 	// _00-_44	= MiniHoudai::Mgr
-	Obj* m_obj; // _44, probably
+	Obj* mObj; // _44, probably
 };
 } // namespace FixMiniHoudai
 
@@ -405,7 +405,7 @@ struct Mgr : public MiniHoudai::Mgr {
 
 	// _00 		= VTBL
 	// _00-_44	= MiniHoudai::Mgr
-	Obj* m_obj; // _44
+	Obj* mObj; // _44
 };
 } // namespace NormMiniHoudai
 } // namespace Game

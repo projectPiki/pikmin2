@@ -13,19 +13,19 @@ namespace Screen {
  */
 CallBack_Furiko::CallBack_Furiko()
 {
-	m_pane             = nullptr;
-	m_canUpdate        = false;
-	m_doResetPane      = true;
-	m_currPosition.x   = 0.0f;
-	m_currPosition.y   = 0.0f;
-	m_offset           = 230.0f;
-	m_param2           = 57.5f;
-	m_growth           = 0.43f;
-	m_goalPosition.x   = m_currPosition.x;
-	m_goalPosition.y   = m_currPosition.y + m_offset;
-	m_changeModifier.x = 0.0f;
-	m_changeModifier.y = 0.0f;
-	m_currPaneAngle    = 0.0f;
+	mPane             = nullptr;
+	mCanUpdate        = false;
+	mDoResetPane      = true;
+	mCurrPosition.x   = 0.0f;
+	mCurrPosition.y   = 0.0f;
+	mOffset           = 230.0f;
+	mParam2           = 57.5f;
+	mGrowth           = 0.43f;
+	mGoalPosition.x   = mCurrPosition.x;
+	mGoalPosition.y   = mCurrPosition.y + mOffset;
+	mChangeModifier.x = 0.0f;
+	mChangeModifier.y = 0.0f;
+	mCurrPaneAngle    = 0.0f;
 }
 
 /*
@@ -35,12 +35,12 @@ CallBack_Furiko::CallBack_Furiko()
  */
 void CallBack_Furiko::stop()
 {
-	m_canUpdate      = false;
-	m_doResetPane    = true;
-	m_currPosition   = Vector2f(0.0f);
-	m_goalPosition.x = m_currPosition.x;
-	m_goalPosition.y = m_currPosition.y + m_offset;
-	m_changeModifier = Vector2f(0.0f);
+	mCanUpdate      = false;
+	mDoResetPane    = true;
+	mCurrPosition   = Vector2f(0.0f);
+	mGoalPosition.x = mCurrPosition.x;
+	mGoalPosition.y = mCurrPosition.y + mOffset;
+	mChangeModifier = Vector2f(0.0f);
 }
 
 /*
@@ -51,20 +51,20 @@ void CallBack_Furiko::stop()
 void CallBack_Furiko::init(J2DPane* pane, f32 a, f32 b, f32 c)
 {
 	if (pane) {
-		m_pane = pane;
-		m_pane->resetAngle();
+		mPane = pane;
+		mPane->resetAngle();
 
-		m_offset           = 230.0f;
-		m_param2           = 57.5f;
-		m_growth           = 0.43f;
-		m_canUpdate        = false;
-		m_doResetPane      = true;
-		m_currPosition.x   = 0.0f;
-		m_currPosition.y   = 0.0f;
-		m_goalPosition.x   = m_currPosition.x;
-		m_goalPosition.y   = m_currPosition.y + m_offset;
-		m_changeModifier.x = 0.0f;
-		m_changeModifier.y = 0.0f;
+		mOffset           = 230.0f;
+		mParam2           = 57.5f;
+		mGrowth           = 0.43f;
+		mCanUpdate        = false;
+		mDoResetPane      = true;
+		mCurrPosition.x   = 0.0f;
+		mCurrPosition.y   = 0.0f;
+		mGoalPosition.x   = mCurrPosition.x;
+		mGoalPosition.y   = mCurrPosition.y + mOffset;
+		mChangeModifier.x = 0.0f;
+		mChangeModifier.y = 0.0f;
 	} else {
 		JUT_PANICLINE(118, "NULL pane.\n");
 	}
@@ -77,9 +77,9 @@ void CallBack_Furiko::init(J2DPane* pane, f32 a, f32 b, f32 c)
  */
 void CallBack_Furiko::setParam(f32 p1, f32 p2, f32 p3)
 {
-	m_offset = p1;
-	m_growth = p2;
-	m_param2 = p3;
+	mOffset = p1;
+	mGrowth = p2;
+	mParam2 = p3;
 }
 
 /*
@@ -89,26 +89,26 @@ void CallBack_Furiko::setParam(f32 p1, f32 p2, f32 p3)
  */
 void CallBack_Furiko::update()
 {
-	f32 time = sys->m_deltaTime / 0.033333f;
-	if (m_pane && m_canUpdate) {
-		Vector2f diff = m_currPosition - m_goalPosition;
+	f32 time = sys->mDeltaTime / 0.033333f;
+	if (mPane && mCanUpdate) {
+		Vector2f diff = mCurrPosition - mGoalPosition;
 		f32 dist      = _lenVec2D(diff);
 		if (dist > 0.0f) {
-			f32 offs           = dist - m_offset;
-			f32 weightX        = -(m_changeModifier.x * m_growth - offs * (diff.x / dist) * time);
-			m_changeModifier.x = time * weightX + m_changeModifier.x;
-			f32 weightY        = -(m_changeModifier.y * m_growth - offs * (diff.y / dist) * time);
-			m_changeModifier.y = time * (m_param2 + weightY) + m_changeModifier.y;
+			f32 offs          = dist - mOffset;
+			f32 weightX       = -(mChangeModifier.x * mGrowth - offs * (diff.x / dist) * time);
+			mChangeModifier.x = time * weightX + mChangeModifier.x;
+			f32 weightY       = -(mChangeModifier.y * mGrowth - offs * (diff.y / dist) * time);
+			mChangeModifier.y = time * (mParam2 + weightY) + mChangeModifier.y;
 
-			m_goalPosition.x += m_changeModifier.x * time;
-			m_goalPosition.y += m_changeModifier.y * time;
-			f32 angle       = JMath::atanTable_.atan2_((m_currPosition.y - m_goalPosition.y), -(m_currPosition.x - m_goalPosition.x));
-			m_currPaneAngle = angle * 57.295776f + 90.0f;
-			J2DPane* pane   = m_pane;
-			pane->m_angle   = m_currPaneAngle;
+			mGoalPosition.x += mChangeModifier.x * time;
+			mGoalPosition.y += mChangeModifier.y * time;
+			f32 angle      = JMath::atanTable_.atan2_((mCurrPosition.y - mGoalPosition.y), -(mCurrPosition.x - mGoalPosition.x));
+			mCurrPaneAngle = angle * 57.295776f + 90.0f;
+			J2DPane* pane  = mPane;
+			pane->mAngle   = mCurrPaneAngle;
 			pane->calcMtx();
 		}
-		m_canUpdate = false;
+		mCanUpdate = false;
 	}
 	/*
 stwu     r1, -0x10(r1)
@@ -219,44 +219,44 @@ blr
  */
 void CallBack_Furiko::draw(Graphics& gfx, J2DGrafContext& calc)
 {
-	if (m_pane) {
-		Vector3f pos1 = m_pane->getGlbVtx(0);
-		Vector3f pos2 = m_pane->getGlbVtx(3);
+	if (mPane) {
+		Vector3f pos1 = mPane->getGlbVtx(0);
+		Vector3f pos2 = mPane->getGlbVtx(3);
 
-		u8 basePos = m_pane->m_basePosition;
+		u8 basePos = mPane->mBasePosition;
 		switch (basePos % 3) {
 		case 0:
-			m_currPosition.x = pos1.x;
+			mCurrPosition.x = pos1.x;
 			break;
 		case 1:
-			m_currPosition.x = (pos1.x + pos2.x) / 2;
+			mCurrPosition.x = (pos1.x + pos2.x) / 2;
 			break;
 		case 2:
-			m_currPosition.x = pos2.x;
+			mCurrPosition.x = pos2.x;
 			break;
 		}
 
 		switch (basePos / 3) {
 		case 0:
-			m_currPosition.y = pos1.y;
+			mCurrPosition.y = pos1.y;
 			break;
 		case 1:
-			m_currPosition.y = (pos1.y + pos2.y) / 2;
+			mCurrPosition.y = (pos1.y + pos2.y) / 2;
 			break;
 		case 2:
-			m_currPosition.y = pos2.y;
+			mCurrPosition.y = pos2.y;
 			break;
 		}
 
-		if (m_doResetPane) {
-			m_goalPosition.x   = m_currPosition.x;
-			m_goalPosition.y   = m_currPosition.y + m_offset;
-			m_changeModifier.x = 0.0f;
-			m_changeModifier.y = 0.0f;
-			m_doResetPane      = false;
+		if (mDoResetPane) {
+			mGoalPosition.x   = mCurrPosition.x;
+			mGoalPosition.y   = mCurrPosition.y + mOffset;
+			mChangeModifier.x = 0.0f;
+			mChangeModifier.y = 0.0f;
+			mDoResetPane      = false;
 		}
 
-		m_canUpdate = true;
+		mCanUpdate = true;
 	}
 }
 
@@ -274,8 +274,8 @@ CallBack_Furiko* setCallBack_Furiko(P2DScreen::Mgr* screen, u64 tag)
 	P2ASSERTLINE(229, pane2);
 	furiko->init(pane2, 0.0f, 0.0f, 0.0f); // the constants do nothing
 	screen->addCallBack(tag, furiko);
-	u64 msgID          = (u64)furiko;
-	pane2->m_messageID = msgID; // ??????????????
+	u64 msgID         = (u64)furiko;
+	pane2->mMessageID = msgID; // ??????????????
 	return furiko;
 }
 
@@ -290,7 +290,7 @@ void setFurikoScreen(P2DScreen::Mgr* screen)
 		u64 tag       = (i % 10) + 'furiko00' + ((i % 10 + i) % 10); // this is closer but still not quite right
 		J2DPane* pane = screen->search(tag);
 		if (pane) {
-			pane->m_messageID = (u64)setCallBack_Furiko(screen, tag);
+			pane->mMessageID = (u64)setCallBack_Furiko(screen, tag);
 		}
 	}
 	/*
@@ -475,7 +475,7 @@ blr
 CallBack_Furiko* getFurikoPtr(P2DScreen::Mgr* screen, u64 tag)
 {
 	J2DPane* pane = TagSearch(screen, tag);
-	return (CallBack_Furiko*)pane->m_messageID; /// ?????????
+	return (CallBack_Furiko*)pane->mMessageID; /// ?????????
 }
 } // namespace Screen
 } // namespace og

@@ -65,12 +65,12 @@ u8 JAInter::SystemInterface::checkSeqActiveFlag(JASTrack* track)
 JASTrack* JAInter::SystemInterface::trackToSeqp(JAISequence* seq, unsigned char p2)
 {
 	JASTrack* result = nullptr;
-	if ((seq->m_soundID & 0x800) != 0) {
-		if (seq->m_seqParameter.m_track._2FC[p2 >> 4] != nullptr) {
-			result = seq->m_seqParameter.m_track._2FC[p2 >> 4]->_2FC[p2 & 0xF];
+	if ((seq->mSoundID & 0x800) != 0) {
+		if (seq->mSeqParameter.mTrack._2FC[p2 >> 4] != nullptr) {
+			result = seq->mSeqParameter.mTrack._2FC[p2 >> 4]->_2FC[p2 & 0xF];
 		}
 	} else {
-		result = seq->m_seqParameter.m_track._2FC[p2 & 0xF];
+		result = seq->mSeqParameter.mTrack._2FC[p2 & 0xF];
 	}
 	return result;
 }
@@ -103,7 +103,7 @@ JASTrack* JAInter::SystemInterface::trackToSeqp(JASTrack* track, unsigned char p
 void JAInter::SystemInterface::setSeqPortargsF32(JAInter::SeqUpdateData* updateData, unsigned long playerParameterIndex,
                                                  unsigned char portArgIndex, float value)
 {
-	updateData->_4C[playerParameterIndex].m_portArgs.asArray[portArgIndex].f32 = value;
+	updateData->_4C[playerParameterIndex].mPortArgs.asArray[portArgIndex].f32 = value;
 }
 
 /*
@@ -115,7 +115,7 @@ void JAInter::SystemInterface::setSeqPortargsPS16(JAInter::SeqUpdateData* update
                                                   unsigned char portArgIndex, short* value)
 {
 	// UNUSED FUNCTION
-	updateData->_4C[playerParameterIndex].m_portArgs.asArray[portArgIndex].ps16 = value;
+	updateData->_4C[playerParameterIndex].mPortArgs.asArray[portArgIndex].ps16 = value;
 }
 
 /*
@@ -126,7 +126,7 @@ void JAInter::SystemInterface::setSeqPortargsPS16(JAInter::SeqUpdateData* update
 void JAInter::SystemInterface::setSeqPortargsU32(JAInter::SeqUpdateData* updateData, unsigned long playerParameterIndex,
                                                  unsigned char portArgIndex, unsigned long value)
 {
-	updateData->_4C[playerParameterIndex].m_portArgs.asArray[portArgIndex].u32 = value;
+	updateData->_4C[playerParameterIndex].mPortArgs.asArray[portArgIndex].u32 = value;
 }
 
 /*
@@ -136,7 +136,7 @@ void JAInter::SystemInterface::setSeqPortargsU32(JAInter::SeqUpdateData* updateD
  */
 void JAInter::SystemInterface::rootInit(JAInter::SeqUpdateData* updateData)
 {
-	JASTrack* track = &updateData->m_sequence->m_seqParameter.m_track;
+	JASTrack* track = &updateData->mSequence->mSeqParameter.mTrack;
 	outerInit(updateData, track, JAIGlobalParameter::getParamSeqTrackMax(), 0xFFFF, 0);
 }
 
@@ -147,14 +147,14 @@ void JAInter::SystemInterface::rootInit(JAInter::SeqUpdateData* updateData)
  */
 void JAInter::SystemInterface::trackInit(JAInter::SeqUpdateData* updateData)
 {
-	JAISequence* seq = updateData->m_sequence;
+	JAISequence* seq = updateData->mSequence;
 	u32 max          = 0x10;
-	if ((seq->m_soundID & 0x800) != 0) {
+	if ((seq->mSoundID & 0x800) != 0) {
 		max = JAIGlobalParameter::getParamSeqTrackMax();
 	}
 	for (u32 i = 0; i < max; i++) {
 		if ((updateData->_04 & 1 << i) == 0) {
-			outerInit(updateData, &seq->m_seqParameter.m_track, i, 0xFFFF, 0);
+			outerInit(updateData, &seq->mSeqParameter.mTrack, i, 0xFFFF, 0);
 		}
 	}
 }
@@ -169,18 +169,18 @@ void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData* updateData, JAS
 {
 	JASTrack* seqP = p2;
 	if (p3 != JAIGlobalParameter::getParamSeqTrackMax()) {
-		seqP = trackToSeqp(updateData->m_sequence, p3);
+		seqP = trackToSeqp(updateData->mSequence, p3);
 	}
 	if (seqP == nullptr) {
 		return;
 	}
 	// PlayerParameter* playerParameter = &updateData->_4C[p3];
-	JASPortArgs* portArgs   = &updateData->_4C[p3].m_portArgs.asStruct;
+	JASPortArgs* portArgs   = &updateData->_4C[p3].mPortArgs.asStruct;
 	updateData->_4C[p3]._00 = seqP;
 	portArgs->_00           = p2;
-	portArgs->_04           = p3 | updateData->m_sequence->m_soundID & 0x800;
+	portArgs->_04           = p3 | updateData->mSequence->mSoundID & 0x800;
 	updateData->_4C[p3]._30.setPortCmd(setSePortParameter, portArgs);
-	JASOuterParam* outerParam = seqP->m_extBuffer;
+	JASOuterParam* outerParam = seqP->mExtBuffer;
 	if (p3 == JAIGlobalParameter::getParamSeqTrackMax()) {
 		// TODO: These might be using the setSeqPortargs functions?
 		// Answer: nope.
@@ -200,49 +200,49 @@ void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData* updateData, JAS
 		portArgs->_08 = 0xFF;
 		outerParam->onSwitch(0x40);
 	} else {
-		JAISequence* seq = updateData->m_sequence;
-		// setSeqPortargsF32(updateData, p3, 3, seq->m_seqParameter._260[p3]._04);
-		// setSeqPortargsF32(updateData, p3, 4, seq->m_seqParameter._268[p3]._04);
-		// setSeqPortargsF32(updateData, p3, 6, seq->m_seqParameter._26C[p3]._04);
-		// setSeqPortargsF32(updateData, p3, 5, seq->m_seqParameter._264[p3]._04);
-		// setSeqPortargsF32(updateData, p3, 7, seq->m_seqParameter._270[p3]._04);
+		JAISequence* seq = updateData->mSequence;
+		// setSeqPortargsF32(updateData, p3, 3, seq->mSeqParameter._260[p3]._04);
+		// setSeqPortargsF32(updateData, p3, 4, seq->mSeqParameter._268[p3]._04);
+		// setSeqPortargsF32(updateData, p3, 6, seq->mSeqParameter._26C[p3]._04);
+		// setSeqPortargsF32(updateData, p3, 5, seq->mSeqParameter._264[p3]._04);
+		// setSeqPortargsF32(updateData, p3, 7, seq->mSeqParameter._270[p3]._04);
 		// setSeqPortargsU32(updateData, p3, 9, 0);
 		// setSeqPortargsU32(updateData, p3, 2, 0x7F);
-		portArgs->_0C = seq->m_seqParameter._260[p3]._04;
-		portArgs->_10 = seq->m_seqParameter._268[p3]._04;
-		portArgs->_18 = seq->m_seqParameter._26C[p3]._04;
-		portArgs->_14 = seq->m_seqParameter._264[p3]._04;
-		portArgs->_1C = seq->m_seqParameter._270[p3]._04;
+		portArgs->_0C = seq->mSeqParameter._260[p3]._04;
+		portArgs->_10 = seq->mSeqParameter._268[p3]._04;
+		portArgs->_18 = seq->mSeqParameter._26C[p3]._04;
+		portArgs->_14 = seq->mSeqParameter._264[p3]._04;
+		portArgs->_1C = seq->mSeqParameter._270[p3]._04;
 		portArgs->_24 = 0;
 		portArgs->_08 = 0x7F;
-		seqP->muteTrack(seq->m_seqParameter._2BC[p3]._0);
+		seqP->muteTrack(seq->mSeqParameter._2BC[p3]._0);
 	}
 	// PlayerParameter* playerParameter         = &updateData->_4C[p3];
 	// playerParameter->_00                     = seqP;
-	// playerParameter->m_portArgs.asStruct._00 = p2;
-	// playerParameter->m_portArgs.asStruct._04 = p3 | updateData->m_sequence->m_soundID & 0x800;
-	// updateData->_4C[p3]._30.setPortCmd(setSePortParameter, &playerParameter->m_portArgs.asStruct);
-	// JASOuterParam* outerParam = seqP->m_extBuffer;
+	// playerParameter->mPortArgs.asStruct._00 = p2;
+	// playerParameter->mPortArgs.asStruct._04 = p3 | updateData->mSequence->mSoundID & 0x800;
+	// updateData->_4C[p3]._30.setPortCmd(setSePortParameter, &playerParameter->mPortArgs.asStruct);
+	// JASOuterParam* outerParam = seqP->mExtBuffer;
 	// if (p3 == JAIGlobalParameter::getParamSeqTrackMax()) {
 	// 	// TODO: These might be using the setSeqPortargs functions?
-	// 	playerParameter->m_portArgs.asStruct._0C = updateData->_0C;
-	// 	playerParameter->m_portArgs.asStruct._10 = updateData->_10;
-	// 	playerParameter->m_portArgs.asStruct._18 = updateData->_14;
-	// 	playerParameter->m_portArgs.asStruct._14 = updateData->_18;
-	// 	playerParameter->m_portArgs.asStruct._1C = updateData->_1C;
-	// 	playerParameter->m_portArgs.asStruct._28 = updateData->_20;
-	// 	playerParameter->m_portArgs.asStruct._08 = 0xFF;
+	// 	playerParameter->mPortArgs.asStruct._0C = updateData->_0C;
+	// 	playerParameter->mPortArgs.asStruct._10 = updateData->_10;
+	// 	playerParameter->mPortArgs.asStruct._18 = updateData->_14;
+	// 	playerParameter->mPortArgs.asStruct._14 = updateData->_18;
+	// 	playerParameter->mPortArgs.asStruct._1C = updateData->_1C;
+	// 	playerParameter->mPortArgs.asStruct._28 = updateData->_20;
+	// 	playerParameter->mPortArgs.asStruct._08 = 0xFF;
 	// 	outerParam->onSwitch(0x40);
 	// } else {
-	// 	JAISequence* seq                         = updateData->m_sequence;
-	// 	playerParameter->m_portArgs.asStruct._0C = seq->m_seqParameter._260[p3]._04;
-	// 	playerParameter->m_portArgs.asStruct._10 = seq->m_seqParameter._268[p3]._04;
-	// 	playerParameter->m_portArgs.asStruct._18 = seq->m_seqParameter._26C[p3]._04;
-	// 	playerParameter->m_portArgs.asStruct._14 = seq->m_seqParameter._264[p3]._04;
-	// 	playerParameter->m_portArgs.asStruct._1C = seq->m_seqParameter._270[p3]._04;
-	// 	playerParameter->m_portArgs.asStruct._24 = 0;
-	// 	playerParameter->m_portArgs.asStruct._08 = 0x7F;
-	// 	seqP->muteTrack(seq->m_seqParameter._2BC[p3].value);
+	// 	JAISequence* seq                         = updateData->mSequence;
+	// 	playerParameter->mPortArgs.asStruct._0C = seq->mSeqParameter._260[p3]._04;
+	// 	playerParameter->mPortArgs.asStruct._10 = seq->mSeqParameter._268[p3]._04;
+	// 	playerParameter->mPortArgs.asStruct._18 = seq->mSeqParameter._26C[p3]._04;
+	// 	playerParameter->mPortArgs.asStruct._14 = seq->mSeqParameter._264[p3]._04;
+	// 	playerParameter->mPortArgs.asStruct._1C = seq->mSeqParameter._270[p3]._04;
+	// 	playerParameter->mPortArgs.asStruct._24 = 0;
+	// 	playerParameter->mPortArgs.asStruct._08 = 0x7F;
+	// 	seqP->muteTrack(seq->mSeqParameter._2BC[p3].value);
 	// }
 	outerParam->onSwitch(0x01);
 	outerParam->onSwitch(0x02);
@@ -481,27 +481,27 @@ void JAInter::SystemInterface::setSePortParameter(JASPortArgs* args)
 		return;
 	}
 	if ((args->_08 & 0x01) != 0) {
-		seqP->m_extBuffer->setParam(0x01, args->_0C);
+		seqP->mExtBuffer->setParam(0x01, args->_0C);
 		args->_08 = args->_08 ^ 0x01;
 	}
 	if ((args->_08 & 0x02) != 0) {
-		seqP->m_extBuffer->setParam(0x02, args->_10);
+		seqP->mExtBuffer->setParam(0x02, args->_10);
 		args->_08 = args->_08 ^ 0x02;
 	}
 	if ((args->_08 & 0x04) != 0) {
-		seqP->m_extBuffer->setParam(0x08, args->_14);
+		seqP->mExtBuffer->setParam(0x08, args->_14);
 		args->_08 = args->_08 ^ 0x04;
 	}
 	if ((args->_08 & 0x08) != 0) {
-		seqP->m_extBuffer->setParam(0x04, args->_18);
+		seqP->mExtBuffer->setParam(0x04, args->_18);
 		args->_08 = args->_08 ^ 0x08;
 	}
 	if ((args->_08 & 0x80) != 0) {
-		seqP->m_extBuffer->setParam(0x40, args->_28);
+		seqP->mExtBuffer->setParam(0x40, args->_28);
 		args->_08 = args->_08 ^ 0x80;
 	}
 	if ((args->_08 & 0x10) != 0) {
-		seqP->m_extBuffer->setParam(0x10, args->_1C);
+		seqP->mExtBuffer->setParam(0x10, args->_1C);
 		args->_08 = args->_08 ^ 0x10;
 	}
 	if ((args->_08 & 0x40) != 0 && args->_24 != 0) {

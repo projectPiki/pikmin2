@@ -68,29 +68,29 @@ struct J3DMaterial {
 	void setCurrentMtx();
 
 	// VTBL _00
-	J3DMaterial* _04;  // _04
-	J3DShape* m_shape; // _08
-	J3DJoint* m_joint; // _0C
-	u32 _10;           // _10
-	u16 _14;           // _14
-	u32 _18;           // _18
-	u8 _1C[4];         // _1C
+	J3DMaterial* _04; // _04
+	J3DShape* mShape; // _08
+	J3DJoint* mJoint; // _0C
+	u32 _10;          // _10
+	u16 _14;          // _14
+	u32 _18;          // _18
+	u8 _1C[4];        // _1C
 	/* RAM address of display list divided by 16? */
-	u32 _20;                       // _20
-	J3DColorBlock* m_colorBlock;   // _24
-	J3DTexGenBlock* m_texGenBlock; // _28
-	J3DTevBlock* m_tevBlock;       // _2C
-	J3DIndBlock* m_indBlock;       // _30
-	J3DPEBlock* m_peBlock;         // _34
-	J3DMaterial* _38;              // _38
-	J3DMaterialAnm* _3C;           // _3C
-	u32 _40;                       // _40
-	u32 _44;                       // _44
-	J3DDisplayListObj* _48;        // _48
+	u32 _20;                      // _20
+	J3DColorBlock* mColorBlock;   // _24
+	J3DTexGenBlock* mTexGenBlock; // _28
+	J3DTevBlock* mTevBlock;       // _2C
+	J3DIndBlock* mIndBlock;       // _30
+	J3DPEBlock* mPeBlock;         // _34
+	J3DMaterial* _38;             // _38
+	J3DMaterialAnm* _3C;          // _3C
+	u32 _40;                      // _40
+	u32 _44;                      // _44
+	J3DDisplayListObj* _48;       // _48
 };
 
 /**
- * m_*Block are all the *Null variants of their respective types.
+ * m*Block are all the *Null variants of their respective types.
  * @size{0x4C}
  */
 struct J3DLockedMaterial : public J3DMaterial {
@@ -114,7 +114,7 @@ struct J3DLockedMaterial : public J3DMaterial {
 };
 
 /**
- * m_texGenBlock and m_tevBlock are the *Patched variants of their respective
+ * mTexGenBlock and mTevBlock are the *Patched variants of their respective
  * types.
  * @size{0x4C}
  */
@@ -150,14 +150,14 @@ struct J3DMaterialTable {
 	void entryMatColorAnimator(J3DAnmColor*);
 
 	// VTBL _00
-	u16 m_count1;               // _04
-	u16 m_count2;               // _06
-	J3DMaterial** m_materials1; // _08
-	JUTNameTab* _0C;            // _0C
-	J3DMaterial* m_materials2;  // _10
-	J3DTexture* m_texture;      // _14
-	JUTNameTab* _18;            // _18
-	u16 _1C;                    // _1C
+	u16 mCount1;               // _04
+	u16 mCount2;               // _06
+	J3DMaterial** mMaterials1; // _08
+	JUTNameTab* _0C;           // _0C
+	J3DMaterial* mMaterials2;  // _10
+	J3DTexture* mTexture;      // _14
+	JUTNameTab* _18;           // _18
+	u16 _1C;                   // _1C
 };
 
 #endif

@@ -13,14 +13,14 @@ namespace title {
 struct TObjBase {
 	inline TObjBase()
 	{
-		m_pos      = Vector2f(0.0f);
-		m_angle    = Vector2f(0.0f, -1.0f);
-		m_parms[0] = 0.0f;
-		m_parms[1] = 1.0f;
-		m_parms[2] = 0.0f;
-		m_parms[3] = 0.0f;
-		m_parms[4] = 0.0f;
-		m_model    = nullptr;
+		mPos      = Vector2f(0.0f);
+		mAngle    = Vector2f(0.0f, -1.0f);
+		mParms[0] = 0.0f;
+		mParms[1] = 1.0f;
+		mParms[2] = 0.0f;
+		mParms[3] = 0.0f;
+		mParms[4] = 0.0f;
+		mModel    = nullptr;
 	}
 
 	virtual u32 getCreatureType(); // _08 (weak)
@@ -30,10 +30,10 @@ struct TObjBase {
 	void pushOut(TObjBase*);
 
 	// _00 = VTBL
-	Vector2f m_pos;    // _04
-	Vector2f m_angle;  // _0C
-	f32 m_parms[5];    // _14
-	J3DModel* m_model; // _28
+	Vector2f mPos;    // _04
+	Vector2f mAngle;  // _0C
+	f32 mParms[5];    // _14
+	J3DModel* mModel; // _28
 };
 
 struct TBGEnemyBase : public TObjBase {

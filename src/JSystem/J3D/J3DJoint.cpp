@@ -247,10 +247,10 @@ void J3DMtxCalcJ3DSysInitMaya::init(const Vec& p1, const float (&p2)[3][4])
 void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo& info)
 {
 	u16 jntNo = J3DMtxCalc::mJoint->getJntNo();
-	J3DSys::mCurrentS.x *= info.m_scale.x;
-	J3DSys::mCurrentS.y *= info.m_scale.y;
-	J3DSys::mCurrentS.z *= info.m_scale.z;
-	Mtx* mtx = &J3DMtxCalc::mMtxBuffer->m_worldMatrices[jntNo];
+	J3DSys::mCurrentS.x *= info.mScale.x;
+	J3DSys::mCurrentS.y *= info.mScale.y;
+	J3DSys::mCurrentS.z *= info.mScale.z;
+	Mtx* mtx = &J3DMtxCalc::mMtxBuffer->mWorldMatrices[jntNo];
 	J3DGetTranslateRotateMtx(info, *mtx);
 	bool isIdentity;
 	if (J3DSys::mCurrentS.x == 1.0f && J3DSys::mCurrentS.y == 1.0f && J3DSys::mCurrentS.z == 1.0f) {
@@ -260,7 +260,7 @@ void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo& info)
 	}
 	if (!isIdentity) {
 		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 0;
-		JMAMTXApplyScale(*mtx, *mtx, info.m_scale.x, info.m_scale.y, info.m_scale.z);
+		JMAMTXApplyScale(*mtx, *mtx, info.mScale.x, info.mScale.y, info.mScale.z);
 	} else {
 		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
 	}
@@ -357,13 +357,13 @@ lbl_8006B410:
 void J3DMtxCalcCalcTransformSoftimage::calcTransform(const J3DTransformInfo& info)
 {
 	u16 jntNo = J3DMtxCalc::mJoint->getJntNo();
-	Mtx* mtx  = &J3DMtxCalc::mMtxBuffer->m_worldMatrices[jntNo];
-	J3DGetTranslateRotateMtx(info.m_eulerRot.x, info.m_eulerRot.y, info.m_eulerRot.z, info.m_zRotation.x * J3DSys::mCurrentS.x,
-	                         info.m_zRotation.y * J3DSys::mCurrentS.y, info.m_zRotation.z * J3DSys::mCurrentS.z, *mtx);
+	Mtx* mtx  = &J3DMtxCalc::mMtxBuffer->mWorldMatrices[jntNo];
+	J3DGetTranslateRotateMtx(info.mEulerRot.x, info.mEulerRot.y, info.mEulerRot.z, info.mZRotation.x * J3DSys::mCurrentS.x,
+	                         info.mZRotation.y * J3DSys::mCurrentS.y, info.mZRotation.z * J3DSys::mCurrentS.z, *mtx);
 	PSMTXConcat(J3DSys::mCurrentMtx, *mtx, J3DSys::mCurrentMtx);
-	J3DSys::mCurrentS.x *= info.m_scale.x;
-	J3DSys::mCurrentS.y *= info.m_scale.y;
-	J3DSys::mCurrentS.z *= info.m_scale.z;
+	J3DSys::mCurrentS.x *= info.mScale.x;
+	J3DSys::mCurrentS.y *= info.mScale.y;
+	J3DSys::mCurrentS.z *= info.mScale.z;
 	bool isIdentity;
 	if (J3DSys::mCurrentS.x == 1.0f && J3DSys::mCurrentS.y == 1.0f && J3DSys::mCurrentS.z == 1.0f) {
 		isIdentity = true;
@@ -492,14 +492,14 @@ lbl_8006B59C:
 void J3DMtxCalcCalcTransformMaya::calcTransform(const J3DTransformInfo& info)
 {
 	u16 jntNo = J3DMtxCalc::mJoint->getJntNo();
-	Mtx* mtx  = &J3DMtxCalc::mMtxBuffer->m_worldMatrices[jntNo];
+	Mtx* mtx  = &J3DMtxCalc::mMtxBuffer->mWorldMatrices[jntNo];
 	J3DGetTranslateRotateMtx(info, *mtx);
 	PSMTXConcat(J3DSys::mCurrentMtx, *mtx, J3DSys::mCurrentMtx);
-	if ((info.m_scale.x == 1.0f && info.m_scale.y == 1.0f && info.m_scale.z == 1.0f)) {
+	if ((info.mScale.x == 1.0f && info.mScale.y == 1.0f && info.mScale.z == 1.0f)) {
 		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
 	} else {
 		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 0;
-		JMAMTXApplyScale(*mtx, *mtx, info.m_scale.x, info.m_scale.y, info.m_scale.z);
+		JMAMTXApplyScale(*mtx, *mtx, info.mScale.x, info.mScale.y, info.mScale.z);
 	}
 	// TODO
 	/*
@@ -644,13 +644,13 @@ J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase() { }
  */
 void J3DJoint::appendChild(J3DJoint* newChild)
 {
-	if (m_child == nullptr) {
-		m_child = newChild;
+	if (mChild == nullptr) {
+		mChild = newChild;
 		return;
 	}
 	J3DJoint* joint;
-	for (joint = m_child; joint->m_parent != nullptr; joint = joint->m_parent) { }
-	joint->m_parent = newChild;
+	for (joint = mChild; joint->mParent != nullptr; joint = joint->mParent) { }
+	joint->mParent = newChild;
 }
 
 /*
@@ -661,20 +661,20 @@ void J3DJoint::appendChild(J3DJoint* newChild)
  */
 J3DJoint::J3DJoint()
     : _00(0)
-    , m_function(nullptr)
+    , mFunction(nullptr)
     , _08(0)
-    , m_child(nullptr)
-    , m_parent(nullptr)
-    , m_jointIdx(0)
+    , mChild(nullptr)
+    , mParent(nullptr)
+    , mJointIdx(0)
     , _16(1)
-    , m_ignoreParentScaling(0)
-    , m_transformInfo(j3dDefaultTransformInfo)
+    , mIgnoreParentScaling(0)
+    , mTransformInfo(j3dDefaultTransformInfo)
     , _38(0.0f)
-    , m_mtxCalc(nullptr)
-    , m_material(nullptr)
+    , mMtxCalc(nullptr)
+    , mMaterial(nullptr)
 {
-	m_yRotation = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
-	_48         = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
+	mYRotation = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
+	_48        = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
 	/*
 	stwu     r1, -0x20(r1)
 	li       r8, 0
@@ -893,10 +893,10 @@ void J3DJoint::recursiveCalc()
 	J3DMtxCalc* v3                 = mCurrentMtxCalc;
 	JGeometry::TVec3f tempCurrentS = J3DSys::mCurrentS;
 	JGeometry::TVec3f tempParentS  = J3DSys::mParentS;
-	if (m_mtxCalc != nullptr) {
+	if (mMtxCalc != nullptr) {
 		J3DMtxCalc::mJoint = this;
-		mCurrentMtxCalc    = m_mtxCalc;
-		m_mtxCalc->calc();
+		mCurrentMtxCalc    = mMtxCalc;
+		mMtxCalc->calc();
 		v2 = v3;
 	} else {
 		if (mCurrentMtxCalc != nullptr) {
@@ -904,11 +904,11 @@ void J3DJoint::recursiveCalc()
 			mCurrentMtxCalc->calc();
 		}
 	}
-	if (m_function != nullptr) {
-		m_function(this, 0);
+	if (mFunction != nullptr) {
+		mFunction(this, 0);
 	}
-	if (m_child != nullptr) {
-		m_child->recursiveCalc();
+	if (mChild != nullptr) {
+		mChild->recursiveCalc();
 	}
 	PSMTXCopy(v1, J3DSys::mCurrentMtx);
 	J3DSys::mCurrentS = tempCurrentS;
@@ -916,11 +916,11 @@ void J3DJoint::recursiveCalc()
 	if (v2 != nullptr) {
 		mCurrentMtxCalc = v2;
 	}
-	if (m_function != nullptr) {
-		m_function(this, 1);
+	if (mFunction != nullptr) {
+		mFunction(this, 1);
 	}
-	if (m_parent != nullptr) {
-		m_parent->recursiveCalc();
+	if (mParent != nullptr) {
+		mParent->recursiveCalc();
 	}
 
 	/*

@@ -46,13 +46,13 @@ struct J3DFogInfo {
 };
 
 struct J3DIndInitData {
-	u8 _00;              // _00
-	u8 m_indTexStageNum; // _01
+	u8 _00;             // _00
+	u8 mIndTexStageNum; // _01
 	u32 : 0;
-	J3DIndTexOrder m_indTexOrders[4];           // _04
-	J3DIndTexMtx m_indTexMatrices[3];           // _14
-	J3DIndTexCoordScale m_indTexCoordScales[1]; // _68 - unknown length
-	u8 _6C[0xCC];                               // _6C - tbd
+	J3DIndTexOrder mIndTexOrders[4];           // _04
+	J3DIndTexMtx mIndTexMatrices[3];           // _14
+	J3DIndTexCoordScale mIndTexCoordScales[1]; // _68 - unknown length
+	u8 _6C[0xCC];                              // _6C - tbd
 };
 
 struct J3DLightInfo {
@@ -104,33 +104,33 @@ struct J3DTexMtxInfo {
  * @size{0x14C}
  */
 struct J3DMaterialInitData {
-	u8 _00;                            // _00
-	u8 _01;                            // _01
-	u8 _02;                            // _02
-	u8 _03;                            // _03
-	u8 _04;                            // _04
-	u8 _05;                            // _05
-	u8 _06;                            // _06
-	u8 _07;                            // _07
-	u16 m_matColorIndices[2];          // _08 - guessed length
-	u16 m_colorChanIndices[4];         // _0C - guessed length
-	u16 m_ambColorIndices[10];         // _14 - guessed length
-	u16 m_texCoordInfoIndices[16];     // _28 - guessed length
-	u16 m_texMtxIndices[8];            // _48 - guessed length
-	u8 _58[0x2C];                      // _58 - unknown
-	u16 m_texNoIndices[8];             // _84 - guessed length
-	u16 m_tevKColorIndices[4];         // _94 - guessed length
-	u8 m_tevKColorSelIndices[4];       // _9C - unknown length
-	u8 _A0[0x1C];                      // _A0 - unknown
-	u16 m_tevOrderInfoIndices[16];     // _BC - guessed length
-	u16 m_tevColorIndices[4];          // _DC - guessed length
-	u16 m_tevStageIndices[16];         // _E4 - guessed length
-	u16 _104[16];                      // _104 - guessed length
-	u16 m_tevSwapModeTableIndices[16]; // _124 - guessed length
-	u16 m_fogInfoIndex;                // _144
-	u16 m_alphaCompInfoIndex;          // _146
-	u16 m_blendInfoIndex;              // _148
-	u16 m_nbtScaleInfoIndex;           // _14A
+	u8 _00;                           // _00
+	u8 _01;                           // _01
+	u8 _02;                           // _02
+	u8 _03;                           // _03
+	u8 _04;                           // _04
+	u8 _05;                           // _05
+	u8 _06;                           // _06
+	u8 _07;                           // _07
+	u16 mMatColorIndices[2];          // _08 - guessed length
+	u16 mColorChanIndices[4];         // _0C - guessed length
+	u16 mAmbColorIndices[10];         // _14 - guessed length
+	u16 mTexCoordInfoIndices[16];     // _28 - guessed length
+	u16 mTexMtxIndices[8];            // _48 - guessed length
+	u8 _58[0x2C];                     // _58 - unknown
+	u16 mTexNoIndices[8];             // _84 - guessed length
+	u16 mTevKColorIndices[4];         // _94 - guessed length
+	u8 mTevKColorSelIndices[4];       // _9C - unknown length
+	u8 _A0[0x1C];                     // _A0 - unknown
+	u16 mTevOrderInfoIndices[16];     // _BC - guessed length
+	u16 mTevColorIndices[4];          // _DC - guessed length
+	u16 mTevStageIndices[16];         // _E4 - guessed length
+	u16 _104[16];                     // _104 - guessed length
+	u16 mTevSwapModeTableIndices[16]; // _124 - guessed length
+	u16 mFogInfoIndex;                // _144
+	u16 mAlphaCompInfoIndex;          // _146
+	u16 mBlendInfoIndex;              // _148
+	u16 mNbtScaleInfoIndex;           // _14A
 };
 
 struct J3DMaterialFactory {

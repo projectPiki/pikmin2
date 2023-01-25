@@ -49,38 +49,38 @@ struct J2DPrint {
 	/** @fabricated */
 	inline void setFontSize(f32 p1, f32 p2)
 	{
-		m_glyphWidth  = (p1 > 0.0f) ? p1 : 0.0f;
-		m_glyphHeight = (p2 > 0.0f) ? p2 : 0.0f;
+		mGlyphWidth  = (p1 > 0.0f) ? p1 : 0.0f;
+		mGlyphHeight = (p2 > 0.0f) ? p2 : 0.0f;
 	}
 
 	static const u8* mStrBuff;
 	static size_t mStrBuffSize;
 
 	// _00 VTBL
-	JUTFont* m_font;                  // _04
-	JUtility::TColor _08;             // _08
-	JUtility::TColor _0C;             // _0C
-	f32 _10;                          // _10
-	f32 _14;                          // _14
-	f32 _18;                          // _18
-	f32 _1C;                          // _1C
-	short _20;                        // _20
-	u8 _22;                           // _22 - could be padding
-	f32 _24;                          // _24
-	f32 _28;                          // _28
-	f32 _2C;                          // _2C
-	f32 m_cursorV;                    // _30
-	f32 _34;                          // _34
-	JUtility::TColor _38;             // _38
-	JUtility::TColor _3C;             // _3C
-	JUtility::TColor m_charColor;     // _40
-	JUtility::TColor m_gradientColor; // _44
-	f32 _48;                          // _48
-	f32 _4C;                          // _4C
-	f32 m_glyphWidth;                 // _50
-	f32 m_glyphHeight;                // _54
-	short _58;                        // _58
-	u8 _5A;                           // _5A
+	JUTFont* mFont;                  // _04
+	JUtility::TColor _08;            // _08
+	JUtility::TColor _0C;            // _0C
+	f32 _10;                         // _10
+	f32 _14;                         // _14
+	f32 _18;                         // _18
+	f32 _1C;                         // _1C
+	short _20;                       // _20
+	u8 _22;                          // _22 - could be padding
+	f32 _24;                         // _24
+	f32 _28;                         // _28
+	f32 _2C;                         // _2C
+	f32 mCursorV;                    // _30
+	f32 _34;                         // _34
+	JUtility::TColor _38;            // _38
+	JUtility::TColor _3C;            // _3C
+	JUtility::TColor mCharColor;     // _40
+	JUtility::TColor mGradientColor; // _44
+	f32 _48;                         // _48
+	f32 _4C;                         // _4C
+	f32 mGlyphWidth;                 // _50
+	f32 mGlyphHeight;                // _54
+	short _58;                       // _58
+	u8 _5A;                          // _5A
 };
 
 #endif

@@ -29,8 +29,8 @@
  * Size:	0000A0
  */
 JStudio_JStage::TAdaptor_ambientLight::TAdaptor_ambientLight(const JStage::TSystem* system, JStage::TAmbientLight* object)
-    : m_system(system)
-    , m_light(object)
+    : mSystem(system)
+    , mLight(object)
 {
 }
 
@@ -56,8 +56,8 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_prepare(const JStudio::TO
  */
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_begin(const JStudio::TObject*)
 {
-	m_light->setFlagOn(1);
-	adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, m_light->JSGGetColor());
+	mLight->setFlagOn(1);
+	adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, mLight->JSGGetColor());
 }
 
 /*
@@ -65,7 +65,7 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_begin(const JStudio::TObj
  * Address:	80013334
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_end(const JStudio::TObject*) { m_light->setFlagOff(1); }
+void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_end(const JStudio::TObject*) { mLight->setFlagOff(1); }
 
 /*
  * --INFO--
@@ -76,8 +76,8 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update(const JStudio::TOb
 {
 	_GXColor color;
 	adaptor_getVariableValue_GXColor(&color, sauVariableValue_4_COLOR_RGBA);
-	m_light->JSGSetColor(color);
-	m_light->JSGUpdate();
+	mLight->JSGSetColor(color);
+	mLight->JSGUpdate();
 }
 
 /*
@@ -88,5 +88,5 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update(const JStudio::TOb
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_data(const JStudio::TObject* p1, const void* p2, unsigned long p3, const void* p4,
                                                             unsigned long p5)
 {
-	TAdaptor_object_::adaptor_data_(m_light, p2, p3, p4, p5);
+	TAdaptor_object_::adaptor_data_(mLight, p2, p3, p4, p5);
 }

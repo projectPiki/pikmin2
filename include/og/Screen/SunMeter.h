@@ -17,8 +17,8 @@ struct SunMeter : public P2DScreen::Mgr_tuning {
 
 	// _00      = VTBL
 	// _00-_148 = P2DScreen::Mgr_tuning
-	CallBack_SunMeter* m_callBack; // _148, unknown
-	f32 m_currentTime;             // _14C, as a fraction (0 = start of day, 1 = end of day)
+	CallBack_SunMeter* mCallBack; // _148, unknown
+	f32 mCurrentTime;             // _14C, as a fraction (0 = start of day, 1 = end of day)
 };
 } // namespace Screen
 } // namespace og

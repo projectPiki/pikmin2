@@ -64,22 +64,22 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x8];            // _2BC, unknown
-	f32 _2C4;                // _2C4
-	f32 _2C8;                // _2C8
-	f32 _2CC;                // _2CC
-	u8 _2D0[0x10];           // _2D0, unknown
-	Vector3f m_goalPosition; // _2E0
-	u8 _2EC[0x4];            // _2EC, unknown
-	u8 _2F0;                 // _2F0
-	Obj* m_leader;           // _2F4
-	SysShape::Joint* _2F8;   // _2F8
-	f32 _2FC;                // _2FC
-	u8 _300;                 // _300, unknown
-	u8 _301[0x3];            // _301, unknown/padding
-	u8 _304[0x4];            // _304, unknown
-	FSM* m_fsm;              // _308
-	                         // _30C = PelletView
+	u8 _2BC[0x8];           // _2BC, unknown
+	f32 _2C4;               // _2C4
+	f32 _2C8;               // _2C8
+	f32 _2CC;               // _2CC
+	u8 _2D0[0x10];          // _2D0, unknown
+	Vector3f mGoalPosition; // _2E0
+	u8 _2EC[0x4];           // _2EC, unknown
+	u8 _2F0;                // _2F0
+	Obj* mLeader;           // _2F4
+	SysShape::Joint* _2F8;  // _2F8
+	f32 _2FC;               // _2FC
+	u8 _300;                // _300, unknown
+	u8 _301[0x3];           // _301, unknown/padding
+	u8 _304[0x4];           // _304, unknown
+	FSM* mFsm;              // _308
+	                        // _30C = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -91,7 +91,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual void doAlloc();                   // _A8
 	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -99,7 +99,7 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	//////////////// VTABLE END
 
@@ -114,13 +114,13 @@ struct Mgr : public EnemyMgrBase {
 	inline J3DModel* getModel()
 	{
 		Obj* tamagomushi = static_cast<Obj*>(getEnemy(0));
-		return tamagomushi->m_model->m_j3dModel;
+		return tamagomushi->mModel->mJ3dModel;
 	}
 
 	inline J3DAnmTransform* getTransform()
 	{
-		SysShape::AnimInfo* animInfo = static_cast<SysShape::AnimInfo*>(m_animMgr->m_animInfo.m_child)->getInfoByID(2);
-		return animInfo->m_anm;
+		SysShape::AnimInfo* animInfo = static_cast<SysShape::AnimInfo*>(mAnimMgr->mAnimInfo.mChild)->getInfoByID(2);
+		return animInfo->mAnm;
 	}
 
 	inline J3DUMtxAnmCacheTable* getCacheTable(J3DModel* model, J3DAnmTransform* transform)
@@ -130,31 +130,31 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	J3DUMtxCacheRef<J3DUMtxAnmCacheTable>* m_mtxCacheRef; // _44
-	Obj* m_obj;                                           // _48, likely an array of Objs
+	J3DUMtxCacheRef<J3DUMtxAnmCacheTable>* mMtxCacheRef; // _44
+	Obj* mObj;                                           // _48, likely an array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "生存時間", 300.0f, 0.0, 2000.0f)
-		    , m_fp02(this, 'fp02', "出現範囲", 80.0f, 0.0f, 200.0f)
-		    , m_fp03(this, 'fp03', "蜜レート", 1.0f, 0.0f, 1.0f)
-		    , m_ip01(this, 'ip01', "歩き時間最小", 60, 0, 300)
-		    , m_ip02(this, 'ip02', "歩き時間最大", 100, 0, 600)
-		    , m_ip03(this, 'ip03', "出現時間最小", 10, 0, 100)
-		    , m_ip04(this, 'ip04', "出現時間最大", 50, 0, 200)
+		    , mFp01(this, 'fp01', "生存時間", 300.0f, 0.0, 2000.0f)
+		    , mFp02(this, 'fp02', "出現範囲", 80.0f, 0.0f, 200.0f)
+		    , mFp03(this, 'fp03', "蜜レート", 1.0f, 0.0f, 1.0f)
+		    , mIp01(this, 'ip01', "歩き時間最小", 60, 0, 300)
+		    , mIp02(this, 'ip02', "歩き時間最大", 100, 0, 600)
+		    , mIp03(this, 'ip03', "出現時間最小", 10, 0, 100)
+		    , mIp04(this, 'ip04', "出現時間最大", 50, 0, 200)
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<int> m_ip01; // _87C
-		Parm<int> m_ip02; // _8A4
-		Parm<int> m_ip03; // _8CC
-		Parm<int> m_ip04; // _8F4
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp03; // _854
+		Parm<int> mIp01; // _87C
+		Parm<int> mIp02; // _8A4
+		Parm<int> mIp03; // _8CC
+		Parm<int> mIp04; // _8F4
 	};
 
 	Parms()
@@ -178,37 +178,37 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
-	u8 _920;                   // _920
-	u8 _921;                   // _921
-	u8 _922;                   // _922
-	u8 _923;                   // _923
-	f32 _924;                  // _924
-	f32 _928;                  // _928
-	f32 _92C;                  // _92C
-	f32 _930;                  // _930
-	f32 _934;                  // _934
-	f32 _938;                  // _938
-	f32 _93C;                  // _93C
-	f32 _940;                  // _940
-	f32 _944;                  // _944
-	f32 _948;                  // _948
+	ProperParms mProperParms; // _7F8
+	u8 _920;                  // _920
+	u8 _921;                  // _921
+	u8 _922;                  // _922
+	u8 _923;                  // _923
+	f32 _924;                 // _924
+	f32 _928;                 // _928
+	f32 _92C;                 // _92C
+	f32 _930;                 // _930
+	f32 _934;                 // _934
+	f32 _938;                 // _938
+	f32 _93C;                 // _93C
+	f32 _940;                 // _940
+	f32 _944;                 // _944
+	f32 _948;                 // _948
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -248,11 +248,11 @@ struct StateAppear : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	bool _10;          // _10
-	int _14;           // _14
-	int _18;           // _18
-	f32 m_appearFrame; // _1C
-	bool _20;          // _20, unknown
+	bool _10;         // _10
+	int _14;          // _14
+	int _18;          // _18
+	f32 mAppearFrame; // _1C
+	bool _20;         // _20, unknown
 };
 
 struct StateDead : public State {

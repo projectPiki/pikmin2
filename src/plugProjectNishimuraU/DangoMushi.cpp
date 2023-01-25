@@ -1431,7 +1431,7 @@ void Obj::initWalkSmokeEffect()
  * Address:	802FCE50
  * Size:	000008
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &m_walkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
 /*
  * --INFO--
@@ -4157,8 +4157,8 @@ void Obj::createBodyTurnEffect()
  */
 void Obj::createWallBreakEffect()
 {
-	m_efxWallBreak->create(nullptr);
-	m_efxAttack2->fade();
+	mEfxWallBreak->create(nullptr);
+	mEfxAttack2->fade();
 }
 
 /*
@@ -4166,7 +4166,7 @@ void Obj::createWallBreakEffect()
  * Address:	802FF094
  * Size:	000034
  */
-void Obj::createFlickAttackEffect() { m_efxAttack2->create(nullptr); }
+void Obj::createFlickAttackEffect() { mEfxAttack2->create(nullptr); }
 
 /*
  * --INFO--
@@ -4277,14 +4277,14 @@ void Obj::createBodyWallCrashEffect(Vector3f)
  * Address:	802FF210
  * Size:	000034
  */
-void Obj::startRollingMoveEffect() { m_efxRun->create(nullptr); }
+void Obj::startRollingMoveEffect() { mEfxRun->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802FF244
  * Size:	000030
  */
-void Obj::finishRollingMoveEffect() { m_efxRun->fade(); }
+void Obj::finishRollingMoveEffect() { mEfxRun->fade(); }
 
 /*
  * --INFO--
@@ -4521,9 +4521,9 @@ void Obj::createAppearSmokeEffect()
  */
 void Obj::effectDrawOn()
 {
-	m_efxWallBreak->endDemoDrawOn();
-	m_efxAttack2->endDemoDrawOn();
-	m_efxRun->endDemoDrawOn();
+	mEfxWallBreak->endDemoDrawOn();
+	mEfxAttack2->endDemoDrawOn();
+	mEfxRun->endDemoDrawOn();
 }
 
 /*
@@ -4533,9 +4533,9 @@ void Obj::effectDrawOn()
  */
 void Obj::effectDrawOff()
 {
-	m_efxWallBreak->startDemoDrawOff();
-	m_efxAttack2->startDemoDrawOff();
-	m_efxRun->startDemoDrawOff();
+	mEfxWallBreak->startDemoDrawOff();
+	mEfxAttack2->startDemoDrawOff();
+	mEfxRun->startDemoDrawOff();
 }
 
 } // namespace DangoMushi

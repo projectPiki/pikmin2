@@ -35,14 +35,14 @@ JSUList<JKRAramBlock> JKRAramHeap::sAramList;
 JKRAramHeap::JKRAramHeap(unsigned long p1, unsigned long p2)
     : JKRDisposer()
 {
-	OSInitMutex(&m_mutex);
+	OSInitMutex(&mMutex);
 	_30                 = JKRHeap::findFromRoot(this);
 	_3C                 = ALIGN_PREV(p2, 0x20);
 	_34                 = ALIGN_NEXT(p1, 0x20);
 	_38                 = _34 + _3C;
 	_40                 = 0xFF;
 	JKRAramBlock* block = new (_30, 0) JKRAramBlock(_34, 0, _3C, 0xFF, false);
-	sAramList.append(&block->m_link);
+	sAramList.append(&block->mLink);
 }
 
 /*
@@ -67,13 +67,13 @@ JKRAramHeap::~JKRAramHeap()
 JKRAramBlock* JKRAramHeap::alloc(u32 size, JKRAramHeap::EAllocMode mode)
 {
 	JKRAramBlock* mem;
-	OSLockMutex(&m_mutex);
+	OSLockMutex(&mMutex);
 	if (mode == AM_Head) {
 		mem = allocFromHead(size);
 	} else {
 		mem = allocFromTail(size);
 	}
-	OSUnlockMutex(&m_mutex);
+	OSUnlockMutex(&mMutex);
 	return mem;
 }
 
@@ -188,7 +188,7 @@ JKRAramBlock* JKRAramHeap::allocFromTail(size_t size)
 s32 JKRAramHeap::getFreeSize()
 {
 	size_t size = 0;
-	OSLockMutex(&m_mutex);
+	OSLockMutex(&mMutex);
 	for (JSULinkIterator<JKRAramBlock> iterator(sAramList.getFirst()); iterator != nullptr; iterator++) {
 		if (iterator->_1C > size) {
 			size = iterator->_1C;
@@ -199,7 +199,7 @@ s32 JKRAramHeap::getFreeSize()
 	// 		size = link->getObject()->_1C;
 	// 	}
 	// }
-	OSUnlockMutex(&m_mutex);
+	OSUnlockMutex(&mMutex);
 	return size;
 }
 

@@ -18,7 +18,7 @@ template <int length, typename T>
 struct TAtanTable {
 	T atan2_(T, T) const;
 	T atan_(T) const;
-	T m_table[length];
+	T mTable[length];
 };
 
 template <>
@@ -27,19 +27,19 @@ struct TAtanTable<1024, f32> {
 	{
 		u32 i = 0;
 		do {
-			m_table[i] = atan((f64)i * 9.765625E-4);
+			mTable[i] = atan((f64)i * 9.765625E-4);
 		} while (i < 1024);
 	}
 	f32 atan2_(f32, f32) const;
 	f32 atan_(f32) const;
-	f32 m_table[1024];
+	f32 mTable[1024];
 };
 
 template <int length, typename T>
 struct TAsinAcosTable {
 	T acos2_(T, T) const;
 	T acos_(T) const;
-	T m_table[length];
+	T mTable[length];
 };
 
 template <>
@@ -48,12 +48,12 @@ struct TAsinAcosTable<1024, f32> {
 	{
 		u32 i = 0;
 		do {
-			m_table[i] = acos((f64)i * 9.765625E-4);
+			mTable[i] = acos((f64)i * 9.765625E-4);
 		} while (i < 1024);
 	}
 	f32 acos2_(f32, f32) const;
 	f32 acos_(f32) const;
-	f32 m_table[1024];
+	f32 mTable[1024];
 };
 
 /**
@@ -65,8 +65,8 @@ struct TSinCosTable {
 	{
 		u32 i = 0;
 		do {
-			m_table[i].first = sin((f64)i * LONG_TAU / length);
-			m_table[i].first = cos((f64)i * LONG_TAU / length);
+			mTable[i].first = sin((f64)i * LONG_TAU / length);
+			mTable[i].first = cos((f64)i * LONG_TAU / length);
 		} while (i < 2048);
 	}
 
@@ -82,25 +82,25 @@ struct TSinCosTable {
 
 	inline T sin(f32 x) const
 	{
-		return (x < 0.0f) ? -m_table[(int)(x * -radsToLUT()) & 0x7FF].first : m_table[(int)(x * radsToLUT()) & 0x7FF].first;
-		// return (x < 0.0f) ? -m_table[(int)-(x * (((T)length)/TAU)) & 0x7FF].first : m_table[(int)(x * ((T)length)/TAU) & 0x7FF].first;
-		// return (x < 0.0f) ? -m_table[(int)-(x * kRadsToLUT) & 0x7FF].first : m_table[(int)(x * kRadsToLUT) & 0x7FF].first;
+		return (x < 0.0f) ? -mTable[(int)(x * -radsToLUT()) & 0x7FF].first : mTable[(int)(x * radsToLUT()) & 0x7FF].first;
+		// return (x < 0.0f) ? -mTable[(int)-(x * (((T)length)/TAU)) & 0x7FF].first : mTable[(int)(x * ((T)length)/TAU) & 0x7FF].first;
+		// return (x < 0.0f) ? -mTable[(int)-(x * kRadsToLUT) & 0x7FF].first : mTable[(int)(x * kRadsToLUT) & 0x7FF].first;
 	}
 	inline T cos(f32 x) const
 	{
 		// x = (x < 0.0f) ? -(int)(x * 325.9493f) % 2048 : (int)(x * 325.9493f) % 2048;
 		// x = (x < 0.0f) ? -(x * kRadsToLUT) : (x * kRadsToLUT);
 		// x = (x < 0.0f) ? -(x * radsToLUT()) : (x * radsToLUT());
-		// return m_table[(int)x & 0x7FF].second;
+		// return mTable[(int)x & 0x7FF].second;
 		// x = (x < 0.0f) ? -x : x;
-		return m_table[(int)(((x < 0.0f) ? -x : x) * radsToLUT()) & 0x7FF].second;
-		// return (x < 0.0f) ? m_table[(int)-(x * 325.9493f) % 2048].second : m_table[(int)(x * 325.9493f) % 2048].second;
+		return mTable[(int)(((x < 0.0f) ? -x : x) * radsToLUT()) & 0x7FF].second;
+		// return (x < 0.0f) ? mTable[(int)-(x * 325.9493f) % 2048].second : mTable[(int)(x * 325.9493f) % 2048].second;
 	}
 
 	/**
 	 * elements are pairs of {sine, cosine}
 	 */
-	std::pair<T, T> m_table[length];
+	std::pair<T, T> mTable[length];
 };
 
 #define JMASINE(x)

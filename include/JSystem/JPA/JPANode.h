@@ -8,8 +8,8 @@ struct JPANode {
 	JPANode();
 	~JPANode();
 
-	JPANode<T>* m_prev;
-	JPANode<T>* m_next;
+	JPANode<T>* mPrev;
+	JPANode<T>* mNext;
 	T contents;
 };
 

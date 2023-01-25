@@ -34,7 +34,7 @@ struct Otakara : public EventBase {
 	// _04-_70  = CreatureObj
 	u32 _70;               // _70, unknown
 	u32 _74;               // _74, unknown
-	EventLink m_eventLink; // _78
+	EventLink mEventLink;  // _78
 	OtakaraEventLink* _8C; // _8C, probably this? possibly some related pointer
 };
 

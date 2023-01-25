@@ -31,27 +31,27 @@ struct J3DJointTree {
 	// unused/inlined:
 	void clear();
 
-	inline J3DJoint* getJointNodePointer(u16 idx) const { return m_joints[idx]; }
+	inline J3DJoint* getJointNodePointer(u16 idx) const { return mJoints[idx]; }
 
 	// VTBL _00
-	J3DModelHierarchy* m_hierarchy; // _04
-	s32 m_08;                       // _08 previously s8*
-	u32 m_flags;                    // _0C
-	J3DJoint* _10;                  // _10
-	J3DMtxCalc* m_transformCalc;    // _14
+	J3DModelHierarchy* mHierarchy; // _04
+	s32 m_08;                      // _08 previously s8* TODO: rename
+	u32 mFlags;                    // _0C
+	J3DJoint* _10;                 // _10
+	J3DMtxCalc* mTransformCalc;    // _14
 
 	// PikDecomp calls this "J3DJointBlock* jointBlock"
-	J3DJoint** m_joints;      // _18
-	u16 m_jointCnt;           // _1C
-	u16 m_envelopeCnt;        // _1E
-	u8* _20;                  // _20
-	u16* m_maxBillBoardCnt;   // _24
-	f32* _28;                 // _28
-	Mtx* _2C;                 // _2C
-	u16* _30;                 // _30
-	J3DDrawMtxData m_mtxData; // _34
-	u32 _40;                  // _40
-	JUTNameTab* m_nametab;    // _44
+	J3DJoint** mJoints;      // _18
+	u16 mJointCnt;           // _1C
+	u16 mEnvelopeCnt;        // _1E
+	u8* _20;                 // _20
+	u16* mMaxBillBoardCnt;   // _24
+	f32* _28;                // _28
+	Mtx* _2C;                // _2C
+	u16* _30;                // _30
+	J3DDrawMtxData mMtxData; // _34
+	u32 _40;                 // _40
+	JUTNameTab* mNametab;    // _44
 };
 
 #endif

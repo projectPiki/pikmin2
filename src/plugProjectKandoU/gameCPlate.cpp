@@ -167,7 +167,7 @@ namespace Game {
  * Address:	80194FF4
  * Size:	000014
  */
-Creature* CPlate::get(void* index) { return m_slots[(long)index].m_creature; }
+Creature* CPlate::get(void* index) { return mSlots[(long)index].mCreature; }
 
 /*
  * --INFO--
@@ -192,7 +192,7 @@ void* CPlate::getStart() { return 0; }
  * Address:	8019504C
  * Size:	000008
  */
-void* CPlate::getEnd() { return (void*)m_slotCount; }
+void* CPlate::getEnd() { return (void*)mSlotCount; }
 
 /*
  * --INFO--
@@ -223,33 +223,33 @@ void CPlate::updateShrink()
  */
 CPlate::CPlate(int slotLimit)
     : Container<Creature>()
-    , m_parms()
-    , m_slotLimit(slotLimit)
+    , mParms()
+    , mSlotLimit(slotLimit)
 {
-	_B4          = 10.0f;
-	_B0          = 10.0f;
-	m_position.x = 0.0f;
-	m_position.y = 0.0f;
-	m_position.z = 0.0f;
-	_F0          = 0.0f;
-	m_slots      = new Slot[m_slotLimit];
-	_BC          = 0;
-	m_slotCount  = 0;
-	_110         = 0;
-	_111         = 1;
-	_F4          = 0.0f;
-	_F8          = 0.0f;
-	_FC          = 0.0f;
-	_104         = nullptr;
-	_108         = 0;
-	_10C         = 0;
-	m_velocity.x = 0.0f;
-	m_velocity.y = 0.0f;
-	m_velocity.z = 0.0f;
-	_D8.x        = 0.0f;
-	_D8.y        = 0.0f;
-	_D8.z        = 0.0f;
-	_100         = 0;
+	_B4         = 10.0f;
+	_B0         = 10.0f;
+	mPosition.x = 0.0f;
+	mPosition.y = 0.0f;
+	mPosition.z = 0.0f;
+	_F0         = 0.0f;
+	mSlots      = new Slot[mSlotLimit];
+	_BC         = 0;
+	mSlotCount  = 0;
+	_110        = 0;
+	_111        = 1;
+	_F4         = 0.0f;
+	_F8         = 0.0f;
+	_FC         = 0.0f;
+	_104        = nullptr;
+	_108        = 0;
+	_10C        = 0;
+	mVelocity.x = 0.0f;
+	mVelocity.y = 0.0f;
+	mVelocity.z = 0.0f;
+	_D8.x       = 0.0f;
+	_D8.y       = 0.0f;
+	_D8.z       = 0.0f;
+	_100        = 0;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -386,14 +386,14 @@ CPlate::CPlate(int slotLimit)
  */
 CPlate::Slot::Slot()
 {
-	m_creature = nullptr;
-	_1C        = 0;
-	_00.x      = 0.0f;
-	_00.y      = 0.0f;
-	_00.z      = 0.0f;
-	_0C.x      = 0.0f;
-	_0C.y      = 0.0f;
-	_0C.z      = 0.0f;
+	mCreature = nullptr;
+	_1C       = 0;
+	_00.x     = 0.0f;
+	_00.y     = 0.0f;
+	_00.z     = 0.0f;
+	_0C.x     = 0.0f;
+	_0C.y     = 0.0f;
+	_0C.z     = 0.0f;
 }
 
 /*
@@ -806,8 +806,8 @@ lbl_80195794:
 void CPlate::changeFlower(Game::Creature* creature)
 {
 	P2ASSERTLINE(312, creature->isPiki());
-	_104[static_cast<Piki*>(creature)->m_happaKind]++;
-	_104[(static_cast<Piki*>(creature)->m_happaKind + 2) % 3]--;
+	_104[static_cast<Piki*>(creature)->mHappaKind]++;
+	_104[(static_cast<Piki*>(creature)->mHappaKind + 2) % 3]--;
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -971,7 +971,7 @@ void CPlate::swapSlot(int, int)
  */
 bool CPlate::validSlot(int index)
 {
-	if (0 > index || index >= m_slotCount) {
+	if (0 > index || index >= mSlotCount) {
 		return false;
 	}
 	return true;

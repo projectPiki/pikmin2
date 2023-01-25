@@ -53,7 +53,7 @@ struct TAdaptor_sound : public JStudio::TAdaptor {
 	u32 _E4;                         // _E4
 	Vec* _E8;                        // _E8, Vector3f* in ghidra, should be Vec* or JGeometry::TVec3* surely
 	Vec _EC;                         // _EC, same as above
-	JStage::TSystem* m_system;       // _F8
+	JStage::TSystem* mSystem;        // _F8
 	JStage::TObject* _FC;            // _FC
 	u32 _100;                        // _100
 	u8 _104;                         // _104
@@ -64,9 +64,9 @@ struct TCreateObject : public JStudio::TCreateObject {
 	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
 
 	// _00 = VTBL
-	u8 _04[0x8];               // _04, unknown
-	JAIBasic* _0C;             // _0C
-	JStage::TSystem* m_system; // _10
+	u8 _04[0x8];              // _04, unknown
+	JAIBasic* _0C;            // _0C
+	JStage::TSystem* mSystem; // _10
 };
 } // namespace JStudio_JAudio
 

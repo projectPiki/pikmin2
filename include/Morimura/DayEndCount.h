@@ -39,25 +39,25 @@ struct TDayEndCount : public TTestBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_78 = TTestBase
-	JKRArchive* m_archive;                           // _78
-	og::Screen::DispMemberDayEndCount* m_dispMember; // _7C
-	P2DScreen::Mgr_tuning* _80;                      // _80
-	J2DPicture* _84;                                 // _84
-	J2DPane** _88;                                   // _88
-	J2DPicture* _8C;                                 // _8C
-	int _90;                                         // _90
-	u8 _94;                                          // _94
-	JGeometry::TVec2<s16> _96[4];                    // _96
-	JGeometry::TVec2<s16> _A6[4];                    // _A6
-	f32 _B8;                                         // _B8
-	f32 _BC;                                         // _BC
-	f32 _C0;                                         // _C0
-	f32 _C4;                                         // _C4
-	u8 _C8;                                          // _C8
-	u8 _C9;                                          // _C9
-	u8 _CA;                                          // _CA
-	f32 m_scale;                                     // _CC
-	f32 m_offsetY;                                   // _D0
+	JKRArchive* mArchive;                           // _78
+	og::Screen::DispMemberDayEndCount* mDispMember; // _7C
+	P2DScreen::Mgr_tuning* _80;                     // _80
+	J2DPicture* _84;                                // _84
+	J2DPane** _88;                                  // _88
+	J2DPicture* _8C;                                // _8C
+	int _90;                                        // _90
+	u8 _94;                                         // _94
+	JGeometry::TVec2<s16> _96[4];                   // _96
+	JGeometry::TVec2<s16> _A6[4];                   // _A6
+	f32 _B8;                                        // _B8
+	f32 _BC;                                        // _BC
+	f32 _C0;                                        // _C0
+	f32 _C4;                                        // _C4
+	u8 _C8;                                         // _C8
+	u8 _C9;                                         // _C9
+	u8 _CA;                                         // _CA
+	f32 mScale;                                     // _CC
+	f32 mOffsetY;                                   // _D0
 };
 
 struct TCountDownScene : public Screen::SceneBase {
@@ -70,8 +70,8 @@ struct TCountDownScene : public Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	TDayEndCount* m_dayEndCount;                 // _220
-	TChallengeEndCount2p* m_challengeEndCount2p; // _224
+	TDayEndCount* mDayEndCount;                 // _220
+	TChallengeEndCount2p* mChallengeEndCount2p; // _224
 };
 
 } // namespace Morimura

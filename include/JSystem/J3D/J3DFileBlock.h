@@ -10,11 +10,11 @@ struct J3DFileBlockBase;
  * @size{0x20}
  */
 struct J3DFileHeader {
-	u32 m_j3dVersion;  // _00
-	u32 m_fileVersion; // _04
-	u8 _08[4];         // _08
-	u32 m_blockCount;  // _0C
-	u8 _10[0x10];      // _10
+	u32 mJ3dVersion;  // _00
+	u32 mFileVersion; // _04
+	u8 _08[4];        // _08
+	u32 mBlockCount;  // _0C
+	u8 _10[0x10];     // _10
 
 	const J3DFileBlockBase* getFirstBlock() const { return reinterpret_cast<const J3DFileBlockBase*>(this + 1); }
 };
@@ -24,12 +24,12 @@ struct J3DFileHeader {
  * @size{0x8}
  */
 struct J3DFileBlockBase {
-	u32 m_blockType; // _00
-	int m_size;      // _04
+	u32 mBlockType; // _00
+	int mSize;      // _04
 
 	const J3DFileBlockBase* getNext() const
 	{
-		return reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const u8*>(this) + this->m_size);
+		return reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const u8*>(this) + this->mSize);
 	}
 };
 
@@ -67,18 +67,18 @@ struct J3DDrawBlock : J3DFileBlockBase {
 	/** @fabricated */
 	// const u32 TypeID = 'DRW1';
 
-	u16 m_count; // _08
-	void* _0C;   // _0C
-	void* _14;   // _14
+	u16 mCount; // _08
+	void* _0C;  // _0C
+	void* _14;  // _14
 };
 
 struct J3DEnvelopeBlock : J3DFileBlockBase {
 	/** Count of envelopes. */
-	u16 m_count; // _08
-	void* _0C;   // _0C
-	void* _10;   // _10
-	void* _14;   // _14
-	void* _18;   // _18
+	u16 mCount; // _08
+	void* _0C;  // _0C
+	void* _10;  // _10
+	void* _14;  // _14
+	void* _18;  // _18
 };
 
 struct J3DJointBlock : J3DFileBlockBase {
@@ -89,37 +89,37 @@ struct J3DJointBlock : J3DFileBlockBase {
 };
 
 struct J3DMaterialBlock : J3DFileBlockBase {
-	u16 m_count; // _08
-	void* _0C;   // _0C
-	void* _10;   // _10
-	void* _14;   // _14
-	void* _18;   // _18
-	void* _1C;   // _1C
-	void* _20;   // _20
-	void* _24;   // _24
-	void* _28;   // _28
-	void* _2C;   // _2C
-	void* _30;   // _30
-	void* _34;   // _34
-	void* _38;   // _38
-	void* _3C;   // _3C
-	void* _40;   // _40
-	void* _44;   // _44
-	void* _48;   // _48
-	void* _4C;   // _4C
-	void* _50;   // _50
-	void* _54;   // _54
-	void* _58;   // _58
-	void* _5C;   // _5C
-	void* _60;   // _60
-	void* _64;   // _64
-	void* _68;   // _68
-	void* _6C;   // _6C
-	void* _70;   // _70
-	void* _74;   // _74
-	void* _78;   // _78
-	void* _7C;   // _7C
-	void* _80;   // _80
+	u16 mCount; // _08
+	void* _0C;  // _0C
+	void* _10;  // _10
+	void* _14;  // _14
+	void* _18;  // _18
+	void* _1C;  // _1C
+	void* _20;  // _20
+	void* _24;  // _24
+	void* _28;  // _28
+	void* _2C;  // _2C
+	void* _30;  // _30
+	void* _34;  // _34
+	void* _38;  // _38
+	void* _3C;  // _3C
+	void* _40;  // _40
+	void* _44;  // _44
+	void* _48;  // _48
+	void* _4C;  // _4C
+	void* _50;  // _50
+	void* _54;  // _54
+	void* _58;  // _58
+	void* _5C;  // _5C
+	void* _60;  // _60
+	void* _64;  // _64
+	void* _68;  // _68
+	void* _6C;  // _6C
+	void* _70;  // _70
+	void* _74;  // _74
+	void* _78;  // _78
+	void* _7C;  // _7C
+	void* _80;  // _80
 };
 
 struct J3DMaterialBlock_v21 : J3DFileBlockBase {

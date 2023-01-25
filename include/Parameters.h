@@ -8,21 +8,21 @@ struct Stream;
 
 // @fabricatedName
 struct IParameters {
-	// void* m_endAddress; // _00
+	// void* mEndAddress; // _00
 };
 
 struct Parameters : virtual IParameters {
 	Parameters(BaseParm* head, char* name)
-	    : m_parmsHead(head)
-	    , m_name(name)
+	    : mParmsHead(head)
+	    , mName(name)
 	{
 	}
 	void write(Stream&);
 	void read(Stream&);
 	BaseParm* findParm(u32);
 
-	BaseParm* m_parmsHead; // _04
-	char* m_name;          // _08
+	BaseParm* mParmsHead; // _04
+	char* mName;          // _08
 };
 
 #endif

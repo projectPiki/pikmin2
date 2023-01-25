@@ -18,17 +18,17 @@ struct JASDrumSet : public JASInst {
 		void setRelease(u32 release);
 
 		// unused/inlined:
-		const TVeloRegion* getVeloRegion(int index) const { return m_veloRegions + index; }
-		JASInstEffect* getEffect(int index) { return m_effects[index]; }
+		const TVeloRegion* getVeloRegion(int index) const { return mVeloRegions + index; }
+		JASInstEffect* getEffect(int index) { return mEffects[index]; }
 
-		f32 _00;                    // _00
-		f32 _04;                    // _04
-		f32 _08;                    // _08
-		u16 m_release;              // _0C
-		JASInstEffect** m_effects;  // _10
-		u32 m_effectCount;          // _14
-		u32 m_veloRegionCount;      // _18
-		TVeloRegion* m_veloRegions; // _1C
+		f32 _00;                   // _00
+		f32 _04;                   // _04
+		f32 _08;                   // _08
+		u16 mRelease;              // _0C
+		JASInstEffect** mEffects;  // _10
+		u32 mEffectCount;          // _14
+		u32 mVeloRegionCount;      // _18
+		TVeloRegion* mVeloRegions; // _1C
 	};
 
 	/**
@@ -46,9 +46,9 @@ struct JASDrumSet : public JASInst {
 	TPerc* getPerc(int index);
 
 	// unused/inlined:
-	const TPerc* getPerc(int index) const { return m_percs + index; }
+	const TPerc* getPerc(int index) const { return mPercs + index; }
 
-	TPerc m_percs[0x80]; // _04
+	TPerc mPercs[0x80]; // _04
 };
 
 #endif

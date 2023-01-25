@@ -28,49 +28,49 @@ namespace newScreen {
  */
 ObjKantei::ObjKantei(char const* name)
 {
-	m_fadeLevel  = 0.0f;
-	m_fadeLevel2 = 0.0f;
-	m_name       = name;
-	m_disp       = nullptr;
-	m_state      = Kantei_Begin;
+	mFadeLevel  = 0.0f;
+	mFadeLevel2 = 0.0f;
+	mName       = name;
+	mDisp       = nullptr;
+	mState      = Kantei_Begin;
 
-	m_screenOkWindow          = nullptr;
-	m_screenBG                = nullptr;
-	m_screenName              = nullptr;
-	m_screenButton            = nullptr;
-	m_tControl                = nullptr;
-	m_paneSetP                = nullptr;
-	m_drawBox.p1.x            = 0.0f;
-	m_drawBox.p1.y            = 0.0f;
-	m_drawBox.p2.x            = 0.0f;
-	m_drawBox.p2.y            = 0.0f;
-	m_doDrawBox               = true;
-	m_shipMessageBoxID        = 0;
-	m_inTextBox               = false;
-	m_paneOk1                 = nullptr;
-	m_startTimer              = 0.0f;
-	m_pokoCounterCurr         = nullptr;
-	m_pokoCounterTotal        = nullptr;
-	m_currItemValue           = 0;
-	m_totalPokos              = 0;
-	m_totalPokosCave          = 0;
-	m_stickAnim               = nullptr;
-	_B0                       = 0;
-	m_efx                     = nullptr;
-	m_paneName                = nullptr;
-	m_scaleMgr                = nullptr;
-	m_nameScale               = 0.0f;
-	m_doScaleName             = false;
-	m_nameTimer               = msVal.m_nameTimerDefault;
-	m_treasureNameMesgID      = 0;
-	m_isPelletNameNotAppeared = true;
-	m_nameWaitTimer           = 0.0f;
-	m_nameState               = KanteiName_StartDelay;
-	m_idleStateTimer          = msVal.m_idleStateTimerDefault;
-	m_doShipSpeech            = false;
-	m_commonTimer             = 0.1f;
-	m_shipSpeechTimer         = 0.0f;
-	m_playExitSE              = false;
+	mScreenOkWindow          = nullptr;
+	mScreenBG                = nullptr;
+	mScreenName              = nullptr;
+	mScreenButton            = nullptr;
+	mTControl                = nullptr;
+	mPaneSetP                = nullptr;
+	mDrawBox.p1.x            = 0.0f;
+	mDrawBox.p1.y            = 0.0f;
+	mDrawBox.p2.x            = 0.0f;
+	mDrawBox.p2.y            = 0.0f;
+	mDoDrawBox               = true;
+	mShipMessageBoxID        = 0;
+	mInTextBox               = false;
+	mPaneOk1                 = nullptr;
+	mStartTimer              = 0.0f;
+	mPokoCounterCurr         = nullptr;
+	mPokoCounterTotal        = nullptr;
+	mCurrItemValue           = 0;
+	mTotalPokos              = 0;
+	mTotalPokosCave          = 0;
+	mStickAnim               = nullptr;
+	_B0                      = 0;
+	mEfx                     = nullptr;
+	mPaneName                = nullptr;
+	mScaleMgr                = nullptr;
+	mNameScale               = 0.0f;
+	mDoScaleName             = false;
+	mNameTimer               = msVal.mNameTimerDefault;
+	mTreasureNameMesgID      = 0;
+	mIsPelletNameNotAppeared = true;
+	mNameWaitTimer           = 0.0f;
+	mNameState               = KanteiName_StartDelay;
+	mIdleStateTimer          = msVal.mIdleStateTimerDefault;
+	mDoShipSpeech            = false;
+	mCommonTimer             = 0.1f;
+	mShipSpeechTimer         = 0.0f;
+	mPlayExitSE              = false;
 }
 
 /*
@@ -99,111 +99,111 @@ void ObjKantei::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberKantei* disp = static_cast<og::Screen::DispMemberKantei*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_KANTEI)) {
-		m_disp = disp;
+		mDisp = disp;
 	} else {
 		if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-			m_disp = new og::Screen::DispMemberKantei;
+			mDisp = new og::Screen::DispMemberKantei;
 		} else {
 			JUT_PANICLINE(258, "ERR! in ObjKantei CreateŽ¸”sI\n");
 		}
 	}
 
-	m_currItemValue          = m_disp->m_pelletValue;
-	m_totalPokos             = m_disp->m_totalPokos;
-	m_totalPokosCave         = m_disp->m_totalPokosCave;
-	m_totalPokosOld          = m_totalPokos - m_currItemValue;
-	m_totalPokosCaveOld      = m_totalPokosCave - m_currItemValue;
-	m_disp->m_totalPokos     = m_totalPokosOld;
-	m_disp->m_totalPokosCave = m_totalPokosCaveOld;
-	u32 type                 = m_disp->m_kanteiType;
+	mCurrItemValue         = mDisp->mPelletValue;
+	mTotalPokos            = mDisp->mTotalPokos;
+	mTotalPokosCave        = mDisp->mTotalPokosCave;
+	mTotalPokosOld         = mTotalPokos - mCurrItemValue;
+	mTotalPokosCaveOld     = mTotalPokosCave - mCurrItemValue;
+	mDisp->mTotalPokos     = mTotalPokosOld;
+	mDisp->mTotalPokosCave = mTotalPokosCaveOld;
+	u32 type               = mDisp->mKanteiType;
 
-	m_screenName = new P2DScreen::Mgr_tuning;
-	m_screenName->set("item_name.blo", 0x1040000, arc);
-	m_screenButton = new P2DScreen::Mgr_tuning;
-	m_screenButton->set("otakara_kantei_button.blo", 0x1040000, arc);
+	mScreenName = new P2DScreen::Mgr_tuning;
+	mScreenName->set("item_name.blo", 0x1040000, arc);
+	mScreenButton = new P2DScreen::Mgr_tuning;
+	mScreenButton->set("otakara_kantei_button.blo", 0x1040000, arc);
 
 	switch (type) {
 	case KanteiType_PreDebt:
-		m_screenOkWindow = new P2DScreen::Mgr_tuning;
-		m_screenOkWindow->set("ok_message_window.blo", 0x1040000, arc);
-		m_pokoCounterTotal = og::Screen::setCallBack_CounterRV(m_screenOkWindow, 'PSsha1', &m_disp->m_totalPokos, 9, 0, 1, arc);
+		mScreenOkWindow = new P2DScreen::Mgr_tuning;
+		mScreenOkWindow->set("ok_message_window.blo", 0x1040000, arc);
+		mPokoCounterTotal = og::Screen::setCallBack_CounterRV(mScreenOkWindow, 'PSsha1', &mDisp->mTotalPokos, 9, 0, 1, arc);
 		break;
 	case KanteiType_PostDebt:
-		m_screenOkWindow = new P2DScreen::Mgr_tuning;
-		m_screenOkWindow->set("ok_message_window2.blo", 0x1040000, arc);
-		m_pokoCounterTotal = og::Screen::setCallBack_CounterRV(m_screenOkWindow, 'PSsha1', &m_disp->m_totalPokos, 9, 0, 1, arc);
+		mScreenOkWindow = new P2DScreen::Mgr_tuning;
+		mScreenOkWindow->set("ok_message_window2.blo", 0x1040000, arc);
+		mPokoCounterTotal = og::Screen::setCallBack_CounterRV(mScreenOkWindow, 'PSsha1', &mDisp->mTotalPokos, 9, 0, 1, arc);
 		break;
 	default:
-		m_screenOkWindow = nullptr;
+		mScreenOkWindow = nullptr;
 		JUT_PANICLINE(305, "ERR! UNKNOWN KANTEI_TYPE!!");
 	}
 
-	if (m_disp->m_inCave) {
-		J2DPane* pane = m_screenOkWindow->search('Tzukan');
+	if (mDisp->mInCave) {
+		J2DPane* pane = mScreenOkWindow->search('Tzukan');
 		pane->setMsgID('8551_00'); // "You can't log this treasure until you reach the surface."
 	} else {
-		J2DPane* pane = m_screenOkWindow->search('Tzukan');
+		J2DPane* pane = mScreenOkWindow->search('Tzukan');
 		pane->setMsgID('8550_00'); // "It's been added to your Treasure Log!"
 	}
 
-	int offs                     = m_disp->m_pelletOffset;
+	int offs                     = mDisp->mPelletOffset;
 	u64 idtags[3]                = { '0101_01', '0110_01', '0200_01' };
 	Morimura::TOffsetMsgSet* msg = new Morimura::TOffsetMsgSet(idtags, '0100_01', 3);
-	m_treasureNameMesgID         = msg->getMsgID(offs);
+	mTreasureNameMesgID          = msg->getMsgID(offs);
 
-	m_paneName = m_screenName->search('ItemName');
-	m_paneName->add(msVal.m_namePaneAdd.x, msVal.m_namePaneAdd.y);
-	m_paneName->setBasePosition(J2DPOS_Center);
-	m_paneName->setMsgID('8557_00'); // "Name"
-	m_nameScale = 0.0f;
-	m_paneName->updateScale(m_nameScale);
+	mPaneName = mScreenName->search('ItemName');
+	mPaneName->add(msVal.mNamePaneAdd.x, msVal.mNamePaneAdd.y);
+	mPaneName->setBasePosition(J2DPOS_Center);
+	mPaneName->setMsgID('8557_00'); // "Name"
+	mNameScale = 0.0f;
+	mPaneName->updateScale(mNameScale);
 
-	m_scaleMgr = new og::Screen::ScaleMgr;
+	mScaleMgr = new og::Screen::ScaleMgr;
 
-	m_pokoCounterCurr = og::Screen::setCallBack_CounterSlot(m_screenOkWindow, 'PSota1', &m_disp->m_pelletValue, 4, true, true, arc);
-	m_pokoCounterCurr->hide();
-	m_pokoCounterCurr->setPuyoParam(msVal.m_pokoPuyo1, msVal.m_pokoPuyo2, msVal.m_pokoPuyo3);
-	m_pokoCounterCurr->_C8 = PSSE_SY_COIN_COUNT;
+	mPokoCounterCurr = og::Screen::setCallBack_CounterSlot(mScreenOkWindow, 'PSota1', &mDisp->mPelletValue, 4, true, true, arc);
+	mPokoCounterCurr->hide();
+	mPokoCounterCurr->setPuyoParam(msVal.mPokoPuyo1, msVal.mPokoPuyo2, msVal.mPokoPuyo3);
+	mPokoCounterCurr->_C8 = PSSE_SY_COIN_COUNT;
 
-	m_screenBG = new P2DScreen::Mgr_tuning;
-	m_screenBG->set("ok_bg_normal.blo", 0x1040000, arc);
+	mScreenBG = new P2DScreen::Mgr_tuning;
+	mScreenBG->set("ok_bg_normal.blo", 0x1040000, arc);
 
-	og::Screen::setAlphaScreen(m_screenOkWindow);
-	og::Screen::setAlphaScreen(m_screenBG);
-	og::Screen::setAlphaScreen(m_screenName);
-	og::Screen::setAlphaScreen(m_screenButton);
+	og::Screen::setAlphaScreen(mScreenOkWindow);
+	og::Screen::setAlphaScreen(mScreenBG);
+	og::Screen::setAlphaScreen(mScreenName);
+	og::Screen::setAlphaScreen(mScreenButton);
 
-	m_paneOk1 = m_screenOkWindow->search('NMsha');
-	m_paneOk2 = m_screenOkWindow->search('NMzukan');
-	m_paneOk2->hide();
-	J2DPane* pane = m_screenBG->search('item');
+	mPaneOk1 = mScreenOkWindow->search('NMsha');
+	mPaneOk2 = mScreenOkWindow->search('NMzukan');
+	mPaneOk2->hide();
+	J2DPane* pane = mScreenBG->search('item');
 	if (pane)
 		pane->hide();
-	m_paneSetP = m_screenBG->search('Notsetp');
+	mPaneSetP = mScreenBG->search('Notsetp');
 
-	og::Screen::setCallBackMessage(m_screenOkWindow);
-	og::Screen::setCallBackMessage(m_screenName);
-	og::Screen::setCallBackMessage(m_screenButton);
+	og::Screen::setCallBackMessage(mScreenOkWindow);
+	og::Screen::setCallBackMessage(mScreenName);
+	og::Screen::setCallBackMessage(mScreenButton);
 
-	m_tControl = new P2JME::Movie::TControl;
-	m_tControl->init();
-	m_tControl->m_flags &= 0xfffffffe;
-	m_inTextBox = false;
+	mTControl = new P2JME::Movie::TControl;
+	mTControl->init();
+	mTControl->mFlags &= 0xfffffffe;
+	mInTextBox = false;
 
-	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, m_screenButton, 'ota3dl');
-	m_stickAnim                       = new og::Screen::StickAnimMgr(pic);
-	m_stickAnim->stickUpDown();
-	pane = m_screenButton->search('Ncstick');
+	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, mScreenButton, 'ota3dl');
+	mStickAnim                        = new og::Screen::StickAnimMgr(pic);
+	mStickAnim->stickUpDown();
+	pane = mScreenButton->search('Ncstick');
 	pane->hide();
 
-	m_efx = nullptr;
-	if (m_disp->m_pelletMessageID) {
+	mEfx = nullptr;
+	if (mDisp->mPelletMessageID) {
 		efx2d::T2DOtakantei* efx = new efx2d::T2DOtakantei;
-		m_efx                    = efx;
+		mEfx                     = efx;
 		Vector2f argVec(304.0f, 194.0f);
 		efx2d::Arg arg = argVec;
-		m_efx->setGroup(2);
-		m_efx->create(&arg);
+		mEfx->setGroup(2);
+		mEfx->create(&arg);
 	}
 
 	commonUpdate();
@@ -236,57 +236,57 @@ void ObjKantei::updateKanteiVoice()
  */
 void ObjKantei::scaleAnimItemName()
 {
-	m_paneName->updateScale(m_scaleMgr->calc() * m_nameScale);
+	mPaneName->updateScale(mScaleMgr->calc() * mNameScale);
 
-	if (m_doScaleName) {
-		switch (m_nameState) {
+	if (mDoScaleName) {
+		switch (mNameState) {
 		case KanteiName_StartDelay:
-			if (m_nameTimer > 0.0f) {
-				m_nameTimer -= sys->m_deltaTime;
-				if (m_nameTimer < 0.0f) {
-					m_nameState = KanteiName_Growing;
+			if (mNameTimer > 0.0f) {
+				mNameTimer -= sys->mDeltaTime;
+				if (mNameTimer < 0.0f) {
+					mNameState = KanteiName_Growing;
 				}
 			}
-			m_nameScale = 0.0f;
+			mNameScale = 0.0f;
 			break;
 
 		case KanteiName_Growing:
-			m_nameScale += msVal.m_nameScaleGrowFactor;
-			if (m_nameScale >= 1.0f) {
-				m_nameScale = 1.0f;
-				m_scaleMgr->up(msVal.m_counterGrow1, msVal.m_counterGrow2, msVal.m_counterGrow3, 0.0f);
-				if (!m_isPelletNameNotAppeared) {
-					m_doShipSpeech       = true;
-					m_commonTimer        = 0.1f;
-					m_shipSpeechTimer    = 10;
+			mNameScale += msVal.mNameScaleGrowFactor;
+			if (mNameScale >= 1.0f) {
+				mNameScale = 1.0f;
+				mScaleMgr->up(msVal.mCounterGrow1, msVal.mCounterGrow2, msVal.mCounterGrow3, 0.0f);
+				if (!mIsPelletNameNotAppeared) {
+					mDoShipSpeech        = true;
+					mCommonTimer         = 0.1f;
+					mShipSpeechTimer     = 10;
 					PSGame::SeMgr* seMgr = PSSystem::getSeMgrInstance();
 					seMgr->playMessageVoice(PSSE_MP_VOX_HEAD_A_FLAT, false);
 				}
-				m_nameState     = KanteiName_VisibleDelay;
-				m_nameWaitTimer = msVal.m_waitTimerReset;
+				mNameState     = KanteiName_VisibleDelay;
+				mNameWaitTimer = msVal.mWaitTimerReset;
 			}
 			break;
 
 		case KanteiName_VisibleDelay:
-			if (m_nameWaitTimer > 0.0f) {
-				m_nameWaitTimer -= sys->m_deltaTime;
-				if (m_isPelletNameNotAppeared && m_nameWaitTimer < 0.0f) {
-					m_nameState = KanteiName_Shrinking;
+			if (mNameWaitTimer > 0.0f) {
+				mNameWaitTimer -= sys->mDeltaTime;
+				if (mIsPelletNameNotAppeared && mNameWaitTimer < 0.0f) {
+					mNameState = KanteiName_Shrinking;
 				}
 			}
 			break;
 
 		case KanteiName_Shrinking:
-			if (m_nameScale > 0.0f) {
-				m_nameScale -= msVal.m_nameScaleGrowFactor;
-				if (m_nameScale < 0.0f) {
-					m_nameScale = 0.0f;
-					if (m_isPelletNameNotAppeared) {
-						m_isPelletNameNotAppeared = false;
-						m_paneName->m_messageID   = m_treasureNameMesgID;
-						m_nameScale               = 0.0f;
-						m_paneName->updateScale(m_nameScale);
-						m_nameState = KanteiName_Growing; // reset to growing state but now with the treasures name
+			if (mNameScale > 0.0f) {
+				mNameScale -= msVal.mNameScaleGrowFactor;
+				if (mNameScale < 0.0f) {
+					mNameScale = 0.0f;
+					if (mIsPelletNameNotAppeared) {
+						mIsPelletNameNotAppeared = false;
+						mPaneName->mMessageID    = mTreasureNameMesgID;
+						mNameScale               = 0.0f;
+						mPaneName->updateScale(mNameScale);
+						mNameState = KanteiName_Growing; // reset to growing state but now with the treasures name
 					}
 				}
 			}
@@ -303,14 +303,14 @@ void ObjKantei::scaleAnimItemName()
 void ObjKantei::commonUpdate()
 {
 	scaleAnimItemName();
-	if (m_doShipSpeech) {
-		if (m_commonTimer > 0.0f) {
-			m_commonTimer -= sys->m_deltaTime;
-			if (m_commonTimer <= 0.0f) {
-				m_commonTimer = 0.1f;
-				m_shipSpeechTimer--;
-				if (m_shipSpeechTimer <= 0) {
-					m_doShipSpeech       = false;
+	if (mDoShipSpeech) {
+		if (mCommonTimer > 0.0f) {
+			mCommonTimer -= sys->mDeltaTime;
+			if (mCommonTimer <= 0.0f) {
+				mCommonTimer = 0.1f;
+				mShipSpeechTimer--;
+				if (mShipSpeechTimer <= 0) {
+					mDoShipSpeech        = false;
 					PSGame::SeMgr* seMgr = PSSystem::getSeMgrInstance();
 					seMgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
 				} else {
@@ -320,10 +320,10 @@ void ObjKantei::commonUpdate()
 			}
 		}
 	}
-	m_screenBG->update();
-	m_screenOkWindow->update();
-	m_screenName->update();
-	m_screenButton->update();
+	mScreenBG->update();
+	mScreenOkWindow->update();
+	mScreenName->update();
+	mScreenButton->update();
 }
 
 /*
@@ -334,63 +334,63 @@ void ObjKantei::commonUpdate()
 bool ObjKantei::doUpdate()
 {
 	Controller* pad = getGamePad();
-	switch (m_state) {
+	switch (mState) {
 	case Kantei_Begin:
-		m_state      = Kantei_PokoAppearDelay;
-		m_startTimer = 0.0f;
+		mState      = Kantei_PokoAppearDelay;
+		mStartTimer = 0.0f;
 		break;
 
 	case Kantei_PokoAppearDelay:
-		m_startTimer += sys->m_deltaTime;
-		if (m_startTimer >= msVal.m_nameAppearDelay || pad->m_padButton.m_buttonDown & Controller::PRESS_A
-		    || (m_disp->m_secondaryController && m_disp->m_secondaryController->m_padButton.m_buttonDown & Controller::PRESS_A)) {
-			m_state               = Kantei_SetPokoValue;
-			m_disp->m_pelletValue = 0;
-			m_pokoCounterCurr->startSlot(msVal.m_pokoSlotFactor);
-			m_pokoCounterCurr->show();
+		mStartTimer += sys->mDeltaTime;
+		if (mStartTimer >= msVal.mNameAppearDelay || pad->mButton.mButtonDown & Controller::PRESS_A
+		    || (mDisp->mSecondaryController && mDisp->mSecondaryController->mButton.mButtonDown & Controller::PRESS_A)) {
+			mState              = Kantei_SetPokoValue;
+			mDisp->mPelletValue = 0;
+			mPokoCounterCurr->startSlot(msVal.mPokoSlotFactor);
+			mPokoCounterCurr->show();
 		}
 		break;
 
 	case Kantei_SetPokoValue:
-		m_state               = Kantei_WaitAppearPokos;
-		m_startTimer          = 0.0f;
-		m_disp->m_pelletValue = m_currItemValue;
+		mState              = Kantei_WaitAppearPokos;
+		mStartTimer         = 0.0f;
+		mDisp->mPelletValue = mCurrItemValue;
 		break;
 
 	case Kantei_WaitAppearPokos:
-		m_startTimer += sys->m_deltaTime;
-		if (m_startTimer >= msVal.m_priceAppearDelay) {
-			m_state                  = Kantei_AppearTotalPokos;
-			m_startTimer             = 0.0f;
-			m_disp->m_totalPokos     = 0;
-			m_disp->m_totalPokosCave = 0;
-			m_pokoCounterTotal->setPuyoAnim(true);
+		mStartTimer += sys->mDeltaTime;
+		if (mStartTimer >= msVal.mPriceAppearDelay) {
+			mState                 = Kantei_AppearTotalPokos;
+			mStartTimer            = 0.0f;
+			mDisp->mTotalPokos     = 0;
+			mDisp->mTotalPokosCave = 0;
+			mPokoCounterTotal->setPuyoAnim(true);
 		}
 		break;
 
 	case Kantei_AppearTotalPokos:
-		m_state                  = Kantei_Idle;
-		m_disp->m_totalPokos     = m_totalPokos;
-		m_disp->m_totalPokosCave = m_totalPokosCave;
+		mState                 = Kantei_Idle;
+		mDisp->mTotalPokos     = mTotalPokos;
+		mDisp->mTotalPokosCave = mTotalPokosCave;
 		ogSound->setPlusTotalPoko();
-		m_doScaleName = true;
+		mDoScaleName = true;
 		break;
 
 	case Kantei_Idle:
-		if (m_idleStateTimer > 0.0f) {
-			m_idleStateTimer -= sys->m_deltaTime;
+		if (mIdleStateTimer > 0.0f) {
+			mIdleStateTimer -= sys->mDeltaTime;
 		} else {
-			if (pad && pad->m_padButton.m_buttonDown & Controller::PRESS_A
-			    || (m_disp->m_secondaryController && m_disp->m_secondaryController->m_padButton.m_buttonDown & Controller::PRESS_A)) {
-				m_shipMessageBoxID = m_disp->m_pelletMessageID;
+			if (pad && pad->mButton.mButtonDown & Controller::PRESS_A
+			    || (mDisp->mSecondaryController && mDisp->mSecondaryController->mButton.mButtonDown & Controller::PRESS_A)) {
+				mShipMessageBoxID = mDisp->mPelletMessageID;
 				// if the tagID exists, open ship message box, unless in E3 mode
-				if (m_shipMessageBoxID != 0 && !Game::gGameConfig.m_parms.m_E3version.m_data) {
+				if (mShipMessageBoxID != 0 && !Game::gGameConfig.mParms.mE3version.mData) {
 					u32 tagid  = 0;
 					u32 tagid2 = 0;
-					P2JME::convertU64ToMessageID(m_shipMessageBoxID, &tagid, &tagid2);
-					m_tControl->setMessageID(tagid, tagid2);
-					m_inTextBox = true;
-					m_state     = Kantei_MessageBox;
+					P2JME::convertU64ToMessageID(mShipMessageBoxID, &tagid, &tagid2);
+					mTControl->setMessageID(tagid, tagid2);
+					mInTextBox = true;
+					mState     = Kantei_MessageBox;
 
 				} else {
 					finishKantei();
@@ -400,8 +400,8 @@ bool ObjKantei::doUpdate()
 		break;
 
 	case Kantei_MessageBox:
-		m_tControl->update(pad, m_disp->m_secondaryController);
-		if (!m_tControl->m_finished) {
+		mTControl->update(pad, mDisp->mSecondaryController);
+		if (!mTControl->mFinished) {
 			finishKantei();
 		}
 
@@ -420,9 +420,9 @@ bool ObjKantei::doUpdate()
  */
 void ObjKantei::finishKantei()
 {
-	m_disp->m_isDone = true;
-	if (!m_playExitSE) {
-		m_playExitSE = true;
+	mDisp->mIsDone = true;
+	if (!mPlayExitSE) {
+		mPlayExitSE = true;
 		ogSound->setKanteiExit();
 	}
 }
@@ -434,46 +434,46 @@ void ObjKantei::finishKantei()
  */
 void ObjKantei::doDraw(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
 
 	Graphics(gfx2);
-	u8 alpha = m_fadeLevel2 * 255.0f;
-	m_screenBG->setAlpha(alpha);
-	m_screenBG->draw(gfx2, *graf);
+	u8 alpha = mFadeLevel2 * 255.0f;
+	mScreenBG->setAlpha(alpha);
+	mScreenBG->draw(gfx2, *graf);
 
-	if (m_efx) {
-		gfx.m_perspGraph.setPort();
+	if (mEfx) {
+		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(2, 0);
 	}
 
-	if (m_state != Kantei_MessageBox) {
-		alpha = m_fadeLevel2 * 255.0f;
-		m_screenOkWindow->setAlpha(alpha);
-		m_screenOkWindow->draw(gfx2, *graf);
-		m_screenButton->setXY(0.0f, msVal.m_screenMoveStart);
-		alpha = m_fadeLevel2 * 255.0f;
-		m_screenButton->setAlpha(alpha);
-		m_screenButton->draw(gfx2, *graf);
+	if (mState != Kantei_MessageBox) {
+		alpha = mFadeLevel2 * 255.0f;
+		mScreenOkWindow->setAlpha(alpha);
+		mScreenOkWindow->draw(gfx2, *graf);
+		mScreenButton->setXY(0.0f, msVal.mScreenMoveStart);
+		alpha = mFadeLevel2 * 255.0f;
+		mScreenButton->setAlpha(alpha);
+		mScreenButton->draw(gfx2, *graf);
 	}
 
-	if (m_doDrawBox && m_disp->m_delegate) {
-		J2DPane* pane = m_paneSetP;
+	if (mDoDrawBox && mDisp->mDelegate) {
+		J2DPane* pane = mPaneSetP;
 		f32 x1, y1, x2, y2;
-		y2             = pane->m_globalBounds.f.y;
-		x2             = pane->m_globalBounds.f.x;
-		y1             = pane->m_globalBounds.i.y;
-		x1             = pane->m_globalBounds.i.x;
-		m_drawBox.p1.x = x1;
-		m_drawBox.p1.y = y1;
-		m_drawBox.p2.x = x2;
-		m_drawBox.p2.y = y2;
-		m_disp->m_delegate->invoke(m_drawBox);
-		m_doDrawBox = 0;
+		y2            = pane->mGlobalBounds.f.y;
+		x2            = pane->mGlobalBounds.f.x;
+		y1            = pane->mGlobalBounds.i.y;
+		x1            = pane->mGlobalBounds.i.x;
+		mDrawBox.p1.x = x1;
+		mDrawBox.p1.y = y1;
+		mDrawBox.p2.x = x2;
+		mDrawBox.p2.y = y2;
+		mDisp->mDelegate->invoke(mDrawBox);
+		mDoDrawBox = 0;
 	}
 
-	alpha = m_fadeLevel2 * 255.0f;
-	m_screenName->setAlpha(alpha);
-	m_screenName->draw(gfx2, *graf);
+	alpha = mFadeLevel2 * 255.0f;
+	mScreenName->setAlpha(alpha);
+	mScreenName->draw(gfx2, *graf);
 }
 
 /*
@@ -483,8 +483,8 @@ void ObjKantei::doDraw(Graphics& gfx)
  */
 void ObjKantei::doDrawMsg(Graphics& gfx)
 {
-	if (m_state == Kantei_MessageBox) {
-		m_tControl->draw(gfx);
+	if (mState == Kantei_MessageBox) {
+		mTControl->draw(gfx);
 	}
 }
 
@@ -495,9 +495,9 @@ void ObjKantei::doDrawMsg(Graphics& gfx)
  */
 bool ObjKantei::doStart(::Screen::StartSceneArg const*)
 {
-	m_fadeLevel  = 0.0f;
-	m_fadeLevel2 = 0.0f;
-	if (m_disp->m_doPlayBGM) {
+	mFadeLevel  = 0.0f;
+	mFadeLevel2 = 0.0f;
+	if (mDisp->mDoPlayBGM) {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 		PSSystem::checkSceneMgr(mgr);
 		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
@@ -513,7 +513,7 @@ bool ObjKantei::doStart(::Screen::StartSceneArg const*)
  */
 bool ObjKantei::doEnd(::Screen::EndSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	return true;
 }
 
@@ -531,9 +531,9 @@ void ObjKantei::doUpdateFadeinFinish() { }
  */
 void ObjKantei::doUpdateFinish()
 {
-	m_fadeLevel = 0.0f;
-	if (m_efx) {
-		m_efx->fade();
+	mFadeLevel = 0.0f;
+	if (mEfx) {
+		mEfx->fade();
 	}
 }
 
@@ -552,13 +552,13 @@ void ObjKantei::doUpdateFadeoutFinish() { }
 bool ObjKantei::doUpdateFadein()
 {
 	bool ret = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > 0.3f) {
-		m_fadeLevel = 0.3f;
-		ret         = true;
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > 0.3f) {
+		mFadeLevel = 0.3f;
+		ret        = true;
 	}
 
-	m_fadeLevel2 = m_fadeLevel / 0.3f;
+	mFadeLevel2 = mFadeLevel / 0.3f;
 	commonUpdate();
 	return ret;
 }
@@ -571,12 +571,12 @@ bool ObjKantei::doUpdateFadein()
 bool ObjKantei::doUpdateFadeout()
 {
 	bool ret = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > 0.2f) {
-		m_fadeLevel = 0.2f;
-		ret         = true;
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > 0.2f) {
+		mFadeLevel = 0.2f;
+		ret        = true;
 	}
-	m_fadeLevel2 = 1.0f - (m_fadeLevel / 0.2f);
+	mFadeLevel2 = 1.0f - (mFadeLevel / 0.2f);
 	commonUpdate();
 	return ret;
 }

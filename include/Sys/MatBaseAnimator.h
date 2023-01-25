@@ -19,8 +19,8 @@ struct MatBaseAnimator {
 	void animate(f32);
 
 	// VTBL _00
-	MatBaseAnimation* m_animation; // _04
-	f32 _08;                       // _08
+	MatBaseAnimation* mAnimation; // _04
+	f32 _08;                      // _08
 };
 
 /**

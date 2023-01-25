@@ -36,7 +36,7 @@ void FSM::init(EnemyBase* enemy)
 StatePress::StatePress(int stateID)
     : State(stateID)
 {
-	m_name = "press";
+	mName = "press";
 }
 
 /*
@@ -46,10 +46,10 @@ StatePress::StatePress(int stateID)
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->m_health = 0.0f;
+	enemy->mHealth = 0.0f;
 	enemy->startMotion(4, nullptr);
 	enemy->deathProcedure();
-	enemy->m_curAnim->m_isPlaying = 0;
+	enemy->mCurAnim->mIsPlaying = 0;
 }
 
 /*
@@ -59,7 +59,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StatePress::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 		transit(enemy, KOCHAPPY_Demo, nullptr);
 	}
 }
@@ -72,7 +72,7 @@ void StatePress::exec(EnemyBase* enemy)
 StateWait::StateWait(int stateID)
     : State(stateID)
 {
-	m_name = "wait";
+	mName = "wait";
 }
 
 /*
@@ -83,7 +83,7 @@ StateWait::StateWait(int stateID)
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(6, nullptr);
-	enemy->m_targetCreature = nullptr;
+	enemy->mTargetCreature = nullptr;
 	if (static_cast<WaitArg*>(stateArg) == (WaitArg*)('rand')) {
 		enemy->setMotionFrame(randFloat() * enemy->getFirstKeyFrame());
 	}
@@ -103,24 +103,23 @@ void StateWait::exec(EnemyBase* enemy)
 		FlickArg flickArg;
 		flickArg._00 = 2;
 		transit(enemy, KOCHAPPY_Flick, &flickArg);
-	} else if (!enemy->m_targetCreature) {
-		Parms* parms = CG_PARMS(enemy);
-		Creature* target
-		    = EnemyFunc::getNearestPikminOrNavi(enemy, 180.0f, parms->m_general.m_sightRadius.m_value, nullptr, nullptr, nullptr);
+	} else if (!enemy->mTargetCreature) {
+		Parms* parms     = CG_PARMS(enemy);
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, 180.0f, parms->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
 		if (target) {
-			enemy->m_targetCreature = target;
+			enemy->mTargetCreature = target;
 			enemy->finishMotion();
 		}
 
-		if (enemy->m_curAnim->m_isPlaying) {
-			switch (enemy->m_curAnim->m_type) {
+		if (enemy->mCurAnim->mIsPlaying) {
+			switch (enemy->mCurAnim->mType) {
 			case KEYEVENT_2:
 				enemy->getJAIObject()->startSound(PSSE_EN_KOCHAPPY_NOTICE, 0);
 				break;
 			case KEYEVENT_END:
-				Parms* parms = static_cast<Parms*>(enemy->m_parms);
-				f32 angLimit = parms->m_properParms.m_fp03.m_value;
-				f32 angDist  = enemy->changeFaceDir(enemy->m_targetCreature); // this is wrong?
+				Parms* parms = static_cast<Parms*>(enemy->mParms);
+				f32 angLimit = parms->mProperParms.mFp03.mValue;
+				f32 angDist  = enemy->changeFaceDir(enemy->mTargetCreature); // this is wrong?
 				if (FABS(angDist) <= PI * (DEG2RAD * angLimit)) {
 					transit(enemy, KOCHAPPY_Walk, nullptr);
 				} else {
@@ -131,7 +130,7 @@ void StateWait::exec(EnemyBase* enemy)
 		}
 	}
 
-	if (enemy->m_health <= 0.0f) {
+	if (enemy->mHealth <= 0.0f) {
 		transit(enemy, KOCHAPPY_Dead, nullptr);
 	}
 	/*
@@ -366,7 +365,7 @@ void StateWait::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
 StateDead::StateDead(int stateID)
     : State(stateID)
 {
-	m_name = "dead";
+	mName = "dead";
 }
 
 /*
@@ -387,7 +386,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 		transit(enemy, KOCHAPPY_Demo, nullptr);
 	}
 }
@@ -407,7 +406,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
 StateTurn::StateTurn(int stateID)
     : State(stateID)
 {
-	m_name = "turn";
+	mName = "turn";
 }
 
 /*
@@ -943,8 +942,8 @@ void StateTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 StateWalk::StateWalk(int stateID)
     : State(stateID)
 {
-	_10    = -1;
-	m_name = "Walk";
+	_10   = -1;
+	mName = "Walk";
 }
 
 /*
@@ -957,7 +956,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kochappy = static_cast<Obj*>(enemy);
 	kochappy->setEmotionExcitement();
 	Parms* parms = kochappy->getParms();
-	kochappy->setAnimationSpeed(40.0f * (parms->m_general.m_moveSpeed.m_value / 50.0f));
+	kochappy->setAnimationSpeed(40.0f * (parms->mGeneral.mMoveSpeed.mValue / 50.0f));
 	kochappy->startMotion(3, nullptr);
 	_10 = -1;
 }
@@ -1474,7 +1473,7 @@ void StateWalk::cleanup(EnemyBase* enemy)
 {
 	enemy->setEmotionCaution();
 	enemy->resetAnimSpeed();
-	enemy->m_targetVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -1485,7 +1484,7 @@ void StateWalk::cleanup(EnemyBase* enemy)
 StateAttack::StateAttack(int stateID)
     : State(stateID)
 {
-	m_name = "Attack";
+	mName = "Attack";
 }
 
 /*
@@ -1803,7 +1802,7 @@ void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 StateFlick::StateFlick(int stateID)
     : State(stateID)
 {
-	m_name = "Flick";
+	mName = "Flick";
 }
 
 /*
@@ -1970,7 +1969,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
 StateTurnToHome::StateTurnToHome(int stateID)
     : State(stateID)
 {
-	m_name = "TurnToHome";
+	mName = "TurnToHome";
 }
 
 /*
@@ -2392,7 +2391,7 @@ void StateTurnToHome::cleanup(EnemyBase* enemy) { }
 StateGoHome::StateGoHome(int stateID)
     : State(stateID)
 {
-	m_name = "GoHome";
+	mName = "GoHome";
 }
 
 /*
@@ -2713,7 +2712,7 @@ lbl_80112138:
 void StateGoHome::cleanup(EnemyBase* enemy)
 {
 	enemy->resetAnimSpeed();
-	enemy->m_targetVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -2724,7 +2723,7 @@ void StateGoHome::cleanup(EnemyBase* enemy)
 StateDemo::StateDemo(int stateID)
     : State(stateID)
 {
-	m_name = "demo";
+	mName = "demo";
 }
 
 /*
@@ -2735,8 +2734,8 @@ StateDemo::StateDemo(int stateID)
 void StateDemo::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->kill(nullptr);
-	if (gameSystem->m_section->getTimerType() != 3 && !playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
-		gameSystem->m_section->enableTimer(5.0f, 3);
+	if (gameSystem->mSection->getTimerType() != 3 && !playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
+		gameSystem->mSection->enableTimer(5.0f, 3);
 	}
 }
 

@@ -673,7 +673,7 @@ namespace Game {
  */
 Door* MapUnitInterface::getDoor(int idx)
 {
-	return (Door*)m_door.getChildAt(idx);
+	return (Door*)mDoor.getChildAt(idx);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -763,17 +763,17 @@ void Door::write(Stream&)
  */
 void Door::read(Stream& stream)
 {
-	m_index     = stream.readInt();
-	m_dir       = stream.readInt();
-	m_offs      = stream.readInt();
-	m_wpIndex   = stream.readInt();
-	m_linkCount = stream.readInt();
-	for (int i = 0; i < m_linkCount; i++) {
+	mIndex     = stream.readInt();
+	mDir       = stream.readInt();
+	mOffs      = stream.readInt();
+	mWpIndex   = stream.readInt();
+	mLinkCount = stream.readInt();
+	for (int i = 0; i < mLinkCount; i++) {
 		// inlined constructor
-		DoorLink* link   = new Game::DoorLink();
-		link->m_distance = stream.readFloat();
-		link->m_doorID   = stream.readInt();
-		int v0           = stream.readInt();
+		DoorLink* link  = new Game::DoorLink();
+		link->mDistance = stream.readFloat();
+		link->mDoorID   = stream.readInt();
+		int v0          = stream.readInt();
 
 		// TODO: WTF does this evaluate to?
 		// neg       r0, r3 <-- -stream.readInt()
@@ -782,9 +782,9 @@ void Door::read(Stream& stream)
 		// addi      r3, r28, 0x20 # ' '
 		// srwi      r0, r0, 31 <-- conversion to byte
 		// stb       r0, 0x20(r31)
-		link->m_tekiFlags = (-v0 | v0); // < 0?
+		link->mTekiFlags = (-v0 | v0); // < 0?
 		// _20 = CNode
-		m_rootLink.add(link);
+		mRootLink.add(link);
 	}
 	/*
 	.loc_0x0:
@@ -970,8 +970,8 @@ void MapUnit::save(Stream&)
  */
 void MapUnit::load(Stream& stream)
 {
-	m_cellSize.x = stream.readShort();
-	m_cellSize.y = stream.readShort();
+	mCellSize.x = stream.readShort();
+	mCellSize.y = stream.readShort();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)

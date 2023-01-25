@@ -49,11 +49,11 @@ struct JKRFileCache : public JKRFileLoader {
 	void* getRelResource(const char*);
 	u32 readRelResource(void* p1, u32 p2, const char* p3);
 
-	JKRHeap* _38;                          // _38
-	JSUList<CCacheBlock> m_cacheBlockList; // _3C
-	char* _48;                             // _48
-	char* m_directoryPath;                 // _4C
-	char* _50;                             // _50
+	JKRHeap* _38;                         // _38
+	JSUList<CCacheBlock> mCacheBlockList; // _3C
+	char* _48;                            // _48
+	char* mDirectoryPath;                 // _4C
+	char* _50;                            // _50
 };
 
 #endif

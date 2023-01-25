@@ -16,7 +16,7 @@ namespace Baby {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 
 	setFSM(new FSM);
 	createEffect();
@@ -42,11 +42,11 @@ void Obj::onInit(CreatureInitArg* arg)
 	setupEffect();
 	resetRandTargetPosition();
 
-	if (gameSystem && gameSystem->m_mode == GSM_PIKLOPEDIA) {
-		m_fsm->start(this, BABY_Move, nullptr);
+	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+		mFsm->start(this, BABY_Move, nullptr);
 		resetZukanAnimationFrame();
 	} else {
-		m_fsm->start(this, BABY_Born, nullptr);
+		mFsm->start(this, BABY_Born, nullptr);
 	}
 }
 
@@ -57,8 +57,8 @@ void Obj::onInit(CreatureInitArg* arg)
  */
 void Obj::doUpdate()
 {
-	m_fsm->exec(this);
-	m_mouthSlots.update();
+	mFsm->exec(this);
+	mMouthSlots.update();
 }
 
 /*
@@ -82,9 +82,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -94,17 +94,17 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	param.m_position = m_position;
-	param.m_position.y += 2.5f;
+	param.mPosition = mPosition;
+	param.mPosition.y += 2.5f;
 
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 
 	if (isEvent(1, EB2_IsEarthquake)) {
-		param.m_boundingSphere.m_radius = 50.0f;
+		param.mBoundingSphere.mRadius = 50.0f;
 	} else {
-		param.m_boundingSphere.m_radius = 10.0f;
+		param.mBoundingSphere.mRadius = 10.0f;
 	}
-	param.m_size = 10.0f;
+	param.mSize = 10.0f;
 }
 
 /*
@@ -115,7 +115,7 @@ void Obj::getShadowParam(ShadowParam& param)
 bool Obj::pressCallBack(Creature* obj, f32 damage, CollPart* part)
 {
 	if (obj && !isEvent(0, EB_IsBittered) && getStateID() > 2) {
-		m_fsm->transit(this, BABY_Press, nullptr);
+		mFsm->transit(this, BABY_Press, nullptr);
 		return true;
 	} else {
 		return false;
@@ -131,7 +131,7 @@ bool Obj::hipdropCallBack(Creature* obj, f32 damage, CollPart* part)
 {
 
 	if (obj && !isEvent(0, EB_IsBittered) && getStateID() > 2) {
-		m_fsm->transit(this, BABY_Press, nullptr);
+		mFsm->transit(this, BABY_Press, nullptr);
 		return true;
 	} else {
 		return false;
@@ -154,7 +154,7 @@ void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
 	if (getStateID() == BABY_Born) {
-		m_fsm->transit(this, BABY_Move, nullptr);
+		mFsm->transit(this, BABY_Move, nullptr);
 	}
 }
 
@@ -201,11 +201,11 @@ void Obj::doEndMovie() { effectDrawOn(); }
  */
 void Obj::initMouthSlots()
 {
-	m_mouthSlots.alloc(1);
-	m_mouthSlots.setup(0, m_model, "kamu");
+	mMouthSlots.alloc(1);
+	mMouthSlots.setup(0, mModel, "kamu");
 	f32 size = 20.0f;
-	for (int i = 0; i < m_mouthSlots.m_max; i++) {
-		m_mouthSlots.getSlot(i)->m_radius = size;
+	for (int i = 0; i < mMouthSlots.mMax; i++) {
+		mMouthSlots.getSlot(i)->mRadius = size;
 	}
 }
 
@@ -221,7 +221,7 @@ int Obj::getSlotPikiNum()
 	int max           = slots->getMax();
 
 	for (int i = 0; i < max; i++) {
-		if (slots->getSlot(i)->m_stuckCreature) {
+		if (slots->getSlot(i)->mStuckCreature) {
 			slotnum++;
 		}
 	}
@@ -233,14 +233,14 @@ int Obj::getSlotPikiNum()
  * Address:	8028DAB0
  * Size:	000008
  */
-MouthSlots* Obj::getMouthSlots() { return &m_mouthSlots; }
+MouthSlots* Obj::getMouthSlots() { return &mMouthSlots; }
 
 /*
  * --INFO--
  * Address:	8028DAB8
  * Size:	00001C
  */
-void Obj::resetRandTargetPosition() { m_targetPos = m_position; }
+void Obj::resetRandTargetPosition() { mTargetPos = mPosition; }
 
 /*
  * --INFO--
@@ -260,21 +260,21 @@ void Obj::resetZukanAnimationFrame()
  */
 void Obj::moveNoTarget()
 {
-	if (gameSystem && gameSystem->m_mode == GSM_PIKLOPEDIA) {
-		if (sqrDistanceXZ(m_position, m_targetPos) < 500.0f) {
+	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+		if (sqrDistanceXZ(mPosition, mTargetPos) < 500.0f) {
 			f32 f1  = randWeightFloat(100.0f) + 50.0f;
-			f32 ang = JMath::atanTable_.atan2_(m_position.x - m_homePosition.x, m_position.z - m_homePosition.z);
+			f32 ang = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 			ang     = randWeightFloat(PI) + ang + HALF_PI;
 
-			m_targetPos.x = f1 * pikmin2_sinf(ang) + m_homePosition.x;
-			m_targetPos.y = m_homePosition.y;
-			m_targetPos.z = f1 * pikmin2_cosf(ang) + m_homePosition.z;
+			mTargetPos.x = f1 * pikmin2_sinf(ang) + mHomePosition.x;
+			mTargetPos.y = mHomePosition.y;
+			mTargetPos.z = f1 * pikmin2_cosf(ang) + mHomePosition.z;
 		}
-		Parms* parms = static_cast<Parms*>(m_parms);
-		EnemyFunc::walkToTarget(this, m_targetPos, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
-		                        parms->m_general.m_rotationalSpeed.m_value);
+		Parms* parms = static_cast<Parms*>(mParms);
+		EnemyFunc::walkToTarget(this, mTargetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
+		                        parms->mGeneral.mRotationalSpeed.mValue);
 	} else {
-		m_targetVelocity = Vector3f(0.0f);
+		mTargetVelocity = Vector3f(0.0f);
 	}
 }
 
@@ -285,14 +285,14 @@ void Obj::moveNoTarget()
  */
 void Obj::createHoney()
 {
-	Parms* parms = static_cast<Parms*>(m_parms);
-	if (randWeightFloat(1.0f) < parms->m_properParms.m_nectarChance.m_value) {
+	Parms* parms = static_cast<Parms*>(mParms);
+	if (randWeightFloat(1.0f) < parms->mProperParms.mNectarChance.mValue) {
 		ItemHoney::InitArg arg(false, false);
 
 		ItemHoney::Item* item = static_cast<ItemHoney::Item*>(ItemHoney::mgr->birth());
 		if (item) {
 			item->init(&arg);
-			item->setPosition(m_position, false);
+			item->setPosition(mPosition, false);
 			Vector3f velocity(0.0f, 250.0f, 0.0f);
 			item->setVelocity(velocity);
 		}
@@ -304,7 +304,7 @@ void Obj::createHoney()
  * Address:	8028DE48
  * Size:	0000B4
  */
-void Obj::createEffect() { m_efxBabyBorn = new efx::TBabyBorn(&m_position); }
+void Obj::createEffect() { mEfxBabyBorn = new efx::TBabyBorn(&mPosition); }
 
 /*
  * --INFO--
@@ -318,21 +318,21 @@ void Obj::setupEffect() { }
  * Address:	8028DF00
  * Size:	000034
  */
-void Obj::createBornEffect() { m_efxBabyBorn->create(nullptr); }
+void Obj::createBornEffect() { mEfxBabyBorn->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	8028DF34
  * Size:	000030
  */
-void Obj::effectDrawOn() { m_efxBabyBorn->endDemoDrawOn(); }
+void Obj::effectDrawOn() { mEfxBabyBorn->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	8028DF64
  * Size:	000030
  */
-void Obj::effectDrawOff() { m_efxBabyBorn->startDemoDrawOff(); }
+void Obj::effectDrawOff() { mEfxBabyBorn->startDemoDrawOff(); }
 
 } // namespace Baby
 } // namespace Game

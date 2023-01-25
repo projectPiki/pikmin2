@@ -85,19 +85,19 @@ Creature* ObjectSystem::findCreature(const char* query) const
 		}
 
 	} else if (!strcmp(stringBuffer, "pikmin")) {
-		creature = moviePlayer->m_targetObject;
-		if (!moviePlayer->m_targetObject->isPiki()) {
+		creature = moviePlayer->mTargetObject;
+		if (!moviePlayer->mTargetObject->isPiki()) {
 			creature = nullptr;
 		}
 
 	} else if (!strcmp(stringBuffer, "target")) {
-		creature = moviePlayer->m_targetObject;
+		creature = moviePlayer->mTargetObject;
 
 	} else if (!strcmp(stringBuffer, "ufo")) {
-		creature = ItemOnyon::mgr->m_ufo;
+		creature = ItemOnyon::mgr->mUfo;
 
 	} else if (!strcmp(stringBuffer, "pod")) {
-		creature = ItemOnyon::mgr->m_pod;
+		creature = ItemOnyon::mgr->mPod;
 
 	} else if (!strcmp(stringBuffer, "orima")) {
 		creature = moviePlayer->getActiveOrima();
@@ -116,11 +116,11 @@ Creature* ObjectSystem::findCreature(const char* query) const
 		}
 
 	} else if (!strcmp(stringBuffer, "ufo")) {
-		creature = ItemOnyon::mgr->m_ufo;
+		creature = ItemOnyon::mgr->mUfo;
 		P2ASSERTLINE(231, creature);
 
 	} else if (!strcmp(stringBuffer, "pod")) {
-		creature = ItemOnyon::mgr->m_pod;
+		creature = ItemOnyon::mgr->mPod;
 	}
 
 	return creature;

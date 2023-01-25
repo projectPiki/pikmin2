@@ -65,13 +65,13 @@ JKRMemArchive::JKRMemArchive()
 JKRMemArchive::JKRMemArchive(long p1, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(p1, EMM_Mem)
 {
-	_30              = 0;
-	m_mountDirection = mountDirection;
-	if (!open(p1, m_mountDirection)) {
+	_30             = 0;
+	mMountDirection = mountDirection;
+	if (!open(p1, mMountDirection)) {
 		return;
 	}
-	m_magicWord = 'RARC';
-	_28         = _54 + _48->_04;
+	mMagicWord = 'RARC';
+	_28        = _54 + _48->_04;
 	sVolumeList.prepend(&_18);
 	_30 = 1;
 	/*
@@ -142,8 +142,8 @@ JKRMemArchive::JKRMemArchive(void* p1, unsigned long p2, JKRMemBreakFlag flag)
 	if (!open(p1, p2, flag)) {
 		return;
 	}
-	m_magicWord = 'RARC';
-	_28         = _54 + _48->_04;
+	mMagicWord = 'RARC';
+	_28        = _54 + _48->_04;
 	sVolumeList.prepend(&_18);
 	_30 = 1;
 	/*
@@ -296,15 +296,15 @@ void JKRMemArchive::unmountFixed()
  */
 bool JKRMemArchive::open(long p1, EMountDirection mountDirection)
 {
-	_64              = nullptr;
-	_44              = nullptr;
-	_68              = nullptr;
-	_48              = nullptr;
-	m_fileEntries    = nullptr;
-	_54              = 0;
-	_6C              = 0;
-	m_mountDirection = mountDirection;
-	if (m_mountDirection == EMD_Unk1) {
+	_64             = nullptr;
+	_44             = nullptr;
+	_68             = nullptr;
+	_48             = nullptr;
+	mFileEntries    = nullptr;
+	_54             = 0;
+	_6C             = 0;
+	mMountDirection = mountDirection;
+	if (mMountDirection == EMD_Unk1) {
 		u32 v1;
 		_64 = (JKRMemArchive_64*)JKRDvdRipper::loadToMainRAM(p1, nullptr, Switch_1, 0, _38, JKRDvdRipper::ALLOC_DIR_TOP, 0, &_5C, &v1);
 		if (_64) {
@@ -318,12 +318,12 @@ bool JKRMemArchive::open(long p1, EMountDirection mountDirection)
 		}
 	}
 	if (_64 == nullptr) {
-		m_mountMode = EMM_Unk0;
+		mMountMode = EMM_Unk0;
 	} else {
-		_44           = (JKRArchive_44*)((u8*)_64 + _64->_08);
-		_48           = (SDirEntry*)((u8*)_44 + _44->m_offsetOfDirEntry);
-		m_fileEntries = (SDIFileEntry*)((u8*)_44 + _44->m_offsetOfFileEntry);
-		_54           = (s32)((u8*)_44 + _44->_14);
+		_44          = (JKRArchive_44*)((u8*)_64 + _64->_08);
+		_48          = (SDirEntry*)((u8*)_44 + _44->mOffsetOfDirEntry);
+		mFileEntries = (SDIFileEntry*)((u8*)_44 + _44->mOffsetOfFileEntry);
+		_54          = (s32)((u8*)_44 + _44->_14);
 		// u32 v1 = _64->_0C + _64->_08;
 		// u32 v1 = _64->_08 + _64->_0C;
 		// _68 = v1 + (u8*)_64;
@@ -331,7 +331,7 @@ bool JKRMemArchive::open(long p1, EMountDirection mountDirection)
 		_68 = (u8*)_64 + _64->_0C + _64->_08;
 		_6C = 1;
 	}
-	return (m_mountMode != EMM_Unk0);
+	return (mMountMode != EMM_Unk0);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -444,11 +444,11 @@ lbl_800249B4:
  */
 bool JKRMemArchive::open(void* p1, unsigned long p2, JKRMemBreakFlag p3)
 {
-	_64           = (JKRMemArchive_64*)p1;
-	_44           = (JKRArchive_44*)((u8*)_64 + _64->_08);
-	_48           = (SDirEntry*)((u8*)_44 + _44->m_offsetOfDirEntry);
-	m_fileEntries = (SDIFileEntry*)((u8*)_44 + _44->m_offsetOfFileEntry);
-	_54           = (s32)((u8*)_44 + _44->_14);
+	_64          = (JKRMemArchive_64*)p1;
+	_44          = (JKRArchive_44*)((u8*)_64 + _64->_08);
+	_48          = (SDirEntry*)((u8*)_44 + _44->mOffsetOfDirEntry);
+	mFileEntries = (SDIFileEntry*)((u8*)_44 + _44->mOffsetOfFileEntry);
+	_54          = (s32)((u8*)_44 + _44->_14);
 	// u32 v1 = _64->_0C + _64->_08;
 	// u32 v1 = _64->_08 + _64->_0C;
 	// _68 = v1 + (u8*)_64;
@@ -528,7 +528,7 @@ void* JKRMemArchive::fetchResource(JKRArchive::SDIFileEntry* entry, unsigned lon
 		entry->_10 = _68 + entry->_08;
 	}
 	if (outSize) {
-		*outSize = entry->m_size;
+		*outSize = entry->mSize;
 	}
 	return entry->_10;
 }
@@ -614,17 +614,17 @@ void* JKRMemArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntr
  * --INFO--
  * Address:	80024B80
  * Size:	000050
- * @warning This method does not actually iterate through m_fileEntries. This feels like a bug.
+ * @warning This method does not actually iterate through mFileEntries. This feels like a bug.
  */
 void JKRMemArchive::removeResourceAll()
 {
 	if (_44 == nullptr) {
 		return;
 	}
-	if (m_mountMode == EMM_Mem) {
+	if (mMountMode == EMM_Mem) {
 		return;
 	}
-	SDIFileEntry* entry = m_fileEntries;
+	SDIFileEntry* entry = mFileEntries;
 	for (u32 i = 0; i < _44->_08; i++) {
 		if (entry->_10) {
 			entry->_10 = nullptr;

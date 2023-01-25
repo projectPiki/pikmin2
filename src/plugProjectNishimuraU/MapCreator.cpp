@@ -18,7 +18,7 @@ void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Ca
                                           Cave::EditMapUnit* unit)
 {
 	bool isVersusHiba = false;
-	if (gameSystem && gameSystem->isVersusMode() && gGameConfig.m_parms.m_vsHiba.m_data) {
+	if (gameSystem && gameSystem->isVersusMode() && gGameConfig.mParms.mVsHiba.mData) {
 		isVersusHiba = true;
 	}
 
@@ -59,9 +59,9 @@ void RoomMapMgr::nishimuraPlaceRooms()
 		Vector3f startPos(0.0f, 0.0f, 0.0f);
 		Cave::randMapMgr->getStartPosition(startPos, i);
 
-		m_startPositions[i].x = startPos.x;
-		m_startPositions[i].y = startPos.y;
-		m_startPositions[i].z = startPos.z;
+		mStartPositions[i].x = startPos.x;
+		mStartPositions[i].y = startPos.y;
+		mStartPositions[i].z = startPos.z;
 	}
 }
 

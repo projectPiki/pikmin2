@@ -12,9 +12,9 @@ static const char efxModelObjectsName[] = "efxModelObjects";
 
 void OnyonSpot::initAnimators(Sys::MatTexAnimation* texanim, Sys::MatTevRegAnimation* tevanim)
 {
-	m_model->enableMaterialAnim(0);
-	m_anim2.start(tevanim);
-	m_anim1.start(texanim);
+	mModel->enableMaterialAnim(0);
+	mAnim2.start(tevanim);
+	mAnim1.start(texanim);
 }
 
 /*
@@ -24,10 +24,10 @@ void OnyonSpot::initAnimators(Sys::MatTexAnimation* texanim, Sys::MatTevRegAnima
  */
 void OnyonSpot::getLODSphere(Sys::Sphere& sphere)
 {
-	sphere.m_position.x = m_mtx.m_matrix.structView.tx;
-	sphere.m_position.y = m_mtx.m_matrix.structView.ty;
-	sphere.m_position.z = m_mtx.m_matrix.structView.tz;
-	sphere.m_radius     = 10.0f;
+	sphere.mPosition.x = mMtx.mMatrix.structView.tx;
+	sphere.mPosition.y = mMtx.mMatrix.structView.ty;
+	sphere.mPosition.z = mMtx.mMatrix.structView.tz;
+	sphere.mRadius     = 10.0f;
 }
 
 /*
@@ -37,13 +37,13 @@ void OnyonSpot::getLODSphere(Sys::Sphere& sphere)
  */
 void OnyonSpot::getLODCylinder(Sys::Cylinder& cyl)
 {
-	cyl.m_center.x = m_mtx.m_matrix.structView.tx;
-	cyl.m_center.y = m_mtx.m_matrix.structView.ty;
-	cyl.m_center.z = m_mtx.m_matrix.structView.tz;
-	cyl.m_radius   = 20.0f;
-	cyl.m_length   = 200.0f;
-	cyl.m_center.y += cyl.m_length * 0.5f;
-	cyl.m_axis = Vector3f(0.0f, 1.0f, 0.0f);
+	cyl.mCenter.x = mMtx.mMatrix.structView.tx;
+	cyl.mCenter.y = mMtx.mMatrix.structView.ty;
+	cyl.mCenter.z = mMtx.mMatrix.structView.tz;
+	cyl.mRadius   = 20.0f;
+	cyl.mLength   = 200.0f;
+	cyl.mCenter.y += cyl.mLength * 0.5f;
+	cyl.mAxis = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
 /*
@@ -54,9 +54,9 @@ void OnyonSpot::getLODCylinder(Sys::Cylinder& cyl)
 void OnyonSpot::changeMaterial()
 {
 	if (!Game::gameSystem->paused()) {
-		m_anim1.animate(30.0f);
+		mAnim1.animate(30.0f);
 	}
-	m_anim2.animate(0.0f);
+	mAnim2.animate(0.0f);
 }
 
 /*
@@ -74,24 +74,24 @@ void OnyonSpotData::loadResources()
 	P2ASSERTLINE(95, file);
 
 	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x21020000);
-	*m_modelData        = model;
-	m_texAnimCount      = 1;
-	m_texanims          = new Sys::MatTexAnimation[m_texAnimCount];
+	*mModelData         = model;
+	mTexAnimCount       = 1;
+	mTexanims           = new Sys::MatTexAnimation[mTexAnimCount];
 
-	m_tevAnimCount = ONYON_TYPE_MAX;
-	m_tevanims     = new Sys::MatTevRegAnimation[m_tevAnimCount];
+	mTevAnimCount = ONYON_TYPE_MAX;
+	mTevanims     = new Sys::MatTevRegAnimation[mTevAnimCount];
 
 	file = JKRFileLoader::getGlbResource("onyonspot.btk", nullptr);
-	m_texanims[0].attachResource(file, *m_modelData);
+	mTexanims[0].attachResource(file, *mModelData);
 
 	file = JKRFileLoader::getGlbResource("onyonspot_blue.brk", nullptr);
-	m_tevanims[ONYON_TYPE_BLUE].attachResource(file, *m_modelData);
+	mTevanims[ONYON_TYPE_BLUE].attachResource(file, *mModelData);
 
 	file = JKRFileLoader::getGlbResource("onyonspot_red.brk", nullptr);
-	m_tevanims[ONYON_TYPE_RED].attachResource(file, *m_modelData);
+	mTevanims[ONYON_TYPE_RED].attachResource(file, *mModelData);
 
 	file = JKRFileLoader::getGlbResource("onyonspot_yellow.brk", nullptr);
-	m_tevanims[ONYON_TYPE_YELLOW].attachResource(file, *m_modelData);
+	mTevanims[ONYON_TYPE_YELLOW].attachResource(file, *mModelData);
 }
 
 /*
@@ -105,17 +105,17 @@ ModelEffect* OnyonSpotData::onCreate(ModelEffectCreateArg* arg)
 
 	P2ASSERTLINE(129, onyonarg->getID() == getID());
 
-	SysShape::Model* model = new SysShape::Model(*m_modelData, 0, 2);
-	int type               = onyonarg->m_onyonType;
+	SysShape::Model* model = new SysShape::Model(*mModelData, 0, 2);
+	int type               = onyonarg->mOnyonType;
 
 	OnyonSpot* spot = new OnyonSpot();
-	spot->m_model   = model;
+	spot->mModel    = model;
 
 	Matrixf mtx;
-	mtx.makeT(onyonarg->m_orig);
-	PSMTXCopy(mtx.m_matrix.mtxView, spot->m_mtx.m_matrix.mtxView);
+	mtx.makeT(onyonarg->mOrig);
+	PSMTXCopy(mtx.mMatrix.mtxView, spot->mMtx.mMatrix.mtxView);
 
-	spot->initAnimators(m_texanims, &m_tevanims[type]);
+	spot->initAnimators(mTexanims, &mTevanims[type]);
 
 	return spot;
 }

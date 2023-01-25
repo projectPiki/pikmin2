@@ -13,16 +13,16 @@ namespace newScreen {
  * Size:	000098
  */
 ObjChallengeBase::ObjChallengeBase()
-    : m_fadeLevel(0.0f)
-    , m_scale(0.0f)
+    : mFadeLevel(0.0f)
+    , mScale(0.0f)
 {
-	m_doneChime1       = false;
-	m_doneChime2       = false;
-	m_paneTime         = nullptr;
-	m_incTimeLeftDelay = 0.0f;
-	m_timeLeft         = 0.0f;
-	m_white.set(255, 255, 255, 255);
-	m_black.set(0, 0, 0, 0);
+	mDoneChime1       = false;
+	mDoneChime2       = false;
+	mPaneTime         = nullptr;
+	mIncTimeLeftDelay = 0.0f;
+	mTimeLeft         = 0.0f;
+	mWhite.set(255, 255, 255, 255);
+	mBlack.set(0, 0, 0, 0);
 }
 
 /*
@@ -39,9 +39,9 @@ ObjChallengeBase::~ObjChallengeBase() { }
  */
 void ObjChallengeBase::doCreateAfter(JKRArchive* arc, og::Screen::CallBack_CounterRV* timer)
 {
-	m_paneTime = timer->m_pic1;
-	m_white    = m_paneTime->getWhite();
-	m_black    = m_paneTime->getBlack();
+	mPaneTime = timer->mPic1;
+	mWhite    = mPaneTime->getWhite();
+	mBlack    = mPaneTime->getBlack();
 }
 
 /*
@@ -51,8 +51,8 @@ void ObjChallengeBase::doCreateAfter(JKRArchive* arc, og::Screen::CallBack_Count
  */
 bool ObjChallengeBase::doStart(::Screen::StartSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
-	m_scale     = 0.0f;
+	mFadeLevel = 0.0f;
+	mScale     = 0.0f;
 	return true;
 }
 
@@ -63,7 +63,7 @@ bool ObjChallengeBase::doStart(::Screen::StartSceneArg const*)
  */
 bool ObjChallengeBase::doEnd(::Screen::EndSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	return true;
 }
 
@@ -75,36 +75,36 @@ bool ObjChallengeBase::doEnd(::Screen::EndSceneArg const*)
 void ObjChallengeBase::updateTimer(f32 set, f32 dec)
 {
 	// for sublevels past 1, wait a set time before increasing the time
-	if (m_subLevel != 0 && m_incTimeLeftDelay > 0.0f) {
-		m_incTimeLeftDelay -= sys->m_deltaTime;
-		if (dec > 0.0f && m_incTimeLeftDelay < 0.0f) {
+	if (mSubLevel != 0 && mIncTimeLeftDelay > 0.0f) {
+		mIncTimeLeftDelay -= sys->mDeltaTime;
+		if (dec > 0.0f && mIncTimeLeftDelay < 0.0f) {
 			ogSound->setTimeCarry();
 		}
 		if (dec > 0.0f) {
-			m_timeLeft = set - dec;
+			mTimeLeft = set - dec;
 		} else {
-			m_timeLeft = set;
+			mTimeLeft = set;
 		}
 	} else {
-		m_timeLeft = set;
+		mTimeLeft = set;
 	}
-	m_timeLeftInt = m_timeLeft;
+	mTimeLeftInt = mTimeLeft;
 
-	if (m_timeLeftInt <= msBaseVal.m_timerLimitLow) {
-		m_paneTime->setWhite(msBaseVal.m_timerLowWhite);
-		m_paneTime->setBlack(msBaseVal.m_timerLowBlack);
+	if (mTimeLeftInt <= msBaseVal.mTimerLimitLow) {
+		mPaneTime->setWhite(msBaseVal.mTimerLowWhite);
+		mPaneTime->setBlack(msBaseVal.mTimerLowBlack);
 	} else {
-		m_paneTime->setWhite(m_white);
-		m_paneTime->setBlack(m_black);
+		mPaneTime->setWhite(mWhite);
+		mPaneTime->setBlack(mBlack);
 	}
 
-	if (m_incTimeLeftDelay <= 0.0f) {
-		if (m_timeLeftInt == 30 && !m_doneChime1) {
-			m_doneChime1 = true;
+	if (mIncTimeLeftDelay <= 0.0f) {
+		if (mTimeLeftInt == 30 && !mDoneChime1) {
+			mDoneChime1 = true;
 			ogSound->setChime();
 		}
-		if (m_timeLeftInt == 10 && !m_doneChime2) {
-			m_doneChime2 = true;
+		if (mTimeLeftInt == 10 && !mDoneChime2) {
+			mDoneChime2 = true;
 			ogSound->setChime();
 		}
 	}
@@ -115,7 +115,7 @@ void ObjChallengeBase::updateTimer(f32 set, f32 dec)
  * Address:	8032CC78
  * Size:	000008
  */
-void ObjChallengeBase::setSubLevel(u32 a1) { m_subLevel = a1; }
+void ObjChallengeBase::setSubLevel(u32 a1) { mSubLevel = a1; }
 
 ObjChallengeBase::StaticValues ObjChallengeBase::msBaseVal;
 

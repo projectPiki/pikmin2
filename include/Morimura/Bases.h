@@ -40,12 +40,12 @@ struct TTestBase : public Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	f32 m_timer;           // _38
-	f32 m_timerLength;     // _3C
-	f32 m_fadeFraction;    // _40
-	u8 m_fadeAlpha;        // _44
-	u8 _45;                // _45
-	char m_baseName[0x32]; // _46
+	f32 mTimer;           // _38
+	f32 mTimerLength;     // _3C
+	f32 mFadeFraction;    // _40
+	u8 mFadeAlpha;        // _44
+	u8 _45;               // _45
+	char mBaseName[0x32]; // _46
 };
 
 struct TScreenBase {
@@ -58,11 +58,11 @@ struct TScreenBase {
 	void addAnim(char*);
 
 	// _00 = VTBL
-	og::Screen::AnimScreen** m_animScreens; // _04
-	P2DScreen::Mgr_tuning* m_screenObj;     // _08
-	JKRArchive* m_archive;                  // _0C
-	int m_animScreenCountMax;               // _10
-	int m_currEntries;                      // _14
+	og::Screen::AnimScreen** mAnimScreens; // _04
+	P2DScreen::Mgr_tuning* mScreenObj;     // _08
+	JKRArchive* mArchive;                  // _0C
+	int mAnimScreenCountMax;               // _10
+	int mCurrEntries;                      // _14
 };
 
 struct TTestAnimScreen : public og::Screen::AnimScreen {
@@ -73,7 +73,7 @@ struct TTestAnimScreen : public og::Screen::AnimScreen {
 struct THIOScene : public Screen::SceneBase {
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	TTestBase* m_object; // _220, cast as needed
+	TTestBase* mObject; // _220, cast as needed
 };
 } // namespace Morimura
 

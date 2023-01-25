@@ -46,7 +46,7 @@ template <typename Calc, typename Init>
 struct J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
 	virtual ~J3DMtxCalcNoAnm() { }                                                  // _08
 	virtual void init(const Vec& p1, const f32 (&p2)[3][4]) { Init::init(p1, p2); } // _24
-	virtual void calc() { Calc::calcTransform(mJoint->m_transformInfo); }           // _28
+	virtual void calc() { Calc::calcTransform(mJoint->mTransformInfo); }            // _28
 };
 
 struct J3DMtxCalcAnmBase : public J3DMtxCalc {
@@ -79,7 +79,7 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 		Adaptor::calc(this);
 		// J3DTransformInfo* pInfo;
 		// if (getAnmTransform() == nullptr) {
-		// 	pInfo = &mJoint->m_transformInfo;
+		// 	pInfo = &mJoint->mTransformInfo;
 		// } else {
 		// 	J3DTransformInfo v1;
 		// 	getAnmTransform()->getTransform(mJoint->getJntNo(), &v1);
@@ -120,7 +120,7 @@ struct J3DMtxCalcAnimationAdaptorDefault {
 			p1->getAnmTransform()->getTransform(J3DMtxCalc::mJoint->getJntNo(), &v1);
 			pInfo = &v1;
 		} else {
-			pInfo = &J3DMtxCalc::mJoint->m_transformInfo;
+			pInfo = &J3DMtxCalc::mJoint->mTransformInfo;
 		}
 		Calc::calcTransform(*pInfo);
 	}

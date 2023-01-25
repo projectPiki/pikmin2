@@ -12,7 +12,7 @@ static const char elecHibaMgrName[] = "246-ElecHibaMgr";
  */
 Generator::Generator()
     : EnemyGeneratorBase("電撃ヒバジェネレータ") // electric hiba generator
-    , m_distance(100.0f)
+    , mDistance(100.0f)
 {
 }
 
@@ -30,7 +30,7 @@ u32 Generator::getLatestVersion() { return '0000'; }
  */
 void Generator::doRead(Stream& stream)
 {
-	if (m_version == getLatestVersion()) {
+	if (mVersion == getLatestVersion()) {
 		doReadLatestVersion(stream);
 		return;
 	}
@@ -45,8 +45,8 @@ void Generator::doRead(Stream& stream)
  */
 void Generator::doWrite(Stream& stream)
 {
-	stream.textWriteTab(stream.m_tabCount);
-	stream.writeFloat(m_distance);
+	stream.textWriteTab(stream.mTabCount);
+	stream.writeFloat(mDistance);
 	stream.textWriteText("\t\t# distance \r\n");
 }
 
@@ -55,7 +55,7 @@ void Generator::doWrite(Stream& stream)
  * Address:	8026EB74
  * Size:	000034
  */
-void Generator::doReadLatestVersion(Stream& stream) { m_distance = stream.readFloat(); }
+void Generator::doReadLatestVersion(Stream& stream) { mDistance = stream.readFloat(); }
 
 /*
  * --INFO--
@@ -72,7 +72,7 @@ void Generator::doReadOldVersion(Stream&) { }
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	m_name = "電撃ヒバマネージャ"; // electric hiba manager
+	mName = "電撃ヒバマネージャ"; // electric hiba manager
 }
 
 /*
@@ -87,14 +87,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	8026EE24
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	8026EF64
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 /*
  * --INFO--
@@ -108,18 +108,18 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 	param._00     = 100.0f;
 	Obj* elecHiba = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
 	if (elecHiba) {
-		elecHiba->_2E4 = birthArg.m_position;
+		elecHiba->_2E4 = birthArg.mPosition;
 		elecHiba->setElecHibaPosition(&param, 1.0f);
-		teamList = &elecHiba->m_teamList;
+		teamList = &elecHiba->mTeamList;
 		elecHiba->createEffect(true);
 
 		EnemyBase* potentialPartner = EnemyMgrBase::birth(birthArg);
 		if (potentialPartner) {
 			Obj* elecHibaPartner  = static_cast<Obj*>(potentialPartner);
-			elecHibaPartner->_2E4 = birthArg.m_position;
+			elecHibaPartner->_2E4 = birthArg.mPosition;
 			elecHibaPartner->setElecHibaPosition(&param, -1.0f);
 			elecHibaPartner->createEffect(false);
-			teamList->add(&elecHibaPartner->m_teamList);
+			teamList->add(&elecHibaPartner->mTeamList);
 		}
 	}
 

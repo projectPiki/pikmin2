@@ -27,7 +27,7 @@ struct RouteMgr;
 struct SeaMgr;
 struct WaterBox;
 // struct GenericObjectMgrReference {
-// 	GenericObjectMgr* m_genericObjectMgrPtr;
+// 	GenericObjectMgr* mGenericObjectMgrPtr;
 // };
 
 struct MapMgr : virtual public GenericObjectMgr {
@@ -71,13 +71,13 @@ struct MapMgr : virtual public GenericObjectMgr {
 
 	// _00: ptr to _0x24 (GenericObjectMgr)
 	// _04: vtable 1
-	RouteMgr* m_routeMgr;     // _08
-	CourseInfo* m_courseInfo; // _0C
-	SeaMgr* m_seaMgr;         // _10
-	u32 _14;                  // _14
-	u32 _18;                  // _18
-	u32 _1C;                  // _1C
-	u32 _20;                  // _20
+	RouteMgr* mRouteMgr;     // _08
+	CourseInfo* mCourseInfo; // _0C
+	SeaMgr* mSeaMgr;         // _10
+	u32 _14;                 // _14
+	u32 _18;                 // _18
+	u32 _1C;                 // _1C
+	u32 _20;                 // _20
 
 	// _24: GenericObjectMgr
 };
@@ -86,22 +86,22 @@ struct ShapeMapMgr : public MapMgr {
 	struct LoadArg {
 		LoadArg(char* modelPath, char* collisionPath, char* routePath)
 		{
-			m_routePath     = routePath;
-			m_modelPath     = modelPath;
-			m_collisionPath = collisionPath;
+			mRoutePath     = routePath;
+			mModelPath     = modelPath;
+			mCollisionPath = collisionPath;
 
-			m_waterboxPath = 0;
-			_18            = 0;
+			mWaterboxPath = 0;
+			_18           = 0;
 		}
 
-		char* m_folder;        // _00
-		char* m_abeFolder;     // _04
-		char* m_modelPath;     // _08
-		char* m_collisionPath; // _0C
-		char* m_waterboxPath;  // _10
-		char* m_mapcodePath;   // _14
-		char* _18;             // _18
-		char* m_routePath;     // _1C
+		char* mFolder;        // _00
+		char* mAbeFolder;     // _04
+		char* mModelPath;     // _08
+		char* mCollisionPath; // _0C
+		char* mWaterboxPath;  // _10
+		char* mMapcodePath;   // _14
+		char* _18;            // _18
+		char* mRoutePath;     // _1C
 	};
 
 	ShapeMapMgr() { }
@@ -122,12 +122,12 @@ struct ShapeMapMgr : public MapMgr {
 
 	void load(LoadArg&);
 
-	u32 m_texAnimCount;               // _24
-	Sys::MatTexAnimation* m_texAnims; // _28
-	Sys::MatTexAnimation* _2C;        // _2C
-	Sys::MatLoopAnimator* _30;        // _30
-	SysShape::Model* m_mapModel;      // _34
-	MapCollision _38;                 // _38
+	u32 mTexAnimCount;               // _24
+	Sys::MatTexAnimation* mTexAnims; // _28
+	Sys::MatTexAnimation* _2C;       // _2C
+	Sys::MatLoopAnimator* _30;       // _30
+	SysShape::Model* mMapModel;      // _34
+	MapCollision _38;                // _38
 };
 
 extern MapMgr* mapMgr;

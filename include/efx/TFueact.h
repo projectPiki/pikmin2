@@ -15,8 +15,8 @@ struct TFueactBiriBase : public TSync {
 
 	// _00      = VTBL
 	// _00-_10  = TSync
-	Matrixf* m_mtx;           // _10
-	JGeometry::TVec3f* m_pos; // _14
+	Matrixf* mMtx;           // _10
+	JGeometry::TVec3f* mPos; // _14
 };
 
 struct TFueactBiri1 : public TFueactBiriBase {
@@ -45,7 +45,7 @@ struct TFueactBiri2 : public TFueactBiriBase {
 
 struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAParticleCallBack {
 	inline TFueactCircle()
-	    : m_emitter(nullptr)
+	    : mEmitter(nullptr)
 	{
 	}
 
@@ -60,9 +60,9 @@ struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAPartic
 	// _00 VTBL
 	// _04 = JPAEmitterCallBack
 	// _08 = JPAParticleCallBack
-	Matrixf* m_mtx;            // _0C
-	Vector3f* m_pos;           // _10
-	JPABaseEmitter* m_emitter; // _14
+	Matrixf* mMtx;            // _0C
+	Vector3f* mPos;           // _10
+	JPABaseEmitter* mEmitter; // _14
 };
 
 struct TFueact : public TBase {
@@ -71,9 +71,9 @@ struct TFueact : public TBase {
 	virtual void fade();       // _10 (weak)
 
 	// _00      = VTBL
-	TFueactCircle m_circle; // _04
-	TFueactBiri1 m_biri1;   // _1C
-	TFueactBiri2 m_biri2;   // _34
+	TFueactCircle mCircle; // _04
+	TFueactBiri1 mBiri1;   // _1C
+	TFueactBiri2 mBiri2;   // _34
 };
 } // namespace efx
 

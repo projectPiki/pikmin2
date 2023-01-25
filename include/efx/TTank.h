@@ -12,7 +12,7 @@ struct TTankWat;
 struct TParticleCallBack_TankFire : public JPAParticleCallBack {
 	TParticleCallBack_TankFire()
 	    : _04(1000.0f)
-	    , m_efxHit(nullptr)
+	    , mEfxHit(nullptr)
 	{
 	}
 
@@ -21,8 +21,8 @@ struct TParticleCallBack_TankFire : public JPAParticleCallBack {
 	virtual void init(JPABaseEmitter*, JPABaseParticle*);    // _14
 
 	// _00      = VTBL
-	f32 _04;                // _04
-	TTankFireHit* m_efxHit; // _08
+	f32 _04;               // _04
+	TTankFireHit* mEfxHit; // _08
 };
 
 struct TTankFireHit : public TOneEmitterSimple {
@@ -48,25 +48,25 @@ struct TTankFireABC : public TChaseMtx3 {
 	virtual void fade()          // _10 (weak)
 	{
 		TChaseMtx3::fade();
-		if (m_particleCallBack.m_efxHit) {
-			m_particleCallBack.m_efxHit->fade();
+		if (mParticleCallBack.mEfxHit) {
+			mParticleCallBack.mEfxHit->fade();
 		}
 	}
 	virtual void startDemoDrawOff() // _14 (weak)
 	{
 		TChaseMtx3::startDemoDrawOff();
-		m_efxFireHit.startDemoDrawOff();
+		mEfxFireHit.startDemoDrawOff();
 	}
 	virtual void endDemoDrawOn() // _18 (weak)
 	{
 		TChaseMtx3::endDemoDrawOn();
-		m_efxFireHit.endDemoDrawOn();
+		mEfxFireHit.endDemoDrawOn();
 	}
 
 	// _00      = VTBL
 	// _00-_40  = TChaseMtx3
-	TParticleCallBack_TankFire m_particleCallBack; // _40
-	TTankFireHit m_efxFireHit;                     // _4C
+	TParticleCallBack_TankFire mParticleCallBack; // _40
+	TTankFireHit mEfxFireHit;                     // _4C
 };
 
 struct TTankFireIND : public TChaseMtx {
@@ -80,13 +80,13 @@ struct TTankFireIND : public TChaseMtx {
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
-	TParticleCallBack_TankFire m_particleCallBack;
+	TParticleCallBack_TankFire mParticleCallBack;
 };
 
 struct TTankFire : public TBase {
 	TTankFire(Mtx mtx)
-	    : m_efxABC(mtx)
-	    , m_efxIND(mtx)
+	    : mEfxABC(mtx)
+	    , mEfxIND(mtx)
 	{
 	}
 
@@ -94,13 +94,13 @@ struct TTankFire : public TBase {
 	virtual void forceKill();  // _0C (weak)
 	virtual void fade()        // _10 (weak)
 	{
-		m_efxABC.fade();
-		m_efxIND.fade();
+		mEfxABC.fade();
+		mEfxIND.fade();
 	}
 
 	// _00      = VTBL
-	TTankFireABC m_efxABC; // _04
-	TTankFireIND m_efxIND; // _6C
+	TTankFireABC mEfxABC; // _04
+	TTankFireIND mEfxIND; // _6C
 };
 
 struct TTankFireYodare : public TChaseMtx {
@@ -117,13 +117,13 @@ struct TTankFireYodare : public TChaseMtx {
 
 struct TTankEffect {
 	TTankEffect(Mtx mtx)
-	    : m_efxFire(mtx)
-	    , m_efxFireYodare(mtx)
+	    : mEfxFire(mtx)
+	    , mEfxFireYodare(mtx)
 	{
 	}
 
-	TTankFire m_efxFire;             // _00
-	TTankFireYodare m_efxFireYodare; // _8C
+	TTankFire mEfxFire;             // _00
+	TTankFireYodare mEfxFireYodare; // _8C
 };
 
 struct TTankWatHit : public TOneEmitterSimple {
@@ -161,36 +161,36 @@ struct TTankWat : public TChaseMtx4 {
 	virtual void fade()        // _10 (weak)
 	{
 		TChaseMtx4::fade();
-		if (m_particleCallBack.m_efxHit) {
-			m_particleCallBack.m_efxHit->fade();
+		if (mParticleCallBack.mEfxHit) {
+			mParticleCallBack.mEfxHit->fade();
 		}
 	}
 	virtual void startDemoDrawOff() // _14 (weak)
 	{
 		TChaseMtx4::startDemoDrawOff();
-		m_efxHit.startDemoDrawOff();
+		mEfxHit.startDemoDrawOff();
 	}
 	virtual void endDemoDrawOn() // _18 (weak)
 	{
 		TChaseMtx4::endDemoDrawOn();
-		m_efxHit.endDemoDrawOn();
+		mEfxHit.endDemoDrawOn();
 	}
 
 	// _00      = VTBL
 	// _00-_54  = TChaseMtx4
-	TParticleCallBack_TankFire m_particleCallBack; // _54
-	TTankWatHit m_efxHit;                          // _60
+	TParticleCallBack_TankFire mParticleCallBack; // _54
+	TTankWatHit mEfxHit;                          // _60
 };
 
 struct TWtankEffect {
 	inline TWtankEffect(Mtx mtx)
-	    : m_efxWat(mtx)
-	    , m_efxWatYodare(mtx)
+	    : mEfxWat(mtx)
+	    , mEfxWatYodare(mtx)
 	{
 	}
 
-	TTankWat m_efxWat;             // _00
-	TTankWatYodare m_efxWatYodare; // _8C
+	TTankWat mEfxWat;             // _00
+	TTankWatYodare mEfxWatYodare; // _8C
 };
 
 } // namespace efx

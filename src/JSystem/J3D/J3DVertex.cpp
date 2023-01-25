@@ -156,7 +156,7 @@ void J3DVertexBuffer::copyVtxColorArray(J3DDeformAttachFlag flag)
  * Size:	000014
  */
 J3DDrawMtxData::J3DDrawMtxData()
-    : m_count(0)
+    : mCount(0)
     , _04(nullptr)
     , _08(nullptr)
 {

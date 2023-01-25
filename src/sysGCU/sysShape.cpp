@@ -628,11 +628,11 @@ lbl_8042920C:
  */
 BlendAnimator::BlendAnimator()
     : BaseAnimator()
-    , m_animators()
-    , m_mtxCalc(nullptr)
+    , mAnimators()
+    , mMtxCalc(nullptr)
     , _3C(0.0f)
     , _40(0.0f)
-    , m_motionListener(nullptr)
+    , mMotionListener(nullptr)
 {
 	_49 = 0;
 	_48 = 0;

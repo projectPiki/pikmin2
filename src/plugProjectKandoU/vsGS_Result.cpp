@@ -29,10 +29,10 @@ static const char vsGSResultName[]        = "vsGS_Result";
 ResultState::ResultState()
     : State(VGS_Result)
 {
-	m_endFlags.clear();
-	m_player1Controller = new Controller(JUTGamePad::PORT_0);
-	m_player2Controller = new Controller(JUTGamePad::PORT_1);
-	m_delegate          = new Delegate<ResultState>(this, &dvdload);
+	mEndFlags.clear();
+	mPlayer1Controller = new Controller(JUTGamePad::PORT_0);
+	mPlayer2Controller = new Controller(JUTGamePad::PORT_1);
+	mDelegate          = new Delegate<ResultState>(this, &dvdload);
 }
 
 /*
@@ -42,18 +42,18 @@ ResultState::ResultState()
  */
 void ResultState::init(VsGameSection* section, StateArg* stateArg)
 {
-	Screen::gGame2DMgr->m_screenMgr->reset();
-	Screen::gGame2DMgr->setGamePad(m_player1Controller);
+	Screen::gGame2DMgr->mScreenMgr->reset();
+	Screen::gGame2DMgr->setGamePad(mPlayer1Controller);
 
 	moviePlayer->clearSuspendedDemo();
 
 	P2ASSERTLINE(48, stateArg);
 	ResultArg* resultArg = static_cast<ResultArg*>(stateArg);
-	m_endFlags.typeView  = resultArg->m_endFlag.typeView;
+	mEndFlags.typeView   = resultArg->mEndFlag.typeView;
 
-	m_heap        = nullptr;
-	m_expHeap     = nullptr;
-	m_resultStage = VSRES_PrepareInfo;
+	mHeap        = nullptr;
+	mExpHeap     = nullptr;
+	mResultStage = VSRES_PrepareInfo;
 
 	section->refreshHIO();
 }
@@ -66,51 +66,51 @@ void ResultState::init(VsGameSection* section, StateArg* stateArg)
 void ResultState::prepareMorimuraInfo(VsGameSection* section)
 {
 	if (!isNormalEnd()) { // Pikmin extinction / gave up / captain down
-		section->m_timeLimit = 0.0f;
+		section->mTimeLimit = 0.0f;
 	}
 
-	m_pikminLeft    = GameStat::alivePikis;
-	m_pokoTimeScore = section->m_pokoCount + (int)section->m_timeLimit;
+	mPikminLeft    = GameStat::alivePikis;
+	mPokoTimeScore = section->mPokoCount + (int)section->mTimeLimit;
 
 	BOOL isMultiplayer = FALSE;
 	if (gameSystem->isMultiplayerMode()) {
 		isMultiplayer = TRUE;
 	}
 
-	Highscore* highScore = sys->getPlayCommonData()->challenge_getHighscore(section->m_challengeStageNum, isMultiplayer);
+	Highscore* highScore = sys->getPlayCommonData()->challenge_getHighscore(section->mChallengeStageNum, isMultiplayer);
 
-	int stageIndex = section->m_challengeStageNum;
-	m_resultInfo   = new Challenge2D_ResultInfo;
+	int stageIndex = section->mChallengeStageNum;
+	mResultInfo    = new Challenge2D_ResultInfo;
 
-	ChallengeGame::StageData* stageData = section->m_challengeStageList->getStageData(stageIndex);
+	ChallengeGame::StageData* stageData = section->mChallengeStageList->getStageData(stageIndex);
 
-	m_resultInfo->m_displayFlag.clear();
+	mResultInfo->mDisplayFlag.clear();
 
 	if (!gameSystem->isMultiplayerMode()) {
-		m_resultInfo->setDisplayFlag(CHAL2D_Multiplayer);
+		mResultInfo->setDisplayFlag(CHAL2D_Multiplayer);
 	}
 
 	if (isNormalEnd()) {
-		m_resultInfo->setDisplayFlag(CHAL2D_SuccessEnd);
+		mResultInfo->setDisplayFlag(CHAL2D_SuccessEnd);
 		if (section->_205) {
-			m_resultInfo->setDisplayFlag(CHAL2D_PerfectEnd);
+			mResultInfo->setDisplayFlag(CHAL2D_PerfectEnd);
 		}
 	}
 
-	m_resultInfo->m_displayIndex = stageData->m_stageIndex;
-	m_resultInfo->m_stageIndex   = stageIndex;
-	m_resultInfo->m_timeLeft     = (int)section->m_timeLimit;
-	m_resultInfo->m_pokos        = section->m_pokoCount * 10;
-	m_resultInfo->m_pikminLeft   = m_pikminLeft * 10;
-	m_resultInfo->m_score        = m_resultInfo->m_pokos + m_resultInfo->m_timeLeft + m_resultInfo->m_pikminLeft;
-	m_resultInfo->m_highScore    = highScore;
+	mResultInfo->mDisplayIndex = stageData->mStageIndex;
+	mResultInfo->mStageIndex   = stageIndex;
+	mResultInfo->mTimeLeft     = (int)section->mTimeLimit;
+	mResultInfo->mPokos        = section->mPokoCount * 10;
+	mResultInfo->mPikminLeft   = mPikminLeft * 10;
+	mResultInfo->mScore        = mResultInfo->mPokos + mResultInfo->mTimeLeft + mResultInfo->mPikminLeft;
+	mResultInfo->mHighScore    = highScore;
 
 	if (sys->getPlayCommonData()->challenge_checkClear(stageIndex)) {
-		m_resultInfo->setDisplayFlag(CHAL2D_Cleared);
+		mResultInfo->setDisplayFlag(CHAL2D_Cleared);
 	}
 
 	if (sys->getPlayCommonData()->challenge_checkKunsho(stageIndex)) {
-		m_resultInfo->setDisplayFlag(CHAL2D_PinkFlower);
+		mResultInfo->setDisplayFlag(CHAL2D_PinkFlower);
 	}
 
 	if (isNormalEnd()) {
@@ -134,17 +134,17 @@ void ResultState::prepareMorimuraInfo(VsGameSection* section)
 void ResultState::dvdload()
 {
 	PSGame::SceneInfo scene;
-	scene.m_sceneType = 0x10;
-	scene.m_cameras   = 0;
+	scene.mSceneType = 0x10;
+	scene.mCameras   = 0;
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&scene);
 
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
 	sceneMgr->checkScene();
 
-	sceneMgr->m_scenes->m_child->scene1stLoadSync();
+	sceneMgr->mScenes->mChild->scene1stLoadSync();
 	sceneMgr = PSSystem::getSceneMgr();
 	sceneMgr->checkScene();
-	sceneMgr->m_scenes->m_child->startMainSeq();
+	sceneMgr->mScenes->mChild->startMainSeq();
 }
 
 /*
@@ -154,26 +154,26 @@ void ResultState::dvdload()
  */
 void ResultState::exec(VsGameSection* section)
 {
-	switch (m_resultStage) {
+	switch (mResultStage) {
 	case VSRES_PrepareInfo:
 		section->clearHeap();
-		m_heap    = getCurrentHeap();
-		m_expHeap = makeExpHeap(m_heap->getFreeSize(), m_heap, true);
-		m_expHeap->becomeCurrentHeap();
+		mHeap    = getCurrentHeap();
+		mExpHeap = makeExpHeap(mHeap->getFreeSize(), mHeap, true);
+		mExpHeap->becomeCurrentHeap();
 
 		prepareMorimuraInfo(section);
-		m_resultStage = VSRES_PrepareDisp;
+		mResultStage = VSRES_PrepareDisp;
 
-		sys->dvdLoadUseCallBack(&section->m_dvdThreadCommand, m_delegate);
+		sys->dvdLoadUseCallBack(&section->mDvdThreadCommand, mDelegate);
 		return;
 
 	case VSRES_PrepareDisp:
-		if (section->m_dvdThreadCommand.m_mode == 2) {
-			m_resultStage = VSRES_Display;
+		if (section->mDvdThreadCommand.mMode == 2) {
+			mResultStage = VSRES_Display;
 			Morimura::DispMemberChallengeResult result;
-			result.m_resultInfo = m_resultInfo;
-			result.m_heap       = m_expHeap;
-			Screen::gGame2DMgr->setGamePad(m_player1Controller);
+			result.mResultInfo = mResultInfo;
+			result.mHeap       = mExpHeap;
+			Screen::gGame2DMgr->setGamePad(mPlayer1Controller);
 			Screen::gGame2DMgr->open_ChallengeResult(result);
 		}
 		break;
@@ -200,16 +200,16 @@ void ResultState::exec(VsGameSection* section)
  */
 void ResultState::draw(VsGameSection* section, Graphics& gfx)
 {
-	if (m_resultStage != VSRES_Display) {
+	if (mResultStage != VSRES_Display) {
 		return;
 	}
 
-	gfx.m_perspGraph.setPort();
+	gfx.mPerspGraph.setPort();
 	particle2dMgr->draw(1, 0);
 
 	Screen::gGame2DMgr->draw(gfx);
 
-	gfx.m_perspGraph.setPort();
+	gfx.mPerspGraph.setPort();
 	particle2dMgr->draw(0, 0);
 }
 
@@ -226,13 +226,13 @@ void ResultState::cleanup(VsGameSection* section)
 
 	particle2dMgr->killAll();
 
-	m_expHeap->freeAll();
-	m_expHeap->destroy();
-	m_expHeap = nullptr;
-	m_heap->becomeCurrentHeap();
+	mExpHeap->freeAll();
+	mExpHeap->destroy();
+	mExpHeap = nullptr;
+	mHeap->becomeCurrentHeap();
 
-	section->m_pokoCount = 0;
-	section->m_timeLimit = 0;
+	section->mPokoCount = 0;
+	section->mTimeLimit = 0;
 }
 } // namespace VsGame
 } // namespace Game

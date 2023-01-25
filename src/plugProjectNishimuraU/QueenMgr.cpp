@@ -20,7 +20,7 @@ static const char* cMatAnimBtkTexName = "/enemy/data/Queen/queenchappy_model.btk
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "クィーンチャッピーマネージャ"; // queen chappy manager
+	mName = "クィーンチャッピーマネージャ"; // queen chappy manager
 }
 
 /*
@@ -35,14 +35,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	802890D4
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	802891F0
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 /*
  * --INFO--
@@ -53,9 +53,9 @@ void Mgr::loadModelData()
 {
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-		shape          = m_modelData->m_shapeTable.m_items[j];
-		shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		shape         = mModelData->mShapeTable.mItems[j];
+		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
 }
 
@@ -66,17 +66,17 @@ void Mgr::loadModelData()
  */
 void Mgr::loadTexData()
 {
-	SysShape::Model::enableMaterialAnim(m_modelData, 0);
+	SysShape::Model::enableMaterialAnim(mModelData, 0);
 	void* btkFile = nullptr;
 	LoadResource::Arg loadArgBtk(cMatAnimBtkTexName);
 	LoadResource::Node* resourceBtk = gLoadResourceMgr->load(loadArgBtk);
 	if (resourceBtk) {
-		btkFile = resourceBtk->m_file;
+		btkFile = resourceBtk->mFile;
 	}
 	P2ASSERTLINE(108, btkFile);
 
-	m_texAnimation = new Sys::MatTexAnimation;
-	m_texAnimation->attachResource(btkFile, m_modelData);
+	mTexAnimation = new Sys::MatTexAnimation;
+	mTexAnimation->attachResource(btkFile, mModelData);
 }
 
 /*
@@ -86,7 +86,7 @@ void Mgr::loadTexData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(m_modelData, 0x40000, m_modelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, 0x40000, mModelType);
 	P2ASSERTLINE(134, model);
 	return model;
 }

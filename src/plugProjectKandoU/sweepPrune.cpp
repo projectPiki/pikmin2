@@ -19,15 +19,15 @@
 inline void SweepPrune::Node::insertBefore(SweepPrune::Node* prev)
 {
 	// UNUSED FUNCTION
-	Node* next = prev->m_next;
-	m_prev     = prev;
-	m_next     = next;
+	Node* next = prev->mNext;
+	mPrev      = prev;
+	mNext      = next;
 	if (next) {
-		next->m_prev = this;
+		next->mPrev = this;
 	}
 	// This function kind of assumes prev is nonnull earlier...
 	if (prev) {
-		prev->m_next = this;
+		prev->mNext = this;
 	}
 }
 
@@ -39,12 +39,12 @@ inline void SweepPrune::Node::insertBefore(SweepPrune::Node* prev)
 inline void SweepPrune::Node::insertAfter(SweepPrune::Node* next)
 {
 	// UNUSED FUNCTION
-	Node* prev   = next->m_prev;
-	next->m_prev = this;
-	m_prev       = prev;
-	m_next       = next;
+	Node* prev  = next->mPrev;
+	next->mPrev = this;
+	mPrev       = prev;
+	mNext       = next;
 	if (prev) {
-		prev->m_next = this;
+		prev->mNext = this;
 	}
 }
 
@@ -58,57 +58,57 @@ inline void SweepPrune::Node::insertAfter(SweepPrune::Node* next)
  */
 void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 {
-	if (m_next) {
-		if (m_next->m_radius > m_radius) {
-			for (Node* iNode = m_next; iNode != nullptr; iNode = iNode->m_next) {
-				if (iNode->m_radius <= m_radius) {
-					if (m_next) {
-						m_next->m_prev = m_prev;
+	if (mNext) {
+		if (mNext->mRadius > mRadius) {
+			for (Node* iNode = mNext; iNode != nullptr; iNode = iNode->mNext) {
+				if (iNode->mRadius <= mRadius) {
+					if (mNext) {
+						mNext->mPrev = mPrev;
 					}
-					if (m_prev) {
-						m_prev->m_next = m_next;
+					if (mPrev) {
+						mPrev->mNext = mNext;
 					}
-					m_next = nullptr;
-					m_prev = nullptr;
+					mNext = nullptr;
+					mPrev = nullptr;
 					insertAfter(iNode);
 					return;
 				}
 			}
 			return;
 			// Interesting differences between the above loop and this one:
-			// Node* iNode = m_next;
+			// Node* iNode = mNext;
 			// while (true) {
 			// 	if (iNode == nullptr) {
 			// 		return;
 			// 	}
-			// 	if (iNode->m_radius <= m_radius) break;
-			// 	iNode = iNode->m_next;
+			// 	if (iNode->mRadius <= mRadius) break;
+			// 	iNode = iNode->mNext;
 			// }
-			// if (m_next ) {
-			// 	m_next->m_prev = m_prev;
+			// if (mNext ) {
+			// 	mNext->mPrev = mPrev;
 			// }
-			// if (m_prev ) {
-			// 	m_prev->m_next = m_next;
+			// if (mPrev ) {
+			// 	mPrev->mNext = mNext;
 			// }
-			// m_next = nullptr;
-			// m_prev = nullptr;
+			// mNext = nullptr;
+			// mPrev = nullptr;
 			// insertAfter(iNode);
 			// return;
 		}
-		if (m_prev == nullptr) {
+		if (mPrev == nullptr) {
 			return;
 		}
-		if (m_prev->m_radius < m_radius) {
-			for (Node* iNode = m_prev; iNode != nullptr; iNode = iNode->m_prev) {
-				if (iNode->m_radius >= m_radius) {
-					if (m_next) {
-						m_next->m_prev = m_prev;
+		if (mPrev->mRadius < mRadius) {
+			for (Node* iNode = mPrev; iNode != nullptr; iNode = iNode->mPrev) {
+				if (iNode->mRadius >= mRadius) {
+					if (mNext) {
+						mNext->mPrev = mPrev;
 					}
-					if (m_prev) {
-						m_prev->m_next = m_next;
+					if (mPrev) {
+						mPrev->mNext = mNext;
 					}
-					m_next = nullptr;
-					m_prev = nullptr;
+					mNext = nullptr;
+					mPrev = nullptr;
 					insertBefore(iNode);
 					return;
 				}
@@ -116,14 +116,14 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 		}
 		return;
 	}
-	if (chain.m_prev == nullptr) {
+	if (chain.mPrev == nullptr) {
 		insertAfter(&chain);
 		return;
 	}
 	Node* next = nullptr;
-	for (Node* prev = chain.m_prev; prev != nullptr; prev = prev->m_prev) {
+	for (Node* prev = chain.mPrev; prev != nullptr; prev = prev->mPrev) {
 		next = prev;
-		if (prev->m_radius > m_radius) {
+		if (prev->mRadius > mRadius) {
 			insertBefore(prev);
 			return;
 		}
@@ -143,30 +143,30 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
  */
 SweepPrune::Object::Object()
 {
-	m_minX.m_radius = 0.0f;
-	m_minX.m_object = nullptr;
-	m_minX.m_next   = nullptr;
-	m_minX.m_prev   = nullptr;
-	m_maxX.m_radius = 0.0f;
-	m_maxX.m_object = nullptr;
-	m_maxX.m_next   = nullptr;
-	m_maxX.m_prev   = nullptr;
-	m_minZ.m_radius = 0.0f;
-	m_minZ.m_object = nullptr;
-	m_minZ.m_next   = nullptr;
-	m_minZ.m_prev   = nullptr;
-	m_maxZ.m_radius = 0.0f;
-	m_maxZ.m_object = nullptr;
-	m_maxZ.m_next   = nullptr;
-	m_maxZ.m_prev   = nullptr;
-	m_minX.m_flags  = 0;
-	m_maxX.m_flags  = 1;
-	m_minZ.m_flags  = 0;
-	m_maxZ.m_flags  = 1;
-	m_maxZ.m_object = this;
-	m_minZ.m_object = this;
-	m_maxX.m_object = this;
-	m_minX.m_object = this;
+	mMinX.mRadius = 0.0f;
+	mMinX.mObject = nullptr;
+	mMinX.mNext   = nullptr;
+	mMinX.mPrev   = nullptr;
+	mMaxX.mRadius = 0.0f;
+	mMaxX.mObject = nullptr;
+	mMaxX.mNext   = nullptr;
+	mMaxX.mPrev   = nullptr;
+	mMinZ.mRadius = 0.0f;
+	mMinZ.mObject = nullptr;
+	mMinZ.mNext   = nullptr;
+	mMinZ.mPrev   = nullptr;
+	mMaxZ.mRadius = 0.0f;
+	mMaxZ.mObject = nullptr;
+	mMaxZ.mNext   = nullptr;
+	mMaxZ.mPrev   = nullptr;
+	mMinX.mFlags  = 0;
+	mMaxX.mFlags  = 1;
+	mMinZ.mFlags  = 0;
+	mMaxZ.mFlags  = 1;
+	mMaxZ.mObject = this;
+	mMinZ.mObject = this;
+	mMaxX.mObject = this;
+	mMinX.mObject = this;
 }
 
 /*
@@ -178,14 +178,14 @@ SweepPrune::Object::Object()
  */
 SweepPrune::World::World()
 {
-	m_xNode.m_radius = 0.0f;
-	m_xNode.m_object = nullptr;
-	m_xNode.m_next   = nullptr;
-	m_xNode.m_prev   = nullptr;
-	m_zNode.m_radius = 0.0f;
-	m_zNode.m_object = nullptr;
-	m_zNode.m_next   = nullptr;
-	m_zNode.m_prev   = nullptr;
+	mXNode.mRadius = 0.0f;
+	mXNode.mObject = nullptr;
+	mXNode.mNext   = nullptr;
+	mXNode.mPrev   = nullptr;
+	mZNode.mRadius = 0.0f;
+	mZNode.mObject = nullptr;
+	mZNode.mNext   = nullptr;
+	mZNode.mPrev   = nullptr;
 }
 
 /*
@@ -209,34 +209,34 @@ void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 	arg._04 = 0;
 
 	Object* o1;
-	Node* n1 = m_xNode.m_prev;
+	Node* n1 = mXNode.mPrev;
 	Node* prev;
 
 	while (n1) {
 		prev = nullptr;
-		o1   = n1->m_object;
-		for (Node* n2 = n1->m_prev; n2 != nullptr; n2 = n2->m_prev) {
+		o1   = n1->mObject;
+		for (Node* n2 = n1->mPrev; n2 != nullptr; n2 = n2->mPrev) {
 			arg._04++;
-			Object* o2 = n2->m_object;
-			if ((o1 == o2) && (n2->m_flags == 1))
+			Object* o2 = n2->mObject;
+			if ((o1 == o2) && (n2->mFlags == 1))
 				break;
-			if (n2->m_flags == 0) {
+			if (n2->mFlags == 0) {
 				if (prev == nullptr) {
 					prev = n2;
 				}
-				float min1 = o1->m_minZ.m_radius;
-				float max1 = o1->m_maxZ.m_radius;
-				float min2 = o2->m_minZ.m_radius;
-				float max2 = o2->m_maxZ.m_radius;
+				float min1 = o1->mMinZ.mRadius;
+				float max1 = o1->mMaxZ.mRadius;
+				float min2 = o2->mMinZ.mRadius;
+				float max2 = o2->mMaxZ.mRadius;
 				if (((((min1 <= min2) && (min2 <= max1)) || ((min1 <= max2 && (max2 <= max1)))) || ((min2 <= min1 && (min1 <= max2))))
 				    || ((min2 <= max1 && (max1 <= max2)))) {
-					arg.m_callback->invoke(o1, o2);
+					arg.mCallback->invoke(o1, o2);
 					arg._08++;
 				}
 			}
 		}
 		if (prev == nullptr) {
-			n1 = n1->m_prev;
+			n1 = n1->mPrev;
 		}
 		if (prev) {
 			n1 = prev;

@@ -11,12 +11,12 @@ namespace Screen {
  */
 CallBack_Screen::CallBack_Screen(P2DScreen::Mgr* mgr, u64 tag)
 {
-	m_partsScreen = mgr;
-	m_pane        = TagSearch(m_partsScreen, tag);
-	m_textBox     = nullptr;
-	m_scale       = 1.0f;
-	m_xOffs       = 0.0f;
-	m_yOffs       = 0.0f;
+	mPartsScreen = mgr;
+	mPane        = TagSearch(mPartsScreen, tag);
+	mTextBox     = nullptr;
+	mScale       = 1.0f;
+	mXOffs       = 0.0f;
+	mYOffs       = 0.0f;
 }
 
 /*
@@ -24,7 +24,7 @@ CallBack_Screen::CallBack_Screen(P2DScreen::Mgr* mgr, u64 tag)
  * Address:	8030B414
  * Size:	000008
  */
-P2DScreen::Mgr* CallBack_Screen::getPartsScreen() { return m_partsScreen; }
+P2DScreen::Mgr* CallBack_Screen::getPartsScreen() { return mPartsScreen; }
 
 /*
  * --INFO--
@@ -48,17 +48,17 @@ void CallBack_Screen::draw(Graphics& gfx, J2DGrafContext& grafContext)
 {
 	if (getPartsScreen()) {
 		Mtx scaledMtx;
-		Mtx* mtxPtr = &m_textBox->m_globalMtx;
-		PSMTXScale(scaledMtx, m_scale, m_scale, 0.0f);
+		Mtx* mtxPtr = &mTextBox->mGlobalMtx;
+		PSMTXScale(scaledMtx, mScale, mScale, 0.0f);
 		PSMTXConcat(*mtxPtr, scaledMtx, scaledMtx);
 
 		Mtx transMtx;
-		PSMTXTrans(transMtx, m_xOffs, m_yOffs, 0.0f);
+		PSMTXTrans(transMtx, mXOffs, mYOffs, 0.0f);
 		PSMTXConcat(scaledMtx, transMtx, *mtxPtr);
 
-		PSMTXCopy(*mtxPtr, m_pane->m_positionMtx);
+		PSMTXCopy(*mtxPtr, mPane->mPositionMtx);
 
-		m_partsScreen->draw(gfx, grafContext);
+		mPartsScreen->draw(gfx, grafContext);
 	}
 }
 } // namespace Screen

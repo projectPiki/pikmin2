@@ -15,18 +15,18 @@ J2DPictureEx* CopyPicture(J2DPictureEx* pic, u64 tag)
 	const ResTIMG* timg    = tex->_20;
 	JUtility::TColor white = pic->getWhite();
 	JUtility::TColor black = pic->getBlack();
-	u8 alpha               = pic->m_alpha;
+	u8 alpha               = pic->mAlpha;
 
 	JGeometry::TVec2f offset;
-	offset.x = pic->m_bounds.getWidth();
-	offset.y = pic->m_bounds.getHeight();
+	offset.x = pic->mBounds.getWidth();
+	offset.y = pic->mBounds.getHeight();
 
 	JGeometry::TBox2f box(0.0f, 0.0f, offset);
 	JUtility::TColor cols[4];
-	cols[0] = pic->m_cornerColors[0];
-	cols[1] = pic->m_cornerColors[1];
-	cols[2] = pic->m_cornerColors[2];
-	cols[3] = pic->m_cornerColors[3];
+	cols[0] = pic->mCornerColors[0];
+	cols[1] = pic->mCornerColors[1];
+	cols[2] = pic->mCornerColors[2];
+	cols[3] = pic->mCornerColors[3];
 
 	J2DPictureEx* copy = new J2DPictureEx(tag, box, timg, 0x1100000);
 
@@ -264,11 +264,11 @@ J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, float x, float
 	const ResTIMG* timg    = tex->_20;
 	JUtility::TColor white = pic->getWhite();
 	JUtility::TColor black = pic->getBlack();
-	u8 alpha               = pic->m_alpha;
+	u8 alpha               = pic->mAlpha;
 
 	JGeometry::TVec2f offset;
-	offset.x = pic->m_bounds.getWidth();
-	offset.y = pic->m_bounds.getHeight();
+	offset.x = pic->mBounds.getWidth();
+	offset.y = pic->mBounds.getHeight();
 	f32 x0   = -(offset.x / 2 - x);
 	f32 y0   = -(offset.y / 2 - y);
 
@@ -279,10 +279,10 @@ J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, float x, float
 	// JGeometry::TBox2f box(xoffs, xoffs + xoffs2, yoffs, yoffs + yoffs2);
 
 	JUtility::TColor cols[4];
-	cols[0] = pic->m_cornerColors[0];
-	cols[1] = pic->m_cornerColors[1];
-	cols[2] = pic->m_cornerColors[2];
-	cols[3] = pic->m_cornerColors[3];
+	cols[0] = pic->mCornerColors[0];
+	cols[1] = pic->mCornerColors[1];
+	cols[2] = pic->mCornerColors[2];
+	cols[3] = pic->mCornerColors[3];
 
 	J2DPictureEx* copy = new J2DPictureEx(tag, box, timg, 0x1100000);
 

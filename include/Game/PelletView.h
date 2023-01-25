@@ -17,18 +17,18 @@ struct EnemyBase;
 struct PelletViewArg {
 	PelletViewArg();
 
-	char* m_enemyName;   // _00
-	Vector3f m_position; // _04
-	Matrixf* m_matrix;   // _10
-	EnemyBase* m_enemy;  // _14
-	Vector3f _18;        // _18
+	char* mEnemyName;   // _00
+	Vector3f mPosition; // _04
+	Matrixf* mMatrix;   // _10
+	EnemyBase* mEnemy;  // _14
+	Vector3f _18;       // _18
 };
 
 // @trait
 struct PelletView {
 	inline PelletView()
-	    : m_pellet(nullptr)
-	    , m_creature(nullptr)
+	    : mPellet(nullptr)
+	    , mCreature(nullptr)
 	{
 	}
 
@@ -56,8 +56,8 @@ struct PelletView {
 	void viewMakeMatrix(Matrixf&);
 
 	// vtable _00
-	Pellet* m_pellet;     // _04
-	Creature* m_creature; // _08
+	Pellet* mPellet;     // _04
+	Creature* mCreature; // _08
 };
 } // namespace Game
 

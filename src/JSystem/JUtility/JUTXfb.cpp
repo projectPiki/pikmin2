@@ -173,7 +173,7 @@ JUTXfb* JUTXfb::createManager(const _GXRenderModeObj*, void*, void*, void*)
 JUTXfb* JUTXfb::createManager(JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
 	if (sManager == nullptr) {
-		sManager = new JUTXfb(JUTVideo::sManager->m_renderModeObj, heap, number);
+		sManager = new JUTXfb(JUTVideo::sManager->mRenderModeObj, heap, number);
 	}
 	return sManager;
 	/*
@@ -266,8 +266,8 @@ void JUTXfb::destroyManager()
 	JUTXfb* mgr = sManager;
 	if (mgr != nullptr) {
 		for (int i = 0; i < 3; i++) {
-			if (mgr->m_enabled[i] && mgr->m_buffers[i]) {
-				delete mgr->m_buffers[i];
+			if (mgr->mEnabled[i] && mgr->mBuffers[i]) {
+				delete mgr->mBuffers[i];
 			}
 		}
 		sManager = nullptr;
@@ -335,21 +335,21 @@ void JUTXfb::initiate(unsigned short p1, unsigned short p2, JKRHeap* heap, JUTXf
 	u32 v1    = v2 * p2;
 	int flags = 0x20;
 	v1 <<= 1;
-	m_buffers[0] = new (heap, flags) u8[v1];
-	m_enabled[0] = true;
+	mBuffers[0] = new (heap, flags) u8[v1];
+	mEnabled[0] = true;
 	if (2 <= (int)number) {
-		m_buffers[1] = new (heap, flags) u8[v1];
-		m_enabled[1] = true;
+		mBuffers[1] = new (heap, flags) u8[v1];
+		mEnabled[1] = true;
 	} else {
-		m_buffers[1] = nullptr;
-		m_enabled[1] = false;
+		mBuffers[1] = nullptr;
+		mEnabled[1] = false;
 	}
 	if (3 <= (int)number) {
-		m_buffers[2] = new (heap, flags) u8[v1];
-		m_enabled[2] = true;
+		mBuffers[2] = new (heap, flags) u8[v1];
+		mEnabled[2] = true;
 	} else {
-		m_buffers[2] = nullptr;
-		m_enabled[2] = false;
+		mBuffers[2] = nullptr;
+		mEnabled[2] = false;
 	}
 }
 
@@ -370,15 +370,15 @@ void JUTXfb::initiate(void*, void*, void*, JUTXfb::EXfbNumber)
  */
 u32 JUTXfb::accumeXfbSize()
 {
-	// u16 efbHeight = JUTVideo::sManager->m_renderModeObj->efbHeight;
-	// u16 fbWidth   = JUTVideo::sManager->m_renderModeObj->fbWidth;
+	// u16 efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
+	// u16 fbWidth   = JUTVideo::sManager->mRenderModeObj->fbWidth;
 	// // return (GXGetNumXfbLines(GXGetYScaleFactor(efbHeight, obj->xfbHeight), efbHeight) * ALIGN_NEXT(fbWidth, 0x10));
 	// return (ALIGN_NEXT(fbWidth, 0x10)
-	//         * GXGetNumXfbLines(GXGetYScaleFactor(efbHeight, JUTVideo::sManager->m_renderModeObj->xfbHeight), efbHeight))
+	//         * GXGetNumXfbLines(GXGetYScaleFactor(efbHeight, JUTVideo::sManager->mRenderModeObj->xfbHeight), efbHeight))
 	//        * 2;
 	// return (GXGetNumXfbLines(GXGetYScaleFactor(obj->efbHeight, obj->xfbHeight), obj->efbHeight) * ALIGN_NEXT(obj->fbWidth, 0x10));
 
-	// const _GXRenderModeObj* obj = JUTVideo::sManager->m_renderModeObj;
+	// const _GXRenderModeObj* obj = JUTVideo::sManager->mRenderModeObj;
 	// // u16 efbHeight               = obj->efbHeight;
 	// const u16 height = JUTVideo::sManager->getEfbHeight();
 	// const u16 width  = JUTVideo::sManager->getFbWidth();
@@ -388,11 +388,11 @@ u32 JUTXfb::accumeXfbSize()
 	JUTVideo* video  = JUTVideo::sManager;
 	const u16 height = video->getEfbHeight();
 	const u16 width  = video->getFbWidth();
-	const u16 lines  = GXGetNumXfbLines(GXGetYScaleFactor(height, video->m_renderModeObj->xfbHeight), height);
+	const u16 lines  = GXGetNumXfbLines(GXGetYScaleFactor(height, video->mRenderModeObj->xfbHeight), height);
 	// return (lines * ALIGN_NEXT(width, 0x10)) * 2;
 	return lines * (((u16)(width + (u16)0xF) & 0xFFF0)) * 2;
 	// JUTVideo* video = JUTVideo::sManager;
-	// const u16 lines = GXGetNumXfbLines(GXGetYScaleFactor(video->getEfbHeight(), video->m_renderModeObj->xfbHeight),
+	// const u16 lines = GXGetNumXfbLines(GXGetYScaleFactor(video->getEfbHeight(), video->mRenderModeObj->xfbHeight),
 	// video->getEfbHeight()); return sizeof(u16) * (lines * ALIGN_NEXT(video->getFbWidth(), 0x10));
 
 	// // return (GXGetNumXfbLines(GXGetYScaleFactor(efbHeight, obj->xfbHeight), efbHeight) * ALIGN_NEXT(fbWidth, 0x10));

@@ -24,25 +24,25 @@ struct CarryInfo {
 	void drawNumberPrim(Graphics&, f32, f32, int, Color4&, f32);
 	void update(const CarryInfoParam&);
 
-	f32 m_growRate; // _00
-	f32 m_Yoffset;  // _04
-	f32 m_scale;    // _08
-	u8 m_hidden;    // _0C
-	u8 m_alpha;     // _0D
-	u8 m_counter;   // _0E
+	f32 mGrowRate; // _00
+	f32 mYOffset;  // _04
+	f32 mScale;    // _08
+	u8 mHidden;    // _0C
+	u8 mAlpha;     // _0D
+	u8 mCounter;   // _0E
 };
 
 struct CarryInfoParam {
-	u32 m_useType;         // _00, 1 means color by scale, 0 means color by coded table
-	Vector3f m_position;   // _04
-	f32 m_yOffsetMax;      // _10
-	u8 _14;                // _14
-	u8 m_color;            // _15
-	short m_value1;        // _16
-	short m_value2;        // _18
-	BOOL m_isTopFirst;     // _1C, 0 means value1 on bottom, 1 means value2 on bottom
-	int m_value;           // _20
-	CarryInfo m_carryInfo; // _24
+	u32 mUseType;         // _00, 1 means color by scale, 0 means color by coded table
+	Vector3f mPosition;   // _04
+	f32 mYOffsetMax;      // _10
+	u8 _14;               // _14
+	u8 mColor;            // _15
+	short mValue1;        // _16
+	short mValue2;        // _18
+	BOOL mIsTopFirst;     // _1C, 0 means value1 on bottom, 1 means value2 on bottom
+	int mValue;           // _20
+	CarryInfo mCarryInfo; // _24
 };
 
 struct CarryInfoOwner {
@@ -62,10 +62,10 @@ struct PokoInfoOwner : public CarryInfoOwner, public CNode {
 	// vtable 2 (CNode)
 	virtual ~PokoInfoOwner(); // _1C (thunked at _14) (weak)
 
-	f32 m_timer;           // _1C
-	CarryInfoList* m_list; // _20
-	Vector3f m_position;   // _24
-	int m_value;           // _30
+	f32 mTimer;           // _1C
+	CarryInfoList* mList; // _20
+	Vector3f mPosition;   // _24
+	int mValue;           // _30
 };
 
 /**
@@ -78,7 +78,7 @@ struct CarryInfoList : public InfoListBase<CarryInfoOwner, CarryInfoList> {
 	virtual void draw(Graphics&); // _14
 	virtual bool isFinish();      // _18 (weak)
 
-	CarryInfoParam m_param; // _24
+	CarryInfoParam mParam; // _24
 };
 
 /**
@@ -98,9 +98,9 @@ struct CarryInfoMgr : public InfoMgr<CarryInfoOwner, CarryInfoList> {
 	void appearPoko(const Vector3f&, int);
 	void updatePokoInfoOwners();
 
-	JUTTexture* m_texture; // _B8
-	CNode m_node1;         // _BC
-	CNode m_poko_node;     // _D4
+	JUTTexture* mTexture; // _B8
+	CNode mNode1;         // _BC
+	CNode mPoko_node;     // _D4
 };
 
 extern CarryInfoMgr* carryInfoMgr;

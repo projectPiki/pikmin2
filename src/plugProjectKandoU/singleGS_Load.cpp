@@ -29,7 +29,7 @@ namespace SingleGame {
 void LoadState::init(SingleGameSection* gs, StateArg* arg)
 {
 	moviePlayer->reset();
-	Screen::gGame2DMgr->m_screenMgr->reset();
+	Screen::gGame2DMgr->mScreenMgr->reset();
 
 	if (Radar::mgr) {
 		Radar::mgr->clear();
@@ -40,7 +40,7 @@ void LoadState::init(SingleGameSection* gs, StateArg* arg)
 	LoadArg* a = static_cast<LoadArg*>(arg);
 	_24        = a->_04;
 	_29        = a->_01;
-	_27        = a->m_inCave;
+	_27        = a->mInCave;
 	_28        = a->_02;
 
 	_26 = false;
@@ -72,24 +72,24 @@ void LoadState::exec(SingleGameSection* gs)
 
 		if (_27 || _28) {
 			if (_28) {
-				gs->m_currentFloor++;
+				gs->mCurrentFloor++;
 			}
-			gs->m_inCave = true;
+			gs->mInCave = true;
 			og::Screen::DispMemberFloor dispFloor;
 
-			dispFloor.m_sublevel = gs->m_currentFloor + 1;
-			dispFloor.m_caveID   = gs->_190;
+			dispFloor.mSublevel = gs->mCurrentFloor + 1;
+			dispFloor.mCaveID   = gs->_190;
 			Screen::gGame2DMgr->open_Floor(dispFloor);
-			gameSystem->m_isInCave = true;
+			gameSystem->mIsInCave = true;
 
 		} else {
-			int courseIdx = gs->m_currentCourseInfo->m_courseIndex;
+			int courseIdx = gs->mCurrentCourseInfo->mCourseIndex;
 			og::Screen::DispMemberCourseName dispCourseName;
-			dispCourseName.m_courseIndex = courseIdx;
+			dispCourseName.mCourseIndex = courseIdx;
 
 			Screen::gGame2DMgr->open_CourseName(dispCourseName);
-			gs->m_inCave           = false;
-			gameSystem->m_isInCave = false;
+			gs->mInCave           = false;
+			gameSystem->mIsInCave = false;
 		}
 
 		GameStat::clear();
@@ -99,12 +99,12 @@ void LoadState::exec(SingleGameSection* gs)
 
 	} else {
 		if (_14 && !_15) {
-			sys->dvdLoadUseCallBack(&gs->m_dvdThread, gs->_224);
+			sys->dvdLoadUseCallBack(&gs->mDvdThread, gs->_224);
 			_15 = true;
 		}
-		if (gs->m_dvdThread.m_mode == 2) {
+		if (gs->mDvdThread.mMode == 2) {
 			gs->postSetupFloatMemory();
-			if (gs->m_inCave) {
+			if (gs->mInCave) {
 				transit(gs, 4, nullptr);
 			} else {
 				GameArg arg(true, _24);
@@ -127,10 +127,10 @@ void LoadState::draw(SingleGameSection* gs, Graphics& gfx)
 {
 	if (_26) {
 		_14 = true;
-		gfx.m_perspGraph.setPort();
+		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(1, 0);
 		Screen::gGame2DMgr->draw(gfx);
-		gfx.m_perspGraph.setPort();
+		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(0, 0);
 	}
 }

@@ -85,28 +85,28 @@ struct CaveSaveData {
 
 	void clear()
 	{
-		m_cavePikis.clear();
-		m_time      = 0.0f;
-		m_isInCave  = false;
-		m_courseIdx = -1;
-		m_currentCaveID.setID('none');
-		m_isWaterwraithAlive = 1;
-		m_waterwraithTimer   = 0.0f;
+		mCavePikis.clear();
+		mTime      = 0.0f;
+		mIsInCave  = false;
+		mCourseIdx = -1;
+		mCurrentCaveID.setID('none');
+		mIsWaterwraithAlive = 1;
+		mWaterwraithTimer   = 0.0f;
 	}
 
 	void write(Stream&);
 	void read(Stream&, u32);
 
-	bool m_isInCave;           // _00
-	int m_courseIdx;           // _04
-	ID32 m_currentCaveID;      // _08
-	PikiContainer m_cavePikis; // _14, guessed name
-	f32 m_time;                // _1C
-	u8 m_isWaterwraithAlive;   // _20
-	f32 m_waterwraithTimer;    // _24
-	int m_currentFloor;        // _28
-	u8 m_activeNaviID;         // _2C
-	PikiContainer _30;         // _30
+	bool mIsInCave;           // _00
+	int mCourseIdx;           // _04
+	ID32 mCurrentCaveID;      // _08
+	PikiContainer mCavePikis; // _14, guessed name
+	f32 mTime;                // _1C
+	u8 mIsWaterwraithAlive;   // _20
+	f32 mWaterwraithTimer;    // _24
+	int mCurrentFloor;        // _28
+	u8 mActiveNaviID;         // _2C
+	PikiContainer _30;        // _30
 };
 
 struct KindCounter {
@@ -130,8 +130,8 @@ struct KindCounter {
 	void copyFrom(KindCounter&);
 	inline void addTo(KindCounter&);
 
-	u16 m_numKinds; // _00
-	u8* m_kinds;    // _04
+	u16 mNumKinds; // _00
+	u8* mKinds;    // _04
 };
 
 /**
@@ -168,7 +168,7 @@ struct OlimarData {
 	void write(Stream&);
 	void read(Stream&);
 
-	u8 m_flags[2]; // _00
+	u8 mFlags[2]; // _00
 };
 
 struct PelletCropMemory {
@@ -189,9 +189,9 @@ struct PelletCropMemory {
 	int calcNumKinds();
 
 	// _00	= VTBL
-	KindCounter m_otakara; // _04
-	KindCounter m_item;    // _0C
-	KindCounter m_carcass; // _14
+	KindCounter mOtakara; // _04
+	KindCounter mItem;    // _0C
+	KindCounter mCarcass; // _14
 };
 
 struct PelletFirstMemory : public PelletCropMemory {
@@ -228,24 +228,24 @@ struct PlayData : public CNode {
 		{
 			int caves = info->getCaveNum();
 			if (caves > 0) {
-				m_caveCount        = caves;
-				m_otakaraCountsOld = new char[caves];
-				_08                = new int[caves];
-				if (m_caveCount > 0) {
-					for (int j = 0; j < m_caveCount; j++) {
-						m_otakaraCountsOld[j] = 0;
-						_08[j]                = 0;
+				mCaveCount        = caves;
+				mOtakaraCountsOld = new char[caves];
+				_08               = new int[caves];
+				if (mCaveCount > 0) {
+					for (int j = 0; j < mCaveCount; j++) {
+						mOtakaraCountsOld[j] = 0;
+						_08[j]               = 0;
 					}
 				}
 			}
 		}
 
-		u8 m_caveCount; // _00
+		u8 mCaveCount; // _00
 
 		// Pointer to array indexed by cave index.
 		// This is also returned by getOtakaraNum_Course_CaveID,
 		// so I guess it's both for some reason.
-		char* m_otakaraCountsOld; // _04
+		char* mOtakaraCountsOld; // _04
 
 		// Pointer to array indexed by cave index.
 		int* _08; // _08
@@ -257,8 +257,8 @@ struct PlayData : public CNode {
 		void write(Stream&);
 		void read(Stream&);
 
-		BitFlags m_nonLoops; // _00
-		BitFlags m_loops;    // _08
+		BitFlags mNonLoops; // _00
+		BitFlags mLoops;    // _08
 	};
 
 	PlayData();
@@ -351,59 +351,59 @@ struct PlayData : public CNode {
 	bool isCaveFirstReturn(int, ID32&);
 	bool closeCourse(int);
 
-	inline bool isStoryFlag(StoryFlags flag) { return m_storyFlags & flag; }
+	inline bool isStoryFlag(StoryFlags flag) { return mStoryFlags & flag; }
 
-	bool _18;                                // _18
-	u8 _19;                                  // _19
-	u32 _1C;                                 // _1C
-	u8 m_deadNaviID[2];                      // _20
-	f32 m_naviLifeMax[2];                    // _24
-	u8 m_hasContainerFlags;                  // _2C
-	u8 m_hasBootContainerFlags;              // _2D
-	u8 m_meetPikminFlags;                    // _2E
-	u8 m_storyFlags;                         // _2F, see StoryFlags enum
-	BitFlags m_demoFlags;                    // _30, see DemoFlags enum
-	BitFlags m_findItemFlags;                // _38
-	TekiStat::Mgr m_tekiStatMgr;             // _40
-	OlimarData m_olimarData[2];              // _48 // TODO: This really packs into 4 bytes?
-	CaveSaveData m_caveSaveData;             // _4C
-	kh::Screen::MailSaveData m_mailSaveData; // _84
-	PikiContainer m_pikiContainer;           // _A8
-	PelletFirstMemory* _B0;                  // _B0
-	PelletCropMemory* m_mainCropMemory;      // _B4
-	PelletCropMemory* m_caveCropMemory;      // _B8
-	int _BC;                                 // _BC
-	int _C0[2];                              // _C0
-	int m_berryCount[2];                     // _C8
-	int m_osTimeHi;                          // _D0
-	int m_osTimeLo;                          // _D4
-	u8* m_bitfieldPerCourse;                 // _D8
+	bool _18;                               // _18
+	u8 _19;                                 // _19
+	u32 _1C;                                // _1C
+	u8 mDeadNaviID[2];                      // _20
+	f32 mNaviLifeMax[2];                    // _24
+	u8 mHasContainerFlags;                  // _2C
+	u8 mHasBootContainerFlags;              // _2D
+	u8 mMeetPikminFlags;                    // _2E
+	u8 mStoryFlags;                         // _2F, see StoryFlags enum
+	BitFlags mDemoFlags;                    // _30, see DemoFlags enum
+	BitFlags mFindItemFlags;                // _38
+	TekiStat::Mgr mTekiStatMgr;             // _40
+	OlimarData mOlimarData[2];              // _48 // TODO: This really packs into 4 bytes?
+	CaveSaveData mCaveSaveData;             // _4C
+	kh::Screen::MailSaveData mMailSaveData; // _84
+	PikiContainer mPikiContainer;           // _A8
+	PelletFirstMemory* _B0;                 // _B0
+	PelletCropMemory* mMainCropMemory;      // _B4
+	PelletCropMemory* mCaveCropMemory;      // _B8
+	int _BC;                                // _BC
+	int _C0[2];                             // _C0
+	int mBerryCount[2];                     // _C8
+	int mOsTimeHi;                          // _D0
+	int mOsTimeLo;                          // _D4
+	u8* mBitfieldPerCourse;                 // _D8
 
 	// Current collected overworld treasure counts, per course.
-	u8* m_groundOtakaraCollected; // _DC
-	CaveOtakara* m_caveOtakara;   // _E0
+	u8* mGroundOtakaraCollected; // _DC
+	CaveOtakara* mCaveOtakara;   // _E0
 
 	// Might be pointer to pointer to BitFlags?
-	LimitGen* m_limitGen; // _E4
+	LimitGen* mLimitGen; // _E4
 
 	// Current Poko count.
-	u32 m_pokoCount; // _E8
+	u32 mPokoCount; // _E8
 
-	int m_cavePokoCount; // _EC
+	int mCavePokoCount; // _EC
 
-	u8 m_debtProgressFlags[2]; // _F0, represent which %of debt messages have been seen
+	u8 mDebtProgressFlags[2]; // _F0, represent which %of debt messages have been seen
 
 	// ptr to array of previous day's collected overworld treasure counts, per
 	// course.
-	u8* m_groundOtakaraCollectedOld; // _F4
+	u8* mGroundOtakaraCollectedOld; // _F4
 
-	CaveOtakara* m_caveOtakaraOld; // _F8
+	CaveOtakara* mCaveOtakaraOld; // _F8
 
 	// Previous day's Poko count.
-	int m_pokoCountOld; // _FC
+	int mPokoCountOld; // _FC
 
-	int m_pikminYesterday[6]; // _100
-	int m_pikminToday[6];     // _118
+	int mPikminYesterday[6]; // _100
+	int mPikminToday[6];     // _118
 
 	static u32 mVersion;
 	static int sCurrPlayDataSize;

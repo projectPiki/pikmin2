@@ -24,7 +24,7 @@ struct PikiContainer {
 	int getTotalSum();
 
 	// VTBL _00
-	int* m_container; // _04, 2D array simplified into 1D access
+	int* mContainer; // _04, 2D array simplified into 1D access
 };
 } // namespace Game
 

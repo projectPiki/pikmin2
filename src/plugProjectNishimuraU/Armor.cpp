@@ -13,7 +13,7 @@ namespace Armor {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 	createEffect();
 }
@@ -39,7 +39,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2C8 = 0.0f;
 	resetBridgeSearch();
 	setupEffect();
-	m_fsm->start(this, ARMOR_Stay, nullptr);
+	mFsm->start(this, ARMOR_Stay, nullptr);
 	doAnimationCullingOff();
 }
 
@@ -50,8 +50,8 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 void Obj::doUpdate()
 {
-	m_fsm->exec(this);
-	m_mouthSlots.update();
+	mFsm->exec(this);
+	mMouthSlots.update();
 }
 
 /*
@@ -75,9 +75,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -91,19 +91,19 @@ void Obj::getShadowParam(ShadowParam& param)
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);
 	if (isConstrained()) {
-		param.m_position                = boundingSphere.m_position;
-		param.m_boundingSphere.m_radius = 50.0f;
+		param.mPosition               = boundingSphere.mPosition;
+		param.mBoundingSphere.mRadius = 50.0f;
 	} else {
-		param.m_position.x = boundingSphere.m_position.x;
-		param.m_position.y = m_position.y + 2.5f;
-		param.m_position.z = boundingSphere.m_position.z;
-		if (m_events.m_flags[1].typeView & 1)
-			param.m_boundingSphere.m_radius = 25.0f;
+		param.mPosition.x = boundingSphere.mPosition.x;
+		param.mPosition.y = mPosition.y + 2.5f;
+		param.mPosition.z = boundingSphere.mPosition.z;
+		if (mEvents.mFlags[1].typeView & 1)
+			param.mBoundingSphere.mRadius = 25.0f;
 		else
-			param.m_boundingSphere.m_radius = 50.0f;
+			param.mBoundingSphere.mRadius = 50.0f;
 	}
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	param.m_size                      = 25.0f;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mSize                     = 25.0f;
 }
 
 /*
@@ -113,11 +113,11 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (m_events.m_flags[0].typeView & 0x200) {
+	if (mEvents.mFlags[0].typeView & 0x200) {
 		addDamage(damage, 1.0f);
 		return true;
 	}
-	if (collpart && collpart->m_currentID == 'dmg1') {
+	if (collpart && collpart->mCurrentID == 'dmg1') {
 		addDamage(damage, 1.0f);
 		return true;
 	}
@@ -131,9 +131,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	bool b = damageCallBack(creature, static_cast<Parms*>(m_parms)->m_general.m_purplePikiStunDamage, collpart);
-	if (!(m_events.m_flags[0].typeView & 0x200) && b) {
-		SET_FLAG(m_events.m_flags[0].typeView, 0x80000);
+	bool b = damageCallBack(creature, static_cast<Parms*>(mParms)->mGeneral.mPurplePikiStunDamage, collpart);
+	if (!(mEvents.mFlags[0].typeView & 0x200) && b) {
+		SET_FLAG(mEvents.mFlags[0].typeView, 0x80000);
 	}
 	return !b;
 }
@@ -327,7 +327,7 @@ lbl_8027DD34:
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	m_toFlick = 0.0f;
+	mToFlick = 0.0f;
 }
 
 /*
@@ -358,11 +358,11 @@ void Obj::doEndMovie() { effectDrawOn(); }
  */
 void Obj::initMouthSlots()
 {
-	m_mouthSlots.alloc(1);
-	m_mouthSlots.setup(0, m_model, "kamujnt");
+	mMouthSlots.alloc(1);
+	mMouthSlots.setup(0, mModel, "kamujnt");
 	f32 size = 25.0f;
-	for (int i = 0; i < m_mouthSlots.m_max; i++) {
-		m_mouthSlots.getSlot(i)->m_radius = size;
+	for (int i = 0; i < mMouthSlots.mMax; i++) {
+		mMouthSlots.getSlot(i)->mRadius = size;
 	}
 }
 
@@ -373,10 +373,10 @@ void Obj::initMouthSlots()
  */
 void Obj::lifeIncrement()
 {
-	m_instantDamage = 0.0f;
+	mInstantDamage = 0.0f;
 	disableEvent(0, EB_IsTakingDamage);
-	if (m_health <= 0.0f) {
-		m_health = 1.0f;
+	if (mHealth <= 0.0f) {
+		mHealth = 1.0f;
 	}
 }
 
@@ -752,10 +752,10 @@ void Obj::killSlotPiki()
  */
 void Obj::resetBridgeSearch()
 {
-	_2C0     = 1;
-	m_bridge = nullptr;
-	_2DC     = 0.0f;
-	_2E0     = 0.0f;
+	_2C0    = 1;
+	mBridge = nullptr;
+	_2DC    = 0.0f;
+	_2E0    = 0.0f;
 }
 
 /*
@@ -1135,7 +1135,7 @@ lbl_8027E818:
  */
 bool Obj::isBreakBridge()
 {
-	if (m_bridge && m_bridge->m_stagesRemaining) {
+	if (mBridge && mBridge->mStagesRemaining) {
 		return true;
 	}
 
@@ -1743,8 +1743,8 @@ lbl_8027F090:
  */
 void Obj::breakTargetBridge()
 {
-	InteractBreakBridge interactBridge(this, C_PROPERPARMS.m_bridgeDamage.m_value);
-	m_bridge->stimulate(interactBridge);
+	InteractBreakBridge interactBridge(this, C_PROPERPARMS.mBridgeDamage.mValue);
+	mBridge->stimulate(interactBridge);
 }
 
 /*
@@ -1752,21 +1752,21 @@ void Obj::breakTargetBridge()
  * Address:	8027F12C
  * Size:	0000B0
  */
-void Obj::createEffect() { m_efxYoroiAttack = new efx::TYoroiAttack; }
+void Obj::createEffect() { mEfxYoroiAttack = new efx::TYoroiAttack; }
 
 /*
  * --INFO--
  * Address:	8027F1DC
  * Size:	000040
  */
-void Obj::setupEffect() { m_efxYoroiAttack->m_mtx = m_model->getJoint("kamujnt")->getWorldMatrix(); }
+void Obj::setupEffect() { mEfxYoroiAttack->mMtx = mModel->getJoint("kamujnt")->getWorldMatrix(); }
 
 /*
  * --INFO--
  * Address:	8027F21C
  * Size:	000034
  */
-void Obj::createAttackEffect() { m_efxYoroiAttack->create(nullptr); }
+void Obj::createAttackEffect() { mEfxYoroiAttack->create(nullptr); }
 
 /*
  * --INFO--
@@ -1775,7 +1775,7 @@ void Obj::createAttackEffect() { m_efxYoroiAttack->create(nullptr); }
  */
 void Obj::createAppearEffect()
 {
-	Matrixf* mat = m_model->getJoint("yoroimushi")->getWorldMatrix();
+	Matrixf* mat = mModel->getJoint("yoroimushi")->getWorldMatrix();
 
 	efx::TYoroiAp appearFX(mat);
 	appearFX.create(nullptr);
@@ -1788,7 +1788,7 @@ void Obj::createAppearEffect()
  */
 void Obj::createDisAppearEffect()
 {
-	Matrixf* mat = m_model->getJoint("yoroimushi")->getWorldMatrix();
+	Matrixf* mat = mModel->getJoint("yoroimushi")->getWorldMatrix();
 
 	efx::TYoroiHd disappearFX(mat);
 	disappearFX.create(nullptr);
@@ -1801,7 +1801,7 @@ void Obj::createDisAppearEffect()
  */
 void Obj::createBridgeEffect()
 {
-	Matrixf* mat = m_model->getJoint("kamujnt")->getWorldMatrix();
+	Matrixf* mat = mModel->getJoint("kamujnt")->getWorldMatrix();
 	Vector3f pos = mat->getBasis(3);
 	efx::Arg fxArg(pos);
 	efx::TYoroiEat eatFX;
@@ -1814,14 +1814,14 @@ void Obj::createBridgeEffect()
  * Address:	8027F3F8
  * Size:	000030
  */
-void Obj::effectDrawOn() { m_efxYoroiAttack->endDemoDrawOn(); }
+void Obj::effectDrawOn() { mEfxYoroiAttack->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	8027F428
  * Size:	000030
  */
-void Obj::effectDrawOff() { m_efxYoroiAttack->startDemoDrawOff(); }
+void Obj::effectDrawOff() { mEfxYoroiAttack->startDemoDrawOff(); }
 
 } // namespace Armor
 } // namespace Game

@@ -15,8 +15,8 @@ struct SceneInfoList : public CNode {
 
 	// virtual void _08() = 0;       // _08
 
-	SceneType m_sceneType;        // _18
-	u8 m_dispMemberBuffer[0x400]; // _1C
+	SceneType mSceneType;        // _18
+	u8 mDispMemberBuffer[0x400]; // _1C
 };
 } // namespace Screen
 

@@ -161,7 +161,7 @@ void WipeBase::update()
 {
 	draw();
 	if (_20) {
-		_18 += sys->m_deltaTime / _1C;
+		_18 += sys->mDeltaTime / _1C;
 		if (_18 >= 1.0f) {
 			_18 = 1.0f;
 		}
@@ -458,11 +458,11 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
  */
 void WipeOutInFader::on_start()
 {
-	_74                = 1;
-	m_wipeOutFader._18 = 0.0f;
-	m_wipeOutFader._1C = 0.1f;
-	m_wipeOutFader._20 = true;
-	m_wipeOutFader.on_start();
+	_74               = 1;
+	mWipeOutFader._18 = 0.0f;
+	mWipeOutFader._1C = 0.1f;
+	mWipeOutFader._20 = true;
+	mWipeOutFader.on_start();
 }
 
 /*
@@ -484,17 +484,17 @@ bool WipeOutInFader::isBlack() { return !isWhite(); }
 void WipeOutInFader::do_draw(float)
 {
 	if (_74) {
-		if (!m_wipeOutFader._20) {
-			_74               = 0;
-			float v1          = _1C - 0.1f;
-			m_wipeInFader._18 = 0.0f;
-			m_wipeInFader._1C = v1;
-			m_wipeInFader._20 = true;
-			m_wipeInFader.on_start();
+		if (!mWipeOutFader._20) {
+			_74              = 0;
+			float v1         = _1C - 0.1f;
+			mWipeInFader._18 = 0.0f;
+			mWipeInFader._1C = v1;
+			mWipeInFader._20 = true;
+			mWipeInFader.on_start();
 		}
-		m_wipeOutFader.on_start();
+		mWipeOutFader.on_start();
 	} else {
-		m_wipeInFader.update();
+		mWipeInFader.update();
 	}
 }
 
@@ -543,10 +543,10 @@ void BlackFader::do_draw(float)
 	// JUtility::TColor c2;
 	// JUtility::TColor c3;
 	// JUtility::TColor c4;
-	Graphics* gfx = sys->m_gfx;
-	gfx->m_orthoGraph.setPort();
+	Graphics* gfx = sys->mGfx;
+	gfx->mOrthoGraph.setPort();
 	JUtility::TColor color(_24.channels.r, _24.channels.g, _24.channels.b, 0xFF);
-	J2DOrthoGraph* orthoGraph = &gfx->m_orthoGraph;
+	J2DOrthoGraph* orthoGraph = &gfx->mOrthoGraph;
 	if (!_28) {
 		color.channels.r = _24.channels.r;
 		color.channels.g = _24.channels.g;

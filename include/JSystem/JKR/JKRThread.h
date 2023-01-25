@@ -87,18 +87,18 @@ struct JKRThread : public JKRDisposer {
 	static JKRThread_0x60* searchThreadLoad(OSThread*);
 	void dump();
 
-	JSULink<JKRThread> m_link; // _18
-	JKRHeap* m_heap;           // _28
-	OSThread* m_thread;        // _2C
-	OSMessageQueue m_msgQueue; // _30
-	OSMessage* m_msgBuffer;    // _50
-	int m_msgCount;            // _54
-	void* m_stack;             // _58
-	u32 m_stackSize;           // _5C
-	JKRThread_0x60 _60;        // _60
-	u32 _70;                   // _70
-	u32 _74;                   // _74
-	u32 _78;                   // _78
+	JSULink<JKRThread> mLink; // _18
+	JKRHeap* mHeap;           // _28
+	OSThread* mThread;        // _2C
+	OSMessageQueue mMsgQueue; // _30
+	OSMessage* mMsgBuffer;    // _50
+	int mMsgCount;            // _54
+	void* mStack;             // _58
+	u32 mStackSize;           // _5C
+	JKRThread_0x60 _60;       // _60
+	u32 _70;                  // _70
+	u32 _74;                  // _74
+	u32 _78;                  // _78
 
 	static JSUList<JKRThread> sThreadList;
 };

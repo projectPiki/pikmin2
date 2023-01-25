@@ -14,8 +14,8 @@ struct TForever : public TBase, public JPAEmitterCallBack {
 
 	TForever(u16 effectID)
 	{
-		m_efxID   = effectID;
-		m_emitter = nullptr;
+		mEfxID   = effectID;
+		mEmitter = nullptr;
 	}
 
 	// vtable 1 (TBase)
@@ -31,8 +31,8 @@ struct TForever : public TBase, public JPAEmitterCallBack {
 
 	// _00		= VTBL
 	// _04-_0C	= JPAEmitterCallBack
-	u16 m_efxID;               // _0C
-	JPABaseEmitter* m_emitter; // _10
+	u16 mEfxID;               // _0C
+	JPABaseEmitter* mEmitter; // _10
 };
 
 struct TForeverN : public TBaseIF {
@@ -46,11 +46,11 @@ struct TForeverN : public TBaseIF {
 	void setGlobalAlpha(u8);
 
 	// _00 VTBL
-	u8 m_length;          // _04
-	u8 _05;               // _05
-	u8 _06;               // _06
-	u8 _07;               // _07
-	TForever* m_forevers; // _08
+	u8 mLength;          // _04
+	u8 _05;              // _05
+	u8 _06;              // _06
+	u8 _07;              // _07
+	TForever* mForevers; // _08
 };
 
 struct TForever2 : public TForeverN {
@@ -67,11 +67,11 @@ struct TForever5 : public TForeverN {
 	inline TForever5(u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4, u16 effectID5)
 	    : TForeverN(5)
 	{
-		m_forevers[0].m_efxID = effectID1;
-		m_forevers[1].m_efxID = effectID2;
-		m_forevers[2].m_efxID = effectID3;
-		m_forevers[3].m_efxID = effectID4;
-		m_forevers[4].m_efxID = effectID5;
+		mForevers[0].mEfxID = effectID1;
+		mForevers[1].mEfxID = effectID2;
+		mForevers[2].mEfxID = effectID3;
+		mForevers[3].mEfxID = effectID4;
+		mForevers[4].mEfxID = effectID5;
 	}
 
 	// _00		= VTBL

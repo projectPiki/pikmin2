@@ -52,20 +52,20 @@ struct JAIAnimeSound : public JAInter::Object {
 	void setAnimSoundVec(JAIBasic*, Vec*, f32, f32, unsigned long, unsigned char);
 
 	// _00 VTBL
-	u8* _40;                        // _40
-	void** _44;                     // _44
-	u32 _48;                        // _48
-	u32 _4C;                        // _4C
-	u32 _50;                        // _50
-	u32 _54;                        // _54
-	u8 _58;                         // _58
-	u32 _5C;                        // _5C
-	u8 _60[8];                      // _60
-	u32 _68;                        // _68
-	int _6C;                        // _6C
-	f32 _70;                        // _70
-	f32 _74;                        // _74
-	JAIAnimeSoundData* m_soundData; // _78
+	u8* _40;                       // _40
+	void** _44;                    // _44
+	u32 _48;                       // _48
+	u32 _4C;                       // _4C
+	u32 _50;                       // _50
+	u32 _54;                       // _54
+	u8 _58;                        // _58
+	u32 _5C;                       // _5C
+	u8 _60[8];                     // _60
+	u32 _68;                       // _68
+	int _6C;                       // _6C
+	f32 _70;                       // _70
+	f32 _74;                       // _74
+	JAIAnimeSoundData* mSoundData; // _78
 };
 
 #endif

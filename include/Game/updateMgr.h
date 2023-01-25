@@ -15,10 +15,10 @@ struct UpdateContext {
 	void init(UpdateMgr*);
 	bool updatable();
 
-	UpdateMgr* m_mgr; // _00
-	int _04;          // _04
-	bool _08;         // _08
-	bool _09;         // _09
+	UpdateMgr* mMgr; // _00
+	int _04;         // _04
+	bool _08;        // _08
+	bool _09;        // _09
 };
 
 struct UpdateMgr {

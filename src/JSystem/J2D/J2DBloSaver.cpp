@@ -76,11 +76,11 @@ void J2DBloSaver::CTextureNameConnect::clear()
 {
 	TNC* element;
 	TNC* next;
-	for (element = m_elements; element != nullptr; element = next) {
-		next = element->m_next;
+	for (element = mElements; element != nullptr; element = next) {
+		next = element->mNext;
 		delete element;
 	}
-	m_elements = nullptr;
+	mElements = nullptr;
 }
 
 /*

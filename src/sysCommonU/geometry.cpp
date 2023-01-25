@@ -194,7 +194,7 @@ void Tube::getAxisVector(Vector3f& axisVector)
 {
 	// creates a unit vector 'axisVector' that points in direction of tube
 
-	axisVector = m_endPos - m_startPos;
+	axisVector = mEndPos - mStartPos;
 
 	float X   = axisVector.x * axisVector.x;
 	float Y   = axisVector.y * axisVector.y;
@@ -233,8 +233,8 @@ bool Tube::collide(Sphere& ball, Vector3f& repulsionVec, float& posRatio)
 	// also puts 'collision vector' into vec, and dot product between axisVector of tube and
 	// vector between bottom of tube and center of sphere into dotprod
 
-	Vector3f diff = m_endPos;
-	diff          = diff - m_startPos;
+	Vector3f diff = mEndPos;
+	diff          = diff - mStartPos;
 	Vector3f axis = diff;
 
 	float lenTube = lenVec(axis);
@@ -257,23 +257,23 @@ bool Tube::collide(Sphere& ball, Vector3f& repulsionVec, float& posRatio)
 
 	///////////////// BEGIN REGSWAPS
 
-	Vector3f sep = ball.m_position - m_startPos;
+	Vector3f sep = ball.mPosition - mStartPos;
 
 	// calculate scalar projection of sep onto tube
 	float scalarProj = dot(axis, sep) / lenTube;
 
 	// calculate perpendicular distance vector between (center of) tube and (center of) ball
-	Vector3f perpVec = (diff * scalarProj) + m_startPos - ball.m_position;
+	Vector3f perpVec = (diff * scalarProj) + mStartPos - ball.mPosition;
 
 	// get center-to-center distance
 	float perpDist = lenVec(perpVec);
 
 	// get radius of tube at point of perpendicular distance
 	// i.e. at fraction 'scalarProj' along tube, assuming radius changes linearly from one end to the other
-	float tubeRadius = ((1.0f - scalarProj) * m_startRadius) + (m_endRadius * scalarProj);
+	float tubeRadius = ((1.0f - scalarProj) * mStartRadius) + (mEndRadius * scalarProj);
 
 	// calc overlap amount, i.e. (amount of "stuff") - (center-to-center distance)
-	float overlap = (ball.m_radius + tubeRadius) - perpDist;
+	float overlap = (ball.mRadius + tubeRadius) - perpDist;
 
 	///////////////// END OF (MOST) REGSWAPS
 
@@ -480,11 +480,11 @@ float Tube::getPosRatio(const Vector3f& point)
 	//    => < 0 if 'before' start, > 1 if 'beyond' end
 
 	// get axis vector and normalise to unit vector
-	Vector3f axis(m_endPos.x - m_startPos.x, m_endPos.y - m_startPos.y, m_endPos.z - m_startPos.z);
+	Vector3f axis(mEndPos.x - mStartPos.x, mEndPos.y - mStartPos.y, mEndPos.z - mStartPos.z);
 	float mag = normalise(&axis);
 
 	// get separation vector
-	Vector3f sep = point - m_startPos;
+	Vector3f sep = point - mStartPos;
 
 	// calculate scalar projection of sep onto tube
 	return dot(axis, sep) / mag;
@@ -518,11 +518,11 @@ float Tube::getPosRatio(const Vector3f& point)
 Vector3f Tube::setPos(float frac)
 {
 	// returns position we're at, given we're a fraction 'frac' through the tube
-	// i.e. return m_startPos if frac = 0, return m_endPos if frac = 1
+	// i.e. return mStartPos if frac = 0, return mEndPos if frac = 1
 
-	Vector3f diff = m_startPos;
-	diff          = (m_endPos - diff) * frac;
-	return m_startPos + diff;
+	Vector3f diff = mStartPos;
+	diff          = (mEndPos - diff) * frac;
+	return mStartPos + diff;
 }
 
 /*
@@ -536,11 +536,11 @@ bool Sphere::intersect(Sphere& ball)
 	// return true if yes
 
 	// calculate center-to-center distance (squared?)
-	Vector3f diff(ball.m_position.x - m_position.x, ball.m_position.y - m_position.y, ball.m_position.z - m_position.z);
+	Vector3f diff(ball.mPosition.x - mPosition.x, ball.mPosition.y - mPosition.y, ball.mPosition.z - mPosition.z);
 	float sepSqr = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
 
 	// add radii to get total "material" between their centers
-	float sumRadii = ball.m_radius + m_radius;
+	float sumRadii = ball.mRadius + mRadius;
 
 	// calculate magnitude of repulsion (negative if overlapping)
 	// I think the lack of square roots here is just for speed - same outcome if we took square roots
@@ -565,11 +565,11 @@ bool Sys::Sphere::intersect(Sys::Sphere& ball, Vector3f& repulsionVec)
 	// also load (negative) separation vector scaled by overlap into repulsionVec
 
 	// calculate center-to-center distance
-	repulsionVec = ball.m_position - m_position;
+	repulsionVec = ball.mPosition - mPosition;
 	float sep    = normalise(&repulsionVec);
 
 	// (distance between centers) - (total 'material' between centers); positive if there's a gap
-	float negOverlap = sep - (ball.m_radius + m_radius);
+	float negOverlap = sep - (ball.mRadius + mRadius);
 
 	// if positive, gap, so no intersection
 	if (negOverlap > 0.0f) {
@@ -593,27 +593,27 @@ bool Sphere::intersect(Edge& edge, float& t)
 	// t = 0 if intersecting at start; = 1 if at end; 0 < t < edgeLen if in the middle
 
 	// check start point of edge
-	Vector3f startSep(edge.m_startPos.x - m_position.x, edge.m_startPos.y - m_position.y, edge.m_startPos.z - m_position.z);
+	Vector3f startSep(edge.mStartPos.x - mPosition.x, edge.mStartPos.y - mPosition.y, edge.mStartPos.z - mPosition.z);
 	float startDist = lenVec(startSep);
-	if (startDist <= m_radius) { // start is intersecting
+	if (startDist <= mRadius) { // start is intersecting
 		t = 0.0f;
 		return true;
 	}
 
 	// check end point of edge
-	Vector3f endSep(edge.m_endPos.x - m_position.x, edge.m_endPos.y - m_position.y, edge.m_endPos.z - m_position.z);
+	Vector3f endSep(edge.mEndPos.x - mPosition.x, edge.mEndPos.y - mPosition.y, edge.mEndPos.z - mPosition.z);
 	float endDist = lenVec(endSep);
-	if (endDist <= m_radius) { //  end is intersecting
+	if (endDist <= mRadius) { //  end is intersecting
 		t = 1.0f;
 		return true;
 	}
 
 	// create unit edge vector (pointing along edge) + get length of edge
-	Vector3f edgeVec(edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
 	float edgeLen = normalise(&edgeVec);
 
 	// negative of startSep, will be used to calculate perp dist
-	Vector3f sep(m_position.x - edge.m_startPos.x, m_position.y - edge.m_startPos.y, m_position.z - edge.m_startPos.z);
+	Vector3f sep(mPosition.x - edge.mStartPos.x, mPosition.y - edge.mStartPos.y, mPosition.z - edge.mStartPos.z);
 
 	// set t = scalar projection of sep onto edge
 	t = dot(sep, edgeVec);
@@ -631,8 +631,8 @@ bool Sphere::intersect(Edge& edge, float& t)
 
 	// check if perp distance to edge is less than or equal to radius of sphere
 	float perpDist = lenVec(perpVec);
-	if (perpDist <= m_radius) { // if so, intersects
-		return true;            // t is then parametrised 'location' of intersection along edge, sort of
+	if (perpDist <= mRadius) { // if so, intersects
+		return true;           // t is then parametrised 'location' of intersection along edge, sort of
 	}
 	return false;
 }
@@ -651,29 +651,29 @@ bool Sphere::intersect(Edge& edge, float& t, Vector3f& intersectPoint)
 	// also put closest edge point to sphere into intersectPoint
 
 	// check start point of edge
-	Vector3f startSep(edge.m_startPos.x - m_position.x, edge.m_startPos.y - m_position.y, edge.m_startPos.z - m_position.z);
+	Vector3f startSep(edge.mStartPos.x - mPosition.x, edge.mStartPos.y - mPosition.y, edge.mStartPos.z - mPosition.z);
 	float startDist = lenVec(startSep);
-	if (startDist <= m_radius) { // start is intersecting
+	if (startDist <= mRadius) { // start is intersecting
 		t              = 0.0f;
-		intersectPoint = edge.m_startPos;
+		intersectPoint = edge.mStartPos;
 		return true;
 	}
 
 	// check end point of edge
-	Vector3f endSep(edge.m_endPos.x - m_position.x, edge.m_endPos.y - m_position.y, edge.m_endPos.z - m_position.z);
+	Vector3f endSep(edge.mEndPos.x - mPosition.x, edge.mEndPos.y - mPosition.y, edge.mEndPos.z - mPosition.z);
 	float endDist = lenVec(endSep);
-	if (endDist <= m_radius) { // end is intersecting
+	if (endDist <= mRadius) { // end is intersecting
 		t              = 1.0f;
-		intersectPoint = edge.m_endPos;
+		intersectPoint = edge.mEndPos;
 		return true;
 	}
 
 	// create unit edge vector (pointing along edge) + get length of edge
-	Vector3f edgeVec(edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
 	float edgeLen = _normalise(&edgeVec);
 
 	// negative of startSep, will be used to calculate perp dist
-	Vector3f sep(intersectPoint.x - edge.m_startPos.x, intersectPoint.y - edge.m_startPos.y, intersectPoint.z - edge.m_startPos.z);
+	Vector3f sep(intersectPoint.x - edge.mStartPos.x, intersectPoint.y - edge.mStartPos.y, intersectPoint.z - edge.mStartPos.z);
 
 	// set t = scalar projection of sep onto edge
 	t = dot(sep, edgeVec);
@@ -691,11 +691,11 @@ bool Sphere::intersect(Edge& edge, float& t, Vector3f& intersectPoint)
 
 	// check if perp distance to edge is less than or equal to radius of sphere
 	float perpDist = lenVec(perpVec);
-	if (perpDist <= m_radius) { // if so, intersects
+	if (perpDist <= mRadius) { // if so, intersects
 		float edgeDist = t * edgeLen;
 		projVec        = Vector3f(edgeVec.x * edgeDist, edgeVec.y * edgeDist, edgeVec.z * edgeDist);
 		// get point that is a frac 't' along edge
-		intersectPoint = Vector3f(edge.m_startPos.x + projVec.x, edge.m_startPos.y + projVec.y, edge.m_startPos.z + projVec.z);
+		intersectPoint = Vector3f(edge.mStartPos.x + projVec.x, edge.mStartPos.y + projVec.y, edge.mStartPos.z + projVec.z);
 		return true;
 	}
 
@@ -715,11 +715,11 @@ bool Sphere::intersect(Edge& edge, float& t, Vector3f& repulsionVec, float& stre
 	// strength = amount of overlap between edge and sphere = strength of repulsion
 
 	// create unit edge vector (pointing along edge) + get length of edge
-	Vector3f edgeVec(edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
 	float edgeLen = normalise(&edgeVec);
 
 	// calculate vector from start of edge to sphere
-	Vector3f startSep(m_position.x - edge.m_startPos.x, m_position.y - edge.m_startPos.y, m_position.z - edge.m_startPos.z);
+	Vector3f startSep(mPosition.x - edge.mStartPos.x, mPosition.y - edge.mStartPos.y, mPosition.z - edge.mStartPos.z);
 
 	// get scalar projection of startSep onto edge
 	t = dot(startSep, edgeVec);
@@ -729,14 +729,14 @@ bool Sphere::intersect(Edge& edge, float& t, Vector3f& repulsionVec, float& stre
 
 		// Check start of edge
 		// negative of startSep, will be used to calculate perp dist
-		Vector3f sep_0(edge.m_startPos.x - m_position.x, edge.m_startPos.y - m_position.y, edge.m_startPos.z - m_position.z);
-		if (lenVec(sep_0) <= m_radius) {                 // start is intersecting
-			t            = 0.0f;                         // intersection is at start
-			repulsionVec = m_position - edge.m_startPos; // pointing from start to ball
+		Vector3f sep_0(edge.mStartPos.x - mPosition.x, edge.mStartPos.y - mPosition.y, edge.mStartPos.z - mPosition.z);
+		if (lenVec(sep_0) <= mRadius) {                // start is intersecting
+			t            = 0.0f;                       // intersection is at start
+			repulsionVec = mPosition - edge.mStartPos; // pointing from start to ball
 
 			// normalise repulsionVec + calculate strength from 'overlap'
 			float sepDist = normalise(&repulsionVec);
-			strength      = m_radius - sepDist;
+			strength      = mRadius - sepDist;
 
 			// if the length is 0, make sure output vector is 0
 			if (0.0f == sepDist) {
@@ -748,16 +748,16 @@ bool Sphere::intersect(Edge& edge, float& t, Vector3f& repulsionVec, float& stre
 
 		// Check end of edge
 		// negative of 'endSep', will be used to calculate perp dist
-		Vector3f sep_1(edge.m_endPos.x - m_position.x, edge.m_endPos.y - m_position.y, edge.m_endPos.z - m_position.z);
+		Vector3f sep_1(edge.mEndPos.x - mPosition.x, edge.mEndPos.y - mPosition.y, edge.mEndPos.z - mPosition.z);
 
 		// if we're too close to end point, need to do some overlap calculations
-		if (lenVec(sep_1) <= m_radius) {               // end is intersecting
-			t            = 1.0f;                       // intersection is at end
-			repulsionVec = m_position - edge.m_endPos; // pointing from end to ball
+		if (lenVec(sep_1) <= mRadius) {              // end is intersecting
+			t            = 1.0f;                     // intersection is at end
+			repulsionVec = mPosition - edge.mEndPos; // pointing from end to ball
 
 			// normalise repulsionVec + calculate strength from 'overlap'
 			float sepDist = normalise(&repulsionVec);
-			strength      = m_radius - sepDist;
+			strength      = mRadius - sepDist;
 
 			// if the length is 0, make sure output vector is 0
 			if (0.0f == sepDist) {
@@ -779,17 +779,17 @@ bool Sphere::intersect(Edge& edge, float& t, Vector3f& repulsionVec, float& stre
 	float perpDist = normalise(&perpVec);
 
 	// check if we have overlap
-	if (perpDist < m_radius) {          // yes overlap
+	if (perpDist < mRadius) {           // yes overlap
 		if (0.0f == perpDist) {         // if sphere is centered ON the edge
 			repulsionVec = Vector3f(0); // can't really determine repulsion vector if we're ON the edge
-			strength     = m_radius;    // "whole radius" of overlap
+			strength     = mRadius;     // "whole radius" of overlap
 			return true;                // yes intersection
 		}
 
 		// sphere not centered on edge
-		strength     = m_radius - perpDist; // calc strength from overlap
-		repulsionVec = perpVec;             // unit vector directly away from edge at closest point to sphere
-		return true;                        // yes intersection
+		strength     = mRadius - perpDist; // calc strength from overlap
+		repulsionVec = perpVec;            // unit vector directly away from edge at closest point to sphere
+		return true;                       // yes intersection
 	}
 
 	return false; // not close enough to edge, no intersection
@@ -810,7 +810,7 @@ bool Sphere::intersect(Edge& edge, float& t, Vector3f& repulsionVec, float& stre
  * Address:	804168F0
  * Size:	000068
  */
-Triangle::Triangle() { m_code.m_contents = (bool)0; }
+Triangle::Triangle() { mCode.mContents = (bool)0; }
 
 /*
  * --INFO--
@@ -834,17 +834,17 @@ void Triangle::createSphere(VertexTable& vertTable)
 	float new_radius = 0.0f;
 
 	// get vertices of triangle
-	Vector3f vert_3 = vertTable.m_objects[m_vertices.z];
-	Vector3f vert_2 = vertTable.m_objects[m_vertices.y];
-	Vector3f vert_1 = vertTable.m_objects[m_vertices.x];
+	Vector3f vert_3 = vertTable.mObjects[mVertices.z];
+	Vector3f vert_2 = vertTable.mObjects[mVertices.y];
+	Vector3f vert_1 = vertTable.mObjects[mVertices.x];
 
 	// get center of triangle
 	Vector3f center = (vert_1 + vert_2 + vert_3) * (float)0x3EAAAAAB; // 0x3EAAAAAB = 1/3
 
 	// make sure radius includes all vertices
 	for (int i = 0; i < 3; i++) {
-		int* vertPtr     = &m_vertices.x;
-		Vector3f currVtx = (vertTable.m_objects[vertPtr[i]]);
+		int* vertPtr     = &mVertices.x;
+		Vector3f currVtx = (vertTable.mObjects[vertPtr[i]]);
 
 		float vtxDist = lenVec(currVtx - center);
 		if (vtxDist > new_radius) {
@@ -852,8 +852,8 @@ void Triangle::createSphere(VertexTable& vertTable)
 		}
 	};
 
-	m_sphere.m_radius   = new_radius;
-	m_sphere.m_position = center;
+	mSphere.mRadius   = new_radius;
+	mSphere.mPosition = center;
 }
 
 /*
@@ -866,11 +866,11 @@ bool Triangle::fastIntersect(Sphere& ball)
 	// check if triangle bounding sphere intersects with sphere 'ball'
 
 	// get center-to-center distance
-	Vector3f sep = ball.m_position - m_sphere.m_position;
+	Vector3f sep = ball.mPosition - mSphere.mPosition;
 	float dist   = lenVec(sep);
 
 	// check how much "stuff" is between them
-	float radii = ball.m_radius + m_sphere.m_radius;
+	float radii = ball.mRadius + mSphere.mRadius;
 
 	// if separation is less than or equal to amount of material, intersection; if not, no intersection
 	return (dist <= radii);
@@ -927,9 +927,9 @@ float Sys::Triangle::calcDist(Plane& plane, Sys::VertexTable& vertTable)
 	// but if triangle is completely 'below' plane, returns furthest point instead
 
 	// get triangle vertices from VertexTable vertTable
-	Vector3f vert_1 = vertTable.m_objects[m_vertices.x];
-	Vector3f vert_2 = vertTable.m_objects[m_vertices.y];
-	Vector3f vert_3 = vertTable.m_objects[m_vertices.z];
+	Vector3f vert_1 = vertTable.mObjects[mVertices.x];
+	Vector3f vert_2 = vertTable.mObjects[mVertices.y];
+	Vector3f vert_3 = vertTable.mObjects[mVertices.z];
 
 	// calculate distance from plane to each vertex (can be negative)
 	float vertDist_1 = planeDist(vert_1, plane);
@@ -993,10 +993,10 @@ bool Triangle::intersect(Edge& edge, float cutoff, Vector3f& intersectionPoint)
 	// output intersection point into intersectionPoint, return true if intersecting
 
 	// get length of edge and scalar projection of edge onto normal to triangle plane
-	Vector3f edgeVec(edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
 	float edgeLen = lenVec(edgeVec);
 
-	Vector3f triPlaneNormal(m_trianglePlane.a, m_trianglePlane.b, m_trianglePlane.c);
+	Vector3f triPlaneNormal(mTrianglePlane.a, mTrianglePlane.b, mTrianglePlane.c);
 
 	float scalarProj = dot(triPlaneNormal, edgeVec);
 
@@ -1011,24 +1011,24 @@ bool Triangle::intersect(Edge& edge, float cutoff, Vector3f& intersectionPoint)
 	// if edge is (close to) perpendicular to triangle, need more checks
 	if (FABS(scalarProj) < 0.01f) {
 		// if plane cuts edge below (or at) cutoff
-		if (FABS(planeDist(edge.m_startPos, m_trianglePlane)) <= cutoff) {
+		if (FABS(planeDist(edge.mStartPos, mTrianglePlane)) <= cutoff) {
 			// check each edge plane of triangle
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
-				Vector3f edgePlaneNormal(m_edgePlanes[i].a, m_edgePlanes[i].b, m_edgePlanes[i].c);
+				Vector3f edgePlaneNormal(mEdgePlanes[i].a, mEdgePlanes[i].b, mEdgePlanes[i].c);
 				float edgePlaneProj = dot(edgePlaneNormal, edgeVec);
 
 				// check that projection isn't vanishingly small
 				if (FABS(edgePlaneProj) > 0.01f) {
 					// check we have an intersection point
-					float edgePlaneRatio = (m_edgePlanes[i].d - dot(edgePlaneNormal, edge.m_startPos)) / edgePlaneProj;
+					float edgePlaneRatio = (mEdgePlanes[i].d - dot(edgePlaneNormal, edge.mStartPos)) / edgePlaneProj;
 					if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
 						// get intersection point
 						Vector3f projVec  = edgeVec * edgePlaneRatio;
-						intersectionPoint = edge.m_startPos + projVec;
+						intersectionPoint = edge.mStartPos + projVec;
 
 						// check intersection point is within cutoff dist on edge
-						if (FABS(planeDist(intersectionPoint, m_trianglePlane)) < cutoff) {
+						if (FABS(planeDist(intersectionPoint, mTrianglePlane)) < cutoff) {
 							return true;
 						}
 					}
@@ -1043,7 +1043,7 @@ bool Triangle::intersect(Edge& edge, float cutoff, Vector3f& intersectionPoint)
 
 	// edge not (close to) perpendicular, can just check triangle plane itself
 	// check if we have an intersection point
-	float triPlaneRatio = (m_trianglePlane.d - dot(triPlaneNormal, edge.m_startPos)) / scalarProj;
+	float triPlaneRatio = (mTrianglePlane.d - dot(triPlaneNormal, edge.mStartPos)) / scalarProj;
 	if ((triPlaneRatio < -ratio) || (triPlaneRatio > (1 + ratio))) {
 		// we don't
 		return false;
@@ -1051,11 +1051,11 @@ bool Triangle::intersect(Edge& edge, float cutoff, Vector3f& intersectionPoint)
 
 	// get intersection point
 	Vector3f projVec  = edgeVec * triPlaneRatio;
-	intersectionPoint = edge.m_startPos + projVec;
+	intersectionPoint = edge.mStartPos + projVec;
 
 	// double check point isn't outside the triangle
 	for (int i = 0; i < 3; i++) {
-		if (planeDist(intersectionPoint, m_edgePlanes[i]) > cutoff) {
+		if (planeDist(intersectionPoint, mEdgePlanes[i]) > cutoff) {
 			return false;
 		}
 	}
@@ -1075,10 +1075,10 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, float cutoff, Vector3f& intersect
 	// also put distance from cutoff to intersection point into distFromCutoff
 
 	// get length of edge and scalar projection of edge onto normal to triangle plane
-	Vector3f edgeVec(edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
 	float edgeLen = lenVec(edgeVec);
 
-	Vector3f triPlaneNormal(m_trianglePlane.a, m_trianglePlane.b, m_trianglePlane.c);
+	Vector3f triPlaneNormal(mTrianglePlane.a, mTrianglePlane.b, mTrianglePlane.c);
 
 	float scalarProj = dot(triPlaneNormal, edgeVec);
 
@@ -1093,24 +1093,24 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, float cutoff, Vector3f& intersect
 	// if edge is (close to) perpendicular to triangle, need more checks
 	if (FABS(scalarProj) < 0.01f) {
 		// if plane cuts edge below (or at) cutoff
-		if (FABS(planeDist(edge.m_startPos, m_trianglePlane)) <= cutoff) {
+		if (FABS(planeDist(edge.mStartPos, mTrianglePlane)) <= cutoff) {
 			// check each edge plane of triangle
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
-				Vector3f edgePlaneNormal(m_edgePlanes[i].a, m_edgePlanes[i].b, m_edgePlanes[i].c);
+				Vector3f edgePlaneNormal(mEdgePlanes[i].a, mEdgePlanes[i].b, mEdgePlanes[i].c);
 				float edgePlaneProj = dot(edgePlaneNormal, edgeVec);
 
 				// check that projection isn't vanishingly small
 				if (FABS(edgePlaneProj) > 0.01f) {
 					// check we have an intersection point
-					float edgePlaneRatio = (m_edgePlanes[i].d - dot(edgePlaneNormal, edge.m_startPos)) / edgePlaneProj;
+					float edgePlaneRatio = (mEdgePlanes[i].d - dot(edgePlaneNormal, edge.mStartPos)) / edgePlaneProj;
 					if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
 						// get intersection point
 						Vector3f projVec  = edgeVec * edgePlaneRatio;
-						intersectionPoint = edge.m_startPos + projVec;
+						intersectionPoint = edge.mStartPos + projVec;
 
 						// check intersection point is within cutoff dist on edge
-						float intersectDist = planeDist(intersectionPoint, m_trianglePlane);
+						float intersectDist = planeDist(intersectionPoint, mTrianglePlane);
 						if (FABS(intersectDist) < cutoff) {
 							distFromCutoff = cutoff - intersectDist;
 							return true;
@@ -1127,7 +1127,7 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, float cutoff, Vector3f& intersect
 
 	// edge not (close to) perpendicular, can just check triangle plane itself
 	// check if we have an intersection point
-	float triPlaneRatio = (m_trianglePlane.d - dot(triPlaneNormal, edge.m_startPos)) / scalarProj;
+	float triPlaneRatio = (mTrianglePlane.d - dot(triPlaneNormal, edge.mStartPos)) / scalarProj;
 	if ((triPlaneRatio < -ratio) || (triPlaneRatio > (1 + ratio))) {
 		// we don't
 		return false;
@@ -1135,16 +1135,16 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, float cutoff, Vector3f& intersect
 
 	// get intersection point
 	Vector3f projVec  = edgeVec * triPlaneRatio;
-	intersectionPoint = edge.m_startPos + projVec;
+	intersectionPoint = edge.mStartPos + projVec;
 
 	// double check point isn't outside the triangle
 	for (int i = 0; i < 3; i++) {
-		if (planeDist(intersectionPoint, m_edgePlanes[i]) > cutoff) {
+		if (planeDist(intersectionPoint, mEdgePlanes[i]) > cutoff) {
 			return false;
 		}
 	}
 	// intersection point and is inside triangle
-	distFromCutoff = cutoff - planeDist(intersectionPoint, m_trianglePlane);
+	distFromCutoff = cutoff - planeDist(intersectionPoint, mTrianglePlane);
 	return true;
 }
 
@@ -3563,34 +3563,34 @@ void GridInfo::write(Stream&)
  */
 void GridDivider::read(Stream& stream)
 {
-	m_vertexTable = new VertexTable;
-	m_vertexTable->read(stream);
+	mVertexTable = new VertexTable;
+	mVertexTable->read(stream);
 
-	m_triangleTable = new TriangleTable;
-	m_triangleTable->read(stream);
+	mTriangleTable = new TriangleTable;
+	mTriangleTable->read(stream);
 
-	m_boundingBox.read(stream);
+	mBoundingBox.read(stream);
 
-	m_maxX   = stream.readInt();
-	m_maxZ   = stream.readInt();
-	m_scaleX = stream.readFloat();
-	m_scaleZ = stream.readFloat();
+	mMaxX   = stream.readInt();
+	mMaxZ   = stream.readInt();
+	mScaleX = stream.readFloat();
+	mScaleZ = stream.readFloat();
 
-	Vector2i maxVals = Vector2i(m_maxX, m_maxZ);
+	Vector2i maxVals = Vector2i(mMaxX, mMaxZ);
 	int maxLim       = maxVals.x * maxVals.y;
-	m_triIndexLists  = new TriIndexList[maxLim];
+	mTriIndexLists   = new TriIndexList[maxLim];
 
-	m_boundingBox.m_min = m_boundingBox.m_min;
-	m_boundingBox.m_max = m_boundingBox.m_max;
+	mBoundingBox.mMin = mBoundingBox.mMin;
+	mBoundingBox.mMax = mBoundingBox.mMax;
 
-	float X  = m_boundingBox.m_max.x - m_boundingBox.m_min.x;
-	m_scaleX = FABS(X) / (float)maxVals.x;
-	float Z  = m_boundingBox.m_max.z - m_boundingBox.m_min.z;
-	m_scaleZ = FABS(Z) / (float)maxVals.y;
+	float X = mBoundingBox.mMax.x - mBoundingBox.mMin.x;
+	mScaleX = FABS(X) / (float)maxVals.x;
+	float Z = mBoundingBox.mMax.z - mBoundingBox.mMin.z;
+	mScaleZ = FABS(Z) / (float)maxVals.y;
 
 	readIndexList(stream);
 
-	m_triangleTable->createTriangleSphere(*m_vertexTable);
+	mTriangleTable->createTriangleSphere(*mVertexTable);
 };
 
 /*
@@ -3668,8 +3668,8 @@ void GridDivider::read(Stream& stream)
  */
 void TriangleTable::createTriangleSphere(Sys::VertexTable&)
 {
-	for (int i = 0; i < m_limit; i++) {
-		m_objects[i].createSphere(arg0);
+	for (int i = 0; i < mLimit; i++) {
+		mObjects[i].createSphere(arg0);
 	}
 }
 
@@ -3680,8 +3680,8 @@ void TriangleTable::createTriangleSphere(Sys::VertexTable&)
  */
 void TriIndexList::constructClone(Sys::TriangleTable& triTable)
 {
-	alloc(triTable.m_count);
-	for (int i = 0; i < triTable.m_count; i++) {
+	alloc(triTable.mCount);
+	for (int i = 0; i < triTable.mCount; i++) {
 		addOne(i);
 	}
 }
@@ -3696,12 +3696,12 @@ void TriIndexList::getMinMax(VertexTable& vertTable, TriangleTable& triTable, Ve
 	min = 10000000000.0f;
 	max = -10000000000.0f;
 
-	for (int i = 0; i < m_count; i++) {
-		Triangle* currTri = &triTable.m_objects[m_objects[i]];
+	for (int i = 0; i < mCount; i++) {
+		Triangle* currTri = &triTable.mObjects[mObjects[i]];
 		Vector3f vertices[3];
-		vertices[0] = vertTable.m_objects[currTri->m_vertices.x];
-		vertices[1] = vertTable.m_objects[currTri->m_vertices.y];
-		vertices[2] = vertTable.m_objects[currTri->m_vertices.z];
+		vertices[0] = vertTable.mObjects[currTri->mVertices.x];
+		vertices[1] = vertTable.mObjects[currTri->mVertices.y];
+		vertices[2] = vertTable.mObjects[currTri->mVertices.z];
 
 		for (int j = 0; j < 3; j++) {
 			float testVal = vec1.dot(vertices[j] - vec2);

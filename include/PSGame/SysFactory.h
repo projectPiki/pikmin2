@@ -15,16 +15,16 @@ struct SysFactory {
 	void preInitJAI();
 	void postInitJAI();
 
-	JKRHeap* m_heap;        // _00
-	u32 m_heapSize;         // _04
-	void* m_aafFile;        // _08
-	void (*m_makeSeFunc)(); // _0C
+	JKRHeap* mHeap;        // _00
+	u32 mHeapSize;         // _04
+	void* mAafFile;        // _08
+	void (*mMakeSeFunc)(); // _0C
 
 	virtual PSM::SceneMgr* newSceneMgr() = 0; // _08
 
 	// _10 = VTBL??
-	u32 m_solidHeapSize;       // _14
-	JKRSolidHeap* m_solidHeap; // _18
+	u32 mSolidHeapSize;       // _14
+	JKRSolidHeap* mSolidHeap; // _18
 };
 } // namespace PSGame
 

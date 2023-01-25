@@ -18,11 +18,11 @@ struct HorizontalSplitter : public Splitter {
 	virtual void split2(f32); // _08
 
 	// _00 VTBL
-	f32 m_x1;             // _04, name from PikDecomp
-	f32 m_x2;             // _08, name from PikDecomp
-	f32 m_y1;             // _0C, name from PikDecomp
-	f32 m_y2;             // _10, name from PikDecomp
-	Graphics* m_graphics; // _14
+	f32 mX1;             // _04, name from PikDecomp
+	f32 mX2;             // _08, name from PikDecomp
+	f32 mY1;             // _0C, name from PikDecomp
+	f32 mY2;             // _10, name from PikDecomp
+	Graphics* mGraphics; // _14
 };
 
 #endif

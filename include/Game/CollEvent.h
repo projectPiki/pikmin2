@@ -8,22 +8,22 @@ struct Creature;
 
 struct CollEvent {
 	CollEvent()
-	    : m_collidingCreature(nullptr)
-	    , m_collisionObj(nullptr)
-	    , m_hitPart(nullptr)
+	    : mCollidingCreature(nullptr)
+	    , mCollisionObj(nullptr)
+	    , mHitPart(nullptr)
 	{
 	}
 
 	inline CollEvent(Creature* creature, CollPart* cp1, CollPart* cp2)
-	    : m_collidingCreature(creature)
-	    , m_collisionObj(cp1)
-	    , m_hitPart(cp2)
+	    : mCollidingCreature(creature)
+	    , mCollisionObj(cp1)
+	    , mHitPart(cp2)
 	{
 	}
 
-	Creature* m_collidingCreature; // _00
-	CollPart* m_collisionObj;      // _04
-	CollPart* m_hitPart;           // _08
+	Creature* mCollidingCreature; // _00
+	CollPart* mCollisionObj;      // _04
+	CollPart* mHitPart;           // _08
 };
 } // namespace Game
 

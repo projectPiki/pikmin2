@@ -10,8 +10,8 @@
  */
 J3DJointFactory::J3DJointFactory(const J3DJointBlock& block)
 {
-	m_initData = JSUConvertOffsetToPtr<J3DJointInitData>(&block, block._0C);
-	m_indexMap = JSUConvertOffsetToPtr<u16>(&block, block._10);
+	mInitData = JSUConvertOffsetToPtr<J3DJointInitData>(&block, block._0C);
+	mIndexMap = JSUConvertOffsetToPtr<u16>(&block, block._10);
 }
 
 /*
@@ -21,17 +21,17 @@ J3DJointFactory::J3DJointFactory(const J3DJointBlock& block)
  */
 J3DJoint* J3DJointFactory::create(int jointIndex)
 {
-	J3DJoint* joint              = new J3DJoint();
-	joint->m_jointIdx            = jointIndex;
-	joint->_16                   = m_initData[m_indexMap[jointIndex]]._00;
-	joint->m_ignoreParentScaling = m_initData[m_indexMap[jointIndex]].m_ignoreParentScaling;
-	joint->m_transformInfo       = m_initData[m_indexMap[jointIndex]].m_transformInfo;
-	joint->_38                   = m_initData[m_indexMap[jointIndex]]._24;
-	joint->m_yRotation           = m_initData[m_indexMap[jointIndex]]._28;
-	joint->_48                   = m_initData[m_indexMap[jointIndex]]._34;
-	joint->m_mtxCalc             = nullptr;
-	if (joint->m_ignoreParentScaling == 0xFF) {
-		joint->m_ignoreParentScaling = 0;
+	J3DJoint* joint             = new J3DJoint();
+	joint->mJointIdx            = jointIndex;
+	joint->_16                  = mInitData[mIndexMap[jointIndex]]._00;
+	joint->mIgnoreParentScaling = mInitData[mIndexMap[jointIndex]].mIgnoreParentScaling;
+	joint->mTransformInfo       = mInitData[mIndexMap[jointIndex]].mTransformInfo;
+	joint->_38                  = mInitData[mIndexMap[jointIndex]]._24;
+	joint->mYRotation           = mInitData[mIndexMap[jointIndex]]._28;
+	joint->_48                  = mInitData[mIndexMap[jointIndex]]._34;
+	joint->mMtxCalc             = nullptr;
+	if (joint->mIgnoreParentScaling == 0xFF) {
+		joint->mIgnoreParentScaling = 0;
 	}
 	return joint;
 }

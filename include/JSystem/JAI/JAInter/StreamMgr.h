@@ -9,8 +9,8 @@ struct JASAramStream;
 namespace JAInter {
 namespace StreamMgr {
 struct BufferInfo {
-	u8* m_start;  // _00
-	u32 m_length; // _04
+	u8* mStart;  // _00
+	u32 mLength; // _04
 };
 
 /**

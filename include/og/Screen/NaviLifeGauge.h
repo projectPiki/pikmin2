@@ -11,9 +11,9 @@ namespace Screen {
 struct NaviLifeGauge : public P2DScreen::Mgr_tuning {
 	inline NaviLifeGauge()
 	{
-		m_callBackLifeGauge = nullptr;
-		m_callBackDrawAfter = nullptr;
-		m_dataNavi          = nullptr;
+		mCallBackLifeGauge = nullptr;
+		mCallBackDrawAfter = nullptr;
+		mDataNavi          = nullptr;
 	}
 	virtual ~NaviLifeGauge() { } // _08 (weak)
 	virtual void update();       // _30
@@ -23,10 +23,10 @@ struct NaviLifeGauge : public P2DScreen::Mgr_tuning {
 
 	// _00      = VTBL
 	// _00-_148 = P2DScreen::Mgr_tuning
-	CallBack_LifeGauge* m_callBackLifeGauge; // _148
-	CallBack_DrawAfter* m_callBackDrawAfter; // _14C
-	DataNavi* m_dataNavi;                    // _150
-	u8 _154[0x4];                            // _154, unknown
+	CallBack_LifeGauge* mCallBackLifeGauge; // _148
+	CallBack_DrawAfter* mCallBackDrawAfter; // _14C
+	DataNavi* mDataNavi;                    // _150
+	u8 _154[0x4];                           // _154, unknown
 };
 } // namespace Screen
 } // namespace og

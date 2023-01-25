@@ -16,16 +16,16 @@ struct JASAramStream {
 
 	/** @fabricated */
 	struct HeaderLoadTaskArgs {
-		JASAramStream* m_stream; // _00
-		u32 _04;                 // _04
-		int _08;                 // _08
+		JASAramStream* mStream; // _00
+		u32 _04;                // _04
+		int _08;                // _08
 	};
 
 	/** @fabricated */
 	struct FirstLoadTaskArgs {
-		JASAramStream* m_stream; // _00
-		u32 _04;                 // _04
-		u32 _08;                 // _08
+		JASAramStream* mStream; // _00
+		u32 _04;                // _04
+		u32 _08;                // _08
 	};
 
 	JASAramStream();
@@ -59,50 +59,50 @@ struct JASAramStream {
 	void prepare(const char*, int);
 	void getBlockSamples() const;
 
-	OSMessageQueue m_msgQueueA;       // _00
-	OSMessageQueue m_msgQueueB;       // _20
-	void* m_msgSlotsA[16];            // _40
-	void* m_msgSlotsB[4];             // _80
-	u8 _90[0xF0];                     // _90 - unknown
-	JASChannel* _180[6];              // _180
-	JASChannel* _198;                 // _198
-	u8 _19C;                          // _19C
-	u8 _19D;                          // _19D
-	u8 _19E;                          // _19E
-	u32 _1A0;                         // _1A0
-	u32 _1A4;                         // _1A4
-	u32 _1A8;                         // _1A8
-	int _1AC;                         // _1AC
-	u8 _1B0;                          // _1B0
-	u32 _1B4;                         // _1B4
-	f32 _1B8;                         // _1B8
-	DVDPlayer _1BC;                   // _1BC
-	u32 _1F8;                         // _1F8
-	int _1FC;                         // _1FC
-	int _200;                         // _200
-	u8 _204;                          // _204
-	int _208;                         // _208
-	u8 _20C[0xC];                     // _20C - unknown
-	s16 _218;                         // _218
-	u32 _21C;                         // _21C
-	u16 _220[2][6];                   // _220
-	u32 _238;                         // _238
-	u32 _23C;                         // _23C
-	JASAramStreamCallback m_callback; // _240
-	void* _244;                       // _244
-	s16 _248;                         // _248
-	u16 _24A;                         // _24A
-	u32 _24C;                         // _24C
-	int _250;                         // _250
-	u32 _254;                         // _254
-	u8 _258;                          // _258
-	u32 _25C;                         // _25C
-	u32 _260;                         // _260
-	f32 _264;                         // _264
-	f32 _268;                         // _268
-	f32 _26C[4][6];                   // _26C
-	s16 _2CC[6];                      // _2CC
-	u8 _2D8;                          // _2D8
+	OSMessageQueue mMsgQueueA;       // _00
+	OSMessageQueue mMsgQueueB;       // _20
+	void* mMsgSlotsA[16];            // _40
+	void* mMsgSlotsB[4];             // _80
+	u8 _90[0xF0];                    // _90 - unknown
+	JASChannel* _180[6];             // _180
+	JASChannel* _198;                // _198
+	u8 _19C;                         // _19C
+	u8 _19D;                         // _19D
+	u8 _19E;                         // _19E
+	u32 _1A0;                        // _1A0
+	u32 _1A4;                        // _1A4
+	u32 _1A8;                        // _1A8
+	int _1AC;                        // _1AC
+	u8 _1B0;                         // _1B0
+	u32 _1B4;                        // _1B4
+	f32 _1B8;                        // _1B8
+	DVDPlayer _1BC;                  // _1BC
+	u32 _1F8;                        // _1F8
+	int _1FC;                        // _1FC
+	int _200;                        // _200
+	u8 _204;                         // _204
+	int _208;                        // _208
+	u8 _20C[0xC];                    // _20C - unknown
+	s16 _218;                        // _218
+	u32 _21C;                        // _21C
+	u16 _220[2][6];                  // _220
+	u32 _238;                        // _238
+	u32 _23C;                        // _23C
+	JASAramStreamCallback mCallback; // _240
+	void* _244;                      // _244
+	s16 _248;                        // _248
+	u16 _24A;                        // _24A
+	u32 _24C;                        // _24C
+	int _250;                        // _250
+	u32 _254;                        // _254
+	u8 _258;                         // _258
+	u32 _25C;                        // _25C
+	u32 _260;                        // _260
+	f32 _264;                        // _264
+	f32 _268;                        // _268
+	f32 _26C[4][6];                  // _26C
+	s16 _2CC[6];                     // _2CC
+	u8 _2D8;                         // _2D8
 
 	static JASTaskThread* sLoadThread;
 	static u8* sReadBuffer;

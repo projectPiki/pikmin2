@@ -114,19 +114,19 @@ u8 JKRHeap::sDefaultFillFlag = 1;
  * __ct__7JKRHeapFPvUlP7JKRHeapb
  */
 JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetErrorHandlerMaybe)
-    : m_tree(this)
-    , m_disposerList()
+    : mTree(this)
+    , mDisposerList()
 {
-	OSInitMutex(&m_mutex);
-	m_heapSize     = size;
-	m_startAddress = startPtr;
-	m_endAddress   = (u8*)startPtr + size;
+	OSInitMutex(&mMutex);
+	mHeapSize     = size;
+	mStartAddress = startPtr;
+	mEndAddress   = (u8*)startPtr + size;
 
 	if (parentHeap == nullptr) {
 		becomeSystemHeap();
 		becomeCurrentHeap();
 	} else {
-		parentHeap->m_tree.appendChild(&m_tree);
+		parentHeap->mTree.appendChild(&mTree);
 		if (JKRHeap::sSystemHeap == JKRHeap::sRootHeap) {
 			becomeSystemHeap();
 		}
@@ -138,9 +138,9 @@ JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetEr
 	if ((_68 == true) && (JKRHeap::mErrorHandler == nullptr)) {
 		JKRHeap::mErrorHandler = JKRDefaultMemoryErrorRoutine;
 	}
-	m_fillFlag      = JKRHeap::sDefaultFillFlag;
-	m_fillCheckFlag = JKRHeap::sDefaultFillCheckFlag;
-	_69             = 0;
+	mFillFlag      = JKRHeap::sDefaultFillFlag;
+	mFillCheckFlag = JKRHeap::sDefaultFillCheckFlag;
+	_69            = 0;
 }
 
 /*
@@ -150,7 +150,7 @@ JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetEr
  */
 JKRHeap::~JKRHeap()
 {
-	m_tree.getParent()->removeChild(&m_tree);
+	mTree.getParent()->removeChild(&mTree);
 	//  TODO: The rest
 	/*
 	stwu     r1, -0x10(r1)
@@ -444,9 +444,9 @@ void JKRHeap::free(void* memory)
 void JKRHeap::callAllDisposer()
 {
 	JSUPtrLink* link;
-	while (link = m_disposerList.m_head, link) {
-		// delete (JKRHeap*)link->m_value);
-		INVOKE_VIRT_DTOR((JKRHeap*)link->m_value, -1);
+	while (link = mDisposerList.mHead, link) {
+		// delete (JKRHeap*)link->mValue);
+		INVOKE_VIRT_DTOR((JKRHeap*)link->mValue, -1);
 	}
 	/*
 	.loc_0x0:
@@ -616,9 +616,9 @@ JKRHeap* JKRHeap::findFromRoot(void* memory)
  */
 JKRHeap* JKRHeap::find(void* memory) const
 {
-	if ((m_startAddress <= memory) && (memory < m_endAddress)) {
-		if (m_tree.getNumChildren() != 0) {
-			for (JSUTreeIterator<JKRHeap> iterator(m_tree.getFirstChild()); iterator != m_tree.getEndChild(); ++iterator) {
+	if ((mStartAddress <= memory) && (memory < mEndAddress)) {
+		if (mTree.getNumChildren() != 0) {
+			for (JSUTreeIterator<JKRHeap> iterator(mTree.getFirstChild()); iterator != mTree.getEndChild(); ++iterator) {
 				JKRHeap* result = iterator->find(memory);
 				if (result != nullptr) {
 					return result;
@@ -862,8 +862,8 @@ JKRHeap* JKRHeap::find(void* memory) const
  */
 // template <> JKRHeap* JSUTree<JKRHeap>::getNextChild() const
 // {
-// 	JSUPtrLink* next = m_link.m_next;
-// 	return (next) ? (JKRHeap*)next[-1].m_list : nullptr;
+// 	JSUPtrLink* next = mLink.mNext;
+// 	return (next) ? (JKRHeap*)next[-1].mList : nullptr;
 // 	/*
 // 	.loc_0x0:
 // 	  lwz       r3, 0x18(r3)
@@ -943,7 +943,7 @@ JKRHeap* JKRHeap::find(void* memory) const
  */
 // template <>
 // JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
-//     : m_tree(tree)
+//     : mTree(tree)
 // {
 // }
 
@@ -980,7 +980,7 @@ JKRHeap* JKRHeap::find(void* memory) const
  * Address:	80023C20
  * Size:	000008
  */
-// JSUPtrLink* JSUPtrList::getFirstLink() const { return m_head; }
+// JSUPtrLink* JSUPtrList::getFirstLink() const { return mHead; }
 
 /*
  * --INFO--
@@ -989,14 +989,14 @@ JKRHeap* JKRHeap::find(void* memory) const
  */
 u32 JKRHeap::dispose(void* memory, u32 p2)
 {
-	JSULink<JKRDisposer>* link1 = m_disposerList.getFirst();
+	JSULink<JKRDisposer>* link1 = mDisposerList.getFirst();
 	JSULink<JKRDisposer>* link2;
 	JSULink<JKRDisposer>* link3;
 	while (link2 = link1, link2) {
 		JKRDisposer* value = link2->getObject();
 		if ((memory <= value) && ((u8*)value < (u8*)memory + p2)) {
 			INVOKE_VIRT_DTOR(value, -1);
-			link1 = (link3 == nullptr) ? m_disposerList.getFirst() : link3->getNext();
+			link1 = (link3 == nullptr) ? mDisposerList.getFirst() : link3->getNext();
 		} else {
 			link1 = link2->getNext();
 			link3 = link2;
@@ -1128,8 +1128,8 @@ void JKRHeap::dispose()
 {
 	JSUPtrLink* link;
 	// Not endless loop. The dtor will remove link from list.
-	while (link = m_disposerList.m_head, link) {
-		INVOKE_VIRT_DTOR(link->m_value, -1);
+	while (link = mDisposerList.mHead, link) {
+		INVOKE_VIRT_DTOR(link->mValue, -1);
 	}
 	/*
 	.loc_0x0:
@@ -1721,7 +1721,7 @@ lbl_800244F8:
  * Address:	80024510
  * Size:	000034
  */
-void JKRHeap::TState::dump() const { m_heap->state_dump(this); }
+void JKRHeap::TState::dump() const { mHeap->state_dump(this); }
 
 /*
  * --INFO--
@@ -1739,13 +1739,13 @@ bool JKRHeap::TState::isVerbose() { return bVerbose; }
 JKRHeap::TState::TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
     : _00(nullptr)
     , _04(0)
-    , m_heap(heap ? heap : sCurrentHeap)
-    , m_id(id)
-    , m_isCompareOnDestructed(isCompareOnDestructed)
+    , mHeap(heap ? heap : sCurrentHeap)
+    , mId(id)
+    , mIsCompareOnDestructed(isCompareOnDestructed)
     , _1C(0)
     , _20(-1)
 {
-	m_heap->state_register(this, m_id);
+	mHeap->state_register(this, mId);
 }
 
 /*
@@ -1753,7 +1753,7 @@ JKRHeap::TState::TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
  * Address:	800245CC
  * Size:	000008
  */
-bool JKRHeap::TState::isCompareOnDestructed() const { return m_isCompareOnDestructed; }
+bool JKRHeap::TState::isCompareOnDestructed() const { return mIsCompareOnDestructed; }
 
 /*
  * --INFO--
@@ -1773,7 +1773,7 @@ JKRHeap::TState::TLocation::TLocation()
  * __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb
  */
 JKRHeap::TState::TArgument::TArgument(const JKRHeap* heap, u32 p2, bool p3)
-    : m_heap((heap) ? heap : JKRHeap::sCurrentHeap)
+    : mHeap((heap) ? heap : JKRHeap::sCurrentHeap)
     , _04(p2)
     , _08(p3)
 {
@@ -1784,14 +1784,14 @@ JKRHeap::TState::TArgument::TArgument(const JKRHeap* heap, u32 p2, bool p3)
  * Address:	80024608
  * Size:	000008
  */
-const JKRHeap* JKRHeap::TState::getHeap() const { return m_heap; }
+const JKRHeap* JKRHeap::TState::getHeap() const { return mHeap; }
 
 /*
  * --INFO--
  * Address:	80024610
  * Size:	000008
  */
-u32 JKRHeap::TState::getId() const { return m_id; }
+u32 JKRHeap::TState::getId() const { return mId; }
 
 /*
  * --INFO--

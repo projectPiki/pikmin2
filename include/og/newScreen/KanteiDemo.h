@@ -49,7 +49,7 @@ struct KanteiDemo : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	::Screen::ObjBase* m_objBase; // _220
+	::Screen::ObjBase* mObjBase; // _220
 };
 
 struct ObjKantei : public ::Screen::ObjBase {
@@ -81,91 +81,91 @@ struct ObjKantei : public ::Screen::ObjBase {
 	{
 		Vector2f i(box.i.x, box.i.y);
 		Vector2f f(box.f.x, box.f.y);
-		m_drawBox.p1 = i;
-		m_drawBox.p2 = f;
+		mDrawBox.p1 = i;
+		mDrawBox.p2 = f;
 	}
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberKantei* m_disp;                // _38
-	P2DScreen::Mgr_tuning* m_screenOkWindow;             // _3C
-	P2DScreen::Mgr_tuning* m_screenBG;                   // _40
-	P2DScreen::Mgr_tuning* m_screenName;                 // _44
-	P2DScreen::Mgr_tuning* m_screenButton;               // _48
-	KanteiState m_state;                                 // _4C
-	P2JME::Movie::TControl* m_tControl;                  // _50
-	J2DPane* m_paneSetP;                                 // _54, "Notsetp"
-	Rectf m_drawBox;                                     // _58
-	u8 m_doDrawBox;                                      // _68, not sure what the purpose of this box is
-	u32 _6C;                                             // _6C, completely unused?
-	u64 m_shipMessageBoxID;                              // _70, message ID for ship text when collecting upgrades
-	u8 m_inTextBox;                                      // _78, true when in ship text box, doesnt actually do anything?
-	f32 m_fadeLevel;                                     // _7C, controls alpha during screen fadein/fadeout
-	f32 m_fadeLevel2;                                    // _80, not used?
-	J2DPane* m_paneOk1;                                  // _84
-	J2DPane* m_paneOk2;                                  // _88
-	f32 m_startTimer;                                    // _8C
-	og::Screen::CallBack_CounterSlot* m_pokoCounterCurr; // _90
-	og::Screen::CallBack_CounterRV* m_pokoCounterTotal;  // _94
-	int m_currItemValue;                                 // _98
-	u32 m_totalPokos;                                    // _9C
-	int m_totalPokosCave;                                // _A0
-	u32 m_totalPokosOld;                                 // _A4
-	int m_totalPokosCaveOld;                             // _A8
-	og::Screen::StickAnimMgr* m_stickAnim;               // _AC
-	u32 _B0;                                             // _B0, completely unused?
-	efx2d::T2DOtakantei* m_efx;                          // _B4
-	J2DPane* m_paneName;                                 // _B8
-	og::Screen::ScaleMgr* m_scaleMgr;                    // _BC
-	f32 m_nameScale;                                     // _C0
-	f32 m_nameTimer;                                     // _C4
-	u8 m_doScaleName;                                    // _C8 - unknown type
-	KanteiNameState m_nameState;                         // _CC
-	u64 m_treasureNameMesgID;                            // _D0, treasure name message id
-	u8 m_isPelletNameNotAppeared;                        // _D8, starts true, set to false when pellet name appears
-	f32 m_nameWaitTimer;                                 // _DC
-	f32 m_idleStateTimer;                                // _E0
-	u8 m_doShipSpeech;                                   // _E4 - unknown type
-	f32 m_commonTimer;                                   // _E8
-	int m_shipSpeechTimer;                               // _EC
-	u8 m_playExitSE;                                     // _F0
+	og::Screen::DispMemberKantei* mDisp;                // _38
+	P2DScreen::Mgr_tuning* mScreenOkWindow;             // _3C
+	P2DScreen::Mgr_tuning* mScreenBG;                   // _40
+	P2DScreen::Mgr_tuning* mScreenName;                 // _44
+	P2DScreen::Mgr_tuning* mScreenButton;               // _48
+	KanteiState mState;                                 // _4C
+	P2JME::Movie::TControl* mTControl;                  // _50
+	J2DPane* mPaneSetP;                                 // _54, "Notsetp"
+	Rectf mDrawBox;                                     // _58
+	u8 mDoDrawBox;                                      // _68, not sure what the purpose of this box is
+	u32 _6C;                                            // _6C, completely unused?
+	u64 mShipMessageBoxID;                              // _70, message ID for ship text when collecting upgrades
+	u8 mInTextBox;                                      // _78, true when in ship text box, doesnt actually do anything?
+	f32 mFadeLevel;                                     // _7C, controls alpha during screen fadein/fadeout
+	f32 mFadeLevel2;                                    // _80, not used?
+	J2DPane* mPaneOk1;                                  // _84
+	J2DPane* mPaneOk2;                                  // _88
+	f32 mStartTimer;                                    // _8C
+	og::Screen::CallBack_CounterSlot* mPokoCounterCurr; // _90
+	og::Screen::CallBack_CounterRV* mPokoCounterTotal;  // _94
+	int mCurrItemValue;                                 // _98
+	u32 mTotalPokos;                                    // _9C
+	int mTotalPokosCave;                                // _A0
+	u32 mTotalPokosOld;                                 // _A4
+	int mTotalPokosCaveOld;                             // _A8
+	og::Screen::StickAnimMgr* mStickAnim;               // _AC
+	u32 _B0;                                            // _B0, completely unused?
+	efx2d::T2DOtakantei* mEfx;                          // _B4
+	J2DPane* mPaneName;                                 // _B8
+	og::Screen::ScaleMgr* mScaleMgr;                    // _BC
+	f32 mNameScale;                                     // _C0
+	f32 mNameTimer;                                     // _C4
+	u8 mDoScaleName;                                    // _C8 - unknown type
+	KanteiNameState mNameState;                         // _CC
+	u64 mTreasureNameMesgID;                            // _D0, treasure name message id
+	u8 mIsPelletNameNotAppeared;                        // _D8, starts true, set to false when pellet name appears
+	f32 mNameWaitTimer;                                 // _DC
+	f32 mIdleStateTimer;                                // _E0
+	u8 mDoShipSpeech;                                   // _E4 - unknown type
+	f32 mCommonTimer;                                   // _E8
+	int mShipSpeechTimer;                               // _EC
+	u8 mPlayExitSE;                                     // _F0
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			m_nameAppearDelay       = 0.6666667f;
-			m_priceAppearDelay      = 1.0f;
-			m_pokoSlotFactor        = 0.3f;
-			m_pokoPuyo1             = 2.8f;
-			m_pokoPuyo2             = 27.0f;
-			m_pokoPuyo3             = 0.5f;
-			m_namePaneAdd           = Vector2f(10.0f, -40.0f);
-			m_screenMoveStart       = 0.0f;
-			m_nameTimerDefault      = 0.8f;
-			m_counterGrow1          = 0.1f;
-			m_counterGrow2          = 30.0f;
-			m_counterGrow3          = 0.5f;
-			m_nameScaleGrowFactor   = 0.3f;
-			m_waitTimerReset        = 0.7f;
-			m_idleStateTimerDefault = 3.0f;
+			mNameAppearDelay       = 0.6666667f;
+			mPriceAppearDelay      = 1.0f;
+			mPokoSlotFactor        = 0.3f;
+			mPokoPuyo1             = 2.8f;
+			mPokoPuyo2             = 27.0f;
+			mPokoPuyo3             = 0.5f;
+			mNamePaneAdd           = Vector2f(10.0f, -40.0f);
+			mScreenMoveStart       = 0.0f;
+			mNameTimerDefault      = 0.8f;
+			mCounterGrow1          = 0.1f;
+			mCounterGrow2          = 30.0f;
+			mCounterGrow3          = 0.5f;
+			mNameScaleGrowFactor   = 0.3f;
+			mWaitTimerReset        = 0.7f;
+			mIdleStateTimerDefault = 3.0f;
 		}
 
-		f32 m_nameAppearDelay;       // _00
-		f32 m_priceAppearDelay;      // _04
-		f32 m_pokoSlotFactor;        // _08
-		f32 m_pokoPuyo1;             // _0C
-		f32 m_pokoPuyo2;             // _10
-		f32 m_pokoPuyo3;             // _14
-		Vector2f m_namePaneAdd;      // _18
-		f32 m_screenMoveStart;       // _20
-		f32 m_nameTimerDefault;      // _24
-		f32 m_counterGrow1;          // _28
-		f32 m_counterGrow2;          // _2C
-		f32 m_counterGrow3;          // _30
-		f32 m_nameScaleGrowFactor;   // _34
-		f32 m_waitTimerReset;        // _38
-		f32 m_idleStateTimerDefault; // _3C
+		f32 mNameAppearDelay;       // _00
+		f32 mPriceAppearDelay;      // _04
+		f32 mPokoSlotFactor;        // _08
+		f32 mPokoPuyo1;             // _0C
+		f32 mPokoPuyo2;             // _10
+		f32 mPokoPuyo3;             // _14
+		Vector2f mNamePaneAdd;      // _18
+		f32 mScreenMoveStart;       // _20
+		f32 mNameTimerDefault;      // _24
+		f32 mCounterGrow1;          // _28
+		f32 mCounterGrow2;          // _2C
+		f32 mCounterGrow3;          // _30
+		f32 mNameScaleGrowFactor;   // _34
+		f32 mWaitTimerReset;        // _38
+		f32 mIdleStateTimerDefault; // _3C
 	} msVal;
 };
 } // namespace newScreen

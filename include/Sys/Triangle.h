@@ -55,11 +55,11 @@ struct Triangle {
 	bool intersect(Edge&, Vector3f&);
 	bool intersectOptimistic(Sphere&, Vector3f&);
 
-	Vector3i m_vertices;   // _00, _04, _08 	- addresses of each vertex in vertex table
-	Plane m_trianglePlane; // _0C				- ax + by + cz + d form of plane triangle lies in
-	Plane m_edgePlanes[3]; // _1C, _2C, _3C 	- plane through each side of triangle (?)
-	Sphere m_sphere;       // _4C				- bounding sphere of triangle
-	MapCode::Code m_code;  // _5C				- map code (?)
+	Vector3i mVertices;   // _00, _04, _08 	- addresses of each vertex in vertex table
+	Plane mTrianglePlane; // _0C				- ax + by + cz + d form of plane triangle lies in
+	Plane mEdgePlanes[3]; // _1C, _2C, _3C 	- plane through each side of triangle (?)
+	Sphere mSphere;       // _4C				- bounding sphere of triangle
+	MapCode::Code mCode;  // _5C				- map code (?)
 
 	// 1 -> 2 -> 3
 	// ^----<----^

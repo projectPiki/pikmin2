@@ -20,11 +20,11 @@ AnimText_Screen* setAnimTextScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen
 
 	J2DTextBoxEx* pane = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(parentScreen, tag));
 	pane->setString("");
-	pane->m_isVisible = false;
+	pane->mIsVisible = false;
 
 	AnimText_Screen* anm = new AnimText_Screen(scrn, 'joint');
-	anm->m_textBox       = pane;
-	anm->setText(pane->m_messageID);
+	anm->mTextBox        = pane;
+	anm->setText(pane->mMessageID);
 
 	AnimScreen* anmscrn = new AnimScreen;
 	anmscrn->init(arc, scrn, "anim_text.bck");
@@ -32,7 +32,7 @@ AnimText_Screen* setAnimTextScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen
 
 	parentScreen->addCallBack(tag, anm);
 	og::Screen::setCallBackMessage(scrn);
-	anmscrn->m_isRepeating = false;
+	anmscrn->mIsRepeating = false;
 
 	anm->stop();
 	return anm;
@@ -46,7 +46,7 @@ AnimText_Screen* setAnimTextScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen
 AnimText_Screen* setMenuScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u64 tag)
 {
 	AnimText_Screen* anm = setAnimTextScreen(arc, parentScreen, tag);
-	anm->m_colorType     = 1;
+	anm->mColorType      = 1;
 	return anm;
 }
 
@@ -58,7 +58,7 @@ AnimText_Screen* setMenuScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u6
 AnimText_Screen* setMenuTitleScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u64 tag)
 {
 	AnimText_Screen* anm = setAnimTextScreen(arc, parentScreen, tag);
-	anm->m_colorType     = 3;
+	anm->mColorType      = 3;
 	return anm;
 }
 
@@ -71,28 +71,28 @@ AnimText_Screen::AnimText_Screen(P2DScreen::Mgr* scrn, u64 tag)
     : CallBack_Screen(scrn, tag)
 {
 	char buf[24];
-	if (!m_pane) {
+	if (!mPane) {
 		TagToName(tag, buf);
 	}
-	m_anmScreen       = nullptr;
-	m_isUpdateSuccess = false;
-	m_msgBodyPane     = nullptr;
-	m_msgBackPane     = nullptr;
-	_48               = false;
-	m_tag             = 0;
-	m_msgBodyPane     = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_body'));
-	m_msgBackPane     = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_back'));
-	m_blinkTimer      = 0.0f;
-	m_blinkFactor     = 0.0f;
-	m_blinkLevel      = 1.0f;
-	m_isBlinking      = false;
-	_6C               = 1.0f;
-	og::newScreen::ObjSMenuPause::ObjHIOVal::getMenuColor(&m_color0, &m_color1, &m_color2, &m_color3, &m_color4, &m_color5, &m_color6,
-	                                                      &m_color7, &m_color8, &m_color9, &m_color13, &m_color14, &m_color15, &m_color16);
-	m_color10   = m_msgBackPane->getWhite();
-	m_color11   = m_msgBackPane->getBlack();
-	m_color12   = m_color4;
-	m_colorType = 0;
+	mAnmScreen       = nullptr;
+	mIsUpdateSuccess = false;
+	mMsgBodyPane     = nullptr;
+	mMsgBackPane     = nullptr;
+	_48              = false;
+	mTag             = 0;
+	mMsgBodyPane     = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_body'));
+	mMsgBackPane     = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_back'));
+	mBlinkTimer      = 0.0f;
+	mBlinkFactor     = 0.0f;
+	mBlinkLevel      = 1.0f;
+	mIsBlinking      = false;
+	_6C              = 1.0f;
+	og::newScreen::ObjSMenuPause::ObjHIOVal::getMenuColor(&mColor0, &mColor1, &mColor2, &mColor3, &mColor4, &mColor5, &mColor6, &mColor7,
+	                                                      &mColor8, &mColor9, &mColor13, &mColor14, &mColor15, &mColor16);
+	mColor10   = mMsgBackPane->getWhite();
+	mColor11   = mMsgBackPane->getBlack();
+	mColor12   = mColor4;
+	mColorType = 0;
 }
 
 /*
@@ -103,112 +103,112 @@ AnimText_Screen::AnimText_Screen(P2DScreen::Mgr* scrn, u64 tag)
 void AnimText_Screen::update()
 {
 	og::Screen::CallBack_Screen::update();
-	if (m_anmScreen) {
-		m_isUpdateSuccess = m_anmScreen->update();
+	if (mAnmScreen) {
+		mIsUpdateSuccess = mAnmScreen->update();
 
 		if (_48) {
-			if (m_tag) {
-				if (!m_isUpdateSuccess) {
-					setText(m_tag);
-					m_tag = 0;
+			if (mTag) {
+				if (!mIsUpdateSuccess) {
+					setText(mTag);
+					mTag = 0;
 					open(0.0f);
 				}
-			} else if (!m_isUpdateSuccess) {
+			} else if (!mIsUpdateSuccess) {
 				_48 = false;
 			}
 		}
 
-		J2DTextBox* pane = static_cast<J2DTextBox*>(m_textBox);
+		J2DTextBox* pane = static_cast<J2DTextBox*>(mTextBox);
 		JUtility::TColor bodyWhite, bodyBlack, bgWhite, bgBlack;
 
-		switch (m_colorType) {
+		switch (mColorType) {
 		case 0:
 			bodyWhite = pane->getWhite();
 			bodyBlack = pane->getBlack();
-			bgWhite   = m_color10;
-			bgBlack   = m_color11;
+			bgWhite   = mColor10;
+			bgBlack   = mColor11;
 			break;
 		case 1:
-			bodyWhite = m_color4;
-			bodyBlack = m_color5;
-			bgWhite   = m_color6;
-			bgBlack   = m_color7;
+			bodyWhite = mColor4;
+			bodyBlack = mColor5;
+			bgWhite   = mColor6;
+			bgBlack   = mColor7;
 			break;
 		case 2:
-			bodyWhite = m_color0;
-			bodyBlack = m_color1;
-			bgWhite   = m_color8;
-			bgBlack   = m_color9;
+			bodyWhite = mColor0;
+			bodyBlack = mColor1;
+			bgWhite   = mColor8;
+			bgBlack   = mColor9;
 			break;
 		case 3:
-			bodyWhite = m_color13;
-			bodyBlack = m_color14;
-			bgWhite   = m_color15;
-			bgBlack   = m_color16;
+			bodyWhite = mColor13;
+			bodyBlack = mColor14;
+			bgWhite   = mColor15;
+			bgBlack   = mColor16;
 			break;
 		default:
 			JUT_PANICLINE(229, "ColorType ERR!!\n");
 		}
 
-		m_msgBodyPane->setBlack(bodyBlack);
+		mMsgBodyPane->setBlack(bodyBlack);
 
-		m_msgBackPane->setWhite(bgWhite);
-		m_msgBackPane->setBlack(bgBlack);
+		mMsgBackPane->setWhite(bgWhite);
+		mMsgBackPane->setBlack(bgBlack);
 
-		// if m_isBlinking, update blinking params + set body white to blended value
+		// if mIsBlinking, update blinking params + set body white to blended value
 		//     else, set body white to col1
-		if (m_isBlinking) {
-			if (m_blinkFactor > 0.0f) {
-				m_blinkTimer += sys->m_deltaTime;
-				if (m_blinkTimer >= m_blinkFactor) {
-					m_blinkTimer = 0.0f;
+		if (mIsBlinking) {
+			if (mBlinkFactor > 0.0f) {
+				mBlinkTimer += sys->mDeltaTime;
+				if (mBlinkTimer >= mBlinkFactor) {
+					mBlinkTimer = 0.0f;
 				}
 
-				if (m_blinkLevel > 0.0f) {
-					m_blinkLevel -= 0.1f;
-					if (m_blinkLevel < 0.0f) {
-						m_blinkLevel = 0.0f;
+				if (mBlinkLevel > 0.0f) {
+					mBlinkLevel -= 0.1f;
+					if (mBlinkLevel < 0.0f) {
+						mBlinkLevel = 0.0f;
 					}
 				}
 
-				f32 t = (1.0f + pikmin2_sinf((m_blinkTimer * TAU) / m_blinkFactor)) / 2;
+				f32 t = (1.0f + pikmin2_sinf((mBlinkTimer * TAU) / mBlinkFactor)) / 2;
 				_64 += (t - _64) / 3.0f;
 
-			} else if (m_blinkLevel < 1.0f) {
-				m_blinkLevel += 0.05f;
-				if (m_blinkLevel > 1.0f) {
-					m_blinkLevel = 1.0f;
+			} else if (mBlinkLevel < 1.0f) {
+				mBlinkLevel += 0.05f;
+				if (mBlinkLevel > 1.0f) {
+					mBlinkLevel = 1.0f;
 				}
 			}
 
 			JUtility::TColor blendedWhite;
-			if (m_blinkFactor > 0.0f) {
+			if (mBlinkFactor > 0.0f) {
 				JUtility::TColor interColor;
-				og::Screen::blendColor(m_color2, m_color3, _64, &interColor);
-				og::Screen::blendColor(interColor, m_color4, m_blinkLevel, &blendedWhite);
-				m_color12 = blendedWhite;
+				og::Screen::blendColor(mColor2, mColor3, _64, &interColor);
+				og::Screen::blendColor(interColor, mColor4, mBlinkLevel, &blendedWhite);
+				mColor12 = blendedWhite;
 
 			} else {
-				og::Screen::blendColor(m_color12, m_color4, m_blinkLevel, &blendedWhite);
+				og::Screen::blendColor(mColor12, mColor4, mBlinkLevel, &blendedWhite);
 			}
 
-			m_msgBodyPane->setWhite(blendedWhite);
+			mMsgBodyPane->setWhite(blendedWhite);
 
 		} else {
-			m_msgBodyPane->setWhite(bodyWhite);
+			mMsgBodyPane->setWhite(bodyWhite);
 		}
 
 		u8 alpha = _6C * 255.0f;
 
-		if (m_colorType == 2) {
-			alpha = m_color0.a;
+		if (mColorType == 2) {
+			alpha = mColor0.a;
 		}
 
-		m_msgBodyPane->setAlpha(alpha);
-		m_msgBackPane->setAlpha(alpha);
+		mMsgBodyPane->setAlpha(alpha);
+		mMsgBackPane->setAlpha(alpha);
 
 	} else {
-		m_isUpdateSuccess = false;
+		mIsUpdateSuccess = false;
 	}
 }
 
@@ -217,7 +217,7 @@ void AnimText_Screen::update()
  * Address:	80309418
  * Size:	000008
  */
-void AnimText_Screen::setAnimScreen(AnimScreen* screen) { m_anmScreen = screen; }
+void AnimText_Screen::setAnimScreen(AnimScreen* screen) { mAnmScreen = screen; }
 
 /*
  * --INFO--
@@ -226,8 +226,8 @@ void AnimText_Screen::setAnimScreen(AnimScreen* screen) { m_anmScreen = screen; 
  */
 void AnimText_Screen::setText(u64 tag)
 {
-	m_msgBodyPane->m_messageID = tag;
-	m_msgBackPane->m_messageID = tag;
+	mMsgBodyPane->mMessageID = tag;
+	mMsgBackPane->mMessageID = tag;
 }
 
 /*
@@ -237,8 +237,8 @@ void AnimText_Screen::setText(u64 tag)
  */
 void AnimText_Screen::stop()
 {
-	m_anmScreen->m_speed        = 0.0f;
-	m_anmScreen->m_currentFrame = 0.0f;
+	mAnmScreen->mSpeed        = 0.0f;
+	mAnmScreen->mCurrentFrame = 0.0f;
 }
 
 /*
@@ -248,9 +248,9 @@ void AnimText_Screen::stop()
  */
 void AnimText_Screen::open(f32 a1)
 {
-	m_anmScreen->m_speed        = 1.0f;
-	m_anmScreen->m_currentFrame = 0.0f;
-	m_anmScreen->AnimBaseBase::start(a1);
+	mAnmScreen->mSpeed        = 1.0f;
+	mAnmScreen->mCurrentFrame = 0.0f;
+	mAnmScreen->AnimBaseBase::start(a1);
 }
 
 /*
@@ -260,9 +260,9 @@ void AnimText_Screen::open(f32 a1)
  */
 void AnimText_Screen::close()
 {
-	m_anmScreen->m_speed        = -1.0f;
-	m_anmScreen->m_currentFrame = m_anmScreen->m_lastFrame;
-	m_anmScreen->start();
+	mAnmScreen->mSpeed        = -1.0f;
+	mAnmScreen->mCurrentFrame = mAnmScreen->mLastFrame;
+	mAnmScreen->start();
 }
 
 /*
@@ -273,12 +273,12 @@ void AnimText_Screen::close()
 void AnimText_Screen::blink(f32 factor, f32 timer)
 {
 	if (factor > 0.0f) {
-		m_isBlinking = true;
+		mIsBlinking = true;
 	}
-	m_blinkFactor = factor;
-	m_blinkTimer  = timer;
-	f32 calc      = pikmin2_sinf((m_blinkTimer * TAU) / m_blinkFactor);
-	_64           = (calc + 1.0f) / 2;
+	mBlinkFactor = factor;
+	mBlinkTimer  = timer;
+	f32 calc     = pikmin2_sinf((mBlinkTimer * TAU) / mBlinkFactor);
+	_64          = (calc + 1.0f) / 2;
 }
 } // namespace Screen
 } // namespace og

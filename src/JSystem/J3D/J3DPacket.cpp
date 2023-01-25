@@ -252,8 +252,8 @@ J3DDrawPacket::~J3DDrawPacket() { }
  */
 J3DErrType J3DDrawPacket::newDisplayList(u32 p1)
 {
-	m_displayList = new J3DDisplayListObj();
-	return (m_displayList == nullptr) ? JET_OutOfMemory : m_displayList->newDisplayList(p1);
+	mDisplayList = new J3DDisplayListObj();
+	return (mDisplayList == nullptr) ? JET_OutOfMemory : mDisplayList->newDisplayList(p1);
 }
 
 /*
@@ -264,8 +264,8 @@ J3DErrType J3DDrawPacket::newDisplayList(u32 p1)
  */
 J3DErrType J3DDrawPacket::newSingleDisplayList(u32 p1)
 {
-	m_displayList = new J3DDisplayListObj();
-	return (m_displayList == nullptr) ? JET_OutOfMemory : m_displayList->newSingleDisplayList(p1);
+	mDisplayList = new J3DDisplayListObj();
+	return (mDisplayList == nullptr) ? JET_OutOfMemory : mDisplayList->newSingleDisplayList(p1);
 }
 
 /*
@@ -274,7 +274,7 @@ J3DErrType J3DDrawPacket::newSingleDisplayList(u32 p1)
  * Size:	00002C
  * draw__13J3DDrawPacketFv
  */
-void J3DDrawPacket::draw() { m_displayList->callDL(); }
+void J3DDrawPacket::draw() { mDisplayList->callDL(); }
 
 /*
  * --INFO--
@@ -320,14 +320,14 @@ void J3DMatPacket::addShapePacket(J3DShapePacket* shapePacket)
  * Address:	8005FE14
  * Size:	000064
  */
-void J3DMatPacket::beginDiff() { _28->m_displayList->beginDL(); }
+void J3DMatPacket::beginDiff() { _28->mDisplayList->beginDL(); }
 
 /*
  * --INFO--
  * Address:	8005FE78
  * Size:	000060
  */
-u32 J3DMatPacket::endDiff() { return _28->m_displayList->endDL(); }
+u32 J3DMatPacket::endDiff() { return _28->mDisplayList->endDL(); }
 
 /*
  * --INFO--
@@ -346,17 +346,17 @@ bool J3DMatPacket::isSame(J3DMatPacket* other) const { return !(_34 != other->_3
 void J3DMatPacket::draw()
 {
 	_30->load();
-	m_displayList->callDL();
+	mDisplayList->callDL();
 	J3DShapePacket* packet = _2C;
 	J3DShape* shape        = packet->_28;
 	shape->loadPreDrawSetting();
 	for (; packet != nullptr; packet = static_cast<J3DShapePacket*>(packet->_04)) {
-		J3DDisplayListObj* dl = packet->m_displayList;
+		J3DDisplayListObj* dl = packet->mDisplayList;
 		if (dl != nullptr) {
 			dl->callDL();
 		}
-		// if (packet->m_displayList != nullptr) {
-		// 	packet->m_displayList->callDL();
+		// if (packet->mDisplayList != nullptr) {
+		// 	packet->mDisplayList->callDL();
 		// }
 		packet->drawFast();
 	}
@@ -733,7 +733,7 @@ J3DErrType J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag flag)
 {
 	switch (flag) {
 	case TexDiff_0: {
-		u32 texGenNum = _28->_04->m_texGenBlock->getTexGenNum();
+		u32 texGenNum = _28->_04->mTexGenBlock->getTexGenNum();
 		_24           = new J3DShapePacket_0x24(texGenNum);
 		if (_24 == nullptr) {
 			return JET_OutOfMemory;

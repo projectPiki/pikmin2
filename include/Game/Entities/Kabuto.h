@@ -69,15 +69,15 @@ struct Obj : public EnemyBase {
 
 	// _00		= VTBL
 	// _00-_2BC = EnemyBase
-	FSM* m_kabutoFSM;                    // _2BC
-	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2C0
-	f32 _2C8;                            // _2C8
-	int _2CC;                            // _2CC
-	Vector3f m_targetPosition;           // _2D0
-	f32 _2DC;                            // _2DC
-	u8 _2E0;                             // _2E0, unknown
-	bool m_isUnderground;                // _2E1
-	                                     // _2E4 = PelletView
+	FSM* mKabutoFSM;                    // _2BC
+	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2C0
+	f32 _2C8;                           // _2C8
+	int _2CC;                           // _2CC
+	Vector3f mTargetPosition;           // _2D0
+	f32 _2DC;                           // _2DC
+	u8 _2E0;                            // _2E0, unknown
+	bool mIsUnderground;                // _2E1
+	                                    // _2E4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -114,21 +114,21 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		((Parameters*)this)->read(stream);
-		m_general.read(stream);
-		m_kabutoParms.read(stream);
+		mGeneral.read(stream);
+		mKabutoParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ParmParms m_kabutoParms; // _7F8
+	ParmParms mKabutoParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -285,13 +285,13 @@ struct Mgr : public Kabuto::Mgr {
 	virtual void loadTexData();         // _D0
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
-		return m_changeTexture;
+		return mChangeTexture;
 	}
 
 	// _00		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* m_changeTexture; // _44
-	Obj* m_obj;               // _48, array of Objs
+	ResTIMG* mChangeTexture; // _44
+	Obj* mObj;               // _48, array of Objs
 };
 } // namespace GreenKabuto
 
@@ -325,13 +325,13 @@ struct Mgr : public Kabuto::Mgr {
 	virtual void loadTexData();         // _D0
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
-		return m_changeTexture;
+		return mChangeTexture;
 	}
 
 	// _00		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* m_changeTexture; // _44
-	Obj* m_obj;               // _48, array of Objs
+	ResTIMG* mChangeTexture; // _44
+	Obj* mObj;               // _48, array of Objs
 };
 } // namespace RedKabuto
 
@@ -358,8 +358,8 @@ struct Obj : public Kabuto::Obj {
 
 	// _00		= VTBL
 	// _00-_2E4 = Kabuto::Obj
-	efx::TKkabutoRot* m_efxRot;   // _2E4
-	efx::TKkabutoWait* m_efxWait; // _2E8
+	efx::TKkabutoRot* mEfxRot;   // _2E4
+	efx::TKkabutoWait* mEfxWait; // _2E8
 };
 
 struct Mgr : public Kabuto::Mgr {
@@ -376,13 +376,13 @@ struct Mgr : public Kabuto::Mgr {
 	virtual void loadTexData();         // _D0
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
-		return m_changeTexture;
+		return mChangeTexture;
 	}
 
 	// _00		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* m_changeTexture; // _44
-	Obj* m_obj;               // _48, array of Objs
+	ResTIMG* mChangeTexture; // _44
+	Obj* mObj;               // _48, array of Objs
 };
 } // namespace FixKabuto
 

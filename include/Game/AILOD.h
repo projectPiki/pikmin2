@@ -17,16 +17,16 @@ namespace Game {
 struct AILODParm {
 	AILODParm();
 
-	f32 m_far;         // _00
-	f32 m_close;       // _04
-	bool m_isCylinder; // _08
+	f32 mFar;         // _00
+	f32 mClose;       // _04
+	bool mIsCylinder; // _08
 };
 
 struct AILOD {
 	AILOD();
 
-	u8 m_flags;   // _00
-	s8 m_sndVpId; // _01, sound viewport ID
+	u8 mFlags;   // _00
+	s8 mSndVpId; // _01, sound viewport ID
 
 	static bool drawInfo;
 };

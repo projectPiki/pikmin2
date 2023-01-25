@@ -10,14 +10,14 @@
 namespace Game {
 namespace Cave {
 struct EditMapUnit {
-	f32 m_chanceOfUse; // _00
-	u32 _04;           // _04
-	u32 _08;           // _08
-	u32 _0C;           // _0C
-	u32 _10;           // _10
-	u32 _14;           // _14
-	u32 _18;           // _18
-	int _1C;           // _1C
+	f32 mChanceOfUse; // _00
+	u32 _04;          // _04
+	u32 _08;          // _08
+	u32 _0C;          // _0C
+	u32 _10;          // _10
+	u32 _14;          // _14
+	u32 _18;          // _18
+	int _1C;          // _1C
 };
 
 struct EnemyNode;
@@ -43,27 +43,27 @@ struct MapUnitGenerator {
 	void createItemList();
 	void createCaveLevel();
 
-	inline MapNode* getPlacedNodes() { return m_placedMapNodes; }
+	inline MapNode* getPlacedNodes() { return mPlacedMapNodes; }
 
-	inline MapNode* getStartNode() { return m_mapNode->getChild(); }
+	inline MapNode* getStartNode() { return mMapNode->getChild(); }
 
-	inline MapNode* getMapNodeItem(int i) { return &m_mapNodeArr[i]; }
+	inline MapNode* getMapNodeItem(int i) { return &mMapNodeArr[i]; }
 
-	bool m_isFinalFloor;        // _00
-	bool m_hasEscapeFountain;   // _01
-	bool m_isVersusMode;        // _02
-	u32 m_randItemType;         // _04
-	FloorInfo* m_floorInfo;     // _08
-	MapNode* m_mapNode;         // _0C
-	MapNode* m_mapNodeArr;      // _10
-	EnemyNode* m_enemyNodeA;    // _14
-	EnemyNode* m_enemyNodeB;    // _18
-	EnemyNode* m_enemyNodeC;    // _1C
-	GateNode* m_gateNode;       // _20
-	ItemNode* m_itemNode;       // _24
-	MapNode* m_placedMapNodes;  // _28
-	MapNode* m_visitedMapNodes; // _2C
-	EditMapUnit* m_editMapUnit; // _30
+	bool mIsFinalFloor;        // _00
+	bool mHasEscapeFountain;   // _01
+	bool mIsVersusMode;        // _02
+	u32 mRandItemType;         // _04
+	FloorInfo* mFloorInfo;     // _08
+	MapNode* mMapNode;         // _0C
+	MapNode* mMapNodeArr;      // _10
+	EnemyNode* mEnemyNodeA;    // _14
+	EnemyNode* mEnemyNodeB;    // _18
+	EnemyNode* mEnemyNodeC;    // _1C
+	GateNode* mGateNode;       // _20
+	ItemNode* mItemNode;       // _24
+	MapNode* mPlacedMapNodes;  // _28
+	MapNode* mVisitedMapNodes; // _2C
+	EditMapUnit* mEditMapUnit; // _30
 };
 
 /**
@@ -78,7 +78,7 @@ struct RandMapChecker {
 	bool isPartsOnDoor(MapNode*);
 	bool isInnerBox(int, int, int, int, int, int, int, int);
 
-	MapNode* m_mapNode; // _00
+	MapNode* mMapNode; // _00
 };
 
 /**
@@ -127,18 +127,18 @@ struct RandMapUnit {
 	void setUnitKindOrder(MapNode*, int*);
 	void setRandomDoorIndex(int*, int);
 
-	int m_doorCount;                      // _00
-	int m_roomCount;                      // _04
-	f32 m_routeRatio;                     // _08
-	bool m_mapHasDiameter36;              // _0C
-	bool m_needsLoopMapNodeCheck;         // _0D
-	int m_capCandidateCount;              // _10
-	f32 m_capMax;                         // _14, between 0.0 and 1.0
-	MapNode** m_capCandidateNodes;        // _18
-	int* m_capCandidateDoorIndices;       // _1C
-	MapUnitGenerator* m_mapUnitGenerator; // _20
-	int* _24;                             // _24
-	RandMapChecker* m_checker;            // _28
+	int mDoorCount;                      // _00
+	int mRoomCount;                      // _04
+	f32 mRouteRatio;                     // _08
+	bool mMapHasDiameter36;              // _0C
+	bool mNeedsLoopMapNodeCheck;         // _0D
+	int mCapCandidateCount;              // _10
+	f32 mCapMax;                         // _14, between 0.0 and 1.0
+	MapNode** mCapCandidateNodes;        // _18
+	int* mCapCandidateDoorIndices;       // _1C
+	MapUnitGenerator* mMapUnitGenerator; // _20
+	int* _24;                            // _24
+	RandMapChecker* mChecker;            // _28
 };
 } // namespace Cave
 } // namespace Game

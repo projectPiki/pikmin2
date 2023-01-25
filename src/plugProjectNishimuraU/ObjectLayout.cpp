@@ -11,15 +11,15 @@ namespace Cave {
  */
 ObjectLayout::ObjectLayout(MapNode* node)
 {
-	m_nodeList = new ObjectLayoutNode*[8];
+	mNodeList = new ObjectLayoutNode*[8];
 	for (int i = 0; i < 8; i++) {
-		m_nodeList[i] = nullptr;
+		mNodeList[i] = nullptr;
 	}
 
 	if (node) {
-		m_nodeList[0] = node->m_enemyNode;
-		m_nodeList[1] = node->m_itemNode;
-		m_nodeList[2] = node->m_gateNode;
+		mNodeList[0] = node->mEnemyNode;
+		mNodeList[1] = node->mItemNode;
+		mNodeList[2] = node->mGateNode;
 	}
 }
 
@@ -28,7 +28,7 @@ ObjectLayout::ObjectLayout(MapNode* node)
  * Address:	802508F0
  * Size:	000010
  */
-void ObjectLayout::setNode(int idx, ObjectLayoutNode* layoutNode) { m_nodeList[idx] = layoutNode; }
+void ObjectLayout::setNode(int idx, ObjectLayoutNode* layoutNode) { mNodeList[idx] = layoutNode; }
 
 /*
  * --INFO--
@@ -37,7 +37,7 @@ void ObjectLayout::setNode(int idx, ObjectLayoutNode* layoutNode) { m_nodeList[i
  */
 s32 ObjectLayout::getCount(int idx)
 {
-	ObjectLayoutNode* node = m_nodeList[idx];
+	ObjectLayoutNode* node = mNodeList[idx];
 	return node ? node->getChildCount() : 0;
 }
 
@@ -48,7 +48,7 @@ s32 ObjectLayout::getCount(int idx)
  */
 CNode* ObjectLayout::getNode(int idx, int at)
 {
-	ObjectLayoutNode* node = m_nodeList[idx];
+	ObjectLayoutNode* node = mNodeList[idx];
 	return node ? node->getChildAt(at) : nullptr;
 }
 } // namespace Cave

@@ -19,9 +19,9 @@ struct TSoundEvent {
 	void finish();
 	u32 update();
 
-	u8 m_state;     // _00
-	s32 m_duration; // _04
-	u32 m_timer;    // _08
+	u8 mState;     // _00
+	s32 mDuration; // _04
+	u32 mTimer;    // _08
 };
 } // namespace Game
 

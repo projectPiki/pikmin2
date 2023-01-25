@@ -6,7 +6,7 @@
 
 struct JASInstEffect {
 	JASInstEffect()
-	    : m_target(0)
+	    : mTarget(0)
 	{
 	}
 
@@ -15,7 +15,7 @@ struct JASInstEffect {
 
 	void setTarget(int);
 
-	u8 m_target; // _04
+	u8 mTarget; // _04
 };
 
 /**
@@ -67,8 +67,8 @@ struct JASInstParam {
 	inline JASInstParam()
 	    : _00(0)
 	    , _04(0)
-	    , m_oscData(nullptr)
-	    , m_oscCount(0)
+	    , mOscData(nullptr)
+	    , mOscCount(0)
 	    , _10(1.0f)
 	    , _14(1.0f)
 	    , _18(0.5f)
@@ -79,18 +79,18 @@ struct JASInstParam {
 	{
 	}
 
-	u8 _00;                          // _00
-	u32 _04;                         // _04
-	JASOscillator::Data** m_oscData; // _08
-	int m_oscCount;                  // _0C - possibly oscillator count?
-	f32 _10;                         // _10
-	f32 _14;                         // _14
-	f32 _18;                         // _18
-	f32 _1C;                         // _1C
-	f32 _20;                         // _20
-	u8 _24;                          // _24
-	u8 _25;                          // _25
-	short _26;                       // _26
+	u8 _00;                         // _00
+	u32 _04;                        // _04
+	JASOscillator::Data** mOscData; // _08
+	int mOscCount;                  // _0C - possibly oscillator count?
+	f32 _10;                        // _10
+	f32 _14;                        // _14
+	f32 _18;                        // _18
+	f32 _1C;                        // _1C
+	f32 _20;                        // _20
+	u8 _24;                         // _24
+	u8 _25;                         // _25
+	short _26;                      // _26
 };
 
 /**
@@ -126,9 +126,9 @@ struct JASBasicInst : public JASInst {
 		TVeloRegion* getVeloRegion(int);
 		TVeloRegion* getVeloRegion(int) const;
 
-		int _00;                    // _00
-		u32 m_veloRegionCount;      // _04 - velo region count?
-		TVeloRegion* m_veloRegions; // _08 - velo region pointer?
+		int _00;                   // _00
+		u32 mVeloRegionCount;      // _04 - velo region count?
+		TVeloRegion* mVeloRegions; // _08 - velo region pointer?
 	};
 
 	JASBasicInst();
@@ -156,14 +156,14 @@ struct JASBasicInst : public JASInst {
 	TKeymap* getKeyRegion(int) const;
 
 	// _00 = VTABLE
-	f32 _04;                         // _04
-	f32 _08;                         // _08
-	JASInstEffect** m_effects;       // _0C
-	u32 m_effectCount;               // _10
-	JASOscillator::Data** m_oscData; // _14
-	u32 m_oscCount;                  // _18
-	u32 m_keymapCount;               // _1C
-	TKeymap* m_keymap;               // _20
+	f32 _04;                        // _04
+	f32 _08;                        // _08
+	JASInstEffect** mEffects;       // _0C
+	u32 mEffectCount;               // _10
+	JASOscillator::Data** mOscData; // _14
+	u32 mOscCount;                  // _18
+	u32 mKeymapCount;               // _1C
+	TKeymap* mKeymap;               // _20
 };
 
 #endif

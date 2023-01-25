@@ -18,27 +18,27 @@ static const char fakePikiName[]       = "fakePiki";
  */
 FakePiki::FakePiki()
 {
-	m_doAnimCallback = nullptr;
+	mDoAnimCallback = nullptr;
 	if (shadowMgr) {
 		shadowMgr->createShadow(this);
 	}
 
-	m_model                   = nullptr;
-	m_boundingSphere.m_radius = 8.5f;
-	m_faceDir                 = 0.0f;
-	m_position3               = Vector3f(0.0f);
-	m_position2               = Vector3f(0.0f);
-	m_velocity                = Vector3f(0.0f);
-	_1F0                      = Vector3f(0.0f);
-	m_boundAnimIdx            = IPikiAnims::NULLANIM;
-	m_animSpeed               = 30.0f;
-	m_collTree                = new CollTree;
-	m_waterBox                = nullptr;
-	m_collisionBuffer.alloc(this, 8);
-	m_lookAtPosition       = nullptr;
-	m_lookAtTargetCreature = nullptr;
-	m_neckPhi              = 0.0f;
-	m_neckTheta            = 0.0f;
+	mModel                  = nullptr;
+	mBoundingSphere.mRadius = 8.5f;
+	mFaceDir                = 0.0f;
+	mPosition3              = Vector3f(0.0f);
+	mPosition2              = Vector3f(0.0f);
+	mVelocity               = Vector3f(0.0f);
+	_1F0                    = Vector3f(0.0f);
+	mBoundAnimIdx           = IPikiAnims::NULLANIM;
+	mAnimSpeed              = 30.0f;
+	mCollTree               = new CollTree;
+	mWaterBox               = nullptr;
+	mCollisionBuffer.alloc(this, 8);
+	mLookAtPosition       = nullptr;
+	mLookAtTargetCreature = nullptr;
+	mNeckPhi              = 0.0f;
+	mNeckTheta            = 0.0f;
 }
 
 /*
@@ -48,24 +48,24 @@ FakePiki::FakePiki()
  */
 void FakePiki::initFakePiki()
 {
-	m_doAnimCallback = nullptr;
-	m_waterBox       = nullptr;
-	m_faceDir        = 0.0f;
-	m_position3      = Vector3f(0.0f);
-	m_velocity       = Vector3f(0.0f);
-	_1F0             = Vector3f(0.0f);
-	m_position2      = Vector3f(0.0f);
-	_248             = nullptr;
+	mDoAnimCallback = nullptr;
+	mWaterBox       = nullptr;
+	mFaceDir        = 0.0f;
+	mPosition3      = Vector3f(0.0f);
+	mVelocity       = Vector3f(0.0f);
+	_1F0            = Vector3f(0.0f);
+	mPosition2      = Vector3f(0.0f);
+	_248            = nullptr;
 
 	if (shadowMgr) {
 		shadowMgr->addShadow(this);
 	}
 
-	m_fakePikiFlags.clear();
+	mFakePikiFlags.clear();
 	initCaptureStomach();
-	_180        = 0.0f;
-	m_roomIndex = -1;
-	_184        = 0;
+	_180       = 0.0f;
+	mRoomIndex = -1;
+	_184       = 0;
 }
 
 /*
@@ -82,11 +82,11 @@ void FakePiki::killFakePiki() { shadowMgr->delShadow(this); }
  */
 void FakePiki::initAnimator()
 {
-	m_animator.setAnimMgr(NaviMgr::animMgr);
+	mAnimator.setAnimMgr(NaviMgr::animMgr);
 	startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 
-	P2ASSERTLINE(458, m_animator.m_selfAnimator.assertValid(m_model));
-	P2ASSERTLINE(459, m_animator.m_boundAnimator.assertValid(m_model));
+	P2ASSERTLINE(458, mAnimator.mSelfAnimator.assertValid(mModel));
+	P2ASSERTLINE(459, mAnimator.mBoundAnimator.assertValid(mModel));
 }
 
 /*
@@ -99,8 +99,8 @@ void FakePiki::initAnimator()
 bool FakePiki::assertMotion(int animIdx)
 {
 	int currIdx;
-	if (m_animator.m_selfAnimator.m_animInfo) {
-		currIdx = m_animator.m_selfAnimator.m_animInfo->m_id;
+	if (mAnimator.mSelfAnimator.mAnimInfo) {
+		currIdx = mAnimator.mSelfAnimator.mAnimInfo->mId;
 	} else {
 		currIdx = IPikiAnims::NULLANIM;
 	}
@@ -116,16 +116,16 @@ bool FakePiki::assertMotion(int animIdx)
 void FakePiki::enableMotionBlend()
 {
 	int currIdx;
-	if (m_animator.m_boundAnimator.m_animInfo) {
-		currIdx = m_animator.m_boundAnimator.m_animInfo->m_id;
+	if (mAnimator.mBoundAnimator.mAnimInfo) {
+		currIdx = mAnimator.mBoundAnimator.mAnimInfo->mId;
 	} else {
 		currIdx = IPikiAnims::NULLANIM;
 	}
 
-	m_boundAnimIdx = currIdx;
+	mBoundAnimIdx = currIdx;
 
-	m_animator.m_boundAnimator.startAnim(IPikiAnims::NIGERU, this);
-	m_animator.m_boundAnimator.setCurrFrame(10.0f);
+	mAnimator.mBoundAnimator.startAnim(IPikiAnims::NIGERU, this);
+	mAnimator.mBoundAnimator.setCurrFrame(10.0f);
 }
 
 /*
@@ -137,13 +137,13 @@ void FakePiki::enableMotionBlend()
 void FakePiki::startMotion(int selfAnimIdx, int boundAnimIdx, SysShape::MotionListener* selfListener,
                            SysShape::MotionListener* boundListener)
 {
-	m_animator.m_selfAnimator.startAnim(selfAnimIdx, selfListener);
-	m_animator.m_boundAnimator.startAnim(boundAnimIdx, boundListener);
+	mAnimator.mSelfAnimator.startAnim(selfAnimIdx, selfListener);
+	mAnimator.mBoundAnimator.startAnim(boundAnimIdx, boundListener);
 
-	P2ASSERTLINE(481, m_animator.m_selfAnimator.assertValid(m_model));
-	P2ASSERTLINE(482, m_animator.m_boundAnimator.assertValid(m_model));
+	P2ASSERTLINE(481, mAnimator.mSelfAnimator.assertValid(mModel));
+	P2ASSERTLINE(482, mAnimator.mBoundAnimator.assertValid(mModel));
 
-	m_boundAnimIdx = IPikiAnims::NULLANIM;
+	mBoundAnimIdx = IPikiAnims::NULLANIM;
 
 	switch (selfAnimIdx) {
 	case IPikiAnims::IRAIRA:
@@ -166,8 +166,8 @@ void FakePiki::startMotion(int selfAnimIdx, int boundAnimIdx, SysShape::MotionLi
  */
 void FakePiki::finishMotion()
 {
-	m_animator.m_selfAnimator.m_flags |= 0x2;
-	m_animator.m_boundAnimator.m_flags |= 0x2;
+	mAnimator.mSelfAnimator.mFlags |= 0x2;
+	mAnimator.mBoundAnimator.mFlags |= 0x2;
 }
 
 /*
@@ -175,21 +175,21 @@ void FakePiki::finishMotion()
  * Address:	8013D0DC
  * Size:	000008
  */
-void FakePiki::movieSetFaceDir(f32 faceDir) { m_faceDir = faceDir; }
+void FakePiki::movieSetFaceDir(f32 faceDir) { mFaceDir = faceDir; }
 
 /*
  * --INFO--
  * Address:	8013D0E4
  * Size:	000008
  */
-void FakePiki::setDoAnimCallback(IDelegate* callback) { m_doAnimCallback = callback; }
+void FakePiki::setDoAnimCallback(IDelegate* callback) { mDoAnimCallback = callback; }
 
 /*
  * --INFO--
  * Address:	8013D0EC
  * Size:	00000C
  */
-void FakePiki::clearDoAnimCallback() { m_doAnimCallback = nullptr; }
+void FakePiki::clearDoAnimCallback() { mDoAnimCallback = nullptr; }
 
 /*
  * --INFO--
@@ -675,8 +675,8 @@ lbl_8013D6D8:
 void FakePiki::startLookCreature(Creature* creature)
 {
 	int currAnimIdx;
-	if (m_animator.m_selfAnimator.m_animInfo) {
-		currAnimIdx = m_animator.m_selfAnimator.m_animInfo->m_id;
+	if (mAnimator.mSelfAnimator.mAnimInfo) {
+		currAnimIdx = mAnimator.mSelfAnimator.mAnimInfo->mId;
 	} else {
 		currAnimIdx = IPikiAnims::NULLANIM;
 	}
@@ -692,17 +692,17 @@ void FakePiki::startLookCreature(Creature* creature)
 	case IPikiAnims::WALK:
 	case IPikiAnims::WAIT:
 	case IPikiAnims::SUWARU:
-		if (creature->m_collTree) {
-			CollPart* randPart = creature->m_collTree->getRandomCollPart();
+		if (creature->mCollTree) {
+			CollPart* randPart = creature->mCollTree->getRandomCollPart();
 			if (randPart) {
-				m_lookAtTargetCreature = creature;
-				m_lookAtPosition       = &randPart->m_position;
-				_1A4                   = 0;
+				mLookAtTargetCreature = creature;
+				mLookAtPosition       = &randPart->mPosition;
+				_1A4                  = 0;
 				return;
 			}
 		}
 
-		m_lookAtTargetCreature = nullptr;
+		mLookAtTargetCreature = nullptr;
 		finishLook();
 	}
 }
@@ -715,8 +715,8 @@ void FakePiki::startLookCreature(Creature* creature)
 void FakePiki::updateLookCreature()
 {
 	// one should not observe the dead.
-	if (m_lookAtTargetCreature && !m_lookAtTargetCreature->isAlive()) {
-		m_lookAtTargetCreature = nullptr;
+	if (mLookAtTargetCreature && !mLookAtTargetCreature->isAlive()) {
+		mLookAtTargetCreature = nullptr;
 		finishLook();
 	}
 
@@ -737,9 +737,9 @@ void FakePiki::do_updateLookCreature() { }
  */
 void FakePiki::finishLook()
 {
-	m_lookAtPosition       = nullptr;
-	_1A4                   = 10;
-	m_lookAtTargetCreature = nullptr;
+	mLookAtPosition       = nullptr;
+	_1A4                  = 10;
+	mLookAtTargetCreature = nullptr;
 }
 
 /*
@@ -1028,9 +1028,9 @@ lbl_8013DBA8:
  */
 void FakePiki::turnTo(Vector3f& targetPos)
 {
-	Vector3f diff = targetPos - m_position3;
+	Vector3f diff = targetPos - mPosition3;
 	if (diff.z != 0.0f) {
-		m_faceDir = roundAng(JMath::atanTable_.atan2_(diff.x, diff.z));
+		mFaceDir = roundAng(JMath::atanTable_.atan2_(diff.x, diff.z));
 	}
 }
 
@@ -1856,7 +1856,7 @@ lbl_8013E714:
  * Address:	8013E790
  * Size:	000014
  */
-bool FakePiki::inWater() { return (m_waterBox != nullptr); }
+bool FakePiki::inWater() { return (mWaterBox != nullptr); }
 
 /*
  * --INFO--
@@ -1888,18 +1888,18 @@ void FakePiki::doEntry()
 {
 	doColorChange();
 
-	if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
-		m_model->show();
+	if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+		mModel->show();
 
 	} else {
 		if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
 			return;
 		}
 
-		m_model->hide();
+		mModel->hide();
 	}
 
-	m_model->m_j3dModel->entry();
+	mModel->mJ3dModel->entry();
 }
 
 /*
@@ -2246,8 +2246,8 @@ lbl_8013ECEC:
  */
 void FakePiki::getBoundingSphere(Sys::Sphere& sphere)
 {
-	sphere.m_position = m_boundingSphere.m_position;
-	sphere.m_radius   = m_boundingSphere.m_radius;
+	sphere.mPosition = mBoundingSphere.mPosition;
+	sphere.mRadius   = mBoundingSphere.mRadius;
 }
 
 /*
@@ -2265,8 +2265,8 @@ bool FakePiki::useMoveVelocity() { return !isFPFlag(FPFLAGS_MoveVelocityDisabled
 void FakePiki::updateTrMatrix()
 {
 	if (useUpdateTrMatrix() && !isStickTo()) {
-		Vector3f rotation(0.0f, m_faceDir, 0.0f);
-		m_objMatrix.makeSRT(m_scale, rotation, m_position3);
+		Vector3f rotation(0.0f, mFaceDir, 0.0f);
+		mObjMatrix.makeSRT(mScale, rotation, mPosition3);
 	}
 }
 
@@ -2676,28 +2676,28 @@ lbl_8013F31C:
  * Address:	8013F33C
  * Size:	00001C
  */
-Vector3f BaseItem::getPosition() { return m_position; }
+Vector3f BaseItem::getPosition() { return mPosition; }
 
 /*
  * --INFO--
  * Address:	8013F358
  * Size:	00000C
  */
-void FakePiki::initCaptureStomach() { m_targetCollObj = nullptr; }
+void FakePiki::initCaptureStomach() { mTargetCollObj = nullptr; }
 
 /*
  * --INFO--
  * Address:	8013F364
  * Size:	000008
  */
-void FakePiki::startCaptureStomach(CollPart* collPart) { m_targetCollObj = collPart; }
+void FakePiki::startCaptureStomach(CollPart* collPart) { mTargetCollObj = collPart; }
 
 /*
  * --INFO--
  * Address:	8013F36C
  * Size:	00000C
  */
-void FakePiki::endCaptureStomach() { m_targetCollObj = nullptr; }
+void FakePiki::endCaptureStomach() { mTargetCollObj = nullptr; }
 
 /*
  * --INFO--
@@ -2948,7 +2948,7 @@ void FakePiki::outWaterCallback() { }
  */
 void FakePiki::onSetPosition(Vector3f& position)
 {
-	m_position3 = position;
+	mPosition3 = position;
 	onSetPosition();
 }
 
@@ -2957,35 +2957,35 @@ void FakePiki::onSetPosition(Vector3f& position)
  * Address:	8013F634
  * Size:	000008
  */
-f32 FakePiki::getFaceDir() { return m_faceDir; }
+f32 FakePiki::getFaceDir() { return mFaceDir; }
 
 /*
  * --INFO--
  * Address:	8013F63C
  * Size:	00001C
  */
-Vector3f FakePiki::getVelocity() { return m_position2; }
+Vector3f FakePiki::getVelocity() { return mPosition2; }
 
 /*
  * --INFO--
  * Address:	8013F658
  * Size:	00001C
  */
-void FakePiki::setVelocity(Vector3f& velocity) { m_position2 = velocity; }
+void FakePiki::setVelocity(Vector3f& velocity) { mPosition2 = velocity; }
 
 /*
  * --INFO--
  * Address:	8013F674
  * Size:	00001C
  */
-void FakePiki::getVelocityAt(Vector3f& vec, Vector3f& velocity) { velocity = m_position2; }
+void FakePiki::getVelocityAt(Vector3f& vec, Vector3f& velocity) { velocity = mPosition2; }
 
 /*
  * --INFO--
  * Address:	8013F690
  * Size:	000008
  */
-Vector3f* FakePiki::getSound_PosPtr() { return &m_position3; }
+Vector3f* FakePiki::getSound_PosPtr() { return &mPosition3; }
 
 /*
  * --INFO--

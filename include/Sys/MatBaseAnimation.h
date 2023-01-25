@@ -22,7 +22,7 @@ struct MatBaseAnimation {
 	f32 getFrameMax();
 
 	// _00 = VTBL
-	J3DModelData* m_modelData; // _04
+	J3DModelData* mModelData; // _04
 };
 
 /**
@@ -36,9 +36,9 @@ struct MatTevRegAnimation : public MatBaseAnimation {
 	virtual void set();                   // _10
 	virtual bool remove();                // _14
 
-	J3DAnmTevRegKey* m_anmTevRegKey; // _08
-	J3DTevColorAnm* m_tevColorAnm;   // _10
-	J3DTevKColorAnm* m_tevKColorAnm; // _14
+	J3DAnmTevRegKey* mAnmTevRegKey; // _08
+	J3DTevColorAnm* mTevColorAnm;   // _10
+	J3DTevKColorAnm* mTevKColorAnm; // _14
 };
 
 /**

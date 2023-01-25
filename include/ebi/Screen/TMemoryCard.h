@@ -87,38 +87,38 @@ struct TMemoryCard {
 	inline void doSetSelect(f32 p1, bool check)
 	{
 		// needs tweaking
-		m_blinkFont[0].setPaneColors();
-		m_blinkFont[1].setPaneColors();
+		mBlinkFont[0].setPaneColors();
+		mBlinkFont[1].setPaneColors();
 
-		m_cursor1.m_timer    = p1;
-		m_cursor1.m_selected = check;
-		m_cursor2.m_timer    = p1;
-		m_cursor2.m_selected = check;
+		mCursor1.mTimer    = p1;
+		mCursor1.mSelected = check;
+		mCursor2.mTimer    = p1;
+		mCursor2.mSelected = check;
 	}
 
-	int m_state;                               // _00, unknown
-	Controller* m_controller;                  // _04
-	uint m_inputDelay;                         // _08
-	uint _0C;                                  // _0C
-	u32 m_msgAlpha;                            // _10
-	int m_alphaMod;                            // _14
-	u8 m_currSel;                              // _18
-	u8 m_canExit;                              // _19
-	P2DScreen::Mgr_tuning* m_screenMain;       // _1C
-	J2DTextBox* m_paneMsg1;                    // _20
-	J2DTextBox* m_paneMsg2;                    // _24
-	J2DTextBox* m_paneMsg3;                    // _28
-	J2DTextBox* m_paneMsg4;                    // _2C
-	J2DPane* m_pane_il00;                      // _30
-	J2DPane* m_pane_il01;                      // _34
-	J2DPane* m_pane_ir00;                      // _38
-	J2DPane* m_pane_ir01;                      // _3C
-	E2DCallBack_BlinkFontColor m_blinkFont[2]; // _40
-	E2DCallBack_AnmBase m_anims[5];            // _D8
-	E2DCallBack_CalcAnimation m_calcAnim;      // _204
-	TYesNoCursor m_cursor1;                    // _224
-	TYesNoCursor m_cursor2;                    // _25C
-	bool m_isPlaySavingSE;                     // _294
+	int mState;                               // _00, unknown
+	Controller* mController;                  // _04
+	uint mInputDelay;                         // _08
+	uint _0C;                                 // _0C
+	u32 mMsgAlpha;                            // _10
+	int mAlphaMod;                            // _14
+	u8 mCurrSel;                              // _18
+	u8 mCanExit;                              // _19
+	P2DScreen::Mgr_tuning* mScreenMain;       // _1C
+	J2DTextBox* mPaneMsg1;                    // _20
+	J2DTextBox* mPaneMsg2;                    // _24
+	J2DTextBox* mPaneMsg3;                    // _28
+	J2DTextBox* mPaneMsg4;                    // _2C
+	J2DPane* mPane_il00;                      // _30
+	J2DPane* mPane_il01;                      // _34
+	J2DPane* mPane_ir00;                      // _38
+	J2DPane* mPane_ir01;                      // _3C
+	E2DCallBack_BlinkFontColor mBlinkFont[2]; // _40
+	E2DCallBack_AnmBase mAnims[5];            // _D8
+	E2DCallBack_CalcAnimation mCalcAnim;      // _204
+	TYesNoCursor mCursor1;                    // _224
+	TYesNoCursor mCursor2;                    // _25C
+	bool mIsPlaySavingSE;                     // _294
 };
 } // namespace Screen
 } // namespace ebi

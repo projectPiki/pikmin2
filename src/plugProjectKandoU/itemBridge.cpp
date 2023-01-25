@@ -968,27 +968,27 @@ void NormalState::cleanup(Item*) { }
  */
 void Item::onInit(Game::CreatureInitArg* settings)
 {
-	m_bridgeType = 0;
+	mBridgeType = 0;
 	if (settings) {
-		m_bridgeType = ((BridgeInitArg*)settings)->m_bridgeType;
+		mBridgeType = ((BridgeInitArg*)settings)->mBridgeType;
 	}
 
-	m_model = new SysShape::Model(mgr->getModelData(m_bridgeType), 0x20000, 2);
-	m_model->m_j3dModel->calc();
-	m_model->m_j3dModel->calcMaterial();
-	m_model->m_j3dModel->makeDL();
-	m_model->m_j3dModel->lock();
-	m_stateMachine->start(this, ITEM_BRIDGE_STATE_NORMAL, nullptr);
+	mModel = new SysShape::Model(mgr->getModelData(mBridgeType), 0x20000, 2);
+	mModel->mJ3dModel->calc();
+	mModel->mJ3dModel->calcMaterial();
+	mModel->mJ3dModel->makeDL();
+	mModel->mJ3dModel->lock();
+	mStateMachine->start(this, ITEM_BRIDGE_STATE_NORMAL, nullptr);
 	setAlive(true);
 
 	_1F4 = 0.0f;
 
-	BridgeInfo* info    = mgr->getBridgeInfo(m_bridgeType);
-	f32 stageLength     = mgr->m_parms->m_bridgeParms.m_p000.m_value;
-	m_stageCount        = info->m_stageCount;
-	m_stageLengthsArray = new float[m_stageCount];
-	for (int i = 0; i < m_stageCount; i++) {
-		m_stageLengthsArray[i] = stageLength;
+	BridgeInfo* info   = mgr->getBridgeInfo(mBridgeType);
+	f32 stageLength    = mgr->mParms->mBridgeParms.mP000.mValue;
+	mStageCount        = info->mStageCount;
+	mStageLengthsArray = new float[mStageCount];
+	for (int i = 0; i < mStageCount; i++) {
+		mStageLengthsArray[i] = stageLength;
 	}
 
 	_200 = nullptr;
@@ -1003,7 +1003,7 @@ void Item::onInit(Game::CreatureInitArg* settings)
  */
 void StateMachine<Game::ItemBridge::Item>::start(Game::ItemBridge::Item* item, int stateID, StateArg* arg)
 {
-	item->m_currentState = nullptr;
+	item->mCurrentState = nullptr;
 	transit(item, stateID, arg);
 }
 
@@ -1031,10 +1031,10 @@ void Item::update()
 
 	makeTrMatrix();
 	do_doAnimation();
-	m_soundObj->exec();
+	mSoundObj->exec();
 	updateCell();
 
-	if (m_cellLayerIndex < 0 || m_cellLayerIndex > 10) {
+	if (mCellLayerIndex < 0 || mCellLayerIndex > 10) {
 		getTypeName();
 		JUT_PANICLINE(245, "cellLayerindex overflow\n");
 	}

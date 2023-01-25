@@ -20,7 +20,7 @@ namespace Pom {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 }
 
@@ -58,13 +58,13 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	shadowMgr->killShadow(this);
 	setPomParms();
-	m_canTouchToClose = false;
-	m_canSwallowPiki  = false;
-	m_usedSlotCount   = 0;
-	m_swingTimer      = 0.0f;
-	m_queenColorTimer = 0.0f;
+	mCanTouchToClose = false;
+	mCanSwallowPiki  = false;
+	mUsedSlotCount   = 0;
+	mSwingTimer      = 0.0f;
+	mQueenColorTimer = 0.0f;
 
-	m_fsm->start(this, 0, nullptr);
+	mFsm->start(this, 0, nullptr);
 }
 
 /*
@@ -74,9 +74,9 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 void Obj::doUpdate()
 {
-	m_fsm->exec(this);
-	m_mouthSlots.update();
-	if (isEvent(0, EB_IsDamageAnimAllowed) && m_bounceTriangle) {
+	mFsm->exec(this);
+	mMouthSlots.update();
+	if (isEvent(0, EB_IsDamageAnimAllowed) && mBounceTriangle) {
 		if (isEvent(0, EB_IsHardConstraint)) {
 			enableEvent(0, EB_IsVulnerable);
 			disableEvent(0, EB_IsDamageAnimAllowed);
@@ -93,18 +93,18 @@ void Obj::doUpdate()
  */
 void Obj::changeMaterial()
 {
-	J3DModel* j3dModel      = m_model->m_j3dModel;
-	J3DModelData* modelData = j3dModel->m_modelData;
+	J3DModel* j3dModel      = mModel->mJ3dModel;
+	J3DModelData* modelData = j3dModel->mModelData;
 
-	u16 nameIdx           = j3dModel->m_modelData->m_materialTable._0C->getIndex("hanabira1_v");
-	J3DMaterial* material = modelData->m_materialTable.m_materials1[nameIdx];
-	material->m_tevBlock->setTevColor(0, m_rgbColor);
+	u16 nameIdx           = j3dModel->mModelData->mMaterialTable._0C->getIndex("hanabira1_v");
+	J3DMaterial* material = modelData->mMaterialTable.mMaterials1[nameIdx];
+	material->mTevBlock->setTevColor(0, mRgbColor);
 	j3dModel->calcMaterial();
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket& packet = j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket   = &j3dModel->m_matPackets[i];
-		modelData->m_materialTable.m_materials1[i]->diff(packet._2C->_34);
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket& packet = j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket    = &j3dModel->mMatPackets[i];
+		modelData->mMaterialTable.mMaterials1[i]->diff(packet._2C->_34);
 	}
 }
 
@@ -129,9 +129,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -141,12 +141,12 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.m_position.x                = m_position.x;
-	shadowParam.m_position.y                = m_position.y + 2.0f;
-	shadowParam.m_position.z                = m_position.z;
-	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	shadowParam.m_boundingSphere.m_radius   = 0.1f;
-	shadowParam.m_size                      = 0.1f;
+	shadowParam.mPosition.x               = mPosition.x;
+	shadowParam.mPosition.y               = mPosition.y + 2.0f;
+	shadowParam.mPosition.z               = mPosition.z;
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.mBoundingSphere.mRadius   = 0.1f;
+	shadowParam.mSize                     = 0.1f;
 }
 
 /*
@@ -157,13 +157,13 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (creature && creature->isPiki() && collpart) {
-		if (collpart->m_currentID == 'slot' && m_canSwallowPiki && m_usedSlotCount < m_totalSlotCount) {
-			MouthCollPart* slot = m_mouthSlots.getSlot(0);
+		if (collpart->mCurrentID == 'slot' && mCanSwallowPiki && mUsedSlotCount < mTotalSlotCount) {
+			MouthCollPart* slot = mMouthSlots.getSlot(0);
 			InteractSwallow swallow(this, 1.0f, slot, 0);
 			if (creature->stimulate(swallow)) {
-				m_usedSlotCount++;
+				mUsedSlotCount++;
 			}
-			m_swingTimer = 0.0f;
+			mSwingTimer = 0.0f;
 			createSwingSmokeEffect();
 			return true;
 		}
@@ -185,8 +185,8 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { 
  */
 void Obj::collisionCallback(CollEvent& collEvent)
 {
-	if (collEvent.m_collidingCreature) {
-		if (collEvent.m_collidingCreature->isPiki() || collEvent.m_collidingCreature->isNavi() || collEvent.m_collidingCreature->isTeki()) {
+	if (collEvent.mCollidingCreature) {
+		if (collEvent.mCollidingCreature->isPiki() || collEvent.mCollidingCreature->isNavi() || collEvent.mCollidingCreature->isTeki()) {
 			setCollEvent(collEvent);
 		}
 	}
@@ -199,8 +199,8 @@ void Obj::collisionCallback(CollEvent& collEvent)
  */
 void Obj::initMouthSlots()
 {
-	m_mouthSlots.alloc(1);
-	m_mouthSlots.setup(0, m_model, "jnt_center");
+	mMouthSlots.alloc(1);
+	mMouthSlots.setup(0, mModel, "jnt_center");
 }
 
 /*
@@ -210,29 +210,29 @@ void Obj::initMouthSlots()
  */
 void Obj::setPomColor(int pikiKind)
 {
-	m_pikiKind = (EPikiKind)pikiKind;
-	switch (m_pikiKind) {
+	mPikiKind = (EPikiKind)pikiKind;
+	switch (mPikiKind) {
 	case Blue:
-		m_rgbColor.r = m_rgbColor.g = 50;
-		m_rgbColor.b                = 255;
+		mRgbColor.r = mRgbColor.g = 50;
+		mRgbColor.b               = 255;
 		break;
 	case Red:
-		m_rgbColor.r = 255;
-		m_rgbColor.g = m_rgbColor.b = 20;
+		mRgbColor.r = 255;
+		mRgbColor.g = mRgbColor.b = 20;
 		break;
 	case Yellow:
-		m_rgbColor.r = m_rgbColor.g = 255;
-		m_rgbColor.b                = 20;
+		mRgbColor.r = mRgbColor.g = 255;
+		mRgbColor.b               = 20;
 		break;
 	case Purple:
-		m_rgbColor.r = 28;
-		m_rgbColor.g = 0;
-		m_rgbColor.b = 52;
+		mRgbColor.r = 28;
+		mRgbColor.g = 0;
+		mRgbColor.b = 52;
 		break;
 	case White:
-		m_rgbColor.r = 200;
-		m_rgbColor.g = 255;
-		m_rgbColor.b = 220;
+		mRgbColor.r = 200;
+		mRgbColor.g = 255;
+		mRgbColor.b = 220;
 		break;
 	}
 }
@@ -268,13 +268,13 @@ void Obj::setPomParms()
 	}
 
 	if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom) {
-		m_totalSlotCount = C_PROPERPARMS.m_normalMaxSlots.m_value;
-		m_shotMultiplier = 1;
-		m_rgbColor.a     = 0;
+		mTotalSlotCount = C_PROPERPARMS.mNormalMaxSlots.mValue;
+		mShotMultiplier = 1;
+		mRgbColor.a     = 0;
 	} else {
-		m_totalSlotCount = C_PROPERPARMS.m_queenMaxSlots.m_value;
-		m_shotMultiplier = C_PROPERPARMS.m_queenShotMultiplier.m_value;
-		m_rgbColor.a     = 255;
+		mTotalSlotCount = C_PROPERPARMS.mQueenMaxSlots.mValue;
+		mShotMultiplier = C_PROPERPARMS.mQueenShotMultiplier.mValue;
+		mRgbColor.a     = 255;
 	}
 }
 
@@ -288,7 +288,7 @@ void Obj::shotPikmin()
 	Vector3f pos = getPosition();
 	pos.y += 50.0f;
 
-	int val = m_stuckPikminCount * m_shotMultiplier;
+	int val = mStuckPikminCount * mShotMultiplier;
 	Stickers stickers(this);
 	Iterator<Creature> iter(&stickers);
 
@@ -296,11 +296,11 @@ void Obj::shotPikmin()
 	{
 		Creature* creature = (*iter);
 		if (creature->isPiki() && creature->isStickToMouth()) {
-			int pikiKind = static_cast<Piki*>(creature)->m_pikiKind;
+			int pikiKind = static_cast<Piki*>(creature)->mPikiKind;
 			if (pikiKind < Bulbmin) {
 				BirthMgr::dec(pikiKind);
-				if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom && static_cast<Piki*>(creature)->m_pikiKind == m_pikiKind) {
-					m_usedSlotCount--;
+				if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom && static_cast<Piki*>(creature)->mPikiKind == mPikiKind) {
+					mUsedSlotCount--;
 				}
 			}
 			CreatureKillArg killArg(1);
@@ -315,11 +315,11 @@ void Obj::shotPikmin()
 			f32 randAngle = randWeightFloat(TAU);
 
 			Vector3f initPos = Vector3f(110.0f * pikmin2_cosf(randAngle), 750.0f, 110.0f * pikmin2_sinf(randAngle));
-			ItemPikihead::InitArg initArg((EPikiKind)m_pikiKind, initPos);
+			ItemPikihead::InitArg initArg((EPikiKind)mPikiKind, initPos);
 
 			sprout->init(&initArg);
 			sprout->setPosition(pos, false);
-			BirthMgr::inc(m_pikiKind);
+			BirthMgr::inc(mPikiKind);
 		}
 	}
 
@@ -335,9 +335,9 @@ void Obj::shotPikmin()
 void Obj::changePomColor()
 {
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_RandPom) {
-		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value) {
-			int limit     = m_pikiKind + 3; // more than 3 and we loop back
-			int nextColor = m_pikiKind + 1; // first potential next color to try (Blue->Red->Yellow)
+		if (mQueenColorTimer > C_PROPERPARMS.mColorChangeTime.mValue) {
+			int limit     = mPikiKind + 3; // more than 3 and we loop back
+			int nextColor = mPikiKind + 1; // first potential next color to try (Blue->Red->Yellow)
 
 			int choosableColors[] = { Blue, Red, Yellow, 0, 0 }; // only set Blue, Red, Yellow as queen options
 
@@ -351,12 +351,12 @@ void Obj::changePomColor()
 				// NB: colors for purple and white are here, probably disabled before release
 				if (playData->hasMetPikmin(choosableColors[colorIndex])) {
 					setPomColor(colorIndex);
-					m_queenColorTimer = 0.0f;
+					mQueenColorTimer = 0.0f;
 					return;
 				}
 			}
 		} else {
-			m_queenColorTimer += sys->m_deltaTime;
+			mQueenColorTimer += sys->mDeltaTime;
 		}
 	}
 }
@@ -368,19 +368,19 @@ void Obj::changePomColor()
  */
 void Obj::createSwingSmokeEffect()
 {
-	if (m_waterBox) {
-		Vector3f pos = m_position;
-		pos.y        = *m_waterBox->getSeaHeightPtr();
+	if (mWaterBox) {
+		Vector3f pos = mPosition;
+		pos.y        = *mWaterBox->getSeaHeightPtr();
 		efx::ArgScale argScale(pos, 0.7f);
 		efx::TEnemyDownWat waterFX;
 
 		waterFX.create(&argScale);
 
 	} else {
-		efx::Arg arg(m_position.x, m_position.y - 5.0f, m_position.z);
+		efx::Arg arg(mPosition.x, mPosition.y - 5.0f, mPosition.z);
 		efx::TEnemyDownSmoke smokeFX;
 
-		smokeFX.m_scale = 0.7f;
+		smokeFX.mScale = 0.7f;
 		smokeFX.create(&arg);
 	}
 }
@@ -392,7 +392,7 @@ void Obj::createSwingSmokeEffect()
  */
 void Obj::createShotEffect()
 {
-	Vector3f pos = m_position;
+	Vector3f pos = mPosition;
 	pos.y -= 60.0f;
 
 	efx::Arg arg(pos);
@@ -408,7 +408,7 @@ void Obj::createShotEffect()
  */
 void Obj::createPomDeadEffect()
 {
-	efx::Arg arg(m_position);
+	efx::Arg arg(mPosition);
 	efx::TPonDead deadFX;
 
 	deadFX.create(&arg);

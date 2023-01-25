@@ -16,18 +16,18 @@ struct EUTPadInterface_countNum {
 	void init(Controller*, long, long, long*, enumMode, f32, f32);
 	void update();
 
-	Controller* m_controller; // _00
-	u32 m_counter;            // _04
-	u32 _08;                  // _08
-	bool m_isChanging;        // _0C
-	u8 _0D;                   // _0D
-	long _10;                 // _10
-	long _14;                 // _14
-	long* _18;                // _18
-	long _1C;                 // _1C
-	f32 m_timeFactor1;        // _20
-	f32 m_timeFactor2;        // _24
-	enumMode m_mode;          // _28
+	Controller* mController; // _00
+	u32 mCounter;            // _04
+	u32 _08;                 // _08
+	bool mIsChanging;        // _0C
+	u8 _0D;                  // _0D
+	long _10;                // _10
+	long _14;                // _14
+	long* _18;               // _18
+	long _1C;                // _1C
+	f32 mTimeFactor1;        // _20
+	f32 mTimeFactor2;        // _24
+	enumMode mMode;          // _28
 };
 
 void EUTColor_complement(JUtility::TColor&, JUtility::TColor&, f32, f32, JUtility::TColor*);

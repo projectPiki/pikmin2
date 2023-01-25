@@ -126,9 +126,9 @@ namespace PikiAI {
 ActBattle::ActBattle(Game::Piki* p)
     : Action(p)
 {
-	_1C           = 0;
-	m_name        = "Battle";
-	m_approachPos = new ActApproachPos(p);
+	_1C          = 0;
+	mName        = "Battle";
+	mApproachPos = new ActApproachPos(p);
 }
 
 /*
@@ -139,7 +139,7 @@ ActBattle::ActBattle(Game::Piki* p)
 void ActBattle::emotion_success()
 {
 	Game::EmotionStateArg arg(1); // will need to create new derived StateArg struct for this eventually
-	m_parent->m_fsm->transit(m_parent, 19, &arg);
+	mParent->mFsm->transit(mParent, 19, &arg);
 }
 
 /*
@@ -162,13 +162,13 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	}
 	P2ASSERTLINE(179, assert);
 
-	m_other = cArg->m_aggressor;
+	mOther = cArg->mAggressor;
 
-	Game::InteractBattle battle(m_parent);
-	m_other->stimulate(battle);
-	if (cArg->m_isAttackStart) {
+	Game::InteractBattle battle(mParent);
+	mOther->stimulate(battle);
+	if (cArg->mIsAttackStart) {
 		SET_FLAG(_1C, 2);
-	} else if (m_other == m_other->getVsBattlePiki()) {
+	} else if (mOther == mOther->getVsBattlePiki()) {
 		SET_FLAG(_1C, 2);
 	} else {
 		RESET_FLAG(_1C, 2);
@@ -176,8 +176,8 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	initApproach();
 	_1D = 0;
 
-	Vector3f otherPos = m_other->getPosition();
-	Vector3f thisPos  = m_parent->getPosition();
+	Vector3f otherPos = mOther->getPosition();
+	Vector3f thisPos  = mParent->getPosition();
 
 	Vector3f midPoint = (otherPos + thisPos) * 0.5f;
 	Sys::Sphere itSphere(midPoint, 10.0f);
@@ -187,13 +187,13 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	CI_LOOP(cellIt)
 	{
 		Game::Creature* c = static_cast<Game::Creature*>(*cellIt);
-		Vector3f cPos     = itSphere.m_position - c->getPosition();
+		Vector3f cPos     = itSphere.mPosition - c->getPosition();
 		_normalise(cPos);
 
 		cPos.x *= 50.0f;
 		cPos.y = 100.0f;
 		cPos.z *= 50.0f;
-		Game::InteractWind wind(m_parent, 0.0f, &cPos);
+		Game::InteractWind wind(mParent, 0.0f, &cPos);
 		c->stimulate(wind);
 	}
 }
@@ -205,7 +205,7 @@ void ActBattle::init(PikiAI::ActionArg* arg)
  */
 int ActBattle::exec()
 {
-	if (!m_other || !m_other->isAlive() || m_other != m_parent->getVsBattlePiki() || m_parent != m_other->getVsBattlePiki()) {
+	if (!mOther || !mOther->isAlive() || mOther != mParent->getVsBattlePiki() || mParent != mOther->getVsBattlePiki()) {
 		return 0;
 	}
 
@@ -215,7 +215,7 @@ int ActBattle::exec()
 
 	PSMGetPikiBattleD()->_54++;
 
-	switch (m_state) {
+	switch (mState) {
 	case PIKIAI_ACTBATTLE_APPROACH:
 		execApproach();
 		break;
@@ -235,7 +235,7 @@ int ActBattle::exec()
  * Address:	8022F19C
  * Size:	00000C
  */
-void ActBattle::cleanup() { m_other = nullptr; }
+void ActBattle::cleanup() { mOther = nullptr; }
 
 /*
  * --INFO--
@@ -251,9 +251,9 @@ void ActBattle::collisionCallback(Game::Piki*, Game::CollEvent&) { }
  */
 void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 {
-	switch (m_state) {
+	switch (mState) {
 	case PIKIAI_ACTBATTLE_BATTLE: {
-		switch (event.m_type) {
+		switch (event.mType) {
 		case KEYEVENT_END:
 			initApproach();
 
@@ -601,12 +601,12 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
  */
 void ActBattle::initApproach()
 {
-	if (m_other) {
-		Vector3f pos = m_other->getPosition();
+	if (mOther) {
+		Vector3f pos = mOther->getPosition();
 
 		PikiAI::ApproachPosActionArg arg(pos, 10.0f, -1.0f, 0, 1);
-		m_approachPos->init(&arg);
-		m_state = PIKIAI_ACTBATTLE_APPROACH;
+		mApproachPos->init(&arg);
+		mState = PIKIAI_ACTBATTLE_APPROACH;
 	}
 }
 
@@ -617,7 +617,7 @@ void ActBattle::initApproach()
  */
 int ActBattle::execApproach()
 {
-	if (!m_approachPos->exec()) {
+	if (!mApproachPos->exec()) {
 		initBattle();
 	}
 
@@ -631,12 +631,12 @@ int ActBattle::execApproach()
  */
 void ActBattle::initBattle()
 {
-	m_state = PIKIAI_ACTBATTLE_BATTLE;
+	mState = PIKIAI_ACTBATTLE_BATTLE;
 
 	if (randFloat() > 0.5f) {
-		m_parent->startMotion(64, 64, this, nullptr);
+		mParent->startMotion(64, 64, this, nullptr);
 	} else {
-		m_parent->startMotion(65, 65, this, nullptr);
+		mParent->startMotion(65, 65, this, nullptr);
 	}
 }
 
@@ -647,18 +647,18 @@ void ActBattle::initBattle()
  */
 int ActBattle::execBattle()
 {
-	if (!m_parent->assertMotion(64) && !m_parent->assertMotion(65)) {
-		if (m_other) {
-			Vector3f pos = m_other->getPosition();
+	if (!mParent->assertMotion(64) && !mParent->assertMotion(65)) {
+		if (mOther) {
+			Vector3f pos = mOther->getPosition();
 
 			PikiAI::ApproachPosActionArg arg(pos, 10.0f, -1.0f, 0, 1);
-			m_approachPos->init(&arg);
-			m_state = PIKIAI_ACTBATTLE_APPROACH;
+			mApproachPos->init(&arg);
+			mState = PIKIAI_ACTBATTLE_APPROACH;
 		}
 	}
 
-	Game::Piki* parent = m_parent;
-	parent->m_velocity = Vector3f(0.0f, 0.0f, 0.0f);
+	Game::Piki* parent = mParent;
+	parent->mVelocity  = Vector3f(0.0f, 0.0f, 0.0f);
 
 	return 1;
 }
@@ -670,18 +670,18 @@ int ActBattle::execBattle()
  */
 int ActBattle::execDamage()
 {
-	if (!m_parent->assertMotion(4)) {
-		if (m_other) {
-			Vector3f pos = m_other->getPosition();
+	if (!mParent->assertMotion(4)) {
+		if (mOther) {
+			Vector3f pos = mOther->getPosition();
 
 			PikiAI::ApproachPosActionArg arg(pos, 10.0f, -1.0f, 0, 1);
-			m_approachPos->init(&arg);
-			m_state = PIKIAI_ACTBATTLE_APPROACH;
+			mApproachPos->init(&arg);
+			mState = PIKIAI_ACTBATTLE_APPROACH;
 		}
 	}
 
-	Game::Piki* parent = m_parent;
-	parent->m_velocity = Vector3f(0.0f, 0.0f, 0.0f);
+	Game::Piki* parent = mParent;
+	parent->mVelocity  = Vector3f(0.0f, 0.0f, 0.0f);
 
 	return 1;
 }

@@ -8,10 +8,10 @@
 struct JKRArchive;
 
 struct JKRFileFinderBase {
-	char* m_fileName; // _00
-	s32 _04;          // _04
-	u16 _08;          // _08
-	u16 _0A;          // _0A
+	char* mFileName; // _00
+	s32 _04;         // _04
+	u16 _08;         // _08
+	u16 _0A;         // _0A
 };
 
 struct JKRFileFinder : JKRFileFinderBase {
@@ -38,10 +38,10 @@ struct JKRArcFinder : JKRFileFinder {
 	virtual ~JKRArcFinder() { }  // _08 (weak)
 	virtual bool findNextFile(); // _0C
 
-	JKRArchive* m_archive; // _14
-	s32 _18;               // _18
-	s32 _1C;               // _1C
-	s32 _20;               // _20
+	JKRArchive* mArchive; // _14
+	s32 _18;              // _18
+	s32 _1C;              // _1C
+	s32 _20;              // _20
 };
 
 struct JKRDvdFinder : JKRFileFinder {
@@ -50,13 +50,13 @@ struct JKRDvdFinder : JKRFileFinder {
 	virtual ~JKRDvdFinder() // _08 (weak)
 	{
 		if (_20) {
-			DVDCloseDir(&m_fstEntry);
+			DVDCloseDir(&mFstEntry);
 		}
 	}
 	virtual bool findNextFile(); // _0C
 
-	OSFstEntry m_fstEntry; // _14
-	bool _20;              // _20
+	OSFstEntry mFstEntry; // _14
+	bool _20;             // _20
 };
 
 #endif

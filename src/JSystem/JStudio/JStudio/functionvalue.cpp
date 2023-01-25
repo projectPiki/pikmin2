@@ -263,9 +263,9 @@ lbl_80008BC4:
  */
 void TFunctionValueAttribute_range::range_set(double start, double end)
 {
-	m_start = start;
-	m_end   = end;
-	m_width = end - start;
+	mStart = start;
+	mEnd   = end;
+	mWidth = end - start;
 }
 
 /*

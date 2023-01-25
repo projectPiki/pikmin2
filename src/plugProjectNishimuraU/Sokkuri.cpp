@@ -14,7 +14,7 @@ namespace Sokkuri {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 }
 
@@ -34,11 +34,11 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	disableEvent(0, EB_LifegaugeVisible);
-	m_isHiding  = true;
-	m_timer     = 0.0f;
-	m_nextState = SOKKURI_NULL;
+	mIsHiding  = true;
+	mTimer     = 0.0f;
+	mNextState = SOKKURI_NULL;
 	resetMoveVelocity();
-	m_fsm->start(this, SOKKURI_Stay, nullptr);
+	mFsm->start(this, SOKKURI_Stay, nullptr);
 	doAnimationCullingOff();
 }
 
@@ -47,7 +47,7 @@ void Obj::onInit(CreatureInitArg* initArg)
  * Address:	802F1424
  * Size:	000034
  */
-void Obj::doUpdate() { m_fsm->exec(this); }
+void Obj::doUpdate() { mFsm->exec(this); }
 
 /*
  * --INFO--
@@ -70,9 +70,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -83,22 +83,22 @@ void Obj::setFSM(FSM* fsm)
 void Obj::getShadowParam(ShadowParam& param)
 {
 	if (isAlive() && !isUnderground() && getStateID() != SOKKURI_Appear) {
-		param.m_position = m_position;
-		param.m_position.y += 2.5f;
-		param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+		param.mPosition = mPosition;
+		param.mPosition.y += 2.5f;
+		param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 
 		if (isEvent(1, EB2_IsEarthquake)) {
-			param.m_boundingSphere.m_radius = 50.0f;
+			param.mBoundingSphere.mRadius = 50.0f;
 		} else {
-			param.m_boundingSphere.m_radius = 7.5f;
+			param.mBoundingSphere.mRadius = 7.5f;
 		}
 
-		param.m_size = 10.0f;
+		param.mSize = 10.0f;
 	} else {
-		param.m_position                  = m_position;
-		param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-		param.m_boundingSphere.m_radius   = 0.1f;
-		param.m_size                      = 0.1f;
+		param.mPosition                 = mPosition;
+		param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+		param.mBoundingSphere.mRadius   = 0.1f;
+		param.mSize                     = 0.1f;
 	}
 }
 
@@ -112,7 +112,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	if (creature && creature->isPiki() && !isEvent(0, EB_IsBittered)) {
 		int stateID = getStateID();
 		if (stateID != SOKKURI_Dead && stateID != SOKKURI_Press) {
-			m_fsm->transit(this, SOKKURI_Press, nullptr);
+			mFsm->transit(this, SOKKURI_Press, nullptr);
 			return true;
 		}
 	}
@@ -130,7 +130,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	if (creature && creature->isPiki() && !isEvent(0, EB_IsBittered)) {
 		int stateID = getStateID();
 		if (stateID != SOKKURI_Dead && stateID != SOKKURI_Press) {
-			m_fsm->transit(this, SOKKURI_Press, nullptr);
+			mFsm->transit(this, SOKKURI_Press, nullptr);
 			return true;
 		}
 	}
@@ -145,17 +145,17 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 void Obj::wallCallback(const MoveInfo& moveInfo)
 {
-	m_targetPosition   = moveInfo.m_reflectPosition;
-	m_targetPosition.y = 0.0f;
-	m_targetPosition.normalise();
+	mTargetPosition   = moveInfo.mReflectPosition;
+	mTargetPosition.y = 0.0f;
+	mTargetPosition.normalise();
 
-	m_targetPosition.x *= 1000.0f;
-	m_targetPosition.y *= 1000.0f;
-	m_targetPosition.z *= 1000.0f;
+	mTargetPosition.x *= 1000.0f;
+	mTargetPosition.y *= 1000.0f;
+	mTargetPosition.z *= 1000.0f;
 
-	m_targetPosition.x += m_position.x;
-	m_targetPosition.y += m_position.y;
-	m_targetPosition.z += m_position.z;
+	mTargetPosition.x += mPosition.x;
+	mTargetPosition.y += mPosition.y;
+	mTargetPosition.z += mPosition.z;
 }
 
 /*
@@ -167,7 +167,7 @@ void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
 	enableEvent(0, EB_LifegaugeVisible);
-	m_isHiding = false;
+	mIsHiding = false;
 }
 
 /*
@@ -195,10 +195,10 @@ Vector3f Obj::getOffsetForMapCollision()
 		return Vector3f::zero;
 	}
 
-	Vector3f offset = m_model->getJoint("leaf_joint1")->getWorldMatrix()->getBasis(3);
-	offset.x -= m_position.x;
+	Vector3f offset = mModel->getJoint("leaf_joint1")->getWorldMatrix()->getBasis(3);
+	offset.x -= mPosition.x;
 	offset.y = 0.0f;
-	offset.z -= m_position.z;
+	offset.z -= mPosition.z;
 	return offset;
 }
 
@@ -209,13 +209,12 @@ Vector3f Obj::getOffsetForMapCollision()
  */
 Creature* Obj::getSearchedTarget()
 {
-	if (gameSystem && gameSystem->m_mode == GSM_PIKLOPEDIA) {
-		return EnemyFunc::getNearestPikmin(this, C_PARMS->m_general.m_viewAngle.m_value, C_PARMS->m_general.m_sightRadius.m_value, nullptr,
+	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+		return EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
 		                                   nullptr);
 	}
 
-	return EnemyFunc::getNearestNavi(this, C_PARMS->m_general.m_viewAngle.m_value, C_PARMS->m_general.m_sightRadius.m_value, nullptr,
-	                                 nullptr);
+	return EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr);
 }
 
 /*
@@ -239,7 +238,7 @@ bool Obj::isAppear()
  */
 bool Obj::isDisappear()
 {
-	if (sqrDistanceXZ(m_position, m_homePosition) < SQUARE(*C_PARMS->m_general.m_homeRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mHomeRadius())) {
 		if (!getSearchedTarget()) {
 			return true;
 		}
@@ -255,23 +254,23 @@ bool Obj::isDisappear()
  */
 void Obj::setNextMoveInfo()
 {
-	f32 travelTime = C_PROPERPARMS.m_fp01.m_value - C_PROPERPARMS.m_fp02.m_value;
-	m_timer        = randWeightFloat(travelTime);
+	f32 travelTime = C_PROPERPARMS.mFp01.mValue - C_PROPERPARMS.mFp02.mValue;
+	mTimer         = randWeightFloat(travelTime);
 
-	f32 movingAngle = C_PROPERPARMS.m_fp03.m_value - C_PROPERPARMS.m_fp04.m_value;
+	f32 movingAngle = C_PROPERPARMS.mFp03.mValue - C_PROPERPARMS.mFp04.mValue;
 	f32 randAngle   = randWeightFloat(movingAngle) + getMinAngle();
 
 	randAngle = randAngle * DEG2RAD * PI;
 
 	if (randWeightFloat(1.0f) < 0.5f) {
-		randAngle = randAngle + m_faceDir;
+		randAngle = randAngle + mFaceDir;
 	} else {
-		randAngle -= m_faceDir;
+		randAngle -= mFaceDir;
 	}
 
-	m_targetPosition.x = 1000.0f * pikmin2_sinf(randAngle) + m_position.x;
-	m_targetPosition.y = m_position.y;
-	m_targetPosition.z = 1000.0f * pikmin2_cosf(randAngle) + m_position.z;
+	mTargetPosition.x = 1000.0f * pikmin2_sinf(randAngle) + mPosition.x;
+	mTargetPosition.y = mPosition.y;
+	mTargetPosition.z = 1000.0f * pikmin2_cosf(randAngle) + mPosition.z;
 }
 
 /*
@@ -281,20 +280,20 @@ void Obj::setNextMoveInfo()
  */
 void Obj::updateMoveState()
 {
-	if (sqrDistanceXZ(m_position, m_homePosition) > SQUARE(*C_PARMS->m_general.m_territoryRadius())) {
-		m_targetPosition = m_homePosition;
+	if (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
+		mTargetPosition = mHomePosition;
 	}
 
-	if (m_waterBox) {
+	if (mWaterBox) {
 		Vector3f velocity    = getVelocity();
 		Vector3f newVelocity = velocity;
 		newVelocity.y += 5.0f;
 		setVelocity(newVelocity);
 
-		m_moveVelocity = adjustVal(m_moveVelocity, C_PROPERPARMS.m_fp21.m_value, 10.0f);
+		mMoveVelocity = adjustVal(mMoveVelocity, C_PROPERPARMS.mFp21.mValue, 10.0f);
 
 	} else {
-		m_moveVelocity = adjustVal(m_moveVelocity, C_PARMS->m_general.m_moveSpeed.m_value, 25.0f);
+		mMoveVelocity = adjustVal(mMoveVelocity, C_PARMS->mGeneral.mMoveSpeed.mValue, 25.0f);
 	}
 }
 
@@ -305,12 +304,12 @@ void Obj::updateMoveState()
  */
 void Obj::resetMoveVelocity()
 {
-	if (m_waterBox) {
-		m_moveVelocity = C_PROPERPARMS.m_fp21.m_value;
+	if (mWaterBox) {
+		mMoveVelocity = C_PROPERPARMS.mFp21.mValue;
 		return;
 	}
 
-	m_moveVelocity = C_PARMS->m_general.m_moveSpeed.m_value;
+	mMoveVelocity = C_PARMS->mGeneral.mMoveSpeed.mValue;
 }
 
 /*
@@ -320,8 +319,8 @@ void Obj::resetMoveVelocity()
  */
 void Obj::setNextWaitInfo()
 {
-	f32 waitTime = C_PROPERPARMS.m_fp12.m_value - C_PROPERPARMS.m_fp13.m_value;
-	m_timer      = randWeightFloat(waitTime);
+	f32 waitTime = C_PROPERPARMS.mFp12.mValue - C_PROPERPARMS.mFp13.mValue;
+	mTimer       = randWeightFloat(waitTime);
 }
 
 /*
@@ -331,16 +330,16 @@ void Obj::setNextWaitInfo()
  */
 void Obj::createDownEffect(f32 groundScale, f32 waterScale)
 {
-	if (m_waterBox) {
+	if (mWaterBox) {
 		if (waterScale > 0.0f) {
-			Vector3f position = m_position;
-			position.y        = *m_waterBox->getSeaHeightPtr();
-			if (position.y - m_position.y < 22.0f) {
+			Vector3f position = mPosition;
+			position.y        = *mWaterBox->getSeaHeightPtr();
+			if (position.y - mPosition.y < 22.0f) {
 				createSplashDownEffect(position, waterScale);
 			}
 		}
 	} else if (groundScale > 0.0f) {
-		createDropEffect(m_position, groundScale);
+		createDropEffect(mPosition, groundScale);
 	}
 }
 
@@ -351,7 +350,7 @@ void Obj::createDownEffect(f32 groundScale, f32 waterScale)
  */
 void Obj::createBubbleEffect()
 {
-	if (m_waterBox) {
+	if (mWaterBox) {
 		if (getSubmergedDepth() > 10.0f) {
 			efx::Arg fxArg(this);
 			efx::TJgmBubble bubbleFX;

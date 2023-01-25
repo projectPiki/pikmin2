@@ -8,9 +8,9 @@ struct J3DMatColorAnm {
 	J3DMatColorAnm();
 	~J3DMatColorAnm();
 
-	u16 _00;            // _00
-	u16 _02;            // _02
-	J3DAnmColor* m_anm; // _04
+	u16 _00;           // _00
+	u16 _02;           // _02
+	J3DAnmColor* mAnm; // _04
 };
 
 #endif

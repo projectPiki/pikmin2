@@ -17,7 +17,7 @@ char* cKabutoChangeTexName = "/enemy/data/Rkabuto/babykabuto_red_s3tc.bti";
 Mgr::Mgr(int p1, u8 p2)
     : Kabuto::Mgr(p1, p2)
 {
-	m_name = "レッドカブトマネージャ"; // red beetle manager
+	mName = "レッドカブトマネージャ"; // red beetle manager
 }
 
 /*
@@ -32,14 +32,14 @@ void Mgr::doAlloc() { init(new Kabuto::Parms); }
  * Address:	802FFE9C
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	802FFFE8
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int idx) { return &m_obj[idx]; }
+EnemyBase* Mgr::getEnemy(int idx) { return &mObj[idx]; }
 
 /*
  * --INFO--
@@ -48,16 +48,16 @@ EnemyBase* Mgr::getEnemy(int idx) { return &m_obj[idx]; }
  */
 void Mgr::loadTexData()
 {
-	m_changeTexture = nullptr;
+	mChangeTexture = nullptr;
 
 	LoadResource::Arg loadArg(cKabutoChangeTexName);
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
 
 	if (resource) {
-		m_changeTexture = static_cast<ResTIMG*>(resource->m_file);
+		mChangeTexture = static_cast<ResTIMG*>(resource->mFile);
 	}
 
-	P2ASSERTLINE(82, m_changeTexture != nullptr);
+	P2ASSERTLINE(82, mChangeTexture != nullptr);
 }
 
 } // namespace RedKabuto

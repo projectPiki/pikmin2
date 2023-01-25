@@ -41,7 +41,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	PSStartEnemyFatalHitSE(elecHiba, 0.0f);
 
 	Vector3f position            = elecHiba->getPosition();
-	f32 scale                    = elecHiba->m_scaleModifier;
+	f32 scale                    = elecHiba->mScaleModifier;
 	EnemyTypeID::EEnemyTypeID id = elecHiba->getEnemyTypeID();
 
 	efx::ArgEnemyType fxArg(position, id, scale);
@@ -62,7 +62,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 		PSStartEnemyFatalHitSE(childHiba, 0.0f);
 
 		Vector3f childPosition            = childHiba->getPosition();
-		f32 childScale                    = childHiba->m_scaleModifier;
+		f32 childScale                    = childHiba->mScaleModifier;
 		EnemyTypeID::EEnemyTypeID childID = childHiba->getEnemyTypeID();
 
 		efx::ArgEnemyType childFxArg(childPosition, childID, childScale);
@@ -97,9 +97,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
 
 	if (arg) {
-		elecHiba->m_waitTimer = arg->m_waitTimer;
+		elecHiba->mWaitTimer = arg->mWaitTimer;
 	} else {
-		elecHiba->m_waitTimer = 0.0f;
+		elecHiba->mWaitTimer = 0.0f;
 	}
 
 	elecHiba->startMotion(0, nullptr);
@@ -119,15 +119,15 @@ void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
-	elecHiba->m_waitTimer += sys->m_deltaTime;
+	elecHiba->mWaitTimer += sys->mDeltaTime;
 
 	if (elecHiba->_2F4 != 0) {
 		if (elecHiba->isWaitFinish()) {
 			transit(elecHiba, ELECHIBA_Sign, nullptr);
 		}
-	} else if (elecHiba->m_health <= 0.0f) {
+	} else if (elecHiba->mHealth <= 0.0f) {
 		transit(elecHiba, ELECHIBA_Dead, nullptr);
-	} else if (elecHiba->m_waitTimer > CG_PROPERPARMS(elecHiba).m_waitTime.m_value) {
+	} else if (elecHiba->mWaitTimer > CG_PROPERPARMS(elecHiba).mWaitTime.mValue) {
 		transit(elecHiba, ELECHIBA_Sign, nullptr);
 	}
 }
@@ -148,7 +148,7 @@ void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
-	elecHiba->m_waitTimer = 0.0f;
+	elecHiba->mWaitTimer = 0.0f;
 	elecHiba->disableEvent(0, EB_IsCullable);
 	elecHiba->startMotion(0, nullptr);
 
@@ -169,17 +169,17 @@ void StateSign::exec(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
-	elecHiba->m_waitTimer += sys->m_deltaTime;
+	elecHiba->mWaitTimer += sys->mDeltaTime;
 	elecHiba->getJAIObject()->startSound(PSSE_EN_ELEC_HIBA_CHARGE, 0);
 
-	if (elecHiba->m_health <= 0.0f) {
+	if (elecHiba->mHealth <= 0.0f) {
 		Obj* childHiba = elecHiba->getChildObjPtr();
 		if (childHiba) {
 			elecHiba->finishChargeEffect();
 		}
 
 		transit(elecHiba, ELECHIBA_Dead, nullptr);
-	} else if (elecHiba->m_waitTimer > CG_PROPERPARMS(elecHiba).m_warningTime.m_value) {
+	} else if (elecHiba->mWaitTimer > CG_PROPERPARMS(elecHiba).mWarningTime.mValue) {
 		transit(elecHiba, ELECHIBA_Attack, nullptr);
 	}
 }
@@ -210,7 +210,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
-	elecHiba->m_waitTimer = 0.0f;
+	elecHiba->mWaitTimer = 0.0f;
 	elecHiba->disableEvent(0, EB_IsCullable);
 	elecHiba->startMotion(0, nullptr);
 	elecHiba->setVersusHibaType();
@@ -232,15 +232,15 @@ void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
-	elecHiba->m_waitTimer += sys->m_deltaTime;
+	elecHiba->mWaitTimer += sys->mDeltaTime;
 
 	if (elecHiba->_2F4 != 0) {
 		if (elecHiba->isAttackFinish()) {
 			transit(elecHiba, ELECHIBA_Wait, nullptr);
 		}
-	} else if (elecHiba->m_health <= 0.0f) {
+	} else if (elecHiba->mHealth <= 0.0f) {
 		transit(elecHiba, ELECHIBA_Dead, nullptr);
-	} else if (elecHiba->m_waitTimer > CG_PROPERPARMS(elecHiba).m_activeTime.m_value) {
+	} else if (elecHiba->mWaitTimer > CG_PROPERPARMS(elecHiba).mActiveTime.mValue) {
 		transit(elecHiba, ELECHIBA_Wait, nullptr);
 	}
 

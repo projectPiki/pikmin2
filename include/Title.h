@@ -44,22 +44,22 @@ struct Section : public Game::BaseHIOSection {
 
 	// _00		= VTBL
 	// _00-_48	= Game::BaseHIOSection
-	int _48;                               // _0048
-	f32 _4C;                               // _004C
-	Menu* m_menu;                          // _0050
-	DvdThreadCommand m_threadCommand;      // _0054
-	IDelegate1<Section>* m_buttonCallback; // _00C0
-	Controller* m_controller1;             // _00C4
-	Controller* m_controller2;             // _00C8
-	ebi::TMainTitleMgr m_mainTitleMgr;     // _00CC
-	ebi::Option::TMgr m_optionMgr;         // _1730
-	u8 _2670[8];                           // _2670
-	ebi::Omake::TMgr m_omakeMgr;           // _2678
-	u8 _2F34[8];                           // _2F34
-	Game::THPPlayer* m_thpPlayer;          // _2F38
-	int m_movieIndex;                      // _2F3C
-	JKRArchive* _2F40;                     // _2F40
-	u8 _2F44;                              // _2F44
+	int _48;                              // _0048
+	f32 _4C;                              // _004C
+	Menu* mMenu;                          // _0050
+	DvdThreadCommand mThreadCommand;      // _0054
+	IDelegate1<Section>* mButtonCallback; // _00C0
+	Controller* mController1;             // _00C4
+	Controller* mController2;             // _00C8
+	ebi::TMainTitleMgr mMainTitleMgr;     // _00CC
+	ebi::Option::TMgr mOptionMgr;         // _1730
+	u8 _2670[8];                          // _2670
+	ebi::Omake::TMgr mOmakeMgr;           // _2678
+	u8 _2F34[8];                          // _2F34
+	Game::THPPlayer* mThpPlayer;          // _2F38
+	int mMovieIndex;                      // _2F3C
+	JKRArchive* _2F40;                    // _2F40
+	u8 _2F44;                             // _2F44
 };
 } // namespace Title
 

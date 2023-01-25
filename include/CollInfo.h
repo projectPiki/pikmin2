@@ -64,18 +64,18 @@ struct CollPart : public CNode {
 
 	int getAllCollPartToArray(CollPart**, int, int&);
 
-	CollPart* getChild() { return (CollPart*)m_child; }
+	CollPart* getChild() { return (CollPart*)mChild; }
 	CollPart* getCollPart(u32);
-	CollPart* getNext() { return (CollPart*)m_next; }
+	CollPart* getNext() { return (CollPart*)mNext; }
 
 	void getSphere(Sys::Sphere&);
 	void getTube(Sys::Tube&);
 
 	bool isLeaf() { return (getChild() == nullptr); }
-	bool isSphere() { return (m_partType == COLLTYPE_SPHERE); }
+	bool isSphere() { return (mPartType == COLLTYPE_SPHERE); }
 	bool isStickable();
-	bool isTube() { return (m_partType == COLLTYPE_TUBE); }
-	bool isTubeTree() { return (m_partType == COLLTYPE_TUBETREE); }
+	bool isTube() { return (mPartType == COLLTYPE_TUBE); }
+	bool isTubeTree() { return (mPartType == COLLTYPE_TUBETREE); }
 	bool isTubeLike() { return isTube() || isTubeTree(); }
 	bool isPrim() { return (getChild() == nullptr || isTube() || isTubeTree()); }
 
@@ -85,17 +85,17 @@ struct CollPart : public CNode {
 	void setScale(f32);
 	void update();
 
-	f32 m_baseRadius;             // _18, base radius used to calculate real radius (in setScale, it's scaled)
-	f32 m_radius;                 // _1C
-	Vector3f m_offset;            // _20
-	u32 m_jointIndex;             // _2C
-	ID32 m_currentID;             // _30, identifier of current part, initialised to root
-	ID32 m_specialID;             // _3C, used to detect whether the collpart is stickable, denoted by prefixed -s: e.g. 'sp01'
-	u16 m_attribute;              // _48
-	Vector3f m_position;          // _4C
-	u8 m_partType;                // _58, using define list - 0=Sphere, 1=Tube, 2=TubeTree
-	SysShape::MtxObject* m_model; // _5C
-	u32 _60;                      // _60
+	f32 mBaseRadius;             // _18, base radius used to calculate real radius (in setScale, it's scaled)
+	f32 mRadius;                 // _1C
+	Vector3f mOffset;            // _20
+	u32 mJointIndex;             // _2C
+	ID32 mCurrentID;             // _30, identifier of current part, initialised to root
+	ID32 mSpecialID;             // _3C, used to detect whether the collpart is stickable, denoted by prefixed -s: e.g. 'sp01'
+	u16 mAttribute;              // _48
+	Vector3f mPosition;          // _4C
+	u8 mPartType;                // _58, using define list - 0=Sphere, 1=Tube, 2=TubeTree
+	SysShape::MtxObject* mModel; // _5C
+	u32 _60;                     // _60
 };
 
 struct CollPartMgr : public MonoObjectMgr<CollPart> {
@@ -106,8 +106,8 @@ struct CollPartMgr : public MonoObjectMgr<CollPart> {
 };
 
 struct FindCollPartArg {
-	Condition<CollPart>* m_condition; // _00
-	Vector3f m_position;              // _04
+	Condition<CollPart>* mCondition; // _00
+	Vector3f mPosition;              // _04
 };
 
 struct MouthCollPart : public CollPart {
@@ -125,9 +125,9 @@ struct MouthCollPart : public CollPart {
 	// inlined
 	void setup(SysShape::Model* model, char* jointName, Vector3f& vector);
 
-	Game::Creature* m_stuckCreature; // _64
-	SysShape::Joint* m_mouthJoint;   // _68
-	u8 _6C;                          // _6C
+	Game::Creature* mStuckCreature; // _64
+	SysShape::Joint* mMouthJoint;   // _68
+	u8 _6C;                         // _6C
 };
 
 struct MouthSlots {
@@ -137,12 +137,12 @@ struct MouthSlots {
 	void update();
 	void setup(int, SysShape::Model*, char*);
 
-	int getMax() { return m_max; }
+	int getMax() { return mMax; }
 
-	inline Game::Creature* getStuckCreature(int i) { return getSlot(i)->m_stuckCreature; }
+	inline Game::Creature* getStuckCreature(int i) { return getSlot(i)->mStuckCreature; }
 
-	int m_max;              // _00
-	MouthCollPart* m_slots; // _04
+	int mMax;              // _00
+	MouthCollPart* mSlots; // _04
 };
 
 #define ACP_DRAWFLAG_DISABLED (0x0)
@@ -154,7 +154,7 @@ struct AgeCollPart : public CollPart {
 	virtual ~AgeCollPart() { }    // _08 (weak)
 	virtual void draw(Graphics&); // _14
 
-	u8 m_drawFlags; // _64
+	u8 mDrawFlags; // _64
 };
 
 struct CollPartFactory : public CollPart {
@@ -193,8 +193,8 @@ struct CollTree {
 
 	static bool mDebug;
 
-	CollPart* m_part;   // _00
-	CollPartMgr* m_mgr; // _04
+	CollPart* mPart;   // _00
+	CollPartMgr* mMgr; // _04
 };
 
 #endif

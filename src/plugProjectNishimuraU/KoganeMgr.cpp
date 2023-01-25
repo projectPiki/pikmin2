@@ -13,7 +13,7 @@ namespace Kogane {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "コガネマネージャ"; // kogane manager
+	mName = "コガネマネージャ"; // kogane manager
 }
 
 /*
@@ -32,7 +32,7 @@ void Mgr::loadModelData()
 			J3DModelData* storedModelData = mgr->getJ3DModelData();
 
 			if (storedModelData) {
-				m_modelData = storedModelData;
+				mModelData = storedModelData;
 				return;
 			}
 		}
@@ -40,9 +40,9 @@ void Mgr::loadModelData()
 
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-		shape          = m_modelData->m_shapeTable.m_items[j];
-		shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		shape         = mModelData->mShapeTable.mItems[j];
+		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
 }
 
@@ -59,9 +59,9 @@ void Mgr::loadAnimData()
 	for (int i = 0; i < id_count; i++) {
 		EnemyMgrBase* mgr = generalEnemyMgr->getEnemyMgr(ids[i]);
 		if (mgr) {
-			SysShape::AnimMgr* storedAnimMgr = mgr->m_animMgr;
+			SysShape::AnimMgr* storedAnimMgr = mgr->mAnimMgr;
 			if (storedAnimMgr) {
-				m_animMgr = storedAnimMgr;
+				mAnimMgr = storedAnimMgr;
 				return;
 			}
 		}
@@ -77,20 +77,20 @@ void Mgr::loadAnimData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, 0x80000, mModelType);
 	P2ASSERTLINE(148, model);
-	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
-		const char* name = m_modelData->m_materialTable._0C->getName(i);
+	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
+		const char* name = mModelData->mMaterialTable._0C->getName(i);
 		if (!strcmp(name, "karada")) {
-			model->m_j3dModel->m_matPackets[(u16)i]._2C->newDifferedDisplayList(0x05020000);
+			model->mJ3dModel->mMatPackets[(u16)i]._2C->newDifferedDisplayList(0x05020000);
 		}
 	}
 
 	// why is this not inlined here but IS inlined in the other mgrs SMH.
 	Matrixf mtx;
-	PSMTXIdentity(mtx.m_matrix.mtxView);
-	PSMTXCopy(mtx.m_matrix.mtxView, j3dSys._00);
-	J3DModel* j3dModel = model->m_j3dModel;
+	PSMTXIdentity(mtx.mMatrix.mtxView);
+	PSMTXCopy(mtx.mMatrix.mtxView, j3dSys._00);
+	J3DModel* j3dModel = model->mJ3dModel;
 	j3dModel->calc();
 	j3dModel->calcMaterial();
 	j3dModel->makeDL();

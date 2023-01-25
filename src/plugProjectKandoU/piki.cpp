@@ -2161,7 +2161,7 @@ void Piki::getJAIObject()
  */
 PSM::Creature* Piki::getPSCreature()
 {
-	return m_soundObj;
+	return mSoundObj;
 	/*
 	lwz      r3, 0x250(r3)
 	blr
@@ -3162,7 +3162,7 @@ bool Piki::gasInvicible()
 void Piki::setGasInvincible(u8 a1)
 {
 	// Generated from stb r4, 0x2A6(r3)
-	m_gasInvincible = a1;
+	mGasInvincible = a1;
 }
 
 /*
@@ -4094,7 +4094,7 @@ lbl_80149E1C:
  * Address:	80149E30
  * Size:	000014
  */
-void Piki::extendDopeTime() { m_dopeTime = pikiMgr->_6C->_1150; }
+void Piki::extendDopeTime() { mDopeTime = pikiMgr->_6C->_1150; }
 
 /*
  * --INFO--
@@ -4223,7 +4223,7 @@ lbl_80149FC8:
  * Address:	80149FE0
  * Size:	000018
  */
-bool Piki::doped() { return m_isDoped != -1; }
+bool Piki::doped() { return mIsDoped != -1; }
 
 /*
  * --INFO--
@@ -4482,15 +4482,15 @@ lbl_8014A270:
  */
 bool Piki::isTekiFollowAI()
 {
-	return m_brain->m_actionId == 11; // teki follow AI
-	                                  /*
-	                                  lwz      r3, 0x294(r3)
-	                                  lwz      r0, 8(r3)
-	                                  subfic   r0, r0, 0xb
-	                                  cntlzw   r0, r0
-	                                  rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	                                  blr
-	                                  */
+	return mBrain->mActionId == 11; // teki follow AI
+	                                /*
+	                                lwz      r3, 0x294(r3)
+	                                lwz      r0, 8(r3)
+	                                subfic   r0, r0, 0xb
+	                                cntlzw   r0, r0
+	                                rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	                                blr
+	                                */
 }
 
 /*
@@ -4686,25 +4686,25 @@ void Piki::doAnimation()
 {
 	FakePiki::doAnimation();
 
-	if (m_isDoped == -1 || m_dopeTime <= 0.0f) {
+	if (mIsDoped == -1 || mDopeTime <= 0.0f) {
 		return;
 	}
 
-	m_dopeTime -= sys->m_deltaTime;
-	if (m_dopeTime > 0) {
+	mDopeTime -= sys->mDeltaTime;
+	if (mDopeTime > 0) {
 		return;
 	}
 
-	m_soundObj->startFreePikiSetSound(PSSE_PK_VC_DOPE_END, 0, 90, 0);
-	if (m_isDoped != -1) {
-		m_isDoped = -1;
+	mSoundObj->startFreePikiSetSound(PSSE_PK_VC_DOPE_END, 0, 90, 0);
+	if (mIsDoped != -1) {
+		mIsDoped = -1;
 
 		if (pikiMgr->_30 > 0) {
 			pikiMgr->_30--;
 		}
 	}
 
-	m_dopeTime = 0;
+	mDopeTime = 0;
 
 	// TPKEFFECT stuff.
 	/*
@@ -4786,7 +4786,7 @@ void Piki::doDirectDraw(Graphics&) { }
  */
 float Piki::getBaseScale()
 {
-	switch (m_pikiKind) {
+	switch (mPikiKind) {
 	case Purple:
 		return 1.2f;
 	case White:
@@ -4932,7 +4932,7 @@ lbl_8014A6C0:
  * Address:	8014A770
  * Size:	000008
  */
-void Piki::changeHappa(int a1) { m_happaKind = a1; }
+void Piki::changeHappa(int a1) { mHappaKind = a1; }
 
 /*
  * --INFO--
@@ -5201,7 +5201,7 @@ void Piki::setTekiKillID(int id)
 		id = 99;
 	}
 
-	m_tekiKillID = id;
+	mTekiKillID = id;
 }
 
 /*

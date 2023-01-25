@@ -15,12 +15,12 @@ u32 KandoLib::getRandomChoice(KandoLib::Choice* choices, int choiceAmt)
 	float curChance             = 0.0f;
 
 	for (int i = 0; i < choiceAmt; curChoice++, i++) {
-		curChance += curChoice->m_chance;
+		curChance += curChoice->mChance;
 
 		if (rngChance < curChance) {
-			return choices[i].m_result;
+			return choices[i].mResult;
 		}
 	}
 
-	return choices[choiceAmt - 1].m_result;
+	return choices[choiceAmt - 1].mResult;
 }

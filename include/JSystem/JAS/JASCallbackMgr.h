@@ -8,23 +8,23 @@ typedef long JASCallback(void*);
 struct JASCallbackMgr {
 	struct TCallback {
 		TCallback()
-		    : m_function(nullptr)
-		    , m_argument(nullptr)
+		    : mFunction(nullptr)
+		    , mArgument(nullptr)
 		{
 		}
 
 		/** @fabricated */
-		inline bool isMatch(JASCallback* function, void* argument) { return (m_function == function && m_argument == argument); }
+		inline bool isMatch(JASCallback* function, void* argument) { return (mFunction == function && mArgument == argument); }
 
 		/** @fabricated */
 		inline void clear()
 		{
-			m_function = nullptr;
-			m_argument = nullptr;
+			mFunction = nullptr;
+			mArgument = nullptr;
 		}
 
-		JASCallback* m_function; // _00
-		void* m_argument;        // _04
+		JASCallback* mFunction; // _00
+		void* mArgument;        // _04
 	};
 
 	bool regist(JASCallback*, void*);
@@ -34,7 +34,7 @@ struct JASCallbackMgr {
 	// Unused/inlined:
 	bool reject(JASCallback*);
 
-	TCallback m_callbacks[0x10]; // _00
+	TCallback mCallbacks[0x10]; // _00
 };
 
 #endif

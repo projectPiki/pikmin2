@@ -31,7 +31,7 @@ void ChappyBase::FSM::init(Game::EnemyBase* base)
 StateCautionBase::StateCautionBase(int stateID)
     : State(stateID)
 {
-	m_name = "StateCautionBase";
+	mName = "StateCautionBase";
 }
 
 /*
@@ -52,7 +52,7 @@ void StateCautionBase::cautionProc(EnemyBase*)
 StateSleep::StateSleep(int stateID)
     : State(stateID)
 {
-	m_name = "sleep";
+	mName = "sleep";
 }
 
 /*
@@ -70,7 +70,7 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->startMotion(6, nullptr);
 	}
 
-	enemy->m_targetCreature = nullptr;
+	enemy->mTargetCreature = nullptr;
 
 	// Creeping Chrysanthemum
 	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_Hana) {
@@ -91,7 +91,7 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 void StateSleep::exec(EnemyBase* enemy)
 {
 	if (enemy->getCurrAnimIndex() == 6) {
-		if (enemy->m_curAnim->m_isPlaying && enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
 			if (enemy->isEvent(0, EB_IsTakingDamage)) {
 				transit(enemy, CHAPPY_Turn, nullptr);
 			} else {
@@ -104,21 +104,21 @@ void StateSleep::exec(EnemyBase* enemy)
 			setNextState(enemy, CHAPPY_Turn);
 		}
 
-		if (enemy->m_curAnim->m_isPlaying) {
+		if (enemy->mCurAnim->mIsPlaying) {
 			// WTF?
-			if (enemy->m_curAnim->m_type == KEYEVENT_NULL) {
+			if (enemy->mCurAnim->mType == KEYEVENT_NULL) {
 				((Obj*)enemy)->startSleepEffect();
-			} else if (enemy->m_curAnim->m_type == 3) {
+			} else if (enemy->mCurAnim->mType == 3) {
 				((Obj*)enemy)->finishSleepEffect();
-			} else if (enemy->m_curAnim->m_type == 4) {
+			} else if (enemy->mCurAnim->mType == 4) {
 				((Obj*)enemy)->createSmokeEffect();
-			} else if (enemy->m_curAnim->m_type == KEYEVENT_END) {
-				transit(enemy, m_nextState, nullptr);
+			} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
+				transit(enemy, mNextState, nullptr);
 			}
 		}
 	}
 
-	if (enemy->m_health <= 0.0f) {
+	if (enemy->mHealth <= 0.0f) {
 		transit(enemy, CHAPPY_Dead, nullptr);
 	}
 }
@@ -151,7 +151,7 @@ void StateSleep::setNextState(EnemyBase* enemy, int stateID)
 {
 	((Obj*)enemy)->setAnimationSpeed(60.0f);
 	enemy->finishMotion();
-	m_nextState = stateID;
+	mNextState = stateID;
 }
 
 /*
@@ -162,7 +162,7 @@ void StateSleep::setNextState(EnemyBase* enemy, int stateID)
 StateDead::StateDead(int stateID)
     : StateCautionBase(stateID)
 {
-	m_name = "dead";
+	mName = "dead";
 }
 
 /*
@@ -183,10 +183,10 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying) {
-		if (enemy->m_curAnim->m_type == KEYEVENT_2) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_2) {
 			((Obj*)enemy)->flickAttackBomb();
-		} else if (enemy->m_curAnim->m_type == KEYEVENT_END) {
+		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
 			enemy->kill(nullptr);
 		}
 	}
@@ -227,7 +227,7 @@ void StateTurnBase::turnToTarget(EnemyBase* enemy, Vector3f& position)
 StateTurn::StateTurn(int stateID)
     : StateTurnBase(stateID)
 {
-	m_name = "turn";
+	mName = "turn";
 }
 
 /*
@@ -838,7 +838,7 @@ void ChappyBase::StateTurn::cleanup(Game::EnemyBase* enemy)
 StateWalk::StateWalk(int stateID)
     : StateCautionBase(stateID)
 {
-	m_name = "Walk";
+	mName = "Walk";
 }
 
 /*
@@ -1443,7 +1443,7 @@ void StateWalk::cleanup(EnemyBase* enemy)
 {
 	enemy->setEmotionCaution();
 	enemy->resetAnimSpeed();
-	enemy->m_targetVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -1454,7 +1454,7 @@ void StateWalk::cleanup(EnemyBase* enemy)
 StateAttack::StateAttack(int stateID)
     : StateCautionBase(stateID)
 {
-	m_name = "Attack";
+	mName = "Attack";
 }
 
 /*
@@ -1975,7 +1975,7 @@ void StateAttack::doDirectDraw(EnemyBase* enemy, Graphics&) { }
 StateFlick::StateFlick(int stateID)
     : StateCautionBase(stateID)
 {
-	m_name = "Flick";
+	mName = "Flick";
 }
 
 /*
@@ -2202,7 +2202,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
 StateTurnToHome::StateTurnToHome(int stateID)
     : StateTurnBase(stateID)
 {
-	m_name = "TurnToHome";
+	mName = "TurnToHome";
 }
 
 /*
@@ -2819,7 +2819,7 @@ void StateTurnToHome::cleanup(Game::EnemyBase* enemy) { }
 StateGoHome::StateGoHome(int stateID)
     : StateCautionBase(stateID)
 {
-	m_name = "GoHome";
+	mName = "GoHome";
 }
 
 /*
@@ -3258,6 +3258,6 @@ lbl_801196AC:
  * Address:	801196FC
  * Size:	000014
  */
-void StateGoHome::cleanup(EnemyBase* enemy) { enemy->m_targetVelocity = Vector3f(0.0f); }
+void StateGoHome::cleanup(EnemyBase* enemy) { enemy->mTargetVelocity = Vector3f(0.0f); }
 } // namespace ChappyBase
 } // namespace Game

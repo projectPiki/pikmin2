@@ -24,17 +24,17 @@ struct PikminCounter : public P2DScreen::Mgr_tuning {
 
 	// _00      = VTBL
 	// _00-_148 = P2DScreen::Mgr_tuning
-	DataGame m_dataGame;             // _148
-	DataNavi m_dataNavi;             // _164
-	CallBack_CatchPiki* m_catchPiki; // _17C
-	u32 _180;                        // _180
-	u32 _184;                        // _184
-	u32 _188;                        // _188
-	bool m_isTotalPokoActive;        // _18C
-	J2DPane* m_paneSublevel;         // _190
-	ScaleMgr* m_scaleMgr;            // _194
-	Vector2f m_standardPos;          // _198
-	Vector2f m_currPos;              // _1A0
+	DataGame mDataGame;             // _148
+	DataNavi mDataNavi;             // _164
+	CallBack_CatchPiki* mCatchPiki; // _17C
+	u32 _180;                       // _180
+	u32 _184;                       // _184
+	u32 _188;                       // _188
+	bool mIsTotalPokoActive;        // _18C
+	J2DPane* mPaneSublevel;         // _190
+	ScaleMgr* mScaleMgr;            // _194
+	Vector2f mStandardPos;          // _198
+	Vector2f mCurrPos;              // _1A0
 };
 
 struct PikminCounterCave : public PikminCounter {

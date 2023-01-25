@@ -16,7 +16,7 @@ struct SimpleMessage {
 	void init();
 	void drawMessageID(Graphics&, u32, u32);
 
-	TRenderingProcessor* m_processor; // _00
+	TRenderingProcessor* mProcessor; // _00
 };
 } // namespace P2JME
 

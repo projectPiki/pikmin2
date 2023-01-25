@@ -33,7 +33,7 @@ void FSM::init(EnemyBase* enemy)
 StateDead::StateDead(int stateID)
     : State(stateID)
 {
-	m_name = "dead";
+	mName = "dead";
 }
 
 /*
@@ -46,14 +46,14 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* panModoki = static_cast<Obj*>(enemy);
 	if (panModoki->getCarryTarget()) {
 		panModoki->endStick();
-		panModoki->m_targetCreature = nullptr;
+		panModoki->mTargetCreature = nullptr;
 	}
 
 	panModoki->startMotion(0, nullptr);
 	panModoki->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	panModoki->deathProcedure();
-	panModoki->m_currentVelocity = Vector3f(0.0f);
-	panModoki->m_targetVelocity  = Vector3f(0.0f);
+	panModoki->mCurrentVelocity = Vector3f(0.0f);
+	panModoki->mTargetVelocity  = Vector3f(0.0f);
 	panModoki->killNest();
 }
 
@@ -64,11 +64,11 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying) {
-		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
 			static_cast<Obj*>(enemy)->boundEffect();
 
-		} else if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 			enemy->kill(nullptr);
 		}
 	}
@@ -82,7 +82,7 @@ void StateDead::exec(EnemyBase* enemy)
 StateWalk::StateWalk(int stateID)
     : State(stateID)
 {
-	m_name = "walk";
+	mName = "walk";
 }
 
 /*
@@ -94,11 +94,11 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	if (enemy->getCurrAnimIndex() != 1) {
 		enemy->startMotion(1, nullptr);
-		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).m_fp16.m_value);
+		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
 	}
 
-	static_cast<Obj*>(enemy)->m_nextState = PANMODOKI_NULL;
-	enemy->m_targetCreature               = nullptr;
+	static_cast<Obj*>(enemy)->mNextState = PANMODOKI_NULL;
+	enemy->mTargetCreature               = nullptr;
 }
 
 /*
@@ -197,7 +197,7 @@ lbl_8034CDBC:
 StateBack::StateBack(int stateID)
     : State(stateID)
 {
-	m_name = "back";
+	mName = "back";
 }
 
 /*
@@ -653,7 +653,7 @@ lbl_8034D3BC:
 StatePulled::StatePulled(int stateID)
     : State(stateID)
 {
-	m_name = "pulled";
+	mName = "pulled";
 }
 
 /*
@@ -1088,7 +1088,7 @@ void StatePulled::cleanup(EnemyBase* enemy) { static_cast<Obj*>(enemy)->fadePull
 StateAppear::StateAppear(int stateID)
     : State(stateID)
 {
-	m_name = "appear";
+	mName = "appear";
 }
 
 /*
@@ -1183,7 +1183,7 @@ lbl_8034DAC0:
 StateHide::StateHide(int stateID)
     : State(stateID)
 {
-	m_name = "hide";
+	mName = "hide";
 }
 
 /*
@@ -1325,7 +1325,7 @@ void Obj::hideRumble() { }
 StateDamage::StateDamage(int stateID)
     : State(stateID)
 {
-	m_name = "damage";
+	mName = "damage";
 }
 
 /*
@@ -1465,7 +1465,7 @@ lbl_8034DE4C:
 StateWait::StateWait(int stateID)
     : State(stateID)
 {
-	m_name = "wait";
+	mName = "wait";
 }
 
 /*
@@ -1593,7 +1593,7 @@ lbl_8034DFE4:
 StateStick::StateStick(int stateID)
     : State(stateID)
 {
-	m_name = "stick";
+	mName = "stick";
 }
 
 /*
@@ -1948,7 +1948,7 @@ lbl_8034E4C0:
 StateSucked::StateSucked(int stateID)
     : State(stateID)
 {
-	m_name = "sucked";
+	mName = "sucked";
 }
 
 /*
@@ -1963,7 +1963,7 @@ void StateSucked::init(EnemyBase* enemy, StateArg* stateArg)
 
 	if (static_cast<Obj*>(enemy)->getCarryTarget()) {
 		enemy->endStick();
-		enemy->m_targetCreature = nullptr;
+		enemy->mTargetCreature = nullptr;
 	}
 
 	static_cast<Obj*>(enemy)->_2F1 = 1;
@@ -1984,7 +1984,7 @@ void StateSucked::exec(EnemyBase* enemy) { static_cast<Obj*>(enemy)->_2F1 = 1; }
 StateCarryEnd::StateCarryEnd(int stateID)
     : State(stateID)
 {
-	m_name = "carryend";
+	mName = "carryend";
 }
 
 /*

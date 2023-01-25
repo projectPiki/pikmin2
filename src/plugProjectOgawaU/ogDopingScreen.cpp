@@ -15,26 +15,26 @@ namespace Screen {
  */
 DopingScreen::DopingScreen()
 {
-	m_dopingCheck          = new DopingCheck;
-	m_paneAll              = nullptr;
-	m_paneSpicySpray       = nullptr;
-	m_paneBitterSpray      = nullptr;
-	m_paneCenterDpad       = nullptr;
-	m_offset.x             = 0.0f;
-	m_offset.y             = 0.0f;
-	m_rootPosition.x       = 0.0f;
-	m_rootPosition.y       = 0.0f;
-	m_isSpicySprayEnabled  = false;
-	m_isBitterSprayEnabled = false;
-	m_hasGotSpicySpray     = false;
-	m_hasGotBitterSpray    = false;
-	m_hasGotCenterDpad     = false;
-	m_spicySprayGet        = 0.0f;
-	m_bitterSprayGet       = 0.0f;
-	m_scaleJujiKey         = 0.0f;
-	m_scaleMgr1            = new ScaleMgr;
-	m_scaleMgr2            = new ScaleMgr;
-	m_scaleMgr3            = new ScaleMgr;
+	mDopingCheck          = new DopingCheck;
+	mPaneAll              = nullptr;
+	mPaneSpicySpray       = nullptr;
+	mPaneBitterSpray      = nullptr;
+	mPaneCenterDpad       = nullptr;
+	mOffset.x             = 0.0f;
+	mOffset.y             = 0.0f;
+	mRootPosition.x       = 0.0f;
+	mRootPosition.y       = 0.0f;
+	mIsSpicySprayEnabled  = false;
+	mIsBitterSprayEnabled = false;
+	mHasGotSpicySpray     = false;
+	mHasGotBitterSpray    = false;
+	mHasGotCenterDpad     = false;
+	mSpicySprayGet        = 0.0f;
+	mBitterSprayGet       = 0.0f;
+	mScaleJujiKey         = 0.0f;
+	mScaleMgr1            = new ScaleMgr;
+	mScaleMgr2            = new ScaleMgr;
+	mScaleMgr3            = new ScaleMgr;
 }
 
 /*
@@ -44,18 +44,18 @@ DopingScreen::DopingScreen()
  */
 void DopingScreen::setCallBack(JKRArchive* arc)
 {
-	m_paneAll = og::Screen::TagSearch(this, 'Nall');
+	mPaneAll = og::Screen::TagSearch(this, 'Nall');
 
 	J2DPane* temp1 = og::Screen::TagSearch(this, 'toyo_13');
 	J2DPane* temp2 = og::Screen::TagSearch(this, 'toyo_12');
-	m_dopingCheck->init(temp1, temp2, m_scaleMgr1, m_scaleMgr2);
+	mDopingCheck->init(temp1, temp2, mScaleMgr1, mScaleMgr2);
 
-	m_paneBottleSpicy  = og::Screen::TagSearch(this, 'jb_r');
-	m_paneBottleBitter = og::Screen::TagSearch(this, 'jb_y');
+	mPaneBottleSpicy  = og::Screen::TagSearch(this, 'jb_r');
+	mPaneBottleBitter = og::Screen::TagSearch(this, 'jb_y');
 	og::Screen::setAlphaScreen(this);
 
-	CallBack_CounterRV* counter1 = setCallBack_CounterRV(this, 'dr_r', 'dr_l', 'dr_l', &m_dopingCheck->m_spicySprayCount, 3, 2, 1, arc);
-	CallBack_CounterRV* counter2 = setCallBack_CounterRV(this, 'dy_r', 'dy_l', 'dy_l', &m_dopingCheck->m_bitterSprayCount, 3, 2, 1, arc);
+	CallBack_CounterRV* counter1 = setCallBack_CounterRV(this, 'dr_r', 'dr_l', 'dr_l', &mDopingCheck->mSpicySprayCount, 3, 2, 1, arc);
+	CallBack_CounterRV* counter2 = setCallBack_CounterRV(this, 'dy_r', 'dy_l', 'dy_l', &mDopingCheck->mBitterSprayCount, 3, 2, 1, arc);
 	counter1->setCenteringMode(CallBack_CounterRV::ECM_UNKNOWN_2);
 	counter2->setCenteringMode(CallBack_CounterRV::ECM_UNKNOWN_2);
 
@@ -69,14 +69,14 @@ void DopingScreen::setCallBack(JKRArchive* arc)
 		temp1->getParentPane()->removeChild(temp1);
 	}
 
-	m_paneSpicySpray  = search('Nspray0');
-	m_paneBitterSpray = search('Nspray1');
-	m_paneCenterDpad  = search('Njujikey');
-	m_paneSpicySpray->setBasePosition(J2DPOS_Center);
-	m_paneBitterSpray->setBasePosition(J2DPOS_Center);
-	m_paneCenterDpad->setBasePosition(J2DPOS_Center);
-	m_rootPosition.x = m_paneAll->m_offset.x;
-	m_rootPosition.y = m_paneAll->m_offset.y;
+	mPaneSpicySpray  = search('Nspray0');
+	mPaneBitterSpray = search('Nspray1');
+	mPaneCenterDpad  = search('Njujikey');
+	mPaneSpicySpray->setBasePosition(J2DPOS_Center);
+	mPaneBitterSpray->setBasePosition(J2DPOS_Center);
+	mPaneCenterDpad->setBasePosition(J2DPOS_Center);
+	mRootPosition.x = mPaneAll->mOffset.x;
+	mRootPosition.y = mPaneAll->mOffset.y;
 }
 
 /*
@@ -86,13 +86,13 @@ void DopingScreen::setCallBack(JKRArchive* arc)
  */
 void DopingScreen::setParam(DataNavi& data)
 {
-	DopingCheck* check        = m_dopingCheck;
-	check->m_naviLifeRatio    = data.m_naviLifeRatio;
-	check->m_followPiki       = data.m_followPikis;
-	check->m_nextThrowPiki    = data.m_nextThrowPiki;
-	check->m_spicySprayCount  = data.m_dope1Count;
-	check->m_bitterSprayCount = data.m_dope0Count;
-	check->m_activeNaviID     = data.m_activeNaviID;
+	DopingCheck* check       = mDopingCheck;
+	check->mNaviLifeRatio    = data.mNaviLifeRatio;
+	check->mFollowPiki       = data.mFollowPikis;
+	check->mNextThrowPiki    = data.mNextThrowPiki;
+	check->mSpicySprayCount  = data.mDope1Count;
+	check->mBitterSprayCount = data.mDope0Count;
+	check->mActiveNaviID     = data.mActiveNaviID;
 }
 
 /*
@@ -103,67 +103,67 @@ void DopingScreen::setParam(DataNavi& data)
 void DopingScreen::update()
 {
 	P2DScreen::Mgr::update();
-	m_paneCenterDpad->m_isVisible = false;
-	if (m_isSpicySprayEnabled) {
-		m_paneSpicySpray->m_isVisible  = true;
-		m_paneCenterDpad->m_isVisible  = true;
-		m_paneBottleSpicy->m_isVisible = true;
+	mPaneCenterDpad->mIsVisible = false;
+	if (mIsSpicySprayEnabled) {
+		mPaneSpicySpray->mIsVisible  = true;
+		mPaneCenterDpad->mIsVisible  = true;
+		mPaneBottleSpicy->mIsVisible = true;
 	} else {
-		m_paneSpicySpray->m_isVisible  = false;
-		m_paneBottleSpicy->m_isVisible = false;
+		mPaneSpicySpray->mIsVisible  = false;
+		mPaneBottleSpicy->mIsVisible = false;
 	}
 
-	if (m_isBitterSprayEnabled) {
-		m_paneBitterSpray->m_isVisible  = true;
-		m_paneCenterDpad->m_isVisible   = true;
-		m_paneBottleBitter->m_isVisible = true;
+	if (mIsBitterSprayEnabled) {
+		mPaneBitterSpray->mIsVisible  = true;
+		mPaneCenterDpad->mIsVisible   = true;
+		mPaneBottleBitter->mIsVisible = true;
 	} else {
-		m_paneBitterSpray->m_isVisible  = false;
-		m_paneBottleBitter->m_isVisible = false;
+		mPaneBitterSpray->mIsVisible  = false;
+		mPaneBottleBitter->mIsVisible = false;
 	}
-	m_dopingCheck->update();
+	mDopingCheck->update();
 
-	f32 yoffs        = m_rootPosition.y + m_offset.y;
-	J2DPane* pane    = m_paneAll;
-	pane->m_offset.x = m_rootPosition.x + m_offset.x;
-	pane->m_offset.y = yoffs;
+	f32 yoffs       = mRootPosition.y + mOffset.y;
+	J2DPane* pane   = mPaneAll;
+	pane->mOffset.x = mRootPosition.x + mOffset.x;
+	pane->mOffset.y = yoffs;
 	pane->calcMtx();
 
 	// when spray 0 is first goten
-	if (m_hasGotSpicySpray && m_spicySprayGet < 1.0f) {
-		m_spicySprayGet += 0.1f;
-		if (m_spicySprayGet >= 1.0f) {
-			m_scaleMgr1->up();
-			m_dopingCheck->startGetEff_Up();
+	if (mHasGotSpicySpray && mSpicySprayGet < 1.0f) {
+		mSpicySprayGet += 0.1f;
+		if (mSpicySprayGet >= 1.0f) {
+			mScaleMgr1->up();
+			mDopingCheck->startGetEff_Up();
 			ogSound->setGetSpray();
 		}
 	}
 
 	// when spray 1 is first goten
-	if (m_hasGotBitterSpray && m_bitterSprayGet < 1.0f) {
-		m_bitterSprayGet += 0.1f;
-		if (m_bitterSprayGet >= 1.0f) {
-			m_scaleMgr2->up();
-			m_dopingCheck->startGetEff_Down();
+	if (mHasGotBitterSpray && mBitterSprayGet < 1.0f) {
+		mBitterSprayGet += 0.1f;
+		if (mBitterSprayGet >= 1.0f) {
+			mScaleMgr2->up();
+			mDopingCheck->startGetEff_Down();
 			ogSound->setGetSpray();
 		}
 	}
 
 	// when either spray is first gotten
-	if (m_hasGotCenterDpad && m_scaleJujiKey < 1.0f) {
-		m_scaleJujiKey += 0.1f;
-		if (m_scaleJujiKey >= 1.0f) {
-			m_scaleMgr3->up();
+	if (mHasGotCenterDpad && mScaleJujiKey < 1.0f) {
+		mScaleJujiKey += 0.1f;
+		if (mScaleJujiKey >= 1.0f) {
+			mScaleMgr3->up();
 		}
 	}
 
-	f64 scale1 = m_spicySprayGet * m_scaleMgr1->calc();
-	f64 scale2 = m_bitterSprayGet * m_scaleMgr2->calc();
-	f64 scale3 = m_scaleJujiKey * m_scaleMgr3->calc();
+	f64 scale1 = mSpicySprayGet * mScaleMgr1->calc();
+	f64 scale2 = mBitterSprayGet * mScaleMgr2->calc();
+	f64 scale3 = mScaleJujiKey * mScaleMgr3->calc();
 
-	m_paneSpicySpray->updateScale(scale1);
-	m_paneBitterSpray->updateScale(scale2);
-	m_paneCenterDpad->updateScale(scale3);
+	mPaneSpicySpray->updateScale(scale1);
+	mPaneBitterSpray->updateScale(scale2);
+	mPaneCenterDpad->updateScale(scale3);
 }
 
 /*
@@ -173,8 +173,8 @@ void DopingScreen::update()
  */
 void DopingScreen::adjPos(f32 x, f32 y)
 {
-	m_offset.x = x;
-	m_offset.y = y;
+	mOffset.x = x;
+	mOffset.y = y;
 }
 
 /*
@@ -184,17 +184,17 @@ void DopingScreen::adjPos(f32 x, f32 y)
  */
 void DopingScreen::setDopingEnable(bool spicyEnabled, bool bitterEnabled)
 {
-	m_isSpicySprayEnabled  = spicyEnabled;
-	m_isBitterSprayEnabled = bitterEnabled;
+	mIsSpicySprayEnabled  = spicyEnabled;
+	mIsBitterSprayEnabled = bitterEnabled;
 	if (spicyEnabled) {
-		m_spicySprayGet = 1.0f;
+		mSpicySprayGet = 1.0f;
 	}
 	if (bitterEnabled) {
-		m_bitterSprayGet = 1.0f;
+		mBitterSprayGet = 1.0f;
 	}
 
 	if (spicyEnabled || bitterEnabled) {
-		m_scaleJujiKey = 1.0f;
+		mScaleJujiKey = 1.0f;
 	}
 }
 
@@ -205,8 +205,8 @@ void DopingScreen::setDopingEnable(bool spicyEnabled, bool bitterEnabled)
  */
 void DopingScreen::openDopingUp()
 {
-	m_hasGotSpicySpray    = true;
-	m_isSpicySprayEnabled = true;
+	mHasGotSpicySpray    = true;
+	mIsSpicySprayEnabled = true;
 }
 
 /*
@@ -216,8 +216,8 @@ void DopingScreen::openDopingUp()
  */
 void DopingScreen::openDopingDown()
 {
-	m_hasGotBitterSpray    = true;
-	m_isBitterSprayEnabled = true;
+	mHasGotBitterSpray    = true;
+	mIsBitterSprayEnabled = true;
 }
 
 /*
@@ -225,7 +225,7 @@ void DopingScreen::openDopingDown()
  * Address:	80303CF8
  * Size:	00000C
  */
-void DopingScreen::openDopingKey() { m_hasGotCenterDpad = true; }
+void DopingScreen::openDopingKey() { mHasGotCenterDpad = true; }
 
 /*
  * --INFO--
@@ -234,26 +234,26 @@ void DopingScreen::openDopingKey() { m_hasGotCenterDpad = true; }
  */
 DopingCheck::DopingCheck()
 {
-	m_naviLifeRatio    = 1.0f;
-	m_followPiki       = 1;
-	m_nextThrowPiki    = 2;
-	m_spicySprayCount  = 10;
-	m_bitterSprayCount = 10;
-	m_activeNaviID     = 1;
+	mNaviLifeRatio    = 1.0f;
+	mFollowPiki       = 1;
+	mNextThrowPiki    = 2;
+	mSpicySprayCount  = 10;
+	mBitterSprayCount = 10;
+	mActiveNaviID     = 1;
 
 	// Inlined init?
-	m_spicyPane      = nullptr;
-	m_bitterPane     = nullptr;
-	m_newSpicyCount  = &m_spicySprayCount;
-	m_newBitterCount = &m_bitterSprayCount;
-	m_oldSpicyCount  = *m_newSpicyCount;
-	m_oldBitterCount = *m_newBitterCount;
+	mSpicyPane      = nullptr;
+	mBitterPane     = nullptr;
+	mNewSpicyCount  = &mSpicySprayCount;
+	mNewBitterCount = &mBitterSprayCount;
+	mOldSpicyCount  = *mNewSpicyCount;
+	mOldBitterCount = *mNewBitterCount;
 
-	m_extractEfx     = new efx2d::T2DExtractUp;
-	m_isUpdateCount  = true;
-	m_spicyScaleMgr  = nullptr;
-	m_bitterScaleMgr = nullptr;
-	m_xOffset        = 20.0f;
+	mExtractEfx     = new efx2d::T2DExtractUp;
+	mIsUpdateCount  = true;
+	mSpicyScaleMgr  = nullptr;
+	mBitterScaleMgr = nullptr;
+	mXOffset        = 20.0f;
 }
 
 /*
@@ -263,15 +263,15 @@ DopingCheck::DopingCheck()
  */
 void DopingCheck::init(J2DPane* pane1, J2DPane* pane2, ScaleMgr* mgr1, ScaleMgr* mgr2)
 {
-	m_spicyPane      = pane1;
-	m_bitterPane     = pane2;
-	m_spicyScaleMgr  = mgr1;
-	m_bitterScaleMgr = mgr2;
-	m_newSpicyCount  = &m_spicySprayCount;
-	m_newBitterCount = &m_bitterSprayCount;
-	m_oldSpicyCount  = *m_newSpicyCount;
-	m_oldBitterCount = *m_newBitterCount;
-	m_isUpdateCount  = true;
+	mSpicyPane      = pane1;
+	mBitterPane     = pane2;
+	mSpicyScaleMgr  = mgr1;
+	mBitterScaleMgr = mgr2;
+	mNewSpicyCount  = &mSpicySprayCount;
+	mNewBitterCount = &mBitterSprayCount;
+	mOldSpicyCount  = *mNewSpicyCount;
+	mOldBitterCount = *mNewBitterCount;
+	mIsUpdateCount  = true;
 }
 
 /*
@@ -281,41 +281,41 @@ void DopingCheck::init(J2DPane* pane1, J2DPane* pane2, ScaleMgr* mgr1, ScaleMgr*
  */
 void DopingCheck::update()
 {
-	int newSpicyCount  = *m_newSpicyCount;
-	int newBitterCount = *m_newBitterCount;
-	if (m_isUpdateCount) {
-		m_isUpdateCount  = false;
-		m_oldSpicyCount  = newSpicyCount;
-		m_oldBitterCount = newBitterCount;
+	int newSpicyCount  = *mNewSpicyCount;
+	int newBitterCount = *mNewBitterCount;
+	if (mIsUpdateCount) {
+		mIsUpdateCount  = false;
+		mOldSpicyCount  = newSpicyCount;
+		mOldBitterCount = newBitterCount;
 		return;
 	}
 
 	if (og::newScreen::checkMovieActive()) {
-		m_oldSpicyCount  = newSpicyCount;
-		m_oldBitterCount = newBitterCount;
+		mOldSpicyCount  = newSpicyCount;
+		mOldBitterCount = newBitterCount;
 		return;
 	}
 
-	if (newSpicyCount != m_oldSpicyCount) {
-		if (newSpicyCount > m_oldSpicyCount) {
-			effStart(m_spicyPane);
-			if (m_spicyScaleMgr) {
-				m_spicyScaleMgr->up(0.2f, 30.0f, 0.8f, 0.0f);
+	if (newSpicyCount != mOldSpicyCount) {
+		if (newSpicyCount > mOldSpicyCount) {
+			effStart(mSpicyPane);
+			if (mSpicyScaleMgr) {
+				mSpicyScaleMgr->up(0.2f, 30.0f, 0.8f, 0.0f);
 			}
 		}
 
-		m_oldSpicyCount = newSpicyCount;
+		mOldSpicyCount = newSpicyCount;
 	}
 
-	if (newBitterCount != m_oldBitterCount) {
-		if (newBitterCount > m_oldBitterCount) {
-			effStart(m_bitterPane);
-			if (m_bitterScaleMgr) {
-				m_bitterScaleMgr->up(0.2f, 30.0f, 0.8f, 0.0f);
+	if (newBitterCount != mOldBitterCount) {
+		if (newBitterCount > mOldBitterCount) {
+			effStart(mBitterPane);
+			if (mBitterScaleMgr) {
+				mBitterScaleMgr->up(0.2f, 30.0f, 0.8f, 0.0f);
 			}
 		}
 
-		m_oldBitterCount = newBitterCount;
+		mOldBitterCount = newBitterCount;
 	}
 }
 
@@ -331,7 +331,7 @@ void DopingCheck::effStart(J2DPane* pane)
 
 	efx2d::Arg arg(pos);
 
-	m_extractEfx->create(&arg);
+	mExtractEfx->create(&arg);
 	ogSound->setSprayAdd();
 }
 
@@ -344,7 +344,7 @@ void DopingCheck::startGetEff(J2DPane* pane)
 {
 	Vector2f pos;
 	og::Screen::calcGlbCenter(pane, &pos);
-	pos.x += m_xOffset;
+	pos.x += mXOffset;
 
 	efx2d::Arg arg(pos);
 	efx2d::T2DSprayset efx;
@@ -356,13 +356,13 @@ void DopingCheck::startGetEff(J2DPane* pane)
  * Address:	80303FC8
  * Size:	0000D0
  */
-void DopingCheck::startGetEff_Up() { startGetEff(m_spicyPane); }
+void DopingCheck::startGetEff_Up() { startGetEff(mSpicyPane); }
 
 /*
  * --INFO--
  * Address:	80304098
  * Size:	0000D0
  */
-void DopingCheck::startGetEff_Down() { startGetEff(m_bitterPane); }
+void DopingCheck::startGetEff_Down() { startGetEff(mBitterPane); }
 } // namespace Screen
 } // namespace og

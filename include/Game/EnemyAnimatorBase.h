@@ -24,23 +24,23 @@ struct EnemyAnimatorBase {
 	virtual void animate(f32 speed);                    // _18
 	virtual void animate(int animatorIndex, f32 speed); // _1C (weak)
 
-	virtual void resetAnimSpeed() { m_speed = defaultAnimSpeed; } // _20 (weak)
-	virtual u32 getTypeID() { return 'base'; }                    // _24 (weak)
+	virtual void resetAnimSpeed() { mSpeed = defaultAnimSpeed; } // _20 (weak)
+	virtual u32 getTypeID() { return 'base'; }                   // _24 (weak)
 
 	inline void reset()
 	{
-		m_flags.byteView[0] = 0;
-		m_flags.byteView[1] = 0;
-		m_flags.byteView[2] = 0;
-		m_flags.byteView[3] = 0;
+		mFlags.byteView[0] = 0;
+		mFlags.byteView[1] = 0;
+		mFlags.byteView[2] = 0;
+		mFlags.byteView[3] = 0;
 	}
 
 	static const f32 defaultAnimSpeed;
 
 	// _00, VTBL
-	f32 m_speed;          // _04
-	f32 m_normalizedTime; // _08, from 0 (start) to 1 (end, multiplied by frame count)
-	BitFlag<u32> m_flags; // _0C
+	f32 mSpeed;          // _04
+	f32 mNormalizedTime; // _08, from 0 (start) to 1 (end, multiplied by frame count)
+	BitFlag<u32> mFlags; // _0C
 };
 
 struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
@@ -74,7 +74,7 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 
 	// _00     = VTBL
 	// _00-_10 = EnemyAnimatorBase
-	SysShape::BlendAnimator m_animator; // _10
+	SysShape::BlendAnimator mAnimator; // _10
 };
 
 } // namespace Game

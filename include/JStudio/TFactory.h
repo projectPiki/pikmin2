@@ -17,8 +17,8 @@ struct TFactory : public stb::TFactory {
 	void removeCreateObject(JStudio::TCreateObject*);
 	void removeCreateObject_all();
 
-	JGadget::TNodeLinkList m_nodeLinkList; // _04
-	fvb::TFactory m_fvbFactory;            // _10
+	JGadget::TNodeLinkList mNodeLinkList; // _04
+	fvb::TFactory mFvbFactory;            // _10
 };
 } // namespace JStudio
 

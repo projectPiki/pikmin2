@@ -17,9 +17,9 @@ Stages* stageList;
  */
 inline CaveOtakara::CaveOtakara()
 {
-	m_otakaraCount = 0;
-	m_id.setID('xxxx');
-	m_filename = "keigo_de_sox.txt";
+	mOtakaraCount = 0;
+	mId.setID('xxxx');
+	mFilename = "keigo_de_sox.txt";
 }
 
 /*
@@ -29,8 +29,8 @@ inline CaveOtakara::CaveOtakara()
  */
 inline CaveOtakaraInfo::CaveOtakaraInfo()
 {
-	m_count = 0;
-	m_owner.clearRelations();
+	mCount = 0;
+	mOwner.clearRelations();
 }
 
 /*
@@ -48,13 +48,13 @@ CaveOtakara::~CaveOtakara() { }
  */
 inline void CaveOtakaraInfo::read(Stream& stream)
 {
-	m_count = stream.readInt();
-	for (int i = 0; i < m_count; i++) {
+	mCount = stream.readInt();
+	for (int i = 0; i < mCount; i++) {
 		CaveOtakara* currOtakara = new CaveOtakara;
-		currOtakara->m_id.read(stream);
-		currOtakara->m_otakaraCount = stream.readByte();
-		currOtakara->m_filename     = stream.readString(nullptr, 0);
-		m_owner.add(currOtakara);
+		currOtakara->mId.read(stream);
+		currOtakara->mOtakaraCount = stream.readByte();
+		currOtakara->mFilename     = stream.readString(nullptr, 0);
+		mOwner.add(currOtakara);
 	}
 }
 
@@ -77,10 +77,10 @@ inline int CaveOtakaraInfo::get_index(int)
 inline CaveOtakara* CaveOtakaraInfo::get_id(ID32& id)
 {
 	CaveOtakara* caveNode;
-	for (int i = 0; i < m_count; i++) {
-		caveNode = (CaveOtakara*)m_owner.getChildAt(i);
+	for (int i = 0; i < mCount; i++) {
+		caveNode = (CaveOtakara*)mOwner.getChildAt(i);
 
-		if ((caveNode->m_id == id.getID())) {
+		if ((caveNode->mId == id.getID())) {
 			return caveNode;
 		} else {
 			continue;
@@ -97,10 +97,10 @@ inline CaveOtakara* CaveOtakaraInfo::get_id(ID32& id)
 inline int CaveOtakaraInfo::getCaveIndex_FromID(ID32& id)
 {
 	CaveOtakara* caveNode;
-	for (int idx = 0; idx < m_count; idx++) {
-		caveNode = (CaveOtakara*)m_owner.getChildAt(idx);
+	for (int idx = 0; idx < mCount; idx++) {
+		caveNode = (CaveOtakara*)mOwner.getChildAt(idx);
 
-		if ((caveNode->m_id == id.getID())) {
+		if ((caveNode->mId == id.getID())) {
 			return idx;
 		}
 	}
@@ -125,8 +125,8 @@ inline ID32* CaveOtakaraInfo::getCaveID_FromIndex(int)
  */
 inline LimitGenInfo::LimitGenInfo()
 {
-	m_count = 0;
-	m_owner.clearRelations();
+	mCount = 0;
+	mOwner.clearRelations();
 }
 
 /*
@@ -144,14 +144,14 @@ LimitGen::~LimitGen() { }
  */
 inline void LimitGenInfo::read(Stream& stream)
 {
-	m_count = stream.readInt();
-	for (int i = 0; i < m_count; i++) {
-		LimitGen* currLimitGen   = new LimitGen;
-		currLimitGen->m_name     = stream.readString(nullptr, 0);
-		currLimitGen->_18        = stream.readInt();
-		currLimitGen->_1C        = stream.readInt();
-		currLimitGen->m_dayLimit = stream.readInt();
-		m_owner.add(currLimitGen);
+	mCount = stream.readInt();
+	for (int i = 0; i < mCount; i++) {
+		LimitGen* currLimitGen  = new LimitGen;
+		currLimitGen->mName     = stream.readString(nullptr, 0);
+		currLimitGen->_18       = stream.readInt();
+		currLimitGen->_1C       = stream.readInt();
+		currLimitGen->mDayLimit = stream.readInt();
+		mOwner.add(currLimitGen);
 	}
 }
 
@@ -164,21 +164,21 @@ CourseInfo::CourseInfo()
 {
 	setName("noname");
 
-	m_routePath     = 0;
-	m_farmPath      = 0;
-	m_mapcodePath   = 0;
-	m_waterboxPath  = 0;
-	m_collisionPath = 0;
-	m_modelPath     = 0;
-	m_folder        = 0;
+	mRoutePath     = 0;
+	mFarmPath      = 0;
+	mMapcodePath   = 0;
+	mWaterboxPath  = 0;
+	mCollisionPath = 0;
+	mModelPath     = 0;
+	mFolder        = 0;
 
-	m_startPosition = 0.0f;
-	m_startAngle    = 0;
+	mStartPosition = 0.0f;
+	mStartAngle    = 0;
 
-	m_courseIndex = 0;
+	mCourseIndex = 0;
 
-	PSMTXIdentity(_D0.m_matrix.mtxView);
-	m_groundOtakaraMax = 0;
+	PSMTXIdentity(_D0.mMatrix.mtxView);
+	mGroundOtakaraMax = 0;
 }
 
 /*
@@ -213,69 +213,69 @@ void CourseInfo::read(Stream& stream)
 {
 	char* currentBytes = stream.readString(nullptr, 0);
 	if (strcmp(currentBytes, "name") == 0) {
-		m_name       = stream.readString(nullptr, 0);
+		mName        = stream.readString(nullptr, 0);
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "folder") == 0) {
-		m_folder     = stream.readString(nullptr, 0);
+		mFolder      = stream.readString(nullptr, 0);
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "abe_folder") == 0) {
-		m_abeFolder  = stream.readString(nullptr, 0);
+		mAbeFolder   = stream.readString(nullptr, 0);
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "model") == 0) {
-		m_modelPath  = stream.readString(nullptr, 0);
+		mModelPath   = stream.readString(nullptr, 0);
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "collision") == 0) {
-		m_collisionPath = stream.readString(nullptr, 0);
-		currentBytes    = stream.readString(nullptr, 0);
-	}
-
-	if (strcmp(currentBytes, "waterbox") == 0) {
-		m_waterboxPath = stream.readString(nullptr, 0);
+		mCollisionPath = stream.readString(nullptr, 0);
 		currentBytes   = stream.readString(nullptr, 0);
 	}
 
-	if (strcmp(currentBytes, "mapcode") == 0) {
-		m_mapcodePath = stream.readString(nullptr, 0);
+	if (strcmp(currentBytes, "waterbox") == 0) {
+		mWaterboxPath = stream.readString(nullptr, 0);
 		currentBytes  = stream.readString(nullptr, 0);
 	}
 
+	if (strcmp(currentBytes, "mapcode") == 0) {
+		mMapcodePath = stream.readString(nullptr, 0);
+		currentBytes = stream.readString(nullptr, 0);
+	}
+
 	if (strcmp(currentBytes, "farm") == 0) {
-		m_farmPath   = stream.readString(nullptr, 0);
+		mFarmPath    = stream.readString(nullptr, 0);
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "route") == 0) {
-		m_routePath  = stream.readString(nullptr, 0);
+		mRoutePath   = stream.readString(nullptr, 0);
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "start") == 0) {
-		m_startPosition.read(stream);
+		mStartPosition.read(stream);
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "startangle") == 0) {
-		m_startAngle = stream.readFloat();
+		mStartAngle = stream.readFloat();
 		stream.readString(nullptr, 0);
 
 		// Convert angle to radians
-		Vector3f vec(0.0f, 3.1415927f * (0.0055555557f * m_startAngle), 0.0f);
-		_D0.makeTR(m_startPosition, vec);
+		Vector3f vec(0.0f, 3.1415927f * (0.0055555557f * mStartAngle), 0.0f);
+		_D0.makeTR(mStartPosition, vec);
 	}
 
-	m_limitGenInfo.read(stream);
-	m_loopGenInfo.read(stream);
-	m_caveOtakaraInfo.read(stream);
+	mLimitGenInfo.read(stream);
+	mLoopGenInfo.read(stream);
+	mCaveOtakaraInfo.read(stream);
 
-	m_groundOtakaraMax = stream.readInt();
+	mGroundOtakaraMax = stream.readInt();
 }
 
 /*
@@ -285,9 +285,9 @@ void CourseInfo::read(Stream& stream)
  */
 int CourseInfo::getOtakaraNum(ID32& id)
 {
-	CaveOtakara* caveNode = m_caveOtakaraInfo.get_id(id);
+	CaveOtakara* caveNode = mCaveOtakaraInfo.get_id(id);
 
-	return (caveNode) ? caveNode->m_otakaraCount : -1;
+	return (caveNode) ? caveNode->mOtakaraCount : -1;
 }
 
 /*
@@ -297,10 +297,10 @@ int CourseInfo::getOtakaraNum(ID32& id)
  */
 int CourseInfo::getOtakaraNum(int childIdx)
 {
-	CaveOtakara* node = (CaveOtakara*)m_caveOtakaraInfo.m_owner.getChildAt(childIdx);
+	CaveOtakara* node = (CaveOtakara*)mCaveOtakaraInfo.mOwner.getChildAt(childIdx);
 
 	if (node) {
-		return node->m_otakaraCount;
+		return node->mOtakaraCount;
 	}
 
 	return -1;
@@ -311,7 +311,7 @@ int CourseInfo::getOtakaraNum(int childIdx)
  * Address:	801ADB14
  * Size:	00008C
  */
-int CourseInfo::getCaveIndex_FromID(ID32& id) { return m_caveOtakaraInfo.getCaveIndex_FromID(id); }
+int CourseInfo::getCaveIndex_FromID(ID32& id) { return mCaveOtakaraInfo.getCaveIndex_FromID(id); }
 
 /*
  * --INFO--
@@ -320,9 +320,9 @@ int CourseInfo::getCaveIndex_FromID(ID32& id) { return m_caveOtakaraInfo.getCave
  */
 char* CourseInfo::getCaveinfoFilename_FromID(ID32& id)
 {
-	CaveOtakara* caveNode = m_caveOtakaraInfo.get_id(id);
+	CaveOtakara* caveNode = mCaveOtakaraInfo.get_id(id);
 	P2ASSERTLINE(282, caveNode);
-	return caveNode->m_filename;
+	return caveNode->mFilename;
 }
 
 /*
@@ -332,10 +332,10 @@ char* CourseInfo::getCaveinfoFilename_FromID(ID32& id)
  */
 ID32* CourseInfo::getCaveID_FromIndex(int childIdx)
 {
-	CaveOtakara* node = (CaveOtakara*)m_caveOtakaraInfo.m_owner.getChildAt(childIdx);
+	CaveOtakara* node = (CaveOtakara*)mCaveOtakaraInfo.mOwner.getChildAt(childIdx);
 
 	if (node) {
-		return (ID32*)node->m_id.getID();
+		return (ID32*)node->mId.getID();
 	}
 
 	return (ID32*)'none';
@@ -346,7 +346,7 @@ ID32* CourseInfo::getCaveID_FromIndex(int childIdx)
  * Address:	801ADC78
  * Size:	000008
  */
-int CourseInfo::getCaveNum() { return m_caveOtakaraInfo.m_count; }
+int CourseInfo::getCaveNum() { return mCaveOtakaraInfo.mCount; }
 
 /*
  * --INFO--
@@ -355,7 +355,7 @@ int CourseInfo::getCaveNum() { return m_caveOtakaraInfo.m_count; }
  */
 Stages::Stages()
 {
-	m_courseInfo.clearRelations();
+	mCourseInfo.clearRelations();
 
 	_108 = 0;
 	_104 = 0;
@@ -388,8 +388,8 @@ inline void Stages::update()
  */
 CourseInfo* Stages::getCourseInfo(char* name)
 {
-	for (CNode* node = m_courseInfo.m_child; node; node = node->m_next) {
-		if (!strncmp(name, node->m_name, strlen(name))) {
+	for (CNode* node = mCourseInfo.mChild; node; node = node->mNext) {
+		if (!strncmp(name, node->mName, strlen(name))) {
 			return (CourseInfo*)node;
 		}
 	}
@@ -404,9 +404,9 @@ CourseInfo* Stages::getCourseInfo(char* name)
  */
 CourseInfo* Stages::getCourseInfo(int courseNum)
 {
-	CourseInfo* childInfo = (CourseInfo*)m_courseInfo.m_child;
+	CourseInfo* childInfo = (CourseInfo*)mCourseInfo.mChild;
 	for (int i = 0; i < courseNum; i++) {
-		childInfo = (CourseInfo*)childInfo->m_next;
+		childInfo = (CourseInfo*)childInfo->mNext;
 	}
 	return childInfo;
 }
@@ -429,47 +429,47 @@ inline void Stages::draw2d()
 void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
 {
 	char modelPathTxt[0x100];
-	if (info->m_modelPath) {
-		sprintf(modelPathTxt, "%s/%s", info->m_folder, info->m_modelPath);
+	if (info->mModelPath) {
+		sprintf(modelPathTxt, "%s/%s", info->mFolder, info->mModelPath);
 	}
 
 	char collPathTxt[0x100];
-	if (info->m_collisionPath) {
-		sprintf(collPathTxt, "%s/%s", info->m_folder, info->m_collisionPath);
+	if (info->mCollisionPath) {
+		sprintf(collPathTxt, "%s/%s", info->mFolder, info->mCollisionPath);
 	}
 
 	char wboxPathTxt[0x100];
-	if (info->m_waterboxPath) {
-		sprintf(wboxPathTxt, "%s/%s", info->m_folder, info->m_waterboxPath);
+	if (info->mWaterboxPath) {
+		sprintf(wboxPathTxt, "%s/%s", info->mFolder, info->mWaterboxPath);
 	}
 
 	char codePathTxt[0x100];
-	if (info->m_mapcodePath) {
-		sprintf(codePathTxt, "%s/%s", info->m_folder, info->m_mapcodePath);
+	if (info->mMapcodePath) {
+		sprintf(codePathTxt, "%s/%s", info->mFolder, info->mMapcodePath);
 	}
 
 	char farmPathTxt[0x100];
-	if (info->m_farmPath) {
-		sprintf(farmPathTxt, "%s/%s", info->m_folder, info->m_farmPath);
+	if (info->mFarmPath) {
+		sprintf(farmPathTxt, "%s/%s", info->mFolder, info->mFarmPath);
 	}
 
 	char routePathTxt[0x100];
-	if (info->m_routePath) {
-		sprintf(routePathTxt, "%s/%s", info->m_abeFolder, info->m_routePath);
+	if (info->mRoutePath) {
+		sprintf(routePathTxt, "%s/%s", info->mAbeFolder, info->mRoutePath);
 	}
 
-	mapMgr                                          = new ShapeMapMgr;
-	static_cast<ShapeMapMgr*>(mapMgr)->m_routeMgr   = routeMgr;
-	static_cast<ShapeMapMgr*>(mapMgr)->m_courseInfo = info;
+	mapMgr                                         = new ShapeMapMgr;
+	static_cast<ShapeMapMgr*>(mapMgr)->mRouteMgr   = routeMgr;
+	static_cast<ShapeMapMgr*>(mapMgr)->mCourseInfo = info;
 
-	ShapeMapMgr::LoadArg loadarg(info->m_modelPath ? modelPathTxt : nullptr, info->m_collisionPath ? collPathTxt : nullptr,
-	                             info->m_routePath ? routePathTxt : nullptr);
+	ShapeMapMgr::LoadArg loadarg(info->mModelPath ? modelPathTxt : nullptr, info->mCollisionPath ? collPathTxt : nullptr,
+	                             info->mRoutePath ? routePathTxt : nullptr);
 
-	loadarg.m_folder    = info->m_folder;
-	loadarg.m_abeFolder = info->m_abeFolder;
+	loadarg.mFolder    = info->mFolder;
+	loadarg.mAbeFolder = info->mAbeFolder;
 
-	loadarg.m_waterboxPath = info->m_waterboxPath ? wboxPathTxt : nullptr;
-	loadarg.m_mapcodePath  = info->m_mapcodePath ? codePathTxt : nullptr;
+	loadarg.mWaterboxPath = info->mWaterboxPath ? wboxPathTxt : nullptr;
+	loadarg.mMapcodePath  = info->mMapcodePath ? codePathTxt : nullptr;
 
 	static_cast<ShapeMapMgr*>(mapMgr)->load(loadarg);
 }
@@ -504,14 +504,14 @@ inline void Stages::dump()
 void Stages::read(Stream& stream)
 {
 	s16 courseCount = stream.readShort();
-	m_courseCount   = courseCount;
+	mCourseCount    = courseCount;
 
 	// set courseIndex for each child CourseInfo from stream
 	for (int i = 0; i < (u16)courseCount; i++) {
-		CourseInfo* newInfo    = new CourseInfo();
-		newInfo->m_courseIndex = i;
+		CourseInfo* newInfo   = new CourseInfo();
+		newInfo->mCourseIndex = i;
 		newInfo->read(stream);
-		m_courseInfo.add(newInfo);
+		mCourseInfo.add(newInfo);
 	}
 }
 

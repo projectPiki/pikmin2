@@ -66,14 +66,14 @@ struct Obj : public ChappyBase::Obj {
 
 	// _00 		= VTBL
 	// _00-_2E4	= ChappyBase::Obj
-	bool m_onFire;                         // _2E4
-	efx::TYakiBody* m_efxBody;             // _2E8
-	efx::TYakiFlick* m_efxFlick;           // _2EC
-	efx::TYakiDeadsmoke* m_efxDeadsmoke;   // _2F0
-	efx::TYakiSteam* m_efxSteam;           // _2F4
-	f32 _2F8;                              // _2F8
-	Sys::MatLoopAnimator* m_loopAnimators; // _2FC, array of 2 animators
-	                                       // _300 = PelletView
+	bool mOnFire;                         // _2E4
+	efx::TYakiBody* mEfxBody;             // _2E8
+	efx::TYakiFlick* mEfxFlick;           // _2EC
+	efx::TYakiDeadsmoke* mEfxDeadsmoke;   // _2F0
+	efx::TYakiSteam* mEfxSteam;           // _2F4
+	f32 _2F8;                             // _2F8
+	Sys::MatLoopAnimator* mLoopAnimators; // _2FC, array of 2 animators
+	                                      // _300 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -99,9 +99,9 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj;                                 // _44, an array of Objs
-	Sys::MatTexAnimation* m_texAnimation;       // _48, unknown
-	Sys::MatTevRegAnimation* m_tevRegAnimation; // _4C, unknown
+	Obj* mObj;                                 // _44, an array of Objs
+	Sys::MatTexAnimation* mTexAnimation;       // _48, unknown
+	Sys::MatTevRegAnimation* mTevRegAnimation; // _4C, unknown
 };
 
 } // namespace FireChappy

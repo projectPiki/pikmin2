@@ -33,7 +33,7 @@ struct SeqTrackBase {
 
 	TaskEntryMgr* getTaskEntryList();
 
-	TaskEntryMgr m_taskEntryMgr; // _04
+	TaskEntryMgr mTaskEntryMgr; // _04
 };
 
 /**
@@ -44,7 +44,7 @@ struct SeqTrackRoot : public SeqTrackBase {
 
 	virtual bool update() // _08 (weak)
 	{
-		m_beatMgr.proc();
+		mBeatMgr.proc();
 		return SeqTrackBase::update();
 	}
 	virtual void init(JASTrack*); // _0C
@@ -64,7 +64,7 @@ struct SeqTrackRoot : public SeqTrackBase {
 	u16 _32;                       // _32
 	f32 _34;                       // _34
 	int _38;                       // _38 - unknown
-	BeatMgr m_beatMgr;             // _3C
+	BeatMgr mBeatMgr;              // _3C
 	u8 _3D;                        // _3D - possibly padding or part of BeatMgr
 	u16 _3E;                       // _3E
 	TaskEntry_Tempo _40;           // _40

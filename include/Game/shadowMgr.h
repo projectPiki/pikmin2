@@ -24,25 +24,25 @@ struct JointShadowRootNode;
 
 // Size: 0x20
 struct ShadowParam {
-	Vector3f m_position;          // _00
-	Sys::Sphere m_boundingSphere; // _0C
-	f32 m_size;                   // _1C
+	Vector3f mPosition;          // _00
+	Sys::Sphere mBoundingSphere; // _0C
+	f32 mSize;                   // _1C
 };
 
 // Size: 0x60
 struct ShadowParms : public Parameters {
-	Parm<f32> m_lodNear; // _0C
-	Parm<f32> m_lodFar;  // _34
-	void* m_end;         // _5C
+	Parm<f32> mLodNear; // _0C
+	Parm<f32> mLodFar;  // _34
+	void* mEnd;         // _5C
 };
 
 // Size: 0x24
 struct ShadowNode : public CNode {
 	virtual ~ShadowNode(); // _08 (weak)
 
-	Creature* m_creature; // _18
-	u32 _1C;              // _1C
-	u32 _20;              // _20 /* bitfield */
+	Creature* mCreature; // _18
+	u32 _1C;             // _1C
+	u32 _20;             // _20 /* bitfield */
 };
 
 struct CylinderBase {
@@ -69,13 +69,13 @@ struct CylinderBase {
 	void drawCylinderList(int);
 
 	// VTBL _00
-	void* m_displayListObj; // _04
-	Color4* m_color;        // _08
-	ShadowParms* m_parms;   // _0C
-	Rectf _10;              // _10
-	Vector3f _20[2];        // _20
-	Vector3f _38[2];        // _38
-	f32 _50;                // _50
+	void* mDisplayListObj; // _04
+	Color4* mColor;        // _08
+	ShadowParms* mParms;   // _0C
+	Rectf _10;             // _10
+	Vector3f _20[2];       // _20
+	Vector3f _38[2];       // _38
+	f32 _50;               // _50
 };
 
 struct ShadowCylinder2 : public CylinderBase {
@@ -126,7 +126,7 @@ struct TubeShadowSetNode : public JointShadowNode {
 	inline TubeShadowSetNode()
 	    : JointShadowNode(2)
 	{
-		m_joint = nullptr;
+		mJoint = nullptr;
 	}
 
 	virtual ~TubeShadowSetNode() { } // _08 (weak)
@@ -135,14 +135,14 @@ struct TubeShadowSetNode : public JointShadowNode {
 
 	// _00     = VTBL
 	// _00-_24 = JointShadowNode
-	SysShape::Joint* m_joint; // _24
+	SysShape::Joint* mJoint; // _24
 };
 
 struct TubeShadowTransNode : public JointShadowNode {
 	inline TubeShadowTransNode()
 	    : JointShadowNode(2)
 	{
-		m_joint = nullptr;
+		mJoint = nullptr;
 	}
 
 	virtual ~TubeShadowTransNode() { } // _08 (weak)
@@ -151,7 +151,7 @@ struct TubeShadowTransNode : public JointShadowNode {
 
 	// _00     = VTBL
 	// _00-_24 = JointShadowNode
-	SysShape::Joint* m_joint; // _24
+	SysShape::Joint* mJoint; // _24
 };
 
 struct SphereShadowNode : public JointShadowNode {
@@ -232,15 +232,15 @@ struct ShadowMgr : public CNode {
 	ShadowNode* _24;          // _24
 	ShadowCylinder2* _28;     // _28
 	ShadowCylinder3* _2C;     // _2C
-	Viewport** m_viewports;   // _30
+	Viewport** mViewports;    // _30
 	JointShadowRootNode* _34; // _34
 	JointShadowRootNode* _38; // _38
 	u8 _3C;                   // _3C
 	u8 _3D;                   // _3D
 	int _40;                  // _40
 	int _44;                  // _44
-	Color4 m_color;           // _48
-	ShadowParms* m_parms;     // _4C
+	Color4 mColor;            // _48
+	ShadowParms* mParms;      // _4C
 };
 
 extern ShadowMgr* shadowMgr;

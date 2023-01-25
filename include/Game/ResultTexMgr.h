@@ -11,16 +11,16 @@ namespace ResultTexMgr {
 struct Arg {
 	inline Arg()
 	{
-		m_heap              = nullptr;
-		m_itemConfigList    = nullptr;
-		m_otakaraConfigList = nullptr;
-		_0C                 = -1;
+		mHeap              = nullptr;
+		mItemConfigList    = nullptr;
+		mOtakaraConfigList = nullptr;
+		_0C                = -1;
 	}
 
-	PelletConfigList* m_otakaraConfigList; // _00
-	PelletConfigList* m_itemConfigList;    // _04
-	JKRHeap* m_heap;                       // _08
-	s8 _0C;                                // _0C
+	PelletConfigList* mOtakaraConfigList; // _00
+	PelletConfigList* mItemConfigList;    // _04
+	JKRHeap* mHeap;                       // _08
+	s8 _0C;                               // _0C
 };
 
 struct Mgr : public JKRDisposer {
@@ -28,8 +28,8 @@ struct Mgr : public JKRDisposer {
 		void alloc(int);
 		JUTTexture* getTexture(int);
 
-		JUTTexture* m_textures; // _00
-		int m_count;            // _04
+		JUTTexture* mTextures; // _00
+		int mCount;            // _04
 	};
 
 	Mgr();
@@ -46,13 +46,13 @@ struct Mgr : public JKRDisposer {
 	int getOtakaraNum();
 	int getItemNum();
 
-	JKRHeap* _18;                           // _18
-	LoadResource::Node* m_loadResourceNode; // _1C
-	Textures m_carcassTextures;             // _20
-	Textures m_otakaraTextures;             // _28
-	Textures m_itemTextures;                // _30
-	PelletConfigList* m_otakaraConfigList;  // _38
-	PelletConfigList* m_itemConfigList;     // _3C
+	JKRHeap* _18;                          // _18
+	LoadResource::Node* mLoadResourceNode; // _1C
+	Textures mCarcassTextures;             // _20
+	Textures mOtakaraTextures;             // _28
+	Textures mItemTextures;                // _30
+	PelletConfigList* mOtakaraConfigList;  // _38
+	PelletConfigList* mItemConfigList;     // _3C
 };
 } // namespace ResultTexMgr
 } // namespace Game

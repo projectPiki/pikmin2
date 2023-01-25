@@ -42,7 +42,7 @@ TRKResult TRKReadBuffer_ui32(TRKBuffer* buffer, u8* p2, int count)
 			result    = TRKError302;
 			byteCount = diff;
 		}
-		TRK_memcpy(p, buffer->m_buffer + (buffer->_0C - 4), byteCount);
+		TRK_memcpy(p, buffer->mBuffer + (buffer->_0C - 4), byteCount);
 		buffer->_0C += byteCount;
 		if (gTRKBigEndian == FALSE && result == TRKSuccess) {
 			p2[0] = littleEndianBuffer[3];
@@ -161,7 +161,7 @@ TRKResult TRKReadBuffer_ui8(TRKBuffer* buffer, u8* p2, int count)
 			result    = TRKError302;
 			byteCount = diff;
 		}
-		TRK_memcpy(p2 + i, buffer->m_buffer + (buffer->_0C - 4), byteCount);
+		TRK_memcpy(p2 + i, buffer->mBuffer + (buffer->_0C - 4), byteCount);
 		buffer->_0C += byteCount;
 	}
 	return result;
@@ -248,7 +248,7 @@ TRKResult TRKReadBuffer1_ui64(TRKBuffer* buffer, u8* p2)
 		result    = TRKError302;
 		byteCount = diff;
 	}
-	TRK_memcpy(p, buffer->m_buffer + (buffer->_0C - 4), byteCount);
+	TRK_memcpy(p, buffer->mBuffer + (buffer->_0C - 4), byteCount);
 	buffer->_0C += byteCount;
 	if (gTRKBigEndian == FALSE && result == TRKSuccess) {
 		for (i = 7, j = 0; j < 8; j++, i--) {

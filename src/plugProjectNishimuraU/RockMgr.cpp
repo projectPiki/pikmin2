@@ -13,9 +13,9 @@ static const char rockMgrName[] = "246-RockMgr";
  */
 Generator::Generator()
     : EnemyGeneratorBase("落石ジェネレータ") // falling rock generator
-    , m_speed(100.0f)
-    , m_offset(500.0f)
-    , m_scale(0.4f)
+    , mSpeed(100.0f)
+    , mOffset(500.0f)
+    , mScale(0.4f)
 {
 }
 
@@ -33,7 +33,7 @@ u32 Generator::getLatestVersion() { return '0000'; }
  */
 void Generator::doRead(Stream& stream)
 {
-	if (m_version == getLatestVersion()) {
+	if (mVersion == getLatestVersion()) {
 		doReadLatestVersion(stream);
 		return;
 	}
@@ -48,12 +48,12 @@ void Generator::doRead(Stream& stream)
  */
 void Generator::doWrite(Stream& stream)
 {
-	stream.textWriteTab(stream.m_tabCount);
-	stream.writeFloat(m_speed);
+	stream.textWriteTab(stream.mTabCount);
+	stream.writeFloat(mSpeed);
 	stream.textWriteText("\t\t# velocity \r\n");
-	stream.writeFloat(m_offset);
+	stream.writeFloat(mOffset);
 	stream.textWriteText("\t\t# offset \r\n");
-	stream.writeFloat(m_scale);
+	stream.writeFloat(mScale);
 	stream.textWriteText("\t\t# scale \r\n");
 }
 
@@ -64,9 +64,9 @@ void Generator::doWrite(Stream& stream)
  */
 void Generator::doReadLatestVersion(Stream& stream)
 {
-	m_speed  = stream.readFloat();
-	m_offset = stream.readFloat();
-	m_scale  = stream.readFloat();
+	mSpeed  = stream.readFloat();
+	mOffset = stream.readFloat();
+	mScale  = stream.readFloat();
 }
 
 /*
@@ -84,7 +84,7 @@ void Generator::doReadOldVersion(Stream&) { }
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "落石マネージャ"; // rockfall manager
+	mName = "落石マネージャ"; // rockfall manager
 }
 
 /*
@@ -101,7 +101,7 @@ void Mgr::doAlloc() { init(new Parms); }
  */
 void Mgr::createObj(int count)
 {
-	m_obj = new Obj[count];
+	mObj = new Obj[count];
 
 	EnemyTypeID::EEnemyTypeID ids[] = { EnemyTypeID::EnemyID_Rock, EnemyTypeID::EnemyID_Stone };
 
@@ -110,7 +110,7 @@ void Mgr::createObj(int count)
 	for (int i = 0; i < id_count; i++) {
 		int enemyNum = generalEnemyMgr->getEnemyNum(ids[i], false);
 		for (int j = 0; j < enemyNum; j++, counter++) {
-			m_obj[counter].m_rockType = ids[i];
+			mObj[counter].mRockType = ids[i];
 		}
 	}
 }
@@ -120,7 +120,7 @@ void Mgr::createObj(int count)
  * Address:	80262E58
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 } // namespace Rock
 } // namespace Game

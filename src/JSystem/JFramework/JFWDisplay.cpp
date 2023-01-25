@@ -196,21 +196,21 @@ static GXTexObj clear_z_TX[2]
 void JFWDisplay::ctor_subroutine(bool p1)
 {
 	// UNUSED FUNCTION
-	_24                  = p1;
-	_26                  = 3;
-	_08                  = TCOLOR_BLACK;
-	_0C                  = 0xFFFFFF;
-	_14                  = 0;
-	m_fader              = nullptr;
-	m_secondsPer60Frames = 1;
-	_20                  = 0;
-	_28                  = 0.0f;
-	_30                  = 0;
-	_2C                  = OSGetTick();
-	_34                  = 0;
-	_38                  = 0;
-	_3A                  = 0;
-	_18                  = 0;
+	_24                 = p1;
+	_26                 = 3;
+	_08                 = TCOLOR_BLACK;
+	_0C                 = 0xFFFFFF;
+	_14                 = 0;
+	mFader              = nullptr;
+	mSecondsPer60Frames = 1;
+	_20                 = 0;
+	_28                 = 0.0f;
+	_30                 = 0;
+	_2C                 = OSGetTick();
+	_34                 = 0;
+	_38                 = 0;
+	_3A                 = 0;
+	_18                 = 0;
 	clearEfb_init();
 	JUTProcBar::create();
 	JUTProcBar::clear();
@@ -225,7 +225,7 @@ JFWDisplay::JFWDisplay(JKRHeap* heap, JUTXfb::EXfbNumber bufferCount, bool p3)
 {
 	// UNUSED FUNCTION
 	ctor_subroutine(p3);
-	m_Xfb = JUTXfb::createManager(heap, bufferCount);
+	mXfb = JUTXfb::createManager(heap, bufferCount);
 }
 
 /*
@@ -270,7 +270,7 @@ JFWDisplay::~JFWDisplay()
 	}
 	JUTProcBar::destroy();
 	JUTXfb::destroyManager();
-	m_Xfb = nullptr;
+	mXfb = nullptr;
 }
 
 /*

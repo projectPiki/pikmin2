@@ -11,7 +11,7 @@ namespace Tadpole {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "オタママネージャ"; // otama manager
+	mName = "オタママネージャ"; // otama manager
 }
 
 /*
@@ -26,14 +26,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	80278394
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	802784B0
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 } // namespace Tadpole
 } // namespace Game

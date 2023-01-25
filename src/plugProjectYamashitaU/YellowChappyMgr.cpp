@@ -17,7 +17,7 @@ static const char* cChappyChangeTexName1 = "/enemy/data/YellowChappy/swallow_565
 Mgr::Mgr(int objLimit, u8 modelType)
     : ChappyBase::Mgr(objLimit, modelType)
 {
-	m_name = "黄チャッピーマネージャ"; // yellow chappy manager
+	mName = "黄チャッピーマネージャ"; // yellow chappy manager
 }
 
 /*
@@ -29,13 +29,13 @@ void Mgr::loadTexData()
 {
 	LoadResource::ArgAramOnly loadArg(cChappyChangeTexName0);
 
-	loadArg.m_path                = cChappyChangeTexName0;
+	loadArg.mPath                 = cChappyChangeTexName0;
 	LoadResource::Node* resource0 = gLoadResourceMgr->load(loadArg);
-	m_changeTexture0              = static_cast<ResTIMG*>(resource0->m_file);
+	mChangeTexture0               = static_cast<ResTIMG*>(resource0->mFile);
 
-	loadArg.m_path                = cChappyChangeTexName1;
+	loadArg.mPath                 = cChappyChangeTexName1;
 	LoadResource::Node* resource1 = gLoadResourceMgr->load(loadArg);
-	m_changeTexture1              = static_cast<ResTIMG*>(resource1->m_file);
+	mChangeTexture1               = static_cast<ResTIMG*>(resource1->mFile);
 }
 
 /*
@@ -53,7 +53,7 @@ void Mgr::doAlloc() { init(new ChappyBase::Parms); }
 void YellowChappy::Mgr::loadAnimData()
 {
 	ChappyBase::Mgr::loadAnimData();
-	m_effectAnimMgr.setup();
+	mEffectAnimMgr.setup();
 }
 
 } // namespace YellowChappy

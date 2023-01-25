@@ -29,76 +29,76 @@ GameConfig gGameConfig;
  * Size:	000130
  */
 GameConfig::GameConfig()
-    : m_parms()
+    : mParms()
 {
 #if MATCHING
 	// I suspect the double-loading might be from an earlier revision of the
 	// parms....
-	m_parms.m_gamePrint.m_data        = 0;
-	m_parms.m_Print.m_data            = 0;
-	m_parms.m_ogawaPrint.m_data       = 0;
-	m_parms.m_shimizuPrint.m_data     = 0;
-	m_parms.m_yamashitaPrint.m_data   = 0;
-	m_parms.m_kandoPrint.m_data       = 0;
-	m_parms.m_nishimuraPrint.m_data   = 0;
-	m_parms.m_morimuraPrint.m_data    = 0;
-	m_parms.m_ebisawaPrint.m_data     = 0;
-	m_parms.m_psoundPrint.m_data      = 0;
-	m_parms.m_shortCutUp.m_data       = -1;
-	m_parms.m_shortCutDown.m_data     = -1;
-	m_parms.m_shortCutLeft.m_data     = -1;
-	m_parms.m_shortCutRight.m_data    = -1;
-	m_parms.m_allocAllEnemy.m_data    = 0;
-	m_parms.m_AI.m_data               = 0;
-	m_parms.m_timers.m_data           = 0;
-	m_parms.m_mukki_cherry.m_data     = 0;
-	m_parms.m_marioClubDevelop.m_data = 0;
-	m_parms.m_heapStatusPrint.m_data  = 0;
-	m_parms.m_publicity.m_data        = 1;
-	m_parms.m_mapparts_path.m_data    = "";
-	m_parms.m_pelletMultiLang.m_data  = 1;
-	m_parms.m_vsTest.m_data           = 0;
+	mParms.mGamePrint.mData        = 0;
+	mParms.mPrint.mData            = 0;
+	mParms.mOgawaPrint.mData       = 0;
+	mParms.mShimizuPrint.mData     = 0;
+	mParms.mYamashitaPrint.mData   = 0;
+	mParms.mKandoPrint.mData       = 0;
+	mParms.mNishimuraPrint.mData   = 0;
+	mParms.mMorimuraPrint.mData    = 0;
+	mParms.mEbisawaPrint.mData     = 0;
+	mParms.mPsoundPrint.mData      = 0;
+	mParms.mShortCutUp.mData       = -1;
+	mParms.mShortCutDown.mData     = -1;
+	mParms.mShortCutLeft.mData     = -1;
+	mParms.mShortCutRight.mData    = -1;
+	mParms.mAllocAllEnemy.mData    = 0;
+	mParms.mAI.mData               = 0;
+	mParms.mTimers.mData           = 0;
+	mParms.mMukki_cherry.mData     = 0;
+	mParms.mMarioClubDevelop.mData = 0;
+	mParms.mHeapStatusPrint.mData  = 0;
+	mParms.mPublicity.mData        = 1;
+	mParms.mMapparts_path.mData    = "";
+	mParms.mPelletMultiLang.mData  = 1;
+	mParms.mVsTest.mData           = 0;
 #endif
-	m_parms.m_autosaveOff.m_data      = 0;
-	m_parms.m_gamePrint.m_data        = 0;
-	m_parms.m_Print.m_data            = 0;
-	m_parms.m_ogawaPrint.m_data       = 0;
-	m_parms.m_shimizuPrint.m_data     = 0;
-	m_parms.m_yamashitaPrint.m_data   = 0;
-	m_parms.m_kandoPrint.m_data       = 0;
-	m_parms.m_nishimuraPrint.m_data   = 0;
-	m_parms.m_morimuraPrint.m_data    = 0;
-	m_parms.m_ebisawaPrint.m_data     = 0;
-	m_parms.m_psoundPrint.m_data      = 0;
-	m_parms.m_shortCutUp.m_data       = -1;
-	m_parms.m_shortCutDown.m_data     = -1;
-	m_parms.m_shortCutLeft.m_data     = -1;
-	m_parms.m_shortCutRight.m_data    = -1;
-	m_parms.m_allocAllEnemy.m_data    = 0;
-	m_parms.m_AI.m_data               = 0;
-	m_parms.m_E3version.m_data        = 0;
-	m_parms.m_timers.m_data           = 0;
-	m_parms.m_mukki_cherry.m_data     = 0;
-	m_parms.m_marioClubDevelop.m_data = 0;
-	m_parms.m_heapStatusPrint.m_data  = 0;
-	m_parms.m_publicity.m_data        = 1;
-	m_parms.m_mapparts_path.m_data    = "";
-	m_parms.m_language.m_data         = "";
-	m_parms.m_pelletMultiLang.m_data  = 1;
-	m_parms.m_vsTest.m_data           = 0;
-	m_parms.m_heapFreeSize.m_data     = 1;
-	m_parms.m_KFesVersion.m_data      = 0;
+	mParms.mAutosaveOff.mData      = 0;
+	mParms.mGamePrint.mData        = 0;
+	mParms.mPrint.mData            = 0;
+	mParms.mOgawaPrint.mData       = 0;
+	mParms.mShimizuPrint.mData     = 0;
+	mParms.mYamashitaPrint.mData   = 0;
+	mParms.mKandoPrint.mData       = 0;
+	mParms.mNishimuraPrint.mData   = 0;
+	mParms.mMorimuraPrint.mData    = 0;
+	mParms.mEbisawaPrint.mData     = 0;
+	mParms.mPsoundPrint.mData      = 0;
+	mParms.mShortCutUp.mData       = -1;
+	mParms.mShortCutDown.mData     = -1;
+	mParms.mShortCutLeft.mData     = -1;
+	mParms.mShortCutRight.mData    = -1;
+	mParms.mAllocAllEnemy.mData    = 0;
+	mParms.mAI.mData               = 0;
+	mParms.mE3version.mData        = 0;
+	mParms.mTimers.mData           = 0;
+	mParms.mMukki_cherry.mData     = 0;
+	mParms.mMarioClubDevelop.mData = 0;
+	mParms.mHeapStatusPrint.mData  = 0;
+	mParms.mPublicity.mData        = 1;
+	mParms.mMapparts_path.mData    = "";
+	mParms.mLanguage.mData         = "";
+	mParms.mPelletMultiLang.mData  = 1;
+	mParms.mVsTest.mData           = 0;
+	mParms.mHeapFreeSize.mData     = 1;
+	mParms.mKFesVersion.mData      = 0;
 #if BUILDTARGET == USAFINAL
-	m_parms.m_nintendoVersion.m_data = 0;
+	mParms.mNintendoVersion.mData = 0;
 #elif BUILDTARGET == USADEMO1
-	m_parms.m_nintendoVersion.m_data = 1;
+	mParms.mNintendoVersion.mData = 1;
 #endif
-	m_parms.m_vsDeathType.m_data          = 1;
-	m_parms.m_vsHiba.m_data               = 0;
-	m_parms.m_vsY.m_data                  = 0;
-	m_parms.m_baseGameNewCheck.m_data     = 0;
-	m_parms.m_vsDebugSelectPattern.m_data = 0;
-	m_parms.m_vsFifo.m_data               = 0;
+	mParms.mVsDeathType.mData          = 1;
+	mParms.mVsHiba.mData               = 0;
+	mParms.mVsY.mData                  = 0;
+	mParms.mBaseGameNewCheck.mData     = 0;
+	mParms.mVsDebugSelectPattern.mData = 0;
+	mParms.mVsFifo.mData               = 0;
 }
 
 /*
@@ -118,44 +118,44 @@ GameConfig::GameConfig()
 // WEAK - in header.
 // GameConfig::Parms::Parms()
 //     : TagParameters("GameConfig")
-//     , m_gamePrint(this, "gamePrint")
-//     , m_Print(this, "Print")
-//     , m_ogawaPrint(this, "ogawaPrint")
-//     , m_shimizuPrint(this, "shimizuPrint")
-//     , m_yamashitaPrint(this, "yamashitaPrint")
-//     , m_kandoPrint(this, "kandoPrint")
-//     , m_nishimuraPrint(this, "nishimuraPrint")
-//     , m_ebisawaPrint(this, "ebisawaPrint")
-//     , m_morimuraPrint(this, "morimuraPrint")
-//     , m_konoPrint(this, "konoPrint")
-//     , m_fujinoPrint(this, "fujinoPrint")
-//     , m_psoundPrint(this, "psoundPrint")
-//     , m_shortCutUp(this, "shortCutUp")
-//     , m_shortCutDown(this, "shortCutDown")
-//     , m_shortCutLeft(this, "shortCutLeft")
-//     , m_shortCutRight(this, "shortCutRight")
-//     , m_allocAllEnemy(this, "allocAllEnemy")
-//     , m_mapparts_path(this, "mapparts_path")
-//     , m_publicity(this, "publicity")
-//     , m_pelletMultiLang(this, "pelletMultiLang")
-//     , m_AI(this, "AI")
-//     , m_timers(this, "timers")
-//     , m_vsTest(this, "vsTest")
-//     , m_vsDeathType(this, "vsDeathType")
-//     , m_vsHiba(this, "vsHiba")
-//     , m_vsY(this, "vsY")
-//     , m_E3version(this, "E3version")
-//     , m_mukki_cherry(this, "mukki_cherry")
-//     , m_marioClubDevelop(this, "marioClubDevelop")
-//     , m_heapStatusPrint(this, "heapStatusPrint")
-//     , m_heapFreeSize(this, "heapFreeSize")
-//     , m_baseGameNewCheck(this, "baseGameNewCheck")
-//     , m_KFesVersion(this, "KFesVersion")
-//     , m_nintendoVersion(this, "nintendoVersion")
-//     , m_language(this, "language")
-//     , m_autosaveOff(this, "autosaveOff")
-//     , m_vsDebugSelectPattern(this, "vsDebugSelectPattern")
-//     , m_vsFifo(this, "vsFifo")
+//     , mGamePrint(this, "gamePrint")
+//     , mPrint(this, "Print")
+//     , mOgawaPrint(this, "ogawaPrint")
+//     , mShimizuPrint(this, "shimizuPrint")
+//     , mYamashitaPrint(this, "yamashitaPrint")
+//     , mKandoPrint(this, "kandoPrint")
+//     , mNishimuraPrint(this, "nishimuraPrint")
+//     , mEbisawaPrint(this, "ebisawaPrint")
+//     , mMorimuraPrint(this, "morimuraPrint")
+//     , mKonoPrint(this, "konoPrint")
+//     , mFujinoPrint(this, "fujinoPrint")
+//     , mPsoundPrint(this, "psoundPrint")
+//     , mShortCutUp(this, "shortCutUp")
+//     , mShortCutDown(this, "shortCutDown")
+//     , mShortCutLeft(this, "shortCutLeft")
+//     , mShortCutRight(this, "shortCutRight")
+//     , mAllocAllEnemy(this, "allocAllEnemy")
+//     , mMapparts_path(this, "mapparts_path")
+//     , mPublicity(this, "publicity")
+//     , mPelletMultiLang(this, "pelletMultiLang")
+//     , mAI(this, "AI")
+//     , mTimers(this, "timers")
+//     , mVsTest(this, "vsTest")
+//     , mVsDeathType(this, "vsDeathType")
+//     , mVsHiba(this, "vsHiba")
+//     , mVsY(this, "vsY")
+//     , mE3version(this, "E3version")
+//     , mMukki_cherry(this, "mukki_cherry")
+//     , mMarioClubDevelop(this, "marioClubDevelop")
+//     , mHeapStatusPrint(this, "heapStatusPrint")
+//     , mHeapFreeSize(this, "heapFreeSize")
+//     , mBaseGameNewCheck(this, "baseGameNewCheck")
+//     , mKFesVersion(this, "KFesVersion")
+//     , mNintendoVersion(this, "nintendoVersion")
+//     , mLanguage(this, "language")
+//     , mAutosaveOff(this, "autosaveOff")
+//     , mVsDebugSelectPattern(this, "vsDebugSelectPattern")
+//     , mVsFifo(this, "vsFifo")
 // {
 // }
 
@@ -166,20 +166,20 @@ GameConfig::GameConfig()
  */
 bool GameConfig::load(char*)
 {
-	if (strcmp(gGameConfig.m_parms.m_language.m_data, "eng") == 0) {
-		sys->m_region = System::LANG_ENGLISH;
-	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "fra") == 0) {
-		sys->m_region = System::LANG_FRENCH;
-	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "ger") == 0) {
-		sys->m_region = System::LANG_GERMAN;
-	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "hol") == 0) {
-		sys->m_region = System::LANG_ENGLISH;
-	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "ita") == 0) {
-		sys->m_region = System::LANG_ITALIAN;
-	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "jpn") == 0) {
-		sys->m_region = System::LANG_JAPANESE;
-	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "spa") == 0) {
-		sys->m_region = System::LANG_SPANISH;
+	if (strcmp(gGameConfig.mParms.mLanguage.mData, "eng") == 0) {
+		sys->mRegion = System::LANG_ENGLISH;
+	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "fra") == 0) {
+		sys->mRegion = System::LANG_FRENCH;
+	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "ger") == 0) {
+		sys->mRegion = System::LANG_GERMAN;
+	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "hol") == 0) {
+		sys->mRegion = System::LANG_ENGLISH;
+	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "ita") == 0) {
+		sys->mRegion = System::LANG_ITALIAN;
+	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "jpn") == 0) {
+		sys->mRegion = System::LANG_JAPANESE;
+	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "spa") == 0) {
+		sys->mRegion = System::LANG_SPANISH;
 	}
 	return false;
 }

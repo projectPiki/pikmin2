@@ -12,15 +12,15 @@ namespace Screen {
  */
 BloGroup::BloGroup(u16 count)
 {
-	m_screens = new P2DScreen::Mgr_tuning*[count];
-	_04       = new u32[count];
+	mScreens = new P2DScreen::Mgr_tuning*[count];
+	_04      = new u32[count];
 
-	m_screenNumMax     = count;
-	m_screenNumCurrent = 0;
+	mScreenNumMax     = count;
+	mScreenNumCurrent = 0;
 
-	for (int i = 0; i < m_screenNumMax; i++) {
-		m_screens[i] = nullptr;
-		_04[i]       = 0;
+	for (int i = 0; i < mScreenNumMax; i++) {
+		mScreens[i] = nullptr;
+		_04[i]      = 0;
 	}
 }
 
@@ -38,16 +38,16 @@ BloGroup::~BloGroup() { }
  */
 u32 BloGroup::addBlo(char* screenName, P2DScreen::Mgr_tuning* screen, u32 flag, JKRArchive* arc)
 {
-	int count = m_screenNumCurrent;
-	if (m_screenNumCurrent >= m_screenNumMax) {
+	int count = mScreenNumCurrent;
+	if (mScreenNumCurrent >= mScreenNumMax) {
 		return -1;
 
 	} else {
-		m_screens[m_screenNumCurrent] = screen;
+		mScreens[mScreenNumCurrent] = screen;
 		screen->set(screenName, flag, arc);
-		_04[m_screenNumCurrent] = 0;
+		_04[mScreenNumCurrent] = 0;
 		og::Screen::setAlphaScreen(screen);
-		m_screenNumCurrent++;
+		mScreenNumCurrent++;
 	}
 
 	return count;
@@ -60,8 +60,8 @@ u32 BloGroup::addBlo(char* screenName, P2DScreen::Mgr_tuning* screen, u32 flag, 
  */
 void BloGroup::scale(f32 scale)
 {
-	for (int i = 0; i < m_screenNumCurrent; i++) {
-		m_screens[i]->scaleScreen(scale);
+	for (int i = 0; i < mScreenNumCurrent; i++) {
+		mScreens[i]->scaleScreen(scale);
 	}
 }
 
@@ -72,8 +72,8 @@ void BloGroup::scale(f32 scale)
  */
 void BloGroup::rotate(f32 axisX, f32 axisY, J2DRotateAxis type, f32 angle)
 {
-	for (int i = 0; i < m_screenNumCurrent; i++) {
-		m_screens[i]->rotate(axisX, axisY, type, angle);
+	for (int i = 0; i < mScreenNumCurrent; i++) {
+		mScreens[i]->rotate(axisX, axisY, type, angle);
 	}
 }
 
@@ -84,8 +84,8 @@ void BloGroup::rotate(f32 axisX, f32 axisY, J2DRotateAxis type, f32 angle)
  */
 void BloGroup::update()
 {
-	for (int i = 0; i < m_screenNumCurrent; i++) {
-		m_screens[i]->update();
+	for (int i = 0; i < mScreenNumCurrent; i++) {
+		mScreens[i]->update();
 	}
 }
 
@@ -97,8 +97,8 @@ void BloGroup::update()
 void BloGroup::draw(J2DPerspGraph* graf)
 {
 	Graphics gfx;
-	for (int i = 0; i < m_screenNumCurrent; i++) {
-		m_screens[i]->draw(gfx, *graf);
+	for (int i = 0; i < mScreenNumCurrent; i++) {
+		mScreens[i]->draw(gfx, *graf);
 	}
 }
 

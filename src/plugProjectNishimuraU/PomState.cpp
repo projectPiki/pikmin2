@@ -53,10 +53,10 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* pom               = static_cast<Obj*>(enemy);
-	pom->m_canTouchToClose = false;
-	pom->m_canSwallowPiki  = false;
-	pom->m_swingTimer      = 0.0f;
+	Obj* pom              = static_cast<Obj*>(enemy);
+	pom->mCanTouchToClose = false;
+	pom->mCanSwallowPiki  = false;
+	pom->mSwingTimer      = 0.0f;
 	pom->disableEvent(0, EB_IsCullable);
 	pom->startMotion(1, nullptr);
 	pom->createPomDeadEffect();
@@ -69,7 +69,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -88,10 +88,10 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateOpen::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* pom               = static_cast<Obj*>(enemy);
-	pom->m_canTouchToClose = false;
-	pom->m_canSwallowPiki  = false;
-	pom->m_swingTimer      = 0.0f;
+	Obj* pom              = static_cast<Obj*>(enemy);
+	pom->mCanTouchToClose = false;
+	pom->mCanSwallowPiki  = false;
+	pom->mSwingTimer      = 0.0f;
 	pom->startMotion(2, nullptr);
 }
 
@@ -104,13 +104,13 @@ void StateOpen::exec(EnemyBase* enemy)
 {
 	Obj* pom = static_cast<Obj*>(enemy);
 	pom->changePomColor();
-	if (pom->m_canTouchToClose) {
+	if (pom->mCanTouchToClose) {
 		if (pom->isEvent(0, EB_HasCollisionOccurred)) {
 			transit(pom, POM_Swing, nullptr);
 		}
-	} else if (pom->m_curAnim->m_isPlaying && (u32)pom->m_curAnim->m_type == KEYEVENT_2) {
-		pom->m_canTouchToClose = true;
-		pom->m_canSwallowPiki  = true;
+	} else if (pom->mCurAnim->mIsPlaying && (u32)pom->mCurAnim->mType == KEYEVENT_2) {
+		pom->mCanTouchToClose = true;
+		pom->mCanSwallowPiki  = true;
 	}
 }
 
@@ -128,10 +128,10 @@ void StateOpen::cleanup(EnemyBase* enemy) { }
  */
 void StateClose::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* pom               = static_cast<Obj*>(enemy);
-	pom->m_canTouchToClose = false;
-	pom->m_canSwallowPiki  = false;
-	pom->m_swingTimer      = 0.0f;
+	Obj* pom              = static_cast<Obj*>(enemy);
+	pom->mCanTouchToClose = false;
+	pom->mCanSwallowPiki  = false;
+	pom->mSwingTimer      = 0.0f;
 	pom->startMotion(3, nullptr);
 }
 
@@ -142,8 +142,8 @@ void StateClose::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateClose::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-		if (enemy->m_stuckPikminCount != 0) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+		if (enemy->mStuckPikminCount != 0) {
 			transit(enemy, POM_Shot, nullptr);
 		} else {
 			transit(enemy, POM_Wait, nullptr);
@@ -165,10 +165,10 @@ void StateClose::cleanup(EnemyBase* enemy) { }
  */
 void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* pom               = static_cast<Obj*>(enemy);
-	pom->m_canTouchToClose = false;
-	pom->m_canSwallowPiki  = false;
-	pom->m_swingTimer      = 0.0f;
+	Obj* pom              = static_cast<Obj*>(enemy);
+	pom->mCanTouchToClose = false;
+	pom->mCanSwallowPiki  = false;
+	pom->mSwingTimer      = 0.0f;
 	pom->disableEvent(0, EB_IsCullable);
 	pom->startMotion(4, nullptr);
 }
@@ -181,11 +181,11 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 void StateShot::exec(EnemyBase* enemy)
 {
 	Obj* pom = static_cast<Obj*>(enemy);
-	if (enemy->m_curAnim->m_isPlaying) {
-		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
 			pom->shotPikmin();
-		} else if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-			if (pom->m_usedSlotCount < pom->m_totalSlotCount) {
+		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+			if (pom->mUsedSlotCount < pom->mTotalSlotCount) {
 				transit(pom, POM_Wait, nullptr);
 			} else {
 				transit(pom, POM_Dead, nullptr);
@@ -208,9 +208,9 @@ void StateShot::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_IsCullable)
  */
 void StateSwing::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* pom               = static_cast<Obj*>(enemy);
-	pom->m_canTouchToClose = false;
-	pom->m_swingTimer      = 0.0f;
+	Obj* pom              = static_cast<Obj*>(enemy);
+	pom->mCanTouchToClose = false;
+	pom->mSwingTimer      = 0.0f;
 	pom->startMotion(5, nullptr);
 }
 
@@ -223,18 +223,18 @@ void StateSwing::exec(EnemyBase* enemy)
 {
 	Obj* pom = static_cast<Obj*>(enemy);
 	pom->changePomColor();
-	pom->m_swingTimer += sys->m_deltaTime;
+	pom->mSwingTimer += sys->mDeltaTime;
 
-	if (pom->m_swingTimer > CG_PROPERPARMS(pom).m_remainOpenTime.m_value || !(pom->m_usedSlotCount < pom->m_totalSlotCount)) {
+	if (pom->mSwingTimer > CG_PROPERPARMS(pom).mRemainOpenTime.mValue || !(pom->mUsedSlotCount < pom->mTotalSlotCount)) {
 		transit(pom, POM_Close, nullptr);
 
-	} else if (pom->m_canTouchToClose) {
+	} else if (pom->mCanTouchToClose) {
 		if (pom->isEvent(0, EB_HasCollisionOccurred)) {
 			transit(pom, POM_Swing, nullptr);
 		}
 
-	} else if (pom->m_curAnim->m_isPlaying && (u32)pom->m_curAnim->m_type == KEYEVENT_END) {
-		pom->m_canTouchToClose = true;
+	} else if (pom->mCurAnim->mIsPlaying && (u32)pom->mCurAnim->mType == KEYEVENT_END) {
+		pom->mCanTouchToClose = true;
 	}
 }
 

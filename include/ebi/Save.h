@@ -162,33 +162,33 @@ struct TMgr : public JKRDisposer {
 
 	inline void doLoadResource(JKRHeap* heap)
 	{
-		m_memCardErrorMgr.loadResource(heap);
-		static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->loadResource(heap);
+		mMemCardErrorMgr.loadResource(heap);
+		static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->loadResource(heap);
 	}
 
 	inline void setControllers(Controller* pad)
 	{
-		m_controller                   = pad;
-		m_saveMenu.m_controller        = pad;
-		m_memCardErrorMgr.m_controller = pad;
+		mController                  = pad;
+		mSaveMenu.mController        = pad;
+		mMemCardErrorMgr.mController = pad;
 	}
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	Screen::TSaveMenu m_saveMenu;                      // _18
-	CardError::TMgr m_memCardErrorMgr;                 // _100
-	u32 _3C8;                                          // _3C8, unknown
-	u32 _3CC;                                          // _3CC, unknown
-	Controller* m_controller;                          // _3D0
-	Game::MemoryCard::PlayerFileInfo m_playerFileInfo; // _3D4
-	int _470;                                          // _470
-	int m_currStateID;                                 // _474
-	u8 m_saveType;                                     // _478
-	bool m_isAutosaveOn;                               // _479
-	u8 _47A;                                           // _47A
-	u8 _47B;                                           // _47B
-	FSMStateMachine m_stateMachine;                    // _47C
-	u8 _498[0x4];                                      // _498, unknown
+	Screen::TSaveMenu mSaveMenu;                      // _18
+	CardError::TMgr mMemCardErrorMgr;                 // _100
+	u32 _3C8;                                         // _3C8, unknown
+	u32 _3CC;                                         // _3CC, unknown
+	Controller* mController;                          // _3D0
+	Game::MemoryCard::PlayerFileInfo mPlayerFileInfo; // _3D4
+	int _470;                                         // _470
+	int mCurrStateID;                                 // _474
+	u8 mSaveType;                                     // _478
+	bool mIsAutosaveOn;                               // _479
+	u8 _47A;                                          // _47A
+	u8 _47B;                                          // _47B
+	FSMStateMachine mStateMachine;                    // _47C
+	u8 _498[0x4];                                     // _498, unknown
 };
 } // namespace Save
 } // namespace ebi

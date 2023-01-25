@@ -7,14 +7,14 @@
 struct JUTDirectPrint {
 	JUTDirectPrint(); // unused/inlined
 
-	void* _00;         // _00
-	u16 m_pixelWidth;  // _04 - width of buffer in pixels?
-	u16 m_pixelHeight; // _06 - height of buffer in pixels?
-	u16 m_width;       // _08 - width of buffer in ???
+	void* _00;        // _00
+	u16 mPixelWidth;  // _04 - width of buffer in pixels?
+	u16 mPixelHeight; // _06 - height of buffer in pixels?
+	u16 mWidth;       // _08 - width of buffer in ???
 	// u8 _0A[0x2];          // _0A - padding probably
 	uint _0C;             // _0C
 	u8 _10[0x4];          // _10 - unknown
-	u16* m_glyphBuffer;   // _14
+	u16* mGlyphBuffer;    // _14
 	JUtility::TColor _18; // _18
 	s16 _1C;              // _1C
 	s16 _1E;              // _1E

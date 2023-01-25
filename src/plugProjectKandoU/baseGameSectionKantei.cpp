@@ -183,16 +183,16 @@ void BaseGameSection::drawOtakaraWindow(Graphics& gfx)
 void BaseGameSection::setDraw2DCreature(Game::Creature* creature)
 {
 	if (creature) {
-		if (m_draw2DCreature) {
-			m_draw2DCreature->getCreatureName();
-			m_draw2DCreature->getCreatureID();
+		if (mDraw2DCreature) {
+			mDraw2DCreature->getCreatureName();
+			mDraw2DCreature->getCreatureID();
 
 			creature->getCreatureName();
 			creature->getCreatureID();
 		}
 	}
 
-	m_draw2DCreature = creature;
+	mDraw2DCreature = creature;
 }
 
 /*
@@ -202,20 +202,20 @@ void BaseGameSection::setDraw2DCreature(Game::Creature* creature)
  */
 void BaseGameSection::startZoomWindow()
 {
-	m_treasureGetState    = 1;
-	m_draw2DCreatureScale = 0.0f;
+	mTreasureGetState    = 1;
+	mDraw2DCreatureScale = 0.0f;
 
-	SysShape::Model* model = m_draw2DCreature->m_model;
+	SysShape::Model* model = mDraw2DCreature->mModel;
 	f32 modelRadius        = model->getRoughBoundingRadius();
 	Vector3f& center       = model->getRoughCenter();
 
-	if (m_draw2DCreature->getObjType() == OBJTYPE_Honey) {
+	if (mDraw2DCreature->getObjType() == OBJTYPE_Honey) {
 		modelRadius *= 1.5F;
 	}
 
-	if (m_draw2DCreature->getObjType() == OBJTYPE_Pellet) {
+	if (mDraw2DCreature->getObjType() == OBJTYPE_Pellet) {
 		modelRadius *= 1.5F;
-		Pellet* p = (Pellet*)m_draw2DCreature;
+		Pellet* p = (Pellet*)mDraw2DCreature;
 		if (p->getKind() == PELTYPE_TREASURE) {
 			// WTF?
 			int configIdx = p->getConfigIndex();
@@ -233,10 +233,10 @@ void BaseGameSection::startZoomWindow()
 		}
 	}
 
-	f32 properDist  = m_treasureZoomCamera->calcProperDistance(20.0f, modelRadius);
+	f32 properDist  = mTreasureZoomCamera->calcProperDistance(20.0f, modelRadius);
 	f32 l           = _lenVec(center);
 	Vector3f length = Vector3f(0.0f, l, 0.0f);
-	m_treasureZoomCamera->init(properDist, JMath::sincosTable_.m_table[256].second, length, nullptr);
+	mTreasureZoomCamera->init(properDist, JMath::sincosTable_.mTable[256].second, length, nullptr);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

@@ -54,12 +54,12 @@
  */
 JASBasicWaveBank::JASBasicWaveBank()
     : JASWaveBank()
-    , m_handles(nullptr)
-    , m_tableSize(0)
-    , m_groups(nullptr)
-    , m_groupCount(0)
+    , mHandles(nullptr)
+    , mTableSize(0)
+    , mGroups(nullptr)
+    , mGroupCount(0)
 {
-	OSInitMutex(&m_mutex);
+	OSInitMutex(&mMutex);
 }
 
 /*
@@ -78,11 +78,11 @@ JASBasicWaveBank::JASBasicWaveBank()
  */
 JASBasicWaveBank::~JASBasicWaveBank()
 {
-	delete[] m_handles;
-	for (u32 i = 0; i < m_groupCount; i++) {
-		delete m_groups[i];
+	delete[] mHandles;
+	for (u32 i = 0; i < mGroupCount; i++) {
+		delete mGroups[i];
 	}
-	delete[] m_groups;
+	delete[] mGroups;
 }
 
 /*
@@ -92,10 +92,10 @@ JASBasicWaveBank::~JASBasicWaveBank()
  */
 JASBasicWaveBank::TWaveGroup* JASBasicWaveBank::getWaveGroup(int groupIndex)
 {
-	if (groupIndex >= m_groupCount) {
+	if (groupIndex >= mGroupCount) {
 		return nullptr;
 	}
-	return m_groups[groupIndex];
+	return mGroups[groupIndex];
 }
 
 /*
@@ -105,14 +105,14 @@ JASBasicWaveBank::TWaveGroup* JASBasicWaveBank::getWaveGroup(int groupIndex)
  */
 void JASBasicWaveBank::setGroupCount(unsigned long count)
 {
-	for (int i = 0; i < m_groupCount; i++) {
-		delete m_groups[i];
+	for (int i = 0; i < mGroupCount; i++) {
+		delete mGroups[i];
 	}
-	delete[] m_groups;
-	m_groupCount = count;
-	m_groups     = new (getCurrentHeap(), 0) TWaveGroup*[count];
-	for (int i = 0; i < m_groupCount; i++) {
-		m_groups[i] = new (getCurrentHeap(), 0) TWaveGroup(this);
+	delete[] mGroups;
+	mGroupCount = count;
+	mGroups     = new (getCurrentHeap(), 0) TWaveGroup*[count];
+	for (int i = 0; i < mGroupCount; i++) {
+		mGroups[i] = new (getCurrentHeap(), 0) TWaveGroup(this);
 	}
 }
 
@@ -123,10 +123,10 @@ void JASBasicWaveBank::setGroupCount(unsigned long count)
  */
 void JASBasicWaveBank::setWaveTableSize(unsigned long tableSize)
 {
-	delete[] m_handles;
-	m_handles = new (JASWaveBank::getCurrentHeap(), 0) TWaveHandle*[tableSize];
-	JASCalc::bzero(m_handles, tableSize * sizeof(TWaveHandle*));
-	m_tableSize = tableSize;
+	delete[] mHandles;
+	mHandles = new (JASWaveBank::getCurrentHeap(), 0) TWaveHandle*[tableSize];
+	JASCalc::bzero(mHandles, tableSize * sizeof(TWaveHandle*));
+	mTableSize = tableSize;
 }
 
 /*
@@ -166,13 +166,13 @@ void JASBasicWaveBank::decWaveTable(const JASBasicWaveBank::TWaveGroup*)
  */
 JASWaveHandle* JASBasicWaveBank::getWaveHandle(unsigned long handleIndex) const
 {
-	if (handleIndex >= m_tableSize) {
+	if (handleIndex >= mTableSize) {
 		return nullptr;
 	}
-	if (m_handles[handleIndex] == nullptr) {
+	if (mHandles[handleIndex] == nullptr) {
 		return nullptr;
 	}
-	return m_handles[handleIndex];
+	return mHandles[handleIndex];
 }
 
 /*
@@ -183,9 +183,9 @@ JASWaveHandle* JASBasicWaveBank::getWaveHandle(unsigned long handleIndex) const
  */
 JASBasicWaveBank::TWaveGroup::TWaveGroup(JASBasicWaveBank* bank)
     : JASWaveArc()
-    , m_bank(bank)
-    , m_info(nullptr)
-    , m_infoCount(0)
+    , mBank(bank)
+    , mInfo(nullptr)
+    , mInfoCount(0)
 {
 }
 
@@ -206,7 +206,7 @@ JASBasicWaveBank::TWaveGroup::TWaveGroup(JASBasicWaveBank* bank)
  * Size:	0000B4
  * __dt__Q216JASBasicWaveBank10TWaveGroupFv
  */
-JASBasicWaveBank::TWaveGroup::~TWaveGroup() { delete[] m_info; }
+JASBasicWaveBank::TWaveGroup::~TWaveGroup() { delete[] mInfo; }
 
 /*
  * --INFO--
@@ -223,12 +223,12 @@ JASBasicWaveBank::TWaveGroup::~TWaveGroup() { delete[] m_info; }
  */
 void JASBasicWaveBank::TWaveGroup::setWaveCount(unsigned long count)
 {
-	delete[] m_info;
-	m_infoCount = count;
-	m_info      = new (getCurrentHeap(), 0) TWaveInfo[count];
+	delete[] mInfo;
+	mInfoCount = count;
+	mInfo      = new (getCurrentHeap(), 0) TWaveInfo[count];
 	for (int i = 0; i < count; i++) {
-		m_info[i].m_handle.m_heap     = &m_heap;
-		m_info[i].m_handle.m_info._24 = &_48; // TODO: Should _48 be the start of a struct?
+		mInfo[i].mHandle.mHeap     = &mHeap;
+		mInfo[i].mHandle.mInfo._24 = &_48; // TODO: Should _48 be the start of a struct?
 	}
 }
 
@@ -239,7 +239,7 @@ void JASBasicWaveBank::TWaveGroup::setWaveCount(unsigned long count)
  * __ct__Q216JASBasicWaveBank9TWaveInfoFv
  */
 JASBasicWaveBank::TWaveInfo::TWaveInfo()
-    : m_handle()
+    : mHandle()
     , _34(nullptr)
     , _38(0)
 {
@@ -268,9 +268,9 @@ JASBasicWaveBank::TWaveInfo::TWaveInfo()
  */
 void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, unsigned long p2, JASWaveInfo const& info)
 {
-	m_info[infoIndex].m_handle._30        = p2;
-	m_info[infoIndex].m_handle.m_info     = info;
-	m_info[infoIndex].m_handle.m_info._24 = &_48; // TODO: Should _48 be the start of a struct?
+	mInfo[infoIndex].mHandle._30       = p2;
+	mInfo[infoIndex].mHandle.mInfo     = info;
+	mInfo[infoIndex].mHandle.mInfo._24 = &_48; // TODO: Should _48 be the start of a struct?
 }
 
 /*
@@ -280,10 +280,10 @@ void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, unsigned long p2, 
  */
 void JASBasicWaveBank::TWaveGroup::onLoadDone()
 {
-	JASMutexLock lock(&m_bank->m_mutex);
-	for (int i = 0; i < m_infoCount; i++) {
-		TWaveHandle* bankHandle = m_bank->m_handles[getWaveID(i)];
-		TWaveInfo* infosInfo    = &m_info[i];
+	JASMutexLock lock(&mBank->mMutex);
+	for (int i = 0; i < mInfoCount; i++) {
+		TWaveHandle* bankHandle = mBank->mHandles[getWaveID(i)];
+		TWaveInfo* infosInfo    = &mInfo[i];
 		infosInfo->_38          = 0;
 		infosInfo->_34          = bankHandle;
 		if (bankHandle != nullptr) {
@@ -430,14 +430,14 @@ lbl_8009A744:
  * Address:	8009A778
  * Size:	000014
  */
-u32 JASBasicWaveBank::TWaveGroup::getWaveID(int infoIndex) const { return m_info[infoIndex].m_handle._30; }
+u32 JASBasicWaveBank::TWaveGroup::getWaveID(int infoIndex) const { return mInfo[infoIndex].mHandle._30; }
 
 /*
  * --INFO--
  * Address:	8009A78C
  * Size:	000008
  */
-// const JASWaveInfo* JASBasicWaveBank::TWaveHandle::getWaveInfo() const { return &m_info; }
+// const JASWaveInfo* JASBasicWaveBank::TWaveHandle::getWaveInfo() const { return &mInfo; }
 
 /*
  * --INFO--
@@ -446,10 +446,10 @@ u32 JASBasicWaveBank::TWaveGroup::getWaveID(int infoIndex) const { return m_info
  */
 void* JASBasicWaveBank::TWaveHandle::getWavePtr() const
 {
-	if (m_heap->_38 == nullptr) {
+	if (mHeap->_38 == nullptr) {
 		return nullptr;
 	}
-	return m_heap->_38 + m_info._08;
+	return mHeap->_38 + mInfo._08;
 }
 
 /*
@@ -459,8 +459,8 @@ void* JASBasicWaveBank::TWaveHandle::getWavePtr() const
  */
 JASWaveArc* JASBasicWaveBank::getWaveArc(int groupIndex)
 {
-	if (groupIndex >= m_groupCount) {
+	if (groupIndex >= mGroupCount) {
 		return nullptr;
 	}
-	return m_groups[groupIndex];
+	return mGroups[groupIndex];
 }

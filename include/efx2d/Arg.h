@@ -34,7 +34,7 @@ struct ArgColor : public Arg {
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
-	JUtility::TColor m_color;
+	JUtility::TColor mColor;
 };
 
 struct ArgScale : public Arg {
@@ -42,7 +42,7 @@ struct ArgScale : public Arg {
 	ArgScale(Vector2f* pos, f32 scale)
 	    : Arg(pos->x, pos->y)
 	{
-		m_scale = scale;
+		mScale = scale;
 	}
 
 	virtual const char* getName() // _08 (weak)
@@ -52,7 +52,7 @@ struct ArgScale : public Arg {
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
-	f32 m_scale; // _0C
+	f32 mScale; // _0C
 };
 
 struct ArgScaleColorColor : public Arg {
@@ -60,9 +60,9 @@ struct ArgScaleColorColor : public Arg {
 	inline ArgScaleColorColor(Vector2f* pos, f32 scale, JUtility::TColor col1, JUtility::TColor col2)
 	    : Arg(pos->x, pos->y)
 	{
-		m_scale = scale;
-		m_color1.set(col1);
-		m_color2.set(col2);
+		mScale = scale;
+		mColor1.set(col1);
+		mColor2.set(col2);
 	}
 
 	virtual const char* getName() // _08 (weak)
@@ -72,9 +72,9 @@ struct ArgScaleColorColor : public Arg {
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
-	f32 m_scale;               // _0C
-	JUtility::TColor m_color1; // _10
-	JUtility::TColor m_color2; // _14
+	f32 mScale;               // _0C
+	JUtility::TColor mColor1; // _10
+	JUtility::TColor mColor2; // _14
 };
 } // namespace efx2d
 

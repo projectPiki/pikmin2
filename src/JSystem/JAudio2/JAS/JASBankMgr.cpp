@@ -252,8 +252,8 @@ JASChannel* JASBankMgr::noteOn(int bankIndex, int instIndex, unsigned char p3, u
 	channel->_CC = instParam._18;
 	channel->_D4 = instParam._1C;
 	channel->_DC = instParam._20;
-	for (int i = 0; i < instParam.m_oscCount; i++) {
-		channel->setOscInit(i, instParam.m_oscData[i]);
+	for (int i = 0; i < instParam.mOscCount; i++) {
+		channel->setOscInit(i, instParam.mOscData[i]);
 	}
 	channel->directReleaseOsc(instParam._26);
 	if (!channel->play()) {

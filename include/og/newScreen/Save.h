@@ -33,11 +33,11 @@ struct Save : public ::Screen::SceneBase {
 
 	void doCreateObjUserCallBackFunc(JKRArchive*);
 
-	inline ebi::Save::TMgr* getSaveMgr() { return m_saveMgr; }
+	inline ebi::Save::TMgr* getSaveMgr() { return mSaveMgr; }
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	ebi::Save::TMgr* m_saveMgr; // _220
+	ebi::Save::TMgr* mSaveMgr; // _220
 };
 
 struct ObjSave : public ::Screen::ObjBase {
@@ -63,10 +63,10 @@ struct ObjSave : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberSave* m_disp; // _38
-	int m_state;                        // _3C
-	ebi::Save::TMgr* m_saveMgr;         // _40
-	f32 m_timer;                        // _44
+	og::Screen::DispMemberSave* mDisp; // _38
+	int mState;                        // _3C
+	ebi::Save::TMgr* mSaveMgr;         // _40
+	f32 mTimer;                        // _44
 };
 } // namespace newScreen
 } // namespace og

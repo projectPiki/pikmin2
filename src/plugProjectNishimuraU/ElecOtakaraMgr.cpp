@@ -16,7 +16,7 @@ static const char* cOtakaraChangeTexName = "/enemy/data/ElecOtakara/otakara_yell
 Mgr::Mgr(int objLimit, u8 modelType)
     : OtakaraBase::Mgr(objLimit, modelType)
 {
-	m_name = "電気オタカラムシマネージャ"; // electric otakara manager
+	mName = "電気オタカラムシマネージャ"; // electric otakara manager
 }
 
 /*
@@ -31,14 +31,14 @@ void Mgr::doAlloc() { init(new OtakaraBase::Parms); }
  * Address:	802B9818
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	802B9968
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 /*
  * --INFO--
@@ -47,13 +47,13 @@ EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
  */
 void Mgr::loadTexData()
 {
-	m_changeTexture = nullptr;
+	mChangeTexture = nullptr;
 	LoadResource::Arg loadArg(cOtakaraChangeTexName);
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
 	if (resource) {
-		m_changeTexture = static_cast<ResTIMG*>(resource->m_file);
+		mChangeTexture = static_cast<ResTIMG*>(resource->mFile);
 	}
-	P2ASSERTLINE(83, m_changeTexture);
+	P2ASSERTLINE(83, mChangeTexture);
 }
 
 } // namespace ElecOtakara

@@ -36,64 +36,64 @@ enum J2DAnmKind {
 struct J2DAnmBase {
 	J2DAnmBase()
 	{
-		m_currentFrame = 0.0f;
-		m_maxFrame     = 0;
+		mCurrentFrame = 0.0f;
+		mMaxFrame     = 0;
 	}
 
 	virtual ~J2DAnmBase() { }                        // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (weak)
 
-	inline s16 getFrameMax() const { return m_maxFrame; }
-	inline void setFrame(f32 frame) { m_currentFrame = frame; }
-	inline f32 getFrame() const { return m_currentFrame; }
-	inline J2DAnmKind getKind() const { return m_kind; }
+	inline s16 getFrameMax() const { return mMaxFrame; }
+	inline void setFrame(f32 frame) { mCurrentFrame = frame; }
+	inline f32 getFrame() const { return mCurrentFrame; }
+	inline J2DAnmKind getKind() const { return mKind; }
 
 	// VTBL _00
-	u8 _04[2];          // _04, unknown
-	s16 m_maxFrame;     // _06
-	f32 m_currentFrame; // _08
-	J2DAnmKind m_kind;  // _0C
+	u8 _04[2];         // _04, unknown
+	s16 mMaxFrame;     // _06
+	f32 mCurrentFrame; // _08
+	J2DAnmKind mKind;  // _0C
 };
 
 struct J2DAnmColor : public J2DAnmBase {
 	J2DAnmColor()
 	{
-		_16                 = 0;
-		_14                 = 0;
-		_12                 = 0;
-		_10                 = 0;
-		m_updateMaterialNum = 0;
-		m_updateMaterialID  = nullptr;
-		m_kind              = J2DANM_Color;
+		_16                = 0;
+		_14                = 0;
+		_12                = 0;
+		_10                = 0;
+		mUpdateMaterialNum = 0;
+		mUpdateMaterialID  = nullptr;
+		mKind              = J2DANM_Color;
 	}
 
 	virtual ~J2DAnmColor() { }                       // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 	virtual void getColor(u16, GXColor*) const;      // _10 (weak)
 
-	inline u16 getUpdateMaterialNum() const { return m_updateMaterialNum; }
-	inline u16 getUpdateMaterialID(u16 i) const { return m_updateMaterialID[i]; }
+	inline u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
+	inline u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
-	u16 _10;                 // _10
-	u16 _12;                 // _12
-	u16 _14;                 // _14
-	u16 _16;                 // _16
-	u16 m_updateMaterialNum; // _18
-	u16* m_updateMaterialID; // _1C, array of IDs
-	JUTNameTab m_nameTab;    // _20
+	u16 _10;                // _10
+	u16 _12;                // _12
+	u16 _14;                // _14
+	u16 _16;                // _16
+	u16 mUpdateMaterialNum; // _18
+	u16* mUpdateMaterialID; // _1C, array of IDs
+	JUTNameTab mNameTab;    // _20
 };
 
 // Size: 0x44
 struct J2DAnmColorFull : public J2DAnmColor {
 	J2DAnmColorFull()
 	{
-		m_redVals   = nullptr;
-		m_greenVals = nullptr;
-		m_blueVals  = nullptr;
-		m_alphaVals = nullptr;
-		m_tables    = nullptr;
+		mRedVals   = nullptr;
+		mGreenVals = nullptr;
+		mBlueVals  = nullptr;
+		mAlphaVals = nullptr;
+		mTables    = nullptr;
 	}
 
 	virtual ~J2DAnmColorFull() { }              // _08 (weak)
@@ -101,22 +101,22 @@ struct J2DAnmColorFull : public J2DAnmColor {
 
 	// _00     = VTBL
 	// _00-_30 = J2DAnmColor
-	u8* m_redVals;                  // _30
-	u8* m_greenVals;                // _34
-	u8* m_blueVals;                 // _38
-	u8* m_alphaVals;                // _3C
-	J3DAnmColorFullTable* m_tables; // _40
+	u8* mRedVals;                  // _30
+	u8* mGreenVals;                // _34
+	u8* mBlueVals;                 // _38
+	u8* mAlphaVals;                // _3C
+	J3DAnmColorFullTable* mTables; // _40
 };
 
 // Size: 0x44
 struct J2DAnmColorKey : public J2DAnmColor {
 	J2DAnmColorKey()
 	{
-		m_redVals   = nullptr;
-		m_greenVals = nullptr;
-		m_blueVals  = nullptr;
-		m_alphaVals = nullptr;
-		m_tables    = nullptr;
+		mRedVals   = nullptr;
+		mGreenVals = nullptr;
+		mBlueVals  = nullptr;
+		mAlphaVals = nullptr;
+		mTables    = nullptr;
 	}
 
 	virtual ~J2DAnmColorKey() { }               // _08 (weak)
@@ -124,38 +124,38 @@ struct J2DAnmColorKey : public J2DAnmColor {
 
 	// _00     = VTBL
 	// _00-_30 = J2DAnmColor
-	s16* m_redVals;                // _30
-	s16* m_greenVals;              // _34
-	s16* m_blueVals;               // _38
-	s16* m_alphaVals;              // _3C
-	J3DAnmColorKeyTable* m_tables; // _40
+	s16* mRedVals;                // _30
+	s16* mGreenVals;              // _34
+	s16* mBlueVals;               // _38
+	s16* mAlphaVals;              // _3C
+	J3DAnmColorKeyTable* mTables; // _40
 };
 
 // Size: 0x74
 struct J2DAnmTevRegKey : public J2DAnmBase {
 	J2DAnmTevRegKey()
 	{
-		m_kRegUpdateMaterialNum = 0;
-		m_cRegUpdateMaterialNum = 0;
-		_1A                     = 0;
-		_18                     = 0;
-		_16                     = 0;
-		_14                     = 0;
-		_22                     = 0;
-		_20                     = 0;
-		_1E                     = 0;
-		_1C                     = 0;
-		m_kRegUpdateMaterialID  = nullptr;
-		m_cRegUpdateMaterialID  = nullptr;
-		m_cAlphaVals            = nullptr;
-		m_cBlueVals             = nullptr;
-		m_cGreenVals            = nullptr;
-		m_cRedVals              = nullptr;
-		m_kAlphaVals            = nullptr;
-		m_kBlueVals             = nullptr;
-		m_kGreenVals            = nullptr;
-		m_kRedVals              = nullptr;
-		m_kind                  = J2DANM_TevReg;
+		mKRegUpdateMaterialNum = 0;
+		mCRegUpdateMaterialNum = 0;
+		_1A                    = 0;
+		_18                    = 0;
+		_16                    = 0;
+		_14                    = 0;
+		_22                    = 0;
+		_20                    = 0;
+		_1E                    = 0;
+		_1C                    = 0;
+		mKRegUpdateMaterialID  = nullptr;
+		mCRegUpdateMaterialID  = nullptr;
+		mCAlphaVals            = nullptr;
+		mCBlueVals             = nullptr;
+		mCGreenVals            = nullptr;
+		mCRedVals              = nullptr;
+		mKAlphaVals            = nullptr;
+		mKBlueVals             = nullptr;
+		mKGreenVals            = nullptr;
+		mKRedVals              = nullptr;
+		mKind                  = J2DANM_TevReg;
 	}
 
 	virtual ~J2DAnmTevRegKey() { }                   // _08 (weak)
@@ -164,41 +164,41 @@ struct J2DAnmTevRegKey : public J2DAnmBase {
 	void getTevColorReg(u16, GXColorS10*) const;
 	void getTevKonstReg(u16, GXColor*) const;
 
-	inline u16 getCRegUpdateMaterialNum() const { return m_cRegUpdateMaterialNum; }
-	inline u16 getCRegUpdateMaterialID(u16 i) const { return m_cRegUpdateMaterialID[i]; }
+	inline u16 getCRegUpdateMaterialNum() const { return mCRegUpdateMaterialNum; }
+	inline u16 getCRegUpdateMaterialID(u16 i) const { return mCRegUpdateMaterialID[i]; }
 
-	inline u16 getKRegUpdateMaterialNum() const { return m_kRegUpdateMaterialNum; }
-	inline u16 getKRegUpdateMaterialID(u16 i) const { return m_kRegUpdateMaterialID[i]; }
+	inline u16 getKRegUpdateMaterialNum() const { return mKRegUpdateMaterialNum; }
+	inline u16 getKRegUpdateMaterialID(u16 i) const { return mKRegUpdateMaterialID[i]; }
 
-	inline J3DAnmCRegKeyTable* getAnmCRegKeyTable() const { return m_cRegKeyTable; }
-	inline J3DAnmKRegKeyTable* getAnmKRegKeyTable() const { return m_kRegKeyTable; }
+	inline J3DAnmCRegKeyTable* getAnmCRegKeyTable() const { return mCRegKeyTable; }
+	inline J3DAnmKRegKeyTable* getAnmKRegKeyTable() const { return mKRegKeyTable; }
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
-	u16 m_cRegUpdateMaterialNum;        // _10, element count of _24
-	u16 m_kRegUpdateMaterialNum;        // _12, element count of _38
-	u16 _14;                            // _14
-	u16 _16;                            // _16
-	u16 _18;                            // _18
-	u16 _1A;                            // _1A
-	u16 _1C;                            // _1C
-	u16 _1E;                            // _1E
-	u16 _20;                            // _20
-	u16 _22;                            // _22
-	u16* m_cRegUpdateMaterialID;        // _24
-	JUTNameTab m_cRegNameTab;           // _28
-	u16* m_kRegUpdateMaterialID;        // _38
-	JUTNameTab m_kRegNameTab;           // _3C
-	J3DAnmCRegKeyTable* m_cRegKeyTable; // _4C
-	J3DAnmKRegKeyTable* m_kRegKeyTable; // _50
-	s16* m_cRedVals;                    // _54
-	s16* m_cGreenVals;                  // _58
-	s16* m_cBlueVals;                   // _5C
-	s16* m_cAlphaVals;                  // _60
-	s16* m_kRedVals;                    // _64
-	s16* m_kGreenVals;                  // _68
-	s16* m_kBlueVals;                   // _6C
-	s16* m_kAlphaVals;                  // _70
+	u16 mCRegUpdateMaterialNum;        // _10, element count of _24
+	u16 mKRegUpdateMaterialNum;        // _12, element count of _38
+	u16 _14;                           // _14
+	u16 _16;                           // _16
+	u16 _18;                           // _18
+	u16 _1A;                           // _1A
+	u16 _1C;                           // _1C
+	u16 _1E;                           // _1E
+	u16 _20;                           // _20
+	u16 _22;                           // _22
+	u16* mCRegUpdateMaterialID;        // _24
+	JUTNameTab mCRegNameTab;           // _28
+	u16* mKRegUpdateMaterialID;        // _38
+	JUTNameTab mKRegNameTab;           // _3C
+	J3DAnmCRegKeyTable* mCRegKeyTable; // _4C
+	J3DAnmKRegKeyTable* mKRegKeyTable; // _50
+	s16* mCRedVals;                    // _54
+	s16* mCGreenVals;                  // _58
+	s16* mCBlueVals;                   // _5C
+	s16* mCAlphaVals;                  // _60
+	s16* mKRedVals;                    // _64
+	s16* mKGreenVals;                  // _68
+	s16* mKBlueVals;                   // _6C
+	s16* mKAlphaVals;                  // _70
 };
 
 // Size: 0x34
@@ -208,40 +208,40 @@ struct J2DAnmTexPattern : public J2DAnmBase {
 
 		~J2DAnmTexPatternTIMGPointer();
 
-		ResTIMG* m_img;        // _00
-		JUTPalette* m_palette; // _04
+		ResTIMG* mImg;        // _00
+		JUTPalette* mPalette; // _04
 	};
 
 	J2DAnmTexPattern()
 	{
-		m_values            = nullptr;
-		m_anmTable          = nullptr;
-		m_kind              = J2DANM_TexturePattern;
-		m_updateMaterialNum = 0;
-		m_updateMaterialID  = nullptr;
-		m_imgPtrArray       = nullptr;
+		mValues            = nullptr;
+		mAnmTable          = nullptr;
+		mKind              = J2DANM_TexturePattern;
+		mUpdateMaterialNum = 0;
+		mUpdateMaterialID  = nullptr;
+		mImgPtrArray       = nullptr;
 	}
 
-	virtual ~J2DAnmTexPattern() { delete[] m_imgPtrArray; } // _08 (weak)
-	virtual void searchUpdateMaterialID(J2DScreen*);        // _0C
+	virtual ~J2DAnmTexPattern() { delete[] mImgPtrArray; } // _08 (weak)
+	virtual void searchUpdateMaterialID(J2DScreen*);       // _0C
 
 	void getTexNo(u16, u16*) const;
 	void getResTIMG(u16) const;
 	void getPalette(u16) const;
 
-	inline u16 getUpdateMaterialNum() const { return m_updateMaterialNum; }
-	inline u16 getUpdateMaterialID(u16 i) const { return m_updateMaterialID[i]; }
-	inline J3DAnmTexPatternFullTable* getAnmTable() const { return m_anmTable; }
+	inline u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
+	inline u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
+	inline J3DAnmTexPatternFullTable* getAnmTable() const { return mAnmTable; }
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
-	u16* m_values;                              // _10
-	J3DAnmTexPatternFullTable* m_anmTable;      // _14
-	u16 _18;                                    // _18
-	u16 m_updateMaterialNum;                    // _1A
-	u16* m_updateMaterialID;                    // _1C
-	JUTNameTab m_nameTab;                       // _20
-	J2DAnmTexPatternTIMGPointer* m_imgPtrArray; // _30
+	u16* mValues;                              // _10
+	J3DAnmTexPatternFullTable* mAnmTable;      // _14
+	u16 _18;                                   // _18
+	u16 mUpdateMaterialNum;                    // _1A
+	u16* mUpdateMaterialID;                    // _1C
+	JUTNameTab mNameTab;                       // _20
+	J2DAnmTexPatternTIMGPointer* mImgPtrArray; // _30
 };
 
 // Size: 0x88
@@ -249,25 +249,25 @@ struct J2DAnmTexPattern : public J2DAnmBase {
 struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	J2DAnmTextureSRTKey()
 	{ // taken from TP - may need tweaking for P2 given different sized struct?
-		_10                 = 0;
-		_22                 = 0;
-		_20                 = 0;
-		_1E                 = 0;
-		m_updateMaterialNum = 0;
-		m_infoTable         = nullptr;
-		m_translationVals   = nullptr;
-		m_scaleVals         = nullptr;
-		m_rotationVals      = nullptr;
-		_50                 = 0;
-		_4E                 = 0;
-		_4C                 = 0;
-		_52                 = 0;
-		_60                 = nullptr;
-		_5C                 = nullptr;
-		_54                 = nullptr;
-		_58                 = nullptr;
-		_84                 = 0;
-		m_kind              = J2DANM_TextureSRT;
+		_10                = 0;
+		_22                = 0;
+		_20                = 0;
+		_1E                = 0;
+		mUpdateMaterialNum = 0;
+		mInfoTable         = nullptr;
+		mTranslationVals   = nullptr;
+		mScaleVals         = nullptr;
+		mRotationVals      = nullptr;
+		_50                = 0;
+		_4E                = 0;
+		_4C                = 0;
+		_52                = 0;
+		_60                = nullptr;
+		_5C                = nullptr;
+		_54                = nullptr;
+		_58                = nullptr;
+		_84                = 0;
+		mKind              = J2DANM_TextureSRT;
 	}
 
 	virtual ~J2DAnmTextureSRTKey() { }               // _08 (weak)
@@ -278,49 +278,49 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	// unused/inlined:
 	void calcPostTransform(f32, u16, J3DTextureSRTInfo*) const;
 
-	inline u16 getUpdateMaterialNum() const { return m_updateMaterialNum / 3; }
-	inline u16 getUpdateMaterialID(u16 i) const { return m_updateMaterialID[i]; }
-	inline u8 getUpdateTexMtxID(u16 i) const { return m_updateTexMtxID[i]; }
+	inline u16 getUpdateMaterialNum() const { return mUpdateMaterialNum / 3; }
+	inline u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
+	inline u8 getUpdateTexMtxID(u16 i) const { return mUpdateTexMtxID[i]; }
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
-	u32 _10;                              // _10
-	u16 _14;                              // _14
-	J3DAnmTransformKeyTable* m_infoTable; // _18
-	u16 m_updateMaterialNum;              // _1C
-	u16 _1E;                              // _1E
-	u16 _20;                              // _20
-	u16 _22;                              // _22
-	f32* m_scaleVals;                     // _24
-	s16* m_rotationVals;                  // _28
-	f32* m_translationVals;               // _2C
-	u8* m_updateTexMtxID;                 // _30
-	u16* m_updateMaterialID;              // _34
-	JUTNameTab m_nameTab;                 // _38
-	Vec* _48;                             // _48
-	u16 _4C;                              // _4C
-	u16 _4E;                              // _4E
-	u16 _50;                              // _50
-	u16 _52;                              // _52
-	f32* _54;                             // _54
-	s16* _58;                             // _58
-	f32* _5C;                             // _5C
-	u16 _60;                              // _60
-	J3DAnmTransformKeyTable* _64;         // _64
-	u8* _68;                              // _68
-	u16* _6C;                             // _6C
-	JUTNameTab _70;                       // _70
-	Vec* _80;                             // _80
-	u32 _84;                              // _84
+	u32 _10;                             // _10
+	u16 _14;                             // _14
+	J3DAnmTransformKeyTable* mInfoTable; // _18
+	u16 mUpdateMaterialNum;              // _1C
+	u16 _1E;                             // _1E
+	u16 _20;                             // _20
+	u16 _22;                             // _22
+	f32* mScaleVals;                     // _24
+	s16* mRotationVals;                  // _28
+	f32* mTranslationVals;               // _2C
+	u8* mUpdateTexMtxID;                 // _30
+	u16* mUpdateMaterialID;              // _34
+	JUTNameTab mNameTab;                 // _38
+	Vec* _48;                            // _48
+	u16 _4C;                             // _4C
+	u16 _4E;                             // _4E
+	u16 _50;                             // _50
+	u16 _52;                             // _52
+	f32* _54;                            // _54
+	s16* _58;                            // _58
+	f32* _5C;                            // _5C
+	u16 _60;                             // _60
+	J3DAnmTransformKeyTable* _64;        // _64
+	u8* _68;                             // _68
+	u16* _6C;                            // _6C
+	JUTNameTab _70;                      // _70
+	Vec* _80;                            // _80
+	u32 _84;                             // _84
 };
 
 struct J2DAnmTransform : public J2DAnmBase {
 	J2DAnmTransform(f32* pScaleValues, s16* pRotationValues, f32* pTranslateValues)
 	{
-		m_scaleVals       = pScaleValues;
-		m_rotationVals    = pRotationValues;
-		m_translationVals = pTranslateValues;
-		m_kind            = J2DANM_Transform;
+		mScaleVals       = pScaleValues;
+		mRotationVals    = pRotationValues;
+		mTranslationVals = pTranslateValues;
+		mKind            = J2DANM_Transform;
 	}
 
 	virtual ~J2DAnmTransform() { }                              // _08 (weak)
@@ -328,9 +328,9 @@ struct J2DAnmTransform : public J2DAnmBase {
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
-	f32* m_scaleVals;       // _10
-	s16* m_rotationVals;    // _14
-	f32* m_translationVals; // _18
+	f32* mScaleVals;       // _10
+	s16* mRotationVals;    // _14
+	f32* mTranslationVals; // _18
 };
 
 // Size: 0x28
@@ -338,7 +338,7 @@ struct J2DAnmTransformFull : public J2DAnmTransform {
 	J2DAnmTransformFull()
 	    : J2DAnmTransform(nullptr, nullptr, nullptr)
 	{
-		m_table = nullptr;
+		mTable = nullptr;
 	}
 
 	virtual ~J2DAnmTransformFull() { }                       // _08 (weak)
@@ -346,9 +346,9 @@ struct J2DAnmTransformFull : public J2DAnmTransform {
 
 	// _00     = VTBL
 	// _00-_1C = J2DAnmTransform
-	u8 _1C[6];                         // _1C, unknown
-	u16 _22;                           // _22
-	J3DAnmTransformFullTable* m_table; // _24
+	u8 _1C[6];                        // _1C, unknown
+	u16 _22;                          // _22
+	J3DAnmTransformFullTable* mTable; // _24
 };
 
 // Size: 0x2C
@@ -356,8 +356,8 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 	J2DAnmTransformKey()
 	    : J2DAnmTransform(nullptr, nullptr, nullptr)
 	{
-		_24     = 0;
-		m_table = nullptr;
+		_24    = 0;
+		mTable = nullptr;
 	}
 
 	virtual ~J2DAnmTransformKey() { }                              // _08 (weak)
@@ -366,21 +366,21 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 
 	// _00     = VTBL
 	// _00-_1C = J2DAnmTransform
-	u8 _1C[6];                         // _1C, unknown
-	u16 _22;                           // _22
-	int _24;                           // _24
-	J3DAnmTransformFullTable* m_table; // _28
+	u8 _1C[6];                        // _1C, unknown
+	u16 _22;                          // _22
+	int _24;                          // _24
+	J3DAnmTransformFullTable* mTable; // _28
 };
 
 // Size: 0x1C
 struct J2DAnmVisibilityFull : public J2DAnmBase {
 	J2DAnmVisibilityFull()
 	{
-		_10      = 0;
-		m_table  = nullptr;
-		_12      = 0;
-		m_values = nullptr;
-		m_kind   = J2DANM_VisibilityFull;
+		_10     = 0;
+		mTable  = nullptr;
+		_12     = 0;
+		mValues = nullptr;
+		mKind   = J2DANM_VisibilityFull;
 	}
 
 	virtual ~J2DAnmVisibilityFull() { } // _08 (weak)
@@ -389,21 +389,21 @@ struct J2DAnmVisibilityFull : public J2DAnmBase {
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
-	u16 _10;                            // _10
-	u16 _12;                            // _12
-	J3DAnmVisibilityFullTable* m_table; // _14
-	u8* m_values;                       // _18
+	u16 _10;                           // _10
+	u16 _12;                           // _12
+	J3DAnmVisibilityFullTable* mTable; // _14
+	u8* mValues;                       // _18
 };
 
 struct J2DAnmVtxColor : public J2DAnmBase {
 	J2DAnmVtxColor()
 	{
-		m_kind = J2DANM_VtxColor;
-		for (int i = 0; i < ARRAY_SIZE(m_anmTableNum); i++) {
-			m_anmTableNum[i] = 0;
+		mKind = J2DANM_VtxColor;
+		for (int i = 0; i < ARRAY_SIZE(mAnmTableNum); i++) {
+			mAnmTableNum[i] = 0;
 		}
-		for (int i = 0; i < ARRAY_SIZE(m_vtxColorIndexData); i++) {
-			m_vtxColorIndexData[i] = nullptr;
+		for (int i = 0; i < ARRAY_SIZE(mVtxColorIndexData); i++) {
+			mVtxColorIndexData[i] = nullptr;
 		}
 	}
 
@@ -412,16 +412,16 @@ struct J2DAnmVtxColor : public J2DAnmBase {
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
-	u16 m_anmTableNum[2];                            // _10
-	J3DAnmVtxColorIndexData* m_vtxColorIndexData[2]; // _14
-	u16* m_vtxColorIndexPtr[2];                      // _1C
+	u16 mAnmTableNum[2];                            // _10
+	J3DAnmVtxColorIndexData* mVtxColorIndexData[2]; // _14
+	u16* mVtxColorIndexPtr[2];                      // _1C
 };
 
 struct J2DAnmVtxColorFull : public J2DAnmVtxColor {
 	J2DAnmVtxColorFull()
 	{
-		for (int i = 0; i < ARRAY_SIZE(m_infoTables); i++) {
-			m_infoTables[i] = nullptr;
+		for (int i = 0; i < ARRAY_SIZE(mInfoTables); i++) {
+			mInfoTables[i] = nullptr;
 		}
 	}
 
@@ -430,19 +430,19 @@ struct J2DAnmVtxColorFull : public J2DAnmVtxColor {
 
 	// _00     = VTBL
 	// _00-_24 = J2DAnmVtxColor
-	J3DAnmColorFullTable* m_infoTables[2]; // _24
-	u8* m_redVals;                         // _2C
-	u8* m_greenVals;                       // _30
-	u8* m_blueVals;                        // _34
-	u8* m_alphaVals;                       // _38
+	J3DAnmColorFullTable* mInfoTables[2]; // _24
+	u8* mRedVals;                         // _2C
+	u8* mGreenVals;                       // _30
+	u8* mBlueVals;                        // _34
+	u8* mAlphaVals;                       // _38
 };
 
 // Size: 0x3C
 struct J2DAnmVtxColorKey : public J2DAnmVtxColor {
 	J2DAnmVtxColorKey()
 	{
-		for (int i = 0; i < ARRAY_SIZE(m_infoTables); i++) {
-			m_infoTables[i] = nullptr;
+		for (int i = 0; i < ARRAY_SIZE(mInfoTables); i++) {
+			mInfoTables[i] = nullptr;
 		}
 	}
 
@@ -451,11 +451,11 @@ struct J2DAnmVtxColorKey : public J2DAnmVtxColor {
 
 	// _00     = VTBL
 	// _00-_24 = J2DAnmVtxColor
-	J3DAnmColorKeyTable* m_infoTables[2]; // _24
-	s16* m_redVals;                       // _2C
-	s16* m_greenVals;                     // _30
-	s16* m_blueVals;                      // _34
-	s16* m_alphaVals;                     // _38
+	J3DAnmColorKeyTable* mInfoTables[2]; // _24
+	s16* mRedVals;                       // _2C
+	s16* mGreenVals;                     // _30
+	s16* mBlueVals;                      // _34
+	s16* mAlphaVals;                     // _38
 };
 
 #endif

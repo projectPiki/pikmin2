@@ -43,8 +43,8 @@ struct EditMapUnit;
 struct DoorLink : public CNode {
 	DoorLink()
 	{
-		m_distance  = 0.0f;
-		m_tekiFlags = 1;
+		mDistance  = 0.0f;
+		mTekiFlags = 1;
 	}
 
 	virtual ~DoorLink(); // _08 (weak)
@@ -52,18 +52,18 @@ struct DoorLink : public CNode {
 	void read(Stream&);
 	void write(Stream&);
 
-	f32 m_distance; // _18
-	u32 m_doorID;   // _1C
-	u8 m_tekiFlags; // _20
+	f32 mDistance; // _18
+	u32 mDoorID;   // _1C
+	u8 mTekiFlags; // _20
 };
 
 // Size: 0x50
 struct Door : public CNode {
 	Door()
 	{
-		m_linkCount = 0;
-		m_dir       = 0;
-		m_offs      = 0;
+		mLinkCount = 0;
+		mDir       = 0;
+		mOffs      = 0;
 	}
 
 	virtual ~Door(); // _08 (weak)
@@ -72,14 +72,14 @@ struct Door : public CNode {
 	void read(Stream&);
 	void write(Stream&);
 
-	inline int getLinkCount() { return m_linkCount; }
+	inline int getLinkCount() { return mLinkCount; }
 
-	u32 m_index;         // _18
-	int m_linkCount;     // _1C
-	DoorLink m_rootLink; // _20
-	u32 m_dir;           // _44
-	u32 m_offs;          // _48
-	u32 m_wpIndex;       // _4C
+	u32 mIndex;         // _18
+	int mLinkCount;     // _1C
+	DoorLink mRootLink; // _20
+	u32 mDir;           // _44
+	u32 mOffs;          // _48
+	u32 mWpIndex;       // _4C
 };
 
 // Size: 0x10
@@ -107,20 +107,20 @@ struct MapUnit {
 	void save(Stream&);
 	void setupSizeInfo();
 
-	short _04;                          // _04
-	char* m_name;                       // _08
-	J3DModelData* m_modelData;          // _0C
-	MapCollision m_collision;           // _10
-	JUTTexture* m_texture;              // _2C
-	ResTIMG* m_imgResource;             // _30
-	SeaMgr m_seaMgr;                    // _34
-	BoundBox m_boundingBox;             // _7C
-	Vector2<short> m_cellSize;          // _94
-	u8 _98[0x10];                       // _98
-	u8 _A8;                             // _A8
-	EditorRouteMgr m_routeMgr;          // _AC
-	int m_animationCount;               // _E8
-	Sys::MatTexAnimation* m_animations; // _EC
+	short _04;                         // _04
+	char* mName;                       // _08
+	J3DModelData* mModelData;          // _0C
+	MapCollision mCollision;           // _10
+	JUTTexture* mTexture;              // _2C
+	ResTIMG* mImgResource;             // _30
+	SeaMgr mSeaMgr;                    // _34
+	BoundBox mBoundingBox;             // _7C
+	Vector2<short> mCellSize;          // _94
+	u8 _98[0x10];                      // _98
+	u8 _A8;                            // _A8
+	EditorRouteMgr mRouteMgr;          // _AC
+	int mAnimationCount;               // _E8
+	Sys::MatTexAnimation* mAnimations; // _EC
 };
 
 struct PartsView : public CNode {
@@ -141,25 +141,25 @@ struct PartsView : public CNode {
 	void read(Stream&);
 	void write(Stream&);
 
-	MapUnit* m_mapUnit;       // _018
-	SysShape::Model* m_model; // _01C
-	Mtx _20;                  // _020
-	f32 _50;                  // _050
-	f32 _54;                  // _054
-	u32 _58;                  // _058
-	u32 _5C;                  // _05C
-	u32 _60;                  // _060
-	u8 _64[8];                // _064
+	MapUnit* mMapUnit;       // _018
+	SysShape::Model* mModel; // _01C
+	Mtx _20;                 // _020
+	f32 _50;                 // _050
+	f32 _54;                 // _054
+	u32 _58;                 // _058
+	u32 _5C;                 // _05C
+	u32 _60;                 // _060
+	u8 _64[8];               // _064
 
 	// 0=dead end, 1=room, 2=hallway ??? NOT SURE
-	s16 m_unitKind;               // _06C
-	BitFlag<u16> _6E;             // _06E
-	EditorRouteMgr m_routeMgr;    // _070
-	AStarContext m_aStarContext;  // _0AC
-	AStarPathfinder m_pathFinder; // _110
-	int m_doorCount;              // _114
-	Door m_door;                  // _118
-	Cave::BaseGen* m_baseGen;     // _168
+	s16 mUnitKind;               // _06C
+	BitFlag<u16> _6E;            // _06E
+	EditorRouteMgr mRouteMgr;    // _070
+	AStarContext mAStarContext;  // _0AC
+	AStarPathfinder mPathFinder; // _110
+	int mDoorCount;              // _114
+	Door mDoor;                  // _118
+	Cave::BaseGen* mBaseGen;     // _168
 };
 
 struct MapUnitInterface : public PartsView {
@@ -167,7 +167,7 @@ struct MapUnitInterface : public PartsView {
 
 	virtual ~MapUnitInterface(); // _08 (weak)
 
-	inline int getDoorCount() { return m_doorCount; }
+	inline int getDoorCount() { return mDoorCount; }
 
 	Door* getDoor(int);
 	void getCellSize(int&, int&);
@@ -207,27 +207,27 @@ struct MapRoom : public CellObject {
 
 	// _00     = VTBL
 	// _00-_B8 = CellObject
-	MapCollision* m_collision;              // _0B8
-	u8 _0BC;                                // _0BC
-	MapUnitInterface* m_interface;          // _0C0
-	Cave::ObjectLayout* m_objectLayoutInfo; // _0C4
-	u8 _0C8[4];                             // _0C8
-	Sys::MatLoopAnimator* m_animators;      // _0CC
-	int m_doorNum;                          // _0D0
-	RoomDoorInfo* m_doorInfos;              // _0D4
-	Matrixf _0D8;                           // _0D8
-	Matrixf _108;                           // _108
-	MapUnit* m_unit;                        // _138
-	SysShape::Model* m_model;               // _13C
-	Sys::Sphere m_boundingSphere;           // _140
-	Sys::Sphere _150;                       // _150
-	Sys::Cylinder _160;                     // _160
-	RoomLink* m_link;                       // _180
-	s16 _184;                               // _184
-	u16 m_unitKind;                         // _186
-	u8 _188[2];                             // _188
-	int* m_wpIndices;                       // _18C
-	Sys::Sphere _190;                       // _190
+	MapCollision* mCollision;              // _0B8
+	u8 _0BC;                               // _0BC
+	MapUnitInterface* mInterface;          // _0C0
+	Cave::ObjectLayout* mObjectLayoutInfo; // _0C4
+	u8 _0C8[4];                            // _0C8
+	Sys::MatLoopAnimator* mAnimators;      // _0CC
+	int mDoorNum;                          // _0D0
+	RoomDoorInfo* mDoorInfos;              // _0D4
+	Matrixf _0D8;                          // _0D8
+	Matrixf _108;                          // _108
+	MapUnit* mUnit;                        // _138
+	SysShape::Model* mModel;               // _13C
+	Sys::Sphere mBoundingSphere;           // _140
+	Sys::Sphere _150;                      // _150
+	Sys::Cylinder _160;                    // _160
+	RoomLink* mLink;                       // _180
+	s16 _184;                              // _184
+	u16 mUnitKind;                         // _186
+	u8 _188[2];                            // _188
+	int* mWpIndices;                       // _18C
+	Sys::Sphere _190;                      // _190
 };
 
 struct RoomMapMgr : public MapMgr {
@@ -276,25 +276,25 @@ struct RoomMapMgr : public MapMgr {
 	// _00     = GenericObjectMgr
 	// _04     = VTBL
 	// _00-_24 = MapMgr
-	SysShape::Model* _24;                 // _24, m_modelOrCaveVRBoxOrBothMaybe
-	Cave::CaveInfo* m_caveInfo;           // _28
-	Cave::FloorInfo* m_floorInfo;         // _2C
-	int m_sublevel;                       // _30
-	MapCollision* m_mapCollision;         // _34
-	u32 _38;                              // _38
-	void* _3C;                            // _3C
-	u8 _40[0x60];                         // _40, triangle?
-	int m_count;                          // _A0
-	void* _A4;                            // _A4
-	MapUnitMgr* m_mapUnitMgr;             // _A8
-	u8 _AC[0x30];                         // _AC, mono?
-	BoundBox m_boundbox;                  // _DC
-	uint m_mapUnitInterfaceCount;         // _F4
-	MapUnitInterface* m_mapUnitInterface; // _F8
-	Vector3f m_startPositions[2];         // _FC
-	Game::BlackMan::Obj* m_blackMan;      // _114
-	u32* m_118;                           // _118
-	u32 m_11C;                            // _11C
+	SysShape::Model* _24;                // _24, mModelOrCaveVRBoxOrBothMaybe
+	Cave::CaveInfo* mCaveInfo;           // _28
+	Cave::FloorInfo* mFloorInfo;         // _2C
+	int mSublevel;                       // _30
+	MapCollision* mMapCollision;         // _34
+	u32 _38;                             // _38
+	void* _3C;                           // _3C
+	u8 _40[0x60];                        // _40, triangle?
+	int mCount;                          // _A0
+	void* _A4;                           // _A4
+	MapUnitMgr* mMapUnitMgr;             // _A8
+	u8 _AC[0x30];                        // _AC, mono?
+	BoundBox mBoundbox;                  // _DC
+	uint mMapUnitInterfaceCount;         // _F4
+	MapUnitInterface* mMapUnitInterface; // _F8
+	Vector3f mStartPositions[2];         // _FC
+	Game::BlackMan::Obj* mBlackMan;      // _114
+	u32* m_118;                          // _118 TODO: rename
+	u32 m_11C;                           // _11C TODO: rename
 };
 
 struct CaveVRBox {

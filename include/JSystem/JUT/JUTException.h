@@ -19,21 +19,21 @@ struct JUTException : public JKRThread {
 
 	struct JUTExMapFile {
 		inline JUTExMapFile(const char* fileName)
-		    : m_link(this)
+		    : mLink(this)
 		{
-			m_fileName = fileName;
+			mFileName = fileName;
 		}
-		const char* m_fileName;
-		JSULink<JUTExMapFile> m_link;
+		const char* mFileName;
+		JSULink<JUTExMapFile> mLink;
 	};
 
 	/** @fabricated */
 	struct ExCallbackObject {
-		OSErrorHandler m_errorHandler; // _00
-		OSError m_error;               // _04
-		OSContext* m_context;          // _08
-		u32 _0C;                       // _0C
-		u32 _10;                       // _10
+		OSErrorHandler mErrorHandler; // _00
+		OSError mError;               // _04
+		OSContext* mContext;          // _08
+		u32 _0C;                      // _0C
+		u32 _10;                      // _10
 	};
 
 	JUTException(JUTDirectPrint*); // unused/inlined
@@ -75,16 +75,16 @@ struct JUTException : public JKRThread {
 	void enableFpuException();
 	void disableFpuException();
 
-	void* m_frameBuffer;            // _7C
-	JUTDirectPrint* m_directPrint;  // _80
-	u32 _84;                        // _84
-	JUTGamePad::EPadPort m_padPort; // _88
-	int _8C;                        // _8C
-	int _90;                        // _90
-	int _94;                        // _94
-	u32 _98;                        // _98
-	int _9C;                        // _9C
-	void* m_stackPointer;           // _A0
+	void* mFrameBuffer;            // _7C
+	JUTDirectPrint* mDirectPrint;  // _80
+	u32 _84;                       // _84
+	JUTGamePad::EPadPort mPadPort; // _88
+	int _8C;                       // _8C
+	int _90;                       // _90
+	int _94;                       // _94
+	u32 _98;                       // _98
+	int _9C;                       // _9C
+	void* mStackPointer;           // _A0
 
 	static JUTConsole* sConsole;
 	static void* sConsoleBuffer;

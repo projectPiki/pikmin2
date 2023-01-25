@@ -42,12 +42,12 @@ bool MeloArrMgr::isToAvoid(MeloArrArg& meloArg)
 	}
 	bool check = false;
 	if ((_10 >> meloArg._00) & 1) {
-		currLink = static_cast<MeloArrBase*>(m_list.m_head);
-		for (currLink; currLink; currLink = static_cast<MeloArrBase*>(currLink->m_next)) {
-			MeloArrBase* randAvoid = static_cast<MeloArrBase*>(currLink->m_value);
+		currLink = static_cast<MeloArrBase*>(mList.mHead);
+		for (currLink; currLink; currLink = static_cast<MeloArrBase*>(currLink->mNext)) {
+			MeloArrBase* randAvoid = static_cast<MeloArrBase*>(currLink->mValue);
 			randAvoid->pre(meloArg);
 			if (check == false) {
-				randAvoid = static_cast<MeloArrBase*>(currLink->m_value);
+				randAvoid = static_cast<MeloArrBase*>(currLink->mValue);
 				bool interCheck;
 				if (randAvoid->_19 == true) {
 					interCheck = randAvoid->avoidChk(meloArg);
@@ -57,7 +57,7 @@ bool MeloArrMgr::isToAvoid(MeloArrArg& meloArg)
 				check = interCheck;
 			}
 
-			randAvoid = static_cast<MeloArrBase*>(currLink->m_value);
+			randAvoid = static_cast<MeloArrBase*>(currLink->mValue);
 			randAvoid->post(meloArg);
 		}
 	}

@@ -38,7 +38,7 @@ void FSM::init(EnemyBase* enemy)
 StateWalk::StateWalk(int stateID)
     : State(stateID)
 {
-	m_name = "walk";
+	mName = "walk";
 }
 
 /*
@@ -50,7 +50,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
 	bool check;
-	if (wraith->m_tyre == nullptr || wraith->_2E0 == 2) {
+	if (wraith->mTyre == nullptr || wraith->_2E0 == 2) {
 		check = false;
 	} else {
 		check = true;
@@ -74,7 +74,7 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
 	wraith->walkFunc();
-	if (wraith->m_health <= 0.0f) {
+	if (wraith->mHealth <= 0.0f) {
 		transit(wraith, WRAITH_Dead, nullptr);
 		return;
 	}
@@ -85,7 +85,7 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 
 	if (EnemyFunc::isStartFlick(wraith, false)) {
-		wraith->m_postFlickState = 0;
+		wraith->mPostFlickState = 0;
 		transit(wraith, WRAITH_Flick, nullptr);
 		return;
 	}
@@ -95,8 +95,8 @@ void StateWalk::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_curAnim->m_isPlaying) {
-		switch (wraith->m_curAnim->m_type) {
+	if (wraith->mCurAnim->mIsPlaying) {
+		switch (wraith->mCurAnim->mType) {
 		case KEYEVENT_2:
 		case KEYEVENT_3:
 			Vector3f position = wraith->getPosition();
@@ -133,7 +133,7 @@ void StateWalk::cleanup(EnemyBase* enemy)
 StateDead::StateDead(int stateID)
     : State(stateID)
 {
-	m_name = "dead";
+	mName = "dead";
 }
 
 /*
@@ -143,8 +143,8 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->m_currentVelocity = Vector3f(0.0f);
-	enemy->m_targetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->startMotion(2, nullptr);
 
 	Obj* wraith = static_cast<Obj*>(enemy);
@@ -160,9 +160,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
-	if (wraith->m_curAnim->m_isPlaying) {
+	if (wraith->mCurAnim->mIsPlaying) {
 		Vector3f position = wraith->getPosition();
-		switch (wraith->m_curAnim->m_type) {
+		switch (wraith->mCurAnim->mType) {
 		case KEYEVENT_2:
 		case KEYEVENT_3:
 		case KEYEVENT_4:
@@ -189,7 +189,7 @@ void StateDead::exec(EnemyBase* enemy)
 StateFreeze::StateFreeze(int stateID)
     : State(stateID)
 {
-	m_name = "freeze";
+	mName = "freeze";
 }
 
 /*
@@ -211,8 +211,8 @@ void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->setMotionFrame(3.0f);
 	}
 
-	enemy->m_currentVelocity = Vector3f(0.0f);
-	enemy->m_targetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity  = Vector3f(0.0f);
 }
 
 /*
@@ -223,20 +223,20 @@ void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFreeze::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
-	wraith->m_freezeTimer++;
-	if (wraith->m_health <= 0.0f) {
+	wraith->mFreezeTimer++;
+	if (wraith->mHealth <= 0.0f) {
 		transit(wraith, WRAITH_Dead, nullptr);
 		return;
 	}
 
 	if (EnemyFunc::isStartFlick(wraith, false)) {
-		wraith->m_postFlickState = 2;
+		wraith->mPostFlickState = 2;
 		transit(wraith, WRAITH_Flick, nullptr);
 		return;
 	}
 
-	if (wraith->m_curAnim->m_isPlaying) {
-		if ((u32)wraith->m_curAnim->m_type == KEYEVENT_2) {
+	if (wraith->mCurAnim->mIsPlaying) {
+		if ((u32)wraith->mCurAnim->mType == KEYEVENT_2) {
 			Vector3f position = wraith->getPosition();
 			cameraMgr->startVibration(12, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
@@ -246,11 +246,11 @@ void StateFreeze::exec(EnemyBase* enemy)
 			position.z += 32.0f * pikmin2_cosf(faceDir) - 4.0f * pikmin2_sinf(faceDir);
 			wraith->createBounceEffect(position, 0.42f);
 
-		} else if ((u32)wraith->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)wraith->mCurAnim->mType == KEYEVENT_END) {
 			transit(wraith, WRAITH_Walk, nullptr);
 			wraith->collisionStOff();
 		}
-	} else if (wraith->m_freezeTimer > wraith->getParms()->m_properParms.m_freezeTimerLength.m_value) {
+	} else if (wraith->mFreezeTimer > wraith->getParms()->mProperParms.mFreezeTimerLength.mValue) {
 		wraith->finishMotion();
 	}
 }
@@ -274,7 +274,7 @@ void StateFreeze::cleanup(EnemyBase* enemy)
 StateBend::StateBend(int stateID)
     : State(stateID)
 {
-	m_name = "bend";
+	mName = "bend";
 }
 
 /*
@@ -307,7 +307,7 @@ void StateBend::init(EnemyBase* enemy, StateArg* stateArg)
 void StateBend::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
-	if (wraith->m_health <= 0.0f) {
+	if (wraith->mHealth <= 0.0f) {
 		transit(wraith, WRAITH_Dead, nullptr);
 		return;
 	}
@@ -318,19 +318,19 @@ void StateBend::exec(EnemyBase* enemy)
 	}
 
 	if (EnemyFunc::isStartFlick(wraith, false)) {
-		wraith->m_postFlickState = 3;
+		wraith->mPostFlickState = 3;
 		transit(wraith, WRAITH_Flick, nullptr);
 		return;
 	}
 
-	if (wraith->m_curAnim->m_isPlaying) {
-		if ((u32)wraith->m_curAnim->m_type == KEYEVENT_2) {
+	if (wraith->mCurAnim->mIsPlaying) {
+		if ((u32)wraith->mCurAnim->mType == KEYEVENT_2) {
 			wraith->bendEffect();
 			Vector3f position = wraith->getPosition();
 			cameraMgr->startVibration(12, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
 
-		} else if ((u32)wraith->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)wraith->mCurAnim->mType == KEYEVENT_END) {
 			wraith->collisionStOff();
 			if (wraith->isTyreDead()) {
 				transit(wraith, WRAITH_Escape, nullptr);
@@ -340,8 +340,8 @@ void StateBend::exec(EnemyBase* enemy)
 			}
 		}
 	} else {
-		wraith->m_freezeTimer++;
-		if (wraith->m_freezeTimer > wraith->getParms()->m_properParms.m_dosinStopTimerLength.m_value) {
+		wraith->mFreezeTimer++;
+		if (wraith->mFreezeTimer > wraith->getParms()->mProperParms.mDosinStopTimerLength.mValue) {
 			wraith->finishMotion();
 		}
 	}
@@ -366,7 +366,7 @@ void StateBend::cleanup(EnemyBase* enemy)
 StateEscape::StateEscape(int stateID)
     : State(stateID)
 {
-	m_name = "escape";
+	mName = "escape";
 }
 
 /*
@@ -382,9 +382,9 @@ void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
 	wraith->escape();
 	wraith->collisionStOff();
 
-	PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(wraith->m_soundObj);
+	PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(wraith->mSoundObj);
 	PSM::checkMidBoss(soundObj);
-	if (soundObj != nullptr && soundObj->m_appearFlag) {
+	if (soundObj != nullptr && soundObj->mAppearFlag) {
 		soundObj->jumpRequest(11);
 	}
 }
@@ -398,8 +398,8 @@ void StateEscape::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
 	Vector3f position;
-	if (wraith->m_curAnim->m_isPlaying) {
-		switch (wraith->m_curAnim->m_type) {
+	if (wraith->mCurAnim->mIsPlaying) {
+		switch (wraith->mCurAnim->mType) {
 		case KEYEVENT_2:
 			wraith->flick();
 			break;
@@ -437,7 +437,7 @@ void StateEscape::exec(EnemyBase* enemy)
 StateFall::StateFall(int stateID)
     : State(stateID)
 {
-	m_name = "fall";
+	mName = "fall";
 }
 
 /*
@@ -459,14 +459,14 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying) {
-		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
 			static_cast<Obj*>(enemy)->appearFanfare();
 			Vector3f position = enemy->getPosition();
 			cameraMgr->startVibration(17, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
 
-		} else if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 			if (static_cast<Obj*>(enemy)->isFallEnd()) {
 				enemy->disableEvent(0, EB_IsEnemyNotBitter);
 				transit(enemy, WRAITH_Recover, nullptr);
@@ -495,7 +495,7 @@ void StateFall::exec(EnemyBase* enemy)
 StateRecover::StateRecover(int stateID)
     : State(stateID)
 {
-	m_name = "recover";
+	mName = "recover";
 }
 
 /*
@@ -507,9 +507,9 @@ void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 {
 
 	if (enemy->getCurrAnimIndex() != 13) {
-		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->m_soundObj);
+		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 		PSM::checkMidBoss(soundObj);
-		if (soundObj != nullptr && soundObj->m_appearFlag) {
+		if (soundObj != nullptr && soundObj->mAppearFlag) {
 			soundObj->jumpRequest(3);
 		}
 	}
@@ -534,8 +534,8 @@ void StateRecover::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_curAnim->m_isPlaying) {
-		switch (wraith->m_curAnim->m_type) {
+	if (wraith->mCurAnim->mIsPlaying) {
+		switch (wraith->mCurAnim->mType) {
 		case KEYEVENT_2:
 			wraith->flick();
 			break;
@@ -551,7 +551,7 @@ void StateRecover::exec(EnemyBase* enemy)
 
 		case KEYEVENT_5:
 			if (wraith->isFinalFloor()) {
-				PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->m_soundObj);
+				PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 				PSM::checkMidBoss(soundObj);
 				if (soundObj) {
 					soundObj->setAppearFlag(true);
@@ -574,7 +574,7 @@ void StateRecover::exec(EnemyBase* enemy)
 StateFlick::StateFlick(int stateID)
     : State(stateID)
 {
-	m_name = "flick";
+	mName = "flick";
 }
 
 /*
@@ -585,7 +585,7 @@ StateFlick::StateFlick(int stateID)
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	bool check;
-	if (static_cast<Obj*>(enemy)->m_tyre == nullptr || static_cast<Obj*>(enemy)->_2E0 == 2) {
+	if (static_cast<Obj*>(enemy)->mTyre == nullptr || static_cast<Obj*>(enemy)->_2E0 == 2) {
 		check = false;
 	} else {
 		check = true;
@@ -593,16 +593,16 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 
 	if (check) {
 		enemy->startMotion(3, nullptr);
-		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->m_soundObj);
+		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 		PSM::checkMidBoss(soundObj);
-		if (soundObj != nullptr && soundObj->m_appearFlag) {
+		if (soundObj != nullptr && soundObj->mAppearFlag) {
 			soundObj->jumpRequest(4);
 		}
 	} else {
 		enemy->startMotion(4, nullptr);
-		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->m_soundObj);
+		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 		PSM::checkMidBoss(soundObj);
-		if (soundObj != nullptr && soundObj->m_appearFlag) {
+		if (soundObj != nullptr && soundObj->mAppearFlag) {
 			soundObj->jumpRequest(12);
 		}
 	}
@@ -622,12 +622,12 @@ void StateFlick::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (enemy->m_curAnim->m_isPlaying) {
-		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
 			static_cast<Obj*>(enemy)->flick();
 
-		} else if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-			transit(enemy, static_cast<Obj*>(enemy)->m_postFlickState, nullptr);
+		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+			transit(enemy, static_cast<Obj*>(enemy)->mPostFlickState, nullptr);
 		}
 	}
 }
@@ -651,7 +651,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
 StateTired::StateTired(int stateID)
     : State(stateID)
 {
-	m_name = "tired";
+	mName = "tired";
 }
 
 /*
@@ -662,8 +662,8 @@ StateTired::StateTired(int stateID)
 void StateTired::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(10, nullptr);
-	enemy->m_targetVelocity = Vector3f(0.0f);
-	_10                     = 0;
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	_10                    = 0;
 }
 
 /*
@@ -673,11 +673,11 @@ void StateTired::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTired::exec(EnemyBase* enemy)
 {
-	enemy->m_targetVelocity  = Vector3f(0.0f);
-	enemy->m_currentVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
 
-	if (enemy->m_curAnim->m_isPlaying) {
-		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 			static_cast<Obj*>(enemy)->flick();
 			transit(enemy, WRAITH_Walk, nullptr);
 		}
@@ -686,7 +686,7 @@ void StateTired::exec(EnemyBase* enemy)
 
 	_10++;
 	Obj* wraith = static_cast<Obj*>(enemy);
-	if (_10 > wraith->getParms()->m_properParms.m_standStillTimerLength.m_value) {
+	if (_10 > wraith->getParms()->mProperParms.mStandStillTimerLength.mValue) {
 		enemy->finishMotion();
 	}
 }

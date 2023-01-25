@@ -10,7 +10,7 @@ struct ObjCalcBase : public PSSystem::SingletonBase<ObjCalcBase> {
 	ObjCalcBase()
 	    : PSSystem::SingletonBase<ObjCalcBase>(this)
 	{
-		m_mode = OBJCALC_1;
+		mMode = OBJCALC_1;
 	}
 
 	enum Mode { OBJCALC_1, OBJCALC_2, OBJCALC_3 };
@@ -22,12 +22,12 @@ struct ObjCalcBase : public PSSystem::SingletonBase<ObjCalcBase> {
 	virtual bool is1PGame();               // _18 (weak)
 
 	// _00 = VTBL
-	Mode m_mode; // _04
+	Mode mMode; // _04
 };
 
 struct ObjCalc_SingleGame : public ObjCalcBase {
 
-	ObjCalc_SingleGame() { m_playerNum = 0; }
+	ObjCalc_SingleGame() { mPlayerNum = 0; }
 	virtual ~ObjCalc_SingleGame();     // _08 (weak)
 	virtual u8 getPlayerNo(Creature*); // _0C
 	virtual u8 getPlayerNo(Vec&);      // _10
@@ -36,7 +36,7 @@ struct ObjCalc_SingleGame : public ObjCalcBase {
 
 	// _00     = VTBL
 	// _00-_08 = ObjCalcBase
-	u8 m_playerNum; // _08
+	u8 mPlayerNum; // _08
 };
 
 struct ObjCalc_2PGame : public ObjCalcBase {

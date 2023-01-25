@@ -28,12 +28,12 @@ namespace Game {
 struct PlatAddInstanceArg {
 	PlatAddInstanceArg();
 
-	BaseItem* m_item;     // _00
-	ID32 m_id;            // _04
-	Platform* m_platform; // _10
-	Matrixf* m_matrix;    // _14
-	bool _18;             // _18
-	f32 _1C;              // _1C
+	BaseItem* mItem;     // _00
+	ID32 mId;            // _04
+	Platform* mPlatform; // _10
+	Matrixf* mMatrix;    // _14
+	bool _18;            // _18
+	f32 _1C;             // _1C
 };
 
 struct PlatInstance : public CellObject {
@@ -43,7 +43,7 @@ struct PlatInstance : public CellObject {
 		_B8 = nullptr;
 		_EC = nullptr;
 		_F4 = nullptr;
-		m_id.setID('none');
+		mId.setID('none');
 		_F0  = nullptr;
 		_108 = 1;
 	}
@@ -73,7 +73,7 @@ struct PlatInstance : public CellObject {
 	Platform* _EC; // _EC
 	Platform* _F0; // _F0
 	BaseItem* _F4; // _F4
-	ID32 m_id;     // _F8
+	ID32 mId;      // _F8
 	u32 _104;      // _104
 	u8 _108;       // _108
 };
@@ -91,10 +91,10 @@ struct PlatInstanceAttacher {
 	void setCollision(bool, u16);
 	void setShapeVisibility();
 
-	int m_instanceCount;            // _00
-	PlatInstance** m_platInstances; // _04
-	PlatAttacher* m_attacher;       // _08
-	SysShape::Model* m_model;       // _0C
+	int mInstanceCount;            // _00
+	PlatInstance** mPlatInstances; // _04
+	PlatAttacher* mAttacher;       // _08
+	SysShape::Model* mModel;       // _0C
 };
 
 struct PlatMgr : public NodeObjectMgr<PlatInstance> {
@@ -116,11 +116,11 @@ struct PlatMgr : public NodeObjectMgr<PlatInstance> {
 };
 
 struct PlatEvent {
-	PlatInstance* m_instance; // _00
-	f32 _04;                  // _04
-	f32 _08;                  // _08
-	f32 _0C;                  // _0C
-	BaseItem* m_item;         // _10
+	PlatInstance* mInstance; // _00
+	f32 _04;                 // _04
+	f32 _08;                 // _08
+	f32 _0C;                 // _0C
+	BaseItem* mItem;         // _10
 };
 
 extern PlatMgr* platMgr;

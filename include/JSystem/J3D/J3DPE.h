@@ -100,11 +100,11 @@ struct J3DPEBlockFogOff : public J3DPEBlock {
 
 	void initialize();
 
-	J3DAlphaComp m_alphaComp; // _04
-	J3DBlend m_blend;         // _08
-	J3DZMode m_zMode;         // _0C
-	u8 _0E;                   // _0E
-	u8 m_dither;              // _0F
+	J3DAlphaComp mAlphaComp; // _04
+	J3DBlend mBlend;         // _08
+	J3DZMode mZMode;         // _0C
+	u8 _0E;                  // _0E
+	u8 mDither;              // _0F
 };
 
 struct J3DPEBlockFull : public J3DPEBlock {
@@ -144,7 +144,7 @@ struct J3DPEBlockFull : public J3DPEBlock {
 	 */
 	virtual void setDither(const unsigned char* dither) // _64 (weak)
 	{
-		m_dither = *dither;
+		mDither = *dither;
 	}
 	/**
 	 * @reifiedAddress{80081908}
@@ -152,7 +152,7 @@ struct J3DPEBlockFull : public J3DPEBlock {
 	 */
 	virtual void setDither(unsigned char dither) // _68 (weak)
 	{
-		m_dither = dither;
+		mDither = dither;
 	}
 	/**
 	 * @reifiedAddress{8008191C}
@@ -160,7 +160,7 @@ struct J3DPEBlockFull : public J3DPEBlock {
 	 */
 	virtual u8 getDither() const // _6C (weak)
 	{
-		return m_dither;
+		return mDither;
 	}
 	/**
 	 * @reifiedAddress{80081924}
@@ -168,7 +168,7 @@ struct J3DPEBlockFull : public J3DPEBlock {
 	 */
 	virtual u32 getFogOffset() const // _70 (weak)
 	{
-		return m_fogOffset;
+		return mFogOffset;
 	}
 	/**
 	 * @reifiedAddress{8008192C}
@@ -176,7 +176,7 @@ struct J3DPEBlockFull : public J3DPEBlock {
 	 */
 	virtual void setFogOffset(unsigned long fogOffset) // _74 (weak)
 	{
-		m_fogOffset = fogOffset;
+		mFogOffset = fogOffset;
 	}
 	/**
 	 * @reifiedAddress{80081934}
@@ -186,13 +186,13 @@ struct J3DPEBlockFull : public J3DPEBlock {
 
 	void initialize();
 
-	J3DFog m_fog;             // _04
-	J3DAlphaComp m_alphaComp; // _30
-	J3DBlend m_blend;         // _34
-	J3DZMode m_zMode;         // _38
-	u8 _3A;                   // _3A
-	u8 m_dither;              // _3B
-	u32 m_fogOffset;          // _3C
+	J3DFog mFog;             // _04
+	J3DAlphaComp mAlphaComp; // _30
+	J3DBlend mBlend;         // _34
+	J3DZMode mZMode;         // _38
+	u8 _3A;                  // _3A
+	u8 mDither;              // _3B
+	u32 mFogOffset;          // _3C
 };
 
 /**

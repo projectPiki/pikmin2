@@ -29,14 +29,14 @@ inline void Creature::killInline(Game::CreatureKillArg* arg)
 	Cell::sCurrCellMgr = cellMgr;
 	exitCell();
 	Cell::sCurrCellMgr = nullptr;
-	m_updateContext.exit();
+	mUpdateContext.exit();
 	releaseAllStickers();
 	clearCapture();
 	onKill(arg);
 
-	if (m_generator) {
-		m_generator->informDeath(this);
-		m_generator = nullptr;
+	if (mGenerator) {
+		mGenerator->informDeath(this);
+		mGenerator = nullptr;
 	}
 }
 
@@ -47,22 +47,22 @@ inline void Creature::killInline(Game::CreatureKillArg* arg)
  */
 Creature::Creature()
 {
-	m_collTree  = nullptr;
-	m_model     = nullptr;
-	m_mass      = 100.0f;
-	m_generator = nullptr;
+	mCollTree  = nullptr;
+	mModel     = nullptr;
+	mMass      = 100.0f;
+	mGenerator = nullptr;
 
-	m_scale = Vector3f(1.0f);
+	mScale = Vector3f(1.0f);
 
-	PSMTXIdentity(m_objMatrix.m_matrix.mtxView);
+	PSMTXIdentity(mObjMatrix.mMatrix.mtxView);
 
-	m_objectTypeID = OBJTYPE_INVALID_START;
+	mObjectTypeID = OBJTYPE_INVALID_START;
 
 	for (int i = 0; i < 4; i++) {
-		m_flags.byteView[i] = 0;
+		mFlags.byteView[i] = 0;
 	}
 
-	m_flags.typeView |= (CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
+	mFlags.typeView |= (CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
 	clearStick();
 }
 
@@ -73,20 +73,20 @@ Creature::Creature()
  */
 void Creature::init(CreatureInitArg* arg)
 {
-	m_cellLayerIndex = 0;
-	m_cellRect.reset();
+	mCellLayerIndex = 0;
+	mCellRect.reset();
 
-	m_flags.clear();
+	mFlags.clear();
 
-	m_flags.typeView |= (CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
+	mFlags.typeView |= (CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
 	clearStick();
 
-	m_updateContext.init(collisionUpdateMgr);
-	m_acceleration = Vector3f(0.0f);
+	mUpdateContext.init(collisionUpdateMgr);
+	mAcceleration = Vector3f(0.0f);
 	clearCapture();
 
-	m_bounceTriangle    = nullptr;
-	m_collisionPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	mBounceTriangle    = nullptr;
+	mCollisionPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	clearCapture();
 
 	if (getMabiki()) {
@@ -120,11 +120,11 @@ void Creature::setPosition(Vector3f& position, bool skipPostProc)
 
 	updateTrMatrix();
 
-	if (m_model) {
-		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-		m_model->m_j3dModel->calc();
-		if (m_collTree) {
-			m_collTree->update();
+	if (mModel) {
+		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->calc();
+		if (mCollTree) {
+			mCollTree->update();
 		}
 	}
 
@@ -141,11 +141,11 @@ void Creature::initPosition(Vector3f& position)
 	onSetPosition(position);
 	updateTrMatrix();
 
-	if (m_model) {
-		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-		m_model->m_j3dModel->calc();
-		if (m_collTree) {
-			m_collTree->update();
+	if (mModel) {
+		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->calc();
+		if (mCollTree) {
+			mCollTree->update();
 		}
 	}
 
@@ -160,9 +160,9 @@ void Creature::initPosition(Vector3f& position)
  */
 void Creature::getYVector(Vector3f& outVector)
 {
-	outVector.x = m_objMatrix.m_matrix.structView.yx;
-	outVector.y = m_objMatrix.m_matrix.structView.yy;
-	outVector.z = m_objMatrix.m_matrix.structView.yz;
+	outVector.x = mObjMatrix.mMatrix.structView.yx;
+	outVector.y = mObjMatrix.mMatrix.structView.yy;
+	outVector.z = mObjMatrix.mMatrix.structView.yz;
 	outVector.normalise();
 }
 
@@ -175,7 +175,7 @@ f32 Creature::getBodyRadius()
 {
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);
-	return boundingSphere.m_radius;
+	return boundingSphere.mRadius;
 }
 
 /*
@@ -187,7 +187,7 @@ f32 Creature::getCellRadius()
 {
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);
-	return boundingSphere.m_radius;
+	return boundingSphere.mRadius;
 }
 
 /*
@@ -195,7 +195,7 @@ f32 Creature::getCellRadius()
  * Address:	8013B448
  * Size:	000024
  */
-char* Creature::getTypeName() { return ObjType::getName(m_objectTypeID); }
+char* Creature::getTypeName() { return ObjType::getName(mObjectTypeID); }
 
 /*
  * --INFO--
@@ -204,11 +204,11 @@ char* Creature::getTypeName() { return ObjType::getName(m_objectTypeID); }
  */
 void Creature::getShadowParam(ShadowParam& param)
 {
-	param.m_position = getPosition();
-	param.m_position.y += 0.5f;
-	param.m_boundingSphere.m_radius   = 10.0f;
-	param.m_size                      = 4.0f;
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mPosition = getPosition();
+	param.mPosition.y += 0.5f;
+	param.mBoundingSphere.mRadius   = 10.0f;
+	param.mSize                     = 4.0f;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
 /*
@@ -216,7 +216,7 @@ void Creature::getShadowParam(ShadowParam& param)
  * Address:	8013B4F8
  * Size:	00000C
  */
-bool Creature::needShadow() { return m_lod.m_flags & AILOD_FLAG_NEED_SHADOW; }
+bool Creature::needShadow() { return mLod.mFlags & AILOD_FLAG_NEED_SHADOW; }
 
 /*
  * --INFO--
@@ -225,10 +225,10 @@ bool Creature::needShadow() { return m_lod.m_flags & AILOD_FLAG_NEED_SHADOW; }
  */
 void Creature::getLifeGaugeParam(LifeGaugeParam& param)
 {
-	param.m_position            = getPosition();
-	param.m_curHealthPercentage = 1.0f;
-	param.m_radius              = 10.0f;
-	param.m_isGaugeShown        = true;
+	param.mPosition            = getPosition();
+	param.mCurHealthPercentage = 1.0f;
+	param.mRadius              = 10.0f;
+	param.mIsGaugeShown        = true;
 }
 
 /*
@@ -275,8 +275,8 @@ f32 Creature::calcSphereDistance(Creature* other)
 	Sys::Sphere srcBoundSphere;
 	getBoundingSphere(srcBoundSphere);
 
-	Vector3f dir = srcBoundSphere.m_position - otherBoundSphere.m_position;
-	return _length(dir) - (srcBoundSphere.m_radius + otherBoundSphere.m_radius);
+	Vector3f dir = srcBoundSphere.mPosition - otherBoundSphere.mPosition;
+	return _length(dir) - (srcBoundSphere.mRadius + otherBoundSphere.mRadius);
 }
 
 /*
@@ -302,8 +302,8 @@ void Creature::applyAirDrag(f32 a, f32 b, f32 c)
  */
 void Creature::doAnimation()
 {
-	if (m_model) {
-		m_model->m_j3dModel->calc();
+	if (mModel) {
+		mModel->mJ3dModel->calc();
 	}
 }
 
@@ -324,24 +324,24 @@ void Creature::doSetView(int viewportNo)
 	// 2 viewports maximum (2 player modes)
 	P2ASSERTBOUNDSLINE(558, 0, viewportNo, 2);
 
-	if (!m_model) {
+	if (!mModel) {
 		return;
 	}
 
-	P2ASSERTLINE(563, m_model);
+	P2ASSERTLINE(563, mModel);
 
-	m_model->setCurrentViewNo((u16)viewportNo);
+	mModel->setCurrentViewNo((u16)viewportNo);
 	if (Creature::usePacketCulling) {
-		if (m_lod.m_flags & (16 << viewportNo)) {
-			m_model->showPackets();
+		if (mLod.mFlags & (16 << viewportNo)) {
+			mModel->showPackets();
 			return;
 		}
 
-		m_model->hidePackets();
+		mModel->hidePackets();
 		return;
 	}
 
-	m_model->showPackets();
+	mModel->showPackets();
 }
 
 /*
@@ -351,8 +351,8 @@ void Creature::doSetView(int viewportNo)
  */
 void Creature::doViewCalc()
 {
-	if (m_model) {
-		m_model->viewCalc();
+	if (mModel) {
+		mModel->viewCalc();
 	}
 }
 
@@ -361,35 +361,35 @@ void Creature::doViewCalc()
  * Address:	8013B9E4
  * Size:	000010
  */
-bool Creature::isPiki() { return m_objectTypeID == OBJTYPE_Piki; }
+bool Creature::isPiki() { return mObjectTypeID == OBJTYPE_Piki; }
 
 /*
  * --INFO--
  * Address:	8013B9F4
  * Size:	000014
  */
-bool Creature::isNavi() { return m_objectTypeID == OBJTYPE_Navi; }
+bool Creature::isNavi() { return mObjectTypeID == OBJTYPE_Navi; }
 
 /*
  * --INFO--
  * Address:	8013BA08
  * Size:	000014
  */
-bool Creature::isTeki() { return m_objectTypeID == OBJTYPE_Teki; }
+bool Creature::isTeki() { return mObjectTypeID == OBJTYPE_Teki; }
 
 /*
  * --INFO--
  * Address:	8013BA1C
  * Size:	000014
  */
-bool Creature::isPellet() { return m_objectTypeID == OBJTYPE_Pellet; }
+bool Creature::isPellet() { return mObjectTypeID == OBJTYPE_Pellet; }
 
 /*
  * --INFO--
  * Address:	8013BA30
  * Size:	000020
  */
-bool Creature::sound_culling() { return !((m_lod.m_flags & AILOD_FLAG_UNKNOWN4) || (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW)); }
+bool Creature::sound_culling() { return !((mLod.mFlags & AILOD_FLAG_UNKNOWN4) || (mLod.mFlags & AILOD_FLAG_NEED_SHADOW)); }
 
 /*
  * --INFO--
@@ -398,13 +398,13 @@ bool Creature::sound_culling() { return !((m_lod.m_flags & AILOD_FLAG_UNKNOWN4) 
  */
 void Creature::movie_begin(bool required)
 {
-	SET_FLAG(m_flags.typeView, CF_IS_MOVIE_ACTOR);
+	SET_FLAG(mFlags.typeView, CF_IS_MOVIE_ACTOR);
 
 	if (!required) {
-		SET_FLAG(m_flags.typeView, CF_IS_MOVIE_EXTRA);
+		SET_FLAG(mFlags.typeView, CF_IS_MOVIE_EXTRA);
 		isPiki();
 	} else {
-		RESET_FLAG(m_flags.typeView, CF_IS_MOVIE_EXTRA);
+		RESET_FLAG(mFlags.typeView, CF_IS_MOVIE_EXTRA);
 		isPiki();
 	}
 	on_movie_begin(required);
@@ -419,8 +419,8 @@ void Creature::movie_begin(bool required)
 void Creature::movie_end(bool required)
 {
 	on_movie_end(required);
-	RESET_FLAG(m_flags.typeView, CF_IS_MOVIE_ACTOR);
-	RESET_FLAG(m_flags.typeView, CF_IS_MOVIE_EXTRA);
+	RESET_FLAG(mFlags.typeView, CF_IS_MOVIE_ACTOR);
+	RESET_FLAG(mFlags.typeView, CF_IS_MOVIE_EXTRA);
 }
 
 /*
@@ -470,7 +470,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 			deathMgr->inc(0);
 		}
 
-		if (hellArg.m_isKillPiki) {
+		if (hellArg.mIsKillPiki) {
 			killInline(nullptr);
 		}
 
@@ -487,32 +487,32 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
  */
 void Creature::updateCell()
 {
-	if (gameSystem && gameSystem->m_flags & 4) {
+	if (gameSystem && gameSystem->mFlags & 4) {
 		return;
 	}
 
-	m_passID = -1;
+	mPassID = -1;
 
 	Sys::Sphere ball(getPosition());
-	ball.m_radius = getCellRadius();
+	ball.mRadius = getCellRadius();
 
-	SweepPrune::Object::m_minX.m_radius = ball.m_position.x - ball.m_radius;
-	SweepPrune::Object::m_maxX.m_radius = ball.m_position.x + ball.m_radius;
-	SweepPrune::Object::m_minZ.m_radius = ball.m_position.z - ball.m_radius;
-	SweepPrune::Object::m_maxZ.m_radius = ball.m_position.z + ball.m_radius;
+	SweepPrune::Object::mMinX.mRadius = ball.mPosition.x - ball.mRadius;
+	SweepPrune::Object::mMaxX.mRadius = ball.mPosition.x + ball.mRadius;
+	SweepPrune::Object::mMinZ.mRadius = ball.mPosition.z - ball.mRadius;
+	SweepPrune::Object::mMaxZ.mRadius = ball.mPosition.z + ball.mRadius;
 
 	SweepPrune::Object* sweepObj = this;
 
 	CellPyramid* mgr;
-	sweepObj->m_minX.insertSort((mgr = cellMgr)->m_xNode);
-	sweepObj->m_maxX.insertSort(mgr->m_xNode);
-	sweepObj->m_minZ.insertSort(mgr->m_zNode);
-	sweepObj->m_maxZ.insertSort(mgr->m_zNode);
+	sweepObj->mMinX.insertSort((mgr = cellMgr)->mXNode);
+	sweepObj->mMaxX.insertSort(mgr->mXNode);
+	sweepObj->mMinZ.insertSort(mgr->mZNode);
+	sweepObj->mMaxZ.insertSort(mgr->mZNode);
 
 	if (cellMgr) {
 		CellPyramid::sCellBugName = getCreatureName();
 		CellPyramid::sCellBugID   = getCreatureID();
-		cellMgr->entry(this, ball, m_cellLayerIndex, m_cellRect);
+		cellMgr->entry(this, ball, mCellLayerIndex, mCellRect);
 	}
 }
 
@@ -524,7 +524,7 @@ void Creature::updateCell()
 int Creature::getCellPikiCount()
 {
 	if (cellMgr) {
-		return cellMgr->getPikiCount(m_cellLayerIndex, m_cellRect);
+		return cellMgr->getPikiCount(mCellLayerIndex, mCellRect);
 	}
 
 	return 0;
@@ -540,7 +540,7 @@ void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
 	Vector3f oldVelocity = getVelocity();
 	Vector3f newVelocity = oldVelocity;
 
-	newVelocity = newVelocity + (impulse * m_mass);
+	newVelocity = newVelocity + (impulse * mMass);
 	setVelocity(newVelocity);
 }
 
@@ -565,7 +565,7 @@ void Creature::checkCollision(CellObject* cellObj)
 	Creature* creatureObj = cellCreature;
 
 	// TODO: This is cancer, fix
-	if (!((!isStickTo() || m_sticker != cellCreature) && (!creatureObj->isStickTo() || creatureObj->m_sticker != this)
+	if (!((!isStickTo() || mSticker != cellCreature) && (!creatureObj->isStickTo() || creatureObj->mSticker != this)
 	      && !ignoreAtari(creatureObj))
 	    || creatureObj->ignoreAtari(this)) {
 		return;
@@ -600,11 +600,11 @@ void Creature::checkCollision(CellObject* cellObj)
 	Vector3f vec;
 
 	if ((creatureCheck && objCheck) || (!creatureCheck && !objCheck)) {
-		if (m_collTree->checkCollision(creatureObj->m_collTree, &collPart1, &collPart2, vec)) {
+		if (mCollTree->checkCollision(creatureObj->mCollTree, &collPart1, &collPart2, vec)) {
 			delegate.invoke(collPart1, collPart2, vec);
 		}
 	} else {
-		m_collTree->checkCollisionMulti(creatureObj->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<f32>&>*)&delegate);
+		mCollTree->checkCollisionMulti(creatureObj->mCollTree, (IDelegate3<CollPart*, CollPart*, Vector3<f32>&>*)&delegate);
 	}
 
 	CollTree::mDebug = false;
@@ -640,8 +640,8 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 
 	Vector3f vel1;
 	Vector3f vel2;
-	Vector3f disp1 = source->m_position + (vec * source->m_radius);
-	Vector3f disp2 = dest->m_position - (vec * dest->m_radius);
+	Vector3f disp1 = source->mPosition + (vec * source->mRadius);
+	Vector3f disp2 = dest->mPosition - (vec * dest->mRadius);
 
 	getVelocityAt(disp1, vel1);
 	op->getVelocityAt(disp2, vel2);
@@ -649,50 +649,50 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 	f32 massRatio;
 	f32 massRatioOp;
 
-	f32 sum = m_mass + op->m_mass;
+	f32 sum = mMass + op->mMass;
 	if (sum > 0.0f) {
-		massRatio   = m_mass / sum;
+		massRatio   = mMass / sum;
 		massRatioOp = 1.0f - massRatio;
 	} else {
 		massRatio = massRatioOp = 0.5f;
 	}
 
-	f32 fps = 1.0f / sys->m_deltaTime;
+	f32 fps = 1.0f / sys->mDeltaTime;
 	if (isNavi() && !op->isNavi()) {
 		if (!op->isPiki()) {
-			addAccel(m_acceleration, direction, massRatio, fps, 0.5f, 0.0f);
+			addAccel(mAcceleration, direction, massRatio, fps, 0.5f, 0.0f);
 		}
 	} else {
-		setAccel(m_acceleration, direction, massRatio, fps, 0.5f, 0.0f);
+		setAccel(mAcceleration, direction, massRatio, fps, 0.5f, 0.0f);
 	}
 
 	if (op->isNavi() && !isNavi()) {
 		if (!isPiki()) {
-			setOpAccel(op->m_acceleration, direction, massRatioOp, fps, 0.5f, 0.0f);
+			setOpAccel(op->mAcceleration, direction, massRatioOp, fps, 0.5f, 0.0f);
 		}
 	} else {
-		setOpAccel(op->m_acceleration, direction, massRatioOp, fps, 0.5f, 0.0f);
+		setOpAccel(op->mAcceleration, direction, massRatioOp, fps, 0.5f, 0.0f);
 	}
 
-	f32 accelMag = m_acceleration.length();
+	f32 accelMag = mAcceleration.length();
 	if (accelMag > 200.0f) {
 		f32 accelNorm = 200.0f * (1.0f / accelMag);
-		m_acceleration.x *= accelNorm;
-		m_acceleration.y *= accelNorm;
-		m_acceleration.z *= accelNorm;
+		mAcceleration.x *= accelNorm;
+		mAcceleration.y *= accelNorm;
+		mAcceleration.z *= accelNorm;
 	}
 
-	f32 opAccelMag = op->m_acceleration.length();
+	f32 opAccelMag = op->mAcceleration.length();
 	if (opAccelMag > 200.0f) {
 		f32 opAccelNorm = 200.0f * (1.0f / opAccelMag);
-		op->m_acceleration.x *= opAccelNorm;
-		op->m_acceleration.y *= opAccelNorm;
-		op->m_acceleration.z *= opAccelNorm;
+		op->mAcceleration.x *= opAccelNorm;
+		op->mAcceleration.y *= opAccelNorm;
+		op->mAcceleration.z *= opAccelNorm;
 	}
 
 	if (flickCheck) {
-		m_acceleration     = Vector3f(0.0f);
-		op->m_acceleration = Vector3f(0.0f);
+		mAcceleration     = Vector3f(0.0f);
+		op->mAcceleration = Vector3f(0.0f);
 	}
 
 	CollEvent collEvent1(op, dest, source);
@@ -726,7 +726,7 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 
 	bool checkSum2 = false;
 	f32 factor5    = -(1.0f + naviFactor) * sepDot;
-	f32 sum2       = m_mass + op->m_mass;
+	f32 sum2       = mMass + op->mMass;
 	if (sum2 == 0.0f) {
 		sum2      = 2.0f;
 		checkSum2 = true;

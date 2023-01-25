@@ -18,17 +18,17 @@ struct TCoordMgr : public CNode {
 	struct LoadParameters : public Parameters {
 		LoadParameters()
 		    : Parameters(nullptr, "TTgaLoadParameters")
-		    , m_offsX(this, 'tga0', "OffsetX", -320.0f, -500.0f, 500.0f)
-		    , m_offsY(this, 'tga1', "OffsetY", -240.0f, -500.0f, 500.0f)
-		    , m_intervalX(this, 'tga2', "XŠÔŠu", 1.0f, 0.0f, 100.0f)
-		    , m_intervalY(this, 'tga3', "YŠÔŠu\0\0", 1.0f, 0.0f, 100.0f)
+		    , mOffsX(this, 'tga0', "OffsetX", -320.0f, -500.0f, 500.0f)
+		    , mOffsY(this, 'tga1', "OffsetY", -240.0f, -500.0f, 500.0f)
+		    , mIntervalX(this, 'tga2', "XŠÔŠu", 1.0f, 0.0f, 100.0f)
+		    , mIntervalY(this, 'tga3', "YŠÔŠu\0\0", 1.0f, 0.0f, 100.0f)
 		{
 		}
 
-		Parm<f32> m_offsX;     // _FD8
-		Parm<f32> m_offsY;     // _1000
-		Parm<f32> m_intervalX; // _1028
-		Parm<f32> m_intervalY; // _1050
+		Parm<f32> mOffsX;     // _FD8
+		Parm<f32> mOffsY;     // _1000
+		Parm<f32> mIntervalX; // _1028
+		Parm<f32> mIntervalY; // _1050
 	};
 
 	TCoordMgr();
@@ -42,9 +42,9 @@ struct TCoordMgr : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	int m_pikiCounts[TITLE_PIKI_COUNT];                        // _18, unknown
-	Vector2f m_coords[TITLE_PIKI_COUNT * TITLE_PIKI_TYPE_MAX]; // _2C
-	LoadParameters m_loadParms;                                // _FCC
+	int mPikiCounts[TITLE_PIKI_COUNT];                        // _18, unknown
+	Vector2f mCoords[TITLE_PIKI_COUNT * TITLE_PIKI_TYPE_MAX]; // _2C
+	LoadParameters mLoadParms;                                // _FCC
 };
 } // namespace title
 } // namespace ebi

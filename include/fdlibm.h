@@ -50,7 +50,7 @@ extern int signgam;
 
 #define MAXFLOAT ((float)3.40282346638528860e+38)
 
-enum fdversion { fdlibm_ieee = -1, fdlibm_svid, fdlibm_xopen, fdlibm_posix };
+enum fdversion { fdlibmIeee = -1, fdlibmSvid, fdlibmXopen, fdlibmPosix };
 
 #define _LIB_VERSION_TYPE enum fdversion
 #define _LIB_VERSION      _fdlib_version
@@ -64,10 +64,10 @@ enum fdversion { fdlibm_ieee = -1, fdlibm_svid, fdlibm_xopen, fdlibm_posix };
  */
 extern _LIB_VERSION_TYPE _LIB_VERSION;
 
-#define _IEEE_  fdlibm_ieee
-#define _SVID_  fdlibm_svid
-#define _XOPEN_ fdlibm_xopen
-#define _POSIX_ fdlibm_posix
+#define _IEEE_  fdlibmIeee
+#define _SVID_  fdlibmSvid
+#define _XOPEN_ fdlibmXopen
+#define _POSIX_ fdlibmPosix
 
 struct exception {
 	int type;
@@ -206,7 +206,7 @@ extern double __ieee754_y1 __P((double));
 extern double __ieee754_jn __P((int, double));
 extern double __ieee754_yn __P((int, double));
 extern double __ieee754_remainder __P((double, double));
-extern int __ieee754_rem_pio2 __P((double, double*));
+extern int __ieee754_remPio2 __P((double, double*));
 #ifdef _SCALB_INT
 extern double __ieee754_scalb __P((double, int));
 #else
@@ -218,7 +218,7 @@ extern double __kernel_standard __P((double, double, int));
 extern double __kernel_sin __P((double, double, int));
 extern double __kernel_cos __P((double, double));
 extern double __kernel_tan __P((double, double, int));
-extern int __kernel_rem_pio2 __P((double*, double*, int, int, int, const int*));
+extern int __kernel_remPio2 __P((double*, double*, int, int, int, const int*));
 
 #ifdef __cplusplus
 };

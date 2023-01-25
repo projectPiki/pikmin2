@@ -23,11 +23,11 @@ ActBridge::ActBridge(Game::Piki* parent)
 {
 	_30 = 0;
 
-	m_stickAttack = new ActStickAttack(parent);
-	m_gotoPos     = new ActGotoPos(parent);
-	m_followField = new ActFollowVectorField(parent);
+	mStickAttack = new ActStickAttack(parent);
+	mGotoPos     = new ActGotoPos(parent);
+	mFollowField = new ActFollowVectorField(parent);
 
-	m_name = "Bridge";
+	mName = "Bridge";
 }
 
 /*
@@ -47,10 +47,10 @@ void ActBridge::init(ActionArg* actionArg)
 
 	P2ASSERTLINE(62, isCorrectArg);
 
-	Game::GameStat::workPikis.inc(m_parent);
+	Game::GameStat::workPikis.inc(mParent);
 
-	m_bridge = static_cast<ActBridgeArg*>(actionArg)->m_bridge;
-	_30      = 0;
+	mBridge = static_cast<ActBridgeArg*>(actionArg)->mBridge;
+	_30     = 0;
 
 	initFollow();
 }
@@ -66,9 +66,9 @@ static const char followFieldArgName[] = "FollowVectorFieldActionArg";
  */
 void ActBridge::initFollow()
 {
-	FollowVectorFieldActionArg followArg(m_bridge);
-	m_followField->init(&followArg);
-	m_state = 1;
+	FollowVectorFieldActionArg followArg(mBridge);
+	mFollowField->init(&followArg);
+	mState = 1;
 }
 
 /*
@@ -79,21 +79,21 @@ void ActBridge::initFollow()
  */
 void ActBridge::initStickAttack()
 {
-	f32 attackDamage = m_parent->getAttackDamage();
-	StickAttackActionArg stickAttackArg(attackDamage, m_bridge, -1, 4);
+	f32 attackDamage = mParent->getAttackDamage();
+	StickAttackActionArg stickAttackArg(attackDamage, mBridge, -1, 4);
 
 	bool check = false;
-	if ((_30 & 1) && m_parent->m_collisionPosition.y > 0.5f) {
+	if ((_30 & 1) && mParent->mCollisionPosition.y > 0.5f) {
 		check = true;
 	}
 
 	if (check) {
-		stickAttackArg.m_nextState = 25;
+		stickAttackArg.mNextState = 25;
 	}
 
-	m_stickAttack->init(&stickAttackArg);
+	mStickAttack->init(&stickAttackArg);
 
-	m_state = 2;
+	mState = 2;
 }
 
 /*
@@ -103,23 +103,23 @@ void ActBridge::initStickAttack()
  */
 int ActBridge::exec()
 {
-	if (!m_bridge->isAlive()) {
+	if (!mBridge->isAlive()) {
 		_30 = 0;
 		return 0;
 	}
 
-	if (m_parent->inWater()) {
+	if (mParent->inWater()) {
 		return 2;
 	}
 
-	switch (m_state) {
+	switch (mState) {
 	case 2:
-		bool checkCode = m_followField->exec() != 0;
+		bool checkCode = mFollowField->exec() != 0;
 		if (!checkCode) {
 			return 0;
 		}
 
-		int stickResult = m_stickAttack->exec();
+		int stickResult = mStickAttack->exec();
 		if (stickResult == 0 || stickResult == 2) {
 			initStickAttack();
 		} else {
@@ -129,7 +129,7 @@ int ActBridge::exec()
 		break;
 
 	case 1:
-		int followResult = m_followField->exec();
+		int followResult = mFollowField->exec();
 		if (followResult == 0) {
 			initStickAttack();
 		} else {
@@ -139,7 +139,7 @@ int ActBridge::exec()
 		break;
 
 	case 0:
-		int gotoResult = m_gotoPos->exec();
+		int gotoResult = mGotoPos->exec();
 		if (gotoResult == 0) {
 			initStickAttack();
 		} else {
@@ -160,11 +160,11 @@ int ActBridge::exec()
  */
 void ActBridge::cleanup()
 {
-	Game::GameStat::workPikis.dec(m_parent);
+	Game::GameStat::workPikis.dec(mParent);
 
-	switch (m_state) {
+	switch (mState) {
 	case 2:
-		m_stickAttack->cleanup();
+		mStickAttack->cleanup();
 		break;
 	}
 }
@@ -176,16 +176,16 @@ void ActBridge::cleanup()
  */
 void ActBridge::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
-	Game::PlatInstance* instance = platEvent.m_instance;
-	if (platEvent.m_item == m_bridge) {
-		if (instance->m_id.getID() == 'brbk') {
+	Game::PlatInstance* instance = platEvent.mInstance;
+	if (platEvent.mItem == mBridge) {
+		if (instance->mId.getID() == 'brbk') {
 			_30 |= 0x1;
-		} else if (instance->m_id.getID() == 'br__') {
+		} else if (instance->mId.getID() == 'br__') {
 			_30 |= 0x2;
 		}
 	}
 
-	if (m_state == 1) {
+	if (mState == 1) {
 		initStickAttack();
 	}
 }

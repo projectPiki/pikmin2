@@ -28,32 +28,32 @@ struct JPAResource {
 	void calcWorkData_c(JPAEmitterWorkData*);
 	void calcWorkData_d(JPAEmitterWorkData*);
 
-	JPAFunctionA** _00;                       // _00
-	JPAFunctionA** _04;                       // _04
-	JPAFunctionA** _08;                       // _08
-	JPAFunctionB** _0C;                       // _0C
-	JPAFunctionB** _10;                       // _10
-	JPAFunctionB** _14;                       // _14
-	JPAFunctionB** _18;                       // _18
-	struct JPABaseShape* m_baseShape;         // _1C
-	struct JPAExtraShape* m_extraShape;       // _20
-	struct JPAChildShape* m_childShape;       // _24
-	struct JPAExTexShape* m_exTexShape;       // _28
-	struct JPADynamicsBlock* m_dynamicsBlock; // _2C
-	struct JPAFieldBlock** m_fieldBlocks;     // _30
-	struct JPAKeyBlock** m_keyBlocks;         // _34
-	u16* _38;                                 // _38
-	u16 _3C;                                  // _3C
-	u8 _3E;                                   // _3E
-	u8 _3F;                                   // _3F
-	u8 _40;                                   // _40
-	u8 _41;                                   // _41
-	u8 _42;                                   // _42
-	u8 _43;                                   // _43
-	u8 _44;                                   // _44
-	u8 _45;                                   // _45
-	u8 _46;                                   // _46
-	u8 _47;                                   // _47
+	JPAFunctionA** _00;                      // _00
+	JPAFunctionA** _04;                      // _04
+	JPAFunctionA** _08;                      // _08
+	JPAFunctionB** _0C;                      // _0C
+	JPAFunctionB** _10;                      // _10
+	JPAFunctionB** _14;                      // _14
+	JPAFunctionB** _18;                      // _18
+	struct JPABaseShape* mBaseShape;         // _1C
+	struct JPAExtraShape* mExtraShape;       // _20
+	struct JPAChildShape* mChildShape;       // _24
+	struct JPAExTexShape* mExTexShape;       // _28
+	struct JPADynamicsBlock* mDynamicsBlock; // _2C
+	struct JPAFieldBlock** mFieldBlocks;     // _30
+	struct JPAKeyBlock** mKeyBlocks;         // _34
+	u16* _38;                                // _38
+	u16 _3C;                                 // _3C
+	u8 _3E;                                  // _3E
+	u8 _3F;                                  // _3F
+	u8 _40;                                  // _40
+	u8 _41;                                  // _41
+	u8 _42;                                  // _42
+	u8 _43;                                  // _43
+	u8 _44;                                  // _44
+	u8 _45;                                  // _45
+	u8 _46;                                  // _46
+	u8 _47;                                  // _47
 };
 
 /**
@@ -75,13 +75,13 @@ struct JPAResourceManager {
 	void checkUserIndexDuplication(unsigned short) const;
 	void registTexDupCheck(const unsigned char*, JKRHeap*);
 
-	JKRHeap* m_heap;                // _00
-	JPAResource** m_resources;      // _04
-	struct JPATexture** m_textures; // _08
-	u16 m_resourceSlotCount;        // _0C
-	u16 m_resourceCount;            // _0E
-	u16 m_textureSlotCount;         // _10
-	u16 m_textureCount;             // _12
+	JKRHeap* mHeap;                // _00
+	JPAResource** mResources;      // _04
+	struct JPATexture** mTextures; // _08
+	u16 mResourceSlotCount;        // _0C
+	u16 mResourceCount;            // _0E
+	u16 mTextureSlotCount;         // _10
+	u16 mTextureCount;             // _12
 };
 
 struct JPAResourceLoader {

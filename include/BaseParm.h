@@ -12,33 +12,33 @@ struct BaseParm {
 	inline virtual void read(Stream&) { }
 
 	// _00 VTBL
-	ID32 m_id;        // _04
-	BaseParm* m_next; // _10
-	char* m_name;     // _14
+	ID32 mId;        // _04
+	BaseParm* mNext; // _10
+	char* mName;     // _14
 };
 
 template <typename T>
 struct Parm : public BaseParm {
 	inline Parm(Parameters* parameters, u32 id, char* comment, T value, T min, T max)
 	    : BaseParm(parameters, id, comment)
-	    , m_value(value)
-	    , m_min(min)
-	    , m_max(max)
+	    , mValue(value)
+	    , mMin(min)
+	    , mMax(max)
 	{
 	}
 
-	inline operator T() { return m_value; }
-	inline void operator=(const T& rhs) { m_value = rhs; }
-	inline T* operator()() { return &m_value; }
+	inline operator T() { return mValue; }
+	inline void operator=(const T& rhs) { mValue = rhs; }
+	inline T* operator()() { return &mValue; }
 
 	virtual int size() { return sizeof(T); }
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 
-	T m_value; // _18
-	T _1C;     // _1C
-	T m_min;   // _20
-	T m_max;   // _24
+	T mValue; // _18
+	T _1C;    // _1C
+	T mMin;   // _20
+	T mMax;   // _24
 };
 
 struct ParmString : public BaseParm {
@@ -47,8 +47,8 @@ struct ParmString : public BaseParm {
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 
-	char* m_value; // _18
-	int m_length;  // _1C
+	char* mValue; // _18
+	int mLength;  // _1C
 };
 
 struct ParmEnum : public BaseParm {
@@ -57,11 +57,11 @@ struct ParmEnum : public BaseParm {
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 
-	operator u32() { return m_value; }
+	operator u32() { return mValue; }
 
-	u32 m_value;         // _18
-	int m_enumElemSize;  // _1C
-	char** m_enumValues; // _20
+	u32 mValue;         // _18
+	int mEnumElemSize;  // _1C
+	char** mEnumValues; // _20
 };
 
 #endif

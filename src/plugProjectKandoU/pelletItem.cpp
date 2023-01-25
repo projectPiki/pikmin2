@@ -18,7 +18,7 @@
         .skip 2
     .global lbl_80481C78
     lbl_80481C78:
-        .asciz "item_texts.szs"
+        .asciz "itemTexts.szs"
         .skip 1
 
     .section .data, "wa"  # 0x8049E220 - 0x804EFC20

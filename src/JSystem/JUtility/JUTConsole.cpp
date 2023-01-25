@@ -706,8 +706,8 @@ void JUTConsoleManager::destroyManager(JUTConsoleManager*)
 void JUTConsoleManager::appendConsole(JUTConsole* console)
 {
 	JGadget::TLinkList<JUTConsole, 4> list;
-	list.m_linkListNode.m_prev = list.m_linkListNode.m_next = &mLinkList.m_linkListNode;
-	JGadget::TLinkList<JUTConsole, 4>::iterator iterator(list.m_linkListNode.m_prev);
+	list.mLinkListNode.mPrev = list.mLinkListNode.mNext = &mLinkList.mLinkListNode;
+	JGadget::TLinkList<JUTConsole, 4>::iterator iterator(list.mLinkListNode.mPrev);
 	list.Insert(iterator, console);
 	if (mActiveConsole == nullptr) {
 		mActiveConsole = console;

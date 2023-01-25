@@ -20,7 +20,7 @@
  * Size:	00006C
  */
 JKRAramBlock::JKRAramBlock(u32 p1, u32 p2, u32 p3, u8 p4, bool p5)
-    : m_link(this)
+    : mLink(this)
     , _14(p1)
     , _18(p2)
     , _1C(p3)
@@ -37,11 +37,11 @@ JKRAramBlock::JKRAramBlock(u32 p1, u32 p2, u32 p3, u8 p4, bool p5)
  */
 JKRAramBlock::~JKRAramBlock()
 {
-	JSULink<JKRAramBlock>* prev = m_link.getPrev();
-	JSUList<JKRAramBlock>* list = m_link.getList();
+	JSULink<JKRAramBlock>* prev = mLink.getPrev();
+	JSUList<JKRAramBlock>* list = mLink.getList();
 	if (prev != nullptr) {
 		prev->getObject()->_1C += _18 + _1C;
-		list->remove(&m_link);
+		list->remove(&mLink);
 	} else {
 		_1C += _18;
 		_18 = 0;
@@ -59,7 +59,7 @@ JKRAramBlock* JKRAramBlock::allocHead(u32 p1, u8 p2, JKRAramHeap* heap)
 	u32 v2              = _1C - p1;
 	JKRAramBlock* block = new (heap->_30, 0) JKRAramBlock(v1, p1, v2, p2, false);
 	_1C                 = 0;
-	m_link.m_list->insert(m_link.m_next, &block->m_link);
+	mLink.mList->insert(mLink.mNext, &block->mLink);
 	return block;
 }
 
@@ -73,6 +73,6 @@ JKRAramBlock* JKRAramBlock::allocTail(u32 p1, u8 p2, JKRAramHeap* heap)
 	u32 v1              = _14 + _18 + _1C - p1;
 	JKRAramBlock* block = new (heap->_30, 0) JKRAramBlock(v1, p1, 0, p2, true);
 	_1C -= p1;
-	m_link.m_list->insert(m_link.m_next, &block->m_link);
+	mLink.mList->insert(mLink.mNext, &block->mLink);
 	return block;
 }

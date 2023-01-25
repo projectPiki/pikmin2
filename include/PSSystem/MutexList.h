@@ -10,25 +10,25 @@ struct MutexList : JSUList<T> {
 	inline MutexList<T>()
 	    : JSUList<T>()
 	{
-		OSInitMutex(&m_mutex);
+		OSInitMutex(&mMutex);
 	}
 
 	bool append_Lock(JSULink<T>* link)
 	{
-		OSLockMutex(&m_mutex);
+		OSLockMutex(&mMutex);
 		bool result = append(link);
-		OSUnlockMutex(&m_mutex);
+		OSUnlockMutex(&mMutex);
 		return result;
 	}
 	bool remove_Lock(JSULink<T>* link)
 	{
-		OSLockMutex(&m_mutex);
+		OSLockMutex(&mMutex);
 		bool result = remove(link);
-		OSUnlockMutex(&m_mutex);
+		OSUnlockMutex(&mMutex);
 		return result;
 	}
 
-	OSMutexObject m_mutex; // _0C
+	OSMutexObject mMutex; // _0C
 };
 } // namespace PSSystem
 

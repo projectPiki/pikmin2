@@ -111,16 +111,16 @@
  */
 void JASOscillator::init()
 {
-	m_data = nullptr;
-	_1C    = 0;
-	_1D    = 0;
-	_18    = 0;
-	_04    = 0.0f;
-	_08    = 0.0f;
-	_0C    = 0.0f;
-	_10    = 0.0f;
-	_1A    = 0;
-	_14    = 0.0f;
+	mData = nullptr;
+	_1C   = 0;
+	_1D   = 0;
+	_18   = 0;
+	_04   = 0.0f;
+	_08   = 0.0f;
+	_0C   = 0.0f;
+	_10   = 0.0f;
+	_1A   = 0;
+	_14   = 0.0f;
 }
 
 /*
@@ -133,16 +133,16 @@ void JASOscillator::initStart(const Data* data)
 	if (!data) {
 		_1C = 0;
 	} else {
-		_1C    = 1;
-		m_data = data;
-		_1A    = 0;
-		if (!m_data->_08) {
+		_1C   = 1;
+		mData = data;
+		_1A   = 0;
+		if (!mData->_08) {
 			_08 = 0.0f;
 		} else {
 			_18 = 0;
 			_04 = 0.0f;
 			_0C = 0.0f;
-			_04 -= m_data->_04;
+			_04 -= mData->_04;
 			incCounter();
 		}
 	}
@@ -164,11 +164,11 @@ void JASOscillator::incCounter()
 		break;
 	}
 	if (_1C == 3) {
-		v1 = m_data->_0C;
+		v1 = mData->_0C;
 	} else if (_1C == 4) {
 		v1 = oscTableForceStop;
 	} else {
-		v1 = m_data->_08;
+		v1 = mData->_08;
 	}
 	if (v1 == nullptr && _1C != 5) {
 		_08 = 1.0f;
@@ -176,7 +176,7 @@ void JASOscillator::incCounter()
 		if (_1C == 4) {
 			_04 -= 1.0f;
 		} else {
-			_04 -= m_data->_04;
+			_04 -= mData->_04;
 		}
 		calc(v1);
 	}
@@ -192,7 +192,7 @@ f32 JASOscillator::getValue() const
 	if (_1C == 0) {
 		return 1.0f;
 	}
-	return _08 * m_data->_10 + m_data->_14;
+	return _08 * mData->_10 + mData->_14;
 }
 
 /*
@@ -215,12 +215,12 @@ bool JASOscillator::release()
 	if (_1C == 4) {
 		return false;
 	}
-	if (m_data->_08 != m_data->_0C) {
+	if (mData->_08 != mData->_0C) {
 		_18 = 0;
 		_04 = 0.0f;
 		_0C = _08;
 	}
-	if (m_data->_0C == nullptr && _1A == 0) {
+	if (mData->_0C == nullptr && _1A == 0) {
 		_1A = 0x10;
 	}
 	if (_1A != 0) {

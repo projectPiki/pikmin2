@@ -10,19 +10,19 @@ struct Context : public CNode {
 
 	virtual ~Context() { } // _08 (weak)
 
-	Vector3f m_position; // _18
+	Vector3f mPosition; // _18
 };
 
 struct ContextChasePos : public CNode {
 	ContextChasePos()
 	{
 		clearRelations();
-		m_position = nullptr;
+		mPosition = nullptr;
 	}
 
 	virtual ~ContextChasePos() { } // _08 (weak)
 
-	Vector3f* m_position; // _18
+	Vector3f* mPosition; // _18
 };
 } // namespace efx
 

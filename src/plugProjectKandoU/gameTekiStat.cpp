@@ -9,9 +9,9 @@ namespace Game {
  */
 void TekiStat::Info::incKilled()
 {
-	if (gameSystem && gameSystem->m_mode == GSM_STORY_MODE) {
-		m_killedTekiCount++;
-		m_state |= TEKISTAT_STATE_UPDATED;
+	if (gameSystem && gameSystem->mMode == GSM_STORY_MODE) {
+		mKilledTekiCount++;
+		mState |= TEKISTAT_STATE_UPDATED;
 	}
 }
 
@@ -22,8 +22,8 @@ void TekiStat::Info::incKilled()
  */
 void TekiStat::Info::incKillPikmin()
 {
-	if (gameSystem && gameSystem->m_mode == GSM_STORY_MODE) {
-		m_killedPikminCount++;
+	if (gameSystem && gameSystem->mMode == GSM_STORY_MODE) {
+		mKilledPikminCount++;
 	}
 }
 
@@ -34,8 +34,8 @@ void TekiStat::Info::incKillPikmin()
  */
 TekiStat::Mgr::Mgr()
 {
-	m_data  = nullptr;
-	m_count = 0;
+	mData  = nullptr;
+	mCount = 0;
 }
 
 /*
@@ -45,9 +45,9 @@ TekiStat::Mgr::Mgr()
  */
 bool TekiStat::Mgr::whatsNew()
 {
-	for (int i = 0; i < m_count; i++) {
+	for (int i = 0; i < mCount; i++) {
 		// If the stat is updated and isn't out of date, there is new data to review
-		if (getTekiInfo(i)->m_state & TEKISTAT_STATE_UPDATED && !(getTekiInfo(i)->m_state & TEKISTAT_STATE_OUT_OF_DATE)) {
+		if (getTekiInfo(i)->mState & TEKISTAT_STATE_UPDATED && !(getTekiInfo(i)->mState & TEKISTAT_STATE_OUT_OF_DATE)) {
 			return true;
 		}
 	}
@@ -62,10 +62,10 @@ bool TekiStat::Mgr::whatsNew()
  */
 void TekiStat::Mgr::setOutOfDateAll()
 {
-	for (int i = 0; i < m_count; i++) {
-		if (getTekiInfo(i)->m_state & TEKISTAT_STATE_UPDATED) {
+	for (int i = 0; i < mCount; i++) {
+		if (getTekiInfo(i)->mState & TEKISTAT_STATE_UPDATED) {
 			// Invalidate all new updated data
-			getTekiInfo(i)->m_state |= TEKISTAT_STATE_OUT_OF_DATE;
+			getTekiInfo(i)->mState |= TEKISTAT_STATE_OUT_OF_DATE;
 		}
 	}
 }
@@ -77,12 +77,12 @@ void TekiStat::Mgr::setOutOfDateAll()
  */
 void TekiStat::Mgr::clear()
 {
-	P2ASSERTBOOLLINE(60, m_data && m_count);
+	P2ASSERTBOOLLINE(60, mData && mCount);
 
-	for (int i = 0; i < m_count; i++) {
-		getTekiInfo(i)->m_killedTekiCount   = 0;
-		getTekiInfo(i)->m_killedPikminCount = 0;
-		getTekiInfo(i)->m_state             = 0;
+	for (int i = 0; i < mCount; i++) {
+		getTekiInfo(i)->mKilledTekiCount   = 0;
+		getTekiInfo(i)->mKilledPikminCount = 0;
+		getTekiInfo(i)->mState             = 0;
 	}
 }
 
@@ -93,8 +93,8 @@ void TekiStat::Mgr::clear()
  */
 void TekiStat::Mgr::allocate(int amount)
 {
-	m_data  = new Info[amount];
-	m_count = amount;
+	mData  = new Info[amount];
+	mCount = amount;
 }
 
 /*
@@ -104,11 +104,11 @@ void TekiStat::Mgr::allocate(int amount)
  */
 TekiStat::Info::Info()
 {
-	m_state             = 0;
-	m_killedPikminCount = 0;
-	m_killedTekiCount   = 0;
+	mState             = 0;
+	mKilledPikminCount = 0;
+	mKilledTekiCount   = 0;
 
-	m_state = 0;
+	mState = 0;
 }
 
 /*
@@ -118,8 +118,8 @@ TekiStat::Info::Info()
  */
 TekiStat::Info* TekiStat::Mgr::getTekiInfo(int idx)
 {
-	P2ASSERTBOUNDSLINE(76, 0, idx, m_count);
-	return &m_data[idx];
+	P2ASSERTBOUNDSLINE(76, 0, idx, mCount);
+	return &mData[idx];
 }
 
 /*
@@ -130,9 +130,9 @@ TekiStat::Info* TekiStat::Mgr::getTekiInfo(int idx)
  */
 void TekiStat::Info::write(Stream& stream)
 {
-	stream.writeInt(m_killedTekiCount);
-	stream.writeInt(m_killedPikminCount);
-	stream.writeByte(m_state);
+	stream.writeInt(mKilledTekiCount);
+	stream.writeInt(mKilledPikminCount);
+	stream.writeByte(mState);
 }
 
 /*
@@ -142,9 +142,9 @@ void TekiStat::Info::write(Stream& stream)
  */
 void TekiStat::Info::read(Stream& stream)
 {
-	m_killedTekiCount   = stream.readInt();
-	m_killedPikminCount = stream.readInt();
-	m_state             = stream.readByte();
+	mKilledTekiCount   = stream.readInt();
+	mKilledPikminCount = stream.readInt();
+	mState             = stream.readByte();
 }
 
 /*
@@ -156,10 +156,10 @@ void TekiStat::Info::read(Stream& stream)
  */
 void TekiStat::Mgr::write(Stream& stream)
 {
-	stream.writeInt(m_count);
-	for (int i = 0; i < m_count; i++) {
-		P2ASSERTBOUNDSLINE(76, 0, i, m_count);
-		m_data[i].write(stream);
+	stream.writeInt(mCount);
+	for (int i = 0; i < mCount; i++) {
+		P2ASSERTBOUNDSLINE(76, 0, i, mCount);
+		mData[i].write(stream);
 	}
 }
 
@@ -173,12 +173,12 @@ void TekiStat::Mgr::write(Stream& stream)
 void TekiStat::Mgr::read(Stream& stream)
 {
 	int newCount = stream.readInt();
-	P2ASSERTLINE(105, newCount == m_count);
+	P2ASSERTLINE(105, newCount == mCount);
 
-	m_count = newCount;
-	for (int i = 0; i < m_count; i++) {
-		P2ASSERTBOUNDSLINE(76, 0, i, m_count);
-		m_data[i].read(stream);
+	mCount = newCount;
+	for (int i = 0; i < mCount; i++) {
+		P2ASSERTBOUNDSLINE(76, 0, i, mCount);
+		mData[i].read(stream);
 	}
 }
 } // namespace Game

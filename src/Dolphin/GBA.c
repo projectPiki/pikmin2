@@ -51,7 +51,7 @@ void GBAInit(void)
 			gba->_34 = busClockSpeed;
 			gba->_30 = 0;
 			OSInitThreadQueue(&gba->_24);
-			gba->m_secParam = &SecParams[i];
+			gba->mSecParam = &SecParams[i];
 		}
 		OSInitAlarm();
 		DSPInit();
@@ -69,12 +69,12 @@ int GBAGetStatusAsync(int portIndex, u8* p2)
 {
 	// UNUSED FUNCTION
 	GBA* gba = &__GBA[portIndex];
-	if (gba->m_syncCallback) {
+	if (gba->mSyncCallback) {
 		return 2;
 	}
-	gba->_00[0]         = 0;
-	gba->_14            = p2;
-	gba->m_syncCallback = __GBASyncCallback;
+	gba->_00[0]        = 0;
+	gba->_14           = p2;
+	gba->mSyncCallback = __GBASyncCallback;
 	return __GBATransfer(portIndex, 1, 3, ShortCommandProc);
 }
 
@@ -98,12 +98,12 @@ int GBAResetAsync(int portIndex, u8* p2)
 {
 	// UNUSED FUNCTION
 	GBA* gba = &__GBA[portIndex];
-	if (gba->m_syncCallback) {
+	if (gba->mSyncCallback) {
 		return 2;
 	}
-	gba->_00[0]         = 0xFF;
-	gba->_14            = p2;
-	gba->m_syncCallback = __GBASyncCallback;
+	gba->_00[0]        = 0xFF;
+	gba->_14           = p2;
+	gba->mSyncCallback = __GBASyncCallback;
 	return __GBATransfer(portIndex, 1, 3, ShortCommandProc);
 }
 

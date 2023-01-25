@@ -7,11 +7,11 @@
 
 class ID32 {
 private:
-	char m_str[5]; // _00
+	char mStr[5]; // _00
 	union {
 		char strView[4];
 		u32 intView;
-	} m_id; // _08
+	} mId; // _08
 
 	void updateString();
 
@@ -21,8 +21,8 @@ public:
 
 	inline ID32& operator=(const ID32& other)
 	{
-		__copy(m_str, const_cast<char*>(other.m_str), 5);
-		m_id = other.m_id;
+		__copy(mStr, const_cast<char*>(other.mStr), 5);
+		mId = other.mId;
 		return *this;
 	}
 	void operator=(u32);
@@ -38,9 +38,9 @@ public:
 	void sprint(char*);
 	void print();
 
-	inline char* getStrID() { return m_id.strView; }
-	inline u32 getID() { return m_id.intView; }
-	inline char* getStr() { return m_str; }
+	inline char* getStrID() { return mId.strView; }
+	inline u32 getID() { return mId.intView; }
+	inline char* getStr() { return mStr; }
 
 	static ID32 eof; // BSS
 };

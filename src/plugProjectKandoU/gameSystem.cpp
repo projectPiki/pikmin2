@@ -16,7 +16,7 @@ static const char name[] = "gameSystem";
     Generated from dpostproc
 
     .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_gameSystem_cpp
+    .4byte __sinit_gameSystemCpp
 
     .section .rodata  # 0x804732E0 - 0x8049E220
     .global lbl_8047FBB8
@@ -134,15 +134,15 @@ namespace Game {
  */
 GameSystem::GameSystem(BaseGameSection* section)
 {
-	m_flags      = 0;
-	m_section    = section;
-	m_mode       = GSM_STORY_MODE;
-	m_xfbTexture = nullptr;
+	mFlags      = 0;
+	mSection    = section;
+	mMode       = GSM_STORY_MODE;
+	mXfbTexture = nullptr;
 	DynamicsParms::globalInstance();
 	CellMgrParms::globalInstance();
-	m_flags = 0;
+	mFlags = 0;
 	OptimiseController::globalInstance();
-	m_isMoviePause = false;
+	mIsMoviePause = false;
 }
 
 /*
@@ -159,23 +159,23 @@ GameSystem::~GameSystem() { OptimiseController::deleteInstance(); }
  */
 void GameSystem::init()
 {
-	m_isMoviePause = false;
-	m_flags        = 0;
-	m_frameTimer   = 0;
+	mIsMoviePause = false;
+	mFlags        = 0;
+	mFrameTimer   = 0;
 	sys->heapStatusStart("DynParticle", nullptr);
 	dynParticleMgr = new DynParticleMgr(512);
 	sys->heapStatusEnd("DynParticle");
 	_aiConstants = new AIConstants;
 	Stickers::initialise();
 	GameStat::clear();
-	m_isFrozen     = false;
-	_49            = 0;
-	m_isPaused     = 0;
-	m_isPausedSoft = false;
+	mIsFrozen     = false;
+	_49           = 0;
+	mIsPaused     = 0;
+	mIsPausedSoft = false;
 
-	m_timeMgr = new TimeMgr;
-	m_timeMgr->loadSettingFile("user/Abe/time/time.ini");
-	m_timeMgr->m_flags |= 1;
+	mTimeMgr = new TimeMgr;
+	mTimeMgr->loadSettingFile("user/Abe/time/time.ini");
+	mTimeMgr->mFlags |= 1;
 }
 
 /*
@@ -186,10 +186,10 @@ void GameSystem::init()
 s32 GameSystem::calcFrameDist(int time)
 {
 	int test = (FRAMECOUNT_MAX - time);
-	if ((int)m_frameTimer >= time) {
-		return m_frameTimer - time;
+	if ((int)mFrameTimer >= time) {
+		return mFrameTimer - time;
 	}
-	return test + m_frameTimer;
+	return test + mFrameTimer;
 }
 
 /*
@@ -199,19 +199,19 @@ s32 GameSystem::calcFrameDist(int time)
  */
 void GameSystem::startFrame()
 {
-	if (m_isPaused) {
-		m_isPaused--;
+	if (mIsPaused) {
+		mIsPaused--;
 	}
-	m_frameTimer++;
-	if ((int)m_frameTimer > FRAMECOUNT_MAX) {
-		m_frameTimer = 0;
+	mFrameTimer++;
+	if ((int)mFrameTimer > FRAMECOUNT_MAX) {
+		mFrameTimer = 0;
 	}
 	cellMgr->initFrame();
 	collisionUpdateMgr->update();
 
-	if (!paused() && !m_isFrozen && !(m_flags & 8) && !paused_soft() && (!moviePlayer || moviePlayer->m_demoState == 0)
-	    && (int)gameSystem->m_timeMgr->m_dayCount != 0) {
-		m_timeMgr->update();
+	if (!paused() && !mIsFrozen && !(mFlags & 8) && !paused_soft() && (!moviePlayer || moviePlayer->mDemoState == 0)
+	    && (int)gameSystem->mTimeMgr->mDayCount != 0) {
+		mTimeMgr->update();
 	}
 }
 
@@ -222,8 +222,8 @@ void GameSystem::startFrame()
  */
 void GameSystem::endFrame()
 {
-	if (m_isPaused)
-		m_isPaused--;
+	if (mIsPaused)
+		mIsPaused--;
 }
 
 /*
@@ -233,8 +233,8 @@ void GameSystem::endFrame()
  */
 void GameSystem::startFadeout(f32 speed)
 {
-	if (m_section) {
-		m_section->startFadeout(speed);
+	if (mSection) {
+		mSection->startFadeout(speed);
 	}
 }
 
@@ -245,8 +245,8 @@ void GameSystem::startFadeout(f32 speed)
  */
 void GameSystem::startFadein(f32 speed)
 {
-	if (m_section) {
-		m_section->startFadein(speed);
+	if (mSection) {
+		mSection->startFadein(speed);
 	}
 }
 
@@ -257,8 +257,8 @@ void GameSystem::startFadein(f32 speed)
  */
 void GameSystem::startFadeoutin(f32 speed)
 {
-	if (m_section) {
-		m_section->startFadeoutin(speed);
+	if (mSection) {
+		mSection->startFadeoutin(speed);
 	}
 }
 
@@ -269,8 +269,8 @@ void GameSystem::startFadeoutin(f32 speed)
  */
 void GameSystem::startFadeblack()
 {
-	if (m_section) {
-		m_section->startFadeblack();
+	if (mSection) {
+		mSection->startFadeblack();
 	}
 }
 
@@ -281,8 +281,8 @@ void GameSystem::startFadeblack()
  */
 void GameSystem::startFadewhite()
 {
-	if (m_section) {
-		m_section->startFadewhite();
+	if (mSection) {
+		mSection->startFadewhite();
 	}
 }
 
@@ -291,14 +291,14 @@ void GameSystem::startFadewhite()
  * Address:	801B4F84
  * Size:	000008
  */
-void GameSystem::setMoviePause(bool flag, char*) { m_isMoviePause = flag; }
+void GameSystem::setMoviePause(bool flag, char*) { mIsMoviePause = flag; }
 
 /*
  * --INFO--
  * Address:	801B4F8C
  * Size:	000008
  */
-void GameSystem::setFrozen(bool flag, char*) { m_isFrozen = flag; }
+void GameSystem::setFrozen(bool flag, char*) { mIsFrozen = flag; }
 
 /*
  * --INFO--
@@ -312,7 +312,7 @@ void GameSystem::setPause(bool toggle, char* str, int id) { startPause(toggle, i
  * Address:	801B4FC0
  * Size:	000008
  */
-bool GameSystem::paused_soft() { return m_isPausedSoft; }
+bool GameSystem::paused_soft() { return mIsPausedSoft; }
 
 /*
  * --INFO--
@@ -321,7 +321,7 @@ bool GameSystem::paused_soft() { return m_isPausedSoft; }
  */
 bool GameSystem::paused()
 {
-	if (!m_isPaused && m_isPausedSoft) {
+	if (!mIsPaused && mIsPausedSoft) {
 		return true;
 	}
 	return false;
@@ -339,9 +339,9 @@ int GameSystem::startPause(bool toggle, int id, char* str)
 			return 1;
 		}
 	}
-	m_isPaused     = id;
-	int prev       = m_isPausedSoft;
-	m_isPausedSoft = toggle;
+	mIsPaused     = id;
+	int prev      = mIsPausedSoft;
+	mIsPausedSoft = toggle;
 	return prev;
 }
 
@@ -352,8 +352,8 @@ int GameSystem::startPause(bool toggle, int id, char* str)
  */
 void GameSystem::setDrawBuffer(int id)
 {
-	if (m_section) {
-		m_section->setDrawBuffer(id);
+	if (mSection) {
+		mSection->setDrawBuffer(id);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -377,7 +377,7 @@ lbl_801B505C:
  * Address:	801B506C
  * Size:	00000C
  */
-GameLightMgr* GameSystem::getLightMgr() { return m_section->m_lightMgr; }
+GameLightMgr* GameSystem::getLightMgr() { return mSection->mLightMgr; }
 
 /*
  * --INFO--
@@ -391,7 +391,7 @@ void GameSystem::doAnimation()
 	{
 		GenericObjectMgr* obj = *it;
 
-		if ((!paused() || !obj->pausable()) && (!m_isFrozen || !obj->frozenable())) {
+		if ((!paused() || !obj->pausable()) && (!mIsFrozen || !obj->frozenable())) {
 			obj->doAnimation();
 		}
 	}
@@ -952,7 +952,7 @@ void GameSystem::doSimulation(f32 speed)
 	{
 		GenericObjectMgr* obj = *it;
 
-		if ((!paused() || !obj->pausable()) && (!m_isFrozen || !obj->frozenable())) {
+		if ((!paused() || !obj->pausable()) && (!mIsFrozen || !obj->frozenable())) {
 			obj->doSimulation(speed);
 		}
 	}
@@ -1184,8 +1184,8 @@ void GameSystem::directDraw(Graphics&) { }
 void GameSystem::addObjectMgr(GenericObjectMgr* mgr)
 {
 	TObjectNode<GenericObjectMgr>* node = new TObjectNode<GenericObjectMgr>;
-	node->m_contents                    = mgr;
-	m_node.add(node);
+	node->mContents                     = mgr;
+	mNode.add(node);
 }
 
 /*
@@ -1210,7 +1210,7 @@ void GameSystem::detachAllMgr()
  * Address:	801B5FD4
  * Size:	000024
  */
-void GameSystem::addObjectMgr_reuse(TObjectNode<GenericObjectMgr>* obj) { m_node.add(obj); }
+void GameSystem::addObjectMgr_reuse(TObjectNode<GenericObjectMgr>* obj) { mNode.add(obj); }
 
 /*
  * --INFO--
@@ -1219,9 +1219,9 @@ void GameSystem::addObjectMgr_reuse(TObjectNode<GenericObjectMgr>* obj) { m_node
  */
 TObjectNode<GenericObjectMgr>* GameSystem::detachObjectMgr_reuse(GenericObjectMgr* obj)
 {
-	FOREACH_NODE(TObjectNode<GenericObjectMgr>, m_node.m_child, node)
+	FOREACH_NODE(TObjectNode<GenericObjectMgr>, mNode.mChild, node)
 	{
-		if (node->m_contents == obj) {
+		if (node->mContents == obj) {
 			node->del();
 			return node;
 		}
@@ -1303,9 +1303,9 @@ lbl_801B61F4:
  */
 void NodeObjectMgr<GenericObjectMgr>::delNode(GenericObjectMgr* obj)
 {
-	FOREACH_NODE(TObjectNode<GenericObjectMgr>, m_node.m_child, node)
+	FOREACH_NODE(TObjectNode<GenericObjectMgr>, mNode.mChild, node)
 	{
-		if (node->m_contents == obj) {
+		if (node->mContents == obj) {
 			node->del();
 			return;
 		}
@@ -1317,7 +1317,7 @@ void NodeObjectMgr<GenericObjectMgr>::delNode(GenericObjectMgr* obj)
  * Address:	801B6250
  * Size:	000028
  */
-void __sinit_gameSystem_cpp()
+void __sinit_gameSystemCpp()
 {
 	/*
 	lis      r4, __float_nan@ha

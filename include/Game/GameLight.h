@@ -97,9 +97,9 @@ struct GameLightMgr : public LightMgr {
 
 	// _00      = VTBL
 	// _00-_50  = LightMgr
-	LightObj* m_mainLight; // _50
+	LightObj* mMainLight; // _50
 	u8 _50[0x2344 - 0x54];
-	FogMgr* m_fogMgr; // _2344
+	FogMgr* mFogMgr; // _2344
 };
 } // namespace Game
 

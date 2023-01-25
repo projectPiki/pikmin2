@@ -33,11 +33,11 @@ struct JPABaseShape {
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	const JPABaseShapeData* m_data; // _00
-	u8 _04[4];                      // _04
-	u8* _08;                        // _08
-	GXColor _0C;                    // _0C
-	GXColor _10;                    // _10
+	const JPABaseShapeData* mData; // _00
+	u8 _04[4];                     // _04
+	u8* _08;                       // _08
+	GXColor _0C;                   // _0C
+	GXColor _10;                   // _10
 };
 
 /**
@@ -49,7 +49,7 @@ struct JPAChildShape {
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	const u8* m_data; // _00
+	const u8* mData; // _00
 };
 
 /**
@@ -61,7 +61,7 @@ struct JPAExTexShape {
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	const u8* m_data; // _00
+	const u8* mData; // _00
 };
 
 /**
@@ -102,15 +102,15 @@ struct JPAExtraShape {
 	/**
 	 * @fabricated
 	 */
-	inline const Data* castData() const { return reinterpret_cast<const Data*>(m_data); }
+	inline const Data* castData() const { return reinterpret_cast<const Data*>(mData); }
 
-	const u8* m_data; // _00
-	f32 _04;          // _04
-	f32 _08;          // _08
-	f32 _0C;          // _0C
-	f32 _10;          // _10
-	f32 _14;          // _14
-	f32 _18;          // _18
+	const u8* mData; // _00
+	f32 _04;         // _04
+	f32 _08;         // _08
+	f32 _0C;         // _0C
+	f32 _10;         // _10
+	f32 _14;         // _14
+	f32 _18;         // _18
 };
 
 // In JPABaseShape.cpp:

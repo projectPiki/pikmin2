@@ -56,7 +56,7 @@ ContRumble::ContRumble(int p1, int p2)
 	for (int i = 0; i < p2; i++) {
 		_18->add(new RumbleNode());
 	}
-	m_dataMgr = nullptr;
+	mDataMgr = nullptr;
 }
 
 /*
@@ -70,10 +70,10 @@ void ContRumble::init()
 	_08.x             = 0.0f;
 	_08.y             = 0.0f;
 	_08.z             = 0.0f;
-	RumbleNode* node1 = (RumbleNode*)_14->m_child;
+	RumbleNode* node1 = (RumbleNode*)_14->mChild;
 	// This assumes that _14's head has at least child node
 	while (node1) {
-		RumbleNode* node2 = (RumbleNode*)node1->m_next;
+		RumbleNode* node2 = (RumbleNode*)node1->mNext;
 		node1->del();
 		_18->add(node1);
 		node1 = node2;

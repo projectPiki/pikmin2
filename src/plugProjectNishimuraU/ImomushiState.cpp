@@ -43,7 +43,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->deathProcedure();
-	imomushi->m_targetVelocity = 0.0f;
+	imomushi->mTargetVelocity = 0.0f;
 	imomushi->startMotion(0, nullptr);
 }
 
@@ -55,8 +55,8 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	if (imomushi->m_curAnim->m_isPlaying) {
-		if ((u32)imomushi->m_curAnim->m_type == KEYEVENT_END) {
+	if (imomushi->mCurAnim->mIsPlaying) {
+		if ((u32)imomushi->mCurAnim->mType == KEYEVENT_END) {
 			imomushi->kill(nullptr);
 		}
 	}
@@ -76,10 +76,10 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateFallDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* imomushi              = static_cast<Obj*>(enemy);
-	imomushi->m_nextState      = IMOMUSHI_NULL;
-	imomushi->m_targetCreature = nullptr;
-	imomushi->m_targetVelocity = Vector3f(0.0f);
+	Obj* imomushi             = static_cast<Obj*>(enemy);
+	imomushi->mNextState      = IMOMUSHI_NULL;
+	imomushi->mTargetCreature = nullptr;
+	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->startMotion(6, nullptr);
 }
 
@@ -97,8 +97,8 @@ void StateFallDive::exec(EnemyBase* enemy)
 	if ((vel.y > 0.0f) || (pos.y - minY) < 25.0f) {
 		imomushi->finishMotion();
 	}
-	if (imomushi->m_curAnim->m_isPlaying && (u32)imomushi->m_curAnim->m_type == KEYEVENT_END) {
-		if (imomushi->m_health <= 0.0f) {
+	if (imomushi->mCurAnim->mIsPlaying && (u32)imomushi->mCurAnim->mType == KEYEVENT_END) {
+		if (imomushi->mHealth <= 0.0f) {
 			transit(imomushi, IMOMUSHI_Dead, nullptr);
 		} else {
 			transit(imomushi, IMOMUSHI_GoHome, nullptr);
@@ -120,10 +120,10 @@ void StateFallDive::cleanup(EnemyBase* enemy) { }
  */
 void StateFallMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* imomushi              = static_cast<Obj*>(enemy);
-	imomushi->m_nextState      = IMOMUSHI_NULL;
-	imomushi->m_targetCreature = nullptr;
-	imomushi->m_targetVelocity = Vector3f(0.0f);
+	Obj* imomushi             = static_cast<Obj*>(enemy);
+	imomushi->mNextState      = IMOMUSHI_NULL;
+	imomushi->mTargetCreature = nullptr;
+	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->startMotion(5, nullptr);
 }
 
@@ -141,10 +141,10 @@ void StateFallMove::exec(EnemyBase* enemy)
 	if ((vel.y > 0.0f) || (pos.y - minY) < 25.0f) {
 		imomushi->finishMotion();
 	}
-	if (imomushi->m_curAnim->m_isPlaying && (u32)imomushi->m_curAnim->m_type == KEYEVENT_END) {
-		if (imomushi->m_health <= 0.0f) {
+	if (imomushi->mCurAnim->mIsPlaying && (u32)imomushi->mCurAnim->mType == KEYEVENT_END) {
+		if (imomushi->mHealth <= 0.0f) {
 			transit(imomushi, IMOMUSHI_Dead, nullptr);
-		} else if (imomushi->m_targetCreature = imomushi->getRandFruitsPlant()) {
+		} else if (imomushi->mTargetCreature = imomushi->getRandFruitsPlant()) {
 			transit(imomushi, IMOMUSHI_Move, nullptr);
 		} else {
 			transit(imomushi, IMOMUSHI_GoHome, nullptr);
@@ -176,8 +176,8 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->hardConstraintOn();
 	imomushi->disableEvent(0, EB_IsAnimating);
 	imomushi->enableEvent(0, EB_IsModelHidden);
-	imomushi->m_targetVelocity = Vector3f(0.0f);
-	imomushi->_2C8             = 0.0f;
+	imomushi->mTargetVelocity = Vector3f(0.0f);
+	imomushi->_2C8            = 0.0f;
 	imomushi->startMotion(1, nullptr);
 	imomushi->stopMotion();
 }
@@ -190,10 +190,10 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	imomushi->_2C8 += sys->m_deltaTime;
+	imomushi->_2C8 += sys->mDeltaTime;
 	if ((imomushi->_2C8 > 6.0f)
-	    && !(EnemyFunc::isTherePikmin(imomushi, static_cast<Parms*>(imomushi->m_parms)->m_general.m_privateRadius.m_value, nullptr))) {
-		if (imomushi->m_targetCreature = imomushi->getRandFruitsPlant()) {
+	    && !(EnemyFunc::isTherePikmin(imomushi, static_cast<Parms*>(imomushi->mParms)->mGeneral.mPrivateRadius.mValue, nullptr))) {
+		if (imomushi->mTargetCreature = imomushi->getRandFruitsPlant()) {
 			transit(imomushi, IMOMUSHI_Appear, nullptr);
 		}
 	}
@@ -229,7 +229,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->hardConstraintOn();
 	imomushi->enableEvent(0, EB_IsEnemyNotBitter);
 	imomushi->enableEvent(0, EB_LifegaugeVisible);
-	imomushi->m_targetVelocity = Vector3f(0.0f);
+	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->setEmotionExcitement();
 	imomushi->startMotion(1, nullptr);
 	imomushi->createAppearEffect();
@@ -243,10 +243,10 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAppear::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	if (imomushi->m_curAnim->m_isPlaying && (u32)imomushi->m_curAnim->m_type == KEYEVENT_END) {
-		if (imomushi->m_health <= 0.0f) {
+	if (imomushi->mCurAnim->mIsPlaying && (u32)imomushi->mCurAnim->mType == KEYEVENT_END) {
+		if (imomushi->mHealth <= 0.0f) {
 			transit(imomushi, IMOMUSHI_Dead, nullptr);
-		} else if (imomushi->m_targetCreature = imomushi->getRandFruitsPlant()) {
+		} else if (imomushi->mTargetCreature = imomushi->getRandFruitsPlant()) {
 			transit(imomushi, IMOMUSHI_Move, nullptr);
 		} else {
 			transit(imomushi, IMOMUSHI_Dive, nullptr);
@@ -276,8 +276,8 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->hardConstraintOn();
 	imomushi->enableEvent(0, EB_IsImmuneBitter);
-	imomushi->m_targetCreature = nullptr;
-	imomushi->m_targetVelocity = Vector3f(0.0f);
+	imomushi->mTargetCreature = nullptr;
+	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->setEmotionCaution();
 	imomushi->startMotion(2, nullptr);
 	imomushi->createDisAppearEffect();
@@ -291,7 +291,7 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDive::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	if (imomushi->m_curAnim->m_isPlaying && (u32)imomushi->m_curAnim->m_type == KEYEVENT_END) {
+	if (imomushi->mCurAnim->mIsPlaying && (u32)imomushi->mCurAnim->mType == KEYEVENT_END) {
 		transit(imomushi, IMOMUSHI_Stay, nullptr);
 	}
 }
@@ -315,8 +315,8 @@ void StateDive::cleanup(EnemyBase* enemy)
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* imomushi         = static_cast<Obj*>(enemy);
-	imomushi->m_nextState = IMOMUSHI_NULL;
+	Obj* imomushi        = static_cast<Obj*>(enemy);
+	imomushi->mNextState = IMOMUSHI_NULL;
 	imomushi->startMotion(3, nullptr);
 	imomushi->startMoveTraceEffect();
 }
@@ -331,51 +331,51 @@ void StateMove::exec(EnemyBase* enemy)
 	Creature* creature;
 	Obj* imomushi = static_cast<Obj*>(enemy);
 
-	if (imomushi->m_health <= 0.0f) {
+	if (imomushi->mHealth <= 0.0f) {
 		transit(imomushi, IMOMUSHI_Dead, nullptr);
 		return;
 	}
 
-	creature = imomushi->m_targetCreature;
+	creature = imomushi->mTargetCreature;
 	if (creature) {
 		if (imomushi->isFinishMotion()) {
-			imomushi->m_targetVelocity = Vector3f(0.0f);
+			imomushi->mTargetVelocity = Vector3f(0.0f);
 
 		} else {
 			Vector3f pos         = imomushi->getPosition();
 			Vector3f creaturePos = creature->getPosition();
 
 			if (!imomushi->isAttackable()) {
-				imomushi->m_targetCreature = imomushi->getRandFruitsPlant();
+				imomushi->mTargetCreature = imomushi->getRandFruitsPlant();
 			} else {
 				if (sqrDistanceXZ(pos, creaturePos) < 900.0f) {
-					imomushi->m_nextState = IMOMUSHI_Climb;
+					imomushi->mNextState = IMOMUSHI_Climb;
 					imomushi->finishMotion();
 				}
 			}
 
-			Parms* parms = static_cast<Parms*>(imomushi->m_parms);
-			EnemyFunc::walkToTarget(imomushi, creaturePos, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
-			                        parms->m_general.m_rotationalSpeed.m_value);
+			Parms* parms = static_cast<Parms*>(imomushi->mParms);
+			EnemyFunc::walkToTarget(imomushi, creaturePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
+			                        parms->mGeneral.mRotationalSpeed.mValue);
 		}
 
 	} else {
-		imomushi->m_nextState = IMOMUSHI_GoHome;
+		imomushi->mNextState = IMOMUSHI_GoHome;
 		imomushi->finishMotion();
 	}
 
-	if (imomushi->m_curAnim->m_isPlaying && (u32)imomushi->m_curAnim->m_type == KEYEVENT_END) {
-		if (imomushi->m_nextState == IMOMUSHI_Climb) {
+	if (imomushi->mCurAnim->mIsPlaying && (u32)imomushi->mCurAnim->mType == KEYEVENT_END) {
+		if (imomushi->mNextState == IMOMUSHI_Climb) {
 			if (imomushi->isAttackable()) {
 				transit(imomushi, IMOMUSHI_Climb, nullptr);
 				return;
 			}
 
-			imomushi->m_targetCreature = imomushi->getRandFruitsPlant();
+			imomushi->mTargetCreature = imomushi->getRandFruitsPlant();
 			transit(imomushi, IMOMUSHI_Move, nullptr);
 
 		} else {
-			transit(imomushi, imomushi->m_nextState, nullptr);
+			transit(imomushi, imomushi->mNextState, nullptr);
 		}
 	}
 }
@@ -398,8 +398,8 @@ void StateMove::cleanup(EnemyBase* enemy)
  */
 void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* imomushi         = static_cast<Obj*>(enemy);
-	imomushi->m_nextState = IMOMUSHI_NULL;
+	Obj* imomushi        = static_cast<Obj*>(enemy);
+	imomushi->mNextState = IMOMUSHI_NULL;
 	imomushi->startMotion(3, nullptr);
 	imomushi->startMoveTraceEffect();
 }
@@ -414,30 +414,30 @@ void StateGoHome::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 
-	if (imomushi->m_health <= 0.0f) {
+	if (imomushi->mHealth <= 0.0f) {
 		transit(imomushi, IMOMUSHI_Dead, nullptr);
 		return;
 	}
 
 	if (imomushi->isFinishMotion()) {
-		imomushi->m_targetVelocity = Vector3f(0.0f);
+		imomushi->mTargetVelocity = Vector3f(0.0f);
 
 	} else {
 
 		Vector3f pos     = imomushi->getPosition();
-		Vector3f homePos = imomushi->m_homePosition;
+		Vector3f homePos = imomushi->mHomePosition;
 		f32 dist         = sqrDistanceXZ(pos, homePos);
 		if (dist < imomushi->getSqrHomeRadius()) {
-			imomushi->m_nextState = IMOMUSHI_Dive;
+			imomushi->mNextState = IMOMUSHI_Dive;
 			imomushi->finishMotion();
 		}
-		Parms* parms2 = static_cast<Parms*>(imomushi->m_parms);
-		EnemyFunc::walkToTarget(imomushi, homePos, parms2->m_general.m_moveSpeed.m_value, parms2->m_general.m_rotationalAccel.m_value,
-		                        parms2->m_general.m_rotationalSpeed.m_value);
+		Parms* parms2 = static_cast<Parms*>(imomushi->mParms);
+		EnemyFunc::walkToTarget(imomushi, homePos, parms2->mGeneral.mMoveSpeed.mValue, parms2->mGeneral.mRotationalAccel.mValue,
+		                        parms2->mGeneral.mRotationalSpeed.mValue);
 	}
 
-	if ((imomushi->m_curAnim->m_isPlaying) && ((u32)imomushi->m_curAnim->m_type == KEYEVENT_END)) {
-		transit(imomushi, imomushi->m_nextState, nullptr);
+	if ((imomushi->mCurAnim->mIsPlaying) && ((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {
+		transit(imomushi, imomushi->mNextState, nullptr);
 	}
 }
 
@@ -459,12 +459,12 @@ void StateGoHome::cleanup(EnemyBase* enemy)
  */
 void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* imomushi         = static_cast<Obj*>(enemy);
-	imomushi->m_nextState = IMOMUSHI_NULL;
-	Vector3f pos          = imomushi->getPosition();
+	Obj* imomushi        = static_cast<Obj*>(enemy);
+	imomushi->mNextState = IMOMUSHI_NULL;
+	Vector3f pos         = imomushi->getPosition();
 	imomushi->setStickDiff(pos.x, pos.z);
-	imomushi->startClimbPlant(static_cast<CollPart*>(imomushi->m_targetCreature->m_collTree->m_part->m_child));
-	imomushi->m_targetVelocity = Vector3f(0.0f);
+	imomushi->startClimbPlant(static_cast<CollPart*>(imomushi->mTargetCreature->mCollTree->mPart->mChild));
+	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->startMotion(4, nullptr);
 
 	f32 faceDir = imomushi->getFaceDir(); // slight misordering here but should be equivalent
@@ -575,7 +575,7 @@ lbl_802BB39C:
 void StateClimb::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	if (imomushi->m_health <= 0.0f) {
+	if (imomushi->mHealth <= 0.0f) {
 		transit(imomushi, IMOMUSHI_FallDive, nullptr);
 		return;
 	}
@@ -591,23 +591,23 @@ void StateClimb::exec(EnemyBase* enemy)
 		f32 val  = imomushi->_2FC;
 		f32 yval = imomushi->_104.y;
 		if (yval > 1.0f - val) {
-			CollPart* childPart = static_cast<CollPart*>(imomushi->m_stuckCollPart->m_child);
-			if (childPart != nullptr && childPart->m_partType == COLLTYPE_TUBETREE) {
+			CollPart* childPart = static_cast<CollPart*>(imomushi->mStuckCollPart->mChild);
+			if (childPart != nullptr && childPart->mPartType == COLLTYPE_TUBETREE) {
 				imomushi->startClimbPlant(childPart);
 			} else {
-				imomushi->m_nextState = IMOMUSHI_Attack;
+				imomushi->mNextState = IMOMUSHI_Attack;
 				imomushi->finishMotion();
 			}
 		} else if (yval < -val) {
-			CollPart* parentPart = static_cast<CollPart*>(imomushi->m_stuckCollPart->m_parent);
-			if (parentPart != nullptr && parentPart->m_partType == COLLTYPE_TUBETREE) {
+			CollPart* parentPart = static_cast<CollPart*>(imomushi->mStuckCollPart->mParent);
+			if (parentPart != nullptr && parentPart->mPartType == COLLTYPE_TUBETREE) {
 				imomushi->startClimbPlant(parentPart);
 			}
 		}
 	}
 
-	if (imomushi->m_curAnim->m_isPlaying && (u32)imomushi->m_curAnim->m_type == KEYEVENT_END) {
-		transit(imomushi, imomushi->m_nextState, nullptr);
+	if (imomushi->mCurAnim->mIsPlaying && (u32)imomushi->mCurAnim->mType == KEYEVENT_END) {
+		transit(imomushi, imomushi->mNextState, nullptr);
 	}
 }
 
@@ -630,14 +630,14 @@ void StateClimb::cleanup(EnemyBase* enemy)
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Creature* target;
-	Obj* imomushi         = static_cast<Obj*>(enemy);
-	imomushi->m_nextState = IMOMUSHI_NULL;
-	imomushi->_2C8        = 0.0f;
-	target                = imomushi->m_targetCreature;
-	CollPart* collpart    = target->m_collTree->getCollPart('tops');
+	Obj* imomushi        = static_cast<Obj*>(enemy);
+	imomushi->mNextState = IMOMUSHI_NULL;
+	imomushi->_2C8       = 0.0f;
+	target               = imomushi->mTargetCreature;
+	CollPart* collpart   = target->mCollTree->getCollPart('tops');
 	imomushi->endStick();
 	imomushi->startStick(target, collpart);
-	imomushi->m_targetVelocity = Vector3f(0.0f);
+	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->startMotion(7, nullptr);
 }
 
@@ -650,7 +650,7 @@ void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 
-	if (imomushi->m_health <= 0.0f) {
+	if (imomushi->mHealth <= 0.0f) {
 		transit(imomushi, IMOMUSHI_FallDive, nullptr);
 		return;
 	}
@@ -662,21 +662,21 @@ void StateAttack::exec(EnemyBase* enemy)
 		imomushi->moveStickSphere();
 		if (!imomushi->isAttackable()) {
 			if (Creature* target = imomushi->getRandFruitsPlant()) {
-				imomushi->m_targetCreature = target;
-				imomushi->m_nextState      = IMOMUSHI_FallMove;
+				imomushi->mTargetCreature = target;
+				imomushi->mNextState      = IMOMUSHI_FallMove;
 				imomushi->finishMotion();
 			} else {
-				imomushi->m_nextState = IMOMUSHI_Wait;
+				imomushi->mNextState = IMOMUSHI_Wait;
 				imomushi->finishMotion();
 			}
 		}
 	}
-	imomushi->_2C8 += sys->m_deltaTime;
-	if (imomushi->m_curAnim->m_isPlaying) {
-		if (((u32)imomushi->m_curAnim->m_type == KEYEVENT_2)) {
+	imomushi->_2C8 += sys->mDeltaTime;
+	if (imomushi->mCurAnim->mIsPlaying) {
+		if (((u32)imomushi->mCurAnim->mType == KEYEVENT_2)) {
 			imomushi->eatTsuyukusa();
-		} else if (((u32)imomushi->m_curAnim->m_type == KEYEVENT_END)) {
-			transit(imomushi, imomushi->m_nextState, nullptr);
+		} else if (((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {
+			transit(imomushi, imomushi->mNextState, nullptr);
 		}
 	}
 }
@@ -700,13 +700,13 @@ void StateAttack::cleanup(EnemyBase* enemy)
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Creature* target;
-	Obj* imomushi         = static_cast<Obj*>(enemy);
-	imomushi->m_nextState = IMOMUSHI_NULL;
-	target                = imomushi->m_targetCreature;
-	CollPart* collpart    = target->m_collTree->getCollPart('tops');
+	Obj* imomushi        = static_cast<Obj*>(enemy);
+	imomushi->mNextState = IMOMUSHI_NULL;
+	target               = imomushi->mTargetCreature;
+	CollPart* collpart   = target->mCollTree->getCollPart('tops');
 	imomushi->endStick();
 	imomushi->startStick(target, collpart);
-	imomushi->m_targetVelocity = Vector3f(0.0f);
+	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->startMotion(4, nullptr);
 }
 
@@ -720,7 +720,7 @@ void StateWait::exec(EnemyBase* enemy)
 	Creature* sticker;
 	Obj* imomushi = static_cast<Obj*>(enemy);
 
-	if (imomushi->m_health <= 0.0f) {
+	if (imomushi->mHealth <= 0.0f) {
 		transit(imomushi, IMOMUSHI_FallDive, nullptr);
 		return;
 	}
@@ -731,21 +731,21 @@ void StateWait::exec(EnemyBase* enemy)
 	} else {
 		if (!imomushi->isFinishMotion()) {
 			imomushi->moveStickSphere();
-			sticker = imomushi->m_sticker;
+			sticker = imomushi->mSticker;
 			if (Creature* target = imomushi->getRandFruitsPlant()) {
-				imomushi->m_targetCreature = target;
+				imomushi->mTargetCreature = target;
 				if (sticker == target) {
-					imomushi->m_nextState = IMOMUSHI_Attack;
+					imomushi->mNextState = IMOMUSHI_Attack;
 					imomushi->finishMotion();
 				} else {
-					imomushi->m_nextState = IMOMUSHI_FallMove;
+					imomushi->mNextState = IMOMUSHI_FallMove;
 					imomushi->finishMotion();
 				}
 			}
 		}
 	}
-	if ((imomushi->m_curAnim->m_isPlaying) && ((u32)imomushi->m_curAnim->m_type == KEYEVENT_END)) {
-		transit(imomushi, imomushi->m_nextState, nullptr);
+	if ((imomushi->mCurAnim->mIsPlaying) && ((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {
+		transit(imomushi, imomushi->mNextState, nullptr);
 	}
 }
 
@@ -771,7 +771,7 @@ void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->resetZukanStateTimer();
 	imomushi->enableEvent(0, EB_IsImmuneBitter);
 	imomushi->hardConstraintOn();
-	imomushi->m_targetVelocity = Vector3f(0.0f);
+	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->startMotion(1, nullptr);
 	imomushi->stopMotion();
 }
@@ -784,7 +784,7 @@ void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateZukanStay::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	imomushi->_2C8 += sys->m_deltaTime;
+	imomushi->_2C8 += sys->mDeltaTime;
 	if (imomushi->_2C8 > 5.0f) {
 		transit(imomushi, IMOMUSHI_ZukanAppear, nullptr);
 	}
@@ -811,7 +811,7 @@ void StateZukanAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->enableEvent(0, EB_IsEnemyNotBitter);
-	imomushi->m_targetVelocity = Vector3f(0.0f);
+	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->startMotion(1, nullptr);
 	imomushi->createAppearEffect();
 }
@@ -824,7 +824,7 @@ void StateZukanAppear::init(EnemyBase* enemy, StateArg* stateArg)
 void StateZukanAppear::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	if ((imomushi->m_curAnim->m_isPlaying) && ((u32)imomushi->m_curAnim->m_type == KEYEVENT_END)) {
+	if ((imomushi->mCurAnim->mIsPlaying) && ((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {
 		transit(imomushi, IMOMUSHI_ZukanMove, nullptr);
 	}
 }
@@ -849,7 +849,7 @@ void StateZukanMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->setZukanTargetPosition();
-	imomushi->m_targetVelocity = 0.0f;
+	imomushi->mTargetVelocity = 0.0f;
 	imomushi->startMotion(3, nullptr);
 	imomushi->startMoveTraceEffect();
 }
@@ -862,14 +862,14 @@ void StateZukanMove::init(EnemyBase* enemy, StateArg* stateArg)
 void StateZukanMove::exec(EnemyBase* enemy)
 {
 	Obj* imomushi   = static_cast<Obj*>(enemy);
-	Vector3f target = Vector3f(imomushi->m_zukanTargetPosition);
-	Parms* parms    = static_cast<Parms*>(imomushi->m_parms);
-	EnemyFunc::walkToTarget(imomushi, target, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
-	                        parms->m_general.m_rotationalSpeed.m_value);
+	Vector3f target = Vector3f(imomushi->mZukanTargetPosition);
+	Parms* parms    = static_cast<Parms*>(imomushi->mParms);
+	EnemyFunc::walkToTarget(imomushi, target, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
+	                        parms->mGeneral.mRotationalSpeed.mValue);
 	if (imomushi->isInZukanTargetArea()) {
 		imomushi->setZukanTargetPosition();
 	}
-	if ((imomushi->m_curAnim->m_isPlaying) && ((u32)imomushi->m_curAnim->m_type == KEYEVENT_END)) {
+	if ((imomushi->mCurAnim->mIsPlaying) && ((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {
 		transit(imomushi, IMOMUSHI_ZukanMove, nullptr);
 	}
 }

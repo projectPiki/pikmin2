@@ -61,8 +61,8 @@ void FSMState::do_exec(TMgr*) { }
  */
 void FSMState_EmptyUpdate::do_init(TMgr* mgr, Game::StateArg* arg)
 {
-	m_counter = 2;
-	_14       = 2;
+	mCounter = 2;
+	_14      = 2;
 }
 
 /*
@@ -72,10 +72,10 @@ void FSMState_EmptyUpdate::do_init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_EmptyUpdate::do_exec(TMgr* mgr)
 {
-	if (m_counter) {
-		m_counter--;
+	if (mCounter) {
+		mCounter--;
 	}
-	if (!m_counter) {
+	if (!mCounter) {
 		transit(mgr, FSSTATE_MountCheck, nullptr);
 	}
 }
@@ -85,7 +85,7 @@ void FSMState_EmptyUpdate::do_exec(TMgr* mgr)
  * Address:	803E161C
  * Size:	00000C
  */
-void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg* arg) { m_state = 0; }
+void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg* arg) { mState = 0; }
 
 /*
  * --INFO--
@@ -94,24 +94,24 @@ void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg* arg) { m_state = 0
  */
 void FSMState_CardRequest::do_exec(TMgr* mgr)
 {
-	switch (m_state) {
+	switch (mState) {
 	case 0:
-		bool check2 = (!sys->m_cardMgr->_A8) && (sys->m_cardMgr->checkStatus() != 11);
+		bool check2 = (!sys->mCardMgr->_A8) && (sys->mCardMgr->checkStatus() != 11);
 		if (check2) {
 			P2ASSERTLINE(90, do_cardRequest(mgr));
-			m_state = 1;
+			mState = 1;
 		}
 		break;
 	case 1:
-		bool check3 = (!sys->m_cardMgr->_A8) && (sys->m_cardMgr->checkStatus() != 11);
+		bool check3 = (!sys->mCardMgr->_A8) && (sys->mCardMgr->checkStatus() != 11);
 		if (check3) {
-			m_cardStatus = (int)static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
-			static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
-			m_state = 2;
+			mCardStatus = (int)static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();
+			static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();
+			mState = 2;
 		}
 		break;
 	case 2:
-		switch (m_cardStatus) {
+		switch (mCardStatus) {
 		case Game::MemoryCard::Mgr::MCS_Ready:
 			do_transitCardReady(mgr);
 			break;
@@ -287,7 +287,7 @@ void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
  * Address:	803E1B3C
  * Size:	000028
  */
-bool FSMState_MountCheck::do_cardRequest(TMgr* mgr) { return static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->resetError(); }
+bool FSMState_MountCheck::do_cardRequest(TMgr* mgr) { return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->resetError(); }
 
 /*
  * --INFO--
@@ -303,7 +303,7 @@ void FSMState_MountCheck::do_transitCardReady(TMgr* mgr) { transit(mgr, FSState_
  */
 bool FSMState_GetPlayerHeader::do_cardRequest(TMgr* mgr)
 {
-	return static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getPlayerHeader(&mgr->m_player);
+	return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getPlayerHeader(&mgr->mPlayer);
 }
 
 /*
@@ -327,9 +327,9 @@ void FSMState_GetPlayerHeader::do_transitCardSerialNoError(TMgr* mgr) { JUT_PANI
  */
 void FSMState_ScreenFileSelect::do_init(TMgr* mgr, Game::StateArg* arg)
 {
-	mgr->m_mgrFS.perseInfo(mgr->m_player);
-	mgr->m_mgrFS.startSeq();
-	mgr->m_cardErrorMgr.forceQuitSeq();
+	mgr->mMgrFS.perseInfo(mgr->mPlayer);
+	mgr->mMgrFS.startSeq();
+	mgr->mCardErrorMgr.forceQuitSeq();
 }
 
 /*
@@ -339,8 +339,8 @@ void FSMState_ScreenFileSelect::do_init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_ScreenFileSelect::do_exec(TMgr* mgr)
 {
-	if (mgr->m_mgrFS.isFinish()) {
-		switch (mgr->m_mgrFS._C38) {
+	if (mgr->mMgrFS.isFinish()) {
+		switch (mgr->mMgrFS._C38) {
 		case 1:
 		case 2:
 			transit(mgr, FSSTATE_MountCheck, nullptr);
@@ -367,7 +367,7 @@ void FSMState_CardError::do_init(TMgr* mgr, Game::StateArg* arg)
 {
 	CardErrorStateArg* carg = static_cast<CardErrorStateArg*>(arg);
 	P2ASSERTLINE(319, arg);
-	mgr->m_cardErrorMgr.startSeq((CardError::TMgr::enumStart)carg->_00);
+	mgr->mCardErrorMgr.startSeq((CardError::TMgr::enumStart)carg->_00);
 }
 
 /*
@@ -377,17 +377,17 @@ void FSMState_CardError::do_init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_CardError::do_exec(TMgr* mgr)
 {
-	if (mgr->m_cardErrorMgr.isGetEnd()) {
-		switch (mgr->m_cardErrorMgr.m_endStat) {
+	if (mgr->mCardErrorMgr.isGetEnd()) {
+		switch (mgr->mCardErrorMgr.mEndStat) {
 		case 1:
-			static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->loadPlayerForNoCard(0);
+			static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->loadPlayerForNoCard(0);
 			mgr->goEnd_(TMgr::End_1);
 			break;
 		case 2:
 			mgr->start();
 			break;
 		default:
-			JUT_PANICLINE(342, "¦ mgr->mCardErrorMgr->getEnd=%d ‚Á‚Ä‚ ‚è‚¦‚È‚¢I\n", mgr->m_cardErrorMgr.m_endStat);
+			JUT_PANICLINE(342, "¦ mgr->mCardErrorMgr->getEnd=%d ‚Á‚Ä‚ ‚è‚¦‚È‚¢I\n", mgr->mCardErrorMgr.mEndStat);
 			JUT_PANICLINE(343, "P2Assert");
 		}
 	}
@@ -399,12 +399,12 @@ void FSMState_CardError::do_exec(TMgr* mgr)
  * Size:	0000C0
  */
 TMgr::TMgr()
-    : m_counter(0)
+    : mCounter(0)
     , _F44(0)
 {
-	m_fsm.init(this);
-	m_fsm.start(this, FSSTATE_Standby, 0);
-	m_inError = false;
+	mFsm.init(this);
+	mFsm.start(this, FSSTATE_Standby, 0);
+	mInError = false;
 }
 
 /*
@@ -414,7 +414,7 @@ TMgr::TMgr()
  */
 void Game::StateMachine<ebi::FileSelect::TMgr>::start(ebi::FileSelect::TMgr* mgr, int stateID, Game::StateArg* stateArg)
 {
-	mgr->m_currentState = nullptr;
+	mgr->mCurrentState = nullptr;
 	transit(mgr, stateID, stateArg);
 }
 
@@ -463,10 +463,10 @@ void TMgr::onDvdErrorOccured()
 {
 	if (msInstance) {
 		if (!msInstance->isFinish()) {
-			msInstance->m_inError = true;
+			msInstance->mInError = true;
 			msInstance->forceQuit();
 		} else {
-			msInstance->m_inError = false;
+			msInstance->mInError = false;
 		}
 	}
 }
@@ -478,9 +478,9 @@ void TMgr::onDvdErrorOccured()
  */
 void TMgr::onDvdErrorRecovered()
 {
-	if (msInstance && msInstance->m_inError) {
+	if (msInstance && msInstance->mInError) {
 		msInstance->start();
-		msInstance->m_inError = false;
+		msInstance->mInError = false;
 	}
 }
 
@@ -491,9 +491,9 @@ void TMgr::onDvdErrorRecovered()
  */
 void TMgr::start()
 {
-	_FE8    = true;
-	m_state = 0;
-	m_fsm.start(this, FSSTATE_EmptyUpdate, nullptr);
+	_FE8   = true;
+	mState = 0;
+	mFsm.start(this, FSSTATE_EmptyUpdate, nullptr);
 }
 
 /*
@@ -503,9 +503,9 @@ void TMgr::start()
  */
 void TMgr::forceQuit()
 {
-	m_fsm.start(this, FSSTATE_Standby, nullptr);
-	m_cardErrorMgr.forceQuitSeq();
-	m_mgrFS.forceQuitSeq();
+	mFsm.start(this, FSSTATE_Standby, nullptr);
+	mCardErrorMgr.forceQuitSeq();
+	mMgrFS.forceQuitSeq();
 }
 
 /*
@@ -515,13 +515,13 @@ void TMgr::forceQuit()
  */
 void TMgr::update()
 {
-	m_fsm.exec(this);
+	mFsm.exec(this);
 	if (getStateID()) {
-		sys->m_cardMgr->update();
-		m_cardErrorMgr.update();
-		m_mgrFS.update();
-		if (m_counter) {
-			m_counter--;
+		sys->mCardMgr->update();
+		mCardErrorMgr.update();
+		mMgrFS.update();
+		if (mCounter) {
+			mCounter--;
 		}
 	}
 }
@@ -534,8 +534,8 @@ void TMgr::update()
 void TMgr::draw()
 {
 	if (getStateID()) {
-		m_mgrFS.draw();
-		m_cardErrorMgr.draw();
+		mMgrFS.draw();
+		mCardErrorMgr.draw();
 	}
 }
 
@@ -553,7 +553,7 @@ void TMgr::showInfo() { }
  */
 bool TMgr::isFinish()
 {
-	if (!getStateID() && !m_inError) {
+	if (!getStateID() && !mInError) {
 		return true;
 	} else {
 		return false;
@@ -567,10 +567,10 @@ bool TMgr::isFinish()
  */
 void TMgr::goEnd_(enumEnd end)
 {
-	m_state = end;
-	m_fsm.transit(this, FSSTATE_Standby, nullptr);
-	m_mgrFS.forceQuitSeq();
-	m_cardErrorMgr.forceQuitSeq();
+	mState = end;
+	mFsm.transit(this, FSSTATE_Standby, nullptr);
+	mMgrFS.forceQuitSeq();
+	mCardErrorMgr.forceQuitSeq();
 }
 
 /*
@@ -580,8 +580,8 @@ void TMgr::goEnd_(enumEnd end)
  */
 int TMgr::getStateID()
 {
-	P2ASSERTLINE(534, m_currentState);
-	return m_currentState->m_id;
+	P2ASSERTLINE(534, mCurrentState);
+	return mCurrentState->mId;
 }
 
 /*
@@ -633,8 +633,8 @@ void Game::StateMachine<ebi::FileSelect::TMgr>::init(ebi::FileSelect::TMgr*) { }
  */
 void Game::StateMachine<ebi::FileSelect::TMgr>::exec(ebi::FileSelect::TMgr* mgr)
 {
-	if (mgr->m_currentState) {
-		mgr->m_currentState->exec(mgr);
+	if (mgr->mCurrentState) {
+		mgr->mCurrentState->exec(mgr);
 	}
 }
 
@@ -645,11 +645,11 @@ void Game::StateMachine<ebi::FileSelect::TMgr>::exec(ebi::FileSelect::TMgr* mgr)
  */
 void Game::StateMachine<ebi::FileSelect::TMgr>::create(int count)
 {
-	m_limit          = count;
-	m_count          = 0;
-	m_states         = new FSMState<ebi::FileSelect::TMgr>*[m_limit];
-	m_indexToIDArray = new int[m_limit];
-	m_idToIndexArray = new int[m_limit];
+	mLimit          = count;
+	mCount          = 0;
+	mStates         = new FSMState<ebi::FileSelect::TMgr>*[mLimit];
+	mIndexToIDArray = new int[mLimit];
+	mIdToIndexArray = new int[mLimit];
 }
 
 /*
@@ -659,17 +659,17 @@ void Game::StateMachine<ebi::FileSelect::TMgr>::create(int count)
  */
 void Game::StateMachine<ebi::FileSelect::TMgr>::transit(ebi::FileSelect::TMgr* mgr, int stateID, Game::StateArg* stateArg)
 {
-	int index                        = m_idToIndexArray[stateID];
-	ebi::FileSelect::FSMState* state = mgr->m_currentState;
+	int index                        = mIdToIndexArray[stateID];
+	ebi::FileSelect::FSMState* state = mgr->mCurrentState;
 	if (state) {
 		state->cleanup(mgr);
-		m_currentID = state->m_id;
+		mCurrentID = state->mId;
 	}
 
-	ASSERT_HANG(index < m_limit);
+	ASSERT_HANG(index < mLimit);
 
-	state               = static_cast<ebi::FileSelect::FSMState*>(m_states[index]);
-	mgr->m_currentState = state;
+	state              = static_cast<ebi::FileSelect::FSMState*>(mStates[index]);
+	mgr->mCurrentState = state;
 	state->init(mgr, stateArg);
 }
 
@@ -681,12 +681,12 @@ void Game::StateMachine<ebi::FileSelect::TMgr>::transit(ebi::FileSelect::TMgr* m
 void Game::StateMachine<ebi::FileSelect::TMgr>::registerState(Game::FSMState<ebi::FileSelect::TMgr>* newState)
 {
 	bool check;
-	if (m_count >= m_limit) {
+	if (mCount >= mLimit) {
 		return;
 	}
-	m_states[m_count] = newState;
+	mStates[mCount] = newState;
 
-	if (!(0 <= newState->m_id && newState->m_id < m_limit)) {
+	if (!(0 <= newState->mId && newState->mId < mLimit)) {
 		check = false;
 	} else {
 		check = true;
@@ -694,10 +694,10 @@ void Game::StateMachine<ebi::FileSelect::TMgr>::registerState(Game::FSMState<ebi
 	if (check == false) {
 		return;
 	}
-	newState->m_stateMachine         = this;
-	m_indexToIDArray[m_count]        = newState->m_id;
-	m_idToIndexArray[newState->m_id] = m_count;
-	m_count++;
+	newState->mStateMachine        = this;
+	mIndexToIDArray[mCount]        = newState->mId;
+	mIdToIndexArray[newState->mId] = mCount;
+	mCount++;
 }
 
 } // namespace FileSelect

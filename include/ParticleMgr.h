@@ -63,18 +63,18 @@ struct ParticleMgr : public CNode {
 	void getModelEffectData(u64);
 	void testCreateModelEffect(int, int, Vector3f&);
 
-	Game::GameLightMgr* m_lightMgr;              // _18
-	NodeObjectMgr<ModelEffect> m_modelEffectMgr; // _1C
-	u8 _58[8];                                   // _58
-	ModelEffectDataRoot m_modelEffectDataRoot;   // _60
-	int m_referencedViewportCount;               // _80
-	Viewport* m_viewports[4];                    // _84
-	int m_activeViewportCount;                   // _94
-	JPAEmitterManager* m_emitterManager;         // _98
-	JPAResourceManager* m_resourceManager;       // _9C
-	JKRHeap* m_heap;                             // _A0
-	JKRHeap* m_modelEffectHeap;                  // _A4
-	int _A8;                                     // _A8
+	Game::GameLightMgr* mLightMgr;              // _18
+	NodeObjectMgr<ModelEffect> mModelEffectMgr; // _1C
+	u8 _58[8];                                  // _58
+	ModelEffectDataRoot mModelEffectDataRoot;   // _60
+	int mReferencedViewportCount;               // _80
+	Viewport* mViewports[4];                    // _84
+	int mActiveViewportCount;                   // _94
+	JPAEmitterManager* mEmitterManager;         // _98
+	JPAResourceManager* mResourceManager;       // _9C
+	JKRHeap* mHeap;                             // _A0
+	JKRHeap* mModelEffectHeap;                  // _A4
+	int _A8;                                    // _A8
 
 	static bool disableCulling;
 	static f32 mClipRadiusS; // = 10.0f;

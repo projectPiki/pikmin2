@@ -61,14 +61,14 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2B8	= EnemyBase
-	FSM* m_fsm;                          // _2BC
-	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2C0
-	f32 _2C8;                            // _2C8
-	int _2CC;                            // _2CC
-	MouthSlots m_mouthSlots;             // _2D0
-	Vector3f m_targetParentPosition;     // _2D8
-	ChappyRelation* m_parentRelation;    // _2E4
-	                                     // _2E8 = PelletView
+	FSM* mFsm;                          // _2BC
+	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2C0
+	f32 _2C8;                           // _2C8
+	int _2CC;                           // _2CC
+	MouthSlots mMouthSlots;             // _2D0
+	Vector3f mTargetParentPosition;     // _2D8
+	ChappyRelation* mParentRelation;    // _2E4
+	                                    // _2E8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -85,18 +85,18 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mFp01(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
+		Parm<f32> mFp01; // _804
 	};
 
 	Parms() { }
@@ -104,23 +104,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

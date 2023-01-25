@@ -73,14 +73,14 @@ void ObjCalc_SingleGame::newInstance_SingleGame() { new ObjCalc_SingleGame; }
  * Address:	80472904
  * Size:	000008
  */
-u8 ObjCalc_SingleGame::getPlayerNo(PSM::Creature*) { return m_playerNum; }
+u8 ObjCalc_SingleGame::getPlayerNo(PSM::Creature*) { return mPlayerNum; }
 
 /*
  * --INFO--
  * Address:	8047290C
  * Size:	000008
  */
-u8 ObjCalc_SingleGame::getPlayerNo(Vec&) { return m_playerNum; }
+u8 ObjCalc_SingleGame::getPlayerNo(Vec&) { return mPlayerNum; }
 
 /*
  * --INFO--
@@ -96,7 +96,7 @@ void ObjCalc_2PGame::newInstance_2PGame() { new ObjCalc_2PGame; }
  */
 u8 ObjCalc_2PGame::getPlayerNo(Vec& pos)
 {
-	switch (m_mode) {
+	switch (mMode) {
 	case OBJCALC_2:
 		return 0;
 
@@ -417,11 +417,11 @@ lbl_80472D10:
 u8 ObjCalc_2PGame::getPlayerNo(PSM::Creature* obj)
 {
 	P2ASSERTLINE(87, obj);
-	switch (m_mode) {
+	switch (mMode) {
 	case OBJCALC_2:
 		return 0;
 	case OBJCALC_1:
-		return obj->m_gameObj->getSound_AILOD()->m_sndVpId;
+		return obj->mGameObj->getSound_AILOD()->mSndVpId;
 	default:
 		JUT_PANICLINE(125, "ありえないケース1");
 		JUT_PANICLINE(128, "ありえないケース2");

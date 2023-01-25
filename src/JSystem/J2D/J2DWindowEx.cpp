@@ -412,13 +412,13 @@ void J2DWindowEx::setMinSize()
 {
 	_140 = 1;
 	_142 = 1;
-	if (m_frameMaterials[0] != nullptr && m_frameMaterials[1] != nullptr && m_frameMaterials[2] != nullptr && m_frameMaterials[3] != nullptr
-	    && m_frameMaterials[0]->m_tevBlock != nullptr && m_frameMaterials[1]->m_tevBlock != nullptr
-	    && m_frameMaterials[2]->m_tevBlock != nullptr && m_frameMaterials[3]->m_tevBlock != nullptr
-	    && m_frameMaterials[0]->m_tevBlock->getTexture(0) != nullptr && m_frameMaterials[1]->m_tevBlock->getTexture(0) != nullptr
-	    && m_frameMaterials[2]->m_tevBlock->getTexture(0) != nullptr && m_frameMaterials[3]->m_tevBlock->getTexture(0) != nullptr) {
-		_140 = m_frameMaterials[0]->m_tevBlock->getTexture(0)->getSizeX() + m_frameMaterials[1]->m_tevBlock->getTexture(0)->getSizeX();
-		_142 = m_frameMaterials[0]->m_tevBlock->getTexture(0)->getSizeY() + m_frameMaterials[2]->m_tevBlock->getTexture(0)->getSizeY();
+	if (mFrameMaterials[0] != nullptr && mFrameMaterials[1] != nullptr && mFrameMaterials[2] != nullptr && mFrameMaterials[3] != nullptr
+	    && mFrameMaterials[0]->mTevBlock != nullptr && mFrameMaterials[1]->mTevBlock != nullptr && mFrameMaterials[2]->mTevBlock != nullptr
+	    && mFrameMaterials[3]->mTevBlock != nullptr && mFrameMaterials[0]->mTevBlock->getTexture(0) != nullptr
+	    && mFrameMaterials[1]->mTevBlock->getTexture(0) != nullptr && mFrameMaterials[2]->mTevBlock->getTexture(0) != nullptr
+	    && mFrameMaterials[3]->mTevBlock->getTexture(0) != nullptr) {
+		_140 = mFrameMaterials[0]->mTevBlock->getTexture(0)->getSizeX() + mFrameMaterials[1]->mTevBlock->getTexture(0)->getSizeX();
+		_142 = mFrameMaterials[0]->mTevBlock->getTexture(0)->getSizeY() + mFrameMaterials[2]->mTevBlock->getTexture(0)->getSizeY();
 	}
 }
 
@@ -512,10 +512,10 @@ lbl_800453D4:
  */
 void J2DWindowEx::drawSelf(float p1, float p2, float (*p3)[3][4])
 {
-	JGeometry::TBox2f box = m_bounds;
+	JGeometry::TBox2f box = mBounds;
 	box.addPos(p1, p2);
 	Mtx v1;
-	PSMTXConcat(*p3, m_globalMtx, v1);
+	PSMTXConcat(*p3, mGlobalMtx, v1);
 	GXLoadPosMtxImm(v1, 0);
 	draw_private(box, _114);
 	clip(_114);
@@ -1592,9 +1592,9 @@ lbl_80046398:
 void J2DWindowEx::draw(const JGeometry::TBox2<float>& p1, const JGeometry::TBox2<float>& p2)
 {
 	rewriteAlpha();
-	m_colorAlpha = m_alpha;
+	mColorAlpha = mAlpha;
 	makeMatrix(p2.i.x, p2.i.y, 0.0f, 0.0f);
-	GXLoadPosMtxImm(m_positionMtx, 0);
+	GXLoadPosMtxImm(mPositionMtx, 0);
 	GXSetCurrentMtx(0);
 	draw_private(JGeometry::TBox2f(0.0f, 0.0f, p1.f.x - p1.i.x, p1.f.y - p1.i.y), p2);
 	for (int i = 0; i < 4; i++) {
@@ -2587,32 +2587,32 @@ lbl_80046F8C:
  */
 void J2DWindowEx::setAlpha(unsigned char alpha)
 {
-	m_alpha = alpha;
+	mAlpha = alpha;
 	J2DColorBlock* block;
 	for (int i = 0; i < 4; i++) {
 		// J2DMaterial* material = _148[i];
-		// if (material && (block = &material->m_colorBlock)) {
-		// 	block->m_colors[0].a = alpha;
+		// if (material && (block = &material->mColorBlock)) {
+		// 	block->mColors[0].a = alpha;
 		// }
 
-		if (m_frameMaterials[i] && (block = &m_frameMaterials[i]->m_colorBlock)) {
-			block->m_colors[0].a = alpha;
+		if (mFrameMaterials[i] && (block = &mFrameMaterials[i]->mColorBlock)) {
+			block->mColors[0].a = alpha;
 		}
 	}
-	// if (_148[0] && (block = &_148[0]->m_colorBlock)) {
-	// 	block->m_colors[0].a = alpha;
+	// if (_148[0] && (block = &_148[0]->mColorBlock)) {
+	// 	block->mColors[0].a = alpha;
 	// }
-	// if (_148[1] && (block = &_148[1]->m_colorBlock)) {
-	// 	block->m_colors[0].a = alpha;
+	// if (_148[1] && (block = &_148[1]->mColorBlock)) {
+	// 	block->mColors[0].a = alpha;
 	// }
-	// if (_150 && (block = &_150->m_colorBlock)) {
-	// 	block->m_colors[0].a = alpha;
+	// if (_150 && (block = &_150->mColorBlock)) {
+	// 	block->mColors[0].a = alpha;
 	// }
-	// if (_154 && (block = &_154->m_colorBlock)) {
-	// 	block->m_colors[0].a = alpha;
+	// if (_154 && (block = &_154->mColorBlock)) {
+	// 	block->mColors[0].a = alpha;
 	// }
-	if (m_contentsMaterial && (block = &m_contentsMaterial->m_colorBlock)) {
-		block->m_colors[0].a = alpha;
+	if (mContentsMaterial && (block = &mContentsMaterial->mColorBlock)) {
+		block->mColors[0].a = alpha;
 	}
 }
 
@@ -2623,27 +2623,27 @@ void J2DWindowEx::setAlpha(unsigned char alpha)
  */
 void J2DWindowEx::setCullBack(_GXCullMode cullMode)
 {
-	m_cullMode = cullMode;
+	mCullMode = cullMode;
 
 	for (int i = 0; i < 4; i++) {
-		if (m_frameMaterials[i] != nullptr) {
-			m_frameMaterials[i]->m_colorBlock.m_cullMode = cullMode;
+		if (mFrameMaterials[i] != nullptr) {
+			mFrameMaterials[i]->mColorBlock.mCullMode = cullMode;
 		}
 	}
 	// if (_148[0]) {
-	// 	_148[0]->m_colorBlock.m_cullMode = cullMode;
+	// 	_148[0]->mColorBlock.mCullMode = cullMode;
 	// }
 	// if (_148[1]) {
-	// 	_148[1]->m_colorBlock.m_cullMode = cullMode;
+	// 	_148[1]->mColorBlock.mCullMode = cullMode;
 	// }
 	// if (_150) {
-	// 	_150->m_colorBlock.m_cullMode = cullMode;
+	// 	_150->mColorBlock.mCullMode = cullMode;
 	// }
 	// if (_154) {
-	// 	_154->m_colorBlock.m_cullMode = cullMode;
+	// 	_154->mColorBlock.mCullMode = cullMode;
 	// }
-	if (m_contentsMaterial != nullptr) {
-		m_contentsMaterial->m_colorBlock.m_cullMode = cullMode;
+	if (mContentsMaterial != nullptr) {
+		mContentsMaterial->mColorBlock.mCullMode = cullMode;
 	}
 	J2DPane::setCullBack(cullMode);
 }
@@ -2655,8 +2655,8 @@ void J2DWindowEx::setCullBack(_GXCullMode cullMode)
  */
 void J2DWindowEx::rewriteAlpha()
 {
-	if (m_contentsMaterial != nullptr) {
-		m_alpha = m_contentsMaterial->m_colorBlock.m_colors[0].a;
+	if (mContentsMaterial != nullptr) {
+		mAlpha = mContentsMaterial->mColorBlock.mColors[0].a;
 	}
 }
 
@@ -2668,8 +2668,8 @@ void J2DWindowEx::rewriteAlpha()
 JUTTexture* J2DWindowEx::getFrameTexture(unsigned char frameMaterialIndex, unsigned char textureIndex) const
 {
 	J2DMaterial* material = getFrameMaterial(frameMaterialIndex);
-	if (material != nullptr && material->m_tevBlock != nullptr) {
-		return material->m_tevBlock->getTexture(textureIndex);
+	if (material != nullptr && material->mTevBlock != nullptr) {
+		return material->mTevBlock->getTexture(textureIndex);
 	}
 	return nullptr;
 }
@@ -2689,8 +2689,8 @@ JUTTexture* J2DWindowEx::getFrameTexture(unsigned char frameMaterialIndex, unsig
 JUTTexture* J2DWindowEx::getContentsTexture(unsigned char textureIndex) const
 {
 	J2DMaterial* material = getContentsMaterial();
-	if (material != nullptr && material->m_tevBlock != nullptr) {
-		return material->m_tevBlock->getTexture(textureIndex);
+	if (material != nullptr && material->mTevBlock != nullptr) {
+		return material->mTevBlock->getTexture(textureIndex);
 	}
 	return nullptr;
 }
@@ -2700,7 +2700,7 @@ JUTTexture* J2DWindowEx::getContentsTexture(unsigned char textureIndex) const
  * Address:	800471A8
  * Size:	000008
  */
-// J2DMaterial* J2DWindowEx::getContentsMaterial() const { return m_contentsMaterial; }
+// J2DMaterial* J2DWindowEx::getContentsMaterial() const { return mContentsMaterial; }
 
 /*
  * --INFO--
@@ -2710,18 +2710,18 @@ JUTTexture* J2DWindowEx::getContentsTexture(unsigned char textureIndex) const
 bool J2DWindowEx::isUsed(const ResTIMG* resource)
 {
 	for (u8 i = 0; i < 4; i++) {
-		if (m_frameMaterials[i] != nullptr && m_frameMaterials[i]->m_tevBlock != nullptr) {
+		if (mFrameMaterials[i] != nullptr && mFrameMaterials[i]->mTevBlock != nullptr) {
 			for (u32 j = 0; j < 8; j++) {
-				JUTTexture* texture = m_frameMaterials[i]->m_tevBlock->getTexture(j);
+				JUTTexture* texture = mFrameMaterials[i]->mTevBlock->getTexture(j);
 				if (texture != nullptr && texture->_20 == resource) {
 					return true;
 				}
 			}
 		}
 	}
-	if (m_contentsMaterial != nullptr && m_contentsMaterial->m_tevBlock != nullptr) {
+	if (mContentsMaterial != nullptr && mContentsMaterial->mTevBlock != nullptr) {
 		for (u32 j = 0; j < 8; j++) {
-			JUTTexture* texture = m_contentsMaterial->m_tevBlock->getTexture(j);
+			JUTTexture* texture = mContentsMaterial->mTevBlock->getTexture(j);
 			if (texture != nullptr && texture->_20 == resource) {
 				return true;
 			}
@@ -2740,11 +2740,11 @@ void J2DWindowEx::setAnimation(J2DAnmColor* animation)
 {
 	for (u8 i = 0; i < 4; i++) {
 		if (isNeedSetAnm(i)) {
-			m_frameMaterials[i]->setAnimation(animation);
+			mFrameMaterials[i]->setAnimation(animation);
 		}
 	}
-	if (m_contentsMaterial != nullptr) {
-		m_contentsMaterial->setAnimation(animation);
+	if (mContentsMaterial != nullptr) {
+		mContentsMaterial->setAnimation(animation);
 	}
 }
 
@@ -2758,11 +2758,11 @@ void J2DWindowEx::setAnimation(J2DAnmTextureSRTKey* animation)
 {
 	for (u8 i = 0; i < 4; i++) {
 		if (isNeedSetAnm(i)) {
-			m_frameMaterials[i]->setAnimation(animation);
+			mFrameMaterials[i]->setAnimation(animation);
 		}
 	}
-	if (m_contentsMaterial != nullptr) {
-		m_contentsMaterial->setAnimation(animation);
+	if (mContentsMaterial != nullptr) {
+		mContentsMaterial->setAnimation(animation);
 	}
 }
 
@@ -2776,11 +2776,11 @@ void J2DWindowEx::setAnimation(J2DAnmTexPattern* animation)
 {
 	for (u8 i = 0; i < 4; i++) {
 		if (isNeedSetAnm(i)) {
-			m_frameMaterials[i]->setAnimation(animation);
+			mFrameMaterials[i]->setAnimation(animation);
 		}
 	}
-	if (m_contentsMaterial != nullptr) {
-		m_contentsMaterial->setAnimation(animation);
+	if (mContentsMaterial != nullptr) {
+		mContentsMaterial->setAnimation(animation);
 	}
 }
 
@@ -2794,11 +2794,11 @@ void J2DWindowEx::setAnimation(J2DAnmTevRegKey* animation)
 {
 	for (u8 i = 0; i < 4; i++) {
 		if (isNeedSetAnm(i)) {
-			m_frameMaterials[i]->setAnimation(animation);
+			mFrameMaterials[i]->setAnimation(animation);
 		}
 	}
-	if (m_contentsMaterial != nullptr) {
-		m_contentsMaterial->setAnimation(animation);
+	if (mContentsMaterial != nullptr) {
+		mContentsMaterial->setAnimation(animation);
 	}
 }
 
@@ -2810,11 +2810,11 @@ void J2DWindowEx::setAnimation(J2DAnmTevRegKey* animation)
 bool J2DWindowEx::isNeedSetAnm(unsigned char frameMaterialIndex)
 {
 	for (u8 i = 0; i < frameMaterialIndex; i++) {
-		if (m_frameMaterials[i] == m_frameMaterials[frameMaterialIndex]) {
+		if (mFrameMaterials[i] == mFrameMaterials[frameMaterialIndex]) {
 			return false;
 		}
 	}
-	return (m_frameMaterials[frameMaterialIndex] != nullptr);
+	return (mFrameMaterials[frameMaterialIndex] != nullptr);
 }
 
 /*
@@ -2823,7 +2823,7 @@ bool J2DWindowEx::isNeedSetAnm(unsigned char frameMaterialIndex)
  * Size:	000008
  * setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull
  */
-void J2DWindowEx::setAnimation(J2DAnmVisibilityFull* animation) { m_anmVisibility = animation; }
+void J2DWindowEx::setAnimation(J2DAnmVisibilityFull* animation) { mAnmVisibility = animation; }
 
 /*
  * --INFO--
@@ -3065,11 +3065,11 @@ lbl_800477CC:
  */
 void J2DWindowEx::getMaterial(J2DWindow::TMaterial& material) const
 {
-	material._00 = m_frameMaterials[0];
-	material._04 = m_frameMaterials[1];
-	material._08 = m_frameMaterials[2];
-	material._0C = m_frameMaterials[3];
-	material._10 = m_contentsMaterial;
+	material._00 = mFrameMaterials[0];
+	material._04 = mFrameMaterials[1];
+	material._08 = mFrameMaterials[2];
+	material._0C = mFrameMaterials[3];
+	material._10 = mContentsMaterial;
 }
 
 /*

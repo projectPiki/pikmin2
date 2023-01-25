@@ -13,7 +13,7 @@ namespace MiniHoudai {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "チビホウダイマネージャ"; // little houdai manager
+	mName = "チビホウダイマネージャ"; // little houdai manager
 }
 
 /*
@@ -31,7 +31,7 @@ void Mgr::loadModelData()
 			J3DModelData* storedModelData = mgr->getJ3DModelData();
 
 			if (storedModelData) {
-				m_modelData = storedModelData;
+				mModelData = storedModelData;
 				return;
 			}
 		}
@@ -39,9 +39,9 @@ void Mgr::loadModelData()
 
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-		shape          = m_modelData->m_shapeTable.m_items[j];
-		shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		shape         = mModelData->mShapeTable.mItems[j];
+		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
 }
 
@@ -60,9 +60,9 @@ void Mgr::loadAnimData()
 	for (int i = 0; i < 2; i++) {
 		EnemyMgrBase* mgr = generalEnemyMgr->getEnemyMgr(ids[i]);
 		if (mgr) {
-			SysShape::AnimMgr* storedAnimMgr = mgr->m_animMgr;
+			SysShape::AnimMgr* storedAnimMgr = mgr->mAnimMgr;
 			if (storedAnimMgr) {
-				m_animMgr = storedAnimMgr;
+				mAnimMgr = storedAnimMgr;
 				return;
 			}
 		}

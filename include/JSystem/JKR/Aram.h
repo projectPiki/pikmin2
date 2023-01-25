@@ -22,12 +22,12 @@ struct JKRAramBlock {
 	JKRAramBlock* allocHead(u32, u8, JKRAramHeap*);
 	JKRAramBlock* allocTail(u32, u8, JKRAramHeap*);
 
-	JSULink<JKRAramBlock> m_link; // _04
-	u32 _14;                      // _14
-	u32 _18;                      // _18
-	u32 _1C;                      // _1C
-	u8 _20;                       // _20
-	bool _21;                     // _21
+	JSULink<JKRAramBlock> mLink; // _04
+	u32 _14;                     // _14
+	u32 _18;                     // _18
+	u32 _1C;                     // _1C
+	u8 _20;                      // _20
+	bool _21;                    // _21
 };
 
 struct JKRAramHeap : public JKRDisposer {
@@ -42,12 +42,12 @@ struct JKRAramHeap : public JKRDisposer {
 	JKRAramBlock* allocFromTail(u32);
 	s32 getFreeSize();
 
-	OSMutexObject m_mutex; // _18
-	JKRHeap* _30;          // _30
-	u32 _34;               // _34
-	u32 _38;               // _38
-	u32 _3C;               // _3C
-	u8 _40;                // _40
+	OSMutexObject mMutex; // _18
+	JKRHeap* _30;         // _30
+	u32 _34;              // _34
+	u32 _38;              // _38
+	u32 _3C;              // _3C
+	u8 _40;               // _40
 
 	static JSUList<JKRAramBlock> sAramList;
 };
@@ -64,15 +64,15 @@ struct JKRAram : public JKRThread {
 	static u8* aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
 	static u8* aramToMainRam(JKRAramBlock*, u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
 
-	u8 _7C[4];               // _7C
-	u32 _80;                 // _80
-	u32 _84;                 // _84
-	u32 _88;                 // _88
-	u8 _8C[4];               // _8C
-	u32 _90;                 // _90
-	JKRAramHeap* m_aramHeap; // _94
-	u32 m_blockLength;       // _98
-	u8 _9C[4];               // _9C
+	u8 _7C[4];              // _7C
+	u32 _80;                // _80
+	u32 _84;                // _84
+	u32 _88;                // _88
+	u8 _8C[4];              // _8C
+	u32 _90;                // _90
+	JKRAramHeap* mAramHeap; // _94
+	u32 mBlockLength;       // _98
+	u8 _9C[4];              // _9C
 
 	static JKRAram* sAramObject;
 	static const OSMessageQueue sMessageQueue;
@@ -90,10 +90,10 @@ struct JKRAramArchive : public JKRArchive {
 	u32 fetchResource_subroutine(u32, u32, u8*, u32, int);
 	u32 fetchResource_subroutine(u32, u32, JKRHeap*, int, u8**);
 
-	s32 _5C;               // _5C
-	s32 _60;               // _60
-	void* _64;             // _64
-	JKRDvdFile* m_dvdFile; // _68
+	s32 _5C;              // _5C
+	s32 _60;              // _60
+	void* _64;            // _64
+	JKRDvdFile* mDvdFile; // _68
 };
 
 // Size: 0x98
@@ -105,10 +105,10 @@ struct JKRAMCommand : ARQRequest {
 	// ARQRequest _00;            // _00
 	JSULink<JKRAMCommand> _20; // _20
 	JSULink<JKRAMCommand> _30; // _30
-	s32 m_direction;           // _40
-	u32 m_length;              // _44
-	u32 m_source;              // _48
-	u32 m_destination;         // _4C
+	s32 mDirection;            // _40
+	u32 mLength;               // _44
+	u32 mSource;               // _48
+	u32 mDestination;          // _4C
 	JKRAramBlock* _50;         // _50
 	u8 _54[4];                 // _54
 	Callback _58;              // _58

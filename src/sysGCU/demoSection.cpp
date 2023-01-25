@@ -36,7 +36,7 @@ static LogoLocation sLogoLocate[] = {
  */
 Section::Section(JKRHeap* heap)
     : Game::BaseHIOSection(heap)
-    , m_timer(0.0f)
+    , mTimer(0.0f)
 {
 }
 
@@ -63,16 +63,16 @@ void Section::init()
 	initHIO(root);
 
 	sys->heapStatusStart("frameBuffer", nullptr);
-	setDisplay(JFWDisplay::createManager(nullptr, m_displayHeap, JUTXfb::DoubleBuffer, false), 1);
+	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);
 	sys->heapStatusEnd("frameBuffer");
 
-	m_controller = new Controller(JUTGamePad::PORT_0);
+	mController = new Controller(JUTGamePad::PORT_0);
 
 	sys->setFrameRate(2);
-	m_moviePlayer.init(m_displayHeap);
+	mMoviePlayer.init(mDisplayHeap);
 
-	addGenNode(&m_moviePlayer);
-	m_timeStep = 0.5f;
+	addGenNode(&mMoviePlayer);
+	mTimeStep = 0.5f;
 
 	// this struct appears messed up
 	JUTProcBar::sManager->_10C = 0;
@@ -89,12 +89,12 @@ void Section::init()
  */
 void Section::doDraw(Graphics& gfx)
 {
-	m_moviePlayer.draw(gfx);
-	gfx.m_orthoGraph.setPort();
+	mMoviePlayer.draw(gfx);
+	gfx.mOrthoGraph.setPort();
 
-	J2DPicture pic(m_logoTexture);
+	J2DPicture pic(mLogoTexture);
 	LogoLocation& location = sLogoLocate[sMovieIndex];
-	pic.draw(location.x, location.y, pic.m_bounds.f.x - pic.m_bounds.i.x, pic.m_bounds.f.y - pic.m_bounds.i.y, false, false, false);
+	pic.draw(location.x, location.y, pic.mBounds.f.x - pic.mBounds.i.x, pic.mBounds.f.y - pic.mBounds.i.y, false, false, false);
 }
 
 /*
@@ -104,22 +104,22 @@ void Section::doDraw(Graphics& gfx)
  */
 bool Section::doUpdate()
 {
-	m_timer += sys->m_deltaTime;
+	mTimer += sys->mDeltaTime;
 
 	BaseHIOSection::doUpdate();
-	if (m_moviePlayer.isFinishPlaying()) {
-		m_isMainActive = false;
+	if (mMoviePlayer.isFinishPlaying()) {
+		mIsMainActive = false;
 	}
 
 	// if any button is pressed
-	if (m_controller->isButtonDown(~JUTGamePad::False) && m_isMainActive) {
+	if (mController->isButtonDown(~JUTGamePad::False) && mIsMainActive) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
-		m_isMainActive = false;
+		mIsMainActive = false;
 	}
 
-	m_moviePlayer.play();
-	m_moviePlayer.update();
-	return m_isMainActive;
+	mMoviePlayer.play();
+	mMoviePlayer.update();
+	return mIsMainActive;
 }
 
 /*
@@ -137,7 +137,7 @@ void Section::doExit()
 		sMovieIndex = 0;
 	}
 
-	m_moviePlayer.stop();
+	mMoviePlayer.stop();
 }
 
 /*
@@ -147,10 +147,10 @@ void Section::doExit()
  */
 void Section::doLoadingStart()
 {
-	m_moviePlayer.load((Game::THPPlayer::EMovieIndex)sMovieIndexTable[sMovieIndex]);
+	mMoviePlayer.load((Game::THPPlayer::EMovieIndex)sMovieIndexTable[sMovieIndex]);
 
 	Delegate<Section>* delegate = new Delegate<Section>(this, loadResource);
-	sys->dvdLoadUseCallBack(&m_threadCommand, delegate);
+	sys->dvdLoadUseCallBack(&mThreadCommand, delegate);
 }
 
 /*
@@ -158,7 +158,7 @@ void Section::doLoadingStart()
  * Address:	8044D11C
  * Size:	000038
  */
-bool Section::doLoading() { return sys->dvdLoadSyncNoBlock(&m_threadCommand) == 0; }
+bool Section::doLoading() { return sys->dvdLoadSyncNoBlock(&mThreadCommand) == 0; }
 
 /*
  * --INFO--
@@ -173,7 +173,7 @@ void Section::loadResource()
 	ResTIMG* timg = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("/data/timg/pikmin2_logo.bti"));
 	P2ASSERTLINE(433, timg);
 
-	m_logoTexture = new JUTTexture(timg);
+	mLogoTexture = new JUTTexture(timg);
 }
 
 } // namespace Demo

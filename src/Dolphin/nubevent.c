@@ -7,7 +7,7 @@ TRKEventQueue gTRKEventQueue;
  * Address:	800BB488
  * Size:	000024
  */
-void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->m_bufferIndex); }
+void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->mBufferIndex); }
 
 /*
  * --INFO--
@@ -16,9 +16,9 @@ void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->m_bufferIndex);
  */
 void TRKConstructEvent(TRKEvent* event, int eventType)
 {
-	event->m_eventType   = eventType;
-	event->_04           = 0;
-	event->m_bufferIndex = -1;
+	event->mEventType   = eventType;
+	event->_04          = 0;
+	event->mBufferIndex = -1;
 }
 
 /*
@@ -33,18 +33,18 @@ TRKResult TRKPostEvent(TRKEvent* ev)
 
 	TRKAcquireMutex(&gTRKEventQueue);
 
-	if (gTRKEventQueue.m_currEvtID == 2) {
+	if (gTRKEventQueue.mCurrEvtID == 2) {
 		ret = 256;
 	} else {
-		evID = (gTRKEventQueue.m_nextSlotToOverwrite + gTRKEventQueue.m_currEvtID) % 2;
-		TRK_memcpy(&gTRKEventQueue.m_events[evID], ev, sizeof(TRKEvent));
-		gTRKEventQueue.m_events[evID]._04 = gTRKEventQueue._24;
+		evID = (gTRKEventQueue.mNextSlotToOverwrite + gTRKEventQueue.mCurrEvtID) % 2;
+		TRK_memcpy(&gTRKEventQueue.mEvents[evID], ev, sizeof(TRKEvent));
+		gTRKEventQueue.mEvents[evID]._04 = gTRKEventQueue._24;
 
 		if (++gTRKEventQueue._24 < 256) {
 			gTRKEventQueue._24 = 256;
 		}
 
-		gTRKEventQueue.m_currEvtID++;
+		gTRKEventQueue.mCurrEvtID++;
 	}
 
 	TRKReleaseMutex(&gTRKEventQueue);
@@ -62,12 +62,12 @@ BOOL TRKGetNextEvent(TRKEvent* ev)
 
 	TRKAcquireMutex(&gTRKEventQueue);
 
-	if (gTRKEventQueue.m_currEvtID > 0) {
-		TRK_memcpy(ev, &gTRKEventQueue.m_events[gTRKEventQueue.m_nextSlotToOverwrite], sizeof(TRKEvent));
-		gTRKEventQueue.m_currEvtID--;
+	if (gTRKEventQueue.mCurrEvtID > 0) {
+		TRK_memcpy(ev, &gTRKEventQueue.mEvents[gTRKEventQueue.mNextSlotToOverwrite], sizeof(TRKEvent));
+		gTRKEventQueue.mCurrEvtID--;
 
-		if (++gTRKEventQueue.m_nextSlotToOverwrite == 2) {
-			gTRKEventQueue.m_nextSlotToOverwrite = 0;
+		if (++gTRKEventQueue.mNextSlotToOverwrite == 2) {
+			gTRKEventQueue.mNextSlotToOverwrite = 0;
 		}
 
 		ret = TRUE;
@@ -96,9 +96,9 @@ TRKResult TRKInitializeEventQueue()
 {
 	TRKInitializeMutex(&gTRKEventQueue);
 	TRKAcquireMutex(&gTRKEventQueue);
-	gTRKEventQueue.m_currEvtID           = 0;
-	gTRKEventQueue.m_nextSlotToOverwrite = 0;
-	gTRKEventQueue._24                   = 0x100;
+	gTRKEventQueue.mCurrEvtID           = 0;
+	gTRKEventQueue.mNextSlotToOverwrite = 0;
+	gTRKEventQueue._24                  = 0x100;
 	TRKReleaseMutex(&gTRKEventQueue);
 	return TRKSuccess;
 }

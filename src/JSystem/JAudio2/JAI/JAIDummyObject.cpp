@@ -126,10 +126,10 @@ JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32 p1
 		} else {
 			(*r5)->_04 = nullptr;
 		}
-		(*r5)->_00  = v1;
-		*r6         = v1;
-		v1->_18     = p1;
-		v1->m_sound = nullptr;
+		(*r5)->_00 = v1;
+		*r6        = v1;
+		v1->_18    = p1;
+		v1->mSound = nullptr;
 	} else {
 		v1 = nullptr;
 	}
@@ -151,7 +151,7 @@ JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32 p1
 	// 	r0->_00     = nullptr;
 	// 	*r6         = r0;
 	// 	r0->_18     = p1;
-	// 	r0->m_sound = nullptr;
+	// 	r0->mSound = nullptr;
 	// } else {
 	// 	r0 = nullptr;
 	// }

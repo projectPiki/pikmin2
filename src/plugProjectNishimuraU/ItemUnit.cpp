@@ -7,15 +7,15 @@ namespace Game {
  */
 Cave::ItemNode::ItemNode()
 {
-	m_unit       = nullptr;
-	m_generator  = nullptr;
-	m_birthCount = 0;
+	mUnit       = nullptr;
+	mGenerator  = nullptr;
+	mBirthCount = 0;
 
-	m_direction = 0;
+	mDirection = 0;
 
-	m_position.z = 0;
-	m_position.y = 0;
-	m_position.x = 0;
+	mPosition.z = 0;
+	mPosition.y = 0;
+	mPosition.x = 0;
 }
 
 /*
@@ -25,15 +25,15 @@ Cave::ItemNode::ItemNode()
  */
 Cave::ItemNode::ItemNode(Cave::ItemUnit* unit, Cave::BaseGen* generator, int count)
 {
-	m_unit       = unit;
-	m_generator  = generator;
-	m_birthCount = count;
+	mUnit       = unit;
+	mGenerator  = generator;
+	mBirthCount = count;
 
-	m_direction = 0;
+	mDirection = 0;
 
-	m_position.z = 0;
-	m_position.y = 0;
-	m_position.x = 0;
+	mPosition.z = 0;
+	mPosition.y = 0;
+	mPosition.x = 0;
 }
 
 /*
@@ -43,8 +43,8 @@ Cave::ItemNode::ItemNode(Cave::ItemUnit* unit, Cave::BaseGen* generator, int cou
  */
 void Cave::ItemNode::makeGlobalData(Cave::MapNode* node)
 {
-	m_position  = node->getBaseGenGlobalPosition(m_generator);
-	m_direction = node->getBaseGenGlobalDirection(m_generator);
+	mPosition  = node->getBaseGenGlobalPosition(mGenerator);
+	mDirection = node->getBaseGenGlobalDirection(mGenerator);
 }
 
 /*
@@ -54,8 +54,8 @@ void Cave::ItemNode::makeGlobalData(Cave::MapNode* node)
  */
 int Cave::ItemNode::getObjectId()
 {
-	if (m_unit->m_info) {
-		return m_unit->m_info->m_caveID;
+	if (mUnit->mInfo) {
+		return mUnit->mInfo->mCaveID;
 	}
 
 	return -1;
@@ -73,7 +73,7 @@ u32 Cave::ItemNode::getObjectType() { return Item; }
  * Address:	8024E2F8
  * Size:	000008
  */
-int Cave::ItemNode::getBirthCount() { return m_birthCount; }
+int Cave::ItemNode::getBirthCount() { return mBirthCount; }
 
 /*
  * --INFO--
@@ -82,8 +82,8 @@ int Cave::ItemNode::getBirthCount() { return m_birthCount; }
  */
 void Cave::ItemNode::getBirthPosition(float& x, float& z)
 {
-	x = m_position.x;
-	z = m_position.z;
+	x = mPosition.x;
+	z = mPosition.z;
 }
 
 /*
@@ -91,5 +91,5 @@ void Cave::ItemNode::getBirthPosition(float& x, float& z)
  * Address:	8024E314
  * Size:	000008
  */
-f32 Cave::ItemNode::getDirection() { return m_direction; }
+f32 Cave::ItemNode::getDirection() { return mDirection; }
 } // namespace Game

@@ -21,12 +21,12 @@ enum NaviEffectFlags {
 
 struct TNaviEffect {
 	TNaviEffect()
-	    : m_pos(nullptr)
-	    , m_naviPos(nullptr)
-	    , m_beaconMtx(nullptr)
-	    , m_headMtx(nullptr)
-	    , m_height(0)
-	    , m_cursor(PID_Cursor_Default)
+	    : mPos(nullptr)
+	    , mNaviPos(nullptr)
+	    , mBeaconMtx(nullptr)
+	    , mHeadMtx(nullptr)
+	    , mHeight(0)
+	    , mCursor(PID_Cursor_Default)
 	{
 	}
 
@@ -55,16 +55,16 @@ struct TNaviEffect {
 	void createHamonB_(Vector3f*);
 	void setNaviType(enumNaviType);
 
-	inline void setFlag(u32 flag) { m_flags.typeView |= flag; }
+	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
 
-	inline void resetFlag(u32 flag) { m_flags.typeView &= ~flag; }
+	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
 
-	inline bool isFlag(u32 flag) { return m_flags.typeView & flag; }
+	inline bool isFlag(u32 flag) { return mFlags.typeView & flag; }
 
 	inline void createLight()
 	{
 		setFlag(NAVIFX_LightOn);
-		createLight_(m_beaconMtx->m_matrix.mtxView);
+		createLight_(mBeaconMtx->mMatrix.mtxView);
 	}
 
 	inline void killLight()
@@ -75,14 +75,14 @@ struct TNaviEffect {
 
 	inline void saveFlags()
 	{
-		m_savedFlags.typeView = m_flags.typeView;
-		m_flags.clear();
+		mSavedFlags.typeView = mFlags.typeView;
+		mFlags.clear();
 		setFlag(NAVIFX_IsSaved);
 	}
 
 	inline void restoreFlags()
 	{
-		m_flags.typeView = m_savedFlags.typeView;
+		mFlags.typeView = mSavedFlags.typeView;
 		resetFlag(NAVIFX_IsSaved);
 	}
 
@@ -92,25 +92,25 @@ struct TNaviEffect {
 		updateHamon_();
 
 		if (!isInWater) {
-			createSimpleDive(m_hamonPosition);
+			createSimpleDive(mHamonPosition);
 		}
 	}
 
-	BitFlag<u32> m_flags;      // _00
-	BitFlag<u32> m_savedFlags; // _04
-	Vector3f* m_pos;           // _08
-	Vector3f* m_naviPos;       // _0C
-	Matrixf* m_beaconMtx;      // _10
-	Matrixf* m_headMtx;        // _14
-	f32* m_height;             // _18
-	Vector3f m_hamonPosition;  // _1C
-	ToeHamonA m_hamonA;        // _28
-	ToeHamonB m_hamonB;        // _44
-	TFueact m_fueact;          // _60
-	TCursor m_cursor;          // _AC
-	TOrimaLight m_light;       // _33C
-	TOrimaLightAct m_lightAct; // _36C
-	TOrimadamage m_damage;     // _39C
+	BitFlag<u32> mFlags;      // _00
+	BitFlag<u32> mSavedFlags; // _04
+	Vector3f* mPos;           // _08
+	Vector3f* mNaviPos;       // _0C
+	Matrixf* mBeaconMtx;      // _10
+	Matrixf* mHeadMtx;        // _14
+	f32* mHeight;             // _18
+	Vector3f mHamonPosition;  // _1C
+	ToeHamonA mHamonA;        // _28
+	ToeHamonB mHamonB;        // _44
+	TFueact mFueact;          // _60
+	TCursor mCursor;          // _AC
+	TOrimaLight mLight;       // _33C
+	TOrimaLightAct mLightAct; // _36C
+	TOrimadamage mDamage;     // _39C
 };
 
 } // namespace efx

@@ -36,7 +36,7 @@ struct Creature : public ObjBase {
 	// _10     = VTBL 1
 	// _28     = VTBL 2
 	// _00-_2C = ObjBase
-	Game::Creature* m_gameObj; // _2C
+	Game::Creature* mGameObj; // _2C
 };
 } // namespace PSM
 

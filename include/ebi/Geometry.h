@@ -22,8 +22,8 @@ struct EGECircle2f {
 	bool in(Vector2f*);
 	bool out(Vector2f*);
 
-	Vector2f m_center; // _00
-	f32 m_radius;      // _08
+	Vector2f mCenter; // _00
+	f32 mRadius;      // _08
 };
 } // namespace ebi
 

@@ -27,9 +27,9 @@
  */
 void JSUMemoryInputStream::setBuffer(const void* buffer, long length)
 {
-	m_object   = buffer;
-	m_length   = length;
-	m_position = 0;
+	mObject   = buffer;
+	mLength   = length;
+	mPosition = 0;
 }
 
 /*
@@ -40,12 +40,12 @@ void JSUMemoryInputStream::setBuffer(const void* buffer, long length)
  */
 int JSUMemoryInputStream::readData(void* data, long length)
 {
-	if (m_position + length > m_length) {
-		length = m_length - m_position;
+	if (mPosition + length > mLength) {
+		length = mLength - mPosition;
 	}
 	if (length > 0) {
-		memcpy(data, (void*)((int)m_object + m_position), length);
-		m_position += length;
+		memcpy(data, (void*)((int)mObject + mPosition), length);
+		mPosition += length;
 	}
 	return length;
 }
@@ -58,27 +58,27 @@ int JSUMemoryInputStream::readData(void* data, long length)
  */
 int JSUMemoryInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
 {
-	u32 originalPosition = m_position;
+	u32 originalPosition = mPosition;
 	switch (mode) {
 	case SEEK_SET:
-		m_position = offset;
+		mPosition = offset;
 		break;
 	case SEEK_END:
-		m_position = m_length - offset;
+		mPosition = mLength - offset;
 		break;
 	case SEEK_CUR:
-		m_position += offset;
+		mPosition += offset;
 		break;
 	default:
 		break;
 	}
-	if (0 > m_position) {
-		m_position = 0;
+	if (0 > mPosition) {
+		mPosition = 0;
 	}
-	if (m_position > m_length) {
-		m_position = m_length;
+	if (mPosition > mLength) {
+		mPosition = mLength;
 	}
-	return m_position - originalPosition;
+	return mPosition - originalPosition;
 }
 
 /*
@@ -97,7 +97,7 @@ int JSUMemoryInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
  * Weak function. Found in JSUStream.h
  * Matches
  */
-// int JSUMemoryInputStream::getLength() const { return m_length; }
+// int JSUMemoryInputStream::getLength() const { return mLength; }
 
 /*
  * --INFO--
@@ -106,4 +106,4 @@ int JSUMemoryInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
  * Weak function. Found in JSUStream.h
  * Matches
  */
-// int JSUMemoryInputStream::getPosition() const { return m_position; }
+// int JSUMemoryInputStream::getPosition() const { return mPosition; }

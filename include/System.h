@@ -39,8 +39,8 @@ struct HeapInfo : public Node, public JKRDisposer {
 struct HeapStatus {
 	HeapStatus();
 
-	HeapInfo m_heapInfo; // _00
-	u8 _50;              // _50, unknown
+	HeapInfo mHeapInfo; // _00
+	u8 _50;             // _50, unknown
 };
 
 namespace Game {
@@ -60,8 +60,8 @@ struct System : public OSMutexObject {
 		FragmentationChecker(char*, bool);
 		~FragmentationChecker();
 
-		u32 m_size;   // _00
-		char* m_name; // _04
+		u32 mSize;   // _00
+		char* mName; // _04
 	};
 
 	// unused struct?
@@ -144,30 +144,30 @@ struct System : public OSMutexObject {
 	static GXVerifyArg sVerifyArg;
 
 	// _00-_18 = OSMutexObject
-	JKRHeap* m_backupHeap;                        // _18
-	u32 m_cpuRetraceCount;                        // _1C
-	u32 m_cpuLockCount;                           // _20
-	Graphics* m_gfx;                              // _24
-	SysTimers* m_timers;                          // _28
-	u32 _2C;                                      // _2C
-	u32 _30;                                      // _30
-	u32 _34;                                      // _34
-	JKRHeap* m_sysHeap;                           // _38
-	struct GameFlow* m_gameFlow;                  // _3C
-	struct DvdThread* m_dvdThread;                // _40
-	struct ResetManager* m_resetMgr;              // _44
-	struct DvdStatus* m_dvdStatus;                // _48
-	struct JFWDisplay* m_display;                 // _4C
-	HeapStatus* m_heapStatus;                     // _50
-	f32 m_deltaTime;                              // _54
-	struct JKRTask* m_task;                       // _58
-	struct MemoryCardMgr* m_cardMgr;              // _5C
-	struct Game::CommonSaveData::Mgr* m_playData; // _60
-	f32 m_fpsFactor;                              // _64
-	DvdThreadCommand m_threadCommand;             // _68
-	LanguageID m_region;                          // _D4
-	BitFlag<u32> m_flags;                         // _D8
-	struct JUTRomFont* m_romFont;                 // _DC
+	JKRHeap* mBackupHeap;                        // _18
+	u32 mCpuRetraceCount;                        // _1C
+	u32 mCpuLockCount;                           // _20
+	Graphics* mGfx;                              // _24
+	SysTimers* mTimers;                          // _28
+	u32 _2C;                                     // _2C
+	u32 _30;                                     // _30
+	u32 _34;                                     // _34
+	JKRHeap* mSysHeap;                           // _38
+	struct GameFlow* mGameFlow;                  // _3C
+	struct DvdThread* mDvdThread;                // _40
+	struct ResetManager* mResetMgr;              // _44
+	struct DvdStatus* mDvdStatus;                // _48
+	struct JFWDisplay* mDisplay;                 // _4C
+	HeapStatus* mHeapStatus;                     // _50
+	f32 mDeltaTime;                              // _54
+	struct JKRTask* mTask;                       // _58
+	struct MemoryCardMgr* mCardMgr;              // _5C
+	struct Game::CommonSaveData::Mgr* mPlayData; // _60
+	f32 mFpsFactor;                              // _64
+	DvdThreadCommand mThreadCommand;             // _68
+	LanguageID mRegion;                          // _D4
+	BitFlag<u32> mFlags;                         // _D8
+	struct JUTRomFont* mRomFont;                 // _DC
 };
 
 extern System* sys;

@@ -59,7 +59,7 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 	instParam->_10    = perc->_00;
 	instParam->_14    = perc->_04;
 	instParam->_18    = perc->_08;
-	instParam->_26    = perc->m_release;
+	instParam->_26    = perc->mRelease;
 	// static const float osc[6] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 	static JASOscillator::Data osc;
 	// osc                              = { 0, 1.0f, nullptr, nullptr, 1.0f, 0.0f };
@@ -70,13 +70,13 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 	osc._10                          = 1.0f;
 	osc._14                          = 0.0f;
 	static JASOscillator::Data* oscp = &osc;
-	instParam->m_oscData             = &oscp;
-	instParam->m_oscCount            = 1;
-	for (u32 i = 0; i < perc->m_effectCount; i++) {
-		JASInstEffect* effect = perc->m_effects[i];
+	instParam->mOscData              = &oscp;
+	instParam->mOscCount             = 1;
+	for (u32 i = 0; i < perc->mEffectCount; i++) {
+		JASInstEffect* effect = perc->mEffects[i];
 		if (effect) {
 			f32 y = effect->getY(percIndex, p2);
-			switch (effect->m_target) {
+			switch (effect->mTarget) {
 			case 0:
 				instParam->_10 *= y;
 				break;
@@ -95,7 +95,7 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 			}
 		}
 	}
-	for (u32 i = 0; i < perc->m_veloRegionCount; i++) {
+	for (u32 i = 0; i < perc->mVeloRegionCount; i++) {
 		const TVeloRegion* veloRegion = perc->getVeloRegion(i);
 		if (p2 <= veloRegion->_00) {
 			instParam->_10 *= veloRegion->_08;
@@ -113,7 +113,7 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
  * Size:	000014
  * getPerc__10JASDrumSetFi
  */
-JASDrumSet::TPerc* JASDrumSet::getPerc(int index) { return m_percs + index; }
+JASDrumSet::TPerc* JASDrumSet::getPerc(int index) { return mPercs + index; }
 
 /*
  * --INFO--
@@ -124,7 +124,7 @@ JASDrumSet::TPerc* JASDrumSet::getPerc(int index) { return m_percs + index; }
 // const JASDrumSet::TPerc* JASDrumSet::getPerc(int index) const
 // {
 // 	// UNUSED FUNCTION
-// 	return m_percs + index;
+// 	return mPercs + index;
 // }
 
 /*
@@ -137,11 +137,11 @@ JASDrumSet::TPerc::TPerc()
     : _00(1.0f)
     , _04(1.0f)
     , _08(0.5f)
-    , m_release(1000)
-    , m_effects(nullptr)
-    , m_effectCount(0)
-    , m_veloRegionCount(0)
-    , m_veloRegions(nullptr)
+    , mRelease(1000)
+    , mEffects(nullptr)
+    , mEffectCount(0)
+    , mVeloRegionCount(0)
+    , mVeloRegions(nullptr)
 {
 }
 
@@ -153,8 +153,8 @@ JASDrumSet::TPerc::TPerc()
  */
 JASDrumSet::TPerc::~TPerc()
 {
-	delete[] m_effects;
-	delete[] m_veloRegions;
+	delete[] mEffects;
+	delete[] mVeloRegions;
 }
 
 /*
@@ -164,13 +164,13 @@ JASDrumSet::TPerc::~TPerc()
  */
 void JASDrumSet::TPerc::setEffectCount(u32 count)
 {
-	delete[] m_effects;
-	m_effectCount = count;
+	delete[] mEffects;
+	mEffectCount = count;
 	if (count == 0) {
-		m_effects = nullptr;
+		mEffects = nullptr;
 	} else {
-		m_effects = new (JASBank::getCurrentHeap(), 0) JASInstEffect*[count];
-		JASCalc::bzero(m_effects, sizeof(JASInstEffect*) * count);
+		mEffects = new (JASBank::getCurrentHeap(), 0) JASInstEffect*[count];
+		JASCalc::bzero(mEffects, sizeof(JASInstEffect*) * count);
 	}
 }
 
@@ -181,9 +181,9 @@ void JASDrumSet::TPerc::setEffectCount(u32 count)
  */
 void JASDrumSet::TPerc::setVeloRegionCount(u32 count)
 {
-	delete[] m_veloRegions;
-	m_veloRegions     = new (JASBank::getCurrentHeap(), 0) TVeloRegion[count];
-	m_veloRegionCount = count;
+	delete[] mVeloRegions;
+	mVeloRegions     = new (JASBank::getCurrentHeap(), 0) TVeloRegion[count];
+	mVeloRegionCount = count;
 }
 
 /*
@@ -192,7 +192,7 @@ void JASDrumSet::TPerc::setVeloRegionCount(u32 count)
  * Size:	000010
  * getVeloRegion__Q210JASDrumSet5TPercFi
  */
-JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index) { return m_veloRegions + index; }
+JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index) { return mVeloRegions + index; }
 
 /*
  * --INFO--
@@ -203,7 +203,7 @@ JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index) { return m_vel
 // const JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index) const
 // {
 // 	// UNUSED FUNCTION
-// 	return m_veloRegions + index;
+// 	return mVeloRegions + index;
 // }
 
 /*
@@ -212,7 +212,7 @@ JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index) { return m_vel
  * Size:	000010
  * setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect
  */
-void JASDrumSet::TPerc::setEffect(int index, JASInstEffect* effect) { m_effects[index] = effect; }
+void JASDrumSet::TPerc::setEffect(int index, JASInstEffect* effect) { mEffects[index] = effect; }
 
 /*
  * --INFO--
@@ -223,7 +223,7 @@ void JASDrumSet::TPerc::setEffect(int index, JASInstEffect* effect) { m_effects[
 // JASInstEffect* JASDrumSet::TPerc::getEffect(int index)
 // {
 // 	// UNUSED FUNCTION
-// 	return m_effects[index];
+// 	return mEffects[index];
 // }
 
 /*
@@ -234,7 +234,7 @@ void JASDrumSet::TPerc::setEffect(int index, JASInstEffect* effect) { m_effects[
 void JASDrumSet::TPerc::setRelease(u32 release)
 {
 	// Generated from sth r4, 0xC(r3)
-	m_release = release;
+	mRelease = release;
 }
 
 /*

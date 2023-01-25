@@ -24,9 +24,9 @@ struct Mgr : public NodeItemMgr<ItemGate> {
 
 	// _00     = VTBL
 	// _00-_88 = NodeItemMgr
-	Platform* m_centrePlatform;          // _88
-	Platform* m_sidePlatform;            // _8C
-	Sys::MatTexAnimation m_matAnimation; // _90
+	Platform* mCentrePlatform;          // _88
+	Platform* mSidePlatform;            // _8C
+	Sys::MatTexAnimation mMatAnimation; // _90
 };
 
 extern Mgr* mgr;

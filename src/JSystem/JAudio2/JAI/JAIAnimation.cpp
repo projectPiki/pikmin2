@@ -85,7 +85,7 @@ JAIAnimeSound::JAIAnimeSound(Vec* p1, JKRHeap* heap, u8 p3)
     , _58(_4C ? 1 : 0)
     , _68(0)
     , _6C(0)
-    , m_soundData(nullptr)
+    , mSoundData(nullptr)
 {
 	_40 = new (heap, 0) u8[p3];
 	_44 = new (heap, 0) void*[p3];
@@ -367,11 +367,11 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, unsigned long, float,
 int JAIAnimeSound::checkLoopStartCount(float p1)
 {
 	u32 i = 0;
-	// if (m_soundData->_00 == 0) {
+	// if (mSoundData->_00 == 0) {
 	// 	return i;
 	// }
-	for (; i < m_soundData->_00; i++) {
-		if (p1 <= m_soundData->_0C[i]._00) {
+	for (; i < mSoundData->_00; i++) {
+		if (p1 <= mSoundData->_0C[i]._00) {
 			return i;
 		}
 	}

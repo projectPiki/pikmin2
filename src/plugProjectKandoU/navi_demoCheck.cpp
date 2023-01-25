@@ -181,16 +181,16 @@ namespace Game {
  */
 bool Navi::demoCheck()
 {
-	if (gameSystem->m_mode != GSM_STORY_MODE || cameraMgr->isChangePlayer()) {
+	if (gameSystem->mMode != GSM_STORY_MODE || cameraMgr->isChangePlayer()) {
 		return false;
 	}
 
-	if (moviePlayer && moviePlayer->m_demoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != 0) {
 		return false;
 	}
 
 	// inactive navi cant trigger cutscenes
-	if (!m_controller1) {
+	if (!mController1) {
 		return false;
 	}
 
@@ -208,26 +208,26 @@ bool Navi::demoCheck()
 		CI_LOOP(iter)
 		{
 			Pom::Obj* cPom = *iter;
-			int color      = cPom->m_pikiKind;
+			int color      = cPom->mPikiKind;
 			if ((color == Purple || color == White) && (color != Purple || purpleflag) && (color != White || whiteflag)) {
 				Sys::Sphere bounds;
 				cPom->getBoundingSphere(bounds);
-				bounds.m_radius += FindCandypopTriggerSize;
+				bounds.mRadius += FindCandypopTriggerSize;
 				if (checkDemoNaviAndPiki(bounds)) {
 					if (color == White) {
 						MoviePlayArg arg("g38_find_whitepom", nullptr, nullptr, 0);
-						arg.m_origin                = cPom->getPosition();
-						arg.m_angle                 = cPom->getFaceDir();
-						moviePlayer->m_targetObject = cPom;
+						arg.mOrigin                = cPom->getPosition();
+						arg.mAngle                 = cPom->getFaceDir();
+						moviePlayer->mTargetObject = cPom;
 						cPom->movie_begin(false);
 						moviePlayer->play(arg);
 						playData->setDemoFlag(DEMO_White_Candypop);
 						return true;
 					} else {
 						MoviePlayArg arg("g39_find_blackpom", nullptr, nullptr, 0);
-						arg.m_origin                = cPom->getPosition();
-						arg.m_angle                 = cPom->getFaceDir();
-						moviePlayer->m_targetObject = cPom;
+						arg.mOrigin                = cPom->getPosition();
+						arg.mAngle                 = cPom->getFaceDir();
+						moviePlayer->mTargetObject = cPom;
 						cPom->movie_begin(false);
 						moviePlayer->play(arg);
 						playData->setDemoFlag(DEMO_Purple_Candypop);
@@ -241,7 +241,7 @@ bool Navi::demoCheck()
 	if (ItemOnyon::mgr) {
 
 		// find red onion cutscene, only Louie can trigger it
-		if (!playData->isDemoFlag(DEMO_Louie_Finds_Red_Onion) && m_naviIndex == 1) {
+		if (!playData->isDemoFlag(DEMO_Louie_Finds_Red_Onion) && mNaviIndex == 1) {
 			Onyon* onyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
 			if (onyon) {
 				Vector3f onyonpos = onyon->getPosition();
@@ -249,10 +249,10 @@ bool Navi::demoCheck()
 				f32 dist          = onyonpos.distance(navipos);
 				if (dist < FindRedOnionTriggerSize) {
 					playData->setDemoFlag(DEMO_Louie_Finds_Red_Onion);
-					MoviePlayArg arg("x03_find_red_onyon", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
-					arg.m_origin                = onyonpos;
-					arg.m_angle                 = onyon->getFaceDir();
-					moviePlayer->m_targetObject = onyon;
+					MoviePlayArg arg("x03_find_red_onyon", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
+					arg.mOrigin                = onyonpos;
+					arg.mAngle                 = onyon->getFaceDir();
+					moviePlayer->mTargetObject = onyon;
 					moviePlayer->play(arg);
 				}
 			}
@@ -275,13 +275,13 @@ bool Navi::demoCheck()
 					CI_LOOP(pikiIter)
 					{
 						cPiki = *pikiIter;
-						if (cPiki->m_pikiColor == Yellow) {
+						if (cPiki->mPikiColor == Yellow) {
 							break;
 						}
 					}
-					arg.m_origin                = cPiki->getPosition();
-					arg.m_angle                 = cPiki->getFaceDir();
-					moviePlayer->m_targetObject = onyon;
+					arg.mOrigin                = cPiki->getPosition();
+					arg.mAngle                 = cPiki->getFaceDir();
+					moviePlayer->mTargetObject = onyon;
 					moviePlayer->play(arg);
 				}
 			}
@@ -300,7 +300,7 @@ bool Navi::demoCheck()
 					// make any wogpoles visible in the cutscene
 					GeneralMgrIterator<EnemyBase> enemyIter(generalEnemyMgr);
 					enemyIter.first();
-					while (enemyIter.m_container->getEnd() != enemyIter.m_index) {
+					while (enemyIter.mContainer->getEnd() != enemyIter.mIndex) {
 						EnemyBase* cEnemy;
 						cEnemy = enemyIter.getObject();
 						if (cEnemy->getEnemyTypeID() == EnemyTypeID::EnemyID_Tadpole) {
@@ -316,16 +316,16 @@ bool Navi::demoCheck()
 					CI_LOOP(pikiIter)
 					{
 						Piki* temp = *pikiIter;
-						if (temp->m_pikiColor == Blue) {
+						if (temp->mPikiColor == Blue) {
 							cPiki = temp;
 							cPiki->movie_begin(false);
 						}
 					}
-					arg.m_origin        = cPiki->getPosition();
-					arg.m_angle         = cPiki->getFaceDir();
-					arg.m_soundPosition = cPiki->getSound_PosPtr();
+					arg.mOrigin        = cPiki->getPosition();
+					arg.mAngle         = cPiki->getFaceDir();
+					arg.mSoundPosition = cPiki->getSound_PosPtr();
 
-					moviePlayer->m_targetObject = cPiki;
+					moviePlayer->mTargetObject = cPiki;
 					moviePlayer->play(arg);
 				}
 			}
@@ -342,11 +342,11 @@ bool Navi::demoCheck()
 				Sys::Sphere bound(peltPos, pelt->getBottomRadius() + FindFirstTreasureTriggerSize);
 				if (checkDemoNaviAndPiki(bound)) {
 					MoviePlayArg arg("g04_find_treasure", nullptr, nullptr, 0);
-					arg.m_origin = pelt->getPosition();
+					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
-					pelt->m_objMatrix.getBasis(2, test);
-					arg.m_angle                 = JMath::atanTable_.atan2_(test.x, test.z);
-					moviePlayer->m_targetObject = pelt;
+					pelt->mObjMatrix.getBasis(2, test);
+					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
+					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);
 					playData->setDemoFlag(DEMO_Discover_Treasure);
 					return true;
@@ -378,11 +378,11 @@ bool Navi::demoCheck()
 					char path[256];
 					sprintf(path, "s16_find_item_%02d", id);
 					MoviePlayArg arg(path, nullptr, nullptr, 0);
-					arg.m_origin = pelt->getPosition();
+					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
-					pelt->m_objMatrix.getBasis(2, test);
-					arg.m_angle                 = JMath::atanTable_.atan2_(test.x, test.z);
-					moviePlayer->m_targetObject = pelt;
+					pelt->mObjMatrix.getBasis(2, test);
+					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
+					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);
 					playData->setFindItemDemoFlag(id);
 					return true;
@@ -397,16 +397,16 @@ bool Navi::demoCheck()
 		{
 			Pellet* pelt = *otaIt;
 			// check pellet is louie and isnt still attached to TD
-			if (pelt->m_pelletFlag == Pellet::FLAG_LOOZY && !pelt->m_captureMatrix && !pelt->discoverDisabled()) {
+			if (pelt->mPelletFlag == Pellet::FLAG_LOOZY && !pelt->mCaptureMatrix && !pelt->discoverDisabled()) {
 				Vector3f peltPos = pelt->getPosition();
 				Sys::Sphere bound(peltPos, pelt->getBottomRadius() + FindLouieTreasureTriggerSize);
 				if (checkDemoNaviAndPiki(bound)) {
 					MoviePlayArg arg("g37_get_louie", nullptr, nullptr, 0);
-					arg.m_origin = pelt->getPosition();
+					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
-					pelt->m_objMatrix.getBasis(2, test);
-					arg.m_angle                 = JMath::atanTable_.atan2_(test.x, test.z);
-					moviePlayer->m_targetObject = pelt;
+					pelt->mObjMatrix.getBasis(2, test);
+					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
+					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);
 					playData->setDemoFlag(DEMO_Find_Loozy_Treasure);
 					return true;
@@ -416,18 +416,18 @@ bool Navi::demoCheck()
 	}
 
 	// Play cutscene of finding a new cave entrance
-	if (ItemCave::mgr && gameSystem->m_section->getCurrentCourseInfo() != nullptr) {
-		int id = gameSystem->m_section->getCurrentCourseInfo()->m_courseIndex;
+	if (ItemCave::mgr && gameSystem->mSection->getCurrentCourseInfo() != nullptr) {
+		int id = gameSystem->mSection->getCurrentCourseInfo()->mCourseIndex;
 		// search for an unfound cave near the captain/pikmin
 		Iterator<BaseItem> caveIt(ItemCave::mgr);
 		ItemCave::Item* cCave;
 		CI_LOOP(caveIt)
 		{
 			cCave = static_cast<ItemCave::Item*>(*caveIt);
-			if (playData->isCaveFirstTime(id, cCave->m_caveID)) {
+			if (playData->isCaveFirstTime(id, cCave->mCaveID)) {
 				Sys::Sphere bound;
 				cCave->getBoundingSphere(bound);
-				bound.m_radius += FindNewCaveTriggerSize;
+				bound.mRadius += FindNewCaveTriggerSize;
 				if (checkDemoNaviAndPiki(bound))
 					break;
 			}
@@ -435,19 +435,19 @@ bool Navi::demoCheck()
 
 		if (cCave && moviePlayer) {
 			char path[256];
-			sprintf(path, "g05_find_cave_%s", cCave->m_caveID);
+			sprintf(path, "g05_find_cave_%s", cCave->mCaveID);
 			// mark the cave as visited in the pause map screen
-			FOREACH_NODE(Radar::Point, Radar::mgr->m_pointNode1.m_child, cPoint)
+			FOREACH_NODE(Radar::Point, Radar::mgr->mPointNode1.mChild, cPoint)
 			{
-				if (cPoint->m_objType == Radar::MAP_UNENTERED_CAVE && cPoint->m_caveID == cCave->m_caveID.getID()) {
-					cPoint->m_objType == Radar::MAP_INCOMPLETE_CAVE;
+				if (cPoint->mObjType == Radar::MAP_UNENTERED_CAVE && cPoint->mCaveID == cCave->mCaveID.getID()) {
+					cPoint->mObjType == Radar::MAP_INCOMPLETE_CAVE;
 				}
 			}
 			MoviePlayArg arg(path, nullptr, nullptr, 0);
-			playData->setCaveVisit(id, cCave->m_caveID);
-			arg.m_origin                = cCave->getPosition();
-			arg.m_angle                 = cCave->getFaceDir();
-			moviePlayer->m_targetObject = cCave;
+			playData->setCaveVisit(id, cCave->mCaveID);
+			arg.mOrigin                = cCave->getPosition();
+			arg.mAngle                 = cCave->getFaceDir();
+			moviePlayer->mTargetObject = cCave;
 			moviePlayer->play(arg);
 			return true;
 		}
@@ -463,7 +463,7 @@ bool Navi::demoCheck()
 			ItemHole::Item* temp = static_cast<ItemHole::Item*>(*holeIt);
 			Sys::Sphere bounds;
 			cHole->getBoundingSphere(bounds);
-			Vector3f naviPos = cHole->m_position - m_position3;
+			Vector3f naviPos = cHole->mPosition - mPosition3;
 			f32 len          = naviPos.length();
 			if (len < checkrad) {
 				cHole = temp;
@@ -473,9 +473,9 @@ bool Navi::demoCheck()
 
 		if (cHole && moviePlayer) {
 			MoviePlayArg arg("g0A_cv_find_hole", nullptr, nullptr, 0);
-			arg.m_origin                = cHole->getPosition();
-			arg.m_angle                 = cHole->getFaceDir();
-			moviePlayer->m_targetObject = cHole;
+			arg.mOrigin                = cHole->getPosition();
+			arg.mAngle                 = cHole->getFaceDir();
+			moviePlayer->mTargetObject = cHole;
 			moviePlayer->play(arg);
 			playData->setDemoFlag(DEMO_Find_Cave_Deeper_Hole);
 			return true;
@@ -491,16 +491,16 @@ bool Navi::demoCheck()
 			cFountain = static_cast<ItemBigFountain::Item*>(*fountainIt);
 			Sys::Sphere bounds;
 			cFountain->getBoundingSphere(bounds);
-			bounds.m_radius += checkrad;
+			bounds.mRadius += checkrad;
 			if (checkDemoNaviAndPiki(bounds))
 				break;
 		}
 
 		if (cFountain && moviePlayer) {
 			MoviePlayArg arg("g0B_cv_find_fountain", nullptr, nullptr, 0);
-			arg.m_origin                = cFountain->getPosition();
-			arg.m_angle                 = cFountain->getFaceDir();
-			moviePlayer->m_targetObject = cFountain;
+			arg.mOrigin                = cFountain->getPosition();
+			arg.mAngle                 = cFountain->getFaceDir();
+			moviePlayer->mTargetObject = cFountain;
 			moviePlayer->play(arg);
 			playData->setDemoFlag(DEMO_Find_Cave_Geyser);
 			return true;
@@ -516,16 +516,16 @@ bool Navi::demoCheck()
 			cRock = static_cast<ItemRock::Item*>(*rockIt);
 			Sys::Sphere bounds;
 			cRock->getBoundingSphere(bounds);
-			bounds.m_radius += checkrad;
+			bounds.mRadius += checkrad;
 			if (checkDemoNaviAndPiki(bounds))
 				break;
 		}
 
 		if (cRock && moviePlayer) {
 			MoviePlayArg arg("g19_find_rock", nullptr, nullptr, 0);
-			arg.m_origin                = cRock->getPosition();
-			arg.m_angle                 = cRock->getFaceDir();
-			moviePlayer->m_targetObject = cRock;
+			arg.mOrigin                = cRock->getPosition();
+			arg.mAngle                 = cRock->getFaceDir();
+			moviePlayer->mTargetObject = cRock;
 			moviePlayer->play(arg);
 			playData->setDemoFlag(DEMO_Find_Spiderwort_Mold);
 			return true;
@@ -540,10 +540,10 @@ bool Navi::demoCheck()
 		CI_LOOP(honeyIt)
 		{
 			ItemHoney::Item* temp = *honeyIt;
-			if (temp->demoOK() && temp->m_honeyType == 1 && temp->isAlive()) {
+			if (temp->demoOK() && temp->mHoneyType == 1 && temp->isAlive()) {
 				Sys::Sphere bounds;
 				cHoney->getBoundingSphere(bounds);
-				Vector3f naviPos = cHoney->m_position - m_position3;
+				Vector3f naviPos = cHoney->mPosition - mPosition3;
 				f32 len          = naviPos.length();
 				if (len < checkrad) {
 					cHoney = temp;
@@ -554,9 +554,9 @@ bool Navi::demoCheck()
 
 		if (cHoney && moviePlayer) {
 			MoviePlayArg arg("g2D_red_extract", nullptr, nullptr, 0);
-			arg.m_origin                = cHoney->getPosition();
-			arg.m_angle                 = cHoney->getFaceDir();
-			moviePlayer->m_targetObject = cHoney;
+			arg.mOrigin                = cHoney->getPosition();
+			arg.mAngle                 = cHoney->getFaceDir();
+			moviePlayer->mTargetObject = cHoney;
 			moviePlayer->play(arg);
 			playData->setDemoFlag(DEMO_Find_Spicy_Drop);
 			return true;
@@ -570,10 +570,10 @@ bool Navi::demoCheck()
 		f32 checkrad = FindBitterSprayTriggerSize;
 		for (honeyIt.first(); !honeyIt.isDone(); honeyIt.next()) {
 			ItemHoney::Item* temp = *honeyIt;
-			if (temp->demoOK() && temp->m_honeyType == 2 && temp->isAlive()) {
+			if (temp->demoOK() && temp->mHoneyType == 2 && temp->isAlive()) {
 				Sys::Sphere bounds;
 				cHoney->getBoundingSphere(bounds);
-				Vector3f naviPos = cHoney->m_position - m_position3;
+				Vector3f naviPos = cHoney->mPosition - mPosition3;
 				f32 len          = naviPos.length();
 				if (len < checkrad) {
 					cHoney = temp;
@@ -584,9 +584,9 @@ bool Navi::demoCheck()
 
 		if (cHoney && moviePlayer) {
 			MoviePlayArg arg("g2E_black_extract", nullptr, nullptr, 0);
-			arg.m_origin                = cHoney->getPosition();
-			arg.m_angle                 = cHoney->getFaceDir();
-			moviePlayer->m_targetObject = cHoney;
+			arg.mOrigin                = cHoney->getPosition();
+			arg.mAngle                 = cHoney->getFaceDir();
+			moviePlayer->mTargetObject = cHoney;
 			moviePlayer->play(arg);
 			playData->setDemoFlag(DEMO_Find_Bitter_Drop);
 			return true;
@@ -2550,21 +2550,21 @@ namespace Game {
  */
 FakePiki* Navi::checkDemoNaviAndPiki(Sys::Sphere& bounds)
 {
-	if (!(gameSystem->m_flags & GAMESYS_Unk6)) {
+	if (!(gameSystem->mFlags & GAMESYS_Unk6)) {
 		return nullptr;
 	}
 
 	CellIteratorArg arg;
-	arg.m_sphere = bounds;
-	arg._14      = 1;
+	arg.mSphere = bounds;
+	arg._14     = 1;
 	CellIterator cell(arg);
 	CI_LOOP(cell)
 	{
 		FakePiki* obj = static_cast<FakePiki*>(*cell);
 		if ((obj->isNavi() || obj->isPiki()) && obj->isAlive() && (!obj->isPiki() || obj->isPikmin())) {
 			Vector3f pos = obj->getPosition();
-			f32 dist     = _distanceBetween2(pos, bounds.m_position);
-			if (dist <= bounds.m_radius) {
+			f32 dist     = _distanceBetween2(pos, bounds.mPosition);
+			if (dist <= bounds.mRadius) {
 				return obj;
 			}
 		}

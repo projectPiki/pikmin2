@@ -39,16 +39,16 @@ struct StateMachine : public Game::StateMachine<DrawInfo> {
 struct ObjInfo {
 	ObjInfo();
 
-	char* m_name;          // _00
-	int m_size;            // _04
-	Matrixf m_modelMatrix; // _08
+	char* mName;          // _00
+	int mSize;            // _04
+	Matrixf mModelMatrix; // _08
 };
 
 struct Info {
 	void setup(Stream& stream);
 
-	u8 m_length;        // _00
-	ObjInfo* m_objList; // _04
+	u8 mLength;        // _00
+	ObjInfo* mObjList; // _04
 };
 
 struct DrawInfo : public CNode {
@@ -69,12 +69,12 @@ struct DrawInfo : public CNode {
 
 	static EnemyBase* sOwnerEnemy;
 
-	StateMachine m_fsm;       // _18
-	FSMState* m_currentState; // _34
-	f32 _38;                  // _38
-	f32 _3C;                  // _3C
-	ObjInfo* m_objInfo;       // _40
-	Matrixf* m_matrix;        // _44
+	StateMachine mFsm;       // _18
+	FSMState* mCurrentState; // _34
+	f32 _38;                 // _38
+	f32 _3C;                 // _3C
+	ObjInfo* mObjInfo;       // _40
+	Matrixf* mMatrix;        // _44
 };
 
 struct Obj : public CNode {
@@ -93,28 +93,28 @@ struct Obj : public CNode {
 	void fitDrawInfo();
 	void disappearDrawInfo();
 
-	inline void resetFlags() { m_flags = 0; }
+	inline void resetFlags() { mFlags = 0; }
 
-	inline void setFlag(u32 flag) { m_flags |= flag; }
+	inline void setFlag(u32 flag) { mFlags |= flag; }
 
-	inline void resetFlag(u32 flag) { m_flags &= ~flag; }
+	inline void resetFlag(u32 flag) { mFlags &= ~flag; }
 
-	inline bool isFlag(u32 flag) { return m_flags & flag; }
+	inline bool isFlag(u32 flag) { return mFlags & flag; }
 
-	inline ObjInfo* getObjInfo(int i) { return &m_info->m_objList[i]; }
+	inline ObjInfo* getObjInfo(int i) { return &mInfo->mObjList[i]; }
 
-	inline u8 getInfoCount() { return m_info->m_length; }
+	inline u8 getInfoCount() { return mInfo->mLength; }
 
-	inline DrawInfo* getDrawInfo(int i) { return static_cast<DrawInfo*>(m_nodeArray[i].m_child); }
+	inline DrawInfo* getDrawInfo(int i) { return static_cast<DrawInfo*>(mNodeArray[i].mChild); }
 
-	inline Obj* getChild() { return static_cast<Obj*>(m_child); }
+	inline Obj* getChild() { return static_cast<Obj*>(mChild); }
 
 	// _00		= VTABLE
 	// _04-_18	= CNode
-	Info* m_info;         // _18
-	CNode m_nodeArray[2]; // _1C
-	EnemyBase* m_enemy;   // _4C
-	u8 m_flags;           // _50
+	Info* mInfo;         // _18
+	CNode mNodeArray[2]; // _1C
+	EnemyBase* mEnemy;   // _4C
+	u8 mFlags;           // _50
 };
 
 /**
@@ -133,12 +133,12 @@ struct Mgr {
 	// void addDrawInfo(DrawInfo*);
 	// ~Mgr();
 
-	inline DrawInfo* getChildDrawInfo() { return static_cast<DrawInfo*>(m_drawInfo.m_child); }
+	inline DrawInfo* getChildDrawInfo() { return static_cast<DrawInfo*>(mDrawInfo.mChild); }
 
-	J3DModelData** m_modelData; // _00 - could be an array of pointers
-	BitFlag<u32> m_flags;       // _04
-	CNode m_drawInfo;           // _08 - treat as DrawInfo
-	CNode m_obj;                // _20 - treat as Obj
+	J3DModelData** mModelData; // _00 - could be an array of pointers
+	BitFlag<u32> mFlags;       // _04
+	CNode mDrawInfo;           // _08 - treat as DrawInfo
+	CNode mObj;                // _20 - treat as Obj
 };
 
 /////////////////////////////////////////////////////////////////
@@ -166,7 +166,7 @@ struct FSMState : public Game::FSMState<DrawInfo> {
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	Matrixf* m_matrix; // _0C, probably?
+	Matrixf* mMatrix; // _0C, probably?
 };
 
 struct FSMStateBreakable : public FSMState {

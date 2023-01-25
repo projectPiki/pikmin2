@@ -15,10 +15,10 @@ struct J3DUMtxAnmCacheTable : public J3DUMtxAnmCacheTableBase {
 	J3DUMtxAnmCacheTable(J3DModel* model, J3DAnmTransform* transform);
 
 	// some of this may be in J3DUMtxAnmCacheTableBase and inherited
-	int _00;          // _00, unknown
-	int m_jointCount; // _04
-	int m_time;       // _08
-	Mtx* m_matrices;  // _0C, array of Mtxs
+	int _00;         // _00, unknown
+	int mJointCount; // _04
+	int mTime;       // _08
+	Mtx* mMatrices;  // _0C, array of Mtxs
 };
 
 struct J3DUMtxCacheBase {
@@ -30,37 +30,36 @@ struct J3DUMtxCacheBase {
 
 template <typename T>
 struct J3DUMtxCacheRef : public J3DUMtxCacheBase {
-	inline J3DUMtxCacheRef(J3DUMtxAnmCacheTable* table) { m_cache = table; }
+	inline J3DUMtxCacheRef(J3DUMtxAnmCacheTable* table) { mCache = table; }
 
 	virtual ~J3DUMtxCacheRef() // _08 (weak)
 	{
-		if (m_cache) {
-			delete m_cache;
+		if (mCache) {
+			delete mCache;
 		}
 	}
 	virtual void fetch(J3DModel* model) const // _0C (weak)
 	{
-		J3DModelData* modelData = model->m_modelData;
-		int jointCount          = modelData->m_jointTree.m_jointCnt;
+		J3DModelData* modelData = model->mModelData;
+		int jointCount          = modelData->mJointTree.mJointCnt;
 
 		if (IS_FLAG(model->_08.typeView, 2)) {
 			J3DUMtxAnmCacheTable* table = getTable();
 			for (int i = 0; i < jointCount; i++) {
-				PSMTXCopy(table->m_matrices[i + table->_00 * table->m_jointCount], model->m_mtxBuffer->m_worldMatrices[i]);
+				PSMTXCopy(table->mMatrices[i + table->_00 * table->mJointCount], model->mMtxBuffer->mWorldMatrices[i]);
 			}
 		} else {
 			J3DUMtxAnmCacheTable* table = getTable();
 			for (int i = 0; i < jointCount; i++) {
-				PSMTXConcat(model->m_posMtx, table->m_matrices[i + table->_00 * table->m_jointCount],
-				            model->m_mtxBuffer->m_worldMatrices[i]);
+				PSMTXConcat(model->mPosMtx, table->mMatrices[i + table->_00 * table->mJointCount], model->mMtxBuffer->mWorldMatrices[i]);
 			}
 		}
 	}
 
-	inline J3DUMtxAnmCacheTable* getTable() const { return m_cache; }
+	inline J3DUMtxAnmCacheTable* getTable() const { return mCache; }
 
 	// _00 = VTBL
-	J3DUMtxAnmCacheTable* m_cache; // _04
+	J3DUMtxAnmCacheTable* mCache; // _04
 };
 
 #endif

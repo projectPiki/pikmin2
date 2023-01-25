@@ -21,10 +21,10 @@ SMenuMap::SMenuMap() { }
  */
 void SMenuMap::doUserCallBackFunc(Resource::MgrCommand* command)
 {
-	Screen::DispMemberSMenuAll* dispMember = static_cast<Screen::DispMemberSMenuAll*>(m_dispMember);
+	Screen::DispMemberSMenuAll* dispMember = static_cast<Screen::DispMemberSMenuAll*>(mDispMember);
 	int courseIndex                        = 0;
 	if (dispMember->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
-		courseIndex = dispMember->m_sMenuMap.m_courseIndex;
+		courseIndex = dispMember->mSMenuMap.mCourseIndex;
 	} else {
 		JUT_PANICLINE(70, "DispMember ERR! (%s)\n", 0);
 	}
@@ -49,11 +49,11 @@ void SMenuMap::doUserCallBackFunc(Resource::MgrCommand* command)
 		break;
 	}
 
-	sprintf(m_name, "%s", filePath);
-	LoadResource::Arg loadArg(m_name);
+	sprintf(mName, "%s", filePath);
+	LoadResource::Arg loadArg(mName);
 	LoadResource::Node* resourceNode = gLoadResourceMgr->mountArchive(loadArg);
 	if (resourceNode) {
-		if (!resourceNode->m_archive) {
+		if (!resourceNode->mArchive) {
 			JUT_PANICLINE(97, "arc is NULL!!\n");
 		}
 	} else {

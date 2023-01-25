@@ -28,7 +28,7 @@ struct TagParameters : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	TagParm* m_head; // _18
+	TagParm* mHead; // _18
 };
 
 struct TagParm {
@@ -61,8 +61,8 @@ struct TagParm {
 	void dump();
 
 	// _00 VTBL
-	char* m_name;    // _04
-	TagParm* m_next; // _08
+	char* mName;    // _04
+	TagParm* mNext; // _08
 };
 
 struct StringTagParm : public TagParm {
@@ -73,7 +73,7 @@ struct StringTagParm : public TagParm {
 	virtual void flushValue();     // _08
 	virtual void doDump();         // _0C
 
-	char* m_data; // _0C
+	char* mData; // _0C
 };
 
 template <typename T>
@@ -87,7 +87,7 @@ struct PrimTagParm : public TagParm {
 	virtual void doRead(Stream&);  // _04
 	virtual void doDump();         // _0C
 
-	T m_data; // _0C
+	T mData; // _0C
 };
 
 #endif

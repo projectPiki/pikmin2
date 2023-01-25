@@ -32,7 +32,7 @@ struct Mgr {
 	static Mgr* mInstance;
 
 	// _00 = VTBL
-	PelletConfigList* m_configList; // _04
+	PelletConfigList* mConfigList; // _04
 };
 } // namespace PelletList
 } // namespace Game

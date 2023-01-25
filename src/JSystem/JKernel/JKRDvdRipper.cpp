@@ -175,7 +175,7 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* file, unsigned char* p2, JKRExpand
 	// if (expSwitch == Switch_1) {
 	// 	SZPHeader buffer;
 	// 	while (true) {
-	// 		int v1 = DVDReadPrio(&file->m_dvdPlayer, &buffer, sizeof(buffer), 0, 2);
+	// 		int v1 = DVDReadPrio(&file->mDvdPlayer, &buffer, sizeof(buffer), 0, 2);
 	// 		if (v1 >= 0) {
 	// 			break;
 	// 		}
@@ -1016,7 +1016,7 @@ u8* firstSrcData()
 	// 	byteCount = transLeft;
 	// }
 	while (true) {
-		int result = DVDReadPrio(&srcFile->m_dvdPlayer, szpBuf, byteCount, srcOffset, 2);
+		int result = DVDReadPrio(&srcFile->mDvdPlayer, szpBuf, byteCount, srcOffset, 2);
 		if (0 <= result) {
 			break;
 		}
@@ -1118,7 +1118,7 @@ u8* nextSrcData(unsigned char* p1)
 	// 	byteCount = transLeft;
 	// }
 	while (true) {
-		int result = DVDReadPrio(&srcFile->m_dvdPlayer, memptr, byteCount, srcOffset, 2);
+		int result = DVDReadPrio(&srcFile->mDvdPlayer, memptr, byteCount, srcOffset, 2);
 		if (0 <= result) {
 			break;
 		}

@@ -26,9 +26,9 @@ struct DvdStatus {
 	bool isErrorOccured();
 	bool update();
 
-	int _00;           // _00
-	JUTFader* m_fader; // _04
-	int _08;           // _08
+	int _00;          // _00
+	JUTFader* mFader; // _04
+	int _08;          // _08
 };
 
 #endif

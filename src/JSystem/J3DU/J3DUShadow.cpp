@@ -12,8 +12,8 @@
 inline J3DUMultiTexture::J3DUMultiTexture(u32 count, u8)
 {
 	// UNUSED FUNCTION
-	m_count    = count;
-	m_textures = new JUTTexture[m_count];
+	mCount    = count;
+	mTextures = new JUTTexture[mCount];
 }
 
 // /*
@@ -23,7 +23,7 @@ inline J3DUMultiTexture::J3DUMultiTexture(u32 count, u8)
 //  */
 // JUTTexture::JUTTexture()
 // {
-// 	m_flags &= 2;
+// 	mFlags &= 2;
 // 	_28 = 0;
 // 	_20 = 0;
 // }
@@ -116,7 +116,7 @@ void J3DUShadowManager::getFormatCoefficient(_GXTexFmt) const
  * Size:	00021C
  */
 J3DUShadowManager::J3DUShadowManager(u32 p1, _GXTexFmt p2, u8 p3, bool p4)
-    : m_multiTexture(p1, p3)
+    : mMultiTexture(p1, p3)
 {
 	// UNUSED FUNCTION
 }

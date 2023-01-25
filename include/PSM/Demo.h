@@ -22,9 +22,9 @@ struct DemoInitiator {
 };
 
 struct DemoArg {
-	char* m_pelletName; // _00
-	char* m_name;       // _04
-	u32 m_bgmID;        // _08
+	char* mPelletName; // _00
+	char* mName;       // _04
+	u32 mBgmID;        // _08
 };
 
 struct Demo : public JKRDisposer {
@@ -44,14 +44,14 @@ struct Demo : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	s8 _18;                  // _18
-	u8 m_doStartWithAudio;   // _19, from PikDecomp
-	u8 _1A;                  // _1A, unknown/possibly padding
-	u8 _1B;                  // _1B, unknown/possibly padding
-	SoundID m_soundID;       // _1C, from PikDecomp
-	SoundID m_systemSE;      // _20, from PikDecomp
-	void* (*m_funcptr)();    // _24
-	char* m_currentDemoName; // _28
+	s8 _18;                 // _18
+	u8 mDoStartWithAudio;   // _19, from PikDecomp
+	u8 _1A;                 // _1A, unknown/possibly padding
+	u8 _1B;                 // _1B, unknown/possibly padding
+	SoundID mSoundID;       // _1C, from PikDecomp
+	SoundID mSystemSE;      // _20, from PikDecomp
+	void* (*mFuncptr)();    // _24
+	char* mCurrentDemoName; // _28
 };
 } // namespace PSM
 

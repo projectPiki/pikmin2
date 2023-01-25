@@ -19,11 +19,11 @@
  * Size:	000068
  */
 JKRDisposer::JKRDisposer()
-    : m_link(this)
+    : mLink(this)
 {
-	m_heap = JKRHeap::findFromRoot(this);
-	if (m_heap) {
-		m_heap->m_disposerList.append(&m_link);
+	mHeap = JKRHeap::findFromRoot(this);
+	if (mHeap) {
+		mHeap->mDisposerList.append(&mLink);
 	}
 }
 
@@ -34,7 +34,7 @@ JKRDisposer::JKRDisposer()
  */
 JKRDisposer::~JKRDisposer()
 {
-	if (m_heap) {
-		m_heap->m_disposerList.remove(&m_link);
+	if (mHeap) {
+		mHeap->mDisposerList.remove(&mLink);
 	}
 }

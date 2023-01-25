@@ -13,7 +13,7 @@ static const char hibaMgrName[] = "246-HibaMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	m_name = "ヒバマネージャ"; // hiba manager
+	mName = "ヒバマネージャ"; // hiba manager
 }
 
 /*
@@ -28,14 +28,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	8026BBA8
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	8026BCC4
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 } // namespace Hiba
 } // namespace Game

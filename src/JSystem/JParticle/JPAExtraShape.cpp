@@ -40,7 +40,7 @@
  */
 void JPACalcScaleX(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	JPAExtraShape* shape = workData->m_resource->_20;
+	JPAExtraShape* shape = workData->mResource->_20;
 	if (workData->_1FC < shape->castData()->_0C) {
 		particle->_60 = particle->_68 * (workData->_1FC * shape->_0C + shape->castData()->_14);
 		return;
@@ -59,7 +59,7 @@ void JPACalcScaleX(JPAEmitterWorkData* workData, JPABaseParticle* particle)
  */
 void JPACalcScaleY(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	JPAExtraShape* shape = workData->m_resource->_20;
+	JPAExtraShape* shape = workData->mResource->_20;
 	if (workData->_1FC < shape->castData()->_0C) {
 		particle->_64 = particle->_68 * (workData->_1FC * shape->_10 + shape->castData()->_1C);
 		return;
@@ -92,7 +92,7 @@ void JPACalcScaleAnmNormal(JPAEmitterWorkData* workData, JPABaseParticle* partic
  */
 void JPACalcScaleAnmRepeatX(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	s32 v1         = workData->m_resource->_20->castData()->_28;
+	s32 v1         = workData->mResource->_20->castData()->_28;
 	workData->_1FC = (float)(particle->_80 - (particle->_80 / v1) * v1) / (float)v1;
 	/*
 	stwu     r1, -0x20(r1)
@@ -130,7 +130,7 @@ void JPACalcScaleAnmRepeatX(JPAEmitterWorkData* workData, JPABaseParticle* parti
  */
 void JPACalcScaleAnmRepeatY(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	s32 v1         = workData->m_resource->_20->castData()->_2A;
+	s32 v1         = workData->mResource->_20->castData()->_2A;
 	s32 v2         = particle->_80 / v1;
 	workData->_1FC = (float)(particle->_80 - v2 * v1) / (float)v1;
 	/*
@@ -169,7 +169,7 @@ void JPACalcScaleAnmRepeatY(JPAEmitterWorkData* workData, JPABaseParticle* parti
  */
 void JPACalcScaleAnmReverseX(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	s32 v1         = workData->m_resource->_20->castData()->_28;
+	s32 v1         = workData->mResource->_20->castData()->_28;
 	s32 v2         = particle->_80 / v1;
 	float v3       = (float)(particle->_80 - v2 * v1) / (float)v1;
 	workData->_1FC = (float)(v2 & 1) * -(v3 * 2.0f - 1.0f) + v3;
@@ -182,7 +182,7 @@ void JPACalcScaleAnmReverseX(JPAEmitterWorkData* workData, JPABaseParticle* part
  */
 void JPACalcScaleAnmReverseY(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	s32 v1         = workData->m_resource->_20->castData()->_2A;
+	s32 v1         = workData->mResource->_20->castData()->_2A;
 	s32 v2         = particle->_80 / v1;
 	float v3       = (float)(particle->_80 - v2 * v1) / (float)v1;
 	workData->_1FC = (float)(v2 & 1) * -(v3 * 2.0f - 1.0f) + v3;
@@ -196,7 +196,7 @@ void JPACalcScaleAnmReverseY(JPAEmitterWorkData* workData, JPABaseParticle* part
 void JPACalcAlphaAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	float v1             = particle->_84;
-	JPAExtraShape* shape = workData->m_resource->_20;
+	JPAExtraShape* shape = workData->mResource->_20;
 	if (v1 < shape->castData()->_2C) {
 		v1 = (v1 * shape->_04 + shape->castData()->_34) * 255.0f;
 	} else {
@@ -257,7 +257,7 @@ lbl_80091374:
 void JPACalcAlphaFlickAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	float v1             = particle->_84;
-	JPAExtraShape* shape = workData->m_resource->_20;
+	JPAExtraShape* shape = workData->mResource->_20;
 	if (v1 < shape->castData()->_2C) {
 		v1 = (v1 * shape->_04 + shape->castData()->_34);
 	} else {
@@ -350,7 +350,7 @@ lbl_800913DC:
  */
 JPAExtraShape::JPAExtraShape(const unsigned char* data)
 {
-	m_data = data;
+	mData = data;
 	init();
 }
 

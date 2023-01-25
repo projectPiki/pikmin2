@@ -293,7 +293,7 @@ void TitleMessageAnalyzer::do_character(int data)
 	short cChar;
 	bool valid = false;
 	if (data == 0) {
-		m_charBuffer[m_currCharIndex] = 0;
+		mCharBuffer[mCurrCharIndex] = 0;
 	} else if ((short)data != 0) {
 		valid = true;
 		cChar = data;
@@ -320,18 +320,18 @@ void TitleMessageAnalyzer::do_character(int data)
 	}
 
 	if (valid) {
-		m_charBuffer[m_currCharIndex] = cChar;
-		m_currCharIndex++;
-		if (m_currCharIndex >= 254) {
-			m_currCharIndex = 254;
+		mCharBuffer[mCurrCharIndex] = cChar;
+		mCurrCharIndex++;
+		if (mCurrCharIndex >= 254) {
+			mCurrCharIndex = 254;
 		}
 
-		m_charBuffer[m_currCharIndex] = cChar;
-		m_currCharIndex++;
-		if (m_currCharIndex >= 254) {
-			m_currCharIndex = 254;
+		mCharBuffer[mCurrCharIndex] = cChar;
+		mCurrCharIndex++;
+		if (mCurrCharIndex >= 254) {
+			mCurrCharIndex = 254;
 		}
-		m_charBuffer[m_currCharIndex] = 0;
+		mCharBuffer[mCurrCharIndex] = 0;
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -507,28 +507,28 @@ lbl_8032ECE8:
  * Size:	00028C
  */
 TitleMsg::TitleMsg(J2DScreen* screen, J2DPane* root, char* str)
-    : m_analyzer(og::gLib2D->m_message->m_processor->_04)
+    : mAnalyzer(og::gLib2D->mMessage->mProcessor->_04)
 {
-	m_analyzer.m_currCharIndex = 0;
+	mAnalyzer.mCurrCharIndex = 0;
 
 	for (int i = 0; i < 256; i++) {
-		m_analyzer.m_charBuffer[i] = 0;
+		mAnalyzer.mCharBuffer[i] = 0;
 	}
 
-	m_panes1White.set(-1);
-	m_panes2White.set(-1);
-	m_panes2Black.set(-1);
+	mPanes1White.set(-1);
+	mPanes2White.set(-1);
+	mPanes2Black.set(-1);
 
-	m_analyzer.exec(str);
-	char* string   = m_analyzer.m_charBuffer;
-	m_rootPane     = root;
-	m_stringLength = strlen(string) - 1;
-	m_currXpos     = 0.0f;
-	m_panes1White.set(0, 0, 0, 255);
-	m_panes2White.set(255, 255, 0, 255);
-	m_panes2Black.set(255, 0, 0, 0);
+	mAnalyzer.exec(str);
+	char* string  = mAnalyzer.mCharBuffer;
+	mRootPane     = root;
+	mStringLength = strlen(string) - 1;
+	mCurrXpos     = 0.0f;
+	mPanes1White.set(0, 0, 0, 255);
+	mPanes2White.set(255, 255, 0, 255);
+	mPanes2Black.set(255, 0, 0, 0);
 
-	for (int i = 0; i < m_stringLength; i++) {
+	for (int i = 0; i < mStringLength; i++) {
 		u64 tag = og::Screen::CharCodeToTag(string);
 		char buf[16];
 		og::Screen::TagToName(tag, buf);
@@ -544,12 +544,12 @@ TitleMsg::TitleMsg(J2DScreen* screen, J2DPane* root, char* str)
 
 	setCentering(ECM_0);
 
-	for (int i = 0; i < m_stringLength; i++) {
-		m_dropFlags[i] = false;
-		m_timers[i]    = 0.0f;
+	for (int i = 0; i < mStringLength; i++) {
+		mDropFlags[i] = false;
+		mTimers[i]    = 0.0f;
 	}
-	m_yOffset  = 0.0f;
-	m_currXpos = 0.0f;
+	mYOffset  = 0.0f;
+	mCurrXpos = 0.0f;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -786,17 +786,17 @@ lbl_8032EFE0:
  */
 void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
 {
-	m_panes1[id] = og::Screen::CopyPictureToPane(pic, m_rootPane, m_currXpos, -10.0f, 'tFont000' + id);
-	m_panes1[id]->setBasePosition(POS_BOTTOM_CENTER);
-	m_panes1[id]->setWhite(m_panes1White);
+	mPanes1[id] = og::Screen::CopyPictureToPane(pic, mRootPane, mCurrXpos, -10.0f, 'tFont000' + id);
+	mPanes1[id]->setBasePosition(POS_BOTTOM_CENTER);
+	mPanes1[id]->setWhite(mPanes1White);
 
-	m_panes2[id] = og::Screen::CopyPictureToPane(pic, m_panes1[id], (pic->m_bounds.f.x - pic->m_bounds.i.x) * 0.5f - 3.0f,
-	                                             (pic->m_bounds.f.y - pic->m_bounds.i.y) * 0.5f - 3.0f, 'tBody000' + id);
-	m_panes2[id]->setBasePosition(POS_BOTTOM_CENTER);
-	m_panes2[id]->setWhite(m_panes2White);
-	m_panes2[id]->setBlack(m_panes2Black);
+	mPanes2[id] = og::Screen::CopyPictureToPane(pic, mPanes1[id], (pic->mBounds.f.x - pic->mBounds.i.x) * 0.5f - 3.0f,
+	                                            (pic->mBounds.f.y - pic->mBounds.i.y) * 0.5f - 3.0f, 'tBody000' + id);
+	mPanes2[id]->setBasePosition(POS_BOTTOM_CENTER);
+	mPanes2[id]->setWhite(mPanes2White);
+	mPanes2[id]->setBlack(mPanes2Black);
 
-	m_currXpos += (m_panes1[id]->m_bounds.f.x - m_panes1[id]->m_bounds.i.x);
+	mCurrXpos += (mPanes1[id]->mBounds.f.x - mPanes1[id]->mBounds.i.x);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -893,25 +893,25 @@ void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
  */
 void TitleMsg::setCentering(og::newScreen::TitleMsg::EnumCentering center)
 {
-	f32 temp    = 1.0f;
-	m_centering = center;
+	f32 temp   = 1.0f;
+	mCentering = center;
 
-	f32 cx   = m_currXpos;
-	f32 size = m_rootPane->m_bounds.f.x - m_rootPane->m_bounds.i.x;
+	f32 cx   = mCurrXpos;
+	f32 size = mRootPane->mBounds.f.x - mRootPane->mBounds.i.x;
 	if (cx > size) {
 		temp = size / cx;
 	}
 	f32 scaleX = temp;
 
-	switch (m_centering) {
+	switch (mCentering) {
 	case ECM_0:
 		size = 0.0f;
 		break;
 	case ECM_1:
-		size = -(m_currXpos * scaleX - size);
+		size = -(mCurrXpos * scaleX - size);
 		break;
 	case ECM_2:
-		size = -(m_currXpos * scaleX - size) * 0.5f;
+		size = -(mCurrXpos * scaleX - size) * 0.5f;
 		break;
 	default:
 		size = 0.0f;
@@ -919,14 +919,14 @@ void TitleMsg::setCentering(og::newScreen::TitleMsg::EnumCentering center)
 
 	f32 scaleY = 1.0f;
 	f32 currX  = 0.0f;
-	for (int i = 0; i < m_stringLength; i++) {
-		J2DPane* pane = m_panes1[i];
+	for (int i = 0; i < mStringLength; i++) {
+		J2DPane* pane = mPanes1[i];
 		pane->move(size + currX, 0.0f);
 
-		m_panes1[i]->updateScale(scaleX, scaleY);
-		currX += m_panes1[i]->m_bounds.f.x - m_panes1[i]->m_bounds.i.x;
+		mPanes1[i]->updateScale(scaleX, scaleY);
+		currX += mPanes1[i]->mBounds.f.x - mPanes1[i]->mBounds.i.x;
 	}
-	m_xScale = scaleX;
+	mXScale = scaleX;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1055,11 +1055,11 @@ void TitleMsg::drawMsgArea(J2DGrafContext&)
  */
 void TitleMsg::setColor(JUtility::TColor& col1, JUtility::TColor& col2)
 {
-	m_panes2White.setRGBA(col1);
-	m_panes2Black.setRGBA(col2);
-	for (int i = 0; i < m_stringLength; i++) {
-		m_panes2[i]->setWhite(col1);
-		m_panes2[i]->setBlack(col2);
+	mPanes2White.setRGBA(col1);
+	mPanes2Black.setRGBA(col2);
+	for (int i = 0; i < mStringLength; i++) {
+		mPanes2[i]->setWhite(col1);
+		mPanes2[i]->setBlack(col2);
 	}
 }
 
@@ -1071,8 +1071,8 @@ void TitleMsg::setColor(JUtility::TColor& col1, JUtility::TColor& col2)
 TitleMsgDrop::TitleMsgDrop(J2DScreen* screen, J2DPane* pane, char* str)
     : TitleMsg(screen, pane, str)
 {
-	for (int i = 0; i < m_stringLength; i++) {
-		m_effects[i] = new efx2d::T2DCvnameCave;
+	for (int i = 0; i < mStringLength; i++) {
+		mEffects[i] = new efx2d::T2DCvnameCave;
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -1158,10 +1158,10 @@ TitleMsgDrop::Motion::~Motion() { }
  */
 TitleMsgDrop::Motion::Motion()
 {
-	m_yOffset  = 100.0f;
-	m_randTime = 0.0f;
-	m_pos.y    = 0.0f;
-	m_timer    = 0.0f;
+	mYOffset  = 100.0f;
+	mRandTime = 0.0f;
+	mPos.y    = 0.0f;
+	mTimer    = 0.0f;
 }
 
 /*
@@ -1183,14 +1183,14 @@ void TitleMsgDrop::init()
 {
 	f32 mod   = 5.0f;
 	f32 yoffs = 200.0f;
-	for (u32 i = 0; i < m_stringLength; i++) {
-		Motion* motion = &m_motions[i];
+	for (u32 i = 0; i < mStringLength; i++) {
+		Motion* motion = &mMotions[i];
 
-		motion->m_randTime = randWeightFloat(mod);
-		motion->m_yOffset  = yoffs;
-		motion->m_pos.x    = m_panes1[i]->m_offset.x;
-		motion->m_pos.y    = m_panes1[i]->m_offset.y;
-		motion->m_timer    = (f32)i / (f32)m_stringLength;
+		motion->mRandTime = randWeightFloat(mod);
+		motion->mYOffset  = yoffs;
+		motion->mPos.x    = mPanes1[i]->mOffset.x;
+		motion->mPos.y    = mPanes1[i]->mOffset.y;
+		motion->mTimer    = (f32)i / (f32)mStringLength;
 	}
 	/*
 	stwu     r1, -0x90(r1)
@@ -1281,37 +1281,37 @@ lbl_8032F5AC:
  */
 void TitleMsgDrop::update()
 {
-	for (u32 i = 0; i < m_stringLength; i++) {
-		J2DPane* pane  = m_panes1[i];
-		Motion* motion = &m_motions[i];
-		if (motion->m_timer > 0.0f) {
-			motion->m_timer -= sys->m_deltaTime;
+	for (u32 i = 0; i < mStringLength; i++) {
+		J2DPane* pane  = mPanes1[i];
+		Motion* motion = &mMotions[i];
+		if (motion->mTimer > 0.0f) {
+			motion->mTimer -= sys->mDeltaTime;
 		} else {
-			motion->m_randTime -= 1.0f;
-			motion->m_yOffset += motion->m_randTime;
-			if (motion->m_yOffset < 0.0f) {
-				motion->m_randTime *= -0.3f;
-				motion->m_yOffset = motion->m_randTime;
-				if (!m_dropFlags[i]) {
-					m_dropFlags[i] = true;
-					m_timers[i]    = 1.0f;
+			motion->mRandTime -= 1.0f;
+			motion->mYOffset += motion->mRandTime;
+			if (motion->mYOffset < 0.0f) {
+				motion->mRandTime *= -0.3f;
+				motion->mYOffset = motion->mRandTime;
+				if (!mDropFlags[i]) {
+					mDropFlags[i] = true;
+					mTimers[i]    = 1.0f;
 
 					Vector3f pos1 = pane->getGlbVtx(0);
 					Vector3f pos2 = pane->getGlbVtx(3);
-					efx2d::Arg arg(pos1.x + pos2.x * 0.5f, pos1.y + pos2.y * 0.5f + m_yOffset);
-					m_effects[i]->setGroup(2);
-					m_effects[i]->create(&arg);
+					efx2d::Arg arg(pos1.x + pos2.x * 0.5f, pos1.y + pos2.y * 0.5f + mYOffset);
+					mEffects[i]->setGroup(2);
+					mEffects[i]->create(&arg);
 
 					ogSound->setFloorTitle();
 				}
 			}
 		}
-		if (m_dropFlags[i]) {
-			m_timers[i] -= sys->m_deltaTime;
-			if (m_timers[i] < 0.0f) {
-				m_timers[i] = 0.0f;
+		if (mDropFlags[i]) {
+			mTimers[i] -= sys->mDeltaTime;
+			if (mTimers[i] < 0.0f) {
+				mTimers[i] = 0.0f;
 			}
-			pane->setOffset(motion->m_pos.x, motion->m_pos.y - motion->m_yOffset);
+			pane->setOffset(motion->mPos.x, motion->mPos.y - motion->mYOffset);
 		}
 	}
 	/*
@@ -1475,8 +1475,8 @@ lbl_8032F7FC:
  */
 void TitleMsgDrop::end()
 {
-	for (u32 i = 0; i < m_stringLength; i++) {
-		m_effects[i]->fade();
+	for (u32 i = 0; i < mStringLength; i++) {
+		mEffects[i]->fade();
 	}
 }
 
@@ -1488,24 +1488,24 @@ void TitleMsgDrop::end()
 TitleMsgWave::TitleMsgWave(J2DScreen* screen, J2DPane* pane, char* str)
     : TitleMsg(screen, pane, str)
 {
-	m_delayTimer = 1.0f;
-	m_scaleup1   = 0.12f;
-	m_scaleup2   = 7.0f;
-	m_scaleup3   = 1.5f;
-	m_scaleup4   = 0.07f;
+	mDelayTimer = 1.0f;
+	mScaleup1   = 0.12f;
+	mScaleup2   = 7.0f;
+	mScaleup3   = 1.5f;
+	mScaleup4   = 0.07f;
 
 	for (int i = 0; i < 128; i++) {
-		if ((u32)i < m_stringLength) {
-			m_scaleMgrs[i] = new og::Screen::ScaleMgr;
+		if ((u32)i < mStringLength) {
+			mScaleMgrs[i] = new og::Screen::ScaleMgr;
 		} else {
-			m_scaleMgrs[i] = nullptr;
+			mScaleMgrs[i] = nullptr;
 		}
 	}
 
-	for (u32 i = 0; i < m_stringLength; i++) {
-		m_effects[i]   = new efx2d::T2DCvnameChal;
-		m_dropFlags[i] = false;
-		m_timers[i]    = 0.0f;
+	for (u32 i = 0; i < mStringLength; i++) {
+		mEffects[i]   = new efx2d::T2DCvnameChal;
+		mDropFlags[i] = false;
+		mTimers[i]    = 0.0f;
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -1638,10 +1638,10 @@ void TitleMsgWave::init() { }
  */
 void TitleMsgWave::start()
 {
-	for (int i = 0; i < m_stringLength; i++) {
-		m_scaleMgrs[i]->up(m_scaleup1, m_scaleup2, m_scaleup3, (f32)i * m_scaleup4);
+	for (int i = 0; i < mStringLength; i++) {
+		mScaleMgrs[i]->up(mScaleup1, mScaleup2, mScaleup3, (f32)i * mScaleup4);
 	}
-	m_delayTimer = 3.0f;
+	mDelayTimer = 3.0f;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1709,33 +1709,33 @@ void TitleMsgWave::update()
 		sFrame = 0.0f;
 	}
 
-	for (u32 i = 0; i < m_stringLength; i++) {
-		f32 calc = m_scaleMgrs[i]->calc();
-		f32 mod  = 0.2f * m_stringLength * sFrame;
+	for (u32 i = 0; i < mStringLength; i++) {
+		f32 calc = mScaleMgrs[i]->calc();
+		f32 mod  = 0.2f * mStringLength * sFrame;
 		if (mod >= TAU) {
 			mod -= TAU;
 		}
 		mod = sin(mod);
 		mod += 1.0f;
 		mod *= 0.125f;
-		m_panes1[i]->updateScale((m_xScale * mod * 0.25f + 1.0f) * calc, (1.0f + mod) * calc);
+		mPanes1[i]->updateScale((mXScale * mod * 0.25f + 1.0f) * calc, (1.0f + mod) * calc);
 
-		if (!m_dropFlags[i]) {
-			m_timers[i] += sys->m_deltaTime;
-			if (m_timers[i] > 0.1f) {
-				m_dropFlags[i] = true;
-				Vector3f pos1  = m_panes1[i]->getGlbVtx(0);
-				Vector3f pos2  = m_panes1[i]->getGlbVtx(3);
-				efx2d::Arg arg(pos1.x + pos2.x * 0.5f, pos1.y + pos2.y * 0.5f + m_yOffset);
-				m_effects[i]->setGroup(2);
-				m_effects[i]->create(&arg);
-				m_effects[i]->setGlobalAlpha(100);
+		if (!mDropFlags[i]) {
+			mTimers[i] += sys->mDeltaTime;
+			if (mTimers[i] > 0.1f) {
+				mDropFlags[i] = true;
+				Vector3f pos1 = mPanes1[i]->getGlbVtx(0);
+				Vector3f pos2 = mPanes1[i]->getGlbVtx(3);
+				efx2d::Arg arg(pos1.x + pos2.x * 0.5f, pos1.y + pos2.y * 0.5f + mYOffset);
+				mEffects[i]->setGroup(2);
+				mEffects[i]->create(&arg);
+				mEffects[i]->setGlobalAlpha(100);
 			}
 		}
 	}
 
-	m_delayTimer -= sys->m_deltaTime;
-	if (m_delayTimer < 0.0f) {
+	mDelayTimer -= sys->mDeltaTime;
+	if (mDelayTimer < 0.0f) {
 		start();
 	}
 	sFrame += 0.1f;
@@ -1946,8 +1946,8 @@ lbl_8032FD54:
  */
 void TitleMsgWave::end()
 {
-	for (u32 i = 0; i < m_stringLength; i++) {
-		m_effects[i]->fade();
+	for (u32 i = 0; i < mStringLength; i++) {
+		mEffects[i]->fade();
 	}
 }
 
@@ -1958,10 +1958,10 @@ void TitleMsgWave::end()
  */
 void TitleMsgWave::setParam(f32 s1, f32 s2, f32 s3, f32 s4)
 {
-	m_scaleup1 = s1;
-	m_scaleup2 = s2;
-	m_scaleup3 = s3;
-	m_scaleup4 = s4;
+	mScaleup1 = s1;
+	mScaleup2 = s2;
+	mScaleup3 = s3;
+	mScaleup4 = s4;
 }
 
 /*
@@ -1972,14 +1972,14 @@ void TitleMsgWave::setParam(f32 s1, f32 s2, f32 s3, f32 s4)
 TitleMsgClash::TitleMsgClash(J2DScreen* screen, J2DPane* pane, char* str)
     : TitleMsg(screen, pane, str)
 {
-	f32 time    = 0.0f;
-	m_scaleMod  = 0.0f;
-	m_currScale = 0.0f;
+	f32 time   = 0.0f;
+	mScaleMod  = 0.0f;
+	mCurrScale = 0.0f;
 
-	for (u32 i = 0; i < m_stringLength; i++) {
-		m_effects[i]   = new efx2d::T2DCvnameVs;
-		m_dropFlags[i] = false;
-		m_timers[i]    = time;
+	for (u32 i = 0; i < mStringLength; i++) {
+		mEffects[i]   = new efx2d::T2DCvnameVs;
+		mDropFlags[i] = false;
+		mTimers[i]    = time;
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -2060,8 +2060,8 @@ lbl_8032FEF0:
  */
 void TitleMsgClash::init()
 {
-	m_scaleMod  = 0.0f;
-	m_currScale = 50.0f;
+	mScaleMod  = 0.0f;
+	mCurrScale = 50.0f;
 	/*
 	lfs      f1, lbl_8051E008@sda21(r2)
 	lfs      f0, lbl_8051E068@sda21(r2)
@@ -2078,26 +2078,26 @@ void TitleMsgClash::init()
  */
 void TitleMsgClash::update()
 {
-	m_scaleMod -= 0.5f;
-	m_currScale += m_scaleMod;
-	if (m_currScale < 1.0f) {
-		m_currScale = 1.0f;
-		m_scaleMod  = -m_scaleMod * 0.4f;
+	mScaleMod -= 0.5f;
+	mCurrScale += mScaleMod;
+	if (mCurrScale < 1.0f) {
+		mCurrScale = 1.0f;
+		mScaleMod  = -mScaleMod * 0.4f;
 	}
 	ogSound->setVsTitle();
 
-	for (u32 i = 0; i < m_stringLength; i++) {
-		m_panes1[i]->updateScale(m_currScale * m_xScale, 1.0f);
-		if (!m_dropFlags[i]) {
-			m_timers[i] += sys->m_deltaTime;
-			if (m_timers[i] > 1.0f) {
-				m_dropFlags[i] = true;
-				Vector3f pos1  = m_panes1[i]->getGlbVtx(0);
-				Vector3f pos2  = m_panes1[i]->getGlbVtx(3);
-				efx2d::Arg arg(pos1.x + pos2.x * 0.5f, pos1.y + pos2.y * 0.5f + m_yOffset);
-				m_effects[i]->setGroup(2);
-				m_effects[i]->create(&arg);
-				m_effects[i]->setGlobalAlpha(130);
+	for (u32 i = 0; i < mStringLength; i++) {
+		mPanes1[i]->updateScale(mCurrScale * mXScale, 1.0f);
+		if (!mDropFlags[i]) {
+			mTimers[i] += sys->mDeltaTime;
+			if (mTimers[i] > 1.0f) {
+				mDropFlags[i] = true;
+				Vector3f pos1 = mPanes1[i]->getGlbVtx(0);
+				Vector3f pos2 = mPanes1[i]->getGlbVtx(3);
+				efx2d::Arg arg(pos1.x + pos2.x * 0.5f, pos1.y + pos2.y * 0.5f + mYOffset);
+				mEffects[i]->setGroup(2);
+				mEffects[i]->create(&arg);
+				mEffects[i]->setGlobalAlpha(130);
 			}
 		}
 	}
@@ -2253,8 +2253,8 @@ lbl_8033011C:
  */
 void TitleMsgClash::end()
 {
-	for (u32 i = 0; i < m_stringLength; i++) {
-		m_effects[i]->fade();
+	for (u32 i = 0; i < mStringLength; i++) {
+		mEffects[i]->fade();
 	}
 }
 

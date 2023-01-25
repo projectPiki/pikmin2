@@ -62,18 +62,18 @@ struct WayPoint : public JKRDisposer {
 	void write(Stream&);
 	void createOffPlane(Plane&, WayPoint*);
 
-	inline Vector3f getPosition() { return m_position; }
+	inline Vector3f getPosition() { return mPosition; }
 
-	RoomList m_roomList; // _18
-	u8 m_flags;          // _34
-	s16 m_index;         // _36
-	s16 m_numFromLinks;  // _38
-	s16 m_fromLinks[8];  // _3A
-	Vector3f m_position; // _4C
-	f32 m_radius;        // _58
-	s16 m_numToLinks;    // _5C
-	s16 m_toLinks[8];    // _5E
-	u8 m_doFloorSnap;    // _6E
+	RoomList mRoomList; // _18
+	u8 mFlags;          // _34
+	s16 mIndex;         // _36
+	s16 mNumFromLinks;  // _38
+	s16 mFromLinks[8];  // _3A
+	Vector3f mPosition; // _4C
+	f32 mRadius;        // _58
+	s16 mNumToLinks;    // _5C
+	s16 mToLinks[8];    // _5E
+	u8 mDoFloorSnap;    // _6E
 	u32 : 0;
 	u8 _70[4]; // _70
 	u8 _74;    // _74
@@ -90,9 +90,9 @@ struct WayPointIterator {
 	void next();
 	bool isDone();
 
-	s32 m_index;          // _00
-	WayPoint* m_wayPoint; // _04
-	bool _08;             // _08
+	s32 mIndex;          // _00
+	WayPoint* mWayPoint; // _04
+	bool _08;            // _08
 };
 
 struct WPCondition : public Condition<WayPoint> {
@@ -102,35 +102,35 @@ struct WPCondition : public Condition<WayPoint> {
 struct WPSearchArg {
 	WPSearchArg(Vector3f& position, WPCondition* condition, u8 arg3, f32 arg4)
 	{
-		m_position  = position;
-		m_condition = condition;
-		_10         = arg3;
-		_14         = arg4;
+		mPosition  = position;
+		mCondition = condition;
+		_10        = arg3;
+		_14        = arg4;
 	}
 
-	Vector3f m_position;      // _00
-	WPCondition* m_condition; // _0C
-	u8 _10;                   // _10
-	f32 _14;                  // _14, radius maybe?
+	Vector3f mPosition;      // _00
+	WPCondition* mCondition; // _0C
+	u8 _10;                  // _10
+	f32 _14;                 // _14, radius maybe?
 };
 
 struct WPEdgeSearchArg {
 	WPEdgeSearchArg(Vector3f& startPos)
 	{
-		m_wp2           = nullptr;
-		m_wp1           = nullptr;
-		m_inWater       = 0;
-		m_roomID        = -1;
-		m_handles       = nullptr;
-		m_startPosition = startPos;
+		mWp2           = nullptr;
+		mWp1           = nullptr;
+		mInWater       = 0;
+		mRoomID        = -1;
+		mHandles       = nullptr;
+		mStartPosition = startPos;
 	}
 
-	Vector3f m_startPosition; // _00
-	bool m_inWater;           // _0C
-	short* m_handles;         // _10
-	s16 m_roomID;             // _14
-	WayPoint* m_wp1;          // _18
-	WayPoint* m_wp2;          // _1C
+	Vector3f mStartPosition; // _00
+	bool mInWater;           // _0C
+	short* mHandles;         // _10
+	s16 mRoomID;             // _14
+	WayPoint* mWp1;          // _18
+	WayPoint* mWp2;          // _1C
 };
 
 struct RouteMgr : public Container<WayPoint> {
@@ -159,13 +159,13 @@ struct RouteMgr : public Container<WayPoint> {
 
 	// _00     = VTBL
 	// _00-_1C = Container
-	u16 m_count; // _1C
+	u16 mCount; // _1C
 };
 
 struct EditorRouteMgr : public RouteMgr {
 	struct WPNode : public CNode {
 		WPNode()
-		    : m_wayPoint(nullptr)
+		    : mWayPoint(nullptr)
 		{
 		}
 
@@ -173,7 +173,7 @@ struct EditorRouteMgr : public RouteMgr {
 
 		// _00     = VTBL
 		// _00-_18 = CNode
-		WayPoint* m_wayPoint; // _18
+		WayPoint* mWayPoint; // _18
 	};
 
 	EditorRouteMgr();
@@ -191,7 +191,7 @@ struct EditorRouteMgr : public RouteMgr {
 
 	// _00     = VTBL
 	// _00-_20 = RouteMgr
-	WPNode m_node; // _20
+	WPNode mNode; // _20
 };
 
 struct GameRouteMgr : public RouteMgr {
@@ -205,7 +205,7 @@ struct GameRouteMgr : public RouteMgr {
 	virtual WayPoint* getWayPoint(short); // _2C
 	virtual void read(Stream&);           // _30
 
-	WayPoint* m_wayPoints; // _20
+	WayPoint* mWayPoints; // _20
 };
 
 } // namespace Game

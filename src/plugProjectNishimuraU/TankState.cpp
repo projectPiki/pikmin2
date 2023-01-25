@@ -29,7 +29,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* Args)
 	Obj* tank = static_cast<Obj*>(enemy);
 	tank->finishEffect();
 	tank->disableEvent(0, EB_IsCullable);
-	tank->m_targetVelocity = Vector3f(0.0f);
+	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->deathProcedure();
 	tank->startMotion(0, nullptr);
 }
@@ -41,7 +41,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* Args)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -60,9 +60,9 @@ void StateDead::cleanup(EnemyBase*) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank              = static_cast<Obj*>(enemy);
-	tank->m_targetVelocity = Vector3f(0.0f);
-	tank->m_targetCreature = nullptr;
+	Obj* tank             = static_cast<Obj*>(enemy);
+	tank->mTargetVelocity = Vector3f(0.0f);
+	tank->mTargetCreature = nullptr;
 	tank->startMotion(5, nullptr);
 }
 
@@ -75,15 +75,15 @@ void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* tank = static_cast<Obj*>(enemy);
 	f32 view  = tank->getViewAngle();
-	if (tank->m_health <= 0.0f) {
+	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
 		return;
 	}
 	if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false)) {
 		tank->setAnimSpeed(60.0f);
 	}
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-		if (tank->m_health <= 0.0f) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+		if (tank->mHealth <= 0.0f) {
 			transit(enemy, TANK_Dead, nullptr);
 			return;
 		}
@@ -95,11 +95,11 @@ void StateWait::exec(EnemyBase* enemy)
 			transit(enemy, TANK_Attack, nullptr);
 			return;
 		}
-		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		f32 sightRad     = CG_PARMS(tank)->mGeneral.mSightRadius.mValue;
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
-			tank->m_targetCreature = target;
-			tank->m_cautionTimer   = 0.0f; // some target chase timer?
+			tank->mTargetCreature = target;
+			tank->mCautionTimer   = 0.0f; // some target chase timer?
 			transit(enemy, TANK_ChaseTurn, nullptr);
 		} else if (randWeightFloat(1.0f) < 0.2f) {
 			transit(enemy, TANK_Wait, nullptr);
@@ -127,9 +127,9 @@ void StateWait::cleanup(EnemyBase* enemy)
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank              = static_cast<Obj*>(enemy);
-	tank->_2F0             = 0.0f;
-	tank->m_targetCreature = nullptr;
+	Obj* tank             = static_cast<Obj*>(enemy);
+	tank->_2F0            = 0.0f;
+	tank->mTargetCreature = nullptr;
 	tank->startMotion(1, nullptr);
 	tank->setAnimSpeed(60.0f);
 }
@@ -627,7 +627,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 	f32 view       = tank->getViewAngle();
 	Vector3f thing = tank->_2F8;
 	f32 deltaDir   = tank->changeFaceDir(thing);
-	if (tank->m_health <= 0.0f) {
+	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
 		return;
 	}
@@ -635,14 +635,14 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 		tank->finishMotion();
 		tank->setAnimSpeed(60.0f);
 	} else {
-		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		f32 sightRad     = CG_PARMS(tank)->mGeneral.mSightRadius.mValue;
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
 			tank->finishMotion();
 		}
 	}
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-		if (tank->m_health <= 0.0f) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+		if (tank->mHealth <= 0.0f) {
 			transit(enemy, TANK_Dead, nullptr);
 			return;
 		}
@@ -654,11 +654,11 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 			transit(enemy, TANK_Attack, nullptr);
 			return;
 		}
-		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		f32 sightRad     = CG_PARMS(tank)->mGeneral.mSightRadius.mValue;
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
-			tank->m_targetCreature = target;
-			tank->m_cautionTimer   = 0.0f; // some target chase timer?
+			tank->mTargetCreature = target;
+			tank->mCautionTimer   = 0.0f; // some target chase timer?
 			transit(enemy, TANK_ChaseTurn, nullptr);
 		} else {
 			transit(enemy, TANK_Move, nullptr);
@@ -684,8 +684,8 @@ void StateMoveTurn::cleanup(EnemyBase* enemy)
  */
 void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank              = static_cast<Obj*>(enemy);
-	tank->m_targetVelocity = Vector3f(0.0f);
+	Obj* tank             = static_cast<Obj*>(enemy);
+	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
 	tank->startMotion(4, nullptr);
 }
@@ -1138,13 +1138,13 @@ void StateChaseTurn::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank            = static_cast<Obj*>(enemy);
-	tank->m_isBlowing    = false;
-	tank->_2E4           = 0.0f;
-	tank->m_cautionTimer = 0.0f;
+	Obj* tank           = static_cast<Obj*>(enemy);
+	tank->mIsBlowing    = false;
+	tank->_2E4          = 0.0f;
+	tank->mCautionTimer = 0.0f;
 	tank->disableEvent(0, EB_IsCullable);
-	tank->m_targetCreature = nullptr;
-	tank->m_targetVelocity = Vector3f(0.0f);
+	tank->mTargetCreature = nullptr;
+	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
 	tank->startMotion(3, nullptr);
 	tank->createChargeSE();
@@ -1166,24 +1166,24 @@ void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* tank = static_cast<Obj*>(enemy);
 	f32 view  = tank->getViewAngle();
-	if (tank->m_health <= 0.0f) {
+	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
 		return;
 	}
-	if (tank->m_isBlowing) {
+	if (tank->mIsBlowing) {
 		tank->isAttackable(true);
 		tank->createDisChargeSE();
 	}
-	if (!enemy->m_curAnim->m_isPlaying)
+	if (!enemy->mCurAnim->mIsPlaying)
 		return;
 
-	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
-		tank->m_isBlowing = true;
+	if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
+		tank->mIsBlowing = true;
 		tank->startEffect();
 		return;
 	}
-	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-		if (tank->m_health <= 0.0f) {
+	if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+		if (tank->mHealth <= 0.0f) {
 			transit(enemy, TANK_Dead, nullptr);
 			return;
 		}
@@ -1191,11 +1191,11 @@ void StateAttack::exec(EnemyBase* enemy)
 			transit(enemy, TANK_Flick, nullptr);
 			return;
 		}
-		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		f32 sightRad     = CG_PARMS(tank)->mGeneral.mSightRadius.mValue;
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
-			tank->m_targetCreature = target;
-			tank->m_cautionTimer   = 0.0f;
+			tank->mTargetCreature = target;
+			tank->mCautionTimer   = 0.0f;
 			transit(enemy, TANK_ChaseTurn, nullptr);
 			return;
 		}
@@ -1226,7 +1226,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* tank = static_cast<Obj*>(enemy);
 	tank->enableEvent(0, EB_IsCullable);
-	tank->m_isBlowing = false;
+	tank->mIsBlowing = false;
 	tank->startYodare();
 	tank->setEmotionCaution();
 }
@@ -1245,9 +1245,9 @@ void Obj::startYodare() { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank              = static_cast<Obj*>(enemy);
-	tank->m_targetCreature = nullptr;
-	tank->m_targetVelocity = Vector3f(0.0f);
+	Obj* tank             = static_cast<Obj*>(enemy);
+	tank->mTargetCreature = nullptr;
+	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
 	tank->startMotion(2, nullptr);
 }
@@ -1260,28 +1260,28 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* tank = static_cast<Obj*>(enemy);
-	if (tank->m_health <= 0.0f) {
+	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
 		return;
 	}
-	if (!enemy->m_curAnim->m_isPlaying)
+	if (!enemy->mCurAnim->mIsPlaying)
 		return;
 
-	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+	if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
 		EnemyParmsBase* parms = CG_PARMS(tank);
-		EnemyFunc::flickNearbyNavi(tank, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
-		                           parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+		EnemyFunc::flickNearbyNavi(tank, parms->mGeneral.mShakeRange.mValue, parms->mGeneral.mShakeKnockback.mValue,
+		                           parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 		parms = CG_PARMS(tank);
-		EnemyFunc::flickNearbyPikmin(tank, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
-		                             parms->m_general.m_shakeDamage.m_value, tank->getFaceDir(), nullptr);
+		EnemyFunc::flickNearbyPikmin(tank, parms->mGeneral.mShakeRange.mValue, parms->mGeneral.mShakeKnockback.mValue,
+		                             parms->mGeneral.mShakeDamage.mValue, tank->getFaceDir(), nullptr);
 		parms = CG_PARMS(tank);
-		EnemyFunc::flickStickPikmin(tank, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
-		                            parms->m_general.m_shakeDamage.m_value, tank->getFaceDir(), nullptr);
-		tank->m_toFlick = 0.0f;
+		EnemyFunc::flickStickPikmin(tank, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+		                            parms->mGeneral.mShakeDamage.mValue, tank->getFaceDir(), nullptr);
+		tank->mToFlick = 0.0f;
 	}
 
-	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-		if (tank->m_health <= 0.0f) {
+	if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+		if (tank->mHealth <= 0.0f) {
 			transit(enemy, TANK_Dead, nullptr);
 		} else {
 			transit(enemy, TANK_Attack, nullptr);

@@ -91,12 +91,12 @@ FarmMgr::FarmMgr(unsigned long p1)
     : GenericObjectMgr()
     , CNode("è¾²è€•ã?žãƒãƒ¼ã‚¸ãƒ£")
     , _1C(p1)
-    , m_farmsRootNode("è¾²è€•ã?ã‚¤ãƒ³ãƒ?")
-    , m_directorUpdator(nullptr)
+    , mFarmsRootNode("è¾²è€•ã?ã‚¤ãƒ³ãƒ?")
+    , mDirectorUpdator(nullptr)
     , _3C(0)
     , _3D(0)
 {
-	add(&m_farmsRootNode);
+	add(&mFarmsRootNode);
 	_3C = 0;
 	_3D = 0;
 }
@@ -108,9 +108,9 @@ FarmMgr::FarmMgr(unsigned long p1)
  */
 void FarmMgr::setupSound()
 {
-	FOREACH_NODE(Farm, m_farmsRootNode.m_child, farm)
+	FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
 	{
-		FOREACH_NODE(Obstacle, farm->m_obstacleRootNode.m_child, obstacle) { }
+		FOREACH_NODE(Obstacle, farm->mObstacleRootNode.mChild, obstacle) { }
 	}
 }
 
@@ -231,8 +231,8 @@ lbl_8012420C:
 void FarmMgr::doEntry()
 {
 	gameSystem->setDrawBuffer(9);
-	if (m_farmsRootNode.m_child) {
-		FOREACH_NODE(Farm, m_farmsRootNode.m_child, farm) { farm->doEntry(); }
+	if (mFarmsRootNode.mChild) {
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doEntry(); }
 	}
 	gameSystem->setDrawBuffer(0);
 }
@@ -244,8 +244,8 @@ void FarmMgr::doEntry()
  */
 void FarmMgr::doSetView(int p1)
 {
-	if (m_farmsRootNode.m_child) {
-		FOREACH_NODE(Farm, m_farmsRootNode.m_child, farm) { farm->doSetView(p1); }
+	if (mFarmsRootNode.mChild) {
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doSetView(p1); }
 	}
 }
 
@@ -256,8 +256,8 @@ void FarmMgr::doSetView(int p1)
  */
 void FarmMgr::doViewCalc()
 {
-	if (m_farmsRootNode.m_child) {
-		FOREACH_NODE(Farm, m_farmsRootNode.m_child, farm) { farm->doViewCalc(); }
+	if (mFarmsRootNode.mChild) {
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doViewCalc(); }
 	}
 }
 
@@ -282,7 +282,7 @@ void FarmMgr::doDirectDraw(Graphics&) { }
  */
 void FarmMgr::doDebugDraw(Graphics& gfx)
 {
-	FOREACH_NODE(Farm, m_farmsRootNode.m_child, farm) { farm->doDebugDraw(gfx); }
+	FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doDebugDraw(gfx); }
 }
 
 /*
@@ -306,7 +306,7 @@ Farm* FarmMgr::createNewFarm(void* bmd)
 {
 	Farm* farm = new Farm();
 	farm->loadResource(_1C, bmd);
-	m_farmsRootNode.add(farm);
+	mFarmsRootNode.add(farm);
 	return farm;
 }
 
@@ -319,11 +319,11 @@ Farm* FarmMgr::createNewFarm(void* bmd)
 Farm* FarmMgr::getNearestFarm(Vector3f& position)
 {
 	Farm* nearestFarm = nullptr;
-	if (m_farmsRootNode.m_child) {
+	if (mFarmsRootNode.mChild) {
 		float nearestDistance = *__float_max;
-		FOREACH_NODE(Farm, m_farmsRootNode.m_child, farm)
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
 		{
-			float distance = position.distance(farm->m_position);
+			float distance = position.distance(farm->mPosition);
 			if (distance < nearestDistance) {
 				nearestFarm     = farm;
 				nearestDistance = distance;
@@ -540,8 +540,8 @@ lbl_8012466C:
  */
 void FarmMgr::initAllFarmObjectNodes()
 {
-	if (m_farmsRootNode.m_child) {
-		FOREACH_NODE(Farm, m_farmsRootNode.m_child, farm) { farm->initAllObjectNodes(); }
+	if (mFarmsRootNode.mChild) {
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->initAllObjectNodes(); }
 	}
 }
 

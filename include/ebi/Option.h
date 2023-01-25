@@ -25,7 +25,7 @@ struct FSMStateMachine : public Game::StateMachine<TMgr> {
 struct FSMState : public Game::FSMState<TMgr> {
 	inline FSMState(int id, const char* name)
 	    : Game::FSMState<TMgr>(id)
-	    , m_name(name)
+	    , mName(name)
 	{
 	}
 
@@ -36,7 +36,7 @@ struct FSMState : public Game::FSMState<TMgr> {
 
 	// _00     = VTBL
 	// _00-_0C = Game::FSMState
-	const char* m_name; // _0C
+	const char* mName; // _0C
 };
 
 struct FSMState_LoadOption : public ebi::Option::FSMState {
@@ -152,14 +152,14 @@ struct TMgr {
 	void forceQuit();
 	void showInfo();
 
-	Screen::TOption m_optionScreen; // _000
-	ebi::Save::TMgr* m_saveMgr;     // _F18
-	Controller* m_controller;       // _F1C
-	u8 _F20;                        // _F20
-	FSMStateMachine m_stateMachine; // _F24
-	u8 _F28;                        // _F28
-	u32 _F2C;                       // _F2C
-	u32 _F30;                       // _F30
+	Screen::TOption mOptionScreen; // _000
+	ebi::Save::TMgr* mSaveMgr;     // _F18
+	Controller* mController;       // _F1C
+	u8 _F20;                       // _F20
+	FSMStateMachine mStateMachine; // _F24
+	u8 _F28;                       // _F28
+	u32 _F2C;                      // _F2C
+	u32 _F30;                      // _F30
 };
 } // namespace Option
 } // namespace ebi

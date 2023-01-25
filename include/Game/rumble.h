@@ -16,26 +16,26 @@ struct RumbleData {
 
 	inline void read(Stream& stream)
 	{
-		m_count = stream.readInt();
-		if (m_count <= 0) {
+		mCount = stream.readInt();
+		if (mCount <= 0) {
 			return;
 		}
 
-		_04 = new f32[m_count];
-		_08 = new f32[m_count];
+		_04 = new f32[mCount];
+		_08 = new f32[mCount];
 
-		for (int j = 0; j < m_count; j++) {
+		for (int j = 0; j < mCount; j++) {
 			_04[j] = stream.readFloat();
 		}
 
-		for (int j = 0; j < m_count; j++) {
+		for (int j = 0; j < mCount; j++) {
 			_08[j] = stream.readFloat();
 		}
 	}
 
-	s32 m_count; // _00
-	f32* _04;    // _04
-	f32* _08;    // _08
+	s32 mCount; // _00
+	f32* _04;   // _04
+	f32* _08;   // _08
 };
 
 struct RumbleDataMgr {
@@ -44,8 +44,8 @@ struct RumbleDataMgr {
 	RumbleData* getRumbleData(int);
 	void read(Stream& stream);
 
-	s32 m_dataCnt;         // _00
-	RumbleData* m_dataArr; // _04
+	s32 mDataCnt;         // _00
+	RumbleData* mDataArr; // _04
 };
 
 struct RumbleNode : public CNode {
@@ -83,18 +83,18 @@ struct ContRumble {
 	void rumbleStop(int);
 	void getRumbleParameter(int, f32&, f32&);
 
-	bool _00;                 // _00
-	int _04;                  // _04
-	Vector3f _08;             // _08
-	RumbleNode* _14;          // _14
-	RumbleNode* _18;          // _18
-	RumbleDataMgr* m_dataMgr; // _1C
+	bool _00;                // _00
+	int _04;                 // _04
+	Vector3f _08;            // _08
+	RumbleNode* _14;         // _14
+	RumbleNode* _18;         // _18
+	RumbleDataMgr* mDataMgr; // _1C
 };
 
 struct RumbleMgr : public CNode {
 	struct Parms : public Parameters {
-		Parm<f32> m_maxDistance; // _0C
-		u32 m_end;               // _34
+		Parm<f32> mMaxDistance; // _0C
+		u32 mEnd;               // _34
 	};
 
 	RumbleMgr();
@@ -120,11 +120,11 @@ struct RumbleMgr : public CNode {
 	void* _1C; // _1C
 
 	// ptr to array of two pointers to ContRumble
-	ContRumble** m_contRumble; // _20
-	Parms* m_parms;            // _24
-	RumbleDataMgr* m_dataMgr;  // _28
-	Controller* m_controller;  // _2C
-	Vector3f* _30;             // _30
+	ContRumble** mContRumble; // _20
+	Parms* mParms;            // _24
+	RumbleDataMgr* mDataMgr;  // _28
+	Controller* mController;  // _2C
+	Vector3f* _30;            // _30
 };
 
 extern RumbleMgr* rumbleMgr;

@@ -16,51 +16,51 @@ enum MapPiki {
 struct DataNavi {
 	inline DataNavi()
 	{
-		m_naviLifeRatio = 1.0f;
-		m_followPikis   = 1;
-		m_nextThrowPiki = 2;
-		m_dope1Count    = 10;
-		m_dope0Count    = 10;
-		m_activeNaviID  = 1;
+		mNaviLifeRatio = 1.0f;
+		mFollowPikis   = 1;
+		mNextThrowPiki = 2;
+		mDope1Count    = 10;
+		mDope0Count    = 10;
+		mActiveNaviID  = 1;
 	}
 
 	inline void update(int naviIdx); // defined in Game/Navi.h to avoid include loops
 
-	f32 m_naviLifeRatio; // _00
-	u32 m_followPikis;   // _04
-	u32 m_nextThrowPiki; // _08
-	u32 m_dope1Count;    // _0C
-	u32 m_dope0Count;    // _10
-	u8 m_activeNaviID;   // _14
+	f32 mNaviLifeRatio; // _00
+	u32 mFollowPikis;   // _04
+	u32 mNextThrowPiki; // _08
+	u32 mDope1Count;    // _0C
+	u32 mDope0Count;    // _10
+	u8 mActiveNaviID;   // _14
 };
 
 struct DataGame {
 	inline DataGame()
 	{
-		m_sunGaugeRatio    = 0.0f;
-		m_dayNum           = 0;
-		m_floorNum         = 0;
-		m_totalPikminCount = 1234;
-		m_mapPikminCount   = 50;
-		_14                = false;
-		m_pokoCount        = 0;
+		mSunGaugeRatio    = 0.0f;
+		mDayNum           = 0;
+		mFloorNum         = 0;
+		mTotalPikminCount = 1234;
+		mMapPikminCount   = 50;
+		_14               = false;
+		mPokoCount        = 0;
 	}
 
-	f32 m_sunGaugeRatio;    // _00
-	u32 m_dayNum;           // _04
-	u32 m_totalPikminCount; // _08
-	u32 m_floorNum;         // _0C
-	u32 m_mapPikminCount;   // _10
-	u8 _14;                 // _14
-	uint m_pokoCount;       // _18
+	f32 mSunGaugeRatio;    // _00
+	u32 mDayNum;           // _04
+	u32 mTotalPikminCount; // _08
+	u32 mFloorNum;         // _0C
+	u32 mMapPikminCount;   // _10
+	u8 _14;                // _14
+	uint mPokoCount;       // _18
 };
 
 struct DataMap {
-	u32 m_napsackDetectorFlags;   // _00
-	u32 m_onyonPikminCounts[5];   // _04, indexed by MapPiki enum
-	u32 m_currentPikminCounts[5]; // _18, indexed by MapPiki enum
-	u32 m_freePikmin;             // _2C
-	u32 m_pokos;                  // _30
+	u32 mNapsackDetectorFlags;   // _00
+	u32 mOnyonPikminCounts[5];   // _04, indexed by MapPiki enum
+	u32 mCurrentPikminCounts[5]; // _18, indexed by MapPiki enum
+	u32 mFreePikmin;             // _2C
+	u32 mPokos;                  // _30
 };
 } // namespace Screen
 } // namespace og

@@ -219,17 +219,17 @@ namespace Tyre {
  */
 TyreShadowMgr::TyreShadowMgr(Obj* obj)
 {
-	m_obj      = obj;
-	_00        = 1.0f;
-	m_rootNode = new JointShadowRootNode(obj);
+	mObj      = obj;
+	_00       = 1.0f;
+	mRootNode = new JointShadowRootNode(obj);
 
-	m_frontShadow      = new TyreTubeShadowNode;
-	m_frontShadow->_18 = 2;
-	m_rootNode->add(m_frontShadow);
+	mFrontShadow      = new TyreTubeShadowNode;
+	mFrontShadow->_18 = 2;
+	mRootNode->add(mFrontShadow);
 
-	m_backShadow      = new TyreTubeShadowNode;
-	m_backShadow->_18 = 2;
-	m_rootNode->add(m_backShadow);
+	mBackShadow      = new TyreTubeShadowNode;
+	mBackShadow->_18 = 2;
+	mRootNode->add(mBackShadow);
 }
 
 /*
@@ -239,9 +239,9 @@ TyreShadowMgr::TyreShadowMgr(Obj* obj)
  */
 void TyreShadowMgr::init()
 {
-	SysShape::Model* model = m_obj->m_model;
-	m_frontMatrix          = model->getJoint("tyrefront")->getWorldMatrix();
-	m_backMatrix           = model->getJoint("tyreback")->getWorldMatrix();
+	SysShape::Model* model = mObj->mModel;
+	mFrontMatrix           = model->getJoint("tyrefront")->getWorldMatrix();
+	mBackMatrix            = model->getJoint("tyreback")->getWorldMatrix();
 }
 
 /*
@@ -252,7 +252,7 @@ void TyreShadowMgr::init()
 void TyreShadowMgr::update()
 {
 	JointShadowParm parm;
-	parm._00 = m_obj->getPosition();
+	parm._00 = mObj->getPosition();
 	parm._0C = Vector3f(0.0f, 1.0f, 0.0f);
 
 	f32 scale1 = 31.5f * _00;
@@ -263,8 +263,8 @@ void TyreShadowMgr::update()
 	parm._18 = scale1;
 	parm._1C = scale2;
 
-	m_frontShadow->makeShadowSRT(parm, m_frontMatrix);
-	m_backShadow->makeShadowSRT(parm, m_backMatrix);
+	mFrontShadow->makeShadowSRT(parm, mFrontMatrix);
+	mBackShadow->makeShadowSRT(parm, mBackMatrix);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
