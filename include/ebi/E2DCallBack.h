@@ -74,8 +74,8 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 
 	inline void setColors(int i, J2DTextBox* pane)
 	{
-		m_fonts[i].m_col1.set(pane->m_color1);
-		m_fonts[i].m_col2.set(pane->m_color2);
+		m_fonts[i].m_col1.set(pane->m_charColor);
+		m_fonts[i].m_col2.set(pane->m_gradientColor);
 		m_fonts[i].m_white = pane->getWhite();
 		m_fonts[i].m_black = pane->getBlack();
 	}
@@ -86,8 +86,8 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 		m_isEnabled      = false;
 		J2DTextBox* pane = static_cast<J2DTextBox*>(m_pane);
 		if (pane) {
-			pane->m_color1.set(m_fonts[0].m_col1);
-			pane->m_color2.set(m_fonts[0].m_col2);
+			pane->m_charColor.set(m_fonts[0].m_col1);
+			pane->m_gradientColor.set(m_fonts[0].m_col2);
 			JUtility::TColor white = m_fonts[0].m_white;
 			pane->setWhite(white);
 			JUtility::TColor black = m_fonts[0].m_black;

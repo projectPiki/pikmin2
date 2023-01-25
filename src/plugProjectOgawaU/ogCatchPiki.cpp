@@ -55,7 +55,7 @@ void CallBack_CatchPiki::update()
 		}
 
 		f32 scale = m_scaleMgr.calc();
-		m_pikiIcon->rotate(m_pikiIcon->_020.getWidth() / 2, m_pikiIcon->_020.getHeight() / 2, J2DROTATE_Z, 0.0f);
+		m_pikiIcon->rotate(m_pikiIcon->m_bounds.getWidth() / 2, m_pikiIcon->m_bounds.getHeight() / 2, J2DROTATE_Z, 0.0f);
 		m_pikiIcon->updateScale(scale);
 	}
 }

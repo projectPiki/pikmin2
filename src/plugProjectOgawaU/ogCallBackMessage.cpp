@@ -41,12 +41,12 @@ void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 			m_messageIDAsULL = tag;
 			P2JME::convertU64ToMessageID(m_messageIDAsULL, &m_messageIDAs2UL[0], &m_messageIDAs2UL[1]);
 		}
-		PSMTXConcat(graf.m_posMtx, m_pane->_080, mtx.m_matrix.mtxView);
+		PSMTXConcat(graf.m_posMtx, m_pane->m_globalMtx, mtx.m_matrix.mtxView);
 		GXLoadPosMtxImm(mtx.m_matrix.mtxView, 0);
 
 		J2DPane* pane = m_pane;
-		f32 x1        = pane->_020.getWidth();
-		f32 y1        = pane->_020.getHeight();
+		f32 x1        = pane->m_bounds.getWidth();
+		f32 y1        = pane->m_bounds.getHeight();
 		int flag      = pane->m_basePosition % 3;
 
 		f32 y2, x2;

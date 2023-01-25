@@ -27,7 +27,7 @@ void CallBack_CounterDay::init(J2DScreen* mgr, u64 tag1, u64 tag2, u64 pictureTa
 
 	if (_A8) {
 		_A8->hide();
-		_A8->setBasePosition(POS_CENTER);
+		_A8->setBasePosition(J2DPOS_Center);
 	}
 
 	CallBack_CounterRV::init(mgr, tag1, tag2, 0, ptr, true);
@@ -79,7 +79,7 @@ void CallBack_CounterDay::setValue()
 		picture->hide();
 
 		JGeometry::TVec2f scale(picture->m_scale);
-		_A8->setBasePosition(POS_CENTER);
+		_A8->setBasePosition(J2DPOS_Center);
 		_A8->updateScale(scale.x, scale.y);
 	}
 }

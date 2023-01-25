@@ -6,6 +6,7 @@
 #include "Game/GameSystem.h"
 #include "og/newScreen/Challenge.h"
 #include "Screen/Game2DMgr.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
 
 static const char unused[] = "\0\0\0\0\0\0\0\0";
 

@@ -8,21 +8,26 @@
 #include "JSystem/J3D/J3DAnmVisibilityFull.h"
 #include "JSystem/J2D/J2DAnm.h"
 
+struct J2DAnmLoaderDataBase {
+	static J2DAnmBase* load(const void*);
+};
+
 struct J2DAnmLoader {
 	virtual void load(const void*)                     = 0; // _08
 	virtual void setResource(J2DAnmBase*, const void*) = 0; // _0C
 	virtual ~J2DAnmLoader();                                // _10 (weak)
 
-	// _00 VTBL
+	// _00 = VTBL
 	J2DAnmBase* m_animation; // _04
 };
 
 struct J2DAnmFullLoader_v15 : public J2DAnmLoader {
+	J2DAnmFullLoader_v15();
+
 	virtual void load(const void*);                     // _08
 	virtual void setResource(J2DAnmBase*, const void*); // _0C
 	virtual ~J2DAnmFullLoader_v15();                    // _10
 
-	J2DAnmFullLoader_v15();
 	void readAnmTransform(const J3DAnmTransformFullData*);
 	void setAnmTransform(J2DAnmTransformFull*, const J3DAnmTransformFullData*);
 	void readAnmColor(const J3DAnmColorFullData*);
@@ -33,14 +38,18 @@ struct J2DAnmFullLoader_v15 : public J2DAnmLoader {
 	void setAnmVisibility(J2DAnmVisibilityFull*, const J3DAnmVisibilityFullData*);
 	void readAnmVtxColor(const J3DAnmVtxColorFullData*);
 	void setAnmVtxColor(J2DAnmVtxColorFull*, const J3DAnmVtxColorFullData*);
+
+	// _00 = VTBL
+	// _04 = m_animation
 };
 
 struct J2DAnmKeyLoader_v15 : public J2DAnmLoader {
+	J2DAnmKeyLoader_v15();
+
 	virtual void load(const void*);                     // _08
 	virtual void setResource(J2DAnmBase*, const void*); // _0C
 	virtual ~J2DAnmKeyLoader_v15();                     // _10
 
-	J2DAnmKeyLoader_v15();
 	void readAnmTransform(const J3DAnmTransformKeyData*);
 	void setAnmTransform(J2DAnmTransformKey*, const J3DAnmTransformKeyData*);
 	void readAnmTextureSRT(const J3DAnmTextureSRTKeyData*);
@@ -51,6 +60,9 @@ struct J2DAnmKeyLoader_v15 : public J2DAnmLoader {
 	void setAnmVtxColor(J2DAnmVtxColorKey*, const J3DAnmVtxColorKeyData*);
 	void readAnmTevReg(const J3DAnmTevRegKeyData*);
 	void setAnmTevReg(J2DAnmTevRegKey*, const J3DAnmTevRegKeyData*);
+
+	// _00 = VTBL
+	// _04 = m_animation
 };
 
 #endif

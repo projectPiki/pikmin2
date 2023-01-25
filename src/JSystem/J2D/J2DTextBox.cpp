@@ -101,7 +101,7 @@ J2DTextBox::J2DTextBox()
     , m_white(0xFFFFFFFF)
     , m_black(0xFFFFFFFF)
 {
-	initiate(nullptr, nullptr, 0, TBHB_2, TBVB_2);
+	initiate(nullptr, nullptr, 0, J2DHBIND_Left, J2DVBIND_Top);
 }
 
 /*
@@ -1033,7 +1033,7 @@ void J2DTextBox::draw(float p1, float p2)
 	// printer.m_glyphWidth  = (_11C > 0.0f) ? _11C : 0.0f;
 	// printer.m_glyphHeight = (_120 > 0.0f) ? _120 : 0.0f;
 	makeMatrix(p1, p2, 0.0f, 0.0f);
-	GXLoadPosMtxImm(_050, 0);
+	GXLoadPosMtxImm(m_positionMtx, 0);
 	GXSetCurrentMtx(0);
 	GXSetNumIndStages(0);
 	for (int i = 0; i < 0x10; i++) {
@@ -1065,7 +1065,7 @@ void J2DTextBox::draw(float p1, float p2, float p3, J2DTextBoxHBinding hb)
 	// printer.m_glyphWidth  = (_11C > 0.0f) ? _11C : 0.0f;
 	// printer.m_glyphHeight = (_120 > 0.0f) ? _120 : 0.0f;
 	makeMatrix(p1, p2, 0.0f, 0.0f);
-	GXLoadPosMtxImm(_050, 0);
+	GXLoadPosMtxImm(m_positionMtx, 0);
 	GXSetCurrentMtx(0);
 	GXSetNumIndStages(0);
 	for (int i = 0; i < 0x10; i++) {
@@ -1074,7 +1074,7 @@ void J2DTextBox::draw(float p1, float p2, float p3, J2DTextBoxHBinding hb)
 	GXSetNumTexGens(1);
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
 	if (_124 != nullptr) {
-		printer.printReturn(_124, p3, 0.0f, hb, TBVB_2, 0.0f, -_120, m_alpha);
+		printer.printReturn(_124, p3, 0.0f, hb, J2DVBIND_Top, 0.0f, -_120, m_alpha);
 	}
 	Mtx mtx;
 	PSMTXIdentity(mtx);
@@ -1150,7 +1150,7 @@ bool J2DTextBox::setConnectParent(bool p1)
 	if (getPaneTree()->getParent()->getObject()->getTypeID() != 0x11) {
 		return false;
 	}
-	_0B5 = p1;
+	m_isConnected = p1;
 	return p1;
 }
 
@@ -1177,7 +1177,7 @@ void J2DTextBox::drawSelf(float p1, float p2, float (*p3)[3][4])
 	J2DPrint printer(m_font, _114, _118, _104, _108, m_black, m_white);
 	printer.setFontSize(_11C, _120);
 	Mtx v1;
-	PSMTXConcat(*p3, _080, v1);
+	PSMTXConcat(*p3, m_globalMtx, v1);
 	GXLoadPosMtxImm(v1, 0);
 	GXSetNumIndStages(0);
 	for (int i = 0; i < 0x10; i++) {
@@ -1185,10 +1185,10 @@ void J2DTextBox::drawSelf(float p1, float p2, float (*p3)[3][4])
 	}
 	GXSetNumTexGens(1);
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
-	printer.locate(p1 + _020.i.x, p2 + _020.i.y);
+	printer.locate(p1 + m_bounds.i.x, p2 + m_bounds.i.y);
 	if (_124 != nullptr) {
-		printer.printReturn(_124, _020.getWidth() + 0.0001f, _020.getHeight(), (J2DTextBoxHBinding)(_130 >> 2 & 3),
-		                    (J2DTextBoxVBinding)(_130 & 3), _10C, _110, _0B3);
+		printer.printReturn(_124, m_bounds.getWidth() + 0.0001f, m_bounds.getHeight(), (J2DTextBoxHBinding)(_130 >> 2 & 3),
+		                    (J2DTextBoxVBinding)(_130 & 3), _10C, _110, m_colorAlpha);
 	}
 }
 
@@ -1199,15 +1199,16 @@ void J2DTextBox::drawSelf(float p1, float p2, float (*p3)[3][4])
  */
 void J2DTextBox::resize(float width, float height)
 {
-	if (_0B5 != 0) {
+	if (m_isConnected != 0) {
 		JSUTree<J2DPane>* jsuSomething = getPaneTree()->getParent();
 		if (jsuSomething != nullptr) {
 			J2DPane* other = jsuSomething->getObject();
 			if (other->getTypeID() == 0x11) {
-				f32 deltaX = other->_020.getWidth() - _020.getWidth();
-				f32 deltaY = other->_020.getHeight() - _020.getHeight();
+				f32 deltaX = other->m_bounds.getWidth() - m_bounds.getWidth();
+				f32 deltaY = other->m_bounds.getHeight() - m_bounds.getHeight();
 				other->resize(deltaX + width, deltaY + height);
-				// other->resize(other->_020.getWidth() - _020.getWidth() + width, other->_020.getHeight() - _020.getHeight() + height);
+				// other->resize(other->m_bounds.getWidth() - m_bounds.getWidth() + width, other->m_bounds.getHeight() -
+				// m_bounds.getHeight() + height);
 				return;
 			}
 		}

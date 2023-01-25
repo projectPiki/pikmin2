@@ -138,7 +138,7 @@ J2DPicture::J2DPicture()
     , m_palette(nullptr)
     , m_white(0xFFFFFFFF)
     , m_black(0xFFFFFFFF)
-    , _150()
+    , m_cornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
@@ -175,7 +175,7 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, JKRArchive*
     , m_palette(nullptr)
     , m_white(0xFFFFFFFF)
     , m_black(0xFFFFFFFF)
-    , _150()
+    , m_cornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
@@ -194,7 +194,7 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
     , m_palette(nullptr)
     , m_white(0xFFFFFFFF)
     , m_black(0xFFFFFFFF)
-    , _150()
+    , m_cornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
@@ -213,7 +213,7 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	u16 v1 = trailer._04;
 	for (int i = 0; i < 4; i++) {
 		_112[i] = trailer._10[i];
-		_150[i].set(trailer._20[i]);
+		m_cornerColors[i].set(trailer._20[i]);
 	}
 	input->seek(headerPosition + header.m_blockLength, SEEK_SET);
 
@@ -707,7 +707,7 @@ J2DPicture::J2DPicture(const ResTIMG* img)
     , _112()
     , m_white(0xFFFFFFFF)
     , m_black(0xFFFFFFFF)
-    , _150()
+    , m_cornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
@@ -750,7 +750,7 @@ J2DPicture::J2DPicture(const char* p1)
     , _112()
     , m_white(0xFFFFFFFF)
     , m_black(0xFFFFFFFF)
-    , _150()
+    , m_cornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
@@ -793,7 +793,7 @@ J2DPicture::J2DPicture(JUTTexture* texture)
     , _112()
     , m_white(0xFFFFFFFF)
     , m_black(0xFFFFFFFF)
-    , _150()
+    , m_cornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
@@ -829,7 +829,7 @@ J2DPicture::J2DPicture(u64 id, const JGeometry::TBox2f& bounds)
     , m_palette(nullptr)
     , m_white(0xFFFFFFFF)
     , m_black(0xFFFFFFFF)
-    , _150()
+    , m_cornerColors()
     , _160(0xFFFFFFFF)
     , _164(0xFFFFFFFF)
 {
@@ -910,13 +910,13 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input
 
 	for (int i = 0; i < 4; i++) {
 		JUtility::TColor color(0xFFFFFFFF);
-		_150[i] = color;
+		m_cornerColors[i] = color;
 	}
 	for (int i = 0; countdown != 0 && i < 4; i++) {
 		JUtility::TColor color;
 		input->read(&color, sizeof(JUtility::TColor));
 		countdown--;
-		_150[i] = color;
+		m_cornerColors[i] = color;
 	}
 
 	input->seek(headerPosition + header.m_blockLength, SEEK_SET);
@@ -1340,11 +1340,11 @@ lbl_8003AD54:
 void J2DPicture::initinfo()
 {
 	m_bloBlockType = 'PIC1';
-	setTexCoord(nullptr, Binding_F, Mirror_0, false);
+	setTexCoord(nullptr, J2DBIND_Unk15, J2DMIRROR_Unk0, false);
 	setBlendRatio(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
 	m_black = 0;
 	m_white = 0xFFFFFFFF;
-	setColorBox(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
+	setCornerColor(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
 }
 
 /*
@@ -2178,7 +2178,7 @@ void J2DPicture::drawSelf(float p1, float p2)
 void J2DPicture::drawSelf(float p1, float p2, float (*mtx)[3][4])
 {
 	if (m_textures[0] != nullptr && m_textureCount != 0) {
-		drawFullSet(_030 + p1, _034 + p2, _020.getWidth(), _020.getHeight(), mtx);
+		drawFullSet(m_globalBounds.i.x + p1, m_globalBounds.i.y + p2, m_bounds.getWidth(), m_bounds.getHeight(), mtx);
 	}
 }
 
@@ -2190,7 +2190,7 @@ void J2DPicture::drawSelf(float p1, float p2, float (*mtx)[3][4])
 void J2DPicture::drawFullSet(float p1, float p2, float width, float height, float (*mtx)[3][4])
 {
 	if (m_textures[0] != nullptr && m_textureCount != 0) {
-		drawTexCoord(_020.i.x, _020.i.y, width, height, _112[0].x, _112[0].y, _112[1].x, _112[1].y, _112[2].x, _112[2].y, _112[3].x,
+		drawTexCoord(m_bounds.i.x, m_bounds.i.y, width, height, _112[0].x, _112[0].y, _112[1].x, _112[1].y, _112[2].x, _112[2].y, _112[3].x,
 		             _112[3].y, mtx);
 	}
 }
@@ -3462,13 +3462,13 @@ lbl_8003CCC8:
 void J2DPicture::getNewColor(JUtility::TColor* newColor)
 {
 	for (int i = 0; i < 4; i++) {
-		newColor[i] = _150[i];
+		newColor[i] = m_cornerColors[i];
 	}
-	if (_0B3 != 0xFF) {
-		newColor[0].a = newColor[0].a * _0B3 / 0xFF;
-		newColor[1].a = newColor[1].a * _0B3 / 0xFF;
-		newColor[2].a = newColor[2].a * _0B3 / 0xFF;
-		newColor[3].a = newColor[3].a * _0B3 / 0xFF;
+	if (m_colorAlpha != 0xFF) {
+		newColor[0].a = newColor[0].a * m_colorAlpha / 0xFF;
+		newColor[1].a = newColor[1].a * m_colorAlpha / 0xFF;
+		newColor[2].a = newColor[2].a * m_colorAlpha / 0xFF;
+		newColor[3].a = newColor[3].a * m_colorAlpha / 0xFF;
 	}
 }
 

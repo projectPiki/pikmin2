@@ -132,10 +132,10 @@ void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 		J2DPicture* src1    = _80;
 		J2DPicture* target1 = _7C;
 
-		color[0].setRGBA(src1->_150[0]);
-		color[1].setRGBA(src1->_150[1]);
-		color[2].setRGBA(src1->_150[2]);
-		color[3].setRGBA(src1->_150[3]);
+		color[0].setRGBA(src1->m_cornerColors[0]);
+		color[1].setRGBA(src1->m_cornerColors[1]);
+		color[2].setRGBA(src1->m_cornerColors[2]);
+		color[3].setRGBA(src1->m_cornerColors[3]);
 
 		target1->setColor(color[0], 0);
 		target1->setColor(color[2], 2);
@@ -158,10 +158,10 @@ void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 		J2DPicture* src2    = _84;
 		J2DPicture* target2 = _7C;
 
-		color[0].setRGBA(src2->_150[0]);
-		color[1].setRGBA(src2->_150[1]);
-		color[2].setRGBA(src2->_150[2]);
-		color[3].setRGBA(src2->_150[3]);
+		color[0].setRGBA(src2->m_cornerColors[0]);
+		color[1].setRGBA(src2->m_cornerColors[1]);
+		color[2].setRGBA(src2->m_cornerColors[2]);
+		color[3].setRGBA(src2->m_cornerColors[3]);
 
 		target2->setColor(color[0], 0);
 		target2->setColor(color[2], 2);
@@ -464,8 +464,8 @@ void CallBack_LifeGauge::setOffset(f32 x, f32 y)
 	if (!m_pane) {
 		JUT_PANICLINE(243, "ERR! : NULL Pane !!!\n");
 	} else {
-		m_offsetX = (m_pane->_020.getWidth() / 2) + x;
-		m_offsetY = (m_pane->_020.getHeight() / 2) + y;
+		m_offsetX = (m_pane->m_bounds.getWidth() / 2) + x;
+		m_offsetY = (m_pane->m_bounds.getHeight() / 2) + y;
 	}
 }
 
@@ -756,7 +756,8 @@ void CallBack_LifeGauge::update()
 			f32 timer     = m_lowLifeSoundTimer;
 			J2DPane* pane = m_pin1;
 			f32 scale     = m_lowLifeSoundTimer * 0.5f + 1.0f;
-			pane->rotate((pane->_020.f.x - pane->_020.i.x) * 0.5f, (pane->_020.f.y - pane->_020.i.y) * 0.5f, J2DROTATE_Y, 0.0f);
+			pane->rotate((pane->m_bounds.f.x - pane->m_bounds.i.x) * 0.5f, (pane->m_bounds.f.y - pane->m_bounds.i.y) * 0.5f, J2DROTATE_Y,
+			             0.0f);
 			pane->updateScale(scale);
 			pane->setAlpha(-(timer * 255.0f - 255.0f));
 
@@ -766,7 +767,8 @@ void CallBack_LifeGauge::update()
 
 			pane  = m_pin2;
 			scale = timer * 0.5f + 1.0f;
-			pane->rotate((pane->_020.f.x - pane->_020.i.x) * 0.5f, (pane->_020.f.y - pane->_020.i.y) * 0.5f, J2DROTATE_Y, 0.0f);
+			pane->rotate((pane->m_bounds.f.x - pane->m_bounds.i.x) * 0.5f, (pane->m_bounds.f.y - pane->m_bounds.i.y) * 0.5f, J2DROTATE_Y,
+			             0.0f);
 			pane->updateScale(scale);
 			m_pin2->setAlpha(-(scale * 255.0f - 255.0f));
 			if (m_naviLifeRatio > 0.0f) {
@@ -960,7 +962,7 @@ void CallBack_LifeGauge::draw(Graphics& gfx, J2DGrafContext& context)
 	if (m_naviLifeRatio > 0.0f) {
 		LifeGauge::initLifeGaugeDraw();
 		Mtx concatMtx;
-		PSMTXConcat(context.m_posMtx, m_pane->_080, concatMtx);
+		PSMTXConcat(context.m_posMtx, m_pane->m_globalMtx, concatMtx);
 		GXLoadPosMtxImm(concatMtx, 0);
 
 		m_lifeGauge->draw(m_widthOrRadiusMaybe, m_offsetX, m_offsetY);
@@ -992,9 +994,9 @@ void NaviLifeGauge::setCallBack(DataNavi* data, CallBack_LifeGauge::LifeGaugeTyp
 			JUT_PANICLINE(243, "ERR! : NULL Pane !!!\n");
 		} else {
 			float temp       = 0.0f;
-			cback->m_offsetX = (pane->_020.f.x - pane->_020.i.x) / 2 + temp;
+			cback->m_offsetX = (pane->m_bounds.f.x - pane->m_bounds.i.x) / 2 + temp;
 			J2DPane* pane2   = cback->m_pane;
-			cback->m_offsetY = (pane2->_020.f.y - pane2->_020.i.y) / 2 + temp;
+			cback->m_offsetY = (pane2->m_bounds.f.y - pane2->m_bounds.i.y) / 2 + temp;
 		}
 	}
 }

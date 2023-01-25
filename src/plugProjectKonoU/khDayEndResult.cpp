@@ -1421,8 +1421,8 @@ void ObjDayEndResultItem::updateCommon()
 {
 	ObjDayEndResultBase::updateCommon();
 
-	Vector3f topLeft    = _4C->search('Nmask')->getGlbVtx(POS_TOP_LEFT);
-	Vector3f centerLeft = _4C->search('Nmask')->getGlbVtx(POS_CENTER_LEFT);
+	Vector3f topLeft    = _4C->search('Nmask')->getGlbVtx(J2DPOS_TopLeft);
+	Vector3f centerLeft = _4C->search('Nmask')->getGlbVtx(J2DPOS_CenterLeft);
 
 	// this is so dumb. SO DUMB.
 	f32 yTop;

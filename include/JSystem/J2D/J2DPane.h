@@ -33,7 +33,14 @@ struct JUTTexture;
 struct ResFONT;
 struct ResTIMG;
 struct ResTLUT;
-struct TMaterial;
+
+enum J2DPaneTypeID {
+	PANETYPE_Screen  = 0x8,
+	PANETYPE_Pane    = 0x10,
+	PANETYPE_Window  = 0x11,
+	PANETYPE_Picture = 0x12,
+	PANETYPE_TextBox = 0x13,
+};
 
 enum J2DRotateAxis {
 	J2DROTATE_X = 'x', // 0x78
@@ -43,20 +50,20 @@ enum J2DRotateAxis {
 
 // Intended to be size 0x1.
 enum J2DBasePosition {
-	POS_TOP_LEFT = 0,
-	POS_TOP_CENTER,
-	POS_TOP_RIGHT,
-	POS_CENTER_LEFT,
-	POS_CENTER,
-	POS_CENTER_RIGHT,
-	POS_BOTTOM_LEFT,
-	POS_BOTTOM_CENTER,
-	POS_BOTTOM_RIGHT
+	J2DPOS_TopLeft      = 0,
+	J2DPOS_TopCenter    = 1,
+	J2DPOS_TopRight     = 2,
+	J2DPOS_CenterLeft   = 3,
+	J2DPOS_Center       = 4,
+	J2DPOS_CenterRight  = 5,
+	J2DPOS_BottomLeft   = 6,
+	J2DPOS_BottomCenter = 7,
+	J2DPOS_BottomRight  = 8,
 };
 
 struct J2DScrnBlockHeader {
-	u32 m_bloBlockType;
-	int m_blockLength;
+	u32 m_bloBlockType; // _00
+	int m_blockLength;  // _04
 };
 
 /**
@@ -115,7 +122,9 @@ struct J2DPictureBlockTrailer {
 	_GXColor _20[4];                // _20
 };
 
-struct J2DScreenInfoBlock : J2DScrnBlockHeader {
+struct J2DScreenInfoBlock : public J2DScrnBlockHeader {
+
+	// _00-_08 = J2DScrnBlockHeader
 	u16 m_width;  // _08
 	u16 m_height; // _0A
 	u32 m_color;  // _0C
@@ -131,7 +140,7 @@ struct J2DPane {
 	J2DPane(J2DPane* parent, JSURandomInputStream* input, u8 version);
 
 	virtual ~J2DPane();                                                                           // _08
-	virtual u16 getTypeID() const { return 0x10; }                                                // _0C (weak)
+	virtual u16 getTypeID() const { return PANETYPE_Pane; }                                       // _0C (weak)
 	virtual void move(f32 x, f32 y);                                                              // _10
 	virtual void add(f32 x, f32 y);                                                               // _14
 	virtual void resize(f32, f32);                                                                // _18
@@ -178,8 +187,6 @@ struct J2DPane {
 	JGeometry::TVec3f getGlbVtx(u8) const;
 	void* getPointer(JSURandomInputStream*, u32, JKRArchive*);
 	u64 getTagName() const;
-	f32 getTranslateX() const;
-	f32 getTranslateY() const;
 
 	/**
 	 * @reifiedAddress{80309D98}
@@ -191,6 +198,7 @@ struct J2DPane {
 	J2DPane* getNextChildPane();
 	J2DPane* getParentPane();
 	JSUTree<J2DPane>* getPaneTree() { return &m_tree; }
+	JSUTree<J2DPane>* getFirstChild() { return m_tree.getFirstChild(); }
 
 	void initiate();
 	void initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox2f& box);
@@ -228,7 +236,7 @@ struct J2DPane {
 	 */
 	void centerWithScale(f32 width, f32 height)
 	{
-		setBasePosition(POS_CENTER);
+		setBasePosition(J2DPOS_Center);
 		m_scale.x = width;
 		m_scale.y = height;
 		calcMtx();
@@ -240,7 +248,7 @@ struct J2DPane {
 		calcMtx();
 	}
 
-	inline void updateScale(f32 scaleX, f32 scaleY)
+	inline void updateScale(f32 scaleX, f32 scaleY) // called scale in TP
 	{
 		m_scale = JGeometry::TVec2f(scaleX, scaleY);
 		calcMtx();
@@ -269,13 +277,30 @@ struct J2DPane {
 		calcMtx();
 	}
 
-	inline void setOffset(f32 x, f32 y)
+	inline void setOffset(f32 x, f32 y) // called translate in TP
 	{
 		m_offset = JGeometry::TVec2f(x, y);
 		calcMtx();
 	}
 
-	inline void setMsgID(u64 msgID) { m_messageID = msgID; }
+	inline void setMsgID(u64 msgID) { m_messageID = msgID; } // called setUserInfo in TP
+
+	const Mtx* getMtx() const { return &m_positionMtx; }
+
+	u8 getAlpha() const { return m_alpha; }
+	f32 getScaleX() const { return m_scale.x; }
+	f32 getScaleY() const { return m_scale.y; }
+	f32 getTranslateX() const { return m_offset.x; }
+	f32 getTranslateY() const { return m_offset.y; }
+	int getKind() const { return m_bloBlockType; }
+	f32 getRotateZ() const { return m_angle; }
+	f32 getRotOffsetX() const { return m_anchorPoint.x; }
+	f32 getRotOffsetY() const { return m_anchorPoint.y; }
+	Mtx* getGlobalMtx() { return &m_globalMtx; }
+	f32 getHeight() const { return m_bounds.getHeight(); }
+	f32 getWidth() const { return m_bounds.getWidth(); }
+
+	void setMtx(Mtx mtx) { PSMTXCopy(mtx, m_positionMtx); }
 
 	inline void removeFromParent()
 	{
@@ -295,47 +320,42 @@ struct J2DPane {
 	f32 getRotate() const;
 	void gatherUserInfo(J2DPane**, u64, u64, int, int&);
 
-	// _00 VTBL
-	u16 _004;                        // _004
-	short _006;                      // _006
-	u32 m_bloBlockType;              // _008
-	u8 _00C[4];                      // _00C
-	u64 m_tag;                       // _010
-	u64 m_messageID;                 // _018
-	JGeometry::TBox2f _020;          // _020
-	JGeometry::TBox2f _030;          // _030
-	f32 _040;                        // _040
-	f32 _044;                        // _044
-	f32 _048;                        // _048
-	f32 _04C;                        // _04C
-	Mtx _050;                        // _050
-	Mtx _080;                        // _080
-	bool m_isVisible;                // _0B0
-	u8 m_cullMode;                   // _0B1
-	u8 m_alpha;                      // _0B2
-	u8 _0B3;                         // _0B3
-	bool m_isInfluencedAlpha;        // _0B4
-	u8 _0B5;                         // _0B5
-	u8 m_rotationAxisMaybe;          // _0B6
-	u8 m_basePosition;               // _0B7
-	f32 _0B8;                        // _0B8
-	f32 _0BC;                        // _0BC
-	f32 m_angle;                     // _0C0
-	JGeometry::TVec2f m_anchorPoint; // _0C4
-	JGeometry::TVec2f m_scale;       // _0CC
-	JGeometry::TVec2f m_offset;      // _0D4 /* offset X,Y? */
-	JSUTree<J2DPane> m_tree;         // _0DC
-	J2DAnmTransform* m_transform;    // _0F8
-	u8 _0FC[4];                      // _0FC
-
 	static JGeometry::TBox2f static_mBounds;
+
+	// _00 VTBL
+	u16 _004;                         // _004
+	u32 m_bloBlockType;               // _008
+	u64 m_tag;                        // _010
+	u64 m_messageID;                  // _018
+	JGeometry::TBox2f m_bounds;       // _020
+	JGeometry::TBox2f m_globalBounds; // _030
+	JGeometry::TBox2f m_clipRect;     // _040
+	Mtx m_positionMtx;                // _050
+	Mtx m_globalMtx;                  // _080
+	bool m_isVisible;                 // _0B0
+	u8 m_cullMode;                    // _0B1
+	u8 m_alpha;                       // _0B2
+	u8 m_colorAlpha;                  // _0B3
+	bool m_isInfluencedAlpha;         // _0B4
+	bool m_isConnected;               // _0B5
+	u8 m_rotationAxis;                // _0B6
+	u8 m_basePosition;                // _0B7
+	f32 _0B8;                         // _0B8
+	f32 _0BC;                         // _0BC
+	f32 m_angle;                      // _0C0
+	JGeometry::TVec2f m_anchorPoint;  // _0C4
+	JGeometry::TVec2f m_scale;        // _0CC
+	JGeometry::TVec2f m_offset;       // _0D4
+	JSUTree<J2DPane> m_tree;          // _0DC
+	J2DAnmTransform* m_transform;     // _0F8
+	u8 _0FC[4];                       // _0FC
 };
 
 struct J2DScreen : public J2DPane {
 	J2DScreen();
 
 	virtual ~J2DScreen();                                                                                                  // _08
-	virtual u16 getTypeID() const { return 0x8; }                                                                          // _0C (weak)
+	virtual u16 getTypeID() const { return PANETYPE_Screen; }                                                              // _0C (weak)
 	virtual void calcMtx() { makeMatrix(m_offset.x, m_offset.y); }                                                         // _2C (weak)
 	virtual void drawSelf(f32, f32, f32 (*)[3][4]);                                                                        // _38
 	virtual J2DPane* search(u64);                                                                                          // _3C
@@ -367,7 +387,7 @@ struct J2DScreen : public J2DPane {
 	void draw(f32, f32, const J2DGrafContext*);
 	u32 gather(J2DPane**, u64, u64, int);
 	J2DMaterial* getMaterial(u16 index);
-	u8* getResReference(JSURandomInputStream*, u32);
+	J2DResReference* getResReference(JSURandomInputStream*, u32);
 	bool getScreenInformation(JSURandomInputStream* input);
 	u32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, u32, JKRArchive*);
 	bool set(const char*, u32, JKRArchive*);
@@ -388,16 +408,17 @@ struct J2DScreen : public J2DPane {
 
 	static void* getNameResource(const char*);
 
-	// J2DPane _000
-	bool _100;                // _100
-	u16 m_materialCount;      // _102
-	J2DMaterial* m_materials; // _104
-	void* _108;               // _108
-	void* _10C;               // _10C
-	JUTNameTab* m_nameTab;    // _110
-	JUtility::TColor _114;    // _114
-
 	static J2DDataManage* mDataManage;
+
+	// _000      = VTBL
+	// _000-_100 = J2DPane
+	bool m_isScissor;           // _100
+	u16 m_materialCount;        // _102
+	J2DMaterial* m_materials;   // _104
+	J2DResReference* m_texRes;  // _108
+	J2DResReference* m_fontRes; // _10C
+	JUTNameTab* m_nameTab;      // _110
+	JUtility::TColor m_color;   // _114
 };
 
 // /** @fabricated */
@@ -430,7 +451,7 @@ struct J2DPicture : public J2DPane {
 	J2DPicture(u64, const JGeometry::TBox2f&);
 
 	virtual ~J2DPicture();                                                             // _08
-	virtual u16 getTypeID() const { return 0x12; };                                    // _0C (weak)
+	virtual u16 getTypeID() const { return PANETYPE_Picture; };                        // _0C (weak)
 	virtual void drawSelf(f32, f32);                                                   // _34
 	virtual void drawSelf(f32, f32, f32 (*)[3][4]);                                    // _38
 	virtual bool isUsed(const ResTIMG* resource);                                      // _4C
@@ -510,25 +531,25 @@ struct J2DPicture : public J2DPane {
 	u8 getTlutID(const ResTIMG*, unsigned char);
 	void operator=(const J2DPicture&);
 
-	inline JUtility::TColor getColor(int i) { return _150[i]; }
+	inline JUtility::TColor getColor(int i) { return m_cornerColors[i]; }
 
-	inline void setColor(JUtility::TColor color, int i) { _150[i] = color; }
+	inline void setColor(JUtility::TColor color, int i) { m_cornerColors[i] = color; }
 
 	inline J2DColorBox& setColorBox(u32 color)
 	{
 		for (int i = 0; i < 4; i++) {
-			_150[i].set(JUtility::TColor(color));
+			m_cornerColors[i].set(JUtility::TColor(color));
 		}
-		return _150;
+		return m_cornerColors;
 	}
 
 	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
 	// {
-	// 	_150[0] = a;
-	// 	_150[1] = b;
-	// 	_150[2] = c;
-	// 	_150[3] = d;
-	// 	// return _150;
+	// 	m_cornerColors[0] = a;
+	// 	m_cornerColors[1] = b;
+	// 	m_cornerColors[2] = c;
+	// 	m_cornerColors[3] = d;
+	// 	// return m_cornerColors;
 	// }
 	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
 	// {
@@ -536,7 +557,7 @@ struct J2DPicture : public J2DPane {
 	// 	setColor(b, 1);
 	// 	setColor(c, 2);
 	// 	setColor(d, 3);
-	// 	// return _150;
+	// 	// return m_cornerColors;
 	// }
 	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
 	// {
@@ -544,40 +565,40 @@ struct J2DPicture : public J2DPane {
 	// 	setColor(JUtility::TColor(b), 1);
 	// 	setColor(JUtility::TColor(c), 2);
 	// 	setColor(JUtility::TColor(d), 3);
-	// 	// return _150;
+	// 	// return m_cornerColors;
 	// }
-	inline void setColorBox(JUtility::TColor a, JUtility::TColor b, JUtility::TColor c, JUtility::TColor d)
+	inline void setCornerColor(JUtility::TColor a, JUtility::TColor b, JUtility::TColor c, JUtility::TColor d)
 	{
-		_150[0] = a;
-		_150[1] = b;
-		_150[2] = c;
-		_150[3] = d;
-		// return _150;
+		m_cornerColors[0] = a;
+		m_cornerColors[1] = b;
+		m_cornerColors[2] = c;
+		m_cornerColors[3] = d;
+		// return m_cornerColors;
 	}
 	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
 	// {
-	// 	_150[0].set(JUtility::TColor(a));
-	// 	_150[1].set(JUtility::TColor(b));
-	// 	_150[2].set(JUtility::TColor(c));
-	// 	_150[3].set(JUtility::TColor(d));
-	// 	// return _150;
+	// 	m_cornerColors[0].set(JUtility::TColor(a));
+	// 	m_cornerColors[1].set(JUtility::TColor(b));
+	// 	m_cornerColors[2].set(JUtility::TColor(c));
+	// 	m_cornerColors[3].set(JUtility::TColor(d));
+	// 	// return m_cornerColors;
 	// }
 
-	// J2DPane _000
-	JUTTexture* m_textures[4];       // _100
-	u8 m_textureCount;               // _110
-	u8 _111;                         // _111
-	JGeometry::TVec2<short> _112[4]; // _112 /* TODO: Does using TVec2<short>[4] here mess with alignment? */
-	u8 _122[2];                      // _122
-	f32 _124[4];                     // _124
-	f32 _134[4];                     // _134
-	JUTPalette* m_palette;           // _144
-	JUtility::TColor m_white;        // _148
-	JUtility::TColor m_black;        // _14C
-	J2DColorBox _150;                // _150
-	// JUtility::TColor _150[4];        // _150
-	u32 _160; // _160
-	u32 _164; // _164
+	// _000      = VTBL
+	// _000-_100 = J2DPane
+	JUTTexture* m_textures[4];     // _100
+	u8 m_textureCount;             // _110
+	u8 _111;                       // _111
+	JGeometry::TVec2<s16> _112[4]; // _112 /* TODO: Does using TVec2<short>[4] here mess with alignment? */
+	u8 _122[2];                    // _122
+	f32 _124[4];                   // _124
+	f32 _134[4];                   // _134
+	JUTPalette* m_palette;         // _144
+	JUtility::TColor m_white;      // _148
+	JUtility::TColor m_black;      // _14C
+	J2DColorBox m_cornerColors;    // _150
+	u32 _160;                      // _160, TColor?
+	u32 _164;                      // _164, TColor?
 };
 
 // Size: 0x1A8
@@ -671,8 +692,8 @@ struct J2DPictureEx : public J2DPicture {
 	inline void setAnmVtxColorHelper(J2DAnmVtxColor* animation, u16 p2, u8 p3)
 	{
 		for (u16 b = 0; b < p2; b++) {
-			for (u16 c = 0; c < animation->_14[b]._00; c++) {
-				if (_170[p3] == animation->_1C[animation->_14[b]._04 + c]) {
+			for (u16 c = 0; c < animation->m_vtxColorIndexData[b]->_00; c++) {
+				if (_170[p3] == *animation->m_vtxColorIndexPtr[animation->m_vtxColorIndexData[b]->_04 + c]) {
 					m_anmVtxColor = animation;
 					_1A4 |= 1 << p3;
 					return;
@@ -681,8 +702,9 @@ struct J2DPictureEx : public J2DPicture {
 		}
 	}
 
-	// J2DPane _000
-	J2DMaterial* _168;                     // _168
+	// _000      = VTBL
+	// _000-_168 = J2DPicture
+	J2DMaterial* m_material;               // _168
 	u16 _16C;                              // _16C
 	u16 _16E;                              // _16E
 	u16 _170[4];                           // _170
@@ -713,7 +735,7 @@ struct J2DTextBox : public J2DPane {
 	J2DTextBox(u64, const JGeometry::TBox2f&, const char*, const char*, s16, J2DTextBoxHBinding, J2DTextBoxVBinding); // unused/inlined
 
 	virtual ~J2DTextBox();                                                             // _08
-	virtual u16 getTypeID() const { return 0x13; }                                     // _0C (weak)
+	virtual u16 getTypeID() const { return PANETYPE_TextBox; }                         // _0C (weak)
 	virtual void resize(f32, f32);                                                     // _18
 	virtual bool setConnectParent(bool);                                               // _28
 	virtual void drawSelf(f32, f32);                                                   // _34
@@ -767,36 +789,64 @@ struct J2DTextBox : public J2DPane {
 			}
 			finalLength = length + 1;
 		}
-		_124 = new char[finalLength];
-		if (finalLength != 0 && _124 != nullptr) {
-			strncpy(_124, str, finalLength - 1);
-			_124[finalLength - 1] = '\0';
-			_132                  = finalLength;
+		m_stringPtr = new char[finalLength];
+		if (finalLength != 0 && m_stringPtr != nullptr) {
+			strncpy(m_stringPtr, str, finalLength - 1);
+			m_stringPtr[finalLength - 1] = '\0';
+			m_stringLength               = finalLength;
 		}
 	}
 
-	// J2DPane _000
-	JUTResFont* m_font;        // _100
-	JUtility::TColor m_color1; // _104
-	JUtility::TColor m_color2; // _108
-	f32 _10C;                  // _10C
-	f32 _110;                  // _110
-	f32 _114;                  // _114
-	f32 _118;                  // _118
-	f32 _11C;                  // _11C
-	f32 _120;                  // _120
-	char* _124;                // _124
-	JUtility::TColor m_white;  // _128
-	JUtility::TColor m_black;  // _12C
-	u8 _130;                   // _130
-	u8 _131;                   // _131
-	short _132;                // _132
-	u8 _134[4];                // _134
+	inline void setFontSize(f32 sizeX, f32 sizeY)
+	{
+		f32 x;
+		if (sizeX > 0.0f) {
+			x = sizeX;
+		} else {
+			x = 0.0f;
+		}
+		m_fontSize.x = x;
+
+		f32 y;
+		if (sizeY > 0.0f) {
+			y = sizeY;
+		} else {
+			y = 0.0f;
+		}
+		m_fontSize.y = y;
+	}
+
+	inline void setCharSpace(f32 space) { m_charSpacing = space; }
+	inline f32 getCharSpace() const { return m_charSpacing; }
+	inline void setLineSpace(f32 space) { m_lineSpacing = space; }
+	inline f32 getLineSpace() const { return m_lineSpacing; }
+
+	inline J2DTextBoxVBinding getVBinding() const { return (J2DTextBoxVBinding)(m_flags & 3); }
+
+	inline J2DTextBoxHBinding getHBinding() const { return (J2DTextBoxHBinding)((m_flags >> 2) & 3); }
+
+	// _000      = VTBL
+	// _000-_100 = J2DPane
+	JUTResFont* m_font;               // _100
+	JUtility::TColor m_charColor;     // _104
+	JUtility::TColor m_gradientColor; // _108
+	f32 _10C;                         // _10C
+	f32 _110;                         // _110
+	f32 m_charSpacing;                // _114
+	f32 m_lineSpacing;                // _118
+	JGeometry::TVec2f m_fontSize;     // _11C
+	char* m_stringPtr;                // _124
+	JUtility::TColor m_white;         // _128
+	JUtility::TColor m_black;         // _12C
+	u8 m_flags;                       // _130
+	u8 m_isTextFontOwned;             // _131
+	s16 m_stringLength;               // _132
+	u8 _134[4];                       // _134
 };
 
 // Size: 0x148
 struct J2DTextBoxEx : public J2DTextBox {
-	enum stage_enum {};
+	enum stage_enum { STAGE_0, STAGE_1, STAGE_2 };
 
 	J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials);
 
@@ -833,8 +883,9 @@ struct J2DTextBoxEx : public J2DTextBox {
 	void getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
 	void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
 
-	// J2DTextBox _000
-	J2DMaterial* _138;                     // _138
+	// _000      = VTBL
+	// _000-_138 = J2DTextBox
+	J2DMaterial* m_material;               // _138
 	u16 _13C;                              // _13C
 	u16 _13E;                              // _13E
 	u8 _140[4];                            // _140
@@ -856,7 +907,7 @@ struct J2DWindow : public J2DPane {
 	J2DWindow(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* materials);
 
 	virtual ~J2DWindow();                                                              // _08
-	virtual u16 getTypeID() const { return 0x11; }                                     // _0C (weak)
+	virtual u16 getTypeID() const { return PANETYPE_Window; }                          // _0C (weak)
 	virtual void resize(f32, f32);                                                     // _18
 	virtual void drawSelf(f32, f32);                                                   // _34
 	virtual void drawSelf(f32, f32, f32 (*)[3][4]);                                    // _38
@@ -910,7 +961,8 @@ struct J2DWindow : public J2DPane {
 	void drawContentsTexture(f32, f32, f32, f32);
 	void setTevMode(JUTTexture*, JUtility::TColor, JUtility::TColor);
 
-	// J2DPane _000
+	// _000      = VTBL
+	// _000-_100 = J2DPane
 	JUTTexture* _100;                  // _100
 	JUTTexture* _104;                  // _104
 	JUTTexture* _108;                  // _108
@@ -977,7 +1029,8 @@ struct J2DWindowEx : public J2DWindow {
 	void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
 	bool isNeedSetAnm(u8 frameMaterialIndex);
 
-	// J2DWindow _000
+	// _000      = VTBL
+	// _000-_148 = J2DWindow
 	J2DMaterial* m_frameMaterials[4];      // _148
 	u16 _158[2];                           // _158
 	u8 _15C[4];                            // _15C

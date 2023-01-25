@@ -153,7 +153,7 @@ void ObjKantei::doCreate(JKRArchive* arc)
 
 	m_paneName = m_screenName->search('ItemName');
 	m_paneName->add(msVal.m_namePaneAdd.x, msVal.m_namePaneAdd.y);
-	m_paneName->setBasePosition(POS_CENTER);
+	m_paneName->setBasePosition(J2DPOS_Center);
 	m_paneName->setMsgID('8557_00'); // "Name"
 	m_nameScale = 0.0f;
 	m_paneName->updateScale(m_nameScale);
@@ -459,10 +459,10 @@ void ObjKantei::doDraw(Graphics& gfx)
 	if (m_doDrawBox && m_disp->m_delegate) {
 		J2DPane* pane = m_paneSetP;
 		f32 x1, y1, x2, y2;
-		y2             = pane->_030.f.y;
-		x2             = pane->_030.f.x;
-		y1             = pane->_030.i.y;
-		x1             = pane->_030.i.x;
+		y2             = pane->m_globalBounds.f.y;
+		x2             = pane->m_globalBounds.f.x;
+		y1             = pane->m_globalBounds.i.y;
+		x1             = pane->m_globalBounds.i.x;
 		m_drawBox.p1.x = x1;
 		m_drawBox.p1.y = y1;
 		m_drawBox.p2.x = x2;

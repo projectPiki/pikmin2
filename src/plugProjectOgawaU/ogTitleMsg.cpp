@@ -790,13 +790,13 @@ void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
 	m_panes1[id]->setBasePosition(POS_BOTTOM_CENTER);
 	m_panes1[id]->setWhite(m_panes1White);
 
-	m_panes2[id] = og::Screen::CopyPictureToPane(pic, m_panes1[id], (pic->_020.f.x - pic->_020.i.x) * 0.5f - 3.0f,
-	                                             (pic->_020.f.y - pic->_020.i.y) * 0.5f - 3.0f, 'tBody000' + id);
+	m_panes2[id] = og::Screen::CopyPictureToPane(pic, m_panes1[id], (pic->m_bounds.f.x - pic->m_bounds.i.x) * 0.5f - 3.0f,
+	                                             (pic->m_bounds.f.y - pic->m_bounds.i.y) * 0.5f - 3.0f, 'tBody000' + id);
 	m_panes2[id]->setBasePosition(POS_BOTTOM_CENTER);
 	m_panes2[id]->setWhite(m_panes2White);
 	m_panes2[id]->setBlack(m_panes2Black);
 
-	m_currXpos += (m_panes1[id]->_020.f.x - m_panes1[id]->_020.i.x);
+	m_currXpos += (m_panes1[id]->m_bounds.f.x - m_panes1[id]->m_bounds.i.x);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -897,7 +897,7 @@ void TitleMsg::setCentering(og::newScreen::TitleMsg::EnumCentering center)
 	m_centering = center;
 
 	f32 cx   = m_currXpos;
-	f32 size = m_rootPane->_020.f.x - m_rootPane->_020.i.x;
+	f32 size = m_rootPane->m_bounds.f.x - m_rootPane->m_bounds.i.x;
 	if (cx > size) {
 		temp = size / cx;
 	}
@@ -924,7 +924,7 @@ void TitleMsg::setCentering(og::newScreen::TitleMsg::EnumCentering center)
 		pane->move(size + currX, 0.0f);
 
 		m_panes1[i]->updateScale(scaleX, scaleY);
-		currX += m_panes1[i]->_020.f.x - m_panes1[i]->_020.i.x;
+		currX += m_panes1[i]->m_bounds.f.x - m_panes1[i]->m_bounds.i.x;
 	}
 	m_xScale = scaleX;
 	/*

@@ -117,7 +117,7 @@ J2DPane::J2DPane()
     , m_isVisible(true)
     , m_tag(0)
     , m_messageID(0)
-    , _020(0.0f, 0.0f, 0.0f, 0.0f)
+    , m_bounds(0.0f, 0.0f, 0.0f, 0.0f)
 {
 	initiate();
 	changeUseTrans(nullptr);
@@ -191,7 +191,7 @@ void J2DPane::calcMtx()
  * Address:	80036BF0
  * Size:	00003C
  */
-void J2DPane::makeMatrix(float f1, float f2) { makeMatrix(f1, f2, -_020.i.x, -_020.i.y); }
+void J2DPane::makeMatrix(float f1, float f2) { makeMatrix(f1, f2, -m_bounds.i.x, -m_bounds.i.y); }
 
 /*
  * --INFO--
@@ -205,15 +205,15 @@ void J2DPane::initiate()
 	_0BC = 0.0f;
 	_0C0 = 0.0f;
 	m_anchorPoint.set(0.0f, 0.0f);
-	m_basePosition      = POS_TOP_LEFT;
-	m_rotationAxisMaybe = 122; // 0x7A
-	m_scale.x           = 1.0f;
-	m_scale.y           = 1.0f;
-	m_cullMode          = 0;
-	m_alpha             = 0xFF;
-	_0B4                = true;
-	_0B3                = 0xFF;
-	_0B5                = 0;
+	m_basePosition = J2DPOS_TopLeft;
+	m_rotationAxis = 122; // 0x7A
+	m_scale.x      = 1.0f;
+	m_scale.y      = 1.0f;
+	m_cullMode     = 0;
+	m_alpha        = 0xFF;
+	_0B4           = true;
+	m_colorAlpha   = 0xFF;
+	m_isConnected  = 0;
 	calcMtx();
 }
 
@@ -241,7 +241,7 @@ void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeomet
 	m_isVisible    = isVisible;
 	m_tag          = tag;
 	m_messageID    = 0;
-	_020.set(box);
+	m_bounds.set(box);
 	if (parent) {
 		parent->m_tree.appendChild(&m_tree);
 	}
@@ -321,7 +321,7 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 	JGeometry::TVec2f bottomRight;
 	bottomRight.x = input->readS16() + topLeft.x;
 	bottomRight.y = input->readS16() + topLeft.y;
-	_020.set(topLeft, bottomRight);
+	m_bounds.set(topLeft, bottomRight);
 	valuesRemaining -= 6;
 	_0B8 = 0.0f;
 	_0BC = 0.0f;
@@ -335,30 +335,30 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 		m_basePosition  = (J2DBasePosition)basePosition;
 		valuesRemaining--;
 	} else {
-		m_basePosition = POS_TOP_LEFT;
+		m_basePosition = J2DPOS_TopLeft;
 	}
-	m_rotationAxisMaybe = 0x7A;
-	m_alpha             = 0xFF;
+	m_rotationAxis = 0x7A;
+	m_alpha        = 0xFF;
 	if (valuesRemaining != 0) {
 		m_alpha = input->readByte();
 		valuesRemaining--;
 	}
-	_0B4 = true;
+	m_isInfluencedAlpha = true;
 	if (valuesRemaining != 0) {
-		_0B4 = input->readByte();
+		m_isInfluencedAlpha = input->readByte();
 		valuesRemaining--;
 	}
 	input->align(4);
 	if (parent) {
 		parent->m_tree.appendChild(&m_tree);
 	}
-	m_cullMode  = 0;
-	_0B3        = 0xFF;
-	_0B5        = 0;
-	_004        = -1;
-	m_scale.x   = 1.0f;
-	m_scale.y   = 1.0f;
-	m_messageID = 0;
+	m_cullMode    = 0;
+	m_colorAlpha  = 0xFF;
+	m_isConnected = 0;
+	_004          = -1;
+	m_scale.x     = 1.0f;
+	m_scale.y     = 1.0f;
+	m_messageID   = 0;
 	changeUseTrans(parent);
 	calcMtx();
 }
@@ -372,28 +372,28 @@ void J2DPane::changeUseTrans(J2DPane* parent)
 {
 	JGeometry::TVec2f v1(0.0f, 0.0f);
 	if (m_basePosition % 3 == 1) {
-		v1.x = (_020.f.x - _020.i.x) * 0.5f;
+		v1.x = (m_bounds.f.x - m_bounds.i.x) * 0.5f;
 	} else if (m_basePosition % 3 == 2) {
-		v1.x = (_020.f.x - _020.i.x);
+		v1.x = (m_bounds.f.x - m_bounds.i.x);
 		// } else {
 		// 	v1.x = 0.0f;
 	}
 	if (m_basePosition / 3 == 1) {
-		v1.y = (_020.f.y - _020.i.y) * 0.5f;
+		v1.y = (m_bounds.f.y - m_bounds.i.y) * 0.5f;
 	} else if (m_basePosition / 3 == 2) {
-		v1.y = (_020.f.y - _020.i.y);
+		v1.y = (m_bounds.f.y - m_bounds.i.y);
 		// } else {
 		// 	v1.y = 0.0f;
 	}
-	_0D4 = _020.i;
+	_0D4 = m_bounds.i;
 	_0D4.add(v1);
 	m_anchorPoint = v1;
 	v1.set(-_0D4.x, -_0D4.y);
-	_020.addPos(v1);
+	m_bounds.addPos(v1);
 	if (parent == nullptr) {
 		return;
 	}
-	v1.set(parent->_020.getWidth(), parent->_020.getHeight());
+	v1.set(parent->m_bounds.getWidth(), parent->m_bounds.getHeight());
 	if (m_basePosition % 3 == 1) {
 		_0D4.x = -(v1.x * 0.5f - _0D4.x);
 	} else if (m_basePosition % 3 == 2) {
@@ -625,7 +625,7 @@ bool J2DPane::appendChild(J2DPane* child)
 	J2DPane* oldParent = child->getParentPane();
 	bool appendResult  = m_tree.appendChild(&child->m_tree);
 	if ((appendResult) && oldParent == nullptr) {
-		child->add(_020.i.x, _020.i.y);
+		child->add(m_bounds.i.x, m_bounds.i.y);
 		child->calcMtx();
 	}
 	return appendResult;
@@ -644,7 +644,7 @@ bool J2DPane::prependChild(J2DPane* child)
 	J2DPane* oldParent = child->getParentPane();
 	bool prependResult = m_tree.prependChild(&child->m_tree);
 	if ((prependResult) && oldParent == nullptr) {
-		child->add(_020.i.x, _020.i.y);
+		child->add(m_bounds.i.x, m_bounds.i.y);
 		child->calcMtx();
 	}
 	return prependResult;
@@ -665,7 +665,7 @@ bool J2DPane::insertChild(J2DPane* before, J2DPane* child)
 	J2DPane* oldParent = child->getParentPane();
 	bool removeResult  = m_tree.insertChild(&before->m_tree, &child->m_tree);
 	if ((removeResult) && oldParent == nullptr) {
-		child->add(_020.i.x, _020.i.y);
+		child->add(m_bounds.i.x, m_bounds.i.y);
 		child->calcMtx();
 	}
 	return removeResult;
@@ -683,7 +683,7 @@ bool J2DPane::removeChild(J2DPane* child)
 	}
 	bool removeResult = m_tree.removeChild(&child->m_tree);
 	if (removeResult) {
-		child->add(-_020.i.x, -_020.i.y);
+		child->add(-m_bounds.i.x, -m_bounds.i.y);
 		child->calcMtx();
 	}
 	return removeResult;
@@ -1345,7 +1345,8 @@ lbl_8003813C:
  */
 void J2DPane::move(float x, float y)
 {
-	// place(JGeometry::TBox2f(JGeometry::TVec2f(x + (_020.maxX - _020.minX), y + (_020.maxY - _020.minY)), JGeometry::TVec2f(x, y)));
+	// place(JGeometry::TBox2f(JGeometry::TVec2f(x + (m_bounds.maxX - m_bounds.minX), y + (m_bounds.maxY - m_bounds.minY)),
+	// JGeometry::TVec2f(x, y)));
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1470,12 +1471,12 @@ lbl_800382D8:
  */
 JGeometry::TBox2f* J2DPane::getBounds()
 {
-	static_mBounds = _020;
+	static_mBounds = m_bounds;
 	static_mBounds.addPos(_0D4);
-	// static_mBounds  = _020.addingPos(_0D4);
+	// static_mBounds  = m_bounds.addingPos(_0D4);
 	J2DPane* parent = getParentPane();
 	if (parent != nullptr) {
-		static_mBounds.addPos(-parent->_020.i.x, -parent->_020.i.y);
+		static_mBounds.addPos(-parent->m_bounds.i.x, -parent->m_bounds.i.y);
 	}
 	return &static_mBounds;
 	/*
@@ -1547,9 +1548,9 @@ lbl_800383E4:
  */
 void J2DPane::rotate(float anchorX, float anchorY, J2DRotateAxis axis, float f4)
 {
-	m_anchorPoint.x     = anchorX;
-	m_anchorPoint.y     = anchorY;
-	m_rotationAxisMaybe = (u8)axis;
+	m_anchorPoint.x = anchorX;
+	m_anchorPoint.y = anchorY;
+	m_rotationAxis  = (u8)axis;
 	rotate(f4);
 }
 
@@ -1562,7 +1563,7 @@ void J2DPane::rotate(float anchorX, float anchorY, J2DRotateAxis axis, float f4)
  */
 void J2DPane::rotate(float f1)
 {
-	s8 axis = m_rotationAxisMaybe;
+	s8 axis = m_rotationAxis;
 	if (axis == 0x78) {
 		_0B8 = f1;
 	} else {
@@ -1592,17 +1593,17 @@ float J2DPane::getRotate() const
  */
 void J2DPane::clip(const JGeometry::TBox2<float>& box)
 {
-	if (_040 <= box.i.x + _030) {
-		_040 = box.i.x + _030;
+	if (m_clipRect.i.x <= box.i.x + m_globalBounds.i.x) {
+		m_clipRect.i.x = box.i.x + m_globalBounds.i.x;
 	}
-	if (_044 <= box.i.y + _034) {
-		_044 = box.i.y + _034;
+	if (m_clipRect.i.y <= box.i.y + m_globalBounds.i.y) {
+		m_clipRect.i.y = box.i.y + m_globalBounds.i.y;
 	}
-	if (_048 > box.f.x + _030) {
-		_048 = box.f.x + _030;
+	if (m_clipRect.f.x > box.f.x + m_globalBounds.i.x) {
+		m_clipRect.f.x = box.f.x + m_globalBounds.i.x;
 	}
-	if (_04C > box.f.y + _034) {
-		_04C = box.f.y + _034;
+	if (m_clipRect.f.y > box.f.y + m_globalBounds.i.y) {
+		m_clipRect.f.y = box.f.y + m_globalBounds.i.y;
 	}
 	/*
 	lfs      f2, 0(r4)
@@ -1933,9 +1934,9 @@ void J2DPane::makeMatrix(float f1, float f2, float f3, float f4)
 	PSMTXRotRad(mtx3, 0x7A, _0C0 * 0.01745329f);
 	PSMTXConcat(mtx3, mtx1, mtx6);
 	PSMTXConcat(mtx2, mtx6, mtx4);
-	PSMTXScaleApply(trans, _050, m_scale.x, m_scale.y, 1.0f);
-	PSMTXConcat(mtx4, _050, mtx6);
-	PSMTXTransApply(mtx6, _050, f1 + x, f2 + y, 0.0f);
+	PSMTXScaleApply(trans, m_positionMtx, m_scale.x, m_scale.y, 1.0f);
+	PSMTXConcat(mtx4, m_positionMtx, mtx6);
+	PSMTXTransApply(mtx6, m_positionMtx, f1 + x, f2 + y, 0.0f);
 
 	/*
 	stwu     r1, -0x170(r1)
@@ -2041,22 +2042,22 @@ void J2DPane::setCullBack(GXCullMode cullMode)
  */
 void J2DPane::setBasePosition(J2DBasePosition base)
 {
-	m_basePosition      = base;
-	m_rotationAxisMaybe = 122; // 0x7A
-	m_anchorPoint.x     = 0.0f;
+	m_basePosition  = base;
+	m_rotationAxis  = 122; // 0x7A
+	m_anchorPoint.x = 0.0f;
 	if (base % 3 == 1) {
-		m_anchorPoint.x = (_020.f.x - _020.i.x) * 0.5f;
+		m_anchorPoint.x = (m_bounds.f.x - m_bounds.i.x) * 0.5f;
 	} else {
 		if (base % 3 == 2) {
-			m_anchorPoint.x = _020.f.x - _020.i.x;
+			m_anchorPoint.x = m_bounds.f.x - m_bounds.i.x;
 		}
 	}
 	m_anchorPoint.y = 0.0f;
 	if (base / 3 == 1) {
-		m_anchorPoint.y = (_020.f.y - _020.i.y) * 0.5f;
+		m_anchorPoint.y = (m_bounds.f.y - m_bounds.i.y) * 0.5f;
 	} else {
 		if (base / 3 == 2) {
-			m_anchorPoint.y = _020.f.y - _020.i.y;
+			m_anchorPoint.y = m_bounds.f.y - m_bounds.i.y;
 		}
 	}
 	calcMtx();
@@ -2741,29 +2742,29 @@ void J2DPane::setAnimation(J2DAnmBase* animation)
 	if (animation == nullptr) {
 		return;
 	}
-	switch (animation->m_type) {
-	case J2DANM_TRANSFORM:
+	switch (animation->m_kind) {
+	case J2DANM_Transform:
 		setAnimation((J2DAnmTransform*)animation);
 		break;
-	case J2DANM_COLOR:
+	case J2DANM_Color:
 		setAnimation((J2DAnmColor*)animation);
 		break;
-	case J2DANM_VERTEX_COLOR:
+	case J2DANM_VtxColor:
 		setAnimation((J2DAnmVtxColor*)animation);
 		break;
-	case J2DANM_TEXTURE_SRT_KEY:
+	case J2DANM_TextureSRT:
 		setAnimation((J2DAnmTextureSRTKey*)animation);
 		break;
-	case J2DANM_TEXTURE_PATTERN:
+	case J2DANM_TexturePattern:
 		setAnimation((J2DAnmTexPattern*)animation);
 		break;
-	case J2DANM_VISIBILITY_FULL:
+	case J2DANM_VisibilityFull:
 		setAnimation((J2DAnmVisibilityFull*)animation);
 		break;
-	case J2DANM_TEV_REG_KEY:
+	case J2DANM_TevReg:
 		setAnimation((J2DAnmTevRegKey*)animation);
 		break;
-	case J2DANM_UNKNOWN_3:
+	case J2DANM_Unk3:
 		break;
 	}
 }
@@ -3032,7 +3033,7 @@ void J2DPane::setCullBack(bool shouldCullBack)
  */
 bool J2DPane::setConnectParent(bool connectParent)
 {
-	_0B5 = 0;
+	m_isConnected = 0;
 	return false;
 }
 

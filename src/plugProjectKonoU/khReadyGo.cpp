@@ -7,6 +7,7 @@
 #include "utilityU.h"
 #include "efx2d/T2DGo.h"
 #include "Game/GameSystem.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
 
 static const char pad[] = { "\0\0\0\0\0\0\0\0" };
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }

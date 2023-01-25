@@ -89,10 +89,10 @@ void ObjSpecialItem::doDraw(Graphics& gfx)
 
 	J2DPane* pane = m_paneSetP;
 	f32 x1, y1, x2, y2;
-	y2             = pane->_030.f.y;
-	x2             = pane->_030.f.x;
-	y1             = pane->_030.i.y;
-	x1             = pane->_030.i.x;
+	y2             = pane->m_globalBounds.f.y;
+	x2             = pane->m_globalBounds.f.x;
+	y1             = pane->m_globalBounds.i.y;
+	x1             = pane->m_globalBounds.i.x;
 	m_drawBox.p1.x = x1;
 	m_drawBox.p1.y = y1;
 	m_drawBox.p2.x = x2;
@@ -101,10 +101,10 @@ void ObjSpecialItem::doDraw(Graphics& gfx)
 	if (m_doDrawBox && m_disp->m_delegate) {
 		J2DPane* pane = m_paneSetP;
 		f32 x1, y1, x2, y2;
-		y2             = pane->_030.f.y;
-		x2             = pane->_030.f.x;
-		y1             = pane->_030.i.y;
-		x1             = pane->_030.i.x;
+		y2             = pane->m_globalBounds.f.y;
+		x2             = pane->m_globalBounds.f.x;
+		y1             = pane->m_globalBounds.i.y;
+		x1             = pane->m_globalBounds.i.x;
 		m_drawBox.p1.x = x1;
 		m_drawBox.p1.y = y1;
 		m_drawBox.p2.x = x2;

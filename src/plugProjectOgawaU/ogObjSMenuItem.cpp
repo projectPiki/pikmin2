@@ -882,8 +882,8 @@ void ObjSMenuItem::doDraw(Graphics& gfx)
 		m_screenItems->draw(gfx, *graf);
 	}
 	if (m_screenSprays) {
-		PSMTXCopy(m_paneSpray0->_080, m_paneSpraySub0->_050);
-		PSMTXCopy(m_paneSpray1->_080, m_paneSpraySub1->_050);
+		PSMTXCopy(m_paneSpray0->m_globalMtx, m_paneSpraySub0->m_positionMtx);
+		PSMTXCopy(m_paneSpray1->m_globalMtx, m_paneSpraySub1->m_positionMtx);
 		m_screenSprays->draw(gfx, *graf);
 	}
 	drawYaji(gfx);

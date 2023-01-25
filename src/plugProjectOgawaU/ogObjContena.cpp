@@ -604,7 +604,7 @@ void ObjContena::doCreate(JKRArchive* arc)
 	m_screenSpot = new P2DScreen::Mgr_tuning;
 	m_screenSpot->set("spot.blo", 0x1040000, arc);
 	m_paneSpot = m_screenSpot->search('pspot');
-	m_paneSpot->setBasePosition(POS_CENTER);
+	m_paneSpot->setBasePosition(J2DPOS_Center);
 	m_spotX = m_paneSpot->m_offset.x;
 	m_spotY = m_paneSpot->m_offset.y;
 	og::Screen::setCallBackMessage(m_contena);
@@ -645,11 +645,11 @@ void ObjContena::doCreate(JKRArchive* arc)
 	m_paneArrowUp      = og::Screen::TagSearch(m_contena, 'Nya_u');
 	m_paneArrowUpPos.x = m_paneArrowUp->m_offset.x;
 	m_paneArrowUpPos.y = m_paneArrowUp->m_offset.y;
-	m_paneArrowUp->setBasePosition(POS_CENTER);
+	m_paneArrowUp->setBasePosition(J2DPOS_Center);
 	m_paneArrowDown      = og::Screen::TagSearch(m_contena, 'Nya_l');
 	m_paneArrowDownPos.x = m_paneArrowDown->m_offset.x;
 	m_paneArrowDownPos.y = m_paneArrowDown->m_offset.y;
-	m_paneArrowDown->setBasePosition(POS_CENTER);
+	m_paneArrowDown->setBasePosition(J2DPOS_Center);
 	m_alphaArrow1 = new og::Screen::AlphaMgr;
 	m_alphaArrow2 = new og::Screen::AlphaMgr;
 	m_alphaArrow1->in(0.3f);
@@ -2882,11 +2882,11 @@ void ObjContena::doDraw(Graphics& gfx)
 
 		J2DPane* pane1 = m_contena->search('Pscon');
 		J2DPane* pane2 = m_screenCupsule->search('Pscon');
-		PSMTXCopy(pane1->_080, pane2->_050);
+		PSMTXCopy(pane1->m_globalMtx, pane2->m_positionMtx);
 
 		pane1 = m_contena->search('Pscon01');
 		pane2 = m_screenCupsule->search('Pscon01');
-		PSMTXCopy(pane1->_080, pane2->_050);
+		PSMTXCopy(pane1->m_globalMtx, pane2->m_positionMtx);
 		m_screenCupsule->draw(gfx, *graf);
 	}
 	GXSetClipMode(0);

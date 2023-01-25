@@ -512,10 +512,10 @@ lbl_800453D4:
  */
 void J2DWindowEx::drawSelf(float p1, float p2, float (*p3)[3][4])
 {
-	JGeometry::TBox2f box = _020;
+	JGeometry::TBox2f box = m_bounds;
 	box.addPos(p1, p2);
 	Mtx v1;
-	PSMTXConcat(*p3, _080, v1);
+	PSMTXConcat(*p3, m_globalMtx, v1);
 	GXLoadPosMtxImm(v1, 0);
 	draw_private(box, _114);
 	clip(_114);
@@ -1592,9 +1592,9 @@ lbl_80046398:
 void J2DWindowEx::draw(const JGeometry::TBox2<float>& p1, const JGeometry::TBox2<float>& p2)
 {
 	rewriteAlpha();
-	_0B3 = m_alpha;
+	m_colorAlpha = m_alpha;
 	makeMatrix(p2.i.x, p2.i.y, 0.0f, 0.0f);
-	GXLoadPosMtxImm(_050, 0);
+	GXLoadPosMtxImm(m_positionMtx, 0);
 	GXSetCurrentMtx(0);
 	draw_private(JGeometry::TBox2f(0.0f, 0.0f, p1.f.x - p1.i.x, p1.f.y - p1.i.y), p2);
 	for (int i = 0; i < 4; i++) {

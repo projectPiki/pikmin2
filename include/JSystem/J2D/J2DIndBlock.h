@@ -5,8 +5,12 @@
 #include "types.h"
 
 struct J2DIndTexCoordScaleInfo {
-	u8 _00;
-	u8 _01;
+
+	GXIndTexScale getScaleS() const { return (GXIndTexScale)m_scaleS; }
+	GXIndTexScale getScaleT() const { return (GXIndTexScale)m_scaleT; }
+
+	u8 m_scaleS; // _00
+	u8 m_scaleT; // _01
 };
 
 /**
@@ -14,16 +18,16 @@ struct J2DIndTexCoordScaleInfo {
  */
 struct J2DIndTexCoordScale {
 	J2DIndTexCoordScale();
+
 	~J2DIndTexCoordScale() { }
 
 	void load(u8);
 
-	u8 _00; // _00
-	u8 _01; // _01
+	J2DIndTexCoordScaleInfo m_scaleInfo; // _00
 };
 
 struct J2DIndTexMtxInfo {
-	f32 _00; // _00
+	f32 _00; // _00, should probably be a Mtx23
 	f32 _04; // _04
 	f32 _08; // _08
 	f32 _0C; // _0C
@@ -37,17 +41,12 @@ struct J2DIndTexMtxInfo {
  */
 struct J2DIndTexMtx {
 	J2DIndTexMtx();
+
 	~J2DIndTexMtx() { }
 
 	void load(u8);
 
-	f32 _00; // _00
-	f32 _04; // _04
-	f32 _08; // _08
-	f32 _0C; // _0C
-	f32 _10; // _10
-	f32 _14; // _14
-	u8 _18;  // _18
+	J2DIndTexMtxInfo m_mtxInfo; // _00
 };
 
 extern J2DIndTexMtxInfo j2dDefaultIndTexMtxInfo;

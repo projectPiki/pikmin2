@@ -79,7 +79,6 @@ bool DvdStatus::update()
 			PADControlMotor(2, 2);
 			PADControlMotor(3, 2);
 			_08 = sys->disableCPULockDetector();
-			// these probably need to be called by some global instance eventually
 			ebi::FileSelect::TMgr::onDvdErrorOccured();
 			ebi::Save::TMgr::onDvdErrorOccured();
 		}
@@ -94,7 +93,6 @@ bool DvdStatus::update()
 				JUT_PANICLINE(204, "no display.\n");
 			}
 			sys->enableCPULockDetector(_08);
-			// these probably need to be called by some global instance eventually
 			ebi::FileSelect::TMgr::onDvdErrorRecovered();
 			ebi::Save::TMgr::onDvdErrorRecovered();
 		}
@@ -115,18 +113,18 @@ void DvdStatus::draw()
 
 		J2DFillBox(0.0f, 0.0f, JUTVideo::sManager->m_renderModeObj->fbWidth, JUTVideo::sManager->m_renderModeObj->efbHeight,
 		           JUtility::TColor(0, 0, 0x80, 0xFF));
-		J2DPrint JStack128(nullptr, 0.0f);
+		J2DPrint print(nullptr, 0.0f);
 
 		if (gP2JMEMgr && gP2JMEMgr->_28) {
-			JStack128.setFont((JUTFont*)gP2JMEMgr->m_font);
+			print.setFont((JUTFont*)gP2JMEMgr->m_font);
 		} else if (sys->m_romFont) {
-			JStack128.setFont((JUTFont*)sys->m_romFont);
+			print.setFont((JUTFont*)sys->m_romFont);
 		} else {
 			JUT_ASSERTLINE(279, false, "no ROM font\n");
 		}
 
 		char** errorMsgSet;
-		if (JStack128.m_font) {
+		if (print.m_font) {
 			switch (sys->m_region) {
 			case LANG_ENGLISH:
 				errorMsgSet = DvdError::gMessage_eng;
@@ -151,12 +149,12 @@ void DvdStatus::draw()
 				break;
 			}
 
-			JStack128.initiate();
+			print.initiate();
 
-			JStack128._40.set(TCOLOR_WHITE);
-			JStack128._44.set(TCOLOR_WHITE);
+			print.m_charColor.set(TCOLOR_WHITE);
+			print.m_gradientColor.set(TCOLOR_WHITE);
 
-			JStack128.print(40.0f, 200.0f, errorMsgSet[_00]);
+			print.print(40.0f, 200.0f, errorMsgSet[_00]);
 		}
 	}
 }

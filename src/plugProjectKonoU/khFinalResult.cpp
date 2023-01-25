@@ -2821,7 +2821,7 @@ TotalResultData** SceneFinalResult::createDispMember(const int*, const int*, Gam
 				resdata->_18      = false;
 				resdata->m_screen = new P2DScreen::Mgr;
 				resdata->m_screen->set(bloNames[i], 0x1040000, arc);
-				resdata->m_screen->setBasePosition(POS_CENTER);
+				resdata->m_screen->setBasePosition(J2DPOS_Center);
 			}
 			data[i] = resdata;
 		}

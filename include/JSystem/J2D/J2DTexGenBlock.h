@@ -5,6 +5,7 @@
 #include "JSystem/J2D/J2DTexMtx.h"
 #include "types.h"
 
+// NB: TP does this in one struct with private/public
 struct _J2DTexGenBlockParent {
 	u32 m_texGenNum;            // _00
 	J2DTexCoord m_texCoords[8]; // _04
@@ -18,6 +19,8 @@ struct J2DTexGenBlock : _J2DTexGenBlockParent {
 	void setGX();
 	void setTexMtx(u32, J2DTexMtx&);
 	void getTexMtx(u32, J2DTexMtx&);
+
+	u32 getTexGenNum() const { return m_texGenNum; }
 
 	// _44 VTBL
 };

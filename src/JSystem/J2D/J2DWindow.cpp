@@ -1782,11 +1782,11 @@ void J2DWindow::drawSelf(float offsetX, float offsetY)
  */
 void J2DWindow::drawSelf(float offsetX, float offsetY, float (*p3)[3][4])
 {
-	JGeometry::TBox2f box = _020;
+	JGeometry::TBox2f box = m_bounds;
 	box.addPos(offsetX, offsetY);
 	if (_140 <= box.getWidth() && _142 <= box.getHeight()) {
 		Mtx v1;
-		PSMTXConcat(*p3, _080, v1);
+		PSMTXConcat(*p3, m_globalMtx, v1);
 		GXLoadPosMtxImm(v1, 0);
 		draw_private(box, _114);
 	}

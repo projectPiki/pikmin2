@@ -1591,8 +1591,8 @@ void TMemoryCard::update()
 					m_blinkFont[0].m_isEnabled = false;
 					J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[0].m_pane);
 					if (pane) {
-						pane->m_color1 = m_blinkFont[0].m_fonts[0].m_col1;
-						pane->m_color2 = m_blinkFont[0].m_fonts[0].m_col2;
+						pane->m_charColor     = m_blinkFont[0].m_fonts[0].m_col1;
+						pane->m_gradientColor = m_blinkFont[0].m_fonts[0].m_col2;
 						pane->setWhite(m_blinkFont[0].m_fonts[0].m_white);
 						pane->setBlack(m_blinkFont[0].m_fonts[0].m_black);
 					}
@@ -1600,8 +1600,8 @@ void TMemoryCard::update()
 					m_blinkFont[1].m_isEnabled = false;
 					pane                       = static_cast<J2DTextBox*>(m_blinkFont[1].m_pane);
 					if (pane) {
-						pane->m_color1 = m_blinkFont[1].m_fonts[0].m_col1;
-						pane->m_color2 = m_blinkFont[1].m_fonts[0].m_col2;
+						pane->m_charColor     = m_blinkFont[1].m_fonts[0].m_col1;
+						pane->m_gradientColor = m_blinkFont[1].m_fonts[0].m_col2;
 						pane->setWhite(m_blinkFont[1].m_fonts[0].m_white);
 						pane->setBlack(m_blinkFont[1].m_fonts[0].m_black);
 					}
@@ -1613,8 +1613,8 @@ void TMemoryCard::update()
 					m_blinkFont[0].m_isEnabled = false;
 					J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[0].m_pane);
 					if (pane) {
-						pane->m_color1 = m_blinkFont[0].m_fonts[0].m_col1;
-						pane->m_color2 = m_blinkFont[0].m_fonts[0].m_col2;
+						pane->m_charColor     = m_blinkFont[0].m_fonts[0].m_col1;
+						pane->m_gradientColor = m_blinkFont[0].m_fonts[0].m_col2;
 						pane->setWhite(m_blinkFont[0].m_fonts[0].m_white);
 						pane->setBlack(m_blinkFont[0].m_fonts[0].m_black);
 					}
@@ -1622,8 +1622,8 @@ void TMemoryCard::update()
 					m_blinkFont[1].m_isEnabled = false;
 					pane                       = static_cast<J2DTextBox*>(m_blinkFont[1].m_pane);
 					if (pane) {
-						pane->m_color1 = m_blinkFont[1].m_fonts[0].m_col1;
-						pane->m_color2 = m_blinkFont[1].m_fonts[0].m_col2;
+						pane->m_charColor     = m_blinkFont[1].m_fonts[0].m_col1;
+						pane->m_gradientColor = m_blinkFont[1].m_fonts[0].m_col2;
 						pane->setWhite(m_blinkFont[1].m_fonts[0].m_white);
 						pane->setBlack(m_blinkFont[1].m_fonts[0].m_black);
 					}
@@ -1641,8 +1641,8 @@ void TMemoryCard::update()
 				m_blinkFont[0].m_isEnabled = false;
 				J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[0].m_pane);
 				if (pane) {
-					pane->m_color1 = m_blinkFont[0].m_fonts[0].m_col1;
-					pane->m_color2 = m_blinkFont[0].m_fonts[0].m_col2;
+					pane->m_charColor     = m_blinkFont[0].m_fonts[0].m_col1;
+					pane->m_gradientColor = m_blinkFont[0].m_fonts[0].m_col2;
 					pane->setWhite(m_blinkFont[0].m_fonts[0].m_white);
 					pane->setBlack(m_blinkFont[0].m_fonts[0].m_black);
 				}
@@ -1650,8 +1650,8 @@ void TMemoryCard::update()
 				m_blinkFont[1].m_isEnabled = false;
 				pane                       = static_cast<J2DTextBox*>(m_blinkFont[1].m_pane);
 				if (pane) {
-					pane->m_color1 = m_blinkFont[1].m_fonts[1].m_col1;
-					pane->m_color2 = m_blinkFont[1].m_fonts[1].m_col2;
+					pane->m_charColor     = m_blinkFont[1].m_fonts[1].m_col1;
+					pane->m_gradientColor = m_blinkFont[1].m_fonts[1].m_col2;
 					pane->setWhite(m_blinkFont[1].m_fonts[1].m_white);
 					pane->setBlack(m_blinkFont[1].m_fonts[1].m_black);
 				}

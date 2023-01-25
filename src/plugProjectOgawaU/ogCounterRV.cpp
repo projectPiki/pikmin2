@@ -244,8 +244,8 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 	m_isMother = flag;
 	m_pic1     = static_cast<J2DPictureEx*>(og::Screen::TagSearch(screen, tag1));
 	m_pic2     = og::Screen::TagSearch(screen, tag2);
-	m_pic1->setBasePosition(POS_CENTER);
-	m_pic2->setBasePosition(POS_CENTER);
+	m_pic1->setBasePosition(J2DPOS_Center);
+	m_pic2->setBasePosition(J2DPOS_Center);
 
 	if (tag3) {
 		m_pic3 = og::Screen::TagSearch(screen, tag3);
@@ -259,8 +259,8 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 	m_paneScale.y         = m_pic1->m_scale.y;
 	m_panePosition.x      = m_pic1->m_offset.x;
 	m_panePosition.y      = m_pic1->m_offset.y;
-	m_paneSize.x          = m_pic1->_020.f.x - m_pic1->_020.i.x;
-	m_paneSize.y          = m_pic1->_020.f.y - m_pic1->_020.i.y;
+	m_paneSize.x          = m_pic1->m_bounds.f.x - m_pic1->m_bounds.i.x;
+	m_paneSize.y          = m_pic1->m_bounds.f.y - m_pic1->m_bounds.i.y;
 	m_basePosition        = m_pic1->m_basePosition;
 	m_paneAlpha           = m_pic1->m_alpha;
 	bool alphatype        = m_pic1->m_isInfluencedAlpha;
@@ -993,7 +993,7 @@ void CallBack_CounterRV::setValue(bool flag1, bool flag2)
 				box.f.x = box.i.x + m_paneSize.x + m_paneBounds.x;
 				pane->place(box);
 				if (m_isPuyoAnimZero) {
-					pane->setBasePosition(POS_CENTER);
+					pane->setBasePosition(J2DPOS_Center);
 					CounterKeta* keta = m_counters[i];
 					keta->m_size.x    = _3C;
 					keta->m_size.y    = m_paneScale.y;

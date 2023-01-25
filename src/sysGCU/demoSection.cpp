@@ -94,7 +94,7 @@ void Section::doDraw(Graphics& gfx)
 
 	J2DPicture pic(m_logoTexture);
 	LogoLocation& location = sLogoLocate[sMovieIndex];
-	pic.draw(location.x, location.y, pic._020.f.x - pic._020.i.x, pic._020.f.y - pic._020.i.y, false, false, false);
+	pic.draw(location.x, location.y, pic.m_bounds.f.x - pic.m_bounds.i.x, pic.m_bounds.f.y - pic.m_bounds.i.y, false, false, false);
 }
 
 /*

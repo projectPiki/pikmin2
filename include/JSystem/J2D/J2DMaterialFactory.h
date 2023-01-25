@@ -1,0 +1,92 @@
+#ifndef _JSYSTEM_J2D_J2DMATERIALFACTORY_H
+#define _JSYSTEM_J2D_J2DMATERIALFACTORY_H
+
+#include "JSystem/J2D/J2DMaterial.h"
+#include "JSystem/J2D/J2DManage.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "types.h"
+
+struct J2DIndInitData;
+
+/**
+ * @size{0x68}
+ */
+struct J2DMaterialBlock {
+	u8 _00[8];    // _00, unknown
+	s16 _08;      // _08
+	u8 _0A[6];    // _0A, unknown
+	int _14;      // _14
+	u8 _18[0x50]; // _18, unknown
+};
+
+/**
+ * @size{0xE8}
+ */
+struct J2DMaterialInitData {
+	u8 _00[4];        // _00, unknown
+	u8 m_tevStageNum; // _04
+	u8 _05;           // _05, unknown
+	u8 _06;           // _06
+	u8 _07;           // _07, unknown
+	u8 _08[0xE0];     // _08, unknown
+};
+
+/**
+ * @size{0x5C}
+ */
+struct J2DMaterialFactory {
+	J2DMaterialFactory(J2DMaterialBlock const&);
+
+	void countStages(int) const;
+	void create(J2DMaterial*, int, u32, J2DResReference*, J2DResReference*, JKRArchive*) const;
+	void newMatColor(int, int) const;
+	void newColorChanNum(int) const;
+	void newColorChan(int, int) const;
+	void newTexGenNum(int) const;
+	void newTexCoord(int, int) const;
+	void newTexMtx(int, int) const;
+	void newCullMode(int) const;
+	void newTexNo(int, int) const;
+	void newFontNo(int) const;
+	void newTevOrder(int, int) const;
+	void newTevColor(int, int) const;
+	void newTevKColor(int, int) const;
+	void newTevStageNum(int) const;
+	void newTevStage(int, int) const;
+	void newTevSwapModeTable(int, int) const;
+	void newIndTexStageNum(int) const;
+	void newIndTexOrder(int, int) const;
+	void newIndTexMtx(int, int) const;
+	void newIndTevStage(int, int) const;
+	void newIndTexCoordScale(int, int) const;
+	void newAlphaComp(int) const;
+	void newBlend(int) const;
+	void newDither(int) const;
+
+	// _00 = VTBL
+	int _00;                                     // _00
+	J2DMaterialInitData* m_materialInitData;     // _04
+	u16* _08;                                    // _08
+	J2DIndInitData* m_indInitData;               // _0C
+	GXColor* _10;                                // _10
+	u8* _14;                                     // _14
+	J2DColorChanInfo* m_colorChanInfo;           // _18
+	u8* _1C;                                     // _1C
+	J2DTexCoordInfo* m_texCoordInfo;             // _20
+	J2DTexMtxInfo* m_texMtxInfo;                 // _24
+	u16* _28;                                    // _28
+	u16* _2C;                                    // _2C
+	GXCullMode* m_cullMode;                      // _30
+	J2DTevOrderInfo* m_tevOrderInfo;             // _34
+	GXColorS10* _38;                             // _38
+	GXColor* _3C;                                // _3C
+	u8* _40;                                     // _40
+	J2DTevStageInfo* m_tevStageInfo;             // _44
+	J2DTevSwapModeInfo* m_tevSwapInfo;           // _48
+	J2DTevSwapModeTableInfo* m_tevSwapTableInfo; // _4C
+	J2DAlphaCompInfo* m_alphaCompInfo;           // _50
+	J2DBlendInfo* m_blendInfo;                   // _54
+	u8* _58;                                     // _58
+};
+
+#endif

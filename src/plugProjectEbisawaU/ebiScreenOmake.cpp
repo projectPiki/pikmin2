@@ -359,20 +359,20 @@ void TOmake::doSetArchive(JKRArchive* arc)
 	}
 
 	J2DTextBox* cPane = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'Tscolor'));
-	m_colors[0]       = cPane->m_color1;
-	m_colors[1]       = cPane->m_color2;
+	m_colors[0]       = cPane->m_charColor;
+	m_colors[1]       = cPane->m_gradientColor;
 	m_colors[2]       = cPane->getWhite();
 	m_colors[3]       = cPane->getBlack();
 
 	cPane       = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'Tt00'));
-	m_colors[4] = cPane->m_color1;
-	m_colors[5] = cPane->m_color2;
+	m_colors[4] = cPane->m_charColor;
+	m_colors[5] = cPane->m_gradientColor;
 	m_colors[6] = cPane->getWhite();
 	m_colors[7] = cPane->getBlack();
 
 	cPane        = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'Thscolor'));
-	m_colors[8]  = cPane->m_color1;
-	m_colors[9]  = cPane->m_color2;
+	m_colors[8]  = cPane->m_charColor;
+	m_colors[9]  = cPane->m_gradientColor;
 	m_colors[10] = cPane->getWhite();
 	m_colors[11] = cPane->getBlack();
 
@@ -1837,7 +1837,7 @@ blr
 void TOmake::setController(Controller* in)
 {
 	m_controller = in;
-	m_input.init(in, 0, 6, (long*)&m_currSel, EUTPadInterface_countNum::MODE_UNKNOWN_3, 0.66f, 0.15f);
+	m_input.init(in, 0, 6, (long*)&m_currSel, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0

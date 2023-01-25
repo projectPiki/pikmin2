@@ -308,8 +308,8 @@ void SingleGame::SelectState::draw(SingleGameSection* game, Graphics& gfx)
 			gfx.m_orthoGraph.setPort();
 			J2DPrint print(JFWSystem::systemFont, 0.0f);
 			print.initiate();
-			print._40.set(JUtility::TColor(255, 19, 55, 255));
-			print._44.set(JUtility::TColor(0, 0, 0, 255));
+			print.m_charColor.set(JUtility::TColor(255, 19, 55, 255));
+			print.m_gradientColor.set(JUtility::TColor(0, 0, 0, 255));
 			print.m_glyphWidth  = 16.0f;
 			print.m_glyphHeight = 16.0f;
 			print.print(60.0f, 120.0f, "* %d %d %d", sParentHeapFreeSize_Last - sParentHeapFreeSize, sParentHeapFreeSize_Last,

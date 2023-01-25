@@ -72,9 +72,9 @@ void DopingScreen::setCallBack(JKRArchive* arc)
 	m_paneSpicySpray  = search('Nspray0');
 	m_paneBitterSpray = search('Nspray1');
 	m_paneCenterDpad  = search('Njujikey');
-	m_paneSpicySpray->setBasePosition(POS_CENTER);
-	m_paneBitterSpray->setBasePosition(POS_CENTER);
-	m_paneCenterDpad->setBasePosition(POS_CENTER);
+	m_paneSpicySpray->setBasePosition(J2DPOS_Center);
+	m_paneBitterSpray->setBasePosition(J2DPOS_Center);
+	m_paneCenterDpad->setBasePosition(J2DPOS_Center);
 	m_rootPosition.x = m_paneAll->m_offset.x;
 	m_rootPosition.y = m_paneAll->m_offset.y;
 }

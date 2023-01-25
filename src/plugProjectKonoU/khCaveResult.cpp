@@ -230,7 +230,7 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 		m_screenMain->search('Panacomp')->show();
 	}
 
-	m_screenMain->search('Panacomp')->setBasePosition(POS_CENTER);
+	m_screenMain->search('Panacomp')->setBasePosition(J2DPOS_Center);
 
 	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, m_screenMain, 'PICT_004');
 	m_stickAnim                       = new og::Screen::StickAnimMgr(pic);

@@ -42,16 +42,16 @@ void CallBack_Picture::draw(Graphics& gfx, J2DGrafContext& graf)
 {
 	if (m_partsScreen) {
 		J2DPane* pane = m_textBox;
-		m_pane->resize(pane->_020.f.x - pane->_020.i.x, pane->_020.f.y - pane->_020.i.y);
+		m_pane->resize(pane->m_bounds.f.x - pane->m_bounds.i.x, pane->m_bounds.f.y - pane->m_bounds.i.y);
 		f32 scaleMod = m_scale;
-		Matrixf mtx  = m_textBox->_080;
+		Matrixf mtx  = m_textBox->m_globalMtx;
 		Matrixf scale;
 		PSMTXScale(scale.m_matrix.mtxView, scaleMod, scaleMod, 0.0f);
 		PSMTXConcat(mtx.m_matrix.mtxView, scale.m_matrix.mtxView, scale.m_matrix.mtxView);
 		Matrixf trans;
 		PSMTXTrans(trans.m_matrix.mtxView, m_xOffs, m_yOffs, 0.0f);
 		PSMTXConcat(scale.m_matrix.mtxView, trans.m_matrix.mtxView, mtx.m_matrix.mtxView);
-		PSMTXCopy(mtx.m_matrix.mtxView, m_textBox->_050);
+		PSMTXCopy(mtx.m_matrix.mtxView, m_textBox->m_positionMtx);
 
 		J2DPictureEx* pane1    = static_cast<J2DPictureEx*>(m_pane);
 		J2DPictureEx* pane2    = static_cast<J2DPictureEx*>(m_textBox);
@@ -59,10 +59,10 @@ void CallBack_Picture::draw(Graphics& gfx, J2DGrafContext& graf)
 		pane2->setWhite(color);
 		color = pane1->getBlack();
 		pane2->setBlack(color);
-		pane2->_150[0] = pane1->_150[0];
-		pane2->_150[1] = pane1->_150[1];
-		pane2->_150[2] = pane1->_150[2];
-		pane2->_150[3] = pane1->_150[3];
+		pane2->m_cornerColors[0] = pane1->m_cornerColors[0];
+		pane2->m_cornerColors[1] = pane1->m_cornerColors[1];
+		pane2->m_cornerColors[2] = pane1->m_cornerColors[2];
+		pane2->m_cornerColors[3] = pane1->m_cornerColors[3];
 		m_partsScreen->draw(gfx, graf);
 	}
 	/*

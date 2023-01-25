@@ -48,7 +48,7 @@ void CallBack_Screen::draw(Graphics& gfx, J2DGrafContext& grafContext)
 {
 	if (getPartsScreen()) {
 		Mtx scaledMtx;
-		Mtx* mtxPtr = &m_textBox->_080;
+		Mtx* mtxPtr = &m_textBox->m_globalMtx;
 		PSMTXScale(scaledMtx, m_scale, m_scale, 0.0f);
 		PSMTXConcat(*mtxPtr, scaledMtx, scaledMtx);
 
@@ -56,7 +56,7 @@ void CallBack_Screen::draw(Graphics& gfx, J2DGrafContext& grafContext)
 		PSMTXTrans(transMtx, m_xOffs, m_yOffs, 0.0f);
 		PSMTXConcat(scaledMtx, transMtx, *mtxPtr);
 
-		PSMTXCopy(*mtxPtr, m_pane->_050);
+		PSMTXCopy(*mtxPtr, m_pane->m_positionMtx);
 
 		m_partsScreen->draw(gfx, grafContext);
 	}

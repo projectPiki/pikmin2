@@ -7926,14 +7926,11 @@ void J2DIndBlockFull::setGX()
  */
 void J2DPEBlock::initialize()
 {
-	m_alphaComp._00          = j2dDefaultAlphaCmp;
-	m_alphaComp._02          = 0;
-	m_alphaComp._03          = 0;
-	m_blendInfo.m_type       = j2dDefaultBlendInfo[0];
-	m_blendInfo.m_srcFactor  = j2dDefaultBlendInfo[1];
-	m_blendInfo.m_destFactor = j2dDefaultBlendInfo[2];
-	_07                      = j2dDefaultBlendInfo[3];
-	m_dither                 = j2dDefaultDither;
+	m_alphaComp.m_alphaComp = j2dDefaultAlphaCmp;
+	m_alphaComp.m_ref0      = 0;
+	m_alphaComp.m_ref1      = 0;
+	m_blendInfo             = j2dDefaultBlendInfo;
+	m_dither                = j2dDefaultDither;
 }
 
 /*

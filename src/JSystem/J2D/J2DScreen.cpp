@@ -102,13 +102,13 @@ J2DScreen::J2DScreen()
 // : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(JGeometry::TVec2f(0.0f), 640.0f, 480.0f))
 // : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(0.0f, 0.0f, JGeometry::TVec2f(640.0f, 480.0f)))
 {
-	_114.set(0xFFFFFFFF);
+	m_color.set(0xFFFFFFFF);
 	_004            = 0xFFFF;
-	_100            = false;
+	m_isScissor     = false;
 	m_materialCount = 0;
 	m_materials     = nullptr;
-	_108            = nullptr;
-	_10C            = nullptr;
+	m_texRes        = nullptr;
+	m_fontRes       = nullptr;
 	m_nameTab       = nullptr;
 	/*
 	stwu     r1, -0x30(r1)
@@ -174,10 +174,10 @@ void J2DScreen::clean()
 	delete[] m_materials;
 	m_materialCount = 0;
 	m_materials     = nullptr;
-	delete[] _108;
-	_108 = nullptr;
-	delete[] _10C;
-	_10C = nullptr;
+	delete[] m_texRes;
+	m_texRes = nullptr;
+	delete[] m_fontRes;
+	m_fontRes = nullptr;
 	if (m_nameTab != nullptr) {
 		m_nameTab->clearResNameTable();
 		delete m_nameTab;
@@ -369,7 +369,7 @@ bool J2DScreen::getScreenInformation(JSURandomInputStream* input)
 	box.f.x = info.m_width;
 	box.f.y = info.m_height;
 	place(box);
-	_114 = JUtility::TColor(info.m_color);
+	m_color = JUtility::TColor(info.m_color);
 	if (sizeof(info) < info.m_blockLength) {
 		input->skip(info.m_blockLength - sizeof(info));
 	}
@@ -405,14 +405,14 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
 			return 0;
 			break;
 		case 'TEX1':
-			_108 = getResReference(input, flags);
-			if (_108 == nullptr) {
+			m_texRes = getResReference(input, flags);
+			if (m_texRes == nullptr) {
 				return 2;
 			}
 			break;
 		case 'FNT1':
-			_10C = getResReference(input, flags);
-			if (_10C == nullptr) {
+			m_fontRes = getResReference(input, flags);
+			if (m_fontRes == nullptr) {
 				return 2;
 			}
 			break;
@@ -1195,7 +1195,7 @@ lbl_8004066C:
  * Address:	80040680
  * Size:	0000F4
  */
-u8* J2DScreen::getResReference(JSURandomInputStream* input, unsigned long flags)
+J2DResReference* J2DScreen::getResReference(JSURandomInputStream* input, unsigned long flags)
 {
 	int initialPosition = input->getPosition();
 	input->skip(4);
@@ -1206,7 +1206,7 @@ u8* J2DScreen::getResReference(JSURandomInputStream* input, unsigned long flags)
 	input->read(&v2, 4);
 	input->seek(initialPosition + v2, SEEK_SET);
 	long byteCount = v1 - v2;
-	u8* data;
+	J2DResReference* data;
 	if (flags & (J3DMLF_17 | J3DMLF_18 | J3DMLF_19 | J3DMLF_20 | J3DMLF_21)) {
 		data = new u8[byteCount];
 	} else {

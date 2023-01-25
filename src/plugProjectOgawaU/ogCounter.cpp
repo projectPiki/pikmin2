@@ -58,7 +58,7 @@ void CounterKeta::calcScale()
 	f32 scale  = m_scaleMgr->calc();
 	f32 width  = m_size.x * scale;
 	f32 height = m_size.y * scale;
-	m_picture->setBasePosition(POS_CENTER);
+	m_picture->setBasePosition(J2DPOS_Center);
 	J2DPane* picture   = m_picture;
 	picture->m_scale.x = width;
 	picture->m_scale.y = height;

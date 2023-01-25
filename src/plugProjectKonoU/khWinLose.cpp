@@ -3,6 +3,7 @@
 #include "kh/khUtil.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "utilityU.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 

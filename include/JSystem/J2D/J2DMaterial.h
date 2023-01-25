@@ -9,26 +9,25 @@
 #include "JSystem/J2D/J2DTexGenBlock.h"
 #include "types.h"
 
-/**
- * @fabricated
- * @size{0x44}
- */
-struct J2DMaterial_0x84 {
-	J2DAnmColor* _00;         // _00
-	J2DAnmTextureSRTKey* _04; // _04
-	J2DAnmTexPattern* _08;    // _08
-	J2DAnmTevRegKey* _0C;     // _0C
-	s16 _10[1];               // _10
-	s16 _12[8];               // _12
-	s16 _22[8];               // _22
-	s16 _32[8];               // _32
-	u8 _42[2];                // _42 - padding?
-};
+struct J2DPane;
 
 /**
  * @size{0x88}
  */
 struct J2DMaterial {
+	struct J2DMaterialAnmPointer {
+		J2DMaterialAnmPointer();
+
+		J2DAnmColor* _00;         // _00
+		J2DAnmTextureSRTKey* _04; // _04
+		J2DAnmTexPattern* _08;    // _08
+		J2DAnmTevRegKey* _0C;     // _0C
+		s16 _10[1];               // _10
+		s16 _12[8];               // _12
+		s16 _22[8];               // _22
+		s16 _32[8];               // _32
+	};
+
 	J2DMaterial();
 	J2DMaterial(u32);
 
@@ -45,18 +44,27 @@ struct J2DMaterial {
 	static J2DTevBlock* createTevBlock(int, bool);
 	static J2DIndBlock* createIndBlock(int, bool);
 
-	// _00 VTBL
-	struct J2DPane* m_pane;       // _04
-	int _08;                      // _08
-	u16 _0C;                      // _0C
-	u8 _0E;                       // _0E
-	u8 _0F;                       // _0F
-	J2DColorBlock m_colorBlock;   // _10
-	J2DTexGenBlock m_texGenBlock; // _28
-	J2DTevBlock* m_tevBlock;      // _70
-	J2DIndBlock* m_indBlock;      // _74
-	J2DPEBlock m_peBlock;         // _78
-	J2DMaterial_0x84* _84;        // _84
+	u16 getIndex() const { return m_index; }
+	J2DColorBlock* getColorBlock() { return &m_colorBlock; }
+	J2DTexGenBlock* getTexGenBlock() { return &m_texGenBlock; }
+	J2DPEBlock* getPEBlock() { return &m_peBlock; }
+	J2DTevBlock* getTevBlock() { return m_tevBlock; }
+	J2DIndBlock* getIndBlock() { return m_indBlock; }
+	bool isVisible() const { return m_isVisible; }
+	int getMaterialAlphaCalc() const { return m_materialAlphaCalc; }
+
+	// _00 = VTBL
+	J2DPane* m_pane;                 // _04
+	int _08;                         // _08
+	u16 m_index;                     // _0C
+	u8 m_isVisible;                  // _0E
+	u8 m_materialAlphaCalc;          // _0F
+	J2DColorBlock m_colorBlock;      // _10
+	J2DTexGenBlock m_texGenBlock;    // _28
+	J2DTevBlock* m_tevBlock;         // _70
+	J2DIndBlock* m_indBlock;         // _74
+	J2DPEBlock m_peBlock;            // _78
+	J2DMaterialAnmPointer* m_anmPtr; // _84
 };
 
 #endif

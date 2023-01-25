@@ -5,6 +5,7 @@
 #include "utilityU.h"
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSMainSide_Scene.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 

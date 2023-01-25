@@ -238,7 +238,7 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 			cPane->place(cBox);
 
 			if (m_isPuyoAnim && !_AC) {
-				cPane->setBasePosition(POS_CENTER);
+				cPane->setBasePosition(J2DPOS_Center);
 				CounterKeta* cKeta = m_counters[i];
 				cKeta->m_size      = Vector2f(temp, m_paneScale.y);
 

@@ -12,27 +12,31 @@
 struct JUTTexture;
 
 enum J2DBinding {
-	Binding_F = 0xF,
+	J2DBIND_Unk15 = 15,
 };
 
 enum J2DMirror {
-	Mirror_0 = 0x0,
+	J2DMIRROR_Unk0 = 0,
 };
 
 extern u16 j2dDefaultAlphaCmp;
 
+struct J2DAlphaCompInfo {
+	// TODO: work out what goes in this
+};
+
 struct J2DAlphaComp {
 	/** @fabricated */
 	J2DAlphaComp()
-	    : _00(j2dDefaultAlphaCmp)
-	    , _02(0)
-	    , _03(0)
+	    : m_alphaComp(j2dDefaultAlphaCmp)
+	    , m_ref0(0)
+	    , m_ref1(0)
 	{
 	}
 
-	u16 _00; // _00
-	u8 _02;  // _02
-	u8 _03;  // _03
+	u16 m_alphaComp; // _00
+	u8 m_ref0;       // _02
+	u8 m_ref1;       // _03
 };
 
 struct J2DBlendInfo {
@@ -52,14 +56,23 @@ struct J2DBlendInfo {
 		m_destFactor = other.m_destFactor;
 	}
 
-	u8 m_type;
-	u8 m_srcFactor;
-	u8 m_destFactor;
+	u8 m_type;       // _00
+	u8 m_srcFactor;  // _01
+	u8 m_destFactor; // _02
+};
+
+extern J2DBlendInfo j2dDefaultBlendInfo;
+
+struct J2DBlend {
+	J2DBlend() { m_blendInfo = j2dDefaultBlendInfo; }
+
+	J2DBlendInfo m_blendInfo; // _00
+	u8 m_op;                  // _03
 };
 
 struct J2DColorChanInfo {
-	u8 _00;
-	u8 _01;
+	u8 _00; // _00, should these be one u16?
+	u8 _01; // _01
 };
 
 extern J2DColorChanInfo j2dDefaultColorChanInfo;
@@ -70,55 +83,48 @@ extern J2DColorChanInfo j2dDefaultColorChanInfo;
 struct J2DColorChan {
 	J2DColorChan() { m_data = j2dDefaultColorChanInfo._01; }
 
-	u16 m_data; // _00
+	u16 m_data; // _00, should this be J2DColorChanInfo?
 };
 
 struct J2DTevOrderInfo {
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
+	u8 m_texCoord; // _00
+	u8 m_texMap;   // _01
+	u8 m_color;    // _02
 };
 
 extern J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
 
 struct J2DTevOrder {
-	J2DTevOrder()
-	{
-		_00 = j2dDefaultTevOrderInfoNull._00;
-		_01 = j2dDefaultTevOrderInfoNull._01;
-		_02 = j2dDefaultTevOrderInfoNull._02;
-	}
+	J2DTevOrder() { m_tevOrderInfo = j2dDefaultTevOrderInfoNull; }
 
 	/** @fabricated */
-	inline J2DTevOrder(u8 p1, u8 p2, u8 p3)
-	    : _00(p1)
-	    , _01(p2)
-	    , _02(p3)
+	inline J2DTevOrder(u8 texCoord, u8 texMap, u8 color)
 	{
+		m_tevOrderInfo.m_texCoord = texCoord;
+		m_tevOrderInfo.m_texMap   = texMap;
+		m_tevOrderInfo.m_color    = color;
 	}
 
 	/** @fabricated */
 	inline J2DTevOrder& operator=(const J2DTevOrderInfo& other)
 	{
-		_00 = other._00;
-		_01 = other._01;
-		_02 = other._02;
+		m_tevOrderInfo = other;
 		return *this;
 	}
 
 	/** @fabricated */
 	inline J2DTevOrder& operator=(const J2DTevOrder& other)
 	{
-		_00 = other._00;
-		_01 = other._01;
-		_02 = other._02;
+		m_tevOrderInfo = other.m_tevOrderInfo;
 		return *this;
 	}
 
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03
+	inline GXChannelID getColor() const { return (GXChannelID)m_tevOrderInfo.m_color; }
+	inline GXTexMapID getTexMap() const { return (GXTexMapID)m_tevOrderInfo.m_texMap; }
+	inline GXTexCoordID getTexCoord() const { return (GXTexCoordID)m_tevOrderInfo.m_texCoord; }
+
+	J2DTevOrderInfo m_tevOrderInfo; // _00
+	u8 _03;                         // _03
 };
 
 struct J2DTevStageInfo {
@@ -234,6 +240,10 @@ struct J2DTevSwapModeInfo {
 	u8 _01;
 };
 
+struct J2DTevSwapModeTableInfo {
+	// TODO: work out what goes in this
+};
+
 // struct TwoBit {
 // 	u8 _00 : 2;
 // };
@@ -268,13 +278,23 @@ struct J2DIndTevStage {
 
 	void load(u8);
 
-	u32 _00; // _00
+	GXIndTexStageID getIndStage() const { return (GXIndTexStageID)(m_flags & 0x03); }
+	GXIndTexFormat getIndFormat() const { return (GXIndTexFormat)((m_flags >> 2) & 0x03); }
+	GXIndTexBiasSel getBiasSel() const { return (GXIndTexBiasSel)((m_flags >> 4) & 0x07); }
+	GXIndTexWrap getWrapS() const { return (GXIndTexWrap)((m_flags >> 8) & 0x07); }
+	GXIndTexWrap getWrapT() const { return (GXIndTexWrap)((m_flags >> 11) & 0x07); }
+	GXIndTexMtxID getMtxSel() const { return (GXIndTexMtxID)((m_flags >> 16) & 0x0F); }
+	GXBool getPrev() const { return (GXBool)((m_flags >> 20) & 0x01); }
+	GXBool getLod() const { return (GXBool)((m_flags >> 21) & 0x01); }
+	GXIndTexAlphaSel getAlphaSel() const { return (GXIndTexAlphaSel)((m_flags >> 22) & 0x03); }
+
+	u32 m_flags; // _00
 };
 
 struct J2DTexCoordInfo {
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
+	u8 m_texGenType; // _00
+	u8 m_texGenSrc;  // _01
+	u8 m_texGenMtx;  // _02
 
 	u8 _03; // _03 - padding?
 };
@@ -283,10 +303,7 @@ struct J2DTexCoord {
 	J2DTexCoord();
 	// J2DTexCoordInfo _00;
 
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03 - padding?
+	J2DTexCoordInfo m_texCoordInfo; // _00
 };
 
 struct J2DTextureSRTInfo {
@@ -307,14 +324,23 @@ extern J2DIndTexCoordScale j2dDefaultIndTexCoordScaleInfo;
 extern JUtility::TColor j2dDefaultTevKColor;
 extern J2DTevSwapModeInfo j2dDefaultTevSwapMode;
 extern u8 j2dDefaultTevSwapModeTable[4];
-extern u8 j2dDefaultBlendInfo[4];
+// j2dDefaultBlendInfo declared earlier in file.
 extern const u8 j2dDefaultDither;
 // j2dDefaultColorChanInfo declared earlier in file.
 extern u8 j2dDefaultTevSwapTable;
 // j2dDefaultAlphaCmp declared earlier in file.
 
-enum J2DTextBoxHBinding { TBHB_0 = 0, TBHB_1, TBHB_2 };
-enum J2DTextBoxVBinding { TBVB_0 = 0, TBVB_1, TBVB_2 };
+enum J2DTextBoxHBinding {
+	J2DHBIND_Center = 0,
+	J2DHBIND_Right  = 1,
+	J2DHBIND_Left   = 2,
+};
+
+enum J2DTextBoxVBinding {
+	J2DVBIND_Center = 0,
+	J2DVBIND_Bottom = 1,
+	J2DVBIND_Top    = 2,
+};
 
 // extern const J2DTexCoordInfo j2dDefaultTexCoordInfo[8];
 

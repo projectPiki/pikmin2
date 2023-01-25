@@ -10,7 +10,11 @@
 /**
  * @fabricated
  */
-enum J2DGrafType { J2DGraf_Base = 0, J2DGraf_Ortho, J2DGraf_Persp };
+enum J2DGrafType {
+	J2DGraf_Base  = 0,
+	J2DGraf_Ortho = 1,
+	J2DGraf_Persp = 2,
+};
 
 struct J2DGrafContext {
 	J2DGrafContext(f32, f32, f32, f32);
@@ -82,19 +86,25 @@ struct J2DPerspGraph : public J2DGrafContext {
 };
 
 struct J2DOrthoGraph : public J2DGrafContext {
+	J2DOrthoGraph();
+	J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
+
 	virtual ~J2DOrthoGraph() {};                                       // _08 (weak)
 	virtual void setPort();                                            // _14
 	virtual J2DGrafType getGrafType() const { return J2DGraf_Ortho; }; // _20 (weak)
 	virtual void setLookat();                                          // _24
 
-	// _00 VTBL
-	J2DOrthoGraph();
-	J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
 	void setOrtho(JGeometry::TBox2f const&, f32, f32);
 	void scissorBounds(JGeometry::TBox2f*, JGeometry::TBox2f const*);
 
 	f32 getWidthPower() const { return m_bounds.getWidth() / m_ortho.getWidth(); }
 	f32 getHeightPower() const { return m_bounds.getHeight() / m_ortho.getHeight(); }
+
+	void setOrtho(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 param_5)
+	{
+		JGeometry::TBox2<f32> ortho(param_0, param_1, param_0 + param_2, param_1 + param_3);
+		setOrtho(ortho, param_4, param_5);
+	}
 
 	// _00 		= VTBL
 	// _00-_BC	= J2DGrafContext

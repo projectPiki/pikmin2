@@ -160,8 +160,8 @@ void ObjSMenuMap::setMapTexture()
 	m_mapTextureDimensions.x = (int)tex->_20->m_sizeX;
 	tex                      = m_mapTexPane->getTexture(0);
 	m_mapTextureDimensions.y = (int)tex->_20->m_sizeY;
-	m_mapBounds.x            = m_mapTexPane->_020.f.x - m_mapTexPane->_020.i.x;
-	m_mapBounds.y            = m_mapTexPane->_020.f.y - m_mapTexPane->_020.i.y;
+	m_mapBounds.x            = m_mapTexPane->m_bounds.f.x - m_mapTexPane->m_bounds.i.x;
+	m_mapBounds.y            = m_mapTexPane->m_bounds.f.y - m_mapTexPane->m_bounds.i.y;
 	m_mapTexPane->resize(m_mapTextureDimensions.x, m_mapTextureDimensions.y);
 }
 
@@ -1308,11 +1308,11 @@ void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 	og::Screen::TagToName(tag, buf);
 	const JGeometry::TBox2f box(30.0f, 0.0f, 40.0f, 10.0f);
 
-	J2DTextBox* pane = new J2DTextBox(newtag, box, (const ResFONT*)nullptr, "", -1, J2DTextBoxHBinding(2), J2DTextBoxVBinding(2));
-	pane->_11C       = 24.0f;
-	pane->_120       = 24.0f;
-	pane->m_color1   = JUtility::TColor(-1);
-	pane->m_color2   = JUtility::TColor(-1);
+	J2DTextBox* pane      = new J2DTextBox(newtag, box, (const ResFONT*)nullptr, "", -1, J2DTextBoxHBinding(2), J2DTextBoxVBinding(2));
+	pane->m_fontSize.x    = 24.0f;
+	pane->m_fontSize.y    = 24.0f;
+	pane->m_charColor     = JUtility::TColor(-1);
+	pane->m_gradientColor = JUtility::TColor(-1);
 	pane->setBlackWhite(JUtility::TColor(0), JUtility::TColor(-1));
 	parent->appendChild(pane);
 	pane->m_messageID = tag;
@@ -2674,7 +2674,7 @@ void ObjSMenuMap::updateMap()
 	f32 mapY              = m_mapPosition.y;
 	m_mapRotationOrigin.x = -mapX;
 	m_mapRotationOrigin.y = -mapY;
-	m_mapTexPane->setBasePosition(POS_CENTER);
+	m_mapTexPane->setBasePosition(J2DPOS_Center);
 	m_mapTexPane->m_scale.x = scale;
 	m_mapTexPane->m_scale.y = scale;
 	m_mapTexPane->calcMtx();
@@ -2696,7 +2696,7 @@ void ObjSMenuMap::updateMap()
 	if (m_louieArrow && m_louieObj) {
 		f32 scaleFactor = msVal.m_mapIconScaleBase * (msVal.m_mapNaviArrowScaleMod / scale);
 		f32 facedir     = m_louieObj->getFaceDir();
-		m_louieArrow->setBasePosition(POS_CENTER);
+		m_louieArrow->setBasePosition(J2DPOS_Center);
 		J2DPane* pane   = m_louieArrow;
 		pane->m_scale.x = scaleFactor;
 		pane->m_scale.y = scaleFactor;
@@ -2705,7 +2705,7 @@ void ObjSMenuMap::updateMap()
 		pane->m_angle = (facedir * 360.0f) / TAU + 45.0f;
 		facedir       = pane->m_angle;
 		pane->calcMtx();
-		m_louieArrow->setBasePosition(POS_CENTER);
+		m_louieArrow->setBasePosition(J2DPOS_Center);
 		pane            = m_louieArrow;
 		pane->m_scale.x = scaleFactor;
 		pane->m_scale.y = scaleFactor;
@@ -2720,7 +2720,7 @@ void ObjSMenuMap::updateMap()
 	if (m_olimarArrow && m_olimarObj) {
 		f32 scaleFactor = msVal.m_mapIconScaleBase * (msVal.m_mapNaviArrowScaleMod / scale);
 		f32 facedir     = m_olimarObj->getFaceDir();
-		m_louieArrow->setBasePosition(POS_CENTER);
+		m_louieArrow->setBasePosition(J2DPOS_Center);
 		J2DPane* pane   = m_olimarArrow;
 		pane->m_scale.x = scaleFactor;
 		pane->m_scale.y = scaleFactor;
@@ -2729,7 +2729,7 @@ void ObjSMenuMap::updateMap()
 		pane->m_angle = (facedir * 360.0f) / TAU + 45.0f;
 		facedir       = pane->m_angle;
 		pane->calcMtx();
-		m_olimarArrow->setBasePosition(POS_CENTER);
+		m_olimarArrow->setBasePosition(J2DPOS_Center);
 		pane            = m_olimarArrow;
 		pane->m_scale.x = scaleFactor;
 		pane->m_scale.y = scaleFactor;
@@ -3343,7 +3343,7 @@ void ObjSMenuMap::doDraw(Graphics& gfx)
 	m_iconScreen->draw(gfx2, *graf);
 
 	if (m_compassPic && m_pane_Ncompas) {
-		PSMTXCopy(m_pane_Ncompas->_080, m_compassPic->_050);
+		PSMTXCopy(m_pane_Ncompas->m_globalMtx, m_compassPic->m_positionMtx);
 	}
 
 	graf->setPort();
@@ -3401,7 +3401,7 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 	Color4 color2(100, 0, 0, 155);
 	drawVecZ(gfx, vec1, vec2, vec3, vec4, color2, -0.999);
 	GXSetColorUpdate(GX_TRUE);
-	PSMTXCopy(m_pane_map->_080, m_rootPane->_050);
+	PSMTXCopy(m_pane_map->m_globalMtx, m_rootPane->m_positionMtx);
 	graf->setPort();
 	GXSetZCompLoc(GX_TRUE);
 	GXSetZMode(GX_TRUE, GX_LESS, GX_FALSE);

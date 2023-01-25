@@ -6,6 +6,7 @@
 #include "og/newScreen/ogUtil.h"
 #include "LoadResource.h"
 #include "kh/khUtil.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 

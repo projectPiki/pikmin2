@@ -7,10 +7,16 @@
 #include "types.h"
 
 struct J2DTexMtxInfo {
-	u8 _00;                             // _00
-	u8 _01;                             // _01
-	u8 _02[2];                          // _02 - padding?
-	Vec _04;                            // _04
+	enum DCCType { // from TP
+		DCC_None = 0,
+		DCC_Maya = 1,
+	};
+
+	GXTexMtxType getTexMtxType() const { return (GXTexMtxType)m_texMtxType; }
+
+	u8 m_texMtxType;                    // _00
+	u8 m_texMtxDCC;                     // _01
+	Vec m_center;                       // _04
 	J2DTextureSRTInfo m_textureSRTInfo; // _10
 };
 
@@ -23,15 +29,16 @@ struct J2DTexMtx {
 	    : m_info(*info)
 	{
 	}
+
 	inline ~J2DTexMtx() { } // unused/inlined
 
 	void load(u32);
 	void calc();
-	void getTextureMtx(const J2DTextureSRTInfo&, Vec, f32 (*)[4]);
-	void getTextureMtxMaya(const J2DTextureSRTInfo&, f32 (*)[4]);
+	void getTextureMtx(const J2DTextureSRTInfo&, Vec, Mtx);
+	void getTextureMtxMaya(const J2DTextureSRTInfo&, Mtx);
 
-	J2DTexMtxInfo m_info;
-	Mtx m_mtx;
+	J2DTexMtxInfo m_info; // _00
+	Mtx m_mtx;            // _24
 };
 
 #endif

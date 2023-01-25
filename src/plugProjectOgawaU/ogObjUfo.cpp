@@ -235,8 +235,8 @@ void ObjUfoMenu::doDraw(Graphics& gfx)
 	J2DPerspGraph& graf = gfx.m_perspGraph;
 	if (m_doDraw) {
 		m_ufoScreen->draw(gfx, graf);
-		PSMTXCopy(m_paneN00->_080, m_paneAllWhite->_050);
-		PSMTXCopy(m_paneN01->_080, m_paneAllPurple->_050);
+		PSMTXCopy(m_paneN00->m_globalMtx, m_paneAllWhite->m_positionMtx);
+		PSMTXCopy(m_paneN01->m_globalMtx, m_paneAllPurple->m_positionMtx);
 		m_pikiScreen->draw(gfx, graf);
 		m_menu->draw(&graf);
 	}
