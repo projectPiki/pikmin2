@@ -66,6 +66,9 @@ struct J3DModelData {
 		mat->m_tevBlock->setTevColor(0, J3DGXColorS10(r, g, b, a));
 	}
 
+	inline J3DVertexData* getVertexData() { return &m_vertexData; }
+	inline J3DJoint* getJointNodePointer(u16 idx) const { return m_jointTree.getJointNodePointer(idx); }
+
 	// VTBL _00
 	const void* m_bmd;                // _04
 	u32 m_modelLoaderFlags;           // _08

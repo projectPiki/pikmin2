@@ -1025,7 +1025,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/jigumoAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/jigumoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumo.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/enemyNestMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/enemyNestMgr.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/enemyNest.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tamagoMushiState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tamagoMushiAnimator.o\
