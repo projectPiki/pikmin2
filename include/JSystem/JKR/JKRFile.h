@@ -12,11 +12,11 @@ struct JSUFileInputStream;
 struct JKRFile : public JKRDisposer {
 	inline JKRFile()
 	    : JKRDisposer()
-	    , _18(false)
+	    , m_fileOpen(false)
 	{
 	}
-	virtual ~JKRFile();                                 // _08 (weak)
-	virtual u8 open(const char*)                   = 0; // _0C
+	virtual ~JKRFile() {};                              // _08 (weak)
+	virtual bool open(const char*)                 = 0; // _0C
 	virtual void close()                           = 0; // _10
 	virtual int readData(void*, long, long)        = 0; // _14
 	virtual int writeData(const void*, long, long) = 0; // _18
@@ -24,7 +24,7 @@ struct JKRFile : public JKRDisposer {
 
 	void read(void* a1, long a2, long a3);
 
-	bool _18; // _18
+	bool m_fileOpen; // _18
 };
 
 // Size: 0xF8
@@ -33,37 +33,36 @@ struct JKRDvdFile : public JKRFile {
 	JKRDvdFile(const char*);
 	JKRDvdFile(long);
 	virtual ~JKRDvdFile();                                             // _08
-	virtual u8 open(const char*);                                      // _0C
+	virtual bool open(const char*);                                    // _0C
 	virtual void close();                                              // _10
 	virtual int readData(void*, long, long);                           // _14
 	virtual int writeData(const void*, long, long);                    // _18
 	virtual int getFileSize() const { return m_dvdPlayer.m_fileSize; } // _1C (weak)
-	virtual u8 open(long);                                             // _20
+	virtual bool open(long);                                           // _20
 
-	inline int readDataAsync(void* buffer, long byteCount, long startOffset)
+	inline int readDataAsync(void* addr, s32 length, s32 offset)
 	{
-		long result;
 		OSLockMutex(&_1C);
-		if (_F4) {
+		s32 retAddr;
+		if (m_thread != nullptr) {
 			OSUnlockMutex(&_1C);
-			result = -1;
+			retAddr = -1;
 		} else {
-			_F4    = OSGetCurrentThread();
-			result = -1;
-			if (DVDReadAsyncPrio(&m_dvdPlayer, buffer, byteCount, startOffset, (DVDDoneReadCallback*)doneProcess, 2)) {
-				// result = (long)this;
-				result = sync();
+			m_thread = OSGetCurrentThread();
+			retAddr  = -1;
+			if (DVDReadAsyncPrio(&m_dvdPlayer, addr, length, offset, doneProcess, 2)) {
+				retAddr = (s32)sync();
 			}
-			_F4 = nullptr;
+			m_thread = nullptr;
 			OSUnlockMutex(&_1C);
 		}
-		return result;
+		return retAddr;
 	}
 	inline int writeDataAsync(const void*, long, long) { return -1; }
 
 	void initiate();
 	long sync();
-	static BOOL doneProcess(long, DVDFileInfo*);
+	static DVDDoneReadCallback doneProcess;
 
 	OSMutexObject _1C;                 // _1C
 	OSMutexObject _34;                 // _34
@@ -77,8 +76,8 @@ struct JKRDvdFile : public JKRFile {
 	void* _BC;                         // _BC  Single msg slot for _9C
 	OSMessageQueue _C0;                // _C0
 	void* _E0;                         // _E0  Single msg slot for _C0
-	JSULink<JKRDvdFile> _E4;           // _E4
-	OSThread* _F4;                     // _F4
+	JSULink<JKRDvdFile> m_link;        // _E4
+	OSThread* m_thread;                // _F4
 
 	static JSUList<JKRDvdFile> sDvdList;
 };

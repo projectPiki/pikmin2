@@ -47,9 +47,9 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRArchivePri.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRArchivePub.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRCompArchive.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRDecomp.o\
+	$(BUILD_DIR)/src/JSystem/JKR/JKRDecomp.o\
 	$(BUILD_DIR)/src/JSystem/JKR/JKRDisposer.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdFile.o\
+	$(BUILD_DIR)/src/JSystem/JKR/JKRDvdFile.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdAramRipper.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdArchive.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdRipper.o\
@@ -147,7 +147,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeDraw.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMtxBuffer.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeTable.o\
-	$(BUILD_DIR)/asm/JSystem/JFW/JFWSystem.o\
+	$(BUILD_DIR)/src/JSystem/JFW/JFWSystem.o\
 	$(BUILD_DIR)/asm/JSystem/JFW/JFWDisplay.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPABaseShape.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAChildShape.o\

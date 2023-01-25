@@ -42,7 +42,7 @@ JSUFileInputStream::JSUFileInputStream(JKRFile* file)
 int JSUFileInputStream::readData(void* buffer, long byteCount)
 {
 	int readBytes = 0;
-	if (((JKRFile*)m_object)->_18) {
+	if (((JKRFile*)m_object)->m_fileOpen) {
 		if ((u32)(m_length + byteCount) > ((JKRFile*)m_object)->getFileSize()) {
 			byteCount = ((JKRFile*)m_object)->getFileSize() - m_length;
 		}

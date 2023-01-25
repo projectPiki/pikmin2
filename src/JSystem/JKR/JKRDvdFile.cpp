@@ -4,47 +4,7 @@
 #include "JSystem/JKR/JKRFile.h"
 #include "JSystem/JSupport/JSUList.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_JKRDvdFile_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80473608
-    lbl_80473608:
-        .4byte 0x4A4B5244
-        .4byte 0x76644669
-        .4byte 0x6C652E63
-        .4byte 0x70700000
-    .global lbl_80473618
-    lbl_80473618:
-        .4byte 0x63616E6E
-        .4byte 0x6F742063
-        .4byte 0x6C6F7365
-        .4byte 0x20445644
-        .4byte 0x2066696C
-        .4byte 0x650A0000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__10JKRDvdFile
-    __vt__10JKRDvdFile:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__10JKRDvdFileFv
-        .4byte open__10JKRDvdFileFPCc
-        .4byte close__10JKRDvdFileFv
-        .4byte readData__10JKRDvdFileFPvll
-        .4byte writeData__10JKRDvdFileFPCvll
-        .4byte getFileSize__10JKRDvdFileCFv
-        .4byte open__10JKRDvdFileFl
-        .4byte 0
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global sDvdList__10JKRDvdFile
-    sDvdList__10JKRDvdFile:
-        .skip 0xC
-*/
+JSUList<JKRDvdFile> JKRDvdFile::sDvdList;
 
 /*
  * __ct__10JKRDvdFileFv
@@ -55,7 +15,7 @@
  */
 JKRDvdFile::JKRDvdFile()
     : JKRFile()
-    , _E4(this)
+    , m_link(this)
 {
 	initiate();
 }
@@ -69,66 +29,12 @@ JKRDvdFile::JKRDvdFile()
  */
 JKRDvdFile::JKRDvdFile(const char* path)
     : JKRFile()
-    , _E4(this)
+    , m_link(this)
 {
 	initiate();
-	_18 = open(path);
-	check();
-	if (_18 == 0) {
-		check();
-	} else {
-		check();
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r0, r29
-	mr       r30, r0
-	bl       __ct__11JKRDisposerFv
-	lis      r4, __vt__7JKRFile@ha
-	lis      r3, __vt__10JKRDvdFile@ha
-	addi     r0, r4, __vt__7JKRFile@l
-	li       r5, 0
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__10JKRDvdFile@l
-	mr       r4, r29
-	addi     r3, r29, 0xe4
-	stb      r5, 0x18(r30)
-	stw      r0, 0(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	mr       r3, r29
-	bl       initiate__10JKRDvdFileFv
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	stb      r3, 0x18(r29)
-	lbz      r0, 0x18(r29)
-	cmplwi   r0, 0
-	beq      lbl_8001D1BC
-	mr       r3, r29
-	b        lbl_8001D1C0
-
-lbl_8001D1BC:
-	mr       r3, r29
-
-lbl_8001D1C0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_fileOpen = open(path);
+	if (m_fileOpen)
+		return;
 }
 
 /*
@@ -138,62 +44,15 @@ lbl_8001D1C0:
  * Address:	8001D1DC
  * Size:	0000B0
  */
-JKRDvdFile::JKRDvdFile(long fileNumber)
+JKRDvdFile::JKRDvdFile(s32 entrynum)
     : JKRFile()
-    , _E4(this)
+    , m_link(this)
 {
 	initiate();
-	_18 = open(fileNumber);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r0, r29
-	mr       r30, r0
-	bl       __ct__11JKRDisposerFv
-	lis      r4, __vt__7JKRFile@ha
-	lis      r3, __vt__10JKRDvdFile@ha
-	addi     r0, r4, __vt__7JKRFile@l
-	li       r5, 0
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__10JKRDvdFile@l
-	mr       r4, r29
-	addi     r3, r29, 0xe4
-	stb      r5, 0x18(r30)
-	stw      r0, 0(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	mr       r3, r29
-	bl       initiate__10JKRDvdFileFv
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	stb      r3, 0x18(r29)
-	lbz      r0, 0x18(r29)
-	cmplwi   r0, 0
-	beq      lbl_8001D26C
-	mr       r3, r29
-	b        lbl_8001D270
 
-lbl_8001D26C:
-	mr       r3, r29
-
-lbl_8001D270:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_fileOpen = open(entrynum);
+	if (m_fileOpen)
+		return;
 }
 
 /*
@@ -203,56 +62,7 @@ lbl_8001D270:
  * Address:	8001D28C
  * Size:	00009C
  */
-JKRDvdFile::~JKRDvdFile()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8001D30C
-	lis      r4, __vt__10JKRDvdFile@ha
-	addi     r0, r4, __vt__10JKRDvdFile@l
-	stw      r0, 0(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addic.   r0, r30, 0xe4
-	beq      lbl_8001D2DC
-	addi     r3, r30, 0xe4
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8001D2DC:
-	cmplwi   r30, 0
-	beq      lbl_8001D2FC
-	lis      r4, __vt__7JKRFile@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__7JKRFile@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__11JKRDisposerFv
-
-lbl_8001D2FC:
-	extsh.   r0, r31
-	ble      lbl_8001D30C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8001D30C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JKRDvdFile::~JKRDvdFile() { close(); }
 
 /*
  * --INFO--
@@ -266,9 +76,9 @@ void JKRDvdFile::initiate()
 	OSInitMutex(&_34);
 	OSInitMessageQueue(&_C0, &_E0, 1);
 	OSInitMessageQueue(&_9C, &_BC, 1);
-	_F4 = nullptr;
-	_50 = nullptr;
-	_58 = 0;
+	m_thread = nullptr;
+	_50      = nullptr;
+	_58      = 0;
 }
 
 /*
@@ -278,16 +88,16 @@ void JKRDvdFile::initiate()
  * Address:	8001D394
  * Size:	000078
  */
-u8 JKRDvdFile::open(const char* path)
+bool JKRDvdFile::open(const char* path)
 {
-	if (!_18) {
-		_18 = DVDOpen(path, &m_dvdPlayer);
-		if (_18) {
-			sDvdList.append(&_E4);
+	if (!m_fileOpen) {
+		m_fileOpen = DVDOpen(path, &m_dvdPlayer);
+		if (m_fileOpen) {
+			sDvdList.append(&m_link);
 			DVDGetCommandBlockStatus(&m_dvdPlayer);
 		}
 	}
-	return _18;
+	return m_fileOpen;
 }
 
 /*
@@ -297,16 +107,16 @@ u8 JKRDvdFile::open(const char* path)
  * Address:	8001D40C
  * Size:	000078
  */
-u8 JKRDvdFile::open(long fileNumber)
+bool JKRDvdFile::open(long fileNumber)
 {
-	if (!_18) {
-		_18 = DVDFastOpen(fileNumber, &m_dvdPlayer);
-		if (_18) {
-			sDvdList.append(&_E4);
+	if (!m_fileOpen) {
+		m_fileOpen = DVDFastOpen(fileNumber, &m_dvdPlayer);
+		if (m_fileOpen) {
+			sDvdList.append(&m_link);
 			DVDGetCommandBlockStatus(&m_dvdPlayer);
 		}
 	}
-	return _18;
+	return m_fileOpen;
 }
 
 /*
@@ -316,10 +126,10 @@ u8 JKRDvdFile::open(long fileNumber)
  */
 void JKRDvdFile::close()
 {
-	if (_18) {
+	if (m_fileOpen) {
 		if (DVDClose(&m_dvdPlayer)) {
-			_18 = 0;
-			sDvdList.remove(&_E4);
+			m_fileOpen = false;
+			sDvdList.remove(&m_link);
 		} else {
 			OSErrorLine(213, "cannot close DVD file\n");
 		}
@@ -331,8 +141,24 @@ void JKRDvdFile::close()
  * Address:	8001D500
  * Size:	0000C4
  */
-int JKRDvdFile::readData(void* buffer, long byteCount, long startOffset) { return readDataAsync(buffer, byteCount, startOffset); }
-
+int JKRDvdFile::readData(void* addr, s32 length, s32 offset)
+{
+	OSLockMutex(&_1C);
+	s32 retAddr;
+	if (m_thread != nullptr) {
+		OSUnlockMutex(&_1C);
+		return -1;
+	} else {
+		m_thread = OSGetCurrentThread();
+		retAddr  = -1;
+		if (DVDReadAsyncPrio(&m_dvdPlayer, addr, length, offset, doneProcess, 2)) {
+			retAddr = (s32)sync();
+		}
+		m_thread = nullptr;
+		OSUnlockMutex(&_1C);
+	}
+	return retAddr;
+}
 /*
  * --INFO--
  * Address:	........
@@ -433,7 +259,7 @@ long JKRDvdFile::sync()
 	void* buffer[1];
 	OSLockMutex(&_1C);
 	OSReceiveMessage(&_C0, buffer, OS_MESSAGE_BLOCKING);
-	_F4 = nullptr;
+	m_thread = nullptr;
 	OSUnlockMutex(&_1C);
 	return (u32)*buffer;
 }
@@ -443,7 +269,11 @@ long JKRDvdFile::sync()
  * Address:	8001D620
  * Size:	000030
  */
-BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info) { return OSSendMessage(&(reinterpret_cast<JKRDvdFile*>(info->_3C))->_C0, &p1, 0); }
+BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info)
+{
+	JKRDvdFile* dvdFile = reinterpret_cast<JKRDvdFile*>(info->_3C);
+	return OSSendMessage(&dvdFile->_C0, (void*)p1, OS_MESSAGE_NON_BLOCKING);
+}
 
 /*
  * --INFO--
@@ -457,59 +287,3 @@ BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info) { return OSSendMessage(
  * Address:	8001D658
  * Size:	000044
  */
-void __sinit_JKRDvdFile_cpp()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sDvdList__10JKRDvdFile@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sDvdList__10JKRDvdFile@l
-	bl       initiate__10JSUPtrListFv
-	lis      r3, sDvdList__10JKRDvdFile@ha
-	lis      r4, "__dt__21JSUList<10JKRDvdFile>Fv"@ha
-	lis      r5, lbl_804EFF40@ha
-	addi     r3, r3, sDvdList__10JKRDvdFile@l
-	addi     r4, r4, "__dt__21JSUList<10JKRDvdFile>Fv"@l
-	addi     r5, r5, lbl_804EFF40@l
-	bl       __register_global_object
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-// /*
-//  * --INFO--
-//  * Address:	8001D69C
-//  * Size:	000054
-//  */
-// template<> JSUList<JKRDvdFile>::~JSUList()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8001D6D4
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrListFv
-// 	extsh.   r0, r31
-// 	ble      lbl_8001D6D4
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8001D6D4:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }

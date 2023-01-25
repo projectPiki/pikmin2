@@ -7,6 +7,12 @@
 
 struct JKRAMCommand;
 
+inline u32 read_big_endian_u32(void* ptr)
+{
+	u8* uptr = (u8*)ptr;
+	return ((u32)uptr[0] << 0x18) | ((u32)uptr[1] << 0x10) | ((u32)uptr[2] << 8) | (u32)uptr[3];
+}
+
 // #define EXTRACT_TO_UINT(array, i1, i2, i3, i4) ((uint)array[i1] | (uint)array[i2] << 8 | (uint)array[i3] << 16 | (uint)array[i4] << 24)
 
 // inline u32 getU32FromBigEndianBytes(u8* data, int offset) {
@@ -115,8 +121,6 @@ struct JKRDecomp : public JKRThread {
 	static void decodeSZS(u8*, u8*, u32, u32);
 	static bool orderSync(u8*, u8*, u32, u32);
 	static BOOL sendCommand(JKRDecompCommand*);
-
-	u8 _78[4]; // _78
 
 	static void* sMessageBuffer[4];
 	static OSMessageQueue sMessageQueue;
