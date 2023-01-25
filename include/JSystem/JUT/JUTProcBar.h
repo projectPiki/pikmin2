@@ -14,10 +14,15 @@ public:
 		 */
 		CTime()
 		{ // weak
+			clear();
+		};
+
+		void clear()
+		{
 			mCost = 0;
 			_08   = 0;
 			_0C   = 0;
-		};
+		}
 
 		void start(u8 p1, u8 p2, u8 p3)
 		{
@@ -94,6 +99,10 @@ public:
 	{ // fabricated
 		return mGp.mCost - mGpWait.mCost;
 	}
+
+	void setVisible(bool visible) { mVisible = visible; }
+	void setVisibleHeapBar(bool visible) { mHeapBarVisible = visible; }
+	void setWatchHeap(JKRHeap* heap) { mWatchHeap = heap; }
 
 	inline static JUTProcBar* getManager() { return sManager; }
 
