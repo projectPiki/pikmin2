@@ -9,11 +9,26 @@ public:
 	struct CTime {
 		CTime();
 
-		u8 _00[4]; // _00 - unknown
-		u32 _04;   // _04
-		u32 _08;   // _08
-		u32 _0C;   // _0C
-		u8 _10[4]; // _10 - unknown
+        u32 startTick;
+        u32 cost;
+        u32 _08;
+        u32 _0C;
+        u8 r;
+        u8 g;
+        u8 b;
+
+        void start(u8 p1, u8 p2, u8 p3) {
+            r = p1;
+            g = p2;
+            b = p3;
+            startTick = OSGetTick();
+        }
+
+        void end() {
+            cost = OSTicksToMicroseconds(OSDiffTick(OSGetTick(), startTick));
+            if (cost == 0)
+                cost = 1;
+        }
 	};
 
 	JUTProcBar();
@@ -31,31 +46,31 @@ public:
 	void adjustMeterLength(u32, f32*, f32, f32, int*);
 	void getUnuseUserBar();
 
+	static JUTProcBar * getManager() { return sManager; }
+
+
+    void idleStart() { mIdle.start(255, 129, 30); }
+    void idleEnd() { mIdle.end(); }
+	void gpStart() { mGp.start(255, 129, 30); }
+	void gpEnd() { mGp.end(); }
+	void cpuStart() { mCpu.start(255, 129, 30); }
+	void cpuEnd() { mCpu.end(); }
+	void gpWaitStart() { mGpWait.start(255, 129, 30); }
+	void gpWaitEnd() { mGpWait.end(); }
+	void wholeLoopStart() { mWholeLoop.start(255, 129, 30); }
+	void wholeLoopEnd() { mWholeLoop.end(); }
+
+	void setCostFrame(int frame) { mCostFrame = frame; }
+
 	static JUTProcBar* sManager;
 
-	u8 _00[4];    // _00
-	u32 _04;      // _04
-	u32 _08;      // _08
-	u32 _0C;      // _0C
-	u8 _10[8];    // _10
-	u32 _18;      // _18
-	u32 _1C;      // _1C
-	u32 _20;      // _20
-	u8 _24[8];    // _24
-	u32 _2C;      // _2C
-	u32 _30;      // _30
-	u32 _34;      // _34
-	u8 _38[8];    // _38
-	u32 _40;      // _40
-	u32 _44;      // _44
-	u32 _48;      // _48
-	u8 _4C[8];    // _4C
-	u32 _54;      // _54
-	u32 _58;      // _58
-	u32 _5C;      // _5C
-	u32 _60;      // _60
-	CTime _64[8]; // _64
-	u32 _104;     // _104
+    CTime mIdle;            // _00
+    CTime mGp;              // _14
+    CTime mCpu;             // _28
+    CTime mGpWait;          // _3C
+    CTime mWholeLoop;       // _50
+    CTime mUsers[8];        // _64
+	int mCostFrame;     // _104
 	u32 _108;     // _108
 	u8 _10C;      // _10C
 	u32 _110;     // _110

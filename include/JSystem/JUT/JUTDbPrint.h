@@ -40,6 +40,8 @@ struct JUTDbPrint {
 	u8 _0C;                  // _0C
 	JKRHeap* mHeap;          // _10
 
+	static JUTDbPrint * getManager() { return sDebugPrint; }
+
 	static JUTDbPrint* sDebugPrint;
 };
 

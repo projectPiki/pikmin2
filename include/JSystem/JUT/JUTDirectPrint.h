@@ -34,10 +34,17 @@ struct JUTDirectPrint {
 	void drawString_f(u16 x, u16 y, const char* format, ...);
 	void changeFrameBuffer(void* buffer, u16 pixelWidth, u16 pixelHeight);
 
+	static JUTDirectPrint * getManager() { return sDirectPrint; }
+
 	static u8 sAsciiTable[0x80];
 	static u32 sFontData[0x40];
 	static u32 sFontData2[0x4D];
 	static JUTDirectPrint* sDirectPrint;
 };
+
+inline void JUTChangeFrameBuffer(void *buffer, u16 height, u16 width)
+{
+    JUTDirectPrint::getManager()->changeFrameBuffer(buffer, width, height);
+}
 
 #endif
