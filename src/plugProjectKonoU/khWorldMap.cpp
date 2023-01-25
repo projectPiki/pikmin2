@@ -1,14 +1,11 @@
 #include "JSystem/J2D/J2DAnm.h"
-#include "JSystem/JKR/JKRFileLoader.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JUT/JUTException.h"
 #include "P2DScreen.h"
 #include "kh/khUtil.h"
 #include "kh/khWorldMap.h"
 #include "LoadResource.h"
 #include "og/newScreen/ogUtil.h"
-#include "types.h"
+#include "Controller.h"
+#include "Game/gamePlayData.h"
 
 /*
     Generated from dpostproc
@@ -743,67 +740,16 @@ namespace Screen {
 
 /*
  * --INFO--
- * Address:	803F1B04
- * Size:	00009C
- */
-khUtilFadePane::~khUtilFadePane()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803F1B84
-lis      r3, __vt__Q32kh6Screen14khUtilFadePane@ha
-addic.   r0, r30, 0x1c
-addi     r0, r3, __vt__Q32kh6Screen14khUtilFadePane@l
-stw      r0, 0(r30)
-beq      lbl_803F1B44
-lis      r3, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@ha
-addi     r0, r3, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@l
-stw      r0, 0x1c(r30)
-
-lbl_803F1B44:
-cmplwi   r30, 0
-beq      lbl_803F1B74
-lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803F1B74
-lis      r4, __vt__Q29P2DScreen4Node@ha
-mr       r3, r30
-addi     r0, r4, __vt__Q29P2DScreen4Node@l
-li       r4, 0
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803F1B74:
-extsh.   r0, r31
-ble      lbl_803F1B84
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803F1B84:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	803F1BA0
  * Size:	000058
  */
 void khUtilFadePaneWM::fadeout_finish()
 {
+	if (m_finish) {
+		m_mapObj->changeInfo();
+		m_mapObj->effectFirstTime();
+		m_state = 0;
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -833,54 +779,6 @@ addi     r1, r1, 0x10
 blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	803F1BF8
- * Size:	000080
- */
-khUtilColorAnm::~khUtilColorAnm()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803F1C5C
-lis      r4, __vt__Q32kh6Screen14khUtilColorAnm@ha
-addi     r0, r4, __vt__Q32kh6Screen14khUtilColorAnm@l
-stw      r0, 0(r30)
-beq      lbl_803F1C4C
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803F1C4C
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803F1C4C:
-extsh.   r0, r31
-ble      lbl_803F1C5C
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803F1C5C:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
 /*
  * --INFO--
  * Address:	803F1C78
@@ -888,6 +786,11 @@ blr
  */
 void khUtilColorAnmWM::do_update()
 {
+	static_cast<J2DPicture*>(m_pane)->setWhite(m_color1);
+	if (m_updateMode && !m_counter) {
+		m_counter1->startPuyoUp(1.0f);
+		m_counter2->startPuyoUp(2.0f);
+	}
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -934,90 +837,92 @@ WorldMap::WorldMap()
     : Base()
     , m_initArg()
 {
-	m_screenKitagawa          = nullptr;
-	m_bckAnm2                 = nullptr;
-	m_bckAnm1                 = nullptr;
-	_3C                       = nullptr;
-	_44                       = nullptr;
-	_40                       = nullptr;
-	_48                       = nullptr;
-	_4C                       = nullptr;
-	_50                       = nullptr;
-	_54                       = nullptr;
-	_60                       = nullptr;
-	_5C                       = nullptr;
-	_58                       = nullptr;
-	m_frameOf60               = 0.0f;
-	m_frameOf5C               = 0.0f;
-	m_frameOf58               = 0.0f;
-	m_frameOf50               = 0.0f;
-	m_frameOf4C               = 0.0f;
-	m_frameOf44               = 0.0f;
-	m_frameOf40               = 0.0f;
-	m_frameOf3C               = 0.0f;
-	m_frameOf38               = 0.0f;
-	m_frameOf34               = 0.0f;
-	_94                       = 0.0f;
-	_90                       = 0.0f;
-	_98                       = 1.0f;
-	_9C.x                     = 0.0f;
-	_9C.y                     = 0.0f;
-	_A4                       = 0.0f;
-	_A8                       = 0.0f;
-	_AC.x                     = 0.0f;
-	_AC.y                     = 0.0f;
-	_B4                       = _AC.x;
-	_B8                       = _AC.y;
-	_BC                       = 0.0f;
-	m_rocketGlow              = nullptr;
-	m_rocketB                 = nullptr;
-	m_mapFlare                = nullptr;
-	m_shstar1                 = nullptr;
-	_D0                       = 0.0f;
-	_D4                       = 0.0f;
-	_D8                       = 0.0f;
-	_DC                       = 1.0f;
-	m_light01Center.x         = 0.0f;
-	m_light01Center.y         = 0.0f;
-	m_starCenter.x            = 0.0f;
-	m_starCenter.y            = 0.0f;
-	m_onyonDynamicsArray      = nullptr;
-	m_onyonDynamicsCount      = 0;
-	m_currentCourseIndex      = 0;
-	_FC                       = 0;
-	_108                      = nullptr;
-	m_groundTreasureCounter   = nullptr;
-	m_pokoCounter             = nullptr;
-	m_groundTreasureMax       = 0;
-	m_groundTreasureCount     = 0;
-	_11C                      = nullptr;
-	m_caveTreasureCounters[0] = nullptr;
-	_144                      = 0;
-	_134                      = 0;
-	m_caveTreasureCounters[1] = nullptr;
-	_148                      = 0;
-	_138                      = 0;
-	m_caveTreasureCounters[0] = nullptr;
-	_14C                      = 0;
-	_13C                      = 0;
-	m_caveTreasureCounters[0] = nullptr;
-	_150                      = 0;
-	_140                      = 0;
-	_154                      = nullptr;
-	_158                      = nullptr;
-	_15C                      = nullptr;
-	_160                      = nullptr;
-	_164                      = nullptr;
-	_168                      = nullptr;
-	_16C                      = nullptr;
-	m_arrowAlphaBlink         = nullptr;
-	m_unknownSwitch           = 0xd;
-	_178                      = 1;
-	_17C                      = 4;
-	m_stateID                 = '\x01';
-	m_courseJustOpenFlags     = 0;
-	m_totalCourseCount        = 0;
-	_183                      = 0;
+	m_screenKitagawa           = nullptr;
+	m_bckAnm2                  = nullptr;
+	m_bckAnm1                  = nullptr;
+	m_kitaAnim1                = nullptr;
+	m_kitaAnim3                = nullptr;
+	m_kitaAnim2                = nullptr;
+	m_screenRocket             = nullptr;
+	m_rocketAnim1              = nullptr;
+	m_rocketAnim2              = nullptr;
+	m_screenInfo               = nullptr;
+	m_infoAnim3                = nullptr;
+	m_infoAnim2                = nullptr;
+	m_infoAnim1                = nullptr;
+	m_frameOf60                = 0.0f;
+	m_frameOf5C                = 0.0f;
+	m_frameOf58                = 0.0f;
+	m_frameOf50                = 0.0f;
+	m_frameOf4C                = 0.0f;
+	m_frameOf44                = 0.0f;
+	m_frameOf40                = 0.0f;
+	m_frameOf3C                = 0.0f;
+	m_frameOf38                = 0.0f;
+	m_frameOf34                = 0.0f;
+	m_cameraZoomX              = 0.0f;
+	m_cameraZoomMinFrame       = 0.0f;
+	_98                        = 1.0f;
+	m_rocketPosition           = 0.0f;
+	_A4                        = 0.0f;
+	_A8                        = 0.0f;
+	m_rocketAngle.x            = 0.0f;
+	m_rocketAngle.y            = -1.0f;
+	m_rocketAngleSin           = m_rocketAngle.x;
+	m_rocketAngleCos           = m_rocketAngle.y;
+	m_rocketScale              = 0.0f;
+	m_rocketGlow               = nullptr;
+	m_rocketB                  = nullptr;
+	m_mapFlare                 = nullptr;
+	m_shstar1                  = nullptr;
+	_D0                        = 0.0f;
+	_D4                        = 0.0f;
+	_D8                        = 0.0f;
+	_DC                        = 1.0f;
+	m_light01Center.x          = 0.0f;
+	m_light01Center.y          = 0.0f;
+	m_starCenter.x             = 0.0f;
+	m_starCenter.y             = 0.0f;
+	m_onyonArray               = nullptr;
+	m_onyonCount               = 0;
+	m_currentCourseIndex       = 0;
+	_FC                        = 0;
+	_108                       = nullptr;
+	m_groundTreasureCounter    = nullptr;
+	m_pokoCounter              = nullptr;
+	m_groundTreasureMax        = 0;
+	m_groundTreasureCount      = 0;
+	m_caveTreasureCounters2[0] = nullptr;
+	m_caveTreasureCounters[0]  = nullptr;
+	m_caveOtaMax[0]            = 0;
+	m_caveOtaNum[0]            = 0;
+	m_caveTreasureCounters2[1] = nullptr;
+	m_caveTreasureCounters[1]  = nullptr;
+	m_caveOtaMax[1]            = 0;
+	m_caveOtaNum[1]            = 0;
+	m_caveTreasureCounters2[2] = nullptr;
+	m_caveTreasureCounters[2]  = nullptr;
+	m_caveOtaMax[2]            = 0;
+	m_caveOtaNum[2]            = 0;
+	m_caveTreasureCounters2[3] = nullptr;
+	m_caveTreasureCounters[3]  = nullptr;
+	m_caveOtaMax[3]            = 0;
+	m_caveOtaNum[3]            = 0;
+	m_onyonFadePane            = nullptr;
+	m_colorAnims[0]            = nullptr;
+	m_colorAnims[1]            = nullptr;
+	m_colorAnims[2]            = nullptr;
+	m_colorAnims[3]            = nullptr;
+	m_colorAnims[4]            = nullptr;
+	m_colorAnim2               = nullptr;
+	m_arrowAlphaBlink          = nullptr;
+	m_currentState             = 0xd;
+	m_angle                    = 1;
+	m_flags                    = 4;
+	m_stateID                  = '\x01';
+	m_courseJustOpenFlags      = 0;
+	m_openCourses              = 0;
+	m_zukanFadeout             = 0;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1144,54 +1049,6 @@ blr
 	*/
 }
 
-namespace Game {
-
-} // namespace Game
-
-} // namespace Screen
-
-/*
- * --INFO--
- * Address:	803F1EDC
- * Size:	000060
- */
-WorldMap::Base::~Base()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803F1F20
-	lis      r5, __vt__Q34Game8WorldMap4Base@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game8WorldMap4Base@l
-	stw      r0, 0(r30)
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_803F1F20
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803F1F20:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace kh
-
-namespace kh {
-namespace Screen {
-
 /*
  * --INFO--
  * Address:	803F1F3C
@@ -1202,66 +1059,11 @@ void WorldMap::init(::Game::WorldMap::InitArg& arg)
 	int i     = 0;
 	m_initArg = arg;
 	do {
-		m_totalCourseCount += playData->courseOpen(i);
-		m_courseJustOpenFlags |= playData->courseJustOpen(i) << i;
+		m_openCourses += ::Game::playData->courseOpen(i);
+		m_courseJustOpenFlags |= ::Game::playData->courseJustOpen(i) << i;
 		i++;
 	} while (i < 4);
 	m_courseJustOpenFlags |= (m_courseJustOpenFlags << 4);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-stw      r30, 8(r1)
-li       r30, 0
-lwz      r0, 0(r4)
-stw      r0, 0x18(r3)
-lwz      r0, 4(r4)
-stw      r0, 0x1c(r3)
-lwz      r0, 8(r4)
-stw      r0, 0x20(r3)
-lwz      r0, 0xc(r4)
-stw      r0, 0x24(r3)
-lwz      r0, 0x10(r4)
-stw      r0, 0x28(r3)
-lbz      r0, 0x14(r4)
-stb      r0, 0x2c(r3)
-lbz      r0, 0x15(r4)
-stb      r0, 0x2d(r3)
-lbz      r0, 0x16(r4)
-stb      r0, 0x2e(r3)
-
-lbl_803F1F98:
-lwz      r3, playData__4Game@sda21(r13)
-mr       r4, r30
-bl       courseOpen__Q24Game8PlayDataFi
-lbz      r0, 0x181(r31)
-clrlwi   r3, r3, 0x18
-mr       r4, r30
-add      r0, r0, r3
-stb      r0, 0x181(r31)
-lwz      r3, playData__4Game@sda21(r13)
-bl       courseJustOpen__Q24Game8PlayDataFi
-clrlwi   r3, r3, 0x18
-lbz      r0, 0x182(r31)
-slw      r3, r3, r30
-addi     r30, r30, 1
-or       r0, r0, r3
-cmpwi    r30, 4
-stb      r0, 0x182(r31)
-blt      lbl_803F1F98
-lbz      r3, 0x182(r31)
-slwi     r0, r3, 4
-or       r0, r3, r0
-stb      r0, 0x182(r31)
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -1273,41 +1075,50 @@ void WorldMap::loadResource()
 {
 	JKRHeap* savedHeap = JKRHeap::sCurrentHeap;
 	m_initArg.m_heap->becomeCurrentHeap();
-	char localizedArchiveFileName[64];
-	og::newScreen::makeLanguageResName(localizedArchiveFileName, "worldmap.szs");
-	LoadResource::Arg loadResourceArg(localizedArchiveFileName);
-	LoadResource::Node* resNode = gLoadResourceMgr->mountArchive(loadResourceArg);
-	JUT_ASSERTLINE(278, resNode != nullptr, "failed");
-	JKRArchive* archive = resNode->m_archive;
-	P2ASSERTLINE(279,
-	             archive != nullptr); // TODO: How is this one line afterwards?
-	m_screenKitagawa = new P2DScreen::Mgr_tuning();
-	m_screenKitagawa->set("world_map_kitagawa.blo", 0x1040000, archive);
+	char path[64];
+	og::newScreen::makeLanguageResName(path, "worldmap.szs");
+	LoadResource::Arg arg(path);
+	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
+	JKRArchive* arc;
+	if (node) {
+		arc = node->m_archive;
+	} else {
+		JUT_PANICLINE(278, "failed");
+	}
+	P2ASSERTLINE(279, arc);
 
-	const void* resData = JKRFileLoader::getGlbResource("world_map_kitagawa.bck", archive);
+	m_screenKitagawa = new P2DScreen::Mgr_tuning;
+	m_screenKitagawa->set("world_map_kitagawa.blo", 0x1040000, arc);
+
+	const void* resData = JKRFileLoader::getGlbResource("world_map_kitagawa.bck", arc);
 	m_bckAnm1           = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resData);
 	m_bckAnm2           = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(resData);
-	int i               = 0;
+	m_screenKitagawa->setAnimation(m_bckAnm1);
+	int i = 0;
 	do {
 		m_screenKitagawa->search(getSerialTagName('Pland0', i))->setAnimation(m_bckAnm2);
 		m_screenKitagawa->search(getSerialTagName('Plight0', i))->setAnimation(m_bckAnm2);
 	} while (++i < 4);
 
-	_3C = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.bpk", archive));
-	m_screenKitagawa->setAnimation(_3C);
-	_40 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.btk", archive));
-	m_screenKitagawa->setAnimation(_40);
-	_44 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk", archive));
-	m_screenKitagawa->setAnimation(_44);
+	m_kitaAnim1 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.bpk", arc));
+	m_screenKitagawa->setAnimation(m_kitaAnim1);
+	m_kitaAnim2 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.btk", arc));
+	m_screenKitagawa->setAnimation(m_kitaAnim2);
+	m_kitaAnim3 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk", arc));
+	m_screenKitagawa->setAnimation(m_kitaAnim3);
 	const char* worldMapIconsFileNames[2][3];
 	const char** worldMapIconFileNames = worldMapIconsFileNames[0];
 	worldMapIconsFileNames[0][0]       = "worldmap_icon.blo";
 	worldMapIconsFileNames[0][1]       = "worldmap_icon.bck";
 	worldMapIconsFileNames[0][2]       = "worldmap_icon.btp";
-	worldMapIconsFileNames[1][0]       = "worldmap_gicon.blo";
-	worldMapIconsFileNames[1][1]       = "worldmap_gicon.bck";
-	worldMapIconsFileNames[1][2]       = "worldmap_gicon.btp";
-	if (Game::playData->)
+
+	worldMapIconsFileNames[1][0] = "worldmap_gicon.blo";
+	worldMapIconsFileNames[1][1] = "worldmap_gicon.bck";
+	worldMapIconsFileNames[1][2] = "worldmap_gicon.btp";
+	if (Game::playData->m_storyFlags & Game::STORY_DebtPaid) { }
+
+	m_screenRocket = new P2DScreen::Mgr;
+	m_screenRocket->set(worldMapIconFileNames[1], 0x40000, arc);
 
 	/*
 stwu     r1, -0x260(r1)
@@ -2893,38 +2704,10 @@ blr
 
 /*
  * --INFO--
- * Address:	803F3798
- * Size:	00003C
- */
-WorldMap::OnyonDynamics::~OnyonDynamics()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-or.      r31, r3, r3
-beq      lbl_803F37BC
-extsh.   r0, r4
-ble      lbl_803F37BC
-bl       __dl__FPv
-
-lbl_803F37BC:
-lwz      r0, 0x14(r1)
-mr       r3, r31
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	803F37D4
  * Size:	001C20
  */
-void WorldMap::update(Game::WorldMap::UpdateArg&)
+void WorldMap::update(::Game::WorldMap::UpdateArg&)
 {
 	/*
 stwu     r1, -0x170(r1)
@@ -6431,32 +6214,33 @@ blr
  */
 int WorldMap::getTarget()
 {
-	switch (m_currentMap) {
+	switch (m_currentCourseIndex) {
 	case 0:
-		return !(Controls->buttons & 0x2000002) && Controls->buttons & 0x8000008 ? 2 : 1;
+		return !(m_initArg.m_controller->m_padButton.m_mask & 0x2000002) && m_initArg.m_controller->m_padButton.m_mask & 0x8000008 ? 2 : 1;
 		break;
 	case 1:
-		if ((Controls->buttons & 0x1000001) == 0 && Controls->buttons & 0x8000008) {
-			if (maxMap == 3) {
+		if ((m_initArg.m_controller->m_padButton.m_mask & 0x1000001) == 0 && m_initArg.m_controller->m_padButton.m_mask & 0x8000008) {
+			if (m_openCourses == 3) {
 				return 2;
-			} else if (maxMap > 3) {
+			} else if (m_openCourses > 3) {
 				return 3;
 			}
-		} else if (Controls->buttons & 0x1000001) {
+		} else if (m_initArg.m_controller->m_padButton.m_mask & 0x1000001) {
 			return 0;
 		}
 		break;
 
 	case 2:
-		if (!(Controls->buttons & 0x2000002) && Controls->buttons & 0x4000004) {
+		if (!(m_initArg.m_controller->m_padButton.m_mask & 0x2000002) && m_initArg.m_controller->m_padButton.m_mask & 0x4000004) {
 			return 0;
 		}
 
-		return maxMap == 3 ? 1 : 3;
+		return m_openCourses == 3 ? 1 : 3;
 		break;
 
 	case 3:
-		return (!(Controls->buttons & 0x1000001) && Controls->buttons & 0x4000004) ? 1 : 2;
+		return (!(m_initArg.m_controller->m_padButton.m_mask & 0x1000001) && m_initArg.m_controller->m_padButton.m_mask & 0x4000004) ? 1
+		                                                                                                                             : 2;
 		break;
 
 	default:
@@ -8233,190 +8017,6 @@ blr
 	*/
 }
 
-} // namespace Screen
-} // namespace kh
-
-/*
- * @reified
- * --INFO--
- * Address:	803F80F4
- * Size:	00000C
- */
-// void efx2d::WorldMap::ArgDirScale::getName()
-// {
-// 	/*
-// 	lis      r3, lbl_80498348@ha
-// 	addi     r3, r3, lbl_80498348@l
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	803F8100
- * Size:	00009C
- */
-efx2d::WorldMap::T2DShstar1::~T2DShstar1()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803F8180
-	lis      r3, __vt__Q35efx2d8WorldMap10T2DShstar1@ha
-	addi     r3, r3, __vt__Q35efx2d8WorldMap10T2DShstar1@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803F8170
-	lis      r3, __vt__Q25efx2d9TChasePos@ha
-	addi     r3, r3, __vt__Q25efx2d9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803F8170
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803F8170:
-	extsh.   r0, r31
-	ble      lbl_803F8180
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803F8180:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803F819C
- * Size:	00009C
- */
-efx2d::WorldMap::T2DMapFlare::~T2DMapFlare()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803F821C
-	lis      r3, __vt__Q35efx2d8WorldMap11T2DMapFlare@ha
-	addi     r3, r3, __vt__Q35efx2d8WorldMap11T2DMapFlare@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803F820C
-	lis      r3, __vt__Q25efx2d9TChasePos@ha
-	addi     r3, r3, __vt__Q25efx2d9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803F820C
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803F820C:
-	extsh.   r0, r31
-	ble      lbl_803F821C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803F821C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803F8238
- * Size:	00009C
- */
-efx2d::WorldMap::T2DRocketGlow::~T2DRocketGlow()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803F82B8
-	lis      r3, __vt__Q35efx2d8WorldMap13T2DRocketGlow@ha
-	addi     r3, r3, __vt__Q35efx2d8WorldMap13T2DRocketGlow@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803F82A8
-	lis      r3, __vt__Q25efx2d12TChasePosDir@ha
-	addi     r3, r3, __vt__Q25efx2d12TChasePosDir@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803F82A8
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803F82A8:
-	extsh.   r0, r31
-	ble      lbl_803F82B8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803F82B8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace kh {
-
-namespace Screen {
-
 /*
  * --INFO--
  * Address:	803F82D4
@@ -8460,335 +8060,5 @@ blr
 	*/
 }
 
-namespace Game {
-
-} // namespace Game
-
-} // namespace Screen
-
-/*
- * --INFO--
- * Address:	803F8344
- * Size:	000004
- */
-void WorldMap::Base::draw(Graphics&) { }
-
-} // namespace kh
-
-namespace kh {
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	803F8348
- * Size:	000090
- */
-khUtilColorAnmWM::~khUtilColorAnmWM()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803F83BC
-lis      r4, __vt__Q32kh6Screen16khUtilColorAnmWM@ha
-addi     r0, r4, __vt__Q32kh6Screen16khUtilColorAnmWM@l
-stw      r0, 0(r30)
-beq      lbl_803F83AC
-lis      r4, __vt__Q32kh6Screen14khUtilColorAnm@ha
-addi     r0, r4, __vt__Q32kh6Screen14khUtilColorAnm@l
-stw      r0, 0(r30)
-beq      lbl_803F83AC
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803F83AC
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803F83AC:
-extsh.   r0, r31
-ble      lbl_803F83BC
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803F83BC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803F83D8
- * Size:	0000AC
- */
-khUtilFadePaneWM::~khUtilFadePaneWM()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803F8468
-lis      r3, __vt__Q32kh6Screen16khUtilFadePaneWM@ha
-addi     r0, r3, __vt__Q32kh6Screen16khUtilFadePaneWM@l
-stw      r0, 0(r30)
-beq      lbl_803F8458
-lis      r3, __vt__Q32kh6Screen14khUtilFadePane@ha
-addic.   r0, r30, 0x1c
-addi     r0, r3, __vt__Q32kh6Screen14khUtilFadePane@l
-stw      r0, 0(r30)
-beq      lbl_803F8428
-lis      r3, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@ha
-addi     r0, r3, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@l
-stw      r0, 0x1c(r30)
-
-lbl_803F8428:
-cmplwi   r30, 0
-beq      lbl_803F8458
-lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803F8458
-lis      r4, __vt__Q29P2DScreen4Node@ha
-mr       r3, r30
-addi     r0, r4, __vt__Q29P2DScreen4Node@l
-li       r4, 0
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803F8458:
-extsh.   r0, r31
-ble      lbl_803F8468
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803F8468:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803F8484
- * Size:	000004
- */
-void khUtilFadePane::fadein_finish() { }
-
-/*
- * --INFO--
- * Address:	803F8488
- * Size:	000048
- */
-khUtilFadePane::khPaneNode::~khPaneNode()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-or.      r31, r3, r3
-beq      lbl_803F84B8
-lis      r5, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@ha
-extsh.   r0, r4
-addi     r0, r5, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@l
-stw      r0, 0(r31)
-ble      lbl_803F84B8
-bl       __dl__FPv
-
-lbl_803F84B8:
-lwz      r0, 0x14(r1)
-mr       r3, r31
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
 } // namespace Screen
 } // namespace kh
-
-/*
- * --INFO--
- * Address:	803F84D0
- * Size:	0001A8
- */
-void __sinit_khWorldMap_cpp()
-{
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stfd     f28, 0x10(r1)
-	psq_st   f28, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lis      r4, msVal__Q32kh6Screen8WorldMap@ha
-	lis      r3, "__ct__Q29JGeometry8TVec2<f>Fv"@ha
-	addi     r4, r4, msVal__Q32kh6Screen8WorldMap@l
-	li       r5, 0
-	addi     r31, r4, 0x50
-	li       r6, 8
-	addi     r4, r3, "__ct__Q29JGeometry8TVec2<f>Fv"@l
-	li       r7, 2
-	mr       r3, r31
-	bl       __construct_array
-	lis      r3, msVal__Q32kh6Screen8WorldMap@ha
-	lfs      f1, lbl_8051FEF4@sda21(r2)
-	addi     r8, r3, msVal__Q32kh6Screen8WorldMap@l
-	li       r9, -1
-	lfs      f11, lbl_8051FF94@sda21(r2)
-	li       r0, 8
-	lfs      f31, lbl_8051FF88@sda21(r2)
-	li       r7, 0xff
-	stw      r9, 0x6c(r8)
-	li       r6, 0x40
-	lfs      f5, lbl_8051FF08@sda21(r2)
-	li       r5, 0x80
-	stw      r9, 0x70(r8)
-	li       r4, 0x20
-	lfs      f0, lbl_8051FF74@sda21(r2)
-	li       r3, 0x8c
-	stw      r9, 0x74(r8)
-	lfs      f28, lbl_8051FF7C@sda21(r2)
-	lfs      f29, lbl_8051FF80@sda21(r2)
-	lfs      f30, lbl_8051FF84@sda21(r2)
-	lfs      f13, lbl_8051FF8C@sda21(r2)
-	lfs      f12, lbl_8051FF90@sda21(r2)
-	lfs      f10, lbl_8051FEF0@sda21(r2)
-	lfs      f9, lbl_8051FF98@sda21(r2)
-	lfs      f8, lbl_8051FF9C@sda21(r2)
-	lfs      f7, lbl_8051FF14@sda21(r2)
-	lfs      f6, lbl_8051FF60@sda21(r2)
-	lfs      f4, lbl_8051FF2C@sda21(r2)
-	lfs      f3, lbl_8051FFA0@sda21(r2)
-	lfs      f2, lbl_8051FFA4@sda21(r2)
-	stfs     f28, 0(r8)
-	stfs     f29, 4(r8)
-	stfs     f30, 8(r8)
-	stfs     f31, 0xc(r8)
-	stfs     f13, 0x10(r8)
-	stfs     f31, 0x14(r8)
-	stfs     f12, 0x18(r8)
-	stfs     f11, 0x1c(r8)
-	stfs     f10, 0x20(r8)
-	stfs     f9, 0x24(r8)
-	stfs     f11, 0x28(r8)
-	stfs     f11, 0x2c(r8)
-	stfs     f8, 0x30(r8)
-	stfs     f11, 0x34(r8)
-	stfs     f7, 0x38(r8)
-	stfs     f6, 0x3c(r8)
-	stfs     f5, 0x40(r8)
-	stfs     f4, 0x44(r8)
-	stfs     f3, 0x48(r8)
-	stfs     f2, 0x4c(r8)
-	stfs     f1, 0(r31)
-	stfs     f1, 0x54(r8)
-	stfs     f1, 0x58(r8)
-	stfs     f1, 0x5c(r8)
-	stfs     f5, 0x60(r8)
-	stfs     f0, 0x64(r8)
-	stfs     f0, 0x68(r8)
-	stb      r7, 0x6c(r8)
-	stb      r7, 0x6d(r8)
-	stb      r6, 0x6e(r8)
-	stb      r7, 0x6f(r8)
-	stb      r7, 0x70(r8)
-	stb      r5, 0x71(r8)
-	stb      r4, 0x72(r8)
-	stb      r7, 0x73(r8)
-	stb      r7, 0x74(r8)
-	stb      r7, 0x75(r8)
-	stb      r5, 0x76(r8)
-	stb      r3, 0x77(r8)
-	stb      r0, 0x78(r8)
-	stb      r0, 0x79(r8)
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	psq_l    f28, 24(r1), 0, qr0
-	lfd      f28, 0x10(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803F8678
- * Size:	000004
- */
-void JGeometry::TVec2<float>::TVec2() { }
-
-/*
- * --INFO--
- * Address:	803F867C
- * Size:	000008
- */
-efx2d::WorldMap::T2DRocketGlow::@8 @~T2DRocketGlow()
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d8WorldMap13T2DRocketGlowFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803F8684
- * Size:	000008
- */
-efx2d::WorldMap::T2DMapFlare::@8 @~T2DMapFlare()
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d8WorldMap11T2DMapFlareFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803F868C
- * Size:	000008
- */
-efx2d::WorldMap::T2DShstar1::@8 @~T2DShstar1()
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d8WorldMap10T2DShstar1Fv
-	*/
-}

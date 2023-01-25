@@ -4,373 +4,8 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/callbackNodes.h"
 #include "Game/gamePlayData.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_khFinalResult_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80498CD8
-    lbl_80498CD8:
-        .asciz "khFinalResult.cpp"
-        .skip 2
-    .global lbl_80498CEC
-    lbl_80498CEC:
-        .asciz "result_final_image00.blo"
-        .skip 3
-    .global lbl_80498D08
-    lbl_80498D08:
-        .asciz "result_final_image01.blo"
-        .skip 3
-    .global lbl_80498D24
-    lbl_80498D24:
-        .asciz "result_final_image02.blo"
-        .skip 3
-    .global lbl_80498D40
-    lbl_80498D40:
-        .asciz "result_final_image03.blo"
-        .skip 3
-    .global lbl_80498D5C
-    lbl_80498D5C:
-        .asciz "result_final_image04.blo"
-        .skip 3
-    .global lbl_80498D78
-    lbl_80498D78:
-        .asciz "result_final_image05.blo"
-        .skip 3
-    .global lbl_80498D94
-    lbl_80498D94:
-        .asciz "result_final_image06.blo"
-        .skip 3
-    .global lbl_80498DB0
-    lbl_80498DB0:
-        .asciz "result_final_image07.blo"
-        .skip 3
-    .global lbl_80498DCC
-    lbl_80498DCC:
-        .asciz "result_final_image08.blo"
-        .skip 3
-    .global lbl_80498DE8
-    lbl_80498DE8:
-        .asciz "result_final_image09.blo"
-        .skip 3
-    .global lbl_80498E04
-    lbl_80498E04:
-        .asciz "result_final_image10.blo"
-        .skip 3
-    .global lbl_80498E20
-    lbl_80498E20:
-        .asciz "result_final_image11.blo"
-        .skip 3
-    .global lbl_80498E3C
-    lbl_80498E3C:
-        .asciz "result_final_image12.blo"
-        .skip 3
-    .global lbl_80498E58
-    lbl_80498E58:
-        .asciz "result_final_image13.blo"
-        .skip 3
-    .global lbl_80498E74
-    lbl_80498E74:
-        .asciz "result_final_image14.blo"
-        .skip 3
-    .global lbl_80498E90
-    lbl_80498E90:
-        .asciz "result_final_image15.blo"
-        .skip 3
-        .4byte lbl_80498CEC
-        .4byte lbl_80498D08
-        .4byte lbl_80498D24
-        .4byte lbl_80498D40
-        .4byte lbl_80498D5C
-        .4byte lbl_80498D78
-        .4byte lbl_80498D94
-        .4byte lbl_80498DB0
-        .4byte lbl_80498DCC
-        .4byte lbl_80498DE8
-        .4byte lbl_80498E04
-        .4byte lbl_80498E20
-        .4byte lbl_80498E3C
-        .4byte lbl_80498E58
-        .4byte lbl_80498E74
-        .4byte lbl_80498E90
-        .4byte 0x00000000
-        .4byte 0x00000008
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000003
-        .4byte 0x00000004
-        .4byte 0x00000005
-        .4byte 0x00000006
-        .4byte 0x00000007
-        .4byte 0x0000000E
-        .4byte 0x0000000A
-        .4byte 0x0000000B
-        .4byte 0x00000009
-        .4byte 0x0000000D
-        .4byte 0x0000000C
-        .4byte 0x0000000F
-        .asciz "/new_screen/cmn/result_final_image.szs"
-        .skip 5
-        .4byte 0x50746F6B
-        .4byte 0x796F7031
-        .4byte 0x00503173
-        .4byte 0x74305F31
-        .4byte 0x0050326E
-        .4byte 0x64305F31
-        .4byte 0x00503372
-        .4byte 0x64305F31
-        .4byte 0x50746F6D
-        .4byte 0x61647031
-        .4byte 0x00503173
-        .4byte 0x74315F31
-        .4byte 0x0050326E
-        .4byte 0x64315F31
-        .4byte 0x00503372
-        .4byte 0x64315F31
-        .4byte 0x50746F6D
-        .4byte 0x61643131
-        .4byte 0x00005031
-        .4byte 0x73747433
-        .4byte 0x00005032
-        .4byte 0x6E647433
-        .4byte 0x00005033
-        .4byte 0x72647433
-        .4byte 0x50746F6D
-        .4byte 0x61647039
-        .4byte 0x00005031
-        .4byte 0x73747431
-        .4byte 0x00005032
-        .4byte 0x6E647431
-        .4byte 0x00005033
-        .4byte 0x72647431
-    .global lbl_80498FD8
-    lbl_80498FD8:
-        .4byte 0x64697370
-        .4byte 0x206D656D
-        .4byte 0x62657220
-        .4byte 0x65727200
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x696E616C
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x696E616C
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x696E616C
-        .4byte 0x2E62706B
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x696E616C
-        .4byte 0x2E62746B
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x696E616C
-        .4byte 0x2E62726B
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00383435
-        .4byte 0x325F3030
-        .4byte 0x00383435
-        .4byte 0x335F3030
-        .4byte 0x00383435
-        .4byte 0x345F3030
-        .4byte 0x00383435
-        .4byte 0x355F3030
-        .4byte 0x00383435
-        .4byte 0x365F3030
-        .4byte 0x00383435
-        .4byte 0x375F3030
-        .4byte 0x00383435
-        .4byte 0x385F3030
-        .4byte 0x00383435
-        .4byte 0x395F3030
-        .4byte 0x00383436
-        .4byte 0x305F3030
-        .4byte 0x00383436
-        .4byte 0x315F3030
-        .4byte 0x00383436
-        .4byte 0x325F3030
-        .4byte 0x00383436
-        .4byte 0x335F3030
-        .4byte 0x00383436
-        .4byte 0x345F3030
-        .4byte 0x00383436
-        .4byte 0x355F3030
-        .4byte 0x00383436
-        .4byte 0x365F3030
-        .4byte 0x00383436
-        .4byte 0x375F3030
-        .4byte 0x00503173
-        .4byte 0x74305F31
-        .4byte 0x0050326E
-        .4byte 0x64305F31
-        .4byte 0x00503372
-        .4byte 0x64305F31
-        .4byte 0x00503173
-        .4byte 0x74315F31
-        .4byte 0x0050326E
-        .4byte 0x64315F31
-        .4byte 0x00503372
-        .4byte 0x64315F31
-        .4byte 0x00005031
-        .4byte 0x73747433
-        .4byte 0x00005032
-        .4byte 0x6E647433
-        .4byte 0x00005033
-        .4byte 0x72647433
-        .4byte 0x00005031
-        .4byte 0x73747431
-        .4byte 0x00005032
-        .4byte 0x6E647431
-        .4byte 0x00005033
-        .4byte 0x72647431
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x696E616C
-        .4byte 0x2E737A73
-        .4byte 0x00000000
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6800
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q32kh6Screen16SceneFinalResult
-    __vt__Q32kh6Screen16SceneFinalResult:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q32kh6Screen16SceneFinalResultFv
-        .4byte getOwnerID__Q32kh6Screen16SceneFinalResultFv
-        .4byte getMemberID__Q32kh6Screen16SceneFinalResultFv
-        .4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
-        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
-        .4byte getResName__Q32kh6Screen16SceneFinalResultCFv
-        .4byte doCreateObj__Q32kh6Screen16SceneFinalResultFP10JKRArchive
-        .4byte
-   doUserCallBackFunc__Q32kh6Screen16SceneFinalResultFPQ28Resource10MgrCommand
-        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
-        .4byte doUpdateActive__Q26Screen9SceneBaseFv
-        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-        .4byte
-   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
-   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
-   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
-   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
-   doGetFinishState__Q26Screen9SceneBaseFv .global
-   __vt__Q32kh6Screen14ObjFinalResult
-    __vt__Q32kh6Screen14ObjFinalResult:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen14ObjFinalResultFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32kh6Screen14ObjFinalResultFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q32kh6Screen14ObjFinalResultFP10JKRArchive
-        .4byte doUpdateFadein__Q32kh6Screen14ObjFinalResultFv
-        .4byte doUpdateFadeinFinish__Q26Screen7ObjBaseFv
-        .4byte doUpdate__Q32kh6Screen14ObjFinalResultFv
-        .4byte doUpdateFinish__Q26Screen7ObjBaseFv
-        .4byte doUpdateFadeout__Q32kh6Screen14ObjFinalResultFv
-        .4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
-        .4byte doDraw__Q32kh6Screen14ObjFinalResultFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-    .global __vt__Q32kh6Screen15DispFinalResult
-    __vt__Q32kh6Screen15DispFinalResult:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32kh6Screen15DispFinalResultFv
-        .4byte getOwnerID__Q32kh6Screen15DispFinalResultFv
-        .4byte getMemberID__Q32kh6Screen15DispFinalResultFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msVal__Q32kh6Screen14ObjFinalResult
-    msVal__Q32kh6Screen14ObjFinalResult:
-        .skip 0x24
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520198
-    lbl_80520198:
-        .4byte 0x6661696C
-        .4byte 0x65640000
-    .global lbl_805201A0
-    lbl_805201A0:
-        .4byte 0x00000000
-    .global lbl_805201A4
-    lbl_805201A4:
-        .4byte 0x40000000
-    .global lbl_805201A8
-    lbl_805201A8:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_805201B0
-    lbl_805201B0:
-        .float 0.5
-    .global lbl_805201B4
-    lbl_805201B4:
-        .float 1.0
-    .global lbl_805201B8
-    lbl_805201B8:
-        .4byte 0x42C60000
-    .global lbl_805201BC
-    lbl_805201BC:
-        .4byte 0x426C0000
-    .global lbl_805201C0
-    lbl_805201C0:
-        .4byte 0x42200000
-    .global lbl_805201C4
-    lbl_805201C4:
-        .4byte 0x47000000
-    .global lbl_805201C8
-    lbl_805201C8:
-        .4byte 0x42440000
-    .global lbl_805201CC
-    lbl_805201CC:
-        .4byte 0x40400000
-    .global lbl_805201D0
-    lbl_805201D0:
-        .4byte 0x40800000
-        .4byte 0x00000000
-    .global lbl_805201D8
-    lbl_805201D8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_805201E0
-    lbl_805201E0:
-        .4byte 0x00000000
-    .global lbl_805201E4
-    lbl_805201E4:
-        .float 0.05
-*/
+#include "og/newScreen/ogUtil.h"
+#include "LoadResource.h"
 
 namespace kh {
 namespace Screen {
@@ -380,24 +15,12 @@ namespace Screen {
  * Address:	8040C1E8
  * Size:	000034
  */
-DispFinalResult::DispFinalResult(TotalResultData*, DispFinalResult::ResultType, JKRHeap*)
+DispFinalResult::DispFinalResult(TotalResultData* data, DispFinalResult::ResultType type, JKRHeap* heap)
 {
-	/*
-	.loc_0x0:
-	  lis       r8, 0x804B
-	  lis       r7, 0x804F
-	  addi      r0, r8, 0x1148
-	  li        r8, 0
-	  stw       r0, 0x0(r3)
-	  subi      r0, r7, 0x4D38
-	  stw       r8, 0x4(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r4, 0x8(r3)
-	  stw       r5, 0xC(r3)
-	  stw       r8, 0x10(r3)
-	  stw       r6, 0x14(r3)
-	  blr
-	*/
+	m_totalResultData = data;
+	m_resultType      = type;
+	m_exitStatus      = 0;
+	m_heap            = heap;
 }
 
 /*
@@ -407,6 +30,50 @@ DispFinalResult::DispFinalResult(TotalResultData*, DispFinalResult::ResultType, 
  */
 ObjFinalResult::ObjFinalResult()
 {
+	m_screen    = nullptr;
+	m_anmTrans6 = nullptr;
+	m_anmTrans5 = nullptr;
+	m_anmTrans4 = nullptr;
+	m_anmTrans3 = nullptr;
+	m_anmTrans2 = nullptr;
+	m_anmTrans1 = nullptr;
+	m_anmCol3   = nullptr;
+	m_anmCol2   = nullptr;
+	m_anmCol1   = nullptr;
+	m_anmSRT    = nullptr;
+	m_anmTev    = nullptr;
+	for (int i = 7; i >= 0; i--) {
+		m_animTimers[i] = 0.0f;
+	}
+	m_stickAnimMgr    = nullptr;
+	m_fadePaneAButton = nullptr;
+	m_fadePaneYameL   = nullptr;
+	m_fadePaneYameU   = nullptr;
+	m_fadePane3DStick = nullptr;
+
+	for (int i = 0; i < 4; i++) {
+		m_counterScore2[i]     = nullptr;
+		m_counterScore1[i]     = nullptr;
+		m_counters2[i]         = nullptr;
+		m_counters1[i]         = nullptr;
+		m_counterDataScore2[i] = 0;
+		m_counterDataScore1[i] = 0;
+		m_counterData2[i]      = 0;
+		m_counterData1[i]      = 0;
+	}
+
+	m_timer = 0.0f;
+	m_color.set(0, 0, 0, 0);
+	m_scrollYPos         = 0.0f;
+	m_scrollMove         = 0.0f;
+	m_currentPage        = 1;
+	m_scrollTargetPos    = msVal._04;
+	m_scrollMoveProgress = 0;
+	m_autoScrollDelay    = msVal._08;
+	m_state              = StatusForceScroll;
+	_14D                 = -1;
+	_14C                 = -1;
+
 	m_flags = 0;
 	m_flags |= 8;
 	m_fadeAlpha = 0;
@@ -550,12 +217,12 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 	file     = JKRFileLoader::getGlbResource("result_final.brk", arc);
 	m_anmTev = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(file));
 
-	m_anmTrans1->searchUpdateMaterialID(m_screen);
-	m_anmTrans2->searchUpdateMaterialID(m_screen);
-	m_anmTrans3->searchUpdateMaterialID(m_screen);
+	m_anmCol1->searchUpdateMaterialID(m_screen);
+	m_anmCol2->searchUpdateMaterialID(m_screen);
+	m_anmCol3->searchUpdateMaterialID(m_screen);
 
 	J2DPane* pane1 = m_screen->search('Nstar');
-	J2DPane* pane2 = m_screen->search('Natbn');
+	J2DPane* pane2 = m_screen->search('Nabtn');
 	pane1->setAnimation(m_anmTrans1);
 	m_screen->search('Ntitle')->setAnimation(m_anmTrans2);
 	m_screen->search('Nmain')->setAnimation(m_anmTrans3);
@@ -571,7 +238,7 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 	m_screen->setAnimation(m_anmTev);
 	setInfAlpha(m_screen->search('NICON'));
 
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i <= 7; i++) {
 		m_screen->search(getSerialTagName('Nsel00', i))->setAlpha(msVal._21);
 		m_screen->search(getSerialTagName('Nicon00', i))->setAlpha(msVal._21);
 	}
@@ -623,7 +290,7 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 
 	TotalResultData* data = disp->m_totalResultData;
 	for (int i = 0; i < 4; i++) {
-		int count = data->_04;
+		int count = data->m_score1;
 		if (count > 0) {
 			m_counterDataScore1[i] = 0;
 			m_counterDataScore2[i] = 0;
@@ -1530,10 +1197,10 @@ void ObjFinalResult::doDraw(Graphics& gfx)
 	pane3->show();
 
 	JUT_ASSERTLINE(479, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
-	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
-	TotalResultData* data = disp->m_totalResultData;
+	DispFinalResult* disp  = static_cast<DispFinalResult*>(getDispMember());
+	TotalResultData** data = &disp->m_totalResultData;
 	for (int i = 0; i < 16; i++) {
-		data->m_mgr[0] = nullptr;
+		data[i]->m_screen = nullptr;
 	}
 
 	if (m_state == StatusNormal) {
@@ -2412,8 +2079,18 @@ void ObjFinalResult::statusForceScroll()
  * Address:	8040E248
  * Size:	0008C0
  */
-void ObjFinalResult::drawReplace(Graphics&, int)
+void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 {
+	JUT_ASSERTLINE(726, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
+
+	if (id == 7) {
+		m_screen->search('Nsetp_c')->hide();
+		m_screen->search('Nsetp_d')->show();
+	} else {
+		m_screen->search('Nsetp_c')->show();
+		m_screen->search('Nsetp_d')->hide();
+	}
 	/*
 stwu     r1, -0x160(r1)
 mflr     r0
@@ -3032,6 +2709,18 @@ JUtility::TColor ObjFinalResult::getClr(const JUtility::TColor& col1, const JUti
  */
 void SceneFinalResult::doUserCallBackFunc(Resource::MgrCommand*)
 {
+	JUT_ASSERTLINE(856, m_dispMember->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+	og::newScreen::makeLanguageResName(m_name, "result_final.szs");
+	LoadResource::Arg arg(m_name);
+	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
+	JKRArchive* arc;
+	if (node) {
+		arc = node->m_archive;
+		registObj(new ObjFinalResult, arc);
+	} else {
+		JUT_PANICLINE(864, "failed");
+	}
+
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -3103,8 +2792,41 @@ blr
  * Address:	8040ED08
  * Size:	0002E4
  */
-void SceneFinalResult::createDispMember(const int*, const int*, Game::Highscore**)
+TotalResultData** SceneFinalResult::createDispMember(const int*, const int*, Game::Highscore** scores)
 {
+	TotalResultData** data = new TotalResultData*;
+	if (data) {
+		char* bloNames[16]
+		    = { "result_final_image00.blo", "result_final_image01.blo", "result_final_image02.blo", "result_final_image03.blo",
+			    "result_final_image04.blo", "result_final_image05.blo", "result_final_image06.blo", "result_final_image07.blo",
+			    "result_final_image08.blo", "result_final_image09.blo", "result_final_image10.blo", "result_final_image11.blo",
+			    "result_final_image12.blo", "result_final_image13.blo", "result_final_image14.blo", "result_final_image15.blo" };
+		int scoreIDs[16] = { 0, 8, 2, 1, 3, 4, 5, 6, 7, 14, 10, 11, 9, 13, 12 };
+		LoadResource::Arg arg("/new_screen/cmn/result_final_image.szs");
+		LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
+		JKRArchive* arc;
+		if (node) {
+			arc = node->m_archive;
+		} else {
+			JUT_PANICLINE(107, "failed");
+		}
+
+		for (int i = 0; i < 16; i++) {
+			TotalResultData* resdata = new TotalResultData;
+			if (resdata) {
+				resdata->m_score1 = scores[scoreIDs[i]]->getScore(2);
+				resdata->m_score2 = scores[scoreIDs[i]]->getScore(1);
+				resdata->m_score3 = scores[scoreIDs[i]]->getScore(0);
+				resdata->m_screen = nullptr;
+				resdata->_18      = false;
+				resdata->m_screen = new P2DScreen::Mgr;
+				resdata->m_screen->set(bloNames[i], 0x1040000, arc);
+				resdata->m_screen->setBasePosition(POS_CENTER);
+			}
+			data[i] = resdata;
+		}
+	}
+	return data;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x130(r1)

@@ -15,11 +15,13 @@
 namespace kh {
 namespace Screen {
 struct TotalResultData {
-	P2DScreen::Mgr** m_mgr; // _00
-	int _04;                // _04
-	u8 _08[0xC];            // _08, unknown
-	int _14;                // _14
-	u8 _18;                 // _18
+	P2DScreen::Mgr* m_screen; // _00
+	int m_score1;             // _04
+	int m_score2;
+	int m_score3;
+	int m_score4;
+	int m_score5; // _14
+	u8 _18;       // _18
 };
 
 struct DispFinalResult : public og::Screen::DispMemberBase {
@@ -77,14 +79,7 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 	J2DAnmBase* m_anmCol3;                              // _60
 	J2DAnmTextureSRTKey* m_anmSRT;                      // _64
 	J2DAnmTevRegKey* m_anmTev;                          // _68
-	f32 _6C;                                            // _6C
-	f32 _70;                                            // _70
-	f32 _74;                                            // _74
-	f32 _78;                                            // _78
-	f32 _7C;                                            // _7C
-	f32 _80;                                            // _80
-	f32 _84;                                            // _84
-	f32 _88;                                            // _88
+	f32 m_animTimers[8];                                // _6C
 	og::Screen::StickAnimMgr* m_stickAnimMgr;           // _8C
 	khUtilFadePane* m_fadePane3DStick;                  // _90
 	khUtilFadePane* m_fadePaneYameU;                    // _94
@@ -154,7 +149,7 @@ struct SceneFinalResult : public ::Screen::SceneBase {
 	virtual void doCreateObj(JKRArchive*) { }                            // _20 (weak)
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);              // _24
 
-	void createDispMember(const int*, const int*, Game::Highscore**);
+	TotalResultData** createDispMember(const int*, const int*, Game::Highscore**);
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase

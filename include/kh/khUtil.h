@@ -1,8 +1,9 @@
 #ifndef _KH_KHUTIL_H
 #define _KH_KHUTIL_H
 
-#include "types.h"
 #include "P2DScreen.h"
+#include "efx2d/T2DCountKira.h"
+#include "og/Screen/callbackNodes.h"
 
 struct Graphics;
 struct J2DAnmBase;
@@ -12,6 +13,7 @@ struct ResTIMG;
 
 namespace kh {
 namespace Screen {
+struct WorldMap;
 u64 getSerialTagName(u64, int);
 void setTex(J2DScreen*, u64, const ResTIMG*);
 void setTex(J2DScreen*, u64, const char*);
@@ -58,11 +60,13 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 };
 
 struct khUtilFadePaneWM : public khUtilFadePane {
-	virtual ~khUtilFadePaneWM() { }   // _08 (weak)
-	virtual void fadeout_finish() { } // _20
+	virtual ~khUtilFadePaneWM() { } // _08 (weak)
+	virtual void fadeout_finish();  // _20
 
 	// _00     = VTBL
 	// _00-_30 = khUtilFadePane
+	kh::Screen::WorldMap* m_mapObj; // _34
+	bool m_finish;
 };
 
 struct khUtilColorAnm : public P2DScreen::CallBackNode {
@@ -88,8 +92,13 @@ struct khUtilColorAnmWM : public khUtilColorAnm {
 	virtual void do_update();       // _14
 
 	// _00     = VTBL
-	// _00-_1C = khUtilColorAnm
+	// _00-_38 = khUtilColorAnm
+	J2DPane* m_paneList[4];                     // _38
+	efx2d::T2DCountKira* m_efx[4];              // _48
+	og::Screen::CallBack_CounterRV* m_counter1; //_4C
+	og::Screen::CallBack_CounterRV* m_counter2; // _50
 };
+
 } // namespace Screen
 } // namespace kh
 
