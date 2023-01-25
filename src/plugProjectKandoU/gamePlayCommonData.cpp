@@ -38,7 +38,7 @@ namespace Game {
  */
 PlayCommonData::PlayCommonData()
     : _00(0)
-    , m_challengeData()
+    , mChallengeData()
 {
 	_04 = new Highscore*[16];
 	_08 = new Highscore*[16];
@@ -59,7 +59,7 @@ PlayCommonData::PlayCommonData()
 void PlayCommonData::reset()
 {
 	_00 = 0;
-	m_challengeData.reset();
+	mChallengeData.reset();
 	for (int i = 0; i < 0x10; i++) {
 		_04[i]->clear();
 		_08[i]->clear();
@@ -74,19 +74,19 @@ void PlayCommonData::reset()
  */
 void PlayChallengeGameData::reset()
 {
-	m_flags = PCGDF_Unset;
-	for (int i = 0; i < m_courseCount; i++) {
-		CourseState* course = &m_courses[i];
-		course->m_highscores[0].clear();
-		course->m_highscores[1].clear();
-		course->m_flags.byteView[0] = 0;
-		course->m_flags.byteView[1] = 0;
+	mFlags = PCGDF_Unset;
+	for (int i = 0; i < mCourseCount; i++) {
+		CourseState* course = &mCourses[i];
+		course->mHighscores[0].clear();
+		course->mHighscores[1].clear();
+		course->mFlags.byteView[0] = 0;
+		course->mFlags.byteView[1] = 0;
 	}
-	m_courses[0].m_flags.typeView |= CourseState::CSF_IsOpen;
-	m_courses[1].m_flags.typeView |= CourseState::CSF_IsOpen;
-	m_courses[2].m_flags.typeView |= CourseState::CSF_IsOpen;
-	m_courses[3].m_flags.typeView |= CourseState::CSF_IsOpen;
-	m_courses[4].m_flags.typeView |= CourseState::CSF_IsOpen;
+	mCourses[0].mFlags.typeView |= CourseState::CSF_IsOpen;
+	mCourses[1].mFlags.typeView |= CourseState::CSF_IsOpen;
+	mCourses[2].mFlags.typeView |= CourseState::CSF_IsOpen;
+	mCourses[3].mFlags.typeView |= CourseState::CSF_IsOpen;
+	mCourses[4].mFlags.typeView |= CourseState::CSF_IsOpen;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -157,7 +157,7 @@ void PlayCommonData::write(Stream& output)
 		_04[i]->write(output);
 		_08[i]->write(output);
 	}
-	m_challengeData.write(output);
+	mChallengeData.write(output);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -423,14 +423,14 @@ lbl_80234698:
  * Address:	8023470C
  * Size:	00000C
  */
-bool PlayCommonData::isChallengeGamePlayable() { return m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsPlayable; }
+bool PlayCommonData::isChallengeGamePlayable() { return mChallengeData.mFlags & PlayChallengeGameData::PCGDF_IsPlayable; }
 
 /*
  * --INFO--
  * Address:	80234718
  * Size:	00000C
  */
-bool PlayCommonData::isLouieRescued() { return m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsLouieRescued; }
+bool PlayCommonData::isLouieRescued() { return mChallengeData.mFlags & PlayChallengeGameData::PCGDF_IsLouieRescued; }
 
 /*
  * --INFO--
@@ -495,7 +495,7 @@ lbl_80234798:
  */
 void PlayCommonData::enableChallengeGame()
 {
-	m_challengeData.m_flags |= PlayChallengeGameData::PCGDF_IsPlayable;
+	mChallengeData.mFlags |= PlayChallengeGameData::PCGDF_IsPlayable;
 	sys->setOptionBlockSaveFlag();
 }
 
@@ -506,7 +506,7 @@ void PlayCommonData::enableChallengeGame()
  */
 void PlayCommonData::enableLouieRescue()
 {
-	m_challengeData.m_flags |= PlayChallengeGameData::PCGDF_IsLouieRescued;
+	mChallengeData.mFlags |= PlayChallengeGameData::PCGDF_IsLouieRescued;
 	sys->setOptionBlockSaveFlag();
 }
 
@@ -517,8 +517,8 @@ void PlayCommonData::enableLouieRescue()
  */
 bool PlayCommonData::challenge_is_virgin()
 {
-	bool result = (u8)(m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsNotVirgin) == 0;
-	m_challengeData.m_flags |= PlayChallengeGameData::PCGDF_IsNotVirgin;
+	bool result = (u8)(mChallengeData.mFlags & PlayChallengeGameData::PCGDF_IsNotVirgin) == 0;
+	mChallengeData.mFlags |= PlayChallengeGameData::PCGDF_IsNotVirgin;
 	return result;
 }
 
@@ -529,7 +529,7 @@ bool PlayCommonData::challenge_is_virgin()
  */
 bool PlayCommonData::challenge_is_virgin_check_only()
 {
-	return (u8)(m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsNotVirgin) == 0;
+	return (u8)(mChallengeData.mFlags & PlayChallengeGameData::PCGDF_IsNotVirgin) == 0;
 }
 
 /*
@@ -537,7 +537,7 @@ bool PlayCommonData::challenge_is_virgin_check_only()
  * Address:	80234840
  * Size:	000024
  */
-PlayChallengeGameData::CourseState* PlayCommonData::challenge_get_CourseState(int index) { return m_challengeData.getState(index); }
+PlayChallengeGameData::CourseState* PlayCommonData::challenge_get_CourseState(int index) { return mChallengeData.getState(index); }
 
 /*
  * --INFO--
@@ -547,7 +547,7 @@ PlayChallengeGameData::CourseState* PlayCommonData::challenge_get_CourseState(in
 int PlayCommonData::challenge_get_coursenum()
 {
 	// UNUSED FUNCTION
-	return m_challengeData.m_courseCount;
+	return mChallengeData.mCourseCount;
 }
 
 /*
@@ -557,7 +557,7 @@ int PlayCommonData::challenge_get_coursenum()
  */
 bool PlayCommonData::challenge_checkOpen(int index)
 {
-	return challenge_get_CourseState(index)->m_flags.typeView & PlayChallengeGameData::CourseState::CSF_IsOpen;
+	return challenge_get_CourseState(index)->mFlags.typeView & PlayChallengeGameData::CourseState::CSF_IsOpen;
 }
 
 /*
@@ -567,7 +567,7 @@ bool PlayCommonData::challenge_checkOpen(int index)
  */
 bool PlayCommonData::challenge_checkClear(int index)
 {
-	return challenge_get_CourseState(index)->m_flags.typeView & PlayChallengeGameData::CourseState::CSF_IsClear;
+	return challenge_get_CourseState(index)->mFlags.typeView & PlayChallengeGameData::CourseState::CSF_IsClear;
 }
 
 /*
@@ -577,7 +577,7 @@ bool PlayCommonData::challenge_checkClear(int index)
  */
 bool PlayCommonData::challenge_checkKunsho(int index)
 {
-	return challenge_get_CourseState(index)->m_flags.typeView & PlayChallengeGameData::CourseState::CSF_IsKunsho;
+	return challenge_get_CourseState(index)->mFlags.typeView & PlayChallengeGameData::CourseState::CSF_IsKunsho;
 }
 
 /*
@@ -588,9 +588,9 @@ bool PlayCommonData::challenge_checkKunsho(int index)
 bool PlayCommonData::challenge_checkJustOpen(int index)
 {
 	PlayChallengeGameData::CourseState* state = challenge_get_CourseState(index);
-	u16 flags                                 = state->m_flags.typeView;
+	u16 flags                                 = state->mFlags.typeView;
 	if (flags & PlayChallengeGameData::CourseState::CSF_IsOpen) {
-		state->m_flags.typeView |= PlayChallengeGameData::CourseState::CSF_WasOpen;
+		state->mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_WasOpen;
 		return (flags & PlayChallengeGameData::CourseState::CSF_WasOpen) == 0;
 	}
 	return false;
@@ -697,10 +697,10 @@ lbl_802349BC:
  */
 int PlayCommonData::challenge_openNewCourse()
 {
-	if (gGameConfig.m_parms.m_KFesVersion.m_data != 0) {
+	if (gGameConfig.mParms.mKFesVersion.mData != 0) {
 		return -1;
 	}
-	for (int i = 0; i < m_challengeData.m_courseCount; i++) {
+	for (int i = 0; i < mChallengeData.mCourseCount; i++) {
 		if (!challenge_checkOpen(i)) {
 			challenge_setOpen(i);
 			return i;
@@ -716,7 +716,7 @@ int PlayCommonData::challenge_openNewCourse()
  */
 void PlayCommonData::challenge_setClear(int index)
 {
-	m_challengeData.getState(index)->m_flags.typeView |= PlayChallengeGameData::CourseState::CSF_IsClear;
+	mChallengeData.getState(index)->mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsClear;
 }
 
 /*
@@ -726,7 +726,7 @@ void PlayCommonData::challenge_setClear(int index)
  */
 void PlayCommonData::challenge_setOpen(int index)
 {
-	m_challengeData.getState(index)->m_flags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	mChallengeData.getState(index)->mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
 }
 
 /*
@@ -785,13 +785,13 @@ lbl_80234B28:
  */
 Highscore* PlayCommonData::challenge_getHighscore(int courseIndex, int scoreType)
 {
-	PlayChallengeGameData::CourseState* state = m_challengeData.getState(courseIndex);
+	PlayChallengeGameData::CourseState* state = mChallengeData.getState(courseIndex);
 	bool isValidScoreType                     = false;
 	if (0 <= scoreType && scoreType <= 1) {
 		isValidScoreType = true;
 	}
 	P2ASSERTLINE(401, isValidScoreType);
-	return &state->m_highscores[scoreType];
+	return &state->mHighscores[scoreType];
 }
 
 /*
@@ -801,16 +801,16 @@ Highscore* PlayCommonData::challenge_getHighscore(int courseIndex, int scoreType
  * Size:	0000C8
  */
 PlayChallengeGameData::PlayChallengeGameData()
-    : m_flags(PlayChallengeGameData::PCGDF_Unset)
+    : mFlags(PlayChallengeGameData::PCGDF_Unset)
 {
-	m_courseCount = CHALLENGE_COURSE_COUNT;
-	m_courses     = new CourseState[m_courseCount];
-	m_courses[0].m_flags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
-	m_courses[1].m_flags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
-	m_courses[2].m_flags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
-	m_courses[3].m_flags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
-	m_courses[4].m_flags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
-	m_flags = PlayChallengeGameData::PCGDF_Unset;
+	mCourseCount = CHALLENGE_COURSE_COUNT;
+	mCourses     = new CourseState[mCourseCount];
+	mCourses[0].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	mCourses[1].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	mCourses[2].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	mCourses[3].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	mCourses[4].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	mFlags = PlayChallengeGameData::PCGDF_Unset;
 }
 
 /*
@@ -820,13 +820,13 @@ PlayChallengeGameData::PlayChallengeGameData()
  * Size:	000078
  */
 PlayChallengeGameData::CourseState::CourseState()
-    : m_flags()
-    , m_highscores()
+    : mFlags()
+    , mHighscores()
 {
-	m_highscores[0].allocate(3);
-	m_highscores[1].allocate(3);
-	m_flags.byteView[0] = 0;
-	m_flags.byteView[1] = 0;
+	mHighscores[0].allocate(3);
+	mHighscores[1].allocate(3);
+	mFlags.byteView[0] = 0;
+	mFlags.byteView[1] = 0;
 }
 
 /*
@@ -837,12 +837,12 @@ PlayChallengeGameData::CourseState::CourseState()
 PlayChallengeGameData::CourseState* PlayChallengeGameData::getState(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < m_courseCount) {
+	if (0 <= index && index < mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(427, isValidIndex);
-	P2ASSERTLINE(428, m_courses != nullptr);
-	return &m_courses[index];
+	P2ASSERTLINE(428, mCourses != nullptr);
+	return &mCourses[index];
 }
 
 /*
@@ -853,14 +853,14 @@ PlayChallengeGameData::CourseState* PlayChallengeGameData::getState(int index)
  */
 void PlayChallengeGameData::write(Stream& output)
 {
-	output.writeByte(m_flags);
-	for (int i = 0; i < m_courseCount; i++) {
-		CourseState* state = &m_courses[i];
+	output.writeByte(mFlags);
+	for (int i = 0; i < mCourseCount; i++) {
+		CourseState* state = &mCourses[i];
 		for (int j = 0; j < 2; j++) {
-			output.writeByte(state->m_flags.byteView[j]);
+			output.writeByte(state->mFlags.byteView[j]);
 		}
-		state->m_highscores[0].write(output);
-		state->m_highscores[1].write(output);
+		state->mHighscores[0].write(output);
+		state->mHighscores[1].write(output);
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -919,14 +919,14 @@ lbl_80234E24:
  */
 void PlayChallengeGameData::read(Stream& input)
 {
-	m_flags = input.readByte();
-	for (int i = 0; i < m_courseCount; i++) {
-		CourseState* state = &m_courses[i];
+	mFlags = input.readByte();
+	for (int i = 0; i < mCourseCount; i++) {
+		CourseState* state = &mCourses[i];
 		for (int j = 0; j < 2; j++) {
-			state->m_flags.byteView[j] = input.readByte();
+			state->mFlags.byteView[j] = input.readByte();
 		}
-		state->m_highscores[0].read(input);
-		state->m_highscores[1].read(input);
+		state->mHighscores[0].read(input);
+		state->mHighscores[1].read(input);
 	}
 	/*
 	stwu     r1, -0x30(r1)

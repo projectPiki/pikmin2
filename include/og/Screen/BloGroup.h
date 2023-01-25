@@ -26,10 +26,10 @@ struct BloGroup {
 	void setAlpha(u8);
 	void animation();
 
-	P2DScreen::Mgr_tuning** m_screens; // _00
-	u32* _04;                          // _04, not sure if this is ever used
-	u16 m_screenNumMax;                // _08
-	u16 m_screenNumCurrent;            // _0A, number of ptrs in _00
+	P2DScreen::Mgr_tuning** mScreens; // _00
+	u32* _04;                         // _04, not sure if this is ever used
+	u16 mScreenNumMax;                // _08
+	u16 mScreenNumCurrent;            // _0A, number of ptrs in _00
 };
 } // namespace Screen
 } // namespace og

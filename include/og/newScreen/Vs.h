@@ -41,25 +41,25 @@ struct ObjVs : public ::Screen::ObjBase {
 	struct ScreenSet {
 		inline ScreenSet()
 		{
-			m_screen     = new P2DScreen::Mgr_tuning;
-			m_lifeGauge  = new og::Screen::CallBack_LifeGauge;
-			m_doping     = new og::Screen::DopingCheck;
-			m_scaleMgr1  = new og::Screen::ScaleMgr;
-			m_scaleMgr2  = new og::Screen::ScaleMgr;
-			m_paneToyo01 = nullptr;
-			m_paneToyo00 = nullptr;
+			mScreen     = new P2DScreen::Mgr_tuning;
+			mLifeGauge  = new og::Screen::CallBack_LifeGauge;
+			mDoping     = new og::Screen::DopingCheck;
+			mScaleMgr1  = new og::Screen::ScaleMgr;
+			mScaleMgr2  = new og::Screen::ScaleMgr;
+			mPaneToyo01 = nullptr;
+			mPaneToyo00 = nullptr;
 		}
 
 		void init(og::Screen::DataNavi*, JKRArchive*, u32*);
 		inline void update(og::Screen::DataNavi&);
 
-		P2DScreen::Mgr_tuning* m_screen;             // _00
-		og::Screen::CallBack_LifeGauge* m_lifeGauge; // _04
-		og::Screen::DopingCheck* m_doping;           // _08
-		og::Screen::ScaleMgr* m_scaleMgr1;           // _0C
-		og::Screen::ScaleMgr* m_scaleMgr2;           // _10
-		J2DPane* m_paneToyo01;                       // _14
-		J2DPane* m_paneToyo00;                       // _18
+		P2DScreen::Mgr_tuning* mScreen;             // _00
+		og::Screen::CallBack_LifeGauge* mLifeGauge; // _04
+		og::Screen::DopingCheck* mDoping;           // _08
+		og::Screen::ScaleMgr* mScaleMgr1;           // _0C
+		og::Screen::ScaleMgr* mScaleMgr2;           // _10
+		J2DPane* mPaneToyo01;                       // _14
+		J2DPane* mPaneToyo00;                       // _18
 	};
 
 	ObjVs(const char*);
@@ -87,71 +87,71 @@ struct ObjVs : public ::Screen::ObjBase {
 	void startBdamaWinRed(J2DPane*);
 	void startBdamaWinBlue(J2DPane*);
 
-	og::Screen::DispMemberVs* m_disp;        // _38
-	og::Screen::BloGroup* m_bloGroup;        // _3C
-	P2DScreen::Mgr_tuning* m_screenIcons;    // _40
-	ScreenSet* m_screenP1;                   // _44
-	ScreenSet* m_screenP2;                   // _48
-	f32 m_fadeLevel;                         // _4C
-	f32 m_scale;                             // _50
-	J2DPictureEx* m_pane_bedama1P[4];        // _54
-	J2DPictureEx* m_pane_nodama1P[4];        // _64
-	J2DPictureEx* m_pane_windama1P[4];       // _74
-	J2DPictureEx* m_pane_bedama2P[4];        // _84
-	J2DPictureEx* m_pane_nodama2P[4];        // _94
-	J2DPictureEx* m_pane_windama2P[4];       // _A4
-	og::Screen::ScaleMgr* m_scaleMgrP1_1[4]; // _B4
-	og::Screen::ScaleMgr* m_scaleMgrP2_1[4]; // _C4
-	og::Screen::ScaleMgr* m_scaleMgrP1_2[4]; // _D4
-	og::Screen::ScaleMgr* m_scaleMgrP2_2[4]; // _E4
-	bool m_bedamaGotFlagsP1[4];              // _F4
-	bool m_bedamaGotFlagsP2[4];              // _F8
-	f32 m_finishTimer;                       // _FC
-	int m_doneState;                         // _100
-	bool m_hasAllBedamaP1;                   // _104
-	bool m_hasAllBedamaP2;                   // _105
-	f32 m_bedamaGetTimer;                    // _108
-	bool m_firstBedamaGetP1;                 // _10C
-	bool m_firstBedamaGetP2;                 // _10D
-	bool m_setBedamaFlag;                    // _10E
-	J2DPictureEx* m_paneObake1P;             // _110, obake is the roulette wheel
-	J2DPictureEx* m_paneObake2P;             // _114
-	f32 m_alphaObakeP1;                      // _118
-	f32 m_alphaObakeP2;                      // _11C
-	bool m_obakeEnabledP1;                   // _120
-	bool m_obakeEnabledP2;
-	f32 m_obakeMovePos;
-	u8 m_playWinSound; // _128
+	og::Screen::DispMemberVs* mDisp;        // _38
+	og::Screen::BloGroup* mBloGroup;        // _3C
+	P2DScreen::Mgr_tuning* mScreenIcons;    // _40
+	ScreenSet* mScreenP1;                   // _44
+	ScreenSet* mScreenP2;                   // _48
+	f32 mFadeLevel;                         // _4C
+	f32 mScale;                             // _50
+	J2DPictureEx* mPane_bedama1P[4];        // _54
+	J2DPictureEx* mPane_nodama1P[4];        // _64
+	J2DPictureEx* mPane_windama1P[4];       // _74
+	J2DPictureEx* mPane_bedama2P[4];        // _84
+	J2DPictureEx* mPane_nodama2P[4];        // _94
+	J2DPictureEx* mPane_windama2P[4];       // _A4
+	og::Screen::ScaleMgr* mScaleMgrP1_1[4]; // _B4
+	og::Screen::ScaleMgr* mScaleMgrP2_1[4]; // _C4
+	og::Screen::ScaleMgr* mScaleMgrP1_2[4]; // _D4
+	og::Screen::ScaleMgr* mScaleMgrP2_2[4]; // _E4
+	bool mBedamaGotFlagsP1[4];              // _F4
+	bool mBedamaGotFlagsP2[4];              // _F8
+	f32 mFinishTimer;                       // _FC
+	int mDoneState;                         // _100
+	bool mHasAllBedamaP1;                   // _104
+	bool mHasAllBedamaP2;                   // _105
+	f32 mBedamaGetTimer;                    // _108
+	bool mFirstBedamaGetP1;                 // _10C
+	bool mFirstBedamaGetP2;                 // _10D
+	bool mSetBedamaFlag;                    // _10E
+	J2DPictureEx* mPaneObake1P;             // _110, obake is the roulette wheel
+	J2DPictureEx* mPaneObake2P;             // _114
+	f32 mAlphaObakeP1;                      // _118
+	f32 mAlphaObakeP2;                      // _11C
+	bool mObakeEnabledP1;                   // _120
+	bool mObakeEnabledP2;
+	f32 mObakeMovePos;
+	u8 mPlayWinSound; // _128
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			m_fadeInRate      = 0.6f;
-			m_fadeOutRate     = 0.2f;
-			m_lifeGaugeXOffs  = -1.5f;
-			m_lifeGaugeYOffs  = -1.5f;
-			m_marbleBaseXOffs = 460.0f;
-			m_marbleP1YOffs   = 215.0f;
-			m_marbleP2YOffs   = 430.0f;
-			m_rouletteXOffs   = 115.0f;
-			m_rouletteP1YOffs = 30.0f;
-			m_rouletteP2YOffs = 245.0f;
-			m_rouletteScale   = 0.7f;
-			_2C               = 7.0f;
-			_30               = 3.5f;
+			mFadeInRate      = 0.6f;
+			mFadeOutRate     = 0.2f;
+			mLifeGaugeXOffs  = -1.5f;
+			mLifeGaugeYOffs  = -1.5f;
+			mMarbleBaseXOffs = 460.0f;
+			mMarbleP1YOffs   = 215.0f;
+			mMarbleP2YOffs   = 430.0f;
+			mRouletteXOffs   = 115.0f;
+			mRouletteP1YOffs = 30.0f;
+			mRouletteP2YOffs = 245.0f;
+			mRouletteScale   = 0.7f;
+			_2C              = 7.0f;
+			_30              = 3.5f;
 		}
 
-		f32 m_fadeInRate;      // _00
-		f32 m_fadeOutRate;     // _04
-		f32 m_lifeGaugeXOffs;  // _08
-		f32 m_lifeGaugeYOffs;  // _0C
-		f32 m_marbleBaseXOffs; //_10
-		f32 m_marbleP1YOffs;   //_14
-		f32 m_marbleP2YOffs;   //_18
-		f32 m_rouletteXOffs;   //_1C
-		f32 m_rouletteP1YOffs; //_20
-		f32 m_rouletteP2YOffs; //_24
-		f32 m_rouletteScale;   //_28
+		f32 mFadeInRate;      // _00
+		f32 mFadeOutRate;     // _04
+		f32 mLifeGaugeXOffs;  // _08
+		f32 mLifeGaugeYOffs;  // _0C
+		f32 mMarbleBaseXOffs; //_10
+		f32 mMarbleP1YOffs;   //_14
+		f32 mMarbleP2YOffs;   //_18
+		f32 mRouletteXOffs;   //_1C
+		f32 mRouletteP1YOffs; //_20
+		f32 mRouletteP2YOffs; //_24
+		f32 mRouletteScale;   //_28
 		f32 _2C;
 		f32 _30;
 	} msVal;

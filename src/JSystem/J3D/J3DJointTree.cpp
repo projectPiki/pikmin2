@@ -50,22 +50,22 @@
  * Size:	000084
  */
 J3DJointTree::J3DJointTree()
-    : m_hierarchy(nullptr)
+    : mHierarchy(nullptr)
     , m_08(0)
-    , m_flags(0)
+    , mFlags(0)
     , _10(nullptr)
-    , m_transformCalc(nullptr)
-    , m_joints(nullptr)
-    , m_jointCnt(0)
-    , m_envelopeCnt(0)
+    , mTransformCalc(nullptr)
+    , mJoints(nullptr)
+    , mJointCnt(0)
+    , mEnvelopeCnt(0)
     , _20(nullptr)
-    , m_maxBillBoardCnt(0)
+    , mMaxBillBoardCnt(0)
     , _28(nullptr)
     , _2C(nullptr)
     , _30(nullptr)
-    , m_mtxData()
+    , mMtxData()
     , _40(0)
-    , m_nametab(nullptr)
+    , mNametab(nullptr)
 {
 }
 
@@ -109,15 +109,15 @@ void J3DJointTree::makeHierarchy(J3DJoint* joint, const J3DModelHierarchy** hier
 					return;
 				case 0x10:
 					hierarchies++;
-					selectedJoint = m_joints[currentHierarchy->_02];
+					selectedJoint = mJoints[currentHierarchy->_02];
 					break;
 				case 0x11:
 					hierarchies++;
-					selectedMaterial = matTable->m_materials1[currentHierarchy->_02];
+					selectedMaterial = matTable->mMaterials1[currentHierarchy->_02];
 					break;
 				case 0x12:
 					hierarchies++;
-					selectedShape = shapeTable->m_items[currentHierarchy->_02];
+					selectedShape = shapeTable->mItems[currentHierarchy->_02];
 				}
 			}
 			if (selectedJoint == nullptr) {
@@ -131,15 +131,15 @@ void J3DJointTree::makeHierarchy(J3DJoint* joint, const J3DModelHierarchy** hier
 			}
 		}
 		if (selectedMaterial) {
-			if (joint->m_material) {
-				selectedMaterial->_04 = joint->m_material;
+			if (joint->mMaterial) {
+				selectedMaterial->_04 = joint->mMaterial;
 			}
-			joint->m_material         = selectedMaterial;
-			selectedMaterial->m_joint = joint;
+			joint->mMaterial         = selectedMaterial;
+			selectedMaterial->mJoint = joint;
 		} else {
 			if (selectedShape) {
-				joint->m_material->m_shape = selectedShape;
-				selectedShape->_04         = joint->m_material;
+				joint->mMaterial->mShape = selectedShape;
+				selectedShape->_04       = joint->mMaterial;
 			}
 		}
 	}
@@ -256,19 +256,19 @@ void J3DJointTree::makeHierarchy(J3DJoint* joint, const J3DModelHierarchy** hier
  */
 void J3DJointTree::findImportantMtxIndex()
 {
-	for (int i = 0; i < m_mtxData._02; i++) {
-		_30[i] = m_mtxData._08[i];
+	for (int i = 0; i < mMtxData._02; i++) {
+		_30[i] = mMtxData._08[i];
 	}
-	for (int i = 0; i < m_envelopeCnt; i++) {
+	for (int i = 0; i < mEnvelopeCnt; i++) {
 		u16 v1    = 0;
 		float max = -0.1f;
 		for (u8 j = _20[i]; j != 0; j--) {
 			if (max < _28[j]) {
 				max = _28[j];
-				v1  = m_maxBillBoardCnt[j];
+				v1  = mMaxBillBoardCnt[j];
 			}
 		}
-		_30[i + m_mtxData._02] = v1;
+		_30[i + mMtxData._02] = v1;
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -394,16 +394,16 @@ lbl_800885CC:
  */
 void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const float (&mtx)[3][4])
 {
-	// m_transformCalc->init(vec, mtx);
+	// mTransformCalc->init(vec, mtx);
 	// J3DMtxCalc::setMtxBuffer(buffer);
 	// if (_10 != nullptr) {
-	// 	_10->doRecursiveCalc(m_transformCalc);
+	// 	_10->doRecursiveCalc(mTransformCalc);
 	// }
 
-	m_transformCalc->init(vec, mtx);
+	mTransformCalc->init(vec, mtx);
 	J3DMtxCalc::setMtxBuffer(buffer);
 	if (_10 != nullptr) {
-		J3DJoint::mCurrentMtxCalc = m_transformCalc;
+		J3DJoint::mCurrentMtxCalc = mTransformCalc;
 		_10->recursiveCalc();
 	}
 	/*

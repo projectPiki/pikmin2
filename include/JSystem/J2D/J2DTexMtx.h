@@ -12,12 +12,12 @@ struct J2DTexMtxInfo {
 		DCC_Maya = 1,
 	};
 
-	GXTexMtxType getTexMtxType() const { return (GXTexMtxType)m_texMtxType; }
+	GXTexMtxType getTexMtxType() const { return (GXTexMtxType)mTexMtxType; }
 
-	u8 m_texMtxType;                    // _00
-	u8 m_texMtxDCC;                     // _01
-	Vec m_center;                       // _04
-	J2DTextureSRTInfo m_textureSRTInfo; // _10
+	u8 mTexMtxType;                    // _00
+	u8 mTexMtxDCC;                     // _01
+	Vec mCenter;                       // _04
+	J2DTextureSRTInfo mTextureSRTInfo; // _10
 };
 
 /**
@@ -26,7 +26,7 @@ struct J2DTexMtxInfo {
 struct J2DTexMtx {
 	/* @fabricated */
 	inline J2DTexMtx(J2DTexMtxInfo* info)
-	    : m_info(*info)
+	    : mInfo(*info)
 	{
 	}
 
@@ -37,8 +37,8 @@ struct J2DTexMtx {
 	void getTextureMtx(const J2DTextureSRTInfo&, Vec, Mtx);
 	void getTextureMtxMaya(const J2DTextureSRTInfo&, Mtx);
 
-	J2DTexMtxInfo m_info; // _00
-	Mtx m_mtx;            // _24
+	J2DTexMtxInfo mInfo; // _00
+	Mtx mMtx;            // _24
 };
 
 #endif

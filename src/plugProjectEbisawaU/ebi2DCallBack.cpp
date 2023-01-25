@@ -116,11 +116,11 @@ namespace ebi {
 void E2DCallBack_Purupuru::do_update()
 {
 	if (_18) {
-		_3C             = m_scaleMgr.calc();
-		J2DPane* pane   = _18;
-		float scale     = _3C;
-		pane->m_scale.x = scale;
-		pane->m_scale.y = scale;
+		_3C            = mScaleMgr.calc();
+		J2DPane* pane  = _18;
+		float scale    = _3C;
+		pane->mScale.x = scale;
+		pane->mScale.y = scale;
 		pane->calcMtx();
 	}
 }
@@ -425,11 +425,11 @@ void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, long p3, long
 {
 	void* resource = JKRFileLoader::getGlbResource(path, archive);
 	P2ASSERTLINE(74, (resource != nullptr));
-	m_anim          = J2DAnmLoaderDataBase::load(resource);
-	m_frameCtrl._06 = p3;
-	m_frameCtrl._10 = p3;
-	m_frameCtrl._0A = p3;
-	m_frameCtrl._08 = ((m_anim->m_maxFrame < p4) ? m_anim->m_maxFrame : p4);
+	mAnim          = J2DAnmLoaderDataBase::load(resource);
+	mFrameCtrl._06 = p3;
+	mFrameCtrl._10 = p3;
+	mFrameCtrl._0A = p3;
+	mFrameCtrl._08 = ((mAnim->mMaxFrame < p4) ? mAnim->mMaxFrame : p4);
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -665,8 +665,8 @@ lbl_803D0D80:
  */
 void E2DCallBack_AnmBase::stop()
 {
-	m_isEnabled  = 0;
-	m_isFinished = true;
+	mIsEnabled  = 0;
+	mIsFinished = true;
 }
 
 /*
@@ -686,8 +686,8 @@ void E2DCallBack_AnmBase::disconnect()
  */
 void E2DCallBack_AnmBase::setStartFrame()
 {
-	m_frameCtrl._10        = m_frameCtrl._06;
-	m_anim->m_currentFrame = m_frameCtrl._10;
+	mFrameCtrl._10       = mFrameCtrl._06;
+	mAnim->mCurrentFrame = mFrameCtrl._10;
 }
 
 /*
@@ -697,8 +697,8 @@ void E2DCallBack_AnmBase::setStartFrame()
  */
 void E2DCallBack_AnmBase::setEndFrame()
 {
-	m_frameCtrl._10        = m_frameCtrl._08;
-	m_anim->m_currentFrame = m_frameCtrl._10;
+	mFrameCtrl._10       = mFrameCtrl._08;
+	mAnim->mCurrentFrame = mFrameCtrl._10;
 }
 
 /*
@@ -767,7 +767,7 @@ void E2DCallBack_AnmBase::setRandFrame()
  */
 float E2DCallBack_AnmBase::getPlayFinRate()
 {
-	return (m_frameCtrl._10 - m_frameCtrl._06) / m_frameCtrl._08;
+	return (mFrameCtrl._10 - mFrameCtrl._06) / mFrameCtrl._08;
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r4, 0x4330
@@ -801,11 +801,11 @@ float E2DCallBack_AnmBase::getPlayFinRate()
 void E2DCallBack_AnmBase::do_update()
 {
 	if (_18) {
-		m_frameCtrl.update();
-		m_anim->m_currentFrame = m_frameCtrl._10;
+		mFrameCtrl.update();
+		mAnim->mCurrentFrame = mFrameCtrl._10;
 	}
-	if (m_frameCtrl.m_attr & 1) {
-		m_isFinished = true;
+	if (mFrameCtrl.mAttr & 1) {
+		mIsFinished = true;
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -845,7 +845,7 @@ lbl_803D0F9C:
  */
 bool E2DCallBack_AnmBase::isFinish()
 {
-	return m_isFinished;
+	return mIsFinished;
 	/*
 	lbz      r3, 0x38(r3)
 	blr

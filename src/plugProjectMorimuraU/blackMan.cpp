@@ -6802,8 +6802,8 @@ lbl_803AAD18:
  */
 void BlackMan::Obj::tyreFlick()
 {
-	if (m_tyre) {
-		m_tyre->flick();
+	if (mTyre) {
+		mTyre->flick();
 	}
 }
 
@@ -7066,8 +7066,8 @@ lbl_803AB074:
  */
 void BlackMan::Obj::fadeTraceEffect()
 {
-	m_efxMove->fade();
-	m_efxRun->fade();
+	mEfxMove->fade();
+	mEfxRun->fade();
 }
 
 /*
@@ -7346,7 +7346,7 @@ void BlackMan::Obj::throwupItemInDeathProcedure() { }
  */
 void BlackMan::Obj::createEfxHamon()
 {
-	if (!m_tyre) {
+	if (!mTyre) {
 		EnemyBase::createEfxHamon();
 	}
 }
@@ -7358,7 +7358,7 @@ void BlackMan::Obj::createEfxHamon()
  */
 void BlackMan::Obj::updateEfxHamon()
 {
-	if (m_tyre) {
+	if (mTyre) {
 		fadeEfxHamon();
 	} else {
 		EnemyBase::updateEfxHamon();

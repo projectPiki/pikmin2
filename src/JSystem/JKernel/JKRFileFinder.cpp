@@ -29,7 +29,7 @@
  */
 JKRArcFinder::JKRArcFinder(JKRArchive* archive, long p2, long p3)
     : JKRFileFinder()
-    , m_archive(archive)
+    , mArchive(archive)
 {
 	_10 = p3 != 0;
 	_18 = p2;
@@ -86,12 +86,12 @@ bool JKRArcFinder::findNextFile()
 		_10 = (_20 <= _1C);
 		if (_10) {
 			JKRArchive::SDirEntry entry;
-			_10        = m_archive->getDirEntry(&entry, _20);
-			m_fileName = entry._04;
-			_04        = _20;
-			_08        = entry._02;
-			_0A        = entry._00;
-			_11        = _0A >> 1 & 1;
+			_10       = mArchive->getDirEntry(&entry, _20);
+			mFileName = entry._04;
+			_04       = _20;
+			_08       = entry._02;
+			_0A       = entry._00;
+			_11       = _0A >> 1 & 1;
 			_20++;
 		}
 	}
@@ -106,7 +106,7 @@ bool JKRArcFinder::findNextFile()
 JKRDvdFinder::JKRDvdFinder(const char* p1)
     : JKRFileFinder()
 {
-	_20 = DVDOpenDir(const_cast<char*>(p1), &m_fstEntry);
+	_20 = DVDOpenDir(const_cast<char*>(p1), &mFstEntry);
 	_10 = _20;
 	findNextFile();
 }
@@ -123,10 +123,10 @@ JKRDvdFinder::JKRDvdFinder(const char* p1)
 
 inline u16 findNextFileHelper(JKRDvdFinder* finder, OSFstEntry& entry)
 {
-	finder->_11        = (bool)entry.m_nextEntryNum;
-	finder->m_fileName = entry.m_fileNameMaybe;
-	finder->_04        = entry.m_entryNum;
-	finder->_08        = 0;
+	finder->_11       = (bool)entry.mNextEntryNum;
+	finder->mFileName = entry.mFileNameMaybe;
+	finder->_04       = entry.mEntryNum;
+	finder->_08       = 0;
 	return finder->_11;
 	// if (finder->_11) {
 	// 	return 2;
@@ -144,15 +144,15 @@ bool JKRDvdFinder::findNextFile()
 {
 	if (_10) {
 		OSFstEntry entry;
-		_10 = DVDReadDir(&m_fstEntry, &entry);
+		_10 = DVDReadDir(&mFstEntry, &entry);
 		if (_10) {
 			// _0A = 1;
 			// _0A = findNextFileHelper(this, entry) ? 2 : 1;
-			u16 v1     = 1;
-			_11        = (bool)entry.m_nextEntryNum;
-			m_fileName = entry.m_fileNameMaybe;
-			_04        = entry.m_entryNum;
-			_08        = 0;
+			u16 v1    = 1;
+			_11       = (bool)entry.mNextEntryNum;
+			mFileName = entry.mFileNameMaybe;
+			_04       = entry.mEntryNum;
+			_08       = 0;
 			// _0A = (_11) ? 2 : v1;
 			if (_11) {
 				// _0A = 2;

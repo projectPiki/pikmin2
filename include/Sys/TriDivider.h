@@ -38,8 +38,8 @@ struct TriDivider : public CNode {
 	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, f32);
 	void traceMove(Matrixf&, Matrixf&, Game::MoveInfo&, f32);
 
-	VertexTable* m_vertexTable;     // _18
-	TriangleTable* m_triangleTable; // _1C
+	VertexTable* mVertexTable;     // _18
+	TriangleTable* mTriangleTable; // _1C
 };
 } // namespace Sys
 

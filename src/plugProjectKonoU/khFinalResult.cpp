@@ -17,10 +17,10 @@ namespace Screen {
  */
 DispFinalResult::DispFinalResult(TotalResultData* data, DispFinalResult::ResultType type, JKRHeap* heap)
 {
-	m_totalResultData = data;
-	m_resultType      = type;
-	m_exitStatus      = 0;
-	m_heap            = heap;
+	mTotalResultData = data;
+	mResultType      = type;
+	mExitStatus      = 0;
+	mHeap            = heap;
 }
 
 /*
@@ -30,53 +30,53 @@ DispFinalResult::DispFinalResult(TotalResultData* data, DispFinalResult::ResultT
  */
 ObjFinalResult::ObjFinalResult()
 {
-	m_screen    = nullptr;
-	m_anmTrans6 = nullptr;
-	m_anmTrans5 = nullptr;
-	m_anmTrans4 = nullptr;
-	m_anmTrans3 = nullptr;
-	m_anmTrans2 = nullptr;
-	m_anmTrans1 = nullptr;
-	m_anmCol3   = nullptr;
-	m_anmCol2   = nullptr;
-	m_anmCol1   = nullptr;
-	m_anmSRT    = nullptr;
-	m_anmTev    = nullptr;
+	mScreen    = nullptr;
+	mAnmTrans6 = nullptr;
+	mAnmTrans5 = nullptr;
+	mAnmTrans4 = nullptr;
+	mAnmTrans3 = nullptr;
+	mAnmTrans2 = nullptr;
+	mAnmTrans1 = nullptr;
+	mAnmCol3   = nullptr;
+	mAnmCol2   = nullptr;
+	mAnmCol1   = nullptr;
+	mAnmSRT    = nullptr;
+	mAnmTev    = nullptr;
 	for (int i = 7; i >= 0; i--) {
-		m_animTimers[i] = 0.0f;
+		mAnimTimers[i] = 0.0f;
 	}
-	m_stickAnimMgr    = nullptr;
-	m_fadePaneAButton = nullptr;
-	m_fadePaneYameL   = nullptr;
-	m_fadePaneYameU   = nullptr;
-	m_fadePane3DStick = nullptr;
+	mStickAnimMgr    = nullptr;
+	mFadePaneAButton = nullptr;
+	mFadePaneYameL   = nullptr;
+	mFadePaneYameU   = nullptr;
+	mFadePane3DStick = nullptr;
 
 	for (int i = 0; i < 4; i++) {
-		m_counterScore2[i]     = nullptr;
-		m_counterScore1[i]     = nullptr;
-		m_counters2[i]         = nullptr;
-		m_counters1[i]         = nullptr;
-		m_counterDataScore2[i] = 0;
-		m_counterDataScore1[i] = 0;
-		m_counterData2[i]      = 0;
-		m_counterData1[i]      = 0;
+		mCounterScore2[i]     = nullptr;
+		mCounterScore1[i]     = nullptr;
+		mCounters2[i]         = nullptr;
+		mCounters1[i]         = nullptr;
+		mCounterDataScore2[i] = 0;
+		mCounterDataScore1[i] = 0;
+		mCounterData2[i]      = 0;
+		mCounterData1[i]      = 0;
 	}
 
-	m_timer = 0.0f;
-	m_color.set(0, 0, 0, 0);
-	m_scrollYPos         = 0.0f;
-	m_scrollMove         = 0.0f;
-	m_currentPage        = 1;
-	m_scrollTargetPos    = msVal._04;
-	m_scrollMoveProgress = 0;
-	m_autoScrollDelay    = msVal._08;
-	m_state              = StatusForceScroll;
-	_14D                 = -1;
-	_14C                 = -1;
+	mTimer = 0.0f;
+	mColor.set(0, 0, 0, 0);
+	mScrollYPos         = 0.0f;
+	mScrollMove         = 0.0f;
+	mCurrentPage        = 1;
+	mScrollTargetPos    = msVal._04;
+	mScrollMoveProgress = 0;
+	mAutoScrollDelay    = msVal._08;
+	mState              = StatusForceScroll;
+	_14D                = -1;
+	_14C                = -1;
 
-	m_flags = 0;
-	m_flags |= 8;
-	m_fadeAlpha = 0;
+	mFlags = 0;
+	mFlags |= 8;
+	mFadeAlpha = 0;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -195,138 +195,132 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 	JUT_ASSERTLINE(214, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 
-	m_screen = new P2DScreen::Mgr_tuning;
-	m_screen->set("result_final.blo", 0x1040000, arc);
+	mScreen = new P2DScreen::Mgr_tuning;
+	mScreen->set("result_final.blo", 0x1040000, arc);
 
-	void* file  = JKRFileLoader::getGlbResource("result_final.bck", arc);
-	m_anmTrans1 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
-	m_anmTrans2 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
-	m_anmTrans3 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
-	m_anmTrans4 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
-	m_anmTrans5 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
-	m_anmTrans6 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	void* file = JKRFileLoader::getGlbResource("result_final.bck", arc);
+	mAnmTrans1 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	mAnmTrans2 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	mAnmTrans3 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	mAnmTrans4 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	mAnmTrans5 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	mAnmTrans6 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
 
-	file      = JKRFileLoader::getGlbResource("result_final.bpk", arc);
-	m_anmCol1 = J2DAnmLoaderDataBase::load(file);
-	m_anmCol2 = J2DAnmLoaderDataBase::load(file);
-	m_anmCol3 = J2DAnmLoaderDataBase::load(file);
+	file     = JKRFileLoader::getGlbResource("result_final.bpk", arc);
+	mAnmCol1 = J2DAnmLoaderDataBase::load(file);
+	mAnmCol2 = J2DAnmLoaderDataBase::load(file);
+	mAnmCol3 = J2DAnmLoaderDataBase::load(file);
 
-	file     = JKRFileLoader::getGlbResource("result_final.btk", arc);
-	m_anmSRT = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+	file    = JKRFileLoader::getGlbResource("result_final.btk", arc);
+	mAnmSRT = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
 
-	file     = JKRFileLoader::getGlbResource("result_final.brk", arc);
-	m_anmTev = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(file));
+	file    = JKRFileLoader::getGlbResource("result_final.brk", arc);
+	mAnmTev = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(file));
 
-	m_anmCol1->searchUpdateMaterialID(m_screen);
-	m_anmCol2->searchUpdateMaterialID(m_screen);
-	m_anmCol3->searchUpdateMaterialID(m_screen);
+	mAnmCol1->searchUpdateMaterialID(mScreen);
+	mAnmCol2->searchUpdateMaterialID(mScreen);
+	mAnmCol3->searchUpdateMaterialID(mScreen);
 
-	J2DPane* pane1 = m_screen->search('Nstar');
-	J2DPane* pane2 = m_screen->search('Nabtn');
-	pane1->setAnimation(m_anmTrans1);
-	m_screen->search('Ntitle')->setAnimation(m_anmTrans2);
-	m_screen->search('Nmain')->setAnimation(m_anmTrans3);
-	m_screen->search('NICON')->setAnimation(m_anmTrans4);
-	m_screen->search('Nmeter')->setAnimation(m_anmTrans5);
-	pane2->setAnimation(m_anmTrans6);
+	J2DPane* pane1 = mScreen->search('Nstar');
+	J2DPane* pane2 = mScreen->search('Nabtn');
+	pane1->setAnimation(mAnmTrans1);
+	mScreen->search('Ntitle')->setAnimation(mAnmTrans2);
+	mScreen->search('Nmain')->setAnimation(mAnmTrans3);
+	mScreen->search('NICON')->setAnimation(mAnmTrans4);
+	mScreen->search('Nmeter')->setAnimation(mAnmTrans5);
+	pane2->setAnimation(mAnmTrans6);
 
-	setMatAnm(m_screen->search('Nstar'), m_anmCol1);
-	setMatAnm(m_screen->search('Nselect'), m_anmCol2);
-	setMatAnm(pane2, m_anmCol3);
+	setMatAnm(mScreen->search('Nstar'), mAnmCol1);
+	setMatAnm(mScreen->search('Nselect'), mAnmCol2);
+	setMatAnm(pane2, mAnmCol3);
 
-	m_screen->setAnimation(m_anmSRT);
-	m_screen->setAnimation(m_anmTev);
-	setInfAlpha(m_screen->search('NICON'));
+	mScreen->setAnimation(mAnmSRT);
+	mScreen->setAnimation(mAnmTev);
+	setInfAlpha(mScreen->search('NICON'));
 
 	for (int i = 0; i <= 7; i++) {
-		m_screen->search(getSerialTagName('Nsel00', i))->setAlpha(msVal._21);
-		m_screen->search(getSerialTagName('Nicon00', i))->setAlpha(msVal._21);
+		mScreen->search(getSerialTagName('Nsel00', i))->setAlpha(msVal._21);
+		mScreen->search(getSerialTagName('Nicon00', i))->setAlpha(msVal._21);
 	}
 	JKRHeap* oldHeap = getCurrentHeap();
-	if (disp->m_heap) {
-		disp->m_heap->becomeCurrentHeap();
+	if (disp->mHeap) {
+		disp->mHeap->becomeCurrentHeap();
 	}
-	og::Screen::setCallBackMessage(m_screen);
+	og::Screen::setCallBackMessage(mScreen);
 
-	og::Screen::CallBack_Picture* stick = og::Screen::setCallBack_3DStick(arc, m_screen, 'ota3dl');
-	m_stickAnimMgr                      = new og::Screen::StickAnimMgr(stick);
-	m_stickAnimMgr->stickUpDown();
+	og::Screen::CallBack_Picture* stick = og::Screen::setCallBack_3DStick(arc, mScreen, 'ota3dl');
+	mStickAnimMgr                       = new og::Screen::StickAnimMgr(stick);
+	mStickAnimMgr->stickUpDown();
 
-	m_fadePaneYameU = khUtilFadePane::create(m_screen, 'Nyame_u', 16);
-	m_fadePaneYameU->fadeout();
-	m_fadePaneYameL = khUtilFadePane::create(m_screen, 'Nyame_l', 16);
-	m_fadePaneYameL->fadeout();
-	m_fadePane3DStick = khUtilFadePane::create(m_screen, 'ota3dl', 16);
-	m_fadePane3DStick->add(m_screen->search('N_3d'));
-	m_fadePane3DStick->fadeout();
-	m_fadePaneAButton = khUtilFadePane::create(m_screen, 'Nabtn', 16);
-	m_fadePaneAButton->fadeout();
+	mFadePaneYameU = khUtilFadePane::create(mScreen, 'Nyame_u', 16);
+	mFadePaneYameU->fadeout();
+	mFadePaneYameL = khUtilFadePane::create(mScreen, 'Nyame_l', 16);
+	mFadePaneYameL->fadeout();
+	mFadePane3DStick = khUtilFadePane::create(mScreen, 'ota3dl', 16);
+	mFadePane3DStick->add(mScreen->search('N_3d'));
+	mFadePane3DStick->fadeout();
+	mFadePaneAButton = khUtilFadePane::create(mScreen, 'Nabtn', 16);
+	mFadePaneAButton->fadeout();
 
 	u64 tags1[4] = { 'Ptokyop1', 'P1st0_1', 'P2nd0_1', 'P3rd0_1' };
 	u64 tags2[4] = { 'Ptomadp1', 'P1st1_1', 'P2nd1_1', 'P3rd1_1' };
 	for (int i = 0; i < 4; i++) {
-		m_counters1[i] = og::Screen::setCallBack_CounterRV(m_screen, tags1[i], &m_counterData1[i], 9, false, false, arc);
-		m_counters2[i] = og::Screen::setCallBack_CounterRV(m_screen, tags2[i], &m_counterData2[i], 9, false, false, arc);
+		mCounters1[i] = og::Screen::setCallBack_CounterRV(mScreen, tags1[i], &mCounterData1[i], 9, false, false, arc);
+		mCounters2[i] = og::Screen::setCallBack_CounterRV(mScreen, tags2[i], &mCounterData2[i], 9, false, false, arc);
 	}
-	m_counterScore1[0] = og::Screen::setCallBack_CounterRV(m_screen, 'Pkon3', 'Pkon4', 'Pkon4', &m_counterDataScore1[0], 3, 2, false, arc);
-	m_counterScore1[1]
-	    = og::Screen::setCallBack_CounterRV(m_screen, 'P1stt3', 'P1stt4', 'P1stt4', &m_counterDataScore1[1], 3, 2, false, arc);
-	m_counterScore1[2]
-	    = og::Screen::setCallBack_CounterRV(m_screen, 'P2ndt3', 'P2ndt4', 'P2ndt4', &m_counterDataScore1[2], 3, 2, false, arc);
-	m_counterScore1[3]
-	    = og::Screen::setCallBack_CounterRV(m_screen, 'P3rdt3', 'P3rdt4', 'P3rdt4', &m_counterDataScore1[3], 3, 2, false, arc);
-	m_counterScore2[0] = og::Screen::setCallBack_CounterRV(m_screen, 'Pkon1', 'Pkon2', 'Pkon2', &m_counterDataScore2[0], 2, 2, false, arc);
-	m_counterScore2[1]
-	    = og::Screen::setCallBack_CounterRV(m_screen, 'P1stt1', 'P1stt2', 'P1stt2', &m_counterDataScore2[1], 2, 2, false, arc);
-	m_counterScore2[2]
-	    = og::Screen::setCallBack_CounterRV(m_screen, 'P2ndt1', 'P2ndt2', 'P2ndt2', &m_counterDataScore2[2], 2, 2, false, arc);
-	m_counterScore2[3]
-	    = og::Screen::setCallBack_CounterRV(m_screen, 'P3rdt1', 'P3rdt2', 'P3rdt2', &m_counterDataScore2[3], 2, 2, false, arc);
+	mCounterScore1[0] = og::Screen::setCallBack_CounterRV(mScreen, 'Pkon3', 'Pkon4', 'Pkon4', &mCounterDataScore1[0], 3, 2, false, arc);
+	mCounterScore1[1] = og::Screen::setCallBack_CounterRV(mScreen, 'P1stt3', 'P1stt4', 'P1stt4', &mCounterDataScore1[1], 3, 2, false, arc);
+	mCounterScore1[2] = og::Screen::setCallBack_CounterRV(mScreen, 'P2ndt3', 'P2ndt4', 'P2ndt4', &mCounterDataScore1[2], 3, 2, false, arc);
+	mCounterScore1[3] = og::Screen::setCallBack_CounterRV(mScreen, 'P3rdt3', 'P3rdt4', 'P3rdt4', &mCounterDataScore1[3], 3, 2, false, arc);
+	mCounterScore2[0] = og::Screen::setCallBack_CounterRV(mScreen, 'Pkon1', 'Pkon2', 'Pkon2', &mCounterDataScore2[0], 2, 2, false, arc);
+	mCounterScore2[1] = og::Screen::setCallBack_CounterRV(mScreen, 'P1stt1', 'P1stt2', 'P1stt2', &mCounterDataScore2[1], 2, 2, false, arc);
+	mCounterScore2[2] = og::Screen::setCallBack_CounterRV(mScreen, 'P2ndt1', 'P2ndt2', 'P2ndt2', &mCounterDataScore2[2], 2, 2, false, arc);
+	mCounterScore2[3] = og::Screen::setCallBack_CounterRV(mScreen, 'P3rdt1', 'P3rdt2', 'P3rdt2', &mCounterDataScore2[3], 2, 2, false, arc);
 
-	m_counterScore1[0]->setZeroAlpha(255);
-	m_counterScore1[1]->setZeroAlpha(255);
-	m_counterScore1[2]->setZeroAlpha(255);
-	m_counterScore1[3]->setZeroAlpha(255);
+	mCounterScore1[0]->setZeroAlpha(255);
+	mCounterScore1[1]->setZeroAlpha(255);
+	mCounterScore1[2]->setZeroAlpha(255);
+	mCounterScore1[3]->setZeroAlpha(255);
 
-	TotalResultData* data = disp->m_totalResultData;
+	TotalResultData* data = disp->mTotalResultData;
 	for (int i = 0; i < 4; i++) {
-		int count = data->m_score1;
+		int count = data->mScore1;
 		if (count > 0) {
-			m_counterDataScore1[i] = 0;
-			m_counterDataScore2[i] = 0;
-			m_counterScore1[i]->setBlind(true);
-			m_counterScore2[i]->setBlind(true);
+			mCounterDataScore1[i] = 0;
+			mCounterDataScore2[i] = 0;
+			mCounterScore1[i]->setBlind(true);
+			mCounterScore2[i]->setBlind(true);
 		} else {
-			m_counterDataScore1[i] = count / 60;
-			m_counterDataScore2[i] = count / 60;
+			mCounterDataScore1[i] = count / 60;
+			mCounterDataScore2[i] = count / 60;
 		}
 	}
 
-	m_saveMgr = ebi::Save::TMgr::createInstance();
-	m_saveMgr->m_saveMenu.loadResource();
-	m_saveMgr->doLoadResource(getCurrentHeap());
-	m_saveMgr->setControllers(getGamePad());
-	m_saveMgr->m_saveType = 1;
+	mSaveMgr = ebi::Save::TMgr::createInstance();
+	mSaveMgr->mSaveMenu.loadResource();
+	mSaveMgr->doLoadResource(getCurrentHeap());
+	mSaveMgr->setControllers(getGamePad());
+	mSaveMgr->mSaveType = 1;
 
-	f32 y        = m_screen->search('Nsetp0')->getBounds()->i.y;
-	m_scrollMove = (m_screen->search('Nsetp1')->getBounds()->i.y - y) * 2.0f;
-	m_screen->search('Ppict0')->hide();
-	m_screen->search('Ppict1')->hide();
-	m_screen->search('Nsetp_c')->show();
-	m_screen->search('Nsetp_d')->hide();
+	f32 y       = mScreen->search('Nsetp0')->getBounds()->i.y;
+	mScrollMove = (mScreen->search('Nsetp1')->getBounds()->i.y - y) * 2.0f;
+	mScreen->search('Ppict0')->hide();
+	mScreen->search('Ppict1')->hide();
+	mScreen->search('Nsetp_c')->show();
+	mScreen->search('Nsetp_d')->hide();
 
-	if (disp->m_resultType == DispFinalResult::PostDebt) {
-		m_screen->search('Ntitl_fi')->show();
-		m_screen->search('Ntitl_co')->hide();
+	if (disp->mResultType == DispFinalResult::PostDebt) {
+		mScreen->search('Ntitl_fi')->show();
+		mScreen->search('Ntitl_co')->hide();
 	} else {
-		m_screen->search('Ntitl_fi')->hide();
-		m_screen->search('Ntitl_co')->show();
+		mScreen->search('Ntitl_fi')->hide();
+		mScreen->search('Ntitl_co')->show();
 	}
 
-	if (disp->m_heap) {
+	if (disp->mHeap) {
 		oldHeap->becomeCurrentHeap();
 	}
-	Game::playData->m_mailSaveData.set_history(-2);
+	Game::playData->mMailSaveData.set_history(-2);
 
 	/*
 stwu     r1, -0xa0(r1)
@@ -1088,27 +1082,27 @@ blr
 bool ObjFinalResult::doUpdate()
 {
 	updateCommon();
-	if (m_flags & SaveOpen) {
-		if (m_fadeAlpha < msVal._1F) {
-			m_fadeAlpha += msVal._20;
+	if (mFlags & SaveOpen) {
+		if (mFadeAlpha < msVal._1F) {
+			mFadeAlpha += msVal._20;
 		}
-		m_saveMgr->update();
-		if (m_saveMgr->isFinish()) {
-			switch (m_saveMgr->m_currStateID) {
+		mSaveMgr->update();
+		if (mSaveMgr->isFinish()) {
+			switch (mSaveMgr->mCurrStateID) {
 			case 0:
 			case 2:
 				JUT_ASSERTLINE(382, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
 				DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
-				disp->m_exitStatus    = 1;
+				disp->mExitStatus     = 1;
 				break;
 			case 1:
-				m_flags &= ~SaveOpen;
+				mFlags &= ~SaveOpen;
 				break;
 			}
 		}
 
 	} else {
-		switch (m_state) {
+		switch (mState) {
 		case StatusNormal:
 			statusNormal();
 			break;
@@ -1122,15 +1116,15 @@ bool ObjFinalResult::doUpdate()
 			statusForceScroll();
 			break;
 		}
-		if (m_state == StatusNormal && m_currentPage == 7) {
+		if (mState == StatusNormal && mCurrentPage == 7) {
 			Controller* pad = getGamePad();
-			if (pad->m_padButton.m_buttonDown & Controller::PRESS_A) {
-				m_flags |= SaveOpen;
-				m_saveMgr->start();
+			if (pad->mButton.mButtonDown & Controller::PRESS_A) {
+				mFlags |= SaveOpen;
+				mSaveMgr->start();
 			}
 		}
-		if (m_fadeAlpha) {
-			m_fadeAlpha -= msVal._20;
+		if (mFadeAlpha) {
+			mFadeAlpha -= msVal._20;
 		}
 	}
 	return false;
@@ -1144,13 +1138,13 @@ bool ObjFinalResult::doUpdate()
 bool ObjFinalResult::doUpdateFadein()
 {
 	updateCommon();
-	if (m_autoScrollDelay > 1) {
-		m_autoScrollDelay--;
+	if (mAutoScrollDelay > 1) {
+		mAutoScrollDelay--;
 	}
 
-	m_fadeAlpha -= msVal.m_fadeAlphaRate;
-	if (m_fadeAlpha < msVal.m_fadeAlphaRate) {
-		m_fadeAlpha = 0;
+	mFadeAlpha -= msVal.mFadeAlphaRate;
+	if (mFadeAlpha < msVal.mFadeAlphaRate) {
+		mFadeAlpha = 0;
 		return true;
 	}
 	return false;
@@ -1164,9 +1158,9 @@ bool ObjFinalResult::doUpdateFadein()
 bool ObjFinalResult::doUpdateFadeout()
 {
 	updateCommon();
-	m_fadeAlpha += msVal.m_fadeAlphaRate;
-	if (m_fadeAlpha > (255 - msVal.m_fadeAlphaRate)) {
-		m_fadeAlpha = 255;
+	mFadeAlpha += msVal.mFadeAlphaRate;
+	if (mFadeAlpha > (255 - msVal.mFadeAlphaRate)) {
+		mFadeAlpha = 255;
 		return true;
 	}
 	return false;
@@ -1179,14 +1173,14 @@ bool ObjFinalResult::doUpdateFadeout()
  */
 void ObjFinalResult::doDraw(Graphics& gfx)
 {
-	J2DPane* pane1 = m_screen->search('Npre');
-	J2DPane* pane2 = m_screen->search('Naft');
-	J2DPane* pane3 = m_screen->search('Nmain');
-	gfx.m_orthoGraph.setPort();
+	J2DPane* pane1 = mScreen->search('Npre');
+	J2DPane* pane2 = mScreen->search('Naft');
+	J2DPane* pane3 = mScreen->search('Nmain');
+	gfx.mOrthoGraph.setPort();
 	pane1->show();
 	pane2->hide();
 	pane3->hide();
-	m_screen->draw(gfx, gfx.m_orthoGraph);
+	mScreen->draw(gfx, gfx.mOrthoGraph);
 	u32 x1 = 0;
 	u32 x2 = 0;
 	u32 y1 = 0;
@@ -1198,48 +1192,48 @@ void ObjFinalResult::doDraw(Graphics& gfx)
 
 	JUT_ASSERTLINE(479, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
 	DispFinalResult* disp  = static_cast<DispFinalResult*>(getDispMember());
-	TotalResultData** data = &disp->m_totalResultData;
+	TotalResultData** data = &disp->mTotalResultData;
 	for (int i = 0; i < 16; i++) {
-		data[i]->m_screen = nullptr;
+		data[i]->mScreen = nullptr;
 	}
 
-	if (m_state == StatusNormal) {
-		drawReplace(gfx, m_currentPage);
+	if (mState == StatusNormal) {
+		drawReplace(gfx, mCurrentPage);
 	} else {
 		f32 thing;
 		int page;
-		if (m_state == StatusScrollUp) {
-			thing = -m_scrollMove;
-			page  = m_currentPage + 1;
-		} else if (m_state == StatusScrollDown) {
-			thing = m_scrollMove;
-			page  = m_currentPage - 1;
+		if (mState == StatusScrollUp) {
+			thing = -mScrollMove;
+			page  = mCurrentPage + 1;
+		} else if (mState == StatusScrollDown) {
+			thing = mScrollMove;
+			page  = mCurrentPage - 1;
 		}
-		pane3->add(0.0f, m_scrollYPos);
+		pane3->add(0.0f, mScrollYPos);
 		drawReplace(gfx, page);
 		pane3->add(0.0f, thing);
-		drawReplace(gfx, m_currentPage);
+		drawReplace(gfx, mCurrentPage);
 	}
 	GXSetScissor(x1, x2, y1, y2);
-	gfx.m_orthoGraph.setPort();
+	gfx.mOrthoGraph.setPort();
 	pane1->hide();
 	pane2->hide();
 	pane3->hide();
-	m_screen->draw(gfx, gfx.m_orthoGraph);
+	mScreen->draw(gfx, gfx.mOrthoGraph);
 
-	if (m_fadeAlpha) {
-		gfx.m_orthoGraph.setPort();
-		gfx.m_orthoGraph.setColor(JUtility::TColor(m_fadeAlpha));
+	if (mFadeAlpha) {
+		gfx.mOrthoGraph.setPort();
+		gfx.mOrthoGraph.setColor(JUtility::TColor(mFadeAlpha));
 
 		f32 zero = 0.0f;
 		u16 x    = sys->getRenderModeObj()->fbWidth;
 		u16 y    = sys->getRenderModeObj()->efbHeight;
-		gfx.m_orthoGraph.fillBox(JGeometry::TBox2f(0.0f, 0.0f, x + zero, y + zero));
+		gfx.mOrthoGraph.fillBox(JGeometry::TBox2f(0.0f, 0.0f, x + zero, y + zero));
 	}
 
-	if (m_flags & SaveOpen) {
-		gfx.m_perspGraph.setPort();
-		m_saveMgr->draw();
+	if (mFlags & SaveOpen) {
+		gfx.mPerspGraph.setPort();
+		mSaveMgr->draw();
 	}
 	/*
 stwu     r1, -0x80(r1)
@@ -1521,23 +1515,23 @@ blr
  */
 void ObjFinalResult::updateCommon()
 {
-	m_screen->animation();
-	f32 time = m_timer;
+	mScreen->animation();
+	f32 time = mTimer;
 	if (time >= 1.0f) {
-		m_color = getClr(time, msVal.m_colors[0], msVal.m_colors[1]);
+		mColor = getClr(time, msVal.mColors[0], msVal.mColors[1]);
 	} else if (time >= 2.0f) {
-		m_color = getClr(time - 1.0f, msVal.m_colors[1], msVal.m_colors[2]);
+		mColor = getClr(time - 1.0f, msVal.mColors[1], msVal.mColors[2]);
 	} else if (time >= 3.0f) {
-		m_color = getClr(time - 2.0f, msVal.m_colors[2], msVal.m_colors[1]);
+		mColor = getClr(time - 2.0f, msVal.mColors[2], msVal.mColors[1]);
 	} else if (time >= 4.0f) {
-		m_color = getClr(time - 3.0f, msVal.m_colors[1], msVal.m_colors[0]);
+		mColor = getClr(time - 3.0f, msVal.mColors[1], msVal.mColors[0]);
 	}
 
-	m_timer += msVal._0C;
-	if (m_timer >= 4.0f) {
-		m_timer -= 4.0f;
+	mTimer += msVal._0C;
+	if (mTimer >= 4.0f) {
+		mTimer -= 4.0f;
 	}
-	m_screen->update();
+	mScreen->update();
 	/*
 stwu     r1, -0x80(r1)
 mflr     r0
@@ -1964,45 +1958,45 @@ blr
  */
 void ObjFinalResult::statusNormal()
 {
-	if (m_currentPage == 0) {
-		m_fadePaneYameU->fadeout();
-		m_fadePaneYameL->fadein();
-		m_stickAnimMgr->stickDown();
-		m_fadePaneAButton->fadeout();
-	} else if (m_currentPage == 7) {
-		m_fadePaneYameU->fadein();
-		m_fadePaneYameL->fadeout();
-		m_stickAnimMgr->stickUp();
-		m_fadePaneAButton->fadein();
+	if (mCurrentPage == 0) {
+		mFadePaneYameU->fadeout();
+		mFadePaneYameL->fadein();
+		mStickAnimMgr->stickDown();
+		mFadePaneAButton->fadeout();
+	} else if (mCurrentPage == 7) {
+		mFadePaneYameU->fadein();
+		mFadePaneYameL->fadeout();
+		mStickAnimMgr->stickUp();
+		mFadePaneAButton->fadein();
 	} else {
-		m_fadePaneYameU->fadein();
-		m_fadePaneYameL->fadein();
-		m_stickAnimMgr->stickUpDown();
-		m_fadePaneAButton->fadeout();
+		mFadePaneYameU->fadein();
+		mFadePaneYameL->fadein();
+		mStickAnimMgr->stickUpDown();
+		mFadePaneAButton->fadeout();
 	}
-	m_fadePane3DStick->fadein();
+	mFadePane3DStick->fadein();
 	Controller* pad = getGamePad();
-	if (pad->m_padButton.m_mask & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
-		if (m_currentPage) {
-			m_currentPage--;
-			m_screen->search(getSerialTagName('Nsel00', m_currentPage + 1))->setAlpha(msVal._21);
-			m_screen->search(getSerialTagName('Nsel00', m_currentPage))->setAlpha(255);
-			m_screen->search(getSerialTagName('Nicon00', m_currentPage + 1))->setAlpha(msVal._21);
-			m_screen->search(getSerialTagName('Nicon00', m_currentPage))->setAlpha(255);
-			m_state = StatusScrollUp;
+	if (pad->mButton.mMask & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+		if (mCurrentPage) {
+			mCurrentPage--;
+			mScreen->search(getSerialTagName('Nsel00', mCurrentPage + 1))->setAlpha(msVal._21);
+			mScreen->search(getSerialTagName('Nsel00', mCurrentPage))->setAlpha(255);
+			mScreen->search(getSerialTagName('Nicon00', mCurrentPage + 1))->setAlpha(msVal._21);
+			mScreen->search(getSerialTagName('Nicon00', mCurrentPage))->setAlpha(255);
+			mState = StatusScrollUp;
 			statusScrollUp();
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 		}
 	}
 	pad = getGamePad();
-	if (pad->m_padButton.m_mask & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
-		if (m_currentPage != 7) {
-			m_currentPage++;
-			m_screen->search(getSerialTagName('Nsel00', m_currentPage - 1))->setAlpha(msVal._21);
-			m_screen->search(getSerialTagName('Nsel00', m_currentPage))->setAlpha(255);
-			m_screen->search(getSerialTagName('Nicon00', m_currentPage - 1))->setAlpha(msVal._21);
-			m_screen->search(getSerialTagName('Nicon00', m_currentPage))->setAlpha(255);
-			m_state = StatusScrollDown;
+	if (pad->mButton.mMask & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+		if (mCurrentPage != 7) {
+			mCurrentPage++;
+			mScreen->search(getSerialTagName('Nsel00', mCurrentPage - 1))->setAlpha(msVal._21);
+			mScreen->search(getSerialTagName('Nsel00', mCurrentPage))->setAlpha(255);
+			mScreen->search(getSerialTagName('Nicon00', mCurrentPage - 1))->setAlpha(msVal._21);
+			mScreen->search(getSerialTagName('Nicon00', mCurrentPage))->setAlpha(255);
+			mState = StatusScrollDown;
 			statusScrollDown();
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 		}
@@ -2016,12 +2010,12 @@ void ObjFinalResult::statusNormal()
  */
 void ObjFinalResult::statusScrollUp()
 {
-	m_scrollYPos = m_scrollMove - (m_scrollMove * (f32)(m_scrollTargetPos - m_scrollMoveProgress)) / (f32)m_scrollTargetPos;
+	mScrollYPos = mScrollMove - (mScrollMove * (f32)(mScrollTargetPos - mScrollMoveProgress)) / (f32)mScrollTargetPos;
 
-	if (m_scrollMoveProgress++ == m_scrollTargetPos) {
-		m_scrollMoveProgress = 1;
-		m_state              = StatusNormal;
-		m_scrollYPos         = 0.0f;
+	if (mScrollMoveProgress++ == mScrollTargetPos) {
+		mScrollMoveProgress = 1;
+		mState              = StatusNormal;
+		mScrollYPos         = 0.0f;
 	}
 }
 
@@ -2032,12 +2026,12 @@ void ObjFinalResult::statusScrollUp()
  */
 void ObjFinalResult::statusScrollDown()
 {
-	m_scrollYPos = -m_scrollMove - (m_scrollMove * (f32)(m_scrollMoveProgress - m_scrollTargetPos)) / (f32)m_scrollTargetPos;
+	mScrollYPos = -mScrollMove - (mScrollMove * (f32)(mScrollMoveProgress - mScrollTargetPos)) / (f32)mScrollTargetPos;
 
-	if (m_scrollMoveProgress++ == m_scrollTargetPos) {
-		m_scrollMoveProgress = 1;
-		m_state              = StatusNormal;
-		m_scrollYPos         = 0.0f;
+	if (mScrollMoveProgress++ == mScrollTargetPos) {
+		mScrollMoveProgress = 1;
+		mState              = StatusNormal;
+		mScrollYPos         = 0.0f;
 	}
 }
 
@@ -2048,29 +2042,29 @@ void ObjFinalResult::statusScrollDown()
  */
 void ObjFinalResult::statusForceScroll()
 {
-	if (!m_autoScrollDelay) {
-		if (m_flags & 8) {
+	if (!mAutoScrollDelay) {
+		if (mFlags & 8) {
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
-			m_flags &= ~8;
+			mFlags &= ~8;
 		}
-		m_scrollYPos = -m_scrollMove - (m_scrollMove * (f32)(m_scrollMoveProgress - m_scrollTargetPos)) / (f32)m_scrollTargetPos;
-		if (m_scrollMoveProgress++ == m_scrollTargetPos) {
-			int page = m_currentPage;
+		mScrollYPos = -mScrollMove - (mScrollMove * (f32)(mScrollMoveProgress - mScrollTargetPos)) / (f32)mScrollTargetPos;
+		if (mScrollMoveProgress++ == mScrollTargetPos) {
+			int page = mCurrentPage;
 			if (page == 7) {
-				m_screen->search(getSerialTagName('Nsel00', page))->setAlpha(255);
-				m_screen->search(getSerialTagName('Nicon00', m_currentPage))->setAlpha(255);
-				m_scrollTargetPos = msVal._04;
-				m_state           = StatusNormal;
+				mScreen->search(getSerialTagName('Nsel00', page))->setAlpha(255);
+				mScreen->search(getSerialTagName('Nicon00', mCurrentPage))->setAlpha(255);
+				mScrollTargetPos = msVal._04;
+				mState           = StatusNormal;
 			} else {
-				m_currentPage++;
+				mCurrentPage++;
 			}
-			m_scrollMoveProgress = 1;
-			m_scrollYPos         = 0.0f;
-			m_autoScrollDelay    = msVal._08;
-			m_flags |= 8;
+			mScrollMoveProgress = 1;
+			mScrollYPos         = 0.0f;
+			mAutoScrollDelay    = msVal._08;
+			mFlags |= 8;
 		}
 	} else {
-		m_autoScrollDelay--;
+		mAutoScrollDelay--;
 	}
 }
 
@@ -2085,11 +2079,11 @@ void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 
 	if (id == 7) {
-		m_screen->search('Nsetp_c')->hide();
-		m_screen->search('Nsetp_d')->show();
+		mScreen->search('Nsetp_c')->hide();
+		mScreen->search('Nsetp_d')->show();
 	} else {
-		m_screen->search('Nsetp_c')->show();
-		m_screen->search('Nsetp_d')->hide();
+		mScreen->search('Nsetp_c')->show();
+		mScreen->search('Nsetp_d')->hide();
 	}
 	/*
 stwu     r1, -0x160(r1)
@@ -2709,13 +2703,13 @@ JUtility::TColor ObjFinalResult::getClr(const JUtility::TColor& col1, const JUti
  */
 void SceneFinalResult::doUserCallBackFunc(Resource::MgrCommand*)
 {
-	JUT_ASSERTLINE(856, m_dispMember->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
-	og::newScreen::makeLanguageResName(m_name, "result_final.szs");
-	LoadResource::Arg arg(m_name);
+	JUT_ASSERTLINE(856, mDispMember->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+	og::newScreen::makeLanguageResName(mName, "result_final.szs");
+	LoadResource::Arg arg(mName);
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
 	JKRArchive* arc;
 	if (node) {
-		arc = node->m_archive;
+		arc = node->mArchive;
 		registObj(new ObjFinalResult, arc);
 	} else {
 		JUT_PANICLINE(864, "failed");
@@ -2806,7 +2800,7 @@ TotalResultData** SceneFinalResult::createDispMember(const int*, const int*, Gam
 		LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
 		JKRArchive* arc;
 		if (node) {
-			arc = node->m_archive;
+			arc = node->mArchive;
 		} else {
 			JUT_PANICLINE(107, "failed");
 		}
@@ -2814,14 +2808,14 @@ TotalResultData** SceneFinalResult::createDispMember(const int*, const int*, Gam
 		for (int i = 0; i < 16; i++) {
 			TotalResultData* resdata = new TotalResultData;
 			if (resdata) {
-				resdata->m_score1 = scores[scoreIDs[i]]->getScore(2);
-				resdata->m_score2 = scores[scoreIDs[i]]->getScore(1);
-				resdata->m_score3 = scores[scoreIDs[i]]->getScore(0);
-				resdata->m_screen = nullptr;
-				resdata->_18      = false;
-				resdata->m_screen = new P2DScreen::Mgr;
-				resdata->m_screen->set(bloNames[i], 0x1040000, arc);
-				resdata->m_screen->setBasePosition(J2DPOS_Center);
+				resdata->mScore1 = scores[scoreIDs[i]]->getScore(2);
+				resdata->mScore2 = scores[scoreIDs[i]]->getScore(1);
+				resdata->mScore3 = scores[scoreIDs[i]]->getScore(0);
+				resdata->mScreen = nullptr;
+				resdata->_18     = false;
+				resdata->mScreen = new P2DScreen::Mgr;
+				resdata->mScreen->set(bloNames[i], 0x1040000, arc);
+				resdata->mScreen->setBasePosition(J2DPOS_Center);
 			}
 			data[i] = resdata;
 		}

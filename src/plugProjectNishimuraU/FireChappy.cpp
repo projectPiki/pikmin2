@@ -24,7 +24,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	ChappyBase::Obj::onInit(initArg);
 	setupEffect();
-	m_onFire = false;
+	mOnFire = false;
 	startFireState();
 	startMaterialAnimation();
 }
@@ -62,15 +62,15 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
-	J3DModel* j3dModel = m_model->m_j3dModel;
-	modelData          = j3dModel->m_modelData;
+	J3DModel* j3dModel = mModel->mJ3dModel;
+	modelData          = j3dModel->mModelData;
 	j3dModel->calcMaterial();
 	updateMaterialAnimation();
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket    = packet;
-		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket     = packet;
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
 		material->diff(packet->_2C->_34);
 	}
 }
@@ -93,18 +93,18 @@ void Obj::doUpdateCommon()
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	Matrixf* worldMat      = m_shadowJoint->getWorldMatrix();
-	shadowParam.m_position = Vector3f(worldMat->m_matrix.mtxView[0][3], worldMat->m_matrix.mtxView[1][3], worldMat->m_matrix.mtxView[2][3]);
-	shadowParam.m_position.y                = m_position.y + 5.0f;
-	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	Matrixf* worldMat       = mShadowJoint->getWorldMatrix();
+	shadowParam.mPosition   = Vector3f(worldMat->mMatrix.mtxView[0][3], worldMat->mMatrix.mtxView[1][3], worldMat->mMatrix.mtxView[2][3]);
+	shadowParam.mPosition.y = mPosition.y + 5.0f;
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 
 	if (isEvent(1, EB2_IsEarthquake)) {
-		shadowParam.m_boundingSphere.m_radius = 75.0f;
+		shadowParam.mBoundingSphere.mRadius = 75.0f;
 	} else {
-		shadowParam.m_boundingSphere.m_radius = 50.0f;
+		shadowParam.mBoundingSphere.mRadius = 50.0f;
 	}
 
-	shadowParam.m_size = 32.0f;
+	shadowParam.mSize = 32.0f;
 }
 
 /*
@@ -115,10 +115,10 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 void Obj::collisionCallback(CollEvent& collEvent)
 {
 	ChappyBase::Obj::collisionCallback(collEvent);
-	if (m_onFire && collEvent.m_collidingCreature && collEvent.m_collidingCreature->isAlive()
-	    && (collEvent.m_collidingCreature->isPiki() || collEvent.m_collidingCreature->isNavi())) {
-		InteractFire fire(this, static_cast<ChappyBase::Parms*>(m_parms)->m_general.m_attackDamage.m_value);
-		collEvent.m_collidingCreature->stimulate(fire);
+	if (mOnFire && collEvent.mCollidingCreature && collEvent.mCollidingCreature->isAlive()
+	    && (collEvent.mCollidingCreature->isPiki() || collEvent.mCollidingCreature->isNavi())) {
+		InteractFire fire(this, static_cast<ChappyBase::Parms*>(mParms)->mGeneral.mAttackDamage.mValue);
+		collEvent.mCollidingCreature->stimulate(fire);
 	}
 }
 
@@ -165,8 +165,8 @@ void Obj::doEndMovie() { effectDrawOn(); }
  */
 void Obj::startFireState()
 {
-	if (!m_onFire) {
-		m_onFire = true;
+	if (!mOnFire) {
+		mOnFire = true;
 		startBodyEffect();
 	}
 	_2F8 = 30.0f;
@@ -179,8 +179,8 @@ void Obj::startFireState()
  */
 void Obj::finishFireState(bool check)
 {
-	if (m_onFire) {
-		m_onFire = false;
+	if (mOnFire) {
+		mOnFire = false;
 		finishBodyEffect();
 		if (check) {
 			createDeadSteamEffect();
@@ -198,12 +198,12 @@ void Obj::finishFireState(bool check)
  */
 void Obj::updateFireState()
 {
-	if (m_onFire) {
+	if (mOnFire) {
 		getJAIObject()->startSound(PSSE_EN_FIRE_CHAPPY_FLAME, 0);
 		updateEfxLod();
 
-		if (m_waterBox && m_onFire) {
-			m_onFire = false;
+		if (mWaterBox && mOnFire) {
+			mOnFire = false;
 			finishBodyEffect();
 			createDeadSteamEffect();
 			getJAIObject()->startSound(PSSE_EN_FIRE_CHAPPY_F_END, 0);
@@ -211,9 +211,9 @@ void Obj::updateFireState()
 		return;
 	}
 
-	if (isAlive() && !m_waterBox) {
-		if (!m_onFire) {
-			m_onFire = true;
+	if (isAlive() && !mWaterBox) {
+		if (!mOnFire) {
+			mOnFire = true;
 			startBodyEffect();
 		}
 
@@ -226,7 +226,7 @@ void Obj::updateFireState()
  * Address:	8028FCA0
  * Size:	00004C
  */
-void Obj::createMaterialAnimation() { m_loopAnimators = new Sys::MatLoopAnimator[2]; }
+void Obj::createMaterialAnimation() { mLoopAnimators = new Sys::MatLoopAnimator[2]; }
 
 /*
  * --INFO--
@@ -235,12 +235,12 @@ void Obj::createMaterialAnimation() { m_loopAnimators = new Sys::MatLoopAnimator
  */
 void Obj::startMaterialAnimation()
 {
-	Sys::MatLoopAnimator* texLoopAnimator = &m_loopAnimators[0];
-	Sys::MatTexAnimation* texAnimation    = static_cast<Mgr*>(m_mgr)->m_texAnimation;
+	Sys::MatLoopAnimator* texLoopAnimator = &mLoopAnimators[0];
+	Sys::MatTexAnimation* texAnimation    = static_cast<Mgr*>(mMgr)->mTexAnimation;
 	texLoopAnimator->start(texAnimation);
 
-	Sys::MatLoopAnimator* tevRegLoopAnimator = &m_loopAnimators[1];
-	Sys::MatTevRegAnimation* tevRegAnimation = static_cast<Mgr*>(m_mgr)->m_tevRegAnimation;
+	Sys::MatLoopAnimator* tevRegLoopAnimator = &mLoopAnimators[1];
+	Sys::MatTevRegAnimation* tevRegAnimation = static_cast<Mgr*>(mMgr)->mTevRegAnimation;
 	tevRegLoopAnimator->start(tevRegAnimation);
 }
 
@@ -252,9 +252,9 @@ void Obj::startMaterialAnimation()
 void Obj::updateMaterialAnimation()
 {
 	f32 p1 = 30.0f;
-	if (!m_onFire) {
-		Sys::MatBaseAnimation* animation = m_loopAnimators[0].m_animation;
-		f32 p2                           = m_loopAnimators[0]._08;
+	if (!mOnFire) {
+		Sys::MatBaseAnimation* animation = mLoopAnimators[0].mAnimation;
+		f32 p2                           = mLoopAnimators[0]._08;
 		f32 frameMax                     = (animation) ? animation->getFrameMax() : 0.0f;
 		frameMax -= 30.0f;
 
@@ -276,8 +276,8 @@ void Obj::updateMaterialAnimation()
 		}
 	}
 
-	m_loopAnimators[0].animate(p1);
-	m_loopAnimators[1].animate(p1);
+	mLoopAnimators[0].animate(p1);
+	mLoopAnimators[1].animate(p1);
 }
 
 /*
@@ -285,7 +285,7 @@ void Obj::updateMaterialAnimation()
  * Address:	8028FE54
  * Size:	00002C
  */
-void Obj::updateEfxLod() { m_efxBody->setRateLOD(m_lod.m_flags & (AILOD_FLAG_IS_MID + AILOD_FLAG_IS_FAR)); }
+void Obj::updateEfxLod() { mEfxBody->setRateLOD(mLod.mFlags & (AILOD_FLAG_IS_MID + AILOD_FLAG_IS_FAR)); }
 
 /*
  * --INFO--
@@ -294,11 +294,11 @@ void Obj::updateEfxLod() { m_efxBody->setRateLOD(m_lod.m_flags & (AILOD_FLAG_IS_
  */
 void Obj::createEffect()
 {
-	m_efxBody      = new efx::TYakiBody;
-	m_efxHanacho   = new efx::THanachoY;
-	m_efxFlick     = new efx::TYakiFlick;
-	m_efxDeadsmoke = new efx::TYakiDeadsmoke;
-	m_efxSteam     = new efx::TYakiSteam;
+	mEfxBody      = new efx::TYakiBody;
+	mEfxHanacho   = new efx::THanachoY;
+	mEfxFlick     = new efx::TYakiFlick;
+	mEfxDeadsmoke = new efx::TYakiDeadsmoke;
+	mEfxSteam     = new efx::TYakiSteam;
 }
 
 /*
@@ -308,14 +308,14 @@ void Obj::createEffect()
  */
 void Obj::setupEffect()
 {
-	Matrixf* bodyMat = m_model->getJoint("body")->getWorldMatrix();
-	m_efxBody->setMtxptr(bodyMat->m_matrix.mtxView);
-	m_efxFlick->m_mtx     = bodyMat;
-	m_efxDeadsmoke->m_mtx = bodyMat;
-	m_efxSteam->m_mtx     = bodyMat;
+	Matrixf* bodyMat = mModel->getJoint("body")->getWorldMatrix();
+	mEfxBody->setMtxptr(bodyMat->mMatrix.mtxView);
+	mEfxFlick->mMtx     = bodyMat;
+	mEfxDeadsmoke->mMtx = bodyMat;
+	mEfxSteam->mMtx     = bodyMat;
 
-	Matrixf* headMat    = m_model->getJoint("head")->getWorldMatrix();
-	m_efxHanacho->m_mtx = headMat;
+	Matrixf* headMat  = mModel->getJoint("head")->getWorldMatrix();
+	mEfxHanacho->mMtx = headMat;
 }
 
 /*
@@ -323,28 +323,28 @@ void Obj::setupEffect()
  * Address:	8029018C
  * Size:	000034
  */
-void Obj::startSleepEffect() { m_efxHanacho->create(nullptr); }
+void Obj::startSleepEffect() { mEfxHanacho->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802901C0
  * Size:	000030
  */
-void Obj::finishSleepEffect() { m_efxHanacho->fade(); }
+void Obj::finishSleepEffect() { mEfxHanacho->fade(); }
 
 /*
  * --INFO--
  * Address:	802901F0
  * Size:	000034
  */
-void Obj::startBodyEffect() { m_efxBody->create(nullptr); }
+void Obj::startBodyEffect() { mEfxBody->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	80290224
  * Size:	000030
  */
-void Obj::finishBodyEffect() { m_efxBody->fade(); }
+void Obj::finishBodyEffect() { mEfxBody->fade(); }
 
 /*
  * --INFO--
@@ -353,8 +353,8 @@ void Obj::finishBodyEffect() { m_efxBody->fade(); }
  */
 void Obj::createFlickEffect()
 {
-	if (m_onFire) {
-		m_efxFlick->create(nullptr);
+	if (mOnFire) {
+		mEfxFlick->create(nullptr);
 	}
 }
 
@@ -363,14 +363,14 @@ void Obj::createFlickEffect()
  * Address:	80290294
  * Size:	000034
  */
-void Obj::createDeadSmokeEffect() { m_efxDeadsmoke->create(nullptr); }
+void Obj::createDeadSmokeEffect() { mEfxDeadsmoke->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802902C8
  * Size:	000034
  */
-void Obj::createDeadSteamEffect() { m_efxSteam->create(nullptr); }
+void Obj::createDeadSteamEffect() { mEfxSteam->create(nullptr); }
 
 /*
  * --INFO--
@@ -379,11 +379,11 @@ void Obj::createDeadSteamEffect() { m_efxSteam->create(nullptr); }
  */
 void Obj::effectDrawOn()
 {
-	m_efxBody->endDemoDrawOn();
-	m_efxFlick->endDemoDrawOn();
-	m_efxDeadsmoke->endDemoDrawOn();
-	m_efxSteam->endDemoDrawOn();
-	m_efxHanacho->endDemoDrawOn();
+	mEfxBody->endDemoDrawOn();
+	mEfxFlick->endDemoDrawOn();
+	mEfxDeadsmoke->endDemoDrawOn();
+	mEfxSteam->endDemoDrawOn();
+	mEfxHanacho->endDemoDrawOn();
 }
 
 /*
@@ -393,11 +393,11 @@ void Obj::effectDrawOn()
  */
 void Obj::effectDrawOff()
 {
-	m_efxBody->startDemoDrawOff();
-	m_efxFlick->startDemoDrawOff();
-	m_efxDeadsmoke->startDemoDrawOff();
-	m_efxSteam->startDemoDrawOff();
-	m_efxHanacho->startDemoDrawOff();
+	mEfxBody->startDemoDrawOff();
+	mEfxFlick->startDemoDrawOff();
+	mEfxDeadsmoke->startDemoDrawOff();
+	mEfxSteam->startDemoDrawOff();
+	mEfxHanacho->startDemoDrawOff();
 }
 
 } // namespace FireChappy

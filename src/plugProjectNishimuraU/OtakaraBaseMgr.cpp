@@ -15,7 +15,7 @@ static const char otakaraBaseMgrName[] = "246-OtakaraBaseMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "オタカラムシマネージャ"; // otakara manager
+	mName = "オタカラムシマネージャ"; // otakara manager
 }
 
 /*
@@ -36,7 +36,7 @@ void Mgr::loadModelData()
 			J3DModelData* storedModelData = mgr->getJ3DModelData();
 
 			if (storedModelData) {
-				m_modelData = storedModelData;
+				mModelData = storedModelData;
 				return;
 			}
 		}
@@ -60,9 +60,9 @@ void Mgr::loadAnimData()
 	for (int i = 0; i < id_count; i++) {
 		EnemyMgrBase* mgr = generalEnemyMgr->getEnemyMgr(ids[i]);
 		if (mgr) {
-			SysShape::AnimMgr* storedAnimMgr = mgr->m_animMgr;
+			SysShape::AnimMgr* storedAnimMgr = mgr->mAnimMgr;
 			if (storedAnimMgr) {
-				m_animMgr = storedAnimMgr;
+				mAnimMgr = storedAnimMgr;
 				return;
 			}
 		}
@@ -78,12 +78,12 @@ void Mgr::loadAnimData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, 0x80000, mModelType);
 	P2ASSERTLINE(136, model);
-	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
-		const char* name = m_modelData->m_materialTable._0C->getName(i);
+	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
+		const char* name = mModelData->mMaterialTable._0C->getName(i);
 		if (!strcmp(name, "mat_body")) {
-			model->m_j3dModel->m_matPackets[i]._2C->newDifferedDisplayList(0x04020000);
+			model->mJ3dModel->mMatPackets[i]._2C->newDifferedDisplayList(0x04020000);
 		}
 	}
 

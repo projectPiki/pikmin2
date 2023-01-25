@@ -8,8 +8,8 @@ namespace Game {
 struct Footmark {
 	Footmark();
 
-	Vector3f m_position; // _00
-	u32 m_flags;         // _0C
+	Vector3f mPosition; // _00
+	u32 mFlags;         // _0C
 };
 
 struct Footmarks {
@@ -20,12 +20,12 @@ struct Footmarks {
 	Footmark* get(int index);
 	Footmark* findNearest2(Vector3f&, int);
 
-	Footmark* m_marks;   // _00
-	int _04;             // _04
-	int _08;             // _08
-	int m_count;         // _0C
-	int _10;             // _10
-	Vector3f m_position; // _14
+	Footmark* mMarks;   // _00
+	int _04;            // _04
+	int _08;            // _08
+	int mCount;         // _0C
+	int _10;            // _10
+	Vector3f mPosition; // _14
 };
 
 } // namespace Game

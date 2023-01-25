@@ -29,13 +29,13 @@ namespace Game {
  */
 void Navi::getShadowParam(ShadowParam& param)
 {
-	param.m_position = m_position3;
-	param.m_position.y += 0.5f;
+	param.mPosition = mPosition3;
+	param.mPosition.y += 0.5f;
 
-	param.m_boundingSphere.m_radius = 10.0f;
-	param.m_size                    = 4.0f;
+	param.mBoundingSphere.mRadius = 10.0f;
+	param.mSize                   = 4.0f;
 
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
 /*
@@ -45,8 +45,8 @@ void Navi::getShadowParam(ShadowParam& param)
  */
 void Navi::getLODSphere(Sys::Sphere& sphere)
 {
-	sphere.m_radius   = 24.0f;
-	sphere.m_position = m_boundingSphere.m_position;
+	sphere.mRadius   = 24.0f;
+	sphere.mPosition = mBoundingSphere.mPosition;
 }
 
 /*
@@ -57,33 +57,33 @@ void Navi::getLODSphere(Sys::Sphere& sphere)
 Navi::Navi()
     : FakePiki()
 {
-	m_controller1 = nullptr;
-	m_controller2 = nullptr;
-	m_camera      = nullptr;
-	m_camera2     = nullptr;
-	m_whistle     = nullptr;
+	mController1 = nullptr;
+	mController2 = nullptr;
+	mCamera      = nullptr;
+	mCamera2     = nullptr;
+	mWhistle     = nullptr;
 
-	m_objectTypeID = 1;
+	mObjectTypeID = 1;
 
-	m_effectsObj = new efx::TNaviEffect;
-	m_effectsObj->init(nullptr, nullptr, nullptr, efx::TNaviEffect::NAVITYPE_Unk0);
-	m_effectsObj->_08 = &m_position3;
+	mEffectsObj = new efx::TNaviEffect;
+	mEffectsObj->init(nullptr, nullptr, nullptr, efx::TNaviEffect::NAVITYPE_Unk0);
+	mEffectsObj->_08 = &mPosition3;
 
-	m_fsm = new NaviFSM;
-	m_fsm->init(this);
+	mFsm = new NaviFSM;
+	mFsm->init(this);
 
-	m_cPlateMgr = new CPlate(100);
-	m_mass      = 1.0f;
+	mCPlateMgr = new CPlate(100);
+	mMass      = 1.0f;
 
-	m_footmarks = new Footmarks;
-	m_footmarks->alloc(16);
+	mFootmarks = new Footmarks;
+	mFootmarks->alloc(16);
 
-	m_updateContext._09 = true;
+	mUpdateContext._09 = true;
 
-	m_cursorMatAnim = new Sys::MatRepeatAnimator;
-	m_arrowMatAnim  = new Sys::MatLoopAnimator;
+	mCursorMatAnim = new Sys::MatRepeatAnimator;
+	mArrowMatAnim  = new Sys::MatLoopAnimator;
 
-	m_soundObj = new PSM::Navi(this);
+	mSoundObj = new PSM::Navi(this);
 }
 
 /*
@@ -93,59 +93,59 @@ Navi::Navi()
  */
 void Navi::onInit(Game::CreatureInitArg* arg)
 {
-	m_stick = 0;
-	_258    = 0;
+	mStick = 0;
+	_258   = 0;
 	u16 uVar2;
 
 	clearKaisanDisable();
 	clearThrowDisable();
 
-	m_invincibleTimer = 0;
-	_2F8              = 0.0f;
+	mInvincibleTimer = 0;
+	_2F8             = 0.0f;
 
-	m_sprayCounts[1] = 0;
-	m_sprayCounts[0] = 0;
+	mSprayCounts[1] = 0;
+	mSprayCounts[0] = 0;
 
 	initFakePiki();
 	naviMgr->setupNavi(this);
 
-	m_model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = nullptr;
-	m_model->m_j3dModel->m_modelData->m_jointTree.m_joints[1]->m_mtxCalc = nullptr;
+	mModel->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = nullptr;
+	mModel->mJ3dModel->mModelData->mJointTree.mJoints[1]->mMtxCalc = nullptr;
 
-	m_naviControlFlag.clear();
+	mNaviControlFlag.clear();
 	resetControlFlag(NAVICTRL_InMovie);
 
 	initAnimator();
 
-	m_isAlive = false;
-	_308      = 0.0f;
+	mIsAlive = false;
+	_308     = 0.0f;
 
-	m_whistle = new NaviWhistle(this);
+	mWhistle = new NaviWhistle(this);
 
-	_2DE            = 0;
-	m_nextThrowPiki = nullptr;
-	m_holdPikiTimer = 0.0f;
-	_2AC            = 0;
+	_2DE           = 0;
+	mNextThrowPiki = nullptr;
+	mHoldPikiTimer = 0.0f;
+	_2AC           = 0;
 
-	m_collTree->createFromFactory(m_model, naviMgr->_CC, nullptr);
-	JUT_ASSERTLINE(838, ((int)m_collTree->m_part) >= 0x80000000,
+	mCollTree->createFromFactory(mModel, naviMgr->_CC, nullptr);
+	JUT_ASSERTLINE(838, ((int)mCollTree->mPart) >= 0x80000000,
 	               "ザンーー（・д・）??ネン\n"); // 'disappointttttt D: ?? ment' (lol)
-	m_collTree->attachModel(m_model);
+	mCollTree->attachModel(mModel);
 
-	m_fsm->start(this, NSID_Walk, nullptr);
+	mFsm->start(this, NSID_Walk, nullptr);
 
 	getCreatureID();
 
-	m_beaconJoint = m_model->getJoint("happajnt3");
+	mBeaconJoint = mModel->getJoint("happajnt3");
 
-	m_effectsObj->m_beaconMtx = m_beaconJoint->getWorldMatrix();
-	m_effectsObj->_0C         = &m_whistle->_0C;
+	mEffectsObj->mBeaconMtx = mBeaconJoint->getWorldMatrix();
+	mEffectsObj->_0C        = &mWhistle->_0C;
 
-	SysShape::Joint* headJnt = m_model->getJoint("headjnt");
-	m_effectsObj->m_headMtx  = headJnt->getWorldMatrix();
-	m_effectsObj->setNaviType((efx::TNaviEffect::enumNaviType)(bool)m_naviIndex);
+	SysShape::Joint* headJnt = mModel->getJoint("headjnt");
+	mEffectsObj->mHeadMtx    = headJnt->getWorldMatrix();
+	mEffectsObj->setNaviType((efx::TNaviEffect::enumNaviType)(bool)mNaviIndex);
 
-	m_effectsObj->createLight();
+	mEffectsObj->createLight();
 
 	setLifeMax();
 
@@ -154,14 +154,14 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	Vector3f navi_scale; // navi model scale
 	navi_scale = Vector3f(1.3f);
 
-	if (m_naviIndex == 1) { // case for Louie/President scale
+	if (mNaviIndex == 1) { // case for Louie/President scale
 		navi_scale = Vector3f(1.5f);
 	}
 
-	m_scale = navi_scale;
-	uVar2   = m_naviIndex;
-	m_cursorMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 3));
-	m_arrowMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 0xd));
+	mScale = navi_scale;
+	uVar2  = mNaviIndex;
+	mCursorMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 3));
+	mArrowMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 0xd));
 }
 
 /*
@@ -169,7 +169,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
  * Address:	80140340
  * Size:	000008
  */
-s32 Navi::getCreatureID() { return m_naviIndex; }
+s32 Navi::getCreatureID() { return mNaviIndex; }
 
 /*
  * --INFO--
@@ -178,7 +178,7 @@ s32 Navi::getCreatureID() { return m_naviIndex; }
  */
 void StateMachine<Game::Navi>::start(Navi* navi, int stateID, StateArg* stateArg)
 {
-	navi->m_currentState = nullptr;
+	navi->mCurrentState = nullptr;
 	transit(navi, stateID, stateArg);
 }
 
@@ -189,17 +189,17 @@ void StateMachine<Game::Navi>::start(Navi* navi, int stateID, StateArg* stateArg
  */
 void Navi::onSetPosition(Vector3f& position)
 {
-	m_position3 = position;
+	mPosition3 = position;
 	static_cast<FakePiki*>(this)->onSetPosition(); // dumb.
 
-	if (m_naviIndex == 0) { // olimar
+	if (mNaviIndex == 0) { // olimar
 		Radar::Mgr::entry(this, Radar::MAP_OLIMAR, 0);
 
 	} else { // louie/president
 		Radar::Mgr::entry(this, Radar::MAP_LOUIE_PRESIDENT, 0);
 	}
 
-	m_whistle->init();
+	mWhistle->init();
 }
 
 /*
@@ -210,7 +210,7 @@ void Navi::onSetPosition(Vector3f& position)
 void Navi::onKill(CreatureKillArg* killArg)
 {
 	killFakePiki();
-	m_effectsObj->killLight();
+	mEffectsObj->killLight();
 }
 
 /*
@@ -220,21 +220,21 @@ void Navi::onKill(CreatureKillArg* killArg)
  */
 void Navi::onKeyEvent(const SysShape::KeyEvent& event)
 {
-	if (m_currentState) {
-		m_currentState->onKeyEvent(this, event);
+	if (mCurrentState) {
+		mCurrentState->onKeyEvent(this, event);
 	}
 
 	if (_248) {
-		int walkSound = _248->m_code.getAttribute();
+		int walkSound = _248->mCode.getAttribute();
 		if (inWater()) {
 			walkSound = 4;
 		}
 
-		if ((u32)event.m_type == KEYEVENT_200) {
-			m_soundObj->playWalkSound(PSM::Navi::NAVIFOOT_840, walkSound);
+		if ((u32)event.mType == KEYEVENT_200) {
+			mSoundObj->playWalkSound(PSM::Navi::NAVIFOOT_840, walkSound);
 
-		} else if ((u32)event.m_type == KEYEVENT_201) {
-			m_soundObj->playWalkSound(PSM::Navi::NAVIFOOT_820, walkSound);
+		} else if ((u32)event.mType == KEYEVENT_201) {
+			mSoundObj->playWalkSound(PSM::Navi::NAVIFOOT_820, walkSound);
 		}
 	}
 }
@@ -246,14 +246,14 @@ void Navi::onKeyEvent(const SysShape::KeyEvent& event)
  */
 Vector3f Navi::getPosition()
 {
-	if (moviePlayer && moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) {
-		Matrixf* mat = m_model->m_joints->getWorldMatrix();
+	if (moviePlayer && moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+		Matrixf* mat = mModel->mJoints->getWorldMatrix();
 		Vector3f position;
 		mat->getTranslation(position);
 		return position;
 
 	} else {
-		return m_position3;
+		return mPosition3;
 	}
 }
 
@@ -265,7 +265,7 @@ Vector3f Navi::getPosition()
 void Navi::onStickStart(Creature* creature)
 {
 	if (creature->isPiki()) {
-		m_stick++;
+		mStick++;
 	}
 }
 
@@ -276,8 +276,8 @@ void Navi::onStickStart(Creature* creature)
  */
 void Navi::onStickEnd(Creature* creature)
 {
-	if (creature->isPiki() && m_stick) {
-		m_stick--;
+	if (creature->isPiki() && mStick) {
+		mStick--;
 	}
 }
 
@@ -290,9 +290,9 @@ bool Navi::procActionButton()
 {
 	f32 minDist;
 	if (_26A) {
-		minDist = naviMgr->m_naviParms->m_naviParms.m_p060.m_value; // 'continuous extraction distance' - autoplucking range?
+		minDist = naviMgr->mNaviParms->mNaviParms.mP060.mValue; // 'continuous extraction distance' - autoplucking range?
 	} else {
-		minDist = naviMgr->m_naviParms->m_naviParms.m_p000.m_value; // 'action radius' - first pluck range
+		minDist = naviMgr->mNaviParms->mNaviParms.mP000.mValue; // 'action radius' - first pluck range
 	}
 
 	Iterator<ItemPikihead::Item> iter(ItemPikihead::mgr);
@@ -311,7 +311,7 @@ bool Navi::procActionButton()
 		// sprout has to be pluckable, closer than current/within range, not at massive height difference
 		// AND either we're not in VS mode OR sprout color matches captain color
 		if (sprout->canPullout() && sqrXZ < minDist && heightDiff < 25.0f
-		    && (!gameSystem->isVersusMode() || sprout->m_color == (1 - m_naviIndex))) {
+		    && (!gameSystem->isVersusMode() || sprout->mColor == (1 - mNaviIndex))) {
 			minDist      = sqrXZ;
 			targetSprout = sprout;
 		}
@@ -321,12 +321,12 @@ bool Navi::procActionButton()
 	if (targetSprout) {
 		NaviNukuAdjustStateArg nukuAdjustArg;
 		setupNukuAdjustArg(targetSprout, nukuAdjustArg);
-		m_fsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg);
+		mFsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg);
 
 		// if there's a captain following us, put them to work.
-		Navi* otherNavi = naviMgr->getAt(1 - m_naviIndex);
+		Navi* otherNavi = naviMgr->getAt(1 - mNaviIndex);
 		if (otherNavi && otherNavi->isAlive() && otherNavi->getStateID() == NSID_Follow) {
-			f32 actionRadius = naviMgr->m_naviParms->m_naviParms.m_p060.m_value; // following captain uses autopluck range
+			f32 actionRadius = naviMgr->mNaviParms->mNaviParms.mP060.mValue; // following captain uses autopluck range
 
 			ItemPikihead::Item* otherTargetSprout = nullptr;
 			minDist                               = actionRadius * actionRadius;
@@ -355,7 +355,7 @@ bool Navi::procActionButton()
 				NaviNukuAdjustStateArg nukuAdjustArg2;
 				setupNukuAdjustArg(otherTargetSprout, nukuAdjustArg2);
 				nukuAdjustArg2._18 = 1;
-				otherNavi->m_fsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg2);
+				otherNavi->mFsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg2);
 			}
 		}
 
@@ -881,13 +881,13 @@ namespace Game {
 void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item* item, Game::NaviNukuAdjustStateArg& arg)
 {
 	Vector3f direction = item->getPosition() - getPosition();
-	arg._00            = angDist(roundAng(pikmin2_atan2f(direction.x, direction.z)), m_faceDir) / 10.0f;
+	arg._00            = angDist(roundAng(pikmin2_atan2f(direction.x, direction.z)), mFaceDir) / 10.0f;
 
-	f32 length     = pikmin2_sqrtf(direction.sqrMagnitude());
-	f32 norm       = 1.0f / length;
-	arg._04        = direction * (3.0f * (norm * (length - 15.0f)));
-	arg._10        = 2;
-	arg.m_pikihead = item;
+	f32 length    = pikmin2_sqrtf(direction.sqrMagnitude());
+	f32 norm      = 1.0f / length;
+	arg._04       = direction * (3.0f * (norm * (length - 15.0f)));
+	arg._10       = 2;
+	arg.mPikihead = item;
 }
 
 /*
@@ -898,7 +898,7 @@ void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item* item, Game::NaviNukuAdju
 bool Navi::hasDope(int sprayType)
 {
 	if (gameSystem->isVersusMode()) {
-		return (m_sprayCounts[sprayType] > 0); // signed to generate andc
+		return (mSprayCounts[sprayType] > 0); // signed to generate andc
 	} else {
 		return playData->hasDope(sprayType);
 	}
@@ -912,7 +912,7 @@ bool Navi::hasDope(int sprayType)
 int Navi::getDopeCount(int sprayType)
 {
 	if (gameSystem->isVersusMode()) {
-		return (m_sprayCounts[sprayType]);
+		return (mSprayCounts[sprayType]);
 	} else {
 		return playData->getDopeCount(sprayType);
 	}
@@ -926,7 +926,7 @@ int Navi::getDopeCount(int sprayType)
 void Navi::useDope(int sprayType)
 {
 	if (gameSystem->isVersusMode()) {
-		(m_sprayCounts[sprayType]--);
+		(mSprayCounts[sprayType]--);
 	} else {
 		playData->useDope(sprayType);
 	}
@@ -940,9 +940,9 @@ void Navi::useDope(int sprayType)
 void Navi::incDopeCount(int sprayType)
 {
 	if (gameSystem->isVersusMode()) {
-		GameMessageVsGetDoping dopeMessage(m_naviIndex, sprayType);
-		gameSystem->m_section->sendMessage(dopeMessage);
-		m_sprayCounts[sprayType]++;
+		GameMessageVsGetDoping dopeMessage(mNaviIndex, sprayType);
+		gameSystem->mSection->sendMessage(dopeMessage);
+		mSprayCounts[sprayType]++;
 		return;
 	}
 
@@ -979,7 +979,7 @@ void Navi::applyDopes(int sprayType, Vector3f& sprayOrigin)
 		return;
 	}
 
-	Iterator<Creature> cellIt(m_cPlateMgr);
+	Iterator<Creature> cellIt(mCPlateMgr);
 	Creature* sprayTarget = nullptr;
 	CI_LOOP(cellIt)
 	{
@@ -1002,7 +1002,7 @@ void Navi::applyDopeSmoke(CellObject* object)
 {
 	Creature* creature = static_cast<Creature*>(object);
 	Vector3f naviPos   = getPosition();
-	Vector3f direction = m_whistle->_0C - naviPos;
+	Vector3f direction = mWhistle->_0C - naviPos;
 	f32 length         = pikmin2_sqrtf(direction.sqrMagnitude());
 	if (length > 0.0f) {
 		f32 norm = 1.0f / length;
@@ -1141,8 +1141,8 @@ void Navi::applyDopeSmoke(CellObject* object)
  */
 int Navi::getStateID()
 {
-	if (m_currentState) {
-		return m_currentState->m_id;
+	if (mCurrentState) {
+		return mCurrentState->mId;
 	}
 
 	return -1;
@@ -1153,28 +1153,28 @@ int Navi::getStateID()
  * Address:	80141460
  * Size:	000044
  */
-void Navi::transit(int next, StateArg* arg) { m_fsm->transit(this, next, arg); }
+void Navi::transit(int next, StateArg* arg) { mFsm->transit(this, next, arg); }
 
 /*
  * --INFO--
  * Address:	801414A4
  * Size:	00000C
  */
-OlimarData* Navi::getOlimarData() { return playData->m_olimarData; }
+OlimarData* Navi::getOlimarData() { return playData->mOlimarData; }
 
 /*
  * --INFO--
  * Address:	801414B0
  * Size:	000014
  */
-JAInter::Object* Navi::getJAIObject() { return m_soundObj; }
+JAInter::Object* Navi::getJAIObject() { return mSoundObj; }
 
 /*
  * --INFO--
  * Address:	801414C4
  * Size:	000008
  */
-PSM::Creature* Navi::getPSCreature() { return m_soundObj; }
+PSM::Creature* Navi::getPSCreature() { return mSoundObj; }
 
 /*
  * --INFO--
@@ -1183,8 +1183,8 @@ PSM::Creature* Navi::getPSCreature() { return m_soundObj; }
  */
 void Navi::wallCallback(Vector3f& pos)
 {
-	if (m_currentState) {
-		m_currentState->wallCallback(this, pos);
+	if (mCurrentState) {
+		mCurrentState->wallCallback(this, pos);
 	}
 }
 
@@ -1202,8 +1202,8 @@ void NaviState::wallCallback(Navi*, Vector3f&) { }
  */
 void Navi::bounceCallback(Sys::Triangle* tri)
 {
-	if (m_currentState) {
-		m_currentState->bounceCallback(this, tri);
+	if (mCurrentState) {
+		mCurrentState->bounceCallback(this, tri);
 	}
 }
 
@@ -1221,8 +1221,8 @@ void NaviState::bounceCallback(Navi*, Sys::Triangle*) { }
  */
 void Navi::collisionCallback(CollEvent& event)
 {
-	if (m_currentState) {
-		m_currentState->collisionCallback(this, event);
+	if (mCurrentState) {
+		mCurrentState->collisionCallback(this, event);
 	}
 }
 
@@ -1411,14 +1411,14 @@ void Navi::viewEntryShape(Matrixf&, Vector3f&) { }
  * Address:	8014173C
  * Size:	000008
  */
-SysShape::Model* Navi::viewGetShape() { return m_model; }
+SysShape::Model* Navi::viewGetShape() { return mModel; }
 
 /*
  * --INFO--
  * Address:	80141744
  * Size:	00001C
  */
-f32 Navi::viewGetBaseScale() { return m_naviIndex == 0 ? 1.3f : 1.5f; }
+f32 Navi::viewGetBaseScale() { return mNaviIndex == 0 ? 1.3f : 1.5f; }
 
 /*
  * --INFO--
@@ -1430,30 +1430,30 @@ f32 Navi::viewGetBaseScale() { return m_naviIndex == 0 ? 1.3f : 1.5f; }
 void Navi::doEntry()
 {
 	FakePiki::doEntry();
-	if (!isAlive() && m_isAlive) {
-		RESET_FLAG(m_lod.m_flags, 0x34);
+	if (!isAlive() && mIsAlive) {
+		RESET_FLAG(mLod.mFlags, 0x34);
 	}
 
-	if (m_controller1 == nullptr) {
+	if (mController1 == nullptr) {
 		return;
 	}
 
-	m_cursorMatAnim->animate(10.0f);
-	m_arrowMatAnim->animate(0.0f);
+	mCursorMatAnim->animate(10.0f);
+	mArrowMatAnim->animate(0.0f);
 
 	if (!isControlFlag(NAVICTRL_InMovie)) {
-		if (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) {
-			m_markerModel->hide();
+		if (moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+			mMarkerModel->hide();
 		} else {
-			m_markerModel->show();
+			mMarkerModel->show();
 		}
 
-		m_markerModel->m_j3dModel->entry();
+		mMarkerModel->mJ3dModel->entry();
 	}
 
 	J3DGXColorS10 cursorCols;
-	if (m_nextThrowPiki) {
-		Color4& col  = Piki::pikiColorsCursor[m_nextThrowPiki->m_pikiKind];
+	if (mNextThrowPiki) {
+		Color4& col  = Piki::pikiColorsCursor[mNextThrowPiki->mPikiKind];
 		cursorCols.r = col.r;
 		cursorCols.g = col.g;
 		cursorCols.b = col.b;
@@ -1462,21 +1462,21 @@ void Navi::doEntry()
 		cursorCols = J3DGXColorS10(0xFF, 0xFF, 0xFF, 0xFF);
 	}
 
-	J3DMaterial* materials = m_cursorModel->m_j3dModel->m_modelData->m_materialTable.m_materials1[0];
+	J3DMaterial* materials = mCursorModel->mJ3dModel->mModelData->mMaterialTable.mMaterials1[0];
 	if (materials) {
-		materials->m_tevBlock->setTevColor(0, cursorCols);
-		m_cursorModel->m_j3dModel->calcMaterial();
-		m_cursorModel->m_j3dModel->diff();
+		materials->mTevBlock->setTevColor(0, cursorCols);
+		mCursorModel->mJ3dModel->calcMaterial();
+		mCursorModel->mJ3dModel->diff();
 	}
 
 	if (!isControlFlag(NAVICTRL_InMovie)) {
-		if (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) {
-			m_cursorModel->hide();
+		if (moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+			mCursorModel->hide();
 		} else {
-			m_cursorModel->show();
+			mCursorModel->show();
 		}
 
-		m_cursorModel->m_j3dModel->entry();
+		mCursorModel->mJ3dModel->entry();
 	}
 }
 
@@ -1859,10 +1859,10 @@ void Navi::updateCursor()
  */
 void Navi::doSimulation(f32 timeStep)
 {
-	if (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) {
-		m_position2    = Vector3f(0.0f);
-		m_velocity     = Vector3f(0.0f);
-		m_acceleration = Vector3f(0.0f);
+	if (moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+		mPosition2    = Vector3f(0.0f);
+		mVelocity     = Vector3f(0.0f);
+		mAcceleration = Vector3f(0.0f);
 	}
 
 	FakePiki::doSimulation(timeStep);
@@ -1876,15 +1876,15 @@ void Navi::doSimulation(f32 timeStep)
 void Navi::doSetView(int vpNumber)
 {
 	Creature::doSetView(vpNumber);
-	m_markerModel->setCurrentViewNo(vpNumber);
-	m_cursorModel->setCurrentViewNo(vpNumber);
+	mMarkerModel->setCurrentViewNo(vpNumber);
+	mCursorModel->setCurrentViewNo(vpNumber);
 
-	if (m_lod.m_flags & (16 << vpNumber)) {
-		m_markerModel->showPackets();
-		m_cursorModel->showPackets();
+	if (mLod.mFlags & (16 << vpNumber)) {
+		mMarkerModel->showPackets();
+		mCursorModel->showPackets();
 	} else {
-		m_markerModel->hidePackets();
-		m_cursorModel->hidePackets();
+		mMarkerModel->hidePackets();
+		mCursorModel->hidePackets();
 	}
 }
 
@@ -1896,8 +1896,8 @@ void Navi::doSetView(int vpNumber)
 void Navi::doViewCalc()
 {
 	Creature::doViewCalc();
-	m_markerModel->viewCalc();
-	m_cursorModel->viewCalc();
+	mMarkerModel->viewCalc();
+	mCursorModel->viewCalc();
 }
 
 /*
@@ -1905,14 +1905,14 @@ void Navi::doViewCalc()
  * Address:	80141FE8
  * Size:	000014
  */
-void Navi::setLifeMax() { m_health = naviMgr->m_naviParms->m_naviParms.m_maxHealth; }
+void Navi::setLifeMax() { mHealth = naviMgr->mNaviParms->mNaviParms.mMaxHealth; }
 
 /*
  * --INFO--
  * Address:	80141FFC
  * Size:	000018
  */
-f32 Navi::getLifeRatio() { return m_health / naviMgr->m_naviParms->m_naviParms.m_maxHealth.m_value; }
+f32 Navi::getLifeRatio() { return mHealth / naviMgr->mNaviParms->mNaviParms.mMaxHealth.mValue; }
 
 /*
  * --INFO--
@@ -1925,22 +1925,22 @@ int Navi::getDownfloorMass()
 
 	int id;
 	if (curState) {
-		id = curState->m_id;
+		id = curState->mId;
 	} else {
 		id = -1;
 	}
 
-	int mass = naviMgr->m_naviParms->m_naviParms.m_q009;
+	int mass = naviMgr->mNaviParms->mNaviParms.mQ009;
 
 	// if we're holding a piki, modify our mass
 	if (id == NSID_ThrowWait) {
-		Piki* heldPiki = static_cast<NaviThrowWaitState*>(curState)->m_piki;
+		Piki* heldPiki = static_cast<NaviThrowWaitState*>(curState)->mPiki;
 		int a          = 1; // default mass to add is 1
 
 		if (heldPiki) {
 			int pikiState = heldPiki->getStateID();
 			if (pikiState == PIKISTATE_Hanged) {
-				if ((int)static_cast<NaviThrowWaitState*>(curState)->m_piki->m_pikiKind == Purple) {
+				if ((int)static_cast<NaviThrowWaitState*>(curState)->mPiki->mPikiKind == Purple) {
 					a = 2; // held piki is purple, so add double mass
 				}
 			} else {
@@ -2187,19 +2187,19 @@ void Navi::do_updateLookCreature() { }
  */
 void Navi::inWaterCallback(WaterBox* wb)
 {
-	m_effectsObj->m_height = wb->getSeaHeightPtr();
+	mEffectsObj->mHeight = wb->getSeaHeightPtr();
 
-	efx::TNaviEffect* fx = m_effectsObj;
+	efx::TNaviEffect* fx = mEffectsObj;
 
 	bool isX = fx->isFlag(efx::NAVIFX_InWater);
 	fx->setFlag(efx::NAVIFX_InWater);
 	fx->updateHamon_();
 
 	if (!isX) {
-		efx::createSimpleDive(fx->m_hamonPosition);
+		efx::createSimpleDive(fx->mHamonPosition);
 	}
 
-	m_soundObj->startSound(PSSE_PL_WATER_IN, 0);
+	mSoundObj->startSound(PSSE_PL_WATER_IN, 0);
 }
 
 /*
@@ -2209,7 +2209,7 @@ void Navi::inWaterCallback(WaterBox* wb)
  */
 void Navi::outWaterCallback()
 {
-	efx::TNaviEffect* fx = m_effectsObj;
+	efx::TNaviEffect* fx = mEffectsObj;
 	fx->resetFlag(efx::NAVIFX_InWater);
 	fx->killHamonA_();
 	fx->killHamonB_();
@@ -2222,15 +2222,15 @@ void Navi::outWaterCallback()
  */
 bool Navi::ignoreAtari(Creature* other)
 {
-	if (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE && other->isNavi()) {
+	if (moviePlayer->mFlags & MoviePlayer::IS_ACTIVE && other->isNavi()) {
 		return true;
 	}
 
-	if (other->isPellet() && ((Pellet*)other)->m_pelletFlag == 1) {
+	if (other->isPellet() && ((Pellet*)other)->mPelletFlag == 1) {
 		return true;
 	}
 
-	return m_currentState->ignoreAtari(other);
+	return mCurrentState->ignoreAtari(other);
 }
 
 /*
@@ -2249,7 +2249,7 @@ void Navi::on_movie_begin(bool)
 {
 	setControlFlag(NAVICTRL_InMovie);
 
-	efx::TNaviEffect* fx = m_effectsObj;
+	efx::TNaviEffect* fx = mEffectsObj;
 	fx->killCursor_();
 	fx->killLightAct_();
 	fx->killFueact_();
@@ -2276,14 +2276,14 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 	switch (command) {
 	case 100: {
 		enterAllPikis();
-		if (player->m_flags & MoviePlayer::IS_FINISHED) {
+		if (player->mFlags & MoviePlayer::IS_FINISHED) {
 			pikiMgr->forceEnterPikmins(0);
 		}
 		break;
 	}
 
 	case 102: {
-		Creature* hole = player->m_targetObject;
+		Creature* hole = player->mTargetObject;
 		JUT_ASSERTLINE(2134, hole != nullptr, "no target!! HOLEIN\n");
 
 		Vector3f pos = hole->getPosition();
@@ -2292,7 +2292,7 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 	}
 
 	case 103: {
-		Creature* fountain = player->m_targetObject;
+		Creature* fountain = player->mTargetObject;
 		JUT_ASSERTLINE(2148, fountain, "no target!! FOUNTAINON\n");
 
 		Vector3f pos = fountain->getPosition();
@@ -2311,15 +2311,15 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 	}
 
 	case 106: {
-		efx::TNaviEffect* fx = m_effectsObj;
+		efx::TNaviEffect* fx = mEffectsObj;
 
 		if (!fx->isFlag(efx::NAVIFX_IsSaved)) {
 			fx->saveFlags();
 		}
 
-		fx->m_light.forceKill();
-		fx->m_lightAct.forceKill();
-		fx->m_damage.forceKill();
+		fx->mLight.forceKill();
+		fx->mLightAct.forceKill();
+		fx->mDamage.forceKill();
 
 		fx->killHamonA_();
 		fx->killHamonB_();
@@ -2331,7 +2331,7 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 	}
 
 	case 107: {
-		efx::TNaviEffect* fx = m_effectsObj;
+		efx::TNaviEffect* fx = mEffectsObj;
 		if (fx->isFlag(efx::NAVIFX_IsSaved)) {
 			fx->restoreFlags();
 		}
@@ -2523,8 +2523,8 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
  */
 void Navi::movieSetFaceDir(f32 direction)
 {
-	m_faceDir = direction;
-	m_whistle->setFaceDir(direction);
+	mFaceDir = direction;
+	mWhistle->setFaceDir(direction);
 }
 
 /*
@@ -2535,7 +2535,7 @@ void Navi::movieSetFaceDir(f32 direction)
 void Navi::movieStartAnimation(u32 anim)
 {
 	startMotion(anim, anim, nullptr, nullptr);
-	m_animSpeed = 30.0f;
+	mAnimSpeed = 30.0f;
 }
 
 /*
@@ -2545,16 +2545,16 @@ void Navi::movieStartAnimation(u32 anim)
  */
 void Navi::movieStartDemoAnimation(SysShape::AnimInfo* info)
 {
-	m_animator.m_boundAnimator.startExAnim(info);
-	m_animator.m_selfAnimator.startExAnim(info);
+	mAnimator.mBoundAnimator.startExAnim(info);
+	mAnimator.mSelfAnimator.startExAnim(info);
 
-	P2ASSERTLINE(2201, m_animator.m_selfAnimator.assertValid(m_model));
-	P2ASSERTLINE(2202, m_animator.m_boundAnimator.assertValid(m_model));
+	P2ASSERTLINE(2201, mAnimator.mSelfAnimator.assertValid(mModel));
+	P2ASSERTLINE(2202, mAnimator.mBoundAnimator.assertValid(mModel));
 
-	m_model->clearAnimatorAll();
+	mModel->clearAnimatorAll();
 
-	SysShape::Model* model                                             = m_model;
-	model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = (J3DMtxCalcAnmBase*)m_animator.m_boundAnimator.getCalc();
+	SysShape::Model* model                                        = mModel;
+	model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = (J3DMtxCalcAnmBase*)mAnimator.mBoundAnimator.getCalc();
 }
 
 /*
@@ -3936,7 +3936,7 @@ void Navi::doDirectDraw(Graphics&) { }
  * Address:	80143AF8
  * Size:	00000C
  */
-void Navi::disableController() { m_controller1 = nullptr; }
+void Navi::disableController() { mController1 = nullptr; }
 
 // /*
 //  * --INFO--
@@ -3965,7 +3965,7 @@ void Navi::disableController() { m_controller1 = nullptr; }
  */
 void Navi::control()
 {
-	if ((moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) == FALSE) {
+	if ((moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) == FALSE) {
 		makeVelocity();
 	}
 
@@ -3975,19 +3975,19 @@ void Navi::control()
 		return;
 	}
 
-	if (gameSystem->m_mode == GSM_STORY_MODE) {
+	if (gameSystem->mMode == GSM_STORY_MODE) {
 		Navi* active = naviMgr->getActiveNavi();
 		if (active != this) {
 			return;
 		}
-		f32 z = m_cStickPosition.z;
-		f32 x = m_cStickPosition.x;
-		m_soundObj->m_rappa.playRappa(true, x, z, m_soundObj);
+		f32 z = mCStickPosition.z;
+		f32 x = mCStickPosition.x;
+		mSoundObj->mRappa.playRappa(true, x, z, mSoundObj);
 
 	} else {
-		f32 z = m_cStickPosition.z;
-		f32 x = m_cStickPosition.x;
-		m_soundObj->m_rappa.playRappa(true, x, z, m_soundObj);
+		f32 z = mCStickPosition.z;
+		f32 x = mCStickPosition.x;
+		mSoundObj->mRappa.playRappa(true, x, z, mSoundObj);
 	}
 }
 
@@ -4608,7 +4608,7 @@ bool NaviState::invincible() { return false; }
  * Address:	80144400
  * Size:	000008
  */
-void Navi::setInvincibleTimer(u8 timer) { m_invincibleTimer = timer; }
+void Navi::setInvincibleTimer(u8 timer) { mInvincibleTimer = timer; }
 
 /*
  * --INFO--
@@ -5188,21 +5188,21 @@ void Navi::updateKaisanDisable()
  * Address:	80144B44
  * Size:	00000C
  */
-void Navi::clearKaisanDisable() { m_disbandTimer = 0; }
+void Navi::clearKaisanDisable() { mDisbandTimer = 0; }
 
 /*
  * --INFO--
  * Address:	80144B50
  * Size:	000010
  */
-bool Navi::throwable() { return m_throwTimer == 0; }
+bool Navi::throwable() { return mThrowTimer == 0; }
 
 /*
  * --INFO--
  * Address:	80144B60
  * Size:	00000C
  */
-void Navi::startThrowDisable() { m_throwTimer = NAVI_THROWTIMER_LENGTH; }
+void Navi::startThrowDisable() { mThrowTimer = NAVI_THROWTIMER_LENGTH; }
 
 /*
  * --INFO--
@@ -5211,15 +5211,15 @@ void Navi::startThrowDisable() { m_throwTimer = NAVI_THROWTIMER_LENGTH; }
  */
 void Navi::updateThrowDisable()
 {
-	if (m_throwTimer == 0) {
+	if (mThrowTimer == 0) {
 		return;
 	}
 
-	if (m_controller1 && m_controller1->m_padButton.m_mask & PAD_BUTTON_A) {
-		m_throwTimer = NAVI_THROWTIMER_LENGTH;
+	if (mController1 && mController1->mButton.mMask & PAD_BUTTON_A) {
+		mThrowTimer = NAVI_THROWTIMER_LENGTH;
 	}
 
-	m_throwTimer--;
+	mThrowTimer--;
 }
 
 /*
@@ -5227,7 +5227,7 @@ void Navi::updateThrowDisable()
  * Address:	80144BA8
  * Size:	00000C
  */
-void Navi::clearThrowDisable() { m_throwTimer = 0; }
+void Navi::clearThrowDisable() { mThrowTimer = 0; }
 
 /*
  * --INFO--
@@ -7154,8 +7154,8 @@ void Navi::makeCStick(bool)
  */
 bool Navi::isCStickNetural()
 {
-	NaviParms::Parms& parms = naviMgr->m_naviParms->m_naviParms;
-	return m_cStickPosition.qLength() <= parms.m_cStickNeutralThresh.m_value;
+	NaviParms::Parms& parms = naviMgr->mNaviParms->mNaviParms;
+	return mCStickPosition.qLength() <= parms.mCStickNeutralThresh.mValue;
 }
 
 /*
@@ -7361,8 +7361,8 @@ void Navi::findNextThrowPiki()
  */
 u32 Navi::ogGetNextThrowPiki()
 {
-	Piki* nextPiki = m_nextThrowPiki;
-	return (!nextPiki) ? 0 : ((3 * nextPiki->m_pikiKind) + 1) + nextPiki->m_happaKind;
+	Piki* nextPiki = mNextThrowPiki;
+	return (!nextPiki) ? 0 : ((3 * nextPiki->mPikiKind) + 1) + nextPiki->mHappaKind;
 }
 
 /*
@@ -7372,11 +7372,11 @@ u32 Navi::ogGetNextThrowPiki()
  */
 void Navi::throwPiki(Piki* piki, Vector3f& destination)
 {
-	m_soundObj->startSound(PSSE_PL_THROW, 0);
+	mSoundObj->startSound(PSSE_PL_THROW, 0);
 
 	Vector3f pos = getPosition();
-	pos.z += -15.0f * cos(m_faceDir);
-	pos.x += -15.0f * sin(m_faceDir);
+	pos.z += -15.0f * cos(mFaceDir);
+	pos.x += -15.0f * sin(mFaceDir);
 	pos.y += 10.0f;
 	piki->setPosition(pos, false);
 
@@ -7386,8 +7386,8 @@ void Navi::throwPiki(Piki* piki, Vector3f& destination)
 	Vector3f vec(pikiPos.x, 0.0f, pikiPos.z);
 	f32 length = vec.normalise();
 
-	m_position2 += vec * length;
-	m_velocity = m_position2;
+	mPosition2 += vec * length;
+	mVelocity = mPosition2;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -7579,7 +7579,7 @@ void Navi::throwPiki(Piki* piki, Vector3f& destination)
  * Address:	80146D14
  * Size:	000008
  */
-bool Navi::commandOn() { return m_commandOn2; }
+bool Navi::commandOn() { return mCommandOn2; }
 } // namespace Game
 
 /*

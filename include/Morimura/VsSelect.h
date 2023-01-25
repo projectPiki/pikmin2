@@ -16,18 +16,18 @@ namespace Morimura {
 struct DispMemberVsSelect : public og::Screen::DispMemberBase {
 	DispMemberVsSelect()
 	{
-		m_titleInfo            = nullptr;
-		m_debugExpHeap         = nullptr;
-		m_dispWorldMapInfoWin0 = nullptr;
-		m_selectedStageIndex   = -1;
-		m_stageNumber          = 0;
-		m_olimarHandicap       = 3;
-		m_louieHandicap        = 3;
-		m_redWinCount          = 0;
-		m_blueWinCount         = 0;
-		m_vsWinner             = -1;
-		m_stageCount           = 0;
-		_34                    = 0;
+		mTitleInfo            = nullptr;
+		mDebugExpHeap         = nullptr;
+		mDispWorldMapInfoWin0 = nullptr;
+		mSelectedStageIndex   = -1;
+		mStageNumber          = 0;
+		mOlimarHandicap       = 3;
+		mLouieHandicap        = 3;
+		mRedWinCount          = 0;
+		mBlueWinCount         = 0;
+		mVsWinner             = -1;
+		mStageCount           = 0;
+		_34                   = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberVsSelect); } // _08
@@ -36,18 +36,18 @@ struct DispMemberVsSelect : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
-	Game::Vs2D_TitleInfo* m_titleInfo;                              // _08
-	JKRHeap* m_debugExpHeap;                                        // _0C
-	og::Screen::DispMemberWorldMapInfoWin0* m_dispWorldMapInfoWin0; // _10
-	int m_selectedStageIndex;                                       // _14
-	int m_stageNumber;                                              // _18
-	int m_olimarHandicap;                                           // _1C
-	int m_louieHandicap;                                            // _20
-	int m_redWinCount;                                              // _24
-	int m_blueWinCount;                                             // _28
-	int m_vsWinner;                                                 // _2C
-	int m_stageCount;                                               // _30
-	int _34;                                                        // _34
+	Game::Vs2D_TitleInfo* mTitleInfo;                              // _08
+	JKRHeap* mDebugExpHeap;                                        // _0C
+	og::Screen::DispMemberWorldMapInfoWin0* mDispWorldMapInfoWin0; // _10
+	int mSelectedStageIndex;                                       // _14
+	int mStageNumber;                                              // _18
+	int mOlimarHandicap;                                           // _1C
+	int mLouieHandicap;                                            // _20
+	int mRedWinCount;                                              // _24
+	int mBlueWinCount;                                             // _28
+	int mVsWinner;                                                 // _2C
+	int mStageCount;                                               // _30
+	int _34;                                                       // _34
 };
 
 struct TVsSelectCBWinNum : public og::Screen::CallBack_CounterDay {
@@ -57,8 +57,8 @@ struct TVsSelectCBWinNum : public og::Screen::CallBack_CounterDay {
 
 	// _00     = VTBL
 	// _00-_AC = og::Screen::CallBack_CounterDay
-	u8 _AC;                           // _AC
-	og::Screen::ScaleMgr* m_scaleMgr; // _B0
+	u8 _AC;                          // _AC
+	og::Screen::ScaleMgr* mScaleMgr; // _B0
 };
 
 struct TVsSelectExplanationWindow : public TSelectExplanationWindow {
@@ -97,7 +97,7 @@ struct TVsSelectScreen : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
-	TCallbackScissor* m_callbackScissor; // _18
+	TCallbackScissor* mCallbackScissor; // _18
 };
 
 struct TVsSelectScene : public THIOScene {
@@ -111,7 +111,7 @@ struct TVsSelectScene : public THIOScene {
 	// _00      = VTBL
 	// _00-_224 = THIOScene
 	// _220, treat as TVsSelect
-	TConfirmEndWindow* m_confirmEndWindow; // _224
+	TConfirmEndWindow* mConfirmEndWindow; // _224
 };
 
 struct TVsSelect : public TScrollList {

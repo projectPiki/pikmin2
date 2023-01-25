@@ -28,10 +28,10 @@ struct J3DTexture : _UnknownJ3DTextureParent {
 	virtual ~J3DTexture(); // _08 (weak)
 
 	// fabricated:
-	inline void setImageOffset(u32 format) { _04[0].m_imageDataOffset = (int)((format + _04[0].m_imageDataOffset) - (u32)&_04[0]); }
-	inline void setImageOffset2(u32 format) { _04[1].m_imageDataOffset = (int)((format + _04[1].m_imageDataOffset) - (u32)&_04[1]); }
-	inline void setPaletteOffset(u32 format) { _04[0].m_paletteOffset = (int)((format + _04[0].m_paletteOffset) - (u32)&_04[0]); }
-	inline void setPaletteOffset2(u32 format) { _04[1].m_paletteOffset = (int)((format + _04[1].m_paletteOffset) - (u32)&_04[1]); }
+	inline void setImageOffset(u32 format) { _04[0].mImageDataOffset = (int)((format + _04[0].mImageDataOffset) - (u32)&_04[0]); }
+	inline void setImageOffset2(u32 format) { _04[1].mImageDataOffset = (int)((format + _04[1].mImageDataOffset) - (u32)&_04[1]); }
+	inline void setPaletteOffset(u32 format) { _04[0].mPaletteOffset = (int)((format + _04[0].mPaletteOffset) - (u32)&_04[0]); }
+	inline void setPaletteOffset2(u32 format) { _04[1].mPaletteOffset = (int)((format + _04[1].mPaletteOffset) - (u32)&_04[1]); }
 
 	// _08 VTBL
 };

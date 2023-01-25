@@ -213,12 +213,12 @@ namespace efx2d {
  */
 bool T2DCursor::create(Arg* arg)
 {
-	if (sys->m_deltaTime < 0.01694915f) {
-		m_efxID = PID_RocketA;
+	if (sys->mDeltaTime < 0.01694915f) {
+		mEfxID = PID_RocketA;
 	}
 
 	if (TChasePos::create(arg)) {
-		m_emitter->setScale(m_scale);
+		mEmitter->setScale(mScale);
 		return true;
 	}
 	return false;
@@ -232,7 +232,7 @@ bool T2DCursor::create(Arg* arg)
 bool T2DCountKira::create(Arg* arg)
 {
 	if (TForever::create(arg)) {
-		m_emitter->setScale(m_scale);
+		mEmitter->setScale(mScale);
 		return true;
 	}
 	return false;
@@ -260,9 +260,9 @@ bool T2DSensorGet_forVS::create(Arg* arg)
 	ArgScale* args = static_cast<ArgScale*>(arg);
 
 	if (TSimple2::create(arg)) {
-		f32 scale = args->m_scale;
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
+		f32 scale = args->mScale;
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
 		return true;
 	}
 	return false;
@@ -280,14 +280,14 @@ bool T2DSprayset_forVS::create(Arg* arg)
 	ArgScaleColorColor* args = static_cast<ArgScaleColorColor*>(arg);
 
 	if (TSimple2::create(arg)) {
-		JUtility::TColor col1 = args->m_color1;
-		JUtility::TColor col2 = args->m_color2;
-		f32 scale             = args->m_scale;
+		JUtility::TColor col1 = args->mColor1;
+		JUtility::TColor col2 = args->mColor2;
+		f32 scale             = args->mScale;
 
 		for (int i = 0; i < 2; i++) {
-			m_emitters[i]->setScale(scale);
-			m_emitters[i]->setPrmColorRGB(col1);
-			m_emitters[i]->setColorRGB(col2);
+			mEmitters[i]->setScale(scale);
+			mEmitters[i]->setPrmColorRGB(col1);
+			mEmitters[i]->setColorRGB(col2);
 		}
 		return true;
 	}
@@ -305,9 +305,9 @@ bool FileSelect::T2DFilecopied::create(Arg* arg)
 	P2ASSERTLINE(111, nameCheck);
 	ArgColor* args = static_cast<ArgColor*>(arg);
 
-	JUtility::TColor col = args->m_color;
+	JUtility::TColor col = args->mColor;
 	if (TSimple1::create(arg)) {
-		m_emitters[0]->setColorRGB(col);
+		mEmitters[0]->setColorRGB(col);
 		return true;
 	}
 	return false;
@@ -324,9 +324,9 @@ bool FileSelect::T2DFiledelete::create(Arg* arg)
 	P2ASSERTLINE(127, nameCheck);
 	ArgColor* args = static_cast<ArgColor*>(arg);
 
-	JUtility::TColor col = args->m_color;
+	JUtility::TColor col = args->mColor;
 	if (TSimple1::create(arg)) {
-		m_emitters[0]->setColorRGB(col);
+		mEmitters[0]->setColorRGB(col);
 		return true;
 	}
 	return false;
@@ -343,9 +343,9 @@ bool FileSelect::T2DFiledeleteM::create(Arg* arg)
 	P2ASSERTLINE(143, nameCheck);
 	ArgColor* args = static_cast<ArgColor*>(arg);
 
-	JUtility::TColor col = args->m_color;
+	JUtility::TColor col = args->mColor;
 	if (TSimple1::create(arg)) {
-		m_emitters[0]->setColorRGB(col);
+		mEmitters[0]->setColorRGB(col);
 		return true;
 	}
 	return false;
@@ -363,12 +363,12 @@ bool FileSelect::T2DFilecopyBase::create(Arg* arg)
 	ArgFilecopy* args = static_cast<ArgFilecopy*>(arg);
 
 	f32 scale            = 200.0f; // yeah nope
-	JUtility::TColor col = args->m_color;
+	JUtility::TColor col = args->mColor;
 	Matrixf mtx;
 	if (TForever::create(arg)) {
-		m_emitter->setColorRGB(col);
-		JPASetRMtxfromMtx(mtx.m_matrix.mtxView, m_emitter->_68);
-		m_emitter->setScaleOnly(scale);
+		mEmitter->setColorRGB(col);
+		JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitter->_68);
+		mEmitter->setScaleOnly(scale);
 		return true;
 	}
 	return false;
@@ -518,11 +518,11 @@ bool WorldMap::T2DShstar2::create(Arg* arg)
 	P2ASSERTLINE(201, nameCheck);
 	ArgScale* args = static_cast<ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	if (TSimple1::create(arg)) {
 		volatile Vector3f idk = scale;
 
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 
 		return true;
 	}
@@ -540,12 +540,12 @@ bool WorldMap::T2DNewmap::create(Arg* arg)
 	P2ASSERTLINE(219, nameCheck);
 	ArgScale* args = static_cast<ArgScale*>(arg);
 
-	f32 scale = args->m_scale;
+	f32 scale = args->mScale;
 	if (TSimple2::create(arg)) {
 		volatile Vector3f idk = scale;
 
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
 
 		return true;
 	}
@@ -561,14 +561,14 @@ bool WorldMap::TSimple_ArgDirScale::create(Arg* arg)
 {
 	ArgDirScale* args = static_cast<ArgDirScale*>(arg);
 
-	f32 x     = args->m_dir.x;
-	f32 y     = args->m_dir.y;
-	f32 scale = args->m_scale;
+	f32 x     = args->mDir.x;
+	f32 y     = args->mDir.y;
+	f32 scale = args->mScale;
 	if (TSimple1::create(arg)) {
 
-		m_emitters[0]->setGlobalScale(scale);
-		m_emitters[0]->setScaleOnly(scale);
-		m_emitters[0]->setAngle(x, y, 0.0f);
+		mEmitters[0]->setGlobalScale(scale);
+		mEmitters[0]->setScaleOnly(scale);
+		mEmitters[0]->setAngle(x, y, 0.0f);
 
 		return true;
 	}
@@ -583,7 +583,7 @@ bool WorldMap::TSimple_ArgDirScale::create(Arg* arg)
 bool WorldMap::T2DOnyonKira::create(Arg* arg)
 {
 	if (TChasePosDir::create(arg)) {
-		Vector3f* vec = &m_emitter->m_scale;
+		Vector3f* vec = &mEmitter->mScale;
 		_1C.x         = vec->x;
 		_1C.y         = vec->y;
 		_1C.z         = vec->z;
@@ -599,7 +599,7 @@ bool WorldMap::T2DOnyonKira::create(Arg* arg)
  */
 void WorldMap::T2DOnyonKira::setGlobalParticleScale(f32 scale)
 {
-	JPABaseEmitter* emit = m_emitter;
+	JPABaseEmitter* emit = mEmitter;
 	if (!emit)
 		return;
 	Vector3f test;
@@ -609,7 +609,7 @@ void WorldMap::T2DOnyonKira::setGlobalParticleScale(f32 scale)
 
 	emit->setGlobalScale(scale);
 	test = test * scale;
-	m_emitter->setScaleMain(test.x, test.y, test.z);
+	mEmitter->setScaleMain(test.x, test.y, test.z);
 }
 
 /*
@@ -619,7 +619,7 @@ void WorldMap::T2DOnyonKira::setGlobalParticleScale(f32 scale)
  */
 void WorldMap::T2DRocketGlow::setGlobalParticleScale(f32 scale)
 {
-	JPABaseEmitter* emit = m_emitter;
+	JPABaseEmitter* emit = mEmitter;
 	if (!emit)
 		return;
 
@@ -634,7 +634,7 @@ void WorldMap::T2DRocketGlow::setGlobalParticleScale(f32 scale)
 bool WorldMap::T2DRocketB::create(Arg* arg)
 {
 	if (TChasePosDir::create(arg)) {
-		Vector3f* vec = &m_emitter->m_scale;
+		Vector3f* vec = &mEmitter->mScale;
 		_1C.x         = vec->x;
 		_1C.y         = vec->y;
 		_1C.z         = vec->z;
@@ -650,7 +650,7 @@ bool WorldMap::T2DRocketB::create(Arg* arg)
  */
 void WorldMap::T2DRocketB::setGlobalParticleScale(f32 scale)
 {
-	JPABaseEmitter* emit = m_emitter;
+	JPABaseEmitter* emit = mEmitter;
 	if (!emit)
 		return;
 	Vector3f test;
@@ -660,7 +660,7 @@ void WorldMap::T2DRocketB::setGlobalParticleScale(f32 scale)
 
 	emit->setGlobalScale(scale);
 	test = test * scale;
-	m_emitter->setScaleMain(test.x, test.y, test.z);
+	mEmitter->setScaleMain(test.x, test.y, test.z);
 }
 
 /*

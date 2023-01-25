@@ -113,7 +113,7 @@ namespace Game {
 RumbleMgr::RumbleMgr()
     : CNode()
 {
-	m_name = "RumbleMgr";
+	mName = "RumbleMgr";
 }
 
 /*

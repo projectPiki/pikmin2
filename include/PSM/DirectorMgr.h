@@ -22,11 +22,11 @@ struct DirectorMgr_Scene : public PSSystem::DirectorMgrBase, public JKRDisposer 
 	// _0C     = VTBL 2 (JKRDisposer + Self)
 	// _00-_0C = PSSystem::DirectorMgrBase
 	// _0C-_24 = JKRDisposer
-	PSSystem::DirectorCopyActor* _24[4];    // _24
-	ListDirectorActor* m_listDirectorActor; // _34
-	PSSystem::DirectorCopyActor* _38[3];    // _38
-	DirectorMgr_Scene* m_owner;             // _44
-	BgmTrackMap m_bgmTrackMap;              // _48
+	PSSystem::DirectorCopyActor* _24[4];   // _24
+	ListDirectorActor* mListDirectorActor; // _34
+	PSSystem::DirectorCopyActor* _38[3];   // _38
+	DirectorMgr_Scene* mOwner;             // _44
+	BgmTrackMap mBgmTrackMap;              // _48
 };
 
 struct DirectorMgr_Scene_AutoBgm : public DirectorMgr_Scene {

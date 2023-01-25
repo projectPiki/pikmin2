@@ -28,7 +28,7 @@
  */
 JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl* control)
     : JStudio::TAdaptor_message()
-    , m_control(control)
+    , mControl(control)
 {
 }
 
@@ -49,7 +49,7 @@ void JStudio_JMessage::TAdaptor_message::adaptor_do_MESSAGE(JStudio::data::TEOpe
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_19:
-		m_control->setMessageCode((*(u32*)p2) >> 0x10, (*(u32*)p2));
+		mControl->setMessageCode((*(u32*)p2) >> 0x10, (*(u32*)p2));
 		break;
 	}
 }

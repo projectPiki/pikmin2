@@ -20,16 +20,16 @@ ResetManager::ResetManager(f32 thres)
 	JUTGamePad::C3ButtonReset::sThreshold = (*(u32*)CONSOLE_BUS_SPEED / 4) * thres;
 
 	// double check the flags are reset
-	m_flags.clear();
+	mFlags.clear();
 
 	// TRIPLE check these flags are reset
 	resetFlag(RESETFLAG_1);
 	resetFlag(RESETFLAG_4);
 	resetFlag(RESETFLAG_2);
 
-	m_state       = 0;
-	m_statusTimer = 0.0f;
-	m_counter     = 0;
+	mState       = 0;
+	mStatusTimer = 0.0f;
+	mCounter     = 0;
 }
 
 /*
@@ -47,12 +47,12 @@ void ResetManager::update()
 		check = false;
 	}
 
-	if ((int)m_state != 0) {
+	if ((int)mState != 0) {
 		if (!isWritingMemoryCard() && isSoundSystemStopped() && !isFlag(RESETFLAG_2) && check) {
-			switch (m_state) {
+			switch (mState) {
 			case 1:
 				if (updateStatusEffects()) {
-					m_state = 2;
+					mState = 2;
 				}
 				break;
 
@@ -77,7 +77,7 @@ void ResetManager::update()
 			}
 
 			if (!isSoundSystemStopped()) {
-				if (++m_counter == 3) {
+				if (++mCounter == 3) {
 					THPPlayerStop();
 				}
 				OSReport("\tオーディオ終了待ち\n"); // Waiting for Audio end
@@ -102,7 +102,7 @@ void ResetManager::update()
 			input = JUTGamePad::C3ButtonReset::sResetOccurredPort;
 		}
 
-		if ((JUTGamePad::C3ButtonReset::sResetOccurred || m_flags.typeView & 1) && !OSGetResetSwitchState()) {
+		if ((JUTGamePad::C3ButtonReset::sResetOccurred || mFlags.typeView & 1) && !OSGetResetSwitchState()) {
 			bool check2 = true;
 			if (!isFlag(RESETFLAG_1)) {
 				int currInput = input;
@@ -117,7 +117,7 @@ void ResetManager::update()
 				}
 				THPPlayerSetVolume(0, 120);
 				setFlag(RESETFLAG_1);
-				m_state = 1;
+				mState = 1;
 			} else {
 				resetFlag(RESETFLAG_1);
 				resetFlag(RESETFLAG_4);
@@ -135,10 +135,10 @@ void ResetManager::update()
 bool ResetManager::updateStatusEffects()
 {
 	bool check = false;
-	m_statusTimer += sys->m_deltaTime;
-	if (m_statusTimer > 0.25f) {
-		m_statusTimer = 0.25f;
-		check         = true;
+	mStatusTimer += sys->mDeltaTime;
+	if (mStatusTimer > 0.25f) {
+		mStatusTimer = 0.25f;
+		check        = true;
 	}
 	return check;
 }
@@ -150,17 +150,17 @@ bool ResetManager::updateStatusEffects()
  */
 void ResetManager::draw()
 {
-	if ((int)m_state != 0 && DVDGetDriveStatus() != -1) {
+	if ((int)mState != 0 && DVDGetDriveStatus() != -1) {
 
-		u16 w = JUTVideo::sManager->m_renderModeObj->fbWidth;
-		u16 h = JUTVideo::sManager->m_renderModeObj->efbHeight;
+		u16 w = JUTVideo::sManager->mRenderModeObj->fbWidth;
+		u16 h = JUTVideo::sManager->mRenderModeObj->efbHeight;
 		J2DOrthoGraph graf(0.0f, 0.0f, (f32)w, (f32)h, -1.0f, 1.0f);
 		graf.setPort();
 
-		f32 alpha = (m_statusTimer * 255.0f) / 0.25f;
+		f32 alpha = (mStatusTimer * 255.0f) / 0.25f;
 		alpha     = (alpha >= 0.0f) ? alpha + 0.5f : alpha - 0.5f;
 
-		J2DFillBox(0.0f, 0.0f, (f32)JUTVideo::sManager->m_renderModeObj->fbWidth, (f32)JUTVideo::sManager->m_renderModeObj->efbHeight,
+		J2DFillBox(0.0f, 0.0f, (f32)JUTVideo::sManager->mRenderModeObj->fbWidth, (f32)JUTVideo::sManager->mRenderModeObj->efbHeight,
 		           JUtility::TColor(0, 0, 0, alpha));
 	}
 }
@@ -170,7 +170,7 @@ void ResetManager::draw()
  * Address:	8042A2BC
  * Size:	000014
  */
-bool ResetManager::isWritingMemoryCard() { return sys->m_cardMgr->_E4 & 1; }
+bool ResetManager::isWritingMemoryCard() { return sys->mCardMgr->_E4 & 1; }
 
 /*
  * --INFO--

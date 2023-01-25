@@ -1182,13 +1182,13 @@ void FSMState::do_exec(TMgr*) { }
  */
 void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 {
-	m_isClosed     = false;
-	m_canClose     = false;
-	u32 rate       = 0.0f / sys->m_deltaTime;
-	mgr->m_counter = rate;
-	mgr->_29C      = rate;
-	m_doCheckCard  = false;
-	mgr->m_canExit = true;
+	mIsClosed     = false;
+	mCanClose     = false;
+	u32 rate      = 0.0f / sys->mDeltaTime;
+	mgr->mCounter = rate;
+	mgr->_29C     = rate;
+	mDoCheckCard  = false;
+	mgr->mCanExit = true;
 	do_open(mgr);
 }
 
@@ -1199,13 +1199,13 @@ void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState_Warning::do_exec(TMgr* mgr)
 {
-	if (m_doCheckCard) {
+	if (mDoCheckCard) {
 		mgr->checkAndTransitNoCard_();
 	}
 
-	if (!mgr->m_counter && m_canClose && !m_isClosed) {
+	if (!mgr->mCounter && mCanClose && !mIsClosed) {
 		mgr->close();
-		m_isClosed = true;
+		mIsClosed = true;
 	}
 
 	if (mgr->TMemoryCard::isFinish()) {
@@ -1220,8 +1220,8 @@ void FSMState_Warning::do_exec(TMgr* mgr)
  */
 void FSMState_Question::do_init(TMgr* mgr, Game::StateArg*)
 {
-	m_doCheckCard  = false;
-	mgr->m_canExit = true;
+	mDoCheckCard  = false;
+	mgr->mCanExit = true;
 	do_open(mgr);
 }
 
@@ -1232,12 +1232,12 @@ void FSMState_Question::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState_Question::do_exec(TMgr* mgr)
 {
-	if (m_doCheckCard) {
+	if (mDoCheckCard) {
 		mgr->checkAndTransitNoCard_();
 	}
 
 	if (mgr->TMemoryCard::isFinish()) {
-		if (mgr->m_currSel == 1) {
+		if (mgr->mCurrSel == 1) {
 			do_transitYes(mgr);
 		} else {
 			do_transitNo(mgr);
@@ -1252,11 +1252,11 @@ void FSMState_Question::do_exec(TMgr* mgr)
  */
 void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg*)
 {
-	mgr->m_canExit = false;
-	m_state        = 0;
-	u32 rate       = 3.0f / sys->m_deltaTime;
-	mgr->m_counter = rate;
-	mgr->_29C      = rate;
+	mgr->mCanExit = false;
+	mState        = 0;
+	u32 rate      = 3.0f / sys->mDeltaTime;
+	mgr->mCounter = rate;
+	mgr->_29C     = rate;
 	do_open(mgr);
 }
 
@@ -1268,48 +1268,48 @@ void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg*)
 void FSMState_CardRequest::do_exec(TMgr* mgr)
 {
 	// should be offset a8 but the struct is not there
-	bool check = (sys->m_cardMgr->_D8 == 0) && (sys->m_cardMgr->checkStatus() != 11);
+	bool check = (sys->mCardMgr->_D8 == 0) && (sys->mCardMgr->checkStatus() != 11);
 
-	if (check && (int)static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus() == 0) {
+	if (check && (int)static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus() == 0) {
 		check = true;
 	} else {
 		check = false;
 	}
 
 	if (check) {
-		m_cardStatus = static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
+		mCardStatus = static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();
 		mgr->close();
 	}
 
-	switch (m_state) // todo: enums for both of these switches
+	switch (mState) // todo: enums for both of these switches
 	{
 	case 0:
-		bool check2 = (sys->m_cardMgr->_04) && (sys->m_cardMgr->checkStatus() != 11);
+		bool check2 = (sys->mCardMgr->_04) && (sys->mCardMgr->checkStatus() != 11);
 		if (check2) {
 			if (do_cardRequest()) {
 				JUT_PANICLINE(191, "P2ASSERT");
 			} else {
-				m_state = 1;
+				mState = 1;
 			}
 		}
 		break;
 	case 1:
-		bool check3 = (sys->m_cardMgr->_04) && (sys->m_cardMgr->checkStatus() != 11);
+		bool check3 = (sys->mCardMgr->_04) && (sys->mCardMgr->checkStatus() != 11);
 		if (check3) {
-			m_cardStatus = (int)static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
-			if (m_cardStatus != 2) {
-				static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
+			mCardStatus = (int)static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();
+			if (mCardStatus != 2) {
+				static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();
 			}
-			m_state = 2;
+			mState = 2;
 		}
 		break;
 	case 2:
-		if (!mgr->m_counter) {
+		if (!mgr->mCounter) {
 			mgr->close();
 		}
 		if (mgr->TMemoryCard::isFinish()) {
-			mgr->m_canExit = true;
-			switch (m_cardStatus) {
+			mgr->mCanExit = true;
+			switch (mCardStatus) {
 			case Game::MemoryCard::Mgr::MCS_NoCard:
 				do_transitCardNoCard(mgr);
 				break;
@@ -1636,9 +1636,9 @@ lbl_803D2134:
  */
 void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		transit(mgr, CARDERROR_NoCard, nullptr);
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_NoCard, nullptr);
 	}
 }
@@ -1674,9 +1674,9 @@ void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		transit(mgr, CARDERROR_IOError, nullptr);
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_IOError, nullptr);
 	}
 }
@@ -1688,9 +1688,9 @@ void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		transit(mgr, CARDERROR_WrongDevice, nullptr);
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_WrongDevice, nullptr);
 	}
 }
@@ -1702,9 +1702,9 @@ void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		transit(mgr, CARDERROR_WrongSector, nullptr);
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_WrongSector, nullptr);
 	}
 }
@@ -1716,9 +1716,9 @@ void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 	}
 }
@@ -1730,9 +1730,9 @@ void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 	}
 }
@@ -1744,9 +1744,9 @@ void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		transit(mgr, CARDERROR_OverCapacity, nullptr);
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_OverCapacity, nullptr);
 	}
 }
@@ -1758,9 +1758,9 @@ void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		transit(mgr, CARDERROR_OverCapacity, nullptr);
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_OverCapacity, nullptr);
 	}
 }
@@ -1772,9 +1772,9 @@ void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		transit(mgr, CARDERROR_DoYouCreateNewFile, nullptr);
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_DoYouCreateNewFile, nullptr);
 	}
 }
@@ -1786,9 +1786,9 @@ void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 {
-	if (!mgr->m_isBroken) {
+	if (!mgr->mIsBroken) {
 		JUT_PANICLINE(361, "P2ASSERT");
-	} else if (mgr->m_isBroken == 1) {
+	} else if (mgr->mIsBroken == 1) {
 		transit(mgr, CARDERROR_SerialNoError, nullptr);
 	}
 }
@@ -1800,7 +1800,7 @@ void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
  */
 void FSMState_NoCard::do_init(TMgr* mgr, Game::StateArg*)
 {
-	m_isClosed = false;
+	mIsClosed = false;
 	do_open(mgr);
 }
 
@@ -1811,14 +1811,14 @@ void FSMState_NoCard::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState_NoCard::do_exec(TMgr* mgr)
 {
-	u8 stat = static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus() == 0;
+	u8 stat = static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus() == 0;
 	if (stat) {
 		mgr->close();
-		m_isClosed = true;
+		mIsClosed = true;
 	}
 
 	if (mgr->TMemoryCard::isFinish()) {
-		if (m_isClosed) {
+		if (mIsClosed) {
 			do_transitOnCard(mgr);
 		} else {
 			do_transit(mgr);
@@ -1885,10 +1885,10 @@ lbl_803D2638:
  */
 TMgr::TMgr()
 {
-	m_counter = 0;
-	_29C      = 0;
-	m_stateMachine.init(this);
-	m_stateMachine.start(this, CARDERROR_Standby, nullptr);
+	mCounter = 0;
+	_29C     = 0;
+	mStateMachine.init(this);
+	mStateMachine.start(this, CARDERROR_Standby, nullptr);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1937,7 +1937,7 @@ TMgr::TMgr()
  */
 void Game::StateMachine<ebi::CardError::TMgr>::start(ebi::CardError::TMgr* mgr, int id, Game::StateArg* arg)
 {
-	mgr->m_currentState = nullptr;
+	mgr->mCurrentState = nullptr;
 	transit(mgr, id, arg);
 }
 
@@ -2275,16 +2275,16 @@ blr
  */
 TMemoryCard::TMemoryCard()
 {
-	m_state      = 0;
-	m_inputDelay = 0;
-	_0C          = 0;
-	m_msgAlpha   = 0;
-	m_alphaMod   = 0;
-	m_canExit    = 1;
-	m_paneMsg1   = nullptr;
-	m_paneMsg2   = nullptr;
-	m_paneMsg3   = nullptr;
-	m_paneMsg4   = nullptr;
+	mState      = 0;
+	mInputDelay = 0;
+	_0C         = 0;
+	mMsgAlpha   = 0;
+	mAlphaMod   = 0;
+	mCanExit    = 1;
+	mPaneMsg1   = nullptr;
+	mPaneMsg2   = nullptr;
+	mPaneMsg3   = nullptr;
+	mPaneMsg4   = nullptr;
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -2616,77 +2616,77 @@ namespace CardError {
  */
 void TMgr::startSeq(enumStart id)
 {
-	m_endStat  = 0;
+	mEndStat   = 0;
 	bool check = (int)id >= 0 && (int)id < 17;
 	P2ASSERTLINE(412, check);
 	switch (id) {
 	case Start_NoCard:
-		m_isBroken = 0;
-		m_stateMachine.start(this, CARDERROR_NoCard, nullptr);
+		mIsBroken = 0;
+		mStateMachine.start(this, CARDERROR_NoCard, nullptr);
 		break;
 	case Start_IOError:
-		m_isBroken = 0;
-		m_stateMachine.start(this, CARDERROR_IOError, nullptr);
+		mIsBroken = 0;
+		mStateMachine.start(this, CARDERROR_IOError, nullptr);
 		break;
 	case Start_WrongDevice:
-		m_isBroken = 0;
-		m_stateMachine.start(this, CARDERROR_WrongDevice, nullptr);
+		mIsBroken = 0;
+		mStateMachine.start(this, CARDERROR_WrongDevice, nullptr);
 		break;
 	case Start_WrongSector:
-		m_isBroken = 0;
-		m_stateMachine.start(this, CARDERROR_WrongSector, nullptr);
+		mIsBroken = 0;
+		mStateMachine.start(this, CARDERROR_WrongSector, nullptr);
 		break;
 	case Start_DataBrokenAndDoYouFormat:
-		m_isBroken = 0;
-		m_stateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
+		mIsBroken = 0;
+		mStateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 		break;
 	case Start_OverCapacity:
-		m_isBroken = 0;
-		m_stateMachine.start(this, CARDERROR_OverCapacity, nullptr);
+		mIsBroken = 0;
+		mStateMachine.start(this, CARDERROR_OverCapacity, nullptr);
 		break;
 	case Start_DoYouCreateNewFile:
-		m_isBroken = 0;
-		m_stateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
+		mIsBroken = 0;
+		mStateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
 		break;
 	case Start_NoCard2:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_NoCard, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_NoCard, nullptr);
 		break;
 	case Start_IOError2:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_IOError, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_IOError, nullptr);
 		break;
 	case Start_WrongDevice2:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_WrongDevice, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_WrongDevice, nullptr);
 		break;
 	case Start_WrongSector2:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_WrongSector, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_WrongSector, nullptr);
 		break;
 	case Start_DataBrokenAndDoYouFormat2:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 		break;
 	case Start_OverCapacity2:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_OverCapacity, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_OverCapacity, nullptr);
 		break;
 	case Start_DoYouCreateNewFile2:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
 		break;
 	case Start_SerialNoError:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_SerialNoError, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_SerialNoError, nullptr);
 		break;
 	case Start_FailToSave_NoCard:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_FailToSave_NoCard, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_FailToSave_NoCard, nullptr);
 		break;
 	case Start_FailToSave_IOError:
-		m_isBroken = 1;
-		m_stateMachine.start(this, CARDERROR_FailToSave_IOError, nullptr);
+		mIsBroken = 1;
+		mStateMachine.start(this, CARDERROR_FailToSave_IOError, nullptr);
 		break;
 	}
 }
@@ -2698,7 +2698,7 @@ void TMgr::startSeq(enumStart id)
  */
 void TMgr::forceQuitSeq()
 {
-	m_stateMachine.start(this, CARDERROR_Standby, nullptr);
+	mStateMachine.start(this, CARDERROR_Standby, nullptr);
 	killScreen();
 }
 
@@ -2709,8 +2709,8 @@ void TMgr::forceQuitSeq()
  */
 void TMgr::goEnd_(enumEnd end)
 {
-	m_endStat = end;
-	m_stateMachine.transit(this, CARDERROR_EmptyScreen, nullptr);
+	mEndStat = end;
+	mStateMachine.transit(this, CARDERROR_EmptyScreen, nullptr);
 }
 
 /*
@@ -2720,10 +2720,10 @@ void TMgr::goEnd_(enumEnd end)
  */
 void TMgr::checkAndTransitNoCard_()
 {
-	if (!m_isBroken) {
-		m_stateMachine.transit(this, CARDERROR_NoCard, nullptr);
-	} else if (m_isBroken == 1) {
-		m_stateMachine.transit(this, CARDERROR_NoCard, nullptr);
+	if (!mIsBroken) {
+		mStateMachine.transit(this, CARDERROR_NoCard, nullptr);
+	} else if (mIsBroken == 1) {
+		mStateMachine.transit(this, CARDERROR_NoCard, nullptr);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -2802,11 +2802,11 @@ lbl_803D3514:
  */
 void TMgr::update()
 {
-	m_stateMachine.exec(this);
+	mStateMachine.exec(this);
 	if (getStateID() != CARDERROR_Standby) {
 		TMemoryCard::update();
-		if (m_counter) {
-			m_counter--;
+		if (mCounter) {
+			mCounter--;
 		}
 	}
 }
@@ -2888,8 +2888,8 @@ void TMgr::showInfo(long, long, long, long)
  */
 int TMgr::getStateID()
 {
-	P2ASSERTLINE(760, m_currentState);
-	return m_currentState->m_id;
+	P2ASSERTLINE(760, mCurrentState);
+	return mCurrentState->mId;
 }
 
 /*

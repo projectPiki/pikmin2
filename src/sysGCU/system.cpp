@@ -76,11 +76,11 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 	}
 
 	char dest[4];
-	memcpy(dest, JFWSystem::mainThread->m_thread, 0x2C8);
+	memcpy(dest, JFWSystem::mainThread->mThread, 0x2C8);
 
-	void* unknown                               = 0;
-	JUTException::sErrorManager->m_stackPointer = unknown;
-	exCallbackObject.funcPtr                    = (u32*)preUserCallback;
+	void* unknown                              = 0;
+	JUTException::sErrorManager->mStackPointer = unknown;
+	exCallbackObject.funcPtr                   = (u32*)preUserCallback;
 
 	if (!JUTException::sErrorManager) {
 		OSReport("%s in \"%s\" on line %d\n", buffer, r4, line);
@@ -333,7 +333,7 @@ void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
  * Address:	80422204
  * Size:	00002C
  */
-void myTask(void* data) { sys->m_cardMgr->cardProc(data); }
+void myTask(void* data) { sys->mCardMgr->cardProc(data); }
 
 /*
  * --INFO--
@@ -342,10 +342,10 @@ void myTask(void* data) { sys->m_cardMgr->cardProc(data); }
  */
 System::FragmentationChecker::FragmentationChecker(char* name, bool)
 {
-	m_name    = name;
+	mName     = name;
 	u32 free  = getCurrentHeap()->getFreeSize();
 	u32 total = getCurrentHeap()->getTotalFreeSize();
-	m_size    = total - free;
+	mSize     = total - free;
 }
 
 /*
@@ -380,8 +380,8 @@ int System::assert_fragmentation(char*)
  */
 void System::enableCPULockDetector(int locks)
 {
-	m_cpuRetraceCount = 0;
-	m_cpuLockCount    = locks;
+	mCpuRetraceCount = 0;
+	mCpuLockCount    = locks;
 }
 
 /*
@@ -391,9 +391,9 @@ void System::enableCPULockDetector(int locks)
  */
 int System::disableCPULockDetector()
 {
-	int locks         = m_cpuLockCount;
-	m_cpuLockCount    = 0;
-	m_cpuRetraceCount = 0;
+	int locks        = mCpuLockCount;
+	mCpuLockCount    = 0;
+	mCpuRetraceCount = 0;
 	return locks;
 }
 
@@ -406,14 +406,14 @@ static const char aramStrmName[] = "aramStrm";
  */
 void retraceCallback(unsigned long)
 {
-	sys->m_cpuRetraceCount++;
+	sys->mCpuRetraceCount++;
 	if (DVDGetDriveStatus() == 1) {
-		sys->m_cpuRetraceCount = 0;
+		sys->mCpuRetraceCount = 0;
 	}
 
-	if ((int)sys->m_cpuLockCount > 0 && (int)sys->m_cpuRetraceCount > (int)sys->m_cpuLockCount) {
+	if ((int)sys->mCpuLockCount > 0 && (int)sys->mCpuRetraceCount > (int)sys->mCpuLockCount) {
 		sUseABXCommand = false;
-		OSReport("cpuLockCount %d retraceCount %d\n", sys->m_cpuLockCount, sys->m_cpuRetraceCount);
+		OSReport("cpuLockCount %d retraceCount %d\n", sys->mCpuLockCount, sys->mCpuRetraceCount);
 		kando_panic_f(1, "system/retrace", 0, "CPU LOCKED!");
 	}
 }
@@ -424,29 +424,29 @@ void retraceCallback(unsigned long)
  * Size:	00011C
  */
 System::System()
-    : m_sysHeap(nullptr)
-    , m_gameFlow(nullptr)
-    , m_dvdStatus(nullptr)
-    , m_display(nullptr)
-    , m_deltaTime(0.166667f)
-    , m_playData(nullptr)
-    , m_fpsFactor(1.0f)
-    , m_region(System::LANG_ENGLISH)
+    : mSysHeap(nullptr)
+    , mGameFlow(nullptr)
+    , mDvdStatus(nullptr)
+    , mDisplay(nullptr)
+    , mDeltaTime(0.166667f)
+    , mPlayData(nullptr)
+    , mFpsFactor(1.0f)
+    , mRegion(System::LANG_ENGLISH)
 {
 	sys            = this;
 	sUseABXCommand = true;
 	initCurrentHeapMutex();
 	JKRHeap* heap = getCurrentHeap();
-	m_sysHeap     = JKRExpHeap::create(0x428000, nullptr, true);
-	m_sysHeap->becomeCurrentHeap();
-	m_heapStatus = new HeapStatus;
+	mSysHeap      = JKRExpHeap::create(0x428000, nullptr, true);
+	mSysHeap->becomeCurrentHeap();
+	mHeapStatus = new HeapStatus;
 	construct();
 	heap->becomeCurrentHeap();
-	m_gfx = nullptr;
+	mGfx = nullptr;
 	JUTVideo::sManager->setPostRetraceCallback(retraceCallback);
-	m_flags.clear();
-	m_sysHeap->getTotalFreeSize();
-	m_sysHeap->getTotalFreeSize();
+	mFlags.clear();
+	mSysHeap->getTotalFreeSize();
+	mSysHeap->getTotalFreeSize();
 }
 
 /*
@@ -475,22 +475,22 @@ void System::construct()
 	_34 = 0;
 
 	heapStatusStart("DvdThread", nullptr);
-	m_dvdThread = new DvdThread(0x8000, 16, 29);
+	mDvdThread = new DvdThread(0x8000, 16, 29);
 	heapStatusEnd("DvdThread");
 
 	heapStatusStart("SysTimers", nullptr);
-	m_timers = new SysTimers;
+	mTimers = new SysTimers;
 	heapStatusEnd("SysTimers");
 
 	heapStatusStart("ResetManager", nullptr);
-	m_resetMgr = new ResetManager(0.5f);
+	mResetMgr = new ResetManager(0.5f);
 	heapStatusEnd("ResetManager");
 
-	m_cardMgr = new Game::MemoryCard::Mgr;
-	m_cardMgr->init();
+	mCardMgr = new Game::MemoryCard::Mgr;
+	mCardMgr->init();
 
-	m_task = JKRTask::create(1, 17, 0x4000, nullptr);
-	m_task->request(myTask, nullptr, nullptr);
+	mTask = JKRTask::create(1, 17, 0x4000, nullptr);
+	mTask->request(myTask, nullptr, nullptr);
 
 	heapStatusStart("ARAMMgr", nullptr);
 	ARAM::Mgr::init();
@@ -501,11 +501,11 @@ void System::construct()
 	Resource::Mgr2D::init(getCurrentHeap());
 	heapStatusEnd("ResourceMgr2D");
 
-	m_playData  = new Game::CommonSaveData::Mgr;
-	m_dvdStatus = new DvdStatus;
+	mPlayData  = new Game::CommonSaveData::Mgr;
+	mDvdStatus = new DvdStatus;
 	LoadResource::Mgr::init();
 
-	m_gameFlow = new GameFlow;
+	mGameFlow = new GameFlow;
 
 	heapStatusEnd("construct");
 }
@@ -520,17 +520,17 @@ void System::constructWithDvdAccessFirst()
 	P2ASSERTLINE(1013, getCurrentHeap()->getHeapType() == 'EXPH');
 
 	JKRHeap* old = getCurrentHeap();
-	m_sysHeap->becomeCurrentHeap();
+	mSysHeap->becomeCurrentHeap();
 
 	heapStatusStart("constructWithDvdAccess1st", nullptr);
 	Game::gGameConfig.load("gameConfig.ini");
 	createSoundSystem();
 	heapStatusEnd("constructWithDvdAccess1st");
 
-	m_sysHeap->getTotalFreeSize();
-	m_sysHeap->getTotalFreeSize();
-	m_sysHeap->getFreeSize();
-	m_sysHeap->getFreeSize();
+	mSysHeap->getTotalFreeSize();
+	mSysHeap->getTotalFreeSize();
+	mSysHeap->getFreeSize();
+	mSysHeap->getFreeSize();
 	old->becomeCurrentHeap();
 	heapStatusDump(true);
 }
@@ -547,7 +547,7 @@ void System::constructWithDvdAccessSecond()
 	P2ASSERTLINE(1064, getCurrentHeap()->getHeapType() == 'EXPH');
 
 	JKRExpHeap* old = static_cast<JKRExpHeap*>(getCurrentHeap());
-	m_sysHeap->becomeCurrentHeap();
+	mSysHeap->becomeCurrentHeap();
 
 	heapStatusStart("constructWithDvdAccess2nd", nullptr);
 	heapStatusStart("P2JME::Mgr", nullptr);
@@ -559,10 +559,10 @@ void System::constructWithDvdAccessSecond()
 	Game::MovieList::construct();
 	heapStatusEnd("constructWithDvdAccess2nd");
 
-	m_sysHeap->getTotalFreeSize();
-	m_sysHeap->getTotalFreeSize();
-	m_sysHeap->getFreeSize();
-	m_sysHeap->getFreeSize();
+	mSysHeap->getTotalFreeSize();
+	mSysHeap->getTotalFreeSize();
+	mSysHeap->getFreeSize();
+	mSysHeap->getFreeSize();
 	old->becomeCurrentHeap();
 	heapStatusDump(true);
 }
@@ -572,7 +572,7 @@ void System::constructWithDvdAccessSecond()
  * Address:	80422920
  * Size:	000054
  */
-void System::createRomFont(JKRHeap* heap) { m_romFont = new JUTRomFont(heap); }
+void System::createRomFont(JKRHeap* heap) { mRomFont = new JUTRomFont(heap); }
 
 /*
  * --INFO--
@@ -581,8 +581,8 @@ void System::createRomFont(JKRHeap* heap) { m_romFont = new JUTRomFont(heap); }
  */
 void System::destroyRomFont()
 {
-	delete m_romFont;
-	m_romFont = nullptr;
+	delete mRomFont;
+	mRomFont = nullptr;
 }
 
 /*
@@ -598,7 +598,7 @@ void System::createSoundSystem()
 	P2ASSERTLINE(1158, getCurrentHeap());
 	P2ASSERTLINE(1161, gResMgr2D);
 
-	JKRHeap* resHeap    = gResMgr2D->m_heap;
+	JKRHeap* resHeap    = gResMgr2D->mHeap;
 	u32 size            = resHeap->getFreeSize();
 	JKRExpHeap* newheap = JKRExpHeap::create(size, resHeap, true);
 
@@ -611,10 +611,10 @@ void System::createSoundSystem()
 	P2ASSERTLINE(1173, file);
 
 	PSM::Factory* factory = new PSM::Factory;
-	factory->m_makeSeFunc = PSM::SeSound::makeSeSound;
-	factory->m_heap       = old;
-	factory->m_heapSize   = 0x900000;
-	factory->m_aafFile    = file;
+	factory->mMakeSeFunc  = PSM::SeSound::makeSeSound;
+	factory->mHeap        = old;
+	factory->mHeapSize    = 0x900000;
+	factory->mAafFile     = file;
 	factory->newSoundSystem();
 
 	JKRSolidHeap* newheap2 = JKRSolidHeap::create(old->getFreeSize(), old, true);
@@ -770,7 +770,7 @@ void System::loadSoundResource()
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
-	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->m_scenes);
+	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
 	P2ASSERTLINE(1245, scene);
 
 	scene->scene1stLoadSync();
@@ -893,8 +893,8 @@ void System::initialize()
 
 	// renderMode = getRenderModeObj();
 	JFWSystem::init();
-	JUTException::sErrorManager->_84       = -1;
-	JUTException::sErrorManager->m_padPort = JUTGamePad::PORT_INVALID;
+	JUTException::sErrorManager->_84      = -1;
+	JUTException::sErrorManager->mPadPort = JUTGamePad::PORT_INVALID;
 	// JUTException::setPreUserCallback(preUserCallback);
 	JUTException::sErrorManager->_90 = 0;
 	JUTException::sErrorManager->_8C = 0;
@@ -978,9 +978,9 @@ void System::initialize()
  */
 void System::loadResourceFirst()
 {
-	Delegate<System>* delegate = new (m_sysHeap, 0) Delegate<System>(this, &constructWithDvdAccessFirst);
+	Delegate<System>* delegate = new (mSysHeap, 0) Delegate<System>(this, &constructWithDvdAccessFirst);
 
-	dvdLoadUseCallBack(&m_threadCommand, delegate);
+	dvdLoadUseCallBack(&mThreadCommand, delegate);
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1031,9 +1031,9 @@ void System::loadResourceFirst()
  */
 void System::loadResourceSecond()
 {
-	Delegate<System>* delegate = new (m_sysHeap, 0) Delegate<System>(this, &constructWithDvdAccessSecond);
+	Delegate<System>* delegate = new (mSysHeap, 0) Delegate<System>(this, &constructWithDvdAccessSecond);
 
-	dvdLoadUseCallBack(&m_threadCommand, delegate);
+	dvdLoadUseCallBack(&mThreadCommand, delegate);
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1084,7 +1084,7 @@ void System::loadResourceSecond()
  */
 int System::run()
 {
-	m_gameFlow->run();
+	mGameFlow->run();
 	return EXIT_SUCCESS;
 }
 
@@ -1137,21 +1137,21 @@ void System::checkOptionBlockSaveFlag()
  * Address:	80422F10
  * Size:	000010
  */
-void System::clearOptionBlockSaveFlag() { m_playData->m_challengeOpen = false; }
+void System::clearOptionBlockSaveFlag() { mPlayData->mChallengeOpen = false; }
 
 /*
  * --INFO--
  * Address:	80422F20
  * Size:	000010
  */
-void System::setOptionBlockSaveFlag() { m_playData->m_challengeOpen = true; }
+void System::setOptionBlockSaveFlag() { mPlayData->mChallengeOpen = true; }
 
 /*
  * --INFO--
  * Address:	80422F30
  * Size:	000008
  */
-Game::CommonSaveData::Mgr* System::getPlayCommonData() { return m_playData; }
+Game::CommonSaveData::Mgr* System::getPlayCommonData() { return mPlayData; }
 
 /*
  * --INFO--
@@ -1160,9 +1160,9 @@ Game::CommonSaveData::Mgr* System::getPlayCommonData() { return m_playData; }
  */
 void System::dvdLoadUseCallBack(DvdThreadCommand* command, IDelegate* delegate)
 {
-	if (m_dvdThread) {
+	if (mDvdThread) {
 		// command->loadUseCallBack(delegate);
-		m_dvdThread->sendCommand(command);
+		mDvdThread->sendCommand(command);
 	}
 	/*
 	    stwu     r1, -0x10(r1)
@@ -1249,9 +1249,9 @@ void System::dvdLoadSyncAll(DvdThread::ESyncBlockFlag)
  */
 void System::deleteThreads()
 {
-	if (m_dvdThread) {
-		delete m_dvdThread;
-		m_dvdThread = nullptr;
+	if (mDvdThread) {
+		delete mDvdThread;
+		mDvdThread = nullptr;
 	}
 }
 
@@ -1262,8 +1262,8 @@ void System::deleteThreads()
  */
 JFWDisplay* System::setCurrentDisplay(JFWDisplay* display)
 {
-	JFWDisplay* old = m_display;
-	m_display       = display;
+	JFWDisplay* old = mDisplay;
+	mDisplay        = display;
 	return old;
 }
 
@@ -1274,8 +1274,8 @@ JFWDisplay* System::setCurrentDisplay(JFWDisplay* display)
  */
 u32 System::clearCurrentDisplay(JFWDisplay* display)
 {
-	if (m_display == display) {
-		m_display = nullptr;
+	if (mDisplay == display) {
+		mDisplay = nullptr;
 	}
 	return 0;
 }
@@ -1287,9 +1287,9 @@ u32 System::clearCurrentDisplay(JFWDisplay* display)
  */
 bool System::beginFrame()
 {
-	m_cpuRetraceCount = 0;
+	mCpuRetraceCount = 0;
 	JUTGamePad::read();
-	m_dvdStatus->update();
+	mDvdStatus->update();
 }
 
 /*
@@ -1299,9 +1299,9 @@ bool System::beginFrame()
  */
 void System::endFrame()
 {
-	m_display->endFrame();
+	mDisplay->endFrame();
 	inactiveGP();
-	m_resetMgr->update();
+	mResetMgr->update();
 	if (JKRThreadSwitch::sManager) {
 		JKRThreadSwitch::sManager->loopProc();
 	}
@@ -1316,7 +1316,7 @@ void System::beginRender()
 {
 	activeGP();
 	CARDProbe(0);
-	m_display->beginRender();
+	mDisplay->beginRender();
 }
 
 /*
@@ -1328,13 +1328,13 @@ void System::endRender()
 {
 	PSSystem::SysIF* sysif;
 	if (sysif = PSSystem::spSysIF) {
-		sys->m_timers->_start("sound", true);
+		sys->mTimers->_start("sound", true);
 		sysif->mainLoop();
-		sys->m_timers->_stop("sound");
+		sys->mTimers->_stop("sound");
 	}
-	m_dvdStatus->draw();
-	m_resetMgr->draw();
-	m_display->endRender();
+	mDvdStatus->draw();
+	mResetMgr->draw();
+	mDisplay->endRender();
 }
 
 /*
@@ -1520,10 +1520,10 @@ void System::heapStatusDumpNode()
  */
 void System::resetOn(bool flag)
 {
-	ResetManager* mgr = m_resetMgr;
-	mgr->m_flags.typeView |= 1;
+	ResetManager* mgr = mResetMgr;
+	mgr->mFlags.typeView |= 1;
 	if (flag) {
-		mgr->m_flags.typeView |= 8;
+		mgr->mFlags.typeView |= 8;
 	}
 }
 
@@ -1542,35 +1542,35 @@ void System::resetOff()
  * Address:	8042339C
  * Size:	000014
  */
-void System::resetPermissionOn() { m_resetMgr->m_flags.typeView |= 0x10000000; }
+void System::resetPermissionOn() { mResetMgr->mFlags.typeView |= 0x10000000; }
 
 /*
  * --INFO--
  * Address:	804233B0
  * Size:	000018
  */
-bool System::isResetActive() { return m_resetMgr->m_state; }
+bool System::isResetActive() { return mResetMgr->mState; }
 
 /*
  * --INFO--
  * Address:	804233C8
  * Size:	000014
  */
-void System::activeGP() { m_resetMgr->m_flags.typeView |= 2; }
+void System::activeGP() { mResetMgr->mFlags.typeView |= 2; }
 
 /*
  * --INFO--
  * Address:	804233DC
  * Size:	000014
  */
-void System::inactiveGP() { m_resetMgr->m_flags.typeView &= ~2; }
+void System::inactiveGP() { mResetMgr->mFlags.typeView &= ~2; }
 
 /*
  * --INFO--
  * Address:	804233F0
  * Size:	000024
  */
-bool System::isDvdErrorOccured() { return m_dvdStatus->isErrorOccured(); }
+bool System::isDvdErrorOccured() { return mDvdStatus->isErrorOccured(); }
 
 /*
  * --INFO--
@@ -1580,7 +1580,7 @@ bool System::isDvdErrorOccured() { return m_dvdStatus->isErrorOccured(); }
 void System::initCurrentHeapMutex()
 {
 	OSInitMutex(this);
-	m_backupHeap = nullptr;
+	mBackupHeap = nullptr;
 }
 
 /*
@@ -1591,8 +1591,8 @@ void System::initCurrentHeapMutex()
 void System::startChangeCurrentHeap(JKRHeap* newheap)
 {
 	OSLockMutex(this);
-	P2ASSERTLINE(2033, !m_backupHeap);
-	m_backupHeap = getCurrentHeap();
+	P2ASSERTLINE(2033, !mBackupHeap);
+	mBackupHeap = getCurrentHeap();
 	newheap->becomeCurrentHeap();
 }
 
@@ -1603,9 +1603,9 @@ void System::startChangeCurrentHeap(JKRHeap* newheap)
  */
 void System::endChangeCurrentHeap()
 {
-	P2ASSERTLINE(2041, m_backupHeap);
-	m_backupHeap->becomeCurrentHeap();
-	m_backupHeap = nullptr;
+	P2ASSERTLINE(2041, mBackupHeap);
+	mBackupHeap->becomeCurrentHeap();
+	mBackupHeap = nullptr;
 	OSUnlockMutex(this);
 }
 
@@ -1637,12 +1637,12 @@ void System::refreshGenNode() { }
  */
 void System::setFrameRate(int newFactor)
 {
-	JFWDisplay* display = m_display;
+	JFWDisplay* display = mDisplay;
 	JUT_ASSERTLINE(2343, display, "no display\n");
-	m_fpsFactor                   = (f32)newFactor;
-	m_deltaTime                   = m_fpsFactor / 60.0f;
-	display->m_secondsPer60Frames = newFactor;
-	display->_20                  = 0;
+	mFpsFactor                   = (f32)newFactor;
+	mDeltaTime                   = mFpsFactor / 60.0f;
+	display->mSecondsPer60Frames = newFactor;
+	display->_20                 = 0;
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1713,7 +1713,7 @@ void System::forceFinishSection()
  */
 bool System::dvdLoadSyncNoBlock(DvdThreadCommand* command)
 {
-	DvdThread* thread = m_dvdThread;
+	DvdThread* thread = mDvdThread;
 
 	bool check;
 	if (thread) {
@@ -1723,7 +1723,7 @@ bool System::dvdLoadSyncNoBlock(DvdThreadCommand* command)
 	}
 
 	if (check) {
-		check = m_dvdStatus->isErrorOccured();
+		check = mDvdStatus->isErrorOccured();
 	}
 	return check;
 	/*
@@ -1767,11 +1767,11 @@ bool System::dvdLoadSyncNoBlock(DvdThreadCommand* command)
  */
 int System::dvdLoadSyncAllNoBlock()
 {
-	if (m_dvdStatus->isErrorOccured()) {
+	if (mDvdStatus->isErrorOccured()) {
 		return -1;
 	} else {
-		if (m_dvdThread) {
-			return m_dvdThread->syncAll((DvdThread::ESyncBlockFlag)1);
+		if (mDvdThread) {
+			return mDvdThread->syncAll((DvdThread::ESyncBlockFlag)1);
 		} else {
 			return 0;
 		}

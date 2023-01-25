@@ -9,7 +9,7 @@
     Generated from dpostproc
 
     .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_JKRAram_cpp
+    .4byte __sinit_JKRAramCpp
 
     .section .rodata  # 0x804732E0 - 0x8049E220
     .global lbl_80473480
@@ -156,7 +156,7 @@ JKRAram* JKRAram::create(u32 p1, u32 p2, long p3, long p4, long p5)
 	}
 	JKRAramStream::create(p3);
 	JKRDecomp::create(p4);
-	OSResumeThread(sAramObject->m_thread);
+	OSResumeThread(sAramObject->mThread);
 	return sAramObject;
 	/*
 	stwu     r1, -0x20(r1)
@@ -211,7 +211,7 @@ lbl_80017A70:
 JKRAram::JKRAram(u32 p1, u32 p2, long threadPriority)
     : JKRThread(0x4000, 0x10, threadPriority)
 {
-	void* arStackPointer = ARInit(&m_blockLength, 3);
+	void* arStackPointer = ARInit(&mBlockLength, 3);
 	ARQInit();
 	u32 size = ARGetSize();
 	_80      = p1;
@@ -229,7 +229,7 @@ JKRAram::JKRAram(u32 p1, u32 p2, long threadPriority)
 	} else {
 		_8C = 0;
 	}
-	m_aramHeap = new (JKRHeap::sSystemHeap, 0) JKRAramHeap(_84, _88);
+	mAramHeap = new (JKRHeap::sSystemHeap, 0) JKRAramHeap(_84, _88);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1441,7 +1441,7 @@ lbl_8001889C:
  * Address:	800188C0
  * Size:	000044
  */
-void __sinit_JKRAram_cpp()
+void __sinit_JKRAramCpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

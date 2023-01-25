@@ -43,28 +43,28 @@ typedef int (*__io_proc)(__file_handle file, char* buff, size_t* count, __ref_co
 typedef int (*__close_proc)(__file_handle file);
 
 struct _IO_FILE {
-	__file_handle m_handle;                           // _00
-	file_modes m_mode;                                // _04
-	file_states m_state;                              // _08
-	u8 m_isDynamicallyAllocated;                      // _0C
-	u8 m_charBuffer;                                  // _0D
-	u8 m_charBufferOverflow;                          // _0E
-	u8 m_ungetcBuffer[__ungetc_buffer_size];          // _0F
-	wchar_t m_ungetcWideBuffer[__ungetc_buffer_size]; // _12
-	u32 m_position;                                   // _18
-	char* m_buffer;                                   // _1C
-	u32 m_bufferSize;                                 // _20
-	char* m_bufferPtr;                                // _24
-	u32 m_bufferLength;                               // _28
-	u32 m_bufferAlignment;                            // _2C
-	u32 m_bufferLength2;                              // _30
-	u32 m_bufferPosition;                             // _34
-	__pos_proc positionFunc;                          // _38
-	__io_proc readFunc;                               // _3C
-	__io_proc writeFunc;                              // _40
-	__close_proc closeFunc;                           // _44
-	__ref_con ref_con;                                // _48
-	_IO_FILE* m_nextFile;                             // _4C
+	__file_handle mHandle;                           // _00
+	file_modes mMode;                                // _04
+	file_states mState;                              // _08
+	u8 mIsDynamicallyAllocated;                      // _0C
+	u8 mCharBuffer;                                  // _0D
+	u8 mCharBufferOverflow;                          // _0E
+	u8 mUngetcBuffer[__ungetc_buffer_size];          // _0F
+	wchar_t mUngetcWideBuffer[__ungetc_buffer_size]; // _12
+	u32 mPosition;                                   // _18
+	char* mBuffer;                                   // _1C
+	u32 mBufferSize;                                 // _20
+	char* mBufferPtr;                                // _24
+	u32 mBufferLength;                               // _28
+	u32 mBufferAlignment;                            // _2C
+	u32 mBufferLength2;                              // _30
+	u32 mBufferPosition;                             // _34
+	__pos_proc positionFunc;                         // _38
+	__io_proc readFunc;                              // _3C
+	__io_proc writeFunc;                             // _40
+	__close_proc closeFunc;                          // _44
+	__ref_con ref_con;                               // _48
+	_IO_FILE* mNextFile;                             // _4C
 };
 
 typedef struct _IO_FILE FILE;

@@ -23,8 +23,8 @@ const char* filler1 = "dvdStatus";
  */
 DvdStatus::DvdStatus()
 {
-	m_fader = nullptr;
-	_00     = -1;
+	mFader = nullptr;
+	_00    = -1;
 }
 
 /*
@@ -35,7 +35,7 @@ DvdStatus::DvdStatus()
 bool DvdStatus::isErrorOccured()
 {
 	bool retval = false;
-	if (!((m_fader == nullptr) || (sys->m_cardMgr->_E4 & 1))) {
+	if (!((mFader == nullptr) || (sys->mCardMgr->_E4 & 1))) {
 		retval = true;
 	}
 	return retval;
@@ -64,13 +64,13 @@ bool DvdStatus::update()
 	} else {
 		_00 = -1;
 	}
-	if (m_fader == nullptr) {
+	if (mFader == nullptr) {
 		if (0 < _00) {
-			JFWDisplay* display = sys->m_display;
+			JFWDisplay* display = sys->mDisplay;
 
 			if (display) {
-				m_fader          = display->m_fader;
-				display->m_fader = nullptr;
+				mFader          = display->mFader;
+				display->mFader = nullptr;
 			} else {
 				JUT_PANICLINE(170, "no display.\n");
 			}
@@ -84,11 +84,11 @@ bool DvdStatus::update()
 		}
 	} else {
 		if (_00 == -1) {
-			JFWDisplay* display = sys->m_display;
+			JFWDisplay* display = sys->mDisplay;
 			if (display) {
-				JUT_ASSERTLINE(197, display->m_fader == nullptr, "display changed !\n");
-				display->m_fader = m_fader;
-				m_fader          = nullptr;
+				JUT_ASSERTLINE(197, display->mFader == nullptr, "display changed !\n");
+				display->mFader = mFader;
+				mFader          = nullptr;
 			} else {
 				JUT_PANICLINE(204, "no display.\n");
 			}
@@ -97,7 +97,7 @@ bool DvdStatus::update()
 			ebi::Save::TMgr::onDvdErrorRecovered();
 		}
 	}
-	return m_fader != nullptr;
+	return mFader != nullptr;
 }
 
 /*
@@ -108,24 +108,24 @@ bool DvdStatus::update()
 void DvdStatus::draw()
 {
 	if (isErrorOccured()) {
-		sys->m_gfx->setupJ2DOrthoGraphDefault();
-		sys->m_gfx->m_orthoGraph.setPort();
+		sys->mGfx->setupJ2DOrthoGraphDefault();
+		sys->mGfx->mOrthoGraph.setPort();
 
-		J2DFillBox(0.0f, 0.0f, JUTVideo::sManager->m_renderModeObj->fbWidth, JUTVideo::sManager->m_renderModeObj->efbHeight,
+		J2DFillBox(0.0f, 0.0f, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight,
 		           JUtility::TColor(0, 0, 0x80, 0xFF));
 		J2DPrint print(nullptr, 0.0f);
 
 		if (gP2JMEMgr && gP2JMEMgr->_28) {
-			print.setFont((JUTFont*)gP2JMEMgr->m_font);
-		} else if (sys->m_romFont) {
-			print.setFont((JUTFont*)sys->m_romFont);
+			print.setFont((JUTFont*)gP2JMEMgr->mFont);
+		} else if (sys->mRomFont) {
+			print.setFont((JUTFont*)sys->mRomFont);
 		} else {
 			JUT_ASSERTLINE(279, false, "no ROM font\n");
 		}
 
 		char** errorMsgSet;
-		if (print.m_font) {
-			switch (sys->m_region) {
+		if (print.mFont) {
+			switch (sys->mRegion) {
 			case LANG_ENGLISH:
 				errorMsgSet = DvdError::gMessage_eng;
 				break;
@@ -145,14 +145,14 @@ void DvdStatus::draw()
 				errorMsgSet = DvdError::gMessage_spa;
 				break;
 			default:
-				JUT_PANICLINE(294, "unknown language. %d", sys->m_region);
+				JUT_PANICLINE(294, "unknown language. %d", sys->mRegion);
 				break;
 			}
 
 			print.initiate();
 
-			print.m_charColor.set(TCOLOR_WHITE);
-			print.m_gradientColor.set(TCOLOR_WHITE);
+			print.mCharColor.set(TCOLOR_WHITE);
+			print.mGradientColor.set(TCOLOR_WHITE);
 
 			print.print(40.0f, 200.0f, errorMsgSet[_00]);
 		}

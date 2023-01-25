@@ -100,9 +100,9 @@ void BirthCounter::reset()
 {
 	// UNUSED FUNCTION
 	for (int i = 0; i < PikiColorCount - 1; i++) {
-		m_counts[i] = 0;
+		mCounts[i] = 0;
 	}
-	m_total = 0;
+	mTotal = 0;
 }
 
 /*
@@ -114,14 +114,14 @@ int& BirthCounter::operator()(int pikiColor)
 {
 	// UNUSED FUNCTION
 	if (pikiColor == LastStoredPikiColor + 1) {
-		int& v  = m_total;
-		m_total = 0;
+		int& v = mTotal;
+		mTotal = 0;
 		for (int i = 0; i <= LastStoredPikiColor; i++) {
-			m_total += m_counts[i];
+			mTotal += mCounts[i];
 		}
 		return v;
 	} else {
-		return m_counts[pikiColor];
+		return mCounts[pikiColor];
 	}
 }
 
@@ -134,7 +134,7 @@ void BirthCounter::read(Stream& input)
 {
 	// UNUSED FUNCTION
 	for (int i = 0; i < PikiColorCount - 1; i++) {
-		m_counts[i] = input.readInt();
+		mCounts[i] = input.readInt();
 	}
 }
 
@@ -148,8 +148,8 @@ void BirthCounter::write(Stream& output)
 	// UNUSED FUNCTION
 	output.textBeginGroup("BirthCoutner");
 	for (int i = 0; i < PikiColorCount - 1; i++) {
-		output.textWriteTab(output.m_tabCount);
-		output.writeInt(m_counts[i]);
+		output.textWriteTab(output.mTabCount);
+		output.writeInt(mCounts[i]);
 		output.textWriteText("\r\n");
 	}
 	output.textEndGroup();
@@ -186,7 +186,7 @@ void BirthMgr::clear()
 void BirthMgr::inc(int pikiColor)
 {
 	if (0 <= pikiColor && pikiColor <= LastStoredPikiColor) {
-		if (gameSystem->m_isInCave) {
+		if (gameSystem->mIsInCave) {
 			inc_cave(pikiColor);
 		} else {
 			inc_today(pikiColor);
@@ -203,7 +203,7 @@ void BirthMgr::inc(int pikiColor)
 void BirthMgr::dec(int pikiColor)
 {
 	if (0 <= pikiColor && pikiColor <= LastStoredPikiColor) {
-		if (gameSystem->m_isInCave) {
+		if (gameSystem->mIsInCave) {
 			dec_cave(pikiColor);
 		} else {
 			dec_today(pikiColor);
@@ -390,9 +390,9 @@ void DeathCounter::reset()
 {
 	// UNUSED FUNCTION
 	for (int i = 0; i <= COD_SourceCount; i++) {
-		m_counts[i] = 0;
+		mCounts[i] = 0;
 	}
-	m_total = 0;
+	mTotal = 0;
 }
 
 /*
@@ -404,15 +404,15 @@ int& DeathCounter::operator()(int cod)
 {
 	// UNUSED FUNCTION
 	if (cod == COD_SourceCount) {
-		int& v  = m_total;
-		m_total = 0;
+		int& v = mTotal;
+		mTotal = 0;
 		for (int i = 0; i < COD_SourceCount; i++) {
-			m_total += m_counts[i];
+			mTotal += mCounts[i];
 		}
 		return v;
 	} else {
 		P2ASSERTBOUNDSINCLUSIVELINE(338, 0, cod, COD_SourceCount);
-		return m_counts[cod];
+		return mCounts[cod];
 	}
 }
 
@@ -425,7 +425,7 @@ void DeathCounter::read(Stream& input)
 {
 	// UNUSED FUNCTION
 	for (int i = 0; i < COD_SourceCount + 1; i++) {
-		m_counts[i] = input.readInt();
+		mCounts[i] = input.readInt();
 	}
 }
 
@@ -439,8 +439,8 @@ void DeathCounter::write(Stream& output)
 	// UNUSED FUNCTION
 	output.textBeginGroup("DeathCoutner");
 	for (int i = 0; i < COD_SourceCount + 1; i++) {
-		output.textWriteTab(output.m_tabCount);
-		output.writeInt(m_counts[i]);
+		output.textWriteTab(output.mTabCount);
+		output.writeInt(mCounts[i]);
 		output.textWriteText("\r\n");
 	}
 	output.textEndGroup();
@@ -478,8 +478,8 @@ void DeathMgr::clear()
  */
 void DeathMgr::inc(int cod)
 {
-	if (gameSystem == nullptr || (gameSystem->m_flags & 0x10) == 0 || cod == DeathCounter::COD_Unknown1 || cod == DeathCounter::COD_All) {
-		if (gameSystem->m_isInCave) {
+	if (gameSystem == nullptr || (gameSystem->mFlags & 0x10) == 0 || cod == DeathCounter::COD_Unknown1 || cod == DeathCounter::COD_All) {
+		if (gameSystem->mIsInCave) {
 			inc_cave(cod);
 		} else {
 			inc_today(cod);

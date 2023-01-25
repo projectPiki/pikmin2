@@ -748,8 +748,8 @@ J3DIndTexCoordScale::J3DIndTexCoordScale()
  * __ct__14J3DIndTexOrderFv
  */
 // J3DIndTexOrder::J3DIndTexOrder()
-//     : m_texCoordID(j3dDefaultIndTexOrderNull.m_texCoordID)
-//     , m_texMapID(j3dDefaultIndTexOrderNull.m_texMapID)
+//     : mTexCoordID(j3dDefaultIndTexOrderNull.mTexCoordID)
+//     , mTexMapID(j3dDefaultIndTexOrderNull.mTexMapID)
 // {
 // 	/*
 // 	lbz      r0, j3dDefaultIndTexOrderNull@sda21(r2)
@@ -1095,21 +1095,21 @@ u32 J3DMaterial::calcSizePEBlock(unsigned long flags, unsigned long p2)
  */
 void J3DMaterial::initialize()
 {
-	m_shape       = nullptr;
-	_04           = nullptr;
-	m_joint       = nullptr;
-	_10           = 1;
-	_14           = 0xFFFF;
-	_18           = 0;
-	_20           = 0;
-	m_colorBlock  = nullptr;
-	m_texGenBlock = nullptr;
-	m_tevBlock    = nullptr;
-	m_indBlock    = nullptr;
-	m_peBlock     = nullptr;
-	_38           = nullptr;
-	_3C           = nullptr;
-	_48           = nullptr;
+	mShape       = nullptr;
+	_04          = nullptr;
+	mJoint       = nullptr;
+	_10          = 1;
+	_14          = 0xFFFF;
+	_18          = 0;
+	_20          = 0;
+	mColorBlock  = nullptr;
+	mTexGenBlock = nullptr;
+	mTevBlock    = nullptr;
+	mIndBlock    = nullptr;
+	mPeBlock     = nullptr;
+	_38          = nullptr;
+	_3C          = nullptr;
+	_48          = nullptr;
 }
 
 /*
@@ -1120,8 +1120,8 @@ void J3DMaterial::initialize()
  */
 u32 J3DMaterial::countDLSize()
 {
-	return ALIGN_NEXT(+m_colorBlock->countDLSize() + m_texGenBlock->countDLSize() + m_tevBlock->countDLSize() + m_indBlock->countDLSize()
-	                      + m_peBlock->countDLSize(),
+	return ALIGN_NEXT(+mColorBlock->countDLSize() + mTexGenBlock->countDLSize() + mTevBlock->countDLSize() + mIndBlock->countDLSize()
+	                      + mPeBlock->countDLSize(),
 	                  0x20);
 }
 
@@ -1202,20 +1202,20 @@ void J3DTevBlock::load() { }
  */
 void J3DMaterial::makeDisplayList()
 {
-	if ((j3dSys.m_matPacket->_10 & 1) != 0) {
+	if ((j3dSys.mMatPacket->_10 & 1) != 0) {
 		return;
 	}
-	j3dSys.m_matPacket->_34 = _20;
-	J3DDisplayListObj* dl   = j3dSys.m_matPacket->m_displayList;
+	j3dSys.mMatPacket->_34 = _20;
+	J3DDisplayListObj* dl  = j3dSys.mMatPacket->mDisplayList;
 	dl->beginDL();
-	m_tevBlock->load();
-	m_indBlock->load();
-	m_peBlock->load();
-	J3DGDSetGenMode(m_texGenBlock->getTexGenNum(), m_colorBlock->getColorChanNum(), m_tevBlock->getTevStageNum(),
-	                m_indBlock->getIndTexStageNum(), (_GXCullMode)m_colorBlock->getCullMode());
-	m_texGenBlock->load();
-	m_colorBlock->load();
-	u8 colorChanNum = m_colorBlock->getColorChanNum();
+	mTevBlock->load();
+	mIndBlock->load();
+	mPeBlock->load();
+	J3DGDSetGenMode(mTexGenBlock->getTexGenNum(), mColorBlock->getColorChanNum(), mTevBlock->getTevStageNum(),
+	                mIndBlock->getIndTexStageNum(), (_GXCullMode)mColorBlock->getCullMode());
+	mTexGenBlock->load();
+	mColorBlock->load();
+	u8 colorChanNum = mColorBlock->getColorChanNum();
 	__GDWrite(0x10);
 	__GDWrite(0x00);
 	__GDWrite(0x00);
@@ -1225,7 +1225,7 @@ void J3DMaterial::makeDisplayList()
 	__GDWrite(0x00);
 	__GDWrite(0x00);
 	__GDWrite(colorChanNum);
-	u8 texGenNum = m_texGenBlock->getTexGenNum();
+	u8 texGenNum = mTexGenBlock->getTexGenNum();
 	__GDWrite(0x10);
 	__GDWrite(0x00);
 	__GDWrite(0x00);
@@ -1247,14 +1247,14 @@ void J3DMaterial::makeSharedDisplayList()
 {
 	J3DDisplayListObj* dl = _48;
 	dl->beginDL();
-	m_tevBlock->load();
-	m_indBlock->load();
-	m_peBlock->load();
-	J3DGDSetGenMode(m_texGenBlock->getTexGenNum(), m_colorBlock->getColorChanNum(), m_tevBlock->getTevStageNum(),
-	                m_indBlock->getIndTexStageNum(), (_GXCullMode)m_colorBlock->getCullMode());
-	m_texGenBlock->load();
-	m_colorBlock->load();
-	u8 colorChanNum = m_colorBlock->getColorChanNum();
+	mTevBlock->load();
+	mIndBlock->load();
+	mPeBlock->load();
+	J3DGDSetGenMode(mTexGenBlock->getTexGenNum(), mColorBlock->getColorChanNum(), mTevBlock->getTevStageNum(),
+	                mIndBlock->getIndTexStageNum(), (_GXCullMode)mColorBlock->getCullMode());
+	mTexGenBlock->load();
+	mColorBlock->load();
+	u8 colorChanNum = mColorBlock->getColorChanNum();
 	__GDWrite(0x10);
 	__GDWrite(0x00);
 	__GDWrite(0x00);
@@ -1264,7 +1264,7 @@ void J3DMaterial::makeSharedDisplayList()
 	__GDWrite(0x00);
 	__GDWrite(0x00);
 	__GDWrite(colorChanNum);
-	u8 texGenNum = m_texGenBlock->getTexGenNum();
+	u8 texGenNum = mTexGenBlock->getTexGenNum();
 	__GDWrite(0x10);
 	__GDWrite(0x00);
 	__GDWrite(0x00);
@@ -1287,7 +1287,7 @@ void J3DMaterial::load()
 {
 	j3dSys._54 = _10;
 	if ((j3dSys._34 & 2) == 0) {
-		loadNBTScale(*m_texGenBlock->getNBTScale());
+		loadNBTScale(*mTexGenBlock->getNBTScale());
 	}
 }
 
@@ -1309,7 +1309,7 @@ void J3DMaterial::loadSharedDL()
 	j3dSys._54 = _10;
 	if ((j3dSys._34 & 2) == 0) {
 		_48->callDL();
-		loadNBTScale(*m_texGenBlock->getNBTScale());
+		loadNBTScale(*mTexGenBlock->getNBTScale());
 	}
 }
 
@@ -1322,12 +1322,12 @@ void J3DMaterial::loadSharedDL()
 void J3DMaterial::patch()
 {
 
-	j3dSys.m_matPacket->_34 = _20;
-	j3dSys.m_matPacket->m_displayList->beginPatch();
-	m_tevBlock->patch();
-	m_colorBlock->patch();
-	m_texGenBlock->patch();
-	j3dSys.m_matPacket->m_displayList->endPatch();
+	j3dSys.mMatPacket->_34 = _20;
+	j3dSys.mMatPacket->mDisplayList->beginPatch();
+	mTevBlock->patch();
+	mColorBlock->patch();
+	mTexGenBlock->patch();
+	j3dSys.mMatPacket->mDisplayList->endPatch();
 }
 
 /*
@@ -1351,16 +1351,16 @@ void J3DColorBlock::patch() { }
  */
 void J3DMaterial::diff(unsigned long p1)
 {
-	if (j3dSys.m_matPacket->_28->m_displayList == nullptr) {
+	if (j3dSys.mMatPacket->_28->mDisplayList == nullptr) {
 		return;
 	}
-	j3dSys.m_matPacket->beginDiff();
-	m_tevBlock->diff(p1);
-	m_indBlock->diff(p1);
-	m_peBlock->diff(p1);
+	j3dSys.mMatPacket->beginDiff();
+	mTevBlock->diff(p1);
+	mIndBlock->diff(p1);
+	mPeBlock->diff(p1);
 	if ((p1 & 0x2000000) != 0) {
-		J3DGDSetGenMode_3Param(m_texGenBlock->getTexGenNum(), m_tevBlock->getTevStageNum(), m_indBlock->getIndTexStageNum());
-		u8 texGenNum = m_texGenBlock->getTexGenNum();
+		J3DGDSetGenMode_3Param(mTexGenBlock->getTexGenNum(), mTevBlock->getTevStageNum(), mIndBlock->getIndTexStageNum());
+		u8 texGenNum = mTexGenBlock->getTexGenNum();
 		__GDWrite(0x10);
 		__GDWrite(0x00);
 		__GDWrite(0x00);
@@ -1371,9 +1371,9 @@ void J3DMaterial::diff(unsigned long p1)
 		__GDWrite(0x00);
 		__GDWrite(texGenNum);
 	}
-	m_texGenBlock->diff(p1);
-	m_colorBlock->diff(p1);
-	j3dSys.m_matPacket->endDiff();
+	mTexGenBlock->diff(p1);
+	mColorBlock->diff(p1);
+	j3dSys.mMatPacket->endDiff();
 }
 
 /*
@@ -1399,9 +1399,9 @@ void J3DPEBlock::diff(unsigned long) { }
 void J3DMaterial::calc(const float (*mtx)[4])
 {
 	if (j3dSys._34 & 0x40000000) {
-		m_texGenBlock->calcPostTexMtx(mtx);
+		mTexGenBlock->calcPostTexMtx(mtx);
 	} else {
-		m_texGenBlock->calc(mtx);
+		mTexGenBlock->calc(mtx);
 	}
 	calcCurrentMtx();
 	setCurrentMtx();
@@ -1416,9 +1416,9 @@ void J3DMaterial::calc(const float (*mtx)[4])
 void J3DMaterial::calcDiffTexMtx(const float (*mtx)[4])
 {
 	if (j3dSys._34 & 0x40000000) {
-		m_texGenBlock->calcPostTexMtxWithoutViewMtx(mtx);
+		mTexGenBlock->calcPostTexMtxWithoutViewMtx(mtx);
 	} else {
-		m_texGenBlock->calcWithoutViewMtx(mtx);
+		mTexGenBlock->calcWithoutViewMtx(mtx);
 	}
 }
 
@@ -1430,7 +1430,7 @@ void J3DMaterial::calcDiffTexMtx(const float (*mtx)[4])
  */
 void J3DMaterial::setCurrentMtx()
 {
-	J3DShape* shape = m_shape;
+	J3DShape* shape = mShape;
 	shape->_40      = _40;
 	shape->_44      = _44;
 }
@@ -1673,11 +1673,11 @@ void J3DMaterial::reset()
 	_18                = _38->_18;
 	_3C                = nullptr;
 	J3DMaterial* other = _38;
-	m_colorBlock->reset(other->m_colorBlock);
-	m_texGenBlock->reset(other->m_texGenBlock);
-	m_tevBlock->reset(other->m_tevBlock);
-	m_indBlock->reset(other->m_indBlock);
-	m_peBlock->reset(other->m_peBlock);
+	mColorBlock->reset(other->mColorBlock);
+	mTexGenBlock->reset(other->mTexGenBlock);
+	mTevBlock->reset(other->mTevBlock);
+	mIndBlock->reset(other->mIndBlock);
+	mPeBlock->reset(other->mPeBlock);
 }
 
 /*
@@ -1742,21 +1742,21 @@ J3DErrType J3DMaterial::newSingleSharedDisplayList(unsigned long p1)
  */
 void J3DPatchedMaterial::initialize()
 {
-	m_shape       = nullptr;
-	_04           = nullptr;
-	m_joint       = nullptr;
-	_10           = 1;
-	_14           = 0xFFFF;
-	_18           = 0;
-	_20           = 0;
-	m_colorBlock  = nullptr;
-	m_texGenBlock = nullptr;
-	m_tevBlock    = nullptr;
-	m_indBlock    = nullptr;
-	m_peBlock     = nullptr;
-	_38           = nullptr;
-	_3C           = nullptr;
-	_48           = nullptr;
+	mShape       = nullptr;
+	_04          = nullptr;
+	mJoint       = nullptr;
+	_10          = 1;
+	_14          = 0xFFFF;
+	_18          = 0;
+	_20          = 0;
+	mColorBlock  = nullptr;
+	mTexGenBlock = nullptr;
+	mTevBlock    = nullptr;
+	mIndBlock    = nullptr;
+	mPeBlock     = nullptr;
+	_38          = nullptr;
+	_3C          = nullptr;
+	_48          = nullptr;
 }
 
 /*

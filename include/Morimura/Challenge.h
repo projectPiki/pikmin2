@@ -25,9 +25,9 @@ struct DispMemberChallengeResult : public og::Screen::DispMemberBase {
 	DispMemberChallengeResult()
 	    : og::Screen::DispMemberBase()
 	{
-		m_resultInfo = nullptr;
-		m_heap       = nullptr;
-		_10          = 0;
+		mResultInfo = nullptr;
+		mHeap       = nullptr;
+		_10         = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallengeResult); } // _08 (weak)
@@ -36,21 +36,21 @@ struct DispMemberChallengeResult : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
-	Game::Challenge2D_ResultInfo* m_resultInfo; // _08
-	JKRExpHeap* m_heap;                         // _0C
-	int _10;                                    // _10
+	Game::Challenge2D_ResultInfo* mResultInfo; // _08
+	JKRExpHeap* mHeap;                         // _0C
+	int _10;                                   // _10
 };
 
 struct DispMemberChallengeSelect : public og::Screen::DispMemberBase {
 	DispMemberChallengeSelect()
 	{
-		m_titleInfo            = nullptr;
-		m_debugExpHeap         = nullptr;
-		m_stageNumber          = -1;
-		m_selectedStageIndex   = 0;
-		m_playType             = 0;
-		_1C                    = 0;
-		m_dispWorldMapInfoWin0 = nullptr;
+		mTitleInfo            = nullptr;
+		mDebugExpHeap         = nullptr;
+		mStageNumber          = -1;
+		mSelectedStageIndex   = 0;
+		mPlayType             = 0;
+		_1C                   = 0;
+		mDispWorldMapInfoWin0 = nullptr;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallengeSelect); } // _08 (weak)
@@ -59,13 +59,13 @@ struct DispMemberChallengeSelect : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
-	Game::Challenge2D_TitleInfo* m_titleInfo;                       // _08
-	JKRExpHeap* m_debugExpHeap;                                     // _0C
-	int m_stageNumber;                                              // _10
-	int m_selectedStageIndex;                                       // _14
-	int m_playType;                                                 // _18
-	int _1C;                                                        // _1C
-	og::Screen::DispMemberWorldMapInfoWin0* m_dispWorldMapInfoWin0; // _20
+	Game::Challenge2D_TitleInfo* mTitleInfo;                       // _08
+	JKRExpHeap* mDebugExpHeap;                                     // _0C
+	int mStageNumber;                                              // _10
+	int mSelectedStageIndex;                                       // _14
+	int mPlayType;                                                 // _18
+	int _1C;                                                       // _1C
+	og::Screen::DispMemberWorldMapInfoWin0* mDispWorldMapInfoWin0; // _20
 };
 
 struct TChallengePlayModeScreen : public TScreenBase {
@@ -118,11 +118,11 @@ struct TChallengeScreen : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
-	int m_animPaneCount;                // _18
-	og::Screen::AnimPane** m_animPanes; // _1C
-	u32 _20;                            // _20, unknown
-	u32 _24;                            // _24, unknown
-	u8 _28;                             // _28
+	int mAnimPaneCount;                // _18
+	og::Screen::AnimPane** mAnimPanes; // _1C
+	u32 _20;                           // _20, unknown
+	u32 _24;                           // _24, unknown
+	u8 _28;                            // _28
 };
 
 struct TChallengeResultScreen : public TChallengeScreen {
@@ -195,10 +195,10 @@ struct TChallengeResult : public TTestBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_78 = TTestBase
-	JKRArchive* _78;                                // _78
-	TChallengeResultScreen* m_resultScreen;         // _7C
-	TChallengeResultDemoScreen* m_resultDemoScreen; // _80
-	u8 _84[0x178];                                  // _84, TODO: fill these in from ghidra
+	JKRArchive* _78;                               // _78
+	TChallengeResultScreen* mResultScreen;         // _7C
+	TChallengeResultDemoScreen* mResultDemoScreen; // _80
+	u8 _84[0x178];                                 // _84, TODO: fill these in from ghidra
 };
 
 struct TChallengeSelect : public TTestBase {
@@ -253,7 +253,7 @@ struct TChallengeSelectScene : public THIOScene {
 	// _00      = VTBL
 	// _00-_224 = THIOScene
 	// _220, treat as TChallengeSelect*
-	TConfirmEndWindow* m_confirmEndWindow; // _224
+	TConfirmEndWindow* mConfirmEndWindow; // _224
 };
 
 struct TChallengeSelectExplanationWindow : TSelectExplanationWindow {

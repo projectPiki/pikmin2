@@ -356,7 +356,7 @@ bool TControl::setMessageCode_inSequence_(TProcessor const* processor, unsigned 
 	if (resource == nullptr) {
 		v1 = nullptr;
 	} else {
-		INF1Block* inf1 = resource->m_INF1;
+		INF1Block* inf1 = resource->mINF1;
 		if (msgID < inf1->_08) {
 			v1 = inf1->_10[msgID * inf1->_0A];
 		} else {
@@ -370,7 +370,7 @@ bool TControl::setMessageCode_inSequence_(TProcessor const* processor, unsigned 
 	_0C = resID;
 	_0E = msgID;
 	_10 = processor->_08;
-	_18 = (char*)_10->m_DAT1 + *_14;
+	_18 = (char*)_10->mDAT1 + *_14;
 	_20 = _18;
 	_24 = 0;
 	return true;

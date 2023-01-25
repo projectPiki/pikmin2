@@ -114,7 +114,7 @@ void JMessage::TProcessor::setBegin_messageCode(unsigned short p1, unsigned shor
 	if (resource == nullptr) {
 		datOffset = 0;
 	} else {
-		INF1Block* info = resource->m_INF1;
+		INF1Block* info = resource->mINF1;
 		if (p2 < info->_08) {
 			datOffset = *(u32*)info->_10[p2 * info->_0A];
 		} else {
@@ -122,7 +122,7 @@ void JMessage::TProcessor::setBegin_messageCode(unsigned short p1, unsigned shor
 		}
 	}
 	if (datOffset != 0) {
-		char* dat = (char*)_08->m_DAT1->_00 + datOffset;
+		char* dat = (char*)_08->mDAT1->_00 + datOffset;
 		reset_(dat);
 		do_begin_(&datOffset, dat);
 	}

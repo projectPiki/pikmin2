@@ -32,31 +32,31 @@
  */
 JUTTexture::JUTTexture(int sizeX, int sizeY, _GXTexFmt textureFormat)
 {
-	m_flags                  = (m_flags & 2) | 1;
-	u32 texBufferSize        = GXGetTexBufferSize(sizeX, sizeY, textureFormat, 0, 1);
-	_3C                      = reinterpret_cast<ResTIMG*>(new u8[texBufferSize]);
-	_3C->m_textureFormat     = textureFormat;
-	_3C->m_transparency      = 0;
-	_3C->m_sizeX             = sizeX;
-	_3C->m_sizeY             = sizeY;
-	_3C->m_wrapS             = 0;
-	_3C->m_wrapT             = 0;
-	_3C->m_paletteFormat     = 0;
-	_3C->m_lutFormat         = 0;
-	_3C->m_paletteEntryCount = 0;
-	_3C->m_paletteOffset     = 0;
-	_3C->_10                 = GX_FALSE;
-	_3C->_11                 = GX_FALSE;
-	_3C->_12                 = GX_FALSE;
-	_3C->_13                 = GX_FALSE;
-	_3C->m_magFilterType     = 1;
-	_3C->m_minFilterType     = 1;
-	_3C->_16                 = 0;
-	_3C->_17                 = 0;
-	_3C->m_totalImageCount   = 1;
-	_3C->_1A                 = 0;
-	_3C->m_imageDataOffset   = 0x20;
-	_28                      = nullptr;
+	mFlags                  = (mFlags & 2) | 1;
+	u32 texBufferSize       = GXGetTexBufferSize(sizeX, sizeY, textureFormat, 0, 1);
+	_3C                     = reinterpret_cast<ResTIMG*>(new u8[texBufferSize]);
+	_3C->mTextureFormat     = textureFormat;
+	_3C->mTransparency      = 0;
+	_3C->mSizeX             = sizeX;
+	_3C->mSizeY             = sizeY;
+	_3C->mWrapS             = 0;
+	_3C->mWrapT             = 0;
+	_3C->mPaletteFormat     = 0;
+	_3C->mLutFormat         = 0;
+	_3C->mPaletteEntryCount = 0;
+	_3C->mPaletteOffset     = 0;
+	_3C->_10                = GX_FALSE;
+	_3C->_11                = GX_FALSE;
+	_3C->_12                = GX_FALSE;
+	_3C->_13                = GX_FALSE;
+	_3C->mMagFilterType     = 1;
+	_3C->mMinFilterType     = 1;
+	_3C->_16                = 0;
+	_3C->_17                = 0;
+	_3C->mTotalImageCount   = 1;
+	_3C->_1A                = 0;
+	_3C->mImageDataOffset   = 0x20;
+	_28                     = nullptr;
 	storeTIMG(_3C, '\0');
 	DCFlushRange(_24, texBufferSize);
 	/*
@@ -131,10 +131,10 @@ JUTTexture::JUTTexture(int sizeX, int sizeY, _GXTexFmt textureFormat)
  */
 JUTTexture::~JUTTexture()
 {
-	if (m_flags & 1) {
+	if (mFlags & 1) {
 		delete[] _3C;
 	}
-	if (m_flags & 2) {
+	if (mFlags & 2) {
 		delete _28;
 	}
 	/*
@@ -319,7 +319,7 @@ lbl_80033214:
  */
 void JUTTexture::storeTIMG(const ResTIMG* img, JUTPalette* palette)
 {
-	storeTIMG(img, palette, palette == nullptr ? GX_TLUT0 : (_GXTlut)palette->m_tlutID);
+	storeTIMG(img, palette, palette == nullptr ? GX_TLUT0 : (_GXTlut)palette->mTlutID);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -445,7 +445,7 @@ lbl_80033380:
  */
 void JUTTexture::attachPalette(JUTPalette* palette)
 {
-	if (_20->m_paletteFormat == 0) {
+	if (_20->mPaletteFormat == 0) {
 		return;
 	}
 	if (palette == nullptr && _28 != nullptr) {
@@ -453,7 +453,7 @@ void JUTTexture::attachPalette(JUTPalette* palette)
 	} else {
 		_2C = palette;
 	}
-	initTexObj((_GXTlut)_2C->m_tlutID);
+	initTexObj((_GXTlut)_2C->mTlutID);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -493,11 +493,11 @@ lbl_800333E4:
  */
 void JUTTexture::init()
 {
-	if (_20->m_paletteEntryCount == 0) {
+	if (_20->mPaletteEntryCount == 0) {
 		initTexObj();
 	} else if (_28 != nullptr) {
 		_2C = _28;
-		initTexObj((_GXTlut)_2C->m_tlutID);
+		initTexObj((_GXTlut)_2C->mTlutID);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -720,15 +720,15 @@ lbl_8003365C:
  */
 void JUTTexture::capture(int p1, int p2, _GXTexFmt textureFormat, bool p4, unsigned char p5)
 {
-	if ((m_flags & 1) == 0) {
+	if ((mFlags & 1) == 0) {
 		return;
 	}
 	if (p4) {
-		GXSetTexCopySrc(p1, p2, _20->m_sizeX << 1, _20->m_sizeY << 1, p4, p5);
+		GXSetTexCopySrc(p1, p2, _20->mSizeX << 1, _20->mSizeY << 1, p4, p5);
 	} else {
-		GXSetTexCopySrc(p1, p2, _20->m_sizeX, _20->m_sizeY, GX_FALSE, p5);
+		GXSetTexCopySrc(p1, p2, _20->mSizeX, _20->mSizeY, GX_FALSE, p5);
 	}
-	GXSetTexCopyDst(_20->m_sizeX, _20->m_sizeY, textureFormat, p4);
+	GXSetTexCopyDst(_20->mSizeX, _20->mSizeY, textureFormat, p4);
 	GXCopyTex(_24, p5);
 	GXPixModeSync();
 	/*

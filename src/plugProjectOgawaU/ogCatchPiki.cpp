@@ -13,8 +13,8 @@ namespace Screen {
  */
 CallBack_CatchPiki::CallBack_CatchPiki()
 {
-	m_pikiType = nullptr;
-	m_pikiIcon = nullptr;
+	mPikiType = nullptr;
+	mPikiIcon = nullptr;
 }
 
 /*
@@ -24,9 +24,9 @@ CallBack_CatchPiki::CallBack_CatchPiki()
  */
 void CallBack_CatchPiki::init(J2DScreen* screen, u64 tag, u32* pikiType, JKRArchive* archive)
 {
-	m_pikiIcon     = static_cast<J2DPicture*>(screen->search(tag));
-	m_pikiType     = pikiType;
-	m_currPikiType = *pikiType;
+	mPikiIcon     = static_cast<J2DPicture*>(screen->search(tag));
+	mPikiType     = pikiType;
+	mCurrPikiType = *pikiType;
 
 	char** iconNames   = (char**)PikiIconTextureName;
 	ResTIMG** textures = PikiIconTextureResTIMG;
@@ -46,17 +46,17 @@ void CallBack_CatchPiki::init(J2DScreen* screen, u64 tag, u32* pikiType, JKRArch
  */
 void CallBack_CatchPiki::update()
 {
-	if (m_pikiType && m_pikiIcon) {
-		u32 pikiType = *m_pikiType;
-		if (pikiType != m_currPikiType && pikiType < 19) {
+	if (mPikiType && mPikiIcon) {
+		u32 pikiType = *mPikiType;
+		if (pikiType != mCurrPikiType && pikiType < 19) {
 			setPikiIcon(pikiType);
-			m_scaleMgr.up(0.4f, 30.0f, 0.7f, 0.0f);
-			m_currPikiType = pikiType;
+			mScaleMgr.up(0.4f, 30.0f, 0.7f, 0.0f);
+			mCurrPikiType = pikiType;
 		}
 
-		f32 scale = m_scaleMgr.calc();
-		m_pikiIcon->rotate(m_pikiIcon->m_bounds.getWidth() / 2, m_pikiIcon->m_bounds.getHeight() / 2, J2DROTATE_Z, 0.0f);
-		m_pikiIcon->updateScale(scale);
+		f32 scale = mScaleMgr.calc();
+		mPikiIcon->rotate(mPikiIcon->mBounds.getWidth() / 2, mPikiIcon->mBounds.getHeight() / 2, J2DROTATE_Z, 0.0f);
+		mPikiIcon->updateScale(scale);
 	}
 }
 
@@ -68,7 +68,7 @@ void CallBack_CatchPiki::update()
 void CallBack_CatchPiki::setPikiIcon(int pikiType)
 {
 	if (pikiType < 19) {
-		m_pikiIcon->changeTexture(PikiIconTextureResTIMG[pikiType], 0);
+		mPikiIcon->changeTexture(PikiIconTextureResTIMG[pikiType], 0);
 	}
 }
 

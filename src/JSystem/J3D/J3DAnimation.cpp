@@ -140,13 +140,13 @@
  */
 void J3DFrameCtrl::init(short p1)
 {
-	m_attr = 2;
-	_05    = 0;
-	_06    = 0;
-	_08    = p1;
-	_0A    = 0;
-	_0C    = 1.0f;
-	_10    = 0.0f;
+	mAttr = 2;
+	_05   = 0;
+	_06   = 0;
+	_08   = p1;
+	_0A   = 0;
+	_0C   = 1.0f;
+	_10   = 0.0f;
 }
 
 /*
@@ -158,7 +158,7 @@ void J3DFrameCtrl::update()
 {
 	_05 = 0;
 	_10 = _10 + _0C;
-	switch (m_attr) {
+	switch (mAttr) {
 	case 0:
 		if (_10 < _06) {
 			_10 = _06;
@@ -239,64 +239,64 @@ void J3DAnmTransformFull::getTransform(unsigned short p1, J3DTransformInfo* info
 	J3DAnmTransformFullTable::Row* v1 = _20->_00[tableIndex];
 	J3DAnmTransformFullTable::Row* v2 = _20->_00[tableIndex + 1];
 	J3DAnmTransformFullTable::Row* v3 = _20->_00[tableIndex + 2];
-	if (m_fTime < 0.0f) {
-		info->m_scale.x     = _0C[v1[0][1]];
-		info->m_scale.y     = _0C[v2[0][1]];
-		info->m_scale.z     = _0C[v3[0][1]];
-		info->m_eulerRot.x  = _10[v1[1][1]];
-		info->m_eulerRot.y  = _10[v2[1][1]];
-		info->m_eulerRot.z  = _10[v3[1][1]];
-		info->m_zRotation.x = _14[v1[2][1]];
-		info->m_zRotation.y = _14[v2[2][1]];
-		info->m_zRotation.z = _14[v3[2][1]];
+	if (mFTime < 0.0f) {
+		info->mScale.x     = _0C[v1[0][1]];
+		info->mScale.y     = _0C[v2[0][1]];
+		info->mScale.z     = _0C[v3[0][1]];
+		info->mEulerRot.x  = _10[v1[1][1]];
+		info->mEulerRot.y  = _10[v2[1][1]];
+		info->mEulerRot.z  = _10[v3[1][1]];
+		info->mZRotation.x = _14[v1[2][1]];
+		info->mZRotation.y = _14[v2[2][1]];
+		info->mZRotation.z = _14[v3[2][1]];
 	} else {
-		u32 v4 = (int)(0.5f + m_fTime);
+		u32 v4 = (int)(0.5f + mFTime);
 		if (v4 >= v1[0][0]) {
-			info->m_scale.x = _0C[v1[0][0] - 1 + v1[0][1]];
+			info->mScale.x = _0C[v1[0][0] - 1 + v1[0][1]];
 		} else {
-			info->m_scale.x = _0C[v1[0][1] + v4];
+			info->mScale.x = _0C[v1[0][1] + v4];
 		}
 		if (v4 >= v1[1][0]) {
-			info->m_eulerRot.x = _10[v1[1][0] - 1 + v1[1][1]];
+			info->mEulerRot.x = _10[v1[1][0] - 1 + v1[1][1]];
 		} else {
-			info->m_eulerRot.x = _10[v1[1][1] + v4];
+			info->mEulerRot.x = _10[v1[1][1] + v4];
 		}
 		if (v4 >= v1[2][0]) {
-			info->m_zRotation.x = _14[v1[2][0] - 1 + v1[2][1]];
+			info->mZRotation.x = _14[v1[2][0] - 1 + v1[2][1]];
 		} else {
-			info->m_zRotation.x = _14[v1[2][1] + v4];
+			info->mZRotation.x = _14[v1[2][1] + v4];
 		}
 
 		if (v4 >= v2[0][0]) {
-			info->m_scale.y = _0C[v2[0][0] - 1 + v2[0][1]];
+			info->mScale.y = _0C[v2[0][0] - 1 + v2[0][1]];
 		} else {
-			info->m_scale.y = _0C[v2[0][1] + v4];
+			info->mScale.y = _0C[v2[0][1] + v4];
 		}
 		if (v4 >= v2[1][0]) {
-			info->m_eulerRot.y = _10[v2[1][0] - 1 + v2[1][1]];
+			info->mEulerRot.y = _10[v2[1][0] - 1 + v2[1][1]];
 		} else {
-			info->m_eulerRot.y = _10[v2[1][1] + v4];
+			info->mEulerRot.y = _10[v2[1][1] + v4];
 		}
 		if (v4 >= v2[2][0]) {
-			info->m_zRotation.y = _14[v2[2][0] - 1 + v2[2][1]];
+			info->mZRotation.y = _14[v2[2][0] - 1 + v2[2][1]];
 		} else {
-			info->m_zRotation.y = _14[v2[2][1] + v4];
+			info->mZRotation.y = _14[v2[2][1] + v4];
 		}
 
 		if (v4 >= v3[0][0]) {
-			info->m_scale.z = _0C[v3[0][0] - 1 + v3[0][1]];
+			info->mScale.z = _0C[v3[0][0] - 1 + v3[0][1]];
 		} else {
-			info->m_scale.z = _0C[v3[0][1] + v4];
+			info->mScale.z = _0C[v3[0][1] + v4];
 		}
 		if (v4 >= v3[1][0]) {
-			info->m_eulerRot.z = _10[v3[1][0] - 1 + v3[1][1]];
+			info->mEulerRot.z = _10[v3[1][0] - 1 + v3[1][1]];
 		} else {
-			info->m_eulerRot.z = _10[v3[1][1] + v4];
+			info->mEulerRot.z = _10[v3[1][1] + v4];
 		}
 		if (v4 >= v3[2][0]) {
-			info->m_zRotation.z = _14[v3[2][0] - 1 + v3[2][1]];
+			info->mZRotation.z = _14[v3[2][0] - 1 + v3[2][1]];
 		} else {
-			info->m_zRotation.z = _14[v3[2][1] + v4];
+			info->mZRotation.z = _14[v3[2][1] + v4];
 		}
 	}
 }
@@ -316,109 +316,109 @@ void J3DAnmTransformKey::calcTransform(float p1, unsigned short p2, J3DTransform
 
 	switch (v1[0]._00) {
 	case 0:
-		info->m_scale.x = 1.0f;
+		info->mScale.x = 1.0f;
 		break;
 	case 1:
-		info->m_scale.x = _0C[v1[0]._02];
+		info->mScale.x = _0C[v1[0]._02];
 		break;
 	default:
-		info->m_scale.x = J3DGetKeyFrameInterpolation(p1, v1, _0C + v1[0]._02);
+		info->mScale.x = J3DGetKeyFrameInterpolation(p1, v1, _0C + v1[0]._02);
 		break;
 	}
 
 	switch (v2[0]._00) {
 	case 0:
-		info->m_scale.y = 1.0f;
+		info->mScale.y = 1.0f;
 		break;
 	case 1:
-		info->m_scale.y = _0C[v2[0]._02];
+		info->mScale.y = _0C[v2[0]._02];
 		break;
 	default:
-		info->m_scale.y = J3DGetKeyFrameInterpolation(p1, v2, _0C + v2[0]._02);
+		info->mScale.y = J3DGetKeyFrameInterpolation(p1, v2, _0C + v2[0]._02);
 		break;
 	}
 
 	switch (v3[0]._00) {
 	case 0:
-		info->m_scale.z = 1.0f;
+		info->mScale.z = 1.0f;
 		break;
 	case 1:
-		info->m_scale.z = _0C[v3[0]._02];
+		info->mScale.z = _0C[v3[0]._02];
 		break;
 	default:
-		info->m_scale.z = J3DGetKeyFrameInterpolation(p1, v3, _0C + v3[0]._02);
+		info->mScale.z = J3DGetKeyFrameInterpolation(p1, v3, _0C + v3[0]._02);
 		break;
 	}
 
 	switch (v1[1]._00) {
 	case 0:
-		info->m_eulerRot.x = 0;
+		info->mEulerRot.x = 0;
 		break;
 	case 1:
-		info->m_eulerRot.x = _10[v1[1]._02] << _20;
+		info->mEulerRot.x = _10[v1[1]._02] << _20;
 		break;
 	default:
-		info->m_eulerRot.x = (int)J3DGetKeyFrameInterpolation(p1, v1 + 1, _10 + v1[1]._02) << _20;
+		info->mEulerRot.x = (int)J3DGetKeyFrameInterpolation(p1, v1 + 1, _10 + v1[1]._02) << _20;
 		break;
 	}
 
 	switch (v2[1]._00) {
 	case 0:
-		info->m_eulerRot.y = 0;
+		info->mEulerRot.y = 0;
 		break;
 	case 1:
-		info->m_eulerRot.y = _10[v2[1]._02] << _20;
+		info->mEulerRot.y = _10[v2[1]._02] << _20;
 		break;
 	default:
-		info->m_eulerRot.y = (int)J3DGetKeyFrameInterpolation(p1, v2 + 1, _10 + v2[1]._02) << _20;
+		info->mEulerRot.y = (int)J3DGetKeyFrameInterpolation(p1, v2 + 1, _10 + v2[1]._02) << _20;
 		break;
 	}
 
 	switch (v3[1]._00) {
 	case 0:
-		info->m_eulerRot.z = 0;
+		info->mEulerRot.z = 0;
 		break;
 	case 1:
-		info->m_eulerRot.z = _10[v3[1]._02] << _20;
+		info->mEulerRot.z = _10[v3[1]._02] << _20;
 		break;
 	default:
-		info->m_eulerRot.z = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _10 + v3[1]._02) << _20;
+		info->mEulerRot.z = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _10 + v3[1]._02) << _20;
 		break;
 	}
 
 	switch (v1[2]._00) {
 	case 0:
-		info->m_zRotation.x = 0.0f;
+		info->mZRotation.x = 0.0f;
 		break;
 	case 1:
-		info->m_zRotation.x = _14[v1[2]._02];
+		info->mZRotation.x = _14[v1[2]._02];
 		break;
 	default:
-		info->m_zRotation.x = J3DGetKeyFrameInterpolation(p1, v1 + 2, _14 + v1[2]._02);
+		info->mZRotation.x = J3DGetKeyFrameInterpolation(p1, v1 + 2, _14 + v1[2]._02);
 		break;
 	}
 
 	switch (v2[2]._00) {
 	case 0:
-		info->m_zRotation.y = 0.0f;
+		info->mZRotation.y = 0.0f;
 		break;
 	case 1:
-		info->m_zRotation.y = _14[v2[2]._02];
+		info->mZRotation.y = _14[v2[2]._02];
 		break;
 	default:
-		info->m_zRotation.y = J3DGetKeyFrameInterpolation(p1, v2 + 2, _14 + v2[2]._02);
+		info->mZRotation.y = J3DGetKeyFrameInterpolation(p1, v2 + 2, _14 + v2[2]._02);
 		break;
 	}
 
 	switch (v3[2]._00) {
 	case 0:
-		info->m_zRotation.z = 0.0f;
+		info->mZRotation.z = 0.0f;
 		break;
 	case 1:
-		info->m_zRotation.z = _14[v3[2]._02];
+		info->mZRotation.z = _14[v3[2]._02];
 		break;
 	default:
-		info->m_zRotation.z = J3DGetKeyFrameInterpolation(p1, v3 + 2, _14 + v3[2]._02);
+		info->mZRotation.z = J3DGetKeyFrameInterpolation(p1, v3 + 2, _14 + v3[2]._02);
 		break;
 	}
 	/*
@@ -776,25 +776,25 @@ void J3DAnmTextureSRTKey::calcTransform(float p1, unsigned short p2, J3DTextureS
 
 	switch (v1[0]._00) {
 	case 0:
-		info->m_scaleX = 1.0f;
+		info->mScaleX = 1.0f;
 		break;
 	case 1:
-		info->m_scaleX = _1C[v1[0]._02];
+		info->mScaleX = _1C[v1[0]._02];
 		break;
 	default:
-		info->m_scaleX = J3DGetKeyFrameInterpolation(p1, v1, _1C + v1[0]._02);
+		info->mScaleX = J3DGetKeyFrameInterpolation(p1, v1, _1C + v1[0]._02);
 		break;
 	}
 
 	switch (v2[0]._00) {
 	case 0:
-		info->m_scaleY = 1.0f;
+		info->mScaleY = 1.0f;
 		break;
 	case 1:
-		info->m_scaleY = _1C[v2[0]._02];
+		info->mScaleY = _1C[v2[0]._02];
 		break;
 	default:
-		info->m_scaleY = J3DGetKeyFrameInterpolation(p1, v2, _1C + v2[0]._02);
+		info->mScaleY = J3DGetKeyFrameInterpolation(p1, v2, _1C + v2[0]._02);
 		break;
 	}
 
@@ -1040,10 +1040,10 @@ void J3DAnmTextureSRTKey::calcTransform(float p1, unsigned short p2, J3DTextureS
 float J3DAnmClusterFull::getWeight(unsigned short p1) const
 {
 
-	int v4                     = (int)(0.5f + m_fTime);
+	int v4                     = (int)(0.5f + mFTime);
 	u32 index                  = p1;
 	J3DAnmClusterFullTable* v1 = _10;
-	if (m_fTime < 0.0f) {
+	if (mFTime < 0.0f) {
 		return _0C[v1[index]._00[1]];
 	}
 	if (v4 >= v1[index]._00[0]) {
@@ -1052,10 +1052,10 @@ float J3DAnmClusterFull::getWeight(unsigned short p1) const
 	}
 	return _0C[v1[index]._00[1] + v4];
 
-	// int v4 = (int)(0.5f + m_fTime);
+	// int v4 = (int)(0.5f + mFTime);
 
 	// J3DAnmClusterFullTable* v1 = _10;
-	// if (m_fTime < 0.0f) {
+	// if (mFTime < 0.0f) {
 	// 	return _0C[getTable(p1)->_02];
 	// }
 	// if (v4 >= getTable(p1)->_00) {
@@ -1064,10 +1064,10 @@ float J3DAnmClusterFull::getWeight(unsigned short p1) const
 	// }
 	// return _0C[getTable(p1)->_02 + v4];
 
-	// int v4                     = (int)(0.5f + m_fTime);
+	// int v4                     = (int)(0.5f + mFTime);
 
 	// J3DAnmClusterFullTable* v1 = _10;
-	// if (m_fTime < 0.0f) {
+	// if (mFTime < 0.0f) {
 	// 	return _0C[v1[p1]._02];
 	// }
 	// if (v4 >= v1[p1]._00) {
@@ -1076,9 +1076,9 @@ float J3DAnmClusterFull::getWeight(unsigned short p1) const
 	// }
 	// return _0C[v1[p1]._02 + v4];
 
-	// int v4  = (int)(0.5f + m_fTime);
+	// int v4  = (int)(0.5f + mFTime);
 	// u16* v1 = &_10[p1]._00;
-	// if (m_fTime < 0.0f) {
+	// if (mFTime < 0.0f) {
 	// 	return _0C[v1[1]];
 	// }
 	// if (v4 >= v1[0]) {
@@ -1147,7 +1147,7 @@ float J3DAnmClusterKey::getWeight(unsigned short p1) const
 	case 1:
 		return _0C[_10[p1]._02];
 	default:
-		return J3DGetKeyFrameInterpolation<float>(m_fTime, &_10[p1], &_0C[_10[p1]._02]);
+		return J3DGetKeyFrameInterpolation<float>(mFTime, &_10[p1], &_0C[_10[p1]._02]);
 	}
 }
 
@@ -1531,8 +1531,8 @@ lbl_80068A64:
 void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
 {
 	for (u16 i = 0; i < _14; i++) {
-		JUTNameTab* matNameTable = data->m_materialTable._0C;
-		int index                = matNameTable->getIndex(m_nameTab.getName(i));
+		JUTNameTab* matNameTable = data->mMaterialTable._0C;
+		int index                = matNameTable->getIndex(mNameTab.getName(i));
 		if (index != -1) {
 			_18[i] = index;
 		} else {
@@ -1549,32 +1549,32 @@ void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
 void J3DAnmColorFull::getColor(unsigned short tableIndex, _GXColor* color) const
 {
 	J3DAnmColorFullTable* table = _3C + tableIndex;
-	if (m_fTime < 0.0f) {
-		color->r = _2C[table->m_data[0][1]];
-		color->g = _30[table->m_data[1][1]];
-		color->b = _34[table->m_data[2][1]];
-		color->a = _38[table->m_data[3][1]];
+	if (mFTime < 0.0f) {
+		color->r = _2C[table->mData[0][1]];
+		color->g = _30[table->mData[1][1]];
+		color->b = _34[table->mData[2][1]];
+		color->a = _38[table->mData[3][1]];
 	} else {
-		int v4 = 0.5f + m_fTime;
-		if (v4 >= table->m_data[0][0]) {
-			color->r = _2C[table->m_data[0][1] - 1 + table->m_data[0][0]];
+		int v4 = 0.5f + mFTime;
+		if (v4 >= table->mData[0][0]) {
+			color->r = _2C[table->mData[0][1] - 1 + table->mData[0][0]];
 		} else {
-			color->r = _2C[table->m_data[0][1] + v4];
+			color->r = _2C[table->mData[0][1] + v4];
 		}
-		if (v4 >= table->m_data[1][0]) {
-			color->g = _30[table->m_data[1][1] - 1 + table->m_data[1][0]];
+		if (v4 >= table->mData[1][0]) {
+			color->g = _30[table->mData[1][1] - 1 + table->mData[1][0]];
 		} else {
-			color->g = _30[table->m_data[1][1] + v4];
+			color->g = _30[table->mData[1][1] + v4];
 		}
-		if (v4 >= table->m_data[2][0]) {
-			color->b = _34[table->m_data[2][1] - 1 + table->m_data[2][0]];
+		if (v4 >= table->mData[2][0]) {
+			color->b = _34[table->mData[2][1] - 1 + table->mData[2][0]];
 		} else {
-			color->b = _34[table->m_data[2][1] + v4];
+			color->b = _34[table->mData[2][1] + v4];
 		}
-		if (v4 >= table->m_data[3][0]) {
-			color->a = _38[table->m_data[3][1] - 1 + table->m_data[3][0]];
+		if (v4 >= table->mData[3][0]) {
+			color->a = _38[table->mData[3][1] - 1 + table->mData[3][0]];
 		} else {
-			color->a = _38[table->m_data[3][1] + v4];
+			color->a = _38[table->mData[3][1] + v4];
 		}
 		// table->getField(0, v4, &color->r, _2C);
 		// table->getField(1, v4, &color->g, _30);
@@ -1835,16 +1835,16 @@ void J3DAnmTexPattern::getTexNo(unsigned short p1, unsigned short* p2) const
 {
 	int index                     = p1;
 	J3DAnmTexPatternFullTable* v1 = _10;
-	if (m_fTime < 0.0f) {
-		*p2 = _0C[v1[index].m_data[0][1]];
+	if (mFTime < 0.0f) {
+		*p2 = _0C[v1[index].mData[0][1]];
 		return;
 	}
-	if (m_fTime >= v1[index].m_data[0][0]) {
-		int v2 = v1[index].m_data[0][0] - 1 + v1[index].m_data[0][1];
+	if (mFTime >= v1[index].mData[0][0]) {
+		int v2 = v1[index].mData[0][0] - 1 + v1[index].mData[0][1];
 		*p2    = _0C[v2];
 		return;
 	}
-	*p2 = _0C[v1[index].m_data[0][1] + (int)m_fTime];
+	*p2 = _0C[v1[index].mData[0][1] + (int)mFTime];
 	/*
 	lfs      f2, 8(r3)
 	rlwinm   r4, r4, 3, 0xd, 0x1c
@@ -2007,10 +2007,10 @@ lbl_80069110:
  */
 void J3DAnmTevRegKey::getTevColorReg(unsigned short p1, _GXColorS10* color) const
 {
-	_48[p1]._00[0].getColorField(m_fTime, &color->r, _50);
-	_48[p1]._00[1].getColorField(m_fTime, &color->g, _54);
-	_48[p1]._00[2].getColorField(m_fTime, &color->b, _58);
-	_48[p1]._00[3].getColorField(m_fTime, &color->a, _5C);
+	_48[p1]._00[0].getColorField(mFTime, &color->r, _50);
+	_48[p1]._00[1].getColorField(mFTime, &color->g, _54);
+	_48[p1]._00[2].getColorField(mFTime, &color->b, _58);
+	_48[p1]._00[3].getColorField(mFTime, &color->a, _5C);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2489,8 +2489,8 @@ lbl_800696B8:
 void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
 {
 	u16 i;
-	for (i = 0; i < m_countTevColorAnm; i++) {
-		JUTNameTab* nameTable = data->m_materialTable._0C;
+	for (i = 0; i < mCountTevColorAnm; i++) {
+		JUTNameTab* nameTable = data->mMaterialTable._0C;
 		int index             = nameTable->getIndex(_24.getName(i));
 		if (index != -1) {
 			_20[i] = index;
@@ -2498,8 +2498,8 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
 			_20[i] = 0xFFFF;
 		}
 	}
-	for (i = 0; i < m_countTevKColorAnm; i++) {
-		JUTNameTab* nameTable = data->m_materialTable._0C;
+	for (i = 0; i < mCountTevKColorAnm; i++) {
+		JUTNameTab* nameTable = data->mMaterialTable._0C;
 		int index             = nameTable->getIndex(_38.getName(i));
 		if (index != -1) {
 			_34[i] = index;

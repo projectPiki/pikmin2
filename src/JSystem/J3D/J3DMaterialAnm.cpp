@@ -40,19 +40,19 @@
 void J3DMaterialAnm::initialize()
 {
 	for (int i = 0; i < 2; i++) {
-		m_matColAnmList[i]._02 = 0;
+		mMatColAnmList[i]._02 = 0;
 	}
 	for (int i = 0; i < 8; i++) {
-		m_texNoAnmList[i]._06 = 0;
+		mTexNoAnmList[i]._06 = 0;
 	}
 	for (int i = 0; i < 4; i++) {
-		m_tevColAnmList[i]._02 = 0;
+		mTevColAnmList[i]._02 = 0;
 	}
 	for (int i = 0; i < 4; i++) {
-		m_tevKColAnmList[i]._02 = 0;
+		mTevKColAnmList[i]._02 = 0;
 	}
 	for (int i = 0; i < 8; i++) {
-		m_texMtxAnmList[i]._02 = 0;
+		mTexMtxAnmList[i]._02 = 0;
 	}
 }
 
@@ -65,78 +65,78 @@ void J3DMaterialAnm::initialize()
 void J3DMaterialAnm::calc(J3DMaterial* material) const
 {
 	for (u32 i = 0; i < 2; i++) {
-		// const J3DMatColorAnm* matColorAnm = m_matColAnmList + i;
+		// const J3DMatColorAnm* matColorAnm = mMatColAnmList + i;
 		// if (matColorAnm->_02 != 0) {
-		// 	J3DGXColor* color = material->m_colorBlock->getMatColor(i);
-		// 	matColorAnm->m_anm->getColor(matColorAnm->_00, color);
+		// 	J3DGXColor* color = material->mColorBlock->getMatColor(i);
+		// 	matColorAnm->mAnm->getColor(matColorAnm->_00, color);
 		// }
-		// if (m_matColAnmList[i]._02 != 0) {
-		// 	J3DGXColor* color = material->m_colorBlock->getMatColor(i);
-		// 	m_matColAnmList[i].m_anm->getColor(m_matColAnmList[i]._00, color);
+		// if (mMatColAnmList[i]._02 != 0) {
+		// 	J3DGXColor* color = material->mColorBlock->getMatColor(i);
+		// 	mMatColAnmList[i].mAnm->getColor(mMatColAnmList[i]._00, color);
 		// }
 
-		if (m_matColAnmList[i]._02 != 0) {
-			J3DGXColor* color = material->m_colorBlock->getMatColor(i);
-			u16 index         = m_matColAnmList[i]._00;
-			m_matColAnmList[i].m_anm->getColor(index, color);
+		if (mMatColAnmList[i]._02 != 0) {
+			J3DGXColor* color = material->mColorBlock->getMatColor(i);
+			u16 index         = mMatColAnmList[i]._00;
+			mMatColAnmList[i].mAnm->getColor(index, color);
 		}
 	}
 	for (u32 i = 0; i < 8; i++) {
-		// const J3DTexNoAnm* texNoAnm = m_texNoAnmList + i;
+		// const J3DTexNoAnm* texNoAnm = mTexNoAnmList + i;
 		// if (texNoAnm->_06 != 0) {
 		// 	u16 v1;
 		// 	texNoAnm->calc(&v1);
-		// 	material->m_tevBlock->setTexNo(i, v1);
+		// 	material->mTevBlock->setTexNo(i, v1);
 		// }
-		if (m_texNoAnmList[i]._06 != 0) {
+		if (mTexNoAnmList[i]._06 != 0) {
 			u16 v1;
-			m_texNoAnmList[i].calc(&v1);
-			material->m_tevBlock->setTexNo(i, v1);
+			mTexNoAnmList[i].calc(&v1);
+			material->mTevBlock->setTexNo(i, v1);
 		}
 	}
 	for (u32 i = 0; i < 3; i++) {
-		// const J3DTevColorAnm* tevColorAnm = m_tevColAnmList + i;
+		// const J3DTevColorAnm* tevColorAnm = mTevColAnmList + i;
 		// if (tevColorAnm->_02 != 0) {
-		// 	GXColorS10* color = material->m_tevBlock->getTevColor(i);
-		// 	J3DAnmTevRegKey* anm = tevColorAnm->m_key;
-		// 	u16 index = tevColorAnm->m_index;
+		// 	GXColorS10* color = material->mTevBlock->getTevColor(i);
+		// 	J3DAnmTevRegKey* anm = tevColorAnm->mKey;
+		// 	u16 index = tevColorAnm->mIndex;
 		// 	anm->getTevColorReg(index, color);
-		// 	// m_tevColAnmList[i].m_key->getTevColorReg(m_tevColAnmList[i].m_index, material->m_tevBlock->getTevColor(i));
+		// 	// mTevColAnmList[i].mKey->getTevColorReg(mTevColAnmList[i].mIndex, material->mTevBlock->getTevColor(i));
 		// }
-		if (m_tevColAnmList[i]._02 != 0) {
-			GXColorS10* color    = material->m_tevBlock->getTevColor(i);
-			J3DAnmTevRegKey* anm = m_tevColAnmList[i].m_key;
-			u16 index            = m_tevColAnmList[i].m_index;
+		if (mTevColAnmList[i]._02 != 0) {
+			GXColorS10* color    = material->mTevBlock->getTevColor(i);
+			J3DAnmTevRegKey* anm = mTevColAnmList[i].mKey;
+			u16 index            = mTevColAnmList[i].mIndex;
 			anm->getTevColorReg(index, color);
-			// m_tevColAnmList[i].m_key->getTevColorReg(m_tevColAnmList[i].m_index, material->m_tevBlock->getTevColor(i));
+			// mTevColAnmList[i].mKey->getTevColorReg(mTevColAnmList[i].mIndex, material->mTevBlock->getTevColor(i));
 		}
 	}
 	for (u32 i = 0; i < 4; i++) {
-		if (m_tevKColAnmList[i]._02 != 0) {
-			GXColor* color = material->m_tevBlock->getTevKColor(i);
-			// J3DTevBlock* tevBlock = material->m_tevBlock;
-			// J3DAnmTevRegKey* anm = m_tevKColAnmList[i].m_key;
-			// anm->getTevKonstReg(m_tevKColAnmList[i].m_index, tevBlock->getTevKColor(i));
-			// anm->getTevKonstReg(m_tevKColAnmList[i].m_index, color);
-			// anm->getTevKonstReg(m_tevKColAnmList[i].m_index, material->m_tevBlock->getTevKColor(i));
-			m_tevKColAnmList[i].m_key->getTevKonstReg(m_tevKColAnmList[i].m_index, color);
-			// m_tevKColAnmList[i].m_key->getTevKonstReg(m_tevKColAnmList[i].m_index, material->m_tevBlock->getTevKColor(i));
+		if (mTevKColAnmList[i]._02 != 0) {
+			GXColor* color = material->mTevBlock->getTevKColor(i);
+			// J3DTevBlock* tevBlock = material->mTevBlock;
+			// J3DAnmTevRegKey* anm = mTevKColAnmList[i].mKey;
+			// anm->getTevKonstReg(mTevKColAnmList[i].mIndex, tevBlock->getTevKColor(i));
+			// anm->getTevKonstReg(mTevKColAnmList[i].mIndex, color);
+			// anm->getTevKonstReg(mTevKColAnmList[i].mIndex, material->mTevBlock->getTevKColor(i));
+			mTevKColAnmList[i].mKey->getTevKonstReg(mTevKColAnmList[i].mIndex, color);
+			// mTevKColAnmList[i].mKey->getTevKonstReg(mTevKColAnmList[i].mIndex, material->mTevBlock->getTevKColor(i));
 		}
 	}
 	for (u32 i = 0; i < 8; i++) {
-		// const J3DTexMtxAnm* texMtxAnm = m_texMtxAnmList + i;
+		// const J3DTexMtxAnm* texMtxAnm = mTexMtxAnmList + i;
 		// if (texMtxAnm->_02 != 0) {
-		// 	texMtxAnm->m_anm->calcTransform(texMtxAnm->m_anm->_08, texMtxAnm->m_index, &material->m_texGenBlock->getTexMtx(i)->m_srtInfo);
+		// 	texMtxAnm->mAnm->calcTransform(texMtxAnm->mAnm->_08, texMtxAnm->mIndex, &material->mTexGenBlock->getTexMtx(i)->mSrtInfo);
 		// }
-		if (m_texMtxAnmList[i]._02 != 0) {
-			J3DTextureSRTInfo* info  = &material->m_texGenBlock->getTexMtx(i)->m_srtInfo;
-			J3DAnmTextureSRTKey* anm = m_texMtxAnmList[i].m_anm;
-			anm->calcTransform(anm->m_fTime, m_texMtxAnmList[i].m_index, info);
+		if (mTexMtxAnmList[i]._02 != 0) {
+			J3DTextureSRTInfo* info  = &material->mTexGenBlock->getTexMtx(i)->mSrtInfo;
+			J3DAnmTextureSRTKey* anm = mTexMtxAnmList[i].mAnm;
+			anm->calcTransform(anm->mFTime, mTexMtxAnmList[i].mIndex, info);
 		}
 
-		// if (m_texMtxAnmList[i]._02 != 0) {
-		// 	m_texMtxAnmList[i].m_anm->calcTransform(m_texMtxAnmList[i].m_anm->_08, m_texMtxAnmList[i].m_index,
-		// &material->m_texGenBlock->getTexMtx(i)->m_srtInfo);
+		// if (mTexMtxAnmList[i]._02 != 0) {
+		// 	mTexMtxAnmList[i].mAnm->calcTransform(mTexMtxAnmList[i].mAnm->_08, mTexMtxAnmList[i].mIndex,
+		// &material->mTexGenBlock->getTexMtx(i)->mSrtInfo);
 		// }
 	}
 
@@ -316,7 +316,7 @@ lbl_8006A320:
  */
 void J3DTexNoAnm::calc(u16* p1) const
 {
-	m_anm->getTexNo(_04, p1);
+	mAnm->getTexNo(_04, p1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

@@ -13,30 +13,30 @@ struct Item;
 struct InitArg : public ItemInitArg {
 	inline InitArg(EPikiKind pikiKind, Vector3f& vec)
 	{
-		m_pikminType = pikiKind;
-		_08          = vec;
-		_14          = 0;
-		_18          = 0;
-		_1C          = -1.0f;
+		mPikminType = pikiKind;
+		_08         = vec;
+		_14         = 0;
+		_18         = 0;
+		_1C         = -1.0f;
 	}
 
 	inline InitArg(EPikiKind pikiKind, Vector3f& vec, u8 p3, int p4, f32 p5)
 	{
-		m_pikminType = pikiKind;
-		_08          = vec;
-		_14          = p3;
-		_18          = p4;
-		_1C          = -1.0f;
+		mPikminType = pikiKind;
+		_08         = vec;
+		_14         = p3;
+		_18         = p4;
+		_1C         = -1.0f;
 	}
 
 	virtual const char* getName() { return "ItemPikiHead::InitArg"; } // _08 (weak)
 
 	// _00     = VTBL
-	EPikiKind m_pikminType; // _04, enum?
-	Vector3f _08;           // _08
-	u8 _14;                 // _14
-	int _18;                // _18
-	f32 _1C;                // _1C
+	EPikiKind mPikminType; // _04, enum?
+	Vector3f _08;          // _08
+	u8 _14;                // _14
+	int _18;               // _18
+	f32 _1C;               // _1C
 };
 
 struct FSM : public ItemFSM<Item> {
@@ -166,11 +166,11 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
-	efx::TPkEffectTane* m_efxTane; // _1E0
-	f32 _1E4;                      // _1E4
-	u8 _1E8[0xC];                  // _1E8, unknown
-	u16 m_color;                   // _1F4
-	u16 m_headType;                // _1F6
+	efx::TPkEffectTane* mEfxTane; // _1E0
+	f32 _1E4;                     // _1E4
+	u8 _1E8[0xC];                 // _1E8, unknown
+	u16 mColor;                   // _1F4
+	u16 mHeadType;                // _1F6
 };
 
 struct Mgr : public FixedSizeItemMgr<Item> {

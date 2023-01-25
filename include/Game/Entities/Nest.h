@@ -46,11 +46,11 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Matrixf _2BC;   // _2BC
-	u8 m_houseType; // _2EC
-	s16 _2EE;       // _2EE
-	int _2F0;       // _2F0
-	                // _2F4 = PelletView
+	Matrixf _2BC;  // _2BC
+	u8 mHouseType; // _2EC
+	s16 _2EE;      // _2EE
+	int _2F0;      // _2F0
+	               // _2F4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -69,19 +69,19 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 	virtual void loadAnimData() { }   // _CC (weak)
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	J3DModelData* m_houseModelData; // _44
-	Obj* m_obj;                     // _48, array of Objs
+	J3DModelData* mHouseModelData; // _44
+	Obj* mObj;                     // _48, array of Objs
 };
 } // namespace Nest
 } // namespace Game

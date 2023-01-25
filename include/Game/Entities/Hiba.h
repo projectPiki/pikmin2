@@ -29,7 +29,7 @@ struct Obj : public EnemyBase {
 	virtual void outWaterCallback() { }             // _88 (weak)
 	virtual bool isLivingThing()                    // _D4 (weak)
 	{
-		return m_isAlive;
+		return mIsAlive;
 	}
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
@@ -58,11 +58,11 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                // _2BC
-	bool m_isAlive;            // _2C0
-	f32 m_timer;               // _2C4
-	efx::THibaFire* m_efxFire; // _2C8
-	                           // _2CC = PelletView
+	FSM* mFsm;                // _2BC
+	bool mIsAlive;            // _2C0
+	f32 mTimer;               // _2C4
+	efx::THibaFire* mEfxFire; // _2C8
+	                          // _2CC = PelletView
 };
 
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
@@ -79,26 +79,26 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_waitTime(this, 'fp02', "ƒEƒFƒCƒgŽžŠÔ", 2.5f, 0.0f, 100.0f) // 'wait time'
-		    , m_activeTime(this, 'fp01', "‰Î“f‚«ŽžŠÔ", 2.5f, 0.0f, 100.0f) // 'fire spitting time'
-		    , m_stopTime(this, 'fp03', "’âŽ~ŽžŠÔ", 10.0f, 0.0f, 100.0f)    // 'stop time'
-		    , m_lodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)
-		    , m_lodMiddle(this, 'fp91', "LOD MIDDLE", 0.05f, 0.0f, 1.0f)
+		    , mWaitTime(this, 'fp02', "ƒEƒFƒCƒgŽžŠÔ", 2.5f, 0.0f, 100.0f) // 'wait time'
+		    , mActiveTime(this, 'fp01', "‰Î“f‚«ŽžŠÔ", 2.5f, 0.0f, 100.0f) // 'fire spitting time'
+		    , mStopTime(this, 'fp03', "’âŽ~ŽžŠÔ", 10.0f, 0.0f, 100.0f)    // 'stop time'
+		    , mLodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)
+		    , mLodMiddle(this, 'fp91', "LOD MIDDLE", 0.05f, 0.0f, 1.0f)
 		{
 		}
 
-		Parm<f32> m_waitTime;   // _804, fp02
-		Parm<f32> m_activeTime; // _82C, fp01
-		Parm<f32> m_stopTime;   // _854, fp03
-		Parm<f32> m_lodNear;    // _87C, fp90
-		Parm<f32> m_lodMiddle;  // _8A4, fp91
+		Parm<f32> mWaitTime;   // _804, fp02
+		Parm<f32> mActiveTime; // _82C, fp01
+		Parm<f32> mStopTime;   // _854, fp03
+		Parm<f32> mLodNear;    // _87C, fp90
+		Parm<f32> mLodMiddle;  // _8A4, fp91
 	};
 
 	Parms() { }
@@ -106,23 +106,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -142,14 +142,14 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct WaitStateArg : public StateArg {
-	f32 m_waitTimer; // _00
+	f32 mWaitTimer; // _00
 };
 
 struct State : public EnemyFSMState {
 	inline State(int stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

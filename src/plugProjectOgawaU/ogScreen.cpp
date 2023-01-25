@@ -26,7 +26,7 @@ void _Print(char* format, ...)
  * Address:	80301EB8
  * Size:	000008
  */
-void ArrowAlphaBlink::setSpeed(f32 speed) { m_speed = speed; }
+void ArrowAlphaBlink::setSpeed(f32 speed) { mSpeed = speed; }
 
 /*
  * --INFO--
@@ -35,15 +35,15 @@ void ArrowAlphaBlink::setSpeed(f32 speed) { m_speed = speed; }
  */
 f32 ArrowAlphaBlink::calc()
 {
-	m_timer += 30.0f * (m_speed * sys->m_deltaTime);
-	if (m_timer > TAU) {
-		m_timer = m_timer - TAU;
+	mTimer += 30.0f * (mSpeed * sys->mDeltaTime);
+	if (mTimer > TAU) {
+		mTimer = mTimer - TAU;
 	}
 
 	// Place the sine wave in a range of 0 - 2 * blinkMag (sin returns between -1 and 1)
-	f32 factor = m_magnitude * (1.0f + pikmin2_sinf(m_timer));
+	f32 factor = mMagnitude * (1.0f + pikmin2_sinf(mTimer));
 
-	return (factor / 2) + m_start;
+	return (factor / 2) + mStart;
 }
 
 /*
@@ -70,9 +70,9 @@ PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count
 		JUtility::TColor white = static_cast<J2DPicture*>(picture)->getWhite();
 		JUtility::TColor black = static_cast<J2DPicture*>(picture)->getBlack();
 		if (wkMax > 0) {
-			wkPtr->m_pane = picture;
-			wkPtr->m_white.set(white.r, white.g, white.b, white.a);
-			wkPtr->m_black.set(black.r, black.g, black.b, black.a);
+			wkPtr->mPane = picture;
+			wkPtr->mWhite.set(white.r, white.g, white.b, white.a);
+			wkPtr->mBlack.set(black.r, black.g, black.b, black.a);
 			wkPtr++;
 			wkMax--;
 		} else {
@@ -123,15 +123,15 @@ void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, f32 blendFac
  */
 void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::TColor& color1, JUtility::TColor& color2, f32 blendFactor)
 {
-	PictureTreeColorInfo* colorInfo = captureInfo->m_colorInfoArray;
-	for (int i = 0; i < captureInfo->m_count; i++) {
-		J2DPicture* picture = static_cast<J2DPicture*>(colorInfo[i].m_pane);
+	PictureTreeColorInfo* colorInfo = captureInfo->mColorInfoArray;
+	for (int i = 0; i < captureInfo->mCount; i++) {
+		J2DPicture* picture = static_cast<J2DPicture*>(colorInfo[i].mPane);
 		if (picture == nullptr) {
 			return;
 		}
 
-		JUtility::TColor white = colorInfo[i].m_white;
-		JUtility::TColor black = colorInfo[i].m_black;
+		JUtility::TColor white = colorInfo[i].mWhite;
+		JUtility::TColor black = colorInfo[i].mBlack;
 
 		blendColor(white, color1, blendFactor, &white);
 		blendColor(black, color2, blendFactor, &black);
@@ -367,12 +367,12 @@ J2DPane* TagSearch(J2DScreen* screen, u64 tag)
  */
 AlphaMgr::AlphaMgr()
 {
-	m_state         = ALPHAMGR_Disabled;
-	m_currAlpha     = 0.0f;
-	m_growRate      = 0.0f;
-	m_blinkEndAlpha = 1.0f;
-	m_alphaMin      = 0.0f;
-	m_alphaMax      = 1.0f;
+	mState         = ALPHAMGR_Disabled;
+	mCurrAlpha     = 0.0f;
+	mGrowRate      = 0.0f;
+	mBlinkEndAlpha = 1.0f;
+	mAlphaMin      = 0.0f;
+	mAlphaMax      = 1.0f;
 }
 
 /*
@@ -382,8 +382,8 @@ AlphaMgr::AlphaMgr()
  */
 void AlphaMgr::setBlinkArea(f32 min, f32 max)
 {
-	m_alphaMin = min;
-	m_alphaMax = max;
+	mAlphaMin = min;
+	mAlphaMax = max;
 }
 
 /*
@@ -393,20 +393,20 @@ void AlphaMgr::setBlinkArea(f32 min, f32 max)
  */
 void AlphaMgr::in(f32 end)
 {
-	if (m_currAlpha == 1.0f) {
-		m_state = ALPHAMGR_Disabled;
+	if (mCurrAlpha == 1.0f) {
+		mState = ALPHAMGR_Disabled;
 		return;
 	}
 
 	if (end == 0.0f) {
-		m_state     = ALPHAMGR_Disabled;
-		m_currAlpha = 1.0f;
+		mState     = ALPHAMGR_Disabled;
+		mCurrAlpha = 1.0f;
 		return;
 	}
 
-	m_currAlpha = 0.0f;
-	m_state     = ALPHAMGR_Fadein;
-	m_growRate  = (1.0f - m_currAlpha) / (end / sys->m_deltaTime);
+	mCurrAlpha = 0.0f;
+	mState     = ALPHAMGR_Fadein;
+	mGrowRate  = (1.0f - mCurrAlpha) / (end / sys->mDeltaTime);
 }
 
 /*
@@ -416,21 +416,21 @@ void AlphaMgr::in(f32 end)
  */
 void AlphaMgr::out(f32 end)
 {
-	m_currAlpha = 1.0f;
+	mCurrAlpha = 1.0f;
 
-	if (m_currAlpha == 0.0f) {
-		m_state = ALPHAMGR_Disabled;
+	if (mCurrAlpha == 0.0f) {
+		mState = ALPHAMGR_Disabled;
 		return;
 	}
 
 	if (end == 0.0f) {
-		m_state     = ALPHAMGR_Disabled;
-		m_currAlpha = 0.0f;
+		mState     = ALPHAMGR_Disabled;
+		mCurrAlpha = 0.0f;
 		return;
 	}
 
-	m_state    = ALPHAMGR_Fadeout;
-	m_growRate = -m_currAlpha / (end / sys->m_deltaTime);
+	mState    = ALPHAMGR_Fadeout;
+	mGrowRate = -mCurrAlpha / (end / sys->mDeltaTime);
 }
 
 /*
@@ -440,14 +440,14 @@ void AlphaMgr::out(f32 end)
  */
 void AlphaMgr::blink(f32 end)
 {
-	if ((m_state == ALPHAMGR_Disabled) || (m_state == ALPHAMGR_Blinking)) {
-		m_state       = ALPHAMGR_Blinking;
-		f32 frametime = sys->m_deltaTime;
-		if (m_growRate > 0.0f) {
-			m_growRate = frametime / end;
+	if ((mState == ALPHAMGR_Disabled) || (mState == ALPHAMGR_Blinking)) {
+		mState        = ALPHAMGR_Blinking;
+		f32 frametime = sys->mDeltaTime;
+		if (mGrowRate > 0.0f) {
+			mGrowRate = frametime / end;
 			return;
 		}
-		m_growRate = -(frametime / end);
+		mGrowRate = -(frametime / end);
 	}
 }
 
@@ -458,55 +458,55 @@ void AlphaMgr::blink(f32 end)
  */
 u8 AlphaMgr::calc()
 {
-	switch (m_state) {
+	switch (mState) {
 	case ALPHAMGR_Disabled:
 		break;
 	case ALPHAMGR_Fadein:
-		m_currAlpha += m_growRate;
-		if (m_currAlpha >= 1.0f) {
-			m_currAlpha = 1.0f;
-			m_state     = ALPHAMGR_Disabled;
+		mCurrAlpha += mGrowRate;
+		if (mCurrAlpha >= 1.0f) {
+			mCurrAlpha = 1.0f;
+			mState     = ALPHAMGR_Disabled;
 		}
 		break;
 	case ALPHAMGR_BlinkingCustom:
-		m_currAlpha += m_growRate;
+		mCurrAlpha += mGrowRate;
 
-		if (m_currAlpha >= 1.0f) {
-			m_currAlpha  = 1.0f;
-			f32 endAlpha = m_blinkEndAlpha;
+		if (mCurrAlpha >= 1.0f) {
+			mCurrAlpha   = 1.0f;
+			f32 endAlpha = mBlinkEndAlpha;
 
 			// looks like inlined AlphaMgr::blink
-			if ((m_state == ALPHAMGR_Disabled) || (m_state == ALPHAMGR_Blinking)) {
-				m_state = ALPHAMGR_Blinking;
-				f32 dt  = sys->m_deltaTime;
-				if (m_growRate > 0.0f) {
-					m_growRate = dt / endAlpha;
+			if ((mState == ALPHAMGR_Disabled) || (mState == ALPHAMGR_Blinking)) {
+				mState = ALPHAMGR_Blinking;
+				f32 dt = sys->mDeltaTime;
+				if (mGrowRate > 0.0f) {
+					mGrowRate = dt / endAlpha;
 				} else {
-					m_growRate = -(dt / endAlpha);
+					mGrowRate = -(dt / endAlpha);
 				}
 			}
 		}
 		break;
 	case ALPHAMGR_Fadeout:
-		m_currAlpha += m_growRate;
-		if (m_currAlpha <= 0.0f) {
-			m_currAlpha = 0.0f;
-			m_state     = ALPHAMGR_Disabled;
+		mCurrAlpha += mGrowRate;
+		if (mCurrAlpha <= 0.0f) {
+			mCurrAlpha = 0.0f;
+			mState     = ALPHAMGR_Disabled;
 		}
 		break;
 	case ALPHAMGR_Blinking:
-		m_currAlpha += m_growRate;
-		if (m_currAlpha >= m_alphaMax) {
-			m_currAlpha = m_alphaMax;
-			m_growRate  = -m_growRate;
-		} else if (m_currAlpha <= m_alphaMin) {
-			m_currAlpha = m_alphaMin;
-			m_growRate  = -m_growRate;
+		mCurrAlpha += mGrowRate;
+		if (mCurrAlpha >= mAlphaMax) {
+			mCurrAlpha = mAlphaMax;
+			mGrowRate  = -mGrowRate;
+		} else if (mCurrAlpha <= mAlphaMin) {
+			mCurrAlpha = mAlphaMin;
+			mGrowRate  = -mGrowRate;
 		}
 		break;
 	}
 
-	return 255.0f * m_currAlpha;
+	return 255.0f * mCurrAlpha;
 }
 
 /*
@@ -538,7 +538,7 @@ void setAlphaScreen(J2DPane* pane)
  * Address:	803034fc
  * Size:	000010
  */
-u64 J2DPane::getTagName() const { return m_tag; }
+u64 J2DPane::getTagName() const { return mTag; }
 
 // NOTE: fabricated to generate the P2DScreen::Node vtable and Mgr_tuning dtor
 // probably were used in stripped/inlined functions

@@ -26,17 +26,17 @@ void Obj::changeMaterial()
 	ResTIMG* newTexture;
 	J3DTexture* j3dTexture;
 
-	j3dModel      = m_model->m_j3dModel;
-	modelData     = j3dModel->m_modelData;
-	changeTexture = static_cast<Mgr*>(m_mgr)->getChangeTexture();
+	j3dModel      = mModel->mJ3dModel;
+	modelData     = j3dModel->mModelData;
+	changeTexture = static_cast<Mgr*>(mMgr)->getChangeTexture();
 
-	u16 idx                = modelData->m_materialTable._0C->getIndex("karada");
-	J3DMaterial* karadaMat = modelData->m_materialTable.m_materials1[idx];
-	karadaMat->m_tevBlock->setTevKColor(0, J3DGXColor(0x64, 0x64, 0x64, 0xFF));
+	u16 idx                = modelData->mMaterialTable._0C->getIndex("karada");
+	J3DMaterial* karadaMat = modelData->mMaterialTable.mMaterials1[idx];
+	karadaMat->mTevBlock->setTevKColor(0, J3DGXColor(0x64, 0x64, 0x64, 0xFF));
 
 	j3dModel->calcMaterial();
 
-	j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+	j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
 	newTexture = j3dTexture->_04;
 
 	changeTexture->copyTo(newTexture);
@@ -44,10 +44,10 @@ void Obj::changeMaterial()
 	j3dTexture->setImageOffset((u32)changeTexture);
 	j3dTexture->setPaletteOffset((u32)changeTexture);
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket    = packet;
-		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket     = packet;
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
 		material->diff(packet->_2C->_34);
 	}
 }
@@ -67,9 +67,9 @@ void Obj::createItem()
 	u32 initArg           = 0;
 	u32 amount            = 0;
 
-	switch (m_hitCount) {
+	switch (mHitCount) {
 	case 0: // initial flip
-		if (gameSystem && gameSystem->m_isInCave) {
+		if (gameSystem && gameSystem->mIsInCave) {
 			createPelletItem = false;
 			initArg          = HONEY_Y;
 			amount           = 3;
@@ -101,7 +101,7 @@ void Obj::createItem()
 			amount  = 3;
 		}
 
-		m_appearTimer = 12800.0f;
+		mAppearTimer = 12800.0f;
 		break;
 	default:
 		break;
@@ -113,7 +113,7 @@ void Obj::createItem()
 		createDoping(initArg, amount);
 	}
 
-	m_hitCount++;
+	mHitCount++;
 }
 
 /*
@@ -121,7 +121,7 @@ void Obj::createItem()
  * Address:	80284E68
  * Size:	0000B0
  */
-void Obj::createEffect() { m_bodyEffect = new efx::TOoganeKira; }
+void Obj::createEffect() { mBodyEffect = new efx::TOoganeKira; }
 
 /*
  * --INFO--
@@ -130,9 +130,9 @@ void Obj::createEffect() { m_bodyEffect = new efx::TOoganeKira; }
  */
 void Obj::startBodyEffect()
 {
-	SysShape::Joint* bodyJoint = m_model->getJoint("body");
-	m_bodyEffect->m_mtx        = bodyJoint->getWorldMatrix();
-	m_bodyEffect->create(nullptr);
+	SysShape::Joint* bodyJoint = mModel->getJoint("body");
+	mBodyEffect->mMtx          = bodyJoint->getWorldMatrix();
+	mBodyEffect->create(nullptr);
 }
 
 /*
@@ -140,21 +140,21 @@ void Obj::startBodyEffect()
  * Address:	80284F70
  * Size:	000030
  */
-void Obj::finishBodyEffect() { m_bodyEffect->fade(); }
+void Obj::finishBodyEffect() { mBodyEffect->fade(); }
 
 /*
  * --INFO--
  * Address:	80284FA0
  * Size:	000030
  */
-void Obj::effectDrawOn() { m_bodyEffect->endDemoDrawOn(); }
+void Obj::effectDrawOn() { mBodyEffect->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	80284FD0
  * Size:	000030
  */
-void Obj::effectDrawOff() { m_bodyEffect->startDemoDrawOff(); }
+void Obj::effectDrawOff() { mBodyEffect->startDemoDrawOff(); }
 
 /*
  * --INFO--

@@ -11,7 +11,7 @@ UpdateMgr* collisionUpdateMgr;
  * Size:	000018
  */
 UpdateContext::UpdateContext()
-    : m_mgr(0)
+    : mMgr(0)
     , _04(-1)
     , _09(false)
 {
@@ -29,11 +29,11 @@ bool UpdateContext::updatable()
 		return true;
 	}
 
-	if (m_mgr == nullptr) {
+	if (mMgr == nullptr) {
 		return false;
 	}
 
-	return !!m_mgr->updatable(this);
+	return !!mMgr->updatable(this);
 }
 
 /*
@@ -43,7 +43,7 @@ bool UpdateContext::updatable()
  */
 void UpdateContext::init(UpdateMgr* mgr)
 {
-	m_mgr = mgr;
+	mMgr = mgr;
 	if (_09 == false) {
 		mgr->addClient(this);
 	}
@@ -57,9 +57,9 @@ void UpdateContext::init(UpdateMgr* mgr)
 void UpdateContext::exit()
 {
 	if (_09 == false) {
-		if (m_mgr) {
-			m_mgr->removeClient(this);
-			m_mgr = nullptr;
+		if (mMgr) {
+			mMgr->removeClient(this);
+			mMgr = nullptr;
 		}
 		_08 = false;
 	}

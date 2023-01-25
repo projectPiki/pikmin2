@@ -37,24 +37,24 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_IsDeathEffectEnabled);
 	setEmotionNone();
 	enableEvent(0, EB_IsImmuneBitter);
-	m_isFalling = false;
-	m_fsm->start(this, 0, nullptr);
+	mIsFalling = false;
+	mFsm->start(this, 0, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
 		enableEvent(0, EB_Constraint);
 		if (mapMgr) {
-			Vector3f position = m_position;
+			Vector3f position = mPosition;
 			position.y += 20.0f;
-			m_position.y = mapMgr->getMinY(position);
+			mPosition.y = mapMgr->getMinY(position);
 		}
 
-		m_curAnim->m_isPlaying = 0;
+		mCurAnim->mIsPlaying = 0;
 		doAnimationUpdateAnimator();
 
-		m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
+		mObjMatrix.makeSRT(mScale, mRotation, mPosition);
 
-		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-		m_model->m_j3dModel->calc();
+		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->calc();
 	}
 }
 
@@ -65,8 +65,8 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 Obj::Obj()
 {
-	m_fsm      = nullptr;
-	m_animator = new ProperAnimator;
+	mFsm      = nullptr;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 }
 
@@ -77,13 +77,13 @@ Obj::Obj()
  */
 void Obj::doUpdate()
 {
-	if (m_bounceTriangle) {
-		m_targetVelocity = Vector3f(0.0f);
+	if (mBounceTriangle) {
+		mTargetVelocity = Vector3f(0.0f);
 	} else {
-		m_targetVelocity = m_currentVelocity;
+		mTargetVelocity = mCurrentVelocity;
 	}
 
-	m_fsm->exec(this);
+	mFsm->exec(this);
 }
 
 /*
@@ -107,8 +107,8 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::doSimulation(f32 constraint)
 {
-	if (m_captureMatrix) {
-		m_position = m_captureMatrix->getBasis(3);
+	if (mCaptureMatrix) {
+		mPosition = mCaptureMatrix->getBasis(3);
 		updateSpheres();
 	} else {
 		EnemyBase::doSimulation(constraint);
@@ -122,29 +122,29 @@ void Obj::doSimulation(f32 constraint)
  */
 void Obj::doAnimationCullingOff()
 {
-	m_curAnim->m_isPlaying = 0;
+	mCurAnim->mIsPlaying = 0;
 	doAnimationUpdateAnimator();
 	bool check;
-	Vector3f vec = m_objMatrix.getBasis(3);
-	if (m_captureMatrix) {
+	Vector3f vec = mObjMatrix.getBasis(3);
+	if (mCaptureMatrix) {
 		check             = false;
-		Vector3f checkVec = m_captureMatrix->getBasis(3);
+		Vector3f checkVec = mCaptureMatrix->getBasis(3);
 		if (vec.x != checkVec.x || vec.y != checkVec.y || vec.z != checkVec.z) {
 			check = true;
-			PSMTXCopy(m_captureMatrix->m_matrix.mtxView, m_objMatrix.m_matrix.mtxView);
+			PSMTXCopy(mCaptureMatrix->mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
 		}
 	} else {
 		check = false;
-		if (m_position.x != vec.x || m_position.y != vec.y || m_position.z != vec.z) {
+		if (mPosition.x != vec.x || mPosition.y != vec.y || mPosition.z != vec.z) {
 			check = true;
-			m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
+			mObjMatrix.makeSRT(mScale, mRotation, mPosition);
 		}
 	}
 
 	if (check || !isStopMotion()) {
-		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-		m_model->m_j3dModel->calc();
-		m_collTree->update();
+		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->calc();
+		mCollTree->update();
 	}
 }
 
@@ -162,9 +162,9 @@ bool Obj::pressCallBack(Creature*, f32, CollPart*) { return false; }
  */
 void Obj::bounceCallback(Sys::Triangle* triangle)
 {
-	if (m_isFalling || isBirthTypeDropGroup()) {
+	if (mIsFalling || isBirthTypeDropGroup()) {
 		enableEvent(0, EB_LifegaugeVisible);
-		m_health = 0.0f;
+		mHealth = 0.0f;
 	}
 }
 
@@ -176,10 +176,9 @@ void Obj::bounceCallback(Sys::Triangle* triangle)
 void Obj::collisionCallback(CollEvent& collEvent)
 {
 	EnemyBase::collisionCallback(collEvent);
-	if (isBirthTypeDropGroup() && collEvent.m_collidingCreature != nullptr && !collEvent.m_collidingCreature->isTeki()
-	    && getStateID() == 0) {
+	if (isBirthTypeDropGroup() && collEvent.mCollidingCreature != nullptr && !collEvent.mCollidingCreature->isTeki() && getStateID() == 0) {
 		enableEvent(0, EB_LifegaugeVisible);
-		m_health = 0.0f;
+		mHealth = 0.0f;
 	}
 }
 
@@ -190,11 +189,11 @@ void Obj::collisionCallback(CollEvent& collEvent)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.m_position                  = m_position;
-	shadowParam.m_position.y                = m_position.y + 2.0f;
-	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	shadowParam.m_boundingSphere.m_radius   = 20.0f;
-	shadowParam.m_size                      = 10.0f;
+	shadowParam.mPosition                 = mPosition;
+	shadowParam.mPosition.y               = mPosition.y + 2.0f;
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.mBoundingSphere.mRadius   = 20.0f;
+	shadowParam.mSize                     = 10.0f;
 }
 
 /*
@@ -204,7 +203,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
  */
 bool Obj::needShadow()
 {
-	bool result = (!EnemyBase::needShadow()) ? false : (m_captureMatrix == nullptr);
+	bool result = (!EnemyBase::needShadow()) ? false : (mCaptureMatrix == nullptr);
 	return result;
 }
 
@@ -215,11 +214,11 @@ bool Obj::needShadow()
  */
 void Obj::onStartCapture()
 {
-	if (m_captureMatrix) {
-		Vector3f position = m_captureMatrix->getBasis(3);
+	if (mCaptureMatrix) {
+		Vector3f position = mCaptureMatrix->getBasis(3);
 		onSetPosition(position);
-		m_currentVelocity = Vector3f(0.0f);
-		m_targetVelocity  = Vector3f(0.0f);
+		mCurrentVelocity = Vector3f(0.0f);
+		mTargetVelocity  = Vector3f(0.0f);
 		enableEvent(0, EB_Constraint);
 		enableEvent(0, EB_IsVulnerable);
 		disableEvent(0, EB_IsCullable);
@@ -234,7 +233,7 @@ void Obj::onStartCapture()
 void Obj::onEndCapture()
 {
 	constraintOff();
-	m_isFalling = true;
+	mIsFalling = true;
 	enableEvent(0, EB_IsCullable);
 }
 
@@ -248,27 +247,27 @@ void Obj::genItem()
 	TamagoMushi::Obj* mititeGroup;
 	int dropType = EGGDROP_SingleNectar;
 	Vector3f velocity(0.0f, 250.0f, 0.0f);
-	Vector3f position = m_position;
+	Vector3f position = mPosition;
 	position.y += 2.0f;
 
 	f32 randVal = randFloat();
-	f32 test    = C_PARMS->m_properParms.m_singleNectarChance.m_value;
+	f32 test    = C_PARMS->mProperParms.mSingleNectarChance.mValue;
 	if (randVal < test) {
 		dropType = EGGDROP_SingleNectar;
 	} else {
-		test += C_PARMS->m_properParms.m_doubleNectarChance.m_value;
+		test += C_PARMS->mProperParms.mDoubleNectarChance.mValue;
 		if (randVal < test) {
 			dropType = EGGDROP_DoubleNectar;
 		} else {
-			test += C_PARMS->m_properParms.m_mititesChance.m_value;
+			test += C_PARMS->mProperParms.mMititesChance.mValue;
 			if (randVal < test) {
 				dropType = EGGDROP_Mitites;
 			} else {
-				test += C_PARMS->m_properParms.m_spicyChance.m_value;
+				test += C_PARMS->mProperParms.mSpicyChance.mValue;
 				if (randVal < test) {
 					dropType = EGGDROP_Spicy;
 				} else {
-					test += C_PARMS->m_properParms.m_bitterChance.m_value;
+					test += C_PARMS->mProperParms.mBitterChance.mValue;
 					if (randVal < test) {
 						dropType = EGGDROP_Bitter;
 					}
@@ -313,7 +312,7 @@ void Obj::genItem()
 		if (nectarItem) {
 			ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(nectarItem);
 			nectar->init(nullptr);
-			nectar->m_honeyType = HONEY_Y;
+			nectar->mHoneyType = HONEY_Y;
 			nectar->setPosition(position, false);
 			nectar->setVelocity(velocity);
 		}
@@ -332,7 +331,7 @@ void Obj::genItem()
 				sprayVelocity.x         = 50.0f * pikmin2_sinf(theta);
 				sprayVelocity.z         = 50.0f * pikmin2_cosf(theta);
 				nectar->init(nullptr);
-				nectar->m_honeyType = HONEY_Y;
+				nectar->mHoneyType = HONEY_Y;
 				nectar->setPosition(position, false);
 				nectar->setVelocity(sprayVelocity);
 			}
@@ -344,11 +343,11 @@ void Obj::genItem()
 		TamagoMushi::Mgr* mititeMgr = static_cast<TamagoMushi::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_TamagoMushi));
 		if (mititeMgr) {
 			EnemyBirthArg birthArg;
-			birthArg.m_position = m_position;
+			birthArg.mPosition = mPosition;
 
-			birthArg.m_faceDir = TAU * randFloat();
-			velocity.y         = 200.0f;
-			mititeGroup        = mititeMgr->createGroup(birthArg, 10, velocity);
+			birthArg.mFaceDir = TAU * randFloat();
+			velocity.y        = 200.0f;
+			mititeGroup       = mititeMgr->createGroup(birthArg, 10, velocity);
 		}
 
 		if (mititeGroup == nullptr) {
@@ -356,7 +355,7 @@ void Obj::genItem()
 			if (mititeBackupItem) {
 				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(mititeBackupItem);
 				nectar->init(nullptr);
-				nectar->m_honeyType = HONEY_Y;
+				nectar->mHoneyType = HONEY_Y;
 				nectar->setPosition(position, false);
 				nectar->setVelocity(velocity);
 			}
@@ -372,9 +371,9 @@ void Obj::genItem()
 			ItemHoney::Item* spray = static_cast<ItemHoney::Item*>(sprayItem);
 			spray->init(nullptr);
 
-			spray->m_honeyType = HONEY_R;
+			spray->mHoneyType = HONEY_R;
 			if (dropType == EGGDROP_Bitter) {
-				spray->m_honeyType = HONEY_B;
+				spray->mHoneyType = HONEY_B;
 			}
 
 			spray->setPosition(position, false);

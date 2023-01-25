@@ -102,14 +102,14 @@ J2DScreen::J2DScreen()
 // : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(JGeometry::TVec2f(0.0f), 640.0f, 480.0f))
 // : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(0.0f, 0.0f, JGeometry::TVec2f(640.0f, 480.0f)))
 {
-	m_color.set(0xFFFFFFFF);
-	_004            = 0xFFFF;
-	m_isScissor     = false;
-	m_materialCount = 0;
-	m_materials     = nullptr;
-	m_texRes        = nullptr;
-	m_fontRes       = nullptr;
-	m_nameTab       = nullptr;
+	mColor.set(0xFFFFFFFF);
+	_004           = 0xFFFF;
+	mIsScissor     = false;
+	mMaterialCount = 0;
+	mMaterials     = nullptr;
+	mTexRes        = nullptr;
+	mFontRes       = nullptr;
+	mNameTab       = nullptr;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -171,17 +171,17 @@ J2DScreen::~J2DScreen() { clean(); }
  */
 void J2DScreen::clean()
 {
-	delete[] m_materials;
-	m_materialCount = 0;
-	m_materials     = nullptr;
-	delete[] m_texRes;
-	m_texRes = nullptr;
-	delete[] m_fontRes;
-	m_fontRes = nullptr;
-	if (m_nameTab != nullptr) {
-		m_nameTab->clearResNameTable();
-		delete m_nameTab;
-		m_nameTab = nullptr;
+	delete[] mMaterials;
+	mMaterialCount = 0;
+	mMaterials     = nullptr;
+	delete[] mTexRes;
+	mTexRes = nullptr;
+	delete[] mFontRes;
+	mFontRes = nullptr;
+	if (mNameTab != nullptr) {
+		mNameTab->clearResNameTable();
+		delete mNameTab;
+		mNameTab = nullptr;
 	}
 }
 
@@ -298,7 +298,7 @@ bool J2DScreen::private_set(JSURandomInputStream* stream, unsigned long flags, J
 	if ((flags & 0x1F0000) == 0) {
 		clean();
 	}
-	return (result != false) ? stream->m_isEOFMaybe == 0 : false;
+	return (result != false) ? stream->mIsEOFMaybe == 0 : false;
 }
 
 /*
@@ -310,8 +310,8 @@ bool J2DScreen::checkSignature(JSURandomInputStream* stream)
 {
 	J3DFileHeader header;
 	stream->read(&header, sizeof(header));
-	if (header.m_j3dVersion == 'SCRN') {
-		if (!(header.m_fileVersion == 'blo1' || header.m_fileVersion == 'blo2')) {
+	if (header.mJ3dVersion == 'SCRN') {
+		if (!(header.mFileVersion == 'blo1' || header.mFileVersion == 'blo2')) {
 			return false;
 		}
 		return true;
@@ -360,18 +360,18 @@ bool J2DScreen::getScreenInformation(JSURandomInputStream* input)
 {
 	J2DScreenInfoBlock info;
 	input->read(&info, sizeof(info));
-	if (info.m_bloBlockType != 'INF1') {
+	if (info.mBloBlockType != 'INF1') {
 		return false;
 	}
 	JGeometry::TBox2f box;
 	box.i.x = 0.0f;
 	box.i.y = 0.0f;
-	box.f.x = info.m_width;
-	box.f.y = info.m_height;
+	box.f.x = info.mWidth;
+	box.f.y = info.mHeight;
 	place(box);
-	m_color = JUtility::TColor(info.m_color);
-	if (sizeof(info) < info.m_blockLength) {
-		input->skip(info.m_blockLength - sizeof(info));
+	mColor = JUtility::TColor(info.mColor);
+	if (sizeof(info) < info.mBlockLength) {
+		input->skip(info.mBlockLength - sizeof(info));
 	}
 	return true;
 }
@@ -387,13 +387,13 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
 	J2DPane* currentPane = parent;
 	while (true) {
 		input->peek(&header, sizeof(header));
-		switch (header.m_bloBlockType) {
+		switch (header.mBloBlockType) {
 		case 'EXT1':
-			input->seek(header.m_blockLength, SEEK_CUR);
+			input->seek(header.mBlockLength, SEEK_CUR);
 			return 1;
 			break;
 		case 'BGN1': {
-			input->seek(header.m_blockLength, SEEK_CUR);
+			input->seek(header.mBlockLength, SEEK_CUR);
 			u32 result = makeHierarchyPanes(currentPane, input, flags, archive);
 			if (result != 0) {
 				return result;
@@ -401,18 +401,18 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
 			break;
 		}
 		case 'END1':
-			input->seek(header.m_blockLength, SEEK_CUR);
+			input->seek(header.mBlockLength, SEEK_CUR);
 			return 0;
 			break;
 		case 'TEX1':
-			m_texRes = getResReference(input, flags);
-			if (m_texRes == nullptr) {
+			mTexRes = getResReference(input, flags);
+			if (mTexRes == nullptr) {
 				return 2;
 			}
 			break;
 		case 'FNT1':
-			m_fontRes = getResReference(input, flags);
-			if (m_fontRes == nullptr) {
+			mFontRes = getResReference(input, flags);
+			if (mFontRes == nullptr) {
 				return 2;
 			}
 			break;
@@ -880,7 +880,7 @@ J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputS
 {
 	// can't just do direct returns here...
 	J2DPane* pane;
-	switch (header.m_bloBlockType) {
+	switch (header.mBloBlockType) {
 	case 'PAN1':
 		pane = new J2DPane(parent, input, 0);
 		break;
@@ -898,27 +898,27 @@ J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputS
 		break;
 	case 'WIN2':
 		if ((flags & 0x1F0000) != 0) {
-			pane = new J2DWindowEx(parent, input, flags, m_materials);
+			pane = new J2DWindowEx(parent, input, flags, mMaterials);
 			break;
 		}
-		pane = new J2DWindow(parent, input, m_materials);
+		pane = new J2DWindow(parent, input, mMaterials);
 		break;
 	case 'PIC2':
 		if ((flags & 0x1F0000) != 0) {
-			pane = new J2DPictureEx(parent, input, flags, m_materials);
+			pane = new J2DPictureEx(parent, input, flags, mMaterials);
 			break;
 		}
-		pane = new J2DPicture(parent, input, m_materials);
+		pane = new J2DPicture(parent, input, mMaterials);
 		break;
 	case 'TBX2':
 		if ((flags & 0x1F0000) != 0) {
-			pane = new J2DTextBoxEx(parent, input, flags, m_materials);
+			pane = new J2DTextBoxEx(parent, input, flags, mMaterials);
 			break;
 		}
-		pane = new J2DTextBox(parent, input, flags, m_materials);
+		pane = new J2DTextBox(parent, input, flags, mMaterials);
 		break;
 	default: {
-		int targetPosition = input->getPosition() + header.m_blockLength;
+		int targetPosition = input->getPosition() + header.mBlockLength;
 		pane               = new J2DPane(parent, input, 0);
 		input->seek(targetPosition, SEEK_SET);
 		break;
@@ -1522,13 +1522,13 @@ bool J2DScreen::createMaterial(JSURandomInputStream* input, unsigned long flags,
  */
 J2DMaterial* J2DScreen::getMaterial(unsigned short index)
 {
-	if (index >= m_materialCount) {
+	if (index >= mMaterialCount) {
 		return nullptr;
 	}
-	if (m_materials == nullptr) {
+	if (mMaterials == nullptr) {
 		return nullptr;
 	}
-	return m_materials + index;
+	return mMaterials + index;
 }
 
 /*
@@ -1579,9 +1579,9 @@ void* J2DScreen::getNameResource(const char* name)
  */
 void J2DScreen::animation()
 {
-	animationPane(m_transform);
-	for (u16 i = 0; i < m_materialCount; i++) {
-		m_materials[i].animation();
+	animationPane(mTransform);
+	for (u16 i = 0; i < mMaterialCount; i++) {
+		mMaterials[i].animation();
 	}
 }
 
@@ -1595,8 +1595,8 @@ void J2DScreen::setAnimation(J2DAnmColor* animation)
 	animation->searchUpdateMaterialID(this);
 	u16 count = animation->_18;
 	for (u16 i = 0; i < count; i++) {
-		if (animation->_1C[i] < m_materialCount) {
-			m_materials[animation->_1C[i]].setAnimation(animation);
+		if (animation->_1C[i] < mMaterialCount) {
+			mMaterials[animation->_1C[i]].setAnimation(animation);
 		}
 	}
 }
@@ -1611,8 +1611,8 @@ void J2DScreen::setAnimation(J2DAnmTextureSRTKey* animation)
 	animation->searchUpdateMaterialID(this);
 	u16 count = animation->_14 / 3;
 	for (u16 i = 0; i < count; i++) {
-		if (animation->_34[i] < m_materialCount) {
-			m_materials[animation->_34[i]].setAnimation(animation);
+		if (animation->_34[i] < mMaterialCount) {
+			mMaterials[animation->_34[i]].setAnimation(animation);
 		}
 	}
 }
@@ -1627,8 +1627,8 @@ void J2DScreen::setAnimation(J2DAnmTexPattern* animation)
 	animation->searchUpdateMaterialID(this);
 	u16 count = animation->_1A;
 	for (u16 i = 0; i < count; i++) {
-		if (animation->_1C[i] < m_materialCount) {
-			m_materials[animation->_1C[i]].setAnimation(animation);
+		if (animation->_1C[i] < mMaterialCount) {
+			mMaterials[animation->_1C[i]].setAnimation(animation);
 		}
 	}
 }
@@ -1643,14 +1643,14 @@ void J2DScreen::setAnimation(J2DAnmTevRegKey* animation)
 	animation->searchUpdateMaterialID(this);
 	u16 count = animation->_10;
 	for (u16 i = 0; i < count; i++) {
-		if (animation->_24[i] < m_materialCount) {
-			m_materials[animation->_24[i]].setAnimation(animation);
+		if (animation->_24[i] < mMaterialCount) {
+			mMaterials[animation->_24[i]].setAnimation(animation);
 		}
 	}
 	count = animation->_12;
 	for (u16 i = 0; i < count; i++) {
-		if (animation->_38[i] < m_materialCount) {
-			m_materials[animation->_38[i]].setAnimation(animation);
+		if (animation->_38[i] < mMaterialCount) {
+			mMaterials[animation->_38[i]].setAnimation(animation);
 		}
 	}
 }

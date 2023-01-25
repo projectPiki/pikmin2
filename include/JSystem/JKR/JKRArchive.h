@@ -23,30 +23,30 @@ struct JKRArchive : public JKRFileLoader {
 		 * @reifiedAddress{8001A970}
 		 * @reifiedFile{JSystem/JKR/JKRArchivePri.cpp}
 		 */
-		const char* getString() const { return m_string; }
+		const char* getString() const { return mString; }
 		/**
 		 * @reifiedAddress{8001A978}
 		 * @reifiedFile{JSystem/JKR/JKRArchivePri.cpp}
 		 */
-		u16 getHash() const { return m_hash; }
+		u16 getHash() const { return mHash; }
 		void store(const char*);
 		char* store(const char*, char);
 
 		// Unused/inlined:
 		CArcName() { }
 
-		u16 m_hash;         // _00
-		short _02;          // _02
-		char m_string[256]; // _04
+		u16 mHash;         // _00
+		short _02;         // _02
+		char mString[256]; // _04
 	};
 
 	struct SDIFileEntry {
-		u16 _00;    // _00
-		u16 m_hash; // _02
-		u32 _04;    // _04
-		int _08;    // _08
-		u32 m_size; // _0C
-		void* _10;  // _10
+		u16 _00;   // _00
+		u16 mHash; // _02
+		u32 _04;   // _04
+		int _08;   // _08
+		u32 mSize; // _0C
+		void* _10; // _10
 
 		/**
 		 * @fabricated
@@ -64,7 +64,7 @@ struct JKRArchive : public JKRFileLoader {
 		 * @fabricated
 		 * Seems particularly important for fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl.
 		 */
-		inline u32 getSize() { return m_size; }
+		inline u32 getSize() { return mSize; }
 	};
 
 	struct SDirEntry {
@@ -78,12 +78,12 @@ struct JKRArchive : public JKRFileLoader {
 	};
 
 	struct JKRArchive_44 {
-		u32 m_baseOffset;        // _00
-		u32 m_offsetOfDirEntry;  // _04
-		u32 _08;                 // _08
-		u32 m_offsetOfFileEntry; // _0C
-		u32 _10;                 // _10
-		u32 _14;                 // _14
+		u32 mBaseOffset;        // _00
+		u32 mOffsetOfDirEntry;  // _04
+		u32 _08;                // _08
+		u32 mOffsetOfFileEntry; // _0C
+		u32 _10;                // _10
+		u32 _14;                // _14
 	};
 
 	JKRArchive(long, EMountMode);
@@ -132,15 +132,15 @@ struct JKRArchive : public JKRFileLoader {
 	SDirEntry* findResType(u32) const;
 	SDIFileEntry* findTypeResource(u32, u32) const;
 
-	JKRHeap* _38;                // _38
-	u8 m_mountMode;              // _3C
-	long _40;                    // _40
-	JKRArchive_44* _44;          // _44
-	SDirEntry* _48;              // _48 not sure of this one
-	SDIFileEntry* m_fileEntries; // _4C
-	u32* _50;                    // _50
-	int _54;                     // _54
-	int _58;                     // _58
+	JKRHeap* _38;               // _38
+	u8 mMountMode;              // _3C
+	long _40;                   // _40
+	JKRArchive_44* _44;         // _44
+	SDirEntry* _48;             // _48 not sure of this one
+	SDIFileEntry* mFileEntries; // _4C
+	u32* _50;                   // _50
+	int _54;                    // _54
+	int _58;                    // _58
 
 	static u32 sCurrentDirID;
 };
@@ -181,11 +181,11 @@ struct JKRMemArchive : public JKRArchive {
 	void unmountFixed();
 	void open(const char*, EMountDirection);
 
-	int _5C;                          // _5C
-	EMountDirection m_mountDirection; // _60
-	JKRMemArchive_64* _64;            // _64
-	u8* _68;                          // _68
-	bool _6C;                         // _6C
+	int _5C;                         // _5C
+	EMountDirection mMountDirection; // _60
+	JKRMemArchive_64* _64;           // _64
+	u8* _68;                         // _68
+	bool _6C;                        // _6C
 };
 
 struct JKRCompArchive : public JKRArchive {
@@ -206,15 +206,15 @@ struct JKRCompArchive : public JKRArchive {
 	void mountFixed(const char*);
 	void unmountFixed();
 
-	int _5C;              // _5C
-	int m_mountDirection; // _60
-	u32 _64;              // _64
-	void* _68;            // _68
-	unknown _6C;          // _6C
-	JKRDvdFile* _70;      // _70
-	unknown _74;          // _74
-	unknown _78;          // _78
-	unknown _7C;          // _7C
+	int _5C;             // _5C
+	int mMountDirection; // _60
+	u32 _64;             // _64
+	void* _68;           // _68
+	unknown _6C;         // _6C
+	JKRDvdFile* _70;     // _70
+	unknown _74;         // _74
+	unknown _78;         // _78
+	unknown _7C;         // _7C
 };
 
 struct JKRDvdArchive : public JKRArchive {

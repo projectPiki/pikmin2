@@ -31,7 +31,7 @@ struct TBombrock : public TBase {
 	virtual bool create(Arg* arg) // _08 (weak)
 	{
 		bool result = false;
-		if ((&m_efxBombABCD)->create(arg) && (&m_efxBombEFGH)->create(arg)) {
+		if ((&mEfxBombABCD)->create(arg) && (&mEfxBombEFGH)->create(arg)) {
 			result = true;
 		}
 		return result;
@@ -40,8 +40,8 @@ struct TBombrock : public TBase {
 	virtual void fade() { }      // _10 (weak)
 
 	// _00      = VTBL
-	TBombrockABCD m_efxBombABCD; // _04
-	TBombrockEFGH m_efxBombEFGH; // _20
+	TBombrockABCD mEfxBombABCD; // _04
+	TBombrockEFGH mEfxBombEFGH; // _20
 };
 
 struct TBombrockLight : public TChaseMtxT {

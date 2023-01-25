@@ -47,57 +47,57 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "要旋回角度(deg)", 20.0f, 0.0f, 180.0f)       // 'required turning angle (deg)'
-		    , m_fp02(this, 'fp02', "出現までの距離", 150.0f, 0.0f, 300.0f)       // 'distance to spawn'
-		    , m_fp03(this, 'fp03', "雄たけび有効角度(deg)", 45.0f, 0.0f, 180.0f) // 'roar effective angle (deg)'
-		    , m_fp04(this, 'fp04', "雄たけび有効範囲", 100.0f, 0.0f, 300.0f)     // 'roar effective range'
-		    , m_fp05(this, 'fp05', "爆弾ダメージ", 200.0f, 0.0f, 600.0f)         // 'bomb damage'
-		    , m_fp06(this, 'fp06', "見えない範囲", 70.0f, 0.0f, 200.0f)          // 'invisible range'
-		    , m_fp07(this, 'fp07', "旋回終了角度", 10.0f, 0.0f, 180.0f)          // 'turning end angle'
-		    , m_fp08(this, 'fp08', "踏み潰し範囲", 45.0f, 0.0f, 200.0f)          // 'trampling range'
-		    , m_fp09(this, 'fp09', "出現振り払い範囲", 100.0f, 0.0f, 200.0f)     // 'appearance shake-off range'
-		    , m_fp10(this, 'fp10', "出現振り払い力", 200.0f, 0.0f, 400.0f)       // 'appearance shake-off power'
-		    , m_fp11(this, 'fp11', "歩きアニメスピード", 1.0f, 0.0f, 3.0f)       // 'walking anime speed'
-		    , m_fp12(this, 'fp12', "死雄たけび率", 0.0f, 0.0f, 1.0f)             // 'death rate'
-		    , m_fp13(this, 'fp13', "フリック雄たけび率", 0.5f, 0.0f, 1.0f)       // 'flick shout rate'
-		    , m_fp14(this, 'fp14', "白ピクミン", 300.0f, 0.0f, 1000.0f)          // 'white pikmin'
-		    , m_fp15(this, 'fp15', "bigスケール", 1.0f, 1.0f, 2.0f)              // 'big scale'
-		    , m_fp16(this, 'fp16', "bigライフ", 100.0f, 0.0f, 9999.0f)           // 'big life'
-		    , m_fp17(this, 'fp17', "big速度", 80.0f, 0.0f, 1000.0f)              // 'big speed'
-		    , m_fp18(this, 'fp18', "big回転速度率", 0.1f, 0.0f, 1.0f)            // 'big rotation speed rate'
-		    , m_fp19(this, 'fp19', "big回転最大速度", 10.0f, 0.0f, 360.0f)       // 'big rotation maximum speed'
-		    , m_fp20(this, 'fp20', "big攻撃可能\角度", 15.0f, 0.0f, 180.0f)      // 'big attack angle'
-		    , m_fp21(this, 'fp21', "big攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)    // 'big attack hit range'
-		    , m_ip01(this, 'ip01', "潜伏までの期間", 500, 0, 2000)               // 'period of incubation'
-		    , m_ip02(this, 'ip02', "出現までの期間", 200, 0, 1000)               // 'time to appearance'
-		    , m_ip03(this, 'ip03', "爆弾ダメージ時間", 10, 0, 200)               // 'bomb damage time'
+		    , mFp01(this, 'fp01', "要旋回角度(deg)", 20.0f, 0.0f, 180.0f)       // 'required turning angle (deg)'
+		    , mFp02(this, 'fp02', "出現までの距離", 150.0f, 0.0f, 300.0f)       // 'distance to spawn'
+		    , mFp03(this, 'fp03', "雄たけび有効角度(deg)", 45.0f, 0.0f, 180.0f) // 'roar effective angle (deg)'
+		    , mFp04(this, 'fp04', "雄たけび有効範囲", 100.0f, 0.0f, 300.0f)     // 'roar effective range'
+		    , mFp05(this, 'fp05', "爆弾ダメージ", 200.0f, 0.0f, 600.0f)         // 'bomb damage'
+		    , mFp06(this, 'fp06', "見えない範囲", 70.0f, 0.0f, 200.0f)          // 'invisible range'
+		    , mFp07(this, 'fp07', "旋回終了角度", 10.0f, 0.0f, 180.0f)          // 'turning end angle'
+		    , mFp08(this, 'fp08', "踏み潰し範囲", 45.0f, 0.0f, 200.0f)          // 'trampling range'
+		    , mFp09(this, 'fp09', "出現振り払い範囲", 100.0f, 0.0f, 200.0f)     // 'appearance shake-off range'
+		    , mFp10(this, 'fp10', "出現振り払い力", 200.0f, 0.0f, 400.0f)       // 'appearance shake-off power'
+		    , mFp11(this, 'fp11', "歩きアニメスピード", 1.0f, 0.0f, 3.0f)       // 'walking anime speed'
+		    , mFp12(this, 'fp12', "死雄たけび率", 0.0f, 0.0f, 1.0f)             // 'death rate'
+		    , mFp13(this, 'fp13', "フリック雄たけび率", 0.5f, 0.0f, 1.0f)       // 'flick shout rate'
+		    , mFp14(this, 'fp14', "白ピクミン", 300.0f, 0.0f, 1000.0f)          // 'white pikmin'
+		    , mFp15(this, 'fp15', "bigスケール", 1.0f, 1.0f, 2.0f)              // 'big scale'
+		    , mFp16(this, 'fp16', "bigライフ", 100.0f, 0.0f, 9999.0f)           // 'big life'
+		    , mFp17(this, 'fp17', "big速度", 80.0f, 0.0f, 1000.0f)              // 'big speed'
+		    , mFp18(this, 'fp18', "big回転速度率", 0.1f, 0.0f, 1.0f)            // 'big rotation speed rate'
+		    , mFp19(this, 'fp19', "big回転最大速度", 10.0f, 0.0f, 360.0f)       // 'big rotation maximum speed'
+		    , mFp20(this, 'fp20', "big攻撃可能\角度", 15.0f, 0.0f, 180.0f)      // 'big attack angle'
+		    , mFp21(this, 'fp21', "big攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)    // 'big attack hit range'
+		    , mIp01(this, 'ip01', "潜伏までの期間", 500, 0, 2000)               // 'period of incubation'
+		    , mIp02(this, 'ip02', "出現までの期間", 200, 0, 1000)               // 'time to appearance'
+		    , mIp03(this, 'ip03', "爆弾ダメージ時間", 10, 0, 200)               // 'bomb damage time'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp04; // _87C
-		Parm<f32> m_fp05; // _8A4
-		Parm<f32> m_fp06; // _8CC
-		Parm<f32> m_fp07; // _8F4
-		Parm<f32> m_fp08; // _91C
-		Parm<f32> m_fp09; // _944
-		Parm<f32> m_fp10; // _96C
-		Parm<f32> m_fp11; // _994
-		Parm<f32> m_fp12; // _9BC
-		Parm<f32> m_fp13; // _9E4
-		Parm<f32> m_fp14; // _A0C
-		Parm<f32> m_fp15; // _A34
-		Parm<f32> m_fp16; // _A5C
-		Parm<f32> m_fp17; // _A84
-		Parm<f32> m_fp18; // _AAC
-		Parm<f32> m_fp19; // _AD4
-		Parm<f32> m_fp20; // _AFC
-		Parm<f32> m_fp21; // _B24
-		Parm<int> m_ip01; // _B4C
-		Parm<int> m_ip02; // _B74
-		Parm<int> m_ip03; // _B9C
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp03; // _854
+		Parm<f32> mFp04; // _87C
+		Parm<f32> mFp05; // _8A4
+		Parm<f32> mFp06; // _8CC
+		Parm<f32> mFp07; // _8F4
+		Parm<f32> mFp08; // _91C
+		Parm<f32> mFp09; // _944
+		Parm<f32> mFp10; // _96C
+		Parm<f32> mFp11; // _994
+		Parm<f32> mFp12; // _9BC
+		Parm<f32> mFp13; // _9E4
+		Parm<f32> mFp14; // _A0C
+		Parm<f32> mFp15; // _A34
+		Parm<f32> mFp16; // _A5C
+		Parm<f32> mFp17; // _A84
+		Parm<f32> mFp18; // _AAC
+		Parm<f32> mFp19; // _AD4
+		Parm<f32> mFp20; // _AFC
+		Parm<f32> mFp21; // _B24
+		Parm<int> mIp01; // _B4C
+		Parm<int> mIp02; // _B74
+		Parm<int> mIp03; // _B9C
 	};
 
 	Parms()
@@ -113,18 +113,18 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
-	u8 _BC8;                   // _BC8
-	u8 _BC9;                   // _BC9
-	u8 _BCA;                   // _BCA
-	u8 _BCB;                   // _BCB
-	u8 _BCC;                   // _BCC
-	f32 _BD0;                  // _BD0
+	ProperParms mProperParms; // _7F8
+	u8 _BC8;                  // _BC8
+	u8 _BC9;                  // _BC9
+	u8 _BCA;                  // _BCA
+	u8 _BCB;                  // _BCB
+	u8 _BCC;                  // _BCC
+	f32 _BD0;                 // _BD0
 };
 
 struct Obj : public EnemyBase {
@@ -180,11 +180,11 @@ struct Obj : public EnemyBase {
 	}
 	virtual f32 getCellRadius() // _58 (weak)
 	{
-		return m_scaleModifier * C_PARMS->m_general.m_cellRadius.m_value;
+		return mScaleModifier * C_PARMS->mGeneral.mCellRadius.mValue;
 	}
 	virtual f32 getBodyRadius() // _54 (weak)
 	{
-		return m_scaleModifier * C_PARMS->m_general.m_pikminDamageRadius.m_value;
+		return mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius.mValue;
 	}
 	virtual bool pressCallBack(Creature* creature, f32 damage, CollPart* collpart) // _27C (weak)
 	{
@@ -193,7 +193,7 @@ struct Obj : public EnemyBase {
 	}
 	virtual bool eatWhitePikminCallBack(Creature* creature, f32 damage) // _298 (weak)
 	{
-		EnemyBase::eatWhitePikminCallBack(creature, C_PROPERPARMS.m_fp14.m_value);
+		EnemyBase::eatWhitePikminCallBack(creature, C_PROPERPARMS.mFp14.mValue);
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -230,48 +230,48 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f _2BC;                        // _2BC, initialised as m_homePosition
-	MouthSlots m_mouthSlots;              // _2C8
-	SysShape::Joint* m_mouthJoint1;       // _2D0, 'kuti'
-	SysShape::Joint* m_bodyJoint;         // _2D4, 'kosijnt'
-	SysShape::Joint* m_tongueJoint1;      // _2D8, 'bero6'
-	SysShape::Joint* m_tongueJoint2;      // _2DC, 'bero5'
-	SysShape::Joint* m_mouthJoint2;       // _2E0, 'kuti'
-	u8 _2E4;                              // _2E4
-	u32 _2E8;                             // _2E8, unknown
-	u8 _2EC;                              // _2EC
-	int _2F0;                             // _2F0
-	Vector3f _2F4;                        // _2F4, initialised as m_homePosition (but y = 0.0f)
-	Vector3f _300;                        // _300
-	int _30C;                             // _30C
-	u16 m_lFootJointIndex;                // _310, index for 'asiL'
-	u8 _312[0x2];                         // _312, padding probably
-	u8 _314[0xC];                         // _314, unknown
-	f32 _320;                             // _320
-	u16 m_rFootJointIndex;                // _324, index for 'asiR'
-	Vector3f _328;                        // _328
-	f32 _334;                             // _334
-	u8 _338;                              // _338
-	u8 _339[0x3];                         // _339, padding probably
-	u16* m_jointIndices;                  // _33C, indices for world matrices/joints?
-	WaterBox* _340;                       // _340, nearest water?? maybe??
-	WalkSmokeEffect::Mgr m_walkSmokeMgr;  // _344
-	FSM* m_fsm;                           // _34C
-	efx::TKchYodare* m_efxYodare;         // _350
-	efx::TKchDiveSand* m_efxDiveSand;     // _354
-	efx::TKchDiveWat* m_efxDiveWater;     // _358
-	efx::TKchCryAB* m_efxCryAB;           // _35C
-	efx::TKchCryInd* m_efxCryInd;         // _360
-	efx::TKchSmokeHana* m_efxSmoke;       // _364
-	efx::TKchAttackYodare* m_efxAttack;   // _368
-	efx::TKchDeadYodare* m_efxDeadYodare; // _36C
-	efx::TKchDeadHana* m_efxDeadHana;     // _370
-	efx::TEnemyHamonChasePos* _374;       // _374
-	efx::TEnemyHamonChasePos* _378;       // _378
-	Vector3f _37C;                        // _37C
-	Vector3f _388;                        // _388
-	u8 _394;                              // _394
-	                                      // _398 = PelletView
+	Vector3f _2BC;                       // _2BC, initialised as mHomePosition
+	MouthSlots mMouthSlots;              // _2C8
+	SysShape::Joint* mMouthJoint1;       // _2D0, 'kuti'
+	SysShape::Joint* mBodyJoint;         // _2D4, 'kosijnt'
+	SysShape::Joint* mTongueJoint1;      // _2D8, 'bero6'
+	SysShape::Joint* mTongueJoint2;      // _2DC, 'bero5'
+	SysShape::Joint* mMouthJoint2;       // _2E0, 'kuti'
+	u8 _2E4;                             // _2E4
+	u32 _2E8;                            // _2E8, unknown
+	u8 _2EC;                             // _2EC
+	int _2F0;                            // _2F0
+	Vector3f _2F4;                       // _2F4, initialised as mHomePosition (but y = 0.0f)
+	Vector3f _300;                       // _300
+	int _30C;                            // _30C
+	u16 mLFootJointIndex;                // _310, index for 'asiL'
+	u8 _312[0x2];                        // _312, padding probably
+	u8 _314[0xC];                        // _314, unknown
+	f32 _320;                            // _320
+	u16 mRFootJointIndex;                // _324, index for 'asiR'
+	Vector3f _328;                       // _328
+	f32 _334;                            // _334
+	u8 _338;                             // _338
+	u8 _339[0x3];                        // _339, padding probably
+	u16* mJointIndices;                  // _33C, indices for world matrices/joints?
+	WaterBox* _340;                      // _340, nearest water?? maybe??
+	WalkSmokeEffect::Mgr mWalkSmokeMgr;  // _344
+	FSM* mFsm;                           // _34C
+	efx::TKchYodare* mEfxYodare;         // _350
+	efx::TKchDiveSand* mEfxDiveSand;     // _354
+	efx::TKchDiveWat* mEfxDiveWater;     // _358
+	efx::TKchCryAB* mEfxCryAB;           // _35C
+	efx::TKchCryInd* mEfxCryInd;         // _360
+	efx::TKchSmokeHana* mEfxSmoke;       // _364
+	efx::TKchAttackYodare* mEfxAttack;   // _368
+	efx::TKchDeadYodare* mEfxDeadYodare; // _36C
+	efx::TKchDeadHana* mEfxDeadHana;     // _370
+	efx::TEnemyHamonChasePos* _374;      // _374
+	efx::TEnemyHamonChasePos* _378;      // _378
+	Vector3f _37C;                       // _37C
+	Vector3f _388;                       // _388
+	u8 _394;                             // _394
+	                                     // _398 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -284,7 +284,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual SysShape::Model* createModel();   // _B0
 	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -292,7 +292,7 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	//////////////// VTABLE END
 
@@ -300,7 +300,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44
+	Obj* mObj; // _44
 };
 
 struct ProperAnimator : public EnemyBlendAnimatorBase {
@@ -308,7 +308,7 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 
 	// _00      = VTBL
 	// _00-_60  = EnemyBlendAnimatorBase
-	SysShape::Animator m_specificAnimator; // _60
+	SysShape::Animator mSpecificAnimator; // _60
 };
 
 /////////////////////////////////////////////////////////////////

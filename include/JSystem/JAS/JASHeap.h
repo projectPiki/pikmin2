@@ -30,12 +30,12 @@ struct JASHeap {
 	void dump();
 	void dump(int);
 
-	JSUTree<JASHeap> m_tree;     // _00
-	OSMutexObject m_mutexObject; // _1C
-	JASDisposer* m_disposer;     // _34
-	u8* _38;                     // _38
-	u32 _3C;                     // _3C
-	u32 _40;                     // _40
+	JSUTree<JASHeap> mTree;     // _00
+	OSMutexObject mMutexObject; // _1C
+	JASDisposer* mDisposer;     // _34
+	u8* _38;                    // _38
+	u32 _3C;                    // _3C
+	u32 _40;                    // _40
 };
 
 struct JASSolidHeap : public JASHeap {

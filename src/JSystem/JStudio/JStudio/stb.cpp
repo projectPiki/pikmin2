@@ -108,8 +108,8 @@ TObject::TObject(data::TParse_TBlock_object const& block)
 {
 	// idString_0x0      = (u32*)block.filedata + 3;
 	// lengthInBytes_0x4 = block.filedata[2]; // should be short 0xa
-	_0C.m_prev     = 0;
-	_0C.m_next     = 0;
+	_0C.mPrev      = 0;
+	_0C.mNext      = 0;
 	pControl       = nullptr;
 	signature      = block.filedata[1];
 	mFlag          = block.filedata[2]; // should be short 0x8
@@ -1161,7 +1161,7 @@ void stb::TFactory::destroy(JStudio::stb::TObject* object) { delete object; }
  */
 stb::TParse::TParse(JStudio::stb::TControl* control)
     : JGadget::binary::TParse_header_block()
-    , m_control(control)
+    , mControl(control)
 {
 }
 
@@ -1186,7 +1186,7 @@ bool stb::TParse::parseHeader_next(void const** data, unsigned long* blockCount,
 	const void* header = *data;
 	*data              = static_cast<const data::TParse_THeader*>(header) + 1;
 	*blockCount        = static_cast<const data::TParse_THeader*>(header)->blockCount;
-	if (memcmp(&static_cast<const data::TParse_THeader*>(header)->m_signature, &data::ga4cSignature, sizeof(u32)) != 0) {
+	if (memcmp(&static_cast<const data::TParse_THeader*>(header)->mSignature, &data::ga4cSignature, sizeof(u32)) != 0) {
 		return false;
 	}
 	// if (header->_04 != 0xFEFF) {

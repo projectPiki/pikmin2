@@ -41,7 +41,7 @@ struct ObjectCamera : public JStage::TCamera, public ObjectBase {
 	virtual void updateCamera();                       // _B0
 	virtual void setProjection();                      // _B4
 	virtual void setView();                            // _B8
-	virtual bool isRunning() { return m_isRunning; }   // _BC (weak)
+	virtual bool isRunning() { return mIsRunning; }    // _BC (weak)
 	virtual void reset();                              // _C0 (weak)
 	virtual void update();                             // _C4 (weak)
 	virtual void start();                              // _C8 (weak)
@@ -52,26 +52,26 @@ struct ObjectCamera : public JStage::TCamera, public ObjectBase {
 
 	// _00 - VTABLE (JStage::TCamera)
 	// _04 - VTABLE2 (ObjectBase)
-	Game::MoviePlayer* _08;   // _08
-	char* m_name;             // _0C
-	u32 _10;                  // _10 - flags?
-	int _14;                  // _14
-	void* _18;                // _18 - pointer to something?
-	u32 _1C;                  // _1C
-	u8 _20[0x34];             // _20 - unknown
-	u32 _54;                  // _54 - unknown
-	u8 _58[0x8];              // _58 - unknown
-	Matrixf _60;              // _60
-	Vector3f m_viewPos;       // _90 - view position?
-	Vector3f m_viewTargetPos; // _9C - view target position?
-	f32 m_viewRoll;           // _A8 - view roll?
-	f32 m_projectionNear;     // _AC - projectionNear?
-	f32 m_projectionFar;      // _B0 - projectionFar?
-	f32 m_projectionFovy;     // _B4 - projectionFovy?
-	f32 m_projectionAspect;   // _BC - projectionAspect?
-	Camera* _C0;              // _C0 - owner?
-	Camera* _C4;              // _C4 - camera obj?
-	bool m_isRunning;         // _C8
+	Game::MoviePlayer* _08;  // _08
+	char* mName;             // _0C
+	u32 _10;                 // _10 - flags?
+	int _14;                 // _14
+	void* _18;               // _18 - pointer to something?
+	u32 _1C;                 // _1C
+	u8 _20[0x34];            // _20 - unknown
+	u32 _54;                 // _54 - unknown
+	u8 _58[0x8];             // _58 - unknown
+	Matrixf _60;             // _60
+	Vector3f mViewPos;       // _90 - view position?
+	Vector3f mViewTargetPos; // _9C - view target position?
+	f32 mViewRoll;           // _A8 - view roll?
+	f32 mProjectionNear;     // _AC - projectionNear?
+	f32 mProjectionFar;      // _B0 - projectionFar?
+	f32 mProjectionFovy;     // _B4 - projectionFovy?
+	f32 mProjectionAspect;   // _BC - projectionAspect?
+	Camera* _C0;             // _C0 - owner?
+	Camera* _C4;             // _C4 - camera obj?
+	bool mIsRunning;         // _C8
 };
 
 } // namespace P2JST

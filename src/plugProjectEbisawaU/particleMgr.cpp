@@ -252,13 +252,13 @@ void ParticleMgr::deleteInstance()
  */
 ParticleMgr::ParticleMgr()
 {
-	m_name                    = "ParticleMgr";
-	m_heap                    = nullptr;
-	m_emitterManager          = nullptr;
-	m_resourceManager         = nullptr;
-	m_referencedViewportCount = 0;
-	_A8                       = 200;
-	m_lightMgr                = nullptr;
+	mName                    = "ParticleMgr";
+	mHeap                    = nullptr;
+	mEmitterManager          = nullptr;
+	mResourceManager         = nullptr;
+	mReferencedViewportCount = 0;
+	_A8                      = 200;
+	mLightMgr                = nullptr;
 }
 
 /*
@@ -311,8 +311,8 @@ ModelEffectDataRoot::~ModelEffectDataRoot() { }
  */
 ParticleMgr::~ParticleMgr()
 {
-	m_lightMgr = nullptr;
-	m_heap     = nullptr;
+	mLightMgr = nullptr;
+	mHeap     = nullptr;
 }
 
 /*
@@ -322,8 +322,8 @@ ParticleMgr::~ParticleMgr()
  */
 void ParticleMgr::createHeap(u32 size)
 {
-	P2ASSERTLINE(202, !m_heap);
-	m_heap = JKRSolidHeap::create(size, getCurrentHeap(), true);
+	P2ASSERTLINE(202, !mHeap);
+	mHeap = JKRSolidHeap::create(size, getCurrentHeap(), true);
 }
 
 /*
@@ -333,19 +333,19 @@ void ParticleMgr::createHeap(u32 size)
  */
 void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
 {
-	JUT_ASSERTLINE(209, m_heap, "effect heap not allocated !\n");
-	sys->heapStatusStart("particleMgr", m_heap);
+	JUT_ASSERTLINE(209, mHeap, "effect heap not allocated !\n");
+	sys->heapStatusStart("particleMgr", mHeap);
 	JKRHeap* oldheap = getCurrentHeap();
-	m_heap->becomeCurrentHeap();
+	mHeap->becomeCurrentHeap();
 
 	void* file
 	    = JKRDvdRipper::loadToMainRAM(path, nullptr, (JKRExpandSwitch)0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
 	JUT_ASSERTLINE(223, file, "ParticleResource (%s) not found\n", path);
 	oldheap->becomeCurrentHeap();
 
-	m_resourceManager = new (m_heap, 0) JPAResourceManager(file, m_heap);
-	m_emitterManager  = new (m_heap, 0) JPAEmitterManager(flag1, flag2, m_heap, 9, 8);
-	m_emitterManager->entryResourceManager(m_resourceManager, 0);
+	mResourceManager = new (mHeap, 0) JPAResourceManager(file, mHeap);
+	mEmitterManager  = new (mHeap, 0) JPAEmitterManager(flag1, flag2, mHeap, 9, 8);
+	mEmitterManager->entryResourceManager(mResourceManager, 0);
 
 	sys->heapStatusEnd("particleMgr");
 
@@ -466,8 +466,8 @@ void ParticleMgr::deleteInstance_TPkEffectMgr() { efx::TPkEffectMgr::deleteInsta
  */
 void ParticleMgr::destroyHeap()
 {
-	m_heap->destroy();
-	m_heap = nullptr;
+	mHeap->destroy();
+	mHeap = nullptr;
 	// unused, probably something like this
 }
 
@@ -478,8 +478,8 @@ void ParticleMgr::destroyHeap()
  */
 void ParticleMgr::beginEntryModelEffect()
 {
-	m_modelEffectHeap = getCurrentHeap();
-	m_heap->becomeCurrentHeap();
+	mModelEffectHeap = getCurrentHeap();
+	mHeap->becomeCurrentHeap();
 }
 
 /*
@@ -487,7 +487,7 @@ void ParticleMgr::beginEntryModelEffect()
  * Address:	803BB6F4
  * Size:	000024
  */
-void ParticleMgr::endEntryModelEffect() { m_modelEffectHeap->becomeCurrentHeap(); }
+void ParticleMgr::endEntryModelEffect() { mModelEffectHeap->becomeCurrentHeap(); }
 
 /*
  * --INFO--
@@ -506,8 +506,8 @@ void ParticleMgr::reset()
 	if (pkEffectMgr) {
 		pkEffectMgr->exitMgr();
 	}
-	m_modelEffectMgr.resetMgr();
-	m_lightMgr = nullptr;
+	mModelEffectMgr.resetMgr();
+	mLightMgr = nullptr;
 }
 
 /*
@@ -515,7 +515,7 @@ void ParticleMgr::reset()
  * Address:	803BB794
  * Size:	000024
  */
-void ParticleMgr::killAll() { m_emitterManager->forceDeleteAllEmitter(); }
+void ParticleMgr::killAll() { mEmitterManager->forceDeleteAllEmitter(); }
 
 /*
  * --INFO--
@@ -524,7 +524,7 @@ void ParticleMgr::killAll() { m_emitterManager->forceDeleteAllEmitter(); }
  */
 void ParticleMgr::update()
 {
-	m_emitterManager->calc();
+	mEmitterManager->calc();
 	pkEffectMgr->resetContextS();
 }
 
@@ -533,7 +533,7 @@ void ParticleMgr::update()
  * Address:	803BB7E4
  * Size:	00002C
  */
-void ParticleMgr::setXfb(const ResTIMG* tex) { m_resourceManager->swapTexture(tex, "IP2_dummy"); }
+void ParticleMgr::setXfb(const ResTIMG* tex) { mResourceManager->swapTexture(tex, "IP2_dummy"); }
 
 /*
  * --INFO--
@@ -543,12 +543,12 @@ void ParticleMgr::setXfb(const ResTIMG* tex) { m_resourceManager->swapTexture(te
 void ParticleMgr::draw(Viewport* vp, u8 flag)
 {
 	f32 x, y;
-	y = vp->m_camera->m_aspectRatio;
-	x = vp->m_camera->m_viewAngle;
+	y = vp->mCamera->mAspectRatio;
+	x = vp->mCamera->mViewAngle;
 	JPADrawInfo info;
-	PSMTXCopy(vp->getMatrix(1)->m_matrix.mtxView, info.mtx1);
+	PSMTXCopy(vp->getMatrix(1)->mMatrix.mtxView, info.mtx1);
 	C_MTXLightPerspective(x, y, 0.5f, -0.5f, 0.5f, 0.5f, info.mtx2);
-	m_emitterManager->draw(&info, flag);
+	mEmitterManager->draw(&info, flag);
 }
 
 /*
@@ -558,7 +558,7 @@ void ParticleMgr::draw(Viewport* vp, u8 flag)
  */
 JPABaseEmitter* ParticleMgr::create(u16 id, Vector3f& position, u8 flag)
 {
-	u32 res = (u32)m_resourceManager->getResUserWork(id);
+	u32 res = (u32)mResourceManager->getResUserWork(id);
 	u8 type;
 	if (res & 4) {
 		type = 0;
@@ -567,10 +567,10 @@ JPABaseEmitter* ParticleMgr::create(u16 id, Vector3f& position, u8 flag)
 	} else {
 		type = 2;
 	}
-	if (type == 0 && m_activeViewportCount >= 2) {
+	if (type == 0 && mActiveViewportCount >= 2) {
 		return nullptr;
 	} else {
-		JPABaseEmitter* emit = m_emitterManager->createSimpleEmitterID((JGeometry::TVec3f&)position, id, type, flag, nullptr, nullptr);
+		JPABaseEmitter* emit = mEmitterManager->createSimpleEmitterID((JGeometry::TVec3f&)position, id, type, flag, nullptr, nullptr);
 		setGlobalColor(emit);
 		return emit;
 	}
@@ -583,7 +583,7 @@ JPABaseEmitter* ParticleMgr::create(u16 id, Vector3f& position, u8 flag)
  */
 JPABaseEmitter* ParticleMgr::createDemo(u16 id, Vector3f& position, u8 flag1, u8 flag2)
 {
-	JPABaseEmitter* emit = m_emitterManager->createSimpleEmitterID((JGeometry::TVec3f&)position, id, flag1, flag2, nullptr, nullptr);
+	JPABaseEmitter* emit = mEmitterManager->createSimpleEmitterID((JGeometry::TVec3f&)position, id, flag1, flag2, nullptr, nullptr);
 	setGlobalColor(emit);
 	return emit;
 }
@@ -598,26 +598,26 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 	if (!emit)
 		return;
 
-	Game::GameLightMgr* mgr = m_lightMgr;
+	Game::GameLightMgr* mgr = mLightMgr;
 	if (!mgr)
 		return;
 
-	if (!(emit->m_resource->m_dynamicsBlock->m_data[0] & 2))
+	if (!(emit->mResource->mDynamicsBlock->mData[0] & 2))
 		return; // needs file data struct
 
-	LightObj* obj = mgr->m_mainLight;
+	LightObj* obj = mgr->mMainLight;
 
-	int red = (obj->m_color.r + mgr->m_ambientLight.m_color.r) * 2;
+	int red = (obj->mColor.r + mgr->mAmbientLight.mColor.r) * 2;
 	if (red > 255) {
 		red = 255;
 	}
 
-	int green = (obj->m_color.g + mgr->m_ambientLight.m_color.g) * 2;
+	int green = (obj->mColor.g + mgr->mAmbientLight.mColor.g) * 2;
 	if (green > 255) {
 		green = 255;
 	}
 
-	int blue = (obj->m_color.b + mgr->m_ambientLight.m_color.b) * 2;
+	int blue = (obj->mColor.b + mgr->mAmbientLight.mColor.b) * 2;
 	if (blue > 255) {
 		blue = 255;
 	}
@@ -685,7 +685,7 @@ lbl_803BBA64:
 void ParticleMgr::forceKill(JPABaseEmitter* emit)
 {
 	if (emit) {
-		m_emitterManager->forceDeleteEmitter(emit);
+		mEmitterManager->forceDeleteEmitter(emit);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -714,9 +714,9 @@ void ParticleMgr::fade(JPABaseEmitter* emit)
 	if (!emit)
 		return;
 
-	emit->m_flags |= 1;
+	emit->mFlags |= 1;
 	emit->_24 = 1;
-	emit->m_flags &= ~0x40;
+	emit->mFlags &= ~0x40;
 }
 
 /*
@@ -724,7 +724,7 @@ void ParticleMgr::fade(JPABaseEmitter* emit)
  * Address:	803BBAD8
  * Size:	000028
  */
-void ParticleMgr::setDemoResourceManager(JPAResourceManager* mgr) { m_emitterManager->entryResourceManager(mgr, 7); }
+void ParticleMgr::setDemoResourceManager(JPAResourceManager* mgr) { mEmitterManager->entryResourceManager(mgr, 7); }
 
 /*
  * --INFO--
@@ -733,7 +733,7 @@ void ParticleMgr::setDemoResourceManager(JPAResourceManager* mgr) { m_emitterMan
  */
 void ParticleMgr::clearDemoResourceManager()
 {
-	m_emitterManager->clearResourceManager(7);
+	mEmitterManager->clearResourceManager(7);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -755,16 +755,16 @@ void ParticleMgr::clearDemoResourceManager()
  */
 void ParticleMgr::setViewport(Graphics& gfx)
 {
-	int max    = gfx.m_viewportCount;
+	int max    = gfx.mViewportCount;
 	bool check = (max >= 0 && max < 4);
 	P2ASSERTLINE(504, check);
 
-	m_referencedViewportCount = max;
+	mReferencedViewportCount = max;
 
 	for (int i = 0; i < max; i++) {
-		m_viewports[i] = gfx.getViewport(i);
+		mViewports[i] = gfx.getViewport(i);
 	}
-	m_activeViewportCount = gfx.getNumActiveViewports();
+	mActiveViewportCount = gfx.getNumActiveViewports();
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -841,24 +841,24 @@ bool ParticleMgr::cullByResFlg(Vector3f& pos, u16 id)
 		return false;
 
 	Sys::Sphere bound;
-	u32 flag = (u32)m_resourceManager->getResUserWork(id);
+	u32 flag = (u32)mResourceManager->getResUserWork(id);
 	if (flag & 0x20) {
-		bound.m_radius = mClipRadiusL;
+		bound.mRadius = mClipRadiusL;
 	} else if (flag & 0x10) {
-		bound.m_radius = mClipRadiusM;
+		bound.mRadius = mClipRadiusM;
 	} else {
-		bound.m_radius = mClipRadiusS;
+		bound.mRadius = mClipRadiusS;
 	}
 
-	bound.m_position = pos;
+	bound.mPosition = pos;
 
 	if (disableCulling)
 		return false;
 
 	bool ret = false;
-	for (int i = 0; i < m_activeViewportCount; i++) {
-		CullPlane* plane = m_viewports[i]->m_camera;
-		if (m_viewports[i]->viewable() && plane->isVisible(bound)) {
+	for (int i = 0; i < mActiveViewportCount; i++) {
+		CullPlane* plane = mViewports[i]->mCamera;
+		if (mViewports[i]->viewable() && plane->isVisible(bound)) {
 			ret = true;
 			break;
 		}
@@ -971,30 +971,30 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 		return false;
 
 	Sys::Sphere bound;
-	u32 flag = emit->m_resource->m_dynamicsBlock->m_data[0]; // needs struct
+	u32 flag = emit->mResource->mDynamicsBlock->mData[0]; // needs struct
 	if (flag & 0x20) {
-		bound.m_radius = mClipRadiusL;
+		bound.mRadius = mClipRadiusL;
 	} else if (flag & 0x10) {
-		bound.m_radius = mClipRadiusM;
+		bound.mRadius = mClipRadiusM;
 	} else {
-		bound.m_radius = mClipRadiusS;
+		bound.mRadius = mClipRadiusS;
 	}
-	bound.m_position = emit->m_positon;
+	bound.mPosition = emit->mPositon;
 
 	bool ret = false;
-	for (int i = 0; i < m_activeViewportCount; i++) {
-		CullPlane* plane = m_viewports[i]->m_camera;
-		if (m_viewports[i]->viewable() && plane->isVisible(bound)) {
+	for (int i = 0; i < mActiveViewportCount; i++) {
+		CullPlane* plane = mViewports[i]->mCamera;
+		if (mViewports[i]->viewable() && plane->isVisible(bound)) {
 			ret = true;
 			break;
 		}
 	}
 	if (ret) {
-		emit->m_flags &= ~4;
-		emit->m_flags &= ~1;
+		emit->mFlags &= ~4;
+		emit->mFlags &= ~1;
 	} else {
-		emit->m_flags |= 4;
-		emit->m_flags |= 1;
+		emit->mFlags |= 4;
+		emit->mFlags |= 1;
 	}
 
 	return ret;
@@ -1170,21 +1170,21 @@ ModelEffect* ModelEffectDataRoot::onCreate(ModelEffectCreateArg*) { return nullp
  * Address:	803BBE78
  * Size:	000008
  */
-ModelEffect* NodeObjectMgr<ModelEffect>::get(void* node) { return ((TObjectNode<ModelEffect>*)node)->m_contents; }
+ModelEffect* NodeObjectMgr<ModelEffect>::get(void* node) { return ((TObjectNode<ModelEffect>*)node)->mContents; }
 
 /*
  * --INFO--
  * Address:	803BBE80
  * Size:	000008
  */
-void* NodeObjectMgr<ModelEffect>::getNext(void* node) { return ((TObjectNode<ModelEffect>*)node)->m_next; }
+void* NodeObjectMgr<ModelEffect>::getNext(void* node) { return ((TObjectNode<ModelEffect>*)node)->mNext; }
 
 /*
  * --INFO--
  * Address:	803BBE88
  * Size:	000008
  */
-void* NodeObjectMgr<ModelEffect>::getStart() { return m_node.m_child; }
+void* NodeObjectMgr<ModelEffect>::getStart() { return mNode.mChild; }
 
 /*
  * --INFO--

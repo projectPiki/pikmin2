@@ -38,7 +38,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->disableEvent(0, EB_IsAnimating);
 	rock->enableEvent(0, EB_IsModelHidden);
 
-	rock->m_targetVelocity = Vector3f(0.0f);
+	rock->mTargetVelocity = Vector3f(0.0f);
 	rock->startMotion(1, nullptr);
 	rock->stopMotion();
 }
@@ -51,14 +51,14 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	if (rock->m_existDuration != 0.0f) {
-		rock->m_timer += sys->m_deltaTime;
-		if (rock->m_timer > 1.5f) {
+	if (rock->mExistDuration != 0.0f) {
+		rock->mTimer += sys->mDeltaTime;
+		if (rock->mTimer > 1.5f) {
 			transit(rock, ROCK_Appear, nullptr);
 		}
 	} else {
 		bool isTarget;
-		f32 detectRadius = static_cast<Parms*>(rock->m_parms)->m_general.m_sightRadius.m_value;
+		f32 detectRadius = static_cast<Parms*>(rock->mParms)->mGeneral.mSightRadius.mValue;
 		if (EnemyFunc::isThereOlimar(rock, detectRadius, nullptr)) {
 			isTarget = true;
 		} else if (EnemyFunc::isTherePikmin(rock, detectRadius, nullptr)) {
@@ -102,7 +102,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->disableEvent(0, EB_IsCullable);
 	rock->disableEvent(0, EB_14);
 
-	rock->m_targetVelocity = Vector3f(0.0f);
+	rock->mTargetVelocity = Vector3f(0.0f);
 	rock->startMotion(1, nullptr);
 
 	shadowMgr->addShadow(rock);
@@ -178,7 +178,7 @@ void StateDropWait::cleanup(EnemyBase* enemy)
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	Vector3f velocity(0.0f, -rock->m_fallSpeed, 0.0f);
+	Vector3f velocity(0.0f, -rock->mFallSpeed, 0.0f);
 	rock->setVelocity(velocity);
 	rock->startFallEffect();
 }
@@ -190,7 +190,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (enemy->m_bounceTriangle) {
+	if (enemy->mBounceTriangle) {
 		transit(enemy, ROCK_Dead, nullptr);
 	} else if (enemy->isEvent(0, EB_HasCollisionOccurred)) {
 		transit(enemy, ROCK_Dead, nullptr);
@@ -224,9 +224,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->disableEvent(0, EB_IsCullable);
 	rock->disableEvent(0, EB_14);
 	rock->startMotion(1, nullptr);
-	rock->m_timer = 0.0f;
+	rock->mTimer = 0.0f;
 
-	if (rock->m_waterBox) {
+	if (rock->mWaterBox) {
 		rock->startRollingWaterEffect();
 	} else {
 		rock->startRollingGroundEffect();
@@ -243,11 +243,11 @@ void StateMove::exec(EnemyBase* enemy)
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->updateMoveVelocity();
 	rock->moveRockScaleUp();
-	rock->m_timer += sys->m_deltaTime;
+	rock->mTimer += sys->mDeltaTime;
 	rock->updateWaterEffectPosition();
 	rock->getJAIObject()->startSound(PSSE_EN_ROCK_ROLL, 0);
 
-	if (rock->m_health <= 0.0f || rock->m_timer > 15.0f) {
+	if (rock->mHealth <= 0.0f || rock->mTimer > 15.0f) {
 		transit(rock, ROCK_Dead, nullptr);
 	}
 }
@@ -274,8 +274,8 @@ void StateMove::cleanup(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* rock              = static_cast<Obj*>(enemy);
-	rock->m_targetVelocity = Vector3f(0.0f);
+	Obj* rock             = static_cast<Obj*>(enemy);
+	rock->mTargetVelocity = Vector3f(0.0f);
 	rock->startMotion(0, nullptr);
 	shadowMgr->delShadow(rock);
 	rock->createRockDeadEffect();
@@ -295,7 +295,7 @@ void StateDead::exec(EnemyBase* enemy)
 		rock->hardConstraintOn();
 	}
 
-	if (rock->m_curAnim->m_isPlaying && (u32)rock->m_curAnim->m_type == KEYEVENT_END) {
+	if (rock->mCurAnim->mIsPlaying && (u32)rock->mCurAnim->mType == KEYEVENT_END) {
 		rock->kill(nullptr);
 	}
 }

@@ -15,7 +15,7 @@ static const char umiMushiMgrName[] = "umiMushiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "ウミムシマネージャ"; // sea worm manager
+	mName = "ウミムシマネージャ"; // sea worm manager
 }
 
 /*
@@ -41,9 +41,9 @@ void Mgr::loadModelData()
 {
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-		shape          = m_modelData->m_shapeTable.m_items[j];
-		shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		shape         = mModelData->mShapeTable.mItems[j];
+		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
 }
 
@@ -54,17 +54,17 @@ void Mgr::loadModelData()
  */
 void Mgr::loadTexData()
 {
-	SysShape::Model::enableMaterialAnim(m_modelData, 0);
+	SysShape::Model::enableMaterialAnim(mModelData, 0);
 	void* btkFile = nullptr;
 	LoadResource::Arg loadArgBtk("/enemy/data/UmiMushi/umimusi_model1.btk");
 	LoadResource::Node* resourceBtk = gLoadResourceMgr->load(loadArgBtk);
 	if (resourceBtk) {
-		btkFile = resourceBtk->m_file;
+		btkFile = resourceBtk->mFile;
 	}
 	P2ASSERTLINE(91, btkFile);
 
-	m_texAnimation = new Sys::MatTexAnimation;
-	m_texAnimation->attachResource(btkFile, m_modelData);
+	mTexAnimation = new Sys::MatTexAnimation;
+	mTexAnimation->attachResource(btkFile, mModelData);
 }
 
 /*
@@ -74,7 +74,7 @@ void Mgr::loadTexData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(m_modelData, 0x20000, m_modelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, 0x20000, mModelType);
 	P2ASSERTLINE(111, model);
 	return model;
 }
@@ -86,7 +86,7 @@ SysShape::Model* Mgr::createModel()
  */
 void Mgr::createObj(int count)
 {
-	m_obj = new Obj[count];
+	mObj = new Obj[count];
 
 	EnemyTypeID::EEnemyTypeID ids[] = { EnemyTypeID::EnemyID_UmiMushi, EnemyTypeID::EnemyID_UmiMushiBlind };
 
@@ -95,7 +95,7 @@ void Mgr::createObj(int count)
 	for (int i = 0; i < id_count; i++) {
 		int enemyNum = generalEnemyMgr->getEnemyNum(ids[i], false);
 		for (int j = 0; j < enemyNum; j++, counter++) {
-			m_obj[counter].m_bloysterType = ids[i];
+			mObj[counter].mBloysterType = ids[i];
 		}
 	}
 }

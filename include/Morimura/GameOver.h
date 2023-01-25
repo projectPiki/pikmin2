@@ -23,24 +23,24 @@ struct TGameOverBase : public TTestBase {
 	TGameOverBase();
 	TGameOverBase(char* name);
 
-	virtual ~TGameOverBase() { }                                               // _08 (weak)
-	virtual bool doUpdate();                                                   // _58
-	virtual bool doUpdateFadeout() { return TTestBase::doUpdateFadeout(); }    // _60 (weak)
-	virtual void doDraw(Graphics& gfx);                                        // _68
-	virtual og::Screen::DispMemberBase* getDispMemberBase() { return m_disp; } // _78 (weak)
+	virtual ~TGameOverBase() { }                                              // _08 (weak)
+	virtual bool doUpdate();                                                  // _58
+	virtual bool doUpdateFadeout() { return TTestBase::doUpdateFadeout(); }   // _60 (weak)
+	virtual void doDraw(Graphics& gfx);                                       // _68
+	virtual og::Screen::DispMemberBase* getDispMemberBase() { return mDisp; } // _78 (weak)
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_78 = TTestBase
-	JKRArchive* m_archive;              // _78
-	TGameOverScreen* m_gameOverScreen;  // _7C
-	og::Screen::DispMemberBase* m_disp; // _80, unknown
-	u8 _84;                             // _84
-	u8 _85;                             // _85
-	s16 _86;                            // _86
-	u32 m_type;                         // _88, unknown
-	s16 _8C;                            // _8C
-	s16 _8E;                            // _8E
+	JKRArchive* mArchive;              // _78
+	TGameOverScreen* mGameOverScreen;  // _7C
+	og::Screen::DispMemberBase* mDisp; // _80, unknown
+	u8 _84;                            // _84
+	u8 _85;                            // _85
+	s16 _86;                           // _86
+	u32 mType;                         // _88, unknown
+	s16 _8C;                           // _8C
+	s16 _8E;                           // _8E
 };
 
 struct TGameOver2D : public TGameOverBase {
@@ -131,7 +131,7 @@ struct TGameOverScene : public TGameOverSceneBase {
 	{
 		TGameOver2D* obj = new TGameOver2D;
 		registObj(obj, arc);
-		m_object = obj;
+		mObject = obj;
 	} // _20 (weak)
 
 	// _00      = VTBL
@@ -148,7 +148,7 @@ struct TLujiDownScene : public TGameOverSceneBase {
 	{
 		TLujiDown2D* obj = new TLujiDown2D;
 		registObj(obj, arc);
-		m_object = obj;
+		mObject = obj;
 	} // _20 (weak)
 
 	// _00      = VTBL
@@ -165,7 +165,7 @@ struct TOrimaDownScene : public TGameOverSceneBase {
 	{
 		TOrimaDown2D* obj = new TOrimaDown2D;
 		registObj(obj, arc);
-		m_object = obj;
+		mObject = obj;
 	} // _20 (weak)
 
 	// _00      = VTBL
@@ -183,7 +183,7 @@ struct TPikminDownScene : public TGameOverSceneBase {
 	{
 		TPikminDown2D* obj = new TPikminDown2D;
 		registObj(obj, arc);
-		m_object = obj;
+		mObject = obj;
 	} // _20 (weak)
 
 	// _00      = VTBL
@@ -200,7 +200,7 @@ struct TPresidentDownScene : public TGameOverSceneBase {
 	{
 		TPresidentDown2D* obj = new TPresidentDown2D;
 		registObj(obj, arc);
-		m_object = obj;
+		mObject = obj;
 	} // _20 (weak)
 
 	// _00      = VTBL

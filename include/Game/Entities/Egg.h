@@ -36,24 +36,24 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE - Note: order necessary for weak function ordering
-	virtual void onInit(CreatureInitArg* settings);                       // _30
-	virtual void doSimulation(f32);                                       // _4C
-	virtual void doDirectDraw(Graphics& gfx);                             // _50
-	virtual void onStartCapture();                                        // _94
-	virtual void onEndCapture();                                          // _9C
-	virtual void bounceCallback(Sys::Triangle* tri);                      // _E8
-	virtual void collisionCallback(CollEvent& event);                     // _EC
-	virtual void getShadowParam(ShadowParam& settings);                   // _134
-	virtual bool needShadow();                                            // _138
-	virtual ~Obj() { }                                                    // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                                   // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*) { }            // _1C4 (weak)
-	virtual void doUpdate();                                              // _1CC
-	virtual void doAnimationCullingOff();                                 // _1DC
-	virtual void doDebugDraw(Graphics&);                                  // _1EC
-	virtual void setParameters();                                         // _228
-	virtual bool isLivingThing() { return (m_captureMatrix == nullptr); } // _D4 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                    // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                      // _30
+	virtual void doSimulation(f32);                                      // _4C
+	virtual void doDirectDraw(Graphics& gfx);                            // _50
+	virtual void onStartCapture();                                       // _94
+	virtual void onEndCapture();                                         // _9C
+	virtual void bounceCallback(Sys::Triangle* tri);                     // _E8
+	virtual void collisionCallback(CollEvent& event);                    // _EC
+	virtual void getShadowParam(ShadowParam& settings);                  // _134
+	virtual bool needShadow();                                           // _138
+	virtual ~Obj() { }                                                   // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                  // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*) { }           // _1C4 (weak)
+	virtual void doUpdate();                                             // _1CC
+	virtual void doAnimationCullingOff();                                // _1DC
+	virtual void doDebugDraw(Graphics&);                                 // _1EC
+	virtual void setParameters();                                        // _228
+	virtual bool isLivingThing() { return (mCaptureMatrix == nullptr); } // _D4 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                   // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Egg;
 	}
@@ -61,9 +61,9 @@ struct Obj : public EnemyBase {
 	virtual f32 getDownSmokeScale() { return 0.4f; }       // _2EC (weak)
 	virtual void setFSM(FSM* fsm)                          // _2F8 (weak)
 	{
-		m_fsm = fsm;
-		m_fsm->init(this);
-		m_currentLifecycleState = nullptr;
+		mFsm = fsm;
+		mFsm->init(this);
+		mCurrentLifecycleState = nullptr;
 	}
 	//////////////// VTABLE END
 
@@ -71,9 +71,9 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	bool m_isFalling; // _2BC, set when released from capture
-	FSM* m_fsm;       // _2C0
-	                  // _2C4 = PelletView
+	bool mIsFalling; // _2BC, set when released from capture
+	FSM* mFsm;       // _2C0
+	                 // _2C4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -88,35 +88,35 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_singleNectarChance(this, 'fp01', "蜜レート", 1.0f, 0.0f, 1.0f)       // 'nectar rate'
-		    , m_doubleNectarChance(this, 'fp02', "蜜x2レート", 1.0f, 0.0f, 1.0f)     // 'nectar x2 rate'
-		    , m_mititesChance(this, 'fp03', "タマゴムシx10レート", 1.0f, 0.0f, 1.0f) // 'mitite x10 rate'
-		    , m_spicyChance(this, 'fp04', "赤ドーピングレート", 1.0f, 0.0f, 1.0f)    // 'red doping rate'
-		    , m_bitterChance(this, 'fp05', "黒ドーピングレート", 1.0f, 0.0f, 1.0f)   // 'black doping rate'
+		    , mSingleNectarChance(this, 'fp01', "蜜レート", 1.0f, 0.0f, 1.0f)       // 'nectar rate'
+		    , mDoubleNectarChance(this, 'fp02', "蜜x2レート", 1.0f, 0.0f, 1.0f)     // 'nectar x2 rate'
+		    , mMititesChance(this, 'fp03', "タマゴムシx10レート", 1.0f, 0.0f, 1.0f) // 'mitite x10 rate'
+		    , mSpicyChance(this, 'fp04', "赤ドーピングレート", 1.0f, 0.0f, 1.0f)    // 'red doping rate'
+		    , mBitterChance(this, 'fp05', "黒ドーピングレート", 1.0f, 0.0f, 1.0f)   // 'black doping rate'
 		{
 		}
 
-		Parm<f32> m_singleNectarChance; // _804, fp01
-		Parm<f32> m_doubleNectarChance; // _82C, fp02
-		Parm<f32> m_mititesChance;      // _854, fp03
-		Parm<f32> m_spicyChance;        // _87C, fp04
-		Parm<f32> m_bitterChance;       // _8A4, fp05
+		Parm<f32> mSingleNectarChance; // _804, fp01
+		Parm<f32> mDoubleNectarChance; // _82C, fp02
+		Parm<f32> mMititesChance;      // _854, fp03
+		Parm<f32> mSpicyChance;        // _87C, fp04
+		Parm<f32> mBitterChance;       // _8A4, fp05
 	};
 
 	Parms()
@@ -128,25 +128,25 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
-	u8 _8D0;                   // _8D0
-	u8 _8D1;                   // _8D1
+	ProperParms mProperParms; // _7F8
+	u8 _8D0;                  // _8D0
+	u8 _8D1;                  // _8D1
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

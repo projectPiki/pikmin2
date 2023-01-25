@@ -16,7 +16,7 @@ struct Node : CNode {
 	                    JKRDvdRipper::EAllocDirection, int, unsigned long*);
 	inline void dump();
 
-	JKRAramBlock* m_status; // _18
+	JKRAramBlock* mStatus; // _18
 };
 
 struct Mgr {
@@ -30,7 +30,7 @@ struct Mgr {
 	u32 dvdToAram(char const*, bool);
 	Node* search(char const* name);
 
-	Node m_node; // _00
+	Node mNode; // _00
 };
 }; // namespace ARAM
 extern ARAM::Mgr* gAramMgr;

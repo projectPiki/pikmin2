@@ -14,13 +14,13 @@ void E3DAnimRes::load(J3DModelData* param_1, JKRArchive* param_2, char* param_3)
 
 	P2ASSERTLINE(20, pvVar1);
 	pAnmTransform_0x0 = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(pvVar1);
-	pMtxCalcAnm_0x4   = J3DNewMtxCalcAnm((param_1->m_jointTree).m_08 & 0xf, pAnmTransform_0x0);
+	pMtxCalcAnm_0x4   = J3DNewMtxCalcAnm((param_1->mJointTree).m_08 & 0xf, pAnmTransform_0x0);
 	float_0x8         = 0.0f;
-	float_0xC         = pAnmTransform_0x0->m_time - 2.0f;
-	m_loopStart       = float_0x8;
-	m_loopEnd         = float_0xC;
-	float_0x18        = sys->m_deltaTime * 60.0f * 0.5f;
-	m_mode            = 0;
+	float_0xC         = pAnmTransform_0x0->mTime - 2.0f;
+	mLoopStart        = float_0x8;
+	mLoopEnd          = float_0xC;
+	float_0x18        = sys->mDeltaTime * 60.0f * 0.5f;
+	mMode             = 0;
 }
 
 /*
@@ -67,7 +67,7 @@ void E3DAnimCtrl::play()
 {
 	P2ASSERTLINE(63, _0C);
 	if (_08 != 3)
-		_0C->m_mode == 1 ? _08 = 1 : _08 = 2;
+		_0C->mMode == 1 ? _08 = 1 : _08 = 2;
 }
 
 /*

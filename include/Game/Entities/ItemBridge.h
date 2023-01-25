@@ -20,16 +20,16 @@ struct BridgeInitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
 
 	// _00     = VTBL
-	u16 m_bridgeType; // _04
+	u16 mBridgeType; // _04
 };
 
 struct BridgeInfo {
 	BridgeInfo();
 
-	u32 m_stageCount; // _00, unknown
-	u32 _04;          // _04, unknown
-	u32 _08;          // _08, unknown
-	u32 _0C;          // _0C, unknown
+	u32 mStageCount; // _00, unknown
+	u32 _04;         // _04, unknown
+	u32 _08;         // _08, unknown
+	u32 _0C;         // _0C, unknown
 };
 
 struct FSM : public ItemFSM<Item> {
@@ -68,7 +68,7 @@ struct BridgeParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms(); // probably
 
-		Parm<f32> m_p000; // _E8
+		Parm<f32> mP000; // _E8
 	};
 
 	BridgeParms();
@@ -77,7 +77,7 @@ struct BridgeParms : public CreatureParms {
 
 	// _00-_D8 = CreatureParms
 	// _D8		 = VTBL
-	Parms m_bridgeParms;
+	Parms mBridgeParms;
 };
 
 struct Item : public WorkItem<Item, FSM, State> {
@@ -119,17 +119,17 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	int _1EC;                                    // _1EC, mabiki? might be size 0x8?
-	int _1F0;                                    // _1F0, unknown
-	f32 _1F4;                                    // _1F4
-	u8 _1F8;                                     // _1F8
-	WayPoint* _1FC;                              // _1FC
-	WayPoint* _200;                              // _200
-	PlatInstanceAttacher m_platInstanceAttacher; // _204
-	u16 m_bridgeType;                            // _214, might be define list?
-	int m_stagesRemaining;                       // _218
-	int m_stageCount;                            // _21C
-	f32* m_stageLengthsArray;                    // _220
+	int _1EC;                                   // _1EC, mabiki? might be size 0x8?
+	int _1F0;                                   // _1F0, unknown
+	f32 _1F4;                                   // _1F4
+	u8 _1F8;                                    // _1F8
+	WayPoint* _1FC;                             // _1FC
+	WayPoint* _200;                             // _200
+	PlatInstanceAttacher mPlatInstanceAttacher; // _204
+	u16 mBridgeType;                            // _214, might be define list?
+	int mStagesRemaining;                       // _218
+	int mStageCount;                            // _21C
+	f32* mStageLengthsArray;                    // _220
 };
 
 struct Mgr : public TNodeItemMgr {
@@ -152,9 +152,9 @@ struct Mgr : public TNodeItemMgr {
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr
-	PlatAttacher* m_platAttachers; // _88, array of 3? might be array of pointers?
-	BridgeInfo* m_bridgeInfos;     // _8C, array of 3? might be array of pointers?
-	BridgeParms* m_parms;          // _90
+	PlatAttacher* mPlatAttachers; // _88, array of 3? might be array of pointers?
+	BridgeInfo* mBridgeInfos;     // _8C, array of 3? might be array of pointers?
+	BridgeParms* mParms;          // _90
 };
 
 extern Mgr* mgr;

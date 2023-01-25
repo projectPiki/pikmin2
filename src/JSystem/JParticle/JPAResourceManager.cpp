@@ -25,14 +25,14 @@ JPAResourceManager::JPAResourceManager(unsigned short, unsigned short, JKRHeap*)
  * Size:	000058
  */
 JPAResourceManager::JPAResourceManager(const void* p1, JKRHeap* heap)
-    : m_resources(nullptr)
-    , m_textures(nullptr)
-    , m_resourceSlotCount(0)
-    , m_resourceCount(0)
-    , m_textureSlotCount(0)
-    , m_textureCount(0)
+    : mResources(nullptr)
+    , mTextures(nullptr)
+    , mResourceSlotCount(0)
+    , mResourceCount(0)
+    , mTextureSlotCount(0)
+    , mTextureCount(0)
 {
-	m_heap = heap;
+	mHeap = heap;
 	JPAResourceLoader loader((const u8*)p1, this);
 	/*
 	stwu     r1, -0x20(r1)
@@ -97,8 +97,8 @@ JPAResourceLoader::~JPAResourceLoader()
  */
 JPAResource* JPAResourceManager::getResource(unsigned short p1) const
 {
-	for (u16 i = 0; i < m_resourceCount; i++) {
-		JPAResource* resource = m_resources[i];
+	for (u16 i = 0; i < mResourceCount; i++) {
+		JPAResource* resource = mResources[i];
 		if (p1 == resource->_3C) {
 			return resource;
 		}
@@ -123,10 +123,10 @@ void JPAResourceManager::checkUserIndexDuplication(unsigned short) const
  */
 ResTIMG* JPAResourceManager::swapTexture(const ResTIMG* p1, const char* p2)
 {
-	for (int i = 0; i < m_textureCount; i++) {
-		if (strcmp(p2, (const char*)(m_textures[i]->_44 + 0xc)) == 0) {
-			ResTIMG* timg = m_textures[i]->m_texture._20;
-			m_textures[i]->m_texture.storeTIMG(p1, (u8)'\0');
+	for (int i = 0; i < mTextureCount; i++) {
+		if (strcmp(p2, (const char*)(mTextures[i]->_44 + 0xc)) == 0) {
+			ResTIMG* timg = mTextures[i]->mTexture._20;
+			mTextures[i]->mTexture.storeTIMG(p1, (u8)'\0');
 			return timg;
 		}
 	}
@@ -189,8 +189,8 @@ lbl_800985EC:
  */
 void JPAResourceManager::registRes(JPAResource* resource)
 {
-	m_resources[m_resourceCount] = resource;
-	m_resourceCount++;
+	mResources[mResourceCount] = resource;
+	mResourceCount++;
 }
 
 /*
@@ -200,8 +200,8 @@ void JPAResourceManager::registRes(JPAResource* resource)
  */
 void JPAResourceManager::registTex(JPATexture* texture)
 {
-	m_textures[m_textureCount] = texture;
-	m_textureCount++;
+	mTextures[mTextureCount] = texture;
+	mTextureCount++;
 }
 
 /*

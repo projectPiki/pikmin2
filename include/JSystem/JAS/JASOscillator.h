@@ -25,16 +25,16 @@ struct JASOscillator {
 	// unused/inlined
 	void forceStop();
 
-	const Data* m_data; // _00
-	f32 _04;            // _04
-	f32 _08;            // _08
-	f32 _0C;            // _0C
-	f32 _10;            // _10
-	f32 _14;            // _14
-	short _18;          // _18
-	u16 _1A;            // _1A
-	u8 _1C;             // _1C
-	u8 _1D;             // _1D
+	const Data* mData; // _00
+	f32 _04;           // _04
+	f32 _08;           // _08
+	f32 _0C;           // _0C
+	f32 _10;           // _10
+	f32 _14;           // _14
+	short _18;         // _18
+	u16 _1A;           // _1A
+	u8 _1C;            // _1C
+	u8 _1D;            // _1D
 
 	static const f32 relTableSampleCell[17];
 	static const f32 relTableSqRoot[17];

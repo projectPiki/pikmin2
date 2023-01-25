@@ -31,9 +31,9 @@ namespace Game {
 SingleGame::SelectState::SelectState()
     : State(SGS_Select)
 {
-	m_controller       = new Controller(JUTGamePad::PORT_0);
-	m_dvdLoadCallback  = new Delegate<SelectState>(this, &dvdload);
-	m_previousCourseID = -1;
+	mController       = new Controller(JUTGamePad::PORT_0);
+	mDvdLoadCallback  = new Delegate<SelectState>(this, &dvdload);
+	mPreviousCourseID = -1;
 }
 
 /*
@@ -44,17 +44,17 @@ SingleGame::SelectState::SelectState()
 void SingleGame::SelectState::init(SingleGameSection*, StateArg*)
 {
 	moviePlayer->reset();
-	m_state      = SELECTSTATE_Init;
-	m_parentHeap = nullptr;
-	m_wMapHeap   = nullptr;
-	Screen::gGame2DMgr->m_screenMgr->reset();
+	mState      = SELECTSTATE_Init;
+	mParentHeap = nullptr;
+	mWMapHeap   = nullptr;
+	Screen::gGame2DMgr->mScreenMgr->reset();
 	sParentHeapFreeSize_Last = sParentHeapFreeSize;
 	sParentHeapFreeSize      = JKRHeap::sCurrentHeap->getFreeSize();
 	JKRHeap::sCurrentHeap->getFreeSize();
 	JKRHeap::sCurrentHeap->getTotalFreeSize();
-	playData->m_deadNaviID[0] = 0;
+	playData->mDeadNaviID[0] = 0;
 	naviMgr->clearDeadCount();
-	m_newLevelOpen = false;
+	mNewLevelOpen = false;
 }
 
 /*
@@ -65,15 +65,15 @@ void SingleGame::SelectState::init(SingleGameSection*, StateArg*)
 void SingleGame::SelectState::initNext(SingleGameSection* section)
 {
 	sys->setFrameRate(1);
-	m_state = SELECTSTATE_Load;
+	mState = SELECTSTATE_Load;
 
-	m_parentHeap = JKRHeap::sCurrentHeap;
-	m_parentHeap->getFreeSize();
-	sParentHeapFreeSize = m_parentHeap->getFreeSize();
-	m_parentHeap->getFreeSize();
-	m_parentHeap->getTotalFreeSize();
-	m_wMapHeap = JKRExpHeap::create(m_parentHeap->getFreeSize(), m_parentHeap, true);
-	m_wMapHeap->becomeCurrentHeap();
+	mParentHeap = JKRHeap::sCurrentHeap;
+	mParentHeap->getFreeSize();
+	sParentHeapFreeSize = mParentHeap->getFreeSize();
+	mParentHeap->getFreeSize();
+	mParentHeap->getTotalFreeSize();
+	mWMapHeap = JKRExpHeap::create(mParentHeap->getFreeSize(), mParentHeap, true);
+	mWMapHeap->becomeCurrentHeap();
 
 	if (playData->courseOpen(2) && (playData->isStoryFlag(STORY_DebtPaid)) && !playData->courseOpen(3)) {
 		playData->openCourse(3);
@@ -89,34 +89,34 @@ void SingleGame::SelectState::initNext(SingleGameSection* section)
 			anyFirstTimes = true;
 		}
 	}
-	m_newLevelOpen = anyFirstTimes;
+	mNewLevelOpen = anyFirstTimes;
 
-	m_worldMap = new kh::Screen::WorldMap;
+	mWorldMap = new kh::Screen::WorldMap;
 	WorldMap::InitArg arg;
 
-	arg.m_dayCount   = gameSystem->m_timeMgr->m_dayCount + 1;
-	arg.m_stages     = stageList;
-	arg.m_heap       = m_wMapHeap;
-	arg.m_controller = m_controller;
+	arg.mDayCount   = gameSystem->mTimeMgr->mDayCount + 1;
+	arg.mStages     = stageList;
+	arg.mHeap       = mWMapHeap;
+	arg.mController = mController;
 
-	if (m_previousCourseID == -1) {
-		arg.m_initialCourseIndex = playData->getCurrentCourseIndex();
+	if (mPreviousCourseID == -1) {
+		arg.mInitialCourseIndex = playData->getCurrentCourseIndex();
 	} else {
-		arg.m_initialCourseIndex = m_previousCourseID;
+		arg.mInitialCourseIndex = mPreviousCourseID;
 	}
 
-	arg.m_hasNewPiklopediaEntries    = playData->m_tekiStatMgr.whatsNew();
-	arg.m_hasNewTreasureHoardEntries = playData->hasPelletZukanWhatsNew();
-	arg._16                          = section->_228;
-	section->_228                    = 1;
-	static_cast<Game::WorldMap::Base*>(m_worldMap)->init(arg);
+	arg.mHasNewPiklopediaEntries    = playData->mTekiStatMgr.whatsNew();
+	arg.mHasNewTreasureHoardEntries = playData->hasPelletZukanWhatsNew();
+	arg._16                         = section->_228;
+	section->_228                   = 1;
+	static_cast<Game::WorldMap::Base*>(mWorldMap)->init(arg);
 
-	section->m_displayWiper = section->m_wipeInFader;
-	section->m_wipeInFader->start(1.0f);
+	section->mDisplayWiper = section->mWipeInFader;
+	section->mWipeInFader->start(1.0f);
 
 	section->refreshHIO();
-	m_controller->setButtonRepeat(0x3000000, 0x1E, 1);
-	sys->dvdLoadUseCallBack(&section->m_dvdThread, m_dvdLoadCallback);
+	mController->setButtonRepeat(0x3000000, 0x1E, 1);
+	sys->dvdLoadUseCallBack(&section->mDvdThread, mDvdLoadCallback);
 }
 
 /*
@@ -127,12 +127,12 @@ void SingleGame::SelectState::initNext(SingleGameSection* section)
 void SingleGame::SelectState::dvdload()
 {
 	PSGame::SceneInfo info;
-	if (m_newLevelOpen) {
-		info.m_sceneType = PSGame::SceneInfo::WORLD_MAP_NEWLEVEL;
+	if (mNewLevelOpen) {
+		info.mSceneType = PSGame::SceneInfo::WORLD_MAP_NEWLEVEL;
 	} else {
-		info.m_sceneType = PSGame::SceneInfo::WORLD_MAP_NORMAL;
+		info.mSceneType = PSGame::SceneInfo::WORLD_MAP_NORMAL;
 	}
-	info.m_cameras = 0;
+	info.mCameras = 0;
 
 	JUT_ASSERTLINE(394, PSSystem::getSceneMgr(), "PSGetSceneMgr null\n");
 
@@ -140,7 +140,7 @@ void SingleGame::SelectState::dvdload()
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->doFirstLoad();
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->doStartMainSeq();
 
-	if (getCurrentHeap() != m_wMapHeap) {
+	if (getCurrentHeap() != mWMapHeap) {
 		JUT_PANICLINE(401, "MOC = Mouse on Cars!\n");
 	}
 
@@ -152,14 +152,14 @@ void SingleGame::SelectState::dvdload()
 	JUT_ASSERTLINE(416, particle2dMgr, "particle2dMgr null\n");
 	particle2dMgr->setSceneEmitterAndResourceManager(jpaemit, jpamgr);
 
-	if (getCurrentHeap() != m_wMapHeap) {
+	if (getCurrentHeap() != mWMapHeap) {
 		JUT_PANICLINE(420, "MOC = Mouse on Cars!\n");
 	}
 
-	JUT_ASSERTLINE(423, m_worldMap, "mWorldMap null\n");
-	static_cast<Game::WorldMap::Base*>(m_worldMap)->loadResource();
+	JUT_ASSERTLINE(423, mWorldMap, "mWorldMap null\n");
+	static_cast<Game::WorldMap::Base*>(mWorldMap)->loadResource();
 
-	if (getCurrentHeap() != m_wMapHeap) {
+	if (getCurrentHeap() != mWMapHeap) {
 		JUT_PANICLINE(427, "MOC = Mouse on Cars!\n");
 	}
 }
@@ -171,40 +171,40 @@ void SingleGame::SelectState::dvdload()
  */
 void SingleGame::SelectState::exec(SingleGameSection* game)
 {
-	switch (m_state) {
+	switch (mState) {
 	case SELECTSTATE_Init: {
 		initNext(game);
 		break;
 	}
 	case SELECTSTATE_Load: {
-		if (game->m_dvdThread.m_mode == 2)
-			m_state = SELECTSTATE_Draw;
+		if (game->mDvdThread.mMode == 2)
+			mState = SELECTSTATE_Draw;
 		break;
 	}
 	default: {
-		if (m_wMapHeap) {
+		if (mWMapHeap) {
 			game->BaseHIOSection::doUpdate();
 			WorldMap::UpdateArg arg;
-			arg.m_courseInfo = nullptr;
-			arg.m_status     = WorldMap::WMapUpdate_0;
-			static_cast<Game::WorldMap::Base*>(m_worldMap)->update(arg);
+			arg.mCourseInfo = nullptr;
+			arg.mStatus     = WorldMap::WMapUpdate_0;
+			static_cast<Game::WorldMap::Base*>(mWorldMap)->update(arg);
 
-			switch (arg.m_status) {
+			switch (arg.mStatus) {
 			case WorldMap::WMapUpdate_GoToLoad: {
-				m_previousCourseID = -1;
-				ZukanState* state  = static_cast<ZukanState*>(game->m_fsm->getState(SGS_Zukan));
+				mPreviousCourseID = -1;
+				ZukanState* state = static_cast<ZukanState*>(game->mFsm->getState(SGS_Zukan));
 				if (state) {
 					state->_110 = -1;
 					state->_114 = -1;
 				}
-				if (arg.m_courseInfo) {
-					CourseInfo* info = arg.m_courseInfo;
+				if (arg.mCourseInfo) {
+					CourseInfo* info = arg.mCourseInfo;
 					game->_228       = 0;
 					playData->setPelletZukanOutOfDateAll();
-					playData->m_tekiStatMgr.setOutOfDateAll();
-					game->m_displayWiper = game->m_wipeInFader;
-					game->m_wipeInFader->start(4.0f);
-					game->m_currentCourseInfo = info;
+					playData->mTekiStatMgr.setOutOfDateAll();
+					game->mDisplayWiper = game->mWipeInFader;
+					game->mWipeInFader->start(4.0f);
+					game->mCurrentCourseInfo = info;
 					LoadStateArg larg;
 					larg._00 = 0;
 					larg._01 = 1;
@@ -216,27 +216,27 @@ void SingleGame::SelectState::exec(SingleGameSection* game)
 			}
 			case WorldMap::WMapUpdate_2: {
 				ZukanStateArg sarg;
-				sarg.m_zukanType = 1;
-				sarg.m_courseID  = 0;
+				sarg.mZukanType = 1;
+				sarg.mCourseID  = 0;
 				transit(game, SGS_Zukan, &sarg);
 				break;
 			}
 			case WorldMap::WMapUpdate_GoToZukan: {
 				ZukanStateArg sarg;
-				sarg.m_zukanType = 1;
-				sarg.m_courseID  = 0;
-				if (arg.m_courseInfo) {
-					sarg.m_courseID    = arg.m_courseInfo->m_courseIndex;
-					m_previousCourseID = sarg.m_courseID;
+				sarg.mZukanType = 1;
+				sarg.mCourseID  = 0;
+				if (arg.mCourseInfo) {
+					sarg.mCourseID    = arg.mCourseInfo->mCourseIndex;
+					mPreviousCourseID = sarg.mCourseID;
 				} else {
-					sarg.m_courseID = 2;
+					sarg.mCourseID = 2;
 				}
 				transit(game, SGS_Zukan, &sarg);
 				break;
 			}
 			case WorldMap::WMapUpdate_ReturnToTitle: {
-				m_previousCourseID = -1;
-				ZukanState* state  = static_cast<ZukanState*>(game->m_fsm->getState(SGS_Zukan));
+				mPreviousCourseID = -1;
+				ZukanState* state = static_cast<ZukanState*>(game->mFsm->getState(SGS_Zukan));
 				if (state) {
 					state->_110 = -1;
 					state->_114 = -1;
@@ -247,13 +247,13 @@ void SingleGame::SelectState::exec(SingleGameSection* game)
 			}
 			case WorldMap::WMapUpdate_4: {
 				ZukanStateArg sarg2;
-				sarg2.m_zukanType = 0;
-				sarg2.m_courseID  = 0;
-				if (arg.m_courseInfo) {
-					sarg2.m_courseID   = arg.m_courseInfo->m_courseIndex;
-					m_previousCourseID = sarg2.m_courseID;
+				sarg2.mZukanType = 0;
+				sarg2.mCourseID  = 0;
+				if (arg.mCourseInfo) {
+					sarg2.mCourseID   = arg.mCourseInfo->mCourseIndex;
+					mPreviousCourseID = sarg2.mCourseID;
 				} else {
-					sarg2.m_courseID = 2;
+					sarg2.mCourseID = 2;
 				}
 				transit(game, SGS_Zukan, &sarg2);
 				break;
@@ -274,44 +274,44 @@ void SingleGame::SelectState::exec(SingleGameSection* game)
  */
 void SingleGame::SelectState::draw(SingleGameSection* game, Graphics& gfx)
 {
-	if (m_wMapHeap && m_state == SELECTSTATE_Draw) {
-		gfx.m_orthoGraph.setPort();
+	if (mWMapHeap && mState == SELECTSTATE_Draw) {
+		gfx.mOrthoGraph.setPort();
 
-		gfx.m_perspGraph.setPort();
-		static_cast<Game::WorldMap::Base*>(m_worldMap)->draw1st(gfx);
+		gfx.mPerspGraph.setPort();
+		static_cast<Game::WorldMap::Base*>(mWorldMap)->draw1st(gfx);
 
-		gfx.m_perspGraph.setPort();
+		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(3, 0);
 
-		gfx.m_perspGraph.setPort();
-		static_cast<Game::WorldMap::Base*>(m_worldMap)->draw2nd(gfx);
+		gfx.mPerspGraph.setPort();
+		static_cast<Game::WorldMap::Base*>(mWorldMap)->draw2nd(gfx);
 
-		gfx.m_perspGraph.setPort();
+		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(2, 0);
 
-		gfx.m_perspGraph.setPort();
-		static_cast<Game::WorldMap::Base*>(m_worldMap)->draw3rd(gfx);
+		gfx.mPerspGraph.setPort();
+		static_cast<Game::WorldMap::Base*>(mWorldMap)->draw3rd(gfx);
 
-		gfx.m_perspGraph.setPort();
+		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(4, 0);
 
-		gfx.m_perspGraph.setPort();
-		static_cast<Game::WorldMap::Base*>(m_worldMap)->draw4th(gfx);
+		gfx.mPerspGraph.setPort();
+		static_cast<Game::WorldMap::Base*>(mWorldMap)->draw4th(gfx);
 
-		gfx.m_perspGraph.setPort();
+		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(1, 0);
 
-		gfx.m_perspGraph.setPort();
+		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(0, 0);
 
 		if (sParentHeapFreeSize && sParentHeapFreeSize_Last && (sParentHeapFreeSize != sParentHeapFreeSize_Last)) {
-			gfx.m_orthoGraph.setPort();
+			gfx.mOrthoGraph.setPort();
 			J2DPrint print(JFWSystem::systemFont, 0.0f);
 			print.initiate();
-			print.m_charColor.set(JUtility::TColor(255, 19, 55, 255));
-			print.m_gradientColor.set(JUtility::TColor(0, 0, 0, 255));
-			print.m_glyphWidth  = 16.0f;
-			print.m_glyphHeight = 16.0f;
+			print.mCharColor.set(JUtility::TColor(255, 19, 55, 255));
+			print.mGradientColor.set(JUtility::TColor(0, 0, 0, 255));
+			print.mGlyphWidth  = 16.0f;
+			print.mGlyphHeight = 16.0f;
 			print.print(60.0f, 120.0f, "* %d %d %d", sParentHeapFreeSize_Last - sParentHeapFreeSize, sParentHeapFreeSize_Last,
 			            sParentHeapFreeSize);
 		}
@@ -332,12 +332,12 @@ void SingleGame::SelectState::cleanup(SingleGameSection* game)
 	playData->doneWorldMapEffect();
 	particle2dMgr->killAll();
 	particle2dMgr->clearSceneEmitterAndResourceManager();
-	m_wMapHeap->freeAll();
-	m_wMapHeap->destroy();
-	m_wMapHeap = nullptr;
-	m_parentHeap->becomeCurrentHeap();
+	mWMapHeap->freeAll();
+	mWMapHeap->destroy();
+	mWMapHeap = nullptr;
+	mParentHeap->becomeCurrentHeap();
 	sys->setFrameRate(2);
-	JUT_ASSERTLINE(732, sParentHeapFreeSize == (int)m_parentHeap->getFreeSize(), "damek\n");
+	JUT_ASSERTLINE(732, sParentHeapFreeSize == (int)mParentHeap->getFreeSize(), "damek\n");
 }
 
 } // namespace Game

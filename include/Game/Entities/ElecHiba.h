@@ -28,7 +28,7 @@ struct InitialParam : public EnemyInitialParamBase {
 
 struct TeamList : public CNode {
 	inline TeamList()
-	    : m_childObjPtr(nullptr)
+	    : mChildObjPtr(nullptr)
 	{
 	}
 
@@ -36,7 +36,7 @@ struct TeamList : public CNode {
 
 	// _00		= VTBL
 	// _00-_18  = CNode
-	Obj* m_childObjPtr; // _18, child object pointer
+	Obj* mChildObjPtr; // _18, child object pointer
 };
 
 struct Obj : public EnemyBase {
@@ -91,17 +91,17 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                            // _2BC
-	bool _2C0;                             // _2C0
-	f32 m_waitTimer;                       // _2C4
-	TeamList m_teamList;                   // _2C8
-	Vector3f _2E4;                         // _2E4
-	efx::TDenkiHibaMgr* m_efxDenkiHibaMgr; // _2F0
-	bool _2F4;                             // _2F4, might be a bool?
-	EVersusHibaType m_versusHibaType;      // _2F8
-	int m_redAttrAttackCount;              // _2FC
-	int m_blueAttrAttackCount;             // _300
-	                                       // _304 = PelletView
+	FSM* mFsm;                            // _2BC
+	bool _2C0;                            // _2C0
+	f32 mWaitTimer;                       // _2C4
+	TeamList mTeamList;                   // _2C8
+	Vector3f _2E4;                        // _2E4
+	efx::TDenkiHibaMgr* mEfxDenkiHibaMgr; // _2F0
+	bool _2F4;                            // _2F4, might be a bool?
+	EVersusHibaType mVersusHibaType;      // _2F8
+	int mRedAttrAttackCount;              // _2FC
+	int mBlueAttrAttackCount;             // _300
+	                                      // _304 = PelletView
 };
 
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
@@ -119,28 +119,28 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_waitTime(this, 'fp02', "ウェイト時間", 2.5f, 0.0f, 100.0f) // 'wait time'
-		    , m_warningTime(this, 'fp03', "予\兆時間", 2.5f, 0.0f, 100.0f) // 'warning time'
-		    , m_activeTime(this, 'fp01', "放電時間", 2.5f, 0.0f, 100.0f)   // 'discharge time'
-		    , m_stopTime(this, 'fp04', "停止時間", 10.0f, 0.0f, 100.0f)    // 'stop time'
-		    , m_lodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)
-		    , m_lodMiddle(this, 'fp91', "LOD MIDDLE", 0.05f, 0.0f, 1.0f)
+		    , mWaitTime(this, 'fp02', "ウェイト時間", 2.5f, 0.0f, 100.0f) // 'wait time'
+		    , mWarningTime(this, 'fp03', "予\兆時間", 2.5f, 0.0f, 100.0f) // 'warning time'
+		    , mActiveTime(this, 'fp01', "放電時間", 2.5f, 0.0f, 100.0f)   // 'discharge time'
+		    , mStopTime(this, 'fp04', "停止時間", 10.0f, 0.0f, 100.0f)    // 'stop time'
+		    , mLodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)
+		    , mLodMiddle(this, 'fp91', "LOD MIDDLE", 0.05f, 0.0f, 1.0f)
 		{
 		}
 
-		Parm<f32> m_waitTime;    // _804, fp02
-		Parm<f32> m_warningTime; // _82C, fp03
-		Parm<f32> m_activeTime;  // _854, fp01
-		Parm<f32> m_stopTime;    // _87C, fp04
-		Parm<f32> m_lodNear;     // _8A4, fp90
-		Parm<f32> m_lodMiddle;   // _8CC, fp91
+		Parm<f32> mWaitTime;    // _804, fp02
+		Parm<f32> mWarningTime; // _82C, fp03
+		Parm<f32> mActiveTime;  // _854, fp01
+		Parm<f32> mStopTime;    // _87C, fp04
+		Parm<f32> mLodNear;     // _8A4, fp90
+		Parm<f32> mLodMiddle;   // _8CC, fp91
 	};
 
 	Parms() { }
@@ -148,12 +148,12 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct Generator : public EnemyGeneratorBase {
@@ -165,7 +165,7 @@ struct Generator : public EnemyGeneratorBase {
 	virtual u32 getLatestVersion(); // _18
 	virtual void* getInitialParam() // _20 (weak)
 	{
-		return &m_distance;
+		return &mDistance;
 	}
 
 	void doReadLatestVersion(Stream&);
@@ -173,18 +173,18 @@ struct Generator : public EnemyGeneratorBase {
 
 	// _00 		= VTBL
 	// _00-_24  = EnemyGeneratorBase
-	f32 m_distance; // _24
+	f32 mDistance; // _24
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -205,14 +205,14 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct WaitStateArg : public StateArg {
-	f32 m_waitTimer; // _00
+	f32 mWaitTimer; // _00
 };
 
 struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

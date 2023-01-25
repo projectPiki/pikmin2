@@ -775,12 +775,12 @@ void JASDsp::changeFXLineParam(unsigned char, unsigned char, unsigned long)
  */
 void JASDsp::TChannel::init()
 {
-	m_pauseFlag = 0;
-	_02         = 0;
-	_10A        = 0;
-	_00         = 0;
-	_58         = 0;
-	_68         = 0;
+	mPauseFlag = 0;
+	_02        = 0;
+	_10A       = 0;
+	_00        = 0;
+	_58        = 0;
+	_68        = 0;
 	initFilter();
 }
 
@@ -1167,7 +1167,7 @@ void JASDsp::TChannel::setPitch(u16 pitch)
 	if (0x7FFF <= pitch) {
 		pitch = 0x7FFF;
 	}
-	m_pitch = pitch;
+	mPitch = pitch;
 }
 
 /*
@@ -1175,7 +1175,7 @@ void JASDsp::TChannel::setPitch(u16 pitch)
  * Address:	800A5928
  * Size:	00000C
  */
-void JASDsp::TChannel::setMixerInitDelayMax(u8 mixerInitDelayMax) { m_mixerInitDelayMax = mixerInitDelayMax; }
+void JASDsp::TChannel::setMixerInitDelayMax(u8 mixerInitDelayMax) { mMixerInitDelayMax = mixerInitDelayMax; }
 
 /*
  * --INFO--
@@ -1232,7 +1232,7 @@ void JASDsp::TChannel::setMixerVolume(u8 index, short volume)
  * Address:	800A59B8
  * Size:	00000C
  */
-void JASDsp::TChannel::setPauseFlag(u8 pauseFlag) { m_pauseFlag = pauseFlag; }
+void JASDsp::TChannel::setPauseFlag(u8 pauseFlag) { mPauseFlag = pauseFlag; }
 
 /*
  * --INFO--
@@ -1251,14 +1251,14 @@ void JASDsp::TChannel::flush() { DCFlushRange(this, 0x180); }
 void JASDsp::TChannel::initFilter()
 {
 	for (int i = 0; i < 8; i++) {
-		m_fir8FilterParam[i] = 0;
+		mFir8FilterParam[i] = 0;
 	}
-	m_fir8FilterParam[0] = 0x7FFF;
+	mFir8FilterParam[0] = 0x7FFF;
 	for (int i = 0; i < 4; i++) {
-		m_iirFilterParam[i] = 0;
+		mIirFilterParam[i] = 0;
 	}
-	m_iirFilterParam[0] = 0x7FFF;
-	m_distFilter        = 0;
+	mIirFilterParam[0] = 0x7FFF;
+	mDistFilter        = 0;
 }
 
 /*
@@ -1276,7 +1276,7 @@ void JASDsp::TChannel::setFilterMode(unsigned short p1)
 	} else if (0x18 < v1) {
 		v1 = 0x18;
 	}
-	m_filterMode = (p1 & 0x20) + v1;
+	mFilterMode = (p1 & 0x20) + v1;
 }
 
 /*
@@ -1287,7 +1287,7 @@ void JASDsp::TChannel::setFilterMode(unsigned short p1)
 void JASDsp::TChannel::setIIRFilterParam(short* p1)
 {
 	for (int i = 0; i < 4; i++) {
-		m_iirFilterParam[i] = p1[i];
+		mIirFilterParam[i] = p1[i];
 	}
 }
 
@@ -1299,7 +1299,7 @@ void JASDsp::TChannel::setIIRFilterParam(short* p1)
 void JASDsp::TChannel::setFIR8FilterParam(short* p1)
 {
 	for (int i = 0; i < 8; i++) {
-		m_fir8FilterParam[i] = p1[i];
+		mFir8FilterParam[i] = p1[i];
 	}
 }
 
@@ -1311,7 +1311,7 @@ void JASDsp::TChannel::setFIR8FilterParam(short* p1)
 void JASDsp::TChannel::setDistFilter(s16 distFilter)
 {
 	// Generated from sth r4, 0x150(r3)
-	m_distFilter = distFilter;
+	mDistFilter = distFilter;
 }
 
 /*

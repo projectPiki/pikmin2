@@ -57,8 +57,8 @@ struct ObjWorldMapInfoWindow0 : public ObjSMenuPauseVS {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_CC = ObjSMenuPauseVS
-	Screen::DispMemberWorldMapInfoWin0* m_dispWmap; // _CC
-	u32 m_prevSel;                                  // _D0
+	Screen::DispMemberWorldMapInfoWin0* mDispWmap; // _CC
+	u32 mPrevSel;                                  // _D0
 };
 
 struct ObjWorldMapInfoWindow1 : public ObjSMenuPauseVS {
@@ -78,8 +78,8 @@ struct ObjWorldMapInfoWindow1 : public ObjSMenuPauseVS {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_CC = ObjSMenuPauseVS
-	Screen::DispMemberWorldMapInfoWin1* m_dispWmap; // _CC
-	Screen::AnimText_Screen* m_animTextTitle;       // _D0
+	Screen::DispMemberWorldMapInfoWin1* mDispWmap; // _CC
+	Screen::AnimText_Screen* mAnimTextTitle;       // _D0
 };
 } // namespace newScreen
 } // namespace og

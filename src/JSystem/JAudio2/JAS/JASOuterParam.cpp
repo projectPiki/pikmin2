@@ -17,8 +17,8 @@
  * Size:	00004C
  */
 JASOuterParam::JASOuterParam()
-    : m_outerSwitch(0)
-    , m_outerUpdate(0)
+    : mOuterSwitch(0)
+    , mOuterUpdate(0)
     , _04(0.0f)
     , _08(0.0f)
     , _0C(0.0f)
@@ -27,7 +27,7 @@ JASOuterParam::JASOuterParam()
     , _18(0.0f)
 {
 	for (int i = 0; i < 8; i++) {
-		m_firFilter[i] = 0;
+		mFirFilter[i] = 0;
 	}
 }
 
@@ -38,8 +38,8 @@ JASOuterParam::JASOuterParam()
  */
 void JASOuterParam::initExtBuffer()
 {
-	m_outerSwitch = 0;
-	m_outerUpdate = 0;
+	mOuterSwitch = 0;
+	mOuterUpdate = 0;
 }
 
 /*
@@ -50,7 +50,7 @@ void JASOuterParam::initExtBuffer()
 void JASOuterParam::setOuterSwitch(u16 newValue)
 {
 	// Generated from sth r4, 0x0(r3)
-	m_outerSwitch = newValue;
+	mOuterSwitch = newValue;
 }
 
 /*
@@ -61,7 +61,7 @@ void JASOuterParam::setOuterSwitch(u16 newValue)
 u16 JASOuterParam::getSwitch()
 {
 	// UNUSED FUNCTION
-	return m_outerSwitch;
+	return mOuterSwitch;
 }
 
 /*
@@ -69,7 +69,7 @@ u16 JASOuterParam::getSwitch()
  * Address:	8009C464
  * Size:	00001C
  */
-bool JASOuterParam::checkOuterSwitch(u16 p1) { return m_outerSwitch & p1; }
+bool JASOuterParam::checkOuterSwitch(u16 p1) { return mOuterSwitch & p1; }
 
 /*
  * --INFO--
@@ -79,7 +79,7 @@ bool JASOuterParam::checkOuterSwitch(u16 p1) { return m_outerSwitch & p1; }
 void JASOuterParam::setOuterUpdate(u16 newValue)
 {
 	// Generated from sth r4, 0x2(r3)
-	m_outerUpdate = newValue;
+	mOuterUpdate = newValue;
 }
 
 /*
@@ -87,7 +87,7 @@ void JASOuterParam::setOuterUpdate(u16 newValue)
  * Address:	8009C488
  * Size:	000008
  */
-u16 JASOuterParam::getOuterUpdate() { return m_outerUpdate; }
+u16 JASOuterParam::getOuterUpdate() { return mOuterUpdate; }
 
 /*
  * --INFO--
@@ -97,7 +97,7 @@ u16 JASOuterParam::getOuterUpdate() { return m_outerUpdate; }
 void JASOuterParam::setIntFirFilter(short newValue, unsigned char index)
 {
 	// UNUSED FUNCTION
-	m_firFilter[index] = newValue;
+	mFirFilter[index] = newValue;
 }
 
 /*
@@ -105,7 +105,7 @@ void JASOuterParam::setIntFirFilter(short newValue, unsigned char index)
  * Address:	8009C490
  * Size:	000010
  */
-s16 JASOuterParam::getIntFirFilter(u8 index) { return m_firFilter[index]; }
+s16 JASOuterParam::getIntFirFilter(u8 index) { return mFirFilter[index]; }
 
 /*
  * --INFO--
@@ -138,7 +138,7 @@ void JASOuterParam::setParam(u8 p1, float p2)
 		return;
 	}
 	*v1 = p2;
-	m_outerUpdate |= p1;
+	mOuterUpdate |= p1;
 }
 
 /*
@@ -148,8 +148,8 @@ void JASOuterParam::setParam(u8 p1, float p2)
  */
 void JASOuterParam::onSwitch(u16 p1)
 {
-	m_outerSwitch |= p1;
-	m_outerUpdate |= p1;
+	mOuterSwitch |= p1;
+	mOuterUpdate |= p1;
 }
 
 /*
@@ -159,9 +159,9 @@ void JASOuterParam::onSwitch(u16 p1)
  */
 void JASOuterParam::setFirFilter(short* p1)
 {
-	m_outerUpdate |= 0x80;
-	m_outerSwitch |= 0x80;
+	mOuterUpdate |= 0x80;
+	mOuterSwitch |= 0x80;
 	for (int i = 0; i < 8; i++) {
-		m_firFilter[i] = p1[i];
+		mFirFilter[i] = p1[i];
 	}
 }

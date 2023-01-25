@@ -143,7 +143,7 @@ void JPACalcChildScaleOut(JPAEmitterWorkData* workData, JPABaseParticle* particl
 JPAChildShape::JPAChildShape(const unsigned char* data)
 {
 	// Generated from stw r4, 0x0(r3)
-	m_data = data;
+	mData = data;
 }
 
 /*

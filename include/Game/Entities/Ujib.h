@@ -63,16 +63,16 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                 // _2BC
-	u8 _2C0;                    // _2C0
-	bool m_isUnderground;       // _2C1
-	u16 _2C2;                   // _2C2
-	int _2C4;                   // _2C4
-	MouthSlots m_mouthSlots;    // _2C8
-	ItemBridge::Item* m_bridge; // _2D0
-	f32 _2CC;                   // _2D4
-	f32 _2D0;                   // _2D8
-	                            // _2DC = PelletView
+	FSM* mFsm;                 // _2BC
+	u8 _2C0;                   // _2C0
+	bool mIsUnderground;       // _2C1
+	u16 _2C2;                  // _2C2
+	int _2C4;                  // _2C4
+	MouthSlots mMouthSlots;    // _2C8
+	ItemBridge::Item* mBridge; // _2D0
+	f32 _2CC;                  // _2D4
+	f32 _2D0;                  // _2D8
+	                           // _2DC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -89,20 +89,20 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, likely an array of Objs
+	Obj* mObj; // _44, likely an array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_poisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , m_bridgeDamage(this, 'fp02', "橋食いパワー", 50.0f, 0.0f, 100.0f)  // 'bridge eating power'
+		    , mPoisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mBridgeDamage(this, 'fp02', "橋食いパワー", 50.0f, 0.0f, 100.0f)  // 'bridge eating power'
 		{
 		}
 
-		Parm<f32> m_poisonDamage; // _804, fp01
-		Parm<f32> m_bridgeDamage; // _82C, fp02
+		Parm<f32> mPoisonDamage; // _804, fp01
+		Parm<f32> mBridgeDamage; // _82C, fp02
 	};
 
 	Parms() { }
@@ -110,23 +110,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

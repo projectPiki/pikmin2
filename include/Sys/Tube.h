@@ -8,10 +8,10 @@ struct Sphere;
 struct Tube {
 	inline Tube() {};
 	Tube(Vector3f& pos1, Vector3f& pos2, f32 rad1, f32 rad2)
-	    : m_startPos(pos1)
-	    , m_endPos(pos2)
-	    , m_startRadius(rad1)
-	    , m_endRadius(rad2)
+	    : mStartPos(pos1)
+	    , mEndPos(pos2)
+	    , mStartRadius(rad1)
+	    , mEndRadius(rad2)
 	{
 	}
 
@@ -25,10 +25,10 @@ struct Tube {
 	void getRatioRadius(f32);
 	void getPosGradient(Vector3f&, f32, Vector3f&, Vector3f&);
 
-	Vector3f m_startPos; // _00 - position of start of tube
-	Vector3f m_endPos;   // _0C - position of end of tube
-	f32 m_startRadius;   // _18 - radius of tube at start
-	f32 m_endRadius;     // _1C - radius of tube at end
+	Vector3f mStartPos; // _00 - position of start of tube
+	Vector3f mEndPos;   // _0C - position of end of tube
+	f32 mStartRadius;   // _18 - radius of tube at start
+	f32 mEndRadius;     // _1C - radius of tube at end
 };
 } // namespace Sys
 

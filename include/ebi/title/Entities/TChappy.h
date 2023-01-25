@@ -22,20 +22,20 @@ struct TParam : public TParamBase {
 	TParam();
 
 	// _00-_0C = TParamBase
-	Parm<f32> m_scale;           // _0C
-	Parm<f32> m_cullRadius;      // _34
-	Parm<f32> m_collRadius;      // _5C
-	Parm<f32> m_pikiReactRadius; // _84
-	Parm<f32> m_hitOffset;       // _AC
-	Parm<f32> m_hitRadius;       // _D4
-	Parm<f32> m_walkAngleRand;   // _FC
-	Parm<f32> m_walkSpeed;       // _124
-	Parm<f32> m_turnSpeed;       // _14C
-	Parm<f32> m_minWaitTime;     // _174
-	Parm<f32> m_maxWaitTime;     // _19C
-	Parm<f32> m_minWalkTime;     // _1C4
-	Parm<f32> m_maxWalkTime;     // _1EC
-	Parm<f32> m_controlledTime;  // _214
+	Parm<f32> mScale;           // _0C
+	Parm<f32> mCullRadius;      // _34
+	Parm<f32> mCollRadius;      // _5C
+	Parm<f32> mPikiReactRadius; // _84
+	Parm<f32> mHitOffset;       // _AC
+	Parm<f32> mHitRadius;       // _D4
+	Parm<f32> mWalkAngleRand;   // _FC
+	Parm<f32> mWalkSpeed;       // _124
+	Parm<f32> mTurnSpeed;       // _14C
+	Parm<f32> mMinWaitTime;     // _174
+	Parm<f32> mMaxWaitTime;     // _19C
+	Parm<f32> mMinWalkTime;     // _1C4
+	Parm<f32> mMaxWalkTime;     // _1EC
+	Parm<f32> mControlledTime;  // _214
 };
 
 struct TAnimFolder : public E3DAnimFolderBase {
@@ -45,7 +45,7 @@ struct TAnimFolder : public E3DAnimFolderBase {
 	E3DAnimRes* getAnimRes(int);
 
 	// _00 = VTBL
-	E3DAnimRes m_anims[4]; // _04 - move, wait, attack, wait2
+	E3DAnimRes mAnims[4]; // _04 - move, wait, attack, wait2
 };
 
 struct TAnimator {
@@ -54,8 +54,8 @@ struct TAnimator {
 	void setArchive(JKRArchive*);
 	J3DModel* newJ3DModel();
 
-	TAnimFolder m_animFolder;  // _00
-	J3DModelData* m_modelData; // _84
+	TAnimFolder mAnimFolder;  // _00
+	J3DModelData* mModelData; // _84
 };
 
 struct TMgr : public CNode {
@@ -68,9 +68,9 @@ struct TMgr : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	TAnimator* m_animator; // _18
-	TParam m_params;       // _1C
-	TUnit* m_object;       // _25C
+	TAnimator* mAnimator; // _18
+	TParam mParams;       // _1C
+	TUnit* mObject;       // _25C
 };
 
 struct TUnit : public TObjBase {
@@ -96,27 +96,27 @@ struct TUnit : public TObjBase {
 
 	inline TUnit()
 	{
-		m_counter  = 0;
-		m_counter2 = 0;
+		mCounter  = 0;
+		mCounter2 = 0;
 
-		m_anim._0C              = 0;
-		m_anim.pAnimFolder_0x10 = 0;
+		mAnim._0C              = 0;
+		mAnim.pAnimFolder_0x10 = 0;
 
-		m_targetPos   = Vector2f(0.0f);
-		m_targetAngle = Vector2f(1.0f, 0.0f);
+		mTargetPos   = Vector2f(0.0f);
+		mTargetAngle = Vector2f(1.0f, 0.0f);
 
-		u32 time   = 0.0f / sys->m_deltaTime;
-		m_counter  = time;
-		m_counter2 = time;
+		u32 time  = 0.0f / sys->mDeltaTime;
+		mCounter  = time;
+		mCounter2 = time;
 
-		m_control = nullptr;
-		_48       = false;
+		mControl = nullptr;
+		_48      = false;
 
-		m_manager = nullptr;
-		m_stateID = CHAPPYAI_Inactive;
+		mManager = nullptr;
+		mStateID = CHAPPYAI_Inactive;
 
-		m_actionID = -1;
-		m_attacks  = 0;
+		mActionID = -1;
+		mAttacks  = 0;
 	}
 
 	virtual u32 getCreatureType() { return 6; } // _08 (weak)
@@ -134,17 +134,17 @@ struct TUnit : public TObjBase {
 
 	// _00     = VTBL
 	// _00-_2C = TObjBase
-	Vector2f m_targetPos;   // _2C
-	Vector2f m_targetAngle; // _34
-	u32 m_counter;          // _3C
-	u32 m_counter2;         // _40
-	Controller* m_control;  // _44
-	bool _48;               // _48
-	TMgr* m_manager;        // _4C
-	E3DAnimCtrl m_anim;     // _50
-	int m_attacks;          // _64
-	enumAIState m_stateID;  // _68
-	int m_actionID;         // _6C
+	Vector2f mTargetPos;   // _2C
+	Vector2f mTargetAngle; // _34
+	u32 mCounter;          // _3C
+	u32 mCounter2;         // _40
+	Controller* mControl;  // _44
+	bool _48;              // _48
+	TMgr* mManager;        // _4C
+	E3DAnimCtrl mAnim;     // _50
+	int mAttacks;          // _64
+	enumAIState mStateID;  // _68
+	int mActionID;         // _6C
 };
 } // namespace Chappy
 } // namespace title

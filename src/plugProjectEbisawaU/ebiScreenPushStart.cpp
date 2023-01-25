@@ -22,50 +22,50 @@ namespace Screen {
 void TPressStart::doSetArchive(JKRArchive* arc)
 {
 	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_a", nullptr);
-	m_screens[0] = new P2DScreen::Mgr_tuning;
-	m_screens[0]->set("push_start_a.blo", 0x1100000, arc);
+	mScreens[0] = new P2DScreen::Mgr_tuning;
+	mScreens[0]->set("push_start_a.blo", 0x1100000, arc);
 	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_a");
 
 	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_b", nullptr);
-	m_screens[1] = new P2DScreen::Mgr_tuning;
-	m_screens[1]->set("push_start_b.blo", 0x1100000, arc);
+	mScreens[1] = new P2DScreen::Mgr_tuning;
+	mScreens[1]->set("push_start_b.blo", 0x1100000, arc);
 	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_b");
 
 	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_c", nullptr);
-	m_screens[2] = new P2DScreen::Mgr_tuning;
-	m_screens[2]->set("push_start_c.blo", 0x1100000, arc);
+	mScreens[2] = new P2DScreen::Mgr_tuning;
+	mScreens[2]->set("push_start_c.blo", 0x1100000, arc);
 	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_c");
 
 	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_d", nullptr);
-	m_screens[3] = new P2DScreen::Mgr_tuning;
-	m_screens[3]->set("push_start_d.blo", 0x1100000, arc);
+	mScreens[3] = new P2DScreen::Mgr_tuning;
+	mScreens[3]->set("push_start_d.blo", 0x1100000, arc);
 	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_d");
 
 	sys->heapStatusStart("TScreenPushStart::setArchive--makeAnmPointer", nullptr);
 	for (int i = 0; i < 4; i++) {
-		m_screens[i]->makeAnmPointer();
+		mScreens[i]->makeAnmPointer();
 	}
 	sys->heapStatusEnd("TScreenPushStart::setArchive--makeAnmPointer");
 
 	for (int i = 0; i < 4; i++) {
-		static_cast<P2DScreen::Mgr*>(m_screens[i])->addCallBackPane(m_screens[i], &m_anims1[i]);
-		static_cast<P2DScreen::Mgr*>(m_screens[i])->addCallBackPane(m_screens[i], &m_anims2[i]);
-		static_cast<P2DScreen::Mgr*>(m_screens[i])->addCallBackPane(m_screens[i], &m_anims3[i]);
-		E2DPane_setTreeInfluencedAlpha(m_screens[i], true);
-		m_screens[i]->setAlpha(255);
+		static_cast<P2DScreen::Mgr*>(mScreens[i])->addCallBackPane(mScreens[i], &mAnims1[i]);
+		static_cast<P2DScreen::Mgr*>(mScreens[i])->addCallBackPane(mScreens[i], &mAnims2[i]);
+		static_cast<P2DScreen::Mgr*>(mScreens[i])->addCallBackPane(mScreens[i], &mAnims3[i]);
+		E2DPane_setTreeInfluencedAlpha(mScreens[i], true);
+		mScreens[i]->setAlpha(255);
 	}
 
-	m_anims1[0].loadAnm("push_start_a.bck", arc, 0, 99999);
-	m_anims2[0].loadAnm("push_start_a.bpk", arc, 0, 99999);
+	mAnims1[0].loadAnm("push_start_a.bck", arc, 0, 99999);
+	mAnims2[0].loadAnm("push_start_a.bpk", arc, 0, 99999);
 
-	m_anims1[1].loadAnm("push_start_b.bck", arc, 0, 99999);
-	m_anims2[1].loadAnm("push_start_b.bpk", arc, 0, 99999);
+	mAnims1[1].loadAnm("push_start_b.bck", arc, 0, 99999);
+	mAnims2[1].loadAnm("push_start_b.bpk", arc, 0, 99999);
 
-	m_anims1[2].loadAnm("push_start_c.bck", arc, 0, 99999);
-	m_anims2[2].loadAnm("push_start_c.bpk", arc, 0, 99999);
+	mAnims1[2].loadAnm("push_start_c.bck", arc, 0, 99999);
+	mAnims2[2].loadAnm("push_start_c.bpk", arc, 0, 99999);
 
-	m_anims1[3].loadAnm("push_start_d.bck", arc, 0, 99999);
-	m_anims2[3].loadAnm("push_start_d.bpk", arc, 0, 99999);
+	mAnims1[3].loadAnm("push_start_d.bck", arc, 0, 99999);
+	mAnims2[3].loadAnm("push_start_d.bpk", arc, 0, 99999);
 }
 
 /*
@@ -75,7 +75,7 @@ void TPressStart::doSetArchive(JKRArchive* arc)
  */
 void TPressStart::doOpenScreen(ArgOpen*)
 {
-	m_isOpen = true;
+	mIsOpen = true;
 	startLoop_();
 }
 
@@ -86,9 +86,9 @@ void TPressStart::doOpenScreen(ArgOpen*)
  */
 void TPressStart::doCloseScreen(ArgClose*)
 {
-	u32 time   = 0.2f / sys->m_deltaTime;
-	m_alpha    = time;
-	m_alphaMax = time;
+	u32 time  = 0.2f / sys->mDeltaTime;
+	mAlpha    = time;
+	mAlphaMax = time;
 }
 
 /*
@@ -98,12 +98,12 @@ void TPressStart::doCloseScreen(ArgClose*)
  */
 bool TPressStart::doUpdateStateWait()
 {
-	m_screens[m_currentScreen]->update();
-	if (m_isOpen && m_control->m_padButton.m_mask & (Controller::PRESS_START | Controller::PRESS_A)) {
+	mScreens[mCurrentScreen]->update();
+	if (mIsOpen && mControl->mButton.mMask & (Controller::PRESS_START | Controller::PRESS_A)) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 		return true;
 	} else {
-		if (m_anims1[m_currentScreen].isFinish()) {
+		if (mAnims1[mCurrentScreen].isFinish()) {
 			startLoop_();
 		}
 		return false;
@@ -117,20 +117,20 @@ bool TPressStart::doUpdateStateWait()
  */
 bool TPressStart::doUpdateStateClose()
 {
-	m_screens[m_currentScreen]->update();
-	if (m_alpha) {
-		m_alpha--;
+	mScreens[mCurrentScreen]->update();
+	if (mAlpha) {
+		mAlpha--;
 	}
 	f32 alpha;
-	if (m_alphaMax) {
-		alpha = (f32)m_alpha / (f32)m_alphaMax;
+	if (mAlphaMax) {
+		alpha = (f32)mAlpha / (f32)mAlphaMax;
 	} else {
 		alpha = 0.0f;
 	}
 
-	m_screens[m_currentScreen]->setAlpha(alpha * 255.0f);
+	mScreens[mCurrentScreen]->setAlpha(alpha * 255.0f);
 
-	if (!m_alpha || m_anims1[m_currentScreen].isFinish()) {
+	if (!mAlpha || mAnims1[mCurrentScreen].isFinish()) {
 		return true;
 	} else {
 		return false;
@@ -144,10 +144,10 @@ bool TPressStart::doUpdateStateClose()
  */
 void TPressStart::doDraw()
 {
-	Graphics* gfx       = sys->m_gfx;
-	J2DPerspGraph& graf = gfx->m_perspGraph;
+	Graphics* gfx       = sys->mGfx;
+	J2DPerspGraph& graf = gfx->mPerspGraph;
 	graf.setPort();
-	m_screens[m_currentScreen]->draw(*gfx, graf);
+	mScreens[mCurrentScreen]->draw(*gfx, graf);
 }
 
 /*
@@ -159,23 +159,23 @@ void TPressStart::startLoop_()
 {
 	f32 r = randEbisawaFloat(); // this divides by 32767 instead of 32768. why. WHY.
 	if (r < 0.25f) {
-		m_currentScreen = 0;
+		mCurrentScreen = 0;
 	} else if (r < 0.5f) {
-		m_currentScreen = 1;
+		mCurrentScreen = 1;
 	} else if (r < 0.75f) {
-		m_currentScreen = 2;
+		mCurrentScreen = 2;
 	} else {
-		m_currentScreen = 3;
+		mCurrentScreen = 3;
 	}
 
 	for (int i = 0; i < 4; i++) {
-		m_screens[i]->setAlpha(255);
-		m_anims1[i].stop();
-		m_anims2[i].stop();
+		mScreens[i]->setAlpha(255);
+		mAnims1[i].stop();
+		mAnims2[i].stop();
 	}
-	m_anims1[m_currentScreen].play(sys->m_deltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
-	m_anims2[m_currentScreen].play(sys->m_deltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
-	m_screens[m_currentScreen]->animation();
+	mAnims1[mCurrentScreen].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	mAnims2[mCurrentScreen].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	mScreens[mCurrentScreen]->animation();
 }
 
 /*

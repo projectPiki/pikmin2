@@ -317,7 +317,7 @@ void P2DScreen::Mgr::addCallBackPane(J2DPane* pane, P2DScreen::Node* node)
  */
 void P2DScreen::Mgr::update()
 {
-	for (Node* node = (Node*)_118.m_child; node != nullptr; node = (Node*)node->m_next) {
+	for (Node* node = (Node*)_118.mChild; node != nullptr; node = (Node*)node->mNext) {
 		node->update();
 	}
 }
@@ -330,7 +330,7 @@ void P2DScreen::Mgr::update()
 void P2DScreen::Mgr::draw(Graphics& gfx, J2DGrafContext& context)
 {
 	J2DScreen::draw(0.0f, 0.0f, &context);
-	for (Node* node = (Node*)_118.m_child; node != nullptr; node = (Node*)node->m_next) {
+	for (Node* node = (Node*)_118.mChild; node != nullptr; node = (Node*)node->mNext) {
 		node->draw(gfx, context);
 	}
 }
@@ -342,10 +342,10 @@ void P2DScreen::Mgr::draw(Graphics& gfx, J2DGrafContext& context)
  */
 P2DScreen::Mgr_tuning::Mgr_tuning()
     : Mgr()
-    , m_widthMaybe(0.95f)
-    , m_heightMaybe(0.95f)
-    , m_someX(-15.2f)
-    , m_someY(-15.2f)
+    , mWidthMaybe(0.95f)
+    , mHeightMaybe(0.95f)
+    , mSomeX(-15.2f)
+    , mSomeY(-15.2f)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -395,11 +395,11 @@ void P2DScreen::Mgr_tuning::draw(Graphics& gfx, J2DGrafContext& context)
 	float xfb = (float)System::getRenderModeObj()->xfbHeight;
 	float efb = (float)System::getRenderModeObj()->efbHeight;
 	rotate(xfb * 0.5f, efb * 0.5f, 0x7A, 0.0f);
-	m_scale.x = m_widthMaybe;
-	m_scale.y = m_heightMaybe;
+	mScale.x = mWidthMaybe;
+	mScale.y = mHeightMaybe;
 	calcMtx();
-	m_offset[0] = m_someX;
-	m_offset[1] = m_someY;
+	mOffset[0] = mSomeX;
+	mOffset[1] = mSomeY;
 	calcMtx();
 	Mgr::draw(gfx, context);
 

@@ -67,21 +67,21 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC;                  // _2BC, unknown
-	u8 _2BD;                  // _2BD, unknown
-	bool m_spawnsSpectralids; // _2BE, spawns spectralids on touch
-	                          // _2BF = PelletView
+	u8 _2BC;                 // _2BC, unknown
+	u8 _2BD;                 // _2BD, unknown
+	bool mSpawnsSpectralids; // _2BE, spawns spectralids on touch
+	                         // _2BF = PelletView
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 } // namespace Plants
 
@@ -96,16 +96,16 @@ struct Obj : public Plants::Obj {
 	virtual void setParameters() // _228 (weak)
 	{
 		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
+		mLodParm.mIsCylinder = true;
 	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
-		Vector3f vec2         = m_position;
+		Vector3f vec2         = mPosition;
 		vec1                  = vec2;
-		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
-		vec1.y += parms->m_general.m_privateRadius.m_value;
-		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		vec1.y += parms->mGeneral.mPrivateRadius.mValue;
+		cylinder.set(vec1, vec2, parms->mGeneral.mHomeRadius.mValue);
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -132,16 +132,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Chiyogami
 
@@ -178,16 +178,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Clover
 
@@ -202,19 +202,19 @@ struct Obj : public Plants::Obj {
 	virtual void setParameters() // _228 (weak)
 	{
 		EnemyBase::setParameters();
-		Vector3f pos = m_position;
-		pos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_territoryRadius.m_value;
-		m_curLodSphere.m_position = pos;
-		m_lodParm.m_isCylinder    = true;
+		Vector3f pos = mPosition;
+		pos.y += static_cast<EnemyParmsBase*>(mParms)->mGeneral.mTerritoryRadius.mValue;
+		mCurLodSphere.mPosition = pos;
+		mLodParm.mIsCylinder    = true;
 	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
-		Vector3f vec2         = m_position;
+		Vector3f vec2         = mPosition;
 		vec1                  = vec2;
-		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
-		vec1.y += parms->m_general.m_privateRadius.m_value;
-		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		vec1.y += parms->mGeneral.mPrivateRadius.mValue;
+		cylinder.set(vec1, vec2, parms->mGeneral.mHomeRadius.mValue);
 	}
 	virtual ~Obj() { }                                 // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
@@ -240,12 +240,12 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual void loadModelData() // _C8 (weak)
 	{
 		EnemyMgrBase::loadModelData();
-		P2ASSERTLINE(519, m_modelData != nullptr);
+		P2ASSERTLINE(519, mModelData != nullptr);
 		J3DShape* shape;
-		for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-			shape = m_modelData->m_shapeTable.m_items[j];
+		for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+			shape = mModelData->mShapeTable.mItems[j];
 			P2ASSERTLINE(523, shape != nullptr);
-			shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+			shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 		}
 	}
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
@@ -254,16 +254,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace DiodeRed
 
@@ -279,19 +279,19 @@ struct Obj : public Plants::Obj {
 	virtual void setParameters()   // _228 (weak)
 	{
 		EnemyBase::setParameters();
-		Vector3f pos = m_position;
-		pos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_territoryRadius.m_value;
-		m_curLodSphere.m_position = pos;
-		m_lodParm.m_isCylinder    = true;
+		Vector3f pos = mPosition;
+		pos.y += static_cast<EnemyParmsBase*>(mParms)->mGeneral.mTerritoryRadius.mValue;
+		mCurLodSphere.mPosition = pos;
+		mLodParm.mIsCylinder    = true;
 	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
-		Vector3f vec2         = m_position;
+		Vector3f vec2         = mPosition;
 		vec1                  = vec2;
-		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
-		vec1.y += parms->m_general.m_privateRadius.m_value;
-		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		vec1.y += parms->mGeneral.mPrivateRadius.mValue;
+		cylinder.set(vec1, vec2, parms->mGeneral.mHomeRadius.mValue);
 	}
 	virtual ~Obj() { }                                 // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
@@ -316,12 +316,12 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual void loadModelData() // _C8 (weak)
 	{
 		EnemyMgrBase::loadModelData();
-		P2ASSERTLINE(578, m_modelData != nullptr);
+		P2ASSERTLINE(578, mModelData != nullptr);
 		J3DShape* shape;
-		for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-			shape = m_modelData->m_shapeTable.m_items[j];
+		for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+			shape = mModelData->mShapeTable.mItems[j];
 			P2ASSERTLINE(582, shape != nullptr);
-			shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+			shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 		}
 	}
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
@@ -330,16 +330,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace DiodeGreen
 
@@ -354,19 +354,19 @@ struct Obj : public Plants::Obj {
 	virtual void setParameters()   // _228 (weak)
 	{
 		EnemyBase::setParameters();
-		Vector3f pos = m_position;
-		pos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_territoryRadius.m_value;
-		m_curLodSphere.m_position = pos;
-		m_lodParm.m_isCylinder    = true;
+		Vector3f pos = mPosition;
+		pos.y += static_cast<EnemyParmsBase*>(mParms)->mGeneral.mTerritoryRadius.mValue;
+		mCurLodSphere.mPosition = pos;
+		mLodParm.mIsCylinder    = true;
 	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
-		Vector3f vec2         = m_position;
+		Vector3f vec2         = mPosition;
 		vec1                  = vec2;
-		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
-		vec1.y += parms->m_general.m_privateRadius.m_value;
-		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		vec1.y += parms->mGeneral.mPrivateRadius.mValue;
+		cylinder.set(vec1, vec2, parms->mGeneral.mHomeRadius.mValue);
 	}
 	virtual ~Obj() { }                                 // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
@@ -394,16 +394,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace HikariKinoko
 
@@ -443,16 +443,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace KareOoinu_l
 
@@ -487,16 +487,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace KareOoinu_s
 
@@ -533,16 +533,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Margaret
 
@@ -557,23 +557,23 @@ struct Obj : public Plants::Obj {
 	virtual void setParameters() // _228 (weak)
 	{
 		EnemyBase::setParameters();
-		Vector3f pos = m_position;
-		pos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_territoryRadius.m_value;
-		m_curLodSphere.m_position = pos;
-		m_lodParm.m_isCylinder    = true;
+		Vector3f pos = mPosition;
+		pos.y += static_cast<EnemyParmsBase*>(mParms)->mGeneral.mTerritoryRadius.mValue;
+		mCurLodSphere.mPosition = pos;
+		mLodParm.mIsCylinder    = true;
 	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
-		Vector3f pos = m_position;
+		Vector3f pos = mPosition;
 		Vector3f vec1, vec2;
 
-		pos.x -= 50.0f * pikmin2_sinf(m_faceDir);
-		pos.z -= 50.0f * pikmin2_cosf(m_faceDir);
+		pos.x -= 50.0f * pikmin2_sinf(mFaceDir);
+		pos.z -= 50.0f * pikmin2_cosf(mFaceDir);
 		vec2 = pos;
 		vec1 = vec2;
-		vec1.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_privateRadius.m_value;
+		vec1.y += static_cast<EnemyParmsBase*>(mParms)->mGeneral.mPrivateRadius.mValue;
 
-		cylinder.set(vec1, vec2, static_cast<EnemyParmsBase*>(m_parms)->m_general.m_homeRadius.m_value);
+		cylinder.set(vec1, vec2, static_cast<EnemyParmsBase*>(mParms)->mGeneral.mHomeRadius.mValue);
 	}
 	virtual ~Obj() { }                                 // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
@@ -601,16 +601,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Nekojarashi
 
@@ -650,16 +650,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Ooinu_l
 
@@ -694,16 +694,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Ooinu_s
 
@@ -740,16 +740,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Tanpopo
 
@@ -764,16 +764,16 @@ struct Obj : public Plants::Obj {
 	virtual void setParameters() // _228 (weak)
 	{
 		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
+		mLodParm.mIsCylinder = true;
 	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
-		Vector3f vec2         = m_position;
+		Vector3f vec2         = mPosition;
 		vec1                  = vec2;
-		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
-		vec1.y += parms->m_general.m_privateRadius.m_value;
-		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		vec1.y += parms->mGeneral.mPrivateRadius.mValue;
+		cylinder.set(vec1, vec2, parms->mGeneral.mHomeRadius.mValue);
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -800,16 +800,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Tukushi
 
@@ -827,16 +827,16 @@ struct Obj : public Plants::Obj {
 	virtual void setParameters() // _228 (weak)
 	{
 		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
+		mLodParm.mIsCylinder = true;
 	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
-		Vector3f vec2         = m_position;
+		Vector3f vec2         = mPosition;
 		vec1                  = vec2;
-		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
-		vec1.y += parms->m_general.m_privateRadius.m_value;
-		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		vec1.y += parms->mGeneral.mPrivateRadius.mValue;
+		cylinder.set(vec1, vec2, parms->mGeneral.mHomeRadius.mValue);
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -863,16 +863,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Wakame_l
 
@@ -885,16 +885,16 @@ struct Obj : public Plants::Obj {
 	virtual void setParameters() // _228 (weak)
 	{
 		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
+		mLodParm.mIsCylinder = true;
 	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
-		Vector3f vec2         = m_position;
+		Vector3f vec2         = mPosition;
 		vec1                  = vec2;
-		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
-		vec1.y += parms->m_general.m_privateRadius.m_value;
-		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		vec1.y += parms->mGeneral.mPrivateRadius.mValue;
+		cylinder.set(vec1, vec2, parms->mGeneral.mHomeRadius.mValue);
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -921,16 +921,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Wakame_s
 
@@ -969,16 +969,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Watage
 
@@ -993,16 +993,16 @@ struct Obj : public Plants::Obj {
 	virtual void setParameters() // _228 (weak)
 	{
 		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
+		mLodParm.mIsCylinder = true;
 	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
-		Vector3f vec2         = m_position;
+		Vector3f vec2         = mPosition;
 		vec1                  = vec2;
-		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
-		vec1.y += parms->m_general.m_privateRadius.m_value;
-		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		vec1.y += parms->mGeneral.mPrivateRadius.mValue;
+		cylinder.set(vec1, vec2, parms->mGeneral.mHomeRadius.mValue);
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -1029,16 +1029,16 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
 	{
-		return &m_obj[idx];
+		return &mObj[idx];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBaseAlwaysMovieActor
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 } // namespace Zenmai
 } // namespace Game

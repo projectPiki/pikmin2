@@ -14,11 +14,11 @@ namespace Sys {
  */
 struct DrawBuffer : public CNode {
 	struct CreateArg {
-		u32 _00;            // _00
-		u16 _04;            // _04
-		const char* m_name; // _08
-		unknown _0C;        // _0C
-		unknown _10;        // _10
+		u32 _00;           // _00
+		u16 _04;           // _04
+		const char* mName; // _08
+		unknown _0C;       // _0C
+		unknown _10;       // _10
 	};
 
 	DrawBuffer();
@@ -48,8 +48,8 @@ struct DrawBuffers : public CNode {
 	DrawBuffer* get(int);
 	void frameInitAll();
 
-	DrawBuffer* m_buffers; // _18
-	int m_count;           // _1C
+	DrawBuffer* mBuffers; // _18
+	int mCount;           // _1C
 };
 } // namespace Sys
 

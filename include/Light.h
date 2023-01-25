@@ -18,12 +18,12 @@ struct AmbientLightObj : public CNode {
 	AmbientLightObj(char* name, Color4 color)
 	    : CNode(name)
 	{
-		m_color = color;
+		mColor = color;
 	}
 
 	virtual ~AmbientLightObj() { } // _08 (weak)
 
-	Color4 m_color; // _18
+	Color4 mColor; // _18
 };
 
 struct LightObj : public CNode {
@@ -37,20 +37,20 @@ struct LightObj : public CNode {
 	virtual void drawPos(Graphics&, Camera&);  // _20
 
 	// _00 VTBL
-	u8 m_lightID;         // _18, GXLightID
-	u8 m_typeFlag;        // _19
-	Vector3f m_position;  // _1C
-	Vector3f m_elevation; // _28
-	Color4 m_color;       // _34, u_color
-	f32 m_brightness;     // _38
-	f32 m_refDistance;    // _3C
-	f32 m_refBrightness;  // _40
-	f32 m_cutoffAngle;    // _44
-	u8 m_distAttnFn;      // _48, GXDistAttnFn
-	u8 m_spotFn;          // _49, GXSpotFn
-	f32 m_kScale;         // _4C
-	f32 m_sphereRadius;   // _50
-	u8 _54;               // _54
+	u8 mLightID;         // _18, GXLightID
+	u8 mTypeFlag;        // _19
+	Vector3f mPosition;  // _1C
+	Vector3f mElevation; // _28
+	Color4 mColor;       // _34, u_color
+	f32 mBrightness;     // _38
+	f32 mRefDistance;    // _3C
+	f32 mRefBrightness;  // _40
+	f32 mCutoffAngle;    // _44
+	u8 mDistAttnFn;      // _48, GXDistAttnFn
+	u8 mSpotFn;          // _49, GXSpotFn
+	f32 mKScale;         // _4C
+	f32 mSphereRadius;   // _50
+	u8 _54;              // _54
 };
 
 struct LightMgr : public CNode {
@@ -64,9 +64,9 @@ struct LightMgr : public CNode {
 	virtual void drawDebugInfo(Graphics&); // _1C
 
 	// _00 VTBL
-	AmbientLightObj m_ambientLight; // _18
-	CNode m_lightObjChain;          // _34
-	int m_lightCount;               // _4C
+	AmbientLightObj mAmbientLight; // _18
+	CNode mLightObjChain;          // _34
+	int mLightCount;               // _4C
 };
 
 namespace TreasureLight {
@@ -95,10 +95,10 @@ struct Mgr : public LightMgr {
 	virtual void drawDebugInfo(Graphics&); // _1C
 
 	// _00 VTBL
-	LightObj* m_mainLight; // _50
-	LightObj* m_specLight; // _54
-	f32 m_rotationAngle;   // _58
-	f32 m_elevationAngle;  // _5C
+	LightObj* mMainLight; // _50
+	LightObj* mSpecLight; // _54
+	f32 mRotationAngle;   // _58
+	f32 mElevationAngle;  // _5C
 };
 } // namespace TreasureLight
 

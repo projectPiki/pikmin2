@@ -110,9 +110,9 @@ struct WipeOutInFader : public WipeBase {
 	virtual void on_start();      // _20
 	virtual void do_draw(f32);    // _24
 
-	WipeOutFader m_wipeOutFader; // _24
-	WipeInFader m_wipeInFader;   // _4C
-	u8 _74;                      // _74
+	WipeOutFader mWipeOutFader; // _24
+	WipeInFader mWipeInFader;   // _4C
+	u8 _74;                     // _74
 };
 
 struct BlackFader : public WipeBase {

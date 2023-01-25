@@ -15,7 +15,7 @@ namespace PanModoki {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "パンモドキマネージャ"; // bread manager
+	mName = "パンモドキマネージャ"; // bread manager
 }
 
 /*
@@ -43,7 +43,7 @@ namespace OoPanModoki {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "大パンモドキマネージャ"; // big bread manager
+	mName = "大パンモドキマネージャ"; // big bread manager
 }
 
 /*
@@ -76,9 +76,9 @@ void Mgr::loadModelData()
 {
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-		shape          = m_modelData->m_shapeTable.m_items[j];
-		shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		shape         = mModelData->mShapeTable.mItems[j];
+		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
 }
 } // namespace OoPanModoki

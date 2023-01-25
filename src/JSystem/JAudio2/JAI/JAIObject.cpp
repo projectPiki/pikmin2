@@ -79,10 +79,10 @@ JAInter::ObjectBase::ObjectBase(Vec* p1, JKRHeap* heap, unsigned char handleCoun
 	if (heap == nullptr) {
 		heap = JKRHeap::sCurrentHeap;
 	}
-	m_handleCount = handleCount;
-	m_sounds      = new (heap, 0) JAISound*[m_handleCount];
-	for (u8 i = 0; i < m_handleCount; i++) {
-		m_sounds[i] = nullptr;
+	mHandleCount = handleCount;
+	mSounds      = new (heap, 0) JAISound*[mHandleCount];
+	for (u8 i = 0; i < mHandleCount; i++) {
+		mSounds[i] = nullptr;
 	}
 	_24 = p1;
 	_20 = 0;
@@ -117,9 +117,9 @@ JAISound* JAInter::ObjectBase::startSound(unsigned long id, unsigned long p2)
 	}
 	u8 v1       = 0xFF;
 	u8 handleNo = 0xFF;
-	for (u8 i = 0; i < m_handleCount; i++) {
-		if (m_sounds[i]->m_soundInfo->count.v2[0] <= v1) {
-			v1       = m_sounds[i]->m_soundInfo->count.v2[0];
+	for (u8 i = 0; i < mHandleCount; i++) {
+		if (mSounds[i]->mSoundInfo->count.v2[0] <= v1) {
+			v1       = mSounds[i]->mSoundInfo->count.v2[0];
 			handleNo = i;
 		}
 	}
@@ -127,8 +127,8 @@ JAISound* JAInter::ObjectBase::startSound(unsigned long id, unsigned long p2)
 		return nullptr;
 	}
 	handleStop(handleNo, 0);
-	JAIBasic::msBasic->startSoundVecT(id, m_sounds + handleNo, _24, p2, 0, 4);
-	return m_sounds[handleNo];
+	JAIBasic::msBasic->startSoundVecT(id, mSounds + handleNo, _24, p2, 0, 4);
+	return mSounds[handleNo];
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -245,8 +245,8 @@ lbl_800B97C0:
  */
 void JAInter::ObjectBase::handleStop(unsigned char handleNo, unsigned long p2)
 {
-	if (m_sounds[handleNo] != nullptr) {
-		m_sounds[handleNo]->stop(p2);
+	if (mSounds[handleNo] != nullptr) {
+		mSounds[handleNo]->stop(p2);
 	}
 }
 
@@ -257,7 +257,7 @@ void JAInter::ObjectBase::handleStop(unsigned char handleNo, unsigned long p2)
  */
 void JAInter::ObjectBase::startSound(unsigned char handleNo, unsigned long id, unsigned long p3)
 {
-	JAIBasic::msBasic->startSoundVecT(id, m_sounds + handleNo, _24, p3, 0, 4);
+	JAIBasic::msBasic->startSoundVecT(id, mSounds + handleNo, _24, p3, 0, 4);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -330,7 +330,7 @@ void JAInter::ObjectBase::stopSound(unsigned long id, unsigned long p2)
  */
 void JAInter::ObjectBase::stopAllSound()
 {
-	for (u8 i = 0; i < m_handleCount; i++) {
+	for (u8 i = 0; i < mHandleCount; i++) {
 		handleStop(i, 0);
 	}
 }
@@ -355,7 +355,7 @@ void JAInter::ObjectBase::disable()
 void JAInter::ObjectBase::dispose()
 {
 	disable();
-	delete[] m_sounds;
+	delete[] mSounds;
 }
 
 /*
@@ -365,9 +365,9 @@ void JAInter::ObjectBase::dispose()
  */
 JAISound** JAInter::ObjectBase::getFreeSoundHandlePointer()
 {
-	for (u32 i = 0; i < m_handleCount; i++) {
-		if (m_sounds[i] == nullptr && (_20 & 1 << i) == 0) {
-			return m_sounds + i;
+	for (u32 i = 0; i < mHandleCount; i++) {
+		if (mSounds[i] == nullptr && (_20 & 1 << i) == 0) {
+			return mSounds + i;
 		}
 	}
 	return nullptr;
@@ -381,8 +381,8 @@ JAISound** JAInter::ObjectBase::getFreeSoundHandlePointer()
 u8 JAInter::ObjectBase::getFreeSoundHandleNo()
 {
 	// UNUSED FUNCTION
-	for (u8 i = 0; i < m_handleCount; i++) {
-		if (m_sounds[i] == nullptr && (_20 & 1 << i) == 0) {
+	for (u8 i = 0; i < mHandleCount; i++) {
+		if (mSounds[i] == nullptr && (_20 & 1 << i) == 0) {
 			return i;
 		}
 	}
@@ -396,9 +396,9 @@ u8 JAInter::ObjectBase::getFreeSoundHandleNo()
  */
 JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(unsigned long id)
 {
-	for (u32 i = 0; i < m_handleCount; i++) {
-		if (m_sounds[i] != nullptr && id == m_sounds[i]->m_soundID) {
-			return m_sounds + i;
+	for (u32 i = 0; i < mHandleCount; i++) {
+		if (mSounds[i] != nullptr && id == mSounds[i]->mSoundID) {
+			return mSounds + i;
 		}
 	}
 	return nullptr;
@@ -411,8 +411,8 @@ JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(unsigned long id)
  */
 u8 JAInter::ObjectBase::getUseSoundHandleNo(unsigned long id)
 {
-	for (u8 i = 0; i < m_handleCount; i++) {
-		if (m_sounds[i] != nullptr && id == m_sounds[i]->m_soundID) {
+	for (u8 i = 0; i < mHandleCount; i++) {
+		if (mSounds[i] != nullptr && id == mSounds[i]->mSoundID) {
 			return i;
 		}
 	}

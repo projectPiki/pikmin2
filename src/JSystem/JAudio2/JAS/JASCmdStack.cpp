@@ -60,7 +60,7 @@ u32 JASPortCmd::cancelPortCmdStay()
  */
 bool JASPortCmd::setPortCmd(void (*command)(JASPortArgs*), JASPortArgs* args)
 {
-	if (m_list != nullptr) {
+	if (mList != nullptr) {
 		return false;
 	}
 	_10 = command;

@@ -62,8 +62,8 @@ struct LifeGaugeMgr {
 	void update();
 	void draw(Graphics&);
 
-	LifeGaugeList m_lists[2];
-	JUTTexture* m_texture;
+	LifeGaugeList mLists[2];
+	JUTTexture* mTexture;
 };
 
 extern LifeGaugeMgr* lifeGaugeMgr;

@@ -18,9 +18,9 @@ struct TTMBack : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
-	P2DScreen::Mgr_tuning* m_mgrTuning; // _0C
-	u32 _10;                            // _10
-	u32 _14;                            // _14
+	P2DScreen::Mgr_tuning* mMgrTuning; // _0C
+	u32 _10;                           // _10
+	u32 _14;                           // _14
 };
 } // namespace Screen
 } // namespace ebi

@@ -49,13 +49,13 @@ void JPAResourceLoader::load_jpa(const unsigned char*, JPAResourceManager*, unsi
  */
 void JPAResourceLoader::load_jpc(const unsigned char* p1, JPAResourceManager* manager)
 {
-	JKRHeap* heap                = manager->m_heap;
-	manager->m_resourceSlotCount = GetTypeFromByteStream(p1, u16, 0x08);
-	manager->m_textureSlotCount  = GetTypeFromByteStream(p1, u16, 0x0A);
-	manager->m_resources         = new (heap, 0) JPAResource*[manager->m_resourceSlotCount];
-	manager->m_textures          = new (heap, 0) JPATexture*[manager->m_textureSlotCount];
-	u16 resourceSlotCount        = GetTypeFromByteStream(p1, u16, 0x08);
-	int resourceOffset           = 0x10;
+	JKRHeap* heap               = manager->mHeap;
+	manager->mResourceSlotCount = GetTypeFromByteStream(p1, u16, 0x08);
+	manager->mTextureSlotCount  = GetTypeFromByteStream(p1, u16, 0x0A);
+	manager->mResources         = new (heap, 0) JPAResource*[manager->mResourceSlotCount];
+	manager->mTextures          = new (heap, 0) JPATexture*[manager->mTextureSlotCount];
+	u16 resourceSlotCount       = GetTypeFromByteStream(p1, u16, 0x08);
+	int resourceOffset          = 0x10;
 	for (int i = 0; i < resourceSlotCount; i++) {
 		const u8* resourceData = (p1 + resourceOffset);
 		JPAResource* resource  = new (heap, 0) JPAResource;

@@ -12,12 +12,12 @@ namespace Screen {
  */
 AngleMgr::AngleMgr()
 {
-	m_currentAngle = 0.0f;
-	m_angleStep    = 0.0f;
-	m_targetAngle  = 0.0f;
-	m_interpRate   = 0.3f;
-	m_scale        = 1.0f;
-	m_state        = AGM_Start;
+	mCurrentAngle = 0.0f;
+	mAngleStep    = 0.0f;
+	mTargetAngle  = 0.0f;
+	mInterpRate   = 0.3f;
+	mScale        = 1.0f;
+	mState        = AGM_Start;
 }
 
 /*
@@ -27,9 +27,9 @@ AngleMgr::AngleMgr()
  */
 void AngleMgr::init(f32 curAngle, f32 interpRate, f32 scale)
 {
-	m_currentAngle = curAngle;
-	m_interpRate   = interpRate;
-	m_scale        = scale;
+	mCurrentAngle = curAngle;
+	mInterpRate   = interpRate;
+	mScale        = scale;
 }
 
 /*
@@ -40,25 +40,25 @@ void AngleMgr::init(f32 curAngle, f32 interpRate, f32 scale)
 void AngleMgr::chase(f32 target, f32 step)
 {
 	// Wrap to (0, TAU)
-	m_targetAngle = target;
-	while (m_targetAngle < 0.0f) {
-		m_targetAngle += TAU;
+	mTargetAngle = target;
+	while (mTargetAngle < 0.0f) {
+		mTargetAngle += TAU;
 	}
 
-	while (m_targetAngle > TAU) {
-		m_targetAngle -= TAU;
+	while (mTargetAngle > TAU) {
+		mTargetAngle -= TAU;
 	}
 
 	// Wrap to (-HALF_PI, HALF_PI)
-	m_angleStep = step;
-	if (m_angleStep > HALF_PI) {
-		m_angleStep = HALF_PI;
+	mAngleStep = step;
+	if (mAngleStep > HALF_PI) {
+		mAngleStep = HALF_PI;
 	}
-	if (m_angleStep < -HALF_PI) {
-		m_angleStep = -HALF_PI;
+	if (mAngleStep < -HALF_PI) {
+		mAngleStep = -HALF_PI;
 	}
 
-	m_state = AGM_Chase;
+	mState = AGM_Chase;
 }
 
 /*
@@ -68,45 +68,45 @@ void AngleMgr::chase(f32 target, f32 step)
  */
 f32 AngleMgr::calc()
 {
-	if (m_state == AGM_Chase) {
-		m_currentAngle += m_angleStep;
+	if (mState == AGM_Chase) {
+		mCurrentAngle += mAngleStep;
 
-		if (m_currentAngle < 0.0f) {
-			m_currentAngle += TAU;
-		} else if (m_currentAngle >= TAU) {
-			m_currentAngle = (m_currentAngle - TAU);
+		if (mCurrentAngle < 0.0f) {
+			mCurrentAngle += TAU;
+		} else if (mCurrentAngle >= TAU) {
+			mCurrentAngle = (mCurrentAngle - TAU);
 		}
 
-		f32 distance = m_targetAngle - m_currentAngle;
+		f32 distance = mTargetAngle - mCurrentAngle;
 		if (FABS(distance) > PI) {
 			// TODO: figure out what f2 is!
 			f32 f2 = TAU - FABS(distance);
 			if (distance > 0.0f) {
-				if ((m_angleStep > 0.0f) && (f2 > FABS(m_angleStep * m_scale))) {
-					m_angleStep = (-m_angleStep * m_interpRate);
+				if ((mAngleStep > 0.0f) && (f2 > FABS(mAngleStep * mScale))) {
+					mAngleStep = (-mAngleStep * mInterpRate);
 				}
-			} else if ((m_angleStep < 0.0f) && (f2 > FABS(m_angleStep * m_scale))) {
-				m_angleStep = (-m_angleStep * m_interpRate);
+			} else if ((mAngleStep < 0.0f) && (f2 > FABS(mAngleStep * mScale))) {
+				mAngleStep = (-mAngleStep * mInterpRate);
 			}
 		} else {
 			f32 f2 = FABS(distance);
 			if (distance > 0.0f) {
-				if ((m_angleStep < 0.0f) && (f2 > FABS(m_angleStep * m_scale))) {
-					m_angleStep = (-m_angleStep * m_interpRate);
+				if ((mAngleStep < 0.0f) && (f2 > FABS(mAngleStep * mScale))) {
+					mAngleStep = (-mAngleStep * mInterpRate);
 				}
-			} else if ((m_angleStep > 0.0f) && (f2 > FABS(m_angleStep * m_scale))) {
-				m_angleStep = (-m_angleStep * m_interpRate);
+			} else if ((mAngleStep > 0.0f) && (f2 > FABS(mAngleStep * mScale))) {
+				mAngleStep = (-mAngleStep * mInterpRate);
 			}
 		}
 
-		if (FABS(m_angleStep) < 0.001f) {
-			m_state        = AGM_Finish;
-			m_currentAngle = m_targetAngle;
-			m_angleStep    = 0.0f;
+		if (FABS(mAngleStep) < 0.001f) {
+			mState        = AGM_Finish;
+			mCurrentAngle = mTargetAngle;
+			mAngleStep    = 0.0f;
 		}
 	}
 
-	return m_currentAngle;
+	return mCurrentAngle;
 }
 } // namespace Screen
 } // namespace og

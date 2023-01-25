@@ -44,7 +44,7 @@ struct J3DPacket {
 struct J3DDrawPacket : public J3DPacket {
 	inline J3DDrawPacket()
 	    : _10(0)
-	    , m_displayList(nullptr)
+	    , mDisplayList(nullptr)
 	    , _24(nullptr)
 	{
 	}
@@ -55,10 +55,10 @@ struct J3DDrawPacket : public J3DPacket {
 	J3DErrType newDisplayList(u32);
 	J3DErrType newSingleDisplayList(u32);
 
-	u32 _10;                          // _10
-	u8 _14[0xC];                      // _14
-	J3DDisplayListObj* m_displayList; // _20
-	void* _24;                        // _24
+	u32 _10;                         // _10
+	u8 _14[0xC];                     // _14
+	J3DDisplayListObj* mDisplayList; // _20
+	void* _24;                       // _24
 };
 
 /**

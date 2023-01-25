@@ -7,12 +7,12 @@ namespace Game {
 struct EnemyBase;
 
 struct ChappyRelation : public CNode {
-	ChappyRelation(EnemyBase* obj) { m_owner = obj; }
+	ChappyRelation(EnemyBase* obj) { mOwner = obj; }
 	virtual ~ChappyRelation(); // _08 (weak)
 
 	// _00      = VTBL
 	// _00-_18  = CNode
-	EnemyBase* m_owner; // _18, bulbear owner
+	EnemyBase* mOwner; // _18, bulbear owner
 };
 } // namespace Game
 

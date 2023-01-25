@@ -11,10 +11,10 @@
 struct _J2DColorBlockParent {
 	inline _J2DColorBlockParent() { }
 
-	JUtility::TColor m_colors[2]; // _00
-	u8 m_channelCount;            // _08
-	J2DColorChan m_channels[4];   // _0A
-	u8 m_cullMode;                // _12 - _GXCullMode
+	JUtility::TColor mColors[2]; // _00
+	u8 mChannelCount;            // _08
+	J2DColorChan mChannels[4];   // _0A
+	u8 mCullMode;                // _12 - _GXCullMode
 };
 
 struct J2DColorBlock : _J2DColorBlockParent {
@@ -26,9 +26,9 @@ struct J2DColorBlock : _J2DColorBlockParent {
 	void initialize();
 	void setGX();
 
-	inline JUtility::TColor* getMatColor(u32 i) { return &m_colors[i]; }
-	inline J2DColorChan* getColorChan(u32 i) { return &m_channels[i]; }
-	inline void setCullMode(u8 mode) { m_cullMode = mode; }
+	inline JUtility::TColor* getMatColor(u32 i) { return &mColors[i]; }
+	inline J2DColorChan* getColorChan(u32 i) { return &mChannels[i]; }
+	inline void setCullMode(u8 mode) { mCullMode = mode; }
 
 	// _00-_14 = _J2DColorBlockParent
 	// _14 VTBL

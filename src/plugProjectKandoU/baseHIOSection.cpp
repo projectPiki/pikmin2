@@ -124,7 +124,7 @@ BaseHIOSection::BaseHIOSection(JKRHeap* heap)
     : Section(nullptr, heap, false)
 {
 	System::assert_fragmentation("BaseHIOSection");
-	m_rootNode = nullptr;
+	mRootNode = nullptr;
 	JUT_ASSERTLINE(314, JKRHeap::sCurrentHeap->getTotalFreeSize() == JKRHeap::sCurrentHeap->getFreeSize(),
 	               "fragmentation occurred : after sound\n");
 	_44 = new Controller(Controller::PORT_3);
@@ -296,17 +296,17 @@ lbl_80164D58:
 void BaseHIOSection::setDisplay(JFWDisplay* display, int secondsPer60Frames)
 {
 	// bool check = false;
-	// if (m_display == nullptr && display ) {
+	// if (mDisplay == nullptr && display ) {
 	// 	check = true;
 	// }
 	// P2ASSERTLINE(333, check);
-	// m_display = display;
-	// m_fader = new JUTFader(0, 0, JUTVideo::sManager->m_renderModeObj->fbWidth,
-	// JUTVideo::sManager->m_renderModeObj->efbHeight, 0); m_display->m_fader = m_fader; _35 = 1;
-	// sys->setCurrentDisplay(m_display);
+	// mDisplay = display;
+	// mFader = new JUTFader(0, 0, JUTVideo::sManager->mRenderModeObj->fbWidth,
+	// JUTVideo::sManager->mRenderModeObj->efbHeight, 0); mDisplay->mFader = mFader; _35 = 1;
+	// sys->setCurrentDisplay(mDisplay);
 	// sys->setFrameRate(secondsPer60Frames);
-	// DCInvalidateRange(JFWDisplay::sManager->m_Xfb->m_buffers[0], JUTXfb::accumeXfbSize());
-	// DCInvalidateRange(JFWDisplay::sManager->m_Xfb->m_buffers[1], JUTXfb::accumeXfbSize());
+	// DCInvalidateRange(JFWDisplay::sManager->mXfb->mBuffers[0], JUTXfb::accumeXfbSize());
+	// DCInvalidateRange(JFWDisplay::sManager->mXfb->mBuffers[1], JUTXfb::accumeXfbSize());
 	// JUTProcBar::sManager->_10C = 0;
 	// JUTProcBar::sManager->_130 = 0;
 	/*
@@ -411,11 +411,11 @@ lbl_80164E8C:
 void BaseHIOSection::initHIO(Game::HIORootNode* node)
 {
 	// if (node == nullptr) {
-	// 	m_hioRootNode = new HIORootNode(this);
+	// 	mHioRootNode = new HIORootNode(this);
 	// } else {
-	// 	m_hioRootNode = node;
+	// 	mHioRootNode = node;
 	// }
-	// sys->addGenNode(m_hioRootNode);
+	// sys->addGenNode(mHioRootNode);
 	// if (JUTProcBar::sManager ) {
 	// 	JUTProcBar::sManager->_10C = 0;
 	// 	JUTProcBar::sManager->_130 = 0;
@@ -483,7 +483,7 @@ bool BaseHIOSection::doUpdate() { return true; }
  * Address:	80164FB0
  * Size:	000024
  */
-void BaseHIOSection::addGenNode(CNode* node) { m_rootNode->add(node); }
+void BaseHIOSection::addGenNode(CNode* node) { mRootNode->add(node); }
 
 /*
  * --INFO--
@@ -500,7 +500,7 @@ void BaseHIOSection::refreshHIO() { }
 HIORootNode::HIORootNode(Section* section)
     : CNode()
 {
-	m_section = section;
+	mSection = section;
 	setName("system");
 	/*
 	stwu     r1, -0x10(r1)

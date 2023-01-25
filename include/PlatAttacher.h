@@ -19,9 +19,9 @@ struct PlatAttacher {
 	void write(Stream&);
 	void draw(Graphics&, int);
 
-	int m_numShapes;       // _00
-	u16* m_jointIndices;   // _04
-	Platform* m_platforms; // _08
+	int mNumShapes;       // _00
+	u16* mJointIndices;   // _04
+	Platform* mPlatforms; // _08
 };
 
 #endif

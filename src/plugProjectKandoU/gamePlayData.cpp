@@ -29,8 +29,8 @@ PlayData* playData;
  * Size:	000010
  */
 KindCounter::KindCounter()
-    : m_numKinds(0)
-    , m_kinds(nullptr)
+    : mNumKinds(0)
+    , mKinds(nullptr)
 {
 }
 
@@ -41,9 +41,9 @@ KindCounter::KindCounter()
  */
 void KindCounter::alloc(int numKinds)
 {
-	P2ASSERTLINE(299, m_kinds == nullptr);
-	m_numKinds = numKinds;
-	m_kinds    = new u8[m_numKinds];
+	P2ASSERTLINE(299, mKinds == nullptr);
+	mNumKinds = numKinds;
+	mKinds    = new u8[mNumKinds];
 	clear();
 }
 
@@ -54,8 +54,8 @@ void KindCounter::alloc(int numKinds)
  */
 void KindCounter::clear()
 {
-	for (int i = 0; i < m_numKinds; i++) {
-		m_kinds[i] = 0;
+	for (int i = 0; i < mNumKinds; i++) {
+		mKinds[i] = 0;
 	}
 }
 
@@ -66,9 +66,9 @@ void KindCounter::clear()
  */
 void KindCounter::copyFrom(KindCounter& other)
 {
-	P2ASSERTLINE(314, m_numKinds == other.m_numKinds);
-	for (int i = 0; i < m_numKinds; i++) {
-		m_kinds[i] = other.m_kinds[i];
+	P2ASSERTLINE(314, mNumKinds == other.mNumKinds);
+	for (int i = 0; i < mNumKinds; i++) {
+		mKinds[i] = other.mKinds[i];
 	}
 }
 
@@ -79,9 +79,9 @@ void KindCounter::copyFrom(KindCounter& other)
  */
 void KindCounter::addTo(KindCounter& other)
 {
-	P2ASSERTLINE(322, m_numKinds == other.m_numKinds);
-	for (int i = 0; i < m_numKinds; i++) {
-		m_kinds[i] += other.m_kinds[i];
+	P2ASSERTLINE(322, mNumKinds == other.mNumKinds);
+	for (int i = 0; i < mNumKinds; i++) {
+		mKinds[i] += other.mKinds[i];
 	}
 }
 
@@ -94,11 +94,11 @@ void KindCounter::addTo(KindCounter& other)
 u8* KindCounter::operator()(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < m_numKinds) {
+	if (0 <= index && index < mNumKinds) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(330, isValidIndex);
-	return &m_kinds[index];
+	return &mKinds[index];
 }
 
 /*
@@ -108,9 +108,9 @@ u8* KindCounter::operator()(int index)
  */
 PelletCropMemory::PelletCropMemory(int num1, int num2, int num3)
 {
-	m_otakara.alloc(num1);
-	m_item.alloc(num2);
-	m_carcass.alloc(num3);
+	mOtakara.alloc(num1);
+	mItem.alloc(num2);
+	mCarcass.alloc(num3);
 }
 
 /*
@@ -120,10 +120,10 @@ PelletCropMemory::PelletCropMemory(int num1, int num2, int num3)
  */
 PelletCropMemory* PelletCropMemory::createClone()
 {
-	PelletCropMemory* clone = new PelletCropMemory(m_otakara.m_numKinds, m_item.m_numKinds, m_carcass.m_numKinds);
-	clone->m_otakara.copyFrom(m_otakara);
-	clone->m_item.copyFrom(m_item);
-	clone->m_carcass.copyFrom(m_carcass);
+	PelletCropMemory* clone = new PelletCropMemory(mOtakara.mNumKinds, mItem.mNumKinds, mCarcass.mNumKinds);
+	clone->mOtakara.copyFrom(mOtakara);
+	clone->mItem.copyFrom(mItem);
+	clone->mCarcass.copyFrom(mCarcass);
 	return clone;
 	/*
 	stwu     r1, -0x20(r1)
@@ -334,9 +334,9 @@ lbl_801E56D4:
  */
 void PelletCropMemory::addTo(PelletCropMemory* add)
 {
-	m_otakara.addTo(add->m_otakara);
-	m_item.addTo(add->m_item);
-	m_carcass.addTo(add->m_carcass);
+	mOtakara.addTo(add->mOtakara);
+	mItem.addTo(add->mItem);
+	mCarcass.addTo(add->mCarcass);
 }
 
 /*
@@ -346,9 +346,9 @@ void PelletCropMemory::addTo(PelletCropMemory* add)
  */
 void PelletCropMemory::clear()
 {
-	m_otakara.clear();
-	m_item.clear();
-	m_carcass.clear();
+	mOtakara.clear();
+	mItem.clear();
+	mCarcass.clear();
 }
 
 /*
@@ -363,7 +363,7 @@ void PelletCropMemory::obtainPellet(Pellet*) { }
  * Address:	801E58B0
  * Size:	000048
  */
-int PelletCropMemory::calcEarnKinds() { return m_otakara.getEarnKinds() + m_item.getEarnKinds(); }
+int PelletCropMemory::calcEarnKinds() { return mOtakara.getEarnKinds() + mItem.getEarnKinds(); }
 
 /*
  * --INFO--
@@ -392,24 +392,24 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 	if (pellet->getKind() == PELTYPE_TREASURE) {
 		int id = pellet->getConfigIndex();
 
-		if (!(*m_otakara(id) & 2)) {
-			*m_otakara(id) |= 2;
+		if (!(*mOtakara(id) & 2)) {
+			*mOtakara(id) |= 2;
 			pellet->getConfigName();
 			return true;
 		}
 
 	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
 		int id = pellet->getConfigIndex();
-		if (!(*m_item(id) & 2)) {
-			*m_item(id) |= 2;
+		if (!(*mItem(id) & 2)) {
+			*mItem(id) |= 2;
 			pellet->getConfigName();
 			return true;
 		}
 
 	} else if (pellet->getKind() == PELTYPE_CARCASS) {
 		int id = pellet->getConfigIndex();
-		if (!(*m_carcass(id) & 2)) {
-			*m_carcass(id) |= 2;
+		if (!(*mCarcass(id) & 2)) {
+			*mCarcass(id) |= 2;
 			pellet->getConfigName();
 			return true;
 		}
@@ -426,11 +426,11 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 {
 	if (mgr->getMgrID() == PELTYPE_TREASURE) {
-		*m_otakara(id) |= 2;
+		*mOtakara(id) |= 2;
 		mgr->getPelletConfig(id);
 
 	} else if (mgr->getMgrID() == PELTYPE_UPGRADE) {
-		*m_item(id) |= 2;
+		*mItem(id) |= 2;
 		mgr->getPelletConfig(id);
 
 	} else {
@@ -446,11 +446,11 @@ void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 {
 	if (mgr->getMgrID() == PELTYPE_TREASURE) {
-		*m_otakara(id) &= ~0x2;
+		*mOtakara(id) &= ~0x2;
 		mgr->getPelletConfig(id);
 
 	} else if (mgr->getMgrID() == PELTYPE_UPGRADE) {
-		*m_item(id) &= ~0x2;
+		*mItem(id) &= ~0x2;
 		mgr->getPelletConfig(id);
 
 	} else {
@@ -481,7 +481,7 @@ bool PlayData::isCompletePelletTrigger()
  */
 bool PelletCropMemory::completeAll()
 {
-	return (!m_otakara.completeAll()) ? false : m_item.completeAll() > 0; // sure.
+	return (!mOtakara.completeAll()) ? false : mItem.completeAll() > 0; // sure.
 }
 
 /*
@@ -492,8 +492,8 @@ bool PelletCropMemory::completeAll()
  */
 bool KindCounter::completeAll()
 {
-	for (int i = 0; i < m_numKinds; ++i) {
-		if (m_kinds[i] == 0)
+	for (int i = 0; i < mNumKinds; ++i) {
+		if (mKinds[i] == 0)
 			return false;
 	}
 	return true;
@@ -507,8 +507,8 @@ bool KindCounter::completeAll()
 int KindCounter::getEarnKinds()
 {
 	int earnedKinds = 0;
-	for (int i = 0; i < m_numKinds; i++) {
-		if (m_kinds[i] & KCF_Earned) {
+	for (int i = 0; i < mNumKinds; i++) {
+		if (mKinds[i] & KCF_Earned) {
 			earnedKinds++;
 		}
 	}
@@ -522,8 +522,8 @@ int KindCounter::getEarnKinds()
  */
 OlimarData::OlimarData()
 {
-	m_flags[0] = 0;
-	m_flags[1] = 0;
+	mFlags[0] = 0;
+	mFlags[1] = 0;
 	clear();
 }
 
@@ -534,8 +534,8 @@ OlimarData::OlimarData()
  */
 void OlimarData::clear()
 {
-	m_flags[0] = 0;
-	m_flags[1] = 0;
+	mFlags[0] = 0;
+	mFlags[1] = 0;
 }
 
 /*
@@ -551,7 +551,7 @@ bool OlimarData::hasItem(int index)
 	int data_idx = (index >> 3);
 	int rot      = (data_idx << 3);
 	int bits     = 1 << (index - rot);
-	return (m_flags[1 - data_idx] & bits) != false;
+	return (mFlags[1 - data_idx] & bits) != false;
 }
 
 /*
@@ -567,7 +567,7 @@ void OlimarData::getItem(int item)
 
 	if (item < 16) {
 		int data_idx = (item >> 3);
-		m_flags[1 - data_idx] |= 1 << (item - (data_idx << 3));
+		mFlags[1 - data_idx] |= 1 << (item - (data_idx << 3));
 	}
 
 	switch (item) {
@@ -600,44 +600,44 @@ void PlayData::construct()
  */
 PlayData::PlayData()
     : _20(0)
-    , m_storyFlags(0)
+    , mStoryFlags(0)
 {
-	m_debtProgressFlags[0] = 0;
-	m_debtProgressFlags[1] = 0;
+	mDebtProgressFlags[0] = 0;
+	mDebtProgressFlags[1] = 0;
 
 	_1C = 0;
 
-	int stageCount              = stageList->m_courseCount;
-	m_bitfieldPerCourse         = new u8[stageCount];
-	m_groundOtakaraCollected    = new u8[stageCount];
-	m_groundOtakaraCollectedOld = new u8[stageCount];
+	int stageCount             = stageList->mCourseCount;
+	mBitfieldPerCourse         = new u8[stageCount];
+	mGroundOtakaraCollected    = new u8[stageCount];
+	mGroundOtakaraCollectedOld = new u8[stageCount];
 
 	for (int i = 0; i < stageCount; i++) {
-		m_groundOtakaraCollected[i]    = 0;
-		m_groundOtakaraCollectedOld[i] = 0;
+		mGroundOtakaraCollected[i]    = 0;
+		mGroundOtakaraCollectedOld[i] = 0;
 	}
 
-	m_limitGen = new LimitGen[stageCount];
+	mLimitGen = new LimitGen[stageCount];
 
 	for (int i = 0; i < stageCount; i++) {
-		LimitGen* gen    = &m_limitGen[i];
+		LimitGen* gen    = &mLimitGen[i];
 		CourseInfo* info = stageList->getCourseInfo(i);
-		gen->m_nonLoops.create(info->m_limitGenInfo.m_count, nullptr);
-		gen->m_loops.create(info->m_loopGenInfo.m_count, nullptr);
+		gen->mNonLoops.create(info->mLimitGenInfo.mCount, nullptr);
+		gen->mLoops.create(info->mLoopGenInfo.mCount, nullptr);
 	}
 
-	m_tekiStatMgr.allocate(102);
+	mTekiStatMgr.allocate(102);
 
-	m_caveOtakara    = new CaveOtakara[stageCount];
-	m_caveOtakaraOld = new CaveOtakara[stageCount];
+	mCaveOtakara    = new CaveOtakara[stageCount];
+	mCaveOtakaraOld = new CaveOtakara[stageCount];
 
 	for (int i = 0; i < stageCount; i++) {
 		CourseInfo* info;
-		CaveOtakara* thisOtakara = &m_caveOtakara[i];
+		CaveOtakara* thisOtakara = &mCaveOtakara[i];
 		info                     = stageList->getCourseInfo(i);
 		thisOtakara->updateCounts(i, info);
 
-		CaveOtakara* oldOtakara = &m_caveOtakaraOld[i];
+		CaveOtakara* oldOtakara = &mCaveOtakaraOld[i];
 		oldOtakara->updateCounts(i, info);
 	}
 
@@ -645,13 +645,13 @@ PlayData::PlayData()
 	int items     = PelletList::Mgr::getCount(PelletList::ITEM);
 	int carcasses = PelletList::Mgr::getCount(PelletList::CARCASS);
 
-	_B0              = new PelletFirstMemory(treasures, items, carcasses);
-	m_mainCropMemory = new PelletCropMemory(treasures, items, carcasses);
-	m_caveCropMemory = new PelletCropMemory(treasures, items, carcasses);
-	m_demoFlags.create(57, nullptr);
-	m_demoFlags.reset();
-	m_findItemFlags.create(PelletList::Mgr::getCount(PelletList::ITEM), nullptr);
-	m_findItemFlags.reset();
+	_B0             = new PelletFirstMemory(treasures, items, carcasses);
+	mMainCropMemory = new PelletCropMemory(treasures, items, carcasses);
+	mCaveCropMemory = new PelletCropMemory(treasures, items, carcasses);
+	mDemoFlags.create(57, nullptr);
+	mDemoFlags.reset();
+	mFindItemFlags.create(PelletList::Mgr::getCount(PelletList::ITEM), nullptr);
+	mFindItemFlags.reset();
 
 	sys->heapStatusStart("generatorCache", nullptr);
 	generatorCache = new GeneratorCache;
@@ -1290,8 +1290,8 @@ lbl_801E69DC:
  * Size:	000014
  */
 PlayData::CaveOtakara::CaveOtakara()
-    : m_caveCount(0)
-    , m_otakaraCountsOld(nullptr)
+    : mCaveCount(0)
+    , mOtakaraCountsOld(nullptr)
     , _08(nullptr)
 {
 }
@@ -1317,53 +1317,53 @@ PlayData::~PlayData() { playData = nullptr; }
  */
 void PlayData::reset()
 {
-	m_naviLifeMax[1]       = 0.0f;
-	m_naviLifeMax[0]       = 0.0f;
-	_20                    = 0;
-	u64 osTime             = OSGetTime();
-	m_osTimeLo             = (u32)osTime;
-	m_osTimeHi             = (u32)(osTime >> 0x20);
-	_18                    = false;
-	_19                    = 0;
-	m_storyFlags           = 0;
-	m_debtProgressFlags[0] = 0;
-	m_debtProgressFlags[1] = 0;
+	mNaviLifeMax[1]       = 0.0f;
+	mNaviLifeMax[0]       = 0.0f;
+	_20                   = 0;
+	u64 osTime            = OSGetTime();
+	mOsTimeLo             = (u32)osTime;
+	mOsTimeHi             = (u32)(osTime >> 0x20);
+	_18                   = false;
+	_19                   = 0;
+	mStoryFlags           = 0;
+	mDebtProgressFlags[0] = 0;
+	mDebtProgressFlags[1] = 0;
 	for (int i = 0; i <= -1; i++) {
 		if (i < 0x10) {
-			m_debtProgressFlags[1 - (i >> 3)] |= 1 << (i - (8 * (i >> 3))); // ?????
+			mDebtProgressFlags[1 - (i >> 3)] |= 1 << (i - (8 * (i >> 3))); // ?????
 		}
 	}
 	generatorCache->clearCache();
-	m_pokoCount     = 0;
-	m_cavePokoCount = 0;
-	m_pokoCountOld  = 0;
-	_C0[0]          = 0;
-	m_berryCount[0] = 0;
-	_C0[1]          = 0;
-	m_berryCount[1] = 0;
-	m_pikiContainer.clear();
+	mPokoCount     = 0;
+	mCavePokoCount = 0;
+	mPokoCountOld  = 0;
+	_C0[0]         = 0;
+	mBerryCount[0] = 0;
+	_C0[1]         = 0;
+	mBerryCount[1] = 0;
+	mPikiContainer.clear();
 	initCourses(false);
 	initLimitGens();
 	initCaveOtakaras();
-	m_mainCropMemory->clear();
-	m_caveCropMemory->clear();
+	mMainCropMemory->clear();
+	mCaveCropMemory->clear();
 	_B0->clear();
 	_BC = 0;
-	for (int i = 0; i < stageList->m_courseCount; i++) {
-		m_groundOtakaraCollected[i]    = 0;
-		m_groundOtakaraCollectedOld[i] = 0;
+	for (int i = 0; i < stageList->mCourseCount; i++) {
+		mGroundOtakaraCollected[i]    = 0;
+		mGroundOtakaraCollectedOld[i] = 0;
 	}
 	resetContainerFlag();
-	m_demoFlags.all_zero();
-	m_findItemFlags.all_zero();
-	m_tekiStatMgr.clear();
-	m_olimarData[0].clear();
-	m_olimarData[1].clear();
-	m_caveSaveData.clear();
-	m_mailSaveData.clear();
+	mDemoFlags.all_zero();
+	mFindItemFlags.all_zero();
+	mTekiStatMgr.clear();
+	mOlimarData[0].clear();
+	mOlimarData[1].clear();
+	mCaveSaveData.clear();
+	mMailSaveData.clear();
 	for (int i = 0; i < 6; i++) {
-		m_pikminToday[i]     = 0;
-		m_pikminYesterday[i] = 0;
+		mPikminToday[i]     = 0;
+		mPikminYesterday[i] = 0;
 	}
 	DeathMgr::clear();
 	BirthMgr::clear();
@@ -1676,17 +1676,17 @@ void PlayData::setDevelopSetting(bool p1, bool p2)
 	if (p1) {
 		initCourses(true);
 		debugSetContainerFlagOn();
-		m_demoFlags.all_one();
-		m_findItemFlags.all_one();
-		m_olimarData[0].m_flags[0] |= 4;
+		mDemoFlags.all_one();
+		mFindItemFlags.all_one();
+		mOlimarData[0].mFlags[0] |= 4;
 		playData->openCourse(1);
 		initCourses(true);
 		if (!p2) {
-			m_demoFlags.resetFlag(DEMO_Waterwraith_Appears);
-			m_demoFlags.resetFlag(DEMO_First_Spicy_Berry);
-			m_demoFlags.resetFlag(DEMO_First_Bitter_Berry);
-			m_demoFlags.resetFlag(DEMO_First_Spicy_Spray_Made);
-			m_demoFlags.resetFlag(DEMO_First_Bitter_Spray_Made);
+			mDemoFlags.resetFlag(DEMO_Waterwraith_Appears);
+			mDemoFlags.resetFlag(DEMO_First_Spicy_Berry);
+			mDemoFlags.resetFlag(DEMO_First_Bitter_Berry);
+			mDemoFlags.resetFlag(DEMO_First_Spicy_Spray_Made);
+			mDemoFlags.resetFlag(DEMO_First_Bitter_Spray_Made);
 		}
 	}
 }
@@ -1756,9 +1756,9 @@ int PlayData::calcPlayMinutes()
  */
 void PlayData::resetContainerFlag()
 {
-	m_meetPikminFlags       = 0;
-	m_hasBootContainerFlags = 0;
-	m_hasContainerFlags     = 0;
+	mMeetPikminFlags       = 0;
+	mHasBootContainerFlags = 0;
+	mHasContainerFlags     = 0;
 }
 
 /*
@@ -1773,7 +1773,7 @@ bool PlayData::hasContainer(int pikminColor)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1002, isValidIndex);
-	return m_hasContainerFlags & (1 << pikminColor);
+	return mHasContainerFlags & (1 << pikminColor);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1826,7 +1826,7 @@ bool PlayData::hasMetPikmin(int pikminColor)
 	if (pikminColor == Bulbmin) {
 		return true;
 	}
-	return m_meetPikminFlags & (1 << pikminColor);
+	return mMeetPikminFlags & (1 << pikminColor);
 }
 
 /*
@@ -1845,7 +1845,7 @@ bool PlayData::hasBootContainer(int pikminColor)
 			isValidIndex = true;
 		}
 		P2ASSERTLINE(1018, isValidIndex);
-		return m_hasBootContainerFlags & (1 << pikminColor);
+		return mHasBootContainerFlags & (1 << pikminColor);
 	}
 }
 
@@ -1861,7 +1861,7 @@ void PlayData::setContainer(int pikminColor)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1024, isValidIndex);
-	m_hasContainerFlags |= (1 << pikminColor);
+	mHasContainerFlags |= (1 << pikminColor);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1914,7 +1914,7 @@ void PlayData::setMeetPikmin(int pikminColor)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1030, isValidIndex);
-	m_meetPikminFlags |= (1 << pikminColor);
+	mMeetPikminFlags |= (1 << pikminColor);
 }
 
 /*
@@ -1929,7 +1929,7 @@ void PlayData::setBootContainer(int pikminColor)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1036, isValidIndex);
-	m_hasBootContainerFlags |= (1 << pikminColor);
+	mHasBootContainerFlags |= (1 << pikminColor);
 }
 
 /*
@@ -1939,19 +1939,19 @@ void PlayData::setBootContainer(int pikminColor)
  */
 void PlayData::debugSetContainerFlagOn()
 {
-	m_hasContainerFlags |= 0x01;
-	m_hasContainerFlags |= 0x02;
-	m_hasContainerFlags |= 0x04;
-	m_hasContainerFlags |= 0x10;
-	m_hasContainerFlags |= 0x08;
-	m_hasBootContainerFlags |= 0x01;
-	m_hasBootContainerFlags |= 0x02;
-	m_hasBootContainerFlags |= 0x04;
-	m_meetPikminFlags |= 0x01;
-	m_meetPikminFlags |= 0x02;
-	m_meetPikminFlags |= 0x04;
-	m_meetPikminFlags |= 0x10;
-	m_meetPikminFlags |= 0x08;
+	mHasContainerFlags |= 0x01;
+	mHasContainerFlags |= 0x02;
+	mHasContainerFlags |= 0x04;
+	mHasContainerFlags |= 0x10;
+	mHasContainerFlags |= 0x08;
+	mHasBootContainerFlags |= 0x01;
+	mHasBootContainerFlags |= 0x02;
+	mHasBootContainerFlags |= 0x04;
+	mMeetPikminFlags |= 0x01;
+	mMeetPikminFlags |= 0x02;
+	mMeetPikminFlags |= 0x04;
+	mMeetPikminFlags |= 0x10;
+	mMeetPikminFlags |= 0x08;
 	_19 = 1;
 }
 
@@ -1962,8 +1962,8 @@ void PlayData::debugSetContainerFlagOn()
  */
 void PlayData::setDemoFlag(int flag)
 {
-	m_demoFlags.setFlag(flag);
-	m_demoFlags.dump();
+	mDemoFlags.setFlag(flag);
+	mDemoFlags.dump();
 }
 
 /*
@@ -1971,7 +1971,7 @@ void PlayData::setDemoFlag(int flag)
  * Address:	801E73E0
  * Size:	000028
  */
-bool PlayData::isDemoFlag(int flag) { return m_demoFlags.isFlag(flag); }
+bool PlayData::isDemoFlag(int flag) { return mDemoFlags.isFlag(flag); }
 
 /*
  * --INFO--
@@ -1980,8 +1980,8 @@ bool PlayData::isDemoFlag(int flag) { return m_demoFlags.isFlag(flag); }
  */
 void PlayData::setFindItemDemoFlag(int flag)
 {
-	m_findItemFlags.setFlag(flag);
-	m_findItemFlags.dump();
+	mFindItemFlags.setFlag(flag);
+	mFindItemFlags.dump();
 }
 
 /*
@@ -1989,7 +1989,7 @@ void PlayData::setFindItemDemoFlag(int flag)
  * Address:	801E7444
  * Size:	000028
  */
-bool PlayData::isFindItemDemoFlag(int flag) { return m_findItemFlags.isFlag(flag); }
+bool PlayData::isFindItemDemoFlag(int flag) { return mFindItemFlags.isFlag(flag); }
 
 /*
  * --INFO--
@@ -1999,7 +1999,7 @@ bool PlayData::isFindItemDemoFlag(int flag) { return m_findItemFlags.isFlag(flag
 void PlayData::setCurrentCourse(int a1)
 {
 	// Generated from stw r4, 0x50(r3)
-	m_caveSaveData.m_courseIdx = a1;
+	mCaveSaveData.mCourseIdx = a1;
 }
 
 /*
@@ -2010,7 +2010,7 @@ void PlayData::setCurrentCourse(int a1)
 void PlayData::clearCurrentCave()
 {
 	// Generated from stb r0, 0x4C(r3)
-	m_caveSaveData.m_isInCave = false;
+	mCaveSaveData.mIsInCave = false;
 }
 
 /*
@@ -2020,9 +2020,9 @@ void PlayData::clearCurrentCave()
  */
 void PlayData::setCurrentCave(ID32& caveID, int floor)
 {
-	m_caveSaveData.m_currentCaveID.setID(caveID.getID());
-	m_caveSaveData.m_currentFloor = floor;
-	m_caveSaveData.m_isInCave     = true;
+	mCaveSaveData.mCurrentCaveID.setID(caveID.getID());
+	mCaveSaveData.mCurrentFloor = floor;
+	mCaveSaveData.mIsInCave     = true;
 }
 
 /*
@@ -2032,8 +2032,8 @@ void PlayData::setCurrentCave(ID32& caveID, int floor)
  */
 void PlayData::setCurrentCaveFloor(int floor)
 {
-	m_caveSaveData.m_currentFloor = floor;
-	m_caveSaveData.m_isInCave     = true;
+	mCaveSaveData.mCurrentFloor = floor;
+	mCaveSaveData.mIsInCave     = true;
 }
 
 /*
@@ -2041,7 +2041,7 @@ void PlayData::setCurrentCaveFloor(int floor)
  * Address:	801E74DC
  * Size:	000008
  */
-int PlayData::getCurrentCourseIndex() { return m_caveSaveData.m_courseIdx; }
+int PlayData::getCurrentCourseIndex() { return mCaveSaveData.mCourseIdx; }
 
 /*
  * --INFO--
@@ -2050,8 +2050,8 @@ int PlayData::getCurrentCourseIndex() { return m_caveSaveData.m_courseIdx; }
  */
 CourseInfo* PlayData::getCurrentCourse()
 {
-	if (m_caveSaveData.m_courseIdx != -1) {
-		return stageList->getCourseInfo(m_caveSaveData.m_courseIdx);
+	if (mCaveSaveData.mCourseIdx != -1) {
+		return stageList->getCourseInfo(mCaveSaveData.mCourseIdx);
 	}
 	return nullptr;
 }
@@ -2063,8 +2063,8 @@ CourseInfo* PlayData::getCurrentCourse()
  */
 void PlayData::getCurrentCave(ID32& outCaveID, int& outCaveFloor)
 {
-	outCaveID.setID(m_caveSaveData.m_currentCaveID.getID());
-	outCaveFloor = m_caveSaveData.m_currentFloor;
+	outCaveID.setID(mCaveSaveData.mCurrentCaveID.getID());
+	outCaveFloor = mCaveSaveData.mCurrentFloor;
 }
 
 /*
@@ -2112,33 +2112,33 @@ void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2) { _B0->losePellet(mg
  */
 void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 {
-	PelletCropMemory* mem = m_mainCropMemory;
+	PelletCropMemory* mem = mMainCropMemory;
 	if (pellet->getKind() == PELTYPE_TREASURE) {
 		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->m_otakara.m_numKinds);
+		bool check = (id >= 0 && id < mem->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* data = mem->m_otakara.m_kinds;
+		u8* data = mem->mOtakara.mKinds;
 		data[id]++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->m_otakara.m_numKinds);
+		check = (id >= 0 && id < mem->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
 	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
 		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->m_item.m_numKinds);
+		bool check = (id >= 0 && id < mem->mItem.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* data = mem->m_item.m_kinds;
+		u8* data = mem->mItem.mKinds;
 		data[id]++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->m_item.m_numKinds);
+		check = (id >= 0 && id < mem->mItem.mNumKinds);
 		P2ASSERTLINE(330, check);
 	} else if (pellet->getKind() == 1) {
 		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->m_carcass.m_numKinds);
+		bool check = (id >= 0 && id < mem->mCarcass.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* data = mem->m_carcass.m_kinds;
+		u8* data = mem->mCarcass.mKinds;
 		data[id]++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->m_carcass.m_numKinds);
+		check = (id >= 0 && id < mem->mCarcass.mNumKinds);
 		P2ASSERTLINE(330, check);
 	}
 
@@ -2152,7 +2152,7 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 	if (mgr) {
 		_B0->obtainPellet(mgr, pellet->getConfigIndex());
 	}
-	m_pokoCount += pellet->m_config->m_params.m_money.m_data;
+	mPokoCount += pellet->mConfig->mParams.mMoney.mData;
 }
 
 /*
@@ -2162,33 +2162,33 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
  */
 void PlayData::obtainPellet_Cave(Game::Pellet* pellet)
 {
-	PelletCropMemory* mem = m_caveCropMemory;
+	PelletCropMemory* mem = mCaveCropMemory;
 	if (pellet->getKind() == PELTYPE_TREASURE) {
 		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->m_otakara.m_numKinds);
+		bool check = (id >= 0 && id < mem->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* data = mem->m_otakara.m_kinds;
+		u8* data = mem->mOtakara.mKinds;
 		data[id]++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->m_otakara.m_numKinds);
+		check = (id >= 0 && id < mem->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
 	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
 		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->m_item.m_numKinds);
+		bool check = (id >= 0 && id < mem->mItem.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* data = mem->m_item.m_kinds;
+		u8* data = mem->mItem.mKinds;
 		data[id]++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->m_item.m_numKinds);
+		check = (id >= 0 && id < mem->mItem.mNumKinds);
 		P2ASSERTLINE(330, check);
 	} else if (pellet->getKind() == 1) {
 		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->m_carcass.m_numKinds);
+		bool check = (id >= 0 && id < mem->mCarcass.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* data = mem->m_carcass.m_kinds;
+		u8* data = mem->mCarcass.mKinds;
 		data[id]++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->m_carcass.m_numKinds);
+		check = (id >= 0 && id < mem->mCarcass.mNumKinds);
 		P2ASSERTLINE(330, check);
 	}
 }
@@ -2215,14 +2215,14 @@ bool PlayData::isPelletEverGot(Pellet*) { }
 bool PlayData::isPelletEverGot(unsigned char type, unsigned char id)
 {
 	if (type == PELTYPE_UPGRADE) {
-		bool check = (id < _B0->m_carcass.m_numKinds);
+		bool check = (id < _B0->mCarcass.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* kinds = _B0->m_item(id);
+		u8* kinds = _B0->mItem(id);
 		return (*kinds != 0);
 	} else if (type == PELTYPE_TREASURE) {
-		bool check = (id < _B0->m_carcass.m_numKinds);
+		bool check = (id < _B0->mCarcass.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* kinds = _B0->m_otakara(id);
+		u8* kinds = _B0->mOtakara(id);
 		return (*kinds != 0);
 	} else {
 		JUT_PANICLINE(1406, "otakara or item !\n");
@@ -2321,23 +2321,23 @@ bool PlayData::isPelletZukanVisible(int id)
 	PelletConfigList* list = PelletList::Mgr::getConfigList(PelletList::OTAKARA);
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
-		int index = config->m_params.m_index;
+		int index = config->mParams.mIndex;
 
-		bool check = (index >= 0 && index < _B0->m_otakara.m_numKinds);
+		bool check = (index >= 0 && index < _B0->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->m_otakara(index);
+		u8* kinds = _B0->mOtakara(index);
 		return (*kinds & 2);
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
-			int index = config->m_params.m_index;
+			int index = config->mParams.mIndex;
 
-			bool check = (index >= 0 && index < _B0->m_item.m_numKinds);
+			bool check = (index >= 0 && index < _B0->mItem.mNumKinds);
 			P2ASSERTLINE(330, check);
 
-			u8* kinds = _B0->m_item(index);
+			u8* kinds = _B0->mItem(index);
 			return (*kinds & 2);
 		}
 	}
@@ -2444,23 +2444,23 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 	PelletConfigList* list = PelletList::Mgr::getConfigList(PelletList::OTAKARA);
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
-		int index = config->m_params.m_index;
+		int index = config->mParams.mIndex;
 
-		bool check = (index >= 0 && index < _B0->m_otakara.m_numKinds);
+		bool check = (index >= 0 && index < _B0->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->m_otakara(index);
+		u8* kinds = _B0->mOtakara(index);
 		return (*kinds & 2 && !(*kinds & 4));
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
-			int index = config->m_params.m_index;
+			int index = config->mParams.mIndex;
 
-			bool check = (index >= 0 && index < _B0->m_item.m_numKinds);
+			bool check = (index >= 0 && index < _B0->mItem.mNumKinds);
 			P2ASSERTLINE(330, check);
 
-			u8* kinds = _B0->m_item(index);
+			u8* kinds = _B0->mItem(index);
 			return (*kinds & 2 && !(*kinds & 4));
 		}
 	}
@@ -2568,20 +2568,20 @@ lbl_801E7EE4:
  */
 bool PlayData::hasPelletZukanWhatsNew()
 {
-	for (int i = 0; i < _B0->m_otakara.m_numKinds; i++) {
-		bool check = (i >= 0 && i < _B0->m_otakara.m_numKinds);
+	for (int i = 0; i < _B0->mOtakara.mNumKinds; i++) {
+		bool check = (i >= 0 && i < _B0->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->m_otakara(i);
+		u8* kinds = _B0->mOtakara(i);
 		if (!(*kinds & 4))
 			return true;
 	}
 
-	for (int i = 0; i < _B0->m_item.m_numKinds; i++) {
-		bool check = (i >= 0 && i < _B0->m_item.m_numKinds);
+	for (int i = 0; i < _B0->mItem.mNumKinds; i++) {
+		bool check = (i >= 0 && i < _B0->mItem.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->m_item(i);
+		u8* kinds = _B0->mItem(i);
 		if (!(*kinds & 4))
 			return true;
 	}
@@ -2739,22 +2739,22 @@ lbl_801E809C:
  */
 void PlayData::setPelletZukanOutOfDateAll()
 {
-	for (int i = 0; i < _B0->m_item.m_numKinds; i++) {
-		bool check = (i >= 0 && i < _B0->m_otakara.m_numKinds);
+	for (int i = 0; i < _B0->mItem.mNumKinds; i++) {
+		bool check = (i >= 0 && i < _B0->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
-		if (_B0->m_otakara.m_kinds[i]) {
-			check = (i >= 0 && i < _B0->m_otakara.m_numKinds);
+		if (_B0->mOtakara.mKinds[i]) {
+			check = (i >= 0 && i < _B0->mOtakara.mNumKinds);
 			P2ASSERTLINE(330, check);
-			_B0->m_otakara.m_kinds[i] |= 4;
+			_B0->mOtakara.mKinds[i] |= 4;
 		}
 	}
-	for (int i = 0; i < _B0->m_item.m_numKinds; i++) {
-		bool check = (i >= 0 && i < _B0->m_item.m_numKinds);
+	for (int i = 0; i < _B0->mItem.mNumKinds; i++) {
+		bool check = (i >= 0 && i < _B0->mItem.mNumKinds);
 		P2ASSERTLINE(330, check);
-		if (_B0->m_item.m_kinds[i]) {
-			check = (i >= 0 && i < _B0->m_otakara.m_numKinds);
+		if (_B0->mItem.mKinds[i]) {
+			check = (i >= 0 && i < _B0->mOtakara.mNumKinds);
 			P2ASSERTLINE(330, check);
-			_B0->m_item.m_kinds[i] |= 4;
+			_B0->mItem.mKinds[i] |= 4;
 		}
 	}
 	/*
@@ -2909,9 +2909,9 @@ int PlayData::getTekiCarcassMoney(int) { }
  */
 int PlayData::getGroundOtakaraNum(int id)
 {
-	bool check = (id >= 0 && id < stageList->m_courseCount);
+	bool check = (id >= 0 && id < stageList->mCourseCount);
 	P2ASSERTLINE(1543, check);
-	return m_groundOtakaraCollected[id];
+	return mGroundOtakaraCollected[id];
 }
 
 /*
@@ -2921,10 +2921,10 @@ int PlayData::getGroundOtakaraNum(int id)
  */
 int PlayData::getGroundOtakaraMax(int id)
 {
-	bool check = (id >= 0 && id < stageList->m_courseCount);
+	bool check = (id >= 0 && id < stageList->mCourseCount);
 	P2ASSERTLINE(1550, check);
 	CourseInfo* info = stageList->getCourseInfo(id);
-	return info->m_groundOtakaraMax;
+	return info->mGroundOtakaraMax;
 }
 
 /*
@@ -2935,11 +2935,11 @@ int PlayData::getGroundOtakaraMax(int id)
 void PlayData::incGroundOtakara(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1558, isValidIndex);
-	m_groundOtakaraCollected[index]++;
+	mGroundOtakaraCollected[index]++;
 }
 
 /*
@@ -3014,7 +3014,7 @@ int PlayData::getDopeFruitCount(int sprayIndex)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1596, isValidIndex);
-	return m_berryCount[sprayIndex];
+	return mBerryCount[sprayIndex];
 }
 
 /*
@@ -3030,9 +3030,9 @@ bool PlayData::addDopeFruit(int sprayIndex)
 	}
 	P2ASSERTLINE(1602, isValidIndex);
 
-	m_berryCount[sprayIndex]++;
-	if (m_berryCount[sprayIndex] >= _aiConstants->m_dopeCount.m_data) {
-		m_berryCount[sprayIndex] = 0;
+	mBerryCount[sprayIndex]++;
+	if (mBerryCount[sprayIndex] >= _aiConstants->mDopeCount.mData) {
+		mBerryCount[sprayIndex] = 0;
 		_C0[sprayIndex]++;
 		return true;
 	} else {
@@ -3066,12 +3066,12 @@ bool PlayData::isCaveFirstTime(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* ota = m_caveOtakara;
+		CaveOtakara* ota = mCaveOtakara;
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id == -1) {
 			return false;
 		}
-		if (id >= 0 && id < ota[id].m_caveCount) {
+		if (id >= 0 && id < ota[id].mCaveCount) {
 			return ota[id]._08 != 0;
 		}
 	}
@@ -3160,7 +3160,7 @@ void PlayData::setCaveVisit(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* ota = m_caveOtakara;
+		CaveOtakara* ota = mCaveOtakara;
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
 			if (ota[courseIndex]._08[id] == 0) {
@@ -3238,11 +3238,11 @@ void PlayData::incCaveOtakara(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* ota = m_caveOtakara;
+		CaveOtakara* ota = mCaveOtakara;
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
-			if (id >= 0 && id < ota[courseIndex].m_caveCount) {
-				ota[courseIndex].m_otakaraCountsOld[id]++;
+			if (id >= 0 && id < ota[courseIndex].mCaveCount) {
+				ota[courseIndex].mOtakaraCountsOld[id]++;
 				info->getOtakaraNum(id);
 			}
 		}
@@ -3312,11 +3312,11 @@ int PlayData::getOtakaraNum_Course_CaveID(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* ota = m_caveOtakara;
+		CaveOtakara* ota = mCaveOtakara;
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
-			if (id >= 0 && id < ota[courseIndex].m_caveCount) {
-				return ota[courseIndex].m_otakaraCountsOld[id];
+			if (id >= 0 && id < ota[courseIndex].mCaveCount) {
+				return ota[courseIndex].mOtakaraCountsOld[id];
 			}
 		}
 		return -1;
@@ -3428,23 +3428,23 @@ lbl_801E8B04:
  */
 void PlayData::initCaveOtakaras()
 {
-	int max = stageList->m_courseCount;
+	int max = stageList->mCourseCount;
 	for (int i = 0; i < max; i++) {
-		CaveOtakara* data = m_caveOtakara;
-		if (data->m_caveCount > 0) {
-			for (int j = 0; j < data->m_caveCount; j++) {
-				data->m_otakaraCountsOld[j] = 0;
-				data->_08[j]                = 0;
+		CaveOtakara* data = mCaveOtakara;
+		if (data->mCaveCount > 0) {
+			for (int j = 0; j < data->mCaveCount; j++) {
+				data->mOtakaraCountsOld[j] = 0;
+				data->_08[j]               = 0;
 			}
 		}
 	}
 
 	for (int i = 0; i < max; i++) {
-		CaveOtakara* data = m_caveOtakaraOld;
-		if (data->m_caveCount > 0) {
-			for (int j = 0; j < data->m_caveCount; j++) {
-				data->m_otakaraCountsOld[j] = 0;
-				data->_08[j]                = 0;
+		CaveOtakara* data = mCaveOtakaraOld;
+		if (data->mCaveCount > 0) {
+			for (int j = 0; j < data->mCaveCount; j++) {
+				data->mOtakaraCountsOld[j] = 0;
+				data->_08[j]               = 0;
 			}
 		}
 	}
@@ -3530,9 +3530,9 @@ lbl_801E8BE0:
  */
 void PlayData::read_CaveOtakara(Stream& ram)
 {
-	int max = stageList->m_courseCount;
+	int max = stageList->mCourseCount;
 	for (int i = 0; i < max; i++) {
-		m_caveOtakara[i].read(ram);
+		mCaveOtakara[i].read(ram);
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -3573,9 +3573,9 @@ lbl_801E8C30:
  */
 void PlayData::write_CaveOtakara(Stream& ram)
 {
-	int max = stageList->m_courseCount;
+	int max = stageList->mCourseCount;
 	for (int i = 0; i < max; i++) {
-		m_caveOtakara[i].write(ram);
+		mCaveOtakara[i].write(ram);
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -3622,14 +3622,14 @@ lbl_801E8CA0:
  */
 void PlayData::CaveOtakara::write(Stream& output)
 {
-	output.textWriteTab(output.m_tabCount);
-	output.writeByte(m_caveCount);
+	output.textWriteTab(output.mTabCount);
+	output.writeByte(mCaveCount);
 	output.textWriteText("# caveæ•°\r\n");
-	for (int i = 0; i < m_caveCount; i++) {
-		output.textWriteTab(output.m_tabCount);
-		output.writeByte(m_otakaraCountsOld[i]);
+	for (int i = 0; i < mCaveCount; i++) {
+		output.textWriteTab(output.mTabCount);
+		output.writeByte(mOtakaraCountsOld[i]);
 		output.textWriteText("# å€‹æ•°\r\n");
-		output.textWriteTab(output.m_tabCount);
+		output.textWriteTab(output.mTabCount);
 		output.writeByte(_08[i]);
 		output.textWriteText("# çŠ¶æ…‹\r\n");
 	}
@@ -3702,12 +3702,12 @@ lbl_801E8D7C:
  */
 void PlayData::CaveOtakara::read(Stream& input)
 {
-	u8 existingCaveCount = m_caveCount;
-	m_caveCount          = input.readByte();
-	JUT_ASSERTLINE(1797, existingCaveCount == m_caveCount, "ã‚»ãƒ¼ãƒ–ã—ãŸã¨ãã¨æ´žçªŸã?®æ•°ãŒã‚ã?ã¾ã›ã‚“\n");
-	for (int i = 0; i < m_caveCount; i++) {
-		m_otakaraCountsOld[i] = input.readByte();
-		_08[i]                = input.readByte();
+	u8 existingCaveCount = mCaveCount;
+	mCaveCount           = input.readByte();
+	JUT_ASSERTLINE(1797, existingCaveCount == mCaveCount, "ã‚»ãƒ¼ãƒ–ã—ãŸã¨ãã¨æ´žçªŸã?®æ•°ãŒã‚ã?ã¾ã›ã‚“\n");
+	for (int i = 0; i < mCaveCount; i++) {
+		mOtakaraCountsOld[i] = input.readByte();
+		_08[i]               = input.readByte();
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -3774,7 +3774,7 @@ lbl_801E8E30:
  */
 int PlayData::getRepayLevel()
 {
-	f32 prog = (m_pokoCount / _aiConstants->m_debt.m_data) * 100.0f;
+	f32 prog = (mPokoCount / _aiConstants->mDebt.mData) * 100.0f;
 	if (prog < 10.0f)
 		return -1;
 	if (prog < 20.0f)
@@ -3941,7 +3941,7 @@ lbl_801E8FBC:
 bool PlayData::checkRepayLevelFirstClear()
 {
 	int id;
-	f32 prog = (m_pokoCount / _aiConstants->m_debt.m_data) * 100.0f;
+	f32 prog = (mPokoCount / _aiConstants->mDebt.mData) * 100.0f;
 	if (prog < 10.0f)
 		id = -1;
 	else if (prog < 20.0f)
@@ -3965,123 +3965,123 @@ bool PlayData::checkRepayLevelFirstClear()
 	else
 		id = 9;
 
-	return (m_debtProgressFlags[id] != 0); // this is actually bitwise stuff
-	                                       /*
-	                                       stwu     r1, -0x20(r1)
-	                                       lis      r6, 0x4330
-	                                       lfd      f3, lbl_805199D8@sda21(r2)
-	                                       lis      r4, "repay_levs__26@unnamed@gamePlayData_cpp@"@ha
-	                                       lwz      r5, _aiConstants__4Game@sda21(r13)
-	                                       lwz      r7, 0xe8(r3)
-	                                       lwz      r0, 0x48(r5)
-	                                       xoris    r5, r7, 0x8000
-	                                       stw      r6, 8(r1)
-	                                       xoris    r0, r0, 0x8000
-	                                       lfs      f4, lbl_805199D4@sda21(r2)
-	                                       stw      r5, 0xc(r1)
-	                                       lfd      f0, 8(r1)
-	                                       stw      r0, 0x14(r1)
-	                                       fsubs    f2, f0, f3
-	                                       lfsu     f0, "repay_levs__26@unnamed@gamePlayData_cpp@"@l(r4)
-	                                       stw      r6, 0x10(r1)
-	                                       lfd      f1, 0x10(r1)
-	                                       fsubs    f1, f1, f3
-	                                       fdivs    f1, f2, f1
-	                                       fmuls    f1, f4, f1
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E9028
-	                                       li       r6, -1
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E9028:
-	                                       lfsu     f0, 4(r4)
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E903C
-	                                       li       r6, 0
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E903C:
-	                                       lfsu     f0, 4(r4)
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E9050
-	                                       li       r6, 1
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E9050:
-	                                       lfsu     f0, 4(r4)
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E9064
-	                                       li       r6, 2
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E9064:
-	                                       lfsu     f0, 4(r4)
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E9078
-	                                       li       r6, 3
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E9078:
-	                                       lfsu     f0, 4(r4)
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E908C
-	                                       li       r6, 4
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E908C:
-	                                       lfsu     f0, 4(r4)
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E90A0
-	                                       li       r6, 5
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E90A0:
-	                                       lfsu     f0, 4(r4)
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E90B4
-	                                       li       r6, 6
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E90B4:
-	                                       lfsu     f0, 4(r4)
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E90C8
-	                                       li       r6, 7
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E90C8:
-	                                       lfs      f0, 4(r4)
-	                                       fcmpo    cr0, f0, f1
-	                                       ble      lbl_801E90DC
-	                                       li       r6, 8
-	                                       b        lbl_801E90E0
-	                                   
-	                                   lbl_801E90DC:
-	                                       li       r6, 9
-	                                   
-	                                   lbl_801E90E0:
-	                                       cmpwi    r6, 0
-	                                       blt      lbl_801E9118
-	                                       srawi    r4, r6, 3
-	                                       li       r5, 1
-	                                       subfic   r0, r4, 1
-	                                       slwi     r4, r4, 3
-	                                       add      r3, r3, r0
-	                                       subf     r4, r4, r6
-	                                       lbz      r0, 0xf0(r3)
-	                                       slw      r3, r5, r4
-	                                       and.     r0, r3, r0
-	                                       bne      lbl_801E9118
-	                                       li       r3, 1
-	                                       b        lbl_801E911C
-	                                   
-	                                   lbl_801E9118:
-	                                       li       r3, 0
-	                                   
-	                                   lbl_801E911C:
-	                                       addi     r1, r1, 0x20
-	                                       blr
-	                                       */
+	return (mDebtProgressFlags[id] != 0); // this is actually bitwise stuff
+	                                      /*
+	                                      stwu     r1, -0x20(r1)
+	                                      lis      r6, 0x4330
+	                                      lfd      f3, lbl_805199D8@sda21(r2)
+	                                      lis      r4, "repay_levs__26@unnamed@gamePlayData_cpp@"@ha
+	                                      lwz      r5, _aiConstants__4Game@sda21(r13)
+	                                      lwz      r7, 0xe8(r3)
+	                                      lwz      r0, 0x48(r5)
+	                                      xoris    r5, r7, 0x8000
+	                                      stw      r6, 8(r1)
+	                                      xoris    r0, r0, 0x8000
+	                                      lfs      f4, lbl_805199D4@sda21(r2)
+	                                      stw      r5, 0xc(r1)
+	                                      lfd      f0, 8(r1)
+	                                      stw      r0, 0x14(r1)
+	                                      fsubs    f2, f0, f3
+	                                      lfsu     f0, "repay_levs__26@unnamed@gamePlayData_cpp@"@l(r4)
+	                                      stw      r6, 0x10(r1)
+	                                      lfd      f1, 0x10(r1)
+	                                      fsubs    f1, f1, f3
+	                                      fdivs    f1, f2, f1
+	                                      fmuls    f1, f4, f1
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E9028
+	                                      li       r6, -1
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E9028:
+	                                      lfsu     f0, 4(r4)
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E903C
+	                                      li       r6, 0
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E903C:
+	                                      lfsu     f0, 4(r4)
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E9050
+	                                      li       r6, 1
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E9050:
+	                                      lfsu     f0, 4(r4)
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E9064
+	                                      li       r6, 2
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E9064:
+	                                      lfsu     f0, 4(r4)
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E9078
+	                                      li       r6, 3
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E9078:
+	                                      lfsu     f0, 4(r4)
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E908C
+	                                      li       r6, 4
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E908C:
+	                                      lfsu     f0, 4(r4)
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E90A0
+	                                      li       r6, 5
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E90A0:
+	                                      lfsu     f0, 4(r4)
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E90B4
+	                                      li       r6, 6
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E90B4:
+	                                      lfsu     f0, 4(r4)
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E90C8
+	                                      li       r6, 7
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E90C8:
+	                                      lfs      f0, 4(r4)
+	                                      fcmpo    cr0, f0, f1
+	                                      ble      lbl_801E90DC
+	                                      li       r6, 8
+	                                      b        lbl_801E90E0
+	                                  
+	                                  lbl_801E90DC:
+	                                      li       r6, 9
+	                                  
+	                                  lbl_801E90E0:
+	                                      cmpwi    r6, 0
+	                                      blt      lbl_801E9118
+	                                      srawi    r4, r6, 3
+	                                      li       r5, 1
+	                                      subfic   r0, r4, 1
+	                                      slwi     r4, r4, 3
+	                                      add      r3, r3, r0
+	                                      subf     r4, r4, r6
+	                                      lbz      r0, 0xf0(r3)
+	                                      slw      r3, r5, r4
+	                                      and.     r0, r3, r0
+	                                      bne      lbl_801E9118
+	                                      li       r3, 1
+	                                      b        lbl_801E911C
+	                                  
+	                                  lbl_801E9118:
+	                                      li       r3, 0
+	                                  
+	                                  lbl_801E911C:
+	                                      addi     r1, r1, 0x20
+	                                      blr
+	                                      */
 }
 
 /*
@@ -4092,7 +4092,7 @@ bool PlayData::checkRepayLevelFirstClear()
 void PlayData::experienceRepayLevelFirstClear()
 {
 	int id;
-	f32 prog = (m_pokoCount / _aiConstants->m_debt.m_data) * 100.0f;
+	f32 prog = (mPokoCount / _aiConstants->mDebt.mData) * 100.0f;
 	if (prog < 10.0f)
 		id = -1;
 	else if (prog < 20.0f)
@@ -4116,130 +4116,130 @@ void PlayData::experienceRepayLevelFirstClear()
 	else
 		id = 9;
 
-	m_debtProgressFlags[id] |= 2; // this is actually bitwise stuff
-	                              /*
-	                              stwu     r1, -0x20(r1)
-	                              lis      r6, 0x4330
-	                              lfd      f3, lbl_805199D8@sda21(r2)
-	                              lis      r4, "repay_levs__26@unnamed@gamePlayData_cpp@"@ha
-	                              lwz      r5, _aiConstants__4Game@sda21(r13)
-	                              lwz      r7, 0xe8(r3)
-	                              lwz      r0, 0x48(r5)
-	                              xoris    r5, r7, 0x8000
-	                              stw      r6, 8(r1)
-	                              xoris    r0, r0, 0x8000
-	                              lfs      f4, lbl_805199D4@sda21(r2)
-	                              stw      r5, 0xc(r1)
-	                              lfd      f0, 8(r1)
-	                              stw      r0, 0x14(r1)
-	                              fsubs    f2, f0, f3
-	                              lfsu     f0, "repay_levs__26@unnamed@gamePlayData_cpp@"@l(r4)
-	                              stw      r6, 0x10(r1)
-	                              lfd      f1, 0x10(r1)
-	                              fsubs    f1, f1, f3
-	                              fdivs    f1, f2, f1
-	                              fmuls    f1, f4, f1
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E9188
-	                              li       r4, -1
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E9188:
-	                              lfsu     f0, 4(r4)
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E919C
-	                              li       r4, 0
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E919C:
-	                              lfsu     f0, 4(r4)
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E91B0
-	                              li       r4, 1
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E91B0:
-	                              lfsu     f0, 4(r4)
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E91C4
-	                              li       r4, 2
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E91C4:
-	                              lfsu     f0, 4(r4)
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E91D8
-	                              li       r4, 3
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E91D8:
-	                              lfsu     f0, 4(r4)
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E91EC
-	                              li       r4, 4
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E91EC:
-	                              lfsu     f0, 4(r4)
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E9200
-	                              li       r4, 5
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E9200:
-	                              lfsu     f0, 4(r4)
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E9214
-	                              li       r4, 6
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E9214:
-	                              lfsu     f0, 4(r4)
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E9228
-	                              li       r4, 7
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E9228:
-	                              lfs      f0, 4(r4)
-	                              fcmpo    cr0, f0, f1
-	                              ble      lbl_801E923C
-	                              li       r4, 8
-	                              b        lbl_801E9240
-	                          
-	                          lbl_801E923C:
-	                              li       r4, 9
-	                          
-	                          lbl_801E9240:
-	                              cmpwi    r4, 0
-	                              blt      lbl_801E9290
-	                              addi     r0, r4, 1
-	                              li       r7, 0
-	                              li       r4, 1
-	                              mtctr    r0
-	                              blt      lbl_801E9290
-	                          
-	                          lbl_801E925C:
-	                              cmpwi    r7, 0x10
-	                              bge      lbl_801E9288
-	                              srawi    r5, r7, 3
-	                              subfic   r0, r5, 1
-	                              add      r6, r3, r0
-	                              slwi     r0, r5, 3
-	                              lbz      r5, 0xf0(r6)
-	                              subf     r0, r0, r7
-	                              slw      r0, r4, r0
-	                              or       r0, r5, r0
-	                              stb      r0, 0xf0(r6)
-	                          
-	                          lbl_801E9288:
-	                              addi     r7, r7, 1
-	                              bdnz     lbl_801E925C
-	                          
-	                          lbl_801E9290:
-	                              addi     r1, r1, 0x20
-	                              blr
-	                              */
+	mDebtProgressFlags[id] |= 2; // this is actually bitwise stuff
+	                             /*
+	                             stwu     r1, -0x20(r1)
+	                             lis      r6, 0x4330
+	                             lfd      f3, lbl_805199D8@sda21(r2)
+	                             lis      r4, "repay_levs__26@unnamed@gamePlayData_cpp@"@ha
+	                             lwz      r5, _aiConstants__4Game@sda21(r13)
+	                             lwz      r7, 0xe8(r3)
+	                             lwz      r0, 0x48(r5)
+	                             xoris    r5, r7, 0x8000
+	                             stw      r6, 8(r1)
+	                             xoris    r0, r0, 0x8000
+	                             lfs      f4, lbl_805199D4@sda21(r2)
+	                             stw      r5, 0xc(r1)
+	                             lfd      f0, 8(r1)
+	                             stw      r0, 0x14(r1)
+	                             fsubs    f2, f0, f3
+	                             lfsu     f0, "repay_levs__26@unnamed@gamePlayData_cpp@"@l(r4)
+	                             stw      r6, 0x10(r1)
+	                             lfd      f1, 0x10(r1)
+	                             fsubs    f1, f1, f3
+	                             fdivs    f1, f2, f1
+	                             fmuls    f1, f4, f1
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E9188
+	                             li       r4, -1
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E9188:
+	                             lfsu     f0, 4(r4)
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E919C
+	                             li       r4, 0
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E919C:
+	                             lfsu     f0, 4(r4)
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E91B0
+	                             li       r4, 1
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E91B0:
+	                             lfsu     f0, 4(r4)
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E91C4
+	                             li       r4, 2
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E91C4:
+	                             lfsu     f0, 4(r4)
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E91D8
+	                             li       r4, 3
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E91D8:
+	                             lfsu     f0, 4(r4)
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E91EC
+	                             li       r4, 4
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E91EC:
+	                             lfsu     f0, 4(r4)
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E9200
+	                             li       r4, 5
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E9200:
+	                             lfsu     f0, 4(r4)
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E9214
+	                             li       r4, 6
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E9214:
+	                             lfsu     f0, 4(r4)
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E9228
+	                             li       r4, 7
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E9228:
+	                             lfs      f0, 4(r4)
+	                             fcmpo    cr0, f0, f1
+	                             ble      lbl_801E923C
+	                             li       r4, 8
+	                             b        lbl_801E9240
+	                         
+	                         lbl_801E923C:
+	                             li       r4, 9
+	                         
+	                         lbl_801E9240:
+	                             cmpwi    r4, 0
+	                             blt      lbl_801E9290
+	                             addi     r0, r4, 1
+	                             li       r7, 0
+	                             li       r4, 1
+	                             mtctr    r0
+	                             blt      lbl_801E9290
+	                         
+	                         lbl_801E925C:
+	                             cmpwi    r7, 0x10
+	                             bge      lbl_801E9288
+	                             srawi    r5, r7, 3
+	                             subfic   r0, r5, 1
+	                             add      r6, r3, r0
+	                             slwi     r0, r5, 3
+	                             lbz      r5, 0xf0(r6)
+	                             subf     r0, r0, r7
+	                             slw      r0, r4, r0
+	                             or       r0, r5, r0
+	                             stb      r0, 0xf0(r6)
+	                         
+	                         lbl_801E9288:
+	                             addi     r7, r7, 1
+	                             bdnz     lbl_801E925C
+	                         
+	                         lbl_801E9290:
+	                             addi     r1, r1, 0x20
+	                             blr
+	                             */
 }
 
 /*
@@ -4249,11 +4249,11 @@ void PlayData::experienceRepayLevelFirstClear()
  */
 void PlayData::initLimitGens()
 {
-	u16 courseCount = stageList->m_courseCount;
+	u16 courseCount = stageList->mCourseCount;
 	for (int i = 0; i < courseCount; i++) {
-		LimitGen* limitGen = &m_limitGen[i];
-		limitGen->m_nonLoops.reset();
-		limitGen->m_loops.reset();
+		LimitGen* limitGen = &mLimitGen[i];
+		limitGen->mNonLoops.reset();
+		limitGen->mLoops.reset();
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -4296,54 +4296,54 @@ lbl_801E92E0:
 void PlayData::initCourses(bool type)
 {
 	if (type) {
-		for (int i = 0; i < stageList->m_courseCount; i++) {
-			m_bitfieldPerCourse[i] = 3;
+		for (int i = 0; i < stageList->mCourseCount; i++) {
+			mBitfieldPerCourse[i] = 3;
 		}
 	} else {
-		for (int i = 0; i < stageList->m_courseCount; i++) {
-			m_bitfieldPerCourse[i] = 0;
+		for (int i = 0; i < stageList->mCourseCount; i++) {
+			mBitfieldPerCourse[i] = 0;
 		}
 	}
-	m_bitfieldPerCourse[0] = 3; // valley of repose always unlocked
-	                            /*
-	                            clrlwi.  r0, r4, 0x18
-	                            beq      lbl_801E9330
-	                            li       r6, 0
-	                            li       r5, 3
-	                            b        lbl_801E931C
-	                        
-	                        lbl_801E9310:
-	                            lwz      r4, 0xd8(r3)
-	                            stbx     r5, r4, r6
-	                            addi     r6, r6, 1
-	                        
-	                        lbl_801E931C:
-	                            lwz      r4, stageList__4Game@sda21(r13)
-	                            lhz      r0, 0x100(r4)
-	                            cmpw     r6, r0
-	                            blt      lbl_801E9310
-	                            blr
-	                        
-	                        lbl_801E9330:
-	                            li       r6, 0
-	                            li       r5, 0
-	                            b        lbl_801E9348
-	                        
-	                        lbl_801E933C:
-	                            lwz      r4, 0xd8(r3)
-	                            stbx     r5, r4, r6
-	                            addi     r6, r6, 1
-	                        
-	                        lbl_801E9348:
-	                            lwz      r4, stageList__4Game@sda21(r13)
-	                            lhz      r0, 0x100(r4)
-	                            cmpw     r6, r0
-	                            blt      lbl_801E933C
-	                            lwz      r3, 0xd8(r3)
-	                            li       r0, 3
-	                            stb      r0, 0(r3)
-	                            blr
-	                            */
+	mBitfieldPerCourse[0] = 3; // valley of repose always unlocked
+	                           /*
+	                           clrlwi.  r0, r4, 0x18
+	                           beq      lbl_801E9330
+	                           li       r6, 0
+	                           li       r5, 3
+	                           b        lbl_801E931C
+	                       
+	                       lbl_801E9310:
+	                           lwz      r4, 0xd8(r3)
+	                           stbx     r5, r4, r6
+	                           addi     r6, r6, 1
+	                       
+	                       lbl_801E931C:
+	                           lwz      r4, stageList__4Game@sda21(r13)
+	                           lhz      r0, 0x100(r4)
+	                           cmpw     r6, r0
+	                           blt      lbl_801E9310
+	                           blr
+	                       
+	                       lbl_801E9330:
+	                           li       r6, 0
+	                           li       r5, 0
+	                           b        lbl_801E9348
+	                       
+	                       lbl_801E933C:
+	                           lwz      r4, 0xd8(r3)
+	                           stbx     r5, r4, r6
+	                           addi     r6, r6, 1
+	                       
+	                       lbl_801E9348:
+	                           lwz      r4, stageList__4Game@sda21(r13)
+	                           lhz      r0, 0x100(r4)
+	                           cmpw     r6, r0
+	                           blt      lbl_801E933C
+	                           lwz      r3, 0xd8(r3)
+	                           li       r0, 3
+	                           stb      r0, 0(r3)
+	                           blr
+	                           */
 }
 
 /*
@@ -4354,12 +4354,12 @@ void PlayData::initCourses(bool type)
 void PlayData::openCourse(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1905, isValidIndex);
 	if (!courseOpen(index)) {
-		m_bitfieldPerCourse[index] = PDCF_Open;
+		mBitfieldPerCourse[index] = PDCF_Open;
 	}
 }
 
@@ -4371,11 +4371,11 @@ void PlayData::openCourse(int index)
 void PlayData::visitCourse(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1918, isValidIndex);
-	m_bitfieldPerCourse[index] |= PDCF_Visited;
+	mBitfieldPerCourse[index] |= PDCF_Visited;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4427,11 +4427,11 @@ bool PlayData::closeCourse(int) { }
 bool PlayData::courseOpen(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1930, isValidIndex);
-	return (m_bitfieldPerCourse[index] & PDCF_Open);
+	return (mBitfieldPerCourse[index] & PDCF_Open);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4480,22 +4480,22 @@ lbl_801E94DC:
 bool PlayData::courseJustOpen(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1936, isValidIndex);
 
 	isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1930, isValidIndex);
 
-	if (!(m_bitfieldPerCourse[index] & PDCF_Open)) {
+	if (!(mBitfieldPerCourse[index] & PDCF_Open)) {
 		return false;
 	} else {
-		m_bitfieldPerCourse[index] |= 2;
-		return (m_bitfieldPerCourse[index] & PDCF_Unknown2);
+		mBitfieldPerCourse[index] |= 2;
+		return (mBitfieldPerCourse[index] & PDCF_Unknown2);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -4578,19 +4578,19 @@ lbl_801E95CC:
 bool PlayData::courseFirstTime(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1936, isValidIndex);
 
 	isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1930, isValidIndex);
 
-	if (m_bitfieldPerCourse[index] & PDCF_Open) {
-		return (m_bitfieldPerCourse[index] & PDCF_Unknown2) != 0;
+	if (mBitfieldPerCourse[index] & PDCF_Open) {
+		return (mBitfieldPerCourse[index] & PDCF_Unknown2) != 0;
 	} else {
 		return false;
 	}
@@ -4673,11 +4673,11 @@ lbl_801E96A8:
 bool PlayData::courseVisited(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1965, isValidIndex);
-	return m_bitfieldPerCourse[index] & PDCF_Visited;
+	return mBitfieldPerCourse[index] & PDCF_Visited;
 }
 
 /*
@@ -4686,8 +4686,8 @@ bool PlayData::courseVisited(int index)
  * Size:	000084
  */
 CaveSaveData::CaveSaveData()
-    : m_currentCaveID()
-    , m_cavePikis()
+    : mCurrentCaveID()
+    , mCavePikis()
     , _30()
 {
 	clear();
@@ -4701,12 +4701,12 @@ CaveSaveData::CaveSaveData()
 // void CaveSaveData::clear()
 // {
 // 	_14.clear();
-// 	m_time = 0.0f;
-// 	m_isInCave = false;
-// 	m_currentCourse = -1;
-// 	m_currentCaveID.setID('none');
-// 	m_isWaterwraithAlive = 1;
-// 	m_waterwraithTimer = 0.0f;
+// 	mTime = 0.0f;
+// 	mIsInCave = false;
+// 	mCurrentCourse = -1;
+// 	mCurrentCaveID.setID('none');
+// 	mIsWaterwraithAlive = 1;
+// 	mWaterwraithTimer = 0.0f;
 // 	/*
 // 	stwu     r1, -0x10(r1)
 // 	mflr     r0
@@ -4744,19 +4744,19 @@ CaveSaveData::CaveSaveData()
  */
 bool PlayData::doneWorldMapEffect()
 {
-	m_pokoCountOld = m_pokoCount;
+	mPokoCountOld = mPokoCount;
 
-	for (int i = 0; i < stageList->m_courseCount; i++) {
-		m_groundOtakaraCollectedOld[i] = 0;
+	for (int i = 0; i < stageList->mCourseCount; i++) {
+		mGroundOtakaraCollectedOld[i] = 0;
 	}
 
-	for (int i = 0; i < stageList->m_courseCount; i++) {
-		CaveOtakara* data    = m_caveOtakaraOld;
-		CaveOtakara* datanew = m_caveOtakara;
-		if (data->m_caveCount > 0) {
-			for (int j = 0; j < data->m_caveCount; j++) {
-				data->m_otakaraCountsOld[j] = datanew->m_otakaraCountsOld[j];
-				data->_08[j]                = datanew->m_otakaraCountsOld[j];
+	for (int i = 0; i < stageList->mCourseCount; i++) {
+		CaveOtakara* data    = mCaveOtakaraOld;
+		CaveOtakara* datanew = mCaveOtakara;
+		if (data->mCaveCount > 0) {
+			for (int j = 0; j < data->mCaveCount; j++) {
+				data->mOtakaraCountsOld[j] = datanew->mOtakaraCountsOld[j];
+				data->_08[j]               = datanew->mOtakaraCountsOld[j];
 			}
 		}
 	}
@@ -4889,11 +4889,11 @@ lbl_801E99B0:
 int PlayData::getGroundOtakaraNum_Old(int index)
 {
 	bool isValidIndex = false;
-	if (0 <= index && index < stageList->m_courseCount) {
+	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(2040, isValidIndex);
-	return m_groundOtakaraCollectedOld[index];
+	return mGroundOtakaraCollectedOld[index];
 }
 
 /*
@@ -4905,11 +4905,11 @@ int PlayData::getOtakaraNum_Course_CaveID_Old(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* ota = m_caveOtakaraOld;
+		CaveOtakara* ota = mCaveOtakaraOld;
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
-			if (id >= 0 && id < ota[courseIndex].m_caveCount) {
-				return ota[courseIndex].m_otakaraCountsOld[id];
+			if (id >= 0 && id < ota[courseIndex].mCaveCount) {
+				return ota[courseIndex].mOtakaraCountsOld[id];
 			}
 		}
 		return -1;
@@ -4980,7 +4980,7 @@ lbl_801E9AD8:
  * Address:	801E9AF4
  * Size:	000008
  */
-int PlayData::getMoney_Old() { return m_pokoCountOld; }
+int PlayData::getMoney_Old() { return mPokoCountOld; }
 
 /*
  * --INFO--
@@ -4991,10 +4991,10 @@ bool PlayData::isCaveFirstTime_Old(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = Game::stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* otakara = m_caveOtakaraOld;
+		CaveOtakara* otakara = mCaveOtakaraOld;
 		int caveIndex        = info->getCaveIndex_FromID(caveID);
 		if (caveIndex != -1) {
-			if (0 <= caveIndex && caveIndex < otakara[courseIndex].m_caveCount) {
+			if (0 <= caveIndex && caveIndex < otakara[courseIndex].mCaveCount) {
 				return otakara[courseIndex]._08[caveIndex] == 0;
 			}
 			return false;
@@ -5059,16 +5059,16 @@ lbl_801E9B84:
  */
 void PlayData::read_CaveOtakara_Old(Stream& ram)
 {
-	int max = stageList->m_courseCount;
+	int max = stageList->mCourseCount;
 	for (int i = 0; i < max; i++) {
-		CaveOtakara ota = m_caveOtakaraOld[i];
-		u8 oldcount     = ota.m_caveCount;
-		ota.m_caveCount = ram.readByte();
-		JUT_ASSERTLINE(1797, ota.m_caveCount == oldcount, "ƒZ[ƒu‚µ‚½‚Æ‚«‚Æ“´ŒA‚Ì”‚ª‚ ‚¢‚Ü‚¹‚ñ\n");
+		CaveOtakara ota = mCaveOtakaraOld[i];
+		u8 oldcount     = ota.mCaveCount;
+		ota.mCaveCount  = ram.readByte();
+		JUT_ASSERTLINE(1797, ota.mCaveCount == oldcount, "ƒZ[ƒu‚µ‚½‚Æ‚«‚Æ“´ŒA‚Ì”‚ª‚ ‚¢‚Ü‚¹‚ñ\n");
 
-		for (int j = 0; j < ota.m_caveCount; j++) {
-			ota.m_otakaraCountsOld[j] = ram.readByte();
-			ota._08[j]                = ram.readByte();
+		for (int j = 0; j < ota.mCaveCount; j++) {
+			ota.mOtakaraCountsOld[j] = ram.readByte();
+			ota._08[j]               = ram.readByte();
 		}
 	}
 	/*
@@ -5146,19 +5146,19 @@ lbl_801E9C58:
 void PlayData::write_CaveOtakara_Old(Stream& ram)
 {
 	ram.textBeginGroup("–“´ŒAî•ñ(Old)–");
-	int max = stageList->m_courseCount;
+	int max = stageList->mCourseCount;
 	for (int i = 0; i < max; i++) {
-		CaveOtakara ota = m_caveOtakaraOld[i];
-		ram.textWriteTab(ram.m_tabCount);
-		ram.writeByte(ota.m_caveCount);
+		CaveOtakara ota = mCaveOtakaraOld[i];
+		ram.textWriteTab(ram.mTabCount);
+		ram.writeByte(ota.mCaveCount);
 		ram.textWriteText("# cave”\r\n");
 
-		for (int j = 0; j < ota.m_caveCount; j++) {
-			ram.textWriteTab(ram.m_tabCount);
-			ram.writeByte(ota.m_otakaraCountsOld[j]);
+		for (int j = 0; j < ota.mCaveCount; j++) {
+			ram.textWriteTab(ram.mTabCount);
+			ram.writeByte(ota.mOtakaraCountsOld[j]);
 			ram.textWriteText("# ŒÂ”\r\n"); // translates to quantity
 
-			ram.textWriteTab(ram.m_tabCount);
+			ram.textWriteTab(ram.mTabCount);
 			ram.writeByte(ota._08[j]);
 			ram.textWriteText("# ó‘Ô\r\n"); // translates to situation
 		}
@@ -5258,7 +5258,7 @@ int PlayData::getPikminCount_Today(int pikminColor)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(2114, isValidIndex);
-	return m_pikminToday[pikminColor];
+	return mPikminToday[pikminColor];
 }
 
 /*
@@ -5273,7 +5273,7 @@ int PlayData::getPikminCount_Yesterday(int pikminColor)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(2121, isValidIndex);
-	return m_pikminYesterday[pikminColor];
+	return mPikminYesterday[pikminColor];
 }
 
 /*
@@ -5296,16 +5296,16 @@ void PlayData::setPikminCounts_Today()
 			pikis -= cont1;
 			if (pikis < 0)
 				pikis = 0;
-			int pikis3       = m_pikiContainer.getTotalSum();
-			m_pikminToday[i] = pikis + pikiheads + pikis3;
+			int pikis3      = mPikiContainer.getTotalSum();
+			mPikminToday[i] = pikis + pikiheads + pikis3;
 		} else {
 			int pikiheads = generatorCache->getColorMePikmins(i);
-			int pikis     = cont2.m_pikiCounts[i];
-			pikis -= cont1.m_pikiCounts[i];
+			int pikis     = cont2.mPikiCounts[i];
+			pikis -= cont1.mPikiCounts[i];
 			if (pikis < 0)
 				pikis = 0;
-			int pikis3       = m_pikiContainer.getColorSum(i);
-			m_pikminToday[i] = pikis + pikiheads + pikis3;
+			int pikis3      = mPikiContainer.getColorSum(i);
+			mPikminToday[i] = pikis + pikiheads + pikis3;
 		}
 	}
 
@@ -5396,11 +5396,11 @@ lbl_801E9F58:
  */
 void PlayData::setPikminCounts_Yesterday()
 {
-	m_pikminYesterday[0] = m_pikminToday[0];
-	m_pikminYesterday[1] = m_pikminToday[1];
-	m_pikminYesterday[2] = m_pikminToday[2];
-	m_pikminYesterday[3] = m_pikminToday[3];
-	m_pikminYesterday[4] = m_pikminToday[4];
-	m_pikminYesterday[5] = m_pikminToday[5];
+	mPikminYesterday[0] = mPikminToday[0];
+	mPikminYesterday[1] = mPikminToday[1];
+	mPikminYesterday[2] = mPikminToday[2];
+	mPikminYesterday[3] = mPikminToday[3];
+	mPikminYesterday[4] = mPikminToday[4];
+	mPikminYesterday[5] = mPikminToday[5];
 }
 } // namespace Game

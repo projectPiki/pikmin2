@@ -19,16 +19,16 @@ struct BaseAnimator {
 struct Animator : public BaseAnimator {
 	Animator()
 	{
-		m_flags    = 0;
-		m_animInfo = nullptr;
-		m_listener = nullptr;
-		m_flags    = 0;
-		m_animMgr  = nullptr;
+		mFlags    = 0;
+		mAnimInfo = nullptr;
+		mListener = nullptr;
+		mFlags    = 0;
+		mAnimMgr  = nullptr;
 	}
 
 	virtual J3DMtxCalc* getCalc() // _08 (weak)
 	{
-		return (m_animInfo != nullptr) ? m_animInfo->m_calc : nullptr;
+		return (mAnimInfo != nullptr) ? mAnimInfo->mCalc : nullptr;
 	}
 	virtual void animate(f32); // _0C
 
@@ -39,12 +39,12 @@ struct Animator : public BaseAnimator {
 	void setFrameByKeyType(u32);
 	void setLastFrame();
 
-	MotionListener* m_listener; // _04
-	f32 m_timer;                // _08
-	AnimInfo* m_animInfo;       // _0C
-	AnimMgr* m_animMgr;         // _10
-	KeyEvent* m_curAnimKey;     // _14
-	u8 m_flags;                 // _18
+	MotionListener* mListener; // _04
+	f32 mTimer;                // _08
+	AnimInfo* mAnimInfo;       // _0C
+	AnimMgr* mAnimMgr;         // _10
+	KeyEvent* mCurAnimKey;     // _14
+	u8 mFlags;                 // _18
 };
 
 struct BlendFunction {
@@ -78,13 +78,13 @@ struct BlendAnimator : public BaseAnimator {
 	void endBlend();
 	void animate(BlendFunction*, f32, f32, f32);
 
-	Animator m_animators[2];          // _04
-	f32 _3C;                          // _3C
-	f32 _40;                          // _40
-	MotionListener* m_motionListener; // _44
-	u8 _48;                           // _48
-	u8 _49;                           // _49
-	J3DMtxCalc* m_mtxCalc;            // _4C
+	Animator mAnimators[2];          // _04
+	f32 _3C;                         // _3C
+	f32 _40;                         // _40
+	MotionListener* mMotionListener; // _44
+	u8 _48;                          // _48
+	u8 _49;                          // _49
+	J3DMtxCalc* mMtxCalc;            // _4C
 };
 
 } // namespace SysShape

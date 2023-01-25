@@ -52,15 +52,15 @@ struct JFWDisplay {
 	void frameToTick(f32);
 
 	// _00 VTBL
-	JUTFader* m_fader;    // _04
+	JUTFader* mFader;     // _04
 	JUtility::TColor _08; // _08
 	u32 _0C;              // _0C
-	JUTXfb* m_Xfb;        // _10
+	JUTXfb* mXfb;         // _10
 	u16 _14;              // _14
 	u32 _18;              // _18
 
 	/// PikDecomp calls this "fpsDivider".
-	u16 m_secondsPer60Frames; // _1C
+	u16 mSecondsPer60Frames; // _1C
 
 	u32 _20;  // _20
 	bool _24; // _24

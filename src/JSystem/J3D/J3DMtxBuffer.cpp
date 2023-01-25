@@ -45,19 +45,19 @@
  */
 void J3DMtxBuffer::initialize()
 {
-	m_jointTree         = nullptr;
-	_04                 = nullptr;
-	_08                 = 0;
-	m_worldMatrices     = nullptr;
-	_10                 = nullptr;
-	_14[0]              = nullptr;
-	_14[1]              = nullptr;
-	_1C[0]              = nullptr;
-	_1C[1]              = nullptr;
-	_24[0]              = 0;
-	_24[1]              = nullptr;
-	m_modelType         = 1;
-	m_currentViewNumber = 0;
+	mJointTree         = nullptr;
+	_04                = nullptr;
+	_08                = 0;
+	mWorldMatrices     = nullptr;
+	_10                = nullptr;
+	_14[0]             = nullptr;
+	_14[1]             = nullptr;
+	_1C[0]             = nullptr;
+	_1C[1]             = nullptr;
+	_24[0]             = 0;
+	_24[1]             = nullptr;
+	mModelType         = 1;
+	mCurrentViewNumber = 0;
 }
 
 /*
@@ -67,9 +67,9 @@ void J3DMtxBuffer::initialize()
  */
 int J3DMtxBuffer::create(J3DModelData* data, u32 modelType)
 {
-	m_modelType = modelType;
-	m_jointTree = &data->m_jointTree;
-	int result  = createAnmMtx(data);
+	mModelType = modelType;
+	mJointTree = &data->mJointTree;
+	int result = createAnmMtx(data);
 	if (result != 0) {
 		return result;
 	}
@@ -77,10 +77,10 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 modelType)
 	if (result != 0) {
 		return result;
 	}
-	if (data->m_modelLoaderFlags >> 8 & 1) {
+	if (data->mModelLoaderFlags >> 8 & 1) {
 		setNoUseDrawMtx();
 	} else {
-		switch (data->m_modelLoaderFlags & 0x10) {
+		switch (data->mModelLoaderFlags & 0x10) {
 		case 0x10:
 			result = setNoUseDrawMtx();
 			break;
@@ -93,7 +93,7 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 modelType)
 	if (result != 0) {
 		return result;
 	}
-	if ((data->m_modelLoaderFlags & 0x10) != 0) {
+	if ((data->mModelLoaderFlags & 0x10) != 0) {
 		data->_0C = 0;
 	} else {
 		result = createBumpMtxArray(data, modelType);
@@ -111,9 +111,9 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 modelType)
  */
 int J3DMtxBuffer::createAnmMtx(J3DModelData* data)
 {
-	if (data->m_jointTree.m_jointCnt) {
-		_04             = new u8[data->m_jointTree.m_jointCnt];
-		m_worldMatrices = new Mtx[data->m_jointTree.m_jointCnt];
+	if (data->mJointTree.mJointCnt) {
+		_04            = new u8[data->mJointTree.mJointCnt];
+		mWorldMatrices = new Mtx[data->mJointTree.mJointCnt];
 	}
 	return 0;
 }
@@ -125,9 +125,9 @@ int J3DMtxBuffer::createAnmMtx(J3DModelData* data)
  */
 int J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* data)
 {
-	if (data->m_jointTree.m_envelopeCnt) {
-		_08 = new u8[data->m_jointTree.m_envelopeCnt];
-		_10 = new Mtx[data->m_jointTree.m_envelopeCnt];
+	if (data->mJointTree.mEnvelopeCnt) {
+		_08 = new u8[data->mJointTree.mEnvelopeCnt];
+		_10 = new Mtx[data->mJointTree.mEnvelopeCnt];
 	}
 	return 0;
 }
@@ -205,9 +205,9 @@ int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 p2)
 	}
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < p2; j++) {
-			if (data->m_jointTree.m_mtxData.m_count) {
-				_14[i][j] = new (0x20) Mtx[data->m_jointTree.m_mtxData.m_count];
-				_1C[i][j] = new (0x20) Mtx33[data->m_jointTree.m_mtxData.m_count];
+			if (data->mJointTree.mMtxData.mCount) {
+				_14[i][j] = new (0x20) Mtx[data->mJointTree.mMtxData.mCount];
+				_1C[i][j] = new (0x20) Mtx33[data->mJointTree.mMtxData.mCount];
 			}
 		}
 	}
@@ -221,14 +221,14 @@ int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 p2)
  */
 int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 p2)
 {
-	if (data->m_jointTree.m_flags == 0) {
-		u16 materialCount = data->m_materialTable.m_count1;
+	if (data->mJointTree.mFlags == 0) {
+		u16 materialCount = data->mMaterialTable.mCount1;
 		u16 bumpMtxCount  = 0;
 		u16 v1            = 0;
 		for (u16 i = 0; i < materialCount; i++) {
-			J3DMaterial* material = data->m_materialTable.m_materials1[i];
-			if (material->m_texGenBlock->getNBTScale()->_00 == 1) {
-				bumpMtxCount += material->m_shape->countBumpMtxNum();
+			J3DMaterial* material = data->mMaterialTable.mMaterials1[i];
+			if (material->mTexGenBlock->getNBTScale()->_00 == 1) {
+				bumpMtxCount += material->mShape->countBumpMtxNum();
 				v1++;
 			}
 		}
@@ -238,25 +238,25 @@ int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 p2)
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			u16 materialCount = data->m_materialTable.m_count1;
+			u16 materialCount = data->mMaterialTable.mCount1;
 			int shapeCount    = 0;
 			for (u16 matIndex = 0; matIndex < materialCount; matIndex++) {
-				J3DMaterial* material = data->m_materialTable.m_materials1[matIndex];
-				if (material->m_texGenBlock->getNBTScale()->_00 == 1) {
-					_24[i][shapeCount]     = new Mtx33*[p2];
-					material->m_shape->_64 = shapeCount;
+				J3DMaterial* material = data->mMaterialTable.mMaterials1[matIndex];
+				if (material->mTexGenBlock->getNBTScale()->_00 == 1) {
+					_24[i][shapeCount]    = new Mtx33*[p2];
+					material->mShape->_64 = shapeCount;
 					shapeCount += 1;
 				}
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			u16 materialCount = data->m_materialTable.m_count1;
+			u16 materialCount = data->mMaterialTable.mCount1;
 			int j             = 0;
 			for (u16 matIndex = 0; matIndex < materialCount; matIndex++) {
-				J3DMaterial* material = data->m_materialTable.m_materials1[matIndex];
-				if (material->m_texGenBlock->getNBTScale()->_00 == 1) {
+				J3DMaterial* material = data->mMaterialTable.mMaterials1[matIndex];
+				if (material->mTexGenBlock->getNBTScale()->_00 == 1) {
 					for (int k = 0; k < p2; k++) {
-						_24[i][j][k] = new (0x20) Mtx33[data->m_jointTree.m_mtxData.m_count];
+						_24[i][j][k] = new (0x20) Mtx33[data->mJointTree.mMtxData.mCount];
 					}
 					j++;
 				}

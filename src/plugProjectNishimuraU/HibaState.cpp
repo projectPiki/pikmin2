@@ -34,7 +34,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	hiba->enableEvent(0, EB_IsVulnerable);
 	hiba->disableEvent(0, EB_IsDamageAnimAllowed);
 
-	hiba->m_isAlive = false;
+	hiba->mIsAlive = false;
 	hiba->generatorKill();
 
 	hiba->startMotion(0, nullptr);
@@ -42,7 +42,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	PSStartEnemyFatalHitSE(hiba, 0.0f);
 
 	Vector3f position            = hiba->getPosition();
-	f32 scale                    = hiba->m_scaleModifier;
+	f32 scale                    = hiba->mScaleModifier;
 	EnemyTypeID::EEnemyTypeID id = hiba->getEnemyTypeID();
 	efx::ArgEnemyType arg(position, id, scale);
 	efx::TEnemyBomb bombEffect;
@@ -73,9 +73,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* hiba         = static_cast<Obj*>(enemy);
 	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
 	if (stateArg) {
-		hiba->m_timer = arg->m_waitTimer;
+		hiba->mTimer = arg->mWaitTimer;
 	} else {
-		hiba->m_timer = 0.0f;
+		hiba->mTimer = 0.0f;
 	}
 
 	hiba->startMotion(0, nullptr);
@@ -89,15 +89,15 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* hiba = static_cast<Obj*>(enemy);
-	hiba->m_timer += sys->m_deltaTime;
+	hiba->mTimer += sys->mDeltaTime;
 
-	if (hiba->m_health <= 0.0f) {
+	if (hiba->mHealth <= 0.0f) {
 		transit(hiba, HIBA_Dead, nullptr);
 		return;
 	}
 
 	// If enough time has passed, attack
-	if (hiba->m_timer > static_cast<Parms*>(hiba->m_parms)->m_properParms.m_waitTime.m_value) {
+	if (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mWaitTime.mValue) {
 		transit(hiba, HIBA_Attack, nullptr);
 	}
 }
@@ -116,8 +116,8 @@ void StateWait::cleanup(EnemyBase*) { }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* hiba     = static_cast<Obj*>(enemy);
-	hiba->m_timer = 0.0f;
+	Obj* hiba    = static_cast<Obj*>(enemy);
+	hiba->mTimer = 0.0f;
 	hiba->startMotion(1, nullptr);
 	hiba->startFireEffect();
 }
@@ -132,18 +132,18 @@ void StateAttack::exec(EnemyBase* enemy)
 	Obj* hiba = static_cast<Obj*>(enemy);
 
 	// If dead or we're done being active, then finish
-	if ((hiba->m_health <= 0.0f) || (hiba->m_timer > static_cast<Parms*>(hiba->m_parms)->m_properParms.m_activeTime.m_value)) {
+	if ((hiba->mHealth <= 0.0f) || (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mActiveTime.mValue)) {
 		hiba->finishMotion();
 	}
 
-	hiba->m_timer += sys->m_deltaTime;
+	hiba->mTimer += sys->mDeltaTime;
 
 	hiba->updateEfxLod();
 	hiba->interactFireAttack();
 
-	if (hiba->m_curAnim->m_isPlaying
-	    && ((u32)hiba->m_curAnim->m_type == 0x3E8) /* Epoch: wtf is this, needs cleanup. Surely an enum (+1 from INTNS)? */) {
-		if (hiba->m_health <= 0.0f) {
+	if (hiba->mCurAnim->mIsPlaying
+	    && ((u32)hiba->mCurAnim->mType == 0x3E8) /* Epoch: wtf is this, needs cleanup. Surely an enum (+1 from INTNS)? */) {
+		if (hiba->mHealth <= 0.0f) {
 			transit(hiba, HIBA_Dead, nullptr);
 			return;
 		}

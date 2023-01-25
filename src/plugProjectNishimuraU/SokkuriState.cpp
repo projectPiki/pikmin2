@@ -37,7 +37,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* sokkuri = static_cast<Obj*>(enemy);
 	sokkuri->deathProcedure();
 	sokkuri->disableEvent(0, EB_IsCullable);
-	sokkuri->m_targetVelocity = Vector3f(0.0f);
+	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
 	sokkuri->startMotion(4, nullptr);
 }
@@ -50,11 +50,11 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
-	if (sokkuri->m_curAnim->m_isPlaying) {
-		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
+	if (sokkuri->mCurAnim->mIsPlaying) {
+		if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.5f, 0.55f);
 
-		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_END) {
 			sokkuri->kill(nullptr);
 		}
 	}
@@ -74,10 +74,10 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri      = static_cast<Obj*>(enemy);
-	sokkuri->m_health = 0.0f;
+	Obj* sokkuri     = static_cast<Obj*>(enemy);
+	sokkuri->mHealth = 0.0f;
 	sokkuri->deathProcedure();
-	sokkuri->m_targetVelocity = Vector3f(0.0f);
+	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
 	sokkuri->startMotion(5, nullptr);
 	sokkuri->createDownEffect(0.75f, 0.0f);
@@ -91,11 +91,11 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 void StatePress::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
-	if (sokkuri->m_curAnim->m_isPlaying) {
-		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
+	if (sokkuri->mCurAnim->mIsPlaying) {
+		if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.0f, 0.55f);
 
-		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_END) {
 			sokkuri->kill(nullptr);
 		}
 	}
@@ -115,23 +115,23 @@ void StatePress::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri         = static_cast<Obj*>(enemy);
-	sokkuri->m_timer     = 0.0f;
-	sokkuri->m_nextState = SOKKURI_NULL;
+	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	sokkuri->mTimer     = 0.0f;
+	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
 
 	sokkuri->disableEvent(0, EB_LifegaugeVisible);
 	sokkuri->enableEvent(0, EB_IsImmuneBitter);
-	sokkuri->m_isHiding = true;
+	sokkuri->mIsHiding = true;
 	sokkuri->setEmotionNone();
 	sokkuri->hardConstraintOn();
 	sokkuri->disableEvent(0, EB_IsAnimating);
 
-	sokkuri->m_targetVelocity = Vector3f(0.0f);
+	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->startMotion(1, nullptr);
 	sokkuri->stopMotion();
 
-	if (sokkuri->m_waterBox) {
+	if (sokkuri->mWaterBox) {
 		sokkuri->fadeEfxHamon();
 	}
 }
@@ -159,11 +159,11 @@ void StateStay::cleanup(EnemyBase* enemy)
 	Obj* sokkuri = static_cast<Obj*>(enemy);
 	sokkuri->enableEvent(0, EB_LifegaugeVisible);
 	sokkuri->disableEvent(0, EB_IsImmuneBitter);
-	sokkuri->m_isHiding = false;
+	sokkuri->mIsHiding = false;
 	sokkuri->hardConstraintOff();
 	sokkuri->enableEvent(0, EB_IsAnimating);
 
-	if (sokkuri->m_waterBox) {
+	if (sokkuri->mWaterBox) {
 		sokkuri->createEfxHamon();
 	}
 }
@@ -175,11 +175,11 @@ void StateStay::cleanup(EnemyBase* enemy)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri         = static_cast<Obj*>(enemy);
-	sokkuri->m_timer     = 0.0f;
-	sokkuri->m_nextState = SOKKURI_NULL;
+	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	sokkuri->mTimer     = 0.0f;
+	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
-	sokkuri->m_targetVelocity = Vector3f(0.0f);
+	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionExcitement();
 	sokkuri->startMotion(1, nullptr);
 	sokkuri->createDownEffect(0.35f, 0.0f);
@@ -194,13 +194,13 @@ void StateAppear::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
 
-	if (sokkuri->m_health <= 0.0f) {
+	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 
 	} else if (EnemyFunc::isStartFlick(sokkuri, false)) {
 		transit(sokkuri, SOKKURI_Flick, nullptr);
 
-	} else if (sokkuri->m_curAnim->m_isPlaying && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
+	} else if (sokkuri->mCurAnim->mIsPlaying && (u32)sokkuri->mCurAnim->mType == KEYEVENT_END) {
 		transit(sokkuri, SOKKURI_MoveGround, nullptr);
 	}
 }
@@ -219,11 +219,11 @@ void StateAppear::cleanup(EnemyBase* enemy) { }
  */
 void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri         = static_cast<Obj*>(enemy);
-	sokkuri->m_timer     = 0.0f;
-	sokkuri->m_nextState = SOKKURI_NULL;
+	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	sokkuri->mTimer     = 0.0f;
+	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
-	sokkuri->m_targetVelocity = Vector3f(0.0f);
+	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
 	sokkuri->startMotion(3, nullptr);
 	sokkuri->createBubbleEffect();
@@ -237,14 +237,14 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDisappear::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
-	if (sokkuri->m_health <= 0.0f) {
+	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 
-	} else if (sokkuri->m_curAnim->m_isPlaying) {
-		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
+	} else if (sokkuri->mCurAnim->mIsPlaying) {
+		if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.35f, 0.0f);
 
-		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_END) {
 			transit(sokkuri, SOKKURI_Stay, nullptr);
 		}
 	}
@@ -264,12 +264,12 @@ void StateDisappear::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri         = static_cast<Obj*>(enemy);
-	sokkuri->m_timer     = 0.0f;
-	sokkuri->m_nextState = SOKKURI_NULL;
+	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	sokkuri->mTimer     = 0.0f;
+	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
 	sokkuri->setNextWaitInfo();
-	sokkuri->m_targetVelocity = Vector3f(0.0f);
+	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->startMotion(2, nullptr);
 }
 
@@ -281,32 +281,32 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
-	if (sokkuri->m_health <= 0.0f) {
+	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 
 	} else if (EnemyFunc::isStartFlick(sokkuri, false)) {
 		transit(sokkuri, SOKKURI_Flick, nullptr);
 
 	} else {
-		if (sokkuri->m_timer > static_cast<Parms*>(sokkuri->m_parms)->m_properParms.m_fp12.m_value) {
+		if (sokkuri->mTimer > static_cast<Parms*>(sokkuri->mParms)->mProperParms.mFp12.mValue) {
 			if (sokkuri->isDisappear()) {
-				sokkuri->m_nextState = SOKKURI_Disappear;
+				sokkuri->mNextState = SOKKURI_Disappear;
 				sokkuri->finishMotion();
 
-			} else if (sokkuri->m_waterBox) {
-				sokkuri->m_nextState = SOKKURI_MoveWater;
+			} else if (sokkuri->mWaterBox) {
+				sokkuri->mNextState = SOKKURI_MoveWater;
 				sokkuri->finishMotion();
 
 			} else {
-				sokkuri->m_nextState = SOKKURI_MoveGround;
+				sokkuri->mNextState = SOKKURI_MoveGround;
 				sokkuri->finishMotion();
 			}
 		}
 
-		sokkuri->m_timer += sys->m_deltaTime;
+		sokkuri->mTimer += sys->mDeltaTime;
 
-		if (sokkuri->m_curAnim->m_isPlaying && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
-			transit(sokkuri, sokkuri->m_nextState, nullptr);
+		if (sokkuri->mCurAnim->mIsPlaying && (u32)sokkuri->mCurAnim->mType == KEYEVENT_END) {
+			transit(sokkuri, sokkuri->mNextState, nullptr);
 		}
 	}
 }
@@ -325,9 +325,9 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateMoveGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri         = static_cast<Obj*>(enemy);
-	sokkuri->m_timer     = 0.0f;
-	sokkuri->m_nextState = SOKKURI_NULL;
+	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	sokkuri->mTimer     = 0.0f;
+	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->setNextMoveInfo();
 	sokkuri->startMotion(0, nullptr);
 	sokkuri->createDownEffect(0.28f, 0.0f);
@@ -343,7 +343,7 @@ void StateMoveGround::exec(EnemyBase* enemy)
 	Obj* sokkuri = static_cast<Obj*>(enemy);
 	sokkuri->updateMoveState();
 
-	if (sokkuri->m_health <= 0.0f) {
+	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 		return;
 	}
@@ -353,43 +353,43 @@ void StateMoveGround::exec(EnemyBase* enemy)
 		return;
 	}
 
-	Parms* parms = static_cast<Parms*>(sokkuri->m_parms);
-	if (sokkuri->m_timer > parms->m_properParms.m_fp01.m_value) {
+	Parms* parms = static_cast<Parms*>(sokkuri->mParms);
+	if (sokkuri->mTimer > parms->mProperParms.mFp01.mValue) {
 		if (sokkuri->isDisappear()) {
-			sokkuri->m_nextState = SOKKURI_Disappear;
+			sokkuri->mNextState = SOKKURI_Disappear;
 			sokkuri->finishMotion();
 
 		} else {
-			Parms* parms = static_cast<Parms*>(sokkuri->m_parms);
-			if (randWeightFloat(1.0f) < parms->m_properParms.m_fp11.m_value) {
-				sokkuri->m_nextState = SOKKURI_Wait;
+			Parms* parms = static_cast<Parms*>(sokkuri->mParms);
+			if (randWeightFloat(1.0f) < parms->mProperParms.mFp11.mValue) {
+				sokkuri->mNextState = SOKKURI_Wait;
 				sokkuri->finishMotion();
 
-			} else if (sokkuri->m_waterBox) {
-				sokkuri->m_targetVelocity = Vector3f(0.0f);
-				sokkuri->m_nextState      = SOKKURI_MoveWater;
+			} else if (sokkuri->mWaterBox) {
+				sokkuri->mTargetVelocity = Vector3f(0.0f);
+				sokkuri->mNextState      = SOKKURI_MoveWater;
 				sokkuri->finishMotion();
 
 			} else {
-				sokkuri->m_nextState = SOKKURI_MoveGround;
+				sokkuri->mNextState = SOKKURI_MoveGround;
 				sokkuri->finishMotion();
 			}
 		}
-	} else if (sokkuri->m_waterBox) {
-		sokkuri->m_targetVelocity = Vector3f(0.0f);
-		sokkuri->m_nextState      = SOKKURI_MoveWater;
+	} else if (sokkuri->mWaterBox) {
+		sokkuri->mTargetVelocity = Vector3f(0.0f);
+		sokkuri->mNextState      = SOKKURI_MoveWater;
 		sokkuri->finishMotion();
 
 	} else {
-		Vector3f targetPos = Vector3f(sokkuri->m_targetPosition);
-		EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->m_moveVelocity, parms->m_general.m_rotationalAccel.m_value,
-		                        parms->m_general.m_rotationalSpeed.m_value);
+		Vector3f targetPos = Vector3f(sokkuri->mTargetPosition);
+		EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->mMoveVelocity, parms->mGeneral.mRotationalAccel.mValue,
+		                        parms->mGeneral.mRotationalSpeed.mValue);
 	}
 
-	sokkuri->m_timer += sys->m_deltaTime;
+	sokkuri->mTimer += sys->mDeltaTime;
 
-	if (sokkuri->m_curAnim->m_isPlaying && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
-		transit(enemy, sokkuri->m_nextState,
+	if (sokkuri->mCurAnim->mIsPlaying && (u32)sokkuri->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, sokkuri->mNextState,
 		        nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
 	}
 }
@@ -408,9 +408,9 @@ void StateMoveGround::cleanup(EnemyBase* enemy) { }
  */
 void StateMoveWater::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri         = static_cast<Obj*>(enemy);
-	sokkuri->m_timer     = 0.0f;
-	sokkuri->m_nextState = SOKKURI_NULL;
+	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	sokkuri->mTimer     = 0.0f;
+	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->setNextMoveInfo();
 	sokkuri->startMotion(6, nullptr);
 }
@@ -425,7 +425,7 @@ void StateMoveWater::exec(EnemyBase* enemy)
 	Obj* sokkuri = static_cast<Obj*>(enemy);
 	sokkuri->updateMoveState();
 
-	if (sokkuri->m_health <= 0.0f) {
+	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 		return;
 	}
@@ -435,38 +435,38 @@ void StateMoveWater::exec(EnemyBase* enemy)
 		return;
 	}
 	if (sokkuri->isDisappear()) {
-		sokkuri->m_nextState = SOKKURI_Disappear;
+		sokkuri->mNextState = SOKKURI_Disappear;
 		sokkuri->finishMotion();
 
 	} else {
-		Parms* parms = static_cast<Parms*>(sokkuri->m_parms);
-		if (sokkuri->m_timer > parms->m_properParms.m_fp01.m_value) {
-			if (sokkuri->m_waterBox) {
-				sokkuri->m_timer = 0.0f;
+		Parms* parms = static_cast<Parms*>(sokkuri->mParms);
+		if (sokkuri->mTimer > parms->mProperParms.mFp01.mValue) {
+			if (sokkuri->mWaterBox) {
+				sokkuri->mTimer = 0.0f;
 				sokkuri->setNextMoveInfo();
 
 			} else {
-				sokkuri->m_targetVelocity = Vector3f(0.0f);
-				sokkuri->m_nextState      = SOKKURI_MoveGround;
+				sokkuri->mTargetVelocity = Vector3f(0.0f);
+				sokkuri->mNextState      = SOKKURI_MoveGround;
 				sokkuri->finishMotion();
 			}
 
-		} else if (sokkuri->m_waterBox == nullptr) {
-			sokkuri->m_targetVelocity = Vector3f(0.0f);
-			sokkuri->m_nextState      = SOKKURI_MoveGround;
+		} else if (sokkuri->mWaterBox == nullptr) {
+			sokkuri->mTargetVelocity = Vector3f(0.0f);
+			sokkuri->mNextState      = SOKKURI_MoveGround;
 			sokkuri->finishMotion();
 
 		} else {
-			Vector3f targetPos = Vector3f(sokkuri->m_targetPosition);
-			EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->m_moveVelocity, parms->m_properParms.m_fp22.m_value,
-			                        parms->m_properParms.m_fp23.m_value);
+			Vector3f targetPos = Vector3f(sokkuri->mTargetPosition);
+			EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->mMoveVelocity, parms->mProperParms.mFp22.mValue,
+			                        parms->mProperParms.mFp23.mValue);
 		}
 	}
 
-	sokkuri->m_timer += sys->m_deltaTime;
+	sokkuri->mTimer += sys->mDeltaTime;
 
-	if (sokkuri->m_curAnim->m_isPlaying && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
-		transit(enemy, sokkuri->m_nextState,
+	if (sokkuri->mCurAnim->mIsPlaying && (u32)sokkuri->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, sokkuri->mNextState,
 		        nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
 	}
 }
@@ -485,12 +485,12 @@ void StateMoveWater::cleanup(EnemyBase* enemy) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri         = static_cast<Obj*>(enemy);
-	sokkuri->m_timer     = 0.0f;
-	sokkuri->m_nextState = SOKKURI_NULL;
+	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	sokkuri->mTimer     = 0.0f;
+	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
 	sokkuri->disableEvent(0, EB_IsEnemyNotBitter);
-	sokkuri->m_targetVelocity = Vector3f(0.0f);
+	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->startMotion(7, nullptr);
 }
 
@@ -503,44 +503,44 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
 
-	if (sokkuri->m_health <= 0.0f) {
+	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 		return;
 	}
 
-	if (sokkuri->m_waterBox) {
-		sokkuri->m_nextState = SOKKURI_MoveWater;
+	if (sokkuri->mWaterBox) {
+		sokkuri->mNextState = SOKKURI_MoveWater;
 		sokkuri->finishMotion();
 
 	} else {
-		sokkuri->m_nextState = SOKKURI_MoveGround;
+		sokkuri->mNextState = SOKKURI_MoveGround;
 		sokkuri->finishMotion();
 	}
 
-	sokkuri->m_timer += sys->m_deltaTime;
+	sokkuri->mTimer += sys->mDeltaTime;
 
-	if (sokkuri->m_curAnim->m_isPlaying) {
-		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
+	if (sokkuri->mCurAnim->mIsPlaying) {
+		if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_2) {
 			sokkuri->enableEvent(0, EB_IsEnemyNotBitter);
 			sokkuri->createDownEffect(0.6f, 0.55f);
 
-		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_3) {
-			Parms* parms1 = static_cast<Parms*>(sokkuri->m_parms);
-			EnemyFunc::flickNearbyNavi(sokkuri, parms1->m_general.m_shakeRange.m_value, parms1->m_general.m_shakeKnockback.m_value,
-			                           parms1->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
-			Parms* parms2 = static_cast<Parms*>(sokkuri->m_parms);
-			EnemyFunc::flickNearbyPikmin(sokkuri, parms2->m_general.m_shakeRange.m_value, parms2->m_general.m_shakeKnockback.m_value,
-			                             parms2->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_3) {
+			Parms* parms1 = static_cast<Parms*>(sokkuri->mParms);
+			EnemyFunc::flickNearbyNavi(sokkuri, parms1->mGeneral.mShakeRange.mValue, parms1->mGeneral.mShakeKnockback.mValue,
+			                           parms1->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			Parms* parms2 = static_cast<Parms*>(sokkuri->mParms);
+			EnemyFunc::flickNearbyPikmin(sokkuri, parms2->mGeneral.mShakeRange.mValue, parms2->mGeneral.mShakeKnockback.mValue,
+			                             parms2->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
-			Parms* parms3 = static_cast<Parms*>(sokkuri->m_parms);
-			EnemyFunc::flickStickPikmin(sokkuri, parms3->m_general.m_shakeRateMaybe.m_value, parms3->m_general.m_shakeKnockback.m_value,
-			                            parms3->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
-			sokkuri->m_toFlick = 0.0f;
-		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_4) {
+			Parms* parms3 = static_cast<Parms*>(sokkuri->mParms);
+			EnemyFunc::flickStickPikmin(sokkuri, parms3->mGeneral.mShakeRateMaybe.mValue, parms3->mGeneral.mShakeKnockback.mValue,
+			                            parms3->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			sokkuri->mToFlick = 0.0f;
+		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_4) {
 			sokkuri->disableEvent(0, EB_IsEnemyNotBitter);
 
-		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
-			transit(sokkuri, sokkuri->m_nextState, nullptr);
+		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_END) {
+			transit(sokkuri, sokkuri->mNextState, nullptr);
 		}
 	}
 }

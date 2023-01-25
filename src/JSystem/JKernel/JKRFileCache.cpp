@@ -69,10 +69,10 @@ JKRFileCache* JKRFileCache::mount(const char* p1, JKRHeap* p2, const char* p3)
 	}
 	for (JSULinkIterator<JKRFileLoader> iterator(sVolumeList.getFirst()); iterator != nullptr; iterator++) {
 		JKRFileLoader& loader = *iterator;
-		if (loader.m_magicWord == 'CASH') {
+		if (loader.mMagicWord == 'CASH') {
 			JKRFileCache& cache = static_cast<JKRFileCache&>(loader);
 			if (cache._48 != nullptr && strcmp(cache._48, p1) == 0) {
-				cache.m_mountCount++;
+				cache.mMountCount++;
 				return &cache;
 			}
 		}
@@ -87,22 +87,22 @@ JKRFileCache* JKRFileCache::mount(const char* p1, JKRHeap* p2, const char* p3)
  */
 JKRFileCache::JKRFileCache(const char* p1, const char* p2)
     : JKRFileLoader()
-    , m_cacheBlockList()
+    , mCacheBlockList()
 {
-	_38             = JKRHeap::findFromRoot(this);
-	m_mountCount    = 1;
-	m_magicWord     = 'CASH';
-	size_t length   = strlen(p1);
-	void* memory    = JKRHeap::alloc(length + 1, 1, _38);
-	_48             = (char*)memory;
-	memory          = JKRHeap::sSystemHeap->alloc(length + 2, 1);
-	m_directoryPath = (char*)memory;
+	_38            = JKRHeap::findFromRoot(this);
+	mMountCount    = 1;
+	mMagicWord     = 'CASH';
+	size_t length  = strlen(p1);
+	void* memory   = JKRHeap::alloc(length + 1, 1, _38);
+	_48            = (char*)memory;
+	memory         = JKRHeap::sSystemHeap->alloc(length + 2, 1);
+	mDirectoryPath = (char*)memory;
 	strcpy(_48, p1);
-	strcpy(m_directoryPath, p1);
+	strcpy(mDirectoryPath, p1);
 	if (p1[1] != '\0') {
 		convStrLower(_48);
-		convStrLower(m_directoryPath);
-		strcat(m_directoryPath, "/");
+		convStrLower(mDirectoryPath);
+		strcat(mDirectoryPath, "/");
 		if (p2 == nullptr) {
 			p2 = strrchr(_48, '/') + 1;
 		}
@@ -260,8 +260,8 @@ JKRFileCache::~JKRFileCache()
 	if (_48 != nullptr) {
 		JKRHeap::free(_48, _38);
 	}
-	if (m_directoryPath != nullptr) {
-		JKRHeap::sSystemHeap->free(m_directoryPath);
+	if (mDirectoryPath != nullptr) {
+		JKRHeap::sSystemHeap->free(mDirectoryPath);
 	}
 	if (_50 != nullptr) {
 		JKRHeap::sSystemHeap->free(_50);
@@ -280,10 +280,10 @@ bool JKRFileCache::becomeCurrent(const char* newDirectoryPath)
 	bool result       = DVDChangeDir(dvdPathName);
 	if (result) {
 		sCurrentVolume = this;
-		JKRHeap::sSystemHeap->free(m_directoryPath);
-		m_directoryPath = dvdPathName;
-		if (m_directoryPath[1] != '\0') {
-			strcat(m_directoryPath, "/");
+		JKRHeap::sSystemHeap->free(mDirectoryPath);
+		mDirectoryPath = dvdPathName;
+		if (mDirectoryPath[1] != '\0') {
+			strcat(mDirectoryPath, "/");
 		}
 	} else {
 		JKRHeap::sSystemHeap->free(dvdPathName);
@@ -302,14 +302,14 @@ void* JKRFileCache::getResource(const char* p1)
 	char* dvdPathName = getDvdPathName(p1);
 	JKRDvdFile file(dvdPathName);
 	if (file._18) {
-		CCacheBlock* block = findCacheBlock(file.m_dvdPlayer._30);
+		CCacheBlock* block = findCacheBlock(file.mDvdPlayer._30);
 		if (block == nullptr) {
 			size_t byteCount = ALIGN_NEXT(file.getFileSize(), 0x20);
 			resource         = JKRHeap::alloc(byteCount, 0x20, _38);
 			if (resource != nullptr) {
 				file.read(resource, byteCount, 0);
-				block = new (JKRHeap::sSystemHeap, 0) CCacheBlock(file.m_dvdPlayer._30, file.getFileSize(), resource);
-				m_cacheBlockList.append(block);
+				block = new (JKRHeap::sSystemHeap, 0) CCacheBlock(file.mDvdPlayer._30, file.getFileSize(), resource);
+				mCacheBlockList.append(block);
 			}
 		} else {
 			block->_10++;
@@ -368,7 +368,7 @@ size_t JKRFileCache::readResource(void* resourceBuffer, unsigned long bufferSize
 		if (consumedSize > bufferSize) {
 			consumedSize = bufferSize;
 		}
-		CCacheBlock* block = findCacheBlock(file.m_dvdPlayer._30);
+		CCacheBlock* block = findCacheBlock(file.mDvdPlayer._30);
 		if (block == nullptr) {
 			file.read(resourceBuffer, consumedSize, 0);
 		} else {
@@ -413,9 +413,9 @@ size_t JKRFileCache::readResource(void* resourceBuffer, unsigned long bufferSize
  */
 void JKRFileCache::removeResourceAll()
 {
-	for (JSULinkIterator<CCacheBlock> iterator(m_cacheBlockList.getFirst()); iterator != nullptr;) {
+	for (JSULinkIterator<CCacheBlock> iterator(mCacheBlockList.getFirst()); iterator != nullptr;) {
 		JKRHeap::free(const_cast<void*>(iterator->_1C), _38);
-		m_cacheBlockList.remove(iterator.getObject());
+		mCacheBlockList.remove(iterator.getObject());
 		delete (iterator++).getObject();
 	}
 }
@@ -434,7 +434,7 @@ bool JKRFileCache::removeResource(void* resource)
 	}
 	if (--link->_10 == 0) {
 		JKRHeap::free(resource, _38);
-		m_cacheBlockList.remove(link);
+		mCacheBlockList.remove(link);
 		delete link;
 	}
 	return true;
@@ -451,7 +451,7 @@ bool JKRFileCache::detachResource(void* resource)
 	if (link == nullptr) {
 		return false;
 	}
-	m_cacheBlockList.remove(link);
+	mCacheBlockList.remove(link);
 	delete link;
 	return true;
 }
@@ -520,7 +520,7 @@ JKRFileFinder* JKRFileCache::getFirstFile(const char* p1) const
  */
 JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(const void* data) const
 {
-	for (JSULink<CCacheBlock>* link = m_cacheBlockList.getFirst(); link != nullptr; link = link->getNext()) {
+	for (JSULink<CCacheBlock>* link = mCacheBlockList.getFirst(); link != nullptr; link = link->getNext()) {
 		if (link->getObject()->_1C == data) {
 			return link->getObject();
 		}
@@ -536,7 +536,7 @@ JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(const void* data) const
  */
 JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(unsigned long id) const
 {
-	for (JSULink<CCacheBlock>* link = m_cacheBlockList.getFirst(); link != nullptr; link = link->getNext()) {
+	for (JSULink<CCacheBlock>* link = mCacheBlockList.getFirst(); link != nullptr; link = link->getNext()) {
 		if (link->getObject()->_14 == id) {
 			return link->getObject();
 		}
@@ -562,18 +562,18 @@ bool JKRFileCache::findFile(char* directoryPath, const char* fileName) const
 	// 			if (DVDReadDir(&entry, &next) == FALSE) {
 	// 				goto close;
 	// 			}
-	// 			if (next.m_nextEntryNum == 0) {
+	// 			if (next.mNextEntryNum == 0) {
 	// 				break;
 	// 			}
 	// 			*endOfPath = '/';
-	// 			strcpy(endOfPath + 1, next.m_fileNameMaybe);
+	// 			strcpy(endOfPath + 1, next.mFileNameMaybe);
 	// 			result = findFile(directoryPath, fileName);
 	// 			if (result) {
 	// 				goto close;
 	// 			}
 	// 			*endOfPath = '\0';
 	// 		}
-	// 		result = strcmp(fileName, entry.m_fileNameMaybe) == 0;
+	// 		result = strcmp(fileName, entry.mFileNameMaybe) == 0;
 	// 	} while (result == false);
 	// 	strcat(directoryPath, "/");
 	// 	strcat(directoryPath, fileName);
@@ -590,17 +590,17 @@ bool JKRFileCache::findFile(char* directoryPath, const char* fileName) const
 		OSFstEntry next;
 		while (DVDReadDir(&entry, &next) != FALSE) {
 			// do {
-			if (next.m_nextEntryNum == 0) {
+			if (next.mNextEntryNum == 0) {
 				break;
 			}
 			*endOfPath = '/';
-			strcpy(endOfPath + 1, next.m_fileNameMaybe);
+			strcpy(endOfPath + 1, next.mFileNameMaybe);
 			result = findFile(directoryPath, fileName);
 			if (result) {
 				goto close;
 			}
 			*endOfPath = '\0';
-			cmpResult  = strcmp(fileName, entry.m_fileNameMaybe);
+			cmpResult  = strcmp(fileName, entry.mFileNameMaybe);
 			result     = !cmpResult;
 			// } while (cmpResult != 0);
 			if (!result) {
@@ -943,10 +943,10 @@ char* JKRFileCache::getDvdPathName(const char* fileName) const
 		}
 	} else {
 		// if relative path...
-		size_t length = strlen(m_directoryPath) + strlen(fileName) + 2;
+		size_t length = strlen(mDirectoryPath) + strlen(fileName) + 2;
 		void* memory  = JKRHeap::sSystemHeap->alloc(length, 1);
 		dvdPathName   = (char*)memory;
-		strcpy(dvdPathName, m_directoryPath);
+		strcpy(dvdPathName, mDirectoryPath);
 		strcat(dvdPathName, fileName);
 	}
 	convStrLower(dvdPathName);

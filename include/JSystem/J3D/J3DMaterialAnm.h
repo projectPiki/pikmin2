@@ -22,11 +22,11 @@ struct J3DMaterialAnm {
 	void initialize();
 
 	// VTBL _00
-	J3DMatColorAnm m_matColAnmList[2];
-	J3DTexMtxAnm m_texMtxAnmList[8];
-	J3DTexNoAnm m_texNoAnmList[8];
-	J3DTevColorAnm m_tevColAnmList[4];
-	J3DTevKColorAnm m_tevKColAnmList[4];
+	J3DMatColorAnm mMatColAnmList[2];
+	J3DTexMtxAnm mTexMtxAnmList[8];
+	J3DTexNoAnm mTexNoAnmList[8];
+	J3DTevColorAnm mTevColAnmList[4];
+	J3DTevKColorAnm mTevKColAnmList[4];
 };
 
 #endif

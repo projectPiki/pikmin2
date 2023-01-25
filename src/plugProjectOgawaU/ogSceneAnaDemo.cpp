@@ -12,7 +12,7 @@ namespace newScreen {
 AnaDemo::AnaDemo(long sceneType)
 {
 	if (sceneType == SCENE_CAVE_IN_MENU || sceneType == SCENE_KANKETU_MENU || sceneType == SCENE_CAVE_MORE_MENU) {
-		m_sceneType = (SceneType)sceneType;
+		mSceneType = (SceneType)sceneType;
 	} else {
 		JUT_PANICLINE(35, "ì¥åAÉÅÉjÉÖÅ[Ç≈ÇÕÇ†ÇËÇ‹ÇπÇÒÅI\n"); // Not a cave menu!
 	}

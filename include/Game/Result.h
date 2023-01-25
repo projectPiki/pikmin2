@@ -25,22 +25,22 @@ struct TNode : public DNode {
 
 	inline int getNextIndex(int a, int b)
 	{
-		if (m_quantity < 0) {
+		if (mQuantity < 0) {
 			return 0;
 		} else {
-			return (a + b) * m_quantity;
+			return (a + b) * mQuantity;
 		}
 	}
 
 	// _00     = VTBL
 	// _00-_2C = DNode
-	JUTTexture* m_texture;              // _2C
-	int _30;                            // _30
-	int m_isLost;                       // _34
-	int m_pokoValue;                    // _38
-	int m_quantity;                     // _3C
-	u64 m_mesgTag;                      // _40
-	kh::Screen::LostItemMgr* m_itemMgr; // _48
+	JUTTexture* mTexture;              // _2C
+	int _30;                           // _30
+	int mIsLost;                       // _34
+	int mPokoValue;                    // _38
+	int mQuantity;                     // _3C
+	u64 mMesgTag;                      // _40
+	kh::Screen::LostItemMgr* mItemMgr; // _48
 };
 } // namespace Result
 } // namespace Game

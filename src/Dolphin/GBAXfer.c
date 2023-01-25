@@ -26,11 +26,11 @@ void __GBAHandler(int portIndex, u32 p2, OSContext* context)
 			gba->_38 = nullptr;
 			procHandler(portIndex);
 		}
-		if (gba->m_syncCallback != nullptr) {
+		if (gba->mSyncCallback != nullptr) {
 			OSClearContext(&syncContext);
 			OSSetCurrentContext(&syncContext);
-			syncCallback        = gba->m_syncCallback;
-			gba->m_syncCallback = nullptr;
+			syncCallback       = gba->mSyncCallback;
+			gba->mSyncCallback = nullptr;
 			syncCallback(portIndex, gba->_20);
 			OSClearContext(&syncContext);
 			OSSetCurrentContext(context);
@@ -121,7 +121,7 @@ int __GBASync(int portIndex)
 	int result;
 	GBA* gba       = &__GBA[portIndex];
 	int interrupts = OSDisableInterrupts();
-	while (gba->m_syncCallback != nullptr) {
+	while (gba->mSyncCallback != nullptr) {
 		OSSleepThread(&gba->_24);
 	}
 	result = gba->_20;

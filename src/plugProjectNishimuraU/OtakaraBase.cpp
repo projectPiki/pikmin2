@@ -15,7 +15,7 @@ namespace OtakaraBase {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator();
+	mAnimator = new ProperAnimator();
 	setFSM(new FSM);
 }
 
@@ -35,28 +35,28 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 
-	m_nextState = OTA_Null;
-	_2C4        = 0.0f;
+	mNextState = OTA_Null;
+	_2C4       = 0.0f;
 	resetTreasure();
-	_2D0             = 0;
-	_2C8             = 12800.0f;
-	m_escapeSfxTimer = 0.0f;
+	_2D0            = 0;
+	_2C8            = 12800.0f;
+	mEscapeSfxTimer = 0.0f;
 	setupEffect();
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
 		disableEvent(0, EB_LifegaugeVisible);
 		disableEvent(0, EB_ToLeaveCarcass);
 
-		if (m_dropGroup == EDG_None) {
+		if (mDropGroup == EDG_None) {
 			initBombOtakara();
 		}
 
-		m_fsm->start(this, 11, nullptr);
+		mFsm->start(this, 11, nullptr);
 		return;
 	}
 
 	_2E8 = 12800.0f;
-	m_fsm->start(this, 2, nullptr);
+	mFsm->start(this, 2, nullptr);
 }
 
 /*
@@ -76,7 +76,7 @@ void Obj::onKill(CreatureKillArg* killArg)
  * Address:	802B64EC
  * Size:	000034
  */
-void Obj::doUpdate() { m_fsm->exec(this); }
+void Obj::doUpdate() { mFsm->exec(this); }
 
 /*
  * --INFO--
@@ -87,23 +87,23 @@ void Obj::doUpdateCommon()
 {
 	EnemyBase::doUpdateCommon();
 	if (_2C8 < 1.0f) {
-		_2C8 += sys->m_deltaTime;
+		_2C8 += sys->mDeltaTime;
 		startDisChargeSE();
 		attackTarget();
 	}
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
-		if (m_targetCreature) {
-			if (!m_targetCreature->isAlive()) {
-				m_targetCreature = nullptr;
-				m_health         = 0.0f;
-			} else if (m_targetCreature->isStickTo()) {
-				m_targetCreature->endCapture();
-				m_targetCreature = nullptr;
-				m_health         = 0.0f;
+		if (mTargetCreature) {
+			if (!mTargetCreature->isAlive()) {
+				mTargetCreature = nullptr;
+				mHealth         = 0.0f;
+			} else if (mTargetCreature->isStickTo()) {
+				mTargetCreature->endCapture();
+				mTargetCreature = nullptr;
+				mHealth         = 0.0f;
 			}
 		} else {
-			m_health = 0.0f;
+			mHealth = 0.0f;
 		}
 	}
 }
@@ -116,14 +116,14 @@ void Obj::doUpdateCommon()
 void Obj::doAnimationCullingOff()
 {
 	EnemyBase::doAnimationCullingOff();
-	if (m_treasure) {
-		if (!m_treasure->isAlive()) {
+	if (mTreasure) {
+		if (!mTreasure->isAlive()) {
 			fallTreasure(false);
 		} else {
 			Matrixf mtx;
-			PSMTXIdentity(mtx.m_matrix.mtxView);
-			mtx.m_matrix.structView.ty = m_bodyHeightOffset;
-			m_treasure->updateCapture(mtx);
+			PSMTXIdentity(mtx.mMatrix.mtxView);
+			mtx.mMatrix.structView.ty = mBodyHeightOffset;
+			mTreasure->updateCapture(mtx);
 		}
 	}
 }
@@ -149,9 +149,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -161,26 +161,26 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	Matrixf* mat           = m_model->getJoint("otakara")->getWorldMatrix();
-	shadowParam.m_position = Vector3f(mat->m_matrix.mtxView[0][3], mat->m_matrix.mtxView[1][3], mat->m_matrix.mtxView[2][3]);
-	shadowParam.m_position.y -= 5.0f;
+	Matrixf* mat          = mModel->getJoint("otakara")->getWorldMatrix();
+	shadowParam.mPosition = Vector3f(mat->mMatrix.mtxView[0][3], mat->mMatrix.mtxView[1][3], mat->mMatrix.mtxView[2][3]);
+	shadowParam.mPosition.y -= 5.0f;
 
-	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 
-	if (m_treasure) {
-		shadowParam.m_boundingSphere.m_radius = 30.0f;
+	if (mTreasure) {
+		shadowParam.mBoundingSphere.mRadius = 30.0f;
 	} else {
-		shadowParam.m_boundingSphere.m_radius = 50.0f;
+		shadowParam.mBoundingSphere.mRadius = 50.0f;
 	}
 
 	if (isEvent(1, EB2_IsEarthquake)) {
-		shadowParam.m_boundingSphere.m_radius += 25.0f;
+		shadowParam.mBoundingSphere.mRadius += 25.0f;
 	}
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
-		shadowParam.m_size = 12.5f;
+		shadowParam.mSize = 12.5f;
 	} else {
-		shadowParam.m_size = 5.0f;
+		shadowParam.mSize = 5.0f;
 	}
 }
 
@@ -206,8 +206,8 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (collpart) {
-		if (m_treasure) {
-			damageTreasure(C_PARMS->m_properParms.m_fp01.m_value);
+		if (mTreasure) {
+			damageTreasure(C_PARMS->mProperParms.mFp01.mValue);
 		} else {
 			damageTreasure(damage);
 		}
@@ -223,8 +223,8 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
 {
-	if (m_treasure) {
-		damageTreasure(C_PARMS->m_properParms.m_fp01.m_value);
+	if (mTreasure) {
+		damageTreasure(C_PARMS->mProperParms.mFp01.mValue);
 	}
 	return EnemyBase::earthquakeCallBack(creature, damage);
 }
@@ -369,24 +369,24 @@ void Obj::doEndMovie() { effectDrawOn(); }
 bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 {
 	Creature* target = nullptr;
-	if (!ignoringTreasures && (_2E8 > C_PARMS->m_properParms.m_fp21.m_value)) {
+	if (!ignoringTreasures && (_2E8 > C_PARMS->mProperParms.mFp21.mValue)) {
 		target = getNearestTreasure();
 	} else {
-		_2E8 += sys->m_deltaTime;
+		_2E8 += sys->mDeltaTime;
 	}
 
 	if (target) {
-		m_movePosition   = target->getPosition();
-		m_targetCreature = target;
+		mMovePosition   = target->getPosition();
+		mTargetCreature = target;
 	} else {
-		ConditionNotStickClientAndItem condition(this, m_treasure);
+		ConditionNotStickClientAndItem condition(this, mTreasure);
 		Parms* parms = C_PARMS;
-		target       = EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_viewAngle.m_value, parms->m_general.m_sightRadius.m_value,
-                                                   nullptr, nullptr, &condition);
+		target = EnemyFunc::getNearestPikminOrNavi(this, parms->mGeneral.mViewAngle.mValue, parms->mGeneral.mSightRadius.mValue, nullptr,
+		                                           nullptr, &condition);
 		if (target) {
-			m_movePosition = getTargetPosition(target);
+			mMovePosition = getTargetPosition(target);
 		}
-		m_targetCreature = nullptr;
+		mTargetCreature = nullptr;
 	}
 
 	if (target) {
@@ -404,19 +404,19 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 Pellet* OtakaraBase::Obj::getNearestTreasure()
 {
 	Pellet* treasure = nullptr;
-	f32 sightRadius  = C_PARMS->m_general.m_sightRadius.m_value;
+	f32 sightRadius  = C_PARMS->mGeneral.mSightRadius.mValue;
 	f32 minDist      = sightRadius * sightRadius;
 	PelletIterator iterator;
 	iterator.first();
 
 	while (!iterator.isDone()) {
 		Pellet* pellet = (Pellet*)(*iterator);
-		if (pellet->isAlive() && (pellet->m_captureMatrix == nullptr && pellet->isPickable())) {
+		if (pellet->isAlive() && (pellet->mCaptureMatrix == nullptr && pellet->isPickable())) {
 			Vector3f position = pellet->getPosition();
-			Vector3f sep      = position - m_homePosition;
-			f32 territory     = C_PARMS->m_general.m_territoryRadius.m_value;
+			Vector3f sep      = position - mHomePosition;
+			f32 territory     = C_PARMS->mGeneral.mTerritoryRadius.mValue;
 			if ((SQUARE(sep.x) + SQUARE(sep.z)) < SQUARE(territory)) {
-				Vector3f sep2 = m_position;
+				Vector3f sep2 = mPosition;
 				sep2 -= position;
 				f32 dist2D = SQUARE(sep2.x) + SQUARE(sep2.z);
 				if (dist2D < minDist) {
@@ -533,15 +533,15 @@ Vector3f Obj::getTargetPosition(Creature* target)
 
 	_normalise(sep);
 	Parms* parms = C_PARMS;
-	sep *= parms->m_general.m_moveSpeed.m_value;
+	sep *= parms->mGeneral.mMoveSpeed.mValue;
 
 	sep += otakaraPosition;
 
-	f32 territory = parms->m_general.m_territoryRadius.m_value;
+	f32 territory = parms->mGeneral.mTerritoryRadius.mValue;
 	if ((sep.x * sep.x + sep.z * sep.z) < SQUARE(territory)) {
 		_normalise(sep);
 		sep *= territory;
-		sep += m_homePosition;
+		sep += mHomePosition;
 	}
 	return sep;
 	/*
@@ -683,18 +683,18 @@ lbl_802B7030:
  */
 void Obj::resetTreasure()
 {
-	m_treasure         = nullptr;
-	m_treasureHealth   = 0.0f;
-	m_bodyHeightOffset = 0.0f;
-	m_cellRadius       = C_PARMS->m_general.m_cellRadius.m_value;
+	mTreasure         = nullptr;
+	mTreasureHealth   = 0.0f;
+	mBodyHeightOffset = 0.0f;
+	mCellRadius       = C_PARMS->mGeneral.mCellRadius.mValue;
 
-	CollPart* collpart   = m_collTree->getCollPart(0x626F6479);
-	collpart->m_radius   = 10.0f;
-	collpart->m_offset.y = 0.0f;
+	CollPart* collpart  = mCollTree->getCollPart(0x626F6479);
+	collpart->mRadius   = 10.0f;
+	collpart->mOffset.y = 0.0f;
 
-	CollPart* basepart   = m_collTree->m_part;
-	basepart->m_radius   = 20.0f;
-	basepart->m_offset.y = 0.0f;
+	CollPart* basepart  = mCollTree->mPart;
+	basepart->mRadius   = 20.0f;
+	basepart->mOffset.y = 0.0f;
 
 	EnemyFunc::flickStickPikmin(this, 1.0f, 0.0f, 0.0f, -1000.0f, nullptr);
 }
@@ -706,8 +706,8 @@ void Obj::resetTreasure()
  */
 bool Obj::isTakeTreasure()
 {
-	if (m_targetCreature) {
-		Vector3f targetPos = m_targetCreature->getPosition();
+	if (mTargetCreature) {
+		Vector3f targetPos = mTargetCreature->getPosition();
 	}
 	return false;
 	/*
@@ -974,8 +974,8 @@ lbl_802B7428:
  */
 bool Obj::fallTreasure(bool check)
 {
-	if (m_targetCreature) {
-		m_targetCreature->endCapture();
+	if (mTargetCreature) {
+		mTargetCreature->endCapture();
 		if (check) { }
 	}
 	return false;
@@ -1060,7 +1060,7 @@ lbl_802B753C:
 bool Obj::isDropTreasure()
 {
 	// != 0.0f gives incorrect asm smh
-	if ((m_treasureHealth) && (m_treasureHealth > 0.0f)) {
+	if ((mTreasureHealth) && (mTreasureHealth > 0.0f)) {
 		return false;
 	}
 	return true;
@@ -1073,10 +1073,10 @@ bool Obj::isDropTreasure()
  */
 void Obj::damageTreasure(f32 damage)
 {
-	if (m_treasure) {
-		m_treasureHealth -= damage;
-		if (m_treasureHealth < 0.0f) {
-			m_treasureHealth = 0.0f;
+	if (mTreasure) {
+		mTreasureHealth -= damage;
+		if (mTreasureHealth < 0.0f) {
+			mTreasureHealth = 0.0f;
 		}
 		return;
 	}
@@ -1216,10 +1216,10 @@ lbl_802B7738:
  */
 void Obj::createTreasureFallEffect()
 {
-	Matrixf* mtx         = m_model->getJoint("center")->getWorldMatrix();
-	Vector3f translation = Vector3f(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+	Matrixf* mtx         = mModel->getJoint("center")->getWorldMatrix();
+	Vector3f translation = Vector3f(mtx->mMatrix.structView.tx, mtx->mMatrix.structView.ty, mtx->mMatrix.structView.tz);
 
-	f32 scale = 0.0285f * (m_cellRadius - 10.0f);
+	f32 scale = 0.0285f * (mCellRadius - 10.0f);
 	if (scale < 1.0f) {
 		scale = 0.5f * (1.0f + scale);
 	}
@@ -1238,12 +1238,12 @@ void Obj::createTreasureFallEffect()
  */
 void Obj::startEscapeSE()
 {
-	if (m_targetCreature == nullptr) {
-		if (m_escapeSfxTimer > 3.0f) {
+	if (mTargetCreature == nullptr) {
+		if (mEscapeSfxTimer > 3.0f) {
 			getJAIObject()->startSound(PSSE_EN_OTAKARA_STANDUP, 0);
-			m_escapeSfxTimer = 0.0f;
+			mEscapeSfxTimer = 0.0f;
 		} else {
-			m_escapeSfxTimer += sys->m_deltaTime;
+			mEscapeSfxTimer += sys->mDeltaTime;
 		}
 	}
 }
@@ -1255,7 +1255,7 @@ void Obj::startEscapeSE()
  */
 void Obj::initBombOtakara()
 {
-	if (m_targetCreature != nullptr) {
+	if (mTargetCreature != nullptr) {
 		return;
 	}
 
@@ -1265,22 +1265,22 @@ void Obj::initBombOtakara()
 	}
 
 	EnemyBirthArg birthArg;
-	birthArg.m_faceDir = m_faceDir;
-	m_targetCreature   = mgr->birth(birthArg);
-	if (m_targetCreature) {
-		m_targetCreature->init(nullptr);
-		m_targetCreature->startCapture(m_model->getJoint("otakara")->getWorldMatrix());
-		static_cast<Bomb::Obj*>(m_targetCreature)->m_otakara = this;
-		m_bodyHeightOffset                                   = 10.0f;
-		m_cellRadius                                         = 25.0f;
+	birthArg.mFaceDir = mFaceDir;
+	mTargetCreature   = mgr->birth(birthArg);
+	if (mTargetCreature) {
+		mTargetCreature->init(nullptr);
+		mTargetCreature->startCapture(mModel->getJoint("otakara")->getWorldMatrix());
+		static_cast<Bomb::Obj*>(mTargetCreature)->mOtakara = this;
+		mBodyHeightOffset                                  = 10.0f;
+		mCellRadius                                        = 25.0f;
 
-		CollPart* collpart   = m_collTree->getCollPart('body');
-		collpart->m_radius   = 15.0f;
-		collpart->m_offset.y = m_bodyHeightOffset;
+		CollPart* collpart  = mCollTree->getCollPart('body');
+		collpart->mRadius   = 15.0f;
+		collpart->mOffset.y = mBodyHeightOffset;
 
-		CollPart* basepart   = m_collTree->m_part;
-		basepart->m_radius   = 25.0f;
-		basepart->m_offset.y = m_bodyHeightOffset;
+		CollPart* basepart  = mCollTree->mPart;
+		basepart->mRadius   = 25.0f;
+		basepart->mOffset.y = mBodyHeightOffset;
 	}
 }
 
@@ -1291,13 +1291,12 @@ void Obj::initBombOtakara()
  */
 bool Obj::isTransitChaseState()
 {
-	if (isEvent(0, EB_HasCollisionOccurred) || isEvent(0, EB_IsTakingDamage) || (m_stuckPikminCount != 0)) {
+	if (isEvent(0, EB_HasCollisionOccurred) || isEvent(0, EB_IsTakingDamage) || (mStuckPikminCount != 0)) {
 		return true;
 	}
 
 	Parms* parms = C_PARMS;
-	Navi* navi
-	    = EnemyFunc::getNearestNavi(this, parms->m_general.m_viewAngle.m_value, parms->m_general.m_sightRadius.m_value, nullptr, nullptr);
+	Navi* navi = EnemyFunc::getNearestNavi(this, parms->mGeneral.mViewAngle.mValue, parms->mGeneral.mSightRadius.mValue, nullptr, nullptr);
 	return (navi != nullptr);
 }
 
@@ -1308,10 +1307,10 @@ bool Obj::isTransitChaseState()
  */
 bool Obj::stimulateBomb()
 {
-	_2E8 += sys->m_deltaTime;
-	if ((_2E8 > 1.5f) && (m_targetCreature != nullptr) && (m_targetCreature->isAlive())) {
+	_2E8 += sys->mDeltaTime;
+	if ((_2E8 > 1.5f) && (mTargetCreature != nullptr) && (mTargetCreature->isAlive())) {
 		disableEvent(0, EB_IsCullable);
-		static_cast<Bomb::Obj*>(m_targetCreature)->forceBomb();
+		static_cast<Bomb::Obj*>(mTargetCreature)->forceBomb();
 	}
 
 	return isEvent(0, EB_IsCullable);
@@ -1325,8 +1324,8 @@ bool Obj::stimulateBomb()
 Creature* Obj::getChaseTargetCreature()
 {
 	Parms* parms = C_PARMS;
-	return EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_viewAngle.m_value, parms->m_general.m_sightRadius.m_value, nullptr,
-	                                         nullptr, nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, parms->mGeneral.mViewAngle.mValue, parms->mGeneral.mSightRadius.mValue, nullptr, nullptr,
+	                                         nullptr);
 }
 } // namespace OtakaraBase
 } // namespace Game

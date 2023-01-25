@@ -21,7 +21,7 @@ void J3DSkinDeform::deform(J3DModel* model)
 	} else {
 		RESET_FLAG(_14.typeView, 1);
 	}
-	deform(&model->m_vertexBuffer, model->m_mtxBuffer);
+	deform(&model->mVertexBuffer, model->mMtxBuffer);
 }
 
 /*
@@ -29,7 +29,7 @@ void J3DSkinDeform::deform(J3DModel* model)
  * Address:	800886E0
  * Size:	000030
  */
-void J3DVtxColorCalc::calc(J3DModel* model) { calc(&model->m_vertexBuffer); }
+void J3DVtxColorCalc::calc(J3DModel* model) { calc(&model->mVertexBuffer); }
 
 /*
  * --INFO--
@@ -38,15 +38,15 @@ void J3DVtxColorCalc::calc(J3DModel* model) { calc(&model->m_vertexBuffer); }
  */
 void J3DVtxColorCalc::calc(J3DVertexBuffer* buffer)
 {
-	if (checkFlag(1) && m_AnmVtxColor) {
+	if (checkFlag(1) && mAnmVtxColor) {
 		buffer->swapVtxColArrayPointer();
-		u16 cnt       = m_AnmVtxColor->getAnmTableNum(0);
+		u16 cnt       = mAnmVtxColor->getAnmTableNum(0);
 		GXColor* var2 = buffer->getVtxColArrayPointer(0); // GXColor
 
 		for (u16 i = 0; i < cnt; i++) {
 			u32 color;
-			m_AnmVtxColor->getColor(0, i, (GXColor*)&color);
-			J3DAnmVtxColorIndexData* idxData = m_AnmVtxColor->getAnmVtxColorIndexData(0, i);
+			mAnmVtxColor->getColor(0, i, (GXColor*)&color);
+			J3DAnmVtxColorIndexData* idxData = mAnmVtxColor->getAnmVtxColorIndexData(0, i);
 			for (u32 j = 0; j < (u16)idxData->_00; j++) {
 				((u32*)var2)[reinterpret_cast<u16*>(idxData->_04)[j]] = color; // _04 may be u16*
 			}

@@ -73,15 +73,15 @@ struct NaviWhistle {
 	void updateWhistle();
 	void update(Vector3f&, bool);
 
-	Vector3f m_naviAngleVec; // _00
-	Vector3f m_position;     // _0C
-	Vector3f m_normal;       // _18
-	f32 m_radius;            // _24
-	u16 m_state;             // _28
-	f32 m_activeTime;        // _2C
-	bool _30;                // _30
-	Navi* m_navi;            // _34
-	Color4 m_color;          // _38
+	Vector3f mNaviAngleVec; // _00
+	Vector3f mPosition;     // _0C
+	Vector3f mNormal;       // _18
+	f32 mRadius;            // _24
+	u16 mState;             // _28
+	f32 mActiveTime;        // _2C
+	bool _30;               // _30
+	Navi* mNavi;            // _34
+	Color4 mColor;          // _38
 };
 
 #define NAVI_THROWTIMER_LENGTH (10)
@@ -194,69 +194,68 @@ struct Navi : public FakePiki, virtual public PelletView {
 
 	inline void setCalcs()
 	{
-		SysShape::Model* model = m_model;
+		SysShape::Model* model = mModel;
 		model->loopTimer();
-		model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc
-		    = static_cast<J3DMtxCalcAnmBase*>(m_animator.m_boundAnimator.getCalc());
+		model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(mAnimator.mBoundAnimator.getCalc());
 	}
 
-	inline NaviState* getCurrentState() { return m_currentState; }
+	inline NaviState* getCurrentState() { return mCurrentState; }
 
-	inline void setControlFlag(u16 flag) { m_naviControlFlag.typeView |= flag; }
-	inline void resetControlFlag(u16 flag) { m_naviControlFlag.typeView &= ~flag; }
-	inline bool isControlFlag(u16 flag) { return m_naviControlFlag.typeView & flag; }
+	inline void setControlFlag(u16 flag) { mNaviControlFlag.typeView |= flag; }
+	inline void resetControlFlag(u16 flag) { mNaviControlFlag.typeView &= ~flag; }
+	inline bool isControlFlag(u16 flag) { return mNaviControlFlag.typeView & flag; }
 
 	// _000      = VTBL
 	// _000-_250 = FakePiki
 	// _250      = ptr to PelletView
 	// u32 _250;                                // probably shouldn't be here?
-	CPlate* m_cPlateMgr;                     // _254
-	u8 _258;                                 // _258
-	u8 m_stick;                              // _259
-	s32 m_sprayCounts[2];                    // _25C proven signed by Navi::hasDope
-	u8 _264[4];                              // _264
-	bool m_isAlive;                          // _268
-	u8 _269;                                 // _269
-	u8 _26A;                                 // _26A
-	PSM::Navi* m_soundObj;                   // _26C
-	NaviFSM* m_fsm;                          // _270
-	NaviState* m_currentState;               // _274
-	Controller* m_controller1;               // _278
-	Controller* m_controller2;               // _27C
-	PlayCamera* m_camera;                    // _280
-	PlayCamera* m_camera2;                   // _284
-	BitFlag<u16> m_naviControlFlag;          // _288
-	NaviWhistle* m_whistle;                  // _28C
-	SysShape::Model* m_markerModel;          // _290
-	SysShape::Model* m_cursorModel;          // _294
-	Sys::MatRepeatAnimator* m_cursorMatAnim; // _298
-	Sys::MatLoopAnimator* m_arrowMatAnim;    // _29C
-	f32 m_health;                            // _2A0
-	u8 m_invincibleTimer;                    // _2A4
-	Piki* m_nextThrowPiki;                   // _2A8
-	u8 _2AC;                                 // _2AC
-	f32 m_holdPikiTimer;                     // _2B0
-	f32 _2B4;                                // _2B4
-	f32 _2B8;                                // _2B8
-	u8 m_throwTimer;                         // _2BC, use NAVI_THROWSTATE enum
-	SysShape::Joint* m_beaconJoint;          // _2C0
-	Vector3f m_beaconPosition;               // _2C4
-	efx::TNaviEffect* m_effectsObj;          // _2D0
-	u8 m_disbandTimer;                       // _2D4
-	Footmarks* m_footmarks;                  // _2D8
-	u16 m_naviIndex;                         // _2DC
-	u8 _2DE;                                 // _2DE
-	Vector3f m_cStickTargetVector;           // _2E0
-	Vector3f m_cStickPosition;               // _2EC
-	f32 _2F8;                                // _2F8
-	u8 _2FC;                                 // _2FC
-	u8 _2FD;                                 // _2FD
-	int m_cStickState;                       // _300
-	int m_cStickIncrement;                   // _304
-	f32 _308;                                // _308
-	bool m_commandOn1;                       // _30C
-	bool m_commandOn2;                       // _30D
-	                                         // PelletView: _310 - _320
+	CPlate* mCPlateMgr;                     // _254
+	u8 _258;                                // _258
+	u8 mStick;                              // _259
+	s32 mSprayCounts[2];                    // _25C proven signed by Navi::hasDope
+	u8 _264[4];                             // _264
+	bool mIsAlive;                          // _268
+	u8 _269;                                // _269
+	u8 _26A;                                // _26A
+	PSM::Navi* mSoundObj;                   // _26C
+	NaviFSM* mFsm;                          // _270
+	NaviState* mCurrentState;               // _274
+	Controller* mController1;               // _278
+	Controller* mController2;               // _27C
+	PlayCamera* mCamera;                    // _280
+	PlayCamera* mCamera2;                   // _284
+	BitFlag<u16> mNaviControlFlag;          // _288
+	NaviWhistle* mWhistle;                  // _28C
+	SysShape::Model* mMarkerModel;          // _290
+	SysShape::Model* mCursorModel;          // _294
+	Sys::MatRepeatAnimator* mCursorMatAnim; // _298
+	Sys::MatLoopAnimator* mArrowMatAnim;    // _29C
+	f32 mHealth;                            // _2A0
+	u8 mInvincibleTimer;                    // _2A4
+	Piki* mNextThrowPiki;                   // _2A8
+	u8 _2AC;                                // _2AC
+	f32 mHoldPikiTimer;                     // _2B0
+	f32 _2B4;                               // _2B4
+	f32 _2B8;                               // _2B8
+	u8 mThrowTimer;                         // _2BC, use NAVI_THROWSTATE enum
+	SysShape::Joint* mBeaconJoint;          // _2C0
+	Vector3f mBeaconPosition;               // _2C4
+	efx::TNaviEffect* mEffectsObj;          // _2D0
+	u8 mDisbandTimer;                       // _2D4
+	Footmarks* mFootmarks;                  // _2D8
+	u16 mNaviIndex;                         // _2DC
+	u8 _2DE;                                // _2DE
+	Vector3f mCStickTargetVector;           // _2E0
+	Vector3f mCStickPosition;               // _2EC
+	f32 _2F8;                               // _2F8
+	u8 _2FC;                                // _2FC
+	u8 _2FD;                                // _2FD
+	int mCStickState;                       // _300
+	int mCStickIncrement;                   // _304
+	f32 _308;                               // _308
+	bool mCommandOn1;                       // _30C
+	bool mCommandOn2;                       // _30D
+	                                        // PelletView: _310 - _320
 };
 
 struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
@@ -302,7 +301,7 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	// VT 3 pointer is at _30
 	unknown _48;                    // _48
 	PSM::DirectorUpdator* _4C;      // _4C
-	int m_naviCount;                // _50
+	int mNaviCount;                 // _50
 	int naviIndexArray[2];          // _54
 	u8 _5C;                         // _5C
 	Sys::MatTevRegAnimation _60[2]; // _60
@@ -312,7 +311,7 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	J3DModelData* _B8;              // _B8
 	u8 _BC[8];                      // _BC
 	J3DModelData* _C4;              // _C4
-	NaviParms* m_naviParms;         // _C8
+	NaviParms* mNaviParms;          // _C8
 	CollPartFactory* _CC;           // _CC
 };
 
@@ -324,11 +323,11 @@ namespace Screen {
 void DataNavi::update(int naviIdx)
 {
 	Game::Navi* navi = Game::naviMgr->getAt(naviIdx);
-	m_followPikis    = Game::GameStat::formationPikis.m_counter[naviIdx];
-	m_nextThrowPiki  = navi->ogGetNextThrowPiki();
-	m_dope1Count     = navi->getDopeCount(1);
-	m_dope0Count     = navi->getDopeCount(0);
-	m_naviLifeRatio  = navi->getLifeRatio();
+	mFollowPikis     = Game::GameStat::formationPikis.mCounter[naviIdx];
+	mNextThrowPiki   = navi->ogGetNextThrowPiki();
+	mDope1Count      = navi->getDopeCount(1);
+	mDope0Count      = navi->getDopeCount(0);
+	mNaviLifeRatio   = navi->getLifeRatio();
 }
 } // namespace Screen
 } // namespace og

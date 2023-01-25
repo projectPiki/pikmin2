@@ -310,7 +310,7 @@ namespace Game {
  */
 Kogane::Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 }
 
@@ -333,18 +333,18 @@ void Kogane::Obj::onInit(Game::CreatureInitArg* arg)
 	disableEvent(0, EB_ToLeaveCarcass);
 	disableEvent(0, EB_IsDeathEffectEnabled);
 	setEmotionNone();
-	m_scaleModifier = 0.0001f;
-	m_scale         = 0.0001f;
-	m_collTree->m_part->setScale(m_scaleModifier);
-	m_hitCount = 0;
+	mScaleModifier = 0.0001f;
+	mScale         = 0.0001f;
+	mCollTree->mPart->setScale(mScaleModifier);
+	mHitCount = 0;
 	resetAppearTimer();
 	resetMoveTimer(0.0f, 0.0f);
-	m_scaleTimer = 0.0001f;
+	mScaleTimer = 0.0001f;
 	resetFartTimer();
-	m_fsm->start(this, KOGANE_Appear, nullptr);
-	if (gameSystem && gameSystem->m_mode == GSM_PIKLOPEDIA) {
-		m_appearTimer = -12800.0f;
-		m_fsm->transit(this, KOGANE_Move, nullptr);
+	mFsm->start(this, KOGANE_Appear, nullptr);
+	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+		mAppearTimer = -12800.0f;
+		mFsm->transit(this, KOGANE_Move, nullptr);
 	} else {
 		doAnimationCullingOff();
 	}
@@ -373,7 +373,7 @@ void Kogane::Obj::onKill(Game::CreatureKillArg* arg)
  * Address:	8025DF44
  * Size:	000034
  */
-void Kogane::Obj::doUpdate() { m_fsm->exec(this); }
+void Kogane::Obj::doUpdate() { mFsm->exec(this); }
 
 /*
  * --INFO--
@@ -403,9 +403,9 @@ void Kogane::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Kogane::Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -415,11 +415,11 @@ void Kogane::Obj::setFSM(FSM* fsm)
  */
 void Kogane::Obj::getShadowParam(ShadowParam& param)
 {
-	param.m_position = getBodyJointPos();
-	param.m_position.y -= 5.0f;
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	param.m_boundingSphere.m_radius   = param.m_position.y - m_position.y + 15.0f;
-	param.m_size                      = m_scaleTimer * 15.0f;
+	param.mPosition = getBodyJointPos();
+	param.mPosition.y -= 5.0f;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mRadius   = param.mPosition.y - mPosition.y + 15.0f;
+	param.mSize                     = mScaleTimer * 15.0f;
 }
 
 /*
@@ -443,7 +443,7 @@ bool Kogane::Obj::pressCallBack(Creature* obj, f32 dmg, CollPart*)
  */
 void Kogane::Obj::wallCallback(const MoveInfo& info)
 {
-	Vector3f pos = info.m_reflectPosition;
+	Vector3f pos = info.mReflectPosition;
 	setTargetPosition(&pos);
 }
 
@@ -574,7 +574,7 @@ bool Kogane::Obj::transitDamageState(f32 dmg)
 	} else {
 		int id = getStateID();
 		if (id == KOGANE_Move || id == KOGANE_Wait) {
-			m_fsm->transit(this, KOGANE_Press, nullptr);
+			mFsm->transit(this, KOGANE_Press, nullptr);
 			return true;
 		} else {
 			return false;
@@ -590,11 +590,11 @@ bool Kogane::Obj::transitDamageState(f32 dmg)
 bool Kogane::Obj::transitDisappear()
 {
 	finishBodyEffect();
-	if (m_hitCount == 0 && gameSystem && gameSystem->m_isInCave && Cave::randMapMgr) {
+	if (mHitCount == 0 && gameSystem && gameSystem->mIsInCave && Cave::randMapMgr) {
 		PelletInitArg arg;
-		if (pelletMgr->makePelletInitArg(arg, m_pelletDropCode)) {
-			Cave::randMapMgr->getBaseGenData(&m_position, &m_faceDir);
-			m_homePosition = m_position;
+		if (pelletMgr->makePelletInitArg(arg, mPelletDropCode)) {
+			Cave::randMapMgr->getBaseGenData(&mPosition, &mFaceDir);
+			mHomePosition = mPosition;
 			return false;
 		}
 	}
@@ -608,8 +608,8 @@ bool Kogane::Obj::transitDisappear()
  */
 Vector3f Kogane::Obj::getBodyJointPos()
 {
-	Matrixf* mtx = m_model->getJoint("body")->getWorldMatrix();
-	return Vector3f(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+	Matrixf* mtx = mModel->getJoint("body")->getWorldMatrix();
+	return Vector3f(mtx->mMatrix.structView.tx, mtx->mMatrix.structView.ty, mtx->mMatrix.structView.tz);
 }
 
 /*
@@ -620,18 +620,18 @@ Vector3f Kogane::Obj::getBodyJointPos()
 bool Kogane::Obj::koganeScaleUp()
 {
 	bool check = false;
-	if (m_scaleTimer < C_PARMS->m_properParms.m_fp40.m_value) {
-		m_scaleTimer += sys->m_deltaTime * 10.0f;
+	if (mScaleTimer < C_PARMS->mProperParms.mFp40.mValue) {
+		mScaleTimer += sys->mDeltaTime * 10.0f;
 
-		if (C_PARMS->m_properParms.m_fp40.m_value >= m_scaleTimer) {
-			check        = true;
-			m_scaleTimer = C_PARMS->m_properParms.m_fp40.m_value;
+		if (C_PARMS->mProperParms.mFp40.mValue >= mScaleTimer) {
+			check       = true;
+			mScaleTimer = C_PARMS->mProperParms.mFp40.mValue;
 			disableEvent(0, EB_IsEnemyNotBitter);
 		}
-		f32 scale       = m_scaleTimer;
-		m_scaleModifier = scale;
-		m_scale         = scale;
-		m_collTree->m_part->setScale(m_scaleTimer);
+		f32 scale      = mScaleTimer;
+		mScaleModifier = scale;
+		mScale         = scale;
+		mCollTree->mPart->setScale(mScaleTimer);
 	}
 	return check;
 	/*
@@ -691,17 +691,17 @@ lbl_8025E584:
 bool Kogane::Obj::koganeScaleDown()
 {
 	bool check = false;
-	if (m_scaleTimer > 0.0001f) {
-		m_scaleTimer += -(sys->m_deltaTime * 10.0f);
+	if (mScaleTimer > 0.0001f) {
+		mScaleTimer += -(sys->mDeltaTime * 10.0f);
 
-		if (m_scaleTimer <= 0.0001f) {
-			m_scaleTimer = 0.0001f;
-			check        = true;
+		if (mScaleTimer <= 0.0001f) {
+			mScaleTimer = 0.0001f;
+			check       = true;
 		}
-		f32 scale       = m_scaleTimer;
-		m_scaleModifier = scale;
-		m_scale         = scale;
-		m_collTree->m_part->setScale(m_scaleTimer);
+		f32 scale      = mScaleTimer;
+		mScaleModifier = scale;
+		mScale         = scale;
+		mCollTree->mPart->setScale(mScaleTimer);
 	}
 	return check;
 }
@@ -714,20 +714,20 @@ bool Kogane::Obj::koganeScaleDown()
 void Kogane::Obj::setTargetPosition(Vector3f* goal)
 {
 	if (goal) {
-		m_targetPosition.x = goal->x * 1000.0f + m_position.x;
-		m_targetPosition.y = m_position.y;
-		m_targetPosition.z = goal->z * 1000.0f + m_position.z;
+		mTargetPosition.x = goal->x * 1000.0f + mPosition.x;
+		mTargetPosition.y = mPosition.y;
+		mTargetPosition.z = goal->z * 1000.0f + mPosition.z;
 	} else {
 		f32 angle = 0.0f;
-		if (m_scaleTimer > 0.1f) {
-			angle = (C_PARMS->m_properParms.m_fp30.m_value * 2.0f);
+		if (mScaleTimer > 0.1f) {
+			angle = (C_PARMS->mProperParms.mFp30.mValue * 2.0f);
 			angle *= randFloat();
-			angle -= C_PARMS->m_properParms.m_fp30.m_value;
+			angle -= C_PARMS->mProperParms.mFp30.mValue;
 		}
 		angle *= DEG2RAD * PI + getFaceDir();
-		m_targetPosition.x = 1000.0f * pikmin2_sinf(angle) + m_position.x;
-		m_targetPosition.y = m_position.y;
-		m_targetPosition.z = 1000.0f * pikmin2_cosf(angle) + m_position.z;
+		mTargetPosition.x = 1000.0f * pikmin2_sinf(angle) + mPosition.x;
+		mTargetPosition.y = mPosition.y;
+		mTargetPosition.z = 1000.0f * pikmin2_cosf(angle) + mPosition.z;
 	}
 	/*
 	stwu     r1, -0x40(r1)
@@ -859,8 +859,8 @@ lbl_8025E7B8:
  */
 void Kogane::Obj::resetAppearTimer()
 {
-	f32 time      = C_PARMS->m_properParms.m_fp02.m_value - C_PARMS->m_properParms.m_fp01.m_value;
-	m_appearTimer = randWeightFloat(time);
+	f32 time     = C_PARMS->mProperParms.mFp02.mValue - C_PARMS->mProperParms.mFp01.mValue;
+	mAppearTimer = randWeightFloat(time);
 }
 
 /*
@@ -870,7 +870,7 @@ void Kogane::Obj::resetAppearTimer()
  */
 bool Kogane::Obj::isAppear()
 {
-	f32 rad = C_PARMS->m_general.m_sightRadius.m_value;
+	f32 rad = C_PARMS->mGeneral.mSightRadius.mValue;
 
 	if (EnemyFunc::isThereOlimar(this, rad, nullptr) || EnemyFunc::isTherePikmin(this, rad, nullptr)) {
 		return true;
@@ -928,8 +928,8 @@ lbl_8025E8B0:
  */
 void Kogane::Obj::resetMoveTimer(f32 min, f32 max)
 {
-	f32 time    = max - min;
-	m_moveTimer = randWeightFloat(time);
+	f32 time   = max - min;
+	mMoveTimer = randWeightFloat(time);
 }
 
 /*
@@ -939,27 +939,27 @@ void Kogane::Obj::resetMoveTimer(f32 min, f32 max)
  */
 bool Kogane::Obj::createTreasureItem()
 {
-	if (m_hitCount == 0) {
+	if (mHitCount == 0) {
 		PelletInitArg arg;
-		if (pelletMgr->makePelletInitArg(arg, m_pelletDropCode)) {
-			arg.m_state = 2;
+		if (pelletMgr->makePelletInitArg(arg, mPelletDropCode)) {
+			arg.mState = 2;
 			if (Pellet::sFromTekiEnable)
-				arg.m_fromEnemy = true;
+				arg.mFromEnemy = true;
 
-			m_heldPellet = pelletMgr->birth(&arg);
-			if (m_heldPellet) {
+			mHeldPellet = pelletMgr->birth(&arg);
+			if (mHeldPellet) {
 				Vector3f velocity(0.0f, 250.0f, 0.0f);
 
-				Matrixf* mtx = m_model->getJoint("body")->getWorldMatrix();
-				Vector3f offs(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
-				m_heldPellet->setPosition(offs, false);
+				Matrixf* mtx = mModel->getJoint("body")->getWorldMatrix();
+				Vector3f offs(mtx->mMatrix.structView.tx, mtx->mMatrix.structView.ty, mtx->mMatrix.structView.tz);
+				mHeldPellet->setPosition(offs, false);
 
-				m_heldPellet->setVelocity(velocity);
-				m_heldPellet->createKiraEffect(offs);
+				mHeldPellet->setVelocity(velocity);
+				mHeldPellet->createKiraEffect(offs);
 				Radar::mgr->exit(this);
-				m_soundObj->startSound(PSSE_EN_ENEMY_LOOSE_ITEM, 0);
-				m_appearTimer = 12800.0f;
-				m_hitCount    = 12800;
+				mSoundObj->startSound(PSSE_EN_ENEMY_LOOSE_ITEM, 0);
+				mAppearTimer = 12800.0f;
+				mHitCount    = 12800;
 				return true;
 			}
 		}
@@ -986,8 +986,8 @@ void Kogane::Obj::createPellet(int type, int num)
 	f32 angle = getFaceDir() + 2.094395f;
 	f32 offs  = 2.094395f / (f32)num;
 
-	Matrixf* mtx = m_model->getJoint("body")->getWorldMatrix();
-	Vector3f pos(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+	Matrixf* mtx = mModel->getJoint("body")->getWorldMatrix();
+	Vector3f pos(mtx->mMatrix.structView.tx, mtx->mMatrix.structView.ty, mtx->mMatrix.structView.tz);
 
 	for (int i = 0; i < num; i++) {
 		int id = randWeightFloat(colors);
@@ -1200,8 +1200,8 @@ void Kogane::Obj::createDoping(u8 type, int num)
 	f32 angle = getFaceDir() + 2.094395f;
 	f32 offs  = 2.094395f / (f32)num;
 
-	Matrixf* mtx = m_model->getJoint("body")->getWorldMatrix();
-	Vector3f pos(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+	Matrixf* mtx = mModel->getJoint("body")->getWorldMatrix();
+	Vector3f pos(mtx->mMatrix.structView.tx, mtx->mMatrix.structView.ty, mtx->mMatrix.structView.tz);
 
 	for (int i = 0; i < num; i++) {
 		ItemHoney::InitArg arg(type, 0);

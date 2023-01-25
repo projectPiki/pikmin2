@@ -14,17 +14,17 @@ struct Onyon;
 namespace efx {
 struct Arg {
 	inline Arg()
-	    : m_position(Vector3f::zero)
+	    : mPosition(Vector3f::zero)
 	{
 	}
 
 	Arg(const Vector3f& position)
-	    : m_position(position)
+	    : mPosition(position)
 	{
 	}
 
 	inline Arg(f32 x, f32 y, f32 z)
-	    : m_position(x, y, z)
+	    : mPosition(x, y, z)
 	{
 	}
 
@@ -41,15 +41,15 @@ struct Arg {
 		return "Arg";
 	}
 
-	Vector3f m_position; // _04
+	Vector3f mPosition; // _04
 };
 
 struct ArgEnemyType : public Arg {
 	ArgEnemyType(Vector3f position, Game::EnemyTypeID::EEnemyTypeID typeID, f32 scale)
 	    : Arg(position)
-	    , m_typeID(typeID)
+	    , mTypeID(typeID)
 	{
-		m_scale = scale;
+		mScale = scale;
 	};
 	ArgEnemyType(Vector3f position)
 	    : Arg(position) {};
@@ -63,15 +63,15 @@ struct ArgEnemyType : public Arg {
 		return "ArgEnemyType";
 	}
 
-	Game::EnemyTypeID::EEnemyTypeID m_typeID;
-	f32 m_scale;
+	Game::EnemyTypeID::EEnemyTypeID mTypeID;
+	f32 mScale;
 };
 
 struct ArgScale : public Arg {
 	ArgScale(Vector3f position, f32 scale)
 	    : Arg(position)
 	{
-		m_scale = scale;
+		mScale = scale;
 	}
 	/**
 	 * @reifiedAddress{80107C44}
@@ -82,7 +82,7 @@ struct ArgScale : public Arg {
 		return "ArgScale";
 	}
 
-	f32 m_scale; // _10
+	f32 mScale; // _10
 };
 
 struct ArgChou : public Arg {
@@ -101,7 +101,7 @@ struct ArgCursor : public Arg {
 	ArgCursor(Vector3f& position, f32 scale)
 	    : Arg(position)
 	{
-		m_scale = scale;
+		mScale = scale;
 	}
 
 	virtual const char* getName() // _08 (weak)
@@ -109,7 +109,7 @@ struct ArgCursor : public Arg {
 		return "ArgCursor";
 	}
 
-	f32 m_scale; // _10
+	f32 mScale; // _10
 };
 
 struct ArgDenkiHiba : public Arg {
@@ -120,8 +120,8 @@ struct ArgDenkiHiba : public Arg {
 
 	ArgDenkiHiba(Vector3f ownerPos, Vector3f targetPos)
 	    : Arg()
-	    , m_ownerPos(ownerPos)
-	    , m_targetPos(targetPos)
+	    , mOwnerPos(ownerPos)
+	    , mTargetPos(targetPos)
 	{
 	}
 
@@ -132,9 +132,9 @@ struct ArgDenkiHiba : public Arg {
 
 	// _00     = VTBL
 	// _00-_10 = Arg
-	Vector3f m_ownerPos;  // _10
-	Vector3f m_targetPos; // _1C
-	int _28;              // _28
+	Vector3f mOwnerPos;  // _10
+	Vector3f mTargetPos; // _1C
+	int _28;             // _28
 };
 
 struct ArgDir : public Arg {
@@ -150,7 +150,7 @@ struct ArgDir : public Arg {
 
 	// _00     = VTBL
 	// _00-_10 = Arg
-	Vector3f m_angle; // _10
+	Vector3f mAngle; // _10
 };
 
 struct ArgDopingSmoke : public Arg {
@@ -163,8 +163,8 @@ struct ArgDopingSmoke : public Arg {
 	{
 		return "ArgDopingSmoke";
 	}
-	Vector3f m_dopePos;
-	u16 m_dopeType;
+	Vector3f mDopePos;
+	u16 mDopeType;
 };
 
 struct ArgGasuHiba : public Arg {
@@ -177,7 +177,7 @@ struct ArgGasuHiba : public Arg {
 	{
 		return "ArgGasuHiba";
 	}
-	bool m_isUnderground; // _10
+	bool mIsUnderground; // _10
 };
 
 struct ArgImoEat : public Arg {
@@ -202,7 +202,7 @@ struct ArgKchYodare : public Arg {
 	{
 		return "ArgKchYodare";
 	}
-	f32 m_scale;
+	f32 mScale;
 };
 
 struct ArgKouhai : public Arg {
@@ -234,7 +234,7 @@ struct ArgPelType : public Arg {
 
 	// _00     = VTBL
 	// _00-_10 = Arg
-	int m_type; // _10
+	int mType; // _10
 };
 
 struct ArgPosPos : public Arg {
@@ -246,8 +246,8 @@ struct ArgPosPos : public Arg {
 	ArgPosPos(Vector3f pos1, Vector3f pos2)
 	    : Arg()
 	{
-		m_pos1 = pos1;
-		m_pos2 = pos2;
+		mPos1 = pos1;
+		mPos2 = pos2;
 	}
 
 	virtual const char* getName() // _08 (weak)
@@ -257,8 +257,8 @@ struct ArgPosPos : public Arg {
 
 	// _00     = VTBL
 	// _00-_10 = Arg
-	Vector3f m_pos1; // _10
-	Vector3f m_pos2; // _1C
+	Vector3f mPos1; // _10
+	Vector3f mPos2; // _1C
 };
 
 struct ArgPrmColor : public Arg {
@@ -271,21 +271,21 @@ struct ArgPrmColor : public Arg {
 	{
 		return "ArgPrmColor";
 	}
-	Color4 m_color; // _10
+	Color4 mColor; // _10
 };
 
 struct ArgRotY : public Arg {
 	ArgRotY(f32 x, f32 y, f32 z, f32 faceDir)
 	    : Arg(x, y, z)
 	{
-		m_faceDir = faceDir;
+		mFaceDir = faceDir;
 	}
 
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgRotY";
 	}
-	f32 m_faceDir; // _10
+	f32 mFaceDir; // _10
 };
 
 struct ArgRotYScale : public Arg {
@@ -298,8 +298,8 @@ struct ArgRotYScale : public Arg {
 	{
 		return "ArgRotYScale";
 	}
-	f32 m_faceDir;
-	f32 m_scale;
+	f32 mFaceDir;
+	f32 mScale;
 };
 
 struct ArgType : public Arg {
@@ -313,7 +313,7 @@ struct ArgType : public Arg {
 	inline ArgType(u16 type)
 	    : Arg()
 	{
-		m_type = type;
+		mType = type;
 	}
 
 	virtual const char* getName() // _08 (weak)
@@ -321,7 +321,7 @@ struct ArgType : public Arg {
 		return "ArgType";
 	}
 
-	u16 m_type; // _10, onyon or pikmin
+	u16 mType; // _10, onyon or pikmin
 };
 } // namespace efx
 

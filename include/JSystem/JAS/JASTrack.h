@@ -83,15 +83,15 @@ struct JASOuterParam {
 	u16 getSwitch(); // maybe getOuterSwitch?
 	void setIntFirFilter(s16 newValue, u8 index);
 
-	u16 m_outerSwitch;  // _00 - outerSwitch?
-	u16 m_outerUpdate;  // _02 - outerUpdate?
-	f32 _04;            // _04
-	f32 _08;            // _08
-	f32 _0C;            // _0C
-	f32 _10;            // _10
-	f32 _14;            // _14
-	f32 _18;            // _18 - tempo?
-	s16 m_firFilter[8]; // _1C - firFilter?
+	u16 mOuterSwitch;  // _00 - outerSwitch?
+	u16 mOuterUpdate;  // _02 - outerUpdate?
+	f32 _04;           // _04
+	f32 _08;           // _08
+	f32 _0C;           // _0C
+	f32 _10;           // _10
+	f32 _14;           // _14
+	f32 _18;           // _18 - tempo?
+	s16 mFirFilter[8]; // _1C - firFilter?
 };
 
 /**
@@ -110,7 +110,7 @@ struct JASTrack : JSUList<JASChannel> {
 	struct AInnerParam_ {
 		AInnerParam_();
 
-		MoveParam_ _00[0x12]; // _00 - think this is just all MoveParam_s, but could be floats or a mix
+		MoveParam_ _00[0x12]; // _00 - think this is just all MoveParamS, but could be floats or a mix
 	};
 
 	struct TimedParam_ : public AInnerParam_ {
@@ -198,58 +198,58 @@ struct JASTrack : JSUList<JASChannel> {
 	int getReleaseChannelCount() const;
 
 	// JSUPtrList _00;        // _00
-	JASSeqCtrl m_seqCtrl;               // _0C
-	JASTrackPort m_trackPort;           // _54
-	JASIntrMgr m_intrMgr;               // _94
-	JASChannel* _C0[8];                 // _C0
-	u32 _E0;                            // _E0
-	u8 _E4;                             // _E4
-	u8 _E5;                             // _E5
-	u8 _E6;                             // _E6
-	u8 _E7;                             // _E7 - might be padding
-	JASVibrate m_vibrate;               // _E8
-	JASChannelUpdater m_channelUpdater; // _F4
-	void* _144;                         // _144 - unknown pointer/code?
-	TimedParam_ m_timedParam;           // _148
-	JASRegisterParam m_registerParam;   // _268
-	u8 _298[0x10];                      // _298 - unknown
-	JASOscillator::Data _2A8;           // _2A8
-	u32 _2C0;                           // _2C0 - another oscillator data?
-	f32 _2C4;                           // _2C4
-	void* _2C8;                         // _2C8 - unknown pointer - table?
-	void* _2CC;                         // _2CC - unknown pointer - reltable?
-	f32 _2D0;                           // _2D0
-	f32 _2D4;                           // _2D4
-	u32 _2D8;                           // _2D8
-	u32 _2DC;                           // _2DC
-	short _2E0[12];                     // _2E0
-	JASTrack* _2F8;                     // _2F8
-	JASTrack* _2FC[16];                 // _2FC
-	JASOuterParam* m_extBuffer;         // _33C
-	f32 _340;                           // _340
-	f32 _344;                           // _344
-	u32 _348;                           // _348
-	u32 _34C;                           // _34C - unknown
-	u16 _350;                           // _350
-	u16 _352;                           // _352
-	u16 _354;                           // _354
-	s8 _356;                            // _356
-	u8 _357;                            // _357
-	u8 _358;                            // _358
-	u8 m_volumeMode;                    // _359
-	u8 _35A;                            // _35A
-	u8 _35B;                            // _35B
-	u8 _35C;                            // _35C
-	u8 _35D;                            // _35D
-	u8 _35E;                            // _35E
-	u8 _35F;                            // _35F
-	u8 _360;                            // _360
-	u8 _361;                            // _361
-	bool _362;                          // _362
-	u8 _363;                            // _363
-	u8 _364;                            // _364
-	u8 _365;                            // _365
-	u8 _366;                            // _366
+	JASSeqCtrl mSeqCtrl;               // _0C
+	JASTrackPort mTrackPort;           // _54
+	JASIntrMgr mIntrMgr;               // _94
+	JASChannel* _C0[8];                // _C0
+	u32 _E0;                           // _E0
+	u8 _E4;                            // _E4
+	u8 _E5;                            // _E5
+	u8 _E6;                            // _E6
+	u8 _E7;                            // _E7 - might be padding
+	JASVibrate mVibrate;               // _E8
+	JASChannelUpdater mChannelUpdater; // _F4
+	void* _144;                        // _144 - unknown pointer/code?
+	TimedParam_ mTimedParam;           // _148
+	JASRegisterParam mRegisterParam;   // _268
+	u8 _298[0x10];                     // _298 - unknown
+	JASOscillator::Data _2A8;          // _2A8
+	u32 _2C0;                          // _2C0 - another oscillator data?
+	f32 _2C4;                          // _2C4
+	void* _2C8;                        // _2C8 - unknown pointer - table?
+	void* _2CC;                        // _2CC - unknown pointer - reltable?
+	f32 _2D0;                          // _2D0
+	f32 _2D4;                          // _2D4
+	u32 _2D8;                          // _2D8
+	u32 _2DC;                          // _2DC
+	short _2E0[12];                    // _2E0
+	JASTrack* _2F8;                    // _2F8
+	JASTrack* _2FC[16];                // _2FC
+	JASOuterParam* mExtBuffer;         // _33C
+	f32 _340;                          // _340
+	f32 _344;                          // _344
+	u32 _348;                          // _348
+	u32 _34C;                          // _34C - unknown
+	u16 _350;                          // _350
+	u16 _352;                          // _352
+	u16 _354;                          // _354
+	s8 _356;                           // _356
+	u8 _357;                           // _357
+	u8 _358;                           // _358
+	u8 mVolumeMode;                    // _359
+	u8 _35A;                           // _35A
+	u8 _35B;                           // _35B
+	u8 _35C;                           // _35C
+	u8 _35D;                           // _35D
+	u8 _35E;                           // _35E
+	u8 _35F;                           // _35F
+	u8 _360;                           // _360
+	u8 _361;                           // _361
+	bool _362;                         // _362
+	u8 _363;                           // _363
+	u8 _364;                           // _364
+	u8 _365;                           // _365
+	u8 _366;                           // _366
 };
 
 #endif

@@ -47,9 +47,9 @@ struct MeloArrMgr : public JADHioNode {
 	bool isToAvoid(MeloArrArg&);
 
 	// _00 = VTABLE
-	JSUPtrList m_list; // _04
-	u16 _10;           // _10
-	u8 _12;            // _12
+	JSUPtrList mList; // _04
+	u16 _10;          // _10
+	u8 _12;           // _12
 };
 
 /**

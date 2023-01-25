@@ -18,7 +18,7 @@ struct J2DAnmLoader {
 	virtual ~J2DAnmLoader();                                // _10 (weak)
 
 	// _00 = VTBL
-	J2DAnmBase* m_animation; // _04
+	J2DAnmBase* mAnimation; // _04
 };
 
 struct J2DAnmFullLoader_v15 : public J2DAnmLoader {
@@ -40,7 +40,7 @@ struct J2DAnmFullLoader_v15 : public J2DAnmLoader {
 	void setAnmVtxColor(J2DAnmVtxColorFull*, const J3DAnmVtxColorFullData*);
 
 	// _00 = VTBL
-	// _04 = m_animation
+	// _04 = mAnimation
 };
 
 struct J2DAnmKeyLoader_v15 : public J2DAnmLoader {
@@ -62,7 +62,7 @@ struct J2DAnmKeyLoader_v15 : public J2DAnmLoader {
 	void setAnmTevReg(J2DAnmTevRegKey*, const J3DAnmTevRegKeyData*);
 
 	// _00 = VTBL
-	// _04 = m_animation
+	// _04 = mAnimation
 };
 
 #endif

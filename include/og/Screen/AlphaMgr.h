@@ -26,12 +26,12 @@ struct AlphaMgr {
 	/// @return Alpha (0 - 255)
 	u8 calc();
 
-	int m_state;         // _00
-	f32 m_currAlpha;     // _04
-	f32 m_growRate;      // _08
-	f32 m_blinkEndAlpha; // _0C
-	f32 m_alphaMin;      // _10
-	f32 m_alphaMax;      // _14
+	int mState;         // _00
+	f32 mCurrAlpha;     // _04
+	f32 mGrowRate;      // _08
+	f32 mBlinkEndAlpha; // _0C
+	f32 mAlphaMin;      // _10
+	f32 mAlphaMax;      // _14
 };
 } // namespace Screen
 } // namespace og

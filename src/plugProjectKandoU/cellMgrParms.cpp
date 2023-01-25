@@ -19,7 +19,7 @@ static void _Print(char* format, ...) { OSReport(format, "CellMgrParms"); }
 CellMgrParms::CellMgrParms()
     : Parameters(nullptr, "CellMgr")
     , JKRDisposer()
-    , m_cellParms(this)
+    , mCellParms(this)
 {
 }
 

@@ -356,7 +356,7 @@ JAISound::JAISound()
  */
 JAISequence::JAISequence()
     : JAISound()
-    , m_seqParameter()
+    , mSeqParameter()
 {
 }
 
@@ -388,7 +388,7 @@ JAISound::~JAISound()
  */
 JAISe::JAISe()
     : JAISound()
-    , m_seParam()
+    , mSeParam()
 {
 }
 
@@ -419,14 +419,14 @@ void JAISound::initMultiMoveParameter(JAInter::MoveParaSet*, unsigned char, unsi
  * Address:	800B3B24
  * Size:	000024
  */
-u32 JAISe::getSeCategoryNumber() { return JAInter::SeMgr::changeIDToCategory(m_soundID); }
+u32 JAISe::getSeCategoryNumber() { return JAInter::SeMgr::changeIDToCategory(mSoundID); }
 
 /*
  * --INFO--
  * Address:	800B3B48
  * Size:	00000C
  */
-u32 JAISound::getSwBit() { return m_soundInfo->unk1; }
+u32 JAISound::getSwBit() { return mSoundInfo->unk1; }
 
 /*
  * --INFO--
@@ -440,7 +440,7 @@ u32 JAISound::checkSwBit(unsigned long p1) { return p1 & getSwBit(); }
  * Address:	800B3B64
  * Size:	00000C
  */
-u8 JAISound::getInfoPriority() { return m_soundInfo->count.v2[0]; }
+u8 JAISound::getInfoPriority() { return mSoundInfo->count.v2[0]; }
 
 /*
  * --INFO--
@@ -491,7 +491,7 @@ void JAISound::stop(unsigned long p1) { JAIBasic::msBasic->stopSoundHandle(this,
  */
 void JAISound::setPrepareFlag(unsigned char prepareFlag)
 {
-	switch (m_soundID & JAISoundID_TypeMask) {
+	switch (mSoundID & JAISoundID_TypeMask) {
 	case JAISoundID_Type_Sequence:
 		setPrepareFlag(prepareFlag);
 		break;
@@ -526,7 +526,7 @@ void JAISequence::setPrepareFlag(unsigned char p1) { setSeqPrepareFlag(p1); }
  */
 void JAISound::checkReady()
 {
-	switch (m_soundID & JAISoundID_TypeMask) {
+	switch (mSoundID & JAISoundID_TypeMask) {
 	case JAISoundID_Type_Sequence:
 		checkReady();
 		break;
@@ -981,12 +981,12 @@ float JAISound::setDistanceDolbyCommon()
  */
 void JAISequence::setSeqInterVolume(unsigned char p1, float p2, unsigned long p3)
 {
-	int result = m_seqParameter._110[p1].set(p2, p3);
+	int result = mSeqParameter._110[p1].set(p2, p3);
 	if (result == 1) {
-		m_seqParameter._284 |= 1 << p1;
+		mSeqParameter._284 |= 1 << p1;
 	}
-	if (m_seqParameter._2C0 != nullptr && result != 2) {
-		m_seqParameter._2C0->_08 |= 0x40000;
+	if (mSeqParameter._2C0 != nullptr && result != 2) {
+		mSeqParameter._2C0->_08 |= 0x40000;
 	}
 }
 
@@ -997,12 +997,12 @@ void JAISequence::setSeqInterVolume(unsigned char p1, float p2, unsigned long p3
  */
 void JAISequence::setSeqInterPan(unsigned char p1, float p2, unsigned long p3)
 {
-	int result = m_seqParameter._250[p1].set(p2, p3);
+	int result = mSeqParameter._250[p1].set(p2, p3);
 	if (result == 1) {
-		m_seqParameter._288 |= 1 << p1;
+		mSeqParameter._288 |= 1 << p1;
 	}
-	if (m_seqParameter._2C0 != nullptr && result != 2) {
-		m_seqParameter._2C0->_08 |= 0x80000;
+	if (mSeqParameter._2C0 != nullptr && result != 2) {
+		mSeqParameter._2C0->_08 |= 0x80000;
 	}
 }
 
@@ -1013,12 +1013,12 @@ void JAISequence::setSeqInterPan(unsigned char p1, float p2, unsigned long p3)
  */
 void JAISequence::setSeqInterPitch(unsigned char p1, float p2, unsigned long p3)
 {
-	int result = m_seqParameter._254[p1].set(p2, p3);
+	int result = mSeqParameter._254[p1].set(p2, p3);
 	if (result == 1) {
-		m_seqParameter._28C |= 1 << p1;
+		mSeqParameter._28C |= 1 << p1;
 	}
-	if (m_seqParameter._2C0 != nullptr && result != 2) {
-		m_seqParameter._2C0->_08 |= 0x100000;
+	if (mSeqParameter._2C0 != nullptr && result != 2) {
+		mSeqParameter._2C0->_08 |= 0x100000;
 	}
 }
 
@@ -1119,11 +1119,11 @@ void JAISequence::setTrackMuteSwitchMulti(unsigned long, unsigned char)
  */
 void JAISequence::setTrackInterruptSwitch(unsigned char p1, unsigned char p2)
 {
-	m_seqParameter._2B8[p1] = p2;
-	if (m_seqParameter._2C0 == nullptr) {
+	mSeqParameter._2B8[p1] = p2;
+	if (mSeqParameter._2C0 == nullptr) {
 		return;
 	}
-	m_seqParameter._2C0->_08 |= 0x800000;
+	mSeqParameter._2C0->_08 |= 0x800000;
 }
 
 /*
@@ -1173,15 +1173,15 @@ void JAISequence::setTrackPitchMulti(unsigned char, unsigned long, float, unsign
  */
 void JAISequence::setTrackFxmix(unsigned char p1, float p2, unsigned long p3)
 {
-	if (_15 >= 4 && (m_seqParameter._2C0->_04 & 1 << p1) == 0) {
+	if (_15 >= 4 && (mSeqParameter._2C0->_04 & 1 << p1) == 0) {
 		return;
 	}
-	int result = m_seqParameter._26C[p1].set(p2, p3);
+	int result = mSeqParameter._26C[p1].set(p2, p3);
 	if (result == 1) {
-		m_seqParameter._2A4 |= 1 << p1;
+		mSeqParameter._2A4 |= 1 << p1;
 	}
-	if (m_seqParameter._2C0 != nullptr && result != 2) {
-		m_seqParameter._2C0->_08 |= 0x800;
+	if (mSeqParameter._2C0 != nullptr && result != 2) {
+		mSeqParameter._2C0->_08 |= 0x800;
 	}
 }
 
@@ -1222,17 +1222,17 @@ void JAISequence::setTrackDolbyMulti(unsigned char, unsigned long, float, unsign
  */
 void JAISequence::setTrackPortData(unsigned char p1, unsigned char p2, unsigned short p3)
 {
-	if (m_seqParameter._2C0 == nullptr) {
+	if (mSeqParameter._2C0 == nullptr) {
 		return;
 	}
 	if (_15 >= 4) {
-		m_seqParameter.m_track.writePortApp(getTrackPortRoute(p1, p2), p3);
+		mSeqParameter.mTrack.writePortApp(getTrackPortRoute(p1, p2), p3);
 	} else {
-		m_seqParameter._2C0->_08 |= 0x1000;
-		m_seqParameter._2B0 |= 1 << p1;
-		m_seqParameter._2B4[p1] |= 1 << p2;
+		mSeqParameter._2C0->_08 |= 0x1000;
+		mSeqParameter._2B0 |= 1 << p1;
+		mSeqParameter._2B4[p1] |= 1 << p2;
 	}
-	m_seqParameter._274[p1][p2] = p3;
+	mSeqParameter._274[p1][p2] = p3;
 }
 
 /*
@@ -1269,8 +1269,8 @@ void JAISe::setSeInterVolume(unsigned char p1, float p2, unsigned long p3, unsig
 	// 	// 	}
 	// 	v5 = JAInter::Const::random.nextFloat(p2, p4);
 	// }
-	// m_seParam._124[p1].set(v5, p3);
-	m_seParam._124[p1].set(p4 != 0 ? JAInter::Const::random.nextFloat(p2, p4) : p2, p3);
+	// mSeParam._124[p1].set(v5, p3);
+	mSeParam._124[p1].set(p4 != 0 ? JAInter::Const::random.nextFloat(p2, p4) : p2, p3);
 
 	/*
 	stwu     r1, -0x40(r1)
@@ -1631,7 +1631,7 @@ void JAISe::getSePortData(unsigned char)
  */
 void JAISe::setSeDistanceParameters()
 {
-	u8 v1 = m_distanceParameterMoveTime;
+	u8 v1 = mDistanceParameterMoveTime;
 	if (_15 == 2) {
 		v1 = 0;
 	}
@@ -1641,7 +1641,7 @@ void JAISe::setSeDistanceParameters()
 	setSePositionDopplar();
 	setSeDistanceFxmix(v1);
 	setSeDistanceFir(v1);
-	if ((m_soundInfo->unk1 & 0x400) == 0) {
+	if ((mSoundInfo->unk1 & 0x400) == 0) {
 		setFxmix(JAIBasic::msBasic->getMapInfoFxParameter(_30), 0, 3);
 	}
 	setSeDistanceDolby(v1);
@@ -1653,7 +1653,7 @@ void JAISe::setSeDistanceParameters()
  * Size:	000030
  * setFxmix__5JAISeFfUlUc
  */
-void JAISe::setFxmix(float p1, unsigned long p2, unsigned char p3) { m_seParam._2A4[p3].set(p1, p2); }
+void JAISe::setFxmix(float p1, unsigned long p2, unsigned char p3) { mSeParam._2A4[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -1662,9 +1662,8 @@ void JAISe::setFxmix(float p1, unsigned long p2, unsigned char p3) { m_seParam._
  */
 void JAISe::setSeDistanceVolume(unsigned char p1)
 {
-	m_seParam._124[4].set(
-	    (m_soundInfo->unk1 & 2) == 0 ? setDistanceVolumeCommon(JAIGlobalParameter::distanceMax, (m_soundInfo->unk1 >> 0x10) & 7) : 1.0f,
-	    p1);
+	mSeParam._124[4].set(
+	    (mSoundInfo->unk1 & 2) == 0 ? setDistanceVolumeCommon(JAIGlobalParameter::distanceMax, (mSoundInfo->unk1 >> 0x10) & 7) : 1.0f, p1);
 }
 
 /*
@@ -1719,14 +1718,14 @@ lbl_800B4C80:
 void JAISe::setSeDistancePitch(unsigned char p1)
 {
 	f32 pitch = 1.0f;
-	if ((m_soundInfo->unk1 & 0x10) != 0) {
+	if ((mSoundInfo->unk1 & 0x10) != 0) {
 		// pitch = 1.0f - ((JAInter::Const::random.nextFloat_0_1() * 16.0f) / 192.0f;
 		// pitch = 1.0f - ((JAInter::Const::random.idkanymore() & 0xF) ^ 0x80000000) / 192.0f;
 		// pitch = 1.0f - JAInter::Const::random.idkanymore() / 192.0f;
 		pitch = JAInter::Const::random.idkanymore();
 	}
-	if ((m_soundInfo->unk1 & 0x4000) != 0) {
-		if ((m_soundInfo->unk1 & 2) == 0 && (m_soundInfo->unk1 & 0x300) == 0) {
+	if ((mSoundInfo->unk1 & 0x4000) != 0) {
+		if ((mSoundInfo->unk1 & 2) == 0 && (mSoundInfo->unk1 & 0x300) == 0) {
 			if (JAIGlobalParameter::audioCameraMax == 1) {
 				if (_34->_18 >= JAIGlobalParameter::distanceMax) {
 					pitch += JAIGlobalParameter::seDistancepitchMax;
@@ -1736,10 +1735,10 @@ void JAISe::setSeDistancePitch(unsigned char p1)
 			}
 		}
 	}
-	if ((m_soundInfo->unk1 & 0xC0) != 0) {
+	if ((mSoundInfo->unk1 & 0xC0) != 0) {
 		pitch += _17 / 192.0f;
 	}
-	m_seParam._224[4].set(pitch, p1);
+	mSeParam._224[4].set(pitch, p1);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1841,8 +1840,8 @@ void JAISe::setSePositionDopplar()
 	if (_15 == 2) {
 		moveTime = 1;
 	}
-	if ((m_soundInfo->unk1 & 0x300) != 0 && JAIGlobalParameter::audioCameraMax == 1) {
-		m_seParam._224[1].set(setPositionDopplarCommon(m_soundInfo->unk1 & 0x300), moveTime);
+	if ((mSoundInfo->unk1 & 0x300) != 0 && JAIGlobalParameter::audioCameraMax == 1) {
+		mSeParam._224[1].set(setPositionDopplarCommon(mSoundInfo->unk1 & 0x300), moveTime);
 	}
 }
 
@@ -1854,7 +1853,7 @@ void JAISe::setSePositionDopplar()
 void JAISe::setSeDistanceFxmix(unsigned char p1)
 {
 	u16 fx = JAIGlobalParameter::seDefaultFx;
-	if ((m_soundInfo->unk1 & 4) == 0 && JAIGlobalParameter::audioCameraMax == 1) {
+	if ((mSoundInfo->unk1 & 4) == 0 && JAIGlobalParameter::audioCameraMax == 1) {
 		if (_34->_18 < JAIGlobalParameter::distanceMax) {
 			fx = (JAIGlobalParameter::seDistanceFxParameter * (_34->_18 / JAIGlobalParameter::distanceMax));
 		} else {
@@ -1864,7 +1863,7 @@ void JAISe::setSeDistanceFxmix(unsigned char p1)
 	if (0x7F < fx) {
 		fx = 0x7F;
 	}
-	m_seParam._2A4[4].set((u8)fx / 127.0f, p1);
+	mSeParam._2A4[4].set((u8)fx / 127.0f, p1);
 }
 
 /*
@@ -2111,7 +2110,7 @@ void JAIStream::getChannelDolby(unsigned char)
  */
 void JAISound::setPauseMode(unsigned char p1, unsigned char p2)
 {
-	switch (m_soundID & JAISoundID_TypeMask) {
+	switch (mSoundID & JAISoundID_TypeMask) {
 	case JAISoundID_Type_Sequence: {
 		JAISequence* sequence = static_cast<JAISequence*>(this);
 		if (p1 == 3) {
@@ -2122,20 +2121,20 @@ void JAISound::setPauseMode(unsigned char p1, unsigned char p2)
 			setVolumeU7(p2, 1, 11);
 			break;
 		case 2:
-			sequence->m_seqParameter.m_track.pause(true, true);
+			sequence->mSeqParameter.mTrack.pause(true, true);
 			break;
 		case 0:
-			switch (sequence->m_seqParameter._279) {
+			switch (sequence->mSeqParameter._279) {
 			case 1:
 				setVolume(1.0f, 1, 11);
 				break;
 			case 2:
-				sequence->m_seqParameter.m_track.pause(false, true);
+				sequence->mSeqParameter.mTrack.pause(false, true);
 				break;
 			}
 			break;
 		}
-		sequence->m_seqParameter._279 = p1;
+		sequence->mSeqParameter._279 = p1;
 		break;
 	}
 	case JAISoundID_Type_Se:
@@ -2347,12 +2346,12 @@ lbl_800B5328:
  */
 void JAISequence::setVolumeU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
-	int result = m_seqParameter._110[p3].set(p1 / 127.0f, p2);
+	int result = mSeqParameter._110[p3].set(p1 / 127.0f, p2);
 	if (result == 1) {
-		m_seqParameter._284 |= 1 << p3;
+		mSeqParameter._284 |= 1 << p3;
 	}
-	if (m_seqParameter._2C0 != nullptr && result != 2) {
-		m_seqParameter._2C0->_08 |= 0x40000;
+	if (mSeqParameter._2C0 != nullptr && result != 2) {
+		mSeqParameter._2C0->_08 |= 0x40000;
 	}
 }
 
@@ -2362,7 +2361,7 @@ void JAISequence::setVolumeU7(unsigned char p1, unsigned long p2, unsigned char 
  * Size:	00000C
  * setSeqPrepareFlag__11JAISequenceFUc
  */
-void JAISequence::setSeqPrepareFlag(unsigned char seqPrepareFlag) { m_seqParameter._2C0->_02 = seqPrepareFlag; }
+void JAISequence::setSeqPrepareFlag(unsigned char seqPrepareFlag) { mSeqParameter._2C0->_02 = seqPrepareFlag; }
 
 /*
  * --INFO--
@@ -2372,7 +2371,7 @@ void JAISequence::setSeqPrepareFlag(unsigned char seqPrepareFlag) { m_seqParamet
  */
 bool JAISequence::checkSeqReady()
 {
-	if (_15 == 2 && m_seqParameter._27C == 0xFFFFFFFF) {
+	if (_15 == 2 && mSeqParameter._27C == 0xFFFFFFFF) {
 		return true;
 	}
 	return false;
@@ -2387,7 +2386,7 @@ bool JAISequence::checkSeqReady()
 float JAISequence::getSeqInterVolume(unsigned char p1)
 {
 	if (_15 == 4 || _15 == 5) {
-		return m_seqParameter._110[p1]._04;
+		return mSeqParameter._110[p1]._04;
 	}
 	return -1.0f;
 }
@@ -2569,12 +2568,12 @@ void JAISound::getActorGroundNumber()
  */
 u32 JAISound::getTrackPortRoute(unsigned char p1, unsigned char p2)
 {
-	if ((m_soundID & 0x800) != 0) {
+	if ((mSoundID & 0x800) != 0) {
 		return (p1 >> 4) + 0x20000000 + p2 * 0x10000 + (p1 & 0xF) * 0x10;
 	} else {
 		return (p1 & 0xF) + 0x10000000 + p2 * 0x10000;
 	}
-	// return ((m_soundID & 0x800) != 0) ? (p1 >> 4) + 0x20000000 + p2 * 0x10000 + (p1 & 0xF) * 0x10 : (p1 & 0xF) + 0x10000000 + p2 *
+	// return ((mSoundID & 0x800) != 0) ? (p1 >> 4) + 0x20000000 + p2 * 0x10000 + (p1 & 0xF) * 0x10 : (p1 & 0xF) + 0x10000000 + p2 *
 	// 0x10000;
 
 	/*
@@ -2616,9 +2615,9 @@ void JAISe::getSeInfoPointer()
 u32 JAISound::checkSoundHandle(unsigned long id, void* p2)
 {
 	u32 result = 0;
-	if ((m_soundID & JAISoundID_TypeMask) != (id & JAISoundID_TypeMask)) {
+	if ((mSoundID & JAISoundID_TypeMask) != (id & JAISoundID_TypeMask)) {
 		stop(0);
-	} else if (m_soundInfo->count.v2[0] <= static_cast<JAInter::SoundInfo*>(p2)->count.v2[0]) {
+	} else if (mSoundInfo->count.v2[0] <= static_cast<JAInter::SoundInfo*>(p2)->count.v2[0]) {
 		stop(0);
 	} else {
 		result = 1;
@@ -2637,7 +2636,7 @@ u32 JAISequence::getFadeCounter()
 	if ((JAInter::SequenceMgr::getPlayTrackInfo(_14)->_08 & 2) != 0) {
 		return _28;
 	}
-	return m_seqParameter._110[7]._0C - 1;
+	return mSeqParameter._110[7]._0C - 1;
 }
 
 /*
@@ -2646,7 +2645,7 @@ u32 JAISequence::getFadeCounter()
  * Size:	00000C
  * getFadeCounter__5JAISeFv
  */
-u32 JAISe::getFadeCounter() { return m_seParam._124[6]._0C - 1; }
+u32 JAISe::getFadeCounter() { return mSeParam._124[6]._0C - 1; }
 
 /*
  * --INFO--
@@ -2670,31 +2669,31 @@ u32 JAIStream::getFadeCounter()
 void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, unsigned long id, unsigned long p4, unsigned char p5,
                              JAInter::SoundInfo* info)
 {
-	m_soundID = id;
+	mSoundID = id;
 	if (actor != nullptr) {
-		_38 = actor->m_vec1;
-		if (actor->m_vec1 != nullptr) {
-			_3C = actor->m_vec2;
-			_30 = actor->m_unk;
+		_38 = actor->mVec1;
+		if (actor->mVec1 != nullptr) {
+			_3C = actor->mVec2;
+			_30 = actor->mUnk;
 		} else {
 			_3C = nullptr;
-			_30 = actor->m_unk;
+			_30 = actor->mUnk;
 		}
-		_1A = actor->m_flag.boolView[0];
+		_1A = actor->mFlag.boolView[0];
 	} else {
 		_38 = nullptr;
 		_3C = nullptr;
 		_1A = 0;
 		_30 = 0;
 	}
-	_40                         = (void**)handlePtr;
-	_28                         = p4;
-	_18                         = p5;
-	m_soundInfo                 = info;
-	_16                         = 10;
-	m_distanceParameterMoveTime = JAIGlobalParameter::getParamDistanceParameterMoveTime();
-	m_adjustPriority            = 0;
-	_2C                         = 0;
+	_40                        = (void**)handlePtr;
+	_28                        = p4;
+	_18                        = p5;
+	mSoundInfo                 = info;
+	_16                        = 10;
+	mDistanceParameterMoveTime = JAIGlobalParameter::getParamDistanceParameterMoveTime();
+	mAdjustPriority            = 0;
+	_2C                        = 0;
 	if (_3C != nullptr) {
 		_34->_18 = JAIGlobalParameter::getParamDistanceMax() * 10.0f;
 	} else {
@@ -3166,7 +3165,7 @@ void JAISound::setDemoDolbyU7(unsigned char p1, unsigned long p2) { setDolbyU7(p
 void JAISound::setDistanceParameterMoveTime(unsigned char a1)
 {
 	// Generated from stb r4, 0x19(r3)
-	m_distanceParameterMoveTime = a1;
+	mDistanceParameterMoveTime = a1;
 }
 
 /*
@@ -3177,7 +3176,7 @@ void JAISound::setDistanceParameterMoveTime(unsigned char a1)
 void JAISound::setAdjustPriority(short a1)
 {
 	// Generated from sth r4, 0x1C(r3)
-	m_adjustPriority = a1;
+	mAdjustPriority = a1;
 }
 
 /*
@@ -3186,7 +3185,7 @@ void JAISound::setAdjustPriority(short a1)
  * Size:	000010
  * getVolume__5JAISeFUc
  */
-float JAISe::getVolume(unsigned char p1) { return m_seParam._124[p1]._04; }
+float JAISe::getVolume(unsigned char p1) { return mSeParam._124[p1]._04; }
 
 /*
  * --INFO--
@@ -3194,7 +3193,7 @@ float JAISe::getVolume(unsigned char p1) { return m_seParam._124[p1]._04; }
  * Size:	000090
  * setPan__5JAISeFfUlUc
  */
-void JAISe::setPan(float p1, unsigned long p2, unsigned char p3) { m_seParam._1A4[p3].set(p1, p2); }
+void JAISe::setPan(float p1, unsigned long p2, unsigned char p3) { mSeParam._1A4[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -3202,7 +3201,7 @@ void JAISe::setPan(float p1, unsigned long p2, unsigned char p3) { m_seParam._1A
  * Size:	000010
  * getPan__5JAISeFUc
  */
-float JAISe::getPan(unsigned char p1) { return m_seParam._1A4[p1]._04; }
+float JAISe::getPan(unsigned char p1) { return mSeParam._1A4[p1]._04; }
 
 /*
  * --INFO--
@@ -3210,7 +3209,7 @@ float JAISe::getPan(unsigned char p1) { return m_seParam._1A4[p1]._04; }
  * Size:	000090
  * setPitch__5JAISeFfUlUc
  */
-void JAISe::setPitch(float p1, unsigned long p2, unsigned char p3) { m_seParam._224[p3].set(p1, p2); }
+void JAISe::setPitch(float p1, unsigned long p2, unsigned char p3) { mSeParam._224[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -3218,7 +3217,7 @@ void JAISe::setPitch(float p1, unsigned long p2, unsigned char p3) { m_seParam._
  * Size:	000010
  * getPitch__5JAISeFUc
  */
-float JAISe::getPitch(unsigned char p1) { return m_seParam._224[p1]._04; }
+float JAISe::getPitch(unsigned char p1) { return mSeParam._224[p1]._04; }
 
 /*
  * --INFO--
@@ -3226,7 +3225,7 @@ float JAISe::getPitch(unsigned char p1) { return m_seParam._224[p1]._04; }
  * Size:	000010
  * getFxmix__5JAISeFUc
  */
-float JAISe::getFxmix(unsigned char p1) { return m_seParam._2A4[p1]._04; }
+float JAISe::getFxmix(unsigned char p1) { return mSeParam._2A4[p1]._04; }
 
 /*
  * --INFO--
@@ -3234,7 +3233,7 @@ float JAISe::getFxmix(unsigned char p1) { return m_seParam._2A4[p1]._04; }
  * Size:	000090
  * setDolby__5JAISeFfUlUc
  */
-void JAISe::setDolby(float p1, unsigned long p2, unsigned char p3) { m_seParam._3A4[p3].set(p1, p2); }
+void JAISe::setDolby(float p1, unsigned long p2, unsigned char p3) { mSeParam._3A4[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -3242,7 +3241,7 @@ void JAISe::setDolby(float p1, unsigned long p2, unsigned char p3) { m_seParam._
  * Size:	000010
  * getDolby__5JAISeFUc
  */
-float JAISe::getDolby(unsigned char p1) { return m_seParam._3A4[p1]._04; }
+float JAISe::getDolby(unsigned char p1) { return mSeParam._3A4[p1]._04; }
 
 /*
  * --INFO--
@@ -3253,7 +3252,7 @@ float JAISe::getDolby(unsigned char p1) { return m_seParam._3A4[p1]._04; }
 void JAISe::setVolumeU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
 	float v1 = p1 / 127.0f;
-	m_seParam._124[p3].set(v1, p2);
+	mSeParam._124[p3].set(v1, p2);
 }
 
 /*
@@ -3262,7 +3261,7 @@ void JAISe::setVolumeU7(unsigned char p1, unsigned long p2, unsigned char p3)
  * Size:	00002C
  * getVolumeU7__5JAISeFUc
  */
-u8 JAISe::getVolumeU7(unsigned char p1) { return m_seParam._124[p1]._04 * 127.0f; }
+u8 JAISe::getVolumeU7(unsigned char p1) { return mSeParam._124[p1]._04 * 127.0f; }
 
 /*
  * --INFO--
@@ -3273,7 +3272,7 @@ u8 JAISe::getVolumeU7(unsigned char p1) { return m_seParam._124[p1]._04 * 127.0f
 void JAISe::setPanU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
 	float v1 = p1 / 127.0f;
-	m_seParam._1A4[p3].set(v1, p2);
+	mSeParam._1A4[p3].set(v1, p2);
 }
 
 /*
@@ -3282,7 +3281,7 @@ void JAISe::setPanU7(unsigned char p1, unsigned long p2, unsigned char p3)
  * Size:	00002C
  * getPanU7__5JAISeFUc
  */
-u8 JAISe::getPanU7(unsigned char p1) { return m_seParam._1A4[p1]._04 * 127.0f; }
+u8 JAISe::getPanU7(unsigned char p1) { return mSeParam._1A4[p1]._04 * 127.0f; }
 
 /*
  * --INFO--
@@ -3293,7 +3292,7 @@ u8 JAISe::getPanU7(unsigned char p1) { return m_seParam._1A4[p1]._04 * 127.0f; }
 void JAISe::setFxmixU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
 	float v1 = p1 / 127.0f;
-	m_seParam._2A4[p3].set(v1, p2);
+	mSeParam._2A4[p3].set(v1, p2);
 }
 
 /*
@@ -3302,7 +3301,7 @@ void JAISe::setFxmixU7(unsigned char p1, unsigned long p2, unsigned char p3)
  * Size:	00002C
  * getFxmixU7__5JAISeFUc
  */
-u8 JAISe::getFxmixU7(unsigned char p1) { return m_seParam._2A4[p1]._04 * 127.0f; }
+u8 JAISe::getFxmixU7(unsigned char p1) { return mSeParam._2A4[p1]._04 * 127.0f; }
 
 /*
  * --INFO--
@@ -3313,7 +3312,7 @@ u8 JAISe::getFxmixU7(unsigned char p1) { return m_seParam._2A4[p1]._04 * 127.0f;
 void JAISe::setDolbyU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
 	float v1 = p1 / 127.0f;
-	m_seParam._3A4[p3].set(v1, p2);
+	mSeParam._3A4[p3].set(v1, p2);
 }
 
 /*
@@ -3322,7 +3321,7 @@ void JAISe::setDolbyU7(unsigned char p1, unsigned long p2, unsigned char p3)
  * Size:	00002C
  * getDolbyU7__5JAISeFUc
  */
-u8 JAISe::getDolbyU7(unsigned char p1) { return m_seParam._3A4[p1]._04 * 127.0f; }
+u8 JAISe::getDolbyU7(unsigned char p1) { return mSeParam._3A4[p1]._04 * 127.0f; }
 
 /*
  * --INFO--
@@ -3432,17 +3431,17 @@ lbl_800B6974:
  */
 u16 JAISe::getPortData(unsigned char p1)
 {
-	if ((m_soundID & JAISoundID_TypeMask) == JAISoundID_Type_Se) {
+	if ((mSoundID & JAISoundID_TypeMask) == JAISoundID_Type_Se) {
 		u8 v1            = _14;
 		static u16 _port = -1;
 		if (JAInter::SeMgr::seHandle->_15 >= 4) {
 			u32 v2;
-			if ((JAInter::SeMgr::seHandle->m_soundID & 0x800) != 0) {
+			if ((JAInter::SeMgr::seHandle->mSoundID & 0x800) != 0) {
 				v2 = (v1 >> 4) + 0x20000000 + (v1 & 0xF) * 0x10 + p1 * 0x10000;
 			} else {
 				v2 = (v1 & 0xF) + 0x10000000 + p1 * 0x10000;
 			}
-			JAInter::SeMgr::seHandle->m_seqParameter.m_track.readPortApp(v2, &_port);
+			JAInter::SeMgr::seHandle->mSeqParameter.mTrack.readPortApp(v2, &_port);
 		}
 		return _port;
 	} else {
@@ -3516,7 +3515,7 @@ lbl_800B6A30:
 float JAISequence::getPan(unsigned char p1)
 {
 	if (_15 == 4 || _15 == 5) {
-		return m_seqParameter._250[p1]._04;
+		return mSeqParameter._250[p1]._04;
 	}
 	return -1.0f;
 }
@@ -3530,7 +3529,7 @@ float JAISequence::getPan(unsigned char p1)
 float JAISequence::getPitch(unsigned char p1)
 {
 	if (_15 == 4 || _15 == 5) {
-		return m_seqParameter._254[p1]._04;
+		return mSeqParameter._254[p1]._04;
 	}
 	return -1.0f;
 }
@@ -3625,7 +3624,7 @@ lbl_800B6B7C:
 float JAISequence::getFxmix(unsigned char p1)
 {
 	if (_15 == 4 || _15 == 5) {
-		return m_seqParameter._258[p1]._04;
+		return mSeqParameter._258[p1]._04;
 	}
 	return -1.0f;
 }
@@ -3733,7 +3732,7 @@ lbl_800B6CBC:
 float JAISequence::getDolby(unsigned char p1)
 {
 	if (_15 == 4 || _15 == 5) {
-		return m_seqParameter._25C[p1]._04;
+		return mSeqParameter._25C[p1]._04;
 	}
 	return -1.0f;
 }
@@ -3807,7 +3806,7 @@ lbl_800B6D84:
 float JAISequence::getTempoProportion()
 {
 	if (_15 == 4 || _15 == 5) {
-		return m_seqParameter._04;
+		return mSeqParameter._04;
 	}
 	return -1.0f;
 }
@@ -4287,6 +4286,6 @@ lbl_800B7408:
 u16 JAISequence::getPortData(unsigned char p1)
 {
 	static u16 _port;
-	m_seqParameter.m_track.readPortApp(p1 << 0x10, &_port);
+	mSeqParameter.mTrack.readPortApp(p1 << 0x10, &_port);
 	return _port;
 }

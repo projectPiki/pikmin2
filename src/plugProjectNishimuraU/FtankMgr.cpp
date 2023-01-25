@@ -16,7 +16,7 @@ static const char* cTankChangeTexName = "/enemy/data/Tank/fire_butadokkuri_main_
 Mgr::Mgr(int objLimit, u8 modelType)
     : Tank::Mgr(objLimit, modelType)
 {
-	m_name = "ブタドックリマネージャ"; // pig dog manager
+	mName = "ブタドックリマネージャ"; // pig dog manager
 }
 
 /*
@@ -31,14 +31,14 @@ void Mgr::doAlloc() { init(new Tank::Parms); }
  * Address:	8029E1C4
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	8029E314
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 /*
  * --INFO--
@@ -47,13 +47,13 @@ EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
  */
 void Mgr::loadTexData()
 {
-	m_changeTexture = nullptr;
+	mChangeTexture = nullptr;
 	LoadResource::Arg loadArg(cTankChangeTexName);
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
 	if (resource) {
-		m_changeTexture = static_cast<ResTIMG*>(resource->m_file);
+		mChangeTexture = static_cast<ResTIMG*>(resource->mFile);
 	}
-	P2ASSERTLINE(82, m_changeTexture);
+	P2ASSERTLINE(82, mChangeTexture);
 }
 
 } // namespace Ftank

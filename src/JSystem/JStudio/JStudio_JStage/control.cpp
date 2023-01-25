@@ -38,8 +38,8 @@ JStudio::TObject* createObject_JSG_(const JStudio::stb::data::TParse_TBlock_obje
 		// TODO: This should probably delete the adaptor in NONMATCHING builds, if the object couldn't get created.
 		return studioObject;
 	} else {
-		if (studioObject->m_adaptor != nullptr) {
-			studioObject->m_adaptor->adaptor_do_prepare(studioObject);
+		if (studioObject->mAdaptor != nullptr) {
+			studioObject->mAdaptor->adaptor_do_prepare(studioObject);
 		}
 	}
 	return studioObject;
@@ -88,9 +88,9 @@ bool JStudio_JStage::TCreateObject::create(JStudio::TObject** newObject, JStudio
 		return false;
 	}
 	JStage::TObject* stageObject;
-	switch (m_system->JSGFindObject(&stageObject, (const char*)&data.filedata[3], type)) {
+	switch (mSystem->JSGFindObject(&stageObject, (const char*)&data.filedata[3], type)) {
 	case 0:
-		*newObject = function(data, stageObject, m_system);
+		*newObject = function(data, stageObject, mSystem);
 		return true;
 	case 2:
 		return true;

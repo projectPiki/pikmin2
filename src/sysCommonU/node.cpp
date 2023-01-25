@@ -21,9 +21,9 @@ void Node::displayInfo(int whitespaceAmt)
 		OSReport("    ");
 	}
 
-	OSReport("[%s]\n", m_name);
+	OSReport("[%s]\n", mName);
 
-	Node* next = m_next;
+	Node* next = mNext;
 	if (next) {
 		next = (Node*)(((u8*)next) - 12);
 	}
@@ -45,7 +45,7 @@ void Node::displayInfo(int whitespaceAmt)
  */
 void Node::update()
 {
-	Node* next = m_next;
+	Node* next = mNext;
 	if (next) {
 		next = (Node*)(((u8*)next) - 12);
 	}
@@ -67,7 +67,7 @@ void Node::update()
  */
 void Node::draw(Graphics& gfx)
 {
-	Node* next = m_next;
+	Node* next = mNext;
 	if (next) {
 		next = (Node*)(((u8*)next) - 12);
 	}
@@ -100,22 +100,22 @@ CNode::CNode()
  */
 void CNode::addHead(CNode* newChild)
 {
-	CNode* child = m_child;
+	CNode* child = mChild;
 
-	if (m_child) {
+	if (mChild) {
 		// Add to our children and assign the variables appropriately
 		// this
 		// |||| (parent is this and the child is newChild)
 		// newChild
-		newChild->m_parent = this;
-		m_child            = newChild;
+		newChild->mParent = this;
+		mChild            = newChild;
 
 		// (nothing) <= newChild => otherChild
-		newChild->m_prev = nullptr;
-		newChild->m_next = child;
+		newChild->mPrev = nullptr;
+		newChild->mNext = child;
 
 		// newChild <= otherChild
-		child->m_prev = newChild;
+		child->mPrev = newChild;
 		return;
 	}
 
@@ -130,26 +130,26 @@ void CNode::addHead(CNode* newChild)
  */
 void CNode::add(CNode* newAdd)
 {
-	CNode* child = m_child;
+	CNode* child = mChild;
 	if (child) {
 		// Iterate to the end of the child list
-		while (child->m_next) {
-			child = child->m_next;
+		while (child->mNext) {
+			child = child->mNext;
 		}
 
 		// Add the child to the end of the list
-		child->m_next  = newAdd;
-		newAdd->m_prev = child;
+		child->mNext  = newAdd;
+		newAdd->mPrev = child;
 	} else {
 		// Set the child if it doesn't exist
-		m_child = newAdd;
+		mChild = newAdd;
 	}
 
-	newAdd->m_parent = this;
+	newAdd->mParent = this;
 
 	// Double check we haven't added the child twice!
-	CNode* c = m_child;
-	for (s32 addErrCount = 0; c; c = c->m_next) {
+	CNode* c = mChild;
+	for (s32 addErrCount = 0; c; c = c->mNext) {
 		if (c == newAdd) {
 			addErrCount++;
 		}
@@ -168,7 +168,7 @@ int CNode::calcNextCount()
 	int i       = 1;
 	CNode* node = this;
 
-	while (node = node->m_next) {
+	while (node = node->mNext) {
 		i++;
 	}
 
@@ -188,20 +188,20 @@ void CNode::concat(CNode* newEnd)
 	JUT_ASSERTLINE(270, this != newEnd, "CNode concat Loop Err!\n");
 
 	// Check if we already have the new end node
-	while (endCheck->m_next) {
+	while (endCheck->mNext) {
 		JUT_ASSERTLINE(274, endCheck != newEnd, "CNode concat Loop Err!\n");
-		endCheck = endCheck->m_next;
+		endCheck = endCheck->mNext;
 	}
 
 	// We assume the new end node wasn't found, so we will traverse to the end
 	// of the list and add it ourselves
-	while (curEnd->m_next) {
-		curEnd = curEnd->m_next;
+	while (curEnd->mNext) {
+		curEnd = curEnd->mNext;
 	}
 
 	// Add the node to the next one on
-	curEnd->m_next = newEnd;
-	newEnd->m_prev = curEnd;
+	curEnd->mNext = newEnd;
+	newEnd->mPrev = curEnd;
 }
 
 /*
@@ -218,12 +218,12 @@ CNode::~CNode() { }
  */
 void CNode::del()
 {
-	CNode* parent = m_parent;
+	CNode* parent = mParent;
 	if (!parent) {
 		return;
 	}
 
-	CNode* curChild = parent->m_child;
+	CNode* curChild = parent->mChild;
 	CNode* oldChild = nullptr;
 	while (curChild) {
 		// Is the current node us?
@@ -231,35 +231,35 @@ void CNode::del()
 			// If there was a node before us
 			if (oldChild) {
 				// Change the next node from this to the one after us
-				oldChild->m_next = curChild->m_next;
+				oldChild->mNext = curChild->mNext;
 
 				// If there was a node after us
-				CNode* next = curChild->m_next;
+				CNode* next = curChild->mNext;
 				if (next) {
 					// Change the previous node to the one before us
-					next->m_prev = oldChild;
+					next->mPrev = oldChild;
 				}
 
 				// Null our variables so we are alone :(
-				m_prev   = nullptr;
-				m_next   = nullptr;
-				m_parent = nullptr;
+				mPrev   = nullptr;
+				mNext   = nullptr;
+				mParent = nullptr;
 			} else {
 				// There wasn't a node before us, so assign the child to the
 				// next node on
-				parent->m_child = curChild->m_next;
+				parent->mChild = curChild->mNext;
 
 				// If there was a node after us, we'll make sure it doesn't have
 				// a previous node as we're deleting ourself
-				CNode* next = curChild->m_next;
+				CNode* next = curChild->mNext;
 				if (next) {
-					next->m_prev = nullptr;
+					next->mPrev = nullptr;
 				}
 
 				// Null our variables so we are alone :(
-				m_prev   = nullptr;
-				m_next   = nullptr;
-				m_parent = nullptr;
+				mPrev   = nullptr;
+				mNext   = nullptr;
+				mParent = nullptr;
 			}
 
 			return;
@@ -267,7 +267,7 @@ void CNode::del()
 
 		// Move to the next node
 		oldChild = curChild;
-		curChild = curChild->m_next;
+		curChild = curChild->mNext;
 	}
 }
 
@@ -278,11 +278,11 @@ void CNode::del()
  */
 int CNode::getChildCount()
 {
-	if (m_child) {
-		CNode* child = m_child;
+	if (mChild) {
+		CNode* child = mChild;
 		u32 i        = 0;
 
-		for (; child; child = child->m_next, i++) { }
+		for (; child; child = child->mNext, i++) { }
 
 		return i;
 	}
@@ -297,9 +297,9 @@ int CNode::getChildCount()
  */
 CNode* CNode::getChildAt(int idx)
 {
-	CNode* child = m_child;
+	CNode* child = mChild;
 
-	for (s32 i = 0; i < idx; child = child->m_next, i++) {
+	for (s32 i = 0; i < idx; child = child->mNext, i++) {
 		JUT_ASSERTLINE(351, child, "%d child (realchild = %d)!\n", idx, getChildCount());
 	}
 

@@ -17,10 +17,10 @@
  */
 FogMgr::FogMgr()
     : CNode("フォグマネージャ")
-    , m_type(GX_FOG_LINEAR)
-    , m_nearZ(640.0f)
-    , m_farZ(3024.0f)
-    , m_color(0xAD, 0xB1, 0xFC, 0xFF)
+    , mType(GX_FOG_LINEAR)
+    , mNearZ(640.0f)
+    , mFarZ(3024.0f)
+    , mColor(0xAD, 0xB1, 0xFC, 0xFF)
 {
 }
 
@@ -29,7 +29,7 @@ FogMgr::FogMgr()
  * Address:	804329BC
  * Size:	000040
  */
-void FogMgr::off(Graphics&) { GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, m_color.GXColorView); }
+void FogMgr::off(Graphics&) { GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, mColor.GXColorView); }
 
 /*
  * --INFO--
@@ -39,12 +39,12 @@ void FogMgr::off(Graphics&) { GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, m_co
 void FogMgr::set(Graphics& graphics)
 {
 	GXFogAdjTable table;
-	Camera* activeCam = graphics.m_currentViewport->m_camera;
+	Camera* activeCam = graphics.mCurrentViewport->mCamera;
 
-	GXSetFog(m_type, m_nearZ, m_farZ, activeCam->getNear(), activeCam->getFar(), m_color.GXColorView);
+	GXSetFog(mType, mNearZ, mFarZ, activeCam->getNear(), activeCam->getFar(), mColor.GXColorView);
 
 	u16 width = System::getRenderModeObj()->fbWidth;
-	GXInitFogAdjTable(&table, width, activeCam->m_projectionMtx);
+	GXInitFogAdjTable(&table, width, activeCam->mProjectionMtx);
 
 	width = System::getRenderModeObj()->fbWidth;
 	GXSetFogRangeAdj(GX_TRUE, width / 2, &table);
@@ -55,11 +55,11 @@ void FogMgr::set(Graphics& graphics)
  * Address:	80432AA8
  * Size:	000024
  */
-void FogMgr::setColor(Color4& color) { m_color.colorView = color; }
+void FogMgr::setColor(Color4& color) { mColor.colorView = color; }
 
 /*
  * --INFO--
  * Address:	80432ACC
  * Size:	000024
  */
-void FogMgr::getColor(Color4& color) { color = m_color.colorView; }
+void FogMgr::getColor(Color4& color) { color = mColor.colorView; }

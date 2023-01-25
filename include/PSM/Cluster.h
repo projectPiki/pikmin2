@@ -15,7 +15,7 @@ struct Cluster : public CreatureObj {
 	// _10     = VTBL 1
 	// _28     = VTBL 2
 	// _00-_70 = CreatureObj
-	PSSystem::ClusterSe::Mgr* m_clusterSeMgr; // _70
+	PSSystem::ClusterSe::Mgr* mClusterSeMgr; // _70
 };
 
 struct ClusterFactory : public PSSystem::ClusterSe::Factory {

@@ -72,15 +72,15 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 
 	// _00 VTBL
 	// _04 = ptr to NotSure/vtable for NotSure?
-	PelletConfigList* m_configList; // _08
-	J3DModelData** m_modelData;     // _0C
-	SysShape::AnimMgr** m_animMgr;  // _10
-	CollPart** m_collParts;         // _14
-	CollPartMgr m_collPartMgr;      // _18
-	SysShape::ModelMgr* m_modelMgr; // _48
-	bool* _4C;                      // _4C
-	int m_entries;                  // _50
-	                                // _54 - virtual NotSure
+	PelletConfigList* mConfigList; // _08
+	J3DModelData** mModelData;     // _0C
+	SysShape::AnimMgr** mAnimMgr;  // _10
+	CollPart** mCollParts;         // _14
+	CollPartMgr mCollPartMgr;      // _18
+	SysShape::ModelMgr* mModelMgr; // _48
+	bool* _4C;                     // _4C
+	int mEntries;                  // _50
+	                               // _54 - virtual NotSure
 };
 
 template <typename T>
@@ -100,8 +100,8 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	virtual void resetMgr()                     // _28 (weak)
 	{
-		m_monoObjectMgr.resetMgr();
-		m_collPartMgr.resetMgr();
+		mMonoObjectMgr.resetMgr();
+		mCollPartMgr.resetMgr();
 	}
 	virtual void resetMgrAndResources();            // _38
 	virtual Pellet* birth();                        // _3C
@@ -131,7 +131,7 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 	// _00-_54 	= BasePelletMgr
 	// _54-_6C	= Container
 	// _6C-_70	= ptr to _BasePelletMgrParent2 (maybe??)
-	MonoObjectMgr<T> m_monoObjectMgr; // _70
+	MonoObjectMgr<T> mMonoObjectMgr; // _70
 };
 
 } // namespace Game

@@ -15,19 +15,19 @@ struct DvdThreadCommand {
 
 	~DvdThreadCommand() {};
 
-	u32 _00;                          // _00
-	u32 m_loadType;                   // _04
-	char* m_arcPath;                  // _08
-	JKRArchive* m_mountedArchive;     // _0C
-	s32 _10;                          // _10
-	u32 m_modeFlags;                  // _14
-	s32 m_mode;                       // _18
-	char m_os;                        // _1C
-	u8 _1D[0x16];                     // _1D
-	JKRHeap* m_heap;                  // _34
-	OSMessageQueue m_msgQueue;        // _38
-	void* m_msgBuffer;                // _58
-	JSULink<DvdThreadCommand> m_link; // _5C
+	u32 _00;                         // _00
+	u32 mLoadType;                   // _04
+	char* mArcPath;                  // _08
+	JKRArchive* mMountedArchive;     // _0C
+	s32 _10;                         // _10
+	u32 mModeFlags;                  // _14
+	s32 mMode;                       // _18
+	char mOs;                        // _1C
+	u8 _1D[0x16];                    // _1D
+	JKRHeap* mHeap;                  // _34
+	OSMessageQueue mMsgQueue;        // _38
+	void* mMsgBuffer;                // _58
+	JSULink<DvdThreadCommand> mLink; // _5C
 };
 
 struct DvdThread : public AppThread {

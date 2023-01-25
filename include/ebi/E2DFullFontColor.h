@@ -8,10 +8,10 @@ namespace ebi {
 struct E2DFullFontColor {
 	E2DFullFontColor();
 
-	JUtility::TColor m_col1;  // _00
-	JUtility::TColor m_col2;  // _04
-	JUtility::TColor m_white; // _08
-	JUtility::TColor m_black; // _0C
+	JUtility::TColor mCol1;  // _00
+	JUtility::TColor mCol2;  // _04
+	JUtility::TColor mWhite; // _08
+	JUtility::TColor mBlack; // _0C
 };
 } // namespace ebi
 

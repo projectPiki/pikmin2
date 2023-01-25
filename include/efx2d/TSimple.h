@@ -10,14 +10,14 @@ namespace efx2d {
 struct TSimple1 : public TBase {
 	TSimple1(u16 effectID, JPABaseEmitter* emitter)
 	{
-		m_effectIDs[0] = effectID;
-		m_emitters[0]  = emitter;
+		mEffectIDs[0] = effectID;
+		mEmitters[0]  = emitter;
 	}
 
 	inline TSimple1(u16 effectID)
 	{
-		m_effectIDs[0] = effectID;
-		m_emitters[0]  = nullptr;
+		mEffectIDs[0] = effectID;
+		mEmitters[0]  = nullptr;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -26,17 +26,17 @@ struct TSimple1 : public TBase {
 
 	// _00     = VTBL
 	// _00-_08 = TBase
-	u16 m_effectIDs[1];            // _08
-	JPABaseEmitter* m_emitters[1]; // _0C
+	u16 mEffectIDs[1];            // _08
+	JPABaseEmitter* mEmitters[1]; // _0C
 };
 
 struct TSimple2 : public TBase {
 	TSimple2(u16 effectID1, u16 effectID2)
 	{
-		m_effectIDs[0] = effectID1;
-		m_effectIDs[1] = effectID2;
-		m_emitters[0]  = nullptr;
-		m_emitters[1]  = nullptr;
+		mEffectIDs[0] = effectID1;
+		mEffectIDs[1] = effectID2;
+		mEmitters[0]  = nullptr;
+		mEmitters[1]  = nullptr;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -45,19 +45,19 @@ struct TSimple2 : public TBase {
 
 	// _00     = VTBL
 	// _00-_08 = TBase
-	u16 m_effectIDs[2];            // _08
-	JPABaseEmitter* m_emitters[2]; // _0C
+	u16 mEffectIDs[2];            // _08
+	JPABaseEmitter* mEmitters[2]; // _0C
 };
 
 struct TSimple3 : public TBase {
 	TSimple3(u16 effectID1, u16 effectID2, u16 effectID3)
 	{
-		m_effectIDs[0] = effectID1;
-		m_effectIDs[1] = effectID2;
-		m_effectIDs[2] = effectID3;
-		m_emitters[0]  = nullptr;
-		m_emitters[1]  = nullptr;
-		m_emitters[2]  = nullptr;
+		mEffectIDs[0] = effectID1;
+		mEffectIDs[1] = effectID2;
+		mEffectIDs[2] = effectID3;
+		mEmitters[0]  = nullptr;
+		mEmitters[1]  = nullptr;
+		mEmitters[2]  = nullptr;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -66,8 +66,8 @@ struct TSimple3 : public TBase {
 
 	// _00     = VTBL
 	// _00-_08 = TBase
-	u16 m_effectIDs[3];            // _08
-	JPABaseEmitter* m_emitters[3]; // _10
+	u16 mEffectIDs[3];            // _08
+	JPABaseEmitter* mEmitters[3]; // _10
 };
 } // namespace efx2d
 

@@ -33,7 +33,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_IsCullable);
-	enemy->m_targetVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(0, nullptr);
 }
 
@@ -45,10 +45,10 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* tadpole = static_cast<Obj*>(enemy);
-	if (tadpole->m_curAnim->m_isPlaying) {
-		if (tadpole->m_curAnim->m_type == KEYEVENT_2) {
+	if (tadpole->mCurAnim->mIsPlaying) {
+		if (tadpole->mCurAnim->mType == KEYEVENT_2) {
 			tadpole->createLeapEffect();
-		} else if (tadpole->m_curAnim->m_type == KEYEVENT_END) {
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_END) {
 			tadpole->kill(nullptr);
 		}
 	}
@@ -68,10 +68,10 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tadpole              = static_cast<Obj*>(enemy);
-	tadpole->m_stateTimer     = 0.0f;
-	tadpole->m_nextState      = TADPOLE_Move;
-	tadpole->m_targetVelocity = Vector3f(0.0f);
+	Obj* tadpole             = static_cast<Obj*>(enemy);
+	tadpole->mStateTimer     = 0.0f;
+	tadpole->mNextState      = TADPOLE_Move;
+	tadpole->mTargetVelocity = Vector3f(0.0f);
 	tadpole->startMotion(1, nullptr);
 }
 
@@ -83,31 +83,31 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* tadpole = static_cast<Obj*>(enemy);
-	if (tadpole->m_stateTimer > 3.0f) {
+	if (tadpole->mStateTimer > 3.0f) {
 		tadpole->finishMotion();
 	}
 
-	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->m_general.m_viewAngle.m_value,
-	                                       CG_PARMS(tadpole)->m_general.m_sightRadius.m_value, nullptr, nullptr);
+	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->mGeneral.mViewAngle.mValue,
+	                                       CG_PARMS(tadpole)->mGeneral.mSightRadius.mValue, nullptr, nullptr);
 	if (navi) {
-		tadpole->m_targetPosition = Vector3f(tadpole->getTargetPosition(navi));
-		tadpole->m_nextState      = TADPOLE_Amaze;
+		tadpole->mTargetPosition = Vector3f(tadpole->getTargetPosition(navi));
+		tadpole->mNextState      = TADPOLE_Amaze;
 		tadpole->finishMotion();
 	}
 
-	tadpole->m_stateTimer += sys->m_deltaTime;
+	tadpole->mStateTimer += sys->mDeltaTime;
 
-	if (tadpole->m_health <= 0.0f) {
+	if (tadpole->mHealth <= 0.0f) {
 		transit(tadpole, TADPOLE_Dead, nullptr);
 		return;
 	}
 
-	if (!tadpole->m_waterBox) {
+	if (!tadpole->mWaterBox) {
 		transit(tadpole, TADPOLE_Leap, nullptr);
 	}
 
-	if (tadpole->m_curAnim->m_isPlaying && tadpole->m_curAnim->m_type == KEYEVENT_END) {
-		transit(tadpole, tadpole->m_nextState, nullptr);
+	if (tadpole->mCurAnim->mIsPlaying && tadpole->mCurAnim->mType == KEYEVENT_END) {
+		transit(tadpole, tadpole->mNextState, nullptr);
 	}
 }
 
@@ -125,10 +125,10 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tadpole          = static_cast<Obj*>(enemy);
-	tadpole->m_stateTimer = 0.0f;
+	Obj* tadpole         = static_cast<Obj*>(enemy);
+	tadpole->mStateTimer = 0.0f;
 	tadpole->setRandTarget(false);
-	tadpole->m_nextState = TADPOLE_Wait;
+	tadpole->mNextState = TADPOLE_Wait;
 	tadpole->startMotion(2, nullptr);
 }
 
@@ -141,38 +141,38 @@ void StateMove::exec(EnemyBase* enemy)
 {
 	Obj* tadpole        = static_cast<Obj*>(enemy);
 	Vector3f tadpolePos = tadpole->getPosition();
-	Vector3f targetPos  = Vector3f(tadpole->m_targetPosition);
+	Vector3f targetPos  = Vector3f(tadpole->mTargetPosition);
 
-	EnemyFunc::walkToTarget(tadpole, targetPos, CG_PARMS(tadpole)->m_general.m_moveSpeed.m_value,
-	                        CG_PARMS(tadpole)->m_general.m_rotationalAccel.m_value, CG_PARMS(tadpole)->m_general.m_rotationalSpeed.m_value);
+	EnemyFunc::walkToTarget(tadpole, targetPos, CG_PARMS(tadpole)->mGeneral.mMoveSpeed.mValue,
+	                        CG_PARMS(tadpole)->mGeneral.mRotationalAccel.mValue, CG_PARMS(tadpole)->mGeneral.mRotationalSpeed.mValue);
 
-	if (tadpole->m_stateTimer > 3.0f || sqrDistanceXZ(tadpolePos, targetPos) < 100.0f) {
-		tadpole->m_targetVelocity = Vector3f(0.0f);
+	if (tadpole->mStateTimer > 3.0f || sqrDistanceXZ(tadpolePos, targetPos) < 100.0f) {
+		tadpole->mTargetVelocity = Vector3f(0.0f);
 		tadpole->finishMotion();
 	}
 
-	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->m_general.m_viewAngle.m_value,
-	                                       CG_PARMS(tadpole)->m_general.m_sightRadius.m_value, nullptr, nullptr);
+	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->mGeneral.mViewAngle.mValue,
+	                                       CG_PARMS(tadpole)->mGeneral.mSightRadius.mValue, nullptr, nullptr);
 	if (navi) {
-		tadpole->m_targetPosition = Vector3f(tadpole->getTargetPosition(navi));
-		tadpole->m_nextState      = TADPOLE_Amaze;
-		tadpole->m_targetVelocity = Vector3f(0.0f);
+		tadpole->mTargetPosition = Vector3f(tadpole->getTargetPosition(navi));
+		tadpole->mNextState      = TADPOLE_Amaze;
+		tadpole->mTargetVelocity = Vector3f(0.0f);
 		tadpole->finishMotion();
 	}
 
-	tadpole->m_stateTimer += sys->m_deltaTime;
+	tadpole->mStateTimer += sys->mDeltaTime;
 
-	if (tadpole->m_health <= 0.0f) {
+	if (tadpole->mHealth <= 0.0f) {
 		transit(tadpole, TADPOLE_Dead, nullptr);
 		return;
 	}
 
-	if (!tadpole->m_waterBox) {
+	if (!tadpole->mWaterBox) {
 		transit(tadpole, TADPOLE_Leap, nullptr);
 	}
 
-	if (tadpole->m_curAnim->m_isPlaying && tadpole->m_curAnim->m_type == KEYEVENT_END) {
-		transit(tadpole, tadpole->m_nextState, nullptr);
+	if (tadpole->mCurAnim->mIsPlaying && tadpole->mCurAnim->mType == KEYEVENT_END) {
+		transit(tadpole, tadpole->mNextState, nullptr);
 	}
 }
 
@@ -191,7 +191,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
 void StateAmaze::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->disableEvent(0, EB_IsEnemyNotBitter);
-	enemy->m_targetVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(3, nullptr);
 }
@@ -204,18 +204,18 @@ void StateAmaze::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAmaze::exec(EnemyBase* enemy)
 {
 	Obj* tadpole = static_cast<Obj*>(enemy);
-	if (tadpole->m_curAnim->m_isPlaying) {
-		if (tadpole->m_curAnim->m_type == KEYEVENT_2) {
+	if (tadpole->mCurAnim->mIsPlaying) {
+		if (tadpole->mCurAnim->mType == KEYEVENT_2) {
 			tadpole->enableEvent(0, EB_IsEnemyNotBitter);
 			tadpole->createLeapEffect();
-			EnemyFunc::flickNearbyPikmin(tadpole, CG_PARMS(tadpole)->m_general.m_shakeRange.m_value,
-			                             CG_PARMS(tadpole)->m_general.m_shakeKnockback.m_value,
-			                             CG_PARMS(tadpole)->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(tadpole, CG_PARMS(tadpole)->mGeneral.mShakeRange.mValue,
+			                             CG_PARMS(tadpole)->mGeneral.mShakeKnockback.mValue,
+			                             CG_PARMS(tadpole)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
-		} else if (tadpole->m_curAnim->m_type == KEYEVENT_3) {
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_3) {
 			tadpole->disableEvent(0, EB_IsEnemyNotBitter);
 
-		} else if (tadpole->m_curAnim->m_type == KEYEVENT_END) {
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_END) {
 			transit(tadpole, TADPOLE_Escape, nullptr);
 		}
 	}
@@ -252,30 +252,29 @@ void StateEscape::exec(EnemyBase* enemy)
 {
 	Obj* tadpole = static_cast<Obj*>(enemy);
 
-	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->m_general.m_viewAngle.m_value,
-	                                       CG_PARMS(tadpole)->m_general.m_sightRadius.m_value, nullptr, nullptr);
+	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->mGeneral.mViewAngle.mValue,
+	                                       CG_PARMS(tadpole)->mGeneral.mSightRadius.mValue, nullptr, nullptr);
 	if (navi) {
 		Vector3f tadpolePos = tadpole->getPosition(); // this is pointless
 		Vector3f targetPos  = tadpole->getTargetPosition(navi);
 
-		EnemyFunc::walkToTarget(tadpole, targetPos, CG_PARMS(tadpole)->m_general.m_moveSpeed.m_value,
-		                        CG_PARMS(tadpole)->m_general.m_rotationalAccel.m_value,
-		                        CG_PARMS(tadpole)->m_general.m_rotationalSpeed.m_value);
+		EnemyFunc::walkToTarget(tadpole, targetPos, CG_PARMS(tadpole)->mGeneral.mMoveSpeed.mValue,
+		                        CG_PARMS(tadpole)->mGeneral.mRotationalAccel.mValue, CG_PARMS(tadpole)->mGeneral.mRotationalSpeed.mValue);
 
 	} else {
 		tadpole->finishMotion();
 	}
 
-	if (tadpole->m_health <= 0.0f) {
+	if (tadpole->mHealth <= 0.0f) {
 		transit(tadpole, TADPOLE_Dead, nullptr);
 		return;
 	}
 
-	if (!tadpole->m_waterBox) {
+	if (!tadpole->mWaterBox) {
 		transit(tadpole, TADPOLE_Leap, nullptr);
 	}
 
-	if (tadpole->m_curAnim->m_isPlaying && tadpole->m_curAnim->m_type == KEYEVENT_END) {
+	if (tadpole->mCurAnim->mIsPlaying && tadpole->mCurAnim->mType == KEYEVENT_END) {
 		transit(tadpole, TADPOLE_Wait, nullptr);
 	}
 }
@@ -294,8 +293,8 @@ void StateEscape::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateLeap::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tadpole          = static_cast<Obj*>(enemy);
-	tadpole->m_stateTimer = 0.0f;
+	Obj* tadpole         = static_cast<Obj*>(enemy);
+	tadpole->mStateTimer = 0.0f;
 	tadpole->setRandTarget(true);
 	if (randWeightFloat(1.0f) < 0.5f) {
 		tadpole->_2C0 = true;
@@ -303,10 +302,10 @@ void StateLeap::init(EnemyBase* enemy, StateArg* stateArg)
 		tadpole->_2C0 = false;
 	}
 
-	tadpole->m_nextState = TADPOLE_NULL;
+	tadpole->mNextState = TADPOLE_NULL;
 	tadpole->enableEvent(0, EB_IsEnemyNotBitter);
 	tadpole->startMotion(4, nullptr);
-	tadpole->m_targetVelocity = Vector3f(tadpole->getVelocity());
+	tadpole->mTargetVelocity = Vector3f(tadpole->getVelocity());
 }
 
 /*
@@ -319,15 +318,15 @@ void StateLeap::exec(EnemyBase* enemy)
 	Obj* tadpole = static_cast<Obj*>(enemy);
 
 	if (tadpole->isFinishMotion()) {
-		tadpole->m_targetVelocity = Vector3f(0.0f);
+		tadpole->mTargetVelocity = Vector3f(0.0f);
 	} else if (tadpole->getMotionFrame() >= 15.0f) {
 		Vector3f tadpolePos = tadpole->getPosition();
-		Vector3f targetPos  = tadpole->m_targetPosition;
-		if (tadpole->m_waterBox) {
-			tadpole->m_nextState = TADPOLE_Wait;
+		Vector3f targetPos  = tadpole->mTargetPosition;
+		if (tadpole->mWaterBox) {
+			tadpole->mNextState = TADPOLE_Wait;
 			tadpole->finishMotion();
-		} else if (tadpole->m_stateTimer > 10.0f || sqrDistanceXZ(tadpolePos, targetPos) < 100.0f) {
-			tadpole->m_stateTimer = 0.0f;
+		} else if (tadpole->mStateTimer > 10.0f || sqrDistanceXZ(tadpolePos, targetPos) < 100.0f) {
+			tadpole->mStateTimer = 0.0f;
 			tadpole->setRandTarget(true);
 		}
 
@@ -346,45 +345,45 @@ void StateLeap::exec(EnemyBase* enemy)
 		}
 
 		// f1-f2 regswap. smfh.
-		tadpole->m_faceDir    = adjustedDir;
-		tadpole->m_rotation.y = tadpole->m_faceDir;
+		tadpole->mFaceDir    = adjustedDir;
+		tadpole->mRotation.y = tadpole->mFaceDir;
 
-		Vector3f targetVel = tadpole->m_targetVelocity;
+		Vector3f targetVel = tadpole->mTargetVelocity;
 		Vector3f diff(targetPos.x - tadpolePos.x, 0.0f, targetPos.z - tadpolePos.z);
 
 		_normalise(diff);
 
-		diff.x *= CG_PARMS(tadpole)->m_properParms.m_pitterPatterMoveSpeed.m_value;
-		diff.y *= CG_PARMS(tadpole)->m_properParms.m_pitterPatterMoveSpeed.m_value;
-		diff.z *= CG_PARMS(tadpole)->m_properParms.m_pitterPatterMoveSpeed.m_value;
+		diff.x *= CG_PARMS(tadpole)->mProperParms.mPitterPatterMoveSpeed.mValue;
+		diff.y *= CG_PARMS(tadpole)->mProperParms.mPitterPatterMoveSpeed.mValue;
+		diff.z *= CG_PARMS(tadpole)->mProperParms.mPitterPatterMoveSpeed.mValue;
 
-		tadpole->m_targetVelocity.x = 0.1f * (diff.x - targetVel.x) + targetVel.x;
-		tadpole->m_targetVelocity.y = diff.y;
-		tadpole->m_targetVelocity.z = 0.1f * (diff.z - targetVel.z) + targetVel.z;
+		tadpole->mTargetVelocity.x = 0.1f * (diff.x - targetVel.x) + targetVel.x;
+		tadpole->mTargetVelocity.y = diff.y;
+		tadpole->mTargetVelocity.z = 0.1f * (diff.z - targetVel.z) + targetVel.z;
 	}
 
-	tadpole->m_stateTimer += sys->m_deltaTime;
+	tadpole->mStateTimer += sys->mDeltaTime;
 
-	if (tadpole->m_health <= 0.0f) {
+	if (tadpole->mHealth <= 0.0f) {
 		transit(tadpole, TADPOLE_Dead, nullptr);
 		return;
 	}
 
-	if (tadpole->m_curAnim->m_isPlaying) {
-		if (tadpole->m_curAnim->m_type == KEYEVENT_2) {
+	if (tadpole->mCurAnim->mIsPlaying) {
+		if (tadpole->mCurAnim->mType == KEYEVENT_2) {
 			tadpole->createLeapEffect();
 
-		} else if (tadpole->m_curAnim->m_type == KEYEVENT_3) {
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_3) {
 			tadpole->disableEvent(0, EB_IsEnemyNotBitter);
 			tadpole->createLeapEffect();
 
-		} else if (tadpole->m_curAnim->m_type == KEYEVENT_4) {
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_4) {
 			tadpole->enableEvent(0, EB_IsEnemyNotBitter);
 
-		} else if (tadpole->m_curAnim->m_type == KEYEVENT_NULL) {
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_NULL) {
 			tadpole->enableEvent(0, EB_IsEnemyNotBitter);
 
-		} else if (tadpole->m_curAnim->m_type == KEYEVENT_1) {
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_1) {
 			tadpole->disableEvent(0, EB_IsEnemyNotBitter);
 			tadpole->createLeapEffect();
 			if (randWeightFloat(1.0f) < 0.5f) {
@@ -393,15 +392,15 @@ void StateLeap::exec(EnemyBase* enemy)
 				tadpole->_2C0 = false;
 			}
 
-		} else if (tadpole->m_curAnim->m_type == KEYEVENT_END) {
-			Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->m_general.m_viewAngle.m_value,
-			                                       CG_PARMS(tadpole)->m_general.m_sightRadius.m_value, nullptr, nullptr);
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_END) {
+			Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->mGeneral.mViewAngle.mValue,
+			                                       CG_PARMS(tadpole)->mGeneral.mSightRadius.mValue, nullptr, nullptr);
 			if (navi) {
-				tadpole->m_targetPosition = Vector3f(tadpole->getTargetPosition(navi));
-				tadpole->m_nextState      = TADPOLE_Amaze;
+				tadpole->mTargetPosition = Vector3f(tadpole->getTargetPosition(navi));
+				tadpole->mNextState      = TADPOLE_Amaze;
 			}
 
-			transit(tadpole, tadpole->m_nextState, nullptr);
+			transit(tadpole, tadpole->mNextState, nullptr);
 		}
 	}
 	/*

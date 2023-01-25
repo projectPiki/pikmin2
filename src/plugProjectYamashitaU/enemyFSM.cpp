@@ -9,7 +9,7 @@ namespace Game {
  * Address:	8013070C
  * Size:	000030
  */
-void EnemyFSMState::transit(EnemyBase* obj, int id, StateArg* arg) { m_stateMachine->transit(obj, id, arg); }
+void EnemyFSMState::transit(EnemyBase* obj, int id, StateArg* arg) { mStateMachine->transit(obj, id, arg); }
 
 /*
  * --INFO--
@@ -67,15 +67,15 @@ void EnemyStateMachine::exec(EnemyBase* obj) { getCurrState(obj)->exec(obj); }
  */
 void EnemyStateMachine::create(int limit)
 {
-	m_limit          = limit;
-	m_count          = 0;
-	m_states         = new EnemyFSMState*[m_limit];
-	m_indexToIDArray = new int[m_limit];
-	m_idToIndexArray = new int[m_limit];
-	for (int i = 0; i < m_limit; i++) {
-		m_states[i]         = nullptr;
-		m_indexToIDArray[i] = -1;
-		m_idToIndexArray[i] = -1;
+	mLimit          = limit;
+	mCount          = 0;
+	mStates         = new EnemyFSMState*[mLimit];
+	mIndexToIDArray = new int[mLimit];
+	mIdToIndexArray = new int[mLimit];
+	for (int i = 0; i < mLimit; i++) {
+		mStates[i]         = nullptr;
+		mIndexToIDArray[i] = -1;
+		mIdToIndexArray[i] = -1;
 	}
 }
 
@@ -87,12 +87,12 @@ void EnemyStateMachine::create(int limit)
 void EnemyStateMachine::registerState(EnemyFSMState* newState)
 {
 	bool check;
-	if (m_count >= m_limit) {
+	if (mCount >= mLimit) {
 		return;
 	}
-	m_states[m_count] = newState;
+	mStates[mCount] = newState;
 	// TODO: This looks weird. How would they really have written it?
-	if (!(0 <= newState->m_stateID && newState->m_stateID < m_limit)) {
+	if (!(0 <= newState->mStateID && newState->mStateID < mLimit)) {
 		check = false;
 	} else {
 		check = true;
@@ -100,10 +100,10 @@ void EnemyStateMachine::registerState(EnemyFSMState* newState)
 	if (check == false) {
 		return;
 	}
-	newState->m_stateMachine              = this;
-	m_indexToIDArray[m_count]             = newState->m_stateID;
-	m_idToIndexArray[newState->m_stateID] = m_count;
-	m_count++;
+	newState->mStateMachine             = this;
+	mIndexToIDArray[mCount]             = newState->mStateID;
+	mIdToIndexArray[newState->mStateID] = mCount;
+	mCount++;
 }
 
 /*
@@ -114,7 +114,7 @@ void EnemyStateMachine::registerState(EnemyFSMState* newState)
 int EnemyStateMachine::getCurrID(EnemyBase* obj)
 {
 	if (getCurrState(obj)) {
-		return getCurrState(obj)->m_stateID;
+		return getCurrState(obj)->mStateID;
 	}
 	return -1;
 }
@@ -127,7 +127,7 @@ int EnemyStateMachine::getCurrID(EnemyBase* obj)
 const char* EnemyStateMachine::getCurrName(EnemyBase* obj)
 {
 	if (getCurrState(obj)) {
-		return getCurrState(obj)->m_name;
+		return getCurrState(obj)->mName;
 	}
 	return "no name";
 }
@@ -139,14 +139,14 @@ const char* EnemyStateMachine::getCurrName(EnemyBase* obj)
  */
 void EnemyStateMachine::transit(EnemyBase* obj, int id, StateArg* arg)
 {
-	int index = m_idToIndexArray[id];
+	int index = mIdToIndexArray[id];
 	if (getCurrState(obj)) {
 		getCurrState(obj)->cleanup(obj);
-		m_previousID = getCurrState(obj)->m_stateID;
+		mPreviousID = getCurrState(obj)->mStateID;
 	}
 
-	ASSERT_HANG(index < m_limit);
-	setCurrState(obj, m_states[index]);
+	ASSERT_HANG(index < mLimit);
+	setCurrState(obj, mStates[index]);
 	getCurrState(obj)->init(obj, arg);
 }
 
@@ -155,14 +155,14 @@ void EnemyStateMachine::transit(EnemyBase* obj, int id, StateArg* arg)
  * Address:	80130B88
  * Size:	000008
  */
-void EnemyStateMachine::setCurrState(EnemyBase* obj, EnemyFSMState* state) { obj->m_currentLifecycleState = state; }
+void EnemyStateMachine::setCurrState(EnemyBase* obj, EnemyFSMState* state) { obj->mCurrentLifecycleState = state; }
 
 /*
  * --INFO--
  * Address:	80130B90
  * Size:	000008
  */
-EnemyFSMState* EnemyStateMachine::getCurrState(EnemyBase* obj) { return obj->m_currentLifecycleState; }
+EnemyFSMState* EnemyStateMachine::getCurrState(EnemyBase* obj) { return obj->mCurrentLifecycleState; }
 
 /*
  * --INFO--

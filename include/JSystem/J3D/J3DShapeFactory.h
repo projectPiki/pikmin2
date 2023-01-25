@@ -17,14 +17,14 @@ struct J3DShapeFactory {
 	int calcSizeVcdVatCmdBuffer(u32);
 	int calcSizeShapeMtx(u32, int, int) const;
 
-	J3DShapeInitData* m_initData;                // _00
-	u16* m_initDataIndices;                      // _04
-	_GXVtxDescList* m_vtxDescLists;              // _08
-	u16* _0C;                                    // _0C
-	u8* _10;                                     // _10
-	struct J3DShapeMtxInitData* m_mtxInitData;   // _14
-	struct J3DShapeDrawInitData* m_drawInitData; // _18
-	void* _1C;                                   // _1C
+	J3DShapeInitData* mInitData;                // _00
+	u16* mInitDataIndices;                      // _04
+	_GXVtxDescList* mVtxDescLists;              // _08
+	u16* _0C;                                   // _0C
+	u8* _10;                                    // _10
+	struct J3DShapeMtxInitData* mMtxInitData;   // _14
+	struct J3DShapeDrawInitData* mDrawInitData; // _18
+	void* _1C;                                  // _1C
 };
 
 #endif

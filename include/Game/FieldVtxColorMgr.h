@@ -20,9 +20,9 @@ struct FieldVtxColorInfo {
 // TODO fields
 struct FieldVtxColorControl {
 	unknown _00;            // _00
-	Vector3f m_position;    // _04
+	Vector3f mPosition;     // _04
 	f32 _10;                // _10
-	f32 m_power;            // _14
+	f32 mPower;             // _14
 	f32 _18;                // _18
 	unknown _1C;            // _1C
 	FieldVtxColorControl(); // inlined
@@ -47,12 +47,12 @@ struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
 	void setupFieldVtxColorInfoFromFan(void*, int, int, int, int);
 	void drawDebugInfo(struct Graphics&);
 
-	J3DModelData* m_modelData;       // _24
-	FieldVtxColorInfo* m_info;       // _28
-	int _2C;                         // _2C
-	FieldVtxColorControl* m_control; // _30
-	f32 _34;                         // _34
-	u8 _38[4];                       // _38
+	J3DModelData* mModelData;       // _24
+	FieldVtxColorInfo* mInfo;       // _28
+	int _2C;                        // _2C
+	FieldVtxColorControl* mControl; // _30
+	f32 _34;                        // _34
+	u8 _38[4];                      // _38
 };
 } // namespace Game
 

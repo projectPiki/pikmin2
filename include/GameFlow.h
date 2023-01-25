@@ -9,10 +9,10 @@ struct Section;
 struct JKRHeap;
 
 struct SectionInfo {
-	char* m_name;
+	char* mName;
 
 	union {
-		u8 m_sectionId, b, c, d;
+		u8 mSectionId, b, c, d;
 		u32 abcd;
 	} id;
 };
@@ -32,7 +32,7 @@ struct GameFlow : public ISectionMgr {
 	static u32 mActiveSectionFlag;
 
 	// _00 VTBL
-	Section* m_section; // _04
+	Section* mSection; // _04
 };
 
 #endif

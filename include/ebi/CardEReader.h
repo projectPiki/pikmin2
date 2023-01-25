@@ -24,10 +24,10 @@ struct TMgr : public JKRDisposer {
 
 	TMgr()
 	{
-		m_gameID  = 0;
-		m_state   = 0;
-		m_endStat = Error_0;
-		m_gbaPort = -1;
+		mGameID  = 0;
+		mState   = 0;
+		mEndStat = Error_0;
+		mGbaPort = -1;
 	}
 
 	virtual ~TMgr(); // _08
@@ -45,16 +45,16 @@ struct TMgr : public JKRDisposer {
 	void deleteInstance();
 
 	// _00 VTBL
-	void* m_gameDatas[EREADER_GAMES]; // _18
-	u32 m_sizes[EREADER_GAMES];
-	int m_gameID;
-	int m_state;
+	void* mGameDatas[EREADER_GAMES]; // _18
+	u32 mSizes[EREADER_GAMES];
+	int mGameID;
+	int mState;
 	int _38;
-	int m_endStat;
-	int m_gbaPort;
-	int m_counter;
-	OSMutex m_mutex;
-	OSThreadQueue m_cond;
+	int mEndStat;
+	int mGbaPort;
+	int mCounter;
+	OSMutex mMutex;
+	OSThreadQueue mCond;
 };
 } // namespace CardEReader
 CardEReader::TMgr* gCardEMgr;

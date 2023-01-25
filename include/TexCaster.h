@@ -33,9 +33,9 @@ struct Mgr {
 
 	static Mgr* sInstance;
 
-	int m_textureCount;      // _00
-	JUTTexture** m_textures; // _04
-	Caster m_caster;         // _08
+	int mTextureCount;      // _00
+	JUTTexture** mTextures; // _04
+	Caster mCaster;         // _08
 };
 
 } // namespace TexCaster

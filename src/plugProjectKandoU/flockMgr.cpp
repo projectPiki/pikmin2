@@ -78,19 +78,19 @@ void BaseFlockMgr::update()
 {
 	do_update_boundSphere();
 
-	Graphics* gfx = sys->m_gfx;
-	for (int i = 0; i < gfx->m_viewportCount; i++) {
+	Graphics* gfx = sys->mGfx;
+	for (int i = 0; i < gfx->mViewportCount; i++) {
 		Viewport* vp = gfx->getViewport(i);
 
 		if (!vp->viewable()) {
-			m_isAgentVisible[i] = false;
+			mIsAgentVisible[i] = false;
 			continue;
 		}
 
-		if (vp->m_camera->isVisible(_0C)) {
-			m_isAgentVisible[i] = true;
+		if (vp->mCamera->isVisible(_0C)) {
+			mIsAgentVisible[i] = true;
 		} else {
-			m_isAgentVisible[i] = false;
+			mIsAgentVisible[i] = false;
 		}
 	}
 

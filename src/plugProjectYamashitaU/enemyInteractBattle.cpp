@@ -11,9 +11,9 @@ namespace Game {
  */
 bool InteractHipdrop::actEnemy(Game::EnemyBase* enemy)
 {
-	bool callback = enemy->pressCallBack(m_creature, m_damage, m_collPart);
+	bool callback = enemy->pressCallBack(mCreature, mDamage, mCollPart);
 	if (!callback) {
-		callback = enemy->hipdropCallBack(m_creature, m_damage, m_collPart);
+		callback = enemy->hipdropCallBack(mCreature, mDamage, mCollPart);
 	}
 	return callback;
 }
@@ -27,7 +27,7 @@ bool InteractEarthquake::actEnemy(Game::EnemyBase* enemy)
 {
 	bool callback = false;
 	if (!enemy->checkBirthTypeDropEarthquake()) {
-		callback = enemy->earthquakeCallBack(m_creature, m_bounceFactor);
+		callback = enemy->earthquakeCallBack(mCreature, mBounceFactor);
 	}
 	return callback;
 }
@@ -37,14 +37,14 @@ bool InteractEarthquake::actEnemy(Game::EnemyBase* enemy)
  * Address:	8010BAF0
  * Size:	000040
  */
-bool InteractPress::actEnemy(Game::EnemyBase* enemy) { return enemy->pressCallBack(m_creature, m_damage, m_collPart); }
+bool InteractPress::actEnemy(Game::EnemyBase* enemy) { return enemy->pressCallBack(mCreature, mDamage, mCollPart); }
 
 /*
  * --INFO--
  * Address:	8010BB30
  * Size:	000040
  */
-bool InteractFlyCollision::actEnemy(Game::EnemyBase* enemy) { return enemy->flyCollisionCallBack(m_creature, _08, m_collPart); }
+bool InteractFlyCollision::actEnemy(Game::EnemyBase* enemy) { return enemy->flyCollisionCallBack(mCreature, _08, mCollPart); }
 
 /*
  * --INFO--
@@ -57,8 +57,8 @@ bool InteractAttack::actEnemy(Game::EnemyBase* enemy)
 
 	if (!enemy->isEvent(0, EB_IsVulnerable)) {
 		bool flag = false;
-		if (m_creature->isNavi()) {
-			if (static_cast<Navi*>(m_creature)->m_naviIndex == 0) {
+		if (mCreature->isNavi()) {
+			if (static_cast<Navi*>(mCreature)->mNaviIndex == 0) {
 				if (!enemy->isEvent(0, EB_IsNavi0Attacked)) {
 					flag = true;
 					enemy->enableEvent(0, EB_IsNavi0Attacked);
@@ -73,10 +73,10 @@ bool InteractAttack::actEnemy(Game::EnemyBase* enemy)
 
 		if (flag) {
 			if (enemy->isEvent(0, EB_IsBittered)) {
-				m_damage *= enemy->getDamageCoeStoneState();
+				mDamage *= enemy->getDamageCoeStoneState();
 			}
 
-			isSuccess = enemy->damageCallBack(m_creature, m_damage, m_collPart);
+			isSuccess = enemy->damageCallBack(mCreature, mDamage, mCollPart);
 		}
 	}
 
@@ -88,7 +88,7 @@ bool InteractAttack::actEnemy(Game::EnemyBase* enemy)
  * Address:	8010BC8C
  * Size:	000038
  */
-bool InteractDrop::actEnemy(Game::EnemyBase* enemy) { return enemy->dropCallBack(m_creature); }
+bool InteractDrop::actEnemy(Game::EnemyBase* enemy) { return enemy->dropCallBack(mCreature); }
 
 /*
  * --INFO--
@@ -99,7 +99,7 @@ bool InteractBomb::actEnemy(Game::EnemyBase* enemy)
 {
 	bool callback = false;
 	if (!enemy->isBeforeAppearState()) {
-		callback = enemy->bombCallBack(m_creature, m_direction, m_damage);
+		callback = enemy->bombCallBack(mCreature, mDirection, mDamage);
 	}
 	return callback;
 }

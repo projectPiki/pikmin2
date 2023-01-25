@@ -252,12 +252,12 @@ namespace UmiMushi {
  */
 UmimushiShadowMgr::UmimushiShadowMgr(Obj* obj)
 {
-	m_obj        = obj;
-	m_rootNode   = new JointShadowRootNode(obj);
-	m_tubeShadow = new UmimushiTubeShadowNode;
-	m_rootNode->add(m_tubeShadow);
-	m_sphereShadow = new UmimushiSphereShadowNode;
-	m_rootNode->add(m_sphereShadow);
+	mObj        = obj;
+	mRootNode   = new JointShadowRootNode(obj);
+	mTubeShadow = new UmimushiTubeShadowNode;
+	mRootNode->add(mTubeShadow);
+	mSphereShadow = new UmimushiSphereShadowNode;
+	mRootNode->add(mSphereShadow);
 }
 
 /*
@@ -267,9 +267,9 @@ UmimushiShadowMgr::UmimushiShadowMgr(Obj* obj)
  */
 void UmimushiShadowMgr::init()
 {
-	SysShape::Model* model = m_obj->m_model;
-	m_weakMatrix1          = model->getJoint("weak_joint1")->getWorldMatrix();
-	m_weakMatrix2          = model->getJoint("weak_joint2")->getWorldMatrix();
+	SysShape::Model* model = mObj->mModel;
+	mWeakMatrix1           = model->getJoint("weak_joint1")->getWorldMatrix();
+	mWeakMatrix2           = model->getJoint("weak_joint2")->getWorldMatrix();
 }
 
 /*
@@ -279,7 +279,7 @@ void UmimushiShadowMgr::init()
  */
 void UmimushiShadowMgr::update()
 {
-	Vector3f position = m_obj->getPosition();
+	Vector3f position = mObj->getPosition();
 	JointShadowParm parm;
 	Vector3f vec1;
 	Vector3f vec2;
@@ -287,29 +287,29 @@ void UmimushiShadowMgr::update()
 	parm._00 = position;
 	parm._0C = Vector3f(0.0f, 1.0f, 0.0f);
 
-	vec1 = m_weakMatrix1->getBasis(3);
+	vec1 = mWeakMatrix1->getBasis(3);
 
 	parm._18 = -12.5f;
 	parm._1C = 0.0f;
 	parm._20 = 1.5f;
 	parm._24 = 0.0f;
 
-	m_tubeShadow->makeShadowSRT(parm, m_weakMatrix2, vec1, vec2);
+	mTubeShadow->makeShadowSRT(parm, mWeakMatrix2, vec1, vec2);
 
 	parm._18 = 0.0f;
 	parm._1C = 0.0f;
 	parm._20 = 15.0f;
 	parm._24 = -12.5f;
 
-	m_sphereShadow->makeShadowSRT(parm, m_weakMatrix2, vec2, m_obj->isAlive());
+	mSphereShadow->makeShadowSRT(parm, mWeakMatrix2, vec2, mObj->isAlive());
 
-	Pellet* pellet = m_obj->m_pellet;
+	Pellet* pellet = mObj->mPellet;
 	if (pellet && pellet->isCarried()) {
-		if (m_tubeShadow->m_parent) {
-			m_tubeShadow->del();
+		if (mTubeShadow->mParent) {
+			mTubeShadow->del();
 		}
-	} else if (!m_tubeShadow->m_parent) {
-		m_rootNode->addHead(m_tubeShadow);
+	} else if (!mTubeShadow->mParent) {
+		mRootNode->addHead(mTubeShadow);
 	}
 }
 } // namespace UmiMushi

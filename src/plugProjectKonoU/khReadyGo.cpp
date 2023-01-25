@@ -28,7 +28,7 @@ bool ObjReadyGo::doUpdateFadein()
 
 	DispReadyGo* disp = static_cast<DispReadyGo*>(getDispMember());
 
-	if (disp->m_gameType == 0) {
+	if (disp->mGameType == 0) {
 		PSSystem::spSysIF->playSystemSe(PSSE_READYGO_BATTLE_COME, 0);
 	} else {
 		PSSystem::spSysIF->playSystemSe(PSSE_READYGO_CHALLENGE_COME, 0);
@@ -51,28 +51,28 @@ void ObjReadyGo::doCreate(JKRArchive* arc)
 	}
 
 	DispReadyGo* disp = static_cast<DispReadyGo*>(getDispMember());
-	if (disp->m_is2Player) {
-		m_screenNum  = 2;
-		m_yOffset[0] = msVal.m_yOffsetP1;
-		m_yOffset[1] = msVal.m_yOffsetP2;
+	if (disp->mIs2Player) {
+		mScreenNum  = 2;
+		mYOffset[0] = msVal.mYOffsetP1;
+		mYOffset[1] = msVal.mYOffsetP2;
 	}
 
-	for (int i = 0; i < m_screenNum; i++) {
-		m_screen[i] = new P2DScreen::Mgr_tuning;
-		m_screen[i]->set(nameList[i][0], 0x40000, arc);
+	for (int i = 0; i < mScreenNum; i++) {
+		mScreen[i] = new P2DScreen::Mgr_tuning;
+		mScreen[i]->set(nameList[i][0], 0x40000, arc);
 		void* file = JKRFileLoader::getGlbResource(nameList[i][1], arc);
-		m_anim1[i] = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+		mAnim1[i]  = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
 
-		file       = JKRFileLoader::getGlbResource(nameList[i][2], arc);
-		m_anim2[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+		file      = JKRFileLoader::getGlbResource(nameList[i][2], arc);
+		mAnim2[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
 
-		m_screen[i]->setAnimation(m_anim1[i]);
-		m_screen[i]->setAnimation(m_anim2[i]);
+		mScreen[i]->setAnimation(mAnim1[i]);
+		mScreen[i]->setAnimation(mAnim2[i]);
 	}
 
 	getOwner()->setColorBG(0, 0, 0, 160);
 
-	if (disp->m_gameType == 0) {
+	if (disp->mGameType == 0) {
 		PSStart2DStream(0xc0011022);
 	} else {
 		PSStart2DStream(0xc0011023);
@@ -93,11 +93,11 @@ bool ObjReadyGo::doUpdate() { return updateAnimation(); }
  */
 void ObjReadyGo::doDraw(Graphics& gfx)
 {
-	gfx.m_orthoGraph.setPort();
+	gfx.mOrthoGraph.setPort();
 
-	for (int i = 0; i < m_screenNum; i++) {
-		m_screen[i]->search('ROOT')->setOffset(0.0f, m_yOffset[i]);
-		m_screen[i]->draw(gfx, gfx.m_orthoGraph);
+	for (int i = 0; i < mScreenNum; i++) {
+		mScreen[i]->search('ROOT')->setOffset(0.0f, mYOffset[i]);
+		mScreen[i]->draw(gfx, gfx.mOrthoGraph);
 	}
 }
 
@@ -113,9 +113,9 @@ bool ObjReadyGo::doUpdateFadeout()
 	}
 
 	DispReadyGo* disp = static_cast<DispReadyGo*>(getDispMember());
-	if (disp->m_isFinalFloor) {
+	if (disp->mIsFinalFloor) {
 		DispFinalFloor disp2;
-		disp2.m_is2Player = disp->m_is2Player;
+		disp2.mIs2Player = disp->mIs2Player;
 		::Screen::SetSceneArg arg(SCENE_FINAL_FLOOR, &disp2, 0, true);
 		arg._09 = false;
 
@@ -148,25 +148,25 @@ bool ObjReadyGo::updateAnimation()
 	f32 goalTime1     = 60.0f;
 	f32 goalTime2     = 78.0f;
 
-	for (int i = 0; i < m_screenNum; i++) {
-		m_anim1[i]->m_currentFrame = m_animTime1[i];
-		m_anim2[i]->m_currentFrame = m_animTime2[i];
-		m_screen[i]->animation();
-		m_animTime1[i] += msVal.m_animSpeed;
-		m_animTime2[i] += msVal.m_animSpeed;
+	for (int i = 0; i < mScreenNum; i++) {
+		mAnim1[i]->mCurrentFrame = mAnimTime1[i];
+		mAnim2[i]->mCurrentFrame = mAnimTime2[i];
+		mScreen[i]->animation();
+		mAnimTime1[i] += msVal.mAnimSpeed;
+		mAnimTime2[i] += msVal.mAnimSpeed;
 
-		if (m_animTime1[i] >= m_anim1[i]->m_maxFrame - 2 || m_animTime2[i] >= m_anim2[i]->m_maxFrame - 2) {
+		if (mAnimTime1[i] >= mAnim1[i]->mMaxFrame - 2 || mAnimTime2[i] >= mAnim2[i]->mMaxFrame - 2) {
 			done = true;
 		}
 
-		if (m_animTime1[i] > goalTime1 && !m_makeEfx[i]) {
-			m_makeEfx[i] = true;
+		if (mAnimTime1[i] > goalTime1 && !mMakeEfx[i]) {
+			mMakeEfx[i] = true;
 
-			Vector2f vec(getPaneCenterX(m_screen[i]->search('NALL')) + msVal.m_efxOffsetX,
-			             getPaneCenterY(m_screen[i]->search('NALL')) + msVal.m_efxOffsetY);
+			Vector2f vec(getPaneCenterX(mScreen[i]->search('NALL')) + msVal.mEfxOffsetX,
+			             getPaneCenterY(mScreen[i]->search('NALL')) + msVal.mEfxOffsetY);
 			efx2d::Arg arg = vec;
 
-			if (disp->m_gameType == 0) {
+			if (disp->mGameType == 0) {
 				efx2d::T2DGoBatl efx;
 				efx.create(&arg);
 			} else {
@@ -175,15 +175,15 @@ bool ObjReadyGo::updateAnimation()
 			}
 		}
 
-		if (m_animTime1[i] >= goalTime2) {
-			m_isAnimComplete = true;
-			disp->m_status   = 1;
+		if (mAnimTime1[i] >= goalTime2) {
+			mIsAnimComplete = true;
+			disp->mStatus   = 1;
 		}
 	}
 
-	if (m_isAnimComplete && !m_isOver && !disp->m_isFinalFloor) {
-		Game::gameSystem->m_section->startMainBgm();
-		m_isOver = true;
+	if (mIsAnimComplete && !mIsOver && !disp->mIsFinalFloor) {
+		Game::gameSystem->mSection->startMainBgm();
+		mIsOver = true;
 	}
 	return done;
 }

@@ -21,21 +21,21 @@ namespace newScreen {
  * Size:	0000A8
  */
 ObjCourseName::ObjCourseName(char const* name)
-    : m_fadeLevel(0.0f)
-    , m_alpha(0.0f)
+    : mFadeLevel(0.0f)
+    , mAlpha(0.0f)
 {
-	m_name = name;
+	mName = name;
 
-	m_disp   = nullptr;
-	m_screen = nullptr;
-	m_anims  = nullptr;
+	mDisp   = nullptr;
+	mScreen = nullptr;
+	mAnims  = nullptr;
 
-	m_timer = msVal._0C;
-	m_state = 0;
+	mTimer = msVal._0C;
+	mState = 0;
 
-	m_color.set(0, 0, 0, 255);
-	m_doEnd           = 0;
-	m_BackgroundAlpha = 0.0f;
+	mColor.set(0, 0, 0, 255);
+	mDoEnd           = 0;
+	mBackgroundAlpha = 0.0f;
 }
 
 /*
@@ -54,48 +54,48 @@ void ObjCourseName::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_COURSE_NAME)) {
-		m_disp = disp;
+		mDisp = disp;
 
 	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		m_disp = new og::Screen::DispMemberCourseName;
+		mDisp = new og::Screen::DispMemberCourseName;
 
 	} else {
 		JUT_PANICLINE(101, "ERR! in ObjCourseName Createé∏îsÅI\n");
 	}
 
 	CourseName* owner = static_cast<CourseName*>(getOwner());
-	const char* path  = bloFileNameCourse[owner->m_courseIndex];
+	const char* path  = bloFileNameCourse[owner->mCourseIndex];
 
-	m_screen = new P2DScreen::Mgr_tuning;
-	m_screen->set(path, 0x1040000, arc);
+	mScreen = new P2DScreen::Mgr_tuning;
+	mScreen->set(path, 0x1040000, arc);
 
-	m_anims        = new og::Screen::AnimGroup(5);
-	char** list    = animFileTableCourse[owner->m_courseIndex];
+	mAnims         = new og::Screen::AnimGroup(5);
+	char** list    = animFileTableCourse[owner->mCourseIndex];
 	char* listItem = list[0];
 	for (int i = 0; listItem != nullptr; i++) {
-		og::Screen::registAnimGroupScreen(m_anims, arc, m_screen, listItem, 1.0f);
+		og::Screen::registAnimGroupScreen(mAnims, arc, mScreen, listItem, 1.0f);
 		listItem = list[i + 1];
 	}
-	og::Screen::setAlphaScreen(m_screen);
+	og::Screen::setAlphaScreen(mScreen);
 
 	u64 tags[4] = { 'nuki_tex', 'efect_00', 'efect_01', '\0' };
 	for (int i = 0; tags[i] != 0; i++) {
-		J2DPictureEx* pane = static_cast<J2DPictureEx*>(m_screen->search(tags[i]));
+		J2DPictureEx* pane = static_cast<J2DPictureEx*>(mScreen->search(tags[i]));
 		if (pane) {
-			J2DMaterial* mat                        = pane->getMaterial();
-			mat->m_peBlock.m_blendInfo.m_type       = 1;
-			mat->m_peBlock.m_blendInfo.m_srcFactor  = 7;
-			mat->m_peBlock.m_blendInfo.m_destFactor = 6;
-			// mat->m_peBlock.m_blendInfo.??? = 0;
+			J2DMaterial* mat                     = pane->getMaterial();
+			mat->mPeBlock.mBlendInfo.mType       = 1;
+			mat->mPeBlock.mBlendInfo.mSrcFactor  = 7;
+			mat->mPeBlock.mBlendInfo.mDestFactor = 6;
+			// mat->mPeBlock.mBlendInfo.??? = 0;
 			// theres a 4th byte but I am not touching these deep j2d structs
 		}
 	}
 
-	J2DPane* pane = m_screen->search('nuki_tex');
+	J2DPane* pane = mScreen->search('nuki_tex');
 	if (pane) {
-		J2DPane* pane1 = m_screen->search('efect_00');
-		J2DPane* pane2 = m_screen->search('efect_01');
-		m_screen->prependChild(pane);
+		J2DPane* pane1 = mScreen->search('efect_00');
+		J2DPane* pane2 = mScreen->search('efect_01');
+		mScreen->prependChild(pane);
 		if (pane1)
 			pane1->hide();
 		if (pane2)
@@ -343,23 +343,23 @@ lbl_80317890:
 bool ObjCourseName::commonUpdate()
 {
 	bool check = false;
-	m_anims->update();
-	m_screen->animation();
-	m_screen->update();
+	mAnims->update();
+	mScreen->animation();
+	mScreen->update();
 
-	if (m_state != 0) {
-		m_timer -= sys->m_deltaTime;
-		if (m_timer < 0.0f) {
+	if (mState != 0) {
+		mTimer -= sys->mDeltaTime;
+		if (mTimer < 0.0f) {
 			check = true;
 		}
 	} else {
 		og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(getDispMember());
 		if (disp->isID(OWNER_OGA, MEMBER_COURSE_NAME)) {
 			if (disp->_0C) {
-				m_state = 1;
+				mState = 1;
 			}
 			if (disp->_0D) {
-				m_doEnd = true;
+				mDoEnd = true;
 			}
 		}
 	}
@@ -382,7 +382,7 @@ void ObjCourseName::doDraw(Graphics& gfx)
 {
 	drawBG(gfx);
 
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
 	graf->setPort();
 
 	u16 w = sys->getRenderModeObj()->fbWidth;
@@ -398,9 +398,9 @@ void ObjCourseName::doDraw(Graphics& gfx)
 	GXSetColorUpdate(GX_TRUE);
 	graf->setPort();
 
-	f32 alpha = m_alpha * 255.0f;
-	m_screen->setAlpha(alpha);
-	m_screen->draw(gfx, *graf);
+	f32 alpha = mAlpha * 255.0f;
+	mScreen->setAlpha(alpha);
+	mScreen->draw(gfx, *graf);
 	graf->setPort();
 }
 
@@ -411,8 +411,8 @@ void ObjCourseName::doDraw(Graphics& gfx)
  */
 bool ObjCourseName::doStart(::Screen::StartSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
-	m_alpha     = 0.0f;
+	mFadeLevel = 0.0f;
+	mAlpha     = 0.0f;
 	return true;
 }
 
@@ -423,7 +423,7 @@ bool ObjCourseName::doStart(::Screen::StartSceneArg const*)
  */
 bool ObjCourseName::doEnd(::Screen::EndSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	return true;
 }
 
@@ -439,7 +439,7 @@ void ObjCourseName::doUpdateFadeinFinish() { }
  * Address:	80317B2C
  * Size:	00000C
  */
-void ObjCourseName::doUpdateFinish() { m_fadeLevel = 0.0f; }
+void ObjCourseName::doUpdateFinish() { mFadeLevel = 0.0f; }
 
 /*
  * --INFO--
@@ -456,12 +456,12 @@ void ObjCourseName::doUpdateFadeoutFinish() { }
 bool ObjCourseName::doUpdateFadein()
 {
 	bool check = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > msVal._04) {
-		m_fadeLevel = msVal._04;
-		check       = true;
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > msVal._04) {
+		mFadeLevel = msVal._04;
+		check      = true;
 	}
-	m_alpha = m_fadeLevel / msVal._04;
+	mAlpha = mFadeLevel / msVal._04;
 	commonUpdate();
 	return check;
 }
@@ -474,14 +474,14 @@ bool ObjCourseName::doUpdateFadein()
 bool ObjCourseName::doUpdateFadeout()
 {
 	bool check = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > msVal._08) {
-		m_fadeLevel = msVal._08;
-		if (!m_doEnd) {
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > msVal._08) {
+		mFadeLevel = msVal._08;
+		if (!mDoEnd) {
 			check = true;
 		}
 	}
-	m_alpha = 1.0f - m_fadeLevel / msVal._08;
+	mAlpha = 1.0f - mFadeLevel / msVal._08;
 	commonUpdate();
 	return check;
 }
@@ -493,23 +493,23 @@ bool ObjCourseName::doUpdateFadeout()
  */
 void ObjCourseName::drawBG(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
-	if (m_doEnd) {
-		m_BackgroundAlpha += sys->m_deltaTime;
-		f32 temp = 1.0f - m_BackgroundAlpha / msVal._00;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
+	if (mDoEnd) {
+		mBackgroundAlpha += sys->mDeltaTime;
+		f32 temp = 1.0f - mBackgroundAlpha / msVal._00;
 		if (temp > 0.0f) {
-			m_color.a = temp * 255.0f;
+			mColor.a = temp * 255.0f;
 		} else {
-			m_color.a = 0;
-			m_doEnd   = 0;
+			mColor.a = 0;
+			mDoEnd   = 0;
 		}
 	}
 
-	if (m_color.a != 0) {
+	if (mColor.a != 0) {
 		graf->setPort();
 		u16 w = sys->getRenderModeObj()->fbWidth;
 		u16 h = sys->getRenderModeObj()->efbHeight;
-		graf->setColor(m_color);
+		graf->setColor(mColor);
 		GXSetAlphaUpdate(GX_FALSE);
 
 		JGeometry::TVec2f vec(0.0f, 0.0f);

@@ -16,7 +16,7 @@ struct HIORootNode : public Game::HIORootNode {
 	HIORootNode(Section* section)
 	    : Game::HIORootNode(section)
 	{
-		m_name = "THPセクション";
+		mName = "THPセクション";
 	}
 
 	virtual ~HIORootNode() { } // _08 (weak)
@@ -42,12 +42,12 @@ struct Section : public Game::BaseHIOSection {
 
 	// _00		= VTBL
 	// _00-_48	= Game::BaseHIOSection
-	DvdThreadCommand m_threadCommand; // _048
-	CNode* m_genNode;                 // _0B4
-	Controller* m_controller;         // _0B8
-	f32 m_timer;                      // _0BC
-	Game::THPPlayer m_moviePlayer;    // _0C0
-	JUTTexture* m_logoTexture;        // _1AC
+	DvdThreadCommand mThreadCommand; // _048
+	CNode* mGenNode;                 // _0B4
+	Controller* mController;         // _0B8
+	f32 mTimer;                      // _0BC
+	Game::THPPlayer mMoviePlayer;    // _0C0
+	JUTTexture* mLogoTexture;        // _1AC
 };
 } // namespace Demo
 

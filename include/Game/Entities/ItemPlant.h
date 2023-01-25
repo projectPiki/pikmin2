@@ -89,12 +89,12 @@ struct PlantParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms(); // probably
 
-		Parm<f32> m_p000; // _E8, growth time, small to medium?
-		Parm<f32> m_p001; // _110, growth time, medium to large?
-		Parm<f32> m_p002; // _138, damage to drop fruit?
-		Parm<f32> m_p003; // _160, time to bear fruit?
-		Parm<f32> m_p004; // _188, actual playback time?
-		Parm<f32> m_p005; // _1B0, time to rot?
+		Parm<f32> mP000; // _E8, growth time, small to medium?
+		Parm<f32> mP001; // _110, growth time, medium to large?
+		Parm<f32> mP002; // _138, damage to drop fruit?
+		Parm<f32> mP003; // _160, time to bear fruit?
+		Parm<f32> mP004; // _188, actual playback time?
+		Parm<f32> mP005; // _1B0, time to rot?
 	};
 
 	PlantParms();
@@ -103,7 +103,7 @@ struct PlantParms : public CreatureParms {
 
 	// _00-_D8 = CreatureParms
 	// _D8		 = VTBL
-	Parms m_plantParms;
+	Parms mPlantParms;
 };
 
 struct ProcAnimator {
@@ -147,19 +147,19 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
-	u16 m_plantType;                         // _1E0
-	f32 _1E4;                                // _1E4, timer?
-	s16 m_colorMotionState;                  // _1E8
-	u32 _1EC;                                // _1EC
-	f32 m_damage;                            // _1F0
-	int _1F4;                                // _1F4, state ID?
-	f32 _1F8;                                // _1F8, state timer?
-	f32 _1FC;                                // _1FC
-	f32 _200;                                // _200
-	SysShape::BlendAnimator m_blendAnimator; // _204
-	u8 _254;                                 // _254
-	f32 _258;                                // _258
-	ProcAnimator m_procAnimator;             // _25C
+	u16 mPlantType;                         // _1E0
+	f32 _1E4;                               // _1E4, timer?
+	s16 mColorMotionState;                  // _1E8
+	u32 _1EC;                               // _1EC
+	f32 mDamage;                            // _1F0
+	int _1F4;                               // _1F4, state ID?
+	f32 _1F8;                               // _1F8, state timer?
+	f32 _1FC;                               // _1FC
+	f32 _200;                               // _200
+	SysShape::BlendAnimator mBlendAnimator; // _204
+	u8 _254;                                // _254
+	f32 _258;                               // _258
+	ProcAnimator mProcAnimator;             // _25C
 };
 
 struct Mgr : public TNodeItemMgr {
@@ -178,8 +178,8 @@ struct Mgr : public TNodeItemMgr {
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr
-	J3DAnmColor* m_anmColor; // _88
-	PlantParms* m_parms;     // _8C
+	J3DAnmColor* mAnmColor; // _88
+	PlantParms* mParms;     // _8C
 };
 
 struct FruitSlot : public CNode {
@@ -194,15 +194,15 @@ struct FruitSlot : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Pellet* m_pellet; // _18
-	Matrixf m_matrix; // _1C
+	Pellet* mPellet; // _18
+	Matrixf mMatrix; // _1C
 };
 
 struct Fruits {
-	FruitSlot* m_slots; // _00, array of slots
-	int m_slotCount;    // _04
-	Matrixf* m_matrix;  // _08
-	Plant* m_plant;     // _0C
+	FruitSlot* mSlots; // _00, array of slots
+	int mSlotCount;    // _04
+	Matrixf* mMatrix;  // _08
+	Plant* mPlant;     // _0C
 };
 
 struct Plant : public Item {
@@ -227,7 +227,7 @@ struct Plant : public Item {
 
 	// _00      = VTBL
 	// _00-_288 = Item
-	Fruits* m_fruits; // _288
+	Fruits* mFruits; // _288
 };
 
 extern Mgr* mgr;
@@ -238,7 +238,7 @@ extern Mgr* mgr;
 struct GenPlantParm : public Game::GenItemParm {
 
 	// _00     = VTBL
-	u16 m_plantType; // _04
+	u16 mPlantType; // _04
 };
 
 #endif

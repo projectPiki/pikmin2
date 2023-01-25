@@ -20,9 +20,9 @@ J2DOrthoGraph::J2DOrthoGraph()
 J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param_4, f32 param_5)
     : J2DGrafContext(left, top, right, bottom)
 {
-	m_ortho = JGeometry::TBox2<f32>(0, 0, right, bottom);
-	m_near  = -param_5;
-	m_far   = -param_4;
+	mOrtho = JGeometry::TBox2<f32>(0, 0, right, bottom);
+	mNear  = -param_5;
+	mFar   = -param_4;
 	setLookat();
 }
 
@@ -34,8 +34,8 @@ J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param
 void J2DOrthoGraph::setPort()
 {
 	J2DGrafContext::setPort(); // thiscall
-	C_MTXOrtho(m_mtx44, m_ortho.i.y, m_ortho.f.y, m_ortho.i.x, m_ortho.f.x, m_near, m_far);
-	GXSetProjection(m_mtx44, GX_ORTHOGRAPHIC);
+	C_MTXOrtho(mMtx44, mOrtho.i.y, mOrtho.f.y, mOrtho.i.x, mOrtho.f.x, mNear, mFar);
+	GXSetProjection(mMtx44, GX_ORTHOGRAPHIC);
 }
 
 /*
@@ -45,9 +45,9 @@ void J2DOrthoGraph::setPort()
  */
 void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 near)
 {
-	m_ortho = bounds;
-	m_near  = -near;
-	m_far   = -far;
+	mOrtho = bounds;
+	mNear  = -near;
+	mFar   = -far;
 }
 
 /*
@@ -57,8 +57,8 @@ void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 n
  */
 void J2DOrthoGraph::setLookat()
 {
-	PSMTXIdentity(m_posMtx);
-	GXLoadPosMtxImm(m_posMtx, 0);
+	PSMTXIdentity(mPosMtx);
+	GXLoadPosMtxImm(mPosMtx, 0);
 }
 
 /*
@@ -70,14 +70,14 @@ void J2DOrthoGraph::scissorBounds(JGeometry::TBox2<f32>* param_0, JGeometry::TBo
 {
 	f32 widthPower  = this->getWidthPower();
 	f32 heightPower = this->getHeightPower();
-	f32 ix          = m_bounds.i.x >= 0 ? m_bounds.i.x : 0;
-	f32 iy          = m_bounds.i.y >= 0 ? m_bounds.i.y : 0;
-	f32 f0          = ix + widthPower * (param_1->i.x - m_ortho.i.x);
-	f32 f2          = ix + widthPower * (param_1->f.x - m_ortho.i.x);
-	f32 f1          = iy + heightPower * (param_1->i.y - m_ortho.i.y);
-	f32 f3          = iy + heightPower * (param_1->f.y - m_ortho.i.y);
+	f32 ix          = mBounds.i.x >= 0 ? mBounds.i.x : 0;
+	f32 iy          = mBounds.i.y >= 0 ? mBounds.i.y : 0;
+	f32 f0          = ix + widthPower * (param_1->i.x - mOrtho.i.x);
+	f32 f2          = ix + widthPower * (param_1->f.x - mOrtho.i.x);
+	f32 f1          = iy + heightPower * (param_1->i.y - mOrtho.i.y);
+	f32 f3          = iy + heightPower * (param_1->f.y - mOrtho.i.y);
 	param_0->set(f0, f1, f2, f3);
-	param_0->intersect(m_scissorBounds);
+	param_0->intersect(mScissorBounds);
 }
 
 /*

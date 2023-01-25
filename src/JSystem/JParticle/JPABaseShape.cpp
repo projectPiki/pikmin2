@@ -368,22 +368,22 @@ void JPARegistPrm(JPAEmitterWorkData* workData)
  */
 void JPARegistEnv(JPAEmitterWorkData* workData)
 {
-	JPABaseEmitter* emitter = workData->m_emitter;
+	JPABaseEmitter* emitter = workData->mEmitter;
 	// JUtility::TColor color  = emitter->_10C;
-	// GXColor gxColor         = { static_cast<u8>(color.r * emitter->m_color.r + 1), static_cast<u8>(color.g * emitter->m_color.g + 1),
-	// 	                        static_cast<u8>(color.b * emitter->m_color.b + 1), color.a };
-	// GXColor gxColor = { static_cast<u8>(emitter->_10C.r * ((emitter->m_color.r + 1) / 0x100)),
-	// 	                static_cast<u8>(emitter->_10C.g * ((emitter->m_color.g + 1) / 0x100)),
-	// 	                static_cast<u8>(emitter->_10C.b * ((emitter->m_color.b + 1) / 0x100)), emitter->_10C.a };
+	// GXColor gxColor         = { static_cast<u8>(color.r * emitter->mColor.r + 1), static_cast<u8>(color.g * emitter->mColor.g + 1),
+	// 	                        static_cast<u8>(color.b * emitter->mColor.b + 1), color.a };
+	// GXColor gxColor = { static_cast<u8>(emitter->_10C.r * ((emitter->mColor.r + 1) / 0x100)),
+	// 	                static_cast<u8>(emitter->_10C.g * ((emitter->mColor.g + 1) / 0x100)),
+	// 	                static_cast<u8>(emitter->_10C.b * ((emitter->mColor.b + 1) / 0x100)), emitter->_10C.a };
 	// GXColor gxColor
-	//     = { static_cast<u8>(emitter->_10C.r * ((emitter->m_color.r + 1))), static_cast<u8>(emitter->_10C.g * ((emitter->m_color.g + 1))),
-	// 	    static_cast<u8>(emitter->_10C.b * ((emitter->m_color.b + 1))), emitter->_10C.a };
-	// GXColor gxColor = { static_cast<u8>(emitter->_10C.r * (static_cast<u16>(emitter->m_color.r + 1) / 0x100)),
-	// 	                static_cast<u8>(emitter->_10C.g * (static_cast<u16>(emitter->m_color.g + 1) / 0x100)),
-	// 	                static_cast<u8>(emitter->_10C.b * (static_cast<u16>(emitter->m_color.b + 1) / 0x100)), emitter->_10C.a };
-	GXColor gxColor = { static_cast<u8>(emitter->_10C.r * (static_cast<u16>(emitter->m_color.r + 1) >> 8)),
-		                static_cast<u8>(emitter->_10C.g * (static_cast<u16>(emitter->m_color.g + 1) >> 8)),
-		                static_cast<u8>(emitter->_10C.b * (static_cast<u16>(emitter->m_color.b + 1) >> 8)), emitter->_10C.a };
+	//     = { static_cast<u8>(emitter->_10C.r * ((emitter->mColor.r + 1))), static_cast<u8>(emitter->_10C.g * ((emitter->mColor.g + 1))),
+	// 	    static_cast<u8>(emitter->_10C.b * ((emitter->mColor.b + 1))), emitter->_10C.a };
+	// GXColor gxColor = { static_cast<u8>(emitter->_10C.r * (static_cast<u16>(emitter->mColor.r + 1) / 0x100)),
+	// 	                static_cast<u8>(emitter->_10C.g * (static_cast<u16>(emitter->mColor.g + 1) / 0x100)),
+	// 	                static_cast<u8>(emitter->_10C.b * (static_cast<u16>(emitter->mColor.b + 1) / 0x100)), emitter->_10C.a };
+	GXColor gxColor = { static_cast<u8>(emitter->_10C.r * (static_cast<u16>(emitter->mColor.r + 1) >> 8)),
+		                static_cast<u8>(emitter->_10C.g * (static_cast<u16>(emitter->mColor.g + 1) >> 8)),
+		                static_cast<u8>(emitter->_10C.b * (static_cast<u16>(emitter->mColor.b + 1) >> 8)), emitter->_10C.a };
 	GXSetTevColor(GX_TEVREG1, gxColor);
 	/*
 	stwu     r1, -0x10(r1)
@@ -1534,7 +1534,7 @@ void JPALoadTex(JPAEmitterWorkData*)
  */
 void JPALoadTexAnm(JPAEmitterWorkData* workData)
 {
-	workData->m_resourceMgr->m_textures[workData->m_resource->_38[workData->m_emitter->_111]]->m_texture.load(GX_TEXMAP0);
+	workData->mResourceMgr->mTextures[workData->mResource->_38[workData->mEmitter->_111]]->mTexture.load(GX_TEXMAP0);
 }
 
 /*
@@ -1545,7 +1545,7 @@ void JPALoadTexAnm(JPAEmitterWorkData* workData)
  */
 void JPALoadTexAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	workData->m_resourceMgr->m_textures[workData->m_resource->_38[particle->_94]]->m_texture.load(GX_TEXMAP0);
+	workData->mResourceMgr->mTextures[workData->mResource->_38[particle->_94]]->mTexture.load(GX_TEXMAP0);
 }
 
 /*
@@ -1555,12 +1555,12 @@ void JPALoadTexAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
  */
 void JPACalcTexIdxNormal(JPAEmitterWorkData* workData)
 {
-	u32 v2 = workData->m_emitter->_100;
-	u32 v1 = workData->m_resource->_1C->m_data->_1F - 1;
+	u32 v2 = workData->mEmitter->_100;
+	u32 v1 = workData->mResource->_1C->mData->_1F - 1;
 	if (v1 < v2) {
 		v2 = v1;
 	}
-	workData->m_emitter->_111 = workData->m_resource->_1C->_08[v2];
+	workData->mEmitter->_111 = workData->mResource->_1C->_08[v2];
 	/*
 	lwz      r4, 4(r3)
 	lwz      r5, 0(r3)
@@ -1732,7 +1732,7 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData* workData, JPABaseParticle* particl
  * Address:	8008C20C
  * Size:	00001C
  */
-void JPACalcTexIdxMerge(JPAEmitterWorkData* workData) { workData->m_emitter->_111 = workData->m_resource->_1C->m_data->_20; }
+void JPACalcTexIdxMerge(JPAEmitterWorkData* workData) { workData->mEmitter->_111 = workData->mResource->_1C->mData->_20; }
 
 /*
  * --INFO--
@@ -2321,7 +2321,7 @@ void dirTypeVel(const JPAEmitterWorkData* workData, const JPABaseParticle* parti
  */
 void dirTypePos(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<float>* direction)
 {
-	*direction = particle->m_position;
+	*direction = particle->mPosition;
 }
 
 /*
@@ -2354,10 +2354,10 @@ void dirTypeEmtrDir(const JPAEmitterWorkData* workData, const JPABaseParticle* p
  */
 void dirTypePrevPtcl(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<float>* direction)
 {
-	if (workData->_1E8->m_prev != nullptr) {
-		*direction = workData->_1E8->m_prev->contents._00;
+	if (workData->_1E8->mPrev != nullptr) {
+		*direction = workData->_1E8->mPrev->contents._00;
 	} else {
-		workData->m_emitter->calcEmitterGlobalPosition(direction);
+		workData->mEmitter->calcEmitterGlobalPosition(direction);
 	}
 	direction->x = direction->x - particle->_00.x;
 	direction->y = direction->y - particle->_00.y;
@@ -4676,8 +4676,8 @@ lbl_8008E86C:
  */
 void JPADrawEmitterCallBackB(JPAEmitterWorkData* workData)
 {
-	if (workData->m_emitter->m_emitterCallback != nullptr) {
-		workData->m_emitter->m_emitterCallback->draw(workData->m_emitter);
+	if (workData->mEmitter->mEmitterCallback != nullptr) {
+		workData->mEmitter->mEmitterCallback->draw(workData->mEmitter);
 	}
 }
 
@@ -4688,8 +4688,8 @@ void JPADrawEmitterCallBackB(JPAEmitterWorkData* workData)
  */
 void JPADrawParticleCallBack(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	if (workData->m_emitter->m_particleCallback != nullptr) {
-		workData->m_emitter->m_particleCallback->draw(workData->m_emitter, particle);
+	if (workData->mEmitter->mParticleCallback != nullptr) {
+		workData->mEmitter->mParticleCallback->draw(workData->mEmitter, particle);
 	}
 }
 

@@ -32,7 +32,7 @@ struct StreamBgm : public BgmSeq {
 	// _10      = VTABLE
 	// _14-_6C  = BgmSeq
 	JAISound* _6C; // _6C
-	u32 m_id;      // _70
+	u32 mId;       // _70
 };
 
 /**

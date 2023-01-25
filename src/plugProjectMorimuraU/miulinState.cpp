@@ -31,7 +31,7 @@ void FSM::init(EnemyBase* enemy)
 StateWait::StateWait(int stateID)
     : State(stateID)
 {
-	m_name = "wait";
+	mName = "wait";
 }
 
 /*
@@ -43,8 +43,8 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(7, nullptr);
 	enemy->stopMotion();
-	enemy->m_targetVelocity  = Vector3f(0.0f);
-	enemy->m_currentVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->setEmotionCaution();
 	enemy->hardConstraintOn();
 	static_cast<Obj*>(enemy)->_2E4 = 0;
@@ -60,7 +60,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	if (static_cast<Obj*>(enemy)->isStartWalk()) {
-		if (enemy->m_health <= 0.0f) {
+		if (enemy->mHealth <= 0.0f) {
 			transit(enemy, MIULIN_Dead, nullptr);
 		} else if (static_cast<Obj*>(enemy)->isAttackStart()) {
 			transit(enemy, MIULIN_AttackStart, nullptr);
@@ -83,7 +83,7 @@ void StateWait::exec(EnemyBase* enemy)
 StateWalk::StateWalk(int stateID)
     : State(stateID)
 {
-	m_name = "walk";
+	mName = "walk";
 }
 
 /*
@@ -454,7 +454,7 @@ lbl_80362E2C:
 StateAttackStart::StateAttackStart(int stateID)
     : State(stateID)
 {
-	m_name = "attackstart";
+	mName = "attackstart";
 }
 
 /*
@@ -476,7 +476,7 @@ void StateAttackStart::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttackStart::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 		transit(enemy, MIULIN_Attacking, nullptr);
 	}
 }
@@ -489,7 +489,7 @@ void StateAttackStart::exec(EnemyBase* enemy)
 StateAttacking::StateAttacking(int stateID)
     : State(stateID)
 {
-	m_name = "attackind"; // thanks devs
+	mName = "attackind"; // thanks devs
 }
 
 /*
@@ -1109,7 +1109,7 @@ lbl_803637BC:
 StateAttackEnd::StateAttackEnd(int stateID)
     : State(stateID)
 {
-	m_name = "attackend";
+	mName = "attackend";
 }
 
 /*
@@ -1121,7 +1121,7 @@ void StateAttackEnd::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	enemy->startMotion(2, nullptr);
-	static_cast<Obj*>(enemy)->m_nextState = MIULIN_Turn;
+	static_cast<Obj*>(enemy)->mNextState = MIULIN_Turn;
 	enemy->setEmotionCaution();
 }
 
@@ -1132,13 +1132,13 @@ void StateAttackEnd::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttackEnd::exec(EnemyBase* enemy)
 {
-	if (enemy->m_health <= 0.0f) {
-		static_cast<Obj*>(enemy)->m_nextState = MIULIN_Dead;
+	if (enemy->mHealth <= 0.0f) {
+		static_cast<Obj*>(enemy)->mNextState = MIULIN_Dead;
 	} else if (EnemyFunc::isStartFlick(enemy, false)) {
-		static_cast<Obj*>(enemy)->m_nextState = MIULIN_Flick;
+		static_cast<Obj*>(enemy)->mNextState = MIULIN_Flick;
 	}
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-		transit(enemy, static_cast<Obj*>(enemy)->m_nextState, nullptr);
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, static_cast<Obj*>(enemy)->mNextState, nullptr);
 	}
 }
 
@@ -1150,7 +1150,7 @@ void StateAttackEnd::exec(EnemyBase* enemy)
 StateTurn::StateTurn(int stateID)
     : State(stateID)
 {
-	m_name = "turn";
+	mName = "turn";
 }
 
 /*
@@ -1362,7 +1362,7 @@ lbl_80363BC4:
 StateFlick::StateFlick(int stateID)
     : State(stateID)
 {
-	m_name = "flick";
+	mName = "flick";
 }
 
 /*
@@ -1507,7 +1507,7 @@ lbl_80363DBC:
 StateDead::StateDead(int stateID)
     : State(stateID)
 {
-	m_name = "dead";
+	mName = "dead";
 }
 
 /*
@@ -1530,8 +1530,8 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying) {
-		switch (enemy->m_curAnim->m_type) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_2:
 			static_cast<Obj*>(enemy)->landEffect();
 			break;

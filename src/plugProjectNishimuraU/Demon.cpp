@@ -17,15 +17,15 @@ Obj::Obj() { }
  */
 FakePiki* Obj::getAttackableTarget()
 {
-	m_attackTimer += sys->m_deltaTime;
-	if (m_attackTimer > 3.0f) {
+	mAttackTimer += sys->mDeltaTime;
+	if (mAttackTimer > 3.0f) {
 		Vector3f pos = getPosition();
 
-		Sarai::Parms* parms = static_cast<Sarai::Parms*>(m_parms);
-		f32 radius          = parms->m_general.m_territoryRadius.m_value;
-		if (sqrDistanceXZ(pos, m_homePosition) < radius * radius) {
-			f32 max = parms->m_general.m_sightRadius.m_value * parms->m_general.m_sightRadius.m_value;
-			f32 fov = parms->m_general.m_fov.m_value * DEG2RAD * PI;
+		Sarai::Parms* parms = static_cast<Sarai::Parms*>(mParms);
+		f32 radius          = parms->mGeneral.mTerritoryRadius.mValue;
+		if (sqrDistanceXZ(pos, mHomePosition) < radius * radius) {
+			f32 max = parms->mGeneral.mSightRadius.mValue * parms->mGeneral.mSightRadius.mValue;
+			f32 fov = parms->mGeneral.mFov.mValue * DEG2RAD * PI;
 
 			Iterator<Navi> iter(naviMgr);
 			Navi* navi;
@@ -344,15 +344,15 @@ int Obj::catchTarget()
 	{
 		navi = (*iter);
 		if (navi->isAlive() && !navi->isStickToMouth()) {
-			for (int i = 0; i < m_mouthSlots.m_max; i++) {
-				MouthCollPart* slot = m_mouthSlots.getSlot(i);
-				if (!slot->m_stuckCreature) {
+			for (int i = 0; i < mMouthSlots.mMax; i++) {
+				MouthCollPart* slot = mMouthSlots.getSlot(i);
+				if (!slot->mStuckCreature) {
 					Vector3f slotpos;
 					slot->getPosition(slotpos);
 					Vector3f naviPos = navi->getPosition();
 
 					f32 dist = _distanceBetween2(slotpos, naviPos);
-					if (dist < slot->m_radius) {
+					if (dist < slot->mRadius) {
 						InteractSarai act(this, 1.0f, slot, 0);
 						navi->stimulate(act);
 						id++;

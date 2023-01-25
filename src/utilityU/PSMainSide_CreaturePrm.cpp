@@ -4,7 +4,7 @@
     Generated from dpostproc
 
     .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_PSMainSide_CreaturePrm_cpp
+        .4byte __sinit_PSMainSide_CreaturePrmCpp
 
     .section .rodata  # 0x804732E0 - 0x8049E220
     .global lbl_8049E0F0
@@ -573,7 +573,7 @@ lbl_804727EC:
  * Address:	80472804
  * Size:	0000A0
  */
-void __sinit_PSMainSide_CreaturePrm_cpp()
+void __sinit_PSMainSide_CreaturePrmCpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

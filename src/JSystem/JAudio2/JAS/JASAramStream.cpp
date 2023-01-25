@@ -152,7 +152,7 @@ JASAramStream::JASAramStream()
     , _21C(0)
     , _238(0)
     , _23C(0)
-    , m_callback(nullptr)
+    , mCallback(nullptr)
     , _244(nullptr)
     , _248(0)
     , _24A(0)
@@ -289,14 +289,14 @@ void JASAramStream::init(unsigned long p1, unsigned long p2, void (*callback)(un
 		_26C[2][i] = 0.0f;
 		_26C[3][i] = 0.0f;
 	}
-	_264       = 1.0f;
-	_268       = 1.0f;
-	_2D8       = 0;
-	_2CC[0]    = -1;
-	m_callback = callback;
-	_244       = p4;
-	OSInitMessageQueue(&m_msgQueueA, m_msgSlotsA, ARRAY_SIZE(m_msgSlotsA));
-	OSInitMessageQueue(&m_msgQueueB, m_msgSlotsB, ARRAY_SIZE(m_msgSlotsB));
+	_264      = 1.0f;
+	_268      = 1.0f;
+	_2D8      = 0;
+	_2CC[0]   = -1;
+	mCallback = callback;
+	_244      = p4;
+	OSInitMessageQueue(&mMsgQueueA, mMsgSlotsA, ARRAY_SIZE(mMsgSlotsA));
+	OSInitMessageQueue(&mMsgQueueB, mMsgSlotsB, ARRAY_SIZE(mMsgSlotsB));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -401,9 +401,9 @@ BOOL JASAramStream::prepare(long inode, int p2)
 		return FALSE;
 	}
 	HeaderLoadTaskArgs args;
-	args.m_stream = this;
-	args._04      = _23C;
-	args._08      = p2;
+	args.mStream = this;
+	args._04     = _23C;
+	args._08     = p2;
 	return sLoadThread->sendCmdMsg(headerLoadTask, &args, sizeof(args)) != FALSE;
 }
 
@@ -412,7 +412,7 @@ BOOL JASAramStream::prepare(long inode, int p2)
  * Address:	800A933C
  * Size:	000034
  */
-BOOL JASAramStream::start() { return OSSendMessage(&m_msgQueueA, nullptr, OS_MESSAGE_NON_BLOCKING) != FALSE; }
+BOOL JASAramStream::start() { return OSSendMessage(&mMsgQueueA, nullptr, OS_MESSAGE_NON_BLOCKING) != FALSE; }
 
 /*
  * --INFO--
@@ -421,7 +421,7 @@ BOOL JASAramStream::start() { return OSSendMessage(&m_msgQueueA, nullptr, OS_MES
  */
 int JASAramStream::stop(unsigned short p1)
 {
-	return OSSendMessage(&m_msgQueueA, (void*)((u32)p1 << 0x10 | 1), OS_MESSAGE_NON_BLOCKING) != FALSE;
+	return OSSendMessage(&mMsgQueueA, (void*)((u32)p1 << 0x10 | 1), OS_MESSAGE_NON_BLOCKING) != FALSE;
 }
 
 /*
@@ -435,7 +435,7 @@ bool JASAramStream::pause(bool p1)
 	if (p1) {
 		msg = 2;
 	}
-	if (OSSendMessage(&m_msgQueueA, (void*)msg, OS_MESSAGE_NON_BLOCKING) == FALSE) {
+	if (OSSendMessage(&mMsgQueueA, (void*)msg, OS_MESSAGE_NON_BLOCKING) == FALSE) {
 		return false;
 	}
 	return true;
@@ -470,7 +470,7 @@ void JASAramStream::getBlockSamples() const
 void JASAramStream::headerLoadTask(void* args)
 {
 	HeaderLoadTaskArgs* castedArgs = static_cast<HeaderLoadTaskArgs*>(args);
-	castedArgs->m_stream->headerLoad(castedArgs->_04, castedArgs->_08);
+	castedArgs->mStream->headerLoad(castedArgs->_04, castedArgs->_08);
 }
 
 /*
@@ -481,7 +481,7 @@ void JASAramStream::headerLoadTask(void* args)
 void JASAramStream::firstLoadTask(void* args)
 {
 	HeaderLoadTaskArgs* castedArgs = static_cast<HeaderLoadTaskArgs*>(args);
-	JASAramStream* stream          = castedArgs->m_stream;
+	JASAramStream* stream          = castedArgs->mStream;
 	if (!stream->load()) {
 		return;
 	}
@@ -520,9 +520,9 @@ void JASAramStream::finishTask(void* args)
 {
 	JASDriver::rejectCallback(channelProcCallback, args);
 	JASAramStream* stream = static_cast<JASAramStream*>(args);
-	if (stream->m_callback != nullptr) {
-		stream->m_callback(0, stream, stream->_244);
-		stream->m_callback = nullptr;
+	if (stream->mCallback != nullptr) {
+		stream->mCallback(0, stream, stream->_244);
+		stream->mCallback = nullptr;
 	}
 }
 
@@ -534,9 +534,9 @@ void JASAramStream::finishTask(void* args)
 void JASAramStream::prepareFinishTask(void* args)
 {
 	JASAramStream* stream = static_cast<JASAramStream*>(args);
-	OSSendMessage(&stream->m_msgQueueB, (void*)4, OS_MESSAGE_BLOCKING);
-	if (stream->m_callback != nullptr) {
-		stream->m_callback(1, stream, stream->_244);
+	OSSendMessage(&stream->mMsgQueueB, (void*)4, OS_MESSAGE_BLOCKING);
+	if (stream->mCallback != nullptr) {
+		stream->mCallback(1, stream, stream->_244);
 	}
 }
 
@@ -579,9 +579,9 @@ bool JASAramStream::headerLoad(unsigned long p1, int p2)
 		return false;
 	}
 	FirstLoadTaskArgs loadArgs;
-	loadArgs.m_stream = this;
-	loadArgs._04      = _1F8 - 1;
-	loadArgs._08      = p2;
+	loadArgs.mStream = this;
+	loadArgs._04     = _1F8 - 1;
+	loadArgs._08     = p2;
 	if (!sLoadThread->sendCmdMsg(firstLoadTask, &loadArgs, sizeof(loadArgs))) {
 		sFatalErrorFlag = true;
 		return false;

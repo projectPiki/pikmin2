@@ -48,13 +48,13 @@ struct ObjSpecialItem : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberSpecialItem* m_disp; // _38
-	P2DScreen::Mgr_tuning* m_screen;           // _3C
-	J2DPane* m_paneSetP;                       // _40
-	Rectf m_drawBox;                           // _44 - unknown type(s)
-	u8 m_doDrawBox;                            // _54 - unknown type
-	f32 m_fadeTimer1;                          // _58
-	f32 m_fadeTimer2;                          // _5C
+	og::Screen::DispMemberSpecialItem* mDisp; // _38
+	P2DScreen::Mgr_tuning* mScreen;           // _3C
+	J2DPane* mPaneSetP;                       // _40
+	Rectf mDrawBox;                           // _44 - unknown type(s)
+	u8 mDoDrawBox;                            // _54 - unknown type
+	f32 mFadeTimer1;                          // _58
+	f32 mFadeTimer2;                          // _5C
 };
 } // namespace newScreen
 } // namespace og

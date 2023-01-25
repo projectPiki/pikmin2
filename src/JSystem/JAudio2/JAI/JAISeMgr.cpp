@@ -1539,10 +1539,10 @@ void JAInter::SeMgr::setSeqMuteFromSeStart(JAISound* p1)
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = SequenceMgr::getPlayTrackInfo(i);
-		if (i != seHandle->_14 && info->m_sequence != nullptr && (info->m_sequence->getSwBit() & 8) == 0) {
+		if (i != seHandle->_14 && info->mSequence != nullptr && (info->mSequence->getSwBit() & 8) == 0) {
 			// TODO: are these args in the right order?
-			info->m_sequence->setVolume(JAIGlobalParameter::getParamSeqMuteVolumeSePlay() / 127.0f,
-			                            JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay(), 9);
+			info->mSequence->setVolume(JAIGlobalParameter::getParamSeqMuteVolumeSePlay() / 127.0f,
+			                           JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay(), 9);
 			seqMuteFlagFromSe |= 1 << p1->_14;
 		}
 	}
@@ -1641,7 +1641,7 @@ void JAInter::SeMgr::clearSeqMuteFromSeStop(JAISound*)
  */
 void JAInter::SeMgr::checkSeMovePara()
 {
-	if (seHandle == nullptr || seHandle->m_seqParameter._279 == 2) {
+	if (seHandle == nullptr || seHandle->mSeqParameter._279 == 2) {
 		return;
 	}
 	for (u8 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
@@ -1649,12 +1649,12 @@ void JAInter::SeMgr::checkSeMovePara()
 			JAISound* sound = link->getObject();
 			for (u8 j = 0; j < 8; j++) {
 				JAISe* se = static_cast<JAISe*>(sound);
-				se->m_seParam._124[i].move();
-				se->m_seParam._1A4[i].move();
-				se->m_seParam._2A4[i].move();
-				se->m_seParam._324[i].move();
-				se->m_seParam._3A4[i].move();
-				se->m_seParam._224[i].move();
+				se->mSeParam._124[i].move();
+				se->mSeParam._1A4[i].move();
+				se->mSeParam._2A4[i].move();
+				se->mSeParam._324[i].move();
+				se->mSeParam._3A4[i].move();
+				se->mSeParam._224[i].move();
 			}
 		}
 	}

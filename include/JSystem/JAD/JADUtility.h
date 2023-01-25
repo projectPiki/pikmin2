@@ -85,7 +85,7 @@ template <typename T>
 struct Prm : public PrmBase {
 	// _00      = VTABLE
 	// _04-_2C  = PrmBase
-	T* m_value; // _2C
+	T* mValue; // _2C
 };
 
 /**

@@ -13,7 +13,7 @@ namespace ElecHiba {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 }
 
@@ -25,8 +25,8 @@ Obj::Obj()
 void Obj::birth(Vector3f& position, float faceDirection)
 {
 	EnemyBase::birth(position, faceDirection);
-	m_waitTimer              = 0.0f;
-	m_teamList.m_childObjPtr = this;
+	mWaitTimer             = 0.0f;
+	mTeamList.mChildObjPtr = this;
 }
 
 /*
@@ -37,11 +37,11 @@ void Obj::birth(Vector3f& position, float faceDirection)
 void Obj::setInitialSetting(EnemyInitialParamBase* param)
 {
 	InitialParam* parms = static_cast<InitialParam*>(param);
-	if (m_teamList.m_child) {
+	if (mTeamList.mChild) {
 		setElecHibaPosition(parms, 1.0f);
-		FOREACH_NODE(TeamList, m_teamList.m_child, node)
+		FOREACH_NODE(TeamList, mTeamList.mChild, node)
 		{
-			Obj* temp = node->m_childObjPtr;
+			Obj* temp = node->mChildObjPtr;
 			temp->setInitialSetting(parms);
 		}
 	} else {
@@ -65,24 +65,24 @@ void Obj::onInit(CreatureInitArg* args)
 
 	setEmotionNone();
 	shadowMgr->killShadow(this);
-	m_waitTimer = 0.0f;
-	_2C0        = true;
+	mWaitTimer = 0.0f;
+	_2C0       = true;
 	setupLodParms();
-	if (m_teamList.m_child) {
-		FOREACH_NODE(TeamList, m_teamList.m_child, node)
+	if (mTeamList.mChild) {
+		FOREACH_NODE(TeamList, mTeamList.mChild, node)
 		{
-			Obj* temp = node->m_childObjPtr;
+			Obj* temp = node->mChildObjPtr;
 			temp->init(nullptr);
 		}
 	}
 	setVersusHibaOnOff();
-	m_versusHibaType = VHT_Neutral;
+	mVersusHibaType = VHT_Neutral;
 	resetAttrHitCount();
 
-	f32 r = randWeightFloat(C_PROPERPARMS.m_waitTime.m_value);
+	f32 r = randWeightFloat(C_PROPERPARMS.mWaitTime.mValue);
 	WaitStateArg arg;
-	arg.m_waitTimer = r;
-	m_fsm->start(this, ELECHIBA_Wait, &arg);
+	arg.mWaitTimer = r;
+	mFsm->start(this, ELECHIBA_Wait, &arg);
 }
 
 /*
@@ -92,8 +92,8 @@ void Obj::onInit(CreatureInitArg* args)
  */
 void Obj::doUpdate()
 {
-	if (m_teamList.m_child) {
-		m_fsm->exec(this);
+	if (mTeamList.mChild) {
+		mFsm->exec(this);
 	}
 }
 
@@ -118,9 +118,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -130,10 +130,10 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.m_position                  = m_position;
-	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	shadowParam.m_boundingSphere.m_radius   = 1.0f;
-	shadowParam.m_size                      = 1.0f;
+	shadowParam.mPosition                 = mPosition;
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.mBoundingSphere.mRadius   = 1.0f;
+	shadowParam.mSize                     = 1.0f;
 }
 
 /*
@@ -147,9 +147,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 		if (_2F4) {
 			if (creature->isPiki()) {
 				Piki* piki         = static_cast<Piki*>(creature);
-				TeamList* listHead = static_cast<TeamList*>(m_teamList.m_parent);
+				TeamList* listHead = static_cast<TeamList*>(mTeamList.mParent);
 				if (listHead) {
-					listHead->m_childObjPtr->addAttrAttackCount(piki);
+					listHead->mChildObjPtr->addAttrAttackCount(piki);
 				} else {
 					addAttrAttackCount(piki);
 				}
@@ -204,23 +204,23 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
 	Obj* childObj = getChildObjPtr();
 	if (childObj) {
-		param.m_position = childObj->getPosition();
+		param.mPosition = childObj->getPosition();
 
-		param.m_position.x += m_position.x;
-		param.m_position.y += m_position.y;
-		param.m_position.z += m_position.z;
+		param.mPosition.x += mPosition.x;
+		param.mPosition.y += mPosition.y;
+		param.mPosition.z += mPosition.z;
 
-		param.m_position.x *= 0.5f;
-		param.m_position.y *= 0.5f;
-		param.m_position.z *= 0.5f;
+		param.mPosition.x *= 0.5f;
+		param.mPosition.y *= 0.5f;
+		param.mPosition.z *= 0.5f;
 
-		param.m_position.y += C_PARMS->m_general.m_lifeMeterHeight.m_value;
+		param.mPosition.y += C_PARMS->mGeneral.mLifeMeterHeight.mValue;
 
-		param.m_curHealthPercentage = m_health / m_maxHealth;
+		param.mCurHealthPercentage = mHealth / mMaxHealth;
 
-		param.m_radius = 10.0f;
+		param.mRadius = 10.0f;
 	} else {
-		param.m_isGaugeShown = false;
+		param.mIsGaugeShown = false;
 	}
 }
 
@@ -232,12 +232,12 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 bool Obj::injure()
 {
 	if (!(isEvent(0, EB_IsVulnerable))) {
-		m_health -= m_instantDamage;
-		if (m_health < 0.0f) {
-			m_health = 0.0f;
+		mHealth -= mInstantDamage;
+		if (mHealth < 0.0f) {
+			mHealth = 0.0f;
 		}
 	}
-	m_instantDamage = 0.0f;
+	mInstantDamage = 0.0f;
 	disableEvent(0, EB_IsTakingDamage);
 	return true;
 }
@@ -249,8 +249,8 @@ bool Obj::injure()
  */
 Obj* Obj::getChildObjPtr()
 {
-	if (m_teamList.m_child) {
-		return static_cast<TeamList*>(m_teamList.m_child)->m_childObjPtr;
+	if (mTeamList.mChild) {
+		return static_cast<TeamList*>(mTeamList.mChild)->mChildObjPtr;
 	}
 	return nullptr;
 }
@@ -279,9 +279,9 @@ void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
  */
 void Obj::interactDenkiAttack(Vector3f& position)
 {
-	Vector3f sep     = position - m_position;
+	Vector3f sep     = position - mPosition;
 	Vector3f normSep = sep;
-	f32 theta        = m_faceDir;
+	f32 theta        = mFaceDir;
 	Vector3f dirXZ   = Vector3f(pikmin2_sinf(theta), 0.0f, pikmin2_cosf(theta));
 	normSep.normalise();
 
@@ -291,12 +291,12 @@ void Obj::interactDenkiAttack(Vector3f& position)
 
 	// some vector addition/scalar multiplication here
 	Vector3f spherePos;
-	spherePos.x     = (position.x - m_position.x) / 2;
-	spherePos.y     = (position.y - m_position.y) / 2;
-	spherePos.z     = (position.z - m_position.z) / 2;
-	f32 attackRange = C_PARMS->m_general.m_maxAttackRange.m_value;
+	spherePos.x     = (position.x - mPosition.x) / 2;
+	spherePos.y     = (position.y - mPosition.y) / 2;
+	spherePos.z     = (position.z - mPosition.z) / 2;
+	f32 attackRange = C_PARMS->mGeneral.mMaxAttackRange.mValue;
 	f32 negRange    = -attackRange;
-	f32 totalRange  = distance + C_PARMS->m_general.m_maxAttackRange.m_value;
+	f32 totalRange  = distance + C_PARMS->mGeneral.mMaxAttackRange.mValue;
 	f32 radius      = (totalRange - negRange) / 2;
 	Sys::Sphere sphere(spherePos, radius);
 
@@ -320,20 +320,20 @@ void Obj::interactDenkiAttack(Vector3f& position)
 				dotProd = -dotProd;
 			}
 
-			if (dotProd < C_PARMS->m_general.m_attackHitAngle.m_value) {
-				if (m_versusHibaType == VHT_Neutral) {
+			if (dotProd < C_PARMS->mGeneral.mAttackHitAngle.mValue) {
+				if (mVersusHibaType == VHT_Neutral) {
 					// some math to determine attack direction
 					// Vector3f attackDirection = something
-					InteractDenki zap(this, C_PARMS->m_general.m_attackDamage.m_value,
+					InteractDenki zap(this, C_PARMS->mGeneral.mAttackDamage.mValue,
 					                  &creaturePos); // should be &attackDirection eventually
 					creature->stimulate(zap);
 
-				} else if (m_versusHibaType == VHT_Red) {
-					InteractFire fire(this, C_PARMS->m_general.m_attackDamage.m_value);
+				} else if (mVersusHibaType == VHT_Red) {
+					InteractFire fire(this, C_PARMS->mGeneral.mAttackDamage.mValue);
 					creature->stimulate(fire);
 
-				} else if (m_versusHibaType == VHT_Blue) {
-					InteractBubble bubble(this, C_PARMS->m_general.m_attackDamage.m_value);
+				} else if (mVersusHibaType == VHT_Blue) {
+					InteractBubble bubble(this, C_PARMS->mGeneral.mAttackDamage.mValue);
 					creature->stimulate(bubble);
 				}
 			}
@@ -766,9 +766,9 @@ void Obj::addDamageMyself(float damage)
 {
 	if (!(isEvent(0, EB_IsVulnerable))) {
 		enableEvent(0, EB_IsTakingDamage);
-		TeamList* listHead = static_cast<TeamList*>(m_teamList.m_parent);
+		TeamList* listHead = static_cast<TeamList*>(mTeamList.mParent);
 		if (listHead) {
-			listHead->m_childObjPtr->damageIncrement(damage);
+			listHead->mChildObjPtr->damageIncrement(damage);
 		} else {
 			damageIncrement(damage);
 		}
@@ -782,11 +782,11 @@ void Obj::addDamageMyself(float damage)
  */
 void Obj::damageIncrement(float damage)
 {
-	m_instantDamage += damage;
+	mInstantDamage += damage;
 	if (!isEvent(0, EB_IsFlickEnabled)) {
 		return;
 	}
-	m_toFlick += 1.0f;
+	mToFlick += 1.0f;
 }
 
 /*
@@ -796,9 +796,9 @@ void Obj::damageIncrement(float damage)
  */
 void Obj::setupLodParms()
 {
-	m_lodParm.m_far        = C_PARMS->m_properParms.m_lodNear.m_value;
-	m_lodParm.m_close      = C_PARMS->m_properParms.m_lodMiddle.m_value;
-	m_lodParm.m_isCylinder = false;
+	mLodParm.mFar        = C_PARMS->mProperParms.mLodNear.mValue;
+	mLodParm.mClose      = C_PARMS->mProperParms.mLodMiddle.mValue;
+	mLodParm.mIsCylinder = false;
 }
 
 /*
@@ -808,8 +808,8 @@ void Obj::setupLodParms()
  */
 void Obj::updateEfxLod()
 {
-	if (m_efxDenkiHibaMgr) {
-		m_efxDenkiHibaMgr->setRateLOD(m_lod.m_flags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR));
+	if (mEfxDenkiHibaMgr) {
+		mEfxDenkiHibaMgr->setRateLOD(mLod.mFlags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR));
 	}
 }
 
@@ -821,9 +821,9 @@ void Obj::updateEfxLod()
 void Obj::createEffect(bool check)
 {
 	if (check) {
-		m_efxDenkiHibaMgr = new efx::TDenkiHibaMgr;
+		mEfxDenkiHibaMgr = new efx::TDenkiHibaMgr;
 	} else {
-		m_efxDenkiHibaMgr = nullptr;
+		mEfxDenkiHibaMgr = nullptr;
 	}
 }
 
@@ -834,10 +834,10 @@ void Obj::createEffect(bool check)
  */
 void Obj::startChargeEffect(Creature* creature)
 {
-	if (m_efxDenkiHibaMgr) {
+	if (mEfxDenkiHibaMgr) {
 		Vector3f creaturePos = creature->getPosition();
-		efx::ArgDenkiHiba denkiHibaArg(m_position, creaturePos);
-		m_efxDenkiHibaMgr->create(&denkiHibaArg);
+		efx::ArgDenkiHiba denkiHibaArg(mPosition, creaturePos);
+		mEfxDenkiHibaMgr->create(&denkiHibaArg);
 	}
 }
 
@@ -848,8 +848,8 @@ void Obj::startChargeEffect(Creature* creature)
  */
 void Obj::finishChargeEffect()
 {
-	if (m_efxDenkiHibaMgr) {
-		m_efxDenkiHibaMgr->fade();
+	if (mEfxDenkiHibaMgr) {
+		mEfxDenkiHibaMgr->fade();
 	}
 }
 
@@ -860,9 +860,9 @@ void Obj::finishChargeEffect()
  */
 void Obj::startDisChargeEffect()
 {
-	efx::TDenkiHibaMgr* efxMgr = m_efxDenkiHibaMgr;
+	efx::TDenkiHibaMgr* efxMgr = mEfxDenkiHibaMgr;
 	if (efxMgr) {
-		int type = m_versusHibaType;
+		int type = mVersusHibaType;
 		if (type == VHT_Neutral) {
 			efxMgr->createHiba(VHT_Neutral);
 			return;
@@ -887,8 +887,8 @@ void Obj::startDisChargeEffect()
  */
 void Obj::finishDisChargeEffect()
 {
-	if (m_efxDenkiHibaMgr) {
-		m_efxDenkiHibaMgr->fade();
+	if (mEfxDenkiHibaMgr) {
+		mEfxDenkiHibaMgr->fade();
 	}
 }
 
@@ -899,9 +899,9 @@ void Obj::finishDisChargeEffect()
  */
 void Obj::generatorKill()
 {
-	if (m_generator) {
-		m_generator->informDeath(this);
-		m_generator = nullptr;
+	if (mGenerator) {
+		mGenerator->informDeath(this);
+		mGenerator = nullptr;
 	}
 }
 
@@ -926,12 +926,12 @@ void Obj::setVersusHibaOnOff()
  */
 void Obj::setVersusHibaType()
 {
-	if (m_redAttrAttackCount != m_blueAttrAttackCount) {
-		if (m_redAttrAttackCount > m_blueAttrAttackCount) {
-			m_versusHibaType = VHT_Red;
+	if (mRedAttrAttackCount != mBlueAttrAttackCount) {
+		if (mRedAttrAttackCount > mBlueAttrAttackCount) {
+			mVersusHibaType = VHT_Red;
 			return;
 		}
-		m_versusHibaType = VHT_Blue;
+		mVersusHibaType = VHT_Blue;
 	}
 }
 
@@ -942,8 +942,8 @@ void Obj::setVersusHibaType()
  */
 void Obj::resetAttrHitCount()
 {
-	m_redAttrAttackCount  = 0;
-	m_blueAttrAttackCount = 0;
+	mRedAttrAttackCount  = 0;
+	mBlueAttrAttackCount = 0;
 }
 
 /*
@@ -953,14 +953,14 @@ void Obj::resetAttrHitCount()
  */
 void Obj::addAttrAttackCount(Piki* piki)
 {
-	int type = piki->m_pikiKind;
+	int type = piki->mPikiKind;
 	if (type == Red) {
-		m_redAttrAttackCount++;
+		mRedAttrAttackCount++;
 	} else if (type == Blue) {
-		m_blueAttrAttackCount++;
+		mBlueAttrAttackCount++;
 	}
 	if (getStateID() == ELECHIBA_Attack) {
-		m_waitTimer = 0.0f;
+		mWaitTimer = 0.0f;
 	}
 }
 
@@ -971,7 +971,7 @@ void Obj::addAttrAttackCount(Piki* piki)
  */
 bool Obj::isWaitFinish()
 {
-	if ((m_waitTimer > C_PROPERPARMS.m_activeTime.m_value) && (m_versusHibaType || (m_redAttrAttackCount != m_blueAttrAttackCount))) {
+	if ((mWaitTimer > C_PROPERPARMS.mActiveTime.mValue) && (mVersusHibaType || (mRedAttrAttackCount != mBlueAttrAttackCount))) {
 		return true;
 	}
 	return false;
@@ -984,8 +984,8 @@ bool Obj::isWaitFinish()
  */
 bool Obj::isAttackFinish()
 {
-	if (m_waitTimer > C_PROPERPARMS.m_activeTime.m_value || (m_versusHibaType == VHT_Red && (m_blueAttrAttackCount > m_redAttrAttackCount))
-	    || (m_versusHibaType == VHT_Blue && (m_redAttrAttackCount > m_blueAttrAttackCount))) {
+	if (mWaitTimer > C_PROPERPARMS.mActiveTime.mValue || (mVersusHibaType == VHT_Red && (mBlueAttrAttackCount > mRedAttrAttackCount))
+	    || (mVersusHibaType == VHT_Blue && (mRedAttrAttackCount > mBlueAttrAttackCount))) {
 		return true;
 	}
 	return false;

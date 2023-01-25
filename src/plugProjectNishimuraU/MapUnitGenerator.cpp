@@ -16,32 +16,32 @@ MapUnitGenerator::MapUnitGenerator(MapUnitInterface* interface, int p1, FloorInf
 	//     - creates new mapnodes, enemynodes, gatenode, itemnode and sets some bools
 	//     - calls all default functions to create The Map
 
-	m_mapNode    = new MapNode;
-	m_mapNodeArr = new MapNode[3];
+	mMapNode    = new MapNode;
+	mMapNodeArr = new MapNode[3];
 
-	m_enemyNodeA = new EnemyNode;
-	m_enemyNodeB = new EnemyNode;
-	m_enemyNodeC = new EnemyNode;
+	mEnemyNodeA = new EnemyNode;
+	mEnemyNodeB = new EnemyNode;
+	mEnemyNodeC = new EnemyNode;
 
-	m_gateNode = new GateNode;
-	m_itemNode = new ItemNode;
+	mGateNode = new GateNode;
+	mItemNode = new ItemNode;
 
-	m_placedMapNodes  = new MapNode;
-	m_visitedMapNodes = new MapNode;
+	mPlacedMapNodes  = new MapNode;
+	mVisitedMapNodes = new MapNode;
 
-	m_floorInfo    = floorInfo;
-	m_isFinalFloor = isFinalFloor;
+	mFloorInfo    = floorInfo;
+	mIsFinalFloor = isFinalFloor;
 
-	if (m_floorInfo) {
-		m_hasEscapeFountain = m_floorInfo->hasEscapeFountain(-1);
+	if (mFloorInfo) {
+		mHasEscapeFountain = mFloorInfo->hasEscapeFountain(-1);
 	} else {
-		m_hasEscapeFountain = false;
+		mHasEscapeFountain = false;
 	}
 
 	if ((gameSystem) && (gameSystem->isVersusMode())) {
-		m_isVersusMode = true;
+		mIsVersusMode = true;
 	} else {
-		m_isVersusMode = false;
+		mIsVersusMode = false;
 	}
 
 	createEditMapInfo(editInfo);
@@ -62,17 +62,17 @@ MapUnitGenerator::MapUnitGenerator(MapUnitInterface* interface, int p1, FloorInf
  */
 void MapUnitGenerator::createEditMapInfo(EditMapUnit* editInfo)
 {
-	m_editMapUnit = nullptr;
+	mEditMapUnit = nullptr;
 
-	if (m_isVersusMode && editInfo) {
+	if (mIsVersusMode && editInfo) {
 		if (editInfo->_1C < -1) {
 			float randcomp = 1.0f;
 			randcomp       = randWeightFloat(randcomp);
-			if (randcomp < editInfo->m_chanceOfUse) {
-				m_editMapUnit = editInfo;
+			if (randcomp < editInfo->mChanceOfUse) {
+				mEditMapUnit = editInfo;
 			}
 		} else if (editInfo->_1C >= 0) {
-			m_editMapUnit = editInfo;
+			mEditMapUnit = editInfo;
 		}
 	}
 }
@@ -89,9 +89,9 @@ void MapUnitGenerator::createMemList(MapUnitInterface* interface, int interfaceC
 
 		if (isCreateList(currInterface)) {
 			MapUnits* currMapUnits = new MapUnits(nullptr);
-			currMapUnits->setUnitName(const_cast<char*>(currInterface->m_name));
+			currMapUnits->setUnitName(const_cast<char*>(currInterface->mName));
 			currMapUnits->setUnitIndex(i);
-			currMapUnits->setUnitKind((s16)currInterface->m_unitKind);
+			currMapUnits->setUnitKind((s16)currInterface->mUnitKind);
 
 			int cellX;
 			int cellY;
@@ -101,29 +101,29 @@ void MapUnitGenerator::createMemList(MapUnitInterface* interface, int interfaceC
 			int currDoorCount = currInterface->getDoorCount();
 			currMapUnits->setDoorNum(currDoorCount);
 
-			currMapUnits->setBaseGenPtr(currInterface->m_baseGen);
+			currMapUnits->setBaseGenPtr(currInterface->mBaseGen);
 
 			for (int j = 0; j < currDoorCount; j++) {
 				Game::Door* currDoor = currInterface->getDoor(j);
 
 				Game::Cave::Door doorInfo;
-				doorInfo.m_offset    = currDoor->m_offs;
-				doorInfo.m_direction = currDoor->m_dir;
+				doorInfo.mOffset    = currDoor->mOffs;
+				doorInfo.mDirection = currDoor->mDir;
 
 				int linkCount = currDoor->getLinkCount();
-				currMapUnits->m_doorNode->add(new DoorNode(doorInfo));
+				currMapUnits->mDoorNode->add(new DoorNode(doorInfo));
 
 				for (int k = 0; k < linkCount; k++) {
 					DoorLink* link = currDoor->getLink(k);
 
-					Adjust* currAdjust      = new Adjust();
-					currAdjust->m_doorID    = link->m_doorID;
-					currAdjust->m_distance  = link->m_distance / 10.0f;
-					currAdjust->m_tekiFlags = link->m_tekiFlags;
+					Adjust* currAdjust     = new Adjust();
+					currAdjust->mDoorID    = link->mDoorID;
+					currAdjust->mDistance  = link->mDistance / 10.0f;
+					currAdjust->mTekiFlags = link->mTekiFlags;
 
 					AdjustNode* currAdjustNode = new AdjustNode(currAdjust);
 
-					currMapUnits->m_doorCounts[j].add(currAdjustNode);
+					currMapUnits->mDoorCounts[j].add(currAdjustNode);
 				}
 			}
 
@@ -133,7 +133,7 @@ void MapUnitGenerator::createMemList(MapUnitInterface* interface, int interfaceC
 				currInfo->create();
 				MapNode* currMapNode = new MapNode(currInfo);
 
-				m_mapNode->add(currMapNode);
+				mMapNode->add(currMapNode);
 			}
 		}
 	}
@@ -146,22 +146,22 @@ void MapUnitGenerator::createMemList(MapUnitInterface* interface, int interfaceC
  */
 bool Cave::MapUnitGenerator::isCreateList(Game::MapUnitInterface* interface)
 {
-	if (!m_isVersusMode) {
+	if (!mIsVersusMode) {
 		return true;
 	}
 
-	if (m_editMapUnit) {
+	if (mEditMapUnit) {
 		return true;
 	}
 
-	if (interface->m_unitKind != 1) {
+	if (interface->mUnitKind != 1) {
 		return true;
 	}
-	BaseGen* currBaseGen = interface->m_baseGen;
+	BaseGen* currBaseGen = interface->mBaseGen;
 	if (currBaseGen) {
-		BaseGen* childGen = (BaseGen*)currBaseGen->m_child;
-		for (childGen; childGen; childGen = (BaseGen*)childGen->m_next) {
-			if (childGen->m_spawnType == 7) {
+		BaseGen* childGen = (BaseGen*)currBaseGen->mChild;
+		for (childGen; childGen; childGen = (BaseGen*)childGen->mNext) {
+			if (childGen->mSpawnType == 7) {
 				return true;
 			}
 		}
@@ -179,22 +179,22 @@ void MapUnitGenerator::memMapListSorting()
 	MapNode* childMap;
 	MapNode* nextNode;
 	CNode* childMap_CNode;
-	for (childMap = m_mapNode->getChild(); childMap; childMap = nextNode) {
+	for (childMap = mMapNode->getChild(); childMap; childMap = nextNode) {
 		nextNode       = childMap->getNext();
 		childMap_CNode = (CNode*)childMap;
 
-		int childArea  = childMap->m_unitInfo->getUnitSizeX() * childMap->m_unitInfo->getUnitSizeY();
+		int childArea  = childMap->mUnitInfo->getUnitSizeX() * childMap->mUnitInfo->getUnitSizeY();
 		int childDoors = childMap->getNumDoors();
 
 		MapNode* currNode = nextNode;
 		for (currNode; currNode; currNode = currNode->getNext()) {
 
-			int nextArea  = currNode->m_unitInfo->getUnitSizeX() * currNode->m_unitInfo->getUnitSizeY();
+			int nextArea  = currNode->mUnitInfo->getUnitSizeX() * currNode->mUnitInfo->getUnitSizeY();
 			int nextDoors = currNode->getNumDoors();
 
 			if ((childArea > nextArea) || (childArea == nextArea) && (childDoors > nextDoors)) {
 				childMap_CNode->del();
-				m_mapNode->add(childMap_CNode);
+				mMapNode->add(childMap_CNode);
 				break;
 			}
 		}
@@ -213,10 +213,10 @@ void MapUnitGenerator::createMapPartsList()
 		CNode* currNode  = getMapNodeItem(i);
 
 		MapNode* currMapNode = static_cast<MapNode*>(currNode);
-		for (childNode; childNode; childNode = childNode->m_next) {
+		for (childNode; childNode; childNode = childNode->mNext) {
 			MapNode* mapNode = static_cast<MapNode*>(childNode);
-			if (i == mapNode->m_unitInfo->getUnitKind()) {
-				currMapNode->add(new MapNode(mapNode->m_unitInfo));
+			if (i == mapNode->mUnitInfo->getUnitKind()) {
+				currMapNode->add(new MapNode(mapNode->mUnitInfo));
 			}
 		}
 
@@ -240,11 +240,11 @@ void MapUnitGenerator::createEnemyList()
 {
 	EnemyNode* enemyNode;
 	EnemyUnit* enemyUnit;
-	for (int i = 0; i < m_floorInfo->getTekiInfoNum(); i++) {
-		enemyUnit             = new EnemyUnit;
-		enemyNode             = new EnemyNode(enemyUnit, 0, i);
-		enemyUnit->m_tekiInfo = m_floorInfo->getTekiInfo(i);
-		m_enemyNodeA->add(enemyNode);
+	for (int i = 0; i < mFloorInfo->getTekiInfoNum(); i++) {
+		enemyUnit            = new EnemyUnit;
+		enemyNode            = new EnemyNode(enemyUnit, 0, i);
+		enemyUnit->mTekiInfo = mFloorInfo->getTekiInfo(i);
+		mEnemyNodeA->add(enemyNode);
 	}
 }
 
@@ -255,18 +255,18 @@ void MapUnitGenerator::createEnemyList()
  */
 void MapUnitGenerator::createCapEnemyList()
 {
-	for (int i = 0; i < m_floorInfo->getCapInfoNum(); i++) {
-		CapInfo* capInfo = m_floorInfo->getCapInfo(i);
+	for (int i = 0; i < mFloorInfo->getCapInfoNum(); i++) {
+		CapInfo* capInfo = mFloorInfo->getCapInfo(i);
 		TekiInfo* tekiInfo;
-		if (capInfo && (!capInfo->m_tekiEmpty) && (tekiInfo = capInfo->getTekiInfo())) {
+		if (capInfo && (!capInfo->mTekiEmpty) && (tekiInfo = capInfo->getTekiInfo())) {
 			EnemyUnit* enemyUnit = new EnemyUnit;
 
-			EnemyNode* enemyNode  = new EnemyNode(enemyUnit, 0, i);
-			enemyUnit->m_tekiInfo = tekiInfo;
-			if (tekiInfo->m_dropMode == 0 || isPomGroup(tekiInfo)) {
-				m_enemyNodeB->add(enemyNode);
+			EnemyNode* enemyNode = new EnemyNode(enemyUnit, 0, i);
+			enemyUnit->mTekiInfo = tekiInfo;
+			if (tekiInfo->mDropMode == 0 || isPomGroup(tekiInfo)) {
+				mEnemyNodeB->add(enemyNode);
 			} else {
-				m_enemyNodeC->add(enemyNode);
+				mEnemyNodeC->add(enemyNode);
 			}
 		}
 	}
@@ -279,7 +279,7 @@ void MapUnitGenerator::createCapEnemyList()
  */
 bool MapUnitGenerator::isPomGroup(TekiInfo* tekiInfo)
 {
-	EnemyTypeID::EEnemyTypeID id = tekiInfo->m_enemyID;
+	EnemyTypeID::EEnemyTypeID id = tekiInfo->mEnemyID;
 	if ((id == EnemyTypeID::EnemyID_Pom) ||       // candypop base type
 	    (id == EnemyTypeID::EnemyID_BluePom) ||   // blue candypop
 	    (id == EnemyTypeID::EnemyID_RedPom) ||    // red candypop
@@ -300,11 +300,11 @@ bool MapUnitGenerator::isPomGroup(TekiInfo* tekiInfo)
  */
 void MapUnitGenerator::createGateList()
 {
-	for (int i = 0; i < m_floorInfo->getGateInfoNum(); i++) {
+	for (int i = 0; i < mFloorInfo->getGateInfoNum(); i++) {
 		GateUnit* gateUnit = new GateUnit;
 		GateNode* gateNode = new GateNode(gateUnit, i, 0);
-		gateUnit->m_info   = m_floorInfo->getGateInfo(i);
-		m_gateNode->add(gateNode);
+		gateUnit->mInfo    = mFloorInfo->getGateInfo(i);
+		mGateNode->add(gateNode);
 	}
 }
 
@@ -315,11 +315,11 @@ void MapUnitGenerator::createGateList()
  */
 void MapUnitGenerator::createItemList()
 {
-	for (int i = 0; i < m_floorInfo->getItemInfoNum(); i++) {
+	for (int i = 0; i < mFloorInfo->getItemInfoNum(); i++) {
 		ItemUnit* itemUnit = new ItemUnit;
 		ItemNode* itemNode = new ItemNode(itemUnit, nullptr, i);
-		itemUnit->m_info   = m_floorInfo->getItemInfo(i);
-		m_itemNode->add(itemNode);
+		itemUnit->mInfo    = mFloorInfo->getItemInfo(i);
+		mItemNode->add(itemNode);
 	}
 }
 
@@ -330,9 +330,9 @@ void MapUnitGenerator::createItemList()
  */
 void MapUnitGenerator::createCaveLevel()
 {
-	m_randItemType = 0;
-	if (gameSystem && gameSystem->m_mode == GSM_STORY_MODE) {
-		m_randItemType = 4;
+	mRandItemType = 0;
+	if (gameSystem && gameSystem->mMode == GSM_STORY_MODE) {
+		mRandItemType = 4;
 	}
 }
 

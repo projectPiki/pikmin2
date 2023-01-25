@@ -11,9 +11,9 @@ namespace KochappyBase {
  * Size:	000148
  */
 Obj::Obj()
-    : m_fsm(nullptr)
+    : mFsm(nullptr)
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 }
 
@@ -25,9 +25,9 @@ Obj::Obj()
 void Obj::birth(Vector3f& position, f32 p1)
 {
 	EnemyBase::birth(position, p1);
-	m_fsm->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
-	m_shadowJoint = m_model->getJoint("ago");
-	_2CC          = 0.0f;
+	mFsm->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
+	mShadowJoint = mModel->getJoint("ago");
+	_2CC         = 0.0f;
 }
 
 /*
@@ -45,9 +45,9 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	m_shadowJoint = m_model->getJoint("ago");
-	_2CC          = 0.0f;
-	m_fsm->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
+	mShadowJoint = mModel->getJoint("ago");
+	_2CC         = 0.0f;
+	mFsm->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
 }
 
 /*
@@ -57,11 +57,11 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 void Obj::doUpdate()
 {
-	m_fsm->exec(this);
+	mFsm->exec(this);
 
 	if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin)) {
-		m_targetVelocity  = Vector3f::zero;
-		m_currentVelocity = m_targetVelocity;
+		mTargetVelocity  = Vector3f::zero;
+		mCurrentVelocity = mTargetVelocity;
 	}
 }
 
@@ -86,14 +86,14 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	Matrixf* mat             = m_shadowJoint->getWorldMatrix();
-	shadowParam.m_position   = Vector3f(mat->m_matrix.mtxView[0][3], mat->m_matrix.mtxView[1][3], mat->m_matrix.mtxView[2][3]);
-	shadowParam.m_position.y = 2.0f + m_position.y;
+	Matrixf* mat            = mShadowJoint->getWorldMatrix();
+	shadowParam.mPosition   = Vector3f(mat->mMatrix.mtxView[0][3], mat->mMatrix.mtxView[1][3], mat->mMatrix.mtxView[2][3]);
+	shadowParam.mPosition.y = 2.0f + mPosition.y;
 
-	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	shadowParam.m_boundingSphere.m_radius   = 100.0f;
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.mBoundingSphere.mRadius   = 100.0f;
 
-	shadowParam.m_size = 10.0f;
+	shadowParam.mSize = 10.0f;
 }
 
 /*
@@ -117,7 +117,7 @@ bool Obj::pressCallBack(Game::Creature* creature, float p1, CollPart* collpart)
 {
 	if (creature->isPiki() && isAlive()) {
 		if (!isEvent(0, EB_IsBittered)) {
-			m_fsm->transit(this, KOCHAPPY_Press, nullptr);
+			mFsm->transit(this, KOCHAPPY_Press, nullptr);
 			return true;
 		}
 		return false;
@@ -147,13 +147,13 @@ void Obj::doFinishStoneState() { }
 Vector3f Obj::getOffsetForMapCollision()
 {
 	Vector3f offset;
-	Matrixf* worldMat = m_shadowJoint->getWorldMatrix();
+	Matrixf* worldMat = mShadowJoint->getWorldMatrix();
 
-	offset.x = worldMat->m_matrix.mtxView[0][3];
-	offset.x -= m_position.x;
+	offset.x = worldMat->mMatrix.mtxView[0][3];
+	offset.x -= mPosition.x;
 
-	offset.z = worldMat->m_matrix.mtxView[2][3];
-	offset.z -= m_position.z;
+	offset.z = worldMat->mMatrix.mtxView[2][3];
+	offset.z -= mPosition.z;
 
 	offset.y = 0.0f;
 
@@ -174,11 +174,11 @@ void Obj::startCarcassMotion() { EnemyBase::startMotion(5, nullptr); }
  */
 void Obj::initMouthSlots()
 {
-	m_mouthSlots.alloc(1);
-	m_mouthSlots.setup(0, m_model, "kamu");
+	mMouthSlots.alloc(1);
+	mMouthSlots.setup(0, mModel, "kamu");
 
-	for (int i = 0; i < m_mouthSlots.m_max; i++) {
-		m_mouthSlots.getSlot(i)->m_radius = 15.0f;
+	for (int i = 0; i < mMouthSlots.mMax; i++) {
+		mMouthSlots.getSlot(i)->mRadius = 15.0f;
 	}
 }
 
@@ -189,10 +189,10 @@ void Obj::initMouthSlots()
  */
 void Obj::initWalkSmokeEffect()
 {
-	if ((m_model->getJoint("asiL") != nullptr) && (m_model->getJoint("asiR") != nullptr)) {
-		m_walkSmokeMgr.alloc(2);
-		m_walkSmokeMgr.setup(0, m_model, "asiL", 4.0f);
-		m_walkSmokeMgr.setup(1, m_model, "asiR", 4.0f);
+	if ((mModel->getJoint("asiL") != nullptr) && (mModel->getJoint("asiR") != nullptr)) {
+		mWalkSmokeMgr.alloc(2);
+		mWalkSmokeMgr.setup(0, mModel, "asiL", 4.0f);
+		mWalkSmokeMgr.setup(1, mModel, "asiR", 4.0f);
 	}
 }
 
@@ -201,7 +201,7 @@ void Obj::initWalkSmokeEffect()
  * Address:	8012E0E0
  * Size:	000008
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &m_walkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
 } // namespace KochappyBase
 } // namespace Game

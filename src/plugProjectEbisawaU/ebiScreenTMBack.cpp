@@ -18,11 +18,11 @@ void TTMBack::doSetArchive(JKRArchive* archive)
 {
 	sys->heapStatusStart("TScreenTMBack::setArchive", nullptr);
 
-	m_mgrTuning = new P2DScreen::Mgr_tuning();
-	m_mgrTuning->set("tm_back.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
+	mMgrTuning = new P2DScreen::Mgr_tuning();
+	mMgrTuning->set("tm_back.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
 
-	E2DPane_setTreeInfluencedAlpha(m_mgrTuning, true);
-	m_mgrTuning->setAlpha(0);
+	E2DPane_setTreeInfluencedAlpha(mMgrTuning, true);
+	mMgrTuning->setAlpha(0);
 
 	sys->heapStatusEnd("TScreenTMBack::setArchive");
 }
@@ -35,7 +35,7 @@ void TTMBack::doSetArchive(JKRArchive* archive)
 void TTMBack::doOpenScreen(ArgOpen* arg)
 {
 	P2ASSERTLINE(33, arg != nullptr);
-	u32 duration = (u32)(static_cast<ArgOpenTMBack*>(arg)->_04 / sys->m_deltaTime);
+	u32 duration = (u32)(static_cast<ArgOpenTMBack*>(arg)->_04 / sys->mDeltaTime);
 	_10          = duration;
 	_14          = duration;
 }
@@ -47,7 +47,7 @@ void TTMBack::doOpenScreen(ArgOpen* arg)
  */
 void TTMBack::doCloseScreen(ArgClose* arg)
 {
-	u32 duration = (u32)(0.5f / sys->m_deltaTime);
+	u32 duration = (u32)(0.5f / sys->mDeltaTime);
 	_10          = duration;
 	_14          = duration;
 }
@@ -70,8 +70,8 @@ bool TTMBack::doUpdateStateOpen()
 		factor = 0.0f;
 	}
 
-	m_mgrTuning->setAlpha(128.0f * (1.0f - factor));
-	m_mgrTuning->update();
+	mMgrTuning->setAlpha(128.0f * (1.0f - factor));
+	mMgrTuning->update();
 
 	if (_10 == 0) {
 		return true;
@@ -86,7 +86,7 @@ bool TTMBack::doUpdateStateOpen()
  */
 bool TTMBack::doUpdateStateWait()
 {
-	m_mgrTuning->update();
+	mMgrTuning->update();
 	return false;
 }
 
@@ -108,8 +108,8 @@ bool TTMBack::doUpdateStateClose()
 		factor = 0.0f;
 	}
 
-	m_mgrTuning->setAlpha(128.0f * factor);
-	m_mgrTuning->update();
+	mMgrTuning->setAlpha(128.0f * factor);
+	mMgrTuning->update();
 
 	if (_10 == 0) {
 		return true;
@@ -124,12 +124,12 @@ bool TTMBack::doUpdateStateClose()
  */
 void TTMBack::doDraw()
 {
-	Graphics* gfx = sys->m_gfx;
+	Graphics* gfx = sys->mGfx;
 
-	J2DPerspGraph* context = &gfx->m_perspGraph;
+	J2DPerspGraph* context = &gfx->mPerspGraph;
 	context->setPort();
 
-	m_mgrTuning->draw(*gfx, *context);
+	mMgrTuning->draw(*gfx, *context);
 }
 
 /*
@@ -141,8 +141,8 @@ void TNintendoLogo::doSetArchive(JKRArchive* archive)
 {
 	sys->heapStatusStart("TScreenNintendoLogo::setArchive", nullptr);
 
-	m_mgrTuning = new P2DScreen::Mgr_tuning();
-	m_mgrTuning->set("tm_2003nintendo.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
+	mMgrTuning = new P2DScreen::Mgr_tuning();
+	mMgrTuning->set("tm_2003nintendo.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
 
 	sys->heapStatusEnd("TScreenNintendoLogo::setArchive");
 }
@@ -154,7 +154,7 @@ void TNintendoLogo::doSetArchive(JKRArchive* archive)
  */
 bool TNintendoLogo::doUpdateStateWait()
 {
-	m_mgrTuning->update();
+	mMgrTuning->update();
 	return false;
 }
 
@@ -165,12 +165,12 @@ bool TNintendoLogo::doUpdateStateWait()
  */
 void TNintendoLogo::doDraw()
 {
-	Graphics* gfx = sys->m_gfx;
+	Graphics* gfx = sys->mGfx;
 
-	J2DPerspGraph* context = &gfx->m_perspGraph;
+	J2DPerspGraph* context = &gfx->mPerspGraph;
 	context->setPort();
 
-	m_mgrTuning->draw(*gfx, *context);
+	mMgrTuning->draw(*gfx, *context);
 }
 } // namespace Screen
 } // namespace ebi

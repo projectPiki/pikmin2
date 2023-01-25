@@ -13,7 +13,7 @@ static const char gasHibaMgrName[] = "246-GasHibaMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	m_name = "ガスヒバマネージャ"; // gas hiba manager
+	mName = "ガスヒバマネージャ"; // gas hiba manager
 }
 
 /*
@@ -28,14 +28,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	8026CEF8
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	8026D014
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 } // namespace GasHiba
 } // namespace Game

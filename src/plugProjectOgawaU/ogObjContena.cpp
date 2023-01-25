@@ -275,87 +275,87 @@ void ObjContena::setStartPos()
  */
 ObjContena::ObjContena(char const* name)
 {
-	m_inOnionCount   = 100;
-	m_currField      = 1000;
-	m_inSquadCount   = 0;
-	m_maxPikiOnField = 20;
-	m_inParty2       = 50;
-	m_onMapCount     = 60;
-	m_maxPikiCount   = 200;
-	m_onyonID        = -1;
-	_D8              = 0;
-	_DC              = 0;
-	_E0              = 0;
-	_E4              = 0;
-	m_name           = name;
-	m_disp           = nullptr;
-	m_contena        = nullptr;
-	m_controller     = nullptr;
+	mInOnionCount   = 100;
+	mCurrField      = 1000;
+	mInSquadCount   = 0;
+	mMaxPikiOnField = 20;
+	mInParty2       = 50;
+	mOnMapCount     = 60;
+	mMaxPikiCount   = 200;
+	mOnyonID        = -1;
+	_D8             = 0;
+	_DC             = 0;
+	_E0             = 0;
+	_E4             = 0;
+	mName           = name;
+	mDisp           = nullptr;
+	mContena        = nullptr;
+	mController     = nullptr;
 
-	m_animList[0] = nullptr;
-	m_animList[1] = nullptr;
-	m_animList[2] = nullptr;
-	m_animList[3] = nullptr;
-	m_animList[4] = nullptr;
-	m_animList[5] = nullptr;
-	m_animList[6] = nullptr;
-	m_animList[7] = nullptr;
-	m_animList[8] = nullptr;
-	m_animList[9] = nullptr;
+	mAnimList[0] = nullptr;
+	mAnimList[1] = nullptr;
+	mAnimList[2] = nullptr;
+	mAnimList[3] = nullptr;
+	mAnimList[4] = nullptr;
+	mAnimList[5] = nullptr;
+	mAnimList[6] = nullptr;
+	mAnimList[7] = nullptr;
+	mAnimList[8] = nullptr;
+	mAnimList[9] = nullptr;
 
-	m_alphaMgr[0] = nullptr;
-	m_paneList[0] = nullptr;
-	m_alphaMgr[1] = nullptr;
-	m_paneList[1] = nullptr;
-	m_alphaMgr[2] = nullptr;
-	m_paneList[2] = nullptr;
-	m_alphaMgr[3] = nullptr;
-	m_paneList[3] = nullptr;
-	m_alphaMgr[4] = nullptr;
-	m_paneList[4] = nullptr;
-	m_alphaMgr[5] = nullptr;
-	m_paneList[5] = nullptr;
+	mAlphaMgr[0] = nullptr;
+	mPaneList[0] = nullptr;
+	mAlphaMgr[1] = nullptr;
+	mPaneList[1] = nullptr;
+	mAlphaMgr[2] = nullptr;
+	mPaneList[2] = nullptr;
+	mAlphaMgr[3] = nullptr;
+	mPaneList[3] = nullptr;
+	mAlphaMgr[4] = nullptr;
+	mPaneList[4] = nullptr;
+	mAlphaMgr[5] = nullptr;
+	mPaneList[5] = nullptr;
 
-	m_state              = 0;
-	m_screenAngle        = 0.0f;
-	m_screenState        = 0;
-	m_moveTime           = 0.5f;
-	m_timer0             = m_moveTime;
-	m_dispState          = 1;
-	m_furiko             = nullptr;
-	m_menuMoveAngle      = 0.0f;
-	m_yAnalog            = 0.0f;
-	m_spotX              = 0.0f;
-	m_spotY              = 0.0f;
-	_104                 = 1.0f;
-	m_paneSpot           = nullptr;
-	m_timer              = 0.0f;
-	m_doDraw             = false;
-	m_fadeLevel          = 0.0f;
-	m_stickAnimMgr       = nullptr;
-	m_alphaArrow1        = nullptr;
-	m_alphaArrow2        = nullptr;
-	m_paneArrowUp        = nullptr;
-	m_paneArrowDown      = nullptr;
-	m_paneArrowUpPos.x   = 0.0f;
-	m_paneArrowUpPos.y   = 0.0f;
-	m_paneArrowDownPos.x = 0.0f;
-	m_paneArrowDownPos.y = 0.0f;
-	m_screenCupsule      = nullptr;
-	m_scaleArrow1        = nullptr;
-	m_scaleArrow2        = nullptr;
-	m_timer1             = 0.0f;
-	m_timer2             = 0.0f;
-	m_pikiPaneList       = nullptr;
-	m_pikiPaneNum        = 0;
-	m_paneOnyon          = nullptr;
-	m_paneOnyonL         = nullptr;
-	m_paneTiretu         = nullptr;
-	m_paneTiretul        = nullptr;
-	m_payedDebt          = false;
-	m_menuMoveAngle      = 800.0f;
-	m_yAnalog            = 0.0f;
-	m_doDraw             = false;
+	mState              = 0;
+	mScreenAngle        = 0.0f;
+	mScreenState        = 0;
+	mMoveTime           = 0.5f;
+	mTimer0             = mMoveTime;
+	mDispState          = 1;
+	mFuriko             = nullptr;
+	mMenuMoveAngle      = 0.0f;
+	mYAnalog            = 0.0f;
+	mSpotX              = 0.0f;
+	mSpotY              = 0.0f;
+	_104                = 1.0f;
+	mPaneSpot           = nullptr;
+	mTimer              = 0.0f;
+	mDoDraw             = false;
+	mFadeLevel          = 0.0f;
+	mStickAnimMgr       = nullptr;
+	mAlphaArrow1        = nullptr;
+	mAlphaArrow2        = nullptr;
+	mPaneArrowUp        = nullptr;
+	mPaneArrowDown      = nullptr;
+	mPaneArrowUpPos.x   = 0.0f;
+	mPaneArrowUpPos.y   = 0.0f;
+	mPaneArrowDownPos.x = 0.0f;
+	mPaneArrowDownPos.y = 0.0f;
+	mScreenCupsule      = nullptr;
+	mScaleArrow1        = nullptr;
+	mScaleArrow2        = nullptr;
+	mTimer1             = 0.0f;
+	mTimer2             = 0.0f;
+	mPikiPaneList       = nullptr;
+	mPikiPaneNum        = 0;
+	mPaneOnyon          = nullptr;
+	mPaneOnyonL         = nullptr;
+	mPaneTiretu         = nullptr;
+	mPaneTiretul        = nullptr;
+	mPayedDebt          = false;
+	mMenuMoveAngle      = 800.0f;
+	mYAnalog            = 0.0f;
+	mDoDraw             = false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -537,159 +537,159 @@ lbl_80320194:
  */
 void ObjContena::doCreate(JKRArchive* arc)
 {
-	m_controller = getGamePad();
+	mController = getGamePad();
 
 	og::Screen::DispMemberContena* disp = static_cast<og::Screen::DispMemberContena*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_CONTENA)) {
-		m_disp = disp;
+		mDisp = disp;
 	} else if (disp->isID(OWNER_OGA, MEMBER_UFO_GROUP)) {
 		og::Screen::DispMemberUfoGroup* dispufo = static_cast<og::Screen::DispMemberUfoGroup*>(getDispMember());
-		switch (dispufo->m_ufoMenu.m_contenaType) {
+		switch (dispufo->mUfoMenu.mContenaType) {
 		case 2:
-			m_disp = &dispufo->m_contena1;
+			mDisp = &dispufo->mContena1;
 			break;
 		case 1:
-			m_disp = &dispufo->m_contena2;
+			mDisp = &dispufo->mContena2;
 			break;
 		default:
 			JUT_PANICLINE(230, "UFOMENU --> CONTENA ERR!\n");
 		}
-		m_payedDebt = dispufo->m_hasPaidDebt;
+		mPayedDebt = dispufo->mHasPaidDebt;
 
 	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		m_disp = new og::Screen::DispMemberContena;
+		mDisp = new og::Screen::DispMemberContena;
 
 	} else {
 		JUT_PANICLINE(242, "ERR! in ObjContena CreateŽ¸”sI\n");
 	}
-	og::Screen::DispMemberContena* disp2 = m_disp;
-	m_onyonID                            = disp2->m_onyonID;
-	m_inOnionCount                       = disp2->m_inOnion;
-	m_currField                          = disp2->m_currInMap;
-	m_inSquadCount                       = disp2->m_newInPartyNum;
-	m_maxPikiOnField                     = disp2->m_maxPikiField;
-	m_inParty2                           = disp2->m_inParty2;
-	m_onMapCount                         = disp2->m_onMapMinusWild;
-	m_maxPikiCount                       = disp2->m_maxPikiMinusWild;
-	_D8                                  = disp2->m_inTransfer;
+	og::Screen::DispMemberContena* disp2 = mDisp;
+	mOnyonID                             = disp2->mOnyonID;
+	mInOnionCount                        = disp2->mInOnion;
+	mCurrField                           = disp2->mCurrInMap;
+	mInSquadCount                        = disp2->mNewInPartyNum;
+	mMaxPikiOnField                      = disp2->mMaxPikiField;
+	mInParty2                            = disp2->mInParty2;
+	mOnMapCount                          = disp2->mOnMapMinusWild;
+	mMaxPikiCount                        = disp2->mMaxPikiMinusWild;
+	_D8                                  = disp2->mInTransfer;
 	_DC                                  = disp2->_2C;
-	_E0                                  = disp2->m_state;
-	_E4                                  = disp2->m_result;
-	m_disp->m_state                      = 0;
-	m_contena                            = new og::Screen::ContenaCounter(m_disp);
+	_E0                                  = disp2->mState;
+	_E4                                  = disp2->mResult;
+	mDisp->mState                        = 0;
+	mContena                             = new og::Screen::ContenaCounter(mDisp);
 
-	switch (m_disp->m_onyonID) {
+	switch (mDisp->mOnyonID) {
 	case 0:
-		m_contena->setblo("contena_b.blo", arc);
+		mContena->setblo("contena_b.blo", arc);
 		break;
 	case 1:
-		m_contena->setblo("contena_r.blo", arc);
+		mContena->setblo("contena_r.blo", arc);
 		break;
 	case 2:
-		m_contena->setblo("contena_y.blo", arc);
+		mContena->setblo("contena_y.blo", arc);
 		break;
 	case 3:
-		m_contena->setblo("contena_bl.blo", arc);
+		mContena->setblo("contena_bl.blo", arc);
 		break;
 	case 4:
-		m_contena->setblo("contena_w.blo", arc);
+		mContena->setblo("contena_w.blo", arc);
 		break;
 	default:
 		JUT_PANICLINE(266, "ERR! unknwon contena type!\n");
 	}
 
-	m_screenCupsule = new P2DScreen::Mgr;
-	m_screenCupsule->set("cupsule.blo", 0x1040000, arc);
-	og::Screen::setFurikoScreen(m_contena);
-	m_screenSpot = new P2DScreen::Mgr_tuning;
-	m_screenSpot->set("spot.blo", 0x1040000, arc);
-	m_paneSpot = m_screenSpot->search('pspot');
-	m_paneSpot->setBasePosition(J2DPOS_Center);
-	m_spotX = m_paneSpot->m_offset.x;
-	m_spotY = m_paneSpot->m_offset.y;
-	og::Screen::setCallBackMessage(m_contena);
-	m_animList[0] = nullptr;
-	m_animList[1] = nullptr;
-	m_animList[2] = nullptr;
-	m_animList[3] = nullptr;
-	m_animList[4] = nullptr;
-	m_animList[5] = nullptr;
-	m_animList[6] = nullptr;
-	m_animList[7] = nullptr;
-	m_animList[8] = nullptr;
-	m_animList[9] = nullptr;
+	mScreenCupsule = new P2DScreen::Mgr;
+	mScreenCupsule->set("cupsule.blo", 0x1040000, arc);
+	og::Screen::setFurikoScreen(mContena);
+	mScreenSpot = new P2DScreen::Mgr_tuning;
+	mScreenSpot->set("spot.blo", 0x1040000, arc);
+	mPaneSpot = mScreenSpot->search('pspot');
+	mPaneSpot->setBasePosition(J2DPOS_Center);
+	mSpotX = mPaneSpot->mOffset.x;
+	mSpotY = mPaneSpot->mOffset.y;
+	og::Screen::setCallBackMessage(mContena);
+	mAnimList[0] = nullptr;
+	mAnimList[1] = nullptr;
+	mAnimList[2] = nullptr;
+	mAnimList[3] = nullptr;
+	mAnimList[4] = nullptr;
+	mAnimList[5] = nullptr;
+	mAnimList[6] = nullptr;
+	mAnimList[7] = nullptr;
+	mAnimList[8] = nullptr;
+	mAnimList[9] = nullptr;
 
-	if (m_contena->search('sh_color')) {
-		og::Screen::setCallBackMessage(m_contena);
+	if (mContena->search('sh_color')) {
+		og::Screen::setCallBackMessage(mContena);
 	}
 
-	m_paneList[0] = m_contena->search('mg_1');
-	m_paneList[1] = m_contena->search('mg_2');
-	m_paneList[2] = m_contena->search('mg_3');
-	m_paneList[3] = m_contena->search('mg_4');
-	m_paneList[4] = m_contena->search('mg_5');
-	m_paneList[5] = m_contena->search('mg_6');
+	mPaneList[0] = mContena->search('mg_1');
+	mPaneList[1] = mContena->search('mg_2');
+	mPaneList[2] = mContena->search('mg_3');
+	mPaneList[3] = mContena->search('mg_4');
+	mPaneList[4] = mContena->search('mg_5');
+	mPaneList[5] = mContena->search('mg_6');
 
 	for (int i = 0; i < 6; i++) {
-		m_paneList[i]->show();
-		m_paneList[i]->setInfluencedAlpha(false, false);
-		m_alphaMgr[i] = new og::Screen::AlphaMgr;
-		m_alphaMgr[i]->out(0.0f);
+		mPaneList[i]->show();
+		mPaneList[i]->setInfluencedAlpha(false, false);
+		mAlphaMgr[i] = new og::Screen::AlphaMgr;
+		mAlphaMgr[i]->out(0.0f);
 	}
-	m_state = 0;
-	m_alphaMgr[m_state]->in(0.0f);
-	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, m_contena, 'ota3dl');
-	m_stickAnimMgr                    = new og::Screen::StickAnimMgr(pic);
-	m_stickAnimMgr->stickUpDown();
+	mState = 0;
+	mAlphaMgr[mState]->in(0.0f);
+	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, mContena, 'ota3dl');
+	mStickAnimMgr                     = new og::Screen::StickAnimMgr(pic);
+	mStickAnimMgr->stickUpDown();
 
-	m_paneArrowUp      = og::Screen::TagSearch(m_contena, 'Nya_u');
-	m_paneArrowUpPos.x = m_paneArrowUp->m_offset.x;
-	m_paneArrowUpPos.y = m_paneArrowUp->m_offset.y;
-	m_paneArrowUp->setBasePosition(J2DPOS_Center);
-	m_paneArrowDown      = og::Screen::TagSearch(m_contena, 'Nya_l');
-	m_paneArrowDownPos.x = m_paneArrowDown->m_offset.x;
-	m_paneArrowDownPos.y = m_paneArrowDown->m_offset.y;
-	m_paneArrowDown->setBasePosition(J2DPOS_Center);
-	m_alphaArrow1 = new og::Screen::AlphaMgr;
-	m_alphaArrow2 = new og::Screen::AlphaMgr;
-	m_alphaArrow1->in(0.3f);
-	m_alphaArrow2->in(0.3f);
-	m_alpha       = m_paneArrowUp->m_alpha;
-	m_scaleArrow1 = new og::Screen::ScaleMgr;
-	m_scaleArrow2 = new og::Screen::ScaleMgr;
+	mPaneArrowUp      = og::Screen::TagSearch(mContena, 'Nya_u');
+	mPaneArrowUpPos.x = mPaneArrowUp->mOffset.x;
+	mPaneArrowUpPos.y = mPaneArrowUp->mOffset.y;
+	mPaneArrowUp->setBasePosition(J2DPOS_Center);
+	mPaneArrowDown      = og::Screen::TagSearch(mContena, 'Nya_l');
+	mPaneArrowDownPos.x = mPaneArrowDown->mOffset.x;
+	mPaneArrowDownPos.y = mPaneArrowDown->mOffset.y;
+	mPaneArrowDown->setBasePosition(J2DPOS_Center);
+	mAlphaArrow1 = new og::Screen::AlphaMgr;
+	mAlphaArrow2 = new og::Screen::AlphaMgr;
+	mAlphaArrow1->in(0.3f);
+	mAlphaArrow2->in(0.3f);
+	mAlpha       = mPaneArrowUp->mAlpha;
+	mScaleArrow1 = new og::Screen::ScaleMgr;
+	mScaleArrow2 = new og::Screen::ScaleMgr;
 
-	m_pikiPaneNum = 0;
+	mPikiPaneNum = 0;
 
 	for (int i = 0; i < 100; i++) {
 		u64 tag = 'Piki_00' + i % 10 + (i / 10 * 0x100);
-		if (!m_contena->search(tag))
+		if (!mContena->search(tag))
 			break;
 
-		m_pikiPaneNum++;
+		mPikiPaneNum++;
 	}
 
-	m_pikiPaneList = new J2DPane*[m_pikiPaneNum];
+	mPikiPaneList = new J2DPane*[mPikiPaneNum];
 
-	for (int i = 0; i < m_pikiPaneNum; i++) {
-		u64 tag           = 'Piki_00' + (i / 10 * 0x100) + i % 10;
-		J2DPane* pane     = m_contena->search(tag);
-		m_pikiPaneList[i] = pane;
+	for (int i = 0; i < mPikiPaneNum; i++) {
+		u64 tag          = 'Piki_00' + (i / 10 * 0x100) + i % 10;
+		J2DPane* pane    = mContena->search(tag);
+		mPikiPaneList[i] = pane;
 		pane->hide();
 	}
 
-	m_paneOnyon   = og::Screen::TagSearch(m_contena, 'Nonyon');
-	m_paneOnyonL  = og::Screen::TagSearch(m_contena, 'Nonyonl');
-	m_paneTiretu  = og::Screen::TagSearch(m_contena, 'Ntiretu');
-	m_paneTiretul = og::Screen::TagSearch(m_contena, 'Ntiretul');
+	mPaneOnyon   = og::Screen::TagSearch(mContena, 'Nonyon');
+	mPaneOnyonL  = og::Screen::TagSearch(mContena, 'Nonyonl');
+	mPaneTiretu  = og::Screen::TagSearch(mContena, 'Ntiretu');
+	mPaneTiretul = og::Screen::TagSearch(mContena, 'Ntiretul');
 
-	m_scaleMgr3 = new og::Screen::ScaleMgr;
-	m_scaleMgr4 = new og::Screen::ScaleMgr;
+	mScaleMgr3 = new og::Screen::ScaleMgr;
+	mScaleMgr4 = new og::Screen::ScaleMgr;
 
-	int type = m_disp->m_onyonID;
+	int type = mDisp->mOnyonID;
 	if (type == 3 || type == 4) {
-		J2DPane* pane1 = og::Screen::TagSearch(m_contena, 'P1_1');
-		J2DPane* pane2 = og::Screen::TagSearch(m_contena, 'P1_2');
-		if (m_payedDebt) {
+		J2DPane* pane1 = og::Screen::TagSearch(mContena, 'P1_1');
+		J2DPane* pane2 = og::Screen::TagSearch(mContena, 'P1_2');
+		if (mPayedDebt) {
 			pane2->show();
 			pane1->hide();
 		} else {
@@ -1426,61 +1426,61 @@ void ObjContena::setStickUpDown()
  */
 void ObjContena::putinPiki(bool soundType)
 {
-	og::Screen::DispMemberContena* disp = m_disp;
-	if (disp->m_currInMap >= disp->m_inOnion) {
-		if (disp->m_newInPartyNum == 0) {
-			if (m_state == 4) {
+	og::Screen::DispMemberContena* disp = mDisp;
+	if (disp->mCurrInMap >= disp->mInOnion) {
+		if (disp->mNewInPartyNum == 0) {
+			if (mState == 4) {
 				if (!soundType) {
 					ogSound->setError();
 				}
 			} else {
 				ogSound->setError();
-				if (m_state != 4) {
-					m_alphaMgr[m_state]->out(0.5f);
-					m_state = 4;
-					m_alphaMgr[m_state]->in(0.3f);
+				if (mState != 4) {
+					mAlphaMgr[mState]->out(0.5f);
+					mState = 4;
+					mAlphaMgr[mState]->in(0.3f);
 				}
-				m_alphaArrow1->out(0.5f);
-				m_alphaArrow2->in(0.3f);
-				m_stickAnimMgr->stickDown();
+				mAlphaArrow1->out(0.5f);
+				mAlphaArrow2->in(0.3f);
+				mStickAnimMgr->stickDown();
 			}
 		} else {
-			if (m_state != 0) {
-				m_alphaMgr[m_state]->out(0.5f);
-				m_state = 0;
-				m_alphaMgr[m_state]->in(0.3f);
+			if (mState != 0) {
+				mAlphaMgr[mState]->out(0.5f);
+				mState = 0;
+				mAlphaMgr[mState]->in(0.3f);
 			}
-			disp->m_inOnion++;
-			disp->m_newInPartyNum--;
-			disp->m_inParty2--;
-			disp->m_onMapMinusWild--;
-			disp->m_result++;
-			disp->m_inTransfer = fabs(disp->m_result); // should be just abs
-			m_alphaArrow1->in(0.3f);
-			m_alphaArrow2->in(0.3f);
-			m_stickAnimMgr->stickUpDown();
-			if (m_timer0 >= 0.0f) {
-				m_scaleArrow2->up();
-				m_timer0 = msVal._1C;
+			disp->mInOnion++;
+			disp->mNewInPartyNum--;
+			disp->mInParty2--;
+			disp->mOnMapMinusWild--;
+			disp->mResult++;
+			disp->mInTransfer = fabs(disp->mResult); // should be just abs
+			mAlphaArrow1->in(0.3f);
+			mAlphaArrow2->in(0.3f);
+			mStickAnimMgr->stickUpDown();
+			if (mTimer0 >= 0.0f) {
+				mScaleArrow2->up();
+				mTimer0 = msVal._1C;
 			}
-			m_scaleMgr3->up(0.1f, 30.0f, 0.8f, 0.0f);
-			m_scaleMgr4->down(0.05f, 35.0f, 0.8f);
+			mScaleMgr3->up(0.1f, 30.0f, 0.8f, 0.0f);
+			mScaleMgr4->down(0.05f, 35.0f, 0.8f);
 			ogSound->setPlusMinus(soundType);
 		}
-	} else if (m_state == 1) {
+	} else if (mState == 1) {
 		if (!soundType) {
 			ogSound->setError();
 		}
 	} else {
 		ogSound->setError();
-		if (m_state != 1) {
-			m_alphaMgr[m_state]->out(0.5f);
-			m_state = 1;
-			m_alphaMgr[m_state]->in(0.3f);
+		if (mState != 1) {
+			mAlphaMgr[mState]->out(0.5f);
+			mState = 1;
+			mAlphaMgr[mState]->in(0.3f);
 		}
-		m_alphaArrow1->in(0.5f);
-		m_alphaArrow2->in(0.3f);
-		m_stickAnimMgr->stickDown();
+		mAlphaArrow1->in(0.5f);
+		mAlphaArrow2->in(0.3f);
+		mStickAnimMgr->stickDown();
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -1672,75 +1672,75 @@ lbl_80320D4C:
  */
 void ObjContena::takeoutPiki(bool soundType)
 {
-	og::Screen::DispMemberContena* disp = m_disp;
-	if (disp->m_maxPikiField >= disp->m_inOnion) {
-		if (disp->m_inOnion == 0) {
-			if (m_state == 3) {
+	og::Screen::DispMemberContena* disp = mDisp;
+	if (disp->mMaxPikiField >= disp->mInOnion) {
+		if (disp->mInOnion == 0) {
+			if (mState == 3) {
 				if (!soundType) {
 					ogSound->setError();
 				}
 			} else {
 				ogSound->setError();
-				if (m_state != 3) {
-					m_alphaMgr[m_state]->out(0.5f);
-					m_state = 3;
-					m_alphaMgr[m_state]->in(0.3f);
+				if (mState != 3) {
+					mAlphaMgr[mState]->out(0.5f);
+					mState = 3;
+					mAlphaMgr[mState]->in(0.3f);
 				}
-				m_alphaArrow1->out(0.3f);
-				m_alphaArrow2->in(0.5f);
-				m_stickAnimMgr->stickUp();
+				mAlphaArrow1->out(0.3f);
+				mAlphaArrow2->in(0.5f);
+				mStickAnimMgr->stickUp();
 			}
-		} else if (disp->m_onMapMinusWild < disp->m_maxPikiField) {
-			if (m_state != 0) {
-				m_alphaMgr[m_state]->out(0.5f);
-				m_state = 0;
-				m_alphaMgr[m_state]->in(0.3f);
+		} else if (disp->mOnMapMinusWild < disp->mMaxPikiField) {
+			if (mState != 0) {
+				mAlphaMgr[mState]->out(0.5f);
+				mState = 0;
+				mAlphaMgr[mState]->in(0.3f);
 			}
-			disp->m_inOnion--;
-			disp->m_newInPartyNum++;
-			disp->m_inParty2++;
-			disp->m_onMapMinusWild++;
-			disp->m_result--;
-			disp->m_inTransfer = fabs(disp->m_result); // should be just abs
-			m_alphaArrow1->in(0.3f);
-			m_alphaArrow2->in(0.3f);
-			m_stickAnimMgr->stickUpDown();
-			if (m_timer1 >= 0.0f) {
-				m_scaleArrow2->up();
-				m_timer1 = msVal._38;
+			disp->mInOnion--;
+			disp->mNewInPartyNum++;
+			disp->mInParty2++;
+			disp->mOnMapMinusWild++;
+			disp->mResult--;
+			disp->mInTransfer = fabs(disp->mResult); // should be just abs
+			mAlphaArrow1->in(0.3f);
+			mAlphaArrow2->in(0.3f);
+			mStickAnimMgr->stickUpDown();
+			if (mTimer1 >= 0.0f) {
+				mScaleArrow2->up();
+				mTimer1 = msVal._38;
 			}
-			m_scaleMgr3->up(0.1f, 30.0f, 0.8f, 0.0f);
-			m_scaleMgr4->down(0.05f, 35.0f, 0.8f);
+			mScaleMgr3->up(0.1f, 30.0f, 0.8f, 0.0f);
+			mScaleMgr4->down(0.05f, 35.0f, 0.8f);
 			ogSound->setPlusMinus(soundType);
-		} else if (m_state == 5) {
+		} else if (mState == 5) {
 			if (!soundType) {
 				ogSound->setError();
 			}
 		} else {
 			ogSound->setError();
-			if (m_state != 5) {
-				m_alphaMgr[m_state]->out(0.5f);
-				m_state = 5;
-				m_alphaMgr[m_state]->in(0.3f);
+			if (mState != 5) {
+				mAlphaMgr[mState]->out(0.5f);
+				mState = 5;
+				mAlphaMgr[mState]->in(0.3f);
 			}
-			m_alphaArrow1->in(0.3f);
-			m_alphaArrow2->in(0.5f);
-			m_stickAnimMgr->stickUp();
+			mAlphaArrow1->in(0.3f);
+			mAlphaArrow2->in(0.5f);
+			mStickAnimMgr->stickUp();
 		}
-	} else if (m_state == 2) {
+	} else if (mState == 2) {
 		if (!soundType) {
 			ogSound->setError();
 		}
 	} else {
 		ogSound->setError();
-		if (m_state != 2) {
-			m_alphaMgr[m_state]->out(0.5f);
-			m_state = 2;
-			m_alphaMgr[m_state]->in(0.3f);
+		if (mState != 2) {
+			mAlphaMgr[mState]->out(0.5f);
+			mState = 2;
+			mAlphaMgr[mState]->in(0.3f);
 		}
-		m_alphaArrow1->in(0.3f);
-		m_alphaArrow2->in(0.5f);
-		m_stickAnimMgr->stickUp();
+		mAlphaArrow1->in(0.3f);
+		mAlphaArrow2->in(0.5f);
+		mStickAnimMgr->stickUp();
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -1978,90 +1978,90 @@ lbl_8032106C:
 bool ObjContena::moveContena()
 {
 	bool ret                            = false;
-	og::Screen::DispMemberContena* disp = m_disp;
-	int* onyontype                      = &disp->m_onyonID;
+	og::Screen::DispMemberContena* disp = mDisp;
+	int* onyontype                      = &disp->mOnyonID;
 	JUT_ASSERTLINE(603, onyontype, "DataContena is not found!\n");
 	JUT_ASSERTLINE(607, *onyontype != -1, "Contena Type error!\n");
 
-	if (m_timer1 > 0.0f) {
-		m_timer1 -= sys->m_deltaTime;
+	if (mTimer1 > 0.0f) {
+		mTimer1 -= sys->mDeltaTime;
 	}
-	if (m_timer2 > 0.0f) {
-		m_timer2 -= sys->m_deltaTime;
+	if (mTimer2 > 0.0f) {
+		mTimer2 -= sys->mDeltaTime;
 	}
 
-	if (!disp->m_state) {
-		disp->m_state = 1;
+	if (!disp->mState) {
+		disp->mState = 1;
 	} else {
-		if (m_controller->m_padButton.m_buttonDown & Controller::PRESS_B) {
-			disp                     = m_disp;
-			disp->m_onyonID          = m_onyonID;
-			disp->m_inOnion          = m_inOnionCount;
-			disp->m_currInMap        = m_currField;
-			disp->m_newInPartyNum    = m_inSquadCount;
-			disp->m_maxPikiField     = m_maxPikiOnField;
-			disp->m_inParty2         = m_inParty2;
-			disp->m_onMapMinusWild   = m_onMapCount;
-			disp->m_maxPikiMinusWild = m_maxPikiCount;
-			disp->m_inTransfer       = _D8;
-			disp->_2C                = _DC;
-			disp->m_inTransfer       = _E0;
-			disp->m_result           = _E4;
-			disp->m_state            = 2;
-			m_dispState              = 3;
-			disp->m_result           = 0;
-			disp->m_inTransfer       = 0;
+		if (mController->mButton.mButtonDown & Controller::PRESS_B) {
+			disp                    = mDisp;
+			disp->mOnyonID          = mOnyonID;
+			disp->mInOnion          = mInOnionCount;
+			disp->mCurrInMap        = mCurrField;
+			disp->mNewInPartyNum    = mInSquadCount;
+			disp->mMaxPikiField     = mMaxPikiOnField;
+			disp->mInParty2         = mInParty2;
+			disp->mOnMapMinusWild   = mOnMapCount;
+			disp->mMaxPikiMinusWild = mMaxPikiCount;
+			disp->mInTransfer       = _D8;
+			disp->_2C               = _DC;
+			disp->mInTransfer       = _E0;
+			disp->mResult           = _E4;
+			disp->mState            = 2;
+			mDispState              = 3;
+			disp->mResult           = 0;
+			disp->mInTransfer       = 0;
 			if ((*onyontype == 3 || *onyontype) && disp->_2C) {
 				ogSound->setCancel();
 			} else {
 				ogSound->setClose();
 			}
 			ret = true;
-		} else if (m_controller->m_padButton.m_buttonDown & Controller::PRESS_A) {
-			disp->m_state = 2;
-			m_dispState   = 4;
+		} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
+			disp->mState = 2;
+			mDispState   = 4;
 			ogSound->setDecide();
 			ret = true;
 		}
 	}
 
-	if (disp->m_state == 1) {
-		if (m_controller->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
-			switch (m_screenState) {
+	if (disp->mState == 1) {
+		if (mController->mButton.mButtonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+			switch (mScreenState) {
 			case 0:
-				m_screenState = 1;
+				mScreenState = 1;
 				putinPiki(false);
-				m_timer0 = m_moveTime;
+				mTimer0 = mMoveTime;
 				break;
 			case 1:
-				m_timer0 -= sys->m_deltaTime;
-				if (m_timer0 < 0.0f)
-					m_screenState = 2;
+				mTimer0 -= sys->mDeltaTime;
+				if (mTimer0 < 0.0f)
+					mScreenState = 2;
 				break;
 			case 2:
 				putinPiki(true);
 				break;
 			}
-			m_screenState = 0;
-		} else if (m_controller->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
-			switch (m_screenState) {
+			mScreenState = 0;
+		} else if (mController->mButton.mButtonDown & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+			switch (mScreenState) {
 			case 0:
-				m_screenState = 3;
+				mScreenState = 3;
 				putinPiki(false);
-				m_timer0 = m_moveTime;
+				mTimer0 = mMoveTime;
 				break;
 			case 3:
-				m_timer0 -= sys->m_deltaTime;
-				if (m_timer0 < 0.0f)
-					m_screenState = 4;
+				mTimer0 -= sys->mDeltaTime;
+				if (mTimer0 < 0.0f)
+					mScreenState = 4;
 				break;
 			case 4:
 				putinPiki(true);
 				break;
 			}
-			m_screenState = 0;
+			mScreenState = 0;
 		} else {
-			m_screenState = 0;
+			mScreenState = 0;
 		}
 	}
 	return ret;
@@ -2329,19 +2329,19 @@ lbl_803213A0:
  */
 void ObjContena::commonUpdate()
 {
-	if (m_contena) {
+	if (mContena) {
 		for (int i = 0; i < 10; i++) {
-			if (m_animList[i])
-				m_animList[i]->update();
+			if (mAnimList[i])
+				mAnimList[i]->update();
 		}
 		for (int i = 0; i < 6; i++) {
-			u8 alpha = m_alphaMgr[i]->calc();
-			m_paneList[i]->setAlpha(alpha);
+			u8 alpha = mAlphaMgr[i]->calc();
+			mPaneList[i]->setAlpha(alpha);
 		}
-		f32 scale1 = m_scaleMgr3->calc();
-		f32 scale2 = m_scaleMgr4->calc();
-		m_paneOnyonL->updateScale(scale1);
-		m_paneTiretul->updateScale(scale2);
+		f32 scale1 = mScaleMgr3->calc();
+		f32 scale2 = mScaleMgr4->calc();
+		mPaneOnyonL->updateScale(scale1);
+		mPaneTiretul->updateScale(scale2);
 
 		if (!contenaAngleFlag) {
 			contenaAngleFlag = true;
@@ -2351,64 +2351,64 @@ void ObjContena::commonUpdate()
 		if (contenaAngle > TAU) {
 			contenaAngle -= TAU;
 		}
-		f32 angle        = pikmin2_cosf(contenaAngle) * msVal._28;
-		J2DPane* pane    = m_paneArrowUp;
-		pane->m_offset.x = m_paneArrowUpPos.x;
-		pane->m_offset.y = -1.0f + m_paneArrowUpPos.y + angle;
+		f32 angle       = pikmin2_cosf(contenaAngle) * msVal._28;
+		J2DPane* pane   = mPaneArrowUp;
+		pane->mOffset.x = mPaneArrowUpPos.x;
+		pane->mOffset.y = -1.0f + mPaneArrowUpPos.y + angle;
 		pane->calcMtx();
 
-		pane             = m_paneArrowDown;
-		pane->m_offset.x = m_paneArrowDownPos.x;
-		pane->m_offset.y = 1.0f + m_paneArrowDownPos.y - angle;
+		pane            = mPaneArrowDown;
+		pane->mOffset.x = mPaneArrowDownPos.x;
+		pane->mOffset.y = 1.0f + mPaneArrowDownPos.y - angle;
 		pane->calcMtx();
 
-		u8 alpha = m_alphaArrow1->calc();
-		m_paneArrowUp->setAlpha(alpha);
-		alpha = m_alphaArrow2->calc();
-		m_paneArrowDown->setAlpha(alpha);
+		u8 alpha = mAlphaArrow1->calc();
+		mPaneArrowUp->setAlpha(alpha);
+		alpha = mAlphaArrow2->calc();
+		mPaneArrowDown->setAlpha(alpha);
 
-		f32 scale3 = m_scaleArrow1->calc();
+		f32 scale3 = mScaleArrow1->calc();
 		scale3     = msVal._34 * (scale3 - 1.0f) + 1.0f;
-		f32 scale4 = m_scaleArrow2->calc();
+		f32 scale4 = mScaleArrow2->calc();
 		scale4     = msVal._34 * (scale4 - 1.0f) + 1.0f;
-		m_paneArrowUp->updateScale(scale3);
-		m_paneArrowDown->updateScale(scale4);
+		mPaneArrowUp->updateScale(scale3);
+		mPaneArrowDown->updateScale(scale4);
 	}
 
 	if (msVal._40) {
-		f32 input1 = m_controller->m_padSStick.m_xPos;
-		f32 input2 = m_controller->m_padSStick.m_yPos;
+		f32 input1 = mController->mSStick.mXPos;
+		f32 input2 = mController->mSStick.mYPos;
 		if (input1 > 0.4f || input1 < -0.4f) {
-			m_menuMoveAngle += input1 * 100.0f;
+			mMenuMoveAngle += input1 * 100.0f;
 		}
 		if (input2 > 0.4f || input2 < -0.4f) {
-			m_yAnalog += input1 * -100.0f;
+			mYAnalog += input1 * -100.0f;
 		}
-		if (m_furiko) {
-			m_furiko->setParam(msVal._14, msVal._1C, msVal._18);
+		if (mFuriko) {
+			mFuriko->setParam(msVal._14, msVal._1C, msVal._18);
 		}
 	}
 
-	for (int i = 0; i < m_pikiPaneNum; i++) {
-		if (i + 1 > m_disp->m_newInPartyNum) {
-			m_pikiPaneList[i]->hide();
+	for (int i = 0; i < mPikiPaneNum; i++) {
+		if (i + 1 > mDisp->mNewInPartyNum) {
+			mPikiPaneList[i]->hide();
 		} else {
-			m_pikiPaneList[i]->show();
+			mPikiPaneList[i]->show();
 		}
 	}
-	m_doDraw = true;
-	m_contena->setXY(m_menuMoveAngle, m_yAnalog);
-	m_screenCupsule->calcMtx();
+	mDoDraw = true;
+	mContena->setXY(mMenuMoveAngle, mYAnalog);
+	mScreenCupsule->calcMtx();
 
-	m_timer += sys->m_deltaTime;
-	f32 time = m_timer;
-	if (m_timer > TAU) {
+	mTimer += sys->mDeltaTime;
+	f32 time = mTimer;
+	if (mTimer > TAU) {
 		time = 0.0f;
 	}
-	m_paneSpot->setOffset(msVal._00 * 2.0f * pikmin2_cosf(time), m_spotX + msVal._04, msVal._00 * pikmin2_sinf(time), m_spotY);
-	m_paneSpot->setAlpha(m_screenAngle * 255.0f * msVal._10);
-	m_paneSpot->updateScale(msVal._0C * ((1.0f - m_screenAngle) * 2.0f + 1.0f) * _104);
-	m_screenSpot->update();
+	mPaneSpot->setOffset(msVal._00 * 2.0f * pikmin2_cosf(time), mSpotX + msVal._04, msVal._00 * pikmin2_sinf(time), mSpotY);
+	mPaneSpot->setAlpha(mScreenAngle * 255.0f * msVal._10);
+	mPaneSpot->updateScale(msVal._0C * ((1.0f - mScreenAngle) * 2.0f + 1.0f) * _104);
+	mScreenSpot->update();
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -2875,22 +2875,22 @@ bool ObjContena::doUpdate()
  */
 void ObjContena::doDraw(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
 	graf->setPort();
-	if (m_doDraw) {
-		m_contena->draw(gfx, *graf);
+	if (mDoDraw) {
+		mContena->draw(gfx, *graf);
 
-		J2DPane* pane1 = m_contena->search('Pscon');
-		J2DPane* pane2 = m_screenCupsule->search('Pscon');
-		PSMTXCopy(pane1->m_globalMtx, pane2->m_positionMtx);
+		J2DPane* pane1 = mContena->search('Pscon');
+		J2DPane* pane2 = mScreenCupsule->search('Pscon');
+		PSMTXCopy(pane1->mGlobalMtx, pane2->mPositionMtx);
 
-		pane1 = m_contena->search('Pscon01');
-		pane2 = m_screenCupsule->search('Pscon01');
-		PSMTXCopy(pane1->m_globalMtx, pane2->m_positionMtx);
-		m_screenCupsule->draw(gfx, *graf);
+		pane1 = mContena->search('Pscon01');
+		pane2 = mScreenCupsule->search('Pscon01');
+		PSMTXCopy(pane1->mGlobalMtx, pane2->mPositionMtx);
+		mScreenCupsule->draw(gfx, *graf);
 	}
 	GXSetClipMode(0);
-	m_screenSpot->draw(gfx, *graf);
+	mScreenSpot->draw(gfx, *graf);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2997,10 +2997,10 @@ lbl_80321B30:
  */
 bool ObjContena::doStart(::Screen::StartSceneArg const*)
 {
-	m_fadeLevel     = 0.0f;
-	m_menuMoveAngle = 800.0f;
-	m_yAnalog       = 0.0f;
-	m_doDraw        = false;
+	mFadeLevel     = 0.0f;
+	mMenuMoveAngle = 800.0f;
+	mYAnalog       = 0.0f;
+	mDoDraw        = false;
 	ogSound->setOpen();
 	return true;
 	/*
@@ -3045,7 +3045,7 @@ void ObjContena::doUpdateFadeinFinish() { }
  */
 void ObjContena::doUpdateFinish()
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	/*
 	lfs      f0, lbl_8051DC8C@sda21(r2)
 	stfs     f0, 0x110(r3)
@@ -3069,12 +3069,12 @@ bool ObjContena::doUpdateFadein()
 {
 	bool check = false;
 	commonUpdate();
-	m_fadeLevel += sys->m_deltaTime;
-	m_screenAngle   = m_fadeLevel / msVal._20;
-	f32 calc        = og::Screen::calcSmooth0to1(m_fadeLevel, msVal._20);
-	m_menuMoveAngle = 800.0f * (1.0f - calc);
+	mFadeLevel += sys->mDeltaTime;
+	mScreenAngle   = mFadeLevel / msVal._20;
+	f32 calc       = og::Screen::calcSmooth0to1(mFadeLevel, msVal._20);
+	mMenuMoveAngle = 800.0f * (1.0f - calc);
 
-	if (m_fadeLevel >= msVal._20)
+	if (mFadeLevel >= msVal._20)
 		check = true;
 	return check;
 	/*
@@ -3134,17 +3134,17 @@ bool ObjContena::doUpdateFadeout()
 {
 	bool check = false;
 	commonUpdate();
-	m_fadeLevel += sys->m_deltaTime;
-	m_screenAngle   = 1.0f - m_fadeLevel / msVal._20;
-	f32 calc        = og::Screen::calcSmooth0to1(m_fadeLevel, msVal._20);
-	m_menuMoveAngle = -800.0f * calc;
-	if (m_fadeLevel >= msVal._20) {
+	mFadeLevel += sys->mDeltaTime;
+	mScreenAngle   = 1.0f - mFadeLevel / msVal._20;
+	f32 calc       = og::Screen::calcSmooth0to1(mFadeLevel, msVal._20);
+	mMenuMoveAngle = -800.0f * calc;
+	if (mFadeLevel >= msVal._20) {
 		check                               = true;
 		::Screen::SceneBase* scene          = getOwner();
-		og::Screen::DispMemberContena* disp = m_disp;
-		disp->m_state                       = m_dispState;
-		if (disp->m_state == 3 && disp->_2C) {
-			if (disp->m_onyonID == 4 || disp->m_onyonID == 3) {
+		og::Screen::DispMemberContena* disp = mDisp;
+		disp->mState                        = mDispState;
+		if (disp->mState == 3 && disp->_2C) {
+			if (disp->mOnyonID == 4 || disp->mOnyonID == 3) {
 				::Screen::SetSceneArg arg(SCENE_UFO_MENU, getDispMember(), false, false);
 				if (scene->setScene(arg) && !scene->startScene(nullptr)) {
 					JUT_PANICLINE(944, "‚¾‚ß‚Å‚·\n");

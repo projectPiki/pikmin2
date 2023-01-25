@@ -28,7 +28,7 @@ struct BgmSeq : public SeqBase {
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	// _14-_68  = SeqBase
-	JAISound* m_handleP; // _68
+	JAISound* mHandleP; // _68
 };
 
 /**

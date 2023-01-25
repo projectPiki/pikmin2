@@ -116,32 +116,32 @@ void caveIDtoATB(u32 caveID, bool* isHazard1, bool* isHazard2, bool* isHazard3, 
  */
 ObjAnaDemo::ObjAnaDemo(const char* name)
 {
-	m_name       = name;
-	m_disp       = nullptr;
-	m_anaType    = ANADEMO_CaveEntry;
-	m_state      = ANADEMOSTATE_Disabled;
-	m_anaTypeSub = ANADEMOSUB_Normal;
+	mName       = name;
+	mDisp       = nullptr;
+	mAnaType    = ANADEMO_CaveEntry;
+	mState      = ANADEMOSTATE_Disabled;
+	mAnaTypeSub = ANADEMOSUB_Normal;
 
-	m_currMenuSel  = 0;
-	m_screen       = nullptr;
-	m_menuMgr      = nullptr;
-	m_animGroup    = nullptr;
-	_54            = nullptr;
-	m_menuSelTitle = nullptr;
-	m_menuSelYes   = nullptr;
-	m_menuSelNo    = nullptr;
-	_68            = 0.0f;
-	_6C            = 0;
-	m_paneError    = nullptr;
-	_88            = 0;
-	_8C            = 0.0f;
-	m_closeTimer   = 0.0f;
+	mCurrMenuSel  = 0;
+	mScreen       = nullptr;
+	mMenuMgr      = nullptr;
+	mAnimGroup    = nullptr;
+	_54           = nullptr;
+	mMenuSelTitle = nullptr;
+	mMenuSelYes   = nullptr;
+	mMenuSelNo    = nullptr;
+	_68           = 0.0f;
+	_6C           = 0;
+	mPaneError    = nullptr;
+	_88           = 0;
+	_8C           = 0.0f;
+	mCloseTimer   = 0.0f;
 
-	m_timer3 = 0.0f;
-	m_alpha  = 255;
-	m_timer4 = 0.0f;
-	m_timer1 = 0.0f;
-	m_timer2 = 0.0f;
+	mTimer3 = 0.0f;
+	mAlpha  = 255;
+	mTimer4 = 0.0f;
+	mTimer1 = 0.0f;
+	mTimer2 = 0.0f;
 }
 
 /*
@@ -158,9 +158,9 @@ ObjAnaDemo::~ObjAnaDemo() { }
  */
 void ObjAnaDemo::setWindowMsg(u64 tagQ, u64 tagY, u64 tagN)
 {
-	m_screen->search('Tm00q')->setMsgID(tagQ);
-	m_screen->search('Tm00y')->setMsgID(tagY);
-	m_screen->search('Tm00n')->setMsgID(tagN);
+	mScreen->search('Tm00q')->setMsgID(tagQ);
+	mScreen->search('Tm00y')->setMsgID(tagY);
+	mScreen->search('Tm00n')->setMsgID(tagN);
 }
 
 /*
@@ -173,80 +173,80 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 	og::Screen::DispMemberAnaDemo* disp_main = static_cast<og::Screen::DispMemberAnaDemo*>(getDispMember());
 
 	if (disp_main->isID(OWNER_OGA, MEMBER_ANA_DEMO)) {
-		m_disp    = disp_main;
-		m_anaType = ANADEMO_CaveEntry;
+		mDisp    = disp_main;
+		mAnaType = ANADEMO_CaveEntry;
 
 	} else if (disp_main->isID(OWNER_OGA, MEMBER_KANKETU_MENU)) {
 		og::Screen::DispMemberKanketuMenu* disp_kan = static_cast<og::Screen::DispMemberKanketuMenu*>(disp_main);
-		m_disp                                      = disp_kan;
-		if (disp_kan->m_isChallenge) {
-			m_anaType = ANADEMO_KantekuChallenge;
+		mDisp                                       = disp_kan;
+		if (disp_kan->mIsChallenge) {
+			mAnaType = ANADEMO_KantekuChallenge;
 		} else {
-			m_anaType = ANADEMO_Kanteku;
+			mAnaType = ANADEMO_Kanteku;
 		}
 
-		if (disp_kan->m_cantProceed) {
-			m_anaTypeSub = ANADEMOSUB_CantProceed;
-		} else if (disp_kan->m_pikiInDanger) {
-			m_anaTypeSub = ANADEMOSUB_PikiInDanger;
+		if (disp_kan->mCantProceed) {
+			mAnaTypeSub = ANADEMOSUB_CantProceed;
+		} else if (disp_kan->mPikiInDanger) {
+			mAnaTypeSub = ANADEMOSUB_PikiInDanger;
 		}
 
 	} else if (disp_main->isID(OWNER_OGA, MEMBER_CAVE_MORE)) {
 		og::Screen::DispMemberCaveMore* disp_more = static_cast<og::Screen::DispMemberCaveMore*>(disp_main);
-		m_disp                                    = disp_more;
-		m_anaType                                 = ANADEMO_CaveMore;
+		mDisp                                     = disp_more;
+		mAnaType                                  = ANADEMO_CaveMore;
 
-		if (disp_more->m_cantProceed) {
-			m_anaTypeSub = ANADEMOSUB_CantProceed;
-		} else if (disp_more->m_pikiInDanger) {
-			m_anaTypeSub = ANADEMOSUB_PikiInDanger;
+		if (disp_more->mCantProceed) {
+			mAnaTypeSub = ANADEMOSUB_CantProceed;
+		} else if (disp_more->mPikiInDanger) {
+			mAnaTypeSub = ANADEMOSUB_PikiInDanger;
 		}
 
 	} else if (disp_main->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		m_disp = new og::Screen::DispMemberAnaDemo;
+		mDisp = new og::Screen::DispMemberAnaDemo;
 
 	} else {
 		JUT_PANICLINE(431, "ERR! in ObjAnaDemo CreateŽ¸”sI\n");
 	}
 
-	m_screen = new P2DScreen::Mgr_tuning;
+	mScreen = new P2DScreen::Mgr_tuning;
 
-	if (m_anaType == ANADEMO_CaveEntry) {
-		m_screen->set("ana_demo.blo", 0x1040000, arc);
+	if (mAnaType == ANADEMO_CaveEntry) {
+		mScreen->set("ana_demo.blo", 0x1040000, arc);
 
-	} else if (m_anaTypeSub == ANADEMOSUB_CantProceed || m_anaTypeSub == ANADEMOSUB_PikiInDanger) {
-		m_screen->set("warning_me_piki.blo", 0x1040000, arc);
+	} else if (mAnaTypeSub == ANADEMOSUB_CantProceed || mAnaTypeSub == ANADEMOSUB_PikiInDanger) {
+		mScreen->set("warning_me_piki.blo", 0x1040000, arc);
 
-		og::Screen::TagSearch(m_screen, 'Nmenu01')->hide();
-		og::Screen::TagSearch(m_screen, 'Nmenu02')->hide();
-		og::Screen::TagSearch(m_screen, 'Nerror')->hide();
+		og::Screen::TagSearch(mScreen, 'Nmenu01')->hide();
+		og::Screen::TagSearch(mScreen, 'Nmenu02')->hide();
+		og::Screen::TagSearch(mScreen, 'Nerror')->hide();
 
 	} else {
-		m_screen->set("info_window.blo", 0x1040000, arc);
-		og::Screen::TagSearch(m_screen, 'Nmenu01')->hide();
-		og::Screen::TagSearch(m_screen, 'Nmenu02')->hide();
+		mScreen->set("info_window.blo", 0x1040000, arc);
+		og::Screen::TagSearch(mScreen, 'Nmenu01')->hide();
+		og::Screen::TagSearch(mScreen, 'Nmenu02')->hide();
 	}
 
-	og::Screen::setAlphaScreen(m_screen);
-	og::Screen::setFurikoScreen(m_screen);
+	og::Screen::setAlphaScreen(mScreen);
+	og::Screen::setFurikoScreen(mScreen);
 
-	if (m_anaType != ANADEMO_CaveEntry) {
-		if (m_anaTypeSub == ANADEMOSUB_CantProceed) {
-			og::Screen::TagSearch(m_screen, 'Nmenu00')->hide();
+	if (mAnaType != ANADEMO_CaveEntry) {
+		if (mAnaTypeSub == ANADEMOSUB_CantProceed) {
+			og::Screen::TagSearch(mScreen, 'Nmenu00')->hide();
 			setWindowMsg('9999_00', '9999_00', '9999_00');
 
-			if (m_anaType == ANADEMO_CaveMore) {
-				m_screen->search('T_title1')->setMsgID('8600_00'); // "All Pikmin are buried, so you cannot proceed."
+			if (mAnaType == ANADEMO_CaveMore) {
+				mScreen->search('T_title1')->setMsgID('8600_00'); // "All Pikmin are buried, so you cannot proceed."
 			} else {
-				m_screen->search('T_title1')->setMsgID('8605_00'); // "All Pikmin are buried, so you cannot return to the surface."
+				mScreen->search('T_title1')->setMsgID('8605_00'); // "All Pikmin are buried, so you cannot return to the surface."
 			}
 
-			og::Screen::TagSearch(m_screen, 'Nerror')->show();
+			og::Screen::TagSearch(mScreen, 'Nerror')->show();
 
 		} else {
-			switch (m_anaType) {
+			switch (mAnaType) {
 			case ANADEMO_KantekuChallenge:
-				if (m_anaTypeSub == ANADEMOSUB_PikiInDanger) {
+				if (mAnaTypeSub == ANADEMOSUB_PikiInDanger) {
 					setWindowMsg('8606_00', '8607_00',
 					             '8608_00'); // "If you go above ground all Pikmin sprouts will be left behind!"
 					                         // "Return to the Surface" "Go Help Them"
@@ -257,7 +257,7 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 				break;
 
 			case ANADEMO_Kanteku:
-				if (m_anaTypeSub == ANADEMOSUB_PikiInDanger) {
+				if (mAnaTypeSub == ANADEMOSUB_PikiInDanger) {
 					setWindowMsg('8606_00', '8607_00',
 					             '8608_00'); // "If you go above ground, all Pikmin sprouts will be left behind!"
 					                         // "Return to the Surface" "Go Help Them"
@@ -268,7 +268,7 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 				break;
 
 			case ANADEMO_CaveMore:
-				if (m_anaTypeSub == ANADEMOSUB_PikiInDanger) {
+				if (mAnaTypeSub == ANADEMOSUB_PikiInDanger) {
 					setWindowMsg('8601_00', '8602_00',
 					             '8603_00'); // "If you delve deeper, all of your Pikmin sprouts will be left behind!"
 					                         // "Delve Deeper" "Go Help Them"
@@ -278,37 +278,37 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 				break;
 
 			default:
-				m_screen->search('Tm00y')->setMsgID('8368_00'); // "Yes"
-				m_screen->search('Tm00n')->setMsgID('8369_00'); // "No"
+				mScreen->search('Tm00y')->setMsgID('8368_00'); // "Yes"
+				mScreen->search('Tm00n')->setMsgID('8369_00'); // "No"
 				break;
 			}
 		}
 	}
 
-	og::Screen::setCallBackMessage(m_screen);
+	og::Screen::setCallBackMessage(mScreen);
 
-	if (m_anaType == ANADEMO_CaveEntry) {
-		J2DPane* pane = m_screen->search('ana_name');
-		u64 tag       = caveIDtoMsgID(m_disp->m_caveID);
+	if (mAnaType == ANADEMO_CaveEntry) {
+		J2DPane* pane = mScreen->search('ana_name');
+		u64 tag       = caveIDtoMsgID(mDisp->mCaveID);
 
 		if (tag != 0) {
-			pane->m_messageID = tag;
+			pane->mMessageID = tag;
 		} else {
-			pane->m_messageID = CaveTitleMsg[0].bmg_tag;
+			pane->mMessageID = CaveTitleMsg[0].bmg_tag;
 		}
 	}
 
-	if (m_anaType == ANADEMO_CaveEntry) {
-		J2DPane* hazardpane1 = m_screen->search('Picon00');
-		J2DPane* hazardpane3 = m_screen->search('Picon01'); // yes this is swapped
-		J2DPane* hazardpane2 = m_screen->search('Picon02'); // yes this is swapped
-		J2DPane* hazardpane4 = m_screen->search('Picon03');
+	if (mAnaType == ANADEMO_CaveEntry) {
+		J2DPane* hazardpane1 = mScreen->search('Picon00');
+		J2DPane* hazardpane3 = mScreen->search('Picon01'); // yes this is swapped
+		J2DPane* hazardpane2 = mScreen->search('Picon02'); // yes this is swapped
+		J2DPane* hazardpane4 = mScreen->search('Picon03');
 		u8 alpha1            = 32;
 		u8 alpha2            = 32;
 		u8 alpha3            = 32;
 		u8 alpha4            = 32;
 		bool isHazard1, isHazard2, isHazard3, isHazard4;
-		caveIDtoATB(m_disp->m_caveID, &isHazard1, &isHazard2, &isHazard3, &isHazard4);
+		caveIDtoATB(mDisp->mCaveID, &isHazard1, &isHazard2, &isHazard3, &isHazard4);
 
 		if (isHazard1) {
 			alpha1 = 255;
@@ -329,91 +329,90 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 		hazardpane4->setAlpha(alpha4);
 	}
 
-	if (m_anaType == ANADEMO_CaveEntry) {
-		og::Screen::TagSearch(m_screen, 'h_title')->setMsgID('8361_00'); // "Enter this hole with your Pikmin squad?"
-		m_paneError = og::Screen::TagSearch(m_screen, 'Nerror');
-		m_alpha     = m_paneError->m_alpha;
-		m_paneError->setAlpha(0);
+	if (mAnaType == ANADEMO_CaveEntry) {
+		og::Screen::TagSearch(mScreen, 'h_title')->setMsgID('8361_00'); // "Enter this hole with your Pikmin squad?"
+		mPaneError = og::Screen::TagSearch(mScreen, 'Nerror');
+		mAlpha     = mPaneError->mAlpha;
+		mPaneError->setAlpha(0);
 	}
 
-	if (m_anaType == ANADEMO_CaveEntry) {
-		m_menuSelTitle = og::Screen::setMenuTitleScreen(arc, m_screen, 'h_title');
-		m_menuSelYes   = og::Screen::setMenuScreen(arc, m_screen, 'h_00');
-		m_menuSelNo    = og::Screen::setMenuScreen(arc, m_screen, 'h_01');
+	if (mAnaType == ANADEMO_CaveEntry) {
+		mMenuSelTitle = og::Screen::setMenuTitleScreen(arc, mScreen, 'h_title');
+		mMenuSelYes   = og::Screen::setMenuScreen(arc, mScreen, 'h_00');
+		mMenuSelNo    = og::Screen::setMenuScreen(arc, mScreen, 'h_01');
 
-	} else if (m_anaTypeSub != ANADEMOSUB_CantProceed) {
-		m_menuSelTitle = og::Screen::setMenuTitleScreen(arc, m_screen, 'Tm00q');
-		m_menuSelYes   = og::Screen::setMenuScreen(arc, m_screen, 'Tm00y');
-		m_menuSelNo    = og::Screen::setMenuScreen(arc, m_screen, 'Tm00n');
+	} else if (mAnaTypeSub != ANADEMOSUB_CantProceed) {
+		mMenuSelTitle = og::Screen::setMenuTitleScreen(arc, mScreen, 'Tm00q');
+		mMenuSelYes   = og::Screen::setMenuScreen(arc, mScreen, 'Tm00y');
+		mMenuSelNo    = og::Screen::setMenuScreen(arc, mScreen, 'Tm00n');
 	}
 
-	og::Screen::AnimText_Screen* anim = m_menuSelTitle;
+	og::Screen::AnimText_Screen* anim = mMenuSelTitle;
 	if (anim) {
-		if (m_disp->_1C) {
+		if (mDisp->_1C) {
 			anim->stop();
-			m_menuSelYes->stop();
-			m_menuSelNo->stop();
+			mMenuSelYes->stop();
+			mMenuSelNo->stop();
 		} else {
 			anim->open(0.5f);
-			m_menuSelYes->open(0.6f);
-			m_menuSelNo->open(0.7f);
+			mMenuSelYes->open(0.6f);
+			mMenuSelNo->open(0.7f);
 		}
 	}
 
-	m_currMenuSel = 0;
-	if (m_anaTypeSub == ANADEMOSUB_PikiInDanger) {
-		m_currMenuSel = 1;
+	mCurrMenuSel = 0;
+	if (mAnaTypeSub == ANADEMOSUB_PikiInDanger) {
+		mCurrMenuSel = 1;
 	}
 
-	if (m_anaTypeSub != ANADEMOSUB_CantProceed) {
-		m_menuMgr = new og::Screen::MenuMgr;
-		if (m_anaType == ANADEMO_CaveEntry) {
-			m_menuMgr->init(m_screen, 2, 'nu_00', 'h_00', 's_00', 'il00', 'ir00');
+	if (mAnaTypeSub != ANADEMOSUB_CantProceed) {
+		mMenuMgr = new og::Screen::MenuMgr;
+		if (mAnaType == ANADEMO_CaveEntry) {
+			mMenuMgr->init(mScreen, 2, 'nu_00', 'h_00', 's_00', 'il00', 'ir00');
 		} else {
-			m_menuMgr->init2takuTitle(m_screen, 'Nm00y', 'Tm00y', 'Pm00y_il', 'Pm00y_ir', 'Nm00n', 'Tm00n', 'Pm00n_il', 'Pm00n_ir');
+			mMenuMgr->init2takuTitle(mScreen, 'Nm00y', 'Tm00y', 'Pm00y_il', 'Pm00y_ir', 'Nm00n', 'Tm00n', 'Pm00n_il', 'Pm00n_ir');
 		}
 
-		m_menuMgr->initSelNum(m_currMenuSel);
+		mMenuMgr->initSelNum(mCurrMenuSel);
 		setBlinkMenu();
 	}
 
-	if (m_anaType == ANADEMO_CaveEntry) {
-		m_animGroup = new og::Screen::AnimGroup(3);
-		og::Screen::registAnimGroupScreen(m_animGroup, arc, m_screen, "ana_demo.btk", 1.0f);
-		og::Screen::registAnimGroupScreen(m_animGroup, arc, m_screen, "ana_demo_02.btk", 1.0f);
-		og::Screen::registAnimGroupScreen(m_animGroup, arc, m_screen, "ana_demo_03.btk", 1.0f);
+	if (mAnaType == ANADEMO_CaveEntry) {
+		mAnimGroup = new og::Screen::AnimGroup(3);
+		og::Screen::registAnimGroupScreen(mAnimGroup, arc, mScreen, "ana_demo.btk", 1.0f);
+		og::Screen::registAnimGroupScreen(mAnimGroup, arc, mScreen, "ana_demo_02.btk", 1.0f);
+		og::Screen::registAnimGroupScreen(mAnimGroup, arc, mScreen, "ana_demo_03.btk", 1.0f);
 	}
 
-	if (m_anaType == ANADEMO_CaveEntry) {
+	if (mAnaType == ANADEMO_CaveEntry) {
 		og::Screen::DispMemberAnaDemo* disp;
-		if ((int)m_disp->m_caveOtakaraNum >= 0 && (int)m_disp->m_caveOtakaraMax >= 0) {
+		if ((int)mDisp->mCaveOtakaraNum >= 0 && (int)mDisp->mCaveOtakaraMax >= 0) {
 			og::Screen::CallBack_CounterRV* counter1
-			    = og::Screen::setCallBack_CounterRV(m_screen, 'item_01', &m_disp->m_caveOtakaraNum, 3, 0, 1, arc);
+			    = og::Screen::setCallBack_CounterRV(mScreen, 'item_01', &mDisp->mCaveOtakaraNum, 3, 0, 1, arc);
 			og::Screen::CallBack_CounterRV* counter2
-			    = og::Screen::setCallBack_CounterRV(m_screen, 'Titem01', &m_disp->m_caveOtakaraMax, 3, 0, 1, arc);
-			og::Screen::CallBack_CounterRV* counter3
-			    = og::Screen::setCallBack_CounterRV(m_screen, 'Ppiki01', &m_disp->m_pikis, 3, 0, 1, arc);
+			    = og::Screen::setCallBack_CounterRV(mScreen, 'Titem01', &mDisp->mCaveOtakaraMax, 3, 0, 1, arc);
+			og::Screen::CallBack_CounterRV* counter3 = og::Screen::setCallBack_CounterRV(mScreen, 'Ppiki01', &mDisp->mPikis, 3, 0, 1, arc);
 			og::Screen::CallBack_CounterRV* counter4
-			    = og::Screen::setCallBack_CounterRV(m_screen, 'Papiki01', &m_disp->m_pikisField, 3, 0, 1, arc);
+			    = og::Screen::setCallBack_CounterRV(mScreen, 'Papiki01', &mDisp->mPikisField, 3, 0, 1, arc);
 
 			counter1->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown0);
 			counter2->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
 			counter3->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown0);
 			counter4->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
 
-			disp = m_disp;
-			if (disp->m_payedDebt || disp->m_caveOtakaraNum == disp->m_caveOtakaraMax) {
+			disp = mDisp;
+			if (disp->mPayedDebt || disp->mCaveOtakaraNum == disp->mCaveOtakaraMax) {
 				counter2->show();
 			} else {
 				counter1->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
 				counter2->hide();
 				counter1->getMotherPane()->move(msVal._04, 0.0f);
-				m_screen->search('sura')->hide();
+				mScreen->search('sura')->hide();
 			}
 		}
 	}
 
-	m_state = ANADEMOSTATE_Init;
+	mState = ANADEMOSTATE_Init;
 	ogSound->setOpenDoukutu();
 }
 
@@ -424,15 +423,15 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
  */
 void ObjAnaDemo::setBlinkMenu()
 {
-	if (m_menuSelTitle) {
-		switch (m_currMenuSel) {
+	if (mMenuSelTitle) {
+		switch (mCurrMenuSel) {
 		case 0:
-			m_menuSelYes->blink(0.6f, 0.0f);
-			m_menuSelNo->blink(0.0f, 0.0f);
+			mMenuSelYes->blink(0.6f, 0.0f);
+			mMenuSelNo->blink(0.0f, 0.0f);
 			break;
 		case 1:
-			m_menuSelYes->blink(0.0f, 0.0f);
-			m_menuSelNo->blink(0.6f, 0.0f);
+			mMenuSelYes->blink(0.0f, 0.0f);
+			mMenuSelNo->blink(0.6f, 0.0f);
 			break;
 		}
 	}
@@ -449,181 +448,181 @@ bool ObjAnaDemo::doUpdate()
 	commonUpdate();
 	Controller* pad = getGamePad();
 
-	switch (m_state) {
+	switch (mState) {
 	case ANADEMOSTATE_Disabled:
 		break;
 
 	case ANADEMOSTATE_Init:
-		m_state  = ANADEMOSTATE_Enter;
-		m_timer1 = msVal._08;
-		m_timer2 = msVal._0C;
+		mState  = ANADEMOSTATE_Enter;
+		mTimer1 = msVal._08;
+		mTimer2 = msVal._0C;
 		break;
 
 	case ANADEMOSTATE_Enter:
-		if (m_timer2 > 0.0f) {
-			m_timer2 -= sys->m_deltaTime;
-			if (m_timer2 < 0.0f) {
-				if (m_anaTypeSub == ANADEMOSUB_PikiInDanger) {
+		if (mTimer2 > 0.0f) {
+			mTimer2 -= sys->mDeltaTime;
+			if (mTimer2 < 0.0f) {
+				if (mAnaTypeSub == ANADEMOSUB_PikiInDanger) {
 					ogSound->setWarning();
-				} else if (m_anaTypeSub == ANADEMOSUB_CantProceed) {
+				} else if (mAnaTypeSub == ANADEMOSUB_CantProceed) {
 					ogSound->setError();
 				}
 			}
 		}
 
-		if (m_timer1 > 0.0f) {
-			m_timer1 -= sys->m_deltaTime;
-			if (m_timer1 < 0.0f) {
-				if (m_menuMgr)
-					m_menuMgr->startCursor(0.0f);
+		if (mTimer1 > 0.0f) {
+			mTimer1 -= sys->mDeltaTime;
+			if (mTimer1 < 0.0f) {
+				if (mMenuMgr)
+					mMenuMgr->startCursor(0.0f);
 
-				if (m_anaTypeSub == ANADEMOSUB_CantProceed) {
-					m_state = ANADEMOSTATE_ErrorWait;
+				if (mAnaTypeSub == ANADEMOSUB_CantProceed) {
+					mState = ANADEMOSTATE_ErrorWait;
 				} else {
-					m_state = ANADEMOSTATE_IdleWait;
+					mState = ANADEMOSTATE_IdleWait;
 				}
 			}
 		}
 		break;
 
 	case ANADEMOSTATE_IdleWait:
-		if (pad->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
-			if (m_currMenuSel > 0) {
-				m_currMenuSel--;
-				if (m_menuMgr) {
-					m_menuMgr->select(m_currMenuSel);
+		if (pad->mButton.mButtonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+			if (mCurrMenuSel > 0) {
+				mCurrMenuSel--;
+				if (mMenuMgr) {
+					mMenuMgr->select(mCurrMenuSel);
 				}
-				if (m_menuSelTitle) {
-					switch (m_currMenuSel) {
+				if (mMenuSelTitle) {
+					switch (mCurrMenuSel) {
 					case 0:
-						m_menuSelYes->blink(0.6f, 0.0f);
-						m_menuSelNo->blink(0.0f, 0.0f);
+						mMenuSelYes->blink(0.6f, 0.0f);
+						mMenuSelNo->blink(0.0f, 0.0f);
 						break;
 					case 1:
-						m_menuSelYes->blink(0.0f, 0.0f);
-						m_menuSelNo->blink(0.6f, 0.0f);
+						mMenuSelYes->blink(0.0f, 0.0f);
+						mMenuSelNo->blink(0.6f, 0.0f);
 						break;
 					}
 				}
 			}
 
-		} else if (pad->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
-			if (m_currMenuSel < 1) {
-				m_currMenuSel++;
-				if (m_menuMgr) {
-					m_menuMgr->select(m_currMenuSel);
+		} else if (pad->mButton.mButtonDown & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+			if (mCurrMenuSel < 1) {
+				mCurrMenuSel++;
+				if (mMenuMgr) {
+					mMenuMgr->select(mCurrMenuSel);
 				}
-				if (m_menuSelTitle) {
-					switch (m_currMenuSel) {
+				if (mMenuSelTitle) {
+					switch (mCurrMenuSel) {
 					case 0:
-						m_menuSelYes->blink(0.6f, 0.0f);
-						m_menuSelNo->blink(0.0f, 0.0f);
+						mMenuSelYes->blink(0.6f, 0.0f);
+						mMenuSelNo->blink(0.0f, 0.0f);
 						break;
 					case 1:
-						m_menuSelYes->blink(0.0f, 0.0f);
-						m_menuSelNo->blink(0.6f, 0.0f);
+						mMenuSelYes->blink(0.0f, 0.0f);
+						mMenuSelNo->blink(0.6f, 0.0f);
 						break;
 					}
 				}
 			}
-		} else if (pad->m_padButton.m_buttonDown & Controller::PRESS_A) {
-			if (m_menuMgr)
-				m_menuMgr->killCursor();
-			if (m_currMenuSel == 0) {
-				m_disp->m_selected = true;
-				if (m_menuSelTitle) {
-					m_menuSelYes->close();
-					m_menuSelNo->close();
+		} else if (pad->mButton.mButtonDown & Controller::PRESS_A) {
+			if (mMenuMgr)
+				mMenuMgr->killCursor();
+			if (mCurrMenuSel == 0) {
+				mDisp->mSelected = true;
+				if (mMenuSelTitle) {
+					mMenuSelYes->close();
+					mMenuSelNo->close();
 				}
 
 				// no pikmin, cant enter cave
-				if (m_disp->m_pikis == 0) {
-					if (m_menuMgr)
-						m_menuMgr->killCursor();
-					m_state  = ANADEMOSTATE_ErrorTimed;
-					m_timer4 = 0.5f;
-					if (m_menuSelTitle)
-						m_menuSelTitle->_6C = 0.5f;
+				if (mDisp->mPikis == 0) {
+					if (mMenuMgr)
+						mMenuMgr->killCursor();
+					mState  = ANADEMOSTATE_ErrorTimed;
+					mTimer4 = 0.5f;
+					if (mMenuSelTitle)
+						mMenuSelTitle->_6C = 0.5f;
 					ogSound->setError();
-					m_paneError->setAlpha(0);
+					mPaneError->setAlpha(0);
 				} else {
-					if (m_anaType == ANADEMO_Kanteku) {
-						m_state      = ANADEMOSTATE_Exit;
-						m_closeTimer = 0.0f;
+					if (mAnaType == ANADEMO_Kanteku) {
+						mState      = ANADEMOSTATE_Exit;
+						mCloseTimer = 0.0f;
 						ogSound->setDecide();
 					} else {
 						_68 = 0.5f;
 						ogSound->setDecide();
-						m_state      = ANADEMOSTATE_Exit;
-						m_closeTimer = 0.0f;
+						mState      = ANADEMOSTATE_Exit;
+						mCloseTimer = 0.0f;
 					}
 				}
 			} else {
-				m_disp->m_selected = false;
-				m_state            = ANADEMOSTATE_Exit;
-				m_closeTimer       = 0.0f;
+				mDisp->mSelected = false;
+				mState           = ANADEMOSTATE_Exit;
+				mCloseTimer      = 0.0f;
 				ogSound->setDecide();
 			}
-		} else if (pad->m_padButton.m_buttonDown & Controller::PRESS_B) {
-			if (m_menuMgr) {
-				m_menuMgr->killCursor();
+		} else if (pad->mButton.mButtonDown & Controller::PRESS_B) {
+			if (mMenuMgr) {
+				mMenuMgr->killCursor();
 			}
-			m_disp->m_selected = false;
-			m_state            = ANADEMOSTATE_Exit;
-			m_closeTimer       = 0.0f;
+			mDisp->mSelected = false;
+			mState           = ANADEMOSTATE_Exit;
+			mCloseTimer      = 0.0f;
 			ogSound->setClose();
 		}
 		break;
 
 	case ANADEMOSTATE_ErrorWait:
 		bool anyButtonDown = false;
-		u32 input          = pad->m_padButton.m_buttonDown;
+		u32 input          = pad->mButton.mButtonDown;
 		if (input & Controller::PRESS_A || input & Controller::PRESS_B || input & Controller::PRESS_X || input & Controller::PRESS_Y
 		    || input & Controller::PRESS_START) {
 			anyButtonDown = true;
 		}
 		if (anyButtonDown) {
-			m_state            = ANADEMOSTATE_Exit;
-			m_closeTimer       = 0.0f;
-			m_disp->m_selected = false;
+			mState           = ANADEMOSTATE_Exit;
+			mCloseTimer      = 0.0f;
+			mDisp->mSelected = false;
 			ogSound->setClose();
 		}
 		break;
 
 	case ANADEMOSTATE_ErrorTimed:
-		if (m_timer3 >= 1.0f) {
+		if (mTimer3 >= 1.0f) {
 			bool anyButtonDown = false;
-			u32 input          = pad->m_padButton.m_buttonDown;
+			u32 input          = pad->mButton.mButtonDown;
 			if (input & Controller::PRESS_A || input & Controller::PRESS_B || input & Controller::PRESS_X || input & Controller::PRESS_Y
 			    || input & Controller::PRESS_START) {
 				anyButtonDown = true;
 			}
 			if (anyButtonDown) {
-				m_state            = ANADEMOSTATE_Exit;
-				m_closeTimer       = 0.0f;
-				m_disp->m_selected = false;
+				mState           = ANADEMOSTATE_Exit;
+				mCloseTimer      = 0.0f;
+				mDisp->mSelected = false;
 				ogSound->setClose();
 			}
 
-		} else if (m_timer4 > 0.0f) {
-			m_timer4 -= sys->m_deltaTime;
+		} else if (mTimer4 > 0.0f) {
+			mTimer4 -= sys->mDeltaTime;
 
 		} else {
-			m_paneError->setAlpha(m_alpha * m_timer3);
-			m_timer3 += sys->m_deltaTime * 30.0f * 0.1f;
-			if (m_timer3 > 1.0f) {
-				m_timer3 = 1.0f;
+			mPaneError->setAlpha(mAlpha * mTimer3);
+			mTimer3 += sys->mDeltaTime * 30.0f * 0.1f;
+			if (mTimer3 > 1.0f) {
+				mTimer3 = 1.0f;
 			}
 		}
 		break;
 
 	case ANADEMOSTATE_Exit:
-		m_closeTimer += sys->m_deltaTime;
-		_8C = og::Screen::calcSmooth0to1(m_closeTimer, msVal._00) * -800.0f;
-		if (m_closeTimer >= msVal._00) {
-			ret         = true;
-			m_disp->_1F = false;
-			m_state     = ANADEMOSTATE_Disabled;
+		mCloseTimer += sys->mDeltaTime;
+		_8C = og::Screen::calcSmooth0to1(mCloseTimer, msVal._00) * -800.0f;
+		if (mCloseTimer >= msVal._00) {
+			ret        = true;
+			mDisp->_1F = false;
+			mState     = ANADEMOSTATE_Disabled;
 		}
 		break;
 	}
@@ -638,16 +637,16 @@ bool ObjAnaDemo::doUpdate()
  */
 void ObjAnaDemo::commonUpdate()
 {
-	if (m_menuMgr) {
-		m_menuMgr->update();
+	if (mMenuMgr) {
+		mMenuMgr->update();
 	}
 
-	if (m_animGroup) {
-		m_animGroup->update();
+	if (mAnimGroup) {
+		mAnimGroup->update();
 	}
 
-	m_screen->setXY(_8C, 0.0f);
-	m_screen->update();
+	mScreen->setXY(_8C, 0.0f);
+	mScreen->update();
 }
 
 /*
@@ -657,14 +656,14 @@ void ObjAnaDemo::commonUpdate()
  */
 void ObjAnaDemo::doDraw(Graphics& gfx)
 {
-	if (m_state != 0) {
-		J2DPerspGraph* graf         = &gfx.m_perspGraph;
-		P2DScreen::Mgr_tuning* scrn = m_screen;
+	if (mState != 0) {
+		J2DPerspGraph* graf         = &gfx.mPerspGraph;
+		P2DScreen::Mgr_tuning* scrn = mScreen;
 		if (scrn) {
 			scrn->draw(gfx, *graf);
 		}
-		if (m_menuMgr) {
-			m_menuMgr->draw(graf);
+		if (mMenuMgr) {
+			mMenuMgr->draw(graf);
 		}
 	}
 }
@@ -676,8 +675,8 @@ void ObjAnaDemo::doDraw(Graphics& gfx)
  */
 bool ObjAnaDemo::doStart(::Screen::StartSceneArg const*)
 {
-	m_closeTimer = 0.0f;
-	_8C          = 800.0f;
+	mCloseTimer = 0.0f;
+	_8C         = 800.0f;
 	return true;
 }
 
@@ -700,7 +699,7 @@ void ObjAnaDemo::doUpdateFadeinFinish() { }
  * Address:	8031E824
  * Size:	00000C
  */
-void ObjAnaDemo::doUpdateFinish() { m_closeTimer = 0.0f; }
+void ObjAnaDemo::doUpdateFinish() { mCloseTimer = 0.0f; }
 
 /*
  * --INFO--
@@ -710,7 +709,7 @@ void ObjAnaDemo::doUpdateFinish() { m_closeTimer = 0.0f; }
 void ObjAnaDemo::doUpdateFadeoutFinish()
 {
 	::Screen::SceneBase* scene = getOwner();
-	if (m_disp->m_selected) {
+	if (mDisp->mSelected) {
 		scene->endScene(nullptr);
 	} else {
 		if (scene->setBackupScene() && !scene->startScene(nullptr)) {
@@ -728,11 +727,11 @@ bool ObjAnaDemo::doUpdateFadein()
 {
 	bool ret = false;
 	commonUpdate();
-	m_closeTimer += sys->m_deltaTime;
+	mCloseTimer += sys->mDeltaTime;
 
-	_8C = 800.0f * (1.0f - og::Screen::calcSmooth0to1(m_closeTimer, msVal._00));
+	_8C = 800.0f * (1.0f - og::Screen::calcSmooth0to1(mCloseTimer, msVal._00));
 
-	if (m_closeTimer >= msVal._00) {
+	if (mCloseTimer >= msVal._00) {
 		ret = true;
 	}
 

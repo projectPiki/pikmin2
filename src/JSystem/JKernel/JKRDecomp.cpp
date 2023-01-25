@@ -31,7 +31,7 @@ JKRDecomp* JKRDecomp::create(long p1)
 JKRDecomp::JKRDecomp(long p1)
     : JKRThread(0x4000, 0x10, p1)
 {
-	OSResumeThread(m_thread);
+	OSResumeThread(mThread);
 }
 
 /*
@@ -95,10 +95,10 @@ void* JKRDecomp::run()
 					JKRAramPiece::sendCommand(command->_24);
 				}
 			}
-			if (command->m_callback == nullptr) {
+			if (command->mCallback == nullptr) {
 				break;
 			}
-			command->m_callback(command);
+			command->mCallback(command);
 		}
 		if (command->_1C) {
 			// outMessage = 1;
@@ -129,7 +129,7 @@ bool JKRDecomp::orderSync(u8* p1, u8* p2, u32 p3, u32 p4)
 	command->_08              = p2;
 	command->_0C              = p3;
 	command->_10              = p4;
-	command->m_callback       = nullptr;
+	command->mCallback        = nullptr;
 	OSSendMessage(&sMessageQueue, command, TRUE);
 	void* inputBuffer[1];
 	OSReceiveMessage(&command->_28, inputBuffer, TRUE);
@@ -326,11 +326,11 @@ JKRDecomp::CompressionMode JKRDecomp::checkCompressed(u8* p1)
  */
 JKRDecompCommand::JKRDecompCommand()
 {
-	OSInitMessageQueue(&_28, m_messageBuffer, 1);
-	m_callback = nullptr;
-	_1C        = nullptr;
-	_18        = this;
-	_20        = 0;
+	OSInitMessageQueue(&_28, mMessageBuffer, 1);
+	mCallback = nullptr;
+	_1C       = nullptr;
+	_18       = this;
+	_20       = 0;
 }
 
 /*

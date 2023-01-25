@@ -317,7 +317,7 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 		mgr = new LeafChappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_TamagoMushi:
-		if ((gameSystem != nullptr) && (gameSystem->m_isInCave == 0)) {
+		if ((gameSystem != nullptr) && (gameSystem->mIsInCave == 0)) {
 			limit = 10;
 		} else {
 			limit = 30;
@@ -352,7 +352,7 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 		mgr = new KumaKochappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_ShijimiChou:
-		if ((gameSystem != nullptr) && (gameSystem->m_isInCave == 0)) {
+		if ((gameSystem != nullptr) && (gameSystem->mIsInCave == 0)) {
 			limit = 10;
 		} else {
 			limit = 25;
@@ -383,7 +383,7 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 	}
 
 	mgr->alloc();
-	m_enemyMgrNode.add(new EnemyMgrNode(enemyID, name, mgr));
+	mEnemyMgrNode.add(new EnemyMgrNode(enemyID, name, mgr));
 	add(mgr);
 	sys->heapStatusEnd(name);
 }
@@ -395,24 +395,24 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
  */
 GeneralEnemyMgr::GeneralEnemyMgr()
     : _1C(0)
-    , m_enemyNumList(nullptr)
-    , m_heap(nullptr)
+    , mEnemyNumList(nullptr)
+    , mHeap(nullptr)
 {
 	sys->heapStatusStart("GeneralEnemyMgr", nullptr);
-	m_name         = "敵マネージャ"; // enemy manager
-	m_enemyNumList = new EnemyTypeID[gEnemyInfoNum];
+	mName         = "敵マネージャ"; // enemy manager
+	mEnemyNumList = new EnemyTypeID[gEnemyInfoNum];
 
 	setEnemyIDs();
 
-	if (m_enemyNumList) {
+	if (mEnemyNumList) {
 		setEnemyNums(0);
 	}
 
 	sys->heapStatusEnd("GeneralEnemyMgr");
 	resetEnemyNum();
-	m_flags.clear();
-	m_flags.typeView |= 0x1;
-	m_flags.typeView |= 0x2;
+	mFlags.clear();
+	mFlags.typeView |= 0x1;
+	mFlags.typeView |= 0x2;
 }
 
 /*
@@ -425,8 +425,8 @@ void GeneralEnemyMgr::killAll()
 	EnemyKillArg killArg(0);
 	killArg._04 |= 0x70000000;
 
-	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 		childNode->killAll(&killArg);
 	}
 }
@@ -438,8 +438,8 @@ void GeneralEnemyMgr::killAll()
  */
 void GeneralEnemyMgr::setupSoundViewerAndBas()
 {
-	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 		childNode->setupSoundViewerAndBas();
 	}
 }
@@ -453,14 +453,14 @@ void GeneralEnemyMgr::doAnimation()
 {
 	mCullCount  = 0;
 	mTotalCount = 0;
-	sys->m_timers->_start("doaTEKI", true);
-	if (m_flags.typeView & 0x1) {
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	sys->mTimers->_start("doaTEKI", true);
+	if (mFlags.typeView & 0x1) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doAnimation();
 		}
 	}
-	sys->m_timers->_stop("doaTEKI");
+	sys->mTimers->_stop("doaTEKI");
 }
 
 /*
@@ -470,9 +470,9 @@ void GeneralEnemyMgr::doAnimation()
  */
 void GeneralEnemyMgr::doEntry()
 {
-	if (m_flags.typeView & 0x2) {
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	if (mFlags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doEntry();
 		}
 	}
@@ -485,9 +485,9 @@ void GeneralEnemyMgr::doEntry()
  */
 void GeneralEnemyMgr::doSetView(int p1)
 {
-	if (m_flags.typeView & 0x2) {
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	if (mFlags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doSetView(p1);
 		}
 	}
@@ -500,9 +500,9 @@ void GeneralEnemyMgr::doSetView(int p1)
  */
 void GeneralEnemyMgr::doViewCalc()
 {
-	if (m_flags.typeView & 0x2) {
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	if (mFlags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doViewCalc();
 		}
 	}
@@ -515,9 +515,9 @@ void GeneralEnemyMgr::doViewCalc()
  */
 void GeneralEnemyMgr::doSimulation(f32 constraint)
 {
-	if (m_flags.typeView & 0x1) {
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	if (mFlags.typeView & 0x1) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doSimulation(constraint);
 		}
 	}
@@ -530,9 +530,9 @@ void GeneralEnemyMgr::doSimulation(f32 constraint)
  */
 void GeneralEnemyMgr::doDirectDraw(Graphics& gfx)
 {
-	if (m_flags.typeView & 0x2) {
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	if (mFlags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doDirectDraw(gfx);
 		}
 	}
@@ -545,12 +545,12 @@ void GeneralEnemyMgr::doDirectDraw(Graphics& gfx)
  */
 void GeneralEnemyMgr::doSimpleDraw(Viewport* viewport)
 {
-	if (m_flags.typeView & 0x2) {
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	if (mFlags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doSimpleDraw(viewport);
 		}
-		m_stoneMgr.draw(viewport);
+		mStoneMgr.draw(viewport);
 	}
 }
 
@@ -582,8 +582,8 @@ EnemyBase* GeneralEnemyMgr::birth(int enemyID, EnemyBirthArg& birthArg)
 
 	IEnemyMgrBase* base = getIEnemyMgrBase(idx);
 	if (base) {
-		birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)enemyID;
-		enemy             = base->birth(birthArg);
+		birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)enemyID;
+		enemy            = base->birth(birthArg);
 	}
 
 	return enemy;
@@ -612,10 +612,10 @@ IEnemyMgrBase* GeneralEnemyMgr::getIEnemyMgrBase(int enemyID)
 {
 	IEnemyMgrBase* base = nullptr;
 
-	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
-		if (childNode->m_enemyID == enemyID) {
-			base = childNode->m_mgr;
+	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
+		if (childNode->mEnemyID == enemyID) {
+			base = childNode->mMgr;
 		}
 	}
 
@@ -630,48 +630,48 @@ IEnemyMgrBase* GeneralEnemyMgr::getIEnemyMgrBase(int enemyID)
 void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 {
 	if (heapSize < 0) {
-		m_heapSize = 0x00200800;
+		mHeapSize = 0x00200800;
 		if (gameSystem) {
 			if (gameSystem->isChallengeMode()) {
-				m_heapSize = 0x00177000;
+				mHeapSize = 0x00177000;
 			} else if (gameSystem->isVersusMode()) {
-				m_heapSize = 0x001C2000;
+				mHeapSize = 0x001C2000;
 			}
 		}
 	} else {
-		m_heapSize = heapSize;
+		mHeapSize = heapSize;
 	}
 
 	sys->heapStatusStart("enemyHeap", nullptr);
 	JKRHeap* currentHeap = getCurrentHeap();
-	m_heap               = JKRSolidHeap::create(m_heapSize, currentHeap, true);
-	m_heap->becomeCurrentHeap();
+	mHeap                = JKRSolidHeap::create(mHeapSize, currentHeap, true);
+	mHeap->becomeCurrentHeap();
 
-	m_stoneMgr.loadResource();
+	mStoneMgr.loadResource();
 
 	P2ASSERTLINE(1844, currentHeap->getHeapType() == 'EXPH');
 
 	LoadResource::ArgAramOnly arg("enemy/parm/enemyParms.szs");
-	arg.m_heap = currentHeap;
-	arg._1C    = 2;
+	arg.mHeap = currentHeap;
+	arg._1C   = 2;
 
 	LoadResource::Node* resourceNode = gLoadResourceMgr->mountArchive(arg);
-	gParmArc                         = resourceNode->m_archive;
+	gParmArc                         = resourceNode->mArchive;
 
 	sys->heapStatusStart("allocateEnemys", nullptr);
 	sys->heapStatusIndividual();
 
 	for (int i = 0; i < gEnemyInfoNum; i++) {
-		int enemyNum = getEnemyNum(gEnemyInfo[i].m_id, true);
-		if ((gEnemyInfo[i].m_flags & 0x1) && (enemyNum > 0)) {
-			createEnemyMgr(type, gEnemyInfo[i].m_id, enemyNum);
+		int enemyNum = getEnemyNum(gEnemyInfo[i].mId, true);
+		if ((gEnemyInfo[i].mFlags & 0x1) && (enemyNum > 0)) {
+			createEnemyMgr(type, gEnemyInfo[i].mId, enemyNum);
 		}
 	}
 
 	sys->heapStatusNormal();
 	sys->heapStatusEnd("allocateEnemys");
 	currentHeap->becomeCurrentHeap();
-	m_heap->_69 = 1;
+	mHeap->_69 = 1;
 	delete resourceNode;
 
 	gParmArc = nullptr;
@@ -685,7 +685,7 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
  */
 void GeneralEnemyMgr::resetEnemyNum()
 {
-	if (m_enemyNumList == nullptr) {
+	if (mEnemyNumList == nullptr) {
 		return;
 	}
 
@@ -702,11 +702,11 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 	if (enemyID != -1) {
 		int i;
 		u8 mem                    = max * EnemyInfoFunc::getEnemyMember(enemyID, 0xFFFF);
-		EnemyTypeID* enemyNumList = m_enemyNumList;
+		EnemyTypeID* enemyNumList = mEnemyNumList;
 		if (enemyNumList) {
 			for (i = 0; i < gEnemyInfoNum; i++) {
-				if (enemyID == enemyNumList[i].m_enemyID) {
-					enemyNumList[i].m_count += mem;
+				if (enemyID == enemyNumList[i].mEnemyID) {
+					enemyNumList[i].mCount += mem;
 					break;
 				}
 			}
@@ -720,18 +720,18 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 			case EnemyTypeID::EnemyID_Magaret:
 				if (genObj) {
 					EnemyPelletInfo pelletInfo;
-					pelletInfo = genObj->m_pelletInfo;
+					pelletInfo = genObj->mPelletInfo;
 
-					if (pelletInfo.m_color == 0 && pelletInfo.m_size == 1) {
+					if (pelletInfo.mColor == 0 && pelletInfo.mSize == 1) {
 						EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
-						addEnemyNum(info->m_childID, info->m_childNum, nullptr);
+						addEnemyNum(info->mChildID, info->mChildNum, nullptr);
 					}
 				}
 				break;
 
 			default:
 				EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
-				addEnemyNum(info->m_childID, info->m_childNum, nullptr);
+				addEnemyNum(info->mChildID, info->mChildNum, nullptr);
 				// check if we're dealing with crawbster, since we need to handle falling rock and egg spawns
 				if (enemyID == EnemyTypeID::EnemyID_DangoMushi) {
 					if (getEnemyNum(EnemyTypeID::EnemyID_Egg, true) < 10) {
@@ -902,12 +902,12 @@ JKRHeap* GeneralEnemyMgr::useHeap()
 {
 	killAll();
 
-	if (m_heap != 0) {
-		m_heap->freeAll();
-		m_enemyMgrNode.clearRelations();
+	if (mHeap != 0) {
+		mHeap->freeAll();
+		mEnemyMgrNode.clearRelations();
 	}
-	m_child = nullptr;
-	return m_heap;
+	mChild = nullptr;
+	return mHeap;
 }
 
 /*
@@ -933,14 +933,14 @@ void GeneralEnemyMgr::setMovieDraw(bool isEndMovie)
 {
 	if (!isEndMovie) {
 		_1C |= 0x1;
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->startMovie();
 		}
 	} else {
 		_1C &= ~0x1;
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->endMovie();
 		}
 	}
@@ -953,16 +953,16 @@ void GeneralEnemyMgr::setMovieDraw(bool isEndMovie)
  */
 void GeneralEnemyMgr::prepareDayendEnemies()
 {
-	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 
-		EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(childNode->m_enemyID, 0xFFFF);
+		EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(childNode->mEnemyID, 0xFFFF);
 
-		EnemyMgrNode* otherNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-		for (otherNode; otherNode != nullptr; otherNode = static_cast<EnemyMgrNode*>(otherNode->m_next)) { // ?? not sure why this is here
+		EnemyMgrNode* otherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
+		for (otherNode; otherNode != nullptr; otherNode = static_cast<EnemyMgrNode*>(otherNode->mNext)) { // ?? not sure why this is here
 		}
 
-		if (info->m_flags & 0x10) {
+		if (info->mFlags & 0x10) {
 			EnemyKillArg killArg(0);
 			killArg._04 |= 0x70000000;
 			childNode->killAll(&killArg);
@@ -973,9 +973,9 @@ void GeneralEnemyMgr::prepareDayendEnemies()
 
 	iterator.first();
 
-	while (iterator.m_container) {
-		EnemyBase* enemy      = iterator.getObject();
-		enemy->m_inPiklopedia = false;
+	while (iterator.mContainer) {
+		EnemyBase* enemy     = iterator.getObject();
+		enemy->mInPiklopedia = false;
 		iterator.next();
 	}
 }
@@ -990,22 +990,22 @@ void GeneralEnemyMgr::prepareDayendEnemies()
 // WEAK but seems to live here? unsure. might be template shenanigans
 void GeneralMgrIterator<Game::EnemyBase>::next()
 {
-	if (m_condition == nullptr) {
-		m_index = m_container->getNext(m_index);
+	if (mCondition == nullptr) {
+		mIndex = mContainer->getNext(mIndex);
 	} else {
-		m_index = m_container->getStart();
+		mIndex = mContainer->getStart();
 
-		while (m_index != m_container->getEnd()) {
+		while (mIndex != mContainer->getEnd()) {
 			Game::EnemyBase* enemy = getObject();
-			if (m_condition->satisfy(enemy)) {
+			if (mCondition->satisfy(enemy)) {
 				return;
 			}
-			m_container->getNext(m_index);
+			mContainer->getNext(mIndex);
 		}
 	}
 
-	if (m_index == m_container->getEnd()) {
-		m_container = static_cast<Container<Game::EnemyBase>*>(m_container->m_next);
+	if (mIndex == mContainer->getEnd()) {
+		mContainer = static_cast<Container<Game::EnemyBase>*>(mContainer->mNext);
 		setFirst();
 	}
 }
@@ -1017,25 +1017,25 @@ void GeneralMgrIterator<Game::EnemyBase>::next()
  */
 void GeneralMgrIterator<Game::EnemyBase>::setFirst()
 {
-	if (m_container) {
-		if (!m_condition) {
-			m_index = m_container->getStart();
+	if (mContainer) {
+		if (!mCondition) {
+			mIndex = mContainer->getStart();
 		} else {
-			m_index = m_container->getStart();
-			while (m_index != m_container->getEnd()) {
-				if (m_condition->satisfy(static_cast<Game::EnemyBase*>(m_container->getObject(m_index)))) {
+			mIndex = mContainer->getStart();
+			while (mIndex != mContainer->getEnd()) {
+				if (mCondition->satisfy(static_cast<Game::EnemyBase*>(mContainer->getObject(mIndex)))) {
 					return;
 				} else {
-					m_container->getNext(m_index);
+					mContainer->getNext(mIndex);
 				}
 			}
 		}
 
-		if (m_index != m_container->getEnd()) {
+		if (mIndex != mContainer->getEnd()) {
 			return;
 		}
 
-		m_container = static_cast<Container<Game::EnemyBase>*>(m_container->m_next);
+		mContainer = static_cast<Container<Game::EnemyBase>*>(mContainer->mNext);
 		setFirst();
 	}
 }
@@ -1047,7 +1047,7 @@ void GeneralMgrIterator<Game::EnemyBase>::setFirst()
  */
 void GeneralMgrIterator<Game::EnemyBase>::first()
 {
-	m_container = static_cast<Container<Game::EnemyBase>*>(m_node->m_child);
+	mContainer = static_cast<Container<Game::EnemyBase>*>(mNode->mChild);
 	this->setFirst();
 }
 
@@ -1060,53 +1060,53 @@ namespace Game {
  */
 void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 {
-	if (m_enemyMgrNode.getChildCount() != 0) {
+	if (mEnemyMgrNode.getChildCount() != 0) {
 		int i = 0;
 		while (i < 10) {
-			int randIdx              = randFloat() * m_enemyMgrNode.getChildCount();
-			EnemyMgrNode* startNode  = static_cast<EnemyMgrNode*>(m_enemyMgrNode.getChildAt(randIdx));
+			int randIdx              = randFloat() * mEnemyMgrNode.getChildCount();
+			EnemyMgrNode* startNode  = static_cast<EnemyMgrNode*>(mEnemyMgrNode.getChildAt(randIdx));
 			EnemyMgrNode* randomNode = startNode;
 			do {
-				EnemyTypeID::EEnemyTypeID randomID = randomNode->m_enemyID;
-				EnemyInfo* randomInfo              = EnemyInfoFunc::getEnemyInfo(randomNode->m_enemyID, 0xFFFF);
-				EnemyMgrNode* childNode            = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
+				EnemyTypeID::EEnemyTypeID randomID = randomNode->mEnemyID;
+				EnemyInfo* randomInfo              = EnemyInfoFunc::getEnemyInfo(randomNode->mEnemyID, 0xFFFF);
+				EnemyMgrNode* childNode            = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 				EnemyMgrBase* mgr                  = nullptr;
 
-				for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
-					if (childNode->m_enemyID == randomID) {
-						mgr = childNode->m_mgr;
+				for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
+					if (childNode->mEnemyID == randomID) {
+						mgr = childNode->mMgr;
 					}
 				}
 
-				TekiStat::Info* tekiInfo = playData->m_tekiStatMgr.getTekiInfo(randomID);
+				TekiStat::Info* tekiInfo = playData->mTekiStatMgr.getTekiInfo(randomID);
 				P2ASSERTLINE(2203, tekiInfo != nullptr);
 
-				if ((randomInfo->m_flags & 0x10) && (tekiInfo->m_state & 0x1)) {
+				if ((randomInfo->mFlags & 0x10) && (tekiInfo->mState & 0x1)) {
 					EnemyBirthArg birthArg;
-					birthArg.m_isInPiklopedia = 0;
+					birthArg.mIsInPiklopedia = 0;
 
-					u16 infoFlags = randomInfo->m_flags;
+					u16 infoFlags = randomInfo->mFlags;
 
 					if (infoFlags & 0x20) {
-						birthArg.m_position = sphere.m_position;
+						birthArg.mPosition = sphere.mPosition;
 
-						birthArg.m_faceDir = TAU * randFloat();
+						birthArg.mFaceDir = TAU * randFloat();
 
-						int searchID     = randomNode->m_enemyID;
+						int searchID     = randomNode->mEnemyID;
 						EnemyBase* enemy = nullptr;
 						int mgrID        = getEnemyMgrID(searchID);
 
-						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
+						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 						EnemyMgrBase* anotherMgr  = nullptr;
-						for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->m_next)) {
-							if (anotherNode->m_enemyID == mgrID) {
-								anotherMgr = anotherNode->m_mgr;
+						for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->mNext)) {
+							if (anotherNode->mEnemyID == mgrID) {
+								anotherMgr = anotherNode->mMgr;
 							}
 						}
 
 						if (anotherMgr) {
-							birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
-							enemy             = anotherMgr->birth(birthArg);
+							birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)searchID;
+							enemy            = anotherMgr->birth(birthArg);
 						}
 
 						if (enemy) {
@@ -1119,30 +1119,30 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						i += 10;
 						break;
 					} else if (infoFlags & 0x40) {
-						f32 randAngle      = TAU * randFloat();
-						birthArg.m_faceDir = _angXZ(sphere.m_position.x, sphere.m_position.z, birthArg.m_position.x, birthArg.m_position.z);
+						f32 randAngle     = TAU * randFloat();
+						birthArg.mFaceDir = _angXZ(sphere.mPosition.x, sphere.mPosition.z, birthArg.mPosition.x, birthArg.mPosition.z);
 
-						int searchID     = randomNode->m_enemyID;
+						int searchID     = randomNode->mEnemyID;
 						EnemyBase* enemy = nullptr;
 						int mgrID        = getEnemyMgrID(searchID);
 
-						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
+						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 						EnemyMgrBase* anotherMgr  = nullptr;
-						for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->m_next)) {
-							if (anotherNode->m_enemyID == mgrID) {
-								anotherMgr = anotherNode->m_mgr;
+						for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->mNext)) {
+							if (anotherNode->mEnemyID == mgrID) {
+								anotherMgr = anotherNode->mMgr;
 							}
 						}
 
 						if (anotherMgr) {
-							birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
-							enemy             = anotherMgr->birth(birthArg);
+							birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)searchID;
+							enemy            = anotherMgr->birth(birthArg);
 						}
 
 						if (enemy) {
 							Sys::Sphere boundingSphere;
 							enemy->getBoundingSphere(boundingSphere);
-							f32 radDiff = sphere.m_radius - boundingSphere.m_radius;
+							f32 radDiff = sphere.mRadius - boundingSphere.mRadius;
 							if (radDiff < 0.0f) {
 								radDiff = 0.0f;
 							}
@@ -1150,10 +1150,10 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							f32 cosTheta = pikmin2_cosf(randAngle);
 							f32 sinTheta = pikmin2_sinf(randAngle);
 
-							Vector3f pos(radDiff * sinTheta + sphere.m_position.x, 0.0f, radDiff * cosTheta + sphere.m_position.z);
+							Vector3f pos(radDiff * sinTheta + sphere.mPosition.x, 0.0f, radDiff * cosTheta + sphere.mPosition.z);
 							pos.y = mapMgr->getMinY(pos);
 							enemy->setPosition(pos, false);
-							enemy->m_homePosition = pos;
+							enemy->mHomePosition = pos;
 
 							enemy->init(nullptr);
 							InteractAttack attack(enemy, 0.0f, nullptr);
@@ -1176,29 +1176,28 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						for (int j = 0; j < maxObj; j++) {
 
 							rand();
-							birthArg.m_faceDir
-							    = _angXZ(sphere.m_position.x, sphere.m_position.z, birthArg.m_position.x, birthArg.m_position.z);
-							int searchID     = randomNode->m_enemyID;
-							EnemyBase* enemy = nullptr;
-							int mgrID        = getEnemyMgrID(searchID);
+							birthArg.mFaceDir = _angXZ(sphere.mPosition.x, sphere.mPosition.z, birthArg.mPosition.x, birthArg.mPosition.z);
+							int searchID      = randomNode->mEnemyID;
+							EnemyBase* enemy  = nullptr;
+							int mgrID         = getEnemyMgrID(searchID);
 
-							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
+							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 							EnemyMgrBase* anotherMgr  = nullptr;
-							for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->m_next)) {
-								if (anotherNode->m_enemyID == mgrID) {
-									anotherMgr = anotherNode->m_mgr;
+							for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->mNext)) {
+								if (anotherNode->mEnemyID == mgrID) {
+									anotherMgr = anotherNode->mMgr;
 								}
 							}
 
 							if (anotherMgr) {
-								birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
-								enemy             = anotherMgr->birth(birthArg);
+								birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)searchID;
+								enemy            = anotherMgr->birth(birthArg);
 							}
 
 							if (enemy) {
 								Sys::Sphere boundingSphere;
 								enemy->getBoundingSphere(boundingSphere);
-								f32 radDiff = sphere.m_radius - boundingSphere.m_radius;
+								f32 radDiff = sphere.mRadius - boundingSphere.mRadius;
 								if (radDiff < 0.0f) {
 									radDiff = 0.0f;
 								}
@@ -1209,10 +1208,10 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 								f32 cosTheta = pikmin2_cosf(randAngle);
 								f32 sinTheta = pikmin2_sinf(randAngle);
 
-								Vector3f pos(randomRad * sinTheta + sphere.m_position.x, 0.0f, randomRad * cosTheta + sphere.m_position.z);
+								Vector3f pos(randomRad * sinTheta + sphere.mPosition.x, 0.0f, randomRad * cosTheta + sphere.mPosition.z);
 								pos.y = mapMgr->getMinY(pos);
 								enemy->setPosition(pos, false);
-								enemy->m_homePosition = pos;
+								enemy->mHomePosition = pos;
 
 								enemy->init(nullptr);
 								InteractAttack attack(enemy, 0.0f, nullptr);
@@ -1238,30 +1237,29 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 							rand();
 
-							birthArg.m_faceDir
-							    = _angXZ(sphere.m_position.x, sphere.m_position.z, birthArg.m_position.x, birthArg.m_position.z);
+							birthArg.mFaceDir = _angXZ(sphere.mPosition.x, sphere.mPosition.z, birthArg.mPosition.x, birthArg.mPosition.z);
 
-							int searchID     = randomNode->m_enemyID;
+							int searchID     = randomNode->mEnemyID;
 							EnemyBase* enemy = nullptr;
 							int mgrID        = getEnemyMgrID(searchID);
 
-							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
+							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 							EnemyMgrBase* anotherMgr  = nullptr;
-							for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->m_next)) {
-								if (anotherNode->m_enemyID == mgrID) {
-									anotherMgr = anotherNode->m_mgr;
+							for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->mNext)) {
+								if (anotherNode->mEnemyID == mgrID) {
+									anotherMgr = anotherNode->mMgr;
 								}
 							}
 
 							if (anotherMgr) {
-								birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
-								enemy             = anotherMgr->birth(birthArg);
+								birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)searchID;
+								enemy            = anotherMgr->birth(birthArg);
 							}
 
 							if (enemy) {
 								Sys::Sphere boundingSphere;
 								enemy->getBoundingSphere(boundingSphere);
-								f32 radDiff = sphere.m_radius - boundingSphere.m_radius;
+								f32 radDiff = sphere.mRadius - boundingSphere.mRadius;
 								if (radDiff < 0.0f) {
 									radDiff = 0.0f;
 								}
@@ -1272,10 +1270,10 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 								f32 cosTheta = pikmin2_cosf(randAngle);
 								f32 sinTheta = pikmin2_sinf(randAngle);
 
-								Vector3f pos(randomRad * sinTheta + sphere.m_position.x, 0.0f, randomRad * cosTheta + sphere.m_position.z);
+								Vector3f pos(randomRad * sinTheta + sphere.mPosition.x, 0.0f, randomRad * cosTheta + sphere.mPosition.z);
 								pos.y = mapMgr->getMinY(pos);
 								enemy->setPosition(pos, false);
-								enemy->m_homePosition = pos;
+								enemy->mHomePosition = pos;
 
 								enemy->init(nullptr);
 								InteractAttack attack(enemy, 0.0f, nullptr);
@@ -1290,9 +1288,9 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						break;
 					}
 				} else {
-					randomNode = static_cast<EnemyMgrNode*>(randomNode->m_next);
+					randomNode = static_cast<EnemyMgrNode*>(randomNode->mNext);
 					if (randomNode == nullptr) {
-						randomNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
+						randomNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 					}
 				}
 			} while (randomNode != startNode);

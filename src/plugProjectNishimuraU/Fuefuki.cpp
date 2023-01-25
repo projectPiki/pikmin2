@@ -35,7 +35,7 @@ namespace Fuefuki {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 	createFootmarks();
 	createEffect();
@@ -69,16 +69,16 @@ void Obj::birth(Vector3f& position, f32 angle)
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	m_dropGroup = 0;
-	_2C0        = 0;
+	mDropGroup = 0;
+	_2C0       = 0;
 	resetAppearTimer();
-	m_airborneTimer = 0.0f;
+	mAirborneTimer = 0.0f;
 	resetWhisleTimer(true);
-	_2D4                    = 0.0f;
-	m_whistleRadiusModifier = 0.0f;
+	_2D4                   = 0.0f;
+	mWhistleRadiusModifier = 0.0f;
 
-	m_stateID = FUEFUKI_NULL;
-	m_fsm->start(this, FUEFUKI_Land, nullptr);
+	mStateID = FUEFUKI_NULL;
+	mFsm->start(this, FUEFUKI_Land, nullptr);
 }
 
 /*
@@ -103,8 +103,8 @@ void Obj::onKill(CreatureKillArg* killArg)
  */
 void Obj::doUpdate()
 {
-	m_fsm->exec(this);
-	m_appearTimer += sys->m_deltaTime;
+	mFsm->exec(this);
+	mAppearTimer += sys->mDeltaTime;
 	if (_2D4 > 0.0f) {
 		_2D4--;
 	}
@@ -133,9 +133,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -147,17 +147,17 @@ void Obj::getShadowParam(ShadowParam& param)
 {
 	Sys::Sphere sphere;
 	getBoundingSphere(sphere);
-	param.m_position.x                = sphere.m_position.x;
-	param.m_position.y                = m_position.y + 5.0f;
-	param.m_position.z                = sphere.m_position.z;
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mPosition.x               = sphere.mPosition.x;
+	param.mPosition.y               = mPosition.y + 5.0f;
+	param.mPosition.z               = sphere.mPosition.z;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isEvent(1, EB2_IsEarthquake)) {
-		param.m_boundingSphere.m_radius = 75.0f;
+		param.mBoundingSphere.mRadius = 75.0f;
 	} else {
-		param.m_boundingSphere.m_radius = 50.0f;
+		param.mBoundingSphere.mRadius = 50.0f;
 	}
 
-	param.m_size = 15.0f;
+	param.mSize = 15.0f;
 }
 
 /*
@@ -168,7 +168,7 @@ void Obj::getShadowParam(ShadowParam& param)
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (creature && _2C0 && !isEvent(0, EB_IsBittered)) {
-		m_fsm->transit(this, FUEFUKI_Struggle, nullptr);
+		mFsm->transit(this, FUEFUKI_Struggle, nullptr);
 		return false;
 	}
 
@@ -183,7 +183,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (creature && _2C0 && !isEvent(0, EB_IsBittered)) {
-		m_fsm->transit(this, FUEFUKI_Struggle, nullptr);
+		mFsm->transit(this, FUEFUKI_Struggle, nullptr);
 		return false;
 	}
 
@@ -198,7 +198,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
-	if (m_whistleRadiusModifier > 0.0f) {
+	if (mWhistleRadiusModifier > 0.0f) {
 		finishWhisleEffect();
 	}
 }
@@ -211,7 +211,7 @@ void Obj::doStartStoneState()
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	if (m_whistleRadiusModifier > 0.0f) {
+	if (mWhistleRadiusModifier > 0.0f) {
 		startWhisle();
 	}
 }
@@ -224,7 +224,7 @@ void Obj::doFinishStoneState()
 void Obj::doStartEarthquakeFitState()
 {
 	EnemyBase::doStartEarthquakeFitState();
-	if (m_whistleRadiusModifier > 0.0f) {
+	if (mWhistleRadiusModifier > 0.0f) {
 		finishWhisleEffect();
 	}
 }
@@ -237,7 +237,7 @@ void Obj::doStartEarthquakeFitState()
 void Obj::doFinishEarthquakeFitState()
 {
 	EnemyBase::doFinishEarthquakeFitState();
-	if (m_whistleRadiusModifier > 0.0f) {
+	if (mWhistleRadiusModifier > 0.0f) {
 		startWhisle();
 	}
 }
@@ -296,10 +296,10 @@ Vector3f Obj::getOffsetForMapCollision()
 	if (stateID == FUEFUKI_Dead || stateID == FUEFUKI_Struggle) {
 		Sys::Sphere sphere;
 		getBoundingSphere(sphere);
-		sphere.m_position.x -= m_position.x;
-		sphere.m_position.y = 0.0f;
-		sphere.m_position.z -= m_position.z;
-		return sphere.m_position;
+		sphere.mPosition.x -= mPosition.x;
+		sphere.mPosition.y = 0.0f;
+		sphere.mPosition.z -= mPosition.z;
+		return sphere.mPosition;
 
 	} else {
 		return Vector3f::zero;
@@ -313,8 +313,8 @@ Vector3f Obj::getOffsetForMapCollision()
  */
 void Obj::resetAppearTimer()
 {
-	f32 weight    = C_PROPERPARMS.m_maxGroundTime.m_value - C_PROPERPARMS.m_minGroundTime.m_value;
-	m_appearTimer = randWeightFloat(weight);
+	f32 weight   = C_PROPERPARMS.mMaxGroundTime.mValue - C_PROPERPARMS.mMinGroundTime.mValue;
+	mAppearTimer = randWeightFloat(weight);
 }
 
 /*
@@ -325,9 +325,9 @@ void Obj::resetAppearTimer()
 void Obj::resetWhisleTimer(bool check)
 {
 	if (check) {
-		m_whistleTimer = C_PROPERPARMS.m_fp12.m_value - C_PROPERPARMS.m_fp11.m_value;
+		mWhistleTimer = C_PROPERPARMS.mFp12.mValue - C_PROPERPARMS.mFp11.mValue;
 	} else {
-		m_whistleTimer = 0.0f;
+		mWhistleTimer = 0.0f;
 	}
 }
 
@@ -339,14 +339,14 @@ void Obj::resetWhisleTimer(bool check)
 bool Obj::isWhisleTimeMax()
 {
 	if (_2D4 > 0.0f) {
-		if (m_stuckPikminCount != 0) {
-			if (m_whistleTimer > C_PROPERPARMS.m_fp12.m_value) {
+		if (mStuckPikminCount != 0) {
+			if (mWhistleTimer > C_PROPERPARMS.mFp12.mValue) {
 				return true;
 			}
-		} else if (m_whistleTimer > C_PROPERPARMS.m_fp13.m_value) {
+		} else if (mWhistleTimer > C_PROPERPARMS.mFp13.mValue) {
 			return true;
 		}
-	} else if (m_whistleTimer > C_PROPERPARMS.m_fp12.m_value) {
+	} else if (mWhistleTimer > C_PROPERPARMS.mFp12.mValue) {
 		return true;
 	}
 
@@ -361,8 +361,8 @@ bool Obj::isWhisleTimeMax()
 void Obj::startWhisle()
 {
 	disableEvent(0, EB_IsCullable);
-	m_whistleTimer          = 0.0f;
-	m_whistleRadiusModifier = 0.0f;
+	mWhistleTimer          = 0.0f;
+	mWhistleRadiusModifier = 0.0f;
 	startWhisleEffect();
 }
 
@@ -373,12 +373,12 @@ void Obj::startWhisle()
  */
 void Obj::updateWhisle()
 {
-	m_whistleRadiusModifier += sys->m_deltaTime;
-	if (m_whistleRadiusModifier > 1.0f) {
-		m_whistleRadiusModifier = 1.0f;
+	mWhistleRadiusModifier += sys->mDeltaTime;
+	if (mWhistleRadiusModifier > 1.0f) {
+		mWhistleRadiusModifier = 1.0f;
 	}
 
-	f32 whistleRadius = m_whistleRadiusModifier * C_PARMS->m_general.m_attackRadius.m_value;
+	f32 whistleRadius = mWhistleRadiusModifier * C_PARMS->mGeneral.mAttackRadius.mValue;
 	updateWhisleEffect(whistleRadius);
 
 	f32 whistleDiameter = whistleRadius * whistleRadius;
@@ -389,7 +389,7 @@ void Obj::updateWhisle()
 		Piki* currPiki = (*iter);
 		if (currPiki->isAlive() && currPiki->isPikmin() && !currPiki->isStickToMouth() && !currPiki->isMyPikmin(this)) {
 			Vector3f pikiPos = currPiki->getPosition();
-			if (sqrDistanceXZ(m_position, pikiPos) < whistleDiameter) {
+			if (sqrDistanceXZ(mPosition, pikiPos) < whistleDiameter) {
 				InteractFueFuki whistle(this);
 				currPiki->stimulate(whistle);
 			}
@@ -409,8 +409,8 @@ void Obj::updateWhisle()
 void Obj::finishWhisle()
 {
 	enableEvent(0, EB_IsCullable);
-	m_whistleTimer          = 0.0f;
-	m_whistleRadiusModifier = 0.0f;
+	mWhistleTimer          = 0.0f;
+	mWhistleRadiusModifier = 0.0f;
 	finishWhisleEffect();
 }
 
@@ -425,26 +425,26 @@ void Obj::setTargetPosition(bool check)
 	f32 randAngle;
 	if (check) {
 		randAngle = randWeightFloat(TAU);
-		if (gameSystem && gameSystem->m_isInCave) {
+		if (gameSystem && gameSystem->mIsInCave) {
 			randDist = randWeightFloat(25.0f) + 50.0f;
 		} else {
-			f32 range = (C_PARMS->m_general.m_territoryRadius.m_value - C_PARMS->m_general.m_homeRadius.m_value);
-			randDist  = C_PARMS->m_general.m_homeRadius.m_value + randWeightFloat(range);
+			f32 range = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
+			randDist  = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
 		}
 	} else {
-		f32 range = (C_PARMS->m_general.m_territoryRadius.m_value - C_PARMS->m_general.m_homeRadius.m_value);
-		randDist  = C_PARMS->m_general.m_homeRadius.m_value + randWeightFloat(range);
+		f32 range = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
+		randDist  = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
 		f32 ang1  = randWeightFloat(PI);
-		f32 ang2  = JMath::atanTable_.atan2_(m_position.x - m_homePosition.x, m_position.z - m_homePosition.z);
+		f32 ang2  = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 		f32 ang3  = HALF_PI;
 		randAngle = ang2 + ang1 + ang3; // dumb fix for regswap
 	}
 
-	m_targetPosition = Vector3f(randDist * pikmin2_sinf(randAngle) + m_homePosition.x, m_homePosition.y,
-	                            randDist * pikmin2_cosf(randAngle) + m_homePosition.z);
+	mTargetPosition = Vector3f(randDist * pikmin2_sinf(randAngle) + mHomePosition.x, mHomePosition.y,
+	                           randDist * pikmin2_cosf(randAngle) + mHomePosition.z);
 
 	if (check) {
-		m_targetPosition.y = mapMgr->getMinY(m_targetPosition);
+		mTargetPosition.y = mapMgr->getMinY(mTargetPosition);
 	}
 }
 
@@ -455,13 +455,13 @@ void Obj::setTargetPosition(bool check)
  */
 bool Obj::isJumpAway()
 {
-	if (m_appearTimer > C_PROPERPARMS.m_maxGroundTime.m_value) {
+	if (mAppearTimer > C_PROPERPARMS.mMaxGroundTime.mValue) {
 		return true;
 	}
 
 	if (!(_2D4 > 0.0f)) {
-		f32 privRad = C_PARMS->m_general.m_privateRadius.m_value;
-		Sys::Sphere sphere(m_position, privRad);
+		f32 privRad = C_PARMS->mGeneral.mPrivateRadius.mValue;
+		Sys::Sphere sphere(mPosition, privRad);
 		f32 privateDiameter = privRad * privRad;
 
 		CellIteratorArg iterArg(sphere);
@@ -483,8 +483,8 @@ bool Obj::isJumpAway()
 
 				if (creatureCheck) {
 					Vector3f creaturePos = creature->getPosition();
-					if (sqrDistanceXZ(m_position, creaturePos) < privateDiameter) {
-						m_appearTimer = C_PROPERPARMS.m_maxGroundTime.m_value;
+					if (sqrDistanceXZ(mPosition, creaturePos) < privateDiameter) {
+						mAppearTimer = C_PROPERPARMS.mMaxGroundTime.mValue;
 						return true;
 					}
 				}
@@ -502,7 +502,7 @@ bool Obj::isJumpAway()
  */
 bool Obj::isArriveTarget()
 {
-	if (m_wallTriangle || sqrDistanceXZ(m_position, m_targetPosition) < 625.0f) {
+	if (mWallTriangle || sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f) {
 		return true;
 	}
 
@@ -516,8 +516,8 @@ bool Obj::isArriveTarget()
  */
 void Obj::createFootmarks()
 {
-	m_footmarks = new Footmarks;
-	m_footmarks->alloc(10);
+	mFootmarks = new Footmarks;
+	mFootmarks->alloc(10);
 }
 
 /*
@@ -527,14 +527,14 @@ void Obj::createFootmarks()
  */
 void Obj::updateFootmarks()
 {
-	f32 timer = (m_footmarks->_10 - (int)gameSystem->m_frameTimer);
+	f32 timer = (mFootmarks->_10 - (int)gameSystem->mFrameTimer);
 
 	timer = (timer > 0.0f) ? timer : -timer;
 
 	if (timer > 2.5f) {
 		Footmark mark;
-		mark.m_position = getPosition();
-		m_footmarks->add(mark);
+		mark.mPosition = getPosition();
+		mFootmarks->add(mark);
 	}
 }
 
@@ -545,9 +545,9 @@ void Obj::updateFootmarks()
  */
 void Obj::createEffect()
 {
-	m_efxWhistle = new efx::TCursor(PID_Cursor_NULL);
-	m_efxWhistle->init(3, 10);
-	m_efxOnpa = new efx::TFuebugOnpa;
+	mEfxWhistle = new efx::TCursor(PID_Cursor_NULL);
+	mEfxWhistle->init(3, 10);
+	mEfxOnpa = new efx::TFuebugOnpa;
 }
 
 /*
@@ -557,11 +557,11 @@ void Obj::createEffect()
  */
 void Obj::startWhisleEffect()
 {
-	efx::ArgCursor argCursor(m_position, 0.0f);
-	m_efxWhistle->create(&argCursor);
+	efx::ArgCursor argCursor(mPosition, 0.0f);
+	mEfxWhistle->create(&argCursor);
 
-	m_efxOnpa->m_position = &m_position;
-	m_efxOnpa->create(nullptr);
+	mEfxOnpa->mPosition = &mPosition;
+	mEfxOnpa->create(nullptr);
 }
 
 /*
@@ -571,9 +571,9 @@ void Obj::startWhisleEffect()
  */
 void Obj::updateWhisleEffect(f32 scale)
 {
-	efx::ArgCursor argCursor(m_position, scale);
-	m_efxWhistle->update(&argCursor);
-	m_efxWhistle->m_angleSpeed = C_PARMS->m_general.m_attackHitAngle.m_value;
+	efx::ArgCursor argCursor(mPosition, scale);
+	mEfxWhistle->update(&argCursor);
+	mEfxWhistle->mAngleSpeed = C_PARMS->mGeneral.mAttackHitAngle.mValue;
 }
 
 /*
@@ -583,8 +583,8 @@ void Obj::updateWhisleEffect(f32 scale)
  */
 void Obj::finishWhisleEffect()
 {
-	m_efxWhistle->fade();
-	m_efxOnpa->fade();
+	mEfxWhistle->fade();
+	mEfxOnpa->fade();
 }
 
 /*
@@ -596,7 +596,7 @@ void Obj::createDownEffect(f32 scale)
 {
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);
-	Vector3f position(boundingSphere.m_position.x, m_position.y, boundingSphere.m_position.z);
+	Vector3f position(boundingSphere.mPosition.x, mPosition.y, boundingSphere.mPosition.z);
 	createBounceEffect(position, scale);
 }
 
@@ -619,8 +619,8 @@ void Obj::createEfxHamon()
  */
 void Obj::effectDrawOn()
 {
-	m_efxWhistle->m_oneEmitter.endDemoDrawOn();
-	m_efxOnpa->endDemoDrawOn();
+	mEfxWhistle->mOneEmitter.endDemoDrawOn();
+	mEfxOnpa->endDemoDrawOn();
 }
 
 /*
@@ -630,8 +630,8 @@ void Obj::effectDrawOn()
  */
 void Obj::effectDrawOff()
 {
-	m_efxWhistle->m_oneEmitter.startDemoDrawOff();
-	m_efxOnpa->startDemoDrawOff();
+	mEfxWhistle->mOneEmitter.startDemoDrawOff();
+	mEfxOnpa->startDemoDrawOff();
 }
 
 } // namespace Fuefuki

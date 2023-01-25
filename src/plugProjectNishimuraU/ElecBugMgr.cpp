@@ -13,7 +13,7 @@ static const char elecBugMgrName[] = "246-ElecBugMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "デンキムシマネージャ"; // electric beetle manager
+	mName = "デンキムシマネージャ"; // electric beetle manager
 }
 
 /*
@@ -28,14 +28,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	8027AA4C
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	8027AB68
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 } // namespace ElecBug
 } // namespace Game

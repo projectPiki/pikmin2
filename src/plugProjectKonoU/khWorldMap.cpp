@@ -745,10 +745,10 @@ namespace Screen {
  */
 void khUtilFadePaneWM::fadeout_finish()
 {
-	if (m_finish) {
-		m_mapObj->changeInfo();
-		m_mapObj->effectFirstTime();
-		m_state = 0;
+	if (mFinish) {
+		mMapObj->changeInfo();
+		mMapObj->effectFirstTime();
+		mState = 0;
 	}
 	/*
 stwu     r1, -0x10(r1)
@@ -786,10 +786,10 @@ blr
  */
 void khUtilColorAnmWM::do_update()
 {
-	static_cast<J2DPicture*>(m_pane)->setWhite(m_color1);
-	if (m_updateMode && !m_counter) {
-		m_counter1->startPuyoUp(1.0f);
-		m_counter2->startPuyoUp(2.0f);
+	static_cast<J2DPicture*>(mPane)->setWhite(mColor1);
+	if (mUpdateMode && !mCounter) {
+		mCounter1->startPuyoUp(1.0f);
+		mCounter2->startPuyoUp(2.0f);
 	}
 	/*
 stwu     r1, -0x20(r1)
@@ -835,94 +835,94 @@ blr
  */
 WorldMap::WorldMap()
     : Base()
-    , m_initArg()
+    , mInitArg()
 {
-	m_screenKitagawa           = nullptr;
-	m_bckAnm2                  = nullptr;
-	m_bckAnm1                  = nullptr;
-	m_kitaAnim1                = nullptr;
-	m_kitaAnim3                = nullptr;
-	m_kitaAnim2                = nullptr;
-	m_screenRocket             = nullptr;
-	m_rocketAnim1              = nullptr;
-	m_rocketAnim2              = nullptr;
-	m_screenInfo               = nullptr;
-	m_infoAnim3                = nullptr;
-	m_infoAnim2                = nullptr;
-	m_infoAnim1                = nullptr;
-	m_frameOf60                = 0.0f;
-	m_frameOf5C                = 0.0f;
-	m_frameOf58                = 0.0f;
-	m_frameOf50                = 0.0f;
-	m_frameOf4C                = 0.0f;
-	m_frameOf44                = 0.0f;
-	m_frameOf40                = 0.0f;
-	m_frameOf3C                = 0.0f;
-	m_frameOf38                = 0.0f;
-	m_frameOf34                = 0.0f;
-	m_cameraZoomX              = 0.0f;
-	m_cameraZoomMinFrame       = 0.0f;
-	_98                        = 1.0f;
-	m_rocketPosition           = 0.0f;
-	_A4                        = 0.0f;
-	_A8                        = 0.0f;
-	m_rocketAngle.x            = 0.0f;
-	m_rocketAngle.y            = -1.0f;
-	m_rocketAngleSin           = m_rocketAngle.x;
-	m_rocketAngleCos           = m_rocketAngle.y;
-	m_rocketScale              = 0.0f;
-	m_rocketGlow               = nullptr;
-	m_rocketB                  = nullptr;
-	m_mapFlare                 = nullptr;
-	m_shstar1                  = nullptr;
-	_D0                        = 0.0f;
-	_D4                        = 0.0f;
-	_D8                        = 0.0f;
-	_DC                        = 1.0f;
-	m_light01Center.x          = 0.0f;
-	m_light01Center.y          = 0.0f;
-	m_starCenter.x             = 0.0f;
-	m_starCenter.y             = 0.0f;
-	m_onyonArray               = nullptr;
-	m_onyonCount               = 0;
-	m_currentCourseIndex       = 0;
-	_FC                        = 0;
-	_108                       = nullptr;
-	m_groundTreasureCounter    = nullptr;
-	m_pokoCounter              = nullptr;
-	m_groundTreasureMax        = 0;
-	m_groundTreasureCount      = 0;
-	m_caveTreasureCounters2[0] = nullptr;
-	m_caveTreasureCounters[0]  = nullptr;
-	m_caveOtaMax[0]            = 0;
-	m_caveOtaNum[0]            = 0;
-	m_caveTreasureCounters2[1] = nullptr;
-	m_caveTreasureCounters[1]  = nullptr;
-	m_caveOtaMax[1]            = 0;
-	m_caveOtaNum[1]            = 0;
-	m_caveTreasureCounters2[2] = nullptr;
-	m_caveTreasureCounters[2]  = nullptr;
-	m_caveOtaMax[2]            = 0;
-	m_caveOtaNum[2]            = 0;
-	m_caveTreasureCounters2[3] = nullptr;
-	m_caveTreasureCounters[3]  = nullptr;
-	m_caveOtaMax[3]            = 0;
-	m_caveOtaNum[3]            = 0;
-	m_onyonFadePane            = nullptr;
-	m_colorAnims[0]            = nullptr;
-	m_colorAnims[1]            = nullptr;
-	m_colorAnims[2]            = nullptr;
-	m_colorAnims[3]            = nullptr;
-	m_colorAnims[4]            = nullptr;
-	m_colorAnim2               = nullptr;
-	m_arrowAlphaBlink          = nullptr;
-	m_currentState             = 0xd;
-	m_angle                    = 1;
-	m_flags                    = 4;
-	m_stateID                  = '\x01';
-	m_courseJustOpenFlags      = 0;
-	m_openCourses              = 0;
-	m_zukanFadeout             = 0;
+	mScreenKitagawa           = nullptr;
+	mBckAnm2                  = nullptr;
+	mBckAnm1                  = nullptr;
+	mKitaAnim1                = nullptr;
+	mKitaAnim3                = nullptr;
+	mKitaAnim2                = nullptr;
+	mScreenRocket             = nullptr;
+	mRocketAnim1              = nullptr;
+	mRocketAnim2              = nullptr;
+	mScreenInfo               = nullptr;
+	mInfoAnim3                = nullptr;
+	mInfoAnim2                = nullptr;
+	mInfoAnim1                = nullptr;
+	mFrameOf60                = 0.0f;
+	mFrameOf5C                = 0.0f;
+	mFrameOf58                = 0.0f;
+	mFrameOf50                = 0.0f;
+	mFrameOf4C                = 0.0f;
+	mFrameOf44                = 0.0f;
+	mFrameOf40                = 0.0f;
+	mFrameOf3C                = 0.0f;
+	mFrameOf38                = 0.0f;
+	mFrameOf34                = 0.0f;
+	mCameraZoomX              = 0.0f;
+	mCameraZoomMinFrame       = 0.0f;
+	_98                       = 1.0f;
+	mRocketPosition           = 0.0f;
+	_A4                       = 0.0f;
+	_A8                       = 0.0f;
+	mRocketAngle.x            = 0.0f;
+	mRocketAngle.y            = -1.0f;
+	mRocketAngleSin           = mRocketAngle.x;
+	mRocketAngleCos           = mRocketAngle.y;
+	mRocketScale              = 0.0f;
+	mRocketGlow               = nullptr;
+	mRocketB                  = nullptr;
+	mMapFlare                 = nullptr;
+	mShstar1                  = nullptr;
+	_D0                       = 0.0f;
+	_D4                       = 0.0f;
+	_D8                       = 0.0f;
+	_DC                       = 1.0f;
+	mLight01Center.x          = 0.0f;
+	mLight01Center.y          = 0.0f;
+	mStarCenter.x             = 0.0f;
+	mStarCenter.y             = 0.0f;
+	mOnyonArray               = nullptr;
+	mOnyonCount               = 0;
+	mCurrentCourseIndex       = 0;
+	_FC                       = 0;
+	_108                      = nullptr;
+	mGroundTreasureCounter    = nullptr;
+	mPokoCounter              = nullptr;
+	mGroundTreasureMax        = 0;
+	mGroundTreasureCount      = 0;
+	mCaveTreasureCounters2[0] = nullptr;
+	mCaveTreasureCounters[0]  = nullptr;
+	mCaveOtaMax[0]            = 0;
+	mCaveOtaNum[0]            = 0;
+	mCaveTreasureCounters2[1] = nullptr;
+	mCaveTreasureCounters[1]  = nullptr;
+	mCaveOtaMax[1]            = 0;
+	mCaveOtaNum[1]            = 0;
+	mCaveTreasureCounters2[2] = nullptr;
+	mCaveTreasureCounters[2]  = nullptr;
+	mCaveOtaMax[2]            = 0;
+	mCaveOtaNum[2]            = 0;
+	mCaveTreasureCounters2[3] = nullptr;
+	mCaveTreasureCounters[3]  = nullptr;
+	mCaveOtaMax[3]            = 0;
+	mCaveOtaNum[3]            = 0;
+	mOnyonFadePane            = nullptr;
+	mColorAnims[0]            = nullptr;
+	mColorAnims[1]            = nullptr;
+	mColorAnims[2]            = nullptr;
+	mColorAnims[3]            = nullptr;
+	mColorAnims[4]            = nullptr;
+	mColorAnim2               = nullptr;
+	mArrowAlphaBlink          = nullptr;
+	mCurrentState             = 0xd;
+	mAngle                    = 1;
+	mFlags                    = 4;
+	mStateID                  = '\x01';
+	mCourseJustOpenFlags      = 0;
+	mOpenCourses              = 0;
+	mZukanFadeout             = 0;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1056,14 +1056,14 @@ blr
  */
 void WorldMap::init(::Game::WorldMap::InitArg& arg)
 {
-	int i     = 0;
-	m_initArg = arg;
+	int i    = 0;
+	mInitArg = arg;
 	do {
-		m_openCourses += ::Game::playData->courseOpen(i);
-		m_courseJustOpenFlags |= ::Game::playData->courseJustOpen(i) << i;
+		mOpenCourses += ::Game::playData->courseOpen(i);
+		mCourseJustOpenFlags |= ::Game::playData->courseJustOpen(i) << i;
 		i++;
 	} while (i < 4);
-	m_courseJustOpenFlags |= (m_courseJustOpenFlags << 4);
+	mCourseJustOpenFlags |= (mCourseJustOpenFlags << 4);
 }
 
 /*
@@ -1074,38 +1074,38 @@ void WorldMap::init(::Game::WorldMap::InitArg& arg)
 void WorldMap::loadResource()
 {
 	JKRHeap* savedHeap = JKRHeap::sCurrentHeap;
-	m_initArg.m_heap->becomeCurrentHeap();
+	mInitArg.mHeap->becomeCurrentHeap();
 	char path[64];
 	og::newScreen::makeLanguageResName(path, "worldmap.szs");
 	LoadResource::Arg arg(path);
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
 	JKRArchive* arc;
 	if (node) {
-		arc = node->m_archive;
+		arc = node->mArchive;
 	} else {
 		JUT_PANICLINE(278, "failed");
 	}
 	P2ASSERTLINE(279, arc);
 
-	m_screenKitagawa = new P2DScreen::Mgr_tuning;
-	m_screenKitagawa->set("world_map_kitagawa.blo", 0x1040000, arc);
+	mScreenKitagawa = new P2DScreen::Mgr_tuning;
+	mScreenKitagawa->set("world_map_kitagawa.blo", 0x1040000, arc);
 
 	const void* resData = JKRFileLoader::getGlbResource("world_map_kitagawa.bck", arc);
-	m_bckAnm1           = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resData);
-	m_bckAnm2           = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(resData);
-	m_screenKitagawa->setAnimation(m_bckAnm1);
+	mBckAnm1            = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resData);
+	mBckAnm2            = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(resData);
+	mScreenKitagawa->setAnimation(mBckAnm1);
 	int i = 0;
 	do {
-		m_screenKitagawa->search(getSerialTagName('Pland0', i))->setAnimation(m_bckAnm2);
-		m_screenKitagawa->search(getSerialTagName('Plight0', i))->setAnimation(m_bckAnm2);
+		mScreenKitagawa->search(getSerialTagName('Pland0', i))->setAnimation(mBckAnm2);
+		mScreenKitagawa->search(getSerialTagName('Plight0', i))->setAnimation(mBckAnm2);
 	} while (++i < 4);
 
-	m_kitaAnim1 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.bpk", arc));
-	m_screenKitagawa->setAnimation(m_kitaAnim1);
-	m_kitaAnim2 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.btk", arc));
-	m_screenKitagawa->setAnimation(m_kitaAnim2);
-	m_kitaAnim3 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk", arc));
-	m_screenKitagawa->setAnimation(m_kitaAnim3);
+	mKitaAnim1 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.bpk", arc));
+	mScreenKitagawa->setAnimation(mKitaAnim1);
+	mKitaAnim2 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.btk", arc));
+	mScreenKitagawa->setAnimation(mKitaAnim2);
+	mKitaAnim3 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk", arc));
+	mScreenKitagawa->setAnimation(mKitaAnim3);
 	const char* worldMapIconsFileNames[2][3];
 	const char** worldMapIconFileNames = worldMapIconsFileNames[0];
 	worldMapIconsFileNames[0][0]       = "worldmap_icon.blo";
@@ -1115,10 +1115,10 @@ void WorldMap::loadResource()
 	worldMapIconsFileNames[1][0] = "worldmap_gicon.blo";
 	worldMapIconsFileNames[1][1] = "worldmap_gicon.bck";
 	worldMapIconsFileNames[1][2] = "worldmap_gicon.btp";
-	if (Game::playData->m_storyFlags & Game::STORY_DebtPaid) { }
+	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) { }
 
-	m_screenRocket = new P2DScreen::Mgr;
-	m_screenRocket->set(worldMapIconFileNames[1], 0x40000, arc);
+	mScreenRocket = new P2DScreen::Mgr;
+	mScreenRocket->set(worldMapIconFileNames[1], 0x40000, arc);
 
 	/*
 stwu     r1, -0x260(r1)
@@ -6214,33 +6214,32 @@ blr
  */
 int WorldMap::getTarget()
 {
-	switch (m_currentCourseIndex) {
+	switch (mCurrentCourseIndex) {
 	case 0:
-		return !(m_initArg.m_controller->m_padButton.m_mask & 0x2000002) && m_initArg.m_controller->m_padButton.m_mask & 0x8000008 ? 2 : 1;
+		return !(mInitArg.mController->mButton.mMask & 0x2000002) && mInitArg.mController->mButton.mMask & 0x8000008 ? 2 : 1;
 		break;
 	case 1:
-		if ((m_initArg.m_controller->m_padButton.m_mask & 0x1000001) == 0 && m_initArg.m_controller->m_padButton.m_mask & 0x8000008) {
-			if (m_openCourses == 3) {
+		if ((mInitArg.mController->mButton.mMask & 0x1000001) == 0 && mInitArg.mController->mButton.mMask & 0x8000008) {
+			if (mOpenCourses == 3) {
 				return 2;
-			} else if (m_openCourses > 3) {
+			} else if (mOpenCourses > 3) {
 				return 3;
 			}
-		} else if (m_initArg.m_controller->m_padButton.m_mask & 0x1000001) {
+		} else if (mInitArg.mController->mButton.mMask & 0x1000001) {
 			return 0;
 		}
 		break;
 
 	case 2:
-		if (!(m_initArg.m_controller->m_padButton.m_mask & 0x2000002) && m_initArg.m_controller->m_padButton.m_mask & 0x4000004) {
+		if (!(mInitArg.mController->mButton.mMask & 0x2000002) && mInitArg.mController->mButton.mMask & 0x4000004) {
 			return 0;
 		}
 
-		return m_openCourses == 3 ? 1 : 3;
+		return mOpenCourses == 3 ? 1 : 3;
 		break;
 
 	case 3:
-		return (!(m_initArg.m_controller->m_padButton.m_mask & 0x1000001) && m_initArg.m_controller->m_padButton.m_mask & 0x4000004) ? 1
-		                                                                                                                             : 2;
+		return (!(mInitArg.mController->mButton.mMask & 0x1000001) && mInitArg.mController->mButton.mMask & 0x4000004) ? 1 : 2;
 		break;
 
 	default:

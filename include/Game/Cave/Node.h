@@ -18,18 +18,18 @@ enum NodeType { Item = 1, Gate };
 struct Adjust {
 	Adjust();
 
-	s32 m_doorID;    // _00
-	s32 m_distance;  // _04
-	s32 m_tekiFlags; // _08
+	s32 mDoorID;    // _00
+	s32 mDistance;  // _04
+	s32 mTekiFlags; // _08
 };
 
 /**
  * @size{0xC}
  */
 struct AdjustInfo {
-	MapNode* m_node;      // _00
-	int m_birthDoorIndex; // _04
-	int m_doorScore;      // _08
+	MapNode* mNode;      // _00
+	int mBirthDoorIndex; // _04
+	int mDoorScore;      // _08
 };
 
 /**
@@ -41,7 +41,7 @@ struct AdjustNode : public CNode {
 
 	virtual ~AdjustNode() { } // _08 (weak)
 
-	Adjust* m_node; // _18
+	Adjust* mNode; // _18
 };
 
 /**
@@ -50,8 +50,8 @@ struct AdjustNode : public CNode {
 struct Door {
 	Door();
 
-	int m_direction; // _00
-	int m_offset;    // _04
+	int mDirection; // _00
+	int mOffset;    // _04
 };
 
 /**
@@ -67,11 +67,11 @@ struct DoorNode : public CNode {
 
 	inline void reset()
 	{
-		m_node.m_direction = -1;
-		m_node.m_offset    = -1;
+		mNode.mDirection = -1;
+		mNode.mOffset    = -1;
 	}
 
-	Door m_node; // _18
+	Door mNode; // _18
 };
 
 /**
@@ -90,9 +90,9 @@ struct FixObjNode : public ObjectLayoutNode {
  * @size{0x4}
  */
 struct GateUnit {
-	inline GateUnit() { m_info = nullptr; }
+	inline GateUnit() { mInfo = nullptr; }
 
-	GateInfo* m_info; // _00
+	GateInfo* mInfo; // _00
 };
 
 /**
@@ -109,18 +109,18 @@ struct GateNode : public ObjectLayoutNode {
 	virtual f32 getDirection();      // _1C
 	virtual int getBirthDoorIndex(); // _20
 
-	GateUnit* m_unit; // _18
-	f32 m_direction;  // _1C
-	int m_index;      // _20
+	GateUnit* mUnit; // _18
+	f32 mDirection;  // _1C
+	int mIndex;      // _20
 };
 
 /**
  * @size{0x4}
  */
 struct ItemUnit {
-	inline ItemUnit() { m_info = nullptr; }
+	inline ItemUnit() { mInfo = nullptr; }
 
-	ItemInfo* m_info; // _00
+	ItemInfo* mInfo; // _00
 };
 
 /**
@@ -139,11 +139,11 @@ struct ItemNode : public ObjectLayoutNode {
 
 	void makeGlobalData(MapNode*);
 
-	ItemUnit* m_unit;     // _18
-	BaseGen* m_generator; // _1C
-	u32 m_birthCount;     // _20
-	f32 m_direction;      // _24
-	Vector3f m_position;  // _28
+	ItemUnit* mUnit;     // _18
+	BaseGen* mGenerator; // _1C
+	u32 mBirthCount;     // _20
+	f32 mDirection;      // _24
+	Vector3f mPosition;  // _28
 };
 
 /**
@@ -169,15 +169,15 @@ struct MapUnits {
 	BaseGen* getBaseGen();
 	JUTTexture* getUnitTexture();
 
-	DoorNode* m_doorNode;     // _00
-	AdjustNode* m_doorCounts; // _04
-	JUTTexture* m_texture;    // _08
-	BaseGen* m_baseGen;       // _0C
-	char* m_name;             // _10
-	int m_index;              // _14
-	int m_kind;               // _18
-	int m_sizeX;              // _1C
-	int m_sizeY;              // _20
+	DoorNode* mDoorNode;     // _00
+	AdjustNode* mDoorCounts; // _04
+	JUTTexture* mTexture;    // _08
+	BaseGen* mBaseGen;       // _0C
+	char* mName;             // _10
+	int mIndex;              // _14
+	int mKind;               // _18
+	int mSizeX;              // _1C
+	int mSizeY;              // _20
 };
 
 /**
@@ -221,32 +221,32 @@ struct MapNode : public CNode {
 	void getDoorGlobalDirection(int);
 	int getNumDoors();
 
-	inline MapNode* getChild() { return static_cast<MapNode*>(m_child); }
+	inline MapNode* getChild() { return static_cast<MapNode*>(mChild); }
 
-	inline MapNode* getNext() { return static_cast<MapNode*>(m_next); }
+	inline MapNode* getNext() { return static_cast<MapNode*>(mNext); }
 
-	UnitInfo* m_unitInfo; // _18
+	UnitInfo* mUnitInfo; // _18
 
 	// types are EnemyNode, GateNode, ItemNode;
-	ObjectLayoutNode* m_enemyNode; // _1C
-	ObjectLayoutNode* m_gateNode;  // _20
-	ObjectLayoutNode* m_itemNode;  // _24
+	ObjectLayoutNode* mEnemyNode; // _1C
+	ObjectLayoutNode* mGateNode;  // _20
+	ObjectLayoutNode* mItemNode;  // _24
 
-	AdjustInfo* m_adjustInfo; // _28, array of AdjustInfos
-	int m_xGridOffset;        // _2C
-	int m_yGridOffset;        // _30
-	int m_enemyScore;         // _34
-	int m_nodeScore;          // _38
-	int m_vsScore;            // _3C
+	AdjustInfo* mAdjustInfo; // _28, array of AdjustInfos
+	int mXGridOffset;        // _2C
+	int mYGridOffset;        // _30
+	int mEnemyScore;         // _34
+	int mNodeScore;          // _38
+	int mVsScore;            // _3C
 };
 
 /**
  * @size{0x30}
  */
 struct EnemyUnit {
-	inline EnemyUnit() { m_tekiInfo = nullptr; }
+	inline EnemyUnit() { mTekiInfo = nullptr; }
 
-	TekiInfo* m_tekiInfo; // _00
+	TekiInfo* mTekiInfo; // _00
 };
 
 /**
@@ -269,14 +269,14 @@ struct EnemyNode : public ObjectLayoutNode {
 	void setGlobalData(Vector3f&, f32);
 	void setBirthDoorIndex(int);
 
-	inline TekiInfo* getTekiInfo() { return m_enemyUnit->m_tekiInfo; }
+	inline TekiInfo* getTekiInfo() { return mEnemyUnit->mTekiInfo; }
 
-	EnemyUnit* m_enemyUnit; // _18
-	BaseGen* m_baseGen;     // _1C
-	int m_birthDoorIndex;   // _20
-	int m_birthCount;       // _24
-	f32 m_direction;        // _28
-	Vector3f m_birthPos;    // _2C
+	EnemyUnit* mEnemyUnit; // _18
+	BaseGen* mBaseGen;     // _1C
+	int mBirthDoorIndex;   // _20
+	int mBirthCount;       // _24
+	f32 mDirection;        // _28
+	Vector3f mBirthPos;    // _2C
 };
 } // namespace Cave
 } // namespace Game

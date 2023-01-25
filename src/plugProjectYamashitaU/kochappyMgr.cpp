@@ -18,7 +18,7 @@ static const char* cKochappyChangeTexName = "/enemy/data/Kochappy/kochappy_body_
 Mgr::Mgr(int objLimit, u8 modelType)
     : KochappyBase::Mgr(objLimit, modelType)
 {
-	m_name = "赤コチャッピーマネージャ"; // red kochappy manager
+	mName = "赤コチャッピーマネージャ"; // red kochappy manager
 }
 
 /*
@@ -37,7 +37,7 @@ void Mgr::loadTexData()
 {
 	LoadResource::ArgAramOnly loadArg(cKochappyChangeTexName);
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
-	m_changeTexture              = static_cast<ResTIMG*>(resource->m_file);
+	mChangeTexture               = static_cast<ResTIMG*>(resource->mFile);
 }
 
 } // namespace Kochappy

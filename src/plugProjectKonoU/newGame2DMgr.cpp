@@ -40,10 +40,10 @@ void Game2DMgr::create()
  * Size:	000058
  */
 Game2DMgr::Game2DMgr()
-    : m_screenMgr(nullptr)
+    : mScreenMgr(nullptr)
 {
-	m_screenMgr = newScreen::Mgr::create();
-	m_screenMgr->init();
+	mScreenMgr = newScreen::Mgr::create();
+	mScreenMgr->init();
 	og::Lib2D::create();
 }
 
@@ -66,14 +66,14 @@ void Game2DMgr::initInCourse() { og::newScreen::initGround(); }
  * Address:	803FC02C
  * Size:	000024
  */
-void Game2DMgr::update() { m_screenMgr->update(); }
+void Game2DMgr::update() { mScreenMgr->update(); }
 
 /*
  * --INFO--
  * Address:	803FC050
  * Size:	000024
  */
-void Game2DMgr::draw(Graphics& gfx) { m_screenMgr->draw(gfx); }
+void Game2DMgr::draw(Graphics& gfx) { mScreenMgr->draw(gfx); }
 
 /*
  * --INFO--
@@ -87,7 +87,7 @@ void Game2DMgr::drawIndirect(Graphics&) { }
  * Address:	803FC078
  * Size:	000024
  */
-void Game2DMgr::setGamePad(Controller* cont) { m_screenMgr->setGamePad(cont); }
+void Game2DMgr::setGamePad(Controller* cont) { mScreenMgr->setGamePad(cont); }
 
 /*
  * --INFO--
@@ -96,8 +96,8 @@ void Game2DMgr::setGamePad(Controller* cont) { m_screenMgr->setGamePad(cont); }
  */
 bool Game2DMgr::setDispMember(og::Screen::DispMemberBase* disp)
 {
-	if (m_screenMgr) {
-		return m_screenMgr->setDispMember(disp);
+	if (mScreenMgr) {
+		return mScreenMgr->setDispMember(disp);
 	} else {
 		return nullptr;
 	}
@@ -108,7 +108,7 @@ bool Game2DMgr::setDispMember(og::Screen::DispMemberBase* disp)
  * Address:	803FC0D0
  * Size:	000038
  */
-void Game2DMgr::setToumeiBG() { m_screenMgr->m_backupScene->setColorBG(0, 0, 0, 0); }
+void Game2DMgr::setToumeiBG() { mScreenMgr->mBackupScene->setColorBG(0, 0, 0, 0); }
 
 /*
  * --INFO--
@@ -117,14 +117,14 @@ void Game2DMgr::setToumeiBG() { m_screenMgr->m_backupScene->setColorBG(0, 0, 0, 
  */
 bool Game2DMgr::open_GameGround(og::Screen::DispMemberGround& disp)
 {
-	if (Game::playData->m_storyFlags & Game::STORY_DebtPaid) {
-		disp.m_payDebt = true;
+	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+		disp.mPayDebt = true;
 	}
-	disp.m_dataGame.m_pokoCount = Game::playData->m_pokoCount;
+	disp.mDataGame.mPokoCount = Game::playData->mPokoCount;
 
 	SetSceneArg arg(SCENE_GROUND, &disp, 0, true);
-	if (m_screenMgr->setScene(arg)) {
-		m_screenMgr->startScene(nullptr);
+	if (mScreenMgr->setScene(arg)) {
+		mScreenMgr->startScene(nullptr);
 	}
 	return false;
 }
@@ -137,7 +137,7 @@ bool Game2DMgr::open_GameGround(og::Screen::DispMemberGround& disp)
 bool Game2DMgr::is_GameGround()
 {
 	bool ret = false;
-	if (m_screenMgr->getSceneType() == SCENE_GROUND && m_screenMgr->m_backupScene->m_stateID != 1) {
+	if (mScreenMgr->getSceneType() == SCENE_GROUND && mScreenMgr->mBackupScene->mStateID != 1) {
 		ret = true;
 	}
 	return ret;
@@ -150,23 +150,23 @@ bool Game2DMgr::is_GameGround()
  */
 bool Game2DMgr::open_GameCave(og::Screen::DispMemberCave& disp, int type)
 {
-	if (Game::playData->m_storyFlags & Game::STORY_DebtPaid) {
-		disp.m_payDebt = true;
+	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+		disp.mPayDebt = true;
 	}
-	disp.m_dataGame.m_pokoCount = Game::playData->m_cavePokoCount;
+	disp.mDataGame.mPokoCount = Game::playData->mCavePokoCount;
 
 	if (type == 0) {
 		SetSceneArg arg(SCENE_CAVE, &disp, 0, true);
-		if (m_screenMgr->setScene(arg)) {
-			m_screenMgr->startScene(nullptr);
+		if (mScreenMgr->setScene(arg)) {
+			mScreenMgr->startScene(nullptr);
 		}
 	} else if (type & 2) {
 		SetSceneArg arg(SCENE_CAVE, &disp, 0, true);
-		if (m_screenMgr->setScene(arg)) {
+		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispFinalFloor disp2;
 			SetSceneArg arg2(SCENE_FINAL_FLOOR, &disp2, 0, true);
-			if (m_screenMgr->setScene(arg2)) {
-				m_screenMgr->startScene(nullptr);
+			if (mScreenMgr->setScene(arg2)) {
+				mScreenMgr->startScene(nullptr);
 			}
 		}
 	}
@@ -181,7 +181,7 @@ bool Game2DMgr::open_GameCave(og::Screen::DispMemberCave& disp, int type)
 bool Game2DMgr::is_GameCave()
 {
 	bool ret = false;
-	if (m_screenMgr->getSceneType() == SCENE_CAVE && m_screenMgr->m_backupScene->m_stateID != 1) {
+	if (mScreenMgr->getSceneType() == SCENE_CAVE && mScreenMgr->mBackupScene->mStateID != 1) {
 		ret = true;
 	}
 	return ret;
@@ -196,17 +196,17 @@ bool Game2DMgr::open_GameVs(og::Screen::DispMemberVs& disp, int type)
 {
 	if (type == 0) {
 		SetSceneArg arg(SCENE_VS, &disp, 0, true);
-		if (m_screenMgr->setScene(arg)) {
-			m_screenMgr->startScene(nullptr);
+		if (mScreenMgr->setScene(arg)) {
+			mScreenMgr->startScene(nullptr);
 		}
 	} else if (type & 1) {
 		SetSceneArg arg(SCENE_VS, &disp, 0, true);
-		if (m_screenMgr->setScene(arg)) {
+		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
-			disp2.m_is2Player = true;
+			disp2.mIs2Player = true;
 			SetSceneArg arg2(SCENE_READY_GO, &disp2, 0, true);
-			if (m_screenMgr->setScene(arg2)) {
-				m_screenMgr->startScene(nullptr);
+			if (mScreenMgr->setScene(arg2)) {
+				mScreenMgr->startScene(nullptr);
 			}
 		}
 	}
@@ -221,9 +221,9 @@ bool Game2DMgr::open_GameVs(og::Screen::DispMemberVs& disp, int type)
 int Game2DMgr::check_VsStatus()
 {
 	int ret                        = 3;
-	og::Screen::DispMemberVs* disp = static_cast<og::Screen::DispMemberVs*>(m_screenMgr->getDispMember());
+	og::Screen::DispMemberVs* disp = static_cast<og::Screen::DispMemberVs*>(mScreenMgr->getDispMember());
 	if (disp && disp->isID(OWNER_OGA, MEMBER_VS)) {
-		switch (disp->m_doneState) {
+		switch (disp->mDoneState) {
 		case 0:
 			ret = 0;
 			break;
@@ -249,37 +249,37 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P& disp, in
 	og::newScreen::SArgChallenge2P sarg(1.5f);
 
 	if (type == 0) {
-		if (m_screenMgr->setScene(arg)) {
-			m_screenMgr->startScene(&sarg);
+		if (mScreenMgr->setScene(arg)) {
+			mScreenMgr->startScene(&sarg);
 		}
 	} else if ((type & 3) == 3) {
-		if (m_screenMgr->setScene(arg)) {
+		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
-			disp2.m_is2Player    = true;
-			disp2.m_isFinalFloor = true;
-			disp2.m_gameType     = 1;
+			disp2.mIs2Player    = true;
+			disp2.mIsFinalFloor = true;
+			disp2.mGameType     = 1;
 			SetSceneArg arg2(SCENE_READY_GO, &disp2, 0, true);
-			if (m_screenMgr->setScene(arg2)) {
-				m_screenMgr->startScene(nullptr);
+			if (mScreenMgr->setScene(arg2)) {
+				mScreenMgr->startScene(nullptr);
 			}
 		}
 	} else if (type & 1) {
-		if (m_screenMgr->setScene(arg)) {
+		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
-			disp2.m_is2Player = true;
-			disp2.m_gameType  = 1;
+			disp2.mIs2Player = true;
+			disp2.mGameType  = 1;
 			SetSceneArg arg2(SCENE_READY_GO, &disp2, 0, true);
-			if (m_screenMgr->setScene(arg2)) {
-				m_screenMgr->startScene(nullptr);
+			if (mScreenMgr->setScene(arg2)) {
+				mScreenMgr->startScene(nullptr);
 			}
 		}
 	} else if (type & 2) {
-		if (m_screenMgr->setScene(arg)) {
+		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispFinalFloor disp2;
-			disp2.m_is2Player = true;
+			disp2.mIs2Player = true;
 			SetSceneArg arg2(SCENE_FINAL_FLOOR, &disp2, 0, true);
-			if (m_screenMgr->setScene(arg2)) {
-				m_screenMgr->startScene(nullptr);
+			if (mScreenMgr->setScene(arg2)) {
+				mScreenMgr->startScene(nullptr);
 			}
 		}
 	}
@@ -296,34 +296,34 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
 	og::newScreen::SArgChallenge1P sarg(1.5f);
 
 	if (type == 0) {
-		if (m_screenMgr->setScene(arg)) {
-			m_screenMgr->startScene(&sarg);
+		if (mScreenMgr->setScene(arg)) {
+			mScreenMgr->startScene(&sarg);
 		}
 	} else if ((type & 3) == 3) {
-		if (m_screenMgr->setScene(arg)) {
+		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
-			disp2.m_isFinalFloor = true;
-			disp2.m_gameType     = 1;
+			disp2.mIsFinalFloor = true;
+			disp2.mGameType     = 1;
 			SetSceneArg arg2(SCENE_READY_GO, &disp2, 0, true);
-			if (m_screenMgr->setScene(arg2)) {
-				m_screenMgr->startScene(nullptr);
+			if (mScreenMgr->setScene(arg2)) {
+				mScreenMgr->startScene(nullptr);
 			}
 		}
 	} else if (type == 1) {
-		if (m_screenMgr->setScene(arg)) {
+		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
-			disp2.m_gameType = 1;
+			disp2.mGameType = 1;
 			SetSceneArg arg2(SCENE_READY_GO, &disp2, 0, true);
-			if (m_screenMgr->setScene(arg2)) {
-				m_screenMgr->startScene(nullptr);
+			if (mScreenMgr->setScene(arg2)) {
+				mScreenMgr->startScene(nullptr);
 			}
 		}
 	} else if (type == 2) {
-		if (m_screenMgr->setScene(arg)) {
+		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispFinalFloor disp2;
 			SetSceneArg arg2(SCENE_FINAL_FLOOR, &disp2, 0, true);
-			if (m_screenMgr->setScene(arg2)) {
-				m_screenMgr->startScene(nullptr);
+			if (mScreenMgr->setScene(arg2)) {
+				mScreenMgr->startScene(nullptr);
 			}
 		}
 	}
@@ -336,9 +336,9 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
  */
 bool Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll& disp)
 {
-	if (m_screenMgr->isAnyReservation())
+	if (mScreenMgr->isAnyReservation())
 		return false;
-	switch (m_screenMgr->getSceneType()) {
+	switch (mScreenMgr->getSceneType()) {
 	default:
 		return false;
 	case SCENE_GROUND:
@@ -349,7 +349,7 @@ bool Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll& disp)
 		if (!Game::naviMgr->getActiveNavi()) {
 			return false;
 		} else {
-			disp.m_sMenuMap.m_activeNavi = true;
+			disp.mSMenuMap.mActiveNavi = true;
 			return open_SMenu_Sub(disp);
 		}
 		break;
@@ -363,41 +363,41 @@ bool Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll& disp)
  */
 bool Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll& disp)
 {
-	bool ret                                = false;
-	disp.m_sMenuPauseDoukutu.m_preCavePokos = disp.m_sMenuPause.m_pokoCount;
-	if (m_screenMgr->m_inCave) {
-		disp.m_sMenuMap.m_inCave = true;
+	bool ret                              = false;
+	disp.mSMenuPauseDoukutu.mPreCavePokos = disp.mSMenuPause.mPokoCount;
+	if (mScreenMgr->mInCave) {
+		disp.mSMenuMap.mInCave = true;
 	} else {
-		disp.m_sMenuMap.m_inCave = false;
+		disp.mSMenuMap.mInCave = false;
 	}
 
 	// probably want define for poko count
-	if (disp.m_sMenuPauseDoukutu.m_preCavePokos < 10000) {
-		disp.m_sMenuPauseDoukutu.m_payDebt = true;
+	if (disp.mSMenuPauseDoukutu.mPreCavePokos < 10000) {
+		disp.mSMenuPauseDoukutu.mPayDebt = true;
 	} else {
-		disp.m_sMenuPauseDoukutu.m_payDebt = false;
+		disp.mSMenuPauseDoukutu.mPayDebt = false;
 	}
 	og::ogSound->setOpen();
 	PSPause_StartMenuOn();
 	bool set;
 
-	switch (disp.m_openMode) {
+	switch (disp.mOpenMode) {
 	case og::Screen::DispMemberSMenuAll::Open_StoryMode: {
 		SetSceneArg arg(SCENE_PAUSE_MENU_MAP, &disp, 0, true);
-		set = m_screenMgr->setScene(arg);
+		set = mScreenMgr->setScene(arg);
 		break;
 	}
 	case og::Screen::DispMemberSMenuAll::Open_ChallengeMode:
 	case og::Screen::DispMemberSMenuAll::Open_Versus: {
 		SetSceneArg arg(SCENE_PAUSE_MENU_VS, &disp, 0, true);
-		set = m_screenMgr->setScene(arg);
+		set = mScreenMgr->setScene(arg);
 		break;
 	}
 	default:
 		JUT_PANICLINE(969, "SMENU MODE ERR!");
 	}
 	if (set) {
-		if (m_screenMgr->startScene(nullptr)) {
+		if (mScreenMgr->startScene(nullptr)) {
 			ret = true;
 		}
 	}
@@ -412,15 +412,15 @@ bool Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll& disp)
 int Game2DMgr::check_SMenu()
 {
 	int exit = -1;
-	switch (m_screenMgr->getSceneType()) {
+	switch (mScreenMgr->getSceneType()) {
 	case SCENE_PAUSE_MENU_CONTROLS:
 	case SCENE_PAUSE_MENU:
 	case SCENE_PAUSE_MENU_DOUKUTU:
 	case SCENE_PAUSE_MENU_MAP:
 	case SCENE_PAUSE_MENU_ITEMS:
 	case SCENE_PAUSE_MENU_VS: {
-		if (m_screenMgr->isSceneFinish()) {
-			int scene = m_screenMgr->getSceneFinishState();
+		if (mScreenMgr->isSceneFinish()) {
+			int scene = mScreenMgr->getSceneFinishState();
 			switch (scene) {
 			case 1:
 				exit = 0;
@@ -481,8 +481,8 @@ int Game2DMgr::check_SMenu()
 bool Game2DMgr::open_WorldMapInfoWin0(og::Screen::DispMemberWorldMapInfoWin0& disp)
 {
 	SetSceneArg arg(SCENE_WORLD_MAP_INFO_WINDOW_0, &disp, 0, true);
-	if (m_screenMgr->setScene(arg)) {
-		if (m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg)) {
+		if (mScreenMgr->startScene(nullptr)) {
 			return true;
 		}
 	}
@@ -496,11 +496,11 @@ bool Game2DMgr::open_WorldMapInfoWin0(og::Screen::DispMemberWorldMapInfoWin0& di
  */
 int Game2DMgr::check_WorldMapInfoWin0() const
 {
-	if (m_screenMgr->getSceneType() != SCENE_WORLD_MAP_INFO_WINDOW_0) {
+	if (mScreenMgr->getSceneType() != SCENE_WORLD_MAP_INFO_WINDOW_0) {
 		return 2;
 	}
-	if (m_screenMgr->isSceneFinish()) {
-		int state = m_screenMgr->getSceneFinishState();
+	if (mScreenMgr->isSceneFinish()) {
+		int state = mScreenMgr->getSceneFinishState();
 		if (state == 0)
 			return 0;
 		if (state == 1)
@@ -517,8 +517,8 @@ int Game2DMgr::check_WorldMapInfoWin0() const
 bool Game2DMgr::open_WorldMapInfoWin1(og::Screen::DispMemberWorldMapInfoWin1& disp)
 {
 	SetSceneArg arg(SCENE_WORLD_MAP_INFO_WINDOW_1, &disp, 0, true);
-	if (m_screenMgr->setScene(arg)) {
-		if (m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg)) {
+		if (mScreenMgr->startScene(nullptr)) {
 			return true;
 		}
 	}
@@ -532,11 +532,11 @@ bool Game2DMgr::open_WorldMapInfoWin1(og::Screen::DispMemberWorldMapInfoWin1& di
  */
 int Game2DMgr::check_WorldMapInfoWin1() const
 {
-	if (m_screenMgr->getSceneType() != SCENE_WORLD_MAP_INFO_WINDOW_1) {
+	if (mScreenMgr->getSceneType() != SCENE_WORLD_MAP_INFO_WINDOW_1) {
 		return 2;
 	}
-	if (m_screenMgr->isSceneFinish()) {
-		int state = m_screenMgr->getSceneFinishState();
+	if (mScreenMgr->isSceneFinish()) {
+		int state = mScreenMgr->getSceneFinishState();
 		if (state == 0)
 			return 0;
 		if (state == 1)
@@ -552,26 +552,26 @@ int Game2DMgr::check_WorldMapInfoWin1() const
  */
 void Game2DMgr::open_Kantei(og::Screen::DispMemberKantei& disp)
 {
-	if (m_screenMgr->m_inCave) {
-		disp.m_inCave = true;
+	if (mScreenMgr->mInCave) {
+		disp.mInCave = true;
 	} else {
-		disp.m_inCave = false;
+		disp.mInCave = false;
 	}
 
-	if (disp.m_totalPokos >= 10000) {
+	if (disp.mTotalPokos >= 10000) {
 		disp._28 = 1;
 	} else {
 		disp._28 = 0;
 	}
 
 	if (disp._28) {
-		disp.m_kanteiType = 1;
+		disp.mKanteiType = 1;
 	} else {
-		disp.m_kanteiType = 0;
+		disp.mKanteiType = 0;
 	}
 
 	SetSceneArg arg(SCENE_KANTEI_DEMO, &disp, 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		PSPause_StartMenuOn();
 	} else {
 		JUT_PANICLINE(1142, "fail to open Kantei!\n");
@@ -585,9 +585,9 @@ void Game2DMgr::open_Kantei(og::Screen::DispMemberKantei& disp)
  */
 void Game2DMgr::close_Kantei()
 {
-	if (m_screenMgr->getSceneType() == SCENE_KANTEI_DEMO) {
-		if (m_screenMgr->setBackupScene()) {
-			m_screenMgr->startScene(nullptr);
+	if (mScreenMgr->getSceneType() == SCENE_KANTEI_DEMO) {
+		if (mScreenMgr->setBackupScene()) {
+			mScreenMgr->startScene(nullptr);
 			PSPause_StartMenuOff();
 		} else {
 			JUT_PANICLINE(1167, "call to OG san");
@@ -603,8 +603,8 @@ void Game2DMgr::close_Kantei()
 bool Game2DMgr::update_Kantei()
 {
 	bool ret                           = true;
-	og::Screen::DispMemberKantei* disp = static_cast<og::Screen::DispMemberKantei*>(m_screenMgr->getDispMember());
-	if (disp && disp->isID(OWNER_OGA, MEMBER_KANTEI) && disp->m_isDone) {
+	og::Screen::DispMemberKantei* disp = static_cast<og::Screen::DispMemberKantei*>(mScreenMgr->getDispMember());
+	if (disp && disp->isID(OWNER_OGA, MEMBER_KANTEI) && disp->mIsDone) {
 		ret = false;
 	}
 	return ret;
@@ -618,8 +618,8 @@ bool Game2DMgr::update_Kantei()
 void Game2DMgr::open_SpecialItem(og::Screen::DispMemberSpecialItem& disp)
 {
 	SetSceneArg arg(SCENE_SPECIAL_ITEM, &disp, 0, true);
-	m_screenMgr->setScene(arg);
-	m_screenMgr->startScene(nullptr);
+	mScreenMgr->setScene(arg);
+	mScreenMgr->startScene(nullptr);
 	PSPause_StartMenuOn();
 }
 
@@ -630,9 +630,9 @@ void Game2DMgr::open_SpecialItem(og::Screen::DispMemberSpecialItem& disp)
  */
 void Game2DMgr::close_SpecialItem()
 {
-	if (m_screenMgr->getSceneType() == SCENE_SPECIAL_ITEM) {
-		if (m_screenMgr->setBackupScene()) {
-			m_screenMgr->startScene(nullptr);
+	if (mScreenMgr->getSceneType() == SCENE_SPECIAL_ITEM) {
+		if (mScreenMgr->setBackupScene()) {
+			mScreenMgr->startScene(nullptr);
 			PSPause_StartMenuOff();
 		} else {
 			JUT_PANICLINE(1223, "call to OG san");
@@ -649,8 +649,8 @@ void Game2DMgr::open_Floor(og::Screen::DispMemberFloor& disp)
 {
 	SetSceneArg arg(SCENE_FLOOR, &disp, 0, true);
 	arg._08 = 1; // probably proof the last two arguments dont belong in the ctor
-	m_screenMgr->setScene(arg);
-	m_screenMgr->startScene(nullptr);
+	mScreenMgr->setScene(arg);
+	mScreenMgr->startScene(nullptr);
 }
 
 /*
@@ -660,10 +660,10 @@ void Game2DMgr::open_Floor(og::Screen::DispMemberFloor& disp)
  */
 void Game2DMgr::close_Floor()
 {
-	if (m_screenMgr->getSceneType() == SCENE_FLOOR) {
+	if (mScreenMgr->getSceneType() == SCENE_FLOOR) {
 		EndSceneArg arg;
 		arg._04 = 1;
-		m_screenMgr->endScene(&arg);
+		mScreenMgr->endScene(&arg);
 	}
 }
 
@@ -674,11 +674,11 @@ void Game2DMgr::close_Floor()
  */
 void Game2DMgr::set_FloorVS_LoadEnd()
 {
-	if (m_screenMgr->getSceneType() == SCENE_FLOOR) {
-		og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(m_screenMgr->getDispMember());
-		disp->m_enableButton              = true;
-		if (m_screenMgr) {
-			m_screenMgr->setDispMember(disp);
+	if (mScreenMgr->getSceneType() == SCENE_FLOOR) {
+		og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(mScreenMgr->getDispMember());
+		disp->mEnableButton               = true;
+		if (mScreenMgr) {
+			mScreenMgr->setDispMember(disp);
 		}
 	}
 }
@@ -690,9 +690,9 @@ void Game2DMgr::set_FloorVS_LoadEnd()
  */
 void Game2DMgr::startCount_Floor()
 {
-	if (m_screenMgr->getSceneType() == SCENE_FLOOR) {
-		og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(m_screenMgr->getDispMember());
-		disp->m_doEnd                     = true;
+	if (mScreenMgr->getSceneType() == SCENE_FLOOR) {
+		og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(mScreenMgr->getDispMember());
+		disp->mDoEnd                      = true;
 	}
 }
 
@@ -703,9 +703,9 @@ void Game2DMgr::startCount_Floor()
  */
 void Game2DMgr::startFadeBG_Floor()
 {
-	if (m_screenMgr->getSceneType() == SCENE_FLOOR) {
-		og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(m_screenMgr->getDispMember());
-		disp->m_doForceEnd                = true;
+	if (mScreenMgr->getSceneType() == SCENE_FLOOR) {
+		og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(mScreenMgr->getDispMember());
+		disp->mDoForceEnd                 = true;
 	}
 }
 
@@ -718,8 +718,8 @@ bool Game2DMgr::open_CourseName(og::Screen::DispMemberCourseName& disp)
 {
 	SetSceneArg arg(SCENE_COURSE_NAME, &disp, 0, true);
 	arg._08 = 1;
-	m_screenMgr->setScene(arg);
-	m_screenMgr->startScene(nullptr);
+	mScreenMgr->setScene(arg);
+	mScreenMgr->startScene(nullptr);
 }
 
 /*
@@ -729,9 +729,9 @@ bool Game2DMgr::open_CourseName(og::Screen::DispMemberCourseName& disp)
  */
 void Game2DMgr::startFadeBG_CourseName()
 {
-	if (m_screenMgr->getSceneType() == SCENE_COURSE_NAME) {
-		og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(m_screenMgr->getDispMember());
-		disp->m_isExiting                      = true;
+	if (mScreenMgr->getSceneType() == SCENE_COURSE_NAME) {
+		og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(mScreenMgr->getDispMember());
+		disp->mIsExiting                       = true;
 	}
 }
 
@@ -742,10 +742,10 @@ void Game2DMgr::startFadeBG_CourseName()
  */
 void Game2DMgr::close_CourseName()
 {
-	if (m_screenMgr->getSceneType() == SCENE_COURSE_NAME) {
+	if (mScreenMgr->getSceneType() == SCENE_COURSE_NAME) {
 		EndSceneArg arg;
 		arg._04 = 1;
-		m_screenMgr->endScene(&arg);
+		mScreenMgr->endScene(&arg);
 	}
 }
 
@@ -756,9 +756,9 @@ void Game2DMgr::close_CourseName()
  */
 void Game2DMgr::startCount_CourseName()
 {
-	if (m_screenMgr->getSceneType() == SCENE_COURSE_NAME) {
-		og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(m_screenMgr->getDispMember());
-		disp->m_isCounting                     = true;
+	if (mScreenMgr->getSceneType() == SCENE_COURSE_NAME) {
+		og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(mScreenMgr->getDispMember());
+		disp->mIsCounting                      = true;
 	}
 }
 
@@ -772,32 +772,32 @@ void Game2DMgr::open_GameOver(GameOverTitle id)
 	switch (id) {
 	case GOTITLE_Default: {
 		SetSceneArg arg(SCENE_PIKMIN_DOWN, nullptr, 0, true);
-		m_screenMgr->setScene(arg);
-		m_screenMgr->startScene(nullptr);
+		mScreenMgr->setScene(arg);
+		mScreenMgr->startScene(nullptr);
 		break;
 	}
 	case GOTITLE_OlimarDown: {
 		SetSceneArg arg(SCENE_ORIMA_DOWN, nullptr, 0, true);
-		m_screenMgr->setScene(arg);
-		m_screenMgr->startScene(nullptr);
+		mScreenMgr->setScene(arg);
+		mScreenMgr->startScene(nullptr);
 		break;
 	}
 	case GOTITLE_LouieDown: {
 		SetSceneArg arg(SCENE_LUJI_DOWN, nullptr, 0, true);
-		m_screenMgr->setScene(arg);
-		m_screenMgr->startScene(nullptr);
+		mScreenMgr->setScene(arg);
+		mScreenMgr->startScene(nullptr);
 		break;
 	}
 	case GOTITLE_PresidentDown: {
 		SetSceneArg arg(SCENE_PRESIDENT_DOWN, nullptr, 0, true);
-		m_screenMgr->setScene(arg);
-		m_screenMgr->startScene(nullptr);
+		mScreenMgr->setScene(arg);
+		mScreenMgr->startScene(nullptr);
 		break;
 	}
 	case GOTITLE_PikminZero: {
 		SetSceneArg arg(SCENE_ZUKAN_ENEMY, nullptr, 0, true); // I think this scene enum may be sus
-		m_screenMgr->setScene(arg);
-		m_screenMgr->startScene(nullptr);
+		mScreenMgr->setScene(arg);
+		mScreenMgr->startScene(nullptr);
 		break;
 	}
 	}
@@ -810,19 +810,19 @@ void Game2DMgr::open_GameOver(GameOverTitle id)
  */
 void Game2DMgr::close_GameOver()
 {
-	switch (m_screenMgr->getSceneType()) {
+	switch (mScreenMgr->getSceneType()) {
 	case SCENE_ZUKAN_ENEMY:
 	case SCENE_PIKMIN_DOWN: {
-		m_screenMgr->endScene(nullptr);
+		mScreenMgr->endScene(nullptr);
 		break;
 	}
 	case SCENE_ORIMA_DOWN:
 	case SCENE_LUJI_DOWN:
 	case SCENE_PRESIDENT_DOWN: {
-		if (m_screenMgr->setBackupScene()) {
-			m_screenMgr->startScene(nullptr);
+		if (mScreenMgr->setBackupScene()) {
+			mScreenMgr->startScene(nullptr);
 		} else {
-			m_screenMgr->endScene(nullptr);
+			mScreenMgr->endScene(nullptr);
 		}
 	}
 	}
@@ -835,13 +835,13 @@ void Game2DMgr::close_GameOver()
  */
 bool Game2DMgr::open_CaveInMenu(og::Screen::DispMemberAnaDemo& disp)
 {
-	if (m_screenMgr->isAnyReservation()) {
+	if (mScreenMgr->isAnyReservation()) {
 		return false;
 	}
 
-	if (m_screenMgr->getSceneType() == SCENE_GROUND) {
+	if (mScreenMgr->getSceneType() == SCENE_GROUND) {
 		SetSceneArg arg(SCENE_CAVE_IN_MENU, &disp, 0, true);
-		if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+		if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 			PSPause_StartMenuOn();
 			return true;
 		}
@@ -857,14 +857,14 @@ bool Game2DMgr::open_CaveInMenu(og::Screen::DispMemberAnaDemo& disp)
 int Game2DMgr::check_CaveInMenu()
 {
 	int ret;
-	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(m_screenMgr->getDispMember());
+	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(mScreenMgr->getDispMember());
 	if (disp) {
 		if (disp->isID(OWNER_OGA, MEMBER_ANA_DEMO)) {
 			if (disp->_1F) {
 				ret = 0;
 			} else {
 				int ret2 = 2;
-				if (disp->m_selected)
+				if (disp->mSelected)
 					ret2 = 1;
 				ret = ret2;
 				PSPause_StartMenuOff();
@@ -885,13 +885,13 @@ int Game2DMgr::check_CaveInMenu()
  */
 bool Game2DMgr::open_KanketuMenu(og::Screen::DispMemberKanketuMenu& disp)
 {
-	if (m_screenMgr->isAnyReservation()) {
+	if (mScreenMgr->isAnyReservation()) {
 		return false;
 	}
 
-	if (m_screenMgr->getSceneType() == SCENE_CAVE) {
+	if (mScreenMgr->getSceneType() == SCENE_CAVE) {
 		SetSceneArg arg(SCENE_KANKETU_MENU, &disp, 0, true);
-		if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+		if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 			PSPause_StartMenuOn();
 			return true;
 		}
@@ -906,14 +906,14 @@ bool Game2DMgr::open_KanketuMenu(og::Screen::DispMemberKanketuMenu& disp)
  */
 bool Game2DMgr::open_ChallengeKanketuMenu(og::Screen::DispMemberKanketuMenu& disp)
 {
-	if (m_screenMgr->isAnyReservation()) {
+	if (mScreenMgr->isAnyReservation()) {
 		return false;
 	}
 
-	if (m_screenMgr->getSceneType() == SCENE_CHALLENGE_1P || m_screenMgr->getSceneType() == SCENE_CHALLENGE_2P) {
-		disp.m_isChallenge = true;
+	if (mScreenMgr->getSceneType() == SCENE_CHALLENGE_1P || mScreenMgr->getSceneType() == SCENE_CHALLENGE_2P) {
+		disp.mIsChallenge = true;
 		SetSceneArg arg(SCENE_KANKETU_MENU, &disp, 0, true);
-		if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+		if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 			PSPause_StartMenuOn();
 			return true;
 		}
@@ -929,14 +929,14 @@ bool Game2DMgr::open_ChallengeKanketuMenu(og::Screen::DispMemberKanketuMenu& dis
 int Game2DMgr::check_KanketuMenu()
 {
 	int ret;
-	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(m_screenMgr->getDispMember());
+	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(mScreenMgr->getDispMember());
 	if (disp) {
 		if (disp->isID(OWNER_OGA, MEMBER_KANKETU_MENU)) {
 			if (disp->_1F) {
 				ret = 0;
 			} else {
 				int ret2 = 2;
-				if (disp->m_selected)
+				if (disp->mSelected)
 					ret2 = 1;
 				ret = ret2;
 				PSPause_StartMenuOff();
@@ -957,14 +957,14 @@ int Game2DMgr::check_KanketuMenu()
  */
 bool Game2DMgr::open_CaveMoreMenu(og::Screen::DispMemberCaveMore& disp)
 {
-	if (m_screenMgr->isAnyReservation()) {
+	if (mScreenMgr->isAnyReservation()) {
 		return false;
 	}
 
-	if (m_screenMgr->getSceneType() == SCENE_CAVE || m_screenMgr->getSceneType() == SCENE_CHALLENGE_1P
-	    || m_screenMgr->getSceneType() == SCENE_CHALLENGE_2P) {
+	if (mScreenMgr->getSceneType() == SCENE_CAVE || mScreenMgr->getSceneType() == SCENE_CHALLENGE_1P
+	    || mScreenMgr->getSceneType() == SCENE_CHALLENGE_2P) {
 		SetSceneArg arg(SCENE_CAVE_MORE_MENU, &disp, 0, true);
-		if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+		if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 			PSPause_StartMenuOn();
 			return true;
 		}
@@ -980,14 +980,14 @@ bool Game2DMgr::open_CaveMoreMenu(og::Screen::DispMemberCaveMore& disp)
 int Game2DMgr::check_CaveMoreMenu()
 {
 	int ret;
-	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(m_screenMgr->getDispMember());
+	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(mScreenMgr->getDispMember());
 	if (disp) {
 		if (disp->isID(OWNER_OGA, MEMBER_CAVE_MORE)) {
 			if (disp->_1F) {
 				ret = 0;
 			} else {
 				int ret2 = 2;
-				if (disp->m_selected)
+				if (disp->mSelected)
 					ret2 = 1;
 				ret = ret2;
 				PSPause_StartMenuOff();
@@ -1010,7 +1010,7 @@ bool Game2DMgr::open_FinalResult(kh::Screen::DispFinalResult& disp)
 {
 	SetSceneArg arg(SCENE_FINAL_RESULT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
 	arg._08 = 1;
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1023,13 +1023,13 @@ bool Game2DMgr::open_FinalResult(kh::Screen::DispFinalResult& disp)
  */
 int Game2DMgr::check_FinalResult() const
 {
-	if (m_screenMgr->getSceneType() != SCENE_FINAL_RESULT) {
+	if (mScreenMgr->getSceneType() != SCENE_FINAL_RESULT) {
 		return -1;
 	} else {
-		if (!m_screenMgr->getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT)) {
+		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT)) {
 			JUT_PANICLINE(1636, "disp member err");
 		}
-		return reinterpret_cast<kh::Screen::DispFinalResult*>(m_screenMgr->getDispMember())->m_exitStatus;
+		return reinterpret_cast<kh::Screen::DispFinalResult*>(mScreenMgr->getDispMember())->mExitStatus;
 	}
 }
 
@@ -1041,7 +1041,7 @@ int Game2DMgr::check_FinalResult() const
 bool Game2DMgr::open_CaveResult(kh::Screen::DispCaveResult& disp)
 {
 	SetSceneArg arg(SCENE_CAVE_RESULT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1054,13 +1054,13 @@ bool Game2DMgr::open_CaveResult(kh::Screen::DispCaveResult& disp)
  */
 int Game2DMgr::check_CaveResult() const
 {
-	if (m_screenMgr->getSceneType() != SCENE_CAVE_RESULT) {
+	if (mScreenMgr->getSceneType() != SCENE_CAVE_RESULT) {
 		return -1;
 	} else {
-		if (!m_screenMgr->getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT)) {
+		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT)) {
 			JUT_PANICLINE(1656, "disp member err");
 		}
-		return reinterpret_cast<kh::Screen::DispCaveResult*>(m_screenMgr->getDispMember())->m_isFinished;
+		return reinterpret_cast<kh::Screen::DispCaveResult*>(mScreenMgr->getDispMember())->mIsFinished;
 	}
 }
 
@@ -1073,7 +1073,7 @@ bool Game2DMgr::open_DayEndResult(kh::Screen::DispDayEndResult& disp)
 {
 	SetSceneArg arg(SCENE_DAY_END_RESULT_TITL, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
 	arg._08 = 1;
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1086,15 +1086,15 @@ bool Game2DMgr::open_DayEndResult(kh::Screen::DispDayEndResult& disp)
  */
 int Game2DMgr::check_DayEndResult() const
 {
-	if (m_screenMgr->getSceneType() != SCENE_DAY_END_RESULT_ITEM && m_screenMgr->getSceneType() != SCENE_DAY_END_RESULT_INC_P
-	    && m_screenMgr->getSceneType() != SCENE_DAY_END_RESULT_MAIL) {
+	if (mScreenMgr->getSceneType() != SCENE_DAY_END_RESULT_ITEM && mScreenMgr->getSceneType() != SCENE_DAY_END_RESULT_INC_P
+	    && mScreenMgr->getSceneType() != SCENE_DAY_END_RESULT_MAIL) {
 		return -1;
 	}
 
-	if (!m_screenMgr->getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
 		JUT_PANICLINE(1687, "disp member err");
 	}
-	return reinterpret_cast<kh::Screen::DispDayEndResult*>(m_screenMgr->getDispMember())->m_mail._14;
+	return reinterpret_cast<kh::Screen::DispDayEndResult*>(mScreenMgr->getDispMember())->mMail._14;
 }
 
 /*
@@ -1105,7 +1105,7 @@ int Game2DMgr::check_DayEndResult() const
 bool Game2DMgr::open_PayDept(kh::Screen::DispPayDept& disp)
 {
 	SetSceneArg arg(SCENE_PAY_DEPT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1119,7 +1119,7 @@ bool Game2DMgr::open_PayDept(kh::Screen::DispPayDept& disp)
 int Game2DMgr::check_PayDept() const
 {
 	int ret = 0;
-	if (m_screenMgr->getSceneType() == SCENE_PAY_DEPT && m_screenMgr->isSceneFinish()) {
+	if (mScreenMgr->getSceneType() == SCENE_PAY_DEPT && mScreenMgr->isSceneFinish()) {
 		ret = 1;
 	}
 	return ret;
@@ -1133,7 +1133,7 @@ int Game2DMgr::check_PayDept() const
 bool Game2DMgr::open_Save(og::Screen::DispMemberSave& disp)
 {
 	SetSceneArg arg(SCENE_SAVE, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1147,7 +1147,7 @@ bool Game2DMgr::open_Save(og::Screen::DispMemberSave& disp)
 int Game2DMgr::check_Save() const
 {
 	int ret = 0;
-	if (m_screenMgr->getSceneType() == SCENE_SAVE && m_screenMgr->isSceneFinish()) {
+	if (mScreenMgr->getSceneType() == SCENE_SAVE && mScreenMgr->isSceneFinish()) {
 		ret = 1;
 	}
 	return ret;
@@ -1161,7 +1161,7 @@ int Game2DMgr::check_Save() const
 bool Game2DMgr::open_FinalMessage(og::Screen::DispMemberFinalMessage& disp)
 {
 	SetSceneArg arg(SCENE_FINAL_MSG, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1175,10 +1175,10 @@ bool Game2DMgr::open_FinalMessage(og::Screen::DispMemberFinalMessage& disp)
 int Game2DMgr::check_FinalMessage() const
 {
 	int ret = 0;
-	if (m_screenMgr->getSceneType() != SCENE_FINAL_MSG) {
+	if (mScreenMgr->getSceneType() != SCENE_FINAL_MSG) {
 		return -10;
 	}
-	return m_screenMgr->getSceneFinishState();
+	return mScreenMgr->getSceneFinishState();
 }
 
 /*
@@ -1188,8 +1188,8 @@ int Game2DMgr::check_FinalMessage() const
  */
 void Game2DMgr::stopFinalFloorSound()
 {
-	if (m_screenMgr->getSceneType() == SCENE_FINAL_FLOOR) {
-		kh::Screen::SceneFinalFloor* scene = static_cast<kh::Screen::SceneFinalFloor*>(m_screenMgr->m_backupScene);
+	if (mScreenMgr->getSceneType() == SCENE_FINAL_FLOOR) {
+		kh::Screen::SceneFinalFloor* scene = static_cast<kh::Screen::SceneFinalFloor*>(mScreenMgr->mBackupScene);
 		kh::Screen::finalFloorStopSound(scene);
 	}
 }
@@ -1201,8 +1201,8 @@ void Game2DMgr::stopFinalFloorSound()
  */
 void Game2DMgr::restartFinalFloorSound()
 {
-	if (m_screenMgr->getSceneType() == SCENE_FINAL_FLOOR) {
-		kh::Screen::SceneFinalFloor* scene = static_cast<kh::Screen::SceneFinalFloor*>(m_screenMgr->m_backupScene);
+	if (mScreenMgr->getSceneType() == SCENE_FINAL_FLOOR) {
+		kh::Screen::SceneFinalFloor* scene = static_cast<kh::Screen::SceneFinalFloor*>(mScreenMgr->mBackupScene);
 		kh::Screen::finalFloorRestartSound(scene);
 	}
 }
@@ -1214,13 +1214,13 @@ void Game2DMgr::restartFinalFloorSound()
  */
 int Game2DMgr::check_ReadyGo() const
 {
-	if (m_screenMgr->getSceneType() != SCENE_READY_GO) {
+	if (mScreenMgr->getSceneType() != SCENE_READY_GO) {
 		return -1;
 	} else {
-		if (!m_screenMgr->getDispMember()->isID(OWNER_KH, MEMBER_READY_GO)) {
+		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_READY_GO)) {
 			JUT_PANICLINE(1766, "disp member err");
 		}
-		return reinterpret_cast<kh::Screen::DispReadyGo*>(m_screenMgr->getDispMember())->m_status;
+		return reinterpret_cast<kh::Screen::DispReadyGo*>(mScreenMgr->getDispMember())->mStatus;
 	}
 }
 
@@ -1232,7 +1232,7 @@ int Game2DMgr::check_ReadyGo() const
 bool Game2DMgr::open_WinLoseReason(kh::Screen::DispWinLoseReason& disp)
 {
 	SetSceneArg arg(SCENE_WIN_LOSE_REASON, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1246,12 +1246,12 @@ bool Game2DMgr::open_WinLoseReason(kh::Screen::DispWinLoseReason& disp)
 int Game2DMgr::check_WinLoseReason() const
 {
 	int ret;
-	if (m_screenMgr->getSceneType() != SCENE_WIN_LOSE_REASON) {
+	if (mScreenMgr->getSceneType() != SCENE_WIN_LOSE_REASON) {
 		ret = 0;
 	} else {
 		ret                                   = 0;
-		kh::Screen::SceneWinLoseReason* scene = reinterpret_cast<kh::Screen::SceneWinLoseReason*>(m_screenMgr->m_backupScene);
-		if (scene->m_done[0] && scene->m_done[1]) {
+		kh::Screen::SceneWinLoseReason* scene = reinterpret_cast<kh::Screen::SceneWinLoseReason*>(mScreenMgr->mBackupScene);
+		if (scene->mDone[0] && scene->mDone[1]) {
 			ret = 1;
 		}
 	}
@@ -1266,7 +1266,7 @@ int Game2DMgr::check_WinLoseReason() const
 bool Game2DMgr::open_WinLose(kh::Screen::DispWinLose& disp)
 {
 	SetSceneArg arg(SCENE_WIN_LOSE, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1279,13 +1279,13 @@ bool Game2DMgr::open_WinLose(kh::Screen::DispWinLose& disp)
  */
 int Game2DMgr::check_WinLose() const
 {
-	if (m_screenMgr->getSceneType() != SCENE_WIN_LOSE) {
+	if (mScreenMgr->getSceneType() != SCENE_WIN_LOSE) {
 		return -1;
 	} else {
-		if (!m_screenMgr->getDispMember()->isID(OWNER_KH, MEMBER_WIN_LOSE)) {
+		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_WIN_LOSE)) {
 			JUT_PANICLINE(1801, "disp member err");
 		}
-		return reinterpret_cast<kh::Screen::DispWinLose*>(m_screenMgr->getDispMember())->_0C;
+		return reinterpret_cast<kh::Screen::DispWinLose*>(mScreenMgr->getDispMember())->_0C;
 	}
 }
 
@@ -1298,7 +1298,7 @@ bool Game2DMgr::open_TimeUp1P()
 {
 	kh::Screen::DispWinLose disp(Timeup1P, 1);
 	SetSceneArg arg(SCENE_WIN_LOSE, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1313,7 +1313,7 @@ bool Game2DMgr::open_TimeUp2P()
 {
 	kh::Screen::DispWinLose disp(Timeup2P, 1);
 	SetSceneArg arg(SCENE_WIN_LOSE, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		return true;
 	}
 	return false;
@@ -1326,13 +1326,13 @@ bool Game2DMgr::open_TimeUp2P()
  */
 bool Game2DMgr::open_Contena(og::Screen::DispMemberContena& disp)
 {
-	if (m_screenMgr->isAnyReservation())
+	if (mScreenMgr->isAnyReservation())
 		return false;
 	if (checkDayEnd(0.08f))
 		return false;
 
 	SceneType id = (SceneType)0;
-	switch (disp.m_onyonID) {
+	switch (disp.mOnyonID) {
 	case ONYON_TYPE_BLUE:
 		id = SCENE_CONTENA_BLUE;
 		break;
@@ -1350,8 +1350,8 @@ bool Game2DMgr::open_Contena(og::Screen::DispMemberContena& disp)
 		break;
 	}
 	SetSceneArg arg(id, &disp, 0, true);
-	if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
-		switch (disp.m_onyonID) {
+	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
+		switch (disp.mOnyonID) {
 		case ONYON_TYPE_BLUE:
 		case ONYON_TYPE_RED:
 		case ONYON_TYPE_YELLOW:
@@ -1371,11 +1371,11 @@ bool Game2DMgr::open_Contena(og::Screen::DispMemberContena& disp)
 int Game2DMgr::check_Contena()
 {
 	int ret      = -1;
-	SceneType id = m_screenMgr->getSceneType();
+	SceneType id = mScreenMgr->getSceneType();
 	if ((u32)(id + ~SCENE_FLOOR) <= 3 || id == SCENE_CONTENA_PURPLE) {
-		og::Screen::DispMemberContena* disp = static_cast<og::Screen::DispMemberContena*>(m_screenMgr->getDispMember());
+		og::Screen::DispMemberContena* disp = static_cast<og::Screen::DispMemberContena*>(mScreenMgr->getDispMember());
 		if (disp->isID(OWNER_OGA, MEMBER_CONTENA)) {
-			switch (disp->m_state) {
+			switch (disp->mState) {
 			case 3:
 				ret = 1;
 				break;
@@ -1404,11 +1404,11 @@ int Game2DMgr::check_Contena()
 int Game2DMgr::result_Contena()
 {
 	int ret      = 0;
-	SceneType id = m_screenMgr->getSceneType();
+	SceneType id = mScreenMgr->getSceneType();
 	if ((u32)(id + ~SCENE_FLOOR) <= 3 || id == SCENE_CONTENA_PURPLE) {
-		og::Screen::DispMemberContena* disp = static_cast<og::Screen::DispMemberContena*>(m_screenMgr->getDispMember());
+		og::Screen::DispMemberContena* disp = static_cast<og::Screen::DispMemberContena*>(mScreenMgr->getDispMember());
 		if (disp->isID(OWNER_OGA, MEMBER_CONTENA)) {
-			ret = disp->m_result;
+			ret = disp->mResult;
 		}
 	} else {
 		JUT_PANICLINE(1937, "Illegal call.\n");
@@ -1423,33 +1423,33 @@ int Game2DMgr::result_Contena()
  */
 bool Game2DMgr::open_UfoMenu(og::Screen::DispMemberUfoGroup& disp)
 {
-	if (m_screenMgr->isAnyReservation())
+	if (mScreenMgr->isAnyReservation())
 		return false;
 	if (checkDayEnd(0.08f))
 		return false;
-	if (disp.m_hasWhite && disp.m_hasPurple) {
-		disp.m_contena1._2C = 1;
-		disp.m_contena2._2C = 1;
+	if (disp.mHasWhite && disp.mHasPurple) {
+		disp.mContena1._2C = 1;
+		disp.mContena2._2C = 1;
 		SetSceneArg arg(SCENE_UFO_MENU, &disp, 0, true);
-		if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+		if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 			PSPause_StartMenuOn();
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_OPEN, 0);
 			return true;
 		}
 	} else {
-		if (disp.m_hasWhite) {
-			disp.m_contena1._2C          = 0;
-			disp.m_ufoMenu.m_contenaType = 1;
+		if (disp.mHasWhite) {
+			disp.mContena1._2C         = 0;
+			disp.mUfoMenu.mContenaType = 1;
 			SetSceneArg arg(SCENE_CONTENA_WHITE, &disp, 0, true);
-			if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+			if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 				PSPause_StartMenuOn();
 				return true;
 			}
-		} else if (disp.m_hasPurple) {
-			disp.m_contena2._2C          = 0;
-			disp.m_ufoMenu.m_contenaType = 2;
+		} else if (disp.mHasPurple) {
+			disp.mContena2._2C         = 0;
+			disp.mUfoMenu.mContenaType = 2;
 			SetSceneArg arg(SCENE_CONTENA_PURPLE, &disp, 0, true);
-			if (m_screenMgr->setScene(arg) && m_screenMgr->startScene(nullptr)) {
+			if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 				PSPause_StartMenuOn();
 				return true;
 			}
@@ -1466,10 +1466,10 @@ bool Game2DMgr::open_UfoMenu(og::Screen::DispMemberUfoGroup& disp)
 int Game2DMgr::check_UfoMenu()
 {
 	int ret                              = 0;
-	og::Screen::DispMemberUfoGroup* disp = static_cast<og::Screen::DispMemberUfoGroup*>(m_screenMgr->getDispMember());
-	switch (m_screenMgr->getSceneType()) {
+	og::Screen::DispMemberUfoGroup* disp = static_cast<og::Screen::DispMemberUfoGroup*>(mScreenMgr->getDispMember());
+	switch (mScreenMgr->getSceneType()) {
 	case SCENE_UFO_MENU: {
-		if (!disp->m_ufoMenu.m_contenaType) {
+		if (!disp->mUfoMenu.mContenaType) {
 			ret = 1;
 			PSPause_StartMenuOff();
 		} else {
@@ -1478,14 +1478,14 @@ int Game2DMgr::check_UfoMenu()
 		break;
 	}
 	case SCENE_CONTENA_WHITE: {
-		switch (disp->m_contena1.m_state) {
+		switch (disp->mContena1.mState) {
 		case 4: {
 			ret = 2;
 			PSPause_StartMenuOff();
 			break;
 		}
 		case 3: {
-			if (disp->m_contena1._2C) {
+			if (disp->mContena1._2C) {
 				ret = 0;
 			} else {
 				ret = 1;
@@ -1500,14 +1500,14 @@ int Game2DMgr::check_UfoMenu()
 		break;
 	}
 	case SCENE_CONTENA_PURPLE: {
-		switch (disp->m_contena2.m_state) {
+		switch (disp->mContena2.mState) {
 		case 4: {
 			ret = 2;
 			PSPause_StartMenuOff();
 			break;
 		}
 		case 3: {
-			if (disp->m_contena2._2C) {
+			if (disp->mContena2._2C) {
 				ret = 0;
 			} else {
 				ret = 1;
@@ -1532,16 +1532,16 @@ int Game2DMgr::check_UfoMenu()
  */
 void Game2DMgr::result_UfoMenu(int* ret1, int* ret2)
 {
-	og::Screen::DispMemberUfoGroup* disp = static_cast<og::Screen::DispMemberUfoGroup*>(m_screenMgr->getDispMember());
-	switch (m_screenMgr->getSceneType()) {
+	og::Screen::DispMemberUfoGroup* disp = static_cast<og::Screen::DispMemberUfoGroup*>(mScreenMgr->getDispMember());
+	switch (mScreenMgr->getSceneType()) {
 	case SCENE_CONTENA_WHITE: {
-		*ret1 = disp->m_contena1.m_result;
+		*ret1 = disp->mContena1.mResult;
 		*ret2 = 0;
 		break;
 	}
 	case SCENE_CONTENA_PURPLE: {
 		*ret1 = 0;
-		*ret2 = disp->m_contena2.m_result;
+		*ret2 = disp->mContena2.mResult;
 		break;
 	}
 	}
@@ -1555,8 +1555,8 @@ void Game2DMgr::result_UfoMenu(int* ret1, int* ret2)
 bool Game2DMgr::open_ZukanEnemy(Morimura::DispMemberZukanEnemy& disp)
 {
 	SetSceneArg arg(SCENE_ZUKAN_ITEM, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg)) {
-		return m_screenMgr->startScene(nullptr);
+	if (mScreenMgr->setScene(arg)) {
+		return mScreenMgr->startScene(nullptr);
 	}
 	return false;
 }
@@ -1569,8 +1569,8 @@ bool Game2DMgr::open_ZukanEnemy(Morimura::DispMemberZukanEnemy& disp)
 bool Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem& disp)
 {
 	SetSceneArg arg(SCENE_HIGH_SCORE, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg)) {
-		return m_screenMgr->startScene(nullptr);
+	if (mScreenMgr->setScene(arg)) {
+		return mScreenMgr->startScene(nullptr);
 	}
 	return false;
 }
@@ -1580,14 +1580,14 @@ bool Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem& disp)
  * Address:	803FF604
  * Size:	000030
  */
-bool Game2DMgr::isZukanEnemy() { return (m_screenMgr->getSceneType() == SCENE_ZUKAN_ITEM); }
+bool Game2DMgr::isZukanEnemy() { return (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM); }
 
 /*
  * --INFO--
  * Address:	803FF634
  * Size:	000030
  */
-bool Game2DMgr::isZukanItem() { return (m_screenMgr->getSceneType() == SCENE_HIGH_SCORE); }
+bool Game2DMgr::isZukanItem() { return (mScreenMgr->getSceneType() == SCENE_HIGH_SCORE); }
 
 /*
  * --INFO--
@@ -1597,10 +1597,10 @@ bool Game2DMgr::isZukanItem() { return (m_screenMgr->getSceneType() == SCENE_HIG
 int Game2DMgr::check_ZukanItemRequest(int& id)
 {
 	int ret = 0;
-	if (m_screenMgr->getSceneType() == SCENE_HIGH_SCORE) {
-		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
+	if (mScreenMgr->getSceneType() == SCENE_HIGH_SCORE) {
+		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		if (scene) {
-			Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+			Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 			ret                       = (obj) ? obj->checkRequest(id) : 0;
 		}
 	}
@@ -1615,10 +1615,10 @@ int Game2DMgr::check_ZukanItemRequest(int& id)
 int Game2DMgr::check_ZukanEnemyRequest(int& id)
 {
 	int ret = 0;
-	if (m_screenMgr->getSceneType() == SCENE_ZUKAN_ITEM) {
-		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
+	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM) {
+		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		if (scene) {
-			Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+			Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 			ret                       = (obj) ? obj->checkRequest(id) : 0;
 		}
 	}
@@ -1633,10 +1633,10 @@ int Game2DMgr::check_ZukanEnemyRequest(int& id)
 int Game2DMgr::getZukanEnemyCurrSelectId()
 {
 	int ret = -1;
-	if (m_screenMgr->getSceneType() == SCENE_ZUKAN_ITEM) {
-		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
+	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM) {
+		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2195, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->getCurrSelectId() : -1;
 	}
 	return ret;
@@ -1650,10 +1650,10 @@ int Game2DMgr::getZukanEnemyCurrSelectId()
 int Game2DMgr::getZukanItemCurrSelectId()
 {
 	int ret = -1;
-	if (m_screenMgr->getSceneType() == SCENE_HIGH_SCORE) {
-		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
+	if (mScreenMgr->getSceneType() == SCENE_HIGH_SCORE) {
+		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2210, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->getCurrSelectId() : -1;
 	}
 	return ret;
@@ -1666,18 +1666,18 @@ int Game2DMgr::getZukanItemCurrSelectId()
  */
 void Game2DMgr::requireZukanRequest()
 {
-	SceneType id = m_screenMgr->getSceneType();
+	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_HIGH_SCORE) {
-		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2227, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireRequest();
 		}
 	} else if (id == SCENE_ZUKAN_ITEM) {
-		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2233, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireRequest();
 		}
@@ -1691,18 +1691,18 @@ void Game2DMgr::requireZukanRequest()
  */
 void Game2DMgr::requireZukanEffectOff()
 {
-	SceneType id = m_screenMgr->getSceneType();
+	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_HIGH_SCORE) {
-		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2247, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireEffectOff();
 		}
 	} else if (id == SCENE_ZUKAN_ITEM) {
-		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2253, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireEffectOff();
 		}
@@ -1717,17 +1717,17 @@ void Game2DMgr::requireZukanEffectOff()
 bool Game2DMgr::isZukanEnlargedWindow()
 {
 	bool ret     = false;
-	SceneType id = m_screenMgr->getSceneType();
+	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_HIGH_SCORE) {
-		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2270, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isEnlargedWindow() : false;
 
 	} else if (id == SCENE_ZUKAN_ITEM) {
-		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2277, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isEnlargedWindow() : false;
 	}
 	return ret;
@@ -1741,17 +1741,17 @@ bool Game2DMgr::isZukanEnlargedWindow()
 bool Game2DMgr::isZukanMemoWindow()
 {
 	bool ret     = false;
-	SceneType id = m_screenMgr->getSceneType();
+	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_HIGH_SCORE) {
-		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2298, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isMemoWindow() : false;
 
 	} else if (id == SCENE_ZUKAN_ITEM) {
-		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2305, scene);
-		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
+		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isMemoWindow() : false;
 	}
 	return ret;
@@ -1765,13 +1765,13 @@ bool Game2DMgr::isZukanMemoWindow()
 bool Game2DMgr::isAppearConfirmWindow()
 {
 	bool ret     = false;
-	SceneType id = m_screenMgr->getSceneType();
+	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_HIGH_SCORE) {
-		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2345, scene);
 		ret = scene->isAppearConfirmWindow();
 	} else if (id == SCENE_ZUKAN_ITEM) {
-		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
+		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2352, scene);
 		ret = scene->isAppearConfirmWindow();
 	}
@@ -1786,8 +1786,8 @@ bool Game2DMgr::isAppearConfirmWindow()
 bool Game2DMgr::open_ChallengeSelect(Morimura::DispMemberChallengeSelect& disp)
 {
 	SetSceneArg arg(SCENE_CHALLENGE_RESULT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg)) {
-		return m_screenMgr->startScene(nullptr);
+	if (mScreenMgr->setScene(arg)) {
+		return mScreenMgr->startScene(nullptr);
 	}
 	return false;
 }
@@ -1802,11 +1802,11 @@ int Game2DMgr::check_ChallengeSelect(int& ret1, int& ret2)
 	ret1 = -1;
 	ret2 = 0;
 
-	Morimura::DispMemberChallengeSelect* disp = reinterpret_cast<Morimura::DispMemberChallengeSelect*>(m_screenMgr->getDispMember());
+	Morimura::DispMemberChallengeSelect* disp = reinterpret_cast<Morimura::DispMemberChallengeSelect*>(mScreenMgr->getDispMember());
 
 	if (disp->_1C == 3) {
-		ret1 = disp->m_stageNumber;
-		ret2 = disp->m_playType;
+		ret1 = disp->mStageNumber;
+		ret2 = disp->mPlayType;
 	}
 	return disp->_1C;
 }
@@ -1819,8 +1819,8 @@ int Game2DMgr::check_ChallengeSelect(int& ret1, int& ret2)
 bool Game2DMgr::open_ChallengeResult(Morimura::DispMemberChallengeResult& disp)
 {
 	SetSceneArg arg(SCENE_VS_SELECT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg)) {
-		return m_screenMgr->startScene(nullptr);
+	if (mScreenMgr->setScene(arg)) {
+		return mScreenMgr->startScene(nullptr);
 	}
 	return false;
 }
@@ -1832,7 +1832,7 @@ bool Game2DMgr::open_ChallengeResult(Morimura::DispMemberChallengeResult& disp)
  */
 bool Game2DMgr::isEndChallengeResult()
 {
-	Morimura::DispMemberChallengeResult* disp = reinterpret_cast<Morimura::DispMemberChallengeResult*>(m_screenMgr->getDispMember());
+	Morimura::DispMemberChallengeResult* disp = reinterpret_cast<Morimura::DispMemberChallengeResult*>(mScreenMgr->getDispMember());
 	u8 ret                                    = (2 == disp->_10);
 	return ret;
 }
@@ -1845,8 +1845,8 @@ bool Game2DMgr::isEndChallengeResult()
 bool Game2DMgr::open_VsSelect(Morimura::DispMemberVsSelect& disp)
 {
 	SetSceneArg arg(SCENE_SOMETHINGISBROKENHERE, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg)) {
-		return m_screenMgr->startScene(nullptr);
+	if (mScreenMgr->setScene(arg)) {
+		return mScreenMgr->startScene(nullptr);
 	}
 	return false;
 }
@@ -1860,12 +1860,12 @@ u32 Game2DMgr::check_VsSelect(int& ret1, int& ret2, int& ret3)
 {
 	ret1 = -1;
 
-	Morimura::DispMemberVsSelect* disp = reinterpret_cast<Morimura::DispMemberVsSelect*>(m_screenMgr->getDispMember());
+	Morimura::DispMemberVsSelect* disp = reinterpret_cast<Morimura::DispMemberVsSelect*>(mScreenMgr->getDispMember());
 
 	if (disp->_34 == 3) {
-		ret1 = disp->m_selectedStageIndex;
-		ret2 = disp->m_olimarHandicap;
-		ret3 = disp->m_louieHandicap;
+		ret1 = disp->mSelectedStageIndex;
+		ret2 = disp->mOlimarHandicap;
+		ret3 = disp->mLouieHandicap;
 	}
 	return disp->_34;
 }
@@ -1878,8 +1878,8 @@ u32 Game2DMgr::check_VsSelect(int& ret1, int& ret2, int& ret3)
 bool Game2DMgr::open_HighScore(Morimura::DispMemberHighScore& disp)
 {
 	SetSceneArg arg(SCENE_CHALLENGE_SELECT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
-	if (m_screenMgr->setScene(arg)) {
-		return m_screenMgr->startScene(nullptr);
+	if (mScreenMgr->setScene(arg)) {
+		return mScreenMgr->startScene(nullptr);
 	}
 	return false;
 }
@@ -1892,9 +1892,9 @@ bool Game2DMgr::open_HighScore(Morimura::DispMemberHighScore& disp)
 bool Game2DMgr::isEndHighScore()
 {
 	bool ret;
-	SceneType id = m_screenMgr->getSceneType();
+	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_CHALLENGE_SELECT) {
-		Morimura::DispMemberHighScore* disp = reinterpret_cast<Morimura::DispMemberHighScore*>(m_screenMgr->getDispMember());
+		Morimura::DispMemberHighScore* disp = reinterpret_cast<Morimura::DispMemberHighScore*>(mScreenMgr->getDispMember());
 		ret                                 = disp->_0C;
 		disp->_0C                           = false;
 		return ret;
@@ -1910,10 +1910,10 @@ bool Game2DMgr::isEndHighScore()
 bool Game2DMgr::drawKanteiMsg(Graphics& gfx)
 {
 	bool ret     = false;
-	SceneType id = m_screenMgr->getSceneType();
+	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_KANTEI_DEMO) {
-		og::newScreen::KanteiDemo* scene = static_cast<og::newScreen::KanteiDemo*>(m_screenMgr->m_backupScene);
-		og::newScreen::ObjKantei* obj    = static_cast<og::newScreen::ObjKantei*>(scene->m_objBase);
+		og::newScreen::KanteiDemo* scene = static_cast<og::newScreen::KanteiDemo*>(mScreenMgr->mBackupScene);
+		og::newScreen::ObjKantei* obj    = static_cast<og::newScreen::ObjKantei*>(scene->mObjBase);
 		if (obj) {
 			obj->doDrawMsg(gfx);
 		}
@@ -1932,11 +1932,11 @@ bool Game2DMgr::checkDayEnd(f32 min) const
 	if (!Game::gameSystem)
 		return false;
 
-	Game::TimeMgr* mgr = Game::gameSystem->m_timeMgr;
+	Game::TimeMgr* mgr = Game::gameSystem->mTimeMgr;
 	f32 ratio          = mgr->getSunGaugeRatio();
-	f32 factor         = mgr->m_parms.parms.m_dayStartTime;
+	f32 factor         = mgr->mParms.parms.mDayStartTime;
 	return ((1.0f - ratio)
-	        / (1.0f - ((mgr->m_parms.parms.m_countdownTime.m_value - factor) / (mgr->m_parms.parms.m_dayEndTime.m_value - factor))))
+	        / (1.0f - ((mgr->mParms.parms.mCountdownTime.mValue - factor) / (mgr->mParms.parms.mDayEndTime.mValue - factor))))
 	     < min;
 }
 

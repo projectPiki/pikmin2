@@ -47,18 +47,18 @@ struct OBB : public CNode {
 	void traceMoveTriList_new_global(Game::MoveInfo&, VertexTable&, TriangleTable&, int&, Triangle**, f32*, Vector3f*);
 	void traceMove_new_global(Game::MoveInfo&, VertexTable&, TriangleTable&, int&, Triangle**, f32*, Vector3f*);
 
-	bool isLeaf() { return (!m_halfA && !m_halfB); }
+	bool isLeaf() { return (!mHalfA && !mHalfB); }
 
-	Plane m_sidePlanes[6];       // _18
-	Vector3f m_position;         // _78
-	Vector3f m_axes[3];          // _84
-	f32 m_minXYZ[3];             // _A8
-	f32 m_maxXYZ[3];             // _B4
-	OBB* m_halfA;                // _C0
-	OBB* m_halfB;                // _C4
-	Plane m_divPlane;            // _C8
-	TriIndexList m_triIndexList; // _D8
-	Sphere m_sphere;             // _100
+	Plane mSidePlanes[6];       // _18
+	Vector3f mPosition;         // _78
+	Vector3f mAxes[3];          // _84
+	f32 mMinXYZ[3];             // _A8
+	f32 mMaxXYZ[3];             // _B4
+	OBB* mHalfA;                // _C0
+	OBB* mHalfB;                // _C4
+	Plane mDivPlane;            // _C8
+	TriIndexList mTriIndexList; // _D8
+	Sphere mSphere;             // _100
 };
 } // namespace Sys
 

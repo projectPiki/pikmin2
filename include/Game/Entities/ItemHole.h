@@ -32,7 +32,7 @@ struct InitArg : public CreatureInitArg {
 	}
 
 	// _00 = VTBL
-	int m_initialState; // _04
+	int mInitialState; // _04
 };
 
 /**
@@ -66,12 +66,12 @@ struct Item : public CFSMItem {
 
 	// _00      = VTBL
 	// _00-_1E0 = CFSMItem
-	efx::WarpZone* _1E0;        // _1E0
-	ItemBarrel::Item* m_barrel; // _1E4
-	f32 m_faceDirection;        // _1E8
-	f32 _1EC;                   // _1EC
-	PlatInstance* _1F0;         // _1F0
-	PlatInstance* _1F4;         // _1F4
+	efx::WarpZone* _1E0;       // _1E0
+	ItemBarrel::Item* mBarrel; // _1E4
+	f32 mFaceDirection;        // _1E8
+	f32 _1EC;                  // _1EC
+	PlatInstance* _1F0;        // _1F0
+	PlatInstance* _1F4;        // _1F4
 };
 
 /**

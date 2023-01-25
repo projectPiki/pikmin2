@@ -8,4 +8,4 @@
  * Size:	000098
  * Fabricated to generate getUseMtxNum weak function.
  */
-void J3DUCountUseMtxNum(J3DModelData* modelData) { modelData->m_shapeTable.m_items[0]->_38[0]->getUseMtxNum(); }
+void J3DUCountUseMtxNum(J3DModelData* modelData) { modelData->mShapeTable.mItems[0]->_38[0]->getUseMtxNum(); }

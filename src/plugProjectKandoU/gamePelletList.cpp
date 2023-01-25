@@ -48,7 +48,7 @@
         .skip 1
     .global lbl_804833A4
     lbl_804833A4:
-        .asciz "item_config.txt"
+        .asciz "itemConfig.txt"
         .4byte lbl_80483350
         .4byte lbl_80483368
         .4byte lbl_8048337C
@@ -111,18 +111,18 @@ struct PelletList {
 
 		inline Mgr()
 		{
-			m_configList = new PelletConfigList[5];
+			mConfigList = new PelletConfigList[5];
 			loadResource();
 		}
 		virtual ~Mgr();
 
-		PelletConfigList* m_configList; // _04
+		PelletConfigList* mConfigList; // _04
 
 		static Mgr* mInstance;
 	};
 };
 
-#define DICT_OTAKARA mInstance->m_configList[ITEM].m_configCnt + mInstance->m_configList[OTAKARA].m_configCnt
+#define DICT_OTAKARA mInstance->mConfigList[ITEM].mConfigCnt + mInstance->mConfigList[OTAKARA].mConfigCnt
 
 PelletList::Mgr* PelletList::Mgr::mInstance;
 
@@ -140,7 +140,7 @@ inline void checkKindValidity(PelletList::cKind kind)
 PelletConfigList* PelletList::Mgr::getConfigList(PelletList::cKind kind)
 {
 	checkKindValidity(kind);
-	return &PelletList::Mgr::mInstance->m_configList[kind];
+	return &PelletList::Mgr::mInstance->mConfigList[kind];
 }
 
 /*
@@ -152,8 +152,8 @@ s32 PelletList::Mgr::getCount(PelletList::cKind kind)
 {
 	checkKindValidity(kind);
 
-	PelletConfigList& list = PelletList::Mgr::mInstance->m_configList[kind];
-	return list.m_configCnt;
+	PelletConfigList& list = PelletList::Mgr::mInstance->mConfigList[kind];
+	return list.mConfigCnt;
 }
 
 /*
@@ -173,7 +173,7 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config, PelletList::cKind&
 		isValid  = kind >= 0 && kindCopy < 5;
 		P2ASSERTLINE(16, isValid);
 
-		PelletConfig* list = PelletList::Mgr::mInstance->m_configList[kindCopy].getPelletConfig(config);
+		PelletConfig* list = PelletList::Mgr::mInstance->mConfigList[kindCopy].getPelletConfig(config);
 		if (list) {
 			return list;
 		}
@@ -187,7 +187,7 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config, PelletList::cKind&
  * Address:	80227F00
  * Size:	000070
  */
-PelletList::Mgr::~Mgr() { delete[] m_configList; }
+PelletList::Mgr::~Mgr() { delete[] mConfigList; }
 
 // /*
 //  * --INFO--
@@ -198,9 +198,9 @@ static int gLoadedPelletData;
 void PelletList::Mgr::loadResource()
 {
 	JKRArchive* archive;
-	if (Game::gGameConfig.m_parms.m_pelletMultiLang.m_data != 0) {
+	if (Game::gGameConfig.mParms.mPelletMultiLang.mData != 0) {
 		char pathBuffer[0x200];
-		switch ((uint)sys->m_region) {
+		switch ((uint)sys->mRegion) {
 		case System::LANG_FRENCH:
 		case System::LANG_GERMAN:
 		case System::LANG_ITALIAN:
@@ -229,17 +229,16 @@ void PelletList::Mgr::loadResource()
 	}
 	JUT_ASSERTLINE(154, archive != nullptr, "no pelletlist.szs\n");
 
-	const char* configs[]
-	    = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt", "otakara_config.txt", "item_config.txt" };
+	const char* configs[] = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt", "otakara_config.txt", "itemConfig.txt" };
 	for (int i = 0; i < 5; i++) {
 		void* data = archive->getResource(configs[i]);
 		JUT_ASSERTLINE(168, data != nullptr, "no config file [%s]\n", configs[i]);
 		RamStream stream(data, -1);
-		stream.m_mode = STREAM_MODE_TEXT;
-		if (stream.m_mode == STREAM_MODE_TEXT) {
-			stream.m_tabCount = 0;
+		stream.mMode = STREAM_MODE_TEXT;
+		if (stream.mMode == STREAM_MODE_TEXT) {
+			stream.mTabCount = 0;
 		}
-		m_configList[i].read(stream);
+		mConfigList[i].read(stream);
 	}
 	archive->unmount();
 	// 	/*
@@ -392,8 +391,8 @@ void PelletList::Mgr::loadResource()
  */
 int PelletList::Mgr::getDictionaryNum()
 {
-	int itemCount    = mInstance->m_configList[ITEM].getConfigCount();
-	int otakaraCount = mInstance->m_configList[OTAKARA].getConfigCount();
+	int itemCount    = mInstance->mConfigList[ITEM].getConfigCount();
+	int otakaraCount = mInstance->mConfigList[OTAKARA].getConfigCount();
 	return otakaraCount + itemCount;
 }
 
@@ -406,9 +405,9 @@ PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int dictNo)
 {
 	bool isValid = dictNo >= 0 && dictNo < DICT_OTAKARA;
 	P2ASSERTLINE(188, isValid);
-	PelletConfig* result = mInstance->m_configList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
+	PelletConfig* result = mInstance->mConfigList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
 	if (!result) {
-		result = mInstance->m_configList[ITEM].getPelletConfig_ByDictionaryNo(dictNo);
+		result = mInstance->mConfigList[ITEM].getPelletConfig_ByDictionaryNo(dictNo);
 	}
 	return result;
 }
@@ -421,13 +420,13 @@ PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int dictNo)
 int Game::PelletList::Mgr::getOffsetFromDictionaryNo(int dictNo)
 {
 	int offset           = 0;
-	PelletConfig* config = mInstance->m_configList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
+	PelletConfig* config = mInstance->mConfigList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
 	if (config == nullptr) {
-		offset = mInstance->m_configList[OTAKARA].getConfigCount();
-		config = mInstance->m_configList[ITEM].getPelletConfig_ByDictionaryNo(dictNo);
+		offset = mInstance->mConfigList[OTAKARA].getConfigCount();
+		config = mInstance->mConfigList[ITEM].getPelletConfig_ByDictionaryNo(dictNo);
 	}
 	JUT_ASSERTLINE(210, config != nullptr, "dictNo:%d \n", dictNo);
-	return offset + config->m_params.m_index;
+	return offset + config->mParams.mIndex;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)

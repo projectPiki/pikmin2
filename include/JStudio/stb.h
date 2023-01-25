@@ -23,7 +23,7 @@ struct TParse : JGadget::binary::TParse_header_block {
 	virtual void parseBlock_block(const data::TParse_TBlock&, u32);         // _18
 	virtual void parseBlock_object(const data::TParse_TBlock_object&, u32); // _1C
 
-	TControl* m_control;
+	TControl* mControl;
 };
 
 struct TFactory {

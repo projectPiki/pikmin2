@@ -12,7 +12,7 @@ namespace Screen {
  * Size:	000044
  */
 ScaleMgr::ScaleMgr()
-    : m_state(SCM_Unknown_0)
+    : mState(SCM_Unknown_0)
 {
 	setParam(1.0f, 1.0f, 1.0f);
 }
@@ -24,7 +24,7 @@ ScaleMgr::ScaleMgr()
  */
 void ScaleMgr::up()
 {
-	m_state = SCM_Growing;
+	mState = SCM_Growing;
 	setParam(0.5f, 30.0f, 0.8f);
 	_18 = 0.0f;
 }
@@ -36,7 +36,7 @@ void ScaleMgr::up()
  */
 void ScaleMgr::down()
 {
-	m_state = SCM_Shrinking;
+	mState = SCM_Shrinking;
 	setParam(0.25f, 35.0f, 0.8f);
 	_18 = 0.0f;
 }
@@ -51,9 +51,9 @@ void ScaleMgr::up(f32 p1, f32 periodModifier, f32 durationInSeconds, f32 p4)
 	setParam(p1, periodModifier, durationInSeconds);
 	_18 = p4;
 	if (p4 < 0.01f) {
-		m_state = SCM_Growing;
+		mState = SCM_Growing;
 	} else {
-		m_state = SCM_OtherGrowingMaybe;
+		mState = SCM_OtherGrowingMaybe;
 	}
 }
 
@@ -64,7 +64,7 @@ void ScaleMgr::up(f32 p1, f32 periodModifier, f32 durationInSeconds, f32 p4)
  */
 void ScaleMgr::down(f32 p1, f32 periodModifier, f32 durationInSeconds)
 {
-	m_state = SCM_Shrinking;
+	mState = SCM_Shrinking;
 	setParam(p1, periodModifier, durationInSeconds);
 }
 
@@ -75,11 +75,11 @@ void ScaleMgr::down(f32 p1, f32 periodModifier, f32 durationInSeconds)
  */
 void ScaleMgr::setParam(f32 p1, f32 periodModifier, f32 durationInSeconds)
 {
-	m_elapsedSeconds    = 0.0f;
-	m_scale             = 1.0f;
-	_0C                 = p1;
-	m_periodModifier    = periodModifier;
-	m_durationInSeconds = durationInSeconds;
+	mElapsedSeconds    = 0.0f;
+	mScale             = 1.0f;
+	_0C                = p1;
+	mPeriodModifier    = periodModifier;
+	mDurationInSeconds = durationInSeconds;
 }
 
 /*
@@ -89,49 +89,49 @@ void ScaleMgr::setParam(f32 p1, f32 periodModifier, f32 durationInSeconds)
  */
 f32 ScaleMgr::calc()
 {
-	switch (m_state) {
+	switch (mState) {
 	case SCM_Unknown_0:
-		m_scale = 1.0f;
+		mScale = 1.0f;
 		break;
 
 	case SCM_Growing:
-		m_elapsedSeconds += sys->m_deltaTime;
-		if (m_elapsedSeconds > m_durationInSeconds) {
-			m_state          = SCM_Unknown_0;
-			m_scale          = 1.0f;
-			m_elapsedSeconds = 0.0f;
+		mElapsedSeconds += sys->mDeltaTime;
+		if (mElapsedSeconds > mDurationInSeconds) {
+			mState          = SCM_Unknown_0;
+			mScale          = 1.0f;
+			mElapsedSeconds = 0.0f;
 		} else {
-			f32 sin = pikmin2_sinf(m_elapsedSeconds * m_periodModifier);
-			m_scale = (m_durationInSeconds - m_elapsedSeconds) * (_0C * sin + _0C) + 1.0f;
+			f32 sin = pikmin2_sinf(mElapsedSeconds * mPeriodModifier);
+			mScale  = (mDurationInSeconds - mElapsedSeconds) * (_0C * sin + _0C) + 1.0f;
 		}
 		break;
 
 	case SCM_Shrinking:
-		m_elapsedSeconds += sys->m_deltaTime;
-		if (m_elapsedSeconds > m_durationInSeconds) {
-			m_state          = SCM_Unknown_0;
-			m_scale          = 1.0f;
-			m_elapsedSeconds = 0.0f;
+		mElapsedSeconds += sys->mDeltaTime;
+		if (mElapsedSeconds > mDurationInSeconds) {
+			mState          = SCM_Unknown_0;
+			mScale          = 1.0f;
+			mElapsedSeconds = 0.0f;
 		} else {
-			f32 sin = pikmin2_sinf(m_elapsedSeconds * m_periodModifier);
-			m_scale = -((m_durationInSeconds - m_elapsedSeconds) * (_0C * sin + _0C) - 1.0f);
+			f32 sin = pikmin2_sinf(mElapsedSeconds * mPeriodModifier);
+			mScale  = -((mDurationInSeconds - mElapsedSeconds) * (_0C * sin + _0C) - 1.0f);
 		}
 		break;
 
 	case SCM_OtherGrowingMaybe:
-		m_scale = 1.0f;
-		_18 -= sys->m_deltaTime;
+		mScale = 1.0f;
+		_18 -= sys->mDeltaTime;
 		if (_18 < 0.0f) {
-			m_state = SCM_Growing;
-			_18     = 0.0f;
+			mState = SCM_Growing;
+			_18    = 0.0f;
 		}
 		break;
 
 	default:
-		m_scale = 1.0f;
+		mScale = 1.0f;
 	}
 
-	return m_scale;
+	return mScale;
 }
 
 } // namespace Screen

@@ -21,13 +21,13 @@ bool TOtakaraDive::create(Arg* arg)
 {
 	bool argCheck = strcmp("ArgScale", arg->getName()) == 0;
 	P2ASSERTLINE(123, argCheck);
-	f32 scale = static_cast<ArgScale*>(arg)->m_scale;
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	scale     = scale / 35.0f;
 
 	if (TSimple3::create(arg)) {
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
-		m_emitters[2]->setScale(scale);
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
+		mEmitters[2]->setScale(scale);
 		return true;
 	} else {
 		return false;
@@ -44,12 +44,12 @@ bool TTsuyuGrow0::create(Arg* arg)
 	bool argCheck = strcmp("ArgRotY", arg->getName()) == 0;
 	P2ASSERTLINE(143, argCheck);
 	Matrixf mtxRot;
-	Vector3f pos = arg->m_position;
-	PSMTXRotRad(mtxRot.m_matrix.mtxView, 'y', static_cast<ArgRotY*>(arg)->m_faceDir);
+	Vector3f pos = arg->mPosition;
+	PSMTXRotRad(mtxRot.mMatrix.mtxView, 'y', static_cast<ArgRotY*>(arg)->mFaceDir);
 	mtxRot.setBasis(3, pos);
 
 	if (TSimple1::create(arg)) {
-		JPASetRMtxTVecfromMtx(mtxRot.m_matrix.mtxView, m_emitters[0]->_68, &m_emitters[0]->_A4);
+		JPASetRMtxTVecfromMtx(mtxRot.mMatrix.mtxView, mEmitters[0]->_68, &mEmitters[0]->_A4);
 		return true;
 	} else {
 		return false;
@@ -66,12 +66,12 @@ bool TOtakaraApL::create(Arg* arg)
 	bool argCheck = strcmp("ArgScale", arg->getName()) == 0;
 	P2ASSERTLINE(166, argCheck);
 	ArgScale* argScale = static_cast<ArgScale*>(arg);
-	f32 scale          = argScale->m_scale;
+	f32 scale          = argScale->mScale;
 
 	if (TSimple3::create(argScale)) {
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
-		m_emitters[2]->setScale(scale);
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
+		mEmitters[2]->setScale(scale);
 		return true;
 	} else {
 		return false;
@@ -88,11 +88,11 @@ bool TOtakaraApS::create(Arg* arg)
 	bool argCheck = strcmp("ArgScale", arg->getName()) == 0;
 	P2ASSERTLINE(183, argCheck);
 	ArgScale* argScale = static_cast<ArgScale*>(arg);
-	f32 scale          = argScale->m_scale;
+	f32 scale          = argScale->mScale;
 
 	if (TSimple2::create(argScale)) {
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
 		return true;
 	} else {
 		return false;
@@ -108,8 +108,8 @@ bool TOtakaraAp::create(Arg* arg)
 {
 	bool argCheck = strcmp("ArgScale", arg->getName()) == 0;
 	P2ASSERTLINE(200, argCheck);
-	f32 oldScale = static_cast<ArgScale*>(arg)->m_scale;
-	Vector3f pos = arg->m_position;
+	f32 oldScale = static_cast<ArgScale*>(arg)->mScale;
+	Vector3f pos = arg->mPosition;
 	f32 newScale = oldScale / 35.0f;
 
 	if (oldScale < 35.0f) {
@@ -134,14 +134,14 @@ bool TEgateBC::create(Arg* arg)
 	bool argCheck = strcmp("ArgRotY", arg->getName()) == 0;
 	P2ASSERTLINE(223, argCheck);
 	Matrixf mtxRot;
-	Vector3f pos = arg->m_position;
-	PSMTXRotRad(mtxRot.m_matrix.mtxView, 'y', static_cast<ArgRotY*>(arg)->m_faceDir);
+	Vector3f pos = arg->mPosition;
+	PSMTXRotRad(mtxRot.mMatrix.mtxView, 'y', static_cast<ArgRotY*>(arg)->mFaceDir);
 	mtxRot.setBasis(3, pos);
 
 	if (TForever2::create(arg)) {
-		for (int i = 0; i < (int)ARRAY_SIZE(m_items); i++) {
-			if (m_items[i].m_emitter) {
-				JPASetRMtxTVecfromMtx(mtxRot.m_matrix.mtxView, m_items[i].m_emitter->_68, &m_items[i].m_emitter->_A4);
+		for (int i = 0; i < (int)ARRAY_SIZE(mItems); i++) {
+			if (mItems[i].mEmitter) {
+				JPASetRMtxTVecfromMtx(mtxRot.mMatrix.mtxView, mItems[i].mEmitter->_68, &mItems[i].mEmitter->_A4);
 			}
 		}
 		return true;
@@ -179,7 +179,7 @@ bool TKouhaiDamage::create(Arg* arg)
 			break;
 		}
 
-		m_emitters[0]->setScale(scale.x, scale.y);
+		mEmitters[0]->setScale(scale.x, scale.y);
 
 		return true;
 	} else {
@@ -290,18 +290,18 @@ bool TPelkira_ver01::create(Arg* arg)
 
 	ArgPelType* argpel = static_cast<ArgPelType*>(arg);
 
-	switch (argpel->m_type) {
+	switch (argpel->mType) {
 	case 0:
-		m_effectID = PID_PelKira_1;
+		mEffectID = PID_PelKira_1;
 		break;
 	case 1:
-		m_effectID = PID_PelKira_4;
+		mEffectID = PID_PelKira_4;
 		break;
 	case 2:
-		m_effectID = PID_PelKira_2;
+		mEffectID = PID_PelKira_2;
 		break;
 	case 3:
-		m_effectID = PID_PelKira_3;
+		mEffectID = PID_PelKira_3;
 		break;
 	}
 	return TSync::create(arg);
@@ -393,15 +393,15 @@ bool Container::create(efx::Arg* arg)
 
 	ArgType* argtype = static_cast<ArgType*>(arg);
 
-	switch (argtype->m_onyonType) {
+	switch (argtype->mOnyonType) {
 	case ONYON_TYPE_BLUE:
-		m_effectID = PID_Container_Blue;
+		mEffectID = PID_Container_Blue;
 		break;
 	case ONYON_TYPE_RED:
-		m_effectID = PID_Container_Red;
+		mEffectID = PID_Container_Red;
 		break;
 	case ONYON_TYPE_YELLOW:
-		m_effectID = PID_Container_Yellow;
+		mEffectID = PID_Container_Yellow;
 		break;
 	}
 	return TSync::create(arg);
@@ -485,18 +485,18 @@ bool ContainerAct::create(efx::Arg* arg)
 
 	ArgType* argtype = static_cast<ArgType*>(arg);
 
-	switch (argtype->m_onyonType) {
+	switch (argtype->mOnyonType) {
 	case ONYON_TYPE_BLUE:
-		m_items[0].m_effectID = PID_ContainerAct_Blue_1;
-		m_items[1].m_effectID = PID_ContainerAct_Blue_2;
+		mItems[0].mEffectID = PID_ContainerAct_Blue_1;
+		mItems[1].mEffectID = PID_ContainerAct_Blue_2;
 		break;
 	case ONYON_TYPE_RED:
-		m_items[0].m_effectID = PID_ContainerAct_Red_1;
-		m_items[1].m_effectID = PID_ContainerAct_Red_2;
+		mItems[0].mEffectID = PID_ContainerAct_Red_1;
+		mItems[1].mEffectID = PID_ContainerAct_Red_2;
 		break;
 	case ONYON_TYPE_YELLOW:
-		m_items[0].m_effectID = PID_ContainerAct_Yellow_1;
-		m_items[1].m_effectID = PID_ContainerAct_Yellow_2;
+		mItems[0].mEffectID = PID_ContainerAct_Yellow_1;
+		mItems[1].mEffectID = PID_ContainerAct_Yellow_2;
 		break;
 	}
 	return TSyncGroup2<TForever>::create(arg);
@@ -583,38 +583,38 @@ void WarpZone::setRateLOD(int offs, bool flag)
 {
 	JPABaseEmitter* emit;
 	if (flag) {
-		emit         = m_items[0].m_emitter;
+		emit         = mItems[0].mEmitter;
 		f32 data[12] = { 0.3f, 0.25f, 0.15f, 0.06f, 0.05f, 0.04f, 0.0f, 0.0f, 0.0f, 0.1f, 0.08f, 0.06f };
 		if (emit) {
 			emit->_28 = data[offs];
 		}
-		emit = m_items[1].m_emitter;
+		emit = mItems[1].mEmitter;
 		if (emit) {
 			emit->_28 = data[offs + 3];
 		}
-		emit = m_items[2].m_emitter;
+		emit = mItems[2].mEmitter;
 		if (emit) {
 			emit->_28 = data[offs + 6];
 		}
-		emit = m_items[3].m_emitter;
+		emit = mItems[3].mEmitter;
 		if (emit) {
 			emit->_28 = data[offs + 9];
 		}
 	} else {
-		emit         = m_items[0].m_emitter;
+		emit         = mItems[0].mEmitter;
 		f32 data[12] = { 0.3f, 0.25f, 0.15f, 0.06f, 0.05f, 0.04f, 0.225f, 0.2f, 0.15f, 0.1f, 0.08f, 0.06f };
 		if (emit) {
 			emit->_28 = data[offs];
 		}
-		emit = m_items[1].m_emitter;
+		emit = mItems[1].mEmitter;
 		if (emit) {
 			emit->_28 = data[offs + 3];
 		}
-		emit = m_items[2].m_emitter;
+		emit = mItems[2].mEmitter;
 		if (emit) {
 			emit->_28 = data[offs + 6];
 		}
-		emit = m_items[3].m_emitter;
+		emit = mItems[3].mEmitter;
 		if (emit) {
 			emit->_28 = data[offs + 9];
 		}

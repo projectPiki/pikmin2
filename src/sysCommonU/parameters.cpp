@@ -11,21 +11,21 @@
  * Size:	0000AC
  */
 BaseParm::BaseParm(Parameters* parameters, u32 rawID, char* name)
-    : m_id()
-    , m_name(name)
+    : mId()
+    , mName(name)
 {
 	BaseParm* parm1;
 	BaseParm* parm2 = nullptr;
-	for (parm1 = parameters->m_parmsHead; parm1 != NULL; parm1 = parm2->m_next) {
+	for (parm1 = parameters->mParmsHead; parm1 != NULL; parm1 = parm2->mNext) {
 		parm2 = parm1;
 	}
 	if (parm2) {
-		parm2->m_next = this;
+		parm2->mNext = this;
 	} else {
-		parameters->m_parmsHead = this;
+		parameters->mParmsHead = this;
 	}
-	m_id   = rawID;
-	m_next = nullptr;
+	mId   = rawID;
+	mNext = nullptr;
 }
 
 /*
@@ -35,14 +35,14 @@ BaseParm::BaseParm(Parameters* parameters, u32 rawID, char* name)
  */
 void Parameters::write(Stream& stream)
 {
-	stream.textBeginGroup(m_name);
+	stream.textBeginGroup(mName);
 
-	for (BaseParm* parm = m_parmsHead; parm; parm = parm->m_next) {
+	for (BaseParm* parm = mParmsHead; parm; parm = parm->mNext) {
 		stream.writePadding(STREAM_MODE_TEXT);
-		parm->m_id.write(stream);
+		parm->mId.write(stream);
 		stream.writeInt(parm->size());
 		parm->write(stream);
-		stream.textWriteText("\t# %s\r\n", parm->m_name);
+		stream.textWriteText("\t# %s\r\n", parm->mName);
 	}
 	stream.writePadding(STREAM_MODE_TEXT);
 	ID32::eof.write(stream);
@@ -89,8 +89,8 @@ void Parameters::read(Stream& stream)
  */
 BaseParm* Parameters::findParm(u32 rawID)
 {
-	for (BaseParm* parm = m_parmsHead; parm != nullptr; parm = parm->m_next) {
-		if (parm->m_id == rawID) {
+	for (BaseParm* parm = mParmsHead; parm != nullptr; parm = parm->mNext) {
+		if (parm->mId == rawID) {
 			return parm;
 		}
 	}
@@ -106,7 +106,7 @@ BaseParm* Parameters::findParm(u32 rawID)
 template <>
 void Parm<int>::read(Stream& stream)
 {
-	m_value = stream.readInt();
+	mValue = stream.readInt();
 }
 
 /*
@@ -117,7 +117,7 @@ void Parm<int>::read(Stream& stream)
 template <>
 void Parm<int>::write(Stream& stream)
 {
-	stream.writeInt(m_value);
+	stream.writeInt(mValue);
 }
 
 /*
@@ -128,7 +128,7 @@ void Parm<int>::write(Stream& stream)
 template <>
 void Parm<unsigned char>::read(Stream& stream)
 {
-	m_value = stream.readByte();
+	mValue = stream.readByte();
 }
 
 /*
@@ -139,7 +139,7 @@ void Parm<unsigned char>::read(Stream& stream)
 template <>
 void Parm<unsigned char>::write(Stream& stream)
 {
-	stream.writeByte((u8)m_value);
+	stream.writeByte((u8)mValue);
 }
 
 /*
@@ -150,7 +150,7 @@ void Parm<unsigned char>::write(Stream& stream)
 template <>
 void Parm<bool>::read(Stream& stream)
 {
-	m_value = (bool)stream.readByte();
+	mValue = (bool)stream.readByte();
 }
 
 /*
@@ -161,7 +161,7 @@ void Parm<bool>::read(Stream& stream)
 template <>
 void Parm<bool>::write(Stream& stream)
 {
-	stream.writeByte(m_value ? 1 : 0);
+	stream.writeByte(mValue ? 1 : 0);
 }
 
 /*
@@ -172,7 +172,7 @@ void Parm<bool>::write(Stream& stream)
 template <>
 void Parm<float>::read(Stream& stream)
 {
-	m_value = stream.readFloat();
+	mValue = stream.readFloat();
 }
 
 /*
@@ -183,7 +183,7 @@ void Parm<float>::read(Stream& stream)
 template <>
 void Parm<float>::write(Stream& stream)
 {
-	stream.writeFloat(m_value);
+	stream.writeFloat(mValue);
 }
 
 /*
@@ -193,18 +193,18 @@ void Parm<float>::write(Stream& stream)
  */
 ParmString::ParmString(Parameters* parameters, char* value, int length, u32 rawID, char* comment)
     : BaseParm(parameters, rawID, comment)
-    , m_length(length)
+    , mLength(length)
 {
-	char* buffer = new char[m_length + 1];
-	m_value      = buffer;
+	char* buffer = new char[mLength + 1];
+	mValue       = buffer;
 
 	int valueLen = strlen(value);
 	int i        = 0;
 	while (i < valueLen) {
-		m_value[i] = value[i];
+		mValue[i] = value[i];
 		i++;
 	}
-	m_value[i] = '\0';
+	mValue[i] = '\0';
 }
 
 /*
@@ -212,14 +212,14 @@ ParmString::ParmString(Parameters* parameters, char* value, int length, u32 rawI
  * Address:	80413C68
  * Size:	00002C
  */
-void ParmString::write(Stream& stream) { stream.writeString(m_value); }
+void ParmString::write(Stream& stream) { stream.writeString(mValue); }
 
 /*
  * --INFO--
  * Address:	80413C94
  * Size:	000030
  */
-void ParmString::read(Stream& stream) { stream.readString(m_value, m_length); }
+void ParmString::read(Stream& stream) { stream.readString(mValue, mLength); }
 
 /*
  * --INFO--
@@ -229,9 +229,9 @@ void ParmString::read(Stream& stream) { stream.readString(m_value, m_length); }
 ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, u32 value, int length, long rawID, char* comment)
     : BaseParm(parameters, rawID, comment)
 {
-	m_value        = value;
-	m_enumElemSize = length;
-	m_enumValues   = enumValues;
+	mValue        = value;
+	mEnumElemSize = length;
+	mEnumValues   = enumValues;
 }
 
 /*
@@ -239,11 +239,11 @@ ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, u32 value, int len
  * Address:	80413D7C
  * Size:	00002C
  */
-void ParmEnum::write(Stream& stream) { stream.writeInt(m_value); }
+void ParmEnum::write(Stream& stream) { stream.writeInt(mValue); }
 
 /*
  * --INFO--
  * Address:	80413DA8
  * Size:	000034
  */
-void ParmEnum::read(Stream& stream) { m_value = stream.readInt(); }
+void ParmEnum::read(Stream& stream) { mValue = stream.readInt(); }

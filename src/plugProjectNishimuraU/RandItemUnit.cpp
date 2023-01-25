@@ -17,15 +17,15 @@ static const char randItemUnitName[] = "246-RandItemUnit";
  */
 RandItemUnit::RandItemUnit(MapUnitGenerator* generator)
 {
-	m_mapUnitGenerator = generator;
-	m_items            = 0;
-	if (m_mapUnitGenerator->m_floorInfo) {
-		m_max = m_mapUnitGenerator->m_floorInfo->getItemMax();
+	mMapUnitGenerator = generator;
+	mItems            = 0;
+	if (mMapUnitGenerator->mFloorInfo) {
+		mMax = mMapUnitGenerator->mFloorInfo->getItemMax();
 	} else {
-		m_max = 0;
+		mMax = 0;
 	}
-	m_mapNode = nullptr;
-	m_baseGen = nullptr;
+	mMapNode = nullptr;
+	mBaseGen = nullptr;
 }
 
 /*
@@ -33,7 +33,7 @@ RandItemUnit::RandItemUnit(MapUnitGenerator* generator)
  * Address:	8024E3F0
  * Size:	000008
  */
-void RandItemUnit::setManageClassPtr(RandMapScore* ptr) { m_randMapScore = ptr; }
+void RandItemUnit::setManageClassPtr(RandMapScore* ptr) { mRandMapScore = ptr; }
 
 /*
  * --INFO--
@@ -43,7 +43,7 @@ void RandItemUnit::setManageClassPtr(RandMapScore* ptr) { m_randMapScore = ptr; 
 void RandItemUnit::setItemSlot()
 {
 	// check that we have space for new items
-	if (m_items < m_max) {
+	if (mItems < mMax) {
 		// only try to place a max of 100 items, regardless of desired item count
 		for (int i = 0; i < 100; i++) {
 			// initially null basegen pointer
@@ -66,10 +66,10 @@ void RandItemUnit::setItemSlot()
 				// make data global on map node
 				newitem->makeGlobalData(currMapNode);
 				// add item to nodes
-				currMapNode->m_itemNode->add((ItemNode*)newitem);
+				currMapNode->mItemNode->add((ItemNode*)newitem);
 				// increment item count and check we haven't hit our item limit
-				m_items++;
-				if (m_items < m_max) {
+				mItems++;
+				if (mItems < mMax) {
 					continue;
 				} else {
 					return;
@@ -88,27 +88,27 @@ void RandItemUnit::setItemSlot()
 bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
 {
 	if (baseGen) {
-		FOREACH_NODE(ItemNode, mapNode->m_itemNode->m_child, node)
+		FOREACH_NODE(ItemNode, mapNode->mItemNode->mChild, node)
 		{
-			if (node->m_generator == baseGen) {
+			if (node->mGenerator == baseGen) {
 				return true;
 			}
 		}
 	} else {
-		if (mapNode == m_randMapScore->getFixObjNode(1)) {
+		if (mapNode == mRandMapScore->getFixObjNode(1)) {
 			return true;
 		}
-		if (mapNode == m_randMapScore->getFixObjNode(2)) {
+		if (mapNode == mRandMapScore->getFixObjNode(2)) {
 			return true;
 		}
-		if (mapNode->m_itemNode->m_child) {
+		if (mapNode->mItemNode->mChild) {
 			return true;
 		}
 
-		FOREACH_NODE(EnemyNode, mapNode->m_enemyNode->m_child, node)
+		FOREACH_NODE(EnemyNode, mapNode->mEnemyNode->mChild, node)
 		{
-			TekiInfo* info = node->m_enemyUnit->m_tekiInfo;
-			if (info && (info->m_dropMode == 0) && (info->m_type != BaseGen::Seam__Door) && (info->m_type != BaseGen::Plant)) {
+			TekiInfo* info = node->mEnemyUnit->mTekiInfo;
+			if (info && (info->mDropMode == 0) && (info->mType != BaseGen::Seam__Door) && (info->mType != BaseGen::Plant)) {
 				return true;
 			}
 		}
@@ -123,21 +123,21 @@ bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
  */
 bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
 {
-	if (mapNode == m_randMapScore->getFixObjNode(1)) {
+	if (mapNode == mRandMapScore->getFixObjNode(1)) {
 		return true;
 	}
-	if (mapNode == m_randMapScore->getFixObjNode(2)) {
+	if (mapNode == mRandMapScore->getFixObjNode(2)) {
 		return true;
 	}
-	if (mapNode->m_itemNode->m_child) {
+	if (mapNode->mItemNode->mChild) {
 		return true;
 	}
 
-	FOREACH_NODE(EnemyNode, mapNode->m_enemyNode->m_child, node)
+	FOREACH_NODE(EnemyNode, mapNode->mEnemyNode->mChild, node)
 	{
-		TekiInfo* info = node->m_enemyUnit->m_tekiInfo;
-		if (info && (info->m_type != BaseGen::Seam__Door) && (info->m_type != BaseGen::Plant)
-		    && (info->m_dropMode == 0 || (m_mapUnitGenerator->isPomGroup(info)))) {
+		TekiInfo* info = node->mEnemyUnit->mTekiInfo;
+		if (info && (info->mType != BaseGen::Seam__Door) && (info->mType != BaseGen::Plant)
+		    && (info->mDropMode == 0 || (mMapUnitGenerator->isPomGroup(info)))) {
 			return true;
 		}
 	}
@@ -151,18 +151,18 @@ bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
  */
 bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
 {
-	if (mapNode == m_randMapScore->getFixObjNode(1)) {
+	if (mapNode == mRandMapScore->getFixObjNode(1)) {
 		return true;
 	}
-	if (mapNode == m_randMapScore->getFixObjNode(2)) {
+	if (mapNode == mRandMapScore->getFixObjNode(2)) {
 		return true;
 	}
 
-	FOREACH_NODE(EnemyNode, mapNode->m_enemyNode->m_child, node)
+	FOREACH_NODE(EnemyNode, mapNode->mEnemyNode->mChild, node)
 	{
-		TekiInfo* info = node->m_enemyUnit->m_tekiInfo;
-		if (info && (info->m_type != BaseGen::Seam__Door) && (info->m_type != BaseGen::Plant)
-		    && (info->m_dropMode != 0 || (m_mapUnitGenerator->isPomGroup(info)))) {
+		TekiInfo* info = node->mEnemyUnit->mTekiInfo;
+		if (info && (info->mType != BaseGen::Seam__Door) && (info->mType != BaseGen::Plant)
+		    && (info->mDropMode != 0 || (mMapUnitGenerator->isPomGroup(info)))) {
 			return true;
 		}
 	}
@@ -176,8 +176,8 @@ bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
  */
 void RandItemUnit::setItemDropPositionList(MapNode** node, BaseGen** gen)
 {
-	m_mapNode = node;
-	m_baseGen = gen;
+	mMapNode = node;
+	mBaseGen = gen;
 }
 
 /*
@@ -192,15 +192,15 @@ void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floor
 	MapNode* dropList[256];
 	MapNode* dropNode;
 
-	nodes[0] = m_mapUnitGenerator->m_placedMapNodes;
-	nodes[1] = m_mapUnitGenerator->m_visitedMapNodes;
+	nodes[0] = mMapUnitGenerator->mPlacedMapNodes;
+	nodes[1] = mMapUnitGenerator->mVisitedMapNodes;
 
-	int score = weight * (f32)m_randMapScore->getVersusLowScore() + (1.0f - weight) * (f32)m_randMapScore->getVersusHighScore();
+	int score = weight * (f32)mRandMapScore->getVersusLowScore() + (1.0f - weight) * (f32)mRandMapScore->getVersusHighScore();
 
 	if (floorIndex < 0) {
 		int dropIndex = 1280000;
 		for (int i = 0; i < 2; i++) {
-			FOREACH_NODE(MapNode, nodes[i]->m_child, mapNode) { getItemDropMapNode(mapNode, &dropNode, score, dropIndex); }
+			FOREACH_NODE(MapNode, nodes[i]->mChild, mapNode) { getItemDropMapNode(mapNode, &dropNode, score, dropIndex); }
 		}
 
 		if (dropNode) {
@@ -213,7 +213,7 @@ void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floor
 		int dropIndex = 0;
 		BaseGen* basegen[256];
 		for (int i = 0; i < 2; i++) {
-			FOREACH_NODE(MapNode, nodes[i]->m_child, mapNode) { getItemDropList(mapNode, dropList, basegen, dropIndex); }
+			FOREACH_NODE(MapNode, nodes[i]->mChild, mapNode) { getItemDropList(mapNode, dropList, basegen, dropIndex); }
 		}
 
 		if (floorIndex < dropIndex) {
@@ -237,16 +237,16 @@ MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 	int nodeScoreList[512];
 	int totalScore = 0;
 
-	FOREACH_NODE(MapNode, m_mapUnitGenerator->m_placedMapNodes->m_child, currMapNode)
+	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currMapNode)
 	{
-		if (currMapNode->m_unitInfo->getUnitKind() == 1) {
+		if (currMapNode->mUnitInfo->getUnitKind() == 1) {
 			int slotNum = getItemSlotNum(currMapNode);
 			if (slotNum) {
-				BaseGen* baseGen = currMapNode->m_unitInfo->getBaseGen();
+				BaseGen* baseGen = currMapNode->mUnitInfo->getBaseGen();
 				if (baseGen) {
-					FOREACH_NODE(BaseGen, baseGen->m_child, currBaseGen)
+					FOREACH_NODE(BaseGen, baseGen->mChild, currBaseGen)
 					{
-						if (currBaseGen->m_spawnType == BaseGen::Treasure__Item) {
+						if (currBaseGen->mSpawnType == BaseGen::Treasure__Item) {
 							if (!isItemSetDone(currMapNode, currBaseGen)) {
 								mapNodeList[counter]   = currMapNode;
 								baseGenList[counter]   = currBaseGen;
@@ -588,16 +588,16 @@ MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 	BaseGen* baseGenList[512];
 	int totalScore = -1;
 
-	FOREACH_NODE(MapNode, m_mapUnitGenerator->m_placedMapNodes->m_child, currMapNode)
+	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currMapNode)
 	{
-		if (currMapNode->m_unitInfo->getUnitKind() == 1) {
-			int currItemCount = static_cast<ItemNode*>(currMapNode->m_itemNode)->getChildCount() + 1;
+		if (currMapNode->mUnitInfo->getUnitKind() == 1) {
+			int currItemCount = static_cast<ItemNode*>(currMapNode->mItemNode)->getChildCount() + 1;
 			int currScore     = currMapNode->getNodeScore() / currItemCount;
-			BaseGen* baseGen  = currMapNode->m_unitInfo->getBaseGen();
+			BaseGen* baseGen  = currMapNode->mUnitInfo->getBaseGen();
 			if (baseGen) {
-				FOREACH_NODE(BaseGen, baseGen->m_child, currBaseGen)
+				FOREACH_NODE(BaseGen, baseGen->mChild, currBaseGen)
 				{
-					if (currBaseGen->m_spawnType == BaseGen::Treasure__Item) {
+					if (currBaseGen->mSpawnType == BaseGen::Treasure__Item) {
 						if (!isItemSetDone(currMapNode, currBaseGen)) {
 							if (currScore >= totalScore) {
 								if (currScore > totalScore) {
@@ -771,11 +771,11 @@ lbl_8024F228:
 int RandItemUnit::getItemSlotNum(MapNode* mapNode)
 {
 	int itemSlotNum  = 0;
-	BaseGen* baseGen = mapNode->m_unitInfo->getBaseGen();
+	BaseGen* baseGen = mapNode->mUnitInfo->getBaseGen();
 	if (baseGen) {
-		FOREACH_NODE(BaseGen, baseGen->m_child, node)
+		FOREACH_NODE(BaseGen, baseGen->mChild, node)
 		{
-			if (node->m_spawnType == BaseGen::Treasure__Item) {
+			if (node->mSpawnType == BaseGen::Treasure__Item) {
 				itemSlotNum++;
 			}
 		}
@@ -790,13 +790,13 @@ int RandItemUnit::getItemSlotNum(MapNode* mapNode)
  */
 bool RandItemUnit::isItemSetHard()
 {
-	switch (m_mapUnitGenerator->m_randItemType) {
+	switch (mMapUnitGenerator->mRandItemType) {
 	case 0:
 	case 1:
 		return false;
 	case 2:
 	case 3:
-		if (m_items != 0) {
+		if (mItems != 0) {
 			return false;
 		}
 		return true;

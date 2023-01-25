@@ -52,26 +52,26 @@ struct ObjectActor : public JStage::TActor, public ObjectBase {
 
 	// _00 = VTABLE (JStage::TActor)
 	// _04 = VTABLE2 (ObjectBase)
-	MoviePlayer* m_moviePlayer;      // _08
-	char* m_name;                    // _0C
-	u32 m_flags;                     // _10
-	int _14;                         // _14
-	u32 _18;                         // _18
-	u32 _1C;                         // _1C
-	J3DModelData* m_modelData;       // _20
-	J3DModel* m_model;               // _24
-	J3DAnmTransform* m_anmTransform; // _28
-	J3DMtxCalcAnmBase* m_mtxCalcAnm; // _2C
-	JKRArchive* m_archive;           // _30
-	Vector3f m_translation;          // _34
-	Vector3f m_rotation;             // _40
-	Vector3f m_scaling;              // _4C
-	u32 m_shape;                     // _58
-	u32 m_animation;                 // _5C
-	f32 m_animFrame;                 // _60
-	f32 m_animFrameMax;              // _64
-	f32 _68;                         // _68
-	f32 _6C;                         // _6C
+	MoviePlayer* mMoviePlayer;      // _08
+	char* mName;                    // _0C
+	u32 mFlags;                     // _10
+	int _14;                        // _14
+	u32 _18;                        // _18
+	u32 _1C;                        // _1C
+	J3DModelData* mModelData;       // _20
+	J3DModel* mModel;               // _24
+	J3DAnmTransform* mAnmTransform; // _28
+	J3DMtxCalcAnmBase* mMtxCalcAnm; // _2C
+	JKRArchive* mArchive;           // _30
+	Vector3f mTranslation;          // _34
+	Vector3f mRotation;             // _40
+	Vector3f mScaling;              // _4C
+	u32 mShape;                     // _58
+	u32 mAnimation;                 // _5C
+	f32 mAnimFrame;                 // _60
+	f32 mAnimFrameMax;              // _64
+	f32 _68;                        // _68
+	f32 _6C;                        // _6C
 };
 
 struct ObjectGameActor : public ObjectActor {
@@ -94,22 +94,22 @@ struct ObjectGameActor : public ObjectActor {
 	// _00     = VTABLE (JStage::TActor)
 	// _04     = VTABLE2 (ObjectBase)
 	// _00-_70 = ObjectActor
-	Creature* m_creature;   // _70
-	int m_currCommandCount; // _74
-	void* _78;              // _78, command ptr array maybe?
-	int _7C;                // _7C
-	int _80;                // _80
-	int _84;                // _84
-	u32 _88;                // _88
-	JKRArchive* _8C;        // _8C
-	Vector3f _90;           // _90, translation 2?
-	Vector3f _9C;           // _9C, rotation 2?
-	u8 _A8[0x8];            // _A8, unknown
-	int _B0;                // _B0
-	s16 _B4;                // _B4
-	s16 _B6;                // _B6
-	s16 _B8;                // _B8
-	s16 _BA;                // _BA
+	Creature* mCreature;   // _70
+	int mCurrCommandCount; // _74
+	void* _78;             // _78, command ptr array maybe?
+	int _7C;               // _7C
+	int _80;               // _80
+	int _84;               // _84
+	u32 _88;               // _88
+	JKRArchive* _8C;       // _8C
+	Vector3f _90;          // _90, translation 2?
+	Vector3f _9C;          // _9C, rotation 2?
+	u8 _A8[0x8];           // _A8, unknown
+	int _B0;               // _B0
+	s16 _B4;               // _B4
+	s16 _B6;               // _B6
+	s16 _B8;               // _B8
+	s16 _BA;               // _BA
 };
 
 struct ObjectParticleActor : public ObjectActor, public JPAEmitterCallBack {
@@ -132,15 +132,15 @@ struct ObjectParticleActor : public ObjectActor, public JPAEmitterCallBack {
 	// _04     = VTABLE2 (ObjectBase)
 	// _00-_70 = ObjectActor
 	// _70-_74 = JPAEmitterCallBack
-	u32 _74;                   // _74
-	u8 _78;                    // _78
-	JPABaseEmitter* m_emitter; // _7C
-	Creature* m_creature;      // _80
-	s16 _84;                   // _84
-	Matrixf m_matrix;          // _88
-	u8 _B8;                    // _B8
-	u8 _B9;                    // _B9
-	Vector3f _BC;              // _BC, translation 2?
+	u32 _74;                  // _74
+	u8 _78;                   // _78
+	JPABaseEmitter* mEmitter; // _7C
+	Creature* mCreature;      // _80
+	s16 _84;                  // _84
+	Matrixf mMatrix;          // _88
+	u8 _B8;                   // _B8
+	u8 _B9;                   // _B9
+	Vector3f _BC;             // _BC, translation 2?
 };
 
 struct ObjectSpecialActor : public ObjectActor {
@@ -156,10 +156,10 @@ struct ObjectSpecialActor : public ObjectActor {
 	// _00     = VTABLE (JStage::TActor)
 	// _04     = VTABLE2 (ObjectBase)
 	// _00-_70 = ObjectActor
-	int m_currCommandCount; // _70
-	void* _74;              // _74, command ptr array maybe?
-	u8 _78[0x40];           // _78, unknown
-	f32 _B8;                // _B8
+	int mCurrCommandCount; // _70
+	void* _74;             // _74, command ptr array maybe?
+	u8 _78[0x40];          // _78, unknown
+	f32 _B8;               // _B8
 };
 } // namespace P2JST
 } // namespace Game

@@ -29,14 +29,14 @@
 #include "Iterator.h"
 
 // pellet carry colors/onion destinations
-// for use with Pellet::m_pelletColor
+// for use with Pellet::mPelletColor
 #define PELCOLOR_BLUE   (0)
 #define PELCOLOR_RED    (1)
 #define PELCOLOR_YELLOW (2)
 #define PELCOLOR_RANDOM (3)
 
 // pellet types
-// for use with Pellet:m_pelletType and getKind()
+// for use with Pellet:mPelletType and getKind()
 #define PELTYPE_NUMBER   (0)
 #define PELTYPE_CARCASS  (1)
 #define PELTYPE_BERRY    (2)
@@ -60,17 +60,17 @@ struct Onyon;
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
 		OtakaraItemCode(s16 v = 0)
-		    : m_value(v)
+		    : mValue(v)
 		{
 		}
 
-		operator s16() { return m_value; }
+		operator s16() { return mValue; }
 
 		bool isNull();
 		void read(Stream&);
 		void write(Stream&);
 
-		s16 m_value; // _00
+		s16 mValue; // _00
 	};
 
 	PelletMgr();
@@ -111,7 +111,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	static bool mDebug;
 	static bool disableDynamics;
 
-	bool m_movieDrawDisabled; // _3C, setMovieDraw sets this to !input
+	bool mMovieDrawDisabled; // _3C, setMovieDraw sets this to !input
 };
 
 struct PelletIterator {
@@ -123,10 +123,10 @@ struct PelletIterator {
 	Pellet* operator*();
 	void setFirst();
 
-	u32 _00;                               // _00 - unknown
-	FixedSizePelletMgr<Pellet>* m_mgr;     // _04
-	TObjectNode<GenericObjectMgr>* m_node; // _08
-	int m_index;                           // _0C
+	u32 _00;                              // _00 - unknown
+	FixedSizePelletMgr<Pellet>* mMgr;     // _04
+	TObjectNode<GenericObjectMgr>* mNode; // _08
+	int mIndex;                           // _0C
 };
 
 /**
@@ -135,17 +135,17 @@ struct PelletIterator {
 struct PelletInitArg : public CreatureInitArg {
 	PelletInitArg()
 	{
-		_1C                    = 0;
-		m_state                = 0;
-		m_pelletType           = 0xFF;
-		_18                    = nullptr;
-		_17                    = 0;
-		_04                    = true;
-		m_adjustWeightForSquad = 0;
-		m_maxCarriers          = -1;
-		m_minCarriers          = -1;
-		_1E                    = 0;
-		m_fromEnemy            = 0;
+		_1C                   = 0;
+		mState                = 0;
+		mPelletType           = 0xFF;
+		_18                   = nullptr;
+		_17                   = 0;
+		_04                   = true;
+		mAdjustWeightForSquad = 0;
+		mMaxCarriers          = -1;
+		mMinCarriers          = -1;
+		_1E                   = 0;
+		mFromEnemy            = 0;
 	}
 
 	/**
@@ -157,20 +157,20 @@ struct PelletInitArg : public CreatureInitArg {
 		return "PelletInitArg";
 	}
 
-	bool _04;                  // _04
-	char* m_textIdentifier;    // _08
-	int _0C;                   // _0C
-	int _10;                   // _10
-	u16 m_state;               // _14
-	u8 m_pelletType;           // _16
-	u8 _17;                    // _17
-	PelletView* _18;           // _18
-	u8 _1C;                    // _1C
-	u8 m_adjustWeightForSquad; // _1D, should Item decrease weight for piki squads that are less than minimum carry weight
-	u8 _1E;                    // _1E
-	u8 m_fromEnemy;            // _1F
-	int m_minCarriers;         // _20
-	int m_maxCarriers;         // _24
+	bool _04;                 // _04
+	char* mTextIdentifier;    // _08
+	int _0C;                  // _0C
+	int _10;                  // _10
+	u16 mState;               // _14
+	u8 mPelletType;           // _16
+	u8 _17;                   // _17
+	PelletView* _18;          // _18
+	u8 _1C;                   // _1C
+	u8 mAdjustWeightForSquad; // _1D, should Item decrease weight for piki squads that are less than minimum carry weight
+	u8 _1E;                   // _1E
+	u8 mFromEnemy;            // _1F
+	int mMinCarriers;         // _20
+	int mMaxCarriers;         // _24
 };
 
 struct PelletIndexInitArg : public PelletInitArg {
@@ -206,50 +206,50 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	////////////// VTABLE 1 (DYNCREATURE)
 	virtual Vector3f getPosition() // _08 (weak)
 	{
-		return m_pelletPosition;
+		return mPelletPosition;
 	}
-	virtual void getBoundingSphere(Sys::Sphere& boundSphere);         // _10
-	virtual bool deferPikiCollision() { return true; }                // _20 (weak)
-	virtual void constructor();                                       // _2C
-	virtual void onInit(CreatureInitArg* settings);                   // _30 (weak)
-	virtual void onKill(CreatureKillArg* settings);                   // _34
-	virtual void doAnimation();                                       // _3C
-	virtual void doEntry();                                           // _40
-	virtual void doSetView(int viewportNumber);                       // _44
-	virtual void doViewCalc();                                        // _48
-	virtual void doSimulation(f32 rate);                              // _4C
-	virtual void doDirectDraw(Graphics& gfx);                         // _50
-	virtual f32 getFaceDir() { return m_faceDir; }                    // _64 (weak)
-	virtual void setVelocity(Vector3f& vel);                          // _68
-	virtual Vector3f getVelocity();                                   // _6C
-	virtual void onSetPosition(Vector3f& dest);                       // _70 (weak)
-	virtual void updateTrMatrix();                                    // _78
-	virtual bool inWater() { return m_isInWater; }                    // _8C (weak)
-	virtual void onStartCapture();                                    // _94
-	virtual void onUpdateCapture(Matrixf&);                           // _98
-	virtual void onEndCapture();                                      // _9C
-	virtual void doSave(Stream&);                                     // _E0
-	virtual void doLoad(Stream&);                                     // _E4
-	virtual void bounceCallback(Sys::Triangle* tri);                  // _E8
-	virtual JAInter::Object* getJAIObject();                          // _F4
-	virtual PSM::Creature* getPSCreature();                           // _F8
-	virtual Vector3f* getSound_PosPtr() { return &m_pelletPosition; } // _100 (weak)
-	virtual void getShadowParam(ShadowParam& settings);               // _134
-	virtual bool needShadow();                                        // _138
-	virtual void getLODSphere(Sys::Sphere& lodSphere);                // _140
-	virtual void startPick();                                         // _148
-	virtual void endPick(bool);                                       // _14C
-	virtual bool isSlotFree(short);                                   // _168
-	virtual short getFreeStickSlot();                                 // _16C
-	virtual short getNearFreeStickSlot(Vector3f&);                    // _170
-	virtual short getRandomFreeStickSlot();                           // _174
-	virtual void onSlotStickStart(Creature*, short);                  // _178
-	virtual void onSlotStickEnd(Creature*, short);                    // _17C
-	virtual void calcStickSlotGlobal(short, Vector3f&);               // _180
-	virtual bool stimulate(Interaction& data);                        // _1A4
-	virtual char* getCreatureName();                                  // _1A8
-	virtual s32 getCreatureID();                                      // _1AC
-	virtual void onSetPosition();                                     // _1B0
+	virtual void getBoundingSphere(Sys::Sphere& boundSphere);        // _10
+	virtual bool deferPikiCollision() { return true; }               // _20 (weak)
+	virtual void constructor();                                      // _2C
+	virtual void onInit(CreatureInitArg* settings);                  // _30 (weak)
+	virtual void onKill(CreatureKillArg* settings);                  // _34
+	virtual void doAnimation();                                      // _3C
+	virtual void doEntry();                                          // _40
+	virtual void doSetView(int viewportNumber);                      // _44
+	virtual void doViewCalc();                                       // _48
+	virtual void doSimulation(f32 rate);                             // _4C
+	virtual void doDirectDraw(Graphics& gfx);                        // _50
+	virtual f32 getFaceDir() { return mFaceDir; }                    // _64 (weak)
+	virtual void setVelocity(Vector3f& vel);                         // _68
+	virtual Vector3f getVelocity();                                  // _6C
+	virtual void onSetPosition(Vector3f& dest);                      // _70 (weak)
+	virtual void updateTrMatrix();                                   // _78
+	virtual bool inWater() { return mIsInWater; }                    // _8C (weak)
+	virtual void onStartCapture();                                   // _94
+	virtual void onUpdateCapture(Matrixf&);                          // _98
+	virtual void onEndCapture();                                     // _9C
+	virtual void doSave(Stream&);                                    // _E0
+	virtual void doLoad(Stream&);                                    // _E4
+	virtual void bounceCallback(Sys::Triangle* tri);                 // _E8
+	virtual JAInter::Object* getJAIObject();                         // _F4
+	virtual PSM::Creature* getPSCreature();                          // _F8
+	virtual Vector3f* getSound_PosPtr() { return &mPelletPosition; } // _100 (weak)
+	virtual void getShadowParam(ShadowParam& settings);              // _134
+	virtual bool needShadow();                                       // _138
+	virtual void getLODSphere(Sys::Sphere& lodSphere);               // _140
+	virtual void startPick();                                        // _148
+	virtual void endPick(bool);                                      // _14C
+	virtual bool isSlotFree(short);                                  // _168
+	virtual short getFreeStickSlot();                                // _16C
+	virtual short getNearFreeStickSlot(Vector3f&);                   // _170
+	virtual short getRandomFreeStickSlot();                          // _174
+	virtual void onSlotStickStart(Creature*, short);                 // _178
+	virtual void onSlotStickEnd(Creature*, short);                   // _17C
+	virtual void calcStickSlotGlobal(short, Vector3f&);              // _180
+	virtual bool stimulate(Interaction& data);                       // _1A4
+	virtual char* getCreatureName();                                 // _1A8
+	virtual s32 getCreatureID();                                     // _1AC
+	virtual void onSetPosition();                                    // _1B0
 	////////////// VTABLE 1 END (DYNCREATURE)
 
 	////////////// VTABLE 2  (MOTIONLISTENER)
@@ -269,13 +269,13 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void do_update() { }                                // _1EC (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent) // _1F0 (weak, thunk at _1BC)
 	{
-		if ((keyEvent.m_type == 1000U) && (m_carryAnim.m_flags & 2)) {
-			m_carryAnim.startAnim(0, this);
+		if ((keyEvent.mType == 1000U) && (mCarryAnim.mFlags & 2)) {
+			mCarryAnim.startAnim(0, this);
 			if (_3D0 & 1) {
-				m_animSpeed = 30.0f * sys->m_deltaTime;
+				mAnimSpeed = 30.0f * sys->mDeltaTime;
 				return;
 			}
-			m_animSpeed = 0.0f;
+			mAnimSpeed = 0.0f;
 		}
 	}
 	virtual u8 getKind() = 0;                                 // _1F4
@@ -283,22 +283,22 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void createKiraEffect(Vector3f&) { }              // _1FC (weak)
 	virtual void getCarryInfoParam(CarryInfoParam& infoParam) // _200 (weak, thunk at _1C8)
 	{
-		infoParam.m_useType    = 0;
-		infoParam.m_position   = m_rigid.m_configs[0]._00;
-		infoParam.m_yOffsetMax = 30.0f + m_config->m_params.m_height.m_data;
-		infoParam._14          = 1;
-		infoParam.m_isTopFirst = 1;
-		infoParam.m_value2     = getTotalCarryPikmins();
+		infoParam.mUseType    = 0;
+		infoParam.mPosition   = mRigid.mConfigs[0]._00;
+		infoParam.mYOffsetMax = 30.0f + mConfig->mParams.mHeight.mData;
+		infoParam._14         = 1;
+		infoParam.mIsTopFirst = 1;
+		infoParam.mValue2     = getTotalCarryPikmins();
 
 		int minVal;
-		if (m_minCarriers > 0) {
-			minVal = m_minCarriers;
+		if (mMinCarriers > 0) {
+			minVal = mMinCarriers;
 		} else {
-			minVal = m_config->m_params.m_min.m_data;
+			minVal = mConfig->mParams.mMin.mData;
 		}
-		infoParam.m_value1 = minVal;
+		infoParam.mValue1 = minVal;
 
-		infoParam.m_color = m_carryColor;
+		infoParam.mColor = mCarryColor;
 	}
 	virtual bool isCarried();                    // _204
 	virtual bool isPicked() { return _3D0 & 1; } // _208 (weak)
@@ -355,7 +355,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	inline void setValidColor(u16 color)
 	{
 		P2ASSERTLINE(909, !(color > 2));
-		m_pelletColor = color;
+		mPelletColor = color;
 	}
 
 	inline void setSlotOccupied(int slot)
@@ -363,7 +363,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		if (slot < 128) {
 			u32 index = slot >> 3;
 			u32 flag  = 1 << slot - index * 8;
-			m_slots[15 - index] |= flag;
+			mSlots[15 - index] |= flag;
 		}
 	}
 
@@ -372,26 +372,26 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		if (slot < 128) {
 			u32 index = slot >> 3;
 			u32 flag  = 1 << slot - index * 8;
-			m_slots[15 - index] &= ~flag;
+			mSlots[15 - index] &= ~flag;
 		}
 	}
 
 	inline void animate_pmotions(SysShape::Animator* animator)
 	{
-		for (int i = 0; i < m_numPMotions; i++) {
+		for (int i = 0; i < mNumPMotions; i++) {
 			animator->animate(1.0f);
 
 			char jointName[128];
 			sprintf(jointName, "pmotion");
 
-			SysShape::Joint* joint = m_model->getJoint(jointName);
+			SysShape::Joint* joint = mModel->getJoint(jointName);
 
 			if (joint) {
-				u16 index               = joint->m_jointIndex;
-				SysShape::Model* model  = m_model;
+				u16 index               = joint->mJointIndex;
+				SysShape::Model* model  = mModel;
 				J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());
 
-				model->m_j3dModel->m_modelData->m_jointTree.m_joints[index]->m_mtxCalc = calc;
+				model->mJ3dModel->mModelData->mJointTree.mJoints[index]->mMtxCalc = calc;
 			}
 		}
 	}
@@ -399,11 +399,11 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	inline bool isTreasurePosition() // this probably needs a better name; used in Pellet::onSetPosition
 	{
 		bool check = false;
-		if ((m_captureMatrix == nullptr) && (PelletMgr::mDebug == false) && (m_config->m_params.m_depth.m_data > 0.0f) && (_3C4 == 0)) {
+		if ((mCaptureMatrix == nullptr) && (PelletMgr::mDebug == false) && (mConfig->mParams.mDepth.mData > 0.0f) && (_3C4 == 0)) {
 			check = true;
 		}
-		if ((gameSystem->m_mode == GSM_VERSUS_MODE) && (m_captureMatrix == nullptr) && (_3C4 == 0)) {
-			u8 test = m_pelletFlag;
+		if ((gameSystem->mMode == GSM_VERSUS_MODE) && (mCaptureMatrix == nullptr) && (_3C4 == 0)) {
+			u8 test = mPelletFlag;
 			if (test == FLAG_VS_BEDAMA_RED) {
 				check = false;
 			} else if (test == FLAG_VS_BEDAMA_BLUE) {
@@ -415,61 +415,61 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		return check;
 	}
 
-	inline int getPokoValue() { return m_config->m_params.m_money.m_data; }
+	inline int getPokoValue() { return mConfig->mParams.mMoney.mData; }
 
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?
-	f32 m_radius;                   // _31C
-	f32 m_depth;                    // _320
-	u8 _324;                        // _324 - unknown
-	bool m_isInWater;               // _325
-	u8 _326[0x2];                   // _326 - could be padding
-	TexCaster::Caster* m_caster;    // _328
-	u8 m_pelletFlag;                // _32C
-	u8 m_discoverDisable;           // _32D
-	u8 _32E[0x2];                   //  _32E - could be padding
-	PSM::EventBase* m_soundMgr;     // _330
-	PelletCarry* m_pelletCarry;     // _334
-	u8 m_numPMotions;               // _338
-	u8 _339[0x3];                   // _339, unknown/padding
-	SysShape::Animator _33C;        // _33C
-	PelletView* m_pelletView;       // _358
-	PelletConfig* m_config;         // _35C
-	int _360;                       // _360
-	u8 _364;                        // _364
-	u8 _365[0x33];                  // _365 - unknown
-	CarryInfoMgr* m_carryInfoMgr;   // _398
-	u8 _39C;                        // _39C - unknown
-	u8 _39D[0xF];                   // _39D - unknown
-	Vector3f m_pelletPosition;      // _3AC
-	f32 m_faceDir;                  // _3B8
-	u8 m_wallTimer;                 // _3BC
-	u8 _3BD[0x3];                   // _3BD - possibly padding
-	u32 m_claim;                    // _3C0
-	bool _3C4;                      // _3C4
-	u8 _3C5[0x3];                   // _3C5 - unknown
-	PelletFSM* m_pelletSM;          // _3C8
-	PelletState* m_pelletState;     // _3CC
-	u8 _3D0;                        // _3D0
-	int m_carryColor;               // _3D4
-	int m_minCarriers;              // _3D8, to do with pikmin number
-	int m_maxCarriers;              // _3DC
-	f32 _3E0;                       // _3E0
-	u8 m_slots[16];                 // _3E4
-	short m_slotCount;              // _3F4
-	u8 _3F6;                        // _3F6
-	u8 _3F7;                        // _3F7 - unknown, maybe padding
-	u32 m_pikminCount[7];           // _3F8, TODO: likely [PikiColorCount]
-	u32 _414;                       // _414 - unknown
-	f32 m_carryPower;               // _418
-	SysShape::Animator m_carryAnim; // _41C
-	f32 m_animSpeed;                // _438
-	u16 _43C;                       // _43C
-	u16 m_pelletColor;              // _43E, this reflects pellet color for Number pellets, and the color of berries
-	int m_slotIndex;                // _440
-	Sys::Sphere m_lodSphere;        // _444
-	BasePelletMgr* m_mgr;           // _454
+	f32 mRadius;                   // _31C
+	f32 mDepth;                    // _320
+	u8 _324;                       // _324 - unknown
+	bool mIsInWater;               // _325
+	u8 _326[0x2];                  // _326 - could be padding
+	TexCaster::Caster* mCaster;    // _328
+	u8 mPelletFlag;                // _32C
+	u8 mDiscoverDisable;           // _32D
+	u8 _32E[0x2];                  //  _32E - could be padding
+	PSM::EventBase* mSoundMgr;     // _330
+	PelletCarry* mPelletCarry;     // _334
+	u8 mNumPMotions;               // _338
+	u8 _339[0x3];                  // _339, unknown/padding
+	SysShape::Animator _33C;       // _33C
+	PelletView* mPelletView;       // _358
+	PelletConfig* mConfig;         // _35C
+	int _360;                      // _360
+	u8 _364;                       // _364
+	u8 _365[0x33];                 // _365 - unknown
+	CarryInfoMgr* mCarryInfoMgr;   // _398
+	u8 _39C;                       // _39C - unknown
+	u8 _39D[0xF];                  // _39D - unknown
+	Vector3f mPelletPosition;      // _3AC
+	f32 mFaceDir;                  // _3B8
+	u8 mWallTimer;                 // _3BC
+	u8 _3BD[0x3];                  // _3BD - possibly padding
+	u32 mClaim;                    // _3C0
+	bool _3C4;                     // _3C4
+	u8 _3C5[0x3];                  // _3C5 - unknown
+	PelletFSM* mPelletSM;          // _3C8
+	PelletState* mPelletState;     // _3CC
+	u8 _3D0;                       // _3D0
+	int mCarryColor;               // _3D4
+	int mMinCarriers;              // _3D8, to do with pikmin number
+	int mMaxCarriers;              // _3DC
+	f32 _3E0;                      // _3E0
+	u8 mSlots[16];                 // _3E4
+	short mSlotCount;              // _3F4
+	u8 _3F6;                       // _3F6
+	u8 _3F7;                       // _3F7 - unknown, maybe padding
+	u32 mPikminCount[7];           // _3F8, TODO: likely [PikiColorCount]
+	u32 _414;                      // _414 - unknown
+	f32 mCarryPower;               // _418
+	SysShape::Animator mCarryAnim; // _41C
+	f32 mAnimSpeed;                // _438
+	u16 _43C;                      // _43C
+	u16 mPelletColor;              // _43E, this reflects pellet color for Number pellets, and the color of berries
+	int mSlotIndex;                // _440
+	Sys::Sphere mLodSphere;        // _444
+	BasePelletMgr* mMgr;           // _454
 
 	static bool sFromTekiEnable;
 };
@@ -495,18 +495,18 @@ enum StateID {
 };
 
 struct PelletGoalStateArg : public StateArg {
-	inline PelletGoalStateArg(Creature* creature) { m_creature = creature; }
+	inline PelletGoalStateArg(Creature* creature) { mCreature = creature; }
 
-	Creature* m_creature; // _00
+	Creature* mCreature; // _00
 	// _04 = VTBL
 
 	virtual char* getName() { return "PelletGoalStateArg"; } // _08 (weak)
 };
 
 struct PelletReturnStateArg : public StateArg {
-	inline PelletReturnStateArg(Vector3f& pos) { m_position = pos; }
+	inline PelletReturnStateArg(Vector3f& pos) { mPosition = pos; }
 
-	Vector3f m_position; // _00
+	Vector3f mPosition; // _00
 };
 
 struct PelletState : public FSMState<Pellet> {
@@ -533,14 +533,14 @@ struct PelletAppearState : public PelletState {
 	virtual void cleanup(Pellet*);         // _10
 	virtual bool appeared();               // _24 (weak)
 
-	f32 m_time;      // _10
-	f32 m_angle;     // _14
-	f32 m_goalScale; // _18
-	f32 _1C;         // _1C
-	f32 _20;         // _20
-	f32 _24;         // _24
-	f32 _28;         // _28
-	bool m_efxMade;  // _29
+	f32 mTime;      // _10
+	f32 mAngle;     // _14
+	f32 mGoalScale; // _18
+	f32 _1C;        // _1C
+	f32 _20;        // _20
+	f32 _24;        // _24
+	f32 _28;        // _28
+	bool mEfxMade;  // _29
 };
 
 struct PelletBuryState : public PelletState {
@@ -567,18 +567,18 @@ struct PelletGoalState : public PelletState {
 
 	bool checkMovie(Pellet*);
 
-	Creature* m_onyon; // _10
-	f32 _14;           // _14
-	f32 m_distance;    // _18
-	f32 m_suckDelay;   // _1C
-	f32 m_scale;       // _20
-	f32 m_suckTime;
-	Vector3f m_currPos;
-	bool m_startSuck;
-	f32 m_timer;
-	u8 m_inDemo;     // _3C, unknown
-	u8 m_isWaiting;  // _3D
-	u8 m_didSuikomi; // _3E
+	Creature* mOnyon; // _10
+	f32 _14;          // _14
+	f32 mDistance;    // _18
+	f32 mSuckDelay;   // _1C
+	f32 mScale;       // _20
+	f32 mSuckTime;
+	Vector3f mCurrPos;
+	bool mStartSuck;
+	f32 mTimer;
+	u8 mInDemo;     // _3C, unknown
+	u8 mIsWaiting;  // _3D
+	u8 mDidSuikomi; // _3E
 };
 
 struct PelletGoalWaitState : public PelletState {
@@ -591,7 +591,7 @@ struct PelletGoalWaitState : public PelletState {
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
 
-	Creature* m_obj; // _10
+	Creature* mObj; // _10
 };
 
 struct PelletNormalState : public PelletState {
@@ -621,18 +621,18 @@ struct PelletReturnState : public PelletState {
 	void flick(Pellet*);
 	void getWayPont(int);
 
-	f32 m_timer;      // _10
-	f32 m_peltYScale; // _14
-	u8 m_doEfx;       // _18
-	u8 m_doFlick;
-	u16 m_state;                     // _1A
-	u32 m_pathCheckID;               // _1C
-	Vector3f m_goalPos;              // _20
-	PathNode* m_pathNode;            // _2C
-	PathNode* m_pathNodePrev;        // _30
-	int m_pathNodes;                 // _34
-	::efx::TOrimaLight* m_efx;       // _38
-	::efx::TOrimaLightAct* m_efxAct; // _3C
+	f32 mTimer;      // _10
+	f32 mPeltYScale; // _14
+	u8 mDoEfx;       // _18
+	u8 mDoFlick;
+	u16 mState;                     // _1A
+	u32 mPathCheckID;               // _1C
+	Vector3f mGoalPos;              // _20
+	PathNode* mPathNode;            // _2C
+	PathNode* mPathNodePrev;        // _30
+	int mPathNodes;                 // _34
+	::efx::TOrimaLight* mEfx;       // _38
+	::efx::TOrimaLightAct* mEfxAct; // _3C
 };
 
 struct PelletScaleAppearState : public PelletState {
@@ -647,14 +647,14 @@ struct PelletScaleAppearState : public PelletState {
 	virtual void cleanup(Pellet*);         // _10
 	virtual bool appeared();               // _24 (weak)
 
-	f32 m_time;      // _10
-	f32 m_angle;     // _14
-	f32 m_goalScale; // _18
-	f32 _1C;         // _1C
-	f32 _20;         // _20
-	f32 _24;         // _24
-	f32 _28;         // _28
-	bool m_efxMade;  // _2C
+	f32 mTime;      // _10
+	f32 mAngle;     // _14
+	f32 mGoalScale; // _18
+	f32 _1C;        // _1C
+	f32 _20;        // _20
+	f32 _24;        // _24
+	f32 _28;        // _28
+	bool mEfxMade;  // _2C
 };
 
 struct PelletUpState : public PelletState {
@@ -679,7 +679,7 @@ struct PelletZukanState : public PelletState {
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
 
-	f32 m_timer; // _10
+	f32 mTimer; // _10
 };
 
 extern PelletMgr* pelletMgr;

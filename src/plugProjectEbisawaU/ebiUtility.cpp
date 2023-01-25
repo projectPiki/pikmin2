@@ -10,15 +10,15 @@ namespace ebi {
  */
 void EUTPadInterface_countNum::init(Controller* controller, long arg1, long arg2, long* arg3, enumMode mode, f32 arg5, f32 arg6)
 {
-	m_controller  = controller;
-	_10           = arg1;
-	_14           = arg2;
-	_18           = arg3;
-	m_mode        = mode;
-	m_timeFactor1 = arg5;
-	m_timeFactor2 = arg6;
-	m_counter     = 0;
-	_08           = 0;
+	mController  = controller;
+	_10          = arg1;
+	_14          = arg2;
+	_18          = arg3;
+	mMode        = mode;
+	mTimeFactor1 = arg5;
+	mTimeFactor2 = arg6;
+	mCounter     = 0;
+	_08          = 0;
 
 	if (*_18 < arg1) {
 		*_18 = arg1;
@@ -37,73 +37,73 @@ void EUTPadInterface_countNum::init(Controller* controller, long arg1, long arg2
 // TODO: https://decomp.me/scratch/zHh5R
 void EUTPadInterface_countNum::update()
 {
-	if (m_counter) {
-		m_counter--;
+	if (mCounter) {
+		mCounter--;
 	}
 	_0D = 0;
 
 	bool isForwards;
 	bool isBackwards;
 
-	switch (m_mode) {
+	switch (mMode) {
 	case MODE_LEFTRIGHT:
-		isForwards  = (m_controller->m_padButton.m_mask & Controller::PRESS_DPAD_LEFT) || (m_controller->m_padMStick.m_xPos < -0.5f);
-		isBackwards = (m_controller->m_padButton.m_mask & Controller::PRESS_DPAD_RIGHT) || (m_controller->m_padMStick.m_xPos > 0.5f);
+		isForwards  = (mController->mButton.mMask & Controller::PRESS_DPAD_LEFT) || (mController->mMStick.mXPos < -0.5f);
+		isBackwards = (mController->mButton.mMask & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos > 0.5f);
 		break;
 	case MODE_RIGHTLEFT:
-		isForwards  = (m_controller->m_padButton.m_mask & Controller::PRESS_DPAD_RIGHT) || (m_controller->m_padMStick.m_xPos > 0.5f);
-		isBackwards = (m_controller->m_padButton.m_mask & Controller::PRESS_DPAD_RIGHT) || (m_controller->m_padMStick.m_xPos < -0.5f);
+		isForwards  = (mController->mButton.mMask & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos > 0.5f);
+		isBackwards = (mController->mButton.mMask & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos < -0.5f);
 		break;
 	case MODE_UPDOWN:
-		isForwards  = (m_controller->m_padButton.m_mask & Controller::PRESS_DPAD_UP) || (m_controller->m_padMStick.m_yPos > 0.5f);
-		isBackwards = (m_controller->m_padButton.m_mask & Controller::PRESS_DPAD_DOWN) || (m_controller->m_padMStick.m_yPos < -0.5f);
+		isForwards  = (mController->mButton.mMask & Controller::PRESS_DPAD_UP) || (mController->mMStick.mYPos > 0.5f);
+		isBackwards = (mController->mButton.mMask & Controller::PRESS_DPAD_DOWN) || (mController->mMStick.mYPos < -0.5f);
 		break;
 	case MODE_DOWNUP:
-		isForwards  = (m_controller->m_padButton.m_mask & Controller::PRESS_DPAD_DOWN) || (m_controller->m_padMStick.m_yPos < -0.5f);
-		isBackwards = (m_controller->m_padButton.m_mask & Controller::PRESS_DPAD_UP) || (m_controller->m_padMStick.m_yPos > 0.5f);
+		isForwards  = (mController->mButton.mMask & Controller::PRESS_DPAD_DOWN) || (mController->mMStick.mYPos < -0.5f);
+		isBackwards = (mController->mButton.mMask & Controller::PRESS_DPAD_UP) || (mController->mMStick.mYPos > 0.5f);
 		break;
 	}
 
 	if (isForwards) {
-		if (!m_counter) {
+		if (!mCounter) {
 			if (*_18 < _14) {
 				_1C = *_18;
 				*_18 += 1;
 				_0D = 1;
-				if (!m_isChanging) {
-					m_isChanging = true;
-					f32 time     = (m_timeFactor1 / sys->m_deltaTime);
-					m_counter    = time;
-					_08          = time;
+				if (!mIsChanging) {
+					mIsChanging = true;
+					f32 time    = (mTimeFactor1 / sys->mDeltaTime);
+					mCounter    = time;
+					_08         = time;
 					return;
 				}
-				f32 time  = (m_timeFactor2 / sys->m_deltaTime);
-				m_counter = time;
-				_08       = time;
+				f32 time = (mTimeFactor2 / sys->mDeltaTime);
+				mCounter = time;
+				_08      = time;
 			}
 		}
 	} else if (isBackwards) {
-		if (m_counter == 0) {
+		if (mCounter == 0) {
 			if (*_18 > _10) {
 				_1C = *_18;
 				*_18 -= 1;
 				_0D = 1;
-				if (!m_isChanging) {
-					m_isChanging = true;
-					f32 time     = (m_timeFactor1 / sys->m_deltaTime);
-					m_counter    = time;
-					_08          = time;
+				if (!mIsChanging) {
+					mIsChanging = true;
+					f32 time    = (mTimeFactor1 / sys->mDeltaTime);
+					mCounter    = time;
+					_08         = time;
 					return;
 				}
-				f32 time  = (m_timeFactor2 / sys->m_deltaTime);
-				m_counter = time;
-				_08       = time;
+				f32 time = (mTimeFactor2 / sys->mDeltaTime);
+				mCounter = time;
+				_08      = time;
 			}
 		}
 	} else {
-		m_isChanging = false;
-		m_counter    = 0;
-		_08          = 0;
+		mIsChanging = false;
+		mCounter    = 0;
+		_08         = 0;
 	}
 }
 

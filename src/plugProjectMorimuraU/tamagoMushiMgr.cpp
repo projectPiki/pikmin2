@@ -15,7 +15,7 @@ static const char tamagoMushiMgrName[] = "tamagoMushiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "タマゴムシマネージャ"; // egg bug manager
+	mName = "タマゴムシマネージャ"; // egg bug manager
 }
 
 /*
@@ -26,7 +26,7 @@ Mgr::Mgr(int objLimit, u8 modelType)
 void Mgr::doAlloc()
 {
 	init(new Parms);
-	m_mtxCacheRef = new J3DUMtxCacheRef<J3DUMtxAnmCacheTable>(getCacheTable(getModel(), getTransform()));
+	mMtxCacheRef = new J3DUMtxCacheRef<J3DUMtxAnmCacheTable>(getCacheTable(getModel(), getTransform()));
 }
 
 /*
@@ -51,9 +51,9 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
  */
 void Mgr::fetch(J3DModel* model, f32 p1)
 {
-	if (m_mtxCacheRef) {
-		m_mtxCacheRef->m_cache->_00 = 0.5f + p1;
-		m_mtxCacheRef->fetch(model);
+	if (mMtxCacheRef) {
+		mMtxCacheRef->mCache->_00 = 0.5f + p1;
+		mMtxCacheRef->fetch(model);
 	}
 }
 
@@ -146,28 +146,28 @@ void Mgr::createGroup(Obj* leader, int count, bool check)
 		factor2 = 1.0f;
 	}
 
-	birthArg.m_faceDir  = 0.0f;
-	birthArg.m_position = leaderPos;
+	birthArg.mFaceDir  = 0.0f;
+	birthArg.mPosition = leaderPos;
 
-	leader->onSetPosition(birthArg.m_position);
+	leader->onSetPosition(birthArg.mPosition);
 
-	leader->m_faceDir    = birthArg.m_faceDir;
-	leader->m_rotation.y = leader->m_faceDir;
+	leader->mFaceDir    = birthArg.mFaceDir;
+	leader->mRotation.y = leader->mFaceDir;
 
 	for (int i = 0; i < count - 1; i++) {
 		if (!check) {
 			factor2 = 0.8f * randFloat() + 0.2f;
 		}
-		birthArg.m_position = leaderPos;
-		birthArg.m_faceDir  = (TAU * (i)) / ((f32)count);
+		birthArg.mPosition = leaderPos;
+		birthArg.mFaceDir  = (TAU * (i)) / ((f32)count);
 
-		f32 sinComp = factor1 * pikmin2_sinf(birthArg.m_faceDir);
-		birthArg.m_position.x += factor2 * sinComp;
-		f32 cosComp = factor1 * pikmin2_cosf(birthArg.m_faceDir);
-		birthArg.m_position.z += factor2 * cosComp;
+		f32 sinComp = factor1 * pikmin2_sinf(birthArg.mFaceDir);
+		birthArg.mPosition.x += factor2 * sinComp;
+		f32 cosComp = factor1 * pikmin2_cosf(birthArg.mFaceDir);
+		birthArg.mPosition.z += factor2 * cosComp;
 
 		if (check || (int)(i % 2) == 1) {
-			birthArg.m_faceDir *= -1.0f;
+			birthArg.mFaceDir *= -1.0f;
 		}
 
 		EnemyBase* enemy = EnemyMgrBase::birth(birthArg);
@@ -196,24 +196,24 @@ void Mgr::createGroupByBigFoot(Obj* leader, int count, bool check, f32 p1)
 	EnemyBirthArg birthArg;
 	Vector3f leaderPos = leader->getPosition();
 
-	birthArg.m_faceDir  = 0.0f;
-	birthArg.m_position = leaderPos;
+	birthArg.mFaceDir  = 0.0f;
+	birthArg.mPosition = leaderPos;
 
-	leader->onSetPosition(birthArg.m_position);
+	leader->onSetPosition(birthArg.mPosition);
 
-	leader->m_faceDir    = birthArg.m_faceDir;
-	leader->m_rotation.y = leader->m_faceDir;
+	leader->mFaceDir    = birthArg.mFaceDir;
+	leader->mRotation.y = leader->mFaceDir;
 
 	for (int i = 0; i < count - 1; i++) {
 		f32 factor = 0.8f * randFloat() + 0.2f;
 
-		f32 angle           = TAU * randFloat() * i;
-		birthArg.m_faceDir  = TAU * angle;
-		birthArg.m_position = leaderPos;
+		f32 angle          = TAU * randFloat() * i;
+		birthArg.mFaceDir  = TAU * angle;
+		birthArg.mPosition = leaderPos;
 		angle /= count;
 
-		birthArg.m_position.x += (factor * pikmin2_sinf(angle)) / 2;
-		birthArg.m_position.z += (factor * pikmin2_cosf(angle)) / 2;
+		birthArg.mPosition.x += (factor * pikmin2_sinf(angle)) / 2;
+		birthArg.mPosition.z += (factor * pikmin2_cosf(angle)) / 2;
 
 		Obj* tamagomushi = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
 		if (tamagomushi) {
@@ -230,7 +230,7 @@ void Mgr::createGroupByBigFoot(Obj* leader, int count, bool check, f32 p1)
 			}
 			tamagomushi->setLeader(leader);
 
-			tamagomushi->m_rotation = Vector3f(TAU * randFloat(), birthArg.m_faceDir, TAU * randFloat());
+			tamagomushi->mRotation = Vector3f(TAU * randFloat(), birthArg.mFaceDir, TAU * randFloat());
 		}
 	}
 	/*

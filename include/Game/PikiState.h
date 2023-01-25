@@ -63,7 +63,7 @@ struct PikiState : public FSMState<Piki> {
 	inline PikiState(int stateID, char* name)
 	    : FSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	virtual bool ignoreAtari(Piki*, Creature*) { return false; }  // _20 (weak)
@@ -90,7 +90,7 @@ struct PikiState : public FSMState<Piki> {
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	char* m_name; // _0C
+	char* mName; // _0C
 };
 
 struct PikiAbsorbState : public PikiState {
@@ -133,18 +133,18 @@ struct PikiAutoNukiState : public PikiState {
 struct BlowStateArg : public StateArg {
 	inline BlowStateArg(Vector3f& vec, f32 p1, u8 lethal, u16 p3, Creature* creature)
 	{
-		_00        = vec;
-		_0C        = p1;
-		m_isLethal = lethal;
-		_12        = p3;
-		_14        = creature;
+		_00       = vec;
+		_0C       = p1;
+		mIsLethal = lethal;
+		_12       = p3;
+		_14       = creature;
 	}
 
-	Vector3f _00;    // _00
-	f32 _0C;         // _0C
-	bool m_isLethal; // _10
-	u16 _12;         // _12
-	Creature* _14;   // _14
+	Vector3f _00;   // _00
+	f32 _0C;        // _0C
+	bool mIsLethal; // _10
+	u16 _12;        // _12
+	Creature* _14;  // _14
 };
 
 struct PikiBlowState : public PikiState {
@@ -187,9 +187,9 @@ struct PikiCarrotState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 m_timeRemaining; // _10, remaining time alive, in seconds (max 10-13s)
-	bool m_isPlanted;    // _14
-	Vector3f m_position; // _18
+	f32 mTimeRemaining; // _10, remaining time alive, in seconds (max 10-13s)
+	bool mIsPlanted;    // _14
+	Vector3f mPosition; // _18
 };
 
 struct PikiDeadState : public PikiState {
@@ -260,11 +260,11 @@ struct PikiDopeState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	bool _10;      // _10
-	f32 _14;       // _14, dope timer?
-	s16 _18;       // _18, spray type?
-	s16 m_animIdx; // _1A
-	Navi* m_navi;  // _1C
+	bool _10;     // _10
+	f32 _14;      // _14, dope timer?
+	s16 _18;      // _18, spray type?
+	s16 mAnimIdx; // _1A
+	Navi* mNavi;  // _1C
 };
 
 struct PikiDrownState : public PikiState {
@@ -288,13 +288,13 @@ struct PikiDrownState : public PikiState {
 
 struct DyingStateArg : public StateArg {
 	inline DyingStateArg()
-	    : m_animIdx(IPikiAnims::NULLANIM)
+	    : mAnimIdx(IPikiAnims::NULLANIM)
 	    , _04(false)
 	{
 	}
 
-	int m_animIdx; // _00
-	bool _04;      // _04
+	int mAnimIdx; // _00
+	bool _04;     // _04
 };
 
 struct PikiDyingState : public PikiState {
@@ -313,8 +313,8 @@ struct PikiDyingState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	int m_animIdx; // _10
-	bool _14;      // _14, unknown
+	int mAnimIdx; // _10
+	bool _14;     // _14, unknown
 };
 
 struct EmotionStateArg : public StateArg {
@@ -432,7 +432,7 @@ struct PikiFlyingState : public PikiState {
 };
 
 struct FountainonStateArg : public StateArg {
-	Vector3f m_position; // _00
+	Vector3f mPosition; // _00
 };
 
 struct PikiFountainonState : public PikiState {
@@ -451,11 +451,11 @@ struct PikiFountainonState : public PikiState {
 	// _00     = VTBL
 	// _00-_10 = PikiState
 	// u8 _10[0x24]; // _10, unknown
-	Vector3f _10;    // _10
-	Vector3f _1C;    // _1C
-	f32 _28;         // _28, length?
-	f32 _2C;         // _2C, timer?
-	f32 m_countdown; // _30
+	Vector3f _10;   // _10
+	Vector3f _1C;   // _1C
+	f32 _28;        // _28, length?
+	f32 _2C;        // _2C, timer?
+	f32 mCountdown; // _30
 };
 
 struct PikiGoHangState : public PikiState {
@@ -531,7 +531,7 @@ struct PikiHipDropState : public PikiState {
 };
 
 struct HoleinStateArg : public StateArg {
-	Vector3f m_position; // _00
+	Vector3f mPosition; // _00
 };
 
 struct PikiHoleinState : public PikiState {
@@ -549,15 +549,15 @@ struct PikiHoleinState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	Vector3f _10;        // _10
-	Vector3f _1C;        // _1C
-	f32 _28;             // _28, length?
-	f32 _2C;             // _2C, timer?
-	f32 m_countdown;     // _30
-	bool _34;            // _34
-	Vector3f m_position; // _38
-	u8 _44;              // _44
-	f32 m_scale;         // _48
+	Vector3f _10;       // _10
+	Vector3f _1C;       // _1C
+	f32 _28;            // _28, length?
+	f32 _2C;            // _2C, timer?
+	f32 mCountdown;     // _30
+	bool _34;           // _34
+	Vector3f mPosition; // _38
+	u8 _44;             // _44
+	f32 mScale;         // _48
 };
 
 struct PikiKokeDamageState : public PikiState {
@@ -618,8 +618,8 @@ struct PikiLookAtState : public PikiState, virtual SysShape::MotionListener {
 };
 
 struct NukareStateArg : public StateArg {
-	bool _00;     // _00
-	Navi* m_navi; // _04
+	bool _00;    // _00
+	Navi* mNavi; // _04
 };
 
 struct PikiNukareState : public PikiState {
@@ -636,13 +636,13 @@ struct PikiNukareState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	Navi* m_navi;  // _10
-	bool _14;      // _14
-	s16 m_animIdx; // _16
+	Navi* mNavi;  // _10
+	bool _14;     // _14
+	s16 mAnimIdx; // _16
 };
 
 struct PanicStateArg : public StateArg {
-	u16 m_panicType; // _00
+	u16 mPanicType; // _00
 };
 
 struct PikiPanicState : public PikiState {
@@ -668,15 +668,15 @@ struct PikiPanicState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 m_deathTimer; // _10, when this reaches 0, piki dies
-	f32 m_dramaTimer; // _14, when this reaches 0, piki does dramatic effect (hop/cough/sound)
-	f32 m_angle;      // _18
-	f32 m_speed;      // _1C
-	bool _20;         // _20
-	bool _21;         // _21
-	u8 _22;           // _22
-	u16 m_panicType;  // _24
-	f32 _28;          // _28
+	f32 mDeathTimer; // _10, when this reaches 0, piki dies
+	f32 mDramaTimer; // _14, when this reaches 0, piki does dramatic effect (hop/cough/sound)
+	f32 mAngle;      // _18
+	f32 mSpeed;      // _1C
+	bool _20;        // _20
+	bool _21;        // _21
+	u8 _22;          // _22
+	u16 mPanicType;  // _24
+	f32 _28;         // _28
 };
 
 struct PikiPressedState : public PikiState {
@@ -702,14 +702,14 @@ struct SuikomiStateArg : public StateArg {
 
 	inline SuikomiStateArg(Creature* c, u32 p3, CollPart* p2)
 	{
-		m_creature = c;
-		_04        = p3;
-		_08        = p2;
+		mCreature = c;
+		_04       = p3;
+		_08       = p2;
 	}
 
-	Creature* m_creature; // _00
-	u32 _04;              // _04
-	CollPart* _08;        // _08
+	Creature* mCreature; // _00
+	u32 _04;             // _04
+	CollPart* _08;       // _08
 };
 
 struct PikiSuikomiState : public PikiState {
@@ -731,15 +731,15 @@ struct PikiSuikomiState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10;               // _10
-	Creature* m_creature; // _14
-	CollPart* m_collpart; // _18
-	CollPart* _1C;        // _1C
-	f32 _20;              // _20
+	u8 _10;              // _10
+	Creature* mCreature; // _14
+	CollPart* mCollpart; // _18
+	CollPart* _1C;       // _1C
+	f32 _20;             // _20
 };
 
 struct SwallowedStateArg : public StateArg {
-	int m_animIdx; // _00
+	int mAnimIdx; // _00
 };
 
 struct PikiSwallowedState : public PikiState {
@@ -798,7 +798,7 @@ struct PikiWalkState : public PikiState {
 };
 
 struct WaterHangedStateArg : public StateArg {
-	Piki* m_piki; // _00
+	Piki* mPiki; // _00
 };
 
 struct PikiWaterHangedState : public PikiState, virtual SysShape::MotionListener {
@@ -816,7 +816,7 @@ struct PikiWaterHangedState : public PikiState, virtual SysShape::MotionListener
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	Piki* m_piki; // _14
+	Piki* mPiki; // _14
 };
 } // namespace Game
 

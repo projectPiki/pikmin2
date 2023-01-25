@@ -68,7 +68,7 @@ struct Item : public CFSMItem {
 
 	bool isShrinking();
 
-	u8 m_honeyType; // _1E0
+	u8 mHoneyType; // _1E0
 };
 
 struct Mgr : public FixedSizeItemMgr<ItemHoney::Item> {

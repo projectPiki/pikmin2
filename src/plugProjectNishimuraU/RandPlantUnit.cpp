@@ -16,23 +16,23 @@ Game::Cave::RandPlantUnit::RandPlantUnit(Game::Cave::MapUnitGenerator* generator
 {
 	// Constructor for RandPlantUnit
 	//     - takes a MapUnitGenerator as input
-	//     - initialises m_currentPlantCount to 0
-	//     - adds up all plant teki weights to get m_desiredPlantCount
+	//     - initialises mCurrentPlantCount to 0
+	//     - adds up all plant teki weights to get mDesiredPlantCount
 
 	// set base attributes
-	m_generator         = generator;
-	m_currentPlantCount = 0; // initial plant count = 0
-	m_desiredPlantCount = 0; // initial desired plant count = 0
+	mGenerator         = generator;
+	mCurrentPlantCount = 0; // initial plant count = 0
+	mDesiredPlantCount = 0; // initial desired plant count = 0
 
 	// calculate desired plant count from plant weights
 
 	// loop through the enemy nodes for the MapUnitGenerator
-	EnemyNode* currEnemyNode = (EnemyNode*)m_generator->m_enemyNodeA->m_child;
-	for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->m_next) {
+	EnemyNode* currEnemyNode = (EnemyNode*)mGenerator->mEnemyNodeA->mChild;
+	for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->mNext) {
 
 		// if TekiInfo exists and the Teki type is 6 (plant), add its weight to desiredPlantCount
-		if ((currEnemyNode->m_enemyUnit->m_tekiInfo) && (currEnemyNode->m_enemyUnit->m_tekiInfo->m_type == 6)) {
-			m_desiredPlantCount += currEnemyNode->m_enemyUnit->m_tekiInfo->m_weight;
+		if ((currEnemyNode->mEnemyUnit->mTekiInfo) && (currEnemyNode->mEnemyUnit->mTekiInfo->mType == 6)) {
+			mDesiredPlantCount += currEnemyNode->mEnemyUnit->mTekiInfo->mWeight;
 		}
 	}
 }
@@ -47,7 +47,7 @@ void Game::Cave::RandPlantUnit::setPlantSlot()
 	// make nodes for new plants if there's room for them
 
 	// check that we have space for new plants
-	if (m_currentPlantCount < m_desiredPlantCount) {
+	if (mCurrentPlantCount < mDesiredPlantCount) {
 
 		// only try to place a max of 100 plants, regardless of desired plant count
 		for (int i = 0; i < 100; i++) {
@@ -65,12 +65,12 @@ void Game::Cave::RandPlantUnit::setPlantSlot()
 				// make data global on map node
 				newPlant->makeGlobalData(currMapNode);
 				// add plant to enemy nodes
-				currMapNode->m_enemyNode->add((EnemyNode*)newPlant);
+				currMapNode->mEnemyNode->add((EnemyNode*)newPlant);
 				// increment plant count
-				m_currentPlantCount++;
+				mCurrentPlantCount++;
 
 				// check we haven't hit our plant limit
-				if (!(m_currentPlantCount < m_desiredPlantCount)) {
+				if (!(mCurrentPlantCount < mDesiredPlantCount)) {
 					return;
 				} else {
 					continue;
@@ -102,17 +102,17 @@ Game::Cave::MapNode* Game::Cave::RandPlantUnit::getPlantSetMapNode(Game::Cave::B
 	int count = 0;
 
 	// loop through all the map nodes
-	MapNode* currMapNode = (MapNode*)m_generator->m_placedMapNodes->m_child;
-	for (currMapNode; currMapNode; currMapNode = (MapNode*)currMapNode->m_next) {
+	MapNode* currMapNode = (MapNode*)mGenerator->mPlacedMapNodes->mChild;
+	for (currMapNode; currMapNode; currMapNode = (MapNode*)currMapNode->mNext) {
 
 		// get the 'base' base gen for current map node
-		BaseGen* mapBaseGen = currMapNode->m_unitInfo->getBaseGen();
+		BaseGen* mapBaseGen = currMapNode->mUnitInfo->getBaseGen();
 		if (mapBaseGen) { // if it exists, loop through the base gen for the map node
-			BaseGen* currBaseGen = (BaseGen*)mapBaseGen->m_child;
-			for (currBaseGen; currBaseGen; currBaseGen = (BaseGen*)currBaseGen->m_next) {
+			BaseGen* currBaseGen = (BaseGen*)mapBaseGen->mChild;
+			for (currBaseGen; currBaseGen; currBaseGen = (BaseGen*)currBaseGen->mNext) {
 
 				// if the spawn type is 6 (plant) and it DOESN'T have a plant, add it to the list
-				if ((currBaseGen->m_spawnType == 6) && (isPlantSet(currMapNode, currBaseGen))) {
+				if ((currBaseGen->mSpawnType == 6) && (isPlantSet(currMapNode, currBaseGen))) {
 					mapNodeArr[count] = currMapNode;
 					baseGenArr[count] = currBaseGen;
 					count += 1;
@@ -147,15 +147,15 @@ Game::Cave::EnemyUnit* Game::Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseG
 	if (plantBaseGen) {
 
 		// loop through the enemy nodes for the MapUnitGenerator
-		EnemyNode* currEnemyNode = (EnemyNode*)m_generator->m_enemyNodeA->m_child;
-		for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->m_next) {
+		EnemyNode* currEnemyNode = (EnemyNode*)mGenerator->mEnemyNodeA->mChild;
+		for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->mNext) {
 			// if TekiInfo exists and Teki type = 6 (plant), add weight to desiredPlantCount
-			if (currEnemyNode->m_enemyUnit->m_tekiInfo && (currEnemyNode->m_enemyUnit->m_tekiInfo->m_type == 6)) {
-				desiredPlantCount += currEnemyNode->m_enemyUnit->m_tekiInfo->m_weight;
+			if (currEnemyNode->mEnemyUnit->mTekiInfo && (currEnemyNode->mEnemyUnit->mTekiInfo->mType == 6)) {
+				desiredPlantCount += currEnemyNode->mEnemyUnit->mTekiInfo->mWeight;
 
 				// if we've gotten further than currentPlantCount, return plant
-				if (m_currentPlantCount < desiredPlantCount) {
-					return currEnemyNode->m_enemyUnit;
+				if (mCurrentPlantCount < desiredPlantCount) {
+					return currEnemyNode->mEnemyUnit;
 				}
 			}
 		}
@@ -178,11 +178,11 @@ bool Game::Cave::RandPlantUnit::isPlantSet(Game::Cave::MapNode* testMapNode, Gam
 	// check given BaseGen exists
 	if (testBaseGen) {
 		// loop through all the enemy nodes for given map node
-		EnemyNode* currEnemyNode = (EnemyNode*)testMapNode->m_enemyNode->m_child;
-		for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->m_next) {
+		EnemyNode* currEnemyNode = (EnemyNode*)testMapNode->mEnemyNode->mChild;
+		for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->mNext) {
 
 			// if enemy node basegen matches given basegen, plant exists, no free space
-			if (currEnemyNode->m_baseGen == testBaseGen) {
+			if (currEnemyNode->mBaseGen == testBaseGen) {
 				return false;
 			}
 		}

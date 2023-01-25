@@ -8,8 +8,8 @@
  */
 J3DShapeDraw::J3DShapeDraw(const u8* dl, u32 size)
 {
-	m_displayList = dl;
-	m_dlSize      = size;
+	mDisplayList = dl;
+	mDlSize      = size;
 }
 
 /*
@@ -17,7 +17,7 @@ J3DShapeDraw::J3DShapeDraw(const u8* dl, u32 size)
  * Address:	80088864
  * Size:	00002C
  */
-void J3DShapeDraw::draw() const { GXCallDisplayList((void*)m_displayList, m_dlSize); }
+void J3DShapeDraw::draw() const { GXCallDisplayList((void*)mDisplayList, mDlSize); }
 
 /*
  * --INFO--

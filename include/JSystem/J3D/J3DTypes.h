@@ -177,32 +177,32 @@ struct J3DIndTevStage {
 };
 
 struct J3DLightObj {
-	JGeometry::TVec3f m_position;  // _00
-	JGeometry::TVec3f m_direction; // _0C
-	_GXColor _18;                  // _18
-	f32 _1C;                       // _1C
-	f32 _20;                       // _20
-	f32 _24;                       // _24
-	f32 _28;                       // _28
-	f32 _2C;                       // _2C
-	f32 _30;                       // _30
+	JGeometry::TVec3f mPosition;  // _00
+	JGeometry::TVec3f mDirection; // _0C
+	_GXColor _18;                 // _18
+	f32 _1C;                      // _1C
+	f32 _20;                      // _20
+	f32 _24;                      // _24
+	f32 _28;                      // _28
+	f32 _2C;                      // _2C
+	f32 _30;                      // _30
 
 	void load(u32) const;
 };
 
 struct J3DTevOrderInfo {
-	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)m_data[0]; }
-	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)m_data[1]; }
-	// inline u8 getChannelID() const { return m_data[2]; }
-	u8 m_data[3]; // _00
+	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mData[0]; }
+	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)mData[1]; }
+	// inline u8 getChannelID() const { return mData[2]; }
+	u8 mData[3]; // _00
 
-	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)m_texCoordID; }
-	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)m_texMapID; }
-	// inline u8 getChannelID() const { return m_channelID; }
+	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mTexCoordID; }
+	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)mTexMapID; }
+	// inline u8 getChannelID() const { return mChannelID; }
 
-	// u8 m_texCoordID; // _00
-	// u8 m_texMapID;   // _01
-	// u8 m_channelID;  // _02
+	// u8 mTexCoordID; // _00
+	// u8 mTexMapID;   // _01
+	// u8 mChannelID;  // _02
 
 	// u8 _03;          // _03 - unknown/padding
 };
@@ -211,21 +211,21 @@ extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
 
 struct J3DTevOrder {
 	J3DTevOrder()
-	// : m_data(j3dDefaultTevOrderInfoNull.m_data)
-	// : m_texCoordID(j3dDefaultTevOrderInfoNull.m_texCoordID)
-	// , m_texMapID(j3dDefaultTevOrderInfoNull.m_texMapID)
-	// , m_channelID(j3dDefaultTevOrderInfoNull.m_channelID)
+	// : mData(j3dDefaultTevOrderInfoNull.mData)
+	// : mTexCoordID(j3dDefaultTevOrderInfoNull.mTexCoordID)
+	// , mTexMapID(j3dDefaultTevOrderInfoNull.mTexMapID)
+	// , mChannelID(j3dDefaultTevOrderInfoNull.mChannelID)
 	{
 		// for (int i = 0; i < 3; i++) {
-		// 	m_data[i] = j3dDefaultTevOrderInfoNull.m_data[i];
+		// 	mData[i] = j3dDefaultTevOrderInfoNull.mData[i];
 		// }
 		const J3DTevOrderInfo& info = j3dDefaultTevOrderInfoNull;
-		m_texCoordID                = info.m_data[0];
-		m_texMapID                  = info.m_data[1];
-		m_channelID                 = info.m_data[2];
-		// m_texCoordID                = info.m_texCoordID;
-		// m_texMapID                  = info.m_texMapID;
-		// m_channelID                 = info.m_channelID;
+		mTexCoordID                 = info.mData[0];
+		mTexMapID                   = info.mData[1];
+		mChannelID                  = info.mData[2];
+		// mTexCoordID                = info.mTexCoordID;
+		// mTexMapID                  = info.mTexMapID;
+		// mChannelID                 = info.mChannelID;
 		// setTexCoordID(info.getTexCoordID());
 		// setTexMapID(info.getTexMapID());
 		// setChannelID(info.getChannelID());
@@ -238,44 +238,44 @@ struct J3DTevOrder {
 
 	/** @fabricated */
 	inline J3DTevOrder(const J3DTevOrderInfo& info)
-	    // : m_texCoordID(info.m_texCoordID)
-	    // , m_texMapID(info.m_texMapID)
-	    // , m_channelID(info.m_channelID)
-	    : m_texCoordID(info.m_data[0])
-	    , m_texMapID(info.m_data[1])
-	    , m_channelID(info.m_data[2])
+	    // : mTexCoordID(info.mTexCoordID)
+	    // , mTexMapID(info.mTexMapID)
+	    // , mChannelID(info.mChannelID)
+	    : mTexCoordID(info.mData[0])
+	    , mTexMapID(info.mData[1])
+	    , mChannelID(info.mData[2])
 	{
 		// for (int i = 0; i < 3; i++) {
-		// 	m_data[i] = info.m_data[i];
+		// 	mData[i] = info.mData[i];
 		// }
 	}
 
 	/** @fabricated */
 	inline J3DTevOrder& operator=(const J3DTevOrder& other)
 	{
-		m_texCoordID = other.m_texCoordID;
-		m_texMapID   = other.m_texMapID;
-		m_channelID  = other.m_channelID;
+		mTexCoordID = other.mTexCoordID;
+		mTexMapID   = other.mTexMapID;
+		mChannelID  = other.mChannelID;
 		// for (int i = 0; i < 3; i++) {
-		// 	m_data[i] = other.m_data[i];
+		// 	mData[i] = other.mData[i];
 		// }
 		return *this;
 	}
 
-	inline void setTexCoordID(GXTexCoordID id) { m_texCoordID = id; }
-	inline void setTexMapID(GXTexMapID id) { m_texMapID = id; }
-	inline void setChannelID(u8 id) { m_channelID = id; }
+	inline void setTexCoordID(GXTexCoordID id) { mTexCoordID = id; }
+	inline void setTexMapID(GXTexMapID id) { mTexMapID = id; }
+	inline void setChannelID(u8 id) { mChannelID = id; }
 
-	u8 m_texCoordID; // _00
-	u8 m_texMapID;   // _01
-	u8 m_channelID;  // _02
+	u8 mTexCoordID; // _00
+	u8 mTexMapID;   // _01
+	u8 mChannelID;  // _02
 	u8 _03;
 
-	// inline void setTexCoordID(GXTexCoordID id) { m_data[0] = id; }
-	// inline void setTexMapID(GXTexMapID id) { m_data[1] = id; }
-	// inline void setChannelID(u8 id) { m_data[2] = id; }
+	// inline void setTexCoordID(GXTexCoordID id) { mData[0] = id; }
+	// inline void setTexMapID(GXTexMapID id) { mData[1] = id; }
+	// inline void setChannelID(u8 id) { mData[2] = id; }
 
-	// u8 m_data[3]; // _00
+	// u8 mData[3]; // _00
 };
 
 // TODO: Determine if this needs packing pragmas to make it exactly 1 bytes
@@ -353,17 +353,17 @@ struct J3DTexCoord {
 };
 
 struct J3DTextureSRTInfo {
-	f32 m_scaleX; // _00 - name derived from J3DTexMtx[0x10]
-	f32 m_scaleY; // _04 - name derived from J3DTexMtx[0x14]
-	u16 _08;      // _08
-	f32 _0C;      // _0C
-	f32 _10;      // _10
+	f32 mScaleX; // _00 - name derived from J3DTexMtx[0x10]
+	f32 mScaleY; // _04 - name derived from J3DTexMtx[0x14]
+	u16 _08;     // _08
+	f32 _0C;     // _0C
+	f32 _10;     // _10
 };
 
 struct J3DTransformInfo {
-	JGeometry::TVec3f m_scale;        // _00
-	JGeometry::TVec3<s16> m_eulerRot; // _0C
-	JGeometry::TVec3f m_zRotation;    // _14
+	JGeometry::TVec3f mScale;        // _00
+	JGeometry::TVec3<s16> mEulerRot; // _0C
+	JGeometry::TVec3f mZRotation;    // _14
 };
 
 extern const J3DTransformInfo j3dDefaultTransformInfo;

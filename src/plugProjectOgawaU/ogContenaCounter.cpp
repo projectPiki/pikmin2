@@ -12,15 +12,15 @@ namespace Screen {
  */
 ContenaCounter::ContenaCounter(DispMemberContena* contena)
 {
-	m_disp       = contena;
-	m_inOnion    = &m_disp->m_inOnion;
-	m_inTransfer = &m_disp->m_inTransfer;
-	m_newCount   = &m_disp->m_newInPartyNum;
-	m_onField    = &m_disp->m_onMapMinusWild;
-	m_counter1   = nullptr;
-	m_counter2   = nullptr;
-	m_counter3   = nullptr;
-	m_counter4   = nullptr;
+	mDisp       = contena;
+	mInOnion    = &mDisp->mInOnion;
+	mInTransfer = &mDisp->mInTransfer;
+	mNewCount   = &mDisp->mNewInPartyNum;
+	mOnField    = &mDisp->mOnMapMinusWild;
+	mCounter1   = nullptr;
+	mCounter2   = nullptr;
+	mCounter3   = nullptr;
+	mCounter4   = nullptr;
 }
 
 /*
@@ -36,10 +36,10 @@ void ContenaCounter::setblo(char* filename, JKRArchive* archive)
 	setAlphaScreen(this);
 	setAlpha(255);
 
-	m_counter1 = setCallBack_CounterRV(this, 'a_k1', m_inOnion, 5, true, true, archive);
-	m_counter2 = setCallBack_CounterRV(this, 'b_k1', m_inTransfer, 4, false, true, archive);
-	m_counter3 = setCallBack_CounterRV(this, 'c_k1', m_newCount, 4, true, true, archive);
-	m_counter4 = setCallBack_CounterRV(this, 'd_k1', m_onField, 4, true, true, archive);
+	mCounter1 = setCallBack_CounterRV(this, 'a_k1', mInOnion, 5, true, true, archive);
+	mCounter2 = setCallBack_CounterRV(this, 'b_k1', mInTransfer, 4, false, true, archive);
+	mCounter3 = setCallBack_CounterRV(this, 'c_k1', mNewCount, 4, true, true, archive);
+	mCounter4 = setCallBack_CounterRV(this, 'd_k1', mOnField, 4, true, true, archive);
 }
 
 } // namespace Screen

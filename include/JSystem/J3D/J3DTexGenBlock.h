@@ -72,7 +72,7 @@ struct J3DTexGenBlockNull : public J3DTexGenBlock {
 struct J3DTexGenBlockPatched : public J3DTexGenBlock {
 	inline J3DTexGenBlockPatched()
 	    : J3DTexGenBlock()
-	    , m_texCoords()
+	    , mTexCoords()
 	{
 		initialize();
 	}
@@ -107,16 +107,16 @@ struct J3DTexGenBlockPatched : public J3DTexGenBlock {
 	void initialize();
 
 	// VTBL _00
-	u32 m_texgenCnt;             // _04
-	J3DTexCoord m_texCoords[8];  // _08
-	J3DTexMtx* m_texMatrices[8]; // _38
-	u32 m_dlistOffs;             // _58
+	u32 mTexgenCnt;             // _04
+	J3DTexCoord mTexCoords[8];  // _08
+	J3DTexMtx* mTexMatrices[8]; // _38
+	u32 mDlistOffs;             // _58
 };
 
 struct J3DTexGenBlockBasic : public J3DTexGenBlockPatched {
 	inline J3DTexGenBlockBasic()
 	    : J3DTexGenBlockPatched()
-	    , m_nbtScale()
+	    , mNbtScale()
 	{
 		initialize();
 	}
@@ -133,13 +133,13 @@ struct J3DTexGenBlockBasic : public J3DTexGenBlockPatched {
 
 	void initialize();
 
-	J3DNBTScale m_nbtScale; // _5C
+	J3DNBTScale mNbtScale; // _5C
 };
 
 struct J3DTexGenBlock4 : public J3DTexGenBlockPatched {
 	inline J3DTexGenBlock4()
 	    : J3DTexGenBlockPatched()
-	    , m_nbtScale()
+	    , mNbtScale()
 	{
 		initialize();
 	}
@@ -155,7 +155,7 @@ struct J3DTexGenBlock4 : public J3DTexGenBlockPatched {
 
 	void initialize();
 
-	J3DNBTScale m_nbtScale; // _5C
+	J3DNBTScale mNbtScale; // _5C
 };
 
 #endif

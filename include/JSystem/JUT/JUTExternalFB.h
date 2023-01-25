@@ -11,12 +11,12 @@ typedef u16 _GXGamma;
 struct JUTExternalFB {
 	JUTExternalFB(_GXRenderModeObj*, _GXGamma, void*, unsigned long);
 
-	_GXRenderModeObj* m_renderModeObj; // _00
-	u32 _04;                           // _04
-	u8 _08[4];                         // _08
-	u16 _0C;                           // _0C
-	_GXGamma m_gamma;                  // _0E
-	u8 _10;                            // _10
+	_GXRenderModeObj* mRenderModeObj; // _00
+	u32 _04;                          // _04
+	u8 _08[4];                        // _08
+	u16 _0C;                          // _0C
+	_GXGamma mGamma;                  // _0E
+	u8 _10;                           // _10
 };
 
 #endif

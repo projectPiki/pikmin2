@@ -55,9 +55,9 @@ struct Model : public MtxObject {
 	inline void updateModel()
 	{
 		Matrixf mtx;
-		PSMTXIdentity(mtx.m_matrix.mtxView);
-		PSMTXCopy(mtx.m_matrix.mtxView, j3dSys._00);
-		J3DModel* j3dModel = m_j3dModel;
+		PSMTXIdentity(mtx.mMatrix.mtxView);
+		PSMTXCopy(mtx.mMatrix.mtxView, j3dSys._00);
+		J3DModel* j3dModel = mJ3dModel;
 		j3dModel->calc();
 		j3dModel->calcMaterial();
 		j3dModel->makeDL();
@@ -66,21 +66,21 @@ struct Model : public MtxObject {
 
 	inline void loopTimer()
 	{
-		int count = m_jointCount;
+		int count = mJointCount;
 		while (count > 0) {
 			count--;
 		}
 	}
 
-	inline J3DModel* getJ3DModel() { return m_j3dModel; }
+	inline J3DModel* getJ3DModel() { return mJ3dModel; }
 
 	// VTBL _00
-	bool m_isAnimating;   // _04, assumed name
-	u8 _05;               // _05
-	bool m_isVisible;     // _06
-	J3DModel* m_j3dModel; // _08
-	int m_jointCount;     // _0C
-	Joint* m_joints;      // _10
+	bool mIsAnimating;   // _04, assumed name
+	u8 _05;              // _05
+	bool mIsVisible;     // _06
+	J3DModel* mJ3dModel; // _08
+	int mJointCount;     // _0C
+	Joint* mJoints;      // _10
 
 	static u8 viewCalcMode;
 };

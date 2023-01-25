@@ -66,10 +66,10 @@ struct J3DIndTexMtx {
 
 /** @fabricated */
 struct J3DIndTexOrderInfo {
-	u8 m_texCoordID; // _00
-	u8 m_texMapID;   // _01
-	u8 _02;          // _02
-	u8 _03;          // _03
+	u8 mTexCoordID; // _00
+	u8 mTexMapID;   // _01
+	u8 _02;         // _02
+	u8 _03;         // _03
 };
 
 extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
@@ -80,15 +80,15 @@ extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
  */
 struct J3DIndTexOrder {
 	J3DIndTexOrder()
-	    : m_texCoordID(j3dDefaultIndTexOrderNull.m_texCoordID)
-	    , m_texMapID(j3dDefaultIndTexOrderNull.m_texMapID)
+	    : mTexCoordID(j3dDefaultIndTexOrderNull.mTexCoordID)
+	    , mTexMapID(j3dDefaultIndTexOrderNull.mTexMapID)
 	{
 	}
 
 	/** @fabricated */
 	inline J3DIndTexOrder(const J3DIndTexOrderInfo& info)
-	    : m_texCoordID(info.m_texCoordID)
-	    , m_texMapID(info.m_texMapID)
+	    : mTexCoordID(info.mTexCoordID)
+	    , mTexMapID(info.mTexMapID)
 	    , _02(info._02)
 	    , _03(info._03)
 	{
@@ -96,24 +96,24 @@ struct J3DIndTexOrder {
 
 	// /** @fabricated */
 	// inline J3DIndTexOrder(_GXTexCoordID coordID, GXTexMapID mapID)
-	//     : m_texCoordID(coordID)
-	//     , m_texMapID(mapID)
+	//     : mTexCoordID(coordID)
+	//     , mTexMapID(mapID)
 	// {
 	// }
 
 	// /** @fabricated */
 	// inline J3DIndTexOrder(u8 coordID, u8 mapID, u8 p3, u8 p4)
-	//     : m_texCoordID(coordID)
-	//     , m_texMapID(mapID)
+	//     : mTexCoordID(coordID)
+	//     , mTexMapID(mapID)
 	//     , _02(p3)
 	//     , _03(p4)
 	// {
 	// }
 
-	u8 m_texCoordID; // _00
-	u8 m_texMapID;   // _01
-	u8 _02;          // _02
-	u8 _03;          // _03
+	u8 mTexCoordID; // _00
+	u8 mTexMapID;   // _01
+	u8 _02;         // _02
+	u8 _03;         // _03
 };
 
 struct J3DIndBlock {
@@ -159,11 +159,11 @@ struct J3DIndBlockFull : public J3DIndBlock {
 
 	void initialize();
 
-	u8 m_indTexStageNum;        // _04
-	J3DIndTexOrder m_orders[4]; // _05
+	u8 mIndTexStageNum;        // _04
+	J3DIndTexOrder mOrders[4]; // _05
 	u32 : 0;
-	J3DIndTexMtx m_texMtxs[3];            // _18
-	J3DIndTexCoordScale m_coordScales[4]; // _6C
+	J3DIndTexMtx mTexMtxs[3];            // _18
+	J3DIndTexCoordScale mCoordScales[4]; // _6C
 };
 
 struct J3DIndBlockNull : public J3DIndBlock {

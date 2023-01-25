@@ -47,10 +47,10 @@ struct MessageWindowScreen : P2DScreen::Mgr_tuning {
 
 	// _00      = VTBL
 	// _00-_148 = P2DScreen::Mgr_tuning
-	WindowPane* m_windowPane; // _148
-	AbtnPane* _14C;           // _14C
-	AbtnPane* _150;           // _150
-	u8 _154[0x4];             // _154, unknown
+	WindowPane* mWindowPane; // _148
+	AbtnPane* _14C;          // _14C
+	AbtnPane* _150;          // _150
+	u8 _154[0x4];            // _154, unknown
 };
 
 struct PodIconScreen : P2DScreen::Mgr_tuning {
@@ -93,13 +93,13 @@ struct TControl : public P2JME::Window::TControl {
 
 	// _00     = VTBL
 	// _00-_5C = P2JME::Window::TControl
-	MessageWindowScreen* m_messageWindowScreen; // _5C
-	PodIconScreen* m_podIconScreen;             // _60
-	J2DPane* _64;                               // _64
-	u8 m_finished;                              // _68
-	EModeFlag m_modeFlag;                       // _6C
-	uint m_flags;                               // _70
-	bool m_isPaused;                            // _74
+	MessageWindowScreen* mMessageWindowScreen; // _5C
+	PodIconScreen* mPodIconScreen;             // _60
+	J2DPane* _64;                              // _64
+	u8 mFinished;                              // _68
+	EModeFlag mModeFlag;                       // _6C
+	uint mFlags;                               // _70
+	bool mIsPaused;                            // _74
 };
 } // namespace Movie
 } // namespace P2JME

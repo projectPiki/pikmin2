@@ -62,10 +62,10 @@ JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* heap)
 	}
 	for (JSULink<JKRFileLoader>* link = JKRArchive::sVolumeList.getFirst(); link != nullptr; link = link->getNext()) {
 		JKRFileLoader* loader = link->getObject();
-		if (loader->m_magicWord == 'RARC') {
+		if (loader->mMagicWord == 'RARC') {
 			JKRArchive* archive = static_cast<JKRArchive*>(loader);
 			if (archive->_40 == entryNum && archive->_38 == heap) {
-				archive->m_mountCount++;
+				archive->mMountCount++;
 				return archive;
 			}
 		}
@@ -211,7 +211,7 @@ JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* heap
 		archive = new (heap, i) JKRCompArchive(entryNum, mountDirection);
 		break;
 	}
-	if (archive != nullptr && archive->m_mountMode == EMM_Unk0) {
+	if (archive != nullptr && archive->mMountMode == EMM_Unk0) {
 		delete archive;
 		return nullptr;
 	}
@@ -435,7 +435,7 @@ void* JKRArchive::getGlbResource(unsigned long type, const char* name, JKRArchiv
 		return archive->getResource(type, name);
 	}
 	for (JSULink<JKRFileLoader>* link = sVolumeList.getFirst(); link != nullptr; link = link->getNext()) {
-		if (link->getObject()->m_magicWord == 'RARC' && (resource = link->getObject()->getResource(type, name))) {
+		if (link->getObject()->mMagicWord == 'RARC' && (resource = link->getObject()->getResource(type, name))) {
 			break;
 		}
 	}
@@ -557,8 +557,8 @@ u32 JKRArchive::readResource(void* resourceBuffer, unsigned long bufferSize, uns
  */
 void JKRArchive::removeResourceAll()
 {
-	if (_44 != nullptr && m_mountMode != EMM_Mem) {
-		SDIFileEntry* entry = m_fileEntries;
+	if (_44 != nullptr && mMountMode != EMM_Mem) {
+		SDIFileEntry* entry = mFileEntries;
 		for (int i = 0; i < _44->_08; i++) {
 			if (entry->_10) {
 				JKRHeap::free(entry->_10, _38);

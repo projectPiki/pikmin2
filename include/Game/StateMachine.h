@@ -14,8 +14,8 @@ struct StateArg {
 template <typename T>
 struct FSMState {
 	inline FSMState(int id)
-	    : m_id(id)
-	    , m_stateMachine(nullptr)
+	    : mId(id)
+	    , mStateMachine(nullptr)
 	{
 	}
 
@@ -26,18 +26,18 @@ struct FSMState {
 	virtual void restart(T*) { }                                  // _18
 	virtual void transit(T* obj, int stateID, StateArg* stateArg) // _1C
 	{
-		m_stateMachine->transit(obj, stateID, stateArg);
+		mStateMachine->transit(obj, stateID, stateArg);
 	}
 
 	// _00 VTBL
-	int m_id;                        // _04
-	StateMachine<T>* m_stateMachine; // _08
+	int mId;                        // _04
+	StateMachine<T>* mStateMachine; // _08
 };
 
 template <typename T>
 struct StateMachine {
 	inline StateMachine()
-	    : m_currentID(-1)
+	    : mCurrentID(-1)
 	{
 	}
 
@@ -49,38 +49,38 @@ struct StateMachine {
 	// #pragma dont_inline on
 	void create(int limit);
 	// {
-	// 	m_limit          = limit;
-	// 	m_count          = 0;
-	// 	m_states         = new FSMState<T>*[m_limit];
-	// 	m_indexToIDArray = new int[m_limit];
-	// 	m_idToIndexArray = new int[m_limit];
+	// 	mLimit          = limit;
+	// 	mCount          = 0;
+	// 	mStates         = new FSMState<T>*[mLimit];
+	// 	mIndexToIDArray = new int[mLimit];
+	// 	mIdToIndexArray = new int[mLimit];
 	// }
 
 	void registerState(FSMState<T>* state);
 	// {
-	// 	if (m_limit <= m_count) {
+	// 	if (mLimit <= mCount) {
 	// 		return;
 	// 	}
-	// 	m_states[m_count] = state;
-	// 	if (!(-1 < state->m_id && state->m_id < m_limit)) {
+	// 	mStates[mCount] = state;
+	// 	if (!(-1 < state->mId && state->mId < mLimit)) {
 	// 		return;
 	// 	}
-	// 	state->m_stateMachine = this;
-	// 	m_indexToIDArray[m_count] = state->m_id;
-	// 	m_idToIndexArray[state->m_id] = m_count;
-	// 	m_count++;
+	// 	state->mStateMachine = this;
+	// 	mIndexToIDArray[mCount] = state->mId;
+	// 	mIdToIndexArray[state->mId] = mCount;
+	// 	mCount++;
 	// }
 	// #pragma dont_inline reset
 
 	int getCurrID(T*);
 
 	// _00	= VTBL
-	FSMState<T>** m_states; // _04
-	int m_count;            // _08, count of registered states
-	int m_limit;            // _0C, max states that can be registered
-	int* m_indexToIDArray;  // _10, state ID array, indexed by index in m_states
-	int* m_idToIndexArray;  // _14, state indices array, indexed by state ID
-	int m_currentID;        // _18, ID of current/active state
+	FSMState<T>** mStates; // _04
+	int mCount;            // _08, count of registered states
+	int mLimit;            // _0C, max states that can be registered
+	int* mIndexToIDArray;  // _10, state ID array, indexed by index in mStates
+	int* mIdToIndexArray;  // _14, state indices array, indexed by state ID
+	int mCurrentID;        // _18, ID of current/active state
 };
 } // namespace Game
 #endif

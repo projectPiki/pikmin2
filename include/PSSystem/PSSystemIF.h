@@ -32,12 +32,12 @@ struct SysIF : public JAIBasic {
 	void setConfigVol_Bgm(f32);
 	void start1stSeq();
 
-	f32 _20;               // _20
-	f32 _24;               // _24
-	OSMutexObject m_mutex; // _28
-	int _40;               // _40
-	FxMgr m_fxMgr;         // _44
-	u32 _48;               // _48
+	f32 _20;              // _20
+	f32 _24;              // _24
+	OSMutexObject mMutex; // _28
+	int _40;              // _40
+	FxMgr mFxMgr;         // _44
+	u32 _48;              // _48
 };
 
 template <typename T>
@@ -48,13 +48,13 @@ struct ArcMgr : public JKRDisposer {
 
 	// _00      = VTABLE
 	// _04-_18  = JKRDisposer
-	JKRArchive* m_archive; // _18
+	JKRArchive* mArchive; // _18
 };
 
 inline JKRFileLoader* getLoaderInstance()
 {
 	P2ASSERTLINE(80, PSSystem::ArcMgr<PSGame::BASARC>::sInstance != nullptr);
-	return (JKRFileLoader*)PSSystem::ArcMgr<PSGame::BASARC>::sInstance->_18.m_value;
+	return (JKRFileLoader*)PSSystem::ArcMgr<PSGame::BASARC>::sInstance->_18.mValue;
 }
 
 extern SysIF* spSysIF;

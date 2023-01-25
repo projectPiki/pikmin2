@@ -5,25 +5,25 @@
 
 static struct DummyPlayer {
 	inline DummyPlayer(int count, f32 v)
-	    : m_count(count)
+	    : mCount(count)
 	    , _04(v)
 	{
 	}
 	inline void initMsgs(const char** ptr)
 	{
-		m_msgs  = ptr;
-		m_count = 0;
-		// for (m_count = 0; ptr[m_count] != nullptr; m_count++) {}
+		mMsgs  = ptr;
+		mCount = 0;
+		// for (mCount = 0; ptr[mCount] != nullptr; mCount++) {}
 		while (true) {
-			if (ptr[m_count] == nullptr) {
+			if (ptr[mCount] == nullptr) {
 				break;
 			}
-			m_count++;
+			mCount++;
 		}
 	}
-	int m_count;         // _00
-	f32 _04;             // _04, unknown
-	const char** m_msgs; // _08
+	int mCount;         // _00
+	f32 _04;            // _04, unknown
+	const char** mMsgs; // _08
 } dummyPlayer(0, 480.0f);
 
 static int idk[4]                    = { 1, 2, 3, 0 };
@@ -88,7 +88,7 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 	_20->load(THPPlayer::OPENING_1);
 
 	P2ASSERTLINE(223, arg);
-	_10 = static_cast<MovieArg*>(arg)->m_movieIndex;
+	_10 = static_cast<MovieArg*>(arg)->mMovieIndex;
 	switch (_10) {
 	case THPPlayer::OPENING_1:
 		dummyPlayer.initMsgs(opening_strings);
@@ -127,15 +127,15 @@ void MovieState::exec(SingleGameSection* gs)
 			}
 			break;
 		case true:
-			if ((_14->m_padButton.m_buttonDown & PAD_BUTTON_START) || _20->isFinishPlaying()) { // skip the movie with start
-				gs->m_displayWiper = gs->m_wipeInFader;
-				gs->m_wipeInFader->start(4.0f);
-				gs->m_currentCourseInfo = stageList->getCourseInfo(0);
+			if ((_14->mButton.mButtonDown & PAD_BUTTON_START) || _20->isFinishPlaying()) { // skip the movie with start
+				gs->mDisplayWiper = gs->mWipeInFader;
+				gs->mWipeInFader->start(4.0f);
+				gs->mCurrentCourseInfo = stageList->getCourseInfo(0);
 				LoadArg arg;
-				arg.m_inCave = false;
-				arg._01      = true;
-				arg._02      = false;
-				arg._04      = 5;
+				arg.mInCave = false;
+				arg._01     = true;
+				arg._02     = false;
+				arg._04     = 5;
 				transit(gs, SGS_Load, &arg);
 			}
 			break;

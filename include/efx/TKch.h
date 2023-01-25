@@ -165,36 +165,36 @@ struct TParticleCallBack_KchYodare : public JPAParticleCallBack {
 	virtual void init(JPABaseEmitter*, JPABaseParticle*);    // _14
 
 	// _00 VTBL
-	TKchYodareHitGr m_hitGround; // _04
-	TKchYodareHitWat m_hitWater; // _30
+	TKchYodareHitGr mHitGround; // _04
+	TKchYodareHitWat mHitWater; // _30
 };
 
 struct TKchYodareBaseChaseMtx : public TChaseMtx {
 	inline TKchYodareBaseChaseMtx(Mtx mtx, u16 effectID)
 	    : TChaseMtx(effectID, (Matrixf*)mtx)
 	{
-		m_scale = 0.0f;
+		mScale = 0.0f;
 	}
 
 	virtual bool create(Arg*); // _08
 	virtual void forceKill()   // _0C (weak)
 	{
 		TChaseMtx::forceKill();
-		m_particleCallBack.m_hitGround.forceKill();
-		m_particleCallBack.m_hitWater.forceKill();
+		mParticleCallBack.mHitGround.forceKill();
+		mParticleCallBack.mHitWater.forceKill();
 	}
 	virtual void fade();            // _10 (weak)
 	virtual void startDemoDrawOff() // _40 (weak)
 	{
-		m_flags |= 1;
-		m_particleCallBack.m_hitGround.startDemoDrawOff();
-		m_particleCallBack.m_hitWater.startDemoDrawOff();
+		mFlags |= 1;
+		mParticleCallBack.mHitGround.startDemoDrawOff();
+		mParticleCallBack.mHitWater.startDemoDrawOff();
 	}
 	virtual void endDemoDrawOn() // _44 (weak)
 	{
-		m_flags &= ~1;
-		m_particleCallBack.m_hitGround.endDemoDrawOn();
-		m_particleCallBack.m_hitWater.endDemoDrawOn();
+		mFlags &= ~1;
+		mParticleCallBack.mHitGround.endDemoDrawOn();
+		mParticleCallBack.mHitWater.endDemoDrawOn();
 	}
 	virtual ~TKchYodareBaseChaseMtx() { } // _48 (weak)
 
@@ -202,8 +202,8 @@ struct TKchYodareBaseChaseMtx : public TChaseMtx {
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
-	TParticleCallBack_KchYodare m_particleCallBack; // _14
-	f32 m_scale;                                    // _50
+	TParticleCallBack_KchYodare mParticleCallBack; // _14
+	f32 mScale;                                    // _50
 };
 
 struct TKchAttackYodare : public TKchYodareBaseChaseMtx {

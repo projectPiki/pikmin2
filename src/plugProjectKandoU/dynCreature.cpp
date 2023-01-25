@@ -21,11 +21,11 @@ DynParticleMgr::DynParticleMgr(int count) { alloc(count); }
  */
 void DynParticleMgr::resetMgr()
 {
-	for (int i = 0; i < m_max; i++) {
-		m_openIds[i] = 1;
+	for (int i = 0; i < mMax; i++) {
+		mOpenIds[i] = 1;
 	}
 
-	m_activeCount = 0;
+	mActiveCount = 0;
 }
 
 /*
@@ -40,7 +40,7 @@ DynParticle* DynParticle::getAt(int idx)
 		if (!particle) {
 			JUT_PANICLINE(134, "p is null n is %d\n", idx);
 		}
-		particle = static_cast<DynParticle*>(particle->m_next);
+		particle = static_cast<DynParticle*>(particle->mNext);
 	}
 
 	return particle;
@@ -73,12 +73,12 @@ DynParticle* DynParticle::getAt(int idx)
  */
 DynCreature::DynCreature()
 {
-	_30C          = 0;
-	m_dynParticle = nullptr;
-	_2F4          = Vector3f(0.0f);
-	_300          = Vector3f(0.0f);
-	_310          = 0;
-	_311          = 0;
+	_30C         = 0;
+	mDynParticle = nullptr;
+	_2F4         = Vector3f(0.0f);
+	_300         = Vector3f(0.0f);
+	_310         = 0;
+	_311         = 0;
 }
 
 /*
@@ -88,7 +88,7 @@ DynCreature::DynCreature()
  */
 bool DynCreature::createParticles(int count)
 {
-	m_dynParticle = nullptr;
+	mDynParticle = nullptr;
 	for (int i = 0; i < count; i++) {
 		DynParticle* particle = dynParticleMgr->birth();
 		if (!particle) {
@@ -96,12 +96,12 @@ bool DynCreature::createParticles(int count)
 			return false;
 		}
 
-		particle->m_next = nullptr;
-		if (m_dynParticle) {
-			particle->m_next = m_dynParticle;
-			m_dynParticle    = particle;
+		particle->mNext = nullptr;
+		if (mDynParticle) {
+			particle->mNext = mDynParticle;
+			mDynParticle    = particle;
 		} else {
-			m_dynParticle = particle;
+			mDynParticle = particle;
 		}
 	}
 
@@ -115,15 +115,15 @@ bool DynCreature::createParticles(int count)
  */
 void DynCreature::releaseParticles()
 {
-	DynParticle* particle = m_dynParticle;
+	DynParticle* particle = mDynParticle;
 	if (particle) {
 		while (particle) {
 			dynParticleMgr->kill(particle);
-			DynParticle* nextParticle = static_cast<DynParticle*>(particle->m_next);
-			particle->m_next          = nullptr;
+			DynParticle* nextParticle = static_cast<DynParticle*>(particle->mNext);
+			particle->mNext           = nullptr;
 			particle                  = nextParticle;
 		}
-		m_dynParticle = nullptr;
+		mDynParticle = nullptr;
 	}
 }
 
@@ -3139,10 +3139,10 @@ void DynParticle::constructor() { }
  */
 DynParticle::DynParticle()
 {
-	_18    = 1.0f;
-	_2C    = 0;
-	m_next = nullptr;
-	_20    = Vector3f(0.0f);
+	_18   = 1.0f;
+	_2C   = 0;
+	mNext = nullptr;
+	_20   = Vector3f(0.0f);
 }
 
 } // namespace Game
@@ -3154,9 +3154,9 @@ DynParticle::DynParticle()
  */
 MonoObjectMgr<Game::DynParticle>::MonoObjectMgr()
 {
-	_18           = 1;
-	m_max         = 0;
-	m_activeCount = 0;
-	m_array       = nullptr;
-	m_openIds     = nullptr;
+	_18          = 1;
+	mMax         = 0;
+	mActiveCount = 0;
+	mArray       = nullptr;
+	mOpenIds     = nullptr;
 }

@@ -80,9 +80,9 @@ struct THiScore : public TScrollList {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_B4 = TScrollList
-	THiScoreListScreen* m_hiScoreListScreen; // _B4
-	THiScoreIndPane* m_hiScoreIndPane;       // _B8
-	u8 _BC[0x158];                           // _BC, TODO: fill in from ghidra
+	THiScoreListScreen* mHiScoreListScreen; // _B4
+	THiScoreIndPane* mHiScoreIndPane;       // _B8
+	u8 _BC[0x158];                          // _BC, TODO: fill in from ghidra
 };
 
 } // namespace Morimura

@@ -23,12 +23,12 @@ struct J2DMaterialBlock {
  * @size{0xE8}
  */
 struct J2DMaterialInitData {
-	u8 _00[4];        // _00, unknown
-	u8 m_tevStageNum; // _04
-	u8 _05;           // _05, unknown
-	u8 _06;           // _06
-	u8 _07;           // _07, unknown
-	u8 _08[0xE0];     // _08, unknown
+	u8 _00[4];       // _00, unknown
+	u8 mTevStageNum; // _04
+	u8 _05;          // _05, unknown
+	u8 _06;          // _06
+	u8 _07;          // _07, unknown
+	u8 _08[0xE0];    // _08, unknown
 };
 
 /**
@@ -64,29 +64,29 @@ struct J2DMaterialFactory {
 	void newDither(int) const;
 
 	// _00 = VTBL
-	int _00;                                     // _00
-	J2DMaterialInitData* m_materialInitData;     // _04
-	u16* _08;                                    // _08
-	J2DIndInitData* m_indInitData;               // _0C
-	GXColor* _10;                                // _10
-	u8* _14;                                     // _14
-	J2DColorChanInfo* m_colorChanInfo;           // _18
-	u8* _1C;                                     // _1C
-	J2DTexCoordInfo* m_texCoordInfo;             // _20
-	J2DTexMtxInfo* m_texMtxInfo;                 // _24
-	u16* _28;                                    // _28
-	u16* _2C;                                    // _2C
-	GXCullMode* m_cullMode;                      // _30
-	J2DTevOrderInfo* m_tevOrderInfo;             // _34
-	GXColorS10* _38;                             // _38
-	GXColor* _3C;                                // _3C
-	u8* _40;                                     // _40
-	J2DTevStageInfo* m_tevStageInfo;             // _44
-	J2DTevSwapModeInfo* m_tevSwapInfo;           // _48
-	J2DTevSwapModeTableInfo* m_tevSwapTableInfo; // _4C
-	J2DAlphaCompInfo* m_alphaCompInfo;           // _50
-	J2DBlendInfo* m_blendInfo;                   // _54
-	u8* _58;                                     // _58
+	int _00;                                    // _00
+	J2DMaterialInitData* mMaterialInitData;     // _04
+	u16* _08;                                   // _08
+	J2DIndInitData* mIndInitData;               // _0C
+	GXColor* _10;                               // _10
+	u8* _14;                                    // _14
+	J2DColorChanInfo* mColorChanInfo;           // _18
+	u8* _1C;                                    // _1C
+	J2DTexCoordInfo* mTexCoordInfo;             // _20
+	J2DTexMtxInfo* mTexMtxInfo;                 // _24
+	u16* _28;                                   // _28
+	u16* _2C;                                   // _2C
+	GXCullMode* mCullMode;                      // _30
+	J2DTevOrderInfo* mTevOrderInfo;             // _34
+	GXColorS10* _38;                            // _38
+	GXColor* _3C;                               // _3C
+	u8* _40;                                    // _40
+	J2DTevStageInfo* mTevStageInfo;             // _44
+	J2DTevSwapModeInfo* mTevSwapInfo;           // _48
+	J2DTevSwapModeTableInfo* mTevSwapTableInfo; // _4C
+	J2DAlphaCompInfo* mAlphaCompInfo;           // _50
+	J2DBlendInfo* mBlendInfo;                   // _54
+	u8* _58;                                    // _58
 };
 
 #endif

@@ -63,9 +63,9 @@ lbl_8008FCCC:
  */
 void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 {
-	m_manager  = manager;
-	m_resource = resource;
-	m_resource->_2C->m_data;
+	mManager  = manager;
+	mResource = resource;
+	mResource->_2C->mData;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -606,7 +606,7 @@ lbl_800903BC:
  */
 bool JPABaseEmitter::processTillStartFrame()
 {
-	if (_104 >= m_resource->_2C->castData()->_70) {
+	if (_104 >= mResource->_2C->castData()->_70) {
 		return true;
 	}
 	if ((_F4 & 2) == 0) {
@@ -748,7 +748,7 @@ void JPABaseEmitter::getEmitterAxisZ(JGeometry::TVec3<float>*) const
  * Address:	80090528
  * Size:	000010
  */
-int JPABaseEmitter::getCurrentCreateNumber() const { return m_manager->_20->m_createNumber; }
+int JPABaseEmitter::getCurrentCreateNumber() const { return mManager->_20->mCreateNumber; }
 
 /*
  * --INFO--

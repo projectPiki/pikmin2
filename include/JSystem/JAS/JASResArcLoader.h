@@ -10,13 +10,13 @@ typedef void (*LoadCallback)(u32, u32);
 
 /** @fabricated */
 struct CallbackArgs {
-	JKRArchive* m_archive;   // _00
-	u16 _04;                 // _04
-	u8* _08;                 // _08
-	u32 _0C;                 // _0C
-	LoadCallback m_callback; // _10
-	u32 _14;                 // _14
-	OSMessageQueue* m_queue; // _18
+	JKRArchive* mArchive;   // _00
+	u16 _04;                // _04
+	u8* _08;                // _08
+	u32 _0C;                // _0C
+	LoadCallback mCallback; // _10
+	u32 _14;                // _14
+	OSMessageQueue* mQueue; // _18
 };
 
 size_t getResSize(JKRArchive*, u16);

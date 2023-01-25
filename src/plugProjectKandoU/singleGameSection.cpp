@@ -2348,8 +2348,8 @@ void SingleGameSection::onStartHeap()
  */
 void SingleGameSection::gmOrimaDown(int naviID)
 {
-	if (m_currentState) {
-		m_currentState->onOrimaDown(this, naviID);
+	if (mCurrentState) {
+		mCurrentState->onOrimaDown(this, naviID);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -2398,9 +2398,9 @@ void SingleGameSection::enableTimer(float initialValue, unsigned long timerType)
 	if (timerType != 0) {
 		return;
 	}
-	m_timerType    = timerType;
-	m_timer        = initialValue;
-	m_timerEnabled = true;
+	mTimerType    = timerType;
+	mTimer        = initialValue;
+	mTimerEnabled = true;
 	/*
 	lwz      r0, 0x17c(r3)
 	cmplwi   r0, 0
@@ -2469,8 +2469,8 @@ lbl_801534F4:
  */
 void SingleGameSection::onMovieStart(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
 {
-	if (m_currentState) {
-		m_currentState->onMovieStart(this, config, p2, p3);
+	if (mCurrentState) {
+		mCurrentState->onMovieStart(this, config, p2, p3);
 	}
 	/*
 	.loc_0x0:
@@ -2514,9 +2514,9 @@ void SingleGame::State::onMovieStart(Game::SingleGameSection*, Game::MovieConfig
  */
 void SingleGameSection::onMovieDone(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
 {
-	gameSystem->m_flags &= 0xF7;
-	if (m_currentState) {
-		m_currentState->onMovieDone(this, config, p2, p3);
+	gameSystem->mFlags &= 0xF7;
+	if (mCurrentState) {
+		mCurrentState->onMovieDone(this, config, p2, p3);
 	}
 	/*
 	.loc_0x0:
@@ -2565,8 +2565,8 @@ void SingleGame::State::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*
 void SingleGameSection::onMovieCommand(int p1)
 {
 	BaseGameSection::onMovieCommand(p1);
-	if (m_currentState) {
-		m_currentState->onMovieCommand(this, p1);
+	if (mCurrentState) {
+		mCurrentState->onMovieCommand(this, p1);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -3105,8 +3105,8 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 		iterator.first();
 		while (!iterator.isDone()) {
 			Piki* piki = (*iterator);
-			if (piki->isAlive() && piki->m_pikiKind != Blue) {
-				playData->m_pikiContainer.getCount(piki->m_pikiKind, piki->m_happaKind)++;
+			if (piki->isAlive() && piki->mPikiKind != Blue) {
+				playData->mPikiContainer.getCount(piki->mPikiKind, piki->mHappaKind)++;
 				PikiKillArg killArg(0x10001);
 				piki->kill(&pikiKillArg);
 			}
@@ -3115,8 +3115,8 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 	}
 	pikiMgr->caveSaveFormationPikmins(false);
 	pikiMgr->forceEnterPikmins(1);
-	playData->m_caveSaveData.m_time = gameSystem->m_timeMgr->m_currentTimeOfDay;
-	saveToGeneratorCache(m_currentCourseInfo);
+	playData->mCaveSaveData.mTime = gameSystem->mTimeMgr->mCurrentTimeOfDay;
+	saveToGeneratorCache(mCurrentCourseInfo);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3316,7 +3316,7 @@ lbl_80153F18:
  */
 void SingleGameSection::loadMainMapSituation()
 {
-	gameSystem->m_timeMgr->setTime(playData->m_caveSaveData.m_time);
+	gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mTime);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3340,10 +3340,10 @@ void SingleGameSection::loadMainMapSituation()
  */
 void SingleGameSection::clearCaveMenus()
 {
-	_180          = 0;
-	m_currentCave = nullptr;
-	m_hole        = nullptr;
-	m_fountain    = nullptr;
+	_180         = 0;
+	mCurrentCave = nullptr;
+	mHole        = nullptr;
+	mFountain    = nullptr;
 	/*
 	li       r0, 0
 	stb      r0, 0x180(r3)
@@ -3658,7 +3658,7 @@ lbl_801543B4:
  */
 CourseInfo* SingleGameSection::getCurrentCourseInfo()
 {
-	return m_currentCourseInfo;
+	return mCurrentCourseInfo;
 	/*
 	lwz      r3, 0x22c(r3)
 	blr
@@ -4166,7 +4166,7 @@ lbl_80154A04:
 void SingleGameSection::goNextFloor(Game::ItemHole::Item* hole)
 {
 	_194 = true;
-	m_currentState->onNextFloor(this, hole);
+	mCurrentState->onNextFloor(this, hole);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4201,11 +4201,11 @@ void SingleGame::State::onNextFloor(Game::SingleGameSection*, Game::ItemHole::It
  */
 void SingleGameSection::goCave(Game::ItemCave::Item* cave)
 {
-	strcpy(m_caveFilename, cave->m_caveFilename);
-	m_caveID->setID(cave->m_caveID.getID());
-	_194     = true;
-	m_inCave = true;
-	m_currentState->onHoleIn(this, cave);
+	strcpy(mCaveFilename, cave->mCaveFilename);
+	mCaveID->setID(cave->mCaveID.getID());
+	_194    = true;
+	mInCave = true;
+	mCurrentState->onHoleIn(this, cave);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4253,9 +4253,9 @@ void SingleGame::State::onHoleIn(Game::SingleGameSection*, Game::ItemCave::Item*
  */
 void SingleGameSection::goMainMap(Game::ItemBigFountain::Item* fountain)
 {
-	_194     = true;
-	m_inCave = false;
-	m_currentState->onFountainReturn(this, fountain);
+	_194    = true;
+	mInCave = false;
+	mCurrentState->onFountainReturn(this, fountain);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5821,7 +5821,7 @@ lbl_80155EC0:
  */
 int SingleGameSection::getCurrFloor()
 {
-	return m_currentFloor;
+	return mCurrentFloor;
 	/*
 	lwz      r3, 0x248(r3)
 	blr

@@ -40,8 +40,8 @@ enum ObjTypes {
 };
 
 struct ObjTypeInfo {
-	u16 m_type;   // _00
-	char* m_name; // _04
+	u16 mType;   // _00
+	char* mName; // _04
 };
 
 extern ObjTypeInfo infos[];

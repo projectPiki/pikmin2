@@ -21,11 +21,11 @@ struct Info {
 	void write(Stream&);
 	void read(Stream&);
 
-	int m_killedTekiCount;   // _00
-	int m_killedPikminCount; // _04
+	int mKilledTekiCount;   // _00
+	int mKilledPikminCount; // _04
 
 	// 1 is ORed to this in incKilled
-	u8 m_state; // _08
+	u8 mState; // _08
 };
 
 struct Mgr {
@@ -40,8 +40,8 @@ struct Mgr {
 	void write(Stream&);
 	void read(Stream&);
 
-	Info* m_data; // _00
-	int m_count;  // _04
+	Info* mData; // _00
+	int mCount;  // _04
 };
 } // namespace TekiStat
 } // namespace Game

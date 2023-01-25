@@ -171,7 +171,7 @@ struct Game2DMgr : public JKRDisposer {
 	bool drawKanteiMsg(Graphics&);
 	bool checkDayEnd(f32) const;
 
-	Mgr* m_screenMgr; // _18
+	Mgr* mScreenMgr; // _18
 };
 
 extern Game2DMgr* gGame2DMgr;

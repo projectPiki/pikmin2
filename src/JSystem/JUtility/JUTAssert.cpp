@@ -162,8 +162,8 @@ lbl_80027E9C:
 void JUTAssertion::flushMessage_dbPrint()
 {
 	JUTFont* font;
-	if (flush_subroutine() != 0 && sVisible == true && JUTDbPrint::sDebugPrint != nullptr && JUTDbPrint::sDebugPrint->m_font != nullptr) {
-		font = JUTDbPrint::sDebugPrint->m_font;
+	if (flush_subroutine() != 0 && sVisible == true && JUTDbPrint::sDebugPrint != nullptr && JUTDbPrint::sDebugPrint->mFont != nullptr) {
+		font = JUTDbPrint::sDebugPrint->mFont;
 
 		u32 retraceCount = VIGetRetraceCount();
 		font->setGX();

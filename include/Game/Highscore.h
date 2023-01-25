@@ -20,8 +20,8 @@ struct Highscore {
 	void clear();
 
 	// VTBL _00
-	int* m_scores;    // _04
-	int m_scoreCount; // _08
+	int* mScores;    // _04
+	int mScoreCount; // _08
 };
 
 struct Lowscore : public Highscore {

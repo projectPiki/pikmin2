@@ -103,10 +103,10 @@ struct JAIBasic {
 	void resumeAudio();
 
 	// VT _00
-	JAInter::Camera* m_cameras; // _04
-	JKRHeap* m_heap;            // _08
-	u8 _0C;                     // _0C
-	u8 m_paramSoundOutputMode;  // _0D
+	JAInter::Camera* mCameras; // _04
+	JKRHeap* mHeap;            // _08
+	u8 _0C;                    // _0C
+	u8 mParamSoundOutputMode;  // _0D
 	struct Flags {
 		bool _0 : 1;
 		bool _1 : 1;

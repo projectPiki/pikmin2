@@ -16,7 +16,7 @@ static const char kingChappyMgrName[] = "kingChappyMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "キングチャッピーマネージャー"; // king chappy manager
+	mName = "キングチャッピーマネージャー"; // king chappy manager
 }
 
 /*

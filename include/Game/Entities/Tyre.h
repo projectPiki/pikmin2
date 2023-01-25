@@ -91,13 +91,13 @@ struct Obj : public EnemyBase {
 	u8 _2C8[0x4];                   // _2C8
 	f32 _2CC;                       // _2CC
 	u8 _2D0;                        // _2D0, unknown
-	bool m_isUnderground;           // _2D1
+	bool mIsUnderground;            // _2D1
 	u8 _2D2;                        // _2D2, unknown
 	Vector3f _2D4;                  // _2D4
 	u8 _2E0[0xC];                   // _2E0, unknown
 	Vector3f _2EC[2];               // _2EC
-	FSM* m_fsm;                     // _304
-	f32 m_shadowScale;              // _308
+	FSM* mFsm;                      // _304
+	f32 mShadowScale;               // _308
 	f32 _30C;                       // _30C
 	u8 _310[0x10];                  // _310, unknown
 	u8 _320;                        // _320
@@ -106,7 +106,7 @@ struct Obj : public EnemyBase {
 	Vector3f _324;                  // _324
 	efx::TKageTyresmoke* _330;      // _330
 	efx::TKageTyresmoke* _334;      // _334
-	TyreShadowMgr* m_shadowMgr;     // _338
+	TyreShadowMgr* mShadowMgr;      // _338
 	efx::TEnemyHamonChasePos* _33C; // _33C
 	u8 _340[0x4];                   // _340, unknown
 	                                // _344 = PelletView
@@ -127,28 +127,28 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_tyreRotationSpeed(this, 'fp01', "回転スピード", 0.5f, 0.0f, 100.0f) // rotation speed
+		    , mTyreRotationSpeed(this, 'fp01', "回転スピード", 0.5f, 0.0f, 100.0f) // rotation speed
 		{
 		}
 
-		Parm<f32> m_tyreRotationSpeed; // _804
+		Parm<f32> mTyreRotationSpeed; // _804
 	};
 
 	Parms()
@@ -168,33 +168,33 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
-	u8 _830;                   // _830, unknown
-	u8 _831;                   // _831, unknown
-	u8 _832;                   // _832, unknown
-	u8 _833;                   // _833, unknown
-	f32 _834;                  // _834
-	f32 _838;                  // _838
-	f32 _83C;                  // _83C
-	f32 _840;                  // _840
-	f32 _844;                  // _844
-	f32 _848;                  // _848
+	ProperParms mProperParms; // _7F8
+	u8 _830;                  // _830, unknown
+	u8 _831;                  // _831, unknown
+	u8 _832;                  // _832, unknown
+	u8 _833;                  // _833, unknown
+	f32 _834;                 // _834
+	f32 _838;                 // _838
+	f32 _83C;                 // _83C
+	f32 _840;                 // _840
+	f32 _844;                 // _844
+	f32 _848;                 // _848
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 struct TyreShadowMgr {
@@ -203,13 +203,13 @@ struct TyreShadowMgr {
 	void init();
 	void update();
 
-	f32 _00;                           // _00
-	Matrixf* m_frontMatrix;            // _04
-	Matrixf* m_backMatrix;             // _08
-	Obj* m_obj;                        // _0C
-	JointShadowRootNode* m_rootNode;   // _10
-	TyreTubeShadowNode* m_frontShadow; // _14
-	TyreTubeShadowNode* m_backShadow;  // _18
+	f32 _00;                          // _00
+	Matrixf* mFrontMatrix;            // _04
+	Matrixf* mBackMatrix;             // _08
+	Obj* mObj;                        // _0C
+	JointShadowRootNode* mRootNode;   // _10
+	TyreTubeShadowNode* mFrontShadow; // _14
+	TyreTubeShadowNode* mBackShadow;  // _18
 };
 
 /////////////////////////////////////////////////////////////////

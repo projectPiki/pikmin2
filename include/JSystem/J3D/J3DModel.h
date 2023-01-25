@@ -41,44 +41,44 @@ struct J3DModelData {
 	void simpleCalcMaterial(u16, f32 (*)[4]);
 	void syncJ3DSysFlags() const;
 
-	inline u16 getShapeCount() { return m_shapeTable.m_count; }
+	inline u16 getShapeCount() { return mShapeTable.mCount; }
 
-	inline u16 getMaterialCount1() { return m_materialTable.m_count1; }
+	inline u16 getMaterialCount1() { return mMaterialTable.mCount1; }
 
 	/** @fabricated */
 	inline void init(const J3DModelHierarchy* hierarchy)
 	{
-		m_jointTree.makeHierarchy(nullptr, &hierarchy, &m_materialTable, &m_shapeTable);
-		m_shapeTable.initShapeNodes(&m_jointTree.m_mtxData, &m_vertexData);
+		mJointTree.makeHierarchy(nullptr, &hierarchy, &mMaterialTable, &mShapeTable);
+		mShapeTable.initShapeNodes(&mJointTree.mMtxData, &mVertexData);
 	}
 
 	inline void setTevColor(char* name, J3DGXColorS10& color)
 	{
-		u16 idx          = m_materialTable._0C->getIndex(name);
-		J3DMaterial* mat = m_materialTable.m_materials1[idx];
-		mat->m_tevBlock->setTevColor(0, color);
+		u16 idx          = mMaterialTable._0C->getIndex(name);
+		J3DMaterial* mat = mMaterialTable.mMaterials1[idx];
+		mat->mTevBlock->setTevColor(0, color);
 	}
 
 	inline void setTevColor(char* name, u16 r, u16 g, u16 b, u16 a)
 	{
-		u16 idx          = m_materialTable._0C->getIndex(name);
-		J3DMaterial* mat = m_materialTable.m_materials1[idx];
-		mat->m_tevBlock->setTevColor(0, J3DGXColorS10(r, g, b, a));
+		u16 idx          = mMaterialTable._0C->getIndex(name);
+		J3DMaterial* mat = mMaterialTable.mMaterials1[idx];
+		mat->mTevBlock->setTevColor(0, J3DGXColorS10(r, g, b, a));
 	}
 
-	inline J3DVertexData* getVertexData() { return &m_vertexData; }
-	inline J3DJoint* getJointNodePointer(u16 idx) const { return m_jointTree.getJointNodePointer(idx); }
+	inline J3DVertexData* getVertexData() { return &mVertexData; }
+	inline J3DJoint* getJointNodePointer(u16 idx) const { return mJointTree.getJointNodePointer(idx); }
 
 	// VTBL _00
-	const void* m_bmd;                // _04
-	u32 m_modelLoaderFlags;           // _08
-	u16 _0C;                          // _0C
-	u16 m_jointSet;                   // _0E
-	J3DJointTree m_jointTree;         // _10
-	J3DMaterialTable m_materialTable; // _58
-	J3DShapeTable m_shapeTable;       // _78
-	JUTNameTab* _84;                  // _84
-	J3DVertexData m_vertexData;       // _88
+	const void* mBmd;                // _04
+	u32 mModelLoaderFlags;           // _08
+	u16 _0C;                         // _0C
+	u16 mJointSet;                   // _0E
+	J3DJointTree mJointTree;         // _10
+	J3DMaterialTable mMaterialTable; // _58
+	J3DShapeTable mShapeTable;       // _78
+	JUTNameTab* _84;                 // _84
+	J3DVertexData mVertexData;       // _88
 };
 
 /**
@@ -90,7 +90,7 @@ struct J3DModel {
 	 */
 	J3DModel(J3DModelData* data, unsigned long p2, unsigned long modelType)
 	{
-		m_vertexBuffer.init();
+		mVertexBuffer.init();
 		initialize();
 		entryModelData(data, p2, modelType);
 	}
@@ -123,26 +123,26 @@ struct J3DModel {
 	void calcBBoardMtx();
 	void prepareShapePackets();
 
-	inline J3DModelData* getModelData() { return m_modelData; }
+	inline J3DModelData* getModelData() { return mModelData; }
 
 	// _00 VTBL
-	J3DModelData* m_modelData;          // _04
-	BitFlag<u32> _08;                   // _08 /* bitfield of some sort */
-	u32 m_displayListFlag;              // _0C
-	void* _10;                          // _10
-	BitFlag<u32> _14;                   // _14
-	JGeometry::TVec3<f32> m_modelScale; // _18
-	Mtx m_posMtx;                       // _24
-	Mtx _54;                            // _54
-	J3DMtxBuffer* m_mtxBuffer;          // _84
-	J3DVertexBuffer m_vertexBuffer;     // _88
-	J3DMatPacket* m_matPackets;         // _C0
-	J3DShapePacket* m_shapePackets;     // _C4
-	J3DDeformData* m_deformData;        // _C8
-	J3DSkinDeform* m_skinDeform;        // _CC
-	J3DVtxColorCalc* m_vtxColorCalc;    // _D0
-	u32 _D4;                            // _D4
-	void* _D8;                          // _D8
+	J3DModelData* mModelData;          // _04
+	BitFlag<u32> _08;                  // _08 /* bitfield of some sort */
+	u32 mDisplayListFlag;              // _0C
+	void* _10;                         // _10
+	BitFlag<u32> _14;                  // _14
+	JGeometry::TVec3<f32> mModelScale; // _18
+	Mtx mPosMtx;                       // _24
+	Mtx _54;                           // _54
+	J3DMtxBuffer* mMtxBuffer;          // _84
+	J3DVertexBuffer mVertexBuffer;     // _88
+	J3DMatPacket* mMatPackets;         // _C0
+	J3DShapePacket* mShapePackets;     // _C4
+	J3DDeformData* mDeformData;        // _C8
+	J3DSkinDeform* mSkinDeform;        // _CC
+	J3DVtxColorCalc* mVtxColorCalc;    // _D0
+	u32 _D4;                           // _D4
+	void* _D8;                         // _D8
 };
 
 struct J3DModelHierarchy {

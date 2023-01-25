@@ -32,13 +32,13 @@
  * Size:	000048
  */
 JUTDbPrint::JUTDbPrint(JUTFont* font, JKRHeap* heap)
-    : m_color()
+    : mColor()
 {
 	// UNUSED FUNCTION
-	m_font = font;
-	_00    = nullptr;
-	m_heap = (heap != nullptr) ? heap : JKRHeap::sCurrentHeap;
-	m_color.set(0xFF, 0xFF, 0xFF, 0xFF);
+	mFont = font;
+	_00   = nullptr;
+	mHeap = (heap != nullptr) ? heap : JKRHeap::sCurrentHeap;
+	mColor.set(0xFF, 0xFF, 0xFF, 0xFF);
 	_0C = 1;
 }
 
@@ -75,9 +75,9 @@ JUTDbPrint* JUTDbPrint::start(JUTFont* font, JKRHeap* heap)
  */
 JUTFont* JUTDbPrint::changeFont(JUTFont* newFont)
 {
-	JUTFont* oldFont = m_font;
+	JUTFont* oldFont = mFont;
 	if (newFont != nullptr) {
-		m_font = newFont;
+		mFont = newFont;
 	}
 	return oldFont;
 }
@@ -138,11 +138,11 @@ void JUTDbPrint::flush() { flush(0, 0, JUTVideo::sManager->getFbWidth(), JUTVide
  */
 void JUTDbPrint::flush(int p1, int p2, int p3, int p4)
 {
-	if (m_font != nullptr && _00 != nullptr) {
+	if (mFont != nullptr && _00 != nullptr) {
 		J2DOrthoGraph orthograph(p1, p2, p3, p4, -1.0f, 1.0f);
 		orthograph.setPort();
-		m_font->setGX();
-		m_font->setCharColor(m_color);
+		mFont->setGX();
+		mFont->setCharColor(mColor);
 		JUTDbPrint_0x0** prevLinkToCurrent = &_00;
 		JUTDbPrint_0x0* current;
 		while ((current = *prevLinkToCurrent) != nullptr) {
@@ -150,11 +150,11 @@ void JUTDbPrint::flush(int p1, int p2, int p3, int p4)
 				drawString(current->_04, current->_06, current->_0A, &current->_0C);
 			}
 			if (0 >= --current->_08) {
-				JUTDbPrint_0x0* next = current->m_next;
-				JKRHeap::free(current, m_heap);
+				JUTDbPrint_0x0* next = current->mNext;
+				JKRHeap::free(current, mHeap);
 				*prevLinkToCurrent = next;
 			} else {
-				prevLinkToCurrent = &current->m_next;
+				prevLinkToCurrent = &current->mNext;
 			}
 		}
 	}
@@ -272,9 +272,9 @@ lbl_80029724:
  */
 void JUTDbPrint::drawString(int p1, int p2, int p3, const unsigned char* p4)
 {
-	const float height = m_font->getHeight();
-	const float width  = m_font->getWidth();
-	m_font->drawString_size_scale(p1, p2, width, height, reinterpret_cast<const char*>(p4), p3, true);
+	const float height = mFont->getHeight();
+	const float width  = mFont->getWidth();
+	mFont->drawString_size_scale(p1, p2, width, height, reinterpret_cast<const char*>(p4), p3, true);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

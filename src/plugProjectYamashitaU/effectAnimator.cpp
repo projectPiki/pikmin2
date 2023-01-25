@@ -64,8 +64,8 @@ ObjMgrData* sEffectAnimData[] = { sAttack, nullptr, sFlick, sMove1, sType1, null
  */
 Obj::Obj()
     : CNode("effectObj")
-    , m_data(nullptr)
-    , m_count(0)
+    , mData(nullptr)
+    , mCount(0)
 {
 }
 
@@ -77,14 +77,14 @@ Obj::Obj()
 void Obj::setup(KeyData* data)
 {
 	int count         = 0;
-	m_count           = 0;
+	mCount            = 0;
 	KeyData* currData = data;
-	for (count; currData->m_frame >= 0.0f; currData++, count++) { }
+	for (count; currData->mFrame >= 0.0f; currData++, count++) { }
 
-	m_count = count;
-	m_data  = data;
+	mCount = count;
+	mData  = data;
 
-	for (int i = 0; i < m_count; i++) { }
+	for (int i = 0; i < mCount; i++) { }
 }
 
 /*
@@ -95,8 +95,8 @@ void Obj::setup(KeyData* data)
 f32 Obj::calcValue(f32 keyFrame)
 {
 	int idx = -1;
-	for (int i = 0; i < m_count; i++) {
-		if (keyFrame <= m_data[i].m_frame) {
+	for (int i = 0; i < mCount; i++) {
+		if (keyFrame <= mData[i].mFrame) {
 			idx = i;
 			break;
 		}
@@ -105,14 +105,14 @@ f32 Obj::calcValue(f32 keyFrame)
 	P2ASSERTLINE(267, idx != -1);
 
 	if (idx == 0) {
-		return m_data[idx].m_scale;
+		return mData[idx].mScale;
 	} else {
-		KeyData* prevData = &m_data[idx - 1];
-		KeyData* currData = &m_data[idx];
+		KeyData* prevData = &mData[idx - 1];
+		KeyData* currData = &mData[idx];
 
-		f32 ratio     = (keyFrame - prevData->m_frame) / (currData->m_frame - prevData->m_frame);
-		f32 scaleDiff = (currData->m_scale - prevData->m_scale);
-		return ratio * scaleDiff + prevData->m_scale;
+		f32 ratio     = (keyFrame - prevData->mFrame) / (currData->mFrame - prevData->mFrame);
+		f32 scaleDiff = (currData->mScale - prevData->mScale);
+		return ratio * scaleDiff + prevData->mScale;
 	}
 }
 
@@ -155,7 +155,7 @@ struct VibrationObj : public Obj {
  * Address:	........
  * Size:	000044
  */
-ObjMgr::ObjMgr() { m_nodes.clearRelations(); }
+ObjMgr::ObjMgr() { mNodes.clearRelations(); }
 
 /*
  * --INFO--
@@ -164,7 +164,7 @@ ObjMgr::ObjMgr() { m_nodes.clearRelations(); }
  */
 void ObjMgr::update(efx::TKechappyTest* testFX, f32 keyFrame)
 {
-	FOREACH_NODE(Obj, m_nodes.m_child, obj) { obj->update(testFX, keyFrame); }
+	FOREACH_NODE(Obj, mNodes.mChild, obj) { obj->update(testFX, keyFrame); }
 }
 
 /*
@@ -175,16 +175,16 @@ void ObjMgr::update(efx::TKechappyTest* testFX, f32 keyFrame)
 void ObjMgr::setup(ObjMgrData* mgrData)
 {
 	Obj* vibration = new VibrationObj;
-	vibration->setup(mgrData->m_vibrationData);
-	m_nodes.add(vibration);
+	vibration->setup(mgrData->mVibrationData);
+	mNodes.add(vibration);
 
 	Obj* bristle = new BristleObj;
-	bristle->setup(mgrData->m_bristleData);
-	m_nodes.add(bristle);
+	bristle->setup(mgrData->mBristleData);
+	mNodes.add(bristle);
 
 	Obj* length = new LengthObj;
-	length->setup(mgrData->m_lengthData);
-	m_nodes.add(length);
+	length->setup(mgrData->mLengthData);
+	mNodes.add(length);
 }
 
 /*
@@ -192,7 +192,7 @@ void ObjMgr::setup(ObjMgrData* mgrData)
  * Address:	80133010
  * Size:	00000C
  */
-Mgr::Mgr() { m_mgrs = nullptr; }
+Mgr::Mgr() { mMgrs = nullptr; }
 
 /*
  * --INFO--
@@ -201,13 +201,13 @@ Mgr::Mgr() { m_mgrs = nullptr; }
  */
 void Mgr::setup()
 {
-	m_mgrs = new ObjMgr*[9];
+	mMgrs = new ObjMgr*[9];
 	for (int i = 0; i < 9; i++) {
 		if (sEffectAnimData[i]) {
-			m_mgrs[i] = new ObjMgr;
-			m_mgrs[i]->setup(sEffectAnimData[i]);
+			mMgrs[i] = new ObjMgr;
+			mMgrs[i]->setup(sEffectAnimData[i]);
 		} else {
-			m_mgrs[i] = nullptr;
+			mMgrs[i] = nullptr;
 		}
 	}
 }
@@ -220,7 +220,7 @@ void Mgr::setup()
 void Mgr::update(efx::TKechappyTest* testFX, int index, f32 keyFrame)
 {
 	P2ASSERTLINE(359, (u32)index <= 9);
-	ObjMgr* objMgr = m_mgrs[index];
+	ObjMgr* objMgr = mMgrs[index];
 	if (!objMgr) {
 		testFX->setSpread(0.0f);
 		testFX->setAwayFromCenterSpeed(0.25f);

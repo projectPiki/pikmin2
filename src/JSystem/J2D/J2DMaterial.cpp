@@ -59,17 +59,17 @@
  * __ct__11J2DMaterialFv
  */
 J2DMaterial::J2DMaterial()
-    : m_colorBlock()
-    , m_texGenBlock()
-    , m_peBlock()
+    : mColorBlock()
+    , mTexGenBlock()
+    , mPeBlock()
 {
-	m_pane     = nullptr;
-	_0C        = 0xFFFF;
-	m_tevBlock = nullptr;
-	m_indBlock = nullptr;
-	_84        = nullptr;
-	_08        = 1;
-	_0E        = 1;
+	mPane     = nullptr;
+	_0C       = 0xFFFF;
+	mTevBlock = nullptr;
+	mIndBlock = nullptr;
+	_84       = nullptr;
+	_08       = 1;
+	_0E       = 1;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -172,7 +172,7 @@ J2DTexCoord::J2DTexCoord()
  */
 // J2DColorChan::J2DColorChan()
 // {
-// 	m_data = j2dDefaultColorChanInfo._01;
+// 	mData = j2dDefaultColorChanInfo._01;
 // 	/*
 // 	addi     r4, r2, j2dDefaultColorChanInfo@sda21
 // 	lbz      r0, 1(r4)
@@ -282,8 +282,8 @@ J2DMaterial::J2DMaterial(unsigned long)
  */
 J2DMaterial::~J2DMaterial()
 {
-	delete m_tevBlock;
-	delete m_indBlock;
+	delete mTevBlock;
+	delete mIndBlock;
 	delete _84;
 }
 

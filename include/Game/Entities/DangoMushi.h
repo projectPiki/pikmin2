@@ -96,21 +96,21 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x4];                            // _2BC, unknown
-	u8 _2C0;                                 // _2C0
-	u8 _2C1;                                 // _2C1
-	u8 _2C2;                                 // _2C2
-	f32 _2C4;                                // _2C4, timer?
-	u8 _2C8[0x4];                            // _2C8, unknown
-	int _2CC;                                // _2CC
-	Vector3f _2D0;                           // _2D0
-	u8 _2DC[0xC];                            // _2DC, unknown
-	WalkSmokeEffect::Mgr m_walkSmokeMgr;     // 2E8
-	Sys::MatLoopAnimator* m_matLoopAnimator; // _2F0
-	efx::TDangoWallBreak* m_efxWallBreak;    // _2F4
-	efx::TDangoAttack2* m_efxAttack2;        // _2F8
-	efx::TChasePos2* m_efxRun;               // _2FC, TDangoRun?
-	                                         // _308 = PelletView
+	u8 _2BC[0x4];                           // _2BC, unknown
+	u8 _2C0;                                // _2C0
+	u8 _2C1;                                // _2C1
+	u8 _2C2;                                // _2C2
+	f32 _2C4;                               // _2C4, timer?
+	u8 _2C8[0x4];                           // _2C8, unknown
+	int _2CC;                               // _2CC
+	Vector3f _2D0;                          // _2D0
+	u8 _2DC[0xC];                           // _2DC, unknown
+	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // 2E8
+	Sys::MatLoopAnimator* mMatLoopAnimator; // _2F0
+	efx::TDangoWallBreak* mEfxWallBreak;    // _2F4
+	efx::TDangoAttack2* mEfxAttack2;        // _2F8
+	efx::TChasePos2* mEfxRun;               // _2FC, TDangoRun?
+	                                        // _308 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -134,25 +134,25 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Sys::MatTevRegAnimation* m_tevRegAnimation; // _44
-	Obj* m_obj;                                 // _48, array of Objs
+	Sys::MatTevRegAnimation* mTevRegAnimation; // _44
+	Obj* mObj;                                 // _48, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "ローリング移動速度", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
-		    , m_fp02(this, 'fp02', "ローリング回転速度率", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
-		    , m_fp03(this, 'fp03', "ローリング回転最大速度", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
-		    , m_fp10(this, 'fp10', "ひっくり返り時間", 7.5f, 0.0f, 30.0f)         // 'flip time'
+		    , mFp01(this, 'fp01', "ローリング移動速度", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
+		    , mFp02(this, 'fp02', "ローリング回転速度率", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
+		    , mFp03(this, 'fp03', "ローリング回転最大速度", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
+		    , mFp10(this, 'fp10', "ひっくり返り時間", 7.5f, 0.0f, 30.0f)         // 'flip time'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp10; // _87C
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp03; // _854
+		Parm<f32> mFp10; // _87C
 	};
 
 	Parms() { }
@@ -160,12 +160,12 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyBlendAnimatorBase {

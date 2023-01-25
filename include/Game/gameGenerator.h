@@ -47,28 +47,28 @@ struct Generator : public CNode {
 
 	void informDeath(Creature*);
 
-	GenObject* _18;             // _18
-	u32 _1C;                    // _1C /* Initialized to '____' */
-	char m_genObjName[32];      // _20 /* shift-jis name given in generator files */
-	ID32 _40;                   // _40
-	ID32 m_version;             // _4C
-	u8 _58[4];                  // _58
-	u16 m_reservedNum;          // _5C
-	Generator* _60;             // _60 /* m_prev */
-	Generator* _64;             // _64 /* m_next */
-	GeneratorMgr* m_mgr;        // _68
-	Creature* m_creature;       // _6C
-	int m_daysTillRessurection; // _70
-	u32 _74;                    // _74
-	u32 _78;                    // _78
-	u32 _7C;                    // _7C
-	u8 _80[4];                  // _80
-	int m_dayLimitMaybe;        // _84
-	u8 _88[12];                 // _88
-	Vector3f m_position;        // _94
-	Vector3f m_offset;          // _A0
-	u8 _AC;                     // _AC
-	int m_generatorIndexMaybe;  // _B0
+	GenObject* _18;            // _18
+	u32 _1C;                   // _1C /* Initialized to '____' */
+	char mGenObjName[32];      // _20 /* shift-jis name given in generator files */
+	ID32 _40;                  // _40
+	ID32 mVersion;             // _4C
+	u8 _58[4];                 // _58
+	u16 mReservedNum;          // _5C
+	Generator* _60;            // _60 /* mPrev */
+	Generator* _64;            // _64 /* mNext */
+	GeneratorMgr* mMgr;        // _68
+	Creature* mCreature;       // _6C
+	int mDaysTillRessurection; // _70
+	u32 _74;                   // _74
+	u32 _78;                   // _78
+	u32 _7C;                   // _7C
+	u8 _80[4];                 // _80
+	int mDayLimitMaybe;        // _84
+	u8 _88[12];                // _88
+	Vector3f mPosition;        // _94
+	Vector3f mOffset;          // _A0
+	u8 _AC;                    // _AC
+	int mGeneratorIndexMaybe;  // _B0
 
 	//  0: format of the generator files on disc
 	// !0: format of the gencache?
@@ -98,33 +98,33 @@ struct GeneratorMgr : public CNode {
 	void updateUseList();
 	// TODO: Data members
 
-	GeneratorMgr* m_nextMgr;   // _18
-	GeneratorMgr* m_childMgr;  // _1C
-	GeneratorMgr* m_parentMgr; // _20
-	Vector3f m_cursorPosition; // _24
-	Generator* m_generator;    // _28
-	ID32 _34;                  // _34
-	ID32 m_versionID;          // _40
-	int m_generatorCount;      // _4C
-	ID32 _50;                  // _50
-	Vector3f m_startPos;       // _5C
-	f32 m_startDir;            // _68, v0.1 adds the start direction
-	u8 _6C;                    // _6C
-	u8 _6D;                    // _6D
+	GeneratorMgr* mNextMgr;   // _18
+	GeneratorMgr* mChildMgr;  // _1C
+	GeneratorMgr* mParentMgr; // _20
+	Vector3f mCursorPosition; // _24
+	Generator* mGenerator;    // _28
+	ID32 _34;                 // _34
+	ID32 mVersionID;          // _40
+	int mGeneratorCount;      // _4C
+	ID32 _50;                 // _50
+	Vector3f mStartPos;       // _5C
+	f32 mStartDir;            // _68, v0.1 adds the start direction
+	u8 _6C;                   // _6C
+	u8 _6D;                   // _6D
 
 	static Delegate1<struct BaseGameSection, Vector3f&>* cursorCallback;
 };
 
 struct GenArg : public CreatureInitArg {
 
-	inline GenArg(Vector3f& vec) { m_position = vec; }
+	inline GenArg(Vector3f& vec) { mPosition = vec; }
 
 	inline GenArg() { }
 
 	virtual const char* getName(); // _08 (weak)
 
 	// _00 VTBL
-	Vector3f m_position; // _04
+	Vector3f mPosition; // _04
 };
 
 struct GenBase : public Parameters {
@@ -147,17 +147,17 @@ struct GenBase : public Parameters {
 
 	// _00 - _0C: Parameters
 	// _0C: vtable
-	u32 m_typeID;        // _10
-	u32 m_rawID;         // _14
-	char* m_labelData;   // _18
-	char* m_objTypeName; // _1C
-	u32 _20;             // _20
+	u32 mTypeID;        // _10
+	u32 mRawID;         // _14
+	char* mLabelData;   // _18
+	char* mObjTypeName; // _1C
+	u32 _20;            // _20
 };
 
 struct EnemyGeneratorBase : public CNode {
 	EnemyGeneratorBase(char* name)
 	    : CNode(name)
-	    , m_version('????')
+	    , mVersion('????')
 	{
 	}
 
@@ -170,7 +170,7 @@ struct EnemyGeneratorBase : public CNode {
 
 	// _00 VTBL
 
-	ID32 m_version; // _18
+	ID32 mVersion; // _18
 };
 
 struct GenObject : public GenBase {
@@ -201,9 +201,9 @@ struct GenItemParm {
 
 struct GenPelletParm {
 	// virtual int getShapeID() { return 0; } // _08 (weak)
-	int m_index;
-	int m_color;
-	int m_size;
+	int mIndex;
+	int mColor;
+	int mSize;
 };
 
 /**
@@ -213,12 +213,12 @@ struct GenItem : public GenObject {
 	inline GenItem()
 	    : GenObject('item', "object type", "ITEM をセット")
 	{
-		m_mgrIndex   = -1;
-		m_rotation.z = 0.0f;
-		m_rotation.y = 0.0f;
-		m_rotation.x = 0.0f;
-		m_itemMgr    = nullptr;
-		m_parm       = nullptr;
+		mMgrIndex   = -1;
+		mRotation.z = 0.0f;
+		mRotation.y = 0.0f;
+		mRotation.x = 0.0f;
+		mItemMgr    = nullptr;
+		mParm       = nullptr;
 	}
 
 	virtual void doWrite(Stream&);                         // _08
@@ -236,22 +236,22 @@ struct GenItem : public GenObject {
 
 	// _0C     = VTBL
 	// _00-_24 = GenObject
-	int m_mgrIndex;         // _24
-	Vector3f m_rotation;    // _28
-	BaseItemMgr* m_itemMgr; // _34
-	GenItemParm* m_parm;    // _38
+	int mMgrIndex;         // _24
+	Vector3f mRotation;    // _28
+	BaseItemMgr* mItemMgr; // _34
+	GenItemParm* mParm;    // _38
 };
 
 struct GenPellet : public GenObject {
 	inline GenPellet()
 	    : GenObject('pelt', "object type", "PELLET をセット")
 	{
-		m_pelType    = 255;
-		m_rotation.z = 0.0f;
-		m_rotation.y = 0.0f;
-		m_rotation.x = 0.0f;
-		m_manager    = nullptr;
-		m_genParm    = nullptr;
+		mPelType    = 255;
+		mRotation.z = 0.0f;
+		mRotation.y = 0.0f;
+		mRotation.x = 0.0f;
+		mManager    = nullptr;
+		mGenParm    = nullptr;
 	}
 
 	virtual void doWrite(Stream&);                         // _08
@@ -268,18 +268,18 @@ struct GenPellet : public GenObject {
 
 	static void initialise();
 
-	u8 m_pelType;             // _24
-	Vector3f m_rotation;      // _28
-	BasePelletMgr* m_manager; // _34
-	GenPelletParm* m_genParm; // _38
+	u8 mPelType;             // _24
+	Vector3f mRotation;      // _28
+	BasePelletMgr* mManager; // _34
+	GenPelletParm* mGenParm; // _38
 };
 
 struct GenObjectPiki : public GenObject {
 	GenObjectPiki()
 	    : GenObject('piki', "object type", "PIKMIN をセット")
-	    , m_colourParm(this, 'p000', "色", 0, 0, PikiColorCount)
-	    , m_amountParm(this, 'p001', "数", 1, 1, 100)
-	    , m_isWildPikminParm(this, 'p002', "自活(1=yes)", 0, 0, 1)
+	    , mColourParm(this, 'p000', "色", 0, 0, PikiColorCount)
+	    , mAmountParm(this, 'p001', "数", 1, 1, 100)
+	    , mIsWildPikminParm(this, 'p002', "自活(1=yes)", 0, 0, 1)
 	{
 	}
 
@@ -290,9 +290,9 @@ struct GenObjectPiki : public GenObject {
 
 	static void initialise();
 
-	Parm<int> m_colourParm;       // _24
-	Parm<int> m_amountParm;       // _4C
-	Parm<int> m_isWildPikminParm; // _74, assumed name
+	Parm<int> mColourParm;       // _24
+	Parm<int> mAmountParm;       // _4C
+	Parm<int> mIsWildPikminParm; // _74, assumed name
 };
 
 struct GenObjectEnemy : public GenObject {
@@ -312,17 +312,17 @@ struct GenObjectEnemy : public GenObject {
 	void createEnemyGenerator();
 	void doReadOldVersion(Stream&);
 
-	EnemyTypeID::EEnemyTypeID m_enemyID;          // _24
-	u8 m_spawnType;                               // _28 // 0: point, 1: circle
-	u8 m_tekiBirthType;                           // _29
-	s16 m_tekiNum;                                // _2A
-	f32 m_appearRadius;                           // _2C
-	f32 m_direction;                              // _30
-	f32 m_enemySize;                              // _34
-	PelletMgr::OtakaraItemCode m_otakaraItemCode; // _38
-	EnemyPelletInfo m_pelletInfo;                 // _3C
-	EnemyGeneratorBase* m_enemyGenerator;         // _48
-	u8 _4C;                                       // _4C
+	EnemyTypeID::EEnemyTypeID mEnemyID;          // _24
+	u8 mSpawnType;                               // _28 // 0: point, 1: circle
+	u8 mTekiBirthType;                           // _29
+	s16 mTekiNum;                                // _2A
+	f32 mAppearRadius;                           // _2C
+	f32 mDirection;                              // _30
+	f32 mEnemySize;                              // _34
+	PelletMgr::OtakaraItemCode mOtakaraItemCode; // _38
+	EnemyPelletInfo mPelletInfo;                 // _3C
+	EnemyGeneratorBase* mEnemyGenerator;         // _48
+	u8 _4C;                                      // _4C
 };
 
 GenObject* makeObjectEnemy();
@@ -334,10 +334,10 @@ struct GenObjectFactory {
 	typedef GenObject* MakeFunction();
 	void createInstance();
 
-	u32 m_typeID;                 // _00
-	MakeFunction* m_makeFunction; // _04
-	char* m_name;                 // _08
-	u32 m_version;                // _0C
+	u32 mTypeID;                 // _00
+	MakeFunction* mMakeFunction; // _04
+	char* mName;                 // _08
+	u32 mVersion;                // _0C
 
 	static struct GenObjectFactoryFactory* factory;
 };
@@ -349,21 +349,21 @@ struct GenObjectFactory {
 struct GenObjectFactoryFactory {
 	inline GenObjectFactoryFactory()
 	{
-		m_factories = new GenObjectFactory[12];
-		m_limit     = 12;
-		m_count     = 0;
+		mFactories = new GenObjectFactory[12];
+		mLimit     = 12;
+		mCount     = 0;
 	}
 
-	int m_count;                   // _00
-	int m_limit;                   // _04
-	GenObjectFactory* m_factories; // _08
-	u8 _0C[4];                     // _0C
+	int mCount;                   // _00
+	int mLimit;                   // _04
+	GenObjectFactory* mFactories; // _08
+	u8 _0C[4];                    // _0C
 };
 
 struct GenObjectNavi : public GenObject {
 	GenObjectNavi()
-	    : GenObject('navi', "object type", "NAVI をセット")   // set the NAVI
-	    , m_rotation(this, 'p000', "スタート向き", 0, 0, 360) // start direction
+	    : GenObject('navi', "object type", "NAVI をセット")  // set the NAVI
+	    , mRotation(this, 'p000', "スタート向き", 0, 0, 360) // start direction
 	{
 	}
 
@@ -374,7 +374,7 @@ struct GenObjectNavi : public GenObject {
 
 	static void initialise();
 
-	Parm<f32> m_rotation; // _24
+	Parm<f32> mRotation; // _24
 };
 
 extern GeneratorMgr* generatorMgr;

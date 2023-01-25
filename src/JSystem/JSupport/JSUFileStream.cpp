@@ -29,8 +29,8 @@
  */
 JSUFileInputStream::JSUFileInputStream(JKRFile* file)
 {
-	m_object = file;
-	m_length = 0;
+	mObject = file;
+	mLength = 0;
 }
 
 /*
@@ -42,16 +42,16 @@ JSUFileInputStream::JSUFileInputStream(JKRFile* file)
 int JSUFileInputStream::readData(void* buffer, long byteCount)
 {
 	int readBytes = 0;
-	if (((JKRFile*)m_object)->m_fileOpen) {
-		if ((u32)(m_length + byteCount) > ((JKRFile*)m_object)->getFileSize()) {
-			byteCount = ((JKRFile*)m_object)->getFileSize() - m_length;
+	if (((JKRFile*)mObject)->mFileOpen) {
+		if ((u32)(mLength + byteCount) > ((JKRFile*)mObject)->getFileSize()) {
+			byteCount = ((JKRFile*)mObject)->getFileSize() - mLength;
 		}
 		if (byteCount > 0) {
-			readBytes = ((JKRFile*)m_object)->readData(buffer, byteCount, m_length);
+			readBytes = ((JKRFile*)mObject)->readData(buffer, byteCount, mLength);
 			if (readBytes < 0) {
 				return 0;
 			} else {
-				m_length += readBytes;
+				mLength += readBytes;
 			}
 		}
 	}
@@ -66,27 +66,27 @@ int JSUFileInputStream::readData(void* buffer, long byteCount)
  */
 int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
 {
-	u32 originalLength = m_length;
+	u32 originalLength = mLength;
 	switch (mode) {
 	case SEEK_SET:
-		m_length = offset;
+		mLength = offset;
 		break;
 	case SEEK_END:
-		m_length = ((JKRFile*)m_object)->getFileSize() - offset;
+		mLength = ((JKRFile*)mObject)->getFileSize() - offset;
 		break;
 	case SEEK_CUR:
-		m_length += offset;
+		mLength += offset;
 		break;
 	default:
 		break;
 	}
-	if (0 > m_length) {
-		m_length = 0;
+	if (0 > mLength) {
+		mLength = 0;
 	}
-	if (m_length > ((JKRFile*)m_object)->getFileSize()) {
-		m_length = ((JKRFile*)m_object)->getFileSize();
+	if (mLength > ((JKRFile*)mObject)->getFileSize()) {
+		mLength = ((JKRFile*)mObject)->getFileSize();
 	}
-	return m_length - originalLength;
+	return mLength - originalLength;
 }
 
 /*
@@ -96,7 +96,7 @@ int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
  * Weak function. Found in JSUStream.h
  * Matches
  */
-// int JSUFileInputStream::getLength() const { return ((JKRFile*)m_object)->getFileSize(); }
+// int JSUFileInputStream::getLength() const { return ((JKRFile*)mObject)->getFileSize(); }
 
 /*
  * --INFO--
@@ -105,4 +105,4 @@ int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
  * Weak function. Found in JSUStream.h
  * Matches
  */
-// int JSUFileInputStream::getPosition() const { return m_length; }
+// int JSUFileInputStream::getPosition() const { return mLength; }

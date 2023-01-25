@@ -14,7 +14,7 @@ namespace GasHiba {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 	createEffect();
 }
@@ -42,15 +42,15 @@ void Obj::onInit(CreatureInitArg* args)
 
 	setEmotionNone();
 	shadowMgr->killShadow(this);
-	m_timer = 0.0f;
+	mTimer = 0.0f;
 	resetBridgeGateCheck();
-	m_isAlive = false;
+	mIsAlive = false;
 	setupLodParms();
 
-	f32 r = randWeightFloat(C_PROPERPARMS.m_waitTime.m_value);
+	f32 r = randWeightFloat(C_PROPERPARMS.mWaitTime.mValue);
 	WaitStateArg arg;
-	arg.m_waitTimer = r;
-	m_fsm->start(this, GASHIBA_Wait, &arg);
+	arg.mWaitTimer = r;
+	mFsm->start(this, GASHIBA_Wait, &arg);
 }
 
 /*
@@ -58,7 +58,7 @@ void Obj::onInit(CreatureInitArg* args)
  * Address:	8026D388
  * Size:	000034
  */
-void Obj::doUpdate() { m_fsm->exec(this); }
+void Obj::doUpdate() { mFsm->exec(this); }
 
 /*
  * --INFO--
@@ -81,9 +81,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -93,10 +93,10 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.m_position                  = m_position;
-	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	shadowParam.m_boundingSphere.m_radius   = 1.0f;
-	shadowParam.m_size                      = 1.0f;
+	shadowParam.mPosition                 = mPosition;
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.mBoundingSphere.mRadius   = 1.0f;
+	shadowParam.mSize                     = 1.0f;
 }
 
 /*
@@ -108,10 +108,10 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if ((creature) && !creature->isNavi()) {
 		Vector3f position = creature->getPosition();
-		position.y -= m_position.y;
+		position.y -= mPosition.y;
 
 		Parms* parms = C_PARMS;
-		if ((position.y < parms->m_general.m_maxAttackRange.m_value) && (position.y > -parms->m_general.m_minAttackRange.m_value)) {
+		if ((position.y < parms->mGeneral.mMaxAttackRange.mValue) && (position.y > -parms->mGeneral.mMinAttackRange.mValue)) {
 			addDamage(damage, 1.0f);
 			return true;
 		}
@@ -160,12 +160,12 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 void Obj::interactGasAttack()
 {
 	Parms* parms = C_PARMS;
-	f32 max      = m_position.y + parms->m_general.m_maxAttackRange.m_value;
-	f32 min      = m_position.y - parms->m_general.m_minAttackRange.m_value;
-	f32 radSqr   = SQUARE(parms->m_general.m_attackRadius.m_value);
+	f32 max      = mPosition.y + parms->mGeneral.mMaxAttackRange.mValue;
+	f32 min      = mPosition.y - parms->mGeneral.mMinAttackRange.mValue;
+	f32 radSqr   = SQUARE(parms->mGeneral.mAttackRadius.mValue);
 
-	Sys::Sphere sphere(m_position);
-	sphere.m_radius = parms->m_general.m_attackRadius.m_value;
+	Sys::Sphere sphere(mPosition);
+	sphere.mRadius = parms->mGeneral.mAttackRadius.mValue;
 
 	CellIteratorArg arg(sphere);
 	arg._1C = true;
@@ -181,7 +181,7 @@ void Obj::interactGasAttack()
 				Vector2f delta;
 				getDistance2D(position, delta);
 				if (SQUARE(delta.x) + SQUARE(delta.y) < radSqr) {
-					InteractGas gas(this, C_PARMS->m_general.m_attackDamage.m_value);
+					InteractGas gas(this, C_PARMS->mGeneral.mAttackDamage.mValue);
 					creature->stimulate(gas);
 				}
 			}
@@ -196,9 +196,9 @@ void Obj::interactGasAttack()
  */
 void Obj::resetBridgeGateCheck()
 {
-	m_isBridgeGate = true;
-	m_bridge       = nullptr;
-	m_gate         = nullptr;
+	mIsBridgeGate = true;
+	mBridge       = nullptr;
+	mGate         = nullptr;
 }
 
 /*
@@ -208,12 +208,12 @@ void Obj::resetBridgeGateCheck()
  */
 void Obj::setInitLivingThing()
 {
-	if (m_isBridgeGate) {
-		m_isBridgeGate = false;
-		m_bridge       = nullptr;
-		m_gate         = nullptr;
+	if (mIsBridgeGate) {
+		mIsBridgeGate = false;
+		mBridge       = nullptr;
+		mGate         = nullptr;
 
-		if (gameSystem != nullptr && !gameSystem->m_isInCave && gameSystem->m_mode == GSM_STORY_MODE) {
+		if (gameSystem != nullptr && !gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {
 			if (ItemBridge::mgr != nullptr) {
 				Iterator<BaseItem> bridgeIter(ItemBridge::mgr);
 
@@ -221,19 +221,19 @@ void Obj::setInitLivingThing()
 				{
 					ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(*bridgeIter);
 					Vector3f bridgePos       = bridge->getPosition();
-					f32 yDist                = bridgePos.y - m_position.y;
+					f32 yDist                = bridgePos.y - mPosition.y;
 					yDist                    = (yDist > 0.0f) ? yDist : -yDist;
 
 					if (yDist < 25.0f) {
-						f32 xDist = bridgePos.x - m_position.x;
+						f32 xDist = bridgePos.x - mPosition.x;
 						xDist     = (xDist > 0.0f) ? xDist : -xDist;
 
 						if (xDist < 75.0f) {
-							f32 zDist = bridgePos.z - m_position.z;
+							f32 zDist = bridgePos.z - mPosition.z;
 							zDist     = (zDist > 0.0f) ? zDist : -zDist;
 
 							if (zDist < 75.0f) {
-								m_bridge = bridge;
+								mBridge = bridge;
 								break;
 							}
 						}
@@ -241,26 +241,26 @@ void Obj::setInitLivingThing()
 				}
 			}
 
-			if (itemGateMgr != nullptr && m_bridge == nullptr) {
-				Iterator<ItemGate> gateIter(&itemGateMgr->m_nodeObjectMgr);
+			if (itemGateMgr != nullptr && mBridge == nullptr) {
+				Iterator<ItemGate> gateIter(&itemGateMgr->mNodeObjectMgr);
 
 				CI_LOOP(gateIter)
 				{
 					ItemGate* gate   = *gateIter;
 					Vector3f gatePos = gate->getPosition();
-					f32 yDist        = gatePos.y - m_position.y;
+					f32 yDist        = gatePos.y - mPosition.y;
 					yDist            = (yDist > 0.0f) ? yDist : -yDist;
 
 					if (yDist < 25.0f) {
-						f32 xDist = gatePos.x - m_position.x;
+						f32 xDist = gatePos.x - mPosition.x;
 						xDist     = (xDist > 0.0f) ? xDist : -xDist;
 
 						if (xDist < 75.0f) {
-							f32 zDist = gatePos.z - m_position.z;
+							f32 zDist = gatePos.z - mPosition.z;
 							zDist     = (zDist > 0.0f) ? zDist : -zDist;
 
 							if (zDist < 75.0f) {
-								m_gate = gate;
+								mGate = gate;
 								break;
 							}
 						}
@@ -269,10 +269,10 @@ void Obj::setInitLivingThing()
 			}
 		}
 
-		if (m_bridge != nullptr || m_gate != nullptr) {
-			m_isAlive = false;
+		if (mBridge != nullptr || mGate != nullptr) {
+			mIsAlive = false;
 		} else {
-			m_isAlive = true;
+			mIsAlive = true;
 		}
 	}
 }
@@ -285,18 +285,18 @@ void Obj::setInitLivingThing()
 void Obj::updateLivingThing()
 {
 	if (!isLivingThing()) {
-		if (m_bridge) {
-			if (m_bridge->m_stagesRemaining != 0) {
-				m_isAlive = true;
+		if (mBridge) {
+			if (mBridge->mStagesRemaining != 0) {
+				mIsAlive = true;
 			}
 
-		} else if (m_gate) {
-			if (!m_gate->isAlive()) {
-				m_isAlive = true;
+		} else if (mGate) {
+			if (!mGate->isAlive()) {
+				mIsAlive = true;
 			}
 
 		} else {
-			m_isAlive = true;
+			mIsAlive = true;
 		}
 	}
 }
@@ -308,9 +308,9 @@ void Obj::updateLivingThing()
  */
 void Obj::setupLodParms()
 {
-	m_lodParm.m_far        = C_PARMS->m_properParms.m_lodNear.m_value;
-	m_lodParm.m_close      = C_PARMS->m_properParms.m_lodMiddle.m_value;
-	m_lodParm.m_isCylinder = false;
+	mLodParm.mFar        = C_PARMS->mProperParms.mLodNear.mValue;
+	mLodParm.mClose      = C_PARMS->mProperParms.mLodMiddle.mValue;
+	mLodParm.mIsCylinder = false;
 }
 
 /*
@@ -318,14 +318,14 @@ void Obj::setupLodParms()
  * Address:	8026DE20
  * Size:	00002C
  */
-void Obj::updateEfxLod() { m_efxGas->setRateLOD(m_lod.m_flags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR)); }
+void Obj::updateEfxLod() { mEfxGas->setRateLOD(mLod.mFlags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR)); }
 
 /*
  * --INFO--
  * Address:	8026DE4C
  * Size:	00005C
  */
-void Obj::createEffect() { m_efxGas = new efx::TGasuHiba; }
+void Obj::createEffect() { mEfxGas = new efx::TGasuHiba; }
 
 /*
  * --INFO--
@@ -335,12 +335,12 @@ void Obj::createEffect() { m_efxGas = new efx::TGasuHiba; }
 void Obj::startGasEffect()
 {
 	bool underground = false;
-	if ((gameSystem) && (!gameSystem->m_isInCave)) {
+	if ((gameSystem) && (!gameSystem->mIsInCave)) {
 		underground = true;
 	}
-	efx::ArgGasuHiba arg(m_position);
-	arg.m_isUnderground = underground;
-	m_efxGas->create(&arg);
+	efx::ArgGasuHiba arg(mPosition);
+	arg.mIsUnderground = underground;
+	mEfxGas->create(&arg);
 }
 
 /*
@@ -348,7 +348,7 @@ void Obj::startGasEffect()
  * Address:	8026DF48
  * Size:	000030
  */
-void Obj::finishGasEffect() { m_efxGas->fade(); }
+void Obj::finishGasEffect() { mEfxGas->fade(); }
 
 /*
  * --INFO--
@@ -357,9 +357,9 @@ void Obj::finishGasEffect() { m_efxGas->fade(); }
  */
 void Obj::generatorKill()
 {
-	if (m_generator) {
-		m_generator->informDeath(this);
-		m_generator = nullptr;
+	if (mGenerator) {
+		mGenerator->informDeath(this);
+		mGenerator = nullptr;
 	}
 }
 

@@ -21,14 +21,14 @@ namespace Houdai {
  * Address:	802BFCB0
  * Size:	000024
  */
-void HoudaiGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox) { m_obj->createOnGroundEffect(footIdx, wbox); }
+void HoudaiGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox) { mObj->createOnGroundEffect(footIdx, wbox); }
 
 /*
  * --INFO--
  * Address:	802BFCD4
  * Size:	000024
  */
-void HoudaiGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox) { m_obj->createOffGroundEffect(footIdx, wbox); }
+void HoudaiGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox) { mObj->createOffGroundEffect(footIdx, wbox); }
 
 /*
  * --INFO--
@@ -37,7 +37,7 @@ void HoudaiGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox) { m_obj-
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 
 	createIKSystem();
@@ -66,31 +66,31 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_IsCullable);
 	disableEvent(0, EB_IsPlatformCollsAllowed);
 	disableEvent(0, EB_ToLeaveCarcass);
-	m_stateTimer        = 0.0f;
-	m_stateDuration     = 0.0f;
-	m_shotGunBurstTimer = 0.0f;
-	m_nextState         = HOUDAI_NULL;
-	m_targetPosition    = m_homePosition;
-	m_isSmoking         = false;
+	mStateTimer        = 0.0f;
+	mStateDuration     = 0.0f;
+	mShotGunBurstTimer = 0.0f;
+	mNextState         = HOUDAI_NULL;
+	mTargetPosition    = mHomePosition;
+	mIsSmoking         = false;
 	setupIKSystem();
 	setupShadowSystem();
 	setTargetPattern();
 
-	m_shotGunSearchTimer    = 0.0f;
-	_2ED                    = 0;
-	m_shotGunTargetPosition = m_homePosition;
+	mShotGunSearchTimer    = 0.0f;
+	_2ED                   = 0;
+	mShotGunTargetPosition = mHomePosition;
 
 	setupShotGun();
 	setupCollision();
 	setupEffect();
 	startSteamEffect(false);
 
-	m_isAttackMusicLooping = false;
+	mIsAttackMusicLooping = false;
 
 	resetBossAppearBGM();
 	shadowMgr->delShadow(this);
 
-	m_fsm->start(this, HOUDAI_Stay, nullptr);
+	mFsm->start(this, HOUDAI_Stay, nullptr);
 	doAnimationCullingOff();
 }
 
@@ -115,10 +115,10 @@ void Obj::onKill(CreatureKillArg* killArg)
 void Obj::setParameters()
 {
 	// if we're in Hole of Heroes, change territory radius
-	if (gameSystem && gameSystem->m_isInCave && gameSystem->m_mode == GSM_STORY_MODE) {
-		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->m_section);
+	if (gameSystem && gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {
+		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 		if (section && section->getCaveID() == 'l_02') {
-			C_PARMS->m_general.m_territoryRadius.m_value = C_PROPERPARMS.m_fp20.m_value;
+			C_PARMS->mGeneral.mTerritoryRadius.mValue = C_PROPERPARMS.mFp20.mValue;
 		}
 	}
 
@@ -133,7 +133,7 @@ void Obj::setParameters()
 void Obj::doUpdate()
 {
 	updateShotGunTimer();
-	m_fsm->exec(this);
+	mFsm->exec(this);
 	updatePinchLife();
 	updateIKSystem();
 	doUpdateShotGun();
@@ -164,14 +164,14 @@ void Obj::doUpdateCommon()
 void Obj::doAnimationCullingOff()
 {
 	setShotGunCallBack();
-	m_curAnim->m_isPlaying = false;
+	mCurAnim->mIsPlaying = false;
 	doAnimationUpdateAnimator();
 	doAnimationIKSystem();
 
-	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-	m_model->m_j3dModel->calc();
+	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	mModel->mJ3dModel->calc();
 
-	m_collTree->update();
+	mCollTree->update();
 
 	doAnimationShadowSystem();
 	finishAnimationIKSystem();
@@ -199,9 +199,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -211,10 +211,10 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	param.m_position                  = m_position;
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	param.m_boundingSphere.m_radius   = 0.1f;
-	param.m_size                      = 0.1f;
+	param.mPosition                 = mPosition;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mRadius   = 0.1f;
+	param.mSize                     = 0.1f;
 }
 
 /*
@@ -246,7 +246,7 @@ void Obj::doStartStoneState()
 	finishPinchJointEffect();
 	finishSteamEffect();
 	finishChimneyEffect();
-	m_shotGunMgr->startStoneStateEffectOff();
+	mShotGunMgr->startStoneStateEffectOff();
 	startStoneStateBossAttackLoopBGM();
 }
 
@@ -259,12 +259,12 @@ void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
 	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
-	if (m_isSmoking) {
+	if (mIsSmoking) {
 		startPinchJointEffect();
 	}
 
 	startSteamEffect(true);
-	m_shotGunMgr->finishStoneStateEffectOn();
+	mShotGunMgr->finishStoneStateEffectOn();
 	finishStoneStateBossAttackLoopBGM();
 }
 
@@ -287,7 +287,7 @@ void Obj::doEndMovie() { effectDrawOn(); }
  * Address:	802C0484
  * Size:	000050
  */
-void Obj::getThrowupItemPosition(Vector3f* position) { *position = m_model->getJoint("kosi")->getWorldMatrix()->getBasis(3); }
+void Obj::getThrowupItemPosition(Vector3f* position) { *position = mModel->getJoint("kosi")->getWorldMatrix()->getBasis(3); }
 
 /*
  * --INFO--
@@ -309,15 +309,15 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
 void Obj::setTargetPattern()
 {
 	// by default, target nearest navi or piki
-	m_targetNearest = true;
+	mTargetNearest = true;
 
 	// if we're in Hole of Heroes, change target pattern to target party pikmin specifically (25% chance)
-	if (gameSystem && gameSystem->m_isInCave && gameSystem->m_mode == GSM_STORY_MODE) {
-		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->m_section);
+	if (gameSystem && gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {
+		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 		if (section && section->getCaveID() == 'l_02') {
 			// if below 0.5f, target nearest navi's nearest piki (i.e. party)
 			// if between 0.5f and 2.0f, target nearest anything
-			m_targetNearest = (int)(2.0f * ((f32)rand() / RAND_MAX)) != 0; // this needs to be not-inlined for float order reasons
+			mTargetNearest = (int)(2.0f * ((f32)rand() / RAND_MAX)) != 0; // this needs to be not-inlined for float order reasons
 		}
 	}
 }
@@ -329,31 +329,31 @@ void Obj::setTargetPattern()
  */
 void Obj::getTargetPosition()
 {
-	if (sqrDistanceXZ(m_position, m_homePosition) < SQUARE(*C_PARMS->m_general.m_territoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
 		ConditionNotStickClient condition(this);
-		Piki* piki = EnemyFunc::getNearestPikmin(this, C_PARMS->m_general.m_viewAngle.m_value, C_PARMS->m_general.m_sightRadius.m_value,
-		                                         nullptr, &condition);
+		Piki* piki = EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+		                                         &condition);
 		if (piki) {
-			m_targetPosition = piki->getPosition();
-		} else if (sqrDistanceXZ(m_position, m_targetPosition) < 625.0f) {
-			f32 range    = (C_PARMS->m_general.m_territoryRadius.m_value - C_PARMS->m_general.m_homeRadius.m_value);
-			f32 randDist = C_PARMS->m_general.m_homeRadius.m_value + randWeightFloat(range);
-			f32 ang2     = JMath::atanTable_.atan2_(m_position.x - m_homePosition.x, m_position.z - m_homePosition.z);
+			mTargetPosition = piki->getPosition();
+		} else if (sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f) {
+			f32 range    = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
+			f32 randDist = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
+			f32 ang2     = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 			f32 ang1     = randWeightFloat(PI);
 
 			f32 ang3      = HALF_PI;
 			f32 randAngle = ang2 + ang1 + ang3; // dumb fix for regswap
 
-			f32 sinTheta       = pikmin2_sinf(randAngle);
-			m_targetPosition.x = randDist * pikmin2_sinf(randAngle) + m_homePosition.x;
-			m_targetPosition.y = m_homePosition.y;
-			m_targetPosition.z = randDist * pikmin2_cosf(randAngle) + m_homePosition.z;
+			f32 sinTheta      = pikmin2_sinf(randAngle);
+			mTargetPosition.x = randDist * pikmin2_sinf(randAngle) + mHomePosition.x;
+			mTargetPosition.y = mHomePosition.y;
+			mTargetPosition.z = randDist * pikmin2_cosf(randAngle) + mHomePosition.z;
 		}
 	} else {
-		m_targetPosition = m_homePosition;
+		mTargetPosition = mHomePosition;
 	}
 
-	setIKSystemTargetPosition(m_targetPosition);
+	setIKSystemTargetPosition(mTargetPosition);
 }
 
 /*
@@ -365,28 +365,28 @@ void Obj::setShotGunTargetPosition()
 {
 	ConditionNotStickClient condition(this);
 	Creature* target;
-	if (m_targetNearest) { // target nearest navi or piki
-		target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_PARMS->m_general.m_searchDistance.m_value, nullptr, nullptr, &condition);
+	if (mTargetNearest) { // target nearest navi or piki
+		target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_PARMS->mGeneral.mSearchDistance.mValue, nullptr, nullptr, &condition);
 
 	} else { // target nearest navi's nearest piki (i.e. party)
-		target = EnemyFunc::getNearestNavi(this, 180.0f, C_PARMS->m_general.m_searchDistance.m_value, nullptr, nullptr);
+		target = EnemyFunc::getNearestNavi(this, 180.0f, C_PARMS->mGeneral.mSearchDistance.mValue, nullptr, nullptr);
 		if (target) {
-			target = EnemyFunc::getNearestPikmin(target, 180.0f, C_PARMS->m_general.m_searchDistance.m_value, nullptr, &condition);
+			target = EnemyFunc::getNearestPikmin(target, 180.0f, C_PARMS->mGeneral.mSearchDistance.mValue, nullptr, &condition);
 		}
 	}
 
 	if (target) {
-		m_shotGunTargetPosition = target->getPosition();
-	} else if (m_shotGunBurstTimer > 1.0f) {
-		m_shotGunBurstTimer = 0.0f;
-		f32 randAngle       = randWeightFloat(TAU);
-		f32 randDist        = randWeightFloat(C_PARMS->m_general.m_searchDistance.m_value);
+		mShotGunTargetPosition = target->getPosition();
+	} else if (mShotGunBurstTimer > 1.0f) {
+		mShotGunBurstTimer = 0.0f;
+		f32 randAngle      = randWeightFloat(TAU);
+		f32 randDist       = randWeightFloat(C_PARMS->mGeneral.mSearchDistance.mValue);
 
-		m_shotGunTargetPosition
-		    = Vector3f(randDist * pikmin2_sinf(randAngle) + m_position.x, m_position.y, randDist * pikmin2_cosf(randAngle) + m_position.z);
+		mShotGunTargetPosition
+		    = Vector3f(randDist * pikmin2_sinf(randAngle) + mPosition.x, mPosition.y, randDist * pikmin2_cosf(randAngle) + mPosition.z);
 	}
 
-	setShotGunTarget(m_shotGunTargetPosition);
+	setShotGunTarget(mShotGunTargetPosition);
 }
 
 /*
@@ -396,9 +396,9 @@ void Obj::setShotGunTargetPosition()
  */
 void Obj::createIKSystem()
 {
-	m_ikSystemMgr    = new IKSystemMgr;
-	m_ikSystemParms  = new IKSystemParms;
-	m_groundCallBack = new HoudaiGroundCallBack(this);
+	mIkSystemMgr    = new IKSystemMgr;
+	mIkSystemParms  = new IKSystemParms;
+	mGroundCallBack = new HoudaiGroundCallBack(this);
 }
 
 /*
@@ -408,20 +408,20 @@ void Obj::createIKSystem()
  */
 void Obj::setupIKSystem()
 {
-	m_ikSystemMgr->init(this, nullptr);
+	mIkSystemMgr->init(this, nullptr);
 
 	char* joints[] = { "rhand1jnt", "rhand2jnt", "rhand3jnt", "lhand1jnt", "lhand2jnt", "lhand3jnt",
 		               "rfoot1jnt", "rfoot2jnt", "rfoot3jnt", "lfoot1jnt", "lfoot2jnt", "lfoot3jnt" };
 
-	m_ikSystemMgr->setupJoint(m_model, 0, &joints[0]);
-	m_ikSystemMgr->setupJoint(m_model, 1, &joints[3]);
-	m_ikSystemMgr->setupJoint(m_model, 2, &joints[6]);
-	m_ikSystemMgr->setupJoint(m_model, 3, &joints[9]);
-	m_ikSystemMgr->setupCallBack(m_model, "rhand3jnt");
+	mIkSystemMgr->setupJoint(mModel, 0, &joints[0]);
+	mIkSystemMgr->setupJoint(mModel, 1, &joints[3]);
+	mIkSystemMgr->setupJoint(mModel, 2, &joints[6]);
+	mIkSystemMgr->setupJoint(mModel, 3, &joints[9]);
+	mIkSystemMgr->setupCallBack(mModel, "rhand3jnt");
 
 	setIKParameter();
-	m_ikSystemMgr->setParameters(m_ikSystemParms);
-	m_ikSystemMgr->m_jointGroundCallBack = m_groundCallBack;
+	mIkSystemMgr->setParameters(mIkSystemParms);
+	mIkSystemMgr->mJointGroundCallBack = mGroundCallBack;
 }
 
 /*
@@ -431,15 +431,15 @@ void Obj::setupIKSystem()
  */
 void Obj::setIKParameter()
 {
-	m_ikSystemParms->_28            = 0.67f;
-	m_ikSystemParms->_38            = C_PARMS->m_general.m_rotationalSpeed.m_value;
-	m_ikSystemParms->_2C            = C_PARMS->m_general.m_moveSpeed.m_value;
-	m_ikSystemParms->_14            = C_PROPERPARMS.m_fp01.m_value;
-	m_ikSystemParms->_18            = C_PROPERPARMS.m_fp02.m_value;
-	m_ikSystemParms->_1C            = C_PROPERPARMS.m_fp03.m_value;
-	m_ikSystemParms->_20            = C_PROPERPARMS.m_fp05.m_value;
-	m_ikSystemParms->_24            = C_PROPERPARMS.m_fp04.m_value;
-	m_ikSystemParms->m_heightOffset = C_PROPERPARMS.m_fp06.m_value;
+	mIkSystemParms->_28           = 0.67f;
+	mIkSystemParms->_38           = C_PARMS->mGeneral.mRotationalSpeed.mValue;
+	mIkSystemParms->_2C           = C_PARMS->mGeneral.mMoveSpeed.mValue;
+	mIkSystemParms->_14           = C_PROPERPARMS.mFp01.mValue;
+	mIkSystemParms->_18           = C_PROPERPARMS.mFp02.mValue;
+	mIkSystemParms->_1C           = C_PROPERPARMS.mFp03.mValue;
+	mIkSystemParms->_20           = C_PROPERPARMS.mFp05.mValue;
+	mIkSystemParms->_24           = C_PROPERPARMS.mFp04.mValue;
+	mIkSystemParms->mHeightOffset = C_PROPERPARMS.mFp06.mValue;
 }
 
 /*
@@ -447,7 +447,7 @@ void Obj::setIKParameter()
  * Address:	802C0D3C
  * Size:	000020
  */
-void Obj::setIKSystemTargetPosition(Vector3f& targetpos) { m_ikSystemMgr->m_targetPosition = targetpos; }
+void Obj::setIKSystemTargetPosition(Vector3f& targetpos) { mIkSystemMgr->mTargetPosition = targetpos; }
 
 /*
  * --INFO--
@@ -456,10 +456,10 @@ void Obj::setIKSystemTargetPosition(Vector3f& targetpos) { m_ikSystemMgr->m_targ
  */
 void Obj::updateIKSystem()
 {
-	m_ikSystemMgr->doUpdate();
-	m_position   = Vector3f(m_ikSystemMgr->_38);
-	m_faceDir    = m_ikSystemMgr->m_faceDir;
-	m_rotation.y = m_faceDir;
+	mIkSystemMgr->doUpdate();
+	mPosition   = Vector3f(mIkSystemMgr->_38);
+	mFaceDir    = mIkSystemMgr->mFaceDir;
+	mRotation.y = mFaceDir;
 }
 
 /*
@@ -469,9 +469,9 @@ void Obj::updateIKSystem()
  */
 void Obj::doAnimationIKSystem()
 {
-	m_ikSystemMgr->setAnimationCallBack();
-	Vector3f translation = Vector3f(m_ikSystemMgr->m_traceCentrePosition);
-	m_objMatrix.makeSRT(m_scale, m_rotation, translation);
+	mIkSystemMgr->setAnimationCallBack();
+	Vector3f translation = Vector3f(mIkSystemMgr->mTraceCentrePosition);
+	mObjMatrix.makeSRT(mScale, mRotation, translation);
 }
 
 /*
@@ -479,70 +479,70 @@ void Obj::doAnimationIKSystem()
  * Address:	802C0E1C
  * Size:	000024
  */
-void Obj::finishAnimationIKSystem() { m_ikSystemMgr->resetAnimationCallBack(); }
+void Obj::finishAnimationIKSystem() { mIkSystemMgr->resetAnimationCallBack(); }
 
 /*
  * --INFO--
  * Address:	802C0E40
  * Size:	000024
  */
-void Obj::startProgramedIK() { m_ikSystemMgr->startProgramedIK(); }
+void Obj::startProgramedIK() { mIkSystemMgr->startProgramedIK(); }
 
 /*
  * --INFO--
  * Address:	802C0E64
  * Size:	000024
  */
-void Obj::startIKMotion() { m_ikSystemMgr->startIKMotion(); }
+void Obj::startIKMotion() { mIkSystemMgr->startIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0E88
  * Size:	000024
  */
-void Obj::finishIKMotion() { m_ikSystemMgr->finishIKMotion(); }
+void Obj::finishIKMotion() { mIkSystemMgr->finishIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0EAC
  * Size:	000024
  */
-void Obj::forceFinishIKMotion() { m_ikSystemMgr->forceFinishIKMotion(); }
+void Obj::forceFinishIKMotion() { mIkSystemMgr->forceFinishIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0ED0
  * Size:	000024
  */
-bool Obj::isFinishIKMotion() { return m_ikSystemMgr->isFinishIKMotion(); }
+bool Obj::isFinishIKMotion() { return mIkSystemMgr->isFinishIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0EF4
  * Size:	000024
  */
-void Obj::startBlendMotion() { m_ikSystemMgr->startBlendMotion(); }
+void Obj::startBlendMotion() { mIkSystemMgr->startBlendMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0F18
  * Size:	000024
  */
-void Obj::finishBlendMotion() { m_ikSystemMgr->finishBlendMotion(); }
+void Obj::finishBlendMotion() { mIkSystemMgr->finishBlendMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0F3C
  * Size:	000020
  */
-Vector3f Obj::getTraceCentrePosition() { return m_ikSystemMgr->m_traceCentrePosition; }
+Vector3f Obj::getTraceCentrePosition() { return mIkSystemMgr->mTraceCentrePosition; }
 
 /*
  * --INFO--
  * Address:	802C0F5C
  * Size:	000048
  */
-void Obj::createShadowSystem() { m_shadowMgr = new HoudaiShadowMgr(this); }
+void Obj::createShadowSystem() { mShadowMgr = new HoudaiShadowMgr(this); }
 
 /*
  * --INFO--
@@ -551,10 +551,10 @@ void Obj::createShadowSystem() { m_shadowMgr = new HoudaiShadowMgr(this); }
  */
 void Obj::setupShadowSystem()
 {
-	m_shadowMgr->init();
+	mShadowMgr->init();
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			m_shadowMgr->setJointPosPtr(i, j, &m_jointPositions[i][j]);
+			mShadowMgr->setJointPosPtr(i, j, &mJointPositions[i][j]);
 		}
 	}
 }
@@ -564,7 +564,7 @@ void Obj::setupShadowSystem()
  * Address:	802C1018
  * Size:	000024
  */
-void Obj::doAnimationShadowSystem() { m_shadowMgr->update(); }
+void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
 
 /*
  * --INFO--
@@ -573,8 +573,8 @@ void Obj::doAnimationShadowSystem() { m_shadowMgr->update(); }
  */
 void Obj::setShotGunEmitKeepTimerOn()
 {
-	f32 duration         = C_PROPERPARMS.m_fp10.m_value - C_PROPERPARMS.m_fp11.m_value;
-	m_shotGunSearchTimer = randWeightFloat(duration);
+	f32 duration        = C_PROPERPARMS.mFp10.mValue - C_PROPERPARMS.mFp11.mValue;
+	mShotGunSearchTimer = randWeightFloat(duration);
 }
 
 /*
@@ -584,8 +584,8 @@ void Obj::setShotGunEmitKeepTimerOn()
  */
 void Obj::setShotGunEmitKeepTimerOff()
 {
-	f32 duration         = C_PROPERPARMS.m_fp12.m_value - C_PROPERPARMS.m_fp13.m_value;
-	m_shotGunSearchTimer = randWeightFloat(duration);
+	f32 duration        = C_PROPERPARMS.mFp12.mValue - C_PROPERPARMS.mFp13.mValue;
+	mShotGunSearchTimer = randWeightFloat(duration);
 }
 
 /*
@@ -596,9 +596,9 @@ void Obj::setShotGunEmitKeepTimerOff()
 void Obj::updateShotGunTimer()
 {
 	if (isEvent(0, EB_IsTakingDamage)) {
-		m_shotGunBurstTimer = 0.0f;
+		mShotGunBurstTimer = 0.0f;
 	} else {
-		m_shotGunBurstTimer += sys->m_deltaTime;
+		mShotGunBurstTimer += sys->mDeltaTime;
 	}
 }
 
@@ -607,91 +607,91 @@ void Obj::updateShotGunTimer()
  * Address:	802C115C
  * Size:	00001C
  */
-bool Obj::isTransitShotGunState() { return (m_shotGunBurstTimer > C_PARMS->m_general.m_searchHeight.m_value); }
+bool Obj::isTransitShotGunState() { return (mShotGunBurstTimer > C_PARMS->mGeneral.mSearchHeight.mValue); }
 
 /*
  * --INFO--
  * Address:	802C1178
  * Size:	000048
  */
-void Obj::createShotGun() { m_shotGunMgr = new HoudaiShotGunMgr(this); }
+void Obj::createShotGun() { mShotGunMgr = new HoudaiShotGunMgr(this); }
 
 /*
  * --INFO--
  * Address:	802C11C0
  * Size:	000024
  */
-void Obj::setupShotGun() { m_shotGunMgr->setupShotGun(); }
+void Obj::setupShotGun() { mShotGunMgr->setupShotGun(); }
 
 /*
  * --INFO--
  * Address:	802C11E4
  * Size:	000024
  */
-void Obj::setShotGunTarget(Vector3f& target) { m_shotGunMgr->setShotGunTarget(target); }
+void Obj::setShotGunTarget(Vector3f& target) { mShotGunMgr->setShotGunTarget(target); }
 
 /*
  * --INFO--
  * Address:	802C1208
  * Size:	000024
  */
-void Obj::resetShotGunCallBack() { m_shotGunMgr->resetCallBack(); }
+void Obj::resetShotGunCallBack() { mShotGunMgr->resetCallBack(); }
 
 /*
  * --INFO--
  * Address:	802C122C
  * Size:	000024
  */
-void Obj::setShotGunCallBack() { m_shotGunMgr->setCallBack(); }
+void Obj::setShotGunCallBack() { mShotGunMgr->setCallBack(); }
 
 /*
  * --INFO--
  * Address:	802C1250
  * Size:	000024
  */
-void Obj::doUpdateShotGun() { m_shotGunMgr->doUpdate(); }
+void Obj::doUpdateShotGun() { mShotGunMgr->doUpdate(); }
 
 /*
  * --INFO--
  * Address:	802C1274
  * Size:	000024
  */
-void Obj::doUpdateCommonShotGun() { m_shotGunMgr->doUpdateCommon(); }
+void Obj::doUpdateCommonShotGun() { mShotGunMgr->doUpdateCommon(); }
 
 /*
  * --INFO--
  * Address:	802C1298
  * Size:	000024
  */
-void Obj::startShotGunRotation() { m_shotGunMgr->startRotation(); }
+void Obj::startShotGunRotation() { mShotGunMgr->startRotation(); }
 
 /*
  * --INFO--
  * Address:	802C12BC
  * Size:	000024
  */
-void Obj::finishShotGunRotation() { m_shotGunMgr->finishRotation(); }
+void Obj::finishShotGunRotation() { mShotGunMgr->finishRotation(); }
 
 /*
  * --INFO--
  * Address:	802C12E0
  * Size:	000024
  */
-bool Obj::isShotGunRotation() { return m_shotGunMgr->isShotGunRotation(); }
+bool Obj::isShotGunRotation() { return mShotGunMgr->isShotGunRotation(); }
 
 /*
  * --INFO--
  * Address:	802C1304
  * Size:	000024
  */
-bool Obj::isShotGunLockOn() { return m_shotGunMgr->isShotGunLockOn(); }
+bool Obj::isShotGunLockOn() { return mShotGunMgr->isShotGunLockOn(); }
 
 /*
  * --INFO--
  * Address:	802C1328
  * Size:	000024
  */
-bool Obj::isFinishShotGun() { return m_shotGunMgr->isFinishShotGun(); }
+bool Obj::isFinishShotGun() { return mShotGunMgr->isFinishShotGun(); }
 
 /*
  * --INFO--
@@ -700,7 +700,7 @@ bool Obj::isFinishShotGun() { return m_shotGunMgr->isFinishShotGun(); }
  */
 void Obj::emitShotGun()
 {
-	m_shotGunMgr->emitShotGun();
+	mShotGunMgr->emitShotGun();
 	getJAIObject()->startSound(PSSE_EN_HOUDAI_SHOT, 0);
 }
 
@@ -709,7 +709,7 @@ void Obj::emitShotGun()
  * Address:	802C13A8
  * Size:	000024
  */
-void Obj::forceFinishShotGun() { return m_shotGunMgr->forceFinishShotGun(); }
+void Obj::forceFinishShotGun() { return mShotGunMgr->forceFinishShotGun(); }
 
 /*
  * --INFO--
@@ -718,7 +718,7 @@ void Obj::forceFinishShotGun() { return m_shotGunMgr->forceFinishShotGun(); }
  */
 void Obj::setupCollision()
 {
-	CollPart* collpart = m_collTree->getCollPart('rht1');
+	CollPart* collpart = mCollTree->getCollPart('rht1');
 	if (collpart) {
 		collpart->makeTubeTree();
 	}
@@ -731,7 +731,7 @@ void Obj::setupCollision()
  */
 void Obj::startBossChargeBGM()
 {
-	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
 	soundObj->jumpRequest(2);
 }
@@ -743,9 +743,9 @@ void Obj::startBossChargeBGM()
  */
 void Obj::startBossAttackLoopBGM()
 {
-	if (!m_isAttackMusicLooping) {
-		m_isAttackMusicLooping   = true;
-		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	if (!mIsAttackMusicLooping) {
+		mIsAttackMusicLooping    = true;
+		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->jumpRequest(8);
 	}
@@ -758,9 +758,9 @@ void Obj::startBossAttackLoopBGM()
  */
 void Obj::finishBossAttackLoopBGM()
 {
-	if (m_isAttackMusicLooping) {
-		m_isAttackMusicLooping   = false;
-		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	if (mIsAttackMusicLooping) {
+		mIsAttackMusicLooping    = false;
+		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->jumpRequest(1);
 	}
@@ -773,8 +773,8 @@ void Obj::finishBossAttackLoopBGM()
  */
 void Obj::startStoneStateBossAttackLoopBGM()
 {
-	if (m_isAttackMusicLooping) {
-		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	if (mIsAttackMusicLooping) {
+		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->jumpRequest(1);
 	}
@@ -787,8 +787,8 @@ void Obj::startStoneStateBossAttackLoopBGM()
  */
 void Obj::finishStoneStateBossAttackLoopBGM()
 {
-	if (m_isAttackMusicLooping) {
-		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	if (mIsAttackMusicLooping) {
+		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->jumpRequest(8);
 	}
@@ -801,7 +801,7 @@ void Obj::finishStoneStateBossAttackLoopBGM()
  */
 void Obj::startBossFlickBGM()
 {
-	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
 	soundObj->jumpRequest(4);
 }
@@ -813,10 +813,10 @@ void Obj::startBossFlickBGM()
  */
 void Obj::updateBossBGM()
 {
-	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
 
-	if (m_stuckPikminCount) {
+	if (mStuckPikminCount) {
 		soundObj->postPikiAttack(true);
 	} else {
 		soundObj->postPikiAttack(false);
@@ -830,7 +830,7 @@ void Obj::updateBossBGM()
  */
 void Obj::resetBossAppearBGM()
 {
-	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
 	soundObj->setAppearFlag(false);
 }
@@ -842,7 +842,7 @@ void Obj::resetBossAppearBGM()
  */
 void Obj::setBossAppearBGM()
 {
-	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
 	soundObj->setAppearFlag(true);
 }
@@ -855,25 +855,25 @@ void Obj::setBossAppearBGM()
 void Obj::createEffect()
 {
 	for (int i = 0; i < 4; i++) {
-		m_appearHahenFootFX[i] = new efx::THdamaOnHahen2;
+		mAppearHahenFootFX[i] = new efx::THdamaOnHahen2;
 	}
 
 	for (int i = 0; i < 3; i++) {
-		m_deadElecAFX[i] = new efx::TDamaDeadElecA;
-		m_steamFX[i]     = new efx::THdamaSteam;
-		m_chimneyFX[i]   = new efx::THdamaSteamSt;
-		m_hahenFX[i]     = new efx::THdamaHahen;
+		mDeadElecAFX[i] = new efx::TDamaDeadElecA;
+		mSteamFX[i]     = new efx::THdamaSteam;
+		mChimneyFX[i]   = new efx::THdamaSteamSt;
+		mHahenFX[i]     = new efx::THdamaHahen;
 	}
 
 	for (int i = 0; i < 2; i++) {
-		m_smokeFX[i] = new efx::TDamaSmoke;
+		mSmokeFX[i] = new efx::TDamaSmoke;
 	}
 
-	m_appearHahenFX = new efx::THdamaOnHahen1;
-	m_onSteam1FX    = new efx::THdamaOnSteam1;
-	m_steamBodyFX   = new efx::THdamaSteamBd;
-	m_deadBombFX    = new efx::THdamaDeadbomb;
-	m_deadSteamFX   = new efx::THdamaDeadSteam;
+	mAppearHahenFX = new efx::THdamaOnHahen1;
+	mOnSteam1FX    = new efx::THdamaOnSteam1;
+	mSteamBodyFX   = new efx::THdamaSteamBd;
+	mDeadBombFX    = new efx::THdamaDeadbomb;
+	mDeadSteamFX   = new efx::THdamaDeadSteam;
 }
 
 /*
@@ -884,33 +884,33 @@ void Obj::createEffect()
 void Obj::setupEffect()
 {
 	for (int i = 0; i < 4; i++) {
-		m_appearHahenFootFX[i]->setPosPosptrs(&m_jointPositions[i][1], &m_jointPositions[i][2]);
+		mAppearHahenFootFX[i]->setPosPosptrs(&mJointPositions[i][1], &mJointPositions[i][2]);
 	}
 
 	for (int i = 0; i < 3; i++) {
-		m_deadElecAFX[i]->setPosPosptrs(&m_jointPositions[0][i], &m_jointPositions[0][i + 1]);
+		mDeadElecAFX[i]->setPosPosptrs(&mJointPositions[0][i], &mJointPositions[0][i + 1]);
 	}
 
-	m_hahenFX[0]->setPosPosptrs(&m_jointPositions[2][1], &m_jointPositions[2][2]);
-	m_hahenFX[1]->setPosPosptrs(&m_jointPositions[1][1], &m_jointPositions[1][2]);
-	m_hahenFX[2]->setPosPosptrs(&m_jointPositions[3][1], &m_jointPositions[3][2]);
+	mHahenFX[0]->setPosPosptrs(&mJointPositions[2][1], &mJointPositions[2][2]);
+	mHahenFX[1]->setPosPosptrs(&mJointPositions[1][1], &mJointPositions[1][2]);
+	mHahenFX[2]->setPosPosptrs(&mJointPositions[3][1], &mJointPositions[3][2]);
 
-	m_smokeFX[0]->m_position = &m_jointPositions[0][1];
-	m_smokeFX[1]->m_position = &m_jointPositions[0][2];
+	mSmokeFX[0]->mPosition = &mJointPositions[0][1];
+	mSmokeFX[1]->mPosition = &mJointPositions[0][2];
 
-	SysShape::Joint* joint = m_model->getJoint("kosi");
-	m_appearHahenFX->m_mtx = joint->getWorldMatrix();
-	m_onSteam1FX->m_mtx    = joint->getWorldMatrix();
-	m_steamBodyFX->m_mtx   = joint->getWorldMatrix();
-	m_deadBombFX->setMtxptr(joint->getWorldMatrix()->m_matrix.mtxView);
-	m_deadSteamFX->setMtxptr(joint->getWorldMatrix()->m_matrix.mtxView);
+	SysShape::Joint* joint = mModel->getJoint("kosi");
+	mAppearHahenFX->mMtx   = joint->getWorldMatrix();
+	mOnSteam1FX->mMtx      = joint->getWorldMatrix();
+	mSteamBodyFX->mMtx     = joint->getWorldMatrix();
+	mDeadBombFX->setMtxptr(joint->getWorldMatrix()->mMatrix.mtxView);
+	mDeadSteamFX->setMtxptr(joint->getWorldMatrix()->mMatrix.mtxView);
 
 	char* jointNames[] = { "ef_01_loc", "ef_02_loc", "ef_03_loc" };
 
 	for (int i = 0; i < 3; i++) {
-		joint                 = m_model->getJoint(jointNames[i]);
-		m_steamFX[i]->m_mtx   = joint->getWorldMatrix();
-		m_chimneyFX[i]->m_mtx = joint->getWorldMatrix();
+		joint               = mModel->getJoint(jointNames[i]);
+		mSteamFX[i]->mMtx   = joint->getWorldMatrix();
+		mChimneyFX[i]->mMtx = joint->getWorldMatrix();
 	}
 }
 
@@ -921,7 +921,7 @@ void Obj::setupEffect()
  */
 void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 {
-	Vector3f effectPos = m_jointPositions[footIdx][3];
+	Vector3f effectPos = mJointPositions[footIdx][3];
 
 	if (footIdx == 0) {
 		if (wbox) {
@@ -931,7 +931,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 			efx::TDamaWalkw waterWalk;
 
 			waterWalk.create(&fxArg);
-			PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_L, (Vec*)&m_jointPositions[footIdx][3]);
+			PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_L, (Vec*)&mJointPositions[footIdx][3]);
 			if (sound) {
 				sound->setPitch(0.8f, 0, 0);
 			}
@@ -943,7 +943,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 			walk.create(&fxArg);
 		}
 
-		PSStartSoundVec(PSSE_EN_HOUDAI_METALFOOT, (Vec*)&m_jointPositions[footIdx][3]);
+		PSStartSoundVec(PSSE_EN_HOUDAI_METALFOOT, (Vec*)&mJointPositions[footIdx][3]);
 
 	} else {
 		if (wbox) {
@@ -954,7 +954,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 
 			waterWalk.create(&fxArg);
 
-			PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_M, (Vec*)&m_jointPositions[footIdx][3]);
+			PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_M, (Vec*)&mJointPositions[footIdx][3]);
 			if (sound) {
 				sound->setPitch(1.2f, 0, 0);
 			}
@@ -962,12 +962,12 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 		} else {
 			efx::Arg fxArg(effectPos);
 			efx::TEnemyDownSmoke walk;
-			walk.m_scale = 0.3f;
+			walk.mScale = 0.3f;
 
 			walk.create(&fxArg);
 		}
 
-		if (m_isSmoking) {
+		if (mIsSmoking) {
 			int jointIdx = 0;
 			if (footIdx == 2) {
 				jointIdx = 0;
@@ -977,10 +977,10 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 				jointIdx = 2;
 			}
 
-			m_hahenFX[jointIdx]->create(nullptr);
+			mHahenFX[jointIdx]->create(nullptr);
 		}
 
-		PSStartSoundVec(PSSE_EN_HOUDAI_BAREFOOT, (Vec*)&m_jointPositions[footIdx][3]);
+		PSStartSoundVec(PSSE_EN_HOUDAI_BAREFOOT, (Vec*)&mJointPositions[footIdx][3]);
 	}
 }
 
@@ -991,7 +991,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
  */
 void Obj::createOffGroundEffect(int footIdx, WaterBox* wbox)
 {
-	f32 healthRatio = m_health / C_PARMS->m_general.m_health.m_value;
+	f32 healthRatio = mHealth / C_PARMS->mGeneral.mHealth.mValue;
 	if (footIdx == 0) {
 		if (healthRatio < 0.175f) {
 			getJAIObject()->startSound(PSSE_EN_HOUDAI_RAISE_M3, 0);
@@ -1019,7 +1019,7 @@ void Obj::createOffGroundEffect(int footIdx, WaterBox* wbox)
 void Obj::startPinchJointEffect()
 {
 	for (int i = 0; i < 2; i++) {
-		m_smokeFX[i]->create(nullptr);
+		mSmokeFX[i]->create(nullptr);
 	}
 }
 
@@ -1031,7 +1031,7 @@ void Obj::startPinchJointEffect()
 void Obj::finishPinchJointEffect()
 {
 	for (int i = 0; i < 2; i++) {
-		m_smokeFX[i]->fade();
+		mSmokeFX[i]->fade();
 	}
 }
 
@@ -1044,17 +1044,17 @@ void Obj::createHoudaiDeadEffect()
 {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 1; j < 3; j++) {
-			efx::Arg fxArg(m_jointPositions[i][j]);
+			efx::Arg fxArg(mJointPositions[i][j]);
 			efx::TDamaDeadBomb deadBombFX;
 			deadBombFX.create(&fxArg);
 		}
 	}
 
 	for (int i = 0; i < 3; i++) {
-		m_deadElecAFX[i]->create(nullptr);
+		mDeadElecAFX[i]->create(nullptr);
 	}
 
-	m_deadSteamFX->create(nullptr);
+	mDeadSteamFX->create(nullptr);
 
 	efx::Arg steamArg(this);
 	efx::THdamaDeadSteamT steamFX;
@@ -1074,16 +1074,16 @@ void Obj::updatePinchLife()
 		return;
 	}
 
-	f32 healthRatio = m_health / C_PARMS->m_general.m_health.m_value;
-	if (m_isSmoking) {
+	f32 healthRatio = mHealth / C_PARMS->mGeneral.mHealth.mValue;
+	if (mIsSmoking) {
 		if (healthRatio > 0.35f) {
 			finishPinchJointEffect();
-			m_isSmoking = false;
+			mIsSmoking = false;
 		}
 
 	} else if (healthRatio < 0.35f) {
 		startPinchJointEffect();
-		m_isSmoking = true;
+		mIsSmoking = true;
 		getJAIObject()->startSound(PSSE_EN_DAMAGUMO_SMOKE, 0);
 	}
 }
@@ -1099,7 +1099,7 @@ void Obj::createAppearEffect()
 	efx::THdamaOnSmoke smokeFX;
 	smokeFX.create(&fxArg);
 
-	m_onSteam1FX->create(nullptr);
+	mOnSteam1FX->create(nullptr);
 
 	efx::THdamaOnSteam2 steamFX;
 	steamFX.create(&fxArg);
@@ -1110,14 +1110,14 @@ void Obj::createAppearEffect()
  * Address:	802C2C1C
  * Size:	000034
  */
-void Obj::createAppearHahenEffect() { m_appearHahenFX->create(nullptr); }
+void Obj::createAppearHahenEffect() { mAppearHahenFX->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802C2C50
  * Size:	00003C
  */
-void Obj::createAppearFootEffect(int footIdx) { m_appearHahenFootFX[footIdx]->create(nullptr); }
+void Obj::createAppearFootEffect(int footIdx) { mAppearHahenFootFX[footIdx]->create(nullptr); }
 
 /*
  * --INFO--
@@ -1127,11 +1127,11 @@ void Obj::createAppearFootEffect(int footIdx) { m_appearHahenFootFX[footIdx]->cr
 void Obj::startSteamEffect(bool doBodySteam)
 {
 	if (doBodySteam) {
-		m_steamBodyFX->create(nullptr);
+		mSteamBodyFX->create(nullptr);
 	}
 
 	for (int i = 0; i < 3; i++) {
-		m_steamFX[i]->create(nullptr);
+		mSteamFX[i]->create(nullptr);
 	}
 }
 
@@ -1142,10 +1142,10 @@ void Obj::startSteamEffect(bool doBodySteam)
  */
 void Obj::finishSteamEffect()
 {
-	m_steamBodyFX->fade();
+	mSteamBodyFX->fade();
 
 	for (int i = 0; i < 3; i++) {
-		m_steamFX[i]->fade();
+		mSteamFX[i]->fade();
 	}
 }
 
@@ -1157,7 +1157,7 @@ void Obj::finishSteamEffect()
 void Obj::startChimneyEffect()
 {
 	for (int i = 0; i < 3; i++) {
-		m_chimneyFX[i]->create(nullptr);
+		mChimneyFX[i]->create(nullptr);
 	}
 }
 
@@ -1169,7 +1169,7 @@ void Obj::startChimneyEffect()
 void Obj::finishChimneyEffect()
 {
 	for (int i = 0; i < 3; i++) {
-		m_chimneyFX[i]->fade();
+		mChimneyFX[i]->fade();
 	}
 }
 
@@ -1180,7 +1180,7 @@ void Obj::finishChimneyEffect()
  */
 void Obj::createShotGunOpenEffect()
 {
-	Vector3f effectPos = m_model->getJoint("kosi")->getWorldMatrix()->getBasis(3);
+	Vector3f effectPos = mModel->getJoint("kosi")->getWorldMatrix()->getBasis(3);
 
 	efx::Arg fxArg(effectPos);
 	efx::THdamaOpen openFX;
@@ -1194,19 +1194,19 @@ void Obj::createShotGunOpenEffect()
  */
 void Obj::createDeadBombEffect()
 {
-	m_deadBombFX->create(nullptr);
+	mDeadBombFX->create(nullptr);
 
 	for (int i = 0; i < 4; i++) {
 		if (i == 0) { // metal leg
 			for (int j = 0; j < 3; j++) {
-				efx::ArgPosPos fxArg(m_jointPositions[i][j], m_jointPositions[i][j + 1]);
+				efx::ArgPosPos fxArg(mJointPositions[i][j], mJointPositions[i][j + 1]);
 				efx::THdamaDeadHahen2 deadFX;
 				deadFX.create(&fxArg);
 			}
 
 		} else { // bare legs
 			for (int j = 0; j < 3; j++) {
-				efx::ArgPosPos fxArg(m_jointPositions[i][j], m_jointPositions[i][j + 1]);
+				efx::ArgPosPos fxArg(mJointPositions[i][j], mJointPositions[i][j + 1]);
 				efx::THdamaDeadHahen1 deadFX;
 				deadFX.create(&fxArg);
 			}
@@ -1222,32 +1222,32 @@ void Obj::createDeadBombEffect()
 void Obj::effectDrawOn()
 {
 	for (int i = 0; i < 2; i++) {
-		m_smokeFX[i]->endDemoDrawOn();
+		mSmokeFX[i]->endDemoDrawOn();
 	}
 
 	for (int i = 0; i < 3; i++) {
-		m_hahenFX[i]->endDemoDrawOn();
-		m_deadElecAFX[i]->endDemoDrawOn();
+		mHahenFX[i]->endDemoDrawOn();
+		mDeadElecAFX[i]->endDemoDrawOn();
 	}
 
-	m_appearHahenFX->endDemoDrawOn();
+	mAppearHahenFX->endDemoDrawOn();
 
 	for (int i = 0; i < 4; i++) {
-		m_appearHahenFootFX[i]->endDemoDrawOn();
+		mAppearHahenFootFX[i]->endDemoDrawOn();
 	}
 
-	m_onSteam1FX->endDemoDrawOn();
-	m_steamBodyFX->endDemoDrawOn();
+	mOnSteam1FX->endDemoDrawOn();
+	mSteamBodyFX->endDemoDrawOn();
 
 	for (int i = 0; i < 3; i++) {
-		m_steamFX[i]->endDemoDrawOn();
-		m_chimneyFX[i]->endDemoDrawOn();
+		mSteamFX[i]->endDemoDrawOn();
+		mChimneyFX[i]->endDemoDrawOn();
 	}
 
-	m_deadBombFX->endDemoDrawOn();
-	m_deadSteamFX->endDemoDrawOn();
+	mDeadBombFX->endDemoDrawOn();
+	mDeadSteamFX->endDemoDrawOn();
 
-	m_shotGunMgr->effectDrawOn();
+	mShotGunMgr->effectDrawOn();
 }
 
 /*
@@ -1258,32 +1258,32 @@ void Obj::effectDrawOn()
 void Obj::effectDrawOff()
 {
 	for (int i = 0; i < 2; i++) {
-		m_smokeFX[i]->startDemoDrawOff();
+		mSmokeFX[i]->startDemoDrawOff();
 	}
 
 	for (int i = 0; i < 3; i++) {
-		m_hahenFX[i]->startDemoDrawOff();
-		m_deadElecAFX[i]->startDemoDrawOff();
+		mHahenFX[i]->startDemoDrawOff();
+		mDeadElecAFX[i]->startDemoDrawOff();
 	}
 
-	m_appearHahenFX->startDemoDrawOff();
+	mAppearHahenFX->startDemoDrawOff();
 
 	for (int i = 0; i < 4; i++) {
-		m_appearHahenFootFX[i]->startDemoDrawOff();
+		mAppearHahenFootFX[i]->startDemoDrawOff();
 	}
 
-	m_onSteam1FX->startDemoDrawOff();
-	m_steamBodyFX->startDemoDrawOff();
+	mOnSteam1FX->startDemoDrawOff();
+	mSteamBodyFX->startDemoDrawOff();
 
 	for (int i = 0; i < 3; i++) {
-		m_steamFX[i]->startDemoDrawOff();
-		m_chimneyFX[i]->startDemoDrawOff();
+		mSteamFX[i]->startDemoDrawOff();
+		mChimneyFX[i]->startDemoDrawOff();
 	}
 
-	m_deadBombFX->startDemoDrawOff();
-	m_deadSteamFX->startDemoDrawOff();
+	mDeadBombFX->startDemoDrawOff();
+	mDeadSteamFX->startDemoDrawOff();
 
-	m_shotGunMgr->effectDrawOff();
+	mShotGunMgr->effectDrawOff();
 }
 
 } // namespace Houdai

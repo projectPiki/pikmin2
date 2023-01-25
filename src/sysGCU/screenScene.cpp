@@ -21,19 +21,19 @@ namespace Screen {
  * Size:	000134
  */
 SceneBase::SceneBase()
-    : m_controller(nullptr)
-    , m_screenMgr(nullptr)
+    : mController(nullptr)
+    , mScreenMgr(nullptr)
     , _10C(this, &SceneBase::userCallBackFunc)
-    , m_stateID(Unknown0)
-    , m_command("no name")
-    , m_objMgr(nullptr)
+    , mStateID(Unknown0)
+    , mCommand("no name")
+    , mObjMgr(nullptr)
 {
-	m_objMgr     = new ObjMgrBase();
-	m_dispMember = reinterpret_cast<og::Screen::DispMemberBase*>(new u8[0x400]);
-	P2ASSERTLINE(113, m_dispMember != nullptr);
+	mObjMgr     = new ObjMgrBase();
+	mDispMember = reinterpret_cast<og::Screen::DispMemberBase*>(new u8[0x400]);
+	P2ASSERTLINE(113, mDispMember != nullptr);
 	og::Screen::DispMemberDummy dummy;
-	memcpy(m_dispMember, (void*)&dummy, sizeof(dummy));
-	sprintf(m_name, "???");
+	memcpy(mDispMember, (void*)&dummy, sizeof(dummy));
+	sprintf(mName, "???");
 }
 
 /*
@@ -41,7 +41,7 @@ SceneBase::SceneBase()
  * Address:	804518C4
  * Size:	000030
  */
-IObjBase* SceneBase::searchObj(char* name) { return m_objMgr->search(this, name); }
+IObjBase* SceneBase::searchObj(char* name) { return mObjMgr->search(this, name); }
 
 /*
  * --INFO--
@@ -50,8 +50,8 @@ IObjBase* SceneBase::searchObj(char* name) { return m_objMgr->search(this, name)
  */
 void SceneBase::destroy()
 {
-	if (m_command._30 != -1) {
-		gResMgr2D->destroy(&m_command);
+	if (mCommand._30 != -1) {
+		gResMgr2D->destroy(&mCommand);
 	}
 }
 
@@ -62,16 +62,16 @@ void SceneBase::destroy()
  */
 void SceneBase::create()
 {
-	if (m_command._30 == -1) {
-		m_someTime    = sys->getTime();
-		m_command._B0 = &_10C;
+	if (mCommand._30 == -1) {
+		mSomeTime    = sys->getTime();
+		mCommand._B0 = &_10C;
 		if (getResName()[0] != '\0') {
-			og::newScreen::makeLanguageResName(m_name, getResName());
-			gResMgr2D->loadResource(&m_command, m_name, true);
+			og::newScreen::makeLanguageResName(mName, getResName());
+			gResMgr2D->loadResource(&mCommand, mName, true);
 		} else {
-			gResMgr2D->loadResource(&m_command, "", true);
+			gResMgr2D->loadResource(&mCommand, "", true);
 		}
-		m_stateID = Unknown1;
+		mStateID = Unknown1;
 	}
 }
 
@@ -82,21 +82,21 @@ void SceneBase::create()
  */
 void SceneBase::update()
 {
-	switch (m_stateID) {
+	switch (mStateID) {
 	case Unknown0:
 		break;
 	case Unknown1:
-		if (gResMgr2D->sync(&m_command, false) != false) {
+		if (gResMgr2D->sync(&mCommand, false) != false) {
 			if (getResName()[0] != '\0') {
-				void* res = m_command.getResource();
+				void* res = mCommand.getResource();
 				P2ASSERTLINE(194, res != nullptr);
-				m_command.becomeCurrentHeap();
+				mCommand.becomeCurrentHeap();
 				JKRArchive* archive = JKRArchive::mount(res, nullptr, JKRArchive::EMD_Unk1);
 				P2ASSERTLINE(197, archive != nullptr);
 				createObj(archive);
-				m_command.releaseCurrentHeap();
+				mCommand.releaseCurrentHeap();
 			}
-			m_stateID = Unknown2;
+			mStateID = Unknown2;
 			sys->getTime();
 		}
 		break;
@@ -104,7 +104,7 @@ void SceneBase::update()
 		break;
 	case Unknown3:
 		if (updateActive()) {
-			m_stateID = Unknown4;
+			mStateID = Unknown4;
 		}
 		break;
 	case Unknown4:
@@ -123,7 +123,7 @@ void SceneBase::update()
 bool SceneBase::updateActive()
 {
 	doUpdateActive();
-	return m_objMgr->update();
+	return mObjMgr->update();
 }
 
 /*
@@ -141,7 +141,7 @@ void SceneBase::doUpdateActive() { }
  */
 void SceneBase::draw(Graphics& gfx)
 {
-	switch (m_stateID) {
+	switch (mStateID) {
 	case Unknown0:
 	case Unknown1:
 	case Unknown2:
@@ -150,7 +150,7 @@ void SceneBase::draw(Graphics& gfx)
 	case Unknown3:
 	case Unknown4:
 		setPort(gfx);
-		m_objMgr->draw(gfx);
+		mObjMgr->draw(gfx);
 		// return;
 		break;
 	default:
@@ -165,8 +165,8 @@ void SceneBase::draw(Graphics& gfx)
  */
 bool SceneBase::start(Screen::StartSceneArg* arg)
 {
-	if (m_stateID != Unknown0 && m_stateID != Unknown1) {
-		m_stateID = Unknown3;
+	if (mStateID != Unknown0 && mStateID != Unknown1) {
+		mStateID = Unknown3;
 		return doStart(arg);
 	} else {
 		return false;
@@ -180,7 +180,7 @@ bool SceneBase::start(Screen::StartSceneArg* arg)
  */
 bool SceneBase::doStart(Screen::StartSceneArg* arg)
 {
-	m_objMgr->start(arg);
+	mObjMgr->start(arg);
 	return true;
 }
 
@@ -192,10 +192,10 @@ bool SceneBase::doStart(Screen::StartSceneArg* arg)
 bool SceneBase::end(Screen::EndSceneArg* arg)
 {
 	bool result;
-	if (m_stateID == Unknown0 || m_stateID == Unknown2) {
-		m_stateID = Unknown4;
-		result    = true;
-	} else if (m_stateID != Unknown1) {
+	if (mStateID == Unknown0 || mStateID == Unknown2) {
+		mStateID = Unknown4;
+		result   = true;
+	} else if (mStateID != Unknown1) {
 		result = doEnd(arg);
 	} else {
 		result = false;
@@ -208,7 +208,7 @@ bool SceneBase::end(Screen::EndSceneArg* arg)
  * Address:	80451CF8
  * Size:	000024
  */
-bool SceneBase::doEnd(Screen::EndSceneArg* arg) { return m_objMgr->end(arg); }
+bool SceneBase::doEnd(Screen::EndSceneArg* arg) { return mObjMgr->end(arg); }
 
 /*
  * --INFO--
@@ -231,7 +231,7 @@ void SceneBase::createObj(JKRArchive* archive) { doCreateObj(archive); }
  */
 void SceneBase::registObj(Screen::ObjBase* obj, JKRArchive* archive)
 {
-	m_objMgr->registObj(obj, this);
+	mObjMgr->registObj(obj, this);
 	obj->create(archive);
 }
 
@@ -240,21 +240,21 @@ void SceneBase::registObj(Screen::ObjBase* obj, JKRArchive* archive)
  * Address:	80451DD0
  * Size:	000078
  */
-bool SceneBase::confirmSetScene(Screen::SetSceneArg& arg) { return (m_objMgr->confirmSetScene(arg) && doConfirmSetScene(arg)); }
+bool SceneBase::confirmSetScene(Screen::SetSceneArg& arg) { return (mObjMgr->confirmSetScene(arg) && doConfirmSetScene(arg)); }
 
 /*
  * --INFO--
  * Address:	80451E48
  * Size:	000078
  */
-bool SceneBase::confirmStartScene(Screen::StartSceneArg* arg) { return (m_objMgr->confirmStartScene(arg) && doConfirmStartScene(arg)); }
+bool SceneBase::confirmStartScene(Screen::StartSceneArg* arg) { return (mObjMgr->confirmStartScene(arg) && doConfirmStartScene(arg)); }
 
 /*
  * --INFO--
  * Address:	80451EC0
  * Size:	000070
  */
-bool SceneBase::confirmEndScene(Screen::EndSceneArg* arg) { return (m_objMgr->confirmEndScene(arg) && doConfirmEndScene(arg)); }
+bool SceneBase::confirmEndScene(Screen::EndSceneArg* arg) { return (mObjMgr->confirmEndScene(arg) && doConfirmEndScene(arg)); }
 
 /*
  * setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
@@ -262,7 +262,7 @@ bool SceneBase::confirmEndScene(Screen::EndSceneArg* arg) { return (m_objMgr->co
  * Address:	80451F30
  * Size:	000030
  */
-void SceneBase::setScene(Screen::SetSceneArg& arg) { m_screenMgr->setScene(arg); }
+void SceneBase::setScene(Screen::SetSceneArg& arg) { mScreenMgr->setScene(arg); }
 
 /*
  * startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
@@ -270,7 +270,7 @@ void SceneBase::setScene(Screen::SetSceneArg& arg) { m_screenMgr->setScene(arg);
  * Address:	80451F60
  * Size:	000030
  */
-void SceneBase::startScene(Screen::StartSceneArg* arg) { m_screenMgr->startScene(arg); }
+void SceneBase::startScene(Screen::StartSceneArg* arg) { mScreenMgr->startScene(arg); }
 
 /*
  * endScene__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
@@ -278,7 +278,7 @@ void SceneBase::startScene(Screen::StartSceneArg* arg) { m_screenMgr->startScene
  * Address:	80451F90
  * Size:	000030
  */
-void SceneBase::endScene(Screen::EndSceneArg* arg) { m_screenMgr->endScene(arg); }
+void SceneBase::endScene(Screen::EndSceneArg* arg) { mScreenMgr->endScene(arg); }
 
 /*
  * setBackupScene__Q26Screen9SceneBaseFv
@@ -289,21 +289,21 @@ void SceneBase::endScene(Screen::EndSceneArg* arg) { m_screenMgr->endScene(arg);
 bool SceneBase::setBackupScene()
 {
 
-	SceneInfoList* list = (SceneInfoList*)m_screenMgr->_60.m_child;
+	SceneInfoList* list = (SceneInfoList*)mScreenMgr->_60.mChild;
 	Mgr* mgr;
 	bool result = false;
 
 	if (list) {
-		SetSceneArg arg(list->m_sceneType, (og::Screen::DispMemberBase*)list->m_dispMemberBuffer, 0, true);
+		SetSceneArg arg(list->mSceneType, (og::Screen::DispMemberBase*)list->mDispMemberBuffer, 0, true);
 		doSetBackupScene(arg);
 
-		result = m_screenMgr->setScene(arg);
+		result = mScreenMgr->setScene(arg);
 		if (result) {
-			mgr  = m_screenMgr;
-			list = (SceneInfoList*)mgr->_60.m_child;
+			mgr  = mScreenMgr;
+			list = (SceneInfoList*)mgr->_60.mChild;
 			P2ASSERTLINE(329, list);
 			list->del();
-			mgr->m_sceneInfoList.add(list);
+			mgr->mSceneInfoList.add(list);
 		}
 	}
 	return result;
@@ -389,7 +389,7 @@ bool SceneBase::setDispMember(og::Screen::DispMemberBase* disp)
 {
 	bool result = false;
 	if (disp->isID(getOwnerID(), getMemberID()) || disp->getSubMember(getOwnerID(), getMemberID())) {
-		memcpy(m_dispMember, (void*)disp, disp->getSize());
+		memcpy(mDispMember, (void*)disp, disp->getSize());
 		result = true;
 	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
 		result = setDefaultDispMember();
@@ -403,7 +403,7 @@ bool SceneBase::setDispMember(og::Screen::DispMemberBase* disp)
  * Address:	804521F0
  * Size:	000040
  */
-int SceneBase::getFinishState() { return (m_stateID == 4) ? doGetFinishState() : -2; }
+int SceneBase::getFinishState() { return (mStateID == 4) ? doGetFinishState() : -2; }
 
 /*
  * --INFO--
@@ -412,9 +412,9 @@ int SceneBase::getFinishState() { return (m_stateID == 4) ? doGetFinishState() :
  */
 Controller* SceneBase::getGamePad() const
 {
-	Mgr* mgr = m_screenMgr;
+	Mgr* mgr = mScreenMgr;
 	mgr->checkController();
-	return mgr->m_controller;
+	return mgr->mController;
 }
 
 /*
@@ -425,7 +425,7 @@ Controller* SceneBase::getGamePad() const
 void SceneBase::setColorBG(u8 r, u8 g, u8 b, u8 a)
 {
 	JUtility::TColor color(r, g, b, a);
-	m_screenMgr->setColorBG(color);
+	mScreenMgr->setColorBG(color);
 }
 
 /*

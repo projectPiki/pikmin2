@@ -109,9 +109,9 @@
 float pikmin2_sinf(float x)
 {
 	if (x < 0.0f) {
-		return -JMath::sincosTable_.m_table[((int)(x * -325.9493f) & 0x7ffU)].first;
+		return -JMath::sincosTable_.mTable[((int)(x * -325.9493f) & 0x7ffU)].first;
 	}
-	return JMath::sincosTable_.m_table[((int)(x * 325.9493f) & 0x7ffU)].first;
+	return JMath::sincosTable_.mTable[((int)(x * 325.9493f) & 0x7ffU)].first;
 }
 
 /*
@@ -124,7 +124,7 @@ float pikmin2_cosf(float x)
 	if (x < 0.0f) {
 		x = -x;
 	}
-	return JMath::sincosTable_.m_table[((int)(x * 325.9493f) & 0x7ffU)].second;
+	return JMath::sincosTable_.mTable[((int)(x * 325.9493f) & 0x7ffU)].second;
 }
 
 /*
@@ -234,8 +234,8 @@ Outputs tangent vector of desired point, given:
  */
 void BoundBox::read(Stream& stream)
 {
-	m_min.read(stream);
-	m_max.read(stream);
+	mMin.read(stream);
+	mMax.read(stream);
 }
 
 /*
@@ -371,19 +371,19 @@ void Matrix3f::makeIdentity()
 
 	// lbl_80520270 = 0
 	// lbl_80520278 = 1
-	m_matrix[0][0] = 1.0f;
+	mMatrix[0][0] = 1.0f;
 
-	m_matrix[0][1] = 0.0f;
-	m_matrix[0][2] = 0.0f;
-	m_matrix[1][0] = 0.0f;
+	mMatrix[0][1] = 0.0f;
+	mMatrix[0][2] = 0.0f;
+	mMatrix[1][0] = 0.0f;
 
-	m_matrix[1][1] = 1.0f;
+	mMatrix[1][1] = 1.0f;
 
-	m_matrix[1][2] = 0.0f;
-	m_matrix[2][0] = 0.0f;
-	m_matrix[2][1] = 0.0f;
+	mMatrix[1][2] = 0.0f;
+	mMatrix[2][0] = 0.0f;
+	mMatrix[2][1] = 0.0f;
 
-	m_matrix[2][2] = 1.0f;
+	mMatrix[2][2] = 1.0f;
 }
 
 /*
@@ -429,8 +429,8 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 			// THIS SECTION ONWARD IS STILL DODGY REG-WISE
 
 			// int row_col = 0; // r24
-			// float *D_r19 = &D.m_matrix[0][0];
-			// float *J_r25 = &J.m_matrix[0][0];
+			// float *D_r19 = &D.mMatrix[0][0];
+			// float *J_r25 = &J.mMatrix[0][0];
 			// int row_OD = 0; // r3
 			// int row_row = row_col; // r23
 
@@ -439,7 +439,7 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 				// for (row_OD; row_OD < 2; row_OD++) {
 
 				// int col_OD = row_OD + 1; // r6
-				// float *J_r27 = &J.m_matrix[0][0];
+				// float *J_r27 = &J.mMatrix[0][0];
 				// int col_row = col_OD * (0xc); // r21
 				// int col_col = col_OD; // r22
 				// float *D_r28 = D_r19 + col_col;
@@ -450,7 +450,7 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 				for (int col_OD = row_OD + 1; col_OD < 3; col_OD++) {
 					// for (col_OD; col_OD < 3; col_OD++) {
 					// float D_row_col = *(D_r28);
-					if (!(D.m_matrix[row_OD][col_OD] < conv_thresh)) { // if this off-diagonal element is still too big
+					if (!(D.mMatrix[row_OD][col_OD] < conv_thresh)) { // if this off-diagonal element is still too big
 						// if (!(D_row_col < conv_thresh)) { // if this off-diagonal element is still too big
 						J = D; // start with the attempted 'diagonal' matrix
 
@@ -460,8 +460,8 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 						// to make sure we're not doing dumb complex number math
 
 						// float y = (*(J_r27 + col_col) - *(J_r25 + row_col)) / (2.0f * *(&J_r26[0]));
-						// float y = (J.m_matrix[col_OD][col_OD] - J.m_matrix[row_OD][row_OD]) / (2.0f *
-						// J.m_matrix[row_OD][col_OD]);
+						// float y = (J.mMatrix[col_OD][col_OD] - J.mMatrix[row_OD][row_OD]) / (2.0f *
+						// J.mMatrix[row_OD][col_OD]);
 						float y = J.calcJacobi(row_OD, col_OD);
 						f32 r, t, d;
 						t = (y > 0.0f) ? 1.0f / (y + pikmin2_sqrtf(y * y + 1.0f)) : (-1.0f / (-y + pikmin2_sqrtf(y * y + 1.0f)));
@@ -472,10 +472,10 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 						// Construct Jacobi rotation matrix
 						// make J identity first
 						J.makeIdentity();
-						// float *J_ptr_row = &J.m_matrix[row_OD][0];
-						// float *J_ptr_col = &J.m_matrix[col_OD][0];
+						// float *J_ptr_row = &J.mMatrix[row_OD][0];
+						// float *J_ptr_col = &J.mMatrix[col_OD][0];
 
-						// float *J_r30 = &J.m_matrix[0][0];
+						// float *J_r30 = &J.mMatrix[0][0];
 						// float *J_r9 = J_r30 + row_row;
 						// float *J_r10 = J_r30 + col_row;
 
@@ -502,7 +502,7 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 						// J.makeTranspose(T);
 						for (int i = 0; i < 3; i++) {
 							for (int j = 0; j < 3; j++) {
-								T.m_matrix[i][j] = J.m_matrix[j][i];
+								T.mMatrix[i][j] = J.mMatrix[j][i];
 							}
 						}
 

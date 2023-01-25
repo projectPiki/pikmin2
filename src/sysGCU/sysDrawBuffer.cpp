@@ -35,7 +35,7 @@ void DrawBuffer::create(Sys::DrawBuffer::CreateArg& arg)
 {
 	u32 bufferSize = arg._00;
 	_18.typeView |= arg._04;
-	m_name = arg.m_name;
+	mName = arg.mName;
 	P2ASSERTLINE(42, _1C == nullptr);
 	_1C      = new J3DDrawBuffer(bufferSize);
 	_1C->_0C = arg._0C;
@@ -80,8 +80,8 @@ void DrawBuffer::frameInit()
  */
 DrawBuffers::DrawBuffers()
 {
-	m_buffers = nullptr;
-	m_count   = 0;
+	mBuffers = nullptr;
+	mCount   = 0;
 	setName("DrawBuffer");
 }
 
@@ -100,9 +100,9 @@ DrawBuffers::~DrawBuffers() { }
  */
 void DrawBuffers::allocate(int count)
 {
-	m_buffers = new DrawBuffer[count];
-	m_count   = count;
-	for (int i = 0; i < m_count; i++) {
+	mBuffers = new DrawBuffer[count];
+	mCount   = count;
+	for (int i = 0; i < mCount; i++) {
 		get(i)->_20 = i;
 	}
 }
@@ -115,11 +115,11 @@ void DrawBuffers::allocate(int count)
 DrawBuffer* DrawBuffers::get(int index)
 {
 	bool check = false;
-	if (m_buffers != nullptr && 0 <= index && index < m_count) {
+	if (mBuffers != nullptr && 0 <= index && index < mCount) {
 		check = true;
 	}
 	P2ASSERTLINE(148, check);
-	return &m_buffers[index];
+	return &mBuffers[index];
 }
 
 /*
@@ -129,7 +129,7 @@ DrawBuffer* DrawBuffers::get(int index)
  */
 void DrawBuffers::frameInitAll()
 {
-	for (int i = 0; i < m_count; i++) {
+	for (int i = 0; i < mCount; i++) {
 		get(i)->frameInit();
 	}
 }

@@ -21,22 +21,22 @@ static const char unusedObjGroundArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 
  * Size:	000094
  */
 ObjGround::ObjGround(char const* name)
-    : m_fadeLevel(0.0f)
-    , m_scale(0.0f)
+    : mFadeLevel(0.0f)
+    , mScale(0.0f)
 {
-	m_name         = name;
-	m_disp         = nullptr;
-	m_otakara      = nullptr;
-	m_bloGroup     = nullptr;
-	m_sunMeter     = nullptr;
-	m_doping       = nullptr;
-	m_lifeGauge1   = nullptr;
-	m_lifeGauge2   = nullptr;
-	m_pikiCounter  = nullptr;
-	m_sensorScreen = nullptr;
-	_64            = false;
-	m_pokos        = 0;
-	_6C            = 0.0f;
+	mName         = name;
+	mDisp         = nullptr;
+	mOtakara      = nullptr;
+	mBloGroup     = nullptr;
+	mSunMeter     = nullptr;
+	mDoping       = nullptr;
+	mLifeGauge1   = nullptr;
+	mLifeGauge2   = nullptr;
+	mPikiCounter  = nullptr;
+	mSensorScreen = nullptr;
+	_64           = false;
+	mPokos        = 0;
+	_6C           = 0.0f;
 }
 
 /*
@@ -55,46 +55,46 @@ void ObjGround::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberGround* disp = static_cast<og::Screen::DispMemberGround*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_GROUND)) {
-		m_disp = disp;
+		mDisp = disp;
 
 	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		m_disp = new og::Screen::DispMemberGround;
+		mDisp = new og::Screen::DispMemberGround;
 
 	} else {
 		JUT_PANICLINE(186, "ERR! in ObjCave CreateŽ¸”sI\n"); // yes they used the wrong class name - lmao
 	}
 
-	m_sunMeter     = new og::Screen::SunMeter;
-	m_doping       = new og::Screen::DopingScreen;
-	m_lifeGauge1   = new og::Screen::NaviLifeGauge;
-	m_lifeGauge2   = new og::Screen::NaviLifeGauge;
-	m_pikiCounter  = new og::Screen::PikminCounter;
-	m_sensorScreen = new P2DScreen::Mgr_tuning;
+	mSunMeter     = new og::Screen::SunMeter;
+	mDoping       = new og::Screen::DopingScreen;
+	mLifeGauge1   = new og::Screen::NaviLifeGauge;
+	mLifeGauge2   = new og::Screen::NaviLifeGauge;
+	mPikiCounter  = new og::Screen::PikminCounter;
+	mSensorScreen = new P2DScreen::Mgr_tuning;
 
-	m_bloGroup = new og::Screen::BloGroup(6);
-	m_bloGroup->addBlo("sun_meter.blo", m_sunMeter, 0x1040000, arc);
-	m_bloGroup->addBlo("doping.blo", m_doping, 0x1040000, arc);
-	m_bloGroup->addBlo("orima.blo", m_lifeGauge1, 0x1040000, arc);
-	m_bloGroup->addBlo("orima.blo", m_lifeGauge2, 0x1040000, arc);
-	m_bloGroup->addBlo("gr_pikmin.blo", m_pikiCounter, 0x1040000, arc);
-	m_bloGroup->addBlo("sensor.blo", m_sensorScreen, 0x1040000, arc);
+	mBloGroup = new og::Screen::BloGroup(6);
+	mBloGroup->addBlo("sun_meter.blo", mSunMeter, 0x1040000, arc);
+	mBloGroup->addBlo("doping.blo", mDoping, 0x1040000, arc);
+	mBloGroup->addBlo("orima.blo", mLifeGauge1, 0x1040000, arc);
+	mBloGroup->addBlo("orima.blo", mLifeGauge2, 0x1040000, arc);
+	mBloGroup->addBlo("gr_pikmin.blo", mPikiCounter, 0x1040000, arc);
+	mBloGroup->addBlo("sensor.blo", mSensorScreen, 0x1040000, arc);
 
-	m_sunMeter->setCallBack();
-	m_doping->setCallBack(arc);
-	m_lifeGauge1->setCallBack(&m_disp->m_olimarData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
-	disp = m_disp;
-	if (disp->m_payDebt) {
-		m_lifeGauge2->setCallBack(&m_disp->m_louieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
+	mSunMeter->setCallBack();
+	mDoping->setCallBack(arc);
+	mLifeGauge1->setCallBack(&mDisp->mOlimarData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
+	disp = mDisp;
+	if (disp->mPayDebt) {
+		mLifeGauge2->setCallBack(&mDisp->mLouieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
 	} else {
-		m_lifeGauge2->setCallBack(&m_disp->m_louieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+		mLifeGauge2->setCallBack(&mDisp->mLouieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
 	}
-	m_pikiCounter->setCallBack(arc);
-	m_pokos = m_disp->m_dataGame.m_pokoCount;
-	_6C     = 0.0f;
+	mPikiCounter->setCallBack(arc);
+	mPokos = mDisp->mDataGame.mPokoCount;
+	_6C    = 0.0f;
 
-	m_otakara = new og::Screen::OtakaraSensor;
-	m_otakara->init(m_sensorScreen->search('Nhari'), m_sensorScreen->search('Nsensor'), m_disp->m_radarState);
-	m_doping->setDopingEnable(m_disp->m_unlockedSpicy, m_disp->m_unlockedBitter);
+	mOtakara = new og::Screen::OtakaraSensor;
+	mOtakara->init(mSensorScreen->search('Nhari'), mSensorScreen->search('Nsensor'), mDisp->mRadarState);
+	mDoping->setDopingEnable(mDisp->mUnlockedSpicy, mDisp->mUnlockedBitter);
 }
 
 /*
@@ -105,59 +105,59 @@ void ObjGround::doCreate(JKRArchive* arc)
 void ObjGround::commonUpdate()
 {
 	if (!og::newScreen::checkMovieActive()) {
-		m_sunMeter->m_currentTime = m_disp->m_dataGame.m_sunGaugeRatio;
+		mSunMeter->mCurrentTime = mDisp->mDataGame.mSunGaugeRatio;
 
-		og::Screen::DispMemberGround* disp = m_disp;
-		if (disp->m_olimarData.m_activeNaviID) {
-			m_doping->setParam(disp->m_olimarData);
-			m_pikiCounter->setParam(m_disp->m_dataGame, m_disp->m_olimarData);
+		og::Screen::DispMemberGround* disp = mDisp;
+		if (disp->mOlimarData.mActiveNaviID) {
+			mDoping->setParam(disp->mOlimarData);
+			mPikiCounter->setParam(mDisp->mDataGame, mDisp->mOlimarData);
 		} else {
-			m_doping->setParam(disp->m_louieData);
-			m_pikiCounter->setParam(m_disp->m_dataGame, m_disp->m_louieData);
+			mDoping->setParam(disp->mLouieData);
+			mPikiCounter->setParam(mDisp->mDataGame, mDisp->mLouieData);
 		}
 
-		if (m_disp->m_payDebt) {
-			m_lifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
+		if (mDisp->mPayDebt) {
+			mLifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
 
 		} else {
-			m_lifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+			mLifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
 		}
 	}
 
 	u16 width  = System::getRenderModeObj()->fbWidth;
 	u16 height = System::getRenderModeObj()->efbHeight;
 
-	m_bloGroup->rotate((f32)width / 2, (f32)height / 2, J2DROTATE_Z, 0.0f);
-	f32 cosTheta = -(pikmin2_cosf((m_scale + 1.0f) * PI / 2));
-	m_bloGroup->scale((1.0f - cosTheta) * 0.4f + 1.0f);
-	m_bloGroup->update();
+	mBloGroup->rotate((f32)width / 2, (f32)height / 2, J2DROTATE_Z, 0.0f);
+	f32 cosTheta = -(pikmin2_cosf((mScale + 1.0f) * PI / 2));
+	mBloGroup->scale((1.0f - cosTheta) * 0.4f + 1.0f);
+	mBloGroup->update();
 
-	m_otakara->setParam(m_disp->m_treasureDist, m_disp->m_radarState, m_disp->m_radarEnabled, m_disp->m_allTreasuresGotten);
-	m_otakara->updateInit();
+	mOtakara->setParam(mDisp->mTreasureDist, mDisp->mRadarState, mDisp->mRadarEnabled, mDisp->mAllTreasuresGotten);
+	mOtakara->updateInit();
 
-	if (m_disp->m_hasRadar) {
-		m_otakara->show();
-		m_otakara->update();
-		m_otakara->adjPos(msVal.m_sensorX, msVal.m_sensorY);
-		m_otakara->adjScale(msVal.m_sensorScale);
-		m_otakara->setSensorVec2(ObjCave::msVal._34, ObjCave::msVal._38);
-		m_otakara->setSensorVec3(ObjCave::msVal._3C, ObjCave::msVal._40);
+	if (mDisp->mHasRadar) {
+		mOtakara->show();
+		mOtakara->update();
+		mOtakara->adjPos(msVal.mSensorX, msVal.mSensorY);
+		mOtakara->adjScale(msVal.mSensorScale);
+		mOtakara->setSensorVec2(ObjCave::msVal._34, ObjCave::msVal._38);
+		mOtakara->setSensorVec3(ObjCave::msVal._3C, ObjCave::msVal._40);
 
 	} else {
-		m_otakara->hide();
+		mOtakara->hide();
 	}
 
-	if (m_disp->m_hasBitter) {
-		m_doping->openDopingUp();
-		m_doping->openDopingKey();
+	if (mDisp->mHasBitter) {
+		mDoping->openDopingUp();
+		mDoping->openDopingKey();
 	}
 
-	if (m_disp->m_hasSpicy) {
-		m_doping->openDopingDown();
-		m_doping->openDopingKey();
+	if (mDisp->mHasSpicy) {
+		mDoping->openDopingDown();
+		mDoping->openDopingKey();
 	}
 
-	m_doping->adjPos(msVal.m_dopingX, msVal.m_dopingY);
+	mDoping->adjPos(msVal.mDopingX, msVal.mDopingY);
 }
 
 /*
@@ -178,17 +178,17 @@ bool ObjGround::doUpdate()
  */
 void ObjGround::doDraw(Graphics& gfx)
 {
-	if (m_disp->m_isNotDay1) {
-		m_sunMeter->show();
+	if (mDisp->mIsNotDay1) {
+		mSunMeter->show();
 	} else {
-		m_sunMeter->hide();
+		mSunMeter->hide();
 	}
 
-	if (m_bloGroup)
-		m_bloGroup->draw(&gfx.m_perspGraph);
+	if (mBloGroup)
+		mBloGroup->draw(&gfx.mPerspGraph);
 
-	if (m_disp->m_hasRadar)
-		m_otakara->draw(gfx.m_perspGraph);
+	if (mDisp->mHasRadar)
+		mOtakara->draw(gfx.mPerspGraph);
 }
 
 /*
@@ -198,8 +198,8 @@ void ObjGround::doDraw(Graphics& gfx)
  */
 bool ObjGround::doStart(::Screen::StartSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
-	m_scale     = 0.0f;
+	mFadeLevel = 0.0f;
+	mScale     = 0.0f;
 	return true;
 }
 
@@ -210,7 +210,7 @@ bool ObjGround::doStart(::Screen::StartSceneArg const*)
  */
 bool ObjGround::doEnd(::Screen::EndSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	return true;
 }
 
@@ -222,13 +222,13 @@ bool ObjGround::doEnd(::Screen::EndSceneArg const*)
 bool ObjGround::doUpdateFadein()
 {
 	bool check = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > msVal._00) {
-		m_fadeLevel = msVal._00;
-		check       = true;
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > msVal._00) {
+		mFadeLevel = msVal._00;
+		check      = true;
 	}
 
-	m_scale = m_fadeLevel / msVal._00;
+	mScale = mFadeLevel / msVal._00;
 	commonUpdate();
 	return check;
 }
@@ -245,7 +245,7 @@ void ObjGround::doUpdateFadeinFinish() { }
  * Address:	8030E848
  * Size:	00000C
  */
-void ObjGround::doUpdateFinish() { m_fadeLevel = 0.0f; }
+void ObjGround::doUpdateFinish() { mFadeLevel = 0.0f; }
 
 /*
  * --INFO--
@@ -255,13 +255,13 @@ void ObjGround::doUpdateFinish() { m_fadeLevel = 0.0f; }
 bool ObjGround::doUpdateFadeout()
 {
 	bool check = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > msVal._04) {
-		m_fadeLevel = msVal._04;
-		check       = true;
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > msVal._04) {
+		mFadeLevel = msVal._04;
+		check      = true;
 	}
 
-	m_scale = 1.0f - m_fadeLevel / msVal._04;
+	mScale = 1.0f - mFadeLevel / msVal._04;
 	commonUpdate();
 	return check;
 }

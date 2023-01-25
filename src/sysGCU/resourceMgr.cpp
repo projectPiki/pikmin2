@@ -97,9 +97,9 @@ Resource::Node::Node(char const*)
  */
 Resource::Node::~Node()
 {
-	P2ASSERTLINE(99, m_mgrCommand != nullptr);
-	P2ASSERTLINE(101, m_mgrCommand->_38 == this);
-	m_mgrCommand->setModeInvalid();
+	P2ASSERTLINE(99, mMgrCommand != nullptr);
+	P2ASSERTLINE(101, mMgrCommand->_38 == this);
+	mMgrCommand->setModeInvalid();
 	del();
 	/*
 	stwu     r1, -0x10(r1)
@@ -195,7 +195,7 @@ void Resource::Node::becomeCurrentHeap()
 {
 	// UNUSED FUNCTION
 	_30->becomeCurrentHeap();
-	_30->changeGroupID(m_groupIDMaybe);
+	_30->changeGroupID(mGroupIDMaybe);
 }
 
 /*
@@ -208,7 +208,7 @@ void Resource::Node::destroy(Resource::Node* node)
 {
 	// UNUSED FUNCTION
 	if (node) {
-		((JKRExpHeap*)node->_30)->freeGroup(node->m_groupIDMaybe);
+		((JKRExpHeap*)node->_30)->freeGroup(node->mGroupIDMaybe);
 	}
 }
 
@@ -347,7 +347,7 @@ bool Resource::MgrCommand::isFinish()
  */
 void* Resource::MgrCommand::getResource()
 {
-	return _38->m_resource;
+	return _38->mResource;
 	/*
 	lwz      r3, 0x38(r3)
 	lwz      r3, 0x38(r3)
@@ -405,7 +405,7 @@ void Resource::MgrCommand::setModeInvalid()
  */
 void Resource::MgrCommand::memoryCallBackFunc()
 {
-	_38->_30->changeGroupID(_38->m_groupIDMaybe);
+	_38->_30->changeGroupID(_38->mGroupIDMaybe);
 	JUT_PANICLINE(343, "有りえな�?状態でござ�?ま�? \n");
 }
 
@@ -416,10 +416,10 @@ void Resource::MgrCommand::memoryCallBackFunc()
  */
 void Resource::MgrCommand::aramLoadCallBackFunc()
 {
-	_38->_30->changeGroupID(_38->m_groupIDMaybe);
-	void* resource = gAramMgr->aramToMainRam(_A8->m_name, nullptr, 0, 0, Switch_1, 0, _38->_30, JKRDvdRipper::ALLOC_DIR_TOP, -1, nullptr);
+	_38->_30->changeGroupID(_38->mGroupIDMaybe);
+	void* resource = gAramMgr->aramToMainRam(_A8->mName, nullptr, 0, 0, Switch_1, 0, _38->_30, JKRDvdRipper::ALLOC_DIR_TOP, -1, nullptr);
 	if (resource) {
-		_38->m_resource = resource;
+		_38->mResource = resource;
 		userCallBackInvoke();
 	}
 }
@@ -940,9 +940,9 @@ bool Resource::Mgr::destroy(Resource::MgrCommand* command) { return command->des
 void Resource::Mgr::destroyAll()
 {
 	Node* parent;
-	Node* child = (Node*)_10.m_child;
+	Node* child = (Node*)_10.mChild;
 	while (parent = child, parent) {
-		child = (Node*)parent->m_next;
+		child = (Node*)parent->mNext;
 		Node::destroy(parent);
 	}
 	_04->freeAll();

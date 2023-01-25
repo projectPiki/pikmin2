@@ -30,7 +30,7 @@ struct Obj : public ChappyBase::Obj {
 	virtual void setupEffect() { }                                                           // _320 (weak)
 	virtual void createSmokeEffect();                                                        // _330
 	virtual void changeMaterial() { }                                                        // _200 (weak)
-	virtual bool isUnderground() { return m_buried; }                                        // _D0 (weak)
+	virtual bool isUnderground() { return mBuried; }                                         // _D0 (weak)
 	virtual void initWalkSmokeEffect() { }                                                   // _230 (weak)
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr() { return nullptr; }                // _234 (weak)
 	virtual f32 getDownSmokeScale() { return 1.2f; }                                         // _2EC (weak)
@@ -43,8 +43,8 @@ struct Obj : public ChappyBase::Obj {
 
 	// _00 		= VTBL
 	// _00-_2E4	= ChappyBase::Obj
-	bool m_buried; // _2E4
-	               // _2E8 = PelletView
+	bool mBuried; // _2E4
+	              // _2E8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -68,7 +68,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, an array of Objs
+	Obj* mObj; // _44, an array of Objs
 };
 
 } // namespace Hana

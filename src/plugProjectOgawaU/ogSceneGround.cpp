@@ -26,11 +26,11 @@ void initGround() { sGameFlag_MainBgm_Evening = false; }
  */
 Ground::Ground()
 {
-	m_doStartCountdown        = false;
-	m_doStartSunsetBgm        = false;
-	m_doStartFadeInSunsetBgm  = false;
-	m_doStartFadeOutMainBgm   = false;
-	m_doStartFadeOutSunsetBgm = false;
+	mDoStartCountdown        = false;
+	mDoStartSunsetBgm        = false;
+	mDoStartFadeInSunsetBgm  = false;
+	mDoStartFadeOutMainBgm   = false;
+	mDoStartFadeOutSunsetBgm = false;
 }
 
 /*
@@ -86,41 +86,41 @@ void Ground::doUpdateActive()
 		PSSystem::checkSceneMgr(mgr);
 		PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
 
-		Game::TimeMgr* timemgr = Game::gameSystem->m_timeMgr;
+		Game::TimeMgr* timemgr = Game::gameSystem->mTimeMgr;
 		f32 sunRatio           = timemgr->getSunGaugeRatio();
 
 		f32 totalTime, startTime, countTime;
-		startTime = timemgr->m_parms.parms.m_dayStartTime.m_value;
-		countTime = timemgr->m_parms.parms.m_countdownTime.m_value - startTime;
-		totalTime = timemgr->m_parms.parms.m_dayEndTime.m_value - startTime;
+		startTime = timemgr->mParms.parms.mDayStartTime.mValue;
+		countTime = timemgr->mParms.parms.mCountdownTime.mValue - startTime;
+		totalTime = timemgr->mParms.parms.mDayEndTime.mValue - startTime;
 
-		og::Screen::DispMemberGround* disp = static_cast<og::Screen::DispMemberGround*>(m_dispMember);
-		disp->m_dayEndCount.m_currSunRatio = sunRatio;
+		og::Screen::DispMemberGround* disp = static_cast<og::Screen::DispMemberGround*>(mDispMember);
+		disp->mDayEndCount.mCurrSunRatio   = sunRatio;
 
-		f32 startCountdownDayRatio     = (countTime) / totalTime;
-		disp->m_dayEndCount.m_duration = startCountdownDayRatio;
+		f32 startCountdownDayRatio   = (countTime) / totalTime;
+		disp->mDayEndCount.mDuration = startCountdownDayRatio;
 		if (sunRatio >= startCountdownDayRatio) {
-			if (!m_doStartCountdown) {
-				m_doStartCountdown = true;
+			if (!mDoStartCountdown) {
+				mDoStartCountdown = true;
 				searchObj("DayEndCount")->start(nullptr);
 			}
 		} else {
-			m_doStartCountdown = false;
+			mDoStartCountdown = false;
 		}
 
 		if (sunRatio >= startCountdownDayRatio && (sunRatio - startCountdownDayRatio) / (1.0f - startCountdownDayRatio) >= 0.9f) {
-			if (!m_doStartFadeOutSunsetBgm) {
-				m_doStartFadeOutSunsetBgm = true;
+			if (!mDoStartFadeOutSunsetBgm) {
+				mDoStartFadeOutSunsetBgm = true;
 				scene->fadeMainBgm(0.0f, 0, PSM::Scene_Ground::GroundTime_Off);
 			}
 		}
 
-		f32 startWarningDayRatio       = (timemgr->m_parms.parms.m_sundownAlertTime.m_value - startTime) / totalTime;
-		disp->m_hurryUp.m_duration     = startWarningDayRatio;
-		disp->m_hurryUp.m_currSunRatio = sunRatio;
+		f32 startWarningDayRatio     = (timemgr->mParms.parms.mSundownAlertTime.mValue - startTime) / totalTime;
+		disp->mHurryUp.mDuration     = startWarningDayRatio;
+		disp->mHurryUp.mCurrSunRatio = sunRatio;
 		if (sunRatio >= startWarningDayRatio) {
-			if (!m_doStartSunsetBgm) {
-				m_doStartSunsetBgm = true;
+			if (!mDoStartSunsetBgm) {
+				mDoStartSunsetBgm = true;
 				searchObj("HurryUp2D")->start(nullptr);
 				if (!sGameFlag_MainBgm_Evening) {
 					sGameFlag_MainBgm_Evening = true;
@@ -128,27 +128,27 @@ void Ground::doUpdateActive()
 				}
 			}
 		} else {
-			m_doStartSunsetBgm = false;
+			mDoStartSunsetBgm = false;
 		}
 
 		f32 cTime = timemgr->getRealDayTime();
 		u32 out   = PSM::Scene_Ground::cEvenning_fadeOuTime;
 		u32 in    = PSM::Scene_Ground::cEvenning_fadeInTime;
-		cTime     = sys->m_deltaTime / cTime;
+		cTime     = sys->mDeltaTime / cTime;
 
 		f32 timeToWarning = -(cTime * out - startWarningDayRatio);
 		f32 timeSeconds   = cTime * in + startWarningDayRatio;
 
 		if (sunRatio < startWarningDayRatio && sunRatio > timeToWarning) {
-			if (!m_doStartFadeInSunsetBgm) {
-				m_doStartFadeInSunsetBgm = true;
+			if (!mDoStartFadeInSunsetBgm) {
+				mDoStartFadeInSunsetBgm = true;
 				scene->fadeMainBgm(0.0f, out, PSM::Scene_Ground::GroundTime_On);
 			}
 		}
 
 		if (sunRatio > startWarningDayRatio && sunRatio > timeSeconds) {
-			if (!m_doStartFadeOutMainBgm) {
-				m_doStartFadeOutMainBgm = true;
+			if (!mDoStartFadeOutMainBgm) {
+				mDoStartFadeOutMainBgm = true;
 				scene->fadeMainBgm(1.0f, in, PSM::Scene_Ground::GroundTime_On);
 			}
 		}

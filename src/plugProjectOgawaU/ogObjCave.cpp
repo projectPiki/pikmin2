@@ -21,23 +21,23 @@ static const char objCaveUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
  */
 ObjCave::ObjCave(const char* name)
 {
-	m_fadeLevel       = 0.0f;
-	m_scale           = 0.0f;
-	m_name            = name;
-	m_disp            = nullptr;
-	m_otakara         = nullptr;
-	m_bloGroup        = nullptr;
-	m_doping          = nullptr;
-	m_lifeGauge1      = nullptr;
-	m_lifeGauge2      = nullptr;
-	m_pikiCounter     = nullptr;
-	m_totalPoko       = nullptr;
-	m_sensorScreen    = nullptr;
-	m_totalPokoActive = false;
-	m_pokos           = 0;
-	m_totalPokoTimer  = 0.0f;
-	m_paneChika       = nullptr;
-	m_paneFinalf      = nullptr;
+	mFadeLevel       = 0.0f;
+	mScale           = 0.0f;
+	mName            = name;
+	mDisp            = nullptr;
+	mOtakara         = nullptr;
+	mBloGroup        = nullptr;
+	mDoping          = nullptr;
+	mLifeGauge1      = nullptr;
+	mLifeGauge2      = nullptr;
+	mPikiCounter     = nullptr;
+	mTotalPoko       = nullptr;
+	mSensorScreen    = nullptr;
+	mTotalPokoActive = false;
+	mPokos           = 0;
+	mTotalPokoTimer  = 0.0f;
+	mPaneChika       = nullptr;
+	mPaneFinalf      = nullptr;
 }
 
 /*
@@ -56,66 +56,66 @@ void ObjCave::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberCave* disp = static_cast<og::Screen::DispMemberCave*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_CAVE)) {
-		m_disp = disp;
+		mDisp = disp;
 
 	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		m_disp = new og::Screen::DispMemberCave;
+		mDisp = new og::Screen::DispMemberCave;
 
 	} else {
 		JUT_PANICLINE(189, "ERR! in ObjCave CreateŽ¸”sI\n");
 	}
 
-	m_doping       = new og::Screen::DopingScreen;
-	m_lifeGauge1   = new og::Screen::NaviLifeGauge;
-	m_lifeGauge2   = new og::Screen::NaviLifeGauge;
-	m_pikiCounter  = new og::Screen::PikminCounterCave;
-	m_totalPoko    = new og::Screen::TotalPokoScreen;
-	m_sensorScreen = new P2DScreen::Mgr_tuning;
+	mDoping       = new og::Screen::DopingScreen;
+	mLifeGauge1   = new og::Screen::NaviLifeGauge;
+	mLifeGauge2   = new og::Screen::NaviLifeGauge;
+	mPikiCounter  = new og::Screen::PikminCounterCave;
+	mTotalPoko    = new og::Screen::TotalPokoScreen;
+	mSensorScreen = new P2DScreen::Mgr_tuning;
 
-	m_bloGroup = new og::Screen::BloGroup(6);
-	m_bloGroup->addBlo("doping.blo", m_doping, 0x1040000, arc);
-	m_bloGroup->addBlo("orima.blo", m_lifeGauge1, 0x1040000, arc);
-	m_bloGroup->addBlo("orima.blo", m_lifeGauge2, 0x1040000, arc);
-	m_bloGroup->addBlo("cave_pikmin.blo", m_pikiCounter, 0x1040000, arc);
-	m_bloGroup->addBlo("grand_cave_poko.blo", m_totalPoko, 0x1040000, arc);
-	m_bloGroup->addBlo("sensor.blo", m_sensorScreen, 0x1040000, arc);
+	mBloGroup = new og::Screen::BloGroup(6);
+	mBloGroup->addBlo("doping.blo", mDoping, 0x1040000, arc);
+	mBloGroup->addBlo("orima.blo", mLifeGauge1, 0x1040000, arc);
+	mBloGroup->addBlo("orima.blo", mLifeGauge2, 0x1040000, arc);
+	mBloGroup->addBlo("cave_pikmin.blo", mPikiCounter, 0x1040000, arc);
+	mBloGroup->addBlo("grand_cave_poko.blo", mTotalPoko, 0x1040000, arc);
+	mBloGroup->addBlo("sensor.blo", mSensorScreen, 0x1040000, arc);
 
-	m_doping->setCallBack(arc);
-	m_lifeGauge1->setCallBack(&m_disp->m_olimarData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
-	disp = m_disp;
-	if (disp->m_payDebt) {
-		m_lifeGauge2->setCallBack(&m_disp->m_louieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
+	mDoping->setCallBack(arc);
+	mLifeGauge1->setCallBack(&mDisp->mOlimarData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
+	disp = mDisp;
+	if (disp->mPayDebt) {
+		mLifeGauge2->setCallBack(&mDisp->mLouieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
 	} else {
-		m_lifeGauge2->setCallBack(&m_disp->m_louieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+		mLifeGauge2->setCallBack(&mDisp->mLouieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
 	}
 
-	m_pikiCounter->setCallBack(arc);
-	m_totalPoko->setCallBack(arc, msVal._08, msVal._0C, msVal._10, msVal._14);
-	m_paneChika  = og::Screen::TagSearch(m_pikiCounter, 'Pchika');
-	m_paneFinalf = og::Screen::TagSearch(m_pikiCounter, 'Nfinalf');
+	mPikiCounter->setCallBack(arc);
+	mTotalPoko->setCallBack(arc, msVal._08, msVal._0C, msVal._10, msVal._14);
+	mPaneChika  = og::Screen::TagSearch(mPikiCounter, 'Pchika');
+	mPaneFinalf = og::Screen::TagSearch(mPikiCounter, 'Nfinalf');
 
-	if (m_disp->m_isFinalFloor) {
-		m_paneChika->m_isVisible  = false;
-		m_paneFinalf->m_isVisible = true;
+	if (mDisp->mIsFinalFloor) {
+		mPaneChika->mIsVisible  = false;
+		mPaneFinalf->mIsVisible = true;
 	} else {
-		m_paneChika->m_isVisible  = true;
-		m_paneFinalf->m_isVisible = false;
+		mPaneChika->mIsVisible  = true;
+		mPaneFinalf->mIsVisible = false;
 	}
 
-	m_pokos = m_disp->m_dataGame.m_pokoCount;
-	m_totalPoko->setTotalPoko(m_pokos);
-	m_totalPokoTimer                   = 0.0f;
-	m_pikiCounter->m_isTotalPokoActive = false;
-	m_totalPoko->closeTotalPoko();
-	m_totalPoko->hideTotalPoko();
+	mPokos = mDisp->mDataGame.mPokoCount;
+	mTotalPoko->setTotalPoko(mPokos);
+	mTotalPokoTimer                  = 0.0f;
+	mPikiCounter->mIsTotalPokoActive = false;
+	mTotalPoko->closeTotalPoko();
+	mTotalPoko->hideTotalPoko();
 
-	m_otakara = new og::Screen::OtakaraSensor;
+	mOtakara = new og::Screen::OtakaraSensor;
 
-	m_otakara->init(m_sensorScreen->search('Nhari'), m_sensorScreen->search('Nsensor'), m_disp->m_radarState);
-	m_doSensorEff = true;
+	mOtakara->init(mSensorScreen->search('Nhari'), mSensorScreen->search('Nsensor'), mDisp->mRadarState);
+	mDoSensorEff = true;
 
-	m_otakara->setSensorVec1(msVal._2C, msVal._30);
-	m_doping->setDopingEnable(m_disp->m_isBitterUnlocked, m_disp->m_isSpicyUnlocked);
+	mOtakara->setSensorVec1(msVal._2C, msVal._30);
+	mDoping->setDopingEnable(mDisp->mIsBitterUnlocked, mDisp->mIsSpicyUnlocked);
 }
 
 /*
@@ -125,95 +125,95 @@ void ObjCave::doCreate(JKRArchive* arc)
  */
 void ObjCave::commonUpdate()
 {
-	if (m_disp) {
-		if (m_disp->m_isFinalFloor) {
-			m_paneChika->hide();
-			m_paneFinalf->show();
+	if (mDisp) {
+		if (mDisp->mIsFinalFloor) {
+			mPaneChika->hide();
+			mPaneFinalf->show();
 
 		} else {
-			m_paneChika->show();
-			m_paneFinalf->hide();
+			mPaneChika->show();
+			mPaneFinalf->hide();
 		}
 
-		m_doping->setParam(m_disp->m_olimarData);
+		mDoping->setParam(mDisp->mOlimarData);
 
-		og::Screen::DispMemberCave* disp = m_disp;
-		if (disp->m_olimarData.m_activeNaviID) {
-			m_pikiCounter->setParam(disp->m_dataGame, disp->m_olimarData);
+		og::Screen::DispMemberCave* disp = mDisp;
+		if (disp->mOlimarData.mActiveNaviID) {
+			mPikiCounter->setParam(disp->mDataGame, disp->mOlimarData);
 		} else {
-			m_pikiCounter->setParam(disp->m_dataGame, disp->m_louieData);
+			mPikiCounter->setParam(disp->mDataGame, disp->mLouieData);
 		}
 
-		if (m_totalPokoActive) {
-			m_totalPokoTimer += sys->m_deltaTime;
-			if (m_totalPokoTimer > 2.0f) {
-				m_totalPokoActive = false;
+		if (mTotalPokoActive) {
+			mTotalPokoTimer += sys->mDeltaTime;
+			if (mTotalPokoTimer > 2.0f) {
+				mTotalPokoActive = false;
 			}
 
-			int pokos = m_disp->m_dataGame.m_pokoCount;
-			if (pokos != m_pokos) {
-				m_pokos = pokos;
-				m_totalPoko->setTotalPoko(m_pokos);
-				m_totalPokoTimer = 0.0f;
+			int pokos = mDisp->mDataGame.mPokoCount;
+			if (pokos != mPokos) {
+				mPokos = pokos;
+				mTotalPoko->setTotalPoko(mPokos);
+				mTotalPokoTimer = 0.0f;
 			}
 
 		} else {
-			if (m_disp->m_dataGame.m_pokoCount != m_pokos) {
-				m_totalPokoActive = true;
-				m_pokos           = m_disp->m_dataGame.m_pokoCount;
-				m_totalPoko->setTotalPoko(m_pokos);
-				m_totalPokoTimer = 0.0f;
+			if (mDisp->mDataGame.mPokoCount != mPokos) {
+				mTotalPokoActive = true;
+				mPokos           = mDisp->mDataGame.mPokoCount;
+				mTotalPoko->setTotalPoko(mPokos);
+				mTotalPokoTimer = 0.0f;
 			}
 		}
 
-		if (m_totalPokoActive) {
-			m_pikiCounter->m_isTotalPokoActive = true;
-			m_totalPoko->showTotalPoko();
+		if (mTotalPokoActive) {
+			mPikiCounter->mIsTotalPokoActive = true;
+			mTotalPoko->showTotalPoko();
 
 		} else {
-			m_pikiCounter->m_isTotalPokoActive = false;
-			m_totalPoko->closeTotalPoko();
+			mPikiCounter->mIsTotalPokoActive = false;
+			mTotalPoko->closeTotalPoko();
 		}
 
-		if (m_disp->m_payDebt) {
-			m_lifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
+		if (mDisp->mPayDebt) {
+			mLifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
 
 		} else {
-			m_lifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+			mLifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
 		}
 	}
 
 	u16 width  = System::getRenderModeObj()->fbWidth;
 	u16 height = System::getRenderModeObj()->efbHeight;
 
-	m_bloGroup->rotate((f32)width / 2, (f32)height / 2, J2DROTATE_Z, 0.0f);
+	mBloGroup->rotate((f32)width / 2, (f32)height / 2, J2DROTATE_Z, 0.0f);
 
-	f32 cosTheta = -(pikmin2_cosf((m_scale + 1.0f) * PI / 2));
-	m_bloGroup->scale((1.0f - cosTheta) * 0.4f + 1.0f);
-	m_bloGroup->update();
+	f32 cosTheta = -(pikmin2_cosf((mScale + 1.0f) * PI / 2));
+	mBloGroup->scale((1.0f - cosTheta) * 0.4f + 1.0f);
+	mBloGroup->update();
 
-	if (m_disp->m_drawSensor && m_doSensorEff && m_disp->_5F) {
-		m_otakara->startSensorEff();
-		m_doSensorEff = false;
+	if (mDisp->mDrawSensor && mDoSensorEff && mDisp->_5F) {
+		mOtakara->startSensorEff();
+		mDoSensorEff = false;
 	}
 
-	m_otakara->setParam(m_disp->m_treasureDist, m_disp->m_radarState, m_disp->m_radarEnabled, m_disp->m_allTreasureGotten);
-	m_otakara->updateInit();
+	mOtakara->setParam(mDisp->mTreasureDist, mDisp->mRadarState, mDisp->mRadarEnabled, mDisp->mAllTreasureGotten);
+	mOtakara->updateInit();
 
-	if (m_disp->m_drawSensor) {
-		m_otakara->show();
-		m_otakara->update();
-		m_otakara->adjPos(msVal._18, msVal._1C);
-		m_otakara->adjScale(msVal._20);
-		m_otakara->setSensorVec2(msVal._34, msVal._38);
-		m_otakara->setSensorVec3(msVal._3C, msVal._40);
+	if (mDisp->mDrawSensor) {
+		mOtakara->show();
+		mOtakara->update();
+		mOtakara->adjPos(msVal._18, msVal._1C);
+		mOtakara->adjScale(msVal._20);
+		mOtakara->setSensorVec2(msVal._34, msVal._38);
+		mOtakara->setSensorVec3(msVal._3C, msVal._40);
 
 	} else {
-		m_otakara->hide();
+		mOtakara->hide();
 	}
 
-	m_doping->setDopingEnable(m_disp->m_isBitterUnlocked, m_disp->m_isSpicyUnlocked);
-	m_doping->adjPos(msVal._24, msVal._28);
+	mDoping->setDopingEnable(mDisp->mIsBitterUnlocked, mDisp->mIsSpicyUnlocked);
+	mDoping->adjPos(msVal._24, msVal._28);
 }
 
 /*
@@ -234,12 +234,12 @@ bool ObjCave::doUpdate()
  */
 void ObjCave::doDraw(Graphics& gfx)
 {
-	if (m_bloGroup) {
-		m_bloGroup->draw(&gfx.m_perspGraph);
+	if (mBloGroup) {
+		mBloGroup->draw(&gfx.mPerspGraph);
 	}
 
-	if (m_disp->m_drawSensor) {
-		m_otakara->draw(gfx.m_perspGraph);
+	if (mDisp->mDrawSensor) {
+		mOtakara->draw(gfx.mPerspGraph);
 	}
 }
 
@@ -250,8 +250,8 @@ void ObjCave::doDraw(Graphics& gfx)
  */
 bool ObjCave::doStart(::Screen::StartSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
-	m_scale     = 0.0f;
+	mFadeLevel = 0.0f;
+	mScale     = 0.0f;
 	return true;
 }
 
@@ -262,7 +262,7 @@ bool ObjCave::doStart(::Screen::StartSceneArg const*)
  */
 bool ObjCave::doEnd(::Screen::EndSceneArg const*)
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	return true;
 }
 
@@ -274,13 +274,13 @@ bool ObjCave::doEnd(::Screen::EndSceneArg const*)
 bool ObjCave::doUpdateFadein()
 {
 	bool check = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > msVal._00) {
-		m_fadeLevel = msVal._00;
-		check       = true;
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > msVal._00) {
+		mFadeLevel = msVal._00;
+		check      = true;
 	}
 
-	m_scale = m_fadeLevel / msVal._00;
+	mScale = mFadeLevel / msVal._00;
 	commonUpdate();
 	return check;
 }
@@ -297,7 +297,7 @@ void ObjCave::doUpdateFadeinFinish() { }
  * Address:	8031CB30
  * Size:	00000C
  */
-void ObjCave::doUpdateFinish() { m_fadeLevel = 0.0f; }
+void ObjCave::doUpdateFinish() { mFadeLevel = 0.0f; }
 
 /*
  * --INFO--
@@ -307,13 +307,13 @@ void ObjCave::doUpdateFinish() { m_fadeLevel = 0.0f; }
 bool ObjCave::doUpdateFadeout()
 {
 	bool check = false;
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > msVal._04) {
-		m_fadeLevel = msVal._04;
-		check       = true;
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > msVal._04) {
+		mFadeLevel = msVal._04;
+		check      = true;
 	}
 
-	m_scale = 1.0f - m_fadeLevel / msVal._04;
+	mScale = 1.0f - mFadeLevel / msVal._04;
 	commonUpdate();
 	return check;
 }

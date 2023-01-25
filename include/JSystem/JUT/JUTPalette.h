@@ -19,17 +19,17 @@ struct JUTPalette {
 	void storeTLUT(_GXTlut, _GXTlutFmt, JUTTransparency, u16, void*);
 	void storeTLUT(_GXTlut, ResTLUT*);
 	// void storeTLUT(_GXTlut id, _GXTlutFmt format, JUTTransparency
-	// transparency, u16 p4, void* p5) { 	m_tlutID = id; 	m_tlutFormat =
-	// format; 	m_transparency = transparency; 	_14 = p4; 	_10 = (u8*)p5;
-	// 	GXInitTlutObj(&m_tlutObj, _10, m_tlutFormat, _14);
+	// transparency, u16 p4, void* p5) { 	mTlutID = id; 	mTlutFormat =
+	// format; 	mTransparency = transparency; 	_14 = p4; 	_10 = (u8*)p5;
+	// 	GXInitTlutObj(&mTlutObj, _10, mTlutFormat, _14);
 	// }
 
-	GXTlutObj m_tlutObj;
-	u8 m_tlutID;                     // _0C
-	_GXTlutFmt m_tlutFormat;         // _0D
-	u8* _10;                         // _10
-	u16 _14;                         // _14
-	_JUTTransparency m_transparency; // _16
+	GXTlutObj mTlutObj;
+	u8 mTlutID;                     // _0C
+	_GXTlutFmt mTlutFormat;         // _0D
+	u8* _10;                        // _10
+	u16 _14;                        // _14
+	_JUTTransparency mTransparency; // _16
 };
 
 #endif

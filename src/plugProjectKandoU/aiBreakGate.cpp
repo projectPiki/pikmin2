@@ -16,11 +16,11 @@ static const char breakGateName[] = "actBreakWall";
 ActBreakGate::ActBreakGate(Game::Piki* parent)
     : Action(parent)
 {
-	m_stickAttack = new ActStickAttack(parent);
-	m_gotoPos     = new ActGotoPos(parent);
-	m_followField = new ActFollowVectorField(parent);
+	mStickAttack = new ActStickAttack(parent);
+	mGotoPos     = new ActGotoPos(parent);
+	mFollowField = new ActFollowVectorField(parent);
 
-	m_name = "BreakGate";
+	mName = "BreakGate";
 }
 
 /*
@@ -40,10 +40,10 @@ void ActBreakGate::init(ActionArg* actionArg)
 
 	P2ASSERTLINE(98, isCorrectArg);
 
-	Game::GameStat::workPikis.inc(m_parent);
+	Game::GameStat::workPikis.inc(mParent);
 
-	m_gate = static_cast<ActBreakGateArg*>(actionArg)->m_gate;
-	_24    = 0;
+	mGate = static_cast<ActBreakGateArg*>(actionArg)->mGate;
+	_24   = 0;
 
 	initFollow();
 }
@@ -55,9 +55,9 @@ void ActBreakGate::init(ActionArg* actionArg)
  */
 void ActBreakGate::initFollow()
 {
-	FollowVectorFieldActionArg followArg(m_gate);
-	m_followField->init(&followArg);
-	m_state = 1;
+	FollowVectorFieldActionArg followArg(mGate);
+	mFollowField->init(&followArg);
+	mState = 1;
 }
 
 static const char stickAttackArgName[] = "StickAttackActionArg";
@@ -74,23 +74,23 @@ static const char followFieldArgName[] = "FollowVectorFieldActionArg"; // delete
 void ActBreakGate::initStickAttack()
 {
 	u8 type = 1;
-	if (m_gate->_27C == 1) {
+	if (mGate->_27C == 1) {
 		type = 2;
-	} else if (m_gate->m_isElectric) {
+	} else if (mGate->mIsElectric) {
 		type = 3;
 	}
 
 	if (_24 == 0) {
-		f32 attackDamage = m_parent->getAttackDamage();
-		StickAttackActionArg stickAttackArg(attackDamage, m_gate, -1, type);
-		m_stickAttack->init(&stickAttackArg);
+		f32 attackDamage = mParent->getAttackDamage();
+		StickAttackActionArg stickAttackArg(attackDamage, mGate, -1, type);
+		mStickAttack->init(&stickAttackArg);
 	} else {
-		f32 attackDamage = m_parent->getAttackDamage();
-		StickAttackActionArg stickAttackArg(attackDamage, m_gate, 25, type);
-		m_stickAttack->init(&stickAttackArg);
+		f32 attackDamage = mParent->getAttackDamage();
+		StickAttackActionArg stickAttackArg(attackDamage, mGate, 25, type);
+		mStickAttack->init(&stickAttackArg);
 	}
 
-	m_state = 2;
+	mState = 2;
 }
 
 /*
@@ -100,14 +100,14 @@ void ActBreakGate::initStickAttack()
  */
 int ActBreakGate::exec()
 {
-	if (!m_gate->isAlive()) {
+	if (!mGate->isAlive()) {
 		return 0;
 	}
 
-	switch (m_state) {
+	switch (mState) {
 	case 2:
-		m_followField->exec();
-		int stickResult = m_stickAttack->exec();
+		mFollowField->exec();
+		int stickResult = mStickAttack->exec();
 
 		if (stickResult == 0) {
 			initStickAttack();
@@ -119,7 +119,7 @@ int ActBreakGate::exec()
 		break;
 
 	case 1:
-		int followResult = m_followField->exec();
+		int followResult = mFollowField->exec();
 		if (followResult == 0) {
 			initStickAttack();
 		} else {
@@ -128,7 +128,7 @@ int ActBreakGate::exec()
 		break;
 
 	case 0:
-		int gotoResult = m_gotoPos->exec();
+		int gotoResult = mGotoPos->exec();
 		if (gotoResult == 0) {
 			initStickAttack();
 		} else {
@@ -489,10 +489,10 @@ lbl_801D0B90:
  */
 void ActBreakGate::cleanup()
 {
-	Game::GameStat::workPikis.dec(m_parent);
-	switch (m_state) {
+	Game::GameStat::workPikis.dec(mParent);
+	switch (mState) {
 	case 2:
-		m_stickAttack->cleanup();
+		mStickAttack->cleanup();
 		break;
 	}
 }
@@ -505,7 +505,7 @@ void ActBreakGate::cleanup()
 void ActBreakGate::emotion_success()
 {
 	Game::EmotionStateArg emotionArg(1);
-	m_parent->m_fsm->transit(m_parent, Game::PIKISTATE_Emotion, &emotionArg);
+	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, &emotionArg);
 }
 
 /*
@@ -521,7 +521,7 @@ void ActBreakGate::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 		_24 = 0;
 	}
 
-	if (m_state == 1) {
+	if (mState == 1) {
 		initStickAttack();
 	}
 	/*

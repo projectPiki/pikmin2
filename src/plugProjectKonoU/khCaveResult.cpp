@@ -27,11 +27,11 @@ DispCaveResult::DispCaveResult(Game::Result::TNode* node, u32 death, u32 otakara
                                bool caveComp)
 {
 	init(node, death, caveComp);
-	m_totalPokos       = pokos;
-	m_debtPayed        = paydebt;
-	m_collectedOtakara = otakara;
-	m_maxOtakara       = otakaraMax;
-	m_heap             = heap;
+	mTotalPokos       = pokos;
+	mDebtPayed        = paydebt;
+	mCollectedOtakara = otakara;
+	mMaxOtakara       = otakaraMax;
+	mHeap             = heap;
 }
 
 /*
@@ -41,28 +41,28 @@ DispCaveResult::DispCaveResult(Game::Result::TNode* node, u32 death, u32 otakara
  */
 void DispCaveResult::init(Game::Result::TNode* node, u32 death, bool caveComp)
 {
-	m_resultNode        = node;
-	m_lostTreasures     = 0;
-	_14                 = 0;
-	m_cavePokos         = 0;
-	m_treasureNodeCount = 0;
+	mResultNode        = node;
+	mLostTreasures     = 0;
+	_14                = 0;
+	mCavePokos         = 0;
+	mTreasureNodeCount = 0;
 
-	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		if (cNode->m_quantity > 0 || cNode->m_isLost != 0) {
+		if (cNode->mQuantity > 0 || cNode->mIsLost != 0) {
 			_14++;
 		}
-		m_treasureNodeCount++;
-		m_lostTreasures += cNode->m_isLost;
+		mTreasureNodeCount++;
+		mLostTreasures += cNode->mIsLost;
 
-		if (cNode->m_quantity > 0 || !cNode->m_isLost) {
-			m_cavePokos += cNode->m_pokoValue;
+		if (cNode->mQuantity > 0 || !cNode->mIsLost) {
+			mCavePokos += cNode->mPokoValue;
 		}
 	}
 
-	m_deadPikis  = death;
-	m_caveComp   = caveComp;
-	m_isFinished = 0;
+	mDeadPikis  = death;
+	mCaveComp   = caveComp;
+	mIsFinished = 0;
 }
 
 /*
@@ -72,66 +72,66 @@ void DispCaveResult::init(Game::Result::TNode* node, u32 death, bool caveComp)
  */
 ObjCaveResult::ObjCaveResult()
 {
-	m_saveMgr        = nullptr;
-	m_resultNode     = nullptr;
-	m_screenComplete = nullptr;
-	m_screenDropItem = nullptr;
-	m_screenMain     = nullptr;
+	mSaveMgr        = nullptr;
+	mResultNode     = nullptr;
+	mScreenComplete = nullptr;
+	mScreenDropItem = nullptr;
+	mScreenMain     = nullptr;
 
-	m_completeAnim      = nullptr;
-	m_mainAnim          = nullptr;
-	m_completeAnimColor = nullptr;
-	m_mainAnimColor     = nullptr;
-	m_animTexSRT        = nullptr;
-	m_animTevReg        = nullptr;
+	mCompleteAnim      = nullptr;
+	mMainAnim          = nullptr;
+	mCompleteAnimColor = nullptr;
+	mMainAnimColor     = nullptr;
+	mAnimTexSRT        = nullptr;
+	mAnimTevReg        = nullptr;
 
-	m_animTimers[5] = 0.0f;
-	m_animTimers[4] = 0.0f;
-	m_animTimers[3] = 0.0f;
-	m_animTimers[1] = 0.0f;
-	m_animTimers[2] = 0.0f;
-	m_animTimers[0] = 0.0f;
+	mAnimTimers[5] = 0.0f;
+	mAnimTimers[4] = 0.0f;
+	mAnimTimers[3] = 0.0f;
+	mAnimTimers[1] = 0.0f;
+	mAnimTimers[2] = 0.0f;
+	mAnimTimers[0] = 0.0f;
 
-	m_efxComp   = nullptr;
-	m_stickAnim = nullptr;
+	mEfxComp   = nullptr;
+	mStickAnim = nullptr;
 
-	m_fadePane4         = nullptr;
-	m_fadePaneDownArrow = nullptr;
-	m_fadePaneUpArrow   = nullptr;
-	m_fadePane1         = nullptr;
+	mFadePane4         = nullptr;
+	mFadePaneDownArrow = nullptr;
+	mFadePaneUpArrow   = nullptr;
+	mFadePane1         = nullptr;
 
-	m_counterTotalPokos        = nullptr;
-	m_counterTreasureMax       = nullptr;
-	m_counterTreasureCollected = nullptr;
-	m_counterOtaValues[1]      = nullptr;
-	m_counterOtaValues[0]      = nullptr;
-	m_counterDeadPiki          = nullptr;
-	m_counterCavePokos         = nullptr;
+	mCounterTotalPokos        = nullptr;
+	mCounterTreasureMax       = nullptr;
+	mCounterTreasureCollected = nullptr;
+	mCounterOtaValues[1]      = nullptr;
+	mCounterOtaValues[0]      = nullptr;
+	mCounterDeadPiki          = nullptr;
+	mCounterCavePokos         = nullptr;
 
-	m_totalPokos       = 0;
-	m_maxOtakara       = 0;
-	m_otakaraCount     = 0;
-	m_currOtaValues[1] = 0;
-	m_currOtaValues[0] = 0;
-	m_deadPiki         = 0;
-	m_cavePokos        = 0;
+	mTotalPokos       = 0;
+	mMaxOtakara       = 0;
+	mOtakaraCount     = 0;
+	mCurrOtaValues[1] = 0;
+	mCurrOtaValues[0] = 0;
+	mDeadPiki         = 0;
+	mCavePokos        = 0;
 
-	m_scrollPos         = 0.0f;
-	m_scrollUpDown      = 0.0f;
-	m_scrollSelIndex    = -6;
-	m_scrollSelIndexMax = 0;
-	m_scrollTargetDist  = msVal._1C;
+	mScrollPos         = 0.0f;
+	mScrollUpDown      = 0.0f;
+	mScrollSelIndex    = -6;
+	mScrollSelIndexMax = 0;
+	mScrollTargetDist  = msVal._1C;
 
-	m_scrollMoveTimer  = 0;
-	m_scissorMax       = 0;
-	m_scissorMin       = 0;
-	m_status           = 3;
-	m_changeStateDelay = 0;
-	_F8                = 0;
-	m_flag             = 0;
-	m_alpha            = 255;
-	_107               = 0;
-	_106               = 0;
+	mScrollMoveTimer  = 0;
+	mScissorMax       = 0;
+	mScissorMin       = 0;
+	mStatus           = 3;
+	mChangeStateDelay = 0;
+	_F8               = 0;
+	mFlag             = 0;
+	mAlpha            = 255;
+	_107              = 0;
+	_106              = 0;
 }
 
 /*
@@ -146,138 +146,138 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 
 	DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
 
-	m_screenMain = new P2DScreen::Mgr_tuning;
-	m_screenMain->set("result_doukutu.blo", 0x1040000, arc);
+	mScreenMain = new P2DScreen::Mgr_tuning;
+	mScreenMain->set("result_doukutu.blo", 0x1040000, arc);
 
-	m_screenDropItem = new P2DScreen::Mgr_tuning;
-	m_screenDropItem->set("result_doukutu_drop_item.blo", 0x1040000, arc);
+	mScreenDropItem = new P2DScreen::Mgr_tuning;
+	mScreenDropItem->set("result_doukutu_drop_item.blo", 0x1040000, arc);
 
-	void* file      = JKRFileLoader::getGlbResource("result_doukutu.bck", arc);
-	m_mainAnim      = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
-	file            = JKRFileLoader::getGlbResource("result_doukutu.bpk", arc);
-	m_mainAnimColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
-	file            = JKRFileLoader::getGlbResource("result_doukutu.btk", arc);
-	m_animTexSRT    = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
-	file            = JKRFileLoader::getGlbResource("result_doukutu.brk", arc);
-	m_animTevReg    = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(file));
+	void* file     = JKRFileLoader::getGlbResource("result_doukutu.bck", arc);
+	mMainAnim      = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	file           = JKRFileLoader::getGlbResource("result_doukutu.bpk", arc);
+	mMainAnimColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+	file           = JKRFileLoader::getGlbResource("result_doukutu.btk", arc);
+	mAnimTexSRT    = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+	file           = JKRFileLoader::getGlbResource("result_doukutu.brk", arc);
+	mAnimTevReg    = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(file));
 
-	m_screenMain->setAnimation(m_mainAnim);
-	m_screenMain->setAnimation(m_mainAnimColor);
-	m_screenMain->setAnimation(m_animTexSRT);
-	m_screenMain->setAnimation(m_animTevReg);
+	mScreenMain->setAnimation(mMainAnim);
+	mScreenMain->setAnimation(mMainAnimColor);
+	mScreenMain->setAnimation(mAnimTexSRT);
+	mScreenMain->setAnimation(mAnimTevReg);
 
 	JKRHeap* oldHeap = getCurrentHeap();
-	if (disp->m_heap) {
-		disp->m_heap->becomeCurrentHeap();
+	if (disp->mHeap) {
+		disp->mHeap->becomeCurrentHeap();
 	}
 
-	m_screenComplete = new P2DScreen::Mgr_tuning;
-	m_screenComplete->set("doukutu_complete.blo", 0x40000, arc);
+	mScreenComplete = new P2DScreen::Mgr_tuning;
+	mScreenComplete->set("doukutu_complete.blo", 0x40000, arc);
 
-	file           = JKRFileLoader::getGlbResource("doukutu_complete.bck", arc);
-	m_completeAnim = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	file          = JKRFileLoader::getGlbResource("doukutu_complete.bck", arc);
+	mCompleteAnim = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
 
-	file                = JKRFileLoader::getGlbResource("doukutu_complete.bpk", arc);
-	m_completeAnimColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+	file               = JKRFileLoader::getGlbResource("doukutu_complete.bpk", arc);
+	mCompleteAnimColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
 
-	m_screenComplete->setAnimation(m_completeAnim);
-	m_screenComplete->setAnimation(m_completeAnimColor);
-	m_screenComplete->animation();
+	mScreenComplete->setAnimation(mCompleteAnim);
+	mScreenComplete->setAnimation(mCompleteAnimColor);
+	mScreenComplete->animation();
 
-	og::Screen::setCallBackMessage(m_screenMain);
-	m_resultNode = disp->m_resultNode;
+	og::Screen::setCallBackMessage(mScreenMain);
+	mResultNode = disp->mResultNode;
 
-	Game::Result::TNode* cNode = static_cast<Game::Result::TNode*>(m_resultNode->m_child);
+	Game::Result::TNode* cNode = static_cast<Game::Result::TNode*>(mResultNode->mChild);
 
 	while (cNode) {
-		cNode->m_itemMgr = new kh::Screen::LostItemMgr(cNode->m_isLost);
-		cNode            = static_cast<Game::Result::TNode*>(cNode->m_next);
+		cNode->mItemMgr = new kh::Screen::LostItemMgr(cNode->mIsLost);
+		cNode           = static_cast<Game::Result::TNode*>(cNode->mNext);
 	}
 
-	if (disp->m_treasureNodeCount > 6) {
+	if (disp->mTreasureNodeCount > 6) {
 		setFlag(CAVERESFLAG_CanScroll);
-		m_scrollSelIndexMax = disp->m_treasureNodeCount - 6;
+		mScrollSelIndexMax = disp->mTreasureNodeCount - 6;
 	}
 
-	m_scrollUpDown = m_screenMain->search('Nsetp01')->getBounds()->i.y - m_screenMain->search('Nsetp00')->getBounds()->i.y;
-	m_scrollPos    = m_scrollUpDown * (int)(1 - m_scrollSelIndex);
+	mScrollUpDown = mScreenMain->search('Nsetp01')->getBounds()->i.y - mScreenMain->search('Nsetp00')->getBounds()->i.y;
+	mScrollPos    = mScrollUpDown * (int)(1 - mScrollSelIndex);
 
-	kh::Screen::setInfAlpha(m_screenMain->search('Nicon00'));
-	kh::Screen::setInfAlpha(m_screenMain->search('Nicon01'));
+	kh::Screen::setInfAlpha(mScreenMain->search('Nicon00'));
+	kh::Screen::setInfAlpha(mScreenMain->search('Nicon01'));
 
-	m_cavePokos    = 0;
-	m_deadPiki     = 0;
-	m_otakaraCount = disp->m_collectedOtakara + disp->m_lostTreasures - disp->_14;
-	m_maxOtakara   = disp->m_maxOtakara;
-	m_totalPokos   = disp->m_totalPokos - disp->m_cavePokos;
+	mCavePokos    = 0;
+	mDeadPiki     = 0;
+	mOtakaraCount = disp->mCollectedOtakara + disp->mLostTreasures - disp->_14;
+	mMaxOtakara   = disp->mMaxOtakara;
+	mTotalPokos   = disp->mTotalPokos - disp->mCavePokos;
 
 	u64 debtTag;
-	if (disp->m_debtPayed) {
-		m_screenMain->search('Nfi_menu')->hide();
-		m_screenMain->search('Nco_menu')->show();
+	if (disp->mDebtPayed) {
+		mScreenMain->search('Nfi_menu')->hide();
+		mScreenMain->search('Nco_menu')->show();
 		debtTag = 'Pcomp01';
 	} else {
-		m_screenMain->search('Nfi_menu')->show();
-		m_screenMain->search('Nco_menu')->hide();
+		mScreenMain->search('Nfi_menu')->show();
+		mScreenMain->search('Nco_menu')->hide();
 		debtTag = 'Pfin01';
 	}
 
-	if (disp->m_caveComp || (disp->m_maxOtakara != disp->m_collectedOtakara)) {
-		m_screenMain->search('Pananorm')->show();
-		m_screenMain->search('Panacomp')->hide();
+	if (disp->mCaveComp || (disp->mMaxOtakara != disp->mCollectedOtakara)) {
+		mScreenMain->search('Pananorm')->show();
+		mScreenMain->search('Panacomp')->hide();
 	} else {
-		m_screenMain->search('Pananorm')->hide();
-		m_screenMain->search('Panacomp')->show();
+		mScreenMain->search('Pananorm')->hide();
+		mScreenMain->search('Panacomp')->show();
 	}
 
-	m_screenMain->search('Panacomp')->setBasePosition(J2DPOS_Center);
+	mScreenMain->search('Panacomp')->setBasePosition(J2DPOS_Center);
 
-	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, m_screenMain, 'PICT_004');
-	m_stickAnim                       = new og::Screen::StickAnimMgr(pic);
-	m_stickAnim->stickUpDown();
+	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, mScreenMain, 'PICT_004');
+	mStickAnim                        = new og::Screen::StickAnimMgr(pic);
+	mStickAnim->stickUpDown();
 
-	m_fadePaneUpArrow = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nyame_u', 16);
-	m_fadePaneUpArrow->fadeout();
-	m_fadePaneDownArrow = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nyame_l', 16);
-	m_fadePaneDownArrow->fadeout();
-	m_fadePane1 = kh::Screen::khUtilFadePane::create(m_screenMain, 'PICT_004', 16);
-	m_fadePane1->add(m_screenMain->search('N_3d'));
-	m_fadePane1->fadeout();
-	m_fadePane4 = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nmain_m', 16);
-	m_fadePane4->fadeout();
+	mFadePaneUpArrow = kh::Screen::khUtilFadePane::create(mScreenMain, 'Nyame_u', 16);
+	mFadePaneUpArrow->fadeout();
+	mFadePaneDownArrow = kh::Screen::khUtilFadePane::create(mScreenMain, 'Nyame_l', 16);
+	mFadePaneDownArrow->fadeout();
+	mFadePane1 = kh::Screen::khUtilFadePane::create(mScreenMain, 'PICT_004', 16);
+	mFadePane1->add(mScreenMain->search('N_3d'));
+	mFadePane1->fadeout();
+	mFadePane4 = kh::Screen::khUtilFadePane::create(mScreenMain, 'Nmain_m', 16);
+	mFadePane4->fadeout();
 
-	m_counterCavePokos         = og::Screen::setCallBack_CounterRV(m_screenMain, 'Ptomadp1', &m_cavePokos, 6, true, false, arc);
-	m_counterDeadPiki          = og::Screen::setCallBack_CounterRV(m_screenMain, 'Ppiki1', &m_deadPiki, 3, true, false, arc);
-	m_counterOtaValues[0]      = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pmad00_1', &m_currOtaValues[0], 4, false, false, arc);
-	m_counterOtaValues[1]      = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pmad01_1', &m_currOtaValues[1], 4, false, false, arc);
-	m_counterTreasureCollected = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pota_1', &m_otakaraCount, 2, true, true, arc);
-	m_counterTreasureMax       = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pota_to1', &m_maxOtakara, 2, false, true, arc);
-	m_counterTotalPokos        = og::Screen::setCallBack_CounterRV(m_screenMain, debtTag, &m_totalPokos, 9, false, false, arc);
-	m_counterTreasureMax->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
+	mCounterCavePokos         = og::Screen::setCallBack_CounterRV(mScreenMain, 'Ptomadp1', &mCavePokos, 6, true, false, arc);
+	mCounterDeadPiki          = og::Screen::setCallBack_CounterRV(mScreenMain, 'Ppiki1', &mDeadPiki, 3, true, false, arc);
+	mCounterOtaValues[0]      = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pmad00_1', &mCurrOtaValues[0], 4, false, false, arc);
+	mCounterOtaValues[1]      = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pmad01_1', &mCurrOtaValues[1], 4, false, false, arc);
+	mCounterTreasureCollected = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pota_1', &mOtakaraCount, 2, true, true, arc);
+	mCounterTreasureMax       = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pota_to1', &mMaxOtakara, 2, false, true, arc);
+	mCounterTotalPokos        = og::Screen::setCallBack_CounterRV(mScreenMain, debtTag, &mTotalPokos, 9, false, false, arc);
+	mCounterTreasureMax->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
 
-	if (!disp->m_debtPayed && (disp->m_caveComp || disp->m_maxOtakara != disp->m_collectedOtakara)) {
-		m_counterTreasureMax->getMotherPane()->hide();
-		m_counterTreasureCollected->getMotherPane()->add(msVal._10, msVal._14);
-		m_screenMain->search('PICT_008')->hide();
-		m_screenMain->search('Ptits14')->hide();
-		m_screenMain->search('Ptits15')->hide();
+	if (!disp->mDebtPayed && (disp->mCaveComp || disp->mMaxOtakara != disp->mCollectedOtakara)) {
+		mCounterTreasureMax->getMotherPane()->hide();
+		mCounterTreasureCollected->getMotherPane()->add(msVal._10, msVal._14);
+		mScreenMain->search('PICT_008')->hide();
+		mScreenMain->search('Ptits14')->hide();
+		mScreenMain->search('Ptits15')->hide();
 	}
-	m_scaleMgr = new og::Screen::ScaleMgr;
+	mScaleMgr = new og::Screen::ScaleMgr;
 
-	m_screenMain->search('Nsetp02')->hide();
-	m_screenMain->search('Nsetp03')->hide();
-	m_screenMain->search('Nsetp04')->hide();
-	m_screenMain->search('Nsetp05')->hide();
-	m_screenMain->search('Piname00')->setMsgID('0101_00');
-	m_screenMain->search('Piname01')->setMsgID('0101_00');
+	mScreenMain->search('Nsetp02')->hide();
+	mScreenMain->search('Nsetp03')->hide();
+	mScreenMain->search('Nsetp04')->hide();
+	mScreenMain->search('Nsetp05')->hide();
+	mScreenMain->search('Piname00')->setMsgID('0101_00');
+	mScreenMain->search('Piname01')->setMsgID('0101_00');
 
-	m_saveMgr = ebi::Save::TMgr::createInstance();
+	mSaveMgr = ebi::Save::TMgr::createInstance();
 	loadSaveMgrResources();
-	m_saveMgr->setControllers(getGamePad());
-	m_saveMgr->m_saveType = 1;
-	m_efxComp             = new efx2d::T2DCavecompLoop;
+	mSaveMgr->setControllers(getGamePad());
+	mSaveMgr->mSaveType = 1;
+	mEfxComp            = new efx2d::T2DCavecompLoop;
 
-	if (disp->m_heap) {
+	if (disp->mHeap) {
 		oldHeap->becomeCurrentHeap();
 	}
 }
@@ -295,12 +295,12 @@ bool ObjCaveResult::doUpdate()
 	updateAnimation();
 
 	if (isFlag(CAVERESFLAG_SaveOpen)) {
-		m_saveMgr->update();
-		if (m_saveMgr->isFinish()) {
-			switch (m_saveMgr->m_currStateID) {
+		mSaveMgr->update();
+		if (mSaveMgr->isFinish()) {
+			switch (mSaveMgr->mCurrStateID) {
 			case 2:
 			case 0:
-				disp->m_isFinished = 1;
+				disp->mIsFinished = 1;
 				break;
 
 			case 1:
@@ -310,7 +310,7 @@ bool ObjCaveResult::doUpdate()
 		}
 
 	} else {
-		switch (m_status) {
+		switch (mStatus) {
 		case CAVERES_Normal:
 			statusNormal();
 			break;
@@ -341,44 +341,44 @@ bool ObjCaveResult::doUpdate()
 		}
 
 		Controller* pad = getGamePad();
-		if (pad->m_padButton.m_buttonDown & Controller::PRESS_A) {
+		if (pad->mButton.mButtonDown & Controller::PRESS_A) {
 			if (!isFlag(CAVERESFLAG_PikisKilledShown)) {
 				setFlag(CAVERESFLAG_FinishAutoScroll);
 			}
-			if (m_status == CAVERES_Normal) {
+			if (mStatus == CAVERES_Normal) {
 				setFlag(CAVERESFLAG_SaveOpen);
-				m_efxComp->fade();
-				m_saveMgr->start();
+				mEfxComp->fade();
+				mSaveMgr->start();
 			}
 		}
 
 		if (isFlag(CAVERESFLAG_FinishAutoScroll)) {
-			m_scrollSelIndex  = m_scrollSelIndexMax;
-			m_scrollPos       = -m_scrollUpDown * (f32)m_scrollSelIndex;
-			m_scrollMoveTimer = 0;
-			m_cavePokos       = disp->m_cavePokos;
-			m_deadPiki        = disp->m_deadPikis;
-			m_totalPokos      = disp->m_totalPokos;
-			m_otakaraCount    = disp->m_collectedOtakara;
-			m_counterCavePokos->startPuyoUp(1.0f);
-			m_counterDeadPiki->startPuyoUp(1.0f);
-			m_counterTotalPokos->startPuyoUp(1.0f);
+			mScrollSelIndex  = mScrollSelIndexMax;
+			mScrollPos       = -mScrollUpDown * (f32)mScrollSelIndex;
+			mScrollMoveTimer = 0;
+			mCavePokos       = disp->mCavePokos;
+			mDeadPiki        = disp->mDeadPikis;
+			mTotalPokos      = disp->mTotalPokos;
+			mOtakaraCount    = disp->mCollectedOtakara;
+			mCounterCavePokos->startPuyoUp(1.0f);
+			mCounterDeadPiki->startPuyoUp(1.0f);
+			mCounterTotalPokos->startPuyoUp(1.0f);
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
 			pikminSE();
 
-			if (disp->m_caveComp) {
-				m_status           = CAVERES_Effect;
-				m_changeStateDelay = msVal._3B;
+			if (disp->mCaveComp) {
+				mStatus           = CAVERES_Effect;
+				mChangeStateDelay = msVal._3B;
 			} else {
-				m_otakaraCount = disp->m_collectedOtakara;
-				m_status       = CAVERES_Normal;
+				mOtakaraCount = disp->mCollectedOtakara;
+				mStatus       = CAVERES_Normal;
 			}
 
 			kh::Screen::LostItemMgr* mgr;
-			FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+			FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 			{
-				mgr = cNode->m_itemMgr;
-				if ((int)mgr->isFlag(0x1) != 1 && mgr->m_maxPanes != 0) {
+				mgr = cNode->mItemMgr;
+				if ((int)mgr->isFlag(0x1) != 1 && mgr->mMaxPanes != 0) {
 					mgr->setFlag(0x2);
 				}
 			}
@@ -387,8 +387,8 @@ bool ObjCaveResult::doUpdate()
 		}
 	}
 
-	if (!isFlag(CAVERESFLAG_SaveOpen) && (m_status != CAVERES_Effect) && m_alpha != 0) {
-		m_alpha -= msVal._3A;
+	if (!isFlag(CAVERESFLAG_SaveOpen) && (mStatus != CAVERES_Effect) && mAlpha != 0) {
+		mAlpha -= msVal._3A;
 	}
 
 	return false;
@@ -401,21 +401,21 @@ bool ObjCaveResult::doUpdate()
  */
 void ObjCaveResult::doDraw(Graphics& gfx)
 {
-	J2DPane* pane1       = m_screenMain->search('NALL2');
-	J2DPane* paneList[2] = { m_screenMain->search('Nsetp00'), m_screenMain->search('Nsetp01') };
-	J2DPane* pane2       = m_screenMain->search('N3DALL');
+	J2DPane* pane1       = mScreenMain->search('NALL2');
+	J2DPane* paneList[2] = { mScreenMain->search('Nsetp00'), mScreenMain->search('Nsetp01') };
+	J2DPane* pane2       = mScreenMain->search('N3DALL');
 
 	u64 nametags[2] = { 'Piname00', 'Piname01' };
 	u64 icontags[2] = { 'iPicon00', 'iPicon01' };
 
-	gfx.m_orthoGraph.setPort();
+	gfx.mOrthoGraph.setPort();
 	pane1->show();
 	pane2->hide();
 	paneList[0]->hide();
 	paneList[1]->hide();
 
 	J2DPane** list = paneList;
-	m_screenMain->draw(gfx, gfx.m_orthoGraph);
+	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 
 	u32 x, y, wd, ht;
 	x  = 0;
@@ -423,56 +423,56 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	wd = 0;
 	ht = 0;
 	GXGetScissor(&x, &y, &wd, &ht);
-	GXSetScissor(x, m_scissorMin, wd, m_scissorMax);
+	GXSetScissor(x, mScissorMin, wd, mScissorMax);
 
 	pane1->hide();
 	pane2->hide();
 
-	f32 offs = m_scrollUpDown * 2.0f;
+	f32 offs = mScrollUpDown * 2.0f;
 	for (int i = 0; i < 2; i++) {
-		list[i]->add(0.0f, m_scrollPos - offs);
+		list[i]->add(0.0f, mScrollPos - offs);
 	}
 
 	for (int i = 0; i < 2; i++) {
-		m_screenMain->search(nametags[i])->show();
-		m_screenMain->search(icontags[i])->show();
-		m_counterOtaValues[i]->show();
+		mScreenMain->search(nametags[i])->show();
+		mScreenMain->search(icontags[i])->show();
+		mCounterOtaValues[i]->show();
 	}
 
 	u32 i = 0;
 	int next;
-	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
 		u32 isOdd = i & 1;
-		f32 calc  = (f32)i * m_scrollUpDown + m_scrollPos;
+		f32 calc  = (f32)i * mScrollUpDown + mScrollPos;
 
-		if (calc < -m_scrollUpDown || m_scissorMax < calc) {
+		if (calc < -mScrollUpDown || mScissorMax < calc) {
 			paneList[isOdd]->add(0.0f, offs);
 		} else {
-			if (((int)cNode->m_itemMgr->m_flags & LOSTITEM_Unk2) == 2) {
-				if (cNode->m_quantity < 0) {
+			if (((int)cNode->mItemMgr->mFlags & LOSTITEM_Unk2) == 2) {
+				if (cNode->mQuantity < 0) {
 					next = 0;
 				} else {
-					next = cNode->_30 * cNode->m_quantity;
+					next = cNode->_30 * cNode->mQuantity;
 				}
 				setAlpha(isOdd, 48);
 			} else {
-				next = cNode->getNextIndex(cNode->_30, cNode->m_isLost);
+				next = cNode->getNextIndex(cNode->_30, cNode->mIsLost);
 				setAlpha(isOdd, 255);
 			}
 			paneList[isOdd]->hide();
 			paneList[isOdd]->show();
 			paneList[isOdd]->add(0.0f, offs);
-			setTex(m_screenMain, icontags[isOdd], cNode->m_texture->_20);
-			u64 tag = cNode->m_mesgTag;
+			setTex(mScreenMain, icontags[isOdd], cNode->mTexture->_20);
+			u64 tag = cNode->mMesgTag;
 			if (tag == 0) {
-				m_screenMain->search(icontags[isOdd])->hide();
+				mScreenMain->search(icontags[isOdd])->hide();
 			} else {
-				m_screenMain->search(icontags[isOdd])->setMsgID(tag);
+				mScreenMain->search(icontags[isOdd])->setMsgID(tag);
 			}
-			m_currOtaValues[isOdd] = next;
-			m_counterOtaValues[isOdd]->update();
-			m_screenMain->draw(gfx, gfx.m_orthoGraph);
+			mCurrOtaValues[isOdd] = next;
+			mCounterOtaValues[isOdd]->update();
+			mScreenMain->draw(gfx, gfx.mOrthoGraph);
 		}
 		i++;
 	}
@@ -483,10 +483,10 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 		paneList[isOdd]->show();
 		paneList[isOdd]->add(0.0f, offs);
 		setAlpha(isOdd, 255);
-		m_screenMain->search(icontags[isOdd])->hide();
-		m_screenMain->search(nametags[isOdd])->hide();
-		m_counterOtaValues[i]->hide();
-		m_screenMain->draw(gfx, gfx.m_orthoGraph);
+		mScreenMain->search(icontags[isOdd])->hide();
+		mScreenMain->search(nametags[isOdd])->hide();
+		mCounterOtaValues[i]->hide();
+		mScreenMain->draw(gfx, gfx.mOrthoGraph);
 	}
 
 	GXSetScissor(x, y, wd, ht);
@@ -494,33 +494,33 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	pane2->hide();
 	paneList[0]->hide();
 	paneList[1]->hide();
-	m_screenMain->draw(gfx, gfx.m_orthoGraph);
+	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 
-	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		cNode->m_itemMgr->draw(m_screenDropItem, 'iPicon00', cNode->m_texture->_20, gfx);
+		cNode->mItemMgr->draw(mScreenDropItem, 'iPicon00', cNode->mTexture->_20, gfx);
 	}
 
-	if (m_alpha) {
-		gfx.m_orthoGraph.setPort();
-		JUtility::TColor c(m_alpha);
-		gfx.m_orthoGraph.setColor(c);
+	if (mAlpha) {
+		gfx.mOrthoGraph.setPort();
+		JUtility::TColor c(mAlpha);
+		gfx.mOrthoGraph.setColor(c);
 
 		u32 x    = System::getRenderModeObj()->fbWidth;
 		u32 y    = System::getRenderModeObj()->efbHeight;
 		f32 zero = 0.0f;
 		JGeometry::TBox2f box(0.0f, x + zero, 0.0f, y + zero);
-		gfx.m_orthoGraph.fillBox(box);
+		gfx.mOrthoGraph.fillBox(box);
 	}
 
 	if (isFlag(CAVERESFLAG_DrawComp)) {
-		gfx.m_orthoGraph.setPort();
-		m_screenComplete->draw(gfx, gfx.m_orthoGraph);
+		gfx.mOrthoGraph.setPort();
+		mScreenComplete->draw(gfx, gfx.mOrthoGraph);
 	}
 
 	if (isFlag(CAVERESFLAG_SaveOpen)) {
-		gfx.m_perspGraph.setPort();
-		m_saveMgr->draw();
+		gfx.mPerspGraph.setPort();
+		mSaveMgr->draw();
 	}
 	/*
 stwu     r1, -0xd0(r1)
@@ -1053,9 +1053,9 @@ bool ObjCaveResult::doUpdateFadein()
 {
 	updateAnimation();
 
-	m_alpha -= msVal._38;
-	if (m_alpha < msVal._38) {
-		m_alpha = 0;
+	mAlpha -= msVal._38;
+	if (mAlpha < msVal._38) {
+		mAlpha = 0;
 		return true;
 	}
 
@@ -1081,9 +1081,9 @@ void ObjCaveResult::doUpdateFadeinFinish()
 bool ObjCaveResult::doUpdateFadeout()
 {
 	updateAnimation();
-	m_alpha += msVal._38;
-	if (m_alpha > (255 - msVal._38)) {
-		m_alpha = 255;
+	mAlpha += msVal._38;
+	if (mAlpha > (255 - msVal._38)) {
+		mAlpha = 255;
 		return true;
 	}
 	return false;
@@ -1098,65 +1098,64 @@ void ObjCaveResult::statusNormal()
 {
 	if (isFlag(CAVERESFLAG_CanScroll)) {
 		// at top of scroll list
-		if (!m_scrollSelIndex) {
-			m_fadePaneUpArrow->fadeout();
-			m_fadePaneDownArrow->fadein();
-			m_stickAnim->stickDown();
+		if (!mScrollSelIndex) {
+			mFadePaneUpArrow->fadeout();
+			mFadePaneDownArrow->fadein();
+			mStickAnim->stickDown();
 		}
 		// at bottom of scroll list
-		else if (m_scrollSelIndex == m_scrollSelIndexMax) {
-			m_fadePaneUpArrow->fadein();
-			m_fadePaneDownArrow->fadeout();
-			m_stickAnim->stickUp();
+		else if (mScrollSelIndex == mScrollSelIndexMax) {
+			mFadePaneUpArrow->fadein();
+			mFadePaneDownArrow->fadeout();
+			mStickAnim->stickUp();
 		}
 		// in middle of sroll list
 		else {
-			m_fadePaneUpArrow->fadein();
-			m_fadePaneDownArrow->fadein();
-			m_stickAnim->stickUpDown();
+			mFadePaneUpArrow->fadein();
+			mFadePaneDownArrow->fadein();
+			mStickAnim->stickUpDown();
 		}
-		m_fadePane1->fadein();
+		mFadePane1->fadein();
 	} else {
-		m_fadePaneUpArrow->fadeout();
-		m_fadePaneDownArrow->fadeout();
-		m_fadePane1->fadeout();
+		mFadePaneUpArrow->fadeout();
+		mFadePaneDownArrow->fadeout();
+		mFadePane1->fadeout();
 	}
 
-	m_fadePane4->fadein();
+	mFadePane4->fadein();
 	if (isFlag(CAVERESFLAG_CanScroll)) {
 		// press up, begin scroll up state
-		if (getGamePad()->m_padButton.m_mask & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32) && m_scrollSelIndex) {
-			m_scrollSelIndex--;
+		if (getGamePad()->mButton.mMask & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32) && mScrollSelIndex) {
+			mScrollSelIndex--;
 			if (_106 >= 1) {
-				m_scrollTargetDist = msVal._20;
+				mScrollTargetDist = msVal._20;
 			} else {
 				_106++;
 			}
 
-			_107     = 0;
-			m_status = CAVERES_ScrollUp;
+			_107    = 0;
+			mStatus = CAVERES_ScrollUp;
 			statusScrollUp();
 			return;
 		}
 
 		// press down, begin scroll down state
-		if (getGamePad()->m_padButton.m_mask & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)
-		    && m_scrollSelIndex != m_scrollSelIndexMax) {
-			m_scrollSelIndex++;
+		if (getGamePad()->mButton.mMask & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31) && mScrollSelIndex != mScrollSelIndexMax) {
+			mScrollSelIndex++;
 			if (_107 >= 1) {
-				m_scrollTargetDist = msVal._20;
+				mScrollTargetDist = msVal._20;
 			} else {
 				_107++;
 			}
-			_106     = 0;
-			m_status = CAVERES_ScrollDown;
+			_106    = 0;
+			mStatus = CAVERES_ScrollDown;
 			statusScrollDown();
 			return;
 		}
 
-		_107               = 0;
-		_106               = 0;
-		m_scrollTargetDist = msVal._1C;
+		_107              = 0;
+		_106              = 0;
+		mScrollTargetDist = msVal._1C;
 	}
 }
 
@@ -1167,12 +1166,12 @@ void ObjCaveResult::statusNormal()
  */
 void ObjCaveResult::statusScrollUp()
 {
-	f32 p1      = m_scrollUpDown * (m_scrollSelIndex + 1) * (m_scrollTargetDist - m_scrollMoveTimer);
-	m_scrollPos = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
+	f32 p1     = mScrollUpDown * (mScrollSelIndex + 1) * (mScrollTargetDist - mScrollMoveTimer);
+	mScrollPos = -((mScrollMoveTimer * (mScrollUpDown * mScrollSelIndex) + p1) / mScrollTargetDist);
 
-	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
-		m_scrollMoveTimer = 1;
-		m_status          = CAVERES_Normal;
+	if (mScrollMoveTimer++ == mScrollTargetDist) {
+		mScrollMoveTimer = 1;
+		mStatus          = CAVERES_Normal;
 	}
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 }
@@ -1184,12 +1183,12 @@ void ObjCaveResult::statusScrollUp()
  */
 void ObjCaveResult::statusScrollDown()
 {
-	f32 p1      = m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer);
-	m_scrollPos = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
+	f32 p1     = mScrollUpDown * (mScrollSelIndex - 1) * (mScrollTargetDist - mScrollMoveTimer);
+	mScrollPos = -((mScrollMoveTimer * (mScrollUpDown * mScrollSelIndex) + p1) / mScrollTargetDist);
 
-	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
-		m_scrollMoveTimer = 1;
-		m_status          = CAVERES_Normal;
+	if (mScrollMoveTimer++ == mScrollTargetDist) {
+		mScrollMoveTimer = 1;
+		mStatus          = CAVERES_Normal;
 	}
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 }
@@ -1201,51 +1200,51 @@ void ObjCaveResult::statusScrollDown()
  */
 void ObjCaveResult::statusForceScroll()
 {
-	f32 p1      = m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer);
-	m_scrollPos = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
+	f32 p1     = mScrollUpDown * (mScrollSelIndex - 1) * (mScrollTargetDist - mScrollMoveTimer);
+	mScrollPos = -((mScrollMoveTimer * (mScrollUpDown * mScrollSelIndex) + p1) / mScrollTargetDist);
 
-	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
-		if (m_scrollSelIndex == m_scrollSelIndexMax) {
-			bool check        = false;
-			m_scrollMoveTimer = 1;
-			FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+	if (mScrollMoveTimer++ == mScrollTargetDist) {
+		if (mScrollSelIndex == mScrollSelIndexMax) {
+			bool check       = false;
+			mScrollMoveTimer = 1;
+			FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 			{
-				if ((cNode->m_itemMgr->m_flags & LOSTITEM_Unk2 != 2) && cNode->m_isLost) {
-					m_status           = CAVERES_Lost;
-					check              = true;
-					m_changeStateDelay = 0;
+				if ((cNode->mItemMgr->mFlags & LOSTITEM_Unk2 != 2) && cNode->mIsLost) {
+					mStatus           = CAVERES_Lost;
+					check             = true;
+					mChangeStateDelay = 0;
 				}
 			}
 			if (check) {
-				m_status           = CAVERES_AllMoney;
-				m_changeStateDelay = msVal._3B;
+				mStatus           = CAVERES_AllMoney;
+				mChangeStateDelay = msVal._3B;
 			}
 		} else {
 			JUT_ASSERTLINE(829, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
 			getDispMember();
-			Game::Result::TNode* node = static_cast<Game::Result::TNode*>(m_resultNode->m_child);
-			for (int i = 0; node && i != m_scrollSelIndex + 6; i++) {
-				node = static_cast<Game::Result::TNode*>(node->m_next);
+			Game::Result::TNode* node = static_cast<Game::Result::TNode*>(mResultNode->mChild);
+			for (int i = 0; node && i != mScrollSelIndex + 6; i++) {
+				node = static_cast<Game::Result::TNode*>(node->mNext);
 			}
-			if (node && !node->m_isLost) {
-				if (node->m_quantity > 0) {
-					m_otakaraCount++;
+			if (node && !node->mIsLost) {
+				if (node->mQuantity > 0) {
+					mOtakaraCount++;
 				}
-				if (node->m_quantity > 0 || !node->m_isLost) {
-					m_cavePokos += node->m_pokoValue;
+				if (node->mQuantity > 0 || !node->mIsLost) {
+					mCavePokos += node->mPokoValue;
 				}
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_COIN_COUNT, 0);
 			}
-			m_scrollMoveTimer = 1;
-			m_scrollSelIndex++;
+			mScrollMoveTimer = 1;
+			mScrollSelIndex++;
 		}
 	}
 	int i = 0;
 	JGeometry::TVec2f pos(_FC, _100);
-	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		if (i == m_scrollSelIndex + 2 && ((cNode->m_itemMgr->m_flags & LOSTITEM_Unk1) != 1)) {
-			cNode->m_itemMgr->init(pos, i & 7);
+		if (i == mScrollSelIndex + 2 && ((cNode->mItemMgr->mFlags & LOSTITEM_Unk1) != 1)) {
+			cNode->mItemMgr->init(pos, i & 7);
 		}
 		i++;
 	}
@@ -1481,8 +1480,8 @@ blr
  */
 void ObjCaveResult::statusDrumRoll()
 {
-	m_changeStateDelay = msVal._3B;
-	m_status           = CAVERES_AllMoney;
+	mChangeStateDelay = msVal._3B;
+	mStatus           = CAVERES_AllMoney;
 }
 
 /*
@@ -1492,16 +1491,16 @@ void ObjCaveResult::statusDrumRoll()
  */
 void ObjCaveResult::statusAllMoney()
 {
-	if (!m_changeStateDelay) {
+	if (!mChangeStateDelay) {
 		JUT_ASSERTLINE(910, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
 		DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
-		m_totalPokos         = disp->m_totalPokos;
-		m_counterTotalPokos->startPuyoUp(1.0f);
+		mTotalPokos          = disp->mTotalPokos;
+		mCounterTotalPokos->startPuyoUp(1.0f);
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
-		m_changeStateDelay = msVal._3B;
-		m_status           = CAVERES_DecP;
+		mChangeStateDelay = msVal._3B;
+		mStatus           = CAVERES_DecP;
 	} else {
-		m_changeStateDelay--;
+		mChangeStateDelay--;
 	}
 }
 
@@ -1512,21 +1511,21 @@ void ObjCaveResult::statusAllMoney()
  */
 void ObjCaveResult::statusDecP()
 {
-	if (!m_changeStateDelay) {
+	if (!mChangeStateDelay) {
 		JUT_ASSERTLINE(934, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
 		DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
-		m_deadPiki           = disp->m_deadPikis;
-		m_counterDeadPiki->startPuyoUp(1.0f);
+		mDeadPiki            = disp->mDeadPikis;
+		mCounterDeadPiki->startPuyoUp(1.0f);
 		pikminSE();
-		if (disp->m_caveComp) {
-			m_status           = CAVERES_Effect;
-			m_changeStateDelay = msVal._3B;
+		if (disp->mCaveComp) {
+			mStatus           = CAVERES_Effect;
+			mChangeStateDelay = msVal._3B;
 		} else {
-			m_status = CAVERES_Normal;
+			mStatus = CAVERES_Normal;
 		}
 		setFlag(CAVERESFLAG_PikisKilledShown);
 	} else {
-		m_changeStateDelay--;
+		mChangeStateDelay--;
 	}
 }
 
@@ -1537,23 +1536,23 @@ void ObjCaveResult::statusDecP()
  */
 void ObjCaveResult::statusLost()
 {
-	if (!m_changeStateDelay) {
+	if (!mChangeStateDelay) {
 		int i = 0;
 		JGeometry::TVec2f pos(_100, _FC);
-		FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+		FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 		{
-			if (cNode->m_isLost != 0 && ((int)(cNode->m_itemMgr->m_flags & LOSTITEM_Unk2) != 2)) {
-				pos.y = m_scrollUpDown * (f32)(i - 3 - m_scrollSelIndexMax) + _100;
-				cNode->m_itemMgr->init(pos, i & 1);
-				m_changeStateDelay = m_scrollTargetDist;
+			if (cNode->mIsLost != 0 && ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {
+				pos.y = mScrollUpDown * (f32)(i - 3 - mScrollSelIndexMax) + _100;
+				cNode->mItemMgr->init(pos, i & 1);
+				mChangeStateDelay = mScrollTargetDist;
 				return;
 			}
 			i++;
 		}
-		m_status           = CAVERES_AllMoney;
-		m_changeStateDelay = msVal._3B;
+		mStatus           = CAVERES_AllMoney;
+		mChangeStateDelay = msVal._3B;
 	} else {
-		m_changeStateDelay--;
+		mChangeStateDelay--;
 	}
 
 	/*
@@ -1645,27 +1644,27 @@ blr
  */
 void ObjCaveResult::statusEffect()
 {
-	if (!m_changeStateDelay) {
+	if (!mChangeStateDelay) {
 		if (!isFlag(CAVERESFLAG_DrawComp)) {
-			m_screenMain->search('Pananorm')->hide();
-			m_screenMain->search('Panacomp')->show();
-			m_scaleMgr->up();
-			m_counterTreasureMax->getMotherPane()->show();
-			m_counterTreasureCollected->getMotherPane()->add(-msVal._10, -msVal._14);
-			m_screenMain->search('PICT_008')->show();
-			m_screenMain->search('Ptits14')->show();
-			m_screenMain->search('Ptits15')->show();
-			m_status = CAVERES_Normal;
+			mScreenMain->search('Pananorm')->hide();
+			mScreenMain->search('Panacomp')->show();
+			mScaleMgr->up();
+			mCounterTreasureMax->getMotherPane()->show();
+			mCounterTreasureCollected->getMotherPane()->add(-msVal._10, -msVal._14);
+			mScreenMain->search('PICT_008')->show();
+			mScreenMain->search('Ptits14')->show();
+			mScreenMain->search('Ptits15')->show();
+			mStatus = CAVERES_Normal;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_CAVE_NAME, 0);
 		}
 
-		if (m_alpha < msVal._39) {
-			m_alpha += msVal._3A;
+		if (mAlpha < msVal._39) {
+			mAlpha += msVal._3A;
 		}
 
 	} else {
-		m_changeStateDelay--;
-		if (m_changeStateDelay == 0) {
+		mChangeStateDelay--;
+		if (mChangeStateDelay == 0) {
 			setFlag(CAVERESFLAG_DrawComp);
 			PSSystem::spSysIF->playSystemSe(PSSE_DOKUTSU_COMPLETE, 0);
 		}
@@ -1679,66 +1678,66 @@ void ObjCaveResult::statusEffect()
  */
 void ObjCaveResult::updateAnimation()
 {
-	JGeometry::TVec3f vec1 = m_screenMain->search('Nmask')->getGlbVtx(0);
-	JGeometry::TVec3f vec2 = m_screenMain->search('Nmask')->getGlbVtx(3);
-	m_scissorMin           = vec1.y;
-	m_scissorMax           = vec2.y;
+	JGeometry::TVec3f vec1 = mScreenMain->search('Nmask')->getGlbVtx(0);
+	JGeometry::TVec3f vec2 = mScreenMain->search('Nmask')->getGlbVtx(3);
+	mScissorMin            = vec1.y;
+	mScissorMax            = vec2.y;
 
-	m_mainAnim->m_currentFrame          = m_animTimers[0];
-	m_completeAnim->m_currentFrame      = m_animTimers[1];
-	m_mainAnimColor->m_currentFrame     = m_animTimers[2];
-	m_completeAnimColor->m_currentFrame = m_animTimers[3];
-	m_animTexSRT->m_currentFrame        = m_animTimers[4];
-	m_animTevReg->m_currentFrame        = m_animTimers[5];
-	m_screenMain->animation();
+	mMainAnim->mCurrentFrame          = mAnimTimers[0];
+	mCompleteAnim->mCurrentFrame      = mAnimTimers[1];
+	mMainAnimColor->mCurrentFrame     = mAnimTimers[2];
+	mCompleteAnimColor->mCurrentFrame = mAnimTimers[3];
+	mAnimTexSRT->mCurrentFrame        = mAnimTimers[4];
+	mAnimTevReg->mCurrentFrame        = mAnimTimers[5];
+	mScreenMain->animation();
 
 	if (!isFlag(CAVERESFLAG_SaveOpen)) {
-		m_animTimers[0] += 1.0f;
-		if (m_animTimers[0] >= m_mainAnim->m_maxFrame) {
-			m_animTimers[0] = 0.0f;
+		mAnimTimers[0] += 1.0f;
+		if (mAnimTimers[0] >= mMainAnim->mMaxFrame) {
+			mAnimTimers[0] = 0.0f;
 		}
 
-		m_animTimers[2] += 1.0f;
-		if (m_animTimers[2] >= m_mainAnimColor->m_maxFrame) {
-			m_animTimers[2] = 0.0f;
+		mAnimTimers[2] += 1.0f;
+		if (mAnimTimers[2] >= mMainAnimColor->mMaxFrame) {
+			mAnimTimers[2] = 0.0f;
 		}
 
-		m_animTimers[4] += 1.0f;
-		if (m_animTimers[4] >= m_animTexSRT->m_maxFrame) {
-			m_animTimers[4] = 0.0f;
+		mAnimTimers[4] += 1.0f;
+		if (mAnimTimers[4] >= mAnimTexSRT->mMaxFrame) {
+			mAnimTimers[4] = 0.0f;
 		}
 
-		m_animTimers[5] += 1.0f;
-		if (m_animTimers[5] >= m_animTevReg->m_maxFrame) {
-			m_animTimers[5] = 0.0f;
+		mAnimTimers[5] += 1.0f;
+		if (mAnimTimers[5] >= mAnimTevReg->mMaxFrame) {
+			mAnimTimers[5] = 0.0f;
 		}
 	}
 
-	m_screenMain->update();
-	m_screenMain->search('Panacomp')->updateScale(m_scaleMgr->calc());
+	mScreenMain->update();
+	mScreenMain->search('Panacomp')->updateScale(mScaleMgr->calc());
 
 	if (isFlag(CAVERESFLAG_DrawComp)) {
-		m_completeAnim->m_currentFrame      = m_animTimers[1];
-		m_completeAnimColor->m_currentFrame = m_animTimers[3];
-		m_screenComplete->animation();
-		if (m_animTimers[1] >= 30.0f && !isFlag(CAVERESFLAG_MakeEfx)) {
+		mCompleteAnim->mCurrentFrame      = mAnimTimers[1];
+		mCompleteAnimColor->mCurrentFrame = mAnimTimers[3];
+		mScreenComplete->animation();
+		if (mAnimTimers[1] >= 30.0f && !isFlag(CAVERESFLAG_MakeEfx)) {
 			u32 y = System::getRenderModeObj()->efbHeight;
 			u32 x = System::getRenderModeObj()->fbWidth;
 			efx2d::Arg arg2(x * 0.5f, y * 0.5f);
-			m_efxComp->create(&arg2);
-			efx2d::Arg arg(getPaneCenterX(m_screenMain->search('NALL')) + msVal._04,
-			               getPaneCenterY(m_screenMain->search('NALL')) + msVal._08);
+			mEfxComp->create(&arg2);
+			efx2d::Arg arg(getPaneCenterX(mScreenMain->search('NALL')) + msVal._04,
+			               getPaneCenterY(mScreenMain->search('NALL')) + msVal._08);
 			efx2d::T2DCavecomp efx;
 			efx.create(&arg);
 			setFlag(CAVERESFLAG_MakeEfx);
 		}
-		m_animTimers[1] += msVal._00;
-		m_animTimers[3] += msVal._00;
-		if (m_completeAnim->m_maxFrame - 1.0f >= m_animTimers[1] || m_completeAnimColor->m_maxFrame - 1.0f >= m_animTimers[3]) {
+		mAnimTimers[1] += msVal._00;
+		mAnimTimers[3] += msVal._00;
+		if (mCompleteAnim->mMaxFrame - 1.0f >= mAnimTimers[1] || mCompleteAnimColor->mMaxFrame - 1.0f >= mAnimTimers[3]) {
 			resetFlag(CAVERESFLAG_DrawComp);
 		}
 	}
-	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode) { cNode->m_itemMgr->update(); }
+	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode) { cNode->mItemMgr->update(); }
 	/*
 stwu     r1, -0xb0(r1)
 mflr     r0
@@ -2115,7 +2114,7 @@ void ObjCaveResult::setAlpha(int index, unsigned char alpha)
 {
 	u64 tag           = 'Nicon00';
 	volatile u64 tag2 = 'Nicon01';
-	m_screenMain->search(tag + index)->setAlpha(alpha);
+	mScreenMain->search(tag + index)->setAlpha(alpha);
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -2157,7 +2156,7 @@ blr
  */
 void ObjCaveResult::pikminSE()
 {
-	uint dead = m_deadPiki;
+	uint dead = mDeadPiki;
 	if (dead == 0) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0);
 		PSSystem::spSysIF->playSystemSe(PSSE_PK_RESULT_INCREMENT, 0);
@@ -2180,15 +2179,15 @@ void ObjCaveResult::pikminSE()
  */
 LostItem::LostItem()
 {
-	m_rect.p1.y = 0.0f;
-	m_rect.p1.x = 0.0f;
-	m_rect.p2.y = 0.0f;
-	m_rect.p2.x = 0.0f;
-	m_alpha     = 255;
-	_14         = -40;
-	_1A         = 0;
-	m_angle     = 0;
-	m_counter   = false;
+	mRect.p1.y = 0.0f;
+	mRect.p1.x = 0.0f;
+	mRect.p2.y = 0.0f;
+	mRect.p2.x = 0.0f;
+	mAlpha     = 255;
+	_14        = -40;
+	_1A        = 0;
+	mAngle     = 0;
+	mCounter   = false;
 }
 
 /*
@@ -2199,26 +2198,26 @@ LostItem::LostItem()
 bool LostItem::update()
 {
 	bool flag;
-	if (m_alpha == 0) {
+	if (mAlpha == 0) {
 		flag = true;
 
 	} else {
-		if (m_counter == 0) {
-			m_alpha += _14;
-			if (m_alpha < (int)-_14) {
-				m_alpha = 0;
+		if (mCounter == 0) {
+			mAlpha += _14;
+			if (mAlpha < (int)-_14) {
+				mAlpha = 0;
 			}
 		} else {
-			m_counter--;
+			mCounter--;
 		}
 
 		flag = false;
-		m_rect.p2.y += _10;
-		m_rect.p2.x *= 0.85f;
-		m_rect.p2.y *= 0.85f;
-		m_rect.p1.x += m_rect.p2.x;
-		m_rect.p1.y += m_rect.p2.y;
-		m_angle += _1A;
+		mRect.p2.y += _10;
+		mRect.p2.x *= 0.85f;
+		mRect.p2.y *= 0.85f;
+		mRect.p1.x += mRect.p2.x;
+		mRect.p1.y += mRect.p2.y;
+		mAngle += _1A;
 	}
 
 	return flag;
@@ -2231,14 +2230,14 @@ bool LostItem::update()
  */
 LostItemMgr::LostItemMgr(int count)
 {
-	m_maxPanes = count;
+	mMaxPanes = count;
 	if (count) {
-		m_itemList = new LostItem[count];
+		mItemList = new LostItem[count];
 	} else {
-		m_itemList = nullptr;
+		mItemList = nullptr;
 	}
 
-	m_flags = 0;
+	mFlags = 0;
 }
 
 /*
@@ -2248,27 +2247,27 @@ LostItemMgr::LostItemMgr(int count)
  */
 void LostItemMgr::init(const JGeometry::TVec2f& pos, bool flag)
 {
-	if (m_maxPanes) {
+	if (mMaxPanes) {
 		f32 x = pos.x;
 		f32 y = pos.y;
 		if (flag) {
 			x += 60.0f;
 		}
 
-		for (int i = 0; i < m_maxPanes; i++) {
+		for (int i = 0; i < mMaxPanes; i++) {
 			f32 x1 = randFloat();
 			f32 x2 = randFloat();
 			f32 y1 = randFloat();
 			f32 y2 = randFloat();
 
-			LostItem* item    = &m_itemList[i];
-			item->m_rect.p1.x = x;
-			item->m_rect.p1.y = y;
-			item->m_rect.p2.x = 40.0f * randFloat() - 20.0f;
-			item->m_rect.p2.y = 32.0f * y2 - 30.0f;
-			item->_10         = (u16)(4.0f * y1 + 2.0f);
-			item->_1A         = (u16)(10000.0f * x2 - 5000.0f);
-			item->m_counter   = (u8)(10.0f * x1 - 8.0f);
+			LostItem* item   = &mItemList[i];
+			item->mRect.p1.x = x;
+			item->mRect.p1.y = y;
+			item->mRect.p2.x = 40.0f * randFloat() - 20.0f;
+			item->mRect.p2.y = 32.0f * y2 - 30.0f;
+			item->_10        = (u16)(4.0f * y1 + 2.0f);
+			item->_1A        = (u16)(10000.0f * x2 - 5000.0f);
+			item->mCounter   = (u8)(10.0f * x1 - 8.0f);
 		}
 		float xoffs[5] = { kh::Screen::ObjCaveResult::msVal._24, kh::Screen::ObjCaveResult::msVal._28, kh::Screen::ObjCaveResult::msVal._2C,
 			               kh::Screen::ObjCaveResult::msVal._30, kh::Screen::ObjCaveResult::msVal._34 };
@@ -2565,8 +2564,8 @@ void LostItemMgr::update()
 	}
 
 	bool doend = true;
-	for (int i = 0; i < (int)m_maxPanes; i++) {
-		doend &= m_itemList[i].update();
+	for (int i = 0; i < (int)mMaxPanes; i++) {
+		doend &= mItemList[i].update();
 	}
 
 	if (doend) {
@@ -2584,15 +2583,15 @@ void LostItemMgr::draw(P2DScreen::Mgr_tuning* screen, u64 tag, const ResTIMG* ti
 	if (isFlag(0x1)) {
 		kh::Screen::setTex(screen, tag, timg);
 		J2DPane* pane = screen->search(tag);
-		for (int i = 0; i < (int)m_maxPanes; i++) {
-			pane->m_offset = JGeometry::TVec2f(m_itemList[i].m_rect.p1.x, m_itemList[i].m_rect.p1.y);
+		for (int i = 0; i < (int)mMaxPanes; i++) {
+			pane->mOffset = JGeometry::TVec2f(mItemList[i].mRect.p1.x, mItemList[i].mRect.p1.y);
 			pane->calcMtx();
 
-			pane->setAlpha(m_itemList[i].m_alpha);
-			pane->m_angle = 360.0f * (f32)m_itemList[i].m_angle / 65536.0f;
+			pane->setAlpha(mItemList[i].mAlpha);
+			pane->mAngle = 360.0f * (f32)mItemList[i].mAngle / 65536.0f;
 			pane->calcMtx();
 
-			screen->draw(gfx, gfx.m_orthoGraph);
+			screen->draw(gfx, gfx.mOrthoGraph);
 		}
 	}
 }
@@ -2604,11 +2603,11 @@ void LostItemMgr::draw(P2DScreen::Mgr_tuning* screen, u64 tag, const ResTIMG* ti
  */
 void SceneCaveResult::doUserCallBackFunc(Resource::MgrCommand* command)
 {
-	og::newScreen::makeLanguageResName(m_name, "result_doukutu.szs");
-	LoadResource::Arg loadArg(m_name);
+	og::newScreen::makeLanguageResName(mName, "result_doukutu.szs");
+	LoadResource::Arg loadArg(mName);
 	LoadResource::Node* resource = gLoadResourceMgr->mountArchive(loadArg);
 	if (resource) {
-		JKRArchive* archive = resource->m_archive;
+		JKRArchive* archive = resource->mArchive;
 		registObj(new ObjCaveResult, archive);
 	} else {
 		JUT_PANICLINE(1299, "failed");

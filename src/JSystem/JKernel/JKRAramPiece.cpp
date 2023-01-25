@@ -87,15 +87,15 @@ bool JKRAramPiece::orderSync(int direction, unsigned long source, unsigned long 
 	}
 	OrderSyncMsg* msg = new (JKRHeap::sSystemHeap, -4) OrderSyncMsg();
 	// void** msg         = new (JKRHeap::sSystemHeap, -4) void*[2];
-	JKRAMCommand* cmd  = new (JKRHeap::sSystemHeap, -4) JKRAMCommand();
-	cmd->m_direction   = direction;
-	cmd->m_source      = source;
-	cmd->m_destination = destination;
-	cmd->_50           = block;
-	cmd->m_length      = length;
-	cmd->_58           = nullptr;
-	msg->_00           = 1;
-	msg->_04           = cmd;
+	JKRAMCommand* cmd = new (JKRHeap::sSystemHeap, -4) JKRAMCommand();
+	cmd->mDirection   = direction;
+	cmd->mSource      = source;
+	cmd->mDestination = destination;
+	cmd->_50          = block;
+	cmd->mLength      = length;
+	cmd->_58          = nullptr;
+	msg->_00          = 1;
+	msg->_04          = cmd;
 	// msg[0] = (void*)1;
 	// msg[1] = cmd;
 	OSSendMessage((OSMessageQueue*)&JKRAram::sMessageQueue, msg, OS_MESSAGE_BLOCKING);
@@ -120,12 +120,12 @@ bool JKRAramPiece::orderSync(int direction, unsigned long source, unsigned long 
  */
 void JKRAramPiece::startDMA(JKRAMCommand* cmd)
 {
-	if (cmd->m_direction == 1) {
-		DCInvalidateRange((u8*)cmd->m_destination, cmd->m_length);
+	if (cmd->mDirection == 1) {
+		DCInvalidateRange((u8*)cmd->mDestination, cmd->mLength);
 	} else {
-		DCStoreRange((u8*)cmd->m_source, cmd->m_length);
+		DCStoreRange((u8*)cmd->mSource, cmd->mLength);
 	}
-	ARQPostRequest(cmd, 0, cmd->m_direction, 0, cmd->m_source, cmd->m_destination, cmd->m_length, doneDMA);
+	ARQPostRequest(cmd, 0, cmd->mDirection, 0, cmd->mSource, cmd->mDestination, cmd->mLength, doneDMA);
 }
 
 /*
@@ -136,8 +136,8 @@ void JKRAramPiece::startDMA(JKRAMCommand* cmd)
 void JKRAramPiece::doneDMA(unsigned long p1)
 {
 	JKRAMCommand* cmd = (JKRAMCommand*)p1;
-	if (cmd->m_direction == 1) {
-		DCInvalidateRange((u8*)cmd->m_destination, cmd->m_length);
+	if (cmd->mDirection == 1) {
+		DCInvalidateRange((u8*)cmd->mDestination, cmd->mLength);
 	}
 	if (cmd->_60 != 0) {
 		if (cmd->_60 == 2) {

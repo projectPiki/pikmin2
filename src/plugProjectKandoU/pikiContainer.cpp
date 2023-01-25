@@ -17,7 +17,7 @@ namespace Game {
  */
 PikiContainer::PikiContainer()
 {
-	m_container = new int[CONTAINER_LENGTH];
+	mContainer = new int[CONTAINER_LENGTH];
 	clear();
 }
 
@@ -29,7 +29,7 @@ PikiContainer::PikiContainer()
 void PikiContainer::clear()
 {
 	for (u32 i = 0; i < CONTAINER_LENGTH; i++) {
-		m_container[i] = 0;
+		mContainer[i] = 0;
 	}
 }
 
@@ -42,7 +42,7 @@ void PikiContainer::clear()
 void PikiContainer::operator=(Game::PikiContainer& other)
 {
 	for (int i = 0; i < CONTAINER_LENGTH; i++) {
-		m_container[i] = other.m_container[i];
+		mContainer[i] = other.mContainer[i];
 	}
 }
 
@@ -78,7 +78,7 @@ int& PikiContainer::getCount(int color, int headType)
 {
 	P2ASSERTBOUNDSLINE(95, 0, color, 7);
 	P2ASSERTBOUNDSLINE(96, 0, headType, 3);
-	return m_container[headType + color * PikiGrowthStageCount];
+	return mContainer[headType + color * PikiGrowthStageCount];
 }
 
 /*
@@ -89,8 +89,8 @@ int& PikiContainer::getCount(int color, int headType)
  */
 int& PikiContainer::operator()(Game::Piki* p)
 {
-	int happa = p->m_happaKind;
-	int type  = p->m_pikiKind;
+	int happa = p->mHappaKind;
+	int type  = p->mPikiKind;
 	return getCount(type, happa);
 }
 
@@ -147,11 +147,11 @@ int PikiContainer::getTotalSum()
 void PikiContainer::write(Stream& output)
 {
 	char buffer[256];
-	output.textWriteTab(output.m_tabCount);
+	output.textWriteTab(output.mTabCount);
 	output.textWriteText("# PikiCounter\r\n");
 	for (int col = 0; col < PikiColorCount; col++) {
 		for (int happa = 0; happa < PikiGrowthStageCount; happa++) {
-			output.textWriteTab(output.m_tabCount);
+			output.textWriteTab(output.mTabCount);
 			output.writeInt(getCount(col, happa));
 			sprintf(buffer, "\t# col%d happa%d\r\n", col, happa);
 			output.textWriteText(buffer);
@@ -167,7 +167,7 @@ void PikiContainer::write(Stream& output)
 void PikiContainer::read(Stream& input)
 {
 	for (int i = 0; i < CONTAINER_LENGTH; i++) {
-		m_container[i] = input.readInt();
+		mContainer[i] = input.readInt();
 	}
 }
 } // namespace Game

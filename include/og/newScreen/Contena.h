@@ -25,7 +25,7 @@ struct Contena : public ::Screen::SceneBase {
 	Contena();
 
 	virtual const char* getResName() const { return "res_contena.szs"; } // _1C (weak)
-	virtual SceneType getSceneType() { return m_sceneType; }             // _08 (weak)
+	virtual SceneType getSceneType() { return mSceneType; }              // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }             // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_CONTENA; }      // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                 // _14 (weak)
@@ -34,7 +34,7 @@ struct Contena : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	SceneType m_sceneType; // _220
+	SceneType mSceneType; // _220
 };
 
 struct ObjContena : public ::Screen::ObjBase {
@@ -69,63 +69,63 @@ struct ObjContena : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberContena* m_disp;    // _38
-	og::Screen::ContenaCounter* m_contena;    // _3C
-	P2DScreen::Mgr_tuning* m_screenSpot;      // _40
-	P2DScreen::Mgr* m_screenCupsule;          // _44
-	Controller* m_controller;                 // _48
-	og::Screen::AnimBaseBase* m_animList[10]; // _4C
-	og::Screen::AlphaMgr* m_alphaMgr[6];      // _74
-	J2DPane* m_paneList[6];                   // _8C
-	int m_state;                              // _A4
-	f32 m_screenAngle;                        // _A8
-	int m_screenState;                        // _AC
-	f32 m_moveTime;                           // _B0
-	f32 m_timer0;                             // _B4
-	int m_onyonID;                            // _B8
-	int m_inOnionCount;                       // _BC
-	int m_currField;                          // _C0
-	int m_inSquadCount;                       // _C4
-	int m_maxPikiOnField;                     // _C8
-	int m_inParty2;                           // _CC
-	int m_onMapCount;                         // _D0
-	int m_maxPikiCount;                       // _D4
-	int _D8;                                  // _D8
-	bool _DC;                                 // _DC
-	int _E0;                                  // _E0
-	u16 _E4;                                  // _E4
-	int m_dispState;                          // _E8
-	og::Screen::CallBack_Furiko* m_furiko;    // _EC
-	f32 m_menuMoveAngle;                      // _F0
-	f32 m_yAnalog;                            // _F4
-	J2DPane* m_paneSpot;                      // _F8
-	f32 m_spotX;                              // _FC
-	f32 m_spotY;                              // _100
-	f32 _104;                                 // _104
-	f32 m_timer;                              // _108
-	bool m_doDraw;                            // _10C
-	f32 m_fadeLevel;                          // _110
-	og::Screen::StickAnimMgr* m_stickAnimMgr; // _114
-	og::Screen::AlphaMgr* m_alphaArrow1;      // _118
-	og::Screen::AlphaMgr* m_alphaArrow2;      // _11C
-	og::Screen::ScaleMgr* m_scaleArrow1;      // _120
-	og::Screen::ScaleMgr* m_scaleArrow2;      // _124
-	J2DPane* m_paneArrowUp;                   // _128
-	J2DPane* m_paneArrowDown;                 // _12C
-	Vector2f m_paneArrowUpPos;                // _130
-	Vector2f m_paneArrowDownPos;              // _138
-	f32 m_timer1;                             // _140
-	f32 m_timer2;                             // _144
-	u8 m_alpha;                               // _148
-	J2DPane** m_pikiPaneList;                 // _14C
-	int m_pikiPaneNum;                        // _150
-	J2DPane* m_paneOnyon;                     // _154
-	J2DPane* m_paneOnyonL;                    // _158
-	og::Screen::ScaleMgr* m_scaleMgr3;        // _15C
-	J2DPane* m_paneTiretu;                    // _160
-	J2DPane* m_paneTiretul;                   // _164
-	og::Screen::ScaleMgr* m_scaleMgr4;        // _168
-	u8 m_payedDebt;                           // _16C
+	og::Screen::DispMemberContena* mDisp;    // _38
+	og::Screen::ContenaCounter* mContena;    // _3C
+	P2DScreen::Mgr_tuning* mScreenSpot;      // _40
+	P2DScreen::Mgr* mScreenCupsule;          // _44
+	Controller* mController;                 // _48
+	og::Screen::AnimBaseBase* mAnimList[10]; // _4C
+	og::Screen::AlphaMgr* mAlphaMgr[6];      // _74
+	J2DPane* mPaneList[6];                   // _8C
+	int mState;                              // _A4
+	f32 mScreenAngle;                        // _A8
+	int mScreenState;                        // _AC
+	f32 mMoveTime;                           // _B0
+	f32 mTimer0;                             // _B4
+	int mOnyonID;                            // _B8
+	int mInOnionCount;                       // _BC
+	int mCurrField;                          // _C0
+	int mInSquadCount;                       // _C4
+	int mMaxPikiOnField;                     // _C8
+	int mInParty2;                           // _CC
+	int mOnMapCount;                         // _D0
+	int mMaxPikiCount;                       // _D4
+	int _D8;                                 // _D8
+	bool _DC;                                // _DC
+	int _E0;                                 // _E0
+	u16 _E4;                                 // _E4
+	int mDispState;                          // _E8
+	og::Screen::CallBack_Furiko* mFuriko;    // _EC
+	f32 mMenuMoveAngle;                      // _F0
+	f32 mYAnalog;                            // _F4
+	J2DPane* mPaneSpot;                      // _F8
+	f32 mSpotX;                              // _FC
+	f32 mSpotY;                              // _100
+	f32 _104;                                // _104
+	f32 mTimer;                              // _108
+	bool mDoDraw;                            // _10C
+	f32 mFadeLevel;                          // _110
+	og::Screen::StickAnimMgr* mStickAnimMgr; // _114
+	og::Screen::AlphaMgr* mAlphaArrow1;      // _118
+	og::Screen::AlphaMgr* mAlphaArrow2;      // _11C
+	og::Screen::ScaleMgr* mScaleArrow1;      // _120
+	og::Screen::ScaleMgr* mScaleArrow2;      // _124
+	J2DPane* mPaneArrowUp;                   // _128
+	J2DPane* mPaneArrowDown;                 // _12C
+	Vector2f mPaneArrowUpPos;                // _130
+	Vector2f mPaneArrowDownPos;              // _138
+	f32 mTimer1;                             // _140
+	f32 mTimer2;                             // _144
+	u8 mAlpha;                               // _148
+	J2DPane** mPikiPaneList;                 // _14C
+	int mPikiPaneNum;                        // _150
+	J2DPane* mPaneOnyon;                     // _154
+	J2DPane* mPaneOnyonL;                    // _158
+	og::Screen::ScaleMgr* mScaleMgr3;        // _15C
+	J2DPane* mPaneTiretu;                    // _160
+	J2DPane* mPaneTiretul;                   // _164
+	og::Screen::ScaleMgr* mScaleMgr4;        // _168
+	u8 mPayedDebt;                           // _16C
 
 	static struct StaticValues {
 		f32 _00;

@@ -25,8 +25,8 @@ void Obj::attackNaviPosition()
 	{
 		Navi* navi = (*iter);
 		if (navi->isAlive()) {
-			f32 minAttackRange = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_minAttackRange.m_value;
-			f32 maxAttackRange = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_maxAttackRange.m_value;
+			f32 minAttackRange = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMinAttackRange.mValue;
+			f32 maxAttackRange = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMaxAttackRange.mValue;
 
 			Vector3f targetPos = navi->getPosition();
 			Vector3f pos       = getPosition();
@@ -39,7 +39,7 @@ void Obj::attackNaviPosition()
 			}
 
 			if (check) {
-				m_targetPosition = Vector3f(navi->getPosition());
+				mTargetPosition = Vector3f(navi->getPosition());
 			}
 		}
 	}
@@ -351,7 +351,7 @@ lbl_80261C68:
  * Address:	80261CD4
  * Size:	0000B0
  */
-void Obj::createEffect() { m_efxPota = new efx::TFrogPota; }
+void Obj::createEffect() { mEfxPota = new efx::TFrogPota; }
 
 } // namespace MaroFrog
 } // namespace Game

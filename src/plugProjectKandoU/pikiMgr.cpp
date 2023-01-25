@@ -3463,7 +3463,7 @@ void PikiMgr::createModelCallback(SysShape::Model*)
  */
 SysShape::Model* PikiMgr::createModel(int p1, int p2)
 {
-	return m_modelMgr->createModel(p1, p2);
+	return mModelMgr->createModel(p1, p2);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4016,15 +4016,15 @@ void PikiMgr::setVsXlu(int p1, bool p2)
 {
 	if (p2) {
 		if (p1 == 0) {
-			m_flags[0] &= ~1;
+			mFlags[0] &= ~1;
 		} else {
-			m_flags[0] &= ~2;
+			mFlags[0] &= ~2;
 		}
 	} else {
 		if (p1 == 0) {
-			m_flags[0] |= 1;
+			mFlags[0] |= 1;
 		} else {
-			m_flags[0] |= 2;
+			mFlags[0] |= 2;
 		}
 	}
 	/*

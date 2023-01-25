@@ -13,10 +13,10 @@ namespace Screen {
  */
 CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr* mgr, u64 tag)
 {
-	_1C              = static_cast<J2DPictureEx*>(TagSearch(mgr, tag));
-	_20              = CopyPicture(_1C, 'ogDAcopy');
-	_1C->m_isVisible = false;
-	m_isVisible      = true;
+	_1C             = static_cast<J2DPictureEx*>(TagSearch(mgr, tag));
+	_20             = CopyPicture(_1C, 'ogDAcopy');
+	_1C->mIsVisible = false;
+	mIsVisible      = true;
 }
 
 /*
@@ -33,11 +33,11 @@ void CallBack_DrawAfter::update() { }
  */
 void CallBack_DrawAfter::draw(Graphics& gfx, J2DGrafContext& context)
 {
-	if (m_isVisible) {
+	if (mIsVisible) {
 		Vector3f globalVtx0 = _1C->getGlbVtx(0);
 		Vector3f globalVtx3 = _1C->getGlbVtx(3);
 
-		gfx.m_orthoGraph.setPort();
+		gfx.mOrthoGraph.setPort();
 
 		_20->draw(globalVtx0.x, globalVtx0.y, globalVtx3.x - globalVtx0.x, globalVtx3.y - globalVtx0.y, false, false, false);
 

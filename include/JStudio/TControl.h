@@ -9,31 +9,31 @@
 
 namespace JStudio {
 struct TControl : stb::TControl {
-	struct TTransform_translation_rotation_scaling {
+	struct TTransformTranslation_rotation_scaling {
 		/** @fabricated */
-		Vec& getTranslation() { return m_vecs[0]; }
+		Vec& getTranslation() { return mVecs[0]; }
 		/** @fabricated */
-		Vec& getRotation() { return m_vecs[1]; }
+		Vec& getRotation() { return mVecs[1]; }
 		/** @fabricated */
-		Vec& getScaling() { return m_vecs[2]; }
+		Vec& getScaling() { return mVecs[2]; }
 		/** @fabricated */
-		const Vec& getTranslation() const { return m_vecs[0]; }
+		const Vec& getTranslation() const { return mVecs[0]; }
 		/** @fabricated */
-		const Vec& getRotation() const { return m_vecs[1]; }
+		const Vec& getRotation() const { return mVecs[1]; }
 		/** @fabricated */
-		const Vec& getScaling() const { return m_vecs[2]; }
+		const Vec& getScaling() const { return mVecs[2]; }
 		/** @fabricated */
-		Vec* getAll() { return m_vecs; }
-		// Vec m_translation;
-		// Vec m_rotation;
-		// Vec m_scaling;
+		Vec* getAll() { return mVecs; }
+		// Vec mTranslation;
+		// Vec mRotation;
+		// Vec mScaling;
 
 	private:
-		Vec m_vecs[3];
+		Vec mVecs[3];
 	};
 
-	struct TTransform_position {
-		Vec m_position;
+	struct TTransformPosition {
+		Vec mPosition;
 	};
 
 	TControl();

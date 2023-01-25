@@ -31,15 +31,15 @@ struct EnemyParmsBase;
 struct EnemyBirthArg {
 	EnemyBirthArg();
 
-	Vector3f m_position;                          // _00
-	f32 m_faceDir;                                // _0C
-	u8 m_tekiBirthType;                           // _10
-	EnemyGeneratorBase* m_generator;              // _14
-	PelletMgr::OtakaraItemCode m_otakaraItemCode; // _18
-	EnemyPelletInfo m_pelletInfo;                 // _1C
-	EnemyTypeID::EEnemyTypeID m_typeID;           // _28
-	f32 m_existenceLength;                        // _2C
-	bool m_isInPiklopedia;                        // _30
+	Vector3f mPosition;                          // _00
+	f32 mFaceDir;                                // _0C
+	u8 mTekiBirthType;                           // _10
+	EnemyGeneratorBase* mGenerator;              // _14
+	PelletMgr::OtakaraItemCode mOtakaraItemCode; // _18
+	EnemyPelletInfo mPelletInfo;                 // _1C
+	EnemyTypeID::EEnemyTypeID mTypeID;           // _28
+	f32 mExistenceLength;                        // _2C
+	bool mIsInPiklopedia;                        // _30
 };
 
 /**
@@ -89,7 +89,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void* getObject(void* index) { return get(index); }; // _5C (weak)
 	virtual void* getNext(void* index);                          // _60
 	virtual void* getStart() { return getNext((void*)-1); }      // _64 (weak)
-	virtual void* getEnd() { return (void*)m_objLimit; }         // _68 (weak)
+	virtual void* getEnd() { return (void*)mObjLimit; }          // _68 (weak)
 	virtual EnemyBase* get(void* index)                          // _98 (weak)
 	{
 		return getEnemy((int)index);
@@ -98,11 +98,11 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual EnemyBase* birth(EnemyBirthArg&);     // _70
 	virtual J3DModelData* getJ3DModelData() const // _74 (weak)
 	{
-		return m_modelData;
+		return mModelData;
 	}
 	virtual EnemyGeneratorBase* getGenerator() const // _78 (weak)
 	{
-		return m_generator;
+		return mGenerator;
 	}
 	virtual void killAll(CreatureKillArg*); // _7C
 	virtual void setupSoundViewerAndBas();  // _80
@@ -110,7 +110,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void resetDebugParm(u32);       // _88
 	virtual int getMaxObjects() const       // _8C
 	{
-		return m_objLimit;
+		return mObjLimit;
 	}
 	virtual void startMovie(); // _90
 	virtual void endMovie();   // _94
@@ -152,7 +152,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	inline EnemyBase* getEnemyByID(EnemyTypeID::EEnemyTypeID id)
 	{
 		EnemyBase* enemy = nullptr;
-		for (int i = 0; i < m_objLimit; i++) {
+		for (int i = 0; i < mObjLimit; i++) {
 			EnemyBase* currEnemy = getEnemy(i);
 			if (id == currEnemy->getEnemyTypeID() && !(currEnemy->isEvent(0, EB_IsAlive))) {
 				enemy = currEnemy;
@@ -164,15 +164,15 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 
 	// _00		= VTABLE
 	// _04-_1C	= GenericContainer
-	J3DModelData* m_modelData;          // _1C
-	SysShape::AnimMgr* m_animMgr;       // _20
-	u8 m_modelType;                     // _24
-	CollPartFactory* m_collPartFactory; // _28
-	int m_objLimit;                     // _2C
-	int m_objCount;                     // _30
-	EnemyParmsBase* m_parms;            // _34
-	EnemyGeneratorBase* m_generator;    // _38
-	EnemyStone::Info m_stoneInfo;       // _3C
+	J3DModelData* mModelData;          // _1C
+	SysShape::AnimMgr* mAnimMgr;       // _20
+	u8 mModelType;                     // _24
+	CollPartFactory* mCollPartFactory; // _28
+	int mObjLimit;                     // _2C
+	int mObjCount;                     // _30
+	EnemyParmsBase* mParms;            // _34
+	EnemyGeneratorBase* mGenerator;    // _38
+	EnemyStone::Info mStoneInfo;       // _3C
 };
 
 struct EnemyMgrBaseAlwaysMovieActor : public EnemyMgrBase {

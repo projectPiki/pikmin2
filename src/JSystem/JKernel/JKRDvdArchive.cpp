@@ -73,8 +73,8 @@ JKRDvdArchive::JKRDvdArchive(long entryNum, JKRArchive::EMountDirection mountDir
 	if (open(entryNum) == false) {
 		return;
 	}
-	m_magicWord = 'RARC';
-	_28         = _48->_04 + _54;
+	mMagicWord = 'RARC';
+	_28        = _48->_04 + _54;
 	sVolumeList.prepend(&_18);
 	_30 = 1;
 

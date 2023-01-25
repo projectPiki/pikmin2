@@ -61,16 +61,16 @@ struct FogParm : public Parameters {
 	void operator=(const FogParm&);
 
 	// _00-_0C = Parameters
-	Parm<f32> m_startZ;        // _0C, fg00
-	Parm<f32> m_endZ;          // _34, fg01
-	Parm<f32> m_startTime;     // _5C, fg02
-	Parm<f32> m_endTime;       // _84, fg03
-	Parm<u8> m_red;            // _AC, fg04
-	Parm<u8> m_green;          // _C8, fg05
-	Parm<u8> m_blue;           // _E4, fg06
-	Parm<f32> m_distance;      // _100, fg07
-	Parm<f32> m_enterDistance; // _128, fg08
-	Parm<f32> m_exitDistance;  // _150, fg09
+	Parm<f32> mStartZ;        // _0C, fg00
+	Parm<f32> mEndZ;          // _34, fg01
+	Parm<f32> mStartTime;     // _5C, fg02
+	Parm<f32> mEndTime;       // _84, fg03
+	Parm<u8> mRed;            // _AC, fg04
+	Parm<u8> mGreen;          // _C8, fg05
+	Parm<u8> mBlue;           // _E4, fg06
+	Parm<f32> mDistance;      // _100, fg07
+	Parm<f32> mEnterDistance; // _128, fg08
+	Parm<f32> mExitDistance;  // _150, fg09
 };
 
 struct Item : public FSMItem<Item, FSM, State> {
@@ -95,16 +95,16 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
-	char* m_caveFilename;                 // _1E0
-	char* _1E4;                           // _1E4
-	ID32 m_caveID;                        // _1E8
-	ItemBarrel::Item* m_barrel;           // _1F4
-	efx::WarpZone* m_efxWarpZone;         // _1F8
-	f32 m_faceDir;                        // _1FC
-	GameLightEventNode* m_lightEventNode; // _200
-	FogParm m_fogParm;                    // _204
-	PlatInstance* _380;                   // _380
-	PlatInstance* _384;                   // _384
+	char* mCaveFilename;                 // _1E0
+	char* _1E4;                          // _1E4
+	ID32 mCaveID;                        // _1E8
+	ItemBarrel::Item* mBarrel;           // _1F4
+	efx::WarpZone* mEfxWarpZone;         // _1F8
+	f32 mFaceDir;                        // _1FC
+	GameLightEventNode* mLightEventNode; // _200
+	FogParm mFogParm;                    // _204
+	PlatInstance* _380;                  // _380
+	PlatInstance* _384;                  // _384
 };
 
 struct Mgr : public TNodeItemMgr {
@@ -136,10 +136,10 @@ struct GenCaveParm : public Game::GenItemParm {
 	GenCaveParm();
 
 	// _00     = VTBL
-	char m_caveFilename[0x20];         // _04
-	char _24[0x20];                    // _24
-	ID32 m_id;                         // _44
-	Game::ItemCave::FogParm m_fogParm; // _50
+	char mCaveFilename[0x20];         // _04
+	char _24[0x20];                   // _24
+	ID32 mId;                         // _44
+	Game::ItemCave::FogParm mFogParm; // _50
 };
 
 #endif

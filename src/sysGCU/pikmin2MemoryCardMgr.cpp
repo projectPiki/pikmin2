@@ -152,7 +152,7 @@ PlayerFileInfo::PlayerFileInfo() { }
 Player* PlayerFileInfo::getPlayer(int idx)
 {
 	checkValidity(idx);
-	return &m_players[idx];
+	return &mPlayers[idx];
 }
 
 /*
@@ -163,7 +163,7 @@ Player* PlayerFileInfo::getPlayer(int idx)
 u8 PlayerFileInfo::isBrokenFile(int idx)
 {
 	checkValidity(idx);
-	return m_players[idx]._00 != 0;
+	return mPlayers[idx]._00 != 0;
 }
 
 /*
@@ -174,7 +174,7 @@ u8 PlayerFileInfo::isBrokenFile(int idx)
 bool PlayerFileInfo::isNewFile(int idx)
 {
 	checkValidity(idx);
-	Player* curPlayer = &m_players[idx];
+	Player* curPlayer = &mPlayers[idx];
 	return !curPlayer->_00 && !curPlayer->_04;
 }
 
@@ -183,7 +183,7 @@ bool PlayerFileInfo::isNewFile(int idx)
  * Address:	80442AB4
  * Size:	00006C
  */
-Resource::~Resource() { m_mgr->destroyResource(); }
+Resource::~Resource() { mMgr->destroyResource(); }
 
 /*
  * --INFO--

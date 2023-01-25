@@ -11,7 +11,7 @@ struct Object;
 
 namespace PSGame {
 struct Randid {
-	f32 m_id; // _00, notUsingMasterIDRatio according to ghidra
+	f32 mId; // _00, notUsingMasterIDRatio according to ghidra
 };
 
 struct SetSe {
@@ -42,10 +42,10 @@ struct SeMgr {
 	void stopMessageVoice();
 
 	// _00 VTBL
-	SetSe* _04[8];     // _04
-	Randid m_randid;   // _24
-	u8 _28[0x4];       // _28, unknown
-	JAISound* m_sound; // _2C
+	SetSe* _04[8];    // _04
+	Randid mRandid;   // _24
+	u8 _28[0x4];      // _28, unknown
+	JAISound* mSound; // _2C
 };
 } // namespace PSGame
 

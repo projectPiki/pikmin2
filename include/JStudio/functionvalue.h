@@ -17,10 +17,10 @@ f64 extrapolateParameter_turn(f64, f64);
 // unused/inlined:
 void interpolateValue_hermite(f64, f64, f64, f64, f64, f64, f64);
 void interpolateValue_BSpline_uniform(f64, f64, f64, f64, f64);
-void interpolateValue_BSpline_uniform_first1(f64, f64, f64, f64, f64);
-void interpolateValue_BSpline_uniform_first2(f64, f64, f64, f64, f64);
-void interpolateValue_BSpline_uniform_last2(f64, f64, f64, f64, f64);
-void interpolateValue_BSpline_uniform_last1(f64, f64, f64, f64, f64);
+void interpolateValue_BSpline_uniformFirst1(f64, f64, f64, f64, f64);
+void interpolateValue_BSpline_uniformFirst2(f64, f64, f64, f64, f64);
+void interpolateValue_BSpline_uniformLast2(f64, f64, f64, f64, f64);
+void interpolateValue_BSpline_uniformLast1(f64, f64, f64, f64, f64);
 void interpolateValue_BSpline_nonuniform(f64, const f64*, const f64*);
 } // namespace functionvalue
 
@@ -34,9 +34,9 @@ struct TFunctionValueAttribute_range {
 	void range_prepare();
 	void range_getParameter(f64, f64, f64) const;
 
-	f64 m_start; // _00
-	f64 m_end;   // _08
-	f64 m_width; // _10
+	f64 mStart; // _00
+	f64 mEnd;   // _08
+	f64 mWidth; // _10
 };
 
 struct TFunctionValueAttribute_refer {

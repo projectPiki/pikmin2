@@ -45,12 +45,12 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual f32 getFaceDir();                    // _64 (weak)
 	virtual void setVelocity(Vector3f& velocity) // _60 (weak)
 	{
-		m_velocity = velocity;
+		mVelocity = velocity;
 	}
 	virtual void updateTrMatrix();                                  // _78
 	virtual JAInter::Object* getJAIObject();                        // _F4
 	virtual PSM::Creature* getPSCreature();                         // _F8
-	virtual Vector3f* getSound_PosPtr() { return &m_position; }     // _100 (weak)
+	virtual Vector3f* getSound_PosPtr() { return &mPosition; }      // _100 (weak)
 	virtual void movieStartAnimation(u32 animIdx);                  // _118
 	virtual void movieStartDemoAnimation(SysShape::AnimInfo* info); // _11C
 	virtual void movieSetAnimationLastFrame();                      // _120
@@ -60,42 +60,42 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual s32 getCreatureID() { return -1; }                      // _1AC (weak)
 
 	// vtable 2 (MotionListener + self)
-	virtual void initDependency() { }                                                  // _1BC (weak)
-	virtual void startSound(u32);                                                      // _1C0
-	virtual void makeTrMatrix();                                                       // _1C4
-	virtual void doAI();                                                               // _1C8 (weak)
-	virtual void move(f32);                                                            // _1CC
-	virtual void changeMaterial();                                                     // _1D0 (weak)
-	virtual void do_updateLOD();                                                       // _1D4
-	virtual void do_setLODParm(AILODParm&) { }                                         // _1D8 (weak)
-	virtual f32 getMapCollisionRadius() { return m_boundingSphere.m_radius; }          // _1DC (weak)
-	virtual bool interactAttack(InteractAttack&) { return false; }                     // _1E0 (weak)
-	virtual bool interactBreakBridge(InteractBreakBridge&) { return false; }           // _1E4 (weak)
-	virtual bool interactEat(InteractEat&) { return false; }                           // _1E8 (weak)
-	virtual bool interactFlockAttack(InteractFlockAttack&) { return false; }           // _1EC (weak)
-	virtual bool interactAbsorb(InteractAbsorb&) { return false; }                     // _1F0 (weak)
-	virtual bool interactFue(InteractFue&) { return false; }                           // _1F4 (weak)
-	virtual bool interactFarmKarero(InteractFarmKarero&) { return false; }             // _1F8 (weak)
-	virtual bool interactFarmHaero(InteractFarmHaero&) { return false; }               // _1FC (weak)
-	virtual bool interactGotKey(InteractGotKey&) { return false; }                     // _200 (weak)
-	virtual bool getVectorField(Sys::Sphere&, Vector3f&) { return true; }              // _204 (weak)
-	virtual f32 getWorkDistance(Sys::Sphere&) { return 128000.0f; }                    // _208 (weak)
-	virtual void do_doAnimation();                                                     // _20C (weak)
-	virtual void bounceCallback(Sys::Triangle* tri) { }                                // _E8 (weak)
-	virtual void collisionCallback(CollEvent& event) { }                               // _EC (weak)
-	virtual void platCallback(PlatEvent& event) { }                                    // _F0 (weak)
-	virtual void updateBoundSphere() { }                                               // _210 (weak)
-	virtual void getBoundingSphere(Sys::Sphere& sphere) { sphere = m_boundingSphere; } // _10 (weak)
-	virtual void update();                                                             // _214
-	virtual void entryShape();                                                         // _218
-	virtual void onSetPosition(Vector3f& position)                                     // _70 (weak)
+	virtual void initDependency() { }                                                 // _1BC (weak)
+	virtual void startSound(u32);                                                     // _1C0
+	virtual void makeTrMatrix();                                                      // _1C4
+	virtual void doAI();                                                              // _1C8 (weak)
+	virtual void move(f32);                                                           // _1CC
+	virtual void changeMaterial();                                                    // _1D0 (weak)
+	virtual void do_updateLOD();                                                      // _1D4
+	virtual void do_setLODParm(AILODParm&) { }                                        // _1D8 (weak)
+	virtual f32 getMapCollisionRadius() { return mBoundingSphere.mRadius; }           // _1DC (weak)
+	virtual bool interactAttack(InteractAttack&) { return false; }                    // _1E0 (weak)
+	virtual bool interactBreakBridge(InteractBreakBridge&) { return false; }          // _1E4 (weak)
+	virtual bool interactEat(InteractEat&) { return false; }                          // _1E8 (weak)
+	virtual bool interactFlockAttack(InteractFlockAttack&) { return false; }          // _1EC (weak)
+	virtual bool interactAbsorb(InteractAbsorb&) { return false; }                    // _1F0 (weak)
+	virtual bool interactFue(InteractFue&) { return false; }                          // _1F4 (weak)
+	virtual bool interactFarmKarero(InteractFarmKarero&) { return false; }            // _1F8 (weak)
+	virtual bool interactFarmHaero(InteractFarmHaero&) { return false; }              // _1FC (weak)
+	virtual bool interactGotKey(InteractGotKey&) { return false; }                    // _200 (weak)
+	virtual bool getVectorField(Sys::Sphere&, Vector3f&) { return true; }             // _204 (weak)
+	virtual f32 getWorkDistance(Sys::Sphere&) { return 128000.0f; }                   // _208 (weak)
+	virtual void do_doAnimation();                                                    // _20C (weak)
+	virtual void bounceCallback(Sys::Triangle* tri) { }                               // _E8 (weak)
+	virtual void collisionCallback(CollEvent& event) { }                              // _EC (weak)
+	virtual void platCallback(PlatEvent& event) { }                                   // _F0 (weak)
+	virtual void updateBoundSphere() { }                                              // _210 (weak)
+	virtual void getBoundingSphere(Sys::Sphere& sphere) { sphere = mBoundingSphere; } // _10 (weak)
+	virtual void update();                                                            // _214
+	virtual void entryShape();                                                        // _218
+	virtual void onSetPosition(Vector3f& position)                                    // _70 (weak)
 	{
-		m_position = position;
+		mPosition = position;
 		onSetPosition();
 	}
-	virtual void onSetPosition() { }                      // _21C (weak)
-	virtual Vector3f getVelocity() { return m_velocity; } // _6C (weak)
-	virtual void getVelocityAt(Vector3f& a, Vector3f& b)  // _184 (weak)
+	virtual void onSetPosition() { }                     // _21C (weak)
+	virtual Vector3f getVelocity() { return mVelocity; } // _6C (weak)
+	virtual void getVelocityAt(Vector3f& a, Vector3f& b) // _184 (weak)
 	{
 		b = Vector3f(0.0f);
 	}
@@ -104,23 +104,23 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
-	PSM::CreatureObj* m_soundObj;  // _17C
-	BaseItemMgr* m_nodeItemMgr;    // _180
-	u32 _184;                      // _184
-	u32 _188;                      // _188
-	Sys::Triangle* _18C;           // _18C
-	Vector3f m_velocity;           // _190
-	Vector3f m_position;           // _19C
-	SysShape::Animator m_animator; // _1A8
-	Sys::Sphere m_boundingSphere;  // _1C4
-	f32 m_animSpeed;               // _1D4, in FPS
+	PSM::CreatureObj* mSoundObj;  // _17C
+	BaseItemMgr* mNodeItemMgr;    // _180
+	u32 _184;                     // _184
+	u32 _188;                     // _188
+	Sys::Triangle* _18C;          // _18C
+	Vector3f mVelocity;           // _190
+	Vector3f mPosition;           // _19C
+	SysShape::Animator mAnimator; // _1A8
+	Sys::Sphere mBoundingSphere;  // _1C4
+	f32 mAnimSpeed;               // _1D4, in FPS
 };
 
 struct CFSMItem : public BaseItem {
 	inline CFSMItem(int objTypeID)
 	    : BaseItem(objTypeID)
-	    , m_stateMachine(nullptr)
-	    , m_currState(nullptr)
+	    , mStateMachine(nullptr)
+	    , mCurrState(nullptr)
 	{
 	}
 
@@ -140,8 +140,8 @@ struct CFSMItem : public BaseItem {
 	FSMState<CFSMItem>* getCurrState();
 	int getStateID();
 
-	CItemFSM* m_stateMachine;        // _1D8
-	FSMState<CFSMItem>* m_currState; // _1DC
+	CItemFSM* mStateMachine;        // _1D8
+	FSMState<CFSMItem>* mCurrState; // _1DC
 };
 
 struct CItemFSM : public StateMachine<CFSMItem> {
@@ -187,68 +187,68 @@ template <typename ItemClass, typename FSMClass, typename StateClass>
 struct FSMItem : public BaseItem {
 	inline FSMItem(int objTypeID)
 	    : BaseItem(objTypeID)
-	    , m_fsm(nullptr)
-	    , m_currentState(nullptr)
+	    , mFsm(nullptr)
+	    , mCurrentState(nullptr)
 	{
-		m_fsm = new FSMClass();
-		m_fsm->init(static_cast<ItemClass*>(this));
+		mFsm = new FSMClass();
+		mFsm->init(static_cast<ItemClass*>(this));
 	}
 
 	// vtable 1
 	// vtable 2
 	virtual void doAI() // _10
 	{
-		static_cast<ItemFSM<ItemClass>*>(m_fsm)->exec((ItemClass*)this);
+		static_cast<ItemFSM<ItemClass>*>(mFsm)->exec((ItemClass*)this);
 	}
 	virtual void bounceCallback(Sys::Triangle* tri) // _E0
 	{
-		StateClass* state = m_currentState;
+		StateClass* state = mCurrentState;
 		if (state) {
 			static_cast<ItemState<ItemClass>*>(state)->onBounce((ItemClass*)this, tri);
 		}
 	}
 	virtual void collisionCallback(CollEvent& event) // _E4
 	{
-		StateClass* state = m_currentState;
+		StateClass* state = mCurrentState;
 		if (state) {
 			static_cast<ItemState<ItemClass>*>(state)->onCollision((ItemClass*)this, event);
 		}
 	}
 	virtual void platCallback(PlatEvent& event) // _E8
 	{
-		StateClass* state = m_currentState;
+		StateClass* state = mCurrentState;
 		if (state) {
 			static_cast<ItemState<ItemClass>*>(state)->onPlatCollision((ItemClass*)this, event);
 		}
 	}
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) // _68 (thunked at _00)
 	{
-		StateClass* state = m_currentState;
+		StateClass* state = mCurrentState;
 		if (state) {
 			static_cast<ItemState<ItemClass>*>(state)->onKeyEvent((ItemClass*)this, event);
 		}
 	}
 
-	FSMClass* m_fsm;            // _1D8
-	StateClass* m_currentState; // _1DC
+	FSMClass* mFsm;            // _1D8
+	StateClass* mCurrentState; // _1DC
 };
 
 template <typename ItemClass, typename FSMClass, typename StateClass>
 struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
 	inline WorkItem(int objTypeID)
 	    : FSMItem<ItemClass, FSMClass, StateClass>(objTypeID)
-	    , m_soundEvent()
+	    , mSoundEvent()
 	{
 	}
 
-	TSoundEvent m_soundEvent; // _1E0
+	TSoundEvent mSoundEvent; // _1E0
 };
 
 } // namespace Game
 
 // defined here to avoid include loop
 namespace efx {
-inline Arg::Arg(Game::BaseItem* item) { m_position = item->m_position; }
+inline Arg::Arg(Game::BaseItem* item) { mPosition = item->mPosition; }
 } // namespace efx
 
 #endif

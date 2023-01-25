@@ -39,9 +39,9 @@ struct Radar {
 	struct Point : public CNode {
 		Point()
 		{
-			m_objType = MAP_NULL_ICON;
-			m_object  = nullptr;
-			m_caveID  = nullptr;
+			mObjType = MAP_NULL_ICON;
+			mObject  = nullptr;
+			mCaveID  = nullptr;
 		}
 
 		virtual ~Point() { } // _08 (weak)
@@ -53,9 +53,9 @@ struct Radar {
 
 		// _00     = VTBL
 		// _00-_18 = CNode
-		cRadarType m_objType;            // _18
-		Game::TPositionObject* m_object; // _1C
-		u32 m_caveID;                    // _20
+		cRadarType mObjType;            // _18
+		Game::TPositionObject* mObject; // _1C
+		u32 mCaveID;                    // _20
 	};
 
 	struct Mgr {
@@ -75,25 +75,25 @@ struct Radar {
 		static int getNumOtakaraItems();
 		void ogDummpyInit();
 
-		Point m_pointNode1; // _00
-		Point m_pointNode2; // _24
-		Point* m_pointList; // _48
-		int m_objCount;     // _4C
-		int m_otakaraNum;   // _50
-		int m_fuefukiCount; // _54
-		int m_fuefukiTimer; // _58
+		Point mPointNode1; // _00
+		Point mPointNode2; // _24
+		Point* mPointList; // _48
+		int mObjCount;     // _4C
+		int mOtakaraNum;   // _50
+		int mFuefukiCount; // _54
+		int mFuefukiTimer; // _58
 	};
 
 	static Mgr* mgr;
 };
 
 struct OgDummy : public Game::TPositionObject {
-	inline OgDummy() { m_position = Vector3f(0.0f); }
+	inline OgDummy() { mPosition = Vector3f(0.0f); }
 
-	virtual Vector3f getPosition() { return m_position; } // _08 (weak)
+	virtual Vector3f getPosition() { return mPosition; } // _08 (weak)
 
 	// _00 = VTBL
-	Vector3f m_position; // _04
+	Vector3f mPosition; // _04
 };
 
 #endif

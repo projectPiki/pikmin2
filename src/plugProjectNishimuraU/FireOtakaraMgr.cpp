@@ -18,7 +18,7 @@ static const char* cOtakaraChangeTexName = "/enemy/data/FireOtakara/otakara_red_
 Mgr::Mgr(int objLimit, u8 modelType)
     : OtakaraBase::Mgr(objLimit, modelType)
 {
-	m_name = "火オタカラムシマネージャ"; // fire otakara manager
+	mName = "火オタカラムシマネージャ"; // fire otakara manager
 }
 
 /*
@@ -33,14 +33,14 @@ void Mgr::doAlloc() { init(new OtakaraBase::Parms); }
  * Address:	802B7EB8
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	802B8008
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 /*
  * --INFO--
@@ -49,13 +49,13 @@ EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
  */
 void Mgr::loadTexData()
 {
-	m_changeTexture = nullptr;
+	mChangeTexture = nullptr;
 	LoadResource::Arg loadArg(cOtakaraChangeTexName);
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
 	if (resource) {
-		m_changeTexture = static_cast<ResTIMG*>(resource->m_file);
+		mChangeTexture = static_cast<ResTIMG*>(resource->mFile);
 	}
-	P2ASSERTLINE(83, m_changeTexture);
+	P2ASSERTLINE(83, mChangeTexture);
 }
 
 } // namespace FireOtakara

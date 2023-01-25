@@ -14,10 +14,10 @@ namespace Sys {
 TriDivider* TriDivider::clone(Matrixf& p1)
 {
 	VertexTable* vtxTable = new VertexTable();
-	vtxTable->cloneFrom(p1, m_vertexTable);
+	vtxTable->cloneFrom(p1, mVertexTable);
 
 	TriangleTable* triTable = new TriangleTable();
-	triTable->cloneFrom(p1, m_triangleTable, vtxTable);
+	triTable->cloneFrom(p1, mTriangleTable, vtxTable);
 
 	return do_clone(p1, vtxTable, triTable);
 }
@@ -29,18 +29,18 @@ TriDivider* TriDivider::clone(Matrixf& p1)
  */
 void VertexTable::cloneFrom(Matrixf& p1, VertexTable* vtxTable)
 {
-	alloc(vtxTable->m_limit);
-	m_count = vtxTable->m_count;
+	alloc(vtxTable->mLimit);
+	mCount = vtxTable->mCount;
 
-	for (int i = 0; i < m_limit; i++) {
+	for (int i = 0; i < mLimit; i++) {
 
 		Vector3f v1;
-		PSMTXMultVec(p1.m_matrix.mtxView, (Vec*)&vtxTable->m_objects[i], (Vec*)&v1);
-		m_objects[i] = Vector3f(v1);
+		PSMTXMultVec(p1.mMatrix.mtxView, (Vec*)&vtxTable->mObjects[i], (Vec*)&v1);
+		mObjects[i] = Vector3f(v1);
 	}
 
-	m_boundBox.m_min = 32768.0f;
-	m_boundBox.m_max = -32768.0f;
+	mBoundBox.mMin = 32768.0f;
+	mBoundBox.mMax = -32768.0f;
 	includeVertices();
 }
 
@@ -51,9 +51,9 @@ void VertexTable::cloneFrom(Matrixf& p1, VertexTable* vtxTable)
  */
 void TriangleTable::cloneFrom(Matrixf& p1, TriangleTable* triTable, VertexTable* vtxTable)
 {
-	alloc(triTable->m_limit);
-	m_count = triTable->m_count;
-	for (int i = 0; i < m_limit; i++) {
+	alloc(triTable->mLimit);
+	mCount = triTable->mCount;
+	for (int i = 0; i < mLimit; i++) {
 		doClone(triTable, vtxTable, i);
 	}
 }
@@ -66,7 +66,7 @@ void TriangleTable::cloneFrom(Matrixf& p1, TriangleTable* triTable, VertexTable*
 TriDivider* GridDivider::do_clone(Matrixf& p1, VertexTable* vtxTable, TriangleTable* triTable)
 {
 	GridDivider* copy = new GridDivider();
-	copy->create(vtxTable->m_boundBox, m_maxX, m_maxZ, vtxTable, triTable);
+	copy->create(vtxTable->mBoundBox, mMaxX, mMaxZ, vtxTable, triTable);
 	return copy;
 }
 } // namespace Sys

@@ -21,9 +21,9 @@ struct Rappa : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	u32 m_id; // _18
-	s16 _1C;  // _1C
-	u16 _1E;  // _1E
+	u32 mId; // _18
+	s16 _1C; // _1C
+	u16 _1E; // _1E
 };
 } // namespace PSGame
 

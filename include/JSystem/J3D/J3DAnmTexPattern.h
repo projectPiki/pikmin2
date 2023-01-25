@@ -9,7 +9,7 @@
 struct J3DAnmTexPatternFullTable {
 	typedef u16 Row[2];
 
-	Row m_data[2];
+	Row mData[2];
 };
 
 struct J3DAnmTexPattern : public J3DAnmBase {

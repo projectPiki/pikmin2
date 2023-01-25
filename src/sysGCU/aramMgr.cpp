@@ -59,7 +59,7 @@ namespace ARAM {
 inline Node::Node()
     : CNode("")
 {
-	m_status = 0;
+	mStatus = 0;
 }
 
 /*
@@ -70,17 +70,17 @@ inline Node::Node()
 inline int Node::dvdToAram(char const* name, bool useNull)
 {
 	P2ASSERTLINE(105, name);
-	m_name = (char*)name;
+	mName = (char*)name;
 
-	if (!m_status) {
+	if (!mStatus) {
 		if (useNull) {
-			m_status = 0;
+			mStatus = 0;
 		} else {
-			m_status = (JKRAramBlock*)JKRDvdAramRipper::loadToAram(m_name, 0, Switch_0, 0, 0, 0);
+			mStatus = (JKRAramBlock*)JKRDvdAramRipper::loadToAram(mName, 0, Switch_0, 0, 0, 0);
 		}
 	}
 
-	return (u32)m_status;
+	return (u32)mStatus;
 }
 
 /*
@@ -97,11 +97,11 @@ void* Node::aramToMainRam(unsigned char* a2, unsigned long a3, unsigned long a4,
 		byteCnt = &zero;
 	}
 
-	if (!m_status) {
-		dvdToAram(m_name, false);
+	if (!mStatus) {
+		dvdToAram(mName, false);
 	}
 
-	JKRAramBlock* status = m_status;
+	JKRAramBlock* status = mStatus;
 	if (status) {
 		addr = JKRAram::aramToMainRam(status, a2, a3, a4, a5, a6, a7, a9, byteCnt);
 		DCFlushRange(addr, *byteCnt);
@@ -136,7 +136,7 @@ void Mgr::init() { new Mgr(); }
  * Size:	000080
  */
 Mgr::Mgr()
-    : m_node("root")
+    : mNode("root")
 {
 	P2ASSERTLINE(248, gAramMgr == nullptr);
 	gAramMgr = this;
@@ -164,7 +164,7 @@ u32 Mgr::dvdToAram(char const* name, bool a2)
 
 		if (a2) {
 			newNode->dvdToAram(newName, a2);
-			m_node.add(newNode);
+			mNode.add(newNode);
 		} else {
 			success = newNode->dvdToAram(newName, false);
 
@@ -172,11 +172,11 @@ u32 Mgr::dvdToAram(char const* name, bool a2)
 				delete newName;
 				delete newNode;
 			} else {
-				m_node.add(newNode);
+				mNode.add(newNode);
 			}
 		}
 	} else {
-		success = found->dvdToAram(found->m_name, a2);
+		success = found->dvdToAram(found->mName, a2);
 	}
 
 	return success;
@@ -220,12 +220,12 @@ void* Mgr::aramToMainRam(char const* name, unsigned char* a2, unsigned long a3, 
 void ARAM::Mgr::dump()
 {
 	u32 min = 0;
-	JKRAram::sAramObject->m_aramHeap->getFreeSize();
-	JKRAram::sAramObject->m_aramHeap->getFreeSize();
+	JKRAram::sAramObject->mAramHeap->getFreeSize();
+	JKRAram::sAramObject->mAramHeap->getFreeSize();
 	u32 max = 0xFFFFFFFF;
-	FOREACH_NODE(Node, m_node.m_child, node)
+	FOREACH_NODE(Node, mNode.mChild, node)
 	{
-		u32 v1 = (node->m_status) ? node->m_status->_18 : 0;
+		u32 v1 = (node->mStatus) ? node->mStatus->_18 : 0;
 		max    = MIN(max, v1);
 		min    = MAX(min, v1);
 	}

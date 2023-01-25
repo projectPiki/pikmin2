@@ -45,15 +45,15 @@ void AttackShadowNode::makeShadowSRT()
  */
 BigTreasureFireAttack::BigTreasureFireAttack(Obj* obj, BigTreasureAttackParameter* data)
 {
-	m_owner      = obj;
-	m_attackData = data;
-	_20          = 0.0f;
-	_24.z        = 0.0f;
-	_24.y        = 0.0f;
-	_24.x        = 0.0f;
-	_30.z        = 0.0f;
-	_30.y        = 0.0f;
-	_30.x        = 0.0f;
+	mOwner      = obj;
+	mAttackData = data;
+	_20         = 0.0f;
+	_24.z       = 0.0f;
+	_24.y       = 0.0f;
+	_24.x       = 0.0f;
+	_30.z       = 0.0f;
+	_30.y       = 0.0f;
+	_30.x       = 0.0f;
 }
 
 /*
@@ -84,15 +84,15 @@ void BigTreasureFireAttack::start(Vector3f&, Vector3f&)
 bool BigTreasureFireAttack::update()
 {
 	if (_20 < 1.0f) {
-		_20 += 3.0f * sys->m_deltaTime;
+		_20 += 3.0f * sys->mDeltaTime;
 		if (_20 > 1.0f) {
 			_20 = 1.0f;
 		}
 	}
 
-	f32 scale  = _20 * (m_attackData->_28 * 200.0f);
-	f32 yComp  = 40.0f * m_attackData->_28;
-	f32 radius = SQUARE(25.0f * m_attackData->_28);
+	f32 scale  = _20 * (mAttackData->_28 * 200.0f);
+	f32 yComp  = 40.0f * mAttackData->_28;
+	f32 radius = SQUARE(25.0f * mAttackData->_28);
 
 	Vector3f pos = _24;
 	pos.x *= scale;
@@ -118,14 +118,14 @@ bool BigTreasureFireAttack::update()
 			f32 yDiff            = absVal(pos.y - creaturePos.y);
 
 			if (yDiff < yComp && sqrDistanceXZ(pos, creaturePos) < radius) {
-				InteractFire fire(m_owner, CG_PARMS(m_owner)->m_general.m_attackDamage.m_value);
+				InteractFire fire(mOwner, CG_PARMS(mOwner)->mGeneral.mAttackDamage.mValue);
 				if (creature->isNavi()) {
 					if (!creature->stimulate(fire)) {
 						if (randWeightFloat(1.0f) < 0.33f) {
-							InteractFlick flick(m_owner, 0.0f, 0.0f, -1000.0f);
+							InteractFlick flick(mOwner, 0.0f, 0.0f, -1000.0f);
 							creature->stimulate(flick);
 						} else {
-							InteractAttack attack(m_owner, 0.0f, nullptr);
+							InteractAttack attack(mOwner, 0.0f, nullptr);
 							creature->stimulate(attack);
 						}
 					}
@@ -157,15 +157,15 @@ void BigTreasureFireAttack::finish()
  */
 BigTreasureGasAttack::BigTreasureGasAttack(Obj* obj, BigTreasureAttackParameter* data)
 {
-	m_owner      = obj;
-	m_attackData = data;
-	_20          = 0.0f;
-	_24.z        = 0.0f;
-	_24.y        = 0.0f;
-	_24.x        = 0.0f;
-	_30.z        = 0.0f;
-	_30.y        = 0.0f;
-	_30.x        = 0.0f;
+	mOwner      = obj;
+	mAttackData = data;
+	_20         = 0.0f;
+	_24.z       = 0.0f;
+	_24.y       = 0.0f;
+	_24.x       = 0.0f;
+	_30.z       = 0.0f;
+	_30.y       = 0.0f;
+	_30.x       = 0.0f;
 }
 
 /*
@@ -441,15 +441,15 @@ lbl_802F4124:
  */
 BigTreasureWaterAttack::BigTreasureWaterAttack(Obj* obj, BigTreasureAttackParameter* data)
 {
-	m_owner        = obj;
-	m_attackData   = data;
-	_20.z          = 0.0f;
-	_20.y          = 0.0f;
-	_20.x          = 0.0f;
-	_2C.z          = 0.0f;
-	_2C.y          = 0.0f;
-	_2C.x          = 0.0f;
-	m_efxWaterBomb = new efx::TOootaWbomb(&_2C);
+	mOwner        = obj;
+	mAttackData   = data;
+	_20.z         = 0.0f;
+	_20.y         = 0.0f;
+	_20.x         = 0.0f;
+	_2C.z         = 0.0f;
+	_2C.y         = 0.0f;
+	_2C.x         = 0.0f;
+	mEfxWaterBomb = new efx::TOootaWbomb(&_2C);
 }
 
 /*
@@ -713,20 +713,20 @@ void BigTreasureWaterAttack::finish()
  */
 BigTreasureElecAttack::BigTreasureElecAttack(Obj* obj, BigTreasureAttackParameter* data)
 {
-	m_owner        = obj;
-	m_attackData   = data;
-	_20            = 1;
-	_24            = nullptr;
-	_28.z          = 0.0f;
-	_28.y          = 0.0f;
-	_28.x          = 0.0f;
-	_34.z          = 0.0f;
-	_34.y          = 0.0f;
-	_34.x          = 0.0f;
-	_40            = 0;
-	m_efxElec      = new efx::TOootaElec;
-	m_efxElecParts = new efx::TOootaElecparts(&_34);
-	m_efxPhouden   = new efx::TOootaPhouden(&_34);
+	mOwner        = obj;
+	mAttackData   = data;
+	_20           = 1;
+	_24           = nullptr;
+	_28.z         = 0.0f;
+	_28.y         = 0.0f;
+	_28.x         = 0.0f;
+	_34.z         = 0.0f;
+	_34.y         = 0.0f;
+	_34.x         = 0.0f;
+	_40           = 0;
+	mEfxElec      = new efx::TOootaElec;
+	mEfxElecParts = new efx::TOootaElecparts(&_34);
+	mEfxPhouden   = new efx::TOootaPhouden(&_34);
 }
 
 /*
@@ -1311,53 +1311,53 @@ BigTreasureAttackMgr::BigTreasureAttackMgr(Obj* obj)
 		_00[i] = 0;
 	}
 
-	m_obj = obj;
+	mObj = obj;
 	for (int i = 0; i < 4; i++) {
 		_54[i] = 0.0f;
 	}
 
-	m_attackData      = new BigTreasureAttackData;
-	_10               = new CNode;
-	m_fireAttackNodes = new CNode;
+	mAttackData      = new BigTreasureAttackData;
+	_10              = new CNode;
+	mFireAttackNodes = new CNode;
 
 	for (int i = 0; i < 8; i++) {
-		m_fireAttackNodes->add(new BigTreasureFireAttack(m_obj, (BigTreasureAttackParameter*)m_attackData));
+		mFireAttackNodes->add(new BigTreasureFireAttack(mObj, (BigTreasureAttackParameter*)mAttackData));
 	}
 
-	_4C              = new CNode;
-	m_gasAttackNodes = new CNode;
+	_4C             = new CNode;
+	mGasAttackNodes = new CNode;
 	for (int i = 0; i < 200; i++) {
-		m_gasAttackNodes->add(new BigTreasureGasAttack(m_obj, (BigTreasureAttackParameter*)m_attackData));
+		mGasAttackNodes->add(new BigTreasureGasAttack(mObj, (BigTreasureAttackParameter*)mAttackData));
 	}
 
-	_B0                = new CNode;
-	m_waterAttackNodes = new CNode;
+	_B0               = new CNode;
+	mWaterAttackNodes = new CNode;
 	for (int i = 0; i < 16; i++) {
-		m_waterAttackNodes->add(new BigTreasureWaterAttack(m_obj, (BigTreasureAttackParameter*)m_attackData));
+		mWaterAttackNodes->add(new BigTreasureWaterAttack(mObj, (BigTreasureAttackParameter*)mAttackData));
 	}
 
-	_C8               = new CNode;
-	m_elecAttackNodes = new CNode;
+	_C8              = new CNode;
+	mElecAttackNodes = new CNode;
 	for (int i = 0; i < 17; i++) {
-		m_elecAttackNodes->add(new BigTreasureElecAttack(m_obj, (BigTreasureAttackParameter*)m_attackData));
+		mElecAttackNodes->add(new BigTreasureElecAttack(mObj, (BigTreasureAttackParameter*)mAttackData));
 	}
 
-	m_efxFire = new efx::TOootaFire;
+	mEfxFire = new efx::TOootaFire;
 
 	for (int i = 0; i < 4; i++) {
-		m_efxGas[i] = new efx::TOootaGas(&m_gasEmitPosition, &_54[i]);
+		mEfxGas[i] = new efx::TOootaGas(&mGasEmitPosition, &_54[i]);
 		for (int j = 0; j < 3; j++) {
-			m_efxElecLeg[i][j] = new efx::TOootaElecLeg;
+			mEfxElecLeg[i][j] = new efx::TOootaElecLeg;
 		}
 	}
 
-	m_efxElecAttack1    = new efx::TOootaElecAttack1;
-	m_efxElecAttack2    = new efx::TOootaElecAttack2;
-	m_shadowRootNode    = new JointShadowRootNode(m_obj);
-	m_attackShadowNodes = new AttackShadowNode*[16];
+	mEfxElecAttack1    = new efx::TOootaElecAttack1;
+	mEfxElecAttack2    = new efx::TOootaElecAttack2;
+	mShadowRootNode    = new JointShadowRootNode(mObj);
+	mAttackShadowNodes = new AttackShadowNode*[16];
 
 	for (int i = 0; i < 16; i++) {
-		m_attackShadowNodes[i] = new AttackShadowNode(2);
+		mAttackShadowNodes[i] = new AttackShadowNode(2);
 	}
 }
 
@@ -1523,15 +1523,15 @@ void BigTreasureAttackMgr::update()
 	for (int i = 0; i < 4; i++) {
 		if (_00[i]) {
 			check = true;
-			if (m_obj->isEvent(0, EB_IsBittered) && !m_obj->isCapturedTreasure(i)) {
+			if (mObj->isEvent(0, EB_IsBittered) && !mObj->isCapturedTreasure(i)) {
 				finishAttack();
 			}
 		}
 	}
 
 	if (check) {
-		_08 += sys->m_deltaTime;
-		_0C += sys->m_deltaTime;
+		_08 += sys->mDeltaTime;
+		_0C += sys->mDeltaTime;
 	}
 }
 
@@ -1543,12 +1543,12 @@ void BigTreasureAttackMgr::update()
 void BigTreasureAttackMgr::setFireAttackParameter()
 {
 	// this needs a srawi not srwi......................
-	switch ((m_obj->isNormalAttack(BIGATTACK_Fire) != 0) + 2) {
+	switch ((mObj->isNormalAttack(BIGATTACK_Fire) != 0) + 2) {
 	case 1:
-		m_attackData->_28 = CG_PROPERPARMS(m_obj).m_ff00.m_value;
+		mAttackData->_28 = CG_PROPERPARMS(mObj).mFf00.mValue;
 		break;
 	case 2:
-		m_attackData->_28 = CG_PROPERPARMS(m_obj).m_ff10.m_value;
+		mAttackData->_28 = CG_PROPERPARMS(mObj).mFf10.mValue;
 		break;
 	}
 }
@@ -1568,8 +1568,8 @@ void BigTreasureAttackMgr::startFireAttack()
 
 		updateFireEmitPosition();
 		startNewFireList();
-		efx::ArgScale fxArg(Vector3f::zero, m_attackData->_28);
-		m_efxFire->create(&fxArg);
+		efx::ArgScale fxArg(Vector3f::zero, mAttackData->_28);
+		mEfxFire->create(&fxArg);
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -1665,8 +1665,8 @@ lbl_802F57E8:
  */
 void BigTreasureAttackMgr::startNewFireList()
 {
-	if (m_fireAttackNodes->m_child) {
-		BigTreasureFireAttack* child = static_cast<BigTreasureFireAttack*>(m_fireAttackNodes->m_child);
+	if (mFireAttackNodes->mChild) {
+		BigTreasureFireAttack* child = static_cast<BigTreasureFireAttack*>(mFireAttackNodes->mChild);
 		child->del();
 
 		child->_20 = 0.0f;
@@ -1686,15 +1686,15 @@ void BigTreasureAttackMgr::startNewFireList()
 void BigTreasureAttackMgr::updateFireAttack()
 {
 	bool check                       = true;
-	BigTreasureFireAttack* childNode = static_cast<BigTreasureFireAttack*>(_10->m_child);
+	BigTreasureFireAttack* childNode = static_cast<BigTreasureFireAttack*>(_10->mChild);
 	while (childNode) {
-		BigTreasureFireAttack* nextNode = static_cast<BigTreasureFireAttack*>(childNode->m_next);
+		BigTreasureFireAttack* nextNode = static_cast<BigTreasureFireAttack*>(childNode->mNext);
 		if (childNode->update()) {
 			childNode->del();
-			m_fireAttackNodes->add(childNode);
+			mFireAttackNodes->add(childNode);
 		}
 
-		if (childNode == _10->m_child) {
+		if (childNode == _10->mChild) {
 			updateFireSePosition(childNode, 2);
 			PSStartSoundVec(PSSE_EN_BIGTAKARA_FIRE_TAIL, (Vec*)&_28[2]);
 		}
@@ -1842,7 +1842,7 @@ void BigTreasureAttackMgr::finishFireAttack()
  */
 void BigTreasureAttackMgr::updateFireEmitPosition()
 {
-	Matrixf* mat = m_obj->m_model->getJoint("otakara_fire_eff")->getWorldMatrix();
+	Matrixf* mat = mObj->mModel->getJoint("otakara_fire_eff")->getWorldMatrix();
 	mat->getBasis(0, _1C);
 	mat->getBasis(3, _28[0]);
 }
@@ -1855,7 +1855,7 @@ void BigTreasureAttackMgr::updateFireEmitPosition()
 void BigTreasureAttackMgr::updateFireSePosition(BigTreasureFireAttack* attackNode, int nodeType)
 {
 	f32 factor;
-	f32 scale   = m_attackData->_28;
+	f32 scale   = mAttackData->_28;
 	f32 nodeVal = attackNode->_20;
 
 	_28[nodeType] = attackNode->_24;

@@ -63,14 +63,14 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                // _2BC
-	u8 _2C0[0x4];              // _2C0, unknown
-	f32 _2C4;                  // _2C4, timer?
-	Vector3f m_targetPosition; // _2C8
-	u8 _2D4;                   // _2D4, unknown
-	Obj* m_partner;            // _2D8
-	efx::TDnkmsEffect* _2DC;   // _2DC
-	                           // _2E0 = PelletView
+	FSM* mFsm;                // _2BC
+	u8 _2C0[0x4];             // _2C0, unknown
+	f32 _2C4;                 // _2C4, timer?
+	Vector3f mTargetPosition; // _2C8
+	u8 _2D4;                  // _2D4, unknown
+	Obj* mPartner;            // _2D8
+	efx::TDnkmsEffect* _2DC;  // _2DC
+	                          // _2E0 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -87,22 +87,22 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_flipTime(this, 'fp01', "ひっくり返り時間", 5.0f, 0.0f, 10.0f) // 'flip time'
-		    , m_waitTime(this, 'fp02', "ウェイト時間", 1.5f, 0.0f, 10.0f)     // 'wait time'
-		    , m_dischargeTime(this, 'fp11', "放電時間", 3.0f, 0.0f, 10.0f)    // 'discharge time'
+		    , mFlipTime(this, 'fp01', "ひっくり返り時間", 5.0f, 0.0f, 10.0f) // 'flip time'
+		    , mWaitTime(this, 'fp02', "ウェイト時間", 1.5f, 0.0f, 10.0f)     // 'wait time'
+		    , mDischargeTime(this, 'fp11', "放電時間", 3.0f, 0.0f, 10.0f)    // 'discharge time'
 		{
 		}
 
-		Parm<f32> m_flipTime;      // _804, fp01
-		Parm<f32> m_waitTime;      // _82C, fp02
-		Parm<f32> m_dischargeTime; // _854, fp11
+		Parm<f32> mFlipTime;      // _804, fp01
+		Parm<f32> mWaitTime;      // _82C, fp02
+		Parm<f32> mDischargeTime; // _854, fp11
 	};
 
 	Parms() { }
@@ -110,23 +110,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

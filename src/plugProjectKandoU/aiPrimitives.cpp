@@ -29,9 +29,9 @@ ActGotoPos::ActGotoPos(Game::Piki* p)
 void ActGotoPos::init(ActionArg* actionArg)
 {
 	GotoPosActionArg* posArg = static_cast<GotoPosActionArg*>(actionArg);
-	m_parent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
-	m_position = posArg->m_position;
-	_0C        = posArg->_10;
+	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
+	mPosition = posArg->mPosition;
+	_0C       = posArg->_10;
 }
 
 /*
@@ -41,15 +41,15 @@ void ActGotoPos::init(ActionArg* actionArg)
  */
 int ActGotoPos::exec()
 {
-	Vector3f pikiPos = m_parent->getPosition();
-	Vector3f diff    = m_position - pikiPos;
+	Vector3f pikiPos = mParent->getPosition();
+	Vector3f diff    = mPosition - pikiPos;
 
 	f32 length = diff.normalise();
 	if (length <= _0C) {
 		return 0;
 	}
 
-	m_parent->setSpeed(1.0f, diff);
+	mParent->setSpeed(1.0f, diff);
 	return 1;
 }
 
@@ -403,7 +403,7 @@ lbl_801978EC:
  * Address:	80197918
  * Size:	000034
  */
-void ActApproachPos::cleanup() { m_parent->setMoveRotation(true); }
+void ActApproachPos::cleanup() { mParent->setMoveRotation(true); }
 
 /*
  * --INFO--
@@ -6520,7 +6520,7 @@ lbl_8019C748:
  * Address:	8019C758
  * Size:	000024
  */
-void ActStickAttack::cleanup() { m_parent->endStick(); }
+void ActStickAttack::cleanup() { mParent->endStick(); }
 
 /*
  * --INFO--

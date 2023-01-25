@@ -29,8 +29,8 @@ struct PlayChallengeGameData {
 
 		CourseState();
 
-		BitFlag<u16> m_flags;      // _00
-		Highscore m_highscores[2]; // _04
+		BitFlag<u16> mFlags;      // _00
+		Highscore mHighscores[2]; // _04
 	};
 
 	PlayChallengeGameData();
@@ -40,9 +40,9 @@ struct PlayChallengeGameData {
 	void read(Stream&);
 	CourseState* getState(int);
 
-	int m_courseCount;      // _00
-	CourseState* m_courses; // _04
-	u8 m_flags;             // _08
+	int mCourseCount;      // _00
+	CourseState* mCourses; // _04
+	u8 mFlags;             // _08
 };
 
 struct PlayCommonData {
@@ -88,10 +88,10 @@ struct PlayCommonData {
 	bool challenge_checkJustKunsho(int);
 	void challenge_setKunsho(int);
 
-	u8 _00;                                // _00
-	Highscore** _04;                       // _04
-	Highscore** _08;                       // _08
-	PlayChallengeGameData m_challengeData; // _0C
+	u8 _00;                               // _00
+	Highscore** _04;                      // _04
+	Highscore** _08;                      // _08
+	PlayChallengeGameData mChallengeData; // _0C
 };
 
 namespace CommonSaveData {
@@ -118,26 +118,26 @@ struct Mgr : public PlayCommonData {
 	void setDeflicker();
 	void setDeflicker(bool);
 
-	int _18;              // _18
-	u32 m_time;           // _1C
-	char m_fileIndex;     // _20
-	char padding;         // _21
-	short _22;            // _22
-	u32 _24;              // _24
-	u32 _28;              // _28
-	u32 _2C;              // _2C
-	u64 m_cardSerialNo;   // _30
-	u8 m_soundMode;       // _38, TODO: Replace with Soundmode enum
-	u8 m_musicVol;        // _39
-	u8 m_seVol;           // _3A
-	u8 m_rumble;          // _3B
-	u8 m_rubyFont;        // _3C, japanese version leftover, mini font in cutscenes
-	u8 m_deflicker;       // _3D
-	u8 m_region;          // _3E
-	char _3F;             // _3F
-	BitFlag<u16> m_flags; // _40
-	bool m_challengeOpen; // _42
-	u32 _44;              // _44
+	int _18;             // _18
+	u32 mTime;           // _1C
+	char mFileIndex;     // _20
+	char padding;        // _21
+	short _22;           // _22
+	u32 _24;             // _24
+	u32 _28;             // _28
+	u32 _2C;             // _2C
+	u64 mCardSerialNo;   // _30
+	u8 mSoundMode;       // _38, TODO: Replace with Soundmode enum
+	u8 mMusicVol;        // _39
+	u8 mSeVol;           // _3A
+	u8 mRumble;          // _3B
+	u8 mRubyFont;        // _3C, japanese version leftover, mini font in cutscenes
+	u8 mDeflicker;       // _3D
+	u8 mRegion;          // _3E
+	char _3F;            // _3F
+	BitFlag<u16> mFlags; // _40
+	bool mChallengeOpen; // _42
+	u32 _44;             // _44
 };
 } // namespace CommonSaveData
 } // namespace Game

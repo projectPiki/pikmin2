@@ -7,13 +7,13 @@
 struct JASMutexLock {
 	// unused/inlined:
 	JASMutexLock(OSMutex* mutex)
-	    : m_mutex(mutex)
+	    : mMutex(mutex)
 	{
 		OSLockMutex(mutex);
 	}
-	~JASMutexLock() { OSUnlockMutex(m_mutex); }
+	~JASMutexLock() { OSUnlockMutex(mMutex); }
 
-	OSMutex* m_mutex;
+	OSMutex* mMutex;
 };
 
 /**
@@ -22,15 +22,15 @@ struct JASMutexLock {
  */
 struct JASCriticalSection {
 	/** @fabricated */
-	inline JASCriticalSection() { m_interrupts = OSDisableInterrupts(); }
+	inline JASCriticalSection() { mInterrupts = OSDisableInterrupts(); }
 
 	~JASCriticalSection() // unused/inlined
 	{
-		OSRestoreInterrupts(m_interrupts);
+		OSRestoreInterrupts(mInterrupts);
 	}
 
-	// volatile int m_interrupts;
-	int m_interrupts;
+	// volatile int mInterrupts;
+	int mInterrupts;
 };
 
 #endif

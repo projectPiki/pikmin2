@@ -38,7 +38,7 @@ void ItemTreasure::FSM::init(ItemTreasure::Item* item)
  * Address:	801F31F0
  * Size:	00000C
  */
-void ItemTreasure::NormalState::init(ItemTreasure::Item* item, Game::StateArg*) { item->m_animSpeed = 0.0f; }
+void ItemTreasure::NormalState::init(ItemTreasure::Item* item, Game::StateArg*) { item->mAnimSpeed = 0.0f; }
 
 /*
  * --INFO--
@@ -61,9 +61,9 @@ void ItemTreasure::NormalState::cleanup(ItemTreasure::Item*) { }
  */
 void ItemTreasure::NormalState::onDamage(ItemTreasure::Item* item, f32 damage)
 {
-	if (gameSystem->m_flags & GAMESYS_Unk6 && gameSystem->m_mode == GSM_STORY_MODE && !playData->isDemoFlag(DEMO_Whites_Digging)) {
-		f32 depth = item->m_pellet->getBuryDepth();
-		f32 max   = item->m_pellet->getBuryDepthMax();
+	if (gameSystem->mFlags & GAMESYS_Unk6 && gameSystem->mMode == GSM_STORY_MODE && !playData->isDemoFlag(DEMO_Whites_Digging)) {
+		f32 depth = item->mPellet->getBuryDepth();
+		f32 max   = item->mPellet->getBuryDepthMax();
 
 		// if fully buried, do the whole Whites Can See Buried Things cutscene
 		if (max == depth) {
@@ -73,34 +73,34 @@ void ItemTreasure::NormalState::onDamage(ItemTreasure::Item* item, f32 damage)
 			CI_LOOP(itPiki)
 			{
 				Piki* piki = *itPiki;
-				if ((int)piki->m_pikiKind == White) {
+				if ((int)piki->mPikiKind == White) {
 					piki->movie_begin(false);
 				}
 			}
 			item->movie_begin(false);
-			arg.m_origin                = item->m_pellet->getPosition();
-			arg.m_angle                 = item->m_pellet->getFaceDir();
-			moviePlayer->m_targetObject = item->m_pellet;
+			arg.mOrigin                = item->mPellet->getPosition();
+			arg.mAngle                 = item->mPellet->getFaceDir();
+			moviePlayer->mTargetObject = item->mPellet;
 			moviePlayer->play(arg);
 		}
 	}
 
-	item->m_instantDamage += damage;
-	item->m_currStageLife -= item->m_instantDamage;
-	item->m_instantDamage = 0.0f;
+	item->mInstantDamage += damage;
+	item->mCurrStageLife -= item->mInstantDamage;
+	item->mInstantDamage = 0.0f;
 
 	f32 maxlife  = item->getCurrMaxLife();
-	f32 depthmax = item->m_pellet->getBuryDepthMax();
+	f32 depthmax = item->mPellet->getBuryDepthMax();
 
-	item->m_totalLife = -((depthmax * 0.25f) * (damage / maxlife) - item->m_totalLife);
+	item->mTotalLife = -((depthmax * 0.25f) * (damage / maxlife) - item->mTotalLife);
 
-	if (item->m_currStageLife <= 0.0f) {
-		item->m_soundObj->startSound(PSSE_EV_TREASURE_RISE_UP, 0);
+	if (item->mCurrStageLife <= 0.0f) {
+		item->mSoundObj->startSound(PSSE_EV_TREASURE_RISE_UP, 0);
 		item->setLife();
 	}
 
-	if (item->m_totalLife <= 0.0f) {
-		item->m_totalLife = 0.0f;
+	if (item->mTotalLife <= 0.0f) {
+		item->mTotalLife = 0.0f;
 		item->releasePellet();
 	}
 }
@@ -112,44 +112,44 @@ void ItemTreasure::NormalState::onDamage(ItemTreasure::Item* item, f32 damage)
  */
 void ItemTreasure::Item::releasePellet()
 {
-	if (m_pellet) {
-		m_pellet->endCapture();
-		TexCaster::Caster* caster = m_pellet->m_caster;
+	if (mPellet) {
+		mPellet->endCapture();
+		TexCaster::Caster* caster = mPellet->mCaster;
 		if (caster) {
 			caster->fadein(0.5f);
 		}
 
-		f32 scale = m_pellet->getPickRadius();
+		f32 scale = mPellet->getPickRadius();
 
-		efx::ArgScale arg(m_position, scale);
+		efx::ArgScale arg(mPosition, scale);
 		efx::TOtakaraAp efx;
 		efx.create(&arg);
 
-		m_soundObj->startSound(PSSE_EV_TREASURE_JUMP_OUT, 0);
+		mSoundObj->startSound(PSSE_EV_TREASURE_JUMP_OUT, 0);
 
 		Vector3f velocity;
 		velocity.x = 10.0f * (randFloat() - 0.5f);
 		velocity.z = 10.0f * (randFloat() - 0.5f);
 		velocity.y = 15.0f;
 
-		m_pellet->setVelocity(velocity);
+		mPellet->setVelocity(velocity);
 
 		if (gameSystem->isVersusMode()) {
 			f32 test = randFloat() * 3.0f;
 			GameMessageVsBirthTekiTreasure mesg;
-			mesg.m_position = m_position;
-			mesg._14        = false;
-			mesg._10        = (int)test + 1;
-			gameSystem->m_section->sendMessage(mesg);
+			mesg.mPosition = mPosition;
+			mesg._14       = false;
+			mesg._10       = (int)test + 1;
+			gameSystem->mSection->sendMessage(mesg);
 		}
 
-		m_soundEvent.finish();
+		mSoundEvent.finish();
 
-		P2ASSERTLINE(327, m_soundObj->getCastType() == PSM::CCT_WorkItem);
-		static_cast<PSM::WorkItem*>(m_soundObj)->eventFinish();
+		P2ASSERTLINE(327, mSoundObj->getCastType() == PSM::CCT_WorkItem);
+		static_cast<PSM::WorkItem*>(mSoundObj)->eventFinish();
 
 		setAlive(false);
-		m_pellet = nullptr;
+		mPellet = nullptr;
 	}
 }
 
@@ -161,9 +161,9 @@ void ItemTreasure::Item::releasePellet()
 ItemTreasure::Item::Item()
     : WorkItem(OBJTYPE_Treasure)
 {
-	m_mass                = 0.0f;
-	m_dummyShape.m_matrix = &m_objMatrix;
-	m_pellet              = nullptr;
+	mMass               = 0.0f;
+	mDummyShape.mMatrix = &mObjMatrix;
+	mPellet             = nullptr;
 }
 
 /*
@@ -171,7 +171,7 @@ ItemTreasure::Item::Item()
  * Address:	801F3864
  * Size:	000048
  */
-void ItemTreasure::Item::constructor() { m_soundObj = new PSM::WorkItem(this); }
+void ItemTreasure::Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 
 /*
  * --INFO--
@@ -180,10 +180,10 @@ void ItemTreasure::Item::constructor() { m_soundObj = new PSM::WorkItem(this); }
  */
 void ItemTreasure::Item::onInit(CreatureInitArg*)
 {
-	m_model = nullptr;
-	m_fsm->start(this, 0, nullptr);
+	mModel = nullptr;
+	mFsm->start(this, 0, nullptr);
 	setAlive(true);
-	m_collTree->createSingleSphere(&m_dummyShape, 0, m_boundingSphere, nullptr);
+	mCollTree->createSingleSphere(&mDummyShape, 0, mBoundingSphere, nullptr);
 }
 
 /*
@@ -193,7 +193,7 @@ void ItemTreasure::Item::onInit(CreatureInitArg*)
  */
 void StateMachine<Game::ItemTreasure::Item>::start(ItemTreasure::Item* item, int id, StateArg* arg)
 {
-	item->m_currentState = nullptr;
+	item->mCurrentState = nullptr;
 	transit(item, id, arg);
 }
 
@@ -205,7 +205,7 @@ void StateMachine<Game::ItemTreasure::Item>::start(ItemTreasure::Item* item, int
 void ItemTreasure::Item::onSetPosition()
 {
 	updateBoundSphere();
-	m_objMatrix.makeT(m_position);
+	mObjMatrix.makeT(mPosition);
 }
 
 /*
@@ -215,9 +215,9 @@ void ItemTreasure::Item::onSetPosition()
  */
 void ItemTreasure::Item::updateBoundSphere()
 {
-	f32 rad                     = getWorkRadius();
-	m_boundingSphere.m_position = m_position;
-	m_boundingSphere.m_radius   = rad;
+	f32 rad                   = getWorkRadius();
+	mBoundingSphere.mPosition = mPosition;
+	mBoundingSphere.mRadius   = rad;
 }
 
 /*
@@ -227,35 +227,35 @@ void ItemTreasure::Item::updateBoundSphere()
  */
 void ItemTreasure::Item::doAI()
 {
-	m_fsm->exec(this);
-	m_boundingSphere.m_radius = getWorkRadius();
+	mFsm->exec(this);
+	mBoundingSphere.mRadius = getWorkRadius();
 	updateCollTree();
-	CollPart* part = m_collTree->m_part;
-	part->m_radius = getWorkRadius();
+	CollPart* part = mCollTree->mPart;
+	part->mRadius  = getWorkRadius();
 
-	if (m_pellet) {
-		f32 halfMax = (m_pellet->getBuryDepthMax() * 0.5f);
-		f32 depth   = halfMax - m_totalLife;
+	if (mPellet) {
+		f32 halfMax = (mPellet->getBuryDepthMax() * 0.5f);
+		f32 depth   = halfMax - mTotalLife;
 
 		Matrixf mtx;
-		PSMTXCopy(m_pellet->m_objMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView);
-		mtx.m_matrix.structView.ty = depth;
-		mtx.m_matrix.structView.tx = 0.0f;
-		mtx.m_matrix.structView.tz = 0.0f;
-		m_pellet->updateCapture(mtx);
+		PSMTXCopy(mPellet->mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
+		mtx.mMatrix.structView.ty = depth;
+		mtx.mMatrix.structView.tx = 0.0f;
+		mtx.mMatrix.structView.tz = 0.0f;
+		mPellet->updateCapture(mtx);
 
-		if (m_totalLife >= m_pellet->getBuryDepthMax()) {
-			m_pellet->m_lod.m_flags &= ~(AILOD_FLAG_NEED_SHADOW | AILOD_FLAG_VISIBLE_VP0 | AILOD_FLAG_VISIBLE_VP1);
+		if (mTotalLife >= mPellet->getBuryDepthMax()) {
+			mPellet->mLod.mFlags &= ~(AILOD_FLAG_NEED_SHADOW | AILOD_FLAG_VISIBLE_VP0 | AILOD_FLAG_VISIBLE_VP1);
 		}
-		m_pellet->m_depth = m_totalLife;
+		mPellet->mDepth = mTotalLife;
 	}
 
 	if (isAlive()) {
-		int state = m_soundEvent.update();
+		int state = mSoundEvent.update();
 		switch (state) {
 		case 2:
-			P2ASSERTLINE(406, m_soundObj->getCastType() == 10);
-			static_cast<PSM::WorkItem*>(m_soundObj)->eventStop();
+			P2ASSERTLINE(406, mSoundObj->getCastType() == 10);
+			static_cast<PSM::WorkItem*>(mSoundObj)->eventStop();
 			break;
 		}
 	}
@@ -269,7 +269,7 @@ void ItemTreasure::Item::doAI()
 void ItemTreasure::Item::doDirectDraw(Graphics& gfx)
 {
 	gfx.initPrimDraw(nullptr);
-	gfx.drawSphere(m_boundingSphere.m_position, m_boundingSphere.m_radius);
+	gfx.drawSphere(mBoundingSphere.mPosition, mBoundingSphere.mRadius);
 }
 
 /*
@@ -279,7 +279,7 @@ void ItemTreasure::Item::doDirectDraw(Graphics& gfx)
  */
 bool ItemTreasure::Item::getVectorField(Sys::Sphere& bounds, Vector3f& pos)
 {
-	Vector3f diff = m_position - bounds.m_position;
+	Vector3f diff = mPosition - bounds.mPosition;
 	f32 dist      = _normalise2(diff); // needs tweaking
 
 	if (dist > getWorkRadius() + 5.0f) {
@@ -297,7 +297,7 @@ bool ItemTreasure::Item::getVectorField(Sys::Sphere& bounds, Vector3f& pos)
  */
 f32 ItemTreasure::Item::getWorkDistance(Sys::Sphere& bounds)
 {
-	f32 dist = _distanceBetween(m_position, bounds.m_position);
+	f32 dist = _distanceBetween(mPosition, bounds.mPosition);
 	return dist - getWorkRadius();
 }
 
@@ -308,16 +308,16 @@ f32 ItemTreasure::Item::getWorkDistance(Sys::Sphere& bounds)
  */
 void ItemTreasure::Item::setTreasure(Game::Pellet* pelt)
 {
-	Vector3f pos = m_position;
-	m_matrix.makeT(pos);
-	m_pellet = pelt;
-	if (m_pellet) {
-		m_pellet->startCapture(&m_matrix);
-		m_totalLife = m_pellet->getBuryDepth();
-		if (gameSystem->m_mode == GSM_VERSUS_MODE && m_pellet->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
-			m_totalLife = VsOtakaraName::cBedamaYellowDepth;
+	Vector3f pos = mPosition;
+	mMatrix.makeT(pos);
+	mPellet = pelt;
+	if (mPellet) {
+		mPellet->startCapture(&mMatrix);
+		mTotalLife = mPellet->getBuryDepth();
+		if (gameSystem->mMode == GSM_VERSUS_MODE && mPellet->mPelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
+			mTotalLife = VsOtakaraName::cBedamaYellowDepth;
 		}
-		m_pellet->m_depth = m_totalLife;
+		mPellet->mDepth = mTotalLife;
 		setLife();
 	}
 }
@@ -327,7 +327,7 @@ void ItemTreasure::Item::setTreasure(Game::Pellet* pelt)
  * Address:	801F3E18
  * Size:	000030
  */
-void ItemTreasure::Item::setLife() { m_currStageLife = getCurrMaxLife(); }
+void ItemTreasure::Item::setLife() { mCurrStageLife = getCurrMaxLife(); }
 
 /*
  * --INFO--
@@ -336,17 +336,17 @@ void ItemTreasure::Item::setLife() { m_currStageLife = getCurrMaxLife(); }
  */
 f32 ItemTreasure::Item::getCurrMaxLife()
 {
-	f32 depth = m_pellet->getBuryDepthMax();
-	f32 test  = m_totalLife / depth;
+	f32 depth = mPellet->getBuryDepthMax();
+	f32 test  = mTotalLife / depth;
 
 	if (test < 0.25f) {
-		return mgr->m_parameters->m_parms.m_p003.m_value;
+		return mgr->mParameters->mParms.mP003.mValue;
 	} else if (test < 0.5f) {
-		return mgr->m_parameters->m_parms.m_p002.m_value;
+		return mgr->mParameters->mParms.mP002.mValue;
 	} else if (test < 0.75f) {
-		return mgr->m_parameters->m_parms.m_p001.m_value;
+		return mgr->mParameters->mParms.mP001.mValue;
 	} else {
-		return mgr->m_parameters->m_parms.m_p000.m_value;
+		return mgr->mParameters->mParms.mP000.mValue;
 	}
 }
 
@@ -367,19 +367,19 @@ void ItemTreasure::Item::createTreasure()
  */
 bool ItemTreasure::Item::interactAttack(Game::InteractAttack& act)
 {
-	State* cState = m_currentState;
+	State* cState = mCurrentState;
 	if (cState) {
-		cState->onDamage(this, act.m_damage);
+		cState->onDamage(this, act.mDamage);
 
-		int id = m_soundEvent.event();
+		int id = mSoundEvent.event();
 		switch (id) {
 		case 1:
-			P2ASSERTLINE(555, m_soundObj->getCastType() == 10);
-			static_cast<PSM::WorkItem*>(m_soundObj)->eventStart();
+			P2ASSERTLINE(555, mSoundObj->getCastType() == 10);
+			static_cast<PSM::WorkItem*>(mSoundObj)->eventStart();
 			break;
 		case 3:
-			P2ASSERTLINE(561, m_soundObj->getCastType() == 10);
-			static_cast<PSM::WorkItem*>(m_soundObj)->eventRestart();
+			P2ASSERTLINE(561, mSoundObj->getCastType() == 10);
+			static_cast<PSM::WorkItem*>(mSoundObj)->eventRestart();
 			break;
 		}
 	}
@@ -393,11 +393,11 @@ bool ItemTreasure::Item::interactAttack(Game::InteractAttack& act)
  */
 f32 ItemTreasure::Item::getWorkRadius()
 {
-	if (!m_pellet) {
+	if (!mPellet) {
 		return 10.0f;
 	}
 
-	return m_pellet->getBuryRadius(1.0f - m_totalLife / m_pellet->getBuryDepthMax());
+	return mPellet->getBuryRadius(1.0f - mTotalLife / mPellet->getBuryDepthMax());
 }
 
 /*
@@ -405,7 +405,7 @@ f32 ItemTreasure::Item::getWorkRadius()
  * Address:	801F4058
  * Size:	000060
  */
-bool ItemTreasure::Item::isVisible() { return (!m_pellet) ? false : !(m_totalLife / m_pellet->getBuryDepthMax() > 0.85f); }
+bool ItemTreasure::Item::isVisible() { return (!mPellet) ? false : !(mTotalLife / mPellet->getBuryDepthMax() > 0.85f); }
 
 /*
  * --INFO--
@@ -415,9 +415,9 @@ bool ItemTreasure::Item::isVisible() { return (!m_pellet) ? false : !(m_totalLif
 bool ItemTreasure::Item::ignoreAtari(Game::Creature* obj)
 {
 	bool check;
-	if (!m_pellet) {
+	if (!mPellet) {
 		check = false;
-	} else if (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f) {
+	} else if (mTotalLife / mPellet->getBuryDepthMax() > 0.85f) {
 		check = false;
 	} else {
 		check = true;
@@ -425,7 +425,7 @@ bool ItemTreasure::Item::ignoreAtari(Game::Creature* obj)
 
 	if (!check) {
 		Piki* piki = static_cast<Piki*>(obj);
-		if (piki->isPiki() && (int)piki->m_pikiKind == White) {
+		if (piki->isPiki() && (int)piki->mPikiKind == White) {
 			return false;
 		} else {
 			return true;
@@ -443,16 +443,16 @@ bool ItemTreasure::Item::ignoreAtari(Game::Creature* obj)
  */
 ItemTreasure::Mgr::Mgr()
 {
-	m_itemName            = "Treasure";
-	m_objectPathComponent = "user/kando/objects/treasure";
-	m_parameters          = new TreasureParms;
+	mItemName            = "Treasure";
+	mObjectPathComponent = "user/kando/objects/treasure";
+	mParameters          = new TreasureParms;
 
 	void* file = JKRDvdRipper::loadToMainRAM("user/Abe/item/treasureParms.txt", nullptr, (JKRExpandSwitch)0, 0, nullptr,
 	                                         (JKRDvdRipper::EAllocDirection)2, 0, nullptr, nullptr);
 	if (file) {
 		RamStream stm(file, -1);
 		stm.resetPosition(true, 1);
-		m_parameters->read(stm);
+		mParameters->read(stm);
 		delete[] file;
 	}
 }
@@ -503,8 +503,8 @@ void StateMachine<ItemTreasure::Item>::init(ItemTreasure::Item*) { }
  */
 void StateMachine<ItemTreasure::Item>::exec(ItemTreasure::Item* item)
 {
-	if (item->m_currentState) {
-		item->m_currentState->exec(item);
+	if (item->mCurrentState) {
+		item->mCurrentState->exec(item);
 	}
 }
 
@@ -515,11 +515,11 @@ void StateMachine<ItemTreasure::Item>::exec(ItemTreasure::Item* item)
  */
 void StateMachine<ItemTreasure::Item>::create(int count)
 {
-	m_limit          = count;
-	m_count          = 0;
-	m_states         = new FSMState<ItemTreasure::Item>*[m_limit];
-	m_indexToIDArray = new int[m_limit];
-	m_idToIndexArray = new int[m_limit];
+	mLimit          = count;
+	mCount          = 0;
+	mStates         = new FSMState<ItemTreasure::Item>*[mLimit];
+	mIndexToIDArray = new int[mLimit];
+	mIdToIndexArray = new int[mLimit];
 }
 
 /*
@@ -529,17 +529,17 @@ void StateMachine<ItemTreasure::Item>::create(int count)
  */
 void StateMachine<ItemTreasure::Item>::transit(ItemTreasure::Item* obj, int id, StateArg* arg)
 {
-	int index                  = m_idToIndexArray[id];
-	ItemTreasure::State* state = obj->m_currentState;
+	int index                  = mIdToIndexArray[id];
+	ItemTreasure::State* state = obj->mCurrentState;
 	if (state) {
 		state->cleanup(obj);
-		m_currentID = state->m_id;
+		mCurrentID = state->mId;
 	}
 
-	ASSERT_HANG(index < m_limit);
+	ASSERT_HANG(index < mLimit);
 
-	state               = static_cast<ItemTreasure::State*>(m_states[index]);
-	obj->m_currentState = state;
+	state              = static_cast<ItemTreasure::State*>(mStates[index]);
+	obj->mCurrentState = state;
 	state->init(obj, arg);
 }
 
@@ -552,12 +552,12 @@ void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure
 {
 	// copied all this from enemyFSM.cpp, do we actually need it here? no idea
 	bool check;
-	if (m_count >= m_limit) {
+	if (mCount >= mLimit) {
 		return;
 	}
-	m_states[m_count] = newState;
+	mStates[mCount] = newState;
 	// TODO: This looks weird. How would they really have written it?
-	if (!(0 <= newState->m_id && newState->m_id < m_limit)) {
+	if (!(0 <= newState->mId && newState->mId < mLimit)) {
 		check = false;
 	} else {
 		check = true;
@@ -565,10 +565,10 @@ void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure
 	if (check == false) {
 		return;
 	}
-	newState->m_stateMachine         = this;
-	m_indexToIDArray[m_count]        = newState->m_id;
-	m_idToIndexArray[newState->m_id] = m_count;
-	m_count++;
+	newState->mStateMachine        = this;
+	mIndexToIDArray[mCount]        = newState->mId;
+	mIdToIndexArray[newState->mId] = mCount;
+	mCount++;
 }
 
 // /*
@@ -578,7 +578,7 @@ void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure
 //  */
 // void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::onKeyEvent(const SysShape::KeyEvent& event)
 // {
-// 	ItemState<ItemTreasure::Item>* state = m_currentState;
+// 	ItemState<ItemTreasure::Item>* state = mCurrentState;
 // 	if (state) {
 // 		state->onKeyEvent((ItemTreasure::Item*)this, event);
 // 	}
@@ -591,7 +591,7 @@ void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure
 //  */
 // void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::platCallback(PlatEvent& event)
 // {
-// 	ItemState<ItemTreasure::Item>* state = m_currentState;
+// 	ItemState<ItemTreasure::Item>* state = mCurrentState;
 // 	if (state) {
 // 		state->onPlatCollision((ItemTreasure::Item*)this, event);
 // 	}
@@ -604,7 +604,7 @@ void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure
 //  */
 // void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::collisionCallback(CollEvent& event)
 // {
-// 	ItemState<ItemTreasure::Item>* state = m_currentState;
+// 	ItemState<ItemTreasure::Item>* state = mCurrentState;
 // 	if (state) {
 // 		state->onCollision((ItemTreasure::Item*)this, event);
 // 	}
@@ -617,7 +617,7 @@ void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure
 //  */
 // void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::bounceCallback(Sys::Triangle* tri)
 // {
-// 	ItemState<ItemTreasure::Item>* state = m_currentState;
+// 	ItemState<ItemTreasure::Item>* state = mCurrentState;
 // 	if (state) {
 // 		state->onBounce((ItemTreasure::Item*)this, tri);
 // 	}

@@ -9,14 +9,14 @@ enum JSUStreamSeekFrom { SEEK_SET = 0, SEEK_CUR, SEEK_END };
 
 struct JSUIosBase {
 	inline JSUIosBase()
-	    : m_isEOFMaybe(0)
+	    : mIsEOFMaybe(0)
 	{
 	}
 
 	virtual ~JSUIosBase() { } //_08 (weak)
 
 	// _00 VTBL
-	u8 m_isEOFMaybe; // _04
+	u8 mIsEOFMaybe; // _04
 };
 
 struct JSUInputStream : public JSUIosBase {
@@ -105,36 +105,36 @@ struct JSURandomInputStream : public JSUInputStream {
 };
 
 struct JSUMemoryInputStream : public JSURandomInputStream {
-	virtual ~JSUMemoryInputStream() { }                    // _08 (weak)
-	virtual int readData(void*, long);                     // _14
-	virtual int getLength() const { return m_length; }     // _18 (weak)
-	virtual int getPosition() const { return m_position; } // _1C (weak)
-	virtual int seekPos(long, JSUStreamSeekFrom);          // _20
+	virtual ~JSUMemoryInputStream() { }                   // _08 (weak)
+	virtual int readData(void*, long);                    // _14
+	virtual int getLength() const { return mLength; }     // _18 (weak)
+	virtual int getPosition() const { return mPosition; } // _1C (weak)
+	virtual int seekPos(long, JSUStreamSeekFrom);         // _20
 
 	void setBuffer(const void*, long);
 
 	// _00		= VTBL
 	// _00-_08	= JSUIosBase
-	const void* m_object; // _08
-	long m_length;        // _0C
-	int m_position;       // _10
+	const void* mObject; // _08
+	long mLength;        // _0C
+	int mPosition;       // _10
 };
 
 // Size: 0x10
 struct JSUFileInputStream : public JSURandomInputStream {
 	JSUFileInputStream(JKRFile*);
 
-	virtual ~JSUFileInputStream() { }                                             // _08 (weak)
-	virtual int readData(void*, long);                                            // _14
-	virtual int getLength() const { return ((JKRFile*)m_object)->getFileSize(); } // _18 (weak)
-	virtual int getPosition() const { return m_length; }                          // _1C (weak)
-	virtual int seekPos(long, JSUStreamSeekFrom);                                 // _20
+	virtual ~JSUFileInputStream() { }                                            // _08 (weak)
+	virtual int readData(void*, long);                                           // _14
+	virtual int getLength() const { return ((JKRFile*)mObject)->getFileSize(); } // _18 (weak)
+	virtual int getPosition() const { return mLength; }                          // _1C (weak)
+	virtual int seekPos(long, JSUStreamSeekFrom);                                // _20
 
 	// _00		= VTBL
 	// _00-_08	= JSUIosBase
-	const void* m_object; // _08
-	long m_length;        // _0C
-	int m_position;       // _10
+	const void* mObject; // _08
+	long mLength;        // _0C
+	int mPosition;       // _10
 };
 
 /* Not much remains of this. */

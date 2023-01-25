@@ -9,9 +9,9 @@
  */
 void* J2DDataManage::get(const char* name)
 {
-	for (J2DDataLink* elem = m_head; elem; elem = elem->m_next) {
-		if (!strcmp(elem->m_name, name)) {
-			return elem->m_value;
+	for (J2DDataLink* elem = mHead; elem; elem = elem->mNext) {
+		if (!strcmp(elem->mName, name)) {
+			return elem->mValue;
 		}
 	}
 	return nullptr;
@@ -45,11 +45,11 @@ void* J2DDataManage::get(JSUInputStream* stream)
  */
 s8* J2DResReference::getResReference(u16 idx) const
 {
-	if ((m_count <= idx) || (idx == 0xFFFF)) {
+	if ((mCount <= idx) || (idx == 0xFFFF)) {
 		return nullptr;
 	}
 
-	return (((s8*)this) + m_offsets[idx]);
+	return (((s8*)this) + mOffsets[idx]);
 }
 
 /*

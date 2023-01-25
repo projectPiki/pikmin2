@@ -39,7 +39,7 @@ void PikiState::dump() { }
  * Address:	8018937C
  * Size:	000030
  */
-void PikiState::getInfo(char* string) { sprintf(string, "%s", m_name); }
+void PikiState::getInfo(char* string) { sprintf(string, "%s", mName); }
 
 /*
  * --INFO--
@@ -90,8 +90,8 @@ void PikiFSM::init(Piki* piki)
  */
 void PikiFSM::transit(Piki* piki, int stateID, StateArg* stateArg)
 {
-	PikiState* currentState = piki->m_currentState;
-	if (currentState != nullptr && currentState->m_id == PIKISTATE_Carrot) {
+	PikiState* currentState = piki->mCurrentState;
+	if (currentState != nullptr && currentState->mId == PIKISTATE_Carrot) {
 		currentState->cleanup(piki);
 		return;
 	}
@@ -102,13 +102,13 @@ void PikiFSM::transit(Piki* piki, int stateID, StateArg* stateArg)
 		}
 
 		if (!currentState->transittable(stateID)) {
-			JUT_PANICLINE(701, "*Transit(%d)(%d)\n(%s)=>(%s)\n", currentState->m_id, m_idToIndexArray[stateID], currentState->m_name,
-			              static_cast<PikiState*>(m_states[m_idToIndexArray[stateID]])->m_name);
+			JUT_PANICLINE(701, "*Transit(%d)(%d)\n(%s)=>(%s)\n", currentState->mId, mIdToIndexArray[stateID], currentState->mName,
+			              static_cast<PikiState*>(mStates[mIdToIndexArray[stateID]])->mName);
 			JUT_PANICLINE(702, "---------- ‚¾‚ß‚¾‚æ?\n");
 		}
 	}
 
-	m_stateID = stateID;
+	mStateID = stateID;
 	StateMachine::transit(piki, stateID, stateArg);
 }
 
@@ -119,8 +119,8 @@ void PikiFSM::transit(Piki* piki, int stateID, StateArg* stateArg)
  */
 void PikiFSM::transitForce(Piki* piki, int stateID, StateArg* stateArg)
 {
-	PikiState* currentState = piki->m_currentState;
-	if (currentState != nullptr && currentState->m_id == PIKISTATE_Carrot) {
+	PikiState* currentState = piki->mCurrentState;
+	if (currentState != nullptr && currentState->mId == PIKISTATE_Carrot) {
 		currentState->cleanup(piki);
 	} else {
 		StateMachine::transit(piki, stateID, stateArg);
@@ -139,7 +139,7 @@ void PikiWalkState::init(Piki* piki, StateArg* stateArg) { piki->startMotion(IPi
  * Address:	8018A0C0
  * Size:	000024
  */
-void PikiWalkState::exec(Piki* piki) { piki->m_brain->exec(); }
+void PikiWalkState::exec(Piki* piki) { piki->mBrain->exec(); }
 
 /*
  * --INFO--
@@ -160,7 +160,7 @@ void PikiDemoWaitState::init(Piki* piki, StateArg* stateArg) { piki->startMotion
  * Address:	8018A128
  * Size:	000024
  */
-void PikiDemoWaitState::exec(Piki* piki) { piki->m_brain->exec(); }
+void PikiDemoWaitState::exec(Piki* piki) { piki->mBrain->exec(); }
 
 /*
  * --INFO--
@@ -182,8 +182,8 @@ void PikiCarrotState::init(Piki* piki, StateArg* stateArg)
 	piki->setMoveRotation(false);
 	piki->setCollisionFlick(true);
 	piki->setUpdateTrMatrix(true);
-	m_timeRemaining = 3.0f * randFloat() + 10.0f;
-	m_isPlanted     = false;
+	mTimeRemaining = 3.0f * randFloat() + 10.0f;
+	mIsPlanted     = false;
 }
 
 /*
@@ -194,15 +194,15 @@ void PikiCarrotState::init(Piki* piki, StateArg* stateArg)
 void PikiCarrotState::exec(Piki* piki)
 {
 	if (piki->isAlive()) {
-		piki->m_velocity = Vector3f(0.0f);
-		if (m_isPlanted) {
-			piki->setPosition(m_position, false);
-			piki->m_position2 = Vector3f(0.0f);
+		piki->mVelocity = Vector3f(0.0f);
+		if (mIsPlanted) {
+			piki->setPosition(mPosition, false);
+			piki->mPosition2 = Vector3f(0.0f);
 		}
 
-		m_timeRemaining -= sys->m_deltaTime;
+		mTimeRemaining -= sys->mDeltaTime;
 
-		if (m_timeRemaining <= 0.0f) {
+		if (mTimeRemaining <= 0.0f) {
 			Vector3f position = piki->getPosition();
 			efx::Arg fxArg(position);
 			efx::TPikuDead deadFX;
@@ -213,24 +213,24 @@ void PikiCarrotState::exec(Piki* piki)
 
 			piki->kill(nullptr);
 		}
-		piki->m_animSpeed = 0.0f;
+		piki->mAnimSpeed = 0.0f;
 	}
 
-	Vector3f pos = piki->m_position2;
+	Vector3f pos = piki->mPosition2;
 	f32 length   = pos.normalise();
 	if (length > 0.0f) { // regswaps here
 		pos.negate();
 		Matrixf natMatrix;
 		natMatrix.makeNaturalPosture(pos);
 		Matrixf matST;
-		matST.makeST(piki->m_scale, Vector3f::zero);
+		matST.makeST(piki->mScale, Vector3f::zero);
 		Matrixf concatMtx;
 		Vector3f translation(0.0f, -10.0f, 0.0f);
 		natMatrix.setTranslation(translation);
-		piki->m_objMatrix = concatMatrixf(natMatrix, matST);
+		piki->mObjMatrix = concatMatrixf(natMatrix, matST);
 
 		Vector3f newPos = piki->getPosition();
-		piki->m_objMatrix.setTranslation(newPos);
+		piki->mObjMatrix.setTranslation(newPos);
 	}
 	/*
 	stwu     r1, -0x120(r1)
@@ -481,13 +481,13 @@ void PikiCarrotState::cleanup(Piki* piki)
  */
 void PikiCarrotState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 {
-	if (!m_isPlanted) {
-		m_isPlanted  = true;
-		m_position   = piki->getPosition();
-		m_position.y = mapMgr->getMinY(m_position);
-		efx::Arg fxArg(m_position);
-		m_position.y -= 8.0f;
-		piki->m_soundObj->startFreePikiSound(PSSE_PK_CARROT_GROUND, 0, 0);
+	if (!mIsPlanted) {
+		mIsPlanted  = true;
+		mPosition   = piki->getPosition();
+		mPosition.y = mapMgr->getMinY(mPosition);
+		efx::Arg fxArg(mPosition);
+		mPosition.y -= 8.0f;
+		piki->mSoundObj->startFreePikiSound(PSSE_PK_CARROT_GROUND, 0, 0);
 
 		efx::TPkAp appearFx;
 		appearFx.create(&fxArg);
@@ -511,15 +511,15 @@ void PikiSwallowedState::init(Piki* piki, StateArg* stateArg)
 	int animIdx;
 	SwallowedStateArg* swallowedArg = static_cast<SwallowedStateArg*>(stateArg);
 	if (swallowedArg) {
-		animIdx = swallowedArg->m_animIdx;
+		animIdx = swallowedArg->mAnimIdx;
 	} else {
 		animIdx = IPikiAnims::ESA; // i.e., eat
 	}
 
 	piki->startMotion(animIdx, animIdx, nullptr, nullptr);
 
-	Creature* creature = piki->m_sticker;
-	CollPart* collpart = piki->m_stuckCollPart;
+	Creature* creature = piki->mSticker;
+	CollPart* collpart = piki->mStuckCollPart;
 
 	if (piki->getCurrAction()) {
 		piki->getCurrAction()->cleanup();
@@ -553,7 +553,7 @@ void PikiSwallowedState::exec(Piki* piki)
 void PikiSwallowedState::cleanup(Piki* piki)
 {
 	piki->endStick();
-	piki->m_brain->start(1, nullptr);
+	piki->mBrain->start(1, nullptr);
 	piki->getCreatureID();
 }
 
@@ -572,7 +572,7 @@ void PikiHoleinState::init(Piki* piki, StateArg* stateArg)
 	piki->endStick();
 	piki->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, nullptr, nullptr);
 	Vector3f pikiPos = piki->getPosition();
-	_1C              = holeinArg->m_position - pikiPos; // regswaps here and...
+	_1C              = holeinArg->mPosition - pikiPos; // regswaps here and...
 	_1C.y            = 0.0f;
 
 	_28 = _1C.normalise();
@@ -581,12 +581,12 @@ void PikiHoleinState::init(Piki* piki, StateArg* stateArg)
 	_10 = pikiPos + _1C * _28; // ... here, related to pikiPos I think
 	_2C = -_28;
 
-	m_countdown = 0.3f * randFloat();
-	_34         = false;
-	_44         = 0;
+	mCountdown = 0.3f * randFloat();
+	_34        = false;
+	_44        = 0;
 
 	piki->movie_begin(false);
-	m_scale = 1.0f;
+	mScale = 1.0f;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -740,15 +740,15 @@ lbl_8018AA9C:
 void PikiHoleinState::exec(Piki* piki)
 {
 	piki->endStick();
-	piki->m_scale = Vector3f(m_scale);
+	piki->mScale = Vector3f(mScale);
 
 	if (_34) {
-		piki->setPosition(m_position, false);
+		piki->setPosition(mPosition, false);
 		return;
 	}
 
-	if (m_countdown > 0.0f) {
-		m_countdown -= sys->m_deltaTime;
+	if (mCountdown > 0.0f) {
+		mCountdown -= sys->mDeltaTime;
 		return;
 	}
 
@@ -764,15 +764,15 @@ void PikiHoleinState::exec(Piki* piki)
 
 	piki->setPosition(position, false);
 
-	_2C += 80.0f * sys->m_deltaTime;
+	_2C += 80.0f * sys->mDeltaTime;
 	f32 val = _28 * 0.2f;
 	if (_2C > val) {
-		m_scale = (1.5f * _28 - (_2C - val)) / (_28 * 1.3f);
+		mScale = (1.5f * _28 - (_2C - val)) / (_28 * 1.3f);
 	}
 
 	if ((_2C >= 1.5f * _28) && (!_34)) {
-		_34        = true;
-		m_position = position;
+		_34       = true;
+		mPosition = position;
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -923,14 +923,14 @@ void PikiFountainonState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, nullptr, nullptr);
 
 	Vector3f pikiPos = piki->getPosition(); // regswaps here
-	_10              = pikiPos * 0.6f + fountainonArg->m_position * 0.4f;
+	_10              = pikiPos * 0.6f + fountainonArg->mPosition * 0.4f;
 	_1C              = _10 - pikiPos;
 
 	_28 = _1C.normalise();
 
 	_2C = -_28;
 
-	m_countdown = 0.3f * randFloat();
+	mCountdown = 0.3f * randFloat();
 	piki->movie_begin(false);
 
 	/*
@@ -1079,9 +1079,9 @@ lbl_8018AEAC:
  */
 void PikiFountainonState::exec(Piki* piki)
 {
-	if (m_countdown > 0.0f) {
-		m_countdown -= sys->m_deltaTime;
-		if (m_countdown <= 0.0f) {
+	if (mCountdown > 0.0f) {
+		mCountdown -= sys->mDeltaTime;
+		if (mCountdown <= 0.0f) {
 			piki->startSound(PSSE_PK_VC_JUMP_INTO_HOLE, 0);
 		}
 		return;
@@ -1099,12 +1099,12 @@ void PikiFountainonState::exec(Piki* piki)
 		f32 factor = 50.0f + p2 * p1 * p1 + (_2C - p1);
 		position   = _1C * p1 + _10;
 		position.y += factor;
-		_2C += sys->m_deltaTime * 400.0f;
+		_2C += sys->mDeltaTime * 400.0f;
 
 	} else {
 		position = _1C * _2C + _10;
 		position.y += otherFactor;
-		_2C += sys->m_deltaTime * 40.0f;
+		_2C += sys->mDeltaTime * 40.0f;
 
 		if (_2C >= _28 * 0.4f) {
 			piki->startSound(PSSE_PK_ESCAPE_HOLE, 0);
@@ -1254,7 +1254,7 @@ void PikiTaneState::init(Piki* piki, StateArg* stateArg)
  * Address:	8018B184
  * Size:	000038
  */
-void PikiTaneState::exec(Piki* piki) { piki->applyAirDrag(sys->m_deltaTime, _10, _14); }
+void PikiTaneState::exec(Piki* piki) { piki->applyAirDrag(sys->mDeltaTime, _10, _14); }
 
 /*
  * --INFO--
@@ -1270,7 +1270,7 @@ void PikiTaneState::cleanup(Piki* piki) { piki->setCollisionFlick(true); }
  */
 void PikiTaneState::bounceCallback(Piki* piki, Sys::Triangle*)
 {
-	piki->m_brain->start(1, nullptr);
+	piki->mBrain->start(1, nullptr);
 	transit(piki, PIKISTATE_Walk, nullptr);
 }
 
@@ -1284,21 +1284,21 @@ void PikiNukareState::init(Piki* piki, StateArg* stateArg)
 	NukareStateArg* nukareArg = static_cast<NukareStateArg*>(stateArg);
 	P2ASSERTLINE(1166, nukareArg != nullptr);
 
-	piki->m_velocity = Vector3f(0.0f);
-	piki->m_faceDir  = nukareArg->m_navi->getFaceDir();
+	piki->mVelocity = Vector3f(0.0f);
+	piki->mFaceDir  = nukareArg->mNavi->getFaceDir();
 
-	m_navi       = nukareArg->m_navi;
-	piki->m_navi = nukareArg->m_navi;
+	mNavi       = nukareArg->mNavi;
+	piki->mNavi = nukareArg->mNavi;
 	if (nukareArg->_00) {
-		m_animIdx = IPikiAnims::NUKARE3;
+		mAnimIdx = IPikiAnims::NUKARE3;
 	} else {
-		m_animIdx = IPikiAnims::NUKARERU;
+		mAnimIdx = IPikiAnims::NUKARERU;
 	}
 
-	piki->startMotion(m_animIdx, m_animIdx, piki, nullptr);
+	piki->startMotion(mAnimIdx, mAnimIdx, piki, nullptr);
 	_14 = false;
-	if (!playData->hasMetPikmin(piki->m_pikiKind)) {
-		gameSystem->m_flags |= 0x8;
+	if (!playData->hasMetPikmin(piki->mPikiKind)) {
+		gameSystem->mFlags |= 0x8;
 	}
 }
 
@@ -1316,23 +1316,23 @@ bool PikiNukareState::soft_transittable(int stateID) { return (stateID == PIKIST
  */
 void PikiNukareState::exec(Piki* piki)
 {
-	if (!piki->assertMotion(m_animIdx)) {
+	if (!piki->assertMotion(mAnimIdx)) {
 		_14 = true;
 	}
 
 	if (_14) {
-		Vector3f position = piki->m_collTree->m_part->m_position;
+		Vector3f position = piki->mCollTree->mPart->mPosition;
 		transit(piki, PIKISTATE_Walk, nullptr);
 		position.y = mapMgr->getMinY(position);
 		piki->setPosition(position, false);
 
-		PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
-		piki->m_brain->start(0, &initArg);
+		PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
+		piki->mBrain->start(0, &initArg);
 
-		int pikiType = piki->m_pikiKind;
+		int pikiType = piki->mPikiKind;
 		if (pikiType >= 0 && pikiType <= 4) {
-			if (!playData->hasMetPikmin(piki->m_pikiKind)) {
-				gameSystem->m_section->playMovie_helloPikmin(piki);
+			if (!playData->hasMetPikmin(piki->mPikiKind)) {
+				gameSystem->mSection->playMovie_helloPikmin(piki);
 			}
 		}
 	}
@@ -1345,9 +1345,9 @@ void PikiNukareState::exec(Piki* piki)
  */
 void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	switch (keyEvent.m_type) {
+	switch (keyEvent.mType) {
 	case KEYEVENT_2:
-		rumbleMgr->startRumble(0, (int)m_navi->m_naviIndex);
+		rumbleMgr->startRumble(0, (int)mNavi->mNaviIndex);
 
 		Vector3f position = piki->getPosition();
 		piki->_17C |= 0x10;
@@ -1359,19 +1359,19 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 			efx::ArgScale fxArg(position, 1.2f);
 			diveFx.create(&fxArg);
 
-			if (piki->m_navi == nullptr) {
+			if (piki->mNavi == nullptr) {
 				JUT_PANICLINE(1242, "getNavi():pullW");
 			}
 
-			piki->startSound(piki->m_navi, PSSE_EV_ITEM_LAND_WATER1_S, true);
-			piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+			piki->startSound(piki->mNavi, PSSE_EV_ITEM_LAND_WATER1_S, true);
+			piki->startSound(piki->mNavi, PSSE_PL_PULLOUT_PIKI, false);
 
 		} else {
-			if (piki->m_navi == nullptr) {
+			if (piki->mNavi == nullptr) {
 				JUT_PANICLINE(1246, "getNavi():Pull");
 			}
 			efx::createSimplePkAp(position);
-			piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+			piki->startSound(piki->mNavi, PSSE_PL_PULLOUT_PIKI, false);
 		}
 
 		break;
@@ -1397,11 +1397,11 @@ void PikiDopeState::init(Piki* piki, StateArg* stateArg)
 {
 	DopeStateArg* dopeArg = static_cast<DopeStateArg*>(stateArg);
 	P2ASSERTLINE(1270, dopeArg != nullptr);
-	_18              = dopeArg->m_dopeType;
-	_14              = 0.3f * randFloat();
-	_10              = false;
-	piki->m_velocity = Vector3f(0.0f);
-	m_navi           = nullptr;
+	_18             = dopeArg->mDopeType;
+	_14             = 0.3f * randFloat();
+	_10             = false;
+	piki->mVelocity = Vector3f(0.0f);
+	mNavi           = nullptr;
 }
 
 /*
@@ -1409,7 +1409,7 @@ void PikiDopeState::init(Piki* piki, StateArg* stateArg)
  * Address:	8018B798
  * Size:	000008
  */
-void PikiDopeState::onFlute(Piki* piki, Navi* navi) { m_navi = navi; }
+void PikiDopeState::onFlute(Piki* piki, Navi* navi) { mNavi = navi; }
 
 /*
  * --INFO--
@@ -1419,26 +1419,26 @@ void PikiDopeState::onFlute(Piki* piki, Navi* navi) { m_navi = navi; }
 void PikiDopeState::exec(Piki* piki)
 {
 	if (!_10) {
-		_14 -= sys->m_deltaTime;
+		_14 -= sys->mDeltaTime;
 		if (_14 <= 0.0f) {
 			_10 = true;
 
 			if (randFloat() > 0.5f) { // the illusion of choice.
-				m_animIdx = IPikiAnims::GROWUP1;
+				mAnimIdx = IPikiAnims::GROWUP1;
 			} else {
-				m_animIdx = IPikiAnims::GROWUP1;
+				mAnimIdx = IPikiAnims::GROWUP1;
 			}
 
-			piki->startMotion(m_animIdx, m_animIdx, piki, nullptr);
+			piki->startMotion(mAnimIdx, mAnimIdx, piki, nullptr);
 		}
 
-	} else if (!piki->assertMotion(m_animIdx)) {
+	} else if (!piki->assertMotion(mAnimIdx)) {
 		piki->getCreatureID();
 
-		if (m_navi) {
-			piki->m_navi = m_navi;
-			PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
-			piki->m_brain->start(0, &initArg);
+		if (mNavi) {
+			piki->mNavi = mNavi;
+			PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
+			piki->mBrain->start(0, &initArg);
 		}
 
 		transit(piki, PIKISTATE_Walk, nullptr);
@@ -1452,15 +1452,15 @@ void PikiDopeState::exec(Piki* piki)
  */
 void PikiDopeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	switch (keyEvent.m_type) {
+	switch (keyEvent.mType) {
 	case 2:
 		piki->startDope(_18);
 		break;
 	case 1000:
-		if (m_navi) {
-			piki->m_navi = m_navi;
-			PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
-			piki->m_brain->start(0, &initArg);
+		if (mNavi) {
+			piki->mNavi = mNavi;
+			PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
+			piki->mBrain->start(0, &initArg);
 		}
 
 		transit(piki, PIKISTATE_Walk, nullptr);
@@ -1492,7 +1492,7 @@ bool PikiPanicState::soft_transittable(int stateID)
  */
 bool PikiPanicState::transittable(int stateID)
 {
-	if (m_panicType == PIKIPANIC_Panic && stateID != PIKISTATE_Panic) {
+	if (mPanicType == PIKIPANIC_Panic && stateID != PIKISTATE_Panic) {
 		return true;
 	}
 
@@ -1513,7 +1513,7 @@ bool PikiPanicState::transittable(int stateID)
 inline void PikiPanicState::startSound(Piki* piki)
 {
 	u32 panicSound = PSSE_PK_VC_PANIC;
-	switch (m_panicType) {
+	switch (mPanicType) {
 	case PIKIPANIC_Water:
 		panicSound = PSSE_PK_VC_WATER_PANIC;
 		break;
@@ -1526,7 +1526,7 @@ inline void PikiPanicState::startSound(Piki* piki)
 		break;
 	}
 
-	piki->m_soundObj->startFreePikiSetSound(panicSound, PSGame::SeMgr::UNK_7, 90, 0);
+	piki->mSoundObj->startFreePikiSetSound(panicSound, PSGame::SeMgr::UNK_7, 90, 0);
 }
 
 /*
@@ -1538,27 +1538,27 @@ void PikiPanicState::init(Piki* piki, StateArg* stateArg)
 {
 	PanicStateArg* panicArg = static_cast<PanicStateArg*>(stateArg);
 	P2ASSERTLINE(1399, panicArg != nullptr);
-	m_panicType = panicArg->m_panicType;
-	_20         = false;
-	_21         = true;
+	mPanicType = panicArg->mPanicType;
+	_20        = false;
+	_21        = true;
 	piki->setMoveRotation(true);
-	m_deathTimer = piki->getParms()->m_pikiParms.m_p055.m_value;
-	m_deathTimer *= (0.1f * randFloat() + 1.0f);
-	m_dramaTimer = 0.1f;
-	m_angle      = piki->m_faceDir;
-	m_speed      = 1.0f;
+	mDeathTimer = piki->getParms()->mPikiParms.mP055.mValue;
+	mDeathTimer *= (0.1f * randFloat() + 1.0f);
+	mDramaTimer = 0.1f;
+	mAngle      = piki->mFaceDir;
+	mSpeed      = 1.0f;
 	piki->endStick();
 
-	switch (m_panicType) {
+	switch (mPanicType) {
 	case PIKIPANIC_Water:
-		efx::TPkEffect* effectsObjWat = piki->m_effectsObj;
+		efx::TPkEffect* effectsObjWat = piki->mEffectsObj;
 		effectsObjWat->setFlag(PKEFF_Water);
 		effectsObjWat->createWater_(effectsObjWat->_14);
 		piki->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 		break;
 
 	case PIKIPANIC_Gas:
-		efx::TPkEffect* effectsObjGas = piki->m_effectsObj;
+		efx::TPkEffect* effectsObjGas = piki->mEffectsObj;
 		effectsObjGas->setFlag(PKEFF_Gas);
 		effectsObjGas->createChudoku_(effectsObjGas->_0C);
 		piki->startMotion(IPikiAnims::GASDEAD, IPikiAnims::GASDEAD, nullptr, nullptr);
@@ -1567,15 +1567,15 @@ void PikiPanicState::init(Piki* piki, StateArg* stateArg)
 
 	case PIKIPANIC_Fire:
 		piki->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
-		efx::TPkEffect* effectsObjFire = piki->m_effectsObj;
+		efx::TPkEffect* effectsObjFire = piki->mEffectsObj;
 		effectsObjFire->setFlag(PKEFF_Fire);
 		effectsObjFire->createMoe_(effectsObjFire->_0C);
 		break;
 
 	case PIKIPANIC_Panic:
 	case PIKIPANIC_Other:
-		_22          = 0;
-		m_dramaTimer = 0.3f * randFloat();
+		_22         = 0;
+		mDramaTimer = 0.3f * randFloat();
 		break;
 	}
 
@@ -1591,23 +1591,23 @@ void PikiPanicState::init(Piki* piki, StateArg* stateArg)
 inline void PikiPanicState::checkDemo(Piki* piki)
 {
 	int flag = 0;
-	if (m_panicType == PIKIPANIC_Fire) {
+	if (mPanicType == PIKIPANIC_Fire) {
 		flag = DEMO_Pikmin_In_Danger_Fire;
-	} else if (m_panicType == PIKIPANIC_Water) {
+	} else if (mPanicType == PIKIPANIC_Water) {
 		flag = DEMO_Pikmin_In_Danger_Water;
-	} else if (m_panicType == PIKIPANIC_Gas) {
+	} else if (mPanicType == PIKIPANIC_Gas) {
 		flag = DEMO_Pikmin_In_Danger_Poison;
 	}
 
-	if (flag != 0 && !playData->isDemoFlag(flag) && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_flags & 0x20) {
-		_28 -= sys->m_deltaTime;
+	if (flag != 0 && !playData->isDemoFlag(flag) && gameSystem->mMode == GSM_STORY_MODE && gameSystem->mFlags & 0x20) {
+		_28 -= sys->mDeltaTime;
 		if (_28 <= 0.0f) {
 			playData->setDemoFlag(flag);
 
 			MoviePlayArg playArg("x16_hiba", nullptr, nullptr, 0);
-			playArg.m_origin            = piki->getPosition();
-			playArg.m_angle             = piki->getFaceDir();
-			moviePlayer->m_targetObject = piki;
+			playArg.mOrigin            = piki->getPosition();
+			playArg.mAngle             = piki->getFaceDir();
+			moviePlayer->mTargetObject = piki;
 			moviePlayer->play(playArg);
 		}
 	}
@@ -1620,12 +1620,12 @@ inline void PikiPanicState::checkDemo(Piki* piki)
  */
 void PikiPanicState::exec(Piki* piki)
 {
-	if (m_panicType == PIKIPANIC_Panic || m_panicType == PIKIPANIC_Other) {
-		piki->m_velocity = Vector3f(0.0f);
+	if (mPanicType == PIKIPANIC_Panic || mPanicType == PIKIPANIC_Other) {
+		piki->mVelocity = Vector3f(0.0f);
 		switch (_22) {
 		case 0:
-			m_dramaTimer -= sys->m_deltaTime;
-			if (m_dramaTimer <= 0.0f) {
+			mDramaTimer -= sys->mDeltaTime;
+			if (mDramaTimer <= 0.0f) {
 				_22 = 1;
 				piki->startMotion(IPikiAnims::KIZUKU, IPikiAnims::KIZUKU, piki, nullptr);
 			}
@@ -1641,7 +1641,7 @@ void PikiPanicState::exec(Piki* piki)
 		checkDemo(piki);
 	}
 
-	if (m_panicType == PIKIPANIC_Gas) {
+	if (mPanicType == PIKIPANIC_Gas) {
 		panicLobster(piki);
 	} else {
 		panicRun(piki);
@@ -1666,18 +1666,18 @@ void PikiPanicState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
  */
 void PikiPanicState::panicRun(Piki* piki)
 {
-	Vector3f direction = Vector3f(pikmin2_sinf(m_angle), 0.0f, pikmin2_cosf(m_angle));
-	piki->setSpeed(m_speed, direction);
-	m_deathTimer -= sys->m_deltaTime;
-	m_dramaTimer -= sys->m_deltaTime;
+	Vector3f direction = Vector3f(pikmin2_sinf(mAngle), 0.0f, pikmin2_cosf(mAngle));
+	piki->setSpeed(mSpeed, direction);
+	mDeathTimer -= sys->mDeltaTime;
+	mDramaTimer -= sys->mDeltaTime;
 
-	if (m_deathTimer < 0.0f) {
-		if (m_panicType == PIKIPANIC_Panic) {
+	if (mDeathTimer < 0.0f) {
+		if (mPanicType == PIKIPANIC_Panic) {
 			transit(piki, PIKISTATE_Walk, nullptr);
 			return;
 		}
 
-		switch (m_panicType) {
+		switch (mPanicType) {
 		case PIKIPANIC_Fire:
 			deathMgr->inc(2);
 			break;
@@ -1692,16 +1692,16 @@ void PikiPanicState::panicRun(Piki* piki)
 		return;
 	}
 
-	if (m_dramaTimer < 0.0f) {
+	if (mDramaTimer < 0.0f) {
 		startSound(piki);
-		m_dramaTimer    = 0.2f * randFloat() + 0.2f;
+		mDramaTimer     = 0.2f * randFloat() + 0.2f;
 		f32 angleOffset = DEG2RAD * (15.0f * randFloat() + 30.0f) * PI;
-		if (piki->m_mgrIndex % 2 == 1) {
+		if (piki->mMgrIndex % 2 == 1) {
 			angleOffset = -angleOffset;
 		}
-		m_angle += angleOffset;
-		m_angle = roundAng(m_angle);
-		m_speed *= 0.99f;
+		mAngle += angleOffset;
+		mAngle = roundAng(mAngle);
+		mSpeed *= 0.99f;
 	}
 }
 
@@ -1714,10 +1714,10 @@ void PikiPanicState::panicLobster(Piki* piki)
 {
 	if (_21) {
 		_21          = false;
-		f32 oldAngle = piki->m_faceDir;
+		f32 oldAngle = piki->mFaceDir;
 
 		f32 angleOffset = DEG2RAD * (15.0f * randFloat() + 10.0f) * PI;
-		if (piki->m_mgrIndex % 2 == 1) {
+		if (piki->mMgrIndex % 2 == 1) {
 			angleOffset = -angleOffset;
 		}
 		oldAngle += angleOffset;
@@ -1727,18 +1727,18 @@ void PikiPanicState::panicLobster(Piki* piki)
 		f32 randHeight  = 80.0f * randFloat() + 100.0f;
 		Vector3f newPos = Vector3f(factor * pikmin2_sinf(newAngle), randHeight, factor * pikmin2_cosf(newAngle));
 
-		piki->m_faceDir   = newAngle;
-		piki->m_position2 = newPos;
+		piki->mFaceDir   = newAngle;
+		piki->mPosition2 = newPos;
 
-		if (m_panicType == PIKIPANIC_Gas) {
+		if (mPanicType == PIKIPANIC_Gas) {
 			piki->startSound(PSSE_PK_VC_GAS_POISONING, true);
 		}
 	}
 
-	m_deathTimer -= sys->m_deltaTime;
+	mDeathTimer -= sys->mDeltaTime;
 
-	if (m_deathTimer < 0.0f) {
-		switch (m_panicType) {
+	if (mDeathTimer < 0.0f) {
+		switch (mPanicType) {
 		case PIKIPANIC_Fire:
 			deathMgr->inc(2);
 			break;
@@ -1750,9 +1750,9 @@ void PikiPanicState::panicLobster(Piki* piki)
 			break;
 		}
 
-		if (m_panicType == PIKIPANIC_Gas) {
+		if (mPanicType == PIKIPANIC_Gas) {
 			DyingStateArg dyingArg;
-			dyingArg.m_animIdx = IPikiAnims::GDEAD;
+			dyingArg.mAnimIdx = IPikiAnims::GDEAD;
 			transit(piki, PIKISTATE_Dying, &dyingArg);
 			return;
 		}
@@ -1769,8 +1769,8 @@ void PikiPanicState::panicLobster(Piki* piki)
 void PikiPanicState::cleanup(Piki* piki)
 {
 	piki->setMoveRotation(true);
-	if (piki->m_fsm->m_stateID != PIKISTATE_Dying) {
-		efx::TPkEffect* effectsObjFire = piki->m_effectsObj;
+	if (piki->mFsm->mStateID != PIKISTATE_Dying) {
+		efx::TPkEffect* effectsObjFire = piki->mEffectsObj;
 		effectsObjFire->killMoe_();
 		if (effectsObjFire->isFlag(PKEFF_Fire)) {
 			effectsObjFire->resetFlag(PKEFF_Fire);
@@ -1779,14 +1779,14 @@ void PikiPanicState::cleanup(Piki* piki)
 			efx::createSimpleChinka(*effectsObjFire->_0C);
 		}
 
-		efx::TPkEffect* effectsObjWater = piki->m_effectsObj;
+		efx::TPkEffect* effectsObjWater = piki->mEffectsObj;
 		effectsObjWater->killWater_();
 		if (effectsObjWater->isFlag(PKEFF_Water)) {
 			effectsObjWater->resetFlag(PKEFF_Water);
 			efx::createSimpleWaterOff(*effectsObjWater->_14);
 		}
 
-		efx::TPkEffect* effectsObjGas = piki->m_effectsObj;
+		efx::TPkEffect* effectsObjGas = piki->mEffectsObj;
 		effectsObjGas->killChudoku_();
 		if (effectsObjGas->isFlag(PKEFF_Gas)) {
 			effectsObjGas->resetFlag(PKEFF_Gas);
@@ -1812,9 +1812,9 @@ void PikiPanicState::onFlute(Piki* piki, Game::Navi*)
 	_20 = true;
 	transit(piki, PIKISTATE_Walk, nullptr);
 
-	switch (m_panicType) {
+	switch (mPanicType) {
 	case PIKIPANIC_Fire:
-		efx::TPkEffect* effectsObjFire = piki->m_effectsObj;
+		efx::TPkEffect* effectsObjFire = piki->mEffectsObj;
 		effectsObjFire->killMoe_();
 		if (effectsObjFire->isFlag(PKEFF_Fire)) {
 			effectsObjFire->resetFlag(PKEFF_Fire);
@@ -1824,7 +1824,7 @@ void PikiPanicState::onFlute(Piki* piki, Game::Navi*)
 		}
 		break;
 	case PIKIPANIC_Water:
-		efx::TPkEffect* effectsObjWater = piki->m_effectsObj;
+		efx::TPkEffect* effectsObjWater = piki->mEffectsObj;
 		effectsObjWater->killWater_();
 		if (effectsObjWater->isFlag(PKEFF_Water)) {
 			effectsObjWater->resetFlag(PKEFF_Water);
@@ -1833,7 +1833,7 @@ void PikiPanicState::onFlute(Piki* piki, Game::Navi*)
 		break;
 	case PIKIPANIC_Gas:
 		piki->setGasInvincible(90);
-		efx::TPkEffect* effectsObjGas = piki->m_effectsObj;
+		efx::TPkEffect* effectsObjGas = piki->mEffectsObj;
 		effectsObjGas->killChudoku_();
 		if (effectsObjGas->isFlag(PKEFF_Gas)) {
 			effectsObjGas->resetFlag(PKEFF_Gas);
@@ -1872,19 +1872,19 @@ bool PikiDyingState::transittable(int stateID) { return (u8)(stateID == PIKISTAT
 void PikiDyingState::init(Piki* piki, StateArg* stateArg)
 {
 	DyingStateArg* dyingArg = static_cast<DyingStateArg*>(stateArg);
-	m_animIdx               = IPikiAnims::DEAD;
+	mAnimIdx                = IPikiAnims::DEAD;
 	_14                     = false;
 	if (dyingArg) {
-		m_animIdx = dyingArg->m_animIdx;
-		_14       = dyingArg->_04;
-		if (m_animIdx == IPikiAnims::NULLANIM) {
-			m_animIdx = IPikiAnims::DEAD;
+		mAnimIdx = dyingArg->mAnimIdx;
+		_14      = dyingArg->_04;
+		if (mAnimIdx == IPikiAnims::NULLANIM) {
+			mAnimIdx = IPikiAnims::DEAD;
 		}
 	}
 
-	piki->startMotion(m_animIdx, m_animIdx, piki, nullptr);
-	piki->m_velocity = Vector3f(0.0f);
-	piki->m_soundObj->startFreePikiSound(PSSE_PK_VC_DEAD1, 0, 0);
+	piki->startMotion(mAnimIdx, mAnimIdx, piki, nullptr);
+	piki->mVelocity = Vector3f(0.0f);
+	piki->mSoundObj->startFreePikiSound(PSSE_PK_VC_DEAD1, 0, 0);
 }
 
 /*
@@ -1894,8 +1894,8 @@ void PikiDyingState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiDyingState::exec(Piki* piki)
 {
-	piki->m_velocity = Vector3f(0.0f);
-	if (!piki->assertMotion(m_animIdx) && piki->isAlive()) {
+	piki->mVelocity = Vector3f(0.0f);
+	if (!piki->assertMotion(mAnimIdx) && piki->isAlive()) {
 		if (_14) {
 			PikiKillArg killArg(-0x80000000);
 			piki->kill(&killArg);
@@ -1950,9 +1950,9 @@ bool PikiDenkiDyingState::transittable(int stateID) { return (u8)(stateID == PIK
 void PikiDenkiDyingState::init(Piki* piki, StateArg* stateArg)
 {
 	piki->startMotion(IPikiAnims::DEAD, IPikiAnims::DEAD, piki, nullptr);
-	_10               = 0.3f;
-	piki->m_velocity  = Vector3f(0.0f);
-	piki->m_position2 = Vector3f(0.0f);
+	_10              = 0.3f;
+	piki->mVelocity  = Vector3f(0.0f);
+	piki->mPosition2 = Vector3f(0.0f);
 }
 
 /*
@@ -1962,14 +1962,14 @@ void PikiDenkiDyingState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiDenkiDyingState::exec(Piki* piki)
 {
-	piki->m_velocity  = Vector3f(0.0f);
-	piki->m_position2 = Vector3f(0.0f);
-	_10 -= sys->m_deltaTime;
+	piki->mVelocity  = Vector3f(0.0f);
+	piki->mPosition2 = Vector3f(0.0f);
+	_10 -= sys->mDeltaTime;
 
 	if (_10 <= 0.0f) {
 		efx::TPkKanden kandenFx;
 		efx::Arg fxArg(Vector3f::zero);
-		fxArg.m_position = piki->getPosition(); // why do this differently, smh.
+		fxArg.mPosition = piki->getPosition(); // why do this differently, smh.
 		kandenFx.create(&fxArg);
 
 		deathMgr->inc(4);
@@ -2006,16 +2006,16 @@ bool PikiPressedState::transittable(int stateID) { return (u8)(stateID == PIKIST
  */
 void PikiPressedState::init(Piki* piki, StateArg* stateArg)
 {
-	f32 pressedScale = piki->getParms()->m_pikiParms.m_p038.m_value;
-	piki->m_scale    = Vector3f(pressedScale, pressedScale, 0.01f);
+	f32 pressedScale = piki->getParms()->mPikiParms.mP038.mValue;
+	piki->mScale     = Vector3f(pressedScale, pressedScale, 0.01f);
 	_10              = 1.5f;
 	piki->setUpdateTrMatrix(false);
 
-	Vector3f rotation    = Vector3f(-HALF_PI, piki->m_faceDir, 0.0f);
+	Vector3f rotation    = Vector3f(-HALF_PI, piki->mFaceDir, 0.0f);
 	Vector3f translation = piki->getPosition();
 	translation.y += 2.0f;
 
-	piki->m_objMatrix.makeSRT(piki->m_scale, rotation, translation);
+	piki->mObjMatrix.makeSRT(piki->mScale, rotation, translation);
 }
 
 /*
@@ -2025,13 +2025,13 @@ void PikiPressedState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiPressedState::exec(Piki* piki)
 {
-	Vector3f rotation    = Vector3f(-HALF_PI, piki->m_faceDir, 0.0f);
+	Vector3f rotation    = Vector3f(-HALF_PI, piki->mFaceDir, 0.0f);
 	Vector3f translation = piki->getPosition();
 	translation.y += 2.0f;
 
-	piki->m_objMatrix.makeSRT(piki->m_scale, rotation, translation);
+	piki->mObjMatrix.makeSRT(piki->mScale, rotation, translation);
 
-	_10 -= sys->m_deltaTime;
+	_10 -= sys->mDeltaTime;
 	if (_10 <= 0.0f) {
 		if (piki->isPikmin()) {
 			deathMgr->inc(0);
@@ -2039,8 +2039,8 @@ void PikiPressedState::exec(Piki* piki)
 		piki->kill(nullptr);
 	}
 
-	piki->m_position2 = Vector3f(0.0f);
-	piki->m_velocity  = Vector3f(0.0f);
+	piki->mPosition2 = Vector3f(0.0f);
+	piki->mVelocity  = Vector3f(0.0f);
 }
 
 /*
@@ -2059,7 +2059,7 @@ void PikiLookAtState::init(Piki* piki, StateArg* stateArg)
 {
 	_14 = 0.3f * randFloat();
 	_18 = 0;
-	piki->m_soundObj->startFreePikiSound(PSSE_PK_VC_CALLED, 90, 0);
+	piki->mSoundObj->startFreePikiSound(PSSE_PK_VC_CALLED, 90, 0);
 }
 
 /*
@@ -2076,10 +2076,10 @@ void PikiLookAtState::onFlute(Piki* piki, Game::Navi*) { }
  */
 void PikiLookAtState::exec(Piki* piki)
 {
-	piki->m_velocity = Vector3f(0.0f);
+	piki->mVelocity = Vector3f(0.0f);
 	switch (_18) {
 	case 0:
-		_14 -= sys->m_deltaTime;
+		_14 -= sys->mDeltaTime;
 		if (_14 < 0.0f) {
 			_14 = 0.0f;
 			piki->startMotion(IPikiAnims::KIZUKU, IPikiAnims::KIZUKU, this, nullptr);
@@ -2094,10 +2094,10 @@ void PikiLookAtState::exec(Piki* piki)
 		break;
 
 	case 2:
-		if (piki->m_navi) {
-			PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
+		if (piki->mNavi) {
+			PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
 			initArg._09 = 1;
-			piki->m_brain->start(0, &initArg);
+			piki->mBrain->start(0, &initArg);
 			transit(piki, PIKISTATE_Walk, nullptr);
 
 		} else {
@@ -2114,7 +2114,7 @@ void PikiLookAtState::exec(Piki* piki)
  */
 void PikiLookAtState::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
-	switch (keyEvent.m_type) {
+	switch (keyEvent.mType) {
 	case 1000:
 		_18 = 2;
 		break;
@@ -2153,13 +2153,13 @@ void PikiAutoNukiState::init(Piki* piki, StateArg* stateArg)
 		efx::TEnemyDive diveFx;
 		efx::ArgScale fxArg(position, 1.2f);
 		diveFx.create(&fxArg);
-		if (piki->m_navi) {
-			piki->startSound(piki->m_navi, PSSE_EV_ITEM_LAND_WATER1_S, true);
-			piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+		if (piki->mNavi) {
+			piki->startSound(piki->mNavi, PSSE_EV_ITEM_LAND_WATER1_S, true);
+			piki->startSound(piki->mNavi, PSSE_PL_PULLOUT_PIKI, false);
 		}
-	} else if (piki->m_navi) {
+	} else if (piki->mNavi) {
 		efx::createSimplePkAp(position);
-		piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+		piki->startSound(piki->mNavi, PSSE_PL_PULLOUT_PIKI, false);
 	}
 }
 
@@ -2172,7 +2172,7 @@ void PikiAutoNukiState::exec(Piki* piki)
 {
 	switch (_14) {
 	case 0:
-		_10 -= sys->m_deltaTime;
+		_10 -= sys->mDeltaTime;
 		if (_10 < 0.0f) {
 			_10 = 0.0f;
 			piki->startMotion(IPikiAnims::KAIFUKU2, IPikiAnims::KAIFUKU2, piki, nullptr);
@@ -2187,14 +2187,14 @@ void PikiAutoNukiState::exec(Piki* piki)
 				efx::ArgScale fxArg(position, 1.2f);
 				diveFx.create(&fxArg);
 
-				if (piki->m_navi) {
-					piki->startSound(piki->m_navi, PSSE_EV_ITEM_LAND_WATER1_S, true);
-					piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+				if (piki->mNavi) {
+					piki->startSound(piki->mNavi, PSSE_EV_ITEM_LAND_WATER1_S, true);
+					piki->startSound(piki->mNavi, PSSE_PL_PULLOUT_PIKI, false);
 				}
 
-			} else if (piki->m_navi) {
+			} else if (piki->mNavi) {
 				efx::createSimplePkAp(position);
-				piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+				piki->startSound(piki->mNavi, PSSE_PL_PULLOUT_PIKI, false);
 			}
 		}
 		break;
@@ -2206,20 +2206,20 @@ void PikiAutoNukiState::exec(Piki* piki)
 		break;
 
 	case 2:
-		if (piki->m_navi) {
-			PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
+		if (piki->mNavi) {
+			PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
 			initArg._09 = 1;
-			piki->m_brain->start(0, &initArg);
+			piki->mBrain->start(0, &initArg);
 
 		} else {
-			piki->m_brain->start(1, nullptr);
+			piki->mBrain->start(1, nullptr);
 		}
 
 		transit(piki, PIKISTATE_Walk, nullptr);
 
-		int type = piki->m_pikiKind;
+		int type = piki->mPikiKind;
 		if (type >= 0 && type <= 4 && !playData->hasMetPikmin(type)) {
-			gameSystem->m_section->playMovie_helloPikmin(piki);
+			gameSystem->mSection->playMovie_helloPikmin(piki);
 		}
 
 		break;
@@ -2233,7 +2233,7 @@ void PikiAutoNukiState::exec(Piki* piki)
  */
 void PikiAutoNukiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	switch (keyEvent.m_type) {
+	switch (keyEvent.mType) {
 	case 1000:
 		_14 = 2;
 		break;
@@ -2267,26 +2267,26 @@ void PikiGoHangState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiGoHangState::exec(Piki* piki)
 {
-	if (piki->m_navi == nullptr) {
+	if (piki->mNavi == nullptr) {
 		transit(piki, PIKISTATE_Walk, nullptr);
 		return;
 	}
 
-	CollPart* collpart = piki->m_navi->m_collTree->getCollPart('rhnd');
+	CollPart* collpart = piki->mNavi->mCollTree->getCollPart('rhnd');
 	Vector3f position  = piki->getPosition();
-	Vector3f diff      = collpart->m_position - position;
+	Vector3f diff      = collpart->mPosition - position;
 	f32 length         = diff.normalise(); // can't use this bc no second round of fmadds - has to use a different normalise.
 	f32 scale          = 1.0f;
-	if (length > 2.0f * naviMgr->m_naviParms->m_naviParms.m_p037.m_value) {
+	if (length > 2.0f * naviMgr->mNaviParms->mNaviParms.mP037.mValue) {
 		scale = 2.0f;
 	}
-	Vector3f naviPos = piki->m_navi->m_position2;
-	f32 factor       = static_cast<NaviParms*>(piki->m_navi->m_parms)->m_naviParms.m_p060.m_value * scale;
+	Vector3f naviPos = piki->mNavi->mPosition2;
+	f32 factor       = static_cast<NaviParms*>(piki->mNavi->mParms)->mNaviParms.mP060.mValue * scale;
 	f32 dist         = naviPos.x * naviPos.x + naviPos.y * naviPos.y + naviPos.z * naviPos.z;
 	__sqrtf(dist, &dist);
-	piki->m_velocity = diff * (factor + dist);
+	piki->mVelocity = diff * (factor + dist);
 
-	if (piki->m_navi->getStateID() != 6) {
+	if (piki->mNavi->getStateID() != 6) {
 		transit(piki, PIKISTATE_Walk, nullptr);
 	}
 	/*
@@ -2448,10 +2448,10 @@ void PikiHangedState::init(Piki* piki, StateArg* stateArg)
 {
 	piki->startSound(PSSE_PK_VC_HANG, false);
 	piki->startMotion(IPikiAnims::HANG, IPikiAnims::HANG, this, nullptr);
-	piki->m_position2 = Vector3f(0.0f);
-	piki->m_velocity  = Vector3f(0.0f);
-	if (piki->m_navi) {
-		piki->startSound(piki->m_navi, PSSE_PK_VC_THROW_WAIT, false);
+	piki->mPosition2 = Vector3f(0.0f);
+	piki->mVelocity  = Vector3f(0.0f);
+	if (piki->mNavi) {
+		piki->startSound(piki->mNavi, PSSE_PK_VC_THROW_WAIT, false);
 	}
 
 	piki->setAtari(false);
@@ -2464,7 +2464,7 @@ void PikiHangedState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiHangedState::exec(Piki* piki)
 {
-	if (piki->m_navi != nullptr && piki->m_navi->getStateID() != 6) {
+	if (piki->mNavi != nullptr && piki->mNavi->getStateID() != 6) {
 		transit(piki, PIKISTATE_Walk, nullptr);
 	}
 }
@@ -2505,15 +2505,15 @@ void PikiWaterHangedState::init(Piki* piki, StateArg* stateArg)
 {
 	WaterHangedStateArg* waterHangedArg = static_cast<WaterHangedStateArg*>(stateArg);
 	if (waterHangedArg) {
-		m_piki = waterHangedArg->m_piki;
+		mPiki = waterHangedArg->mPiki;
 	} else {
-		m_piki = nullptr;
+		mPiki = nullptr;
 	}
 
 	piki->startSound(PSSE_PK_VC_HANG, false);
 	piki->startMotion(IPikiAnims::HANG, IPikiAnims::HANG, this, nullptr);
-	piki->m_position2 = Vector3f(0.0f);
-	piki->m_velocity  = Vector3f(0.0f);
+	piki->mPosition2 = Vector3f(0.0f);
+	piki->mVelocity  = Vector3f(0.0f);
 	piki->setAtari(false);
 }
 
@@ -2524,9 +2524,9 @@ void PikiWaterHangedState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiWaterHangedState::exec(Piki* piki)
 {
-	if (m_piki != 0) {
-		int currActID   = m_piki->getCurrActionID();
-		int currStateID = m_piki->getStateID();
+	if (mPiki != 0) {
+		int currActID   = mPiki->getCurrActionID();
+		int currStateID = mPiki->getStateID();
 
 		if (currActID != 12 || currStateID != PIKISTATE_Walk) {
 			transit(piki, PIKISTATE_Walk, nullptr);
@@ -2563,16 +2563,16 @@ bool PikiWaterHangedState::ignoreAtari(Piki* piki, Creature* creature)
  */
 void PikiHipDropState::init(Piki* piki, StateArg* stateArg)
 {
-	piki->m_position2.z = 0.0f;
-	piki->m_position2.x = 0.0f;
-	_14                 = 0;
-	_10                 = 0.25f;
-	piki->m_position2.y = 0.0f;
+	piki->mPosition2.z = 0.0f;
+	piki->mPosition2.x = 0.0f;
+	_14                = 0;
+	_10                = 0.25f;
+	piki->mPosition2.y = 0.0f;
 
-	efx::TPkEffect* effectsObj = piki->m_effectsObj;
+	efx::TPkEffect* effectsObj = piki->mEffectsObj;
 	effectsObj->killNage_();
 	effectsObj->createBlackDown_(effectsObj->_10);
-	piki->m_updateContext._09 = true;
+	piki->mUpdateContext._09 = true;
 }
 
 /*
@@ -2583,10 +2583,10 @@ void PikiHipDropState::init(Piki* piki, StateArg* stateArg)
 void PikiHipDropState::exec(Piki* piki)
 {
 	if (_14 == 0) {
-		piki->m_position2.y = 0.0f;
-		_10 -= sys->m_deltaTime;
+		piki->mPosition2.y = 0.0f;
+		_10 -= sys->mDeltaTime;
 		if (_10 <= 0.0f) {
-			piki->m_position2.y    = -_aiConstants->m_gravity.m_data / 2;
+			piki->mPosition2.y     = -_aiConstants->mGravity.mData / 2;
 			Creature* closestEnemy = nullptr;
 			f32 minDist            = 12800.0f;
 			Vector3f position      = piki->getPosition();
@@ -2622,8 +2622,8 @@ void PikiHipDropState::exec(Piki* piki)
 					norm     = 120.0f * norm;
 					enemyPos.x *= norm;
 					enemyPos.z *= norm;
-					piki->m_position2.x = enemyPos.x;
-					piki->m_position2.z = enemyPos.z;
+					piki->mPosition2.x = enemyPos.x;
+					piki->mPosition2.z = enemyPos.z;
 				}
 			}
 			_14 = 1;
@@ -2631,16 +2631,16 @@ void PikiHipDropState::exec(Piki* piki)
 		}
 
 	} else if (_14 == 1) {
-		piki->m_faceDir += sys->m_deltaTime * PI / 0.2f;
-		piki->m_faceDir = roundAng(piki->m_faceDir);
+		piki->mFaceDir += sys->mDeltaTime * PI / 0.2f;
+		piki->mFaceDir = roundAng(piki->mFaceDir);
 
 	} else if (_14 == 2) {
-		piki->m_velocity = Vector3f(0.0f);
-		_10 -= sys->m_deltaTime;
+		piki->mVelocity = Vector3f(0.0f);
+		_10 -= sys->mDeltaTime;
 		if (_10 <= 0.0f) {
 			transit(piki, PIKISTATE_Walk, nullptr);
 			if (!piki->invokeAI()) {
-				piki->m_brain->start(1, nullptr);
+				piki->mBrain->start(1, nullptr);
 			}
 		}
 	}
@@ -2919,8 +2919,8 @@ lbl_8018DF00:
  */
 void PikiHipDropState::cleanup(Piki* piki)
 {
-	piki->m_effectsObj->killBlackDown_();
-	piki->m_updateContext._09 = false;
+	piki->mEffectsObj->killBlackDown_();
+	piki->mUpdateContext._09 = false;
 }
 
 /*
@@ -2949,43 +2949,43 @@ void PikiHipDropState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
  */
 void PikiHipDropState::collisionCallback(Piki* piki, CollEvent& collEvent)
 {
-	if (!collEvent.m_collidingCreature->isPiki()) {
+	if (!collEvent.mCollidingCreature->isPiki()) {
 		Vector3f position = piki->getPosition();
 		efx::createSimpleBlackDrop(position);
 		rumbleMgr->startRumble(11, position, 2);
 		cameraMgr->startVibration(6, position, 2);
 
-		if (!collEvent.m_collidingCreature->isTeki()) {
+		if (!collEvent.mCollidingCreature->isTeki()) {
 			piki->startSound(PSSE_PK_SE_DOSUN, false);
 		}
 
-		if (collEvent.m_collidingCreature->isTeki()) {
-			InteractHipdrop hipdrop(piki, piki->getParms()->m_pikiParms._1200.m_value, collEvent.m_collisionObj);
+		if (collEvent.mCollidingCreature->isTeki()) {
+			InteractHipdrop hipdrop(piki, piki->getParms()->mPikiParms._1200.mValue, collEvent.mCollisionObj);
 			bool check        = false;
 			Vector3f velocity = piki->getVelocity();
 			if (velocity.y < 0.0f) {
-				check = collEvent.m_collidingCreature->stimulate(hipdrop);
+				check = collEvent.mCollidingCreature->stimulate(hipdrop);
 				earthquake(piki);
 			}
 
-			InteractPress press(piki, 10.0f, collEvent.m_collisionObj);
+			InteractPress press(piki, 10.0f, collEvent.mCollisionObj);
 			Vector3f velocity2 = piki->getVelocity();
 			if (velocity2.y < 0.0f) {
-				check = collEvent.m_collidingCreature->stimulate(press);
+				check = collEvent.mCollidingCreature->stimulate(press);
 			}
 
 			piki->startSound(PSSE_PK_SE_DOSUN_HIT, false);
-			if (!check && collEvent.m_collisionObj != nullptr && collEvent.m_collisionObj->isStickable()
-			    && collEvent.m_collidingCreature->isLivingThing()) {
-				piki->startStick(collEvent.m_collidingCreature, collEvent.m_collisionObj);
-				piki->startSound(collEvent.m_collidingCreature, PSSE_PK_SE_ATTACH, true);
+			if (!check && collEvent.mCollisionObj != nullptr && collEvent.mCollisionObj->isStickable()
+			    && collEvent.mCollidingCreature->isLivingThing()) {
+				piki->startStick(collEvent.mCollidingCreature, collEvent.mCollisionObj);
+				piki->startSound(collEvent.mCollidingCreature, PSSE_PK_SE_ATTACH, true);
 			}
 		}
 
 		if (piki->getStateID() == PIKISTATE_HipDrop) {
 			transit(piki, PIKISTATE_Walk, nullptr);
 			if (!piki->invokeAI(&collEvent, true)) {
-				piki->m_brain->start(1, nullptr);
+				piki->mBrain->start(1, nullptr);
 			}
 		}
 	}
@@ -3224,7 +3224,7 @@ void PikiHipDropState::dosin(Piki* piki)
 void PikiHipDropState::earthquake(Piki* piki)
 {
 	Vector3f position = piki->getPosition();
-	f32 rad           = pikiMgr->m_parms->m_pikiParms._11D8.m_value;
+	f32 rad           = pikiMgr->mParms->mPikiParms._11D8.mValue;
 	Sys::Sphere sphere(position, rad);
 	CellIteratorArg iterArg(sphere);
 	iterArg._14 = 1;
@@ -3251,7 +3251,7 @@ void PikiFallMeckState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
 	piki->endStick();
 	if (fallArg) {
-		_10 = fallArg->m_sprayType;
+		_10 = fallArg->mSprayType;
 	} else {
 		_10 = false;
 	}
@@ -3689,10 +3689,10 @@ void PikiSuikomiState::init(Piki* piki, StateArg* stateArg)
 {
 	SuikomiStateArg* suikomiArg = static_cast<SuikomiStateArg*>(stateArg);
 	P2ASSERTLINE(2572, suikomiArg != nullptr);
-	m_creature = suikomiArg->m_creature;
-	m_collpart = suikomiArg->m_collpart;
-	_1C        = suikomiArg->_08;
-	_10        = 0;
+	mCreature = suikomiArg->mCreature;
+	mCollpart = suikomiArg->mCollpart;
+	_1C       = suikomiArg->_08;
+	_10       = 0;
 	piki->setMoveVelocity(false);
 	piki->endStick();
 }
@@ -3704,8 +3704,8 @@ void PikiSuikomiState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiSuikomiState::exec(Piki* piki)
 {
-	if (!m_creature->isAlive()) {
-		piki->m_scale = Vector3f(piki->getBaseScale());
+	if (!mCreature->isAlive()) {
+		piki->mScale = Vector3f(piki->getBaseScale());
 		piki->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, nullptr, nullptr);
 		transit(piki, PIKISTATE_Walk, nullptr);
 		return;
@@ -3728,14 +3728,14 @@ void PikiSuikomiState::exec(Piki* piki)
 void PikiSuikomiState::execMouth(Piki* piki)
 {
 	Vector3f position;
-	if (m_collpart == nullptr) {
-		position = _1C->m_position;
-		position.y -= _1C->m_radius;
+	if (mCollpart == nullptr) {
+		position = _1C->mPosition;
+		position.y -= _1C->mRadius;
 
 	} else {
 		Sys::Tube tube;
-		m_collpart->getTube(tube);
-		position = tube.m_startPos;
+		mCollpart->getTube(tube);
+		position = tube.mStartPos;
 	}
 
 	Vector3f pikiPos = piki->getPosition();
@@ -3743,20 +3743,20 @@ void PikiSuikomiState::execMouth(Piki* piki)
 	f32 length       = _normaliseVec(diff); // regswaps.
 
 	if (length < 10.0f) {
-		if (m_collpart == nullptr) {
+		if (mCollpart == nullptr) {
 			piki->setMoveVelocity(true);
 			piki->startCaptureStomach(_1C);
 			_10 = 2;
 			piki->startMotion(IPikiAnims::ESA, IPikiAnims::ESA, piki, nullptr);
-			_20 = pikiMgr->m_parms->m_pikiParms._11B0.m_value;
+			_20 = pikiMgr->mParms->mPikiParms._11B0.mValue;
 		} else {
-			piki->startStick(m_creature, m_collpart);
+			piki->startStick(mCreature, mCollpart);
 			piki->setMoveVelocity(true);
 			_10 = 1;
 		}
 
 	} else {
-		piki->m_position2 = diff * 600.0f;
+		piki->mPosition2 = diff * 600.0f;
 	}
 	/*
 	stwu     r1, -0x70(r1)
@@ -3916,7 +3916,7 @@ lbl_8018EE28:
  */
 void PikiSuikomiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	if ((u32)keyEvent.m_type == 0) {
+	if ((u32)keyEvent.mType == 0) {
 		piki->startSound(PSSE_PK_VC_SWALLOWED, PSGame::SeMgr::UNK_4);
 	}
 }
@@ -3929,22 +3929,22 @@ void PikiSuikomiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent
 void PikiSuikomiState::execString(Piki* piki)
 {
 	Sys::Tube tube;
-	m_collpart->getTube(tube);
+	mCollpart->getTube(tube);
 	Vector3f axisVec;
 	tube.getAxisVector(axisVec);
 	axisVec.x *= 350.0f;
 	axisVec.y *= 350.0f;
 	axisVec.z *= 350.0f;
 
-	piki->m_position2 = axisVec;
-	piki->move(sys->m_deltaTime);
+	piki->mPosition2 = axisVec;
+	piki->move(sys->mDeltaTime);
 
 	if (piki->_104.y >= 1.0f) {
 		piki->endStick();
 		piki->startCaptureStomach(_1C);
 		_10 = 2;
 		piki->startMotion(IPikiAnims::ESA, IPikiAnims::ESA, nullptr, nullptr);
-		_20 = pikiMgr->m_parms->m_pikiParms._11B0.m_value;
+		_20 = pikiMgr->mParms->mPikiParms._11B0.mValue;
 	}
 }
 
@@ -3953,7 +3953,7 @@ void PikiSuikomiState::execString(Piki* piki)
  * Address:	8018EF98
  * Size:	000014
  */
-bool PikiSuikomiState::ignoreAtari(Piki* piki, Creature* creature) { return (u8)(m_creature == creature); }
+bool PikiSuikomiState::ignoreAtari(Piki* piki, Creature* creature) { return (u8)(mCreature == creature); }
 
 /*
  * --INFO--
@@ -3962,20 +3962,20 @@ bool PikiSuikomiState::ignoreAtari(Piki* piki, Creature* creature) { return (u8)
  */
 void PikiSuikomiState::execStomach(Piki* piki)
 {
-	if (m_creature) {
-		if (m_creature->m_objectTypeID != 2) {
-			JUT_PANICLINE(2680, "not teki (%s)!", m_creature->getCreatureName());
+	if (mCreature) {
+		if (mCreature->mObjectTypeID != 2) {
+			JUT_PANICLINE(2680, "not teki (%s)!", mCreature->getCreatureName());
 		}
-		EnemyBase* enemy = static_cast<EnemyBase*>(m_creature);
-		if (!enemy->isEvent(0, EB_IsBittered) && !(enemy->m_health <= 0.0f)) {
-			_20 -= sys->m_deltaTime;
+		EnemyBase* enemy = static_cast<EnemyBase*>(mCreature);
+		if (!enemy->isEvent(0, EB_IsBittered) && !(enemy->mHealth <= 0.0f)) {
+			_20 -= sys->mDeltaTime;
 		}
 	}
 
 	if (_10 == 3) {
 		f32 scale = _20 / 0.5f;
 		scale *= piki->getBaseScale();
-		piki->m_scale = Vector3f(scale);
+		piki->mScale = Vector3f(scale);
 		if (_20 <= 0.0f) {
 			if (piki->isPikmin()) {
 				deathMgr->inc(0);
@@ -3984,9 +3984,9 @@ void PikiSuikomiState::execStomach(Piki* piki)
 			piki->kill(nullptr);
 		}
 
-	} else if (piki->m_targetCollObj == nullptr) {
+	} else if (piki->mTargetCollObj == nullptr) {
 		Vector3f vec = Vector3f(0.0f, -900.0f, 0.0f);
-		BlowStateArg blowArg(vec, 0.0f, 0, 10, m_creature);
+		BlowStateArg blowArg(vec, 0.0f, 0, 10, mCreature);
 		transit(piki, PIKISTATE_Blow, &blowArg);
 
 	} else if (_20 <= 0.0f) {
@@ -4119,10 +4119,10 @@ void PikiFlyingState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 {
 	transit(piki, PIKISTATE_Walk, nullptr);
 	if (!piki->invokeAI()) {
-		piki->m_brain->start(1, nullptr);
+		piki->mBrain->start(1, nullptr);
 	}
 
-	piki->m_soundObj->startFreePikiSound(PSSE_PK_VC_LAND, 90, 0);
+	piki->mSoundObj->startFreePikiSound(PSSE_PK_VC_LAND, 90, 0);
 }
 
 /*
@@ -4658,9 +4658,9 @@ lbl_8018FA7C:
  */
 void PikiFlyingState::cleanup(Piki* piki)
 {
-	piki->m_updateContext._09 = false;
+	piki->mUpdateContext._09 = false;
 	piki->setMoveVelocity(true);
-	piki->m_effectsObj->killNage_();
+	piki->mEffectsObj->killNage_();
 	piki->setDebugCollision(false);
 }
 
@@ -4776,9 +4776,9 @@ lbl_8018FC3C:
  */
 void PikiFlickState::onFlute(Piki* piki, Navi* navi)
 {
-	_18          = 0.0f;
-	_2C          = true;
-	piki->m_navi = navi;
+	_18         = 0.0f;
+	_2C         = true;
+	piki->mNavi = navi;
 }
 
 /*
@@ -5040,9 +5040,9 @@ lbl_8018FFA8:
 void PikiFlickState::cleanup(Piki* piki)
 {
 	if (piki->isAlive() && _2C) {
-		PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
+		PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
 		initArg._09 = 1;
-		piki->m_brain->start(0, &initArg);
+		piki->mBrain->start(0, &initArg);
 	}
 }
 
@@ -5291,7 +5291,7 @@ void PikiBlowState::cleanup(Piki* piki) { }
  */
 void PikiBlowState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	if ((u32)keyEvent.m_type == KEYEVENT_END && _10 == 0) {
+	if ((u32)keyEvent.mType == KEYEVENT_END && _10 == 0) {
 		_10 = 1;
 		piki->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, nullptr, nullptr);
 	}
@@ -5304,8 +5304,8 @@ void PikiBlowState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
  */
 void PikiBlowState::onFlute(Piki* piki, Navi* navi)
 {
-	_28          = 1;
-	piki->m_navi = navi;
+	_28         = 1;
+	piki->mNavi = navi;
 }
 
 /*
@@ -8483,11 +8483,11 @@ void PikiEscapeState::cleanup(Piki* piki) { }
 // messes up FSM::init.
 void StateMachine<Piki>::create(int limit)
 {
-	m_limit          = limit;
-	m_count          = 0;
-	m_states         = new FSMState<Piki>*[m_limit];
-	m_indexToIDArray = new int[m_limit];
-	m_idToIndexArray = new int[m_limit];
+	mLimit          = limit;
+	mCount          = 0;
+	mStates         = new FSMState<Piki>*[mLimit];
+	mIndexToIDArray = new int[mLimit];
+	mIdToIndexArray = new int[mLimit];
 }
 
 /*
@@ -8499,13 +8499,13 @@ void StateMachine<Piki>::create(int limit)
 // messes up FSM::init.
 void StateMachine<Piki>::registerState(FSMState<Piki>* state)
 {
-	if (m_count >= m_limit) {
+	if (mCount >= mLimit) {
 		return;
 	}
-	m_states[m_count] = state;
+	mStates[mCount] = state;
 
 	bool check;
-	if (0 > state->m_id || !(state->m_id < m_limit)) {
+	if (0 > state->mId || !(state->mId < mLimit)) {
 		check = false;
 	} else {
 		check = true;
@@ -8515,10 +8515,10 @@ void StateMachine<Piki>::registerState(FSMState<Piki>* state)
 		return;
 	}
 
-	state->m_stateMachine         = this;
-	m_indexToIDArray[m_count]     = state->m_id;
-	m_idToIndexArray[state->m_id] = m_count;
-	m_count++;
+	state->mStateMachine        = this;
+	mIndexToIDArray[mCount]     = state->mId;
+	mIdToIndexArray[state->mId] = mCount;
+	mCount++;
 }
 
 } // namespace Game

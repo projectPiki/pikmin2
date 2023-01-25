@@ -55,9 +55,9 @@ struct Obj : public EnemyBase {
 	virtual void startCarcassMotion();                      // _2C4
 	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
 	{
-		m_fsm = fsm;
-		m_fsm->init(this);
-		m_currentLifecycleState = nullptr;
+		mFsm = fsm;
+		mFsm->init(this);
+		mCurrentLifecycleState = nullptr;
 	}
 	virtual void setAnimationSpeed(f32 speed) // _2FC (weak)
 	{
@@ -65,7 +65,7 @@ struct Obj : public EnemyBase {
 	}
 	virtual MouthSlots* getMouthSlots() // _25C (weak)
 	{
-		return &m_mouthSlots;
+		return &mMouthSlots;
 	}
 	virtual void resetEnemyNonStone() { }            // _300 (weak)
 	virtual void setEnemyNonStone() { }              // _304 (weak)
@@ -76,12 +76,12 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                          // _2BC
-	MouthSlots m_mouthSlots;             // _2C0
-	SysShape::Joint* m_shadowJoint;      // _2C8
-	f32 _2CC;                            // _2CC
-	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2D0
-	                                     // _2D4 = PelletView
+	FSM* mFsm;                          // _2BC
+	MouthSlots mMouthSlots;             // _2C0
+	SysShape::Joint* mShadowJoint;      // _2C8
+	f32 _2CC;                           // _2CC
+	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2D0
+	                                    // _2D4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -102,39 +102,39 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "ぼんやり時間", 2.0f, 0.0f, 100.0f)            // 'absentminded time'
-		    , m_poisonDamage(this, 'fp02', "白ピクミン毒", 300.0f, 0.0f, 1000.0f) // 'white pikmin poison'
-		    , m_fp03(this, 'fp03', "回転終了角度", 90.0f, 0.0f, 180.0f)           // 'rotation end angle'
+		    , mFp01(this, 'fp01', "ぼんやり時間", 2.0f, 0.0f, 100.0f)            // 'absentminded time'
+		    , mPoisonDamage(this, 'fp02', "白ピクミン毒", 300.0f, 0.0f, 1000.0f) // 'white pikmin poison'
+		    , mFp03(this, 'fp03', "回転終了角度", 90.0f, 0.0f, 180.0f)           // 'rotation end angle'
 		{
 		}
 
-		Parm<f32> m_fp01;         // _804
-		Parm<f32> m_poisonDamage; // _82C
-		Parm<f32> m_fp03;         // _854
+		Parm<f32> mFp01;         // _804
+		Parm<f32> mPoisonDamage; // _82C
+		Parm<f32> mFp03;         // _854
 	};
 
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	Parms() { }
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

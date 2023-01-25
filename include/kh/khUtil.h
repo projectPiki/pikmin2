@@ -25,16 +25,16 @@ f32 getPaneCenterY(J2DPane*);
 struct khUtilFadePane : public P2DScreen::CallBackNode {
 	struct khPaneNode {
 		inline khPaneNode(J2DPane* pane)
-		    : m_pane(pane)
-		    , m_next(nullptr)
+		    : mPane(pane)
+		    , mNext(nullptr)
 		{
 		}
 
 		virtual ~khPaneNode() { } // _08 (weak)
 
 		// _00 = VTBL
-		J2DPane* m_pane;    // _04
-		khPaneNode* m_next; // _08
+		J2DPane* mPane;    // _04
+		khPaneNode* mNext; // _08
 	};
 
 	khUtilFadePane(u8);
@@ -53,10 +53,10 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	khPaneNode m_paneNode; // _1C
-	int m_state;           // _28
-	u8 m_currentAlpha;     // _2C
-	u8 m_changeAlpha;      // _2D
+	khPaneNode mPaneNode; // _1C
+	int mState;           // _28
+	u8 mCurrentAlpha;     // _2C
+	u8 mChangeAlpha;      // _2D
 };
 
 struct khUtilFadePaneWM : public khUtilFadePane {
@@ -65,8 +65,8 @@ struct khUtilFadePaneWM : public khUtilFadePane {
 
 	// _00     = VTBL
 	// _00-_30 = khUtilFadePane
-	kh::Screen::WorldMap* m_mapObj; // _34
-	bool m_finish;
+	kh::Screen::WorldMap* mMapObj; // _34
+	bool mFinish;
 };
 
 struct khUtilColorAnm : public P2DScreen::CallBackNode {
@@ -78,13 +78,13 @@ struct khUtilColorAnm : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::Node
-	JUtility::TColor* m_colorList; // _1C
-	JUtility::TColor m_color1;     // _20
-	JUtility::TColor m_color2;     // _24
-	int m_paneNum;                 // _28
-	int m_maxFrame;                // _2C
-	int m_counter;                 // _30
-	u8 m_updateMode;               // _34
+	JUtility::TColor* mColorList; // _1C
+	JUtility::TColor mColor1;     // _20
+	JUtility::TColor mColor2;     // _24
+	int mPaneNum;                 // _28
+	int mMaxFrame;                // _2C
+	int mCounter;                 // _30
+	u8 mUpdateMode;               // _34
 };
 
 struct khUtilColorAnmWM : public khUtilColorAnm {
@@ -93,10 +93,10 @@ struct khUtilColorAnmWM : public khUtilColorAnm {
 
 	// _00     = VTBL
 	// _00-_38 = khUtilColorAnm
-	J2DPane* m_paneList[4];                     // _38
-	efx2d::T2DCountKira* m_efx[4];              // _48
-	og::Screen::CallBack_CounterRV* m_counter1; //_4C
-	og::Screen::CallBack_CounterRV* m_counter2; // _50
+	J2DPane* mPaneList[4];                     // _38
+	efx2d::T2DCountKira* mEfx[4];              // _48
+	og::Screen::CallBack_CounterRV* mCounter1; //_4C
+	og::Screen::CallBack_CounterRV* mCounter2; // _50
 };
 
 } // namespace Screen

@@ -122,20 +122,20 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                 // _2BC
-	bool m_isUnderground;       // _2C0
-	u8 _2C1;                    // _2C1
-	u8 _2C2;                    // _2C2
-	f32 m_stateTimer;           // _2C4
-	u8 _2C8[0x4];               // _2C8, unknown
-	MouthSlots m_mouthSlots;    // _2CC
-	int _2D4;                   // _2D4, animation index maybe?
-	Vector3f _2D8[5];           // _2D8
-	u8 _314[0x8];               // _314, unknown
-	efx::THebiRot* m_efxRotate; // _31C
-	efx::THebiWait* m_efxWait;  // _320
-	efx::THebiDead* m_efxDead;  // _324
-	                            // _328 = PelletView
+	FSM* mFsm;                 // _2BC
+	bool mIsUnderground;       // _2C0
+	u8 _2C1;                   // _2C1
+	u8 _2C2;                   // _2C2
+	f32 mStateTimer;           // _2C4
+	u8 _2C8[0x4];              // _2C8, unknown
+	MouthSlots mMouthSlots;    // _2CC
+	int _2D4;                  // _2D4, animation index maybe?
+	Vector3f _2D8[5];          // _2D8
+	u8 _314[0x8];              // _314, unknown
+	efx::THebiRot* mEfxRotate; // _31C
+	efx::THebiWait* mEfxWait;  // _320
+	efx::THebiDead* mEfxDead;  // _324
+	                           // _328 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -159,26 +159,26 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "通常出現率", 0.8f, 0.0f, 1.0f)               // 'normal appearance rate'
-		    , m_fp11(this, 'fp11', "潜る迄の時間", 2.0f, 0.0f, 10.0f)            // 'time to dive'
-		    , m_fp12(this, 'fp12', "地中での時間", 1.0f, 0.0f, 10.0f)            // 'time in the ground'
-		    , m_poisonDamage(this, 'fp21', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , m_fp31(this, 'fp31', "Forest 2 Life", 7500.0f, 0.0f, 99999.0f)     // (White Flower Garden Life)
+		    , mFp01(this, 'fp01', "通常出現率", 0.8f, 0.0f, 1.0f)               // 'normal appearance rate'
+		    , mFp11(this, 'fp11', "潜る迄の時間", 2.0f, 0.0f, 10.0f)            // 'time to dive'
+		    , mFp12(this, 'fp12', "地中での時間", 1.0f, 0.0f, 10.0f)            // 'time in the ground'
+		    , mPoisonDamage(this, 'fp21', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mFp31(this, 'fp31', "Forest 2 Life", 7500.0f, 0.0f, 99999.0f)     // (White Flower Garden Life)
 		{
 		}
 
-		Parm<f32> m_fp01;         // _804
-		Parm<f32> m_fp11;         // _82C
-		Parm<f32> m_fp12;         // _854
-		Parm<f32> m_poisonDamage; // _87C, fp21
-		Parm<f32> m_fp31;         // _8A4
+		Parm<f32> mFp01;         // _804
+		Parm<f32> mFp11;         // _82C
+		Parm<f32> mFp12;         // _854
+		Parm<f32> mPoisonDamage; // _87C, fp21
+		Parm<f32> mFp31;         // _8A4
 	};
 
 	Parms() { }
@@ -186,23 +186,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 struct SnakeCrowShadowMgr {
@@ -234,7 +234,7 @@ struct State : public EnemyFSMState {
 	inline State(int stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

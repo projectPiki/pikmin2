@@ -141,36 +141,36 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                                  // _2BC
-	f32 m_stateTimer;                            // _2C0, how long MAL has been in wait or walk state
-	f32 m_stateDuration;                         // _2C4, how long each phase lasts - 1.5-3s for wait, 3.5-7s for walk
-	f32 m_shotGunBurstTimer;                     // _2C8, how long shotgun has been blasting for (this burst)
-	f32 m_shotGunSearchTimer;                    // _2CC, how long to keep shotgun on with no targets left in range
-	StateID m_nextState;                         // _2D0
-	Vector3f m_targetPosition;                   // _2D4
-	Vector3f m_shotGunTargetPosition;            // _2E0
-	bool m_isSmoking;                            // _2EC, is below critical health
-	u8 _2ED;                                     // _2ED
-	bool m_targetNearest;                        // _2EE, if false, target nearest navi's nearest piki (i.e. party)
-	bool m_isAttackMusicLooping;                 // _2EF
-	IKSystemMgr* m_ikSystemMgr;                  // _2F0
-	IKSystemParms* m_ikSystemParms;              // _2F4
-	HoudaiGroundCallBack* m_groundCallBack;      // _2F8
-	HoudaiShadowMgr* m_shadowMgr;                // _2FC
-	HoudaiShotGunMgr* m_shotGunMgr;              // _300
-	Vector3f m_jointPositions[4][4];             // _304
-	efx::TDamaSmoke* m_smokeFX[2];               // _3C4
-	efx::THdamaHahen* m_hahenFX[3];              // _3CC
-	efx::TDamaDeadElecA* m_deadElecAFX[3];       // _3D8
-	efx::THdamaOnHahen1* m_appearHahenFX;        // _3E4
-	efx::THdamaOnHahen2* m_appearHahenFootFX[4]; // _3E8
-	efx::THdamaOnSteam1* m_onSteam1FX;           // _3F8
-	efx::THdamaSteamBd* m_steamBodyFX;           // _3FC
-	efx::THdamaSteam* m_steamFX[3];              // _400
-	efx::THdamaSteamSt* m_chimneyFX[3];          // _40C
-	efx::THdamaDeadbomb* m_deadBombFX;           // _418
-	efx::THdamaDeadSteam* m_deadSteamFX;         // _41C
-	                                             // _420 = PelletView
+	FSM* mFsm;                                  // _2BC
+	f32 mStateTimer;                            // _2C0, how long MAL has been in wait or walk state
+	f32 mStateDuration;                         // _2C4, how long each phase lasts - 1.5-3s for wait, 3.5-7s for walk
+	f32 mShotGunBurstTimer;                     // _2C8, how long shotgun has been blasting for (this burst)
+	f32 mShotGunSearchTimer;                    // _2CC, how long to keep shotgun on with no targets left in range
+	StateID mNextState;                         // _2D0
+	Vector3f mTargetPosition;                   // _2D4
+	Vector3f mShotGunTargetPosition;            // _2E0
+	bool mIsSmoking;                            // _2EC, is below critical health
+	u8 _2ED;                                    // _2ED
+	bool mTargetNearest;                        // _2EE, if false, target nearest navi's nearest piki (i.e. party)
+	bool mIsAttackMusicLooping;                 // _2EF
+	IKSystemMgr* mIkSystemMgr;                  // _2F0
+	IKSystemParms* mIkSystemParms;              // _2F4
+	HoudaiGroundCallBack* mGroundCallBack;      // _2F8
+	HoudaiShadowMgr* mShadowMgr;                // _2FC
+	HoudaiShotGunMgr* mShotGunMgr;              // _300
+	Vector3f mJointPositions[4][4];             // _304
+	efx::TDamaSmoke* mSmokeFX[2];               // _3C4
+	efx::THdamaHahen* mHahenFX[3];              // _3CC
+	efx::TDamaDeadElecA* mDeadElecAFX[3];       // _3D8
+	efx::THdamaOnHahen1* mAppearHahenFX;        // _3E4
+	efx::THdamaOnHahen2* mAppearHahenFootFX[4]; // _3E8
+	efx::THdamaOnSteam1* mOnSteam1FX;           // _3F8
+	efx::THdamaSteamBd* mSteamBodyFX;           // _3FC
+	efx::THdamaSteam* mSteamFX[3];              // _400
+	efx::THdamaSteamSt* mChimneyFX[3];          // _40C
+	efx::THdamaDeadbomb* mDeadBombFX;           // _418
+	efx::THdamaDeadSteam* mDeadSteamFX;         // _41C
+	                                            // _420 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -194,38 +194,38 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, probably
+	Obj* mObj; // _44, probably
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "ÉxÅ[ÉXåWêî", 5.0f, 0.0f, 10.0f)          // 'base factor'
-		    , m_fp02(this, 'fp02', "è„Ç∞å∏ë¨åWêî", -0.4f, -5.0f, 5.0f)       // 'raising deceleration factor'
-		    , m_fp03(this, 'fp03', "â∫Ç∞â¡ë¨åWêî", 0.5f, -5.0f, 5.0f)        // 'downward acceleration factor'
-		    , m_fp04(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -3.0f, -10.0f, 10.0f)   // 'minimum deceleration acceleration factor'
-		    , m_fp05(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f, 10.0f)   // 'maximum deceleration acceleration factor'
-		    , m_fp06(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 90.0f, 0.0f, 200.0f)      // 'leg swing'
-		    , m_fp10(this, 'fp10', "éÀåÇOn:Max", 2.0f, 0.0f, 10.0f)          // 'shooting on:max'
-		    , m_fp11(this, 'fp11', "éÀåÇOn:Min", 1.0f, 0.0f, 10.0f)          // 'shooting on:min'
-		    , m_fp12(this, 'fp12', "éÀåÇOff:Max", 1.0f, 0.0f, 10.0f)         // 'shooting off:max'
-		    , m_fp13(this, 'fp13', "éÀåÇOff:Min", 0.5f, 0.0f, 10.0f)         // 'shooting off:min'
-		    , m_fp20(this, 'fp20', "Last 2 Territory", 380.0f, 0.0f, 500.0f) // 'Last 2 Territory'
+		    , mFp01(this, 'fp01', "ÉxÅ[ÉXåWêî", 5.0f, 0.0f, 10.0f)          // 'base factor'
+		    , mFp02(this, 'fp02', "è„Ç∞å∏ë¨åWêî", -0.4f, -5.0f, 5.0f)       // 'raising deceleration factor'
+		    , mFp03(this, 'fp03', "â∫Ç∞â¡ë¨åWêî", 0.5f, -5.0f, 5.0f)        // 'downward acceleration factor'
+		    , mFp04(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -3.0f, -10.0f, 10.0f)   // 'minimum deceleration acceleration factor'
+		    , mFp05(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f, 10.0f)   // 'maximum deceleration acceleration factor'
+		    , mFp06(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 90.0f, 0.0f, 200.0f)      // 'leg swing'
+		    , mFp10(this, 'fp10', "éÀåÇOn:Max", 2.0f, 0.0f, 10.0f)          // 'shooting on:max'
+		    , mFp11(this, 'fp11', "éÀåÇOn:Min", 1.0f, 0.0f, 10.0f)          // 'shooting on:min'
+		    , mFp12(this, 'fp12', "éÀåÇOff:Max", 1.0f, 0.0f, 10.0f)         // 'shooting off:max'
+		    , mFp13(this, 'fp13', "éÀåÇOff:Min", 0.5f, 0.0f, 10.0f)         // 'shooting off:min'
+		    , mFp20(this, 'fp20', "Last 2 Territory", 380.0f, 0.0f, 500.0f) // 'Last 2 Territory'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp04; // _87C
-		Parm<f32> m_fp05; // _8A4
-		Parm<f32> m_fp06; // _8CC
-		Parm<f32> m_fp10; // _8F4
-		Parm<f32> m_fp11; // _91C
-		Parm<f32> m_fp12; // _944
-		Parm<f32> m_fp13; // _96C
-		Parm<f32> m_fp20; // _994
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp03; // _854
+		Parm<f32> mFp04; // _87C
+		Parm<f32> mFp05; // _8A4
+		Parm<f32> mFp06; // _8CC
+		Parm<f32> mFp10; // _8F4
+		Parm<f32> mFp11; // _91C
+		Parm<f32> mFp12; // _944
+		Parm<f32> mFp13; // _96C
+		Parm<f32> mFp20; // _994
 	};
 
 	Parms() {};
@@ -233,23 +233,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() {};                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() {};                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 struct HoudaiShadowMgr {
@@ -259,24 +259,24 @@ struct HoudaiShadowMgr {
 	void setJointPosPtr(int, int, Vector3f*);
 	void update();
 
-	Matrixf* m_matrix;                        // _00
-	Obj* m_obj;                               // _04
-	Vector3f* m_jointPosPtrs[4][4];           // _08
-	JointShadowRootNode* m_rootNode;          // _48
-	TubeShadowSetNode* m_legTubeShadow1[4];   // _4C, rhand=0, lhand=1, rfoot=2, lfoot=3
-	TubeShadowSetNode* m_legTubeShadow2[4];   // _5C, rhand=0, lhand=1, rfoot=2, lfoot=3
-	TubeShadowSetNode* m_legTubeShadow3[4];   // _6C, rhand=0, lhand=1, rfoot=2, lfoot=3
-	TubeShadowSetNode* m_legTubeShadow4[4];   // _7C, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_bodySphereShadow;     // _8C
-	SphereShadowNode* m_legSphereShadow1[4];  // _90, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_legSphereShadow2[4];  // _A0, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_legSphereShadow3[4];  // _B0, rhand=0, lhand=1, rfoot=2, lfoot=3
-	SphereShadowNode* m_metalLegSphereShadow; // _C0
+	Matrixf* mMatrix;                        // _00
+	Obj* mObj;                               // _04
+	Vector3f* mJointPosPtrs[4][4];           // _08
+	JointShadowRootNode* mRootNode;          // _48
+	TubeShadowSetNode* mLegTubeShadow1[4];   // _4C, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* mLegTubeShadow2[4];   // _5C, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* mLegTubeShadow3[4];   // _6C, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* mLegTubeShadow4[4];   // _7C, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mBodySphereShadow;     // _8C
+	SphereShadowNode* mLegSphereShadow1[4];  // _90, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mLegSphereShadow2[4];  // _A0, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mLegSphereShadow3[4];  // _B0, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* mMetalLegSphereShadow; // _C0
 };
 
 struct HoudaiGroundCallBack : public JointGroundCallBack {
 	inline HoudaiGroundCallBack(Obj* obj)
-	    : m_obj(obj)
+	    : mObj(obj)
 	{
 	}
 
@@ -284,7 +284,7 @@ struct HoudaiGroundCallBack : public JointGroundCallBack {
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 
 	// _00	= VTBL
-	Obj* m_obj; // _04
+	Obj* mObj; // _04
 };
 
 struct HoudaiShotGunNode : public CNode {
@@ -294,10 +294,10 @@ struct HoudaiShotGunNode : public CNode {
 
 	// _00		= VTBL
 	// _00-_18 	= CNode
-	Obj* m_owner;                 // _18
-	efx::THdamaShell* m_efxShell; // _1C
-	Vector3f _20;                 // _20
-	Vector3f _2C;                 // _2C
+	Obj* mOwner;                 // _18
+	efx::THdamaShell* mEfxShell; // _1C
+	Vector3f _20;                // _20
+	Vector3f _2C;                // _2C
 };
 
 struct HoudaiShotGunMgr {
@@ -328,19 +328,19 @@ struct HoudaiShotGunMgr {
 	void startStoneStateEffectOn();
 	void finishStoneStateEffectOn();
 
-	Obj* m_owner;                 // _00
-	bool m_isShotGunRotation;     // _04
-	bool m_isShotGunLockedOn;     // _05
-	bool m_isShotGunFinished;     // _06
-	f32 _08;                      // _08
-	f32 _0C;                      // _0C
-	Matrixf* _10;                 // _10
-	Matrixf* _14;                 // _14
-	Vector3f m_targetPosition;    // _18
-	u8 _24[0xC];                  // _24, unknown
-	efx::THdamaSight* m_efxSight; // _30
-	HoudaiShotGunNode* _34;       // _34
-	HoudaiShotGunNode* _38;       // _38
+	Obj* mOwner;                 // _00
+	bool mIsShotGunRotation;     // _04
+	bool mIsShotGunLockedOn;     // _05
+	bool mIsShotGunFinished;     // _06
+	f32 _08;                     // _08
+	f32 _0C;                     // _0C
+	Matrixf* _10;                // _10
+	Matrixf* _14;                // _14
+	Vector3f mTargetPosition;    // _18
+	u8 _24[0xC];                 // _24, unknown
+	efx::THdamaSight* mEfxSight; // _30
+	HoudaiShotGunNode* _34;      // _34
+	HoudaiShotGunNode* _38;      // _38
 };
 
 /////////////////////////////////////////////////////////////////
@@ -356,7 +356,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

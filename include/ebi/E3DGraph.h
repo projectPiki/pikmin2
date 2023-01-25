@@ -20,10 +20,10 @@ struct E3DAnimRes {
 	J3DMtxCalcAnmBase* pMtxCalcAnm_0x4; // _04
 	f32 float_0x8;                      // _08
 	f32 float_0xC;                      // _0C
-	f32 m_loopStart;                    // _10
-	f32 m_loopEnd;                      // _14
+	f32 mLoopStart;                     // _10
+	f32 mLoopEnd;                       // _14
 	f32 float_0x18;                     // _18
-	int m_mode;                         // _1C
+	int mMode;                          // _1C
 };
 
 struct E3DAnimFolderBase {

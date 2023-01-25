@@ -9,8 +9,8 @@ namespace Screen {
  */
 void TScreenBase::setArchive(JKRArchive* newArchive)
 {
-	if (m_archive == nullptr) {
-		m_archive = newArchive;
+	if (mArchive == nullptr) {
+		mArchive = newArchive;
 		doSetArchive(newArchive);
 	}
 }
@@ -29,9 +29,9 @@ void TScreenBase::doSetArchive(JKRArchive*) { }
  */
 bool TScreenBase::openScreen(ArgOpen* arg)
 {
-	if (m_state == TSB_US_Finish) {
+	if (mState == TSB_US_Finish) {
 		doOpenScreen(arg);
-		m_state = TSB_US_Open;
+		mState = TSB_US_Open;
 		return true;
 	}
 
@@ -52,9 +52,9 @@ void TScreenBase::doOpenScreen(ArgOpen*) { }
  */
 bool TScreenBase::closeScreen(ArgClose* arg)
 {
-	if (m_state == TSB_US_Wait) {
+	if (mState == TSB_US_Wait) {
 		doCloseScreen(arg);
-		m_state = TSB_US_Close;
+		mState = TSB_US_Close;
 		return true;
 	}
 
@@ -76,7 +76,7 @@ void TScreenBase::doCloseScreen(ArgClose*) { }
 void TScreenBase::killScreen()
 {
 	doKillScreen();
-	m_state = TSB_US_Finish;
+	mState = TSB_US_Finish;
 }
 
 /*
@@ -84,7 +84,7 @@ void TScreenBase::killScreen()
  * Address:	803D3988
  * Size:	000010
  */
-u8 TScreenBase::isFinishScreen() { return m_state == TSB_US_Finish; }
+u8 TScreenBase::isFinishScreen() { return mState == TSB_US_Finish; }
 
 /*
  * --INFO--
@@ -92,21 +92,21 @@ u8 TScreenBase::isFinishScreen() { return m_state == TSB_US_Finish; }
  * Size:	000014
  */
 // unused function
-u8 TScreenBase::isOpenScreen() { return m_state == TSB_US_Open; }
+u8 TScreenBase::isOpenScreen() { return mState == TSB_US_Open; }
 
 /*
  * --INFO--
  * Address:	803D3998
  * Size:	000014
  */
-u8 TScreenBase::isWaitScreen() { return m_state == TSB_US_Wait; }
+u8 TScreenBase::isWaitScreen() { return mState == TSB_US_Wait; }
 
 /*
  * --INFO--
  * Address:	803D39AC
  * Size:	000014
  */
-u8 TScreenBase::isCloseScreen() { return m_state == TSB_US_Close; }
+u8 TScreenBase::isCloseScreen() { return mState == TSB_US_Close; }
 
 /*
  * --INFO--
@@ -115,11 +115,11 @@ u8 TScreenBase::isCloseScreen() { return m_state == TSB_US_Close; }
  */
 void TScreenBase::update()
 {
-	switch (m_state) {
+	switch (mState) {
 	case TSB_US_Open:
 		if (doUpdateStateOpen()) {
 			doInitWaitState();
-			m_state = TSB_US_Wait;
+			mState = TSB_US_Wait;
 		}
 		break;
 	case TSB_US_Wait:
@@ -173,7 +173,7 @@ bool TScreenBase::doUpdateStateOpen() { return true; }
  */
 void TScreenBase::draw()
 {
-	if (m_state != TSB_US_Finish) {
+	if (mState != TSB_US_Finish) {
 		doDraw();
 	}
 }

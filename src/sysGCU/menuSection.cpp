@@ -10,8 +10,8 @@
 MenuSection::MenuSection(JFWDisplay* display, JKRHeap* heap, bool b)
     : Section(display, heap, b)
 {
-	m_currentSection = nullptr;
-	_3C              = false;
+	mCurrentSection = nullptr;
+	_3C             = false;
 }
 
 /*
@@ -23,7 +23,7 @@ void MenuSection::run()
 {
 	_3C = false;
 	do {
-		m_isMainActive = true;
+		mIsMainActive = true;
 		MenuSection::runChildSection();
 	} while (!_3C);
 }
@@ -37,27 +37,27 @@ bool MenuSection::runChildSection()
 {
 	JKRHeap::sCurrentHeap->getFreeSize();
 
-	JKRExpHeap* expHeap  = JKRExpHeap::create(m_displayHeap->getFreeSize(), m_displayHeap, true);
+	JKRExpHeap* expHeap  = JKRExpHeap::create(mDisplayHeap->getFreeSize(), mDisplayHeap, true);
 	JKRHeap* currentHeap = expHeap->becomeCurrentHeap();
 
-	m_currentSection = (Section*)setChildSection(expHeap);
+	mCurrentSection = (Section*)setChildSection(expHeap);
 
-	if (m_currentSection) {
+	if (mCurrentSection) {
 		sys->heapStatusStart("ChildSection::init", nullptr);
-		m_currentSection->init();
+		mCurrentSection->init();
 
 		sys->heapStatusEnd("ChildSection::init");
-		sys->m_deltaTime = sys->m_fpsFactor / 60.0f;
-		m_currentSection->run();
-		m_currentSection->exit();
+		sys->mDeltaTime = sys->mFpsFactor / 60.0f;
+		mCurrentSection->run();
+		mCurrentSection->exit();
 
-		delete m_currentSection;
-		m_currentSection = nullptr;
+		delete mCurrentSection;
+		mCurrentSection = nullptr;
 	}
 
 	expHeap->destroy();
 	currentHeap->becomeCurrentHeap();
 	JKRHeap::sCurrentHeap->getFreeSize();
 
-	return (m_currentSection != 0);
+	return (mCurrentSection != 0);
 }

@@ -11,16 +11,16 @@ struct OnyonSpot;
 
 struct OnyonSpotArg : public ModelEffectCreateArg {
 	inline OnyonSpotArg(Vector3f& orig, u32 onyonType)
-	    : m_onyonType(onyonType)
+	    : mOnyonType(onyonType)
 	{
-		m_orig = orig;
+		mOrig = orig;
 	}
 
 	virtual u64 getID() { return 'ONY_SPOT'; } // _08 (weak)
 
 	// _00 		= VTBL
-	Vector3f m_orig; // _04
-	u32 m_onyonType; // _10
+	Vector3f mOrig; // _04
+	u32 mOnyonType; // _10
 };
 
 struct OnyonSpotData : public ModelEffectData {
@@ -29,10 +29,10 @@ struct OnyonSpotData : public ModelEffectData {
 	virtual u64 getID() { return 'ONY_SPOT'; }            // _14 (weak)
 	virtual ModelEffect* onCreate(ModelEffectCreateArg*); // _18
 
-	int m_texAnimCount;                  // _20
-	Sys::MatTexAnimation* m_texanims;    // _24
-	int m_tevAnimCount;                  // _28
-	Sys::MatTevRegAnimation* m_tevanims; // _2C
+	int mTexAnimCount;                  // _20
+	Sys::MatTexAnimation* mTexanims;    // _24
+	int mTevAnimCount;                  // _28
+	Sys::MatTevRegAnimation* mTevanims; // _2C
 };
 
 struct OnyonSpot : public ModelEffect {
@@ -44,8 +44,8 @@ struct OnyonSpot : public ModelEffect {
 	// unused/inlined
 	void initAnimators(Sys::MatTexAnimation*, Sys::MatTevRegAnimation*);
 
-	Sys::MatLoopAnimator m_anim1; // _3C
-	Sys::MatLoopAnimator m_anim2; // _48
+	Sys::MatLoopAnimator mAnim1; // _3C
+	Sys::MatLoopAnimator mAnim2; // _48
 };
 } // namespace efx
 

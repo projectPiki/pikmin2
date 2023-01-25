@@ -115,7 +115,7 @@
  * Address:	8005921C
  * Size:	000030
  */
-void J2DTexMtx::load(unsigned long p1) { GXLoadTexMtxImm(m_mtx, p1 * 3 + 0x1E, (_GXTexMtxType)m_info._00); }
+void J2DTexMtx::load(unsigned long p1) { GXLoadTexMtxImm(mMtx, p1 * 3 + 0x1E, (_GXTexMtxType)mInfo._00); }
 
 /*
  * --INFO--
@@ -124,10 +124,10 @@ void J2DTexMtx::load(unsigned long p1) { GXLoadTexMtxImm(m_mtx, p1 * 3 + 0x1E, (
  */
 void J2DTexMtx::calc()
 {
-	if (m_info._01 == 0) {
-		getTextureMtx(m_info.m_textureSRTInfo, Vec(m_info._04), m_mtx);
-	} else if (m_info._01 == 1) {
-		getTextureMtxMaya(m_info.m_textureSRTInfo, m_mtx);
+	if (mInfo._01 == 0) {
+		getTextureMtx(mInfo.mTextureSRTInfo, Vec(mInfo._04), mMtx);
+	} else if (mInfo._01 == 1) {
+		getTextureMtxMaya(mInfo.mTextureSRTInfo, mMtx);
 	}
 }
 

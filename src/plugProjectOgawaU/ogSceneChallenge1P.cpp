@@ -50,8 +50,8 @@ bool Challenge1P::doStart(::Screen::StartSceneArg* sceneArg)
 void Challenge1P::doUpdateActive()
 {
 	if (Game::gameSystem) {
-		Screen::DispMemberChallenge1P* dispMember = static_cast<Screen::DispMemberChallenge1P*>(m_dispMember);
-		updateCountDown(dispMember->m_timeLimit, &dispMember->m_dayEndCount);
+		Screen::DispMemberChallenge1P* dispMember = static_cast<Screen::DispMemberChallenge1P*>(mDispMember);
+		updateCountDown(dispMember->mTimeLimit, &dispMember->mDayEndCount);
 	}
 }
 

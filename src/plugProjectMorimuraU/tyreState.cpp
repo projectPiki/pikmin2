@@ -25,7 +25,7 @@ void Tyre::FSM::init(EnemyBase* enemy)
 StateMove::StateMove(int stateID)
     : State(stateID)
 {
-	m_name = "move";
+	mName = "move";
 }
 
 /*
@@ -51,8 +51,8 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
 {
 	Obj* tyre    = static_cast<Obj*>(enemy);
 	f32 p1       = tyre->_30C;
-	Parms* parms = static_cast<Parms*>(tyre->m_parms);
-	p1 *= parms->m_properParms.m_tyreRotationSpeed.m_value;
+	Parms* parms = static_cast<Parms*>(tyre->mParms);
+	p1 *= parms->mProperParms.mTyreRotationSpeed.mValue;
 
 	if (parms->_832 != 0) {
 		f32 p2     = 0.2f * FABS(p1 - tyre->_2C4);
@@ -64,10 +64,10 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
 		tyre->_2C0 = p2;
 	} else {
 		p1 *= EnemyAnimatorBase::defaultAnimSpeed;
-		tyre->m_animator->m_speed = p1;
+		tyre->mAnimator->mSpeed = p1;
 	}
 
-	if ((tyre->m_health <= 0.0f) && tyre->isEvent(0, EB_IsVulnerable)) {
+	if ((tyre->mHealth <= 0.0f) && tyre->isEvent(0, EB_IsVulnerable)) {
 		transit(tyre, TYRE_Dead, nullptr);
 	}
 }
@@ -87,7 +87,7 @@ void Tyre::StateMove::cleanup(EnemyBase* enemy) { static_cast<Obj*>(enemy)->fade
 StateLand::StateLand(int stateID)
     : State(stateID)
 {
-	m_name = "land";
+	mName = "land";
 }
 
 /*
@@ -109,7 +109,7 @@ void Tyre::StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 void Tyre::StateLand::exec(EnemyBase* enemy)
 {
 	Obj* tyre = static_cast<Obj*>(enemy);
-	if (tyre->m_bounceTriangle) {
+	if (tyre->mBounceTriangle) {
 		tyre->flick();
 		Vector3f position = tyre->getPosition();
 		tyre->landEffect(position);
@@ -126,7 +126,7 @@ void Tyre::StateLand::exec(EnemyBase* enemy)
 StateFreeze::StateFreeze(int stateID)
     : State(stateID)
 {
-	m_name = "freeze";
+	mName = "freeze";
 }
 
 /*
@@ -138,9 +138,9 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tyre = static_cast<Obj*>(enemy);
 	tyre->stopMotion();
-	_10                     = 0;
-	tyre->m_currentVelocity = Vector3f(0.0f);
-	tyre->m_targetVelocity  = Vector3f(0.0f);
+	_10                    = 0;
+	tyre->mCurrentVelocity = Vector3f(0.0f);
+	tyre->mTargetVelocity  = Vector3f(0.0f);
 	tyre->enableEvent(0, EB_Constraint);
 	tyre->collisionStOn();
 }
@@ -152,11 +152,11 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateFreeze::exec(EnemyBase* enemy)
 {
-	Obj* tyre               = static_cast<Obj*>(enemy);
-	tyre->m_currentVelocity = Vector3f(0.0f);
-	tyre->m_targetVelocity  = Vector3f(0.0f);
+	Obj* tyre              = static_cast<Obj*>(enemy);
+	tyre->mCurrentVelocity = Vector3f(0.0f);
+	tyre->mTargetVelocity  = Vector3f(0.0f);
 	_10++;
-	if ((tyre->m_health <= 0.0f) && tyre->isEvent(0, EB_IsVulnerable)) {
+	if ((tyre->mHealth <= 0.0f) && tyre->isEvent(0, EB_IsVulnerable)) {
 		transit(tyre, TYRE_Dead, nullptr);
 	}
 
@@ -178,7 +178,7 @@ void Tyre::StateFreeze::exec(EnemyBase* enemy)
 Tyre::StateDead::StateDead(int stateID)
     : State(stateID)
 {
-	m_name = "dead";
+	mName = "dead";
 }
 
 /*
@@ -201,7 +201,7 @@ void Tyre::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateDead::exec(EnemyBase* enemy)
 {
-	if ((enemy->m_curAnim->m_isPlaying != 0) && ((u32)enemy->m_curAnim->m_type == KEYEVENT_END)) {
+	if ((enemy->mCurAnim->mIsPlaying != 0) && ((u32)enemy->mCurAnim->mType == KEYEVENT_END)) {
 		enemy->kill(nullptr);
 	}
 }

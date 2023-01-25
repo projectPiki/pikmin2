@@ -547,11 +547,11 @@ Mgr* Mgr::create()
 	Mgr* mgr   = new Mgr;
 	sScreenMgr = mgr;
 	mgr->init();
-	mgr->_A0.r     = 0;
-	mgr->_A0.g     = 0;
-	mgr->_A0.b     = 0;
-	mgr->_A0.a     = 0;
-	mgr->m_bgColor = mgr->_A0;
+	mgr->_A0.r    = 0;
+	mgr->_A0.g    = 0;
+	mgr->_A0.b    = 0;
+	mgr->_A0.a    = 0;
+	mgr->mBgColor = mgr->_A0;
 	return mgr;
 }
 
@@ -689,14 +689,14 @@ lbl_80400C08:
 bool Mgr::reset()
 {
 	if (::Screen::Mgr::reset()) {
-		_90         = 0;
-		m_inCave    = false;
-		m_inDemo    = false;
-		_94         = 0;
-		_98         = 0;
-		m_bgColor.a = 0;
-		_A0.a       = 0;
-		m_bgMode    = 0;
+		_90        = 0;
+		mInCave    = false;
+		mInDemo    = false;
+		_94        = 0;
+		_98        = 0;
+		mBgColor.a = 0;
+		_A0.a      = 0;
+		mBgMode    = 0;
 		return true;
 	}
 	return false;

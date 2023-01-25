@@ -68,40 +68,40 @@ extern CustomHeapCallback customHeapCallback;
 struct Actor {
 	inline Actor(Vec* vec1, Vec* vec2, Vec* vec3, u32 unk)
 	{
-		m_vec1 = vec1;
-		m_vec2 = vec2;
-		m_vec3 = vec3;
-		m_unk  = unk;
+		mVec1 = vec1;
+		mVec2 = vec2;
+		mVec3 = vec3;
+		mUnk  = unk;
 		// Actual condition is unknown
-		if (m_vec1 == nullptr) {
-			m_flag.boolView[0] = true;
+		if (mVec1 == nullptr) {
+			mFlag.boolView[0] = true;
 		} else {
-			m_flag.boolView[0] = true;
+			mFlag.boolView[0] = true;
 		}
 	}
 
-	Vec* m_vec1; // _00
-	Vec* m_vec2; // _04
-	Vec* m_vec3; // _08
-	u32 m_unk;   // _0C (might be a pointer?)
-	// bool m_flag; // _10
+	Vec* mVec1; // _00
+	Vec* mVec2; // _04
+	Vec* mVec3; // _08
+	u32 mUnk;   // _0C (might be a pointer?)
+	// bool mFlag; // _10
 	union {
 		bool boolView[4];
 		u32 longView;
-	} m_flag; // _10
+	} mFlag; // _10
 };
 
 struct Camera {
 	inline Camera(Vec* vec1 = nullptr, Vec* vec2 = nullptr, Mtx* mtx = nullptr)
 	{
-		m_vec1 = vec1;
-		m_vec2 = vec2;
-		m_mtx  = mtx;
+		mVec1 = vec1;
+		mVec2 = vec2;
+		mMtx  = mtx;
 	}
 
-	Vec* m_vec1; // _00
-	Vec* m_vec2; // _04
-	Mtx* m_mtx;  // _08
+	Vec* mVec1; // _00
+	Vec* mVec2; // _04
+	Mtx* mMtx;  // _08
 };
 
 struct DummyObjectMgr {
@@ -112,7 +112,7 @@ struct DummyObjectMgr {
 	struct DummyObject {
 		DummyObject* _00;      // _00
 		DummyObject* _04;      // _04
-		JAISound* m_sound;     // _08
+		JAISound* mSound;      // _08
 		JGeometry::TVec3f _0C; // _0C
 		u32 _18;               // _18
 	};
@@ -178,7 +178,7 @@ struct PlayerParameter {
 	union {
 		PortArg asArray[11];
 		JASPortArgs asStruct;
-	} m_portArgs;   // _04
+	} mPortArgs;    // _04
 	JASPortCmd _30; // _30
 };
 
@@ -215,28 +215,28 @@ struct SeParameter {
 struct SeqUpdateData {
 	SeqUpdateData();
 
-	u8 _00;                  // _00 - unknown
-	u8 _01;                  // _01 - unknown
-	u8 _02;                  // _02
-	u8 _03;                  // _03 - could be padding
-	uint _04;                // _04
-	int _08;                 // _08
-	f32 _0C;                 // _0C
-	f32 _10;                 // _10
-	f32 _14;                 // _14
-	f32 _18;                 // _18
-	f32 _1C;                 // _1C
-	f32 _20;                 // _20
-	f32* _24;                // _24
-	f32* _28;                // _28
-	f32* _2C;                // _2C
-	f32* _30;                // _30
-	f32* _34;                // _34
-	u8 _38[8];               // _38 - unknown
-	u8* _40;                 // _40
-	u32* _44;                // _44
-	JAISequence* m_sequence; // _48
-	PlayerParameter* _4C;    // _4C - pointer to array of 33 parameters
+	u8 _00;                 // _00 - unknown
+	u8 _01;                 // _01 - unknown
+	u8 _02;                 // _02
+	u8 _03;                 // _03 - could be padding
+	uint _04;               // _04
+	int _08;                // _08
+	f32 _0C;                // _0C
+	f32 _10;                // _10
+	f32 _14;                // _14
+	f32 _18;                // _18
+	f32 _1C;                // _1C
+	f32 _20;                // _20
+	f32* _24;               // _24
+	f32* _28;               // _28
+	f32* _2C;               // _2C
+	f32* _30;               // _30
+	f32* _34;               // _34
+	u8 _38[8];              // _38 - unknown
+	u8* _40;                // _40
+	u32* _44;               // _44
+	JAISequence* mSequence; // _48
+	PlayerParameter* _4C;   // _4C - pointer to array of 33 parameters
 };
 
 struct SeqParameter : MoveParaSet {
@@ -247,41 +247,41 @@ struct SeqParameter : MoveParaSet {
 	// f32 _04;                  // _04 - tempo proportion?
 	// f32 _08;                  // _08 - affected by tempo?
 	// u32 _0C;                    // _0C
-	MoveParaSet _10[16];        // _10
-	MoveParaSet _110[20];       // _110
-	MoveParaSet* _250;          // _250
-	MoveParaSet* _254;          // _254
-	MoveParaSet* _258;          // _258
-	MoveParaSet* _25C;          // _25C
-	MoveParaSet* _260;          // _260
-	MoveParaSetInitHalf* _264;  // _264
-	MoveParaSet* _268;          // _268
-	MoveParaSetInitZero* _26C;  // _26C
-	MoveParaSetInitZero* _270;  // _270
-	u16** _274;                 // _274
-	u8 _278;                    // _278 - auto heap index?
-	u8 _279;                    // _279
-	short _27A;                 // _27A
-	u32 _27C;                   // _27C
-	u32 _280;                   // _280 - from here to (and including) _2B0 might be an array...
-	u32 _284;                   // _284
-	u32 _288;                   // _288
-	u32 _28C;                   // _28C
-	u32 _290;                   // _290
-	u32 _294;                   // _294
-	u32 _298;                   // _298
-	u32 _29C;                   // _29C
-	u32 _2A0;                   // _2A0
-	u32 _2A4;                   // _2A4
-	u32 _2A8;                   // _2A8
-	u32 _2AC;                   // _2AC
-	u32 _2B0;                   // _2B0
-	u32* _2B4;                  // _2B4
-	u8* _2B8;                   // _2B8 - unknown pointer
-	MuteBit* _2BC;              // _2BC
-	SeqUpdateData* _2C0;        // _2C0
-	JASTrack m_track;           // _2C4
-	JASOuterParam m_outerParam; // _62C
+	MoveParaSet _10[16];       // _10
+	MoveParaSet _110[20];      // _110
+	MoveParaSet* _250;         // _250
+	MoveParaSet* _254;         // _254
+	MoveParaSet* _258;         // _258
+	MoveParaSet* _25C;         // _25C
+	MoveParaSet* _260;         // _260
+	MoveParaSetInitHalf* _264; // _264
+	MoveParaSet* _268;         // _268
+	MoveParaSetInitZero* _26C; // _26C
+	MoveParaSetInitZero* _270; // _270
+	u16** _274;                // _274
+	u8 _278;                   // _278 - auto heap index?
+	u8 _279;                   // _279
+	short _27A;                // _27A
+	u32 _27C;                  // _27C
+	u32 _280;                  // _280 - from here to (and including) _2B0 might be an array...
+	u32 _284;                  // _284
+	u32 _288;                  // _288
+	u32 _28C;                  // _28C
+	u32 _290;                  // _290
+	u32 _294;                  // _294
+	u32 _298;                  // _298
+	u32 _29C;                  // _29C
+	u32 _2A0;                  // _2A0
+	u32 _2A4;                  // _2A4
+	u32 _2A8;                  // _2A8
+	u32 _2AC;                  // _2AC
+	u32 _2B0;                  // _2B0
+	u32* _2B4;                 // _2B4
+	u8* _2B8;                  // _2B8 - unknown pointer
+	MuteBit* _2BC;             // _2BC
+	SeqUpdateData* _2C0;       // _2C0
+	JASTrack mTrack;           // _2C4
+	JASOuterParam mOuterParam; // _62C
 };
 
 struct SoundInfo {

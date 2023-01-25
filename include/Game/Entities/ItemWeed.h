@@ -59,7 +59,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 		virtual Matrixf* getMatrix(int); // _08 (weak)
 
 		// _00 VTBL
-		Matrixf* m_matrix; // _04
+		Matrixf* mMatrix; // _04
 	};
 
 	inline Item(int objTypeID) // probably
@@ -82,8 +82,8 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	// _00      = VTABLE
 	// _00-_1E0 = FSMItem
-	DummyShape m_dummyShape; // _1E0
-	WeedMgr* m_flockMgr;     // _1E8
+	DummyShape mDummyShape; // _1E0
+	WeedMgr* mFlockMgr;     // _1E8
 };
 
 struct Mgr : public TNodeItemMgr {

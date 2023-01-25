@@ -21,8 +21,8 @@ struct TConfirmEndWindow : public og::newScreen::ObjWorldMapInfoWindow0 {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_D4 = og::newScreen::ObjWorldMapInfoWindow0
-	bool m_hasDrawn; // _D4
-	u8 m_isActive;   // _D5
+	bool mHasDrawn; // _D4
+	u8 mIsActive;   // _D5
 };
 
 struct TSelectExplanationWindow : public TScreenBase {
@@ -40,12 +40,12 @@ struct TSelectExplanationWindow : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
-	int m_state;                      // _18
-	f32 m_transXModifier;             // _1C
-	f32 m_transYModifier;             // _20
-	f32 m_scaleGrowRate;              // _24
-	f32 m_currScreenScale;            // _28
-	og::Screen::ScaleMgr* m_scaleMgr; // _2C
+	int mState;                      // _18
+	f32 mTransXModifier;             // _1C
+	f32 mTransYModifier;             // _20
+	f32 mScaleGrowRate;              // _24
+	f32 mCurrScreenScale;            // _28
+	og::Screen::ScaleMgr* mScaleMgr; // _2C
 };
 } // namespace Morimura
 

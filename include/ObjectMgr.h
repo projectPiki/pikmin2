@@ -18,8 +18,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.m_index != iter.m_container->getEnd()) {
-			iter.m_container->get(iter.m_index)->doAnimation();
+		while (iter.mIndex != iter.mContainer->getEnd()) {
+			iter.mContainer->get(iter.mIndex)->doAnimation();
 			iter.next();
 		}
 	}
@@ -27,8 +27,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.m_index != iter.m_container->getEnd()) {
-			iter.m_container->get(iter.m_index)->doEntry();
+		while (iter.mIndex != iter.mContainer->getEnd()) {
+			iter.mContainer->get(iter.mIndex)->doEntry();
 			iter.next();
 		}
 	}
@@ -36,8 +36,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.m_index != iter.m_container->getEnd()) {
-			iter.m_container->get(iter.m_index)->doSetView(p1);
+		while (iter.mIndex != iter.mContainer->getEnd()) {
+			iter.mContainer->get(iter.mIndex)->doSetView(p1);
 			iter.next();
 		}
 	}
@@ -45,8 +45,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.m_index != iter.m_container->getEnd()) {
-			iter.m_container->get(iter.m_index)->doViewCalc();
+		while (iter.mIndex != iter.mContainer->getEnd()) {
+			iter.mContainer->get(iter.mIndex)->doViewCalc();
 			iter.next();
 		}
 	}
@@ -54,8 +54,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.m_index != iter.m_container->getEnd()) {
-			iter.m_container->get(iter.m_index)->doSimulation(constraint);
+		while (iter.mIndex != iter.mContainer->getEnd()) {
+			iter.mContainer->get(iter.mIndex)->doSimulation(constraint);
 			iter.next();
 		}
 	}
@@ -63,8 +63,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.m_index != iter.m_container->getEnd()) {
-			iter.m_container->get(iter.m_index)->doDirectDraw(graphics);
+		while (iter.mIndex != iter.mContainer->getEnd()) {
+			iter.mContainer->get(iter.mIndex)->doDirectDraw(graphics);
 			iter.next();
 		}
 	}
@@ -78,15 +78,15 @@ template <typename T>
 struct TObjectNode : public CNode {
 	virtual ~TObjectNode() { } // _08 (weak)
 
-	TObjectNode<T>* getNext() { return static_cast<TObjectNode<T>*>(m_next); }
+	TObjectNode<T>* getNext() { return static_cast<TObjectNode<T>*>(mNext); }
 
-	T* m_contents; // _18
+	T* mContents; // _18
 };
 
 template <typename T>
 struct NodeObjectMgr : public ObjectMgr<T> {
 	inline NodeObjectMgr()
-	    : m_node()
+	    : mNode()
 	{
 	}
 
@@ -94,15 +94,15 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 	// virtual ~NodeObjectMgr() { }      // _08
 	virtual T* get(void* node) // _20
 	{
-		return ((TObjectNode<T>*)node)->m_contents;
+		return ((TObjectNode<T>*)node)->mContents;
 	}
 	virtual void* getNext(void* node) // _14
 	{
-		return ((TObjectNode<T>*)node)->m_next;
+		return ((TObjectNode<T>*)node)->mNext;
 	}
 	virtual void* getStart() // _18
 	{
-		return m_node.m_child;
+		return mNode.mChild;
 	}
 	virtual void* getEnd() // _1C
 	{
@@ -112,39 +112,39 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 	// second VTBL:
 	virtual void resetMgr() // _20
 	{
-		m_node.m_child  = nullptr;
-		m_node.m_parent = nullptr;
-		m_node.m_prev   = nullptr;
-		m_node.m_next   = nullptr;
+		mNode.mChild  = nullptr;
+		mNode.mParent = nullptr;
+		mNode.mPrev   = nullptr;
+		mNode.mNext   = nullptr;
 	}
 
 	void delNode(T* contents);
 	// needs to not be inlined in ItemMgr::killAllExceptOnyonMgr();
 	/*
 	{
-	    // for (TObjectNode<T>* node = (TObjectNode<T>*)m_node.m_child; node != nullptr; node =
-	(TObjectNode<T>*)node->m_next) {
-	    // 	if (node->m_contents == contents) {
+	    // for (TObjectNode<T>* node = (TObjectNode<T>*)mNode.mChild; node != nullptr; node =
+	(TObjectNode<T>*)node->mNext) {
+	    // 	if (node->mContents == contents) {
 	    // 		node->del();
 	    // 		return;
 	    // 	}
 	    // }
-	    TObjectNode<T>* node = (TObjectNode<T>*)m_node.m_child;
+	    TObjectNode<T>* node = (TObjectNode<T>*)mNode.mChild;
 	    while (true) {
 	        if (node == nullptr) {
 	            return;
 	        }
-	        if (node->m_contents == contents) {
+	        if (node->mContents == contents) {
 	            break;
 	        }
-	        node = (TObjectNode<T>*)node->m_next;
+	        node = (TObjectNode<T>*)node->mNext;
 	    }
 	    node->del();
 	    return;
 	}
 	*/
 
-	TObjectNode<T> m_node; // _20
+	TObjectNode<T> mNode; // _20
 };
 
 #endif

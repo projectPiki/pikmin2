@@ -49,34 +49,34 @@ struct Mgr : public MgrBase {
 
 	inline void checkController()
 	{
-		Controller* controller = m_controller;
+		Controller* controller = mController;
 		P2ASSERTLINE(280, controller);
 	}
 
-	inline SceneInfoList* getInfoList() { return (SceneInfoList*)_60.m_child; }
+	inline SceneInfoList* getInfoList() { return (SceneInfoList*)_60.mChild; }
 
 	// _00     = VTBL
 	// _00-_18 = MgrBase
-	u8 _18;                     // _18
-	u8 _19;                     // _19
-	u8 _1A;                     // _1A
-	u8 _1B;                     // _1B
-	SceneBase* m_backupScene;   // _1C
-	Controller* m_controller;   // _20
-	u8 _24[8];                  // _24
-	CNode _2C;                  // _2C
-	CNode _44;                  // _44
-	JKRSolidHeap* _5C;          // _5C
-	CNode _60;                  // _60
-	CNode m_sceneInfoList;      // _78, treat as SceneInfoList
-	u8 _90;                     // _90
-	bool m_inCave;              // _91
-	bool m_inDemo;              // _92
-	u32 _94;                    // _94
-	u32 _98;                    // _98
-	JUtility::TColor m_bgColor; // _9C
-	JUtility::TColor _A0;       // _A0
-	int m_bgMode;               // _A4
+	u8 _18;                    // _18
+	u8 _19;                    // _19
+	u8 _1A;                    // _1A
+	u8 _1B;                    // _1B
+	SceneBase* mBackupScene;   // _1C
+	Controller* mController;   // _20
+	u8 _24[8];                 // _24
+	CNode _2C;                 // _2C
+	CNode _44;                 // _44
+	JKRSolidHeap* _5C;         // _5C
+	CNode _60;                 // _60
+	CNode mSceneInfoList;      // _78, treat as SceneInfoList
+	u8 _90;                    // _90
+	bool mInCave;              // _91
+	bool mInDemo;              // _92
+	u32 _94;                   // _94
+	u32 _98;                   // _98
+	JUtility::TColor mBgColor; // _9C
+	JUtility::TColor _A0;      // _A0
+	int mBgMode;               // _A4
 
 	static Mgr* sScreenMgr;
 };
@@ -91,21 +91,21 @@ namespace newScreen {
 struct Mgr : public Screen::Mgr {
 	Mgr()
 	{
-		m_bgColor.set(-1);
+		mBgColor.set(-1);
 		_A0.set(-1);
-		_90      = 0;
-		m_inCave = false;
-		m_inDemo = false;
-		_94      = 0;
-		_98      = 0;
+		_90     = 0;
+		mInCave = false;
+		mInDemo = false;
+		_94     = 0;
+		_98     = 0;
 	}
 
-	virtual ~Mgr() { }                                                  // _08 (weak)
-	virtual bool reset();                                               // _18
-	virtual void setColorBG(JUtility::TColor& col) { m_bgColor = col; } // _1C (weak)
-	virtual void setBGMode(int mode) { m_bgMode = mode; }               // _20 (weak)
-	virtual ::Screen::SceneBase* doGetSceneBase(long);                  // _24
-	virtual void drawBG(Graphics&);                                     // _28
+	virtual ~Mgr() { }                                                 // _08 (weak)
+	virtual bool reset();                                              // _18
+	virtual void setColorBG(JUtility::TColor& col) { mBgColor = col; } // _1C (weak)
+	virtual void setBGMode(int mode) { mBgMode = mode; }               // _20 (weak)
+	virtual ::Screen::SceneBase* doGetSceneBase(long);                 // _24
+	virtual void drawBG(Graphics&);                                    // _28
 
 	static Mgr* create();
 

@@ -35,9 +35,9 @@ namespace VsGame {
 TitleState::TitleState()
     : State(VGS_Title)
 {
-	m_player1Controller = new Controller(JUTGamePad::PORT_0);
-	m_delegate          = new Delegate<Game::VsGame::TitleState>(this, &dvdload);
-	m_player2Controller = new Controller(JUTGamePad::PORT_1);
+	mPlayer1Controller = new Controller(JUTGamePad::PORT_0);
+	mDelegate          = new Delegate<Game::VsGame::TitleState>(this, &dvdload);
+	mPlayer2Controller = new Controller(JUTGamePad::PORT_1);
 }
 /*
  * --INFO--
@@ -47,39 +47,39 @@ TitleState::TitleState()
 void TitleState::init(VsGameSection* section, StateArg* arg)
 {
 	naviMgr->clearDeadCount();
-	section->m_ghostIconTimers[1] = 0.0f;
-	section->m_ghostIconTimers[0] = 0.0f;
-	section->m_pokoCount          = 0;
-	section->m_timeLimit          = 0.0f;
+	section->mGhostIconTimers[1] = 0.0f;
+	section->mGhostIconTimers[0] = 0.0f;
+	section->mPokoCount          = 0;
+	section->mTimeLimit          = 0.0f;
 	section->clearGetDopeCount();
 	section->clearGetCherryCount();
-	section->m_currentFloor = 0;
+	section->mCurrentFloor = 0;
 
 	TitleArg* titleArg = static_cast<TitleArg*>(arg);
 	if (titleArg && titleArg->_00) {
 		section->clearHeap();
 	}
 
-	section->_205            = true;
-	section->m_deadPikiCount = false;
-	m_heap                   = nullptr;
-	m_expHeap                = nullptr;
+	section->_205           = true;
+	section->mDeadPikiCount = false;
+	mHeap                   = nullptr;
+	mExpHeap                = nullptr;
 
-	m_titleStage = VSTITLE_PrepareInfo;
-	_2C          = 0;
+	mTitleStage = VSTITLE_PrepareInfo;
+	_2C         = 0;
 
-	m_caveInfoType = VSCAVEINFO_Default;
-	strcpy(section->m_caveInfoFilename, cMaps[m_caveInfoType]);
+	mCaveInfoType = VSCAVEINFO_Default;
+	strcpy(section->mCaveInfoFilename, cMaps[mCaveInfoType]);
 
-	_20        = 0;
-	m_stageNum = section->m_challengeStageList->m_stageData.getChildCount(); // Stage Num
+	_20       = 0;
+	mStageNum = section->mChallengeStageList->mStageData.getChildCount(); // Stage Num
 
 	section->refreshHIO();
 	section->initPlayData();
-	Screen::gGame2DMgr->m_screenMgr->reset();
+	Screen::gGame2DMgr->mScreenMgr->reset();
 
-	section->m_challengeStageData = nullptr;
-	section->m_VsStageData        = nullptr;
+	section->mChallengeStageData = nullptr;
+	section->mVsStageData        = nullptr;
 }
 
 static const char unusedVsTitleString[] = "コンクリート"; // 'concrete'
@@ -93,23 +93,23 @@ void TitleState::dvdload()
 {
 	PSGame::SceneInfo scene;
 	if (gameSystem->isChallengeMode()) {
-		scene.m_sceneType = PSGame::SceneInfo::CHALLENGE_MENU;
+		scene.mSceneType = PSGame::SceneInfo::CHALLENGE_MENU;
 	} else {
-		scene.m_sceneType = PSGame::SceneInfo::VERSUS_MENU;
+		scene.mSceneType = PSGame::SceneInfo::VERSUS_MENU;
 	}
-	scene.m_cameras = 0;
+	scene.mCameras = 0;
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&scene);
 
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
 	sceneMgr->checkScene();
-	sceneMgr->m_scenes->m_child->scene1stLoadSync();
+	sceneMgr->mScenes->mChild->scene1stLoadSync();
 
 	sceneMgr = PSSystem::getSceneMgr();
 	sceneMgr->checkScene();
-	sceneMgr->m_scenes->m_child->startMainSeq();
+	sceneMgr->mScenes->mChild->startMainSeq();
 
-	m_challengeTitleInfo = new Challenge2D_TitleInfo(getChallengeStageNum());
-	m_vsTitleInfo        = new Vs2D_TitleInfo(getVsStageNum());
+	mChallengeTitleInfo = new Challenge2D_TitleInfo(getChallengeStageNum());
+	mVsTitleInfo        = new Vs2D_TitleInfo(getVsStageNum());
 
 	for (int i = 0; i < 5; i++) {
 		sys->getPlayCommonData()->challenge_get_CourseState(i);
@@ -117,19 +117,19 @@ void TitleState::dvdload()
 
 	for (int i = 0; i < getChallengeStageNum(); i++) {
 		PlayChallengeGameData::CourseState* scores = sys->getPlayCommonData()->challenge_get_CourseState(i);
-		Challenge2D_TitleInfo::Info* displayData   = (*m_challengeTitleInfo)(i);
-		ChallengeGame::StageData* fileData         = m_section->m_challengeStageList->getStageData(i);
+		Challenge2D_TitleInfo::Info* displayData   = (*mChallengeTitleInfo)(i);
+		ChallengeGame::StageData* fileData         = mSection->mChallengeStageList->getStageData(i);
 
 		if (fileData) {
-			displayData->m_floorCount     = fileData->m_floorCounts;
-			displayData->m_timeLimit      = (int)fileData->m_timeLimit;
-			displayData->m_sprayCounts[0] = fileData->m_startNumBitter;
-			displayData->m_sprayCounts[1] = fileData->m_startNumSpicy;
-			displayData->m_pikiContainer  = &fileData->m_pikiContainer;
-			displayData->m_highscore1     = &scores->m_highscores[0];
-			displayData->m_highscore2     = &scores->m_highscores[1];
-			displayData->m_stageIndex     = fileData->m_stageIndex;
-			displayData->m_displayFlag.clear();
+			displayData->mFloorCount     = fileData->mFloorCounts;
+			displayData->mTimeLimit      = (int)fileData->mTimeLimit;
+			displayData->mSprayCounts[0] = fileData->mStartNumBitter;
+			displayData->mSprayCounts[1] = fileData->mStartNumSpicy;
+			displayData->mPikiContainer  = &fileData->mPikiContainer;
+			displayData->mHighscore1     = &scores->mHighscores[0];
+			displayData->mHighscore2     = &scores->mHighscores[1];
+			displayData->mStageIndex     = fileData->mStageIndex;
+			displayData->mDisplayFlag.clear();
 
 			if (sys->getPlayCommonData()->challenge_checkOpen(i)) {
 				displayData->setDisplayFlag(PlayChallengeGameData::CourseState::CSF_IsOpen);
@@ -157,10 +157,10 @@ void TitleState::dvdload()
 	}
 
 	for (int i = 0; i < getVsStageNum(); i++) {
-		Vs2D_TitleInfo::Info* displayData = (*m_vsTitleInfo)(i);
-		VsGame::StageData* fileData       = m_section->m_VsStageList->getStageData(i);
+		Vs2D_TitleInfo::Info* displayData = (*mVsTitleInfo)(i);
+		VsGame::StageData* fileData       = mSection->mVsStageList->getStageData(i);
 		if (fileData) {
-			displayData->m_info = fileData->m_index2D;
+			displayData->mInfo = fileData->mIndex2D;
 		}
 	}
 }
@@ -185,29 +185,29 @@ void TitleState::exec(VsGameSection* section)
  */
 void TitleState::execChallenge(VsGameSection* section)
 {
-	switch (m_titleStage) {
+	switch (mTitleStage) {
 	case VSTITLE_PrepareInfo:
-		m_heap    = getCurrentHeap();
-		m_expHeap = makeExpHeap(m_heap->getFreeSize(), m_heap, true);
-		m_expHeap->becomeCurrentHeap();
+		mHeap    = getCurrentHeap();
+		mExpHeap = makeExpHeap(mHeap->getFreeSize(), mHeap, true);
+		mExpHeap->becomeCurrentHeap();
 
-		m_titleStage = VSTITLE_PrepareDisp;
-		m_section    = section;
+		mTitleStage = VSTITLE_PrepareDisp;
+		mSection    = section;
 
-		sys->dvdLoadUseCallBack(&section->m_dvdThreadCommand, m_delegate);
+		sys->dvdLoadUseCallBack(&section->mDvdThreadCommand, mDelegate);
 		return;
 
 	case VSTITLE_PrepareDisp:
-		if (section->m_dvdThreadCommand.m_mode == 2) {
-			m_titleStage = VSTITLE_Display;
+		if (section->mDvdThreadCommand.mMode == 2) {
+			mTitleStage = VSTITLE_Display;
 
 			Morimura::DispMemberChallengeSelect select;
-			select.m_titleInfo          = m_challengeTitleInfo;
-			select.m_selectedStageIndex = section->m_challengeStageNum;
-			select.m_debugExpHeap       = m_expHeap;
-			select.m_playType           = (gameSystem->isMultiplayerMode() > 0); // sure.
+			select.mTitleInfo          = mChallengeTitleInfo;
+			select.mSelectedStageIndex = section->mChallengeStageNum;
+			select.mDebugExpHeap       = mExpHeap;
+			select.mPlayType           = (gameSystem->isMultiplayerMode() > 0); // sure.
 
-			Screen::gGame2DMgr->setGamePad(m_player1Controller);
+			Screen::gGame2DMgr->setGamePad(mPlayer1Controller);
 			Screen::gGame2DMgr->open_ChallengeSelect(select);
 		}
 		return;
@@ -218,37 +218,37 @@ void TitleState::execChallenge(VsGameSection* section)
 		int check = Screen::gGame2DMgr->check_ChallengeSelect(stageNumber, playType);
 		switch (check) {
 		case 2:
-			section->m_isMenuRunning = true;
+			section->mIsMenuRunning = true;
 			return;
 
 		case 3:
 			OSReport("from Morimun:STATE_GO:stageNo=%d:playType=%d\n", stageNumber, playType);
 
-			if (section->m_isVersusMode) {
-				gameSystem->m_mode = GSM_VERSUS_MODE;
+			if (section->mIsVersusMode) {
+				gameSystem->mMode = GSM_VERSUS_MODE;
 			} else if (!playType) {
-				gameSystem->m_mode = GSM_ONE_PLAYER_CHALLENGE;
+				gameSystem->mMode = GSM_ONE_PLAYER_CHALLENGE;
 			} else {
-				gameSystem->m_mode = GSM_TWO_PLAYER_CHALLENGE;
+				gameSystem->mMode = GSM_TWO_PLAYER_CHALLENGE;
 			}
 
 			LoadArg load(0, 0, 0);
-			ChallengeGame::StageData* data = section->m_challengeStageList->getStageData(stageNumber);
+			ChallengeGame::StageData* data = section->mChallengeStageList->getStageData(stageNumber);
 
 			P2ASSERTLINE(323, data);
-			section->m_challengeStageData = data;
-			section->m_challengeStageNum  = stageNumber;
+			section->mChallengeStageData = data;
+			section->mChallengeStageNum  = stageNumber;
 
-			strcpy(section->m_caveInfoFilename, data->m_caveInfoFilename);
+			strcpy(section->mCaveInfoFilename, data->mCaveInfoFilename);
 
-			load._04              = 0; // why...
-			section->m_container1 = data->m_pikiContainer;
+			load._04             = 0; // why...
+			section->mContainer1 = data->mPikiContainer;
 
-			playData->setDopeCount(0, data->m_startNumSpicy);
-			playData->setDopeCount(1, data->m_startNumBitter);
+			playData->setDopeCount(0, data->mStartNumSpicy);
+			playData->setDopeCount(1, data->mStartNumBitter);
 
-			section->m_timeLimit = 0.0f;
-			data->m_pikiContainer.dump("PikiContainer");
+			section->mTimeLimit = 0.0f;
+			data->mPikiContainer.dump("PikiContainer");
 
 			transit(section, VGS_Load, &load);
 			break;
@@ -270,41 +270,41 @@ void TitleState::execChallenge(VsGameSection* section)
  */
 void TitleState::execVs(VsGameSection* section)
 {
-	switch (m_titleStage) {
+	switch (mTitleStage) {
 	case VSTITLE_PrepareInfo:
-		m_heap    = getCurrentHeap();
-		m_expHeap = makeExpHeap(m_heap->getFreeSize(), m_heap, true);
-		m_expHeap->becomeCurrentHeap();
+		mHeap    = getCurrentHeap();
+		mExpHeap = makeExpHeap(mHeap->getFreeSize(), mHeap, true);
+		mExpHeap->becomeCurrentHeap();
 
-		m_titleStage = VSTITLE_PrepareDisp;
-		m_section    = section;
-		sys->dvdLoadUseCallBack(&section->m_dvdThreadCommand, m_delegate);
+		mTitleStage = VSTITLE_PrepareDisp;
+		mSection    = section;
+		sys->dvdLoadUseCallBack(&section->mDvdThreadCommand, mDelegate);
 		return;
 
 	case VSTITLE_PrepareDisp:
-		if (section->m_dvdThreadCommand.m_mode == 2) {
-			m_titleStage = VSTITLE_Display;
+		if (section->mDvdThreadCommand.mMode == 2) {
+			mTitleStage = VSTITLE_Display;
 
 			Morimura::DispMemberVsSelect select;
-			select.m_titleInfo      = m_vsTitleInfo;
-			select.m_stageNumber    = section->m_VsStageNum;
-			select.m_debugExpHeap   = m_expHeap;
-			select.m_olimarHandicap = section->m_olimarHandicap;
-			select.m_louieHandicap  = section->m_louieHandicap;
-			select.m_redWinCount    = section->mRedWinCount;
-			select.m_blueWinCount   = section->mBlueWinCount;
-			select.m_vsWinner       = section->m_vsWinner;
-			select.m_stageCount     = section->m_VsStageList->m_stageData.getChildCount();
+			select.mTitleInfo      = mVsTitleInfo;
+			select.mStageNumber    = section->mVsStageNum;
+			select.mDebugExpHeap   = mExpHeap;
+			select.mOlimarHandicap = section->mOlimarHandicap;
+			select.mLouieHandicap  = section->mLouieHandicap;
+			select.mRedWinCount    = section->mRedWinCount;
+			select.mBlueWinCount   = section->mBlueWinCount;
+			select.mVsWinner       = section->mVsWinner;
+			select.mStageCount     = section->mVsStageList->mStageData.getChildCount();
 
-			Screen::gGame2DMgr->setGamePad(m_player1Controller);
+			Screen::gGame2DMgr->setGamePad(mPlayer1Controller);
 			Screen::gGame2DMgr->open_VsSelect(select);
 		}
 		return;
 
 	case VSTITLE_Display:
-		JUTGamePad::CStick* stick = &m_player1Controller->m_padSStick;
-		f32 y                     = stick->m_yPos;
-		f32 x                     = stick->m_xPos;
+		JUTGamePad::CStick* stick = &mPlayer1Controller->mSStick;
+		f32 y                     = stick->mYPos;
+		f32 x                     = stick->mXPos;
 		Vector3f stickPos         = Vector3f(x, 0.0f, y);
 
 		Vector3f directions[4];
@@ -325,39 +325,39 @@ void TitleState::execVs(VsGameSection* section)
 					vsEditIndex = i; // up = 0, right = 1, down = 2, left = 3
 				}
 			}
-			section->m_editNumber = vsEditArr[vsEditIndex]; // up  = 0, right = 1, down = 2, left = -1
+			section->mEditNumber = vsEditArr[vsEditIndex]; // up  = 0, right = 1, down = 2, left = -1
 
-		} else {                        // no c-stick input
-			section->m_editNumber = -2; // random?
+		} else {                       // no c-stick input
+			section->mEditNumber = -2; // random?
 		}
 
 		int stageNumber;
-		int check = Screen::gGame2DMgr->check_VsSelect(stageNumber, section->m_olimarHandicap, section->m_louieHandicap);
+		int check = Screen::gGame2DMgr->check_VsSelect(stageNumber, section->mOlimarHandicap, section->mLouieHandicap);
 		switch (check) {
 		case 2:
-			section->m_isMenuRunning = true;
+			section->mIsMenuRunning = true;
 			return;
 		case 3:
-			gameSystem->m_mode = GSM_VERSUS_MODE;
+			gameSystem->mMode = GSM_VERSUS_MODE;
 
 			LoadArg load(0, 0, 0);
-			VsGame::StageData* data = section->m_VsStageList->getStageData(stageNumber);
+			VsGame::StageData* data = section->mVsStageList->getStageData(stageNumber);
 
 			P2ASSERTLINE(451, data);
-			section->m_VsStageData = data;
-			section->m_VsStageNum  = stageNumber;
+			section->mVsStageData = data;
+			section->mVsStageNum  = stageNumber;
 
-			strcpy(section->m_caveInfoFilename, data->m_caveInfoFilename);
-			strcpy(section->m_editFilename, data->m_stageLayoutFilePath);
+			strcpy(section->mCaveInfoFilename, data->mCaveInfoFilename);
+			strcpy(section->mEditFilename, data->mStageLayoutFilePath);
 
-			load._04              = 0; // why...
-			section->m_container1 = data->m_pikiContainer;
+			load._04             = 0; // why...
+			section->mContainer1 = data->mPikiContainer;
 
-			playData->setDopeCount(0, data->m_startNumSpicy);
-			playData->setDopeCount(1, data->m_startNumBitter);
+			playData->setDopeCount(0, data->mStartNumSpicy);
+			playData->setDopeCount(1, data->mStartNumBitter);
 
-			section->m_timeLimit = 0.999f + data->m_timeLimit;
-			data->m_pikiContainer.dump("PikiContainer");
+			section->mTimeLimit = 0.999f + data->mTimeLimit;
+			data->mPikiContainer.dump("PikiContainer");
 
 			transit(section, VGS_Load, &load);
 		}
@@ -378,15 +378,15 @@ void TitleState::execVs(VsGameSection* section)
  */
 void TitleState::draw(VsGameSection* section, Graphics& gfx)
 {
-	if (m_titleStage != VSTITLE_Display) {
+	if (mTitleStage != VSTITLE_Display) {
 		return;
 	}
 
-	gfx.m_perspGraph.setPort();
+	gfx.mPerspGraph.setPort();
 	particle2dMgr->draw(1, 0);
 	Screen::gGame2DMgr->draw(gfx);
 
-	gfx.m_perspGraph.setPort();
+	gfx.mPerspGraph.setPort();
 	particle2dMgr->draw(0, 0);
 }
 
@@ -403,10 +403,10 @@ void TitleState::cleanup(VsGameSection* section)
 
 	particle2dMgr->killAll();
 
-	m_expHeap->freeAll();
-	m_expHeap->destroy();
-	m_expHeap = nullptr;
-	m_heap->becomeCurrentHeap();
+	mExpHeap->freeAll();
+	mExpHeap->destroy();
+	mExpHeap = nullptr;
+	mHeap->becomeCurrentHeap();
 }
 } // namespace VsGame
 } // namespace Game

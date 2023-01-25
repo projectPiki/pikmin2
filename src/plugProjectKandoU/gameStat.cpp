@@ -35,7 +35,7 @@ int getMapPikmins_exclude_Me(int id)
 	if (id == -1) {
 		return alivePikis;
 	} else {
-		return alivePikis.m_pikiCounts[id];
+		return alivePikis.mPikiCounts[id];
 	}
 }
 
@@ -49,7 +49,7 @@ int getMapPikmins(int id)
 	if (id == -1) {
 		return alivePikis + mePikis;
 	} else {
-		return alivePikis.m_pikiCounts[id] + mePikis.m_pikiCounts[id];
+		return alivePikis.mPikiCounts[id] + mePikis.mPikiCounts[id];
 	}
 }
 
@@ -63,7 +63,7 @@ int getZikatuPikmins(int id)
 	if (id == -1) {
 		return zikatuPikis;
 	} else {
-		return zikatuPikis.m_pikiCounts[id];
+		return zikatuPikis.mPikiCounts[id];
 	}
 }
 
@@ -76,9 +76,9 @@ int getAllPikmins(int id)
 {
 	if (id == -1) {
 		int sum = alivePikis + mePikis;
-		return playData->m_pikiContainer.getTotalSum() + sum;
+		return playData->mPikiContainer.getTotalSum() + sum;
 	} else {
-		return getMapPikmins(id) + playData->m_pikiContainer.getColorSum(id);
+		return getMapPikmins(id) + playData->mPikiContainer.getColorSum(id);
 	}
 }
 
@@ -97,7 +97,7 @@ PikiCounter::PikiCounter() { clear(); }
 void PikiCounter::clear()
 {
 	for (int i = 0; i < PikiColorCount; i++) {
-		m_pikiCounts[i] = 0;
+		mPikiCounts[i] = 0;
 	}
 }
 
@@ -108,9 +108,9 @@ void PikiCounter::clear()
  */
 void PikiCounter::inc(Piki* piki)
 {
-	int id = piki->m_pikiKind;
+	int id = piki->mPikiKind;
 	P2ASSERTBOUNDSLINE(147, 0, id, PikiColorCount);
-	m_pikiCounts[id]++;
+	mPikiCounts[id]++;
 }
 
 /*
@@ -120,9 +120,9 @@ void PikiCounter::inc(Piki* piki)
  */
 void PikiCounter::dec(Piki* piki)
 {
-	int id = piki->m_pikiKind;
+	int id = piki->mPikiKind;
 	P2ASSERTBOUNDSLINE(156, 0, id, PikiColorCount);
-	m_pikiCounts[id]--;
+	mPikiCounts[id]--;
 }
 
 /*
@@ -133,7 +133,7 @@ void PikiCounter::dec(Piki* piki)
 void PikiCounter::inc(int id)
 {
 	P2ASSERTBOUNDSLINE(164, 0, id, PikiColorCount);
-	m_pikiCounts[id]++;
+	mPikiCounts[id]++;
 }
 
 /*
@@ -144,7 +144,7 @@ void PikiCounter::inc(int id)
 void PikiCounter::dec(int id)
 {
 	P2ASSERTBOUNDSLINE(170, 0, id, PikiColorCount);
-	m_pikiCounts[id]--;
+	mPikiCounts[id]--;
 }
 
 /*
@@ -162,7 +162,7 @@ PikiNaviCounter::PikiNaviCounter() { clear(); }
 void PikiNaviCounter::clear()
 {
 	for (int i = 0; i < PikiColorCount; i++) {
-		m_counter[i].clear();
+		mCounter[i].clear();
 	}
 }
 
@@ -174,16 +174,16 @@ void PikiNaviCounter::clear()
 void PikiNaviCounter::inc(Piki* piki)
 {
 	int id;
-	if (!piki->m_navi) {
+	if (!piki->mNavi) {
 		id = 2;
 	} else {
-		id = piki->m_navi->m_naviIndex;
+		id = piki->mNavi->mNaviIndex;
 	}
 
 	// this should be a PikiCounter::inc inline judging from the error line, but it makes a regswap
-	int type = piki->m_pikiKind;
+	int type = piki->mPikiKind;
 	P2ASSERTBOUNDSLINE(147, 0, type, PikiColorCount);
-	m_counter[id].m_pikiCounts[type]++;
+	mCounter[id].mPikiCounts[type]++;
 }
 
 /*
@@ -194,16 +194,16 @@ void PikiNaviCounter::inc(Piki* piki)
 void PikiNaviCounter::dec(Game::Piki* piki)
 {
 	int id;
-	if (!piki->m_navi) {
+	if (!piki->mNavi) {
 		id = 2;
 	} else {
-		id = piki->m_navi->m_naviIndex;
+		id = piki->mNavi->mNaviIndex;
 	}
 
 	// this should be a PikiCounter::dec inline judging from the error line, but it makes a regswap
-	int type = piki->m_pikiKind;
+	int type = piki->mPikiKind;
 	P2ASSERTBOUNDSLINE(156, 0, type, PikiColorCount);
-	m_counter[id].m_pikiCounts[type]--;
+	mCounter[id].mPikiCounts[type]--;
 }
 } // namespace GameStat
 } // namespace Game

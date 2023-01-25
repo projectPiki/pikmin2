@@ -30,7 +30,7 @@ JASTaskThread* JASDvd::getThreadPointer() { return sThread; }
 bool JASDvd::createThread(long priority, int p2, unsigned long p3)
 {
 	sThread = new (JASDram, 0) JASTaskThread(priority, p2, p3);
-	OSResumeThread(sThread->m_thread);
+	OSResumeThread(sThread->mThread);
 	return true;
 }
 

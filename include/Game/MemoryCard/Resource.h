@@ -9,14 +9,14 @@ namespace Game {
 namespace MemoryCard {
 struct Resource : public JKRDisposer {
 	Resource(Mgr* parentMgr)
-	    : m_mgr(parentMgr)
+	    : mMgr(parentMgr)
 	{
 	}
 	virtual ~Resource();
 
 	// _00 vtbl
 	u8 _04[0x14]; // _04
-	Mgr* m_mgr;   // _18
+	Mgr* mMgr;    // _18
 };
 } // namespace MemoryCard
 } // namespace Game

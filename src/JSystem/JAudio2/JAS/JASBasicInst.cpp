@@ -44,12 +44,12 @@
 JASBasicInst::JASBasicInst()
     : _04(1.0f)
     , _08(1.0f)
-    , m_effects(nullptr)
-    , m_effectCount(0)
-    , m_oscData(nullptr)
-    , m_oscCount(0)
-    , m_keymapCount(0)
-    , m_keymap(nullptr)
+    , mEffects(nullptr)
+    , mEffectCount(0)
+    , mOscData(nullptr)
+    , mOscCount(0)
+    , mKeymapCount(0)
+    , mKeymap(nullptr)
 {
 }
 
@@ -69,9 +69,9 @@ JASBasicInst::JASBasicInst()
  */
 JASBasicInst::~JASBasicInst()
 {
-	delete[] m_keymap;
-	delete[] m_effects;
-	delete[] m_oscData;
+	delete[] mKeymap;
+	delete[] mEffects;
+	delete[] mOscData;
 }
 
 /*
@@ -91,18 +91,18 @@ void JASBasicInst::searchKeymap(int) const
  */
 bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
 {
-	param->_00        = 0;
-	param->_24        = 0;
-	param->m_oscData  = m_oscData;
-	param->m_oscCount = m_oscCount;
-	param->_10        = _04;
-	param->_14        = _08;
-	for (int i = 0; i < m_effectCount; i++) {
-		JASInstEffect* effect = m_effects[i];
+	param->_00       = 0;
+	param->_24       = 0;
+	param->mOscData  = mOscData;
+	param->mOscCount = mOscCount;
+	param->_10       = _04;
+	param->_14       = _08;
+	for (int i = 0; i < mEffectCount; i++) {
+		JASInstEffect* effect = mEffects[i];
 		if (effect != nullptr) {
 			// This pattern exists in JASDrumSet as well...
 			float y = effect->getY(p1, p2);
-			switch (effect->m_target) {
+			switch (effect->mTarget) {
 			case 0:
 				param->_10 *= y;
 				break;
@@ -122,16 +122,16 @@ bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
 		}
 	}
 	const TKeymap* keymap = nullptr;
-	for (int i = 0; i < m_keymapCount; i++) {
-		if (p1 <= m_keymap[i]._00) {
-			keymap = &m_keymap[i];
+	for (int i = 0; i < mKeymapCount; i++) {
+		if (p1 <= mKeymap[i]._00) {
+			keymap = &mKeymap[i];
 			break;
 		}
 	}
 	if (keymap == nullptr) {
 		return false;
 	}
-	for (int i = 0; i < keymap->m_veloRegionCount; i++) {
+	for (int i = 0; i < keymap->mVeloRegionCount; i++) {
 		TVeloRegion* veloRegion = keymap->getVeloRegion(i);
 		if (p2 <= veloRegion->_00) {
 			param->_10 *= veloRegion->_08;
@@ -157,9 +157,9 @@ int JASBasicInst::getKeymapIndex(int index) const { return index; }
  */
 void JASBasicInst::setKeyRegionCount(u32 count)
 {
-	delete[] m_keymap;
-	m_keymap      = new (JASBank::getCurrentHeap(), 0) TKeymap[count];
-	m_keymapCount = count;
+	delete[] mKeymap;
+	mKeymap      = new (JASBank::getCurrentHeap(), 0) TKeymap[count];
+	mKeymapCount = count;
 }
 
 /*
@@ -169,9 +169,9 @@ void JASBasicInst::setKeyRegionCount(u32 count)
  */
 JASBasicInst::TKeymap::TKeymap()
 {
-	_00               = -1;
-	m_veloRegionCount = 0;
-	m_veloRegions     = nullptr;
+	_00              = -1;
+	mVeloRegionCount = 0;
+	mVeloRegions     = nullptr;
 }
 
 /*
@@ -181,13 +181,13 @@ JASBasicInst::TKeymap::TKeymap()
  */
 void JASBasicInst::setEffectCount(u32 count)
 {
-	delete[] m_effects;
-	m_effectCount = count;
+	delete[] mEffects;
+	mEffectCount = count;
 	if (count == 0) {
-		m_effects = nullptr;
+		mEffects = nullptr;
 	} else {
-		m_effects = new (JASBank::getCurrentHeap(), 0) JASInstEffect*[count];
-		JASCalc::bzero(m_effects, sizeof(JASInstEffect*) * count);
+		mEffects = new (JASBank::getCurrentHeap(), 0) JASInstEffect*[count];
+		JASCalc::bzero(mEffects, sizeof(JASInstEffect*) * count);
 	}
 }
 
@@ -197,7 +197,7 @@ void JASBasicInst::setEffectCount(u32 count)
  * Size:	000010
  * setEffect__12JASBasicInstFiP13JASInstEffect
  */
-void JASBasicInst::setEffect(int index, JASInstEffect* effect) { m_effects[index] = effect; }
+void JASBasicInst::setEffect(int index, JASInstEffect* effect) { mEffects[index] = effect; }
 
 /*
  * --INFO--
@@ -207,7 +207,7 @@ void JASBasicInst::setEffect(int index, JASInstEffect* effect) { m_effects[index
 JASInstEffect* JASBasicInst::getEffect(int index)
 {
 	// UNUSED FUNCTION
-	return (index >= m_effectCount) ? nullptr : m_effects[index];
+	return (index >= mEffectCount) ? nullptr : mEffects[index];
 }
 
 /*
@@ -217,13 +217,13 @@ JASInstEffect* JASBasicInst::getEffect(int index)
  */
 void JASBasicInst::setOscCount(u32 count)
 {
-	delete[] m_oscData;
-	m_oscCount = count;
+	delete[] mOscData;
+	mOscCount = count;
 	if (count == 0) {
-		m_oscData = nullptr;
+		mOscData = nullptr;
 	} else {
-		m_oscData = new (JASBank::getCurrentHeap(), 0) JASOscillator::Data*[count];
-		JASCalc::bzero(m_oscData, sizeof(JASOscillator::Data*) * count);
+		mOscData = new (JASBank::getCurrentHeap(), 0) JASOscillator::Data*[count];
+		JASCalc::bzero(mOscData, sizeof(JASOscillator::Data*) * count);
 	}
 }
 
@@ -233,7 +233,7 @@ void JASBasicInst::setOscCount(u32 count)
  * Size:	000010
  * setOsc__12JASBasicInstFiPQ213JASOscillator4Data
  */
-void JASBasicInst::setOsc(int index, JASOscillator::Data* osc) { m_oscData[index] = osc; }
+void JASBasicInst::setOsc(int index, JASOscillator::Data* osc) { mOscData[index] = osc; }
 
 /*
  * --INFO--
@@ -243,7 +243,7 @@ void JASBasicInst::setOsc(int index, JASOscillator::Data* osc) { m_oscData[index
 JASOscillator::Data* JASBasicInst::getOsc(int index)
 {
 	// UNUSED FUNCTION
-	return (index >= m_oscCount) ? nullptr : m_oscData[index];
+	return (index >= mOscCount) ? nullptr : mOscData[index];
 }
 
 /*
@@ -252,7 +252,7 @@ JASOscillator::Data* JASBasicInst::getOsc(int index)
  * Size:	000024
  * getKeyRegion__12JASBasicInstFi
  */
-JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) { return (index >= m_keymapCount) ? nullptr : m_keymap + index; }
+JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) { return (index >= mKeymapCount) ? nullptr : mKeymap + index; }
 
 /*
  * --INFO--
@@ -263,7 +263,7 @@ JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) { return (index >= 
 JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) const
 {
 	// UNUSED FUNCTION
-	return (index >= m_keymapCount) ? nullptr : m_keymap + index;
+	return (index >= mKeymapCount) ? nullptr : mKeymap + index;
 }
 
 /*
@@ -272,7 +272,7 @@ JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) const
  * Size:	000054
  * __dt__Q212JASBasicInst7TKeymapFv
  */
-JASBasicInst::TKeymap::~TKeymap() { delete[] m_veloRegions; }
+JASBasicInst::TKeymap::~TKeymap() { delete[] mVeloRegions; }
 
 /*
  * --INFO--
@@ -281,9 +281,9 @@ JASBasicInst::TKeymap::~TKeymap() { delete[] m_veloRegions; }
  */
 void JASBasicInst::TKeymap::setVeloRegionCount(u32 count)
 {
-	delete[] m_veloRegions;
-	m_veloRegions     = new (JASBank::getCurrentHeap(), 0) TVeloRegion[count];
-	m_veloRegionCount = count;
+	delete[] mVeloRegions;
+	mVeloRegions     = new (JASBank::getCurrentHeap(), 0) TVeloRegion[count];
+	mVeloRegionCount = count;
 }
 
 /*
@@ -294,7 +294,7 @@ void JASBasicInst::TKeymap::setVeloRegionCount(u32 count)
  */
 JASBasicInst::TVeloRegion* JASBasicInst::TKeymap::getVeloRegion(int index)
 {
-	return (index >= m_veloRegionCount) ? nullptr : m_veloRegions + index;
+	return (index >= mVeloRegionCount) ? nullptr : mVeloRegions + index;
 }
 
 /*
@@ -305,7 +305,7 @@ JASBasicInst::TVeloRegion* JASBasicInst::TKeymap::getVeloRegion(int index)
  */
 JASBasicInst::TVeloRegion* JASBasicInst::TKeymap::getVeloRegion(int index) const
 {
-	return (index >= m_veloRegionCount) ? nullptr : m_veloRegions + index;
+	return (index >= mVeloRegionCount) ? nullptr : mVeloRegions + index;
 }
 
 /*

@@ -28,19 +28,19 @@ struct DataNavi;
 struct CounterKeta {
 	inline CounterKeta(J2DPicture* pic)
 	{
-		m_picture      = pic;
-		m_textureIndex = 0;
-		m_scaleMgr     = new ScaleMgr;
-		m_size         = Vector2f(1.0f);
+		mPicture      = pic;
+		mTextureIndex = 0;
+		mScaleMgr     = new ScaleMgr;
+		mSize         = Vector2f(1.0f);
 	}
 
 	void setSuji(ResTIMG**, u32);
 	void calcScale();
 
-	J2DPicture* m_picture; // _00
-	u32 m_textureIndex;    // _04
-	ScaleMgr* m_scaleMgr;  // _08
-	Vector2f m_size;       // _0C
+	J2DPicture* mPicture; // _00
+	u32 mTextureIndex;    // _04
+	ScaleMgr* mScaleMgr;  // _08
+	Vector2f mSize;       // _0C
 };
 
 /**
@@ -57,10 +57,10 @@ struct CallBack_CatchPiki : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	u32* m_pikiType;        // _1C
-	J2DPicture* m_pikiIcon; // _20
-	u32 m_currPikiType;     // _24
-	ScaleMgr m_scaleMgr;    // _28
+	u32* mPikiType;        // _1C
+	J2DPicture* mPikiIcon; // _20
+	u32 mCurrPikiType;     // _24
+	ScaleMgr mScaleMgr;    // _28
 };
 
 struct CallBack_CounterRV : public P2DScreen::CallBackNode {
@@ -92,42 +92,42 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	char** m_characterTexturePaths;    // _1C
-	u32* m_countPtr;                   // _20
-	u32 m_initialDisplayValue;         // _24
-	u32 m_currDisplayValue;            // _28
-	u16 m_currCounters;                // _2C
-	u16 m_counterLimit;                // _2E /* allocated slot count of _7C */
-	u16 _30;                           // _30
-	f32 m_pane12DistX;                 // _34
-	f32 m_pane13DistX;                 // _38
-	f32 _3C;                           // _3C
-	Vector2f m_paneScale;              // _40
-	Vector2f m_paneSize;               // _48
-	Vector2f m_panePosition;           // _50
-	Vector2f m_paneBounds;             // _58
-	u32 m_basePosition;                // _60 /* Use J2DBasePosition constants. */
-	u8 m_paneAlpha;                    // _64
-	u8 _65[7];                         // _65 /* Hopefully this doesn't mess with size. */
-	J2DPictureEx* m_pic1;              // _6C
-	J2DPane* m_pic2;                   // _70
-	J2DPane* m_pic3;                   // _74
-	J2DPane* m_motherPane;             // _78
-	CounterKeta** m_counters;          // _7C
-	ResTIMG** m_imgResources;          // _80
-	bool m_isPuyoAnim;                 // _84
-	bool m_isPuyoAnimZero;             // _85
-	bool m_isBlind;                    // _86
-	bool m_isHidden;                   // _87
-	bool m_isMother;                   // _88
-	u8 _89;                            // _89
-	EnumCenteringMode m_centeringMode; // _8C
-	u8 m_zeroAlpha;                    // _90
-	SoundID m_scaleUpSoundID;          // _94
-	SoundID m_scaleDownSoundID;        // _98
-	u8 _9C;                            // _9C
-	f32 _A0;                           // _A0
-	f32 _A4;                           // _A4
+	char** mCharacterTexturePaths;    // _1C
+	u32* mCountPtr;                   // _20
+	u32 mInitialDisplayValue;         // _24
+	u32 mCurrDisplayValue;            // _28
+	u16 mCurrCounters;                // _2C
+	u16 mCounterLimit;                // _2E /* allocated slot count of _7C */
+	u16 _30;                          // _30
+	f32 mPane12DistX;                 // _34
+	f32 mPane13DistX;                 // _38
+	f32 _3C;                          // _3C
+	Vector2f mPaneScale;              // _40
+	Vector2f mPaneSize;               // _48
+	Vector2f mPanePosition;           // _50
+	Vector2f mPaneBounds;             // _58
+	u32 mBasePosition;                // _60 /* Use J2DBasePosition constants. */
+	u8 mPaneAlpha;                    // _64
+	u8 _65[7];                        // _65 /* Hopefully this doesn't mess with size. */
+	J2DPictureEx* mPic1;              // _6C
+	J2DPane* mPic2;                   // _70
+	J2DPane* mPic3;                   // _74
+	J2DPane* mMotherPane;             // _78
+	CounterKeta** mCounters;          // _7C
+	ResTIMG** mImgResources;          // _80
+	bool mIsPuyoAnim;                 // _84
+	bool mIsPuyoAnimZero;             // _85
+	bool mIsBlind;                    // _86
+	bool mIsHidden;                   // _87
+	bool mIsMother;                   // _88
+	u8 _89;                           // _89
+	EnumCenteringMode mCenteringMode; // _8C
+	u8 mZeroAlpha;                    // _90
+	SoundID mScaleUpSoundID;          // _94
+	SoundID mScaleDownSoundID;        // _98
+	u8 _9C;                           // _9C
+	f32 _A0;                          // _A0
+	f32 _A4;                          // _A4
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -176,24 +176,24 @@ struct CallBack_CounterSlot : public CallBack_CounterRV {
 
 	inline void hidePicture(int i)
 	{
-		J2DPicture* pic = m_counters[i]->m_picture;
+		J2DPicture* pic = mCounters[i]->mPicture;
 		pic->hide();
 	}
 
 	// _00     = VTBL
 	// _00-_A8 = CallBack_CounterRV
-	u8 _A8;               // _A8
-	u8 _A9;               // _A9
-	u8 _AA;               // _AA
-	u8 _AB;               // _AB
-	u8 _AC;               // _AC
-	u32 _B0;              // _B0
-	f32 m_timer;          // _B4
-	f32 m_updateInterval; // _B8
-	f32 m_puyoParm1;      // _BC
-	f32 m_puyoParm2;      // _C0
-	f32 m_puyoParm3;      // _C4
-	SoundID _C8;          // _C8
+	u8 _A8;              // _A8
+	u8 _A9;              // _A9
+	u8 _AA;              // _AA
+	u8 _AB;              // _AB
+	u8 _AC;              // _AC
+	u32 _B0;             // _B0
+	f32 mTimer;          // _B4
+	f32 mUpdateInterval; // _B8
+	f32 mPuyoParm1;      // _BC
+	f32 mPuyoParm2;      // _C0
+	f32 mPuyoParm3;      // _C4
+	SoundID _C8;         // _C8
 };
 
 // Size: 0x28
@@ -208,7 +208,7 @@ struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
 	// _00-_1C = P2DScreen::CallBackNode
 	J2DPictureEx* _1C; // _1C
 	J2DPictureEx* _20; // _20
-	bool m_isVisible;  // _24
+	bool mIsVisible;   // _24
 };
 
 // Size: 0x4C
@@ -225,16 +225,16 @@ struct CallBack_Furiko : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	J2DPane* m_pane;           // _1C
-	bool m_canUpdate;          // _20
-	bool m_doResetPane;        // _21
-	Vector2f m_currPosition;   // _24
-	f32 m_offset;              // _2C
-	f32 m_param2;              // _30
-	f32 m_growth;              // _34
-	Vector2f m_goalPosition;   // _38
-	Vector2f m_changeModifier; // _40
-	f32 m_currPaneAngle;       // _48
+	J2DPane* mPane;           // _1C
+	bool mCanUpdate;          // _20
+	bool mDoResetPane;        // _21
+	Vector2f mCurrPosition;   // _24
+	f32 mOffset;              // _2C
+	f32 mParam2;              // _30
+	f32 mGrowth;              // _34
+	Vector2f mGoalPosition;   // _38
+	Vector2f mChangeModifier; // _40
+	f32 mCurrPaneAngle;       // _48
 };
 
 struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
@@ -260,39 +260,39 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	DataNavi* m_data;              // _1C
-	f32 m_naviLifeRatio;           // _20
-	f32 m_widthOrRadiusMaybe;      // _24
-	f32 m_offsetX;                 // _28
-	f32 m_offsetY;                 // _2C
-	f32 _30;                       // _30
-	f32 _34;                       // _34
-	f32 _38;                       // _38
-	f32 m_na_i_d4;                 // _3C
-	f32 m_na_i_d8;                 // _40
-	f32 m_li_i_d4;                 // _44
-	f32 m_li_i_d8;                 // _48
-	LifeGauge* m_lifeGauge;        // _4C
-	u8 m_isActiveNavi;             // _50
-	u8 m_isActiveNaviOld;          // _51
-	f32 m_lowLifeSoundTimer;       // _54
-	f32 _58;                       // _58
-	P2DScreen::Mgr* _5C;           // _5C
-	J2DPane* m_pin1;               // _60
-	J2DPicture* m_pin2;            // _64
-	J2DPane* m_na_i;               // _68
-	J2DPane* m_li_i;               // _6C
-	J2DPicture* _70;               // _70
-	J2DPicture* _74;               // _74
-	J2DPicture* _78;               // _78
-	J2DPicture* _7C;               // _7C
-	J2DPicture* _80;               // _80
-	J2DPicture* _84;               // _84
-	AngleMgr* m_angleMgr;          // _88
-	ScaleMgr* m_scaleMgr;          // _8C
-	LifeGaugeType m_lifeGaugeType; // _90
-	u8 m_canNaviChange;            // _94
-	f32 m_moveTimer;               // _98
+	DataNavi* mData;              // _1C
+	f32 mNaviLifeRatio;           // _20
+	f32 mWidthOrRadiusMaybe;      // _24
+	f32 mOffsetX;                 // _28
+	f32 mOffsetY;                 // _2C
+	f32 _30;                      // _30
+	f32 _34;                      // _34
+	f32 _38;                      // _38
+	f32 mNa_i_d4;                 // _3C
+	f32 mNa_i_d8;                 // _40
+	f32 mLi_i_d4;                 // _44
+	f32 mLi_i_d8;                 // _48
+	LifeGauge* mLifeGauge;        // _4C
+	u8 mIsActiveNavi;             // _50
+	u8 mIsActiveNaviOld;          // _51
+	f32 mLowLifeSoundTimer;       // _54
+	f32 _58;                      // _58
+	P2DScreen::Mgr* _5C;          // _5C
+	J2DPane* mPin1;               // _60
+	J2DPicture* mPin2;            // _64
+	J2DPane* mNa_i;               // _68
+	J2DPane* mLi_i;               // _6C
+	J2DPicture* _70;              // _70
+	J2DPicture* _74;              // _74
+	J2DPicture* _78;              // _78
+	J2DPicture* _7C;              // _7C
+	J2DPicture* _80;              // _80
+	J2DPicture* _84;              // _84
+	AngleMgr* mAngleMgr;          // _88
+	ScaleMgr* mScaleMgr;          // _8C
+	LifeGaugeType mLifeGaugeType; // _90
+	u8 mCanNaviChange;            // _94
+	f32 mMoveTimer;               // _98
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -323,15 +323,15 @@ struct CallBack_Message : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	P2JME::SimpleMessage* m_message; // _1C
-	u64 m_messageIDAsULL;            // _20
-	u32 m_messageIDAs2UL[2];         // _28
-	f32 _30;                         // _30
-	f32 _34;                         // _34
-	f32 m_minX;                      // _38, yes this is floats not a TBox2f or TVec2f
-	f32 m_minY;                      // _3C, yes i know it's dumb.
-	f32 m_maxX;                      // _40, unfortunately the CallBack_Message ctor is thrown up by a recursion
-	f32 m_maxY;                      // _44, and it cannot have a ctor for these elements
+	P2JME::SimpleMessage* mMessage; // _1C
+	u64 mMessageIDAsULL;            // _20
+	u32 mMessageIDAs2UL[2];         // _28
+	f32 _30;                        // _30
+	f32 _34;                        // _34
+	f32 mMinX;                      // _38, yes this is floats not a TBox2f or TVec2f
+	f32 mMinY;                      // _3C, yes i know it's dumb.
+	f32 mMaxX;                      // _40, unfortunately the CallBack_Message ctor is thrown up by a recursion
+	f32 mMaxY;                      // _44, and it cannot have a ctor for these elements
 };
 
 /**
@@ -362,12 +362,12 @@ struct CallBack_Screen : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	P2DScreen::Mgr* m_partsScreen; // _1C
-	J2DPane* m_pane;               // _20
-	J2DPane* m_textBox;            // _24
-	f32 m_scale;                   // _28
-	f32 m_xOffs;                   // _2C
-	f32 m_yOffs;                   // _30
+	P2DScreen::Mgr* mPartsScreen; // _1C
+	J2DPane* mPane;               // _20
+	J2DPane* mTextBox;            // _24
+	f32 mScale;                   // _28
+	f32 mXOffs;                   // _2C
+	f32 mYOffs;                   // _30
 };
 
 // Size: 0x38
@@ -380,7 +380,7 @@ struct CallBack_Picture : public CallBack_Screen {
 
 	// _00     = VTBL
 	// _00-_34 = CallBack_Screen
-	AnimGroup* m_animGroup; // _34
+	AnimGroup* mAnimGroup; // _34
 };
 
 struct CallBack_SunMeter : public P2DScreen::CallBackNode {
@@ -394,17 +394,17 @@ struct CallBack_SunMeter : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	f32 m_timer;             // _1C
-	f32* m_currentTime;      // _20, ptr to current time, as fraction (0 = start of day, 1 = end of day)
-	J2DPane* m_startPane;    // _24
-	J2DPane* m_endPane;      // _28
-	J2DPane* m_suniPane;     // _2C
-	J2DPane* m_sun1Pane;     // _30
-	J2DPane* m_sun2Pane;     // _34
-	bool m_hasChimedNoon;    // _38
-	bool m_hasChimedMorning; // _39
-	bool m_hasChimedEvening; // _3A
-	ScaleMgr* m_scaleMgr;    // _3C
+	f32 mTimer;             // _1C
+	f32* mCurrentTime;      // _20, ptr to current time, as fraction (0 = start of day, 1 = end of day)
+	J2DPane* mStartPane;    // _24
+	J2DPane* mEndPane;      // _28
+	J2DPane* mSuniPane;     // _2C
+	J2DPane* mSun1Pane;     // _30
+	J2DPane* mSun2Pane;     // _34
+	bool mHasChimedNoon;    // _38
+	bool mHasChimedMorning; // _39
+	bool mHasChimedEvening; // _3A
+	ScaleMgr* mScaleMgr;    // _3C
 };
 
 struct AnimText_Screen : public CallBack_Screen {
@@ -425,38 +425,38 @@ struct AnimText_Screen : public CallBack_Screen {
 
 	// _00     = VTBL
 	// _00-_34 = CallBack_Screen
-	int m_colorType;            // _34
-	AnimScreen* m_anmScreen;    // _38
-	bool m_isUpdateSuccess;     // _3C
-	J2DTextBox* m_msgBodyPane;  // _40
-	J2DTextBox* m_msgBackPane;  // _44 // just a guess
-	bool _48;                   // _48
-	u32 _4C;                    // _4C
-	u64 m_tag;                  // _50
-	f32 m_blinkTimer;           // _58
-	f32 m_blinkFactor;          // _5C
-	f32 m_blinkLevel;           // _60
-	f32 _64;                    // _64
-	bool m_isBlinking;          // _68
-	f32 _6C;                    // _6C
-	JUtility::TColor m_color0;  // _70
-	JUtility::TColor m_color1;  // _74
-	JUtility::TColor m_color2;  // _78
-	JUtility::TColor m_color3;  // _7C
-	JUtility::TColor m_color4;  // _80
-	JUtility::TColor m_color5;  // _84
-	JUtility::TColor m_color6;  // _88
-	JUtility::TColor m_color7;  // _8C
-	JUtility::TColor m_color8;  // _90
-	JUtility::TColor m_color9;  // _94
-	JUtility::TColor m_color10; // _98
-	JUtility::TColor m_color11; // _9C
-	JUtility::TColor m_color12; // _A0
-	JUtility::TColor m_color13; // _A4
-	JUtility::TColor m_color14; // _A8
-	JUtility::TColor m_color15; // _AC
-	JUtility::TColor m_color16; // _B0
-	u8 _B4[4];                  // _B4
+	int mColorType;            // _34
+	AnimScreen* mAnmScreen;    // _38
+	bool mIsUpdateSuccess;     // _3C
+	J2DTextBox* mMsgBodyPane;  // _40
+	J2DTextBox* mMsgBackPane;  // _44 // just a guess
+	bool _48;                  // _48
+	u32 _4C;                   // _4C
+	u64 mTag;                  // _50
+	f32 mBlinkTimer;           // _58
+	f32 mBlinkFactor;          // _5C
+	f32 mBlinkLevel;           // _60
+	f32 _64;                   // _64
+	bool mIsBlinking;          // _68
+	f32 _6C;                   // _6C
+	JUtility::TColor mColor0;  // _70
+	JUtility::TColor mColor1;  // _74
+	JUtility::TColor mColor2;  // _78
+	JUtility::TColor mColor3;  // _7C
+	JUtility::TColor mColor4;  // _80
+	JUtility::TColor mColor5;  // _84
+	JUtility::TColor mColor6;  // _88
+	JUtility::TColor mColor7;  // _8C
+	JUtility::TColor mColor8;  // _90
+	JUtility::TColor mColor9;  // _94
+	JUtility::TColor mColor10; // _98
+	JUtility::TColor mColor11; // _9C
+	JUtility::TColor mColor12; // _A0
+	JUtility::TColor mColor13; // _A4
+	JUtility::TColor mColor14; // _A8
+	JUtility::TColor mColor15; // _AC
+	JUtility::TColor mColor16; // _B0
+	u8 _B4[4];                 // _B4
 };
 
 extern const char* SujiTex32[11];

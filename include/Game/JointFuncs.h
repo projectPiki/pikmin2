@@ -43,8 +43,8 @@ struct JointShadowRootNode : public CNode {
 
 	virtual ~JointShadowRootNode() { } // _08 (weak)
 
-	Creature* m_creature; // _18
-	u8 _1C;               // _1C
+	Creature* mCreature; // _18
+	u8 _1C;              // _1C
 };
 } // namespace Game
 

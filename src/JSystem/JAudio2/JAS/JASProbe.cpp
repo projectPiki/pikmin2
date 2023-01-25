@@ -62,8 +62,8 @@ void JASProbe::start(char* name)
 	// UNUSED FUNCTION
 	// const JASCriticalSection a;
 	int interrupts = OSDisableInterrupts();
-	m_name         = name;
-	m_startTime    = OSGetTime();
+	mName          = name;
+	mStartTime     = OSGetTime();
 	OSRestoreInterrupts(interrupts);
 }
 
@@ -77,7 +77,7 @@ void JASProbe::stop()
 	// UNUSED FUNCTION
 	// volatile JASCriticalSection a;
 	int interrupts = OSDisableInterrupts();
-	_08            = (u32)OSGetTime() - m_startTime;
+	_08            = (u32)OSGetTime() - mStartTime;
 	_08 /= OSGetTicksPerSecond() / 59.94f;
 	if (_10 < _08 && 100 < _1A8) {
 		_10 = _08;
@@ -143,7 +143,7 @@ void JASKernel::probeFinish(long index)
 const char* JASKernel::getProbeName(long index)
 {
 	// UNUSED FUNCTION
-	return sProbes[index].m_name;
+	return sProbes[index].mName;
 }
 
 /*

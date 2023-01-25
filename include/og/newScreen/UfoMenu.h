@@ -57,29 +57,29 @@ struct ObjUfoMenu : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	Screen::DispMemberUfoGroup* m_disp; // _38
-	P2DScreen::Mgr_tuning* m_ufoScreen; // _3C
-	P2DScreen::Mgr* m_pikiScreen;       // _40
-	u8 _44[0x4];                        // _44, unknown
-	int m_selectIndex;                  // _48
-	Screen::MenuMgr* m_menu;            // _4C
-	u8 m_doEnd;                         // _50
-	f32 m_screenMovePos;                // _54
-	Screen::AnimGroup* m_lightAnims;    // _58
-	u8 _5C[0x4];                        // _5C, unknown
-	Screen::AnimGroup* m_pikiAnims;     // _60
-	J2DPane* m_paneWhiteWalk;           // _64
-	J2DPane* m_paneWhiteStand;          // _68
-	J2DPane* m_panePurpleWalk;          // _6C
-	J2DPane* m_panePurpleStand;         // _70
-	J2DPane* m_paneAllWhite;            // _74
-	J2DPane* m_paneAllPurple;           // _78
-	J2DPane* m_paneN00;                 // _7C
-	J2DPane* m_paneN01;                 // _80
-	f32 m_fadeTimer;                    // _84
-	u8 m_doDraw;                        // _88
-	u8 _89[0x3];                        // _89, probably padding
-	u32 _8C;                            // _8C, unknown
+	Screen::DispMemberUfoGroup* mDisp; // _38
+	P2DScreen::Mgr_tuning* mUfoScreen; // _3C
+	P2DScreen::Mgr* mPikiScreen;       // _40
+	u8 _44[0x4];                       // _44, unknown
+	int mSelectIndex;                  // _48
+	Screen::MenuMgr* mMenu;            // _4C
+	u8 mDoEnd;                         // _50
+	f32 mScreenMovePos;                // _54
+	Screen::AnimGroup* mLightAnims;    // _58
+	u8 _5C[0x4];                       // _5C, unknown
+	Screen::AnimGroup* mPikiAnims;     // _60
+	J2DPane* mPaneWhiteWalk;           // _64
+	J2DPane* mPaneWhiteStand;          // _68
+	J2DPane* mPanePurpleWalk;          // _6C
+	J2DPane* mPanePurpleStand;         // _70
+	J2DPane* mPaneAllWhite;            // _74
+	J2DPane* mPaneAllPurple;           // _78
+	J2DPane* mPaneN00;                 // _7C
+	J2DPane* mPaneN01;                 // _80
+	f32 mFadeTimer;                    // _84
+	u8 mDoDraw;                        // _88
+	u8 _89[0x3];                       // _89, probably padding
+	u32 _8C;                           // _8C, unknown
 
 	static struct StaticValues {
 		inline StaticValues()

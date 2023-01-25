@@ -197,16 +197,16 @@ namespace Game {
 GeneratorCache::GeneratorCache()
     : _00(-1)
     , _3C(-1)
-    , m_generator()
+    , mGenerator()
 {
-	_00.m_child  = nullptr;
-	_00.m_parent = nullptr;
-	_00.m_prev   = nullptr;
-	_00.m_next   = nullptr;
-	_3C.m_child  = nullptr;
-	_3C.m_parent = nullptr;
-	_3C.m_prev   = nullptr;
-	_3C.m_next   = nullptr;
+	_00.mChild  = nullptr;
+	_00.mParent = nullptr;
+	_00.mPrev   = nullptr;
+	_00.mNext   = nullptr;
+	_3C.mChild  = nullptr;
+	_3C.mParent = nullptr;
+	_3C.mPrev   = nullptr;
+	_3C.mNext   = nullptr;
 	createHeap();
 	generatorCache = this;
 	_78            = nullptr;
@@ -322,10 +322,10 @@ GeneratorCache::~GeneratorCache()
  */
 void GeneratorCache::clearGeneratorList()
 {
-	m_generator.m_child  = nullptr;
-	m_generator.m_parent = nullptr;
-	m_generator.m_prev   = nullptr;
-	m_generator.m_next   = nullptr;
+	mGenerator.mChild  = nullptr;
+	mGenerator.mParent = nullptr;
+	mGenerator.mPrev   = nullptr;
+	mGenerator.mNext   = nullptr;
 }
 
 /*
@@ -336,7 +336,7 @@ void GeneratorCache::clearGeneratorList()
 void GeneratorCache::addGenerator(Game::Generator* newGenerator)
 {
 	int count = 0;
-	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->m_next) {
+	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->mNext) {
 		if (gen->_AC == 0) {
 			count++;
 		}
@@ -344,7 +344,7 @@ void GeneratorCache::addGenerator(Game::Generator* newGenerator)
 	// TODO: Remove magic number
 	// TODO: Move this to checkOverflow.
 	if (count < 0x50) {
-		m_generator.add(newGenerator);
+		mGenerator.add(newGenerator);
 	}
 }
 
@@ -353,7 +353,7 @@ void GeneratorCache::addGenerator(Game::Generator* newGenerator)
  * Address:	801F1B18
  * Size:	000008
  */
-Generator* GeneratorCache::getFirstGenerator() { return (Generator*)m_generator.m_child; }
+Generator* GeneratorCache::getFirstGenerator() { return (Generator*)mGenerator.mChild; }
 
 /*
  * --INFO--
@@ -373,8 +373,8 @@ void GeneratorCache::findRamGenerator(int)
 int GeneratorCache::getTotalMePikmins()
 {
 	int count = 0;
-	for (CourseCache* cache = (CourseCache*)_00.m_child; cache != nullptr; cache = (CourseCache*)cache->m_next) {
-		count += cache->m_pikiheadCount;
+	for (CourseCache* cache = (CourseCache*)_00.mChild; cache != nullptr; cache = (CourseCache*)cache->mNext) {
+		count += cache->mPikiheadCount;
 	}
 	return count;
 	/*
@@ -402,8 +402,8 @@ lbl_801F1B38:
 int GeneratorCache::getColorMePikmins(int pikminType)
 {
 	int count = 0;
-	for (CourseCache* cache = (CourseCache*)_00.m_child; cache != nullptr; cache = (CourseCache*)cache->m_next) {
-		count += cache->getColorMePikmins(m_heapBuffer, pikminType);
+	for (CourseCache* cache = (CourseCache*)_00.mChild; cache != nullptr; cache = (CourseCache*)cache->mNext) {
+		count += cache->getColorMePikmins(mHeapBuffer, pikminType);
 	}
 	return count;
 }
@@ -418,8 +418,8 @@ int GeneratorCache::getColorMePikmins(int pikminType)
 int CourseCache::getColorMePikmins(unsigned char* buffer, int pikminType)
 {
 	int count = 0;
-	RamStream stream(buffer + m_generatorSize + m_offset + m_creatureSize, m_pikiheadSize);
-	for (int i = 0; i < m_pikiheadCount; i++) {
+	RamStream stream(buffer + mGeneratorSize + mOffset + mCreatureSize, mPikiheadSize);
+	for (int i = 0; i < mPikiheadCount; i++) {
 		u8 pikiheadFlags = stream.readByte();
 		Vector3f position;
 		position.read(stream);
@@ -485,11 +485,11 @@ lbl_801F1C30:
  */
 void GeneratorCache::createHeap()
 {
-	m_heapBuffer = new u8[GENERATOR_CACHE_HEAP_SIZE];
-	m_heapSize   = GENERATOR_CACHE_HEAP_SIZE;
-	m_freeOffset = 0;
-	m_freeSize   = m_heapSize;
-	for (int i = 0; i < stageList->m_courseCount; i++) {
+	mHeapBuffer = new u8[GENERATOR_CACHE_HEAP_SIZE];
+	mHeapSize   = GENERATOR_CACHE_HEAP_SIZE;
+	mFreeOffset = 0;
+	mFreeSize   = mHeapSize;
+	for (int i = 0; i < stageList->mCourseCount; i++) {
 		_3C.add(new CourseCache(i));
 	}
 
@@ -560,11 +560,11 @@ void GeneratorCache::destroyHeap()
 CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack, int courseIndex)
 {
 	// TODO: Perhaps one check is checking the child before assigning?
-	for (CourseCache* cache = (CourseCache*)haystack.m_child; cache != nullptr; cache = (CourseCache*)cache->m_next) {
+	for (CourseCache* cache = (CourseCache*)haystack.mChild; cache != nullptr; cache = (CourseCache*)cache->mNext) {
 		if (cache == nullptr) {
 			return nullptr;
 		}
-		if (cache->m_courseIndex == courseIndex) {
+		if (cache->mCourseIndex == courseIndex) {
 			return cache;
 		}
 	}
@@ -1013,7 +1013,7 @@ lbl_801F218C:
  */
 void GeneratorCache::updateUseList()
 {
-	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->m_next) {
+	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->mNext) {
 		if (gen->_AC == 0) {
 			gen->updateUseList();
 		}
@@ -1054,8 +1054,8 @@ lbl_801F220C:
  */
 void GeneratorCache::createNumberGenerators()
 {
-	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->m_next) {
-		if (gen->_AC == 0 && (gen->m_reservedNum & 4U) != 0) {
+	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->mNext) {
+		if (gen->_AC == 0 && (gen->mReservedNum & 4U) != 0) {
 			Generator::ramMode = 1;
 			gen->generate();
 			Generator::ramMode = 0;
@@ -1168,12 +1168,12 @@ lbl_801F2378:
 void GeneratorCache::endSave()
 {
 	P2ASSERTLINE(554, _78 != nullptr);
-	CourseCache* cache = (CourseCache*)_3C.m_child;
-	for (; cache != nullptr; cache = (CourseCache*)cache->m_next) {
+	CourseCache* cache = (CourseCache*)_3C.mChild;
+	for (; cache != nullptr; cache = (CourseCache*)cache->mNext) {
 		if (cache == nullptr) {
 			break;
 		}
-		if (cache->m_courseIndex == _78->m_courseIndex) {
+		if (cache->mCourseIndex == _78->mCourseIndex) {
 			break;
 		}
 	}
@@ -1261,16 +1261,16 @@ void GeneratorCache::saveGenerator(Game::Generator* generator)
 		return;
 	}
 	if (generator->need_saveCreature()) {
-		RamStream output(m_heapBuffer + m_freeOffset, m_freeSize);
-		generator->m_generatorIndexMaybe = _78->m_generatorCount;
-		Generator::ramMode               = 1;
+		RamStream output(mHeapBuffer + mFreeOffset, mFreeSize);
+		generator->mGeneratorIndexMaybe = _78->mGeneratorCount;
+		Generator::ramMode              = 1;
 		generator->write(output);
 		Generator::ramMode = 0;
-		m_freeOffset += output.m_position;
-		m_freeSize -= output.m_position;
-		_78->m_generatorCount++;
-		_78->m_size += output.m_position;
-		_78->m_generatorSize += output.m_position;
+		mFreeOffset += output.mPosition;
+		mFreeSize -= output.mPosition;
+		_78->mGeneratorCount++;
+		_78->mSize += output.mPosition;
+		_78->mGeneratorSize += output.mPosition;
 	}
 	/*
 	stwu     r1, -0x430(r1)
@@ -1670,15 +1670,15 @@ void GeneratorCache::checkOverflow()
 CourseCache::CourseCache(int courseIndex)
     : CNode()
 {
-	m_courseIndex    = courseIndex;
-	m_size           = 0;
-	m_offset         = 0;
-	m_generatorCount = 0;
-	m_generatorSize  = 0;
-	m_creatureCount  = 0;
-	m_creatureSize   = 0;
-	m_pikiheadCount  = 0;
-	m_pikiheadSize   = 0;
+	mCourseIndex    = courseIndex;
+	mSize           = 0;
+	mOffset         = 0;
+	mGeneratorCount = 0;
+	mGeneratorSize  = 0;
+	mCreatureCount  = 0;
+	mCreatureSize   = 0;
+	mPikiheadCount  = 0;
+	mPikiheadSize   = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1719,14 +1719,14 @@ CourseCache::CourseCache(int courseIndex)
  */
 void CourseCache::beginSave(int offset)
 {
-	m_offset         = offset;
-	m_size           = 0;
-	m_generatorCount = 0;
-	m_generatorSize  = 0;
-	m_creatureCount  = 0;
-	m_creatureSize   = 0;
-	m_pikiheadCount  = 0;
-	m_pikiheadSize   = 0;
+	mOffset         = offset;
+	mSize           = 0;
+	mGeneratorCount = 0;
+	mGeneratorSize  = 0;
+	mCreatureCount  = 0;
+	mCreatureSize   = 0;
+	mPikiheadCount  = 0;
+	mPikiheadSize   = 0;
 }
 
 /*
@@ -2168,43 +2168,43 @@ void CourseCache::write(Stream& output)
 {
 	char header[256];
 
-	sprintf(header, "CourseCache %d", m_courseIndex);
+	sprintf(header, "CourseCache %d", mCourseIndex);
 	output.textBeginGroup(header);
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(m_courseIndex);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(mCourseIndex);
 	output.textWriteText("# courseindex\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(m_offset);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(mOffset);
 	output.textWriteText("# offset\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(m_size);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(mSize);
 	output.textWriteText("# size\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(m_generatorCount);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(mGeneratorCount);
 	output.textWriteText("# numGenerators\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(m_generatorSize);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(mGeneratorSize);
 	output.textWriteText("# generatorSize\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(m_creatureCount);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(mCreatureCount);
 	output.textWriteText("# numCreatures\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(m_creatureSize);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(mCreatureSize);
 	output.textWriteText("# creatureSize\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(m_pikiheadCount);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(mPikiheadCount);
 	output.textWriteText("# numPikiheads\r\n");
 
-	output.textWriteTab(output.m_tabCount);
-	output.writeInt(m_pikiheadSize);
+	output.textWriteTab(output.mTabCount);
+	output.writeInt(mPikiheadSize);
 	output.textWriteText("# pikiheadSize\r\n");
 
 	output.textEndGroup();
@@ -2222,16 +2222,16 @@ void CourseCache::read(Stream& input)
 	// Why would you do this? I guess maybe to print out to console what's being
 	// parsed?
 	char header[256];
-	sprintf(header, "CourseCache %d", m_courseIndex);
+	sprintf(header, "CourseCache %d", mCourseIndex);
 #endif
-	m_courseIndex    = input.readInt();
-	m_offset         = input.readInt();
-	m_size           = input.readInt();
-	m_generatorCount = input.readInt();
-	m_generatorSize  = input.readInt();
-	m_creatureCount  = input.readInt();
-	m_creatureSize   = input.readInt();
-	m_pikiheadCount  = input.readInt();
-	m_pikiheadSize   = input.readInt();
+	mCourseIndex    = input.readInt();
+	mOffset         = input.readInt();
+	mSize           = input.readInt();
+	mGeneratorCount = input.readInt();
+	mGeneratorSize  = input.readInt();
+	mCreatureCount  = input.readInt();
+	mCreatureSize   = input.readInt();
+	mPikiheadCount  = input.readInt();
+	mPikiheadSize   = input.readInt();
 }
 } // namespace Game

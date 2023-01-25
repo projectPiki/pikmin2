@@ -388,9 +388,9 @@ extern void TRKAccessFile(void);
 extern void TRKCloseFile(void);
 
 typedef struct OSFstEntry {
-	int m_entryNum;
-	int m_nextEntryNum;
-	char* m_fileNameMaybe;
+	int mEntryNum;
+	int mNextEntryNum;
+	char* mFileNameMaybe;
 } OSFstEntry;
 
 void DCInvalidateRange(void* addr, u32 nBytes);
@@ -583,7 +583,7 @@ BOOL OSReceiveMessage(OSMessageQueue* queue, void** buffer, int flags);
 BOOL OSJamMessage(OSMessageQueue* queue, void* msg, int flags);
 
 typedef struct OSFunctionInfo {
-	void* m_function;
+	void* mFunction;
 	uint _04;
 	u8 _08[8];
 } OSFunctionInfo;

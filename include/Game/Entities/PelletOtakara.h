@@ -27,10 +27,10 @@ struct Object : public Pellet {
 
 	// _00      = VTBL
 	// _00-_458 = Pellet
-	J3DMaterial* m_material; // _458
-	short _45C;              // _45C
-	u8 m_bedamaColor;        // _45E
-	u8 _45F;                 // _45F, unknown/padding
+	J3DMaterial* mMaterial; // _458
+	short _45C;             // _45C
+	u8 mBedamaColor;        // _45E
+	u8 _45F;                // _45F, unknown/padding
 };
 
 struct Mgr : public FixedSizePelletMgr<Object> {

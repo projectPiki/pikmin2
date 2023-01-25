@@ -42,7 +42,7 @@ s32 JSUInputStream::read(void* data, long length)
 {
 	int len = readData(data, length);
 	if (len != length) {
-		m_isEOFMaybe |= 1;
+		mIsEOFMaybe |= 1;
 	}
 	return len;
 }
@@ -57,14 +57,14 @@ char* JSUInputStream::read(char* str)
 	u16 val;
 	if (readData(&val, sizeof(val)) != sizeof(val)) {
 		str[0] = '\0';
-		m_isEOFMaybe |= 1;
+		mIsEOFMaybe |= 1;
 		return nullptr;
 	}
 
 	int len  = readData(str, val);
 	str[len] = '\0';
 	if (len != val) {
-		m_isEOFMaybe |= 1;
+		mIsEOFMaybe |= 1;
 	}
 
 	return str;
@@ -81,7 +81,7 @@ s32 JSUInputStream::skip(long val)
 	int i;
 	for (i = 0; val > i; i++) {
 		if (readData(&unk, sizeof(unk)) != sizeof(unk)) {
-			m_isEOFMaybe |= 1;
+			mIsEOFMaybe |= 1;
 			break;
 		}
 	}
@@ -106,7 +106,7 @@ u32 JSURandomInputStream::align(s32 arg0)
 	if (newtemp != 0) {
 		seekPosTmp = seekPos(th_var, SEEK_SET);
 		if (seekPosTmp != newtemp) {
-			m_isEOFMaybe |= 1;
+			mIsEOFMaybe |= 1;
 		}
 	}
 	return newtemp;
@@ -121,7 +121,7 @@ s32 JSURandomInputStream::skip(long offset)
 {
 	long tmp = seekPos(offset, SEEK_CUR);
 	if (tmp != offset) {
-		m_isEOFMaybe |= 1;
+		mIsEOFMaybe |= 1;
 	}
 	return tmp;
 }
@@ -138,7 +138,7 @@ size_t JSURandomInputStream::peek(void* buffer, long byteCount)
 	position   = getPosition();
 	dataLength = readData(buffer, byteCount);
 	if (dataLength != byteCount) {
-		m_isEOFMaybe |= 1;
+		mIsEOFMaybe |= 1;
 	}
 	if (dataLength != 0) {
 		seekPos(position, SEEK_SET);
@@ -154,5 +154,5 @@ size_t JSURandomInputStream::peek(void* buffer, long byteCount)
 void JSURandomInputStream::seek(long offset, JSUStreamSeekFrom mode)
 {
 	seekPos(offset, mode);
-	m_isEOFMaybe &= ~1;
+	mIsEOFMaybe &= ~1;
 }

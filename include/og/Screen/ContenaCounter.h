@@ -18,16 +18,16 @@ struct ContenaCounter : public P2DScreen::Mgr_tuning {
 
 	// _00      = VTBL
 	// _00-_148 = P2DScreen::Mgr_tuning
-	DispMemberContena* m_disp;      // _148
-	CallBack_CounterRV* m_counter1; // _14C in onion
-	CallBack_CounterRV* m_counter2; // _150
-	CallBack_CounterRV* m_counter3; // _154
-	CallBack_CounterRV* m_counter4; // _158
-	u8 _15C[0x8];                   // _15C, unknown
-	u32* m_inOnion;                 // _164, pikmin in the onion
-	u32* m_inTransfer;              // _168, pikmin involved in transfer
-	u32* m_newCount;                // _16C, new number of this pikmin type on field
-	u32* m_onField;                 // _170, total pikmin on field
+	DispMemberContena* mDisp;      // _148
+	CallBack_CounterRV* mCounter1; // _14C in onion
+	CallBack_CounterRV* mCounter2; // _150
+	CallBack_CounterRV* mCounter3; // _154
+	CallBack_CounterRV* mCounter4; // _158
+	u8 _15C[0x8];                  // _15C, unknown
+	u32* mInOnion;                 // _164, pikmin in the onion
+	u32* mInTransfer;              // _168, pikmin involved in transfer
+	u32* mNewCount;                // _16C, new number of this pikmin type on field
+	u32* mOnField;                 // _170, total pikmin on field
 };
 } // namespace Screen
 } // namespace og

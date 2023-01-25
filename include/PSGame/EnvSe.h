@@ -59,12 +59,12 @@ struct Builder_EvnSe_Perspective : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	u8 _18;                  // _18
-	u32 _1C;                 // _1C, unknown
-	u32 _20;                 // _20, unknown
-	JGeometry::TBox3f m_box; // _24
-	f32 _3C;                 // _3C
-	JSUPtrList _40;          // _40
+	u8 _18;                 // _18
+	u32 _1C;                // _1C, unknown
+	u32 _20;                // _20, unknown
+	JGeometry::TBox3f mBox; // _24
+	f32 _3C;                // _3C
+	JSUPtrList _40;         // _40
 };
 } // namespace PSGame
 

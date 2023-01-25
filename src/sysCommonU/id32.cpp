@@ -5,7 +5,7 @@
  * Address:	80413254
  * Size:	00001C
  */
-bool ID32::isEof() { return m_id.intView == '_eof'; }
+bool ID32::isEof() { return mId.intView == '_eof'; }
 
 /*
  * --INFO--
@@ -28,7 +28,7 @@ ID32::ID32(u32 id) { setID(id); }
  */
 void ID32::setID(u32 set_id)
 {
-	m_id.intView = set_id;
+	mId.intView = set_id;
 	updateString();
 }
 
@@ -40,7 +40,7 @@ void ID32::setID(u32 set_id)
 bool ID32::match(u32 _id, char exception)
 {
 	char* p_id = reinterpret_cast<char*>(&_id);
-	char* c_id = reinterpret_cast<char*>(&m_id.intView);
+	char* c_id = reinterpret_cast<char*>(&mId.intView);
 
 	for (int i = 0; i < 4; i++) {
 		if (p_id[i] != exception && p_id[i] != c_id[i]) {
@@ -59,7 +59,7 @@ bool ID32::match(u32 _id, char exception)
 void ID32::updateID()
 {
 	for (int i = 0; i < 4; i++) {
-		m_id.strView[i] = m_str[i];
+		mId.strView[i] = mStr[i];
 	}
 }
 
@@ -70,12 +70,12 @@ void ID32::updateID()
  */
 void ID32::updateString()
 {
-	char* c_id = reinterpret_cast<char*>(&m_id.intView);
+	char* c_id = reinterpret_cast<char*>(&mId.intView);
 
 	for (int i = 0; i < 4; i++) {
-		m_str[i] = c_id[i];
+		mStr[i] = c_id[i];
 	}
-	m_str[4] = '\0';
+	mStr[4] = '\0';
 }
 
 /*
@@ -85,7 +85,7 @@ void ID32::updateString()
  */
 void ID32::operator=(u32 _id)
 {
-	m_id.intView = _id;
+	mId.intView = _id;
 	updateString();
 }
 /*
@@ -93,14 +93,14 @@ void ID32::operator=(u32 _id)
  * Address:	80413434
  * Size:	000014
  */
-bool ID32::operator==(u32 target) { return m_id.intView == target; }
+bool ID32::operator==(u32 target) { return mId.intView == target; }
 
 /*
  * --INFO--
  * Address:	80413448
  * Size:	000018
  */
-bool ID32::operator!=(u32 _id) { return m_id.intView != _id; }
+bool ID32::operator!=(u32 _id) { return mId.intView != _id; }
 
 /*
  * --INFO--
@@ -109,17 +109,17 @@ bool ID32::operator!=(u32 _id) { return m_id.intView != _id; }
  */
 void ID32::write(Stream& stream)
 {
-	if (stream.m_mode == STREAM_MODE_TEXT) {
+	if (stream.mMode == STREAM_MODE_TEXT) {
 		char str[0x10];
 		sprint(str);
 		stream.printf("{%s} ", str);
 		return;
 	}
 
-	stream.writeByte(m_id.strView[3]);
-	stream.writeByte(m_id.strView[2]);
-	stream.writeByte(m_id.strView[1]);
-	stream.writeByte(m_id.strView[0]);
+	stream.writeByte(mId.strView[3]);
+	stream.writeByte(mId.strView[2]);
+	stream.writeByte(mId.strView[1]);
+	stream.writeByte(mId.strView[0]);
 }
 
 /*
@@ -129,20 +129,20 @@ void ID32::write(Stream& stream)
  */
 void ID32::read(Stream& stream)
 {
-	if (stream.m_mode == STREAM_MODE_TEXT) {
-		char* token     = stream.getNextToken();
-		m_id.strView[3] = token[3];
-		m_id.strView[2] = token[2];
-		m_id.strView[1] = token[1];
-		m_id.strView[0] = token[0];
+	if (stream.mMode == STREAM_MODE_TEXT) {
+		char* token    = stream.getNextToken();
+		mId.strView[3] = token[3];
+		mId.strView[2] = token[2];
+		mId.strView[1] = token[1];
+		mId.strView[0] = token[0];
 		updateString();
 		return;
 	}
 
-	m_id.strView[3] = stream.readByte();
-	m_id.strView[2] = stream.readByte();
-	m_id.strView[1] = stream.readByte();
-	m_id.strView[0] = stream.readByte();
+	mId.strView[3] = stream.readByte();
+	mId.strView[2] = stream.readByte();
+	mId.strView[1] = stream.readByte();
+	mId.strView[0] = stream.readByte();
 	updateString();
 }
 
@@ -160,10 +160,10 @@ void ID32::print() { }
  */
 void ID32::sprint(char* str)
 {
-	str[0] = m_id.intView >> 24;
-	str[1] = static_cast<u8>(m_id.intView >> 16);
-	str[2] = static_cast<u8>(m_id.intView >> 8);
-	str[3] = static_cast<u8>(m_id.intView);
+	str[0] = mId.intView >> 24;
+	str[1] = static_cast<u8>(mId.intView >> 16);
+	str[2] = static_cast<u8>(mId.intView >> 8);
+	str[3] = static_cast<u8>(mId.intView);
 	str[4] = '\0';
 }
 // static initializer

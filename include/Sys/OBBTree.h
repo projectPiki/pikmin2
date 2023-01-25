@@ -23,7 +23,7 @@ struct OBBTree : public TriDivider {
 	virtual f32 getMinY(Vector3f&);                    // _10
 	virtual TriIndexList* findTriLists(Sphere& sphere) // _14 (weak)
 	{
-		return m_root.findTriLists(sphere);
+		return mRoot.findTriLists(sphere);
 	}
 	virtual void read(Stream&);                  // _18
 	virtual void getCurrTri(Game::CurrTriInfo&); // _1C
@@ -38,7 +38,7 @@ struct OBBTree : public TriDivider {
 	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, f32);
 	void traceMove_new_global(Game::MoveInfo&, f32);
 
-	OBB m_root; // _20
+	OBB mRoot; // _20
 };
 } // namespace Sys
 

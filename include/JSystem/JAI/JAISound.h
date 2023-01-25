@@ -102,25 +102,25 @@ struct JAISound : public JSULink<JAISound> {
 
 	// _00 - _10: JSULink
 	// VTBL _10
-	u8 _14;                          // _14
-	u8 _15;                          // _15
-	u8 _16;                          // _16
-	u8 _17;                          // _17
-	u8 _18;                          // _18
-	u8 m_distanceParameterMoveTime;  // _19
-	u8 _1A;                          // _1A
-	u8 _1B;                          // _1B
-	short m_adjustPriority;          // _1C
-	u32 m_soundID;                   // _20
-	u8 _24[4];                       // _24
-	u32 _28;                         // _28
-	u32 _2C;                         // _2C
-	u32 _30;                         // _30
-	JAISound_0x34* _34;              // _34
-	void* _38;                       // _38
-	Vec* _3C;                        // _3C
-	void** _40;                      // _40
-	JAInter::SoundInfo* m_soundInfo; // _44
+	u8 _14;                         // _14
+	u8 _15;                         // _15
+	u8 _16;                         // _16
+	u8 _17;                         // _17
+	u8 _18;                         // _18
+	u8 mDistanceParameterMoveTime;  // _19
+	u8 _1A;                         // _1A
+	u8 _1B;                         // _1B
+	short mAdjustPriority;          // _1C
+	u32 mSoundID;                   // _20
+	u8 _24[4];                      // _24
+	u32 _28;                        // _28
+	u32 _2C;                        // _2C
+	u32 _30;                        // _30
+	JAISound_0x34* _34;             // _34
+	void* _38;                      // _38
+	Vec* _3C;                       // _3C
+	void** _40;                     // _40
+	JAInter::SoundInfo* mSoundInfo; // _44
 };
 
 #endif

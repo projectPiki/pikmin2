@@ -15,14 +15,14 @@ EnemyBlendAnimatorBase::EnemyBlendAnimatorBase() { }
  * Address:	8012E12C
  * Size:	000024
  */
-void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr* mgr) { m_animator.setAnimMgr(mgr); }
+void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr* mgr) { mAnimator.setAnimMgr(mgr); }
 
 /*
  * --INFO--
  * Address:	8012E150
  * Size:	000008
  */
-SysShape::Animator& EnemyBlendAnimatorBase::getAnimator() { return *m_animator.m_animators; }
+SysShape::Animator& EnemyBlendAnimatorBase::getAnimator() { return *mAnimator.mAnimators; }
 
 /*
  * getAnimator__Q24Game22EnemyBlendAnimatorBaseFi
@@ -30,7 +30,7 @@ SysShape::Animator& EnemyBlendAnimatorBase::getAnimator() { return *m_animator.m
  * Address:	8012E158
  * Size:	000014
  */
-SysShape::Animator& EnemyBlendAnimatorBase::getAnimator(int index) { return m_animator.m_animators[index]; }
+SysShape::Animator& EnemyBlendAnimatorBase::getAnimator(int index) { return mAnimator.mAnimators[index]; }
 
 /*
  * --INFO--
@@ -42,7 +42,7 @@ void EnemyBlendAnimatorBase::startBlend(int startAnim, int endAnim, SysShape::Bl
 {
 	getAnimator(0).startAnim(startAnim, nullptr);
 	getAnimator(1).startAnim(endAnim, nullptr);
-	m_animator.startBlend(function, framerate, listener);
+	mAnimator.startBlend(function, framerate, listener);
 }
 
 /*
@@ -50,7 +50,7 @@ void EnemyBlendAnimatorBase::startBlend(int startAnim, int endAnim, SysShape::Bl
  * Address:	8012E208
  * Size:	000024
  */
-void EnemyBlendAnimatorBase::endBlend() { m_animator.endBlend(); }
+void EnemyBlendAnimatorBase::endBlend() { mAnimator.endBlend(); }
 
 /*
  * animate__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape13BlendFunctionfff
@@ -60,10 +60,10 @@ void EnemyBlendAnimatorBase::endBlend() { m_animator.endBlend(); }
  */
 void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, f32 p2, f32 p3, f32 p4)
 {
-	if (!(m_flags.typeView & 1)) {
-		m_animator.animate(function, p2, p3, p4);
+	if (!(mFlags.typeView & 1)) {
+		mAnimator.animate(function, p2, p3, p4);
 	} else {
-		m_animator.animate(function, 0.0f, 0.0f, 0.0f);
+		mAnimator.animate(function, 0.0f, 0.0f, 0.0f);
 	}
 }
 
@@ -76,17 +76,17 @@ void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, f32 p2, 
 void EnemyBlendAnimatorBase::animate(f32 p1)
 {
 	SysShape::BlendLinearFun function;
-	if (!(m_flags.typeView & 1)) {
-		if (!(m_flags.typeView & 1)) {
-			m_animator.animate(&function, p1, p1, p1);
+	if (!(mFlags.typeView & 1)) {
+		if (!(mFlags.typeView & 1)) {
+			mAnimator.animate(&function, p1, p1, p1);
 		} else {
-			m_animator.animate(&function, 0.0f, 0.0f, 0.0f);
+			mAnimator.animate(&function, 0.0f, 0.0f, 0.0f);
 		}
 	} else {
-		if (!(m_flags.typeView & 1)) {
-			m_animator.animate(&function, 0.0f, 0.0f, 0.0f);
+		if (!(mFlags.typeView & 1)) {
+			mAnimator.animate(&function, 0.0f, 0.0f, 0.0f);
 		} else {
-			m_animator.animate(&function, 0.0f, 0.0f, 0.0f);
+			mAnimator.animate(&function, 0.0f, 0.0f, 0.0f);
 		}
 	}
 }

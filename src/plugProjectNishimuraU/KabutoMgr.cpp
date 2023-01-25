@@ -17,7 +17,7 @@ const char filename[] = "246-KabutoMgr";
 Mgr::Mgr(int p1, u8 p2)
     : EnemyMgrBase(p1, p2)
 {
-	m_name = "カブトマネージャ"; // beetle manager
+	mName = "カブトマネージャ"; // beetle manager
 }
 
 /*
@@ -34,7 +34,7 @@ void Mgr::loadModelData()
 		if (mgr) {
 			J3DModelData* storedModelData = mgr->getJ3DModelData();
 			if (storedModelData) {
-				m_modelData = storedModelData;
+				mModelData = storedModelData;
 				return;
 			}
 		}
@@ -42,9 +42,9 @@ void Mgr::loadModelData()
 
 	EnemyMgrBase::loadModelData();
 
-	for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-		J3DShape* shape = m_modelData->m_shapeTable.m_items[j];
-		shape->m_flags  = (shape->m_flags & (~0xF000)) | 0x2000;
+	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		J3DShape* shape = mModelData->mShapeTable.mItems[j];
+		shape->mFlags   = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
 }
 
@@ -60,9 +60,9 @@ void Mgr::loadAnimData()
 	for (int i = 0; i < 3; i++) {
 		EnemyMgrBase* mgr = generalEnemyMgr->getEnemyMgr(ids[i]);
 		if (mgr) {
-			SysShape::AnimMgr* storedAnimMgr = mgr->m_animMgr;
+			SysShape::AnimMgr* storedAnimMgr = mgr->mAnimMgr;
 			if (storedAnimMgr) {
-				m_animMgr = storedAnimMgr;
+				mAnimMgr = storedAnimMgr;
 				return;
 			}
 		}
@@ -78,13 +78,13 @@ void Mgr::loadAnimData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, 0x80000, mModelType);
 	P2ASSERTLINE(147, model != nullptr);
 
-	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
-		const char* name = m_modelData->m_materialTable._0C->getName(i);
+	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
+		const char* name = mModelData->mMaterialTable._0C->getName(i);
 		if (!strcmp(name, "mat_babykabuto_body") || !strcmp(name, "mat_babykabuto_eye") || !strcmp(name, "mat_babykabuto_head")) {
-			model->m_j3dModel->m_matPackets[i]._2C->newDifferedDisplayList(0x04020000);
+			model->mJ3dModel->mMatPackets[i]._2C->newDifferedDisplayList(0x04020000);
 		}
 	}
 

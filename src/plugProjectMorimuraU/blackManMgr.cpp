@@ -16,7 +16,7 @@ static const char blackManMgrName[] = "blackManMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "黒い人マネージャ"; // black man manager
+	mName = "黒い人マネージャ"; // black man manager
 }
 
 /*
@@ -42,10 +42,10 @@ void Mgr::loadModelData()
 {
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < m_modelData->getShapeCount(); j++) {
-		shape = m_modelData->m_shapeTable.m_items[j];
+	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		shape = mModelData->mShapeTable.mItems[j];
 		P2ASSERTLINE(56, shape);
-		shape->m_flags = (shape->m_flags & (~0xF000)) | 0x2000;
+		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
 }
 
@@ -56,17 +56,17 @@ void Mgr::loadModelData()
  */
 void Mgr::loadTexData()
 {
-	SysShape::Model::enableMaterialAnim(m_modelData, 0);
+	SysShape::Model::enableMaterialAnim(mModelData, 0);
 	void* btkFile = nullptr;
 	LoadResource::Arg loadArgBtk("/enemy/data/BlackMan/kagebozu_model.btk");
 	LoadResource::Node* resourceBtk = gLoadResourceMgr->load(loadArgBtk);
 	if (resourceBtk) {
-		btkFile = resourceBtk->m_file;
+		btkFile = resourceBtk->mFile;
 	}
 	P2ASSERTLINE(83, btkFile);
 
-	m_texAnimation = new Sys::MatTexAnimation;
-	m_texAnimation->attachResource(btkFile, m_modelData);
+	mTexAnimation = new Sys::MatTexAnimation;
+	mTexAnimation->attachResource(btkFile, mModelData);
 }
 
 /*
@@ -83,13 +83,13 @@ J3DModelData* Mgr::doLoadBmd(void* filename) { return J3DModelLoaderDataBase::lo
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, 0x80000, mModelType);
 	P2ASSERTLINE(128, model != nullptr);
 
-	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
-		const char* name = m_modelData->m_materialTable._0C->getName(i);
+	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
+		const char* name = mModelData->mMaterialTable._0C->getName(i);
 		if (!strcmp(name, "kage_mat")) {
-			model->m_j3dModel->m_matPackets[i]._2C->newDifferedDisplayList(0x05021200);
+			model->mJ3dModel->mMatPackets[i]._2C->newDifferedDisplayList(0x05021200);
 		}
 	}
 

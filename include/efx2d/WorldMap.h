@@ -17,8 +17,8 @@ struct ArgDirScale : public Arg {
 
 	// _00-_08 	= Vector2f
 	// _08		= VTBL
-	Vector2f m_dir; // _0C
-	f32 m_scale;
+	Vector2f mDir; // _0C
+	f32 mScale;
 };
 
 struct TSimple_ArgDirScale : public TSimple1 {

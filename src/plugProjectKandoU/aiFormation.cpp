@@ -23,12 +23,12 @@ static const char formationName[]      = "actFormation";
  */
 ActFormation::ActFormation(Game::Piki* p)
     : Action(p)
-    , m_initArg(nullptr, 0)
+    , mInitArg(nullptr, 0)
 {
-	m_name   = "Formation";
-	m_cPlate = nullptr;
-	m_slotID = -1;
-	m_navi   = nullptr;
+	mName   = "Formation";
+	mCPlate = nullptr;
+	mSlotID = -1;
+	mNavi   = nullptr;
 }
 
 /*
@@ -36,14 +36,14 @@ ActFormation::ActFormation(Game::Piki* p)
  * Address:	8019CE68
  * Size:	000008
  */
-void ActFormation::inform(int slotID) { m_slotID = slotID; }
+void ActFormation::inform(int slotID) { mSlotID = slotID; }
 
 /*
  * --INFO--
  * Address:	8019CE70
  * Size:	00000C
  */
-void ActFormation::startSort() { m_sortState = 2; }
+void ActFormation::startSort() { mSortState = 2; }
 
 /*
  * --INFO--
@@ -54,27 +54,27 @@ void ActFormation::init(ActionArg* initArg)
 {
 	ActFormationInitArg* formationArg = static_cast<ActFormationInitArg*>(initArg);
 	P2ASSERTLINE(267, formationArg);
-	m_nextAIType = 1;
+	mNextAIType = 1;
 
-	Game::Navi* currNavi = m_parent->m_navi;
+	Game::Navi* currNavi = mParent->mNavi;
 
-	m_navi = m_parent->m_navi;
-	Game::GameStat::formationPikis.inc(m_parent);
-	m_initArg.m_creature = formationArg->m_creature;
-	m_initArg._08        = formationArg->_08;
-	m_initArg._09        = formationArg->_09;
+	mNavi = mParent->mNavi;
+	Game::GameStat::formationPikis.inc(mParent);
+	mInitArg.mCreature = formationArg->mCreature;
+	mInitArg._08       = formationArg->_08;
+	mInitArg._09       = formationArg->_09;
 
-	if (m_initArg._09) {
+	if (mInitArg._09) {
 		_38 = 45;
 	} else {
 		_38 = 0;
 	}
 
-	Game::Navi* initNavi = static_cast<Game::Navi*>(formationArg->m_creature);
+	Game::Navi* initNavi = static_cast<Game::Navi*>(formationArg->mCreature);
 	bool initCheck       = formationArg->_08;
 
 	if (!initNavi) {
-		m_slotID = -1;
+		mSlotID = -1;
 		return;
 	}
 
@@ -84,26 +84,26 @@ void ActFormation::init(ActionArg* initArg)
 	_60 = false;
 	_61 = false;
 
-	m_cPlate = initNavi->m_cPlateMgr;
-	m_slotID = m_cPlate->getSlot(m_parent, this, initCheck);
-	if (m_slotID == -1 && initCheck) {
+	mCPlate = initNavi->mCPlateMgr;
+	mSlotID = mCPlate->getSlot(mParent, this, initCheck);
+	if (mSlotID == -1 && initCheck) {
 		JUT_PANICLINE(330, "slot id is -1");
 	}
 
-	m_parent->startMotion(Game::IPikiAnims::RUN2, Game::IPikiAnims::RUN2, nullptr, nullptr);
+	mParent->startMotion(Game::IPikiAnims::RUN2, Game::IPikiAnims::RUN2, nullptr, nullptr);
 
-	_30         = 0;
-	_31         = 0;
-	m_sortState = 0;
-	_4C         = 0;
-	_50         = 0.0f;
-	_54         = 0;
-	_3C         = 0;
+	_30        = 0;
+	_31        = 0;
+	mSortState = 0;
+	_4C        = 0;
+	_50        = 0.0f;
+	_54        = 0;
+	_3C        = 0;
 
-	m_parent->setPastel(false);
+	mParent->setPastel(false);
 	_40 = 0;
 	_48 = -1;
-	m_parent->setFreeLightEffect(false);
+	mParent->setFreeLightEffect(false);
 }
 
 /*
@@ -113,12 +113,12 @@ void ActFormation::init(ActionArg* initArg)
  */
 void ActFormation::wallCallback(Vector3f&)
 {
-	m_frameTimer = Game::gameSystem->m_frameTimer;
+	mFrameTimer = Game::gameSystem->mFrameTimer;
 	if (_40 < 30) {
 		_40++;
 	}
 
-	if (_40 > 8 && m_sortState != 1) {
+	if (_40 > 8 && mSortState != 1) {
 		_40 = 0;
 	}
 
@@ -134,7 +134,7 @@ void ActFormation::wallCallback(Vector3f&)
  */
 void ActFormation::setFormed()
 {
-	m_sortState = 1;
+	mSortState = 1;
 
 	// if Meet Red Pikmin cutscene hasn't played, play it.
 	if (!Game::playData->isDemoFlag(Game::DEMO_Meet_Red_Pikmin)) {
@@ -152,19 +152,19 @@ void ActFormation::setFormed()
 		Game::playData->setDemoFlag(Game::DEMO_Meet_Red_Pikmin);
 
 		Game::MoviePlayArg playArg("x02_watch_red_pikmin", nullptr, nullptr, 0);
-		playArg.m_origin                  = navi->getPosition();
-		playArg.m_angle                   = navi->getFaceDir();
-		Game::moviePlayer->m_targetObject = navi;
+		playArg.mOrigin                  = navi->getPosition();
+		playArg.mAngle                   = navi->getFaceDir();
+		Game::moviePlayer->mTargetObject = navi;
 
 		Game::moviePlayer->play(playArg);
 
-		Game::gameSystem->m_section->disableTimer(Game::DEMOTIMER_Meet_Red_Pikmin);
+		Game::gameSystem->mSection->disableTimer(Game::DEMOTIMER_Meet_Red_Pikmin);
 	}
 
-	Game::Navi* navi = m_parent->m_navi;
+	Game::Navi* navi = mParent->mNavi;
 	int index        = 0;
 	if (navi) {
-		index = navi->m_naviIndex;
+		index = navi->mNaviIndex;
 	}
 
 	/* do more checks if:
@@ -173,10 +173,10 @@ void ActFormation::setFormed()
 	    c) reds-purples cutscene hasn't played, and
 	    d) purples in ship cutscene HAS played
 	*/
-	if (!Game::gameSystem->m_isInCave && Game::gameSystem->m_flags & 0x20 && !Game::playData->isDemoFlag(Game::DEMO_Reds_Purples_Tutorial)
+	if (!Game::gameSystem->mIsInCave && Game::gameSystem->mFlags & 0x20 && !Game::playData->isDemoFlag(Game::DEMO_Reds_Purples_Tutorial)
 	    && Game::playData->isDemoFlag(Game::DEMO_Purples_In_Ship)) {
 		Game::GameStat::checkNaviIndex(index); // check navi index is between 0 and 6 otherwise panic (?)
-		Game::GameStat::PikiCounter* counter = &Game::GameStat::formationPikis.m_counter[index]; // get squad numbers
+		Game::GameStat::PikiCounter* counter = &Game::GameStat::formationPikis.mCounter[index]; // get squad numbers
 
 		int redCount = (*counter)(Game::Red);
 
@@ -190,10 +190,10 @@ void ActFormation::setFormed()
 			if (purpleCount > 0) {
 
 				// ... AND the reds-purples timer isn't already going...
-				if (Game::gameSystem->m_section->getTimerType() != Game::DEMOTIMER_Reds_Purples_Tutorial) {
+				if (Game::gameSystem->mSection->getTimerType() != Game::DEMOTIMER_Reds_Purples_Tutorial) {
 
 					// set reds-purples cutscene timer to 10s.
-					Game::gameSystem->m_section->enableTimer(10.0f, Game::DEMOTIMER_Reds_Purples_Tutorial);
+					Game::gameSystem->mSection->enableTimer(10.0f, Game::DEMOTIMER_Reds_Purples_Tutorial);
 				}
 			}
 		}
@@ -207,11 +207,11 @@ void ActFormation::setFormed()
  */
 void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
-	switch (keyEvent.m_type) {
+	switch (keyEvent.mType) {
 	case KEYEVENT_2:
 		if (_54) {
-			m_parent->m_position2 = Vector3f(0.0f);
-			m_parent->m_velocity  = Vector3f(0.0f);
+			mParent->mPosition2 = Vector3f(0.0f);
+			mParent->mVelocity  = Vector3f(0.0f);
 		}
 		break;
 
@@ -219,8 +219,8 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 		if (_54) {
 			_4C--;
 			if (_4C <= 0) {
-				m_parent->m_animator.m_selfAnimator.m_flags |= EANIM_FLAG_FINISHED;
-				m_parent->m_animator.m_boundAnimator.m_flags |= EANIM_FLAG_FINISHED;
+				mParent->mAnimator.mSelfAnimator.mFlags |= EANIM_FLAG_FINISHED;
+				mParent->mAnimator.mBoundAnimator.mFlags |= EANIM_FLAG_FINISHED;
 			}
 		}
 		break;
@@ -228,7 +228,7 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 	case KEYEVENT_END:
 		if (_54) {
 			_54 = 0;
-			m_parent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
+			mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 		}
 		break;
 	}
@@ -241,21 +241,21 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
  */
 void ActFormation::cleanup()
 {
-	m_parent->setGasInvincible(0);
-	m_parent->setMoveRotation(true);
+	mParent->setGasInvincible(0);
+	mParent->setMoveRotation(true);
 
-	Game::Navi* currNavi = m_parent->m_navi;
+	Game::Navi* currNavi = mParent->mNavi;
 
-	m_parent->m_navi = m_navi;
-	Game::GameStat::formationPikis.dec(m_parent);
-	m_parent->m_navi = currNavi;
+	mParent->mNavi = mNavi;
+	Game::GameStat::formationPikis.dec(mParent);
+	mParent->mNavi = currNavi;
 
-	if (m_slotID != -1) {
-		m_cPlate->releaseSlot(m_parent, m_slotID);
+	if (mSlotID != -1) {
+		mCPlate->releaseSlot(mParent, mSlotID);
 	}
 
-	m_cPlate = nullptr;
-	m_slotID = -1;
+	mCPlate = nullptr;
+	mSlotID = -1;
 }
 
 /*
@@ -1949,7 +1949,7 @@ lbl_8019ED1C:
 void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 {
 	bool isBeingCommanded = false;
-	Game::Navi* navi      = p->m_navi;
+	Game::Navi* navi      = p->mNavi;
 	if (navi) {
 		isBeingCommanded = navi->commandOn();
 		if (_38) {
@@ -1967,7 +1967,7 @@ void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
  */
 void ActFormation::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
-	Game::Navi* navi = p->m_navi;
+	Game::Navi* navi = p->mNavi;
 	if (navi && navi->commandOn()) {
 		p->invokeAI(&platEvent);
 	}
@@ -1985,6 +1985,6 @@ bool ActFormation::resumable() { return true; }
  * Address:	8019EE3C
  * Size:	000008
  */
-u32 ActFormation::getNextAIType() { return m_nextAIType; }
+u32 ActFormation::getNextAIType() { return mNextAIType; }
 
 } // namespace PikiAI

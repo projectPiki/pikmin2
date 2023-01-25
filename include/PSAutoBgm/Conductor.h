@@ -36,7 +36,7 @@ struct Conductor : JADUtility::PrmSetRC<PSAutoBgm::Track> {
 struct ConductorArcMgr {
 	virtual ~ConductorArcMgr(); // _08 (weak)
 
-	JKRArchive* m_archive; // _04
+	JKRArchive* mArchive; // _04
 };
 
 /**

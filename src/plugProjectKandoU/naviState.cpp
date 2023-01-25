@@ -4629,7 +4629,7 @@ void NaviChangeState::init(Navi* navi, StateArg* arg)
 		navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, navi, nullptr);
 	}
 
-	newNavi = naviMgr->getAt(1 - navi->m_naviIndex);
+	newNavi = naviMgr->getAt(1 - navi->mNaviIndex);
 	finish  = 0;
 	/*
 	stwu     r1, -0x10(r1)
@@ -4688,7 +4688,7 @@ lbl_8018001C:
  */
 void NaviChangeState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
-	if (key.m_type == 1000) {
+	if (key.mType == 1000) {
 		finish = true;
 		navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
 	}
@@ -4730,9 +4730,9 @@ void NaviChangeState::exec(Navi* navi)
 	if (navi->isMovieActor()) {
 		transit(navi, 0, nullptr);
 	}
-	navi->m_velocity.x = 0.0f;
-	navi->m_velocity.y = 0.0f;
-	navi->m_velocity.z = 0.0f;
+	navi->mVelocity.x = 0.0f;
+	navi->mVelocity.y = 0.0f;
+	navi->mVelocity.z = 0.0f;
 
 	if (finish) {
 		transit(navi, 0, nullptr);
@@ -4811,16 +4811,16 @@ void NaviFollowState::init(Navi* navi, StateArg* arg)
 		navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, navi, nullptr);
 		finish = false;
 
-		if (!navi->m_naviIndex) {
-			navi->m_soundObj->startSound(0x895,
-			                             nullptr); // sound id needs an enum
-		} else if (!(PlayData->storyflags & 1))    // payed debt flag (for louie/president)
-			navi->m_soundObj->startSound(0x896, nullptr);
+		if (!navi->mNaviIndex) {
+			navi->mSoundObj->startSound(0x895,
+			                            nullptr); // sound id needs an enum
+		} else if (!(PlayData->storyflags & 1))   // payed debt flag (for louie/president)
+			navi->mSoundObj->startSound(0x896, nullptr);
 		else
-			navi->m_soundObj->startSound(0x89c, nullptr);
+			navi->mSoundObj->startSound(0x89c, nullptr);
 	}
 
-	targetNavi = NaviMgr->getAt(1 - navi->m_naviIndex);
+	targetNavi = NaviMgr->getAt(1 - navi->mNaviIndex);
 	navi->setMoveRotation(1);
 	counter = 0;
 	unkNavi = nullptr;
@@ -4936,7 +4936,7 @@ lbl_80180274:
  */
 void NaviFollowState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
-	if (key.m_type == 1000) {
+	if (key.mType == 1000) {
 		if (finish != 1) {
 			if (!finish) {
 				finish = 1;
@@ -4949,13 +4949,13 @@ void NaviFollowState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 		}
 	}
 	// animid is missing from this keyevent struct
-	if ((!GameSys || !GameSys->frozen) && key.animid == 0x32 && key.m_type == 200) {
-		if (!navi->m_naviIndex) {
-			navi->m_soundObj->startSound(0x877, nullptr);
+	if ((!GameSys || !GameSys->frozen) && key.animid == 0x32 && key.mType == 200) {
+		if (!navi->mNaviIndex) {
+			navi->mSoundObj->startSound(0x877, nullptr);
 		} else if (!(PlayData->storyflags & 1)) // payed debt flag (for louie/president)
-			navi->m_soundObj->startSound(0x878, nullptr);
+			navi->mSoundObj->startSound(0x878, nullptr);
 		else
-			navi->m_soundObj->startSound(0x879, nullptr);
+			navi->mSoundObj->startSound(0x879, nullptr);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -5087,16 +5087,16 @@ void NaviFollowState::messageAttack(Game::Creature*)
  */
 void NaviFollowState::exec(Navi* navi)
 {
-	if (!MoviePlayer || !MoviePlayer->m_demostate) {
-		if (!navi->m_controller1) {
+	if (!MoviePlayer || !MoviePlayer->mDemostate) {
+		if (!navi->mController1) {
 			if (!finish) {
 				if (!navi->assertMotion(IPikiAnims::WAIT)) {
 					finish = true;
 					navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
 				}
-				navi->m_velocity.x = 0.0f;
-				navi->m_velocity.y = 0.0f;
-				navi->m_velocity.z = 0.0f;
+				navi->mVelocity.x = 0.0f;
+				navi->mVelocity.y = 0.0f;
+				navi->mVelocity.z = 0.0f;
 			} else {
 				if (!targetNavi->isStickTo()) {
 					if (finish == 3) {
@@ -5108,9 +5108,9 @@ void NaviFollowState::exec(Navi* navi)
 							Sys::Sphere targetPos;
 							unkNavi->getBoundingSphere(targetPos);
 							Vector3f naviPos = navi->getPosition();
-							float dx         = targetPos.m_position.x - naviPos.x;
-							float dy         = targetPos.m_position.y - naviPos.y;
-							float dz         = targetPos.m_position.z - naviPos.z;
+							float dx         = targetPos.mPosition.x - naviPos.x;
+							float dy         = targetPos.mPosition.y - naviPos.y;
+							float dz         = targetPos.mPosition.z - naviPos.z;
 							float dist       = dx * dx + dy * dy + dz * dz;
 							if (dist > 0.0f) {
 								dist = (1.0 / SQRT(dist)) * dist;
@@ -5120,28 +5120,28 @@ void NaviFollowState::exec(Navi* navi)
 								dy *= 1.0f / dist;
 								dz *= 1.0f / dist;
 							}
-							if (8.0f <= dist - targetPos.m_radius) {
+							if (8.0f <= dist - targetPos.mRadius) {
 								counter2++;
 								if (counter2 < 0x3c) {
 									navi->control();
-									navi->m_velocity.x = dx * NaviMgr->m_parms.p004.value * 0.5f;
-									navi->m_velocity.y = dx * NaviMgr->m_parms.p004.value * 0.5f;
-									navi->m_velocity.z = dx * NaviMgr->m_parms.p004.value * 0.5f;
+									navi->mVelocity.x = dx * NaviMgr->mParms.p004.value * 0.5f;
+									navi->mVelocity.y = dx * NaviMgr->mParms.p004.value * 0.5f;
+									navi->mVelocity.z = dx * NaviMgr->mParms.p004.value * 0.5f;
 								} else {
 									finish = 1;
 									navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
 									unkNavi = nullptr;
 								}
 							} else {
-								navi->turnTo(targetPos.m_position);
+								navi->turnTo(targetPos.mPosition);
 								StateArg arg; // set 0x0 and 0x1 to 1 - need to make this use FollowStateArg eventually
 								transit(navi, 2, &arg);
 							}
 						}
 					} else {
-						float dx   = targetNavi->m_position2.x;
-						float dy   = targetNavi->m_position2.y;
-						float dz   = targetNavi->m_position2.z;
+						float dx   = targetNavi->mPosition2.x;
+						float dy   = targetNavi->mPosition2.y;
+						float dz   = targetNavi->mPosition2.z;
 						float dist = dx * dx + dy * dy + dz * dz;
 						if (dist > 0.0f) {
 							dist = (1.0 / SQRT(dist)) * dist;
@@ -5151,9 +5151,9 @@ void NaviFollowState::exec(Navi* navi)
 								navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, navi, nullptr);
 								finish = 0;
 							} else {
-								navi->m_velocity.x = 0.0f;
-								navi->m_velocity.y = 0.0f;
-								navi->m_velocity.z = 0.0f;
+								navi->mVelocity.x = 0.0f;
+								navi->mVelocity.y = 0.0f;
+								navi->mVelocity.z = 0.0f;
 								if (!navi->assertMotion(motion)) {
 									finish = 1;
 									navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
@@ -5167,19 +5167,19 @@ void NaviFollowState::exec(Navi* navi)
 									counter++;
 								} else {
 									KandoLib::Choice choice[4];
-									choice[0].m_result = IPikiAnims::JUMP;
-									choice[0].m_chance = 0.25;
-									choice[1].m_result = IPikiAnims::AKUBI;
-									choice[1].m_chance = 0.25;
-									choice[2].m_result = IPikiAnims::CHATTING;
-									choice[2].m_chance = 0.25;
-									choice[3].m_result = IPikiAnims::SAGASU2;
-									choice[3].m_chance = 0.25;
-									motion             = KandoLib::getRandomChoice(choice, 4);
+									choice[0].mResult = IPikiAnims::JUMP;
+									choice[0].mChance = 0.25;
+									choice[1].mResult = IPikiAnims::AKUBI;
+									choice[1].mChance = 0.25;
+									choice[2].mResult = IPikiAnims::CHATTING;
+									choice[2].mChance = 0.25;
+									choice[3].mResult = IPikiAnims::SAGASU2;
+									choice[3].mChance = 0.25;
+									motion            = KandoLib::getRandomChoice(choice, 4);
 									navi->startMotion(motion, motion, navi, nullptr);
 									finish = 2;
 									if (!GameSys->frozen) {
-										int id = navi->m_naviIndex;
+										int id = navi->mNaviIndex;
 										if (id == 1 && GameSys->gamemode == 0 && PlayData->flags & 1) {
 											id = 2;
 										}
@@ -5193,13 +5193,13 @@ void NaviFollowState::exec(Navi* navi)
 											// other sound tables nearby,
 											// unnamed in the symbol map.
 											// -EpochFlame
-											navi->m_soundObj->startSound(NaviJumpSounds[id], nullptr);
+											navi->mSoundObj->startSound(NaviJumpSounds[id], nullptr);
 										} else if (motion == IPikiAnims::AKUBI) {
-											navi->m_soundObj->startSound(NaviNoviSounds[id], nullptr);
+											navi->mSoundObj->startSound(NaviNoviSounds[id], nullptr);
 										} else if (motion == IPikiAnims::CHATTING) {
-											navi->m_soundObj->startSound(NaviChatSounds[id], nullptr);
+											navi->mSoundObj->startSound(NaviChatSounds[id], nullptr);
 										} else {
-											navi->m_soundObj->startSound(NaviKyoroSounds[id], nullptr);
+											navi->mSoundObj->startSound(NaviKyoroSounds[id], nullptr);
 										}
 									}
 								}
@@ -5209,7 +5209,7 @@ void NaviFollowState::exec(Navi* navi)
 							int state       = targetNavi->getStateID();
 							if (dist < 20.0f || (state != 5 && state != 6)) {
 								if (state == 2) {
-									float timer = -targetNavi->m_cPlateMgr->m_timer;
+									float timer = -targetNavi->mCPlateMgr->mTimer;
 									if (angle < 0.0f)
 										angle = -angle;
 									// this extremely complicated trig stuff is

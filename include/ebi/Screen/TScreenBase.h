@@ -71,8 +71,8 @@ struct TScreenBaseInterface {
 
 struct TScreenBase : public TScreenBaseInterface {
 	inline TScreenBase()
-	    : m_archive(nullptr)
-	    , m_state(0)
+	    : mArchive(nullptr)
+	    , mState(0)
 	{
 	}
 
@@ -99,8 +99,8 @@ struct TScreenBase : public TScreenBaseInterface {
 	u8 isCloseScreen();
 
 	// _00 = VTBL
-	JKRArchive* m_archive; // _04
-	s32 m_state;           // _08
+	JKRArchive* mArchive; // _04
+	s32 mState;           // _08
 };
 } // namespace Screen
 } // namespace ebi

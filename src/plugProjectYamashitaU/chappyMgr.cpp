@@ -19,7 +19,7 @@ static const char* cChappyChangeTexName1 = "/enemy/data/Chappy/swallow_565.1.bti
 Mgr::Mgr(int objLimit, u8 modelType)
     : ChappyBase::Mgr(objLimit, modelType)
 {
-	m_name = "赤チャッピーマネージャ"; // chappybase manager
+	mName = "赤チャッピーマネージャ"; // chappybase manager
 }
 
 /*
@@ -31,13 +31,13 @@ void Mgr::loadTexData()
 {
 	LoadResource::ArgAramOnly loadArg(cChappyChangeTexName0);
 
-	loadArg.m_path                = cChappyChangeTexName0;
+	loadArg.mPath                 = cChappyChangeTexName0;
 	LoadResource::Node* resource0 = gLoadResourceMgr->load(loadArg);
-	m_changeTexture0              = static_cast<ResTIMG*>(resource0->m_file);
+	mChangeTexture0               = static_cast<ResTIMG*>(resource0->mFile);
 
-	loadArg.m_path                = cChappyChangeTexName1;
+	loadArg.mPath                 = cChappyChangeTexName1;
 	LoadResource::Node* resource1 = gLoadResourceMgr->load(loadArg);
-	m_changeTexture1              = static_cast<ResTIMG*>(resource1->m_file);
+	mChangeTexture1               = static_cast<ResTIMG*>(resource1->mFile);
 }
 
 /*

@@ -12,8 +12,8 @@ struct JKRDisposer {
 	virtual ~JKRDisposer(); // _08
 
 	// _00 vtbl
-	JKRHeap* m_heap;             // _04
-	JSULink<JKRDisposer> m_link; // _08
+	JKRHeap* mHeap;             // _04
+	JSULink<JKRDisposer> mLink; // _08
 };
 
 #endif

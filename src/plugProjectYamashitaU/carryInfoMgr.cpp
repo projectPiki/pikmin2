@@ -32,7 +32,7 @@ CarryInfoMgr* carryInfoMgr;
  * Address:	8011AFD0
  * Size:	00000C
  */
-void CarryInfo::disappear() { m_hidden = true; }
+void CarryInfo::disappear() { mHidden = true; }
 
 /*
  * --INFO--
@@ -41,39 +41,39 @@ void CarryInfo::disappear() { m_hidden = true; }
  */
 void CarryInfo::update(const CarryInfoParam& param)
 {
-	if (m_hidden != CINFO_Hidden) {
-		switch (param.m_useType) {
+	if (mHidden != CINFO_Hidden) {
+		switch (param.mUseType) {
 		case 0: {
-			switch (m_hidden) {
+			switch (mHidden) {
 			case CINFO_Appear: {
-				f32 temp = 0.04f * (param.m_yOffsetMax - m_Yoffset);
-				m_growRate += temp;
-				m_Yoffset += m_growRate;
-				m_scale = m_Yoffset / param.m_yOffsetMax;
+				f32 temp = 0.04f * (param.mYOffsetMax - mYOffset);
+				mGrowRate += temp;
+				mYOffset += mGrowRate;
+				mScale = mYOffset / param.mYOffsetMax;
 				break;
 			}
 
 			case CINFO_1: {
-				f32 temp = 0.04f * -m_Yoffset;
-				m_growRate += temp;
-				m_Yoffset += m_growRate;
+				f32 temp = 0.04f * -mYOffset;
+				mGrowRate += temp;
+				mYOffset += mGrowRate;
 
-				if (m_Yoffset < 0.0f) {
-					m_growRate = 0.0f;
-					m_Yoffset  = 0.0f;
-					m_scale    = 0.0f;
-					m_hidden   = CINFO_Hidden;
+				if (mYOffset < 0.0f) {
+					mGrowRate = 0.0f;
+					mYOffset  = 0.0f;
+					mScale    = 0.0f;
+					mHidden   = CINFO_Hidden;
 
 				} else {
-					m_scale = m_Yoffset / param.m_yOffsetMax;
+					mScale = mYOffset / param.mYOffsetMax;
 				}
 				break;
 			}
 			}
 			f32 modifier = 1.0f;
-			m_growRate *= 0.88f;
+			mGrowRate *= 0.88f;
 
-			modifier        = (m_scale > modifier) ? modifier : m_scale;
+			modifier        = (mScale > modifier) ? modifier : mScale;
 			f32 scaledAlpha = 255.0f * modifier;
 			f32 alpha;
 			if (scaledAlpha >= 0.0f) {
@@ -81,45 +81,45 @@ void CarryInfo::update(const CarryInfoParam& param)
 			} else {
 				alpha = scaledAlpha - 0.5f;
 			}
-			m_alpha = (u8)alpha;
+			mAlpha = (u8)alpha;
 			break;
 		}
 
 		case 1: {
-			m_counter++;
-			if (m_Yoffset < param.m_yOffsetMax) {
-				f32 temp = (param.m_yOffsetMax - m_Yoffset) * 0.04f;
-				m_growRate += temp;
+			mCounter++;
+			if (mYOffset < param.mYOffsetMax) {
+				f32 temp = (param.mYOffsetMax - mYOffset) * 0.04f;
+				mGrowRate += temp;
 			}
-			m_Yoffset += m_growRate;
-			m_growRate *= 0.9f;
-			m_scale = m_Yoffset / param.m_yOffsetMax;
-			if (m_scale > 1.0f) {
-				m_scale = 1.0f;
+			mYOffset += mGrowRate;
+			mGrowRate *= 0.9f;
+			mScale = mYOffset / param.mYOffsetMax;
+			if (mScale > 1.0f) {
+				mScale = 1.0f;
 			}
 
-			switch (m_hidden) {
+			switch (mHidden) {
 			case CINFO_Appear: {
-				f32 scaledAlpha = m_scale * 255.0f;
+				f32 scaledAlpha = mScale * 255.0f;
 				f32 alpha;
 				if (scaledAlpha >= 0.0f) {
 					alpha = 0.5f + scaledAlpha;
 				} else {
 					alpha = scaledAlpha - 0.5f;
 				}
-				m_alpha = (u8)alpha;
+				mAlpha = (u8)alpha;
 				break;
 			}
 
 			case CINFO_1: {
-				if (m_alpha > 8) {
-					m_alpha -= 8;
+				if (mAlpha > 8) {
+					mAlpha -= 8;
 				} else {
-					m_alpha    = 0;
-					m_growRate = 0.0f;
-					m_Yoffset  = 0.0f;
-					m_scale    = 0.0f;
-					m_hidden   = CINFO_Hidden;
+					mAlpha    = 0;
+					mGrowRate = 0.0f;
+					mYOffset  = 0.0f;
+					mScale    = 0.0f;
+					mHidden   = CINFO_Hidden;
 				}
 				break;
 			}
@@ -138,34 +138,34 @@ void CarryInfo::update(const CarryInfoParam& param)
  */
 void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 {
-	if (m_hidden != CINFO_Hidden) {
-		Viewport* vp = gfx.m_currentViewport;
+	if (mHidden != CINFO_Hidden) {
+		Viewport* vp = gfx.mCurrentViewport;
 		Matrixf* mtx = vp->getMatrix(1);
 		Matrixf newmtx;
 
 		Vector3f temp = mtx->getBasis(0);
-		temp *= m_scale;
+		temp *= mScale;
 		newmtx.setBasis(0, temp);
 		temp = mtx->getBasis(1);
-		temp *= m_scale;
+		temp *= mScale;
 		newmtx.setBasis(1, temp);
 		temp = mtx->getBasis(2);
-		temp *= m_scale;
+		temp *= mScale;
 		newmtx.setBasis(2, temp);
 		temp = mtx->getBasis(3);
-		temp *= m_scale;
+		temp *= mScale;
 		newmtx.setBasis(3, temp);
 
 		Matrixf storemtx;
-		PSMTXConcat(vp->getMatrix(1)->m_matrix.mtxView, newmtx.m_matrix.mtxView, storemtx.m_matrix.mtxView);
-		GXLoadPosMtxImm(storemtx.m_matrix.mtxView, 0);
+		PSMTXConcat(vp->getMatrix(1)->mMatrix.mtxView, newmtx.mMatrix.mtxView, storemtx.mMatrix.mtxView);
+		GXLoadPosMtxImm(storemtx.mMatrix.mtxView, 0);
 
-		if (param.m_useType == 1) {
-			f32 temp = (f32)m_counter * TAU * 0.03125;
+		if (param.mUseType == 1) {
+			f32 temp = (f32)mCounter * TAU * 0.03125;
 			temp     = pikmin2_sinf(temp);
 			temp     = (temp + 1.0f) * 0.5f;
 			Color4 color2, color;
-			color2.a = m_alpha;
+			color2.a = mAlpha;
 
 			color.r = temp * (255.0f);
 			color.g = temp * (155.0f);
@@ -176,11 +176,11 @@ void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 			color2.g = 0x8a;
 			color2.b = 0x15;
 
-			drawNumber(gfx, 7.0f, 0.0f, param.m_carryInfo.m_growRate, color2, 1.0f);
+			drawNumber(gfx, 7.0f, 0.0f, param.mCarryInfo.mGrowRate, color2, 1.0f);
 			drawNumberPrim(gfx, (-7.0f * 0.5f - 3.0f), 0.0f, 11, color, 1.0f);
-		} else if (param.m_useType == 0) {
+		} else if (param.mUseType == 0) {
 			f32 scale1, scale2, offs1, offs2;
-			if (param.m_isTopFirst) {
+			if (param.mIsTopFirst) {
 				scale1 = 1.1f;
 				scale2 = 0.75f;
 				offs1  = 10.15f;
@@ -192,19 +192,19 @@ void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 				offs2  = -10.15f;
 			}
 			Color4 colortop, colorbottom;
-			colortop.r = sColorTableNumerator[param.m_color].r;
-			colortop.g = sColorTableNumerator[param.m_color].g;
-			colortop.b = sColorTableNumerator[param.m_color].b;
-			colortop.a = m_alpha;
+			colortop.r = sColorTableNumerator[param.mColor].r;
+			colortop.g = sColorTableNumerator[param.mColor].g;
+			colortop.b = sColorTableNumerator[param.mColor].b;
+			colortop.a = mAlpha;
 
-			colorbottom.r = sColorTableDenominator[param.m_color].r;
-			colorbottom.g = sColorTableDenominator[param.m_color].g;
-			colorbottom.b = sColorTableDenominator[param.m_color].b;
+			colorbottom.r = sColorTableDenominator[param.mColor].r;
+			colorbottom.g = sColorTableDenominator[param.mColor].g;
+			colorbottom.b = sColorTableDenominator[param.mColor].b;
 			colorbottom.a = colortop.a;
 
 			drawNumberPrim(gfx, 0.0f, 0.0f, 10, colortop, 1.0f);
-			drawNumber(gfx, 0.0f, offs1, param.m_value1, colortop, scale1);
-			drawNumber(gfx, 0.0f, offs2, param.m_value2, colorbottom, scale2);
+			drawNumber(gfx, 0.0f, offs1, param.mValue1, colortop, scale1);
+			drawNumber(gfx, 0.0f, offs2, param.mValue2, colorbottom, scale2);
 		}
 	}
 	/*
@@ -620,8 +620,8 @@ void CarryInfoList::init() { }
  */
 void CarryInfoList::update()
 {
-	m_owner->getCarryInfoParam(m_param);
-	m_param.m_carryInfo.update(m_param);
+	mOwner->getCarryInfoParam(mParam);
+	mParam.mCarryInfo.update(mParam);
 }
 
 /*
@@ -629,7 +629,7 @@ void CarryInfoList::update()
  * Address:	8011BC18
  * Size:	00002C
  */
-void CarryInfoList::draw(Graphics& gfx) { m_param.m_carryInfo.draw(gfx, m_param); }
+void CarryInfoList::draw(Graphics& gfx) { mParam.mCarryInfo.draw(gfx, mParam); }
 
 /*
  * --INFO--
@@ -638,11 +638,11 @@ void CarryInfoList::draw(Graphics& gfx) { m_param.m_carryInfo.draw(gfx, m_param)
  */
 void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
 {
-	param.m_useType    = 1;
-	param.m_position   = m_position;
-	param.m_yOffsetMax = 25.0f;
-	param.m_color      = 4;
-	param.m_value      = m_value;
+	param.mUseType    = 1;
+	param.mPosition   = mPosition;
+	param.mYOffsetMax = 25.0f;
+	param.mColor      = 4;
+	param.mValue      = mValue;
 }
 
 /*
@@ -650,7 +650,7 @@ void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
  * Address:	8011BC80
  * Size:	000014
  */
-bool CarryInfoList::isFinish() { return (m_param.m_carryInfo.m_hidden == CINFO_Hidden); }
+bool CarryInfoList::isFinish() { return (mParam.mCarryInfo.mHidden == CINFO_Hidden); }
 
 /*
  * --INFO--
@@ -660,13 +660,13 @@ bool CarryInfoList::isFinish() { return (m_param.m_carryInfo.m_hidden == CINFO_H
 CarryInfoMgr::CarryInfoMgr(int a)
     : InfoMgr(a)
 {
-	m_node1.clearRelations();
+	mNode1.clearRelations();
 
-	m_poko_node.clearRelations();
+	mPoko_node.clearRelations();
 
 	PokoInfoOwner* pokolist = new PokoInfoOwner[MAX_POKOINFO];
 	for (u32 i = 0; i < MAX_POKOINFO; i++) {
-		m_poko_node.add(&pokolist[i]);
+		mPoko_node.add(&pokolist[i]);
 	}
 }
 
@@ -685,10 +685,10 @@ PokoInfoOwner::~PokoInfoOwner() { }
 PokoInfoOwner::PokoInfoOwner()
     : CNode("")
 {
-	m_timer    = 0.0f;
-	m_list     = nullptr;
-	m_position = Vector3f::zero;
-	m_value    = 0;
+	mTimer    = 0.0f;
+	mList     = nullptr;
+	mPosition = Vector3f::zero;
+	mValue    = 0;
 }
 
 /*
@@ -923,20 +923,20 @@ lbl_8011C0DC:
  */
 void CarryInfoMgr::appearPoko(const Vector3f& pos, int value)
 {
-	PokoInfoOwner* obj = static_cast<PokoInfoOwner*>(m_poko_node.m_child);
+	PokoInfoOwner* obj = static_cast<PokoInfoOwner*>(mPoko_node.mChild);
 
 	if (obj) {
 		CarryInfoList* newlist = regist(obj);
 		if (newlist) {
 			obj->del();
-			m_node1.addHead(obj);
-			obj->m_list                            = newlist;
-			obj->m_position                        = pos;
-			obj->m_value                           = value;
-			obj->m_timer                           = 0.0f;
-			newlist                                = obj->m_list;
-			newlist->m_param.m_carryInfo.m_hidden  = CINFO_Appear;
-			newlist->m_param.m_carryInfo.m_counter = 0;
+			mNode1.addHead(obj);
+			obj->mList                          = newlist;
+			obj->mPosition                      = pos;
+			obj->mValue                         = value;
+			obj->mTimer                         = 0.0f;
+			newlist                             = obj->mList;
+			newlist->mParam.mCarryInfo.mHidden  = CINFO_Appear;
+			newlist->mParam.mCarryInfo.mCounter = 0;
 		}
 	}
 	/*
@@ -1026,8 +1026,8 @@ CarryInfoList* CarryInfoMgr::appear(CarryInfoOwner* owner)
 {
 	CarryInfoList* list = regist(owner);
 	if (list) {
-		list->m_param.m_carryInfo.m_hidden  = CINFO_Appear;
-		list->m_param.m_carryInfo.m_counter = 0;
+		list->mParam.mCarryInfo.mHidden  = CINFO_Appear;
+		list->mParam.mCarryInfo.mCounter = 0;
 	}
 	return list;
 	/*
@@ -1063,7 +1063,7 @@ void CarryInfoMgr::loadResource()
 	void* timg      = JKRFileLoader::getGlbResource("item_0_0.bti", arc);
 	JUTTexture* tex = new JUTTexture;
 	tex->_20        = static_cast<ResTIMG*>(timg);
-	m_texture       = tex;
+	mTexture        = tex;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1116,7 +1116,7 @@ lbl_8011C290:
  */
 void CarryInfoMgr::draw(Graphics& gfx)
 {
-	if (!Game::moviePlayer || !(Game::moviePlayer->m_flags & 1)) {
+	if (!Game::moviePlayer || !(Game::moviePlayer->mFlags & 1)) {
 		Graphics::clearInitGX();
 		GXSetNumChans(1);
 		GXSetTevDirect(GX_TEVSTAGE0);
@@ -1137,9 +1137,9 @@ void CarryInfoMgr::draw(Graphics& gfx)
 		GXSetNumTexGens(1);
 		GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, 0x3c, GX_FALSE, 0x7d);
 		Matrixf mtx;
-		PSMTXIdentity(mtx.m_matrix.mtxView);
-		GXLoadTexMtxImm(mtx.m_matrix.mtxView, 0x1e, GX_MTX2x4);
-		m_texture->load(GX_TEXMAP0);
+		PSMTXIdentity(mtx.mMatrix.mtxView);
+		GXLoadTexMtxImm(mtx.mMatrix.mtxView, 0x1e, GX_MTX2x4);
+		mTexture->load(GX_TEXMAP0);
 		draw(gfx); // should be base class
 	}
 	/*
@@ -1285,19 +1285,19 @@ void CarryInfoMgr::update()
  */
 void CarryInfoMgr::updatePokoInfoOwners()
 {
-	PokoInfoOwner* obj = static_cast<PokoInfoOwner*>(m_poko_node.m_child);
+	PokoInfoOwner* obj = static_cast<PokoInfoOwner*>(mPoko_node.mChild);
 
 	while (obj) {
-		if (!obj->m_list->isFinish() && obj->m_list->m_owner == obj) {
-			obj->m_timer += sys->m_deltaTime;
-			if (obj->m_timer > 1.5f) {
-				obj->m_list->m_param.m_carryInfo.m_hidden = CINFO_1;
+		if (!obj->mList->isFinish() && obj->mList->mOwner == obj) {
+			obj->mTimer += sys->mDeltaTime;
+			if (obj->mTimer > 1.5f) {
+				obj->mList->mParam.mCarryInfo.mHidden = CINFO_1;
 			}
 		} else {
 			obj->del();
-			m_poko_node.add(obj);
+			mPoko_node.add(obj);
 		}
-		obj = static_cast<PokoInfoOwner*>(obj->m_next);
+		obj = static_cast<PokoInfoOwner*>(obj->mNext);
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -1568,7 +1568,7 @@ lbl_8011C714:
  */
 CarryInfoList* InfoMgr<CarryInfoOwner, CarryInfoList>::scratch(CarryInfoOwner* owner)
 {
-	CarryInfoList* list = 0; // search(&m_activeList, owner); // this I cant get to work
+	CarryInfoList* list = 0; // search(&mActiveList, owner); // this I cant get to work
 	if (list) {
 		addInactiveList(list);
 	}

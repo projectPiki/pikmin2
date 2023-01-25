@@ -32,14 +32,14 @@ void SMenuPauseDoukutu::doCreateObj(JKRArchive* archive) { registObj(new ObjSMen
  */
 int SMenuPauseDoukutu::doGetFinishState()
 {
-	int finishState = m_finishState;
+	int finishState = mFinishState;
 	if (finishState == 1) {
 		Screen::DispMemberBase* dispMember = getDispMember();
 		if (dispMember->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
 			Screen::DispMemberSMenuPauseDoukutu* subMember
 			    = static_cast<Screen::DispMemberSMenuPauseDoukutu*>(dispMember->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_DOUKUTU));
 			if (subMember) {
-				finishState = subMember->m_exitStatus;
+				finishState = subMember->mExitStatus;
 			}
 		}
 	}

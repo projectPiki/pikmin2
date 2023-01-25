@@ -445,7 +445,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2D8 = false;
 	_2D9 = false;
 	setupEffect();
-	m_fsm->start(this, 1, nullptr);
+	mFsm->start(this, 1, nullptr);
 }
 
 /*
@@ -468,7 +468,7 @@ void Obj::doUpdate()
 {
 	EnemyBase* frog = static_cast<EnemyBase*>(this);
 	updateCaution();
-	m_fsm->exec(frog);
+	mFsm->exec(frog);
 }
 
 /*
@@ -1528,7 +1528,7 @@ lbl_80259480:
  */
 void Obj::setupEffect()
 {
-	// m_efxPota
+	// mEfxPota
 	/*
 	lwz      r4, 0x2dc(r3)
 	addi     r0, r3, 0x18c
@@ -1544,7 +1544,7 @@ void Obj::setupEffect()
  */
 void Obj::startJumpEffect()
 {
-	// m_efxPota->create(nullptr);
+	// mEfxPota->create(nullptr);
 	// incomplete class
 	/*
 	stwu     r1, -0x10(r1)
@@ -1570,7 +1570,7 @@ void Obj::startJumpEffect()
  */
 void Obj::finishJumpEffect()
 {
-	// m_efxPota->fade();
+	// mEfxPota->fade();
 	// incomplete class
 	/*
 	stwu     r1, -0x10(r1)
@@ -1658,7 +1658,7 @@ lbl_80259588:
  */
 void Obj::effectDrawOn()
 {
-	// m_efxPota
+	// mEfxPota
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1682,7 +1682,7 @@ void Obj::effectDrawOn()
  */
 void Obj::effectDrawOff()
 {
-	// m_efxPota
+	// mEfxPota
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

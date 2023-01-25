@@ -171,17 +171,17 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f m_goalPosition;             // _2BC
-	Miulin::StateID m_nextState;         // _2C8
-	SysShape::Joint* m_koshiJoint;       // _2CC
-	u32 _2D0;                            // _2D0
-	Vector3f _2D4;                       // _2D4
-	int _2E0;                            // _2E0
-	u8 _2E4;                             // _2E4
-	f32 _2E8;                            // _2E8, timer?
-	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2EC
-	FSM* m_fsm;                          // _2F4
-	                                     // _2F8 = PelletView
+	Vector3f mGoalPosition;             // _2BC
+	Miulin::StateID mNextState;         // _2C8
+	SysShape::Joint* mKoshiJoint;       // _2CC
+	u32 _2D0;                           // _2D0
+	Vector3f _2D4;                      // _2D4
+	int _2E0;                           // _2E0
+	u8 _2E4;                            // _2E4
+	f32 _2E8;                           // _2E8, timer?
+	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2EC
+	FSM* mFsm;                          // _2F4
+	                                    // _2F8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -196,39 +196,39 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_ip01(this, 'ip01', "リターンカウンタ", 100, 0, 1000)         // 'return counter'
-		    , m_fp03(this, 'fp03', "連続プレス角度", 20.0f, 0.0f, 180.0f)    // 'continuous press angle'
-		    , m_fp04(this, 'fp04', "ダッシュ速度倍率", 2.0f, 0.0f, 10.0f)    // 'dash speed multiplier'
-		    , m_fp05(this, 'fp05', "ダッシュアニメ倍率", 2.0f, 0.0f, 10.0f)  // 'dash animation scale'
-		    , m_fp06(this, 'fp06', "旋回終了角度", 10.0f, 0.0f, 180.0f)      // 'turning end angle'
-		    , m_fp07(this, 'fp07', "ダッシュ可能\角度", 30.0f, 0.0f, 180.0f) // 'possible dash angle'
-		    , m_fp08(this, 'fp08', "攻撃範囲最小", 25.0f, 0.0f, 100.0f)      // 'minimum attack range'
+		    , mIp01(this, 'ip01', "リターンカウンタ", 100, 0, 1000)         // 'return counter'
+		    , mFp03(this, 'fp03', "連続プレス角度", 20.0f, 0.0f, 180.0f)    // 'continuous press angle'
+		    , mFp04(this, 'fp04', "ダッシュ速度倍率", 2.0f, 0.0f, 10.0f)    // 'dash speed multiplier'
+		    , mFp05(this, 'fp05', "ダッシュアニメ倍率", 2.0f, 0.0f, 10.0f)  // 'dash animation scale'
+		    , mFp06(this, 'fp06', "旋回終了角度", 10.0f, 0.0f, 180.0f)      // 'turning end angle'
+		    , mFp07(this, 'fp07', "ダッシュ可能\角度", 30.0f, 0.0f, 180.0f) // 'possible dash angle'
+		    , mFp08(this, 'fp08', "攻撃範囲最小", 25.0f, 0.0f, 100.0f)      // 'minimum attack range'
 		{
 		}
 
-		Parm<int> m_ip01; // _804
-		Parm<f32> m_fp03; // _82C
-		Parm<f32> m_fp04; // _854
-		Parm<f32> m_fp05; // _87C
-		Parm<f32> m_fp06; // _8A4
-		Parm<f32> m_fp07; // _8CC
-		Parm<f32> m_fp08; // _8F4
+		Parm<int> mIp01; // _804
+		Parm<f32> mFp03; // _82C
+		Parm<f32> mFp04; // _854
+		Parm<f32> mFp05; // _87C
+		Parm<f32> mFp06; // _8A4
+		Parm<f32> mFp07; // _8CC
+		Parm<f32> mFp08; // _8F4
 	};
 
 	Parms() { }
@@ -236,23 +236,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 } // namespace Miulin

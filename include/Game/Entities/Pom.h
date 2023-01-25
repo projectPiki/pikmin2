@@ -36,13 +36,13 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                               // _2F8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()       // _258 (weak)
 	{
-		return m_pomID;
+		return mPomID;
 	}
-	virtual void inWaterCallback(WaterBox* wb) { }                // _84 (weak)
-	virtual void outWaterCallback() { }                           // _88 (weak)
-	virtual bool isLivingThing() { return false; }                // _D4 (weak)
-	virtual MouthSlots* getMouthSlots() { return &m_mouthSlots; } // _25C (weak)
-	virtual f32 getDownSmokeScale() { return 0.8f; }              // _2EC (weak)
+	virtual void inWaterCallback(WaterBox* wb) { }               // _84 (weak)
+	virtual void outWaterCallback() { }                          // _88 (weak)
+	virtual bool isLivingThing() { return false; }               // _D4 (weak)
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; } // _25C (weak)
+	virtual f32 getDownSmokeScale() { return 0.8f; }             // _2EC (weak)
 	//////////////// VTABLE END
 
 	void setPomParms();
@@ -57,19 +57,19 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                        // _2BC
-	bool m_canTouchToClose;            // _2C0, will swing closed on navi/piki/teki touch
-	bool m_canSwallowPiki;             // _2C1, will eat piki when thrown in
-	int m_usedSlotCount;               // _2C4, conversion slots used up
-	int m_totalSlotCount;              // _2C8, max conversion slots
-	int m_shotMultiplier;              // _2CC, multiplier for # seeds to shoot out
-	MouthSlots m_mouthSlots;           // _2D0
-	EPikiKind m_pikiKind;              // _2D8, color piki to shoot out
-	J3DGXColorS10 m_rgbColor;          // _2DC, red _2DC, green _2DE, blue _2E0, alpha _2E2
-	f32 m_swingTimer;                  // _2E4, how long pom has been open since touch/swallow
-	f32 m_queenColorTimer;             // _2E8, how long queen pom has been on current color
-	EnemyTypeID::EEnemyTypeID m_pomID; // _2EC, B=3, R=4, Y=5, P=6, W=7, Q=8, base=82
-	                                   // _2F0 = PelletView
+	FSM* mFsm;                        // _2BC
+	bool mCanTouchToClose;            // _2C0, will swing closed on navi/piki/teki touch
+	bool mCanSwallowPiki;             // _2C1, will eat piki when thrown in
+	int mUsedSlotCount;               // _2C4, conversion slots used up
+	int mTotalSlotCount;              // _2C8, max conversion slots
+	int mShotMultiplier;              // _2CC, multiplier for # seeds to shoot out
+	MouthSlots mMouthSlots;           // _2D0
+	EPikiKind mPikiKind;              // _2D8, color piki to shoot out
+	J3DGXColorS10 mRgbColor;          // _2DC, red _2DC, green _2DE, blue _2E0, alpha _2E2
+	f32 mSwingTimer;                  // _2E4, how long pom has been open since touch/swallow
+	f32 mQueenColorTimer;             // _2E8, how long queen pom has been on current color
+	EnemyTypeID::EEnemyTypeID mPomID; // _2EC, B=3, R=4, Y=5, P=6, W=7, Q=8, base=82
+	                                  // _2F0 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -88,28 +88,28 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_normalMaxSlots(this, 'ip01', "吸い込みピキ数(pom)", 5, 1, 50)    // 'sucking piki number (pom)'
-		    , m_queenMaxSlots(this, 'ip11', "吸い込みピキ数(pop)", 1, 1, 50)     // 'sucking piki number (pop)'
-		    , m_queenShotMultiplier(this, 'ip13', "吐き出し倍数(pop)", 5, 1, 50) // 'spitting multiple (pop)'
-		    , m_remainOpenTime(this, 'fp01', "開花時間", 30.0f, 0.0f, 60.0f)     // 'flowering time'
-		    , m_colorChangeTime(this, 'fp02', "色換え時間", 1.25f, 0.0f, 60.0f)  // 'color change time'
-		    , m_fp03(this, 'fp03', "白黒出現率", 0.15f, 0.0f, 1.0f)              // 'black and white appearance rate'
+		    , mNormalMaxSlots(this, 'ip01', "吸い込みピキ数(pom)", 5, 1, 50)    // 'sucking piki number (pom)'
+		    , mQueenMaxSlots(this, 'ip11', "吸い込みピキ数(pop)", 1, 1, 50)     // 'sucking piki number (pop)'
+		    , mQueenShotMultiplier(this, 'ip13', "吐き出し倍数(pop)", 5, 1, 50) // 'spitting multiple (pop)'
+		    , mRemainOpenTime(this, 'fp01', "開花時間", 30.0f, 0.0f, 60.0f)     // 'flowering time'
+		    , mColorChangeTime(this, 'fp02', "色換え時間", 1.25f, 0.0f, 60.0f)  // 'color change time'
+		    , mFp03(this, 'fp03', "白黒出現率", 0.15f, 0.0f, 1.0f)              // 'black and white appearance rate'
 		{
 		}
 
-		Parm<int> m_normalMaxSlots;      // _804, ip01
-		Parm<int> m_queenMaxSlots;       // _82C, ip11
-		Parm<int> m_queenShotMultiplier; // _854, ip13
-		Parm<f32> m_remainOpenTime;      // _87C, fp01
-		Parm<f32> m_colorChangeTime;     // _8A4, fp02
-		Parm<f32> m_fp03;                // _8CC
+		Parm<int> mNormalMaxSlots;      // _804, ip01
+		Parm<int> mQueenMaxSlots;       // _82C, ip11
+		Parm<int> mQueenShotMultiplier; // _854, ip13
+		Parm<f32> mRemainOpenTime;      // _87C, fp01
+		Parm<f32> mColorChangeTime;     // _8A4, fp02
+		Parm<f32> mFp03;                // _8CC
 	};
 
 	Parms() { }
@@ -117,23 +117,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -159,7 +159,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

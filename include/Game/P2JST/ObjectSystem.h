@@ -32,13 +32,13 @@ struct ObjectSystem : public JStage::TSystem, public ObjectBase {
 
 	// _00 = VTABLE (JStage::TSystem)
 	// _04 = VTABLE2 (ObjectBase)
-	MoviePlayer* m_moviePlayer;                    // _08
-	char* m_name;                                  // _0C
-	u32 m_flags;                                   // _10
-	u32 _14;                                       // _14
-	void* _18;                                     // _18
-	u32 _1C;                                       // _1C
-	JGadget::TList_pointer_void m_listPointerVoid; // _20
+	MoviePlayer* mMoviePlayer;                    // _08
+	char* mName;                                  // _0C
+	u32 mFlags;                                   // _10
+	u32 _14;                                      // _14
+	void* _18;                                    // _18
+	u32 _1C;                                      // _1C
+	JGadget::TList_pointer_void mListPointerVoid; // _20
 };
 
 } // namespace P2JST

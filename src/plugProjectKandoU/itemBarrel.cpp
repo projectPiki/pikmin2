@@ -865,7 +865,7 @@ void ItemBarrel::FSM::init(Game::ItemBarrel::Item*)
  */
 void ItemBarrel::NormalState::init(Game::ItemBarrel::Item* item, Game::StateArg* arg)
 {
-	item->m_animSpeed = 0.0f;
+	item->mAnimSpeed = 0.0f;
 	/*
 	lfs      f0, lbl_80519C90@sda21(r2)
 	stfs     f0, 0x1d4(r4)
@@ -1069,31 +1069,31 @@ void ItemBarrel::DeadState::onDamage(Game::ItemBarrel::Item*, float) { }
  */
 void ItemBarrel::DeadState::onKeyEvent(Game::ItemBarrel::Item* item, SysShape::KeyEvent const& event)
 {
-	WaterBox* waterbox = mapMgr->findWater(item->m_boundingSphere);
-	if (waterbox && gameSystem->m_flags & 0x20) {
+	WaterBox* waterbox = mapMgr->findWater(item->mBoundingSphere);
+	if (waterbox && gameSystem->mFlags & 0x20) {
 		// TODO: Use a suitable ctor? Or inline the default as {}
 		MoviePlayArg movieArg;
-		movieArg.m_courseName    = nullptr;
-		movieArg.m_movieName     = "x12_drain_water";
-		movieArg._0C             = nullptr;
-		movieArg.m_origin.x      = 0.0f;
-		movieArg.m_origin.y      = 0.0f;
-		movieArg.m_origin.z      = 0.0f;
-		movieArg.m_angle         = 0.0f;
-		movieArg.m_naviID        = 0;
-		movieArg._10             = nullptr;
-		movieArg._08             = nullptr;
-		movieArg.m_streamID      = 0;
-		movieArg._14             = 0;
-		movieArg.m_soundPosition = nullptr;
-		movieArg.m_origin        = item->getPosition();
-		movieArg.m_angle         = item->getFaceDir();
+		movieArg.mCourseName    = nullptr;
+		movieArg.mMovieName     = "x12_drain_water";
+		movieArg._0C            = nullptr;
+		movieArg.mOrigin.x      = 0.0f;
+		movieArg.mOrigin.y      = 0.0f;
+		movieArg.mOrigin.z      = 0.0f;
+		movieArg.mAngle         = 0.0f;
+		movieArg.mNaviID        = 0;
+		movieArg._10            = nullptr;
+		movieArg._08            = nullptr;
+		movieArg.mStreamID      = 0;
+		movieArg._14            = 0;
+		movieArg.mSoundPosition = nullptr;
+		movieArg.mOrigin        = item->getPosition();
+		movieArg.mAngle         = item->getFaceDir();
 		moviePlayer->play(movieArg);
 		// TODO: Uncomment this line.
-		// item->m_soundObj->startSound(PSSE_EV_WATER_OUT, 0);
+		// item->mSoundObj->startSound(PSSE_EV_WATER_OUT, 0);
 		waterbox->startDown(-100.0f);
 	}
-	item->m_animSpeed = 0.0f;
+	item->mAnimSpeed = 0.0f;
 	mgr->kill(item);
 	/*
 	.loc_0x0:
@@ -1235,14 +1235,14 @@ void ItemBarrel::Item::doSave(Stream& output) { output.writeByte(isAlive()); }
 void ItemBarrel::Item::doLoad(Stream& input)
 {
 	if (input.readByte() == 0) {
-		m_animator.startAnim(1, this);
-		m_animator.setLastFrame();
+		mAnimator.startAnim(1, this);
+		mAnimator.setLastFrame();
 		setAlive(false);
-		WaterBox* waterbox = mapMgr->findWater(m_boundingSphere);
+		WaterBox* waterbox = mapMgr->findWater(mBoundingSphere);
 		if (waterbox) {
 			waterbox->startDown(-100.0f);
 		}
-		m_animSpeed = 0.0f;
+		mAnimSpeed = 0.0f;
 		mgr->kill(this);
 	}
 }
@@ -1264,7 +1264,7 @@ void ItemBarrel::Item::doLoad(Stream& input)
  */
 void ItemBarrel::Item::constructor()
 {
-	// m_soundObj = new PSM::WorkItem(this);
+	// mSoundObj = new PSM::WorkItem(this);
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -1297,18 +1297,18 @@ lbl_801F7F64:
  */
 void ItemBarrel::Item::onInit(Game::CreatureInitArg*)
 {
-	m_model = new SysShape::Model(mgr->getModelData(0), 0x20000, 2);
-	m_model->m_j3dModel->calc();
-	m_model->m_j3dModel->calcMaterial();
-	m_model->m_j3dModel->makeDL();
-	m_model->m_j3dModel->lock();
-	m_stateMachine->start(this, Barrel_Normal, nullptr);
+	mModel = new SysShape::Model(mgr->getModelData(0), 0x20000, 2);
+	mModel->mJ3dModel->calc();
+	mModel->mJ3dModel->calcMaterial();
+	mModel->mJ3dModel->makeDL();
+	mModel->mJ3dModel->lock();
+	mStateMachine->start(this, Barrel_Normal, nullptr);
 	setAlive(true);
 	createBarrel();
-	m_animSpeed          = 0.0f;
-	m_animator.m_animMgr = mgr->m_animMgr;
-	m_animator.startAnim(1, this);
-	m_collTree->createFromFactory(m_model, mgr->m_collPartFactory, nullptr);
+	mAnimSpeed         = 0.0f;
+	mAnimator.mAnimMgr = mgr->mAnimMgr;
+	mAnimator.startAnim(1, this);
+	mCollTree->createFromFactory(mModel, mgr->mCollPartFactory, nullptr);
 	_1F4 = 0.0f;
 }
 
@@ -1356,9 +1356,9 @@ void ItemBarrel::Item::onSetPosition()
  */
 void ItemBarrel::Item::updateBoundSphere()
 {
-	float radius                = getWorkRadius();
-	m_boundingSphere.m_position = m_position;
-	m_boundingSphere.m_radius   = radius;
+	float radius              = getWorkRadius();
+	mBoundingSphere.mPosition = mPosition;
+	mBoundingSphere.mRadius   = radius;
 }
 
 /*
@@ -1368,13 +1368,13 @@ void ItemBarrel::Item::updateBoundSphere()
  */
 void ItemBarrel::Item::doAI()
 {
-	m_stateMachine->exec(this);
+	mStateMachine->exec(this);
 	updateCollTree();
-	m_collTree->m_part->m_radius = getWorkRadius();
-	switch (m_soundEvent.update()) {
+	mCollTree->mPart->mRadius = getWorkRadius();
+	switch (mSoundEvent.update()) {
 	case 2:
-		P2ASSERTLINE(298, m_soundObj->getCastType() == PSM::CCT_WorkItem);
-		static_cast<PSM::WorkItem*>(m_soundObj)->eventStop();
+		P2ASSERTLINE(298, mSoundObj->getCastType() == PSM::CCT_WorkItem);
+		static_cast<PSM::WorkItem*>(mSoundObj)->eventStop();
 	}
 
 	/*
@@ -1537,8 +1537,8 @@ float ItemBarrel::Item::getWorkRadius()
 {
 	Sys::Sphere bounds;
 	if (isAlive()) {
-		m_collTree->getBoundingSphere(bounds);
-		return bounds.m_radius;
+		mCollTree->getBoundingSphere(bounds);
+		return bounds.mRadius;
 	} else {
 		return 0.0f;
 	}
@@ -1619,7 +1619,7 @@ lbl_801F8458:
  */
 void ItemBarrel::Item::createBarrel()
 {
-	_1EC = mgr->m_parms->m_barrelParms.p000.m_value;
+	_1EC = mgr->mParms->mBarrelParms.p000.mValue;
 	_1F0 = _1EC;
 	_1F4 = 0.0f;
 }
@@ -1631,21 +1631,21 @@ void ItemBarrel::Item::createBarrel()
  */
 bool ItemBarrel::Item::interactAttack(Game::InteractAttack& interaction)
 {
-	if (interaction.m_creature->isNavi()) {
+	if (interaction.mCreature->isNavi()) {
 		return false;
 	}
-	if (m_currentState) {
-		m_currentState->onDamage(this, interaction._08);
-		switch (m_soundEvent.event()) {
+	if (mCurrentState) {
+		mCurrentState->onDamage(this, interaction._08);
+		switch (mSoundEvent.event()) {
 		case 1:
-			P2ASSERTLINE(361, m_soundObj->getCastType() == PSM::CCT_WorkItem);
-			static_cast<PSM::WorkItem*>(m_soundObj)->eventStart();
+			P2ASSERTLINE(361, mSoundObj->getCastType() == PSM::CCT_WorkItem);
+			static_cast<PSM::WorkItem*>(mSoundObj)->eventStart();
 			break;
 		case 2:
 			break;
 		case 3:
-			P2ASSERTLINE(368, m_soundObj->getCastType() == PSM::CCT_WorkItem);
-			static_cast<PSM::WorkItem*>(m_soundObj)->eventRestart();
+			P2ASSERTLINE(368, mSoundObj->getCastType() == PSM::CCT_WorkItem);
+			static_cast<PSM::WorkItem*>(mSoundObj)->eventRestart();
 			break;
 		}
 		return true;
@@ -1771,17 +1771,17 @@ ItemBarrel::Mgr::Mgr()
 {
 	setName("Barrel");
 	setModelSize(1);
-	m_objectPathComponent = "user/Kando/objects/barrel";
-	m_parms               = new BarrelParms();
-	char* resource        = (char*)JKRDvdRipper::loadToMainRAM("user/Abe/item/barrelParms.txt", nullptr, Switch_0, 0, nullptr,
+	mObjectPathComponent = "user/Kando/objects/barrel";
+	mParms               = new BarrelParms();
+	char* resource       = (char*)JKRDvdRipper::loadToMainRAM("user/Abe/item/barrelParms.txt", nullptr, Switch_0, 0, nullptr,
                                                         JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
-		stream.m_mode = STREAM_MODE_TEXT;
-		if (stream.m_mode == STREAM_MODE_TEXT) {
-			stream.m_tabCount = 0;
+		stream.mMode = STREAM_MODE_TEXT;
+		if (stream.mMode == STREAM_MODE_TEXT) {
+			stream.mTabCount = 0;
 		}
-		m_parms->read(stream);
+		mParms->read(stream);
 		delete[] resource;
 	}
 	/*
@@ -2050,8 +2050,8 @@ void ItemBarrel::Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
 	loadBmd("model.bmd", 0, 0x20000);
-	m_modelData[0]->newSharedDisplayList(0x40000);
-	m_modelData[0]->makeSharedDL();
+	mModelData[0]->newSharedDisplayList(0x40000);
+	mModelData[0]->makeSharedDL();
 	JKRArchive* arc = openTextArc("texts.szs");
 	loadAnimMgr(arc, "animMgr.txt");
 	loadCollision(arc, "coll.txt");

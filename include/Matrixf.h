@@ -18,24 +18,24 @@ struct Matrixf {
 	// // it up.
 	inline Matrixf(const Mtx mtx)
 	{
-		m_matrix.mtxView[0][0] = mtx[0][0];
-		m_matrix.mtxView[0][1] = mtx[0][1];
-		m_matrix.mtxView[0][2] = mtx[0][2];
-		m_matrix.mtxView[0][3] = mtx[0][3];
-		m_matrix.mtxView[1][0] = mtx[1][0];
-		m_matrix.mtxView[1][1] = mtx[1][1];
-		m_matrix.mtxView[1][2] = mtx[1][2];
-		m_matrix.mtxView[1][3] = mtx[1][3];
-		m_matrix.mtxView[2][0] = mtx[2][0];
-		m_matrix.mtxView[2][1] = mtx[2][1];
-		m_matrix.mtxView[2][2] = mtx[2][2];
-		m_matrix.mtxView[2][3] = mtx[2][3];
+		mMatrix.mtxView[0][0] = mtx[0][0];
+		mMatrix.mtxView[0][1] = mtx[0][1];
+		mMatrix.mtxView[0][2] = mtx[0][2];
+		mMatrix.mtxView[0][3] = mtx[0][3];
+		mMatrix.mtxView[1][0] = mtx[1][0];
+		mMatrix.mtxView[1][1] = mtx[1][1];
+		mMatrix.mtxView[1][2] = mtx[1][2];
+		mMatrix.mtxView[1][3] = mtx[1][3];
+		mMatrix.mtxView[2][0] = mtx[2][0];
+		mMatrix.mtxView[2][1] = mtx[2][1];
+		mMatrix.mtxView[2][2] = mtx[2][2];
+		mMatrix.mtxView[2][3] = mtx[2][3];
 	}
 	/**
 	 * @reifiedAddress{80137300}
 	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
 	 */
-	f32& operator()(int p1, int p2) { return m_matrix.mtxView[p1][p2]; }
+	f32& operator()(int p1, int p2) { return mMatrix.mtxView[p1][p2]; }
 
 	Vector3f operator*(Vector3f& vec)
 	{
@@ -84,7 +84,7 @@ struct Matrixf {
 	inline Vector3f mtxMult(Vector3f& vec)
 	{
 		Vector3f outVec;
-		PSMTXMultVec(this->m_matrix.mtxView, (Vec*)&vec, (Vec*)&outVec);
+		PSMTXMultVec(this->mMatrix.mtxView, (Vec*)&vec, (Vec*)&outVec);
 		return outVec;
 	}
 
@@ -141,28 +141,28 @@ struct Matrixf {
 			f32 xy, yy, zy, ty;
 			f32 xz, yz, zz, tz;
 		} structView;
-	} m_matrix;
-	// f32 m_matrix[3][4];
+	} mMatrix;
+	// f32 mMatrix[3][4];
 };
 // sizeof is 48
 
 inline Matrixf concatMatrixf(Matrixf& mat1, Matrixf& mat2)
 {
 	Matrixf concatMtx;
-	PSMTXConcat(mat1.m_matrix.mtxView, mat2.m_matrix.mtxView, concatMtx.m_matrix.mtxView);
+	PSMTXConcat(mat1.mMatrix.mtxView, mat2.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
 	return concatMtx;
 }
 
 inline void scaleMatrix(Matrixf* mtx, f32 scale)
 {
-	mtx->m_matrix.structView.xx *= scale;
-	mtx->m_matrix.structView.yx *= scale;
-	mtx->m_matrix.structView.zx *= scale;
-	mtx->m_matrix.structView.xy *= scale;
-	mtx->m_matrix.structView.yy *= scale;
-	mtx->m_matrix.structView.zy *= scale;
-	mtx->m_matrix.structView.xz *= scale;
-	mtx->m_matrix.structView.yz *= scale;
-	mtx->m_matrix.structView.zz *= scale;
+	mtx->mMatrix.structView.xx *= scale;
+	mtx->mMatrix.structView.yx *= scale;
+	mtx->mMatrix.structView.zx *= scale;
+	mtx->mMatrix.structView.xy *= scale;
+	mtx->mMatrix.structView.yy *= scale;
+	mtx->mMatrix.structView.zy *= scale;
+	mtx->mMatrix.structView.xz *= scale;
+	mtx->mMatrix.structView.yz *= scale;
+	mtx->mMatrix.structView.zz *= scale;
 }
 #endif

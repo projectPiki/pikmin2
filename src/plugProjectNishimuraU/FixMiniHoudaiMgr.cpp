@@ -11,7 +11,7 @@ namespace FixMiniHoudai {
 Mgr::Mgr(int objLimit, u8 modelType)
     : MiniHoudai::Mgr(objLimit, modelType)
 {
-	m_name = "固定チビホウダイマネージャ"; // fixed little houdai manager
+	mName = "固定チビホウダイマネージャ"; // fixed little houdai manager
 }
 
 /*
@@ -26,14 +26,14 @@ void Mgr::doAlloc() { init(new MiniHoudai::Parms); }
  * Address:	80301720
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	8030186C
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 } // namespace FixMiniHoudai
 } // namespace Game

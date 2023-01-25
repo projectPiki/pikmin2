@@ -31,7 +31,7 @@ Game::Navi* getNaviPtr(int index)
 	CI_LOOP(iter)
 	{
 		navi = (*iter);
-		if (navi->isAlive() && (int)navi->m_naviIndex == index) {
+		if (navi->isAlive() && (int)navi->mNaviIndex == index) {
 			return navi;
 		}
 	}
@@ -45,51 +45,51 @@ Game::Navi* getNaviPtr(int index)
  */
 ObjSMenuMap::ObjSMenuMap(char const* name)
 {
-	m_mapPosition.x          = 0.0f;
-	m_mapPosition.y          = 0.0f;
-	m_currentZoom            = 1.0f;
-	m_mapAngle               = 0.0f;
-	m_mapTexScale.x          = 1.0f;
-	m_mapTexScale.y          = 1.0f;
-	m_mapTextureDimensions.x = 0.0f;
-	m_mapTextureDimensions.y = 0.0f;
-	m_mapBounds.x            = 0.0f;
-	m_mapBounds.y            = 0.0f;
-	_108.x                   = 1.0f;
-	_108.y                   = 1.0f;
-	m_mapRotationOrigin.x    = 0.0f;
-	m_mapRotationOrigin.y    = 0.0f;
-	m_disp                   = nullptr;
-	m_mapCounter             = nullptr;
-	m_animGroup              = nullptr;
-	m_name                   = name;
-	m_pane_map               = nullptr;
-	_B8                      = 0;
-	m_iconScreen             = nullptr;
-	m_radarMapTexture        = nullptr;
-	m_rootPane               = nullptr;
-	m_pane_Ncompas           = nullptr;
-	m_mapTexPane             = nullptr;
-	m_radarPaneList          = nullptr;
-	m_olimarArrow            = nullptr;
-	m_olimarObj              = nullptr;
-	m_louieArrow             = nullptr;
-	m_louieObj               = nullptr;
-	m_mapIconNum             = 0;
-	m_updateCaveTex          = false;
-	m_controller             = nullptr;
-	m_iconScreen2            = nullptr;
-	m_compassPic             = nullptr;
-	m_olimarGlow             = nullptr;
-	m_louieGlow              = nullptr;
-	m_startZoom              = 1.0f;
-	m_zoomCaveTextAlpha      = 255;
-	m_caveLabelCount         = 0;
-	m_caveLabelTextBoxes[0]  = nullptr;
-	m_caveLabelTextBoxes[1]  = nullptr;
-	m_caveLabelTextBoxes[2]  = nullptr;
-	m_caveLabelTextBoxes[3]  = nullptr;
-	m_caveLabelTextBoxes[4]  = nullptr;
+	mMapPosition.x          = 0.0f;
+	mMapPosition.y          = 0.0f;
+	mCurrentZoom            = 1.0f;
+	mMapAngle               = 0.0f;
+	mMapTexScale.x          = 1.0f;
+	mMapTexScale.y          = 1.0f;
+	mMapTextureDimensions.x = 0.0f;
+	mMapTextureDimensions.y = 0.0f;
+	mMapBounds.x            = 0.0f;
+	mMapBounds.y            = 0.0f;
+	_108.x                  = 1.0f;
+	_108.y                  = 1.0f;
+	mMapRotationOrigin.x    = 0.0f;
+	mMapRotationOrigin.y    = 0.0f;
+	mDisp                   = nullptr;
+	mMapCounter             = nullptr;
+	mAnimGroup              = nullptr;
+	mName                   = name;
+	mPane_map               = nullptr;
+	_B8                     = 0;
+	mIconScreen             = nullptr;
+	mRadarMapTexture        = nullptr;
+	mRootPane               = nullptr;
+	mPane_Ncompas           = nullptr;
+	mMapTexPane             = nullptr;
+	mRadarPaneList          = nullptr;
+	mOlimarArrow            = nullptr;
+	mOlimarObj              = nullptr;
+	mLouieArrow             = nullptr;
+	mLouieObj               = nullptr;
+	mMapIconNum             = 0;
+	mUpdateCaveTex          = false;
+	mController             = nullptr;
+	mIconScreen2            = nullptr;
+	mCompassPic             = nullptr;
+	mOlimarGlow             = nullptr;
+	mLouieGlow              = nullptr;
+	mStartZoom              = 1.0f;
+	mZoomCaveTextAlpha      = 255;
+	mCaveLabelCount         = 0;
+	mCaveLabelTextBoxes[0]  = nullptr;
+	mCaveLabelTextBoxes[1]  = nullptr;
+	mCaveLabelTextBoxes[2]  = nullptr;
+	mCaveLabelTextBoxes[3]  = nullptr;
+	mCaveLabelTextBoxes[4]  = nullptr;
 }
 
 /*
@@ -126,43 +126,43 @@ ObjSMenuMap::~ObjSMenuMap() { }
  */
 void ObjSMenuMap::setMapTexture()
 {
-	m_mapTexPane = og::Screen::CopyPictureToPane(m_pane_map, m_rootPane, 0.0f, 0.0f, 'new_map');
-	m_mapTexPane->setAlpha(255);
-	m_pane_map->hide();
+	mMapTexPane = og::Screen::CopyPictureToPane(mPane_map, mRootPane, 0.0f, 0.0f, 'new_map');
+	mMapTexPane->setAlpha(255);
+	mPane_map->hide();
 
-	if (m_disp->m_inCave && m_disp->m_activeNavi) {
+	if (mDisp->mInCave && mDisp->mActiveNavi) {
 		if (Game::Cave::randMapMgr) {
 			Game::Cave::randMapMgr->setCaptureOn();
-			m_radarMapTexture = Game::Cave::randMapMgr->getRadarMapTexture();
-			m_mapTexPane->changeTexture(m_radarMapTexture->_20, 0);
-			m_updateCaveTex = 1;
+			mRadarMapTexture = Game::Cave::randMapMgr->getRadarMapTexture();
+			mMapTexPane->changeTexture(mRadarMapTexture->_20, 0);
+			mUpdateCaveTex = 1;
 		} else {
 			JUT_PANICLINE(390, "SMenuMap : randMapMgr is not found!!!\n");
 		}
 	} else {
-		switch (m_disp->m_courseIndex) {
+		switch (mDisp->mCourseIndex) {
 		case 0:
-			m_mapTexPane->changeTexture("map_tutorial.bti", 0);
+			mMapTexPane->changeTexture("map_tutorial.bti", 0);
 			break;
 		case 1:
-			m_mapTexPane->changeTexture("map_forest.bti", 0);
+			mMapTexPane->changeTexture("map_forest.bti", 0);
 			break;
 		case 2:
-			m_mapTexPane->changeTexture("map_yakushima.bti", 0);
+			mMapTexPane->changeTexture("map_yakushima.bti", 0);
 			break;
 		case 3:
-			m_mapTexPane->changeTexture("map_last.bti", 0);
+			mMapTexPane->changeTexture("map_last.bti", 0);
 			break;
 		}
 	}
 
-	JUTTexture* tex          = m_mapTexPane->getTexture(0);
-	m_mapTextureDimensions.x = (int)tex->_20->m_sizeX;
-	tex                      = m_mapTexPane->getTexture(0);
-	m_mapTextureDimensions.y = (int)tex->_20->m_sizeY;
-	m_mapBounds.x            = m_mapTexPane->m_bounds.f.x - m_mapTexPane->m_bounds.i.x;
-	m_mapBounds.y            = m_mapTexPane->m_bounds.f.y - m_mapTexPane->m_bounds.i.y;
-	m_mapTexPane->resize(m_mapTextureDimensions.x, m_mapTextureDimensions.y);
+	JUTTexture* tex         = mMapTexPane->getTexture(0);
+	mMapTextureDimensions.x = (int)tex->_20->mSizeX;
+	tex                     = mMapTexPane->getTexture(0);
+	mMapTextureDimensions.y = (int)tex->_20->mSizeY;
+	mMapBounds.x            = mMapTexPane->mBounds.f.x - mMapTexPane->mBounds.i.x;
+	mMapBounds.y            = mMapTexPane->mBounds.f.y - mMapTexPane->mBounds.i.y;
+	mMapTexPane->resize(mMapTextureDimensions.x, mMapTextureDimensions.y);
 }
 
 // /*
@@ -192,24 +192,24 @@ void ObjSMenuMap::setMapTexture()
  */
 void ObjSMenuMap::tuningIcon()
 {
-	if (m_disp->m_activeNavi) {
+	if (mDisp->mActiveNavi) {
 		Game::Navi* navi = Game::naviMgr->getActiveNavi();
-		if ((int)navi->m_naviIndex == 0) {
-			if (m_louieArrow)
-				m_mapTexPane->appendChild(m_louieArrow);
-			if (m_olimarArrow)
-				m_mapTexPane->appendChild(m_olimarArrow);
+		if ((int)navi->mNaviIndex == 0) {
+			if (mLouieArrow)
+				mMapTexPane->appendChild(mLouieArrow);
+			if (mOlimarArrow)
+				mMapTexPane->appendChild(mOlimarArrow);
 		} else {
-			if (m_olimarArrow)
-				m_mapTexPane->appendChild(m_olimarArrow);
-			if (m_louieArrow)
-				m_mapTexPane->appendChild(m_louieArrow);
+			if (mOlimarArrow)
+				mMapTexPane->appendChild(mOlimarArrow);
+			if (mLouieArrow)
+				mMapTexPane->appendChild(mLouieArrow);
 		}
 	}
 
 	for (int i = 0; i < 22; i++) {
 		u64 tag        = map_icon_tag[i];
-		J2DPane* pane1 = m_iconScreen->search(tag);
+		J2DPane* pane1 = mIconScreen->search(tag);
 		if (pane1) {
 			J2DPane* parent = pane1->getParentPane();
 			if (parent) {
@@ -218,7 +218,7 @@ void ObjSMenuMap::tuningIcon()
 			}
 		}
 
-		J2DPane* pane2 = m_iconScreen2->search(tag);
+		J2DPane* pane2 = mIconScreen2->search(tag);
 		if (pane2) {
 			J2DPane* parent = pane2->getParentPane();
 			if (parent) {
@@ -231,7 +231,7 @@ void ObjSMenuMap::tuningIcon()
 	u64 naviTags[3] = { 'orima_l', 'luji_l', 'takara_l' };
 
 	for (int i = 0; i < 3; i++) {
-		J2DPane* pane = m_iconScreen2->search(naviTags[i]);
+		J2DPane* pane = mIconScreen2->search(naviTags[i]);
 		if (pane) {
 			J2DPane* parent = pane->getParentPane();
 			if (parent) {
@@ -251,110 +251,110 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 {
 	OSInitFastCast();
 
-	J2DPane* pane  = m_mapCounter->search('map');
+	J2DPane* pane  = mMapCounter->search('map');
 	J2DPane* pane2 = pane->getParentPane();
 	if (pane2) {
 		pane2 = pane->getParentPane();
 		pane2->removeChild(pane);
 	}
 
-	m_iconScreen = new P2DScreen::Mgr_tuning;
-	m_iconScreen->set("map_icon.blo", 0x40000, arc);
+	mIconScreen = new P2DScreen::Mgr_tuning;
+	mIconScreen->set("map_icon.blo", 0x40000, arc);
 
-	m_rootPane = m_iconScreen->search('ROOT');
+	mRootPane = mIconScreen->search('ROOT');
 
-	J2DPictureEx* pic = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_iconScreen, 'piki__b'));
-	pic->setWhite(msVal.m_tempPikiColorWhite);
-	pic->setBlack(msVal.m_tempPikiColorBlack);
+	J2DPictureEx* pic = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, 'piki__b'));
+	pic->setWhite(msVal.mTempPikiColorWhite);
+	pic->setBlack(msVal.mTempPikiColorBlack);
 
-	m_iconScreen2 = new P2DScreen::Mgr_tuning;
-	m_iconScreen2->set("map_icon.blo", 0x40000, arc);
+	mIconScreen2 = new P2DScreen::Mgr_tuning;
+	mIconScreen2->set("map_icon.blo", 0x40000, arc);
 	setMapTexture();
 
-	m_mapPosition.x = -m_mapTextureDimensions.x / 2;
-	m_mapPosition.y = -m_mapTextureDimensions.y / 2;
+	mMapPosition.x = -mMapTextureDimensions.x / 2;
+	mMapPosition.y = -mMapTextureDimensions.y / 2;
 
-	if (m_disp->m_activeNavi) {
+	if (mDisp->mActiveNavi) {
 		Vector3f aNaviPos = Game::naviMgr->getActiveNavi()->getPosition();
 		f32 xpos;
 		f32 ypos;
-		if (m_disp->m_inCave) {
+		if (mDisp->mInCave) {
 			if (Game::Cave::randMapMgr) {
 				Game::Cave::randMapMgr->getPositionOnTex(aNaviPos, xpos, ypos);
-				m_mapPosition.x = -(xpos + 0.2f);
-				m_mapPosition.y = -(ypos + 0.6f);
+				mMapPosition.x = -(xpos + 0.2f);
+				mMapPosition.y = -(ypos + 0.6f);
 			}
 
 		} else {
 			// xpos = 0.0f;
-			if (m_disp->m_inCave) {
+			if (mDisp->mInCave) {
 				ypos = aNaviPos.z * 0.047f + -0.6f;
 				xpos = aNaviPos.x * 0.047f + -0.2f;
 
 			} else {
-				if (m_disp->m_courseIndex == 3) {
-					xpos = (m_mapBounds.x * 1400.0f) / 4705.6f;
+				if (mDisp->mCourseIndex == 3) {
+					xpos = (mMapBounds.x * 1400.0f) / 4705.6f;
 				}
-				ypos = m_mapBounds.y * 0.5f + aNaviPos.z * 0.058f + -8.85f;
-				xpos += m_mapBounds.x * 0.5f + aNaviPos.x * 0.058f + 24.5f;
+				ypos = mMapBounds.y * 0.5f + aNaviPos.z * 0.058f + -8.85f;
+				xpos += mMapBounds.x * 0.5f + aNaviPos.x * 0.058f + 24.5f;
 			}
-			m_mapPosition.x = -(xpos);
-			m_mapPosition.y = -(ypos);
+			mMapPosition.x = -(xpos);
+			mMapPosition.y = -(ypos);
 		}
 	}
-	m_mapTexScale.x = m_mapBounds.x / m_mapTextureDimensions.x;
-	m_mapTexScale.y = m_mapBounds.y / m_mapTextureDimensions.y;
-	m_pane_Ncompas  = m_mapCounter->search('Ncompas');
-	m_compassPic    = static_cast<J2DPictureEx*>(m_iconScreen2->search('compass'));
+	mMapTexScale.x = mMapBounds.x / mMapTextureDimensions.x;
+	mMapTexScale.y = mMapBounds.y / mMapTextureDimensions.y;
+	mPane_Ncompas  = mMapCounter->search('Ncompas');
+	mCompassPic    = static_cast<J2DPictureEx*>(mIconScreen2->search('compass'));
 
-	J2DPane* iconPane   = m_iconScreen->search('compass');
+	J2DPane* iconPane   = mIconScreen->search('compass');
 	J2DPane* iconParent = iconPane->getParentPane();
 	if (iconParent) {
 		iconParent = iconPane->getParentPane();
 		iconParent->removeChild(iconPane);
 	}
 
-	m_radarPaneList = new J2DPane**[MAX_RADAR_COUNT];
+	mRadarPaneList = new J2DPane**[MAX_RADAR_COUNT];
 	for (int i = 0; i < MAX_RADAR_COUNT; i++) {
 		J2DPane** pane = new J2DPane*;
 		if (pane) {
 			*pane = nullptr;
 		}
-		m_radarPaneList[i] = pane;
+		mRadarPaneList[i] = pane;
 	}
 
-	int count        = 0;
-	m_caveLabelCount = 0;
+	int count       = 0;
+	mCaveLabelCount = 0;
 	if (Radar::mgr) {
-		if (!m_disp->m_activeNavi) {
+		if (!mDisp->mActiveNavi) {
 			Radar::mgr->ogDummpyInit();
 		}
 
-		FOREACH_NODE(Radar::Point, Radar::mgr->m_pointNode1.m_child, cPoint)
+		FOREACH_NODE(Radar::Point, Radar::mgr->mPointNode1.mChild, cPoint)
 		{
-			int id = cPoint->m_objType;
+			int id = cPoint->mObjType;
 			JUT_ASSERTLINE(569, id >= 0 && id < 22, "Radar type ERR!! (%d)\n", id);
 			Vector2f cPos = cPoint->getPosition();
 
 			f32 xpos, ypos;
 			xpos = 0.0f;
-			if (m_disp->m_inCave) {
+			if (mDisp->mInCave) {
 				ypos = cPos.y * 0.047f + -0.6f;
 				xpos = cPos.x * 0.047f + -0.2f;
 
 			} else {
-				if (m_disp->m_courseIndex == 3) {
-					xpos = (m_mapBounds.x * 1400.0f) / 4705.6f;
+				if (mDisp->mCourseIndex == 3) {
+					xpos = (mMapBounds.x * 1400.0f) / 4705.6f;
 				}
-				ypos = m_mapBounds.y * 0.5f + cPos.y * 0.058f + -8.85f;
-				xpos += m_mapBounds.x * 0.5f + cPos.x * 0.058f + 24.5f;
+				ypos = mMapBounds.y * 0.5f + cPos.y * 0.058f + -8.85f;
+				xpos += mMapBounds.x * 0.5f + cPos.x * 0.058f + 24.5f;
 			}
 
 			xpos = -(xpos + 0.0f);
 			ypos = -(ypos + 0.0f);
 
 			u64 tag        = map_icon_tag[id];
-			J2DPane* cPane = og::Screen::TagSearch(m_iconScreen, map_icon_tag[id]);
+			J2DPane* cPane = og::Screen::TagSearch(mIconScreen, map_icon_tag[id]);
 			cPane->getTypeID();
 			char buf[28];
 			og::Screen::TagToName(tag, buf);
@@ -362,21 +362,21 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 			switch (id) {
 			case Radar::MAP_OLIMAR:
 				Game::Navi* olimar = getNaviPtr(0);
-				m_olimarObj        = olimar;
-				if (m_olimarObj) {
-					J2DPictureEx* olimarPane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_iconScreen, 'orima_l'));
-					m_olimarGlow             = og::Screen::CopyPictureToPane(olimarPane, m_mapTexPane, xpos, ypos, 'ie_Orima');
-					m_olimarArrow = og::Screen::CopyPictureToPane(static_cast<J2DPictureEx*>(cPane), m_mapTexPane, xpos, ypos, 'ic_Orima');
+				mOlimarObj         = olimar;
+				if (mOlimarObj) {
+					J2DPictureEx* olimarPane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, 'orima_l'));
+					mOlimarGlow              = og::Screen::CopyPictureToPane(olimarPane, mMapTexPane, xpos, ypos, 'ie_Orima');
+					mOlimarArrow = og::Screen::CopyPictureToPane(static_cast<J2DPictureEx*>(cPane), mMapTexPane, xpos, ypos, 'ic_Orima');
 				}
 				break;
 
 			case Radar::MAP_LOUIE_PRESIDENT:
 				Game::Navi* louie = getNaviPtr(1);
-				m_louieObj        = louie;
-				if (m_louieObj) {
-					J2DPictureEx* louiePane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_iconScreen, 'luji_l'));
-					m_louieGlow             = og::Screen::CopyPictureToPane(louiePane, m_mapTexPane, xpos, ypos, 'ie_Luji');
-					m_louieArrow = og::Screen::CopyPictureToPane(static_cast<J2DPictureEx*>(cPane), m_mapTexPane, xpos, ypos, 'ic_Luji');
+				mLouieObj         = louie;
+				if (mLouieObj) {
+					J2DPictureEx* louiePane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, 'luji_l'));
+					mLouieGlow              = og::Screen::CopyPictureToPane(louiePane, mMapTexPane, xpos, ypos, 'ie_Luji');
+					mLouieArrow = og::Screen::CopyPictureToPane(static_cast<J2DPictureEx*>(cPane), mMapTexPane, xpos, ypos, 'ic_Luji');
 				}
 				break;
 
@@ -386,9 +386,9 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 			case Radar::MAP_INCOMPLETE_CAVE:
 				if (id == Radar::MAP_UPGRADE) { }
 				if (id == Radar::MAP_COMPLETED_CAVE || id == Radar::MAP_INCOMPLETE_CAVE) {
-					appendCaveName(pane, count & 0xffff, og::Screen::maskTag(caveIDtoMsgID(cPoint->m_caveID), 1, 3));
+					appendCaveName(pane, count & 0xffff, og::Screen::maskTag(caveIDtoMsgID(cPoint->mCaveID), 1, 3));
 				}
-				m_radarPaneList[count][0] = pane;
+				mRadarPaneList[count][0] = pane;
 				count++;
 				break;
 			}
@@ -397,7 +397,7 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 		}
 	}
 
-	m_mapIconNum = count;
+	mMapIconNum = count;
 	tuningIcon();
 	/*
 	stwu     r1, -0xf0(r1)
@@ -1308,18 +1308,18 @@ void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 	og::Screen::TagToName(tag, buf);
 	const JGeometry::TBox2f box(30.0f, 0.0f, 40.0f, 10.0f);
 
-	J2DTextBox* pane      = new J2DTextBox(newtag, box, (const ResFONT*)nullptr, "", -1, J2DTextBoxHBinding(2), J2DTextBoxVBinding(2));
-	pane->m_fontSize.x    = 24.0f;
-	pane->m_fontSize.y    = 24.0f;
-	pane->m_charColor     = JUtility::TColor(-1);
-	pane->m_gradientColor = JUtility::TColor(-1);
+	J2DTextBox* pane     = new J2DTextBox(newtag, box, (const ResFONT*)nullptr, "", -1, J2DTextBoxHBinding(2), J2DTextBoxVBinding(2));
+	pane->mFontSize.x    = 24.0f;
+	pane->mFontSize.y    = 24.0f;
+	pane->mCharColor     = JUtility::TColor(-1);
+	pane->mGradientColor = JUtility::TColor(-1);
 	pane->setBlackWhite(JUtility::TColor(0), JUtility::TColor(-1));
 	parent->appendChild(pane);
-	pane->m_messageID = tag;
+	pane->mMessageID = tag;
 
-	if (m_caveLabelCount < MAX_CAVEDISP_NAME) {
-		m_caveLabelTextBoxes[m_caveLabelCount] = pane;
-		m_caveLabelCount++;
+	if (mCaveLabelCount < MAX_CAVEDISP_NAME) {
+		mCaveLabelTextBoxes[mCaveLabelCount] = pane;
+		mCaveLabelCount++;
 	} else {
 		JUT_PANICLINE(745, "cave name number is overflow!!\n");
 	}
@@ -1473,17 +1473,17 @@ void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
  */
 void ObjSMenuMap::transMap()
 {
-	f32 factor = msVal.m_mapMoveRate;
-	if (m_radarMapTexture) {
-		factor = msVal.m_mapMoveRate2;
+	f32 factor = msVal.mMapMoveRate;
+	if (mRadarMapTexture) {
+		factor = msVal.mMapMoveRate2;
 	}
 
-	f32 angle    = (m_mapAngle * TAU) / 360.0f;
+	f32 angle    = (mMapAngle * TAU) / 360.0f;
 	f32 anglesin = pikmin2_sinf(angle) * 2.0f;
 	f32 anglecos = pikmin2_cosf(angle) * 2.0f;
-	int buttons  = m_controller->m_padButton.m_mask;
-	f32 inputx   = m_controller->m_padMStick.m_xPos;
-	f32 inputz   = m_controller->m_padMStick.m_xPos;
+	int buttons  = mController->mButton.mMask;
+	f32 inputx   = mController->mMStick.mXPos;
+	f32 inputz   = mController->mMStick.mXPos;
 
 	if (buttons & JUTGamePad::PRESS_DPAD_UP) {
 		inputz = 1.0f;
@@ -1500,41 +1500,41 @@ void ObjSMenuMap::transMap()
 	f32 diff = _sqrtf(inputx * inputx + inputz * inputz);
 	if (diff > 1.0f)
 		diff = 1.0f;
-	diff *= msVal.m_mapMoveInputReduction;
+	diff *= msVal.mMapMoveInputReduction;
 	if (diff < 0.1f)
 		diff = 0.0f;
-	f32 move = factor * diff * (1.0f / m_currentZoom);
+	f32 move = factor * diff * (1.0f / mCurrentZoom);
 
 	if (inputx > 0.1f) {
-		m_mapPosition.x += move * anglesin;
-		m_mapPosition.y += move * anglecos;
+		mMapPosition.x += move * anglesin;
+		mMapPosition.y += move * anglecos;
 		ogSound->setScroll();
 	}
 	if (inputx < -0.1f) {
-		m_mapPosition.x -= move * anglesin;
-		m_mapPosition.y -= move * anglecos;
+		mMapPosition.x -= move * anglesin;
+		mMapPosition.y -= move * anglecos;
 		ogSound->setScroll();
 	}
 	if (inputz > 0.1f) {
-		m_mapPosition.x += move * anglecos;
-		m_mapPosition.y += move * anglesin;
+		mMapPosition.x += move * anglecos;
+		mMapPosition.y += move * anglesin;
 		ogSound->setScroll();
 	}
 	if (inputx < -0.1f) {
-		m_mapPosition.x -= move * anglecos;
-		m_mapPosition.y -= move * anglesin;
+		mMapPosition.x -= move * anglecos;
+		mMapPosition.y -= move * anglesin;
 		ogSound->setScroll();
 	}
 
-	if (m_mapPosition.x < -m_mapTextureDimensions.x)
-		m_mapPosition.x = -m_mapTextureDimensions.x;
-	if (m_mapPosition.x > 0.0f)
-		m_mapPosition.x = 0.0f;
+	if (mMapPosition.x < -mMapTextureDimensions.x)
+		mMapPosition.x = -mMapTextureDimensions.x;
+	if (mMapPosition.x > 0.0f)
+		mMapPosition.x = 0.0f;
 
-	if (m_mapPosition.y < -m_mapTextureDimensions.y)
-		m_mapPosition.y = -m_mapTextureDimensions.y;
-	if (m_mapPosition.y > 0.0f)
-		m_mapPosition.y = 0.0f;
+	if (mMapPosition.y < -mMapTextureDimensions.y)
+		mMapPosition.y = -mMapTextureDimensions.y;
+	if (mMapPosition.y > 0.0f)
+		mMapPosition.y = 0.0f;
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1803,42 +1803,42 @@ void ObjSMenuMap::setMapColor()
 void ObjSMenuMap::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberSMenuAll* dispfull = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
-	m_disp = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_MAP));
-	if (!m_disp) {
+	mDisp = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_MAP));
+	if (!mDisp) {
 		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
-		m_disp = static_cast<og::Screen::DispMemberSMenuMap*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_MAP));
+		mDisp = static_cast<og::Screen::DispMemberSMenuMap*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_MAP));
 	}
 
-	m_mapCounter = new og::Screen::MapCounter(&m_disp->m_dataMap);
-	m_mapCounter->set("s_menu_map_l.blo", 0x1040000, arc);
-	m_animGroup = new og::Screen::AnimGroup(3);
-	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_mapCounter, "s_menu_map_l.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_mapCounter, "s_menu_map_l_02.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_mapCounter, "s_menu_map_l_03.btk", msBaseVal._00);
-	m_mapCounter->setCallBack(arc);
-	m_pane_map = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_mapCounter, 'map_cent'));
+	mMapCounter = new og::Screen::MapCounter(&mDisp->mDataMap);
+	mMapCounter->set("s_menu_map_l.blo", 0x1040000, arc);
+	mAnimGroup = new og::Screen::AnimGroup(3);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l_02.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l_03.btk", msBaseVal._00);
+	mMapCounter->setCallBack(arc);
+	mPane_map = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mMapCounter, 'map_cent'));
 
-	if (m_disp->m_inCave && m_disp->m_activeNavi) {
-		m_startZoom = msVal.m_caveZoom;
+	if (mDisp->mInCave && mDisp->mActiveNavi) {
+		mStartZoom = msVal.mCaveZoom;
 	} else {
-		m_startZoom = msVal.m_groundZoom;
+		mStartZoom = msVal.mGroundZoom;
 	}
-	m_currentZoom = m_startZoom;
-	m_mapAngle    = 0.0f;
-	if (m_disp->m_activeNavi) {
+	mCurrentZoom = mStartZoom;
+	mMapAngle    = 0.0f;
+	if (mDisp->mActiveNavi) {
 		Game::Navi* navi = Game::naviMgr->getActiveNavi();
-		Vector3f vec     = Game::cameraMgr->_24[navi->m_naviIndex]->getViewVector();
-		m_mapAngle       = pikmin2_atan2f(vec.x, vec.z);
+		Vector3f vec     = Game::cameraMgr->_24[navi->mNaviIndex]->getViewVector();
+		mMapAngle        = pikmin2_atan2f(vec.x, vec.z);
 	}
 	initMapIcon(arc);
-	JUtility::TColor color  = msVal.m_mapTexColorWhite;
-	JUtility::TColor color2 = msVal.m_mapTexColorBlack;
-	m_mapTexPane->setWhite(color);
-	m_mapTexPane->setBlack(color2);
+	JUtility::TColor color  = msVal.mMapTexColorWhite;
+	JUtility::TColor color2 = msVal.mMapTexColorBlack;
+	mMapTexPane->setWhite(color);
+	mMapTexPane->setBlack(color2);
 
 	u64 tag;
-	if (!m_disp->m_inCave || !m_disp->m_activeNavi) {
-		int stage = m_disp->m_courseIndex;
+	if (!mDisp->mInCave || !mDisp->mActiveNavi) {
+		int stage = mDisp->mCourseIndex;
 		switch (stage) {
 		case 0:
 			tag = '8390_03';
@@ -1860,106 +1860,106 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 		}
 	} else {
 		char buf[20];
-		tag = caveIDtoMsgID(m_disp->m_currentCave);
+		tag = caveIDtoMsgID(mDisp->mCurrentCave);
 		tag = og::Screen::maskTag(tag, 1, 3);
 		og::Screen::TagToName(tag, buf);
 	}
-	J2DPane* pane     = m_mapCounter->search('Tmapti');
-	pane->m_messageID = tag;
-	og::Screen::setCallBackMessage(m_iconScreen);
+	J2DPane* pane    = mMapCounter->search('Tmapti');
+	pane->mMessageID = tag;
+	og::Screen::setCallBackMessage(mIconScreen);
 
-	J2DPane* pane_red    = m_mapCounter->search('Npk01');
-	J2DPane* pane_yellow = m_mapCounter->search('Npk02');
-	J2DPane* pane_blue   = m_mapCounter->search('Npk03');
-	J2DPane* pane_white  = m_mapCounter->search('Npk04');
-	J2DPane* pane_purple = m_mapCounter->search('Npk05');
+	J2DPane* pane_red    = mMapCounter->search('Npk01');
+	J2DPane* pane_yellow = mMapCounter->search('Npk02');
+	J2DPane* pane_blue   = mMapCounter->search('Npk03');
+	J2DPane* pane_white  = mMapCounter->search('Npk04');
+	J2DPane* pane_purple = mMapCounter->search('Npk05');
 
-	J2DPane* pane_red2    = m_mapCounter->search('Npk06');
-	J2DPane* pane_yellow2 = m_mapCounter->search('Npk07');
-	J2DPane* pane_blue2   = m_mapCounter->search('Npk08');
-	J2DPane* pane_white2  = m_mapCounter->search('Npk09');
-	J2DPane* pane_purple2 = m_mapCounter->search('Npk10');
-	J2DPane* pane_free    = m_mapCounter->search('Npk11');
+	J2DPane* pane_red2    = mMapCounter->search('Npk06');
+	J2DPane* pane_yellow2 = mMapCounter->search('Npk07');
+	J2DPane* pane_blue2   = mMapCounter->search('Npk08');
+	J2DPane* pane_white2  = mMapCounter->search('Npk09');
+	J2DPane* pane_purple2 = mMapCounter->search('Npk10');
+	J2DPane* pane_free    = mMapCounter->search('Npk11');
 
-	if (!m_disp->m_unlockedReds) {
+	if (!mDisp->mUnlockedReds) {
 		pane_red->hide();
 		pane_red2->hide();
-		m_mapCounter->dispRed(false);
+		mMapCounter->dispRed(false);
 	}
-	if (!m_disp->m_unlockedYellows) {
+	if (!mDisp->mUnlockedYellows) {
 		pane_yellow->hide();
 		pane_yellow2->hide();
-		m_mapCounter->dispYellow(false);
+		mMapCounter->dispYellow(false);
 	}
-	if (!m_disp->m_unlockedBlues) {
+	if (!mDisp->mUnlockedBlues) {
 		pane_blue->hide();
 		pane_blue2->hide();
-		m_mapCounter->dispBlue(false);
+		mMapCounter->dispBlue(false);
 	}
-	if (!m_disp->m_unlockedWhites) {
+	if (!mDisp->mUnlockedWhites) {
 		pane_white->hide();
 		pane_white2->hide();
-		m_mapCounter->dispWhite(false);
+		mMapCounter->dispWhite(false);
 	}
-	if (!m_disp->m_unlockedPurples) {
+	if (!mDisp->mUnlockedPurples) {
 		pane_purple->hide();
 		pane_purple2->hide();
-		m_mapCounter->dispBlack(false);
+		mMapCounter->dispBlack(false);
 	}
-	if (!m_disp->m_unlockedReds && !m_disp->m_unlockedYellows && !m_disp->m_unlockedBlues && !m_disp->m_unlockedWhites
-	    && !m_disp->m_unlockedPurples) {
+	if (!mDisp->mUnlockedReds && !mDisp->mUnlockedYellows && !mDisp->mUnlockedBlues && !mDisp->mUnlockedWhites
+	    && !mDisp->mUnlockedPurples) {
 		pane_free->hide();
-		m_mapCounter->dispFree(false);
+		mMapCounter->dispFree(false);
 	}
 
-	J2DPane* pane_rocket = m_mapCounter->search('Nrocket');
-	if (!m_disp->m_unlockedWhites && !m_disp->m_unlockedPurples) {
+	J2DPane* pane_rocket = mMapCounter->search('Nrocket');
+	if (!mDisp->mUnlockedWhites && !mDisp->mUnlockedPurples) {
 		pane_rocket->hide();
-		pane_rocket = m_mapCounter->search('Ntairetu');
+		pane_rocket = mMapCounter->search('Ntairetu');
 		pane_rocket->add(0.0f, 0.0f);
 	} else {
 		pane_rocket->show();
-		J2DPane* pane_rock1 = m_mapCounter->search('Nrock_1');
-		J2DPane* pane_rock2 = m_mapCounter->search('Nrock_2');
+		J2DPane* pane_rock1 = mMapCounter->search('Nrock_1');
+		J2DPane* pane_rock2 = mMapCounter->search('Nrock_2');
 		pane_rock1->hide();
 		pane_rock2->hide();
 		og::Screen::DispMemberSMenuMap* disp2
 		    = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_MAP));
-		if (disp2->m_dataMap.m_pokos < 10000) {
+		if (disp2->mDataMap.mPokos < 10000) {
 			pane_rock1->show();
 		} else {
 			pane_rock2->show();
 		}
 	}
-	J2DPane* pane_onyn1 = m_mapCounter->search('Nonyn_1');
-	J2DPane* pane_onyn2 = m_mapCounter->search('Nonyn_2');
-	J2DPane* pane_onyn3 = m_mapCounter->search('Nonyn_3');
-	J2DPane* pane_onyn4 = m_mapCounter->search('Nonyn_4');
+	J2DPane* pane_onyn1 = mMapCounter->search('Nonyn_1');
+	J2DPane* pane_onyn2 = mMapCounter->search('Nonyn_2');
+	J2DPane* pane_onyn3 = mMapCounter->search('Nonyn_3');
+	J2DPane* pane_onyn4 = mMapCounter->search('Nonyn_4');
 	pane_onyn1->hide();
 	pane_onyn2->hide();
 	pane_onyn3->hide();
 	pane_onyn4->hide();
-	if (m_disp->m_unlockedReds && m_disp->m_unlockedYellows && m_disp->m_unlockedBlues) {
+	if (mDisp->mUnlockedReds && mDisp->mUnlockedYellows && mDisp->mUnlockedBlues) {
 		pane_onyn4->show();
-	} else if (m_disp->m_unlockedReds && m_disp->m_unlockedBlues) {
+	} else if (mDisp->mUnlockedReds && mDisp->mUnlockedBlues) {
 		pane_onyn3->show();
-	} else if (m_disp->m_unlockedReds && m_disp->m_unlockedYellows) {
+	} else if (mDisp->mUnlockedReds && mDisp->mUnlockedYellows) {
 		pane_onyn2->show();
-	} else if (m_disp->m_unlockedReds) {
+	} else if (mDisp->mUnlockedReds) {
 		pane_onyn1->show();
 	}
 
-	J2DPane* pane_ntai1 = m_mapCounter->search('Ntai_1');
-	J2DPane* pane_ntai2 = m_mapCounter->search('Ntai_2');
+	J2DPane* pane_ntai1 = mMapCounter->search('Ntai_1');
+	J2DPane* pane_ntai2 = mMapCounter->search('Ntai_2');
 	pane_ntai1->hide();
 	pane_ntai2->hide();
-	if (m_disp->m_unlockedBlues) {
+	if (mDisp->mUnlockedBlues) {
 		pane_ntai1->show();
 	}
-	if (m_disp->m_unlockedYellows) {
+	if (mDisp->mUnlockedYellows) {
 		pane_ntai2->show();
 	}
-	doCreateAfter(arc, m_mapCounter);
+	doCreateAfter(arc, mMapCounter);
 
 	/*
 	stwu     r1, -0x70(r1)
@@ -2636,7 +2636,7 @@ blr
 void ObjSMenuMap::updateMap()
 {
 	::Screen::SceneBase* scene = getOwner();
-	m_controller               = scene->m_controller;
+	mController                = scene->mController;
 
 	static bool resetArrowAlphaTimer;
 	static f32 arrowAlphaTimer;
@@ -2645,7 +2645,7 @@ void ObjSMenuMap::updateMap()
 		resetArrowAlphaTimer = true;
 		arrowAlphaTimer      = 0.0f;
 	}
-	arrowAlphaTimer += sys->m_deltaTime;
+	arrowAlphaTimer += sys->mDeltaTime;
 
 	if (arrowAlphaTimer > 1.0f)
 		arrowAlphaTimer = 1.0f;
@@ -2656,89 +2656,89 @@ void ObjSMenuMap::updateMap()
 	u8 louieArrowAlpha  = ((angleSin + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;
 	f32 angleCos        = pikmin2_cosf(angle * 2.0f);
 	u8 alpha            = 255;
-	f32 defaultZoom     = m_startZoom;
+	f32 defaultZoom     = mStartZoom;
 	u8 olimarArrowAlpha = ((angleCos + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;
 
-	if (m_currentZoom < defaultZoom) {
-		alpha = (u8)(1.0f - (defaultZoom - m_currentZoom) / (defaultZoom - msVal._00)) * 255.0f;
+	if (mCurrentZoom < defaultZoom) {
+		alpha = (u8)(1.0f - (defaultZoom - mCurrentZoom) / (defaultZoom - msVal._00)) * 255.0f;
 	}
-	m_zoomCaveTextAlpha = alpha;
-	for (int i = 0; i < m_caveLabelCount; i++) {
-		m_caveLabelTextBoxes[i]->setAlpha(m_zoomCaveTextAlpha);
+	mZoomCaveTextAlpha = alpha;
+	for (int i = 0; i < mCaveLabelCount; i++) {
+		mCaveLabelTextBoxes[i]->setAlpha(mZoomCaveTextAlpha);
 	}
 
-	float scale = m_currentZoom;
-	if (m_disp->m_inCave)
+	float scale = mCurrentZoom;
+	if (mDisp->mInCave)
 		scale *= 2.0f;
-	f32 mapX              = m_mapPosition.x;
-	f32 mapY              = m_mapPosition.y;
-	m_mapRotationOrigin.x = -mapX;
-	m_mapRotationOrigin.y = -mapY;
-	m_mapTexPane->setBasePosition(J2DPOS_Center);
-	m_mapTexPane->m_scale.x = scale;
-	m_mapTexPane->m_scale.y = scale;
-	m_mapTexPane->calcMtx();
-	m_mapTexPane->rotate(m_mapRotationOrigin.x, m_mapRotationOrigin.y, J2DROTATE_Y, m_mapAngle);
-	m_mapTexPane->move(mapX + msVal.m_mapTexOffset.x, mapY + msVal.m_mapTexOffset.y);
+	f32 mapX             = mMapPosition.x;
+	f32 mapY             = mMapPosition.y;
+	mMapRotationOrigin.x = -mapX;
+	mMapRotationOrigin.y = -mapY;
+	mMapTexPane->setBasePosition(J2DPOS_Center);
+	mMapTexPane->mScale.x = scale;
+	mMapTexPane->mScale.y = scale;
+	mMapTexPane->calcMtx();
+	mMapTexPane->rotate(mMapRotationOrigin.x, mMapRotationOrigin.y, J2DROTATE_Y, mMapAngle);
+	mMapTexPane->move(mapX + msVal.mMapTexOffset.x, mapY + msVal.mMapTexOffset.y);
 
 	f32 angleOffs = 360.0f;
-	for (int i = 0; i < m_mapIconNum; i++) {
-		f32 scaleFactor  = msVal.m_mapIconScaleBase;
-		J2DPane* cPane   = *m_radarPaneList[i];
-		cPane->m_scale.x = scaleFactor / scale;
-		cPane->m_scale.y = scaleFactor / scale;
+	for (int i = 0; i < mMapIconNum; i++) {
+		f32 scaleFactor = msVal.mMapIconScaleBase;
+		J2DPane* cPane  = *mRadarPaneList[i];
+		cPane->mScale.x = scaleFactor / scale;
+		cPane->mScale.y = scaleFactor / scale;
 		cPane->calcMtx();
-		cPane          = *m_radarPaneList[i];
-		cPane->m_angle = angleOffs - m_mapAngle;
+		cPane         = *mRadarPaneList[i];
+		cPane->mAngle = angleOffs - mMapAngle;
 		cPane->calcMtx();
 	}
 
-	if (m_louieArrow && m_louieObj) {
-		f32 scaleFactor = msVal.m_mapIconScaleBase * (msVal.m_mapNaviArrowScaleMod / scale);
-		f32 facedir     = m_louieObj->getFaceDir();
-		m_louieArrow->setBasePosition(J2DPOS_Center);
-		J2DPane* pane   = m_louieArrow;
-		pane->m_scale.x = scaleFactor;
-		pane->m_scale.y = scaleFactor;
+	if (mLouieArrow && mLouieObj) {
+		f32 scaleFactor = msVal.mMapIconScaleBase * (msVal.mMapNaviArrowScaleMod / scale);
+		f32 facedir     = mLouieObj->getFaceDir();
+		mLouieArrow->setBasePosition(J2DPOS_Center);
+		J2DPane* pane  = mLouieArrow;
+		pane->mScale.x = scaleFactor;
+		pane->mScale.y = scaleFactor;
 		pane->calcMtx();
-		pane          = m_louieArrow;
-		pane->m_angle = (facedir * 360.0f) / TAU + 45.0f;
-		facedir       = pane->m_angle;
+		pane         = mLouieArrow;
+		pane->mAngle = (facedir * 360.0f) / TAU + 45.0f;
+		facedir      = pane->mAngle;
 		pane->calcMtx();
-		m_louieArrow->setBasePosition(J2DPOS_Center);
-		pane            = m_louieArrow;
-		pane->m_scale.x = scaleFactor;
-		pane->m_scale.y = scaleFactor;
+		mLouieArrow->setBasePosition(J2DPOS_Center);
+		pane           = mLouieArrow;
+		pane->mScale.x = scaleFactor;
+		pane->mScale.y = scaleFactor;
 		pane->calcMtx();
-		pane          = m_louieArrow;
-		pane->m_angle = facedir;
+		pane         = mLouieArrow;
+		pane->mAngle = facedir;
 		pane->calcMtx();
-		m_louieArrow->setAlpha(louieArrowAlpha);
-		m_louieGlow->setAlpha(louieArrowAlpha);
+		mLouieArrow->setAlpha(louieArrowAlpha);
+		mLouieGlow->setAlpha(louieArrowAlpha);
 	}
 
-	if (m_olimarArrow && m_olimarObj) {
-		f32 scaleFactor = msVal.m_mapIconScaleBase * (msVal.m_mapNaviArrowScaleMod / scale);
-		f32 facedir     = m_olimarObj->getFaceDir();
-		m_louieArrow->setBasePosition(J2DPOS_Center);
-		J2DPane* pane   = m_olimarArrow;
-		pane->m_scale.x = scaleFactor;
-		pane->m_scale.y = scaleFactor;
+	if (mOlimarArrow && mOlimarObj) {
+		f32 scaleFactor = msVal.mMapIconScaleBase * (msVal.mMapNaviArrowScaleMod / scale);
+		f32 facedir     = mOlimarObj->getFaceDir();
+		mLouieArrow->setBasePosition(J2DPOS_Center);
+		J2DPane* pane  = mOlimarArrow;
+		pane->mScale.x = scaleFactor;
+		pane->mScale.y = scaleFactor;
 		pane->calcMtx();
-		pane          = m_olimarArrow;
-		pane->m_angle = (facedir * 360.0f) / TAU + 45.0f;
-		facedir       = pane->m_angle;
+		pane         = mOlimarArrow;
+		pane->mAngle = (facedir * 360.0f) / TAU + 45.0f;
+		facedir      = pane->mAngle;
 		pane->calcMtx();
-		m_olimarArrow->setBasePosition(J2DPOS_Center);
-		pane            = m_olimarArrow;
-		pane->m_scale.x = scaleFactor;
-		pane->m_scale.y = scaleFactor;
+		mOlimarArrow->setBasePosition(J2DPOS_Center);
+		pane           = mOlimarArrow;
+		pane->mScale.x = scaleFactor;
+		pane->mScale.y = scaleFactor;
 		pane->calcMtx();
-		pane          = m_olimarArrow;
-		pane->m_angle = facedir;
+		pane         = mOlimarArrow;
+		pane->mAngle = facedir;
 		pane->calcMtx();
-		m_olimarArrow->setAlpha(olimarArrowAlpha);
-		m_olimarGlow->setAlpha(olimarArrowAlpha);
+		mOlimarArrow->setAlpha(olimarArrowAlpha);
+		mOlimarGlow->setAlpha(olimarArrowAlpha);
 	}
 	/*
 	stwu     r1, -0x90(r1)
@@ -3138,15 +3138,15 @@ lbl_80311DA4:
 void ObjSMenuMap::commonUpdate()
 {
 	commonUpdateBase();
-	setSMenuScale(msVal.m_mapScreenScale.x, msVal.m_mapScreenScale.y);
-	m_animGroup->update();
+	setSMenuScale(msVal.mMapScreenScale.x, msVal.mMapScreenScale.y);
+	mAnimGroup->update();
 	updateMap();
 
-	m_mapCounter->setXY(m_movePos, 0.0f);
+	mMapCounter->setXY(mMovePos, 0.0f);
 
-	m_mapCounter->animation();
-	m_mapCounter->update();
-	m_iconScreen->update();
+	mMapCounter->animation();
+	mMapCounter->update();
+	mIconScreen->update();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3211,7 +3211,7 @@ void ObjSMenuMap::doUpdateLAction()
  */
 void ObjSMenuMap::doUpdateRAction()
 {
-	if (m_disp->m_inCave) {
+	if (mDisp->mInCave) {
 		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember(), 0, true);
 		jump_R(arg);
 	} else {
@@ -3228,20 +3228,20 @@ void ObjSMenuMap::doUpdateRAction()
 bool ObjSMenuMap::doUpdate()
 {
 	::Screen::SceneBase* scene = getOwner();
-	m_controller               = scene->getGamePad();
+	mController                = scene->getGamePad();
 	transMap();
 
-	float cstick = m_controller->m_padSStick.m_yPos;
+	float cstick = mController->mSStick.mYPos;
 
 	if (cstick > 0.4f) {
-		m_currentZoom = -(m_currentZoom * 0.03f - m_currentZoom);
-		if (m_currentZoom < msVal._00)
-			m_currentZoom = msVal._00;
+		mCurrentZoom = -(mCurrentZoom * 0.03f - mCurrentZoom);
+		if (mCurrentZoom < msVal._00)
+			mCurrentZoom = msVal._00;
 		ogSound->setZoomOut();
 	} else if (cstick < -0.4f) {
-		m_currentZoom += m_currentZoom * 0.03f;
-		if (m_currentZoom > msVal.m_animSpeed)
-			m_currentZoom = msVal.m_animSpeed;
+		mCurrentZoom += mCurrentZoom * 0.03f;
+		if (mCurrentZoom > msVal.mAnimSpeed)
+			mCurrentZoom = msVal.mAnimSpeed;
 		ogSound->setZoomIn();
 	}
 	commonUpdate();
@@ -3336,18 +3336,18 @@ lbl_80312084:
  */
 void ObjSMenuMap::doDraw(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
 	drawMap(gfx);
 
 	Graphics gfx2;
-	m_iconScreen->draw(gfx2, *graf);
+	mIconScreen->draw(gfx2, *graf);
 
-	if (m_compassPic && m_pane_Ncompas) {
-		PSMTXCopy(m_pane_Ncompas->m_globalMtx, m_compassPic->m_positionMtx);
+	if (mCompassPic && mPane_Ncompas) {
+		PSMTXCopy(mPane_Ncompas->mGlobalMtx, mCompassPic->mPositionMtx);
 	}
 
 	graf->setPort();
-	m_iconScreen2->draw(gfx, *graf);
+	mIconScreen2->draw(gfx, *graf);
 	graf->setPort();
 	drawYaji(gfx);
 }
@@ -3359,29 +3359,29 @@ void ObjSMenuMap::doDraw(Graphics& gfx)
  */
 void ObjSMenuMap::drawMap(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
-	if (m_updateCaveTex) {
-		m_radarMapTexture = Game::Cave::randMapMgr->getRadarMapTexture();
-		m_mapTexPane->changeTexture(m_radarMapTexture->_20, 0);
-		m_updateCaveTex          = false;
-		m_mapTextureDimensions.x = m_mapTexPane->getTexture(0)->_20->m_sizeX;
-		m_mapTextureDimensions.y = m_mapTexPane->getTexture(0)->_20->m_sizeY;
-		m_mapTexScale.x          = m_mapBounds.x / m_mapTextureDimensions.x;
-		m_mapTexScale.y          = m_mapBounds.y / m_mapTextureDimensions.y;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
+	if (mUpdateCaveTex) {
+		mRadarMapTexture = Game::Cave::randMapMgr->getRadarMapTexture();
+		mMapTexPane->changeTexture(mRadarMapTexture->_20, 0);
+		mUpdateCaveTex          = false;
+		mMapTextureDimensions.x = mMapTexPane->getTexture(0)->_20->mSizeX;
+		mMapTextureDimensions.y = mMapTexPane->getTexture(0)->_20->mSizeY;
+		mMapTexScale.x          = mMapBounds.x / mMapTextureDimensions.x;
+		mMapTexScale.y          = mMapBounds.y / mMapTextureDimensions.y;
 	}
 
-	if (m_mapTexPane) {
-		m_mapTexPane->m_angle = m_mapAngle;
-		m_mapTexPane->calcMtx();
+	if (mMapTexPane) {
+		mMapTexPane->mAngle = mMapAngle;
+		mMapTexPane->calcMtx();
 	}
 
-	P2DScreen::Mgr_tuning* scrn = m_mapCounter;
+	P2DScreen::Mgr_tuning* scrn = mMapCounter;
 	if (scrn) {
 		scrn->draw(gfx, *graf);
 	}
 	graf->setPort();
 	j3dSys.drawInit();
-	sys->m_gfx->initPrimDraw(nullptr);
+	sys->mGfx->initPrimDraw(nullptr);
 
 	GXSetColorUpdate(GX_FALSE);
 	GXSetAlphaUpdate(GX_FALSE);
@@ -3394,14 +3394,14 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 	rect.p2.y = 480.0f;
 	Color4 color(200, 10, 200, 155);
 	drawRectZ(gfx, rect, color, 0.999);
-	Vec vec1 = m_pane_map->getGlbVtx(0);
-	Vec vec2 = m_pane_map->getGlbVtx(1);
-	Vec vec3 = m_pane_map->getGlbVtx(2);
-	Vec vec4 = m_pane_map->getGlbVtx(3);
+	Vec vec1 = mPane_map->getGlbVtx(0);
+	Vec vec2 = mPane_map->getGlbVtx(1);
+	Vec vec3 = mPane_map->getGlbVtx(2);
+	Vec vec4 = mPane_map->getGlbVtx(3);
 	Color4 color2(100, 0, 0, 155);
 	drawVecZ(gfx, vec1, vec2, vec3, vec4, color2, -0.999);
 	GXSetColorUpdate(GX_TRUE);
-	PSMTXCopy(m_pane_map->m_globalMtx, m_rootPane->m_positionMtx);
+	PSMTXCopy(mPane_map->mGlobalMtx, mRootPane->mPositionMtx);
 	graf->setPort();
 	GXSetZCompLoc(GX_TRUE);
 	GXSetZMode(GX_TRUE, GX_LESS, GX_FALSE);
@@ -3904,10 +3904,10 @@ void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& vec1, Vec& vec2, Vec& vec3, Vec&,
  */
 bool ObjSMenuMap::doStart(::Screen::StartSceneArg const* arg)
 {
-	m_animGroup->setFrame(0.0f);
-	m_animGroup->setRepeat(true);
-	m_animGroup->setSpeed(1.0f);
-	m_animGroup->start();
+	mAnimGroup->setFrame(0.0f);
+	mAnimGroup->setRepeat(true);
+	mAnimGroup->setSpeed(1.0f);
+	mAnimGroup->start();
 	setYajiName('6051_00', '6052_00', '6050_00'); // "Items" "Menu" "Radar"
 	stopYaji();
 	start_LR(arg);
@@ -3945,8 +3945,8 @@ bool ObjSMenuMap::doUpdateFadeout()
  */
 void ObjSMenuMap::in_L()
 {
-	m_state = MENUSTATE_OpenL;
-	m_angle = 15.0f;
+	mState = MENUSTATE_OpenL;
+	mAngle = 15.0f;
 }
 
 /*
@@ -3956,8 +3956,8 @@ void ObjSMenuMap::in_L()
  */
 void ObjSMenuMap::in_R()
 {
-	m_state = MENUSTATE_OpenR;
-	m_angle = 15.0f;
+	mState = MENUSTATE_OpenR;
+	mAngle = 15.0f;
 }
 
 /*
@@ -3965,7 +3965,7 @@ void ObjSMenuMap::in_R()
  * Address:	80312A4C
  * Size:	00000C
  */
-void ObjSMenuMap::wait() { m_state = MENUSTATE_Default; }
+void ObjSMenuMap::wait() { mState = MENUSTATE_Default; }
 
 /*
  * --INFO--
@@ -3974,7 +3974,7 @@ void ObjSMenuMap::wait() { m_state = MENUSTATE_Default; }
  */
 void ObjSMenuMap::out_L()
 {
-	m_state = MENUSTATE_CloseL;
+	mState = MENUSTATE_CloseL;
 	ogSound->setSMenuLR();
 }
 
@@ -3985,7 +3985,7 @@ void ObjSMenuMap::out_L()
  */
 void ObjSMenuMap::out_R()
 {
-	m_state = MENUSTATE_CloseR;
+	mState = MENUSTATE_CloseR;
 	ogSound->setSMenuLR();
 }
 
@@ -4007,7 +4007,7 @@ int SetSceneArg::getClassSize() { return 0x10; }
  * Address:	80312AB8
  * Size:	000008
  */
-SceneType SetSceneArg::getSceneType() const { return m_sceneType; }
+SceneType SetSceneArg::getSceneType() const { return mSceneType; }
 
 /*
  * --INFO--

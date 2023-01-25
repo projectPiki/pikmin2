@@ -9,14 +9,14 @@
  * Size:	0000AC
  */
 JUTFader::JUTFader(int p1, int p2, int p3, int p4, JUtility::TColor color)
-    : m_color(color)
-    , m_viewBox(p1, p2, p1 + p3, p2 + p4)
+    : mColor(color)
+    , mViewBox(p1, p2, p1 + p3, p2 + p4)
 {
-	m_status      = Status_Out;
-	m_ticksTarget = 0;
-	m_ticksRun    = 0;
-	_24           = Status_Out;
-	_20           = -1;
+	mStatus      = Status_Out;
+	mTicksTarget = 0;
+	mTicksRun    = 0;
+	_24          = Status_Out;
+	_20          = -1;
 }
 
 /*
@@ -27,27 +27,27 @@ JUTFader::JUTFader(int p1, int p2, int p3, int p4, JUtility::TColor color)
 void JUTFader::control()
 {
 	if (0 <= _20 && _20-- == 0) {
-		m_status = _24;
+		mStatus = _24;
 	}
-	if (m_status == Status_In) {
+	if (mStatus == Status_In) {
 		return;
 	}
-	switch (m_status) {
+	switch (mStatus) {
 	case Status_Out:
-		m_color.a = 0xFF;
+		mColor.a = 0xFF;
 		break;
 	case Status_FadingIn:
 		// _0A++;
-		m_color.a = 0xFF - ((++m_ticksRun * 0xFF) / m_ticksTarget);
-		if (m_ticksRun >= m_ticksTarget) {
-			m_status = Status_In;
+		mColor.a = 0xFF - ((++mTicksRun * 0xFF) / mTicksTarget);
+		if (mTicksRun >= mTicksTarget) {
+			mStatus = Status_In;
 		}
 		break;
 	case Status_FadingOut:
 		// _0A++;
-		m_color.a = ((++m_ticksRun * 0xFF) / m_ticksTarget);
-		if (m_ticksRun >= m_ticksTarget) {
-			m_status = Status_Out;
+		mColor.a = ((++mTicksRun * 0xFF) / mTicksTarget);
+		if (mTicksRun >= mTicksTarget) {
+			mStatus = Status_Out;
 		}
 		break;
 	}
@@ -61,12 +61,12 @@ void JUTFader::control()
  */
 void JUTFader::draw()
 {
-	if (m_color.a == 0) {
+	if (mColor.a == 0) {
 		return;
 	}
 	J2DOrthoGraph orthograph;
-	orthograph.setColor(m_color);
-	orthograph.fillBox(m_viewBox);
+	orthograph.setColor(mColor);
+	orthograph.fillBox(mViewBox);
 }
 
 /*
@@ -86,11 +86,11 @@ void JUTFader::start(int)
  */
 bool JUTFader::startFadeIn(int duration)
 {
-	bool isStarting = (m_status == Status_Out);
+	bool isStarting = (mStatus == Status_Out);
 	if (isStarting) {
-		m_status      = Status_FadingIn;
-		m_ticksRun    = 0;
-		m_ticksTarget = duration;
+		mStatus      = Status_FadingIn;
+		mTicksRun    = 0;
+		mTicksTarget = duration;
 	}
 	return isStarting;
 }
@@ -102,11 +102,11 @@ bool JUTFader::startFadeIn(int duration)
  */
 bool JUTFader::startFadeOut(int duration)
 {
-	bool isStarting = (m_status == Status_In);
+	bool isStarting = (mStatus == Status_In);
 	if (isStarting) {
-		m_status      = Status_FadingOut;
-		m_ticksRun    = 0;
-		m_ticksTarget = duration;
+		mStatus      = Status_FadingOut;
+		mTicksRun    = 0;
+		mTicksTarget = duration;
 	}
 	return isStarting;
 }

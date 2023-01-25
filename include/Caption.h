@@ -22,9 +22,9 @@ struct Node : public CNode {
 	virtual ~Node() { }         // _08 (weak)
 	virtual void read(Stream&); // _10
 
-	u32 m_startFrame; // _18
-	u32 m_endFrame;   // _1C
-	char m_mesgID[8]; // _20
+	u32 mStartFrame; // _18
+	u32 mEndFrame;   // _1C
+	char mMesgID[8]; // _20
 };
 
 /**
@@ -45,9 +45,9 @@ struct Mgr : public CNode {
 	// Unused/inlined:
 	void setCurrentNode(long);
 
-	P2JME::Caption::TControl* m_controls; // _18
-	Node* m_node;                         // _1C
-	u8 _20[4];                            // _20
+	P2JME::Caption::TControl* mControls; // _18
+	Node* mNode;                         // _1C
+	u8 _20[4];                           // _20
 };
 } // namespace Caption
 

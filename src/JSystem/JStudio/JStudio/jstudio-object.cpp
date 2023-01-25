@@ -1820,7 +1820,7 @@ void TAdaptor::adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor* adaptor, J
 TObject::~TObject()
 {
 	// UNUSED FUNCTION
-	delete m_adaptor;
+	delete mAdaptor;
 }
 
 /*
@@ -1841,8 +1841,8 @@ void TObject::forward_value(unsigned long)
  */
 void TObject::do_begin()
 {
-	if (m_adaptor != nullptr) {
-		m_adaptor->adaptor_do_begin(this);
+	if (mAdaptor != nullptr) {
+		mAdaptor->adaptor_do_begin(this);
 	}
 }
 
@@ -1854,8 +1854,8 @@ void TObject::do_begin()
  */
 void TObject::do_end()
 {
-	if (m_adaptor != nullptr) {
-		m_adaptor->adaptor_do_end(this);
+	if (mAdaptor != nullptr) {
+		mAdaptor->adaptor_do_end(this);
 	}
 }
 
@@ -1948,8 +1948,8 @@ lbl_8000D824:
  */
 void TObject::do_data(void const* p1, unsigned long p2, void const* p3, unsigned long p4)
 {
-	if (m_adaptor != nullptr) {
-		m_adaptor->adaptor_do_data(this, p1, p2, p3, p4);
+	if (mAdaptor != nullptr) {
+		mAdaptor->adaptor_do_data(this, p1, p2, p3, p4);
 	}
 }
 
@@ -2514,7 +2514,7 @@ TObject_ambientLight::TObject_ambientLight(const JStudio::stb::data::TParse_TBlo
  */
 void TObject_ambientLight::do_paragraph(unsigned long p1, void const* p2, unsigned long p3)
 {
-	// if (m_adaptor == nullptr) {
+	// if (mAdaptor == nullptr) {
 	// 	return;
 	// }
 	// u32 value;
@@ -2535,10 +2535,10 @@ void TObject_ambientLight::do_paragraph(unsigned long p1, void const* p2, unsign
 	// 		value = 3;
 	// 		break;
 	// 	// case 0x21:
-	// 	// 	m_adaptor->adaptor_setVariableValue_n(this, TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB, 3, operation, p2, 0);
+	// 	// 	mAdaptor->adaptor_setVariableValue_n(this, TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB, 3, operation, p2, 0);
 	// 	// 	return;
 	// 	// case 0x22:
-	// 	// 	m_adaptor->adaptor_setVariableValue_n(this, TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA, 4, operation, p2, 0);
+	// 	// 	mAdaptor->adaptor_setVariableValue_n(this, TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA, 4, operation, p2, 0);
 	// 	// 	return;
 	// 	default:
 	// 		return;
@@ -2558,10 +2558,10 @@ void TObject_ambientLight::do_paragraph(unsigned long p1, void const* p2, unsign
 	// 	default:
 	// 		return;
 	// 	}
-	// 	m_adaptor->adaptor_setVariableValue_n(this, values, count, operation, p2, 0);
+	// 	mAdaptor->adaptor_setVariableValue_n(this, values, count, operation, p2, 0);
 	// }
-	// m_adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
-	if (m_adaptor == nullptr) {
+	// mAdaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+	if (mAdaptor == nullptr) {
 		return;
 	}
 	u32 value;
@@ -2595,10 +2595,10 @@ void TObject_ambientLight::do_paragraph(unsigned long p1, void const* p2, unsign
 	default:
 		return;
 	}
-	m_adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+	mAdaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
 	return;
 multi:
-	m_adaptor->adaptor_setVariableValue_n(this, values, count, operation, p2, 0);
+	mAdaptor->adaptor_setVariableValue_n(this, values, count, operation, p2, 0);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)

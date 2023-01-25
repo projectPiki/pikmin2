@@ -13,7 +13,7 @@ static const char ujibMgrName[] = "246-UjibMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "ウジンコ♂マネージャ"; // ujinko ♂ manager
+	mName = "ウジンコ♂マネージャ"; // ujinko ♂ manager
 }
 
 /*
@@ -28,14 +28,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	80259910
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	80259A2C
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 } // namespace Ujib
 } // namespace Game

@@ -16,16 +16,16 @@ namespace newScreen {
  */
 ObjSMenuPauseVS::ObjSMenuPauseVS(char const* name)
 {
-	m_disp        = nullptr;
-	m_name        = name;
-	m_currMenuSel = 0;
-	m_screenPause = nullptr;
-	m_menuMgr     = nullptr;
-	m_animText1   = nullptr;
-	m_animText2   = nullptr;
-	m_menuOpen    = false;
-	m_menuTimer   = 0.0f;
-	m_type        = 0;
+	mDisp        = nullptr;
+	mName        = name;
+	mCurrMenuSel = 0;
+	mScreenPause = nullptr;
+	mMenuMgr     = nullptr;
+	mAnimText1   = nullptr;
+	mAnimText2   = nullptr;
+	mMenuOpen    = false;
+	mMenuTimer   = 0.0f;
+	mType        = 0;
 }
 
 /*
@@ -43,41 +43,41 @@ ObjSMenuPauseVS::~ObjSMenuPauseVS() { }
 void ObjSMenuPauseVS::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberBase* newdisp = getDispMember();
-	m_disp = static_cast<og::Screen::DispMemberSMenuPauseVS*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_VS));
-	if (!m_disp) {
+	mDisp = static_cast<og::Screen::DispMemberSMenuPauseVS*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_VS));
+	if (!mDisp) {
 		newdisp = new og::Screen::DispMemberSMenuPauseVS;
-		m_disp  = static_cast<og::Screen::DispMemberSMenuPauseVS*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_VS));
+		mDisp   = static_cast<og::Screen::DispMemberSMenuPauseVS*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_VS));
 	}
 
 	if (newdisp->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
-		if (static_cast<og::Screen::DispMemberSMenuAll*>(newdisp)->m_openMode == og::Screen::DispMemberSMenuAll::Open_Versus) {
-			m_type = 1;
+		if (static_cast<og::Screen::DispMemberSMenuAll*>(newdisp)->mOpenMode == og::Screen::DispMemberSMenuAll::Open_Versus) {
+			mType = 1;
 		}
 	}
 
-	m_screenPause = new P2DScreen::Mgr_tuning;
-	m_screenPause->set("info_window.blo", 0x1100000, arc);
-	og::Screen::TagSearch(m_screenPause, 'Nmenu00')->hide();
-	og::Screen::TagSearch(m_screenPause, 'Nmenu02')->hide();
-	og::Screen::setFurikoScreen(m_screenPause);
-	m_menuMgr = new og::Screen::MenuMgr;
+	mScreenPause = new P2DScreen::Mgr_tuning;
+	mScreenPause->set("info_window.blo", 0x1100000, arc);
+	og::Screen::TagSearch(mScreenPause, 'Nmenu00')->hide();
+	og::Screen::TagSearch(mScreenPause, 'Nmenu02')->hide();
+	og::Screen::setFurikoScreen(mScreenPause);
+	mMenuMgr = new og::Screen::MenuMgr;
 
-	m_menuMgr->init2taku(m_screenPause, 'Nm01y', 'Tm01y', 'Pm01y_il', 'Pm01y_ir', 'Nm01n', 'Tm01n', 'Pm01n_il', 'Pm01n_ir');
-	m_currMenuSel = 0;
+	mMenuMgr->init2taku(mScreenPause, 'Nm01y', 'Tm01y', 'Pm01y_il', 'Pm01y_ir', 'Nm01n', 'Tm01n', 'Pm01n_il', 'Pm01n_ir');
+	mCurrMenuSel = 0;
 
-	m_screenPause->search('Tm01y')->setMsgID('6080_00'); // "Continue"
-	if (m_type != 0) {
-		m_screenPause->search('Tm01n')->setMsgID('6082_00'); // "Give Up"
+	mScreenPause->search('Tm01y')->setMsgID('6080_00'); // "Continue"
+	if (mType != 0) {
+		mScreenPause->search('Tm01n')->setMsgID('6082_00'); // "Give Up"
 	} else {
-		m_screenPause->search('Tm01n')->setMsgID('6081_00'); // "Quit"
+		mScreenPause->search('Tm01n')->setMsgID('6081_00'); // "Quit"
 	}
 
-	og::Screen::setCallBackMessage(m_screenPause);
-	m_animText1 = og::Screen::setMenuScreen(arc, m_screenPause, 'Tm01y');
-	m_animText2 = og::Screen::setMenuScreen(arc, m_screenPause, 'Tm01n');
-	m_animText1->open(0.5f);
-	m_animText2->open(0.6f);
-	blink_Menu(m_currMenuSel);
+	og::Screen::setCallBackMessage(mScreenPause);
+	mAnimText1 = og::Screen::setMenuScreen(arc, mScreenPause, 'Tm01y');
+	mAnimText2 = og::Screen::setMenuScreen(arc, mScreenPause, 'Tm01n');
+	mAnimText1->open(0.5f);
+	mAnimText2->open(0.6f);
+	blink_Menu(mCurrMenuSel);
 }
 
 /*
@@ -93,8 +93,8 @@ void ObjSMenuPauseVS::blink_Menu(int id)
 	if (id >= 0 && id <= 1) {
 		blinks[id] = 0.6f;
 	}
-	m_animText1->blink(blinks[0], 0.0f);
-	m_animText2->blink(blinks[1], 0.0f);
+	mAnimText1->blink(blinks[0], 0.0f);
+	mAnimText2->blink(blinks[1], 0.0f);
 }
 
 /*
@@ -104,9 +104,9 @@ void ObjSMenuPauseVS::blink_Menu(int id)
  */
 void ObjSMenuPauseVS::commonUpdate()
 {
-	m_menuMgr->update();
-	m_screenPause->setXY(m_movePos, 0.0f);
-	m_screenPause->update();
+	mMenuMgr->update();
+	mScreenPause->setXY(mMovePos, 0.0f);
+	mScreenPause->update();
 }
 
 /*
@@ -118,7 +118,7 @@ bool ObjSMenuPauseVS::doUpdate()
 {
 	bool ret = false;
 	commonUpdate();
-	if (m_state == MENUSTATE_Default) {
+	if (mState == MENUSTATE_Default) {
 		ret = menu();
 	}
 	return ret;
@@ -132,41 +132,41 @@ bool ObjSMenuPauseVS::doUpdate()
 bool ObjSMenuPauseVS::menu()
 {
 	bool ret = false;
-	if (!m_menuOpen) {
-		m_menuTimer += sys->m_deltaTime;
-		if (m_menuTimer >= 0.8f) {
-			m_menuOpen = true;
+	if (!mMenuOpen) {
+		mMenuTimer += sys->mDeltaTime;
+		if (mMenuTimer >= 0.8f) {
+			mMenuOpen = true;
 		}
 	}
 
-	u32 input = getGamePad()->m_padButton.m_buttonDown;
+	u32 input = getGamePad()->mButton.mButtonDown;
 	if (input & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
-		if (m_currMenuSel > 0) {
-			m_currMenuSel--;
-			m_menuMgr->select(m_currMenuSel);
-			blink_Menu(m_currMenuSel);
+		if (mCurrMenuSel > 0) {
+			mCurrMenuSel--;
+			mMenuMgr->select(mCurrMenuSel);
+			blink_Menu(mCurrMenuSel);
 		}
 
 	} else if (input & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
-		if (m_currMenuSel < 1) {
-			m_currMenuSel++;
-			m_menuMgr->select(m_currMenuSel);
-			blink_Menu(m_currMenuSel);
+		if (mCurrMenuSel < 1) {
+			mCurrMenuSel++;
+			mMenuMgr->select(mCurrMenuSel);
+			blink_Menu(mCurrMenuSel);
 		}
 
-	} else if (m_menuOpen && input & Controller::PRESS_A) {
-		if (m_currMenuSel == 0) {
+	} else if (mMenuOpen && input & Controller::PRESS_A) {
+		if (mCurrMenuSel == 0) {
 			out_menu_0();
 			ret = true;
 			ogSound->setDecide();
 
-		} else if (m_currMenuSel == 1) {
+		} else if (mCurrMenuSel == 1) {
 			out_menu_1();
 			ret = true;
 			ogSound->setDecide();
 		}
 
-		m_menuMgr->killCursor();
+		mMenuMgr->killCursor();
 
 	} else if (input & (Controller::PRESS_B | Controller::PRESS_START)) {
 		out_cancel();
@@ -184,7 +184,7 @@ bool ObjSMenuPauseVS::menu()
  */
 void ObjSMenuPauseVS::out_cancel()
 {
-	m_disp->m_state = 2;
+	mDisp->mState = 2;
 	out_L();
 }
 
@@ -195,7 +195,7 @@ void ObjSMenuPauseVS::out_cancel()
  */
 void ObjSMenuPauseVS::out_menu_0()
 {
-	m_disp->m_state = 2;
+	mDisp->mState = 2;
 	out_L();
 }
 
@@ -206,7 +206,7 @@ void ObjSMenuPauseVS::out_menu_0()
  */
 void ObjSMenuPauseVS::out_menu_1()
 {
-	m_disp->m_state = 7;
+	mDisp->mState = 7;
 	out_L();
 }
 
@@ -215,7 +215,7 @@ void ObjSMenuPauseVS::out_menu_1()
  * Address:	80329A1C
  * Size:	000010
  */
-void ObjSMenuPauseVS::doUpdateCancelAction() { m_disp->m_state = 2; }
+void ObjSMenuPauseVS::doUpdateCancelAction() { mDisp->mState = 2; }
 
 /*
  * --INFO--
@@ -224,10 +224,10 @@ void ObjSMenuPauseVS::doUpdateCancelAction() { m_disp->m_state = 2; }
  */
 void ObjSMenuPauseVS::doDraw(Graphics& gfx)
 {
-	if (m_screenPause) {
-		J2DPerspGraph* graf = &gfx.m_perspGraph;
-		m_screenPause->draw(gfx, *graf);
-		m_menuMgr->draw(graf);
+	if (mScreenPause) {
+		J2DPerspGraph* graf = &gfx.mPerspGraph;
+		mScreenPause->draw(gfx, *graf);
+		mMenuMgr->draw(graf);
 	}
 }
 
@@ -239,8 +239,8 @@ void ObjSMenuPauseVS::doDraw(Graphics& gfx)
 bool ObjSMenuPauseVS::doStart(::Screen::StartSceneArg const*)
 {
 	start_LR(nullptr);
-	m_menuOpen  = false;
-	m_menuTimer = 0.0f;
+	mMenuOpen  = false;
+	mMenuTimer = 0.0f;
 	return true;
 }
 
@@ -269,7 +269,7 @@ bool ObjSMenuPauseVS::doUpdateFadein()
  */
 void ObjSMenuPauseVS::doUpdateFadeinFinish()
 {
-	m_menuMgr->startCursor(0.0f);
+	mMenuMgr->startCursor(0.0f);
 	wait();
 }
 
@@ -280,9 +280,9 @@ void ObjSMenuPauseVS::doUpdateFadeinFinish()
  */
 void ObjSMenuPauseVS::doUpdateFinish()
 {
-	m_fadeLevel = 0.0f;
+	mFadeLevel = 0.0f;
 	out_L();
-	m_menuMgr->killCursor();
+	mMenuMgr->killCursor();
 }
 
 /*
@@ -320,7 +320,7 @@ void ObjSMenuPauseVS::doUpdateFadeoutFinish()
  * Address:	80329CAC
  * Size:	00000C
  */
-int ObjSMenuPauseVS::getResult() { return m_disp->m_state; }
+int ObjSMenuPauseVS::getResult() { return mDisp->mState; }
 
 /*
  * --INFO--
@@ -329,8 +329,8 @@ int ObjSMenuPauseVS::getResult() { return m_disp->m_state; }
  */
 void ObjSMenuPauseVS::in_L()
 {
-	m_state = MENUSTATE_OpenL;
-	m_angle = 15.0f;
+	mState = MENUSTATE_OpenL;
+	mAngle = 15.0f;
 }
 
 /*
@@ -338,14 +338,14 @@ void ObjSMenuPauseVS::in_L()
  * Address:	80329CCC
  * Size:	00000C
  */
-void ObjSMenuPauseVS::wait() { m_state = MENUSTATE_Default; }
+void ObjSMenuPauseVS::wait() { mState = MENUSTATE_Default; }
 
 /*
  * --INFO--
  * Address:	80329CD8
  * Size:	00000C
  */
-void ObjSMenuPauseVS::out_L() { m_state = MENUSTATE_CloseL; }
+void ObjSMenuPauseVS::out_L() { mState = MENUSTATE_CloseL; }
 
 /*
  * --INFO--

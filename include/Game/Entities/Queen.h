@@ -100,32 +100,32 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x4];                            // _2BC, probably FSM*?
-	bool m_canCreateLarva;                   // _2C0
-	u8 _2C1;                                 // _2C1
-	u8 _2C2;                                 // _2C2
-	u8 _2C3;                                 // _2C3
-	u8 _2C4;                                 // _2C4
-	u8 _2C5;                                 // _2C5
-	f32 m_waitTimer;                         // _2C8
-	f32 _2CC;                                // _2CC, timer?
-	f32 _2D0;                                // _2D0
-	StateID m_nextState;                     // _2D4
-	QueenShadowMgr* m_shadowMgr;             // _2D8
-	Sys::MatLoopAnimator* m_matLoopAnimator; // _2DC
-	efx::TQueenLay* _2E0;                    // _2E0
-	efx::TQueenRollCR* _2E4;                 // _2E4
-	efx::TQueenRollCL* _2E8;                 // _2E8
-	efx::TQueenRoll* _2EC;                   // _2EC
-	efx::TQueenCrashR* _2F0;                 // _2F0
-	efx::TQueenCrashL* _2F4;                 // _2F4
-	efx::TQueenCrashRock* _2F8;              // _2F8
-	efx::TQueenDamage* _2FC;                 // _2FC
-	efx::TQueenFlick* _300;                  // _300
-	efx::TQueenDead* _304;                   // _304
-	efx::TQueenWakeup* _308;                 // _308
-	efx::TQueenHanacho* _30C;                // _30C
-	                                         // _310 = PelletView
+	u8 _2BC[0x4];                           // _2BC, probably FSM*?
+	bool mCanCreateLarva;                   // _2C0
+	u8 _2C1;                                // _2C1
+	u8 _2C2;                                // _2C2
+	u8 _2C3;                                // _2C3
+	u8 _2C4;                                // _2C4
+	u8 _2C5;                                // _2C5
+	f32 mWaitTimer;                         // _2C8
+	f32 _2CC;                               // _2CC, timer?
+	f32 _2D0;                               // _2D0
+	StateID mNextState;                     // _2D4
+	QueenShadowMgr* mShadowMgr;             // _2D8
+	Sys::MatLoopAnimator* mMatLoopAnimator; // _2DC
+	efx::TQueenLay* _2E0;                   // _2E0
+	efx::TQueenRollCR* _2E4;                // _2E4
+	efx::TQueenRollCL* _2E8;                // _2E8
+	efx::TQueenRoll* _2EC;                  // _2EC
+	efx::TQueenCrashR* _2F0;                // _2F0
+	efx::TQueenCrashL* _2F4;                // _2F4
+	efx::TQueenCrashRock* _2F8;             // _2F8
+	efx::TQueenDamage* _2FC;                // _2FC
+	efx::TQueenFlick* _300;                 // _300
+	efx::TQueenDead* _304;                  // _304
+	efx::TQueenWakeup* _308;                // _308
+	efx::TQueenHanacho* _30C;               // _30C
+	                                        // _310 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -151,27 +151,27 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Sys::MatTexAnimation* m_texAnimation; // _44
-	Obj* m_obj;                           // _48, array of Objs
+	Sys::MatTexAnimation* mTexAnimation; // _44
+	Obj* mObj;                           // _48, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "QueenParms")
-		    , m_fp01(this, 'fp01', "ÉçÅ[ÉäÉìÉOéûä‘", 10.0f, 0.0f, 100.0f)    // 'rolling time'
-		    , m_fp02(this, 'fp02', "èoéYä‘äu ( sec )", 0.0f, 0.0f, 10.0f)    // 'birth interval ( sec )'
-		    , m_fp11(this, 'fp11', "Forest 1 Life", 2500.0f, 0.0f, 10000.0f) // (Hole of Beasts Life)
-		    , m_ip01(this, 'ip01', "èoéYêî ( Max )", 50, 0, 50)              // 'number of births ( Max )'
-		    , m_ip02(this, 'ip02', "èoéYêî ( Min )", 25, 0, 50)              // 'number of births ( Min )'
+		    , mFp01(this, 'fp01', "ÉçÅ[ÉäÉìÉOéûä‘", 10.0f, 0.0f, 100.0f)    // 'rolling time'
+		    , mFp02(this, 'fp02', "èoéYä‘äu ( sec )", 0.0f, 0.0f, 10.0f)    // 'birth interval ( sec )'
+		    , mFp11(this, 'fp11', "Forest 1 Life", 2500.0f, 0.0f, 10000.0f) // (Hole of Beasts Life)
+		    , mIp01(this, 'ip01', "èoéYêî ( Max )", 50, 0, 50)              // 'number of births ( Max )'
+		    , mIp02(this, 'ip02', "èoéYêî ( Min )", 25, 0, 50)              // 'number of births ( Min )'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp11; // _854
-		Parm<int> m_ip01; // _87C
-		Parm<int> m_ip02; // _8A4
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp11; // _854
+		Parm<int> mIp01; // _87C
+		Parm<int> mIp02; // _8A4
 	};
 
 	Parms() { }
@@ -179,23 +179,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 struct QueenShadowNode : public JointShadowNode {
@@ -220,9 +220,9 @@ struct QueenShadowMgr {
 	void init();
 	void update();
 
-	Obj* m_obj;                      // _00
-	JointShadowRootNode* m_rootNode; // _04
-	QueenShadowNode** m_shadowNodes; // _08, array of 6 shadow nodes
+	Obj* mObj;                      // _00
+	JointShadowRootNode* mRootNode; // _04
+	QueenShadowNode** mShadowNodes; // _08, array of 6 shadow nodes
 };
 
 /////////////////////////////////////////////////////////////////
@@ -242,7 +242,7 @@ struct State : public EnemyFSMState {
 	inline State(int stateID, char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

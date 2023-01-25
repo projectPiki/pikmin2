@@ -160,8 +160,8 @@ J3DSys::J3DSys()
 	// _48           = nullptr;
 	// _4C           = nullptr;
 	// _58           = nullptr;
-	// m_matPacket   = nullptr;
-	// m_shapePacket = nullptr;
+	// mMatPacket   = nullptr;
+	// mShapePacket = nullptr;
 	// _104          = nullptr;
 	// _108          = nullptr;
 	// _10C          = 0;

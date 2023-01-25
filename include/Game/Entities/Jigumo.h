@@ -93,29 +93,29 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f _2BC;                  // _2BC
-	Vector3f m_goalPosition;        // _2C8
-	int _2D4;                       // _2D4
-	MouthSlots m_mouthSlots;        // _2D8
-	u8 _2E0[0x8];                   // _2E0
-	u8 _2E8;                        // _2E8, unknown
-	u8 _2E9;                        // _2E9, unknown
-	u8 _2EA[0x2];                   // _2EA, probably padding
-	u8 _2EC[0x24];                  // _2EC, unknown
-	Quat _310;                      // _310
-	Quat _320;                      // _320
-	u8 _330[0x30];                  // _330, unknown
-	u16 _360;                       // _360
-	Vector3f _364;                  // _364
-	efx::TJgmAttack* m_efxAttack;   // _370
-	efx::TJgmAttackW* m_efxAttackW; // _374
-	efx::TJgmBack* m_efxBack;       // _378
-	efx::TJgmBackW* m_efxBackW;     // _37C
-	efx::TImoSmoke* m_efxSmoke;     // _380
-	u8 _384;                        // _384, unknown
-	u8 _385;                        // _385, unknown
-	FSM* m_fsm;                     // _388
-	                                // _38C = PelletView
+	Vector3f _2BC;                 // _2BC
+	Vector3f mGoalPosition;        // _2C8
+	int _2D4;                      // _2D4
+	MouthSlots mMouthSlots;        // _2D8
+	u8 _2E0[0x8];                  // _2E0
+	u8 _2E8;                       // _2E8, unknown
+	u8 _2E9;                       // _2E9, unknown
+	u8 _2EA[0x2];                  // _2EA, probably padding
+	u8 _2EC[0x24];                 // _2EC, unknown
+	Quat _310;                     // _310
+	Quat _320;                     // _320
+	u8 _330[0x30];                 // _330, unknown
+	u16 _360;                      // _360
+	Vector3f _364;                 // _364
+	efx::TJgmAttack* mEfxAttack;   // _370
+	efx::TJgmAttackW* mEfxAttackW; // _374
+	efx::TJgmBack* mEfxBack;       // _378
+	efx::TJgmBackW* mEfxBackW;     // _37C
+	efx::TImoSmoke* mEfxSmoke;     // _380
+	u8 _384;                       // _384, unknown
+	u8 _385;                       // _385, unknown
+	FSM* mFsm;                     // _388
+	                               // _38C = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -135,37 +135,37 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "運搬速度", 100.0f, 0.0f, 300.0f)    // 'transport speed'
-		    , m_fp02(this, 'fp02', "戻り速度", 100.0f, 0.0f, 300.0f)    // 'return speed'
-		    , m_fp03(this, 'fp03', "スケール最小", 1.0f, 0.0f, 3.0f)    // 'scale minimum'
-		    , m_fp04(this, 'fp04', "スケール最大", 1.2f, 0.0f, 3.0f)    // 'scale maximum'
-		    , m_fp05(this, 'fp05', "白ピクミン", 300.0f, 0.0f, 1000.0f) // 'white pikmin'
-		    , m_ip01(this, 'ip01', "隠れている時間", 30, 0, 120)        // 'hiding time'
+		    , mFp01(this, 'fp01', "運搬速度", 100.0f, 0.0f, 300.0f)    // 'transport speed'
+		    , mFp02(this, 'fp02', "戻り速度", 100.0f, 0.0f, 300.0f)    // 'return speed'
+		    , mFp03(this, 'fp03', "スケール最小", 1.0f, 0.0f, 3.0f)    // 'scale minimum'
+		    , mFp04(this, 'fp04', "スケール最大", 1.2f, 0.0f, 3.0f)    // 'scale maximum'
+		    , mFp05(this, 'fp05', "白ピクミン", 300.0f, 0.0f, 1000.0f) // 'white pikmin'
+		    , mIp01(this, 'ip01', "隠れている時間", 30, 0, 120)        // 'hiding time'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp04; // _87C
-		Parm<f32> m_fp05; // _8A4
-		Parm<int> m_ip01; // _8CC
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp03; // _854
+		Parm<f32> mFp04; // _87C
+		Parm<f32> mFp05; // _8A4
+		Parm<int> mIp01; // _8CC
 	};
 
 	Parms()
@@ -195,43 +195,43 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
-	u8 _8F8;                   // _8F8, unknown
-	u8 _8F9;                   // _8F9, unknown
-	u8 _8FA;                   // _8FA, unknown
-	u8 _8FB;                   // _8FB, unknown
-	u8 _8FC;                   // _8FC, unknown
-	u8 _8FD;                   // _8FD, unknown
-	u8 _8FE;                   // _8FE, unknown
-	f32 _900;                  // _900
-	f32 _904;                  // _904
-	f32 _908;                  // _908
-	f32 _90C;                  // _90C
-	u8 _910;                   // _910
-	f32 _914;                  // _914
-	f32 _918;                  // _918
-	f32 _91C;                  // _91C
-	f32 _920;                  // _920
-	f32 _924;                  // _924
-	f32 _928;                  // _928
-	f32 _92C;                  // _92C
-	f32 _930;                  // _930
+	ProperParms mProperParms; // _7F8
+	u8 _8F8;                  // _8F8, unknown
+	u8 _8F9;                  // _8F9, unknown
+	u8 _8FA;                  // _8FA, unknown
+	u8 _8FB;                  // _8FB, unknown
+	u8 _8FC;                  // _8FC, unknown
+	u8 _8FD;                  // _8FD, unknown
+	u8 _8FE;                  // _8FE, unknown
+	f32 _900;                 // _900
+	f32 _904;                 // _904
+	f32 _908;                 // _908
+	f32 _90C;                 // _90C
+	u8 _910;                  // _910
+	f32 _914;                 // _914
+	f32 _918;                 // _918
+	f32 _91C;                 // _91C
+	f32 _920;                 // _920
+	f32 _924;                 // _924
+	f32 _928;                 // _928
+	f32 _92C;                 // _92C
+	f32 _930;                 // _930
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

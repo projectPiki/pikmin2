@@ -36,7 +36,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* houdai = static_cast<Obj*>(enemy);
 	houdai->forceFinishIKMotion();
 	houdai->deathProcedure();
-	houdai->m_targetVelocity = Vector3f(0.0f);
+	houdai->mTargetVelocity = Vector3f(0.0f);
 	houdai->setEmotionCaution();
 	houdai->startMotion(0, nullptr);
 	houdai->createHoudaiDeadEffect();
@@ -55,7 +55,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
-	if (houdai->m_curAnim->m_isPlaying && (u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
+	if (houdai->mCurAnim->mIsPlaying && (u32)houdai->mCurAnim->mType == KEYEVENT_END) {
 		houdai->throwupItem();
 		houdai->finishChimneyEffect();
 		houdai->createDeadBombEffect();
@@ -80,12 +80,12 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai         = static_cast<Obj*>(enemy);
-	houdai->m_nextState = HOUDAI_NULL;
+	Obj* houdai        = static_cast<Obj*>(enemy);
+	houdai->mNextState = HOUDAI_NULL;
 	houdai->enableEvent(0, EB_IsImmuneBitter);
 	houdai->disableEvent(0, EB_IsAnimating);
-	houdai->m_targetCreature = nullptr;
-	houdai->m_targetVelocity = Vector3f(0.0f);
+	houdai->mTargetCreature = nullptr;
+	houdai->mTargetVelocity = Vector3f(0.0f);
 	houdai->startMotion(1, nullptr);
 	houdai->stopMotion();
 }
@@ -100,7 +100,7 @@ void StateStay::exec(EnemyBase* enemy)
 	Obj* houdai = static_cast<Obj*>(enemy);
 	if (!houdai->isEvent(0, EB_IsTakingDamage)) {
 		bool isTarget;
-		f32 detectRadius = static_cast<Parms*>(houdai->m_parms)->m_general.m_privateRadius.m_value;
+		f32 detectRadius = static_cast<Parms*>(houdai->mParms)->mGeneral.mPrivateRadius.mValue;
 		if (EnemyFunc::isThereOlimar(houdai, detectRadius, nullptr)) {
 			isTarget = true;
 		} else if (EnemyFunc::isTherePikmin(houdai, detectRadius, nullptr)) {
@@ -131,13 +131,13 @@ void StateStay::cleanup(EnemyBase* enemy) { }
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai         = static_cast<Obj*>(enemy);
-	houdai->m_nextState = HOUDAI_NULL;
+	Obj* houdai        = static_cast<Obj*>(enemy);
+	houdai->mNextState = HOUDAI_NULL;
 	houdai->enableEvent(0, EB_IsImmuneBitter);
 	houdai->enableEvent(0, EB_IsAnimating);
 	houdai->setEmotionExcitement();
-	houdai->m_targetCreature = nullptr;
-	houdai->m_targetVelocity = Vector3f(0.0f);
+	houdai->mTargetCreature = nullptr;
+	houdai->mTargetVelocity = Vector3f(0.0f);
 
 	houdai->startMotion(1, nullptr);
 	houdai->createAppearEffect();
@@ -158,7 +158,7 @@ void StateLand::exec(EnemyBase* enemy)
 	Obj* houdai = static_cast<Obj*>(enemy);
 	if (houdai->isStopMotion()) {
 		bool isTarget;
-		f32 detectRadius = static_cast<Parms*>(houdai->m_parms)->m_general.m_privateRadius.m_value;
+		f32 detectRadius = static_cast<Parms*>(houdai->mParms)->mGeneral.mPrivateRadius.mValue;
 		if (EnemyFunc::isThereOlimar(houdai, detectRadius, nullptr)) {
 			isTarget = true;
 		} else if (EnemyFunc::isTherePikmin(houdai, detectRadius, nullptr)) {
@@ -179,32 +179,32 @@ void StateLand::exec(EnemyBase* enemy)
 		}
 	}
 
-	if (houdai->m_curAnim->m_isPlaying) {
-		if ((u32)houdai->m_curAnim->m_type == KEYEVENT_2) {
+	if (houdai->mCurAnim->mIsPlaying) {
+		if ((u32)houdai->mCurAnim->mType == KEYEVENT_2) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 			houdai->startChimneyEffect();
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_3) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_3) {
 			houdai->finishChimneyEffect();
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_4) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_4) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 			houdai->createAppearFootEffect(0);
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_5) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_5) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
-			houdai->createOnGroundEffect(0, houdai->m_waterBox);
+			houdai->createOnGroundEffect(0, houdai->mWaterBox);
 			houdai->createAppearFootEffect(2);
 			houdai->createAppearFootEffect(1);
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_6) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_6) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 			houdai->createAppearHahenEffect();
 			houdai->createAppearFootEffect(3);
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_END) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
-			if (houdai->m_health <= 0.0f) {
+			if (houdai->mHealth <= 0.0f) {
 				transit(houdai, HOUDAI_Dead, nullptr);
 
 			} else if (EnemyFunc::isStartFlick(houdai, false)) {
@@ -238,12 +238,12 @@ void StateLand::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai              = static_cast<Obj*>(enemy);
-	houdai->m_nextState      = HOUDAI_NULL;
-	houdai->m_stateTimer     = 0.0f;
-	houdai->m_stateDuration  = 1.5f + randWeightFloat(1.5f);
-	houdai->m_targetCreature = nullptr;
-	houdai->m_targetVelocity = Vector3f(0.0f);
+	Obj* houdai             = static_cast<Obj*>(enemy);
+	houdai->mNextState      = HOUDAI_NULL;
+	houdai->mStateTimer     = 0.0f;
+	houdai->mStateDuration  = 1.5f + randWeightFloat(1.5f);
+	houdai->mTargetCreature = nullptr;
+	houdai->mTargetVelocity = Vector3f(0.0f);
 	houdai->startMotion(2, nullptr);
 }
 
@@ -255,24 +255,24 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
-	houdai->m_stateTimer += sys->m_deltaTime;
+	houdai->mStateTimer += sys->mDeltaTime;
 
-	if (houdai->m_health <= 0.0f) {
-		houdai->m_nextState = HOUDAI_Dead;
+	if (houdai->mHealth <= 0.0f) {
+		houdai->mNextState = HOUDAI_Dead;
 		houdai->finishMotion();
 	} else if (EnemyFunc::isStartFlick(houdai, false)) {
-		houdai->m_nextState = HOUDAI_Flick;
+		houdai->mNextState = HOUDAI_Flick;
 		houdai->finishMotion();
 	} else if (houdai->isTransitShotGunState()) {
-		houdai->m_nextState = HOUDAI_Shot;
+		houdai->mNextState = HOUDAI_Shot;
 		houdai->finishMotion();
-	} else if (houdai->m_stateTimer > houdai->m_stateDuration) {
-		houdai->m_nextState = HOUDAI_Walk;
+	} else if (houdai->mStateTimer > houdai->mStateDuration) {
+		houdai->mNextState = HOUDAI_Walk;
 		houdai->finishMotion();
 	}
 
-	if (houdai->m_curAnim->m_isPlaying && (u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
-		transit(houdai, houdai->m_nextState, nullptr);
+	if (houdai->mCurAnim->mIsPlaying && (u32)houdai->mCurAnim->mType == KEYEVENT_END) {
+		transit(houdai, houdai->mNextState, nullptr);
 	}
 }
 
@@ -290,11 +290,11 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai              = static_cast<Obj*>(enemy);
-	houdai->m_nextState      = HOUDAI_NULL;
-	houdai->m_stateTimer     = 0.0f;
-	houdai->m_targetCreature = nullptr;
-	houdai->m_targetVelocity = Vector3f(0.0f);
+	Obj* houdai             = static_cast<Obj*>(enemy);
+	houdai->mNextState      = HOUDAI_NULL;
+	houdai->mStateTimer     = 0.0f;
+	houdai->mTargetCreature = nullptr;
+	houdai->mTargetVelocity = Vector3f(0.0f);
 	houdai->startMotion(3, nullptr);
 	houdai->startBlendMotion();
 }
@@ -307,22 +307,22 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
-	if (houdai->m_curAnim->m_isPlaying) {
-		if ((u32)houdai->m_curAnim->m_type == KEYEVENT_2) {
+	if (houdai->mCurAnim->mIsPlaying) {
+		if ((u32)houdai->mCurAnim->mType == KEYEVENT_2) {
 			houdai->startChimneyEffect();
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_3) {
-			Parms* parms = static_cast<Parms*>(houdai->m_parms);
-			EnemyFunc::flickStickPikmin(houdai, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
-			                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
-			houdai->m_toFlick = 0.0f;
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_3) {
+			Parms* parms = static_cast<Parms*>(houdai->mParms);
+			EnemyFunc::flickStickPikmin(houdai, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
+			houdai->mToFlick = 0.0f;
 			houdai->startBossFlickBGM();
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_4) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_4) {
 			houdai->finishChimneyEffect();
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
-			if (houdai->m_health <= 0.0f) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_END) {
+			if (houdai->mHealth <= 0.0f) {
 				transit(houdai, HOUDAI_Dead, nullptr);
 
 			} else {
@@ -350,12 +350,12 @@ void StateFlick::cleanup(EnemyBase* enemy)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai              = static_cast<Obj*>(enemy);
-	houdai->m_nextState      = HOUDAI_NULL;
-	houdai->m_stateTimer     = 0.0f;
-	houdai->m_stateDuration  = 3.5f + randWeightFloat(3.5f);
-	houdai->m_targetCreature = nullptr;
-	houdai->m_targetVelocity = Vector3f(0.0f);
+	Obj* houdai             = static_cast<Obj*>(enemy);
+	houdai->mNextState      = HOUDAI_NULL;
+	houdai->mStateTimer     = 0.0f;
+	houdai->mStateDuration  = 3.5f + randWeightFloat(3.5f);
+	houdai->mTargetCreature = nullptr;
+	houdai->mTargetVelocity = Vector3f(0.0f);
 	houdai->startIKMotion();
 	houdai->getTargetPosition();
 }
@@ -369,20 +369,20 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
 	houdai->getTargetPosition();
-	houdai->m_stateTimer += sys->m_deltaTime;
+	houdai->mStateTimer += sys->mDeltaTime;
 
 	if (EnemyFunc::isStartFlick(houdai, false)) {
-		houdai->m_nextState = HOUDAI_Flick;
+		houdai->mNextState = HOUDAI_Flick;
 		houdai->finishIKMotion();
-	} else if (houdai->m_stateTimer > houdai->m_stateDuration) {
-		houdai->m_nextState = HOUDAI_Wait;
+	} else if (houdai->mStateTimer > houdai->mStateDuration) {
+		houdai->mNextState = HOUDAI_Wait;
 		houdai->finishIKMotion();
 	}
 
-	if (houdai->m_health <= 0.0f) {
+	if (houdai->mHealth <= 0.0f) {
 		transit(houdai, HOUDAI_Dead, nullptr);
 	} else if (houdai->isFinishIKMotion()) {
-		transit(houdai, houdai->m_nextState, nullptr);
+		transit(houdai, houdai->mNextState, nullptr);
 	}
 }
 
@@ -400,18 +400,18 @@ void StateWalk::cleanup(EnemyBase* enemy) { }
  */
 void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai          = static_cast<Obj*>(enemy);
-	houdai->m_nextState  = HOUDAI_NULL;
-	houdai->m_stateTimer = 0.0f;
+	Obj* houdai         = static_cast<Obj*>(enemy);
+	houdai->mNextState  = HOUDAI_NULL;
+	houdai->mStateTimer = 0.0f;
 	houdai->setTargetPattern();
-	houdai->_2ED                 = 0;
-	houdai->m_shotGunSearchTimer = 0.0f;
-	houdai->m_targetCreature     = nullptr;
-	houdai->m_targetVelocity     = Vector3f(0.0f);
+	houdai->_2ED                = 0;
+	houdai->mShotGunSearchTimer = 0.0f;
+	houdai->mTargetCreature     = nullptr;
+	houdai->mTargetVelocity     = Vector3f(0.0f);
 	houdai->startMotion(4, nullptr);
 	houdai->startBlendMotion();
 	houdai->createShotGunOpenEffect();
-	houdai->m_isAttackMusicLooping = false;
+	houdai->mIsAttackMusicLooping = false;
 	houdai->startBossChargeBGM();
 }
 
@@ -426,8 +426,7 @@ void StateShot::exec(EnemyBase* enemy)
 
 	if (houdai->isStopMotion()) {
 		if (houdai->_2ED != 0) {
-			if (houdai->isFinishMotion()
-			    || houdai->m_shotGunSearchTimer > static_cast<Parms*>(houdai->m_parms)->m_properParms.m_fp12.m_value) {
+			if (houdai->isFinishMotion() || houdai->mShotGunSearchTimer > static_cast<Parms*>(houdai->mParms)->mProperParms.mFp12.mValue) {
 				houdai->setShotGunEmitKeepTimerOn();
 				houdai->startMotion();
 			}
@@ -436,19 +435,19 @@ void StateShot::exec(EnemyBase* enemy)
 
 		} else if (houdai->isFinishShotGun()) {
 			if (houdai->isShotGunLockOn()) {
-				if (houdai->m_stateTimer > 2.0f) {
-					houdai->_2ED         = 0;
-					houdai->m_stateTimer = 0.0f;
+				if (houdai->mStateTimer > 2.0f) {
+					houdai->_2ED        = 0;
+					houdai->mStateTimer = 0.0f;
 					houdai->startMotion();
 				}
 			} else {
 				houdai->getJAIObject()->startSound(PSSE_EN_HOUDAI_MOTOR, 0);
 			}
 		} else {
-			if (houdai->isShotGunLockOn() && (houdai->m_stateTimer > 2.0f)) {
-				houdai->_2ED                 = 1;
-				houdai->m_shotGunSearchTimer = 0.0f;
-				houdai->m_stateTimer         = 0.0f;
+			if (houdai->isShotGunLockOn() && (houdai->mStateTimer > 2.0f)) {
+				houdai->_2ED                = 1;
+				houdai->mShotGunSearchTimer = 0.0f;
+				houdai->mStateTimer         = 0.0f;
 				houdai->startMotion();
 				houdai->startBossAttackLoopBGM();
 			}
@@ -459,16 +458,16 @@ void StateShot::exec(EnemyBase* enemy)
 
 	if (houdai->isShotGunRotation()) {
 		houdai->setShotGunTargetPosition();
-		if (houdai->m_stateTimer > static_cast<Parms*>(houdai->m_parms)->m_general.m_searchAngle.m_value) {
-			houdai->m_stateTimer = 0.0f;
+		if (houdai->mStateTimer > static_cast<Parms*>(houdai->mParms)->mGeneral.mSearchAngle.mValue) {
+			houdai->mStateTimer = 0.0f;
 			houdai->finishMotion();
 		}
 	}
 
-	houdai->m_shotGunSearchTimer += sys->m_deltaTime;
-	houdai->m_stateTimer += sys->m_deltaTime;
+	houdai->mShotGunSearchTimer += sys->mDeltaTime;
+	houdai->mStateTimer += sys->mDeltaTime;
 
-	if (houdai->m_health <= 0.0f) {
+	if (houdai->mHealth <= 0.0f) {
 		if (houdai->isStopMotion()) {
 			houdai->startMotion();
 		}
@@ -476,39 +475,39 @@ void StateShot::exec(EnemyBase* enemy)
 		houdai->finishMotion();
 	}
 
-	if (houdai->m_curAnim->m_isPlaying) {
-		if ((u32)houdai->m_curAnim->m_type == KEYEVENT_2) {
-			houdai->m_stateTimer = 0.0f;
+	if (houdai->mCurAnim->mIsPlaying) {
+		if ((u32)houdai->mCurAnim->mType == KEYEVENT_2) {
+			houdai->mStateTimer = 0.0f;
 			houdai->stopMotion();
 			houdai->startShotGunRotation();
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_3) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_3) {
 			if (!houdai->isFinishMotion()) {
-				Parms* parms = static_cast<Parms*>(houdai->m_parms);
-				EnemyFunc::flickStickPikmin(houdai, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
-				                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
-				houdai->m_toFlick = 0.0f;
+				Parms* parms = static_cast<Parms*>(houdai->mParms);
+				EnemyFunc::flickStickPikmin(houdai, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+				                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
+				houdai->mToFlick = 0.0f;
 				houdai->emitShotGun();
 			}
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_4) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_4) {
 			if (!houdai->isFinishMotion()) {
-				Parms* parms2 = static_cast<Parms*>(houdai->m_parms);
-				if (parms2->m_general.m_searchAngle.m_value - houdai->m_stateTimer > parms2->m_properParms.m_fp12.m_value
-				    && houdai->m_shotGunSearchTimer > parms2->m_properParms.m_fp10.m_value) {
+				Parms* parms2 = static_cast<Parms*>(houdai->mParms);
+				if (parms2->mGeneral.mSearchAngle.mValue - houdai->mStateTimer > parms2->mProperParms.mFp12.mValue
+				    && houdai->mShotGunSearchTimer > parms2->mProperParms.mFp10.mValue) {
 					houdai->setShotGunEmitKeepTimerOff();
 					houdai->stopMotion();
 				}
 			}
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_5) {
-			houdai->_2ED         = 0;
-			houdai->m_stateTimer = 0.0f;
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_5) {
+			houdai->_2ED        = 0;
+			houdai->mStateTimer = 0.0f;
 			houdai->stopMotion();
 			houdai->finishShotGunRotation();
 			houdai->finishBossAttackLoopBGM();
 
-		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
-			if (houdai->m_health <= 0.0f) {
+		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_END) {
+			if (houdai->mHealth <= 0.0f) {
 				transit(houdai, HOUDAI_Dead, nullptr);
 
 			} else {

@@ -36,12 +36,12 @@ struct Mgr : public Kogane::Mgr {
 	}
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
-		return m_changeTexture;
+		return mChangeTexture;
 	}
 
 	// _00 		= VTBL
 	// _00-_48	= Kogane::Mgr
-	Obj* m_obj; // _48, array of Objs
+	Obj* mObj; // _48, array of Objs
 };
 } // namespace Koganemushi
 } // namespace Game

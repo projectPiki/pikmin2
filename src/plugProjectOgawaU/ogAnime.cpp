@@ -20,24 +20,24 @@ namespace Screen {
  */
 AnimBaseBase::AnimBaseBase()
 {
-	m_type         = 0;
-	m_currentFrame = 0.0f;
-	m_lastFrame    = 1.0f;
-	m_speed        = 1.0f;
-	_24            = 1.0f;
-	m_isRepeating  = true;
-	_39            = false;
-	_2C            = 0.0f;
-	m_area         = 1.0f;
-	_34            = m_area - _2C;
-	_28            = sys->m_deltaTime / SINGLE_FRAME_LENGTH;
-	m_anm          = nullptr;
-	m_resourcePath = nullptr;
-	_08            = false;
-	_0C            = 0.0f;
-	_10            = 1;
-	m_alpha        = 255;
-	m_doSetAlpha   = 0;
+	mType         = 0;
+	mCurrentFrame = 0.0f;
+	mLastFrame    = 1.0f;
+	mSpeed        = 1.0f;
+	_24           = 1.0f;
+	mIsRepeating  = true;
+	_39           = false;
+	_2C           = 0.0f;
+	mArea         = 1.0f;
+	_34           = mArea - _2C;
+	_28           = sys->mDeltaTime / SINGLE_FRAME_LENGTH;
+	mAnm          = nullptr;
+	mResourcePath = nullptr;
+	_08           = false;
+	_0C           = 0.0f;
+	_10           = 1;
+	mAlpha        = 255;
+	mDoSetAlpha   = 0;
 }
 
 /*
@@ -47,11 +47,11 @@ AnimBaseBase::AnimBaseBase()
  */
 void AnimBaseBase::setArea(f32 frame, f32 area)
 {
-	_2C            = frame;
-	m_area         = area;
-	_34            = area - frame;
-	m_currentFrame = frame;
-	_10            = 1;
+	_2C           = frame;
+	mArea         = area;
+	_34           = area - frame;
+	mCurrentFrame = frame;
+	_10           = 1;
 }
 
 /*
@@ -63,19 +63,19 @@ void AnimBaseBase::setArea(f32 frame, f32 area)
  */
 void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
 {
-	m_resourcePath = resourcePath;
+	mResourcePath = resourcePath;
 
 	void* resource = JKRFileLoader::getGlbResource(resourcePath, archive);
 	JUT_ASSERTLINE(87, resource, "no name resource (%s) \n", resourcePath);
-	m_anm = J2DAnmLoaderDataBase::load(resource);
+	mAnm = J2DAnmLoaderDataBase::load(resource);
 
-	m_lastFrame = m_anm->m_maxFrame - 1;
-	_2C         = 0.0f;
-	m_area      = m_lastFrame;
-	_34         = m_area - _2C;
-	_08         = false;
-	_0C         = 0.0f;
-	_10         = 1;
+	mLastFrame = mAnm->mMaxFrame - 1;
+	_2C        = 0.0f;
+	mArea      = mLastFrame;
+	_34        = mArea - _2C;
+	_08        = false;
+	_0C        = 0.0f;
+	_10        = 1;
 
 	OSInitFastCast();
 }
@@ -114,32 +114,32 @@ bool AnimBaseBase::updateSub()
 	if (_10 != 0) {
 		_10 = 0;
 	} else {
-		m_currentFrame += m_speed * _28 * _24;
-		if (m_currentFrame > m_area) {
-			if (m_isRepeating) {
-				f32 temp = m_currentFrame - m_area;
+		mCurrentFrame += mSpeed * _28 * _24;
+		if (mCurrentFrame > mArea) {
+			if (mIsRepeating) {
+				f32 temp = mCurrentFrame - mArea;
 				if (temp >= _34) {
 					temp = 0.0f;
 				}
 
-				m_currentFrame = _2C + temp;
-				_39            = true;
+				mCurrentFrame = _2C + temp;
+				_39           = true;
 			} else {
-				m_currentFrame = m_area;
+				mCurrentFrame = mArea;
 				moveAnim();
 				result = false;
 			}
-		} else if (m_currentFrame < _2C) {
-			if (m_isRepeating) {
-				f32 temp = _2C - m_currentFrame;
+		} else if (mCurrentFrame < _2C) {
+			if (mIsRepeating) {
+				f32 temp = _2C - mCurrentFrame;
 				if (temp >= _34) {
 					temp = 0.0f;
 				}
 
-				m_currentFrame = m_area - temp;
-				_39            = true;
+				mCurrentFrame = mArea - temp;
+				_39           = true;
 			} else {
-				m_currentFrame = _2C;
+				mCurrentFrame = _2C;
 				moveAnim();
 				result = false;
 			}
@@ -163,7 +163,7 @@ bool AnimBaseBase::updateSub()
 bool AnimBaseBase::update()
 {
 	if (_08) {
-		_0C -= sys->m_deltaTime;
+		_0C -= sys->mDeltaTime;
 		if (_0C <= 0.0f) {
 			_08 = false;
 			_0C = 0.0f;
@@ -185,8 +185,8 @@ bool AnimBaseBase::update()
  */
 AnimScreen::AnimScreen()
 {
-	m_screen = nullptr;
-	m_type   = 1;
+	mScreen = nullptr;
+	mType   = 1;
 }
 
 /*
@@ -199,7 +199,7 @@ AnimScreen::AnimScreen()
 void AnimScreen::init(JKRArchive* archive, J2DScreen* screen, char* resourcePath)
 {
 	AnimBaseBase::init(archive, resourcePath);
-	updateScreen(screen, m_anm);
+	updateScreen(screen, mAnm);
 	moveAnim();
 }
 
@@ -212,7 +212,7 @@ void AnimScreen::init(JKRArchive* archive, J2DScreen* screen, char* resourcePath
  */
 void AnimScreen::start()
 {
-	if (m_screen) {
+	if (mScreen) {
 		_08 = false;
 		_0C = 0.0f;
 		_10 = 1;
@@ -227,10 +227,10 @@ void AnimScreen::start()
  */
 void AnimScreen::moveAnim()
 {
-	m_anm->m_currentFrame = m_currentFrame;
-	m_screen->animation();
-	if (m_doSetAlpha != 0) {
-		m_screen->setAlpha(m_alpha);
+	mAnm->mCurrentFrame = mCurrentFrame;
+	mScreen->animation();
+	if (mDoSetAlpha != 0) {
+		mScreen->setAlpha(mAlpha);
 	}
 }
 
@@ -243,8 +243,8 @@ void AnimScreen::moveAnim()
  */
 AnimPane::AnimPane()
 {
-	m_pane = nullptr;
-	m_type = 2;
+	mPane = nullptr;
+	mType = 2;
 }
 
 /*
@@ -257,7 +257,7 @@ AnimPane::AnimPane()
 void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen, u64 tag, char* resourcePath)
 {
 	AnimBaseBase::init(archive, resourcePath);
-	updatePane(parentScreen, tag, m_anm);
+	updatePane(parentScreen, tag, mAnm);
 }
 
 /*
@@ -269,7 +269,7 @@ void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen, u64 tag, char*
  */
 void AnimPane::start()
 {
-	if (m_pane) {
+	if (mPane) {
 		_08 = false;
 		_0C = 0.0f;
 		_10 = 1;
@@ -286,10 +286,10 @@ void AnimPane::start()
  */
 void AnimPane::moveAnim()
 {
-	m_anm->m_currentFrame = m_currentFrame;
-	m_pane->animationTransform();
-	if (m_doSetAlpha != 0) {
-		m_pane->setAlpha(m_alpha);
+	mAnm->mCurrentFrame = mCurrentFrame;
+	mPane->animationTransform();
+	if (mDoSetAlpha != 0) {
+		mPane->setAlpha(mAlpha);
 	}
 }
 
@@ -302,12 +302,12 @@ void AnimPane::moveAnim()
  */
 AnimGroup::AnimGroup(int limit)
 {
-	m_animPanes = new AnimBaseBase*[limit];
+	mAnimPanes = new AnimBaseBase*[limit];
 
-	m_paneCount = 0;
-	m_paneLimit = limit;
-	for (int i = 0; i < m_paneLimit; i++) {
-		m_animPanes[i] = nullptr;
+	mPaneCount = 0;
+	mPaneLimit = limit;
+	for (int i = 0; i < mPaneLimit; i++) {
+		mAnimPanes[i] = nullptr;
 	}
 
 	_0C = 0;
@@ -323,14 +323,14 @@ AnimGroup::AnimGroup(int limit)
  */
 void AnimGroup::setAnim(og::Screen::AnimBaseBase* newAnim)
 {
-	int count = m_paneCount;
-	if (count >= m_paneLimit) {
+	int count = mPaneCount;
+	if (count >= mPaneLimit) {
 		JUT_PANICLINE(323, "anim group is overflow!!\n");
 		return;
 	}
 
-	m_animPanes[count] = newAnim;
-	m_paneCount++;
+	mAnimPanes[count] = newAnim;
+	mPaneCount++;
 }
 
 /*
@@ -343,15 +343,15 @@ void AnimGroup::setAnim(og::Screen::AnimBaseBase* newAnim)
 bool AnimGroup::update()
 {
 	bool anyUpdated = false;
-	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i]) {
+	for (int i = 0; i < mPaneLimit; i++) {
+		if (mAnimPanes[i]) {
 			bool updateResult = true;
-			switch (m_animPanes[i]->m_type) {
+			switch (mAnimPanes[i]->mType) {
 			case 1:
-				updateResult = m_animPanes[i]->update();
+				updateResult = mAnimPanes[i]->update();
 				break;
 			case 2:
-				updateResult = m_animPanes[i]->update();
+				updateResult = mAnimPanes[i]->update();
 				break;
 			default:
 				break;
@@ -380,14 +380,14 @@ bool AnimGroup::update()
  */
 void AnimGroup::setSpeed(f32 speed)
 {
-	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->m_type) {
+	for (int i = 0; i < mPaneLimit; i++) {
+		if (mAnimPanes[i]) {
+			switch (mAnimPanes[i]->mType) {
 			case 1:
-				m_animPanes[i]->m_speed = speed;
+				mAnimPanes[i]->mSpeed = speed;
 				break;
 			case 2:
-				m_animPanes[i]->m_speed = speed;
+				mAnimPanes[i]->mSpeed = speed;
 				break;
 			default:
 				break;
@@ -403,14 +403,14 @@ void AnimGroup::setSpeed(f32 speed)
  */
 void AnimGroup::setRepeat(bool repeat)
 {
-	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->m_type) {
+	for (int i = 0; i < mPaneLimit; i++) {
+		if (mAnimPanes[i]) {
+			switch (mAnimPanes[i]->mType) {
 			case 1:
-				m_animPanes[i]->m_isRepeating = repeat;
+				mAnimPanes[i]->mIsRepeating = repeat;
 				break;
 			case 2:
-				m_animPanes[i]->m_isRepeating = repeat;
+				mAnimPanes[i]->mIsRepeating = repeat;
 				break;
 			default:
 				break;
@@ -426,14 +426,14 @@ void AnimGroup::setRepeat(bool repeat)
  */
 void AnimGroup::setFrame(f32 frame)
 {
-	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->m_type) {
+	for (int i = 0; i < mPaneLimit; i++) {
+		if (mAnimPanes[i]) {
+			switch (mAnimPanes[i]->mType) {
 			case 1:
-				m_animPanes[i]->m_currentFrame = frame;
+				mAnimPanes[i]->mCurrentFrame = frame;
 				break;
 			case 2:
-				m_animPanes[i]->m_currentFrame = frame;
+				mAnimPanes[i]->mCurrentFrame = frame;
 				break;
 			default:
 				break;
@@ -451,9 +451,9 @@ void AnimGroup::setAlpha(u8 alpha)
 {
 	// UNUSED FUNCTION
 	// TODO: Confirm size.
-	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i]) {
-			m_animPanes[i]->m_alpha = alpha;
+	for (int i = 0; i < mPaneLimit; i++) {
+		if (mAnimPanes[i]) {
+			mAnimPanes[i]->mAlpha = alpha;
 		}
 	}
 }
@@ -467,13 +467,13 @@ void AnimGroup::setAlpha(u8 alpha)
  */
 void AnimGroup::setAllArea()
 {
-	for (int i = 0; i < m_paneLimit; i++) {
-		AnimBaseBase* pane = m_animPanes[i];
+	for (int i = 0; i < mPaneLimit; i++) {
+		AnimBaseBase* pane = mAnimPanes[i];
 
 		if (pane) {
-			pane->_2C    = 0.0f;
-			pane->m_area = pane->m_lastFrame;
-			pane->_34    = pane->m_area - pane->_2C;
+			pane->_2C   = 0.0f;
+			pane->mArea = pane->mLastFrame;
+			pane->_34   = pane->mArea - pane->_2C;
 		}
 	}
 }
@@ -487,8 +487,8 @@ f32 AnimGroup::getFrame()
 {
 	f32 result = 0.0f;
 
-	if (m_paneCount > 0) {
-		result = m_animPanes[0]->m_currentFrame;
+	if (mPaneCount > 0) {
+		result = mAnimPanes[0]->mCurrentFrame;
 	}
 
 	return result;
@@ -503,14 +503,14 @@ f32 AnimGroup::getFrame()
  */
 void AnimGroup::setArea(f32 frame, f32 area)
 {
-	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->m_type) {
+	for (int i = 0; i < mPaneLimit; i++) {
+		if (mAnimPanes[i]) {
+			switch (mAnimPanes[i]->mType) {
 			case 1:
-				m_animPanes[i]->setArea(frame, area);
+				mAnimPanes[i]->setArea(frame, area);
 				break;
 			case 2:
-				m_animPanes[i]->setArea(frame, area);
+				mAnimPanes[i]->setArea(frame, area);
 				break;
 			default:
 				break;
@@ -528,14 +528,14 @@ void AnimGroup::setArea(f32 frame, f32 area)
  */
 void AnimGroup::start()
 {
-	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->m_type) {
+	for (int i = 0; i < mPaneLimit; i++) {
+		if (mAnimPanes[i]) {
+			switch (mAnimPanes[i]->mType) {
 			case 1:
-				m_animPanes[i]->start();
+				mAnimPanes[i]->start();
 				break;
 			case 2:
-				m_animPanes[i]->start();
+				mAnimPanes[i]->start();
 				break;
 			default:
 				break;
@@ -566,8 +566,8 @@ f32 AnimGroup::getLastFrame()
 {
 	f32 result = 0.0f;
 
-	if (m_paneCount > 0) {
-		result = m_animPanes[0]->m_lastFrame;
+	if (mPaneCount > 0) {
+		result = mAnimPanes[0]->mLastFrame;
 	}
 
 	return result;

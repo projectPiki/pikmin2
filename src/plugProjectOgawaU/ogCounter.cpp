@@ -42,9 +42,9 @@ ResTIMG** makeSujiFontTable(char** characterTexturePaths, JKRArchive* archive)
  */
 void CounterKeta::setSuji(ResTIMG** texList, u32 texIdx)
 {
-	m_textureIndex = texIdx;
-	if (m_picture) {
-		m_picture->changeTexture(texList[m_textureIndex], 0);
+	mTextureIndex = texIdx;
+	if (mPicture) {
+		mPicture->changeTexture(texList[mTextureIndex], 0);
 	}
 }
 
@@ -55,13 +55,13 @@ void CounterKeta::setSuji(ResTIMG** texList, u32 texIdx)
  */
 void CounterKeta::calcScale()
 {
-	f32 scale  = m_scaleMgr->calc();
-	f32 width  = m_size.x * scale;
-	f32 height = m_size.y * scale;
-	m_picture->setBasePosition(J2DPOS_Center);
-	J2DPane* picture   = m_picture;
-	picture->m_scale.x = width;
-	picture->m_scale.y = height;
+	f32 scale  = mScaleMgr->calc();
+	f32 width  = mSize.x * scale;
+	f32 height = mSize.y * scale;
+	mPicture->setBasePosition(J2DPOS_Center);
+	J2DPane* picture  = mPicture;
+	picture->mScale.x = width;
+	picture->mScale.y = height;
 	picture->calcMtx();
 }
 } // namespace Screen

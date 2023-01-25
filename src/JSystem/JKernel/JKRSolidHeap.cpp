@@ -214,9 +214,9 @@ lbl_80024E6C:
  */
 JKRSolidHeap::JKRSolidHeap(void* p1, unsigned long p2, JKRHeap* heap, bool p4)
     : JKRHeap(p1, p2, heap, p4)
-    , m_freeSize(m_heapSize)
-    , _70((u32)m_startAddress)
-    , _74((u32)m_endAddress)
+    , mFreeSize(mHeapSize)
+    , _70((u32)mStartAddress)
+    , _74((u32)mEndAddress)
     , _78(0)
 {
 }
@@ -303,7 +303,7 @@ lbl_80024FF0:
 void* JKRSolidHeap::do_alloc(unsigned long p1, int p2)
 {
 	void* mem;
-	OSLockMutex(&m_mutex);
+	OSLockMutex(&mMutex);
 	if (p1 < 4) {
 		p1 = 4;
 	}
@@ -312,7 +312,7 @@ void* JKRSolidHeap::do_alloc(unsigned long p1, int p2)
 	} else {
 		mem = allocFromTail(p1, MAX(4, -p2));
 	}
-	OSUnlockMutex(&m_mutex);
+	OSUnlockMutex(&mMutex);
 	return mem;
 }
 
@@ -326,9 +326,9 @@ void* JKRSolidHeap::allocFromHead(unsigned long p1, int p2)
 	u32 offset  = ALIGN_NEXT(p1, 4);
 	u32 next    = (u32)_70 + p2;
 	size_t size = next + (offset - (u32)_70);
-	if (m_freeSize >= size) {
+	if (mFreeSize >= size) {
 		_70 = _70 + size;
-		m_freeSize -= size;
+		mFreeSize -= size;
 		return (u8*)next;
 	}
 	JUTWarningConsole_f("allocFromHead: cannot alloc memory (0x%x byte).\n", size);
@@ -480,13 +480,13 @@ void JKRSolidHeap::do_free(void* block) { JUTWarningConsole_f("free: cannot free
  */
 void JKRSolidHeap::do_freeAll()
 {
-	OSLockMutex(&m_mutex);
+	OSLockMutex(&mMutex);
 	JKRHeap::callAllDisposer();
-	m_freeSize = m_heapSize;
-	_70        = (u32)m_startAddress;
-	_74        = (u32)m_endAddress;
-	_78        = 0;
-	OSUnlockMutex(&m_mutex);
+	mFreeSize = mHeapSize;
+	_70       = (u32)mStartAddress;
+	_74       = (u32)mEndAddress;
+	_78       = 0;
+	OSUnlockMutex(&mMutex);
 }
 
 /*
@@ -577,15 +577,15 @@ int JKRSolidHeap::do_getSize(void* p1)
  */
 bool JKRSolidHeap::check()
 {
-	OSLockMutex(&m_mutex);
+	OSLockMutex(&mMutex);
 	bool result = true;
-	// u32 freeSize  = m_freeSize;
-	u32 totalSize = (u32)_70 - (u32)m_startAddress - (u32)_74 + (u32)m_endAddress + m_freeSize;
-	if (totalSize != m_heapSize) {
+	// u32 freeSize  = mFreeSize;
+	u32 totalSize = (u32)_70 - (u32)mStartAddress - (u32)_74 + (u32)mEndAddress + mFreeSize;
+	if (totalSize != mHeapSize) {
 		result = false;
-		JUTWarningConsole_f("check: bad total memory block size (%08X, %08X)\n", m_heapSize, totalSize);
+		JUTWarningConsole_f("check: bad total memory block size (%08X, %08X)\n", mHeapSize, totalSize);
 	}
-	OSUnlockMutex(&m_mutex);
+	OSUnlockMutex(&mMutex);
 	return result;
 	/*
 	stwu     r1, -0x10(r1)
@@ -636,14 +636,14 @@ lbl_80025448:
 bool JKRSolidHeap::dump()
 {
 	bool result = check();
-	OSLockMutex(&m_mutex);
-	u32 v1  = _70 - (u32)m_startAddress;
+	OSLockMutex(&mMutex);
+	u32 v1  = _70 - (u32)mStartAddress;
 	u32 v2  = v1 - _74;
-	long v3 = (u32)m_endAddress + v2;
-	JUTReportConsole_f("head %08x: %08x\n", m_startAddress, v1);
-	JUTReportConsole_f("tail %08x: %08x\n", _74, (u32)m_endAddress - _74);
-	JUTReportConsole_f("%d / %d bytes (%6.2f%%) used\n", v3, m_heapSize, ((float)v3 / (float)m_heapSize) * 100.0f);
-	OSUnlockMutex(&m_mutex);
+	long v3 = (u32)mEndAddress + v2;
+	JUTReportConsole_f("head %08x: %08x\n", mStartAddress, v1);
+	JUTReportConsole_f("tail %08x: %08x\n", _74, (u32)mEndAddress - _74);
+	JUTReportConsole_f("%d / %d bytes (%6.2f%%) used\n", v3, mHeapSize, ((float)v3 / (float)mHeapSize) * 100.0f);
+	OSUnlockMutex(&mMutex);
 	return result;
 	/*
 	stwu     r1, -0x30(r1)
@@ -721,9 +721,9 @@ bool JKRSolidHeap::dump()
  */
 void JKRSolidHeap::state_register(JKRHeap::TState* state, unsigned long id) const
 {
-	state->m_id = id;
-	state->_00  = m_heapSize - const_cast<JKRSolidHeap*>(this)->getTotalFreeSize();
-	state->_04  = _70 + _74 * 3;
+	state->mId = id;
+	state->_00 = mHeapSize - const_cast<JKRSolidHeap*>(this)->getTotalFreeSize();
+	state->_04 = _70 + _74 * 3;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -780,7 +780,7 @@ bool JKRSolidHeap::state_compare(const JKRHeap::TState& a, const JKRHeap::TState
  * Address:	80025608
  * Size:	000008
  */
-// u32 JKRSolidHeap::do_getFreeSize() { return m_freeSize; }
+// u32 JKRSolidHeap::do_getFreeSize() { return mFreeSize; }
 
 /*
  * --INFO--

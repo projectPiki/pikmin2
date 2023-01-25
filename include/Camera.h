@@ -27,7 +27,7 @@ struct CullPlane : public ArrayContainer<Plane> {
 	inline CullPlane(int a)
 	{
 		alloc(6);
-		m_count = 6;
+		mCount = 6;
 	}
 
 	virtual ~CullPlane() { }                      // _08 (weak)
@@ -46,26 +46,26 @@ struct CullFrustum : public CullPlane {
 	inline CullFrustum(int a)
 	    : CullPlane(a)
 	{
-		m_viewAngle = 60.0f;
-		u16 height  = sys->getRenderModeObj()->efbHeight;
-		u16 width   = sys->getRenderModeObj()->fbWidth;
+		mViewAngle = 60.0f;
+		u16 height = sys->getRenderModeObj()->efbHeight;
+		u16 width  = sys->getRenderModeObj()->fbWidth;
 
-		m_aspectRatio = width / height;
+		mAspectRatio = width / height;
 	}
 
-	virtual ~CullFrustum() { }                                    // _08
-	virtual Matrixf* getViewMatrix(bool) { return m_viewMatrix; } // _48 (weak)
-	virtual Vector3f getPosition();                               // _4C
-	virtual void updatePlanes();                                  // _50
+	virtual ~CullFrustum() { }                                   // _08
+	virtual Matrixf* getViewMatrix(bool) { return mViewMatrix; } // _48 (weak)
+	virtual Vector3f getPosition();                              // _4C
+	virtual void updatePlanes();                                 // _50
 
 	Vector3f getSideVector();
 	Vector3f getUpVector();
 	Vector3f getViewVector();
 
 	// CullPlane _00 - _24
-	f32 m_viewAngle;       // _28
-	f32 m_aspectRatio;     // _2C
-	Matrixf* m_viewMatrix; // _30
+	f32 mViewAngle;       // _28
+	f32 mAspectRatio;     // _2C
+	Matrixf* mViewMatrix; // _30
 };
 
 // Size: 0x144
@@ -83,11 +83,11 @@ struct Camera : public CullFrustum {
 	virtual Vector3f* on_getPositionPtr() { return nullptr; } // _64 (weak)
 	virtual Vector3f* getSoundPositionPtr()                   // _68 (weak)
 	{
-		return &m_soundPosition;
+		return &mSoundPosition;
 	}
 	virtual Matrixf* getSoundMatrixPtr() // _6C (weak)
 	{
-		return &m_soundMatrix;
+		return &mSoundMatrix;
 	}
 	virtual bool isSpecialCamera(); // _70 (weak)
 	virtual void updateMatrix() { } // _74 (weak)
@@ -105,23 +105,23 @@ struct Camera : public CullFrustum {
 	// void updatePlanes();
 	void updateSoundCamera(f32);
 
-	inline bool isRunning() { return (m_jstObject && m_jstObject->isRunning()); }
+	inline bool isRunning() { return (mJstObject && mJstObject->isRunning()); }
 
 	// CullFrustum _00 - _34
-	Matrixf m_curViewMatrix;                // _034
-	f32 m_near;                             // _064 - distance to 'near' plane
-	f32 m_far;                              // _068 - distance to 'far' plane
-	bool isFixed;                           // _06C
-	f32 m_projectionNear;                   // _070 - projected distance to 'near' plane when not in fixed camera
-	f32 m_projectionFar;                    // _074 - projected distance to 'far' plane when not in fixed camera
-	Vector3f m_soundPosition;               // _078
-	Matrixf m_soundMatrix;                  // _084
-	Mtx44 m_projectionMtx;                  // _0B4
-	Mtx44 _F4;                              // _0F4
-	f32 _134;                               // _134
-	f32 _138;                               // _138
-	f32 _13C;                               // _13C
-	Game::P2JST::ObjectCamera* m_jstObject; // _140
+	Matrixf mCurViewMatrix;                // _034
+	f32 mNear;                             // _064 - distance to 'near' plane
+	f32 mFar;                              // _068 - distance to 'far' plane
+	bool isFixed;                          // _06C
+	f32 mProjectionNear;                   // _070 - projected distance to 'near' plane when not in fixed camera
+	f32 mProjectionFar;                    // _074 - projected distance to 'far' plane when not in fixed camera
+	Vector3f mSoundPosition;               // _078
+	Matrixf mSoundMatrix;                  // _084
+	Mtx44 mProjectionMtx;                  // _0B4
+	Mtx44 _F4;                             // _0F4
+	f32 _134;                              // _134
+	f32 _138;                              // _138
+	f32 _13C;                              // _13C
+	Game::P2JST::ObjectCamera* mJstObject; // _140
 };
 
 struct LookAtCamera : public Camera {
@@ -134,10 +134,10 @@ struct LookAtCamera : public Camera {
 	virtual void startVibration(int);      // _7C (weak)
 
 	// Camera _00 - _144
-	Matrixf _144;              // _144
-	Vector3f _174;             // _174 /* Sodium called this `position`, PikDecomp called it `angle`. :shrug: */
-	Vector3f m_lookAtPosition; // _180 /* PikDecomp called this `position`. */
-	Vector3f _18C;             // _18C
+	Matrixf _144;             // _144
+	Vector3f _174;            // _174 /* Sodium called this `position`, PikDecomp called it `angle`. :shrug: */
+	Vector3f mLookAtPosition; // _180 /* PikDecomp called this `position`. */
+	Vector3f _18C;            // _18C
 };
 
 struct BlendCamera : public Camera {
@@ -150,10 +150,10 @@ struct BlendCamera : public Camera {
 	void setCameras(Camera**);
 
 	// Camera _00 - _144
-	int m_cameraCount;  // _144
-	Camera** m_cameras; // _148
-	f32 m_blendFactor;  // _14C
-	Matrixf _150;       // _150
+	int mCameraCount;  // _144
+	Camera** mCameras; // _148
+	f32 mBlendFactor;  // _14C
+	Matrixf _150;      // _150
 };
 
 namespace PSM {

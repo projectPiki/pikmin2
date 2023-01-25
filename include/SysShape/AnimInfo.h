@@ -19,18 +19,18 @@ struct AnimMgr;
 struct AnimInfo : public CNode {
 	AnimInfo()
 	{
-		m_anm     = nullptr;
-		m_calc    = nullptr;
-		m_mgr     = nullptr;
-		m_basFile = nullptr;
+		mAnm     = nullptr;
+		mCalc    = nullptr;
+		mMgr     = nullptr;
+		mBasFile = nullptr;
 	}
 
 	AnimInfo(AnimMgr* mgr)
 	{
-		m_mgr     = mgr;
-		m_anm     = nullptr;
-		m_calc    = nullptr;
-		m_basFile = nullptr;
+		mMgr     = mgr;
+		mAnm     = nullptr;
+		mCalc    = nullptr;
+		mBasFile = nullptr;
 	}
 
 	virtual ~AnimInfo(); // _08 (weak)
@@ -46,7 +46,7 @@ struct AnimInfo : public CNode {
 	{
 		FOREACH_NODE(AnimInfo, this, info)
 		{
-			if (idx != info->m_id) {
+			if (idx != info->mId) {
 				continue;
 			} else {
 				return info;
@@ -55,13 +55,13 @@ struct AnimInfo : public CNode {
 		return nullptr;
 	}
 
-	J3DAnmTransform* m_anm;            // _18
-	J3DMtxCalc* m_calc;                // _1C
-	s16 m_id;                          // _20, anim ID
-	JAIAnimeFrameSoundData* m_basFile; // _24
-	KeyEvent m_keyEvent;               // _28
-	char* _4C;                         // _4C
-	AnimMgr* m_mgr;                    // _50
+	J3DAnmTransform* mAnm;            // _18
+	J3DMtxCalc* mCalc;                // _1C
+	s16 mId;                          // _20, anim ID
+	JAIAnimeFrameSoundData* mBasFile; // _24
+	KeyEvent mKeyEvent;               // _28
+	char* _4C;                        // _4C
+	AnimMgr* mMgr;                    // _50
 };
 } // namespace SysShape
 

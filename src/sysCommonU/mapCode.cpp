@@ -9,7 +9,7 @@
  * Address:	8041C434
  * Size:	00000C
  */
-int MapCode::Code::getAttribute() { return m_contents & ATTR_MASK; }
+int MapCode::Code::getAttribute() { return mContents & ATTR_MASK; }
 
 /*
  * Returns 'Slip Code' component of code.
@@ -18,7 +18,7 @@ int MapCode::Code::getAttribute() { return m_contents & ATTR_MASK; }
  * Address:	8041C440
  * Size:	00000C
  */
-u8 MapCode::Code::getSlipCode() { return m_contents >> 4 & SLIPCODE_MASK; }
+u8 MapCode::Code::getSlipCode() { return mContents >> 4 & SLIPCODE_MASK; }
 
 /*
  * Returns 'is bald' component of code.
@@ -27,7 +27,7 @@ u8 MapCode::Code::getSlipCode() { return m_contents >> 4 & SLIPCODE_MASK; }
  * Address:	8041C44C
  * Size:	00000C
  */
-bool MapCode::Code::isBald() { return m_contents >> 6 & 1; }
+bool MapCode::Code::isBald() { return mContents >> 6 & 1; }
 
 /* --INLINE--
  * Writes contents of code to stream.
@@ -45,7 +45,7 @@ inline void MapCode::Code::write(Stream& output) { output.writeByte((u8)getConte
  * Address:	........
  * Size:	000034
  */
-inline void MapCode::Code::read(Stream& input) { m_contents = input.readByte(); }
+inline void MapCode::Code::read(Stream& input) { mContents = input.readByte(); }
 
 /*
  * Sets code given 'attribute', 'slip code' and 'is bald' components.
@@ -58,8 +58,8 @@ void MapCode::Code::setCode(int attribute, int slipCode, bool isBald)
 {
 	bool baldCode = (isBald > 0);
 	baldCode &= SLIPCODE_MASK;
-	int temp   = (attribute & ATTR_MASK) | (slipCode << 4);
-	m_contents = temp | (baldCode << 6);
+	int temp  = (attribute & ATTR_MASK) | (slipCode << 4);
+	mContents = temp | (baldCode << 6);
 }
 
 /*
@@ -79,7 +79,7 @@ MapCode::Mgr::Mgr() { }
  * Address:	8041C47C
  * Size:	00007C
  */
-void MapCode::Mgr::write(Stream& stream) { m_codeArray.write(stream); }
+void MapCode::Mgr::write(Stream& stream) { mCodeArray.write(stream); }
 
 /*
  * Reads contents of stream into code array.
@@ -88,7 +88,7 @@ void MapCode::Mgr::write(Stream& stream) { m_codeArray.write(stream); }
  * Address:	8041C760
  * Size:	00002C
  */
-void MapCode::Mgr::read(Stream& stream) { m_codeArray.read(stream); }
+void MapCode::Mgr::read(Stream& stream) { mCodeArray.read(stream); }
 
 /*
  * Adds codes from code array into code slot of TriangleTable triangles.
@@ -99,9 +99,9 @@ void MapCode::Mgr::read(Stream& stream) { m_codeArray.read(stream); }
  */
 void MapCode::Mgr::attachCodes(Sys::TriangleTable* table)
 {
-	for (int i = 0; i < m_codeArray.m_limit; i++) {
-		Code obj                   = m_codeArray.m_objects[i];
-		table->m_objects[i].m_code = obj;
+	for (int i = 0; i < mCodeArray.mLimit; i++) {
+		Code obj                 = mCodeArray.mObjects[i];
+		table->mObjects[i].mCode = obj;
 	}
 }
 

@@ -63,7 +63,7 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 
 	/// Populate insts:
 	for (int i = 0; i < 0x80; i++) {
-		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->m_instOffsets[i]);
+		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->mInstOffsets[i]);
 		if (instRaw != nullptr) {
 			JASBasicInst* inst = new (heap, 0) JASBasicInst();
 			inst->_04          = instRaw->_08;
@@ -72,7 +72,7 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 			/// Populate inst oscillators:
 			inst->setOscCount(2);
 			for (int oscIndex = 0, j = 0; j < 2; j++) {
-				TOsc* oscRaw = JSUConvertOffsetToPtr<TOsc>(header, instRaw->m_oscOffsets[j]);
+				TOsc* oscRaw = JSUConvertOffsetToPtr<TOsc>(header, instRaw->mOscOffsets[j]);
 				if (oscRaw != nullptr) {
 					JASOscillator::Data* oscData = findOscPtr(bank, header, oscRaw);
 					if (oscData == nullptr) {
@@ -108,7 +108,7 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 			/// Populate inst effects:
 			inst->setEffectCount(4);
 			for (int j = 0; j < 2; j++) {
-				TRand* randRaw = JSUConvertOffsetToPtr<TRand>(header, instRaw->m_randOffsets[j]);
+				TRand* randRaw = JSUConvertOffsetToPtr<TRand>(header, instRaw->mRandOffsets[j]);
 				if (randRaw != nullptr) {
 					JASInstRand* rand = new (heap, 0) JASInstRand();
 					rand->setTarget(randRaw->_00);
@@ -118,7 +118,7 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 				}
 			}
 			for (int j = 0; j < 2; j++) {
-				TSense* senseRaw = JSUConvertOffsetToPtr<TSense>(header, instRaw->m_senseOffsets[j]);
+				TSense* senseRaw = JSUConvertOffsetToPtr<TSense>(header, instRaw->mSenseOffsets[j]);
 				if (senseRaw != nullptr) {
 					JASInstSense* sense = new (heap, 0) JASInstSense();
 					sense->setTarget(senseRaw->_00);
@@ -128,15 +128,15 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 			}
 
 			/// Populate inst key regions:
-			inst->setKeyRegionCount(instRaw->m_keyRegionCount);
-			for (int j = 0; j < instRaw->m_keyRegionCount; j++) {
+			inst->setKeyRegionCount(instRaw->mKeyRegionCount);
+			for (int j = 0; j < instRaw->mKeyRegionCount; j++) {
 				JASBasicInst::TKeymap* instKeymap = inst->getKeyRegion(j);
-				TKeymap* keymapRaw                = JSUConvertOffsetToPtr<TKeymap>(header, instRaw->m_keymapOffsets[j]);
+				TKeymap* keymapRaw                = JSUConvertOffsetToPtr<TKeymap>(header, instRaw->mKeymapOffsets[j]);
 				instKeymap->_00                   = keymapRaw->_00;
 				instKeymap->setVeloRegionCount(keymapRaw->_04);
 				for (int k = 0; k < keymapRaw->_04; k++) {
 					JASBasicInst::TVeloRegion* instVeloRegion = instKeymap->getVeloRegion(k);
-					TVmap* vmapRaw                            = JSUConvertOffsetToPtr<TVmap>(header, keymapRaw->m_vmapOffsets[k]);
+					TVmap* vmapRaw                            = JSUConvertOffsetToPtr<TVmap>(header, keymapRaw->mVmapOffsets[k]);
 					instVeloRegion->_00                       = vmapRaw->_00;
 					instVeloRegion->_04                       = vmapRaw->_04 & 0xFFFF;
 					instVeloRegion->_08                       = vmapRaw->_08;
@@ -148,22 +148,22 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 	}
 
 	for (int i = 0; i < 12; i++) {
-		TPerc* percRaw = JSUConvertOffsetToPtr<TPerc>(header, header->m_percOffsets[i]);
+		TPerc* percRaw = JSUConvertOffsetToPtr<TPerc>(header, header->mPercOffsets[i]);
 		if (percRaw != nullptr) {
 			JASDrumSet* drumSet = new (heap, 0) JASDrumSet();
 			for (int j = 0; j < 0x80; j++) {
-				TPmap* pmapRaw = JSUConvertOffsetToPtr<TPmap>(header, percRaw->m_pmapOffsets[j]);
+				TPmap* pmapRaw = JSUConvertOffsetToPtr<TPmap>(header, percRaw->mPmapOffsets[j]);
 				if (pmapRaw != nullptr) {
 					JASDrumSet::TPerc* drumSetPerc = drumSet->getPerc(j);
 					drumSetPerc->_00               = pmapRaw->_00;
 					drumSetPerc->_04               = pmapRaw->_04;
-					if (percRaw->m_magic == 'PER2') {
+					if (percRaw->mMagic == 'PER2') {
 						drumSetPerc->_08 = percRaw->_288[j] / 127.0f;
 						drumSetPerc->setRelease(percRaw->_308[j]);
 					}
 					drumSetPerc->setEffectCount(2);
 					for (int effectIndex = 0, k = 0; k < 2; k++) {
-						TRand* randRaw = JSUConvertOffsetToPtr<TRand>(header, pmapRaw->m_randOffsets[k]);
+						TRand* randRaw = JSUConvertOffsetToPtr<TRand>(header, pmapRaw->mRandOffsets[k]);
 						if (randRaw != nullptr) {
 							JASInstRand* rand = new (heap, 0) JASInstRand();
 							rand->setTarget(randRaw->_00);
@@ -173,10 +173,10 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 							effectIndex++;
 						}
 					}
-					drumSetPerc->setVeloRegionCount(pmapRaw->m_veloRegionCount);
-					for (int k = 0; k < pmapRaw->m_veloRegionCount; k++) {
+					drumSetPerc->setVeloRegionCount(pmapRaw->mVeloRegionCount);
+					for (int k = 0; k < pmapRaw->mVeloRegionCount; k++) {
 						JASBasicInst::TVeloRegion* instVeloRegion = drumSetPerc->getVeloRegion(k);
-						TVmap* vmapRaw                            = JSUConvertOffsetToPtr<TVmap>(header, pmapRaw->m_veloRegionOffsets[k]);
+						TVmap* vmapRaw                            = JSUConvertOffsetToPtr<TVmap>(header, pmapRaw->mVeloRegionOffsets[k]);
 						instVeloRegion->_00                       = vmapRaw->_00;
 						instVeloRegion->_04                       = vmapRaw->_04 & 0xFFFF;
 						instVeloRegion->_08                       = vmapRaw->_08;
@@ -706,17 +706,17 @@ lbl_8009AE98:
 JASOscillator::Data* JASBNKParser::findOscPtr(JASBasicBank* bank, JASBNKParser::THeader* header, JASBNKParser::TOsc* oscPtr)
 {
 	for (int i = 0; i < 128; i++) {
-		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->m_instOffsets[i]);
+		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->mInstOffsets[i]);
 		if (instRaw != nullptr) {
 			for (int j = 0; j < 2; j++) {
-				TOsc* oscRaw = JSUConvertOffsetToPtr<TOsc>(header, instRaw->m_oscOffsets[j]);
+				TOsc* oscRaw = JSUConvertOffsetToPtr<TOsc>(header, instRaw->mOscOffsets[j]);
 				if (oscRaw == oscPtr) {
 					JASInst* inst = bank->getInst(i);
 					if (inst != nullptr) {
 						JASInstParam param;
 						inst->getParam(60, 127, &param);
-						if (j < param.m_oscCount) {
-							return param.m_oscData[j];
+						if (j < param.mOscCount) {
+							return param.mOscData[j];
 						}
 					}
 				}

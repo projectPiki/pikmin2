@@ -26,8 +26,8 @@ struct ModelEffectData : public CNode {
 
 	// _00		= VTBL
 	// _00-_18	= CNode
-	int m_sizeInBytes;          // _18
-	J3DModelData** m_modelData; // _1C
+	int mSizeInBytes;          // _18
+	J3DModelData** mModelData; // _1C
 };
 
 struct ModelEffectDataRoot : public ModelEffectData {
@@ -41,9 +41,9 @@ struct ModelEffect {
 
 	inline ModelEffect()
 	{
-		_39      = 1;
-		_38      = 1;
-		m_culled = 0;
+		_39     = 1;
+		_38     = 1;
+		mCulled = 0;
 	}
 
 	virtual void constructor() { }               // _08 (weak)
@@ -59,11 +59,11 @@ struct ModelEffect {
 	virtual void doDirectDraw(Graphics& gfx) { } // _30 (weak)
 
 	// _00 VTBL
-	SysShape::Model* m_model; // _04
-	Matrixf m_mtx;            // _08
-	u8 _38;                   // _38
-	u8 _39;                   // _39
-	bool m_culled;            // _3A
+	SysShape::Model* mModel; // _04
+	Matrixf mMtx;            // _08
+	u8 _38;                  // _38
+	u8 _39;                  // _39
+	bool mCulled;            // _3A
 };
 
 #endif

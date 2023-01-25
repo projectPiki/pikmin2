@@ -16,10 +16,10 @@ struct JUTGraphFifo {
 	static GXBool mGpStatus[5];
 
 	// VTBL _00
-	GXFifoObj* m_fifo; // _04
-	void* _08;         // _08
-	u32 _0C;           // _0C
-	u8 _10[0xC];       // _10
+	GXFifoObj* mFifo; // _04
+	void* _08;        // _08
+	u32 _0C;          // _0C
+	u8 _10[0xC];      // _10
 
 	static bool sInitiated;
 };

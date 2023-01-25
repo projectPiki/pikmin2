@@ -5,9 +5,9 @@
 
 namespace Sys {
 struct CreateTriangleArg {
-	Vector3f _00;          // _00
-	u8 _0C[0xC];           // _0C
-	Vector3f** m_vertices; // _18
+	Vector3f _00;         // _00
+	u8 _0C[0xC];          // _0C
+	Vector3f** mVertices; // _18
 };
 } // namespace Sys
 

@@ -39,17 +39,17 @@ bool DispMemberBase::setSubMember(og::Screen::DispMemberBase* newSubMember)
 	char subMemberOwnerName[12];
 	char subMemberMemberName[12];
 	DispMemberBase* potentialParent = this;
-	newSubMember->m_subMember       = nullptr;
+	newSubMember->mSubMember        = nullptr;
 	og::Screen::TagToName(getOwnerID(), ownerName);
 	og::Screen::TagToName(getMemberID(), memberName);
 	for (int i = 10; i != 0; i--) {
-		if (potentialParent->m_subMember == nullptr) {
-			potentialParent->m_subMember = newSubMember;
+		if (potentialParent->mSubMember == nullptr) {
+			potentialParent->mSubMember = newSubMember;
 			og::Screen::TagToName(newSubMember->getOwnerID(), subMemberOwnerName);
 			og::Screen::TagToName(newSubMember->getMemberID(), subMemberMemberName);
 			return true;
 		}
-		potentialParent = potentialParent->m_subMember;
+		potentialParent = potentialParent->mSubMember;
 	}
 	return false;
 }
@@ -63,7 +63,7 @@ DispMemberBase* DispMemberBase::getSubMember(u32 ownerID, u64 memberID)
 {
 	DispMemberBase* member = this;
 	for (int i = 0; i < 10; i++) {
-		DispMemberBase* subMember = member->m_subMember;
+		DispMemberBase* subMember = member->mSubMember;
 
 		if (subMember == nullptr) {
 			break;
@@ -90,7 +90,7 @@ DispMemberBase* DispMemberBase::getSubMember(u32 ownerID, u64 memberID)
  */
 void DispMemberBase::setSubMemberAll()
 {
-	m_subMember = nullptr;
+	mSubMember = nullptr;
 	doSetSubMemberAll();
 }
 

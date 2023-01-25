@@ -198,11 +198,11 @@ bool J2DPictureEx::append(const char* p1, float p2) { return append(p1, nullptr,
  */
 void J2DPictureEx::initiate(const ResTIMG* img, const ResTLUT* lut)
 {
-	if (m_material->m_texGenBlock.m_texGenNum != 0) {
+	if (mMaterial->mTexGenBlock.mTexGenNum != 0) {
 		return;
 	}
-	if (append(img, 1.0f) && lut && !m_material->m_tevBlock->getPalette(0)) {
-		m_material->m_tevBlock->setPalette(0, lut);
+	if (append(img, 1.0f) && lut && !mMaterial->mTevBlock->getPalette(0)) {
+		mMaterial->mTevBlock->setPalette(0, lut);
 	}
 }
 
@@ -214,11 +214,11 @@ void J2DPictureEx::initiate(const ResTIMG* img, const ResTLUT* lut)
  */
 void J2DPictureEx::initialize(unsigned long p1)
 {
-	m_bloBlockType = 'PIC2';
-	m_material     = new J2DMaterial(p1);
-	_198           = true;
-	_16C           = 0xFFFF;
-	_16E           = 0xFFFF;
+	mBloBlockType = 'PIC2';
+	mMaterial     = new J2DMaterial(p1);
+	_198          = true;
+	_16C          = 0xFFFF;
+	_16E          = 0xFFFF;
 	for (int i = 0; i < 4; i++) {
 		_170[i] = 0xFFFF;
 	}
@@ -231,8 +231,8 @@ void J2DPictureEx::initialize(unsigned long p1)
 	_184 = 1.0f;
 	_194 = 1.0f;
 	setTexCoord(nullptr, J2DBIND_Unk15, J2DMIRROR_Unk0, false);
-	m_anmVisibility = nullptr;
-	m_anmVtxColor   = nullptr;
+	mAnmVisibility = nullptr;
+	mAnmVtxColor   = nullptr;
 }
 
 /*
@@ -428,7 +428,7 @@ J2DPictureEx::J2DPictureEx(J2DPane* parent, JSURandomInputStream* input, unsigne
 J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const ResTIMG* img, u32 p4)
     : J2DPicture(id, bounds)
 {
-	m_bloBlockType = 'PIC2';
+	mBloBlockType = 'PIC2';
 	initialize(p4);
 	append(img, 1.0f);
 }
@@ -442,7 +442,7 @@ J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const ResTIM
 J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const char* p3, u32 p4)
     : J2DPicture(id, bounds)
 {
-	m_bloBlockType = 'PIC2';
+	mBloBlockType = 'PIC2';
 	initialize(p4);
 	append(p3, 1.0f);
 }
@@ -456,7 +456,7 @@ J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const char* 
 J2DPictureEx::~J2DPictureEx()
 {
 	if (_198 != 0) {
-		delete m_material;
+		delete mMaterial;
 	}
 }
 
@@ -548,15 +548,15 @@ lbl_800553B4:
  */
 void J2DPictureEx::drawSelf(float p1, float p2, float (*mtx)[3][4])
 {
-	if (!m_material) {
+	if (!mMaterial) {
 		return;
 	}
-	m_material->setGX();
+	mMaterial->setGX();
 	GXClearVtxDesc();
 	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
 	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
 	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	drawFullSet(p1, p2, m_bounds.f.x - m_bounds.i.x, m_bounds.f.y - m_bounds.i.y, mtx);
+	drawFullSet(p1, p2, mBounds.f.x - mBounds.i.x, mBounds.f.y - mBounds.i.y, mtx);
 }
 
 /*
@@ -566,7 +566,7 @@ void J2DPictureEx::drawSelf(float p1, float p2, float (*mtx)[3][4])
  */
 void J2DPictureEx::drawFullSet(float p1, float p2, float p3, float p4, float (*mtx)[3][4])
 {
-	drawTexCoord(m_bounds.i.x, m_bounds.i.y, p3, p4, _112[0].x, _112[0].y, _112[1].x, _112[1].y, _112[2].x, _112[2].y, _112[3].x, _112[3].y,
+	drawTexCoord(mBounds.i.x, mBounds.i.y, p3, p4, _112[0].x, _112[0].y, _112[1].x, _112[1].y, _112[2].x, _112[2].y, _112[3].x, _112[3].y,
 	             mtx);
 }
 
@@ -579,21 +579,21 @@ void J2DPictureEx::drawTexCoord(float p1, float p2, float p3, float p4, short p5
                                 short p11, short p12, float (*p13)[3][4])
 {
 	Mtx v1;
-	PSMTXConcat(*p13, m_globalMtx, v1);
-	if (m_material && m_material->_0E == 0) {
+	PSMTXConcat(*p13, mGlobalMtx, v1);
+	if (mMaterial && mMaterial->_0E == 0) {
 		return;
 	}
 	GXLoadPosMtxImm(v1, 0);
-	JUtility::TColor colors[4] = { m_cornerColors[0], m_cornerColors[1], m_cornerColors[2], m_cornerColors[3] };
-	if (m_material) {
-		if ((m_material->m_colorBlock.m_channels[1].m_data & 1) == 1) {
-			if (m_material->_0F == 1) {
+	JUtility::TColor colors[4] = { mCornerColors[0], mCornerColors[1], mCornerColors[2], mCornerColors[3] };
+	if (mMaterial) {
+		if ((mMaterial->mColorBlock.mChannels[1].mData & 1) == 1) {
+			if (mMaterial->_0F == 1) {
 				for (int i = 0; i < 4; i++) {
-					colors[i].a *= m_colorAlpha / 0xFF;
+					colors[i].a *= mColorAlpha / 0xFF;
 				}
 			}
-		} else if (!m_isInfluencedAlpha) {
-			JUtility::TColor matColor = m_colorAlpha;
+		} else if (!mIsInfluencedAlpha) {
+			JUtility::TColor matColor = mColorAlpha;
 			GXSetChanMatColor(GX_ALPHA0, matColor);
 		}
 	}
@@ -804,7 +804,7 @@ void J2DPictureEx::drawTexCoord(float p1, float p2, float p3, float p4, short p5
  */
 bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, float p3)
 {
-	return (!m_material) ? false : insert(img, palette, m_material->m_texGenBlock.m_texGenNum, p3);
+	return (!mMaterial) ? false : insert(img, palette, mMaterial->mTexGenBlock.mTexGenNum, p3);
 }
 
 /*
@@ -815,7 +815,7 @@ bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, float p3)
  */
 bool J2DPictureEx::append(const char* p1, JUTPalette* palette, float p3)
 {
-	return (!m_material) ? false : insert(p1, palette, m_material->m_texGenBlock.m_texGenNum, p3);
+	return (!mMaterial) ? false : insert(p1, palette, mMaterial->mTexGenBlock.mTexGenNum, p3);
 }
 
 /*
@@ -826,7 +826,7 @@ bool J2DPictureEx::append(const char* p1, JUTPalette* palette, float p3)
  */
 bool J2DPictureEx::append(JUTTexture* texture, float p2)
 {
-	return (!m_material) ? false : insert(texture, m_material->m_texGenBlock.m_texGenNum, p2);
+	return (!mMaterial) ? false : insert(texture, mMaterial->mTexGenBlock.mTexGenNum, p2);
 }
 
 /*
@@ -844,7 +844,7 @@ bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, unsigned char
 		return false;
 	}
 	insertCommon(p3, p4);
-	m_material->m_tevBlock->insertTexture(p3, img, palette);
+	mMaterial->mTevBlock->insertTexture(p3, img, palette);
 	return true;
 }
 
@@ -874,7 +874,7 @@ bool J2DPictureEx::insert(JUTTexture* texture, unsigned char p2, float p3)
 		return false;
 	}
 	insertCommon(p2, p3);
-	m_material->m_tevBlock->insertTexture(p2, texture);
+	mMaterial->mTevBlock->insertTexture(p2, texture);
 	return true;
 }
 
@@ -1122,21 +1122,21 @@ lbl_80055D08:
  */
 bool J2DPictureEx::isInsert(unsigned char p1) const
 {
-	if (!m_material) {
+	if (!mMaterial) {
 		return false;
 	}
-	if (!m_material->m_tevBlock) {
+	if (!mMaterial->mTevBlock) {
 		return false;
 	}
-	u8 texGenNum = m_material->m_texGenBlock.m_texGenNum;
+	u8 texGenNum = mMaterial->mTexGenBlock.mTexGenNum;
 	if (!((texGenNum < 8 && p1 < 8) && p1 <= texGenNum)) {
 		return false;
 	}
-	u32 maxStage = m_material->m_tevBlock->getMaxStage();
+	u32 maxStage = mMaterial->mTevBlock->getMaxStage();
 	if ((u8)maxStage <= 2 && texGenNum != 0) {
 		return false;
 	}
-	if ((u8)maxStage == m_material->m_tevBlock->getTevStageNum() && texGenNum != 0) {
+	if ((u8)maxStage == mMaterial->mTevBlock->getTevStageNum() && texGenNum != 0) {
 		return false;
 	}
 	return true;
@@ -1231,21 +1231,21 @@ int J2DPictureEx::remove(unsigned char p1)
 	if (!isRemove(p1)) {
 		return 0;
 	}
-	u8 texGenNum = m_material->m_texGenBlock.m_texGenNum;
+	u8 texGenNum = mMaterial->mTexGenBlock.mTexGenNum;
 	// TODO: IDK what operation this is.
-	s8 v1 = -((texGenNum + 1) != m_material->m_tevBlock->getTevStageNum());
-	// u8 tevStageNum = m_material->m_tevBlock->getTevStageNum();
+	s8 v1 = -((texGenNum + 1) != mMaterial->mTevBlock->getTevStageNum());
+	// u8 tevStageNum = mMaterial->mTevBlock->getTevStageNum();
 	// s8 v1          = ((texGenNum + 1) - tevStageNum) | (tevStageNum - (texGenNum + 1));
 	shiftSetBlendRatio(p1, 0.0f, true, false);
 	shiftSetBlendRatio(p1, 0.0f, false, false);
-	m_material->m_texGenBlock.m_texGenNum = texGenNum - 1;
-	m_material->m_tevBlock->removeTexture(p1);
+	mMaterial->mTexGenBlock.mTexGenNum = texGenNum - 1;
+	mMaterial->mTevBlock->removeTexture(p1);
 	if (texGenNum - 1 != 1) {
 		p1 = texGenNum + (1 - (v1 < 0));
 	} else {
 		p1 = 1 - (v1 < 0);
 	}
-	m_material->m_tevBlock->setTevStageNum(p1);
+	mMaterial->mTevBlock->setTevStageNum(p1);
 	setTevOrder(texGenNum - 1, p1, v1 < 0);
 	setTevStage(texGenNum - 1, p1, v1 < 0);
 	setTevKColor(texGenNum - 1);
@@ -1379,10 +1379,10 @@ lbl_80056010:
  */
 int J2DPictureEx::remove()
 {
-	if (!m_material) {
+	if (!mMaterial) {
 		return 0;
 	}
-	return (!m_material->m_tevBlock) ? 0 : remove(m_material->m_texGenBlock.m_texGenNum - 1);
+	return (!mMaterial->mTevBlock) ? 0 : remove(mMaterial->mTexGenBlock.mTexGenNum - 1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1426,14 +1426,14 @@ lbl_80056084:
  */
 int J2DPictureEx::remove(JUTTexture* texture)
 {
-	if (!m_material) {
+	if (!mMaterial) {
 		return 0;
 	}
-	if (!m_material->m_tevBlock) {
+	if (!mMaterial->mTevBlock) {
 		return 0;
 	}
 	uint i;
-	for (i = 0; i < m_material->m_texGenBlock.m_texGenNum && m_material->m_tevBlock->getTexture(i) != texture; i++) { }
+	for (i = 0; i < mMaterial->mTexGenBlock.mTexGenNum && mMaterial->mTevBlock->getTexture(i) != texture; i++) { }
 	return remove(i);
 	/*
 	stwu     r1, -0x20(r1)
@@ -1508,13 +1508,13 @@ lbl_8005613C:
  */
 bool J2DPictureEx::isRemove(u8 p1) const
 {
-	if (!m_material) {
+	if (!mMaterial) {
 		return false;
 	}
-	if (!m_material->m_tevBlock) {
+	if (!mMaterial->mTevBlock) {
 		return false;
 	}
-	u8 texGenNum = m_material->m_texGenBlock.m_texGenNum;
+	u8 texGenNum = mMaterial->mTexGenBlock.mTexGenNum;
 	if (texGenNum <= p1 || texGenNum == 1) {
 		return false;
 	}
@@ -1529,8 +1529,8 @@ bool J2DPictureEx::isRemove(u8 p1) const
  */
 void J2DPictureEx::draw(float p1, float p2, unsigned char p3, bool p4, bool p5, bool p6)
 {
-	if (m_material && m_material->m_tevBlock && m_isVisible && p3 < m_material->m_texGenBlock.m_texGenNum) {
-		JUTTexture* texture = m_material->m_tevBlock->getTexture(p3);
+	if (mMaterial && mMaterial->mTevBlock && mIsVisible && p3 < mMaterial->mTexGenBlock.mTexGenNum) {
+		JUTTexture* texture = mMaterial->mTevBlock->getTexture(p3);
 		if (texture) {
 			draw(p1, p2, texture->getSizeX(), texture->getSizeY(), p4, p5, p6);
 		}
@@ -1942,8 +1942,8 @@ lbl_80056848:
  */
 void J2DPictureEx::drawOut(float p1, float p2, float p3, float p4, float p5, float p6)
 {
-	if (m_material && m_material->m_tevBlock && m_isVisible) {
-		JUTTexture* texture = m_material->m_tevBlock->getTexture(0);
+	if (mMaterial && mMaterial->mTevBlock && mIsVisible) {
+		JUTTexture* texture = mMaterial->mTevBlock->getTexture(0);
 		if (texture) {
 			drawOut(JGeometry::TBox2f(p1, p2, p1 + p3, p2 + p4),
 			        JGeometry::TBox2f(p5, p6, p5 + texture->getSizeX(), p6 + texture->getSizeY()));
@@ -2228,8 +2228,8 @@ void J2DPictureEx::drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox
  */
 void J2DPictureEx::load(GXTexMapID p1, unsigned char p2)
 {
-	if (m_material && m_material->m_tevBlock) {
-		m_material->m_tevBlock->loadTexture(p1, p2);
+	if (mMaterial && mMaterial->mTevBlock) {
+		mMaterial->mTevBlock->loadTexture(p1, p2);
 	}
 }
 
@@ -2261,7 +2261,7 @@ void J2DPictureEx::setTevOrder(unsigned char p1, unsigned char p2, bool p3)
 	}
 	for (u8 i = 0; i < p2; i++) {
 		J2DTevOrder order(data[i] >> 8, data[i] >> 8, data[i]);
-		m_material->m_tevBlock->setTevOrder(i, order);
+		mMaterial->mTevBlock->setTevOrder(i, order);
 	}
 }
 
@@ -2273,14 +2273,14 @@ void J2DPictureEx::setTevOrder(unsigned char p1, unsigned char p2, bool p3)
 void J2DPictureEx::setTevStage(unsigned char p1, unsigned char p2, bool p3)
 {
 	if (p1 == 1) {
-		J2DTevStage* stage  = m_material->m_tevBlock->getTevStage(0);
-		JUTTexture* texture = m_material->m_tevBlock->getTexture(0);
+		J2DTevStage* stage  = mMaterial->mTevBlock->getTevStage(0);
+		JUTTexture* texture = mMaterial->mTevBlock->getTexture(0);
 		stage_enum v1       = Stage_0;
 		bool v2             = false;
 		if (texture != nullptr) {
 			if (texture->_20 != nullptr) {
-				if ((texture->_20->m_textureFormat == (s8)GX_TF_I4 || texture->_20->m_textureFormat == (s8)GX_TF_I8)
-				    && texture->_20->m_transparency == Transparency_0) {
+				if ((texture->_20->mTextureFormat == (s8)GX_TF_I4 || texture->_20->mTextureFormat == (s8)GX_TF_I8)
+				    && texture->_20->mTransparency == Transparency_0) {
 					v1 = Stage_1;
 					v2 = true;
 				}
@@ -2290,22 +2290,22 @@ void J2DPictureEx::setTevStage(unsigned char p1, unsigned char p2, bool p3)
 			setStage(stage, (stage_enum)(-v1 < 0));
 		} else {
 			setStage(stage, (v2 ? Stage_6 : Stage_5));
-			setStage(m_material->m_tevBlock->getTevStage(1), Stage_4);
+			setStage(mMaterial->mTevBlock->getTevStage(1), Stage_4);
 		}
 	} else {
 		if (p3 == false) {
-			setStage(m_material->m_tevBlock->getTevStage(0), Stage_2);
+			setStage(mMaterial->mTevBlock->getTevStage(0), Stage_2);
 			for (u8 i = 1; i < p1; i++) {
-				setStage(m_material->m_tevBlock->getTevStage(i), Stage_3);
+				setStage(mMaterial->mTevBlock->getTevStage(i), Stage_3);
 			}
-			setStage(m_material->m_tevBlock->getTevStage(p1), Stage_4);
+			setStage(mMaterial->mTevBlock->getTevStage(p1), Stage_4);
 		} else {
-			setStage(m_material->m_tevBlock->getTevStage(0), Stage_2);
+			setStage(mMaterial->mTevBlock->getTevStage(0), Stage_2);
 			for (u8 i = 1; i < p1; i++) {
-				setStage(m_material->m_tevBlock->getTevStage(i), Stage_3);
+				setStage(mMaterial->mTevBlock->getTevStage(i), Stage_3);
 			}
-			setStage(m_material->m_tevBlock->getTevStage(p1), Stage_7);
-			setStage(m_material->m_tevBlock->getTevStage(p1 + 1), Stage_4);
+			setStage(mMaterial->mTevBlock->getTevStage(p1), Stage_7);
+			setStage(mMaterial->mTevBlock->getTevStage(p1 + 1), Stage_4);
 		}
 	}
 	/*
@@ -3073,9 +3073,9 @@ void J2DPictureEx::setTevKColorSel(unsigned char p1)
 {
 	for (u8 i = 0; i < p1; i++) {
 		if (i < 4) {
-			m_material->m_tevBlock->setTevKColorSel(i, i * -4 + 31);
+			mMaterial->mTevBlock->setTevKColorSel(i, i * -4 + 31);
 		} else {
-			m_material->m_tevBlock->setTevKColorSel(i, (i - 4) * -4 + 30);
+			mMaterial->mTevBlock->setTevKColorSel(i, (i - 4) * -4 + 30);
 		}
 	}
 	/*
@@ -3315,7 +3315,7 @@ lbl_80057CD4:
  */
 void J2DPictureEx::setBlendColorRatio(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
 {
-	if (m_material != nullptr) {
+	if (mMaterial != nullptr) {
 		_124[0] = p1;
 		_124[1] = p2;
 		_124[2] = p3;
@@ -3324,7 +3324,7 @@ void J2DPictureEx::setBlendColorRatio(float p1, float p2, float p3, float p4, fl
 		_17C    = p6;
 		_180    = p7;
 		_188    = p8;
-		setTevKColor(m_material->m_texGenBlock.m_texGenNum);
+		setTevKColor(mMaterial->mTexGenBlock.mTexGenNum);
 	}
 	/*
 	.loc_0x0:
@@ -3679,10 +3679,10 @@ lbl_80058140:
  */
 u8 J2DPictureEx::getTextureCount() const
 {
-	if (m_material == nullptr) {
+	if (mMaterial == nullptr) {
 		return 0;
 	}
-	return m_material->m_texGenBlock.m_texGenNum;
+	return mMaterial->mTexGenBlock.mTexGenNum;
 }
 
 /*
@@ -4064,14 +4064,14 @@ lbl_800586C0:
  */
 bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* white) const
 {
-	if (m_material == nullptr) {
+	if (mMaterial == nullptr) {
 		return false;
 	}
-	if (m_material->m_tevBlock == nullptr) {
+	if (mMaterial->mTevBlock == nullptr) {
 		return false;
 	}
-	s8 texGenNum   = m_material->m_texGenBlock.m_texGenNum;
-	u8 tevStageNum = m_material->m_tevBlock->getTevStageNum();
+	s8 texGenNum   = mMaterial->mTexGenBlock.mTexGenNum;
+	u8 tevStageNum = mMaterial->mTevBlock->getTevStageNum();
 	if (texGenNum == 1) {
 		texGenNum = 1 - tevStageNum | tevStageNum - 1;
 	} else {
@@ -4080,8 +4080,8 @@ bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* whit
 	black->set(0, 0, 0, 0);
 	white->set(0xFF, 0xFF, 0xFF, 0xFF);
 	if (texGenNum < 0) {
-		*black = *m_material->m_tevBlock->getTevColor(0);
-		*white = *m_material->m_tevBlock->getTevColor(1);
+		*black = *mMaterial->mTevBlock->getTevColor(0);
+		*white = *mMaterial->mTevBlock->getTevColor(1);
 	}
 	return true;
 	/*
@@ -4380,15 +4380,15 @@ lbl_80058A20:
  */
 void J2DPictureEx::setAlpha(unsigned char alpha)
 {
-	m_alpha = alpha;
-	if (m_material == nullptr) {
+	mAlpha = alpha;
+	if (mMaterial == nullptr) {
 		return;
 	}
 	// ???
-	if (m_material->m_colorBlock.m_colors[0].a == 0) {
+	if (mMaterial->mColorBlock.mColors[0].a == 0) {
 		return;
 	}
-	m_material->m_colorBlock.m_colors[0].a = alpha;
+	mMaterial->mColorBlock.mColors[0].a = alpha;
 	/*
 	stb      r4, 0xb2(r3)
 	lwz      r3, 0x168(r3)
@@ -4408,9 +4408,9 @@ void J2DPictureEx::setAlpha(unsigned char alpha)
  */
 void J2DPictureEx::setCullBack(_GXCullMode cullMode)
 {
-	m_cullMode = cullMode;
-	if (m_material != nullptr) {
-		m_material->m_colorBlock.m_cullMode = cullMode;
+	mCullMode = cullMode;
+	if (mMaterial != nullptr) {
+		mMaterial->mColorBlock.mCullMode = cullMode;
 	}
 	J2DPane::setCullBack(cullMode);
 }
@@ -4422,10 +4422,10 @@ void J2DPictureEx::setCullBack(_GXCullMode cullMode)
  */
 void J2DPictureEx::rewriteAlpha()
 {
-	if (m_material == nullptr) {
+	if (mMaterial == nullptr) {
 		return;
 	}
-	m_alpha = m_material->m_colorBlock.m_colors[0].a;
+	mAlpha = mMaterial->mColorBlock.mColors[0].a;
 }
 
 /*
@@ -4435,9 +4435,9 @@ void J2DPictureEx::rewriteAlpha()
  */
 bool J2DPictureEx::isUsed(const ResTIMG* resource)
 {
-	if (m_material != nullptr && m_material->m_tevBlock != nullptr) {
+	if (mMaterial != nullptr && mMaterial->mTevBlock != nullptr) {
 		for (u32 i = 0; i < 8; i++) {
-			JUTTexture* texture = m_material->m_tevBlock->getTexture(i);
+			JUTTexture* texture = mMaterial->mTevBlock->getTexture(i);
 			if (texture != nullptr && texture->_20 == resource) {
 				return true;
 			}
@@ -4453,8 +4453,8 @@ bool J2DPictureEx::isUsed(const ResTIMG* resource)
  */
 void J2DPictureEx::setAnimation(J2DAnmColor* animation)
 {
-	if (m_material != nullptr) {
-		m_material->setAnimation(animation);
+	if (mMaterial != nullptr) {
+		mMaterial->setAnimation(animation);
 	}
 }
 
@@ -4465,8 +4465,8 @@ void J2DPictureEx::setAnimation(J2DAnmColor* animation)
  */
 void J2DPictureEx::setAnimation(J2DAnmTextureSRTKey* animation)
 {
-	if (m_material != nullptr) {
-		m_material->setAnimation(animation);
+	if (mMaterial != nullptr) {
+		mMaterial->setAnimation(animation);
 	}
 }
 
@@ -4477,8 +4477,8 @@ void J2DPictureEx::setAnimation(J2DAnmTextureSRTKey* animation)
  */
 void J2DPictureEx::setAnimation(J2DAnmTexPattern* animation)
 {
-	if (m_material != nullptr) {
-		m_material->setAnimation(animation);
+	if (mMaterial != nullptr) {
+		mMaterial->setAnimation(animation);
 	}
 }
 
@@ -4489,8 +4489,8 @@ void J2DPictureEx::setAnimation(J2DAnmTexPattern* animation)
  */
 void J2DPictureEx::setAnimation(J2DAnmTevRegKey* animation)
 {
-	if (m_material != nullptr) {
-		m_material->setAnimation(animation);
+	if (mMaterial != nullptr) {
+		mMaterial->setAnimation(animation);
 	}
 }
 
@@ -4499,7 +4499,7 @@ void J2DPictureEx::setAnimation(J2DAnmTevRegKey* animation)
  * Address:	80058BF8
  * Size:	000008
  */
-void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* animation) { m_anmVisibility = animation; }
+void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* animation) { mAnmVisibility = animation; }
 
 /*
  * --INFO--
@@ -4509,8 +4509,8 @@ void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* animation) { m_anmVisibili
  */
 void J2DPictureEx::setAnimation(J2DAnmVtxColor* animation)
 {
-	m_anmVtxColor = animation;
-	_1A4          = 0;
+	mAnmVtxColor = animation;
+	_1A4         = 0;
 	if (animation != nullptr) {
 		u16 v1 = animation->_10;
 		for (u8 a = 0; a < 4; a++) {
@@ -4521,7 +4521,7 @@ void J2DPictureEx::setAnimation(J2DAnmVtxColor* animation)
 				// for (u16 b = 0; !doBreak && b < v1; b++) {
 				// 	for (u16 c = 0; c < animation->_14[b]._00; c++) {
 				// 		if (_170[a/2][a%2] == animation->_1C[animation->_14[b]._04 + c]) {
-				// 			m_anmVtxColor = animation;
+				// 			mAnmVtxColor = animation;
 				// 			_1A4 |= 1 << a;
 				// 			doBreak = true;
 				// 			break;
@@ -4532,7 +4532,7 @@ void J2DPictureEx::setAnimation(J2DAnmVtxColor* animation)
 		}
 	}
 	if (_1A4 == 0) {
-		m_anmVtxColor = nullptr;
+		mAnmVtxColor = nullptr;
 	}
 	/*
 	stw      r4, 0x1a0(r3)
@@ -4831,7 +4831,7 @@ lbl_80058F34:
  * Address:	80058F48
  * Size:	000008
  */
-J2DMaterial* J2DPictureEx::getMaterial() const { return m_material; }
+J2DMaterial* J2DPictureEx::getMaterial() const { return mMaterial; }
 
 /*
  * --INFO--

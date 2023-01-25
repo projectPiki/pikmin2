@@ -5,7 +5,7 @@
  * Address:	8041A030
  * Size:	000030
  */
-void MapCollision::getCurrTri(Game::CurrTriInfo& info) { m_divider->getCurrTri(info); }
+void MapCollision::getCurrTri(Game::CurrTriInfo& info) { mDivider->getCurrTri(info); }
 
 /*
  * --INFO--
@@ -14,8 +14,8 @@ void MapCollision::getCurrTri(Game::CurrTriInfo& info) { m_divider->getCurrTri(i
  */
 void MapCollision::read(Stream& input)
 {
-	m_divider = new Sys::GridDivider();
-	m_divider->read(input);
+	mDivider = new Sys::GridDivider();
+	mDivider->read(input);
 }
 
 /*
@@ -26,6 +26,6 @@ void MapCollision::read(Stream& input)
 MapCollision* MapCollision::clone(Matrixf& matrix)
 {
 	MapCollision* clone = new MapCollision();
-	clone->m_divider    = (Sys::GridDivider*)m_divider->clone(matrix);
+	clone->mDivider     = (Sys::GridDivider*)mDivider->clone(matrix);
 	return clone;
 }

@@ -25,7 +25,7 @@ bool InteractFlick::actCommon(Creature* creature)
  */
 bool InteractAttack::actCommon(Creature* creature)
 {
-	if (m_creature->isNavi() && !creature->isTeki()) {
+	if (mCreature->isNavi() && !creature->isTeki()) {
 		return false;
 	}
 

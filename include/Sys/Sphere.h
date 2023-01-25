@@ -10,12 +10,12 @@ struct Sphere {
 	inline Sphere() { }
 
 	Sphere(Vector3f& vec, f32 rad)
-	    : m_position(vec)
-	    , m_radius(rad)
+	    : mPosition(vec)
+	    , mRadius(rad)
 	{
 	}
 
-	inline Sphere(const Vector3f& vec) { m_position = vec; }
+	inline Sphere(const Vector3f& vec) { mPosition = vec; }
 
 	bool intersect(Sphere&);
 	bool intersect(Sphere&, Vector3f&);
@@ -26,8 +26,8 @@ struct Sphere {
 	// Unused/inlined:
 	bool intersectRay(Vector3f&, Vector3f&);
 
-	Vector3f m_position; // _00
-	f32 m_radius;        // _0C
+	Vector3f mPosition; // _00
+	f32 mRadius;        // _0C
 };
 } // namespace Sys
 

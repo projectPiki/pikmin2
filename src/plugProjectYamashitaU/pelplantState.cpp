@@ -69,8 +69,8 @@ void StateBlendAnim::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBlendAnim::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying) {
-		switch (enemy->m_curAnim->m_type) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_END_BLEND:
 			enemy->endBlend();
 			transit(enemy, _10, nullptr);
@@ -88,13 +88,13 @@ StateWither::StateWither(int stateID, int p1, int p2, int p3)
 {
 	switch (stateID) {
 	case PELPLANT_WitherBig:
-		m_name = "wither_big";
+		mName = "wither_big";
 		return;
 	case PELPLANT_WitherMiddle:
-		m_name = "wither_Middle";
+		mName = "wither_Middle";
 		return;
 	case PELPLANT_WitherSmall:
-		m_name = "wither_Small";
+		mName = "wither_Small";
 		return;
 	}
 }
@@ -118,8 +118,8 @@ void StateWither::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWither::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying) {
-		switch (enemy->m_curAnim->m_type) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_END_BLEND:
 			enemy->endBlend();
 			transit(enemy, _10, 0);
@@ -142,16 +142,16 @@ void StateWither::cleanup(EnemyBase* enemy) { static_cast<Obj*>(enemy)->updateLO
 StateWait::StateWait(int stateID, int pelSize)
     : State(stateID)
 {
-	m_pelSize = pelSize;
-	switch (m_pelSize) {
+	mPelSize = pelSize;
+	switch (mPelSize) {
 	case PELPLANT_SIZE_SMALL:
-		m_name = "wait_small";
+		mName = "wait_small";
 		return;
 	case PELPLANT_SIZE_MIDDLE:
-		m_name = "wait_middle";
+		mName = "wait_middle";
 		return;
 	case PELPLANT_SIZE_BIG:
-		m_name = "wait_big";
+		mName = "wait_big";
 		return;
 	}
 }
@@ -166,10 +166,10 @@ void StateWait::init(EnemyBase* e, StateArg* stateArg)
 	Obj* pellet = static_cast<Obj*>(e);
 
 	pellet->disableEvent(0, EB_IsCullable);
-	RESET_FLAG(pellet->m_flags, PELPLANT_FLAGS_UNK2);
+	RESET_FLAG(pellet->mFlags, PELPLANT_FLAGS_UNK2);
 	pellet->enableEvent(0, EB_IsVulnerable);
 
-	switch (m_pelSize) {
+	switch (mPelSize) {
 	case PELPLANT_SIZE_SMALL:
 		pellet->startMotion(4, nullptr);
 		break;
@@ -177,7 +177,7 @@ void StateWait::init(EnemyBase* e, StateArg* stateArg)
 		pellet->startMotion(5, nullptr);
 		break;
 	case PELPLANT_SIZE_BIG:
-		SET_FLAG(pellet->m_flags, PELPLANT_FLAGS_UNK2);
+		SET_FLAG(pellet->mFlags, PELPLANT_FLAGS_UNK2);
 		pellet->disableEvent(0, EB_IsVulnerable);
 		pellet->startMotion(6, nullptr);
 		pellet->updateLODSphereRadius(2);
@@ -200,27 +200,27 @@ void StateWait::init(EnemyBase* e, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	float frameTime = sys->m_deltaTime;
-	if (static_cast<Obj*>(enemy)->m_flags & 1) {
+	float frameTime = sys->mDeltaTime;
+	if (static_cast<Obj*>(enemy)->mFlags & 1) {
 		static_cast<Obj*>(enemy)->_2C0 += frameTime;
 	}
 
-	if (enemy->m_curAnim->m_isPlaying) {
-		switch (enemy->m_curAnim->m_type) {
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
 		case 1000:
 		case 1:
 			float growth;
-			if (gameSystem->m_mode == GSM_PIKLOPEDIA) {
+			if (gameSystem->mMode == GSM_PIKLOPEDIA) {
 				growth = 5.0f * randFloat();
-			} else if (m_pelSize == 0) {
-				growth = CG_PARMS(enemy)->m_pelplantParms.m_smallToMedGrowth.m_value;
+			} else if (mPelSize == 0) {
+				growth = CG_PARMS(enemy)->mPelplantParms.mSmallToMedGrowth.mValue;
 			} else {
-				growth = CG_PARMS(enemy)->m_pelplantParms.m_medToLargeGrowth.m_value;
+				growth = CG_PARMS(enemy)->mPelplantParms.mMedToLargeGrowth.mValue;
 			}
 
-			if ((static_cast<Obj*>(enemy)->_2C0 > growth) || (static_cast<Obj*>(enemy)->m_farmPow > 0)) {
+			if ((static_cast<Obj*>(enemy)->_2C0 > growth) || (static_cast<Obj*>(enemy)->mFarmPow > 0)) {
 				static_cast<Obj*>(enemy)->_2C0 = 0.0f;
-				switch (m_pelSize) {
+				switch (mPelSize) {
 				case PELPLANT_SIZE_SMALL:
 					transit(enemy, 3, 0);
 					break;
@@ -231,8 +231,8 @@ void StateWait::exec(EnemyBase* enemy)
 					break;
 				}
 
-			} else if (static_cast<Obj*>(enemy)->m_farmPow < 0) {
-				switch (m_pelSize) {
+			} else if (static_cast<Obj*>(enemy)->mFarmPow < 0) {
+				switch (mPelSize) {
 				case PELPLANT_SIZE_SMALL:
 					break;
 				case PELPLANT_SIZE_MIDDLE:
@@ -247,14 +247,14 @@ void StateWait::exec(EnemyBase* enemy)
 	} else {
 		static_cast<Obj*>(enemy)->changePelletColor();
 		if (enemy->injure()) {
-			if (enemy->m_health <= 0.0f) {
-				switch (m_pelSize) {
+			if (enemy->mHealth <= 0.0f) {
+				switch (mPelSize) {
 				case PELPLANT_SIZE_BIG:
 					transit(enemy, 6, 0);
 					return;
 				}
 			} else {
-				switch (m_pelSize) {
+				switch (mPelSize) {
 				case PELPLANT_SIZE_BIG:
 					transit(enemy, 5, 0);
 					return;
@@ -279,9 +279,9 @@ void StateWait::cleanup(EnemyBase*) { }
 StateGrow::StateGrow(int stateID, int p1, int p2)
     : State(stateID)
 {
-	_10    = p1;
-	_14    = p2;
-	m_name = "grow";
+	_10   = p1;
+	_14   = p2;
+	mName = "grow";
 }
 
 /*
@@ -307,7 +307,7 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->startMotion(_10, nullptr);
 		return;
 	case 2:
-		switch (static_cast<Obj*>(enemy)->m_size) {
+		switch (static_cast<Obj*>(enemy)->mSize) {
 		case PELLET_NUMBER_ONE:
 			efx::TPplGrow2 grow2;
 			grow2.create(&effectArg);
@@ -327,7 +327,7 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 		}
 
 		static_cast<Obj*>(enemy)->updateLODSphereRadius(2);
-		if ((static_cast<Obj*>(enemy)->m_size == 10) || (static_cast<Obj*>(enemy)->m_size == 20)) {
+		if ((static_cast<Obj*>(enemy)->mSize == 10) || (static_cast<Obj*>(enemy)->mSize == 20)) {
 			enemy->startMotion(7, nullptr);
 			return;
 		}
@@ -343,8 +343,8 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateGrow::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isPlaying != 0) {
-		switch (enemy->m_curAnim->m_type) {
+	if (enemy->mCurAnim->mIsPlaying != 0) {
+		switch (enemy->mCurAnim->mType) {
 		case 1000:
 		case 1:
 			transit(enemy, _14, 0);
@@ -367,8 +367,8 @@ void StateGrow::cleanup(Game::EnemyBase*) { }
 StateDamage::StateDamage(int stateID, int p1)
     : State(stateID)
 {
-	m_name = "damage";
-	_10    = p1;
+	mName = "damage";
+	_10   = p1;
 }
 
 /*
@@ -380,7 +380,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	if (_10 != 5) {
 		enemy->startMotion(_10, nullptr);
-	} else if ((static_cast<Obj*>(enemy)->m_size == 10) || (static_cast<Obj*>(enemy)->m_size == 20)) {
+	} else if ((static_cast<Obj*>(enemy)->mSize == 10) || (static_cast<Obj*>(enemy)->mSize == 20)) {
 		enemy->startMotion(8, nullptr);
 	} else {
 		enemy->startMotion(_10, nullptr);
@@ -396,8 +396,8 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDamage::exec(Game::EnemyBase* enemy)
 {
-	if ((enemy->m_curAnim->m_isPlaying != 0) && ((u32)enemy->m_curAnim->m_type == 0x3E8)) {
-		transit(enemy, m_stateMachine->m_previousID, 0);
+	if ((enemy->mCurAnim->mIsPlaying != 0) && ((u32)enemy->mCurAnim->mType == 0x3E8)) {
+		transit(enemy, mStateMachine->mPreviousID, 0);
 	}
 	static_cast<Obj*>(enemy)->changePelletColor();
 }
@@ -417,8 +417,8 @@ void StateDamage::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_IsVulnera
 StateDead::StateDead(int stateID, int p1)
     : State(stateID)
 {
-	m_name = "dead";
-	_10    = p1;
+	mName = "dead";
+	_10   = p1;
 }
 
 /*
@@ -430,7 +430,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	if (_10 != 1) {
 		enemy->startMotion(_10, nullptr);
-	} else if ((static_cast<Obj*>(enemy)->m_size == PELLET_NUMBER_TEN) || (static_cast<Obj*>(enemy)->m_size == PELLET_NUMBER_TWENTY)) {
+	} else if ((static_cast<Obj*>(enemy)->mSize == PELLET_NUMBER_TEN) || (static_cast<Obj*>(enemy)->mSize == PELLET_NUMBER_TWENTY)) {
 		enemy->startMotion(9, nullptr);
 	} else {
 		enemy->startMotion(_10, nullptr);
@@ -439,9 +439,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 
 	if (_10 != 1) {
-		if (static_cast<Obj*>(enemy)->m_pellet) {
-			static_cast<Obj*>(enemy)->m_pellet->kill(nullptr);
-			static_cast<Obj*>(enemy)->m_pellet = nullptr;
+		if (static_cast<Obj*>(enemy)->mPellet) {
+			static_cast<Obj*>(enemy)->mPellet->kill(nullptr);
+			static_cast<Obj*>(enemy)->mPellet = nullptr;
 		}
 	}
 }
@@ -453,10 +453,10 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if ((enemy->m_curAnim->m_isPlaying) && ((u32)enemy->m_curAnim->m_type == 1000)) {
-		if (static_cast<Obj*>(enemy)->m_pellet) {
-			static_cast<Obj*>(enemy)->m_pellet->endCapture();
-			static_cast<Obj*>(enemy)->m_pellet = nullptr;
+	if ((enemy->mCurAnim->mIsPlaying) && ((u32)enemy->mCurAnim->mType == 1000)) {
+		if (static_cast<Obj*>(enemy)->mPellet) {
+			static_cast<Obj*>(enemy)->mPellet->endCapture();
+			static_cast<Obj*>(enemy)->mPellet = nullptr;
 		}
 		enemy->kill(nullptr);
 	}

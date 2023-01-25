@@ -17,18 +17,18 @@ struct J2DBloSaver {
 		struct TNC {
 			TNC(const ResTIMG* img, const char* name);
 
-			inline ~TNC() { delete[] m_name; }
+			inline ~TNC() { delete[] mName; }
 
-			const ResTIMG* m_texture; // _00
-			const char* m_name;       // _04
-			TNC* m_next;              // _08
+			const ResTIMG* mTexture; // _00
+			const char* mName;       // _04
+			TNC* mNext;              // _08
 		};
 
 		~CTextureNameConnect();
 		void set(const ResTIMG* img, const char* name);
 		void clear();
 
-		TNC* m_elements; // _00
+		TNC* mElements; // _00
 	};
 
 	static CTextureNameConnect* TextureNameConnect;

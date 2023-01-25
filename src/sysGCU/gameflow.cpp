@@ -60,7 +60,7 @@ u32 GameFlow::mActiveSectionFlag = 1;
 GameFlow::GameFlow()
 {
 	mActiveSectionFlag = 21;
-	m_section          = nullptr;
+	mSection           = nullptr;
 }
 
 /*
@@ -86,9 +86,9 @@ void GameFlow::run()
 		JKRExpHeap* heap = JKRExpHeap::create(parentHeap->getFreeSize(), parentHeap, true);
 
 		setSection();
-		m_section->init();
-		m_section->run();
-		m_section->exit();
+		mSection->init();
+		mSection->run();
+		mSection->exit();
 
 		heap->destroy();
 		parentHeap->becomeCurrentHeap();
@@ -166,11 +166,11 @@ void GameFlow::setSection()
 
 	switch (mActiveSectionFlag) {
 	case 0x15:
-		m_section          = new BootSection(JKRHeap::sCurrentHeap);
+		mSection           = new BootSection(JKRHeap::sCurrentHeap);
 		mActiveSectionFlag = 0;
 		break;
 	case 0x00:
-		m_section          = new RootMenuSection(JKRHeap::sCurrentHeap);
+		mSection           = new RootMenuSection(JKRHeap::sCurrentHeap);
 		mActiveSectionFlag = 0x16;
 		break;
 	default:
@@ -191,7 +191,7 @@ void* GameFlow::getSectionInfo(int id)
 	P2ASSERTBOUNDSLINE(201, 0, id, 0x23);
 
 	for (u32 i = 0; i < 0x23; i++) {
-		if (id == sSectionInfo[i].id.m_sectionId) {
+		if (id == sSectionInfo[i].id.mSectionId) {
 			sectionInfo = &sSectionInfo[i];
 			break;
 		}
@@ -238,4 +238,4 @@ ISection* GameFlow::createSection(JKRHeap* heap)
  * Address:	80424564
  * Size:	000040
  */
-ISection* GameFlow::getCurrentSection() { return (m_section) ? m_section->getCurrentSection() : nullptr; }
+ISection* GameFlow::getCurrentSection() { return (mSection) ? mSection->getCurrentSection() : nullptr; }

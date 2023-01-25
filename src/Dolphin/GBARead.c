@@ -24,13 +24,13 @@ int GBAReadAsync(int portIndex, u8* p2, u8* p3)
 {
 	// UNUSED FUNCTION
 	GBA* gba = &__GBA[portIndex];
-	if (gba->m_syncCallback) {
+	if (gba->mSyncCallback) {
 		return 2;
 	}
-	gba->_00[0]         = 0x14;
-	gba->_18            = p2;
-	gba->_14            = p3;
-	gba->m_syncCallback = __GBASyncCallback;
+	gba->_00[0]        = 0x14;
+	gba->_18           = p2;
+	gba->_14           = p3;
+	gba->mSyncCallback = __GBASyncCallback;
 	return __GBATransfer(portIndex, 1, 5, ReadProc);
 }
 

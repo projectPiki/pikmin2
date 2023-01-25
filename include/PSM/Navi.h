@@ -36,8 +36,8 @@ struct Navi : public CreatureObj {
 	// _10     = VTBL 1
 	// _28     = VTBL 2
 	// _00-_70 = CreatureObj
-	PSGame::Rappa m_rappa; // _70
-	u32 _90;               // _90, unknown
+	PSGame::Rappa mRappa; // _70
+	u32 _90;              // _90, unknown
 };
 } // namespace PSM
 

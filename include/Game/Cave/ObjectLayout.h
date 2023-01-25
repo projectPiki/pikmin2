@@ -59,12 +59,12 @@ struct UnitInfo {
 	BaseGen* getBaseGen();
 	void draw(f32, f32, f32, f32);
 
-	DoorNode* m_doorNode;     // _00
-	AdjustNode* m_doorCounts; // _04
-	MapUnits* m_mapUnits;     // _08
-	int m_unitRotation;       // _0C
-	int m_unitSizeX;          // _10
-	int m_unitSizeY;          // _14
+	DoorNode* mDoorNode;     // _00
+	AdjustNode* mDoorCounts; // _04
+	MapUnits* mMapUnits;     // _08
+	int mUnitRotation;       // _0C
+	int mUnitSizeX;          // _10
+	int mUnitSizeY;          // _14
 };
 
 /**
@@ -79,7 +79,7 @@ struct ObjectLayout : public ObjectLayoutInfo {
 	void setNode(int, Game::ObjectLayoutNode*);
 
 	// _00, VTBL
-	ObjectLayoutNode** m_nodeList; // _04
+	ObjectLayoutNode** mNodeList; // _04
 };
 } // namespace Cave
 } // namespace Game

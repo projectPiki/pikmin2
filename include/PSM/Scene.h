@@ -37,7 +37,7 @@ struct SceneBase : public PSGame::PikScene {
 
 	void getSceneInfoA();
 
-	PSGame::SceneInfo* m_sceneInfoA; // _24
+	PSGame::SceneInfo* mSceneInfoA; // _24
 };
 
 /**
@@ -99,10 +99,10 @@ struct Scene_Objects : public SceneBase {
 
 	// _00      = VTBL
 	// _00-_28  = SceneBase
-	PSGame::CameraMgr* m_cameraMgr; // _28
-	ObjMgr* m_objMgr;               // _2C
-	u8 _30;                         // _30
-	int _34;                        // _34
+	PSGame::CameraMgr* mCameraMgr; // _28
+	ObjMgr* mObjMgr;               // _2C
+	u8 _30;                        // _30
+	int _34;                       // _34
 };
 
 /**
@@ -147,13 +147,13 @@ struct Scene_Game : public Scene_Objects {
 
 	// _00      = VTBL
 	// _00-_38  = Scene_Objects
-	JSUList<EnemyBoss> m_enemyBossList; // _38
-	PSSystem::EnvSeMgr* m_envSeMgr;     // _48
-	u32 _4C;                            // _4C, unknown
-	int _50;                            // _50
-	BossBgmFader::Mgr* m_bossFaderMgr;  // _54
-	PikiHummingMgr* m_hummingMgr;       // _58
-	PersEnvManager* m_persEnvMgr;       // _5C
+	JSUList<EnemyBoss> mEnemyBossList; // _38
+	PSSystem::EnvSeMgr* mEnvSeMgr;     // _48
+	u32 _4C;                           // _4C, unknown
+	int _50;                           // _50
+	BossBgmFader::Mgr* mBossFaderMgr;  // _54
+	PikiHummingMgr* mHummingMgr;       // _58
+	PersEnvManager* mPersEnvMgr;       // _5C
 };
 
 /**
@@ -180,7 +180,7 @@ struct Scene_Ground : public Scene_Game {
 
 	// _00      = VTBL
 	// _00-_5C  = Scene_Game
-	int m_pollutUpTimer; // _5C
+	int mPollutUpTimer; // _5C
 };
 
 /**
@@ -207,9 +207,9 @@ struct Scene_Cave : public Scene_Game {
 
 	// _00      = VTBL
 	// _00-_5C  = Scene_Game
-	u8 _5C[0x4];         // _5C, unknown
-	f32 m_sceneFx;       // _60
-	int m_pollutUpTimer; // _64
+	u8 _5C[0x4];        // _5C, unknown
+	f32 mSceneFx;       // _60
+	int mPollutUpTimer; // _64
 };
 
 /**
@@ -250,7 +250,7 @@ struct Scene_WorldMap : public Scene_NoObjects {
 
 	// _00      = VTBL
 	// _00-_28  = SceneBase
-	WorldMapRocket* m_rocket; // _28
+	WorldMapRocket* mRocket; // _28
 };
 
 //////////// DEMO SCENE

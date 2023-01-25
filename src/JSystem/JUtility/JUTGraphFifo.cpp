@@ -39,15 +39,15 @@ JUTGraphFifo::JUTGraphFifo(u32 p1)
 {
 	_0C = ALIGN_NEXT(p1, 0x20);
 	if (sInitiated) {
-		m_fifo = (GXFifoObj*)JKRHeap::sSystemHeap->alloc(_0C + sizeof(GXFifoObj), 0x20);
-		_08    = m_fifo + 1;
-		GXInitFifoBase(m_fifo, _08, _0C);
-		GXInitFifoPtrs(m_fifo, _08, _08);
+		mFifo = (GXFifoObj*)JKRHeap::sSystemHeap->alloc(_0C + sizeof(GXFifoObj), 0x20);
+		_08   = mFifo + 1;
+		GXInitFifoBase(mFifo, _08, _0C);
+		GXInitFifoPtrs(mFifo, _08, _08);
 	} else {
 		/** TODO: Figure out what has sizeof 0xA0. */
 		_08 = JKRHeap::sSystemHeap->alloc(_0C + 0xA0, 0x20);
 		_08 = (void*)ALIGN_NEXT((u32)_08, 0x20);
-		// m_fifo = GXInit(_08, _0C);
+		// mFifo = GXInit(_08, _0C);
 		sInitiated   = true;
 		sCurrentFifo = this;
 	}
@@ -121,7 +121,7 @@ lbl_8002EBF8:
  */
 JUTGraphFifo::~JUTGraphFifo()
 {
-	GXSaveCPUFifo(sCurrentFifo->m_fifo);
+	GXSaveCPUFifo(sCurrentFifo->mFifo);
 	do {
 		GXGetGPStatus(mGpStatus, mGpStatus + 1, mGpStatus + 2, mGpStatus + 3, mGpStatus + 4);
 	} while (mGpStatus[2] == GX_FALSE);

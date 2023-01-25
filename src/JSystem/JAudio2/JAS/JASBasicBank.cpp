@@ -11,8 +11,8 @@
  */
 JASBasicBank::JASBasicBank()
     : JASBank()
-    , m_insts(nullptr)
-    , m_instCount(0)
+    , mInsts(nullptr)
+    , mInstCount(0)
 {
 }
 
@@ -22,7 +22,7 @@ JASBasicBank::JASBasicBank()
  * Size:	000074
  * __dt__12JASBasicBankFv
  */
-JASBasicBank::~JASBasicBank() { delete[] m_insts; }
+JASBasicBank::~JASBasicBank() { delete[] mInsts; }
 
 /*
  * --INFO--
@@ -32,10 +32,10 @@ JASBasicBank::~JASBasicBank() { delete[] m_insts; }
  */
 void JASBasicBank::setInstCount(u32 count)
 {
-	delete[] m_insts;
-	m_insts = new (getCurrentHeap(), 0) JASInst*[count];
-	JASCalc::bzero(m_insts, sizeof(JASInst*) * count);
-	m_instCount = count;
+	delete[] mInsts;
+	mInsts = new (getCurrentHeap(), 0) JASInst*[count];
+	JASCalc::bzero(mInsts, sizeof(JASInst*) * count);
+	mInstCount = count;
 }
 
 /*
@@ -44,7 +44,7 @@ void JASBasicBank::setInstCount(u32 count)
  * Size:	000010
  * setInst__12JASBasicBankFiP7JASInst
  */
-void JASBasicBank::setInst(int index, JASInst* inst) { m_insts[index] = inst; }
+void JASBasicBank::setInst(int index, JASInst* inst) { mInsts[index] = inst; }
 
 /*
  * --INFO--
@@ -52,4 +52,4 @@ void JASBasicBank::setInst(int index, JASInst* inst) { m_insts[index] = inst; }
  * Size:	000024
  * getInst__12JASBasicBankCFi
  */
-JASInst* JASBasicBank::getInst(int index) const { return (index >= m_instCount) ? nullptr : m_insts[index]; }
+JASInst* JASBasicBank::getInst(int index) const { return (index >= mInstCount) ? nullptr : mInsts[index]; }

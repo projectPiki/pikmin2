@@ -36,8 +36,8 @@ JStudio::TObject_particle* createObject_PARTICLE_JPA_(const JStudio::stb::data::
 		// TODO: This should probably delete the adaptor in NONMATCHING builds, if the object couldn't get created.
 		return nullptr;
 	} else {
-		if (object->m_adaptor != nullptr) {
-			object->m_adaptor->adaptor_do_prepare(object);
+		if (object->mAdaptor != nullptr) {
+			object->mAdaptor->adaptor_do_prepare(object);
 		}
 	}
 	return object;
@@ -127,7 +127,7 @@ bool TCreateObject::create(JStudio::TObject** newObject, JStudio::stb::data::TPa
 	if (data.filedata[1] == 'JPTC') {
 		JStudio::TObject_particle* (*func)(const JStudio::stb::data::TParse_TBlock_object&, JPAEmitterManager*, const JStage::TSystem*)
 		    = &createObject_PARTICLE_JPA_;
-		*newObject = func(data, m_emitterManager, m_system);
+		*newObject = func(data, mEmitterManager, mSystem);
 		return true;
 	} else {
 		return false;

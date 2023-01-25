@@ -7,9 +7,9 @@
 
 // NB: TP does this in one struct with private/public
 struct _J2DTexGenBlockParent {
-	u32 m_texGenNum;            // _00
-	J2DTexCoord m_texCoords[8]; // _04
-	J2DTexMtx* m_texMtxes[8];   // _24
+	u32 mTexGenNum;            // _00
+	J2DTexCoord mTexCoords[8]; // _04
+	J2DTexMtx* mTexMtxes[8];   // _24
 };
 
 struct J2DTexGenBlock : _J2DTexGenBlockParent {
@@ -20,7 +20,7 @@ struct J2DTexGenBlock : _J2DTexGenBlockParent {
 	void setTexMtx(u32, J2DTexMtx&);
 	void getTexMtx(u32, J2DTexMtx&);
 
-	u32 getTexGenNum() const { return m_texGenNum; }
+	u32 getTexGenNum() const { return mTexGenNum; }
 
 	// _44 VTBL
 };

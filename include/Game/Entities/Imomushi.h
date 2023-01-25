@@ -89,17 +89,17 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                     // _2BC
-	bool _2C0;                      // _2C0, unknown
-	StateID m_nextState;            // _2C4
-	f32 _2C8;                       // _2C8
-	u8 _2CC[0xC];                   // _2CC, unknown
-	Vector3f _2D8;                  // _2D8
-	Vector3f _2E4;                  // _2E4
-	Vector3f m_zukanTargetPosition; // _2F0
-	f32 _2FC;                       // _2FC
-	u8 _300[0x10];                  // _300, unknown
-	                                // _310 = PelletView
+	FSM* mFsm;                     // _2BC
+	bool _2C0;                     // _2C0, unknown
+	StateID mNextState;            // _2C4
+	f32 _2C8;                      // _2C8
+	u8 _2CC[0xC];                  // _2CC, unknown
+	Vector3f _2D8;                 // _2D8
+	Vector3f _2E4;                 // _2E4
+	Vector3f mZukanTargetPosition; // _2F0
+	f32 _2FC;                      // _2FC
+	u8 _300[0x10];                 // _300, unknown
+	                               // _310 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -116,26 +116,26 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, likely an array of Objs
+	Obj* mObj; // _44, likely an array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "草登り速度", 2.0f, 0.0f, 10.0f)     // 'plant climbing speed'
-		    , m_fp02(this, 'fp02', "種周回速度", 0.3f, 0.0f, 10.0f)     // 'seed circulation speed'
-		    , m_fp11(this, 'fp11', "実食い時間", 10.0f, 0.0f, 100.0f)   // 'eating time'
-		    , m_fp90(this, 'fp90', "Translate補正", 0.75f, 0.0f, 10.0f) // 'translation correction'
-		    , m_fp91(this, 'fp91', "Rotate補正", 0.05f, 0.0f, 1.0f)     // 'rotation correction'
+		    , mFp01(this, 'fp01', "草登り速度", 2.0f, 0.0f, 10.0f)     // 'plant climbing speed'
+		    , mFp02(this, 'fp02', "種周回速度", 0.3f, 0.0f, 10.0f)     // 'seed circulation speed'
+		    , mFp11(this, 'fp11', "実食い時間", 10.0f, 0.0f, 100.0f)   // 'eating time'
+		    , mFp90(this, 'fp90', "Translate補正", 0.75f, 0.0f, 10.0f) // 'translation correction'
+		    , mFp91(this, 'fp91', "Rotate補正", 0.05f, 0.0f, 1.0f)     // 'rotation correction'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp11; // _854
-		Parm<f32> m_fp90; // _87C
-		Parm<f32> m_fp91; // _8A4
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp11; // _854
+		Parm<f32> mFp90; // _87C
+		Parm<f32> mFp91; // _8A4
 	};
 
 	Parms() { }
@@ -143,23 +143,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -175,7 +175,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

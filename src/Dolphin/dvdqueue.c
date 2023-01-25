@@ -15,8 +15,8 @@ void __DVDClearWaitingQueue()
 	for (i = 0; i < 4; i++) {
 		struct DVDQueue* ptr = &WaitingQueue[i];
 
-		ptr->m_head = ptr;
-		ptr->m_tail = ptr;
+		ptr->mHead = ptr;
+		ptr->mTail = ptr;
 	}
 }
 
@@ -31,10 +31,10 @@ BOOL __DVDPushWaitingQueue(int idx, struct DVDQueue* newTail)
 
 	struct DVDQueue* waitingQueue = &WaitingQueue[idx];
 
-	waitingQueue->m_tail->m_head = newTail;
-	newTail->m_tail              = waitingQueue->m_tail;
-	newTail->m_head              = waitingQueue;
-	waitingQueue->m_tail         = newTail;
+	waitingQueue->mTail->mHead = newTail;
+	newTail->mTail             = waitingQueue->mTail;
+	newTail->mHead             = waitingQueue;
+	waitingQueue->mTail        = newTail;
 
 	OSRestoreInterrupts(intrEnabled);
 	return TRUE;
@@ -51,21 +51,21 @@ struct DVDQueue* __DVDPopWaitingQueue()
 	int i;
 
 	for (i = 0; i < 4; i++) {
-		if (WaitingQueue[i].m_head != &WaitingQueue[i]) {
+		if (WaitingQueue[i].mHead != &WaitingQueue[i]) {
 			struct DVDQueue* tempQueue;
 			struct DVDQueue* outQueue;
 
 			OSRestoreInterrupts(intrEnabled);
 
-			intrEnabled              = OSDisableInterrupts();
-			tempQueue                = &WaitingQueue[i];
-			outQueue                 = tempQueue->m_head;
-			tempQueue->m_head        = outQueue->m_head;
-			outQueue->m_head->m_tail = tempQueue;
+			intrEnabled            = OSDisableInterrupts();
+			tempQueue              = &WaitingQueue[i];
+			outQueue               = tempQueue->mHead;
+			tempQueue->mHead       = outQueue->mHead;
+			outQueue->mHead->mTail = tempQueue;
 			OSRestoreInterrupts(intrEnabled);
 
-			outQueue->m_head = nullptr;
-			outQueue->m_tail = nullptr;
+			outQueue->mHead = nullptr;
+			outQueue->mTail = nullptr;
 			return outQueue;
 		}
 	}
@@ -84,7 +84,7 @@ BOOL __DVDCheckWaitingQueue()
 	int i;
 
 	for (i = 0; i < 4; i++) {
-		if (WaitingQueue[i].m_head != &WaitingQueue[i]) {
+		if (WaitingQueue[i].mHead != &WaitingQueue[i]) {
 			OSRestoreInterrupts(intrEnabled);
 			return TRUE;
 		}
@@ -101,15 +101,15 @@ BOOL __DVDCheckWaitingQueue()
 BOOL __DVDDequeueWaitingQueue(struct DVDQueue* queue)
 {
 	BOOL intrEnabled      = OSDisableInterrupts();
-	struct DVDQueue* tail = queue->m_tail;
-	struct DVDQueue* head = queue->m_head;
+	struct DVDQueue* tail = queue->mTail;
+	struct DVDQueue* head = queue->mHead;
 
 	if (tail == nullptr || head == nullptr) {
 		OSRestoreInterrupts(intrEnabled);
 		return FALSE;
 	}
-	tail->m_head = head;
-	head->m_tail = tail;
+	tail->mHead = head;
+	head->mTail = tail;
 	OSRestoreInterrupts(intrEnabled);
 	return TRUE;
 }

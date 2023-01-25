@@ -35,10 +35,10 @@ struct TCallbackScrollMsg : public og::Screen::CallBack_Message {
 
 	// _00     = VTBL
 	// _00-_48 = og::Screen::CallBack_Message
-	f32 _48;                                     // _48
-	u8 _4C[0x4];                                 // _4C, unknown
-	P2JME::IllustratedBook::TControl* m_control; // _50
-	u8 _54[0x4];                                 // _54, unknown
+	f32 _48;                                    // _48
+	u8 _4C[0x4];                                // _4C, unknown
+	P2JME::IllustratedBook::TControl* mControl; // _50
+	u8 _54[0x4];                                // _54, unknown
 };
 
 struct DispMemberZukanBase : public og::Screen::DispMemberBase {
@@ -54,12 +54,12 @@ struct DispMemberZukanEnemy : public DispMemberZukanBase {
 
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
-	JKRExpHeap* m_debugExpHeap;                                     // _08
-	JUTTexture* m_texture;                                          // _0C
-	Game::ResultTexMgr::Mgr* m_resultTexMgr;                        // _10
-	Game::IllustratedBook::EnemyTexMgr* m_enemyTexMgr;              // _14
-	og::Screen::DispMemberWorldMapInfoWin0* m_dispWorldMapInfoWin0; // _18
-	int _1C;                                                        // _1C
+	JKRExpHeap* mDebugExpHeap;                                     // _08
+	JUTTexture* mTexture;                                          // _0C
+	Game::ResultTexMgr::Mgr* mResultTexMgr;                        // _10
+	Game::IllustratedBook::EnemyTexMgr* mEnemyTexMgr;              // _14
+	og::Screen::DispMemberWorldMapInfoWin0* mDispWorldMapInfoWin0; // _18
+	int _1C;                                                       // _1C
 };
 
 struct DispMemberZukanItem : public DispMemberZukanBase {
@@ -69,12 +69,12 @@ struct DispMemberZukanItem : public DispMemberZukanBase {
 
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
-	JKRExpHeap* m_debugExpHeap;                                     // _08
-	JUTTexture* m_texture;                                          // _0C
-	Game::ResultTexMgr::Mgr* m_resultTexMgr;                        // _10
-	Game::IllustratedBook::EnemyTexMgr* m_enemyTexMgr;              // _14, ??
-	og::Screen::DispMemberWorldMapInfoWin0* m_dispWorldMapInfoWin0; // _18
-	int _1C;                                                        // _1C
+	JKRExpHeap* mDebugExpHeap;                                     // _08
+	JUTTexture* mTexture;                                          // _0C
+	Game::ResultTexMgr::Mgr* mResultTexMgr;                        // _10
+	Game::IllustratedBook::EnemyTexMgr* mEnemyTexMgr;              // _14, ??
+	og::Screen::DispMemberWorldMapInfoWin0* mDispWorldMapInfoWin0; // _18
+	int _1C;                                                       // _1C
 };
 
 struct TDEnemyScene : public THIOScene {
@@ -92,7 +92,7 @@ struct TDEnemyScene : public THIOScene {
 	// _00      = VTBL
 	// _00-_224 = THIOScene
 	// _220, treat as TEnemyZukan*
-	TConfirmEndWindow* m_confirmEndWindow; // _224
+	TConfirmEndWindow* mConfirmEndWindow; // _224
 };
 
 struct TDItemScene : public THIOScene {
@@ -110,7 +110,7 @@ struct TDItemScene : public THIOScene {
 	// _00      = VTBL
 	// _00-_224 = THIOScene
 	// _220, treat as TItemZukan*
-	TConfirmEndWindow* m_confirmEndWindow; // _224
+	TConfirmEndWindow* mConfirmEndWindow; // _224
 };
 
 struct TZukanBase : public TScrollList {
@@ -193,10 +193,10 @@ struct TEnemyZukan : public TZukanBase {
 	// _00      = VTBL1
 	// _18      = VTBL2
 	// _00-_248 = TZukanBase
-	DispMemberZukanEnemy* m_dispEnemy; // _248
-	TScaleUpCounter* _24C;             // _24C
-	TScaleUpCounter* _250;             // _250
-	TScaleUpCounter* _254;             // _254
+	DispMemberZukanEnemy* mDispEnemy; // _248
+	TScaleUpCounter* _24C;            // _24C
+	TScaleUpCounter* _250;            // _250
+	TScaleUpCounter* _254;            // _254
 };
 
 struct TItemZukan : public TZukanBase {
@@ -254,21 +254,21 @@ struct TZukanWindow : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
-	u8 _18;                           // _18
-	f32 _1C;                          // _1C
-	int _20;                          // _20
-	og::Screen::AnimPane* _24;        // _24
-	og::Screen::AnimPane* _28;        // _28
-	TCallbackScrollMsg* _2C;          // _2C
-	og::Screen::ScaleMgr* m_scaleMgr; // _30
-	TCallbackScissor* _34;            // _34
-	u32 _38;                          // _38
-	J2DPane* _3C;                     // _3C
-	J2DPane* _40;                     // _40
-	J2DPicture* _44;                  // _44
-	J2DPicture* _48[2];               // _48
-	f32 _50;                          // _50
-	f32 _54;                          // _54
+	u8 _18;                          // _18
+	f32 _1C;                         // _1C
+	int _20;                         // _20
+	og::Screen::AnimPane* _24;       // _24
+	og::Screen::AnimPane* _28;       // _28
+	TCallbackScrollMsg* _2C;         // _2C
+	og::Screen::ScaleMgr* mScaleMgr; // _30
+	TCallbackScissor* _34;           // _34
+	u32 _38;                         // _38
+	J2DPane* _3C;                    // _3C
+	J2DPane* _40;                    // _40
+	J2DPicture* _44;                 // _44
+	J2DPicture* _48[2];              // _48
+	f32 _50;                         // _50
+	f32 _54;                         // _54
 };
 
 } // namespace Morimura

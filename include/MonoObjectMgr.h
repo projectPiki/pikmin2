@@ -17,54 +17,54 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	virtual T* get(void*);        // _20 (weak)
 	virtual T* getAt(int index)   // _24 (weak)
 	{
-		return &m_array[index];
+		return &mArray[index];
 	}
 	virtual int getTo();       // _28 (weak)
 	virtual void doAnimation() // _64 (weak, thunk at _34)
 	{
-		for (int i = 0; i < m_max; i++) {
-			if (m_openIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&m_array[i])->doAnimation();
+		for (int i = 0; i < mMax; i++) {
+			if (mOpenIds[i] == false) {
+				reinterpret_cast<GenericObject*>(&mArray[i])->doAnimation();
 			}
 		}
 	}
 	virtual void doEntry() // _68 (weak, thunk at _38)
 	{
-		for (int i = 0; i < m_max; i++) {
-			if (m_openIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&m_array[i])->doEntry();
+		for (int i = 0; i < mMax; i++) {
+			if (mOpenIds[i] == false) {
+				reinterpret_cast<GenericObject*>(&mArray[i])->doEntry();
 			}
 		}
 	}
 	virtual void doSetView(int viewNo) // _6C (weak, thunk at _3C)
 	{
-		for (int i = 0; i < m_max; i++) {
-			if (m_openIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&m_array[i])->doSetView(viewNo);
+		for (int i = 0; i < mMax; i++) {
+			if (mOpenIds[i] == false) {
+				reinterpret_cast<GenericObject*>(&mArray[i])->doSetView(viewNo);
 			}
 		}
 	}
 	virtual void doViewCalc() // _70 (weak, thunk at _40)
 	{
-		for (int i = 0; i < m_max; i++) {
-			if (m_openIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&m_array[i])->doViewCalc();
+		for (int i = 0; i < mMax; i++) {
+			if (mOpenIds[i] == false) {
+				reinterpret_cast<GenericObject*>(&mArray[i])->doViewCalc();
 			}
 		}
 	}
 	virtual void doSimulation(f32 p1) // _74 (weak, thunk at _44)
 	{
-		for (int i = 0; i < m_max; i++) {
-			if (m_openIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&m_array[i])->doSimulation(p1);
+		for (int i = 0; i < mMax; i++) {
+			if (mOpenIds[i] == false) {
+				reinterpret_cast<GenericObject*>(&mArray[i])->doSimulation(p1);
 			}
 		}
 	}
 	virtual void doDirectDraw(Graphics& gfx) // _78 (weak, thunk at _48)
 	{
-		for (int i = 0; i < m_max; i++) {
-			if (m_openIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&m_array[i])->doDirectDraw(gfx);
+		for (int i = 0; i < mMax; i++) {
+			if (mOpenIds[i] == false) {
+				reinterpret_cast<GenericObject*>(&mArray[i])->doDirectDraw(gfx);
 			}
 		}
 	}
@@ -73,9 +73,9 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 		int index = getEmptyIndex();
 		T* result;
 		if (index != -1) {
-			m_openIds[index] = false;
-			result           = &m_array[index];
-			m_activeCount++;
+			mOpenIds[index] = false;
+			result          = &mArray[index];
+			mActiveCount++;
 		} else {
 			result = nullptr;
 		}
@@ -83,16 +83,16 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	}
 	virtual void resetMgr() // _80 (weak, thunk at _54)
 	{
-		m_array       = nullptr;
-		m_max         = 0;
-		m_activeCount = 0;
-		m_openIds     = nullptr;
+		mArray       = nullptr;
+		mMax         = 0;
+		mActiveCount = 0;
+		mOpenIds     = nullptr;
 	}
 	virtual void clearMgr() // _84 (weak)
 	{
-		m_activeCount = 0;
-		for (int i = 0; i < m_max; i++) {
-			m_openIds[i] = true;
+		mActiveCount = 0;
+		for (int i = 0; i < mMax; i++) {
+			mOpenIds[i] = true;
 		}
 	}
 	virtual void onAlloc() { } // _88 (weak)
@@ -101,10 +101,10 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	// TODO: Check if this matches
 	void kill(T* item);
 	// {
-	// 	for (int i = 0; i < m_max; i++) {
-	// 		if (&m_array[i] == item) {
-	// 			m_openIds[i] = true;
-	// 			m_activeCount--;
+	// 	for (int i = 0; i < mMax; i++) {
+	// 		if (&mArray[i] == item) {
+	// 			mOpenIds[i] = true;
+	// 			mActiveCount--;
 	// 			return;
 	// 		}
 	// 	}
@@ -112,8 +112,8 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 
 	int getEmptyIndex()
 	{
-		for (int i = 0; i < m_max; i++) {
-			if (m_openIds[i] == true) {
+		for (int i = 0; i < mMax; i++) {
+			if (mOpenIds[i] == true) {
 				return i;
 			}
 		}
@@ -122,10 +122,10 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 
 	void alloc(int);
 
-	int m_activeCount; // _20
-	int m_max;         // _24
-	T* m_array;        // _28
-	u8* m_openIds;     // _2C
+	int mActiveCount; // _20
+	int mMax;         // _24
+	T* mArray;        // _28
+	u8* mOpenIds;     // _2C
 };
 
 #endif

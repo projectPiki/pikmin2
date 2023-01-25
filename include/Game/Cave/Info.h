@@ -31,12 +31,12 @@ struct BaseGen : public CNode {
 	virtual void read(Stream&);             // _10
 	virtual void draw(Graphics&, Matrixf*); // _14
 
-	Type m_spawnType;    // _18
-	Vector3f m_position; // _1C
-	f32 m_angle;         // _28
-	f32 m_radius;        // _2C
-	int m_minimum;       // _30
-	int m_maximum;       // _34
+	Type mSpawnType;    // _18
+	Vector3f mPosition; // _1C
+	f32 mAngle;         // _28
+	f32 mRadius;        // _2C
+	int mMinimum;       // _30
+	int mMaximum;       // _34
 };
 
 /**
@@ -50,12 +50,12 @@ struct TekiInfo : CNode {
 	virtual ~TekiInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
-	EnemyTypeID::EEnemyTypeID m_enemyID; // _18
-	int m_weight;                        // _1C
-	BaseGen::Type m_type;                // _20
-	u8 m_dropMode;                       // _24
+	EnemyTypeID::EEnemyTypeID mEnemyID; // _18
+	int mWeight;                        // _1C
+	BaseGen::Type mType;                // _20
+	u8 mDropMode;                       // _24
 	u8 : 0;
-	Game::PelletMgr::OtakaraItemCode m_otakaraItemCode; // _26
+	Game::PelletMgr::OtakaraItemCode mOtakaraItemCode; // _26
 };
 
 /**
@@ -65,8 +65,8 @@ struct ItemInfo : CNode {
 	virtual ~ItemInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
-	int m_caveID; // _18
-	int m_weight; // _1C
+	int mCaveID; // _18
+	int mWeight; // _1C
 };
 
 /**
@@ -76,9 +76,9 @@ struct GateInfo : CNode {
 	virtual ~GateInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
-	int m_caveID; // _18
-	f32 m_life;   // _1C
-	int m_weight; // _20
+	int mCaveID; // _18
+	f32 mLife;   // _1C
+	int mWeight; // _20
 };
 
 /**
@@ -90,8 +90,8 @@ struct CapInfo : CNode {
 
 	TekiInfo* getTekiInfo();
 
-	bool m_tekiEmpty;     // _18, AKA does not have a teki
-	TekiInfo* m_tekiInfo; // _1C
+	bool mTekiEmpty;     // _18, AKA does not have a teki
+	TekiInfo* mTekiInfo; // _1C
 };
 
 /**
@@ -101,29 +101,29 @@ struct FloorInfo : CNode {
 	struct Parms : Parameters {
 		Parms();
 
-		Parm<int> m_floorIndex1;       // _00C  /* f000 */
-		Parm<int> m_floorIndex2;       // _034  /* f001 */
-		Parm<int> m_tekiMax;           // _05C  /* f002 */
-		Parm<int> m_itemMax;           // _084  /* f003 */
-		Parm<int> m_gateMax;           // _0AC  /* f004 */
-		Parm<int> m_capMax;            // _0D4  /* f014 */
-		Parm<int> m_roomCount;         // _0FC  /* f005 */
-		Parm<f32> m_routeRatio;        // _124  /* f006 */
-		Parm<int> m_hasEscapeFountain; // _14C  /* f007 */
-		ParmString m_caveUnitFile;     // _174  /* f008 */
-		ParmString m_lightingFile;     // _194  /* f009 */
-		ParmString m_vrBox;            // _1B4  /* f00A */
-		Parm<int> m_isHoleClogged;     // _1D4  /* f010 */
-		ParmEnum m_floorAlphaType;     // _1FC  /* f011 */
+		Parm<int> mFloorIndex1;       // _00C  /* f000 */
+		Parm<int> mFloorIndex2;       // _034  /* f001 */
+		Parm<int> mTekiMax;           // _05C  /* f002 */
+		Parm<int> mItemMax;           // _084  /* f003 */
+		Parm<int> mGateMax;           // _0AC  /* f004 */
+		Parm<int> mCapMax;            // _0D4  /* f014 */
+		Parm<int> mRoomCount;         // _0FC  /* f005 */
+		Parm<f32> mRouteRatio;        // _124  /* f006 */
+		Parm<int> mHasEscapeFountain; // _14C  /* f007 */
+		ParmString mCaveUnitFile;     // _174  /* f008 */
+		ParmString mLightingFile;     // _194  /* f009 */
+		ParmString mVrBox;            // _1B4  /* f00A */
+		Parm<int> mIsHoleClogged;     // _1D4  /* f010 */
+		ParmEnum mFloorAlphaType;     // _1FC  /* f011 */
 
-		ParmEnum m_floorBetaType; // _220  /* f012 */
+		ParmEnum mFloorBetaType; // _220  /* f012 */
 
-		ParmEnum m_floorHidden; // _244  /* f013 */
+		ParmEnum mFloorHidden; // _244  /* f013 */
 
-		Parm<int> m_version;          // _268  /* f015 */
-		Parm<f32> m_waterwraithTimer; // _290  /* f016 */
-		Parm<int> m_glitchySeesaw;    // _2B8  /* f017 */
-		void* m_end;                  // _2E0
+		Parm<int> mVersion;          // _268  /* f015 */
+		Parm<f32> mWaterwraithTimer; // _290  /* f016 */
+		Parm<int> mGlitchySeesaw;    // _2B8  /* f017 */
+		void* mEnd;                  // _2E0
 	};
 
 	FloorInfo();
@@ -156,11 +156,11 @@ struct FloorInfo : CNode {
 	bool hasHiddenCollision();
 	bool useKaidanBarrel();
 
-	Parms m_parms;       // _018
-	TekiInfo m_tekiInfo; // _2FC
-	ItemInfo m_itemInfo; // _324
-	GateInfo m_gateInfo; // _344
-	CapInfo m_capInfo;   // _368
+	Parms mParms;       // _018
+	TekiInfo mTekiInfo; // _2FC
+	ItemInfo mItemInfo; // _324
+	GateInfo mGateInfo; // _344
+	CapInfo mCapInfo;   // _368
 };
 
 /**
@@ -171,8 +171,8 @@ struct CaveInfo : CNode {
 	struct Parms : Parameters {
 		inline Parms();
 
-		Parm<int> m_floorMax; // _0C
-		void* m_end;          // _34
+		Parm<int> mFloorMax; // _0C
+		void* mEnd;          // _34
 	};
 
 	CaveInfo();
@@ -185,8 +185,8 @@ struct CaveInfo : CNode {
 	FloorInfo* getFloorInfo(int);
 	void load(char*);
 
-	Parms m_parms;         // _18
-	FloorInfo m_floorInfo; // _50
+	Parms mParms;         // _18
+	FloorInfo mFloorInfo; // _50
 };
 } // namespace Cave
 } // namespace Game

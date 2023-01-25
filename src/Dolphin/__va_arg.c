@@ -9,8 +9,8 @@
 void* __va_arg(struct va_list* v_list, s32 type)
 {
 	char* addr;
-	char* reg      = &(v_list->m_g_register);
-	s32 g_reg      = v_list->m_g_register;
+	char* reg      = &(v_list->mG_register);
+	s32 g_reg      = v_list->mG_register;
 	s32 maxsize    = 8;
 	s32 size       = 4;
 	s32 increment  = 1;
@@ -19,8 +19,8 @@ void* __va_arg(struct va_list* v_list, s32 type)
 	s32 regsize    = 4;
 
 	if (type == 3) {
-		reg        = &(v_list->m_float_register);
-		g_reg      = v_list->m_float_register;
+		reg        = &(v_list->mFloat_register);
+		g_reg      = v_list->mFloat_register;
 		size       = 8;
 		fpr_offset = 32;
 		regsize    = 8;
@@ -34,13 +34,13 @@ void* __va_arg(struct va_list* v_list, s32 type)
 	}
 	if (g_reg < maxsize) {
 		g_reg += even;
-		addr = v_list->m_reg_save_area + fpr_offset + (g_reg * regsize);
+		addr = v_list->mReg_save_area + fpr_offset + (g_reg * regsize);
 		*reg = g_reg + increment;
 	} else {
-		*reg                     = 8;
-		addr                     = v_list->m_input_arg_area;
-		addr                     = (char*)(((u32)(addr) + ((size)-1)) & ~((size)-1));
-		v_list->m_input_arg_area = addr + size;
+		*reg                    = 8;
+		addr                    = v_list->mInput_arg_area;
+		addr                    = (char*)(((u32)(addr) + ((size)-1)) & ~((size)-1));
+		v_list->mInput_arg_area = addr + size;
 	}
 	if (type == 0)
 		addr = *((char**)addr);

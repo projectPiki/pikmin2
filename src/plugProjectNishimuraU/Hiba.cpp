@@ -12,7 +12,7 @@ namespace Hiba {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 	createEffect();
 }
@@ -40,14 +40,14 @@ void Obj::onInit(CreatureInitArg* args)
 
 	setEmotionNone();
 	shadowMgr->killShadow(this);
-	m_timer   = 0.0f;
-	m_isAlive = true;
+	mTimer   = 0.0f;
+	mIsAlive = true;
 	setupLodParms();
 
-	f32 r = randWeightFloat(C_PROPERPARMS.m_waitTime.m_value);
+	f32 r = randWeightFloat(C_PROPERPARMS.mWaitTime.mValue);
 	WaitStateArg arg;
-	arg.m_waitTimer = r;
-	m_fsm->start(this, HIBA_Wait, &arg);
+	arg.mWaitTimer = r;
+	mFsm->start(this, HIBA_Wait, &arg);
 }
 
 /*
@@ -55,7 +55,7 @@ void Obj::onInit(CreatureInitArg* args)
  * Address:	8026C0C0
  * Size:	000034
  */
-void Obj::doUpdate() { m_fsm->exec(this); }
+void Obj::doUpdate() { mFsm->exec(this); }
 
 /*
  * --INFO--
@@ -78,9 +78,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -90,10 +90,10 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.m_position                  = m_position;
-	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	shadowParam.m_boundingSphere.m_radius   = 0.0f;
-	shadowParam.m_size                      = 0.0f;
+	shadowParam.mPosition                 = mPosition;
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.mBoundingSphere.mRadius   = 0.0f;
+	shadowParam.mSize                     = 0.0f;
 }
 
 /*
@@ -151,12 +151,12 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 void Obj::interactFireAttack()
 {
 	Parms* parms = C_PARMS;
-	f32 max      = m_position.y + parms->m_general.m_maxAttackRange.m_value;
-	f32 min      = m_position.y - parms->m_general.m_minAttackRange.m_value;
-	f32 radSqr   = SQUARE(parms->m_general.m_attackRadius.m_value);
+	f32 max      = mPosition.y + parms->mGeneral.mMaxAttackRange.mValue;
+	f32 min      = mPosition.y - parms->mGeneral.mMinAttackRange.mValue;
+	f32 radSqr   = SQUARE(parms->mGeneral.mAttackRadius.mValue);
 
-	Sys::Sphere sphere(m_position);
-	sphere.m_radius = parms->m_general.m_attackRadius.m_value;
+	Sys::Sphere sphere(mPosition);
+	sphere.mRadius = parms->mGeneral.mAttackRadius.mValue;
 
 	CellIteratorArg arg(sphere);
 	arg._1C = true;
@@ -172,7 +172,7 @@ void Obj::interactFireAttack()
 				Vector2f delta;
 				getDistance2D(position, delta);
 				if (SQUARE(delta.x) + SQUARE(delta.y) < radSqr) {
-					InteractFire fire(this, C_PARMS->m_general.m_attackDamage.m_value);
+					InteractFire fire(this, C_PARMS->mGeneral.mAttackDamage.mValue);
 					creature->stimulate(fire);
 				}
 			}
@@ -187,9 +187,9 @@ void Obj::interactFireAttack()
  */
 void Obj::setupLodParms()
 {
-	m_lodParm.m_far        = C_PARMS->m_properParms.m_lodNear.m_value;
-	m_lodParm.m_close      = C_PARMS->m_properParms.m_lodMiddle.m_value;
-	m_lodParm.m_isCylinder = false;
+	mLodParm.mFar        = C_PARMS->mProperParms.mLodNear.mValue;
+	mLodParm.mClose      = C_PARMS->mProperParms.mLodMiddle.mValue;
+	mLodParm.mIsCylinder = false;
 }
 
 /*
@@ -197,14 +197,14 @@ void Obj::setupLodParms()
  * Address:	8026C4A0
  * Size:	00002C
  */
-void Obj::updateEfxLod() { m_efxFire->setRateLOD(m_lod.m_flags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR)); }
+void Obj::updateEfxLod() { mEfxFire->setRateLOD(mLod.mFlags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR)); }
 
 /*
  * --INFO--
  * Address:	8026C4CC
  * Size:	000064
  */
-void Obj::createEffect() { m_efxFire = new efx::THibaFire; }
+void Obj::createEffect() { mEfxFire = new efx::THibaFire; }
 
 /*
  * --INFO--
@@ -213,8 +213,8 @@ void Obj::createEffect() { m_efxFire = new efx::THibaFire; }
  */
 void Obj::startFireEffect()
 {
-	efx::Arg arg(m_position);
-	m_efxFire->create(&arg);
+	efx::Arg arg(mPosition);
+	mEfxFire->create(&arg);
 }
 
 /*
@@ -222,7 +222,7 @@ void Obj::startFireEffect()
  * Address:	8026C588
  * Size:	000030
  */
-void Obj::finishFireEffect() { m_efxFire->fade(); }
+void Obj::finishFireEffect() { mEfxFire->fade(); }
 
 /*
  * --INFO--
@@ -231,9 +231,9 @@ void Obj::finishFireEffect() { m_efxFire->fade(); }
  */
 void Obj::generatorKill()
 {
-	if (m_generator) {
-		m_generator->informDeath(this);
-		m_generator = nullptr;
+	if (mGenerator) {
+		mGenerator->informDeath(this);
+		mGenerator = nullptr;
 	}
 }
 

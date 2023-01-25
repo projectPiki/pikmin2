@@ -27,15 +27,15 @@ void JUTPalette::storeTLUT(_GXTlut tlutID, ResTLUT* resource)
 	if (resource == nullptr) {
 		OSErrorLine(35, "JUTTexture: TLUT is NULL\n");
 	}
-	// storeTLUT(tlutID, resource->m_format, resource->m_transparency,
+	// storeTLUT(tlutID, resource->mFormat, resource->mTransparency,
 	// resource->_02, resource->_20);
-	u8* v1         = reinterpret_cast<u8*>(&resource->_20);
-	m_tlutID       = tlutID;
-	m_tlutFormat   = resource->m_format;
-	m_transparency = resource->m_transparency;
-	_14            = resource->_02;
-	_10            = v1;
-	GXInitTlutObj(&m_tlutObj, _10, m_tlutFormat, _14);
+	u8* v1        = reinterpret_cast<u8*>(&resource->_20);
+	mTlutID       = tlutID;
+	mTlutFormat   = resource->mFormat;
+	mTransparency = resource->mTransparency;
+	_14           = resource->_02;
+	_10           = v1;
+	GXInitTlutObj(&mTlutObj, _10, mTlutFormat, _14);
 }
 
 /*
@@ -47,12 +47,12 @@ void JUTPalette::storeTLUT(_GXTlut tlutID, ResTLUT* resource)
  */
 void JUTPalette::storeTLUT(_GXTlut id, _GXTlutFmt format, JUTTransparency transparency, u16 p4, void* p5)
 {
-	m_tlutID       = id;
-	m_tlutFormat   = format;
-	m_transparency = transparency;
-	_14            = p4;
-	_10            = (u8*)p5;
-	GXInitTlutObj(&m_tlutObj, _10, m_tlutFormat, _14);
+	mTlutID       = id;
+	mTlutFormat   = format;
+	mTransparency = transparency;
+	_14           = p4;
+	_10           = (u8*)p5;
+	GXInitTlutObj(&mTlutObj, _10, mTlutFormat, _14);
 }
 
 /*
@@ -64,7 +64,7 @@ bool JUTPalette::load()
 {
 	bool result = (_14 != 0);
 	if (result) {
-		GXLoadTlut(&m_tlutObj, (_GXTlut)m_tlutID);
+		GXLoadTlut(&mTlutObj, (_GXTlut)mTlutID);
 	}
 	return result;
 }

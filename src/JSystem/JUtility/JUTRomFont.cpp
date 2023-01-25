@@ -68,11 +68,11 @@ void JUTRomFont::loadImage(JKRHeap* param_1)
 	if (spFontHeader_ == nullptr) {
 		JUTReportConsole_f("Font Encode Type %d\n", OSGetFontEncode());
 		spAboutEncoding_ = &saoAboutEncoding_[OSGetFontEncode()];
-		byteCount        = (spAboutEncoding_->m_dataSize);
+		byteCount        = (spAboutEncoding_->mDataSize);
 		JUTReportConsole_f("IPLROM fontdata size : %u\n", byteCount);
 		spFontHeader_ = (FontHeader*)JKRHeap::alloc(byteCount, 0x20, param_1);
 		OSInitFont();
-		_08 = spFontHeader_->m_width;
+		_08 = spFontHeader_->mWidth;
 	}
 	suFontHeaderRefered_++;
 }
@@ -216,7 +216,7 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * --INFO--
  * Address:	80032E30
  * Size:	00000C
- * int JUTRomFont::getDescent() const { return spFontHeader_->m_descent; }
+ * int JUTRomFont::getDescent() const { return spFontHeader_->mDescent; }
  * Weak function.
  */
 
@@ -224,7 +224,7 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * --INFO--
  * Address:	80032E3C
  * Size:	00000C
- * int JUTRomFont::getAscent() const { return spFontHeader_->m_ascent; }
+ * int JUTRomFont::getAscent() const { return spFontHeader_->mAscent; }
  * Weak function.
  */
 
@@ -232,7 +232,7 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * --INFO--
  * Address:	80032E48
  * Size:	00000C
- * int JUTRomFont::getCellHeight() const { return spFontHeader_->m_cellHeight; }
+ * int JUTRomFont::getCellHeight() const { return spFontHeader_->mCellHeight; }
  * Weak function.
  */
 
@@ -240,7 +240,7 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * --INFO--
  * Address:	80032E54
  * Size:	00000C
- * int JUTRomFont::getCellWidth() const { return spFontHeader_->m_cellWidth; }
+ * int JUTRomFont::getCellWidth() const { return spFontHeader_->mCellWidth; }
  * Weak function.
  */
 
@@ -271,13 +271,13 @@ void JUTRomFont::getWidthEntry(int a, JUTFont::TWidth* width) const
  * Address:	80032EC0
  * Size:	000030
  */
-bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->m_isLeadByteFunction(c); }
+bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->mIsLeadByteFunction(c); }
 
 /*
  * --INFO--
  * Address:	80032EF0
  * Size:	00000C
- * int JUTRomFont::getWidth() const { return spFontHeader_->m_width; }
+ * int JUTRomFont::getWidth() const { return spFontHeader_->mWidth; }
  * Weak function.
  */
 
@@ -285,7 +285,7 @@ bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->m_isLeadByte
  * --INFO--
  * Address:	80032EFC
  * Size:	00000C
- * u16 JUTRomFont::getLeading() const { return spFontHeader_->m_leading; }
+ * u16 JUTRomFont::getLeading() const { return spFontHeader_->mLeading; }
  * Weak function.
  */
 
@@ -301,6 +301,6 @@ bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->m_isLeadByte
  * --INFO--
  * Address:	80032F10
  * Size:	00000C
- * u32 JUTRomFont::getFontType() const { return spAboutEncoding_->m_fontType; }
+ * u32 JUTRomFont::getFontType() const { return spAboutEncoding_->mFontType; }
  * Weak function.
  */

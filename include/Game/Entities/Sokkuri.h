@@ -34,29 +34,29 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "移動時間最大", 1.0f, 0.0f, 10.0f)      // 'maximum travel time'
-		    , m_fp02(this, 'fp02', "移動時間最小", 0.0f, 0.0f, 10.0f)      // 'minimum travel time'
-		    , m_fp03(this, 'fp03', "移動角度最大", 90.0f, 0.0f, 180.0f)    // 'maximum moving angle'
-		    , m_fp04(this, 'fp04', "移動角度最小", 45.0f, 0.0f, 180.0f)    // 'minimum moving angle'
-		    , m_fp11(this, 'fp11', "待機確率", 0.25f, 0.0f, 1.0f)          // 'waiting probability'
-		    , m_fp12(this, 'fp12', "待機時間最大", 2.0f, 0.0f, 10.0f)      // 'maximum waiting time'
-		    , m_fp13(this, 'fp13', "待機時間最小", 1.0f, 0.0f, 10.0f)      // 'minimum waiting time'
-		    , m_fp21(this, 'fp21', "水中移動速度", 25.0f, 0.0f, 1000.0f)   // 'underwater movement speed'
-		    , m_fp22(this, 'fp22', "水中回転速度率", 0.05f, 0.0f, 1.0f)    // 'underwater rotation rate'
-		    , m_fp23(this, 'fp23', "水中回転最大速度", 1.0f, 0.0f, 360.0f) // 'underwater rotation maximum speed'
+		    , mFp01(this, 'fp01', "移動時間最大", 1.0f, 0.0f, 10.0f)      // 'maximum travel time'
+		    , mFp02(this, 'fp02', "移動時間最小", 0.0f, 0.0f, 10.0f)      // 'minimum travel time'
+		    , mFp03(this, 'fp03', "移動角度最大", 90.0f, 0.0f, 180.0f)    // 'maximum moving angle'
+		    , mFp04(this, 'fp04', "移動角度最小", 45.0f, 0.0f, 180.0f)    // 'minimum moving angle'
+		    , mFp11(this, 'fp11', "待機確率", 0.25f, 0.0f, 1.0f)          // 'waiting probability'
+		    , mFp12(this, 'fp12', "待機時間最大", 2.0f, 0.0f, 10.0f)      // 'maximum waiting time'
+		    , mFp13(this, 'fp13', "待機時間最小", 1.0f, 0.0f, 10.0f)      // 'minimum waiting time'
+		    , mFp21(this, 'fp21', "水中移動速度", 25.0f, 0.0f, 1000.0f)   // 'underwater movement speed'
+		    , mFp22(this, 'fp22', "水中回転速度率", 0.05f, 0.0f, 1.0f)    // 'underwater rotation rate'
+		    , mFp23(this, 'fp23', "水中回転最大速度", 1.0f, 0.0f, 360.0f) // 'underwater rotation maximum speed'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp04; // _87C
-		Parm<f32> m_fp11; // _8A4
-		Parm<f32> m_fp12; // _8CC
-		Parm<f32> m_fp13; // _8F4
-		Parm<f32> m_fp21; // _91C
-		Parm<f32> m_fp22; // _944
-		Parm<f32> m_fp23; // _96C
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp02; // _82C
+		Parm<f32> mFp03; // _854
+		Parm<f32> mFp04; // _87C
+		Parm<f32> mFp11; // _8A4
+		Parm<f32> mFp12; // _8CC
+		Parm<f32> mFp13; // _8F4
+		Parm<f32> mFp21; // _91C
+		Parm<f32> mFp22; // _944
+		Parm<f32> mFp23; // _96C
 	};
 
 	Parms() { }
@@ -64,12 +64,12 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct Obj : public EnemyBase {
@@ -78,7 +78,7 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);          // _30
 	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual bool isUnderground() { return m_isHiding; }      // _D0 (weak)
+	virtual bool isUnderground() { return mIsHiding; }       // _D0 (weak)
 	virtual void getShadowParam(ShadowParam& settings);      // _134
 	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
@@ -111,17 +111,17 @@ struct Obj : public EnemyBase {
 
 	Creature* getSearchedTarget();
 
-	inline f32 getMinAngle() { return C_PROPERPARMS.m_fp04.m_value; }
+	inline f32 getMinAngle() { return C_PROPERPARMS.mFp04.mValue; }
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                // _2BC
-	bool m_isHiding;           // _2C0, unknown
-	f32 m_timer;               // _2C4
-	StateID m_nextState;       // _2C8
-	f32 m_moveVelocity;        // _2CC
-	Vector3f m_targetPosition; // _2D0
-	                           // _2DC = PelletView
+	FSM* mFsm;                // _2BC
+	bool mIsHiding;           // _2C0, unknown
+	f32 mTimer;               // _2C4
+	StateID mNextState;       // _2C8
+	f32 mMoveVelocity;        // _2CC
+	Vector3f mTargetPosition; // _2D0
+	                          // _2DC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -143,18 +143,18 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, likely an array of Objs
+	Obj* mObj; // _44, likely an array of Objs
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                 // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////
@@ -170,7 +170,7 @@ struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
 	    : EnemyFSMState(stateID)
 	{
-		m_name = name;
+		mName = name;
 	}
 
 	// _00		= VTBL

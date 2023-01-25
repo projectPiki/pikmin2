@@ -129,14 +129,14 @@
  * Size:	0000E8
  */
 JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(JPAEmitterManager* emitterManager, const JStage::TSystem* system)
-    : m_emitterManager(emitterManager)
-    , m_emitter(nullptr)
-    , m_callback(this)
+    : mEmitterManager(emitterManager)
+    , mEmitter(nullptr)
+    , mCallback(this)
     , _188(-1)
     , _18C(0)
     , _190(0)
     , _194(0)
-    , m_system(system)
+    , mSystem(system)
     , _19C(nullptr)
     , _1A0(0xFFFFFFFF)
     , _1A4(0)
@@ -181,8 +181,8 @@ namespace JStudio {
  */
 JStudio_JParticle::TAdaptor_particle::~TAdaptor_particle()
 {
-	if (m_emitter != nullptr) {
-		m_emitterManager->forceDeleteEmitter(m_emitter);
+	if (mEmitter != nullptr) {
+		mEmitterManager->forceDeleteEmitter(mEmitter);
 	}
 }
 
@@ -204,7 +204,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare(const JStudio::TOb
 		    TSetVariableValue_immediate(14, 255.0f), TSetVariableValue_immediate(15, 255.0f),
 		    TSetVariableValue_immediate(16, 255.0f), TSetVariableValue_immediate(0xFFFFFFFF, __float_nan) };
 	adaptor_setVariableValue_immediate(aoData);
-	m_callback.m_object = p1;
+	mCallback.mObject = p1;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -322,9 +322,9 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(const JStudio::TObj
 		_18C = 2;
 		break;
 	case 3:
-		m_emitterManager->forceDeleteEmitter(m_emitter);
-		m_emitter = nullptr;
-		_18C      = 0;
+		mEmitterManager->forceDeleteEmitter(mEmitter);
+		mEmitter = nullptr;
+		_18C     = 0;
 	}
 	_190 = 0;
 	_194 = 0;
@@ -369,7 +369,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOpera
 	if (operation != JStudio::data::TEOD_Unknown_01) {
 		return;
 	}
-	JPABaseEmitter* emitter = m_emitter;
+	JPABaseEmitter* emitter = mEmitter;
 	if (emitter == nullptr) {
 		return;
 	}
@@ -417,7 +417,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(JStudio::data::TEOp
 	case JStudio::data::TEOD_Unknown_18:
 		_19C = nullptr;
 		JStage::TObject* object;
-		if (m_system->JSGFindObject(&object, (const char*)p2, JStage::TEO_Unknown_0) == 0) {
+		if (mSystem->JSGFindObject(&object, (const char*)p2, JStage::TEO_Unknown_0) == 0) {
 			_19C = object;
 		}
 		break;
@@ -797,15 +797,15 @@ lbl_800060E0:
  */
 void JStudio_JParticle::TAdaptor_particle::endParticle_fadeOut_(unsigned long p1)
 {
-	if (m_emitter == nullptr) {
+	if (mEmitter == nullptr) {
 		return;
 	}
 	if (p1 == 0) {
-		m_emitterManager->forceDeleteEmitter(m_emitter);
-		m_emitter = nullptr;
-		_18C      = 0;
-		_190      = 0;
-		_194      = 0;
+		mEmitterManager->forceDeleteEmitter(mEmitter);
+		mEmitter = nullptr;
+		_18C     = 0;
+		_190     = 0;
+		_194     = 0;
 		return;
 	}
 	u32 v1 = _18C;

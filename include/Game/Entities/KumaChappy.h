@@ -61,18 +61,18 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2B8	= EnemyBase
-	FSM* m_fsm;                          // _2BC
-	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2C0
-	f32 m_reviveTimer;                   // _2C8
-	int _2CC;                            // _2CC
-	f32 m_timer;                         // _2D0
-	int m_nextState;                     // _2D4
-	MouthSlots m_mouthSlots;             // _2D8
-	Vector3f m_targetPos;                // _2E0
-	WayPoint* m_currWP;                  // _2EC
-	WayPoint* m_prevWP;                  // _2F0
-	ChappyRelation* m_chappyRelation;    // _2F4
-	                                     // _2F8 = PelletView
+	FSM* mFsm;                          // _2BC
+	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2C0
+	f32 mReviveTimer;                   // _2C8
+	int _2CC;                           // _2CC
+	f32 mTimer;                         // _2D0
+	int mNextState;                     // _2D4
+	MouthSlots mMouthSlots;             // _2D8
+	Vector3f mTargetPos;                // _2E0
+	WayPoint* mCurrWP;                  // _2EC
+	WayPoint* mPrevWP;                  // _2F0
+	ChappyRelation* mChappyRelation;    // _2F4
+	                                    // _2F8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -89,22 +89,22 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "îíÉsÉNÉ~Éì", 300.0f, 0.0f, 10000.0f)      // eat white pikmin damage
-		    , m_fp11(this, 'fp11', "éÄñS Å` ÉQÅ[ÉWèoåª", 30.0f, 1.0f, 500.0f) // time to revive after death
-		    , m_fp12(this, 'fp12', "ÉQÅ[ÉWèoåª Å` ïúäà", 10.0f, 1.0f, 500.0f) // delay before hp starts replenishing after death
+		    , mFp01(this, 'fp01', "îíÉsÉNÉ~Éì", 300.0f, 0.0f, 10000.0f)      // eat white pikmin damage
+		    , mFp11(this, 'fp11', "éÄñS Å` ÉQÅ[ÉWèoåª", 30.0f, 1.0f, 500.0f) // time to revive after death
+		    , mFp12(this, 'fp12', "ÉQÅ[ÉWèoåª Å` ïúäà", 10.0f, 1.0f, 500.0f) // delay before hp starts replenishing after death
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp11; // _82C
-		Parm<f32> m_fp12; // _854
+		Parm<f32> mFp01; // _804
+		Parm<f32> mFp11; // _82C
+		Parm<f32> mFp12; // _854
 	};
 
 	Parms() { }
@@ -112,23 +112,23 @@ struct Parms : public EnemyParmsBase {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	ProperParms mProperParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

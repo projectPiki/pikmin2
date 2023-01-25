@@ -30,14 +30,14 @@ struct EnemyBoss : public EnemyBase {
 	void dyingFramework();
 	void isOnDisappearing();
 
-	f32 _E0;              // _E0
-	u16 m_disappearTimer; // _E4
-	int _E8;              // _E8
-	JSUPtrLink _EC;       // _EC - could be JSULink<PSM::EnemyBoss>
-	bool m_appearFlag;    // _FC
-	u8 _FD;               // _FD - possibly didAppearSoundPlay flag
-	u8 _FE;               // _FE - unknown
-	u8 _FF;               // _FF
+	f32 _E0;             // _E0
+	u16 mDisappearTimer; // _E4
+	int _E8;             // _E8
+	JSUPtrLink _EC;      // _EC - could be JSULink<PSM::EnemyBoss>
+	bool mAppearFlag;    // _FC
+	u8 _FD;              // _FD - possibly didAppearSoundPlay flag
+	u8 _FE;              // _FE - unknown
+	u8 _FF;              // _FF
 };
 
 /**

@@ -513,17 +513,17 @@ void Obj::setParameters()
 {
 	EnemyBase::setParameters();
 	float scale = 1.0f;
-	if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
 		scale = 0.5f;
 	}
-	m_scaleModifier = scale;
-	m_scale         = Vector3f(scale);
-	m_collTree->m_part->setScale(scale);
-	m_curLodSphere.m_radius = scale * C_PARMS->m_general.m_offCameraRadius.m_value;
-	if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-		C_PARMS->m_general.m_heightOffsetFromFloor.m_value = 50.0f;
+	mScaleModifier = scale;
+	mScale         = Vector3f(scale);
+	mCollTree->mPart->setScale(scale);
+	mCurLodSphere.mRadius = scale * C_PARMS->mGeneral.mOffCameraRadius.mValue;
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 50.0f;
 	}
-	m_collTree->getCollPart('weak')->setScale(C_PARMS->_A34); // scale of weak point (tail bulb)
+	mCollTree->getCollPart('weak')->setScale(C_PARMS->_A34); // scale of weak point (tail bulb)
 }
 
 /*
@@ -534,7 +534,7 @@ void Obj::setParameters()
 f32 Obj::getBodyRadius()
 {
 	if (isEvent(0, EB_IsBittered)) {
-		if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
 			return 50.0f;
 		}
 		return 100.0f;
@@ -559,117 +559,117 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	disableEvent(0, EB_IsDeathEffectEnabled);
-	m_headJoint = m_model->getJoint("head_joint1");
-	P2ASSERTLINE(124, m_headJoint);
-	m_targetNavi = nullptr;
-	_2BC         = m_homePosition;
-	_2E0         = 0;
-	_2E4         = m_homePosition;
-	_2F0         = 0;
-	_2F4         = 0;
-	_2FC         = 0.0f;
-	m_targetNavi = nullptr; // second null initialization of targetNavi
-	_2DC         = 0;
-	_300         = 0;
-	m_nextState  = UMIMUSHI_NULL;
+	mHeadJoint = mModel->getJoint("head_joint1");
+	P2ASSERTLINE(124, mHeadJoint);
+	mTargetNavi = nullptr;
+	_2BC        = mHomePosition;
+	_2E0        = 0;
+	_2E4        = mHomePosition;
+	_2F0        = 0;
+	_2F4        = 0;
+	_2FC        = 0.0f;
+	mTargetNavi = nullptr; // second null initialization of targetNavi
+	_2DC        = 0;
+	_300        = 0;
+	mNextState  = UMIMUSHI_NULL;
 
-	m_normalColor2.r = -25;
-	m_normalColor2.g = -100;
-	m_normalColor2.b = -30;
+	mNormalColor2.r = -25;
+	mNormalColor2.g = -100;
+	mNormalColor2.b = -30;
 
-	m_olimarColor1.r = 60;
-	m_olimarColor1.g = -115;
-	m_olimarColor1.b = -115;
+	mOlimarColor1.r = 60;
+	mOlimarColor1.g = -115;
+	mOlimarColor1.b = -115;
 
-	m_olimarColor2.r = 0;
-	m_olimarColor2.g = -180;
-	m_olimarColor2.b = -180;
+	mOlimarColor2.r = 0;
+	mOlimarColor2.g = -180;
+	mOlimarColor2.b = -180;
 
-	m_louieColor1.r = -30;
-	m_louieColor1.g = -30;
-	m_louieColor1.b = 50;
+	mLouieColor1.r = -30;
+	mLouieColor1.g = -30;
+	mLouieColor1.b = 50;
 
-	m_louieColor2.r = -80;
-	m_louieColor2.g = -80;
-	m_louieColor2.b = 0;
+	mLouieColor2.r = -80;
+	mLouieColor2.g = -80;
+	mLouieColor2.b = 0;
 
-	m_normalColor1.r = 0;
-	m_normalColor1.g = -25;
-	m_normalColor1.b = -75;
+	mNormalColor1.r = 0;
+	mNormalColor1.g = -25;
+	mNormalColor1.b = -75;
 
-	_31C = m_normalColor1;
-	_314 = m_normalColor1;
+	_31C = mNormalColor1;
+	_314 = mNormalColor1;
 
 	curU = nullptr;
 
-	m_fsm->start(this, UMIMUSHI_Walk, nullptr);
+	mFsm->start(this, UMIMUSHI_Walk, nullptr);
 
 	P2ASSERTLINE(157, _354);
-	_354->start(C_MGR->m_texAnimation);
+	_354->start(C_MGR->mTexAnimation);
 
-	P2ASSERTLINE(160, m_shadowMgr);
-	m_shadowMgr->init();
+	P2ASSERTLINE(160, mShadowMgr);
+	mShadowMgr->init();
 
-	J3DModelData* modelData = m_model->m_j3dModel->m_modelData;
+	J3DModelData* modelData = mModel->mJ3dModel->mModelData;
 	P2ASSERTLINE(166, modelData);
 
-	u16 matIdx = modelData->m_materialTable._0C->getIndex("cc_mat1_v");
-	_310       = modelData->m_materialTable.m_materials1[matIdx];
+	u16 matIdx = modelData->mMaterialTable._0C->getIndex("cc_mat1_v");
+	_310       = modelData->mMaterialTable.mMaterials1[matIdx];
 
 	P2ASSERTLINE(171, _310);
 
-	if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushi) {
-		PSM::EnemyMidBoss* bossSoundObj = static_cast<PSM::EnemyMidBoss*>(m_soundObj);
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushi) {
+		PSM::EnemyMidBoss* bossSoundObj = static_cast<PSM::EnemyMidBoss*>(mSoundObj);
 		checkMidBoss(bossSoundObj);
 		bossSoundObj->setAppearFlag(false);
 		bossSoundObj->_118 = true;
 	} else {
 		setParameters();
-		float health = C_PROPERPARMS.m_blindHealth.m_value;
-		m_health     = health;
-		m_maxHealth  = health;
+		float health = C_PROPERPARMS.mBlindHealth.mValue;
+		mHealth      = health;
+		mMaxHealth   = health;
 		_35C         = 0.45f;
-		P2ASSERTLINE(189, m_model);
-		J3DModelData* modelData                                     = m_model->m_j3dModel->m_modelData;
-		m_eyeJointIdx                                               = m_model->getJointIndex("eyes_joint1");
-		m_weakJointIdx                                              = m_model->getJointIndex("weak_joint2");
-		modelData->m_jointTree.m_joints[m_eyeJointIdx]->m_function  = UmiMushi::eyeScaleCallBack;
-		modelData->m_jointTree.m_joints[m_weakJointIdx]->m_function = UmiMushi::weakScaleCallBack;
+		P2ASSERTLINE(189, mModel);
+		J3DModelData* modelData                                 = mModel->mJ3dModel->mModelData;
+		mEyeJointIdx                                            = mModel->getJointIndex("eyes_joint1");
+		mWeakJointIdx                                           = mModel->getJointIndex("weak_joint2");
+		modelData->mJointTree.mJoints[mEyeJointIdx]->mFunction  = UmiMushi::eyeScaleCallBack;
+		modelData->mJointTree.mJoints[mWeakJointIdx]->mFunction = UmiMushi::weakScaleCallBack;
 	}
-	m_dropGroup     = EDG_None;
-	m_hamonPosition = m_position;
-	P2ASSERTLINE(212, m_efxHamon);
-	efx::Arg efxArg(m_hamonPosition);
-	m_efxHamon->create(&efxArg);
-	m_efxHamon->setGlobalScale(m_scaleModifier);
+	mDropGroup     = EDG_None;
+	mHamonPosition = mPosition;
+	P2ASSERTLINE(212, mEfxHamon);
+	efx::Arg efxArg(mHamonPosition);
+	mEfxHamon->create(&efxArg);
+	mEfxHamon->setGlobalScale(mScaleModifier);
 
-	P2ASSERTLINE(218, m_efxWeakRed);
-	P2ASSERTLINE(219, m_efxWeakBlue);
-	Matrixf* modelMtx = m_model->getJoint("weak_joint2")->getWorldMatrix();
-	m_efxWeakRed->setMtxptr(modelMtx->m_matrix.mtxView);
-	m_efxWeakBlue->setMtxptr(modelMtx->m_matrix.mtxView);
+	P2ASSERTLINE(218, mEfxWeakRed);
+	P2ASSERTLINE(219, mEfxWeakBlue);
+	Matrixf* modelMtx = mModel->getJoint("weak_joint2")->getWorldMatrix();
+	mEfxWeakRed->setMtxptr(modelMtx->mMatrix.mtxView);
+	mEfxWeakBlue->setMtxptr(modelMtx->mMatrix.mtxView);
 
-	P2ASSERTLINE(225, m_efxEyeRed[0]);
-	P2ASSERTLINE(226, m_efxEyeRed[1]);
+	P2ASSERTLINE(225, mEfxEyeRed[0]);
+	P2ASSERTLINE(226, mEfxEyeRed[1]);
 
-	P2ASSERTLINE(228, m_efxEyeBlue[0]);
-	P2ASSERTLINE(229, m_efxEyeBlue[1]);
+	P2ASSERTLINE(228, mEfxEyeBlue[0]);
+	P2ASSERTLINE(229, mEfxEyeBlue[1]);
 
-	modelMtx = m_model->getJoint("ef_eye_r")->getWorldMatrix();
-	m_efxEyeRed[0]->setMtxptr(modelMtx->m_matrix.mtxView);
-	m_efxEyeBlue[0]->setMtxptr(modelMtx->m_matrix.mtxView);
+	modelMtx = mModel->getJoint("ef_eye_r")->getWorldMatrix();
+	mEfxEyeRed[0]->setMtxptr(modelMtx->mMatrix.mtxView);
+	mEfxEyeBlue[0]->setMtxptr(modelMtx->mMatrix.mtxView);
 
-	modelMtx = m_model->getJoint("ef_eye_l")->getWorldMatrix();
-	m_efxEyeRed[1]->setMtxptr(modelMtx->m_matrix.mtxView);
-	m_efxEyeBlue[1]->setMtxptr(modelMtx->m_matrix.mtxView);
+	modelMtx = mModel->getJoint("ef_eye_l")->getWorldMatrix();
+	mEfxEyeRed[1]->setMtxptr(modelMtx->mMatrix.mtxView);
+	mEfxEyeBlue[1]->setMtxptr(modelMtx->mMatrix.mtxView);
 
-	P2ASSERTLINE(239, m_efxEat);
-	P2ASSERTLINE(240, m_efxBubble);
+	P2ASSERTLINE(239, mEfxEat);
+	P2ASSERTLINE(240, mEfxBubble);
 
-	_388 = m_model->getJoint("bero_joint1")->getWorldMatrix();
+	_388 = mModel->getJoint("bero_joint1")->getWorldMatrix();
 
-	m_efxEat->m_mtx    = _388;
-	m_efxBubble->m_mtx = _388;
+	mEfxEat->mMtx    = _388;
+	mEfxBubble->mMtx = _388;
 }
 
 /*
@@ -678,43 +678,43 @@ void Obj::onInit(CreatureInitArg* initArg)
  * Size:	000428
  */
 Obj::Obj()
-    : m_headJoint(nullptr)
-    , m_targetNavi(nullptr)
+    : mHeadJoint(nullptr)
+    , mTargetNavi(nullptr)
     , _2DD(0)
     , _310(nullptr)
     , _354(nullptr)
-    , m_shadowMgr(nullptr)
+    , mShadowMgr(nullptr)
 {
-	m_efxHamon      = nullptr;
-	m_efxWeakRed    = nullptr;
-	m_efxWeakBlue   = nullptr;
-	m_efxEyeRed[0]  = nullptr;
-	m_efxEyeRed[1]  = nullptr;
-	m_efxEyeBlue[0] = nullptr;
-	m_efxEyeBlue[1] = nullptr;
-	m_efxEat        = nullptr;
-	m_efxBubble     = nullptr;
-	_388            = nullptr;
-	m_fsm           = nullptr;
-	_3A0            = 0;
+	mEfxHamon      = nullptr;
+	mEfxWeakRed    = nullptr;
+	mEfxWeakBlue   = nullptr;
+	mEfxEyeRed[0]  = nullptr;
+	mEfxEyeRed[1]  = nullptr;
+	mEfxEyeBlue[0] = nullptr;
+	mEfxEyeBlue[1] = nullptr;
+	mEfxEat        = nullptr;
+	mEfxBubble     = nullptr;
+	_388           = nullptr;
+	mFsm           = nullptr;
+	_3A0           = 0;
 
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
-	_354        = new Sys::MatLoopAnimator;
-	m_shadowMgr = new UmimushiShadowMgr(this);
+	_354       = new Sys::MatLoopAnimator;
+	mShadowMgr = new UmimushiShadowMgr(this);
 
-	m_efxHamon = new efx::TUmiHamon(&m_hamonPosition);
+	mEfxHamon = new efx::TUmiHamon(&mHamonPosition);
 
-	m_efxWeakRed  = new efx::TUmiWeakRed;
-	m_efxWeakBlue = new efx::TUmiWeakBlue;
+	mEfxWeakRed  = new efx::TUmiWeakRed;
+	mEfxWeakBlue = new efx::TUmiWeakBlue;
 
-	m_efxEyeRed[0]  = new efx::TUmiEyeRed;
-	m_efxEyeBlue[0] = new efx::TUmiEyeBlue;
-	m_efxEyeRed[1]  = new efx::TUmiEyeRed;
-	m_efxEyeBlue[1] = new efx::TUmiEyeBlue;
+	mEfxEyeRed[0]  = new efx::TUmiEyeRed;
+	mEfxEyeBlue[0] = new efx::TUmiEyeBlue;
+	mEfxEyeRed[1]  = new efx::TUmiEyeRed;
+	mEfxEyeBlue[1] = new efx::TUmiEyeBlue;
 
-	m_efxEat    = new efx::TUmiEat;
-	m_efxBubble = new efx::TUmiDeadawa;
+	mEfxEat    = new efx::TUmiEat;
+	mEfxBubble = new efx::TUmiDeadawa;
 }
 
 /*
@@ -724,9 +724,9 @@ Obj::Obj()
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -1220,15 +1220,15 @@ void Obj::changeMaterial()
  */
 void Obj::doStartMovie()
 {
-	m_efxHamon->startDemoDrawOff();
-	m_efxWeakRed->startDemoDrawOff();
-	m_efxWeakBlue->startDemoDrawOff();
-	m_efxEyeRed[0]->startDemoDrawOff();
-	m_efxEyeRed[1]->startDemoDrawOff();
-	m_efxEyeBlue[0]->startDemoDrawOff();
-	m_efxEyeBlue[1]->startDemoDrawOff();
-	m_efxEat->startDemoDrawOff();
-	m_efxBubble->startDemoDrawOff();
+	mEfxHamon->startDemoDrawOff();
+	mEfxWeakRed->startDemoDrawOff();
+	mEfxWeakBlue->startDemoDrawOff();
+	mEfxEyeRed[0]->startDemoDrawOff();
+	mEfxEyeRed[1]->startDemoDrawOff();
+	mEfxEyeBlue[0]->startDemoDrawOff();
+	mEfxEyeBlue[1]->startDemoDrawOff();
+	mEfxEat->startDemoDrawOff();
+	mEfxBubble->startDemoDrawOff();
 }
 
 /*
@@ -1238,15 +1238,15 @@ void Obj::doStartMovie()
  */
 void Obj::doEndMovie()
 {
-	m_efxHamon->endDemoDrawOn();
-	m_efxWeakRed->endDemoDrawOn();
-	m_efxWeakBlue->endDemoDrawOn();
-	m_efxEyeRed[0]->endDemoDrawOn();
-	m_efxEyeRed[1]->endDemoDrawOn();
-	m_efxEyeBlue[0]->endDemoDrawOn();
-	m_efxEyeBlue[1]->endDemoDrawOn();
-	m_efxEat->endDemoDrawOn();
-	m_efxBubble->endDemoDrawOn();
+	mEfxHamon->endDemoDrawOn();
+	mEfxWeakRed->endDemoDrawOn();
+	mEfxWeakBlue->endDemoDrawOn();
+	mEfxEyeRed[0]->endDemoDrawOn();
+	mEfxEyeRed[1]->endDemoDrawOn();
+	mEfxEyeBlue[0]->endDemoDrawOn();
+	mEfxEyeBlue[1]->endDemoDrawOn();
+	mEfxEat->endDemoDrawOn();
+	mEfxBubble->endDemoDrawOn();
 }
 
 /*
@@ -1567,8 +1567,8 @@ lbl_803847EC:
 bool Obj::earthquakeCallBack(Creature* obj, f32 damage)
 {
 	P2ASSERTLINE(752, obj);
-	if (obj->isPiki() && (int)static_cast<Piki*>(obj)->m_pikiKind == Purple) {
-		damage *= C_PROPERPARMS.m_purpleDamageRate.m_value;
+	if (obj->isPiki() && (int)static_cast<Piki*>(obj)->mPikiKind == Purple) {
+		damage *= C_PROPERPARMS.mPurpleDamageRate.mValue;
 	}
 
 	return EnemyBase::earthquakeCallBack(obj, damage);
@@ -3033,7 +3033,7 @@ lbl_80385C10:
  */
 void Obj::resetWalkParm()
 {
-	_2F8 = m_faceDir;
+	_2F8 = mFaceDir;
 	_2FC = 0.0f;
 }
 
@@ -4172,7 +4172,7 @@ lbl_80386B20:
  */
 void Obj::fadeAllEffect()
 {
-	m_efxHamon->fade();
+	mEfxHamon->fade();
 	fadeColorEffect();
 }
 
@@ -4183,12 +4183,12 @@ void Obj::fadeAllEffect()
  */
 void Obj::fadeColorEffect()
 {
-	m_efxWeakRed->fade();
-	m_efxWeakBlue->fade();
-	m_efxEyeRed[0]->fade();
-	m_efxEyeRed[1]->fade();
-	m_efxEyeBlue[0]->fade();
-	m_efxEyeBlue[1]->fade();
+	mEfxWeakRed->fade();
+	mEfxWeakBlue->fade();
+	mEfxEyeRed[0]->fade();
+	mEfxEyeRed[1]->fade();
+	mEfxEyeBlue[0]->fade();
+	mEfxEyeBlue[1]->fade();
 	_2DC = false;
 }
 
@@ -4479,9 +4479,9 @@ lbl_80386FA4:
  */
 void Obj::eatEffect()
 {
-	efx::Arg arg(m_position);
-	m_efxEat->create(&arg);
-	m_efxEat->setGlobalScale(m_scaleModifier);
+	efx::Arg arg(mPosition);
+	mEfxEat->create(&arg);
+	mEfxEat->setGlobalScale(mScaleModifier);
 }
 
 /*
@@ -4491,9 +4491,9 @@ void Obj::eatEffect()
  */
 void Obj::bubbleEffect()
 {
-	efx::Arg arg(m_position);
-	m_efxBubble->create(&arg);
-	m_efxBubble->setGlobalScale(m_scaleModifier);
+	efx::Arg arg(mPosition);
+	mEfxBubble->create(&arg);
+	mEfxBubble->setGlobalScale(mScaleModifier);
 }
 
 /*

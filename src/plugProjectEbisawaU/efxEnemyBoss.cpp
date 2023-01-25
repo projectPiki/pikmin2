@@ -228,9 +228,9 @@ bool TDangoCrash::create(efx::Arg* arg)
 
 	efx::ArgDir* argd = static_cast<efx::ArgDir*>(arg);
 
-	f32 x = argd->m_angle.x;
-	f32 y = argd->m_angle.y;
-	f32 z = argd->m_angle.z;
+	f32 x = argd->mAngle.x;
+	f32 y = argd->mAngle.y;
+	f32 z = argd->mAngle.z;
 
 	if (TSimple2::create(arg)) {
 		f32 z2   = z * z;
@@ -243,23 +243,23 @@ bool TDangoCrash::create(efx::Arg* arg)
 		}
 
 		Matrixf mtx;
-		f32 f                      = 0.0f;
-		mtx.m_matrix.structView.xx = z * 1.0f - (y * f);
-		mtx.m_matrix.structView.yx = 0.0f;
-		mtx.m_matrix.structView.zx = x;
-		mtx.m_matrix.structView.tx = Vector3f::zero.x;
+		f32 f                     = 0.0f;
+		mtx.mMatrix.structView.xx = z * 1.0f - (y * f);
+		mtx.mMatrix.structView.yx = 0.0f;
+		mtx.mMatrix.structView.zx = x;
+		mtx.mMatrix.structView.tx = Vector3f::zero.x;
 
-		mtx.m_matrix.structView.xy = (x * f) - (z * f);
-		mtx.m_matrix.structView.yy = 1.0f;
-		mtx.m_matrix.structView.zy = y;
-		mtx.m_matrix.structView.ty = Vector3f::zero.y;
+		mtx.mMatrix.structView.xy = (x * f) - (z * f);
+		mtx.mMatrix.structView.yy = 1.0f;
+		mtx.mMatrix.structView.zy = y;
+		mtx.mMatrix.structView.ty = Vector3f::zero.y;
 
-		mtx.m_matrix.structView.xz = x * 1.0f - y * f;
-		mtx.m_matrix.structView.yz = 0.0f;
-		mtx.m_matrix.structView.zz = z;
-		mtx.m_matrix.structView.tz = Vector3f::zero.z;
+		mtx.mMatrix.structView.xz = x * 1.0f - y * f;
+		mtx.mMatrix.structView.yz = 0.0f;
+		mtx.mMatrix.structView.zz = z;
+		mtx.mMatrix.structView.tz = Vector3f::zero.z;
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxfromMtx(mtx.m_matrix.mtxView, m_emitters[i]->_68);
+			JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68);
 		}
 		return true;
 	} else {
@@ -401,18 +401,18 @@ bool TDangoTurn::create(efx::Arg* arg)
 
 	efx::ArgRotY* argy = static_cast<efx::ArgRotY*>(arg);
 
-	f32 x = arg->m_position.x;
-	f32 y = arg->m_position.y;
-	f32 z = arg->m_position.z;
+	f32 x = arg->mPosition.x;
+	f32 y = arg->mPosition.y;
+	f32 z = arg->mPosition.z;
 	Matrixf mtx;
-	PSMTXRotRad(mtx.m_matrix.mtxView, 'y', argy->m_faceDir);
+	PSMTXRotRad(mtx.mMatrix.mtxView, 'y', argy->mFaceDir);
 
 	Vector3f vec(x, y, z);
 	mtx.setTranslation(vec);
 
 	if (TSimple2::create(arg)) {
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
 		}
 		return true;
 	} else {
@@ -509,10 +509,10 @@ lbl_803EB5F4:
  */
 void TKageMove::setGlobalPrmColor(Color4& color)
 {
-	if (m_emitter == nullptr)
+	if (mEmitter == nullptr)
 		return;
 
-	m_emitter->setColor(color);
+	mEmitter->setColor(color);
 	/*
 	lwz      r6, 8(r3)
 	cmplwi   r6, 0
@@ -536,10 +536,10 @@ void TKageMove::setGlobalPrmColor(Color4& color)
  */
 void TKageRun::setGlobalPrmColor(Color4& color)
 {
-	if (m_emitter == nullptr)
+	if (mEmitter == nullptr)
 		return;
 
-	m_emitter->setColor(color);
+	mEmitter->setColor(color);
 	/*
 	lwz      r6, 8(r3)
 	cmplwi   r6, 0
@@ -563,10 +563,10 @@ void TKageRun::setGlobalPrmColor(Color4& color)
  */
 void TKageDead1::setGlobalPrmColor(Color4& color)
 {
-	if (m_emitter == nullptr)
+	if (mEmitter == nullptr)
 		return;
 
-	m_emitter->setColor(color);
+	mEmitter->setColor(color);
 	/*
 	lwz      r6, 8(r3)
 	cmplwi   r6, 0
@@ -596,8 +596,8 @@ bool TKageDead2::create(efx::Arg* arg)
 	efx::ArgPrmColor* argp = static_cast<efx::ArgPrmColor*>(arg);
 
 	if (TSimple1::create(arg)) {
-		m_emitters[0]->setColorRGB(argp->m_color);
-		m_emitters[0]->m_color1.a = argp->m_color.a;
+		mEmitters[0]->setColorRGB(argp->mColor);
+		mEmitters[0]->mColor1.a = argp->mColor.a;
 		return true;
 	} else {
 		return false;
@@ -685,16 +685,16 @@ bool TOootaBombLeg::create(efx::Arg* arg)
 
 	efx::ArgPosPos* argp = static_cast<efx::ArgPosPos*>(arg);
 	Vector3f pos1, pos2;
-	pos1 = argp->m_pos1;
-	pos2 = argp->m_pos2;
+	pos1 = argp->mPos1;
+	pos2 = argp->mPos2;
 
 	if (TSimple1::create(arg)) {
 		Matrixf mtx;
-		makeMtxZAxisAlongPosPos(mtx.m_matrix.mtxView, pos1, pos2);
+		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
 		f32 dist = _distanceBetween(pos1, pos2);
 		dist /= 100.0f;
-		JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, m_emitters[0]->_68, &m_emitters[0]->_A4);
-		m_emitters[0]->_04 *= dist;
+		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[0]->_68, &mEmitters[0]->_A4);
+		mEmitters[0]->_04 *= dist;
 		return true;
 	} else {
 		return false;
@@ -820,12 +820,12 @@ bool TOootaFire::create(efx::Arg* arg)
 	efx::ArgScale* argp = static_cast<efx::ArgScale*>(arg);
 
 	if (TSyncGroup6::create(arg)) {
-		m_items[0].m_emitter->setScale(argp->m_scale);
-		m_items[1].m_emitter->setScale(argp->m_scale);
-		m_items[2].m_emitter->setScale(argp->m_scale);
-		m_items[3].m_emitter->setScale(argp->m_scale);
-		m_items[4].m_emitter->setScale(argp->m_scale);
-		m_items[5].m_emitter->setScale(argp->m_scale);
+		mItems[0].mEmitter->setScale(argp->mScale);
+		mItems[1].mEmitter->setScale(argp->mScale);
+		mItems[2].mEmitter->setScale(argp->mScale);
+		mItems[3].mEmitter->setScale(argp->mScale);
+		mItems[4].mEmitter->setScale(argp->mScale);
+		mItems[5].mEmitter->setScale(argp->mScale);
 		return true;
 	} else {
 		return false;
@@ -938,20 +938,20 @@ bool TKchFlickSand::create(efx::Arg* arg)
 
 	efx::ArgRotYScale* argp = static_cast<efx::ArgRotYScale*>(arg);
 
-	f32 scale = argp->m_scale;
-	f32 x     = argp->m_position.x;
-	f32 y     = argp->m_position.y;
-	f32 z     = argp->m_position.z;
+	f32 scale = argp->mScale;
+	f32 x     = argp->mPosition.x;
+	f32 y     = argp->mPosition.y;
+	f32 z     = argp->mPosition.z;
 	Matrixf mtx;
-	PSMTXRotRad(mtx.m_matrix.mtxView, 'y', argp->m_faceDir);
+	PSMTXRotRad(mtx.mMatrix.mtxView, 'y', argp->mFaceDir);
 
 	Vector3f vec(x, y, z);
 	mtx.setTranslation(vec);
 
 	if (TSimple2::create(arg)) {
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
-			m_emitters[i]->setScale(scale);
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			mEmitters[i]->setScale(scale);
 		}
 		return true;
 	} else {
@@ -1067,20 +1067,20 @@ bool TKchApSand::create(efx::Arg* arg)
 
 	efx::ArgRotYScale* argp = static_cast<efx::ArgRotYScale*>(arg);
 
-	f32 scale = argp->m_scale;
-	f32 x     = argp->m_position.x;
-	f32 y     = argp->m_position.y;
-	f32 z     = argp->m_position.z;
+	f32 scale = argp->mScale;
+	f32 x     = argp->mPosition.x;
+	f32 y     = argp->mPosition.y;
+	f32 z     = argp->mPosition.z;
 	Matrixf mtx;
-	PSMTXRotRad(mtx.m_matrix.mtxView, 'y', argp->m_faceDir);
+	PSMTXRotRad(mtx.mMatrix.mtxView, 'y', argp->mFaceDir);
 
 	Vector3f vec(x, y, z);
 	mtx.setTranslation(vec);
 
 	if (TSimple3::create(arg)) {
 		for (int i = 0; i < 3; i++) {
-			JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
-			m_emitters[i]->setScale(scale);
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			mEmitters[i]->setScale(scale);
 		}
 		return true;
 	} else {
@@ -1195,20 +1195,20 @@ bool TKchApWat::create(efx::Arg* arg)
 
 	efx::ArgRotYScale* argp = static_cast<efx::ArgRotYScale*>(arg);
 
-	f32 scale = argp->m_scale;
-	f32 x     = argp->m_position.x;
-	f32 y     = argp->m_position.y;
-	f32 z     = argp->m_position.z;
+	f32 scale = argp->mScale;
+	f32 x     = argp->mPosition.x;
+	f32 y     = argp->mPosition.y;
+	f32 z     = argp->mPosition.z;
 	Matrixf mtx;
-	PSMTXRotRad(mtx.m_matrix.mtxView, 'y', argp->m_faceDir);
+	PSMTXRotRad(mtx.mMatrix.mtxView, 'y', argp->mFaceDir);
 
 	Vector3f vec(x, y, z);
 	mtx.setTranslation(vec);
 
 	if (TSimple5::create(arg)) {
 		for (int i = 0; i < 5; i++) {
-			JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
-			m_emitters[i]->setScale(scale);
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			mEmitters[i]->setScale(scale);
 		}
 		return true;
 	} else {
@@ -1319,8 +1319,8 @@ lbl_803EBE04:
 void TKchDiveSand::setGlobalScale(f32 scale)
 {
 	for (int i = 0; i < 3; i++) {
-		if (m_items[i].m_emitter) {
-			m_items[i].m_emitter->setGlobalScale(scale);
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->setGlobalScale(scale);
 		}
 	}
 }
@@ -1333,8 +1333,8 @@ void TKchDiveSand::setGlobalScale(f32 scale)
 void TKchDiveWat::setGlobalScale(f32 scale)
 {
 	for (int i = 0; i < 3; i++) {
-		if (m_items[i].m_emitter) {
-			m_items[i].m_emitter->setGlobalScale(scale);
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->setGlobalScale(scale);
 		}
 	}
 }
@@ -1347,8 +1347,8 @@ void TKchDiveWat::setGlobalScale(f32 scale)
 void TKchCryAB::setGlobalScale(f32 scale)
 {
 	for (int i = 0; i < 2; i++) {
-		if (m_items[i].m_emitter) {
-			m_items[i].m_emitter->setGlobalScale(scale);
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->setGlobalScale(scale);
 		}
 	}
 }
@@ -1360,8 +1360,8 @@ void TKchCryAB::setGlobalScale(f32 scale)
  */
 void TKchCryInd::setGlobalScale(f32 scale)
 {
-	if (m_items[0].m_emitter) {
-		m_items[0].m_emitter->setGlobalScale(scale);
+	if (mItems[0].mEmitter) {
+		mItems[0].mEmitter->setGlobalScale(scale);
 	}
 	/*
 	lwz      r3, 8(r3)
@@ -1385,13 +1385,13 @@ bool TKchDamage::create(efx::Arg* arg)
 
 	efx::ArgScale* argp = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = argp->m_scale;
+	f32 scale = argp->mScale;
 
 	if (TSimple4::create(arg)) {
-		m_emitters[0]->setScale(scale);
-		m_emitters[1]->setScale(scale);
-		m_emitters[2]->setScale(scale);
-		m_emitters[3]->setScale(scale);
+		mEmitters[0]->setScale(scale);
+		mEmitters[1]->setScale(scale);
+		mEmitters[2]->setScale(scale);
+		mEmitters[3]->setScale(scale);
 		return true;
 	} else {
 		return false;
@@ -1483,8 +1483,8 @@ lbl_803EBFF8:
  */
 void TKchSmokeHana::setGlobalScale(f32 scale)
 {
-	if (m_emitter) {
-		m_emitter->setGlobalScale(scale);
+	if (mEmitter) {
+		mEmitter->setGlobalScale(scale);
 	}
 }
 
@@ -1500,10 +1500,10 @@ bool TKchDownsmoke::create(efx::Arg* arg)
 
 	efx::ArgScale* argp = static_cast<efx::ArgScale*>(arg);
 
-	f32 scale = argp->m_scale;
+	f32 scale = argp->mScale;
 
 	if (TSimple1::create(arg)) {
-		m_emitters[0]->setScale(scale);
+		mEmitters[0]->setScale(scale);
 		return true;
 	} else {
 		return false;
@@ -1518,8 +1518,8 @@ bool TKchDownsmoke::create(efx::Arg* arg)
 void TKchDeadHana::setGlobalScale(f32 scale)
 {
 	for (int i = 0; i < 2; i++) {
-		if (m_items[i].m_emitter) {
-			m_items[i].m_emitter->setGlobalScale(scale);
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->setGlobalScale(scale);
 		}
 	}
 }
@@ -1552,19 +1552,19 @@ void TParticleCallBack_KchYodare::execute(JPABaseEmitter* emit, JPABaseParticle*
 	if (position.y < groundY) {
 		ptcl->_7C |= 2;
 		position.y = groundY;
-		if (m_posID1 < _1C) {
-			Vector3f* pos = &m_posList1[m_posID1];
+		if (mPosID1 < _1C) {
+			Vector3f* pos = &mPosList1[mPosID1];
 			*pos          = position;
-			m_posID1++;
+			mPosID1++;
 		}
 	}
 	if (position.y < _3C) {
 		ptcl->_7C |= 2;
 		position.y = _3C;
-		if (m_posID2 < _38) {
-			Vector3f* pos = &m_posList2[m_posID2];
+		if (mPosID2 < _38) {
+			Vector3f* pos = &mPosList2[mPosID2];
 			*pos          = position;
-			m_posID2++;
+			mPosID2++;
 		}
 	}
 }
@@ -1581,13 +1581,13 @@ bool TKchYodareBaseChaseMtx::create(efx::Arg* arg)
 	P2ASSERTLINE(389, nameCheck);
 
 	efx::ArgKchYodare* argp = static_cast<efx::ArgKchYodare*>(arg);
-	f32 scale               = argp->m_scale;
-	m_efxGr.create(nullptr);
-	m_efxWat.create(nullptr);
-	m_scale = scale;
+	f32 scale               = argp->mScale;
+	mEfxGr.create(nullptr);
+	mEfxWat.create(nullptr);
+	mScale = scale;
 
 	if (TSync::create(arg)) {
-		m_emitter->m_emitterCallback = &m_efxGr;
+		mEmitter->mEmitterCallback = &mEfxGr;
 	}
 
 	return true;
@@ -1674,8 +1674,8 @@ lbl_803EC390:
  */
 void TKchYodareBaseChaseMtx::setGlobalScale(f32 scale)
 {
-	if (m_emitter) {
-		m_emitter->setGlobalScale(scale);
+	if (mEmitter) {
+		mEmitter->setGlobalScale(scale);
 	}
 }
 
@@ -1686,15 +1686,15 @@ void TKchYodareBaseChaseMtx::setGlobalScale(f32 scale)
  */
 void efx::THdamaSight::setPosNrm(Vector3f& pos, Vector3f& angle)
 {
-	if (m_emitter) {
+	if (mEmitter) {
 		Matrixf mtx;
-		mtx.m_matrix.structView.yy = angle.y;
-		mtx.m_matrix.structView.yz = angle.z;
-		mtx.m_matrix.structView.yx = angle.x;
+		mtx.mMatrix.structView.yy = angle.y;
+		mtx.mMatrix.structView.yz = angle.z;
+		mtx.mMatrix.structView.yx = angle.x;
 		// f32 len = _sqrtf();
 
 		mtx.setTranslation(pos);
-		JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, m_emitter->_68, &m_emitter->_A4);
+		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitter->_68, &mEmitter->_A4);
 	}
 	/*
 	stwu     r1, -0x40(r1)
@@ -1786,12 +1786,12 @@ bool THdamaShell::create(efx::Arg* arg)
 
 	efx::ArgDir* argp = static_cast<efx::ArgDir*>(arg);
 
-	volatile f32 x = argp->m_angle.x;
-	volatile f32 y = argp->m_angle.y;
-	volatile f32 z = argp->m_angle.z;
+	volatile f32 x = argp->mAngle.x;
+	volatile f32 y = argp->mAngle.y;
+	volatile f32 z = argp->mAngle.z;
 
 	if (TSync::create(arg)) {
-		m_emitter->setAngle(x, y, z);
+		mEmitter->setAngle(x, y, z);
 		return true;
 	} else {
 		return false;
@@ -1870,9 +1870,9 @@ bool THdamaHit2W::create(efx::Arg* arg)
 
 	efx::ArgDir* argd = static_cast<efx::ArgDir*>(arg);
 
-	f32 x = argd->m_angle.x;
-	f32 y = argd->m_angle.y;
-	f32 z = argd->m_angle.z;
+	f32 x = argd->mAngle.x;
+	f32 y = argd->mAngle.y;
+	f32 z = argd->mAngle.z;
 
 	if (TSimple3::create(arg)) {
 		f32 z2   = z * z;
@@ -1885,23 +1885,23 @@ bool THdamaHit2W::create(efx::Arg* arg)
 		}
 
 		Matrixf mtx;
-		f32 f                      = 0.0f;
-		mtx.m_matrix.structView.xx = z * 1.0f - (y * f);
-		mtx.m_matrix.structView.yx = 0.0f;
-		mtx.m_matrix.structView.zx = x;
-		mtx.m_matrix.structView.tx = Vector3f::zero.x;
+		f32 f                     = 0.0f;
+		mtx.mMatrix.structView.xx = z * 1.0f - (y * f);
+		mtx.mMatrix.structView.yx = 0.0f;
+		mtx.mMatrix.structView.zx = x;
+		mtx.mMatrix.structView.tx = Vector3f::zero.x;
 
-		mtx.m_matrix.structView.xy = (x * f) - (z * f);
-		mtx.m_matrix.structView.yy = 1.0f;
-		mtx.m_matrix.structView.zy = y;
-		mtx.m_matrix.structView.ty = Vector3f::zero.y;
+		mtx.mMatrix.structView.xy = (x * f) - (z * f);
+		mtx.mMatrix.structView.yy = 1.0f;
+		mtx.mMatrix.structView.zy = y;
+		mtx.mMatrix.structView.ty = Vector3f::zero.y;
 
-		mtx.m_matrix.structView.xz = x * 1.0f - y * f;
-		mtx.m_matrix.structView.yz = 0.0f;
-		mtx.m_matrix.structView.zz = z;
-		mtx.m_matrix.structView.tz = Vector3f::zero.z;
+		mtx.mMatrix.structView.xz = x * 1.0f - y * f;
+		mtx.mMatrix.structView.yz = 0.0f;
+		mtx.mMatrix.structView.zz = z;
+		mtx.mMatrix.structView.tz = Vector3f::zero.z;
 		for (int i = 0; i < 3; i++) {
-			JPASetRMtxfromMtx(mtx.m_matrix.mtxView, m_emitters[i]->_68);
+			JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68);
 		}
 		THdamaShootA effect;
 		effect.create(arg);
@@ -2044,16 +2044,16 @@ bool THdamaDeadHahen1::create(efx::Arg* arg)
 
 	efx::ArgPosPos* argd = static_cast<efx::ArgPosPos*>(arg);
 	Vector3f pos1, pos2;
-	pos1 = argd->m_pos1;
-	pos2 = argd->m_pos2;
+	pos1 = argd->mPos1;
+	pos2 = argd->mPos2;
 
 	if (TSimple1::create(arg)) {
 		Matrixf mtx;
-		makeMtxZAxisAlongPosPos(mtx.m_matrix.mtxView, pos1, pos2);
+		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
 		f32 dist = _distanceBetween(pos1, pos2);
 		dist /= 100.0f;
-		JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, m_emitters[0]->_68, &m_emitters[0]->_A4);
-		m_emitters[0]->_04 *= dist;
+		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[0]->_68, &mEmitters[0]->_A4);
+		mEmitters[0]->_04 *= dist;
 		return true;
 	} else {
 		return false;
@@ -2177,17 +2177,17 @@ bool THdamaDeadHahen2::create(efx::Arg* arg)
 
 	efx::ArgPosPos* argd = static_cast<efx::ArgPosPos*>(arg);
 	Vector3f pos1, pos2;
-	pos1 = argd->m_pos1;
-	pos2 = argd->m_pos2;
+	pos1 = argd->mPos1;
+	pos2 = argd->mPos2;
 
 	if (TSimple2::create(arg)) {
 		Matrixf mtx;
-		makeMtxZAxisAlongPosPos(mtx.m_matrix.mtxView, pos1, pos2);
+		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
 		f32 dist = _distanceBetween(pos1, pos2);
 		dist /= 100.0f;
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
-			m_emitters[i]->_04 *= dist;
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			mEmitters[i]->_04 *= dist;
 		}
 		return true;
 	} else {
@@ -2315,8 +2315,8 @@ lbl_803ECA40:
  */
 void TOdamaFur1::setGlobalScale(f32 scale)
 {
-	if (m_emitter) {
-		m_emitter->setGlobalScale(scale);
+	if (mEmitter) {
+		mEmitter->setGlobalScale(scale);
 	}
 }
 
@@ -2327,8 +2327,8 @@ void TOdamaFur1::setGlobalScale(f32 scale)
  */
 void TOdamaFur2::setGlobalScale(f32 scale)
 {
-	if (m_emitter) {
-		m_emitter->setGlobalScale(scale);
+	if (mEmitter) {
+		mEmitter->setGlobalScale(scale);
 	}
 }
 

@@ -19,7 +19,7 @@ struct Mgr {
 	void loadItem();
 
 	// _00 = VTBL
-	bool m_loadPermission; // _04
+	bool mLoadPermission; // _04
 };
 } // namespace Pikmin2ARAM
 

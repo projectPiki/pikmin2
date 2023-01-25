@@ -997,7 +997,7 @@ lbl_80048528:
  */
 void J2DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData* data)
 {
-	setAnmTransform(static_cast<J2DAnmTransformKey*>(m_animation), data);
+	setAnmTransform(static_cast<J2DAnmTransformKey*>(mAnimation), data);
 }
 
 /*
@@ -1058,7 +1058,7 @@ void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey*, const J3DAnmTrans
  */
 void J2DAnmKeyLoader_v15::readAnmTextureSRT(const J3DAnmTextureSRTKeyData* data)
 {
-	setAnmTextureSRT(static_cast<J2DAnmTextureSRTKey*>(m_animation), data);
+	setAnmTextureSRT(static_cast<J2DAnmTextureSRTKey*>(mAnimation), data);
 }
 
 /*
@@ -1211,7 +1211,7 @@ void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey*, const J3DAnmTex
  * Address:	8004881C
  * Size:	000028
  */
-void J2DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* data) { setAnmColor(static_cast<J2DAnmColorKey*>(m_animation), data); }
+void J2DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* data) { setAnmColor(static_cast<J2DAnmColorKey*>(mAnimation), data); }
 
 /*
  * --INFO--
@@ -1291,7 +1291,7 @@ void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey*, const J3DAnmColorKeyData*
  */
 void J2DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData* data)
 {
-	setAnmVtxColor(static_cast<J2DAnmVtxColorKey*>(m_animation), data);
+	setAnmVtxColor(static_cast<J2DAnmVtxColorKey*>(mAnimation), data);
 }
 
 /*
@@ -1606,7 +1606,7 @@ J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15() { }
  */
 void J2DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData* data)
 {
-	setAnmTransform(static_cast<J2DAnmTransformFull*>(m_animation), data);
+	setAnmTransform(static_cast<J2DAnmTransformFull*>(mAnimation), data);
 }
 
 /*
@@ -1665,7 +1665,7 @@ void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull*, const J3DAnmTra
  * Size:	000028
  * readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData
  */
-void J2DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data) { setAnmColor(static_cast<J2DAnmColorFull*>(m_animation), data); }
+void J2DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data) { setAnmColor(static_cast<J2DAnmColorFull*>(mAnimation), data); }
 
 /*
  * --INFO--
@@ -1738,7 +1738,7 @@ void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull*, const J3DAnmColorFullDa
  */
 void J2DAnmFullLoader_v15::readAnmTexPattern(const J3DAnmTexPatternFullData* data)
 {
-	setAnmTexPattern(static_cast<J2DAnmTexPattern*>(m_animation), data);
+	setAnmTexPattern(static_cast<J2DAnmTexPattern*>(mAnimation), data);
 }
 
 /*
@@ -1799,7 +1799,7 @@ void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern*, const J3DAnmTexPa
  * Address:	80048FA0
  * Size:	000028
  */
-void J2DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* data) { setAnmTevReg(static_cast<J2DAnmTevRegKey*>(m_animation), data); }
+void J2DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* data) { setAnmTevReg(static_cast<J2DAnmTevRegKey*>(mAnimation), data); }
 
 /*
  * --INFO--
@@ -1919,7 +1919,7 @@ void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey*, const J3DAnmTevRegKeyDa
  */
 void J2DAnmFullLoader_v15::readAnmVisibility(const J3DAnmVisibilityFullData* data)
 {
-	setAnmVisibility(static_cast<J2DAnmVisibilityFull*>(m_animation), data);
+	setAnmVisibility(static_cast<J2DAnmVisibilityFull*>(mAnimation), data);
 }
 
 /*
@@ -1973,7 +1973,7 @@ void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull*, const J3DAnmV
  */
 void J2DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* data)
 {
-	setAnmVtxColor(static_cast<J2DAnmVtxColorFull*>(m_animation), data);
+	setAnmVtxColor(static_cast<J2DAnmVtxColorFull*>(mAnimation), data);
 }
 
 /*

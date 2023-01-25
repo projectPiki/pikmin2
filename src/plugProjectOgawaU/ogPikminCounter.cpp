@@ -12,17 +12,17 @@ namespace Screen {
  */
 PikminCounter::PikminCounter()
 {
-	m_catchPiki         = nullptr;
-	_180                = 0;
-	_184                = 0;
-	_188                = 0;
-	m_isTotalPokoActive = false;
-	m_paneSublevel      = nullptr;
-	m_scaleMgr          = nullptr;
-	m_standardPos.x     = 0.0f;
-	m_standardPos.y     = 0.0f;
-	m_currPos.x         = 0.0f;
-	m_currPos.y         = 0.0f;
+	mCatchPiki         = nullptr;
+	_180               = 0;
+	_184               = 0;
+	_188               = 0;
+	mIsTotalPokoActive = false;
+	mPaneSublevel      = nullptr;
+	mScaleMgr          = nullptr;
+	mStandardPos.x     = 0.0f;
+	mStandardPos.y     = 0.0f;
+	mCurrPos.x         = 0.0f;
+	mCurrPos.y         = 0.0f;
 }
 
 /*
@@ -32,8 +32,8 @@ PikminCounter::PikminCounter()
  */
 void PikminCounter::setParam(og::Screen::DataGame& game, og::Screen::DataNavi& navi)
 {
-	m_dataGame = game;
-	m_dataNavi = navi;
+	mDataGame = game;
+	mDataNavi = navi;
 }
 
 /*
@@ -44,11 +44,11 @@ void PikminCounter::setParam(og::Screen::DataGame& game, og::Screen::DataNavi& n
 void PikminCounter::setCallBackCommon(JKRArchive* arc, bool flag)
 {
 	og::Screen::setAlphaScreen(this);
-	m_catchPiki = new og::Screen::CallBack_CatchPiki;
-	m_catchPiki->init(this, 'piki', &m_dataNavi.m_nextThrowPiki, arc);
-	addCallBack('piki', m_catchPiki);
-	og::Screen::setCallBack_CounterRV(this, 'c_mr', 'c_mc', 'c_ml', &m_dataNavi.m_followPikis, 4, 3, 1, arc);
-	m_isTotalPokoActive = flag;
+	mCatchPiki = new og::Screen::CallBack_CatchPiki;
+	mCatchPiki->init(this, 'piki', &mDataNavi.mNextThrowPiki, arc);
+	addCallBack('piki', mCatchPiki);
+	og::Screen::setCallBack_CounterRV(this, 'c_mr', 'c_mc', 'c_ml', &mDataNavi.mFollowPikis, 4, 3, 1, arc);
+	mIsTotalPokoActive = flag;
 }
 
 /*
@@ -58,21 +58,21 @@ void PikminCounter::setCallBackCommon(JKRArchive* arc, bool flag)
  */
 void PikminCounter::update()
 {
-	if (m_paneSublevel) {
-		if (m_isTotalPokoActive) {
-			if (m_currPos.x < 700.0f) {
-				m_currPos.x += 20.0f;
+	if (mPaneSublevel) {
+		if (mIsTotalPokoActive) {
+			if (mCurrPos.x < 700.0f) {
+				mCurrPos.x += 20.0f;
 			}
-		} else if (m_currPos.x > m_standardPos.x) {
-			m_currPos.x -= 20.0f;
-			if (m_currPos.x <= m_standardPos.x) {
-				m_currPos.x = m_standardPos.x;
-				m_scaleMgr->up(0.2f, 20.0f, 0.5f, 0.0f);
+		} else if (mCurrPos.x > mStandardPos.x) {
+			mCurrPos.x -= 20.0f;
+			if (mCurrPos.x <= mStandardPos.x) {
+				mCurrPos.x = mStandardPos.x;
+				mScaleMgr->up(0.2f, 20.0f, 0.5f, 0.0f);
 			}
 		}
 
-		m_paneSublevel->setOffset(m_currPos.x, m_currPos.y);
-		m_paneSublevel->updateScale(m_scaleMgr->calc());
+		mPaneSublevel->setOffset(mCurrPos.x, mCurrPos.y);
+		mPaneSublevel->updateScale(mScaleMgr->calc());
 	}
 
 	P2DScreen::Mgr::update();
@@ -87,14 +87,14 @@ void PikminCounter::setCallBack(JKRArchive* arc)
 {
 	setCallBackCommon(arc, false);
 
-	u32* days = &m_dataGame.m_dayNum;
+	u32* days = &mDataGame.mDayNum;
 	setCallBack_CounterDay(this, 'dcsr', 'dcsl', 'dcsc', days, 10, arc);
 	setCallBack_CounterDay(this, 'dc_r', 'dc_l', 'dc_c', days, 10, arc);
 
-	setCallBack_CounterRV(this, 'c_lr', 'c_lc', 'c_ll', &m_dataGame.m_mapPikminCount, 10, 3, 1, arc);
-	CallBack_CounterRV* counter = setCallBack_CounterRV(this, 'c_s1', 'c_sr', 'c_sl', &m_dataGame.m_totalPikminCount, 10, 4, 1, arc);
-	counter->m_scaleUpSoundID   = PSSE_SY_PIKI_INCREMENT;
-	counter->m_scaleDownSoundID = PSSE_SY_PIKI_DECREMENT;
+	setCallBack_CounterRV(this, 'c_lr', 'c_lc', 'c_ll', &mDataGame.mMapPikminCount, 10, 3, 1, arc);
+	CallBack_CounterRV* counter = setCallBack_CounterRV(this, 'c_s1', 'c_sr', 'c_sl', &mDataGame.mTotalPikminCount, 10, 4, 1, arc);
+	counter->mScaleUpSoundID    = PSSE_SY_PIKI_INCREMENT;
+	counter->mScaleDownSoundID  = PSSE_SY_PIKI_DECREMENT;
 
 	search('c_sc')->removeFromParent();
 }
@@ -107,22 +107,22 @@ void PikminCounter::setCallBack(JKRArchive* arc)
 void PikminCounterCave::setCallBack(JKRArchive* arc)
 {
 	setCallBackCommon(arc, false);
-	m_paneSublevel = search('Ndayicon');
-	if (m_paneSublevel) {
-		m_standardPos.x = m_paneSublevel->m_offset.x;
-		m_standardPos.y = m_paneSublevel->m_offset.y;
-		m_currPos       = m_standardPos;
-		m_paneSublevel->setOffset(m_currPos.x, m_currPos.y);
-		m_scaleMgr = new ScaleMgr;
+	mPaneSublevel = search('Ndayicon');
+	if (mPaneSublevel) {
+		mStandardPos.x = mPaneSublevel->mOffset.x;
+		mStandardPos.y = mPaneSublevel->mOffset.y;
+		mCurrPos       = mStandardPos;
+		mPaneSublevel->setOffset(mCurrPos.x, mCurrPos.y);
+		mScaleMgr = new ScaleMgr;
 	}
 
-	u32* days = &m_dataGame.m_floorNum;
+	u32* days = &mDataGame.mFloorNum;
 	setCallBack_CounterDay(this, 'dc_r', 'dc_l', 'dc_c', days, 4, arc);
 	setCallBack_CounterDay(this, 'dcsr', 'dcsl', 'dcsc', days, 4, arc);
 
-	CallBack_CounterRV* counter = setCallBack_CounterRV(this, 'c_lr', 'c_lc', 'c_ll', &m_dataGame.m_mapPikminCount, 10, 3, 1, arc);
-	counter->m_scaleUpSoundID   = PSSE_SY_PIKI_INCREMENT;
-	counter->m_scaleDownSoundID = PSSE_SY_PIKI_DECREMENT;
+	CallBack_CounterRV* counter = setCallBack_CounterRV(this, 'c_lr', 'c_lc', 'c_ll', &mDataGame.mMapPikminCount, 10, 3, 1, arc);
+	counter->mScaleUpSoundID    = PSSE_SY_PIKI_INCREMENT;
+	counter->mScaleDownSoundID  = PSSE_SY_PIKI_DECREMENT;
 }
 
 /*
@@ -133,20 +133,20 @@ void PikminCounterCave::setCallBack(JKRArchive* arc)
 void PikminCounterChallenge1P::setCallBack(JKRArchive* arc)
 {
 	setCallBackCommon(arc, false);
-	m_paneSublevel = search('Ndayicon');
-	if (m_paneSublevel) {
-		m_standardPos.x = m_paneSublevel->m_offset.x;
-		m_standardPos.y = m_paneSublevel->m_offset.y;
-		m_currPos       = m_standardPos;
-		m_paneSublevel->setOffset(m_currPos.x, m_currPos.y);
-		m_scaleMgr = new ScaleMgr;
+	mPaneSublevel = search('Ndayicon');
+	if (mPaneSublevel) {
+		mStandardPos.x = mPaneSublevel->mOffset.x;
+		mStandardPos.y = mPaneSublevel->mOffset.y;
+		mCurrPos       = mStandardPos;
+		mPaneSublevel->setOffset(mCurrPos.x, mCurrPos.y);
+		mScaleMgr = new ScaleMgr;
 	}
 
 	search('Ndayicon')->hide();
 
-	CallBack_CounterRV* counter = setCallBack_CounterRV(this, 'c_lr', 'c_lc', 'c_ll', &m_dataGame.m_mapPikminCount, 10, 3, 1, arc);
-	counter->m_scaleUpSoundID   = PSSE_SY_PIKI_INCREMENT;
-	counter->m_scaleDownSoundID = PSSE_SY_PIKI_DECREMENT;
+	CallBack_CounterRV* counter = setCallBack_CounterRV(this, 'c_lr', 'c_lc', 'c_ll', &mDataGame.mMapPikminCount, 10, 3, 1, arc);
+	counter->mScaleUpSoundID    = PSSE_SY_PIKI_INCREMENT;
+	counter->mScaleDownSoundID  = PSSE_SY_PIKI_DECREMENT;
 }
 } // namespace Screen
 } // namespace og

@@ -72,8 +72,8 @@ JKRAramArchive::JKRAramArchive(long p1, JKRArchive::EMountDirection mountDirecti
     , _60(mountDirection)
 {
 	if (open(p1)) {
-		m_magicWord = 'RARC';
-		_28         = _54 + _48->_04;
+		mMagicWord = 'RARC';
+		_28        = _54 + _48->_04;
 		sVolumeList.prepend(&_18);
 		_30 = 1;
 	}

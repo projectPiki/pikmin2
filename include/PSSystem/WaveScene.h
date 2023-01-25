@@ -38,10 +38,10 @@ struct WaveScene : public JKRDisposer {
 struct WaveLoader {
 	virtual void loadWave(TaskChecker*, WaveScene::AreaArg); // _08
 
-	u8 _04;                // _04
-	u8 _05;                // _05
-	u8 _06[0x2];           // _06 - unknown, could be padding
-	WaveScene m_waveScene; // _08
+	u8 _04;               // _04
+	u8 _05;               // _05
+	u8 _06[0x2];          // _06 - unknown, could be padding
+	WaveScene mWaveScene; // _08
 };
 
 } // namespace PSSystem

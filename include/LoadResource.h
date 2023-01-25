@@ -16,30 +16,30 @@ struct Node : public CNode, JKRDisposer {
 
 	void dump();
 
-	inline JKRArchive* getArchive() { return m_archive; }
+	inline JKRArchive* getArchive() { return mArchive; }
 
 	// _00 - _18: CNode
 	// _18 - _30: JKRDisposer
-	void* m_file;          // _30
-	JKRArchive* m_archive; // _34
+	void* mFile;          // _30
+	JKRArchive* mArchive; // _34
 };
 
 struct Arg {
 	Arg(char const*);
 
-	const char* m_path;             // _00
-	u8* _04;                        // _04
-	u32 _08;                        // _08
-	u32 _0C;                        // _0C
-	JKRExpandSwitch m_expandSwitch; // _10
-	u32 _14;                        // _14
-	JKRHeap* m_heap;                // _18
-	int _1C;                        // _1C
-	int _20;                        // _20
-	int* _24;                       // _24
-	u32* _28;                       // _28
-	u8 _2C;                         // _2C
-	u8 _2D;                         // _2D
+	const char* mPath;             // _00
+	u8* _04;                       // _04
+	u32 _08;                       // _08
+	u32 _0C;                       // _0C
+	JKRExpandSwitch mExpandSwitch; // _10
+	u32 _14;                       // _14
+	JKRHeap* mHeap;                // _18
+	int _1C;                       // _1C
+	int _20;                       // _20
+	int* _24;                      // _24
+	u32* _28;                      // _28
+	u8 _2C;                        // _2C
+	u8 _2D;                        // _2D
 };
 
 struct ArgAramOnly : Arg {
@@ -55,8 +55,8 @@ struct Mgr {
 	Node* mountArchive(Arg&);
 	void search(char const*);
 
-	CNode m_aramRoot;
-	CNode m_dvdRoot;
+	CNode mAramRoot;
+	CNode mDvdRoot;
 };
 } // namespace LoadResource
 

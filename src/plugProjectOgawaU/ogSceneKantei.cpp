@@ -8,7 +8,7 @@ namespace newScreen {
  * Address:	80319BDC
  * Size:	000044
  */
-KanteiDemo::KanteiDemo() { m_objBase = nullptr; }
+KanteiDemo::KanteiDemo() { mObjBase = nullptr; }
 
 /*
  * --INFO--
@@ -24,8 +24,8 @@ void KanteiDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
  */
 void KanteiDemo::doCreateObj(JKRArchive* archive)
 {
-	m_objBase = new ObjKantei("kantei screen");
-	registObj(m_objBase, archive);
+	mObjBase = new ObjKantei("kantei screen");
+	registObj(mObjBase, archive);
 }
 } // namespace newScreen
 } // namespace og

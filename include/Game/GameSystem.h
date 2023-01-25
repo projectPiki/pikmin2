@@ -70,36 +70,36 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	void setPause(bool, char*, int);
 	int startPause(bool, int, char*);
 
-	inline bool isVersusMode() { return m_mode == GSM_VERSUS_MODE; }
-	inline bool isMultiplayerMode() { return (m_mode == GSM_VERSUS_MODE || m_mode == GSM_TWO_PLAYER_CHALLENGE); }
-	inline bool isChallengeMode() { return (m_mode == GSM_ONE_PLAYER_CHALLENGE || m_mode == GSM_TWO_PLAYER_CHALLENGE); }
+	inline bool isVersusMode() { return mMode == GSM_VERSUS_MODE; }
+	inline bool isMultiplayerMode() { return (mMode == GSM_VERSUS_MODE || mMode == GSM_TWO_PLAYER_CHALLENGE); }
+	inline bool isChallengeMode() { return (mMode == GSM_ONE_PLAYER_CHALLENGE || mMode == GSM_TWO_PLAYER_CHALLENGE); }
 
-	inline void setFlag(u32 flag) { m_flags |= flag; }
+	inline void setFlag(u32 flag) { mFlags |= flag; }
 
-	inline void resetFlag(u32 flag) { m_flags &= ~flag; }
+	inline void resetFlag(u32 flag) { mFlags &= ~flag; }
 
-	inline bool isFlag(u32 flag) { return m_flags & flag; }
+	inline bool isFlag(u32 flag) { return mFlags & flag; }
 
-	u8 m_flags;                 // _3C /* bitfield */
-	TimeMgr* m_timeMgr;         // _40
-	GameSystemMode m_mode;      // _44
-	u8 m_isInCave;              // _48
-	u8 _49;                     // _49
-	bool m_isFrozen;            // _4A
-	u8 m_isPaused;              // _4B
-	bool m_isPausedSoft;        // _4C
-	bool m_isMoviePause;        // _4D
-	u32 m_frameTimer;           // _50
-	JUTTexture* m_xfbTexture;   // _54
-	BaseGameSection* m_section; // _58
+	u8 mFlags;                 // _3C /* bitfield */
+	TimeMgr* mTimeMgr;         // _40
+	GameSystemMode mMode;      // _44
+	u8 mIsInCave;              // _48
+	u8 _49;                    // _49
+	bool mIsFrozen;            // _4A
+	u8 mIsPaused;              // _4B
+	bool mIsPausedSoft;        // _4C
+	bool mIsMoviePause;        // _4D
+	u32 mFrameTimer;           // _50
+	JUTTexture* mXfbTexture;   // _54
+	BaseGameSection* mSection; // _58
 };
 
 struct OptimiseController : public JKRDisposer, public Parameters {
 	OptimiseController()
 	    : Parameters(nullptr, "Dynamics")
-	    , m_c000(this, 'c000', "ピクミン首", true, false, true)
-	    ,                                                                  // pikmin neck
-	    m_c001(this, 'c001', "コリジョンバッファ有効", false, false, true) // collision buffer enabled
+	    , mC000(this, 'c000', "ピクミン首", true, false, true)
+	    ,                                                                 // pikmin neck
+	    mC001(this, 'c001', "コリジョンバッファ有効", false, false, true) // collision buffer enabled
 	{
 	}
 
@@ -108,8 +108,8 @@ struct OptimiseController : public JKRDisposer, public Parameters {
 	static void globalInstance();
 	static void deleteInstance();
 
-	Parm<bool> m_c000;
-	Parm<bool> m_c001;
+	Parm<bool> mC000;
+	Parm<bool> mC001;
 
 	static OptimiseController* mInstance;
 };

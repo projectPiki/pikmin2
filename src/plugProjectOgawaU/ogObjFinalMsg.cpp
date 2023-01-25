@@ -17,17 +17,17 @@ namespace newScreen {
  */
 ObjFinalMsg::ObjFinalMsg(const char* name)
 {
-	m_disp    = nullptr;
-	m_name    = name;
-	m_currSel = 0;
-	m_screen  = nullptr;
-	m_menuMgr = nullptr;
+	mDisp    = nullptr;
+	mName    = name;
+	mCurrSel = 0;
+	mScreen  = nullptr;
+	mMenuMgr = nullptr;
 
-	m_animTextQ = nullptr;
-	m_animTextY = nullptr;
-	m_animTextN = nullptr;
-	m_fadeLevel = 0.0f;
-	m_movePos   = 0.0f;
+	mAnimTextQ = nullptr;
+	mAnimTextY = nullptr;
+	mAnimTextN = nullptr;
+	mFadeLevel = 0.0f;
+	mMovePos   = 0.0f;
 }
 
 /*
@@ -46,32 +46,32 @@ void ObjFinalMsg::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberFinalMessage* disp = static_cast<og::Screen::DispMemberFinalMessage*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_FINAL_MSG)) {
-		m_disp = disp;
+		mDisp = disp;
 	} else {
-		m_disp = new og::Screen::DispMemberFinalMessage;
+		mDisp = new og::Screen::DispMemberFinalMessage;
 	}
 
-	m_screen = new P2DScreen::Mgr_tuning;
-	m_screen->set("info_window.blo", 0x1100000, arc);
+	mScreen = new P2DScreen::Mgr_tuning;
+	mScreen->set("info_window.blo", 0x1100000, arc);
 
-	og::Screen::TagSearch(m_screen, 'Nmenu01')->hide();
-	og::Screen::TagSearch(m_screen, 'Nmenu02')->hide();
-	og::Screen::setFurikoScreen(m_screen);
+	og::Screen::TagSearch(mScreen, 'Nmenu01')->hide();
+	og::Screen::TagSearch(mScreen, 'Nmenu02')->hide();
+	og::Screen::setFurikoScreen(mScreen);
 
-	m_menuMgr = new og::Screen::MenuMgr;
-	m_menuMgr->init2takuTitle(m_screen, 'Nm00y', 'Tm00y', 'Pm00y_il', 'Pm00y_ir', 'Nm00n', 'Tm00n', 'Pm00n_il', 'Pm00n_ir');
-	m_currSel = 0;
+	mMenuMgr = new og::Screen::MenuMgr;
+	mMenuMgr->init2takuTitle(mScreen, 'Nm00y', 'Tm00y', 'Pm00y_il', 'Pm00y_ir', 'Nm00n', 'Tm00n', 'Pm00n_il', 'Pm00n_ir');
+	mCurrSel = 0;
 
-	m_screen->search('Tm00q')->setMsgID('8480_00'); // "Resume the expedition and return to the planet?"
-	m_screen->search('Tm00y')->setMsgID('8481_00'); // "Yes"
-	m_screen->search('Tm00n')->setMsgID('8482_00'); // "No"
-	og::Screen::setCallBackMessage(m_screen);
+	mScreen->search('Tm00q')->setMsgID('8480_00'); // "Resume the expedition and return to the planet?"
+	mScreen->search('Tm00y')->setMsgID('8481_00'); // "Yes"
+	mScreen->search('Tm00n')->setMsgID('8482_00'); // "No"
+	og::Screen::setCallBackMessage(mScreen);
 
-	m_animTextQ = og::Screen::setMenuTitleScreen(arc, m_screen, 'Tm00q');
-	m_animTextY = og::Screen::setMenuScreen(arc, m_screen, 'Tm00y');
-	m_animTextN = og::Screen::setMenuScreen(arc, m_screen, 'Tm00n');
+	mAnimTextQ = og::Screen::setMenuTitleScreen(arc, mScreen, 'Tm00q');
+	mAnimTextY = og::Screen::setMenuScreen(arc, mScreen, 'Tm00y');
+	mAnimTextN = og::Screen::setMenuScreen(arc, mScreen, 'Tm00n');
 
-	blink_Menu(m_currSel);
+	blink_Menu(mCurrSel);
 }
 
 /*
@@ -91,8 +91,8 @@ void ObjFinalMsg::blink_Menu(int sel)
 		blink2 = 0.6f;
 	}
 
-	m_animTextY->blink(blink1, 0.0f);
-	m_animTextN->blink(blink2, 0.0f);
+	mAnimTextY->blink(blink1, 0.0f);
+	mAnimTextN->blink(blink2, 0.0f);
 }
 
 /*
@@ -102,8 +102,8 @@ void ObjFinalMsg::blink_Menu(int sel)
  */
 void ObjFinalMsg::commonUpdate()
 {
-	m_screen->setXY(m_movePos, 0.0f);
-	m_screen->update();
+	mScreen->setXY(mMovePos, 0.0f);
+	mScreen->update();
 }
 
 /*
@@ -126,35 +126,35 @@ bool ObjFinalMsg::menu()
 {
 	bool ret        = false;
 	Controller* pad = getGamePad();
-	m_menuMgr->update();
+	mMenuMgr->update();
 
-	u32 input = pad->m_padButton.m_buttonDown;
+	u32 input = pad->mButton.mButtonDown;
 
 	if (input & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
-		if (m_currSel > 0) {
-			m_currSel--;
-			m_menuMgr->select(m_currSel);
-			blink_Menu(m_currSel);
+		if (mCurrSel > 0) {
+			mCurrSel--;
+			mMenuMgr->select(mCurrSel);
+			blink_Menu(mCurrSel);
 		}
 	} else if (input & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
-		if (m_currSel < 1) {
-			m_currSel++;
-			m_menuMgr->select(m_currSel);
-			blink_Menu(m_currSel);
+		if (mCurrSel < 1) {
+			mCurrSel++;
+			mMenuMgr->select(mCurrSel);
+			blink_Menu(mCurrSel);
 		}
 	} else if (input & Controller::PRESS_A) {
-		if (m_currSel == 0) {
-			ret                  = true;
-			m_disp->m_finalState = 1;
+		if (mCurrSel == 0) {
+			ret                = true;
+			mDisp->mFinalState = 1;
 			ogSound->setDecide();
-		} else if (m_currSel == 1) {
-			ret                  = true;
-			m_disp->m_finalState = 2;
+		} else if (mCurrSel == 1) {
+			ret                = true;
+			mDisp->mFinalState = 2;
 			ogSound->setDecide();
 		}
 	} else if (input & Controller::PRESS_B) {
-		ret                  = true;
-		m_disp->m_finalState = 2;
+		ret                = true;
+		mDisp->mFinalState = 2;
 		ogSound->setClose();
 	}
 	return ret;
@@ -167,10 +167,10 @@ bool ObjFinalMsg::menu()
  */
 void ObjFinalMsg::doDraw(Graphics& gfx)
 {
-	if (m_screen) {
-		J2DGrafContext* persp = &gfx.m_perspGraph;
-		m_screen->draw(gfx, *persp);
-		m_menuMgr->draw(persp);
+	if (mScreen) {
+		J2DGrafContext* persp = &gfx.mPerspGraph;
+		mScreen->draw(gfx, *persp);
+		mMenuMgr->draw(persp);
 	}
 }
 
@@ -181,9 +181,9 @@ void ObjFinalMsg::doDraw(Graphics& gfx)
  */
 bool ObjFinalMsg::doStart(::Screen::StartSceneArg const*)
 {
-	og::Screen::getFurikoPtr(m_screen, 'furiko00')->stop();
-	m_movePos   = 800.0f;
-	m_fadeLevel = 0.0f;
+	og::Screen::getFurikoPtr(mScreen, 'furiko00')->stop();
+	mMovePos   = 800.0f;
+	mFadeLevel = 0.0f;
 	ogSound->setOpenFinalMsg();
 	return true;
 }
@@ -204,11 +204,11 @@ bool ObjFinalMsg::doUpdateFadein()
 {
 	bool check = false;
 	commonUpdate();
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > ObjSMenuBase::msBaseVal._08) {
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > ObjSMenuBase::msBaseVal._08) {
 		check = true;
 	}
-	m_movePos = (1.0f - og::Screen::calcSmooth0to1(m_fadeLevel, ObjSMenuBase::msBaseVal._08)) * 800.0f;
+	mMovePos = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, ObjSMenuBase::msBaseVal._08)) * 800.0f;
 	return check;
 }
 
@@ -219,7 +219,7 @@ bool ObjFinalMsg::doUpdateFadein()
  */
 void ObjFinalMsg::doUpdateFadeinFinish()
 {
-	m_menuMgr->startCursor(0.0f);
+	mMenuMgr->startCursor(0.0f);
 	wait();
 }
 
@@ -230,8 +230,8 @@ void ObjFinalMsg::doUpdateFadeinFinish()
  */
 void ObjFinalMsg::doUpdateFinish()
 {
-	m_menuMgr->killCursor();
-	m_fadeLevel = 0.0f;
+	mMenuMgr->killCursor();
+	mFadeLevel = 0.0f;
 }
 
 /*
@@ -243,11 +243,11 @@ bool ObjFinalMsg::doUpdateFadeout()
 {
 	bool check = false;
 	commonUpdate();
-	m_fadeLevel += sys->m_deltaTime;
-	if (m_fadeLevel > ObjSMenuBase::msBaseVal._08) {
+	mFadeLevel += sys->mDeltaTime;
+	if (mFadeLevel > ObjSMenuBase::msBaseVal._08) {
 		check = true;
 	}
-	m_movePos = og::Screen::calcSmooth0to1(m_fadeLevel, ObjSMenuBase::msBaseVal._08) * -800.0f;
+	mMovePos = og::Screen::calcSmooth0to1(mFadeLevel, ObjSMenuBase::msBaseVal._08) * -800.0f;
 	return check;
 }
 
@@ -265,9 +265,9 @@ void ObjFinalMsg::doUpdateFadeoutFinish() { getOwner()->endScene(nullptr); }
  */
 void ObjFinalMsg::wait()
 {
-	m_animTextQ->open(0.0f);
-	m_animTextY->open(0.1f);
-	m_animTextN->open(0.2f);
+	mAnimTextQ->open(0.0f);
+	mAnimTextY->open(0.1f);
+	mAnimTextN->open(0.2f);
 }
 
 } // namespace newScreen

@@ -26,19 +26,19 @@ extern "C" {
 #define TRK_DISPATCH_CMD_STOP           26 /* Stop the debugger */
 
 typedef struct _TRK_Msg {
-	u8 _00[8];       // _00
-	u32 m_msgLength; // _08
-	u32 _0C;         // _0C
-	u32 m_msg;       // _10
+	u8 _00[8];      // _00
+	u32 mMsgLength; // _08
+	u32 _0C;        // _0C
+	u32 mMsg;       // _10
 } TRK_Msg;
 
 /**
  * @size{0xC}
  */
 typedef struct TRKEvent {
-	int m_eventType;
+	int mEventType;
 	int _04;
-	int m_bufferIndex;
+	int mBufferIndex;
 } TRKEvent;
 
 /**
@@ -46,9 +46,9 @@ typedef struct TRKEvent {
  */
 typedef struct TRKEventQueue {
 	u8 _00[4];
-	int m_currEvtID;
-	int m_nextSlotToOverwrite;
-	TRKEvent m_events[2];
+	int mCurrEvtID;
+	int mNextSlotToOverwrite;
+	TRKEvent mEvents[2];
 	u32 _24; /* max of 0x100? */
 } TRKEventQueue;
 
@@ -94,7 +94,7 @@ typedef struct TRKState {
 	u32 _8C;
 	u32 _90;
 	u32 _94;
-	BOOL m_isStopped;
+	BOOL mIsStopped;
 	u32 _9C;
 	u32 _A0;
 	u32 _A4;
@@ -108,7 +108,7 @@ typedef struct TRKBuffer {
 	s32 _08;
 	u32 _0C;
 	u32 _10;
-	u8 m_buffer[0x87C]; /* _10 */
+	u8 mBuffer[0x87C]; /* _10 */
 } TRKBuffer;
 typedef enum { TRKSuccess = 0, TRKError100 = 0x100, TRKError301 = 0x301, TRKError302 = 0x302 } TRKResult;
 

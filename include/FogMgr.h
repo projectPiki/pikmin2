@@ -20,10 +20,10 @@ struct FogMgr : public CNode {
 
 	// _00 		= VTBL
 	// _00-_18  = CNode
-	GXFogType m_type; // _18
-	f32 m_nearZ;      // _1C
-	f32 m_farZ;       // _20
-	u_color m_color;  // _24
+	GXFogType mType; // _18
+	f32 mNearZ;      // _1C
+	f32 mFarZ;       // _20
+	u_color mColor;  // _24
 };
 
 #endif

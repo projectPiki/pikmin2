@@ -110,22 +110,22 @@
  */
 LightObj::LightObj(char* name, _GXLightID lightID, ELightTypeFlag typeFlag, JUtility::TColor color)
 {
-	m_lightID  = lightID;
-	m_typeFlag = typeFlag;
+	mLightID  = lightID;
+	mTypeFlag = typeFlag;
 
-	m_position      = Vector3f(0.0f, 1000.0f, 0.0f);
-	m_elevation     = Vector3f(0.0f, -1.0f, 0.0f);
-	m_color         = color.toUInt32();
-	m_intensity     = 1.0f;
-	m_refDistance   = 1000.0f;
-	m_refBrightness = 1.0f;
-	m_cutoffAngle   = 60.0f;
+	mPosition      = Vector3f(0.0f, 1000.0f, 0.0f);
+	mElevation     = Vector3f(0.0f, -1.0f, 0.0f);
+	mColor         = color.toUInt32();
+	mIntensity     = 1.0f;
+	mRefDistance   = 1000.0f;
+	mRefBrightness = 1.0f;
+	mCutoffAngle   = 60.0f;
 
-	m_distAttnFn   = GX_DA_GENTLE;
-	m_spotFn       = GX_SP_COS2;
-	_4C            = 16.0f;
-	m_sphereRadius = 30.0f;
-	_54            = 0;
+	mDistAttnFn   = GX_DA_GENTLE;
+	mSpotFn       = GX_SP_COS2;
+	_4C           = 16.0f;
+	mSphereRadius = 30.0f;
+	_54           = 0;
 
 	setName(name);
 }
@@ -139,25 +139,25 @@ void LightObj::set(Matrixf& mtx)
 {
 	u_color color = (u32)-1;
 
-	f32 rCol = m_color.GXColorView.r * m_intensity;
+	f32 rCol = mColor.GXColorView.r * mIntensity;
 	if (rCol > 255.0f) {
 		rCol = 255.0f;
 	}
 	color.GXColorView.r = (u8)rCol;
 
-	f32 gCol = m_color.GXColorView.g * m_intensity;
+	f32 gCol = mColor.GXColorView.g * mIntensity;
 	if (gCol > 255.0f) {
 		gCol = 255.0f;
 	}
 	color.GXColorView.g = gCol;
 
-	f32 bCol = m_color.GXColorView.b * m_intensity;
+	f32 bCol = mColor.GXColorView.b * mIntensity;
 	if (bCol > 255.0f) {
 		bCol = 255.0f;
 	}
 	color.GXColorView.b = bCol;
 
-	f32 aCol = m_color.GXColorView.a * m_intensity;
+	f32 aCol = mColor.GXColorView.a * mIntensity;
 	if (aCol > 255.0f) {
 		aCol = 255.0f;
 	}
@@ -168,34 +168,34 @@ void LightObj::set(Matrixf& mtx)
 
 	Mtx m1, m2;
 	Vec r1, r2;
-	switch (m_typeFlag) {
+	switch (mTypeFlag) {
 	case TYPE_1:
-		PSMTXMultVec(mtx.m_matrix.mtxView, (Vec*)&m_position, &r1);
+		PSMTXMultVec(mtx.mMatrix.mtxView, (Vec*)&mPosition, &r1);
 		GXInitLightPos(&lightObj, r1.x, r1.y, r1.z);
 		break;
 	case TYPE_4:
-		PSMTXInverse(mtx.m_matrix.mtxView, m1);
+		PSMTXInverse(mtx.mMatrix.mtxView, m1);
 		PSMTXTranspose(m1, m2);
-		PSMTXMultVec(m2, (Vec*)&m_elevation, &r1);
+		PSMTXMultVec(m2, (Vec*)&mElevation, &r1);
 
 		GXInitSpecularDir(&lightObj, r1.x, r1.y, r1.z);
 		GXInitLightAttn(&lightObj, 0.0f, 0.0f, 1.0f, _4C * 0.5f, 0.0f, _4C * 0.5f);
 		break;
 	default:
-		PSMTXMultVec(mtx.m_matrix.mtxView, (Vec*)&m_elevation, &r1);
+		PSMTXMultVec(mtx.mMatrix.mtxView, (Vec*)&mElevation, &r1);
 		GXInitLightPos(&lightObj, r1.x, r1.y, r1.z);
 
-		PSMTXInverse(mtx.m_matrix.mtxView, m1);
+		PSMTXInverse(mtx.mMatrix.mtxView, m1);
 		PSMTXTranspose(m1, m2);
-		PSMTXMultVec(m2, (Vec*)&m_elevation, &r2);
+		PSMTXMultVec(m2, (Vec*)&mElevation, &r2);
 
 		GXInitLightDir(&lightObj, r2.x, r2.y, r2.z);
-		GXInitLightSpot(&lightObj, m_cutoffAngle, m_spotFn);
-		GXInitLightDistAttn(&lightObj, m_refDistance, m_refBrightness, m_distAttnFn);
+		GXInitLightSpot(&lightObj, mCutoffAngle, mSpotFn);
+		GXInitLightDistAttn(&lightObj, mRefDistance, mRefBrightness, mDistAttnFn);
 		break;
 	}
 
-	GXLoadLightObjImm(&lightObj, m_lightID);
+	GXLoadLightObjImm(&lightObj, mLightID);
 	/*
 	stwu     r1, -0x140(r1)
 	mflr     r0
@@ -406,7 +406,7 @@ lbl_8042B7E8:
  * Address:	8042B80C
  * Size:	00005C
  */
-void LightObj::drawPos(Graphics& gfx) { drawPos(gfx, *gfx.m_currentViewport->getMatrix(false)); }
+void LightObj::drawPos(Graphics& gfx) { drawPos(gfx, *gfx.mCurrentViewport->getMatrix(false)); }
 
 /*
  * --INFO--
@@ -430,7 +430,7 @@ void LightObj::drawPos(Graphics& gfx, Matrixf& mtx)
 		gfx.initPrimDraw(&mtx);
 
 		Matrixf debugMtx;
-		debugMtx.makeT(m_position);
+		debugMtx.makeT(mPosition);
 	}
 
 	/*
@@ -557,7 +557,7 @@ lbl_8042BA74:
  * Size:	0000D8
  */
 LightMgr::LightMgr(char*)
-    : m_ambientLight("ambient light", Color4(0, 0, 0, 0))
+    : mAmbientLight("ambient light", Color4(0, 0, 0, 0))
 {
 	/*
 	stwu     r1, -0x10(r1)

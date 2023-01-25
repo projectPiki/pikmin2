@@ -344,7 +344,7 @@ lbl_8000CE74:
  */
 TParse::TParse(JStudio::TControl* control)
     : stb::TParse(control)
-    , m_fvbParse(&control->_60)
+    , mFvbParse(&control->_60)
 {
 }
 

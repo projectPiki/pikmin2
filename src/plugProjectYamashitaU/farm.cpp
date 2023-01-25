@@ -91,8 +91,8 @@ static void _Print(char*, ...) { OSReport(""); }
  */
 void Obstacle::setPower(f32 power)
 {
-	m_vtxColorControl->m_power = power;
-	m_farm->updateObjectRelation(true);
+	mVtxColorControl->mPower = power;
+	mFarm->updateObjectRelation(true);
 }
 
 /*
@@ -103,13 +103,13 @@ void Obstacle::setPower(f32 power)
  */
 Farm::Farm()
     : CNode("”_k")
-    , m_modelData(nullptr)
-    , m_model(nullptr)
-    , m_obstacleRootNode("ObstacleNode")
-    , m_plantRootNode("PlantNode")
+    , mModelData(nullptr)
+    , mModel(nullptr)
+    , mObstacleRootNode("ObstacleNode")
+    , mPlantRootNode("PlantNode")
 {
-	add(&m_obstacleRootNode);
-	add(&m_plantRootNode);
+	add(&mObstacleRootNode);
+	add(&mPlantRootNode);
 }
 
 /*
@@ -121,9 +121,9 @@ void Farm::loadResource(unsigned long p1, void* mdlData)
 {
 	sys->heapStatusStart("Farm resource", nullptr);
 	sys->heapStatusStart("mdlData", nullptr);
-	m_modelData = J3DModelLoaderDataBase::load(mdlData, 0x20000000);
+	mModelData = J3DModelLoaderDataBase::load(mdlData, 0x20000000);
 	sys->heapStatusEnd("mdlData");
-	m_position = Vector3f::zero;
+	mPosition = Vector3f::zero;
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -279,28 +279,28 @@ void Farm::update() { }
  * Address:	801237E8
  * Size:	000034
  */
-void Farm::doAnimation() { m_model->m_j3dModel->calc(); }
+void Farm::doAnimation() { mModel->mJ3dModel->calc(); }
 
 /*
  * --INFO--
  * Address:	8012381C
  * Size:	000034
  */
-void Farm::doEntry() { m_model->m_j3dModel->entry(); }
+void Farm::doEntry() { mModel->mJ3dModel->entry(); }
 
 /*
  * --INFO--
  * Address:	80123850
  * Size:	000024
  */
-void Farm::doSetView(unsigned long viewNumber) { m_model->setCurrentViewNo(viewNumber); }
+void Farm::doSetView(unsigned long viewNumber) { mModel->setCurrentViewNo(viewNumber); }
 
 /*
  * --INFO--
  * Address:	80123874
  * Size:	000024
  */
-void Farm::doViewCalc() { m_model->viewCalc(); }
+void Farm::doViewCalc() { mModel->viewCalc(); }
 
 /*
  * --INFO--
@@ -311,7 +311,7 @@ Obstacle* Farm::addObstacle(Game::Creature* creature, float p2, float p3)
 {
 	Obstacle* obstacle = createNewObstacle(creature, p2, p3);
 	obstacle->setName(creature->getCreatureName());
-	m_vtxColorMgr->initVtxColor();
+	mVtxColorMgr->initVtxColor();
 	updateObjectRelation(true);
 	return obstacle;
 }
@@ -337,8 +337,8 @@ Obstacle* Farm::addObstacle(Game::Creature* creature, float p2, float p3)
  */
 Obstacle* Farm::createNewObstacle(Game::Creature* creature, float p2, float p3)
 {
-	Obstacle* obstacle = new Obstacle(this, m_vtxColorMgr, creature, p2, p3);
-	m_obstacleRootNode.add(obstacle);
+	Obstacle* obstacle = new Obstacle(this, mVtxColorMgr, creature, p2, p3);
+	mObstacleRootNode.add(obstacle);
 	return obstacle;
 }
 
@@ -363,7 +363,7 @@ Plant* Farm::createNewPlant(Game::Creature* creature)
 {
 	Plant* plant = new Plant(creature);
 	plant->setName(creature->getCreatureName());
-	m_plantRootNode.add(plant);
+	mPlantRootNode.add(plant);
 	return plant;
 }
 
@@ -609,24 +609,24 @@ lbl_80123DDC:
  */
 void Farm::initAllObjectNodes()
 {
-	CNode* obstacleNode = m_obstacleRootNode.m_child;
+	CNode* obstacleNode = mObstacleRootNode.mChild;
 	while (obstacleNode) {
-		CNode* nextObstacleNode = obstacleNode->m_next;
+		CNode* nextObstacleNode = obstacleNode->mNext;
 		obstacleNode->del();
 		delete obstacleNode;
 		obstacleNode = nextObstacleNode;
 	}
 
-	CNode* plantNode = m_plantRootNode.m_child;
+	CNode* plantNode = mPlantRootNode.mChild;
 	while (plantNode) {
-		CNode* nextPlantNode = plantNode->m_next;
+		CNode* nextPlantNode = plantNode->mNext;
 		plantNode->del();
 		delete plantNode;
 		plantNode = nextPlantNode;
 	}
 
-	m_obstacleRootNode.clearRelations();
-	m_plantRootNode.clearRelations();
+	mObstacleRootNode.clearRelations();
+	mPlantRootNode.clearRelations();
 }
 } // namespace Farm
 } // namespace Game

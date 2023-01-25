@@ -51,11 +51,11 @@ struct TDenkiHibaMgr : public TBase {
 	void setRateLOD(int);
 
 	// _00  = VTBL
-	TDenkiHiba m_hiba;                 // _04
-	TDenkiPole m_poles[2];             // _38
-	TDenkipoleSign m_polesigns[2];     // _80
-	Vector3f m_ownerPosition;          // _A0
-	Vector3f m_targetCreaturePosition; // _AC
+	TDenkiHiba mHiba;                 // _04
+	TDenkiPole mPoles[2];             // _38
+	TDenkipoleSign mPolesigns[2];     // _80
+	Vector3f mOwnerPosition;          // _A0
+	Vector3f mTargetCreaturePosition; // _AC
 };
 } // namespace efx
 

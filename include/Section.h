@@ -57,18 +57,18 @@ struct Section : public ISection {
 	void main();
 	void fadeOut();
 
-	WipeBase* m_displayWiper; // _18
-	JKRHeap* m_displayHeap;   // _1C
-	JKRHeap* m_oldHeap;       // _20
-	JFWDisplay* m_display;    // _24
-	JUTFader* m_fader;        // _28
-	Graphics* m_graphics;     // _2C
-	f32 m_timeStep;           // _30
-	bool m_isMainActive;      // _34
-	bool m_isDisplayNew;      // _35
-	u8 _36;                   // _36
-	bool m_isLoadingDVD;      // _37
-	u8 _38;                   // _38
+	WipeBase* mDisplayWiper; // _18
+	JKRHeap* mDisplayHeap;   // _1C
+	JKRHeap* mOldHeap;       // _20
+	JFWDisplay* mDisplay;    // _24
+	JUTFader* mFader;        // _28
+	Graphics* mGraphics;     // _2C
+	f32 mTimeStep;           // _30
+	bool mIsMainActive;      // _34
+	bool mIsDisplayNew;      // _35
+	u8 _36;                  // _36
+	bool mIsLoadingDVD;      // _37
+	u8 _38;                  // _38
 };
 
 #endif

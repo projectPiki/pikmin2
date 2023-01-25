@@ -62,9 +62,9 @@ struct TekiNode : public CNode {
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
-	EnemyTypeID::EEnemyTypeID m_id; // _18
-	int _1C;                        // _1C
-	int m_nodeID;                   // _20
+	EnemyTypeID::EEnemyTypeID mId; // _18
+	int _1C;                       // _1C
+	int mNodeID;                   // _20
 };
 
 struct TekiMgr {
@@ -77,8 +77,8 @@ struct TekiMgr {
 	EnemyTypeID::EEnemyTypeID getID(int); // unused
 
 	// these elements were likely private
-	TekiNode m_node; // _00
-	int m_nodeCount; // _24
+	TekiNode mNode; // _00
+	int mNodeCount; // _24
 };
 
 struct CardMgr {
@@ -95,31 +95,31 @@ struct CardMgr {
 		void updateZoomIn();
 		void updateZoomUse();
 
-		f32 _00;           // _00
-		u8 _04[0x8];       // _04, unknown
-		f32 _0C;           // _0C
-		f32 _10;           // _10
-		f32 _14;           // _14
-		bool _18;          // _18
-		u32 _1C;           // _1C, unknown
-		int _20;           // _20
-		u8 _24[0x8];       // _24, unknown
-		f32 _2C;           // _2C
-		u8 _30[0xC];       // _30, unknown
-		f32 _3C;           // _3C, timer?
-		f32 _40;           // _40
-		f32 _44;           // _44
-		f32 _48;           // _48
-		int _4C;           // _4C, maybe currentSlotIndex?
-		u8 _50;            // _50, unknown
-		u8 _51;            // _51
-		f32 _54;           // _54
-		int _58;           // _58
-		int m_playerIndex; // _5C
-		CardMgr* _60;      // _60
-		u32 _64;           // _64
-		f32 _68;           // _68
-		f32 _6C;           // _6C
+		f32 _00;          // _00
+		u8 _04[0x8];      // _04, unknown
+		f32 _0C;          // _0C
+		f32 _10;          // _10
+		f32 _14;          // _14
+		bool _18;         // _18
+		u32 _1C;          // _1C, unknown
+		int _20;          // _20
+		u8 _24[0x8];      // _24, unknown
+		f32 _2C;          // _2C
+		u8 _30[0xC];      // _30, unknown
+		f32 _3C;          // _3C, timer?
+		f32 _40;          // _40
+		f32 _44;          // _44
+		f32 _48;          // _48
+		int _4C;          // _4C, maybe currentSlotIndex?
+		u8 _50;           // _50, unknown
+		u8 _51;           // _51
+		f32 _54;          // _54
+		int _58;          // _58
+		int mPlayerIndex; // _5C
+		CardMgr* _60;     // _60
+		u32 _64;          // _64
+		f32 _68;          // _68
+		f32 _6C;          // _6C
 	};
 
 	CardMgr(VsGameSection*, TekiMgr*);
@@ -133,20 +133,20 @@ struct CardMgr {
 	void initDraw();
 	void drawSlot(Graphics&, Vector3f&, SlotMachine&);
 
-	u32 _00;                       // _00, unknown
-	JUTTexture** _04;              // _04, slot textures?
-	JUTTexture* _08;               // _08
-	JUTTexture* _0C;               // _0C
-	JUTTexture* _10;               // _10
-	JUTTexture* _14;               // _14
-	SlotMachine m_slotMachines[2]; // _18
-	int _F8;                       // _F8
-	Vector3f* _FC;                 // _FC, array of 0x100 vectors?
-	Vector3f* _100;                // _100, array of 0x100 vectors?
-	f32 _104;                      // _104
-	LightObj* m_lightObj;          // _108
-	VsGameSection* m_section;      // _10C
-	TekiMgr* m_tekiMgr;            // _110
+	u32 _00;                      // _00, unknown
+	JUTTexture** _04;             // _04, slot textures?
+	JUTTexture* _08;              // _08
+	JUTTexture* _0C;              // _0C
+	JUTTexture* _10;              // _10
+	JUTTexture* _14;              // _14
+	SlotMachine mSlotMachines[2]; // _18
+	int _F8;                      // _F8
+	Vector3f* _FC;                // _FC, array of 0x100 vectors?
+	Vector3f* _100;               // _100, array of 0x100 vectors?
+	f32 _104;                     // _104
+	LightObj* mLightObj;          // _108
+	VsGameSection* mSection;      // _10C
+	TekiMgr* mTekiMgr;            // _110
 };
 
 struct StageData : public CNode {
@@ -159,14 +159,14 @@ struct StageData : public CNode {
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
-	PikiContainer m_pikiContainer;  // _18
-	char m_caveInfoFilename[64];    // _20, default = "caveinfo.txt"
-	f32 m_timeLimit;                // _60
-	int m_startNumBitter;           // _64
-	int m_startNumSpicy;            // _68
-	int m_index2D;                  // _6C
-	char m_stageLayoutFilePath[64]; // _70
-	int m_startNumYellowMarbles;    // _B0
+	PikiContainer mPikiContainer;  // _18
+	char mCaveInfoFilename[64];    // _20, default = "caveinfo.txt"
+	f32 mTimeLimit;                // _60
+	int mStartNumBitter;           // _64
+	int mStartNumSpicy;            // _68
+	int mIndex2D;                  // _6C
+	char mStageLayoutFilePath[64]; // _70
+	int mStartNumYellowMarbles;    // _B0
 };
 
 struct StageList : public CNode {
@@ -180,7 +180,7 @@ struct StageList : public CNode {
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
-	StageData m_stageData;
+	StageData mStageData;
 };
 
 /////////////////////////////////////////////////////////////////
@@ -265,15 +265,15 @@ struct GameState : public State {
 
 	inline void updateNavi(VsGameSection* section, int naviIndex)
 	{
-		if (section->m_ghostIconTimers[naviIndex] > 0.0f) {
-			section->m_ghostIconTimers[naviIndex] -= sys->m_deltaTime;
+		if (section->mGhostIconTimers[naviIndex] > 0.0f) {
+			section->mGhostIconTimers[naviIndex] -= sys->mDeltaTime;
 
 			Navi* navi = naviMgr->getAt(naviIndex);
-			if (navi && section->m_ghostIconTimers[naviIndex] <= 0.0f) {
-				efx::TNaviEffect* naviEffect = navi->m_effectsObj;
+			if (navi && section->mGhostIconTimers[naviIndex] <= 0.0f) {
+				efx::TNaviEffect* naviEffect = navi->mEffectsObj;
 
 				if (naviEffect->isFlag(efx::NAVIFX_IsSaved)) {
-					naviEffect->m_flags = naviEffect->m_savedFlags;
+					naviEffect->mFlags = naviEffect->mSavedFlags;
 					naviEffect->resetFlag(efx::NAVIFX_IsSaved);
 				}
 
@@ -283,7 +283,7 @@ struct GameState : public State {
 					naviEffect->updateHamon_();
 
 					if (!(inWater)) { // what is bro doing
-						efx::createSimpleDive(naviEffect->m_hamonPosition);
+						efx::createSimpleDive(naviEffect->mHamonPosition);
 					}
 				}
 
@@ -299,23 +299,23 @@ struct GameState : public State {
 		}
 	}
 
-	inline void setFlag(u16 flag) { m_flags.typeView |= flag; }
+	inline void setFlag(u16 flag) { mFlags.typeView |= flag; }
 
-	inline void resetFlag(u16 flag) { m_flags.typeView &= ~flag; }
+	inline void resetFlag(u16 flag) { mFlags.typeView &= ~flag; }
 
-	inline bool isFlag(u16 flag) { return m_flags.typeView & flag; }
+	inline bool isFlag(u16 flag) { return mFlags.typeView & flag; }
 
-	inline void setLoseCause(int player, u32 flag) { m_loseCauses[player].typeView |= flag; }
+	inline void setLoseCause(int player, u32 flag) { mLoseCauses[player].typeView |= flag; }
 
-	inline bool isLoseCause(int player, u32 flag) { return m_loseCauses[player].typeView & flag; }
+	inline bool isLoseCause(int player, u32 flag) { return mLoseCauses[player].typeView & flag; }
 
-	inline u8 getLoseCauses(int player) { return m_loseCauses[player].typeView; }
+	inline u8 getLoseCauses(int player) { return mLoseCauses[player].typeView; }
 
 	inline void setLoseCause(BitFlag<u8>& player, u32 flag) { player.typeView |= flag; }
 
 	inline bool getMarbleLoss(bool& loseRed, bool& loseBlue)
 	{
-		bool moviePlayerActive = moviePlayer->m_flags & MoviePlayer::IS_ACTIVE;
+		bool moviePlayerActive = moviePlayer->mFlags & MoviePlayer::IS_ACTIVE;
 
 		loseRed  = false;
 		loseBlue = false;
@@ -331,15 +331,15 @@ struct GameState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
-	u32 _0C;                     // _0C
-	Controller* m_controller;    // _10
-	BitFlag<u16> m_flags;        // _14
-	u8 _16;                      // _16
-	f32 m_timer;                 // _18
-	f32 m_floorExtendTimer;      // _1C
-	f32 m_displayTime;           // _20
-	bool m_hasKeyDemoPlayed;     // _24
-	BitFlag<u8> m_loseCauses[2]; // _25
+	u32 _0C;                    // _0C
+	Controller* mController;    // _10
+	BitFlag<u16> mFlags;        // _14
+	u8 _16;                     // _16
+	f32 mTimer;                 // _18
+	f32 mFloorExtendTimer;      // _1C
+	f32 mDisplayTime;           // _20
+	bool mHasKeyDemoPlayed;     // _24
+	BitFlag<u8> mLoseCauses[2]; // _25
 };
 
 struct VSState : public GameState {
@@ -383,22 +383,22 @@ struct LoadState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
-	f32 _0C;                                       // _0C
-	f32 _14;                                       // _10
-	Controller* m_controller;                      // _14
-	VsGameSection* m_section;                      // _18
-	bool _1C;                                      // _1C
-	u32 _20;                                       // _20
-	int _24;                                       // _24
-	bool _28;                                      // _28
-	Delegate<Game::VsGame::LoadState>* m_delegate; // _2C
-	DvdThreadCommand m_dvdThreadCommand;           // _30
-	bool _9C;                                      // _9c
-	f32 _A0;                                       // _A0
+	f32 _0C;                                      // _0C
+	f32 _14;                                      // _10
+	Controller* mController;                      // _14
+	VsGameSection* mSection;                      // _18
+	bool _1C;                                     // _1C
+	u32 _20;                                      // _20
+	int _24;                                      // _24
+	bool _28;                                     // _28
+	Delegate<Game::VsGame::LoadState>* mDelegate; // _2C
+	DvdThreadCommand mDvdThreadCommand;           // _30
+	bool _9C;                                     // _9c
+	f32 _A0;                                      // _A0
 };
 
 struct ResultArg : public StateArg {
-	BitFlag<u8> m_endFlag; // _00, 0 if extinction/captain down/give up, 1 if normal end
+	BitFlag<u8> mEndFlag; // _00, 0 if extinction/captain down/give up, 1 if normal end
 };
 
 struct ResultState : public State {
@@ -418,22 +418,22 @@ struct ResultState : public State {
 	void prepareMorimuraInfo(VsGameSection*);
 	void dvdload();
 
-	inline bool isNormalEnd() { return m_endFlags.typeView & 1; }
+	inline bool isNormalEnd() { return mEndFlags.typeView & 1; }
 
 	// _00     = VTBL
 	// _00-_0C = State
-	f32 _0C;                                         // _0C
-	Controller* m_player1Controller;                 // _10
-	Controller* m_player2Controller;                 // _14
-	u8 m_resultStage;                                // _18
-	JKRExpHeap* m_expHeap;                           // _1C
-	JKRHeap* m_heap;                                 // _20
-	Delegate<Game::VsGame::ResultState>* m_delegate; // _24
-	int m_pikminLeft;                                // _28
-	int _2C;                                         // _2C
-	int m_pokoTimeScore;                             // _30
-	BitFlag<u8> m_endFlags;                          // _34, 0 if pikmin extinction/captain down/given up
-	Challenge2D_ResultInfo* m_resultInfo;            // _38
+	f32 _0C;                                        // _0C
+	Controller* mPlayer1Controller;                 // _10
+	Controller* mPlayer2Controller;                 // _14
+	u8 mResultStage;                                // _18
+	JKRExpHeap* mExpHeap;                           // _1C
+	JKRHeap* mHeap;                                 // _20
+	Delegate<Game::VsGame::ResultState>* mDelegate; // _24
+	int mPikminLeft;                                // _28
+	int _2C;                                        // _2C
+	int mPokoTimeScore;                             // _30
+	BitFlag<u8> mEndFlags;                          // _34, 0 if pikmin extinction/captain down/given up
+	Challenge2D_ResultInfo* mResultInfo;            // _38
 };
 
 struct TitleArg : public StateArg {
@@ -460,24 +460,24 @@ struct TitleState : public State {
 
 	inline int getChallengeStageNum() { return 30; }
 
-	inline int getVsStageNum() { return m_section->m_VsStageList->m_stageData.getChildCount(); }
+	inline int getVsStageNum() { return mSection->mVsStageList->mStageData.getChildCount(); }
 
 	// _00     = VTBL
 	// _00-_0C = State
-	f32 _0C;                                        // _0C
-	u8 m_titleStage;                                // _10
-	JKRExpHeap* m_expHeap;                          // _14
-	JKRHeap* m_heap;                                // _18
-	Delegate<Game::VsGame::TitleState>* m_delegate; // _1C
-	int _20;                                        // _20
-	int m_caveInfoType;                             // _24
-	int m_stageNum;                                 // _28
-	int _2C;                                        // _2C
-	Controller* m_player1Controller;                // _2C
-	Controller* m_player2Controller;                // _30
-	VsGameSection* m_section;                       // _38
-	Challenge2D_TitleInfo* m_challengeTitleInfo;    // _3C
-	Vs2D_TitleInfo* m_vsTitleInfo;                  // _40
+	f32 _0C;                                       // _0C
+	u8 mTitleStage;                                // _10
+	JKRExpHeap* mExpHeap;                          // _14
+	JKRHeap* mHeap;                                // _18
+	Delegate<Game::VsGame::TitleState>* mDelegate; // _1C
+	int _20;                                       // _20
+	int mCaveInfoType;                             // _24
+	int mStageNum;                                 // _28
+	int _2C;                                       // _2C
+	Controller* mPlayer1Controller;                // _2C
+	Controller* mPlayer2Controller;                // _30
+	VsGameSection* mSection;                       // _38
+	Challenge2D_TitleInfo* mChallengeTitleInfo;    // _3C
+	Vs2D_TitleInfo* mVsTitleInfo;                  // _40
 };
 /////////////////////////////////////////////////////////////////
 } // namespace VsGame

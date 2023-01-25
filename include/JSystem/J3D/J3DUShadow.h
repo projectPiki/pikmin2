@@ -45,8 +45,8 @@ struct J3DUMultiTexture {
 #ifdef MATCHING
 	// The following is purely made up for the sake of matching.
 	// We have no idea what the structure actually looked like.
-	u32 m_count;
-	JUTTexture* m_textures;
+	u32 mCount;
+	JUTTexture* mTextures;
 #endif
 };
 
@@ -61,7 +61,7 @@ struct J3DUShadowManager {
 #ifdef MATCHING
 	// The following is purely made up for the sake of matching.
 	// We have no idea what the structure actually looked like.
-	J3DUMultiTexture m_multiTexture;
+	J3DUMultiTexture mMultiTexture;
 #endif
 };
 

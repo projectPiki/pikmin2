@@ -16,11 +16,11 @@ static const char breakRockName[] = "actBreakWall";
 ActBreakRock::ActBreakRock(Game::Piki* parent)
     : Action(parent)
 {
-	m_stickAttack = new ActStickAttack(parent);
-	m_gotoPos     = new ActGotoPos(parent);
-	m_followField = new ActFollowVectorField(parent);
+	mStickAttack = new ActStickAttack(parent);
+	mGotoPos     = new ActGotoPos(parent);
+	mFollowField = new ActFollowVectorField(parent);
 
-	m_name = "BreakRock";
+	mName = "BreakRock";
 }
 
 /*
@@ -40,9 +40,9 @@ void ActBreakRock::init(ActionArg* actionArg)
 
 	P2ASSERTLINE(80, isCorrectArg);
 
-	Game::GameStat::workPikis.inc(m_parent);
+	Game::GameStat::workPikis.inc(mParent);
 
-	m_rock = static_cast<ActBreakRockArg*>(actionArg)->m_rock;
+	mRock = static_cast<ActBreakRockArg*>(actionArg)->mRock;
 
 	initFollow();
 }
@@ -54,9 +54,9 @@ void ActBreakRock::init(ActionArg* actionArg)
  */
 void ActBreakRock::initFollow()
 {
-	FollowVectorFieldActionArg followArg(m_rock);
-	m_followField->init(&followArg);
-	m_state = 1;
+	FollowVectorFieldActionArg followArg(mRock);
+	mFollowField->init(&followArg);
+	mState = 1;
 }
 
 static const char stickAttackArgName[] = "StickAttackActionArg";
@@ -72,23 +72,23 @@ static const char followFieldArgName[] = "FollowVectorFieldActionArg";
 void ActBreakRock::initStickAttack()
 {
 	int state = -1;
-	if (m_rock->m_objectTypeID == 0x40E) {
+	if (mRock->mObjectTypeID == 0x40E) {
 		state = 58;
 	}
-	f32 attackDamage = m_parent->getAttackDamage();
-	StickAttackActionArg stickAttackArg(attackDamage, m_rock, state, 0);
+	f32 attackDamage = mParent->getAttackDamage();
+	StickAttackActionArg stickAttackArg(attackDamage, mRock, state, 0);
 
-	if (m_rock->m_objectTypeID == 0x410 || m_rock->m_objectTypeID == 0x40C) {
+	if (mRock->mObjectTypeID == 0x410 || mRock->mObjectTypeID == 0x40C) {
 		stickAttackArg._10 = 5;
-	} else if (m_rock->m_objectTypeID == 0x40E) {
+	} else if (mRock->mObjectTypeID == 0x40E) {
 		stickAttackArg._10 = 6;
-	} else if (m_rock->m_objectTypeID == 0x409) {
+	} else if (mRock->mObjectTypeID == 0x409) {
 		stickAttackArg._10 = 7;
 	}
 
-	m_stickAttack->init(&stickAttackArg);
+	mStickAttack->init(&stickAttackArg);
 
-	m_state = 2;
+	mState = 2;
 }
 
 /*
@@ -98,17 +98,17 @@ void ActBreakRock::initStickAttack()
  */
 int ActBreakRock::exec()
 {
-	if (!m_rock->isAlive()) {
+	if (!mRock->isAlive()) {
 		return 0;
 	}
 
-	switch (m_state) {
+	switch (mState) {
 	case 2:
-		m_followField->exec();
-		int stickResult = m_stickAttack->exec();
+		mFollowField->exec();
+		int stickResult = mStickAttack->exec();
 
-		if (m_rock->m_objectTypeID == 0x40E) {
-			m_parent->startSound(m_rock, PSSE_PK_VC_DIGGING, PSGame::SeMgr::UNK_1);
+		if (mRock->mObjectTypeID == 0x40E) {
+			mParent->startSound(mRock, PSSE_PK_VC_DIGGING, PSGame::SeMgr::UNK_1);
 		}
 
 		if (stickResult != 1) {
@@ -117,14 +117,14 @@ int ActBreakRock::exec()
 		break;
 
 	case 1:
-		int followResult = m_followField->exec();
+		int followResult = mFollowField->exec();
 		if (followResult == 0) {
 			initStickAttack();
 		}
 		break;
 
 	case 0:
-		int gotoResult = m_gotoPos->exec();
+		int gotoResult = mGotoPos->exec();
 		if (gotoResult == 0) {
 			initStickAttack();
 		}
@@ -141,10 +141,10 @@ int ActBreakRock::exec()
  */
 void ActBreakRock::cleanup()
 {
-	Game::GameStat::workPikis.dec(m_parent);
-	switch (m_state) {
+	Game::GameStat::workPikis.dec(mParent);
+	switch (mState) {
 	case 2:
-		m_stickAttack->cleanup();
+		mStickAttack->cleanup();
 		break;
 	}
 }
@@ -156,7 +156,7 @@ void ActBreakRock::cleanup()
  */
 void ActBreakRock::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
-	if (m_state == 1) {
+	if (mState == 1) {
 		initStickAttack();
 	}
 }
@@ -168,7 +168,7 @@ void ActBreakRock::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
  */
 void ActBreakRock::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 {
-	if (collEvent.m_collidingCreature == m_rock && m_state == 1) {
+	if (collEvent.mCollidingCreature == mRock && mState == 1) {
 		initStickAttack();
 	}
 }

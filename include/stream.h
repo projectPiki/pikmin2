@@ -18,11 +18,11 @@ static inline u16 bswap16(u16 x) { return ((x << 8) & 0xff00) | ((x >> 8) & 0x00
 struct Stream {
 	Stream()
 	{
-		m_endian   = STREAM_BIG_ENDIAN;
-		m_position = 0;
-		m_mode     = STREAM_MODE_BINARY;
-		if (m_mode == STREAM_MODE_TEXT) {
-			m_tabCount = 0;
+		mEndian   = STREAM_BIG_ENDIAN;
+		mPosition = 0;
+		mMode     = STREAM_MODE_BINARY;
+		if (mMode == STREAM_MODE_TEXT) {
+			mTabCount = 0;
 		}
 	}
 	Stream(int);
@@ -69,17 +69,17 @@ struct Stream {
 	inline void writePadding(u32 mode)
 	{
 		if (mode == 1) {
-			textWriteTab(m_tabCount);
+			textWriteTab(mTabCount);
 		} else {
 		}
 	}
 
-	int m_endian;                      // _04
-	int m_position;                    // _08
-	int m_mode;                        // _0C
-	int m_bufferPos;                   // _10
-	char m_buffer[KILOBYTE_BYTECOUNT]; // _14
-	int m_tabCount;                    // _414
+	int mEndian;                      // _04
+	int mPosition;                    // _08
+	int mMode;                        // _0C
+	int mBufferPos;                   // _10
+	char mBuffer[KILOBYTE_BYTECOUNT]; // _14
+	int mTabCount;                    // _414
 };
 
 struct RamStream : Stream {
@@ -94,14 +94,14 @@ struct RamStream : Stream {
 
 	inline void resetPosition(bool a1, int a2)
 	{
-		m_mode = a1;
-		if (m_mode == a2) {
-			m_tabCount = 0;
+		mMode = a1;
+		if (mMode == a2) {
+			mTabCount = 0;
 		}
 	}
 
-	void* m_ramBufferStart; // _418
-	int m_bounds;           // _41C
+	void* mRamBufferStart; // _418
+	int mBounds;           // _41C
 };
 
 /**

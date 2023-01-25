@@ -19,32 +19,32 @@ struct TDispTriangleArray;
 struct MoveInfo {
 	inline MoveInfo(Sys::Sphere* sphere, Vector3f* vec, f32 a)
 	    : _00(sphere)
-	    , m_velocity(vec)
+	    , mVelocity(vec)
 	    , _08(a)
 	{
-		_0C              = 0.0f;
-		_10              = nullptr;
-		m_bounceTriangle = nullptr;
-		_74              = 0;
-		_19              = 0;
-		_18              = 0;
-		m_wallTriangle   = nullptr;
-		m_infoOrigin     = nullptr;
-		_90              = 0;
-		_94              = nullptr;
-		_2C              = JMath::sincosTable_.m_table[256].first; // pi/2
-		_30              = 0.6f;
-		_98              = -1;
-		_4C              = nullptr;
-		_1A              = 0;
+		_0C             = 0.0f;
+		_10             = nullptr;
+		mBounceTriangle = nullptr;
+		_74             = 0;
+		_19             = 0;
+		_18             = 0;
+		mWallTriangle   = nullptr;
+		mInfoOrigin     = nullptr;
+		_90             = 0;
+		_94             = nullptr;
+		_2C             = JMath::sincosTable_.mTable[256].first; // pi/2
+		_30             = 0.6f;
+		_98             = -1;
+		_4C             = nullptr;
+		_1A             = 0;
 	}
 
 	Sys::Sphere* _00;                                  // _00
-	Vector3f* m_velocity;                              // _04
+	Vector3f* mVelocity;                               // _04
 	f32 _08;                                           // _08
 	f32 _0C;                                           // _0C
 	Delegate2<DynCreature, Vector3f&, Vector3f&>* _10; // _10
-	Creature* m_infoOrigin;                            // _14
+	Creature* mInfoOrigin;                             // _14
 	u8 _18;                                            // _18
 	u8 _19;                                            // _19
 	u8 _1A;                                            // _1A
@@ -53,11 +53,11 @@ struct MoveInfo {
 	f32 _2C;                                           // _2C
 	f32 _30;                                           // _30
 	u8 _34[16];                                        // _34
-	Sys::Triangle* m_bounceTriangle;                   // _44
-	Sys::Triangle* m_wallTriangle;                     // _48
+	Sys::Triangle* mBounceTriangle;                    // _44
+	Sys::Triangle* mWallTriangle;                      // _48
 	Sys::Triangle* _4C;                                // _4C
-	Vector3f m_position;                               // _50
-	Vector3f m_reflectPosition;                        // _5C
+	Vector3f mPosition;                                // _50
+	Vector3f mReflectPosition;                         // _5C
 	f32 _68;                                           // _60
 	f32 _6C;                                           // _64
 	f32 _70;                                           // _68

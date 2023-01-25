@@ -108,26 +108,26 @@ struct ItemGate : public FSMItem<ItemGate, GateFSM, GateState> {
 
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
-	TSoundEvent m_soundEvent;            // _1E0
-	u32 _1EC;                            // _1EC, mabiki? might be size 0x8?
-	int _1F0;                            // _1F0
-	PlatInstance* m_centrePlatInstance;  // _1F4
-	PlatInstance* m_sidePlatInstance;    // _1F8
-	WayPoint* m_wayPoint;                // _1FC
-	f32 m_maxHealth;                     // _200
-	f32 _204;                            // _204
-	f32 m_health;                        // _208
-	int m_gateType;                      // _20C, enum?
-	int _210;                            // _210
-	f32 m_faceDir;                       // _214
-	bool m_isElectric;                   // _218
-	efx::TChaseMtx* _21C;                // _21C
-	efx::TForever2* _220;                // _220
-	Plane m_planes[4];                   // _224
-	Vector3f _264;                       // _264
-	Vector3f _270;                       // _270
-	u8 _27C;                             // _27C, unknown
-	Sys::MatBaseAnimator* m_matAnimator; // _280
+	TSoundEvent mSoundEvent;            // _1E0
+	u32 _1EC;                           // _1EC, mabiki? might be size 0x8?
+	int _1F0;                           // _1F0
+	PlatInstance* mCentrePlatInstance;  // _1F4
+	PlatInstance* mSidePlatInstance;    // _1F8
+	WayPoint* mWayPoint;                // _1FC
+	f32 mMaxHealth;                     // _200
+	f32 _204;                           // _204
+	f32 mHealth;                        // _208
+	int mGateType;                      // _20C, enum?
+	int _210;                           // _210
+	f32 mFaceDir;                       // _214
+	bool mIsElectric;                   // _218
+	efx::TChaseMtx* _21C;               // _21C
+	efx::TForever2* _220;               // _220
+	Plane mPlanes[4];                   // _224
+	Vector3f _264;                      // _264
+	Vector3f _270;                      // _270
+	u8 _27C;                            // _27C, unknown
+	Sys::MatBaseAnimator* mMatAnimator; // _280
 };
 
 struct ItemGateMgr : public BaseItemMgr {
@@ -155,10 +155,10 @@ struct ItemGateMgr : public BaseItemMgr {
 
 	// _00     = VTBL
 	// _00-_30 = BaseItemMgr
-	NodeObjectMgr<ItemGate> m_nodeObjectMgr; // _30
-	Platform* m_centrePlatform;              // _6C
-	Platform* m_sidePlatform;                // _70
-	Sys::MatTevRegAnimation m_matTevRegAnim; // _74
+	NodeObjectMgr<ItemGate> mNodeObjectMgr; // _30
+	Platform* mCentrePlatform;              // _6C
+	Platform* mSidePlatform;                // _70
+	Sys::MatTevRegAnimation mMatTevRegAnim; // _74
 };
 
 extern ItemGateMgr* itemGateMgr;
@@ -167,8 +167,8 @@ extern ItemGateMgr* itemGateMgr;
 struct GenGateParm : public Game::GenItemParm {
 
 	// _00     = VTBL
-	f32 _04;     // _04
-	u16 m_color; // _08
+	f32 _04;    // _04
+	u16 mColor; // _08
 };
 
 #endif

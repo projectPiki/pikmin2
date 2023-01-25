@@ -13,9 +13,9 @@ namespace efx {
 // 	/* VTABLE */\
 // 	virtual bool create(Arg* arg) /* _08 (weak) */\
 // 	{\
-// 		int item_count = sizeof(m_items) / sizeof(T);\
-// 		for (u32 i = 0; i < item_count; i++) {\
-// 			if (((TSync*)&m_items[i])->create(arg) == false) {\
+// 		int itemCount = sizeof(mItems) / sizeof(T);\
+// 		for (u32 i = 0; i < itemCount; i++) {\
+// 			if (((TSync*)&mItems[i])->create(arg) == false) {\
 // 				return false;\
 // 			}\
 // 		}\
@@ -23,36 +23,36 @@ namespace efx {
 // 	}\
 // 	virtual void forceKill() /* _0C (weak) */\
 // 	{\
-// 		int item_count = sizeof(m_items) / sizeof(T);\
-// 		for (u32 i = 0; i < item_count; i++) {\
-// 			((TSync*)&m_items[i])->forceKill();\
+// 		int itemCount = sizeof(mItems) / sizeof(T);\
+// 		for (u32 i = 0; i < itemCount; i++) {\
+// 			((TSync*)&mItems[i])->forceKill();\
 // 		}\
 // 	}\
 // 	virtual void fade() /* _10 (weak) */\
 // 	{\
-// 		int item_count = sizeof(m_items) / sizeof(T);\
-// 		for (u32 i = 0; i < item_count; i++) {\
-// 			((TSync*)&m_items[i])->fade();\
+// 		int itemCount = sizeof(mItems) / sizeof(T);\
+// 		for (u32 i = 0; i < itemCount; i++) {\
+// 			((TSync*)&mItems[i])->fade();\
 // 		}\
 // 	}\
 // 	virtual void startDemoDrawOff() /* _14 (weak) */\
 // 	{\
-// 		int item_count = sizeof(m_items) / sizeof(T);\
-// 		for (u32 i = 0; i < item_count; i++) {\
-// 			((TSync*)&m_items[i])->startDemoDrawOff();\
+// 		int itemCount = sizeof(mItems) / sizeof(T);\
+// 		for (u32 i = 0; i < itemCount; i++) {\
+// 			((TSync*)&mItems[i])->startDemoDrawOff();\
 // 		}\
 // 	}\
 // 	virtual void endDemoDrawOn() /* _18 (weak) */\
 // 	{\
-// 		int item_count = sizeof(m_items) / sizeof(T);\
-// 		for (u32 i = 0; i < item_count; i++) {\
-// 			((TSync*)&m_items[i])->endDemoDrawOn();\
+// 		int itemCount = sizeof(mItems) / sizeof(T);\
+// 		for (u32 i = 0; i < itemCount; i++) {\
+// 			((TSync*)&mItems[i])->endDemoDrawOn();\
 // 		}\
 // 	}\
 // 	/* VTABLE END */\
 // \
 // 	/* _00 	= VTBL */\
-// 	T m_items[N]; /* _04 */\
+// 	T mItems[N]; /* _04 */\
 // }\
 
 #define DEF_SYNC_GROUP(N)                \
@@ -67,7 +67,7 @@ namespace efx {
 		/* VTABLE END */                 \
                                          \
 		/* _00 	= VTBL */                \
-		T m_items[N]; /* _04 */          \
+		T mItems[N]; /* _04 */           \
 	}
 
 // map says these should be weak, but making them weak messes with Ftank and Wtank.

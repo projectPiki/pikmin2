@@ -125,16 +125,16 @@
         .4byte 0x00000000
 
     .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@"
-    "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@":
+    .global "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@"
+    "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@":
         .4byte lbl_805196CC
         .4byte lbl_805196D0
         .4byte lbl_80480688
         .4byte lbl_805196D8
         .4byte 0
         .4byte 0
-    .global "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@"
-    "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@":
+    .global "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@"
+    "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@":
         .4byte lbl_805196E0
         .4byte lbl_805196E8
         .4byte lbl_80480698
@@ -191,8 +191,8 @@
         .4byte 0
 
     .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@"
-    "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@":
+    .global "enumFloor_hiddens__26@unnamed@gameCaveInfo_cpp@"
+    "enumFloor_hiddens__26@unnamed@gameCaveInfo_cpp@":
         .4byte lbl_805196F0
         .4byte lbl_805196F8
 
@@ -286,15 +286,15 @@ namespace Cave {
  */
 BaseGen::BaseGen()
 {
-	m_name       = "BaseGen";
-	m_position.x = 0.0f;
-	m_position.y = 0.0f;
-	m_position.z = 0.0f;
-	m_radius     = 0.0f;
-	m_angle      = 0.0f;
-	m_minimum    = 1;
-	m_maximum    = 1;
-	m_spawnType  = TekiA__Easy;
+	mName       = "BaseGen";
+	mPosition.x = 0.0f;
+	mPosition.y = 0.0f;
+	mPosition.z = 0.0f;
+	mRadius     = 0.0f;
+	mAngle      = 0.0f;
+	mMinimum    = 1;
+	mMaximum    = 1;
+	mSpawnType  = TekiA__Easy;
 }
 
 /*
@@ -306,13 +306,13 @@ void BaseGen::read(Stream& stream)
 {
 	int childCount = stream.readInt();
 	for (int i = 0; i < childCount; i++) {
-		BaseGen* child     = new BaseGen();
-		child->m_spawnType = (BaseGen::Type)stream.readInt();
-		child->m_position.read(stream);
-		child->m_angle   = stream.readFloat();
-		child->m_radius  = stream.readFloat();
-		child->m_minimum = stream.readInt();
-		child->m_maximum = stream.readInt();
+		BaseGen* child    = new BaseGen();
+		child->mSpawnType = (BaseGen::Type)stream.readInt();
+		child->mPosition.read(stream);
+		child->mAngle   = stream.readFloat();
+		child->mRadius  = stream.readFloat();
+		child->mMinimum = stream.readInt();
+		child->mMaximum = stream.readInt();
 		add(child);
 	}
 }
@@ -340,13 +340,13 @@ void TekiInfo::read(Stream& stream)
 		char rawDropMode = inputString[1];
 		if ((rawDropMode < '1') || (rawDropMode > '9')) {
 			inputString++;
-			m_dropMode = DropOnPikminOrLeader;
+			mDropMode = DropOnPikminOrLeader;
 		} else {
 			inputString += 2;
-			m_dropMode = DropMode(rawDropMode - '0');
+			mDropMode = DropMode(rawDropMode - '0');
 		}
 	} else {
-		m_dropMode = NoDrop;
+		mDropMode = NoDrop;
 	}
 	buffer1[0]   = '\0';
 	char* _s2    = buffer2;
@@ -357,15 +357,15 @@ void TekiInfo::read(Stream& stream)
 		size_t sVar4 = strlen(inputString);
 		if (sVar4 <= uVar9) {
 			_s2[iVar10] = '\0';
-			m_enemyID   = generalEnemyMgr->getEnemyID(buffer2, 4);
+			mEnemyID    = generalEnemyMgr->getEnemyID(buffer2, 4);
 			if (buffer1[0] != '\0') {
-				pelletMgr->makeOtakaraItemCode(buffer1, m_otakaraItemCode);
+				pelletMgr->makeOtakaraItemCode(buffer1, mOtakaraItemCode);
 			}
-			uVar9    = stream.readInt();
-			m_weight = uVar9;
-			m_type   = (BaseGen::Type)stream.readInt();
-			pcVar7   = generalEnemyMgr->getEnemyName(m_enemyID, 4);
-			m_name   = pcVar7;
+			uVar9   = stream.readInt();
+			mWeight = uVar9;
+			mType   = (BaseGen::Type)stream.readInt();
+			pcVar7  = generalEnemyMgr->getEnemyName(mEnemyID, 4);
+			mName   = pcVar7;
 			return;
 		}
 		bool bVar2 = false;
@@ -377,7 +377,7 @@ void TekiInfo::read(Stream& stream)
 				while (true) {
 					if (gEnemyInfoNum <= iVar8)
 						break;
-					if (strcmp(pEVar11->m_name, _s2) == 0) {
+					if (strcmp(pEVar11->mName, _s2) == 0) {
 						bVar2 = true;
 						break;
 					}
@@ -594,10 +594,10 @@ blr
 void GateInfo::read(Stream& input)
 {
 	char* name = input.readString(nullptr, 0);
-	m_caveID   = Game::pelletMgr->getCaveID(name);
-	JUT_ASSERTLINE(659, m_caveID != -1, "?¿½Ï‚Èƒy?¿½?¿½?¿½b?¿½g?¿½l?¿½[?¿½?¿½?¿½Å‚ï¿½!\n");
-	m_weight = input.readInt();
-	m_name   = name;
+	mCaveID    = Game::pelletMgr->getCaveID(name);
+	JUT_ASSERTLINE(659, mCaveID != -1, "?¿½Ï‚Èƒy?¿½?¿½?¿½b?¿½g?¿½l?¿½[?¿½?¿½?¿½Å‚ï¿½!\n");
+	mWeight = input.readInt();
+	mName   = name;
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -642,7 +642,7 @@ blr
  * Address:	801D64E8
  * Size:	00001C
  */
-TekiInfo* CapInfo::getTekiInfo() { return (!m_doesNotHaveTeki ? m_tekiInfo : nullptr); }
+TekiInfo* CapInfo::getTekiInfo() { return (!mDoesNotHaveTeki ? mTekiInfo : nullptr); }
 
 /*
  * --INFO--
@@ -651,10 +651,10 @@ TekiInfo* CapInfo::getTekiInfo() { return (!m_doesNotHaveTeki ? m_tekiInfo : nul
  */
 void CapInfo::read(Stream& input)
 {
-	m_doesNotHaveTeki = input.readByte();
-	if (m_doesNotHaveTeki == false) {
-		m_tekiInfo      = new TekiInfo();
-		m_tekiInfo->_0C = m_tekiInfo;
+	mDoesNotHaveTeki = input.readByte();
+	if (mDoesNotHaveTeki == false) {
+		mTekiInfo      = new TekiInfo();
+		mTekiInfo->_0C = mTekiInfo;
 		getTekiInfo()->read(input);
 	}
 
@@ -1157,12 +1157,12 @@ addi     r6, r31, 0x128
 addi     r5, r5, 0x66303130@l
 bl       __ct__8BaseParmFP10ParametersUlPc
 lis      r4, "__vt__7Parm<i>"@ha
-lis      r3, "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@"@ha
+lis      r3, "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@"@ha
 addi     r0, r4, "__vt__7Parm<i>"@l
 lis      r6, 0x66303131@ha
 stw      r0, 0x1d4(r30)
 li       r7, 0
-addi     r5, r3, "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@"@l
+addi     r5, r3, "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@"@l
 addi     r8, r6, 0x66303131@l
 stw      r7, 0x1ec(r30)
 li       r0, 1
@@ -1174,9 +1174,9 @@ li       r7, 6
 addi     r9, r2, lbl_80519714@sda21
 stw      r0, 0x1f8(r30)
 bl       __ct__8ParmEnumFP10ParametersPPcUlilPc
-lis      r3, "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@"@ha
+lis      r3, "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@"@ha
 lis      r6, 0x66303132@ha
-addi     r5, r3, "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@"@l
+addi     r5, r3, "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@"@l
 mr       r4, r30
 addi     r8, r6, 0x66303132@l
 addi     r3, r30, 0x220
@@ -1187,7 +1187,7 @@ bl       __ct__8ParmEnumFP10ParametersPPcUlilPc
 lis      r6, 0x66303133@ha
 mr       r4, r30
 addi     r3, r30, 0x244
-addi     r5, r13, "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@"@sda21
+addi     r5, r13, "enumFloor_hiddens__26@unnamed@gameCaveInfo_cpp@"@sda21
 addi     r8, r6, 0x66303133@l
 li       r6, 0
 li       r7, 2

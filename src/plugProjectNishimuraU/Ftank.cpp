@@ -18,14 +18,14 @@ Obj::Obj() { createEffect(); }
 void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
-	J3DModel* j3dModel = m_model->m_j3dModel;
-	modelData          = j3dModel->m_modelData;
-	ResTIMG* texture   = static_cast<Mgr*>(m_mgr)->getChangeTexture();
+	J3DModel* j3dModel = mModel->mJ3dModel;
+	modelData          = j3dModel->mModelData;
+	ResTIMG* texture   = static_cast<Mgr*>(mMgr)->getChangeTexture();
 
 	j3dModel->calcMaterial();
 
 	ResTIMG* newTexture;
-	J3DTexture* j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+	J3DTexture* j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
 	newTexture             = j3dTexture->_04;
 
 	texture->copyTo(newTexture);
@@ -33,10 +33,10 @@ void Obj::changeMaterial()
 	j3dTexture->setImageOffset((u32)texture);
 	j3dTexture->setPaletteOffset((u32)texture);
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket    = packet;
-		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket     = packet;
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
 		material->diff(packet->_2C->_34);
 	}
 }
@@ -46,7 +46,7 @@ void Obj::changeMaterial()
  * Address:	8029E6CC
  * Size:	000048
  */
-void Obj::createEffect() { m_tankEffect = new efx::TTankEffect(nullptr); }
+void Obj::createEffect() { mTankEffect = new efx::TTankEffect(nullptr); }
 
 /*
  * --INFO--
@@ -56,12 +56,12 @@ void Obj::createEffect() { m_tankEffect = new efx::TTankEffect(nullptr); }
 void Obj::setupEffect()
 {
 	efx::TTankEffect* effect;
-	Matrixf* mtx = m_joint->getWorldMatrix();
-	effect       = m_tankEffect;
+	Matrixf* mtx = mJoint->getWorldMatrix();
+	effect       = mTankEffect;
 
-	effect->m_efxFire.m_efxABC.setMtxptr(mtx->m_matrix.mtxView);
-	effect->m_efxFire.m_efxIND.m_mtx = mtx;
-	effect->m_efxFireYodare.m_mtx    = mtx;
+	effect->mEfxFire.mEfxABC.setMtxptr(mtx->mMatrix.mtxView);
+	effect->mEfxFire.mEfxIND.mMtx = mtx;
+	effect->mEfxFireYodare.mMtx   = mtx;
 }
 
 /*
@@ -69,7 +69,7 @@ void Obj::setupEffect()
  * Address:	8029EB44
  * Size:	000034
  */
-void Obj::startEffect() { m_tankEffect->m_efxFire.create(nullptr); }
+void Obj::startEffect() { mTankEffect->mEfxFire.create(nullptr); }
 
 /*
  * --INFO--
@@ -78,9 +78,9 @@ void Obj::startEffect() { m_tankEffect->m_efxFire.create(nullptr); }
  */
 void Obj::startYodare()
 {
-	efx::TTankEffect* tankEffect = m_tankEffect;
-	tankEffect->m_efxFire.fade();
-	tankEffect->m_efxFireYodare.create(nullptr);
+	efx::TTankEffect* tankEffect = mTankEffect;
+	tankEffect->mEfxFire.fade();
+	tankEffect->mEfxFireYodare.create(nullptr);
 }
 
 /*
@@ -90,9 +90,9 @@ void Obj::startYodare()
  */
 void Obj::finishEffect()
 {
-	efx::TTankEffect* effect = m_tankEffect;
-	effect->m_efxFire.fade();
-	effect->m_efxFireYodare.fade();
+	efx::TTankEffect* effect = mTankEffect;
+	effect->mEfxFire.fade();
+	effect->mEfxFireYodare.fade();
 }
 
 /*
@@ -102,10 +102,10 @@ void Obj::finishEffect()
  */
 void Obj::effectDrawOn()
 {
-	efx::TTankEffect* effect = m_tankEffect;
-	effect->m_efxFire.m_efxABC.endDemoDrawOn();
-	effect->m_efxFire.m_efxIND.endDemoDrawOn();
-	effect->m_efxFireYodare.endDemoDrawOn();
+	efx::TTankEffect* effect = mTankEffect;
+	effect->mEfxFire.mEfxABC.endDemoDrawOn();
+	effect->mEfxFire.mEfxIND.endDemoDrawOn();
+	effect->mEfxFireYodare.endDemoDrawOn();
 }
 
 /*
@@ -115,10 +115,10 @@ void Obj::effectDrawOn()
  */
 void Obj::effectDrawOff()
 {
-	efx::TTankEffect* effect = m_tankEffect;
-	effect->m_efxFire.m_efxABC.startDemoDrawOff();
-	effect->m_efxFire.m_efxIND.startDemoDrawOff();
-	effect->m_efxFireYodare.startDemoDrawOff();
+	efx::TTankEffect* effect = mTankEffect;
+	effect->mEfxFire.mEfxABC.startDemoDrawOff();
+	effect->mEfxFire.mEfxIND.startDemoDrawOff();
+	effect->mEfxFireYodare.startDemoDrawOff();
 }
 
 /*
@@ -128,7 +128,7 @@ void Obj::effectDrawOff()
  */
 void Obj::interactCreature(Creature* creature)
 {
-	InteractFire fire(this, static_cast<EnemyParmsBase*>(m_parms)->m_general.m_attackDamage.m_value);
+	InteractFire fire(this, static_cast<EnemyParmsBase*>(mParms)->mGeneral.mAttackDamage.mValue);
 	creature->stimulate(fire);
 }
 
@@ -139,9 +139,9 @@ void Obj::interactCreature(Creature* creature)
  */
 void Obj::stopEffectRadius(f32 radius)
 {
-	efx::TTankEffect* effect                          = m_tankEffect;
-	effect->m_efxFire.m_efxABC.m_particleCallBack._04 = radius;
-	effect->m_efxFire.m_efxIND.m_particleCallBack._04 = radius;
+	efx::TTankEffect* effect                       = mTankEffect;
+	effect->mEfxFire.mEfxABC.mParticleCallBack._04 = radius;
+	effect->mEfxFire.mEfxIND.mParticleCallBack._04 = radius;
 }
 
 /*

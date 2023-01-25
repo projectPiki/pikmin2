@@ -22,18 +22,18 @@ namespace Game {
 void GenItem::initialise()
 {
 	GenObjectFactoryFactory* factory = GenObjectFactory::factory;
-	if (GenObjectFactory::factory->m_count >= GenObjectFactory::factory->m_limit) {
+	if (GenObjectFactory::factory->mCount >= GenObjectFactory::factory->mLimit) {
 		return;
 	}
-	GenObjectFactory::factory->m_factories[GenObjectFactory::factory->m_count].m_typeID = 'item';
-	factory->m_factories[factory->m_count].m_makeFunction                               = makeItem;
-	factory->m_factories[factory->m_count].m_name                                       = "アイテムを発生"; // spawn item
-	factory->m_factories[factory->m_count].m_version                                    = '0002';
+	GenObjectFactory::factory->mFactories[GenObjectFactory::factory->mCount].mTypeID = 'item';
+	factory->mFactories[factory->mCount].mMakeFunction                               = makeItem;
+	factory->mFactories[factory->mCount].mName                                       = "アイテムを発生"; // spawn item
+	factory->mFactories[factory->mCount].mVersion                                    = '0002';
 
-	factory->m_count++;
+	factory->mCount++;
 }
 
-void GenItem::updateUseList(Generator* gen, int i) { m_itemMgr = itemMgr->getMgrByIndex(m_mgrIndex); }
+void GenItem::updateUseList(Generator* gen, int i) { mItemMgr = itemMgr->getMgrByIndex(mMgrIndex); }
 
 /*
  * --INFO--
@@ -42,12 +42,12 @@ void GenItem::updateUseList(Generator* gen, int i) { m_itemMgr = itemMgr->getMgr
  */
 void GenItem::doEvent(u32 idx)
 {
-	if ((int*)idx == &m_mgrIndex) {
-		if (m_parm) {
-			delete m_parm;
+	if ((int*)idx == &mMgrIndex) {
+		if (mParm) {
+			delete mParm;
 		}
-		m_itemMgr = itemMgr->getMgrByIndex(m_mgrIndex);
-		m_parm    = m_itemMgr->generatorNewItemParm();
+		mItemMgr = itemMgr->getMgrByIndex(mMgrIndex);
+		mParm    = mItemMgr->generatorNewItemParm();
 	}
 }
 
@@ -58,9 +58,9 @@ void GenItem::doEvent(u32 idx)
  */
 void GenItem::generatorMakeMatrix(Matrixf& matrix, Vector3f& vec)
 {
-	float x           = m_rotation.x * DEG2RAD * PI;
-	float y           = m_rotation.y * DEG2RAD * PI;
-	float z           = m_rotation.z * DEG2RAD * PI;
+	float x           = mRotation.x * DEG2RAD * PI;
+	float y           = mRotation.y * DEG2RAD * PI;
+	float z           = mRotation.z * DEG2RAD * PI;
 	Vector3f rotation = Vector3f(x, y, z);
 
 	matrix.makeTR(vec, rotation);
@@ -73,9 +73,9 @@ void GenItem::generatorMakeMatrix(Matrixf& matrix, Vector3f& vec)
  */
 J3DModelData* GenItem::getShape()
 {
-	BaseItemMgr* baseMgr = m_itemMgr;
-	if (baseMgr && m_parm) {
-		return baseMgr->generatorGetShape(m_parm);
+	BaseItemMgr* baseMgr = mItemMgr;
+	if (baseMgr && mParm) {
+		return baseMgr->generatorGetShape(mParm);
 	}
 	return nullptr;
 }
@@ -87,24 +87,24 @@ J3DModelData* GenItem::getShape()
  */
 void GenItem::doWrite(Stream& stream)
 {
-	if (m_itemMgr) {
-		u32 id    = m_itemMgr->generatorGetID();
+	if (mItemMgr) {
+		u32 id    = mItemMgr->generatorGetID();
 		ID32 id32 = id;
 		stream.textBeginGroup(id32.getStr());
-		stream.textWriteTab(stream.m_tabCount);
+		stream.textWriteTab(stream.mTabCount);
 		id32.write(stream);
 		stream.textWriteText("\t# item id\r\n");
-		stream.textWriteTab(stream.m_tabCount);
-		stream.writeFloat(m_rotation.x);
-		stream.writeFloat(m_rotation.y);
-		stream.writeFloat(m_rotation.z);
+		stream.textWriteTab(stream.mTabCount);
+		stream.writeFloat(mRotation.x);
+		stream.writeFloat(mRotation.y);
+		stream.writeFloat(mRotation.z);
 		stream.textWriteText("\t# rotation\r\n");
-		u32 localVer = m_itemMgr->generatorLocalVersion();
+		u32 localVer = mItemMgr->generatorLocalVersion();
 		ID32 localID = localVer;
-		stream.textWriteTab(stream.m_tabCount);
+		stream.textWriteTab(stream.mTabCount);
 		localID.write(stream);
 		stream.textWriteText("\t# item local version\r\n");
-		m_itemMgr->generatorWrite(stream, m_parm);
+		mItemMgr->generatorWrite(stream, mParm);
 		stream.textEndGroup();
 	}
 }
@@ -116,27 +116,27 @@ void GenItem::doWrite(Stream& stream)
  */
 void GenItem::doRead(Stream& stream)
 {
-	if (m_parm) {
-		delete m_parm;
-		m_parm = nullptr;
+	if (mParm) {
+		delete mParm;
+		mParm = nullptr;
 	}
-	m_itemMgr = nullptr;
+	mItemMgr = nullptr;
 	ID32 id32;
 	id32.read(stream);
-	m_itemMgr  = itemMgr->getMgrByID(id32);
-	m_mgrIndex = itemMgr->getIndexByMgr(m_itemMgr);
-	JUT_ASSERTLINE(175, m_itemMgr && m_mgrIndex != -1, "no baseItemMgr for %s\n", &id32);
-	m_parm       = m_itemMgr->generatorNewItemParm();
-	m_rotation.x = stream.readFloat();
-	m_rotation.y = stream.readFloat();
-	m_rotation.z = stream.readFloat();
-	u32 version  = '0000';
-	if (m_rawID >= '0002') {
+	mItemMgr  = itemMgr->getMgrByID(id32);
+	mMgrIndex = itemMgr->getIndexByMgr(mItemMgr);
+	JUT_ASSERTLINE(175, mItemMgr && mMgrIndex != -1, "no baseItemMgr for %s\n", &id32);
+	mParm       = mItemMgr->generatorNewItemParm();
+	mRotation.x = stream.readFloat();
+	mRotation.y = stream.readFloat();
+	mRotation.z = stream.readFloat();
+	u32 version = '0000';
+	if (mRawID >= '0002') {
 		ID32 localID;
 		localID.read(stream);
 		version = localID.getID();
 	}
-	m_itemMgr->generatorRead(stream, m_parm, version);
+	mItemMgr->generatorRead(stream, mParm, version);
 }
 
 /*
@@ -160,9 +160,9 @@ void GenItem::ramLoadParameters(Stream&) { }
  */
 Creature* GenItem::generate(Game::Generator* generator)
 {
-	Vector3f pos = generator->m_position + generator->m_offset;
+	Vector3f pos = generator->mPosition + generator->mOffset;
 	GenArg arg;
-	arg.m_position = pos;
+	arg.mPosition = pos;
 	birth(&arg);
 }
 
@@ -174,14 +174,14 @@ Creature* GenItem::generate(Game::Generator* generator)
 Creature* GenItem::birth(Game::GenArg* arg)
 {
 	BaseItem* baseItem       = nullptr;
-	BaseItemMgr* baseItemMgr = m_itemMgr;
+	BaseItemMgr* baseItemMgr = mItemMgr;
 	if (baseItemMgr) {
-		Vector3f pos      = arg->m_position;
-		float z           = m_rotation.z * DEG2RAD * PI;
-		float y           = m_rotation.y * DEG2RAD * PI;
-		float x           = m_rotation.x * DEG2RAD * PI;
+		Vector3f pos      = arg->mPosition;
+		float z           = mRotation.z * DEG2RAD * PI;
+		float y           = mRotation.y * DEG2RAD * PI;
+		float x           = mRotation.x * DEG2RAD * PI;
 		Vector3f rotation = Vector3f(x, y, z);
-		baseItem          = baseItemMgr->generatorBirth(pos, rotation, m_parm);
+		baseItem          = baseItemMgr->generatorBirth(pos, rotation, mParm);
 	}
 	return baseItem;
 }

@@ -121,22 +121,22 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
-	CarryInfoOwner* m_carryInfoOwner; // _1E0
-	PlatInstance* m_platInstance;     // _1E4
-	int _1E8;                         // _1E8
-	int _1EC;                         // _1EC
-	int _1F0;                         // _1F0
-	BaseItem* _1F4;                   // _1F4
-	CarryInfoMgr* m_carryInfoMgr;     // _1F8
-	bool m_isPressed;                 // _1FC
-	f32 m_faceDir;                    // _200
-	u16 _204;                         // _204, maybe down floor type?
-	TSoundEvent m_soundEvent;         // _208
-	WayPoint* m_wayPoint;             // _214
-	Item* m_otherSeesaw;              // _218
-	ID32 _21C;                        // _21C
-	bool m_isSeesawBlock;             // _228
-	bool m_isPaperBag;                // _229
+	CarryInfoOwner* mCarryInfoOwner; // _1E0
+	PlatInstance* mPlatInstance;     // _1E4
+	int _1E8;                        // _1E8
+	int _1EC;                        // _1EC
+	int _1F0;                        // _1F0
+	BaseItem* _1F4;                  // _1F4
+	CarryInfoMgr* mCarryInfoMgr;     // _1F8
+	bool mIsPressed;                 // _1FC
+	f32 mFaceDir;                    // _200
+	u16 _204;                        // _204, maybe down floor type?
+	TSoundEvent mSoundEvent;         // _208
+	WayPoint* mWayPoint;             // _214
+	Item* mOtherSeesaw;              // _218
+	ID32 _21C;                       // _21C
+	bool mIsSeesawBlock;             // _228
+	bool mIsPaperBag;                // _229
 };
 
 struct Mgr : public TNodeItemMgr {
@@ -160,7 +160,7 @@ struct Mgr : public TNodeItemMgr {
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr
-	Platform** m_platforms; // _88, might be array of platforms instead?
+	Platform** mPlatforms; // _88, might be array of platforms instead?
 };
 
 extern Mgr* mgr;
@@ -171,10 +171,10 @@ extern Mgr* mgr;
 struct GenDownFloorParm : public Game::GenItemParm {
 
 	// _00     = VTBL
-	s16 _04;             // _04
-	s16 m_downFloorType; // _06
-	u16 _08;             // _08
-	ID32 m_id;           // _0C
+	s16 _04;            // _04
+	s16 mDownFloorType; // _06
+	u16 _08;            // _08
+	ID32 mId;           // _0C
 };
 
 #endif

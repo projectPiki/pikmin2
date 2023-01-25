@@ -136,14 +136,14 @@ void TaskEntryMgr::update()
 	// Status)
 	P2ASSERTLINE(197, _24 != nullptr);
 	bool result;
-	OSLockMutex(&m_mutex);
+	OSLockMutex(&mMutex);
 	if (getFirst()) {
 		TaskEntry* entry = getFirst()->getObject();
 		JASTrack* track  = _24;
-		OSLockMutex(&entry->m_mutex);
+		OSLockMutex(&entry->mMutex);
 		JSULink<TaskBase>* taskLink = entry->getFirst();
 		if (taskLink == nullptr) {
-			OSUnlockMutex(&entry->m_mutex);
+			OSUnlockMutex(&entry->mMutex);
 			result     = false;
 			entry->_24 = nullptr;
 		} else {
@@ -164,14 +164,14 @@ void TaskEntryMgr::update()
 				}
 				taskLink = (task->_15 != 0) ? taskLink->getNext() : nullptr;
 			}
-			OSUnlockMutex(&entry->m_mutex);
+			OSUnlockMutex(&entry->mMutex);
 			result = true;
 		}
 		if (!result) {
 			remove(getFirst());
 		}
 	}
-	OSUnlockMutex(&m_mutex);
+	OSUnlockMutex(&mMutex);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -353,14 +353,14 @@ void TaskEntryMgr::removeEntry(PSSystem::TaskEntry* entry)
 	// TODO: remove_Lock should not be inlined.
 	if (entry) {
 		remove_Lock(&entry->_28);
-		OSLockMutex(&entry->m_mutex);
+		OSLockMutex(&entry->mMutex);
 		JSULink<TaskBase>* taskLink = entry->getFirst();
 		while (taskLink) {
 			JSULink<TaskBase>* nextLink = taskLink->getNext();
 			entry->remove(taskLink);
 			taskLink = nextLink;
 		}
-		OSUnlockMutex(&entry->m_mutex);
+		OSUnlockMutex(&entry->mMutex);
 		entry->_24 = nullptr;
 	}
 	/*

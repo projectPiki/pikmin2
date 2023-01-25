@@ -51,11 +51,11 @@ void loadTmpDVDFile(char* filename, u8** param_2)
 	if (!(JStack256.open(filename) & -1)) {
 		param_2[0] = 0;
 		return;
-	} else if (JStack256.m_dvdPlayer.m_fileSize == 0) {
+	} else if (JStack256.mDvdPlayer.mFileSize == 0) {
 		param_2[0] = 0;
 		return;
 	} else {
-		param_2[0] = (u8*)JASDram->alloc(JStack256.m_dvdPlayer.m_fileSize, -0x20);
+		param_2[0] = (u8*)JASDram->alloc(JStack256.mDvdPlayer.mFileSize, -0x20);
 		if (JKRDvdRipper::loadToMainRAM(filename, *param_2, Switch_0, 0, 0, JKRDvdRipper::ALLOC_DIR_TOP, 0, 0, 0) == nullptr) {
 			param_2[0] = 0;
 		}

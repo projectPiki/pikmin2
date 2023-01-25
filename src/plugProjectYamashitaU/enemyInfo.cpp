@@ -119,7 +119,7 @@ inline EnemyInfo* getInfo(int enemyID, int enemyFlags)
 {
 	EnemyInfo* result = nullptr;
 	for (int enemy_num = gEnemyInfoNum, slot = 0; enemy_num > 0; --enemy_num) {
-		if ((enemyID == gEnemyInfo[slot].m_id) && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
+		if ((enemyID == gEnemyInfo[slot].mId) && ((enemyFlags & (u32)gEnemyInfo[slot].mFlags) != 0)) {
 			result = &gEnemyInfo[slot];
 			break;
 		}
@@ -135,7 +135,7 @@ EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
 	int enemy_num     = gEnemyInfoNum;
 
 	while (enemy_num > 0) {
-		if ((enemyID == gEnemyInfo[slot].m_id) && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
+		if ((enemyID == gEnemyInfo[slot].mId) && ((enemyFlags & (u32)gEnemyInfo[slot].mFlags) != 0)) {
 			result = gEnemyInfo + slot;
 			break;
 		}
@@ -148,7 +148,7 @@ EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
 char* getEnemyName(int enemyID, int enemyFlags)
 {
 	EnemyInfo* result = getInfo(enemyID, enemyFlags);
-	return result ? result->m_name : nullptr;
+	return result ? result->mName : nullptr;
 }
 
 char* getEnemyResName(int enemyID, int enemyFlags)
@@ -167,25 +167,25 @@ char* getEnemyResName(int enemyID, int enemyFlags)
 	}
 
 	EnemyInfo* result = getInfo(enemyID, enemyFlags);
-	return result->m_animName == "" ? result->m_name : result->m_animName;
+	return result->mAnimName == "" ? result->mName : result->mAnimName;
 }
 
 char getEnemyMember(int enemyID, int enemyFlags)
 {
 	EnemyInfo* result = getInfo(enemyID, enemyFlags);
-	return result ? result->m_members : '\0';
+	return result ? result->mMembers : '\0';
 }
 
 int getEnemyID(char* name, int enemyFlags)
 {
 	EnemyInfo* result = nullptr;
 	for (int slot = 0; slot < gEnemyInfoNum; ++slot) {
-		if ((stricmp(gEnemyInfo[slot].m_name, name) == 0) && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
+		if ((stricmp(gEnemyInfo[slot].mName, name) == 0) && ((enemyFlags & (u32)gEnemyInfo[slot].mFlags) != 0)) {
 			result = &gEnemyInfo[slot];
 			break;
 		}
 	}
-	return result->m_id;
+	return result->mId;
 }
 } // namespace EnemyInfoFunc
 } // namespace Game

@@ -11,32 +11,32 @@ namespace Screen {
  */
 MapCounter::MapCounter(DataMap* data)
 {
-	m_dataMap           = data;
-	m_onyonRedPikmin    = &data->m_onyonPikminCounts[MAPPIKI_Red];
-	m_onyonYellowPikmin = &data->m_onyonPikminCounts[MAPPIKI_Yellow];
-	m_onyonBluePikmin   = &data->m_onyonPikminCounts[MAPPIKI_Blue];
-	m_shipWhitePikmin   = &data->m_onyonPikminCounts[MAPPIKI_White];
-	m_shipPurplePikmin  = &data->m_onyonPikminCounts[MAPPIKI_Purple];
+	mDataMap           = data;
+	mOnyonRedPikmin    = &data->mOnyonPikminCounts[MAPPIKI_Red];
+	mOnyonYellowPikmin = &data->mOnyonPikminCounts[MAPPIKI_Yellow];
+	mOnyonBluePikmin   = &data->mOnyonPikminCounts[MAPPIKI_Blue];
+	mShipWhitePikmin   = &data->mOnyonPikminCounts[MAPPIKI_White];
+	mShipPurplePikmin  = &data->mOnyonPikminCounts[MAPPIKI_Purple];
 
-	m_leaderRedPikmin    = &data->m_currentPikminCounts[MAPPIKI_Red];
-	m_leaderYellowPikmin = &data->m_currentPikminCounts[MAPPIKI_Yellow];
-	m_leaderBluePikmin   = &data->m_currentPikminCounts[MAPPIKI_Blue];
-	m_leaderWhitePikmin  = &data->m_currentPikminCounts[MAPPIKI_White];
-	m_leaderPurplePikmin = &data->m_currentPikminCounts[MAPPIKI_Purple];
-	m_freePikmin         = &data->m_freePikmin;
-	m_pokos              = &data->m_pokos;
+	mLeaderRedPikmin    = &data->mCurrentPikminCounts[MAPPIKI_Red];
+	mLeaderYellowPikmin = &data->mCurrentPikminCounts[MAPPIKI_Yellow];
+	mLeaderBluePikmin   = &data->mCurrentPikminCounts[MAPPIKI_Blue];
+	mLeaderWhitePikmin  = &data->mCurrentPikminCounts[MAPPIKI_White];
+	mLeaderPurplePikmin = &data->mCurrentPikminCounts[MAPPIKI_Purple];
+	mFreePikmin         = &data->mFreePikmin;
+	mPokos              = &data->mPokos;
 
-	m_paneRPikiOnyon  = nullptr;
-	m_paneYPikiOnyon  = nullptr;
-	m_paneBPikiOnyon  = nullptr;
-	m_paneWPikiShip   = nullptr;
-	m_panePPikiShip   = nullptr;
-	m_paneRPikiLeader = nullptr;
-	m_paneYPikiLeader = nullptr;
-	m_paneBPikiLeader = nullptr;
-	m_paneWPikiLeader = nullptr;
-	m_panePPikiLeader = nullptr;
-	m_paneFreePiki    = nullptr;
+	mPaneRPikiOnyon  = nullptr;
+	mPaneYPikiOnyon  = nullptr;
+	mPaneBPikiOnyon  = nullptr;
+	mPaneWPikiShip   = nullptr;
+	mPanePPikiShip   = nullptr;
+	mPaneRPikiLeader = nullptr;
+	mPaneYPikiLeader = nullptr;
+	mPaneBPikiLeader = nullptr;
+	mPaneWPikiLeader = nullptr;
+	mPanePPikiLeader = nullptr;
+	mPaneFreePiki    = nullptr;
 }
 
 /*
@@ -47,12 +47,12 @@ MapCounter::MapCounter(DataMap* data)
 void MapCounter::dispRed(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneRPikiOnyon->show();
-		m_paneRPikiLeader->show();
+		mPaneRPikiOnyon->show();
+		mPaneRPikiLeader->show();
 		return;
 	}
-	m_paneRPikiOnyon->hide();
-	m_paneRPikiLeader->hide();
+	mPaneRPikiOnyon->hide();
+	mPaneRPikiLeader->hide();
 }
 
 /*
@@ -63,12 +63,12 @@ void MapCounter::dispRed(bool makeVisible)
 void MapCounter::dispYellow(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneYPikiOnyon->show();
-		m_paneYPikiLeader->show();
+		mPaneYPikiOnyon->show();
+		mPaneYPikiLeader->show();
 		return;
 	}
-	m_paneYPikiOnyon->hide();
-	m_paneYPikiLeader->hide();
+	mPaneYPikiOnyon->hide();
+	mPaneYPikiLeader->hide();
 }
 
 /*
@@ -79,12 +79,12 @@ void MapCounter::dispYellow(bool makeVisible)
 void MapCounter::dispBlue(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneBPikiOnyon->show();
-		m_paneBPikiLeader->show();
+		mPaneBPikiOnyon->show();
+		mPaneBPikiLeader->show();
 		return;
 	}
-	m_paneBPikiOnyon->hide();
-	m_paneBPikiLeader->hide();
+	mPaneBPikiOnyon->hide();
+	mPaneBPikiLeader->hide();
 }
 
 /*
@@ -95,12 +95,12 @@ void MapCounter::dispBlue(bool makeVisible)
 void MapCounter::dispWhite(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneWPikiShip->show();
-		m_paneWPikiLeader->show();
+		mPaneWPikiShip->show();
+		mPaneWPikiLeader->show();
 		return;
 	}
-	m_paneWPikiShip->hide();
-	m_paneWPikiLeader->hide();
+	mPaneWPikiShip->hide();
+	mPaneWPikiLeader->hide();
 }
 
 /*
@@ -111,12 +111,12 @@ void MapCounter::dispWhite(bool makeVisible)
 void MapCounter::dispBlack(bool makeVisible)
 {
 	if (makeVisible) {
-		m_panePPikiShip->show();
-		m_panePPikiLeader->show();
+		mPanePPikiShip->show();
+		mPanePPikiLeader->show();
 		return;
 	}
-	m_panePPikiShip->hide();
-	m_panePPikiLeader->hide();
+	mPanePPikiShip->hide();
+	mPanePPikiLeader->hide();
 }
 
 /*
@@ -127,10 +127,10 @@ void MapCounter::dispBlack(bool makeVisible)
 void MapCounter::dispFree(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneFreePiki->show();
+		mPaneFreePiki->show();
 		return;
 	}
-	m_paneFreePiki->hide();
+	mPaneFreePiki->hide();
 }
 
 /*
@@ -156,22 +156,22 @@ J2DPane* setCallBack_CounterMap(P2DScreen::Mgr* mgr, u64 tag1, u64 tag2, u64 tag
 void MapCounter::setCallBack(JKRArchive* arc)
 {
 	// onyon pikis
-	m_paneRPikiOnyon = setCallBack_CounterMap(this, 'or_r', 'or_c', 'or_l', m_onyonRedPikmin, 6, 3, true, arc);
-	m_paneYPikiOnyon = setCallBack_CounterMap(this, 'oy_r', 'oy_c', 'oy_l', m_onyonYellowPikmin, 6, 3, true, arc);
-	m_paneBPikiOnyon = setCallBack_CounterMap(this, 'ob_r', 'ob_c', 'ob_l', m_onyonBluePikmin, 6, 3, true, arc);
+	mPaneRPikiOnyon = setCallBack_CounterMap(this, 'or_r', 'or_c', 'or_l', mOnyonRedPikmin, 6, 3, true, arc);
+	mPaneYPikiOnyon = setCallBack_CounterMap(this, 'oy_r', 'oy_c', 'oy_l', mOnyonYellowPikmin, 6, 3, true, arc);
+	mPaneBPikiOnyon = setCallBack_CounterMap(this, 'ob_r', 'ob_c', 'ob_l', mOnyonBluePikmin, 6, 3, true, arc);
 
 	// ship pikis
-	m_paneWPikiShip = setCallBack_CounterMap(this, 'uw_r', 'uw_c', 'uw_l', m_shipWhitePikmin, 6, 3, true, arc);
-	m_panePPikiShip = setCallBack_CounterMap(this, 'ubkr', 'ubkc', 'ubkl', m_shipPurplePikmin, 6, 3, true, arc);
+	mPaneWPikiShip = setCallBack_CounterMap(this, 'uw_r', 'uw_c', 'uw_l', mShipWhitePikmin, 6, 3, true, arc);
+	mPanePPikiShip = setCallBack_CounterMap(this, 'ubkr', 'ubkc', 'ubkl', mShipPurplePikmin, 6, 3, true, arc);
 
 	// leader pikis
-	m_paneRPikiLeader = setCallBack_CounterMap(this, 'tr_r', 'tr_c', 'tr_l', m_leaderRedPikmin, 3, 3, true, arc);
-	m_paneYPikiLeader = setCallBack_CounterMap(this, 'ty_r', 'ty_c', 'ty_l', m_leaderYellowPikmin, 3, 3, true, arc);
-	m_paneBPikiLeader = setCallBack_CounterMap(this, 'tb_r', 'tb_c', 'tb_l', m_leaderBluePikmin, 3, 3, true, arc);
-	m_paneWPikiLeader = setCallBack_CounterMap(this, 'tw_r', 'tw_c', 'tw_l', m_leaderWhitePikmin, 3, 3, true, arc);
-	m_panePPikiLeader = setCallBack_CounterMap(this, 'tbkr', 'tbkc', 'tbkl', m_leaderPurplePikmin, 3, 3, true, arc);
+	mPaneRPikiLeader = setCallBack_CounterMap(this, 'tr_r', 'tr_c', 'tr_l', mLeaderRedPikmin, 3, 3, true, arc);
+	mPaneYPikiLeader = setCallBack_CounterMap(this, 'ty_r', 'ty_c', 'ty_l', mLeaderYellowPikmin, 3, 3, true, arc);
+	mPaneBPikiLeader = setCallBack_CounterMap(this, 'tb_r', 'tb_c', 'tb_l', mLeaderBluePikmin, 3, 3, true, arc);
+	mPaneWPikiLeader = setCallBack_CounterMap(this, 'tw_r', 'tw_c', 'tw_l', mLeaderWhitePikmin, 3, 3, true, arc);
+	mPanePPikiLeader = setCallBack_CounterMap(this, 'tbkr', 'tbkc', 'tbkl', mLeaderPurplePikmin, 3, 3, true, arc);
 
-	m_paneFreePiki = setCallBack_CounterMap(this, 'frer', 'frec', 'frel', m_freePikmin, 3, 3, true, arc);
+	mPaneFreePiki = setCallBack_CounterMap(this, 'frer', 'frec', 'frel', mFreePikmin, 3, 3, true, arc);
 }
 } // namespace Screen
 } // namespace og

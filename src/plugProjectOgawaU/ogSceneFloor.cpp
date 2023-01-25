@@ -38,17 +38,17 @@ Floor::Floor() { }
  */
 void Floor::doUserCallBackFunc(Resource::MgrCommand*)
 {
-	if (m_dispMember->isID(OWNER_OGA, MEMBER_FLOOR)) {
-		const char* path = (sys->m_region == System::LANG_JAPANESE) ? "res_floor_name_jpn.szs" : "res_floor_name_eng_pal.szs";
-		og::newScreen::makeLanguageResName(m_name, path);
-		LoadResource::Arg loadArg(m_name);
+	if (mDispMember->isID(OWNER_OGA, MEMBER_FLOOR)) {
+		const char* path = (sys->mRegion == System::LANG_JAPANESE) ? "res_floor_name_jpn.szs" : "res_floor_name_eng_pal.szs";
+		og::newScreen::makeLanguageResName(mName, path);
+		LoadResource::Arg loadArg(mName);
 		LoadResource::Node* resourceNode = gLoadResourceMgr->mountArchive(loadArg);
 
 		JKRArchive* archive = nullptr;
 		if (resourceNode) {
-			archive = resourceNode->m_archive;
+			archive = resourceNode->mArchive;
 
-			if (resourceNode->m_archive == nullptr) {
+			if (resourceNode->mArchive == nullptr) {
 				JUT_PANICLINE(91, "arc is NULL!!\n");
 			}
 

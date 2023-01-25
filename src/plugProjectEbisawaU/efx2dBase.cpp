@@ -17,9 +17,9 @@ bool TSimple1::create(Arg* arg)
 
 	Vector2f vec = *arg;
 
-	m_emitters[0] = particle2dMgr->create(m_effectIDs[0], vec, _05, _04);
+	mEmitters[0] = particle2dMgr->create(mEffectIDs[0], vec, _05, _04);
 
-	if (m_emitters[0] == nullptr) {
+	if (mEmitters[0] == nullptr) {
 		return false;
 	}
 	return true;
@@ -37,8 +37,8 @@ bool TSimple2::create(Arg* arg)
 	Vector2f vec = *arg;
 
 	for (int i = 0; i < 2; i++) {
-		m_emitters[i] = particle2dMgr->create(m_effectIDs[i], vec, _05, _04);
-		if (m_emitters[i] == nullptr) {
+		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], vec, _05, _04);
+		if (mEmitters[i] == nullptr) {
 			return false;
 		}
 	}
@@ -57,8 +57,8 @@ bool TSimple3::create(Arg* arg)
 	Vector2f vec = *arg;
 
 	for (int i = 0; i < 3; i++) {
-		m_emitters[i] = particle2dMgr->create(m_effectIDs[i], vec, _05, _04);
-		if (m_emitters[i] == nullptr) {
+		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], vec, _05, _04);
+		if (mEmitters[i] == nullptr) {
 			return false;
 		}
 	}
@@ -76,12 +76,12 @@ bool TForever::create(Arg* arg)
 
 	Vector2f vec = *arg;
 
-	if (m_emitter) {
+	if (mEmitter) {
 		return false;
 	}
 
-	m_emitter = particle2dMgr->create(m_efxID, vec, _05, _04);
-	return m_emitter != nullptr;
+	mEmitter = particle2dMgr->create(mEfxID, vec, _05, _04);
+	return mEmitter != nullptr;
 }
 
 /*
@@ -91,8 +91,8 @@ bool TForever::create(Arg* arg)
  */
 void TForever::kill()
 {
-	particle2dMgr->kill(m_emitter);
-	m_emitter = nullptr;
+	particle2dMgr->kill(mEmitter);
+	mEmitter = nullptr;
 }
 
 /*
@@ -102,8 +102,8 @@ void TForever::kill()
  */
 void TForever::fade()
 {
-	particle2dMgr->fade(m_emitter);
-	m_emitter = nullptr;
+	particle2dMgr->fade(mEmitter);
+	mEmitter = nullptr;
 }
 
 /*
@@ -113,7 +113,7 @@ void TForever::fade()
  */
 void TForever::setGlobalScale(float scale)
 {
-	JPABaseEmitter* emitter = m_emitter;
+	JPABaseEmitter* emitter = mEmitter;
 
 	if (emitter == nullptr) {
 		return;
@@ -131,10 +131,10 @@ void TForever::setGlobalScale(float scale)
  */
 void TForever::setGlobalEnvColor(JUtility::TColor& color)
 {
-	JPABaseEmitter* emitter = m_emitter;
+	JPABaseEmitter* emitter = mEmitter;
 
 	if (emitter) {
-		m_emitter->m_color2.setRGB(color);
+		mEmitter->mColor2.setRGB(color);
 	}
 }
 
@@ -145,8 +145,8 @@ void TForever::setGlobalEnvColor(JUtility::TColor& color)
  */
 void TForever::setGlobalAlpha(u8 alpha)
 {
-	if (m_emitter) {
-		m_emitter->m_color1.a = alpha;
+	if (mEmitter) {
+		mEmitter->mColor1.a = alpha;
 	}
 }
 
@@ -156,9 +156,9 @@ void TForever::setGlobalAlpha(u8 alpha)
  * Size:	000080
  */
 TForeverN::TForeverN(u8 length)
-    : m_length(length)
+    : mLength(length)
 {
-	m_forevers = new TForever[m_length];
+	mForevers = new TForever[mLength];
 }
 
 /*
@@ -168,8 +168,8 @@ TForeverN::TForeverN(u8 length)
  */
 TForever::TForever()
 {
-	m_efxID   = 0;
-	m_emitter = nullptr;
+	mEfxID   = 0;
+	mEmitter = nullptr;
 }
 
 /*
@@ -180,8 +180,8 @@ TForever::TForever()
 bool TForeverN::create(Arg* arg)
 {
 	bool success = true;
-	for (u8 i = 0; i < m_length; i++) {
-		if (!m_forevers[i].create(arg)) {
+	for (u8 i = 0; i < mLength; i++) {
+		if (!mForevers[i].create(arg)) {
 			success = false;
 		}
 	}
@@ -195,8 +195,8 @@ bool TForeverN::create(Arg* arg)
  */
 void TForeverN::kill()
 {
-	for (u8 i = 0; i < m_length; i++) {
-		m_forevers[i].kill();
+	for (u8 i = 0; i < mLength; i++) {
+		mForevers[i].kill();
 	}
 }
 
@@ -207,8 +207,8 @@ void TForeverN::kill()
  */
 void TForeverN::fade()
 {
-	for (u8 i = 0; i < m_length; i++) {
-		m_forevers[i].fade();
+	for (u8 i = 0; i < mLength; i++) {
+		mForevers[i].fade();
 	}
 }
 
@@ -219,8 +219,8 @@ void TForeverN::fade()
  */
 void TForeverN::setGroup(u8 group)
 {
-	for (u8 i = 0; i < m_length; i++) {
-		m_forevers[i].setGroup(group);
+	for (u8 i = 0; i < mLength; i++) {
+		mForevers[i].setGroup(group);
 	}
 }
 
@@ -231,10 +231,10 @@ void TForeverN::setGroup(u8 group)
  */
 void TForeverN::setGlobalAlpha(u8 alpha)
 {
-	for (u8 i = 0; i < m_length; i++) {
-		JPABaseEmitter* emitter = m_forevers[i].m_emitter;
+	for (u8 i = 0; i < mLength; i++) {
+		JPABaseEmitter* emitter = mForevers[i].mEmitter;
 		if (emitter) {
-			emitter->m_color1.a = alpha;
+			emitter->mColor1.a = alpha;
 		}
 	}
 }
@@ -246,14 +246,14 @@ void TForeverN::setGlobalAlpha(u8 alpha)
  */
 bool TChasePos::create(Arg* arg)
 {
-	if (m_emitter) {
+	if (mEmitter) {
 		return false;
 	}
 
-	m_emitter = particle2dMgr->create(m_efxID, *_14, _05, _04);
+	mEmitter = particle2dMgr->create(mEfxID, *_14, _05, _04);
 
-	if (m_emitter) {
-		m_emitter->m_emitterCallback = this;
+	if (mEmitter) {
+		mEmitter->mEmitterCallback = this;
 	} else {
 		return false;
 	}
@@ -273,9 +273,9 @@ void TChasePos::execute(JPABaseEmitter* emitter)
 	float x = _14->x;
 	float y = _14->y;
 
-	emitter->m_positon.x = x;
-	emitter->m_positon.y = y;
-	emitter->m_positon.z = 0.0f;
+	emitter->mPositon.x = x;
+	emitter->mPositon.y = y;
+	emitter->mPositon.z = 0.0f;
 }
 
 /*
@@ -285,14 +285,14 @@ void TChasePos::execute(JPABaseEmitter* emitter)
  */
 bool TChasePosDir::create(Arg* arg)
 {
-	if (m_emitter) {
+	if (mEmitter) {
 		return false;
 	}
 
-	m_emitter = particle2dMgr->create(m_efxID, *_14, _05, _04);
+	mEmitter = particle2dMgr->create(mEfxID, *_14, _05, _04);
 
-	if (m_emitter) {
-		m_emitter->m_emitterCallback = this;
+	if (mEmitter) {
+		mEmitter->mEmitterCallback = this;
 	} else {
 		return false;
 	}
@@ -316,9 +316,9 @@ void TChasePosDir::execute(JPABaseEmitter* emitter)
 	float x2 = _18->x;
 	float y2 = _18->y;
 
-	emitter->m_positon.x = x1;
-	emitter->m_positon.y = y1;
-	emitter->m_positon.z = 0.0f;
+	emitter->mPositon.x = x1;
+	emitter->mPositon.y = y1;
+	emitter->mPositon.z = 0.0f;
 
 	emitter->_18.x = x2;
 	emitter->_18.y = y2;

@@ -73,17 +73,17 @@ struct RockParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms(); // probably
 
-		Parm<f32> m_p000; // _E8
-		Parm<f32> m_p001; // _110
-		Parm<f32> m_p002; // _138
-		Parm<f32> m_p003; // _160
-		Parm<f32> m_p004; // _188
-		Parm<f32> m_p005; // _1B0
-		Parm<f32> m_p006; // _1D8
-		Parm<f32> m_p007; // _200
-		Parm<f32> m_p008; // _228
-		Parm<f32> m_p009; // _250
-		Parm<f32> m_p010; // _278
+		Parm<f32> mP000; // _E8
+		Parm<f32> mP001; // _110
+		Parm<f32> mP002; // _138
+		Parm<f32> mP003; // _160
+		Parm<f32> mP004; // _188
+		Parm<f32> mP005; // _1B0
+		Parm<f32> mP006; // _1D8
+		Parm<f32> mP007; // _200
+		Parm<f32> mP008; // _228
+		Parm<f32> mP009; // _250
+		Parm<f32> mP010; // _278
 	};
 
 	RockParms();
@@ -92,7 +92,7 @@ struct RockParms : public CreatureParms {
 
 	// _00-_D8 = CreatureParms
 	// _D8		 = VTBL
-	Parms m_rockParms;
+	Parms mRockParms;
 };
 
 struct Item : public WorkItem<Item, FSM, State> {
@@ -129,15 +129,15 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	Farm::Obstacle* m_obstacle; // _1EC
-	u8 _1F0[0xC];               // _1F0, unknown
-	u8 _1FC;                    // _1FC
-	u8 _1FD[0x3];               // _1FD, unknown/padding
-	u8 _200[0x14];              // _200, unknown
-	f32 _214;                   // _214
-	u8 _218[0x4];               // _218, unknown
-	u32 _21C;                   // _21C
-	u32 _220;                   // _220
+	Farm::Obstacle* mObstacle; // _1EC
+	u8 _1F0[0xC];              // _1F0, unknown
+	u8 _1FC;                   // _1FC
+	u8 _1FD[0x3];              // _1FD, unknown/padding
+	u8 _200[0x14];             // _200, unknown
+	f32 _214;                  // _214
+	u8 _218[0x4];              // _218, unknown
+	u32 _21C;                  // _21C
+	u32 _220;                  // _220
 };
 
 struct Mgr : public TNodeItemMgr {
@@ -152,7 +152,7 @@ struct Mgr : public TNodeItemMgr {
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr
-	RockParms* m_parms; // _88
+	RockParms* mParms; // _88
 };
 
 extern Mgr* mgr;

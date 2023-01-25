@@ -42,17 +42,17 @@ void Obj::changeMaterial()
 	ResTIMG* newTexture;
 	J3DTexture* j3dTexture;
 
-	j3dModel      = m_model->m_j3dModel;
-	modelData     = j3dModel->m_modelData;
-	changeTexture = static_cast<Mgr*>(m_mgr)->getChangeTexture();
+	j3dModel      = mModel->mJ3dModel;
+	modelData     = j3dModel->mModelData;
+	changeTexture = static_cast<Mgr*>(mMgr)->getChangeTexture();
 
-	u16 idx                = modelData->m_materialTable._0C->getIndex("karada");
-	J3DMaterial* karadaMat = modelData->m_materialTable.m_materials1[idx];
-	karadaMat->m_tevBlock->setTevKColor(0, J3DGXColor(0xF, 0xF, 0xF, 0xFF));
+	u16 idx                = modelData->mMaterialTable._0C->getIndex("karada");
+	J3DMaterial* karadaMat = modelData->mMaterialTable.mMaterials1[idx];
+	karadaMat->mTevBlock->setTevKColor(0, J3DGXColor(0xF, 0xF, 0xF, 0xFF));
 
 	j3dModel->calcMaterial();
 
-	j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+	j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
 	newTexture = j3dTexture->_04;
 
 	changeTexture->copyTo(newTexture);
@@ -60,10 +60,10 @@ void Obj::changeMaterial()
 	j3dTexture->setImageOffset((u32)changeTexture);
 	j3dTexture->setPaletteOffset((u32)changeTexture);
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket    = packet;
-		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket     = packet;
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
 		material->diff(packet->_2C->_34);
 	}
 }
@@ -82,15 +82,15 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::interactFartGasAttack()
 {
-	if (m_fartTimer < 2.5f) {
-		m_fartTimer += sys->m_deltaTime;
-		Kogane::Parms* parms = static_cast<Kogane::Parms*>(m_parms);
-		f32 max              = m_fartPosition.y + parms->m_general.m_attackRadius.m_value;
-		f32 min              = m_fartPosition.y - parms->m_general.m_attackRadius.m_value;
-		f32 radSqr           = SQUARE(parms->m_general.m_attackRadius.m_value);
+	if (mFartTimer < 2.5f) {
+		mFartTimer += sys->mDeltaTime;
+		Kogane::Parms* parms = static_cast<Kogane::Parms*>(mParms);
+		f32 max              = mFartPosition.y + parms->mGeneral.mAttackRadius.mValue;
+		f32 min              = mFartPosition.y - parms->mGeneral.mAttackRadius.mValue;
+		f32 radSqr           = SQUARE(parms->mGeneral.mAttackRadius.mValue);
 
-		Sys::Sphere sphere(m_fartPosition);
-		sphere.m_radius = parms->m_general.m_attackRadius.m_value;
+		Sys::Sphere sphere(mFartPosition);
+		sphere.mRadius = parms->mGeneral.mAttackRadius.mValue;
 
 		CellIteratorArg arg(sphere);
 		arg._1C = true;
@@ -106,13 +106,13 @@ void Obj::interactFartGasAttack()
 					Vector2f delta;
 					getFartDistance2D(position, delta);
 					if (SQUARE(delta.x) + SQUARE(delta.y) < radSqr) {
-						InteractGas gas(this, static_cast<Kogane::Parms*>(m_parms)->m_general.m_attackDamage.m_value);
+						InteractGas gas(this, static_cast<Kogane::Parms*>(mParms)->mGeneral.mAttackDamage.mValue);
 						creature->stimulate(gas);
 					}
 				}
 			}
 		}
-		PSStartSoundVec(PSSE_EN_OTAKARA_ATK_GAS, (Vec*)&m_fartPosition);
+		PSStartSoundVec(PSSE_EN_OTAKARA_ATK_GAS, (Vec*)&mFartPosition);
 	}
 }
 
@@ -131,7 +131,7 @@ void Obj::createItem()
 	u32 initArg           = 0;
 	u32 amount            = 0;
 
-	switch (m_hitCount) {
+	switch (mHitCount) {
 	case 0: // initial flip
 		createPelletItem = false;
 		initArg          = HONEY_Y;
@@ -159,7 +159,7 @@ void Obj::createItem()
 			amount  = 3;
 		}
 
-		m_appearTimer = 12800.0f;
+		mAppearTimer = 12800.0f;
 		break;
 	default:
 		break;
@@ -171,7 +171,7 @@ void Obj::createItem()
 		createDoping(initArg, amount);
 	}
 
-	m_hitCount++;
+	mHitCount++;
 }
 
 /*
@@ -181,8 +181,8 @@ void Obj::createItem()
  */
 void Obj::createEffect()
 {
-	m_bodyEffect = new efx::TBabaFly_ver01(&m_position);
-	m_fartTimer  = 2.5f;
+	mBodyEffect = new efx::TBabaFly_ver01(&mPosition);
+	mFartTimer  = 2.5f;
 }
 
 /*
@@ -192,8 +192,8 @@ void Obj::createEffect()
  */
 void Obj::resetFartTimer()
 {
-	m_fartTimer    = 2.5f;
-	m_fartPosition = m_position;
+	mFartTimer    = 2.5f;
+	mFartPosition = mPosition;
 }
 
 /*
@@ -203,8 +203,8 @@ void Obj::resetFartTimer()
  */
 void Obj::startBodyEffect()
 {
-	efx::ArgScale arg(m_position, static_cast<Kogane::Parms*>(m_parms)->m_properParms.m_fp40.m_value);
-	m_bodyEffect->create(&arg);
+	efx::ArgScale arg(mPosition, static_cast<Kogane::Parms*>(mParms)->mProperParms.mFp40.mValue);
+	mBodyEffect->create(&arg);
 	resetFartTimer();
 }
 
@@ -213,7 +213,7 @@ void Obj::startBodyEffect()
  * Address:	80285BF8
  * Size:	000030
  */
-void Obj::finishBodyEffect() { m_bodyEffect->fade(); }
+void Obj::finishBodyEffect() { mBodyEffect->fade(); }
 
 /*
  * --INFO--
@@ -223,18 +223,18 @@ void Obj::finishBodyEffect() { m_bodyEffect->fade(); }
 void Obj::createFartEffect()
 {
 	efx::TBabaHe fartEffectFX;
-	Vector3f position = m_position;
+	Vector3f position = mPosition;
 	efx::ArgRotY arg(position.x, position.y, position.z, getFaceDir());
 	fartEffectFX.create(&arg);
-	m_fartTimer = 0.0f;
+	mFartTimer = 0.0f;
 
-	Kogane::Parms* parms = static_cast<Kogane::Parms*>(m_parms);
-	f32 scale            = (parms->m_properParms.m_fp40.m_value * parms->m_general.m_maxAttackRange.m_value);
+	Kogane::Parms* parms = static_cast<Kogane::Parms*>(mParms);
+	f32 scale            = (parms->mProperParms.mFp40.mValue * parms->mGeneral.mMaxAttackRange.mValue);
 
-	Vector3f temp_vec(scale * pikmin2_sinf(m_faceDir), 0.0f, scale * pikmin2_cosf(m_faceDir));
+	Vector3f temp_vec(scale * pikmin2_sinf(mFaceDir), 0.0f, scale * pikmin2_cosf(mFaceDir));
 
-	m_fartPosition = getBodyJointPos();
-	m_fartPosition -= temp_vec;
+	mFartPosition = getBodyJointPos();
+	mFartPosition -= temp_vec;
 
 	getJAIObject()->startSound(PSSE_EN_FART_GAS, 0);
 }
@@ -244,14 +244,14 @@ void Obj::createFartEffect()
  * Address:	80285E2C
  * Size:	000030
  */
-void Obj::effectDrawOn() { m_bodyEffect->endDemoDrawOn(); }
+void Obj::effectDrawOn() { mBodyEffect->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	80285E5C
  * Size:	000030
  */
-void Obj::effectDrawOff() { m_bodyEffect->startDemoDrawOff(); }
+void Obj::effectDrawOff() { mBodyEffect->startDemoDrawOff(); }
 
 /*
  * --INFO--

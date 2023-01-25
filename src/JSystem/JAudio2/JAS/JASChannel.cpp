@@ -383,7 +383,7 @@ void JASChannel::effectOsc(int index, EffectOscParam* param)
  */
 void JASChannel::copyOsc(int index, JASOscillator::Data* toData)
 {
-	const JASOscillator::Data* fromData = _30[index].m_data;
+	const JASOscillator::Data* fromData = _30[index].mData;
 	if (!fromData) {
 		return;
 	}
@@ -499,7 +499,7 @@ void JASChannel::release(unsigned short p1)
 		_30[0]._1A = p1;
 	}
 	for (u32 i = 0; i < 4; i++) {
-		if (_30[i].m_data != nullptr) {
+		if (_30[i].mData != nullptr) {
 			_30[i].release();
 		}
 	}

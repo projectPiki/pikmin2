@@ -11,14 +11,14 @@ namespace efx {
 struct TSimple1 : public TBase {
 	TSimple1(u16 effectID)
 	{
-		m_effectIDs[0] = effectID;
-		m_emitters[0]  = nullptr;
+		mEffectIDs[0] = effectID;
+		mEmitters[0]  = nullptr;
 	}
 
 	TSimple1(u16 effectID, JPABaseEmitter* emitter)
 	{
-		m_effectIDs[0] = effectID;
-		m_emitters[0]  = emitter;
+		mEffectIDs[0] = effectID;
+		mEmitters[0]  = emitter;
 	}
 
 	virtual bool create(Arg*);   // _08
@@ -26,36 +26,36 @@ struct TSimple1 : public TBase {
 	virtual void fade() { }      // _10 (weak)
 
 	// _00 VTBL
-	u16 m_effectIDs[1];            // _04
-	JPABaseEmitter* m_emitters[1]; // _08
+	u16 mEffectIDs[1];            // _04
+	JPABaseEmitter* mEmitters[1]; // _08
 };
 
 struct TSimple2 : public TBase {
 	TSimple2(u16 effectID1, u16 effectID2)
 	{
-		m_effectIDs[0] = effectID1;
-		m_effectIDs[1] = effectID2;
-		m_emitters[0]  = nullptr;
-		m_emitters[1]  = nullptr;
+		mEffectIDs[0] = effectID1;
+		mEffectIDs[1] = effectID2;
+		mEmitters[0]  = nullptr;
+		mEmitters[1]  = nullptr;
 	}
 	virtual bool create(Arg*);   // _08
 	virtual void forceKill() { } // _0C (weak)
 	virtual void fade() { }      // _10 (weak)
 
 	// _00 VTBL
-	u16 m_effectIDs[2];            // _04
-	JPABaseEmitter* m_emitters[2]; // _08
+	u16 mEffectIDs[2];            // _04
+	JPABaseEmitter* mEmitters[2]; // _08
 };
 
 struct TSimple3 : public TBase {
 	TSimple3(u16 effectID1, u16 effectID2, u16 effectID3)
 	{
-		m_effectIDs[0] = effectID1;
-		m_effectIDs[1] = effectID2;
-		m_effectIDs[2] = effectID3;
-		m_emitters[0]  = nullptr;
-		m_emitters[1]  = nullptr;
-		m_emitters[2]  = nullptr;
+		mEffectIDs[0] = effectID1;
+		mEffectIDs[1] = effectID2;
+		mEffectIDs[2] = effectID3;
+		mEmitters[0]  = nullptr;
+		mEmitters[1]  = nullptr;
+		mEmitters[2]  = nullptr;
 	}
 
 	virtual bool create(Arg*);   // _08
@@ -63,21 +63,21 @@ struct TSimple3 : public TBase {
 	virtual void fade() { }      // _10 (weak)
 
 	// _00 VTBL
-	u16 m_effectIDs[3];            // _04
-	JPABaseEmitter* m_emitters[3]; // _0C
+	u16 mEffectIDs[3];            // _04
+	JPABaseEmitter* mEmitters[3]; // _0C
 };
 
 struct TSimple4 : public TBase {
 	TSimple4(u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4)
 	{
-		m_effectIDs[0] = effectID1;
-		m_effectIDs[1] = effectID2;
-		m_effectIDs[2] = effectID3;
-		m_effectIDs[3] = effectID4;
-		m_emitters[0]  = nullptr;
-		m_emitters[1]  = nullptr;
-		m_emitters[2]  = nullptr;
-		m_emitters[3]  = nullptr;
+		mEffectIDs[0] = effectID1;
+		mEffectIDs[1] = effectID2;
+		mEffectIDs[2] = effectID3;
+		mEffectIDs[3] = effectID4;
+		mEmitters[0]  = nullptr;
+		mEmitters[1]  = nullptr;
+		mEmitters[2]  = nullptr;
+		mEmitters[3]  = nullptr;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -89,12 +89,12 @@ struct TSimple4 : public TBase {
 	 */
 	bool _create(Arg& arg)
 	{
-		// Vector3f& position = arg.m_position;
+		// Vector3f& position = arg.mPosition;
 		for (int i = 0; i < 4; i++) {
-			m_emitters[i] = particleMgr->create(m_effectIDs[i], arg.m_position, 0);
-			// m_emitters[i] = particleMgr->create(m_effectIDs[i], position, 0);
-			if (m_emitters[i]) {
-				m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+			mEmitters[i] = particleMgr->create(mEffectIDs[i], arg.mPosition, 0);
+			// mEmitters[i] = particleMgr->create(mEffectIDs[i], position, 0);
+			if (mEmitters[i]) {
+				mEmitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 			} else {
 				return false;
 			}
@@ -103,23 +103,23 @@ struct TSimple4 : public TBase {
 	}
 
 	// _00 VTBL
-	u16 m_effectIDs[4];            // _04
-	JPABaseEmitter* m_emitters[4]; // _0C
+	u16 mEffectIDs[4];            // _04
+	JPABaseEmitter* mEmitters[4]; // _0C
 };
 
 struct TSimple5 : public TBase {
 	TSimple5(u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4, u16 effectID5)
 	{
-		m_effectIDs[0] = effectID1;
-		m_effectIDs[1] = effectID2;
-		m_effectIDs[2] = effectID3;
-		m_effectIDs[3] = effectID4;
-		m_effectIDs[4] = effectID5;
-		m_emitters[0]  = nullptr;
-		m_emitters[1]  = nullptr;
-		m_emitters[2]  = nullptr;
-		m_emitters[3]  = nullptr;
-		m_emitters[4]  = nullptr;
+		mEffectIDs[0] = effectID1;
+		mEffectIDs[1] = effectID2;
+		mEffectIDs[2] = effectID3;
+		mEffectIDs[3] = effectID4;
+		mEffectIDs[4] = effectID5;
+		mEmitters[0]  = nullptr;
+		mEmitters[1]  = nullptr;
+		mEmitters[2]  = nullptr;
+		mEmitters[3]  = nullptr;
+		mEmitters[4]  = nullptr;
 	}
 
 	virtual bool create(Arg*);   // _08
@@ -127,8 +127,8 @@ struct TSimple5 : public TBase {
 	virtual void fade() { }      // _10 (weak)
 
 	// _00 VTBL
-	u16 m_effectIDs[5];            // _04
-	JPABaseEmitter* m_emitters[5]; // _10
+	u16 mEffectIDs[5];            // _04
+	JPABaseEmitter* mEmitters[5]; // _10
 };
 } // namespace efx
 

@@ -12,8 +12,8 @@ namespace ClusterSe {
  * @size = 0x8
  */
 struct PartInitArg {
-	u8 _00[0x4];       // _00 - unknown
-	SoundID m_soundID; // _04
+	u8 _00[0x4];      // _00 - unknown
+	SoundID mSoundID; // _04
 };
 
 /**
@@ -24,15 +24,15 @@ struct Part {
 
 	virtual void callSe(JAInter::Object*); // _08
 
-	PartInitArg m_initArg;
+	PartInitArg mInitArg;
 };
 
 /**
  * @size = 0x8
  */
 struct Mgr {
-	u8 _00[0x4];  // _00 - unknown
-	Part* m_part; // _04
+	u8 _00[0x4]; // _00 - unknown
+	Part* mPart; // _04
 };
 
 struct Factory {

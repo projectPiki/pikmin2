@@ -8,7 +8,7 @@ namespace Game {
  * Size:	00000C
  */
 RumbleData::RumbleData()
-    : m_count(0)
+    : mCount(0)
 {
 }
 
@@ -18,7 +18,7 @@ RumbleData::RumbleData()
  * Size:	00000C
  */
 RumbleDataMgr::RumbleDataMgr()
-    : m_dataCnt(0)
+    : mDataCnt(0)
 {
 }
 
@@ -29,8 +29,8 @@ RumbleDataMgr::RumbleDataMgr()
  */
 RumbleData* RumbleDataMgr::getRumbleData(int idx)
 {
-	if (idx >= 0 && idx < m_dataCnt) {
-		return &m_dataArr[idx];
+	if (idx >= 0 && idx < mDataCnt) {
+		return &mDataArr[idx];
 	}
 
 	return nullptr;
@@ -43,14 +43,14 @@ RumbleData* RumbleDataMgr::getRumbleData(int idx)
  */
 void RumbleDataMgr::read(Stream& stream)
 {
-	m_dataCnt = stream.readInt();
-	if (!m_dataCnt) {
+	mDataCnt = stream.readInt();
+	if (!mDataCnt) {
 		return;
 	}
 
-	m_dataArr = new RumbleData[m_dataCnt];
-	for (int i = 0; i < m_dataCnt; i++) {
-		m_dataArr[i].read(stream);
+	mDataArr = new RumbleData[mDataCnt];
+	for (int i = 0; i < mDataCnt; i++) {
+		mDataArr[i].read(stream);
 	}
 }
 } // namespace Game

@@ -106,8 +106,8 @@
  * Size:	0000C4
  */
 JStudio_JStage::TAdaptor_camera::TAdaptor_camera(const JStage::TSystem* system, JStage::TCamera* camera)
-    : m_system(system)
-    , m_camera(camera)
+    : mSystem(system)
+    , mCamera(camera)
     , _104(0)
     , _108(nullptr)
     , _10C(0xFFFFFFFF)
@@ -133,8 +133,8 @@ JStudio_JStage::TAdaptor_camera::~TAdaptor_camera() { adaptor_do_end(nullptr); }
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_prepare(const JStudio::TObject*)
 {
-	for (TVVOutput* output = saoVVOutput_; output->m_valueIndex != -1; output++) {
-		_04[output->m_valueIndex].setOutput(output);
+	for (TVVOutput* output = saoVVOutput_; output->mValueIndex != -1; output++) {
+		_04[output->mValueIndex].setOutput(output);
 	}
 }
 
@@ -218,7 +218,7 @@ lbl_80013668:
  * Address:	80013694
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_end(const JStudio::TObject*) { m_camera->setFlagOff(1); }
+void JStudio_JStage::TAdaptor_camera::adaptor_do_end(const JStudio::TObject*) { mCamera->setFlagOff(1); }
 
 /*
  * --INFO--
@@ -230,7 +230,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_update(const JStudio::TObject* 
 	const JStudio::TControl* control = static_cast<JStudio::TControl*>(object->pControl);
 	setJSG_position_(control);
 	setJSG_targetPosition_(control);
-	m_camera->JSGUpdate();
+	mCamera->JSGUpdate();
 }
 
 /*
@@ -241,7 +241,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_update(const JStudio::TObject* 
 void JStudio_JStage::TAdaptor_camera::adaptor_do_data(const JStudio::TObject* object, const void* p2, unsigned long p3, const void* p4,
                                                       unsigned long p5)
 {
-	TAdaptor_object_::adaptor_data_(m_camera, p2, p3, p4, p5);
+	TAdaptor_object_::adaptor_data_(mCamera, p2, p3, p4, p5);
 }
 
 /*
@@ -253,7 +253,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT(JStudio::data::TEOperati
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
-		_108 = TAdaptor_object_::adaptor_findJSGObject_(m_system, (const char*)p2);
+		_108 = TAdaptor_object_::adaptor_findJSGObject_(mSystem, (const char*)p2);
 		break;
 	}
 }
@@ -349,7 +349,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT(JStudio::data::TE
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
-		_114 = TAdaptor_object_::adaptor_findJSGObject_(m_system, (const char*)p2);
+		_114 = TAdaptor_object_::adaptor_findJSGObject_(mSystem, (const char*)p2);
 		break;
 	}
 }
@@ -437,7 +437,7 @@ lbl_800139F4:
 	addi     r3, r1, 0x20
 	lwz      r6, 0x10c(r30)
 	bl
-transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
+transformToGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransformPositionPCQ26JStage7TObjectUl
 	clrlwi.  r0, r3, 0x18
 	bne      lbl_80013A14
 	li       r0, 0
@@ -530,7 +530,7 @@ lbl_80013AF8:
 	addi     r3, r1, 0x20
 	lwz      r6, 0x10c(r30)
 	bl
-transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
+transformToLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransformPositionPCQ26JStage7TObjectUl
 	clrlwi.  r0, r3, 0x18
 	bne      lbl_80013B18
 	li       r0, 0

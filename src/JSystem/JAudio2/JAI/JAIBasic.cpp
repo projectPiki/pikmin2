@@ -125,11 +125,11 @@ JAIBasic::JAIBasic()
 	_0E._3        = false;
 	_0E._4        = false;
 	_14           = 0;
-	m_cameras     = nullptr;
+	mCameras      = nullptr;
 	_10           = 0;
 	_0C           = 2;
 	_1C           = 0;
-	m_heap        = nullptr;
+	mHeap         = nullptr;
 	_18           = 0;
 	msCurrentHeap = JASDram;
 }
@@ -195,8 +195,8 @@ void JAIBasic::initInterfaceMain()
 void JAIBasic::initHeap()
 {
 	if (JAIGlobalParameter::interfaceHeapSize != 0) {
-		m_heap        = JKRSolidHeap::create(JAIGlobalParameter::interfaceHeapSize, JASDram, false);
-		msCurrentHeap = m_heap;
+		mHeap         = JKRSolidHeap::create(JAIGlobalParameter::interfaceHeapSize, JASDram, false);
+		msCurrentHeap = mHeap;
 	} else {
 		msCurrentHeap = JASDram;
 	}
@@ -302,9 +302,9 @@ void JAIBasic::setCameraInfo(Vec* p1, Vec* p2, float (*p3)[4], unsigned long ind
 	if (JAIGlobalParameter::audioCameraMax <= index) {
 		return;
 	}
-	m_cameras[index].m_vec1 = p1;
-	m_cameras[index].m_vec2 = p2;
-	m_cameras[index].m_mtx  = (Mtx*)p3;
+	mCameras[index].mVec1 = p1;
+	mCameras[index].mVec2 = p2;
+	mCameras[index].mMtx  = (Mtx*)p3;
 }
 
 /*
@@ -338,23 +338,23 @@ void JAIBasic::initAudioThread(JKRSolidHeap* rootHeap, unsigned long p2, unsigne
  */
 void JAIBasic::initCamera()
 {
-	m_cameras = new (msCurrentHeap, 0x20) JAInter::Camera[JAIGlobalParameter::audioCameraMax];
-	if (m_cameras[0].m_vec1 == nullptr) {
-		JAInter::Const::nullCamera.m_vec1->x = 0.0f;
-		JAInter::Const::nullCamera.m_vec1->y = 0.0f;
-		JAInter::Const::nullCamera.m_vec1->z = -50.0f;
-		JAInter::Const::nullCamera.m_vec2->x = 0.0f;
-		JAInter::Const::nullCamera.m_vec2->y = 0.0f;
-		JAInter::Const::nullCamera.m_vec2->z = -50.0f;
-		Vec v1                               = { 0.0f, 1.0f, 0.0f };
-		Vec v2                               = JAInter::Const::dummyZeroVec;
+	mCameras = new (msCurrentHeap, 0x20) JAInter::Camera[JAIGlobalParameter::audioCameraMax];
+	if (mCameras[0].mVec1 == nullptr) {
+		JAInter::Const::nullCamera.mVec1->x = 0.0f;
+		JAInter::Const::nullCamera.mVec1->y = 0.0f;
+		JAInter::Const::nullCamera.mVec1->z = -50.0f;
+		JAInter::Const::nullCamera.mVec2->x = 0.0f;
+		JAInter::Const::nullCamera.mVec2->y = 0.0f;
+		JAInter::Const::nullCamera.mVec2->z = -50.0f;
+		Vec v1                              = { 0.0f, 1.0f, 0.0f };
+		Vec v2                              = JAInter::Const::dummyZeroVec;
 		// Vec v2 = { JAInter::Const::dummyZeroVec.x, JAInter::Const::dummyZeroVec.y, JAInter::Const::dummyZeroVec.z };
-		C_MTXLookAt(JAInter::Const::camMtx, JAInter::Const::nullCamera.m_vec1, &v1, &v2);
+		C_MTXLookAt(JAInter::Const::camMtx, JAInter::Const::nullCamera.mVec1, &v1, &v2);
 		for (u32 i = 0; i < JAIGlobalParameter::audioCameraMax; i++) {
 			if (i < JAIGlobalParameter::audioCameraMax) {
-				m_cameras[i].m_vec1 = JAInter::Const::nullCamera.m_vec1;
-				m_cameras[i].m_vec2 = JAInter::Const::nullCamera.m_vec2;
-				m_cameras[i].m_mtx  = &JAInter::Const::camMtx;
+				mCameras[i].mVec1 = JAInter::Const::nullCamera.mVec1;
+				mCameras[i].mVec2 = JAInter::Const::nullCamera.mVec2;
+				mCameras[i].mMtx  = &JAInter::Const::camMtx;
 			}
 		}
 	}
@@ -549,7 +549,7 @@ void JAIBasic::startSoundBasic(unsigned long id, JAISound** handlePtr, JAInter::
 void JAIBasic::startSoundBasic(unsigned long id, JAISequence** handlePtr, JAInter::Actor* actor, unsigned long p4, unsigned char p5,
                                JAInter::SoundInfo* info)
 {
-	if (_0E._1 != true && (JAInter::SeMgr::seHandle == nullptr || (JAInter::SeMgr::seHandle->m_soundID & 0x3FF) != (id & 0x3FF))) {
+	if (_0E._1 != true && (JAInter::SeMgr::seHandle == nullptr || (JAInter::SeMgr::seHandle->mSoundID & 0x3FF) != (id & 0x3FF))) {
 		if (handlePtr == nullptr) {
 			handlePtr = &JAInter::SequenceMgr::FixSeqBufPointer[info->count.v2[1]];
 		}
@@ -607,7 +607,7 @@ void JAIBasic::stopSoundHandle(JAISound* handle, unsigned long p2)
 	if (handle == nullptr) {
 		return;
 	}
-	switch (handle->m_soundID & JAISoundID_TypeMask) {
+	switch (handle->mSoundID & JAISoundID_TypeMask) {
 	case JAISoundID_Type_Sequence:
 		JAInter::SequenceMgr::releaseSeqBuffer((JAISequence*)handle, p2);
 		break;
@@ -919,10 +919,10 @@ u16 JAIBasic::setParameterSeqSync(JASTrack* p1, unsigned short p2)
 	switch (p2) {
 	case 0: {
 		for (u32 i = 0; i < JAIGlobalParameter::seqPlayTrackMax; i++) {
-			if (JAInter::SequenceMgr::getPlayTrackInfo(i)->m_sequence != nullptr) {
-				JASTrack* seqTrack = &JAInter::SequenceMgr::getPlayTrackInfo(i)->m_sequence->m_seqParameter.m_track;
+			if (JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence != nullptr) {
+				JASTrack* seqTrack = &JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSeqParameter.mTrack;
 				JASTrack* v1;
-				if ((JAInter::SequenceMgr::getPlayTrackInfo(i)->m_sequence->m_soundID & 0x800) != 0) {
+				if ((JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSoundID & 0x800) != 0) {
 					v1 = p1->_2F8->_2F8;
 				} else {
 					v1 = p1->_2F8;
@@ -930,7 +930,7 @@ u16 JAIBasic::setParameterSeqSync(JASTrack* p1, unsigned short p2)
 				if (seqTrack == v1) {
 					u32 v2 = JAInter::routeToTrack(p1->_348);
 					JAInter::SoundInfo* info
-					    = JAInter::SoundTable::getInfoPointer(JAInter::SequenceMgr::getPlayTrackInfo(i)->m_sequence->m_soundID);
+					    = JAInter::SoundTable::getInfoPointer(JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSoundID);
 					JAInter::SystemInterface::outerInit(JAInter::SequenceMgr::getPlayTrackInfo(i), v1, v2, info->unk1 >> 8, 0);
 					JAInter::SequenceMgr::getPlayTrackInfo(i)->_04 |= 1 << v2;
 					i = JAIGlobalParameter::seqPlayTrackMax;
@@ -940,14 +940,14 @@ u16 JAIBasic::setParameterSeqSync(JASTrack* p1, unsigned short p2)
 		break;
 	}
 	case 1: {
-		JASOuterParam* param                     = p1->m_extBuffer;
+		JASOuterParam* param                     = p1->mExtBuffer;
 		u8 index                                 = p1->_348;
 		JAInter::SeMgr::TrackUpdate* trackUpdate = JAInter::SeMgr::seTrackUpdate;
 		param->setParam(1, trackUpdate[index]._04);
 		param->setParam(8, trackUpdate[index]._10);
 		param->setParam(2, trackUpdate[index]._08);
 		param->setParam(4, trackUpdate[index]._0C);
-		param->setParam(16, (msBasic->m_paramSoundOutputMode != 2) ? 0.0f : trackUpdate[index]._14);
+		param->setParam(16, (msBasic->mParamSoundOutputMode != 2) ? 0.0f : trackUpdate[index]._14);
 		break;
 	}
 	case 0x7F:
@@ -1113,15 +1113,15 @@ void JAIBasic::setSeExtParameter(JAISound* handle)
 	if (handle == nullptr) {
 		return;
 	}
-	u8 format = JAInter::SoundTable::getInfoFormat(handle->m_soundID);
+	u8 format = JAInter::SoundTable::getInfoFormat(handle->mSoundID);
 	if ((format & 4) != 0) {
-		handle->setVolume(handle->m_soundInfo->volume.v2[0] / 127.0f, 0, 1);
+		handle->setVolume(handle->mSoundInfo->volume.v2[0] / 127.0f, 0, 1);
 	}
 	if ((format & 8) != 0) {
-		handle->setFxmix(handle->m_soundInfo->volume.v2[1] / 127.0f, 0, 1);
+		handle->setFxmix(handle->mSoundInfo->volume.v2[1] / 127.0f, 0, 1);
 	}
 	if ((format & 2) != 0) {
-		handle->setPitch(handle->m_soundInfo->pitch, 0, 1);
+		handle->setPitch(handle->mSoundInfo->pitch, 0, 1);
 	}
 }
 
@@ -1132,8 +1132,8 @@ void JAIBasic::setSeExtParameter(JAISound* handle)
  */
 JAISequence* JAIBasic::makeSequence()
 {
-	if (m_heap != nullptr) {
-		return new (m_heap, 0) JAISequence();
+	if (mHeap != nullptr) {
+		return new (mHeap, 0) JAISequence();
 	}
 	return new (JASDram, 0) JAISequence();
 }
@@ -1146,8 +1146,8 @@ JAISequence* JAIBasic::makeSequence()
  */
 JAISe* JAIBasic::makeSe()
 {
-	if (m_heap != nullptr) {
-		return new (m_heap, 0) JAISe();
+	if (mHeap != nullptr) {
+		return new (mHeap, 0) JAISe();
 	}
 	return new (JASDram, 0) JAISe();
 }
@@ -1159,8 +1159,8 @@ JAISe* JAIBasic::makeSe()
  */
 JAIStream* JAIBasic::makeStream()
 {
-	if (m_heap != nullptr) {
-		return new (m_heap, 0) JAIStream();
+	if (mHeap != nullptr) {
+		return new (mHeap, 0) JAIStream();
 	}
 	return new (JASDram, 0) JAIStream();
 }
@@ -1321,8 +1321,8 @@ long JAIBasic::stopCallBack(void*)
 			}
 			JAInter::Fx::clearAllBuffer();
 			for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
-				if (JAInter::SequenceMgr::getPlayTrackInfo(i)->m_sequence != nullptr) {
-					JAInter::SequenceMgr::getPlayTrackInfo(i)->m_sequence->stop(0);
+				if (JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence != nullptr) {
+					JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->stop(0);
 				}
 			}
 			if (JAInter::StreamMgr::streamUpdate->_1C != nullptr) {

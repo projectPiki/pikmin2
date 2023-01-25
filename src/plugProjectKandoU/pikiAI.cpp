@@ -173,7 +173,7 @@ namespace Game {
  */
 int Piki::graspSituation_Fast(Game::Creature** localCreatures)
 {
-	if (moviePlayer && moviePlayer->m_demoState && (localCreatures[0] = nullptr, !isZikatu()) || playData->isDemoFlag(39)) {
+	if (moviePlayer && moviePlayer->mDemoState && (localCreatures[0] = nullptr, !isZikatu()) || playData->isDemoFlag(39)) {
 		return -1;
 	}
 
@@ -182,7 +182,7 @@ int Piki::graspSituation_Fast(Game::Creature** localCreatures)
 	int retVal          = -1;
 	bool v10            = false;
 
-	Sys::Sphere sp(m_shadowParam.m_position, 300.0f);
+	Sys::Sphere sp(mShadowParam.mPosition, 300.0f);
 	CellIteratorArg cia(sp);
 	cia._1D = true;
 
@@ -190,12 +190,12 @@ int Piki::graspSituation_Fast(Game::Creature** localCreatures)
 	CI_LOOP(ci)
 	{
 		Creature* creature = (Creature*)*ci;
-		switch (creature->m_objectTypeID) {
+		switch (creature->mObjectTypeID) {
 		case 1032:
 			if (creature->isAlive()) {
-				f32 dist = creature->getPosition().distance(m_shadowParam.m_position);
+				f32 dist = creature->getPosition().distance(mShadowParam.mPosition);
 
-				if (dist < cDist && dist < pikiMgr->m_parms->m_pikiParms._9B8.m_value) {
+				if (dist < cDist && dist < pikiMgr->mParms->mPikiParms._9B8.mValue) {
 					cDist     = dist;
 					cCreature = creature;
 					retVal    = 8;

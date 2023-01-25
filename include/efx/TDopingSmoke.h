@@ -10,7 +10,7 @@ struct TDopingSmoke : public TSimple1 {
 
 	inline void setEmitterVector(Vector3f* vec)
 	{
-		JPABaseEmitter* emit = m_emitters[0];
+		JPABaseEmitter* emit = mEmitters[0];
 		emit->_18.x          = vec->x;
 		emit->_18.y          = vec->y;
 		emit->_18.z          = vec->z;

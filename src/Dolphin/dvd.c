@@ -138,7 +138,7 @@ void UnknownDVDAutoInvalidateInline(struct DVDPlayer* player)
 {
 	if (autoInvalidation != 0) {
 		if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
-			DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+			DCInvalidateRange(player->mInputBuffer, player->mByteCount);
 		}
 	}
 }
@@ -3014,16 +3014,16 @@ BOOL DVDReadAbsAsyncPrio(struct DVDPlayer* player, void* readBuffer, long byteCo
 {
 	int interrupts;
 	BOOL result;
-	player->_08            = 1;
-	player->m_inputBuffer  = readBuffer;
-	player->m_byteCount    = byteCount;
-	player->m_startAddress = startAddress;
-	player->_20            = 0;
-	player->_28            = doneReadCallback;
+	player->_08           = 1;
+	player->mInputBuffer  = readBuffer;
+	player->mByteCount    = byteCount;
+	player->mStartAddress = startAddress;
+	player->_20           = 0;
+	player->_28           = doneReadCallback;
 	UnknownDVDAutoInvalidateInline(player);
 	// if (autoInvalidation != 0) {
 	// 	if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
-	// 		DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+	// 		DCInvalidateRange(player->mInputBuffer, player->mByteCount);
 	// 	}
 	// }
 	interrupts  = OSDisableInterrupts();
@@ -3120,16 +3120,16 @@ BOOL DVDReadAbsAsyncForBS(struct DVDPlayer* player, void* readBuffer, long byteC
 {
 	int interrupts;
 	BOOL result;
-	player->_08            = 4;
-	player->m_inputBuffer  = readBuffer;
-	player->m_byteCount    = byteCount;
-	player->m_startAddress = startAddress;
-	player->_20            = 0;
-	player->_28            = doneReadCallback;
+	player->_08           = 4;
+	player->mInputBuffer  = readBuffer;
+	player->mByteCount    = byteCount;
+	player->mStartAddress = startAddress;
+	player->_20           = 0;
+	player->_28           = doneReadCallback;
 	UnknownDVDAutoInvalidateInline(player);
 	// if (autoInvalidation != 0) {
 	// 	if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
-	// 		DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+	// 		DCInvalidateRange(player->mInputBuffer, player->mByteCount);
 	// 	}
 	// }
 	interrupts  = OSDisableInterrupts();
@@ -3212,16 +3212,16 @@ BOOL DVDReadDiskID(struct DVDPlayer* player, DVDDiskID* readBuffer, DVDDoneReadC
 {
 	int interrupts;
 	BOOL result;
-	player->_08            = 5;
-	player->m_inputBuffer  = readBuffer;
-	player->m_byteCount    = sizeof(DVDDiskID);
-	player->m_startAddress = 0;
-	player->_20            = 0;
-	player->_28            = doneReadCallback;
+	player->_08           = 5;
+	player->mInputBuffer  = readBuffer;
+	player->mByteCount    = sizeof(DVDDiskID);
+	player->mStartAddress = 0;
+	player->_20           = 0;
+	player->_28           = doneReadCallback;
 	UnknownDVDAutoInvalidateInline(player);
 	// if (autoInvalidation != 0) {
 	// 	if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
-	// 		DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+	// 		DCInvalidateRange(player->mInputBuffer, player->mByteCount);
 	// 	}
 	// }
 	interrupts  = OSDisableInterrupts();
@@ -3613,16 +3613,16 @@ BOOL DVDInquiryAsync(struct DVDPlayer* player, void* readBuffer, DVDDoneReadCall
 {
 	int interrupts;
 	BOOL result;
-	player->_08           = 0xE;
-	player->m_inputBuffer = readBuffer;
+	player->_08          = 0xE;
+	player->mInputBuffer = readBuffer;
 	// TODO: This is probably sizeof whatever type readBuffer actually points to
-	player->m_byteCount = 0x20;
-	player->_20         = 0;
-	player->_28         = doneReadCallback;
+	player->mByteCount = 0x20;
+	player->_20        = 0;
+	player->_28        = doneReadCallback;
 	UnknownDVDAutoInvalidateInline(player);
 	// if (autoInvalidation != 0) {
 	// 	if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
-	// 		DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+	// 		DCInvalidateRange(player->mInputBuffer, player->mByteCount);
 	// 	}
 	// }
 	interrupts  = OSDisableInterrupts();

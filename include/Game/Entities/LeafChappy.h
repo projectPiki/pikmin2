@@ -31,7 +31,7 @@ struct Obj : public KumaChappy::Obj {
 	virtual void createChappyRelation() { }                         // _2FC (weak)
 	virtual void resetChappyRelation() { }                          // _308 (weak)
 	virtual ChappyRelation* getChappyRelation() { return nullptr; } // _300 (weak)
-	virtual Footmarks* getFootmarks() { return m_footmarks; }       // _154 (weak)
+	virtual Footmarks* getFootmarks() { return mFootmarks; }        // _154 (weak)
 	//////////////// VTABLE END
 
 	void birthChildren(EnemyBirthArg&);
@@ -39,8 +39,8 @@ struct Obj : public KumaChappy::Obj {
 
 	// _00 		= VTBL
 	// _00-_2F8	= KumaChappy::Obj
-	Footmarks* m_footmarks; // _2F8
-	                        // _2FC = PelletView
+	Footmarks* mFootmarks; // _2F8
+	                       // _2FC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -60,7 +60,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 } // namespace LeafChappy

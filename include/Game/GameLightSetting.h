@@ -11,13 +11,13 @@ struct GameLightSettingBase {
 	struct Settings : public Parameters {
 		inline Settings(); // probably
 
-		Parm<int> m_red;   // _0C, u800
-		Parm<int> m_green; // _34, u801
-		Parm<int> m_blue;  // _5C, u802
-		Parm<int> m_alpha; // _84, u803
+		Parm<int> mRed;   // _0C, u800
+		Parm<int> mGreen; // _34, u801
+		Parm<int> mBlue;  // _5C, u802
+		Parm<int> mAlpha; // _84, u803
 	};
 
-	Settings m_settings; // _00
+	Settings mSettings; // _00
 	// _B0 = VTBL
 
 	virtual void read(Stream&); // _08 (weak)

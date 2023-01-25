@@ -65,7 +65,7 @@ u64 JKRThreadSwitch::sTotalStart;
  */
 JKRThread::JKRThread(unsigned long stackSize, int msgCount, int threadPriority)
     : JKRDisposer()
-    , m_link(this)
+    , mLink(this)
     , _60()
     , _70(0)
 {
@@ -74,7 +74,7 @@ JKRThread::JKRThread(unsigned long stackSize, int msgCount, int threadPriority)
 		heap = JKRHeap::sSystemHeap;
 	}
 	setCommon_heapSpecified(heap, stackSize, threadPriority);
-	setCommon_mesgQueue(m_heap, msgCount);
+	setCommon_mesgQueue(mHeap, msgCount);
 }
 
 /*
@@ -85,7 +85,7 @@ JKRThread::JKRThread(unsigned long stackSize, int msgCount, int threadPriority)
  */
 JKRThread::JKRThread(JKRHeap* heap, unsigned long stackSize, int msgCount, int threadPriority)
     : JKRDisposer()
-    , m_link(this)
+    , mLink(this)
     , _60()
     , _70(0)
 {
@@ -93,7 +93,7 @@ JKRThread::JKRThread(JKRHeap* heap, unsigned long stackSize, int msgCount, int t
 		heap = JKRHeap::sCurrentHeap;
 	}
 	setCommon_heapSpecified(heap, stackSize, threadPriority);
-	setCommon_mesgQueue(m_heap, msgCount);
+	setCommon_mesgQueue(mHeap, msgCount);
 }
 
 /*
@@ -104,14 +104,14 @@ JKRThread::JKRThread(JKRHeap* heap, unsigned long stackSize, int msgCount, int t
  */
 JKRThread::JKRThread(OSThread* thread, int msgCount)
     : JKRDisposer()
-    , m_link(this)
+    , mLink(this)
     , _60()
     , _70(0)
 {
-	m_heap      = nullptr;
-	m_thread    = thread;
-	m_stackSize = (u32)thread->stackEnd - (u32)thread->stackBase;
-	m_stack     = thread->stackBase;
+	mHeap      = nullptr;
+	mThread    = thread;
+	mStackSize = (u32)thread->stackEnd - (u32)thread->stackBase;
+	mStack     = thread->stackBase;
 	setCommon_mesgQueue(JKRHeap::sSystemHeap, msgCount);
 }
 
@@ -123,16 +123,16 @@ JKRThread::JKRThread(OSThread* thread, int msgCount)
  */
 JKRThread::~JKRThread()
 {
-	sThreadList.remove(&m_link);
-	if (m_heap != nullptr) {
-		if (!OSIsThreadTerminated(m_thread)) {
-			OSDetachThread(m_thread);
-			OSCancelThread(m_thread);
+	sThreadList.remove(&mLink);
+	if (mHeap != nullptr) {
+		if (!OSIsThreadTerminated(mThread)) {
+			OSDetachThread(mThread);
+			OSCancelThread(mThread);
 		}
-		JKRHeap::free(m_stack, m_heap);
-		JKRHeap::free(m_thread, m_heap);
+		JKRHeap::free(mStack, mHeap);
+		JKRHeap::free(mThread, mHeap);
 	}
-	JKRHeap::free(m_msgBuffer, nullptr);
+	JKRHeap::free(mMsgBuffer, nullptr);
 }
 
 /*
@@ -142,10 +142,10 @@ JKRThread::~JKRThread()
  */
 void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int msgCount)
 {
-	m_msgCount  = msgCount;
-	m_msgBuffer = (OSMessage*)JKRHeap::alloc(m_msgCount << 2, 0, heap);
-	OSInitMessageQueue(&m_msgQueue, (void**)m_msgBuffer, m_msgCount);
-	JKRThread::sThreadList.append(&m_link);
+	mMsgCount  = msgCount;
+	mMsgBuffer = (OSMessage*)JKRHeap::alloc(mMsgCount << 2, 0, heap);
+	OSInitMessageQueue(&mMsgQueue, (void**)mMsgBuffer, mMsgCount);
+	JKRThread::sThreadList.append(&mLink);
 	_74 = 0;
 	_78 = 0;
 }
@@ -157,11 +157,11 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int msgCount)
  */
 BOOL JKRThread::setCommon_heapSpecified(JKRHeap* heap, unsigned long stackSize, int threadPriority)
 {
-	m_heap      = heap;
-	m_stackSize = stackSize & ~0x1F;
-	m_stack     = JKRHeap::alloc(m_stackSize, 0x20, m_heap);
-	m_thread    = (OSThread*)JKRHeap::alloc(sizeof(OSThread), 0x20, m_heap);
-	return OSCreateThread(m_thread, &JKRThread::start, this, (void*)((u32)m_stack + m_stackSize), m_stackSize, threadPriority, 1);
+	mHeap      = heap;
+	mStackSize = stackSize & ~0x1F;
+	mStack     = JKRHeap::alloc(mStackSize, 0x20, mHeap);
+	mThread    = (OSThread*)JKRHeap::alloc(sizeof(OSThread), 0x20, mHeap);
+	return OSCreateThread(mThread, &JKRThread::start, this, (void*)((u32)mStack + mStackSize), mStackSize, threadPriority, 1);
 }
 
 /*
@@ -187,7 +187,7 @@ JKRThread_0x60* JKRThread::searchThreadLoad(OSThread* osThread)
 {
 	// UNUSED FUNCTION
 	for (JSULink<JKRThread>* link = JKRThread::sThreadList.getFirst(); link != nullptr; link = link->getNext()) {
-		if (link->getObject()->m_thread == osThread) {
+		if (link->getObject()->mThread == osThread) {
 			return &link->getObject()->_60;
 		}
 	}
@@ -214,7 +214,7 @@ void JKRThreadSwitch::loopProc()
 	// OSThread* osThread = OSGetCurrentThread();
 	// JKRThread_0x60* v1;
 	// for (JSULink<JKRThread>* link = JKRThread::sThreadList.getFirst(); link != nullptr; link = link->getNext()) {
-	// 	if (link->getObject()->m_thread == osThread) {
+	// 	if (link->getObject()->mThread == osThread) {
 	// 		v1 = &link->getObject()->_60;
 	// 	}
 	// }
@@ -377,7 +377,7 @@ JKRTask::JKRTask(int msgCount, int threadPriority, u32 stackSize)
     , _94(nullptr)
 {
 	// UNUSED FUNCTION
-	OSResumeThread(m_thread);
+	OSResumeThread(mThread);
 }
 
 /*
@@ -425,7 +425,7 @@ void* JKRTask::run()
 {
 	Message* msg;
 	while (true) {
-		OSReceiveMessage(&m_msgQueue, (void**)&msg, OS_MESSAGE_BLOCKING);
+		OSReceiveMessage(&mMsgQueue, (void**)&msg, OS_MESSAGE_BLOCKING);
 		if (msg->_00 != nullptr) {
 			msg->_00(msg->_04);
 			if (_94 != nullptr) {
@@ -511,7 +511,7 @@ bool JKRTask::request(RequestCallback callback, void* p2, void* p3)
 	msg->_00        = callback;
 	msg->_04        = p2;
 	msg->_08        = p3;
-	bool sendResult = (OSSendMessage(&m_msgQueue, msg, OS_MESSAGE_NON_BLOCKING) != FALSE);
+	bool sendResult = (OSSendMessage(&mMsgQueue, msg, OS_MESSAGE_NON_BLOCKING) != FALSE);
 	if (sendResult == false) {
 		msg->_00 = nullptr;
 	}

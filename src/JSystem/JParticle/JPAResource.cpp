@@ -2358,18 +2358,18 @@ lbl_800970E4:
  */
 void JPAResource::draw(JPAEmitterWorkData* workData, JPABaseEmitter* emitter)
 {
-	workData->m_emitter  = emitter;
-	workData->m_resource = this;
-	workData->_216       = 0;
+	workData->mEmitter  = emitter;
+	workData->mResource = this;
+	workData->_216      = 0;
 	calcWorkData_d(workData);
 	_1C->setGX(workData);
 	for (int i = 1; i <= emitter->_110; i++) {
 		workData->_216++;
-		if ((_1C->m_data->_08 & 0x400000) != 0 && _24 != nullptr) {
+		if ((_1C->mData->_08 & 0x400000) != 0 && _24 != nullptr) {
 			drawC(workData);
 		}
 		drawP(workData);
-		if ((_1C->m_data->_08 & 0x400000) == 0 && _24 != nullptr) {
+		if ((_1C->mData->_08 & 0x400000) == 0 && _24 != nullptr) {
 			drawC(workData);
 		}
 	}
@@ -3506,7 +3506,7 @@ void JPAResource::calcWorkData_c(JPAEmitterWorkData*)
 void JPAResource::calcWorkData_d(JPAEmitterWorkData* workData)
 {
 	Mtx v1;
-	JPAGetXYZRotateMtx(workData->m_emitter->_4C * 182, workData->m_emitter->_4E * 182, workData->m_emitter->_50 * 182, v1);
-	PSMTXConcat(workData->m_emitter->_68, v1, workData->_A8);
-	PSMTXMultVecSR(workData->_A8, reinterpret_cast<Vec*>(&workData->m_emitter->_18), reinterpret_cast<Vec*>(&workData->_120));
+	JPAGetXYZRotateMtx(workData->mEmitter->_4C * 182, workData->mEmitter->_4E * 182, workData->mEmitter->_50 * 182, v1);
+	PSMTXConcat(workData->mEmitter->_68, v1, workData->_A8);
+	PSMTXMultVecSR(workData->_A8, reinterpret_cast<Vec*>(&workData->mEmitter->_18), reinterpret_cast<Vec*>(&workData->_120));
 }

@@ -19,23 +19,23 @@ namespace WalkSmokeEffect {
  */
 Obj::Obj()
 {
-	_00        = false;
-	m_matrix   = nullptr;
-	_08        = 0.0f;
-	m_position = Vector3f::zero;
+	_00       = false;
+	mMatrix   = nullptr;
+	_08       = 0.0f;
+	mPosition = Vector3f::zero;
 }
 
 void Obj::update(EnemyBase* enemy)
 {
 	Vector3f vec;
-	m_matrix->getTranslation(vec);
+	mMatrix->getTranslation(vec);
 	vec.y -= _08;
 
 	if (_00 == false) {
-		if ((vec.y - m_position.y) < 0.0f) {
+		if ((vec.y - mPosition.y) < 0.0f) {
 			if (vec.y < mapMgr->getMinY(vec)) {
 				if (!enemy->inWater()) {
-					float scaleMod                    = enemy->m_scaleModifier;
+					float scaleMod                    = enemy->mScaleModifier;
 					EnemyTypeID::EEnemyTypeID enemyID = enemy->getEnemyTypeID();
 
 					efx::ArgEnemyType effectArg(vec, enemyID, scaleMod);
@@ -48,7 +48,7 @@ void Obj::update(EnemyBase* enemy)
 	} else if (vec.y > mapMgr->getMinY(vec)) {
 		_00 = false;
 	}
-	m_position = vec;
+	mPosition = vec;
 }
 
 /*
@@ -58,8 +58,8 @@ void Obj::update(EnemyBase* enemy)
  */
 Mgr::Mgr()
 {
-	m_objCount = 0;
-	m_objects  = nullptr;
+	mObjCount = 0;
+	mObjects  = nullptr;
 }
 
 /*
@@ -69,11 +69,11 @@ Mgr::Mgr()
  */
 void Mgr::alloc(int count)
 {
-	if (m_objects == nullptr) {
-		m_objCount = count;
-		m_objects  = new Obj[m_objCount];
+	if (mObjects == nullptr) {
+		mObjCount = count;
+		mObjects  = new Obj[mObjCount];
 
-		if (m_objects == nullptr) {
+		if (mObjects == nullptr) {
 			// failed to allocate an object array
 			JUT_PANICLINE(168, "alloc error\n");
 		}
@@ -91,8 +91,8 @@ void Mgr::alloc(int count)
  */
 void Mgr::update(Game::EnemyBase* enemy)
 {
-	for (int i = 0; i < m_objCount; i++) {
-		m_objects[i].update(enemy);
+	for (int i = 0; i < mObjCount; i++) {
+		mObjects[i].update(enemy);
 	}
 }
 
@@ -105,11 +105,11 @@ void Mgr::setup(int objIdx, SysShape::Model* model, char* name, float p1)
 {
 	Matrixf* worldMat = model->getJoint(name)->getWorldMatrix();
 
-	Obj* obj      = &m_objects[objIdx];
-	obj->m_matrix = worldMat;
-	obj->_08      = p1;
+	Obj* obj     = &mObjects[objIdx];
+	obj->mMatrix = worldMat;
+	obj->_08     = p1;
 
-	obj->m_matrix->getTranslation(obj->m_position);
+	obj->mMatrix->getTranslation(obj->mPosition);
 
 	obj->_00 = true;
 }

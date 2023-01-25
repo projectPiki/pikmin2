@@ -870,9 +870,9 @@ void J2DAnmTransformKey::calcTransform(float, unsigned short, J3DTransformInfo*)
  */
 void J2DAnmColor::searchUpdateMaterialID(J2DScreen* screen)
 {
-	if (screen != nullptr && screen->m_nameTab != nullptr) {
+	if (screen != nullptr && screen->mNameTab != nullptr) {
 		for (u16 i = 0; i < _18; i++) {
-			int index = screen->m_nameTab->getIndex(m_nameTab.getName(i));
+			int index = screen->mNameTab->getIndex(mNameTab.getName(i));
 			if (index != -1) {
 				_1C[i] = index;
 			} else {
@@ -1949,9 +1949,9 @@ void J2DAnmTextureSRTKey::calcPostTransform(float, unsigned short, J3DTextureSRT
  */
 void J2DAnmTextureSRTKey::searchUpdateMaterialID(J2DScreen* screen)
 {
-	if (screen != nullptr && screen->m_nameTab != nullptr) {
+	if (screen != nullptr && screen->mNameTab != nullptr) {
 		for (u16 i = 0; i < _14 / 3; i++) {
-			int index = screen->m_nameTab->getIndex(m_nameTab.getName(i));
+			int index = screen->mNameTab->getIndex(mNameTab.getName(i));
 			if (index != -1) {
 				_34[i] = index;
 			} else {
@@ -2180,8 +2180,8 @@ lbl_8005C870:
  * __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv
  */
 J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer()
-    : m_img(nullptr)
-    , m_palette(nullptr)
+    : mImg(nullptr)
+    , mPalette(nullptr)
 {
 }
 
@@ -2191,7 +2191,7 @@ J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer()
  * Size:	000054
  * __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv
  */
-J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer() { delete m_palette; }
+J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer() { delete mPalette; }
 
 /*
  * --INFO--
@@ -2403,12 +2403,12 @@ lbl_8005CB20:
  */
 void J2DAnmVisibilityFull::getVisibility(unsigned short p1, unsigned char* p2) const
 {
-	if (m_currentFrame < 0.0f) {
-		*p2 = _18[m_tables[p1]._00[1]];
-	} else if (m_currentFrame >= m_tables[p1]._00[0]) {
-		*p2 = _18[m_tables[p1]._00[1] + m_tables[p1]._00[0] - 1];
+	if (mCurrentFrame < 0.0f) {
+		*p2 = _18[mTables[p1]._00[1]];
+	} else if (mCurrentFrame >= mTables[p1]._00[0]) {
+		*p2 = _18[mTables[p1]._00[1] + mTables[p1]._00[0] - 1];
 	} else {
-		*p2 = _18[(int)m_currentFrame + m_tables[p1]._00[1]];
+		*p2 = _18[(int)mCurrentFrame + mTables[p1]._00[1]];
 	}
 	/*
 	lfs      f2, 8(r3)
@@ -2946,9 +2946,9 @@ lbl_8005D144:
  */
 void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen* screen)
 {
-	if (screen != nullptr && screen->m_nameTab != nullptr) {
+	if (screen != nullptr && screen->mNameTab != nullptr) {
 		for (u16 i = 0; i < _10; i++) {
-			int index = screen->m_nameTab->getIndex(_28.getName(i));
+			int index = screen->mNameTab->getIndex(_28.getName(i));
 			if (index != -1) {
 				_24[i] = index;
 			} else {
@@ -2956,7 +2956,7 @@ void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen* screen)
 			}
 		}
 		for (u16 i = 0; i < _12; i++) {
-			int index = screen->m_nameTab->getIndex(_3C.getName(i));
+			int index = screen->mNameTab->getIndex(_3C.getName(i));
 			if (index != -1) {
 				_38[i] = index;
 			} else {

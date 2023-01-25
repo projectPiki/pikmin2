@@ -36,7 +36,7 @@ struct InfoListBase : public JKRDisposer {
 	// TODO: These may be just List*?
 	InfoListBase<Owner, List>* _18; // _18
 	InfoListBase<Owner, List>* _1C; // _1C
-	Owner* m_owner;                 // _20
+	Owner* mOwner;                  // _20
 };
 
 template <typename Owner, typename List>
@@ -51,11 +51,11 @@ struct InfoMgr : public InfoMgrBase {
 	{
 		// InfoListBase<Owner, List>* next;
 		// for (
-		// 	InfoListBase<Owner, List>* current = ((InfoListBase<Owner,List>)m_list)._1C;
+		// 	InfoListBase<Owner, List>* current = ((InfoListBase<Owner,List>)mList)._1C;
 		// 	current != nullptr;
 		// 	current = next
 		// ) {
-		InfoListBase<Owner, List>* next = ((InfoListBase<Owner, List>)m_activeList)._1C;
+		InfoListBase<Owner, List>* next = ((InfoListBase<Owner, List>)mActiveList)._1C;
 		InfoListBase<Owner, List>* current;
 		while (current = next, current) {
 			next = current->_1C;
@@ -67,7 +67,7 @@ struct InfoMgr : public InfoMgrBase {
 	}
 	virtual void draw(Graphics& gfx) // _14
 	{
-		InfoListBase<Owner, List>* list = ((InfoListBase<Owner, List>)m_activeList)._1C;
+		InfoListBase<Owner, List>* list = ((InfoListBase<Owner, List>)mActiveList)._1C;
 		if (list) {
 			for (; list != nullptr; list = list->_1C) {
 				list->draw(gfx);
@@ -77,16 +77,16 @@ struct InfoMgr : public InfoMgrBase {
 	virtual List* regist(Owner* owner) // _18
 	{
 		InfoListBase<Owner, List>* list;
-		for (list = ((InfoListBase<Owner, List>)m_activeList)._1C; list != nullptr; list = list->_1C) {
-			if (list->m_owner == owner) {
+		for (list = ((InfoListBase<Owner, List>)mActiveList)._1C; list != nullptr; list = list->_1C) {
+			if (list->mOwner == owner) {
 				break;
 			}
 		}
 		if (list == nullptr) {
-			list = ((InfoListBase<Owner, List>)m_activeList)._1C;
+			list = ((InfoListBase<Owner, List>)mActiveList)._1C;
 		}
 		if (list) {
-			list->m_owner = owner;
+			list->mOwner = owner;
 			addActiveList(list);
 		}
 		return list;
@@ -99,7 +99,7 @@ struct InfoMgr : public InfoMgrBase {
 			if (list == nullptr) {
 				return nullptr;
 			}
-			if (((InfoListBase<Owner, List>*)list)->m_owner == owner) {
+			if (((InfoListBase<Owner, List>*)list)->mOwner == owner) {
 				return list;
 			}
 			list = ((InfoListBase<Owner, List>*)list)->_1C;
@@ -109,9 +109,9 @@ struct InfoMgr : public InfoMgrBase {
 	void addActiveList(List*);
 	void addInactiveList(List*);
 
-	List m_activeList;   // _04 when List is CarryInfoList
-	List m_inactiveList; // _5C when List is CarryInfoList
-	int m_count;         // _B4 when List is CarryInfoList
+	List mActiveList;   // _04 when List is CarryInfoList
+	List mInactiveList; // _5C when List is CarryInfoList
+	int mCount;         // _B4 when List is CarryInfoList
 };
 
 #endif

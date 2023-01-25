@@ -23,8 +23,8 @@ const char* cpNumTexLargeName[]
  */
 DispPayDept::DispPayDept(PayDeptType type, int level)
 {
-	m_payDeptType  = type;
-	m_percentLevel = level;
+	mPayDeptType  = type;
+	mPercentLevel = level;
 }
 
 /*
@@ -34,11 +34,11 @@ DispPayDept::DispPayDept(PayDeptType type, int level)
  */
 ObjPayDept::ObjPayDept()
 {
-	m_screen    = nullptr;
-	m_anim1     = nullptr;
-	m_anim2     = nullptr;
-	m_animTime2 = 0.0f;
-	m_animTime1 = 0.0f;
+	mScreen    = nullptr;
+	mAnim1     = nullptr;
+	mAnim2     = nullptr;
+	mAnimTime2 = 0.0f;
+	mAnimTime1 = 0.0f;
 }
 
 /*
@@ -58,7 +58,7 @@ void ObjPayDept::doCreate(JKRArchive* arc)
 
 	DispPayDept* disp = static_cast<DispPayDept*>(getDispMember());
 	char** paths      = nullptr;
-	switch (disp->m_payDeptType) {
+	switch (disp->mPayDeptType) {
 	case DispPayDept::PAYDEPT_Percent:
 		paths = paths1;
 		break;
@@ -70,20 +70,20 @@ void ObjPayDept::doCreate(JKRArchive* arc)
 		break;
 	}
 
-	m_screen = new P2DScreen::Mgr_tuning;
-	m_screen->set(paths[0], 0x40000, arc);
+	mScreen = new P2DScreen::Mgr_tuning;
+	mScreen->set(paths[0], 0x40000, arc);
 	void* file = JKRFileLoader::getGlbResource(paths[1], arc);
-	m_anim1    = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	mAnim1     = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
 	file       = JKRFileLoader::getGlbResource(paths[2], arc);
-	m_anim2    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
-	m_screen->setAnimation(m_anim1);
-	m_screen->setAnimation(m_anim2);
+	mAnim2     = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+	mScreen->setAnimation(mAnim1);
+	mScreen->setAnimation(mAnim2);
 
-	if (disp->m_payDeptType == DispPayDept::PAYDEPT_Percent) {
-		searchNumPane(m_screen->search('ROOT'), disp->m_percentLevel / 10, disp->m_percentLevel % 10);
+	if (disp->mPayDeptType == DispPayDept::PAYDEPT_Percent) {
+		searchNumPane(mScreen->search('ROOT'), disp->mPercentLevel / 10, disp->mPercentLevel % 10);
 	}
 
-	switch (disp->m_payDeptType) {
+	switch (disp->mPayDeptType) {
 	case DispPayDept::PAYDEPT_Percent:
 		PSStart2DStream(0xc0011021);
 		break;
@@ -109,7 +109,7 @@ bool ObjPayDept::doUpdateFadein()
 
 	DispPayDept* disp = static_cast<DispPayDept*>(getDispMember());
 	u32 soundID       = -1;
-	switch (disp->m_payDeptType) {
+	switch (disp->mPayDeptType) {
 	case DispPayDept::PAYDEPT_Percent:
 		soundID = PSSE_PAY_COME;
 		break;
@@ -148,7 +148,7 @@ void ObjPayDept::doUpdateFadeoutFinish()
 	}
 
 	DispPayDept* disp = static_cast<DispPayDept*>(getDispMember());
-	if (disp->m_payDeptType == DispPayDept::PAYDEPT_Percent) {
+	if (disp->mPayDeptType == DispPayDept::PAYDEPT_Percent) {
 		if (getOwner()->setBackupScene()) {
 			getOwner()->startScene(nullptr);
 		}
@@ -162,8 +162,8 @@ void ObjPayDept::doUpdateFadeoutFinish()
  */
 void ObjPayDept::doDraw(Graphics& gfx)
 {
-	gfx.m_orthoGraph.setPort();
-	m_screen->draw(gfx, gfx.m_orthoGraph);
+	gfx.mOrthoGraph.setPort();
+	mScreen->draw(gfx, gfx.mOrthoGraph);
 }
 
 /*
@@ -173,19 +173,19 @@ void ObjPayDept::doDraw(Graphics& gfx)
  */
 bool ObjPayDept::updateAnimation()
 {
-	bool ret                = false;
-	m_anim1->m_currentFrame = m_animTime1;
-	m_anim2->m_currentFrame = m_animTime2;
-	m_screen->animation();
-	m_animTime1 += msVal.m_animSpeed;
-	m_animTime2 += msVal.m_animSpeed;
-	if (m_animTime1 >= m_anim1->m_maxFrame || m_animTime2 >= m_anim2->m_maxFrame) {
+	bool ret              = false;
+	mAnim1->mCurrentFrame = mAnimTime1;
+	mAnim2->mCurrentFrame = mAnimTime2;
+	mScreen->animation();
+	mAnimTime1 += msVal.mAnimSpeed;
+	mAnimTime2 += msVal.mAnimSpeed;
+	if (mAnimTime1 >= mAnim1->mMaxFrame || mAnimTime2 >= mAnim2->mMaxFrame) {
 		ret = true;
 	}
 	return ret;
 }
 
-inline u64 J2DPane::getTagName() const { return m_tag; }
+inline u64 J2DPane::getTagName() const { return mTag; }
 
 /*
  * --INFO--
@@ -195,9 +195,9 @@ inline u64 J2DPane::getTagName() const { return m_tag; }
 void ObjPayDept::searchNumPane(J2DPane* pane, int id1, int id2)
 {
 	if (pane->getUserInfo() == '2keta') {
-		setTex(m_screen, pane->getTagName(), cpNumTexLargeName[id1]);
+		setTex(mScreen, pane->getTagName(), cpNumTexLargeName[id1]);
 	} else if (pane->getUserInfo() == '1keta') {
-		setTex(m_screen, pane->getTagName(), cpNumTexLargeName[id2]);
+		setTex(mScreen, pane->getTagName(), cpNumTexLargeName[id2]);
 	}
 
 	JSUTree<J2DPane>* tree = pane->getPaneTree();
@@ -215,26 +215,26 @@ void ObjPayDept::searchNumPane(J2DPane* pane, int id1, int id2)
  */
 void ScenePayDept::doUserCallBackFunc(Resource::MgrCommand*)
 {
-	if (!m_dispMember->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
+	if (!mDispMember->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
 		JUT_PANICLINE(259, "disp member err");
 	}
 
-	DispPayDept* disp = static_cast<DispPayDept*>(m_dispMember);
-	switch (disp->m_payDeptType) {
+	DispPayDept* disp = static_cast<DispPayDept*>(mDispMember);
+	switch (disp->mPayDeptType) {
 	case DispPayDept::PAYDEPT_Percent:
-		og::newScreen::makeLanguageResName(m_name, "hensai_demo_parsent.szs");
+		og::newScreen::makeLanguageResName(mName, "hensai_demo_parsent.szs");
 		break;
 	case DispPayDept::PAYDEPT_DebtPayed:
-		og::newScreen::makeLanguageResName(m_name, "hensai_demo_kanryo.szs");
+		og::newScreen::makeLanguageResName(mName, "hensai_demo_kanryo.szs");
 		break;
 	case DispPayDept::PAYDEPT_Complete:
-		og::newScreen::makeLanguageResName(m_name, "hensai_demo_otakara.szs");
+		og::newScreen::makeLanguageResName(mName, "hensai_demo_otakara.szs");
 		break;
 	}
-	LoadResource::Arg arg(m_name);
+	LoadResource::Arg arg(mName);
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
 	if (node) {
-		registObj(new ObjPayDept, node->m_archive);
+		registObj(new ObjPayDept, node->mArchive);
 	} else {
 		JUT_PANICLINE(277, "failed");
 	}

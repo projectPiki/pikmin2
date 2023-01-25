@@ -35,11 +35,11 @@ void FinalMsg::doCreateObj(JKRArchive* archive)
  */
 int FinalMsg::doGetFinishState()
 {
-	Screen::DispMemberFinalMessage* dispMember = static_cast<Screen::DispMemberFinalMessage*>(m_dispMember);
+	Screen::DispMemberFinalMessage* dispMember = static_cast<Screen::DispMemberFinalMessage*>(mDispMember);
 	int finalState                             = 0;
 
 	if (dispMember->isID(OWNER_OGA, MEMBER_FINAL_MSG)) {
-		finalState = dispMember->m_finalState;
+		finalState = dispMember->mFinalState;
 	}
 
 	return finalState;

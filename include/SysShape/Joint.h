@@ -23,11 +23,11 @@ struct Joint : public CNode {
 
 	u32 getJntNo() const;
 
-	J3DJoint* m_j3d;  // _18
-	Vector3f _1C;     // _1C
-	Vector3f _28;     // _28
-	Model* m_model;   // _34
-	u16 m_jointIndex; // _38
+	J3DJoint* mJ3d;  // _18
+	Vector3f _1C;    // _1C
+	Vector3f _28;    // _28
+	Model* mModel;   // _34
+	u16 mJointIndex; // _38
 };
 
 } // namespace SysShape

@@ -81,21 +81,21 @@ struct BoidParms : public Parameters {
 	void blendTo(BoidParms&, BoidParms&, f32);
 
 	// _00-_0C = Parameters
-	Parm<f32> m_cohesion;          // _0C, p000
-	Parm<f32> m_alignment;         // _34, p001
-	Parm<f32> m_separation;        // _5C, p002
-	Parm<f32> m_bounds;            // _84, p003
-	Parm<f32> m_target;            // _AC, p004
-	Parm<f32> m_random;            // _D4, p005
-	Parm<f32> m_goHome;            // _FC, p006
-	Parm<f32> m_piki;              // _124, p008
-	Parm<f32> m_navi;              // _14C, p009
-	Parm<f32> m_collision;         // _174, p010
-	Parm<f32> m_maxSpeed;          // _19C, p011
-	Parm<f32> m_fov;               // _1C4, p012
-	Parm<f32> m_distance;          // _1EC, p013
-	Parm<f32> m_rotationPerSecond; // _214, p014
-	Parm<f32> m_randomAngle;       // _23C, p007
+	Parm<f32> mCohesion;          // _0C, p000
+	Parm<f32> mAlignment;         // _34, p001
+	Parm<f32> mSeparation;        // _5C, p002
+	Parm<f32> mBounds;            // _84, p003
+	Parm<f32> mTarget;            // _AC, p004
+	Parm<f32> mRandom;            // _D4, p005
+	Parm<f32> mGoHome;            // _FC, p006
+	Parm<f32> mPiki;              // _124, p008
+	Parm<f32> mNavi;              // _14C, p009
+	Parm<f32> mCollision;         // _174, p010
+	Parm<f32> mMaxSpeed;          // _19C, p011
+	Parm<f32> mFov;               // _1C4, p012
+	Parm<f32> mDistance;          // _1EC, p013
+	Parm<f32> mRotationPerSecond; // _214, p014
+	Parm<f32> mRandomAngle;       // _23C, p007
 };
 
 struct BoidParameter : public CNode {
@@ -106,7 +106,7 @@ struct BoidParameter : public CNode {
 
 		// _00     = VTBL
 		// _00-_18 = CNode
-		BoidParms m_parms; // _18
+		BoidParms mParms; // _18
 	};
 
 	BoidParameter();
@@ -119,7 +119,7 @@ struct BoidParameter : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	TNode m_node; // _18
+	TNode mNode; // _18
 };
 
 struct Item : public FSMItem<Item, FSM, State> {
@@ -127,7 +127,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 		virtual Matrixf* getMatrix(int); // _08 (weak)
 
 		// _00 VTBL
-		Matrixf* m_matrix; // _04
+		Matrixf* mMatrix; // _04
 	};
 
 	inline Item(int objTypeID) // probably
@@ -150,24 +150,24 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	// _00      = VTABLE
 	// _00-_1E0 = FSMItem
-	u32 _1E0;                // _1E0, unknown
-	u32 _1E4;                // _1E4, unknown
-	f32 _1E8;                // _1E8
-	int _1EC;                // _1EC
-	f32 _1F0;                // _1F0
-	f32 _1F4;                // _1F4
-	DummyShape m_dummyShape; // _1F8
-	UjaMgr* m_flockMgr;      // _200
+	u32 _1E0;               // _1E0, unknown
+	u32 _1E4;               // _1E4, unknown
+	f32 _1E8;               // _1E8
+	int _1EC;               // _1EC
+	f32 _1F0;               // _1F0
+	f32 _1F4;               // _1F4
+	DummyShape mDummyShape; // _1F8
+	UjaMgr* mFlockMgr;      // _200
 };
 
 struct Mgr : public NodeItemMgr<Item> {
 	struct MgrParms : public Parameters {
 		inline MgrParms(); // probably
 
-		Parm<f32> m_u001; // _5B4
-		Parm<f32> m_u002; // _5DC
-		Parm<f32> m_u003; // _604
-		Parm<f32> m_u004; // _62C
+		Parm<f32> mU001; // _5B4
+		Parm<f32> mU002; // _5DC
+		Parm<f32> mU003; // _604
+		Parm<f32> mU004; // _62C
 	};
 
 	Mgr();
@@ -186,14 +186,14 @@ struct Mgr : public NodeItemMgr<Item> {
 
 	// _00      = VTBL
 	// _00-_88  = NodeItemMgr
-	f32 _88;                       // _88
-	u8 _8C[0x10];                  // _8C, unknown
-	BoidParms m_parms;             // _9C
-	u32 _304;                      // _304
-	u32 _308;                      // _308
-	f32 _30C;                      // _30C
-	BoidParameter m_boidParameter; // _310
-	MgrParms m_mgrParms;           // _5A8
+	f32 _88;                      // _88
+	u8 _8C[0x10];                 // _8C, unknown
+	BoidParms mParms;             // _9C
+	u32 _304;                     // _304
+	u32 _308;                     // _308
+	f32 _30C;                     // _30C
+	BoidParameter mBoidParameter; // _310
+	MgrParms mMgrParms;           // _5A8
 };
 
 struct Uja : public TFlock {
@@ -210,38 +210,38 @@ struct Uja : public TFlock {
 
 	// _00-_10 = TFlock
 	// _0C     = VTBL
-	Matrixf _10;                   // _10
-	u8 _40;                        // _40
-	Vector3f _44;                  // _44
-	Vector3f _50;                  // _50
-	f32 _5C;                       // _5C
-	f32 _60;                       // _60
-	f32 _64;                       // _64
-	f32 _68;                       // _68
-	f32 _6C;                       // _6C
-	f32 _70;                       // _70
-	UjaMgr* m_flockMgr;            // _74
-	UpdateContext m_updateContext; // _78
-	Vector3f _84;                  // _84
-	Vector3f _90;                  // _90
-	Vector3f _9C;                  // _9C
-	f32 _A8;                       // _A8
-	u8 _AC;                        // _AC
-	u8 _AD;                        // _AD
-	u8 _AE;                        // _AE
-	u8 _AF;                        // _AF, unknown/padding
-	u8 _B0[0x4];                   // _B0, unknown
-	f32 _B4;                       // _B4
-	f32 _B8;                       // _B8
-	int m_bufferSlotCount;         // _BC
-	Piki** m_pikiBuffer;           // _C0
-	f32* m_floatBuffer;            // _C4
+	Matrixf _10;                  // _10
+	u8 _40;                       // _40
+	Vector3f _44;                 // _44
+	Vector3f _50;                 // _50
+	f32 _5C;                      // _5C
+	f32 _60;                      // _60
+	f32 _64;                      // _64
+	f32 _68;                      // _68
+	f32 _6C;                      // _6C
+	f32 _70;                      // _70
+	UjaMgr* mFlockMgr;            // _74
+	UpdateContext mUpdateContext; // _78
+	Vector3f _84;                 // _84
+	Vector3f _90;                 // _90
+	Vector3f _9C;                 // _9C
+	f32 _A8;                      // _A8
+	u8 _AC;                       // _AC
+	u8 _AD;                       // _AD
+	u8 _AE;                       // _AE
+	u8 _AF;                       // _AF, unknown/padding
+	u8 _B0[0x4];                  // _B0, unknown
+	f32 _B4;                      // _B4
+	f32 _B8;                      // _B8
+	int mBufferSlotCount;         // _BC
+	Piki** mPikiBuffer;           // _C0
+	f32* mFloatBuffer;            // _C4
 };
 
 struct UjaMgrInitArg {
-	Sys::Sphere m_sphere;           // _00
-	BoidParameter* m_boidParameter; // _10
-	u32 _14;                        // _14
+	Sys::Sphere mSphere;           // _00
+	BoidParameter* mBoidParameter; // _10
+	u32 _14;                       // _14
 };
 
 struct UjaMgr : public TFlockMgr<Uja> {
@@ -257,15 +257,15 @@ struct UjaMgr : public TFlockMgr<Uja> {
 
 	// _00     = VTBL
 	// _00-_6C = TFlockMgr
-	Sys::Sphere m_boundSphere;      // _6C
-	Vector3f _7C;                   // _7C
-	Vector3f _88;                   // _88
-	UpdateMgr* m_updateMgr;         // _94
-	int _98;                        // _98
-	int _9C;                        // _9C
-	f32 _A0;                        // _A0
-	BoidParameter* m_boidParameter; // _A4
-	BoidParms m_boidParms;          // _A8
+	Sys::Sphere mBoundSphere;      // _6C
+	Vector3f _7C;                  // _7C
+	Vector3f _88;                  // _88
+	UpdateMgr* mUpdateMgr;         // _94
+	int _98;                       // _98
+	int _9C;                       // _9C
+	f32 _A0;                       // _A0
+	BoidParameter* mBoidParameter; // _A4
+	BoidParms mBoidParms;          // _A8
 };
 
 extern Mgr* mgr;

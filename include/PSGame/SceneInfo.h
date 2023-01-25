@@ -53,16 +53,16 @@ struct SceneInfo {
 	void setStageCamera() const;
 
 	// _00 = VTBL
-	u16 m_stageFlags;         // _04
-	u8 m_sceneType;           // _06
-	u8 m_cameras;             // _07
-	Vector3f* m_cam1Position; // _08
-	u32 _0C;                  // _0C
-	Vector3f* m_cam2Position; // _10
-	u32 _14;                  // _14
-	Vector3f* m_cameraMtx;    // _18
-	u32 _1C;                  // _1C
-	JGeometry::TBox3f _20;    // _20
+	u16 mStageFlags;         // _04
+	u8 mSceneType;           // _06
+	u8 mCameras;             // _07
+	Vector3f* mCam1Position; // _08
+	u32 _0C;                 // _0C
+	Vector3f* mCam2Position; // _10
+	u32 _14;                 // _14
+	Vector3f* mCameraMtx;    // _18
+	u32 _1C;                 // _1C
+	JGeometry::TBox3f _20;   // _20
 };
 
 /**
@@ -71,12 +71,12 @@ struct SceneInfo {
 struct CaveFloorInfo : public SceneInfo {
 	inline CaveFloorInfo()
 	{
-		m_alphaType = 0;
-		m_betaType  = 0;
-		_40         = 0;
-		m_caveID    = 0xFFFF;
-		_48         = 0xFF;
-		_49         = 0xFF;
+		mAlphaType = 0;
+		mBetaType  = 0;
+		_40        = 0;
+		mCaveID    = 0xFFFF;
+		_48        = 0xFF;
+		_49        = 0xFF;
 	}
 
 	virtual bool isCaveFloor() { return true; } // _08 (weak)
@@ -105,12 +105,12 @@ struct CaveFloorInfo : public SceneInfo {
 
 	// _00     = VTBL
 	// _00-_38 = SceneInfo
-	uint m_alphaType; // _38
-	uint m_betaType;  // _3C
-	u8 _40;           // _40
-	u32 m_caveID;     // _44
-	u8 _48;           // _48
-	u8 _49;           // _49
+	uint mAlphaType; // _38
+	uint mBetaType;  // _3C
+	u8 _40;          // _40
+	u32 mCaveID;     // _44
+	u8 _48;          // _48
+	u8 _49;          // _49
 };
 } // namespace PSGame
 

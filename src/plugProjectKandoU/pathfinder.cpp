@@ -57,11 +57,11 @@ namespace Game {
  */
 Pathfinder::Pathfinder()
 {
-	m_aStarPathfinder   = new AStarPathfinder;
-	m_aStarContextCount = 0;
-	m_clientCount       = 0;
-	m_aStarContexts     = nullptr;
-	m_counter           = 1;
+	mAStarPathfinder   = new AStarPathfinder;
+	mAStarContextCount = 0;
+	mClientCount       = 0;
+	mAStarContexts     = nullptr;
+	mCounter           = 1;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -100,13 +100,13 @@ lbl_801A3618:
 void Pathfinder::create(int contextCount, Game::RouteMgr* routeMgr)
 {
 	sys->heapStatusStart("pathfinder", nullptr);
-	m_clientCount       = 0;
-	m_aStarContextCount = contextCount;
-	m_aStarContexts     = new AStarContext[contextCount];
+	mClientCount       = 0;
+	mAStarContextCount = contextCount;
+	mAStarContexts     = new AStarContext[contextCount];
 	for (int i = 0; i < contextCount; i++) {
-		m_aStarContexts[i].init(routeMgr, 0);
+		mAStarContexts[i].init(routeMgr, 0);
 	}
-	m_counter = 1;
+	mCounter = 1;
 	sys->heapStatusEnd("pathfinder");
 	/*
 	stwu     r1, -0x20(r1)
@@ -196,27 +196,27 @@ blr
  */
 void Pathfinder::update()
 {
-	sys->m_timers->_start("path", true);
+	sys->mTimers->_start("path", true);
 
 	int counts = 0;
-	for (int i = 0; i < m_aStarContextCount; i++) {
-		bool check = m_aStarContexts[i].m_status && m_aStarContexts[i].m_checkHandle == 2;
+	for (int i = 0; i < mAStarContextCount; i++) {
+		bool check = mAStarContexts[i].mStatus && mAStarContexts[i].mCheckHandle == 2;
 		if (check) {
 			counts++;
 		}
 	}
 
 	if (counts > 0) {
-		for (int i = 0; i < m_aStarContextCount; i++) {
-			AStarContext* context = &m_aStarContexts[i];
-			bool check            = context->m_status && context->m_checkHandle == 2;
+		for (int i = 0; i < mAStarContextCount; i++) {
+			AStarContext* context = &mAStarContexts[i];
+			bool check            = context->mStatus && context->mCheckHandle == 2;
 			if (check) {
-				m_aStarContexts[i].m_checkHandle = m_aStarPathfinder->search(context, 1, &context->m_node);
+				mAStarContexts[i].mCheckHandle = mAStarPathfinder->search(context, 1, &context->mNode);
 			}
 		}
 	}
 
-	sys->m_timers->_stop("path");
+	sys->mTimers->_stop("path");
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -330,10 +330,10 @@ void Pathfinder::getFreeContext()
 AStarContext* Pathfinder::getContext(u32 id)
 {
 	AStarContext* context = 0;
-	if (m_aStarContextCount > 0) {
-		for (int i = 0; i < m_aStarContextCount; i++) {
-			if (m_aStarContexts[i].m_status == id) {
-				context = &m_aStarContexts[i];
+	if (mAStarContextCount > 0) {
+		for (int i = 0; i < mAStarContextCount; i++) {
+			if (mAStarContexts[i].mStatus == id) {
+				context = &mAStarContexts[i];
 				break;
 			}
 		}
@@ -348,26 +348,26 @@ AStarContext* Pathfinder::getContext(u32 id)
  */
 int Pathfinder::start(PathfindRequest& request)
 {
-	if (m_clientCount >= m_aStarContextCount) {
+	if (mClientCount >= mAStarContextCount) {
 		JUT_PANICLINE(250, "Oh! no!\n");
 		return 0;
 	} else {
-		int wpNum = m_counter++;
-		if (20000 <= m_counter) {
-			m_counter = 1;
+		int wpNum = mCounter++;
+		if (20000 <= mCounter) {
+			mCounter = 1;
 		}
 
 		AStarContext* context = getContext(0);
 
-		JUT_ASSERTLINE(258, context, "no context is available (clients=%d)!\n", m_clientCount);
-		m_clientCount++;
-		context->m_status      = 0;
-		context->m_checkHandle = 2;
-		context->m_status      = wpNum;
-		context->m_startWPID   = request.m_startWpID;
-		context->m_endWPID     = request.m_endWpID;
-		context->m_requestFlag = request.m_flag;
-		m_aStarPathfinder->initsearch(context);
+		JUT_ASSERTLINE(258, context, "no context is available (clients=%d)!\n", mClientCount);
+		mClientCount++;
+		context->mStatus      = 0;
+		context->mCheckHandle = 2;
+		context->mStatus      = wpNum;
+		context->mStartWPID   = request.mStartWpID;
+		context->mEndWPID     = request.mEndWpID;
+		context->mRequestFlag = request.mFlag;
+		mAStarPathfinder->initsearch(context);
 		return wpNum;
 	}
 	/*
@@ -483,10 +483,10 @@ int Pathfinder::makepath(u32 id, Game::PathNode** path)
 	AStarContext* context = getContext(id);
 
 	if (context) {
-		if (!context->m_checkHandle) {
-			return context->makepath(context->m_node, path);
+		if (!context->mCheckHandle) {
+			return context->makepath(context->mNode, path);
 		}
-		JUT_PANICLINE(290, "context state is %d\n", context->m_checkHandle);
+		JUT_PANICLINE(290, "context state is %d\n", context->mCheckHandle);
 	} else {
 		JUT_PANICLINE(293, "no such handle %d\n", id);
 		return 0;
@@ -578,9 +578,9 @@ void Pathfinder::release(u32 id)
 {
 	AStarContext* context = getContext(id);
 	if (context) {
-		m_clientCount--;
-		context->m_status      = 0;
-		context->m_checkHandle = 2;
+		mClientCount--;
+		context->mStatus      = 0;
+		context->mCheckHandle = 2;
 	}
 	/*
 	lwz      r0, 8(r3)
@@ -631,7 +631,7 @@ int Pathfinder::check(u32 id)
 {
 	AStarContext* context = getContext(id);
 	if (context) {
-		return context->m_checkHandle;
+		return context->mCheckHandle;
 	} else {
 		JUT_PANICLINE(332, " no handle ! %d\n", id);
 		return 3;
@@ -761,13 +761,13 @@ void AStarContext::init(RouteMgr* mgr, int wpNum)
 		PathfindContext::routeMgr = mgr;
 		_50                       = 0;
 		if (wpNum <= 0) {
-			m_wpNum = PathfindContext::routeMgr->m_count;
+			mWpNum = PathfindContext::routeMgr->mCount;
 		} else {
-			m_wpNum = wpNum;
+			mWpNum = wpNum;
 		}
-		_58           = new int[m_wpNum]; // not sure what this type is
-		m_status      = 0;
-		m_checkHandle = 2;
+		_58          = new int[mWpNum]; // not sure what this type is
+		mStatus      = 0;
+		mCheckHandle = 2;
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -814,14 +814,14 @@ lbl_801A3BCC:
  * Address:	801A3BE0
  * Size:	00000C
  */
-AStarPathfinder::AStarPathfinder() { m_context = nullptr; }
+AStarPathfinder::AStarPathfinder() { mContext = nullptr; }
 
 /*
  * --INFO--
  * Address:	801A3BEC
  * Size:	000008
  */
-void AStarPathfinder::setContext(AStarContext* context) { m_context = context; }
+void AStarPathfinder::setContext(AStarContext* context) { mContext = context; }
 
 /*
  * --INFO--
@@ -1411,11 +1411,11 @@ f32 AStarPathfinder::estimate(s16 wpID1, s16 wpID2)
 int AStarContext::makepath(PathNode* newNode, PathNode** nodePtr)
 {
 	int i = 1;
-	FOREACH_NODE(PathNode, newNode->m_child, node)
+	FOREACH_NODE(PathNode, newNode->mChild, node)
 	{
 		i++;
-		node->m_next = newNode;
-		newNode      = node;
+		node->mNext = newNode;
+		newNode     = node;
 	}
 
 	if (nodePtr) {

@@ -77,12 +77,12 @@ struct TParse_TBlock_object {
 
 /** @size{0x20} */
 struct TParse_THeader {
-	u32 m_signature; // _00
-	u16 _04;         // _04
-	u16 _06;         // _06
-	u8 _08[4];       // _08 - unknown
-	u32 blockCount;  // _0C
-	u8 _10[0x10];    // _10 - unknown
+	u32 mSignature; // _00
+	u16 _04;        // _04
+	u16 _06;        // _06
+	u8 _08[4];      // _08 - unknown
+	u32 blockCount; // _0C
+	u8 _10[0x10];   // _10 - unknown
 };
 
 } // namespace data

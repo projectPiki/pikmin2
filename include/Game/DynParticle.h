@@ -11,12 +11,12 @@ namespace Game {
  * @fabricatedName
  */
 struct _DynParticleParent {
-	Vector3f _00;               // _00
-	Vector3f _0C;               // _0C
-	f32 _18;                    // _18
-	_DynParticleParent* m_next; // _1C
-	Vector3f _20;               // _20
-	u8 _2C;                     // _2C
+	Vector3f _00;              // _00
+	Vector3f _0C;              // _0C
+	f32 _18;                   // _18
+	_DynParticleParent* mNext; // _1C
+	Vector3f _20;              // _20
+	u8 _2C;                    // _2C
 };
 
 /**

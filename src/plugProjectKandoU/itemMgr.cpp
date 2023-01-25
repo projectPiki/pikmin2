@@ -676,18 +676,18 @@ namespace Game {
  */
 BaseItem::BaseItem(int objectTypeID)
     : Creature()
-    , m_animator()
+    , mAnimator()
 {
-	m_objectTypeID              = objectTypeID;
-	m_animSpeed                 = 0.0f;
-	m_nodeItemMgr               = nullptr;
-	_188                        = 0;
-	_184                        = 0;
-	m_velocity                  = 0.0f;
-	m_position                  = 0.0f;
-	m_collTree                  = new CollTree();
-	m_boundingSphere.m_position = Vector3f::zero;
-	m_boundingSphere.m_radius   = 1.0f;
+	mObjectTypeID             = objectTypeID;
+	mAnimSpeed                = 0.0f;
+	mNodeItemMgr              = nullptr;
+	_188                      = 0;
+	_184                      = 0;
+	mVelocity                 = 0.0f;
+	mPosition                 = 0.0f;
+	mCollTree                 = new CollTree();
+	mBoundingSphere.mPosition = Vector3f::zero;
+	mBoundingSphere.mRadius   = 1.0f;
 }
 
 /*
@@ -698,7 +698,7 @@ BaseItem::BaseItem(int objectTypeID)
 void BaseItem::constructor()
 {
 	PSM::CreatureObj* soundObj = new PSM::CreatureObj(this, 2);
-	m_soundObj                 = soundObj;
+	mSoundObj                  = soundObj;
 }
 
 /*
@@ -710,7 +710,7 @@ JAInter::Object* BaseItem::getJAIObject()
 {
 	// Notice how this generates a check for nullptr.
 	// This is because JAInter::Object is the second inheritance of CreatureObj.
-	return m_soundObj;
+	return mSoundObj;
 }
 
 /*
@@ -718,7 +718,7 @@ JAInter::Object* BaseItem::getJAIObject()
  * Address:	801CC148
  * Size:	000008
  */
-PSM::Creature* BaseItem::getPSCreature() { return m_soundObj; }
+PSM::Creature* BaseItem::getPSCreature() { return mSoundObj; }
 
 /*
  * --INFO--
@@ -727,8 +727,8 @@ PSM::Creature* BaseItem::getPSCreature() { return m_soundObj; }
  */
 void BaseItem::startSound(unsigned long soundID)
 {
-	JUT_ASSERTLINE(262, m_soundObj != nullptr, "(%s) no mSoundCreature\n", getCreatureName());
-	m_soundObj->startSound(soundID, 0);
+	JUT_ASSERTLINE(262, mSoundObj != nullptr, "(%s) no mSoundCreature\n", getCreatureName());
+	mSoundObj->startSound(soundID, 0);
 }
 
 /*
@@ -738,18 +738,18 @@ void BaseItem::startSound(unsigned long soundID)
  */
 void BaseItem::doAnimation()
 {
-	if (m_animator.m_animMgr) {
-		m_animator.animate(m_animSpeed * sys->m_deltaTime);
-		SysShape::Model* model                                             = m_model;
-		model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = (J3DMtxCalcAnmBase*)m_animator.getCalc();
+	if (mAnimator.mAnimMgr) {
+		mAnimator.animate(mAnimSpeed * sys->mDeltaTime);
+		SysShape::Model* model                                        = mModel;
+		model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = (J3DMtxCalcAnmBase*)mAnimator.getCalc();
 		do_doAnimation();
 	}
-	if (m_captureMatrix == nullptr) {
+	if (mCaptureMatrix == nullptr) {
 		makeTrMatrix();
 	}
-	if (m_model) {
-		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
-		m_model->m_j3dModel->calc();
+	if (mModel) {
+		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->calc();
 	}
 	update();
 }
@@ -840,7 +840,7 @@ lbl_801CC3C0:
  */
 void BaseItem::doEntry()
 {
-	if (m_captureMatrix == nullptr) {
+	if (mCaptureMatrix == nullptr) {
 		entryShape();
 	}
 }
@@ -902,7 +902,7 @@ void BaseItem::doSimulation(float) { }
  * Address:	801CC484
  * Size:	00002C
  */
-void BaseItem::makeTrMatrix() { m_objMatrix.makeT(m_position); }
+void BaseItem::makeTrMatrix() { mObjMatrix.makeT(mPosition); }
 
 /*
  * update__
@@ -914,10 +914,10 @@ void BaseItem::update()
 {
 	doAI();
 	updateBoundSphere();
-	m_soundObj->exec();
+	mSoundObj->exec();
 	if (isAlive()) {
 		updateCell();
-		if (0 > m_cellLayerIndex || m_cellLayerIndex > 10) {
+		if (0 > mCellLayerIndex || mCellLayerIndex > 10) {
 			getTypeName();
 			JUT_PANICLINE(365, "cellLayerindex overflow\n");
 		}
@@ -943,7 +943,7 @@ void BaseItem::do_updateLOD()
 	// do_setLODParm(parm);
 	// updateLOD(parm);
 	// if (isMovieActor()) {
-	// 	m_lod.m_flags |= AILOD::VisibleOnViewport0 | AILOD::VisibleOnViewport1 | AILOD::FLAG_NEED_SHADOW;
+	// 	mLod.mFlags |= AILOD::VisibleOnViewport0 | AILOD::VisibleOnViewport1 | AILOD::FLAG_NEED_SHADOW;
 	// }
 
 	/*
@@ -990,8 +990,8 @@ lbl_801CC5F8:
  */
 void BaseItem::updateCollTree()
 {
-	m_collTree->update();
-	m_collTree->getBoundingSphere(m_boundingSphere);
+	mCollTree->update();
+	mCollTree->getBoundingSphere(mBoundingSphere);
 }
 
 /*
@@ -1133,10 +1133,10 @@ lbl_801CC7C0:
  */
 void BaseItem::movieStartAnimation(unsigned long p1)
 {
-	if (m_animator.m_animMgr) {
+	if (mAnimator.mAnimMgr) {
 		getCreatureName();
-		m_animator.startAnim(p1, nullptr);
-		m_animSpeed = 30.0f;
+		mAnimator.startAnim(p1, nullptr);
+		mAnimSpeed = 30.0f;
 	} else {
 		getCreatureName();
 	}
@@ -1150,9 +1150,9 @@ void BaseItem::movieStartAnimation(unsigned long p1)
 void BaseItem::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
 {
 	getTypeName();
-	m_animator.startExAnim(animInfo);
-	m_animSpeed = 30.0f;
-	P2ASSERTLINE(498, m_animator.assertValid(m_model));
+	mAnimator.startExAnim(animInfo);
+	mAnimSpeed = 30.0f;
+	P2ASSERTLINE(498, mAnimator.assertValid(mModel));
 }
 
 /*
@@ -1160,14 +1160,14 @@ void BaseItem::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
  * Address:	801CC910
  * Size:	000024
  */
-void BaseItem::movieSetAnimationLastFrame() { m_animator.setLastFrame(); }
+void BaseItem::movieSetAnimationLastFrame() { mAnimator.setLastFrame(); }
 
 /*
  * --INFO--
  * Address:	801CC934
  * Size:	00001C
  */
-void BaseItem::movieSetTranslation(Vector3f& position, float faceDir) { m_position = position; }
+void BaseItem::movieSetTranslation(Vector3f& position, float faceDir) { mPosition = position; }
 
 /*
  * constructor__Q24Game8CFSMItemFv
@@ -1178,7 +1178,7 @@ void BaseItem::movieSetTranslation(Vector3f& position, float faceDir) { m_positi
 void CFSMItem::constructor()
 {
 	initFSM();
-	m_soundObj = new PSM::CreatureObj(this, 2);
+	mSoundObj = new PSM::CreatureObj(this, 2);
 }
 
 /*
@@ -1188,8 +1188,8 @@ void CFSMItem::constructor()
  */
 void CFSMItem::initFSM()
 {
-	m_stateMachine = createFSM();
-	m_stateMachine->init(this);
+	mStateMachine = createFSM();
+	mStateMachine->init(this);
 }
 
 /*
@@ -1206,7 +1206,7 @@ void CFSMItem::initFSM()
  * Address:	801CC9F8
  * Size:	000034
  */
-void CFSMItem::doAI() { m_stateMachine->exec(this); }
+void CFSMItem::doAI() { mStateMachine->exec(this); }
 
 /*
  * --INFO--
@@ -1216,7 +1216,7 @@ void CFSMItem::doAI() { m_stateMachine->exec(this); }
 void CFSMItem::setCurrState(FSMState<CFSMItem>* state)
 {
 	// Generated from stw r4, 0x1DC(r3)
-	m_currState = state;
+	mCurrState = state;
 }
 
 /*
@@ -1224,7 +1224,7 @@ void CFSMItem::setCurrState(FSMState<CFSMItem>* state)
  * Address:	801CCA34
  * Size:	000008
  */
-FSMState<CFSMItem>* CFSMItem::getCurrState() { return m_currState; }
+FSMState<CFSMItem>* CFSMItem::getCurrState() { return mCurrState; }
 
 /*
  * --INFO--
@@ -1233,8 +1233,8 @@ FSMState<CFSMItem>* CFSMItem::getCurrState() { return m_currState; }
  */
 int CFSMItem::getStateID()
 {
-	if (m_currState) {
-		return m_currState->m_id;
+	if (mCurrState) {
+		return mCurrState->mId;
 	}
 	return -1;
 }
@@ -1246,8 +1246,8 @@ int CFSMItem::getStateID()
  */
 void CFSMItem::bounceCallback(Sys::Triangle* tri)
 {
-	if (m_currState) {
-		static_cast<CItemState*>(m_currState)->onBounce(this, tri);
+	if (mCurrState) {
+		static_cast<CItemState*>(mCurrState)->onBounce(this, tri);
 	}
 }
 
@@ -1266,8 +1266,8 @@ void CFSMItem::bounceCallback(Sys::Triangle* tri)
  */
 void CFSMItem::collisionCallback(Game::CollEvent& event)
 {
-	if (m_currState) {
-		static_cast<CItemState*>(m_currState)->onCollision(this, event);
+	if (mCurrState) {
+		static_cast<CItemState*>(mCurrState)->onCollision(this, event);
 	}
 }
 
@@ -1286,8 +1286,8 @@ void CFSMItem::collisionCallback(Game::CollEvent& event)
  */
 void CFSMItem::platCallback(Game::PlatEvent& event)
 {
-	if (m_currState) {
-		static_cast<CItemState*>(m_currState)->onPlatCollision(this, event);
+	if (mCurrState) {
+		static_cast<CItemState*>(mCurrState)->onPlatCollision(this, event);
 	}
 }
 
@@ -1306,8 +1306,8 @@ void CFSMItem::platCallback(Game::PlatEvent& event)
  */
 void CFSMItem::onKeyEvent(const SysShape::KeyEvent& event)
 {
-	if (m_currState) {
-		static_cast<CItemState*>(m_currState)->onKeyEvent(this, event);
+	if (mCurrState) {
+		static_cast<CItemState*>(mCurrState)->onKeyEvent(this, event);
 	}
 }
 
@@ -1398,15 +1398,15 @@ bool InteractFarmHaero::actItem(Game::BaseItem* item) { return item->interactFar
  */
 BaseItemMgr::BaseItemMgr()
 {
-	m_animMgr             = nullptr;
-	m_collPartFactory     = nullptr;
-	m_objectPathComponent = nullptr;
-	m_archive             = nullptr;
-	m_modelData           = nullptr;
-	m_name                = "BaseItem";
-	m_resourceNode        = nullptr;
-	_10                   = 0;
-	_14                   = 0;
+	mAnimMgr             = nullptr;
+	mCollPartFactory     = nullptr;
+	mObjectPathComponent = nullptr;
+	mArchive             = nullptr;
+	mModelData           = nullptr;
+	mName                = "BaseItem";
+	mResourceNode        = nullptr;
+	_10                  = 0;
+	_14                  = 0;
 }
 
 /*
@@ -1416,10 +1416,10 @@ BaseItemMgr::BaseItemMgr()
  */
 void BaseItemMgr::setModelSize(int modelSize)
 {
-	m_modelDataMax = modelSize;
-	m_modelData    = new J3DModelData*[modelSize];
+	mModelDataMax = modelSize;
+	mModelData    = new J3DModelData*[modelSize];
 	for (int i = 0; i < modelSize; i++) {
-		m_modelData[i] = nullptr;
+		mModelData[i] = nullptr;
 	}
 }
 
@@ -1431,14 +1431,14 @@ void BaseItemMgr::setModelSize(int modelSize)
 void BaseItemMgr::loadArchive(char* fileName)
 {
 	char pathBuffer[512];
-	sprintf(pathBuffer, "%s/%s", m_objectPathComponent, fileName);
+	sprintf(pathBuffer, "%s/%s", mObjectPathComponent, fileName);
 	LoadResource::Arg loadArg(pathBuffer);
-	loadArg.m_heap               = JKRHeap::sCurrentHeap;
+	loadArg.mHeap                = JKRHeap::sCurrentHeap;
 	LoadResource::Node* loadNode = gLoadResourceMgr->mountArchive(loadArg);
 	if (loadNode) {
-		m_archive = (JKRMemArchive*)loadNode->m_archive;
+		mArchive = (JKRMemArchive*)loadNode->mArchive;
 	} else {
-		m_archive = nullptr;
+		mArchive = nullptr;
 	}
 }
 
@@ -1449,10 +1449,10 @@ void BaseItemMgr::loadArchive(char* fileName)
  */
 void BaseItemMgr::loadBmd(char* path, int shapeID, unsigned long flags)
 {
-	P2ASSERTBOUNDSLINE(702, 0, shapeID, m_modelDataMax);
+	P2ASSERTBOUNDSLINE(702, 0, shapeID, mModelDataMax);
 	J3DModelData* modelData = J3DModelLoaderDataBase::load(JKRFileLoader::getGlbResource(path, nullptr), flags);
 	JUT_ASSERTLINE(708, modelData != nullptr, "fatal error\n");
-	m_modelData[shapeID] = modelData;
+	mModelData[shapeID] = modelData;
 }
 
 /*
@@ -1462,8 +1462,8 @@ void BaseItemMgr::loadBmd(char* path, int shapeID, unsigned long flags)
  */
 void BaseItemMgr::loadAnimMgr(JKRFileLoader* loader, char* path)
 {
-	m_animMgr = SysShape::AnimMgr::load(loader, path, *m_modelData, m_archive, nullptr);
-	JUT_ASSERTLINE(753, m_animMgr != nullptr, "AnimMgr creation failed ! %s\n", path);
+	mAnimMgr = SysShape::AnimMgr::load(loader, path, *mModelData, mArchive, nullptr);
+	JUT_ASSERTLINE(753, mAnimMgr != nullptr, "AnimMgr creation failed ! %s\n", path);
 }
 
 /*
@@ -1471,7 +1471,7 @@ void BaseItemMgr::loadAnimMgr(JKRFileLoader* loader, char* path)
  * Address:	801CD07C
  * Size:	000038
  */
-void BaseItemMgr::loadCollision(JKRFileLoader* loader, char* path) { m_collPartFactory = CollPartFactory::load(loader, path); }
+void BaseItemMgr::loadCollision(JKRFileLoader* loader, char* path) { mCollPartFactory = CollPartFactory::load(loader, path); }
 
 /*
  * --INFO--
@@ -1489,8 +1489,8 @@ J3DModelData* BaseItemMgr::generatorGetShape(Game::GenItemParm* parm)
 {
 	int shapeID = parm->getShapeID();
 	J3DModelData* modelData;
-	if (!(0 > shapeID || shapeID >= m_modelDataMax)) {
-		modelData = m_modelData[shapeID];
+	if (!(0 > shapeID || shapeID >= mModelDataMax)) {
+		modelData = mModelData[shapeID];
 	} else {
 		modelData = nullptr;
 	}
@@ -1504,8 +1504,8 @@ J3DModelData* BaseItemMgr::generatorGetShape(Game::GenItemParm* parm)
  */
 J3DModelData* BaseItemMgr::getModelData(int index)
 {
-	P2ASSERTBOUNDSLINE(792, 0, index, m_modelDataMax);
-	return m_modelData[index];
+	P2ASSERTBOUNDSLINE(792, 0, index, mModelDataMax);
+	return mModelData[index];
 }
 
 /*
@@ -1516,21 +1516,21 @@ J3DModelData* BaseItemMgr::getModelData(int index)
 JKRArchive* BaseItemMgr::openTextArc(char* fileName)
 {
 	char pathBuffer[512];
-	sprintf(pathBuffer, "%s/%s", m_objectPathComponent, fileName);
+	sprintf(pathBuffer, "%s/%s", mObjectPathComponent, fileName);
 	LoadResource::Arg loadArg(pathBuffer);
-	loadArg._1C    = 2;
-	loadArg.m_heap = JKRHeap::sCurrentHeap;
+	loadArg._1C   = 2;
+	loadArg.mHeap = JKRHeap::sCurrentHeap;
 	// LoadResource::Node* loadNode = gLoadResourceMgr->mountArchive(loadArg);
-	// m_node = loadNode;
-	m_resourceNode = gLoadResourceMgr->mountArchive(loadArg);
+	// mNode = loadNode;
+	mResourceNode = gLoadResourceMgr->mountArchive(loadArg);
 	// JKRArchive* archive;
-	// if (m_node ) {
-	// 	archive = m_node->m_archive;
+	// if (mNode ) {
+	// 	archive = mNode->mArchive;
 	// } else {
 	// 	archive = nullptr;
 	// }
 	// return archive;
-	return (m_resourceNode != nullptr) ? m_resourceNode->m_archive : nullptr;
+	return (mResourceNode != nullptr) ? mResourceNode->mArchive : nullptr;
 	/*
 	stwu     r1, -0x240(r1)
 	mflr     r0
@@ -1579,8 +1579,8 @@ lbl_801CD23C:
  */
 void BaseItemMgr::closeTextArc(JKRArchive*)
 {
-	delete m_resourceNode;
-	m_resourceNode = nullptr;
+	delete mResourceNode;
+	mResourceNode = nullptr;
 }
 
 /*
@@ -1609,7 +1609,7 @@ PlatAttacher* BaseItemMgr::loadPlatAttacher(JKRFileLoader* loader, char* path)
 	// Line 0x404: platAttacher not found. :-)
 	JUT_ASSERTLINE(1028, data != nullptr, "platAttacher %s not found !\n", path);
 	RamStream stream(data, -1);
-	stream.m_mode = STREAM_MODE_BINARY;
+	stream.mMode = STREAM_MODE_BINARY;
 	attacher->read(stream);
 	return attacher;
 	/*
@@ -1700,7 +1700,7 @@ void BaseItemMgr::setupSoundViewerAndBas() { }
 TNodeItemMgr::TNodeItemMgr()
     : BaseItemMgr()
     , Container<BaseItem>()
-    , m_nodeObjectMgr()
+    , mNodeObjectMgr()
 {
 }
 
@@ -1912,11 +1912,11 @@ TNodeItemMgr::TNodeItemMgr()
 BaseItem* TNodeItemMgr::birth()
 {
 	BaseItem* item              = doNew();
-	item->m_nodeItemMgr         = this;
+	item->mNodeItemMgr          = this;
 	TObjectNode<BaseItem>* node = new TObjectNode<BaseItem>();
-	node->m_contents            = item;
-	m_nodeObjectMgr.m_node.add(node);
-	node->m_contents->constructor();
+	node->mContents             = item;
+	mNodeObjectMgr.mNode.add(node);
+	node->mContents->constructor();
 	return item;
 }
 
@@ -1928,11 +1928,11 @@ BaseItem* TNodeItemMgr::birth()
  */
 void TNodeItemMgr::entry(BaseItem* item)
 {
-	item->m_nodeItemMgr         = this;
+	item->mNodeItemMgr          = this;
 	TObjectNode<BaseItem>* node = new TObjectNode<BaseItem>();
-	node->m_contents            = item;
-	m_nodeObjectMgr.m_node.add(node);
-	node->m_contents->constructor();
+	node->mContents             = item;
+	mNodeObjectMgr.mNode.add(node);
+	node->mContents->constructor();
 }
 
 /*
@@ -1943,7 +1943,7 @@ void TNodeItemMgr::entry(BaseItem* item)
  */
 void TNodeItemMgr::initDependency()
 {
-	Iterator<BaseItem> iterator(&m_nodeObjectMgr);
+	Iterator<BaseItem> iterator(&mNodeObjectMgr);
 	iterator.first();
 	while (!iterator.isDone()) {
 		BaseItem* item = (*iterator);
@@ -2099,14 +2099,14 @@ lbl_801CDA64:
  */
 void TNodeItemMgr::killAll()
 {
-	for (TObjectNode<BaseItem>* node = (TObjectNode<BaseItem>*)m_nodeObjectMgr.m_node.m_child; node != nullptr;
-	     node                        = (TObjectNode<BaseItem>*)m_nodeObjectMgr.m_node.m_child) {
-		node->m_contents->getCreatureName();
-		BaseItem* creature = node->m_contents;
+	for (TObjectNode<BaseItem>* node = (TObjectNode<BaseItem>*)mNodeObjectMgr.mNode.mChild; node != nullptr;
+	     node                        = (TObjectNode<BaseItem>*)mNodeObjectMgr.mNode.mChild) {
+		node->mContents->getCreatureName();
+		BaseItem* creature = node->mContents;
 		CreatureKillArg arg(1);
 		creature->kill(&arg);
-		if (creature->m_soundObj != nullptr && PSSystem::SingletonBase<PSM::ObjMgr>::sInstance) {
-			PSSystem::SingletonBase<PSM::ObjMgr>::sInstance->remove(creature->m_soundObj);
+		if (creature->mSoundObj != nullptr && PSSystem::SingletonBase<PSM::ObjMgr>::sInstance) {
+			PSSystem::SingletonBase<PSM::ObjMgr>::sInstance->remove(creature->mSoundObj);
 		}
 	}
 }
@@ -2117,7 +2117,7 @@ void TNodeItemMgr::killAll()
  * Address:	801CDB3C
  * Size:	0000C4
  */
-ItemMgr::ItemMgr() { m_name = "アイ�?�?マネージャ"; }
+ItemMgr::ItemMgr() { mName = "アイ�?�?マネージャ"; }
 
 /*
  * __dt__Q24Game7ItemMgrFv
@@ -2204,8 +2204,8 @@ lbl_801CDCCC:
 void ItemMgr::addMgr(BaseItemMgr* mgr)
 {
 	TObjectNode<GenericObjectMgr>* node = new TObjectNode<GenericObjectMgr>();
-	node->m_contents                    = mgr;
-	m_node.add(node);
+	node->mContents                     = mgr;
+	mNode.add(node);
 }
 
 /*
@@ -2675,7 +2675,7 @@ lbl_801CF5B4:
  */
 void TNodeItemMgr::kill(Game::BaseItem* item)
 {
-	m_nodeObjectMgr.delNode(item);
+	mNodeObjectMgr.delNode(item);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2695,7 +2695,7 @@ void TNodeItemMgr::kill(Game::BaseItem* item)
  * Address:	801CF5F4
  * Size:	00002C
  */
-void TNodeItemMgr::doAnimation() { m_nodeObjectMgr.doAnimation(); }
+void TNodeItemMgr::doAnimation() { mNodeObjectMgr.doAnimation(); }
 
 /*
  * doEntry__Q24Game12TNodeItemMgrFv
@@ -2703,7 +2703,7 @@ void TNodeItemMgr::doAnimation() { m_nodeObjectMgr.doAnimation(); }
  * Address:	801CF620
  * Size:	00002C
  */
-void TNodeItemMgr::doEntry() { m_nodeObjectMgr.doEntry(); }
+void TNodeItemMgr::doEntry() { mNodeObjectMgr.doEntry(); }
 
 /*
  * doSetView__Q24Game12TNodeItemMgrFi
@@ -2711,7 +2711,7 @@ void TNodeItemMgr::doEntry() { m_nodeObjectMgr.doEntry(); }
  * Address:	801CF64C
  * Size:	00002C
  */
-void TNodeItemMgr::doSetView(int viewNo) { m_nodeObjectMgr.doSetView(viewNo); }
+void TNodeItemMgr::doSetView(int viewNo) { mNodeObjectMgr.doSetView(viewNo); }
 
 /*
  * --INFO--
@@ -2720,7 +2720,7 @@ void TNodeItemMgr::doSetView(int viewNo) { m_nodeObjectMgr.doSetView(viewNo); }
  */
 void TNodeItemMgr::doViewCalc()
 {
-	m_nodeObjectMgr.doViewCalc();
+	mNodeObjectMgr.doViewCalc();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2743,7 +2743,7 @@ void TNodeItemMgr::doViewCalc()
  */
 void TNodeItemMgr::doSimulation(float p1)
 {
-	m_nodeObjectMgr.doSimulation(p1);
+	mNodeObjectMgr.doSimulation(p1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2766,7 +2766,7 @@ void TNodeItemMgr::doSimulation(float p1)
  */
 void TNodeItemMgr::doDirectDraw(Graphics& gfx)
 {
-	m_nodeObjectMgr.doDirectDraw(gfx);
+	mNodeObjectMgr.doDirectDraw(gfx);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2787,7 +2787,7 @@ void TNodeItemMgr::doDirectDraw(Graphics& gfx)
  * Address:	801CF6FC
  * Size:	00002C
  */
-void* TNodeItemMgr::getEnd() { return m_nodeObjectMgr.getEnd(); }
+void* TNodeItemMgr::getEnd() { return mNodeObjectMgr.getEnd(); }
 
 /*
  * @generated
@@ -2802,7 +2802,7 @@ void* TNodeItemMgr::getEnd() { return m_nodeObjectMgr.getEnd(); }
  * Address:	801CF730
  * Size:	00002C
  */
-void* TNodeItemMgr::getStart() { return m_nodeObjectMgr.getStart(); }
+void* TNodeItemMgr::getStart() { return mNodeObjectMgr.getStart(); }
 
 /*
  * @generated
@@ -2823,7 +2823,7 @@ void* TNodeItemMgr::getStart() { return m_nodeObjectMgr.getStart(); }
  * Address:	801CF764
  * Size:	00002C
  */
-void* TNodeItemMgr::getNext(void* item) { return m_nodeObjectMgr.getNext(item); }
+void* TNodeItemMgr::getNext(void* item) { return mNodeObjectMgr.getNext(item); }
 
 /*
  * @generated
@@ -2846,7 +2846,7 @@ void* TNodeItemMgr::getNext(void* item) { return m_nodeObjectMgr.getNext(item); 
  */
 BaseItem* TNodeItemMgr::get(void* item)
 {
-	return m_nodeObjectMgr.get(item);
+	return mNodeObjectMgr.get(item);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

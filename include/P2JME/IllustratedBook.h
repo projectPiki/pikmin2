@@ -25,12 +25,12 @@ struct TControl : public P2JME::Window::TControl {
 
 	// _00     = VTBL
 	// _00-_5C = P2JME::Window::TControl
-	f32 _5C;               // _5C
-	f32 _60;               // _60
-	J2DTextBox* m_textBox; // _64
-	f32 _68;               // _68
-	f32 _6C;               // _6C
-	f32 m_scrollSpeed;     // _70
+	f32 _5C;              // _5C
+	f32 _60;              // _60
+	J2DTextBox* mTextBox; // _64
+	f32 _68;              // _68
+	f32 _6C;              // _6C
+	f32 mScrollSpeed;     // _70
 };
 
 struct TRenderingProcessor : public P2JME::Window::TRenderingProcessor {

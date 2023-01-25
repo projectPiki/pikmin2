@@ -69,16 +69,16 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	void closeTextArc(JKRArchive*);
 
 	// end address _04
-	char* m_itemName;                   // _08
-	LoadResource::Node* m_resourceNode; // _0C
-	u32 _10;                            // _10
-	u32 _14;                            // _14
-	int m_modelDataMax;                 // _18
-	J3DModelData** m_modelData;         // _1C /* ptr to array of ptrs */
-	SysShape::AnimMgr* m_animMgr;       // _20
-	CollPartFactory* m_collPartFactory; // _24
-	char* m_objectPathComponent;        // _28
-	JKRMemArchive* m_archive;           // _2C
+	char* mItemName;                   // _08
+	LoadResource::Node* mResourceNode; // _0C
+	u32 _10;                           // _10
+	u32 _14;                           // _14
+	int mModelDataMax;                 // _18
+	J3DModelData** mModelData;         // _1C /* ptr to array of ptrs */
+	SysShape::AnimMgr* mAnimMgr;       // _20
+	CollPartFactory* mCollPartFactory; // _24
+	char* mObjectPathComponent;        // _28
+	JKRMemArchive* mArchive;           // _2C
 };
 
 // surprisingly this is not related to TNodeItemMgr, for whatever reason.
@@ -106,7 +106,7 @@ struct NodeItemMgr : public BaseItemMgr, public Container<T> {
 
 	T* birth(); // weak
 
-	NodeObjectMgr<T> m_nodeObjectMgr; // _4C
+	NodeObjectMgr<T> mNodeObjectMgr; // _4C
 };
 
 struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
@@ -134,7 +134,7 @@ struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
 	BaseItem* birth();
 	void entry(BaseItem*);
 
-	NodeObjectMgr<BaseItem> m_nodeObjectMgr; // _4C
+	NodeObjectMgr<BaseItem> mNodeObjectMgr; // _4C
 };
 
 struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
@@ -196,7 +196,7 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	void createMgr(int, u32);
 	void onAlloc();
 
-	MonoObjectMgr<T> m_monoObjectMgr; // _4C
+	MonoObjectMgr<T> mMonoObjectMgr; // _4C
 };
 
 extern ItemMgr* itemMgr;

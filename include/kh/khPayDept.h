@@ -18,8 +18,8 @@ struct DispPayDept : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	PayDeptType m_payDeptType; // _08
-	int m_percentLevel;        // _0C
+	PayDeptType mPayDeptType; // _08
+	int mPercentLevel;        // _0C
 };
 
 struct ObjPayDept : public ::Screen::ObjBase {
@@ -38,16 +38,16 @@ struct ObjPayDept : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	P2DScreen::Mgr_tuning* m_screen; // _38
-	J2DAnmTransform* m_anim1;        // _3C
-	J2DAnmColor* m_anim2;            // _40
-	f32 m_animTime1;                 // _44
-	f32 m_animTime2;                 // _48
+	P2DScreen::Mgr_tuning* mScreen; // _38
+	J2DAnmTransform* mAnim1;        // _3C
+	J2DAnmColor* mAnim2;            // _40
+	f32 mAnimTime1;                 // _44
+	f32 mAnimTime2;                 // _48
 
 	static struct StaticValues {
-		inline StaticValues() { m_animSpeed = 1.0f; }
+		inline StaticValues() { mAnimSpeed = 1.0f; }
 
-		f32 m_animSpeed; // _00
+		f32 mAnimSpeed; // _00
 	} msVal;
 };
 

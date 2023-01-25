@@ -15,10 +15,10 @@ static void _Print(char* format, ...) { OSReport(format, __FILE__); }
  */
 ObjSMenuCont::ObjSMenuCont(char const* name)
 {
-	m_disp       = nullptr;
-	m_screenCont = nullptr;
-	m_animGroup  = nullptr;
-	m_name       = name;
+	mDisp       = nullptr;
+	mScreenCont = nullptr;
+	mAnimGroup  = nullptr;
+	mName       = name;
 }
 
 /*
@@ -36,20 +36,20 @@ ObjSMenuCont::~ObjSMenuCont() { }
 void ObjSMenuCont::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberSMenuAll* dispfull = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
-	m_disp = static_cast<og::Screen::DispMemberSMenuCont*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_CONTROLS));
-	if (!m_disp) {
+	mDisp = static_cast<og::Screen::DispMemberSMenuCont*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_CONTROLS));
+	if (!mDisp) {
 		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
-		m_disp = static_cast<og::Screen::DispMemberSMenuCont*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_CONTROLS));
+		mDisp = static_cast<og::Screen::DispMemberSMenuCont*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_CONTROLS));
 	}
 
-	m_screenCont = new P2DScreen::Mgr_tuning;
-	m_screenCont->set("s_menu_controller.blo", 0x1040000, arc);
+	mScreenCont = new P2DScreen::Mgr_tuning;
+	mScreenCont->set("s_menu_controller.blo", 0x1040000, arc);
 
-	m_animGroup = new og::Screen::AnimGroup(2);
-	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_screenCont, "s_menu_controller.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_screenCont, "s_menu_controller_02.btk", msBaseVal._00);
+	mAnimGroup = new og::Screen::AnimGroup(2);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mScreenCont, "s_menu_controller.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mScreenCont, "s_menu_controller_02.btk", msBaseVal._00);
 
-	doCreateAfter(arc, m_screenCont);
+	doCreateAfter(arc, mScreenCont);
 }
 
 /*
@@ -60,7 +60,7 @@ void ObjSMenuCont::doCreate(JKRArchive* arc)
 void ObjSMenuCont::doUpdateLAction()
 {
 	og::Screen::DispMemberSMenuAll* disp = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
-	if (disp->m_sMenuMap.m_inCave) {
+	if (disp->mSMenuMap.mInCave) {
 		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember(), false, true);
 		jump_L(arg);
 	} else {
@@ -88,10 +88,10 @@ void ObjSMenuCont::doUpdateRAction()
 void ObjSMenuCont::commonUpdate()
 {
 	commonUpdateBase();
-	setSMenuScale(msVal.m_scaleX, msVal.m_scaleY);
-	m_animGroup->update();
-	m_screenCont->setXY(m_movePos, 0.0f);
-	m_screenCont->update();
+	setSMenuScale(msVal.mScaleX, msVal.mScaleY);
+	mAnimGroup->update();
+	mScreenCont->setXY(mMovePos, 0.0f);
+	mScreenCont->update();
 }
 
 /*
@@ -103,7 +103,7 @@ bool ObjSMenuCont::doUpdate()
 {
 	commonUpdate();
 	bool ret = ObjSMenuBase::doUpdate();
-	m_screenCont->animation();
+	mScreenCont->animation();
 	return ret;
 }
 
@@ -114,10 +114,10 @@ bool ObjSMenuCont::doUpdate()
  */
 void ObjSMenuCont::doDraw(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
 	graf->setPort();
-	if (m_screenCont) {
-		m_screenCont->draw(gfx, *graf);
+	if (mScreenCont) {
+		mScreenCont->draw(gfx, *graf);
 	}
 	drawYaji(gfx);
 }
@@ -129,8 +129,8 @@ void ObjSMenuCont::doDraw(Graphics& gfx)
  */
 void ObjSMenuCont::in_L()
 {
-	m_state = MENUSTATE_OpenL;
-	m_angle = 15.0;
+	mState = MENUSTATE_OpenL;
+	mAngle = 15.0;
 }
 
 /*
@@ -140,8 +140,8 @@ void ObjSMenuCont::in_L()
  */
 void ObjSMenuCont::in_R()
 {
-	m_state = MENUSTATE_OpenR;
-	m_angle = 15.0;
+	mState = MENUSTATE_OpenR;
+	mAngle = 15.0;
 }
 
 /*
@@ -149,7 +149,7 @@ void ObjSMenuCont::in_R()
  * Address:	80330B84
  * Size:	00000C
  */
-void ObjSMenuCont::wait() { m_state = MENUSTATE_Default; }
+void ObjSMenuCont::wait() { mState = MENUSTATE_Default; }
 
 /*
  * --INFO--
@@ -158,7 +158,7 @@ void ObjSMenuCont::wait() { m_state = MENUSTATE_Default; }
  */
 void ObjSMenuCont::out_L()
 {
-	m_state = MENUSTATE_CloseL;
+	mState = MENUSTATE_CloseL;
 	ogSound->setSMenuLR();
 }
 
@@ -169,7 +169,7 @@ void ObjSMenuCont::out_L()
  */
 void ObjSMenuCont::out_R()
 {
-	m_state = MENUSTATE_CloseR;
+	mState = MENUSTATE_CloseR;
 	ogSound->setSMenuLR();
 }
 
@@ -180,10 +180,10 @@ void ObjSMenuCont::out_R()
  */
 bool ObjSMenuCont::doStart(::Screen::StartSceneArg const* arg)
 {
-	m_animGroup->setFrame(0.0f);
-	m_animGroup->setRepeat(true);
-	m_animGroup->setSpeed(1.0f);
-	m_animGroup->start();
+	mAnimGroup->setFrame(0.0f);
+	mAnimGroup->setRepeat(true);
+	mAnimGroup->setSpeed(1.0f);
+	mAnimGroup->start();
 	setYajiName('6052_00', '6050_00', '6051_00'); // "Menu" "Radar" "Items"
 	stopYaji();
 	return start_LR(arg);

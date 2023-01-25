@@ -26,7 +26,7 @@ void FSM::init(Game::EnemyBase* enemy)
 StateWait::StateWait(int stateID)
     : State(stateID)
 {
-	m_name = "wait";
+	mName = "wait";
 }
 
 /*
@@ -48,7 +48,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	if (enemy->m_health <= 0.0f) {
+	if (enemy->mHealth <= 0.0f) {
 		static_cast<Obj*>(enemy)->genItem();
 
 		Vector3f fxPos;
@@ -63,17 +63,17 @@ void StateWait::exec(EnemyBase* enemy)
 		efx::TEnemyBomb enemybomb;
 		enemybomb.create(&type);
 
-		enemy->m_soundObj->startSound(PSSE_EN_EGG_BREAK, 0);
+		enemy->mSoundObj->startSound(PSSE_EN_EGG_BREAK, 0);
 
 		enemy->kill(nullptr);
 	}
 
-	if (enemy->m_toFlick >= 1.0f) {
+	if (enemy->mToFlick >= 1.0f) {
 		enemy->startMotion();
-		enemy->m_toFlick = 0.0f;
+		enemy->mToFlick = 0.0f;
 	}
 
-	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 		enemy->startMotion(0, nullptr);
 		enemy->stopMotion();
 	}

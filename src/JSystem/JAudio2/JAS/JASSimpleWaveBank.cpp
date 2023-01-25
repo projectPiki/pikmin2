@@ -37,8 +37,8 @@
 JASSimpleWaveBank::JASSimpleWaveBank()
     : JASWaveBank()
     , JASWaveArc()
-    , m_handles(nullptr)
-    , m_handleCount(0)
+    , mHandles(nullptr)
+    , mHandleCount(0)
 {
 }
 
@@ -48,7 +48,7 @@ JASSimpleWaveBank::JASSimpleWaveBank()
  * Size:	0000D4
  * __dt__17JASSimpleWaveBankFv
  */
-JASSimpleWaveBank::~JASSimpleWaveBank() { delete[] m_handles; }
+JASSimpleWaveBank::~JASSimpleWaveBank() { delete[] mHandles; }
 
 /*
  * --INFO--
@@ -65,9 +65,9 @@ JASSimpleWaveBank::TWaveHandle::~TWaveHandle() { }
  */
 void JASSimpleWaveBank::setWaveTableSize(unsigned long tableSize)
 {
-	delete[] m_handles;
-	m_handles     = new (getCurrentHeap(), 0) TWaveHandle[tableSize];
-	m_handleCount = tableSize;
+	delete[] mHandles;
+	mHandles     = new (getCurrentHeap(), 0) TWaveHandle[tableSize];
+	mHandleCount = tableSize;
 }
 
 /*
@@ -76,7 +76,7 @@ void JASSimpleWaveBank::setWaveTableSize(unsigned long tableSize)
  * Size:	000024
  * __ct__Q217JASSimpleWaveBank11TWaveHandleFv
  */
-JASSimpleWaveBank::TWaveHandle::TWaveHandle() { m_heap = nullptr; }
+JASSimpleWaveBank::TWaveHandle::TWaveHandle() { mHeap = nullptr; }
 
 /*
  * --INFO--
@@ -85,10 +85,10 @@ JASSimpleWaveBank::TWaveHandle::TWaveHandle() { m_heap = nullptr; }
  */
 JASWaveHandle* JASSimpleWaveBank::getWaveHandle(unsigned long handleIndex) const
 {
-	if (handleIndex >= m_handleCount) {
+	if (handleIndex >= mHandleCount) {
 		return nullptr;
 	}
-	return m_handles + handleIndex;
+	return mHandles + handleIndex;
 }
 
 /*
@@ -98,9 +98,9 @@ JASWaveHandle* JASSimpleWaveBank::getWaveHandle(unsigned long handleIndex) const
  */
 void JASSimpleWaveBank::setWaveInfo(unsigned long handleIndex, const JASWaveInfo& info)
 {
-	m_handles[handleIndex].m_info     = info;
-	m_handles[handleIndex].m_info._24 = &_48;
-	m_handles[handleIndex].m_heap     = &m_heap;
+	mHandles[handleIndex].mInfo     = info;
+	mHandles[handleIndex].mInfo._24 = &_48;
+	mHandles[handleIndex].mHeap     = &mHeap;
 }
 
 /*
@@ -121,7 +121,7 @@ JASWaveArc* JASSimpleWaveBank::getWaveArc(int arcIndex)
  * Address:	8009B9D4
  * Size:	000008
  */
-const JASWaveInfo* JASSimpleWaveBank::TWaveHandle::getWaveInfo() const { return &m_info; }
+const JASWaveInfo* JASSimpleWaveBank::TWaveHandle::getWaveInfo() const { return &mInfo; }
 
 /*
  * --INFO--
@@ -130,10 +130,10 @@ const JASWaveInfo* JASSimpleWaveBank::TWaveHandle::getWaveInfo() const { return 
  */
 void* JASSimpleWaveBank::TWaveHandle::getWavePtr() const
 {
-	if (m_heap->_38 == nullptr) {
+	if (mHeap->_38 == nullptr) {
 		return nullptr;
 	}
-	return m_heap->_38 + m_info._08;
+	return mHeap->_38 + mInfo._08;
 }
 
 /*

@@ -41,12 +41,12 @@ struct Farm : public CNode {
 	void doDebugDraw(Graphics&);
 	void initAllObjectNodes();
 
-	Vector3f m_position;             // _18
-	J3DModelData* m_modelData;       // _24
-	SysShape::Model* m_model;        // _28
-	FieldVtxColorMgr* m_vtxColorMgr; // _2C
-	CNode m_obstacleRootNode;        // _30
-	CNode m_plantRootNode;           // _48
+	Vector3f mPosition;             // _18
+	J3DModelData* mModelData;       // _24
+	SysShape::Model* mModel;        // _28
+	FieldVtxColorMgr* mVtxColorMgr; // _2C
+	CNode mObstacleRootNode;        // _30
+	CNode mPlantRootNode;           // _48
 };
 
 /**
@@ -55,11 +55,11 @@ struct Farm : public CNode {
 struct Obstacle : public CNode {
 	Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, f32 p2, f32 p3) // unused/inlined
 	    : CNode("")
-	    , m_farm(farm)
+	    , mFarm(farm)
 	{
 		Vector3f position = creature->getPosition();
-		m_creature        = creature;
-		m_vtxColorControl = vtxColorMgr->createNewControl(position, p2, p3);
+		mCreature         = creature;
+		mVtxColorControl  = vtxColorMgr->createNewControl(position, p2, p3);
 	}
 
 	virtual ~Obstacle() {}; // _08 (weak)
@@ -69,9 +69,9 @@ struct Obstacle : public CNode {
 	// Unused/inlined:
 	void doDebugDraw(Graphics&);
 
-	Farm* m_farm;                            // _18
-	Creature* m_creature;                    // _1C
-	FieldVtxColorControl* m_vtxColorControl; // _20
+	Farm* mFarm;                            // _18
+	Creature* mCreature;                    // _1C
+	FieldVtxColorControl* mVtxColorControl; // _20
 };
 
 /**
@@ -80,7 +80,7 @@ struct Obstacle : public CNode {
 struct Plant : public CNode {
 	Plant(Game::Creature* creature)
 	    : CNode("")
-	    , m_creature(creature)
+	    , mCreature(creature)
 	    , _1C()
 	{
 	}
@@ -91,8 +91,8 @@ struct Plant : public CNode {
 	void sendInteraction();
 	void doDebugDraw(Graphics&);
 
-	Creature* m_creature; // _18
-	int _1C;              // _1C
+	Creature* mCreature; // _18
+	int _1C;             // _1C
 };
 
 struct FarmMgr : public GenericObjectMgr, public CNode {
@@ -119,11 +119,11 @@ struct FarmMgr : public GenericObjectMgr, public CNode {
 	// Unused/inlined:
 	inline Farm* getNearestFarm(Vector3f&);
 
-	u32 _1C;                                 // _1C
-	CNode m_farmsRootNode;                   // _20
-	PSM::DirectorUpdator* m_directorUpdator; // _38
-	u8 _3C;                                  // _3C
-	u8 _3D;                                  // _3D
+	u32 _1C;                                // _1C
+	CNode mFarmsRootNode;                   // _20
+	PSM::DirectorUpdator* mDirectorUpdator; // _38
+	u8 _3C;                                 // _3C
+	u8 _3D;                                 // _3D
 };
 
 extern FarmMgr* farmMgr;

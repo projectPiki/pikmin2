@@ -20,7 +20,7 @@ struct TObject : stb::TObject {
 	TObject(data::TE32Block, void const*, unsigned long, TAdaptor*);                          // unused/inlined
 	TObject(const JStudio::stb::data::TParse_TBlock_object& data, JStudio::TAdaptor* adaptor) // unused/inlined
 	    : stb::TObject(data)
-	    , m_adaptor(adaptor)
+	    , mAdaptor(adaptor)
 	{
 	}
 
@@ -37,8 +37,8 @@ struct TObject : stb::TObject {
 
 	// VTBL _04
 	// JGadget::TLinkListNode _0C; // _0C
-	// TControl* m_control;        // _14
-	TAdaptor* m_adaptor; // _34
+	// TControl* mControl;        // _14
+	TAdaptor* mAdaptor; // _34
 };
 
 struct TObject_actor : public TObject {

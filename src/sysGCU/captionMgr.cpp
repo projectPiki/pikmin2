@@ -11,10 +11,10 @@
 Caption::Node::Node()
     : CNode("")
 {
-	m_startFrame = 0;
-	m_endFrame   = 1;
-	strcpy(m_mesgID, "----_--");
-	m_name = m_mesgID;
+	mStartFrame = 0;
+	mEndFrame   = 1;
+	strcpy(mMesgID, "----_--");
+	mName = mMesgID;
 }
 
 /*
@@ -25,9 +25,9 @@ Caption::Node::Node()
  */
 void Caption::Node::read(Stream& input)
 {
-	input.readString(m_mesgID, 8);
-	m_startFrame = (u16)input.readShort();
-	m_endFrame   = (u16)input.readShort();
+	input.readString(mMesgID, 8);
+	mStartFrame = (u16)input.readShort();
+	mEndFrame   = (u16)input.readShort();
 }
 
 /*
@@ -39,15 +39,15 @@ void Caption::Node::read(Stream& input)
 Caption::Mgr::Mgr()
     : CNode("キャプションマネージャ")
 {
-	m_node = nullptr;
+	mNode  = nullptr;
 	_20[0] = 0;
 	_20[1] = 0;
 	_20[2] = 0;
 	_20[3] = 0;
 
-	m_controls = new P2JME::Caption::TControl[3];
+	mControls = new P2JME::Caption::TControl[3];
 	for (u32 i = 0; i < 3; i++) {
-		m_controls[i].init();
+		mControls[i].init();
 	}
 }
 
@@ -67,7 +67,7 @@ void Caption::Mgr::read(Stream& input)
 		add(node);
 	}
 
-	FOREACH_NODE(Node, m_child, node) { node->read(input); }
+	FOREACH_NODE(Node, mChild, node) { node->read(input); }
 }
 
 /*
@@ -77,11 +77,11 @@ void Caption::Mgr::read(Stream& input)
  */
 void Caption::Mgr::reset()
 {
-	FOREACH_NODE(Node, m_child, node) { node->del(); }
+	FOREACH_NODE(Node, mChild, node) { node->del(); }
 
 	del();
-	m_child = nullptr;
-	m_node  = nullptr;
+	mChild = nullptr;
+	mNode  = nullptr;
 	resetMessageObjs();
 }
 
@@ -93,7 +93,7 @@ void Caption::Mgr::reset()
 void Caption::Mgr::resetMessageObjs()
 {
 	for (u32 i = 0; i < 3; i++) {
-		m_controls[i].reset();
+		mControls[i].reset();
 	}
 }
 
@@ -105,13 +105,13 @@ void Caption::Mgr::resetMessageObjs()
 void Caption::Mgr::setCurrentNode(long id)
 {
 	// needs to be like this to get regalloc correct, FOREACH doesn't work
-	Node* node = (Node*)m_child;
-	for (node; node; node = (Node*)node->m_next) {
-		if (id <= (int)node->m_endFrame) {
+	Node* node = (Node*)mChild;
+	for (node; node; node = (Node*)node->mNext) {
+		if (id <= (int)node->mEndFrame) {
 			break;
 		}
 	}
-	m_node = node;
+	mNode = node;
 }
 
 /*
@@ -122,12 +122,12 @@ void Caption::Mgr::setCurrentNode(long id)
 void Caption::Mgr::update(long num)
 {
 	if (num >= 0) {
-		Node* node = m_node;
+		Node* node = mNode;
 		if (node != nullptr) {
-			if (num <= (int)node->m_endFrame) {
-				Node* child = static_cast<Node*>(node->m_prev);
+			if (num <= (int)node->mEndFrame) {
+				Node* child = static_cast<Node*>(node->mPrev);
 				if (child != nullptr) {
-					if (num <= (int)child->m_endFrame) {
+					if (num <= (int)child->mEndFrame) {
 						setCurrentNode(num);
 					}
 				} else {
@@ -139,14 +139,14 @@ void Caption::Mgr::update(long num)
 		} else {
 			setCurrentNode(num);
 		}
-		if (m_node && node != m_node) {
+		if (mNode && node != mNode) {
 			P2JME::Caption::TControl* msg = getFreeMessage();
 			P2ASSERTLINE(355, msg);
-			msg->start(m_node->m_mesgID, m_node->m_startFrame, m_node->m_endFrame);
+			msg->start(mNode->mMesgID, mNode->mStartFrame, mNode->mEndFrame);
 		}
 
 		for (u32 i = 0; i < 3; i++) {
-			m_controls[i].updateSetFrame(num);
+			mControls[i].updateSetFrame(num);
 		}
 	}
 }
@@ -158,10 +158,10 @@ void Caption::Mgr::update(long num)
  */
 void Caption::Mgr::draw(Graphics& gfx)
 {
-	gfx.m_orthoGraph.setPort();
-	if (m_node) {
+	gfx.mOrthoGraph.setPort();
+	if (mNode) {
 		for (u32 i = 0; i < 3; i++) {
-			m_controls[i].draw(gfx);
+			mControls[i].draw(gfx);
 		}
 	}
 }
@@ -175,8 +175,8 @@ P2JME::Caption::TControl* Caption::Mgr::getFreeMessage()
 {
 	P2JME::Caption::TControl* ret = nullptr;
 	for (u32 i = 0; i < 3; i++) {
-		if ((int)m_controls[i]._5C == 0) {
-			ret = &m_controls[i];
+		if ((int)mControls[i]._5C == 0) {
+			ret = &mControls[i];
 			break;
 		}
 	}

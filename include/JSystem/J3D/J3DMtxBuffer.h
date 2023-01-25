@@ -12,16 +12,16 @@ struct J3DModelData;
  * @fabricatedName
  */
 struct J3DMtxBufferParent {
-	J3DJointTree* m_jointTree; // _00
-	u8* _04;                   // _04
-	u8* _08;                   // _08
-	Mtx* m_worldMatrices;      // _0C
-	Mtx* _10;                  // _10
-	Mtx** _14[2];              // _14
-	Mtx33** _1C[2];            // _1C
-	Mtx33*** _24[2];           // _24
-	u32 m_modelType;           // _2C
-	u32 m_currentViewNumber;   // _30
+	J3DJointTree* mJointTree; // _00
+	u8* _04;                  // _04
+	u8* _08;                  // _08
+	Mtx* mWorldMatrices;      // _0C
+	Mtx* _10;                 // _10
+	Mtx** _14[2];             // _14
+	Mtx33** _1C[2];           // _1C
+	Mtx33*** _24[2];          // _24
+	u32 mModelType;           // _2C
+	u32 mCurrentViewNumber;   // _30
 };
 
 struct J3DMtxBuffer : public J3DMtxBufferParent {
@@ -41,7 +41,7 @@ struct J3DMtxBuffer : public J3DMtxBufferParent {
 	void calcNrmMtx();
 	void calcBBoardMtx();
 
-	inline Matrixf* getWorldMatrix(int i) { return (Matrixf*)m_worldMatrices[i]; }
+	inline Matrixf* getWorldMatrix(int i) { return (Matrixf*)mWorldMatrices[i]; }
 
 	static Mtx* sNoUseDrawMtxPtr;
 	static Mtx33* sNoUseNrmMtxPtr;

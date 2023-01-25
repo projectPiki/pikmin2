@@ -35,11 +35,11 @@ struct ObjectBase : public JKRDisposer {
 
 	// _00		= VTABLE
 	// _04-_18	= JKRDisposer
-	u8 _18;              // _18
-	u8 m_handleCount;    // _19
-	JAISound** m_sounds; // _1C
-	u32 _20;             // _20
-	Vec* _24;            // _24
+	u8 _18;             // _18
+	u8 mHandleCount;    // _19
+	JAISound** mSounds; // _1C
+	u32 _20;            // _20
+	Vec* _24;           // _24
 };
 
 struct Object : public ObjectBase {

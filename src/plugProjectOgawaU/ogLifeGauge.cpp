@@ -18,41 +18,41 @@ namespace Screen {
  */
 CallBack_LifeGauge::CallBack_LifeGauge()
 {
-	m_data               = nullptr;
-	m_naviLifeRatio      = 1.0f;
-	m_widthOrRadiusMaybe = 17.0f;
-	m_offsetX            = 0.0f;
-	m_offsetY            = 0.0f;
-	m_lowLifeSoundTimer  = 0.0f;
-	_58                  = 1.0f;
-	_5C                  = nullptr;
-	m_pin1               = nullptr;
-	m_pin2               = nullptr;
-	m_na_i               = nullptr;
-	m_li_i               = nullptr;
+	mData               = nullptr;
+	mNaviLifeRatio      = 1.0f;
+	mWidthOrRadiusMaybe = 17.0f;
+	mOffsetX            = 0.0f;
+	mOffsetY            = 0.0f;
+	mLowLifeSoundTimer  = 0.0f;
+	_58                 = 1.0f;
+	_5C                 = nullptr;
+	mPin1               = nullptr;
+	mPin2               = nullptr;
+	mNa_i               = nullptr;
+	mLi_i               = nullptr;
 
-	m_lifeGauge       = new LifeGauge;
-	_34               = 0.0f;
-	_38               = 0.0f;
-	m_na_i_d4         = 0.0f;
-	m_na_i_d8         = 0.0f;
-	m_li_i_d4         = 0.0f;
-	m_li_i_d8         = 0.0f;
-	_30               = 0.0f;
-	m_isActiveNavi    = 1;
-	m_isActiveNaviOld = m_isActiveNavi;
-	_70               = nullptr;
-	_74               = nullptr;
-	_78               = nullptr;
-	_7C               = nullptr;
-	_80               = nullptr;
-	_84               = nullptr;
+	mLifeGauge       = new LifeGauge;
+	_34              = 0.0f;
+	_38              = 0.0f;
+	mNa_i_d4         = 0.0f;
+	mNa_i_d8         = 0.0f;
+	mLi_i_d4         = 0.0f;
+	mLi_i_d8         = 0.0f;
+	_30              = 0.0f;
+	mIsActiveNavi    = 1;
+	mIsActiveNaviOld = mIsActiveNavi;
+	_70              = nullptr;
+	_74              = nullptr;
+	_78              = nullptr;
+	_7C              = nullptr;
+	_80              = nullptr;
+	_84              = nullptr;
 
-	m_angleMgr = new AngleMgr;
-	m_scaleMgr = new ScaleMgr;
+	mAngleMgr = new AngleMgr;
+	mScaleMgr = new ScaleMgr;
 
-	m_canNaviChange = false;
-	m_moveTimer     = 0.0f;
+	mCanNaviChange = false;
+	mMoveTimer     = 0.0f;
 }
 
 /*
@@ -62,26 +62,26 @@ CallBack_LifeGauge::CallBack_LifeGauge()
  */
 void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType lifeGaugeType)
 {
-	if (!m_data) {
-		m_data          = data;
-		m_naviLifeRatio = data->m_naviLifeRatio;
-		m_lifeGauge->init(128);
-		m_lifeGauge->_08 = 128.0f * m_naviLifeRatio;
-		_5C              = mgr;
+	if (!mData) {
+		mData          = data;
+		mNaviLifeRatio = data->mNaviLifeRatio;
+		mLifeGauge->init(128);
+		mLifeGauge->_08 = 128.0f * mNaviLifeRatio;
+		_5C             = mgr;
 
-		m_pin1 = TagSearch(mgr, 'pin1');
-		m_pin2 = static_cast<J2DPicture*>(TagSearch(mgr, 'pin2'));
-		m_na_i = TagSearch(mgr, 'na_i');
-		m_li_i = TagSearch(mgr, 'li_i');
+		mPin1 = TagSearch(mgr, 'pin1');
+		mPin2 = static_cast<J2DPicture*>(TagSearch(mgr, 'pin2'));
+		mNa_i = TagSearch(mgr, 'na_i');
+		mLi_i = TagSearch(mgr, 'li_i');
 
-		m_na_i_d4 = m_na_i->m_offset.x;
-		m_na_i_d8 = m_na_i->m_offset.y;
+		mNa_i_d4 = mNa_i->mOffset.x;
+		mNa_i_d8 = mNa_i->mOffset.y;
 
-		m_li_i_d4 = m_li_i->m_offset.x;
-		m_li_i_d8 = m_li_i->m_offset.y;
+		mLi_i_d4 = mLi_i->mOffset.x;
+		mLi_i_d8 = mLi_i->mOffset.y;
 
-		m_pin1->hide();
-		m_pin2->hide();
+		mPin1->hide();
+		mPin2->hide();
 		_70 = static_cast<J2DPicture*>(mgr->search('navi_i'));
 		_74 = static_cast<J2DPicture*>(mgr->search('navi2_i'));
 		_78 = static_cast<J2DPicture*>(mgr->search('navi3_i'));
@@ -95,19 +95,19 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 			setType(lifeGaugeType);
 		}
 
-		if (data->m_activeNaviID) {
-			_30               = 0.0f;
-			m_isActiveNavi    = true;
-			m_isActiveNaviOld = m_isActiveNavi;
-			m_angleMgr->init(0.0f, msVal._08, msVal._0C);
+		if (data->mActiveNaviID) {
+			_30              = 0.0f;
+			mIsActiveNavi    = true;
+			mIsActiveNaviOld = mIsActiveNavi;
+			mAngleMgr->init(0.0f, msVal._08, msVal._0C);
 		} else {
-			_30               = PI;
-			m_isActiveNavi    = false;
-			m_isActiveNaviOld = m_isActiveNavi;
-			m_angleMgr->init(PI, msVal._08, msVal._0C);
+			_30              = PI;
+			mIsActiveNavi    = false;
+			mIsActiveNaviOld = mIsActiveNavi;
+			mAngleMgr->init(PI, msVal._08, msVal._0C);
 		}
 
-		m_canNaviChange = false;
+		mCanNaviChange = false;
 	}
 }
 
@@ -119,7 +119,7 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 {
 	JUtility::TColor color[4];
-	m_lifeGaugeType = lifeGaugeType;
+	mLifeGaugeType = lifeGaugeType;
 
 	switch (lifeGaugeType) {
 	case 1:
@@ -132,10 +132,10 @@ void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 		J2DPicture* src1    = _80;
 		J2DPicture* target1 = _7C;
 
-		color[0].setRGBA(src1->m_cornerColors[0]);
-		color[1].setRGBA(src1->m_cornerColors[1]);
-		color[2].setRGBA(src1->m_cornerColors[2]);
-		color[3].setRGBA(src1->m_cornerColors[3]);
+		color[0].setRGBA(src1->mCornerColors[0]);
+		color[1].setRGBA(src1->mCornerColors[1]);
+		color[2].setRGBA(src1->mCornerColors[2]);
+		color[3].setRGBA(src1->mCornerColors[3]);
 
 		target1->setColor(color[0], 0);
 		target1->setColor(color[2], 2);
@@ -158,10 +158,10 @@ void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 		J2DPicture* src2    = _84;
 		J2DPicture* target2 = _7C;
 
-		color[0].setRGBA(src2->m_cornerColors[0]);
-		color[1].setRGBA(src2->m_cornerColors[1]);
-		color[2].setRGBA(src2->m_cornerColors[2]);
-		color[3].setRGBA(src2->m_cornerColors[3]);
+		color[0].setRGBA(src2->mCornerColors[0]);
+		color[1].setRGBA(src2->mCornerColors[1]);
+		color[2].setRGBA(src2->mCornerColors[2]);
+		color[3].setRGBA(src2->mCornerColors[3]);
 
 		target2->setColor(color[0], 0);
 		target2->setColor(color[2], 2);
@@ -461,11 +461,11 @@ void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
  */
 void CallBack_LifeGauge::setOffset(f32 x, f32 y)
 {
-	if (!m_pane) {
+	if (!mPane) {
 		JUT_PANICLINE(243, "ERR! : NULL Pane !!!\n");
 	} else {
-		m_offsetX = (m_pane->m_bounds.getWidth() / 2) + x;
-		m_offsetY = (m_pane->m_bounds.getHeight() / 2) + y;
+		mOffsetX = (mPane->mBounds.getWidth() / 2) + x;
+		mOffsetY = (mPane->mBounds.getHeight() / 2) + y;
 	}
 }
 
@@ -476,43 +476,43 @@ void CallBack_LifeGauge::setOffset(f32 x, f32 y)
  */
 void CallBack_LifeGauge::moveIcon()
 {
-	m_isActiveNaviOld = m_isActiveNavi;
-	if (m_data) {
-		m_isActiveNavi = m_data->m_activeNaviID;
+	mIsActiveNaviOld = mIsActiveNavi;
+	if (mData) {
+		mIsActiveNavi = mData->mActiveNaviID;
 	}
 
-	u8 cNavi = m_isActiveNavi;
-	if (cNavi == m_isActiveNaviOld) {
-		if (cNavi && m_canNaviChange) {
-			m_moveTimer -= sys->m_deltaTime;
-			if (m_moveTimer < 0.0f) {
-				m_canNaviChange = false;
-				ogSound->setNaviChange(m_lifeGaugeType);
-				m_scaleMgr->up(0.4f, 30.0f, 0.6f, 0.0f);
+	u8 cNavi = mIsActiveNavi;
+	if (cNavi == mIsActiveNaviOld) {
+		if (cNavi && mCanNaviChange) {
+			mMoveTimer -= sys->mDeltaTime;
+			if (mMoveTimer < 0.0f) {
+				mCanNaviChange = false;
+				ogSound->setNaviChange(mLifeGaugeType);
+				mScaleMgr->up(0.4f, 30.0f, 0.6f, 0.0f);
 			}
 		}
 	} else if (!cNavi) {
-		m_angleMgr->init(_30, msVal._08, msVal._0C);
-		m_angleMgr->chase(PI, msVal._04);
+		mAngleMgr->init(_30, msVal._08, msVal._0C);
+		mAngleMgr->chase(PI, msVal._04);
 	} else {
-		m_angleMgr->init(_30, msVal._08, msVal._0C);
-		m_angleMgr->chase(0.0f, msVal._04);
-		m_canNaviChange = true;
-		m_moveTimer     = msVal._00;
+		mAngleMgr->init(_30, msVal._08, msVal._0C);
+		mAngleMgr->chase(0.0f, msVal._04);
+		mCanNaviChange = true;
+		mMoveTimer     = msVal._00;
 	}
-	_30 = m_angleMgr->calc();
+	_30 = mAngleMgr->calc();
 	_34 = sinf(_30) * 50.0f;
 	_38 = pikmin2_cosf(_30) * 30.0f;
 
 	f32 temp  = pikmin2_sinf(_30);
 	f32 mod   = (1.0f - temp) * 0.7f + temp;
-	f32 scale = m_scaleMgr->calc();
+	f32 scale = mScaleMgr->calc();
 	scale     = mod * scale;
 
-	m_na_i->move(m_na_i_d4 - _34, m_na_i_d8 - 30.0f);
-	m_li_i->move(scale * (m_li_i_d4 - m_na_i_d4) + (m_na_i_d4 - _34), (m_li_i_d8 - 30.0f) + _38);
-	m_na_i->updateScale(scale);
-	m_li_i->updateScale(scale);
+	mNa_i->move(mNa_i_d4 - _34, mNa_i_d8 - 30.0f);
+	mLi_i->move(scale * (mLi_i_d4 - mNa_i_d4) + (mNa_i_d4 - _34), (mLi_i_d8 - 30.0f) + _38);
+	mNa_i->updateScale(scale);
+	mLi_i->updateScale(scale);
 
 	/*
 stwu     r1, -0x40(r1)
@@ -741,23 +741,22 @@ void CallBack_LifeGauge::update()
 {
 	if (!og::newScreen::checkMovieActive()) {
 		moveIcon();
-		m_naviLifeRatio = m_data->m_naviLifeRatio;
-		m_lifeGauge->update(m_naviLifeRatio);
-		if (m_naviLifeRatio < 0.5f) {
-			m_pin1->show();
-			m_pin2->show();
-			m_lowLifeSoundTimer += _58 * sys->m_deltaTime;
-			if (m_lowLifeSoundTimer > 1.0f) {
-				m_lowLifeSoundTimer = 0.0f;
-				if (m_naviLifeRatio > 0.0f && m_isActiveNavi) {
+		mNaviLifeRatio = mData->mNaviLifeRatio;
+		mLifeGauge->update(mNaviLifeRatio);
+		if (mNaviLifeRatio < 0.5f) {
+			mPin1->show();
+			mPin2->show();
+			mLowLifeSoundTimer += _58 * sys->mDeltaTime;
+			if (mLowLifeSoundTimer > 1.0f) {
+				mLowLifeSoundTimer = 0.0f;
+				if (mNaviLifeRatio > 0.0f && mIsActiveNavi) {
 					ogSound->setLifeDanger();
 				}
 			}
-			f32 timer     = m_lowLifeSoundTimer;
-			J2DPane* pane = m_pin1;
-			f32 scale     = m_lowLifeSoundTimer * 0.5f + 1.0f;
-			pane->rotate((pane->m_bounds.f.x - pane->m_bounds.i.x) * 0.5f, (pane->m_bounds.f.y - pane->m_bounds.i.y) * 0.5f, J2DROTATE_Y,
-			             0.0f);
+			f32 timer     = mLowLifeSoundTimer;
+			J2DPane* pane = mPin1;
+			f32 scale     = mLowLifeSoundTimer * 0.5f + 1.0f;
+			pane->rotate((pane->mBounds.f.x - pane->mBounds.i.x) * 0.5f, (pane->mBounds.f.y - pane->mBounds.i.y) * 0.5f, J2DROTATE_Y, 0.0f);
 			pane->updateScale(scale);
 			pane->setAlpha(-(timer * 255.0f - 255.0f));
 
@@ -765,22 +764,21 @@ void CallBack_LifeGauge::update()
 			if (scale > 0.0f)
 				scale += 1.0f;
 
-			pane  = m_pin2;
+			pane  = mPin2;
 			scale = timer * 0.5f + 1.0f;
-			pane->rotate((pane->m_bounds.f.x - pane->m_bounds.i.x) * 0.5f, (pane->m_bounds.f.y - pane->m_bounds.i.y) * 0.5f, J2DROTATE_Y,
-			             0.0f);
+			pane->rotate((pane->mBounds.f.x - pane->mBounds.i.x) * 0.5f, (pane->mBounds.f.y - pane->mBounds.i.y) * 0.5f, J2DROTATE_Y, 0.0f);
 			pane->updateScale(scale);
-			m_pin2->setAlpha(-(scale * 255.0f - 255.0f));
-			if (m_naviLifeRatio > 0.0f) {
-				m_na_i->hide();
-				m_li_i->hide();
+			mPin2->setAlpha(-(scale * 255.0f - 255.0f));
+			if (mNaviLifeRatio > 0.0f) {
+				mNa_i->hide();
+				mLi_i->hide();
 			} else {
-				m_na_i->show();
-				m_li_i->show();
+				mNa_i->show();
+				mLi_i->show();
 			}
 		} else {
-			m_pin1->hide();
-			m_pin2->hide();
+			mPin1->hide();
+			mPin2->hide();
 		}
 	}
 	/*
@@ -959,16 +957,16 @@ blr
  */
 void CallBack_LifeGauge::draw(Graphics& gfx, J2DGrafContext& context)
 {
-	if (m_naviLifeRatio > 0.0f) {
+	if (mNaviLifeRatio > 0.0f) {
 		LifeGauge::initLifeGaugeDraw();
 		Mtx concatMtx;
-		PSMTXConcat(context.m_posMtx, m_pane->m_globalMtx, concatMtx);
+		PSMTXConcat(context.mPosMtx, mPane->mGlobalMtx, concatMtx);
 		GXLoadPosMtxImm(concatMtx, 0);
 
-		m_lifeGauge->draw(m_widthOrRadiusMaybe, m_offsetX, m_offsetY);
+		mLifeGauge->draw(mWidthOrRadiusMaybe, mOffsetX, mOffsetY);
 
-		if (m_naviLifeRatio < 0.5f) {
-			m_pin2->draw(m_offsetX, m_offsetY, false, false, false);
+		if (mNaviLifeRatio < 0.5f) {
+			mPin2->draw(mOffsetX, mOffsetY, false, false, false);
 		}
 	}
 }
@@ -980,23 +978,23 @@ void CallBack_LifeGauge::draw(Graphics& gfx, J2DGrafContext& context)
  */
 void NaviLifeGauge::setCallBack(DataNavi* data, CallBack_LifeGauge::LifeGaugeType lifeGaugeType)
 {
-	if (!m_dataNavi) {
-		m_dataNavi = data;
+	if (!mDataNavi) {
+		mDataNavi = data;
 		setAlphaScreen(this);
-		m_callBackLifeGauge = new CallBack_LifeGauge;
-		m_callBackLifeGauge->init(this, data, lifeGaugeType);
-		addCallBack('life', m_callBackLifeGauge);
-		m_callBackDrawAfter = setCallBack_DrawAfter(this, 'mete');
+		mCallBackLifeGauge = new CallBack_LifeGauge;
+		mCallBackLifeGauge->init(this, data, lifeGaugeType);
+		addCallBack('life', mCallBackLifeGauge);
+		mCallBackDrawAfter = setCallBack_DrawAfter(this, 'mete');
 
-		CallBack_LifeGauge* cback = m_callBackLifeGauge;
-		J2DPane* pane             = cback->m_pane;
+		CallBack_LifeGauge* cback = mCallBackLifeGauge;
+		J2DPane* pane             = cback->mPane;
 		if (!pane) {
 			JUT_PANICLINE(243, "ERR! : NULL Pane !!!\n");
 		} else {
-			float temp       = 0.0f;
-			cback->m_offsetX = (pane->m_bounds.f.x - pane->m_bounds.i.x) / 2 + temp;
-			J2DPane* pane2   = cback->m_pane;
-			cback->m_offsetY = (pane2->m_bounds.f.y - pane2->m_bounds.i.y) / 2 + temp;
+			float temp      = 0.0f;
+			cback->mOffsetX = (pane->mBounds.f.x - pane->mBounds.i.x) / 2 + temp;
+			J2DPane* pane2  = cback->mPane;
+			cback->mOffsetY = (pane2->mBounds.f.y - pane2->mBounds.i.y) / 2 + temp;
 		}
 	}
 }
@@ -1008,8 +1006,8 @@ void NaviLifeGauge::setCallBack(DataNavi* data, CallBack_LifeGauge::LifeGaugeTyp
  */
 void NaviLifeGauge::setType(CallBack_LifeGauge::LifeGaugeType lifeGaugeType)
 {
-	if (m_callBackLifeGauge) {
-		m_callBackLifeGauge->setType(lifeGaugeType);
+	if (mCallBackLifeGauge) {
+		mCallBackLifeGauge->setType(lifeGaugeType);
 	}
 }
 
@@ -1021,10 +1019,10 @@ void NaviLifeGauge::setType(CallBack_LifeGauge::LifeGaugeType lifeGaugeType)
 void NaviLifeGauge::update()
 {
 	P2DScreen::Mgr::update();
-	if (m_dataNavi->m_naviLifeRatio > 0.0f) {
-		m_callBackDrawAfter->m_isVisible = true;
+	if (mDataNavi->mNaviLifeRatio > 0.0f) {
+		mCallBackDrawAfter->mIsVisible = true;
 	} else {
-		m_callBackDrawAfter->m_isVisible = false;
+		mCallBackDrawAfter->mIsVisible = false;
 	}
 }
 

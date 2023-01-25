@@ -18,7 +18,7 @@ namespace VsGame {
  * Address:	8022EA94
  * Size:	000044
  */
-VSState::VSState() { m_id = 3; }
+VSState::VSState() { mId = 3; }
 
 /*
  * --INFO--
@@ -27,7 +27,7 @@ VSState::VSState() { m_id = 3; }
  */
 void VSState::do_init(VsGameSection* gameSection)
 {
-	gameSystem->m_mode = GSM_VERSUS_MODE;
+	gameSystem->mMode = GSM_VERSUS_MODE;
 
 	gameSection->setPlayerMode(2);
 	gameSection->setCamController();
@@ -35,9 +35,9 @@ void VSState::do_init(VsGameSection* gameSection)
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	mgr->checkScene();
 
-	mgr->m_scenes->m_child->startMainSeq();
+	mgr->mScenes->mChild->startMainSeq();
 
-	gameSection->createFallPikmins(gameSection->m_container1, 0);
+	gameSection->createFallPikmins(gameSection->mContainer1, 0);
 }
 } // namespace VsGame
 } // namespace Game

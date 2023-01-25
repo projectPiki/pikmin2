@@ -36,8 +36,8 @@ struct TitleMessageAnalyzer : public ::P2JME::Analyzer {
 
 	// _00     = VTBL
 	// _00-_38 = P2JME::Analyzer
-	int m_currCharIndex;    // _38
-	char m_charBuffer[256]; // _3C
+	int mCurrCharIndex;    // _38
+	char mCharBuffer[256]; // _3C
 };
 
 struct TitleMsg {
@@ -59,20 +59,20 @@ struct TitleMsg {
 	void drawMsgArea(J2DGrafContext&);
 
 	// _00 = VTBL
-	TitleMessageAnalyzer m_analyzer; // _04
-	J2DPictureEx* m_panes1[128];     // _140
-	J2DPictureEx* m_panes2[128];     // _340
-	u32 m_stringLength;              // _540
-	f32 m_currXpos;                  // _544
-	EnumCentering m_centering;       // _548
-	J2DPane* m_rootPane;             // _54C
-	JUtility::TColor m_panes1White;  // _550
-	JUtility::TColor m_panes2White;  // _554
-	JUtility::TColor m_panes2Black;  // _558
-	u8 m_dropFlags[128];             // _55C
-	f32 m_timers[128];               // _5DC
-	f32 m_yOffset;                   // _7DC
-	f32 m_xScale;                    // _7E0
+	TitleMessageAnalyzer mAnalyzer; // _04
+	J2DPictureEx* mPanes1[128];     // _140
+	J2DPictureEx* mPanes2[128];     // _340
+	u32 mStringLength;              // _540
+	f32 mCurrXpos;                  // _544
+	EnumCentering mCentering;       // _548
+	J2DPane* mRootPane;             // _54C
+	JUtility::TColor mPanes1White;  // _550
+	JUtility::TColor mPanes2White;  // _554
+	JUtility::TColor mPanes2Black;  // _558
+	u8 mDropFlags[128];             // _55C
+	f32 mTimers[128];               // _5DC
+	f32 mYOffset;                   // _7DC
+	f32 mXScale;                    // _7E0
 };
 
 struct TitleMsgClash : public TitleMsg {
@@ -84,19 +84,19 @@ struct TitleMsgClash : public TitleMsg {
 
 	// _00      = VTBL
 	// _00-_7E4 = TitleMsg
-	f32 m_scaleMod;                     // _7E4
-	f32 m_currScale;                    // _7E8
-	efx2d::T2DCvnameVs* m_effects[128]; // _7EC
+	f32 mScaleMod;                     // _7E4
+	f32 mCurrScale;                    // _7E8
+	efx2d::T2DCvnameVs* mEffects[128]; // _7EC
 };
 
 struct TitleMsgDrop : public TitleMsg {
 	struct Motion {
 		Motion();
 		~Motion();
-		f32 m_yOffset;  // _00
-		f32 m_randTime; // _04
-		Vector2f m_pos; // _08
-		f32 m_timer;    // _10
+		f32 mYOffset;  // _00
+		f32 mRandTime; // _04
+		Vector2f mPos; // _08
+		f32 mTimer;    // _10
 	};
 
 	TitleMsgDrop(J2DScreen*, J2DPane*, char*);
@@ -107,8 +107,8 @@ struct TitleMsgDrop : public TitleMsg {
 
 	// _00      = VTBL
 	// _00-_7E4 = TitleMsg
-	Motion m_motions[128];                // _7E4
-	efx2d::T2DCvnameCave* m_effects[128]; // _11E4
+	Motion mMotions[128];                // _7E4
+	efx2d::T2DCvnameCave* mEffects[128]; // _11E4
 };
 
 struct TitleMsgWave : public TitleMsg {
@@ -122,13 +122,13 @@ struct TitleMsgWave : public TitleMsg {
 
 	// _00      = VTBL
 	// _00-_7E4 = TitleMsg
-	og::Screen::ScaleMgr* m_scaleMgrs[128]; // _7E4
-	f32 m_delayTimer;                       // _9E4
-	f32 m_scaleup1;                         // _9E8
-	f32 m_scaleup2;                         // _9EC
-	f32 m_scaleup3;                         // _9F0
-	f32 m_scaleup4;                         // _9F4
-	efx2d::T2DCvnameChal* m_effects[128];   // _9F8
+	og::Screen::ScaleMgr* mScaleMgrs[128]; // _7E4
+	f32 mDelayTimer;                       // _9E4
+	f32 mScaleup1;                         // _9E8
+	f32 mScaleup2;                         // _9EC
+	f32 mScaleup3;                         // _9F0
+	f32 mScaleup4;                         // _9F4
+	efx2d::T2DCvnameChal* mEffects[128];   // _9F8
 };
 } // namespace newScreen
 } // namespace og

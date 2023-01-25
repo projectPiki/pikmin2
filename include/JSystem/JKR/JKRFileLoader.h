@@ -30,10 +30,10 @@ struct JKRFileLoader : public JKRDisposer {
 
 	JSULink<JKRFileLoader> _18; // _18
 	char* _28;                  // _28
-	u32 m_magicWord;            // _2C
+	u32 mMagicWord;             // _2C
 	u8 _30;                     // _30
 	u32 : 0;
-	u32 m_mountCount; // _34
+	u32 mMountCount; // _34
 
 	static JKRFileLoader* sCurrentVolume;
 	static JSUList<JKRFileLoader> sVolumeList;

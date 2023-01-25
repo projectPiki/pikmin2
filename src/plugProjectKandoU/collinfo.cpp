@@ -26,7 +26,7 @@
  * Address:	801336A8
  * Size:	000044
  */
-Platform::Platform() { m_triDivider = nullptr; }
+Platform::Platform() { mTriDivider = nullptr; }
 
 /*
  * --INFO--
@@ -36,7 +36,7 @@ Platform::Platform() { m_triDivider = nullptr; }
 inline void Platform::setTriDivider(Sys::TriDivider* triDivider)
 {
 	// UNUSED FUNCTION
-	m_triDivider = (Sys::OBBTree*)triDivider;
+	mTriDivider = (Sys::OBBTree*)triDivider;
 }
 
 /*
@@ -44,7 +44,7 @@ inline void Platform::setTriDivider(Sys::TriDivider* triDivider)
  * Address:	801336EC
  * Size:	000008
  */
-Sys::TriDivider* Platform::getTriDivider() { return m_triDivider; }
+Sys::TriDivider* Platform::getTriDivider() { return mTriDivider; }
 
 /*
  * read__8PlatformFR6Stream
@@ -66,9 +66,9 @@ inline void Platform::read(Stream& input)
  */
 void Platform::setMapCodeAll(MapCode::Code& code)
 {
-	Sys::TriangleTable* triTable = m_triDivider->m_triangleTable;
-	for (int i = 0; i < triTable->m_count; i++) {
-		triTable->m_objects[i].m_code.m_contents = code.m_contents;
+	Sys::TriangleTable* triTable = mTriDivider->mTriangleTable;
+	for (int i = 0; i < triTable->mCount; i++) {
+		triTable->mObjects[i].mCode.mContents = code.mContents;
 	}
 }
 
@@ -79,8 +79,8 @@ void Platform::setMapCodeAll(MapCode::Code& code)
  */
 Platform* Platform::clone(Matrixf& matrix)
 {
-	Platform* copy     = new Platform();
-	copy->m_triDivider = (Sys::OBBTree*)m_triDivider->clone(matrix);
+	Platform* copy    = new Platform();
+	copy->mTriDivider = (Sys::OBBTree*)mTriDivider->clone(matrix);
 	return copy;
 }
 
@@ -107,9 +107,9 @@ void Platform::load(JKRFileLoader* loader, char* path)
  * Size:	000014
  */
 PlatAttacher::PlatAttacher()
-    : m_numShapes(0)
-    , m_jointIndices(nullptr)
-    , m_platforms(nullptr)
+    : mNumShapes(0)
+    , mJointIndices(nullptr)
+    , mPlatforms(nullptr)
 {
 }
 
@@ -121,8 +121,8 @@ PlatAttacher::PlatAttacher()
  */
 void PlatAttacher::setMapCodeAll(MapCode::Code& code)
 {
-	for (int shapeIndex = 0; shapeIndex < m_numShapes; shapeIndex++) {
-		m_platforms[shapeIndex].setMapCodeAll(code);
+	for (int shapeIndex = 0; shapeIndex < mNumShapes; shapeIndex++) {
+		mPlatforms[shapeIndex].setMapCodeAll(code);
 	}
 }
 
@@ -134,18 +134,18 @@ void PlatAttacher::setMapCodeAll(MapCode::Code& code)
  */
 void PlatAttacher::read(Stream& input)
 {
-	m_numShapes    = input.readInt();
-	m_jointIndices = new u16[m_numShapes];
-	for (int i = 0; i < m_numShapes; i++) {
-		m_jointIndices[i] = input.readShort();
+	mNumShapes    = input.readInt();
+	mJointIndices = new u16[mNumShapes];
+	for (int i = 0; i < mNumShapes; i++) {
+		mJointIndices[i] = input.readShort();
 	}
-	m_platforms             = new Platform[m_numShapes];
+	mPlatforms              = new Platform[mNumShapes];
 	Sys::VertexTable* table = new Sys::VertexTable();
 	table->read(input);
-	for (int i = 0; i < m_numShapes; i++) {
+	for (int i = 0; i < mNumShapes; i++) {
 		Sys::OBBTree* tree = new Sys::OBBTree();
 		tree->readWithoutVerts(input, *table);
-		m_platforms[i].m_triDivider = tree;
+		mPlatforms[i].mTriDivider = tree;
 	}
 }
 
@@ -154,7 +154,7 @@ void PlatAttacher::read(Stream& input)
  * Address:	80133CD4
  * Size:	000008
  */
-int PlatAttacher::getNumShapes() { return m_numShapes; }
+int PlatAttacher::getNumShapes() { return mNumShapes; }
 
 /*
  * --INFO--
@@ -163,8 +163,8 @@ int PlatAttacher::getNumShapes() { return m_numShapes; }
  */
 u16 PlatAttacher::getJointIndex(int i)
 {
-	P2ASSERTBOUNDSLINE(312, 0, i, m_numShapes);
-	return m_jointIndices[i];
+	P2ASSERTBOUNDSLINE(312, 0, i, mNumShapes);
+	return mJointIndices[i];
 }
 
 /*
@@ -174,8 +174,8 @@ u16 PlatAttacher::getJointIndex(int i)
  */
 Platform* PlatAttacher::getPlatform(int i)
 {
-	P2ASSERTBOUNDSLINE(318, 0, i, m_numShapes);
-	return &m_platforms[i];
+	P2ASSERTBOUNDSLINE(318, 0, i, mNumShapes);
+	return &mPlatforms[i];
 }
 
 /*
@@ -184,8 +184,8 @@ Platform* PlatAttacher::getPlatform(int i)
  * Size:	000010
  */
 CollTree::CollTree()
-    : m_part(nullptr)
-    , m_mgr(nullptr)
+    : mPart(nullptr)
+    , mMgr(nullptr)
 {
 }
 
@@ -196,9 +196,9 @@ CollTree::CollTree()
  */
 void CollTree::createFromFactory(SysShape::MtxObject* mtxObject, CollPartFactory* factory, CollPartMgr* mgr)
 {
-	m_mgr = mgr;
+	mMgr = mgr;
 	if (factory) {
-		m_part = factory->createInstance(mtxObject, mgr);
+		mPart = factory->createInstance(mtxObject, mgr);
 	}
 }
 
@@ -209,19 +209,19 @@ void CollTree::createFromFactory(SysShape::MtxObject* mtxObject, CollPartFactory
  */
 void CollTree::createSingleSphere(SysShape::MtxObject* mtxObject, int jointIndex, Sys::Sphere& sphere, CollPartMgr* mgr)
 {
-	m_mgr = mgr;
+	mMgr = mgr;
 	if (mgr) {
-		m_part = mgr->createOne(mtxObject);
-		JUT_ASSERTLINE(446, m_part != nullptr, "collpart birth failed : single sphere\n");
+		mPart = mgr->createOne(mtxObject);
+		JUT_ASSERTLINE(446, mPart != nullptr, "collpart birth failed : single sphere\n");
 	} else {
-		m_part = new CollPart(mtxObject);
+		mPart = new CollPart(mtxObject);
 	}
-	m_part->m_radius     = sphere.m_radius;
-	m_part->m_baseRadius = sphere.m_radius;
-	m_part->m_offset     = 0.0f;
-	m_part->m_jointIndex = jointIndex;
-	m_part->m_attribute  = 0;
-	m_part->m_currentID.setID('root');
+	mPart->mRadius     = sphere.mRadius;
+	mPart->mBaseRadius = sphere.mRadius;
+	mPart->mOffset     = 0.0f;
+	mPart->mJointIndex = jointIndex;
+	mPart->mAttribute  = 0;
+	mPart->mCurrentID.setID('root');
 }
 
 /*
@@ -231,9 +231,9 @@ void CollTree::createSingleSphere(SysShape::MtxObject* mtxObject, int jointIndex
  */
 void CollTree::release()
 {
-	if (m_mgr) {
-		releaseRec(m_part);
-		m_mgr = nullptr;
+	if (mMgr) {
+		releaseRec(mPart);
+		mMgr = nullptr;
 	}
 }
 
@@ -252,7 +252,7 @@ void CollTree::releaseRec(CollPart* part)
 		releaseRec(child);
 	}
 
-	m_mgr->kill(part);
+	mMgr->kill(part);
 
 	if (next) {
 		releaseRec(next);
@@ -266,7 +266,7 @@ void CollTree::releaseRec(CollPart* part)
  */
 bool CollTree::checkCollision(CollTree* p1, CollPart** p2, CollPart** p3, Vector3f& p4)
 {
-	return checkCollisionRec(m_part, p1->m_part, p2, p3, p4);
+	return checkCollisionRec(mPart, p1->mPart, p2, p3, p4);
 }
 
 /*
@@ -313,8 +313,8 @@ bool CollTree::checkCollisionRec(CollPart* p1, CollPart* p2, CollPart** p3, Coll
  */
 void CollTree::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delegate)
 {
-	if (m_part) {
-		m_part->checkCollision(sphere, delegate);
+	if (mPart) {
+		mPart->checkCollision(sphere, delegate);
 	}
 }
 
@@ -328,12 +328,12 @@ void CollPart::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delega
 {
 	if (isPrim()) {
 		if (isSphere()) {
-			Sys::Sphere partSphere(m_position, m_radius);
+			Sys::Sphere partSphere(mPosition, mRadius);
 			if (partSphere.intersect(sphere)) {
 				delegate->invoke(this);
 			}
 		} else if (isTube() || isTubeTree()) {
-			Sys::Tube collTube(m_position, getChild()->m_position, m_radius, getChild()->m_radius);
+			Sys::Tube collTube(mPosition, getChild()->mPosition, mRadius, getChild()->mRadius);
 			Vector3f colVec;
 			float colSep;
 			if (collTube.collide(sphere, colVec, colSep)) {
@@ -357,9 +357,9 @@ void CollPart::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delega
  */
 void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPart*, Vector3f&>* delegate)
 {
-	CollPart* inputPart = other->m_part;
+	CollPart* inputPart = other->mPart;
 
-	for (CollPart* thisPart = m_part; thisPart != nullptr; thisPart = thisPart->getNext()) {
+	for (CollPart* thisPart = mPart; thisPart != nullptr; thisPart = thisPart->getNext()) {
 
 		for (CollPart* otherPart = inputPart; otherPart != nullptr; otherPart = otherPart->getNext()) {
 
@@ -441,17 +441,17 @@ void CollPart::checkCollisionMulti(CollPart* other, IDelegate3<CollPart*, CollPa
 bool CollPart::collide(CollPart* other, Vector3f& outVector)
 {
 	if (isSphere() && other->isSphere()) {
-		Sys::Sphere thisSphere(m_position, m_radius);
-		Sys::Sphere otherSphere(other->m_position, other->m_radius);
+		Sys::Sphere thisSphere(mPosition, mRadius);
+		Sys::Sphere otherSphere(other->mPosition, other->mRadius);
 		return thisSphere.intersect(otherSphere, outVector);
 	} else if (isSphere() && (other->isTube() || other->isTubeTree())) {
-		Sys::Sphere thisSphere(m_position, m_radius);
-		Sys::Tube otherTube(other->m_position, other->getChild()->m_position, other->m_radius, other->getChild()->m_radius);
+		Sys::Sphere thisSphere(mPosition, mRadius);
+		Sys::Tube otherTube(other->mPosition, other->getChild()->mPosition, other->mRadius, other->getChild()->mRadius);
 		float collVal;
 		return otherTube.collide(thisSphere, outVector, collVal);
 	} else if ((isTube() || isTubeTree()) && other->isSphere()) {
-		Sys::Tube thisTube(m_position, getChild()->m_position, m_radius, getChild()->m_radius);
-		Sys::Sphere otherSphere(other->m_position, other->m_radius);
+		Sys::Tube thisTube(mPosition, getChild()->mPosition, mRadius, getChild()->mRadius);
+		Sys::Sphere otherSphere(other->mPosition, other->mRadius);
 		float collVal;
 		return thisTube.collide(otherSphere, outVector, collVal);
 	}
@@ -466,8 +466,8 @@ bool CollPart::collide(CollPart* other, Vector3f& outVector)
  */
 void CollTree::update()
 {
-	if (m_part) {
-		m_part->update();
+	if (mPart) {
+		mPart->update();
 	}
 }
 
@@ -479,8 +479,8 @@ void CollTree::update()
  */
 void CollTree::attachModel(SysShape::MtxObject* mtxObject)
 {
-	if (m_part) {
-		m_part->attachModel(mtxObject);
+	if (mPart) {
+		mPart->attachModel(mtxObject);
 	}
 }
 
@@ -492,7 +492,7 @@ void CollTree::attachModel(SysShape::MtxObject* mtxObject)
  */
 void CollPart::attachModel(SysShape::MtxObject* mtxObject)
 {
-	m_model = mtxObject;
+	mModel = mtxObject;
 	if (getNext()) {
 		getNext()->attachModel(mtxObject);
 	}
@@ -507,7 +507,7 @@ void CollPart::attachModel(SysShape::MtxObject* mtxObject)
  * Address:	80135E44
  * Size:	000034
  */
-CollPart* CollTree::getCollPart(u32 partID) { return (m_part != nullptr) ? m_part->getCollPart(partID) : nullptr; }
+CollPart* CollTree::getCollPart(u32 partID) { return (mPart != nullptr) ? mPart->getCollPart(partID) : nullptr; }
 
 /*
  * getCollPart__8CollPartFUl
@@ -517,7 +517,7 @@ CollPart* CollTree::getCollPart(u32 partID) { return (m_part != nullptr) ? m_par
  */
 CollPart* CollPart::getCollPart(u32 partID)
 {
-	if (m_currentID == partID) {
+	if (mCurrentID == partID) {
 		return this;
 	}
 	if (getNext()) {
@@ -548,7 +548,7 @@ int CollPart::getAllCollPartToArray(CollPart** partArray, int limit, int& count)
 	} else {
 		count++;
 		partArray[index] = this;
-		if (m_next) {
+		if (mNext) {
 			CollPart* nextPart = getNext();
 			int nextIndex      = count;
 			if (nextIndex < limit) {
@@ -562,7 +562,7 @@ int CollPart::getAllCollPartToArray(CollPart** partArray, int limit, int& count)
 				}
 			}
 		}
-		if (m_child) {
+		if (mChild) {
 			CollPart* childPart = getChild();
 			int childIndex      = count;
 			if (childIndex < limit) {
@@ -588,18 +588,18 @@ int CollPart::getAllCollPartToArray(CollPart** partArray, int limit, int& count)
 // WIP: https://decomp.me/scratch/BSzdU - just regswaps in the dist calculation
 CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 {
-	if (m_part) {
+	if (mPart) {
 		CollPart* partArray[256];
 		int count    = 0;
-		int numParts = m_part->getAllCollPartToArray(partArray, 256, count);
+		int numParts = mPart->getAllCollPartToArray(partArray, 256, count);
 
 		float minDist       = 128000.0f;
 		CollPart* foundPart = nullptr;
 		for (int i = 0; i < numParts; i++) {
 			CollPart* currPart = partArray[i];
-			if (((findArg.m_condition == nullptr) || findArg.m_condition->satisfy(currPart)) && currPart->isSphere()) {
-				float sqRad = SQUARE(currPart->m_radius);
-				Vector3f sep(findArg.m_position - currPart->m_position);
+			if (((findArg.mCondition == nullptr) || findArg.mCondition->satisfy(currPart)) && currPart->isSphere()) {
+				float sqRad = SQUARE(currPart->mRadius);
+				Vector3f sep(findArg.mPosition - currPart->mPosition);
 				float dist = (SQUARE(sep.x) + SQUARE(sep.y) + SQUARE(sep.z)) - sqRad;
 				if (dist < minDist) {
 					foundPart = currPart;
@@ -704,10 +704,10 @@ lbl_80136B00:
  */
 CollPart* CollTree::getRandomCollPart()
 {
-	if (m_part) {
+	if (mPart) {
 		CollPart* partArray[16];
 		int count    = 0;
-		int numParts = m_part->getAllCollPartToArray(partArray, 16, count);
+		int numParts = mPart->getAllCollPartToArray(partArray, 16, count);
 
 		int randIndex = (int)((float)numParts * randFloat());
 		if (partArray[randIndex] == nullptr) {
@@ -728,11 +728,11 @@ CollPart* CollTree::getRandomCollPart()
  */
 void CollTree::getBoundingSphere(Sys::Sphere& sphere)
 {
-	if (m_part == nullptr) {
+	if (mPart == nullptr) {
 		return;
 	}
-	sphere.m_position = m_part->m_position;
-	sphere.m_radius   = m_part->m_radius;
+	sphere.mPosition = mPart->mPosition;
+	sphere.mRadius   = mPart->mRadius;
 }
 
 /*
@@ -759,16 +759,16 @@ CollPart::CollPart() { init(nullptr); }
 void CollPart::init(SysShape::MtxObject* mtxObject)
 {
 	clearRelations();
-	m_radius     = 0.0f;
-	m_baseRadius = 0.0f;
-	m_offset     = 0.0f;
-	m_position   = Vector3f(0.0f);
-	m_model      = mtxObject;
-	m_jointIndex = -1;
-	_60          = 0;
-	m_attribute  = 0;
-	m_partType   = COLLTYPE_SPHERE;
-	m_specialID.setID('____');
+	mRadius     = 0.0f;
+	mBaseRadius = 0.0f;
+	mOffset     = 0.0f;
+	mPosition   = Vector3f(0.0f);
+	mModel      = mtxObject;
+	mJointIndex = -1;
+	_60         = 0;
+	mAttribute  = 0;
+	mPartType   = COLLTYPE_SPHERE;
+	mSpecialID.setID('____');
 }
 
 /*
@@ -776,7 +776,7 @@ void CollPart::init(SysShape::MtxObject* mtxObject)
  * Address:	80136DB0
  * Size:	000030
  */
-bool CollPart::isStickable() { return m_specialID.match('s***', '*'); }
+bool CollPart::isStickable() { return mSpecialID.match('s***', '*'); }
 
 /*
  * update__8CollPartFv
@@ -788,7 +788,7 @@ void CollPart::update()
 {
 	Matrixf mtx;
 	makeMatrixTo(mtx);
-	mtx.getTranslation(m_position);
+	mtx.getTranslation(mPosition);
 	if (getNext()) {
 		getNext()->update();
 	}
@@ -804,11 +804,11 @@ void CollPart::update()
  */
 void CollPart::makeMatrixTo(Matrixf& p1)
 {
-	if ((int)m_jointIndex != -1) {
+	if ((int)mJointIndex != -1) {
 		Matrixf mtx;
-		PSMTXIdentity(mtx.m_matrix.mtxView);
-		mtx.setTranslation(m_offset);
-		PSMTXConcat(m_model->getMatrix(m_jointIndex)->m_matrix.mtxView, mtx.m_matrix.mtxView, p1.m_matrix.mtxView);
+		PSMTXIdentity(mtx.mMatrix.mtxView);
+		mtx.setTranslation(mOffset);
+		PSMTXConcat(mModel->getMatrix(mJointIndex)->mMatrix.mtxView, mtx.mMatrix.mtxView, p1.mMatrix.mtxView);
 	}
 }
 
@@ -821,9 +821,9 @@ void CollPart::makeMatrixTo(Matrixf& p1)
 void CollPart::makeTubeTree()
 {
 	if (getChild()) {
-		m_partType = 2;
+		mPartType = 2;
 	} else {
-		m_partType = 0;
+		mPartType = 0;
 	}
 	for (CollPart* part = getChild(); part != nullptr; part = part->getNext()) {
 		part->makeTubeTree();
@@ -1215,7 +1215,7 @@ lbl_801377B8:
  */
 void CollPart::calcStickGlobal(Vector3f& arg0, Vector3f& arg1)
 {
-	switch (m_partType) {
+	switch (mPartType) {
 	case COLLTYPE_SPHERE:
 		Matrixf mtx;
 		makeMatrixTo(mtx);
@@ -1615,7 +1615,7 @@ lbl_80137DF0:
  */
 void CollPart::setScale(float scale)
 {
-	m_radius = m_baseRadius * scale;
+	mRadius = mBaseRadius * scale;
 	if (getChild()) {
 		getChild()->setScale(scale);
 	}
@@ -1632,9 +1632,9 @@ void CollPart::setScale(float scale)
 void CollPart::getSphere(Sys::Sphere& sphere)
 {
 	P2ASSERTLINE(1289, isSphere());
-	float radius      = m_radius;
-	sphere.m_position = m_position;
-	sphere.m_radius   = radius;
+	float radius     = mRadius;
+	sphere.mPosition = mPosition;
+	sphere.mRadius   = radius;
 }
 
 /*
@@ -1647,12 +1647,12 @@ void CollPart::getTube(Sys::Tube& tube)
 	P2ASSERTLINE(1295, (isTubeLike()));
 	CollPart* child = getChild();
 
-	float v1           = m_radius;
-	float v2           = child->m_radius;
-	tube.m_startPos    = m_position;
-	tube.m_endPos      = child->m_position;
-	tube.m_startRadius = v1;
-	tube.m_endRadius   = v2;
+	float v1          = mRadius;
+	float v2          = child->mRadius;
+	tube.mStartPos    = mPosition;
+	tube.mEndPos      = child->mPosition;
+	tube.mStartRadius = v1;
+	tube.mEndRadius   = v2;
 }
 
 /*
@@ -1671,16 +1671,16 @@ void CollPart::draw(Graphics&) { }
 MouthCollPart::MouthCollPart()
 {
 	clearRelations();
-	m_radius     = 0.0f;
-	m_baseRadius = 0.0f;
-	m_offset     = 0.0f;
-	m_position   = Vector3f(0.0f);
-	m_model      = nullptr;
-	m_jointIndex = -1;
-	_60          = 0;
-	m_attribute  = 0;
-	m_partType   = COLLTYPE_SPHERE;
-	m_specialID.setID('____');
+	mRadius     = 0.0f;
+	mBaseRadius = 0.0f;
+	mOffset     = 0.0f;
+	mPosition   = Vector3f(0.0f);
+	mModel      = nullptr;
+	mJointIndex = -1;
+	_60         = 0;
+	mAttribute  = 0;
+	mPartType   = COLLTYPE_SPHERE;
+	mSpecialID.setID('____');
 	_64 = nullptr;
 	_6C = 0;
 }
@@ -1695,12 +1695,12 @@ MouthCollPart::MouthCollPart()
 
 inline void MouthCollPart::setup(SysShape::Model* model, char* jointName, Vector3f& vector)
 {
-	m_model      = model;
-	m_mouthJoint = static_cast<SysShape::Model*>(m_model)->getJoint(jointName);
-	m_offset     = vector;
-	m_jointIndex = m_mouthJoint->m_j3d->m_jointIdx;
-	m_radius     = 0.0f;
-	_64          = nullptr;
+	mModel      = model;
+	mMouthJoint = static_cast<SysShape::Model*>(mModel)->getJoint(jointName);
+	mOffset     = vector;
+	mJointIndex = mMouthJoint->mJ3d->mJointIdx;
+	mRadius     = 0.0f;
+	_64         = nullptr;
 }
 
 /*
@@ -1709,14 +1709,14 @@ inline void MouthCollPart::setup(SysShape::Model* model, char* jointName, Vector
  * Address:	801384C8
  * Size:	000048
  */
-void MouthCollPart::getPosition(Vector3f& outPosition) { m_mouthJoint->getWorldMatrix()->getTranslation(outPosition); }
+void MouthCollPart::getPosition(Vector3f& outPosition) { mMouthJoint->getWorldMatrix()->getTranslation(outPosition); }
 
 /*
  * --INFO--
  * Address:	80138510
  * Size:	000038
  */
-void MouthCollPart::copyMatrixTo(Matrixf& outMtx) { PSMTXCopy(m_mouthJoint->getWorldMatrix()->m_matrix.mtxView, outMtx.m_matrix.mtxView); }
+void MouthCollPart::copyMatrixTo(Matrixf& outMtx) { PSMTXCopy(mMouthJoint->getWorldMatrix()->mMatrix.mtxView, outMtx.mMatrix.mtxView); }
 
 /*
  * __ct__10MouthSlotsFv
@@ -1725,8 +1725,8 @@ void MouthCollPart::copyMatrixTo(Matrixf& outMtx) { PSMTXCopy(m_mouthJoint->getW
  * Size:	000010
  */
 MouthSlots::MouthSlots()
-    : m_max(0)
-    , m_slots(nullptr)
+    : mMax(0)
+    , mSlots(nullptr)
 {
 }
 
@@ -1738,8 +1738,8 @@ MouthSlots::MouthSlots()
  */
 void MouthSlots::alloc(int count)
 {
-	m_max   = count;
-	m_slots = new MouthCollPart[count];
+	mMax   = count;
+	mSlots = new MouthCollPart[count];
 }
 
 /*
@@ -1750,8 +1750,8 @@ void MouthSlots::alloc(int count)
  */
 void MouthSlots::update()
 {
-	for (int i = 0; i < m_max; i++) {
-		m_slots[i].update();
+	for (int i = 0; i < mMax; i++) {
+		mSlots[i].update();
 	}
 }
 
@@ -1763,8 +1763,8 @@ void MouthSlots::update()
  */
 void MouthSlots::setup(int slotIndex, SysShape::Model* model, char* jointName)
 {
-	P2ASSERTBOUNDSLINE(1485, 0, slotIndex, m_max);
-	m_slots[slotIndex].setup(model, jointName, Vector3f::zero);
+	P2ASSERTBOUNDSLINE(1485, 0, slotIndex, mMax);
+	mSlots[slotIndex].setup(model, jointName, Vector3f::zero);
 }
 
 /*
@@ -1774,8 +1774,8 @@ void MouthSlots::setup(int slotIndex, SysShape::Model* model, char* jointName)
  */
 MouthCollPart* MouthSlots::getSlot(int slotIndex)
 {
-	P2ASSERTBOUNDSLINE(1491, 0, slotIndex, m_max);
-	return &m_slots[slotIndex];
+	P2ASSERTBOUNDSLINE(1491, 0, slotIndex, mMax);
+	return &mSlots[slotIndex];
 }
 
 /*
@@ -1793,9 +1793,9 @@ CollPartFactory* CollPartFactory::load(char* path)
 		return nullptr;
 	} else {
 		RamStream input(data, -1);
-		input.m_mode = STREAM_MODE_TEXT;
-		if (input.m_mode == STREAM_MODE_TEXT) {
-			input.m_tabCount = 0;
+		input.mMode = STREAM_MODE_TEXT;
+		if (input.mMode == STREAM_MODE_TEXT) {
+			input.mTabCount = 0;
 		}
 		factory = new CollPartFactory(input);
 		delete[] data;
@@ -1817,9 +1817,9 @@ CollPartFactory* CollPartFactory::load(JKRFileLoader* loader, char* path)
 		factory = nullptr;
 	} else {
 		RamStream input(data, -1);
-		input.m_mode = STREAM_MODE_TEXT;
-		if (input.m_mode == STREAM_MODE_TEXT) {
-			input.m_tabCount = 0;
+		input.mMode = STREAM_MODE_TEXT;
+		if (input.mMode == STREAM_MODE_TEXT) {
+			input.mTabCount = 0;
 		}
 		factory = new CollPartFactory(input);
 	}
@@ -1867,17 +1867,17 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 		copy = new CollPart(mtxObject);
 	}
 
-	copy->m_radius     = m_radius;
-	copy->m_baseRadius = copy->m_radius;
-	copy->m_currentID  = m_currentID;
-	copy->m_specialID  = m_specialID;
-	copy->m_offset     = m_offset;
-	copy->m_partType   = m_partType;
-	copy->m_jointIndex = m_jointIndex;
-	copy->m_model      = m_model;
-	copy->_60          = _60;
-	copy->m_attribute  = m_attribute;
-	copy->m_model      = mtxObject;
+	copy->mRadius     = mRadius;
+	copy->mBaseRadius = copy->mRadius;
+	copy->mCurrentID  = mCurrentID;
+	copy->mSpecialID  = mSpecialID;
+	copy->mOffset     = mOffset;
+	copy->mPartType   = mPartType;
+	copy->mJointIndex = mJointIndex;
+	copy->mModel      = mModel;
+	copy->_60         = _60;
+	copy->mAttribute  = mAttribute;
+	copy->mModel      = mtxObject;
 
 	int childCount  = getChildCount();
 	CollPart* child = getChild();
@@ -1898,19 +1898,19 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 void CollPart::read(Stream& input, bool isAgeCollPart)
 {
 	int childCount = input.readInt();
-	m_radius       = input.readFloat();
-	m_baseRadius   = m_radius;
-	m_currentID.read(input);
-	m_specialID.read(input);
-	m_offset.read(input);
-	m_jointIndex = input.readInt();
-	m_attribute  = input.readU16();
+	mRadius        = input.readFloat();
+	mBaseRadius    = mRadius;
+	mCurrentID.read(input);
+	mSpecialID.read(input);
+	mOffset.read(input);
+	mJointIndex = input.readInt();
+	mAttribute  = input.readU16();
 	for (int i = 0; i < childCount; i++) {
 		CollPart* child;
 		if (isAgeCollPart) {
-			child = new AgeCollPart((SysShape::Model*)m_model);
+			child = new AgeCollPart((SysShape::Model*)mModel);
 		} else {
-			child = new CollPart(m_model);
+			child = new CollPart(mModel);
 		}
 		child->read(input, isAgeCollPart);
 		child->setName("CollPart");
@@ -1925,18 +1925,18 @@ void CollPart::read(Stream& input, bool isAgeCollPart)
  */
 void AgeCollPart::draw(Graphics& graphics)
 {
-	if ((int)m_jointIndex != -1) {
-		SysShape::Joint* jointArray = static_cast<SysShape::Model*>(m_model)->m_joints;
-		SysShape::Joint* joint      = &jointArray[m_jointIndex];
+	if ((int)mJointIndex != -1) {
+		SysShape::Joint* jointArray = static_cast<SysShape::Model*>(mModel)->mJoints;
+		SysShape::Joint* joint      = &jointArray[mJointIndex];
 		if (joint) {
 			Matrixf mtx;
 			makeMatrixTo(mtx);
 
-			if (m_drawFlags & ACP_DRAWFLAG_ENABLED) {
-				float zVal     = joint->m_j3d->m_zRotation.z;
+			if (mDrawFlags & ACP_DRAWFLAG_ENABLED) {
+				float zVal     = joint->mJ3d->mZRotation.z;
 				float rotation = zVal;
 				if (zVal < 0.1f) {
-					rotation = 0.3f * (*static_cast<SysShape::Model*>(m_model)->m_joints).m_j3d->m_zRotation.z;
+					rotation = 0.3f * (*static_cast<SysShape::Model*>(mModel)->mJoints).mJ3d->mZRotation.z;
 				}
 				graphics.drawAxis(rotation, joint->getWorldMatrix());
 			}
@@ -1952,6 +1952,6 @@ void AgeCollPart::draw(Graphics& graphics)
  */
 AgeCollPart::AgeCollPart(SysShape::Model* model)
     : CollPart(model)
-    , m_drawFlags(ACP_DRAWFLAG_DISABLED)
+    , mDrawFlags(ACP_DRAWFLAG_DISABLED)
 {
 }

@@ -11,7 +11,7 @@ struct Graphics;
 namespace P2DScreen {
 struct Node : public CNode {
 	Node()
-	    : m_pane(nullptr)
+	    : mPane(nullptr)
 	{
 	}
 
@@ -22,7 +22,7 @@ struct Node : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	J2DPane* m_pane; // _18
+	J2DPane* mPane; // _18
 };
 
 struct CallBackNode : public Node {
@@ -66,22 +66,22 @@ struct Mgr_tuning : public Mgr {
 
 	inline void setXY(f32 x, f32 y)
 	{
-		m_someX = x + mstTuningTransX;
-		m_someY = y + mstTuningTransY;
+		mSomeX = x + mstTuningTransX;
+		mSomeY = y + mstTuningTransY;
 	}
 
 	inline void scaleScreen(f32 scale)
 	{
-		m_screenScaleX = scale * mstTuningScaleX;
-		m_screenScaleY = scale * mstTuningScaleY;
+		mScreenScaleX = scale * mstTuningScaleX;
+		mScreenScaleY = scale * mstTuningScaleY;
 	}
 
 	// _00      = VTBL
 	// _00-_138 = Mgr
-	f32 m_screenScaleX; // _138
-	f32 m_screenScaleY; // _13C
-	f32 m_someX;        // _140
-	f32 m_someY;        // _144
+	f32 mScreenScaleX; // _138
+	f32 mScreenScaleY; // _13C
+	f32 mSomeX;        // _140
+	f32 mSomeY;        // _144
 };
 } // namespace P2DScreen
 

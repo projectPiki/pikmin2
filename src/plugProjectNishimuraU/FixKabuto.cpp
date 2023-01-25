@@ -31,14 +31,14 @@ void Obj::onKill(Game::CreatureKillArg* killArg)
 void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
-	J3DModel* j3dModel = m_model->m_j3dModel;
-	modelData          = j3dModel->m_modelData;
-	ResTIMG* texture   = static_cast<Mgr*>(m_mgr)->getChangeTexture();
+	J3DModel* j3dModel = mModel->mJ3dModel;
+	modelData          = j3dModel->mModelData;
+	ResTIMG* texture   = static_cast<Mgr*>(mMgr)->getChangeTexture();
 
 	j3dModel->calcMaterial();
 
 	ResTIMG* newTexture;
-	J3DTexture* j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+	J3DTexture* j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
 	newTexture             = j3dTexture->_04;
 
 	texture->copyTo(newTexture);
@@ -46,10 +46,10 @@ void Obj::changeMaterial()
 	j3dTexture->setImageOffset((u32)texture);
 	j3dTexture->setPaletteOffset((u32)texture);
 
-	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
-		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket    = packet;
-		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket     = packet;
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
 		material->diff(packet->_2C->_34);
 	}
 }
@@ -61,8 +61,8 @@ void Obj::changeMaterial()
  */
 void Obj::createEffect()
 {
-	m_efxRot  = new efx::TKkabutoRot(&m_position);
-	m_efxWait = new efx::TKkabutoWait(&m_position);
+	mEfxRot  = new efx::TKkabutoRot(&mPosition);
+	mEfxWait = new efx::TKkabutoWait(&mPosition);
 }
 
 /*
@@ -72,8 +72,8 @@ void Obj::createEffect()
  */
 void Obj::setupEffect()
 {
-	m_efxRot->m_position  = &m_position;
-	m_efxWait->m_position = &m_position;
+	mEfxRot->mPosition  = &mPosition;
+	mEfxWait->mPosition = &mPosition;
 }
 
 /*
@@ -83,8 +83,8 @@ void Obj::setupEffect()
  */
 void Obj::startRotateEffect()
 {
-	efx::Arg arg(m_position);
-	m_efxRot->create(&arg);
+	efx::Arg arg(mPosition);
+	mEfxRot->create(&arg);
 }
 
 /*
@@ -92,7 +92,7 @@ void Obj::startRotateEffect()
  * Address:	80300B48
  * Size:	000030
  */
-void Obj::finishRotateEffect() { m_efxRot->fade(); }
+void Obj::finishRotateEffect() { mEfxRot->fade(); }
 
 /*
  * --INFO--
@@ -101,8 +101,8 @@ void Obj::finishRotateEffect() { m_efxRot->fade(); }
  */
 void Obj::startWaitEffect()
 {
-	efx::Arg arg(m_position);
-	m_efxWait->create(&arg);
+	efx::Arg arg(mPosition);
+	mEfxWait->create(&arg);
 }
 
 /*
@@ -110,7 +110,7 @@ void Obj::startWaitEffect()
  * Address:	80300BD0
  * Size:	000030
  */
-void Obj::finishWaitEffect() { m_efxWait->fade(); }
+void Obj::finishWaitEffect() { mEfxWait->fade(); }
 
 /*
  * --INFO--
@@ -119,8 +119,8 @@ void Obj::finishWaitEffect() { m_efxWait->fade(); }
  */
 void FixKabuto::Obj::effectDrawOn()
 {
-	m_efxRot->endDemoDrawOn();
-	m_efxWait->endDemoDrawOn();
+	mEfxRot->endDemoDrawOn();
+	mEfxWait->endDemoDrawOn();
 }
 
 /*
@@ -130,8 +130,8 @@ void FixKabuto::Obj::effectDrawOn()
  */
 void FixKabuto::Obj::effectDrawOff()
 {
-	m_efxRot->startDemoDrawOff();
-	m_efxWait->startDemoDrawOff();
+	mEfxRot->startDemoDrawOff();
+	mEfxWait->startDemoDrawOff();
 }
 
 } // namespace FixKabuto

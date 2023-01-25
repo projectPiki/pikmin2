@@ -14,16 +14,16 @@ struct TChasePos : public TSync {
 
 	inline TChasePos(u16 effectID, Vector3f* position = nullptr)
 	    : TSync()
-	    , m_position(position)
+	    , mPosition(position)
 	{
-		m_effectID = effectID;
+		mEffectID = effectID;
 	}
 
 	inline TChasePos(Vector3f* position, u16 effectID)
 	    : TSync()
-	    , m_position(position)
+	    , mPosition(position)
 	{
-		m_effectID = effectID;
+		mEffectID = effectID;
 	}
 
 	// vtable 1: TBase
@@ -33,7 +33,7 @@ struct TChasePos : public TSync {
 
 	// _00		= VTBL
 	// _00-_10	= TSync
-	Vector3f* m_position; // _10
+	Vector3f* mPosition; // _10
 };
 
 struct TChasePos2 : public TSyncGroup2<TChasePos> {
@@ -69,7 +69,7 @@ struct TChasePosPos : public TSync {
 	    , _10(position)
 	    , _14(position2)
 	{
-		m_effectID = effectID;
+		mEffectID = effectID;
 	}
 
 	// vtable 1 (TBase)
@@ -98,7 +98,7 @@ struct TChasePosPosLocalYScale : public TSync {
 	    , _14(nullptr)
 	    , _18(0.0f)
 	{
-		m_effectID = effectID;
+		mEffectID = effectID;
 	}
 
 	inline TChasePosPosLocalYScale(u16 effectID, f32 scale)
@@ -107,7 +107,7 @@ struct TChasePosPosLocalYScale : public TSync {
 	    , _14(nullptr)
 	    , _18(scale)
 	{
-		m_effectID = effectID;
+		mEffectID = effectID;
 	}
 
 	inline void setPosPosPtr(Vector3f* pos1, Vector3f* pos2)
@@ -156,7 +156,7 @@ struct TChasePosPosLocalZScale : public TSync {
 	    , _14(nullptr)
 	    , _18(0.0f)
 	{
-		m_effectID = effectID;
+		mEffectID = effectID;
 	}
 
 	// vtable 1 (TBase)
@@ -194,10 +194,10 @@ struct TChasePosYRot : public TSync {
 
 	inline TChasePosYRot(Vector3f* position, f32* rotation, u16 effectID)
 	    : TSync()
-	    , m_position(position)
-	    , m_rotation(rotation)
+	    , mPosition(position)
+	    , mRotation(rotation)
 	{
-		m_effectID = effectID;
+		mEffectID = effectID;
 	}
 
 	// vtable 1 (TBase)
@@ -207,8 +207,8 @@ struct TChasePosYRot : public TSync {
 
 	// _00		= VTBL
 	// _00-_10	= TSync
-	Vector3f* m_position; // _10
-	f32* m_rotation;      // _14
+	Vector3f* mPosition; // _10
+	f32* mRotation;      // _14
 };
 
 struct TChasePosYRot2 : public TSyncGroup2<TChasePosYRot> {

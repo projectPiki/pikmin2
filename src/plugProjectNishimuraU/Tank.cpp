@@ -11,7 +11,7 @@ namespace Tank {
  */
 Obj::Obj()
 {
-	m_animator = new ProperAnimator;
+	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
 }
 
@@ -30,18 +30,18 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	m_cautionTimer = 128.0f;
-	m_joint        = m_model->getJoint("hoppe");
-	_2F0           = 0.0f;
-	m_cautionTimer = 0.0f;
-	m_isBlowing    = 0;
-	_2E4           = 0.0f;
-	_2E8           = 1.0f;
-	_2F4           = 0.0f;
+	mCautionTimer = 128.0f;
+	mJoint        = mModel->getJoint("hoppe");
+	_2F0          = 0.0f;
+	mCautionTimer = 0.0f;
+	mIsBlowing    = 0;
+	_2E4          = 0.0f;
+	_2E8          = 1.0f;
+	_2F4          = 0.0f;
 
 	setupEffect();
 
-	m_fsm->start(this, TANK_Wait, nullptr);
+	mFsm->start(this, TANK_Wait, nullptr);
 }
 
 /*
@@ -64,7 +64,7 @@ void Obj::doUpdate()
 {
 	updateCaution();
 	updateEmit();
-	m_fsm->exec(this);
+	mFsm->exec(this);
 }
 
 /*
@@ -88,9 +88,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -100,16 +100,16 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	getCommonEffectPos(param.m_position);
-	param.m_position.y                = 2.5f + m_position.y;
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	getCommonEffectPos(param.mPosition);
+	param.mPosition.y               = 2.5f + mPosition.y;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isEvent(1, EB2_IsEarthquake)) {
-		param.m_boundingSphere.m_radius = 50.0f;
+		param.mBoundingSphere.mRadius = 50.0f;
 	} else {
-		param.m_boundingSphere.m_radius = 20.0f;
+		param.mBoundingSphere.mRadius = 20.0f;
 	}
 
-	param.m_size = 15.0f;
+	param.mSize = 15.0f;
 }
 
 /*
@@ -120,7 +120,7 @@ void Obj::getShadowParam(ShadowParam& param)
 void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
-	if (m_isBlowing) {
+	if (mIsBlowing) {
 		_2E4 = 0.0f;
 		finishEffect();
 	}
@@ -134,7 +134,7 @@ void Obj::doStartStoneState()
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	if (m_isBlowing) {
+	if (mIsBlowing) {
 		startEffect();
 	}
 }
@@ -147,7 +147,7 @@ void Obj::doFinishStoneState()
 void Obj::doStartEarthquakeFitState()
 {
 	EnemyBase::doStartEarthquakeFitState();
-	if (m_isBlowing) {
+	if (mIsBlowing) {
 		_2E4 = 0.0f;
 		finishEffect();
 	}
@@ -161,7 +161,7 @@ void Obj::doStartEarthquakeFitState()
 void Obj::doFinishEarthquakeFitState()
 {
 	EnemyBase::doFinishEarthquakeFitState();
-	if (m_isBlowing) {
+	if (mIsBlowing) {
 		startEffect();
 	}
 }
@@ -222,9 +222,9 @@ Vector3f Obj::getOffsetForMapCollision()
 
 	Vector3f effectPos;
 	getCommonEffectPos(effectPos);
-	effectPos.x -= m_position.x;
+	effectPos.x -= mPosition.x;
 	effectPos.y = 0.0f;
-	effectPos.z -= m_position.z;
+	effectPos.z -= mPosition.z;
 	return effectPos;
 }
 
@@ -235,12 +235,12 @@ Vector3f Obj::getOffsetForMapCollision()
  */
 void Obj::initWalkSmokeEffect()
 {
-	m_walkSmokeMgr.alloc(4);
+	mWalkSmokeMgr.alloc(4);
 
-	m_walkSmokeMgr.setup(0, m_model, "rsuneR", 2.0f);
-	m_walkSmokeMgr.setup(1, m_model, "rsuneL", 2.0f);
-	m_walkSmokeMgr.setup(2, m_model, "fsuneR", 3.0f);
-	m_walkSmokeMgr.setup(3, m_model, "fsuneL", 3.0f);
+	mWalkSmokeMgr.setup(0, mModel, "rsuneR", 2.0f);
+	mWalkSmokeMgr.setup(1, mModel, "rsuneL", 2.0f);
+	mWalkSmokeMgr.setup(2, mModel, "fsuneR", 3.0f);
+	mWalkSmokeMgr.setup(3, mModel, "fsuneL", 3.0f);
 }
 
 /*
@@ -248,7 +248,7 @@ void Obj::initWalkSmokeEffect()
  * Address:	802764A4
  * Size:	000008
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &m_walkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
 /*
  * --INFO--
@@ -259,7 +259,7 @@ void Obj::getCommonEffectPos(Vector3f& pos)
 {
 	Sys::Sphere sphere;
 	getBoundingSphere(sphere);
-	pos = sphere.m_position;
+	pos = sphere.mPosition;
 }
 
 /*
@@ -278,15 +278,15 @@ bool Obj::isAttackable(bool check)
 	sinTheta = dir.x;
 	cosTheta = -dir.z;
 
-	f32 ratio = C_PARMS->m_general.m_maxAttackRange.m_value;
+	f32 ratio = C_PARMS->mGeneral.mMaxAttackRange.mValue;
 	if (check) {
 		ratio = emitCollideRatio(dir, targetPos, ratio);
 	}
 
 	f32 halfRatio = 0.5f * ratio;
 	Sys::Sphere sphere;
-	sphere.m_position = Vector3f(dir.x * halfRatio + targetPos.x, targetPos.y, dir.z * halfRatio + targetPos.z);
-	sphere.m_radius   = halfRatio;
+	sphere.mPosition = Vector3f(dir.x * halfRatio + targetPos.x, targetPos.y, dir.z * halfRatio + targetPos.z);
+	sphere.mRadius   = halfRatio;
 
 	CellIteratorArg iterArg(sphere);
 	iterArg._1C = 1;
@@ -302,15 +302,15 @@ bool Obj::isAttackable(bool check)
 			Vector3f diff = creaturePos - targetPos;
 			Parms* parms  = C_PARMS;
 			f32 absY      = absVal(diff.y);
-			if (absY < *parms->m_general.m_attackRadius()) {
+			if (absY < *parms->mGeneral.mAttackRadius()) {
 				Vector3f angle(cosTheta, 0.0f, sinTheta);
-				if (absVal(dot(angle, diff)) < *parms->m_general.m_attackRadius()) {
+				if (absVal(dot(angle, diff)) < *parms->mGeneral.mAttackRadius()) {
 					f32 dotProd = dot(dir, diff);
 					if (dotProd < ratio && dotProd > 0.0f) {
 						if (check) {
 							interactCreature(creature);
 						} else {
-							m_targetCreature = creature;
+							mTargetCreature = creature;
 							return true;
 						}
 					}
@@ -341,18 +341,18 @@ f32 Obj::emitCollideRatio(Vector3f& dir, Vector3f& pos, f32 range)
 		vec += pos;
 		vec.y += 10.0f;
 
-		Vector3f ballPos = dir * C_PARMS->m_general.m_maxAttackRange.m_value;
+		Vector3f ballPos = dir * C_PARMS->mGeneral.mMaxAttackRange.mValue;
 		Sys::Sphere sphere(ballPos, 0.0f);
-		vec.z = C_PARMS->m_creatureProps.m_props.m_wallReflection.m_value;
+		vec.z = C_PARMS->mCreatureProps.mProps.mWallReflection.mValue;
 		MoveInfo moveInfo(&sphere, &vec, 0.0f);
-		moveInfo.m_infoOrigin = static_cast<Creature*>(this);
+		moveInfo.mInfoOrigin = static_cast<Creature*>(this);
 
-		mapMgr->traceMove(moveInfo, sys->m_deltaTime);
+		mapMgr->traceMove(moveInfo, sys->mDeltaTime);
 
-		if (moveInfo.m_bounceTriangle || moveInfo.m_wallTriangle) {
+		if (moveInfo.mBounceTriangle || moveInfo.mWallTriangle) {
 			_2E8 = _2E4;
 		} else {
-			_2E4 += 2.0f * sys->m_deltaTime;
+			_2E4 += 2.0f * sys->mDeltaTime;
 			if (_2E4 > _2E8) {
 				_2E4 = _2E8;
 			}
@@ -531,7 +531,7 @@ lbl_80276A48:
  */
 void Obj::updateEmit()
 {
-	Matrixf* mat = m_joint->getWorldMatrix();
+	Matrixf* mat = mJoint->getWorldMatrix();
 	if (mat) {
 		mat->getTranslation(_2CC);
 		mat->getBasis(0, _2D8);
@@ -639,12 +639,12 @@ lbl_80276B84:
  */
 void Obj::updateCaution()
 {
-	if (isEvent(0, EB_HasCollisionOccurred) || isEvent(0, EB_IsTakingDamage) || m_stuckPikminCount) {
-		m_cautionTimer = 0.0f;
+	if (isEvent(0, EB_HasCollisionOccurred) || isEvent(0, EB_IsTakingDamage) || mStuckPikminCount) {
+		mCautionTimer = 0.0f;
 	}
 
-	if (m_cautionTimer < C_PARMS->m_general.m_alertDuration.m_value) {
-		m_cautionTimer += sys->m_deltaTime;
+	if (mCautionTimer < C_PARMS->mGeneral.mAlertDuration.mValue) {
+		mCautionTimer += sys->mDeltaTime;
 	}
 }
 
@@ -655,11 +655,11 @@ void Obj::updateCaution()
  */
 f32 Obj::getViewAngle()
 {
-	if (m_cautionTimer < C_PARMS->m_general.m_alertDuration.m_value) {
+	if (mCautionTimer < C_PARMS->mGeneral.mAlertDuration.mValue) {
 		return 180.0f;
 	}
 
-	return C_PARMS->m_general.m_viewAngle.m_value;
+	return C_PARMS->mGeneral.mViewAngle.mValue;
 }
 
 } // namespace Tank

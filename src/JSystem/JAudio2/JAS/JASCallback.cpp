@@ -16,9 +16,9 @@ bool JASCallbackMgr::regist(JASCallback* function, void* argument)
 {
 	JASCriticalSection criticalSection;
 	for (int i = 0; i < 0x10; i++) {
-		if (m_callbacks[i].m_function == nullptr) {
-			m_callbacks[i].m_function = function;
-			m_callbacks[i].m_argument = argument;
+		if (mCallbacks[i].mFunction == nullptr) {
+			mCallbacks[i].mFunction = function;
+			mCallbacks[i].mArgument = argument;
 			return true;
 		}
 	}
@@ -35,10 +35,10 @@ bool JASCallbackMgr::reject(JASCallback* function, void* argument)
 	bool didRejectAtLeastOne = false;
 	JASCriticalSection criticalSection;
 	for (int i = 0; i < 0x10; i++) {
-		if (m_callbacks[i].m_function == function && m_callbacks[i].m_argument == argument) {
-			m_callbacks[i].m_function = nullptr;
-			m_callbacks[i].m_argument = nullptr;
-			didRejectAtLeastOne       = true;
+		if (mCallbacks[i].mFunction == function && mCallbacks[i].mArgument == argument) {
+			mCallbacks[i].mFunction = nullptr;
+			mCallbacks[i].mArgument = nullptr;
+			didRejectAtLeastOne     = true;
 		}
 	}
 	return didRejectAtLeastOne;
@@ -62,10 +62,10 @@ bool JASCallbackMgr::reject(JASCallback*)
 void JASCallbackMgr::callback()
 {
 	for (int i = 0; i < 0x10; i++) {
-		TCallback* cb = &m_callbacks[i];
-		if (cb->m_function && cb->m_function(cb->m_argument) < 0) {
-			cb->m_function = nullptr;
-			cb->m_argument = nullptr;
+		TCallback* cb = &mCallbacks[i];
+		if (cb->mFunction && cb->mFunction(cb->mArgument) < 0) {
+			cb->mFunction = nullptr;
+			cb->mArgument = nullptr;
 		}
 	}
 }

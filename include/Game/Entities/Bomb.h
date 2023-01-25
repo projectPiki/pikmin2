@@ -40,7 +40,7 @@ struct Obj : public EnemyBase {
 	virtual bool isUnderground();                   // _D0 (weak)
 	virtual bool isLivingThing()                    // _D4 (weak)
 	{
-		if (m_captureMatrix || !isStopMotion()) {
+		if (mCaptureMatrix || !isStopMotion()) {
 			return false;
 		} else {
 			return true;
@@ -71,9 +71,9 @@ struct Obj : public EnemyBase {
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
 	{
-		m_fsm = fsm;
-		m_fsm->init(this);
-		m_currentLifecycleState = nullptr;
+		mFsm = fsm;
+		mFsm->init(this);
+		mCurrentLifecycleState = nullptr;
 	}
 	//////////////// VTABLE END
 
@@ -85,16 +85,16 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC;                         // _2BC
-	u8 _2BD;                         // _2BD
-	int _2C0;                        // _2C0
-	int _2C4;                        // _2C4
-	u8 _2C8;                         // _2C8
-	u8 _2C9;                         // _2C9
-	OtakaraBase::Obj* m_otakara;     // _2CC
-	FSM* m_fsm;                      // _2D0
-	efx::TBombrockLight* m_efxLight; // _2D4
-	                                 // _2D8 = PelletView
+	u8 _2BC;                        // _2BC
+	u8 _2BD;                        // _2BD
+	int _2C0;                       // _2C0
+	int _2C4;                       // _2C4
+	u8 _2C8;                        // _2C8
+	u8 _2C9;                        // _2C9
+	OtakaraBase::Obj* mOtakara;     // _2CC
+	FSM* mFsm;                      // _2D0
+	efx::TBombrockLight* mEfxLight; // _2D4
+	                                // _2D8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -110,57 +110,57 @@ struct Mgr : public EnemyMgrBase {
 	}
 	virtual void createObj(int count) // _A0 (weak)
 	{
-		m_obj = new Obj[count];
+		mObj = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
-		return &m_obj[index];
+		return &mObj[index];
 	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, array of Objs, probably
+	Obj* mObj; // _44, array of Objs, probably
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_damageToEnemies(this, 'fp01', "敵へのダメージ", 250.0f, 0.0f, 2000.0f) // 'damage to enemies'
-		    , m_blastRangeHeight(this, 'fp02', "爆風範囲高さ+-", 50.0f, 0.0f, 50.0f)   // 'blast range height +-'
-		    , m_damageLimit(this, 'ip01', "ダメージリミット", 2, 1, 10)                // 'damage limit'
-		    , m_triggerLimit(this, 'ip02', "誘爆リミット", 50, 0, 100)                 // 'induction limit'
+		    , mDamageToEnemies(this, 'fp01', "敵へのダメージ", 250.0f, 0.0f, 2000.0f) // 'damage to enemies'
+		    , mBlastRangeHeight(this, 'fp02', "爆風範囲高さ+-", 50.0f, 0.0f, 50.0f)   // 'blast range height +-'
+		    , mDamageLimit(this, 'ip01', "ダメージリミット", 2, 1, 10)                // 'damage limit'
+		    , mTriggerLimit(this, 'ip02', "誘爆リミット", 50, 0, 100)                 // 'induction limit'
 		{
 		}
 
-		Parm<f32> m_damageToEnemies;  // _804
-		Parm<f32> m_blastRangeHeight; // _82C
-		Parm<int> m_damageLimit;      // _854
-		Parm<int> m_triggerLimit;     // _87C
+		Parm<f32> mDamageToEnemies;  // _804
+		Parm<f32> mBlastRangeHeight; // _82C
+		Parm<int> mDamageLimit;      // _854
+		Parm<int> mTriggerLimit;     // _87C
 	};
 	Parms() { }
 
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms;
+	ProperParms mProperParms;
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator m_animator; // _10
+	SysShape::Animator mAnimator; // _10
 };
 
 /////////////////////////////////////////////////////////////////

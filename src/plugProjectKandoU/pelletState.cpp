@@ -506,7 +506,7 @@ void PelletGoalWaitState::init(Pellet* pelt, StateArg* arg)
 	PelletGoalStateArg* sarg = static_cast<PelletGoalStateArg*>(arg);
 
 	P2ASSERTLINE(432, arg);
-	m_obj = sarg->m_creature;
+	mObj = sarg->mCreature;
 
 	pelt->getCreatureName();
 }
@@ -520,8 +520,8 @@ void PelletGoalWaitState::init(Pellet* pelt, StateArg* arg)
  */
 void PelletGoalWaitState::exec(Pellet* pelt)
 {
-	if (moviePlayer && moviePlayer->m_demoState == 0) {
-		PelletGoalStateArg arg(m_obj);
+	if (moviePlayer && moviePlayer->mDemoState == 0) {
+		PelletGoalStateArg arg(mObj);
 		transit(pelt, PELSTATE_Goal, &arg);
 	}
 }
@@ -552,17 +552,17 @@ void PelletGoalState::init(Pellet* pelt, StateArg* arg)
 	pelt->clearClaim();
 
 	// check if a new upgrade is acquired
-	if (pelt->getKind() == PELTYPE_UPGRADE && gameSystem->m_mode == GSM_STORY_MODE) {
+	if (pelt->getKind() == PELTYPE_UPGRADE && gameSystem->mMode == GSM_STORY_MODE) {
 		int id = pelt->getConfigIndex();
 		if (id >= 0 && id < 12) {
-			playData->m_olimarData->getItem(id);
+			playData->mOlimarData->getItem(id);
 		}
 	}
 	pelt->setAlive(false);
 	bool flag                = false;
 	PelletGoalStateArg* sarg = static_cast<PelletGoalStateArg*>(arg);
-	m_onyon                  = sarg->m_creature;
-	switch (gameSystem->m_mode) {
+	mOnyon                   = sarg->mCreature;
+	switch (gameSystem->mMode) {
 	case GSM_STORY_MODE:
 		flag = checkMovie(pelt);
 		break;
@@ -572,58 +572,58 @@ void PelletGoalState::init(Pellet* pelt, StateArg* arg)
 		break;
 
 	case GSM_VERSUS_MODE:
-		int type = pelt->m_pelletFlag;
+		int type = pelt->mPelletFlag;
 		if ((u32)type == Pellet::FLAG_VS_BEDAMA_RED) {
 			pelt->movie_begin(false);
-			m_onyon->movie_begin(false);
+			mOnyon->movie_begin(false);
 			GameMessageVsRedOrSuckStart mesg(1);
-			mesg.m_isYellow = false;
-			gameSystem->m_section->sendMessage(mesg);
+			mesg.mIsYellow = false;
+			gameSystem->mSection->sendMessage(mesg);
 		} else if ((u32)type == Pellet::FLAG_VS_BEDAMA_BLUE) {
 			pelt->movie_begin(false);
-			m_onyon->movie_begin(false);
+			mOnyon->movie_begin(false);
 			GameMessageVsRedOrSuckStart mesg2(0);
-			mesg2.m_isYellow = false;
-			gameSystem->m_section->sendMessage(mesg2);
+			mesg2.mIsYellow = false;
+			gameSystem->mSection->sendMessage(mesg2);
 		} else if ((u32)type == Pellet::FLAG_VS_BEDAMA_YELLOW) {
-			if ((int)m_onyon->m_objectTypeID == OBJTYPE_Onyon) {
+			if ((int)mOnyon->mObjectTypeID == OBJTYPE_Onyon) {
 				pelt->movie_begin(false);
-				m_onyon->movie_begin(false);
-				GameMessageVsRedOrSuckStart mesg3(1 - static_cast<Onyon*>(m_onyon)->m_onyonType);
-				mesg3.m_isYellow = true;
-				gameSystem->m_section->sendMessage(mesg3);
+				mOnyon->movie_begin(false);
+				GameMessageVsRedOrSuckStart mesg3(1 - static_cast<Onyon*>(mOnyon)->mOnyonType);
+				mesg3.mIsYellow = true;
+				gameSystem->mSection->sendMessage(mesg3);
 			} else {
-				JUT_PANICLINE(512, "not onyon %d\n", m_onyon->m_objectTypeID);
+				JUT_PANICLINE(512, "not onyon %d\n", mOnyon->mObjectTypeID);
 			}
 		}
 	}
 
 	if (flag) {
-		m_onyon->movie_begin(false);
+		mOnyon->movie_begin(false);
 		pelt->movie_begin(false);
 	}
 
 	Vector3f peltPos = pelt->getPosition();
-	Vector3f suckPos = m_onyon->getSuckPos();
-	m_distance       = _distanceBetween2(peltPos, suckPos);
+	Vector3f suckPos = mOnyon->getSuckPos();
+	mDistance        = _distanceBetween2(peltPos, suckPos);
 	_14              = 0.0f;
-	m_suckDelay      = 1.5f;
+	mSuckDelay       = 1.5f;
 
 	Vector3f vel = pelt->getVelocity();
 	vel          = Vector3f(vel.x, 0.0f, vel.z);
 	pelt->setVelocity(vel);
-	m_scale = 1.0f;
+	mScale = 1.0f;
 
-	if (pelt->m_pelletView) {
-		m_scale = pelt->m_pelletView->viewGetBaseScale();
+	if (pelt->mPelletView) {
+		mScale = pelt->mPelletView->viewGetBaseScale();
 	}
 
-	if (((int)m_onyon->m_objectTypeID == OBJTYPE_Onyon || (int)m_onyon->m_objectTypeID == OBJTYPE_Ufo) && !flag) {
-		static_cast<Onyon*>(m_onyon)->efxSuikomi();
+	if (((int)mOnyon->mObjectTypeID == OBJTYPE_Onyon || (int)mOnyon->mObjectTypeID == OBJTYPE_Ufo) && !flag) {
+		static_cast<Onyon*>(mOnyon)->efxSuikomi();
 	}
-	m_inDemo     = flag;
-	m_didSuikomi = false;
-	if (!m_inDemo) {
+	mInDemo     = flag;
+	mDidSuikomi = false;
+	if (!mInDemo) {
 		Iterator<Piki> it(pikiMgr);
 		CI_LOOP(it)
 		{
@@ -632,19 +632,19 @@ void PelletGoalState::init(Pellet* pelt, StateArg* arg)
 		}
 
 		GeneralMgrIterator<EnemyBase> it2(generalEnemyMgr);
-		for (it2.first(); it2.m_index != nullptr; it2.next()) {
+		for (it2.first(); it2.mIndex != nullptr; it2.next()) {
 			EnemyBase* enemy = it2.getObject();
 			enemy->movie_end(false);
 		}
 	}
 
 	pelt->sound_otakaraEventFinish();
-	if (!(u8)m_onyon->isSuckArriveWait()) {
+	if (!(u8)mOnyon->isSuckArriveWait()) {
 		InteractSuckArrive act(pelt);
-		m_onyon->stimulate(act);
-		m_isWaiting = 0;
+		mOnyon->stimulate(act);
+		mIsWaiting = 0;
 	} else {
-		m_isWaiting = 1;
+		mIsWaiting = 1;
 	}
 
 	/*
@@ -1136,7 +1136,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 	// For treasure, upgrades, and corpses, only check for a cutscene if the pellet was collected for the first time. (only berries and
 	// number pellets dont check) This leads to a bug where the first corpse cutscene wont play for enemies youve already collected at an
 	// onion above ground
-	if (gameSystem->m_mode == GSM_STORY_MODE) {
+	if (gameSystem->mMode == GSM_STORY_MODE) {
 		isGot = playData->firstCarryPellet(pelt);
 	}
 	if (pelt->getKind() == PELTYPE_BERRY) {
@@ -1146,10 +1146,10 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 		isGot = true;
 	}
 
-	if (!strcmp(pelt->m_config->m_params.m_name.m_data, "key")) {
+	if (!strcmp(pelt->mConfig->mParams.mName.mData, "key")) {
 		if (!gameSystem->isChallengeMode()) {
 			sys->getPlayCommonData()->enableChallengeGame();
-			sys->m_playData->m_challengeOpen = true;
+			sys->mPlayData->mChallengeOpen = true;
 		}
 	} else {
 		if (gameSystem->isChallengeMode()) {
@@ -1157,25 +1157,25 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 		}
 	}
 
-	if (!strcmp(pelt->m_config->m_params.m_name.m_data, "loozy")) {
+	if (!strcmp(pelt->mConfig->mParams.mName.mData, "loozy")) {
 		sys->getPlayCommonData()->enableLouieRescue();
-		sys->m_playData->m_challengeOpen = true;
-		playData->m_storyFlags |= STORY_LouieRescued;
+		sys->mPlayData->mChallengeOpen = true;
+		playData->mStoryFlags |= STORY_LouieRescued;
 	}
 	bool draw2d = false;
 	bool doPlay = false;
 	if (isGot) {
 		Onyon* onyon = nullptr;
-		if ((m_onyon->m_objectTypeID == OBJTYPE_Ufo || m_onyon->m_objectTypeID == OBJTYPE_Onyon)) {
-			onyon = static_cast<Onyon*>(m_onyon);
+		if ((mOnyon->mObjectTypeID == OBJTYPE_Ufo || mOnyon->mObjectTypeID == OBJTYPE_Onyon)) {
+			onyon = static_cast<Onyon*>(mOnyon);
 		}
 
 		// The pellet was carried to the ship, if not in a cave, play a cutscene based on pellet type
-		if (onyon && onyon->m_onyonType == ONYON_TYPE_SHIP) {
-			if (gameSystem->m_section->getCurrentCourseInfo()) {
+		if (onyon && onyon->mOnyonType == ONYON_TYPE_SHIP) {
+			if (gameSystem->mSection->getCurrentCourseInfo()) {
 				// for berries, check if a kind was collected for the first time, or 10 of the berry have been collected
 				if (pelt->getKind() == PELTYPE_BERRY) {
-					int type = pelt->m_pelletColor;
+					int type = pelt->mPelletColor;
 					if (!type) {
 						playData->getDopeFruitCount(type);
 						playData->isDemoFlag(DEMO_First_Spicy_Berry);
@@ -1186,15 +1186,15 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 						playData->getDopeFruitCount(1);
 						if (!playData->isDemoFlag(DEMO_First_Spicy_Berry)) {
 							playData->setDemoFlag(DEMO_First_Spicy_Berry);
-							gameSystem->m_section->setDraw2DCreature(pelt);
-							char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
-							MoviePlayArg arg("s11_dope_first_r", name, gameSystem->m_section->m_movieFinishCallback, 0);
+							gameSystem->mSection->setDraw2DCreature(pelt);
+							char* name = const_cast<char*>(gameSystem->mSection->getCurrentCourseInfo()->mName);
+							MoviePlayArg arg("s11_dope_first_r", name, gameSystem->mSection->mMovieFinishCallback, 0);
 							moviePlayer->play(arg);
 							doPlay = true;
 						} else {
 							if (!playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
 								playData->getDopeFruitCount(type);
-								if (dope0 + 1 >= _aiConstants->m_dopeCount.m_data) {
+								if (dope0 + 1 >= _aiConstants->mDopeCount.mData) {
 									playData->setDemoFlag(DEMO_First_Spicy_Spray_Made);
 									BaseItem* item = ItemHoney::mgr->birth();
 									ItemHoney::InitArg arg(1, 1);
@@ -1203,10 +1203,10 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 									item->setPosition(pos, false);
 									item->movie_begin(false);
 									draw2d = true;
-									gameSystem->m_section->setDraw2DCreature(item);
+									gameSystem->mSection->setDraw2DCreature(item);
 
-									char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
-									MoviePlayArg moviearg("s11_dopebin_first_r", name, gameSystem->m_section->m_movieFinishCallback, 0);
+									char* name = const_cast<char*>(gameSystem->mSection->getCurrentCourseInfo()->mName);
+									MoviePlayArg moviearg("s11_dopebin_first_r", name, gameSystem->mSection->mMovieFinishCallback, 0);
 									moviePlayer->play(moviearg);
 									doPlay = true;
 								}
@@ -1222,15 +1222,15 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 						playData->getDopeFruitCount(1);
 						if (!playData->isDemoFlag(DEMO_First_Bitter_Berry)) {
 							playData->setDemoFlag(DEMO_First_Bitter_Berry);
-							gameSystem->m_section->setDraw2DCreature(pelt);
-							char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
-							MoviePlayArg arg("s11_dope_first_b", name, gameSystem->m_section->m_movieFinishCallback, 0);
+							gameSystem->mSection->setDraw2DCreature(pelt);
+							char* name = const_cast<char*>(gameSystem->mSection->getCurrentCourseInfo()->mName);
+							MoviePlayArg arg("s11_dope_first_b", name, gameSystem->mSection->mMovieFinishCallback, 0);
 							moviePlayer->play(arg);
 							doPlay = true;
 						} else {
 							if (!playData->isDemoFlag(DEMO_First_Bitter_Spray_Made)) {
 								playData->getDopeFruitCount(type);
-								if (dope0 + 1 >= _aiConstants->m_dopeCount.m_data) {
+								if (dope0 + 1 >= _aiConstants->mDopeCount.mData) {
 									playData->setDemoFlag(DEMO_First_Bitter_Spray_Made);
 									BaseItem* item = ItemHoney::mgr->birth();
 									ItemHoney::InitArg arg(2, 1);
@@ -1239,10 +1239,10 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 									item->setPosition(pos, false);
 									item->movie_begin(false);
 									draw2d = true;
-									gameSystem->m_section->setDraw2DCreature(item);
+									gameSystem->mSection->setDraw2DCreature(item);
 
-									char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
-									MoviePlayArg moviearg("s11_dopebin_first_b", name, gameSystem->m_section->m_movieFinishCallback, 0);
+									char* name = const_cast<char*>(gameSystem->mSection->getCurrentCourseInfo()->mName);
+									MoviePlayArg moviearg("s11_dopebin_first_b", name, gameSystem->mSection->mMovieFinishCallback, 0);
 									moviePlayer->play(moviearg);
 									doPlay = true;
 								}
@@ -1251,81 +1251,81 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 					}
 				} else if (pelt->getKind() == PELTYPE_TREASURE) {
 					// Treasure carried to the ship (assume above ground)
-					gameSystem->m_section->setDraw2DCreature(pelt);
-					char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
-					MoviePlayArg moviearg("s10_suck_treasure", name, gameSystem->m_section->m_movieFinishCallback, 0);
-					moviearg.m_pelletName = pelt->m_config->m_params.m_name.m_data;
+					gameSystem->mSection->setDraw2DCreature(pelt);
+					char* name = const_cast<char*>(gameSystem->mSection->getCurrentCourseInfo()->mName);
+					MoviePlayArg moviearg("s10_suck_treasure", name, gameSystem->mSection->mMovieFinishCallback, 0);
+					moviearg.mPelletName = pelt->mConfig->mParams.mName.mData;
 					moviePlayer->play(moviearg);
 					doPlay = true;
 
 				} else if (pelt->getKind() == PELTYPE_UPGRADE) {
 					// Upgrade carried to the ship (this only appears with the globe in AW normally)
 					// strangely, upgrades with an ID of 8 or more use a different theme
-					gameSystem->m_section->setDraw2DCreature(pelt);
-					char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
-					MoviePlayArg moviearg("s17_suck_equipment", name, gameSystem->m_section->m_movieFinishCallback, 0);
-					moviearg.m_pelletName = pelt->m_config->m_params.m_name.m_data;
-					moviearg.m_streamID   = 0xc001100b;
-					if (pelt->m_config->m_params.m_index >= 8) {
-						moviearg.m_streamID = 0xc001100a;
+					gameSystem->mSection->setDraw2DCreature(pelt);
+					char* name = const_cast<char*>(gameSystem->mSection->getCurrentCourseInfo()->mName);
+					MoviePlayArg moviearg("s17_suck_equipment", name, gameSystem->mSection->mMovieFinishCallback, 0);
+					moviearg.mPelletName = pelt->mConfig->mParams.mName.mData;
+					moviearg.mStreamID   = 0xc001100b;
+					if (pelt->mConfig->mParams.mIndex >= 8) {
+						moviearg.mStreamID = 0xc001100a;
 					}
 					moviePlayer->play(moviearg);
 					doPlay = true;
 				} else {
 					// A completely unused cutscene, in theory this would play if you carried a corpse or number pellet to the ship
 					// but even if you did, this cutscene doesnt exist in the files, so nothing happens
-					char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
-					MoviePlayArg moviearg("suck_ufo", name, gameSystem->m_section->m_movieFinishCallback, 0);
+					char* name = const_cast<char*>(gameSystem->mSection->getCurrentCourseInfo()->mName);
+					MoviePlayArg moviearg("suck_ufo", name, gameSystem->mSection->mMovieFinishCallback, 0);
 					moviePlayer->play(moviearg);
 					doPlay = true;
 				}
 			}
-		} else if (onyon && onyon->m_onyonType == ONYON_TYPE_POD) {
+		} else if (onyon && onyon->mOnyonType == ONYON_TYPE_POD) {
 			if (pelt->getKind() == PELTYPE_TREASURE) {
 				// Treasure carried to the cave pod
-				gameSystem->m_section->setDraw2DCreature(pelt);
-				MoviePlayArg moviearg("s22_cv_suck_treasure", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
-				moviearg.m_origin        = m_onyon->getPosition();
-				moviearg.m_angle         = m_onyon->getFaceDir();
-				moviearg.m_delegateStart = gameSystem->m_section->m_movieStartCallback;
-				moviearg.m_delegateEnd   = gameSystem->m_section->m_movieFinishCallback;
-				moviearg.m_pelletName    = pelt->m_config->m_params.m_name.m_data;
+				gameSystem->mSection->setDraw2DCreature(pelt);
+				MoviePlayArg moviearg("s22_cv_suck_treasure", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
+				moviearg.mOrigin        = mOnyon->getPosition();
+				moviearg.mAngle         = mOnyon->getFaceDir();
+				moviearg.mDelegateStart = gameSystem->mSection->mMovieStartCallback;
+				moviearg.mDelegateEnd   = gameSystem->mSection->mMovieFinishCallback;
+				moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
 				moviePlayer->play(moviearg);
 				doPlay = true;
 			} else if (pelt->getKind() == PELTYPE_UPGRADE) {
 				// Upgrade carried to the cave pod
-				gameSystem->m_section->setDraw2DCreature(pelt);
-				MoviePlayArg moviearg("s22_cv_suck_equipment", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
-				moviearg.m_pelletName    = pelt->m_config->m_params.m_name.m_data;
-				moviearg.m_delegateStart = gameSystem->m_section->m_movieStartCallback;
-				moviearg.m_origin        = m_onyon->getPosition();
-				moviearg.m_angle         = m_onyon->getFaceDir();
-				moviearg.m_streamID      = 0xc001100b;
-				if (pelt->m_config->m_params.m_index >= 8) {
-					moviearg.m_streamID = 0xc001100a;
+				gameSystem->mSection->setDraw2DCreature(pelt);
+				MoviePlayArg moviearg("s22_cv_suck_equipment", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
+				moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
+				moviearg.mDelegateStart = gameSystem->mSection->mMovieStartCallback;
+				moviearg.mOrigin        = mOnyon->getPosition();
+				moviearg.mAngle         = mOnyon->getFaceDir();
+				moviearg.mStreamID      = 0xc001100b;
+				if (pelt->mConfig->mParams.mIndex >= 8) {
+					moviearg.mStreamID = 0xc001100a;
 				}
 				moviePlayer->play(moviearg);
 				doPlay = true;
-			} else if (pelt->getKind() == PELTYPE_CARCASS && pelt->m_pelletFlag != Pellet::FLAG_NAVI_NAPSACK
+			} else if (pelt->getKind() == PELTYPE_CARCASS && pelt->mPelletFlag != Pellet::FLAG_NAVI_NAPSACK
 			           && !playData->isDemoFlag(DEMO_First_Corpse_In_Cave)) {
 				// first corpse collected in cave
 				playData->setDemoFlag(DEMO_First_Corpse_In_Cave);
-				MoviePlayArg moviearg("x08_cv_suck_carcass", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
-				moviearg.m_pelletName    = pelt->m_config->m_params.m_name.m_data;
-				moviearg.m_delegateStart = gameSystem->m_section->m_movieStartCallback;
-				moviearg.m_origin        = m_onyon->getPosition();
-				moviearg.m_angle         = m_onyon->getFaceDir();
+				MoviePlayArg moviearg("x08_cv_suck_carcass", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
+				moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
+				moviearg.mDelegateStart = gameSystem->mSection->mMovieStartCallback;
+				moviearg.mOrigin        = mOnyon->getPosition();
+				moviearg.mAngle         = mOnyon->getFaceDir();
 				moviePlayer->play(moviearg);
 				doPlay = true;
 			}
-		} else if (onyon && onyon->m_onyonType <= ONYON_TYPE_YELLOW) {
+		} else if (onyon && onyon->mOnyonType <= ONYON_TYPE_YELLOW) {
 			if (pelt->getKind() == PELTYPE_NUMBER && !playData->isDemoFlag(DEMO_First_Number_Pellet)) {
 				playData->setDemoFlag(DEMO_First_Number_Pellet);
-				MoviePlayArg moviearg("x18_exp_pellet", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
-				moviearg.m_pelletName    = pelt->m_config->m_params.m_name.m_data;
-				moviearg.m_delegateStart = gameSystem->m_section->m_movieStartCallback;
-				moviearg.m_origin        = m_onyon->getPosition();
-				moviearg.m_angle         = m_onyon->getFaceDir();
+				MoviePlayArg moviearg("x18_exp_pellet", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
+				moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
+				moviearg.mDelegateStart = gameSystem->mSection->mMovieStartCallback;
+				moviearg.mOrigin        = mOnyon->getPosition();
+				moviearg.mAngle         = mOnyon->getFaceDir();
 				moviePlayer->play(moviearg);
 				doPlay = true;
 			}
@@ -1335,19 +1335,19 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 	if (doPlay) {
 		Pellet* pelt2 = nullptr;
 		if (pelt->getKind() == PELTYPE_CARCASS) {
-			pelt->m_pelletView->m_creature->movie_begin(false);
+			pelt->mPelletView->mCreature->movie_begin(false);
 		} else if (pelt->getKind() == PELTYPE_NUMBER) {
 			pelt->movie_begin(false);
 		} else {
 			pelt2 = pelt;
 			pelt->getCreatureName();
 			pelt->getCreatureID();
-			if (pelt->m_pelletView) {
-				pelt->m_pelletView->viewGetShape();
+			if (pelt->mPelletView) {
+				pelt->mPelletView->viewGetShape();
 			}
 		}
 		if (!draw2d) {
-			gameSystem->m_section->setDraw2DCreature(pelt2);
+			gameSystem->mSection->setDraw2DCreature(pelt2);
 		}
 		pelt->movie_begin(false);
 	}
@@ -2284,57 +2284,57 @@ lbl_801A5AB0:
  */
 void PelletGoalState::exec(Pellet* pelt)
 {
-	if (pelt->m_pelletView) {
-		Creature* obj = pelt->m_pelletView->m_creature;
+	if (pelt->mPelletView) {
+		Creature* obj = pelt->mPelletView->mCreature;
 		if (obj && obj->isTeki()) {
-			static_cast<EnemyBase*>(pelt->m_pelletView->m_creature)->setAnimSpeed(90.0f);
+			static_cast<EnemyBase*>(pelt->mPelletView->mCreature)->setAnimSpeed(90.0f);
 		}
 	} else {
-		pelt->m_animSpeed = sys->m_deltaTime * 60.0f;
+		pelt->mAnimSpeed = sys->mDeltaTime * 60.0f;
 	}
 
-	if (m_inDemo && !m_didSuikomi && moviePlayer && moviePlayer->m_demoState == 5) {
-		if (((int)m_onyon->m_objectTypeID == OBJTYPE_Onyon || (int)m_onyon->m_objectTypeID == OBJTYPE_Ufo)) {
-			static_cast<Onyon*>(m_onyon)->efxSuikomi();
-			m_didSuikomi = true;
+	if (mInDemo && !mDidSuikomi && moviePlayer && moviePlayer->mDemoState == 5) {
+		if (((int)mOnyon->mObjectTypeID == OBJTYPE_Onyon || (int)mOnyon->mObjectTypeID == OBJTYPE_Ufo)) {
+			static_cast<Onyon*>(mOnyon)->efxSuikomi();
+			mDidSuikomi = true;
 		}
 	}
 
-	if (m_startSuck) {
-		m_currPos   = pelt->getPosition();
-		m_suckTime  = 0.0f;
-		m_startSuck = false;
+	if (mStartSuck) {
+		mCurrPos   = pelt->getPosition();
+		mSuckTime  = 0.0f;
+		mStartSuck = false;
 
-		Vector3f suckPos = m_onyon->getSuckPos();
-		m_distance       = _distanceBetween2(suckPos, m_currPos);
-		m_timer          = 0.0f;
+		Vector3f suckPos = mOnyon->getSuckPos();
+		mDistance        = _distanceBetween2(suckPos, mCurrPos);
+		mTimer           = 0.0f;
 	}
 
-	Vector3f test(m_currPos + (m_onyon->getGoalPos() - m_currPos) * m_suckTime);
-	if (m_isWaiting) {
-		if (m_onyon->isSuckArriveWait())
+	Vector3f test(mCurrPos + (mOnyon->getGoalPos() - mCurrPos) * mSuckTime);
+	if (mIsWaiting) {
+		if (mOnyon->isSuckArriveWait())
 			return;
 		InteractSuckArrive act(pelt);
-		m_onyon->stimulate(act);
-		m_isWaiting = false;
+		mOnyon->stimulate(act);
+		mIsWaiting = false;
 	}
 
-	if (m_suckDelay > 0.0f || !m_onyon->isSuckReady()) {
+	if (mSuckDelay > 0.0f || !mOnyon->isSuckReady()) {
 		Vector3f velocity(0.0f, pelt->getVelocity().y, 0.0f);
 		pelt->setVelocity(velocity);
-		m_suckDelay -= sys->m_deltaTime;
-		m_startSuck = true;
+		mSuckDelay -= sys->mDeltaTime;
+		mStartSuck = true;
 	} else {
-		pelt->m_pelletPosition    = test;
-		pelt->m_collisionPosition = test;
-		f32 scale                 = 1.0f - m_suckTime;
-		f32 angle                 = scale * TAU;
+		pelt->mPelletPosition    = test;
+		pelt->mCollisionPosition = test;
+		f32 scale                = 1.0f - mSuckTime;
+		f32 angle                = scale * TAU;
 		angle *= 8.0f;
-		scale *= m_scale * pikmin2_sinf(angle) * 0.03f;
-		pelt->m_scale = scale;
-		m_suckTime += (m_timer * sys->m_deltaTime) / m_distance;
-		m_timer += sys->m_deltaTime * 720.0f;
-		if (m_suckTime >= 1.0f) {
+		scale *= mScale * pikmin2_sinf(angle) * 0.03f;
+		pelt->mScale = scale;
+		mSuckTime += (mTimer * sys->mDeltaTime) / mDistance;
+		mTimer += sys->mDeltaTime * 720.0f;
+		if (mSuckTime >= 1.0f) {
 			Stickers stick(pelt);
 			Iterator<Creature> it(&stick);
 			InteractSuckFinish act(pelt);
@@ -2345,7 +2345,7 @@ void PelletGoalState::exec(Pellet* pelt)
 			}
 		}
 		InteractSuckFinish act(pelt);
-		m_onyon->stimulate(act);
+		mOnyon->stimulate(act);
 
 		if (Radar::mgr) {
 			Radar::Mgr::getNumOtakaraItems();
@@ -2358,14 +2358,14 @@ void PelletGoalState::exec(Pellet* pelt)
 
 		if (!gameSystem->isVersusMode() && (pelt->getKind() == PELTYPE_TREASURE || pelt->getKind() == PELTYPE_UPGRADE)
 		    && Radar::Mgr::getNumOtakaraItems() <= 1) {
-			if (gameSystem->m_isInCave) {
+			if (gameSystem->mIsInCave) {
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 				PSSystem::checkSceneMgr(mgr);
 				PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
 				PSSystem::checkGameScene(scene);
 				scene->stopPollutionSe();
 				if (gameSystem->isChallengeMode()) {
-					if (strcmp(pelt->m_config->m_params.m_name.m_data, "key")) {
+					if (strcmp(pelt->mConfig->mParams.mName.mData, "key")) {
 						PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 						PSSystem::checkSceneMgr(mgr);
 						PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
@@ -2388,9 +2388,9 @@ void PelletGoalState::exec(Pellet* pelt)
 			// delete stickers??
 			return;
 		} else {
-			if (!m_inDemo) {
-				if (!strcmp("orima", pelt->m_config->m_params.m_name.m_data)) {
-					pelt->m_soundMgr->startSound(PSSE_EV_ONYON_BOUND_PLAYER, 0);
+			if (!mInDemo) {
+				if (!strcmp("orima", pelt->mConfig->mParams.mName.mData)) {
+					pelt->mSoundMgr->startSound(PSSE_EV_ONYON_BOUND_PLAYER, 0);
 				}
 				pelt->kill(nullptr);
 			} else {
@@ -2398,8 +2398,8 @@ void PelletGoalState::exec(Pellet* pelt)
 					pelt->kill(nullptr);
 				} else {
 					if (pelt->getKind() == PELTYPE_UPGRADE || pelt->getKind() == PELTYPE_TREASURE) {
-						pelt->m_animSpeed = sys->m_deltaTime * 30.0f;
-						pelt->m_carryAnim.setFrameByKeyType(0);
+						pelt->mAnimSpeed = sys->mDeltaTime * 30.0f;
+						pelt->mCarryAnim.setFrameByKeyType(0);
 					}
 				}
 			}
@@ -3245,16 +3245,16 @@ void PelletGoalState::cleanup(Pellet*) { }
 void PelletAppearState::init(Pellet* pelt, StateArg*)
 {
 	pelt->clearClaim();
-	pelt->m_scale = 0.01f;
-	m_goalScale   = 1.0f;
-	m_time        = 0.0f;
-	m_angle       = 0.0f;
+	pelt->mScale = 0.01f;
+	mGoalScale   = 1.0f;
+	mTime        = 0.0f;
+	mAngle       = 0.0f;
 
-	_28       = randWeightFloat(0.6283185f) + TAU;
-	_20       = randWeightFloat(0.4f) + 0.3f;
-	_24       = randWeightFloat(0.8f) + 1.8f;
-	_1C       = randWeightFloat(0.7f);
-	m_efxMade = false;
+	_28      = randWeightFloat(0.6283185f) + TAU;
+	_20      = randWeightFloat(0.4f) + 0.3f;
+	_24      = randWeightFloat(0.8f) + 1.8f;
+	_1C      = randWeightFloat(0.7f);
+	mEfxMade = false;
 
 	/*
 	stwu     r1, -0x30(r1)
@@ -3348,7 +3348,7 @@ void PelletAppearState::init(Pellet* pelt, StateArg*)
  */
 void PelletAppearState::exec(Pellet* pelt)
 {
-	f32 min   = m_time;
+	f32 min   = mTime;
 	f32 max   = _1C;
 	f32 scale = 0.0f;
 	if (max <= min) {
@@ -3356,31 +3356,31 @@ void PelletAppearState::exec(Pellet* pelt)
 			min   = (min - max) / _20;
 			scale = min * min;
 		} else {
-			if (!m_efxMade) {
-				::efx::Arg arg(Vector3f(pelt->m_objMatrix.m_matrix.structView.tx, pelt->m_objMatrix.m_matrix.structView.ty,
-				                        pelt->m_objMatrix.m_matrix.structView.tz));
+			if (!mEfxMade) {
+				::efx::Arg arg(Vector3f(pelt->mObjMatrix.mMatrix.structView.tx, pelt->mObjMatrix.mMatrix.structView.ty,
+				                        pelt->mObjMatrix.mMatrix.structView.tz));
 				::efx::TTsuyuGrowOn efx;
 				efx.create(&arg);
-				pelt->m_soundMgr->startSound(PSSE_EV_TSUYUKUSA_FRUIT, 0);
-				m_efxMade = true;
+				pelt->mSoundMgr->startSound(PSSE_EV_TSUYUKUSA_FRUIT, 0);
+				mEfxMade = true;
 			}
-			m_angle += roundAng(_28 * sys->m_deltaTime);
+			mAngle += roundAng(_28 * sys->mDeltaTime);
 
-			f32 temp    = pikmin2_sinf(m_angle);
-			f32 idk     = (m_time - (_1C + _20)) / _24;
-			m_goalScale = -(idk * idk - 1.0f);
-			scale       = m_goalScale * 0.2f * temp + 1.0f;
-			if (m_time >= _24 + _1C + _20) {
+			f32 temp   = pikmin2_sinf(mAngle);
+			f32 idk    = (mTime - (_1C + _20)) / _24;
+			mGoalScale = -(idk * idk - 1.0f);
+			scale      = mGoalScale * 0.2f * temp + 1.0f;
+			if (mTime >= _24 + _1C + _20) {
 				transit(pelt, PELSTATE_Normal, nullptr);
 				scale = 1.0f;
 			}
 		}
 	}
-	m_time += sys->m_deltaTime;
+	mTime += sys->mDeltaTime;
 	if (scale == 0.0f) {
 		scale = 0.001f;
 	}
-	pelt->m_scale = scale;
+	pelt->mScale = scale;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -3556,16 +3556,16 @@ void PelletAppearState::cleanup(Pellet*) { }
 void PelletScaleAppearState::init(Pellet* pelt, StateArg*)
 {
 	pelt->clearClaim();
-	pelt->m_scale = 0.01f;
-	m_goalScale   = 1.0f;
-	m_time        = 0.0f;
-	m_angle       = 0.0f;
+	pelt->mScale = 0.01f;
+	mGoalScale   = 1.0f;
+	mTime        = 0.0f;
+	mAngle       = 0.0f;
 
-	_28       = randWeightFloat(0.6283185f) + 18.84956f;
-	_20       = randWeightFloat(0.05f) + 0.1f;
-	_24       = randWeightFloat(0.2f) + 0.6f;
-	_1C       = 0.0f;
-	m_efxMade = false;
+	_28      = randWeightFloat(0.6283185f) + 18.84956f;
+	_20      = randWeightFloat(0.05f) + 0.1f;
+	_24      = randWeightFloat(0.2f) + 0.6f;
+	_1C      = 0.0f;
+	mEfxMade = false;
 	pelt->setCollisionFlick(false);
 	/*
 	stwu     r1, -0x30(r1)
@@ -3655,7 +3655,7 @@ void PelletScaleAppearState::init(Pellet* pelt, StateArg*)
  */
 void PelletScaleAppearState::exec(Pellet* pelt)
 {
-	f32 min   = m_time;
+	f32 min   = mTime;
 	f32 max   = _1C;
 	f32 scale = 0.0f;
 	if (max <= min) {
@@ -3663,26 +3663,26 @@ void PelletScaleAppearState::exec(Pellet* pelt)
 			min   = (min - max) / _20;
 			scale = min * min;
 		} else {
-			if (!m_efxMade) {
-				m_efxMade = true;
+			if (!mEfxMade) {
+				mEfxMade = true;
 			}
-			m_angle += roundAng(_28 * sys->m_deltaTime);
+			mAngle += roundAng(_28 * sys->mDeltaTime);
 
-			f32 temp    = pikmin2_sinf(m_angle);
-			f32 idk     = (m_time - (_1C + _20)) / _24;
-			m_goalScale = -(idk * idk - 1.0f);
-			scale       = m_goalScale * 0.2f * temp + 1.0f;
-			if (m_time >= _24 + _1C + _20) {
+			f32 temp   = pikmin2_sinf(mAngle);
+			f32 idk    = (mTime - (_1C + _20)) / _24;
+			mGoalScale = -(idk * idk - 1.0f);
+			scale      = mGoalScale * 0.2f * temp + 1.0f;
+			if (mTime >= _24 + _1C + _20) {
 				transit(pelt, PELSTATE_Normal, nullptr);
 				scale = 1.0f;
 			}
 		}
 	}
-	m_time += sys->m_deltaTime;
+	mTime += sys->mDeltaTime;
 	if (scale == 0.0f) {
 		scale = 0.001f;
 	}
-	pelt->m_scale = scale;
+	pelt->mScale = scale;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3846,7 +3846,7 @@ void PelletBuryState::cleanup(Pellet*) { }
 void PelletZukanState::init(Pellet* pelt, StateArg*)
 {
 	pelt->clearClaim();
-	m_timer = 0.0f;
+	mTimer = 0.0f;
 }
 
 /*
@@ -3856,12 +3856,12 @@ void PelletZukanState::init(Pellet* pelt, StateArg*)
  */
 void PelletZukanState::exec(Pellet* pelt)
 {
-	m_timer += sys->m_deltaTime * PI;
-	if (m_timer > TAU) {
-		m_timer = 0.0f;
+	mTimer += sys->mDeltaTime * PI;
+	if (mTimer > TAU) {
+		mTimer = 0.0f;
 	}
 	Vector3f pos = pelt->getPosition();
-	pelt->m_objMatrix.makeT(pos);
+	pelt->mObjMatrix.makeT(pos);
 }
 
 /*
@@ -3900,11 +3900,11 @@ void PelletUpState::cleanup(Pellet*) { }
 PelletReturnState::PelletReturnState()
     : PelletState(PELSTATE_Return)
 {
-	m_efx    = nullptr;
-	m_efxAct = nullptr;
+	mEfx    = nullptr;
+	mEfxAct = nullptr;
 	if (gameSystem->isVersusMode()) {
-		m_efx    = new ::efx::TOrimaLight;
-		m_efxAct = new ::efx::TOrimaLightAct;
+		mEfx    = new ::efx::TOrimaLight;
+		mEfxAct = new ::efx::TOrimaLightAct;
 	}
 }
 
@@ -3916,10 +3916,10 @@ PelletReturnState::PelletReturnState()
 void PelletReturnState::init(Pellet* pelt, StateArg* arg)
 {
 	bool flag                  = false;
-	m_pathCheckID              = 0;
+	mPathCheckID               = 0;
 	PelletReturnStateArg* sarg = static_cast<PelletReturnStateArg*>(arg);
 	if (arg) {
-		m_goalPos = sarg->m_position;
+		mGoalPos = sarg->mPosition;
 		if (initPathfinding(pelt) == 1) {
 			flag = true;
 		}
@@ -3928,20 +3928,20 @@ void PelletReturnState::init(Pellet* pelt, StateArg* arg)
 	if (!flag) {
 		transit(pelt, PELSTATE_Normal, nullptr);
 	} else {
-		if (m_efx && m_efxAct) {
-			m_efx->_2C    = 0;
-			m_efxAct->_2C = 0;
-			m_efx->setMtxptr(pelt->m_objMatrix.m_matrix.mtxView);
-			m_efxAct->setMtxptr(pelt->m_objMatrix.m_matrix.mtxView);
-			m_efx->create(nullptr);
-			m_efxAct->create(nullptr);
+		if (mEfx && mEfxAct) {
+			mEfx->_2C    = 0;
+			mEfxAct->_2C = 0;
+			mEfx->setMtxptr(pelt->mObjMatrix.mMatrix.mtxView);
+			mEfxAct->setMtxptr(pelt->mObjMatrix.mMatrix.mtxView);
+			mEfx->create(nullptr);
+			mEfxAct->create(nullptr);
 		}
 	}
 
-	m_timer      = 0.0f;
-	m_peltYScale = 1.0f;
-	m_doEfx      = false;
-	m_doFlick    = false;
+	mTimer      = 0.0f;
+	mPeltYScale = 1.0f;
+	mDoEfx      = false;
+	mDoFlick    = false;
 	pelt->endCapture();
 	pelt->endStick();
 
@@ -3972,7 +3972,7 @@ void PelletReturnState::flick(Pellet*)
 void PelletReturnState::exec(Pellet* pelt)
 {
 	bool end = false;
-	switch (m_state) {
+	switch (mState) {
 	case 0:
 		int check = execPathfinding(pelt);
 		if (check == 2) {
@@ -4007,14 +4007,14 @@ void PelletReturnState::exec(Pellet* pelt)
  */
 void PelletReturnState::cleanup(Pellet* pelt)
 {
-	if (m_efx && m_efxAct) {
-		m_efx->fade();
-		m_efxAct->fade();
+	if (mEfx && mEfxAct) {
+		mEfx->fade();
+		mEfxAct->fade();
 	}
-	pelt->m_scale = 1.0f;
-	if (m_pathCheckID) {
-		testPathfinder->release(m_pathCheckID);
-		m_pathCheckID = 0;
+	pelt->mScale = 1.0f;
+	if (mPathCheckID) {
+		testPathfinder->release(mPathCheckID);
+		mPathCheckID = 0;
 	}
 }
 
@@ -4028,38 +4028,38 @@ int PelletReturnState::initPathfinding(Pellet* pelt)
 	Vector3f pelletPos = pelt->getPosition();
 	WPEdgeSearchArg arg(pelletPos);
 	if (pelt->inWater()) {
-		arg.m_inWater = true;
+		arg.mInWater = true;
 	}
 
 	WayPoint* start;
-	if (mapMgr->m_routeMgr->getNearestEdge(arg)) {
-		start = arg.m_wp2;
-		if (!(arg.m_wp1->m_flags & WPF_Closed)) {
-			start = arg.m_wp1;
+	if (mapMgr->mRouteMgr->getNearestEdge(arg)) {
+		start = arg.mWp2;
+		if (!(arg.mWp1->mFlags & WPF_Closed)) {
+			start = arg.mWp1;
 		}
-	} else if (mapMgr->m_routeMgr->getNearestEdge(arg)) {
-		start = arg.m_wp1;
-		if (arg.m_wp1->m_flags & WPF_Closed) {
-			start = arg.m_wp2;
+	} else if (mapMgr->mRouteMgr->getNearestEdge(arg)) {
+		start = arg.mWp1;
+		if (arg.mWp1->mFlags & WPF_Closed) {
+			start = arg.mWp2;
 		}
 	} else {
 		return 2; // exit state
 	}
 
-	if (m_pathCheckID) {
-		testPathfinder->release(m_pathCheckID);
-		m_pathCheckID = 0;
+	if (mPathCheckID) {
+		testPathfinder->release(mPathCheckID);
+		mPathCheckID = 0;
 	}
 
-	WPSearchArg arg2(m_goalPos, nullptr, false, 10.0f);
-	WayPoint* end = mapMgr->m_routeMgr->getNearestWayPoint(arg2);
+	WPSearchArg arg2(mGoalPos, nullptr, false, 10.0f);
+	WayPoint* end = mapMgr->mRouteMgr->getNearestWayPoint(arg2);
 	if (!end) {
 		return 2; // exit state
 
 	} else {
-		PathfindRequest req(start->m_index, end->m_index, 1);
-		m_pathCheckID = testPathfinder->start(req);
-		m_state       = 0;
+		PathfindRequest req(start->mIndex, end->mIndex, 1);
+		mPathCheckID = testPathfinder->start(req);
+		mState       = 0;
 		return 1;
 	}
 	/*
@@ -4200,16 +4200,16 @@ lbl_801A74E4:
  */
 u32 PelletReturnState::execPathfinding(Pellet* pelt)
 {
-	if (m_pathCheckID == 0) {
+	if (mPathCheckID == 0) {
 		return 2;
 	}
 
-	int state = testPathfinder->check(m_pathCheckID);
+	int state = testPathfinder->check(mPathCheckID);
 	switch (state) {
 	case 0:
-		m_pathNodes    = testPathfinder->makepath(m_pathCheckID, &m_pathNode);
-		m_pathNodePrev = m_pathNode;
-		m_state        = 1;
+		mPathNodes    = testPathfinder->makepath(mPathCheckID, &mPathNode);
+		mPathNodePrev = mPathNode;
+		mState        = 1;
 		break;
 	case 1:
 		return 2;
@@ -4224,9 +4224,9 @@ u32 PelletReturnState::execPathfinding(Pellet* pelt)
  */
 u32 PelletReturnState::execMove(Pellet* pelt)
 {
-	WayPoint* currWP = mapMgr->m_routeMgr->getWayPoint(m_pathNode->m_wpIndex);
-	f32 x            = currWP->m_position.x;
-	f32 z            = currWP->m_position.z;
+	WayPoint* currWP = mapMgr->mRouteMgr->getWayPoint(mPathNode->mWpIndex);
+	f32 x            = currWP->mPosition.x;
+	f32 z            = currWP->mPosition.z;
 	Vector3f peltPos = pelt->getPosition();
 	z -= peltPos.z;
 	x -= peltPos.x;
@@ -4238,31 +4238,31 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 		transit(pelt, PELSTATE_Normal, nullptr);
 		return 1;
 	} else {
-		m_pathNode = m_pathNode->m_next;
-		if (m_pathNode) {
+		mPathNode = mPathNode->mNext;
+		if (mPathNode) {
 			f32 yoffs;
-			f32 time = m_timer;
+			f32 time = mTimer;
 			if (time < 0.1f) {
-				yoffs        = 0.0f;
-				f32 scale    = (time / 0.1f) * PI * 0.5f;
-				m_peltYScale = -(pikmin2_sinf(scale) * 0.3f - 1.0f);
+				yoffs       = 0.0f;
+				f32 scale   = (time / 0.1f) * PI * 0.5f;
+				mPeltYScale = -(pikmin2_sinf(scale) * 0.3f - 1.0f);
 			} else if (time < 0.9f) {
-				if (!m_doEfx && !pelt->inWater()) {
-					pelt->m_soundMgr->startSound(PSSE_EN_FROG_LAND, 0);
+				if (!mDoEfx && !pelt->inWater()) {
+					pelt->mSoundMgr->startSound(PSSE_EN_FROG_LAND, 0);
 					Vector3f pos = pelt->getPosition();
 					::efx::Arg arg(pos);
-					arg.m_position.y = -(pelt->getCylinderHeight() * 0.5f - arg.m_position.y);
+					arg.mPosition.y = -(pelt->getCylinderHeight() * 0.5f - arg.mPosition.y);
 					::efx::TEnemyDownSmoke efx;
-					efx.m_scale = 0.5f;
+					efx.mScale = 0.5f;
 					efx.create(&arg);
 				}
-				m_doEfx      = true;
-				f32 scale    = (m_timer - 0.9f) / 0.1f * PI * 0.5f;
-				m_peltYScale = pikmin2_sinf(scale) * 0.3f + 0.7f;
+				mDoEfx      = true;
+				f32 scale   = (mTimer - 0.9f) / 0.1f * PI * 0.5f;
+				mPeltYScale = pikmin2_sinf(scale) * 0.3f + 0.7f;
 			} else {
-				if (!m_doFlick) {
-					pelt->m_soundMgr->startSound(PSSE_EN_FROG_JUMP, 0);
-					m_doFlick = true;
+				if (!mDoFlick) {
+					pelt->mSoundMgr->startSound(PSSE_EN_FROG_JUMP, 0);
+					mDoFlick = true;
 					Stickers stick(pelt);
 					Iterator<Creature> it(&stick);
 					f32 dmg   = 100.0f;
@@ -4277,12 +4277,12 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 				}
 			}
 
-			m_timer += sys->m_deltaTime;
-			if (m_timer > 1.0f) {
-				m_timer      = 0.0f;
-				m_peltYScale = 1.0f;
-				m_doEfx      = 0;
-				m_doFlick    = 0;
+			mTimer += sys->mDeltaTime;
+			if (mTimer > 1.0f) {
+				mTimer      = 0.0f;
+				mPeltYScale = 1.0f;
+				mDoEfx      = 0;
+				mDoFlick    = 0;
 			}
 			Vector3f velocity  = vec * 200.0f;
 			Vector3f velocity2 = pelt->getVelocity();
@@ -4292,7 +4292,7 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 			f32 y        = pelt->getCylinderHeight() * 0.5f;
 			pos.y        = yoffs + mapMgr->getMinY(pos) + y;
 			pelt->setPosition(pos, false);
-			pelt->m_scale = Vector3f(1.0f, m_peltYScale, 1.0f);
+			pelt->mScale = Vector3f(1.0f, mPeltYScale, 1.0f);
 			pelt->setVelocity(velocity);
 			return 0;
 		}
@@ -4981,11 +4981,11 @@ void FSMState<Game::Pellet>::restart(Pellet*) { }
  */
 void StateMachine<Game::Pellet>::create(int count)
 {
-	m_limit          = count;
-	m_count          = 0;
-	m_states         = new FSMState<Game::Pellet>*[m_limit];
-	m_indexToIDArray = new int[m_limit];
-	m_idToIndexArray = new int[m_limit];
+	mLimit          = count;
+	mCount          = 0;
+	mStates         = new FSMState<Game::Pellet>*[mLimit];
+	mIndexToIDArray = new int[mLimit];
+	mIdToIndexArray = new int[mLimit];
 }
 
 /*
@@ -4997,12 +4997,12 @@ void StateMachine<Game::Pellet>::registerState(FSMState<Game::Pellet>* newState)
 {
 	// copied all this from enemyFSM.cpp, do we actually need it here? no idea
 	bool check;
-	if (m_count >= m_limit) {
+	if (mCount >= mLimit) {
 		return;
 	}
-	m_states[m_count] = newState;
+	mStates[mCount] = newState;
 	// TODO: This looks weird. How would they really have written it?
-	if (!(0 <= newState->m_id && newState->m_id < m_limit)) {
+	if (!(0 <= newState->mId && newState->mId < mLimit)) {
 		check = false;
 	} else {
 		check = true;
@@ -5010,10 +5010,10 @@ void StateMachine<Game::Pellet>::registerState(FSMState<Game::Pellet>* newState)
 	if (check == false) {
 		return;
 	}
-	newState->m_stateMachine         = this;
-	m_indexToIDArray[m_count]        = newState->m_id;
-	m_idToIndexArray[newState->m_id] = m_count;
-	m_count++;
+	newState->mStateMachine        = this;
+	mIndexToIDArray[mCount]        = newState->mId;
+	mIdToIndexArray[newState->mId] = mCount;
+	mCount++;
 }
 
 } // namespace Game

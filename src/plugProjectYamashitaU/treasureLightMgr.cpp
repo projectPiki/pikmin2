@@ -13,19 +13,19 @@ namespace TreasureLight {
 Mgr::Mgr()
     : LightMgr("お宝ライト")
 {
-	m_rotationAngle  = 300.0f;
-	m_elevationAngle = 330.0f;
+	mRotationAngle  = 300.0f;
+	mElevationAngle = 330.0f;
 
-	m_mainLight              = new LightObj("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
-	m_mainLight->m_spotFn    = 3;
-	m_mainLight->m_elevation = Vector3f(0.0f, -1.0f, 0.0f);
-	registLightObj(m_mainLight);
+	mMainLight             = new LightObj("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+	mMainLight->mSpotFn    = 3;
+	mMainLight->mElevation = Vector3f(0.0f, -1.0f, 0.0f);
+	registLightObj(mMainLight);
 
-	m_specLight           = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_4, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
-	m_specLight->m_kScale = 40.0f;
-	registLightObj(m_specLight);
+	mSpecLight          = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_4, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+	mSpecLight->mKScale = 40.0f;
+	registLightObj(mSpecLight);
 
-	m_ambientLight.m_color = Color4(0x32, 0x32, 0x32, 0xFF);
+	mAmbientLight.mColor = Color4(0x32, 0x32, 0x32, 0xFF);
 }
 
 /*
@@ -86,8 +86,8 @@ void Mgr::set(Matrixf& mtx)
  */
 void Mgr::setCommonProc()
 {
-	f32 rotation_angle  = (m_rotationAngle * DEG2RAD) * PI;
-	f32 elevation_angle = (m_elevationAngle * DEG2RAD) * PI;
+	f32 rotation_angle  = (mRotationAngle * DEG2RAD) * PI;
+	f32 elevation_angle = (mElevationAngle * DEG2RAD) * PI;
 
 	f32 radius = 3000.0f;
 	Vector3f rotation;
@@ -104,12 +104,12 @@ void Mgr::setCommonProc()
 		elevation.z *= 1 / dist;
 	}
 
-	m_mainLight->m_position      = rotation;
-	m_mainLight->m_elevation     = elevation;
-	m_mainLight->m_refBrightness = 0.85f;
+	mMainLight->mPosition      = rotation;
+	mMainLight->mElevation     = elevation;
+	mMainLight->mRefBrightness = 0.85f;
 
-	m_specLight->m_position  = rotation;
-	m_specLight->m_elevation = elevation;
+	mSpecLight->mPosition  = rotation;
+	mSpecLight->mElevation = elevation;
 }
 
 /*

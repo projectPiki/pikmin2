@@ -22,7 +22,7 @@ struct TBase {
 	// 	for (int i = 0; i < count; i++) {
 	// 		emitters[i] = particleMgr->create(effectIDs[i], position, 0);
 	// 		if (emitters[i] ) {
-	// 			emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+	// 			emitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 	// 		} else {
 	// 			return false;
 	// 		}
@@ -34,7 +34,7 @@ struct TBase {
 	// 	for (int i = 0; i < count; i++) {
 	// 		emitters[i] = particleMgr->create(effectIDs[i], position, 0);
 	// 		if (emitters[i] ) {
-	// 			emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+	// 			emitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 	// 		} else {
 	// 			return false;
 	// 		}
@@ -46,7 +46,7 @@ struct TBase {
 	// 	for (int i = 0; i < count; i++) {
 	// 		emitters[i] = particleMgr->create(effectIDs[i], position, 0);
 	// 		if (emitters[i] ) {
-	// 			emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+	// 			emitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 	// 		} else {
 	// 			return false;
 	// 		}
@@ -58,7 +58,7 @@ struct TBase {
 	// 	for (int i = 0; i < count; i++) {
 	// 		emitters[i] = particleMgr->create(effectIDs[i], position, 0);
 	// 		if (emitters[i] ) {
-	// 			emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+	// 			emitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 	// 		} else {
 	// 			return false;
 	// 		}
@@ -68,9 +68,9 @@ struct TBase {
 
 	// inline bool create(JPABaseEmitter** emitters, int count, Arg* arg, u16* effectIDs) {
 	// 	for (int i = 0; i < count; i++) {
-	// 		emitters[i] = particleMgr->create(effectIDs[i], arg->m_position, 0);
+	// 		emitters[i] = particleMgr->create(effectIDs[i], arg->mPosition, 0);
 	// 		if (emitters[i] ) {
-	// 			emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+	// 			emitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 	// 		} else {
 	// 			return false;
 	// 		}
@@ -80,9 +80,9 @@ struct TBase {
 
 	// inline bool create(Arg& arg, JPABaseEmitter** emitters, u16* effectIDs, int count) {
 	// 	for (int i = 0; i < count; i++) {
-	// 		emitters[i] = particleMgr->create(effectIDs[i], arg.m_position, 0);
+	// 		emitters[i] = particleMgr->create(effectIDs[i], arg.mPosition, 0);
 	// 		if (emitters[i] ) {
-	// 			emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+	// 			emitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 	// 		} else {
 	// 			return false;
 	// 		}
@@ -92,9 +92,9 @@ struct TBase {
 
 	// inline bool create(Arg* arg, JPABaseEmitter** emitters, u16* effectIDs, int count) const {
 	// 	for (int i = 0; i < count; i++) {
-	// 		emitters[i] = particleMgr->create(effectIDs[i], arg->m_position, 0);
+	// 		emitters[i] = particleMgr->create(effectIDs[i], arg->mPosition, 0);
 	// 		if (emitters[i] ) {
-	// 			emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+	// 			emitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 	// 		} else {
 	// 			return false;
 	// 		}
@@ -106,7 +106,7 @@ struct TBase {
 	// 	for (int i = 0; i < count; i++) {
 	// 		emitters[i] = particleMgr->create(effectIDs[i], position, 0);
 	// 		if (emitters[i] ) {
-	// 			emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+	// 			emitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 	// 		} else {
 	// 			return false;
 	// 		}
@@ -118,7 +118,7 @@ struct TBase {
 	// 	for (int i = 0; i < count; i++) {
 	// 		emitters[i] = particleMgr->create(effectIDs[i], position, 0);
 	// 		if (emitters[i] ) {
-	// 			emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
+	// 			emitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
 	// 		} else {
 	// 			return false;
 	// 		}
@@ -129,9 +129,9 @@ struct TBase {
 
 // inline bool createEmitters(Arg* arg, JPABaseEmitter** emitters, u16* effectIDs, int count) {
 // 	for (int i = 0; i < count; i++) {
-// 		emitters[i] = particleMgr->create(effectIDs[i], arg->m_position, 0);
+// 		emitters[i] = particleMgr->create(effectIDs[i], arg->mPosition, 0);
 // 		if (emitters[i] ) {
-// 			emitters[i]->m_emitterCallback = &TBase::mCallBack_StaticClipping;
+// 			emitters[i]->mEmitterCallback = &TBase::mCallBack_StaticClipping;
 // 		} else {
 // 			return false;
 // 		}
@@ -141,9 +141,9 @@ struct TBase {
 // inline bool createEmitters(Arg* arg, JPABaseEmitter** emitters, u16* effectIDs, int count) {
 // 	int i = 0;
 // 	do {
-// 		emitters[i] = particleMgr->create(effectIDs[i], arg->m_position, 0);
+// 		emitters[i] = particleMgr->create(effectIDs[i], arg->mPosition, 0);
 // 		if (emitters[i] ) {
-// 			emitters[i]->m_emitterCallback = &TBase::mCallBack_StaticClipping;
+// 			emitters[i]->mEmitterCallback = &TBase::mCallBack_StaticClipping;
 // 		} else {
 // 			return false;
 // 		}

@@ -16,10 +16,10 @@ struct CPlate : public Container<Creature> {
 	struct Slot {
 		Slot();
 
-		Vector3f _00;         // _00
-		Vector3f _0C;         // _0C
-		Creature* m_creature; // _18
-		u32 _1C;              // _1C
+		Vector3f _00;        // _00
+		Vector3f _0C;        // _0C
+		Creature* mCreature; // _18
+		u32 _1C;             // _1C
 	};
 
 	// @fabricatedName
@@ -62,28 +62,28 @@ struct CPlate : public Container<Creature> {
 	void updateShrink();
 	bool validSlot(int);
 
-	Parms m_parms;       // _1C
-	Vector3f _A4;        // _A4
-	f32 _B0;             // _B0
-	f32 _B4;             // _B4
-	f32 _B8;             // _B8
-	int _BC;             // _BC
-	Slot* m_slots;       // _C0
-	int m_slotLimit;     // _C4
-	int m_slotCount;     // _C8
-	Vector3f m_position; // _CC
-	Vector3f _D8;        // _D8
-	Vector3f m_velocity; // _E4
-	f32 _F0;             // _F0
-	f32 _F4;             // _F4
-	f32 _F8;             // _F8
-	f32 _FC;             // _FC
-	u8 _100;             // _100
-	u32* _104;           // _104
-	u32 _108;            // _108
-	u32 _10C;            // _10C
-	u8 _110;             // _110
-	u8 _111;             // _111
+	Parms mParms;       // _1C
+	Vector3f _A4;       // _A4
+	f32 _B0;            // _B0
+	f32 _B4;            // _B4
+	f32 _B8;            // _B8
+	int _BC;            // _BC
+	Slot* mSlots;       // _C0
+	int mSlotLimit;     // _C4
+	int mSlotCount;     // _C8
+	Vector3f mPosition; // _CC
+	Vector3f _D8;       // _D8
+	Vector3f mVelocity; // _E4
+	f32 _F0;            // _F0
+	f32 _F4;            // _F4
+	f32 _F8;            // _F8
+	f32 _FC;            // _FC
+	u8 _100;            // _100
+	u32* _104;          // _104
+	u32 _108;           // _108
+	u32 _10C;           // _10C
+	u8 _110;            // _110
+	u8 _111;            // _111
 };
 } // namespace Game
 

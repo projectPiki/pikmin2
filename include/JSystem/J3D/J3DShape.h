@@ -21,14 +21,14 @@ struct J3DShapeMtx;
 #define J3DShapeMtx_Multi    0x3
 
 struct J3DShapeInitData {
-	u8 m_shapeMtxType;            // _00
-	u16 _02;                      // _02
-	u16 m_vtxDescListIndex;       // _04
-	u16 m_shapeMtxInitDataIndex;  // _06
-	u16 m_shapeDrawInitDataIndex; // _08
-	f32 _0C;                      // _0C
-	JGeometry::TVec3f _10;        // _10
-	JGeometry::TVec3f _1C;        // _1C
+	u8 mShapeMtxType;            // _00
+	u16 _02;                     // _02
+	u16 mVtxDescListIndex;       // _04
+	u16 mShapeMtxInitDataIndex;  // _06
+	u16 mShapeDrawInitDataIndex; // _08
+	f32 _0C;                     // _0C
+	JGeometry::TVec3f _10;       // _10
+	JGeometry::TVec3f _1C;       // _1C
 };
 
 struct J3DShape {
@@ -47,28 +47,28 @@ struct J3DShape {
 	void makeVtxArrayCmd();
 
 	// VTBL _00
-	J3DMaterial* _04;              // _04
-	u16 m_id;                      // _08
-	u16 _0A;                       // _0A
-	u32 m_flags;                   // _0C
-	f32 _10;                       // _10
-	JGeometry::TVec3f _14;         // _14
-	JGeometry::TVec3f _20;         // _20
-	u8* _2C;                       // _2C
-	_GXVtxDescList* _30;           // _30
-	u8 m_mode;                     // _34
-	J3DShapeMtx** _38;             // _38
-	J3DShapeDraw** _3C;            // _3C
-	u32 _40;                       // _40
-	u32 _44;                       // _44
-	u8 _48;                        // _48
-	J3DVertexData* m_vtxData;      // _4C
-	J3DDrawMtxData* m_drawMtxData; // _50
-	s8* m_flagList;                // _54
-	J3DJos32Tree* m_tree1;         // _58
-	J3DJos32Tree* m_tree2;         // _5C
-	s32* _60;                      // _60
-	int _64;                       // _64
+	J3DMaterial* _04;             // _04
+	u16 mId;                      // _08
+	u16 _0A;                      // _0A
+	u32 mFlags;                   // _0C
+	f32 _10;                      // _10
+	JGeometry::TVec3f _14;        // _14
+	JGeometry::TVec3f _20;        // _20
+	u8* _2C;                      // _2C
+	_GXVtxDescList* _30;          // _30
+	u8 mMode;                     // _34
+	J3DShapeMtx** _38;            // _38
+	J3DShapeDraw** _3C;           // _3C
+	u32 _40;                      // _40
+	u32 _44;                      // _44
+	u8 _48;                       // _48
+	J3DVertexData* mVtxData;      // _4C
+	J3DDrawMtxData* mDrawMtxData; // _50
+	s8* mFlagList;                // _54
+	J3DJos32Tree* mTree1;         // _58
+	J3DJos32Tree* mTree2;         // _5C
+	s32* _60;                     // _60
+	int _64;                      // _64
 
 	static u8* sOldVcdVatCmd;
 	static u8 sEnvelopeFlag;
@@ -80,7 +80,7 @@ struct J3DShapeMtx {
 	virtual ~J3DShapeMtx() { }                                           // _08 (weak)
 	virtual int getType() const { return 'SMTX'; }                       // _0C (weak)
 	virtual int getUseMtxNum() const { return 1; }                       // _10 (weak)
-	virtual u16 getUseMtxIndex(u16) const { return m_useMtxIndex; }      // _14 (weak)
+	virtual u16 getUseMtxIndex(u16) const { return mUseMtxIndex; }       // _14 (weak)
 	virtual void load() const;                                           // _18
 	virtual void calcNBTScale(const Vec&, f32 (*)[3][3], f32 (*)[3][3]); // _1C
 
@@ -92,7 +92,7 @@ struct J3DShapeMtx {
 	static void resetMtxLoadCache();
 
 	// VTBL _00
-	u16 m_useMtxIndex; // _04
+	u16 mUseMtxIndex; // _04
 
 	static u16 sMtxLoadCache[10];
 	static LoadMtxIndxFunction sMtxLoadPipeline[4];
@@ -116,14 +116,14 @@ struct J3DShapeDraw {
 	virtual void _10() = 0;
 	virtual void _14() = 0;
 
-	u32 m_dlSize;            // _04
-	const u8* m_displayList; // _08
+	u32 mDlSize;            // _04
+	const u8* mDisplayList; // _08
 };
 
 struct J3DShapeTable {
 	inline J3DShapeTable()
-	    : m_count(0)
-	    , m_items(nullptr)
+	    : mCount(0)
+	    , mItems(nullptr)
 	{
 	}
 
@@ -137,11 +137,11 @@ struct J3DShapeTable {
 	void sortVcdVatCmd();
 
 	/** @fabricated */
-	J3DShape* getItem(u16 index) { return m_items[index]; }
+	J3DShape* getItem(u16 index) { return mItems[index]; }
 
 	// VTBL _00
-	u16 m_count;        // _04
-	J3DShape** m_items; // _08
+	u16 mCount;        // _04
+	J3DShape** mItems; // _08
 
 	// TODO: Are subsequent JUTNameTab* and J3DVertexData in J3DModelData also
 	// part of this?
@@ -150,13 +150,13 @@ struct J3DShapeTable {
 struct J3DShapeMtxMulti : public J3DShapeMtx {
 	virtual ~J3DShapeMtxMulti() { }                                         // _08 (weak)
 	virtual int getType() const { return 'SMML'; }                          // _0C (weak)
-	virtual int getUseMtxNum() const { return m_useMtxNum; }                // _10 (weak)
+	virtual int getUseMtxNum() const { return mUseMtxNum; }                 // _10 (weak)
 	virtual u16 getUseMtxIndex(unsigned short p1) const { return _0C[p1]; } // _14 (weak)
 	virtual void load() const;                                              // _18
 	virtual void calcNBTScale(const Vec&, f32 (*)[3][3], f32 (*)[3][3]);    // _1C
 
-	u16 m_useMtxNum; // _08
-	u16* _0C;        // _0C
+	u16 mUseMtxNum; // _08
+	u16* _0C;       // _0C
 };
 
 struct J3DShapeMtxConcatView : public J3DShapeMtx {
@@ -182,14 +182,14 @@ struct J3DShapeMtxConcatView : public J3DShapeMtx {
 struct J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
 	virtual ~J3DShapeMtxMultiConcatView() { }                                     // _08 (weak)
 	virtual int getType() const { return 'SMMC'; }                                // _0C (weak)
-	virtual int getUseMtxNum() const { return m_useMtxNum; }                      // _10 (weak)
+	virtual int getUseMtxNum() const { return mUseMtxNum; }                       // _10 (weak)
 	virtual u16 getUseMtxIndex(unsigned short index) const { return _0C[index]; } // _14 (weak)
 	virtual void load() const;                                                    // _18
 	virtual void loadNrmMtx(int, unsigned short) const;                           // _20 (weak)
 	virtual void loadNrmMtx(int, unsigned short, f32 (*)[4]) const;               // _24
 
-	u16 m_useMtxNum; // _08
-	u16* _0C;        // _0C
+	u16 mUseMtxNum; // _08
+	u16* _0C;       // _0C
 };
 
 struct J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {

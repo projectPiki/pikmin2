@@ -14,14 +14,14 @@ AIConstants* _aiConstants;
  */
 AIConstants::AIConstants()
     : TagParameters("aiConstants")
-    , m_gravity(this, "gravity")
-    , m_dopeCount(this, "dopecount")
-    , m_debt(this, "debt")
-    , m_cameraAngle(this, "camera_angle")
+    , mGravity(this, "gravity")
+    , mDopeCount(this, "dopecount")
+    , mDebt(this, "debt")
+    , mCameraAngle(this, "camera_angle")
 {
-	m_dopeCount.m_data   = 2;
-	m_debt.m_data        = 10000;
-	m_cameraAngle.m_data = 180.0f;
+	mDopeCount.mData   = 2;
+	mDebt.mData        = 10000;
+	mCameraAngle.mData = 180.0f;
 
 	char* fileName = "/user/Kando/aiConstants.txt";
 

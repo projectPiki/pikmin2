@@ -9,8 +9,8 @@ namespace PSGame {
 // PSSystem::SingletonBase<ConductorList> which is at _1C
 struct ConductorList {
 	struct CaveInfo {
-		u8 m_fileNameCount; // _00, num file names in _04
-		char** m_fileNames; // _04, array of file names
+		u8 mFileNameCount; // _00, num file names in _04
+		char** mFileNames; // _04, array of file names
 	};
 
 	virtual ~ConductorList();   // _08 (weak)
@@ -20,9 +20,9 @@ struct ConductorList {
 	void getSeqAndWaveFromConductor(const char*, u8*, char**);
 
 	// _00 = VTBL
-	u8 _04[0x1C];          // _04, probably from inheritances?
-	u8 m_caveCount;        // _20
-	CaveInfo* m_caveInfos; // _24
+	u8 _04[0x1C];         // _04, probably from inheritances?
+	u8 mCaveCount;        // _20
+	CaveInfo* mCaveInfos; // _24
 };
 } // namespace PSGame
 

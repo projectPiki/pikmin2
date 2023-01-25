@@ -416,7 +416,7 @@ JAInter::SeqUpdateData::SeqUpdateData()
     , _02(0)
     , _03(0)
     , _08(0)
-    , m_sequence(nullptr)
+    , mSequence(nullptr)
     , _4C(new (JAIBasic::msCurrentHeap, 0x20) PlayerParameter[33])
 {
 	_24 = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
@@ -1018,10 +1018,10 @@ void JAInter::SequenceMgr::checkFadeoutSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = &seqTrackInfo[i];
-		if (info->m_sequence != nullptr && info->m_sequence->_15 == 5 && info->m_sequence->getVolume(7) == 0.0f) {
-			info->m_sequence->m_seqParameter.m_track.stopSeq();
-			info->m_sequence->clearMainSoundPPointer();
-			stopSeq(info->m_sequence);
+		if (info->mSequence != nullptr && info->mSequence->_15 == 5 && info->mSequence->getVolume(7) == 0.0f) {
+			info->mSequence->mSeqParameter.mTrack.stopSeq();
+			info->mSequence->clearMainSoundPPointer();
+			stopSeq(info->mSequence);
 			info->_08 = 0;
 		}
 	}
@@ -1043,10 +1043,10 @@ void JAInter::SequenceMgr::checkStoppedSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = &seqTrackInfo[i];
-		if (info->m_sequence != nullptr && (info->m_sequence->_15 == 4 || info->m_sequence->_15 == 5)
-		    && info->m_sequence->m_seqParameter.m_track._35B == 0) {
-			info->m_sequence->clearMainSoundPPointer();
-			stopSeq(info->m_sequence);
+		if (info->mSequence != nullptr && (info->mSequence->_15 == 4 || info->mSequence->_15 == 5)
+		    && info->mSequence->mSeqParameter.mTrack._35B == 0) {
+			info->mSequence->clearMainSoundPPointer();
+			stopSeq(info->mSequence);
 			info->_08 = 0;
 		}
 	}
@@ -1061,11 +1061,11 @@ void JAInter::SequenceMgr::checkPlayingSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = seqTrackInfo + i;
-		if (info->m_sequence != nullptr && info->m_sequence->_15 >= 4) {
+		if (info->mSequence != nullptr && info->mSequence->_15 >= 4) {
 			checkPlayingSeqTrack(i);
 			for (u8 j = 0; j < JAIGlobalParameter::getParamSeqTrackMax() + 1; j++) {
 				if (info->_44[j] != 0) {
-					if (j == 0x20 || (1 << j & info->m_sequence->m_seqParameter._2C0->_04) != 0) {
+					if (j == 0x20 || (1 << j & info->mSequence->mSeqParameter._2C0->_04) != 0) {
 						SystemInterface::setSeqPortargsU32(info, j, 2, info->_44[j]);
 						info->_4C[j]._30.addPortCmdOnce();
 					}
@@ -1084,9 +1084,9 @@ void JAInter::SequenceMgr::checkStartedSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = seqTrackInfo + i;
-		if (info->m_sequence != nullptr && info->m_sequence->_15 == 3
-		    && SystemInterface::checkSeqActiveFlag(&info->m_sequence->m_seqParameter.m_track) != 0) {
-			info->m_sequence->_15 = 4;
+		if (info->mSequence != nullptr && info->mSequence->_15 == 3
+		    && SystemInterface::checkSeqActiveFlag(&info->mSequence->mSeqParameter.mTrack) != 0) {
+			info->mSequence->_15 = 4;
 			SystemInterface::trackInit(info);
 		}
 	}
@@ -1101,12 +1101,12 @@ void JAInter::SequenceMgr::checkReadSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = seqTrackInfo + i;
-		JAISequence* seq    = info->m_sequence;
-		if (seq != nullptr && seq->_15 == 2 && seq->m_seqParameter._27C == 0xFFFFFFFF && seq->m_seqParameter._2C0->_02 == 0
-		    && seq->m_seqParameter.m_track._35B == 0) {
-			seq->m_seqParameter.m_track.setSeqData(info->_40, JASResArcLoader::getResSize(arcPointer, seq->m_soundInfo->count.v3[1]));
+		JAISequence* seq    = info->mSequence;
+		if (seq != nullptr && seq->_15 == 2 && seq->mSeqParameter._27C == 0xFFFFFFFF && seq->mSeqParameter._2C0->_02 == 0
+		    && seq->mSeqParameter.mTrack._35B == 0) {
+			seq->mSeqParameter.mTrack.setSeqData(info->_40, JASResArcLoader::getResSize(arcPointer, seq->mSoundInfo->count.v3[1]));
 		}
-		SeqUpdateData* v1 = seqTrackInfo + info->m_sequence->_14;
+		SeqUpdateData* v1 = seqTrackInfo + info->mSequence->_14;
 		v1->_0C           = 1.0f;
 		v1->_18           = 0.5f;
 		v1->_10           = 1.0f;
@@ -1121,20 +1121,20 @@ void JAInter::SequenceMgr::checkReadSeq()
 			v1->_34[j] = 0.0f;
 			v1->_44[j] = 0;
 		}
-		info->m_sequence->_15 = 3;
-		if (1 < info->m_sequence->_28) {
-			info->m_sequence->setVolume(0.0f, 0, 7);
-			info->m_sequence->setVolume(1.0f, info->m_sequence->_28, 7);
+		info->mSequence->_15 = 3;
+		if (1 < info->mSequence->_28) {
+			info->mSequence->setVolume(0.0f, 0, 7);
+			info->mSequence->setVolume(1.0f, info->mSequence->_28, 7);
 		}
 		if (info->_00 != 0) {
-			info->m_sequence->setPauseMode(info->_00, info->_01);
+			info->mSequence->setPauseMode(info->_00, info->_01);
 			info->_0C = 1.1f;
 		}
-		JAIBasic::msBasic->setSeExtParameter(info->m_sequence);
+		JAIBasic::msBasic->setSeExtParameter(info->mSequence);
 		checkPlayingSeqTrack(i);
-		if (info->m_sequence != nullptr) {
+		if (info->mSequence != nullptr) {
 			SystemInterface::rootInit(info);
-			seq->m_seqParameter.m_track.startSeq();
+			seq->mSeqParameter.mTrack.startSeq();
 		}
 	}
 	/*
@@ -2875,15 +2875,15 @@ lbl_800B2DDC:
  */
 void JAInter::SequenceMgr::checkCustomDvdLoadArc(unsigned long p1, unsigned long index)
 {
-	JAISequence* sequence   = seqTrackInfo[index].m_sequence;
+	JAISequence* sequence   = seqTrackInfo[index].mSequence;
 	seqTrackInfo[index]._03 = 0;
 	u32 v1;
-	customHeapCallback(v1, 1, reinterpret_cast<JAISequence*>(sequence->m_soundInfo->count.v3[1]));
+	customHeapCallback(v1, 1, reinterpret_cast<JAISequence*>(sequence->mSoundInfo->count.v3[1]));
 	if (sequence != nullptr && sequence->_15 == 1) {
 		sequence->_15 = 2;
 	} else {
 		u32 v2;
-		customHeapCallback(v2, 2, reinterpret_cast<JAISequence*>(sequence->m_soundInfo->count.v3[1]));
+		customHeapCallback(v2, 2, reinterpret_cast<JAISequence*>(sequence->mSoundInfo->count.v3[1]));
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -3281,7 +3281,7 @@ void JAInter::SequenceMgr::storeSeqBuffer(JAISequence**, JAInter::Actor*, unsign
  */
 void JAInter::SeqParameter::init()
 {
-	m_track.assignExtBuffer(&m_outerParam);
+	mTrack.assignExtBuffer(&mOuterParam);
 	// TODO: is this something like assigning a new (on stack) MoveParaSet? Can't do that to `this`, though...
 	_27C = 0xFFFFFFFF;
 	_04  = 1.0f;

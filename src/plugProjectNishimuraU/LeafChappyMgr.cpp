@@ -11,7 +11,7 @@ namespace LeafChappy {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	m_name = "葉っぱチャッピーマネージャ"; // leaf chappy manager
+	mName = "葉っぱチャッピーマネージャ"; // leaf chappy manager
 }
 
 /*
@@ -40,14 +40,14 @@ void Mgr::doAlloc() { init(new KumaChappy::Parms); }
  * Address:	802C59F8
  * Size:	000060
  */
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
 /*
  * --INFO--
  * Address:	802C5B48
  * Size:	000010
  */
-EnemyBase* Mgr::getEnemy(int index) { return &m_obj[index]; }
+EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
 } // namespace LeafChappy
 } // namespace Game
