@@ -210,8 +210,8 @@ void JFWDisplay::prepareCopyDisp() {
     GXSetCopyFilter((GXBool)JUTVideo::getManager()->isAntiAliasing(),
                     JUTVideo::getManager()->getSamplePattern(), GX_ENABLE,
                     JUTVideo::getManager()->getVFilter());
-    GXSetCopyClamp(_26); // remove crlwi here
-    GXSetDispCopyGamma(_14);
+    GXSetCopyClamp((GXFBClamp)_26);
+    GXSetDispCopyGamma((GXGamma)_14);
     GXSetZMode(GX_ENABLE, GX_LTEQUAL, GX_ENABLE);
     if (mEnableAlpha) {
         GXSetAlphaUpdate(GX_ENABLE);
@@ -845,6 +845,19 @@ void diagnoseGpHang() {
  */
 void JFWDisplay::setForOSResetSystem()
 {
+    for(JSUPtrLink * link = JFWAlarm::sList.m_head; link != nullptr; link = link->getNext()) {
+        ((JFWAlarm*)link->m_value)->cancelAlarm();
+    }
+    
+    JUTVideo::destroyManager();
+    VISetBlack(GX_TRUE);
+    VIFlush();
+    VIWaitForRetrace();
+
+    if(sManager) {
+        sManager->m_fader = nullptr;
+        destroyManager();
+    }
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -893,66 +906,3 @@ lbl_8008B064:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	8008B078
- * Size:	000048
- */
-void __sinit_JFWDisplay_cpp()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sList__8JFWAlarm@ha
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sList__8JFWAlarm@l
-	bl       __ct__10JSUPtrListFb
-	lis      r3, sList__8JFWAlarm@ha
-	lis      r4, "__dt__18JSUList<8JFWAlarm>Fv"@ha
-	lis      r5, lbl_804F0520@ha
-	addi     r3, r3, sList__8JFWAlarm@l
-	addi     r4, r4, "__dt__18JSUList<8JFWAlarm>Fv"@l
-	addi     r5, r5, lbl_804F0520@l
-	bl       __register_global_object
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8008B0C0
- * Size:	000054
- */
-// void JSUList<JFWAlarm>::~JSUList()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8008B0F8
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrListFv
-// 	extsh.   r0, r31
-// 	ble      lbl_8008B0F8
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8008B0F8:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }

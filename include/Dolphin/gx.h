@@ -953,6 +953,12 @@ typedef enum _GXPosNrmMtx {
     GX_PNMTX9 = 3 * 9,
 } GXPosNrmMtx;
 
+typedef enum _GXGamma {
+    GX_GM_1_0,
+    GX_GM_1_7,
+    GX_GM_2_2,
+} GXGamma;
+
 void __GXSetDirtyState();
 void __GXSendFlushPrim();
 
@@ -1016,7 +1022,7 @@ void GXSetColorUpdate(GXBool update_enable);
 void GXSetAlphaUpdate(GXBool update_enable);
 void GXSetAlphaCompare(GXCompare, u8, GXAlphaOp, GXCompare, u8);
 void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias);
-void GXSetDispCopyGamma(GXBool update_enable);
+void GXSetDispCopyGamma(GXGamma update_enable);
 void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable);
 void GXSetCullMode(GXCullMode);
 void GXSetCurrentMtx(u32);
@@ -1130,6 +1136,12 @@ typedef struct GXTlutRegion {
 	u8 _04[0xC]; // _04
 } GXTlutRegion;
 
+typedef enum _GXFBClamp {
+    GX_CLAMP_NONE,
+    GX_CLAMP_TOP,
+    GX_CLAMP_BOTTOM,
+} GXFBClamp;
+
 typedef GXTlutRegion* GXTlutRegionCallback(_GXTlut);
 
 void GXInvalidateTexAll(void);
@@ -1166,7 +1178,7 @@ void GXSetDispCopyDst(u16 wd, u16 ht);
 void GXSetViewport(float, float, float, float, float, float);
 void GXSetTevKColor(GXTevKColorID, GXColor);
 void GXSetClipMode(u32); // needs a proper type
-void GXSetCopyClamp(int clamp);
+void GXSetCopyClamp(GXFBClamp clamp);
 
 void GXSetCopyClear(GXColor clear_clr, u32 clear_z);
 void GXSetCopyFilter(GXBool aa, const u8 sample_pattern[12][2], GXBool vf, const u8 vfilter[7]);
