@@ -7,42 +7,6 @@
 class JUTProcBar {
 public:
 	struct CTime {
-		u32 startTick;
-		u32 cost;
-		u32 _08;
-		u32 _0C;
-		u8 r;
-		u8 g;
-		u8 b;
-
-		void start(u8 p1, u8 p2, u8 p3)
-		{
-			r         = p1;
-			g         = p2;
-			b         = p3;
-			startTick = OSGetTick();
-		}
-
-		void end()
-		{
-			cost = OSTicksToMicroseconds(OSDiffTick(OSGetTick(), startTick));
-			if (cost == 0)
-				cost = 1;
-		}
-
-		void accumePeek()
-		{
-			if (++_0C >= 0x10 || cost >= _08) {
-				_08 = cost;
-				_0C = 0;
-			}
-		}
-
-		int calcBarSize(int p1, int p2)
-		{ // fabricated
-			return cost * p1 / p2;
-		}
-
 		/*
 		 * --INFO--
 		 * Address:	8002EFE0
@@ -50,13 +14,60 @@ public:
 		 */
 		CTime()
 		{ // weak
-			cost = 0;
-			_08  = 0;
-			_0C  = 0;
+			mCost = 0;
+			_08   = 0;
+			_0C   = 0;
 		};
+
+		void start(u8 p1, u8 p2, u8 p3)
+		{
+			mR         = p1;
+			mG         = p2;
+			mB         = p3;
+			mStartTick = OSGetTick();
+		}
+
+		void end()
+		{
+			mCost = OSTicksToMicroseconds(OSDiffTick(OSGetTick(), mStartTick));
+			if (mCost == 0)
+				mCost = 1;
+		}
+
+		void accumePeek()
+		{
+			if (++_0C >= 0x10 || mCost >= _08) {
+				_08 = mCost;
+				_0C = 0;
+			}
+		}
+
+		int calcBarSize(int p1, int p2) // fabricated
+		{
+			return mCost * p1 / p2;
+		}
+
+		u32 mStartTick;
+		u32 mCost;
+		u32 _08;
+		u32 _0C;
+		u8 mR;
+		u8 mG;
+		u8 mB;
 	};
 
 	struct CParamSet {
+		CParamSet() { }
+
+		void setBarWidth(int w) { mBarWidth = w; };
+		void setWidth(int w) { mWidth = w; }
+		void setUserPosition(int pos) { mUserPosition = pos; }
+		void setPosition(int x, int y)
+		{
+			mPosX = x;
+			mPosY = y;
+		}
+
 		/* 0x00 */ int mBarWidth;
 		/* 0x04 */ int mPosX;
 		/* 0x08 */ int mPosY;
@@ -81,7 +92,7 @@ public:
 
 	inline u32 calcGPUTime()
 	{ // fabricated
-		return mGp.cost - mGpWait.cost;
+		return mGp.mCost - mGpWait.mCost;
 	}
 
 	inline static JUTProcBar* getManager() { return sManager; }
@@ -97,12 +108,9 @@ public:
 	void wholeLoopStart() { mWholeLoop.start(255, 129, 30); }
 	void wholeLoopEnd() { mWholeLoop.end(); }
 
-	u32 getGpCost() const { return mGp.cost; }
-
-	u32 getCpuCost() const { return mCpu.cost; }
-
-	u32 getUserCost(int idx) { return sManager->mUsers[idx].cost; }
-
+	u32 getGpCost() const { return mGp.mCost; }
+	u32 getCpuCost() const { return mCpu.mCost; }
+	u32 getUserCost(int idx) { return sManager->mUsers[idx].mCost; }
 	void setCostFrame(int frame) { mCostFrame = frame; }
 
 	static JUTProcBar* sManager;

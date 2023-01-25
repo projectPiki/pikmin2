@@ -22,17 +22,15 @@ JUTProcBar::JUTProcBar()
 	_108            = 0;
 	int height      = JUTVideo::getManager()->getEfbHeight();
 	if (height > 400) {
-		mParams.mBarWidth     = 2;
-		mParams.mPosX         = 0x27;
-		mParams.mPosY         = height - 0x28;
-		mParams.mWidth        = 0x232;
-		mParams.mUserPosition = height - 0x46;
+		mParams.setBarWidth(2);
+		mParams.setPosition(39, height - 40);
+		mParams.setWidth(562);
+		mParams.setUserPosition(height - 70);
 	} else {
-		mParams.mBarWidth     = 1;
-		mParams.mPosX         = 0x27;
-		mParams.mPosY         = height - 0x14;
-		mParams.mWidth        = 0x232;
-		mParams.mUserPosition = height - 0x23;
+		mParams.setBarWidth(1);
+		mParams.setPosition(39, height - 20);
+		mParams.setWidth(562);
+		mParams.setUserPosition(height - 35);
 	}
 	_110       = 1;
 	_128       = 0;
@@ -87,9 +85,9 @@ void JUTProcBar::clear()
 	sManager->cpuStart();
 	sManager->gpStart();
 	sManager->wholeLoopStart();
-	sManager->mCostFrame = 0;
-	oneFrameRate         = 8.0f;
-	oneFrameRateUser     = 10.0f;
+	sManager->setCostFrame(0);
+	oneFrameRate     = 8.0f;
+	oneFrameRateUser = 10.0f;
 }
 
 /*
@@ -169,7 +167,7 @@ void JUTProcBar::drawProcessBar()
 			frameDuration = 20000;                                                                            // duration for PAL
 
 		static int cnt = 0;
-		adjustMeterLength(mWholeLoop.cost, &oneFrameRate, 1.0f, 10.0f, &cnt);
+		adjustMeterLength(mWholeLoop.mCost, &oneFrameRate, 1.0f, 10.0f, &cnt);
 		int r28 = oneFrameRate * 20.0f;
 		int r27 = mParams.mBarWidth * 8;
 		int r26 = mParams.mBarWidth * 2;
@@ -180,8 +178,8 @@ void JUTProcBar::drawProcessBar()
 		mGp.accumePeek();
 		mCpu.accumePeek();
 
-		u32 totalTime = calcGPUTime() - mCpu.cost; // unsure of types
-		u32 gpuTime   = calcGPUTime();
+		u32 totalTime = (mGp.mCost - mGpWait.mCost) - mCpu.mCost; // unsure of types
+		u32 gpuTime   = (mGp.mCost - mGpWait.mCost);
 		J2DFillBox(mParams.mPosX, mParams.mPosY, mParams.mWidth, r27, JUtility::TColor(0, 0, 50, 200));
 		J2DDrawFrame(mParams.mPosX, mParams.mPosY, mParams.mWidth, r27, JUtility::TColor(50, 50, 150, 255), 6);
 		if (mCostFrame > r24)
@@ -189,7 +187,7 @@ void JUTProcBar::drawProcessBar()
 		else
 			J2DFillBox(mParams.mPosX, mParams.mPosY + r27 + 1, mCostFrame * r28 + 2, 1.0f, JUtility::TColor(0, 250, 250, 200));
 
-		int stack92 = mWholeLoop.cost * r28 / frameDuration;
+		int stack92 = mWholeLoop.mCost * r28 / frameDuration;
 		if (stack92 > mParams.mWidth)
 			J2DFillBox(mParams.mPosX, mParams.mPosY, mParams.mWidth, 1.0f, JUtility::TColor(255, 100, 0, 255));
 		else
@@ -197,28 +195,28 @@ void JUTProcBar::drawProcessBar()
 
 		if (_110 == 0) {
 			int r23 = mParams.mPosY + mParams.mBarWidth;
-			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mGp.cost, mGp._08, JUtility::TColor(80, 255, 80, 255),
+			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mGp.mCost, mGp._08, JUtility::TColor(80, 255, 80, 255),
 			               JUtility::TColor(100, 255, 120, 255));
 			r23 += mParams.mBarWidth * 2;
-			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mCpu.cost, mCpu._08, JUtility::TColor(255, 80, 80, 255),
+			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mCpu.mCost, mCpu._08, JUtility::TColor(255, 80, 80, 255),
 			               JUtility::TColor(255, 100, 100, 255));
 			r23 += mParams.mBarWidth * 2;
-			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mIdle.cost, mIdle._08, JUtility::TColor(180, 180, 160, 255),
+			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mIdle.mCost, mIdle._08, JUtility::TColor(180, 180, 160, 255),
 			               JUtility::TColor(200, 200, 200, 255));
 		} else {
 			int r22 = mParams.mPosY + mParams.mBarWidth;
 			int r21 = mParams.mPosX + 1;
 			bar_subroutine(r21, r22, r26, r28, frameDuration, gpuTime, -1, JUtility::TColor(80, 255, 80, 255),
 			               JUtility::TColor(80, 255, 80, 255));
-			int thingy1 = gpuTime * r28 / frameDuration + r21; // inline?
+			int thingy1 = gpuTime * r28 / frameDuration + r21; // inline or define?
 			J2DFillBox(thingy1, r22, mGpWait.calcBarSize(r28, frameDuration), r26, JUtility::TColor(0, 255, 0, 255));
 			int r30 = mGp.calcBarSize(r28, frameDuration) + r21;
 			r21 += totalTime * r28 / frameDuration;
 			r22 += mParams.mBarWidth * 2;
-			bar_subroutine(r21, r22, r26, r28, frameDuration, mCpu.cost, -1, JUtility::TColor(255, 80, 80, 255),
+			bar_subroutine(r21, r22, r26, r28, frameDuration, mCpu.mCost, -1, JUtility::TColor(255, 80, 80, 255),
 			               JUtility::TColor(255, 80, 80, 255));
 			r22 += mParams.mBarWidth * 2;
-			bar_subroutine(r30, r22, r26, r28, frameDuration, mIdle.cost, -1, JUtility::TColor(180, 180, 160, 255),
+			bar_subroutine(r30, r22, r26, r28, frameDuration, mIdle.mCost, -1, JUtility::TColor(180, 180, 160, 255),
 			               JUtility::TColor(180, 180, 160, 255));
 		}
 		for (int i = 1; i < r24; i++) {
@@ -229,8 +227,8 @@ void JUTProcBar::drawProcessBar()
 		u32 temp3 = 0;
 		for (int i = 0; i < 8; i++) {
 			CTime* time = &mUsers[i];
-			if (++time->_0C >= 0x10 || time->cost > time->_08) { // could be inline too
-				time->_08 = time->cost;
+			if (++time->_0C >= 0x10 || time->mCost > time->_08) {
+				time->_08 = time->mCost;
 				time->_0C = 0;
 			}
 			if (time->_08 > temp3)
@@ -244,16 +242,16 @@ void JUTProcBar::drawProcessBar()
 			J2DDrawFrame(mParams.mPosX, mParams.mUserPosition, mParams.mWidth, r25, JUtility::TColor(50, 50, 150, 255), 6);
 			for (int i = 0; i < 8; i++) {
 				CTime* time = &mUsers[i];
-				if (++time->_0C >= 0x10 || time->cost > time->_08) {
-					time->_08 = time->cost;
+				if (++time->_0C >= 0x10 || time->mCost > time->_08) {
+					time->_08 = time->mCost;
 					time->_0C = 0;
 				}
-				if (time->cost != 0 || time->_08 != 0) {
-					int temp4  = time->cost * r21 / frameDuration;
-					int temp5  = time->_08 * r21 / frameDuration;
-					time->cost = 0;
+				if (time->mCost != 0 || time->_08 != 0) {
+					int temp4   = time->mCost * r21 / frameDuration;
+					int temp5   = time->_08 * r21 / frameDuration;
+					time->mCost = 0;
 					J2DFillBox(mParams.mPosX + 1, mParams.mUserPosition + mParams.mBarWidth + i * mParams.mBarWidth, temp4,
-					           mParams.mBarWidth, JUtility::TColor(time->r, time->g, time->b, 255));
+					           mParams.mBarWidth, JUtility::TColor(time->mR, time->mG, time->mB, 255));
 
 					if (temp5 < 3u)
 						J2DFillBox(mParams.mPosX, mParams.mUserPosition + mParams.mBarWidth + i * mParams.mBarWidth, temp5,
@@ -320,10 +318,10 @@ void heapBar(JKRHeap* param_0, int param_1, int param_2, int param_3, int param_
  * Size:	000704
  */
 void JUTProcBar::drawHeapBar()
-{ // There could be some inlines in here that i don't know of
+{ // barWidth * 2 / 2 is a workaround, if height / 2 is used and barWidth * 2 gets replaced with height then there will be regswaps
 	if (mHeapBarVisible) {
 		int barWidth = mParams.mBarWidth;
-		int posX     = mParams.mPosX; // could this possibly be getUnuseUserBar__10JUTProcBarFv?
+		int posX     = mParams.mPosX;
 		int posY     = mParams.mPosY;
 		int width    = mParams.mWidth;
 		int height   = barWidth * 2;
@@ -339,7 +337,7 @@ void JUTProcBar::drawHeapBar()
 		J2DFillBox(userRamStart, posY - barWidth * 4, totalFreeSize, barWidth * 2 / 2,
 		           JUtility::TColor(0, 250, 250, 255)); // Nintendo Moment?
 		if (_128 == 0) {
-			JKRHeap* heap = mWatchHeap ? mWatchHeap : JKRGetCurrentHeap();
+			JKRHeap* heap = mWatchHeap ? mWatchHeap : JKRHeap::getCurrentHeap();
 			if (heap != JKRHeap::getSystemHeap())
 				heapBar(heap, posX, posY, height, width, barWidth * 2);
 		}
