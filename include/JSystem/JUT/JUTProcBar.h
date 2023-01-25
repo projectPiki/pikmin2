@@ -48,7 +48,7 @@ public:
 	void adjustMeterLength(u32, f32*, f32, f32, int*);
 	void getUnuseUserBar();
 
-	static JUTProcBar* getManager() { return sManager; }
+	inline static JUTProcBar* getManager() { return sManager; }
 
 	void idleStart() { mIdle.start(255, 129, 30); }
 	void idleEnd() { mIdle.end(); }

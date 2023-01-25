@@ -467,7 +467,7 @@ void JFWDisplay::endFrame()
 	JUTProcBar::getManager()->gpEnd();
 	//}
 
-	// static bool init;
+	static bool init;
 	static u32 prevFrame = VIGetRetraceCount();
 	u32 retrace_cnt      = VIGetRetraceCount();
 	JUTProcBar::getManager()->setCostFrame(retrace_cnt - prevFrame);
@@ -493,7 +493,7 @@ void JFWDisplay::waitBlanking(int param_0) {
 void waitForTick(u32 p1, u16 p2)
 {
 	if (p1 != 0) {
-		// static bool init;
+		static bool init;
 		static s64 nextTick = OSGetTime();
 		s64 time            = OSGetTime();
 		while (time < nextTick) {
@@ -502,7 +502,7 @@ void waitForTick(u32 p1, u16 p2)
 		}
 		nextTick = time + p1;
 	} else {
-		// static bool init;
+		static bool init;
 		static u32 nextCount = VIGetRetraceCount();
 		u32 uVar1            = (p2 != 0) ? p2 : 1;
 		void* msg;

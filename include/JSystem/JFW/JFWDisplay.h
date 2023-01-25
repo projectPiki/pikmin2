@@ -75,7 +75,7 @@ struct JFWDisplay {
 	u32 _2C;                // _2C
 	u32 _30;                // _30
 	u32 _34;                // _34
-	u16 _48;                // _48
+	s16 _48;                // _48
 	u8 _4A;                 // _4A
 
 	static JFWDisplay* sManager;

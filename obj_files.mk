@@ -177,7 +177,7 @@ J3D:=\
 
 JFRAMEWORK:=\
 	$(BUILD_DIR)/src/JSystem/JFramework/JFWSystem.o\
-	$(BUILD_DIR)/asm/JSystem/JFramework/JFWDisplay.o\
+	$(BUILD_DIR)/src/JSystem/JFramework/JFWDisplay.o\
 
 JPARTICLE:=\
 	$(BUILD_DIR)/asm/JSystem/JParticle/JPABaseShape.o\

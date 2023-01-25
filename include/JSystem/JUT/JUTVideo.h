@@ -24,8 +24,8 @@ struct JUTVideo {
 	static void postRetraceProc(unsigned long);
 	static void drawDoneCallback();
 
-	static u32 getVideoInterval() { return sVideoInterval; }
-	static s32 getVideoLastTick() { return sVideoLastTick; }
+	inline static u32 getVideoInterval() { return sVideoInterval; }
+	inline static s32 getVideoLastTick() { return sVideoLastTick; }
 
 	u16 getEfbHeight() const { return mRenderModeObj->efbHeight; }
 	u16 getFbWidth() const { return mRenderModeObj->fbWidth; }
