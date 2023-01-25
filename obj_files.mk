@@ -4,97 +4,122 @@ GROUP_0_FILES:=\
 	$(BUILD_DIR)/asm/ctors.o\
 	$(BUILD_DIR)/asm/dtors.o\
 
-JSYSTEM:=\
-	$(BUILD_DIR)/asm/JSystem/object/object-particle.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/control.o\
-	$(BUILD_DIR)/asm/JSystem/resource.o\
-	$(BUILD_DIR)/src/JSystem/data.o\
-	$(BUILD_DIR)/asm/JSystem/processor.o\
-	$(BUILD_DIR)/asm/JSystem/control.o\
-	$(BUILD_DIR)/src/JSystem/JStudio/stb/data/stb-data-parse.o\
-	$(BUILD_DIR)/asm/JSystem/functionvalue.o\
-	$(BUILD_DIR)/asm/JSystem/JStudio/fvb/fvb.o\
-	$(BUILD_DIR)/src/JSystem/JStudio/fvb/data/fvb-data.o\
-	$(BUILD_DIR)/src/JSystem/JStudio/fvb/data/fvb-data-parse.o\
-	$(BUILD_DIR)/asm/JSystem/JStudio/jstudio-control.o\
-	$(BUILD_DIR)/src/JSystem/JStudio/data/jstudio-data.o\
-	$(BUILD_DIR)/asm/JSystem/JStudio/jstudio-object.o\
-	$(BUILD_DIR)/asm/JSystem/object/object-id.o\
-	$(BUILD_DIR)/asm/JSystem/JStudio/stb/stb.o\
-	$(BUILD_DIR)/src/JSystem/JStudio/stb/data/stb-data.o\
-	$(BUILD_DIR)/asm/JSystem/JStudio/jstudio-math.o\
-	$(BUILD_DIR)/asm/JSystem/object/object-light.o\
-	$(BUILD_DIR)/asm/JSystem/object/object.o\
-	$(BUILD_DIR)/asm/JSystem/object/object-actor.o\
-	$(BUILD_DIR)/src/JSystem/object/object-ambientlight.o\
-	$(BUILD_DIR)/asm/JSystem/object/object-camera.o\
-	$(BUILD_DIR)/src/JSystem/object/object-fog.o\
-	$(BUILD_DIR)/asm/JSystem/JSG/control.o\
-	$(BUILD_DIR)/src/JSystem/object/object-message.o\
-	$(BUILD_DIR)/asm/JSystem/object/control.o\
-	$(BUILD_DIR)/asm/JSystem/object/object-sound.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/control.o\
-	$(BUILD_DIR)/src/JSystem/J3D/J3DUDL.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DUMotion.o\
-	$(BUILD_DIR)/src/JSystem/J3D/J3DUShadow.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DUMtxCache.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRAram.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramArchive.o\
-	$(BUILD_DIR)/src/JSystem/JKR/JKRAramBlock.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramHeap.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramPiece.o\
-	$(BUILD_DIR)/src/JSystem/JKR/JKRAramStream.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRArchivePri.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRArchivePub.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRCompArchive.o\
-	$(BUILD_DIR)/src/JSystem/JKR/JKRDecomp.o\
-	$(BUILD_DIR)/src/JSystem/JKR/JKRDisposer.o\
-	$(BUILD_DIR)/src/JSystem/JKR/JKRDvdFile.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdAramRipper.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdArchive.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdRipper.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRExpHeap.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRFileCache.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRFileFinder.o\
-	$(BUILD_DIR)/src/JSystem/JKR/JKRFile.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRFileLoader.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRHeap.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRMemArchive.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRSolidHeap.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRThread.o\
+# JSystem organised by sublibraries
+JSTUDIO_JPARTICLE:=\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JParticle/object-particle.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JParticle/control.o\
+
+JMESSAGE:=\
+	$(BUILD_DIR)/asm/JSystem/JMessage/resource.o\
+	$(BUILD_DIR)/src/JSystem/JMessage/data.o\
+	$(BUILD_DIR)/asm/JSystem/JMessage/processor.o\
+	$(BUILD_DIR)/asm/JSystem/JMessage/control.o\
+
+JSTUDIO:=\
+	$(BUILD_DIR)/src/JSystem/JStudio/JStudio/stb-data-parse.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio/functionvalue.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio/fvb.o\
+	$(BUILD_DIR)/src/JSystem/JStudio/JStudio/fvb-data.o\
+	$(BUILD_DIR)/src/JSystem/JStudio/JStudio/fvb-data-parse.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio/jstudio-control.o\
+	$(BUILD_DIR)/src/JSystem/JStudio/JStudio/jstudio-data.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio/jstudio-object.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio/object-id.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio/stb.o\
+	$(BUILD_DIR)/src/JSystem/JStudio/JStudio/stb-data.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio/jstudio-math.o\
+
+JSTUDIO_JSTAGE:=\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JStage/object-light.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JStage/object.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JStage/object-actor.o\
+	$(BUILD_DIR)/src/JSystem/JStudio/JStudio_JStage/object-ambientlight.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JStage/object-camera.o\
+	$(BUILD_DIR)/src/JSystem/JStudio/JStudio_JStage/object-fog.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JStage/control.o\
+
+JSTUDIO_JMESSAGE:=\
+	$(BUILD_DIR)/src/JSystem/JStudio/JStudio_JMessage/object-message.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JMessage/control.o\
+
+JSTUDIO_JAUDIO:=\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JAudio/object-sound.o\
+	$(BUILD_DIR)/asm/JSystem/JStudio/JStudio_JAudio/control.o\
+
+J3DU:=\
+	$(BUILD_DIR)/src/JSystem/J3DU/J3DUDL.o\
+	$(BUILD_DIR)/asm/JSystem/J3DU/J3DUMotion.o\
+	$(BUILD_DIR)/src/JSystem/J3DU/J3DUShadow.o\
+	$(BUILD_DIR)/asm/JSystem/J3DU/J3DUMtxCache.o\
+
+JKERNEL:=\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRAram.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRAramArchive.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRAramBlock.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRAramHeap.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRAramPiece.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRAramStream.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRArchivePri.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRArchivePub.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRCompArchive.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRDecomp.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRDisposer.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRDvdFile.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRDvdAramRipper.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRDvdArchive.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRDvdRipper.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRExpHeap.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRFileCache.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRFileFinder.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRFile.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRFileLoader.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRHeap.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRMemArchive.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRSolidHeap.o\
+	$(BUILD_DIR)/asm/JSystem/JKernel/JKRThread.o\
+
+JSUPPORT:=\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUOutputStream.o\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUInputStream.o\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUList.o\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUMemoryStream.o\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUFileStream.o\
-	$(BUILD_DIR)/asm/JSystem/binary.o\
-	$(BUILD_DIR)/asm/JSystem/linklist.o\
-	$(BUILD_DIR)/asm/JSystem/std/std-list.o\
-	$(BUILD_DIR)/asm/JSystem/std/std-vector.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTAssert.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTConsole.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTDbPrint.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTDirectFile.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTDirectPrint.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTException.o\
-	$(BUILD_DIR)/src/JSystem/JUT/JUTFader.o\
-	$(BUILD_DIR)/src/JSystem/JUT/JUTFont.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTGamePad.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTGraphFifo.o\
-	$(BUILD_DIR)/src/JSystem/JUT/JUTNameTab.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTPalette.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTProcBar.o\
-	$(BUILD_DIR)/src/JSystem/JUT/JUTResFont.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTResource.o\
-	$(BUILD_DIR)/src/JSystem/JUT/JUTRomFont.o\
-	$(BUILD_DIR)/src/JSystem/JUT/JUTFontData_Ascfont_fix12.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTTexture.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTVideo.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTXfb.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTCacheFont.o\
+
+JGADGET:=\
+	$(BUILD_DIR)/asm/JSystem/JGadget/binary.o\
+	$(BUILD_DIR)/asm/JSystem/JGadget/linklist.o\
+	$(BUILD_DIR)/asm/JSystem/JGadget/std-list.o\
+	$(BUILD_DIR)/asm/JSystem/JGadget/std-vector.o\
+
+JUTILITY:=\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTAssert.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTConsole.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTDbPrint.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTDirectFile.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTDirectPrint.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTException.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTFader.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTFont.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTGamePad.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTGraphFifo.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTNameTab.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTPalette.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTProcBar.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTResFont.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTResource.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTRomFont.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTFontData_Ascfont_fix12.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTTexture.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTVideo.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTXfb.o\
+	$(BUILD_DIR)/asm/JSystem/JUtility/JUTCacheFont.o\
+
+JMATH:=\
 	$(BUILD_DIR)/asm/JSystem/JMath/JMath.o\
 	$(BUILD_DIR)/src/JSystem/JMath/random.o\
 	$(BUILD_DIR)/asm/JSystem/JMath/JMATrigonometric.o\
+
+J2D:=\
 	$(BUILD_DIR)/src/JSystem/J2D/J2DOrthoGraph.o\
 	$(BUILD_DIR)/src/JSystem/J2D/J2DPerspGraph.o\
 	$(BUILD_DIR)/src/JSystem/J2D/J2DGrafContext.o\
@@ -115,6 +140,8 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DTevs.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DTextBoxEx.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DAnimation.o\
+
+J3D:=\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DSys.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DVertex.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DTransform.o\
@@ -147,92 +174,112 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeDraw.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMtxBuffer.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeTable.o\
-	$(BUILD_DIR)/src/JSystem/JFW/JFWSystem.o\
-	$(BUILD_DIR)/asm/JSystem/JFW/JFWDisplay.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPABaseShape.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAChildShape.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPADynamicsBlock.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAEmitter.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAEmitterManager.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAExTexShape.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAExtraShape.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAFieldBlock.o\
-	$(BUILD_DIR)/src/JSystem/JPA/JPAKeyBlock.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAMath.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAParticle.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAResource.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAResourceLoader.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAResourceManager.o\
-	$(BUILD_DIR)/src/JSystem/JPA/JPATexture.o\
-	$(BUILD_DIR)/src/JSystem/JSG/JSGSystem.o\
-	$(BUILD_DIR)/src/JSystem/JSG/JSGCamera.o\
-	$(BUILD_DIR)/src/JSystem/JSG/JSGObject.o\
-	$(BUILD_DIR)/src/JSystem/JSG/JSGActor.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASWSParser.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASBankMgr.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASBasicBank.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASBasicInst.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicWaveBank.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASBNKParser.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASDrumSet.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASInstEffect.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASInstRand.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASInstSense.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASSimpleWaveBank.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASWaveArcLoader.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASWaveBank.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASWaveBankMgr.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASBank.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASTrackPort.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASOuterParam.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASPlayer_impl.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASRegisterParam.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASSeqCtrl.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASSeqParser.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASTrack.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASTrackInterrupt.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASOscillator.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASChannel.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASDriverIF.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASDSPChannel.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASDSPInterface.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASAudioThread.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASCalc.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASCallback.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASCmdStack.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASDvdThread.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASHeapCtrl.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASProbe.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASResArcLoader.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASReport.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASAiCtrl.o\
-	$(BUILD_DIR)/src/JSystem/JAS/JASChannelUpdater.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASTaskThread.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASAramStream.o\
-	$(BUILD_DIR)/asm/JSystem/dsp/dspproc.o\
-	$(BUILD_DIR)/asm/JSystem/dsp/dsptask.o\
-	$(BUILD_DIR)/asm/JSystem/dsp/osdsp.o\
-	$(BUILD_DIR)/asm/JSystem/dsp/osdsp_task.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIAnimation.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIBankWave.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIBasic.o\
-	$(BUILD_DIR)/src/JSystem/JAI/JAIConst.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIDummyObject.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIFx.o\
-	$(BUILD_DIR)/src/JSystem/JAI/JAIGlobalParameter.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIInitData.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAISeMgr.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAISequenceHeap.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAISequenceMgr.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAISound.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAISoundTable.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIStreamMgr.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAISystemInterface.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIObject.o\
-	$(BUILD_DIR)/src/JSystem/JAD/JADHioNode.o\
-	$(BUILD_DIR)/asm/JSystem/JAL/JALCalc.o\
-	$(BUILD_DIR)/asm/JSystem/JAU/JAUData.o\
-	$(BUILD_DIR)/asm/JSystem/JAU/JAUDataMgr.o\
+
+JFRAMEWORK:=\
+	$(BUILD_DIR)/src/JSystem/JFramework/JFWSystem.o\
+	$(BUILD_DIR)/asm/JSystem/JFramework/JFWDisplay.o\
+
+JPARTICLE:=\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPABaseShape.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAChildShape.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPADynamicsBlock.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAEmitter.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAEmitterManager.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAExTexShape.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAExtraShape.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAFieldBlock.o\
+	$(BUILD_DIR)/src/JSystem/JParticle/JPAKeyBlock.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAMath.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAParticle.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAResource.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAResourceLoader.o\
+	$(BUILD_DIR)/asm/JSystem/JParticle/JPAResourceManager.o\
+	$(BUILD_DIR)/src/JSystem/JParticle/JPATexture.o\
+
+JSTAGE:=\
+	$(BUILD_DIR)/src/JSystem/JStage/JSGSystem.o\
+	$(BUILD_DIR)/src/JSystem/JStage/JSGCamera.o\
+	$(BUILD_DIR)/src/JSystem/JStage/JSGObject.o\
+	$(BUILD_DIR)/src/JSystem/JStage/JSGActor.o\
+
+# JAudio2, further divided into sublibraries
+JAUDIO2_JAS:=\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASWSParser.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASBankMgr.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASBasicBank.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASBasicInst.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASBasicWaveBank.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASBNKParser.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASDrumSet.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASInstEffect.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASInstRand.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASInstSense.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASSimpleWaveBank.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASWaveArcLoader.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASWaveBank.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASWaveBankMgr.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASBank.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASTrackPort.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASOuterParam.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASPlayer_impl.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASRegisterParam.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASSeqCtrl.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASSeqParser.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASTrack.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASTrackInterrupt.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASOscillator.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASChannel.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASDriverIF.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASDSPChannel.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASDSPInterface.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASAudioThread.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASCalc.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASCallback.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASCmdStack.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASDvdThread.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASHeapCtrl.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASProbe.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASResArcLoader.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASReport.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASAiCtrl.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASChannelUpdater.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASTaskThread.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASAramStream.o\
+
+JAUDIO2_DSP:=\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/dsp/dspproc.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/dsp/dsptask.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/dsp/osdsp.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/dsp/osdsp_task.o\
+
+JAUDIO2_JAI:=\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAIAnimation.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAIBankWave.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAIBasic.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAI/JAIConst.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAIDummyObject.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAIFx.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAI/JAIGlobalParameter.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAIInitData.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAISeMgr.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAISequenceHeap.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAISequenceMgr.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAISound.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAISoundTable.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAIStreamMgr.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAISystemInterface.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAI/JAIObject.o\
+
+JAUDIO2_JAD:=\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAD/JADHioNode.o\
+
+JAUDIO2_JAL:=\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAL/JALCalc.o\
+
+JAUDIO2_JAU:=\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAU/JAUData.o\
+	$(BUILD_DIR)/asm/JSystem/JAudio2/JAU/JAUDataMgr.o\
+
 
 # Dolphin sub-libraries have differing CFLAGS.
 TRK_MINNOW_DOLPHIN:=\
