@@ -104,7 +104,7 @@ JUTILITY:=\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTGraphFifo.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTNameTab.o\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTPalette.o\
-	$(BUILD_DIR)/asm/JSystem/JUtility/JUTProcBar.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTProcBar.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTResFont.o\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTResource.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTRomFont.o\

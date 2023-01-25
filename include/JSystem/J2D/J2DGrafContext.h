@@ -121,4 +121,6 @@ void J2DFillBox(const JGeometry::TBox2f&, JUtility::TColor, JUtility::TColor, JU
 void J2DDrawFrame(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor param_4, u8 param_5);
 void J2DDrawFrame(JGeometry::TBox2f const& param_0, JUtility::TColor param_1, u8 param_2);
 
+void J2DDrawLine(float, float, float, float, JUtility::TColor, int);
+
 #endif
