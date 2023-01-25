@@ -9,7 +9,7 @@ struct JKRHeap;
 
 typedef void (*JFWDisplayUnkFunc)(void);
 
-static Mtx e_mtx = {{1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
+extern Mtx e_mtx;
 
 struct JFWDisplay {
 	// all ctors are unused/inlined
@@ -55,7 +55,7 @@ struct JFWDisplay {
 	void clearAllXfb();
 	void frameToTick(f32);
 
-	static JFWDisplay * getManager() { return sManager; }
+	static JFWDisplay* getManager() { return sManager; }
 
 	// _00 VTBL
 	JUTFader* mFader;     // _04
@@ -63,20 +63,20 @@ struct JFWDisplay {
 	u32 _0C;              // _0C
 	JUTXfb* mXfb;         // _10
 	u16 _14;              // _14
-	int mDrawDoneMethod;              // _18
+	int mDrawDoneMethod;  // _18
 
 	/// PikDecomp calls this "fpsDivider".
 	u16 mSecondsPer60Frames; // _1C
 
-	u32 mTickRate;  // _20
-	bool mEnableAlpha; // _24
-	u16 _26;  // _26
+	u32 mTickRate;          // _20
+	bool mEnableAlpha;      // _24
+	u16 _26;                // _26
 	f32 mCombinationRatio;  // _28
-	u32 _2C;  // _2C
-	u32 _30;  // _30
-	u32 _34;  // _34
-	u16 _48;  // _48
-	u8 _4A;   // _4A
+	u32 _2C;                // _2C
+	u32 _30;                // _30
+	u32 _34;                // _34
+	u16 _48;                // _48
+	u8 _4A;                 // _4A
 
 	static JFWDisplay* sManager;
 };
