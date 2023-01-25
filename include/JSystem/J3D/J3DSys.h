@@ -29,6 +29,12 @@ struct J3DSys {
 	void loadNrmMtxIndx(int, unsigned short) const;
 	void ErrorReport(J3DErrType) const;
 
+	inline void setVtxPos(void* pos) { _10C = (u32)pos; }
+
+	inline void setVtxNrm(void* nrm) { _110 = (u32)nrm; }
+
+	inline void setVtxCol(GXColor* color) { _114 = (u32)color; }
+
 	Mtx _00;                       // _000
 	J3DMtxCalc* m_mtxCalc;         // _030
 	u32 _34;                       // _034 /* bitfield */

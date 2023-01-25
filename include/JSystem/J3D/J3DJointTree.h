@@ -31,6 +31,8 @@ struct J3DJointTree {
 	// unused/inlined:
 	void clear();
 
+	inline J3DJoint* getJointNodePointer(u16 idx) const { return m_joints[idx]; }
+
 	// VTBL _00
 	J3DModelHierarchy* m_hierarchy; // _04
 	s32 m_08;                       // _08 previously s8*

@@ -110,15 +110,16 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 			GXLoadNrmMtxImm(mtx2, 0);
 
 			J3DModelData* modelData = (nest->m_houseType) ? m_modelData : m_houseModelData;
-			J3DJoint* joint         = modelData->m_jointTree.m_joints[0];
+			J3DJoint* joint         = modelData->getJointNodePointer(0);
 			P2ASSERTLINE(134, joint);
 
-			J3DMaterial* material = joint->m_material;
+			J3DMaterial* material = joint->getMesh();
 			P2ASSERTLINE(137, material);
 
-			j3dSys._10C             = (u32)modelData->m_vertexData._18;
-			j3dSys._110             = (u32)modelData->m_vertexData._1C;
-			j3dSys._114             = (u32)modelData->m_vertexData._24;
+			J3DVertexData* vtxData = modelData->getVertexData();
+			j3dSys.setVtxPos(vtxData->getVtXPosArray());
+			j3dSys.setVtxNrm(vtxData->getVtxNrmArray());
+			j3dSys.setVtxCol(vtxData->getVtxColorArray(0));
 			J3DShape::sOldVcdVatCmd = nullptr;
 			material->loadSharedDL();
 			material->m_shape->loadPreDrawSetting();

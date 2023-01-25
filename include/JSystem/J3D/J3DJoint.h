@@ -47,6 +47,7 @@ struct J3DJoint {
 	J3DJoint* getChild() { return m_child; }
 
 	inline void setCurrentMtxCalc(J3DMtxCalc* calc) { mCurrentMtxCalc = calc; }
+	inline J3DMaterial* getMesh() { return m_material; };
 
 	u32 _00;                          // _00
 	J3DJointCallBack m_function;      // _04

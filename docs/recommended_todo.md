@@ -147,7 +147,7 @@
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/enemyNestMgr.cpp">enemyNestMgr.cpp</a> | 9741 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/bomb.cpp">bomb.cpp</a> | 13015 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/enemyNestMgr.cpp">enemyNestMgr.cpp</a> | 9755 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/bomb.cpp">bomb.cpp</a> | 13015 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushiMgr.cpp">tamagoMushiMgr.cpp</a> | 13226 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChouState.cpp">shijimiChouState.cpp</a> | 31896 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulinState.cpp">miulinState.cpp</a> | 33773 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/scrollList.cpp">scrollList.cpp</a> | 41187 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModokiState.cpp">panModokiState.cpp</a> | 46522 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/gameOver2D.cpp">gameOver2D.cpp</a> | 54190 |
