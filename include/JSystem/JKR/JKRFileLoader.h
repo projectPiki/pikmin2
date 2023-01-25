@@ -28,6 +28,8 @@ struct JKRFileLoader : public JKRDisposer {
 	static JKRFileLoader* findVolume(char const**);
 	static void fetchVolumeName(char*, long, char const*);
 
+	u32 getVolumeType() { return m_magicWord; }
+
 	JSULink<JKRFileLoader> _18; // _18
 	char* _28;                  // _28
 	u32 mMagicWord;             // _2C

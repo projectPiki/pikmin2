@@ -59,8 +59,8 @@ JKERNEL:=\
 	$(BUILD_DIR)/asm/JSystem/JKernel/JKRAramHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKernel/JKRAramPiece.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRAramStream.o\
-	$(BUILD_DIR)/asm/JSystem/JKernel/JKRArchivePri.o\
-	$(BUILD_DIR)/asm/JSystem/JKernel/JKRArchivePub.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRArchivePri.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRArchivePub.o\
 	$(BUILD_DIR)/asm/JSystem/JKernel/JKRCompArchive.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRDecomp.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRDisposer.o\

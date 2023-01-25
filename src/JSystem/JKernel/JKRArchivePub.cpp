@@ -53,17 +53,19 @@ JKRArchive* JKRArchive::check_mount_already(long entryNum)
  * Size:	00006C
  * check_mount_already__10JKRArchiveFlP7JKRHeap
  */
-JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* heap)
+JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* pHeap)
 {
 	// UNUSED FUNCTION
-	JKRFileLoader* loader = nullptr;
+	JKRHeap * heap = pHeap;
 	if (heap == nullptr) {
-		heap = JKRHeap::sCurrentHeap;
+		heap = JKRGetCurrentHeap();
 	}
-	for (JSULink<JKRFileLoader>* link = JKRArchive::sVolumeList.getFirst(); link != nullptr; link = link->getNext()) {
-		JKRFileLoader* loader = link->getObject();
-		if (loader->mMagicWord == 'RARC') {
-			JKRArchive* archive = static_cast<JKRArchive*>(loader);
+
+	JSUList<JKRFileLoader>& volumeList = JKRArchive::sVolumeList;
+    JSUListIterator<JKRFileLoader> iterator;
+	for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
+		if (iterator->getVolumeType() == 'RARC') {
+			JKRArchive* archive = (JKRArchive*)iterator.getObject(); // in TP debug it calls operator-> ?
 			if (archive->_40 == entryNum && archive->_38 == heap) {
 				archive->mMountCount++;
 				return archive;
@@ -196,7 +198,9 @@ JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* heap
 	if (archive) {
 		return archive;
 	}
+	else {
 	int i = (mountDirection == EMD_Unk1) ? 4 : -4;
+	JKRArchive* archive;
 	switch (mountMode) {
 	case EMM_Mem:
 		archive = new (heap, i) JKRMemArchive(entryNum, mountDirection);
@@ -211,12 +215,14 @@ JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* heap
 		archive = new (heap, i) JKRCompArchive(entryNum, mountDirection);
 		break;
 	}
-	if (archive != nullptr && archive->mMountMode == EMM_Unk0) {
+	if (archive != nullptr && archive->getMountMode() == EMM_Unk0) {
 		delete archive;
-		return nullptr;
+		archive = nullptr;
 	}
 	// archive = new(heap, (mountDirection == EMD_Unk1) ? 4 : -4) JKRMemArchive(entryNum, 0xFFFF, 0);
 	return archive;
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -387,7 +393,7 @@ JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* heap
  */
 bool JKRArchive::becomeCurrent(const char* path)
 {
-	SDirEntry* entry;
+	SDIDirEntry* entry;
 	if (*path == '/') {
 		const char* directoryName = path + 1;
 		if (*directoryName == '\0') {
@@ -620,7 +626,7 @@ long JKRArchive::getResSize(const void* resource) const
  */
 u32 JKRArchive::countFile(const char* path) const
 {
-	SDirEntry* dirEntry;
+	SDIDirEntry* dirEntry;
 	if (*path == '/') {
 		const char* pathPtr = path + 1;
 		if (*pathPtr == '\0') {
@@ -630,7 +636,7 @@ u32 JKRArchive::countFile(const char* path) const
 	} else {
 		dirEntry = findDirectory(path, sCurrentDirID);
 	}
-	return (dirEntry != nullptr) ? dirEntry->_0A : 0;
+	return (dirEntry != nullptr) ? dirEntry->num_entries : 0;
 }
 
 /*
@@ -640,7 +646,7 @@ u32 JKRArchive::countFile(const char* path) const
  */
 JKRFileFinder* JKRArchive::getFirstFile(const char* path) const
 {
-	SDirEntry* dirEntry;
+	SDIDirEntry* dirEntry;
 	if (*path == '/') {
 		const char* pathPtr = path + 1;
 		if (*pathPtr == '\0') {
@@ -651,7 +657,7 @@ JKRFileFinder* JKRArchive::getFirstFile(const char* path) const
 		dirEntry = findDirectory(path, sCurrentDirID);
 	}
 	if (dirEntry != nullptr) {
-		return new (JKRHeap::sSystemHeap, 0) JKRArcFinder(const_cast<JKRArchive*>(this), dirEntry->_0C, dirEntry->_0A);
+		return new (JKRHeap::sSystemHeap, 0) JKRArcFinder(const_cast<JKRArchive*>(this), dirEntry->first_file_index, dirEntry->num_entries);
 	}
 	return nullptr;
 }

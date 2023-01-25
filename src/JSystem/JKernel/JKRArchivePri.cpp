@@ -19,6 +19,9 @@
  * Size:	00004C
  * __ct__10JKRArchiveFv
  */
+
+u32 JKRArchive::sCurrentDirID;
+
 JKRArchive::JKRArchive()
 {
 	// UNUSED FUNCTION
@@ -102,14 +105,8 @@ lbl_8001A5A8:
  */
 bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName, u32 nameTableOffset, u16 hash) const
 {
-	// return (archiveName.mHash != hash) ? false : strcmp(_54[nameTableOffset], archiveName.getString()) == 0;
 	u16 arcHash = archiveName.getHash();
-	if (arcHash != hash) {
-		return false;
-	}
-	const char* name    = (const char*)_54 + nameTableOffset;
-	const char* arcName = archiveName.getString();
-	return strcmp(name, arcName) == 0;
+	return (arcHash != hash) ? false : strcmp(&_54[nameTableOffset], archiveName.getString()) == 0;
 }
 
 /*
@@ -118,12 +115,12 @@ bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName, u32 nameTableOffs
  * Size:	000034
  * findResType__10JKRArchiveCFUl
  */
-JKRArchive::SDirEntry* JKRArchive::findResType(u32 p1) const
+JKRArchive::SDIDirEntry* JKRArchive::findResType(u32 p1) const
 {
 	// UNUSED FUNCTION
-	SDirEntry* dirEntry = _48;
-	for (u32 i = _44->mBaseOffset; i > 0; i--, dirEntry++) {
-		if (dirEntry->_00 == p1) {
+	SDIDirEntry* dirEntry = _48;
+	for (u32 i = 0; i < _44->mBaseOffset; i++, dirEntry++) {
+		if (dirEntry->type == p1) {
 			return dirEntry;
 		}
 	}
@@ -135,23 +132,25 @@ JKRArchive::SDirEntry* JKRArchive::findResType(u32 p1) const
  * Address:	8001A610
  * Size:	00031C
  */
-JKRArchive::SDirEntry* JKRArchive::findDirectory(const char* path, u32 index) const
+JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* path, u32 index) const
 {
 	if (path == nullptr) {
-		return &_48[index];
-	} else {
-		const char* component = path;
-		CArcName arcName(&component, '/');
-		SDIFileEntry* entry = mFileEntries + _48[index]._0C;
-		for (int i = 0; i < _48[index]._0A; i++, entry++) {
+		return _48 + index;
+	}
+
+		CArcName arcName(&path, '/');
+		SDIDirEntry * dirEntry = _48 + index; 
+		SDIFileEntry* entry = mFileEntries + dirEntry->first_file_index;
+		
+		for (int i = 0; i < dirEntry->num_entries; entry++, i++) {
 			if (isSameName(arcName, entry->_04 & 0xFFFFFF, entry->mHash)) {
-				if ((entry->_04 >> 0x18 & 2) != 0) {
-					return findDirectory(component, entry->_08);
+				if ((entry->_04 >> 24) & 0x02) {
+					return findDirectory(path, entry->_08);
 				}
-				return nullptr;
+				break;
 			}
 		}
-	}
+
 	return nullptr;
 	/*
 	stwu     r1, -0x450(r1)
@@ -486,12 +485,12 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, const char* name)
 	if (p1 != 0) {
 		CArcName arcName;
 		arcName.store(name);
-		SDirEntry* dirEntry = findResType(p1);
+		SDIDirEntry* dirEntry = findResType(p1);
 		if (dirEntry != nullptr) {
-			SDIFileEntry* fileEntry = mFileEntries + dirEntry->_0C;
-			for (int i = 0; i < dirEntry->_0A; i++) {
-				if (isSameName(arcName, fileEntry[i]._04 & 0xFFFFFF, fileEntry[i].mHash)) {
-					return fileEntry + i;
+			SDIFileEntry* fileEntry = mFileEntries + dirEntry->first_file_index;
+			for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
+				if (isSameName(arcName, fileEntry->_04 & 0xFFFFFF, fileEntry->mHash)) {
+					return fileEntry;
 				}
 			}
 		}
@@ -611,10 +610,11 @@ JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* path, u32 index
 {
 	if (path) {
 		CArcName arcName(&path, '/');
-		SDIFileEntry* entry = mFileEntries + _48[index]._0C;
-		for (int i = 0; i < _48[index]._0A; i++, entry++) {
+		SDIDirEntry* dirEntry = _48 + index;
+		SDIFileEntry* entry = mFileEntries + dirEntry->first_file_index;
+		for (int i = 0; i < dirEntry->num_entries; entry++, i++) {
 			if (isSameName(arcName, entry->_04 & 0xFFFFFF, entry->mHash)) {
-				if ((entry->_04 >> 0x18 & 2) != 0) {
+				if (((entry->_04 >> 0x18) & 2)) {
 					return findFsResource(path, entry->_08);
 				}
 				if (path == 0) {
@@ -917,63 +917,18 @@ JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(u32 idx) const
  * Address:	8001ADDC
  * Size:	0000A4
  */
-JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char*) const
+JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* name) const
 {
-	/*
-	stwu     r1, -0x130(r1)
-	mflr     r0
-	stw      r0, 0x134(r1)
-	stmw     r27, 0x11c(r1)
-	mr       r27, r3
-	lwz      r28, 0x4c(r27)
-	addi     r3, r1, 8
-	bl       store__Q210JKRArchive8CArcNameFPCc
-	lwz      r30, 0x54(r27)
-	addi     r29, r1, 0xc
-	lwz      r31, 0x44(r27)
-	li       r27, 0
-	b        lbl_8001AE5C
+    SDIFileEntry* fileEntry = mFileEntries;
 
-lbl_8001AE10:
-	lhz      r3, 8(r1)
-	lhz      r0, 2(r28)
-	lwz      r4, 4(r28)
-	cmplw    r3, r0
-	clrlwi   r0, r4, 8
-	beq      lbl_8001AE30
-	li       r0, 0
-	b        lbl_8001AE44
+    CArcName arcName(name);
+    for (int i = 0; i < _44->_08; fileEntry++, i++) {
+        if (isSameName(arcName, fileEntry->_04 & 0xFFFFFF, fileEntry->mHash)) {
+            return fileEntry;
+        }
+    }
 
-lbl_8001AE30:
-	mr       r4, r29
-	add      r3, r30, r0
-	bl       strcmp
-	cntlzw   r0, r3
-	srwi     r0, r0, 5
-
-lbl_8001AE44:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8001AE54
-	mr       r3, r28
-	b        lbl_8001AE6C
-
-lbl_8001AE54:
-	addi     r28, r28, 0x14
-	addi     r27, r27, 1
-
-lbl_8001AE5C:
-	lwz      r0, 8(r31)
-	cmplw    r27, r0
-	blt      lbl_8001AE10
-	li       r3, 0
-
-lbl_8001AE6C:
-	lmw      r27, 0x11c(r1)
-	lwz      r0, 0x134(r1)
-	mtlr     r0
-	addi     r1, r1, 0x130
-	blr
-	*/
+    return nullptr;
 }
 
 /*
@@ -986,7 +941,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void* p1) const
 {
 	SDIFileEntry* entry = mFileEntries;
 	// for (s32 i = _44->_08; i > 0; entry++, i--) {
-	for (u32 i = _44->_08; i > 0; entry++, i--) {
+	for (u32 i = 0; i < _44->_08; entry++, i++) {
 		if (entry->_10 == p1) {
 			return entry;
 		}
@@ -1021,13 +976,16 @@ lbl_8001AEAC:
  */
 JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16 id) const
 {
+	SDIFileEntry* entry;
 	if (id != 0xFFFF) {
-		SDIFileEntry* entry = &mFileEntries[id];
-		if (entry->_00 == id && (entry->_04 >> 0x18 & 0x01) != 0) {
+		entry = &mFileEntries[id];
+		if (entry->_00 == id && (entry->getFlag01())) {
 			return entry;
 		}
-		for (s32 i = _44->_08; i > 0; entry++, i--) {
-			if (entry->_00 == id && (entry->_04 >> 0x18 & 0x01)) {
+		
+		entry = mFileEntries;
+		for (int i = 0; i < _44->_08; entry++, i++) {
+			if (entry->_00 == id && (entry->getFlag01())) {
 				return entry;
 			}
 		}
@@ -1094,67 +1052,19 @@ lbl_8001AF2C:
  */
 void JKRArchive::CArcName::store(const char* name)
 {
-	// TODO: This depends on Dolphin::tolower
-	mHash     = 0;
+	mHash    = 0;
 	int count = 0;
-	for (; *name != '\0'; name++) {
+	while (*name) {
 		int lower     = tolower(*name);
-		mHash         = lower + mHash * 3;
-		int nextIndex = count;
+		mHash        = lower + mHash * 3;
 		if (count < 0x100) {
-			nextIndex      = count + 1;
-			mString[count] = lower;
+			mString[count++] = lower;
 		}
-		count = nextIndex;
+		name++;
 	}
-	_02            = count;
+	_02             = count;
 	mString[count] = '\0';
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	sth      r0, 0(r3)
-	b        lbl_8001AF94
 
-lbl_8001AF64:
-	extsb    r3, r3
-	bl       tolower
-	lhz      r0, 0(r29)
-	cmpwi    r31, 0x100
-	mulli    r0, r0, 3
-	add      r0, r3, r0
-	sth      r0, 0(r29)
-	bge      lbl_8001AF90
-	addi     r0, r31, 4
-	addi     r31, r31, 1
-	stbx     r3, r29, r0
-
-lbl_8001AF90:
-	addi     r30, r30, 1
-
-lbl_8001AF94:
-	lbz      r3, 0(r30)
-	extsb.   r0, r3
-	bne      lbl_8001AF64
-	sth      r31, 2(r29)
-	add      r3, r29, r31
-	li       r0, 0
-	stb      r0, 4(r3)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1162,72 +1072,24 @@ lbl_8001AF94:
  * Address:	8001AFCC
  * Size:	0000C8
  */
-char* JKRArchive::CArcName::store(const char*, char)
+const char* JKRArchive::CArcName::store(const char* name, char endChar)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	extsb    r31, r5
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	sth      r0, 0(r3)
-	b        lbl_8001B034
+	mHash    = 0;
+	int count = 0;
+	for (; *name && *name != endChar; name++) {
+		int lower     = tolower(*name);
+		mHash        = lower + mHash * 3;
+		if (count < 0x100) {
+			mString[count++] = lower;
+		}
+	}
+	_02             = count;
+	mString[count] = '\0';
 
-lbl_8001B004:
-	extsb    r3, r3
-	bl       tolower
-	lhz      r0, 0(r28)
-	cmpwi    r30, 0x100
-	mulli    r0, r0, 3
-	add      r0, r3, r0
-	sth      r0, 0(r28)
-	bge      lbl_8001B030
-	addi     r0, r30, 4
-	addi     r30, r30, 1
-	stbx     r3, r28, r0
+	if (*name == 0)
+        return nullptr;
+    return name + 1;
 
-lbl_8001B030:
-	addi     r29, r29, 1
-
-lbl_8001B034:
-	lbz      r3, 0(r29)
-	extsb.   r0, r3
-	beq      lbl_8001B04C
-	extsb    r0, r3
-	cmpw     r0, r31
-	bne      lbl_8001B004
-
-lbl_8001B04C:
-	lbz      r0, 0(r29)
-	add      r3, r28, r30
-	sth      r30, 2(r28)
-	li       r4, 0
-	extsb.   r0, r0
-	stb      r4, 4(r3)
-	bne      lbl_8001B070
-	li       r3, 0
-	b        lbl_8001B074
-
-lbl_8001B070:
-	addi     r3, r29, 1
-
-lbl_8001B074:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1242,12 +1104,11 @@ void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry* entry, unsigned long p2
 	// 	_50[index] = p2;
 	// }
 	u32 index = (entry - mFileEntries);
-	if (_50 == nullptr) {
+	if (_50 == nullptr ||index >= _44->_08 ) {
 		return;
 	}
-	if (index < _44->_08) {
-		_50[index] = p2;
-	}
+	_50[index] = p2;
+
 	/*
 	lwz      r0, 0x4c(r3)
 	lis      r6, 0x66666667@ha
