@@ -1,0 +1,79 @@
+GC_FILES:=\
+	$(BUILD_DIR)/asm/sysGCU/system.o\
+	$(BUILD_DIR)/asm/sysGCU/section.o\
+	$(BUILD_DIR)/asm/sysGCU/gameflow.o\
+	$(BUILD_DIR)/src/sysGCU/menuSection.o\
+	$(BUILD_DIR)/asm/sysGCU/dvdThread.o\
+	$(BUILD_DIR)/src/sysGCU/appThread.o\
+	$(BUILD_DIR)/src/sysGCU/controller.o\
+	$(BUILD_DIR)/asm/sysGCU/graphics.o\
+	$(BUILD_DIR)/asm/sysGCU/matMath.o\
+	$(BUILD_DIR)/asm/sysGCU/sysShape.o\
+	$(BUILD_DIR)/src/sysGCU/reset.o\
+	$(BUILD_DIR)/src/sysGCU/dvdStatus.o\
+	$(BUILD_DIR)/src/sysGCU/sysTimers.o\
+	$(BUILD_DIR)/src/sysGCU/modelMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/heapStatus.o\
+	$(BUILD_DIR)/asm/sysGCU/light.o\
+	$(BUILD_DIR)/asm/sysGCU/wipe.o\
+	$(BUILD_DIR)/asm/sysGCU/moviePlayer.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectActor.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectCamera.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectGameActor.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectSystem.o\
+	$(BUILD_DIR)/src/sysGCU/JSTFindCreature.o\
+	$(BUILD_DIR)/src/sysGCU/movieConfig.o\
+	$(BUILD_DIR)/src/sysGCU/gameConfig.o\
+	$(BUILD_DIR)/src/sysGCU/fogMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/aramMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/resourceMgr.o\
+	$(BUILD_DIR)/src/sysGCU/resourceMgr2D.o\
+	$(BUILD_DIR)/asm/sysGCU/sysMaterialAnim.o\
+	$(BUILD_DIR)/asm/sysGCU/P2DScreen.o\
+	$(BUILD_DIR)/asm/sysGCU/movieMessage.o\
+	$(BUILD_DIR)/asm/sysGCU/moviePlayerPauseAndDraw.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectSpecialActor.o\
+	$(BUILD_DIR)/src/sysGCU/messageSequence.o\
+	$(BUILD_DIR)/asm/sysGCU/messageMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/messageObj.o\
+	$(BUILD_DIR)/asm/sysGCU/messageRendering.o\
+	$(BUILD_DIR)/src/sysGCU/message.o\
+	$(BUILD_DIR)/asm/sysGCU/modelEffect.o\
+	$(BUILD_DIR)/src/sysGCU/messageReference.o\
+	$(BUILD_DIR)/src/sysGCU/simpleMessage.o\
+	$(BUILD_DIR)/src/sysGCU/sysShapeAnimation.o\
+	$(BUILD_DIR)/asm/sysGCU/sysShapeModel.o\
+	$(BUILD_DIR)/asm/sysGCU/windowMessage.o\
+	$(BUILD_DIR)/asm/sysGCU/memoryCard.o\
+	$(BUILD_DIR)/asm/sysGCU/pikmin2MemoryCardMgr.o\
+	$(BUILD_DIR)/src/sysGCU/commonSaveData.o\
+	$(BUILD_DIR)/asm/sysGCU/bootSection.o\
+	$(BUILD_DIR)/asm/sysGCU/titleSection.o\
+	$(BUILD_DIR)/asm/sysGCU/loadResource.o\
+	$(BUILD_DIR)/src/sysGCU/rootMenuSection.o\
+	$(BUILD_DIR)/src/sysGCU/demoSection.o\
+	$(BUILD_DIR)/asm/sysGCU/THPAudioDecode.o\
+	$(BUILD_DIR)/src/sysGCU/THPDraw.o\
+	$(BUILD_DIR)/asm/sysGCU/THPPlayer.o\
+	$(BUILD_DIR)/asm/sysGCU/THPRead.o\
+	$(BUILD_DIR)/asm/sysGCU/THPVideoDecode.o\
+	$(BUILD_DIR)/asm/sysGCU/pikmin2THPPlayer.o\
+	$(BUILD_DIR)/src/sysGCU/captionMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/captionMessage.o\
+	$(BUILD_DIR)/asm/sysGCU/screenScene.o\
+	$(BUILD_DIR)/asm/sysGCU/screenMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/screenObj.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectParticleActor.o\
+	$(BUILD_DIR)/asm/sysGCU/moviePlayerAudio.o\
+	$(BUILD_DIR)/asm/sysGCU/illustratedBookMessage.o\
+	$(BUILD_DIR)/src/sysGCU/sysDrawBuffer.o\
+	$(BUILD_DIR)/src/sysGCU/dvdErrorMessage.o\
+	$(BUILD_DIR)/asm/sysGCU/pikmin2AramMgr.o\
+	$(BUILD_DIR)/src/sysGCU/messageAnalyzer.o\
+
+DEPENDS += $(GC_FILES:.o=.d)
+
+$(BUILD_DIR)/src/sysGCU/sysGCU.a: $(GC_FILES)
+	@echo linking... $@
+	@echo $(GC_FILES) > $(BUILD_DIR)/GC_ofiles
+	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @$(BUILD_DIR)/GC_ofiles
