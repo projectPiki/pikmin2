@@ -1,4 +1,12 @@
 # libraries
+-include src/plugProjectYamashitaU/Makefile
+-include src/plugProjectKandoU/Makefile
+-include src/plugProjectNishimuraU/Makefile
+-include src/plugProjectOgawaU/Makefile
+-include src/plugProjectHikinoU/Makefile
+-include src/plugProjectMorimuraU/Makefile
+-include src/plugProjectEbisawaU/Makefile
+-include src/plugProjectKonoU/Makefile
 -include src/sysBootupU/Makefile
 -include src/sysCommonU/Makefile
 -include src/sysGCU/Makefile
