@@ -94,7 +94,7 @@ void SingleGame::SelectState::initNext(SingleGameSection* section)
 	mWorldMap = new kh::Screen::WorldMap;
 	WorldMap::InitArg arg;
 
-	arg.mDayCount   = gameSystem->mTimeMgr->mDayCount + 1;
+	arg.mCurrentDay = gameSystem->mTimeMgr->mDayCount + 1;
 	arg.mStages     = stageList;
 	arg.mHeap       = mWMapHeap;
 	arg.mController = mController;

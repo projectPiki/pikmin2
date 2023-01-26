@@ -141,7 +141,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khUtil.cpp">khUtil.cpp</a> | 9514 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newScreenMgr.cpp">newScreenMgr.cpp</a> | 15969 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 63509 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 74674 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWorldMap.cpp">khWorldMap.cpp</a> | 193671 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWorldMap.cpp">khWorldMap.cpp</a> | 200658 |
 
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |

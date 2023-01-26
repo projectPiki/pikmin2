@@ -29,6 +29,10 @@ struct TChasePos : public TForever {
 };
 
 struct TChasePosDir : public TForever {
+	TChasePosDir(u16 id)
+	    : TForever(id)
+	{
+	}
 	// vtable 1
 	virtual bool create(Arg*); // _08
 	// vtable 2

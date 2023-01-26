@@ -17,14 +17,9 @@
 #define PID_BattleDive_2 (0x03)
 #define PID_BattleDive_3 (0x04)
 
-#define PID_Newmap_1 (0x05)
-#define PID_Newmap_2 (0x06) // same effect as ChalDiveEnd maybe?
-
 #define PID_ChalDiveEnd (0x06)
 
 #define PID_Changesmoke (0x07)
-
-#define PID_ShootingStar (0x08)
 
 #define PID_ExtractUp (0x09)
 
@@ -904,5 +899,14 @@
 #define PID_GasuHiba_4 (0x2B5) // gas pipe 4
 
 #define PID_SyncDefault (0x2B2) // default TSync PID
+
+// WORLD MAP JPC
+#define PID_WMap_RocketSparks  (2)
+#define PID_WMap_RocketGlow    (3)
+#define PID_WMap_LensFlare     (4)
+#define PID_WMap_NewMap1       (5)
+#define PID_WMap_NewMap2       (6)
+#define PID_WMap_ShootingStar1 (7)
+#define PID_WMap_ShootingStar  (8)
 
 #endif

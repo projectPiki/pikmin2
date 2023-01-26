@@ -1,11 +1,14 @@
-#include "JSystem/J2D/J2DAnm.h"
-#include "P2DScreen.h"
 #include "kh/khUtil.h"
 #include "kh/khWorldMap.h"
 #include "LoadResource.h"
 #include "og/newScreen/ogUtil.h"
-#include "Controller.h"
 #include "Game/gamePlayData.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/ArrowAlphaBlink.h"
+#include "TParticle2dMgr.h"
+#include "efx2d/WorldMap.h"
+#include "Screen/Game2DMgr.h"
 
 /*
     Generated from dpostproc
@@ -738,6 +741,8 @@ namespace kh {
 
 namespace Screen {
 
+const f32 cOpenMinFrm[5] = { 0.0f, 300.0f, 600.0f, 900.0f };
+
 /*
  * --INFO--
  * Address:	803F1BA0
@@ -749,35 +754,9 @@ void khUtilFadePaneWM::fadeout_finish()
 		mMapObj->changeInfo();
 		mMapObj->effectFirstTime();
 		mState = 0;
+	} else {
+		mState = 2;
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lbz      r0, 0x34(r3)
-cmplwi   r0, 0
-beq      lbl_803F1BDC
-lwz      r3, 0x30(r31)
-bl       changeInfo__Q32kh6Screen8WorldMapFv
-lwz      r3, 0x30(r31)
-bl       effectFirstTime__Q32kh6Screen8WorldMapFv
-li       r0, 0
-stw      r0, 0x28(r31)
-b        lbl_803F1BE4
-
-lbl_803F1BDC:
-li       r0, 2
-stw      r0, 0x28(r31)
-
-lbl_803F1BE4:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 /*
  * --INFO--
@@ -786,7 +765,8 @@ blr
  */
 void khUtilColorAnmWM::do_update()
 {
-	static_cast<J2DPicture*>(mPane)->setWhite(mColor1);
+	JUtility::TColor col = mColor1;
+	static_cast<J2DPictureEx*>(mPane)->setWhite(col);
 	if (mUpdateMode && !mCounter) {
 		mCounter1->startPuyoUp(1.0f);
 		mCounter2->startPuyoUp(2.0f);
@@ -871,14 +851,13 @@ WorldMap::WorldMap()
 	mRocketAngleSin           = mRocketAngle.x;
 	mRocketAngleCos           = mRocketAngle.y;
 	mRocketScale              = 0.0f;
-	mRocketGlow               = nullptr;
-	mRocketB                  = nullptr;
-	mMapFlare                 = nullptr;
-	mShstar1                  = nullptr;
+	mEfxRocketGlow            = nullptr;
+	mEfxRocketSparks          = nullptr;
+	mEfxMapFlare              = nullptr;
+	mEfxShstar1               = nullptr;
 	_D0                       = 0.0f;
-	_D4                       = 0.0f;
-	_D8                       = 0.0f;
-	_DC                       = 1.0f;
+	_D8.x                     = 0.0f;
+	_D8.y                     = 1.0f;
 	mLight01Center.x          = 0.0f;
 	mLight01Center.y          = 0.0f;
 	mStarCenter.x             = 0.0f;
@@ -887,7 +866,7 @@ WorldMap::WorldMap()
 	mOnyonCount               = 0;
 	mCurrentCourseIndex       = 0;
 	_FC                       = 0;
-	_108                      = nullptr;
+	mGroundTreasureMaxCounter = nullptr;
 	mGroundTreasureCounter    = nullptr;
 	mPokoCounter              = nullptr;
 	mGroundTreasureMax        = 0;
@@ -908,14 +887,14 @@ WorldMap::WorldMap()
 	mCaveTreasureCounters[3]  = nullptr;
 	mCaveOtaMax[3]            = 0;
 	mCaveOtaNum[3]            = 0;
-	mOnyonFadePane            = nullptr;
+	mCaveFadePane             = nullptr;
 	mColorAnims[0]            = nullptr;
 	mColorAnims[1]            = nullptr;
 	mColorAnims[2]            = nullptr;
 	mColorAnims[3]            = nullptr;
 	mColorAnims[4]            = nullptr;
 	mColorAnim2               = nullptr;
-	mArrowAlphaBlink          = nullptr;
+	mArrowBlink               = nullptr;
 	mCurrentState             = 0xd;
 	mAngle                    = 1;
 	mFlags                    = 4;
@@ -1094,32 +1073,227 @@ void WorldMap::loadResource()
 	mBckAnm1            = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resData);
 	mBckAnm2            = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(resData);
 	mScreenKitagawa->setAnimation(mBckAnm1);
-	int i = 0;
-	do {
+	for (int i = 0; i < 4; i++) {
 		mScreenKitagawa->search(getSerialTagName('Pland0', i))->setAnimation(mBckAnm2);
 		mScreenKitagawa->search(getSerialTagName('Plight0', i))->setAnimation(mBckAnm2);
-	} while (++i < 4);
+	}
 
-	mKitaAnim1 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.bpk", arc));
+	void* file = JKRFileLoader::getGlbResource("world_map_kitagawa.brk", arc);
+	mKitaAnim1 = static_cast<J2DAnmColorKey*>(J2DAnmLoaderDataBase::load(file));
 	mScreenKitagawa->setAnimation(mKitaAnim1);
-	mKitaAnim2 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.btk", arc));
-	mScreenKitagawa->setAnimation(mKitaAnim2);
-	mKitaAnim3 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk", arc));
-	mScreenKitagawa->setAnimation(mKitaAnim3);
-	const char* worldMapIconsFileNames[2][3];
-	const char** worldMapIconFileNames = worldMapIconsFileNames[0];
-	worldMapIconsFileNames[0][0]       = "worldmap_icon.blo";
-	worldMapIconsFileNames[0][1]       = "worldmap_icon.bck";
-	worldMapIconsFileNames[0][2]       = "worldmap_icon.btp";
 
-	worldMapIconsFileNames[1][0] = "worldmap_gicon.blo";
-	worldMapIconsFileNames[1][1] = "worldmap_gicon.bck";
-	worldMapIconsFileNames[1][2] = "worldmap_gicon.btp";
-	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) { }
+	file       = JKRFileLoader::getGlbResource("world_map_kitagawa.btk", arc);
+	mKitaAnim2 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+	mScreenKitagawa->setAnimation(mKitaAnim2);
+
+	file       = JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk", arc);
+	mKitaAnim3 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+	mScreenKitagawa->setAnimation(mKitaAnim3);
+
+	const char* pathsPreDebt[3]  = { "worldmap_icon.blo", "worldmap_icon.bck", "worldmap_icon.btp" };
+	const char* pathsPostDebt[3] = { "worldmap_gicon.blo", "worldmap_gicon.bck", "worldmap_gicon.btp" };
+
+	const char** usePath = pathsPreDebt;
+	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+		usePath = pathsPostDebt;
+	}
 
 	mScreenRocket = new P2DScreen::Mgr;
-	mScreenRocket->set(worldMapIconFileNames[1], 0x40000, arc);
+	mScreenRocket->set(usePath[0], 0x40000, arc);
 
+	file         = JKRFileLoader::getGlbResource(usePath[1], arc);
+	mRocketAnim1 = static_cast<J2DAnmTransformKey*>(J2DAnmLoaderDataBase::load(file));
+	mScreenRocket->setAnimation(mRocketAnim1);
+
+	file         = JKRFileLoader::getGlbResource(usePath[2], arc);
+	mRocketAnim2 = static_cast<J2DAnmTexPattern*>(J2DAnmLoaderDataBase::load(file));
+	mScreenRocket->setAnimation(mRocketAnim2);
+
+	if (::Game::playData->hasBootContainer(1)) {
+		mOnyonCount++;
+	} else {
+		mScreenRocket->search('NRED')->hide();
+	}
+
+	if (::Game::playData->hasBootContainer(2)) {
+		mOnyonCount++;
+	} else {
+		mScreenRocket->search('NYELLOW')->hide();
+	}
+
+	if (::Game::playData->hasBootContainer(0)) {
+		mOnyonCount++;
+	} else {
+		mScreenRocket->search('NBLUE')->hide();
+	}
+	mOnyonArray = new OnyonDynamics[mOnyonCount];
+
+	int onyons = 0;
+	if (::Game::playData->hasBootContainer(1)) {
+		mOnyonArray[onyons].mOnyonPane = mScreenRocket->search('NRED');
+		onyons++;
+	}
+
+	if (::Game::playData->hasBootContainer(2)) {
+		mOnyonArray[onyons].mOnyonPane = mScreenRocket->search('NYELLOW');
+		onyons++;
+	}
+
+	if (::Game::playData->hasBootContainer(0)) {
+		mOnyonArray[onyons].mOnyonPane = mScreenRocket->search('NBLUE');
+		onyons++;
+	}
+
+	for (int i = 1; i < mOnyonCount; i++) {
+		mOnyonArray[i]._30 = (i * 0xffff) / mOnyonCount;
+	}
+
+	char* infoPaths[4] = { "world_map_info.blo", "world_map_info.btk", "world_map_info_02.btk", "world_map_info_03.btk" };
+	mScreenInfo        = new P2DScreen::Mgr_tuning;
+	mScreenInfo->set(infoPaths[0], 0x40000, arc);
+
+	file       = JKRFileLoader::getGlbResource(infoPaths[1], arc);
+	mInfoAnim1 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+
+	file       = JKRFileLoader::getGlbResource(infoPaths[2], arc);
+	mInfoAnim2 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+
+	file       = JKRFileLoader::getGlbResource(infoPaths[3], arc);
+	mInfoAnim3 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+
+	mScreenInfo->setAnimation(mInfoAnim1);
+	mScreenInfo->setAnimation(mInfoAnim2);
+	mScreenInfo->setAnimation(mInfoAnim3);
+
+	og::Screen::setCallBackMessage(mScreenInfo);
+	og::Screen::setCallBack_CounterDay(mScreenInfo, 'Pday_r', 'Pday_l', 'Pday_c', &mInitArg.mCurrentDay, 3, arc);
+	int money = ::Game::playData->mPokoCount;
+	if (::Game::playData->mStoryFlags & ::Game::STORY_DebtPaid) {
+		mScreenInfo->search('Nfinal_f')->hide();
+		mScreenInfo->search('Ncomp_f')->show();
+		mPokoCounter = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Ppoko01', money, 5, false, false, arc);
+	} else {
+		mScreenInfo->search('Nfinal_f')->show();
+		mScreenInfo->search('Ncomp_f')->hide();
+		mPokoCounter = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Pcomp00', money, 10, false, true, arc);
+	}
+	mGroundTreasureCounter    = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Pg_c_01', mGroundTreasureCount, 2, false, true, arc);
+	mGroundTreasureMaxCounter = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Pg_p_01', mGroundTreasureMax, 2, false, true, arc);
+	mCaveTreasureCounters[0]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P0_c_01', mCaveOtaNum[0], 2, false, true, arc);
+	mCaveTreasureCounters2[0] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P0_p_01', mCaveOtaMax[0], 2, false, true, arc);
+	mCaveTreasureCounters[1]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P1_c_01', mCaveOtaNum[1], 2, false, true, arc);
+	mCaveTreasureCounters2[1] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P1_p_01', mCaveOtaMax[1], 2, false, true, arc);
+	mCaveTreasureCounters[2]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P2_c_01', mCaveOtaNum[2], 2, false, true, arc);
+	mCaveTreasureCounters2[2] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P2_p_01', mCaveOtaMax[2], 2, false, true, arc);
+	mCaveTreasureCounters[3]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P3_c_01', mCaveOtaNum[3], 2, false, true, arc);
+	mCaveTreasureCounters2[3] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P3_p_01', mCaveOtaMax[3], 2, false, true, arc);
+	mScreenInfo->search('T_new_l')->hide();
+	mScreenInfo->search('T_new_r')->hide();
+	mScreenInfo->search('Nlwin')->hide();
+	mScreenInfo->search('Nrwin')->hide();
+	mColorAnim2 = new khUtilColorAnm(nullptr, 'dummy', 3, 100);
+	mColorAnim2->mColorList[0].set(255, 96, 80, 0);
+	mColorAnim2->mColorList[1].set(255, 160, 32, 255);
+	mColorAnim2->mColorList[2].set(255, 96, 80, 0);
+	mColorAnim2->mUpdateMode = 1;
+	mScaleMgr                = new og::Screen::ScaleMgr;
+	mArrowBlink              = new og::Screen::ArrowAlphaBlink;
+	setInfAlpha(mScreenInfo->search('Nlbtn'));
+	setInfAlpha(mScreenInfo->search('Nrbtn'));
+
+	void* jpc = JKRDvdRipper::loadToMainRAM("user/Ebisawa/effect/eff2d_world_map.jpc", nullptr, Switch_2, 0, nullptr,
+	                                        JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	P2ASSERTLINE(462, jpc);
+	particle2dMgr->setSceneResourceManager(new JPAResourceManager(jpc, getCurrentHeap()));
+	mEfxRocketSparks = new efx2d::WorldMap::T2DRocketB;
+	mEfxRocketGlow   = new efx2d::WorldMap::T2DRocketGlow;
+	mEfxRocketSparks->setGroup(3);
+	mEfxRocketGlow->setGroup(2);
+	mEfxRocketGlow->create(nullptr);
+	mEfxRocketSparks->create(nullptr);
+
+	for (int i = 0; i < mOnyonCount; i++) {
+		mOnyonArray[i].initPtcl();
+	}
+
+	mEfxMapFlare = new efx2d::WorldMap::T2DMapFlare;
+	mEfxShstar1  = new efx2d::WorldMap::T2DShstar1;
+	mEfxMapFlare->setGroup(2);
+	mEfxShstar1->setGroup(2);
+	mEfxMapFlare->create(nullptr);
+	mEfxShstar1->create(nullptr);
+
+	u64 tag                       = mScreenInfo->search('Ncave0')->mTag;
+	P2DScreen::Mgr_tuning* screen = mScreenInfo;
+	khUtilFadePaneWM* fPane;
+	if (!screen) {
+		fPane = nullptr;
+	} else {
+		fPane = new khUtilFadePaneWM();
+		P2ASSERTLINE(60, fPane);
+	}
+	fPane->add(screen->addCallBack(tag, fPane));
+	mCaveFadePane = fPane;
+	mCaveFadePane->add(mScreenInfo->search('Ncave1'));
+	mCaveFadePane->add(mScreenInfo->search('Ncave2'));
+	mCaveFadePane->add(mScreenInfo->search('Ncave3'));
+	mCaveFadePane->add(mScreenInfo->search('Pc_name'));
+	mCaveFadePane->add(mScreenInfo->search('Ngrand'));
+	mCaveFadePane->mMapObj = this;
+	mCaveFadePane->set_init_alpha(0);
+	mCaveFadePane->fadeout();
+
+	u64 paneTags[25] = { 'PICT_045', 'Pg_p_01',  'Pg_p_02',  'Pg_c_01', 'Pg_c_02', 'Pcave_00', 'P0_p_01',  'P0_p_02', 'P0_c_01',
+		                 'P0_c_02',  'Pcave_01', 'P1_p_01',  'P1_p_02', 'P1_c_01', 'P1_c_02',  'Pcave_02', 'P2_p_01', 'P2_p_02',
+		                 'P2_c_01',  'P2_c_02',  'Pcave_03', 'P3_p_01', 'P3_p_02', 'P3_c_01',  'P3_c_02' };
+	og::Screen::CallBack_CounterRV* counter[10]
+	    = { mGroundTreasureCounter,   mGroundTreasureMaxCounter, mCaveTreasureCounters[0], mCaveTreasureCounters2[0],
+		    mCaveTreasureCounters[1], mCaveTreasureCounters2[1], mCaveTreasureCounters[2], mCaveTreasureCounters2[2],
+		    mCaveTreasureCounters[3], mCaveTreasureCounters2[3] };
+	for (int i = 0; i < 4; i++) {
+		mColorAnims[i] = new khUtilColorAnmWM(mScreenInfo, paneTags[5 * i]);
+		mColorAnims[i]->mColorList[0].set(255, 96, 80, 0);
+		mColorAnims[i]->mColorList[1].set(255, 160, 32, 255);
+		mColorAnims[i]->mColorList[2].set(255, 96, 80, 0);
+		mColorAnims[i]->mColor2.set(0, 173, 182, 255);
+
+		J2DPane* paneList[4] = { mScreenInfo->search(paneTags[i]), mScreenInfo->search(paneTags[i + 1]),
+			                     mScreenInfo->search(paneTags[i + 2]), mScreenInfo->search(paneTags[i + 3]) };
+		for (int j = 0; j < 4; j++) {
+			mColorAnims[i]->mPaneList[j] = paneList[j];
+			mColorAnims[i]->mEfx[j]      = new efx2d::T2DCountKira;
+		}
+		mColorAnims[i]->mCounter1 = counter[i];
+		mColorAnims[i]->mCounter2 = counter[i + 1];
+	}
+	savedHeap->becomeCurrentHeap();
+
+	if (mOpenCourses) {
+		for (int i = 0; i < mOpenCourses; i++) {
+			if (mCourseJustOpenFlags & 1) {
+				mCameraZoomMinFrame = cOpenMinFrm[i];
+			}
+		}
+	}
+	mScreenRocket->search('NROCKET')->setOffset(1000.0f, 0.0f);
+	mScreenRocket->search('NRED')->setOffset(1000.0f, 0.0f);
+	mScreenRocket->search('NYELLOW')->setOffset(1000.0f, 0.0f);
+	mScreenRocket->search('NBLUE')->setOffset(1000.0f, 0.0f);
+
+	for (int i = 0; i < 4; i++) {
+		mScreenKitagawa->search(getSerialTagName('Nwait0', i))->hide();
+	}
+
+	for (int i = 0; i < 4; i++) {
+		if (i > mOpenCourses || mCourseJustOpenFlags & 1 == i) {
+			mScreenKitagawa->search(getSerialTagName('Npoint0', i))->hide();
+		}
+	}
+
+	for (int i = 0; i < mOpenCourses; i++) {
+		mScreenKitagawa->search(getSerialTagName('Plight0', i))->hide();
+	}
+	::Screen::gGame2DMgr->setGamePad(mInitArg.mController);
 	/*
 stwu     r1, -0x260(r1)
 mflr     r0
@@ -4719,112 +4893,18 @@ blr
  * Address:	803F53F4
  * Size:	000198
  */
-void WorldMap::draw1st(Graphics&)
+void WorldMap::draw1st(Graphics& gfx)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-mr       r30, r3
-addi     r3, r31, 0x190
-lwz      r12, 0x190(r4)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-li       r3, 0
-bl       GXSetClipMode
-lwz      r3, 0x30(r30)
-lis      r5, 0x616E6433@ha
-lis      r4, 0x004E6772@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x616E6433@l
-addi     r5, r4, 0x004E6772@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r5, 0x616E6432@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E6772@ha
-addi     r6, r5, 0x616E6432@l
-lwz      r3, 0x30(r30)
-addi     r5, r4, 0x004E6772@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r5, 0x6E643030@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x4E677261@ha
-addi     r6, r5, 0x6E643030@l
-lwz      r3, 0x30(r30)
-addi     r5, r4, 0x4E677261@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r5, 0x616E6430@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E6772@ha
-addi     r6, r5, 0x616E6430@l
-lwz      r3, 0x30(r30)
-addi     r5, r4, 0x004E6772@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r5, 0x616E6431@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E6772@ha
-addi     r6, r5, 0x616E6431@l
-lwz      r3, 0x30(r30)
-addi     r5, r4, 0x004E6772@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r4, 0x6F696E74@ha
-stb      r0, 0xb0(r3)
-addi     r6, r4, 0x6F696E74@l
-li       r5, 0x4e70
-lwz      r3, 0x30(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r4, 0x68617061@ha
-stb      r0, 0xb0(r3)
-addi     r6, r4, 0x68617061@l
-li       r5, 0x4e
-lwz      r3, 0x30(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-mr       r4, r31
-stb      r0, 0xb0(r3)
-addi     r5, r31, 0x190
-lwz      r3, 0x30(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	gfx.mPerspGraph.setPort();
+	GXSetClipMode(0);
+	mScreenKitagawa->search('Ngrand3')->show();
+	mScreenKitagawa->search('Ngrand2')->show();
+	mScreenKitagawa->search('Ngrand00')->show();
+	mScreenKitagawa->search('Ngrand0')->show();
+	mScreenKitagawa->search('Ngrand1')->show();
+	mScreenKitagawa->search('Npoint')->show();
+	mScreenKitagawa->search('Nhapa')->hide();
+	mScreenKitagawa->draw(gfx, gfx.mPerspGraph);
 }
 
 /*
@@ -4832,35 +4912,10 @@ blr
  * Address:	803F558C
  * Size:	000064
  */
-void WorldMap::draw2nd(Graphics&)
+void WorldMap::draw2nd(Graphics& gfx)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-mr       r30, r3
-addi     r3, r31, 0x190
-lwz      r12, 0x190(r4)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x48(r30)
-mr       r4, r31
-addi     r5, r31, 0x190
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	gfx.mPerspGraph.setPort();
+	mScreenRocket->draw(gfx, gfx.mPerspGraph);
 }
 
 /*
@@ -4868,8 +4923,28 @@ blr
  * Address:	803F55F0
  * Size:	0002A0
  */
-void WorldMap::draw3rd(Graphics&)
+void WorldMap::draw3rd(Graphics& gfx)
 {
+	gfx.mPerspGraph.setPort();
+	GXSetClipMode(0);
+	mScreenKitagawa->search('Ngrand3')->hide();
+	mScreenKitagawa->search('Ngrand2')->hide();
+	mScreenKitagawa->search('Ngrand00')->hide();
+	mScreenKitagawa->search('Ngrand0')->hide();
+	mScreenKitagawa->search('Ngrand1')->hide();
+	mScreenKitagawa->search('Npoint')->hide();
+	mScreenKitagawa->search('Nhapa')->show();
+	mScreenKitagawa->draw(gfx, gfx.mPerspGraph);
+
+	if (mFlags & 0x20 && mZukanFadeout) {
+		gfx.mOrthoGraph.setPort();
+		gfx.mOrthoGraph.setColor(JUtility::TColor(mZukanFadeout));
+		f32 zero;
+		gfx.mOrthoGraph.fillBox(
+		    JGeometry::TBox2f(0.0f, 0.0f, System::getRenderModeObj()->fbWidth + zero, System::getRenderModeObj()->efbHeight + zero));
+	}
+	gfx.mPerspGraph.setPort();
+	mScreenInfo->draw(gfx, gfx.mPerspGraph);
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -5050,8 +5125,16 @@ blr
  * Address:	803F5890
  * Size:	000110
  */
-void WorldMap::draw4th(Graphics&)
+void WorldMap::draw4th(Graphics& gfx)
 {
+	if (mFlags & 0x20 && mZukanFadeout) {
+		gfx.mOrthoGraph.setPort();
+		gfx.mOrthoGraph.setColor(JUtility::TColor(mZukanFadeout));
+		f32 zero;
+		gfx.mOrthoGraph.fillBox(
+		    JGeometry::TBox2f(0.0f, 0.0f, System::getRenderModeObj()->fbWidth + zero, System::getRenderModeObj()->efbHeight + zero));
+	}
+	::Screen::gGame2DMgr->draw(gfx);
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -5647,6 +5730,10 @@ blr
  */
 void WorldMap::onyonMove()
 {
+	Vector2f pos = mRocketPosition;
+	for (int i = 0; i < mOnyonCount; i++) {
+		pos = mOnyonArray[i].move(this, pos);
+	}
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -7584,7 +7671,7 @@ blr
  * Address:	803F7B40
  * Size:	000458
  */
-void WorldMap::OnyonDynamics::move(kh::Screen::WorldMap*, const JGeometry::TVec2<float>&)
+Vector2f WorldMap::OnyonDynamics::move(kh::Screen::WorldMap*, const JGeometry::TVec2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -7998,66 +8085,7 @@ blr
  * Address:	803F80C4
  * Size:	000030
  */
-void WorldMap::OnyonDynamics::kill()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-lwz      r3, 0x1c(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803F82D4
- * Size:	000070
- */
-WorldMap::~WorldMap()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803F8328
-lis      r4, __vt__Q32kh6Screen8WorldMap@ha
-addi     r0, r4, __vt__Q32kh6Screen8WorldMap@l
-stw      r0, 0(r30)
-beq      lbl_803F8318
-lis      r5, __vt__Q34Game8WorldMap4Base@ha
-li       r4, 0
-addi     r0, r5, __vt__Q34Game8WorldMap4Base@l
-stw      r0, 0(r30)
-bl       __dt__11JKRDisposerFv
-
-lbl_803F8318:
-extsh.   r0, r31
-ble      lbl_803F8328
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803F8328:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+void WorldMap::OnyonDynamics::kill() { mOnyonKira->kill(); }
 
 } // namespace Screen
 } // namespace kh

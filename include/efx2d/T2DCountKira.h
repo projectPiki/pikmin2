@@ -6,8 +6,13 @@
 
 namespace efx2d {
 struct T2DCountKira : public TForever {
-	virtual bool create(Arg*); // _08
-	virtual ~T2DCountKira();   // _34 (weak)
+	T2DCountKira()
+	    : TForever(8)
+	{
+		mScale = 1.0f;
+	}
+	virtual bool create(Arg*);  // _08
+	virtual ~T2DCountKira() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TForever

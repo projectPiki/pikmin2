@@ -60,6 +60,12 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 };
 
 struct khUtilFadePaneWM : public khUtilFadePane {
+	khUtilFadePaneWM()
+	    : khUtilFadePane(16)
+	{
+		mMapObj = nullptr;
+		mFinish = false;
+	}
 	virtual ~khUtilFadePaneWM() { } // _08 (weak)
 	virtual void fadeout_finish();  // _20
 
@@ -88,6 +94,18 @@ struct khUtilColorAnm : public P2DScreen::CallBackNode {
 };
 
 struct khUtilColorAnmWM : public khUtilColorAnm {
+	khUtilColorAnmWM(P2DScreen::Mgr* screen, u64 tag)
+	    : khUtilColorAnm(screen, tag, 3, 100)
+	{
+		mPaneList[0] = nullptr;
+		mEfx[0]      = nullptr;
+		mPaneList[1] = nullptr;
+		mEfx[1]      = nullptr;
+		mPaneList[2] = nullptr;
+		mEfx[2]      = nullptr;
+		mPaneList[3] = nullptr;
+		mEfx[3]      = nullptr;
+	}
 	virtual ~khUtilColorAnmWM() { } // _08 (weak)
 	virtual void do_update();       // _14
 
