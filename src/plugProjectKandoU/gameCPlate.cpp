@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
 #include "Game/CPlate.h"
 #include "Game/Piki.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
 /*

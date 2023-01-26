@@ -1,5 +1,5 @@
-#include "JStudio/TControl.h"
-#include "JStudio/TVariableValue.h"
+#include "JSystem/JStudio/TControl.h"
+#include "JSystem/JStudio/TVariableValue.h"
 #include "JSystem/JStudio_JStage.h"
 #include "types.h"
 

@@ -2,8 +2,8 @@
 #define _LOADRESOURCE_H
 
 #include "CNode.h"
-#include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 
 struct JKRArchive;
 

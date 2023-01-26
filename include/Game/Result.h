@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "Game/DNode.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 
 namespace kh {
 namespace Screen {

@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "PSAutoBgm/Track.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JSupport/JSUList.h"
 
 struct JASTrack;

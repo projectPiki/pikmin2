@@ -6,7 +6,7 @@
 #include "Matrixf.h"
 #include "Color4.h"
 #include "JSystem/J2D/J2DGrafContext.h"
-#include "JSystem/JFW/JFWSystem.h"
+#include "JSystem/JFramework/JFWSystem.h"
 
 struct Color4;
 template <typename T>

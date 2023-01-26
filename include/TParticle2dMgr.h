@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "CNode.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "Vector2.h"
 
 struct JPABaseEmitter;

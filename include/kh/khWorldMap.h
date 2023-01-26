@@ -2,7 +2,7 @@
 #define _KH_WORLDMAP_H
 
 #include "JSystem/JGeometry.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "Vector2.h"
 #include "types.h"
 

@@ -1,5 +1,5 @@
 #include "Game/Entities/DangoMushi.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Dolphin/rand.h"
 #include "LoadResource.h"

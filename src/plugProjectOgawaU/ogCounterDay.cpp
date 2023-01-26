@@ -1,4 +1,4 @@
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/ogScreen.h"
 

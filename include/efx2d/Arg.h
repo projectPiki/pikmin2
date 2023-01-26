@@ -2,7 +2,7 @@
 #define _EFX2D_ARG_H
 
 #include "Game/enemyInfo.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 #include "Vector2.h"
 

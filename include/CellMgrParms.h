@@ -2,7 +2,7 @@
 #define _CELLMGRPARMS_H
 
 #include "Parameters.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "BaseParm.h"
 
 struct _CellParms {

@@ -1,7 +1,7 @@
-#include "JSystem/JPA/JPABlock.h"
-#include "JSystem/JPA/JPAResource.h"
-#include "JSystem/JPA/JPAShape.h"
-#include "JSystem/JPA/JPATexture.h"
+#include "JSystem/JParticle/JPABlock.h"
+#include "JSystem/JParticle/JPAResource.h"
+#include "JSystem/JParticle/JPAShape.h"
+#include "JSystem/JParticle/JPATexture.h"
 #include "types.h"
 
 /*

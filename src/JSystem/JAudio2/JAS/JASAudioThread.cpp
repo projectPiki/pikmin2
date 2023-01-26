@@ -1,10 +1,10 @@
-#include "JSystem/JAS/JASAudioThread.h"
+#include "JSystem/JAudio2/JAS/JASAudioThread.h"
 #include "Dolphin/dsp.h"
 #include "Dolphin/os.h"
-#include "JSystem/JAS/JASDsp.h"
-#include "JSystem/JAS/JASHeap.h"
-#include "JSystem/JAS/JASKernel.h"
-#include "JSystem/JKR/JKRThread.h"
+#include "JSystem/JAudio2/JAS/JASDsp.h"
+#include "JSystem/JAudio2/JAS/JASHeap.h"
+#include "JSystem/JAudio2/JAS/JASKernel.h"
+#include "JSystem/JKernel/JKRThread.h"
 #include "types.h"
 
 /*

@@ -5,7 +5,7 @@
 #include "Game/gameGeneratorCache.h"
 #include "Game/GameSystem.h"
 #include "Game/TimeMgr.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "nans.h"
 #include "Parameters.h"
 #include "types.h"

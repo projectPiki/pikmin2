@@ -1,7 +1,7 @@
 #include "JSystem/J2D/J2DAnm.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JUT/JUTException.h"
-#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
 #include "ebi/E2DCallBack.h"
 #include "types.h"
 

@@ -1,4 +1,4 @@
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Game/pelletConfig.h"
 #include "Dolphin/string.h"
 #include "TagParm.h"

@@ -4,7 +4,7 @@
 #include "og/Screen/ogScreen.h"
 #include "og/newScreen/ogUtil.h"
 #include "LifeGaugeMgr.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "System.h"
 #include "og/Sound.h"
 

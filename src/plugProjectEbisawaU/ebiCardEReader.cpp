@@ -1,8 +1,8 @@
 #include "ebi/CardEReader.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Dolphin/gba.h"
-#include "JSystem/JKR/JKRFile.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRFile.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 
 int SIProbe(int);
 

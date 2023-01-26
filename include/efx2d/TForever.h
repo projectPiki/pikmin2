@@ -2,7 +2,7 @@
 #define _EFX2D_TFOREVER_H
 
 #include "efx2d/TBase.h"
-#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 
 namespace JUtility {
 struct TColor;

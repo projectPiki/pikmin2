@@ -7,7 +7,7 @@
 #include "Dolphin/rand.h"
 #include "PSM/WorkItem.h"
 #include "VsOtakaraName.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 #include "nans.h"
 
 // Don't be fooled by this files name, it is NOT related to actual treasures, those are pellets/otakara

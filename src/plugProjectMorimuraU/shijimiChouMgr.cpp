@@ -1,5 +1,5 @@
 #include "Game/Entities/ShijimiChou.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

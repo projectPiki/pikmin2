@@ -1,7 +1,7 @@
 #include "types.h"
 #include "Game/Entities/ChappyBase.h"
 #include "Game/generalEnemyMgr.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 
 namespace Game {
 namespace ChappyBase {

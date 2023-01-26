@@ -1,12 +1,12 @@
 #ifndef _JSYSTEM_JSTUDIO_JPARTICLE_H
 #define _JSYSTEM_JSTUDIO_JPARTICLE_H
 
-#include "JStage/TObject.h"
-#include "JStage/TSystem.h"
-#include "JStudio/TAdaptor.h"
-#include "JStudio/TCreateObject.h"
-#include "JStudio/TObject.h"
-#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JStage/TObject.h"
+#include "JSystem/JStage/TSystem.h"
+#include "JSystem/JStudio/TAdaptor.h"
+#include "JSystem/JStudio/TCreateObject.h"
+#include "JSystem/JStudio/TObject.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "types.h"
 
 namespace JStudio_JParticle {

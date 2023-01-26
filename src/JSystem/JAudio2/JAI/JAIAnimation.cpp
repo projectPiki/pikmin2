@@ -1,5 +1,5 @@
-#include "JSystem/JAI/JAIAnimeSound.h"
-#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAudio2/JAI/JAIAnimeSound.h"
+#include "JSystem/JAudio2/JAI/JAIBasic.h"
 #include "types.h"
 
 /*

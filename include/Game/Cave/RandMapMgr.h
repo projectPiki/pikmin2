@@ -4,7 +4,7 @@
 #include "types.h"
 #include "Game/mapParts.h"
 #include "Game/Cave/RandMapUnit.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 
 namespace Game {
 namespace Cave {

@@ -7,7 +7,7 @@
 #include "Sys/OBBTree.h"
 #include "mapCode.h"
 #include "Matrixf.h"
-#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
 
 struct Platform : CNode {
 	Platform();

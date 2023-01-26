@@ -3,7 +3,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/generalEnemyMgr.h"
 #include "JSystem/J3D/J3DSys.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "LoadResource.h"
 #include "PSSystem/PSSystemIF.h"
 #include "System.h"

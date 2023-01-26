@@ -7,7 +7,7 @@
 #include "Game/GameSystem.h"
 #include "Game/gamePlayData.h"
 #include "Game/MoviePlayer.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Iterator.h"
 #include "nans.h"
 

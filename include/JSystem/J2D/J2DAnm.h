@@ -1,11 +1,11 @@
 #ifndef _JSYSTEM_J2D_J2DANM_H
 #define _JSYSTEM_J2D_J2DANM_H
 
-#include "JSystem/JUT/JUTPalette.h"
+#include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/ResTIMG.h"
 #include "types.h"
 #include "Dolphin/gx.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "JSystem/J3D/J3DAnmVtxColor.h"
 
 struct J2DAnmTexPatternTIMGPointer;

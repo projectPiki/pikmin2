@@ -1,5 +1,5 @@
 #include "ebi/title/TCoordMgr.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 
 namespace ebi {
 namespace title {

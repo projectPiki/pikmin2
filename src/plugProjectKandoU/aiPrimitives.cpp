@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Vector3.h"
 #include "PikiAI.h"
 #include "Game/pelletMgr.h"

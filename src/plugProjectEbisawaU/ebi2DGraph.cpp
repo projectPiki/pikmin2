@@ -1,7 +1,7 @@
 #include "ebi/E2DGraph.h"
 #include "ebi/Utility.h"
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "P2DScreen.h"
 #include "types.h"
 

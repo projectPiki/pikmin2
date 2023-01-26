@@ -8,10 +8,10 @@
 #include "JSystem/J2D/J2DTexMtx.h"
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/J3D/J3DTypes.h"
-#include "JSystem/JUT/JUTFont.h"
-#include "JSystem/JUT/JUTPalette.h"
-#include "JSystem/JUT/JUTTexture.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/JUTFont.h"
+#include "JSystem/JUtility/JUTPalette.h"
+#include "JSystem/JUtility/JUTTexture.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
 /*

@@ -2,8 +2,8 @@
 #define _GAME_RESULTTEXMGR_H
 
 #include "Game/pelletConfig.h"
-#include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "LoadResource.h"
 
 namespace Game {

@@ -1,8 +1,8 @@
 #include "Dolphin/os.h"
-#include "JSystem/JAS/JASDvd.h"
-#include "JSystem/JAS/JASResArcLoader.h"
-#include "JSystem/JAS/JASThread.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JAudio2/JAS/JASDvd.h"
+#include "JSystem/JAudio2/JAS/JASResArcLoader.h"
+#include "JSystem/JAudio2/JAS/JASThread.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "types.h"
 
 /*

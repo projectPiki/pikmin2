@@ -1,6 +1,6 @@
 #include "types.h"
-#include "JSystem/JPA/JPABlock.h"
-#include "JSystem/JPA/JPAMath.h"
+#include "JSystem/JParticle/JPABlock.h"
+#include "JSystem/JParticle/JPAMath.h"
 
 /*
     Generated from dpostproc

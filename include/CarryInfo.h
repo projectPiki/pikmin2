@@ -3,7 +3,7 @@
 
 #include "CNode.h"
 #include "InfoList.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "types.h"
 #include "Vector3.h"
 

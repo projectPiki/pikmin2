@@ -1,6 +1,6 @@
 #include "types.h"
 #include "Game/SingleGame.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "nans.h"
 
 static struct DummyPlayer {

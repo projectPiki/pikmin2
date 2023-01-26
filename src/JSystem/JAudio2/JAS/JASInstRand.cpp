@@ -1,6 +1,6 @@
 #include "Dolphin/float.h"
-#include "JSystem/JAL/JALCalc.h"
-#include "JSystem/JAS/JASInst.h"
+#include "JSystem/JAudio2/JALCalc.h"
+#include "JSystem/JAudio2/JAS/JASInst.h"
 #include "JSystem/JMath.h"
 #include "types.h"
 

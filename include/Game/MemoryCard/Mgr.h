@@ -2,7 +2,7 @@
 #define _GAME_MEMORYCARD_MGR_H
 
 #include "MemoryCardMgr.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "stream.h"
 #include "types.h"
 

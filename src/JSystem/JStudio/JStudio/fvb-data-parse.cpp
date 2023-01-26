@@ -1,6 +1,6 @@
 #include "types.h"
 #include "JSystem/JGadget/binary.h"
-#include "JSystem/fvb/fvb-data.h"
+#include "JSystem/JStudio/fvb/fvb-data.h"
 
 namespace JStudio {
 namespace fvb {

@@ -4,7 +4,7 @@
 #include "DvdThreadCommand.h"
 #include "Dolphin/gx.h"
 #include "SysTimers.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "node.h"
 #include "BitFlag.h"
 

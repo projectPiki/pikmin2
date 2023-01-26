@@ -1,6 +1,6 @@
 #include "kh/khPayDept.h"
-#include "JSystem/JKR/JKRFileLoader.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "utilityU.h"
 #include "PSSystem/PSSystemIF.h"
 #include "og/newScreen/ogUtil.h"

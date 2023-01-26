@@ -5,7 +5,7 @@
 #include "Graphics.h"
 #include "IDelegate.h"
 #include "id32.h"
-#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
 #include "MonoObjectMgr.h"
 #include "Sys/Tube.h"
 #include "SysShape/Model.h"

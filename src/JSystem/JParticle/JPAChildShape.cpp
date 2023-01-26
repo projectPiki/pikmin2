@@ -1,6 +1,6 @@
 #include "Dolphin/gx.h"
-#include "JSystem/JPA/JPAEmitter.h"
-#include "JSystem/JPA/JPAShape.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAShape.h"
 #include "types.h"
 
 /*

@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JStudio/stb.h"
+#include "JSystem/JStudio/stb.h"
 #include "JSystem/JGadget/binary.h"
 
 namespace JStudio {

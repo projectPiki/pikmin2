@@ -6,8 +6,8 @@
 #include "CellMgrParms.h"
 #include "Dolphin/math.h"
 #include "fdlibm.h"
-#include "JSystem/JUT/JUTException.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 namespace Game {
 

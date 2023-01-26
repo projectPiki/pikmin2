@@ -1,6 +1,6 @@
 #include "Dolphin/mtx.h"
 #include "JSystem/J3D/J3DMaterial.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DTexGenBlock.h"

@@ -1,9 +1,9 @@
 #include "Dolphin/os.h"
-#include "JSystem/JKR/JKRDecomp.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 
 /*
     Generated from dpostproc

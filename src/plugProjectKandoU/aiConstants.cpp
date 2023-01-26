@@ -1,7 +1,7 @@
 #include "types.h"
 
 #include "Game/AIConstants.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 #include "stream.h"
 
 namespace Game {

@@ -1,9 +1,9 @@
 #include "types.h"
 
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "Dolphin/os.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 
 /*
     Generated from dpostproc

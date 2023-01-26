@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "Parameters.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 
 // this has a really weird inheritance thing going on, idk.
 // this is my best guess atm - HP

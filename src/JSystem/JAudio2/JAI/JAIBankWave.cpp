@@ -1,10 +1,10 @@
-#include "JSystem/JAI/JAIBasic.h"
-#include "JSystem/JAI/JAIGlobalParameter.h"
-#include "JSystem/JAS/JASBank.h"
-#include "JSystem/JAS/JASDvd.h"
-#include "JSystem/JAS/JASWave.h"
+#include "JSystem/JAudio2/JAI/JAIBasic.h"
+#include "JSystem/JAudio2/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAudio2/JAS/JASBank.h"
+#include "JSystem/JAudio2/JAS/JASDvd.h"
+#include "JSystem/JAudio2/JAS/JASWave.h"
 #include "types.h"
-#include "JSystem/JAI/JAInter/BankWave.h"
+#include "JSystem/JAudio2/JAI/JAInter/BankWave.h"
 
 /*
     Generated from dpostproc

@@ -1,4 +1,4 @@
-#include "JSystem/JAS/JASBank.h"
+#include "JSystem/JAudio2/JAS/JASBank.h"
 
 extern JKRSolidHeap* JASDram;
 JKRHeap* JASBank::sCurrentHeap;

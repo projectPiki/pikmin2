@@ -4,7 +4,7 @@
 #include "JSystem/J3D/J3DAnmBase.h"
 #include "JSystem/J3D/J3DAnmTransform.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "types.h"
 
 /**

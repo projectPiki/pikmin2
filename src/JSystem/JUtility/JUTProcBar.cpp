@@ -1,8 +1,8 @@
 #include "JSystem/J2D/J2DGrafContext.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTProcBar.h"
-#include "JSystem/JUT/JUTVideo.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTProcBar.h"
+#include "JSystem/JUtility/JUTVideo.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
 JUTProcBar* JUTProcBar::sManager;

@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JKR/JKRThread.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRThread.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 

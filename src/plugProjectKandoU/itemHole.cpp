@@ -8,7 +8,7 @@
 #include "Game/itemMgr.h"
 #include "Iterator.h"
 #include "JSystem/J3D/J3DModel.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "PS.h"
 #include "SysShape/Joint.h"
 #include "SysShape/Model.h"

@@ -1,6 +1,6 @@
-#include "JSystem/JAS/JASHeap.h"
-#include "JSystem/JAS/JASWave.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JAudio2/JAS/JASHeap.h"
+#include "JSystem/JAudio2/JAS/JASWave.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
 /*

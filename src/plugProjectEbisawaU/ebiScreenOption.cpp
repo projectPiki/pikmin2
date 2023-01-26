@@ -3,7 +3,7 @@
 #include "ebi/E2DGraph.h"
 #include "ebi/Screen/TOption.h"
 #include "Game/Data.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "og/newScreen/ogUtil.h"
 #include "P2DScreen.h"
 #include "System.h"

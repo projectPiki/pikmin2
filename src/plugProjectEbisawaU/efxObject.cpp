@@ -5,7 +5,7 @@
 #include "efx/TKouhai.h"
 #include "efx/TPelkira.h"
 #include "efx/WarpZone.h"
-#include "JSystem/JPA/JPAMath.h"
+#include "JSystem/JParticle/JPAMath.h"
 #include "Game/Entities/ItemOnyon.h"
 
 namespace efx {

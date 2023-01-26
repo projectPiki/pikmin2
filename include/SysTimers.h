@@ -2,7 +2,7 @@
 #define _SYSTIMERS_H
 
 #include "CNode.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "types.h"
 
 /**

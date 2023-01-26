@@ -6,7 +6,7 @@
 #include "JSystem/J3D/J3DMaterialAnm.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DShape.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "SysShape/Model.h"
 #include "SysShape/Joint.h"
 #include "SysShape/MtxObject.h"

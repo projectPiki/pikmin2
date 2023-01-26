@@ -1,8 +1,8 @@
 #include "Dolphin/os.h"
-#include "JSystem/JAI/JAIBasic.h"
-#include "JSystem/JAI/JAInter.h"
-#include "JSystem/JAI/JAInter/Fx.h"
-#include "JSystem/JAS/JASDsp.h"
+#include "JSystem/JAudio2/JAI/JAIBasic.h"
+#include "JSystem/JAudio2/JAI/JAInter.h"
+#include "JSystem/JAudio2/JAI/JAInter/Fx.h"
+#include "JSystem/JAudio2/JAS/JASDsp.h"
 #include "types.h"
 
 /*

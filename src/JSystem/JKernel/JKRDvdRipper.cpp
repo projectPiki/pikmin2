@@ -1,11 +1,11 @@
-#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 #include "Dolphin/dvd.h"
 #include "Dolphin/os.h"
 #include "Dolphin/stl.h"
 #include "Dolphin/vi.h"
-#include "JSystem/JKR/Aram.h"
-#include "JSystem/JKR/JKRDecomp.h"
-#include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRFile.h"
 #include "types.h"
 
 /*

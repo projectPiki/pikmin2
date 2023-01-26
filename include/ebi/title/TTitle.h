@@ -12,7 +12,7 @@
 #include "ebi/title/Entities/TKogane.h"
 #include "ebi/title/TCoordMgr.h"
 #include "Viewport.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 
 struct Controller;
 

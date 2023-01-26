@@ -2,9 +2,9 @@
 #include "Dolphin/os.h"
 #include "Dolphin/vi.h"
 #include "JSystem/JSystem.h"
-#include "JSystem/JUT/JUTDirectPrint.h"
-#include "JSystem/JUT/JUTXfb.h"
-#include "JSystem/JUT/JUTVideo.h"
+#include "JSystem/JUtility/JUTDirectPrint.h"
+#include "JSystem/JUtility/JUTXfb.h"
+#include "JSystem/JUtility/JUTVideo.h"
 #include "types.h"
 
 /*

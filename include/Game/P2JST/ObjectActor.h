@@ -3,11 +3,11 @@
 
 #include "Dolphin/mtx.h"
 #include "Game/P2JST/ObjectBase.h"
-#include "JStage/TActor.h"
+#include "JSystem/JStage/TActor.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DAnmTransform.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "Vector3.h"
 #include "Matrixf.h"
 

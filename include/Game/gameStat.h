@@ -2,7 +2,7 @@
 #define _GAME_GAMESTATS_H
 
 #include "types.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Game/Piki.h"
 
 namespace Game {

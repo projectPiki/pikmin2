@@ -5,7 +5,7 @@
 #include "Vector3.h"
 
 #include "Dolphin/string.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "Screen/screenObj.h"
 #include "og/Screen/anime.h"
 #include "P2DScreen.h"

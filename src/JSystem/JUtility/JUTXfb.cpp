@@ -1,8 +1,8 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/vi.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTVideo.h"
-#include "JSystem/JUT/JUTXfb.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTVideo.h"
+#include "JSystem/JUtility/JUTXfb.h"
 #include "types.h"
 
 /*

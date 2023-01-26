@@ -1,7 +1,7 @@
 #ifndef _PSGAME_SYSFACTORY_H
 #define _PSGAME_SYSFACTORY_H
 
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 namespace PSM {
 struct SceneMgr;

@@ -1,5 +1,5 @@
 #include "JSystem/J3D/J3DShape.h"
-#include "JSystem/J3D/J3DU.h"
+#include "JSystem/J3DU/J3DU.h"
 #include "JSystem/J3D/J3DModel.h"
 
 /*

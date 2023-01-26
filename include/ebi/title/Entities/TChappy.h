@@ -3,7 +3,7 @@
 
 #include "CNode.h"
 #include "Vector2.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "ebi/E3DGraph.h"
 #include "BaseParm.h"
 #include "Parameters.h"

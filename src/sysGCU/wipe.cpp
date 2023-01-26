@@ -1,6 +1,6 @@
 #include "Graphics.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "System.h"
 #include "types.h"
 #include "wipe.h"

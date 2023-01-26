@@ -2,7 +2,7 @@
 #define _EFX_TSYNC_H
 
 #include "efx/TBase.h"
-#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 
 #define TSYNCFLAG_DemoDrawOff (0x1)
 

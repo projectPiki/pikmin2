@@ -2,7 +2,7 @@
 #define _EBI_SCREEN_TSCREENBASE_H
 
 #include "types.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 
 namespace ebi {
 struct TScreenProgre {

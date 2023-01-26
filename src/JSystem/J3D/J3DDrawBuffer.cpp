@@ -3,7 +3,7 @@
 #include "JSystem/J3D/J3DSys.h"
 #include "JSystem/J3D/J3DTevBlock.h"
 #include "JSystem/J3D/J3DTypes.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
 /*

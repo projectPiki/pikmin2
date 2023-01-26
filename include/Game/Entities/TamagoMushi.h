@@ -6,7 +6,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
-#include "JSystem/J3D/J3DUMtxCache.h"
+#include "JSystem/J3DU/J3DUMtxCache.h"
 #include "Collinfo.h"
 
 /**

@@ -2,8 +2,8 @@
 #define _PSGAME_RAPPA_H
 
 #include "types.h"
-#include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JAI/JAInter/Object.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JAudio2/JAI/JAInter/Object.h"
 
 struct JASTrack;
 

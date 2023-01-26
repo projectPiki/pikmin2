@@ -1,5 +1,5 @@
 #include "JSystem/JGeometry.h"
-#include "JSystem/JPA/JPAMath.h"
+#include "JSystem/JParticle/JPAMath.h"
 #include "types.h"
 
 /*

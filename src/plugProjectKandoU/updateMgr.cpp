@@ -1,5 +1,5 @@
 #include "Game/updateMgr.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 
 namespace Game {
 

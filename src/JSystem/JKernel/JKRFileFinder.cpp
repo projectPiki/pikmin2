@@ -1,8 +1,8 @@
 #include "Dolphin/dvd.h"
 #include "Dolphin/os.h"
 #include "types.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JKR/JKRFileFinder.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRFileFinder.h"
 
 /*
     Generated from dpostproc

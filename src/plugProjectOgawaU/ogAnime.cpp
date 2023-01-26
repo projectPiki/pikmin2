@@ -3,8 +3,8 @@
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/J2D/J2DAnm.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
-#include "JSystem/JUT/JUTException.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "og/Screen/ogScreen.h"
 #include "System.h"
 

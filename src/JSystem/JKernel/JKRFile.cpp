@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JKernel/JKRFile.h"
 #include "Dolphin/vi.h"
 
 /*

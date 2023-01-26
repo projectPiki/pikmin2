@@ -1,8 +1,8 @@
 #ifndef _EBI_SCREEN_TMEMORYCARD_H
 #define _EBI_SCREEN_TMEMORYCARD_H
 
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "ebi/E2DCallBack.h"
 #include "ebi/TYesNoCursor.h"
 

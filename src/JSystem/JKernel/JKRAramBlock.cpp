@@ -1,4 +1,4 @@
-#include "JSystem/JKR/Aram.h"
+#include "JSystem/JKernel/Aram.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 

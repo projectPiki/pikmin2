@@ -2,7 +2,7 @@
 #define _MORIMURA_HURRYUP_H
 
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "Morimura/Bases.h"
 #include "Screen/Enums.h"
 #include "og/Screen/ogScreen.h"

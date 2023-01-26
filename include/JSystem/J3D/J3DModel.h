@@ -11,7 +11,7 @@
 #include "JSystem/J3D/J3DVertexBuffer.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/J3D/J3DPacket.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "BitFlag.h"
 
 struct J3DDeformData;

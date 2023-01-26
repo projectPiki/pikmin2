@@ -4,7 +4,7 @@
 #include "CNode.h"
 #include "DvdThreadCommand.h"
 #include "IDelegate.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 
 struct Graphics;
 

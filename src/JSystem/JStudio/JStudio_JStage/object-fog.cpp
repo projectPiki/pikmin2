@@ -1,6 +1,6 @@
-#include "JStage/TObject.h"
-#include "JStudio/TAdaptor.h"
-#include "JStudio/TVariableValue.h"
+#include "JSystem/JStage/TObject.h"
+#include "JSystem/JStudio/TAdaptor.h"
+#include "JSystem/JStudio/TVariableValue.h"
 #include "JSystem/JStudio_JStage.h"
 #include "types.h"
 

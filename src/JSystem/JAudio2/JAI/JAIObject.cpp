@@ -1,10 +1,10 @@
 #include "Dolphin/vec.h"
-#include "JSystem/JAI/JAIBasic.h"
-#include "JSystem/JAI/JAISound.h"
-#include "JSystem/JAI/JAInter.h"
-#include "JSystem/JAI/JAInter/Object.h"
-#include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JAudio2/JAI/JAIBasic.h"
+#include "JSystem/JAudio2/JAI/JAISound.h"
+#include "JSystem/JAudio2/JAI/JAInter.h"
+#include "JSystem/JAudio2/JAI/JAInter/Object.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
 /*

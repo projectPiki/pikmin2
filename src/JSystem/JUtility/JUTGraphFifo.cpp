@@ -1,6 +1,6 @@
-#include "JSystem/JUT/JUTGraphFifo.h"
+#include "JSystem/JUtility/JUTGraphFifo.h"
 #include "Dolphin/gx.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
 /*

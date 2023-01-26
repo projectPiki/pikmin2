@@ -1,7 +1,7 @@
 #include "ARAM.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Resource.h"
 #include "types.h"
 

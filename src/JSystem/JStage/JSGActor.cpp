@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JStage/TActor.h"
+#include "JSystem/JStage/TActor.h"
 
 namespace JStage {
 /*

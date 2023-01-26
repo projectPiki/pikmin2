@@ -8,7 +8,7 @@
 #include "JSystem/J3D/J3DAnmVtxColor.h"
 #include "JSystem/J3D/J3DFrameCtrl.h"
 #include "JSystem/J3D/J3DModel.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "types.h"
 
 /*

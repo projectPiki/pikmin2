@@ -1,9 +1,9 @@
-#include "JStudio/TAdaptor.h"
-#include "JStudio/TObject.h"
-#include "JStudio/TVariableValue.h"
-#include "JStudio/data.h"
-#include "JStudio/object.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JStudio/TAdaptor.h"
+#include "JSystem/JStudio/TObject.h"
+#include "JSystem/JStudio/TVariableValue.h"
+#include "JSystem/JStudio/data.h"
+#include "JSystem/JStudio/object.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
 /*

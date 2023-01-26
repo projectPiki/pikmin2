@@ -1,7 +1,7 @@
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JAI/JAIBasic.h"
-#include "JSystem/JAI/JAIGlobalParameter.h"
-#include "JSystem/JAI/JAInter.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JAudio2/JAI/JAIBasic.h"
+#include "JSystem/JAudio2/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAudio2/JAI/JAInter.h"
 #include "types.h"
 
 /*

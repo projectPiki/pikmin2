@@ -1,10 +1,10 @@
 #include "Dolphin/os.h"
 #include "Dolphin/stl.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JKR/JKRDecomp.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
 /*

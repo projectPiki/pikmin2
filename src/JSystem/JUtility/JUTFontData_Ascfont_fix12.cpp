@@ -1,6 +1,6 @@
 #include "types.h"
 
-#include "JSystem/JUT/ResFONT.h"
+#include "JSystem/JUtility/ResFONT.h"
 
 const int JUTResFONT_Ascfont_fix12[] ATTRIBUTE_ALIGN(32)
     = { 0x464F4E54, 0x62666E31, 0x00004160, 0x00000004, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x494E4631, 0x00000020, 0x0000000C,

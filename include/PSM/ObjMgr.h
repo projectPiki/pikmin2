@@ -1,7 +1,7 @@
 #ifndef _PSM_OBJMGR_H
 #define _PSM_OBJMGR_H
 
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "PSSystem/SingletonBase.h"
 #include "PSM/Scene.h"
 

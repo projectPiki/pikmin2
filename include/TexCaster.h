@@ -4,7 +4,7 @@
 #include "CNode.h"
 #include "Sys/Sphere.h"
 #include "Vector3.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "types.h"
 
 namespace TexCaster {

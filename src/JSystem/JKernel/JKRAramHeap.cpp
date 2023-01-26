@@ -1,6 +1,6 @@
 #include "Dolphin/os.h"
-#include "JSystem/JKR/Aram.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 

@@ -1,5 +1,5 @@
 #include "Dolphin/os.h"
-#include "JSystem/JAS/JASPortCmd.h"
+#include "JSystem/JAudio2/JAS/JASPortCmd.h"
 #include "types.h"
 
 /*

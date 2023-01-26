@@ -1,6 +1,6 @@
 #include "Game/MoviePlayer.h"
 #include "Game/gameStages.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 #include "nans.h"
 
 namespace Game {

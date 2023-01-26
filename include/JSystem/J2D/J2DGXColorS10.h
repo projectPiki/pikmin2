@@ -1,7 +1,7 @@
 #ifndef _JSYSTEM_J2D_J2DGXCOLORS10_H
 #define _JSYSTEM_J2D_J2DGXCOLORS10_H
 
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 #include "Dolphin/gx.h"
 

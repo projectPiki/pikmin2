@@ -1,5 +1,5 @@
 #include "Dolphin/mtx.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 
 #include "Game/gameStages.h"
 #include "Game/MapMgr.h"

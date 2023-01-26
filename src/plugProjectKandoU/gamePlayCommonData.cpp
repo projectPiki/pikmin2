@@ -3,7 +3,7 @@
 #include "Game/DeathMgr.h"
 #include "Game/GameConfig.h"
 #include "Game/gamePlayData.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "System.h"
 #include "types.h"
 

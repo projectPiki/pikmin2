@@ -1,5 +1,5 @@
 #include "ebi/CardError.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "System.h"
 #include "Game/MemoryCard/Mgr.h"
 

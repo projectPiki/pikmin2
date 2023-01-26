@@ -23,7 +23,7 @@
 #include "Vector3.h"
 #include "Matrixf.h"
 #include "types.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "System.h"
 #include "Iterator.h"

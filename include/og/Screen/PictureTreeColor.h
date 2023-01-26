@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 
 namespace og {
 namespace Screen {

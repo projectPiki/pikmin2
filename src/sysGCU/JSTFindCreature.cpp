@@ -5,7 +5,7 @@
 #include "Game/MoviePlayer.h"
 #include "Game/gamePlayData.h"
 #include "Game/Entities/ItemOnyon.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 
 static const u32 filler[] = { 0, 0, 0 };
 const char filename[]     = "JSTFindCreature";

@@ -1,10 +1,10 @@
 #include "types.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JKR/JKRFile.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JAI/JAIBasic.h"
-#include "JSystem/JAI/JAInter.h"
-#include "JSystem/JAI/JAIConst.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRFile.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JAudio2/JAI/JAIBasic.h"
+#include "JSystem/JAudio2/JAI/JAInter.h"
+#include "JSystem/JAudio2/JAI/JAIConst.h"
 
 extern JKRSolidHeap* JASDram;
 

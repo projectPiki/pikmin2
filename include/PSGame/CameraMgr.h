@@ -2,7 +2,7 @@
 #define _PSGAME_CAMERAMGR_H
 
 #include "types.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 
 namespace PSGame {
 

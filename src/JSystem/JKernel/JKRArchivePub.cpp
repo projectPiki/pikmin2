@@ -1,9 +1,9 @@
 #include "Dolphin/dvd.h"
-#include "JSystem/JKR/Aram.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JKR/JKRFileFinder.h"
+#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRFileFinder.h"
 #include "types.h"
 
 /*

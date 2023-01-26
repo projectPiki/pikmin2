@@ -1,12 +1,12 @@
 #include "Dolphin/dvd.h"
 #include "Dolphin/os.h"
-#include "JSystem/JAS/JASDriver.h"
-#include "JSystem/JAS/JASDvd.h"
-#include "JSystem/JAS/JASHeap.h"
-#include "JSystem/JAS/JASMutexLock.h"
+#include "JSystem/JAudio2/JAS/JASDriver.h"
+#include "JSystem/JAudio2/JAS/JASDvd.h"
+#include "JSystem/JAudio2/JAS/JASHeap.h"
+#include "JSystem/JAudio2/JAS/JASMutexLock.h"
 #include "types.h"
-#include "JSystem/JAS/JASAramStream.h"
-#include "JSystem/JAS/JASThread.h"
+#include "JSystem/JAudio2/JAS/JASAramStream.h"
+#include "JSystem/JAudio2/JAS/JASThread.h"
 
 /*
     Generated from dpostproc

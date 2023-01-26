@@ -4,7 +4,7 @@
 #include "efx/TKch.h"
 #include "efx/THdama.h"
 #include "efx/TOdama.h"
-#include "JSystem/JPA/JPAMath.h"
+#include "JSystem/JParticle/JPAMath.h"
 #include "Game/MapMgr.h"
 
 /*

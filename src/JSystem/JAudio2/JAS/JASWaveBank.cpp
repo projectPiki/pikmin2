@@ -1,4 +1,4 @@
-#include "JSystem/JAS/JASWave.h"
+#include "JSystem/JAudio2/JAS/JASWave.h"
 
 extern JKRSolidHeap* JASDram;
 JKRHeap* JASWaveBank::sCurrentHeap;

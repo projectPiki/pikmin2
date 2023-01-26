@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
-#include "JSystem/JAS/JASDvd.h"
-#include "JSystem/JAS/JASHeap.h"
-#include "JSystem/JAS/JASThread.h"
+#include "JSystem/JAudio2/JAS/JASDvd.h"
+#include "JSystem/JAudio2/JAS/JASHeap.h"
+#include "JSystem/JAudio2/JAS/JASThread.h"
 #include "types.h"
 
 /*

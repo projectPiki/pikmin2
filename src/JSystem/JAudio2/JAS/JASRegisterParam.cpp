@@ -1,4 +1,4 @@
-#include "JSystem/JAS/JASRegisterParam.h"
+#include "JSystem/JAudio2/JAS/JASRegisterParam.h"
 #include "JSystem/JSupport/JSU.h"
 #include "types.h"
 

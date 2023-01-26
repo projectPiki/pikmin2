@@ -2,9 +2,9 @@
 #include "Dolphin/math.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JPA/JPABlock.h"
-#include "JSystem/JPA/JPAEmitter.h"
-#include "JSystem/JPA/JPAField.h"
+#include "JSystem/JParticle/JPABlock.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAField.h"
 #include "types.h"
 
 /*

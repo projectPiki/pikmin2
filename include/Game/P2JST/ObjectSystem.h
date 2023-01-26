@@ -3,7 +3,7 @@
 
 #include "Game/P2JST/ObjectBase.h"
 #include "Game/Creature.h"
-#include "JStage/TSystem.h"
+#include "JSystem/JStage/TSystem.h"
 #include "JSystem/JGadget/list.h"
 
 namespace Game {

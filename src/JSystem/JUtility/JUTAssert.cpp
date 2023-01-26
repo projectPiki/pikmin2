@@ -1,11 +1,11 @@
 #include "Dolphin/string.h"
 #include "Dolphin/vi.h"
-#include "JSystem/JUT/JUTDbPrint.h"
-#include "JSystem/JUT/JUTDirectPrint.h"
-#include "JSystem/JUT/JUTFont.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/JUTDbPrint.h"
+#include "JSystem/JUtility/JUTDirectPrint.h"
+#include "JSystem/JUtility/JUTFont.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
-#include "JSystem/JUT/JUTAssertion.h"
+#include "JSystem/JUtility/JUTAssertion.h"
 
 /*
     Generated from dpostproc

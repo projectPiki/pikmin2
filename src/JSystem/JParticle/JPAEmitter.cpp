@@ -1,7 +1,7 @@
 #include "Dolphin/mtx.h"
-#include "JSystem/JPA/JPABlock.h"
-#include "JSystem/JPA/JPAEmitter.h"
-#include "JSystem/JPA/JPAResource.h"
+#include "JSystem/JParticle/JPABlock.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAResource.h"
 
 /*
     Generated from dpostproc

@@ -1,6 +1,6 @@
 #include "JSystem/J2D/J2DGrafContext.h"
-#include "JSystem/JUT/TColor.h"
-#include "JSystem/JUT/JUTFader.h"
+#include "JSystem/JUtility/TColor.h"
+#include "JSystem/JUtility/JUTFader.h"
 #include "types.h"
 
 /*

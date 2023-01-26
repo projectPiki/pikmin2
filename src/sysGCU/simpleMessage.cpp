@@ -1,5 +1,5 @@
 #include "P2JME/SimpleMessage.h"
-#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JUtility/JUTFont.h"
 
 namespace P2JME {
 

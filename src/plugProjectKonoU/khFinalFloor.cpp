@@ -1,6 +1,6 @@
 #include "kh/khFinalFloor.h"
-#include "JSystem/JKR/JKRFileLoader.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "PSSystem/PSSystemIF.h"
 #include "nans.h"
 #include "Game/GameSystem.h"

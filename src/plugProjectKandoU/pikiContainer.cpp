@@ -2,7 +2,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/stl.h"
 #include "Game/Piki.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
 #define CONTAINER_LENGTH (PikiColorCount * PikiGrowthStageCount)

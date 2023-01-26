@@ -6,7 +6,7 @@
 #include "Dolphin/vec.h"
 #include "JSystem/J2D/J2DGXColorS10.h"
 #include "JSystem/J2D/J2DIndBlock.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
 struct JUTTexture;

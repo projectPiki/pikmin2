@@ -1,9 +1,9 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
 #include "Dolphin/os.h"
-#include "JSystem/JPA/JPAEmitter.h"
-#include "JSystem/JPA/JPAShape.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAShape.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
 typedef u32 JPAClrAnmKeyData; /** TODO: Remove and replace this. */

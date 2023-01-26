@@ -1,9 +1,9 @@
 #ifndef _JSYSTEM_JSTUDIO_JMESSAGE_H
 #define _JSYSTEM_JSTUDIO_JMESSAGE_H
 
-#include "JStudio/TAdaptor.h"
-#include "JStudio/TCreateObject.h"
-#include "JStudio/stb-data.h"
+#include "JSystem/JStudio/TAdaptor.h"
+#include "JSystem/JStudio/TCreateObject.h"
+#include "JSystem/JStudio/stb-data.h"
 #include "JSystem/JMessage/TControl.h"
 
 namespace JStudio_JMessage {

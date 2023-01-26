@@ -1,7 +1,7 @@
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/ScaleMgr.h"
 #include "og/Screen/ogScreen.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 
 namespace og {
 namespace Screen {

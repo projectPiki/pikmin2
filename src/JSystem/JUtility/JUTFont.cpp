@@ -1,6 +1,6 @@
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
-#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JUtility/JUTFont.h"
 
 /*
     Generated from dpostproc

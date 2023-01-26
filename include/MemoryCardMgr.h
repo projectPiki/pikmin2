@@ -1,7 +1,7 @@
 #ifndef MEMORYCARDMGR_H
 #define MEMORYCARDMGR_H
 
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "Dolphin/card.h"
 #include "types.h"
 

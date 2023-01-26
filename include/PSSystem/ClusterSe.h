@@ -2,7 +2,7 @@
 #define _PSSYSTEM_CLUSTERSE_H
 
 #include "types.h"
-#include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAudio2/JAI/JAInter.h"
 #include "SoundID.h"
 
 namespace PSSystem {

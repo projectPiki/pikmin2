@@ -1,5 +1,5 @@
 #include "og/Screen/ogScreen.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 
 namespace og {
 namespace Screen {

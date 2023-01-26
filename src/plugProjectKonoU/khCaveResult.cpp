@@ -5,7 +5,7 @@
 #include "efx2d/T2DChangesmoke.h"
 #include "efx2d/T2DCavecomp.h"
 #include "PSSystem/PSSystemIF.h"
-#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/StickAnimMgr.h"

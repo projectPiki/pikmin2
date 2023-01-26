@@ -4,7 +4,7 @@
 #include "Game/gamePlayData.h"
 #include "Game/gameStat.h"
 #include "Game/Piki.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "nans.h"
 
 namespace Game {

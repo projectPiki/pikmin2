@@ -6,8 +6,8 @@
 #include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "System.h"
 
 namespace ebi {

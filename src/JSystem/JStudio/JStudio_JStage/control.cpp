@@ -1,8 +1,8 @@
-#include "JStage/TCamera.h"
-#include "JStage/TObject.h"
-#include "JStage/TSystem.h"
-#include "JStudio/TAdaptor.h"
-#include "JStudio/stb-data.h"
+#include "JSystem/JStage/TCamera.h"
+#include "JSystem/JStage/TObject.h"
+#include "JSystem/JStage/TSystem.h"
+#include "JSystem/JStudio/TAdaptor.h"
+#include "JSystem/JStudio/stb-data.h"
 #include "JSystem/JStudio_JStage.h"
 #include "types.h"
 

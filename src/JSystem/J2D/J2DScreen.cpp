@@ -5,12 +5,12 @@
 #include "JSystem/J3D/J3DFileBlock.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JKR/JKRFileLoader.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUStream.h"
-#include "JSystem/JUT/JUTNameTab.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/JUTNameTab.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
 /*

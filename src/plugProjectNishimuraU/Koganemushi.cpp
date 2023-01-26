@@ -5,7 +5,7 @@
 
 #include "JSystem/J3D/J3DMaterial.h"
 #include "JSystem/J3D/J3DTevBlock.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 
 namespace Game {
 /*

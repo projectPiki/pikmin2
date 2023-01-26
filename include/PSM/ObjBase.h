@@ -1,7 +1,7 @@
 #ifndef _PSM_OBJBASE_H
 #define _PSM_OBJBASE_H
 
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JSupport/JSUList.h"
 
 namespace PSM {

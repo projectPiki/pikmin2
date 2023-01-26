@@ -1,10 +1,10 @@
 #include "Dolphin/float.h"
 #include "Dolphin/mtx.h"
 #include "Dolphin/vec.h"
-#include "JSystem/JPA/JPABlock.h"
-#include "JSystem/JPA/JPAEmitter.h"
-#include "JSystem/JPA/JPAResource.h"
-#include "JSystem/JPA/JPAShape.h"
+#include "JSystem/JParticle/JPABlock.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAResource.h"
+#include "JSystem/JParticle/JPAShape.h"
 #include "types.h"
 
 /*

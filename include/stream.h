@@ -2,7 +2,7 @@
 #define _STREAM_H
 
 #include "types.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Dolphin/string.h"
 #include "Dolphin/stl.h"
 #include "Dolphin/scanf.h"

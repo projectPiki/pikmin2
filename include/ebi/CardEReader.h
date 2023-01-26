@@ -2,7 +2,7 @@
 #define _EBI_CARDEREADER_H
 
 #include "types.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "Dolphin/os.h"
 
 #define EREADER_GAMES 3

@@ -5,7 +5,7 @@
 #include "JSystem/J2D/J2DTevBlock.h"
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/J3D/J3DTypes.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
 /*

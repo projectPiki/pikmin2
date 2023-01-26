@@ -1,7 +1,7 @@
 #ifndef _GAME_ICONTEXTURE_H
 #define _GAME_ICONTEXTURE_H
 
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "types.h"
 
 struct JKRArchive;

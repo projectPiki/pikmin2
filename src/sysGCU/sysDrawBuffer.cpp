@@ -1,6 +1,6 @@
 #include "JSystem/J3D/J3DDrawBuffer.h"
 #include "JSystem/J3D/J3DSys.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Sys/DrawBuffers.h"
 #include "types.h"
 

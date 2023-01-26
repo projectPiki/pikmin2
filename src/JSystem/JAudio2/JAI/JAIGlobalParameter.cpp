@@ -1,9 +1,9 @@
-#include "JSystem/JAI/JAIGlobalParameter.h"
-#include "JSystem/JAI/JAIBasic.h"
-#include "JSystem/JAI/JAInter.h"
-#include "JSystem/JAI/JAInter/InitData.h"
-#include "JSystem/JAI/JAInter/StreamMgr.h"
-#include "JSystem/JAS/JASDriver.h"
+#include "JSystem/JAudio2/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAudio2/JAI/JAIBasic.h"
+#include "JSystem/JAudio2/JAI/JAInter.h"
+#include "JSystem/JAudio2/JAI/JAInter/InitData.h"
+#include "JSystem/JAudio2/JAI/JAInter/StreamMgr.h"
+#include "JSystem/JAudio2/JAS/JASDriver.h"
 #include "types.h"
 
 /*

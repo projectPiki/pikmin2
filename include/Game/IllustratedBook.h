@@ -3,7 +3,7 @@
 
 #include "Game/Creature.h"
 #include "Game/IconTexture.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "Camera.h"
 #include "Controller.h"
 #include "Color4.h"

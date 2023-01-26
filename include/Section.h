@@ -1,7 +1,7 @@
 #ifndef _SECTION_H
 #define _SECTION_H
 
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "wipe.h"
 
 struct Graphics;

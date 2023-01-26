@@ -2,7 +2,7 @@
 #define _LIFEGAUGEMGR_H
 
 #include "Color4.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "Vector3.h"
 #include "types.h"
 

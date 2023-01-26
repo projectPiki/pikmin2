@@ -1,7 +1,7 @@
 #include "Dolphin/string.h"
-#include "JSystem/JPA/JPABlock.h"
-#include "JSystem/JPA/JPAResource.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JParticle/JPABlock.h"
+#include "JSystem/JParticle/JPAResource.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/ResTIMG.h"
 #include "types.h"
 

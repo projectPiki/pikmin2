@@ -1,7 +1,7 @@
 #include "Dolphin/gx.h"
-#include "JSystem/JKR/Aram.h"
-#include "JSystem/JUT/JUTConsole.h"
-#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JUtility/JUTFont.h"
 #include "types.h"
 
 /*

@@ -2,7 +2,7 @@
 #include "Game/Cave/Info.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/pelletMgr.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
 /*

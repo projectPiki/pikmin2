@@ -1,4 +1,4 @@
-#include "JSystem/JAS/JASChannel.h"
+#include "JSystem/JAudio2/JAS/JASChannel.h"
 #include "types.h"
 
 /*

@@ -2,7 +2,7 @@
 #define _PSSYSTEM_WAVESCENE_H
 
 #include "types.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "PSSystem/PSBgmTask.h"
 
 namespace PSSystem {

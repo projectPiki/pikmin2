@@ -1,4 +1,4 @@
-#include "JSystem/JAS/JASSeqCtrl.h"
+#include "JSystem/JAudio2/JAS/JASSeqCtrl.h"
 #include "types.h"
 
 /*

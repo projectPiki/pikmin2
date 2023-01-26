@@ -3,7 +3,7 @@
 #include "Game/ChallengeGame.h"
 #include "Game/VsGame.h"
 #include "Game/BaseGameSection.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 
 namespace Game {
 namespace ChallengeGame {

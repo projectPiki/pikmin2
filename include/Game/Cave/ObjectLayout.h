@@ -4,7 +4,7 @@
 #include "types.h"
 #include "CNode.h"
 #include "Vector3.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 
 namespace Game {
 

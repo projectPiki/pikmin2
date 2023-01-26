@@ -1,6 +1,6 @@
-#include "JSystem/fvb/fvb.h"
-#include "JStudio/functionvalue.h"
-#include "JStudio/object.h"
+#include "JSystem/JStudio/fvb/fvb.h"
+#include "JSystem/JStudio/functionvalue.h"
+#include "JSystem/JStudio/object.h"
 #include "types.h"
 
 /*

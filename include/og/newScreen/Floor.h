@@ -2,7 +2,7 @@
 #define _OG_NEWSCREEN_FLOOR_H
 
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 #include "Screen/screenObj.h"
 #include "og/Screen/ogScreen.h"

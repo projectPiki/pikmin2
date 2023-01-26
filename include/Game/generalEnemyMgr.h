@@ -6,7 +6,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyStone.h"
 #include "GenericObjectMgr.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "Sys/Sphere.h"
 
 namespace Game {

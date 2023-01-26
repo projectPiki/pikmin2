@@ -1,7 +1,7 @@
 #include "Dolphin/ctype.h"
 #include "Dolphin/string.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
 #include "types.h"
 
 u32 JKRArchive::sCurrentDirID;

@@ -2,7 +2,7 @@
 #define _OG_OGLIB2D_H
 
 #include "types.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "P2JME/SimpleMessage.h"
 
 namespace og {

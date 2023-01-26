@@ -10,7 +10,7 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JSupport/JSUStream.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "JSystem/J2D/J2DMaterial.h"
 #include "types.h"
 

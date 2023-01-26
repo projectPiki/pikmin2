@@ -8,9 +8,9 @@
 #include "JSystem/J3D/J3DShape.h"
 #include "JSystem/J3D/J3DTexture.h"
 #include "JSystem/J3D/J3DTypes.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSU.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "types.h"
 
 /*

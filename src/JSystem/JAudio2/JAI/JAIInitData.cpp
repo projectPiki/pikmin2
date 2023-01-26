@@ -1,10 +1,10 @@
 #include "Dolphin/stl.h"
 #include "Dolphin/string.h"
-#include "JSystem/JAI/JAInter.h"
-#include "JSystem/JAI/JAInter/BankWave.h"
-#include "JSystem/JAI/JAInter/InitData.h"
-#include "JSystem/JAI/JAIGlobalParameter.h"
-#include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAudio2/JAI/JAInter.h"
+#include "JSystem/JAudio2/JAI/JAInter/BankWave.h"
+#include "JSystem/JAudio2/JAI/JAInter/InitData.h"
+#include "JSystem/JAudio2/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAudio2/JAS/JASHeap.h"
 #include "types.h"
 
 /*

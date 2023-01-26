@@ -2,9 +2,9 @@
 #define _PARTICLEMGR_H
 
 #include "CNode.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JPA/JPAEmitter.h"
-#include "JSystem/JPA/JPAResource.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/ResTIMG.h"
 #include "ModelEffect.h"
 #include "ObjectMgr.h"

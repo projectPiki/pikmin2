@@ -2,7 +2,7 @@
 #define _P2JME_SIMPLEMESSAGE_H
 
 #include "P2JME/TRenderingProcessor.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "P2JME/P2JME.h"
 #include "Graphics.h"
 

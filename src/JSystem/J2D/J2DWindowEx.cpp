@@ -7,8 +7,8 @@
 #include "JSystem/J2D/J2DTevBlock.h"
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JUT/JUTTexture.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/JUTTexture.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
 /*

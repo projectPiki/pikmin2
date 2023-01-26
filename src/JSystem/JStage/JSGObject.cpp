@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JStage/TObject.h"
+#include "JSystem/JStage/TObject.h"
 
 namespace JStage {
 

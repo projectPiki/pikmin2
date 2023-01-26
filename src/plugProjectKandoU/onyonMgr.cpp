@@ -25,7 +25,7 @@
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSScene.h"
 #include "PSM/Scene.h"
-#include "JSystem/JAL/JALCalc.h"
+#include "JSystem/JAudio2/JALCalc.h"
 #include "Dolphin/rand.h"
 #include "PikiAi.h"
 #include "JSystem/J3D/J3DModelLoader.h"

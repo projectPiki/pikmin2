@@ -15,7 +15,7 @@
 #include "efx/TPiku.h"
 #include "efx/TPk.h"
 #include "efx/TEnemyDive.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Dolphin/rand.h"
 #include "trig.h"
 #include "System.h"

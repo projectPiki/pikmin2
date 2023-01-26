@@ -6,7 +6,7 @@
 #include "Matrixf.h"
 #include "Vector3.h"
 #include "Game/P2JST/ObjectBase.h"
-#include "JStage/TCamera.h"
+#include "JSystem/JStage/TCamera.h"
 
 struct Camera;
 

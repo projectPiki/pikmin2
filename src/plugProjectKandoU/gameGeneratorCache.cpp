@@ -1,7 +1,7 @@
 #include "Dolphin/stl.h"
 #include "Game/gameGeneratorCache.h"
 #include "Game/gameStages.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "stream.h"
 #include "types.h"
 

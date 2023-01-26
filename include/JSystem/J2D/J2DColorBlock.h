@@ -3,7 +3,7 @@
 
 #include "Dolphin/gx.h"
 #include "JSystem/J2D/J2DTypes.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
 // NB: TP has this rolled into the J2DColorBlock struct as private members

@@ -1,7 +1,7 @@
 #include "LoadResource.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
 /*

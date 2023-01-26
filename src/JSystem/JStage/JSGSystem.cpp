@@ -1,6 +1,6 @@
 #include "types.h"
-#include "JStage/TObject.h"
-#include "JStage/TSystem.h"
+#include "JSystem/JStage/TObject.h"
+#include "JSystem/JStage/TSystem.h"
 
 namespace JStage {
 

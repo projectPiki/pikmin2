@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
-#include "JSystem/JAS/JASKernel.h"
-#include "JSystem/JAS/JASMutexLock.h"
-#include "JSystem/JAS/JASProbe.h"
+#include "JSystem/JAudio2/JAS/JASKernel.h"
+#include "JSystem/JAudio2/JAS/JASMutexLock.h"
+#include "JSystem/JAudio2/JAS/JASProbe.h"
 #include "types.h"
 
 /*

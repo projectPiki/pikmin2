@@ -38,11 +38,11 @@
         .4byte 0x00000000
 */
 
-#include "JSystem/JKR/Aram.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JKR/JKRDvdAramRipper.h"
-#include "JSystem/JUT/JUTException.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRDvdAramRipper.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "CNode.h"
 #include "Dolphin/string.h"
 #include "Dolphin/stl.h"

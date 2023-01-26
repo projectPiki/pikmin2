@@ -1,6 +1,6 @@
 #include "Dolphin/os.h"
-#include "JSystem/JAS/JASTrack.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JAudio2/JAS/JASTrack.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "PSSystem/PSTaskBase.h"
 #include "types.h"
 #include "PSSystem/PSBgmTask.h"

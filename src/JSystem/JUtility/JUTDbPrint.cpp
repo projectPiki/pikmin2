@@ -1,8 +1,8 @@
-#include "JSystem/JUT/JUTDbPrint.h"
+#include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/J2D/J2DGrafContext.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTFont.h"
-#include "JSystem/JUT/JUTVideo.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTFont.h"
+#include "JSystem/JUtility/JUTVideo.h"
 #include "types.h"
 
 /*

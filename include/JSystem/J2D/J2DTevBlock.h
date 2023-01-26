@@ -5,9 +5,9 @@
 #include "JSystem/J2D/J2DGXColorS10.h"
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/J3D/J3DTypes.h"
-#include "JSystem/JUT/JUTFont.h"
-#include "JSystem/JUT/JUTPalette.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/JUTFont.h"
+#include "JSystem/JUtility/JUTPalette.h"
+#include "JSystem/JUtility/TColor.h"
 #include "JSystem/ResTLUT.h"
 #include "types.h"
 

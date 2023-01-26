@@ -3,11 +3,11 @@
 
 #include "types.h"
 #include "Dolphin/os.h"
-#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAudio2/JAI/JAIBasic.h"
 #include "PSSystem/FxMgr.h"
-#include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JKR/JKRFileLoader.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "PSGame/BASARC.H"
 
 namespace PSSystem {

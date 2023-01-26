@@ -1,4 +1,4 @@
-#include "JSystem/DSP.h"
+#include "JSystem/JAudio2/DSP.h"
 
 u8 DSP_prior_yield;
 u32 AUDIO_UPDATE_REQUEST;

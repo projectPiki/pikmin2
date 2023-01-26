@@ -1,9 +1,9 @@
 #include "Dolphin/dvd.h"
-#include "JSystem/JAI/JAIGlobalParameter.h"
-#include "JSystem/JAI/JAISequence.h"
-#include "JSystem/JAI/JAInter.h"
-#include "JSystem/JAS/JASPortCmd.h"
-#include "JSystem/JAS/JASTrack.h"
+#include "JSystem/JAudio2/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAudio2/JAI/JAISequence.h"
+#include "JSystem/JAudio2/JAI/JAInter.h"
+#include "JSystem/JAudio2/JAS/JASPortCmd.h"
+#include "JSystem/JAudio2/JAS/JASTrack.h"
 #include "types.h"
 
 /*

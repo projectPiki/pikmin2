@@ -1,10 +1,10 @@
 #include "Dolphin/os.h"
-#include "JSystem/DSP.h"
-#include "JSystem/JAS/JASCalc.h"
-#include "JSystem/JAS/JASDsp.h"
-#include "JSystem/JAS/JASHeap.h"
-#include "JSystem/JAS/JASMutexLock.h"
-#include "JSystem/JAS/JASWave.h"
+#include "JSystem/JAudio2/DSP.h"
+#include "JSystem/JAudio2/JAS/JASCalc.h"
+#include "JSystem/JAudio2/JAS/JASDsp.h"
+#include "JSystem/JAudio2/JAS/JASHeap.h"
+#include "JSystem/JAudio2/JAS/JASMutexLock.h"
+#include "JSystem/JAudio2/JAS/JASWave.h"
 #include "types.h"
 
 /*

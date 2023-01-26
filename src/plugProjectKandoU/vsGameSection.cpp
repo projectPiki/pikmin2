@@ -21,7 +21,7 @@
 #include "Game/SingleGame.h"
 #include "Game/TimeMgr.h"
 #include "Game/VsGame.h"
-#include "JSystem/JUT/JUTGraphFifo.h"
+#include "JSystem/JUtility/JUTGraphFifo.h"
 #include "PSGame/PikScene.h"
 #include "PSSystem/PSGame.h"
 #include "Screen/Game2DMgr.h"

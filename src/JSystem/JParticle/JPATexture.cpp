@@ -1,5 +1,5 @@
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JPA/JPATexture.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JParticle/JPATexture.h"
 #include "types.h"
 
 /*

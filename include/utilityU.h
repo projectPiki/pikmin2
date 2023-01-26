@@ -7,9 +7,9 @@
 #include "PSM/WorldMapRocket.h"
 #include "PSM/Cluster.h"
 #include "PSM/Creature.h"
-#include "JSystem/JAI/JAIStream.h"
-#include "JSystem/JAI/JAISound.h"
-#include "JSystem/JAI/JAISe.h"
+#include "JSystem/JAudio2/JAI/JAIStream.h"
+#include "JSystem/JAudio2/JAI/JAISound.h"
+#include "JSystem/JAudio2/JAI/JAISe.h"
 #include "Game/EnemyBase.h"
 #include "SoundID.h"
 

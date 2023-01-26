@@ -7,9 +7,9 @@
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JSupport/JSUStream.h"
-#include "JSystem/JUT/JUTPalette.h"
-#include "JSystem/JUT/JUTTexture.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/JUTPalette.h"
+#include "JSystem/JUtility/JUTTexture.h"
+#include "JSystem/JUtility/TColor.h"
 #include "JSystem/ResTIMG.h"
 #include "types.h"
 

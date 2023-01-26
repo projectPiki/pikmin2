@@ -1,8 +1,8 @@
 #ifndef _PSSYSTEM_SCENE_H
 #define _PSSYSTEM_SCENE_H
 
-#include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JAS/JASTrack.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JAudio2/JAS/JASTrack.h"
 #include "SoundID.h"
 #include "PSSystem/Seq.h"
 #include "PSSystem/WaveScene.h"

@@ -1,7 +1,7 @@
 #include "Dolphin/rand.h"
 #include "Dolphin/string.h"
 
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 
 #include "Game/Navi.h"
 #include "Game/Piki.h"

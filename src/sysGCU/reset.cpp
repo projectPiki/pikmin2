@@ -3,11 +3,11 @@
 #include "Controller.h"
 #include "Dolphin/dvd.h"
 #include "Dolphin/__start.h"
-#include "JSystem/JFW/JFWDisplay.h"
+#include "JSystem/JFramework/JFWDisplay.h"
 #include "THP/THPDraw.h"
 #include "PSSystem/PSSystemIF.h"
 #include "JSystem/J2D/J2DGrafContext.h"
-#include "JSystem/JUT/JUTVideo.h"
+#include "JSystem/JUtility/JUTVideo.h"
 #include "MemoryCardMgr.h"
 
 /*

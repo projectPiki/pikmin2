@@ -1,5 +1,5 @@
 #include "Game/TimeMgr.h"
-#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 #include "stream.h"
 #include "System.h"
 

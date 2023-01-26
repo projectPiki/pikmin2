@@ -3,7 +3,7 @@
 
 #include "JSystem/J3D/J3DAnmBase.h"
 #include "JSystem/J3D/J3DFileBlock.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "types.h"
 
 struct J3DAnmTexPatternFullTable {

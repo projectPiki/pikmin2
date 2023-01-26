@@ -2,12 +2,12 @@
 #define _GAME_THPPLAYER_H
 
 #include "Graphics.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 #include "CNode.h"
 #include "DvdThreadCommand.h"
 #include "IDelegate.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 
 namespace Caption {
 struct Mgr;

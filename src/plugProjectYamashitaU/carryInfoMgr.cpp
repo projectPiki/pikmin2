@@ -2,7 +2,7 @@
 #include "CarryInfo.h"
 #include "Graphics.h"
 #include "Viewport.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "Game/MoviePlayer.h"
 #include "Dolphin/gx.h"
 #include "nans.h"

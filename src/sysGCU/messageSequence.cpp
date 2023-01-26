@@ -2,7 +2,7 @@
 #include "P2JME/TSequenceProcessor.h"
 #include "P2JME/P2JME.h"
 #include "System.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "PSSystem/PSSystemIF.h"
 
 /*

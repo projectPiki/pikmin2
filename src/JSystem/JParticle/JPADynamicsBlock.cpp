@@ -1,6 +1,6 @@
 #include "JSystem/JGeometry.h"
-#include "JSystem/JPA/JPABlock.h"
-#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JParticle/JPABlock.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "types.h"
 
 /*

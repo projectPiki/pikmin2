@@ -11,7 +11,7 @@
 #include "game/Piki.h"
 #include "trig.h"
 #include "Game/MapMgr.h"
-#include "JSystem/JPA/JPAMath.h"
+#include "JSystem/JParticle/JPAMath.h"
 #include "Dolphin/float.h"
 
 namespace efx {

@@ -13,7 +13,7 @@
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JAI/JAInter/Object.h"
+#include "JSystem/JAudio2/JAI/JAInter/Object.h"
 #include "Sys/MatBaseAnimation.h"
 #include "SysShape/Model.h"
 #include "SysShape/Joint.h"

@@ -1,5 +1,5 @@
-#include "JStudio/TObject.h"
-#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JStudio/TObject.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JStudio_JParticle.h"
 #include "types.h"
 

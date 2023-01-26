@@ -1,7 +1,7 @@
 #include "Game/Entities/BlackMan.h"
 #include "Game/generalEnemyMgr.h"
 #include "LoadResource.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 
 namespace Game {
 namespace BlackMan {

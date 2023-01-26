@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "Game/MemoryCard/Mgr.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "ebi/Save.h"
 #include "ebi/FileSelect.h"
 

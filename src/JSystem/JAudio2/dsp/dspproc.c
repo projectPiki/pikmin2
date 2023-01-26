@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JSystem/DSP.h"
+#include "JSystem/JAudio2/DSP.h"
 
 static volatile int flag;
 // static u32 waitflag;

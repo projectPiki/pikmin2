@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JSystem/J3D/J3DUMtxCache.h"
+#include "JSystem/J3DU/J3DUMtxCache.h"
 
 /*
     Generated from dpostproc

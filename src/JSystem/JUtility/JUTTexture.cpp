@@ -1,7 +1,7 @@
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "Dolphin/gx.h"
 #include "Dolphin/os.h"
-#include "JSystem/JUT/JUTPalette.h"
+#include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/ResTIMG.h"
 #include "types.h"
 

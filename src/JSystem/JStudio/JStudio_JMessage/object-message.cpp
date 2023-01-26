@@ -1,4 +1,4 @@
-#include "JStudio/TAdaptor.h"
+#include "JSystem/JStudio/TAdaptor.h"
 #include "JSystem/JStudio_JMessage.h"
 #include "types.h"
 

@@ -1,6 +1,6 @@
 #include "JSystem/J3D/J3DModel.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "SysShape/Model.h"
 #include "SysShape/ModelMgr.h"
 #include "System.h"

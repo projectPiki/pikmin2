@@ -1,7 +1,7 @@
 #include "Dolphin/gx.h"
-#include "JSystem/JUT/JUTFont.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTConsole.h"
+#include "JSystem/JUtility/JUTFont.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include "types.h"
 
 JUTFont::IsLeadByte const JUTResFont::saoAboutEncoding_[3]

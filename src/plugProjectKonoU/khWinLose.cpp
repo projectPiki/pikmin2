@@ -1,7 +1,7 @@
 #include "kh/khWinLose.h"
-#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
 #include "kh/khUtil.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "utilityU.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 

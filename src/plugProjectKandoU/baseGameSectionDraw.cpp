@@ -4,7 +4,7 @@
 
 #include "Sys/DrawBuffers.h"
 
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/J3D/J3DSys.h"
 
 #include "ParticleMgr.h"

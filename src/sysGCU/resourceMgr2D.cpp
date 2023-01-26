@@ -1,4 +1,4 @@
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Resource.h"
 
 Resource::Mgr2D* gResMgr2D;

@@ -9,7 +9,7 @@
 #include "Game/PikiMgr.h"
 #include "Game/Entities/ItemPikihead.h"
 #include "JSystem/J3D/J3DJoint.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "PSM/Navi.h"
 #include "SysShape/Model.h"
 #include "CollInfo.h"

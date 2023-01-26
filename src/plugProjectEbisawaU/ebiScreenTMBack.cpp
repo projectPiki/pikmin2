@@ -1,7 +1,7 @@
 #include "ebi/E2DGraph.h"
 #include "ebi/Screen/TTMBack.h"
 #include "ebi/Screen/TNintendoLogo.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "Graphics.h"
 #include "System.h"

@@ -1,7 +1,7 @@
 #ifndef _JSYSTEM_JSUINPUTSTREAM_H
 #define _JSYSTEM_JSUINPUTSTREAM_H
 
-#include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JKernel/JKRFile.h"
 #include "types.h"
 
 // Named after standard C++ constants with the exact same meaning.

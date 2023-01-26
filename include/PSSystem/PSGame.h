@@ -1,7 +1,7 @@
 #ifndef _PSSYSTEM_PSGAME_H
 #define _PSSYSTEM_PSGAME_H
 
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "PSSystem/PSScene.h"
 #include "PSSystem/SingletonBase.h"
 #include "PSGame/SeMgr.h"

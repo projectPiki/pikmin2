@@ -1,5 +1,5 @@
-#include "JSystem/JAS/JASDsp.h"
-#include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAudio2/JAS/JASDsp.h"
+#include "JSystem/JAudio2/JAS/JASHeap.h"
 #include "types.h"
 
 /*

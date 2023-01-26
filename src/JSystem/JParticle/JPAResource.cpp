@@ -1,8 +1,8 @@
-#include "JSystem/JPA/JPAResource.h"
+#include "JSystem/JParticle/JPAResource.h"
 #include "Dolphin/mtx.h"
-#include "JSystem/JPA/JPAEmitter.h"
-#include "JSystem/JPA/JPAMath.h"
-#include "JSystem/JPA/JPAShape.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAMath.h"
+#include "JSystem/JParticle/JPAShape.h"
 #include "types.h"
 
 /*

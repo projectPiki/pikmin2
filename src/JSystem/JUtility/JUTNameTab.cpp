@@ -1,5 +1,5 @@
 #include "Dolphin/string.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "types.h"
 
 /*

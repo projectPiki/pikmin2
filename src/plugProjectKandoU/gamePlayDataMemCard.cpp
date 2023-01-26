@@ -7,7 +7,7 @@
 #include "Game/GameSystem.h"
 #include "Game/TimeMgr.h"
 #include "Game/gameStages.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
 /*

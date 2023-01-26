@@ -2,7 +2,7 @@
 #include "Game/EnemyStone.h"
 #include "Game/EnemyBase.h"
 #include "JSystem/J3D/J3DSys.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "JSystem/J3D/J3DTransform.h"
 #include "SysShape/Joint.h"

@@ -1,6 +1,6 @@
-#include "JSystem/JAS/JASBank.h"
-#include "JSystem/JAS/JASCalc.h"
-#include "JSystem/JAS/JASInst.h"
+#include "JSystem/JAudio2/JAS/JASBank.h"
+#include "JSystem/JAudio2/JAS/JASCalc.h"
+#include "JSystem/JAudio2/JAS/JASInst.h"
 #include "types.h"
 
 /*

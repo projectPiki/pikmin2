@@ -1,6 +1,6 @@
-#include "JSystem/JAS/JASCalc.h"
-#include "JSystem/JAS/JASDriver.h"
-#include "JSystem/JAS/JASKernel.h"
+#include "JSystem/JAudio2/JAS/JASCalc.h"
+#include "JSystem/JAudio2/JAS/JASDriver.h"
+#include "JSystem/JAudio2/JAS/JASKernel.h"
 
 /*
     Generated from dpostproc

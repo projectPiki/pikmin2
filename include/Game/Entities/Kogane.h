@@ -5,7 +5,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/EnemyMgrBase.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 
 /**
  * --Header for Beetle Base Class (Kogane)--

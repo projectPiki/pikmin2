@@ -1,7 +1,7 @@
 #ifndef _EFX_TCALLBACK_STATICCLIPPING_H
 #define _EFX_TCALLBACK_STATICCLIPPING_H
 
-#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 
 namespace efx {
 struct TCallBack_StaticClipping : public JPAEmitterCallBack {

@@ -2,7 +2,7 @@
 #define _PSSYSTEM_BANKMGR_H
 
 #include "types.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 
 namespace PSSystem {
 struct BankMgr : public JKRDisposer {

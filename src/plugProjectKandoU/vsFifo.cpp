@@ -1,6 +1,6 @@
 #include "VSFifo.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTGraphFifo.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTGraphFifo.h"
 
 u8 VSFifo::mGpStatus[5];
 

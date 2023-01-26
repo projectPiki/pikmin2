@@ -1,6 +1,6 @@
 #include "types.h"
 #include "Game/WalkSmokeEffect.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "Game/EnemyBase.h"
 #include "Game/MapMgr.h"
 #include "SysShape/Model.h"

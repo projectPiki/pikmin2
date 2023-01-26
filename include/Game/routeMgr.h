@@ -1,7 +1,7 @@
 #ifndef _GAME_ROUTEMGR_H
 #define _GAME_ROUTEMGR_H
 
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "Vector3.h"
 #include "types.h"
 #include "Container.h"

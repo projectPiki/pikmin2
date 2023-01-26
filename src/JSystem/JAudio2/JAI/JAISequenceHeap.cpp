@@ -1,6 +1,6 @@
-#include "JSystem/JAI/JAIBasic.h"
-#include "JSystem/JAI/JAInter.h"
-#include "JSystem/JAI/JAInter/HeapMgr.h"
+#include "JSystem/JAudio2/JAI/JAIBasic.h"
+#include "JSystem/JAudio2/JAI/JAInter.h"
+#include "JSystem/JAudio2/JAI/JAInter/HeapMgr.h"
 #include "types.h"
 
 /*

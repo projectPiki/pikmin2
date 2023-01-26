@@ -1,5 +1,5 @@
 #include "Game/EnemyParmsBase.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "stream.h"
 
 namespace Game {

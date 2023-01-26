@@ -1,5 +1,5 @@
-#include "JSystem/JAS/JASOscillator.h"
-#include "JSystem/JAS/JASDriver.h"
+#include "JSystem/JAudio2/JAS/JASOscillator.h"
+#include "JSystem/JAudio2/JAS/JASDriver.h"
 #include "types.h"
 
 /*

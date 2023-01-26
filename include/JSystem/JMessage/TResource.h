@@ -2,7 +2,7 @@
 #define _JSYSTEM_JMESSAGE_TRESOURCE_H
 
 #include "JSystem/JGadget/linklist.h"
-#include "JSystem/JMessage.h"
+#include "JSystem/JMessage/JMessage.h"
 #include "types.h"
 
 namespace JGadget {

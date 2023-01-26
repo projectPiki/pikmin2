@@ -1,6 +1,6 @@
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JKR/JKRFile.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRFile.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
 /*

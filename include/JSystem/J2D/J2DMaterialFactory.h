@@ -3,7 +3,7 @@
 
 #include "JSystem/J2D/J2DMaterial.h"
 #include "JSystem/J2D/J2DManage.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "types.h"
 
 struct J2DIndInitData;

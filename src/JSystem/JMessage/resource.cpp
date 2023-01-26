@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JUtility/JUTFont.h"
 #include "JSystem/JMessage/TResource.h"
 #include "JSystem/JMessage/TParse.h"
 

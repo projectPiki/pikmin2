@@ -1,15 +1,15 @@
 #ifndef _JSYSTEM_JSTUDIO_JSTAGE_H
 #define _JSYSTEM_JSTUDIO_JSTAGE_H
 
-#include "JStage/TActor.h"
-#include "JStage/TCamera.h"
-#include "JStage/TObject.h"
-#include "JStage/TSystem.h"
-#include "JStudio/TAdaptor.h"
-#include "JStudio/TControl.h"
-#include "JStudio/TCreateObject.h"
-#include "JStudio/TObject.h"
-#include "JStudio/TVariableValue.h"
+#include "JSystem/JStage/TActor.h"
+#include "JSystem/JStage/TCamera.h"
+#include "JSystem/JStage/TObject.h"
+#include "JSystem/JStage/TSystem.h"
+#include "JSystem/JStudio/TAdaptor.h"
+#include "JSystem/JStudio/TControl.h"
+#include "JSystem/JStudio/TCreateObject.h"
+#include "JSystem/JStudio/TObject.h"
+#include "JSystem/JStudio/TVariableValue.h"
 
 namespace JStudio_JStage {
 struct TCreateObject : JStudio::TCreateObject {

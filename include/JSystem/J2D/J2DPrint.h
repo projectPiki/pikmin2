@@ -2,8 +2,8 @@
 #define _JSYSTEM_J2D_J2DPRINT_H
 
 #include "JSystem/J2D/J2DTypes.h"
-#include "JSystem/JUT/TColor.h"
-#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JUtility/TColor.h"
+#include "JSystem/JUtility/JUTFont.h"
 #include "types.h"
 struct J2DPrint {
 	struct TSize {

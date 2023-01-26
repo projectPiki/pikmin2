@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
 #include "types.h"
 #include "Dolphin/dvd.h"
-#include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JKernel/JKRFile.h"
 #include "JSystem/JSupport/JSUList.h"
 
 JSUList<JKRDvdFile> JKRDvdFile::sDvdList;

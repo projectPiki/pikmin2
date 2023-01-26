@@ -1,4 +1,4 @@
-#include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JKernel/JKRFile.h"
 #include "JSystem/JSupport/JSUStream.h"
 #include "types.h"
 

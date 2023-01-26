@@ -12,7 +12,7 @@
 #include "Game/THPPlayer.h"
 #include "GenericObjectMgr.h"
 #include "IDelegate.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "ObjectMgr.h"
 
 namespace ebi {

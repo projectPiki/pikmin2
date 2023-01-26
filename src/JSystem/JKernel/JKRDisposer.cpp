@@ -1,5 +1,5 @@
-#include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /*
     Generated from dpostproc

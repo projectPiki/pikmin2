@@ -5,10 +5,10 @@
 #include "PSSystem/PSSystemIF.h"
 #include "PSSystem/PSGame.h"
 #include "SoundID.h"
-#include "JSystem/JFW/JFWDisplay.h"
+#include "JSystem/JFramework/JFWDisplay.h"
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUT/JUTProcBar.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUtility/JUTProcBar.h"
+#include "JSystem/JUtility/JUTTexture.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 

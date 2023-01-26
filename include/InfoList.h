@@ -1,7 +1,7 @@
 #ifndef _INFOLIST_H
 #define _INFOLIST_H
 
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "types.h"
 
 struct Graphics;

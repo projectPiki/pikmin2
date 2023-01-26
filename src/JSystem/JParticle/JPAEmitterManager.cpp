@@ -1,5 +1,5 @@
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 
 /*
     Generated from dpostproc

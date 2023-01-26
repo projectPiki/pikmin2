@@ -1,6 +1,6 @@
 #include "Game/Entities/Houdai.h"
 #include "LoadResource.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "Sys/MatBaseAnimation.h"
 
 namespace Game {

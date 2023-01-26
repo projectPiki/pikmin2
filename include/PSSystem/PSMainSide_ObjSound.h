@@ -1,7 +1,7 @@
 #ifndef _PSSYSTEM_PSMAINSIDE_OBJSOUND_H
 #define _PSSYSTEM_PSMAINSIDE_OBJSOUND_H
 
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "PSM/EnemyBase.h"
 
 // idk what else goes in this file (if anything? maybe this is in the PSGame folder??)

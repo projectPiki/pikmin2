@@ -4,8 +4,8 @@
 
 #include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DModel.h"
-#include "JSystem/JUT/JUTException.h"
-#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
 
 #include "stream.h"
 #include "nans.h"

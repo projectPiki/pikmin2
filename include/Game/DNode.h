@@ -2,7 +2,7 @@
 #define _GAME_DNODE_H
 
 #include "types.h"
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 
 namespace Game {
 struct DNode : public JKRDisposer {

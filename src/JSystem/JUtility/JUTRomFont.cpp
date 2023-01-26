@@ -1,6 +1,6 @@
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTFont.h"
-#include "JSystem/JUT/JUTConsole.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTFont.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include "types.h"
 
 JUTRomFont::AboutEncoding* JUTRomFont::spAboutEncoding_;

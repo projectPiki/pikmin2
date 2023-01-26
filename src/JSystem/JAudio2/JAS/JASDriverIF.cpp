@@ -1,6 +1,6 @@
-#include "JSystem/JAS/JASCallbackMgr.h"
-#include "JSystem/JAS/JASDriver.h"
-#include "JSystem/JAS/JASDsp.h"
+#include "JSystem/JAudio2/JAS/JASCallbackMgr.h"
+#include "JSystem/JAudio2/JAS/JASDriver.h"
+#include "JSystem/JAudio2/JAS/JASDsp.h"
 #include "types.h"
 
 /*

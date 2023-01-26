@@ -1,6 +1,6 @@
 #include "Dolphin/os.h"
-#include "JSystem/JAS/JASCallbackMgr.h"
-#include "JSystem/JAS/JASMutexLock.h"
+#include "JSystem/JAudio2/JAS/JASCallbackMgr.h"
+#include "JSystem/JAudio2/JAS/JASMutexLock.h"
 #include "types.h"
 
 /*

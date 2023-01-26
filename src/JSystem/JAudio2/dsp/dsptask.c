@@ -1,6 +1,6 @@
 #include "Dolphin/dsp.h"
 #include "types.h"
-#include "JSystem/DSP.h"
+#include "JSystem/JAudio2/DSP.h"
 
 static STRUCT_DSP_TASK audio_task;
 

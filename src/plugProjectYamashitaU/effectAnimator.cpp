@@ -1,6 +1,6 @@
 #include "EffectAnimator.h"
 #include "efx/TKechappy.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 
 namespace EffectAnimator {
 namespace { // tables

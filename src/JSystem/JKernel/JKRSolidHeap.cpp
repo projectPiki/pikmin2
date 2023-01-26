@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
-#include "JSystem/JUT/JUTConsole.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include "types.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /*
     Generated from dpostproc

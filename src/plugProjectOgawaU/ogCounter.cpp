@@ -1,6 +1,6 @@
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "og/Screen/callbackNodes.h"
 
 const char* og::Screen::SujiTex32[11] = { "0_32.bti", "1_32.bti", "2_32.bti", "3_32.bti", "4_32.bti", "5_32.bti",

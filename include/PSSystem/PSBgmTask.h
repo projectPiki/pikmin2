@@ -3,10 +3,10 @@
 
 #include "Dolphin/os.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "PSSystem/BankRandPrm.h"
 #include "PSSystem/MutexList.h"
-#include "JSystem/JAS/JASTrack.h"
+#include "JSystem/JAudio2/JAS/JASTrack.h"
 #include "PSSystem/PSTaskBase.h"
 
 namespace PSSystem {

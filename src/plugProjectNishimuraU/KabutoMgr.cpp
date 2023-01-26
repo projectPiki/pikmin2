@@ -1,7 +1,7 @@
 #include "types.h"
 #include "Game/Entities/Kabuto.h"
 #include "Game/generalEnemyMgr.h"
-#include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "JSystem/J3D/J3DSys.h"
 
 namespace Game {

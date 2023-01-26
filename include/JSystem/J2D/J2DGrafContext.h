@@ -4,7 +4,7 @@
 #include "types.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/J2D/J2DTypes.h"
-#include "JSystem/JUT/TColor.h"
+#include "JSystem/JUtility/TColor.h"
 #include "Dolphin/mtx.h"
 
 /**

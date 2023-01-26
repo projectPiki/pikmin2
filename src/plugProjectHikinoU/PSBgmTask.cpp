@@ -2,7 +2,7 @@
 #include "Dolphin/os.h"
 #include "PSSystem/BankRandPrm.h"
 #include "PSSystem/PSBgmTask.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 
 namespace PSSystem {
 

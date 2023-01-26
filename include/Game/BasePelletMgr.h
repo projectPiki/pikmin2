@@ -7,7 +7,7 @@
 #include "SysShape/Model.h"
 #include "SysShape/ModelMgr.h"
 #include "SysShape/AnimMgr.h"
-#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "CollInfo.h"
 
 namespace Game {

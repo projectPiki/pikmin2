@@ -1,7 +1,7 @@
 #ifndef _PSM_DEMO_H
 #define _PSM_DEMO_H
 
-#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "Dolphin/mtx.h"
 #include "PSM/Scene.h"
 #include "PSSystem/PSBgm.h"

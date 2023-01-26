@@ -1,6 +1,6 @@
 #include "Dolphin/os.h"
-#include "JSystem/JUT/JUTConsole.h"
-#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "std/limits.h"
 #include "types.h"
 

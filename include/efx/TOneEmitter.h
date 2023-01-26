@@ -4,7 +4,7 @@
 #include "Vector3.h"
 #include "efx/Context.h"
 #include "efx/TBase.h"
-#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 
 namespace efx {
 struct TOneEmitter : public TBase, public JPAEmitterCallBack {

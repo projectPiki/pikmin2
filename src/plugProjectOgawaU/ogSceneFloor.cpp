@@ -1,5 +1,5 @@
 #include "Dolphin/stl.h"
-#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "LoadResource.h"
 #include "og/newScreen/Floor.h"
 #include "og/newScreen/ogUtil.h"

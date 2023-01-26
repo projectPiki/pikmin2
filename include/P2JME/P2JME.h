@@ -2,10 +2,10 @@
 #define _P2JME_P2JME_H
 
 #include "types.h"
-#include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JKR/JKRArchive.h"
-#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JUtility/JUTFont.h"
 #include "JSystem/JMessage/TReference.h"
 
 struct JUTTexture;
