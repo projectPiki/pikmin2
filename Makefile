@@ -122,7 +122,6 @@ else
   export WINEDEBUG ?= -all
   # Default devkitPPC path
   DEVKITPPC ?= /opt/devkitpro/devkitPPC
-  DEPENDS   := $(DEPENDS:.d=.d.unix)
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
   PYTHON  := python3
@@ -274,8 +273,9 @@ endif
 
 -include include_link.mk
 
-# Need to add library objects to DEPENDS
-DEPENDS += $(BOOTUP_FILES:.o=.d)
+ifneq ($(WINDOWS),1)
+	DEPENDS := $(DEPENDS:.d=.d.unix)
+endif
 -include $(DEPENDS)
 
 $(BUILD_DIR)/%.o: %.s

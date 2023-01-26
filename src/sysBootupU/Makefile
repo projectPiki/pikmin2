@@ -1,6 +1,8 @@
 BOOTUP_FILES:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
 
+DEPENDS += $(BOOTUP_FILES:.o=.d)
+
 BOOTUP_LDFLAGS :=\
 	-nodefaults \
 	-fp hard \
