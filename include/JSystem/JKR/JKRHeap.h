@@ -50,6 +50,8 @@ struct JKRHeap : public JKRDisposer {
 		TState(const JKRHeap::TState& other, bool p2);
 		TState(const JKRHeap::TState& other, const JKRHeap::TState::TLocation& location, bool p3);
 
+		static bool bVerbose;
+
 		TState* _00;                 // _00
 		u32 _04;                     // _04, plausibly TLocation when combined with _00
 		u8 _08[0x8];                 // _08
@@ -59,8 +61,6 @@ struct JKRHeap : public JKRDisposer {
 		u8 _19[3];                   // _19
 		u32 _1C;                     // _1C
 		int _20;                     // _20
-
-		static bool bVerbose;
 	};
 
 	JKRHeap(void*, u32, JKRHeap*, bool);
@@ -154,6 +154,8 @@ struct JKRHeap : public JKRDisposer {
 	static u32 sParentHeapFreeSize_Last;
 	static u32 sParentHeapFreeSize;
 
+	// _00     = VTBL
+	// _00-_18 = JKRDisposer
 	OSMutexObject mMutex;               // _18
 	void* mStartAddress;                // _30
 	void* mEndAddress;                  // _34
@@ -177,34 +179,18 @@ inline void* JKRAllocFromSysHeap(u32 size, int alignment)
 
 struct JKRExpHeap : public JKRHeap {
 	struct CMemBlock {
-		u16 mUsageHeader; // _00
-
-		/// This &'d with 0x7f is called "aln" by JKRExpHeap::dump
-		u8 _02; // _02
-
-		/// Called "gid" by JKRExpHeap::dump
-		u8 mGroupID; // _03
-
-		/// Called "size" by JKRExpHeap::dump
-		int mAllocatedSpace; // _04
-
-		/*
-		 * Called "prev_ptr" by JKRExpHeap::dump.
-		 * Sodium called this "headwards".
-		 */
-		CMemBlock* mPrevPtr; // _08
-
-		/*
-		 * Called "next_ptr" by JKRExpHeap::dump.
-		 * Sodium called this "tailwards".
-		 */
-		CMemBlock* mNextPtr; // _0C
-
 		CMemBlock* allocBack(u32, u8, u8, u8, u8);
 		CMemBlock* allocFore(u32, u8, u8, u8, u8);
 		void* free(JKRExpHeap*);
 		static CMemBlock* getHeapBlock(void*);
 		void initiate(CMemBlock*, CMemBlock*, u32, u8, u8);
+
+		u16 mUsageHeader;    // _00
+		u8 _02;              // _02, this &'d with 0x7f is called 'aln' by JKRExpHeap::dump
+		u8 mGroupID;         // _03
+		int mAllocatedSpace; // _04
+		CMemBlock* mPrevPtr; // _08
+		CMemBlock* mNextPtr; // _0C
 	};
 
 	JKRExpHeap(void*, u32, JKRHeap*, bool);
@@ -227,7 +213,7 @@ struct JKRExpHeap : public JKRHeap {
 	virtual u32 do_getTotalFreeSize();                              // _48
 	virtual u8 do_changeGroupID(u8);                                // _4C
 	virtual u8 do_getCurrentGroupId();                              // _50 (weak)
-	virtual void state_register(TState*, unsigned long) const;      // _54
+	virtual void state_register(TState*, u32) const;                // _54
 	virtual bool state_compare(const TState&, const TState&) const; // _58
 
 	u32 allocFromHead(u32, int);
@@ -246,6 +232,8 @@ struct JKRExpHeap : public JKRHeap {
 	// unused/inlined:
 	void removeUsedBlock(CMemBlock*);
 
+	// _00     = VTBL
+	// _00-_6C = JKRHeap
 	u8 _6C;                   // _6C
 	u8 mCurrentGroupID;       // _6D
 	u8 _6E;                   // _6E
@@ -280,11 +268,13 @@ struct JKRSolidHeap : public JKRHeap {
 	virtual bool state_compare(const TState&, const TState&) const; // _58
 
 	u32 adjustSize();
-	void* allocFromHead(unsigned long, int);
-	void* allocFromTail(unsigned long, int);
+	void* allocFromHead(u32, int);
+	void* allocFromTail(u32, int);
 
-	static JKRSolidHeap* create(unsigned long, JKRHeap*, bool);
+	static JKRSolidHeap* create(u32, JKRHeap*, bool);
 
+	// _00     = VTBL
+	// _00-_6C = JKRHeap
 	u32 mFreeSize; // _6C
 	u32 _70;       // _70
 	u32 _74;       // _74

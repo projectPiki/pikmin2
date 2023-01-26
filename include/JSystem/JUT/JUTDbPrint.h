@@ -26,7 +26,7 @@ struct JUTDbPrint {
 	JUTFont* changeFont(JUTFont*);
 	void flush();
 	void flush(int, int, int, int);
-	void drawString(int, int, int, const unsigned char*);
+	void drawString(int, int, int, const u8*);
 
 	// Unused/inlined:
 	void enter(int, int, int, const char*, int);
@@ -34,15 +34,15 @@ struct JUTDbPrint {
 	void print(int, int, int, const char*, ...);
 	void reset();
 
+	static JUTDbPrint* getManager() { return sDebugPrint; }
+
+	static JUTDbPrint* sDebugPrint;
+
 	JUTDbPrint_0x0* _00;     // _00
 	JUTFont* mFont;          // _04
 	JUtility::TColor mColor; // _08
 	u8 _0C;                  // _0C
 	JKRHeap* mHeap;          // _10
-
-	static JUTDbPrint* getManager() { return sDebugPrint; }
-
-	static JUTDbPrint* sDebugPrint;
 };
 
 #endif

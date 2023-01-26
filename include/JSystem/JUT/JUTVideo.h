@@ -30,7 +30,7 @@ struct JUTVideo {
 	u16 getEfbHeight() const { return mRenderModeObj->efbHeight; }
 	u16 getFbWidth() const { return mRenderModeObj->fbWidth; }
 
-	_GXRenderModeObj* getRenderMode() const { return mRenderModeObj; }
+	GXRenderModeObj* getRenderMode() const { return mRenderModeObj; }
 	u16 getXfbHeight() const { return mRenderModeObj->xfbHeight; }
 	u32 isAntiAliasing() const { return mRenderModeObj->aa; }
 	Pattern getSamplePattern() const { return mRenderModeObj->sample_pattern; }
@@ -48,6 +48,10 @@ struct JUTVideo {
 	void getPixelAspect(const _GXRenderModeObj*);
 	void getPixelAspect() const;
 
+	static JUTVideo* sManager;
+	static s32 sVideoLastTick;
+	static u32 sVideoInterval;
+
 	// _00 VTBL
 	_GXRenderModeObj* mRenderModeObj;               // _04
 	u32 _08;                                        // _08
@@ -63,10 +67,6 @@ struct JUTVideo {
 	s32 _30;                                        // _30
 	void* mMessageSlots;                            // _34
 	OSMessageQueue mMessageQueue;                   // _38
-
-	static JUTVideo* sManager;
-	static s32 sVideoLastTick;
-	static u32 sVideoInterval;
 };
 
 #endif

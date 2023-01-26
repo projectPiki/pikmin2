@@ -5,12 +5,14 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
-struct JFWAlarm : OSAlarm {
+struct JFWAlarm : public OSAlarm {
 	JFWAlarm()
 	    : mLink(this)
 	{
 	}
-	~JFWAlarm() {};
+
+	~JFWAlarm() { }
+
 	void createAlarm() { OSCreateAlarm(this); }
 	void cancelAlarm() { OSCancelAlarm(this); }
 	void removeLink() { sList.remove(&mLink); }
@@ -19,8 +21,10 @@ struct JFWAlarm : OSAlarm {
 	void setThread(OSThread* thread) { mThread = thread; }
 
 	static JSUList<JFWAlarm> sList;
-	OSThread* mThread;
-	JSULink<JFWAlarm> mLink;
+
+	// _00-_28 = OSAlarm
+	OSThread* mThread;       // _28
+	JSULink<JFWAlarm> mLink; // _2C
 };
 
 #endif

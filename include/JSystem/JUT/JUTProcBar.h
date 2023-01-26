@@ -7,15 +7,7 @@
 class JUTProcBar {
 public:
 	struct CTime {
-		/*
-		 * --INFO--
-		 * Address:	8002EFE0
-		 * Size:	000014
-		 */
-		CTime()
-		{ // weak
-			clear();
-		};
+		CTime() { clear(); }
 
 		void clear()
 		{
@@ -24,19 +16,20 @@ public:
 			_0C   = 0;
 		}
 
-		void start(u8 p1, u8 p2, u8 p3)
+		void start(u8 red, u8 green, u8 blue)
 		{
-			mR         = p1;
-			mG         = p2;
-			mB         = p3;
+			mR         = red;
+			mG         = green;
+			mB         = blue;
 			mStartTick = OSGetTick();
 		}
 
 		void end()
 		{
 			mCost = OSTicksToMicroseconds(OSDiffTick(OSGetTick(), mStartTick));
-			if (mCost == 0)
+			if (mCost == 0) {
 				mCost = 1;
+			}
 		}
 
 		void accumePeek()
@@ -47,18 +40,15 @@ public:
 			}
 		}
 
-		int calcBarSize(int p1, int p2) // fabricated
-		{
-			return mCost * p1 / p2;
-		}
+		int calcBarSize(int p1, int p2) { return mCost * p1 / p2; }
 
-		u32 mStartTick;
-		u32 mCost;
-		u32 _08;
-		u32 _0C;
-		u8 mR;
-		u8 mG;
-		u8 mB;
+		u32 mStartTick; // _00
+		u32 mCost;      // _04
+		u32 _08;        // _08
+		u32 _0C;        // _0C
+		u8 mR;          // _10
+		u8 mG;          // _11
+		u8 mB;          // _12
 	};
 
 	struct CParamSet {
@@ -73,11 +63,11 @@ public:
 			mPosY = y;
 		}
 
-		/* 0x00 */ int mBarWidth;
-		/* 0x04 */ int mPosX;
-		/* 0x08 */ int mPosY;
-		/* 0x0C */ int mWidth;
-		/* 0x10 */ int mUserPosition;
+		int mBarWidth;     // _00
+		int mPosX;         // _04
+		int mPosY;         // _08
+		int mWidth;        // _0C
+		int mUserPosition; // _10
 	};
 
 	JUTProcBar();
@@ -95,10 +85,7 @@ public:
 	void adjustMeterLength(u32, f32*, f32, f32, int*);
 	void getUnuseUserBar();
 
-	inline u32 calcGPUTime()
-	{ // fabricated
-		return mGp.mCost - mGpWait.mCost;
-	}
+	inline u32 calcGPUTime() { return mGp.mCost - mGpWait.mCost; }
 
 	void setVisible(bool visible) { mVisible = visible; }
 	void setVisibleHeapBar(bool visible) { mHeapBarVisible = visible; }
@@ -138,8 +125,6 @@ public:
 	int _128;             // _128
 	JKRHeap* mWatchHeap;  // _12C
 	bool mHeapBarVisible; // _130
-
-private:
-}; // 0x134 size
+};                        // 0x134 size
 
 #endif

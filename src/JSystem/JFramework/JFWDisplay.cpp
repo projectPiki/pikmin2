@@ -26,10 +26,9 @@ JFWDisplay* JFWDisplay::sManager;
  * Address:	........
  * Size:	0000A0
  */
-void JFWDisplay::ctor_subroutine(bool p1)
+void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 {
-	// UNUSED FUNCTION
-	mEnableAlpha        = p1;
+	mIsAlphaEnabled     = doEnableAlpha;
 	_26                 = 3;
 	_08                 = TCOLOR_BLACK;
 	_0C                 = 0xFFFFFF;
@@ -54,10 +53,9 @@ void JFWDisplay::ctor_subroutine(bool p1)
  * Address:	........
  * Size:	0000E0
  */
-JFWDisplay::JFWDisplay(JKRHeap* heap, JUTXfb::EXfbNumber bufferCount, bool p3)
+JFWDisplay::JFWDisplay(JKRHeap* heap, JUTXfb::EXfbNumber bufferCount, bool doEnableAlpha)
 {
-	// UNUSED FUNCTION
-	ctor_subroutine(p3);
+	ctor_subroutine(doEnableAlpha);
 	mXfb = JUTXfb::createManager(heap, bufferCount);
 }
 
@@ -111,13 +109,14 @@ JFWDisplay::~JFWDisplay()
  * Address:	80089B28
  * Size:	00011C
  */
-JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj* renderModeObj, JKRHeap* heap, JUTXfb::EXfbNumber bufferCount, bool p4)
+JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj* renderModeObj, JKRHeap* heap, JUTXfb::EXfbNumber bufferCount,
+                                      bool doEnableAlpha)
 {
 	if (renderModeObj != nullptr) {
 		JUTVideo::getManager()->setRenderMode(renderModeObj);
 	}
 	if (sManager == nullptr) {
-		sManager = new JFWDisplay(heap, bufferCount, p4);
+		sManager = new JFWDisplay(heap, bufferCount, doEnableAlpha);
 	}
 	return sManager;
 }
@@ -197,7 +196,7 @@ void JFWDisplay::prepareCopyDisp()
 	GXSetCopyClamp((GXFBClamp)_26);
 	GXSetDispCopyGamma((GXGamma)_14);
 	GXSetZMode(GX_ENABLE, GX_LTEQUAL, GX_ENABLE);
-	if (mEnableAlpha) {
+	if (mIsAlphaEnabled) {
 		GXSetAlphaUpdate(GX_ENABLE);
 	}
 }
@@ -315,7 +314,7 @@ void JFWDisplay::preGX()
 		GXSetPixelFmt(GX_PF_RGB565_Z16, GX_ZC_LINEAR);
 		GXSetDither(GX_ENABLE);
 	} else {
-		if (mEnableAlpha) {
+		if (mIsAlphaEnabled) {
 			GXSetPixelFmt(GX_PF_RGBA6_Z24, GX_ZC_LINEAR);
 			GXSetDither(GX_ENABLE);
 		} else {
@@ -367,9 +366,7 @@ void JFWDisplay::beginRender()
 {
 	JUTProcBar::getManager()->wholeLoopEnd();
 	JUTProcBar::getManager()->wholeLoopStart();
-	// if (_40) {
 	JUTProcBar::getManager()->idleStart();
-	//}
 
 	waitForTick(mTickRate, mSecondsPer60Frames);
 	JUTVideo::getManager()->waitRetraceIfNeed();
@@ -379,11 +376,8 @@ void JFWDisplay::beginRender()
 	_2C      = tick;
 	_34      = _2C - JUTVideo::getVideoLastTick();
 
-	// if (_40) {
 	JUTProcBar::getManager()->idleEnd();
-	//}
 
-	// if(_40) {
 	JUTProcBar::getManager()->gpStart();
 	JUTXfb* xfbMgr = JUTXfb::getManager();
 	switch (xfbMgr->getBufferNum()) {
@@ -405,12 +399,8 @@ void JFWDisplay::beginRender()
 	default:
 		break;
 	}
-	//}
 
-	// if (_40) {
-	// clearEfb();
 	preGX();
-	//}
 }
 
 /*
@@ -446,7 +436,6 @@ void JFWDisplay::endFrame()
 {
 	JUTProcBar::getManager()->cpuEnd();
 
-	// if (_40) {
 	JUTProcBar::getManager()->gpWaitStart();
 	switch (JUTXfb::getManager()->getBufferNum()) {
 	case JUTXfb::SingleBuffer:
@@ -465,7 +454,6 @@ void JFWDisplay::endFrame()
 
 	JUTProcBar::getManager()->gpWaitEnd();
 	JUTProcBar::getManager()->gpEnd();
-	//}
 
 	static bool init;
 	static u32 prevFrame = VIGetRetraceCount();
@@ -695,7 +683,7 @@ void JFWDisplay::clearEfb(int p1, int p2, int p3, int p4, _GXColor color)
 	GXSetZCompLoc(GX_DISABLE);
 	GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_NOOP);
 
-	if (mEnableAlpha) {
+	if (mIsAlphaEnabled) {
 		GXSetAlphaUpdate(GX_ENABLE);
 		GXSetDstAlpha(GX_ENABLE, 0);
 	}
@@ -717,7 +705,7 @@ void JFWDisplay::clearEfb(int p1, int p2, int p3, int p4, _GXColor color)
 
 	GXSetZTexture(GX_ZT_DISABLE, GX_CTF_Z8L, 0);
 	GXSetZCompLoc(GX_ENABLE);
-	if (mEnableAlpha) {
+	if (mIsAlphaEnabled) {
 		GXSetDstAlpha(GX_DISABLE, 0);
 	}
 }
@@ -760,7 +748,7 @@ void JFWDisplay::calcCombinationRatio()
  * Address:	........
  * Size:	000054
  */
-void JFWDisplay::frameToTick(float)
+void JFWDisplay::frameToTick(f32)
 {
 	// UNUSED FUNCTION
 }
