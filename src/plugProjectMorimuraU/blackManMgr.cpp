@@ -89,7 +89,7 @@ SysShape::Model* Mgr::createModel()
 	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
 		const char* name = mModelData->mMaterialTable._0C->getName(i);
 		if (!strcmp(name, "kage_mat")) {
-			model->mJ3dModel->mMatPackets[i]._2C->newDifferedDisplayList(0x05021200);
+			model->mJ3dModel->mMatPackets[i].mShapePacket->newDifferedDisplayList(0x05021200);
 		}
 	}
 

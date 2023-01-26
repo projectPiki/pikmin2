@@ -13,12 +13,16 @@ namespace Sys {
  * @size{0x2C}
  */
 struct DrawBuffer : public CNode {
+	enum DrawBufferFlags {
+		DRAWBUFF_Unk1 = 0x1,
+	};
+
 	struct CreateArg {
-		u32 _00;           // _00
-		u16 _04;           // _04
-		const char* mName; // _08
-		unknown _0C;       // _0C
-		unknown _10;       // _10
+		u32 mSize;                          // _00
+		u16 mFlags;                         // _04
+		const char* mName;                  // _08
+		J3DDrawBuffer::ESortType mSortType; // _0C
+		J3DDrawBuffer::EDrawType mDrawType; // _10
 	};
 
 	DrawBuffer();
@@ -29,11 +33,15 @@ struct DrawBuffer : public CNode {
 	void draw();
 	void frameInit();
 
-	BitFlag<u16> _18;   // _18
-	J3DDrawBuffer* _1C; // _1C
-	int _20;            // _20
-	u32 _24;            // _24
-	u32 _28;            // _28
+	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
+	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
+
+	BitFlag<u16> mFlags;                // _18
+	J3DDrawBuffer* mBuffer;             // _1C
+	int mIndex;                         // _20
+	J3DDrawBuffer::ESortType mSortType; // _24
+	J3DDrawBuffer::EDrawType mDrawType; // _28
 };
 
 /**

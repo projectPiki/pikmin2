@@ -12,9 +12,9 @@ struct J3DAnmTransformKeyTable;
 
 struct J3DAnmTransform : public J3DAnmBase {
 	inline J3DAnmTransform()
-	    : _0C(nullptr)
-	    , _10(nullptr)
-	    , _14(nullptr)
+	    : mScaleVals(nullptr)
+	    , mRotationVals(nullptr)
+	    , mTranslationVals(nullptr)
 	    , _18(0)
 	    , _1A(0)
 	    , _1C(0)
@@ -22,29 +22,22 @@ struct J3DAnmTransform : public J3DAnmBase {
 	{
 	}
 
-	/**
-	 * @reifiedAddress{80069CE0}
-	 * @reifiedFile{JSystem/J3D/J3DAnimation.cpp}
-	 */
-	virtual ~J3DAnmTransform() { } // _08 (weak)
-	/**
-	 * @reifiedAddress{80069D3C}
-	 * @reifiedFile{JSystem/J3D/J3DAnimation.cpp}
-	 */
+	virtual ~J3DAnmTransform() { }     // _08 (weak)
 	virtual J3DAnmKind getKind() const // _0C (weak)
 	{
 		return J3DAnmKind_Transform;
 	}
-	virtual void getTransform(unsigned short, J3DTransformInfo*) const = 0; // _10
-	// virtual void _14() = 0;       // _14
+	virtual void getTransform(u16, J3DTransformInfo*) const = 0; // _10
 
-	f32* _0C; // _0C
-	s16* _10; // _10
-	f32* _14; // _14
-	u16 _18;  // _18
-	u16 _1A;  // _1A
-	u16 _1C;  // _1C
-	u16 _1E;  // _1E
+	// _00     = VTBL
+	// _00-_0C = J3DAnmBase
+	f32* mScaleVals;       // _0C
+	s16* mRotationVals;    // _10
+	f32* mTranslationVals; // _14
+	u16 _18;               // _18
+	u16 _1A;               // _1A
+	u16 _1C;               // _1C
+	u16 _1E;               // _1E
 };
 
 /**
@@ -52,15 +45,17 @@ struct J3DAnmTransform : public J3DAnmBase {
  */
 struct J3DAnmTransformFull : public J3DAnmTransform {
 	inline J3DAnmTransformFull()
-	    : _20(nullptr)
+	    : mTable(nullptr)
 	{
 	}
 
 	virtual ~J3DAnmTransformFull() { }                                      // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_TransformFull; } // _0C (weak)
-	virtual void getTransform(unsigned short, J3DTransformInfo*) const;     // _10
+	virtual void getTransform(u16, J3DTransformInfo*) const;                // _10
 
-	J3DAnmTransformFullTable* _20;
+	// _00     = VTBL
+	// _00-_20 = J3DAnmTransform
+	J3DAnmTransformFullTable* mTable; // _20
 };
 
 struct J3DAnmTransformFullData : J3DAnmFullData {
@@ -70,6 +65,7 @@ struct J3DAnmTransformFullData : J3DAnmFullData {
 	void* _1C;   // _1C
 	void* _20;   // _20
 };
+
 struct J3DAnmTransformFullTable {
 	typedef u16 Row[2];
 	Row _00[3][3]; // _00
@@ -84,25 +80,23 @@ struct J3DAnmTransformKey : public J3DAnmTransform {
 	inline J3DAnmTransformKey()
 	    : J3DAnmTransform()
 	    , _20(0)
-	    , _24(nullptr)
+	    , mTable(nullptr)
 	{
 	}
 
-	virtual ~J3DAnmTransformKey() { } // _08 (weak)
-	/**
-	 * @reifiedAddress{800743DC}
-	 * @reifiedFile{JSystem/J3D/J3DAnmLoader.cpp}
-	 */
+	virtual ~J3DAnmTransformKey() { }  // _08 (weak)
 	virtual J3DAnmKind getKind() const // _0C (weak)
 	{
 		return J3DAnmKind_TransformKey;
 	}
-	virtual void getTransform(unsigned short p1, J3DTransformInfo* p2) const { calcTransform(mFTime, p1, p2); } // _10 (weak)
+	virtual void getTransform(u16 p1, J3DTransformInfo* p2) const { calcTransform(mCurrentFrame, p1, p2); } // _10 (weak)
 
-	void calcTransform(f32, unsigned short, J3DTransformInfo*) const;
+	void calcTransform(f32, u16, J3DTransformInfo*) const;
 
-	int _20;                      // _20
-	J3DAnmTransformKeyTable* _24; // _24
+	// _00     = VTBL
+	// _00-_20 = J3DAnmTransform
+	int _20;                         // _20
+	J3DAnmTransformKeyTable* mTable; // _24
 };
 
 struct J3DAnmTransformKeyData : public J3DAnmFullData {
@@ -112,6 +106,7 @@ struct J3DAnmTransformKeyData : public J3DAnmFullData {
 	void* _1C;   // _1C
 	void* _20;   // _20
 };
+
 struct J3DAnmTransformKeyTable {
 	J3DAnmKeyTableBase _00[3];
 };

@@ -14,9 +14,9 @@ void E3DAnimRes::load(J3DModelData* param_1, JKRArchive* param_2, char* param_3)
 
 	P2ASSERTLINE(20, pvVar1);
 	pAnmTransform_0x0 = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(pvVar1);
-	pMtxCalcAnm_0x4   = J3DNewMtxCalcAnm((param_1->mJointTree).m_08 & 0xf, pAnmTransform_0x0);
+	pMtxCalcAnm_0x4   = J3DNewMtxCalcAnm((param_1->mJointTree).mFlags & 0xf, pAnmTransform_0x0);
 	float_0x8         = 0.0f;
-	float_0xC         = pAnmTransform_0x0->mTime - 2.0f;
+	float_0xC         = pAnmTransform_0x0->mMaxFrame - 2.0f;
 	mLoopStart        = float_0x8;
 	mLoopEnd          = float_0xC;
 	float_0x18        = sys->mDeltaTime * 60.0f * 0.5f;

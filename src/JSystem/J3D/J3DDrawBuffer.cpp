@@ -339,19 +339,19 @@ bool J3DDrawBuffer::entryMatAnmSort(J3DMatPacket* packet)
 	if (packet->_3C == 0) {
 		return entryMatSort(packet);
 	}
-	packet->clearListPointers();
-	packet->_2C->clearListPointers();
+	packet->drawClear();
+	packet->_2C->drawClear();
 	if (_00[index] == nullptr) {
 		_00[index] = packet;
 	} else {
-		for (J3DMatPacket* iPacket = _00[index]; iPacket != nullptr; iPacket = (J3DMatPacket*)iPacket->_04) {
+		for (J3DMatPacket* iPacket = _00[index]; iPacket != nullptr; iPacket = (J3DMatPacket*)iPacket->mNextPacket) {
 			if (iPacket->_3C == packet->_3C) {
 				iPacket->addShapePacket(packet->_2C);
 				return false;
 			}
 		}
-		packet->_04 = _00[index];
-		_00[index]  = packet;
+		packet->mNextPacket = _00[index];
+		_00[index]          = packet;
 	}
 	return true;
 	/*
@@ -599,8 +599,8 @@ lbl_80065FA4:
  */
 bool J3DDrawBuffer::entryModelSort(J3DMatPacket* packet)
 {
-	packet->clearListPointers();
-	packet->_2C->clearListPointers();
+	packet->drawClear();
+	packet->_2C->drawClear();
 	if (_20 != nullptr) {
 		_20->addChildPacket(packet);
 		return true;
@@ -615,8 +615,8 @@ bool J3DDrawBuffer::entryModelSort(J3DMatPacket* packet)
  */
 bool J3DDrawBuffer::entryInvalidSort(J3DMatPacket* packet)
 {
-	packet->clearListPointers();
-	packet->_2C->clearListPointers();
+	packet->drawClear();
+	packet->_2C->drawClear();
 	if (_20 != nullptr) {
 		_20->addChildPacket(packet->_2C);
 		return true;
@@ -631,10 +631,10 @@ bool J3DDrawBuffer::entryInvalidSort(J3DMatPacket* packet)
  */
 bool J3DDrawBuffer::entryNonSort(J3DMatPacket* packet)
 {
-	packet->clearListPointers();
-	packet->_2C->clearListPointers();
-	packet->_04 = _00[0];
-	_00[0]      = packet;
+	packet->drawClear();
+	packet->_2C->drawClear();
+	packet->mNextPacket = _00[0];
+	_00[0]              = packet;
 	return true;
 }
 
@@ -678,7 +678,7 @@ void J3DDrawBuffer::draw() const
 void J3DDrawBuffer::drawHead() const
 {
 	for (int i = 0; i < _04; i++) {
-		for (J3DPacket* packet = _00[i]; packet != nullptr; packet = packet->_04) {
+		for (J3DPacket* packet = _00[i]; packet != nullptr; packet = packet->mNextPacket) {
 			packet->draw();
 		}
 	}

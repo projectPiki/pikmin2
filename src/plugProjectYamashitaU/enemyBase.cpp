@@ -3052,7 +3052,7 @@ void EnemyBase::startMotion()
  * Address:	80107220
  * Size:	000058
  */
-f32 EnemyBase::getMotionFrameMax() { return mAnimator->getAnimator().mAnimInfo->mAnm->mTime; }
+f32 EnemyBase::getMotionFrameMax() { return mAnimator->getAnimator().mAnimInfo->mAnm->mMaxFrame; }
 
 /*
  * --INFO--

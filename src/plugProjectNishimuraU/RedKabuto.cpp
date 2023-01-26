@@ -39,7 +39,7 @@ void Obj::changeMaterial()
 		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
 		j3dSys.mMatPacket     = packet;
 		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
-		material->diff(packet->_2C->_34);
+		material->diff(packet->mShapePacket->mDiffFlag);
 	}
 }
 } // namespace RedKabuto

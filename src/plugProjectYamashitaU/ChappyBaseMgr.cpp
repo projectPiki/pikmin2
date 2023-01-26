@@ -79,7 +79,7 @@ SysShape::Model* Mgr::createModel()
 	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
 		const char* name = mModelData->mMaterialTable._0C->getName(i);
 		if (!strcmp(name, "osiri_1_2") || !strcmp(name, "atama_2")) {
-			model->mJ3dModel->mMatPackets[i]._2C->newDifferedDisplayList(0x04020000);
+			model->mJ3dModel->mMatPackets[i].mShapePacket->newDifferedDisplayList(0x04020000);
 		}
 	}
 

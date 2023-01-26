@@ -39,27 +39,32 @@ enum J3DAnmAttr { J3DAA_UNKNOWN_0 = 0 };
 
 struct J3DAnmBase {
 	inline J3DAnmBase()
-	    : _04(0)
+	    : mAttribute(0)
 	    , _05(0)
-	    , mTime(0)
-	    , mFTime(0.0f)
+	    , mMaxFrame(0)
+	    , mCurrentFrame(0.0f)
 	{
 	}
 
 	virtual ~J3DAnmBase() { }               // _08 (weak)
 	virtual J3DAnmKind getKind() const = 0; // _0C
 
-	// _00 VTBL
-	u8 _04;     // _04
-	u8 _05;     // _05
-	s16 mTime;  // _06
-	f32 mFTime; // _08
+	u8 getAttribute() const { return mAttribute; }
+	s16 getFrameMax() const { return mMaxFrame; }
+	f32 getFrame() const { return mCurrentFrame; }
+	void setFrame(f32 frame) { mCurrentFrame = frame; }
+
+	// _00 = VTBL
+	u8 mAttribute;     // _04
+	u8 _05;            // _05
+	s16 mMaxFrame;     // _06
+	f32 mCurrentFrame; // _08
 };
 
 /**
  * @fabricated
  */
-struct J3DAnmFullData : J3DFileBlockBase {
+struct J3DAnmFullData : public J3DFileBlockBase {
 	u8 _08;  // _08
 	u8 _09;  // _09
 	s16 _0A; // _0A
@@ -68,9 +73,6 @@ struct J3DAnmFullData : J3DFileBlockBase {
 };
 
 struct J3DAnmKeyTableBase {
-	u16 _00; // _00
-	u16 _02; // _02
-	s16 _04; // _04
 
 	/**
 	 * @fabricated
@@ -78,15 +80,15 @@ struct J3DAnmKeyTableBase {
 	 */
 	inline void getColorField(f32 fTime, s16* result, s16* values)
 	{
-		switch (_00) {
+		switch (mMaxFrame) {
 		case 0:
 			*result = 0;
 			break;
 		case 1:
-			*result = values[_02];
+			*result = values[mOffset];
 			break;
 		default: {
-			f32 interpolation = J3DGetKeyFrameInterpolation(fTime, this, values + _02);
+			f32 interpolation = J3DGetKeyFrameInterpolation(fTime, this, values + mOffset);
 			if (-1024.0f > interpolation) {
 				*result = -1024;
 			} else if (interpolation > 1023.0f) {
@@ -98,6 +100,10 @@ struct J3DAnmKeyTableBase {
 		}
 		}
 	}
+
+	u16 mMaxFrame; // _00
+	u16 mOffset;   // _02
+	s16 mType;     // _04
 };
 
 #endif

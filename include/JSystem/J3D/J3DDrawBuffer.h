@@ -6,18 +6,37 @@
 
 struct J3DPacket;
 struct J3DMatPacket;
+struct J3DDrawBuffer;
+
+typedef int (J3DDrawBuffer::*sortFunc)(J3DMatPacket*);
+typedef void (J3DDrawBuffer::*drawFunc)() const;
 
 /**
  * @size{0x24}
  */
 struct J3DDrawBuffer {
-	inline J3DDrawBuffer(unsigned long size)
+	enum EDrawType {
+		J3DDRAW_Head = 0,
+		J3DDRAW_Tail = 1,
+	};
+
+	enum ESortType {
+		J3DSORT_Mat     = 0,
+		J3DSORT_MatAnm  = 1,
+		J3DSORT_Z       = 2,
+		J3DSORT_Model   = 3,
+		J3DSORT_INVALID = 4,
+		J3DSORT_NonSort = 5,
+	};
+
+	inline J3DDrawBuffer(u32 size)
 	{
 		initialize();
 		allocBuffer(size);
 	}
+
 	void initialize();
-	J3DErrType allocBuffer(unsigned long);
+	J3DErrType allocBuffer(u32);
 	void frameInit();
 	bool entryMatSort(J3DMatPacket*);
 	bool entryMatAnmSort(J3DMatPacket*);
@@ -29,15 +48,23 @@ struct J3DDrawBuffer {
 	void drawHead() const;
 	void drawTail() const;
 
-	J3DMatPacket** _00; // _00
-	u32 _04;            // _04
-	u32 _08;            // _08
-	int _0C;            // _0C
-	f32 _10;            // _10
-	f32 _14;            // _14
-	f32 _18;            // _18
-	u32 _1C;            // _1C
-	J3DPacket* _20;     // _20
+	inline void calcZRatio();
+	void setNonSort() { mSortType = J3DSORT_NonSort; }
+	void setZSort() { mSortType = J3DSORT_Z; }
+
+	static sortFunc sortFuncTable[6];
+	static drawFunc drawFuncTable[2];
+	static int entryNum;
+
+	J3DMatPacket** mBuffer;     // _00
+	u32 mBufferSize;            // _04
+	EDrawType mDrawType;        // _08
+	ESortType mSortType;        // _0C
+	f32 mZNear;                 // _10
+	f32 mZFar;                  // _14
+	f32 mZRatio;                // _18
+	Mtx* mZMtx;                 // _1C
+	J3DPacket* mCallBackPacket; // _20
 };
 
 #endif

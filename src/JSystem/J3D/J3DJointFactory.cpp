@@ -23,12 +23,12 @@ J3DJoint* J3DJointFactory::create(int jointIndex)
 {
 	J3DJoint* joint             = new J3DJoint();
 	joint->mJointIdx            = jointIndex;
-	joint->_16                  = mInitData[mIndexMap[jointIndex]]._00;
+	joint->mKind                = mInitData[mIndexMap[jointIndex]].mKind;
 	joint->mIgnoreParentScaling = mInitData[mIndexMap[jointIndex]].mIgnoreParentScaling;
 	joint->mTransformInfo       = mInitData[mIndexMap[jointIndex]].mTransformInfo;
-	joint->_38                  = mInitData[mIndexMap[jointIndex]]._24;
-	joint->mYRotation           = mInitData[mIndexMap[jointIndex]]._28;
-	joint->_48                  = mInitData[mIndexMap[jointIndex]]._34;
+	joint->mRadius              = mInitData[mIndexMap[jointIndex]].mRadius;
+	joint->mMin                 = mInitData[mIndexMap[jointIndex]].mMin;
+	joint->mMax                 = mInitData[mIndexMap[jointIndex]].mMax;
 	joint->mMtxCalc             = nullptr;
 	if (joint->mIgnoreParentScaling == 0xFF) {
 		joint->mIgnoreParentScaling = 0;

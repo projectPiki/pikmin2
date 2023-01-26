@@ -10,15 +10,19 @@
 #include "types.h"
 
 struct J3DDrawBuffer;
-
+struct J3DTexMtxObj;
+struct J3DTexture;
+struct J3DMaterialAnm;
 struct J3DShapePacket;
+struct J3DMtxBuffer;
+struct J3DModel;
 
 // TODO: Could this use TLinkList?
 struct J3DPacket {
 	inline J3DPacket()
-	    : _04(nullptr)
-	    , _08(nullptr)
-	    , _0C(0)
+	    : mNextPacket(nullptr)
+	    , mChildPacket(nullptr)
+	    , mUserArea(0)
 	{
 	}
 
@@ -28,24 +32,32 @@ struct J3DPacket {
 
 	void addChildPacket(J3DPacket*);
 
-	/** @fabricated */
-	void clearListPointers()
+	J3DPacket* getNextPacket() const { return mNextPacket; }
+	void setNextPacket(J3DPacket* i_packet) { mNextPacket = i_packet; }
+
+	void drawClear()
 	{
-		_04 = nullptr;
-		_08 = nullptr;
+		mNextPacket  = nullptr;
+		mChildPacket = nullptr;
 	}
 
-	// VTBL _00
-	J3DPacket* _04; // _04
-	J3DPacket* _08; // _08
-	u32 _0C;        // _0C
+	void setUserArea(u32 area) { mUserArea = area; }
+
+	// _00 = VTBL
+	J3DPacket* mNextPacket;  // _04
+	J3DPacket* mChildPacket; // _08
+	u32 mUserArea;           // _0C
 };
 
 struct J3DDrawPacket : public J3DPacket {
+	enum DrawPacketFlags {
+		J3DDP_IsLocked = 0x1,
+	};
+
 	inline J3DDrawPacket()
-	    : _10(0)
+	    : mFlags(0)
 	    , mDisplayList(nullptr)
-	    , _24(nullptr)
+	    , mTexMtxObj(nullptr)
 	{
 	}
 
@@ -55,16 +67,29 @@ struct J3DDrawPacket : public J3DPacket {
 	J3DErrType newDisplayList(u32);
 	J3DErrType newSingleDisplayList(u32);
 
-	u32 _10;                         // _10
-	u8 _14[0xC];                     // _14
+	bool checkFlag(u32 flag) const { return mFlags & flag; }
+	void onFlag(u32 flag) { mFlags |= flag; }
+	void offFlag(u32 flag) { mFlags &= ~flag; }
+	void lock() { onFlag(J3DDP_IsLocked); }
+	void unlock() { offFlag(J3DDP_IsLocked); }
+	J3DTexMtxObj* getTexMtxObj() const { return mTexMtxObj; }
+
+	// _00     = VTBL
+	// _00-_10 = J3DPacket
+	u32 mFlags;                      // _10
+	u8 _14[0xC];                     // _14, unknown
 	J3DDisplayListObj* mDisplayList; // _20
-	void* _24;                       // _24
+	J3DTexMtxObj* mTexMtxObj;        // _24
 };
 
 /**
  * @size{0x40}
  */
 struct J3DMatPacket : public J3DDrawPacket {
+	enum MatPacketFlags {
+		J3DMP_IsChanged = 0x80000000,
+	};
+
 	J3DMatPacket();
 
 	virtual bool entry(J3DDrawBuffer*); // _08 (weak)
@@ -76,12 +101,20 @@ struct J3DMatPacket : public J3DDrawPacket {
 	u32 endDiff();
 	bool isSame(J3DMatPacket*) const;
 
-	struct J3DShapePacket* _28; // _28
-	struct J3DShapePacket* _2C; // _2C
-	struct J3DMaterial* _30;    // _30
-	u32 _34;                    // _34
-	u32 _38;                    // _38
-	u32 _3C;                    // _3C
+	J3DMaterial* getMaterial() const { return mMaterial; }
+	J3DShapePacket* getShapePacket() const { return mShapePacket; }
+	void setShapePacket(J3DShapePacket* packet) { mShapePacket = packet; }
+	void setInitShapePacket(J3DShapePacket* packet) { mInitShapePacket = packet; }
+	bool isChanged() const { return mDiffFlag & J3DMP_IsChanged; }
+
+	// _00     = VTBL
+	// _00-_28 = J3DDrawPacket
+	J3DShapePacket* mInitShapePacket; // _28
+	J3DShapePacket* mShapePacket;     // _2C
+	J3DMaterial* mMaterial;           // _30
+	u32 mDiffFlag;                    // _34
+	J3DTexture* mTexture;             // _38
+	J3DMaterialAnm* mMaterialAnm;     // _3C
 };
 
 struct J3DShapePacket_0x24 {
@@ -110,11 +143,22 @@ struct J3DShapePacket : public J3DDrawPacket {
 	int calcDifferedBufferSize(u32);
 	void drawFast();
 
-	J3DShape* _28;            // _28
-	struct J3DMtxBuffer* _2C; // _2C
-	Mtx* _30;                 // _30
-	u32 _34;                  // _34
-	struct J3DModel* _38;     // _38
+	void setShape(J3DShape* pShape) { mShape = pShape; }
+	void setModel(J3DModel* pModel) { mModel = pModel; }
+	void setMtxBuffer(J3DMtxBuffer* pMtxBuffer) { mMtxBuffer = pMtxBuffer; }
+	void setBaseMtxPtr(Mtx* pMtx) { mBaseMtxPtr = pMtx; }
+
+	J3DShape* getShape() const { return mShape; }
+	J3DModel* getModel() const { return mModel; }
+	Mtx* getBaseMtxPtr() const { return mBaseMtxPtr; }
+
+	// _00     = VTBL
+	// _00-_28 = J3DDrawPacket
+	J3DShape* mShape;         // _28
+	J3DMtxBuffer* mMtxBuffer; // _2C
+	Mtx* mBaseMtxPtr;         // _30
+	u32 mDiffFlag;            // _34
+	J3DModel* mModel;         // _38
 };
 
 #endif

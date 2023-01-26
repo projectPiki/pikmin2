@@ -131,7 +131,7 @@ void J3DMaterialAnm::calc(J3DMaterial* material) const
 		if (mTexMtxAnmList[i]._02 != 0) {
 			J3DTextureSRTInfo* info  = &material->mTexGenBlock->getTexMtx(i)->mSrtInfo;
 			J3DAnmTextureSRTKey* anm = mTexMtxAnmList[i].mAnm;
-			anm->calcTransform(anm->mFTime, mTexMtxAnmList[i].mIndex, info);
+			anm->calcTransform(anm->mCurrentFrame, mTexMtxAnmList[i].mIndex, info);
 		}
 
 		// if (mTexMtxAnmList[i]._02 != 0) {

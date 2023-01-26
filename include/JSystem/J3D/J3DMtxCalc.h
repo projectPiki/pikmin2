@@ -22,24 +22,21 @@ struct J3DMtxCalc {
 	virtual void init(const Vec&, const f32 (&)[3][4]) = 0;        // _24
 	virtual void calc()                                = 0;        // _28
 
-	/**
-	 * @reifiedAddress{80088650}
-	 * @reifiedFile{JSystem/J3D/J3DJointTree.cpp}
-	 */
 	static void setMtxBuffer(J3DMtxBuffer* buffer) { mMtxBuffer = buffer; }
 
-	// _00 VTBL
+	static J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
+	static J3DJoint* getJoint() { return mJoint; }
 
 	static J3DMtxBuffer* mMtxBuffer;
 	static struct J3DJoint* mJoint;
+
+	// _00 = VTBL
 };
 
 struct J3DMtxCalcNoAnmBase : public J3DMtxCalc {
-	/**
-	 * @reifiedAddress{80070510}
-	 * @reifiedFile{JSystem/J3D/J3DModelLoader.cpp}
-	 */
 	virtual ~J3DMtxCalcNoAnmBase() { } // _08 (weak)
+
+	// _00 = VTBL
 };
 
 template <typename Calc, typename Init>
@@ -47,6 +44,8 @@ struct J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
 	virtual ~J3DMtxCalcNoAnm() { }                                                  // _08
 	virtual void init(const Vec& p1, const f32 (&p2)[3][4]) { Init::init(p1, p2); } // _24
 	virtual void calc() { Calc::calcTransform(mJoint->mTransformInfo); }            // _28
+
+	// _00 = VTBL
 };
 
 struct J3DMtxCalcAnmBase : public J3DMtxCalc {
@@ -60,6 +59,7 @@ struct J3DMtxCalcAnmBase : public J3DMtxCalc {
 	virtual void setAnmTransform(J3DAnmTransform*); // _0C
 	virtual J3DAnmTransform* getAnmTransform();     // _10
 
+	// _00 = VTBL
 	J3DAnmTransform* _04; // _04
 };
 
@@ -88,6 +88,8 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 		// Calc::calcTransform(pInfo);
 	}
 
+	// _00 = VTBL
+	// _04 = J3DAnmTransform*
 	u8 _08[4]; // _08
 };
 
@@ -100,6 +102,8 @@ struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
 	virtual void setWeight(unsigned char, f32);                    // _1C (weak)
 	virtual void getWeight(unsigned char) const;                   // _20 (weak)
 
+	// _00 = VTBL
+	// _04 = J3DAnmTransform*
 	J3DAnmTransform* _08; // _08
 	J3DAnmTransform* _0C; // _0C
 	J3DAnmTransform* _10; // _10

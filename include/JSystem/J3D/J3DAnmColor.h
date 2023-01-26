@@ -8,6 +8,7 @@
 
 struct J3DAnmColorKeyTable;
 struct J3DAnmColorFullTable;
+struct J3DModelData;
 
 struct J3DAnmColor : public J3DAnmBase {
 	inline J3DAnmColor()
@@ -15,30 +16,34 @@ struct J3DAnmColor : public J3DAnmBase {
 	    , _0E(0)
 	    , _10(0)
 	    , _12(0)
-	    , _14(0)
-	    , _18(nullptr)
+	    , mUpdateMaterialNum(0)
+	    , mUpdateMaterialID(nullptr)
 	    , mNameTab()
 	{
 	}
 
 	virtual ~J3DAnmColor() { }                                      // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_Color; } // _0C (weak)
-	virtual void getColor(unsigned short, GXColor*) const { }       // _10 (weak)
+	virtual void getColor(u16, GXColor*) const { }                  // _10 (weak)
 
-	void searchUpdateMaterialID(struct J3DModelData*);
+	void searchUpdateMaterialID(J3DModelData*);
 
-	u16 _0C;             // _0C
-	u16 _0E;             // _0E
-	u16 _10;             // _10
-	u16 _12;             // _12
-	u16 _14;             // _14
-	u16* _18;            // _18
-	JUTNameTab mNameTab; // _1C
+	u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
+	bool isValidUpdateMaterialID(u16 id) const { return mUpdateMaterialID[id] != 0xFFFF; }
+	u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
+
+	// _00     = VTBL
+	// _00-_0C = J3DAnmBase
+	u16 _0C;                // _0C
+	u16 _0E;                // _0E
+	u16 _10;                // _10
+	u16 _12;                // _12
+	u16 mUpdateMaterialNum; // _14
+	u16* mUpdateMaterialID; // _18
+	JUTNameTab mNameTab;    // _1C
 };
 
 struct J3DAnmColorFullTable {
-	const u16 mData[4][2];
-
 	inline void getField(u32 fieldIndex, int p2, u8* result, u8* values)
 	{
 		if (p2 >= mData[fieldIndex][0]) {
@@ -47,6 +52,8 @@ struct J3DAnmColorFullTable {
 			*result = values[mData[fieldIndex][1] + p2];
 		}
 	}
+
+	const u16 mData[4][2]; // _00, R=0, G=1, B=2, A=3 || MaxFrame=0, Offset=1
 };
 
 /**
@@ -58,19 +65,21 @@ struct J3DAnmColorFull : public J3DAnmColor {
 	    , _30(nullptr)
 	    , _34(nullptr)
 	    , _38(nullptr)
-	    , _3C(nullptr)
+	    , mTable(nullptr)
 	{
 	}
 
 	virtual ~J3DAnmColorFull() { }                                      // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_ColorFull; } // _0C (weak)
-	virtual void getColor(unsigned short, GXColor*) const;              // _10
+	virtual void getColor(u16, GXColor*) const;                         // _10
 
-	u8* _2C;                   // _2C
-	u8* _30;                   // _30
-	u8* _34;                   // _34
-	u8* _38;                   // _38
-	J3DAnmColorFullTable* _3C; // _3C
+	// _00     = VTBL
+	// _00-_2C = J3DAnmColor
+	u8* _2C;                      // _2C
+	u8* _30;                      // _30
+	u8* _34;                      // _34
+	u8* _38;                      // _38
+	J3DAnmColorFullTable* mTable; // _3C
 };
 
 struct J3DAnmColorFullData : J3DFileBlockBase {
@@ -104,7 +113,7 @@ struct J3DAnmColorKey : public J3DAnmColor {
 
 	virtual ~J3DAnmColorKey() { }                                      // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_ColorKey; } // _0C (weak)
-	virtual void getColor(unsigned short, GXColor*) const;             // _10
+	virtual void getColor(u16, GXColor*) const;                        // _10
 
 	s16* _2C;                    // _2C
 	s16* _30;                    // _30
@@ -135,7 +144,7 @@ struct J3DAnmColorKeyData : J3DFileBlockBase {
  * @size{0x18}
  */
 struct J3DAnmColorKeyTable {
-	J3DAnmKeyTableBase _00[4];
+	J3DAnmKeyTableBase mColorInfo[4]; // _00, R=0, G=1, B=2, A=3
 };
 
 #endif

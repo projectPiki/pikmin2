@@ -13,27 +13,31 @@
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "types.h"
 
-namespace J3DAnmLoaderDataBase {
-J3DAnmBase* load(const void*);
-}
+struct J3DAnmLoaderDataBase {
+	static J3DAnmBase* load(const void*);
 
-J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(unsigned long, J3DAnmTransform*);
+	// unused/inlined
+	void setResource(J3DAnmBase*, const void*);
+};
+
+J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32, J3DAnmTransform*);
 
 struct J3DAnmLoader {
 	virtual J3DAnmBase* load(const void*)              = 0; // _08
 	virtual void setResource(J3DAnmBase*, const void*) = 0; // _0C
 	virtual ~J3DAnmLoader();                                // _10 (weak)
 
-	// _00 VTBL
+	// _00 = VTBL
 	J3DAnmBase* mAnimation; // _04
 };
 
 struct J3DAnmFullLoader_v15 : public J3DAnmLoader {
+	J3DAnmFullLoader_v15();
+
 	virtual J3DAnmBase* load(const void*);              // _08
 	virtual void setResource(J3DAnmBase*, const void*); // _0C
 	virtual ~J3DAnmFullLoader_v15();                    // _10
 
-	J3DAnmFullLoader_v15();
 	void readAnmTransform(const J3DAnmTransformFullData*);
 	void setAnmTransform(J3DAnmTransformFull*, const J3DAnmTransformFullData*);
 	void readAnmColor(const J3DAnmColorFullData*);
@@ -46,14 +50,18 @@ struct J3DAnmFullLoader_v15 : public J3DAnmLoader {
 	void setAnmCluster(J3DAnmClusterFull*, const J3DAnmClusterFullData*);
 	void readAnmVtxColor(const J3DAnmVtxColorFullData*);
 	void setAnmVtxColor(J3DAnmVtxColorFull*, const J3DAnmVtxColorFullData*);
+
+	// _00 = VTBL
+	// _04 = mAnimation
 };
 
-struct J3DAnmKeyLoader_v15 : J3DAnmLoader {
+struct J3DAnmKeyLoader_v15 : public J3DAnmLoader {
+	J3DAnmKeyLoader_v15();
+
 	virtual J3DAnmBase* load(const void*);              // _08
 	virtual void setResource(J3DAnmBase*, const void*); // _0C
 	virtual ~J3DAnmKeyLoader_v15();                     // _10
 
-	J3DAnmKeyLoader_v15();
 	void readAnmTransform(const J3DAnmTransformKeyData*);
 	void setAnmTransform(J3DAnmTransformKey*, const J3DAnmTransformKeyData*);
 	void readAnmTextureSRT(const J3DAnmTextureSRTKeyData*);
@@ -66,6 +74,9 @@ struct J3DAnmKeyLoader_v15 : J3DAnmLoader {
 	void setAnmTevReg(J3DAnmTevRegKey*, const J3DAnmTevRegKeyData*);
 	void readAnmVtxColor(const J3DAnmVtxColorKeyData*);
 	void setAnmVtxColor(J3DAnmVtxColorKey*, const J3DAnmVtxColorKeyData*);
+
+	// _00 = VTBL
+	// _04 = mAnimation
 };
 
 #endif

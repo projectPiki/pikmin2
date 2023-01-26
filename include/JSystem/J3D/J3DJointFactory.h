@@ -11,20 +11,20 @@ struct J3DJointInitData;
 
 struct J3DJointFactory {
 	J3DJointFactory(const J3DJointBlock& block);
+
 	J3DJoint* create(int jointIndex);
 
 	J3DJointInitData* mInitData; // _00
-	/** Indices into mInitData, indexed by joint number. */
-	u16* mIndexMap; // _04
+	u16* mIndexMap;              // _04, indices into mInitData, indexed by joint number.
 };
 
 struct J3DJointInitData {
-	u16 _00;                         // _00
+	u16 mKind;                       // _00
 	s8 mIgnoreParentScaling;         // _02
 	J3DTransformInfo mTransformInfo; // _04
-	f32 _24;                         // _24
-	JGeometry::TVec3f _28;           // _28
-	JGeometry::TVec3f _34;           // _34
+	f32 mRadius;                     // _24, bounding sphere radius
+	JGeometry::TVec3f mMin;          // _28
+	JGeometry::TVec3f mMax;          // _34
 };
 
 #endif

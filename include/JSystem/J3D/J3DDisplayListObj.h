@@ -7,11 +7,11 @@
 
 struct J3DDisplayListObj {
 	inline J3DDisplayListObj()
-	    : _00(nullptr)
-	    , _04(nullptr)
-	    , _08(0)
-	    , _0C(0)
 	{
+		mDisplayList[0] = nullptr;
+		mDisplayList[1] = nullptr;
+		mSize           = 0;
+		mCapacity       = 0;
 	}
 
 	J3DErrType newDisplayList(u32);
@@ -27,13 +27,15 @@ struct J3DDisplayListObj {
 	// unused/inlined:
 	void swapBuffer();
 
-	u8* _00; // _00
-	u8* _04; // _04
-	u32 _08; // _08
-	int _0C; // _0C
+	u8* getDisplayList(int idx) const { return mDisplayList[idx]; }
+	u32 getDisplayListSize() const { return mSize; }
 
 	static int sInterruptFlag;
 	static GDCurrentDL sGDLObj;
+
+	u8* mDisplayList[2]; // _00
+	u32 mSize;           // _08
+	int mCapacity;       // _0C
 };
 
 #endif
