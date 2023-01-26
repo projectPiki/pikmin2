@@ -56,13 +56,13 @@ JKRArchive* JKRArchive::check_mount_already(long entryNum)
 JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* pHeap)
 {
 	// UNUSED FUNCTION
-	JKRHeap * heap = pHeap;
+	JKRHeap* heap = pHeap;
 	if (heap == nullptr) {
 		heap = JKRGetCurrentHeap();
 	}
 
 	JSUList<JKRFileLoader>& volumeList = JKRArchive::sVolumeList;
-    JSUListIterator<JKRFileLoader> iterator;
+	JSUListIterator<JKRFileLoader> iterator;
 	for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
 		if (iterator->getVolumeType() == 'RARC') {
 			JKRArchive* archive = (JKRArchive*)iterator.getObject(); // in TP debug it calls operator-> ?
@@ -197,30 +197,29 @@ JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* heap
 	JKRArchive* archive = check_mount_already(entryNum, heap);
 	if (archive) {
 		return archive;
-	}
-	else {
-	int i = (mountDirection == EMD_Unk1) ? 4 : -4;
-	JKRArchive* archive;
-	switch (mountMode) {
-	case EMM_Mem:
-		archive = new (heap, i) JKRMemArchive(entryNum, mountDirection);
-		break;
-	case EMM_Aram:
-		archive = new (heap, i) JKRAramArchive(entryNum, mountDirection);
-		break;
-	case EMM_Dvd:
-		archive = new (heap, i) JKRDvdArchive(entryNum, mountDirection);
-		break;
-	case EMM_Comp:
-		archive = new (heap, i) JKRCompArchive(entryNum, mountDirection);
-		break;
-	}
-	if (archive != nullptr && archive->getMountMode() == EMM_Unk0) {
-		delete archive;
-		archive = nullptr;
-	}
-	// archive = new(heap, (mountDirection == EMD_Unk1) ? 4 : -4) JKRMemArchive(entryNum, 0xFFFF, 0);
-	return archive;
+	} else {
+		int i = (mountDirection == EMD_Unk1) ? 4 : -4;
+		JKRArchive* archive;
+		switch (mountMode) {
+		case EMM_Mem:
+			archive = new (heap, i) JKRMemArchive(entryNum, mountDirection);
+			break;
+		case EMM_Aram:
+			archive = new (heap, i) JKRAramArchive(entryNum, mountDirection);
+			break;
+		case EMM_Dvd:
+			archive = new (heap, i) JKRDvdArchive(entryNum, mountDirection);
+			break;
+		case EMM_Comp:
+			archive = new (heap, i) JKRCompArchive(entryNum, mountDirection);
+			break;
+		}
+		if (archive != nullptr && archive->getMountMode() == EMM_Unk0) {
+			delete archive;
+			archive = nullptr;
+		}
+		// archive = new(heap, (mountDirection == EMD_Unk1) ? 4 : -4) JKRMemArchive(entryNum, 0xFFFF, 0);
+		return archive;
 	}
 
 	/*

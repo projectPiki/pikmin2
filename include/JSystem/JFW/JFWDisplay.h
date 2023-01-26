@@ -68,15 +68,15 @@ struct JFWDisplay {
 	/// PikDecomp calls this "fpsDivider".
 	u16 mSecondsPer60Frames; // _1C
 
-	u32 mTickRate;          // _20
-	bool mEnableAlpha;      // _24
-	u16 _26;                // _26
-	f32 mCombinationRatio;  // _28
-	u32 _2C;                // _2C
-	u32 _30;                // _30
-	u32 _34;                // _34
-	s16 _48;                // _48
-	u8 _4A;                 // _4A
+	u32 mTickRate;         // _20
+	bool mEnableAlpha;     // _24
+	u16 _26;               // _26
+	f32 mCombinationRatio; // _28
+	u32 _2C;               // _2C
+	u32 _30;               // _30
+	u32 _34;               // _34
+	s16 _48;               // _48
+	u8 _4A;                // _4A
 
 	static JFWDisplay* sManager;
 };

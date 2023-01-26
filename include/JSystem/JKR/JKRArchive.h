@@ -37,18 +37,18 @@ struct JKRArchive : public JKRFileLoader {
 		CArcName(const char* data) { store(data); }
 
 		u16 mHash;         // _00
-		u16 _02;          // _02
+		u16 _02;           // _02
 		char mString[256]; // _04
 		u8 _hack[4];
 	};
 
 	struct SDIFileEntry {
-		u16 _00;    // _00
+		u16 _00;   // _00
 		u16 mHash; // _02
-		u32 _04;    // _04
-		u32 _08;    // _08
+		u32 _04;   // _04
+		u32 _08;   // _08
 		u32 mSize; // _0C
-		void* _10;  // _10
+		void* _10; // _10
 
 		/**
 		 * @fabricated
@@ -73,7 +73,7 @@ struct JKRArchive : public JKRFileLoader {
 		u16 getNameHash() const { return mHash; }
 		u32 getNameOffset() const { return _04 & 0xFFFFFF; }
 		inline u32 getFlags() const { return _04 >> 24; }
-		inline bool isDirectory() const { return (( _04 >> 24) & 0x02) != 0; }
+		inline bool isDirectory() const { return ((_04 >> 24) & 0x02) != 0; }
 		inline u32 getSize() { return mSize; }
 	};
 
@@ -88,20 +88,20 @@ struct JKRArchive : public JKRFileLoader {
 	};
 
 	struct SDIDirEntry {
-        u32 type;
-        u32 name_offset;
-        u16 _08;
-        u16 num_entries;
-        u32 first_file_index;
-    };
+		u32 type;
+		u32 name_offset;
+		u16 _08;
+		u16 num_entries;
+		u32 first_file_index;
+	};
 
 	struct JKRArchive_44 {
 		u32 mBaseOffset;        // _00
 		u32 mOffsetOfDirEntry;  // _04
-		u32 _08;                 // _08
+		u32 _08;                // _08
 		u32 mOffsetOfFileEntry; // _0C
-		u32 _10;                 // _10
-		u32 _14;                 // _14
+		u32 _10;                // _10
+		u32 _14;                // _14
 		u16 _18;
 		bool _1A;
 		u8 _1B[5];
@@ -156,15 +156,15 @@ struct JKRArchive : public JKRFileLoader {
 	u32 getMountMode() const { return mMountMode; }
 	u32 countFile() const { return _44->_08; }
 
-	JKRHeap* _38;                // _38
+	JKRHeap* _38;               // _38
 	u8 mMountMode;              // _3C
-	long _40;                    // _40
-	JKRArchive_44* _44;          // _44
-	SDIDirEntry* _48;            // _48
+	long _40;                   // _40
+	JKRArchive_44* _44;         // _44
+	SDIDirEntry* _48;           // _48
 	SDIFileEntry* mFileEntries; // _4C
-	u32* _50;                    // _50
-	const char * _54;                     // _54
-	int _58;                     // _58
+	u32* _50;                   // _50
+	const char* _54;            // _54
+	int _58;                    // _58
 
 	static u32 sCurrentDirID;
 };

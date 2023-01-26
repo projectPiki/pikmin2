@@ -72,11 +72,11 @@ struct JUTXfb {
 
 	u8* mBuffers[3];  // _00
 	bool mEnabled[3]; // _0C
-	EXfbNumber _10;    // _10
-	short _14;         // _14
-	short _16;         // _16
-	short _18;         // _18
-	s32 _1C;           // _1C
+	EXfbNumber _10;   // _10
+	short _14;        // _14
+	short _16;        // _16
+	short _18;        // _18
+	s32 _1C;          // _1C
 
 	static JUTXfb* sManager;
 };

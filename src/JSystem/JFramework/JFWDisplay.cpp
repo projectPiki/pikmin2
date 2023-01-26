@@ -29,21 +29,21 @@ JFWDisplay* JFWDisplay::sManager;
 void JFWDisplay::ctor_subroutine(bool p1)
 {
 	// UNUSED FUNCTION
-	mEnableAlpha         = p1;
-	_26                  = 3;
-	_08                  = TCOLOR_BLACK;
-	_0C                  = 0xFFFFFF;
-	_14                  = 0;
-	mFader               = nullptr;
-	mSecondsPer60Frames  = 1;
-	mTickRate            = 0;
-	mCombinationRatio    = 0.0f;
-	_30                  = 0;
-	_2C                  = OSGetTick();
-	_34                  = 0;
-	_48                  = 0;
-	_4A                  = 0;
-	mDrawDoneMethod      = 0;
+	mEnableAlpha        = p1;
+	_26                 = 3;
+	_08                 = TCOLOR_BLACK;
+	_0C                 = 0xFFFFFF;
+	_14                 = 0;
+	mFader              = nullptr;
+	mSecondsPer60Frames = 1;
+	mTickRate           = 0;
+	mCombinationRatio   = 0.0f;
+	_30                 = 0;
+	_2C                 = OSGetTick();
+	_34                 = 0;
+	_48                 = 0;
+	_4A                 = 0;
+	mDrawDoneMethod     = 0;
 	clearEfb_init();
 	JUTProcBar::create();
 	JUTProcBar::clear();
@@ -337,12 +337,12 @@ void JFWDisplay::endGX()
 
 	J2DOrthoGraph ortho(0.0f, 0.0f, width, height, -1.0f, 1.0f);
 
-    if (mFader != nullptr) {
-        ortho.setPort();
-        mFader->control();
-    }
-    ortho.setPort();
-    JUTDbPrint::getManager()->flush();
+	if (mFader != nullptr) {
+		ortho.setPort();
+		mFader->control();
+	}
+	ortho.setPort();
+	JUTDbPrint::getManager()->flush();
 
 	if (JUTConsoleManager::getManager() != nullptr) {
 		ortho.setPort();
@@ -352,10 +352,10 @@ void JFWDisplay::endGX()
 	ortho.setPort();
 	JUTProcBar::getManager()->draw();
 
-    if (mDrawDoneMethod != 0 || JUTXfb::getManager()->getBufferNum() == 1) {
-        JUTAssertion::flushMessage_dbPrint();
-    }
-    GXFlush();
+	if (mDrawDoneMethod != 0 || JUTXfb::getManager()->getBufferNum() == 1) {
+		JUTAssertion::flushMessage_dbPrint();
+	}
+	GXFlush();
 }
 
 /*
@@ -371,8 +371,8 @@ void JFWDisplay::beginRender()
 	JUTProcBar::getManager()->idleStart();
 	//}
 
-    waitForTick(mTickRate, mSecondsPer60Frames);
-    JUTVideo::getManager()->waitRetraceIfNeed();
+	waitForTick(mTickRate, mSecondsPer60Frames);
+	JUTVideo::getManager()->waitRetraceIfNeed();
 
 	u32 tick = OSGetTick();
 	_30      = tick - _2C; // duration of frame in ticks?
@@ -479,10 +479,11 @@ void JFWDisplay::endFrame()
  * Address:	8008A5D8
  * Size:	000050
  */
-void JFWDisplay::waitBlanking(int param_0) {
-    while (param_0-- > 0) {
-        waitForTick(mTickRate, mSecondsPer60Frames);
-    }
+void JFWDisplay::waitBlanking(int param_0)
+{
+	while (param_0-- > 0) {
+		waitForTick(mTickRate, mSecondsPer60Frames);
+	}
 }
 
 /*
