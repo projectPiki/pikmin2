@@ -112,8 +112,8 @@ struct JKRHeap : public JKRDisposer {
 
 	// Inlined/fabricated
 	inline void* JKRAllocFromHeap(u32 size, int alignment) { return JKRHeap::alloc(size, alignment, this); }
-	void* getStartAddr() const { return m_startAddress; }
-	void* getEndAddr() const { return m_endAddress; }
+	void* getStartAddr() const { return mStartAddress; }
+	void* getEndAddr() const { return mEndAddress; }
 
 	// Static
 	static bool initArena(char**, u32*, int);
