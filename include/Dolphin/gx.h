@@ -933,10 +933,33 @@ typedef enum _GXDistAttnFn {
 	GX_DA_STEEP,
 } GXDistAttnFn;
 
+typedef enum _GXZTexOp { GX_ZT_DISABLE, GX_ZT_ADD, GX_ZT_REPLACE, GX_MAX_ZTEXOP } GXZTexOp;
+
+typedef enum _GXPosNrmMtx {
+	GX_PNMTX0 = 3 * 0,
+	GX_PNMTX1 = 3 * 1,
+	GX_PNMTX2 = 3 * 2,
+	GX_PNMTX3 = 3 * 3,
+	GX_PNMTX4 = 3 * 4,
+	GX_PNMTX5 = 3 * 5,
+	GX_PNMTX6 = 3 * 6,
+	GX_PNMTX7 = 3 * 7,
+	GX_PNMTX8 = 3 * 8,
+	GX_PNMTX9 = 3 * 9,
+} GXPosNrmMtx;
+
+typedef enum _GXGamma {
+	GX_GM_1_0,
+	GX_GM_1_7,
+	GX_GM_2_2,
+} GXGamma;
+
 void __GXSetDirtyState();
 void __GXSendFlushPrim();
 
+void GXAbortFrame();
 void GXFlush();
+void GXInvalidateVtxCache(void);
 void GXSetNumTexGens(u8);
 void GXInitSpecularDir(GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz);
 void GXInitSpecularDirHA(GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz, f32 hx, f32 hy, f32 hz);
@@ -993,7 +1016,8 @@ void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor ds
 void GXSetColorUpdate(GXBool update_enable);
 void GXSetAlphaUpdate(GXBool update_enable);
 void GXSetAlphaCompare(GXCompare, u8, GXAlphaOp, GXCompare, u8);
-void GXSetDispCopyGamma(GXBool update_enable);
+void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias);
+void GXSetDispCopyGamma(GXGamma update_enable);
 void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable);
 void GXSetCullMode(GXCullMode);
 void GXSetCurrentMtx(u32);
@@ -1024,6 +1048,7 @@ void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr);
 void GXInitFifoLimits(GXFifoObj* fifo, u32 highWatermark, u32 lowWatermark);
 void GXSaveCPUFifo(GXFifoObj* fifo);
 
+void GXReadXfRasMetric(u32*, u32*, u32*, u32*);
 void GXGetGPStatus(GXBool* overhi, GXBool* underlow, GXBool* readIdle, GXBool* cmdIdle, GXBool* brkpt);
 
 void GXSetCPUFifo(GXFifoObj* fifo);
@@ -1051,6 +1076,7 @@ typedef void GXDrawDoneCallback(void);
 GXDrawDoneCallback* GXSetDrawDoneCallback(GXDrawDoneCallback*);
 void GXSetDrawDone();
 void GXDrawDone();
+void GXPixModeSync();
 
 void GXCopyDisp(void*, GXBool); // TODO: Confirm types
 
@@ -1105,7 +1131,15 @@ typedef struct GXTlutRegion {
 	u8 _04[0xC]; // _04
 } GXTlutRegion;
 
+typedef enum _GXFBClamp {
+	GX_CLAMP_NONE,
+	GX_CLAMP_TOP,
+	GX_CLAMP_BOTTOM,
+} GXFBClamp;
+
 typedef GXTlutRegion* GXTlutRegionCallback(_GXTlut);
+
+void GXInvalidateTexAll(void);
 
 void GXInitTlutObj(GXTlutObj*, const u8*, _GXTlutFmt, u16);
 // TODO: Params aren't fully worked out yet.
@@ -1131,9 +1165,18 @@ void GXSetPointSize(u8, s32);
 u16 GXGetNumXfbLines(float, u16);
 float GXGetYScaleFactor(u16, u16);
 
+u32 GXSetDispCopyYScale(f32 vscale);
+void GXSetDispCopySrc(u16 left, u16 top, u16 wd, u16 ht);
+void GXSetTexCopySrc(u16 left, u16 top, u16 wd, u16 ht);
+void GXSetDispCopyDst(u16 wd, u16 ht);
+
 void GXSetViewport(float, float, float, float, float, float);
 void GXSetTevKColor(GXTevKColorID, GXColor);
 void GXSetClipMode(u32); // needs a proper type
+void GXSetCopyClamp(GXFBClamp clamp);
+
+void GXSetCopyClear(GXColor clear_clr, u32 clear_z);
+void GXSetCopyFilter(GXBool aa, const u8 sample_pattern[12][2], GXBool vf, const u8 vfilter[7]);
 
 void GXSetArray(int, Mtx*, size_t); // TODO: Correct types.
 
@@ -1210,6 +1253,18 @@ static inline void GXTexCoord2s8(const s8 u, const s8 v)
 {
 	GXWGFifo.s8 = u;
 	GXWGFifo.s8 = v;
+}
+
+static inline void GXTexCoord2u8(u8 s, u8 t)
+{
+	GXWGFifo.u8 = s;
+	GXWGFifo.u8 = t;
+}
+
+static inline void GXPosition2u16(u16 x, u16 y)
+{
+	GXWGFifo.u16 = x;
+	GXWGFifo.u16 = y;
 }
 
 static inline void GXTexCoord2s16(const s16 u, const s16 v)

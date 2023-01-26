@@ -78,6 +78,69 @@ struct JSUList : public JSUPtrList {
 	u32 getNumLinks() const { return JSUPtrList::getNumLinks(); }
 };
 
+template <typename T>
+class JSUListIterator {
+public:
+	JSUListIterator()
+	    : mLink(nullptr)
+	{
+	}
+	JSUListIterator(JSULink<T>* link)
+	    : mLink(link)
+	{
+	}
+	JSUListIterator(JSUList<T>* list)
+	    : mLink(list->getFirst())
+	{
+	}
+
+	JSUListIterator<T>& operator=(JSULink<T>* link)
+	{
+		this->mLink = link;
+		return *this;
+	}
+
+	T* getObject() { return this->mLink->getObject(); }
+
+	bool operator==(JSULink<T> const* other) const { return this->mLink == other; }
+	bool operator!=(JSULink<T> const* other) const { return this->mLink != other; }
+	bool operator==(JSUListIterator<T> const& other) const { return this->mLink == other.mLink; }
+	bool operator!=(JSUListIterator<T> const& other) const { return this->mLink != other.mLink; }
+
+	JSUListIterator<T> operator++(int)
+	{
+		JSUListIterator<T> prev = *this;
+		this->mLink             = this->mLink->getNext();
+		return prev;
+	}
+
+	JSUListIterator<T>& operator++()
+	{
+		this->mLink = this->mLink->getNext();
+		return *this;
+	}
+
+	JSUListIterator<T> operator--(int)
+	{
+		JSUListIterator<T> prev = *this;
+		this->mLink             = this->mLink->getPrev();
+		return prev;
+	}
+
+	JSUListIterator<T>& operator--()
+	{
+		this->mLink = this->mLink->getPrev();
+		return *this;
+	}
+
+	T& operator*() { return *this->getObject(); }
+
+	T* operator->() { return this->getObject(); }
+
+	// private:
+	JSULink<T>* mLink;
+};
+
 /**
  * @size{0x10}
  */

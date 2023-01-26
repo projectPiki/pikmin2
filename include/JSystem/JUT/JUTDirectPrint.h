@@ -7,11 +7,26 @@
 struct JUTDirectPrint {
 	JUTDirectPrint(); // unused/inlined
 
-	void* _00;        // _00
-	u16 mPixelWidth;  // _04 - width of buffer in pixels?
-	u16 mPixelHeight; // _06 - height of buffer in pixels?
-	u16 mWidth;       // _08 - width of buffer in ???
-	// u8 _0A[0x2];          // _0A - padding probably
+	static JUTDirectPrint* start();
+	void erase(int x, int y, int width, int height);
+	void setCharColor(JUtility::TColor color);
+	void setCharColor(u8 r, u8 g, u8 b);
+	void drawChar(int, int, int);
+	void drawString(u16 x, u16 y, char* str);
+	void drawString_f(u16 x, u16 y, const char* format, ...);
+	void changeFrameBuffer(void* buffer, u16 pixelWidth, u16 pixelHeight);
+
+	inline static JUTDirectPrint* getManager() { return sDirectPrint; }
+
+	static u8 sAsciiTable[0x80];
+	static u32 sFontData[0x40];
+	static u32 sFontData2[0x4D];
+	static JUTDirectPrint* sDirectPrint;
+
+	void* _00;            // _00
+	u16 mPixelWidth;      // _04 - width of buffer in pixels?
+	u16 mPixelHeight;     // _06 - height of buffer in pixels?
+	u16 mWidth;           // _08 - width of buffer in ???
 	uint _0C;             // _0C
 	u8 _10[0x4];          // _10 - unknown
 	u16* mGlyphBuffer;    // _14
@@ -23,21 +38,11 @@ struct JUTDirectPrint {
 	u16 _24;              // _24
 	u16 _26;              // _26
 	u16 _28;              // _28
-	// u8 _2A[0x2];          // _2A - padding probably
-
-	static JUTDirectPrint* start();
-	void erase(int x, int y, int width, int height);
-	void setCharColor(JUtility::TColor color);
-	void setCharColor(u8 r, u8 g, u8 b);
-	void drawChar(int, int, int);
-	void drawString(u16 x, u16 y, char* str);
-	void drawString_f(u16 x, u16 y, const char* format, ...);
-	void changeFrameBuffer(void* buffer, u16 pixelWidth, u16 pixelHeight);
-
-	static u8 sAsciiTable[0x80];
-	static u32 sFontData[0x40];
-	static u32 sFontData2[0x4D];
-	static JUTDirectPrint* sDirectPrint;
 };
+
+inline void JUTChangeFrameBuffer(void* buffer, u16 height, u16 width)
+{
+	JUTDirectPrint::getManager()->changeFrameBuffer(buffer, width, height);
+}
 
 #endif

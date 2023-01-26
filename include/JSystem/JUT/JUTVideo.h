@@ -9,6 +9,9 @@
 /**
  * @size{0x58}
  */
+
+typedef u8 (*Pattern)[2];
+
 struct JUTVideo {
 	JUTVideo(const _GXRenderModeObj*);
 
@@ -21,12 +24,22 @@ struct JUTVideo {
 	static void postRetraceProc(unsigned long);
 	static void drawDoneCallback();
 
+	inline static u32 getVideoInterval() { return sVideoInterval; }
+	inline static s32 getVideoLastTick() { return sVideoLastTick; }
+
 	u16 getEfbHeight() const { return mRenderModeObj->efbHeight; }
 	u16 getFbWidth() const { return mRenderModeObj->fbWidth; }
-	void drawDoneStart();
-	void dummyNoDrawWait();
+
+	GXRenderModeObj* getRenderMode() const { return mRenderModeObj; }
+	u16 getXfbHeight() const { return mRenderModeObj->xfbHeight; }
+	u32 isAntiAliasing() const { return mRenderModeObj->aa; }
+	Pattern getSamplePattern() const { return mRenderModeObj->sample_pattern; }
+	u8* getVFilter() const { return mRenderModeObj->vfilter; }
+	OSMessageQueue* getMessageQueue() { return &mMessageQueue; };
+	static void drawDoneStart();
+	static void dummyNoDrawWait();
 	void setRenderMode(const _GXRenderModeObj*);
-	void waitRetraceIfNeed() {};
+	void waitRetraceIfNeed();
 	VIRetraceCallback setPostRetraceCallback(VIRetraceCallback);
 
 	// Unused/inlined:
@@ -35,8 +48,12 @@ struct JUTVideo {
 	void getPixelAspect(const _GXRenderModeObj*);
 	void getPixelAspect() const;
 
+	static JUTVideo* sManager;
+	static s32 sVideoLastTick;
+	static u32 sVideoInterval;
+
 	// _00 VTBL
-	const _GXRenderModeObj* mRenderModeObj;         // _04
+	_GXRenderModeObj* mRenderModeObj;               // _04
 	u32 _08;                                        // _08
 	u32 mRetraceCount;                              // _0C
 	int _10;                                        // _10
@@ -50,10 +67,6 @@ struct JUTVideo {
 	s32 _30;                                        // _30
 	void* mMessageSlots;                            // _34
 	OSMessageQueue mMessageQueue;                   // _38
-
-	static JUTVideo* sManager;
-	static s32 sVideoLastTick;
-	static u32 sVideoInterval;
 };
 
 #endif

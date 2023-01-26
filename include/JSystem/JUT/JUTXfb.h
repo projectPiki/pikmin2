@@ -38,23 +38,44 @@ struct JUTXfb {
 	void initiate(void*, void*, void*, EXfbNumber);
 	void switchXfb();
 
-	/**
-	 * @fabricated
-	 */
 	inline static u16 getLineCount(const _GXRenderModeObj* gxObj)
 	{
 		return GXGetNumXfbLines(GXGetYScaleFactor(gxObj->efbHeight, gxObj->xfbHeight), gxObj->efbHeight);
 	}
+	/*void *getDrawnXfb() const {
+	    return (mDrawnXfbIndex >= 0) ? mBuffer[mDrawnXfbIndex] : nullptr;
+	}
 
-	u8* mBuffers[3];  // _00
-	bool mEnabled[3]; // _0C
-	EXfbNumber _10;   // _10
-	short _14;        // _14
-	short _16;        // _16
-	short _18;        // _18
-	int _1C;          // _1C
+	void *getDrawingXfb() const {
+	    return (mDrawingXfbIndex >= 0) ? mBuffer[mDrawingXfbIndex] : nullptr;
+	}
+
+	void *getDisplayingXfb() const {
+	    return (mDisplayingXfbIndex >= 0) ? mBuffer[mDisplayingXfbIndex] : nullptr;
+	}*/
+
+	EXfbNumber getBufferNum() const { return mBufferNum; }
+	int getDrawingXfbIndex() const { return mDrawingXfbIndex; }
+	s16 getDrawnXfbIndex() const { return mDrawnXfbIndex; }
+	int getDisplayingXfbIndex() const { return mDisplayingXfbIndex; }
+	int getSDrawingFlag() const { return mSDrawingFlag; }
+	void setSDrawingFlag(int flag) { mSDrawingFlag = flag; }
+	void setDrawnXfbIndex(s16 index) { mDrawnXfbIndex = index; }
+	void setDrawingXfbIndex(s16 index) { mDrawingXfbIndex = index; }
+
+	void* getDrawingXfb() const { return (mDrawingXfbIndex >= 0) ? mBuffers[mDrawingXfbIndex] : nullptr; }
+
+	static JUTXfb* getManager() { return sManager; }
 
 	static JUTXfb* sManager;
+
+	u8* mBuffers[3];         // _00
+	bool mEnabled[3];        // _0C
+	EXfbNumber mBufferNum;   // _10
+	s16 mDrawingXfbIndex;    // _14
+	s16 mDrawnXfbIndex;      // _16
+	s16 mDisplayingXfbIndex; // _18
+	int mSDrawingFlag;       // _1C
 };
 
 #endif

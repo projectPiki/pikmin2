@@ -59,8 +59,8 @@ JKERNEL:=\
 	$(BUILD_DIR)/asm/JSystem/JKernel/JKRAramHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKernel/JKRAramPiece.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRAramStream.o\
-	$(BUILD_DIR)/asm/JSystem/JKernel/JKRArchivePri.o\
-	$(BUILD_DIR)/asm/JSystem/JKernel/JKRArchivePub.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRArchivePri.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRArchivePub.o\
 	$(BUILD_DIR)/asm/JSystem/JKernel/JKRCompArchive.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRDecomp.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRDisposer.o\
@@ -104,7 +104,7 @@ JUTILITY:=\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTGraphFifo.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTNameTab.o\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTPalette.o\
-	$(BUILD_DIR)/asm/JSystem/JUtility/JUTProcBar.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTProcBar.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTResFont.o\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTResource.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTRomFont.o\
@@ -177,7 +177,7 @@ J3D:=\
 
 JFRAMEWORK:=\
 	$(BUILD_DIR)/src/JSystem/JFramework/JFWSystem.o\
-	$(BUILD_DIR)/asm/JSystem/JFramework/JFWDisplay.o\
+	$(BUILD_DIR)/src/JSystem/JFramework/JFWDisplay.o\
 
 JPARTICLE:=\
 	$(BUILD_DIR)/asm/JSystem/JParticle/JPABaseShape.o\
