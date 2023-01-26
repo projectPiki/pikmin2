@@ -89,7 +89,7 @@ O_FILES :=	$(GROUP_0_FILES)\
 ifeq ($(EPILOGUE_PROCESS),1)
 E_FILES :=	$(EPILOGUE_UNSCHEDULED)
 endif
-DEPENDS := $(O_FILES:.o=.d)
+DEPENDS := $($(filter *.o,O_FILES):.o=.d)
 DEPENDS += $(E_FILES:.o=.d)
 # If a specific .o file is passed as a target, also process its deps
 DEPENDS += $(MAKECMDGOALS:.o=.d)
@@ -272,8 +272,11 @@ endif
 	@echo Processing $<
 	$(QUIET) $(PYTHON) $(TRANSFORM_DEP) $< $@
 
--include $(DEPENDS)
 -include include_link.mk
+
+# Need to add library objects to DEPENDS
+DEPENDS += $(BOOTUP_FILES:.o=.d)
+-include $(DEPENDS)
 
 $(BUILD_DIR)/%.o: %.s
 	@echo Assembling $<
