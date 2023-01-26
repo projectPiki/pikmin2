@@ -159,17 +159,17 @@ ASFLAGS += -W
 endif
 
 # This is inline-deferred for some reason
-$(BUILD_DIR)/src/Dolphin/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
+$(BUILD_DIR)/src/Dolphin/MSL_C/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
 
 # Enable string pooling
-$(BUILD_DIR)/src/Dolphin/locale.o: CFLAGS += -str pool
+$(BUILD_DIR)/src/Dolphin/MSL_C/locale.o: CFLAGS += -str pool
 
 # Dirty hack to override sdata
 # It seems some TRK-related files need -sdata 0
-$(BUILD_DIR)/src/Dolphin/mainloop.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/nubinit.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/main_TRK.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/target_options.o: CFLAGS += -sdata 0
+$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mainloop.o: CFLAGS += -sdata 0
+$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/nubinit.o: CFLAGS += -sdata 0
+$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/main_TRK.o: CFLAGS += -sdata 0
+$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/target_options.o: CFLAGS += -sdata 0
 
 # Set Dolphin sub-library CFLAGS
 $(TRK_MINNOW_DOLPHIN): CFLAGS += -common off
