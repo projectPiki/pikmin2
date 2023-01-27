@@ -229,24 +229,24 @@ void TIndPane::draw()
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 0x1e, GX_FALSE, 0x7d);
 	GXSetIndTexOrder(GX_IND_TEX_STAGE_ID_0, GX_TEXCOORD0, GX_TEXMAP1);
 	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_ID_0, GX_IND_TEX_SCALE_0, GX_IND_TEX_SCALE_0);
-	f32 mtx[6];
+	Mtx23 mtx;
 
 	if (_44) {
-		mtx[0] = _34;
-		mtx[1] = 0.0f;
-		mtx[2] = 0.0f;
-		mtx[3] = 0.0f;
-		mtx[4] = _38;
-		mtx[5] = 0.0f;
+		mtx[0][0] = _34;
+		mtx[0][1] = 0.0f;
+		mtx[0][2] = 0.0f;
+		mtx[1][0] = 0.0f;
+		mtx[1][1] = _38;
+		mtx[1][2] = 0.0f;
 	} else {
 		Matrixf temp;
 		PSMTXRotRad(temp.mMatrix.mtxView, 'z', MTXDegToRad(_40));
-		mtx[0] = temp.mMatrix.structView.xx * 0.5f;
-		mtx[1] = temp.mMatrix.structView.yx * 0.5f;
-		mtx[2] = 0.0f;
-		mtx[3] = temp.mMatrix.structView.xy * 0.5f;
-		mtx[4] = temp.mMatrix.structView.yy * 0.5f;
-		mtx[5] = 0.0f;
+		mtx[0][0] = temp.mMatrix.structView.xx * 0.5f;
+		mtx[0][1] = temp.mMatrix.structView.yx * 0.5f;
+		mtx[0][2] = 0.0f;
+		mtx[1][0] = temp.mMatrix.structView.xy * 0.5f;
+		mtx[1][1] = temp.mMatrix.structView.yy * 0.5f;
+		mtx[1][2] = 0.0f;
 	}
 
 	GXSetIndTexMtx(GX_IND_TEX_MTX_ID_1, mtx, _3C);

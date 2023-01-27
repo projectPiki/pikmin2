@@ -50,7 +50,7 @@ __vt__9J3DPacket:
 
 #.section .bss  # 0x804EFC20 - 0x8051467C
 # J3DPacket.cpp
-# temporarily moved to J3DSys.s for the sake of alignment
+# temporarily moved to J3DTevs.cpp for the sake of alignment
 #.comm sGDLObj__17J3DDisplayListObj, 0x10, 4
 
 .section .sbss # 0x80514D80 - 0x80516360

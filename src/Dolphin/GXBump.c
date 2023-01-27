@@ -35,7 +35,7 @@ void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexF
  * Size:	000178
  */
 // modified from Open_RVL
-void GXSetIndTexMtx(GXIndTexMtxID id, const f32 mtx[6], s8 scale_exp)
+void GXSetIndTexMtx(GXIndTexMtxID id, const Mtx23 mtx, s8 scale_exp)
 {
 	u32 val;
 	u32 field;
@@ -68,24 +68,24 @@ void GXSetIndTexMtx(GXIndTexMtxID id, const f32 mtx[6], s8 scale_exp)
 	}
 
 	field = 0;
-	GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[0]);
-	GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[3]);
+	GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[0][0]);
+	GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[1][0]);
 	GX_BITFIELD_SET(field, 8, 2, (scale_exp >> 0) & 3);
 	GX_BITFIELD_SET(field, 0, 8, val * 3 + 6);
 	GXWGFifo.s8  = 0x61;
 	GXWGFifo.s32 = field;
 
 	field = 0;
-	GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[1]);
-	GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[4]);
+	GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[0][1]);
+	GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[1][1]);
 	GX_BITFIELD_SET(field, 8, 2, (scale_exp >> 2) & 3);
 	GX_BITFIELD_SET(field, 0, 8, val * 3 + 7);
 	GXWGFifo.u8  = 0x61;
 	GXWGFifo.s32 = field;
 
 	field = 0;
-	GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[2]);
-	GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[5]);
+	GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[0][2]);
+	GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[1][2]);
 	GX_BITFIELD_SET(field, 8, 2, (scale_exp >> 4) & 3);
 	GX_BITFIELD_SET(field, 0, 8, val * 3 + 8);
 	GXWGFifo.u8  = 0x61;

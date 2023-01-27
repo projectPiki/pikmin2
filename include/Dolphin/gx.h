@@ -124,13 +124,15 @@ typedef enum _GXIndTexMtxID {
 
 typedef enum _GXIndTexScale {
 	GX_IND_TEX_SCALE_0,
+	GX_IND_TEX_SCALE_1,
 } GXIndTexScale;
 
 typedef enum _GXIndTexStageID {
 	GX_IND_TEX_STAGE_ID_0,
 	GX_IND_TEX_STAGE_ID_1,
 	GX_IND_TEX_STAGE_ID_2,
-	GX_IND_TEX_STAGE_ID_3
+	GX_IND_TEX_STAGE_ID_3,
+	GX_IND_MAX_TEX_STAGE_ID,
 } GXIndTexStageID;
 
 typedef enum _GXIndTexWrap {
@@ -146,6 +148,18 @@ typedef enum _GXTexOffset {
 	GX_TO_ONE,
 	GX_MAX_TEXOFFSET,
 } GXTexOffset;
+
+typedef enum _GXTexCacheSize {
+	GX_TEXCACHE_32K,
+	GX_TEXCACHE_128K,
+	GX_TEXCACHE_512K,
+	GX_TEXCACHE_NONE,
+} GXTexCacheSize;
+
+typedef enum _GXClipMode {
+	GX_CLIP_ENABLE,
+	GX_CLIP_DISABLE,
+} GXClipMode;
 
 /*
  * RGB, RGBA, Intensity, Intensity/Alpha, Compressed, and Z texture format
@@ -280,6 +294,13 @@ typedef enum _GXTevKColorSel {
 	GX_TEV_KCSEL_1_8,
 } GXTevKColorSel;
 
+typedef enum _GXTevColor {
+	GX_CH_RED,
+	GX_CH_GREEN,
+	GX_CH_BLUE,
+	GX_CH_ALPHA,
+} GXTevColor;
+
 typedef enum _GXTevColorArg {
 	GX_CC_CPREV,
 	GX_CC_APREV,
@@ -316,6 +337,7 @@ typedef enum _GXTevStageID {
 	GX_TEVSTAGE13,
 	GX_TEVSTAGE14,
 	GX_TEVSTAGE15,
+	GX_MAXTEVSTAGE,
 } GXTevStageID;
 
 typedef enum _GXTevRegID { GX_TEVPREV = 0, GX_TEVREG0, GX_TEVREG1, GX_TEVREG2, GX_MAX_TEVREG } GXTevRegID;
@@ -519,6 +541,20 @@ typedef GXFogAdjTable _SDK_GXFogAdjTable;
 
 typedef enum _GXTexMtxType { GX_MTX3x4, GX_MTX2x4 } GXTexMtxType;
 
+typedef enum _GXTexMtx {
+	GX_TEXMTX0  = 30 + 0 * 3,
+	GX_TEXMTX1  = 30 + 1 * 3,
+	GX_TEXMTX2  = 30 + 2 * 3,
+	GX_TEXMTX3  = 30 + 3 * 3,
+	GX_TEXMTX4  = 30 + 4 * 3,
+	GX_TEXMTX5  = 30 + 5 * 3,
+	GX_TEXMTX6  = 30 + 6 * 3,
+	GX_TEXMTX7  = 30 + 7 * 3,
+	GX_TEXMTX8  = 30 + 8 * 3,
+	GX_TEXMTX9  = 30 + 9 * 3,
+	GX_IDENTITY = 60,
+} GXTexMtx;
+
 // Compare types.
 typedef enum _GXCompare {
 	GX_NEVER,   // Always false.
@@ -695,6 +731,30 @@ typedef union _ControlRegister {
 		// gpFifoReadEnable : 1;
 	} bits;
 } ControlRegister;
+
+typedef enum _GXPTTexMtx {
+	GX_PTTEXMTX0  = 64 + 0 * 3,
+	GX_PTTEXMTX1  = 64 + 1 * 3,
+	GX_PTTEXMTX2  = 64 + 2 * 3,
+	GX_PTTEXMTX3  = 64 + 3 * 3,
+	GX_PTTEXMTX4  = 64 + 4 * 3,
+	GX_PTTEXMTX5  = 64 + 5 * 3,
+	GX_PTTEXMTX6  = 64 + 6 * 3,
+	GX_PTTEXMTX7  = 64 + 7 * 3,
+	GX_PTTEXMTX8  = 64 + 8 * 3,
+	GX_PTTEXMTX9  = 64 + 9 * 3,
+	GX_PTTEXMTX10 = 64 + 10 * 3,
+	GX_PTTEXMTX11 = 64 + 11 * 3,
+	GX_PTTEXMTX12 = 64 + 12 * 3,
+	GX_PTTEXMTX13 = 64 + 13 * 3,
+	GX_PTTEXMTX14 = 64 + 14 * 3,
+	GX_PTTEXMTX15 = 64 + 15 * 3,
+	GX_PTTEXMTX16 = 64 + 16 * 3,
+	GX_PTTEXMTX17 = 64 + 17 * 3,
+	GX_PTTEXMTX18 = 64 + 18 * 3,
+	GX_PTTEXMTX19 = 64 + 19 * 3,
+	GX_PTIDENTITY = 125,
+} GXPTTexMtx;
 
 // typedef struct _ControlRegister {
 // 	u32
@@ -1010,11 +1070,14 @@ void GXClearVtxDesc();
 void GXSetVtxDesc(GXAttr, GXAttrType);
 void GXSetIndTexOrder(GXIndTexStageID, GXTexCoordID, GXTexMapID);
 void GXSetIndTexCoordScale(GXIndTexStageID, GXIndTexScale, GXIndTexScale);
-void GXSetIndTexMtx(GXIndTexMtxID, const f32[6], s8);
+void GXSetIndTexMtx(GXIndTexMtxID, const Mtx23, s8);
 void GXSetTevIndWarp(GXTevStageID, GXIndTexStageID, u8, u8, GXIndTexMtxID);
 void GXBeginDisplayList(void*, u32 dlSize);
 u32 GXEndDisplayList(void);
 void GXCallDisplayList(void*, u32 byteCnt);
+
+void GXInitTexCacheRegion(GXTexRegion* region, GXBool is_32b_mipmap, u32 tmem_even, GXTexCacheSize size_even, u32 tmem_odd,
+                          GXTexCacheSize size_odd);
 
 void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color);
 
@@ -1039,6 +1102,9 @@ void GXSetDither(GXBool dither);
 void GXSetDstAlpha(GXBool enable, u8 alpha);
 void GXSetFieldMask(GXBool odd_mask, GXBool even_mask);
 void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio);
+
+void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexFormat texFmt, GXIndTexBiasSel biasSel, GXIndTexMtxID mtxID,
+                      GXIndTexWrap wrapS, GXIndTexWrap wrapT, u8 addPrev, u8 utcLod, GXIndTexAlphaSel alphaSel);
 
 #define GX_FIFO_OBJ_SIZE 128
 
@@ -1192,8 +1258,9 @@ void GXSetDispCopyDst(u16 wd, u16 ht);
 
 void GXSetViewport(float, float, float, float, float, float);
 void GXSetTevKColor(GXTevKColorID, GXColor);
-void GXSetClipMode(u32); // needs a proper type
+void GXSetClipMode(GXClipMode); // needs a proper type
 void GXSetCopyClamp(GXFBClamp clamp);
+void GXSetCoPlanar(GXBool);
 
 void GXSetCopyClear(GXColor clear_clr, u32 clear_z);
 void GXSetCopyFilter(GXBool aa, const u8 sample_pattern[12][2], GXBool vf, const u8 vfilter[7]);

@@ -84,8 +84,6 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAS/JASBankMgr.cpp">JAudio2/JAS/JASBankMgr.cpp</a> | 16423 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTTexture.cpp">JUtility/JUTTexture.cpp</a> | 16921 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRMemArchive.cpp">JKernel/JKRMemArchive.cpp</a> | 17053 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRSolidHeap.cpp">JKernel/JKRSolidHeap.cpp</a> | 17331 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DDrawBuffer.cpp">J3D/J3DDrawBuffer.cpp</a> | 18255 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DTransform.cpp">J3D/J3DTransform.cpp</a> | 19101 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAI/JAIObject.cpp">JAudio2/JAI/JAIObject.cpp</a> | 19422 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAEmitterManager.cpp">JParticle/JPAEmitterManager.cpp</a> | 19473 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAI/JAISystemInterface.cpp">JAudio2/JAI/JAISystemInterface.cpp</a> | 19731 |
 
 ### <section id="plugProjectEbisawaU">plugProjectEbisawaU</section>
 | File | Size (bytes) | File | Size (bytes) |

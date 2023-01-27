@@ -316,14 +316,20 @@ struct J3DTevStage {
 	u8 _07; // _07
 };
 
-struct J3DTexCoordInfo {
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03 - unknown/padding
+struct J3DDefaultTexCoordInfo {
+	u8 mTexGenType; // _00
+	u8 mTexGenSrc;  // _01
+	u8 mTexGenMtx;  // _02
+	u8 mPadding;    // _03
 };
 
-extern const J3DTexCoordInfo j3dDefaultTexCoordInfo[8];
+struct J3DTexCoordInfo {
+	u8 mTexGenType; // _00
+	u8 mTexGenSrc;  // _01
+	u8 mTexGenMtx;  // _02
+};
+
+extern const J3DDefaultTexCoordInfo j3dDefaultTexCoordInfo[8];
 
 // TODO: Determine if this needs packing pragmas to make it exactly 6 bytes
 /**
@@ -331,17 +337,17 @@ extern const J3DTexCoordInfo j3dDefaultTexCoordInfo[8];
  */
 struct J3DTexCoord {
 	inline J3DTexCoord()
-	    : _00(j3dDefaultTexCoordInfo[0]._00)
-	    , _01(j3dDefaultTexCoordInfo[0]._01)
-	    , _02(j3dDefaultTexCoordInfo[0]._02)
+	    : _00(j3dDefaultTexCoordInfo[0].mTexGenType)
+	    , _01(j3dDefaultTexCoordInfo[0].mTexGenSrc)
+	    , _02(j3dDefaultTexCoordInfo[0].mTexGenMtx)
 	    , _04(_02)
 	{
 	}
 
 	inline J3DTexCoord(const J3DTexCoordInfo& info)
-	    : _00(info._00)
-	    , _01(info._01)
-	    , _02(info._02)
+	    : _00(info.mTexGenType)
+	    , _01(info.mTexGenSrc)
+	    , _02(info.mTexGenMtx)
 	    , _04(_02)
 	{
 	}
@@ -409,13 +415,13 @@ enum J3DTexDiffFlag { TexDiff_0 = 0, TexDiff_1 };
 
 enum J3DDeformAttachFlag { DeformAttach_0 = 0, DeformAttach_1 = 1 };
 
-extern const u32 j3dDefaultColInfo;
+extern const GXColor j3dDefaultColInfo;
 extern const u32 j3dDefaultAmbInfo;
 extern const u8 j3dDefaultColorChanNum;
 // extern const J3DGXColor j3dDefaultTevColor;
 // extern const J3DGXColorS10 j3dDefaultTevKColor;
-extern const u32 j3dDefaultTevColor;
-extern const u32 j3dDefaultTevKColor;
+extern const GXColorS10 j3dDefaultTevColor;
+extern const GXColor j3dDefaultTevKColor;
 
 extern const u8 j3dDefaultTevSwapTableID;
 

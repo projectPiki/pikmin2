@@ -11,6 +11,7 @@ extern "C" {
 
 // sizeof = 48 or 0x30
 typedef f32 Mtx[3][4];
+typedef f32 Mtx23[2][3];
 typedef f32 Mtx33[3][3];
 typedef f32 Mtx44[4][4];
 typedef f32 PSQuaternion[4];

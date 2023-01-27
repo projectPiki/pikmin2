@@ -142,7 +142,7 @@ J2D:=\
 	$(BUILD_DIR)/src/JSystem/J2D/J2DAnimation.o\
 
 J3D:=\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DSys.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DSys.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DVertex.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DTransform.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DPacket.o\

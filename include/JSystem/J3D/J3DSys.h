@@ -37,6 +37,8 @@ struct J3DSys {
 	void loadNrmMtxIndx(int, u16) const;
 	void ErrorReport(J3DErrType) const;
 
+	void setTexCacheRegion(GXTexCacheSize);
+
 	Mtx* getViewMtx() { return &mViewMtx; }
 	void setDrawModeOpaTexEdge() { mDrawMode = SYSDRAW_Opa; }
 	void setDrawModeXlu() { mDrawMode = SYSDRAW_Xlu; }
@@ -122,5 +124,11 @@ struct J3DSys {
 extern J3DSys j3dSys;
 
 extern s32 j3dDefaultViewNo;
+
+void makeTexCoordTable();
+void makeTevSwapTable();
+void makeAlphaCmpTable();
+void makeZModeTable();
+void J3DFifoLoadTexCached(GXTexMapID, u32, GXTexCacheSize, u32, GXTexCacheSize);
 
 #endif

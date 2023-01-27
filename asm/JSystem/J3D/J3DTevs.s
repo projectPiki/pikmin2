@@ -173,6 +173,10 @@ lbl_804A1900:
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # J3DTevs.cpp
+# J3DPacket.cpp
+# temporarily moved to J3DTevs.cpp for the sake of alignment
+.comm sGDLObj__17J3DDisplayListObj, 0x10, 4
+
 .comm j3dTexCoordTable, 0x2528, 4
 .comm j3dTevSwapTableTable, 0x400, 4
 .comm j3dAlphaCmpTable, 0x300, 4
