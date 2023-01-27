@@ -20,5 +20,5 @@ DEPENDS += $(COMMON_FILES:.o=.d)
 
 $(BUILD_DIR)/src/sysCommonU/sysCommonU.a: $(COMMON_FILES)
 	@echo linking... $@
-	@echo $(COMMON_FILES) > $(BUILD_DIR)/COMMON_ofiles
-	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @$(BUILD_DIR)/COMMON_ofiles
+	@echo $(COMMON_FILES) > build/COMMON_ofiles
+	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/COMMON_ofiles

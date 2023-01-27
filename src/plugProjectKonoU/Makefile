@@ -18,5 +18,5 @@ DEPENDS += $(KONO_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectKonoU/plugProjectKonoU.a: $(KONO_FILES)
 	@echo linking... $@
-	@echo $(KONO_FILES) > $(BUILD_DIR)/KONO_ofiles
-	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @$(BUILD_DIR)/KONO_ofiles
+	@echo $(KONO_FILES) > build/KONO_ofiles
+	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/KONO_ofiles

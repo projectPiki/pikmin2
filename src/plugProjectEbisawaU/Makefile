@@ -51,5 +51,5 @@ DEPENDS += $(EBISAWA_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectEbisawaU/plugProjectEbisawaU.a: $(EBISAWA_FILES)
 	@echo linking... $@
-	@echo $(EBISAWA_FILES) > $(BUILD_DIR)/EBISAWA_ofiles
-	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @$(BUILD_DIR)/EBISAWA_ofiles
+	@echo $(EBISAWA_FILES) > build/EBISAWA_ofiles
+	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/EBISAWA_ofiles

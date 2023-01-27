@@ -17,5 +17,5 @@ DEPENDS += $(UTILITY_FILES:.o=.d)
 
 $(BUILD_DIR)/src/utilityU/utilityU.a: $(UTILITY_FILES)
 	@echo linking... $@
-	@echo $(UTILITY_FILES) > $(BUILD_DIR)/UTILITY_ofiles
-	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @$(BUILD_DIR)/UTILITY_ofiles
+	@echo $(UTILITY_FILES) > build/UTILITY_ofiles
+	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/UTILITY_ofiles
