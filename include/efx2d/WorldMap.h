@@ -94,6 +94,7 @@ struct T2DRocketB : public TChasePosDir {
 	T2DRocketB()
 	    : TChasePosDir(PID_WMap_RocketSparks)
 	{
+		_04 = 1;
 	}
 	// vtable 1
 	virtual bool create(Arg*); // _08

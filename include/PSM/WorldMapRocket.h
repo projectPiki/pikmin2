@@ -13,9 +13,7 @@ struct WorldMapRocket : public JADHioNode {
 	/**
 	 * @size{0x4}
 	 */
-	struct rocketState {
-		u32 mState; // _00, I guess
-	};
+	enum rocketState { PSMRocket_0, PSMRocket_1, PSMRocket_2, PSMRocket_3, PSMRocket_4, PSMRocket_5, PSMRocket_6, PSMRocket_7 };
 
 	WorldMapRocket();
 

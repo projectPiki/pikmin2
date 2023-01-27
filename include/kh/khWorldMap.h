@@ -53,7 +53,7 @@ struct InitArg {
 		mInitialCourseIndex         = 0;
 		mHasNewTreasureHoardEntries = false;
 		mHasNewPiklopediaEntries    = false;
-		_16                         = 0;
+		mDoNewEntriesEfx            = 0;
 	}
 
 	JKRHeap* mHeap;                   // _00
@@ -63,7 +63,7 @@ struct InitArg {
 	int mInitialCourseIndex;          // _10
 	bool mHasNewPiklopediaEntries;    // _14
 	bool mHasNewTreasureHoardEntries; // _15
-	u8 _16;                           // _16
+	u8 mDoNewEntriesEfx;              // _16
 };
 
 enum UpdateArgStatus { WMapUpdate_0, WMapUpdate_GoToLoad, WMapUpdate_2, WMapUpdate_GoToZukan, WMapUpdate_4, WMapUpdate_ReturnToTitle };
@@ -96,6 +96,19 @@ struct khUtilColorAnm;
 struct khUtilColorAnmWM;
 struct khUtilFadePaneWM;
 struct WorldMap : public Game::WorldMap::Base {
+
+	enum WorldMapState {
+		WMAP_NewMapOpened,
+		WMAP_RocketMoving,
+		WMAP_Idle,
+		WMAP_RocketMoving2,
+		WMAP_RocketMoving3,
+		WMAP_InputTarget,
+		WMAP_GoToZukan1,
+		WMAP_GoToZukan2,
+		WMAP_InSelection1,
+		WMAP_InSelection2
+	};
 	/**
 	 * @size{0x34}
 	 */
@@ -137,11 +150,11 @@ struct WorldMap : public Game::WorldMap::Base {
 	void finish();
 	void getRotDir(const JGeometry::TVec2f&, f32);
 	int getTarget();
-	void newMapOpen();
+	bool newMapOpen();
 	void onyonMove();
 	void onyonUpdate();
 	void postureControl(J2DPane*);
-	void rocketMove(J2DPane*, bool);
+	f32 rocketMove(J2DPane*, bool);
 	void rocketUpdate(J2DPane*);
 	void tag2num(u64);
 
@@ -149,11 +162,11 @@ struct WorldMap : public Game::WorldMap::Base {
 	// _00-_18 = Game::WorldMap::Base
 	Game::WorldMap::InitArg mInitArg;               // _18
 	P2DScreen::Mgr_tuning* mScreenKitagawa;         // _30
-	J2DAnmTransform* mBckAnm1;                      // _34
-	J2DAnmTransformKey* mBckAnm2;                   // _38
-	J2DAnmColorKey* mKitaAnim1;                     // _3C
-	J2DAnmTextureSRTKey* mKitaAnim2;                // _40
-	J2DAnmTextureSRTKey* mKitaAnim3;                // _44
+	J2DAnmTransform* mKitaAnim1;                    // _34
+	J2DAnmTransformKey* mKitaAnim2;                 // _38
+	J2DAnmColorKey* mKitaAnim3;                     // _3C
+	J2DAnmTextureSRTKey* mKitaAnim4;                // _40
+	J2DAnmTextureSRTKey* mKitaAnim5;                // _44
 	P2DScreen::Mgr* mScreenRocket;                  // _48
 	J2DAnmTransformKey* mRocketAnim1;               // _4C
 	J2DAnmTexPattern* mRocketAnim2;                 // _50
@@ -162,22 +175,12 @@ struct WorldMap : public Game::WorldMap::Base {
 	J2DAnmTextureSRTKey* mInfoAnim2;                // _5C
 	J2DAnmTextureSRTKey* mInfoAnim3;                // _60
 	og::Screen::ScaleMgr* mScaleMgr;                // _64
-	f32 mFrameOf34;                                 // _68
-	f32 mFrameOf38;                                 // _6C
-	f32 mFrameOf3C;                                 // _70
-	f32 mFrameOf40;                                 // _74
-	f32 mFrameOf44;                                 // _78
-	f32 mFrameOf4C;                                 // _7C
-	f32 mFrameOf50;                                 // _80
-	f32 mFrameOf58;                                 // _84
-	f32 mFrameOf5C;                                 // _88
-	f32 mFrameOf60;                                 // _8C
+	f32 mAnimTimers[10];                            // _68
 	f32 mCameraZoomMinFrame;                        // _90
 	f32 mCameraZoomX;                               // _94
 	f32 _98;                                        // _98
 	Vector2f mRocketPosition;                       // _9C
-	f32 _A4;                                        // _A4
-	f32 _A8;                                        // _A8
+	Vector2f mRocketPosition2;                      // _A4
 	Vector2f mRocketAngle;                          // _AC
 	f32 mRocketAngleSin;                            // _B4
 	f32 mRocketAngleCos;                            // _B8
@@ -193,7 +196,7 @@ struct WorldMap : public Game::WorldMap::Base {
 	OnyonDynamics* mOnyonArray;                                // _F0
 	int mOnyonCount;                                           // _F4
 	int mCurrentCourseIndex;                                   // _F8
-	int _FC;                                                   // _FC
+	int mRocketMoveCounter;                                    // _FC
 	og::Screen::CallBack_CounterRV* mPokoCounter;              // _100
 	og::Screen::CallBack_CounterRV* mGroundTreasureCounter;    // _104
 	og::Screen::CallBack_CounterRV* mGroundTreasureMaxCounter; // _108
@@ -208,12 +211,46 @@ struct WorldMap : public Game::WorldMap::Base {
 	khUtilColorAnm* mColorAnim2;                               // _16C
 	og::Screen::ArrowAlphaBlink* mArrowBlink;                  // _170
 	int mCurrentState;                                         // _174
-	int mAngle;                                                // _178
+	int mRocketAngleMode;                                      // _178
 	u32 mFlags;                                                // _17C
 	char mStateID;                                             // _180
 	u8 mOpenCourses;                                           // _181
 	u8 mCourseJustOpenFlags;                                   // _182
 	u8 mZukanFadeout;                                          // _183
+
+	static struct StaticValues {
+		inline StaticValues() { _00 = 4500.0f; }
+
+		f32 _00; // _00
+		f32 _04;
+		f32 _08;
+		f32 _0C;
+		f32 _10;
+		f32 _14;
+		f32 _18;
+		f32 _1C;
+		f32 _20;
+		f32 _24;
+		f32 _28[4];
+		f32 _38;
+		f32 _3C;
+		f32 _40;
+		f32 _44;
+		f32 _48;
+		f32 _4C;
+		f32 _50;
+		f32 _54;
+		f32 _58;
+		f32 _5C;
+		f32 _60;
+		f32 _64;
+		f32 _68;
+		JUtility::TColor _6C;
+		JUtility::TColor _70;
+		JUtility::TColor _74;
+		u8 _78;
+		u8 _79;
+	} msVal;
 };
 } // namespace Screen
 } // namespace kh

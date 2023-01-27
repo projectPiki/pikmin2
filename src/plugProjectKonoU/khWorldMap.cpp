@@ -8,7 +8,11 @@
 #include "og/Screen/ArrowAlphaBlink.h"
 #include "TParticle2dMgr.h"
 #include "efx2d/WorldMap.h"
+#include "utilityU.h"
 #include "Screen/Game2DMgr.h"
+#include "PSSystem/PSSystemIF.h"
+#include "Dolphin/float.h"
+#include "efx2d/T2DChangesmoke.h"
 
 /*
     Generated from dpostproc
@@ -814,15 +818,13 @@ blr
  * Size:	0001E8
  */
 WorldMap::WorldMap()
-    : Base()
-    , mInitArg()
 {
 	mScreenKitagawa           = nullptr;
-	mBckAnm2                  = nullptr;
-	mBckAnm1                  = nullptr;
+	mKitaAnim2                = nullptr;
 	mKitaAnim1                = nullptr;
 	mKitaAnim3                = nullptr;
-	mKitaAnim2                = nullptr;
+	mKitaAnim5                = nullptr;
+	mKitaAnim4                = nullptr;
 	mScreenRocket             = nullptr;
 	mRocketAnim1              = nullptr;
 	mRocketAnim2              = nullptr;
@@ -830,22 +832,21 @@ WorldMap::WorldMap()
 	mInfoAnim3                = nullptr;
 	mInfoAnim2                = nullptr;
 	mInfoAnim1                = nullptr;
-	mFrameOf60                = 0.0f;
-	mFrameOf5C                = 0.0f;
-	mFrameOf58                = 0.0f;
-	mFrameOf50                = 0.0f;
-	mFrameOf4C                = 0.0f;
-	mFrameOf44                = 0.0f;
-	mFrameOf40                = 0.0f;
-	mFrameOf3C                = 0.0f;
-	mFrameOf38                = 0.0f;
-	mFrameOf34                = 0.0f;
+	mAnimTimers[9]            = 0.0f;
+	mAnimTimers[8]            = 0.0f;
+	mAnimTimers[7]            = 0.0f;
+	mAnimTimers[6]            = 0.0f;
+	mAnimTimers[5]            = 0.0f;
+	mAnimTimers[4]            = 0.0f;
+	mAnimTimers[3]            = 0.0f;
+	mAnimTimers[2]            = 0.0f;
+	mAnimTimers[1]            = 0.0f;
+	mAnimTimers[0]            = 0.0f;
 	mCameraZoomX              = 0.0f;
 	mCameraZoomMinFrame       = 0.0f;
 	_98                       = 1.0f;
 	mRocketPosition           = 0.0f;
-	_A4                       = 0.0f;
-	_A8                       = 0.0f;
+	mRocketPosition2          = 0.0f;
 	mRocketAngle.x            = 0.0f;
 	mRocketAngle.y            = -1.0f;
 	mRocketAngleSin           = mRocketAngle.x;
@@ -865,7 +866,7 @@ WorldMap::WorldMap()
 	mOnyonArray               = nullptr;
 	mOnyonCount               = 0;
 	mCurrentCourseIndex       = 0;
-	_FC                       = 0;
+	mRocketMoveCounter        = 0;
 	mGroundTreasureMaxCounter = nullptr;
 	mGroundTreasureCounter    = nullptr;
 	mPokoCounter              = nullptr;
@@ -896,7 +897,7 @@ WorldMap::WorldMap()
 	mColorAnim2               = nullptr;
 	mArrowBlink               = nullptr;
 	mCurrentState             = 0xd;
-	mAngle                    = 1;
+	mRocketAngleMode          = 1;
 	mFlags                    = 4;
 	mStateID                  = '\x01';
 	mCourseJustOpenFlags      = 0;
@@ -1070,25 +1071,25 @@ void WorldMap::loadResource()
 	mScreenKitagawa->set("world_map_kitagawa.blo", 0x1040000, arc);
 
 	const void* resData = JKRFileLoader::getGlbResource("world_map_kitagawa.bck", arc);
-	mBckAnm1            = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resData);
-	mBckAnm2            = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(resData);
-	mScreenKitagawa->setAnimation(mBckAnm1);
+	mKitaAnim1          = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resData);
+	mKitaAnim2          = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(resData);
+	mScreenKitagawa->setAnimation(mKitaAnim1);
 	for (int i = 0; i < 4; i++) {
-		mScreenKitagawa->search(getSerialTagName('Pland0', i))->setAnimation(mBckAnm2);
-		mScreenKitagawa->search(getSerialTagName('Plight0', i))->setAnimation(mBckAnm2);
+		mScreenKitagawa->search(getSerialTagName('Pland0', i))->setAnimation(mKitaAnim2);
+		mScreenKitagawa->search(getSerialTagName('Plight0', i))->setAnimation(mKitaAnim2);
 	}
 
 	void* file = JKRFileLoader::getGlbResource("world_map_kitagawa.brk", arc);
-	mKitaAnim1 = static_cast<J2DAnmColorKey*>(J2DAnmLoaderDataBase::load(file));
-	mScreenKitagawa->setAnimation(mKitaAnim1);
+	mKitaAnim3 = static_cast<J2DAnmColorKey*>(J2DAnmLoaderDataBase::load(file));
+	mScreenKitagawa->setAnimation(mKitaAnim3);
 
 	file       = JKRFileLoader::getGlbResource("world_map_kitagawa.btk", arc);
-	mKitaAnim2 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
-	mScreenKitagawa->setAnimation(mKitaAnim2);
+	mKitaAnim4 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+	mScreenKitagawa->setAnimation(mKitaAnim4);
 
 	file       = JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk", arc);
-	mKitaAnim3 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
-	mScreenKitagawa->setAnimation(mKitaAnim3);
+	mKitaAnim5 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+	mScreenKitagawa->setAnimation(mKitaAnim5);
 
 	const char* pathsPreDebt[3]  = { "worldmap_icon.blo", "worldmap_icon.bck", "worldmap_icon.btp" };
 	const char* pathsPostDebt[3] = { "worldmap_gicon.blo", "worldmap_gicon.bck", "worldmap_gicon.btp" };
@@ -1171,22 +1172,22 @@ void WorldMap::loadResource()
 	if (::Game::playData->mStoryFlags & ::Game::STORY_DebtPaid) {
 		mScreenInfo->search('Nfinal_f')->hide();
 		mScreenInfo->search('Ncomp_f')->show();
-		mPokoCounter = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Ppoko01', money, 5, false, false, arc);
+		mPokoCounter = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Pcomp00', money, 5, false, true, arc);
 	} else {
 		mScreenInfo->search('Nfinal_f')->show();
 		mScreenInfo->search('Ncomp_f')->hide();
-		mPokoCounter = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Pcomp00', money, 10, false, true, arc);
+		mPokoCounter = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Ppoko01', money, 5, false, false, arc);
 	}
-	mGroundTreasureCounter    = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Pg_c_01', mGroundTreasureCount, 2, false, true, arc);
-	mGroundTreasureMaxCounter = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Pg_p_01', mGroundTreasureMax, 2, false, true, arc);
-	mCaveTreasureCounters[0]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P0_c_01', mCaveOtaNum[0], 2, false, true, arc);
-	mCaveTreasureCounters2[0] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P0_p_01', mCaveOtaMax[0], 2, false, true, arc);
-	mCaveTreasureCounters[1]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P1_c_01', mCaveOtaNum[1], 2, false, true, arc);
-	mCaveTreasureCounters2[1] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P1_p_01', mCaveOtaMax[1], 2, false, true, arc);
-	mCaveTreasureCounters[2]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P2_c_01', mCaveOtaNum[2], 2, false, true, arc);
-	mCaveTreasureCounters2[2] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P2_p_01', mCaveOtaMax[2], 2, false, true, arc);
-	mCaveTreasureCounters[3]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P3_c_01', mCaveOtaNum[3], 2, false, true, arc);
-	mCaveTreasureCounters2[3] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P3_p_01', mCaveOtaMax[3], 2, false, true, arc);
+	mGroundTreasureCounter    = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Pg_c_01', &mGroundTreasureCount, 2, false, true, arc);
+	mGroundTreasureMaxCounter = og::Screen::setCallBack_CounterRV(mScreenInfo, 'Pg_p_01', &mGroundTreasureMax, 2, false, true, arc);
+	mCaveTreasureCounters[0]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P0_c_01', &mCaveOtaNum[0], 2, false, true, arc);
+	mCaveTreasureCounters2[0] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P0_p_01', &mCaveOtaMax[0], 2, false, true, arc);
+	mCaveTreasureCounters[1]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P1_c_01', &mCaveOtaNum[1], 2, false, true, arc);
+	mCaveTreasureCounters2[1] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P1_p_01', &mCaveOtaMax[1], 2, false, true, arc);
+	mCaveTreasureCounters[2]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P2_c_01', &mCaveOtaNum[2], 2, false, true, arc);
+	mCaveTreasureCounters2[2] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P2_p_01', &mCaveOtaMax[2], 2, false, true, arc);
+	mCaveTreasureCounters[3]  = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P3_c_01', &mCaveOtaNum[3], 2, false, true, arc);
+	mCaveTreasureCounters2[3] = og::Screen::setCallBack_CounterRV(mScreenInfo, 'P3_p_01', &mCaveOtaMax[3], 2, false, true, arc);
 	mScreenInfo->search('T_new_l')->hide();
 	mScreenInfo->search('T_new_r')->hide();
 	mScreenInfo->search('Nlwin')->hide();
@@ -1201,8 +1202,8 @@ void WorldMap::loadResource()
 	setInfAlpha(mScreenInfo->search('Nlbtn'));
 	setInfAlpha(mScreenInfo->search('Nrbtn'));
 
-	void* jpc = JKRDvdRipper::loadToMainRAM("user/Ebisawa/effect/eff2d_world_map.jpc", nullptr, Switch_2, 0, nullptr,
-	                                        JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	void* jpc = JKRDvdRipper::loadToMainRAM("user/Ebisawa/effect/eff2d_world_map.jpc", nullptr, Switch_0, 0, nullptr,
+	                                        JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
 	P2ASSERTLINE(462, jpc);
 	particle2dMgr->setSceneResourceManager(new JPAResourceManager(jpc, JKRGetCurrentHeap()));
 	mEfxRocketSparks = new efx2d::WorldMap::T2DRocketB;
@@ -2881,8 +2882,503 @@ blr
  * Address:	803F37D4
  * Size:	001C20
  */
-void WorldMap::update(::Game::WorldMap::UpdateArg&)
+void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 {
+	arg.mCourseInfo             = mInitArg.mStages->getCourseInfo(mCurrentCourseIndex);
+	mKitaAnim1->mCurrentFrame   = mAnimTimers[0];
+	mKitaAnim3->mCurrentFrame   = mAnimTimers[2];
+	mKitaAnim4->mCurrentFrame   = mAnimTimers[3];
+	mKitaAnim5->mCurrentFrame   = mAnimTimers[4];
+	mRocketAnim1->mCurrentFrame = mAnimTimers[5];
+	mRocketAnim2->mCurrentFrame = mAnimTimers[6];
+	mInfoAnim1->mCurrentFrame   = mAnimTimers[7];
+	mInfoAnim2->mCurrentFrame   = mAnimTimers[8];
+	mInfoAnim3->mCurrentFrame   = mAnimTimers[9];
+	mScreenKitagawa->animation();
+	mScreenRocket->animation();
+	mScreenInfo->animation();
+
+	mKitaAnim2->mCurrentFrame = mAnimTimers[1];
+
+	for (int i = 0; i < 4; i++) {
+		mScreenKitagawa->search(getSerialTagName('Pland0', i))->animationTransform();
+		mScreenKitagawa->search(getSerialTagName('Plight0', i))->animationTransform();
+	}
+
+	mAnimTimers[2] += 1.0f;
+	if (mAnimTimers[2] >= mKitaAnim3->mMaxFrame) {
+		mAnimTimers[2] = 0.0f;
+	}
+
+	mAnimTimers[3] += 1.0f;
+	if (mAnimTimers[3] >= mKitaAnim4->mMaxFrame) {
+		mAnimTimers[3] = 0.0f;
+	}
+
+	mAnimTimers[4] += 1.0f;
+	if (mAnimTimers[4] >= mKitaAnim5->mMaxFrame) {
+		mAnimTimers[4] = 0.0f;
+	}
+
+	mAnimTimers[5] += 1.0f;
+	if (mAnimTimers[5] >= mRocketAnim1->mMaxFrame) {
+		mAnimTimers[5] = 0.0f;
+	}
+
+	mAnimTimers[6] += 1.0f;
+	if (mAnimTimers[6] >= mRocketAnim2->mMaxFrame) {
+		mAnimTimers[6] = 0.0f;
+	}
+
+	mAnimTimers[7] += 0.5f;
+	if (mAnimTimers[7] >= mInfoAnim1->mMaxFrame) {
+		mAnimTimers[7] = 0.0f;
+	}
+
+	mAnimTimers[8] += 0.5f;
+	if (mAnimTimers[8] >= mInfoAnim2->mMaxFrame) {
+		mAnimTimers[8] = 0.0f;
+	}
+
+	mAnimTimers[9] += 0.5f;
+	if (mAnimTimers[9] >= mInfoAnim3->mMaxFrame) {
+		mAnimTimers[9] = 0.0f;
+	}
+
+	mAnimTimers[1] += 1.0f;
+	if (mAnimTimers[1] >= mKitaAnim2->mMaxFrame) {
+		mAnimTimers[1] = 0.0f;
+	}
+
+	mLight01Center = Vector2f(getPaneCenterX(mScreenKitagawa->search('light01')), getPaneCenterY(mScreenKitagawa->search('light01')));
+	mStarCenter    = Vector2f(getPaneCenterX(mScreenKitagawa->search('star')), getPaneCenterY(mScreenKitagawa->search('star')));
+
+	u64 tagsWait[4]     = { 'Nwait0', 'Nwait1', 'Nwait2', 'Nwait3' };
+	u64 tagsPoint[4]    = { 'Npoint0', 'Npoint1', 'Npoint3', 'Npoint4' };
+	J2DPane* cWaitPane  = mScreenKitagawa->search(tagsWait[mCurrentCourseIndex]);
+	J2DPane* cPointPane = mScreenKitagawa->search(tagsPoint[mCurrentCourseIndex]);
+	J2DPane* paneRocket = mScreenRocket->search('NROCKET');
+	mRocketPosition2    = mRocketPosition;
+
+	switch (mCurrentState) {
+	case WMAP_NewMapOpened: {
+		mAnimTimers[0] += 1.5f;
+		if (mAnimTimers[0] > mCameraZoomMinFrame && !newMapOpen()) {
+			for (int i = 1; i < 4; i++) {
+				if (mCourseJustOpenFlags & i) {
+					// if a course has just opened, make the appear effect spawn over its dot
+					Vector2f efxPos(getPaneCenterX(mScreenKitagawa->search(getSerialTagName('Npoint0', i))),
+					                getPaneCenterY(mScreenKitagawa->search(getSerialTagName('Npoint0', i))));
+					efx2d::WorldMap::T2DNewmap efx;
+					efx2d::ArgScale efxArg(&efxPos, msVal._28[mOpenCourses]);
+					efx.create(&efxArg);
+					// if the newly unlocked level is wistful wild, make the meteor shower
+					if (i == 3) {
+						Vector2f efxPos2(getPaneCenterX(mScreenKitagawa->search(getSerialTagName('Npoint0', i))),
+						                 getPaneCenterY(mScreenKitagawa->search(getSerialTagName('Npoint0', i))));
+						efx2d::WorldMap::T2DShstar2 efx2;
+						efx2d::ArgScale efxArg2(&efxPos2, 1.0f);
+						efx2.create(&efxArg2);
+					}
+					mScreenKitagawa->search(getSerialTagName('Npoint0', i))->show();
+				}
+			}
+			// set to normal state and move ship to newly unlocked level
+			mCurrentState       = 12;
+			mCurrentCourseIndex = mOpenCourses - 1;
+			cWaitPane           = mScreenKitagawa->search(tagsWait[mCurrentCourseIndex]);
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_2);
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_NEW_COURSE_OPEN, 0);
+			mCaveFadePane->fadeout();
+		}
+		postureControl(cWaitPane);
+		onyonMove();
+		break;
+	}
+	case WMAP_RocketMoving: {
+		f32 test = rocketMove(cWaitPane, true);
+		rocketUpdate(cWaitPane);
+		if (test > msVal._0C) {
+			mRocketMoveCounter = 0;
+			mCurrentState      = WMAP_Idle;
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_5);
+		}
+		onyonMove();
+		changeState();
+		break;
+	}
+	case WMAP_Idle: {
+		postureControl(cWaitPane);
+		onyonMove();
+		changeState();
+		break;
+	}
+	case WMAP_RocketMoving2: {
+		mRocketMoveCounter++;
+		f32 x, y;
+		if (mRocketAngleMode == 1) {
+			// it looks like all these trig functions specifically arent inlined, so we dont include trig.h? idk how that works
+			x = pikmin2_cosf(0.1f);
+		} else {
+			x = pikmin2_cosf(-0.1f);
+		}
+		if (mRocketAngleMode == 1) {
+			y = pikmin2_sinf(0.1f);
+		} else {
+			y = pikmin2_sinf(-0.1f);
+		}
+		Vector2f temp  = mRocketAngle;
+		mRocketAngle.x = temp.x * x - temp.y * y;
+		mRocketAngle.y = temp.x * y + temp.y * x;
+		f32 angle      = mRocketAngle.x * mRocketAngle.x + mRocketAngle.y + mRocketAngle.y;
+		if (angle > __float_epsilon[0]) {
+			mRocketAngle = angle;
+		}
+		Vector2f rot;
+		getRotDir(temp, 0.0f);
+		mRocketPosition.x += msVal._04 * mRocketAngle.x * msVal._00;
+		mRocketPosition.y += msVal._04 * mRocketAngle.y * msVal._00;
+
+		f32 distX = getPaneCenterX(cPointPane) - mRocketPosition.x;
+		f32 distY = getPaneCenterY(cPointPane) - mRocketPosition.y;
+		f32 dist  = distX * distX + distY * distY;
+		if (!(mFlags & 8)) {
+			if (angle > __float_epsilon[0]) { // idfk
+				mRocketAngle = angle;
+			}
+			if (x * mRocketAngle.x + y * mRocketAngle.y >= 0.7f) {
+				mFlags &= ~2;
+			} else if (!(mFlags & 1)) {
+				mFlags |= 3;
+			} else if (!(mFlags & 2)) {
+				mFlags |= 8;
+				mFlags &= ~3;
+			}
+		} else if (dist > msVal._14) {
+			mCurrentState = WMAP_RocketMoving3;
+			mFlags &= ~0x29;
+			mFlags |= 0x10;
+			mRocketMoveCounter = 0;
+		}
+
+		if (mRocketMoveCounter > 0x3c && dist > msVal._14) {
+			mCurrentState = WMAP_RocketMoving3;
+			mFlags &= ~0x29;
+			mFlags |= 0x10;
+			mRocketMoveCounter = 0;
+		}
+
+		if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_B) {
+			mCurrentState = 5;
+			mFlags &= ~3;
+			mRocketMoveCounter = 0;
+		}
+		rocketUpdate(cWaitPane);
+		onyonMove();
+		break;
+	}
+	case 14: {
+		f32 test = rocketMove(cPointPane, true);
+		rocketUpdate(cWaitPane);
+		if (test < msVal._18) {
+			mRocketMoveCounter = 0;
+			mCurrentState      = WMAP_RocketMoving2;
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_3);
+		}
+		if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_B) {
+			mCurrentState = WMAP_InputTarget;
+			mFlags &= ~3;
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_3);
+		}
+		onyonMove();
+		break;
+	}
+	case WMAP_RocketMoving3: {
+		f32 dist = rocketMove(cPointPane, true);
+		rocketUpdate(cPointPane);
+		if (dist > msVal._14) {
+			mRocketMoveCounter = 0;
+			arg.mStatus        = 1;
+			finish();
+		} else {
+			if (mZukanFadeout < 255 - msVal._79) {
+				mZukanFadeout += msVal._79;
+			}
+			if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_B) {
+				mCurrentState = WMAP_InputTarget;
+				mFlags &= ~0x13;
+				mRocketMoveCounter = 0;
+			}
+			onyonMove();
+		}
+		break;
+	}
+	case WMAP_InputTarget: {
+		int map = getTarget();
+		// a new course was or wasnt selected
+		if (map < 0 || map > mOpenCourses || map == mCurrentCourseIndex) {
+			f32 x = getPaneCenterX(cWaitPane) - mRocketPosition.x;
+			f32 y = getPaneCenterY(cWaitPane) - mRocketPosition.y;
+			if (x * x + y * y >= msVal._0C) {
+				postureControl(cWaitPane);
+				mCurrentState = WMAP_Idle;
+				PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_5);
+			} else {
+				rocketMove(cWaitPane, true);
+				rocketUpdate(cWaitPane);
+				mCurrentState = WMAP_RocketMoving;
+				PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_2);
+			}
+		} else {
+			mCurrentCourseIndex = map;
+			cWaitPane           = mScreenKitagawa->search(tagsWait[mCurrentCourseIndex]);
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_2);
+			mCaveFadePane->fadeout();
+			rocketMove(cWaitPane, true);
+			rocketUpdate(cWaitPane);
+			mCurrentState = WMAP_RocketMoving;
+		}
+		onyonMove();
+		break;
+	}
+	case WMAP_GoToZukan1: {
+		f32 dist = rocketMove(cWaitPane, true);
+		rocketUpdate(cWaitPane);
+		if (dist < msVal._0C) {
+			postureControl(cWaitPane);
+		}
+		onyonMove();
+		mFlags |= 0x10;
+		mZukanFadeout -= msVal._79;
+		if (mZukanFadeout >= 255 - msVal._79) {
+			arg.mStatus = 4;
+			finish();
+		}
+		break;
+	}
+	case WMAP_GoToZukan2: {
+		f32 dist = rocketMove(cWaitPane, true);
+		rocketUpdate(cWaitPane);
+		if (dist < msVal._0C) {
+			postureControl(cWaitPane);
+		}
+		onyonMove();
+		mFlags |= 0x10;
+		mZukanFadeout -= msVal._79;
+		if (mZukanFadeout >= 255 - msVal._79) {
+			arg.mStatus = 4;
+			finish();
+		}
+		break;
+	}
+	case WMAP_InSelection1: {
+		rocketUpdate(cWaitPane);
+		onyonUpdate();
+		switch (::Screen::gGame2DMgr->check_WorldMapInfoWin0()) {
+		case 0: {
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_7);
+			mCurrentState = WMAP_InputTarget;
+			mFlags &= ~0x10;
+			break;
+		}
+		case 1: {
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_7);
+			mFlags &= ~0x10;
+			arg.mStatus = 5;
+			finish();
+			break;
+		}
+		}
+		if (mZukanFadeout < 180) {
+			mZukanFadeout += msVal._79;
+		}
+		break;
+	}
+	case WMAP_InSelection2: {
+		rocketUpdate(cWaitPane);
+		onyonUpdate();
+		switch (::Screen::gGame2DMgr->check_WorldMapInfoWin1()) {
+		case 1: {
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_7);
+			mCurrentState = WMAP_InputTarget;
+			mFlags &= ~0x10;
+			break;
+		}
+		case 0: {
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_7);
+			mCurrentState = 14;
+			mFlags &= ~0x10;
+			mRocketMoveCounter = 0;
+			break;
+		}
+		}
+		if (mZukanFadeout < 180) {
+			mZukanFadeout += msVal._79;
+		}
+		break;
+	}
+	case 10: {
+		f32 angle = mRocketAngle.x;
+		pikmin2_atan2f(angle, -mRocketAngle.y);
+		if (mRocketAngleMode != 1 || angle <= 0.0f) {
+			if (mRocketAngleMode == 2 && angle > 0.0f) {
+				angle += TAU;
+			}
+		} else {
+			angle -= TAU;
+		}
+		f32 offs;
+		if (mRocketAngleMode == 1) {
+			offs = 0.1f;
+		} else {
+			offs = -0.1f;
+		}
+		mRocketAngle.x = pikmin2_sinf(angle + offs);
+		mRocketAngle.y = pikmin2_cosf(angle + offs);
+		f32 dist       = mRocketAngle.x * mRocketAngle.x + mRocketAngle.y * mRocketAngle.y;
+		if (dist > __float_epsilon[0]) {
+			mRocketAngle = mRocketAngle * dist;
+		}
+		mRocketPosition.x += msVal._04 * mRocketAngle.x * msVal._00;
+		mRocketPosition.y += msVal._04 * mRocketAngle.y * msVal._00;
+		f32 zero = 0.0f;
+		if (mRocketAngle.x * zero + mRocketAngle.y * -1.0f <= 0.95f) {
+			mFlags &= ~2;
+		} else if (!(mFlags & 1)) {
+			mFlags |= 3;
+		} else if (!(mFlags & 2)) {
+			mCurrentState = WMAP_RocketMoving;
+			newMapOpen();
+			mFlags &= ~3;
+			if (mInitArg.mHasNewPiklopediaEntries) {
+				J2DPane* target = mScreenInfo->search('Tnew_l');
+				target->show();
+				mScreenInfo->search('Nlwin')->show();
+
+				if (!mInitArg.mDoNewEntriesEfx) {
+					Vector2f efxPos2(getPaneCenterX(target) + msVal._50, getPaneCenterY(target) + msVal._54);
+					efx2d::T2DChangesmoke efx;
+					efx2d::Arg arg(efxPos2);
+					efx.create(&arg);
+				}
+			}
+			if (mInitArg.mHasNewTreasureHoardEntries) {
+				J2DPane* target = mScreenInfo->search('Tnew_r');
+				target->show();
+				mScreenInfo->search('Nrwin')->show();
+
+				if (!mInitArg.mDoNewEntriesEfx) {
+					Vector2f efxPos2(getPaneCenterX(target) + msVal._50, getPaneCenterY(target) + msVal._54);
+					efx2d::T2DChangesmoke efx;
+					efx2d::Arg arg(efxPos2);
+					efx.create(&arg);
+				}
+			}
+			if (mInitArg.mHasNewPiklopediaEntries || mInitArg.mHasNewTreasureHoardEntries) {
+				khUtilColorAnm* anm = mColorAnim2;
+				anm->mColor1        = anm->mColorList[0];
+				anm->mCounter       = 0;
+				if (!mInitArg.mDoNewEntriesEfx) {
+					mScaleMgr->up();
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_ZUKAN_NEW, 0);
+				}
+			}
+		}
+		rocketUpdate(cWaitPane);
+		onyonMove();
+		break;
+	}
+	case 11: {
+		paneRocket->setOffset(1000.0f, 0.0f);
+		for (int i = 0; i < mOnyonCount; i++) {
+			mOnyonArray[i].mOnyonPane->setOffset(1000.0f, 0.0f);
+		}
+		if (mRocketMoveCounter++ > 5) {
+			mCurrentCourseIndex = mInitArg.mInitialCourseIndex;
+			if (mCurrentCourseIndex < 0) {
+				mCurrentCourseIndex = 0;
+			}
+			cPointPane = mScreenKitagawa->search(tagsPoint[mCurrentCourseIndex]);
+			mScreenKitagawa->search(tagsWait[mCurrentCourseIndex]);
+			mRocketPosition = Vector2f(getPaneCenterX(cPointPane), getPaneCenterY(cPointPane));
+			mRocketScale    = 0.01f;
+			paneRocket->setOffset(mRocketPosition.x, mRocketPosition.y);
+			paneRocket->mAngle = atan2(-mRocketAngle.x, -mRocketAngle.y);
+			paneRocket->calcMtx();
+			paneRocket->updateScale(mRocketScale);
+			for (int i = 0; i < mOnyonCount; i++) {
+				mOnyonArray[i].mOnyonPane->setOffset(mRocketPosition.x, mRocketPosition.y);
+				mOnyonArray[i].mOnyonPane->mAngle = atan2(-mRocketAngle.x, -mRocketAngle.y);
+				mOnyonArray[i].mOnyonPane->calcMtx();
+				mOnyonArray[i].mOnyonPane->updateScale(mRocketScale);
+			}
+			mRocketMoveCounter = 0;
+			mCurrentState      = 10;
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_1);
+		}
+		break;
+	}
+	case 12: {
+		f32 test = rocketMove(cWaitPane, true);
+		rocketUpdate(cWaitPane);
+		if (test > msVal._0C) {
+			mRocketMoveCounter = 0;
+			mCurrentState      = WMAP_Idle;
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_5);
+		}
+		onyonMove();
+		break;
+	}
+	case 13: {
+		paneRocket->setOffset(1000.0f, 0.0f);
+		for (int i = 0; i < mOnyonCount; i++) {
+			mOnyonArray[i].mOnyonPane->setOffset(1000.0f, 0.0f);
+		}
+		_98 += 1.0f;
+		mAnimTimers[0] = mCameraZoomMinFrame * (1.0f - (_98 * _98 * _98 * _98));
+		if (mCameraZoomMinFrame - mAnimTimers[0] < 2.0f) {
+			mAnimTimers[0] = mCameraZoomMinFrame;
+			mCurrentState  = 12;
+		}
+		break;
+	}
+	}
+
+	if (!(mFlags & 0x10) && mZukanFadeout) {
+		mZukanFadeout -= msVal._79;
+		if (mZukanFadeout < msVal._79) {
+			mZukanFadeout = 0;
+		}
+	}
+
+	if (mCurrentState != 13 && mCurrentState != 11 && mCurrentState != 0) {
+		// only show the "light" pane of the currently selected level
+		for (int i = 0; i < mOpenCourses; i++) {
+			if (mCurrentCourseIndex == i) {
+				mScreenKitagawa->search(getSerialTagName('Plight0', i))->show();
+			} else {
+				mScreenKitagawa->search(getSerialTagName('Plight0', i))->hide();
+			}
+		}
+	}
+
+	if (mCurrentState != 13 && mCurrentState != 11) {
+		PSMGetWorldMapRocket()->startRocketSE(mRocketPosition.x, mRocketPosition.y);
+	}
+	mScreenInfo->update();
+	mColorAnim2->update();
+	mScaleMgr->calc();
+
+	for (int i = 0; i < 2; i++) {
+		J2DPicture* cPane = static_cast<J2DPicture*>(mScreenInfo->search('T_new_l'));
+		cPane->setWhite(mColorAnim2->mColorList[i]);
+	}
+
+	f32 scale = mArrowBlink->calc() * 255.0f;
+	mScreenInfo->search('Nlbtn')->setAlpha(scale);
+	mScreenInfo->search('Nrbtn')->setAlpha(scale);
+	::Screen::gGame2DMgr->update();
 	/*
 stwu     r1, -0x170(r1)
 mflr     r0
@@ -5215,7 +5711,7 @@ blr
  * Address:	803F59A0
  * Size:	000330
  */
-void WorldMap::rocketMove(J2DPane*, bool)
+f32 WorldMap::rocketMove(J2DPane*, bool)
 {
 	/*
 stwu     r1, -0x70(r1)
@@ -6253,7 +6749,7 @@ blr
  * Address:	803F673C
  * Size:	00007C
  */
-void WorldMap::newMapOpen()
+bool WorldMap::newMapOpen()
 {
 	/*
 li       r0, 3
@@ -8086,6 +8582,8 @@ blr
  * Size:	000030
  */
 void WorldMap::OnyonDynamics::kill() { mOnyonKira->kill(); }
+
+WorldMap::StaticValues WorldMap::msVal;
 
 } // namespace Screen
 } // namespace kh

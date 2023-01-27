@@ -107,7 +107,7 @@ void SingleGame::SelectState::initNext(SingleGameSection* section)
 
 	arg.mHasNewPiklopediaEntries    = playData->mTekiStatMgr.whatsNew();
 	arg.mHasNewTreasureHoardEntries = playData->hasPelletZukanWhatsNew();
-	arg._16                         = section->_228;
+	arg.mDoNewEntriesEfx            = section->_228;
 	section->_228                   = 1;
 	static_cast<Game::WorldMap::Base*>(mWorldMap)->init(arg);
 
