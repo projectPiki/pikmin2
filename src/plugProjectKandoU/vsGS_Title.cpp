@@ -187,7 +187,7 @@ void TitleState::execChallenge(VsGameSection* section)
 {
 	switch (mTitleStage) {
 	case VSTITLE_PrepareInfo:
-		mHeap    = getCurrentHeap();
+		mHeap    = JKRGetCurrentHeap();
 		mExpHeap = makeExpHeap(mHeap->getFreeSize(), mHeap, true);
 		mExpHeap->becomeCurrentHeap();
 
@@ -272,7 +272,7 @@ void TitleState::execVs(VsGameSection* section)
 {
 	switch (mTitleStage) {
 	case VSTITLE_PrepareInfo:
-		mHeap    = getCurrentHeap();
+		mHeap    = JKRGetCurrentHeap();
 		mExpHeap = makeExpHeap(mHeap->getFreeSize(), mHeap, true);
 		mExpHeap->becomeCurrentHeap();
 

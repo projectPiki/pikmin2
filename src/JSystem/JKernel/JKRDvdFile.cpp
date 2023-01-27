@@ -71,11 +71,11 @@ JKRDvdFile::~JKRDvdFile() { close(); }
  */
 void JKRDvdFile::initiate()
 {
-	_98 = this;
-	OSInitMutex(&_1C);
-	OSInitMutex(&_34);
-	OSInitMessageQueue(&_C0, &_E0, 1);
-	OSInitMessageQueue(&_9C, &_BC, 1);
+	mDvdFile = this;
+	OSInitMutex(&mMutex1);
+	OSInitMutex(&mMutex2);
+	OSInitMessageQueue(&mMessageQueue2, &mMessage2, 1);
+	OSInitMessageQueue(&mMessageQueue1, &mMessage1, 1);
 	mThread = nullptr;
 	_50     = nullptr;
 	_58     = 0;
@@ -143,10 +143,10 @@ void JKRDvdFile::close()
  */
 int JKRDvdFile::readData(void* addr, s32 length, s32 offset)
 {
-	OSLockMutex(&_1C);
+	OSLockMutex(&mMutex1);
 	s32 retAddr;
 	if (mThread != nullptr) {
-		OSUnlockMutex(&_1C);
+		OSUnlockMutex(&mMutex1);
 		return -1;
 	} else {
 		mThread = OSGetCurrentThread();
@@ -155,92 +155,10 @@ int JKRDvdFile::readData(void* addr, s32 length, s32 offset)
 			retAddr = (s32)sync();
 		}
 		mThread = nullptr;
-		OSUnlockMutex(&_1C);
+		OSUnlockMutex(&mMutex1);
 	}
 	return retAddr;
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
- */
-// inline int JKRDvdFile::readDataAsync(void* buffer, long byteCount, long
-// startOffset)
-// {
-// 	long result;
-// 	OSLockMutex(&_1C);
-// 	if (_F4) {
-// 		OSUnlockMutex(&_1C);
-// 		result = -1;
-// 	} else {
-// 		_F4 = OSGetCurrentThread();
-// 		result = -1;
-// 		if (DVDReadAsyncPrio(&mDvdPlayer, buffer, byteCount, startOffset,
-// (DVDDoneReadCallback*)doneProcess, 2)) { 			result = (long)this;
-// sync();
-// 		}
-// 		_F4 = nullptr;
-// 		OSUnlockMutex(&_1C);
-// 	}
-// 	return result;
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	stw      r0, 0x24(r1)
-// 	stw      r31, 0x1c(r1)
-// 	mr       r31, r6
-// 	stw      r30, 0x18(r1)
-// 	mr       r30, r5
-// 	stw      r29, 0x14(r1)
-// 	mr       r29, r4
-// 	stw      r28, 0x10(r1)
-// 	mr       r28, r3
-// 	addi     r3, r28, 0x1c
-// 	bl       OSLockMutex
-// 	lwz      r0, 0xf4(r28)
-// 	cmplwi   r0, 0
-// 	beq      lbl_8001D550
-// 	addi     r3, r28, 0x1c
-// 	bl       OSUnlockMutex
-// 	li       r3, -1
-// 	b        lbl_8001D5A4
-
-// lbl_8001D550:
-// 	bl       OSGetCurrentThread
-// 	lis      r4, doneProcess__10JKRDvdFileFlP11DVDFileInfo@ha
-// 	stw      r3, 0xf4(r28)
-// 	addi     r7, r4, doneProcess__10JKRDvdFileFlP11DVDFileInfo@l
-// 	mr       r6, r31
-// 	mr       r4, r29
-// 	mr       r5, r30
-// 	addi     r3, r28, 0x5c
-// 	li       r31, -1
-// 	li       r8, 2
-// 	bl       DVDReadAsyncPrio
-// 	cmpwi    r3, 0
-// 	beq      lbl_8001D590
-// 	mr       r3, r28
-// 	bl       sync__10JKRDvdFileFv
-// 	mr       r31, r3
-
-// lbl_8001D590:
-// 	li       r0, 0
-// 	addi     r3, r28, 0x1c
-// 	stw      r0, 0xf4(r28)
-// 	bl       OSUnlockMutex
-// 	mr       r3, r31
-
-// lbl_8001D5A4:
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	lwz      r30, 0x18(r1)
-// 	lwz      r29, 0x14(r1)
-// 	lwz      r28, 0x10(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
 
 /*
  * --INFO--
@@ -257,10 +175,10 @@ int JKRDvdFile::writeData(const void* p1, long p2, long p3) { return writeDataAs
 long JKRDvdFile::sync()
 {
 	void* buffer[1];
-	OSLockMutex(&_1C);
-	OSReceiveMessage(&_C0, buffer, OS_MESSAGE_BLOCKING);
+	OSLockMutex(&mMutex1);
+	OSReceiveMessage(&mMessageQueue2, buffer, OS_MESSAGE_BLOCKING);
 	mThread = nullptr;
-	OSUnlockMutex(&_1C);
+	OSUnlockMutex(&mMutex1);
 	return (u32)*buffer;
 }
 
@@ -272,7 +190,7 @@ long JKRDvdFile::sync()
 BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info)
 {
 	JKRDvdFile* dvdFile = reinterpret_cast<JKRDvdFile*>(info->_3C);
-	return OSSendMessage(&dvdFile->_C0, (void*)p1, OS_MESSAGE_NON_BLOCKING);
+	return OSSendMessage(&dvdFile->mMessageQueue2, (void*)p1, OS_MESSAGE_NON_BLOCKING);
 }
 
 /*
@@ -281,9 +199,3 @@ BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info)
  * Size:	000008
  */
 // int JKRDvdFile::getFileSize() const { return mDvdPlayer.mFileSize; }
-
-/*
- * --INFO--
- * Address:	8001D658
- * Size:	000044
- */

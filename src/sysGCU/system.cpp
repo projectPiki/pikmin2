@@ -343,8 +343,8 @@ void myTask(void* data) { sys->mCardMgr->cardProc(data); }
 System::FragmentationChecker::FragmentationChecker(char* name, bool)
 {
 	mName     = name;
-	u32 free  = getCurrentHeap()->getFreeSize();
-	u32 total = getCurrentHeap()->getTotalFreeSize();
+	u32 free  = JKRGetCurrentHeap()->getFreeSize();
+	u32 total = JKRGetCurrentHeap()->getTotalFreeSize();
 	mSize     = total - free;
 }
 
@@ -355,8 +355,8 @@ System::FragmentationChecker::FragmentationChecker(char* name, bool)
  */
 System::FragmentationChecker::~FragmentationChecker()
 {
-	getCurrentHeap()->getFreeSize();
-	getCurrentHeap()->getTotalFreeSize();
+	JKRGetCurrentHeap()->getFreeSize();
+	JKRGetCurrentHeap()->getTotalFreeSize();
 }
 
 /*
@@ -366,8 +366,8 @@ System::FragmentationChecker::~FragmentationChecker()
  */
 int System::assert_fragmentation(char*)
 {
-	u32 free  = getCurrentHeap()->getFreeSize();
-	u32 total = getCurrentHeap()->getTotalFreeSize();
+	u32 free  = JKRGetCurrentHeap()->getFreeSize();
+	u32 total = JKRGetCurrentHeap()->getTotalFreeSize();
 	if (free < total) {
 		return; // probably commented out code?
 	}
@@ -436,7 +436,7 @@ System::System()
 	sys            = this;
 	sUseABXCommand = true;
 	initCurrentHeapMutex();
-	JKRHeap* heap = getCurrentHeap();
+	JKRHeap* heap = JKRGetCurrentHeap();
 	mSysHeap      = JKRExpHeap::create(0x428000, nullptr, true);
 	mSysHeap->becomeCurrentHeap();
 	mHeapStatus = new HeapStatus;
@@ -498,7 +498,7 @@ void System::construct()
 	heapStatusEnd("ARAMMgr");
 
 	heapStatusStart("ResourceMgr2D", nullptr);
-	Resource::Mgr2D::init(getCurrentHeap());
+	Resource::Mgr2D::init(JKRGetCurrentHeap());
 	heapStatusEnd("ResourceMgr2D");
 
 	mPlayData  = new Game::CommonSaveData::Mgr;
@@ -517,9 +517,9 @@ void System::construct()
  */
 void System::constructWithDvdAccessFirst()
 {
-	P2ASSERTLINE(1013, getCurrentHeap()->getHeapType() == 'EXPH');
+	P2ASSERTLINE(1013, JKRGetCurrentHeap()->getHeapType() == 'EXPH');
 
-	JKRHeap* old = getCurrentHeap();
+	JKRHeap* old = JKRGetCurrentHeap();
 	mSysHeap->becomeCurrentHeap();
 
 	heapStatusStart("constructWithDvdAccess1st", nullptr);
@@ -544,9 +544,9 @@ void System::constructWithDvdAccessSecond()
 {
 	loadSoundResource();
 
-	P2ASSERTLINE(1064, getCurrentHeap()->getHeapType() == 'EXPH');
+	P2ASSERTLINE(1064, JKRGetCurrentHeap()->getHeapType() == 'EXPH');
 
-	JKRExpHeap* old = static_cast<JKRExpHeap*>(getCurrentHeap());
+	JKRExpHeap* old = static_cast<JKRExpHeap*>(JKRGetCurrentHeap());
 	mSysHeap->becomeCurrentHeap();
 
 	heapStatusStart("constructWithDvdAccess2nd", nullptr);
@@ -593,9 +593,9 @@ void System::destroyRomFont()
 void System::createSoundSystem()
 {
 	sys->heapStatusStart("SoundSystem", nullptr);
-	JKRHeap* old = getCurrentHeap();
+	JKRHeap* old = JKRGetCurrentHeap();
 
-	P2ASSERTLINE(1158, getCurrentHeap());
+	P2ASSERTLINE(1158, JKRGetCurrentHeap());
 	P2ASSERTLINE(1161, gResMgr2D);
 
 	JKRHeap* resHeap    = gResMgr2D->mHeap;
@@ -763,9 +763,9 @@ void System::createSoundSystem()
  */
 void System::loadSoundResource()
 {
-	JKRHeap* old = getCurrentHeap();
+	JKRHeap* old = JKRGetCurrentHeap();
 
-	JKRSolidHeap* newheap = JKRSolidHeap::create(getCurrentHeap()->getFreeSize(), old, true);
+	JKRSolidHeap* newheap = JKRSolidHeap::create(JKRGetCurrentHeap()->getFreeSize(), old, true);
 	newheap->becomeCurrentHeap();
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
@@ -1592,7 +1592,7 @@ void System::startChangeCurrentHeap(JKRHeap* newheap)
 {
 	OSLockMutex(this);
 	P2ASSERTLINE(2033, !mBackupHeap);
-	mBackupHeap = getCurrentHeap();
+	mBackupHeap = JKRGetCurrentHeap();
 	newheap->becomeCurrentHeap();
 }
 

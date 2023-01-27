@@ -79,7 +79,7 @@ GameFlow::~GameFlow() { }
 void GameFlow::run()
 {
 	while (true) {
-		JKRHeap* parentHeap = getCurrentHeap();
+		JKRHeap* parentHeap = JKRGetCurrentHeap();
 
 		JKRHeap::TState state(parentHeap);
 		JKRHeap::sCurrentHeap->state_register(&state, -1);

@@ -2,7 +2,7 @@
 #include "Dolphin/dvd.h"
 #include "Dolphin/gx.h"
 #include "Dolphin/os.h"
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JUtility/JUTAssertion.h"

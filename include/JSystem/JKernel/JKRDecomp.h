@@ -91,18 +91,18 @@ struct JKRDecompCommand {
 	JKRDecompCommand();
 	~JKRDecompCommand();
 
-	u8 _00[4];               // _00
-	u8* _04;                 // _04
-	u8* _08;                 // _08
-	u32 _0C;                 // _0C
-	u32 _10;                 // _10
-	Callback* mCallback;     // _14
-	void* _18;               // _18
-	OSMessageQueue* _1C;     // _1C
-	int _20;                 // _20
-	JKRAMCommand* _24;       // _24
-	OSMessageQueue _28;      // _28
-	void* mMessageBuffer[1]; // _48
+	u8 _00[4];                    // _00, unknown
+	u8* mSourceBuffer;            // _04
+	u8* mDestBuffer;              // _08
+	u32 mSourceLength;            // _0C
+	u32 mDestLength;              // _10
+	Callback* mCallback;          // _14
+	JKRDecompCommand* mSelf;      // _18
+	OSMessageQueue* _1C;          // _1C
+	int _20;                      // _20
+	JKRAMCommand* mAMCommand;     // _24
+	OSMessageQueue mMessageQueue; // _28
+	void* mMessageBuffer[1];      // _48, OSMessage
 };
 
 // Size: 0x7C
@@ -126,5 +126,12 @@ struct JKRDecomp : public JKRThread {
 	static OSMessageQueue sMessageQueue;
 	static JKRDecomp* sDecompObject;
 };
+
+inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength)
+{
+	JKRDecomp::orderSync(srcBuffer, dstBuffer, srcLength, dstLength);
+}
+
+inline JKRDecomp* JKRCreateDecompManager(long priority) { return JKRDecomp::create(priority); }
 
 #endif

@@ -5301,7 +5301,7 @@ void BasePelletMgr::load()
 		char* archiveName      = config->mParams.mArchive.mData;
 		if (strcmp("null", archiveName)) {
 			sprintf(buffer2, "%s%s", file, config->mParams.mArchive.mData);
-			archive = JKRArchive::mount(buffer2, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
+			archive = JKRArchive::mount(buffer2, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 		}
 
 		J3DModelData* data = nullptr;
@@ -5397,7 +5397,7 @@ void BasePelletMgr::load_texArc(char* filename)
 			JKRArchive* archive = nullptr;
 			if (strcmp("null", config->mParams.mArchive.mData)) {
 				sprintf(path, "%s%s", directory, config->mParams.mArchive.mData);
-				archive = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
+				archive = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 			}
 
 			J3DModelData* data = nullptr;
@@ -5792,7 +5792,7 @@ JKRArchive* BasePelletMgr::openTextArc(char* arc)
 	char filePath[512];
 
 	sprintf(filePath, "%s/%s", file, arc);
-	return JKRArchive::mount(filePath, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Unk2);
+	return JKRArchive::mount(filePath, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Tail);
 }
 
 /*

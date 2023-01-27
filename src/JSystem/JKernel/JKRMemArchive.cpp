@@ -304,7 +304,7 @@ bool JKRMemArchive::open(long p1, EMountDirection mountDirection)
 	_54             = 0;
 	_6C             = 0;
 	mMountDirection = mountDirection;
-	if (mMountDirection == EMD_Unk1) {
+	if (mMountDirection == EMD_Head) {
 		u32 v1;
 		_64 = (JKRMemArchive_64*)JKRDvdRipper::loadToMainRAM(p1, nullptr, Switch_1, 0, _38, JKRDvdRipper::ALLOC_DIR_TOP, 0, &_5C, &v1);
 		if (_64) {

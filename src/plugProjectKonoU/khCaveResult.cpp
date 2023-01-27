@@ -166,7 +166,7 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 	mScreenMain->setAnimation(mAnimTexSRT);
 	mScreenMain->setAnimation(mAnimTevReg);
 
-	JKRHeap* oldHeap = getCurrentHeap();
+	JKRHeap* oldHeap = JKRGetCurrentHeap();
 	if (disp->mHeap) {
 		disp->mHeap->becomeCurrentHeap();
 	}

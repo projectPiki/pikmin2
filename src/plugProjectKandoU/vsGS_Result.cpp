@@ -157,7 +157,7 @@ void ResultState::exec(VsGameSection* section)
 	switch (mResultStage) {
 	case VSRES_PrepareInfo:
 		section->clearHeap();
-		mHeap    = getCurrentHeap();
+		mHeap    = JKRGetCurrentHeap();
 		mExpHeap = makeExpHeap(mHeap->getFreeSize(), mHeap, true);
 		mExpHeap->becomeCurrentHeap();
 

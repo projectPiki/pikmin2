@@ -288,11 +288,11 @@ LoadResource::Node* LoadResource::Mgr::mountArchive(LoadResource::Arg& arg)
 {
 	Node* node = load(arg);
 	if (node) {
-		JKRArchive::EMountDirection mountDirection = JKRArchive::EMD_Unk2;
+		JKRArchive::EMountDirection mountDirection = JKRArchive::EMD_Tail;
 		void* v1                                   = node->mFile;
 		JKRHeap* heap                              = arg.mHeap;
 		if (arg._1C == 1) {
-			mountDirection = JKRArchive::EMD_Unk1;
+			mountDirection = JKRArchive::EMD_Head;
 		}
 		node->mArchive = JKRArchive::mount(v1, heap, mountDirection);
 		JUT_ASSERTLINE(221, node->mArchive != nullptr, "mount arc failure");

@@ -38,7 +38,7 @@
         .4byte 0x00000000
 */
 
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JUtility/JUTException.h"

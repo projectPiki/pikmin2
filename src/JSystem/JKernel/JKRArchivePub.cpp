@@ -1,5 +1,5 @@
 #include "Dolphin/dvd.h"
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRHeap.h"
@@ -34,7 +34,7 @@ JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* pHeap)
 	for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
 		if (iterator->getVolumeType() == 'RARC') {
 			JKRArchive* archive = (JKRArchive*)iterator.getObject(); // in TP debug it calls operator-> ?
-			if (archive->_40 == entryNum && archive->_38 == heap) {
+			if (archive->mEntryNum == entryNum && archive->mHeap == heap) {
 				archive->mMountCount++;
 				return archive;
 			}
@@ -65,7 +65,7 @@ JKRArchive* JKRArchive::mount(void* p1, JKRHeap* heap, EMountDirection mountDire
 	if (archive != nullptr) {
 		return archive;
 	}
-	return new (heap, (mountDirection == EMD_Unk1) ? 4 : -4) JKRMemArchive(p1, 0xFFFF, MBF_0);
+	return new (heap, (mountDirection == EMD_Head) ? 4 : -4) JKRMemArchive(p1, 0xFFFF, MBF_0);
 }
 
 /*
@@ -79,7 +79,7 @@ JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* heap
 	if (archive) {
 		return archive;
 	} else {
-		int i = (mountDirection == EMD_Unk1) ? 4 : -4;
+		int i = (mountDirection == EMD_Head) ? 4 : -4;
 		JKRArchive* archive;
 		switch (mountMode) {
 		case EMM_Mem:
@@ -123,7 +123,7 @@ bool JKRArchive::becomeCurrent(const char* path)
 	bool result = (entry != nullptr);
 	if (result) {
 		sCurrentVolume = this;
-		sCurrentDirID  = (entry - _48);
+		sCurrentDirID  = (entry - mDirectories);
 	}
 	return result;
 }
@@ -139,10 +139,10 @@ bool JKRArchive::getDirEntry(JKRArchive::SDirEntry* dirEntry, u32 p2) const
 	if (!fileEntry) {
 		return false;
 	}
-	char* names   = (char*)_54;
-	dirEntry->_00 = fileEntry->mFlag >> 0x18;
-	dirEntry->_02 = fileEntry->_00;
-	dirEntry->_04 = names + (fileEntry->mFlag & 0xFFFFFF);
+	char* names      = (char*)mStrTable;
+	dirEntry->mFlags = fileEntry->mFlag >> 0x18;
+	dirEntry->mID    = fileEntry->mFileID;
+	dirEntry->mName  = names + (fileEntry->mFlag & 0xFFFFFF);
 	return true;
 }
 
@@ -275,12 +275,12 @@ u32 JKRArchive::readResource(void* resourceBuffer, u32 bufferSize, u16 id)
  */
 void JKRArchive::removeResourceAll()
 {
-	if (_44 != nullptr && mMountMode != EMM_Mem) {
+	if (mDataInfo && mMountMode != EMM_Mem) {
 		SDIFileEntry* entry = mFileEntries;
-		for (int i = 0; i < _44->_08; i++) {
-			if (entry->_10) {
-				JKRHeap::free(entry->_10, _38);
-				entry->_10 = nullptr;
+		for (int i = 0; i < mDataInfo->mNumFileEntries; i++) {
+			if (entry->mData) {
+				JKRHeap::free(entry->mData, mHeap);
+				entry->mData = nullptr;
 			}
 			entry++;
 		}
@@ -298,8 +298,8 @@ bool JKRArchive::removeResource(void* resource)
 	if (entry == nullptr) {
 		return false;
 	}
-	entry->_10 = nullptr;
-	JKRHeap::free(resource, _38);
+	entry->mData = nullptr;
+	JKRHeap::free(resource, mHeap);
 	return true;
 }
 
@@ -314,7 +314,7 @@ bool JKRArchive::detachResource(void* resource)
 	if (entry == nullptr) {
 		return false;
 	}
-	entry->_10 = nullptr;
+	entry->mData = nullptr;
 	return true;
 }
 
@@ -346,7 +346,7 @@ u32 JKRArchive::countFile(const char* path) const
 	} else {
 		dirEntry = findDirectory(path, sCurrentDirID);
 	}
-	return (dirEntry != nullptr) ? dirEntry->num_entries : 0;
+	return (dirEntry) ? dirEntry->mNum : 0;
 }
 
 /*
@@ -366,8 +366,8 @@ JKRFileFinder* JKRArchive::getFirstFile(const char* path) const
 	} else {
 		dirEntry = findDirectory(path, sCurrentDirID);
 	}
-	if (dirEntry != nullptr) {
-		return new (JKRHeap::sSystemHeap, 0) JKRArcFinder(const_cast<JKRArchive*>(this), dirEntry->first_file_index, dirEntry->num_entries);
+	if (dirEntry) {
+		return new (JKRHeap::sSystemHeap, 0) JKRArcFinder(const_cast<JKRArchive*>(this), dirEntry->mFirstIdx, dirEntry->mNum);
 	}
 	return nullptr;
 }

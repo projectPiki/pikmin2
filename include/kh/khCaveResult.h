@@ -93,7 +93,7 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	{
 		ebi::Save::TMgr* saveMgr = mSaveMgr;
 		saveMgr->mSaveMenu.loadResource();
-		saveMgr->doLoadResource(getCurrentHeap());
+		saveMgr->doLoadResource(JKRGetCurrentHeap());
 	}
 
 	inline bool isFlag(u32 flag) const { return mFlag & flag; }

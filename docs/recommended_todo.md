@@ -57,8 +57,8 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRFileFinder.cpp">JKernel/JKRFileFinder.cpp</a> | 4416 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAS/JASSeqCtrl.cpp">JAudio2/JAS/JASSeqCtrl.cpp</a> | 4525 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTGraphFifo.cpp">JUtility/JUTGraphFifo.cpp</a> | 4754 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAResourceManager.cpp">JParticle/JPAResourceManager.cpp</a> | 4857 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/JStudio_JMessage/control.cpp">JStudio/JStudio_JMessage/control.cpp</a> | 5069 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/dsp/dspproc.c">JAudio2/dsp/dspproc.c</a> | 5082 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/linklist.cpp">JGadget/linklist.cpp</a> | 5250 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRAramPiece.cpp">JKernel/JKRAramPiece.cpp</a> | 5469 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRAramHeap.cpp">JKernel/JKRAramHeap.cpp</a> | 5550 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/dsp/dsptask.c">JAudio2/dsp/dsptask.c</a> | 5624 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/linklist.cpp">JGadget/linklist.cpp</a> | 5250 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRAramPiece.cpp">JKernel/JKRAramPiece.cpp</a> | 5472 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRAramHeap.cpp">JKernel/JKRAramHeap.cpp</a> | 5553 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/dsp/dsptask.c">JAudio2/dsp/dsptask.c</a> | 5624 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAI/JAISoundTable.cpp">JAudio2/JAI/JAISoundTable.cpp</a> | 5693 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAS/JASDrumSet.cpp">JAudio2/JAS/JASDrumSet.cpp</a> | 5701 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMath/JMath.cpp">JMath/JMath.cpp</a> | 5890 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/std-list.cpp">JGadget/std-list.cpp</a> | 5990 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAI/JAIFx.cpp">JAudio2/JAI/JAIFx.cpp</a> | 6650 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTDirectFile.cpp">JUtility/JUTDirectFile.cpp</a> | 6711 |
@@ -140,8 +140,8 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khUtil.cpp">khUtil.cpp</a> | 9514 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newScreenMgr.cpp">newScreenMgr.cpp</a> | 15969 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 63509 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 74674 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWorldMap.cpp">khWorldMap.cpp</a> | 199938 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 63512 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 74680 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWorldMap.cpp">khWorldMap.cpp</a> | 199941 |
 
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -208,8 +208,8 @@
 ### <section id="sysGCU">sysGCU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 5238 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerAudio.cpp">moviePlayerAudio.cpp</a> | 5667 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6617 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 5241 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerAudio.cpp">moviePlayerAudio.cpp</a> | 5667 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6620 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 7154 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPAudioDecode.c">THPAudioDecode.c</a> | 7342 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerPauseAndDraw.cpp">moviePlayerPauseAndDraw.cpp</a> | 8587 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenScene.cpp">screenScene.cpp</a> | 9300 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPVideoDecode.c">THPVideoDecode.c</a> | 10029 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/loadResource.cpp">loadResource.cpp</a> | 11781 |

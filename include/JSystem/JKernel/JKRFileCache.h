@@ -6,14 +6,14 @@
 
 struct JKRArchive;
 struct JKRFileCache : public JKRFileLoader {
-	struct CCacheBlock : JSULink<CCacheBlock> {
-		CCacheBlock(unsigned long, unsigned long, const void*);
+	struct CCacheBlock : public JSULink<CCacheBlock> {
+		CCacheBlock(u32, u32, const void*);
 
-		// JSULink<CCacheBlock> _00; // _00
-		int _10;         // _10
-		u32 _14;         // _14
-		u32 _18;         // _18
-		const void* _1C; // _1C
+		// _00-_10 = JSULink<CCacheBlock>
+		int mRefCount;        // _10
+		u32 mFileID;          // _14
+		u32 mFileSize;        // _18
+		const void* mFilePtr; // _1C
 	};
 
 	JKRFileCache(const char*, const char*);
@@ -49,11 +49,16 @@ struct JKRFileCache : public JKRFileLoader {
 	void* getRelResource(const char*);
 	u32 readRelResource(void* p1, u32 p2, const char* p3);
 
-	JKRHeap* _38;                         // _38
+	JKRHeap* mParentHeap;                 // _38
 	JSUList<CCacheBlock> mCacheBlockList; // _3C
-	char* _48;                            // _48
+	char* mRootPath;                      // _48
 	char* mDirectoryPath;                 // _4C
-	char* _50;                            // _50
+	char* mVolumePath;                    // _50
 };
+
+inline JKRFileCache* JKRMountDvdDrive(const char* path, JKRHeap* heap, const char* param_2)
+{
+	return JKRFileCache::mount(path, heap, param_2);
+}
 
 #endif

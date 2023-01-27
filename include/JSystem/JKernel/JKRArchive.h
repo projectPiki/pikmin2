@@ -8,9 +8,21 @@
 
 struct JKRArcFinder;
 
+enum JKRCompression {
+	COMPRESSION_None = 0,
+	COMPRESSION_YAY0 = 1,
+	COMPRESSION_YAZ0 = 2,
+	COMPRESSION_ASR  = 3,
+};
+
 struct JKRArchive : public JKRFileLoader {
-	enum EMountMode { EMM_Unk0 = 0, EMM_Mem, EMM_Aram, EMM_Dvd, EMM_Comp = 4 };
-	enum EMountDirection { EMD_Unk0 = 0, EMD_Unk1, EMD_Unk2 };
+	enum EMountMode { EMM_Unk0 = 0, EMM_Mem = 1, EMM_Aram = 2, EMM_Dvd = 3, EMM_Comp = 4 };
+
+	enum EMountDirection {
+		EMD_Unk0 = 0,
+		EMD_Head = 1,
+		EMD_Tail = 2,
+	};
 
 	struct CArcName {
 		CArcName(const char** p1, char p2) { p1[0] = store(p1[0], p2); }
@@ -31,58 +43,60 @@ struct JKRArchive : public JKRFileLoader {
 	};
 
 	struct SDIFileEntry {
-		inline bool getFlag01() const { return ((mFlag >> 24) & 0x01) != 0; }
-		inline bool getFlag04() { return mFlag >> 0x18 & 0x04; }
-		inline bool getFlag10() { return mFlag >> 0x18 & 0x10; }
-		inline bool getFlag80() { return mFlag >> 0x18 & 0x80; }
-
 		u16 getNameHash() const { return mHash; }
 		u32 getNameOffset() const { return mFlag & 0xFFFFFF; }
-		inline u32 getFlags() const { return mFlag >> 24; }
-		inline bool isDirectory() const { return ((mFlag >> 24) & 0x02) != 0; }
-		inline u32 getSize() { return mSize; }
+		u32 getFlags() const { return mFlag >> 24; }
+		u32 getAttr() const { return getFlags(); }
+		u32 getSize() { return mSize; }
+		u16 getFileID() const { return mFileID; }
+		bool isDirectory() const { return (getFlags() & 0x02) != 0; }
+		bool isCompressed() const { return (getFlags() & 0x04) != 0; }
+		u8 getCompressFlag() const { return (getFlags() & 0x04); } // apparently both necessary?
+		bool isYAZ0Compressed() const { return (getFlags() & 0x80) != 0; }
 
-		u16 _00;   // _00
-		u16 mHash; // _02
-		u32 mFlag; // _04
-		u32 _08;   // _08
-		u32 mSize; // _0C
-		void* _10; // _10
+		bool getFlag01() const { return (getFlags() & 0x01) != 0; }
+		bool getFlag04() { return mFlag >> 0x18 & 0x04; }
+		bool getFlag10() { return mFlag >> 0x18 & 0x10; }
+		bool getFlag80() { return mFlag >> 0x18 & 0x80; }
+
+		u16 mFileID;     // _00
+		u16 mHash;       // _02
+		u32 mFlag;       // _04
+		u32 mDataOffset; // _08
+		u32 mSize;       // _0C
+		void* mData;     // _10
 	};
 
 	struct SDirEntry {
-		u8 _00;    // _00
-		u8 _01;    // _01
-		u16 _02;   // _02
-		char* _04; // _04
-		u8 _08[2]; // _08
-		u16 _0A;   // _0A
-		int _0C;   // _0C
+		u8 mFlags;   // _00
+		u8 _01;      // _01
+		u16 mID;     // _02
+		char* mName; // _04
 	};
 
 	struct SDIDirEntry {
-		u32 type;
-		u32 name_offset;
-		u16 _08;
-		u16 num_entries;
-		u32 first_file_index;
+		u32 mType;     // _00
+		u32 mOffset;   // _04
+		u16 _08;       // _08
+		u16 mNum;      // _0A
+		u32 mFirstIdx; // _0C
 	};
 
-	struct JKRArchive_44 {
-		u32 mBaseOffset;        // _00
-		u32 mOffsetOfDirEntry;  // _04
-		u32 _08;                // _08
-		u32 mOffsetOfFileEntry; // _0C
-		u32 _10;                // _10
-		u32 _14;                // _14
-		u16 _18;                // _18
-		bool _1A;               // _1A
-		u8 _1B[5];              // _1B
+	// NB: Fabricated name
+	struct SArcDataInfo {
+		u32 mNumDirEntries;   // _00
+		u32 mDirEntryOffset;  // _04
+		u32 mNumFileEntries;  // _08
+		u32 mFileEntryOffset; // _0C
+		u32 mStrTableLength;  // _10
+		u32 mStrTableOffset;  // _14
+		u16 mNextFreeFileID;  // _18
+		bool mIsSyncIDs;      // _1A
+		u8 _1B[5];            // _1B, unknown
 	};
 
 	JKRArchive(long, EMountMode);
 
-	virtual ~JKRArchive();                                                                                    // _08
 	virtual bool becomeCurrent(const char*);                                                                  // _10
 	virtual void* getResource(const char* path);                                                              // _14
 	virtual void* getResource(u32 type, const char* name);                                                    // _18
@@ -94,11 +108,12 @@ struct JKRArchive : public JKRFileLoader {
 	virtual long getResSize(const void*) const;                                                               // _30
 	virtual u32 countFile(const char*) const;                                                                 // _34
 	virtual JKRFileFinder* getFirstFile(const char*) const;                                                   // _38
-	virtual u32 getExpandedResSize(const void*) const;                                                        // _3C (weak)
+	virtual u32 getExpandedResSize(const void* resource) const;                                               // _3C (weak)
 	virtual void* fetchResource(SDIFileEntry* entry, u32* outSize)                                       = 0; // _40
 	virtual void* fetchResource(void* resourceBuffer, u32 bufferSize, SDIFileEntry* entry, u32* resSize) = 0; // _44
 	virtual void setExpandSize(SDIFileEntry*, u32);                                                           // _48
 	virtual u32 getExpandSize(SDIFileEntry*) const;                                                           // _4C
+	virtual ~JKRArchive();                                                                                    // _08
 
 	SDIDirEntry* findDirectory(const char*, u32) const;
 	SDIFileEntry* findFsResource(const char*, u32) const;
@@ -127,32 +142,40 @@ struct JKRArchive : public JKRFileLoader {
 	SDIFileEntry* findTypeResource(u32, u32) const;
 
 	u32 getMountMode() const { return mMountMode; }
-	u32 countFile() const { return _44->_08; }
+	u32 countFile() const { return mDataInfo->mNumFileEntries; }
+	int countDirectory() const { return mDataInfo->mNumDirEntries; }
+
+	static u32 getCurrentDirID() { return sCurrentDirID; }
+	static void setCurrentDirID(u32 dirID) { sCurrentDirID = dirID; }
 
 	static u32 sCurrentDirID;
 
 	// _00     = VTBL
 	// _00-_38 = JKRFileLoader
-	JKRHeap* _38;               // _38
+	JKRHeap* mHeap;             // _38
 	u8 mMountMode;              // _3C
-	long _40;                   // _40
-	JKRArchive_44* _44;         // _44
-	SDIDirEntry* _48;           // _48
+	int mEntryNum;              // _40
+	SArcDataInfo* mDataInfo;    // _44
+	SDIDirEntry* mDirectories;  // _48
 	SDIFileEntry* mFileEntries; // _4C
 	u32* mExpandSizes;          // _50
-	const char* _54;            // _54
+	const char* mStrTable;      // _54
 	int _58;                    // _58
 };
 
 enum JKRMemBreakFlag { MBF_0 = 0, MBF_1 = 1 };
 
 struct JKRMemArchive : public JKRArchive {
-	// TODO: work out correct struct
-	struct JKRMemArchive_64 {
-		u32 _00; // _00
-		u32 _04; // _04
-		u32 _08; // _08
-		u32 _0C; // _0C
+	// NB: Fabricated name - need to check size
+	struct SArcHeader {
+		u32 mSignature;      // _00
+		u32 mFileLength;     // _04
+		u32 mHeaderLength;   // _08
+		u32 mFileDataOffset; // _0C
+		u32 mFileDataLength; // _10
+		u32 _14;             // _14
+		u32 _18;             // _18
+		u32 _1C;             // _1C
 	};
 
 	JKRMemArchive(); // unused/inlined
@@ -181,11 +204,11 @@ struct JKRMemArchive : public JKRArchive {
 
 	// _00     = VTBL
 	// _00-_5C = JKRArchive
-	int _5C;                         // _5C
+	JKRCompression mCompression;     // _5C
 	EMountDirection mMountDirection; // _60
-	JKRMemArchive_64* _64;           // _64
-	u8* _68;                         // _68
-	bool _6C;                        // _6C
+	SArcHeader* mHeader;             // _64
+	u8* mArchiveData;                // _68
+	bool mIsOpen;                    // _6C
 };
 
 struct JKRCompArchive : public JKRArchive {
@@ -208,15 +231,15 @@ struct JKRCompArchive : public JKRArchive {
 
 	// _00     = VTBL
 	// _00-_5C = JKRArchive
-	int _5C;             // _5C
-	int mMountDirection; // _60
-	u32 _64;             // _64
-	void* _68;           // _68
-	unknown _6C;         // _6C
-	JKRDvdFile* _70;     // _70
-	unknown _74;         // _74
-	unknown _78;         // _78
-	unknown _7C;         // _7C
+	JKRCompression mCompression;     // _5C
+	EMountDirection mMountDirection; // _60
+	u32 _64;                         // _64
+	void* _68;                       // _68
+	unknown _6C;                     // _6C
+	JKRDvdFile* mDvdFile;            // _70
+	u32 mMemSize;                    // _74
+	u32 mAramSize;                   // _78
+	u32 _7C;                         // _7C
 };
 
 struct JKRDvdArchive : public JKRArchive {
@@ -237,10 +260,12 @@ struct JKRDvdArchive : public JKRArchive {
 	unknown mountFixed(const char*, EMountDirection);
 	unknown unmountFixed();
 
-	int _5C;  // _5C
-	int _60;  // _60
-	int _64;  // _64
-	int* _68; // _68
+	// _00     = VTBL
+	// _00-_5C = JKRArchive
+	JKRCompression mCompression;     // _5C
+	EMountDirection mMountDirection; // _60
+	int _64;                         // _64
+	JKRDvdFile* mDvdFile;            // _68
 };
 
 #endif

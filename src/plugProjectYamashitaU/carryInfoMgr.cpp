@@ -1059,7 +1059,7 @@ lbl_8011C208:
  */
 void CarryInfoMgr::loadResource()
 {
-	JKRArchive* arc = JKRArchive::mount("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
+	JKRArchive* arc = JKRArchive::mount("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	void* timg      = JKRFileLoader::getGlbResource("item_0_0.bti", arc);
 	JUTTexture* tex = new JUTTexture;
 	tex->_20        = static_cast<ResTIMG*>(timg);

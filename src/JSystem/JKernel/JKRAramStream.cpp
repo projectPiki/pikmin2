@@ -1,64 +1,8 @@
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JSupport/JSUStream.h"
 #include "Dolphin/os.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .balign 8
-    lbl_80473598:
-        .asciz "JKRAramStream.cpp"
-    .balign 4
-    lbl_804735AC:
-        .asciz ":::Cannot alloc memory\n"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .balign 8
-    .global sMessageBuffer__13JKRAramStream
-    sMessageBuffer__13JKRAramStream:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global sMessageQueue__13JKRAramStream
-    sMessageQueue__13JKRAramStream:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__13JKRAramStream
-    __vt__13JKRAramStream:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__13JKRAramStreamFv
-        .4byte run__13JKRAramStreamFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .balign 8
-    .global sAramStreamObject__13JKRAramStream
-    sAramStreamObject__13JKRAramStream:
-        .skip 0x4
-    .global transBuffer__13JKRAramStream
-    transBuffer__13JKRAramStream:
-        .skip 0x4
-    .global transSize__13JKRAramStream
-    transSize__13JKRAramStream:
-        .skip 0x4
-    .global transHeap__13JKRAramStream
-    transHeap__13JKRAramStream:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .balign 8
-    lbl_805164E0:
-        .asciz "%s"
-*/
 void* JKRAramStream::sMessageBuffer[4]      = { 0 }; // OSMessage
 OSMessageQueue JKRAramStream::sMessageQueue = { 0 };
 
@@ -114,10 +58,10 @@ void* JKRAramStream::run()
 		OSReceiveMessage(&JKRAramStream::sMessageQueue, (void**)&result, OS_MESSAGE_BLOCKING);
 		JKRAramStreamCommand* command = static_cast<JKRAramStreamCommand*>(result.message);
 		switch (command->type) {
-		case ECT_READ:
+		case JKRAramStreamCommand::ECT_READ:
 			readFromAram();
 			break;
-		case ECT_WRITE:
+		case JKRAramStreamCommand::ECT_WRITE:
 			writeToAram(command);
 			break;
 		}
@@ -219,11 +163,11 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
                                                               u32* returnSize)
 {
 	JKRAramStreamCommand* command = new (JKRHeap::sSystemHeap, -4) JKRAramStreamCommand();
-	command->type                 = ECT_WRITE;
+	command->type                 = JKRAramStreamCommand::ECT_WRITE;
 	command->mAddress             = (u32)addr;
 	command->mSize                = size;
 	command->mStream              = stream;
-	command->field_0x2c           = stream->getAvailable();
+	command->_2C                  = stream->getAvailable();
 	command->mOffset              = offset;
 	command->mTransferBuffer      = transBuffer;
 	command->mHeap                = transHeap;
@@ -233,7 +177,7 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
 		*returnSize = 0;
 	}
 
-	OSInitMessageQueue(&command->mMessageQueue, &command->mMessage, 1);
+	OSInitMessageQueue(&command->mMessageQueue, (void**)&command->mMessage, 1);
 	OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCKING);
 	return command;
 }
@@ -256,11 +200,11 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
 JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream* stream, u32 addr, u32 size, u32 offset, u32* returnSize)
 {
 	JKRAramStreamCommand* command = new (JKRHeap::sSystemHeap, -4) JKRAramStreamCommand();
-	command->type                 = ECT_WRITE;
+	command->type                 = JKRAramStreamCommand::ECT_WRITE;
 	command->mAddress             = addr;
 	command->mSize                = size;
 	command->mStream              = stream;
-	command->field_0x2c           = 0;
+	command->_2C                  = 0;
 	command->mOffset              = offset;
 	command->mTransferBuffer      = transBuffer;
 	command->mHeap                = transHeap;
@@ -270,7 +214,7 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
 		*returnSize = 0;
 	}
 
-	OSInitMessageQueue(&command->mMessageQueue, &command->mMessage, 1);
+	OSInitMessageQueue(&command->mMessageQueue, (void**)&command->mMessage, 1);
 	OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCKING);
 	return command;
 }

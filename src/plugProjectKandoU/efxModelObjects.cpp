@@ -67,7 +67,7 @@ void OnyonSpot::changeMaterial()
 void OnyonSpotData::loadResources()
 {
 	allocModelData(1);
-	JKRArchive* arc = JKRArchive::mount("user/Kando/effect/modeleffect.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
+	JKRArchive* arc = JKRArchive::mount("user/Kando/effect/modeleffect.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(92, arc);
 
 	void* file = JKRFileLoader::getGlbResource("onyonspot.bmd", nullptr);

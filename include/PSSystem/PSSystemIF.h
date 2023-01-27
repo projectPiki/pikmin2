@@ -54,7 +54,7 @@ struct ArcMgr : public JKRDisposer {
 inline JKRFileLoader* getLoaderInstance()
 {
 	P2ASSERTLINE(80, PSSystem::ArcMgr<PSGame::BASARC>::sInstance != nullptr);
-	return (JKRFileLoader*)PSSystem::ArcMgr<PSGame::BASARC>::sInstance->_18.mValue;
+	return (JKRFileLoader*)PSSystem::ArcMgr<PSGame::BASARC>::sInstance->mFileLoaderLink.mValue;
 }
 
 extern SysIF* spSysIF;

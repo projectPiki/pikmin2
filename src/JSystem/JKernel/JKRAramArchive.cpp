@@ -1,5 +1,5 @@
 #include "Dolphin/os.h"
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "types.h"
 #include "std/limits.h"

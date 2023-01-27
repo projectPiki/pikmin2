@@ -643,7 +643,7 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 	}
 
 	sys->heapStatusStart("enemyHeap", nullptr);
-	JKRHeap* currentHeap = getCurrentHeap();
+	JKRHeap* currentHeap = JKRGetCurrentHeap();
 	mHeap                = JKRSolidHeap::create(mHeapSize, currentHeap, true);
 	mHeap->becomeCurrentHeap();
 

@@ -2,7 +2,7 @@
 #define _ARAM_H
 
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "CNode.h"
 #include "types.h"
 

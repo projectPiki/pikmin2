@@ -1,5 +1,5 @@
 #include "Dolphin/os.h"
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRThread.h"

@@ -3,7 +3,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/stl.h"
 #include "Dolphin/vi.h"
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRFile.h"
 #include "types.h"

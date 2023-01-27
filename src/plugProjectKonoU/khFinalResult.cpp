@@ -242,7 +242,7 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 		mScreen->search(getSerialTagName('Nsel00', i))->setAlpha(msVal._21);
 		mScreen->search(getSerialTagName('Nicon00', i))->setAlpha(msVal._21);
 	}
-	JKRHeap* oldHeap = getCurrentHeap();
+	JKRHeap* oldHeap = JKRGetCurrentHeap();
 	if (disp->mHeap) {
 		disp->mHeap->becomeCurrentHeap();
 	}
@@ -298,7 +298,7 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 
 	mSaveMgr = ebi::Save::TMgr::createInstance();
 	mSaveMgr->mSaveMenu.loadResource();
-	mSaveMgr->doLoadResource(getCurrentHeap());
+	mSaveMgr->doLoadResource(JKRGetCurrentHeap());
 	mSaveMgr->setControllers(getGamePad());
 	mSaveMgr->mSaveType = 1;
 

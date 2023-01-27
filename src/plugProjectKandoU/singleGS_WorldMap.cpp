@@ -140,26 +140,26 @@ void SingleGame::SelectState::dvdload()
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->doFirstLoad();
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->doStartMainSeq();
 
-	if (getCurrentHeap() != mWMapHeap) {
+	if (JKRGetCurrentHeap() != mWMapHeap) {
 		JUT_PANICLINE(401, "MOC = Mouse on Cars!\n");
 	}
 
 	void* handle = JKRDvdRipper::loadToMainRAM("user/Ebisawa/effect/eff2d_world_map.jpc", nullptr, Switch_0, 0, 0,
 	                                           JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
 	JUT_ASSERTLINE(410, handle, "WORLD_MAP_JPC");
-	JPAResourceManager* jpamgr = new JPAResourceManager(handle, getCurrentHeap());
-	JPAEmitterManager* jpaemit = new JPAEmitterManager(1000, 256, getCurrentHeap(), 8, 8);
+	JPAResourceManager* jpamgr = new JPAResourceManager(handle, JKRGetCurrentHeap());
+	JPAEmitterManager* jpaemit = new JPAEmitterManager(1000, 256, JKRGetCurrentHeap(), 8, 8);
 	JUT_ASSERTLINE(416, particle2dMgr, "particle2dMgr null\n");
 	particle2dMgr->setSceneEmitterAndResourceManager(jpaemit, jpamgr);
 
-	if (getCurrentHeap() != mWMapHeap) {
+	if (JKRGetCurrentHeap() != mWMapHeap) {
 		JUT_PANICLINE(420, "MOC = Mouse on Cars!\n");
 	}
 
 	JUT_ASSERTLINE(423, mWorldMap, "mWorldMap null\n");
 	static_cast<Game::WorldMap::Base*>(mWorldMap)->loadResource();
 
-	if (getCurrentHeap() != mWMapHeap) {
+	if (JKRGetCurrentHeap() != mWMapHeap) {
 		JUT_PANICLINE(427, "MOC = Mouse on Cars!\n");
 	}
 }

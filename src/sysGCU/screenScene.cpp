@@ -91,7 +91,7 @@ void SceneBase::update()
 				void* res = mCommand.getResource();
 				P2ASSERTLINE(194, res != nullptr);
 				mCommand.becomeCurrentHeap();
-				JKRArchive* archive = JKRArchive::mount(res, nullptr, JKRArchive::EMD_Unk1);
+				JKRArchive* archive = JKRArchive::mount(res, nullptr, JKRArchive::EMD_Head);
 				P2ASSERTLINE(197, archive != nullptr);
 				createObj(archive);
 				mCommand.releaseCurrentHeap();

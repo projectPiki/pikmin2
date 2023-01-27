@@ -6,33 +6,33 @@
 
 u32 JKRArchive::sCurrentDirID;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-JKRArchive::JKRArchive()
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00004C
+//  */
+// JKRArchive::JKRArchive()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8001A4BC
  * Size:	0000A8
  */
-JKRArchive::JKRArchive(long p1, JKRArchive::EMountMode mountMode)
+JKRArchive::JKRArchive(long entryNum, JKRArchive::EMountMode mountMode)
     : JKRFileLoader()
 {
-	_30         = 0;
+	mIsMounted  = false;
 	mMountMode  = mountMode;
 	mMountCount = 1;
 	_58         = 1;
-	_38         = JKRHeap::findFromRoot(this);
-	if (_38 == nullptr) {
-		_38 = JKRHeap::sCurrentHeap;
+	mHeap       = JKRHeap::findFromRoot(this);
+	if (!mHeap) {
+		mHeap = JKRHeap::sCurrentHeap;
 	}
-	_40 = p1;
+	mEntryNum = entryNum;
 	if (sCurrentVolume == nullptr) {
 		sCurrentDirID  = 0;
 		sCurrentVolume = this;
@@ -65,7 +65,7 @@ JKRArchive::~JKRArchive() { }
 bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName, u32 nameTableOffset, u16 hash) const
 {
 	u16 arcHash = archiveName.getHash();
-	return (arcHash != hash) ? false : strcmp(&_54[nameTableOffset], archiveName.getString()) == 0;
+	return (arcHash != hash) ? false : strcmp(&mStrTable[nameTableOffset], archiveName.getString()) == 0;
 }
 
 /*
@@ -74,11 +74,11 @@ bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName, u32 nameTableOffs
  * Size:	000034
  * findResType__10JKRArchiveCFUl
  */
-JKRArchive::SDIDirEntry* JKRArchive::findResType(u32 p1) const
+JKRArchive::SDIDirEntry* JKRArchive::findResType(u32 type) const
 {
-	SDIDirEntry* dirEntry = _48;
-	for (u32 i = 0; i < _44->mBaseOffset; i++, dirEntry++) {
-		if (dirEntry->type == p1) {
+	SDIDirEntry* dirEntry = mDirectories;
+	for (u32 i = 0; i < mDataInfo->mNumDirEntries; i++, dirEntry++) {
+		if (dirEntry->mType == type) {
 			return dirEntry;
 		}
 	}
@@ -93,17 +93,17 @@ JKRArchive::SDIDirEntry* JKRArchive::findResType(u32 p1) const
 JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* path, u32 index) const
 {
 	if (path == nullptr) {
-		return _48 + index;
+		return &mDirectories[index];
 	}
 
 	CArcName arcName(&path, '/');
-	SDIDirEntry* dirEntry = _48 + index;
-	SDIFileEntry* entry   = mFileEntries + dirEntry->first_file_index;
+	SDIDirEntry* dirEntry = &mDirectories[index];
+	SDIFileEntry* entry   = &mFileEntries[dirEntry->mFirstIdx];
 
-	for (int i = 0; i < dirEntry->num_entries; entry++, i++) {
+	for (int i = 0; i < dirEntry->mNum; entry++, i++) {
 		if (isSameName(arcName, entry->mFlag & 0xFFFFFF, entry->mHash)) {
 			if ((entry->mFlag >> 24) & 0x02) {
-				return findDirectory(path, entry->_08);
+				return findDirectory(path, entry->mDataOffset);
 			}
 			break;
 		}
@@ -183,15 +183,15 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, u32 p2) const
  * Size:	0000F4
  * findTypeResource__10JKRArchiveCFUlPCc
  */
-JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, const char* name) const
+JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 type, const char* name) const
 {
-	if (p1 != 0) {
+	if (type != 0) {
 		CArcName arcName;
 		arcName.store(name);
-		SDIDirEntry* dirEntry = findResType(p1);
+		SDIDirEntry* dirEntry = findResType(type);
 		if (dirEntry != nullptr) {
-			SDIFileEntry* fileEntry = mFileEntries + dirEntry->first_file_index;
-			for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
+			SDIFileEntry* fileEntry = mFileEntries + dirEntry->mFirstIdx;
+			for (int i = 0; i < dirEntry->mNum; fileEntry++, i++) {
 				if (isSameName(arcName, fileEntry->mFlag & 0xFFFFFF, fileEntry->mHash)) {
 					return fileEntry;
 				}
@@ -210,12 +210,12 @@ JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* path, u32 index
 {
 	if (path) {
 		CArcName arcName(&path, '/');
-		SDIDirEntry* dirEntry = _48 + index;
-		SDIFileEntry* entry   = mFileEntries + dirEntry->first_file_index;
-		for (int i = 0; i < dirEntry->num_entries; entry++, i++) {
+		SDIDirEntry* dirEntry = &mDirectories[index];
+		SDIFileEntry* entry   = &mFileEntries[dirEntry->mFirstIdx];
+		for (int i = 0; i < dirEntry->mNum; entry++, i++) {
 			if (isSameName(arcName, entry->mFlag & 0xFFFFFF, entry->mHash)) {
 				if (((entry->mFlag >> 0x18) & 2)) {
-					return findFsResource(path, entry->_08);
+					return findFsResource(path, entry->mDataOffset);
 				}
 				if (path == 0) {
 					return entry;
@@ -234,7 +234,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* path, u32 index
  */
 JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(u32 idx) const
 {
-	if (idx < _44->_08) {
+	if (idx < mDataInfo->mNumFileEntries) {
 		return mFileEntries + idx;
 	}
 	return nullptr;
@@ -250,7 +250,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* name) const
 	SDIFileEntry* fileEntry = mFileEntries;
 
 	CArcName arcName(name);
-	for (int i = 0; i < _44->_08; fileEntry++, i++) {
+	for (int i = 0; i < mDataInfo->mNumFileEntries; fileEntry++, i++) {
 		if (isSameName(arcName, fileEntry->mFlag & 0xFFFFFF, fileEntry->mHash)) {
 			return fileEntry;
 		}
@@ -265,11 +265,11 @@ JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* name) const
  * Size:	000034
  * findPtrResource__10JKRArchiveCFPCv
  */
-JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void* p1) const
+JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void* ptr) const
 {
 	SDIFileEntry* entry = mFileEntries;
-	for (u32 i = 0; i < _44->_08; entry++, i++) {
-		if (entry->_10 == p1) {
+	for (u32 i = 0; i < mDataInfo->mNumFileEntries; entry++, i++) {
+		if (entry->mData == ptr) {
 			return entry;
 		}
 	}
@@ -287,13 +287,13 @@ JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16 id) const
 	SDIFileEntry* entry;
 	if (id != 0xFFFF) {
 		entry = &mFileEntries[id];
-		if (entry->_00 == id && (entry->getFlag01())) {
+		if (entry->mFileID == id && (entry->getFlag01())) {
 			return entry;
 		}
 
 		entry = mFileEntries;
-		for (int i = 0; i < _44->_08; entry++, i++) {
-			if (entry->_00 == id && (entry->getFlag01())) {
+		for (int i = 0; i < mDataInfo->mNumFileEntries; entry++, i++) {
+			if (entry->mFileID == id && (entry->getFlag01())) {
 				return entry;
 			}
 		}
@@ -361,13 +361,13 @@ const char* JKRArchive::CArcName::store(const char* name, char endChar)
  * Address:	8001B094
  * Size:	00004C
  */
-void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry* entry, u32 p2)
+void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry* entry, u32 size)
 {
 	u32 index = (entry - mFileEntries);
-	if (mExpandSizes == nullptr || index >= _44->_08) {
+	if (mExpandSizes == nullptr || index >= mDataInfo->mNumFileEntries) {
 		return;
 	}
-	mExpandSizes[index] = p2;
+	mExpandSizes[index] = size;
 }
 
 /*
@@ -378,7 +378,7 @@ void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry* entry, u32 p2)
 u32 JKRArchive::getExpandSize(JKRArchive::SDIFileEntry* entry) const
 {
 	u32 index = (entry - mFileEntries);
-	if (mExpandSizes == nullptr || index >= _44->_08) {
+	if (mExpandSizes == nullptr || index >= mDataInfo->mNumFileEntries) {
 		return 0;
 	}
 	return mExpandSizes[index];

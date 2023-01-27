@@ -2231,7 +2231,7 @@ void ItemOnyon::Mgr::load()
 	JKRArchive* podarc = nullptr;
 	if ((gameSystem->isChallengeMode() || gameSystem->mIsInCave) && gameSystem->mMode != GSM_VERSUS_MODE) {
 		LoadResource::Arg loadpodarg(playData->isStoryFlag(STORY_DebtPaid) ? "user/Kando/pod_gold/arc.szs" : "user/Kando/pod/arc.szs");
-		loadpodarg.mHeap = getCurrentHeap();
+		loadpodarg.mHeap = JKRGetCurrentHeap();
 		node             = gLoadResourceMgr->mountArchive(loadpodarg);
 		if (node) {
 			podarc = node->mArchive;
@@ -2288,7 +2288,7 @@ void ItemOnyon::Mgr::load()
 
 	JKRArchive* ufoarc;
 	LoadResource::Arg loadufoarg(playData->isStoryFlag(STORY_DebtPaid) ? "user/Kando/ufo_gold/arc.szs" : "user/Kando/ufo/arc.szs");
-	loadufoarg.mHeap = getCurrentHeap();
+	loadufoarg.mHeap = JKRGetCurrentHeap();
 	node             = gLoadResourceMgr->mountArchive(loadufoarg);
 	if (node) {
 		ufoarc = node->mArchive;

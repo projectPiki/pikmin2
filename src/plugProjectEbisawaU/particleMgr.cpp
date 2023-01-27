@@ -323,7 +323,7 @@ ParticleMgr::~ParticleMgr()
 void ParticleMgr::createHeap(u32 size)
 {
 	P2ASSERTLINE(202, !mHeap);
-	mHeap = JKRSolidHeap::create(size, getCurrentHeap(), true);
+	mHeap = JKRSolidHeap::create(size, JKRGetCurrentHeap(), true);
 }
 
 /*
@@ -335,7 +335,7 @@ void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
 {
 	JUT_ASSERTLINE(209, mHeap, "effect heap not allocated !\n");
 	sys->heapStatusStart("particleMgr", mHeap);
-	JKRHeap* oldheap = getCurrentHeap();
+	JKRHeap* oldheap = JKRGetCurrentHeap();
 	mHeap->becomeCurrentHeap();
 
 	void* file
@@ -478,7 +478,7 @@ void ParticleMgr::destroyHeap()
  */
 void ParticleMgr::beginEntryModelEffect()
 {
-	mModelEffectHeap = getCurrentHeap();
+	mModelEffectHeap = JKRGetCurrentHeap();
 	mHeap->becomeCurrentHeap();
 }
 

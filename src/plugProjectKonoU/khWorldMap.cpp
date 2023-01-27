@@ -1204,7 +1204,7 @@ void WorldMap::loadResource()
 	void* jpc = JKRDvdRipper::loadToMainRAM("user/Ebisawa/effect/eff2d_world_map.jpc", nullptr, Switch_2, 0, nullptr,
 	                                        JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	P2ASSERTLINE(462, jpc);
-	particle2dMgr->setSceneResourceManager(new JPAResourceManager(jpc, getCurrentHeap()));
+	particle2dMgr->setSceneResourceManager(new JPAResourceManager(jpc, JKRGetCurrentHeap()));
 	mEfxRocketSparks = new efx2d::WorldMap::T2DRocketB;
 	mEfxRocketGlow   = new efx2d::WorldMap::T2DRocketGlow;
 	mEfxRocketSparks->setGroup(3);

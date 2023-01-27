@@ -1,7 +1,7 @@
 #ifndef _JSYSTEM_JKR_JKRDVDARAMRIPPER_H
 #define _JSYSTEM_JKR_JKRDVDARAMRIPPER_H
 
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRFile.h"
 #include "JSystem/JSupport/JSUList.h"
@@ -28,22 +28,22 @@ struct JKRDvdAramRipper {
 	static JSUList<JKRADCommand> sDvdAramAsyncList;
 };
 
-struct JKRADCommand : JSULink<JKRADCommand> {
+struct JKRADCommand : public JSULink<JKRADCommand> {
 	JKRADCommand();
 	~JKRADCommand();
 
-	u8 _10[0x18];                       // _10 - unknown/padding
-	JKRDvdFile* _28;                    // _28
-	u32 _2C;                            // _2C
-	void* _30;                          // _30
-	JKRExpandSwitch _34;                // _34
-	JKRDvdAramRipper::LoadCallback _38; // _38
-	u32 _3C;                            // _3C
-	u32 _40;                            // _40
-	u32* _44;                           // _44
-	long _48;                           // _48
-	u8 _4C;                             // _4C
-	JKRAramStreamCommand* _50;          // _50
+	u8 _10[0x18];                             // _10 - unknown/padding
+	JKRDvdFile* mDvdFile;                     // _28
+	u32 _2C;                                  // _2C
+	JKRAramBlock* mBlock;                     // _30
+	JKRExpandSwitch _34;                      // _34
+	JKRDvdAramRipper::LoadCallback mCallBack; // _38
+	u32 _3C;                                  // _3C
+	u32 _40;                                  // _40
+	u32* _44;                                 // _44
+	long _48;                                 // _48
+	u8 _4C;                                   // _4C
+	JKRAramStreamCommand* mStreamCommand;     // _50
 };
 
 #endif

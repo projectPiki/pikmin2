@@ -8,6 +8,7 @@
 #include "types.h"
 
 struct JSUFileInputStream;
+struct JKRAramBlock;
 
 struct JKRFile : public JKRDisposer {
 	inline JKRFile()
@@ -15,7 +16,8 @@ struct JKRFile : public JKRDisposer {
 	    , mFileOpen(false)
 	{
 	}
-	virtual ~JKRFile() {};                              // _08 (weak)
+
+	virtual ~JKRFile() { }                              // _08 (weak)
 	virtual bool open(const char*)                 = 0; // _0C
 	virtual void close()                           = 0; // _10
 	virtual int readData(void*, long, long)        = 0; // _14
@@ -24,6 +26,8 @@ struct JKRFile : public JKRDisposer {
 
 	void read(void* a1, long a2, long a3);
 
+	// _00     = VTBL
+	// _00-_18 = JKRDisposer
 	bool mFileOpen; // _18
 };
 
@@ -42,10 +46,10 @@ struct JKRDvdFile : public JKRFile {
 
 	inline int readDataAsync(void* addr, s32 length, s32 offset)
 	{
-		OSLockMutex(&_1C);
+		OSLockMutex(&mMutex1);
 		s32 retAddr;
 		if (mThread != nullptr) {
-			OSUnlockMutex(&_1C);
+			OSUnlockMutex(&mMutex1);
 			retAddr = -1;
 		} else {
 			mThread = OSGetCurrentThread();
@@ -54,32 +58,36 @@ struct JKRDvdFile : public JKRFile {
 				retAddr = (s32)sync();
 			}
 			mThread = nullptr;
-			OSUnlockMutex(&_1C);
+			OSUnlockMutex(&mMutex1);
 		}
 		return retAddr;
 	}
+
 	inline int writeDataAsync(const void*, long, long) { return -1; }
 
 	void initiate();
 	long sync();
+
 	static DVDDoneReadCallback doneProcess;
 
-	OSMutexObject _1C;                // _1C
-	OSMutexObject _34;                // _34
-	u8 _4C[4];                        // _4C
+	static JSUList<JKRDvdFile> sDvdList;
+
+	// _00     = VTBL
+	// _00-_1C = JKRFile
+	OSMutexObject mMutex1;            // _1C
+	OSMutexObject mMutex2;            // _34
+	JKRAramBlock* mBlock;             // _4C
 	OSThread* _50;                    // _50
 	JSUFileInputStream* mInputStream; // _54
 	u32 _58;                          // _58
 	DVDPlayer mDvdPlayer;             // _5C
-	void* _98;                        // _98  Gets assigned `this` in initiate.
-	OSMessageQueue _9C;               // _9C
-	void* _BC;                        // _BC  Single msg slot for _9C
-	OSMessageQueue _C0;               // _C0
-	void* _E0;                        // _E0  Single msg slot for _C0
+	JKRDvdFile* mDvdFile;             // _98  Gets assigned `this` in initiate.
+	OSMessageQueue mMessageQueue1;    // _9C
+	void* mMessage1;                  // _BC  Single msg slot for _9C
+	OSMessageQueue mMessageQueue2;    // _C0
+	void* mMessage2;                  // _E0  Single msg slot for _C0
 	JSULink<JKRDvdFile> mLink;        // _E4
 	OSThread* mThread;                // _F4
-
-	static JSUList<JKRDvdFile> sDvdList;
 };
 
 #endif

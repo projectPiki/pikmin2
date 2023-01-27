@@ -2193,7 +2193,7 @@ void TOption::loadResource()
 	char resName[256];
 	sys->heapStatusStart("TOption::loadResource", nullptr);
 	og::newScreen::makeLanguageResName(resName, "option_us.szs");
-	JKRArchive* archive = JKRArchive::mount(resName, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
+	JKRArchive* archive = JKRArchive::mount(resName, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(757, (archive != nullptr));
 	sys->heapStatusEnd("TOption::loadResource");
 	setArchive(archive);

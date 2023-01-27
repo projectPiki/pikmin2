@@ -1,6 +1,6 @@
 #include "Dolphin/os.h"
 #include "JSystem/JKernel/JKRDecomp.h"
-#include "JSystem/JKernel/Aram.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
@@ -13,11 +13,11 @@ JKRDecomp* JKRDecomp::sDecompObject;
  * Address:	8001C934
  * Size:	000060
  */
-JKRDecomp* JKRDecomp::create(long p1)
+JKRDecomp* JKRDecomp::create(long priority)
 {
 
 	if (sDecompObject == nullptr) {
-		sDecompObject = new (JKRHeap::sSystemHeap, 0) JKRDecomp(p1);
+		sDecompObject = new (JKRHeap::sSystemHeap, 0) JKRDecomp(priority);
 	}
 	return sDecompObject;
 }
@@ -28,8 +28,8 @@ JKRDecomp* JKRDecomp::create(long p1)
  * Size:	000050
  * __ct
  */
-JKRDecomp::JKRDecomp(long p1)
-    : JKRThread(0x4000, 0x10, p1)
+JKRDecomp::JKRDecomp(long priority)
+    : JKRThread(0x4000, 0x10, priority)
 {
 	OSResumeThread(mThread);
 }
@@ -39,37 +39,7 @@ JKRDecomp::JKRDecomp(long p1)
  * Address:	8001C9E4
  * Size:	000060
  */
-JKRDecomp::~JKRDecomp()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8001CA28
-	lis      r5, __vt__9JKRDecomp@ha
-	li       r4, 0
-	addi     r0, r5, __vt__9JKRDecomp@l
-	stw      r0, 0(r30)
-	bl       __dt__9JKRThreadFv
-	extsh.   r0, r31
-	ble      lbl_8001CA28
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8001CA28:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JKRDecomp::~JKRDecomp() { }
 
 /*
  * --INFO--
@@ -80,19 +50,18 @@ void* JKRDecomp::run()
 {
 	void* inputBuffer[1];
 	JKRDecompCommand* command;
-	// int outMessage;
 	OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 4);
 	while (true) {
 		while (true) {
 			while (true) {
 				OSReceiveMessage(&sMessageQueue, inputBuffer, TRUE);
 				command = static_cast<JKRDecompCommand*>(inputBuffer[0]);
-				decode(command->_04, command->_08, command->_0C, command->_10);
+				decode(command->mSourceBuffer, command->mDestBuffer, command->mSourceLength, command->mDestLength);
 				if (command->_20 == 0) {
 					break;
 				}
 				if (command->_20 == 1) {
-					JKRAramPiece::sendCommand(command->_24);
+					JKRAramPiece::sendCommand(command->mAMCommand);
 				}
 			}
 			if (command->mCallback == nullptr) {
@@ -105,7 +74,7 @@ void* JKRDecomp::run()
 			OSSendMessage(command->_1C, (void*)1, FALSE);
 		} else {
 			// outMessage = 1;
-			OSSendMessage(&command->_28, (void*)1, FALSE);
+			OSSendMessage(&command->mMessageQueue, (void*)1, FALSE);
 		}
 	}
 }
@@ -122,17 +91,17 @@ BOOL JKRDecomp::sendCommand(JKRDecompCommand* command) { return OSSendMessage(&s
  * Address:	8001CB3C
  * Size:	0000A0
  */
-bool JKRDecomp::orderSync(u8* p1, u8* p2, u32 p3, u32 p4)
+bool JKRDecomp::orderSync(u8* srcBuffer, u8* destBuffer, u32 srcLen, u32 destLen)
 {
 	JKRDecompCommand* command = new (JKRHeap::sSystemHeap, -4) JKRDecompCommand();
-	command->_04              = p1;
-	command->_08              = p2;
-	command->_0C              = p3;
-	command->_10              = p4;
+	command->mSourceBuffer    = srcBuffer;
+	command->mDestBuffer      = destBuffer;
+	command->mSourceLength    = srcLen;
+	command->mDestLength      = destLen;
 	command->mCallback        = nullptr;
 	OSSendMessage(&sMessageQueue, command, TRUE);
 	void* inputBuffer[1];
-	OSReceiveMessage(&command->_28, inputBuffer, TRUE);
+	OSReceiveMessage(&command->mMessageQueue, inputBuffer, TRUE);
 	delete command;
 	return true;
 }
@@ -326,10 +295,10 @@ JKRDecomp::CompressionMode JKRDecomp::checkCompressed(u8* p1)
  */
 JKRDecompCommand::JKRDecompCommand()
 {
-	OSInitMessageQueue(&_28, mMessageBuffer, 1);
+	OSInitMessageQueue(&mMessageQueue, mMessageBuffer, 1);
 	mCallback = nullptr;
 	_1C       = nullptr;
-	_18       = this;
+	mSelf     = this;
 	_20       = 0;
 }
 
@@ -338,25 +307,4 @@ JKRDecompCommand::JKRDecompCommand()
  * Address:	8001CF90
  * Size:	00003C
  */
-JKRDecompCommand::~JKRDecompCommand()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8001CFB4
-	extsh.   r0, r4
-	ble      lbl_8001CFB4
-	bl       __dl__FPv
-
-lbl_8001CFB4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JKRDecompCommand::~JKRDecompCommand() { }

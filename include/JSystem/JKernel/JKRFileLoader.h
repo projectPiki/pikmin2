@@ -28,18 +28,19 @@ struct JKRFileLoader : public JKRDisposer {
 	static JKRFileLoader* findVolume(char const**);
 	static void fetchVolumeName(char*, long, char const*);
 
-	u32 getVolumeType() { return mMagicWord; }
+	bool isMounted() const { return mIsMounted; }
+	u32 getVolumeType() const { return mMagicWord; }
 
 	static JKRFileLoader* sCurrentVolume;
 	static JSUList<JKRFileLoader> sVolumeList;
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	JSULink<JKRFileLoader> _18; // _18
-	char* _28;                  // _28
-	u32 mMagicWord;             // _2C
-	u8 _30;                     // _30
-	u32 mMountCount;            // _34
+	JSULink<JKRFileLoader> mFileLoaderLink; // _18
+	char* mVolumeName;                      // _28
+	u32 mMagicWord;                         // _2C
+	bool mIsMounted;                        // _30
+	u32 mMountCount;                        // _34
 };
 
 #endif

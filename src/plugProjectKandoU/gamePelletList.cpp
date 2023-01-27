@@ -222,10 +222,10 @@ void PelletList::Mgr::loadResource()
 			// // default:
 			break;
 		}
-		archive = JKRArchive::mount(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Unk2);
+		archive = JKRArchive::mount(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Tail);
 	} else {
 		JUT_PANICLINE(145, "don\'t use this !\n");
-		archive = JKRArchive::mount("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Unk2);
+		archive = JKRArchive::mount("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Tail);
 	}
 	JUT_ASSERTLINE(154, archive != nullptr, "no pelletlist.szs\n");
 
