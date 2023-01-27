@@ -280,274 +280,42 @@ JAUDIO2_JAU:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/JAU/JAUData.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/JAU/JAUDataMgr.o\
 
-
-# Dolphin sub-libraries have differing CFLAGS.
-TRK_MINNOW_DOLPHIN:=\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mainloop.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/nubevent.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/nubinit.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/msg.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/msgbuf.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/usr_put.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/dispatch.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/support.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mutex_TRK.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/notify.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/flush_cache.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mem_TRK.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/targimpl.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/targsupp.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/__exception.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/main_TRK.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/targcont.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/target_options.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/mslsupp.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/UDP_Stubs.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/ddh/main.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/CircleBuffer.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/gdev/main.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/MWTrace.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/MWCriticalSection_gc.o\
-
-RUNTIME:=\
-	$(BUILD_DIR)/src/Dolphin/Runtime/__va_arg.o\
-	$(BUILD_DIR)/asm/Dolphin/Runtime/global_destructor_chain.o\
-	$(BUILD_DIR)/src/Dolphin/Runtime/CPlusLibPPC.o\
-	$(BUILD_DIR)/asm/Dolphin/Runtime/NMWException.o\
-	$(BUILD_DIR)/src/Dolphin/Runtime/ptmf.o\
-	$(BUILD_DIR)/asm/Dolphin/Runtime/runtime.o\
-	$(BUILD_DIR)/asm/Dolphin/Runtime/__init_cpp_exceptions.o\
-	$(BUILD_DIR)/asm/Dolphin/Runtime/Gecko_ExceptionPPC.o\
-	$(BUILD_DIR)/src/Dolphin/Runtime/GCN_mem_alloc.o\
-
-MSL_C:=\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/abort_exit.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/alloc.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/ansi_files.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/ansi_fp.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/arith.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/buffer_io.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/critical_regions.gamecube.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/ctype.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/direct_io.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/errno.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/file_io.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/FILE_POS.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/locale.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/mbstring.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/mem.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/mem_funcs.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/misc_io.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/printf.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/rand.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/float.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/scanf.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/string.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/strtold.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/strtoul.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/wchar_io.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/uart_console_io_gcn.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/e_asin.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/e_atan2.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/e_exp.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/e_fmod.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/e_log.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/e_log10.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/e_pow.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/e_rem_pio2.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/k_cos.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/k_rem_pio2.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/k_sin.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/k_tan.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_atan.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_ceil.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_copysign.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_cos.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_floor.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_frexp.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_ldexp.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_modf.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_sin.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/s_tan.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/w_asin.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/w_atan2.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/w_exp.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/w_fmod.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/w_log10.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/w_pow.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/e_sqrt.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/math_ppc.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/w_sqrt.o\
-	$(BUILD_DIR)/src/Dolphin/MSL_C/extras.o\
-
-ODEMUEXI2:=\
-	$(BUILD_DIR)/asm/Dolphin/OdemuExi2/DebuggerDriver.o\
-
-VI:=\
-	$(BUILD_DIR)/asm/Dolphin/vi/vi.o\
-
-AMCSTUBS:=\
-	$(BUILD_DIR)/src/Dolphin/amcstubs/AmcExi2Stubs.o\
-
-AR:=\
-	$(BUILD_DIR)/asm/Dolphin/ar/ar.o\
-	$(BUILD_DIR)/asm/Dolphin/ar/arq.o\
-
-BASE:=\
-	$(BUILD_DIR)/src/Dolphin/base/PPCArch.o\
-	
-CARD:=\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDBios.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDUnlock.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDRdwr.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDBlock.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDDir.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDCheck.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDMount.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDFormat.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDOpen.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDCreate.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDRead.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDWrite.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDStat.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDNet.o\
-
-DB:=\
-	$(BUILD_DIR)/src/Dolphin/db/db.o\
-
-DSP:=\
-	$(BUILD_DIR)/asm/Dolphin/dsp/dsp.o\
-	$(BUILD_DIR)/src/Dolphin/dsp/dsp_debug.o\
-	$(BUILD_DIR)/asm/Dolphin/dsp/dsp_task.o\
-
-DVD:=\
-	$(BUILD_DIR)/asm/Dolphin/dvd/dvdlow.o\
-	$(BUILD_DIR)/asm/Dolphin/dvd/dvdfs.o\
-	$(BUILD_DIR)/asm/Dolphin/dvd/dvd.o\
-	$(BUILD_DIR)/src/Dolphin/dvd/dvdqueue.o\
-	$(BUILD_DIR)/src/Dolphin/dvd/dvderror.o\
-	$(BUILD_DIR)/src/Dolphin/dvd/dvdidutils.o\
-	$(BUILD_DIR)/src/Dolphin/dvd/dvdFatal.o\
-	$(BUILD_DIR)/src/Dolphin/dvd/fstload.o\
-
-EXI:=\
-	$(BUILD_DIR)/asm/Dolphin/exi/EXIBios.o\
-	$(BUILD_DIR)/asm/Dolphin/exi/EXIUart.o\
-	
-GD:=\
-	$(BUILD_DIR)/src/Dolphin/gd/GDBase.o\
-	$(BUILD_DIR)/asm/Dolphin/gd/GDGeometry.o\
-
-GX:=\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXInit.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXFifo.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXAttr.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXMisc.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXGeometry.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXFrameBuf.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXLight.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXTexture.o\
-	$(BUILD_DIR)/src/Dolphin/gx/GXBump.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXTev.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXPixel.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXDisplayList.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXTransform.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXPerf.o\
-
-MTX:=\
-	$(BUILD_DIR)/asm/Dolphin/mtx/mtx.o\
-	$(BUILD_DIR)/asm/Dolphin/mtx/mtxvec.o\
-	$(BUILD_DIR)/asm/Dolphin/mtx/mtx44.o\
-	$(BUILD_DIR)/src/Dolphin/mtx/vec.o\
-
-ODENOTSTUB:=\
-	$(BUILD_DIR)/src/Dolphin/odenotstub/odenotstub.o\
-
-OS:=\
-	$(BUILD_DIR)/src/Dolphin/os/OS.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSAlarm.o\
-	$(BUILD_DIR)/src/Dolphin/os/OSAlloc.o\
-	$(BUILD_DIR)/src/Dolphin/os/OSArena.o\
-	$(BUILD_DIR)/src/Dolphin/os/OSAudioSystem.o\
-	$(BUILD_DIR)/src/Dolphin/os/OSCache.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSContext.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSError.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSFont.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSInterrupt.o\
-	$(BUILD_DIR)/src/Dolphin/os/OSLink.o\
-	$(BUILD_DIR)/src/Dolphin/os/OSMessage.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSMemory.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSMutex.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSReboot.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSReset.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSResetSW.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSRtc.o\
-	$(BUILD_DIR)/src/Dolphin/os/OSSync.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSThread.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSTime.o\
-	$(BUILD_DIR)/asm/Dolphin/os/__mem.o\
-	$(BUILD_DIR)/src/Dolphin/os/__start.o\
-	$(BUILD_DIR)/src/Dolphin/os/__ppc_eabi_init.o\
-
-PAD:=\
-	$(BUILD_DIR)/asm/Dolphin/pad/Padclamp.o\
-	$(BUILD_DIR)/asm/Dolphin/pad/Pad.o\
-
-SI:=\
-	$(BUILD_DIR)/asm/Dolphin/si/SIBios.o\
-	$(BUILD_DIR)/src/Dolphin/si/SISamplingRate.o\
-
-AI:=\
-	$(BUILD_DIR)/asm/Dolphin/ai/ai.o\
-
-THP:=\
-	$(BUILD_DIR)/asm/Dolphin/thp/THPDec.o\
-	$(BUILD_DIR)/asm/Dolphin/thp/THPAudio.o\
-
-GBA:=\
-	$(BUILD_DIR)/src/Dolphin/gba/GBA.o\
-	$(BUILD_DIR)/src/Dolphin/gba/GBARead.o\
-	$(BUILD_DIR)/src/Dolphin/gba/GBAWrite.o\
-	$(BUILD_DIR)/asm/Dolphin/gba/GBAXfer.o
+DOLPHIN:=\
+	$(BUILD_DIR)/src/Dolphin.a\
 
 YAMASHITA:=\
-	$(BUILD_DIR)/src/plugProjectYamashitaU/plugProjectYamashitaU.a\
+	$(BUILD_DIR)/src/plugProjectYamashitaU.a\
 
 KANDO:=\
-	$(BUILD_DIR)/src/plugProjectKandoU/plugProjectKandoU.a\
+	$(BUILD_DIR)/src/plugProjectKandoU.a\
 
 NISHIMURA:=\
-	$(BUILD_DIR)/src/plugProjectNishimuraU/plugProjectNishimuraU.a\
+	$(BUILD_DIR)/src/plugProjectNishimuraU.a\
 
 OGAWA:=\
-	$(BUILD_DIR)/src/plugProjectOgawaU/plugProjectOgawaU.a\
+	$(BUILD_DIR)/src/plugProjectOgawaU.a\
 
 HIKINO:=\
-	$(BUILD_DIR)/src/plugProjectHikinoU/plugProjectHikinoU.a\
+	$(BUILD_DIR)/src/plugProjectHikinoU.a\
 
 MORIMURA:=\
-	$(BUILD_DIR)/src/plugProjectMorimuraU/plugProjectMorimuraU.a\
+	$(BUILD_DIR)/src/plugProjectMorimuraU.a\
 
 EBISAWA:=\
-	$(BUILD_DIR)/src/plugProjectEbisawaU/plugProjectEbisawaU.a\
+	$(BUILD_DIR)/src/plugProjectEbisawaU.a\
 
 KONO:=\
-	$(BUILD_DIR)/src/plugProjectKonoU/plugProjectKonoU.a\
+	$(BUILD_DIR)/src/plugProjectKonoU.a\
 
 BOOTUP:=\
-	$(BUILD_DIR)/src/sysBootupU/sysBootupU.a\
+	$(BUILD_DIR)/src/sysBootupU.a\
 
 COMMON:=\
-	$(BUILD_DIR)/src/sysCommonU/sysCommonU.a\
+	$(BUILD_DIR)/src/sysCommonU.a\
 
 GC:=\
-	$(BUILD_DIR)/src/sysGCU/sysGCU.a\
+	$(BUILD_DIR)/src/sysGCU.a\
 
 UTILITY:=\
-	$(BUILD_DIR)/src/utilityU/utilityU.a\
+	$(BUILD_DIR)/src/utilityU.a\
 

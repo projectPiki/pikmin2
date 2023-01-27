@@ -54,7 +54,7 @@ YAMASHITA_FILES:=\
 
 DEPENDS += $(YAMASHITA_FILES:.o=.d)
 
-$(BUILD_DIR)/src/plugProjectYamashitaU/plugProjectYamashitaU.a: $(YAMASHITA_FILES)
+$(BUILD_DIR)/src/plugProjectYamashitaU.a: $(YAMASHITA_FILES)
 	@echo linking... $@
 	@echo $(YAMASHITA_FILES) > build/YAMASHITA_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/YAMASHITA_ofiles

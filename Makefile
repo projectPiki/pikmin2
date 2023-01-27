@@ -81,9 +81,7 @@ O_FILES :=	$(GROUP_0_FILES)\
 			$(JSTUDIO_JAUDIO) $(J3DU) $(JKERNEL) $(JSUPPORT) $(JGADGET) $(JUTILITY) $(JMATH)\
 			$(J2D) $(J3D) $(JFRAMEWORK) $(JPARTICLE) $(JSTAGE) $(JAUDIO2_JAS) $(JAUDIO2_DSP)\
 			$(JAUDIO2_JAI) $(JAUDIO2_JAD) $(JAUDIO2_JAL) $(JAUDIO2_JAU)\
-			$(TRK_MINNOW_DOLPHIN) $(RUNTIME) $(MSL_C) $(ODEMUEXI2) $(VI) $(AMCSTUBS) $(AR) $(BASE)\
-			$(CARD) $(DB) $(DSP) $(DVD) $(EXI) $(GD) $(GX) $(MTX)\
-			$(ODENOTSTUB) $(OS) $(PAD) $(SI) $(AI) $(THP) $(GBA)\
+			$(DOLPHIN)\
 			$(YAMASHITA) $(KANDO) $(NISHIMURA) $(OGAWA) $(HIKINO) $(MORIMURA) $(EBISAWA) $(KONO)\
 			$(BOOTUP) $(COMMON) $(GC) $(UTILITY)
 ifeq ($(EPILOGUE_PROCESS),1)
@@ -157,55 +155,6 @@ ifeq ($(VERBOSE),0)
 # this set of ASFLAGS generates no warnings.
 ASFLAGS += -W
 endif
-
-# This is inline-deferred for some reason
-$(BUILD_DIR)/src/Dolphin/MSL_C/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
-
-# Enable string pooling
-$(BUILD_DIR)/src/Dolphin/MSL_C/locale.o: CFLAGS += -str pool
-
-# Dirty hack to override sdata
-# It seems some TRK-related files need -sdata 0
-$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mainloop.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/nubinit.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/main_TRK.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/target_options.o: CFLAGS += -sdata 0
-
-# Set Dolphin sub-library CFLAGS
-$(TRK_MINNOW_DOLPHIN): CFLAGS += -common off
-$(RUNTIME): CFLAGS += -common off
-$(MSL_C): CFLAGS += -common off
-$(ODEMUEXI2): CFLAGS += -common off
-$(VI): CFLAGS += -common off
-$(AMCSTUBS): CFLAGS += -common off
-$(AR): CFLAGS += -common off
-$(BASE): CFLAGS += -common off
-$(CARD): CFLAGS += -common off
-$(DB): CFLAGS += -common off -str noreadonly
-$(DSP): CFLAGS += -common off
-$(DVD): CFLAGS += -common off -str noreadonly
-$(EXI): CFLAGS += -common off
-$(GD): CFLAGS += -common off
-$(GX): CFLAGS += -common off
-$(MTX): CFLAGS += -common off
-$(ODENOTSTUB): CFLAGS += -common off
-$(OS): CFLAGS += -common off -str noreadonly
-$(PAD): CFLAGS += -common off
-$(SI): CFLAGS += -common off -str noreadonly
-$(AI): CFLAGS += -common off
-$(THP): CFLAGS += -common off
-$(GBA): CFLAGS += -common off -str noreadonly
-
-# Set compiler version for SDK sub-libraries
-$(BASE): MWCC_VERSION := 1.2.5
-$(DB): MWCC_VERSION := 1.2.5
-$(DVD): MWCC_VERSION := 1.2.5
-$(GD): MWCC_VERSION := 1.2.5
-$(GX): MWCC_VERSION := 1.2.5
-$(MTX): MWCC_VERSION := 1.2.5
-$(OS): MWCC_VERSION := 1.2.5
-$(SI): MWCC_VERSION := 1.2.5
-$(GBA): MWCC_VERSION := 1.2.5
 
 #-------------------------------------------------------------------------------
 # Recipes
