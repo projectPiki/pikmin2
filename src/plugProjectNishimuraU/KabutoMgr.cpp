@@ -42,7 +42,7 @@ void Mgr::loadModelData()
 
 	EnemyMgrBase::loadModelData();
 
-	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+	for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 		J3DShape* shape = mModelData->mShapeTable.mItems[j];
 		shape->mFlags   = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
@@ -81,8 +81,8 @@ SysShape::Model* Mgr::createModel()
 	SysShape::Model* model = new SysShape::Model(mModelData, 0x80000, mModelType);
 	P2ASSERTLINE(147, model != nullptr);
 
-	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
-		const char* name = mModelData->mMaterialTable._0C->getName(i);
+	for (u16 i = 0; i < mModelData->getMaterialNum(); i++) {
+		const char* name = mModelData->mMaterialTable.mMaterialNames->getName(i);
 		if (!strcmp(name, "mat_babykabuto_body") || !strcmp(name, "mat_babykabuto_eye") || !strcmp(name, "mat_babykabuto_head")) {
 			model->mJ3dModel->mMatPackets[i].mShapePacket->newDifferedDisplayList(0x04020000);
 		}

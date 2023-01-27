@@ -222,11 +222,11 @@ int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 p2)
 int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 p2)
 {
 	if (data->mJointTree.mFlags == 0) {
-		u16 materialCount = data->mMaterialTable.mCount1;
+		u16 materialCount = data->mMaterialTable.mMaterialNum;
 		u16 bumpMtxCount  = 0;
 		u16 v1            = 0;
 		for (u16 i = 0; i < materialCount; i++) {
-			J3DMaterial* material = data->mMaterialTable.mMaterials1[i];
+			J3DMaterial* material = data->mMaterialTable.mMaterials[i];
 			if (material->mTexGenBlock->getNBTScale()->_00 == 1) {
 				bumpMtxCount += material->mShape->countBumpMtxNum();
 				v1++;
@@ -238,10 +238,10 @@ int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 p2)
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			u16 materialCount = data->mMaterialTable.mCount1;
+			u16 materialCount = data->mMaterialTable.mMaterialNum;
 			int shapeCount    = 0;
 			for (u16 matIndex = 0; matIndex < materialCount; matIndex++) {
-				J3DMaterial* material = data->mMaterialTable.mMaterials1[matIndex];
+				J3DMaterial* material = data->mMaterialTable.mMaterials[matIndex];
 				if (material->mTexGenBlock->getNBTScale()->_00 == 1) {
 					_24[i][shapeCount]    = new Mtx33*[p2];
 					material->mShape->_64 = shapeCount;
@@ -250,10 +250,10 @@ int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 p2)
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			u16 materialCount = data->mMaterialTable.mCount1;
+			u16 materialCount = data->mMaterialTable.mMaterialNum;
 			int j             = 0;
 			for (u16 matIndex = 0; matIndex < materialCount; matIndex++) {
-				J3DMaterial* material = data->mMaterialTable.mMaterials1[matIndex];
+				J3DMaterial* material = data->mMaterialTable.mMaterials[matIndex];
 				if (material->mTexGenBlock->getNBTScale()->_00 == 1) {
 					for (int k = 0; k < p2; k++) {
 						_24[i][j][k] = new (0x20) Mtx33[data->mJointTree.mMtxData.mCount];

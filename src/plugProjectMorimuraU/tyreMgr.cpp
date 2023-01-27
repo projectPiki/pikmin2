@@ -37,7 +37,7 @@ void Mgr::loadModelData()
 {
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+	for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 		shape = mModelData->mShapeTable.mItems[j];
 		P2ASSERTLINE(56, shape != nullptr);
 		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;

@@ -46,24 +46,24 @@ void Obj::changeMaterial()
 	modelData     = j3dModel->mModelData;
 	changeTexture = static_cast<Mgr*>(mMgr)->getChangeTexture();
 
-	u16 idx                = modelData->mMaterialTable._0C->getIndex("karada");
-	J3DMaterial* karadaMat = modelData->mMaterialTable.mMaterials1[idx];
+	u16 idx                = modelData->mMaterialTable.mMaterialNames->getIndex("karada");
+	J3DMaterial* karadaMat = modelData->mMaterialTable.mMaterials[idx];
 	karadaMat->mTevBlock->setTevKColor(0, J3DGXColor(0xF, 0xF, 0xF, 0xFF));
 
 	j3dModel->calcMaterial();
 
-	j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
-	newTexture = j3dTexture->_04;
+	j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTextures;
+	newTexture = j3dTexture->mRes;
 
 	changeTexture->copyTo(newTexture);
 
 	j3dTexture->setImageOffset((u32)changeTexture);
 	j3dTexture->setPaletteOffset((u32)changeTexture);
 
-	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
 		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
 		j3dSys.mMatPacket     = packet;
-		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials[i];
 		material->diff(packet->mShapePacket->mDiffFlag);
 	}
 }

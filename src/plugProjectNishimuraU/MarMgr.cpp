@@ -85,8 +85,8 @@ SysShape::Model* Mgr::createModel()
 	SysShape::Model* model = new SysShape::Model(mModelData, 0x80000, mModelType);
 	P2ASSERTLINE(121, model != nullptr);
 
-	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
-		const char* name = mModelData->mMaterialTable._0C->getName(i);
+	for (u16 i = 0; i < mModelData->getMaterialNum(); i++) {
+		const char* name = mModelData->mMaterialTable.mMaterialNames->getName(i);
 		if (!strcmp(name, "mat1")) {
 			model->mJ3dModel->mMatPackets[i].mShapePacket->newDifferedDisplayList(0x01000200);
 		}

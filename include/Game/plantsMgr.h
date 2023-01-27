@@ -242,7 +242,7 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 		EnemyMgrBase::loadModelData();
 		P2ASSERTLINE(519, mModelData != nullptr);
 		J3DShape* shape;
-		for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 			shape = mModelData->mShapeTable.mItems[j];
 			P2ASSERTLINE(523, shape != nullptr);
 			shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
@@ -318,7 +318,7 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 		EnemyMgrBase::loadModelData();
 		P2ASSERTLINE(578, mModelData != nullptr);
 		J3DShape* shape;
-		for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+		for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 			shape = mModelData->mShapeTable.mItems[j];
 			P2ASSERTLINE(582, shape != nullptr);
 			shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;

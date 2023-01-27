@@ -1462,7 +1462,7 @@ void Navi::doEntry()
 		cursorCols = J3DGXColorS10(0xFF, 0xFF, 0xFF, 0xFF);
 	}
 
-	J3DMaterial* materials = mCursorModel->mJ3dModel->mModelData->mMaterialTable.mMaterials1[0];
+	J3DMaterial* materials = mCursorModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[0];
 	if (materials) {
 		materials->mTevBlock->setTevColor(0, cursorCols);
 		mCursorModel->mJ3dModel->calcMaterial();

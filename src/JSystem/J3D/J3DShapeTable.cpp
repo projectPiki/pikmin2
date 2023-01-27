@@ -28,7 +28,7 @@ void J3DShapeTable::sortVcdVatCmd()
 	for (u16 outerI = 0; outerI < count; outerI++) {
 		for (u16 innerI = 0; innerI < outerI; innerI++) {
 			if (mItems[outerI]->isSameVcdVatCmd(mItems[innerI])) {
-				mItems[outerI]->_2C = mItems[innerI]->_2C;
+				mItems[outerI]->mVcdVatCmd = mItems[innerI]->mVcdVatCmd;
 			}
 		}
 	}

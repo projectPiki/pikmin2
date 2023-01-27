@@ -9,50 +9,30 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-*/
-
-/*
  * --INFO--
  * Address:	8005EB80
  * Size:	000068
  */
 J3DVertexData::J3DVertexData()
-// : _00(0)
-// , _04(0)
-// , _08(0)
-// , _0C(0)
-// , _10(0)
-// , _14(nullptr)
-// , _18(nullptr)
-// , _1C(nullptr)
-// , _20(nullptr)
-// , _24(nullptr)
-// , _28(nullptr)
-// , _2C(static_cast<(int*)[8]>(nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr))
-// , _4C(0)
-// , _50(4)
-// , _54(0)
-// , _58(4)
 {
-	_00 = 0;
-	_04 = 0;
-	_08 = 0;
-	_0C = 0;
-	_10 = 0;
-	_14 = nullptr;
-	_18 = nullptr;
-	_1C = nullptr;
-	_20 = nullptr;
-	_24 = nullptr;
-	_28 = nullptr;
+	mVtxNum         = 0;
+	mNormNum        = 0;
+	mColorNum       = 0;
+	mTexCoordNum    = 0;
+	mPacketNum      = 0;
+	mVtxAttrFmtList = nullptr;
+	mVtxPos         = nullptr;
+	mVtxNorm        = nullptr;
+	mVtxNBT         = nullptr;
+	mVtxColor[0]    = nullptr;
+	mVtxColor[1]    = nullptr;
 	for (int i = 0; i < 8; i++) {
-		_2C[i] = nullptr;
+		mVtxTexCoord[i] = nullptr;
 	}
-	_4C = 0;
-	_50 = 4;
-	_54 = 0;
-	_58 = 4;
+	mVtxPosFrac = 0;
+	mVtxPosType = GX_F32;
+	mVtxNrmFrac = 0;
+	mVtxNrmType = GX_F32;
 }
 
 /*
@@ -62,20 +42,23 @@ J3DVertexData::J3DVertexData()
  */
 void J3DVertexBuffer::setVertexData(J3DVertexData* data)
 {
-	_00    = data;
-	_04    = data->_18;
-	_0C    = data->_1C;
-	_14[0] = (GXColor*)data->_24;
-	_08    = 0;
-	_10    = 0;
-	_14[1] = nullptr;
-	_1C    = data->_18;
-	_24    = data->_1C;
-	_20    = 0;
-	_28    = 0;
-	_2C    = _04;
-	_30    = _0C;
-	_34    = _14[0];
+	mVtxData     = data;
+	mVtxPos[0]   = data->mVtxPos;
+	mVtxNorm[0]  = data->mVtxNorm;
+	mVtxColor[0] = data->mVtxColor[0];
+
+	mVtxPos[1]   = nullptr;
+	mVtxNorm[1]  = nullptr;
+	mVtxColor[1] = nullptr;
+
+	mTransformedVtxPos[0]  = data->mVtxPos;
+	mTransformedVtxNorm[0] = data->mVtxNorm;
+	mTransformedVtxPos[1]  = nullptr;
+	mTransformedVtxNorm[1] = nullptr;
+
+	mCurrentVtxPos   = mVtxPos[0];
+	mCurrentVtxNorm  = mVtxNorm[0];
+	mCurrentVtxColor = mVtxColor[0];
 }
 
 /*
@@ -85,23 +68,27 @@ void J3DVertexBuffer::setVertexData(J3DVertexData* data)
  */
 void J3DVertexBuffer::init()
 {
-	_00    = nullptr;
-	_08    = 0;
-	_04    = nullptr;
-	_10    = 0;
-	_0C    = nullptr;
-	_14[1] = nullptr;
-	_14[0] = nullptr;
-	_20    = 0;
-	_1C    = nullptr;
-	_28    = 0;
-	_24    = nullptr;
-	_2C    = nullptr;
-	_30    = nullptr;
-	_34    = nullptr;
-	_2C    = _04;
-	_30    = _0C;
-	_34    = _14[0];
+	mVtxData = nullptr;
+
+	mVtxPos[1]   = nullptr;
+	mVtxPos[0]   = nullptr;
+	mVtxNorm[1]  = nullptr;
+	mVtxNorm[0]  = nullptr;
+	mVtxColor[1] = nullptr;
+	mVtxColor[0] = nullptr;
+
+	mTransformedVtxPos[1]  = nullptr;
+	mTransformedVtxPos[0]  = nullptr;
+	mTransformedVtxNorm[1] = nullptr;
+	mTransformedVtxNorm[0] = nullptr;
+
+	mCurrentVtxPos   = nullptr;
+	mCurrentVtxNorm  = nullptr;
+	mCurrentVtxColor = nullptr;
+
+	mCurrentVtxPos   = mVtxPos[0];
+	mCurrentVtxNorm  = mVtxNorm[0];
+	mCurrentVtxColor = mVtxColor[0];
 }
 
 /*
@@ -118,9 +105,9 @@ J3DVertexBuffer::~J3DVertexBuffer() { }
  */
 void J3DVertexBuffer::setArray() const
 {
-	j3dSys._10C = (u32)_2C;
-	j3dSys._110 = (u32)_30;
-	j3dSys._114 = (u32)_34;
+	j3dSys.mVtxPos   = mCurrentVtxPos;
+	j3dSys.mVtxNorm  = mCurrentVtxNorm;
+	j3dSys.mVtxColor = mCurrentVtxColor;
 }
 
 /*
@@ -130,22 +117,22 @@ void J3DVertexBuffer::setArray() const
  */
 void J3DVertexBuffer::copyVtxColorArray(J3DDeformAttachFlag flag)
 {
-	if (_14[0] == 0 || _14[1] == nullptr) {
+	if (!mVtxColor[0] || !mVtxColor[1]) {
 		if (flag & DeformAttach_1) {
 			for (int i = 0; i < 2; i++) {
-				if (i == 0 || _14[i] == nullptr) {
-					_14[i] = (GXColor*)(new (0x20) void*[_00->_08]);
-					memcpy(_14[i], _00->_24, _00->_08 << 2);
-					DCStoreRange(_14[i], _00->_08 << 2);
+				if (i == 0 || !mVtxColor[i]) {
+					mVtxColor[i] = new (0x20) GXColor[mVtxData->mColorNum];
+					memcpy(mVtxColor[i], mVtxData->mVtxColor[0], mVtxData->mColorNum << 2);
+					DCStoreRange(mVtxColor[i], mVtxData->mColorNum << 2);
 				}
 			}
 		} else {
-			_14[0] = (GXColor*)_00->_24;
-			if (_14[1] == nullptr) {
-				_14[1] = (GXColor*)(new (0x20) void*[_00->_08]);
+			mVtxColor[0] = mVtxData->mVtxColor[0];
+			if (!mVtxColor[1]) {
+				mVtxColor[1] = new (0x20) GXColor[mVtxData->mColorNum];
 			}
-			memcpy(_14[1], _00->_24, _00->_08 << 2);
-			DCStoreRange(_14[1], _00->_08 << 2);
+			memcpy(mVtxColor[1], mVtxData->mVtxColor[0], mVtxData->mColorNum << 2);
+			DCStoreRange(mVtxColor[1], mVtxData->mColorNum << 2);
 		}
 	}
 }

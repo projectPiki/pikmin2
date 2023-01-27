@@ -176,10 +176,10 @@ void Model::enableMaterialAnim(J3DModelData* data, int p2)
 {
 	switch (p2) {
 	case 0:
-		for (int i = 0; i < data->mMaterialTable.mCount1; i++) {
+		for (int i = 0; i < data->mMaterialTable.mMaterialNum; i++) {
 			J3DMaterialAnm* anm = new J3DMaterialAnm();
-			data->mMaterialTable.mMaterials1[i]->change();
-			data->mMaterialTable.mMaterials1[i]->mAnm = anm;
+			data->mMaterialTable.mMaterials[i]->change();
+			data->mMaterialTable.mMaterials[i]->mAnm = anm;
 		}
 		break;
 	case 1:
@@ -306,10 +306,10 @@ void Model::enableMaterialAnim(int p1)
 	switch (p1) {
 	case 0:
 		J3DModelData* data = mJ3dModel->mModelData;
-		for (int i = 0; i < data->mMaterialTable.mCount1; i++) {
+		for (int i = 0; i < data->mMaterialTable.mMaterialNum; i++) {
 			J3DMaterialAnm* anm = new J3DMaterialAnm();
-			data->mMaterialTable.mMaterials1[i]->change();
-			data->mMaterialTable.mMaterials1[i]->mAnm = anm;
+			data->mMaterialTable.mMaterials[i]->change();
+			data->mMaterialTable.mMaterials[i]->mAnm = anm;
 		}
 		break;
 	case 1:
@@ -803,13 +803,13 @@ void Model::jointVisible(bool newVisibility, int jointIndex)
 {
 	if (newVisibility != false) {
 		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
-		     material              = material->_04) {
+		     material              = material->mNext) {
 			material->mShape->mFlags &= ~J3DShape::IsHidden;
 		}
 		return;
 	}
 	for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
-	     material              = material->_04) {
+	     material              = material->mNext) {
 		material->mShape->mFlags |= J3DShape::IsHidden;
 	}
 	/*
@@ -868,7 +868,7 @@ void Model::hide()
 {
 	for (u16 i = 0; i < mJointCount; i++) {
 		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
-		     material              = material->_04) {
+		     material              = material->mNext) {
 			material->mShape->mFlags |= J3DShape::IsHidden;
 		}
 	}
@@ -883,7 +883,7 @@ void Model::show()
 {
 	for (u16 i = 0; i < mJointCount; i++) {
 		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
-		     material              = material->_04) {
+		     material              = material->mNext) {
 			material->mShape->mFlags &= ~J3DShape::IsHidden;
 		}
 	}

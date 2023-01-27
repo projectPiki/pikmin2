@@ -34,9 +34,6 @@ typedef enum _GXCullMode {
 } GXCullMode;
 #pragma enumalwaysint reset
 
-// TODO: Placeholder
-typedef u32 _GXVtxAttrFmtList;
-
 typedef enum _GXPrimitive {
 	GX_POINTS        = 0xb8,
 	GX_LINES         = 0xa8,
@@ -669,7 +666,7 @@ typedef struct GXTexObj {
 typedef struct _GXVtxDescList {
 	s32 _00;
 	u32 _04;
-} GXTexDescList;
+} GXVtxDescList;
 
 // Compressed Z format
 typedef enum _GXZFmt16 {
@@ -954,6 +951,20 @@ typedef enum _GXGamma {
 	GX_GM_2_2,
 } GXGamma;
 
+typedef enum _GXCommand {
+	GX_CMD_LOAD_INDX_A = 0x20,
+	GX_CMD_LOAD_INDX_B = 0x28,
+	GX_CMD_LOAD_INDX_C = 0x30,
+	GX_CMD_LOAD_INDX_D = 0x38,
+
+	GX_CMD_LOAD_CP_REG = 0x08,
+	GX_CMD_LOAD_XF_REG = 0x10,
+} GXCommand;
+
+typedef struct _GXTexRegion {
+	u8 _00[0x10]; // _00
+} GXTexRegion;
+
 void __GXSetDirtyState();
 void __GXSendFlushPrim();
 
@@ -1136,6 +1147,13 @@ typedef enum _GXFBClamp {
 	GX_CLAMP_TOP,
 	GX_CLAMP_BOTTOM,
 } GXFBClamp;
+
+typedef struct _GXVtxAttrFmtList {
+	GXAttr mAttrib;       // _00
+	GXCompCnt mCompCnt;   // _04
+	GXCompType mCompType; // _08
+	u8 mCompShift;        // _0C
+} GXVtxAttrFmtList;       // Size: 0x10
 
 typedef GXTlutRegion* GXTlutRegionCallback(_GXTlut);
 

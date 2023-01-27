@@ -15,7 +15,15 @@ struct J3DShapePacket;
 struct J3DTexture;
 
 struct J3DSys {
+	enum DrawMode {
+		SYSDRAW_Opa  = 0,
+		SYSDRAW_Xlu  = 1,
+		SYSDRAW_Unk3 = 3,
+		SYSDRAW_Unk4 = 4,
+	};
+
 	J3DSys();
+
 	void drawInit();
 	void reinitGX();
 	void reinitGenMode();
@@ -25,47 +33,90 @@ struct J3DSys {
 	void reinitTexture();
 	void reinitTevStages();
 	void reinitTransform();
-	void loadPosMtxIndx(int, unsigned short) const;
-	void loadNrmMtxIndx(int, unsigned short) const;
+	void loadPosMtxIndx(int, u16) const;
+	void loadNrmMtxIndx(int, u16) const;
 	void ErrorReport(J3DErrType) const;
 
-	inline void setVtxPos(void* pos) { _10C = (u32)pos; }
+	Mtx* getViewMtx() { return &mViewMtx; }
+	void setDrawModeOpaTexEdge() { mDrawMode = SYSDRAW_Opa; }
+	void setDrawModeXlu() { mDrawMode = SYSDRAW_Xlu; }
+	void* getVtxPos() const { return mVtxPos; }
+	void setVtxPos(void* pVtxPos) { mVtxPos = pVtxPos; }
+	void* getVtxNrm() const { return mVtxNorm; }
+	void setVtxNrm(void* pVtxNrm) { mVtxNorm = pVtxNrm; }
 
-	inline void setVtxNrm(void* nrm) { _110 = (u32)nrm; }
+	void* getVtxCol() const { return mVtxColor; }
+	void setVtxCol(GXColor* pVtxCol) { mVtxColor = pVtxCol; }
 
-	inline void setVtxCol(GXColor* color) { _114 = (u32)color; }
+	void setModel(J3DModel* pModel) { mModel = pModel; }
+	void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
+	void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
+	void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
-	Mtx _00;                      // _000
-	J3DMtxCalc* mMtxCalc;         // _030
-	u32 _34;                      // _034 /* bitfield */
-	J3DModel* _38;                // _038
-	J3DMatPacket* mMatPacket;     // _03C
-	J3DShapePacket* mShapePacket; // _040
-	u32 _44;                      // _044
-	J3DDrawBuffer* _48;           // _048
-	J3DDrawBuffer* _4C;           // _04C
-	int _50;                      // _050
-	u32 _54;                      // _054
-	J3DTexture* _58;              // _058
-	u8 _5C[4];                    // _05C
-	u32 _60;                      // _060
-	u8 _64[0xA0];                 // _064
-	Mtx* _104;                    // _104
-	Mtx* _108;                    // _108
-	/*
-	 * These three might be part of a J3DVertexBuffer.
-	 * See setArray__15J3DVertexBufferCFv.
-	 */
-	u32 _10C; // _10C
-	u32 _110; // _110
-	u32 _114; // _114 /* bitfield */
+	void setTexture(J3DTexture* pTex) { mTexture = pTex; }
+	J3DTexture* getTexture() { return mTexture; }
 
-	Vec* _118;
+	void setNBTScale(Vec* scale) { mNBTScale = scale; }
+
+	void onFlag(u32 flag) { mFlags |= flag; }
+
+	void offFlag(u32 flag) { mFlags &= ~flag; }
+
+	bool checkFlag(u32 flag) { return mFlags & flag; }
+
+	void setModelDrawMtx(Mtx* pMtxArr)
+	{
+		mModelDrawMtx = pMtxArr;
+		GXSetArray(GX_POS_MTX_ARRAY, mModelDrawMtx, sizeof(*mModelDrawMtx));
+	}
+
+	void setModelNrmMtx(Mtx* pMtxArr)
+	{
+		mModelNormMtx = pMtxArr;
+		GXSetArray(GX_NRM_MTX_ARRAY, mModelNormMtx, sizeof(*mModelNormMtx));
+	}
+
+	// Type 0: Opa Buffer
+	// Type 1: Xlu Buffer
+	void setDrawBuffer(J3DDrawBuffer* buffer, int type) { mDrawBuffer[type] = buffer; }
+
+	// Type 0: Opa Buffer
+	// Type 1: Xlu Buffer
+	J3DDrawBuffer* getDrawBuffer(int type) { return mDrawBuffer[type]; }
+
+	Mtx& getModelDrawMtx(u16 no) const { return mModelDrawMtx[no]; }
+	J3DShapePacket* getShapePacket() const { return mShapePacket; }
+
+	void setViewMtx(Mtx m) { PSMTXCopy(m, mViewMtx); }
+
+	J3DModel* getModel() { return mModel; }
 
 	static Mtx mCurrentMtx;
 	static JGeometry::TVec3f mCurrentS;
 	static JGeometry::TVec3f mParentS;
 	static u16 sTexCoordScaleTable[8][4];
+
+	Mtx mViewMtx;                   // _000
+	J3DMtxCalc* mMtxCalc;           // _030
+	u32 mFlags;                     // _034
+	J3DModel* mModel;               // _038
+	J3DMatPacket* mMatPacket;       // _03C
+	J3DShapePacket* mShapePacket;   // _040
+	J3DShape* mShape;               // _044
+	J3DDrawBuffer* mDrawBuffer[2];  // _048, 0=Opa, 1=Xlu
+	DrawMode mDrawMode;             // _050
+	u32 mMaterialMode;              // _054
+	J3DTexture* mTexture;           // _058
+	u8 _5C[4];                      // _05C, unknown
+	u32 mTexCacheRegionNum;         // _060
+	GXTexRegion mTexCacheRegion[8]; // _064
+	u8 _E4[0x20];                   // _0E4, unknown
+	Mtx* mModelDrawMtx;             // _104
+	Mtx* mModelNormMtx;             // _108
+	void* mVtxPos;                  // _10C
+	void* mVtxNorm;                 // _110
+	GXColor* mVtxColor;             // _114
+	Vec* mNBTScale;                 // _118
 };
 
 extern J3DSys j3dSys;

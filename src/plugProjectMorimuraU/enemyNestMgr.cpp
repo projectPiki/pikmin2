@@ -117,7 +117,7 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 			P2ASSERTLINE(137, material);
 
 			J3DVertexData* vtxData = modelData->getVertexData();
-			j3dSys.setVtxPos(vtxData->getVtXPosArray());
+			j3dSys.setVtxPos(vtxData->getVtxPosArray());
 			j3dSys.setVtxNrm(vtxData->getVtxNrmArray());
 			j3dSys.setVtxCol(vtxData->getVtxColorArray(0));
 			J3DShape::sOldVcdVatCmd = nullptr;

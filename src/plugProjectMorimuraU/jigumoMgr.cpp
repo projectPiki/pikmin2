@@ -39,7 +39,7 @@ void Mgr::loadModelData()
 {
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+	for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 		shape         = mModelData->mShapeTable.mItems[j];
 		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}

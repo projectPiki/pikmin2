@@ -40,7 +40,7 @@ void Mgr::loadModelData()
 
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+	for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 		shape         = mModelData->mShapeTable.mItems[j];
 		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
 	}
@@ -79,8 +79,8 @@ SysShape::Model* Mgr::createModel()
 {
 	SysShape::Model* model = new SysShape::Model(mModelData, 0x80000, mModelType);
 	P2ASSERTLINE(148, model);
-	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
-		const char* name = mModelData->mMaterialTable._0C->getName(i);
+	for (u16 i = 0; i < mModelData->getMaterialNum(); i++) {
+		const char* name = mModelData->mMaterialTable.mMaterialNames->getName(i);
 		if (!strcmp(name, "karada")) {
 			model->mJ3dModel->mMatPackets[(u16)i].mShapePacket->newDifferedDisplayList(0x05020000);
 		}
@@ -89,7 +89,7 @@ SysShape::Model* Mgr::createModel()
 	// why is this not inlined here but IS inlined in the other mgrs SMH.
 	Matrixf mtx;
 	PSMTXIdentity(mtx.mMatrix.mtxView);
-	PSMTXCopy(mtx.mMatrix.mtxView, j3dSys._00);
+	PSMTXCopy(mtx.mMatrix.mtxView, j3dSys.mViewMtx);
 	J3DModel* j3dModel = model->mJ3dModel;
 	j3dModel->calc();
 	j3dModel->calcMaterial();

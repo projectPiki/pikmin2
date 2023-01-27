@@ -1531,7 +1531,7 @@ lbl_80068A64:
 void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
 {
 	for (u16 i = 0; i < _14; i++) {
-		JUTNameTab* matNameTable = data->mMaterialTable._0C;
+		JUTNameTab* matNameTable = data->mMaterialTable.mMaterialNames;
 		int index                = matNameTable->getIndex(mNameTab.getName(i));
 		if (index != -1) {
 			_18[i] = index;
@@ -2490,7 +2490,7 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
 {
 	u16 i;
 	for (i = 0; i < mCountTevColorAnm; i++) {
-		JUTNameTab* nameTable = data->mMaterialTable._0C;
+		JUTNameTab* nameTable = data->mMaterialTable.mMaterialNames;
 		int index             = nameTable->getIndex(_24.getName(i));
 		if (index != -1) {
 			_20[i] = index;
@@ -2499,7 +2499,7 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
 		}
 	}
 	for (i = 0; i < mCountTevKColorAnm; i++) {
-		JUTNameTab* nameTable = data->mMaterialTable._0C;
+		JUTNameTab* nameTable = data->mMaterialTable.mMaterialNames;
 		int index             = nameTable->getIndex(_38.getName(i));
 		if (index != -1) {
 			_34[i] = index;

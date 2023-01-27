@@ -3,7 +3,7 @@
 
 #include "JSystem/J3D/J3DAnmBase.h"
 #include "JSystem/J3D/J3DModel.h"
-#include "JSystem/J3D/J3DTevColorAnm.h"
+#include "JSystem/J3D/J3DMaterialAnm.h"
 
 struct J3DModelData;
 

@@ -1,10 +1,7 @@
 #include "JSystem/J3D/J3DAnmTevRegKey.h"
 #include "JSystem/J3D/J3DAnmTextureSRTKey.h"
-#include "JSystem/J3D/J3DMatColorAnm.h"
+#include "JSystem/J3D/J3DMaterialAnm.h"
 #include "JSystem/J3D/J3DMaterial.h"
-#include "JSystem/J3D/J3DTevColorAnm.h"
-#include "JSystem/J3D/J3DTexMtxAnm.h"
-#include "JSystem/J3D/J3DTexNoAnm.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 

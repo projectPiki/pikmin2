@@ -42,7 +42,7 @@ void Mgr::loadModelData()
 {
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
-	for (u16 j = 0; j < mModelData->getShapeCount(); j++) {
+	for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 		shape = mModelData->mShapeTable.mItems[j];
 		P2ASSERTLINE(56, shape);
 		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
@@ -86,8 +86,8 @@ SysShape::Model* Mgr::createModel()
 	SysShape::Model* model = new SysShape::Model(mModelData, 0x80000, mModelType);
 	P2ASSERTLINE(128, model != nullptr);
 
-	for (u16 i = 0; i < mModelData->getMaterialCount1(); i++) {
-		const char* name = mModelData->mMaterialTable._0C->getName(i);
+	for (u16 i = 0; i < mModelData->getMaterialNum(); i++) {
+		const char* name = mModelData->mMaterialTable.mMaterialNames->getName(i);
 		if (!strcmp(name, "kage_mat")) {
 			model->mJ3dModel->mMatPackets[i].mShapePacket->newDifferedDisplayList(0x05021200);
 		}

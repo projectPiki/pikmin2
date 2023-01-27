@@ -8,9 +8,9 @@ struct ResTIMG;
 struct ResTIMGPair;
 
 struct _UnknownJ3DTextureParent {
-	u16 _00;      // _00
-	u16 _02;      // _02
-	ResTIMG* _04; // _04
+	u16 mNum;      // _00
+	u16 _02;       // _02
+	ResTIMG* mRes; // _04
 };
 
 /**
@@ -18,20 +18,23 @@ struct _UnknownJ3DTextureParent {
  */
 struct J3DTexture : _UnknownJ3DTextureParent {
 	/** @fabricated */
-	inline J3DTexture(u16 p1, ResTIMG* res)
+	inline J3DTexture(u16 count, ResTIMG* res)
 	{
-		_00 = p1;
-		_02 = 0;
-		_04 = res;
+		mNum = count;
+		_02  = 0;
+		mRes = res;
 	}
 
 	virtual ~J3DTexture(); // _08 (weak)
 
+	u16 getNum() const { return mNum; }
+	ResTIMG* getResTIMG(u16 entry) const { return &mRes[entry]; }
+
 	// fabricated:
-	inline void setImageOffset(u32 format) { _04[0].mImageDataOffset = (int)((format + _04[0].mImageDataOffset) - (u32)&_04[0]); }
-	inline void setImageOffset2(u32 format) { _04[1].mImageDataOffset = (int)((format + _04[1].mImageDataOffset) - (u32)&_04[1]); }
-	inline void setPaletteOffset(u32 format) { _04[0].mPaletteOffset = (int)((format + _04[0].mPaletteOffset) - (u32)&_04[0]); }
-	inline void setPaletteOffset2(u32 format) { _04[1].mPaletteOffset = (int)((format + _04[1].mPaletteOffset) - (u32)&_04[1]); }
+	inline void setImageOffset(u32 format) { mRes[0].mImageDataOffset = (int)((format + mRes[0].mImageDataOffset) - (u32)&mRes[0]); }
+	inline void setImageOffset2(u32 format) { mRes[1].mImageDataOffset = (int)((format + mRes[1].mImageDataOffset) - (u32)&mRes[1]); }
+	inline void setPaletteOffset(u32 format) { mRes[0].mPaletteOffset = (int)((format + mRes[0].mPaletteOffset) - (u32)&mRes[0]); }
+	inline void setPaletteOffset2(u32 format) { mRes[1].mPaletteOffset = (int)((format + mRes[1].mPaletteOffset) - (u32)&mRes[1]); }
 
 	// _08 VTBL
 };

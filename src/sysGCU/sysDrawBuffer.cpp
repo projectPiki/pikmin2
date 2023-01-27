@@ -54,9 +54,9 @@ void DrawBuffer::draw()
 {
 	P2ASSERTLINE(57, mBuffer != nullptr);
 	if (isFlag(DRAWBUFF_Unk1)) {
-		j3dSys._50 = 4;
+		j3dSys.mDrawMode = J3DSys::SYSDRAW_Unk4;
 	} else {
-		j3dSys._50 = 3;
+		j3dSys.mDrawMode = J3DSys::SYSDRAW_Unk3;
 	}
 
 	mBuffer->draw();

@@ -67,10 +67,10 @@ void Obj::changeMaterial()
 	j3dModel->calcMaterial();
 	updateMaterialAnimation();
 
-	for (u16 i = 0; i < modelData->mMaterialTable.mCount1; i++) {
+	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
 		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
 		j3dSys.mMatPacket     = packet;
-		J3DMaterial* material = modelData->mMaterialTable.mMaterials1[i];
+		J3DMaterial* material = modelData->mMaterialTable.mMaterials[i];
 		material->diff(packet->mShapePacket->mDiffFlag);
 	}
 }

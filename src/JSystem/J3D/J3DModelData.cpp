@@ -87,21 +87,21 @@ J3DModelData::J3DModelData()
  */
 void J3DModelData::newSharedDisplayList(u32 flags)
 {
-	// u16 count = mMaterialTable.mCount1;
+	// u16 count = mMaterialTable.mMaterialNum;
 	// for (u16 i = 0; i < count; i++) {
 	// 	if (flags & J3DMLF_19) {
-	// 		mMaterialTable.mMaterials1[i]->newSingleSharedDisplayList(mMaterialTable.mMaterials1[i]->countDLSize());
+	// 		mMaterialTable.mMaterials[i]->newSingleSharedDisplayList(mMaterialTable.mMaterials[i]->countDLSize());
 	// 	} else {
-	// 		mMaterialTable.mMaterials1[i]->newSharedDisplayList(mMaterialTable.mMaterials1[i]->countDLSize());
+	// 		mMaterialTable.mMaterials[i]->newSharedDisplayList(mMaterialTable.mMaterials[i]->countDLSize());
 	// 	}
 	// }
-	u16 count = mMaterialTable.mCount1;
+	u16 count = mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
 		if (flags & J3DMLF_19) {
-			J3DMaterial* material = mMaterialTable.mMaterials1[i];
+			J3DMaterial* material = mMaterialTable.mMaterials[i];
 			material->newSingleSharedDisplayList(material->countDLSize());
 		} else {
-			J3DMaterial* material = mMaterialTable.mMaterials1[i];
+			J3DMaterial* material = mMaterialTable.mMaterials[i];
 			material->newSharedDisplayList(material->countDLSize());
 		}
 	}
@@ -161,12 +161,12 @@ lbl_8008394C:
  */
 void J3DModelData::indexToPtr()
 {
-	j3dSys._58                = mMaterialTable.mTexture;
+	j3dSys._58                = mMaterialTable.mTextures;
 	static int sInterruptFlag = OSDisableInterrupts();
 	OSDisableScheduler();
-	u16 count = mMaterialTable.mCount1;
+	u16 count = mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
-		J3DMaterial* material = mMaterialTable.mMaterials1[i];
+		J3DMaterial* material = mMaterialTable.mMaterials[i];
 		GDCurrentDL currentDL;
 		GDInitGDLObj(&currentDL, material->_48->_00, material->_48->_08);
 		__GDCurrentDL = &currentDL;
@@ -241,10 +241,10 @@ lbl_800839FC:
  */
 void J3DModelData::makeSharedDL()
 {
-	j3dSys._58 = mMaterialTable.mTexture;
-	u16 count  = mMaterialTable.mCount1;
+	j3dSys._58 = mMaterialTable.mTextures;
+	u16 count  = mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
-		J3DMaterial* material = mMaterialTable.mMaterials1[i];
+		J3DMaterial* material = mMaterialTable.mMaterials[i];
 		material->makeSharedDisplayList();
 	}
 }
@@ -257,7 +257,7 @@ void J3DModelData::makeSharedDL()
 void J3DModelData::simpleCalcMaterial(u16 jointIndex, Mtx) // float (*)[4])
 {
 	syncJ3DSysFlags();
-	for (J3DMaterial* material = mJointTree.mJoints[jointIndex]->mMaterial; material != nullptr; material = material->_04) {
+	for (J3DMaterial* material = mJointTree.mJoints[jointIndex]->mMaterial; material != nullptr; material = material->mNext) {
 		// TODO: ???
 	}
 	/*

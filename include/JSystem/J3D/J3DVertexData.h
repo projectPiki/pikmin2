@@ -15,28 +15,36 @@ struct J3DVertexData {
 	bool isCpuSkinningPositionFormat();
 	bool isCpuSkinningNormalFormat();
 
-	inline u32 getColNum() const { return _08; }
-	inline void* getVtXPosArray() const { return _18; }
-	inline void* getVtxNrmArray() const { return _1C; }
-	inline GXColor* getVtxColorArray(u8 idx) const { return &((GXColor*)_24)[idx]; }
+	void* getVtxPosArray() const { return mVtxPos; }
+	void* getVtxNrmArray() const { return mVtxNorm; }
+	GXColor* getVtxColorArray(u8 idx) const { return mVtxColor[idx]; }
+	void* getVtxTexCoordArray(u8 idx) const { return mVtxTexCoord[idx]; }
+	void* getVtxNBTArray() const { return mVtxNBT; }
+	u32 getColNum() const { return mColorNum; }
+	u32 getNrmNum() const { return mNormNum; }
+	u32 getVtxNum() const { return mVtxNum; }
+	GXVtxAttrFmtList* getVtxAttrFmtList() { return mVtxAttrFmtList; }
 
-	// TODO: Everything
-	u32 _00;                // _00
-	u32 _04;                // _04
-	u32 _08;                // _08
-	u32 _0C;                // _0C
-	u32 _10;                // _10
-	_GXVtxAttrFmtList* _14; // _14
-	void* _18;              // _18
-	void* _1C;              // _1C
-	void* _20;              // _20
-	void* _24;              // _24
-	void* _28;              // _28
-	void* _2C[8];           // _2C
-	u8 _4C;                 // _4C
-	int _50;                // _50
-	u8 _54;                 // _54
-	int _58;                // _58
+	void setVtxPosFrac(u8 frac) { mVtxPosFrac = frac; }
+	void setVtxPosType(GXCompType type) { mVtxPosType = type; }
+	void setVtxNrmFrac(u8 frac) { mVtxNrmFrac = frac; }
+	void setVtxNrmType(GXCompType type) { mVtxNrmType = type; }
+
+	u32 mVtxNum;                       // _00
+	u32 mNormNum;                      // _04
+	u32 mColorNum;                     // _08
+	u32 mTexCoordNum;                  // _0C
+	u32 mPacketNum;                    // _10
+	GXVtxAttrFmtList* mVtxAttrFmtList; // _14
+	void* mVtxPos;                     // _18
+	void* mVtxNorm;                    // _1C
+	void* mVtxNBT;                     // _20
+	GXColor* mVtxColor[2];             // _24
+	void* mVtxTexCoord[8];             // _2C
+	u8 mVtxPosFrac;                    // _4C
+	GXCompType mVtxPosType;            // _50
+	u8 mVtxNrmFrac;                    // _54
+	GXCompType mVtxNrmType;            // _58
 };
 
 #endif

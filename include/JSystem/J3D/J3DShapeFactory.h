@@ -6,6 +6,9 @@
 #include "JSystem/J3D/J3DShape.h"
 #include "types.h"
 
+struct J3DShapeMtxInitData;
+struct J3DShapeDrawInitData;
+
 struct J3DShapeFactory {
 	J3DShapeFactory(const J3DShapeBlock&);
 
@@ -17,14 +20,23 @@ struct J3DShapeFactory {
 	int calcSizeVcdVatCmdBuffer(u32);
 	int calcSizeShapeMtx(u32, int, int) const;
 
-	J3DShapeInitData* mInitData;                // _00
-	u16* mInitDataIndices;                      // _04
-	_GXVtxDescList* mVtxDescLists;              // _08
-	u16* _0C;                                   // _0C
-	u8* _10;                                    // _10
-	struct J3DShapeMtxInitData* mMtxInitData;   // _14
-	struct J3DShapeDrawInitData* mDrawInitData; // _18
-	void* _1C;                                  // _1C
+	u32 getMtxGroupNum(int no) const { return mInitData[mInitDataIndices[no]].mMtxGroupNum; }
+	GXVtxDescList* getVtxDescList(int no) const
+	{
+		return (GXVtxDescList*)((u8*)mVtxDescLists + mInitData[mInitDataIndices[no]].mVtxDescListIndex);
+	}
+	f32 getRadius(int no) const { return mInitData[mInitDataIndices[no]].mRadius; }
+	JGeometry::TVec3f& getMin(int no) const { return mInitData[mInitDataIndices[no]].mMin; }
+	JGeometry::TVec3f& getMax(int no) const { return mInitData[mInitDataIndices[no]].mMax; }
+
+	J3DShapeInitData* mInitData;         // _00
+	u16* mInitDataIndices;               // _04
+	GXVtxDescList* mVtxDescLists;        // _08
+	u16* mMtxTable;                      // _0C
+	u8* mDisplayListData;                // _10
+	J3DShapeMtxInitData* mMtxInitData;   // _14
+	J3DShapeDrawInitData* mDrawInitData; // _18
+	u8* mVcdVatCmdBuffer;                // _1C
 };
 
 #endif

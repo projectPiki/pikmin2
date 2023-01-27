@@ -1,7 +1,7 @@
 #include "types.h"
-#include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DVtxColorCalc.h"
 #include "JSystem/J3D/J3DAnmVtxColor.h"
+#include "JSystem/J3D/J3DSkinDeform.h"
 
 /*
  * --INFO--
@@ -10,16 +10,16 @@
  */
 void J3DSkinDeform::deform(J3DModel* model)
 {
-	if (IS_FLAG(model->_08.typeView, 4)) {
-		SET_FLAG(_14.typeView, 2);
+	if (model->checkFlag(J3DMODEL_Unk3)) {
+		setFlag(J3DSKIN_Unk2);
 	} else {
-		RESET_FLAG(_14.typeView, 2);
+		resetFlag(J3DSKIN_Unk2);
 	}
 
-	if (IS_FLAG(model->_08.typeView, 8)) {
-		SET_FLAG(_14.typeView, 1);
+	if (model->checkFlag(J3DMODEL_Unk4)) {
+		setFlag(J3DSKIN_Unk1);
 	} else {
-		RESET_FLAG(_14.typeView, 1);
+		resetFlag(J3DSKIN_Unk1);
 	}
 	deform(&model->mVertexBuffer, model->mMtxBuffer);
 }

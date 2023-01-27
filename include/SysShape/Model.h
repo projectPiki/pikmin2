@@ -56,7 +56,7 @@ struct Model : public MtxObject {
 	{
 		Matrixf mtx;
 		PSMTXIdentity(mtx.mMatrix.mtxView);
-		PSMTXCopy(mtx.mMatrix.mtxView, j3dSys._00);
+		PSMTXCopy(mtx.mMatrix.mtxView, j3dSys.mViewMtx);
 		J3DModel* j3dModel = mJ3dModel;
 		j3dModel->calc();
 		j3dModel->calcMaterial();

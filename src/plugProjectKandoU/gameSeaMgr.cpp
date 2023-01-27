@@ -401,9 +401,9 @@ void AABBWaterBox::attachModel(J3DModelData* modelData, Sys::MatTexAnimation* an
 	mMatAnimator.start(anm);
 	calcMatrix();
 	_34 = _30 + _0C;
-	for (u16 i = 0; i < mModel->mJ3dModel->mModelData->mMaterialTable.mTexture->_00; i++) {
-		if (strcmp(mModel->mJ3dModel->mModelData->mMaterialTable._18->getName(i), "fbtex_dummy") == 0) {
-			_60 = mModel->mJ3dModel->mModelData->mMaterialTable.mTexture;
+	for (u16 i = 0; i < mModel->mJ3dModel->mModelData->mMaterialTable.mTextures->_00; i++) {
+		if (strcmp(mModel->mJ3dModel->mModelData->mMaterialTable.mTextureNames->getName(i), "fbtex_dummy") == 0) {
+			_60 = mModel->mJ3dModel->mModelData->mMaterialTable.mTextures;
 			_64 = i;
 		}
 	}

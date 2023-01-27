@@ -613,8 +613,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	J3DModelData* modelData = mModel->mJ3dModel->mModelData;
 	P2ASSERTLINE(166, modelData);
 
-	u16 matIdx = modelData->mMaterialTable._0C->getIndex("cc_mat1_v");
-	_310       = modelData->mMaterialTable.mMaterials1[matIdx];
+	u16 matIdx = modelData->mMaterialTable.mMaterialNames->getIndex("cc_mat1_v");
+	_310       = modelData->mMaterialTable.mMaterials[matIdx];
 
 	P2ASSERTLINE(171, _310);
 

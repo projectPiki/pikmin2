@@ -21,11 +21,6 @@ struct J3DColorChanInfo {
 	u8 _00[0x8]; // _00
 };
 
-struct J3DCurrentMtxInfo {
-	u32 _00; // _00
-	u32 _04; // _04
-};
-
 struct J3DDisplayListInit {
 	u32 _00; // _00
 	u32 _04; // _04

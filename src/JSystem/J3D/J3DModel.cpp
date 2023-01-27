@@ -115,18 +115,18 @@ int J3DModel::createShapePacket(J3DModelData* data)
  */
 int J3DModel::createMatPacket(J3DModelData* data, u32 p2)
 {
-	if (data->mMaterialTable.mCount1 != 0) {
-		mMatPackets = new J3DMatPacket[data->mMaterialTable.mCount1];
+	if (data->mMaterialTable.mMaterialNum != 0) {
+		mMatPackets = new J3DMatPacket[data->mMaterialTable.mMaterialNum];
 	}
-	u16 count = data->mMaterialTable.mCount1;
+	u16 count = data->mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
-		J3DMaterial* material       = data->mMaterialTable.mMaterials1[i];
+		J3DMaterial* material       = data->mMaterialTable.mMaterials[i];
 		J3DMatPacket* matPacket     = &mMatPackets[i];
 		J3DShapePacket* shapePacket = &mShapePackets[material->mShape->mId];
 		matPacket->_30              = material;
 		matPacket->_28              = shapePacket;
 		matPacket->addShapePacket(shapePacket);
-		matPacket->_38 = (u32)data->mMaterialTable.mTexture;
+		matPacket->_38 = (u32)data->mMaterialTable.mTextures;
 		matPacket->_34 = material->_20;
 		if (data->mJointTree.mFlags == 1) {
 			matPacket->_10 = matPacket->_10 | 1;
@@ -357,7 +357,7 @@ int J3DModel::newDifferedTexMtx(J3DTexDiffFlag texDiffFlag)
  */
 void J3DModel::lock()
 {
-	int count = mModelData->mMaterialTable.mCount1;
+	int count = mModelData->mMaterialTable.mMaterialNum;
 	for (int i = 0; i < count; i++) {
 		mMatPackets[i]._10 |= 1;
 	}
@@ -371,11 +371,11 @@ void J3DModel::lock()
 void J3DModel::makeDL()
 {
 	j3dSys._38 = this;
-	j3dSys._58 = mModelData->mMaterialTable.mTexture;
-	u32 count  = mModelData->mMaterialTable.mCount1;
+	j3dSys._58 = mModelData->mMaterialTable.mTextures;
+	u32 count  = mModelData->mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
 		j3dSys.mMatPacket = &mMatPackets[i];
-		mModelData->mMaterialTable.mMaterials1[i]->makeDisplayList();
+		mModelData->mMaterialTable.mMaterials[i]->makeDisplayList();
 	}
 }
 
@@ -398,11 +398,11 @@ void J3DModel::calcMaterial()
 	}
 	j3dSys._38 = this;
 	mModelData->syncJ3DSysFlags();
-	j3dSys._58 = mModelData->mMaterialTable.mTexture;
-	u32 count  = mModelData->mMaterialTable.mCount1;
+	j3dSys._58 = mModelData->mMaterialTable.mTextures;
+	u32 count  = mModelData->mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
 		j3dSys.mMatPacket = &mMatPackets[i];
-		mModelData->mMaterialTable.mMaterials1[i]->makeDisplayList();
+		mModelData->mMaterialTable.mMaterials[i]->makeDisplayList();
 		// TODO: This appears to share code with inside of loop of J3DModelData::simpleCalcMaterial(u16 jointIndex, Mtx*)
 		// TODO: Similarly, ???
 	}
@@ -529,10 +529,10 @@ lbl_80066B0C:
 void J3DModel::calcDiffTexMtx()
 {
 	j3dSys._38 = this;
-	u32 count  = mModelData->mMaterialTable.mCount1;
+	u32 count  = mModelData->mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
 		j3dSys.mMatPacket     = &mMatPackets[i];
-		J3DMaterial* material = mModelData->mMaterialTable.mMaterials1[i];
+		J3DMaterial* material = mModelData->mMaterialTable.mMaterials[i];
 		material->calcDiffTexMtx(mMtxBuffer->mWorldMatrices[material->mJoint->getJntNo()]);
 	}
 	count = mModelData->mShapeTable.mCount;
@@ -653,10 +653,10 @@ lbl_80066C4C:
  */
 void J3DModel::diff()
 {
-	u16 count = mModelData->mMaterialTable.mCount1;
+	u16 count = mModelData->mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
 		j3dSys.mMatPacket = &mMatPackets[i];
-		mModelData->mMaterialTable.mMaterials1[i]->diff(mDisplayListFlag);
+		mModelData->mMaterialTable.mMaterials[i]->diff(mDisplayListFlag);
 	}
 }
 
@@ -920,7 +920,7 @@ void J3DModel::entry()
 		j3dSys._34 &= ~0x8;
 	}
 	mModelData->syncJ3DSysFlags();
-	j3dSys._58 = mModelData->mMaterialTable.mTexture;
+	j3dSys._58 = mModelData->mMaterialTable.mTextures;
 	for (u16 i = 0; i < mModelData->mJointTree.mJointCnt; i++) {
 		J3DJoint* joint = mModelData->mJointTree.mJoints[i];
 		if (joint->mMaterial) {
@@ -1264,9 +1264,9 @@ void J3DModel::calcBumpMtx()
 	if (mModelData->_0C != 1) {
 		return;
 	}
-	u16 count = mModelData->mMaterialTable.mCount1;
+	u16 count = mModelData->mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
-		J3DMaterial* material = mModelData->mMaterialTable.mMaterials1[i];
+		J3DMaterial* material = mModelData->mMaterialTable.mMaterials[i];
 		if (material->mTexGenBlock->getNBTScale()->_00 == 1) {
 			material->mShape->calcNBTScale(material->mTexGenBlock->getNBTScale()->_04, mMtxBuffer->_1C[1][mMtxBuffer->mCurrentViewNumber],
 			                               mMtxBuffer->_24[1][i][mMtxBuffer->mCurrentViewNumber]);

@@ -4,12 +4,14 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/JGeometry.h"
+#include "JSystem/J3D/J3DMaterial.h"
 #include "types.h"
 
 struct J3DDrawMtxData;
 struct J3DJos32Tree;
 struct J3DMaterial;
 struct J3DVertexData;
+struct JUTNameTab;
 struct Vec;
 
 struct J3DShapeDraw;
@@ -22,17 +24,25 @@ struct J3DShapeMtx;
 
 struct J3DShapeInitData {
 	u8 mShapeMtxType;            // _00
-	u16 _02;                     // _02
+	u16 mMtxGroupNum;            // _02
 	u16 mVtxDescListIndex;       // _04
 	u16 mShapeMtxInitDataIndex;  // _06
 	u16 mShapeDrawInitDataIndex; // _08
-	f32 _0C;                     // _0C
-	JGeometry::TVec3f _10;       // _10
-	JGeometry::TVec3f _1C;       // _1C
+	f32 mRadius;                 // _0C
+	JGeometry::TVec3f mMin;      // _10
+	JGeometry::TVec3f mMax;      // _1C
 };
 
 struct J3DShape {
-	enum Flags { IsHidden = 0x1, Invalid = 0xFFFFFFFF };
+	enum Flags {
+		IsHidden  = 0x1,
+		SkinPos   = 0x4,
+		SkinNorm  = 0x8,
+		EnableLOD = 0x100,
+		NoMtx     = 0x200,
+		Invalid   = 0xFFFFFFFF,
+	};
+
 	virtual void draw() const;            // _08
 	virtual void drawFast() const;        // _0C
 	virtual void simpleDraw() const;      // _10
@@ -46,43 +56,67 @@ struct J3DShape {
 	void makeVcdVatCmd();
 	void makeVtxArrayCmd();
 
-	// VTBL _00
-	J3DMaterial* _04;             // _04
-	u16 mId;                      // _08
-	u16 _0A;                      // _0A
-	u32 mFlags;                   // _0C
-	f32 _10;                      // _10
-	JGeometry::TVec3f _14;        // _14
-	JGeometry::TVec3f _20;        // _20
-	u8* _2C;                      // _2C
-	_GXVtxDescList* _30;          // _30
-	u8 mMode;                     // _34
-	J3DShapeMtx** _38;            // _38
-	J3DShapeDraw** _3C;           // _3C
-	u32 _40;                      // _40
-	u32 _44;                      // _44
-	u8 _48;                       // _48
-	J3DVertexData* mVtxData;      // _4C
-	J3DDrawMtxData* mDrawMtxData; // _50
-	s8* mFlagList;                // _54
-	J3DJos32Tree* mTree1;         // _58
-	J3DJos32Tree* mTree2;         // _5C
-	s32* _60;                     // _60
-	int _64;                      // _64
+	void onFlag(u32 flag) { mFlags |= flag; }
+	void offFlag(u32 flag) { mFlags &= ~flag; }
+	bool checkFlag(u32 flag) const { return !!(mFlags & flag); }
+	void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) { mDrawMtxData = pMtxData; }
+	void setVertexDataPointer(J3DVertexData* pVtxData) { mVtxData = pVtxData; }
+	void* getVcdVatCmd() const { return mVcdVatCmd; }
+	void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = (u8*)pVatCmd; }
+	void show() { offFlag(IsHidden); }
+	void hide() { onFlag(IsHidden); }
+	void setCurrentViewNoPtr(u32* pViewNoPtr) { mCurrentViewNumber = pViewNoPtr; }
+	void setScaleFlagArray(u8* pScaleFlagArray) { mFlagList = pScaleFlagArray; }
+	void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }
+	bool getNBTFlag() const { return mMode; }
+	u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
+
+	J3DMaterial* getMaterial() const { return mMaterial; }
+	u32 getIndex() const { return mId; }
+	u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
+	u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
+	u32 getMtxGroupNum() const { return mMtxGroupNum; }
+	J3DShapeDraw* getShapeDraw(u32 idx) const { return mShapeDraw[idx]; }
+	J3DShapeMtx* getShapeMtx(u32 idx) const { return mShapeMtx[idx]; }
+	JGeometry::TVec3f* getMin() { return &mMin; }
+	JGeometry::TVec3f* getMax() { return &mMax; }
 
 	static u8* sOldVcdVatCmd;
 	static u8 sEnvelopeFlag;
+
+	// _00 = VTBL
+	J3DMaterial* mMaterial;       // _04
+	u16 mId;                      // _08
+	u16 mMtxGroupNum;             // _0A
+	u32 mFlags;                   // _0C
+	f32 mRadius;                  // _10
+	JGeometry::TVec3f mMin;       // _14
+	JGeometry::TVec3f mMax;       // _20
+	u8* mVcdVatCmd;               // _2C
+	GXVtxDescList* mVtxDesc;      // _30
+	u8 mMode;                     // _34
+	J3DShapeMtx** mShapeMtx;      // _38
+	J3DShapeDraw** mShapeDraw;    // _3C
+	J3DCurrentMtx mCurrentMtx;    // _40
+	u8 _48;                       // _48
+	J3DVertexData* mVtxData;      // _4C
+	J3DDrawMtxData* mDrawMtxData; // _50
+	u8* mFlagList;                // _54
+	J3DJos32Tree* mTree1;         // _58, TP has this as Mtx** mDrawMtx
+	J3DJos32Tree* mTree2;         // _5C, TP has this as Mtx33** mNrmMtx
+	u32* mCurrentViewNumber;      // _60
+	int mBumpMtxOffset;           // _64
 };
 
 struct J3DShapeMtx {
 	typedef void (J3DShapeMtx::*LoadMtxIndxFunction)(int, u16) const;
 
-	virtual ~J3DShapeMtx() { }                                           // _08 (weak)
-	virtual int getType() const { return 'SMTX'; }                       // _0C (weak)
-	virtual int getUseMtxNum() const { return 1; }                       // _10 (weak)
-	virtual u16 getUseMtxIndex(u16) const { return mUseMtxIndex; }       // _14 (weak)
-	virtual void load() const;                                           // _18
-	virtual void calcNBTScale(const Vec&, f32 (*)[3][3], f32 (*)[3][3]); // _1C
+	virtual ~J3DShapeMtx() { }                                     // _08 (weak)
+	virtual int getType() const { return 'SMTX'; }                 // _0C (weak)
+	virtual int getUseMtxNum() const { return 1; }                 // _10 (weak)
+	virtual u16 getUseMtxIndex(u16) const { return mUseMtxIndex; } // _14 (weak)
+	virtual void load() const;                                     // _18
+	virtual void calcNBTScale(const Vec&, Mtx33, f32 Mtx33);       // _1C
 
 	void loadMtxIndx_PNGP(int, u16) const;
 	void loadMtxIndx_PCPU(int, u16) const;
@@ -106,16 +140,12 @@ struct J3DShapeMtx {
 
 struct J3DShapeDraw {
 	J3DShapeDraw(const u8*, u32);
+
 	virtual ~J3DShapeDraw();
 
 	void draw() const;
 
-	virtual void _04() = 0;
-	virtual void _08() = 0;
-	virtual void _0C() = 0;
-	virtual void _10() = 0;
-	virtual void _14() = 0;
-
+	// _00 = VTBL
 	u32 mDlSize;            // _04
 	const u8* mDisplayList; // _08
 };
@@ -124,27 +154,22 @@ struct J3DShapeTable {
 	inline J3DShapeTable()
 	    : mCount(0)
 	    , mItems(nullptr)
+	    , mNames(nullptr)
 	{
 	}
 
-	/**
-	 * @reifiedAddress{8008382C}
-	 * @reifiedFile{JSystem/J3D/J3DModelData.cpp}
-	 */
-	virtual ~J3DShapeTable() {}; // _08 (weak)
+	virtual ~J3DShapeTable() { } // _08 (weak)
 
 	void initShapeNodes(J3DDrawMtxData*, J3DVertexData*);
 	void sortVcdVatCmd();
 
-	/** @fabricated */
-	J3DShape* getItem(u16 index) { return mItems[index]; }
+	J3DShape* getItem(u16 index) const { return mItems[index]; } // called getShapeNodePointer in TP
+	u16 getShapeNum() const { return mCount; }
 
 	// VTBL _00
-	u16 mCount;        // _04
-	J3DShape** mItems; // _08
-
-	// TODO: Are subsequent JUTNameTab* and J3DVertexData in J3DModelData also
-	// part of this?
+	u16 mCount;         // _04
+	J3DShape** mItems;  // _08
+	JUTNameTab* mNames; // _0C
 };
 
 struct J3DShapeMtxMulti : public J3DShapeMtx {
@@ -153,7 +178,7 @@ struct J3DShapeMtxMulti : public J3DShapeMtx {
 	virtual int getUseMtxNum() const { return mUseMtxNum; }                 // _10 (weak)
 	virtual u16 getUseMtxIndex(unsigned short p1) const { return _0C[p1]; } // _14 (weak)
 	virtual void load() const;                                              // _18
-	virtual void calcNBTScale(const Vec&, f32 (*)[3][3], f32 (*)[3][3]);    // _1C
+	virtual void calcNBTScale(const Vec&, Mtx33, Mtx33);                    // _1C
 
 	u16 mUseMtxNum; // _08
 	u16* _0C;       // _0C

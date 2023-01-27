@@ -154,12 +154,12 @@ void Mgr::draw(Viewport* viewport)
 					{
 						J3DModelData* modelData = mModelData[i];
 						J3DMaterial* material   = modelData->mJointTree.mJoints[0]->mMaterial;
-						j3dSys._10C             = (u32)modelData->mVertexData._18;
-						j3dSys._110             = (u32)modelData->mVertexData._1C;
-						j3dSys._114             = (u32)modelData->mVertexData._24;
+						j3dSys.mVtxPos          = modelData->mVertexData.mVtxPos;
+						j3dSys.mVtxNorm         = modelData->mVertexData.mVtxNorm;
+						j3dSys.mVtxColor        = modelData->mVertexData.mVtxColor[0];
 						J3DShape::sOldVcdVatCmd = 0;
 
-						for (material; material != nullptr; material = material->_04) {
+						for (material; material != nullptr; material = material->mNext) {
 							material->loadSharedDL();
 							material->mShape->loadPreDrawSetting();
 
