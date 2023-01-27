@@ -67,10 +67,12 @@ struct J3DAnmTransformFullData : J3DAnmFullData {
 };
 
 struct J3DAnmTransformFullTable {
-	typedef u16 Row[2];
-	Row _00[3][3]; // _00
-
-	// u16 _00[3][6];
+	u16 mScaleMaxFrame;       // _00
+	u16 mScaleOffset;         // _02
+	u16 mRotationMaxFrame;    // _04
+	u16 mRotationOffset;      // _06
+	u16 mTranslationMaxFrame; // _08
+	u16 mTranslationOffset;   // _0A
 };
 
 /**
@@ -108,7 +110,9 @@ struct J3DAnmTransformKeyData : public J3DAnmFullData {
 };
 
 struct J3DAnmTransformKeyTable {
-	J3DAnmKeyTableBase _00[3];
+	J3DAnmKeyTableBase mScaleInfo;       // _00
+	J3DAnmKeyTableBase mRotationInfo;    // _06
+	J3DAnmKeyTableBase mTranslationInfo; // _0C
 };
 
 #endif

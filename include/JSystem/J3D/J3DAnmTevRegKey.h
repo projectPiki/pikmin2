@@ -117,16 +117,16 @@ struct J3DAnmTevRegKeyData : J3DFileBlockBase {
  * @size{0x1C}
  */
 struct J3DAnmCRegKeyTable {
-	J3DAnmKeyTableBase _00[4]; // _00
-	u8 _18[0x4];               // _18
+	J3DAnmKeyTableBase mTables[4]; // _00, R=0, G=1, B=2, A=3
+	u8 _18[0x4];                   // _18
 };
 
 /**
  * @size{0x1C}
  */
 struct J3DAnmKRegKeyTable {
-	J3DAnmKeyTableBase _00[4]; // _00
-	u8 _18[0x4];               // _18
+	J3DAnmKeyTableBase mTables[4]; // _00, R=0, G=1, B=2, A=3
+	u8 _18[0x4];                   // _18
 };
 
 #endif

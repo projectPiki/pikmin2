@@ -53,7 +53,7 @@ struct J3DAnmColorFullTable {
 		}
 	}
 
-	const u16 mData[4][2]; // _00, R=0, G=1, B=2, A=3 || MaxFrame=0, Offset=1
+	u16 mData[4][2]; // _00, R=0, G=1, B=2, A=3 || MaxFrame=0, Offset=1
 };
 
 /**

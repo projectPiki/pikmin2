@@ -10,7 +10,7 @@ GDOverflowCallback overflowcb = (GDOverflowCallback)NULL;
  * Address:	800E1B04
  * Size:	000018
  */
-void GDInitGDLObj(struct GDCurrentDL* GDL_Obj, u8* begin_ptr, s32 new_length)
+void GDInitGDLObj(GDCurrentDL* GDL_Obj, u8* begin_ptr, s32 new_length)
 {
 	GDL_Obj->begin            = begin_ptr;
 	GDL_Obj->pDisplayListData = begin_ptr;

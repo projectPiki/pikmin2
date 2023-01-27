@@ -186,4 +186,35 @@ void JMAVECLerp(const Vec*, const Vec*, Vec*, f32);
 void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
 void JMAMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
 
+inline f32 JMAHermiteInterpolation(register f32 p1, register f32 p2, register f32 p3, register f32 p4, register f32 p5, register f32 p6,
+                                   register f32 p7)
+{
+	register f32 ff25;
+	register f32 ff31;
+	register f32 ff30;
+	register f32 ff29;
+	register f32 ff28;
+	register f32 ff27;
+	register f32 ff26;
+	// clang-format off
+    asm {
+        fsubs   ff31, p1, p2
+        fsubs   ff30, p5, p2
+        fdivs   ff29, ff31, ff30
+        fmuls   ff28,ff29,ff29
+        fadds   ff25,ff29,ff29
+        fsubs   ff27,ff28,ff29
+        fsubs   ff30, p3, p6
+        fmsubs  ff26,ff25,ff27,ff28
+        fmadds  ff25,p4,ff27,p4
+        fmadds  ff26,ff26,ff30,p3
+        fmadds  ff25,p7,ff27,ff25
+        fmsubs  ff25,ff29,p4,ff25
+        fnmsubs ff25,ff31,ff25,ff26
+
+    }
+	// clang-format on
+	return ff25;
+}
+
 #endif

@@ -13,23 +13,25 @@ struct JUTPalette {
 	/** @fabricated */
 	inline JUTPalette() { }
 	/** @fabricated */
-	inline JUTPalette(u32 id, ResTLUT* lut) { storeTLUT((_GXTlut)id, lut); }
+	inline JUTPalette(u32 id, ResTLUT* lut) { storeTLUT((GXTlut)id, lut); }
+
+	inline JUTPalette(GXTlut p1, GXTlutFmt p2, JUTTransparency p3, u16 p4, void* p5) { storeTLUT(p1, p2, p3, p4, p5); }
 
 	bool load();
-	void storeTLUT(_GXTlut, _GXTlutFmt, JUTTransparency, u16, void*);
-	void storeTLUT(_GXTlut, ResTLUT*);
+	void storeTLUT(GXTlut, _GXTlutFmt, JUTTransparency, u16, void*);
+	void storeTLUT(GXTlut, ResTLUT*);
 	// void storeTLUT(_GXTlut id, _GXTlutFmt format, JUTTransparency
 	// transparency, u16 p4, void* p5) { 	mTlutID = id; 	mTlutFormat =
 	// format; 	mTransparency = transparency; 	_14 = p4; 	_10 = (u8*)p5;
 	// 	GXInitTlutObj(&mTlutObj, _10, mTlutFormat, _14);
 	// }
 
-	GXTlutObj mTlutObj;
-	u8 mTlutID;                     // _0C
-	_GXTlutFmt mTlutFormat;         // _0D
-	u8* _10;                        // _10
-	u16 _14;                        // _14
-	_JUTTransparency mTransparency; // _16
+	GXTlutObj mTlutObj; // _00
+	u8 mTlutID;         // _0C
+	u8 mTlutFormat;     // _0D, GXTlut
+	u8* _10;            // _10
+	u16 _14;            // _14
+	u16 mTransparency;  // _16, JUTTransparency
 };
 
 #endif

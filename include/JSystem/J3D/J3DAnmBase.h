@@ -103,7 +103,7 @@ struct J3DAnmKeyTableBase {
 
 	u16 mMaxFrame; // _00
 	u16 mOffset;   // _02
-	s16 mType;     // _04
+	u16 mType;     // _04
 };
 
 #endif

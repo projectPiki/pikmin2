@@ -1091,8 +1091,6 @@ void GXPixModeSync();
 
 void GXCopyDisp(void*, GXBool); // TODO: Confirm types
 
-typedef u8 _GXTlutFmt;
-
 /*
  * Names of texture lookup tables (TLUTs) in texture memory.
  * Each table GX_TLUT0 through GX_TLUT15 contains 256 entries, at 16 bits per
@@ -1122,13 +1120,17 @@ typedef enum _GXTlut {
 	GX_BIGTLUT3
 } _GXTlut;
 
+typedef _GXTlut GXTlut;
+
 // Texture lookup table (TLUT) formats.
-typedef enum GXTlutFmt {
+typedef enum _GXTlutFmt {
 	GX_TL_IA8,    // 16-bit intensity + alpha (8I+8A).
 	GX_TL_RGB565, // 16-bit RGB (R5+G6+B5).
 	GX_TL_RGB5A3  // When MSB=1, RGB555 format (opaque), and when MSB=0, RGBA4443
 	              // format (transparent).
-} GXTlutFmt;
+} _GXTlutFmt;
+
+typedef _GXTlutFmt GXTlutFmt;
 
 typedef struct GXTlutObj {
 	u32 _00; // _00

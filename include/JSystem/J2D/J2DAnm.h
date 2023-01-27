@@ -7,6 +7,7 @@
 #include "Dolphin/gx.h"
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "JSystem/J3D/J3DAnmVtxColor.h"
+#include "JSystem/JMath.h"
 
 struct J2DAnmTexPatternTIMGPointer;
 struct J2DScreen;
@@ -226,8 +227,8 @@ struct J2DAnmTexPattern : public J2DAnmBase {
 	virtual void searchUpdateMaterialID(J2DScreen*);       // _0C
 
 	void getTexNo(u16, u16*) const;
-	void getResTIMG(u16) const;
-	void getPalette(u16) const;
+	ResTIMG* getResTIMG(u16) const;
+	JUTPalette* getPalette(u16) const;
 
 	inline u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
 	inline u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
@@ -285,9 +286,9 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
 	u32 _10;                             // _10
-	u16 _14;                             // _14
+	u16 mUpdateMaterialNum;              // _14
 	J3DAnmTransformKeyTable* mInfoTable; // _18
-	u16 mUpdateMaterialNum;              // _1C
+	u16 _14;                             // _1C
 	u16 _1E;                             // _1E
 	u16 _20;                             // _20
 	u16 _22;                             // _22
@@ -360,16 +361,19 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 		mTable = nullptr;
 	}
 
-	virtual ~J2DAnmTransformKey() { }                              // _08 (weak)
-	virtual void getTransform(u16, J3DTransformInfo*) const;       // _10 (weak)
+	virtual ~J2DAnmTransformKey() { }                               // _08 (weak)
+	virtual void getTransform(u16 p1, J3DTransformInfo* info) const // _10 (weak)
+	{
+		calcTransform(getFrame(), p1, info);
+	}
 	virtual void calcTransform(f32, u16, J3DTransformInfo*) const; // _14
 
 	// _00     = VTBL
 	// _00-_1C = J2DAnmTransform
-	u8 _1C[6];                        // _1C, unknown
-	u16 _22;                          // _22
-	int _24;                          // _24
-	J3DAnmTransformFullTable* mTable; // _28
+	u8 _1C[6];                       // _1C, unknown
+	u16 _22;                         // _22
+	int _24;                         // _24
+	J3DAnmTransformKeyTable* mTable; // _28
 };
 
 // Size: 0x1C
@@ -457,5 +461,61 @@ struct J2DAnmVtxColorKey : public J2DAnmVtxColor {
 	s16* mBlueVals;                      // _34
 	s16* mAlphaVals;                     // _38
 };
+
+template <typename T>
+inline f32 J2DHermiteInterpolation(f32, T*, T*, T*, T*, T*, T*);
+
+template <>
+inline f32 J2DHermiteInterpolation<f32>(f32 f1, f32* f2, f32* f3, f32* f4, f32* f5, f32* f6, f32* f7)
+{
+	return JMAHermiteInterpolation(f1, *f2, *f3, *f4, *f5, *f6, *f7);
+}
+
+template <>
+inline f32 J2DHermiteInterpolation<s16>(register f32 pp1, register s16* pp2, register s16* pp3, register s16* pp4, register s16* pp5,
+                                        register s16* pp6, register s16* pp7)
+{
+	register f32 p1 = pp1;
+	register f32 ff8;
+	register f32 ff7;
+	register f32 ff6;
+	register f32 ff5;
+	register f32 ff4;
+	register f32 ff3;
+	register f32 ff2;
+	register f32 ff0;
+	register f32 fout;
+	register s16* p2 = pp2;
+	register s16* p3 = pp3;
+	register s16* p4 = pp4;
+	register s16* p5 = pp5;
+	register s16* p6 = pp6;
+	register s16* p7 = pp7;
+	// clang-format off
+    asm {
+        psq_l ff2, 0(p2), 0x1, 5
+        psq_l ff0, 0(p5), 0x1, 5
+        psq_l ff7, 0(p3), 0x1, 5
+        fsubs ff5, ff0, ff2
+        psq_l ff6, 0(p6), 0x1, 5
+        fsubs ff3, p1, ff2
+        psq_l ff0, 0(p7), 0x1, 5
+        fsubs ff4, ff6, ff7
+        fdivs ff3, ff3, ff5
+        psq_l fout, 0(p4), 0x1, 5
+        fmadds ff0, ff0, ff5, ff7
+        fmuls ff2, ff3, ff3
+        fnmsubs ff4, ff5, fout, ff4
+        fsubs ff0, ff0, ff6
+        fsubs ff0, ff0, ff4
+        fmuls ff0, ff2, ff0
+        fmadds fout, ff5, fout, ff0
+        fmadds fout, fout, ff3, ff7
+        fmadds fout, ff4, ff2, fout
+        fsubs fout, fout, ff0
+    }
+	// clang-format on
+	return fout;
+}
 
 #endif

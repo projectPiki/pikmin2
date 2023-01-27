@@ -408,6 +408,8 @@ struct J2DScreen : public J2DPane {
 
 	static void* getNameResource(const char*);
 
+	static J2DDataManage* getDataManage() { return mDataManage; }
+
 	static J2DDataManage* mDataManage;
 
 	// _000      = VTBL
