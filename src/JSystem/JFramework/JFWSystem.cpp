@@ -16,87 +16,10 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global maxStdHeaps__Q29JFWSystem11CSetUpParam
-    maxStdHeaps__Q29JFWSystem11CSetUpParam:
-        .4byte 2
-    .global sysHeapSize__Q29JFWSystem11CSetUpParam
-    sysHeapSize__Q29JFWSystem11CSetUpParam:
-        .4byte 0x00400000
-    .global fifoBufSize__Q29JFWSystem11CSetUpParam
-    fifoBufSize__Q29JFWSystem11CSetUpParam:
-        .4byte 0x00040000
-    .global aramAudioBufSize__Q29JFWSystem11CSetUpParam
-    aramAudioBufSize__Q29JFWSystem11CSetUpParam:
-        .4byte 0x00800000
-    .global aramGraphBufSize__Q29JFWSystem11CSetUpParam
-    aramGraphBufSize__Q29JFWSystem11CSetUpParam:
-        .4byte 0x00600000
-    .global streamPriority__Q29JFWSystem11CSetUpParam
-    streamPriority__Q29JFWSystem11CSetUpParam:
-        .4byte 0x00000008
-    .global decompPriority__Q29JFWSystem11CSetUpParam
-    decompPriority__Q29JFWSystem11CSetUpParam:
-        .4byte 0x00000007
-    .global aPiecePriority__Q29JFWSystem11CSetUpParam
-    aPiecePriority__Q29JFWSystem11CSetUpParam:
-        .4byte 0x00000006
-    .global systemFontRes__Q29JFWSystem11CSetUpParam
-    systemFontRes__Q29JFWSystem11CSetUpParam:
-        .4byte JUTResFONT_Ascfont_fix12
-    .global renderMode__Q29JFWSystem11CSetUpParam
-    renderMode__Q29JFWSystem11CSetUpParam:
-        .4byte GXNtsc480IntDf
-    .global exConsoleBufferSize__Q29JFWSystem11CSetUpParam
-    exConsoleBufferSize__Q29JFWSystem11CSetUpParam:
-        .4byte 0x000024FC
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global rootHeap__9JFWSystem
-    rootHeap__9JFWSystem:
-        .skip 0x4
-    .global systemHeap__9JFWSystem
-    systemHeap__9JFWSystem:
-        .skip 0x4
-    .global mainThread__9JFWSystem
-    mainThread__9JFWSystem:
-        .skip 0x4
-    .global debugPrint__9JFWSystem
-    debugPrint__9JFWSystem:
-        .skip 0x4
-    .global systemFont__9JFWSystem
-    systemFont__9JFWSystem:
-        .skip 0x4
-    .global systemConsoleManager__9JFWSystem
-    systemConsoleManager__9JFWSystem:
-        .skip 0x4
-    .global systemConsole__9JFWSystem
-    systemConsole__9JFWSystem:
-        .skip 0x4
-    .global sInitCalled__9JFWSystem
-    sInitCalled__9JFWSystem:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516B00
-    lbl_80516B00:
-        .float 0.5
-    .global lbl_80516B04
-    lbl_80516B04:
-        .4byte 0x3F59999A
-    .global lbl_80516B08
-    lbl_80516B08:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
-
 extern ResFONT JUTResFONT_Ascfont_fix12;
 
 JKRHeap* JFWSystem::rootHeap;
-JKRHeap* JFWSystem::systemHeap;
+JKRExpHeap* JFWSystem::systemHeap;
 JKRThread* JFWSystem::mainThread;
 JUTDbPrint* JFWSystem::debugPrint;
 JUTFont* JFWSystem::systemFont;

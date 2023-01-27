@@ -29,10 +29,10 @@ JFWDisplay* JFWDisplay::sManager;
 void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 {
 	mIsAlphaEnabled     = doEnableAlpha;
-	_26                 = 3;
-	_08                 = TCOLOR_BLACK;
-	_0C                 = 0xFFFFFF;
-	_14                 = 0;
+	mClamp              = 3;
+	mClearColor         = TCOLOR_BLACK;
+	mZClear             = 0xFFFFFF;
+	mGamma              = 0;
 	mFader              = nullptr;
 	mSecondsPer60Frames = 1;
 	mTickRate           = 0;
@@ -40,9 +40,9 @@ void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 	_30                 = 0;
 	_2C                 = OSGetTick();
 	_34                 = 0;
-	_48                 = 0;
-	_4A                 = 0;
-	mDrawDoneMethod     = 0;
+	_38                 = 0;
+	_3A                 = 0;
+	mDrawDoneMethod     = JFWDRAW_Unk0;
 	clearEfb_init();
 	JUTProcBar::create();
 	JUTProcBar::clear();
@@ -186,15 +186,15 @@ void JFWDisplay::prepareCopyDisp()
 	f32 y_scaleF = GXGetYScaleFactor(height, JUTVideo::getManager()->getXfbHeight());
 	u16 line_num = GXGetNumXfbLines(y_scaleF, height);
 
-	GXSetCopyClear(_08, _0C);
+	GXSetCopyClear(mClearColor, mZClear);
 	GXSetDispCopySrc(0, 0, width, height);
 	GXSetDispCopyDst(width, line_num);
 	GXSetDispCopyYScale(y_scaleF);
 	VIFlush();
 	GXSetCopyFilter((GXBool)JUTVideo::getManager()->isAntiAliasing(), JUTVideo::getManager()->getSamplePattern(), GX_ENABLE,
 	                JUTVideo::getManager()->getVFilter());
-	GXSetCopyClamp((GXFBClamp)_26);
-	GXSetDispCopyGamma((GXGamma)_14);
+	GXSetCopyClamp((GXFBClamp)mClamp);
+	GXSetDispCopyGamma((GXGamma)mGamma);
 	GXSetZMode(GX_ENABLE, GX_LTEQUAL, GX_ENABLE);
 	if (mIsAlphaEnabled) {
 		GXSetAlphaUpdate(GX_ENABLE);
@@ -252,7 +252,7 @@ void JFWDisplay::exchangeXfb_double()
 		xfbMng->setDrawnXfbIndex(cur_xfb_index);
 		xfbMng->setDrawingXfbIndex(cur_xfb_index >= 0 ? cur_xfb_index ^ 1 : 0);
 	} else {
-		clearEfb(_08);
+		clearEfb(mClearColor);
 		if (xfbMng->getDrawingXfbIndex() < 0) {
 			xfbMng->setDrawingXfbIndex(0);
 		}
@@ -384,11 +384,11 @@ void JFWDisplay::beginRender()
 	case JUTXfb::SingleBuffer:
 		if (xfbMgr->getSDrawingFlag() != 2) {
 			xfbMgr->setSDrawingFlag(1);
-			clearEfb(_08);
+			clearEfb(mClearColor);
 		} else {
 			xfbMgr->setSDrawingFlag(1);
 		}
-		xfbMgr->setDrawingXfbIndex(_48);
+		xfbMgr->setDrawingXfbIndex(_38);
 		break;
 	case JUTXfb::DoubleBuffer:
 		exchangeXfb_double();
@@ -467,9 +467,9 @@ void JFWDisplay::endFrame()
  * Address:	8008A5D8
  * Size:	000050
  */
-void JFWDisplay::waitBlanking(int param_0)
+void JFWDisplay::waitBlanking(int blankTime)
 {
-	while (param_0-- > 0) {
+	while (blankTime-- > 0) {
 		waitForTick(mTickRate, mSecondsPer60Frames);
 	}
 }
@@ -479,9 +479,9 @@ void JFWDisplay::waitBlanking(int param_0)
  * Address:	8008A628
  * Size:	000120
  */
-void waitForTick(u32 p1, u16 p2)
+void waitForTick(u32 sleepTime, u16 msgTime)
 {
-	if (p1 != 0) {
+	if (sleepTime != 0) {
 		static bool init;
 		static s64 nextTick = OSGetTime();
 		s64 time            = OSGetTime();
@@ -489,18 +489,18 @@ void waitForTick(u32 p1, u16 p2)
 			JFWDisplay::getManager()->threadSleep((nextTick - time));
 			time = OSGetTime();
 		}
-		nextTick = time + p1;
+		nextTick = time + sleepTime;
 	} else {
 		static bool init;
 		static u32 nextCount = VIGetRetraceCount();
-		u32 uVar1            = (p2 != 0) ? p2 : 1;
+		u32 time             = (msgTime != 0) ? msgTime : 1;
 		void* msg;
 		do {
 			if (!OSReceiveMessage(JUTVideo::getManager()->getMessageQueue(), &msg, OS_MESSAGE_BLOCKING)) {
 				msg = 0;
 			}
 		} while (((int)msg - (int)nextCount) < 0);
-		nextCount = (int)msg + uVar1;
+		nextCount = (int)msg + time;
 	}
 }
 
@@ -626,7 +626,7 @@ void JFWDisplay::clearEfb_init()
  * Address:	........
  * Size:	00002C
  */
-void JFWDisplay::clearEfb() { clearEfb(_08); }
+void JFWDisplay::clearEfb() { clearEfb(mClearColor); }
 
 /*
  * --INFO--
@@ -646,7 +646,7 @@ void JFWDisplay::clearEfb(_GXColor color)
  * Address:	8008A8FC
  * Size:	000370
  */
-void JFWDisplay::clearEfb(int p1, int p2, int p3, int p4, _GXColor color)
+void JFWDisplay::clearEfb(int xMin, int yMin, int xDelta, int yDelta, _GXColor color)
 {
 	Mtx44 mtx;
 
@@ -691,16 +691,20 @@ void JFWDisplay::clearEfb(int p1, int p2, int p3, int p4, _GXColor color)
 	GXSetCullMode(GX_CULL_BACK);
 
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-	GXPosition2u16(p1, p2);
+	// bottom left
+	GXPosition2u16(xMin, yMin);
 	GXTexCoord2u8(0, 0);
 
-	GXPosition2u16(p1 + p3, p2);
+	// bottom right
+	GXPosition2u16(xMin + xDelta, yMin);
 	GXTexCoord2u8(1, 0);
 
-	GXPosition2u16(p1 + p3, p2 + p4);
+	// top right
+	GXPosition2u16(xMin + xDelta, yMin + yDelta);
 	GXTexCoord2u8(1, 1);
 
-	GXPosition2u16(p1, p2 + p4);
+	// top left
+	GXPosition2u16(xMin, yMin + yDelta);
 	GXTexCoord2u8(0, 1);
 
 	GXSetZTexture(GX_ZT_DISABLE, GX_CTF_Z8L, 0);

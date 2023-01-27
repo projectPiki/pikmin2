@@ -7,6 +7,7 @@
 
 struct JKRThread;
 struct JKRHeap;
+struct JKRExpHeap;
 struct JUTConsole;
 struct JUTConsoleManager;
 struct JUTDbPrint;
@@ -30,8 +31,18 @@ struct JFWSystem {
 	static void firstInit();
 	static void init();
 
+	static JUTConsole* getSystemConsole() { return systemConsole; }
+	static JKRExpHeap* getSystemHeap() { return systemHeap; }
+
+	static void setMaxStdHeap(s32 max) { CSetUpParam::maxStdHeaps = max; }
+	static void setSysHeapSize(u32 size) { CSetUpParam::sysHeapSize = size; }
+	static void setFifoBufSize(u32 size) { CSetUpParam::fifoBufSize = size; }
+	static void setAramAudioBufSize(u32 size) { CSetUpParam::aramAudioBufSize = size; }
+	static void setAramGraphBufSize(u32 size) { CSetUpParam::aramGraphBufSize = size; }
+	static void setRenderMode(GXRenderModeObj* p_modeObj) { CSetUpParam::renderMode = p_modeObj; }
+
 	static JKRHeap* rootHeap;
-	static JKRHeap* systemHeap;
+	static JKRExpHeap* systemHeap;
 	static JKRThread* mainThread;
 	static JUTDbPrint* debugPrint;
 	static JUTFont* systemFont;

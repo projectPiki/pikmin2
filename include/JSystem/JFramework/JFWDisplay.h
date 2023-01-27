@@ -12,6 +12,11 @@ typedef void (*JFWDisplayUnkFunc)(void);
 extern Mtx e_mtx;
 
 struct JFWDisplay {
+	enum EDrawDone {
+		JFWDRAW_Unk0 = 0,
+		JFWDRAW_Unk1 = 1,
+	};
+
 	// all ctors are unused/inlined
 	JFWDisplay(JKRHeap*, JUTXfb::EXfbNumber, bool);
 	JFWDisplay(void*, bool);
@@ -58,25 +63,47 @@ struct JFWDisplay {
 
 	static JFWDisplay* getManager() { return sManager; }
 
+	int startFadeOut(int duration)
+	{
+		if (mFader) {
+			return mFader->startFadeOut(duration);
+		}
+		return 1;
+	}
+
+	int startFadeIn(int duration)
+	{
+		if (mFader) {
+			return mFader->startFadeIn(duration);
+		}
+		return 1;
+	}
+
+	void setTickRate(u32 rate)
+	{
+		mTickRate           = rate;
+		mSecondsPer60Frames = 0;
+	}
+
 	static JFWDisplay* sManager;
 
 	// _00 VTBL
-	JUTFader* mFader;        // _04
-	JUtility::TColor _08;    // _08
-	u32 _0C;                 // _0C
-	JUTXfb* mXfb;            // _10
-	u16 _14;                 // _14
-	int mDrawDoneMethod;     // _18
-	u16 mSecondsPer60Frames; // _1C
-	u32 mTickRate;           // _20
-	bool mIsAlphaEnabled;    // _24
-	u16 _26;                 // _26
-	f32 mCombinationRatio;   // _28
-	u32 _2C;                 // _2C
-	u32 _30;                 // _30
-	u32 _34;                 // _34
-	s16 _48;                 // _48
-	u8 _4A;                  // _4A
+	JUTFader* mFader;             // _04
+	JUtility::TColor mClearColor; // _08
+	u32 mZClear;                  // _0C
+	JUTXfb* mXfb;                 // _10
+	u16 mGamma;                   // _14
+	EDrawDone mDrawDoneMethod;    // _18
+	u16 mSecondsPer60Frames;      // _1C
+	u32 mTickRate;                // _20
+	bool mIsAlphaEnabled;         // _24
+	u16 mClamp;                   // _26
+	f32 mCombinationRatio;        // _28
+	u32 _2C;                      // _2C
+	u32 _30;                      // _30
+	u32 _34;                      // _34
+	s16 _38;                      // _38, NB: TP has more members here.
+	u8 _3A;                       // _3A
 };
 
 #endif
