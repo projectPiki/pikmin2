@@ -148,14 +148,14 @@ bool ObjUfoMenu::doUpdate()
 	bool ret        = false;
 	Controller* pad = getGamePad();
 	if (mDisp->mHasWhite && mDisp->mHasPurple) {
-		if (pad->mButton.mButtonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+		if (pad->mButton.mButtonDown & Controller::PRESS_UP) {
 			if (mSelectIndex > 0) {
 				mSelectIndex--;
 				mMenu->select(mSelectIndex & 0xffff);
 				setSelectPikmin(mSelectIndex);
 			}
 
-		} else if (pad->mButton.mButtonDown & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+		} else if (pad->mButton.mButtonDown & Controller::PRESS_DOWN) {
 			if (mSelectIndex < 1) {
 				mSelectIndex++;
 				mMenu->select(mSelectIndex & 0xffff);

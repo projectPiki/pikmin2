@@ -130,13 +130,13 @@ bool ObjFinalMsg::menu()
 
 	u32 input = pad->mButton.mButtonDown;
 
-	if (input & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+	if (input & Controller::PRESS_UP) {
 		if (mCurrSel > 0) {
 			mCurrSel--;
 			mMenuMgr->select(mCurrSel);
 			blink_Menu(mCurrSel);
 		}
-	} else if (input & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+	} else if (input & Controller::PRESS_DOWN) {
 		if (mCurrSel < 1) {
 			mCurrSel++;
 			mMenuMgr->select(mCurrSel);

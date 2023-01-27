@@ -745,7 +745,9 @@ namespace kh {
 
 namespace Screen {
 
+// these control the camera zoom during new level unlocked animations
 const f32 cOpenMinFrm[5] = { 0.0f, 300.0f, 600.0f, 900.0f };
+const f32 cOpenMaxFrm[5] = { 300.0f, 600.0f, 900.0f, 1100.0f };
 
 /*
  * --INFO--
@@ -899,7 +901,7 @@ WorldMap::WorldMap()
 	mCurrentState             = 0xd;
 	mRocketAngleMode          = 1;
 	mFlags                    = 4;
-	mStateID                  = '\x01';
+	mInputState               = 1;
 	mCourseJustOpenFlags      = 0;
 	mOpenCourses              = 0;
 	mZukanFadeout             = 0;
@@ -1206,8 +1208,8 @@ void WorldMap::loadResource()
 	                                        JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
 	P2ASSERTLINE(462, jpc);
 	particle2dMgr->setSceneResourceManager(new JPAResourceManager(jpc, JKRGetCurrentHeap()));
-	mEfxRocketSparks = new efx2d::WorldMap::T2DRocketB;
-	mEfxRocketGlow   = new efx2d::WorldMap::T2DRocketGlow;
+	mEfxRocketSparks = new efx2d::WorldMap::T2DRocketB(_D0, _D8);
+	mEfxRocketGlow   = new efx2d::WorldMap::T2DRocketGlow(_D0, _D8);
 	mEfxRocketSparks->setGroup(3);
 	mEfxRocketGlow->setGroup(2);
 	mEfxRocketGlow->create(nullptr);
@@ -1271,7 +1273,7 @@ void WorldMap::loadResource()
 
 	if (mOpenCourses) {
 		for (int i = 0; i < mOpenCourses; i++) {
-			if (mCourseJustOpenFlags & 1) {
+			if (mCourseJustOpenFlags & 1 << i) {
 				mCameraZoomMinFrame = cOpenMinFrm[i];
 			}
 		}
@@ -1286,7 +1288,7 @@ void WorldMap::loadResource()
 	}
 
 	for (int i = 0; i < 4; i++) {
-		if (i > mOpenCourses || mCourseJustOpenFlags & 1 == i) {
+		if (i > mOpenCourses || mCourseJustOpenFlags & 1 << i) {
 			mScreenKitagawa->search(getSerialTagName('Npoint0', i))->hide();
 		}
 	}
@@ -2965,7 +2967,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		mAnimTimers[0] += 1.5f;
 		if (mAnimTimers[0] > mCameraZoomMinFrame && !newMapOpen()) {
 			for (int i = 1; i < 4; i++) {
-				if (mCourseJustOpenFlags & i) {
+				if (mCourseJustOpenFlags & 1 << i) {
 					// if a course has just opened, make the appear effect spawn over its dot
 					Vector2f efxPos(getPaneCenterX(mScreenKitagawa->search(getSerialTagName('Npoint0', i))),
 					                getPaneCenterY(mScreenKitagawa->search(getSerialTagName('Npoint0', i))));
@@ -3257,7 +3259,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 				mScreenInfo->search('Nlwin')->show();
 
 				if (!mInitArg.mDoNewEntriesEfx) {
-					Vector2f efxPos2(getPaneCenterX(target) + msVal._50, getPaneCenterY(target) + msVal._54);
+					Vector2f efxPos2(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y);
 					efx2d::T2DChangesmoke efx;
 					efx2d::Arg arg(efxPos2);
 					efx.create(&arg);
@@ -3269,7 +3271,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 				mScreenInfo->search('Nrwin')->show();
 
 				if (!mInitArg.mDoNewEntriesEfx) {
-					Vector2f efxPos2(getPaneCenterX(target) + msVal._50, getPaneCenterY(target) + msVal._54);
+					Vector2f efxPos2(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y);
 					efx2d::T2DChangesmoke efx;
 					efx2d::Arg arg(efxPos2);
 					efx.create(&arg);
@@ -5392,7 +5394,7 @@ blr
 void WorldMap::draw1st(Graphics& gfx)
 {
 	gfx.mPerspGraph.setPort();
-	GXSetClipMode(0);
+	GXSetClipMode(GX_CLIP_ENABLE);
 	mScreenKitagawa->search('Ngrand3')->show();
 	mScreenKitagawa->search('Ngrand2')->show();
 	mScreenKitagawa->search('Ngrand00')->show();
@@ -5422,7 +5424,7 @@ void WorldMap::draw2nd(Graphics& gfx)
 void WorldMap::draw3rd(Graphics& gfx)
 {
 	gfx.mPerspGraph.setPort();
-	GXSetClipMode(0);
+	GXSetClipMode(GX_CLIP_ENABLE);
 	mScreenKitagawa->search('Ngrand3')->hide();
 	mScreenKitagawa->search('Ngrand2')->hide();
 	mScreenKitagawa->search('Ngrand00')->hide();
@@ -5434,186 +5436,14 @@ void WorldMap::draw3rd(Graphics& gfx)
 
 	if (mFlags & 0x20 && mZukanFadeout) {
 		gfx.mOrthoGraph.setPort();
-		gfx.mOrthoGraph.setColor(JUtility::TColor(mZukanFadeout));
-		f32 zero;
-		gfx.mOrthoGraph.fillBox(
-		    JGeometry::TBox2f(0.0f, 0.0f, System::getRenderModeObj()->fbWidth + zero, System::getRenderModeObj()->efbHeight + zero));
+		gfx.mOrthoGraph.setColor(JUtility::TColor(0, 0, 0, mZukanFadeout));
+		f32 zero = 0.0f;
+		u16 y    = System::getRenderModeObj()->efbHeight;
+		u16 x    = System::getRenderModeObj()->fbWidth;
+		gfx.mOrthoGraph.fillBox(JGeometry::TBox2f(0.0f, 0.0f, zero + x, zero + y));
 	}
 	gfx.mPerspGraph.setPort();
 	mScreenInfo->draw(gfx, gfx.mPerspGraph);
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-stw      r31, 0x4c(r1)
-mr       r31, r4
-stw      r30, 0x48(r1)
-mr       r30, r3
-addi     r3, r31, 0x190
-stw      r29, 0x44(r1)
-lwz      r12, 0x190(r4)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-li       r3, 0
-bl       GXSetClipMode
-lwz      r3, 0x30(r30)
-lis      r5, 0x616E6433@ha
-lis      r4, 0x004E6772@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x616E6433@l
-addi     r5, r4, 0x004E6772@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x616E6432@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E6772@ha
-addi     r6, r5, 0x616E6432@l
-lwz      r3, 0x30(r30)
-addi     r5, r4, 0x004E6772@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x6E643030@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x4E677261@ha
-addi     r6, r5, 0x6E643030@l
-lwz      r3, 0x30(r30)
-addi     r5, r4, 0x4E677261@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x616E6430@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E6772@ha
-addi     r6, r5, 0x616E6430@l
-lwz      r3, 0x30(r30)
-addi     r5, r4, 0x004E6772@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x616E6431@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E6772@ha
-addi     r6, r5, 0x616E6431@l
-lwz      r3, 0x30(r30)
-addi     r5, r4, 0x004E6772@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r4, 0x6F696E74@ha
-stb      r0, 0xb0(r3)
-addi     r6, r4, 0x6F696E74@l
-li       r5, 0x4e70
-lwz      r3, 0x30(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r4, 0x68617061@ha
-stb      r0, 0xb0(r3)
-addi     r6, r4, 0x68617061@l
-li       r5, 0x4e
-lwz      r3, 0x30(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-mr       r4, r31
-stb      r0, 0xb0(r3)
-addi     r5, r31, 0x190
-lwz      r3, 0x30(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x17c(r30)
-rlwinm.  r0, r0, 0, 0x1a, 0x1a
-beq      lbl_803F5844
-lbz      r0, 0x183(r30)
-cmplwi   r0, 0
-beq      lbl_803F5844
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lbz      r0, 0x183(r30)
-li       r8, 0
-stb      r8, 0x18(r1)
-addi     r3, r31, 0xbc
-addi     r4, r1, 8
-addi     r5, r1, 0xc
-stb      r8, 0x19(r1)
-addi     r6, r1, 0x10
-addi     r7, r1, 0x14
-stb      r8, 0x1a(r1)
-stb      r0, 0x1b(r1)
-lwz      r0, 0x18(r1)
-stw      r0, 0x14(r1)
-stw      r0, 0x10(r1)
-stw      r0, 0xc(r1)
-stw      r0, 8(r1)
-bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-bl       getRenderModeObj__6SystemFv
-lhz      r29, 6(r3)
-bl       getRenderModeObj__6SystemFv
-lhz      r4, 4(r3)
-lis      r0, 0x4330
-lfs      f3, lbl_8051FEF4@sda21(r2)
-addi     r3, r31, 0xbc
-stw      r4, 0x34(r1)
-addi     r4, r1, 0x1c
-lfd      f2, lbl_8051FF48@sda21(r2)
-stw      r0, 0x30(r1)
-lfd      f0, 0x30(r1)
-stw      r29, 0x3c(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x38(r1)
-lfd      f0, 0x38(r1)
-fadds    f1, f3, f1
-stfs     f3, 0x1c(r1)
-fsubs    f0, f0, f2
-stfs     f3, 0x20(r1)
-fadds    f0, f3, f0
-stfs     f1, 0x24(r1)
-stfs     f0, 0x28(r1)
-bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-
-lbl_803F5844:
-addi     r3, r31, 0x190
-lwz      r12, 0x190(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x54(r30)
-mr       r4, r31
-addi     r5, r31, 0x190
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x54(r1)
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-lwz      r29, 0x44(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
 }
 
 /*
@@ -5623,87 +5453,15 @@ blr
  */
 void WorldMap::draw4th(Graphics& gfx)
 {
-	if (mFlags & 0x20 && mZukanFadeout) {
+	if (!(mFlags & 0x20) && mZukanFadeout) {
 		gfx.mOrthoGraph.setPort();
-		gfx.mOrthoGraph.setColor(JUtility::TColor(mZukanFadeout));
-		f32 zero;
-		gfx.mOrthoGraph.fillBox(
-		    JGeometry::TBox2f(0.0f, 0.0f, System::getRenderModeObj()->fbWidth + zero, System::getRenderModeObj()->efbHeight + zero));
+		gfx.mOrthoGraph.setColor(JUtility::TColor(0, 0, 0, mZukanFadeout));
+		f32 zero = 0.0f;
+		u16 y    = System::getRenderModeObj()->efbHeight;
+		u16 x    = System::getRenderModeObj()->fbWidth;
+		gfx.mOrthoGraph.fillBox(JGeometry::TBox2f(0.0f, 0.0f, zero + x, zero + y));
 	}
 	::Screen::gGame2DMgr->draw(gfx);
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-stw      r31, 0x4c(r1)
-mr       r31, r3
-stw      r30, 0x48(r1)
-mr       r30, r4
-lwz      r0, 0x17c(r3)
-rlwinm.  r0, r0, 0, 0x1a, 0x1a
-bne      lbl_803F597C
-lbz      r0, 0x183(r31)
-cmplwi   r0, 0
-beq      lbl_803F597C
-addi     r3, r30, 0xbc
-lwz      r12, 0xbc(r30)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lbz      r0, 0x183(r31)
-li       r8, 0
-stb      r8, 0x18(r1)
-addi     r3, r30, 0xbc
-addi     r4, r1, 8
-addi     r5, r1, 0xc
-stb      r8, 0x19(r1)
-addi     r6, r1, 0x10
-addi     r7, r1, 0x14
-stb      r8, 0x1a(r1)
-stb      r0, 0x1b(r1)
-lwz      r0, 0x18(r1)
-stw      r0, 0x14(r1)
-stw      r0, 0x10(r1)
-stw      r0, 0xc(r1)
-stw      r0, 8(r1)
-bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-bl       getRenderModeObj__6SystemFv
-lhz      r31, 6(r3)
-bl       getRenderModeObj__6SystemFv
-lhz      r4, 4(r3)
-lis      r0, 0x4330
-lfs      f3, lbl_8051FEF4@sda21(r2)
-addi     r3, r30, 0xbc
-stw      r4, 0x34(r1)
-addi     r4, r1, 0x1c
-lfd      f2, lbl_8051FF48@sda21(r2)
-stw      r0, 0x30(r1)
-lfd      f0, 0x30(r1)
-stw      r31, 0x3c(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x38(r1)
-lfd      f0, 0x38(r1)
-fadds    f1, f3, f1
-stfs     f3, 0x1c(r1)
-fsubs    f0, f0, f2
-stfs     f3, 0x20(r1)
-fadds    f0, f3, f0
-stfs     f1, 0x24(r1)
-stfs     f0, 0x28(r1)
-bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-
-lbl_803F597C:
-lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-mr       r4, r30
-bl       draw__Q26Screen9Game2DMgrFR8Graphics
-lwz      r0, 0x54(r1)
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
 }
 
 /*
@@ -6228,7 +5986,8 @@ void WorldMap::onyonMove()
 {
 	Vector2f pos = mRocketPosition;
 	for (int i = 0; i < mOnyonCount; i++) {
-		pos = mOnyonArray[i].move(this, pos);
+		Vector2f newPos = mOnyonArray[i].move(this, pos);
+		pos             = newPos;
 	}
 	/*
 stwu     r1, -0x30(r1)
@@ -6469,8 +6228,50 @@ blr
  * Address:	803F63C0
  * Size:	000230
  */
-void WorldMap::changeState()
+bool WorldMap::changeState()
 {
+	bool ret  = false;
+	u32 input = mInitArg.mController->mButton.mButtonDown;
+	if (input & Controller::PRESS_START) {
+		::Screen::gGame2DMgr->mScreenMgr->reset();
+		og::Screen::DispMemberWorldMapInfoWin0 disp;
+		disp._20 = 0;
+		if (::Screen::gGame2DMgr->open_WorldMapInfoWin0(disp)) {
+			mCurrentState = WMAP_InSelection1;
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_6);
+			ret = true;
+			mFlags |= 0x30;
+		}
+	} else if (input & Controller::PRESS_A) {
+		::Screen::gGame2DMgr->mScreenMgr->reset();
+		og::Screen::DispMemberWorldMapInfoWin1 disp;
+		disp._0C = 0;
+		if (::Screen::gGame2DMgr->open_WorldMapInfoWin1(disp)) {
+			mCurrentState = WMAP_InSelection2;
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_6);
+			ret = true;
+			mFlags |= 0x30;
+		}
+	} else if (input & Controller::PRESS_L) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_PLAYER_CHANGE, 0);
+		ret           = true;
+		mCurrentState = WMAP_GoToZukan2;
+	} else if (input & Controller::PRESS_R) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_PLAYER_CHANGE, 0);
+		ret           = true;
+		mCurrentState = WMAP_GoToZukan1;
+	} else if (mInitArg.mController->mMStick.mStickMag > 0.1f || mInitArg.mController->mButton.mMask & 0xf) {
+		if (mInputState == 0) {
+			ret           = true;
+			mInputState   = msVal._78;
+			mCurrentState = WMAP_InputTarget;
+		} else {
+			mInputState--;
+		}
+	} else {
+		mInputState = 0;
+	}
+	return ret;
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -6638,8 +6439,13 @@ blr
  * Address:	803F65F0
  * Size:	0000C0
  */
-void WorldMap::tag2num(unsigned long long)
+f32 WorldMap::tag2num(u64 tag)
 {
+	f32 ret = ((tag)*10 + tag % 10) * 0.01f;
+	if (ret == 0.0f) {
+		ret = 0.2f;
+	}
+	return ret;
 	/*
 lis      r3, 0x0000FF00@ha
 li       r0, 0xff
@@ -6701,47 +6507,11 @@ blr
  */
 void WorldMap::finish()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r3
-lwz      r3, 0xc0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xc4(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-li       r30, 0
-li       r31, 0
-b        lbl_803F6714
-
-lbl_803F6700:
-lwz      r0, 0xf0(r29)
-add      r3, r0, r31
-bl       kill__Q42kh6Screen8WorldMap13OnyonDynamicsFv
-addi     r31, r31, 0x34
-addi     r30, r30, 1
-
-lbl_803F6714:
-lwz      r0, 0xf4(r29)
-cmpw     r30, r0
-blt      lbl_803F6700
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	mEfxRocketGlow->kill();
+	mEfxRocketSparks->kill();
+	for (int i = 0; i < mOnyonCount; i++) {
+		mOnyonArray[i].kill();
+	}
 }
 
 /*
@@ -6751,43 +6521,17 @@ blr
  */
 bool WorldMap::newMapOpen()
 {
-	/*
-li       r0, 3
-li       r7, 1
-li       r4, 1
-mtctr    r0
-
-lbl_803F674C:
-lbz      r5, 0x182(r3)
-slw      r6, r4, r7
-and.     r0, r5, r6
-beq      lbl_803F67A8
-lis      r4, cOpenMinFrm__Q22kh6Screen@ha
-andc     r6, r5, r6
-addi     r0, r4, cOpenMinFrm__Q22kh6Screen@l
-slwi     r7, r7, 2
-add      r5, r0, r7
-lis      r4, cOpenMaxFrm__Q22kh6Screen@ha
-addi     r0, r4, cOpenMaxFrm__Q22kh6Screen@l
-stb      r6, 0x182(r3)
-add      r4, r0, r7
-lfs      f1, -4(r5)
-lfs      f0, -4(r4)
-li       r0, 0
-stfs     f1, 0x94(r3)
-stfs     f0, 0x90(r3)
-lfs      f0, 0x94(r3)
-stfs     f0, 0x68(r3)
-stw      r0, 0x174(r3)
-li       r3, 1
-blr
-
-lbl_803F67A8:
-addi     r7, r7, 1
-bdnz     lbl_803F674C
-li       r3, 0
-blr
-	*/
+	for (int i = 1; i < 4; i++) {
+		if (mCourseJustOpenFlags & 1 << i) {
+			mCourseJustOpenFlags &= ~(1 << i);
+			mCameraZoomX        = cOpenMinFrm[i - 1];
+			mCameraZoomMinFrame = cOpenMaxFrm[i - 1];
+			mAnimTimers[0]      = mCameraZoomX;
+			mCurrentState       = WMAP_NewMapOpened;
+			return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -6797,37 +6541,58 @@ blr
  */
 int WorldMap::getTarget()
 {
+	u32 newMap = -1;
 	switch (mCurrentCourseIndex) {
-	case 0:
-		return !(mInitArg.mController->mButton.mMask & 0x2000002) && mInitArg.mController->mButton.mMask & 0x8000008 ? 2 : 1;
-		break;
-	case 1:
-		if ((mInitArg.mController->mButton.mMask & 0x1000001) == 0 && mInitArg.mController->mButton.mMask & 0x8000008) {
-			if (mOpenCourses == 3) {
-				return 2;
-			} else if (mOpenCourses > 3) {
-				return 3;
-			}
-		} else if (mInitArg.mController->mButton.mMask & 0x1000001) {
-			return 0;
+	case 0: // currently selected valley of repose
+	{
+		// press right, go to awakening wood if opened
+		if (mInitArg.mController->mButton.mMask & Controller::PRESS_RIGHT) {
+			newMap = 1;
+		}
+		// press up, go to perplexing pool if opened
+		else if (mInitArg.mController->mButton.mMask & Controller::PRESS_UP) {
+			newMap = 2;
 		}
 		break;
-
-	case 2:
-		if (!(mInitArg.mController->mButton.mMask & 0x2000002) && mInitArg.mController->mButton.mMask & 0x4000004) {
-			return 0;
-		}
-
-		return mOpenCourses == 3 ? 1 : 3;
-		break;
-
-	case 3:
-		return (!(mInitArg.mController->mButton.mMask & 0x1000001) && mInitArg.mController->mButton.mMask & 0x4000004) ? 1 : 2;
-		break;
-
-	default:
-		return -1;
 	}
+	case 1: // currently selected awakening wood
+	{
+		// press left, go to valley of repose if opened
+		if (mInitArg.mController->mButton.mMask & Controller::PRESS_LEFT) {
+			newMap = 0;
+		}
+		// press up, go to wistful wild if opened, or go to perplexing pool if not
+		else if (mInitArg.mController->mButton.mMask & Controller::PRESS_UP) {
+			newMap = (mOpenCourses != 3) + 3;
+		}
+		break;
+	}
+	case 2: // currently selected perplexing pool
+	{
+		// press right, go to wistful wild if open, otherwise awakening wood
+		if (mInitArg.mController->mButton.mMask & Controller::PRESS_RIGHT) {
+			newMap = mOpenCourses == 3 ? 1 : 3;
+		}
+		// press down, to go valley of repose
+		else if (mInitArg.mController->mButton.mMask & Controller::PRESS_DOWN) {
+			newMap = 0;
+		}
+		break;
+	}
+	case 3: // currently selected wistful wild
+	{
+		// press left, go to perplexing pool
+		if (mInitArg.mController->mButton.mMask & Controller::PRESS_LEFT) {
+			newMap = 2;
+		}
+		// press down, go to awakening wood
+		else if (mInitArg.mController->mButton.mMask & Controller::PRESS_DOWN) {
+			newMap = 1;
+		}
+		break;
+	}
+	}
+	return newMap;
 }
 
 /*
@@ -6835,7 +6600,7 @@ int WorldMap::getTarget()
  * Address:	803F68F4
  * Size:	000174
  */
-void WorldMap::getRotDir(const JGeometry::TVec2<float>&, float)
+void WorldMap::getRotDir(const JGeometry::TVec2f&, float)
 {
 	/*
 lfs      f3, 0(r4)
@@ -8066,6 +7831,7 @@ blr
  */
 WorldMap::OnyonDynamics::OnyonDynamics()
 {
+	mOnyonPane = nullptr;
 	/*
 li       r0, 0
 lfs      f2, lbl_8051FF10@sda21(r2)
@@ -8094,72 +7860,9 @@ blr
  */
 void WorldMap::OnyonDynamics::initPtcl()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-li       r3, 0x28
-bl       __nw__FUl
-cmplwi   r3, 0
-beq      lbl_803F7AF8
-lis      r5, __vt__Q25efx2d7TBaseIF@ha
-lis      r4, __vt__Q25efx2d5TBase@ha
-addi     r0, r5, __vt__Q25efx2d7TBaseIF@l
-lis      r6, __vt__18JPAEmitterCallBack@ha
-stw      r0, 0(r3)
-addi     r0, r4, __vt__Q25efx2d5TBase@l
-lis      r5, __vt__Q25efx2d8TForever@ha
-lis      r4, __vt__Q25efx2d12TChasePosDir@ha
-stw      r0, 0(r3)
-li       r12, 0
-addi     r11, r5, __vt__Q25efx2d8TForever@l
-addi     r9, r4, __vt__Q25efx2d12TChasePosDir@l
-stb      r12, 4(r3)
-lis      r4, __vt__Q35efx2d8WorldMap12T2DOnyonKira@ha
-addi     r5, r4, __vt__Q35efx2d8WorldMap12T2DOnyonKira@l
-addi     r0, r6, __vt__18JPAEmitterCallBack@l
-stb      r12, 5(r3)
-addi     r10, r11, 0x18
-addi     r8, r9, 0x18
-addi     r7, r31, 0x20
-stw      r0, 8(r3)
-addi     r6, r31, 0x28
-addi     r4, r5, 0x18
-li       r0, 1
-stw      r11, 0(r3)
-stw      r10, 8(r3)
-sth      r12, 0xc(r3)
-stw      r12, 0x10(r3)
-stw      r9, 0(r3)
-stw      r8, 8(r3)
-stw      r7, 0x14(r3)
-stw      r6, 0x18(r3)
-stw      r5, 0(r3)
-stw      r4, 8(r3)
-stb      r0, 4(r3)
-
-lbl_803F7AF8:
-stw      r3, 0x1c(r31)
-li       r4, 3
-lwz      r3, 0x1c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x1c(r31)
-li       r4, 0
-lwz      r12, 0(r3)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mOnyonKira = new efx2d::WorldMap::T2DOnyonKira(mEfxPosition, _28);
+	mOnyonKira->setGroup(3);
+	mOnyonKira->create(nullptr);
 }
 
 /*
@@ -8167,7 +7870,7 @@ blr
  * Address:	803F7B40
  * Size:	000458
  */
-Vector2f WorldMap::OnyonDynamics::move(kh::Screen::WorldMap*, const JGeometry::TVec2<float>&)
+Vector2f WorldMap::OnyonDynamics::move(WorldMap*, const JGeometry::TVec2f&)
 {
 	/*
 	.loc_0x0:
@@ -8495,7 +8198,7 @@ Vector2f WorldMap::OnyonDynamics::move(kh::Screen::WorldMap*, const JGeometry::T
  * Address:	803F7F98
  * Size:	00012C
  */
-void WorldMap::OnyonDynamics::update(kh::Screen::WorldMap*)
+void WorldMap::OnyonDynamics::update(WorldMap*)
 {
 	/*
 stwu     r1, -0x20(r1)

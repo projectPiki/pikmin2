@@ -521,14 +521,14 @@ bool ObjSMenuPause::menu_pause()
 	mMenuPause->update();
 
 	u32 input = pad->mButton.mButtonDown;
-	if (input & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+	if (input & Controller::PRESS_UP) {
 		if (mCurrSelPause > 0) {
 			mCurrSelPause--;
 			mMenuPause->select(mCurrSelPause);
 			blink_TopMenu(mCurrSelPause);
 		}
 
-	} else if (input & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+	} else if (input & Controller::PRESS_DOWN) {
 		if (mCurrSelPause < 1) {
 			mCurrSelPause++;
 			mMenuPause->select(mCurrSelPause);
@@ -591,14 +591,14 @@ bool ObjSMenuPause::menu_yuugata()
 	mMenuSunset->update();
 
 	u32 input = pad->mButton.mButtonDown;
-	if (input & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+	if (input & Controller::PRESS_UP) {
 		if (mCurrSelSunset > 0) {
 			mCurrSelSunset--;
 			mMenuSunset->select(mCurrSelSunset);
 			blink_Yuugata(mCurrSelSunset);
 		}
 
-	} else if (input & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+	} else if (input & Controller::PRESS_DOWN) {
 		if (mCurrSelSunset < 1) {
 			mCurrSelSunset++;
 			mMenuSunset->select(mCurrSelSunset);
@@ -649,14 +649,14 @@ bool ObjSMenuPause::menu_zenkai()
 	mMenuReturn->update();
 
 	u32 input = pad->mButton.mButtonDown;
-	if (input & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+	if (input & Controller::PRESS_UP) {
 		if (mCurrSelReturn > 0) {
 			mCurrSelReturn--;
 			mMenuReturn->select(mCurrSelReturn);
 			blink_Zenkai(mCurrSelReturn);
 		}
 
-	} else if (input & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+	} else if (input & Controller::PRESS_DOWN) {
 		if (mCurrSelReturn < 1) {
 			mCurrSelReturn++;
 			mMenuReturn->select(mCurrSelReturn);

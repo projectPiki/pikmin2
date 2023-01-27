@@ -126,10 +126,8 @@ struct WorldMap : public Game::WorldMap::Base {
 		u8 _0C[8];                                 // _0C
 		Vector2f _14;                              // _14
 		efx2d::WorldMap::T2DOnyonKira* mOnyonKira; // _1C
-		f32 _20;                                   // _20
-		f32 _24;                                   // _24
-		f32 _28;                                   // _28
-		f32 _2C;                                   // _2C
+		Vector2f mEfxPosition;                     // _20
+		Vector2f _28;                              // _28
 		s16 _30;                                   // _30
 	};
 
@@ -145,7 +143,7 @@ struct WorldMap : public Game::WorldMap::Base {
 	virtual void draw4th(Graphics&);                 // _28
 
 	void changeInfo();
-	void changeState();
+	bool changeState();
 	void effectFirstTime();
 	void finish();
 	void getRotDir(const JGeometry::TVec2f&, f32);
@@ -156,7 +154,7 @@ struct WorldMap : public Game::WorldMap::Base {
 	void postureControl(J2DPane*);
 	f32 rocketMove(J2DPane*, bool);
 	void rocketUpdate(J2DPane*);
-	void tag2num(u64);
+	f32 tag2num(u64);
 
 	// _00     = VTBL
 	// _00-_18 = Game::WorldMap::Base
@@ -213,13 +211,47 @@ struct WorldMap : public Game::WorldMap::Base {
 	int mCurrentState;                                         // _174
 	int mRocketAngleMode;                                      // _178
 	u32 mFlags;                                                // _17C
-	char mStateID;                                             // _180
+	u8 mInputState;                                            // _180
 	u8 mOpenCourses;                                           // _181
 	u8 mCourseJustOpenFlags;                                   // _182
 	u8 mZukanFadeout;                                          // _183
 
 	static struct StaticValues {
-		inline StaticValues() { _00 = 4500.0f; }
+		inline StaticValues()
+		{
+			_00      = 4500.0f;
+			_04      = 0.01f;
+			_08      = 0.92f;
+			_0C      = 800.0f;
+			_10      = 0.97f;
+			_14      = 800.0f;
+			_18      = 6000.0f;
+			_1C      = 0.8f;
+			_20      = 1.0f;
+			_24      = 0.9f;
+			_28[0]   = 0.8f;
+			_28[1]   = 0.8f;
+			_28[2]   = 1.2f;
+			_28[3]   = 0.8f;
+			_38      = 0.5f;
+			_3C      = 0.05f;
+			_40      = 0.7f;
+			_44      = 0.95f;
+			_48      = -0.01f;
+			_4C      = 0.88f;
+			_50[0].x = 0.0f;
+			_50[0].y = 0.0f;
+			_50[1].x = 0.0f;
+			_50[1].y = 0.0f;
+			_60      = 0.7f;
+			_64      = 20.0f;
+			_68      = 20.0f;
+			_6C.set(255, 255, 64, 255);
+			_70.set(255, 128, 32, 255);
+			_74.set(255, 255, 128, 140);
+			_78 = 8;
+			_79 = 8;
+		}
 
 		f32 _00; // _00
 		f32 _04;
@@ -238,10 +270,7 @@ struct WorldMap : public Game::WorldMap::Base {
 		f32 _44;
 		f32 _48;
 		f32 _4C;
-		f32 _50;
-		f32 _54;
-		f32 _58;
-		f32 _5C;
+		JGeometry::TVec2f _50[2];
 		f32 _60;
 		f32 _64;
 		f32 _68;

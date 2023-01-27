@@ -7861,7 +7861,7 @@ __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv:
 /* 803F84C8 003F5408  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F84CC 003F540C  4E 80 00 20 */	blr 
 
-__sinit_khWorldMap_cpp: # static initializer
+.fn __sinit_khWorldMap_cpp, local
 /* 803F84D0 003F5410  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803F84D4 003F5414  7C 08 02 A6 */	mflr r0
 /* 803F84D8 003F5418  90 01 00 54 */	stw r0, 0x54(r1)
@@ -7968,6 +7968,7 @@ __sinit_khWorldMap_cpp: # static initializer
 /* 803F866C 003F55AC  7C 08 03 A6 */	mtlr r0
 /* 803F8670 003F55B0  38 21 00 50 */	addi r1, r1, 0x50
 /* 803F8674 003F55B4  4E 80 00 20 */	blr 
+.endfn __sinit_khWorldMap_cpp
 
 .global "__ct__Q29JGeometry8TVec2<f>Fv"
 "__ct__Q29JGeometry8TVec2<f>Fv":

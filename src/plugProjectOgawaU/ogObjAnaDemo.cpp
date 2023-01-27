@@ -486,7 +486,7 @@ bool ObjAnaDemo::doUpdate()
 		break;
 
 	case ANADEMOSTATE_IdleWait:
-		if (pad->mButton.mButtonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+		if (pad->mButton.mButtonDown & Controller::PRESS_UP) {
 			if (mCurrMenuSel > 0) {
 				mCurrMenuSel--;
 				if (mMenuMgr) {
@@ -506,7 +506,7 @@ bool ObjAnaDemo::doUpdate()
 				}
 			}
 
-		} else if (pad->mButton.mButtonDown & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+		} else if (pad->mButton.mButtonDown & Controller::PRESS_DOWN) {
 			if (mCurrMenuSel < 1) {
 				mCurrMenuSel++;
 				if (mMenuMgr) {

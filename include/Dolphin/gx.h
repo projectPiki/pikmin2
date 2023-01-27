@@ -1258,7 +1258,7 @@ void GXSetDispCopyDst(u16 wd, u16 ht);
 
 void GXSetViewport(float, float, float, float, float, float);
 void GXSetTevKColor(GXTevKColorID, GXColor);
-void GXSetClipMode(GXClipMode); // needs a proper type
+void GXSetClipMode(GXClipMode);
 void GXSetCopyClamp(GXFBClamp clamp);
 void GXSetCoPlanar(GXBool);
 

@@ -65,6 +65,11 @@ struct T2DNewmap : public TSimple2 {
  * @size{0x28}
  */
 struct T2DOnyonKira : public TChasePosDir {
+	T2DOnyonKira(Vector2f& pos, Vector2f& pos2)
+	    : TChasePosDir(0, pos, pos2)
+	{
+		_04 = 1;
+	}
 	// vtable 1
 	virtual bool create(Arg*); // _08
 	// vtable 2
@@ -74,7 +79,7 @@ struct T2DOnyonKira : public TChasePosDir {
 
 	// _00		= VTBL
 	// _00-_1C	= TChasePosDir
-	JGeometry::TVec3f _1C; // _1C
+	JGeometry::TVec3f mPosition; // _1C
 };
 
 struct T2DRocketA : public TSimple_ArgDirScale {
@@ -91,8 +96,8 @@ struct T2DRocketA : public TSimple_ArgDirScale {
  * @size{0x28}
  */
 struct T2DRocketB : public TChasePosDir {
-	T2DRocketB()
-	    : TChasePosDir(PID_WMap_RocketSparks)
+	T2DRocketB(Vector2f& pos, Vector2f& pos2)
+	    : TChasePosDir(PID_WMap_RocketSparks, pos, pos2)
 	{
 		_04 = 1;
 	}
@@ -112,8 +117,8 @@ struct T2DRocketB : public TChasePosDir {
  * @size{0x1C}
  */
 struct T2DRocketGlow : public TChasePosDir {
-	T2DRocketGlow()
-	    : TChasePosDir(PID_WMap_RocketGlow)
+	T2DRocketGlow(Vector2f& pos, Vector2f& pos2)
+	    : TChasePosDir(PID_WMap_RocketGlow, pos, pos2)
 	{
 	}
 	// vtable 2

@@ -2026,7 +2026,7 @@ bool ObjContena::moveContena()
 	}
 
 	if (disp->mState == 1) {
-		if (mController->mButton.mButtonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+		if (mController->mButton.mButtonDown & Controller::PRESS_UP) {
 			switch (mScreenState) {
 			case 0:
 				mScreenState = 1;
@@ -2043,7 +2043,7 @@ bool ObjContena::moveContena()
 				break;
 			}
 			mScreenState = 0;
-		} else if (mController->mButton.mButtonDown & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+		} else if (mController->mButton.mButtonDown & Controller::PRESS_DOWN) {
 			switch (mScreenState) {
 			case 0:
 				mScreenState = 3;
@@ -2889,7 +2889,7 @@ void ObjContena::doDraw(Graphics& gfx)
 		PSMTXCopy(pane1->mGlobalMtx, pane2->mPositionMtx);
 		mScreenCupsule->draw(gfx, *graf);
 	}
-	GXSetClipMode(0);
+	GXSetClipMode(GX_CLIP_ENABLE);
 	mScreenSpot->draw(gfx, *graf);
 	/*
 	stwu     r1, -0x20(r1)

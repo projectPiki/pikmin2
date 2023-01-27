@@ -291,14 +291,14 @@ bool ObjSMenuPauseDoukutu::menu_pause()
 	mMenuPause->update();
 
 	u32 input = pad->mButton.mButtonDown;
-	if (input & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+	if (input & Controller::PRESS_UP) {
 		if (mCurrPauseSel > 0) {
 			mCurrPauseSel--;
 			mMenuPause->select(mCurrPauseSel);
 			set_Blink_Normal();
 		}
 
-	} else if (input & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+	} else if (input & Controller::PRESS_DOWN) {
 		if (mCurrPauseSel < 1) {
 			mCurrPauseSel++;
 			mMenuPause->select(mCurrPauseSel);
@@ -385,14 +385,14 @@ bool ObjSMenuPauseDoukutu::menu_giveup()
 	mMenuGiveup->update();
 
 	u32 input = pad->mButton.mButtonDown;
-	if (input & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+	if (input & Controller::PRESS_UP) {
 		if (mCurrGiveupSel > 0) {
 			mCurrGiveupSel--;
 			mMenuGiveup->select(mCurrGiveupSel);
 			set_Blink_YesNo();
 		}
 
-	} else if (input & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+	} else if (input & Controller::PRESS_DOWN) {
 		if (mCurrGiveupSel < 1) {
 			mCurrGiveupSel++;
 			mMenuGiveup->select(mCurrGiveupSel);

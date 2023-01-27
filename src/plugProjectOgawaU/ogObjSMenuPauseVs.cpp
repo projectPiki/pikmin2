@@ -140,14 +140,14 @@ bool ObjSMenuPauseVS::menu()
 	}
 
 	u32 input = getGamePad()->mButton.mButtonDown;
-	if (input & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+	if (input & Controller::PRESS_UP) {
 		if (mCurrMenuSel > 0) {
 			mCurrMenuSel--;
 			mMenuMgr->select(mCurrMenuSel);
 			blink_Menu(mCurrMenuSel);
 		}
 
-	} else if (input & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+	} else if (input & Controller::PRESS_DOWN) {
 		if (mCurrMenuSel < 1) {
 			mCurrMenuSel++;
 			mMenuMgr->select(mCurrMenuSel);
