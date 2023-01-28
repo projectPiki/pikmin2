@@ -24,12 +24,18 @@ OS_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/os/__start.o\
 	$(BUILD_DIR)/src/Dolphin/os/__ppc_eabi_init.o\
 
+OS_UNSCHEDULED:=\
+	$(EPILOGUE_DIR)/src/Dolphin/os/OS.o\
+	$(EPILOGUE_DIR)/src/Dolphin/os/OSAudioSystem.o\
+	$(EPILOGUE_DIR)/src/Dolphin/os/OSCache.o\
+	$(EPILOGUE_DIR)/src/Dolphin/os/OSMessage.o\
+
 $(OS_FILES): CFLAGS += -common off -str noreadonly
 $(OS_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(OS_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/os.a: $(OS_FILES)
+$(BUILD_DIR)/src/Dolphin/os.a: $(OS_FILES) $(OS_UNSCHEDULED)
 	@echo linking... $@
 	@echo $(OS_FILES) > build/OS_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/OS_ofiles

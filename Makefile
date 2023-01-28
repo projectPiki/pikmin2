@@ -72,20 +72,12 @@ ifeq ($(MAPGENFLAG),1)
 endif
 
 include obj_files.mk
-ifeq ($(EPILOGUE_PROCESS),1)
-include e_files.mk
-endif
 
 O_FILES :=	$(GROUP_0_FILES)\
-			$(JSTUDIO_JPARTICLE) $(JMESSAGE) $(JSTUDIO) $(JSTUDIO_JSTAGE) $(JSTUDIO_JMESSAGE)\
-			$(JSTUDIO_JAUDIO) $(J3DU) $(JKERNEL) $(JSUPPORT) $(JGADGET) $(JUTILITY) $(JMATH)\
-			$(J2D) $(J3D) $(JFRAMEWORK) $(JPARTICLE) $(JSTAGE) $(JAUDIO2_JAS) $(JAUDIO2_DSP)\
-			$(JAUDIO2_JAI) $(JAUDIO2_JAD) $(JAUDIO2_JAL) $(JAUDIO2_JAU)\
-			$(DOLPHIN)\
-			$(YAMASHITA) $(KANDO) $(NISHIMURA) $(OGAWA) $(HIKINO) $(MORIMURA) $(EBISAWA) $(KONO)\
-			$(BOOTUP) $(COMMON) $(GC) $(UTILITY)
+			$(JSYSTEM) $(DOLPHIN)\
+			$(PLUGPROJECT) $(SYS) $(UTILITY)
 ifeq ($(EPILOGUE_PROCESS),1)
-E_FILES :=	$(EPILOGUE_UNSCHEDULED)
+E_FILES :=	$(DVD_UNSCHEDULED) $(OS_UNSCHEDULED) $(SI_UNSCHEDULED) $(GBA_UNSCHEDULED)
 endif
 DEPENDS := $($(filter *.o,O_FILES):.o=.d)
 DEPENDS += $($(filter *.o,E_FILES):.o=.d)
@@ -167,9 +159,6 @@ default: all
 all: $(DOL)
 
 ALL_DIRS := $(sort $(dir $(O_FILES)))
-ifeq ($(EPILOGUE_PROCESS),1)
-EPI_DIRS := $(sort $(dir $(E_FILES)))
-endif
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
@@ -205,17 +194,10 @@ tools:
 	$(MAKE) -C tools
 
 # ELF creation makefile instructions
-ifeq ($(EPILOGUE_PROCESS),1)
-	@echo Linking ELF $@
-$(ELF): $(O_FILES) $(E_FILES) $(LDSCRIPT)
-	$(QUIET) @echo $(O_FILES) > build/o_files
-	$(QUIET) $(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
-else
 $(ELF): $(O_FILES) $(LDSCRIPT)
 	@echo Linking ELF $@
 	$(QUIET) @echo $(O_FILES) > build/o_files
 	$(QUIET) $(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
-endif
 
 %.d.unix: %.d $(TRANSFORM_DEP)
 	@echo Processing $<
