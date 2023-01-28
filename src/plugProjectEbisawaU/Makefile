@@ -49,7 +49,7 @@ EBISAWA_FILES:=\
 
 DEPENDS += $(EBISAWA_FILES:.o=.d)
 
-$(BUILD_DIR)/src/plugProjectEbisawaU.a: $(EBISAWA_FILES)
+$(BUILD_DIR)/src/plugProjectEbisawaU/plugProjectEbisawaU.a: $(EBISAWA_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(EBISAWA_FILES) > build/EBISAWA_ofiles

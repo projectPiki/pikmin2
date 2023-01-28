@@ -1,25 +1,25 @@
 # JSystem organised by sublibraries
 JSYSTEM_FILES:=\
-	$(BUILD_DIR)/src/JSystem/JStudio_JParticle.a\
-	$(BUILD_DIR)/src/JSystem/JMessage.a\
-	$(BUILD_DIR)/src/JSystem/JStudio.a\
-	$(BUILD_DIR)/src/JSystem/JStudio_JStage.a\
-	$(BUILD_DIR)/src/JSystem/JStudio_JMessage.a\
-	$(BUILD_DIR)/src/JSystem/JStudio_JAudio.a\
-	$(BUILD_DIR)/src/JSystem/J3DU.a\
-	$(BUILD_DIR)/src/JSystem/JKernel.a\
-	$(BUILD_DIR)/src/JSystem/JSupport.a\
-	$(BUILD_DIR)/src/JSystem/JGadget.a\
-	$(BUILD_DIR)/src/JSystem/JUtility.a\
-	$(BUILD_DIR)/src/JSystem/JMath.a\
-	$(BUILD_DIR)/src/JSystem/J2D.a\
-	$(BUILD_DIR)/src/JSystem/J3D.a\
-	$(BUILD_DIR)/src/JSystem/JFramework.a\
-	$(BUILD_DIR)/src/JSystem/JParticle.a\
-	$(BUILD_DIR)/src/JSystem/JStage.a\
-	$(BUILD_DIR)/src/JSystem/JAudio2.a\
+	$(BUILD_DIR)/src/JSystem/JStudio_JParticle/JStudio_JParticle.a\
+	$(BUILD_DIR)/src/JSystem/JMessage/JMessage.a\
+	$(BUILD_DIR)/src/JSystem/JStudio/JStudio.a\
+	$(BUILD_DIR)/src/JSystem/JStudio_JStage/JStudio_JStage.a\
+	$(BUILD_DIR)/src/JSystem/JStudio_JMessage/JStudio_JMessage.a\
+	$(BUILD_DIR)/src/JSystem/JStudio_JAudio/JStudio_JAudio.a\
+	$(BUILD_DIR)/src/JSystem/J3DU/J3DU.a\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKernel.a\
+	$(BUILD_DIR)/src/JSystem/JSupport/JSupport.a\
+	$(BUILD_DIR)/src/JSystem/JGadget/JGadget.a\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUtility.a\
+	$(BUILD_DIR)/src/JSystem/JMath/JMath.a\
+	$(BUILD_DIR)/src/JSystem/J2D/J2D.a\
+	$(BUILD_DIR)/src/JSystem/J3D/J3D.a\
+	$(BUILD_DIR)/src/JSystem/JFramework/JFramework.a\
+	$(BUILD_DIR)/src/JSystem/JParticle/JParticle.a\
+	$(BUILD_DIR)/src/JSystem/JStage/JStage.a\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAudio2.a\
 
-$(BUILD_DIR)/src/JSystem.a: $(JSYSTEM_FILES)
+$(BUILD_DIR)/src/JSystem/JSystem.a: $(JSYSTEM_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSYSTEM_FILES) > build/JSYSTEM_ofiles

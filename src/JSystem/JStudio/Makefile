@@ -14,7 +14,7 @@ JSTUDIO_FILES:=\
 
 DEPENDS += $(JSTUDIO_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JStudio.a: $(JSTUDIO_FILES)
+$(BUILD_DIR)/src/JSystem/JStudio/JStudio.a: $(JSTUDIO_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSTUDIO_FILES) > build/JSTUDIO_ofiles

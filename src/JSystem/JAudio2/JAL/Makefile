@@ -3,7 +3,7 @@ JAUDIO2_JAL_FILES:=\
 
 DEPENDS += $(JAUDIO2_JAL_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JAudio2/JAL.a: $(JAUDIO2_JAL_FILES)
+$(BUILD_DIR)/src/JSystem/JAudio2/JAL/JAL.a: $(JAUDIO2_JAL_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JAUDIO2_JAL_FILES) > build/JAUDIO2_JAL_ofiles

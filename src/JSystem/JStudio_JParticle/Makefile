@@ -4,7 +4,7 @@ JSTUDIO_JPARTICLE_FILES:=\
 
 DEPENDS += $(JSTUDIO_JPARTICLE_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JStudio_JParticle.a: $(JSTUDIO_JPARTICLE_FILES)
+$(BUILD_DIR)/src/JSystem/JStudio_JParticle/JStudio_JParticle.a: $(JSTUDIO_JPARTICLE_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSTUDIO_JPARTICLE_FILES) > build/JSTUDIO_JPARTICLE_ofiles

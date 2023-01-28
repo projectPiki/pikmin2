@@ -6,7 +6,7 @@ JGADGET_FILES:=\
 
 DEPENDS += $(JGADGET_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JGadget.a: $(JGADGET_FILES)
+$(BUILD_DIR)/src/JSystem/JGadget/JGadget.a: $(JGADGET_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JGADGET_FILES) > build/JGADGET_ofiles

@@ -4,7 +4,7 @@ JFRAMEWORK_FILES:=\
 
 DEPENDS += $(JFRAMEWORK_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JFramework.a: $(JFRAMEWORK_FILES)
+$(BUILD_DIR)/src/JSystem/JFramework/JFramework.a: $(JFRAMEWORK_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JFRAMEWORK_FILES) > build/JFRAMEWORK_ofiles

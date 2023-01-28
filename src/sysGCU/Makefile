@@ -73,7 +73,7 @@ GC_FILES:=\
 
 DEPENDS += $(GC_FILES:.o=.d)
 
-$(BUILD_DIR)/src/sysGCU.a: $(GC_FILES)
+$(BUILD_DIR)/src/sysGCU/sysGCU.a: $(GC_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(GC_FILES) > build/GC_ofiles

@@ -34,7 +34,7 @@ J3D_FILES:=\
 
 DEPENDS += $(J3D_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/J3D.a: $(J3D_FILES)
+$(BUILD_DIR)/src/JSystem/J3D/J3D.a: $(J3D_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(J3D_FILES) > build/J3D_ofiles

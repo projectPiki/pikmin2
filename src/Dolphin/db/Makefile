@@ -6,7 +6,7 @@ $(DB_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(DB_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/db.a: $(DB_FILES)
+$(BUILD_DIR)/src/Dolphin/db/db.a: $(DB_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(DB_FILES) > build/DB_ofiles

@@ -62,7 +62,7 @@ MORIMURA_FILES:=\
 
 DEPENDS += $(MORIMURA_FILES:.o=.d)
 
-$(BUILD_DIR)/src/plugProjectMorimuraU.a: $(MORIMURA_FILES)
+$(BUILD_DIR)/src/plugProjectMorimuraU/plugProjectMorimuraU.a: $(MORIMURA_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(MORIMURA_FILES) > build/MORIMURA_ofiles

@@ -3,7 +3,7 @@ BOOTUP_FILES:=\
 
 DEPENDS += $(BOOTUP_FILES:.o=.d)
 
-$(BUILD_DIR)/src/sysBootupU.a: $(BOOTUP_FILES)
+$(BUILD_DIR)/src/sysBootupU/sysBootupU.a: $(BOOTUP_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(BOOTUP_FILES) > build/BOOTUP_ofiles

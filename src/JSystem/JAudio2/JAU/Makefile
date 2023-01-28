@@ -4,7 +4,7 @@ JAUDIO2_JAU_FILES:=\
 
 DEPENDS += $(JAUDIO2_JAU_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JAudio2/JAU.a: $(JAUDIO2_JAU_FILES)
+$(BUILD_DIR)/src/JSystem/JAudio2/JAU/JAU.a: $(JAUDIO2_JAU_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JAUDIO2_JAU_FILES) > build/JAUDIO2_JAU_ofiles

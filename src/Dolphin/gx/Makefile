@@ -19,7 +19,7 @@ $(GX_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(GX_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/gx.a: $(GX_FILES)
+$(BUILD_DIR)/src/Dolphin/gx/gx.a: $(GX_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(GX_FILES) > build/GX_ofiles

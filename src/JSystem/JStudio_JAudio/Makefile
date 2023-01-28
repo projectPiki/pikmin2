@@ -4,7 +4,7 @@ JSTUDIO_JAUDIO_FILES:=\
 
 DEPENDS += $(JSTUDIO_JAUDIO_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JStudio_JAudio.a: $(JSTUDIO_JAUDIO_FILES)
+$(BUILD_DIR)/src/JSystem/JStudio_JAudio/JStudio_JAudio.a: $(JSTUDIO_JAUDIO_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSTUDIO_JAUDIO_FILES) > build/JSTUDIO_JAUDIO_ofiles

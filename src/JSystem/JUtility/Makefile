@@ -23,7 +23,7 @@ JUTILITY_FILES:=\
 
 DEPENDS += $(JUTILITY_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JUtility.a: $(JUTILITY_FILES)
+$(BUILD_DIR)/src/JSystem/JUtility/JUtility.a: $(JUTILITY_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JUTILITY_FILES) > build/JUTILITY_ofiles

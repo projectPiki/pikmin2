@@ -7,7 +7,7 @@ $(AR_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(AR_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/ar.a: $(AR_FILES)
+$(BUILD_DIR)/src/Dolphin/ar/ar.a: $(AR_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(AR_FILES) > build/AR_ofiles

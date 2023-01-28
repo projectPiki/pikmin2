@@ -6,7 +6,7 @@ JMESSAGE_FILES:=\
 
 DEPENDS += $(JMESSAGE_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JMessage.a: $(JMESSAGE_FILES)
+$(BUILD_DIR)/src/JSystem/JMessage/JMessage.a: $(JMESSAGE_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JMESSAGE_FILES) > build/JMESSAGE_ofiles

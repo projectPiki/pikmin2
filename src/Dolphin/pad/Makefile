@@ -6,7 +6,7 @@ $(PAD_FILES): CFLAGS += -common off
 
 DEPENDS += $(PAD_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/pad.a: $(PAD_FILES)
+$(BUILD_DIR)/src/Dolphin/pad/pad.a: $(PAD_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(PAD_FILES) > build/PAD_ofiles

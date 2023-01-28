@@ -10,7 +10,7 @@ $(SI_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(SI_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/si.a: $(SI_FILES) $(SI_UNSCHEDULED)
+$(BUILD_DIR)/src/Dolphin/si/si.a: $(SI_FILES) $(SI_UNSCHEDULED)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(SI_FILES) > build/SI_ofiles

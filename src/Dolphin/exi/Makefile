@@ -6,7 +6,7 @@ $(EXI_FILES): CFLAGS += -common off
 
 DEPENDS += $(EXI_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/exi.a: $(EXI_FILES)
+$(BUILD_DIR)/src/Dolphin/exi/exi.a: $(EXI_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(EXI_FILES) > build/EXI_ofiles

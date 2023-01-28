@@ -16,7 +16,7 @@ KONO_FILES:=\
 
 DEPENDS += $(KONO_FILES:.o=.d)
 
-$(BUILD_DIR)/src/plugProjectKonoU.a: $(KONO_FILES)
+$(BUILD_DIR)/src/plugProjectKonoU/plugProjectKonoU.a: $(KONO_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(KONO_FILES) > build/KONO_ofiles

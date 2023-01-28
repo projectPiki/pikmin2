@@ -5,7 +5,7 @@ $(AMCSTUBS_FILES): CFLAGS += -common off
 
 DEPENDS += $(AMCSTUBS_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/amcstubs.a: $(AMCSTUBS_FILES)
+$(BUILD_DIR)/src/Dolphin/amcstubs/amcstubs.a: $(AMCSTUBS_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(AMCSTUBS_FILES) > build/AMCSTUBS_ofiles

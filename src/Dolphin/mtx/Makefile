@@ -9,7 +9,7 @@ $(MTX_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(MTX_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/mtx.a: $(MTX_FILES)
+$(BUILD_DIR)/src/Dolphin/mtx/mtx.a: $(MTX_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(MTX_FILES) > build/MTX_ofiles

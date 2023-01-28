@@ -13,7 +13,7 @@ $(RUNTIME_FILES): CFLAGS += -common off
 
 DEPENDS += $(RUNTIME_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/Runtime.a: $(RUNTIME_FILES)
+$(BUILD_DIR)/src/Dolphin/Runtime/Runtime.a: $(RUNTIME_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(RUNTIME_FILES) > build/RUNTIME_ofiles

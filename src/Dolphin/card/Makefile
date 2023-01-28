@@ -19,7 +19,7 @@ $(CARD_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(CARD_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/card.a: $(CARD_FILES)
+$(BUILD_DIR)/src/Dolphin/card/card.a: $(CARD_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(CARD_FILES) > build/CARD_ofiles

@@ -18,7 +18,7 @@ $(DVD_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(DVD_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/dvd.a: $(DVD_FILES) $(DVD_UNSCHEDULED)
+$(BUILD_DIR)/src/Dolphin/dvd/dvd.a: $(DVD_FILES) $(DVD_UNSCHEDULED)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(DVD_FILES) > build/DVD_ofiles

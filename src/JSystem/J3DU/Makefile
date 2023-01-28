@@ -6,7 +6,7 @@ J3DU_FILES:=\
 
 DEPENDS += $(J3DU_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/J3DU.a: $(J3DU_FILES)
+$(BUILD_DIR)/src/JSystem/J3DU/J3DU.a: $(J3DU_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(J3DU_FILES) > build/J3DU_ofiles

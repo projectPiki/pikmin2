@@ -41,7 +41,7 @@ $(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/target_options.o: CFLAGS += -sdata 0
 
 DEPENDS += $(TRK_MINNOW_DOLPHIN_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN.a: $(TRK_MINNOW_DOLPHIN_FILES)
+$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/TRK_MINNOW_DOLPHIN.a: $(TRK_MINNOW_DOLPHIN_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(TRK_MINNOW_DOLPHIN_FILES) > build/TRK_MINNOW_DOLPHIN_ofiles

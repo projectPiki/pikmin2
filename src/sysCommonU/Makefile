@@ -18,7 +18,7 @@ COMMON_FILES:=\
 
 DEPENDS += $(COMMON_FILES:.o=.d)
 
-$(BUILD_DIR)/src/sysCommonU.a: $(COMMON_FILES)
+$(BUILD_DIR)/src/sysCommonU/sysCommonU.a: $(COMMON_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(COMMON_FILES) > build/COMMON_ofiles

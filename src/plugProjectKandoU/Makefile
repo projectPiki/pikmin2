@@ -137,7 +137,7 @@ KANDO_FILES:=\
 
 DEPENDS += $(KANDO_FILES:.o=.d)
 
-$(BUILD_DIR)/src/plugProjectKandoU.a: $(KANDO_FILES)
+$(BUILD_DIR)/src/plugProjectKandoU/plugProjectKandoU.a: $(KANDO_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(KANDO_FILES) > build/KANDO_ofiles

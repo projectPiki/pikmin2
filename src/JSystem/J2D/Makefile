@@ -22,7 +22,7 @@ J2D_FILES:=\
 
 DEPENDS += $(J2D_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/J2D.a: $(J2D_FILES)
+$(BUILD_DIR)/src/JSystem/J2D/J2D.a: $(J2D_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(J2D_FILES) > build/J2D_ofiles

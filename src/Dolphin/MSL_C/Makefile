@@ -68,7 +68,7 @@ $(BUILD_DIR)/src/Dolphin/MSL_C/locale.o: CFLAGS += -str pool
 
 DEPENDS += $(MSL_C_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/MSL_C.a: $(MSL_C_FILES)
+$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_C.a: $(MSL_C_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(MSL_C_FILES) > build/MSL_C_ofiles

@@ -6,7 +6,7 @@ JSTAGE_FILES:=\
 
 DEPENDS += $(JSTAGE_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JStage.a: $(JSTAGE_FILES)
+$(BUILD_DIR)/src/JSystem/JStage/JStage.a: $(JSTAGE_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSTAGE_FILES) > build/JSTAGE_ofiles

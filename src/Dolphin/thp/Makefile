@@ -6,7 +6,7 @@ $(THP_FILES): CFLAGS += -common off
 
 DEPENDS += $(THP_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/thp.a: $(THP_FILES)
+$(BUILD_DIR)/src/Dolphin/thp/thp.a: $(THP_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(THP_FILES) > build/THP_ofiles

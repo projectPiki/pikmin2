@@ -82,7 +82,7 @@ OGAWA_FILES:=\
 
 DEPENDS += $(OGAWA_FILES:.o=.d)
 
-$(BUILD_DIR)/src/plugProjectOgawaU.a: $(OGAWA_FILES)
+$(BUILD_DIR)/src/plugProjectOgawaU/plugProjectOgawaU.a: $(OGAWA_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(OGAWA_FILES) > build/OGAWA_ofiles
