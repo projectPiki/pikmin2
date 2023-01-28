@@ -146,6 +146,8 @@ CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp 
 ifeq ($(VERBOSE),0)
 # this set of ASFLAGS generates no warnings.
 ASFLAGS += -W
+# this set of CFLAGS generates no warnings.
+CFLAGS += -w off
 endif
 
 #-------------------------------------------------------------------------------
