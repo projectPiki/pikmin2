@@ -122,13 +122,13 @@ struct WorldMap : public Game::WorldMap::Base {
 		~OnyonDynamics() { }
 
 		J2DPane* mOnyonPane;                       // _00
-		Vector2f _04;                              // _04
+		Vector2f mOffset;                          // _04
 		u8 _0C[8];                                 // _0C
-		Vector2f _14;                              // _14
+		Vector2f mAngle;                           // _14
 		efx2d::WorldMap::T2DOnyonKira* mOnyonKira; // _1C
 		Vector2f mEfxPosition;                     // _20
 		Vector2f _28;                              // _28
-		s16 _30;                                   // _30
+		s16 mRotateAngle;                          // _30
 	};
 
 	WorldMap();
@@ -226,9 +226,9 @@ struct WorldMap : public Game::WorldMap::Base {
 			_10      = 0.97f;
 			_14      = 800.0f;
 			_18      = 6000.0f;
-			_1C      = 0.8f;
-			_20      = 1.0f;
-			_24      = 0.9f;
+			_1C[0]   = 0.8f;
+			_1C[1]   = 1.0f;
+			_1C[2]   = 0.9f;
 			_28[0]   = 0.8f;
 			_28[1]   = 0.8f;
 			_28[2]   = 1.2f;
@@ -260,9 +260,7 @@ struct WorldMap : public Game::WorldMap::Base {
 		f32 _10;
 		f32 _14;
 		f32 _18;
-		f32 _1C;
-		f32 _20;
-		f32 _24;
+		f32 _1C[3];
 		f32 _28[4];
 		f32 _38;
 		f32 _3C;

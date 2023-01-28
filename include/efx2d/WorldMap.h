@@ -9,6 +9,12 @@
 namespace efx2d {
 namespace WorldMap {
 struct ArgDirScale : public Arg {
+	ArgDirScale(Vector2f& pos, Vector2f& dir, f32 scale)
+	    : Arg(pos)
+	{
+		mDir   = dir;
+		mScale = scale;
+	}
 
 	virtual const char* getName() // _08 (weak)
 	{

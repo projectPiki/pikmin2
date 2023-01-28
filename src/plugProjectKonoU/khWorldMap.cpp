@@ -13,6 +13,7 @@
 #include "PSSystem/PSSystemIF.h"
 #include "Dolphin/float.h"
 #include "efx2d/T2DChangesmoke.h"
+#include "JSystem/JMath.h"
 
 /*
     Generated from dpostproc
@@ -1148,7 +1149,7 @@ void WorldMap::loadResource()
 	}
 
 	for (int i = 1; i < mOnyonCount; i++) {
-		mOnyonArray[i]._30 = (i * 0xffff) / mOnyonCount;
+		mOnyonArray[i].mRotateAngle = (i * 0xffff) / mOnyonCount;
 	}
 
 	char* infoPaths[4] = { "world_map_info.blo", "world_map_info.btk", "world_map_info_02.btk", "world_map_info_03.btk" };
@@ -5714,8 +5715,38 @@ blr
  * Address:	803F5CD0
  * Size:	000404
  */
-void WorldMap::rocketUpdate(J2DPane*)
+void WorldMap::rocketUpdate(J2DPane* pane)
 {
+	J2DPane* shipPane = mScreenRocket->search('NROCKET');
+	shipPane->setOffset(mRocketPosition.x, mRocketPosition.y);
+	shipPane->mAngle = JMath::atanTable_.atan2_(-mRocketAngle.x, -mRocketAngle.y) * 57.295776f;
+	shipPane->calcMtx();
+
+	f32 scale = tag2num(pane->mMessageID);
+	mRocketScale *= msVal._08 + (1.0f - msVal._08) * scale;
+
+	f32 scale2 = msVal._1C[mOpenCourses] * mRocketScale;
+	shipPane->updateScale(scale2);
+
+	f32 x              = mRocketPosition.x - mRocketPosition2.x;
+	f32 y              = mRocketPosition.y - mRocketPosition2.y;
+	J2DPane* shipPane2 = mScreenRocket->search('Procket');
+	Vector3f pos1      = shipPane2->getGlbVtx(0);
+	Vector3f pos2      = shipPane2->getGlbVtx(1);
+	Vector3f pos3      = shipPane2->getGlbVtx(2);
+	Vector3f pos4      = shipPane2->getGlbVtx(3);
+	f32 inv            = 1.0f - msVal._1C[0];
+	_D0.x              = x + (pos1.x + pos2.x) * 0.5f * inv + (pos3.x + pos4.x) * 0.5f * msVal._1C[0];
+	_D0.y              = y + (pos1.x + pos2.x) * 0.5f * inv + (pos3.x + pos4.x) * 0.5f * msVal._1C[0];
+	_D8.x              = -mRocketAngle.x;
+	_D8.y              = -mRocketAngle.y;
+
+	efx2d::WorldMap::ArgDirScale arg(_D0, _D8, scale);
+	efx2d::WorldMap::T2DRocketA efx;
+	efx.create(&arg);
+	mEfxRocketSparks->setGlobalParticleScale(scale);
+	mEfxRocketGlow->setGlobalParticleScale(scale);
+
 	/*
 stwu     r1, -0x100(r1)
 mflr     r0
@@ -5984,54 +6015,14 @@ blr
  */
 void WorldMap::onyonMove()
 {
-	Vector2f pos = mRocketPosition;
+	JGeometry::TVec2f pos;
+	pos.x = mRocketPosition.x;
+	pos.y = mRocketPosition.y;
 	for (int i = 0; i < mOnyonCount; i++) {
-		Vector2f newPos = mOnyonArray[i].move(this, pos);
-		pos             = newPos;
+		JGeometry::TVec2f temp = mOnyonArray[i].move(this, pos);
+		pos.y                  = temp.y;
+		pos.x                  = temp.x;
 	}
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stw      r31, 0x2c(r1)
-li       r31, 0
-stw      r30, 0x28(r1)
-li       r30, 0
-stw      r29, 0x24(r1)
-mr       r29, r3
-lfs      f0, 0x9c(r3)
-stfs     f0, 0x10(r1)
-lfs      f0, 0xa0(r3)
-stfs     f0, 0x14(r1)
-b        lbl_803F613C
-
-lbl_803F610C:
-lwz      r0, 0xf0(r29)
-mr       r5, r29
-addi     r3, r1, 8
-addi     r6, r1, 0x10
-add      r4, r0, r31
-bl
-"move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2<f>"
-lfs      f1, 8(r1)
-addi     r31, r31, 0x34
-lfs      f0, 0xc(r1)
-addi     r30, r30, 1
-stfs     f1, 0x10(r1)
-stfs     f0, 0x14(r1)
-
-lbl_803F613C:
-lwz      r0, 0xf4(r29)
-cmpw     r30, r0
-blt      lbl_803F610C
-lwz      r0, 0x34(r1)
-lwz      r31, 0x2c(r1)
-lwz      r30, 0x28(r1)
-lwz      r29, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
 }
 
 /*
@@ -6041,38 +6032,9 @@ blr
  */
 void WorldMap::onyonUpdate()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-li       r31, 0
-stw      r30, 0x18(r1)
-li       r30, 0
-stw      r29, 0x14(r1)
-mr       r29, r3
-b        lbl_803F61A4
-
-lbl_803F618C:
-lwz      r0, 0xf0(r29)
-mr       r4, r29
-add      r3, r0, r31
-bl       update__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMap
-addi     r31, r31, 0x34
-addi     r30, r30, 1
-
-lbl_803F61A4:
-lwz      r0, 0xf4(r29)
-cmpw     r30, r0
-blt      lbl_803F618C
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	for (int i = 0; i < mOnyonCount; i++) {
+		mOnyonArray[i].update(this);
+	}
 }
 
 /*
@@ -6600,7 +6562,7 @@ int WorldMap::getTarget()
  * Address:	803F68F4
  * Size:	000174
  */
-void WorldMap::getRotDir(const JGeometry::TVec2f&, float)
+void WorldMap::getRotDir(const JGeometry::TVec2f&, f32)
 {
 	/*
 lfs      f3, 0(r4)
@@ -6730,6 +6692,134 @@ blr
  */
 void WorldMap::changeInfo()
 {
+	u64 tags1[4] = { '8395_01', '8399_01', '8400_01', 'no_data' }; // "Emergence Cave" 	"Subterranean Complex"	"Frontier Cavern"
+	u64 tags2[4]
+	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
+	u64 tags3[4] = { '8397_01', '8402_01', '8403_01',
+		             '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+	u64 tags4[4] = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
+	u64 courseTags[4]
+	    = { '8390_01', '8391_01', '8392_01', '8393_01' }; // "Valley of Repose"	"Awakening Wood"	"Perplexing Pool"	"Wistful Wild"
+	u64 floTags[4]   = { 'Nca_fl0', 'Nca_fl1', 'Nca_fl2', 'Nca_fl3' };
+	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
+
+	mScreenInfo->search('Pc_name')->setMsgID(courseTags[mCurrentCourseIndex]);
+	mGroundTreasureCount = Game::playData->getGroundOtakaraNum(mCurrentCourseIndex);
+	mGroundTreasureMax   = Game::playData->getGroundOtakaraMax(mCurrentCourseIndex);
+
+	khUtilColorAnmWM* anm = mColorAnims[0];
+	anm->mUpdateMode      = 0;
+	for (int i = 0; i < 4; i++) {
+		anm->mEfx[i]->fade();
+	}
+	anm->mCounter1->setPuyoAnim(false);
+	anm->mCounter2->setPuyoAnim(false);
+	int max = mGroundTreasureMax;
+	if (mGroundTreasureCount == max) {
+		anm              = mColorAnims[0];
+		anm->mColor1     = anm->mColorList[0];
+		anm->mCounter    = 0;
+		anm->mUpdateMode = 1;
+		for (int i = 0; i < 4; i++) {
+			if (i & 1 == i || max > 9) {
+				efx2d::Arg arg(getPaneCenterX(&anm->mPane[i]), getPaneCenterY(&anm->mPane[i]));
+				anm->mEfx[i]->create(&arg);
+			}
+		}
+		mScreenInfo->search('Ngr_fl0')->show();
+	} else {
+		anm              = mColorAnims[0];
+		anm->mUpdateMode = 0;
+		for (int i = 0; i < 4; i++) {
+			anm->mEfx[i]->fade();
+		}
+		anm->mCounter1->setPuyoAnim(false);
+		anm->mCounter2->setPuyoAnim(false);
+		mScreenInfo->search('Ngr_fl0')->hide();
+	}
+
+	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid || mGroundTreasureCount == mGroundTreasureMax) {
+		mGroundTreasureMaxCounter->getMotherPane()->show();
+		mScreenInfo->search('Pg_sra')->show();
+		mGroundTreasureCounter->getMotherPane()->move(0.0f, 0.0f);
+	} else {
+		mGroundTreasureMaxCounter->getMotherPane()->hide();
+		mScreenInfo->search('Pg_sra')->hide();
+		f32 x = msVal._64;
+		if (mGroundTreasureMax > 9) {
+			x += 12.5f;
+		}
+		mGroundTreasureCounter->getMotherPane()->move(x, 0.0f);
+	}
+	u64 tagsSura[4] = { 'P0_sra', 'P1_sura', 'P2_sura', 'P3_sura' };
+
+	for (int i = 0; i < 4; i++) {
+		khUtilColorAnmWM* anm = mColorAnims[i];
+		anm->mUpdateMode      = 0;
+		for (int j = 0; j < 4; j++) {
+			anm->mEfx[j]->fade();
+		}
+		anm->mCounter1->setPuyoAnim(false);
+		anm->mCounter2->setPuyoAnim(false);
+		if (caveTags[mCurrentCourseIndex][i] == 'no_data') {
+			mScreenInfo->search(getSerialTagName('Ncave0', i))->hide();
+		} else {
+			mScreenInfo->search(getSerialTagName('Ncave0', i))->show();
+			ID32* id = mInitArg.mStages->getCourseInfo(mCurrentCourseIndex)->getCaveID_FromIndex(i);
+			ID32 caveID(id->getID());
+			mCaveTreasureCounters[i]->getMotherPane()->show();
+			mCaveTreasureCounters[i]->setBlind(false);
+			mCaveTreasureCounters[i]->getMotherPane()->move(0.0f, 0.0f);
+			mCaveTreasureCounters2[i]->getMotherPane()->show();
+			mCaveTreasureCounters2[i]->setBlind(false);
+			mScreenInfo->search(tagsSura[i])->show();
+			mCaveOtaNum[i] = Game::playData->getOtakaraNum_Course_CaveID(mCurrentCourseIndex, caveID);
+			mCaveOtaMax[i] = Game::playData->getOtakaraMax_Course_CaveID(mCurrentCourseIndex, caveID);
+			if (Game::playData->isCaveFirstTime(mCurrentCourseIndex, caveID)) {
+				if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+					mCaveTreasureCounters[i]->setBlind(true);
+					mCaveTreasureCounters2[i]->setBlind(true);
+				} else {
+					mCaveTreasureCounters[i]->getMotherPane()->hide();
+					mCaveTreasureCounters2[i]->getMotherPane()->hide();
+					mScreenInfo->search(floTags[i])->hide();
+					f32 x = msVal._64;
+					if (mCaveOtaMax[i] > 9) {
+						x += 12.5f;
+					}
+					mCaveTreasureCounters[i]->getMotherPane()->move(x, 0.0f);
+				}
+				mScreenInfo->search(getSerialTagName('Pcave_00', i))->setMsgID('8419_00'); // "???"
+				mScreenInfo->search(floTags[i])->hide();
+			} else {
+				if (!(Game::playData->mStoryFlags & Game::STORY_DebtPaid) && mCaveOtaMax[i] != mCaveOtaNum[i]) {
+					f32 x = msVal._64;
+					if (mCaveOtaMax[i] > 9) {
+						x += 12.5f;
+					}
+					mCaveTreasureCounters[i]->getMotherPane()->move(x, 0.0f);
+					mCaveTreasureCounters2[i]->getMotherPane()->hide();
+					mScreenInfo->search(floTags[i])->hide();
+				}
+				mScreenInfo->search(getSerialTagName('Pcave_00', i))->setMsgID(caveTags[mCurrentCourseIndex][i]);
+				if (mCaveOtaNum[i] == mCaveOtaMax[i]) {
+					mCaveTreasureCounters2[i]->setBlind(false);
+					khUtilColorAnmWM* anm = mColorAnims[0];
+					anm->mColor1          = anm->mColorList[0];
+					anm->mCounter         = 0;
+					anm->mUpdateMode      = 1;
+					for (int i = 0; i < 4; i++) {
+						efx2d::Arg arg(getPaneCenterX(anm->mPane), getPaneCenterY(anm->mPane));
+						anm->mEfx[i]->create(&arg);
+					}
+					mScreenInfo->search(floTags[i])->show();
+				} else {
+					mScreenInfo->search(floTags[i])->hide();
+				}
+			}
+		}
+	}
+
 	/*
 stwu     r1, -0x220(r1)
 mflr     r0
@@ -7450,6 +7540,79 @@ blr
  */
 void WorldMap::effectFirstTime()
 {
+	if (!(mFlags & 4))
+		return;
+
+	u64 tags1[4] = { '8395_01', '8399_01', '8400_01', 'no_data' }; // "Emergence Cave" 	"Subterranean Complex"	"Frontier Cavern"
+	u64 tags2[4]
+	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
+	u64 tags3[4]     = { '8397_01', '8402_01', '8403_01',
+                     '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
+	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
+	bool isIncPoko   = false;
+	bool isNewOta    = false;
+	bool isAllOta    = false;
+	bool isNewCave   = false;
+
+	int old = Game::playData->getMoney_Old();
+	if (Game::playData->mPokoCount != old) {
+		mPokoCounter->startPuyoUp(1.0f);
+		isIncPoko = true;
+	}
+	isNewOta = Game::playData->getGroundOtakaraNum(mCurrentCourseIndex) != Game::playData->getGroundOtakaraNum_Old(mCurrentCourseIndex);
+	if (isNewOta) {
+		mGroundTreasureCounter->startPuyoUp(1.0f);
+		isAllOta = Game::playData->getGroundOtakaraMax(mCurrentCourseIndex) == Game::playData->getGroundOtakaraNum(mCurrentCourseIndex);
+	}
+
+	for (int i = 0; i < 4; i++) {
+		if (caveTags[mCurrentCourseIndex][i] != 'no_data') {
+			ID32* id = mInitArg.mStages->getCourseInfo(mCurrentCourseIndex)->getCaveID_FromIndex(i);
+			ID32 caveID(id->getID());
+			if (Game::playData->isCaveFirstTime(mCurrentCourseIndex, caveID)
+			    != Game::playData->isCaveFirstTime_Old(mCurrentCourseIndex, caveID)) {
+				Vector3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(0);
+				Vector3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(3);
+				for (u32 i = 0; i < 5; i++) {
+					efx2d::Arg arg((pos1.y + pos2.y) * 0.5f, 0.25f * (pos1.z * 4 - i) * (pos2.z * 4 - i));
+					efx2d::T2DChangesmoke efx;
+					efx.create(&arg);
+				}
+				isNewCave = true;
+			}
+			if (Game::playData->getOtakaraNum_Course_CaveID(mCurrentCourseIndex, caveID)
+			    != Game::playData->getOtakaraNum_Course_CaveID_Old(mCurrentCourseIndex, caveID)) {
+				mCaveTreasureCounters[i]->startPuyoUp(1.0f);
+				isNewOta = true;
+				if (Game::playData->getOtakaraNum_Course_CaveID(mCurrentCourseIndex, caveID)
+				    == Game::playData->getOtakaraMax_Course_CaveID(mCurrentCourseIndex, caveID)) {
+					isAllOta = true;
+				}
+			}
+		}
+	}
+
+	u32 soundID = -1;
+	if (isNewCave && isAllOta) {
+		soundID = PSSE_SY_WMAP_CAVE_COMP;
+	} else if (isNewCave && isNewOta) {
+		soundID = PSSE_SY_WMAP_CAVE_ITEM;
+	} else if (isNewCave && isIncPoko) {
+		soundID = PSSE_SY_WMAP_CAVE_MONEY;
+	} else if (isNewCave) {
+		soundID = PSSE_SY_WMAP_CAVE_NAME;
+	} else if (isAllOta) {
+		soundID = PSSE_SY_WMAP_ITEM_COMP;
+	} else if (isNewOta) {
+		soundID = PSSE_SY_WMAP_ITEM_GET;
+	} else if (isIncPoko) {
+		soundID = PSSE_SY_WMAP_MONEY_UP;
+	}
+	if (soundID != -1) {
+		PSSystem::spSysIF->playSystemSe(soundID, 0);
+	}
+	mFlags &= ~4;
 	/*
 stwu     r1, -0x1b0(r1)
 mflr     r0
@@ -8198,8 +8361,19 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap*, const JGeometry::TVec2f&)
  * Address:	803F7F98
  * Size:	00012C
  */
-void WorldMap::OnyonDynamics::update(WorldMap*)
+void WorldMap::OnyonDynamics::update(WorldMap* map)
 {
+	f32 scale = map->mScreenRocket->search('NROCKET')->mScale.x;
+	mOnyonPane->setOffset(scale * JMath::sincosTable_.mTable[mRotateAngle].first * 50.0f + mOffset.x, mOffset.y);
+	mOnyonPane->mAngle = (JMath::atanTable_.atan2_(-mAngle.x, -mAngle.y));
+	mOnyonPane->calcMtx();
+	mOnyonPane->updateScale(scale);
+	mEfxPosition.x = mOnyonPane->mGlobalMtx[0][3];
+	mEfxPosition.y = mOnyonPane->mGlobalMtx[1][3];
+	_28.x          = 0.0f;
+	_28.y          = 1.0f;
+	mOnyonKira->setGlobalParticleScale(scale);
+
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
