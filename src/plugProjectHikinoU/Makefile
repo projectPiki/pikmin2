@@ -18,5 +18,6 @@ DEPENDS += $(HIKINO_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectHikinoU.a: $(HIKINO_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(HIKINO_FILES) > build/HIKINO_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/HIKINO_ofiles

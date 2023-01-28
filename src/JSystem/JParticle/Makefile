@@ -19,5 +19,6 @@ DEPENDS += $(JPARTICLE_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JParticle.a: $(JPARTICLE_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JPARTICLE_FILES) > build/JPARTICLE_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JPARTICLE_ofiles

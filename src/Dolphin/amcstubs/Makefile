@@ -7,5 +7,6 @@ DEPENDS += $(AMCSTUBS_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/amcstubs.a: $(AMCSTUBS_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(AMCSTUBS_FILES) > build/AMCSTUBS_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/AMCSTUBS_ofiles

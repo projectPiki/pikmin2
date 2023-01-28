@@ -8,5 +8,6 @@ DEPENDS += $(JMESSAGE_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JMessage.a: $(JMESSAGE_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JMESSAGE_FILES) > build/JMESSAGE_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JMESSAGE_ofiles

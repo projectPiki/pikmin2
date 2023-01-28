@@ -7,5 +7,6 @@ DEPENDS += $(ODENOTSTUB_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/odenotstub.a: $(ODENOTSTUB_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(ODENOTSTUB_FILES) > build/ODENOTSTUB_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/ODENOTSTUB_ofiles

@@ -21,5 +21,6 @@ JSYSTEM_FILES:=\
 
 $(BUILD_DIR)/src/JSystem.a: $(JSYSTEM_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSYSTEM_FILES) > build/JSYSTEM_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JSYSTEM_ofiles

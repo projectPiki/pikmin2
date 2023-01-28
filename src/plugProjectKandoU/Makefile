@@ -139,5 +139,6 @@ DEPENDS += $(KANDO_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectKandoU.a: $(KANDO_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(KANDO_FILES) > build/KANDO_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/KANDO_ofiles

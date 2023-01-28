@@ -5,5 +5,6 @@ DEPENDS += $(JAUDIO2_JAL_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JAudio2/JAL.a: $(JAUDIO2_JAL_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JAUDIO2_JAL_FILES) > build/JAUDIO2_JAL_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JAUDIO2_JAL_ofiles

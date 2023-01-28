@@ -26,5 +26,6 @@ DOLPHIN_FILES:=\
 
 $(BUILD_DIR)/src/Dolphin.a: $(DOLPHIN_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(DOLPHIN_FILES) > build/DOLPHIN_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/DOLPHIN_ofiles

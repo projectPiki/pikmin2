@@ -12,5 +12,6 @@ DEPENDS += $(SI_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/si.a: $(SI_FILES) $(SI_UNSCHEDULED)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(SI_FILES) > build/SI_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/SI_ofiles

@@ -11,5 +11,6 @@ DEPENDS += $(JSTUDIO_JSTAGE_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JStudio_JStage.a: $(JSTUDIO_JSTAGE_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSTUDIO_JSTAGE_FILES) > build/JSTUDIO_JSTAGE_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JSTUDIO_JSTAGE_ofiles

@@ -28,5 +28,6 @@ DEPENDS += $(JKERNEL_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JKernel.a: $(JKERNEL_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JKERNEL_FILES) > build/JKERNEL_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JKERNEL_ofiles

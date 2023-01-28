@@ -15,5 +15,6 @@ DEPENDS += $(RUNTIME_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/Runtime.a: $(RUNTIME_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(RUNTIME_FILES) > build/RUNTIME_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/RUNTIME_ofiles

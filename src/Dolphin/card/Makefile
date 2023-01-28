@@ -21,5 +21,6 @@ DEPENDS += $(CARD_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/card.a: $(CARD_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(CARD_FILES) > build/CARD_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/CARD_ofiles

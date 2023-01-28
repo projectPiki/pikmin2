@@ -9,5 +9,6 @@ JAUDIO2_FILES:=\
 
 $(BUILD_DIR)/src/JSystem/JAudio2.a: $(JAUDIO2_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JAUDIO2_FILES) > build/JAUDIO2_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JAUDIO2_ofiles

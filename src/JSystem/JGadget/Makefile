@@ -8,5 +8,6 @@ DEPENDS += $(JGADGET_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JGadget.a: $(JGADGET_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JGADGET_FILES) > build/JGADGET_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JGADGET_ofiles

@@ -21,5 +21,6 @@ DEPENDS += $(GX_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/gx.a: $(GX_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(GX_FILES) > build/GX_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/GX_ofiles

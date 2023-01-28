@@ -75,5 +75,6 @@ DEPENDS += $(GC_FILES:.o=.d)
 
 $(BUILD_DIR)/src/sysGCU.a: $(GC_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(GC_FILES) > build/GC_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/GC_ofiles

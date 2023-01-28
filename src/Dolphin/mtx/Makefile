@@ -11,5 +11,6 @@ DEPENDS += $(MTX_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/mtx.a: $(MTX_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(MTX_FILES) > build/MTX_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/MTX_ofiles

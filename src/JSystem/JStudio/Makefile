@@ -16,5 +16,6 @@ DEPENDS += $(JSTUDIO_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JStudio.a: $(JSTUDIO_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSTUDIO_FILES) > build/JSTUDIO_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JSTUDIO_ofiles

@@ -8,5 +8,6 @@ DEPENDS += $(DB_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/db.a: $(DB_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(DB_FILES) > build/DB_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/DB_ofiles

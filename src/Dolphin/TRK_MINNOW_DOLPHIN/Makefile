@@ -43,5 +43,6 @@ DEPENDS += $(TRK_MINNOW_DOLPHIN_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN.a: $(TRK_MINNOW_DOLPHIN_FILES)
 	@echo linking... $@
+	$(QUIET) mkdir -p $(dir $@)
 	@echo $(TRK_MINNOW_DOLPHIN_FILES) > build/TRK_MINNOW_DOLPHIN_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/TRK_MINNOW_DOLPHIN_ofiles
