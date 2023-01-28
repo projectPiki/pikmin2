@@ -129,7 +129,7 @@ void J3DSys::drawInit()
 	GXSetDither(GX_TRUE);
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
 	GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
-	GXSetZMode(GX_TRUE, GX_LTEQUAL, GX_TRUE);
+	GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
 	GXSetZCompLoc(GX_TRUE);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
@@ -174,7 +174,7 @@ void J3DSys::drawInit()
 
 	u8 i;
 	for (i = 0; i < 3; i++)
-		GXSetIndTexMtx((GXIndTexMtxID)(GX_IND_TEX_MTX_ID_1 + i), indTexMtx, 1);
+		GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + i), indTexMtx, 1);
 
 	GXSetChanMatColor(GX_COLOR0A0, j3dDefaultColInfo);
 	GXSetChanMatColor(GX_COLOR1A1, j3dDefaultColInfo);
@@ -190,7 +190,7 @@ void J3DSys::drawInit()
 		                  (GXTexGenSrc)j3dDefaultTexCoordInfo[i].mTexGenSrc, j3dDefaultTexCoordInfo[i].mTexGenMtx, GX_FALSE, GX_PTIDENTITY);
 
 	for (i = 0; i < GX_IND_MAX_TEX_STAGE_ID; i++)
-		GXSetIndTexCoordScale((GXIndTexStageID)i, GX_IND_TEX_SCALE_0, GX_IND_TEX_SCALE_0);
+		GXSetIndTexCoordScale((GXIndTexStageID)i, GX_ITS_1, GX_ITS_1);
 
 	for (i = 0; i < GX_MAX_TEVREG; i++)
 		GXSetTevKColor((GXTevKColorID)i, j3dDefaultTevKColor);
@@ -214,8 +214,8 @@ void J3DSys::drawInit()
 	GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
 
 	for (i = 0; i < GX_MAXTEVSTAGE; i++)
-		GXSetTevIndirect((GXTevStageID)i, GX_IND_TEX_STAGE_ID_0, GX_IND_TEX_FMT_0, GX_IND_TEX_BIAS_SEL_0, GX_IND_TEX_MTX_ID_0,
-		                 GX_IND_TEX_WRAP_0, GX_IND_TEX_WRAP_0, GX_FALSE, GX_FALSE, GX_IND_TEX_ALPHA_SEL_0);
+		GXSetTevIndirect((GXTevStageID)i, GX_IND_TEX_STAGE_0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF, GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE,
+		                 GX_ITBA_OFF);
 
 	OSInitFastCast();
 	setTexCacheRegion(GX_TEXCACHE_32K);
@@ -339,7 +339,7 @@ void J3DSys::reinitTevStages()
 		GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 		GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_ZERO, GX_ZERO, GX_ZERO);
 		GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
-		GXSetTevKColorSel((GXTevStageID)i, GX_TEV_KCSEL_K2_R);
+		GXSetTevKColorSel((GXTevStageID)i, GX_TEV_KCSEL_1_4);
 		GXSetTevKAlphaSel((GXTevStageID)i, 0);
 		GXSetTevSwapMode((GXTevStageID)i, 0, 0);
 	}
@@ -362,17 +362,17 @@ void J3DSys::reinitIndStages()
 	for (u32 i = 0; i < 0x10; i++) {
 		GXSetTevDirect((GXTevStageID)i);
 	}
-	GXSetIndTexOrder(GX_IND_TEX_STAGE_ID_0, GX_TEXCOORD0, GX_TEXMAP0);
-	GXSetIndTexOrder(GX_IND_TEX_STAGE_ID_1, GX_TEXCOORD1, GX_TEXMAP1);
-	GXSetIndTexOrder(GX_IND_TEX_STAGE_ID_2, GX_TEXCOORD2, GX_TEXMAP2);
-	GXSetIndTexOrder(GX_IND_TEX_STAGE_ID_3, GX_TEXCOORD3, GX_TEXMAP3);
-	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_ID_0, GX_IND_TEX_SCALE_0, GX_IND_TEX_SCALE_0);
-	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_ID_1, GX_IND_TEX_SCALE_0, GX_IND_TEX_SCALE_0);
-	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_ID_2, GX_IND_TEX_SCALE_0, GX_IND_TEX_SCALE_0);
-	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_ID_3, GX_IND_TEX_SCALE_0, GX_IND_TEX_SCALE_0);
-	GXSetIndTexMtx(GX_IND_TEX_MTX_ID_1, IndMtx, 1);
-	GXSetIndTexMtx(GX_IND_TEX_MTX_ID_2, IndMtx, 1);
-	GXSetIndTexMtx(GX_IND_TEX_MTX_ID_3, IndMtx, 1);
+	GXSetIndTexOrder(GX_IND_TEX_STAGE_0, GX_TEXCOORD0, GX_TEXMAP0);
+	GXSetIndTexOrder(GX_IND_TEX_STAGE_1, GX_TEXCOORD1, GX_TEXMAP1);
+	GXSetIndTexOrder(GX_IND_TEX_STAGE_2, GX_TEXCOORD2, GX_TEXMAP2);
+	GXSetIndTexOrder(GX_IND_TEX_STAGE_3, GX_TEXCOORD3, GX_TEXMAP3);
+	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_0, GX_ITS_1, GX_ITS_1);
+	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_1, GX_ITS_1, GX_ITS_1);
+	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_2, GX_ITS_1, GX_ITS_1);
+	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_3, GX_ITS_1, GX_ITS_1);
+	GXSetIndTexMtx(GX_ITM_0, IndMtx, 1);
+	GXSetIndTexMtx(GX_ITM_1, IndMtx, 1);
+	GXSetIndTexMtx(GX_ITM_2, IndMtx, 1);
 }
 
 /*
@@ -388,7 +388,7 @@ void J3DSys::reinitPixelProc()
 	GXSetDither(GX_TRUE);
 	GXSetFog(GX_FOG_NONE, 0.0f, 1.0f, 0.1f, 1.0f, ColorBlack);
 	GXSetFogRangeAdj(GX_FALSE, 0, nullptr);
-	GXSetZMode(GX_TRUE, GX_LTEQUAL, GX_TRUE);
+	GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
 	GXSetZCompLoc(GX_TRUE);
 }
 

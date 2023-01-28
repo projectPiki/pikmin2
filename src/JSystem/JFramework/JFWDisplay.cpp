@@ -195,7 +195,7 @@ void JFWDisplay::prepareCopyDisp()
 	                JUTVideo::getManager()->getVFilter());
 	GXSetCopyClamp((GXFBClamp)mClamp);
 	GXSetDispCopyGamma((GXGamma)mGamma);
-	GXSetZMode(GX_ENABLE, GX_LTEQUAL, GX_ENABLE);
+	GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_ENABLE);
 	if (mIsAlphaEnabled) {
 		GXSetAlphaUpdate(GX_ENABLE);
 	}
@@ -617,7 +617,7 @@ static u8 clear_z_TX[] __attribute__((aligned(32)))
  */
 void JFWDisplay::clearEfb_init()
 {
-	GXInitTexObj(&clear_z_tobj, clear_z_TX, 4, 4, GX_CTF_Z8L, GX_REPEAT, GX_REPEAT, GX_FALSE);
+	GXInitTexObj(&clear_z_tobj, clear_z_TX, 4, 4, GX_TF_Z24X8, GX_REPEAT, GX_REPEAT, GX_FALSE);
 	GXInitTexObjLOD(&clear_z_tobj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
 }
 
@@ -679,7 +679,7 @@ void JFWDisplay::clearEfb(int xMin, int yMin, int xDelta, int yDelta, _GXColor c
 	GXSetTevAlphaIn(GX_TEVSTAGE0, GX_ZERO, GX_ZERO, GX_ZERO, GX_CA_A0);
 	GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_ENABLE, GX_TEVPREV);
 	GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
-	GXSetZTexture(GX_ZT_REPLACE, GX_CTF_Z8L, 0);
+	GXSetZTexture(GX_ZT_REPLACE, GX_TF_Z24X8, 0);
 	GXSetZCompLoc(GX_DISABLE);
 	GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_NOOP);
 
@@ -707,7 +707,7 @@ void JFWDisplay::clearEfb(int xMin, int yMin, int xDelta, int yDelta, _GXColor c
 	GXPosition2u16(xMin, yMin + yDelta);
 	GXTexCoord2u8(0, 1);
 
-	GXSetZTexture(GX_ZT_DISABLE, GX_CTF_Z8L, 0);
+	GXSetZTexture(GX_ZT_DISABLE, GX_TF_Z24X8, 0);
 	GXSetZCompLoc(GX_ENABLE);
 	if (mIsAlphaEnabled) {
 		GXSetDstAlpha(GX_DISABLE, 0);

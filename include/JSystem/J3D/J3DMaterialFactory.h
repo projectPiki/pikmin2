@@ -148,7 +148,7 @@ struct J3DMaterialFactory {
 	J3DBlend newBlend(int) const;
 	J3DColorChan newColorChan(int, int) const;
 	u8 newColorChanNum(int) const;
-	GXCullMode newCullMode(int) const;
+	u8 newCullMode(int) const;
 	u8 newDither(int) const;
 	J3DFog newFog(int) const;
 	J3DIndTexCoordScale newIndTexCoordScale(int, int) const;

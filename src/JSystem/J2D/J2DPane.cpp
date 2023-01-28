@@ -3019,7 +3019,7 @@ lbl_80039A4C:
  */
 void J2DPane::setCullBack(bool shouldCullBack)
 {
-	GXCullMode cullMode = GX_CULL_NONE;
+	u8 cullMode = GX_CULL_NONE;
 	if (shouldCullBack) {
 		cullMode = GX_CULL_BACK;
 	}

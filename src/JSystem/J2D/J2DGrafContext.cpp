@@ -56,7 +56,7 @@ void J2DGrafContext::setup2D()
 
 	GXSetZCompLoc(0);
 	GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
-	GXSetZMode(0, GX_LTEQUAL, 0);
+	GXSetZMode(0, GX_LEQUAL, 0);
 	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
 
 	GXSetNumChans(1);

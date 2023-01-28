@@ -76,7 +76,7 @@ struct J2DMaterialFactory {
 	J2DTexMtxInfo* mTexMtxInfo;                 // _24
 	u16* _28;                                   // _28
 	u16* _2C;                                   // _2C
-	GXCullMode* mCullMode;                      // _30
+	u8* mCullMode;                              // _30
 	J2DTevOrderInfo* mTevOrderInfo;             // _34
 	GXColorS10* _38;                            // _38
 	GXColor* _3C;                               // _3C
