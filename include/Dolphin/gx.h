@@ -13,41 +13,8 @@ extern "C" {
 #include "Dolphin/vi.h"
 #include "Dolphin/mtx.h"
 #include "Dolphin/GXEnum.h"
-
-// Pack value into bitfield
-#define GX_BITFIELD_SET(field, pos, size, value) (field) = __rlwimi((field), (value), 31 - (pos) - (size) + 1, (pos), (pos) + (size)-1)
-
-typedef struct _GXColor {
-	u8 r, g, b, a;
-} GXColor;
-typedef GXColor _SDK_GXColor; // this might be a wrapper in Pikmin 2? IDK.
-
-typedef struct _GXColorS10 {
-	s16 r, g, b, a;
-} GXColorS10;
-typedef GXColorS10 _SDK_GXColorS10; // this might be a wrapper in Pikmin 2? IDK.
-
-typedef struct _GXFogAdjTable {
-	u16 _00[10];
-} GXFogAdjTable;
-typedef GXFogAdjTable _SDK_GXFogAdjTable;
-
-typedef struct _GXRenderModeObj {
-	VITVMode viTVmode; // _00
-	u16 fbWidth;       // _04
-	u16 efbHeight;     // _06
-	u16 xfbHeight;     // _08
-	u16 viXOrigin;     // _0A
-	u16 viYOrigin;     // _0C
-	u16 viWidth;       // _0E
-	u16 viHeight;      // _10
-	VIXFBMode xFBmode; // _14
-
-	u8 field_rendering;       // _18
-	u8 aa;                    // _19
-	u8 sample_pattern[12][2]; // _1C
-	u8 vfilter[7];            // _34
-} GXRenderModeObj;
+#include "Dolphin/GXTypes.h"
+#include "Dolphin/GXBump.h"
 
 extern GXRenderModeObj GXNtsc240Ds;
 extern GXRenderModeObj GXNtsc240DsAa;
@@ -84,27 +51,6 @@ extern GXRenderModeObj GXEurgb60Hz480IntDf;
 extern GXRenderModeObj GXEurgb60Hz480Int;
 extern GXRenderModeObj GXEurgb60Hz480IntAa;
 extern GXRenderModeObj GXRmHW;
-
-typedef struct GXTexObj {
-	u32 _00;
-	u32 _04;
-	u32 _08;
-	u32 _0c;
-	u8 _10;
-	u8 _11;
-	u8 _12;
-	u8 _13;
-	u32 format_14;
-	u32 tlut_name_18;
-	u16 _1c;
-	s8 _1e;
-	s8 mipmap_1f;
-} GXTexObj;
-
-typedef struct _GXVtxDescList {
-	s32 _00;
-	u32 _04;
-} GXVtxDescList;
 
 typedef union _ControlRegister {
 	u32 value;
@@ -343,19 +289,6 @@ typedef struct _PIReg {
 } PIReg;
 extern PIReg* __piReg;
 
-typedef struct __GXLightObj {
-	u32 reserved[3];
-	u32 Color;   // light color
-	f32 a[3];    // angle-attenuation coefficients
-	f32 k[3];    // distance-attenuation coefficients
-	f32 lpos[3]; // diffuse: position;  specular: direction
-	f32 ldir[3]; // diffuse: direction; specular: half-angle
-} GXLightObj;
-
-typedef struct _GXTexRegion {
-	u8 _00[0x10]; // _00
-} GXTexRegion;
-
 void __GXSetDirtyState();
 void __GXSendFlushPrim();
 
@@ -380,9 +313,7 @@ void GXSetChanMatColor(GXChannelID chan, GXColor mat_color);
 void GXSetNumChans(u32);
 void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, GXLightID light_mask, GXDiffuseFn diff_fn,
                    GXAttnFn attn_fn);
-void GXSetNumIndStages(u8 num);
 void GXSetNumTevStages(u32);
-void GXSetTevDirect(GXTevStageID);
 void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID);
 void GXSetTevOp(GXTevStageID, GXTevMode);
 void GXSetTevColor(GXTevRegID, GXColor);
@@ -399,10 +330,6 @@ void GXSetTevKAlphaSel(GXTevStageID, u32); // params might not be right
 void GXSetVtxAttrFmt(GXVtxFmt, GXAttr, GXCompCnt, GXCompType, uint);
 void GXClearVtxDesc();
 void GXSetVtxDesc(GXAttr, GXAttrType);
-void GXSetIndTexOrder(GXIndTexStageID, GXTexCoordID, GXTexMapID);
-void GXSetIndTexCoordScale(GXIndTexStageID, GXIndTexScale, GXIndTexScale);
-void GXSetIndTexMtx(GXIndTexMtxID, const Mtx23, s8);
-void GXSetTevIndWarp(GXTevStageID, GXIndTexStageID, u8, u8, GXIndTexMtxID);
 void GXBeginDisplayList(void*, u32 dlSize);
 u32 GXEndDisplayList(void);
 void GXCallDisplayList(void*, u32 byteCnt);
@@ -433,9 +360,6 @@ void GXSetDither(GXBool dither);
 void GXSetDstAlpha(GXBool enable, u8 alpha);
 void GXSetFieldMask(GXBool odd_mask, GXBool even_mask);
 void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio);
-
-void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexFormat texFmt, GXIndTexBiasSel biasSel, GXIndTexMtxID mtxID,
-                      GXIndTexWrap wrapS, GXIndTexWrap wrapT, u8 addPrev, u8 utcLod, GXIndTexAlphaSel alphaSel);
 
 #define GX_FIFO_OBJ_SIZE 128
 
@@ -487,25 +411,6 @@ void GXDrawDone();
 void GXPixModeSync();
 
 void GXCopyDisp(void*, GXBool); // TODO: Confirm types
-
-typedef struct GXTlutObj {
-	u32 _00; // _00
-	u32 _04; // _04
-	u16 _08; // _08
-} GXTlutObj;
-
-// TODO: Figure this out
-typedef struct GXTlutRegion {
-	u32 _00;     // _00
-	u8 _04[0xC]; // _04
-} GXTlutRegion;
-
-typedef struct _GXVtxAttrFmtList {
-	GXAttr mAttrib;       // _00
-	GXCompCnt mCompCnt;   // _04
-	GXCompType mCompType; // _08
-	u8 mCompShift;        // _0C
-} GXVtxAttrFmtList;       // Size: 0x10
 
 typedef GXTlutRegion* GXTlutRegionCallback(GXTlut);
 
