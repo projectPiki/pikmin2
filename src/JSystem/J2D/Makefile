@@ -23,7 +23,7 @@ J2D_FILES:=\
 DEPENDS += $(J2D_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/J2D.a: $(J2D_FILES)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(J2D_FILES) > build/J2D_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/J2D_ofiles

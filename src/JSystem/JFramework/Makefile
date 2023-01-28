@@ -5,7 +5,7 @@ JFRAMEWORK_FILES:=\
 DEPENDS += $(JFRAMEWORK_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JFramework.a: $(JFRAMEWORK_FILES)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JFRAMEWORK_FILES) > build/JFRAMEWORK_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JFRAMEWORK_ofiles

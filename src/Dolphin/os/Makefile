@@ -36,7 +36,7 @@ $(OS_FILES): MWCC_VERSION := 1.2.5
 DEPENDS += $(OS_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/os.a: $(OS_FILES) $(OS_UNSCHEDULED)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(OS_FILES) > build/OS_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/OS_ofiles

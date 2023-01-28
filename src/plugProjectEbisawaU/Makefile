@@ -50,7 +50,7 @@ EBISAWA_FILES:=\
 DEPENDS += $(EBISAWA_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectEbisawaU.a: $(EBISAWA_FILES)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(EBISAWA_FILES) > build/EBISAWA_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/EBISAWA_ofiles

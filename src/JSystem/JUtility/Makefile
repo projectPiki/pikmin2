@@ -24,7 +24,7 @@ JUTILITY_FILES:=\
 DEPENDS += $(JUTILITY_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JUtility.a: $(JUTILITY_FILES)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JUTILITY_FILES) > build/JUTILITY_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JUTILITY_ofiles

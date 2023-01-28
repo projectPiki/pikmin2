@@ -8,7 +8,7 @@ JSUPPORT_FILES:=\
 DEPENDS += $(JSUPPORT_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JSupport.a: $(JSUPPORT_FILES)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSUPPORT_FILES) > build/JSUPPORT_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JSUPPORT_ofiles

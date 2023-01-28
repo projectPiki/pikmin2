@@ -83,7 +83,7 @@ OGAWA_FILES:=\
 DEPENDS += $(OGAWA_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectOgawaU.a: $(OGAWA_FILES)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(OGAWA_FILES) > build/OGAWA_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/OGAWA_ofiles

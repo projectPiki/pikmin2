@@ -7,7 +7,7 @@ $(THP_FILES): CFLAGS += -common off
 DEPENDS += $(THP_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/thp.a: $(THP_FILES)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(THP_FILES) > build/THP_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/THP_ofiles

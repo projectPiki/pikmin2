@@ -13,7 +13,7 @@ $(GBA_FILES): MWCC_VERSION := 1.2.5
 DEPENDS += $(GBA_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/gba.a: $(GBA_FILES) $(GBA_UNSCHEDULED)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(GBA_FILES) > build/GBA_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/GBA_ofiles

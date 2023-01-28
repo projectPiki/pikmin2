@@ -238,7 +238,7 @@ NISHIMURA_FILES:=\
 DEPENDS += $(NISHIMURA_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectNishimuraU.a: $(NISHIMURA_FILES)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(NISHIMURA_FILES) > build/NISHIMURA_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/NISHIMURA_ofiles

@@ -7,7 +7,7 @@ JSTAGE_FILES:=\
 DEPENDS += $(JSTAGE_FILES:.o=.d)
 
 $(BUILD_DIR)/src/JSystem/JStage.a: $(JSTAGE_FILES)
-	@echo linking... $@
+	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(JSTAGE_FILES) > build/JSTAGE_ofiles
 	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JSTAGE_ofiles
