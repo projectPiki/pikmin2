@@ -184,7 +184,7 @@ void JFWDisplay::prepareCopyDisp()
 	u16 width    = JUTVideo::getManager()->getFbWidth();
 	u16 height   = JUTVideo::getManager()->getEfbHeight();
 	f32 y_scaleF = GXGetYScaleFactor(height, JUTVideo::getManager()->getXfbHeight());
-	u16 line_num = GXGetNumXfbLines(y_scaleF, height);
+	u16 line_num = GXGetNumXfbLines(height, y_scaleF);
 
 	GXSetCopyClear(mClearColor, mZClear);
 	GXSetDispCopySrc(0, 0, width, height);

@@ -340,13 +340,13 @@ void J3DSys::reinitTevStages()
 		GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_ZERO, GX_ZERO, GX_ZERO);
 		GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 		GXSetTevKColorSel((GXTevStageID)i, GX_TEV_KCSEL_1_4);
-		GXSetTevKAlphaSel((GXTevStageID)i, 0);
-		GXSetTevSwapMode((GXTevStageID)i, 0, 0);
+		GXSetTevKAlphaSel((GXTevStageID)i, GX_TEV_KASEL_1);
+		GXSetTevSwapMode((GXTevStageID)i, GX_TEV_SWAP0, GX_TEV_SWAP0);
 	}
-	GXSetTevSwapModeTable(GX_TEV_SWAP0, 0, 1, 2, 3);
-	GXSetTevSwapModeTable(GX_TEV_SWAP1, 0, 0, 0, 3);
-	GXSetTevSwapModeTable(GX_TEV_SWAP2, 1, 1, 1, 3);
-	GXSetTevSwapModeTable(GX_TEV_SWAP3, 2, 2, 2, 3);
+	GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+	GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
+	GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
+	GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
 	GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
 }
 

@@ -821,7 +821,7 @@ typedef enum _GXTevColorChan {
 	GX_CH_GREEN = 1,
 	GX_CH_BLUE  = 2,
 	GX_CH_ALPHA = 3,
-} GXTevColor;
+} GXTevColorChan;
 
 // TEV color arguments.
 typedef enum _GXTevColorArg {

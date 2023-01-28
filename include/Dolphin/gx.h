@@ -15,42 +15,12 @@ extern "C" {
 #include "Dolphin/GXEnum.h"
 #include "Dolphin/GXTypes.h"
 #include "Dolphin/GXBump.h"
-
-extern GXRenderModeObj GXNtsc240Ds;
-extern GXRenderModeObj GXNtsc240DsAa;
-extern GXRenderModeObj GXNtsc240Int;
-extern GXRenderModeObj GXNtsc240IntAa;
-extern GXRenderModeObj GXNtsc480IntDf;
-extern GXRenderModeObj GXNtsc480Int;
-extern GXRenderModeObj GXNtsc480IntAa;
-extern GXRenderModeObj GXNtsc480Prog;
-extern GXRenderModeObj GXNtsc480ProgSoft;
-extern GXRenderModeObj GXNtsc480ProgAa;
-
-extern GXRenderModeObj GXMpal240Ds;
-extern GXRenderModeObj GXMpal240DsAa;
-extern GXRenderModeObj GXMpal240Int;
-extern GXRenderModeObj GXMpal240IntAa;
-extern GXRenderModeObj GXMpal480IntDf;
-extern GXRenderModeObj GXMpal480Int;
-extern GXRenderModeObj GXMpal480IntAa;
-
-extern GXRenderModeObj GXPal264Ds;
-extern GXRenderModeObj GXPal264DsAa;
-extern GXRenderModeObj GXPal264Int;
-extern GXRenderModeObj GXPal264IntAa;
-extern GXRenderModeObj GXPal528IntDf;
-extern GXRenderModeObj GXPal528Int;
-extern GXRenderModeObj GXPal524IntAa;
-
-extern GXRenderModeObj GXEurgb60Hz240Ds;
-extern GXRenderModeObj GXEurgb60Hz240DsAa;
-extern GXRenderModeObj GXEurgb60Hz240Int;
-extern GXRenderModeObj GXEurgb60Hz240IntAa;
-extern GXRenderModeObj GXEurgb60Hz480IntDf;
-extern GXRenderModeObj GXEurgb60Hz480Int;
-extern GXRenderModeObj GXEurgb60Hz480IntAa;
-extern GXRenderModeObj GXRmHW;
+#include "Dolphin/GXLight.h"
+#include "Dolphin/GXFrameBuffer.h"
+#include "Dolphin/GXPerf.h"
+#include "Dolphin/GXPixel.h"
+#include "Dolphin/GXTev.h"
+#include "Dolphin/GXTexture.h"
 
 typedef union _ControlRegister {
 	u32 value;
@@ -296,37 +266,7 @@ void GXAbortFrame();
 void GXFlush();
 void GXInvalidateVtxCache(void);
 void GXSetNumTexGens(u8);
-void GXInitSpecularDir(GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz);
-void GXInitSpecularDirHA(GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz, f32 hx, f32 hy, f32 hz);
-void GXInitLightAttn(GXLightObj* lt_obj, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2);
-void GXInitLightAttnA(GXLightObj* lt_obj, f32 a0, f32 a1, f32 a2);
-void GXInitLightAttnK(GXLightObj* lt_obj, f32 k0, f32 k1, f32 k2);
-void GXInitLightSpot(GXLightObj* lt_obj, f32 cutoff, GXSpotFn spot_func);
-void GXInitLightPos(GXLightObj* lt_obj, f32 x, f32 y, f32 z);
-void GXInitLightColor(GXLightObj* lt_obj, GXColor color);
-void GXInitLightDir(GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz);
-void GXInitLightDistAttn(GXLightObj* lt_obj, f32 ref_distance, f32 ref_brightness, GXDistAttnFn dist_func);
-void GXLoadLightObjImm(GXLightObj* lt_obj, GXLightID light);
-void GXLoadLightObjIndx(u32 lt_obj_indx, GXLightID light);
-void GXSetChanAmbColor(GXChannelID chan, GXColor amb_color);
-void GXSetChanMatColor(GXChannelID chan, GXColor mat_color);
-void GXSetNumChans(u32);
-void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, GXLightID light_mask, GXDiffuseFn diff_fn,
-                   GXAttnFn attn_fn);
-void GXSetNumTevStages(u32);
-void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID);
-void GXSetTevOp(GXTevStageID, GXTevMode);
-void GXSetTevColor(GXTevRegID, GXColor);
-void GXSetTevColorS10(GXTevRegID, GXColorS10);
-void GXSetTevSwapMode(GXTevStageID, u32, u32);
-void GXSetTevSwapModeTable(GXTevSwapSel, u32, u32, u32, u32);
-void GXSetTevColorIn(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, GXTevColorArg);
-void GXSetTevAlphaIn(GXTevStageID, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg);
-void GXSetTevColorOp(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID);
-void GXSetTevAlphaOp(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID);
-void GXSetTevKColor(GXTevKColorID, GXColor);
-void GXSetTevKColorSel(GXTevStageID, GXTevKColorSel);
-void GXSetTevKAlphaSel(GXTevStageID, u32); // params might not be right
+
 void GXSetVtxAttrFmt(GXVtxFmt, GXAttr, GXCompCnt, GXCompType, uint);
 void GXClearVtxDesc();
 void GXSetVtxDesc(GXAttr, GXAttrType);
@@ -334,32 +274,8 @@ void GXBeginDisplayList(void*, u32 dlSize);
 u32 GXEndDisplayList(void);
 void GXCallDisplayList(void*, u32 byteCnt);
 
-void GXInitTexCacheRegion(GXTexRegion* region, GXBool is_32b_mipmap, u32 tmem_even, GXTexCacheSize size_even, u32 tmem_odd,
-                          GXTexCacheSize size_odd);
-
-void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color);
-
-void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, f32 projmtx[4][4]);
-
-void GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table);
-
-void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op);
-
-void GXSetColorUpdate(GXBool update_enable);
-void GXSetAlphaUpdate(GXBool update_enable);
-void GXSetAlphaCompare(GXCompare, u8, GXAlphaOp, GXCompare, u8);
-void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias);
-void GXSetDispCopyGamma(GXGamma update_enable);
-void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable);
 void GXSetCullMode(GXCullMode);
 void GXSetCurrentMtx(u32);
-
-void GXSetZCompLoc(GXBool before_tex);
-void GXSetPixelFmt(GXPixelFmt pix_fmt, GXZFmt16 z_fmt);
-void GXSetDither(GXBool dither);
-void GXSetDstAlpha(GXBool enable, u8 alpha);
-void GXSetFieldMask(GXBool odd_mask, GXBool even_mask);
-void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio);
 
 #define GX_FIFO_OBJ_SIZE 128
 
@@ -380,7 +296,6 @@ void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr);
 void GXInitFifoLimits(GXFifoObj* fifo, u32 highWatermark, u32 lowWatermark);
 void GXSaveCPUFifo(GXFifoObj* fifo);
 
-void GXReadXfRasMetric(u32*, u32*, u32*, u32*);
 void GXGetGPStatus(GXBool* overhi, GXBool* underlow, GXBool* readIdle, GXBool* cmdIdle, GXBool* brkpt);
 
 void GXSetCPUFifo(GXFifoObj* fifo);
@@ -410,22 +325,8 @@ void GXSetDrawDone();
 void GXDrawDone();
 void GXPixModeSync();
 
-void GXCopyDisp(void*, GXBool); // TODO: Confirm types
-
-typedef GXTlutRegion* GXTlutRegionCallback(GXTlut);
-
-void GXInvalidateTexAll(void);
-
-void GXInitTlutObj(GXTlutObj*, const u8*, GXTlutFmt, u16);
-// TODO: Params aren't fully worked out yet.
-void GXInitTlutRegion(u32*, int, u32);
-void GXLoadTlut(GXTlutObj*, GXTlut);
-void GXSetTlutRegionCallback(GXTlutRegionCallback*);
-
 GXTlutRegion* __GXDefaultTlutRegionCallback(GXTlut);
-void GXInitTexObj(GXTexObj*, void*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool);
-void GXInitTexObjLOD(GXTexObj*, GXTexFilter, GXTexFilter, float, float, float, GXBool, GXBool, GXAnisotropy);
-void GXLoadTexObj(GXTexObj*, GXTexMapID);
+
 void GXBegin(GXPrimitive, GXVtxFmt, u16);
 
 void GXLoadPosMtxImm(Mtx, int);
@@ -437,22 +338,9 @@ void GXSetLineWidth(u8, GXTexOffset);
 // TODO: Types
 void GXSetPointSize(u8, s32);
 
-u16 GXGetNumXfbLines(float, u16);
-float GXGetYScaleFactor(u16, u16);
-
-u32 GXSetDispCopyYScale(f32 vscale);
-void GXSetDispCopySrc(u16 left, u16 top, u16 wd, u16 ht);
-void GXSetTexCopySrc(u16 left, u16 top, u16 wd, u16 ht);
-void GXSetDispCopyDst(u16 wd, u16 ht);
-
 void GXSetViewport(float, float, float, float, float, float);
-void GXSetTevKColor(GXTevKColorID, GXColor);
 void GXSetClipMode(GXClipMode);
-void GXSetCopyClamp(GXFBClamp clamp);
 void GXSetCoPlanar(GXBool);
-
-void GXSetCopyClear(GXColor clear_clr, u32 clear_z);
-void GXSetCopyFilter(GXBool aa, const u8 sample_pattern[12][2], GXBool vf, const u8 vfilter[7]);
 
 void GXSetArray(int, Mtx*, size_t); // TODO: Correct types.
 
