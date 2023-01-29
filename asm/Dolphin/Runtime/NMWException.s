@@ -1,33 +1,33 @@
 .include "macros.inc"
 .section ._extab, "wa"  # 0x80005600 - 0x80005660
-.global "@205"
-"@205":
+.obj @205, local
 	.4byte 0x30080000
-	.skip 0x4
-.global "@210"
-"@210":
+	.4byte 0
+.endobj @205
+.obj @210, local
 	.4byte 0x20080000
-	.skip 0x4
-.global "@231"
-"@231":
+	.4byte 0
+.endobj @210
+.obj @231, local
 	.4byte 0x20080000
 	.4byte 0x00000060
 	.4byte 0x00000010
 	.4byte 0x00000000
 	.4byte 0x82000008
 	.4byte __dt__26__partial_array_destructorFv
-.global "@239"
-"@239":
+.endobj @231
+.obj @239, local
 	.4byte 0x18080000
-	.skip 0x4
-.global "@262"
-"@262":
+	.4byte 0
+.endobj @239
+.obj @262, local
 	.4byte 0x28080000
 	.4byte 0x00000070
 	.4byte 0x00000010
 	.4byte 0x00000000
 	.4byte 0x82000008
 	.4byte __dt__26__partial_array_destructorFv
+.endobj @262
 
 .section ._exidx, "a"  # 0x80005660 - 0x800056C0
 .global lbl_80005660
