@@ -7,6 +7,7 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/StickAnimMgr.h"
 #include "Controller.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
 
 namespace kh {
 namespace Screen {
@@ -31,7 +32,7 @@ DispDayEndResultItem::DispDayEndResultItem(Game::Result::TNode* resultNode, int 
 	{
 		_0C++;
 		_10 += node->_30;
-		_14 += node->_38;
+		_14 += node->mPokoValue;
 	}
 
 	_18 = p1;
@@ -209,7 +210,9 @@ void ObjDayEndResultBase::doCreate(JKRArchive* archive)
  */
 bool ObjDayEndResultBase::doStart(const ::Screen::StartSceneArg* sceneArg)
 {
-	if (sceneArg && sceneArg->_04) {
+	const StartSceneArg* sarg = static_cast<const StartSceneArg*>(sceneArg);
+
+	if (sceneArg && sarg->_00) {
 		mFlags &= ~0x8;
 	} else {
 		mFlags |= 0x8;
@@ -565,7 +568,9 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
  */
 bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 {
-	if (sceneArg && sceneArg->_04) {
+	const StartSceneArg* sarg = static_cast<const StartSceneArg*>(sceneArg);
+
+	if (sceneArg && sarg->_00) {
 		mFlags &= ~0x8;
 	} else {
 		mFlags |= 0x8;
@@ -1365,8 +1370,8 @@ void ObjDayEndResultItem::statusForceScroll()
 			Game::Result::TNode* resultNode = static_cast<Game::Result::TNode*>(dispResult->mItem.mResultNode->mChild);
 			for (resultNode; resultNode && i != _E0 + 6; resultNode = static_cast<Game::Result::TNode*>(resultNode->mNext), i++) { }
 
-			if (resultNode && resultNode->_34 == 0) {
-				_C8 += resultNode->_38;
+			if (resultNode && resultNode->mIsLost == 0) {
+				_C8 += resultNode->mPokoValue;
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_COIN_COUNT, 0);
 			}
 			_E8 = 1;

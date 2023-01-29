@@ -201,6 +201,10 @@ struct SArgDayEndResultMail : public SArgDayEndResultBase {
 struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	ObjDayEndResultBase();
 
+	struct StartSceneArg : public ::Screen::StartSceneArg {
+		int _00;
+	};
+
 	virtual ~ObjDayEndResultBase() { }                    // _08 (weak)
 	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
 	virtual void doCreate(JKRArchive*);                   // _4C

@@ -1125,7 +1125,7 @@ void ObjCaveResult::statusNormal()
 	mFadePane4->fadein();
 	if (isFlag(CAVERESFLAG_CanScroll)) {
 		// press up, begin scroll up state
-		if (getGamePad()->mButton.mMask & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32) && mScrollSelIndex) {
+		if (getGamePad()->mButton.mMask & (Controller::PRESS_UP) && mScrollSelIndex) {
 			mScrollSelIndex--;
 			if (_106 >= 1) {
 				mScrollTargetDist = msVal._20;
@@ -1140,7 +1140,7 @@ void ObjCaveResult::statusNormal()
 		}
 
 		// press down, begin scroll down state
-		if (getGamePad()->mButton.mMask & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31) && mScrollSelIndex != mScrollSelIndexMax) {
+		if (getGamePad()->mButton.mMask & (Controller::PRESS_DOWN) && mScrollSelIndex != mScrollSelIndexMax) {
 			mScrollSelIndex++;
 			if (_107 >= 1) {
 				mScrollTargetDist = msVal._20;
