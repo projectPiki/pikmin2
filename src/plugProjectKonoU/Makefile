@@ -3,7 +3,7 @@ KONO_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khSceneLoader.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/newGame2DMgr.o\
-	$(BUILD_DIR)/asm/plugProjectKonoU/newScreenMgr.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/newScreenMgr.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khReadyGo.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khFinalFloor.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khDayEndResult.o\

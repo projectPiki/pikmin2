@@ -82,16 +82,16 @@ struct THurryUpScene : public THIOScene {
 
 	// ~THurryUpScene(); // unused/inlined
 
-	virtual SceneType getSceneType() { return SCENE_HURRY_UP; }         // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }           // _0C (weak)
-	virtual ScreenMemberID getMemberID() { return MEMBER_HURRY_UP; }    // _10 (weak)
 	virtual const char* getResName() const { return "res_ground.szs"; } // _1C (weak)
 	virtual void doCreateObj(JKRArchive* arc)
 	{
 		THurryUp2D* obj = new THurryUp2D;
 		registObj(obj, arc);
 		mObject = obj;
-	} // _20 (weak)
+	}                                                                // _20 (weak)
+	virtual SceneType getSceneType() { return SCENE_HURRY_UP; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }        // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_HURRY_UP; } // _10 (weak)
 
 	// _00      = VTBL
 	// _00-_220 = Morimura::THIOScene
