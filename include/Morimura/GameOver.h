@@ -114,7 +114,8 @@ struct TPresidentDown2D : public TGameOverBase {
 };
 
 struct TGameOverSceneBase : public THIOScene {
-	virtual bool isUseBackupSceneInfo() {
+	virtual bool isUseBackupSceneInfo()
+	{
 		if (Game::naviMgr) {
 			return u8(Game::naviMgr->getAliveCount() >= 1);
 		}

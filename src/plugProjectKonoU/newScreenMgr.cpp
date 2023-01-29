@@ -256,19 +256,20 @@ Mgr* Mgr::create()
  */
 void Mgr::drawBG(Graphics& gfx)
 {
+	// wtf are these necessary u8 casts, kono?
 	J2DPerspGraph* persp = &gfx.mPerspGraph;
-	u8 alpha2            = mBgColor.a;
-	u8 alpha1            = mColor2.a;
-	if (alpha2 > alpha1) {
+	int alpha2           = mBgColor.a;
+	int alpha1           = mColor2.a;
+	if ((u8)alpha2 > (u8)alpha1) {
 		alpha2 -= alpha1;
 		alpha2 /= 4;
 		alpha2 += 1;
-		mColor2.a = alpha1 + alpha2;
-	} else if (alpha2 < alpha1) {
-		u8 sub = alpha1 - alpha2;
+		mColor2.a = (u8)alpha1 + (u8)alpha2;
+	} else if ((u8)alpha2 < (u8)alpha1) {
+		int sub = alpha1 - alpha2;
 		sub /= 4;
 		sub += 1;
-		mColor2.a = alpha1 - sub;
+		mColor2.a = alpha1 - (u8)sub;
 	}
 
 	if (mColor2.a) {
