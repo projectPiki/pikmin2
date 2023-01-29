@@ -284,7 +284,7 @@ void Mgr::drawBG(Graphics& gfx)
 		}
 		persp->setColor(mColor2);
 		GXSetAlphaUpdate(GX_FALSE);
-		persp->fillBox(JGeometry::TBox2f(0.0f, y2, x2 + x, y2 + y));
+		persp->fillBox(JGeometry::TBox2f(x2, y2, x2 + x, y2 + y));
 	}
 	/*
 	stwu     r1, -0x80(r1)
