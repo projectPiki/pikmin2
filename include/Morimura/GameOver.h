@@ -114,7 +114,12 @@ struct TPresidentDown2D : public TGameOverBase {
 };
 
 struct TGameOverSceneBase : public THIOScene {
-	virtual bool isUseBackupSceneInfo() { return (!Game::naviMgr || Game::naviMgr->getAliveCount() < 2); } // _14
+	virtual bool isUseBackupSceneInfo() {
+		if (Game::naviMgr) {
+			return u8(Game::naviMgr->getAliveCount() >= 1);
+		}
+		return true;
+	} // _14
 
 	// _00      = VTBL
 	// _00-_224 = THIOScene
