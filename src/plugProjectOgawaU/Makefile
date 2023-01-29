@@ -1,0 +1,89 @@
+OGAWA_FILES:=\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogDopingScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogPikminCounter.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogAnime.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounter.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogLifeGauge.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSunMeter.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCatchPiki.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogContenaCounter.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogMapCounter.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogAnimTextScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackMessage.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogMenuMgr.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackScreen.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterRV.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSE.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounterDay.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/testScene.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/testObj.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneGround.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjGround.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCopyPane.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogBloGroup.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/DispMemberBase.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogLib2D.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuMap.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuMap.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuItem.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuItem.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPause.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuPause.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuBase.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjCourseName.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogUtil.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneCourseName.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjKantei.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneKantei.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSpecialItem.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSpecialItem.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjFloor.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFloor.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjCave.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneCave.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjAnaDemo.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneAnaDemo.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallenge2P.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge2P.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjContena.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneContena.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuPauseDoukutu.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseDoukutu.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjUfo.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneUfo.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSave.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSave.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjFinalMsg.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFinalMsg.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjVs.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneVs.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallenge1P.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge1P.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogScaleMgr.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuPauseVs.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseVs.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogFuriko.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterSlot.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjWorldMapInfoWindow0.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjWorldMapInfoWindow1.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow1.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogTotalPokoScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallengeBase.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallengeBase.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackPicture.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogDrawAfter.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogOtakaraSensor.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogAngleMgr.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuCont.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuCont.o\
+
+DEPENDS += $(OGAWA_FILES:.o=.d)
+
+$(BUILD_DIR)/src/plugProjectOgawaU/plugProjectOgawaU.a: $(OGAWA_FILES)
+	@echo Linking... $@
+	$(QUIET) mkdir -p $(dir $@)
+	@echo $(OGAWA_FILES) > build/OGAWA_ofiles
+	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/OGAWA_ofiles

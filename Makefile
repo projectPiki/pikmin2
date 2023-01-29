@@ -72,25 +72,15 @@ ifeq ($(MAPGENFLAG),1)
 endif
 
 include obj_files.mk
-ifeq ($(EPILOGUE_PROCESS),1)
-include e_files.mk
-endif
 
 O_FILES :=	$(GROUP_0_FILES)\
-			$(JSTUDIO_JPARTICLE) $(JMESSAGE) $(JSTUDIO) $(JSTUDIO_JSTAGE) $(JSTUDIO_JMESSAGE)\
-			$(JSTUDIO_JAUDIO) $(J3DU) $(JKERNEL) $(JSUPPORT) $(JGADGET) $(JUTILITY) $(JMATH)\
-			$(J2D) $(J3D) $(JFRAMEWORK) $(JPARTICLE) $(JSTAGE) $(JAUDIO2_JAS) $(JAUDIO2_DSP)\
-			$(JAUDIO2_JAI) $(JAUDIO2_JAD) $(JAUDIO2_JAL) $(JAUDIO2_JAU)\
-			$(TRK_MINNOW_DOLPHIN) $(RUNTIME) $(MSL_C) $(ODEMUEXI2) $(VI) $(AMCSTUBS) $(AR) $(BASE)\
-			$(CARD) $(DB) $(DSP) $(DVD) $(EXI) $(GD) $(GX) $(MTX)\
-			$(ODENOTSTUB) $(OS) $(PAD) $(SI) $(AI) $(THP) $(GBA)\
-			$(YAMASHITA) $(KANDO) $(NISHIMURA) $(OGAWA) $(HIKINO) $(MORIMURA) $(EBISAWA) $(KONO)\
-			$(BOOTUP) $(COMMON) $(GC) $(UTILITY)
+			$(JSYSTEM) $(DOLPHIN)\
+			$(PLUGPROJECT) $(SYS) $(UTILITY)
 ifeq ($(EPILOGUE_PROCESS),1)
-E_FILES :=	$(EPILOGUE_UNSCHEDULED)
+E_FILES :=	$(DVD_UNSCHEDULED) $(OS_UNSCHEDULED) $(SI_UNSCHEDULED) $(GBA_UNSCHEDULED)
 endif
-DEPENDS := $(O_FILES:.o=.d)
-DEPENDS += $(E_FILES:.o=.d)
+DEPENDS := $($(filter *.o,O_FILES):.o=.d)
+DEPENDS += $($(filter *.o,E_FILES):.o=.d)
 # If a specific .o file is passed as a target, also process its deps
 DEPENDS += $(MAKECMDGOALS:.o=.d)
 
@@ -122,7 +112,6 @@ else
   export WINEDEBUG ?= -all
   # Default devkitPPC path
   DEVKITPPC ?= /opt/devkitpro/devkitPPC
-  DEPENDS   := $(DEPENDS:.d=.d.unix)
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
   PYTHON  := python3
@@ -151,61 +140,15 @@ ifeq ($(VERBOSE),0)
 # this set of LDFLAGS generates no warnings.
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults -w off
 endif
+LIBRARY_LDFLAGS := -nodefaults -fp hard -proc gekko
 CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
 
 ifeq ($(VERBOSE),0)
 # this set of ASFLAGS generates no warnings.
 ASFLAGS += -W
+# this set of CFLAGS generates no warnings.
+CFLAGS += -w off
 endif
-
-# This is inline-deferred for some reason
-$(BUILD_DIR)/src/Dolphin/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
-
-# Enable string pooling
-$(BUILD_DIR)/src/Dolphin/locale.o: CFLAGS += -str pool
-
-# Dirty hack to override sdata
-# It seems some TRK-related files need -sdata 0
-$(BUILD_DIR)/src/Dolphin/mainloop.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/nubinit.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/main_TRK.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/target_options.o: CFLAGS += -sdata 0
-
-# Set Dolphin sub-library CFLAGS
-$(TRK_MINNOW_DOLPHIN): CFLAGS += -common off
-$(RUNTIME): CFLAGS += -common off
-$(MSL_C): CFLAGS += -common off
-$(ODEMUEXI2): CFLAGS += -common off
-$(VI): CFLAGS += -common off
-$(AMCSTUBS): CFLAGS += -common off
-$(AR): CFLAGS += -common off
-$(BASE): CFLAGS += -common off
-$(CARD): CFLAGS += -common off
-$(DB): CFLAGS += -common off -str noreadonly
-$(DSP): CFLAGS += -common off
-$(DVD): CFLAGS += -common off -str noreadonly
-$(EXI): CFLAGS += -common off
-$(GD): CFLAGS += -common off
-$(GX): CFLAGS += -common off
-$(MTX): CFLAGS += -common off
-$(ODENOTSTUB): CFLAGS += -common off
-$(OS): CFLAGS += -common off -str noreadonly
-$(PAD): CFLAGS += -common off
-$(SI): CFLAGS += -common off -str noreadonly
-$(AI): CFLAGS += -common off
-$(THP): CFLAGS += -common off
-$(GBA): CFLAGS += -common off -str noreadonly
-
-# Set compiler version for SDK sub-libraries
-$(BASE): MWCC_VERSION := 1.2.5
-$(DB): MWCC_VERSION := 1.2.5
-$(DVD): MWCC_VERSION := 1.2.5
-$(GD): MWCC_VERSION := 1.2.5
-$(GX): MWCC_VERSION := 1.2.5
-$(MTX): MWCC_VERSION := 1.2.5
-$(OS): MWCC_VERSION := 1.2.5
-$(SI): MWCC_VERSION := 1.2.5
-$(GBA): MWCC_VERSION := 1.2.5
 
 #-------------------------------------------------------------------------------
 # Recipes
@@ -218,9 +161,6 @@ default: all
 all: $(DOL)
 
 ALL_DIRS := $(sort $(dir $(O_FILES)))
-ifeq ($(EPILOGUE_PROCESS),1)
-EPI_DIRS := $(sort $(dir $(E_FILES)))
-endif
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
@@ -256,22 +196,20 @@ tools:
 	$(MAKE) -C tools
 
 # ELF creation makefile instructions
-ifeq ($(EPILOGUE_PROCESS),1)
-	@echo Linking ELF $@
-$(ELF): $(O_FILES) $(E_FILES) $(LDSCRIPT)
-	$(QUIET) @echo $(O_FILES) > build/o_files
-	$(QUIET) $(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
-else
 $(ELF): $(O_FILES) $(LDSCRIPT)
 	@echo Linking ELF $@
 	$(QUIET) @echo $(O_FILES) > build/o_files
 	$(QUIET) $(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
-endif
 
 %.d.unix: %.d $(TRANSFORM_DEP)
 	@echo Processing $<
 	$(QUIET) $(PYTHON) $(TRANSFORM_DEP) $< $@
 
+-include include_link.mk
+
+ifneq ($(WINDOWS),1)
+	DEPENDS := $(DEPENDS:.d=.d.unix)
+endif
 -include $(DEPENDS)
 
 $(BUILD_DIR)/%.o: %.s

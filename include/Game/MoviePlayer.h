@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include "Controller.h"
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "JSystem/JStudio/JStudio_JAudio.h"
+#include "JSystem/JStudio_JAudio.h"
 #include "types.h"
 #include "CNode.h"
 #include "DvdThreadCommand.h"

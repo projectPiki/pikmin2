@@ -41,7 +41,7 @@ MW_WII_SYMBOL_REGEX = r"^\s*"\
     r"(?P<FileOfs>\w{8})\s+"\
     r"(\w{1,2})\s+"\
     r"(?P<Symbol>[0-9A-Za-z_<>$@.*]*)\s*"\
-    r"(?P<Object>\S*)"
+    r"(?P<Object>[\S ]*)"
 
 MW_GC_SYMBOL_REGEX = r"^\s*"\
     r"(?P<SectOfs>\w{8})\s+"\
@@ -49,7 +49,7 @@ MW_GC_SYMBOL_REGEX = r"^\s*"\
     r"(?P<VirtOfs>\w{8})\s+"\
     r"(\w{1,2})\s+"\
     r"(?P<Symbol>[0-9A-Za-z_<>$@.*]*)\s*"\
-    r"(?P<Object>\S*)"
+    r"(?P<Object>[\S ]*)"
 
 REGEX_TO_USE = MW_GC_SYMBOL_REGEX
 
@@ -57,7 +57,7 @@ TEXT_SECTIONS = ["init", "text"]
 DATA_SECTIONS = [
     "rodata", "data", "bss", "sdata", "sbss", "sdata2", "sbss2",
     "ctors", "_ctors", "dtors", "ctors$99", "_ctors$99", "ctors$00", "dtors$99",
-    "extab_", "extabindex_", "_extab", "_exidx"
+    "extab_", "extabindex_", "_extab", "_exidx", "extab", "extabindex"
 ]
 
 # DOL info
@@ -156,14 +156,6 @@ def update_csv(
 
 
 if __name__ == "__main__":
-    # HACK: Check asm or src in obj_file.mk
-    # to avoid counting .comm/.lcomm as decompiled
-    asm_objs = []
-    with open('obj_files.mk', 'r') as file:
-        for line in file:
-            if "asm/" in line:
-                asm_objs.append(line.strip().rsplit('/', 1)[-1].rstrip('\\'))
-
     # Sum up DOL section sizes
     dol_handle = open(sys.argv[1], "rb")
 
@@ -248,14 +240,26 @@ if __name__ == "__main__":
             if (match_obj == None):
                 #print(f"Line {i}: {symbols[i]}")
                 continue
+            #print(match_obj.group("Object"))
             # Has the object file changed?
             last_object = cur_object
             cur_object = match_obj.group("Object").strip()
-            if last_object != cur_object or cur_object in asm_objs:
+            if last_object != cur_object:
                 continue
             # Is the symbol a file-wide section?
             symb = match_obj.group("Symbol")
             if (symb.startswith("*fill*")) or (symb.startswith(".") and symb[1:] in TEXT_SECTIONS or symb[1:] in DATA_SECTIONS):
+                continue
+            # Subtract size of symbols ending in ".o", as they're assembly.
+            if match_obj.group("Object").endswith(".o") == True:
+                if j == i - 1:
+                    if section_type == SECTION_TEXT:
+                        decomp_code_size -= cur_size
+                    else:
+                        decomp_data_size -= cur_size
+                    cur_size = 0
+                    #print(f"Line* {j}: {symbols[j]}")
+                #print(f"Line {i}: {symbols[i]}")
                 continue
             # For sections that don't start with "."
             if (symb in DATA_SECTIONS):
