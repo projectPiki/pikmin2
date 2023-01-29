@@ -3,6 +3,13 @@
 
 #include "Screen/screenObj.h"
 
+// no idea if theres a better place to put this, its kind of a random single function
+namespace kh {
+namespace Screen {
+::Screen::SceneBase* createScene_Koono(long);
+} // namespace Screen
+} // namespace kh
+
 namespace Screen {
 struct MgrBase : public JKRDisposer {
 	virtual ~MgrBase() { }                       // _08
@@ -75,7 +82,7 @@ struct Mgr : public MgrBase {
 	u32 _94;                   // _94
 	u32 _98;                   // _98
 	JUtility::TColor mBgColor; // _9C
-	JUtility::TColor _A0;      // _A0
+	JUtility::TColor mColor2;  // _A0
 	int mBgMode;               // _A4
 
 	static Mgr* sScreenMgr;
@@ -86,13 +93,12 @@ struct Mgr : public MgrBase {
 namespace newScreen {
 ::Screen::SceneBase* createScene_Ogawa(long);
 ::Screen::SceneBase* createScene_Morimura(long);
-::Screen::SceneBase* createScene_Koono(long);
 
 struct Mgr : public Screen::Mgr {
 	Mgr()
 	{
 		mBgColor.set(-1);
-		_A0.set(-1);
+		mColor2.set(-1);
 		_90     = 0;
 		mInCave = false;
 		mInDemo = false;

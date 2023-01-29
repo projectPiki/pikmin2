@@ -29,7 +29,7 @@ struct MailSaveData {
 	MailSaveData()
 	{
 		for (int i = 0; i < 16; i++) {
-			_00[i] = 0;
+			m_pastLogs[i] = 0;
 		}
 	}
 
@@ -38,8 +38,8 @@ struct MailSaveData {
 	void write(Stream&);
 	void set_history(s8);
 
-	u8 _00[0x10]; // _00
-	s8 _10[0x14]; // _10
+	u8 m_pastLogs[0x10]; // _00
+	s8 m_history[0x14];  // _10
 };
 
 struct IncP {

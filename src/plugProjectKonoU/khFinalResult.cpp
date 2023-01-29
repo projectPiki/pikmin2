@@ -6,6 +6,7 @@
 #include "Game/gamePlayData.h"
 #include "og/newScreen/ogUtil.h"
 #include "LoadResource.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
 
 namespace kh {
 namespace Screen {
@@ -1976,7 +1977,7 @@ void ObjFinalResult::statusNormal()
 	}
 	mFadePane3DStick->fadein();
 	Controller* pad = getGamePad();
-	if (pad->mButton.mMask & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+	if (pad->mButton.mMask & Controller::PRESS_UP) {
 		if (mCurrentPage) {
 			mCurrentPage--;
 			mScreen->search(getSerialTagName('Nsel00', mCurrentPage + 1))->setAlpha(msVal._21);
@@ -1989,7 +1990,7 @@ void ObjFinalResult::statusNormal()
 		}
 	}
 	pad = getGamePad();
-	if (pad->mButton.mMask & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+	if (pad->mButton.mMask & Controller::PRESS_DOWN) {
 		if (mCurrentPage != 7) {
 			mCurrentPage++;
 			mScreen->search(getSerialTagName('Nsel00', mCurrentPage - 1))->setAlpha(msVal._21);

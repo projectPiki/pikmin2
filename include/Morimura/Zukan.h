@@ -80,12 +80,12 @@ struct DispMemberZukanItem : public DispMemberZukanBase {
 struct TDEnemyScene : public THIOScene {
 	TDEnemyScene();
 
-	virtual SceneType getSceneType();             // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();           // _0C (weak)
-	virtual ScreenMemberID getMemberID();         // _10 (weak)
-	virtual const char* getResName() const;       // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);        // _20
-	virtual bool doStart(Screen::StartSceneArg*); // _3C
+	virtual SceneType getSceneType() { return SCENE_ZUKAN_ENEMY; }          // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_ZUKAN_ENEMY; }     // _10 (weak)
+	virtual const char* getResName() const { return "res_enemyZukan.szs"; } // _1C (weak)
+	virtual void doCreateObj(JKRArchive*);                                  // _20
+	virtual bool doStart(Screen::StartSceneArg*);                           // _3C
 
 	bool isAppearConfirmWindow();
 
@@ -98,12 +98,12 @@ struct TDEnemyScene : public THIOScene {
 struct TDItemScene : public THIOScene {
 	TDItemScene();
 
-	virtual SceneType getSceneType();             // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();           // _0C (weak)
-	virtual ScreenMemberID getMemberID();         // _10 (weak)
-	virtual const char* getResName() const;       // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);        // _20
-	virtual bool doStart(Screen::StartSceneArg*); // _3C
+	virtual SceneType getSceneType() { return SCENE_ZUKAN_ITEM; }           // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_ZUKAN_ITEM; }      // _10 (weak)
+	virtual const char* getResName() const { return "res_itemZukan.szs"; }; // _1C (weak)
+	virtual void doCreateObj(JKRArchive*);                                  // _20
+	virtual bool doStart(Screen::StartSceneArg*);                           // _3C
 
 	bool isAppearConfirmWindow();
 

@@ -71,6 +71,7 @@ struct TTestAnimScreen : public og::Screen::AnimScreen {
 };
 
 struct THIOScene : public Screen::SceneBase {
+	THIOScene() { mObject = nullptr; }
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
 	TTestBase* mObject; // _220, cast as needed

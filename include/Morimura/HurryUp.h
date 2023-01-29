@@ -77,7 +77,7 @@ struct THurryUp2D : public TTestBase {
 /**
  * @size{0x224}
  */
-struct THurryUpScene : public Screen::SceneBase {
+struct THurryUpScene : public THIOScene {
 	THurryUpScene() { }
 
 	// ~THurryUpScene(); // unused/inlined
@@ -90,12 +90,11 @@ struct THurryUpScene : public Screen::SceneBase {
 	{
 		THurryUp2D* obj = new THurryUp2D;
 		registObj(obj, arc);
-		mObj = obj;
+		mObject = obj;
 	} // _20 (weak)
 
 	// _00      = VTBL
-	// _00-_220 = Screen::SceneBase
-	THurryUp2D* mObj; // _220
+	// _00-_220 = Morimura::THIOScene
 };
 
 } // namespace Morimura

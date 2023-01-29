@@ -501,40 +501,13 @@ lbl_804008D8:
 {
 	::Screen::SceneBase* base;
 	base = createScene_Ogawa(id);
-	if (base) {
-		return base;
+	if (!base) {
+		base = createScene_Morimura(id);
 	}
-	base = createScene_Morimura(id);
-	if (base) {
-		return base;
+	if (!base) {
+		base = kh::Screen::createScene_Koono(id);
 	}
-	return createScene_Koono(id);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       createScene_Ogawa__9newScreenFl
-	cmplwi   r3, 0
-	bne      lbl_80400918
-	mr       r3, r31
-	bl       createScene_Morimura__9newScreenFl
-
-lbl_80400918:
-	cmplwi   r3, 0
-	bne      lbl_80400928
-	mr       r3, r31
-	bl       createScene_Koono__Q22kh6ScreenFl
-
-lbl_80400928:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return base;
 }
 
 /*
@@ -547,11 +520,11 @@ Mgr* Mgr::create()
 	Mgr* mgr   = new Mgr;
 	sScreenMgr = mgr;
 	mgr->init();
-	mgr->_A0.r    = 0;
-	mgr->_A0.g    = 0;
-	mgr->_A0.b    = 0;
-	mgr->_A0.a    = 0;
-	mgr->mBgColor = mgr->_A0;
+	mgr->mColor2.r = 0;
+	mgr->mColor2.g = 0;
+	mgr->mColor2.b = 0;
+	mgr->mColor2.a = 0;
+	mgr->mBgColor  = mgr->mColor2;
 	return mgr;
 }
 
@@ -562,6 +535,32 @@ Mgr* Mgr::create()
  */
 void Mgr::drawBG(Graphics& gfx)
 {
+	J2DPerspGraph* persp = &gfx.mPerspGraph;
+	u8 alpha2            = mBgColor.a;
+	u8 alpha1            = mColor2.a;
+	if (alpha1 > alpha2) {
+		alpha1 -= alpha2;
+		mColor2.a = alpha2 + alpha1 + (alpha1 < 0 && (alpha1 & 3)) + 1;
+	} else if (alpha1 > alpha2) {
+		u8 sub    = alpha2 - alpha1;
+		mColor2.a = alpha2 - (sub + (sub < 0 && (sub & 3)) + 1);
+	}
+
+	if (mColor2.a) {
+		persp->setPort();
+		f32 x  = System::getRenderModeObj()->fbWidth;
+		f32 y2 = 0.0f;
+		f32 y  = System::getRenderModeObj()->efbHeight;
+		if (mBgMode == 1) {
+			y *= 0.5f;
+		} else if (mBgMode == 2) {
+			y2 = y * 0.5f;
+		}
+		persp->setColor(mColor2);
+		GXSetAlphaUpdate(GX_FALSE);
+		f32 zero = 0.0f;
+		persp->fillBox(JGeometry::TBox2f(0.0f, y2, zero + x, y2 + y));
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -695,7 +694,7 @@ bool Mgr::reset()
 		_94        = 0;
 		_98        = 0;
 		mBgColor.a = 0;
-		_A0.a      = 0;
+		mColor2.a  = 0;
 		mBgMode    = 0;
 		return true;
 	}

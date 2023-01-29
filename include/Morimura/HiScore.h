@@ -9,9 +9,9 @@
 
 namespace Morimura {
 struct DispMemberHighScore : public og::Screen::DispMemberBase {
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
+	virtual u32 getSize() { return sizeof(DispMemberHighScore); } // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_HIGH_SCORE; }       // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
@@ -20,8 +20,8 @@ struct DispMemberHighScore : public og::Screen::DispMemberBase {
 };
 
 struct THiScoreIndPane : public TIndPane {
-	virtual ~THiScoreIndPane(); // _08 (weak)
-	virtual void draw();        // _10
+	virtual ~THiScoreIndPane() { } // _08 (weak)
+	virtual void draw();           // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode

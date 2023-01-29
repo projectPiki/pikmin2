@@ -122,7 +122,7 @@ struct TGameOverSceneBase : public THIOScene {
 };
 
 struct TGameOverScene : public TGameOverSceneBase {
-	virtual SceneType getSceneType() { return SCENE_PIKMIN_DOWN; }        // _08 (weak)
+	virtual SceneType getSceneType() { return SCENE_GAME_OVER_GENERAL; }  // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }             // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; }     // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return false; }                 // _14 (weak)
@@ -174,7 +174,7 @@ struct TOrimaDownScene : public TGameOverSceneBase {
 };
 
 struct TPikminDownScene : public TGameOverSceneBase {
-	virtual SceneType getSceneType() { return SCENE_PIKMIN_DOWN; }          // _08 (weak)
+	virtual SceneType getSceneType() { return SCENE_GAME_OVER_GENERAL; }    // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; }       // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return false; }                   // _14 (weak)

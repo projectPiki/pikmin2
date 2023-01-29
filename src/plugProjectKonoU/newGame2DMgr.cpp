@@ -771,7 +771,7 @@ void Game2DMgr::open_GameOver(GameOverTitle id)
 {
 	switch (id) {
 	case GOTITLE_Default: {
-		SetSceneArg arg(SCENE_PIKMIN_DOWN, nullptr, 0, true);
+		SetSceneArg arg(SCENE_GAME_OVER_GENERAL, nullptr, 0, true);
 		mScreenMgr->setScene(arg);
 		mScreenMgr->startScene(nullptr);
 		break;
@@ -795,7 +795,7 @@ void Game2DMgr::open_GameOver(GameOverTitle id)
 		break;
 	}
 	case GOTITLE_PikminZero: {
-		SetSceneArg arg(SCENE_ZUKAN_ENEMY, nullptr, 0, true); // I think this scene enum may be sus
+		SetSceneArg arg(SCENE_PIKMIN_DOWN, nullptr, 0, true);
 		mScreenMgr->setScene(arg);
 		mScreenMgr->startScene(nullptr);
 		break;
@@ -811,7 +811,7 @@ void Game2DMgr::open_GameOver(GameOverTitle id)
 void Game2DMgr::close_GameOver()
 {
 	switch (mScreenMgr->getSceneType()) {
-	case SCENE_ZUKAN_ENEMY:
+	case SCENE_GAME_OVER_GENERAL:
 	case SCENE_PIKMIN_DOWN: {
 		mScreenMgr->endScene(nullptr);
 		break;
@@ -1554,7 +1554,7 @@ void Game2DMgr::result_UfoMenu(int* ret1, int* ret2)
  */
 bool Game2DMgr::open_ZukanEnemy(Morimura::DispMemberZukanEnemy& disp)
 {
-	SetSceneArg arg(SCENE_ZUKAN_ITEM, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
+	SetSceneArg arg(SCENE_ZUKAN_ENEMY, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
 	if (mScreenMgr->setScene(arg)) {
 		return mScreenMgr->startScene(nullptr);
 	}
@@ -1568,7 +1568,7 @@ bool Game2DMgr::open_ZukanEnemy(Morimura::DispMemberZukanEnemy& disp)
  */
 bool Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem& disp)
 {
-	SetSceneArg arg(SCENE_HIGH_SCORE, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
+	SetSceneArg arg(SCENE_ZUKAN_ITEM, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
 	if (mScreenMgr->setScene(arg)) {
 		return mScreenMgr->startScene(nullptr);
 	}
@@ -1580,14 +1580,14 @@ bool Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem& disp)
  * Address:	803FF604
  * Size:	000030
  */
-bool Game2DMgr::isZukanEnemy() { return (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM); }
+bool Game2DMgr::isZukanEnemy() { return (mScreenMgr->getSceneType() == SCENE_ZUKAN_ENEMY); }
 
 /*
  * --INFO--
  * Address:	803FF634
  * Size:	000030
  */
-bool Game2DMgr::isZukanItem() { return (mScreenMgr->getSceneType() == SCENE_HIGH_SCORE); }
+bool Game2DMgr::isZukanItem() { return (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM); }
 
 /*
  * --INFO--
@@ -1597,7 +1597,7 @@ bool Game2DMgr::isZukanItem() { return (mScreenMgr->getSceneType() == SCENE_HIGH
 int Game2DMgr::check_ZukanItemRequest(int& id)
 {
 	int ret = 0;
-	if (mScreenMgr->getSceneType() == SCENE_HIGH_SCORE) {
+	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		if (scene) {
 			Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
@@ -1615,7 +1615,7 @@ int Game2DMgr::check_ZukanItemRequest(int& id)
 int Game2DMgr::check_ZukanEnemyRequest(int& id)
 {
 	int ret = 0;
-	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM) {
+	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		if (scene) {
 			Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
@@ -1633,7 +1633,7 @@ int Game2DMgr::check_ZukanEnemyRequest(int& id)
 int Game2DMgr::getZukanEnemyCurrSelectId()
 {
 	int ret = -1;
-	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM) {
+	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2195, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
@@ -1650,7 +1650,7 @@ int Game2DMgr::getZukanEnemyCurrSelectId()
 int Game2DMgr::getZukanItemCurrSelectId()
 {
 	int ret = -1;
-	if (mScreenMgr->getSceneType() == SCENE_HIGH_SCORE) {
+	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2210, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
@@ -1667,14 +1667,14 @@ int Game2DMgr::getZukanItemCurrSelectId()
 void Game2DMgr::requireZukanRequest()
 {
 	SceneType id = mScreenMgr->getSceneType();
-	if (id == SCENE_HIGH_SCORE) {
+	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2227, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireRequest();
 		}
-	} else if (id == SCENE_ZUKAN_ITEM) {
+	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2233, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
@@ -1692,14 +1692,14 @@ void Game2DMgr::requireZukanRequest()
 void Game2DMgr::requireZukanEffectOff()
 {
 	SceneType id = mScreenMgr->getSceneType();
-	if (id == SCENE_HIGH_SCORE) {
+	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2247, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireEffectOff();
 		}
-	} else if (id == SCENE_ZUKAN_ITEM) {
+	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2253, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
@@ -1718,13 +1718,13 @@ bool Game2DMgr::isZukanEnlargedWindow()
 {
 	bool ret     = false;
 	SceneType id = mScreenMgr->getSceneType();
-	if (id == SCENE_HIGH_SCORE) {
+	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2270, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isEnlargedWindow() : false;
 
-	} else if (id == SCENE_ZUKAN_ITEM) {
+	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2277, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
@@ -1742,13 +1742,13 @@ bool Game2DMgr::isZukanMemoWindow()
 {
 	bool ret     = false;
 	SceneType id = mScreenMgr->getSceneType();
-	if (id == SCENE_HIGH_SCORE) {
+	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2298, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isMemoWindow() : false;
 
-	} else if (id == SCENE_ZUKAN_ITEM) {
+	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2305, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
@@ -1766,11 +1766,11 @@ bool Game2DMgr::isAppearConfirmWindow()
 {
 	bool ret     = false;
 	SceneType id = mScreenMgr->getSceneType();
-	if (id == SCENE_HIGH_SCORE) {
+	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2345, scene);
 		ret = scene->isAppearConfirmWindow();
-	} else if (id == SCENE_ZUKAN_ITEM) {
+	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
 		P2ASSERTLINE(2352, scene);
 		ret = scene->isAppearConfirmWindow();
@@ -1785,7 +1785,7 @@ bool Game2DMgr::isAppearConfirmWindow()
  */
 bool Game2DMgr::open_ChallengeSelect(Morimura::DispMemberChallengeSelect& disp)
 {
-	SetSceneArg arg(SCENE_CHALLENGE_RESULT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
+	SetSceneArg arg(SCENE_CHALLENGE_SELECT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
 	if (mScreenMgr->setScene(arg)) {
 		return mScreenMgr->startScene(nullptr);
 	}
@@ -1818,7 +1818,7 @@ int Game2DMgr::check_ChallengeSelect(int& ret1, int& ret2)
  */
 bool Game2DMgr::open_ChallengeResult(Morimura::DispMemberChallengeResult& disp)
 {
-	SetSceneArg arg(SCENE_VS_SELECT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
+	SetSceneArg arg(SCENE_CHALLENGE_RESULT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
 	if (mScreenMgr->setScene(arg)) {
 		return mScreenMgr->startScene(nullptr);
 	}
@@ -1844,7 +1844,7 @@ bool Game2DMgr::isEndChallengeResult()
  */
 bool Game2DMgr::open_VsSelect(Morimura::DispMemberVsSelect& disp)
 {
-	SetSceneArg arg(SCENE_SOMETHINGISBROKENHERE, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
+	SetSceneArg arg(SCENE_VS_SELECT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
 	if (mScreenMgr->setScene(arg)) {
 		return mScreenMgr->startScene(nullptr);
 	}
@@ -1877,7 +1877,7 @@ u32 Game2DMgr::check_VsSelect(int& ret1, int& ret2, int& ret3)
  */
 bool Game2DMgr::open_HighScore(Morimura::DispMemberHighScore& disp)
 {
-	SetSceneArg arg(SCENE_CHALLENGE_SELECT, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
+	SetSceneArg arg(SCENE_HIGH_SCORE, reinterpret_cast<og::Screen::DispMemberBase*>(&disp), 0, true);
 	if (mScreenMgr->setScene(arg)) {
 		return mScreenMgr->startScene(nullptr);
 	}
@@ -1893,7 +1893,7 @@ bool Game2DMgr::isEndHighScore()
 {
 	bool ret;
 	SceneType id = mScreenMgr->getSceneType();
-	if (id == SCENE_CHALLENGE_SELECT) {
+	if (id == SCENE_HIGH_SCORE) {
 		Morimura::DispMemberHighScore* disp = reinterpret_cast<Morimura::DispMemberHighScore*>(mScreenMgr->getDispMember());
 		ret                                 = disp->_0C;
 		disp->_0C                           = false;

@@ -1,6 +1,4 @@
 #include "kh/khDayEndResult.h"
-#include "types.h"
-#include "stream.h"
 
 namespace kh {
 namespace Screen {
@@ -12,11 +10,11 @@ namespace Screen {
 void MailSaveData::clear()
 {
 	for (int i = 0; i < 0x10; i++) {
-		_00[i] = 0;
+		m_pastLogs[i] = 0;
 	}
 
 	for (int i = 0; i < 0x14; i++) {
-		_10[i] = -1;
+		m_history[i] = -1;
 	}
 }
 
@@ -28,11 +26,11 @@ void MailSaveData::clear()
 void MailSaveData::read(Stream& stream)
 {
 	for (u32 i = 0; i < 0x10; i++) {
-		_00[i] = stream.readByte();
+		m_pastLogs[i] = stream.readByte();
 	}
 
 	for (s32 i = 0; i < 0x14; i++) {
-		_10[i] = stream.readByte();
+		m_history[i] = stream.readByte();
 	}
 }
 
@@ -44,11 +42,11 @@ void MailSaveData::read(Stream& stream)
 void MailSaveData::write(Stream& stream)
 {
 	for (u32 i = 0; i < 0x10; i++) {
-		stream.writeByte(_00[i]);
+		stream.writeByte(m_pastLogs[i]);
 	}
 
 	for (s32 i = 0; i < 0x14; i++) {
-		stream.writeByte(_10[i]);
+		stream.writeByte(m_history[i]);
 	}
 }
 
@@ -60,9 +58,9 @@ void MailSaveData::write(Stream& stream)
 void MailSaveData::set_history(s8 history)
 {
 	for (int i = 19; i; i--) {
-		_00[i + 16] = _00[i + 15];
+		m_pastLogs[i + 16] = m_pastLogs[i + 15];
 	}
-	_10[0] = history;
+	m_history[0] = history;
 }
 } // namespace Screen
 } // namespace kh

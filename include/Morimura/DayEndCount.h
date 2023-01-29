@@ -27,7 +27,7 @@ struct TChallengeEndCount2p;
 struct TDayEndCount : public TTestBase {
 	TDayEndCount();
 
-	virtual ~TDayEndCount();                                 // _08 (weak)
+	virtual ~TDayEndCount() { }                              // _08 (weak)
 	virtual bool doStart(const ::Screen::StartSceneArg*);    // _44 (weak)
 	virtual void doCreate(JKRArchive*);                      // _4C
 	virtual bool doUpdate();                                 // _58
@@ -60,17 +60,18 @@ struct TDayEndCount : public TTestBase {
 	f32 mOffsetY;                                   // _D0
 };
 
-struct TCountDownScene : public Screen::SceneBase {
-	virtual SceneType getSceneType();             // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();           // _0C (weak)
-	virtual ScreenMemberID getMemberID();         // _10 (weak)
-	virtual const char* getResName() const;       // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);        // _20 (weak)
-	virtual bool doStart(Screen::StartSceneArg*); // _3C
+struct TCountDownScene : public THIOScene {
+	TCountDownScene() { mChallengeEndCount2p = nullptr; }
+
+	virtual SceneType getSceneType() { return SCENE_COUNT_DOWN; }         // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }             // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_COUNT; } // _10 (weak)
+	virtual const char* getResName() const { return "res_ground.szs"; }   // _1C (weak)
+	virtual void doCreateObj(JKRArchive*);                                // _20 (weak)
+	virtual bool doStart(Screen::StartSceneArg*);                         // _3C
 
 	// _00      = VTBL
-	// _00-_220 = Screen::SceneBase
-	TDayEndCount* mDayEndCount;                 // _220
+	// _00-_220 = Morimura::THIOScene
 	TChallengeEndCount2p* mChallengeEndCount2p; // _224
 };
 

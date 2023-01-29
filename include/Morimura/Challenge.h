@@ -204,7 +204,7 @@ struct TChallengeResult : public TTestBase {
 struct TChallengeSelect : public TTestBase {
 	TChallengeSelect();
 
-	virtual ~TChallengeSelect();                             // _08 (weak)
+	virtual ~TChallengeSelect() { }                          // _08 (weak)
 	virtual void doCreate(JKRArchive*);                      // _4C
 	virtual bool doUpdate();                                 // _58
 	virtual void doUpdateFadeoutFinish();                    // _64
@@ -230,12 +230,12 @@ struct TChallengeSelect : public TTestBase {
 };
 
 struct TChallengeResultScene : public THIOScene {
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20 (weak)
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
+	virtual SceneType getSceneType() { return SCENE_CHALLENGE_RESULT; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }                // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_CHALLENGE_RESULT; } // _10 (weak)
+	virtual const char* getResName() const { return ""; }                    // _1C (weak)
+	virtual void doCreateObj(JKRArchive*) { }                                // _20 (weak)
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                  // _24
 
 	// _00      = VTBL
 	// _00-_224 = THIOScene
@@ -243,12 +243,13 @@ struct TChallengeResultScene : public THIOScene {
 };
 
 struct TChallengeSelectScene : public THIOScene {
-	virtual SceneType getSceneType();             // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();           // _0C (weak)
-	virtual ScreenMemberID getMemberID();         // _10 (weak)
-	virtual const char* getResName() const;       // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);        // _20 (weak)
-	virtual bool doStart(Screen::StartSceneArg*); // _3C
+	TChallengeSelectScene() { mConfirmEndWindow = nullptr; }
+	virtual SceneType getSceneType() { return SCENE_CHALLENGE_SELECT; }          // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }                    // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_CHALLENGE_SELECT; }     // _10 (weak)
+	virtual const char* getResName() const { return "res_challengeSelect.szs"; } // _1C (weak)
+	virtual void doCreateObj(JKRArchive*);                                       // _20 (weak)
+	virtual bool doStart(Screen::StartSceneArg*);                                // _3C
 
 	// _00      = VTBL
 	// _00-_224 = THIOScene
