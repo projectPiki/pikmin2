@@ -35,10 +35,10 @@ struct TNode : public DNode {
 	// _00     = VTBL
 	// _00-_2C = DNode
 	JUTTexture* mTexture;              // _2C
-	int _30;                           // _30
-	int mIsLost;                       // _34
-	int mPokoValue;                    // _38
-	int mQuantity;                     // _3C
+	int mQuantity;                     // _30, how many of the treasure were collected
+	int mLostNum;                      // _34, how many were lost in the event the cave failed
+	int mTotalPokos;                   // _38, the total pokos when accounting for how many of the treasure you got
+	int mPokoValue;                    // _3C, the direct value of just one of the treasure
 	u64 mMesgTag;                      // _40
 	kh::Screen::LostItemMgr* mItemMgr; // _48
 };

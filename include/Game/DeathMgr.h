@@ -12,13 +12,13 @@ struct DeathCounter {
 	 * @fabricated
 	 */
 	enum CauseOfDeath {
-		COD_Unknown0 = 0,
-		COD_Unknown1,
-		COD_Unknown2,
+		COD_Battle = 0,
+		COD_Sunset,
+		COD_Fire,
 		COD_Water,
-		COD_Unknown4,
-		COD_Unknown5,
-		COD_Unknown6,
+		COD_Electricity,
+		COD_Explosion,
+		COD_Poison,
 		COD_All,                  // All causes combined
 		COD_SourceCount = COD_All // Count of individual causes
 	};

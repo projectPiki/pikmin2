@@ -45,35 +45,12 @@ struct MailSaveData {
 struct IncP {
 	IncP();
 
-	int mYesterdayRed;         // _00
-	int mYesterdayYellow;      // _04
-	int mYesterdayBlue;        // _08
-	int mYesterdayWhite;       // _0C
-	int mYesterdayPurple;      // _10
-	int mYesterdayTotal;       // _14
-	int mTodayRed;             // _18
-	int mTodayYellow;          // _1C
-	int mTodayBlue;            // _20
-	int mTodayWhite;           // _24
-	int mTodayPurple;          // _28
-	int mTodayTotal;           // _2C
-	int _30;                   // _30, deaths from ?
-	int _34;                   // _34, deaths from ?
-	int _38;                   // _38, deaths from ?
-	int mDeathsFromWaterToday; // _3C
-	int _40;                   // _40, deaths from ?
-	int _44;                   // _44, deaths from ?
-	int _48;                   // _48, deaths from ?
-	int mTotalDeathsToday;     // _4C
-	int _50;                   // _50, deaths from ? total?
-	int _54;                   // _54, deaths from ? total?
-	int _58;                   // _58, deaths from ? total?
-	int mDeathsFromWaterTotal; // _5C
-	int _60;                   // _60, deaths from ? total?
-	int _64;                   // _64, deaths from ? total?
-	int _68;                   // _68, deaths from ? total?
-	int mTotalDeaths;          // _6C
-	u8 mPikminUnlockedFlag;    // _70
+	// probably use enum for piki count?
+	int mYesterdayPikiCounts[6]; // _00, 0 = red; 1 = yellow; 2 = blue; 3 = white; 4 = purple
+	int mTodayPikiCounts[6];     // _18, 0 = red; 1 = yellow; 2 = blue; 3 = white; 4 = purple
+	int mTodayPikiDeaths[8];     // _30
+	int mTotalPikiDeaths[8];     // _50
+	u8 mPikminUnlockedFlag;      // _70
 };
 
 ////////////////////////////////////////////
@@ -104,13 +81,13 @@ struct DispDayEndResultItem : public og::Screen::DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	Game::Result::TNode* mResultNode; // _08
-	u32 _0C;                          // _0C, unknown
-	u32 _10;                          // _10, unknown
-	int _14;                          // _14
-	int _18;                          // _18
-	int _1C;                          // _1C
-	bool _20;                         // _20
-	bool _21;                         // _21
+	u32 mNodeCount;                   // _0C
+	u32 mTodaysTreasureAmount;        // _10
+	int mTodaysPokoAmount;            // _14
+	int mTotalTreasureNum;            // _18
+	int mTotalPokos;                  // _1C
+	bool mPayedDebt;                  // _20
+	bool mHasNothing;                 // _21
 };
 
 // Mail screen
@@ -124,11 +101,11 @@ struct DispDayEndResultMail : public og::Screen::DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	JKRHeap* mHeap;             // _08
-	u32 _0C;                    // _0C, unknown
+	JKRHeap* mBackupHeap;       // _0C
 	MailCategory mMailCategory; // _10
 	u32 _14;                    // _14, unknown
 	u8 _18;                     // _18
-	int _1C;                    // _1C
+	int mTodayMailID;           // _1C
 	uint mDayCount;             // _20
 };
 
@@ -168,7 +145,7 @@ struct SArgDayEndResultBase : public ::Screen::StartSceneArg {
 
 	// _00 = VTBL
 	// _00-_04 = Screen::StartSceneArg
-	int _04; // _04
+	u8 _04; // _04
 };
 
 struct SArgDayEndResultIncP : public SArgDayEndResultBase {
@@ -202,7 +179,7 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	ObjDayEndResultBase();
 
 	struct StartSceneArg : public ::Screen::StartSceneArg {
-		int _00;
+		u8 _00;
 	};
 
 	virtual ~ObjDayEndResultBase() { }                    // _08 (weak)
@@ -239,7 +216,7 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	J2DAnmColor* mResultTitleAnmColor;         // _40
 	f32 _44;                                   // _44
 	f32 _48;                                   // _48
-	P2DScreen::Mgr_tuning* _4C;                // _4C
+	P2DScreen::Mgr_tuning* mScreenMain;        // _4C
 	J2DAnmTransform* _50;                      // _50
 	J2DAnmTransform* _54;                      // _54
 	J2DAnmTextureSRTKey* _58;                  // _58
@@ -248,7 +225,7 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	f32 _64;                                   // _64
 	f32 _68;                                   // _68
 	f32 _6C;                                   // _6C
-	P2DScreen::Mgr_tuning* _70;                // _70
+	P2DScreen::Mgr_tuning* mScreenStars;       // _70
 	J2DAnmColor* _74;                          // _74
 	f32 _78;                                   // _78
 	f32 _7C;                                   // _7C

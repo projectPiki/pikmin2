@@ -21,24 +21,24 @@ static void _Printf(char* format) { OSReport(format, __FILE__); }
  * Address:	8040284C
  * Size:	00008C
  */
-DispDayEndResultItem::DispDayEndResultItem(Game::Result::TNode* resultNode, int p1, int p2, bool check)
+DispDayEndResultItem::DispDayEndResultItem(Game::Result::TNode* resultNode, int treasures, int pokos, bool payDebt)
 {
-	mResultNode = resultNode;
-	_14         = 0;
-	_10         = 0;
-	_0C         = 0;
+	mResultNode           = resultNode;
+	mTodaysPokoAmount     = 0;
+	mTodaysTreasureAmount = 0;
+	mNodeCount            = 0;
 
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, node)
 	{
-		_0C++;
-		_10 += node->_30;
-		_14 += node->mPokoValue;
+		mNodeCount++;
+		mTodaysTreasureAmount += node->mQuantity;
+		mTodaysPokoAmount += node->mTotalPokos;
 	}
 
-	_18 = p1;
-	_1C = p2;
-	_20 = check;
-	_21 = 0;
+	mTotalTreasureNum = treasures;
+	mTotalPokos       = pokos;
+	mPayedDebt        = payDebt;
+	mHasNothing       = false;
 }
 
 /*
@@ -48,70 +48,54 @@ DispDayEndResultItem::DispDayEndResultItem(Game::Result::TNode* resultNode, int 
  */
 IncP::IncP()
 {
-	mYesterdayRed    = 0;
-	mYesterdayYellow = 0;
-	mYesterdayBlue   = 0;
-	mYesterdayWhite  = 0;
-	mYesterdayPurple = 0;
-	mYesterdayTotal  = 0;
+	for (int i = 0; i < 6; i++) {
+		mYesterdayPikiCounts[i] = 0;
+	}
 
-	mTodayRed    = 0;
-	mTodayYellow = 0;
-	mTodayBlue   = 0;
-	mTodayWhite  = 0;
-	mTodayPurple = 0;
-	mTodayTotal  = 0;
+	for (int i = 0; i < 6; i++) {
+		mTodayPikiCounts[i] = 0;
+	}
 
-	_30                   = 0;
-	_34                   = 0;
-	_38                   = 0;
-	mDeathsFromWaterToday = 0;
-	_40                   = 0;
-	_44                   = 0;
-	_48                   = 0;
-	mTotalDeathsToday     = 0;
+	for (int i = 0; i < 8; i++) {
+		mTodayPikiDeaths[i] = 0;
+	}
 
-	_50                   = 0;
-	_54                   = 0;
-	_58                   = 0;
-	mDeathsFromWaterTotal = 0;
-	_60                   = 0;
-	_64                   = 0;
-	_68                   = 0;
-	mTotalDeaths          = 0;
+	for (int i = 0; i < 8; i++) {
+		mTotalPikiDeaths[i] = 0;
+	}
 
-	mYesterdayRed    = Game::playData->getPikminCount_Yesterday(Game::Red);
-	mYesterdayYellow = Game::playData->getPikminCount_Yesterday(Game::Yellow);
-	mYesterdayBlue   = Game::playData->getPikminCount_Yesterday(Game::Blue);
-	mYesterdayWhite  = Game::playData->getPikminCount_Yesterday(Game::White);
-	mYesterdayPurple = Game::playData->getPikminCount_Yesterday(Game::Purple);
-	mYesterdayTotal  = Game::playData->getPikminCount_Yesterday(Game::AllPikmin);
+	mYesterdayPikiCounts[0] = Game::playData->getPikminCount_Yesterday(Game::Red);
+	mYesterdayPikiCounts[1] = Game::playData->getPikminCount_Yesterday(Game::Yellow);
+	mYesterdayPikiCounts[2] = Game::playData->getPikminCount_Yesterday(Game::Blue);
+	mYesterdayPikiCounts[3] = Game::playData->getPikminCount_Yesterday(Game::White);
+	mYesterdayPikiCounts[4] = Game::playData->getPikminCount_Yesterday(Game::Purple);
+	mYesterdayPikiCounts[5] = Game::playData->getPikminCount_Yesterday(Game::AllPikmin);
 
-	mTodayRed    = Game::playData->getPikminCount_Today(Game::Red);
-	mTodayYellow = Game::playData->getPikminCount_Today(Game::Yellow);
-	mTodayBlue   = Game::playData->getPikminCount_Today(Game::Blue);
-	mTodayWhite  = Game::playData->getPikminCount_Today(Game::White);
-	mTodayPurple = Game::playData->getPikminCount_Today(Game::Purple);
-	mTodayTotal  = Game::playData->getPikminCount_Today(Game::AllPikmin);
+	mTodayPikiCounts[0] = Game::playData->getPikminCount_Today(Game::Red);
+	mTodayPikiCounts[1] = Game::playData->getPikminCount_Today(Game::Yellow);
+	mTodayPikiCounts[2] = Game::playData->getPikminCount_Today(Game::Blue);
+	mTodayPikiCounts[3] = Game::playData->getPikminCount_Today(Game::White);
+	mTodayPikiCounts[4] = Game::playData->getPikminCount_Today(Game::Purple);
+	mTodayPikiCounts[5] = Game::playData->getPikminCount_Today(Game::AllPikmin);
 
-	_30                   = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown0);
-	_34                   = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown1);
-	_38                   = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown2);
-	mDeathsFromWaterToday = Game::deathMgr->get_today(Game::DeathCounter::COD_Water);
-	_40                   = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown4);
-	_44                   = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown5);
-	_48                   = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown6);
-	mTotalDeathsToday     = Game::deathMgr->get_today(Game::DeathCounter::COD_All);
+	mTodayPikiDeaths[0] = Game::deathMgr->get_today(Game::DeathCounter::COD_Battle);
+	mTodayPikiDeaths[1] = Game::deathMgr->get_today(Game::DeathCounter::COD_Sunset);
+	mTodayPikiDeaths[2] = Game::deathMgr->get_today(Game::DeathCounter::COD_Fire);
+	mTodayPikiDeaths[3] = Game::deathMgr->get_today(Game::DeathCounter::COD_Water);
+	mTodayPikiDeaths[4] = Game::deathMgr->get_today(Game::DeathCounter::COD_Electricity);
+	mTodayPikiDeaths[5] = Game::deathMgr->get_today(Game::DeathCounter::COD_Explosion);
+	mTodayPikiDeaths[6] = Game::deathMgr->get_today(Game::DeathCounter::COD_Poison);
+	mTodayPikiDeaths[7] = Game::deathMgr->get_today(Game::DeathCounter::COD_All);
 	Game::deathMgr->account_today();
 
-	_50                   = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown0);
-	_54                   = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown1);
-	_58                   = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown2);
-	mDeathsFromWaterTotal = Game::deathMgr->get_total(Game::DeathCounter::COD_Water);
-	_60                   = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown4);
-	_64                   = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown5);
-	_68                   = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown6);
-	mTotalDeaths          = Game::deathMgr->get_total(Game::DeathCounter::COD_All);
+	mTotalPikiDeaths[0] = Game::deathMgr->get_total(Game::DeathCounter::COD_Battle);
+	mTotalPikiDeaths[1] = Game::deathMgr->get_total(Game::DeathCounter::COD_Sunset);
+	mTotalPikiDeaths[2] = Game::deathMgr->get_total(Game::DeathCounter::COD_Fire);
+	mTotalPikiDeaths[3] = Game::deathMgr->get_total(Game::DeathCounter::COD_Water);
+	mTotalPikiDeaths[4] = Game::deathMgr->get_total(Game::DeathCounter::COD_Electricity);
+	mTotalPikiDeaths[5] = Game::deathMgr->get_total(Game::DeathCounter::COD_Explosion);
+	mTotalPikiDeaths[6] = Game::deathMgr->get_total(Game::DeathCounter::COD_Poison);
+	mTotalPikiDeaths[7] = Game::deathMgr->get_total(Game::DeathCounter::COD_All);
 
 	mPikminUnlockedFlag = (Game::playData->hasContainer(Game::Red)) | (Game::playData->hasContainer(Game::Yellow) << 1)
 	                    | (Game::playData->hasContainer(Game::Blue) << 2) | (Game::playData->hasContainer(Game::White) << 3)
@@ -140,11 +124,11 @@ DispDayEndResultIncP::DispDayEndResultIncP(const IncP* incP)
 DispDayEndResultMail::DispDayEndResultMail(JKRHeap* heap, MailCategory category)
 {
 	mHeap         = heap;
-	_0C           = 0;
+	mBackupHeap   = nullptr;
 	mMailCategory = category;
 	_14           = 0;
 	_18           = 0;
-	_1C           = -1;
+	mTodayMailID  = -1;
 	mDayCount     = Game::gameSystem->mTimeMgr->mDayCount;
 }
 
@@ -158,12 +142,12 @@ ObjDayEndResultBase::ObjDayEndResultBase()
 	mResultTitleMgr          = nullptr;
 	mResultTitleAnmTransform = nullptr;
 	mResultTitleAnmColor     = nullptr;
-	_4C                      = nullptr;
+	mScreenMain              = nullptr;
 	_50                      = nullptr;
 	_54                      = nullptr;
 	_58                      = nullptr;
 	_5C                      = nullptr;
-	_70                      = nullptr;
+	mScreenStars             = nullptr;
 	_74                      = nullptr;
 	_78                      = nullptr;
 	_6C                      = 0.0f;
@@ -219,7 +203,7 @@ bool ObjDayEndResultBase::doStart(const ::Screen::StartSceneArg* sceneArg)
 	}
 
 	setFadeinFrm();
-	setInfAlpha(_70->search('Nall'));
+	setInfAlpha(mScreenStars->search('Nall'));
 
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 	return true;
@@ -246,12 +230,12 @@ bool ObjDayEndResultBase::doUpdateFadein()
 {
 	updateCommon();
 	_50->mCurrentFrame = _60;
-	J2DPane* itemPane  = _4C->search('NitemW');
+	J2DPane* itemPane  = mScreenMain->search('NitemW');
 	itemPane->animationTransform();
 
 	_60 += msVal._08;
 
-	J2DPane* allPane = _70->search('Nall');
+	J2DPane* allPane = mScreenStars->search('Nall');
 	allPane->setAlpha((_60 - _7C) / (_80 - _7C) * 255.0f);
 
 	return (u8)(_60 >= _80);
@@ -277,12 +261,12 @@ bool ObjDayEndResultBase::doUpdateFadeout()
 {
 	updateCommon();
 	_50->mCurrentFrame = _60;
-	J2DPane* itemPane  = _4C->search('NitemW');
+	J2DPane* itemPane  = mScreenMain->search('NitemW');
 	itemPane->animationTransform();
 
 	_60 += msVal._08;
 
-	J2DPane* allPane = _70->search('Nall');
+	J2DPane* allPane = mScreenStars->search('Nall');
 	allPane->setAlpha((1.0f - (_60 - _84) / (_88 - _84)) * 255.0f);
 
 	return (u8)(_60 >= _88);
@@ -301,10 +285,10 @@ void ObjDayEndResultBase::doDraw(Graphics& gfx)
 	mResultTitleMgr->draw(gfx, gfx.mOrthoGraph);
 
 	gfx.mOrthoGraph.setPort();
-	_70->setXY(msVal._14, 0.0f);
-	_70->draw(gfx, gfx.mOrthoGraph);
+	mScreenStars->setXY(msVal._14, 0.0f);
+	mScreenStars->draw(gfx, gfx.mOrthoGraph);
 
-	_4C->setXY(msVal._18, 0.0f);
+	mScreenMain->setXY(msVal._18, 0.0f);
 }
 
 /*
@@ -331,7 +315,7 @@ void ObjDayEndResultBase::updateCommon()
 
 	_58->mCurrentFrame = _68;
 	_5C->mCurrentFrame = _6C;
-	_4C->animation();
+	mScreenMain->animation();
 
 	_68++;
 	_6C++;
@@ -345,7 +329,7 @@ void ObjDayEndResultBase::updateCommon()
 	}
 
 	_54->mCurrentFrame = _64;
-	_4C->search('Ntitle')->animationTransform();
+	mScreenMain->search('Ntitle')->animationTransform();
 
 	_64++;
 
@@ -354,7 +338,7 @@ void ObjDayEndResultBase::updateCommon()
 	}
 
 	_74->mCurrentFrame = _78;
-	_70->animation();
+	mScreenStars->animation();
 
 	_78++;
 
@@ -445,8 +429,8 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 {
 	ObjDayEndResultBase::doCreate(archive);
 
-	_4C = new P2DScreen::Mgr_tuning;
-	_4C->set("result_item.blo", 0x00040000, archive);
+	mScreenMain = new P2DScreen::Mgr_tuning;
+	mScreenMain->set("result_item.blo", 0x00040000, archive);
 	void* resource = JKRFileLoader::getGlbResource("result_item.bck", archive);
 	_50            = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
 	_54            = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
@@ -455,97 +439,83 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 	_58 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item.btk", archive)));
 	_5C = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item.brk", archive)));
 
-	_4C->setAnimation(_58);
-	_4C->setAnimation(_5C);
+	mScreenMain->setAnimation(_58);
+	mScreenMain->setAnimation(_5C);
 
-	_4C->search('NitemW')->setAnimation(_50);
-	_4C->search('Ntitle')->setAnimation(_54);
-	_4C->search('N_3d')->setAnimation(_9C);
+	mScreenMain->search('NitemW')->setAnimation(_50);
+	mScreenMain->search('Ntitle')->setAnimation(_54);
+	mScreenMain->search('N_3d')->setAnimation(_9C);
 
-	_70 = new P2DScreen::Mgr_tuning;
-	_70->set("result_itemConstellation.blo", 0x40000, archive);
+	mScreenStars = new P2DScreen::Mgr_tuning;
+	mScreenStars->set("result_itemConstellation.blo", 0x40000, archive);
 
 	_74 = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_itemConstellation.bpk", archive)));
-	_70->setAnimation(_74);
+	mScreenStars->setAnimation(_74);
 
-	og::Screen::setCallBackMessage(_4C);
+	og::Screen::setCallBackMessage(mScreenMain);
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
 		JUT_PANICLINE(501, "disp member err");
 	}
 
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
-	if (dispResult->mItem._0C > 6) {
+	if (dispResult->mItem.mNodeCount > 6) {
 		mFlags |= 0x1;
-		_D8 = dispResult->mItem._0C - 6;
+		_D8 = dispResult->mItem.mNodeCount - 6;
 	}
 
-	f32 y1 = _4C->search('Nsetp00')->getBounds()->i.y;
-	f32 y2 = _4C->search('Nsetp01')->getBounds()->i.y;
+	f32 y1 = mScreenMain->search('Nsetp00')->getBounds()->i.y;
+	f32 y2 = mScreenMain->search('Nsetp01')->getBounds()->i.y;
 
 	_DC = y2 - y1;
 	_D4 = _DC * (1 - _E0);
 
 	u64 code;
-	if (dispResult->mItem._20) {
-		J2DPane* paneFinMen    = _4C->search('Nfin_men');
-		paneFinMen->mIsVisible = false;
-
-		J2DPane* paneCoMenu    = _4C->search('Nco_menu');
-		paneCoMenu->mIsVisible = true;
-
+	if (dispResult->mItem.mPayedDebt) {
+		mScreenMain->search('Nfin_men')->hide();
+		mScreenMain->search('Nco_menu')->show();
 		code = 'Pcomp01';
 	} else {
-		J2DPane* paneFinMen    = _4C->search('Nfin_men');
-		paneFinMen->mIsVisible = true;
-
-		J2DPane* paneCoMenu    = _4C->search('Nco_menu');
-		paneCoMenu->mIsVisible = false;
-
+		mScreenMain->search('Nfin_men')->show();
+		mScreenMain->search('Nco_menu')->hide();
 		code = 'Pfin01';
 	}
 
 	_C8 = 0;
-	_C4 = dispResult->mItem._1C - dispResult->mItem._14;
+	_C4 = dispResult->mItem.mTotalPokos - dispResult->mItem.mTodaysPokoAmount;
 
-	_A4 = og::Screen::setCallBack_CounterRV(_4C, 'Ptokyop1', &_C8, 9, true, false, archive);
+	_A4 = og::Screen::setCallBack_CounterRV(mScreenMain, 'Ptokyop1', &_C8, 9, true, false, archive);
 
-	_A8 = og::Screen::setCallBack_CounterRV(_4C, code, &_C4, 9, true, false, archive);
+	_A8 = og::Screen::setCallBack_CounterRV(mScreenMain, code, &_C4, 9, true, false, archive);
 
-	_AC = og::Screen::setCallBack_CounterRV(_4C, 'Pmad00_1', &_CC, 9, false, false, archive);
+	_AC = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pmad00_1', &_CC, 9, false, false, archive);
 
-	_B0 = og::Screen::setCallBack_CounterRV(_4C, 'Pmad01_1', &_D0, 9, false, false, archive);
+	_B0 = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pmad01_1', &_D0, 9, false, false, archive);
 
-	og::Screen::CallBack_Picture* callback = og::Screen::setCallBack_3DStick(archive, _4C, 'P3d');
+	og::Screen::CallBack_Picture* callback = og::Screen::setCallBack_3DStick(archive, mScreenMain, 'P3d');
 	mStickAnimMgr                          = new og::Screen::StickAnimMgr(callback);
 	mStickAnimMgr->stickUpDown();
 
-	_BC = khUtilFadePane::create(_4C, 'Nyame_u', 16);
+	_BC = khUtilFadePane::create(mScreenMain, 'Nyame_u', 16);
 	_BC->fadeout();
 
-	_C0 = khUtilFadePane::create(_4C, 'Nyame_l', 16);
+	_C0 = khUtilFadePane::create(mScreenMain, 'Nyame_l', 16);
 	_C0->fadeout();
 
-	_B8 = khUtilFadePane::create(_4C, 'P3d', 16);
-	_B8->add(_4C->search('N_3d'));
+	_B8 = khUtilFadePane::create(mScreenMain, 'P3d', 16);
+	_B8->add(mScreenMain->search('N_3d'));
 	_B8->fadeout();
 
-	J2DPane* paneSetp02    = _4C->search('Nsetp02');
-	paneSetp02->mIsVisible = false;
-	J2DPane* paneSetp03    = _4C->search('Nsetp03');
-	paneSetp03->mIsVisible = false;
-	J2DPane* paneSetp04    = _4C->search('Nsetp04');
-	paneSetp04->mIsVisible = false;
-	J2DPane* paneSetp05    = _4C->search('Nsetp05');
-	paneSetp05->mIsVisible = false;
+	mScreenMain->search('Nsetp02')->hide();
+	mScreenMain->search('Nsetp03')->hide();
+	mScreenMain->search('Nsetp04')->hide();
+	mScreenMain->search('Nsetp05')->hide();
+	mResultTitleMgr->search('Nbtn1')->hide();
 
-	J2DPane* paneNbtn1    = mResultTitleMgr->search('Nbtn1');
-	paneNbtn1->mIsVisible = false;
-
-	if (dispResult->mItem._21) {
+	if (dispResult->mItem.mHasNothing) {
 		mStatus = ITEMSTATUS_Normal;
-		_C8     = dispResult->mItem._14;
-		_C4     = dispResult->mItem._1C;
+		_C8     = dispResult->mItem.mTodaysPokoAmount;
+		_C4     = dispResult->mItem.mTotalPokos;
 		_A4->show();
 		_A8->show();
 		mNextBtnFadePane->fadein();
@@ -558,7 +528,7 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 		mFlags |= 0x40;
 	}
 
-	dispResult->mItem._21 = true;
+	dispResult->mItem.mHasNothing = true;
 }
 
 /*
@@ -586,7 +556,7 @@ bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 
 	_60 = _7C;
 
-	J2DPane* pane = _70->search('Nall');
+	J2DPane* pane = mScreenStars->search('Nall');
 	setInfAlpha(pane);
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 	return true;
@@ -601,12 +571,11 @@ bool ObjDayEndResultItem::doUpdateFadein()
 {
 	updateCommon();
 	_50->mCurrentFrame = _60;
-	_4C->search('NitemW')->animationTransform();
+	mScreenMain->search('NitemW')->animationTransform();
 
 	_60 += ObjDayEndResultBase::msVal._08;
 
-	J2DPane* pane = _70->search('Nall');
-	pane->setAlpha((_60 - _7C) / (_80 - _7C) * 255.0f);
+	mScreenStars->search('Nall')->setAlpha((_60 - _7C) / (_80 - _7C) * 255.0f);
 
 	bool result;
 	if (_60 >= _80) {
@@ -615,7 +584,7 @@ bool ObjDayEndResultItem::doUpdateFadein()
 		result = false;
 	}
 
-	_4C->update();
+	mScreenMain->update();
 	return result;
 }
 
@@ -627,7 +596,7 @@ bool ObjDayEndResultItem::doUpdateFadein()
 bool ObjDayEndResultItem::doUpdate()
 {
 	updateCommon();
-	_4C->update();
+	mScreenMain->update();
 
 	switch (mStatus) {
 	case ITEMSTATUS_Normal:
@@ -679,8 +648,8 @@ bool ObjDayEndResultItem::doUpdate()
 		}
 
 		DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
-		_C8                          = dispResult->mItem._14;
-		_C4                          = dispResult->mItem._1C;
+		_C8                          = dispResult->mItem.mTodaysPokoAmount;
+		_C4                          = dispResult->mItem.mTotalPokos;
 		_A4->startPuyoUp(1.0f);
 		_A8->startPuyoUp(1.0f);
 		mNextBtnFadePane->fadein();
@@ -700,11 +669,11 @@ bool ObjDayEndResultItem::doUpdateFadeout()
 {
 	updateCommon();
 	_50->mCurrentFrame = _60;
-	_4C->search('NitemW')->animationTransform();
+	mScreenMain->search('NitemW')->animationTransform();
 
 	_60 += ObjDayEndResultBase::msVal._08;
 
-	J2DPane* pane = _70->search('Nall');
+	J2DPane* pane = mScreenStars->search('Nall');
 	pane->setAlpha((1.0f - (_60 - _84) / (_88 - _84)) * 255.0f);
 
 	bool result;
@@ -714,7 +683,7 @@ bool ObjDayEndResultItem::doUpdateFadeout()
 		result = false;
 	}
 
-	_4C->update();
+	mScreenMain->update();
 	return result;
 }
 
@@ -734,24 +703,24 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	}
 
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
-	J2DPane* pane1               = _4C->search('NALL2');
-	J2DPane* pane2               = _4C->search('N_3d');
+	J2DPane* pane1               = mScreenMain->search('NALL2');
+	J2DPane* pane2               = mScreenMain->search('N_3d');
 
 	J2DPane* panes[2] = { const_cast<J2DPane*>(bufferPanes[0]), const_cast<J2DPane*>(bufferPanes[1]) };
 
-	panes[0]       = _4C->search('Nsetp00');
-	J2DPane* pane3 = _4C->search('Nsetp01');
+	panes[0]       = mScreenMain->search('Nsetp00');
+	J2DPane* pane3 = mScreenMain->search('Nsetp01');
 
 	u64 icons[2] = { 'iPicon00', 'iPicon01' };
 	u64 names[2] = { 'Piname00', 'Piname01' };
 
-	pane1->mIsVisible    = true;
-	pane2->mIsVisible    = false;
-	panes[0]->mIsVisible = false;
-	pane3->mIsVisible    = false;
-	panes[1]             = pane3;
+	pane1->show();
+	pane2->hide();
+	panes[0]->hide();
+	pane3->hide();
+	panes[1] = pane3;
 
-	_4C->draw(gfx, gfx.mOrthoGraph);
+	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 	u32 left   = 0;
 	u32 top    = 0;
 	u32 width  = 0;
@@ -759,8 +728,8 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	GXSetScissor(left, top, width, height);
 	GXSetScissor(left, _EC, width, _F0);
 
-	pane1->mIsVisible = false;
-	pane2->mIsVisible = false;
+	pane1->hide();
+	pane2->hide();
 
 	f32 p1 = 2.0f * _DC;
 
@@ -769,8 +738,8 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	}
 
 	for (int i = 0; i < 2; i++) {
-		_4C->search(icons[i])->mIsVisible = true;
-		_4C->search(names[i])->mIsVisible = true;
+		mScreenMain->search(icons[i])->show();
+		mScreenMain->search(names[i])->show();
 		_AC->show();
 	}
 
@@ -783,12 +752,12 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 			continue;
 		}
 
-		panes[i]->mIsVisible     = true;
-		panes[i + 1]->mIsVisible = false;
+		panes[i]->show();
+		panes[i + 1]->hide();
 		panes[i % 2]->add(0.0f, p1);
 
 		JUTTexture* texture = resultNode->mTexture;
-		setTex(_4C, icons[i], texture->_20);
+		setTex(mScreenMain, icons[i], texture->_20);
 	}
 	/*
 stwu     r1, -0xa0(r1)
@@ -1370,8 +1339,8 @@ void ObjDayEndResultItem::statusForceScroll()
 			Game::Result::TNode* resultNode = static_cast<Game::Result::TNode*>(dispResult->mItem.mResultNode->mChild);
 			for (resultNode; resultNode && i != _E0 + 6; resultNode = static_cast<Game::Result::TNode*>(resultNode->mNext), i++) { }
 
-			if (resultNode && resultNode->mIsLost == 0) {
-				_C8 += resultNode->mPokoValue;
+			if (resultNode && resultNode->mLostNum == 0) {
+				_C8 += resultNode->mTotalPokos;
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_COIN_COUNT, 0);
 			}
 			_E8 = 1;
@@ -1406,7 +1375,7 @@ void ObjDayEndResultItem::statusTotalValue()
 		}
 
 		DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
-		_C4                          = dispResult->mItem._1C;
+		_C4                          = dispResult->mItem.mTotalPokos;
 		_A8->startPuyoUp(1.0f);
 		mNextBtnFadePane->fadein();
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
@@ -1426,18 +1395,18 @@ void ObjDayEndResultItem::updateCommon()
 {
 	ObjDayEndResultBase::updateCommon();
 
-	Vector3f topLeft    = _4C->search('Nmask')->getGlbVtx(J2DPOS_TopLeft);
-	Vector3f centerLeft = _4C->search('Nmask')->getGlbVtx(J2DPOS_CenterLeft);
+	Vector3f topLeft    = mScreenMain->search('Nmask')->getGlbVtx(J2DPOS_TopLeft);
+	Vector3f centerLeft = mScreenMain->search('Nmask')->getGlbVtx(J2DPOS_CenterLeft);
 
 	// this is so dumb. SO DUMB.
 	f32 yTop;
 	_EC = 0.5f + (yTop = topLeft.y);
 	_F0 = centerLeft.y - yTop;
 
-	_4C->animation();
+	mScreenMain->animation();
 
 	_9C->mCurrentFrame = _A0;
-	_4C->search('N_3d')->animationTransform();
+	mScreenMain->search('N_3d')->animationTransform();
 
 	_A0++;
 	if (_A0 >= _9C->mMaxFrame) {
@@ -1481,24 +1450,24 @@ ObjDayEndResultIncP::ObjDayEndResultIncP()
 	_134 = 0;
 	_138 = 0;
 
-	mStatus   = INCPSTATUS_Slot;
-	_4C       = nullptr;
-	_A0       = nullptr;
-	_9C       = nullptr;
-	_A4       = 399.0f;
-	_A8       = 404.0f;
-	_AC       = nullptr;
-	_B8       = 10;
-	_B4       = nullptr;
-	_B0       = nullptr;
-	mScaleMgr = nullptr;
-	_154      = ObjDayEndResultBase::msVal._50;
-	_13C[0]   = 0.0f;
-	_13C[1]   = 0.0f;
-	_13C[2]   = 0.0f;
-	_13C[3]   = 0.0f;
-	_13C[4]   = 0.0f;
-	_13C[5]   = 0.0f;
+	mStatus     = INCPSTATUS_Slot;
+	mScreenMain = nullptr;
+	_A0         = nullptr;
+	_9C         = nullptr;
+	_A4         = 399.0f;
+	_A8         = 404.0f;
+	_AC         = nullptr;
+	_B8         = 10;
+	_B4         = nullptr;
+	_B0         = nullptr;
+	mScaleMgr   = nullptr;
+	_154        = ObjDayEndResultBase::msVal._50;
+	_13C[0]     = 0.0f;
+	_13C[1]     = 0.0f;
+	_13C[2]     = 0.0f;
+	_13C[3]     = 0.0f;
+	_13C[4]     = 0.0f;
+	_13C[5]     = 0.0f;
 }
 
 /*
@@ -3421,7 +3390,7 @@ void ObjDayEndResultIncP::doDraw(Graphics& gfx)
 	ObjDayEndResultBase::doDraw(gfx);
 
 	gfx.mOrthoGraph.setPort();
-	_4C->draw(gfx, gfx.mOrthoGraph);
+	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 }
 
 /*
@@ -6286,14 +6255,14 @@ void ObjDayEndResultMail::doDraw(Graphics& gfx)
 	ObjDayEndResultBase::doDraw(gfx);
 
 	gfx.mOrthoGraph.setPort();
-	_4C->draw(gfx, gfx.mOrthoGraph);
+	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 
 	gfx.mOrthoGraph.setPort();
 	_9C->draw(gfx, gfx.mOrthoGraph);
 
 	if (mFlags & 0x4) {
 		gfx.mPerspGraph.setPort();
-		_4C->search('Nsetpoin');
+		mScreenMain->search('Nsetpoin');
 		mSaveMgr->draw();
 	}
 }

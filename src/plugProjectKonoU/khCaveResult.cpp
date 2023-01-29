@@ -49,13 +49,13 @@ void DispCaveResult::init(Game::Result::TNode* node, u32 death, bool caveComp)
 
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		if (cNode->mQuantity > 0 || cNode->mIsLost != 0) {
+		if (cNode->mQuantity > 0 || cNode->mLostNum != 0) {
 			_14++;
 		}
 		mTreasureNodeCount++;
-		mLostTreasures += cNode->mIsLost;
+		mLostTreasures += cNode->mLostNum;
 
-		if (cNode->mQuantity > 0 || !cNode->mIsLost) {
+		if (cNode->mQuantity > 0 || !cNode->mLostNum) {
 			mCavePokos += cNode->mPokoValue;
 		}
 	}
@@ -190,7 +190,7 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 	Game::Result::TNode* cNode = static_cast<Game::Result::TNode*>(mResultNode->mChild);
 
 	while (cNode) {
-		cNode->mItemMgr = new kh::Screen::LostItemMgr(cNode->mIsLost);
+		cNode->mItemMgr = new kh::Screen::LostItemMgr(cNode->mLostNum);
 		cNode           = static_cast<Game::Result::TNode*>(cNode->mNext);
 	}
 
@@ -450,14 +450,14 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 			paneList[isOdd]->add(0.0f, offs);
 		} else {
 			if (((int)cNode->mItemMgr->mFlags & LOSTITEM_Unk2) == 2) {
-				if (cNode->mQuantity < 0) {
+				if (cNode->mPokoValue < 0) {
 					next = 0;
 				} else {
-					next = cNode->_30 * cNode->mQuantity;
+					next = cNode->mQuantity * cNode->mPokoValue;
 				}
 				setAlpha(isOdd, 48);
 			} else {
-				next = cNode->getNextIndex(cNode->_30, cNode->mIsLost);
+				next = cNode->getNextIndex(cNode->mQuantity, cNode->mLostNum);
 				setAlpha(isOdd, 255);
 			}
 			paneList[isOdd]->hide();
@@ -1209,7 +1209,7 @@ void ObjCaveResult::statusForceScroll()
 			mScrollMoveTimer = 1;
 			FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 			{
-				if ((cNode->mItemMgr->mFlags & LOSTITEM_Unk2 != 2) && cNode->mIsLost) {
+				if ((cNode->mItemMgr->mFlags & LOSTITEM_Unk2 != 2) && cNode->mLostNum) {
 					mStatus           = CAVERES_Lost;
 					check             = true;
 					mChangeStateDelay = 0;
@@ -1226,11 +1226,11 @@ void ObjCaveResult::statusForceScroll()
 			for (int i = 0; node && i != mScrollSelIndex + 6; i++) {
 				node = static_cast<Game::Result::TNode*>(node->mNext);
 			}
-			if (node && !node->mIsLost) {
-				if (node->mQuantity > 0) {
+			if (node && !node->mLostNum) {
+				if (node->mPokoValue > 0) {
 					mOtakaraCount++;
 				}
-				if (node->mQuantity > 0 || !node->mIsLost) {
+				if (node->mPokoValue > 0 || !node->mLostNum) {
 					mCavePokos += node->mPokoValue;
 				}
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_COIN_COUNT, 0);
@@ -1541,7 +1541,7 @@ void ObjCaveResult::statusLost()
 		JGeometry::TVec2f pos(_100, _FC);
 		FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 		{
-			if (cNode->mIsLost != 0 && ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {
+			if (cNode->mLostNum != 0 && ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {
 				pos.y = mScrollUpDown * (f32)(i - 3 - mScrollSelIndexMax) + _100;
 				cNode->mItemMgr->init(pos, i & 1);
 				mChangeStateDelay = mScrollTargetDist;
