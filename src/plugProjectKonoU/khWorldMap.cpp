@@ -3118,7 +3118,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	}
 	case WMAP_InputTarget: {
 		int map = getTarget();
-		// a new course was or wasnt selected
+		// a new course was or wasn't selected
 		if (map < 0 || map > mOpenCourses || map == mCurrentCourseIndex) {
 			f32 x = getPaneCenterX(cWaitPane) - mRocketPosition.x;
 			f32 y = getPaneCenterY(cWaitPane) - mRocketPosition.y;
@@ -6525,7 +6525,7 @@ int WorldMap::getTarget()
 		}
 		// press up, go to wistful wild if opened, or go to perplexing pool if not
 		else if (mInitArg.mController->mButton.mMask & Controller::PRESS_UP) {
-			newMap = (mOpenCourses != 3) + 3;
+			newMap = mOpenCourses == 3 ? 2 : 3;
 		}
 		break;
 	}
