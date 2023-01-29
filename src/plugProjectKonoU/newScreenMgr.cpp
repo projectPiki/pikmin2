@@ -259,16 +259,16 @@ void Mgr::drawBG(Graphics& gfx)
 	J2DPerspGraph* persp = &gfx.mPerspGraph;
 	u8 alpha2            = mBgColor.a;
 	u8 alpha1            = mColor2.a;
-	if (alpha1 > alpha2) {
-		alpha1 -= alpha2;
-		alpha1 /= 4;
-		alpha1 += 1;
-		mColor2.a = alpha2 + alpha1 + (alpha1 < 0 && alpha1 / 8);
-	} else if (alpha1 < alpha2) {
-		u8 sub = alpha2 - alpha1;
+	if (alpha2 > alpha1) {
+		alpha2 -= alpha1;
+		alpha2 /= 4;
+		alpha2 += 1;
+		mColor2.a = alpha1 + alpha2 + (alpha2 < 0 && alpha2 / 8);
+	} else if (alpha2 < alpha1) {
+		u8 sub = alpha1 - alpha2;
 		sub /= 4;
 		sub += 1;
-		mColor2.a = alpha2 - (sub + (sub < 0 && sub / 8));
+		mColor2.a = alpha1 - (sub + (sub < 0 && sub / 8));
 	}
 
 	if (mColor2.a) {
