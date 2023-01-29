@@ -263,12 +263,12 @@ void Mgr::drawBG(Graphics& gfx)
 		alpha2 -= alpha1;
 		alpha2 /= 4;
 		alpha2 += 1;
-		mColor2.a = alpha1 + alpha2 + (alpha2 < 0 && alpha2 / 8);
+		mColor2.a = alpha1 + alpha2;
 	} else if (alpha2 < alpha1) {
 		u8 sub = alpha1 - alpha2;
 		sub /= 4;
 		sub += 1;
-		mColor2.a = alpha1 - (sub + (sub < 0 && sub / 8));
+		mColor2.a = alpha1 - sub;
 	}
 
 	if (mColor2.a) {
