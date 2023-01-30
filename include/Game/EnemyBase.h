@@ -21,6 +21,8 @@
 #define EMOTE_Caution    (1)
 #define EMOTE_Excitement (2)
 
+#define OBJ(enemy) (static_cast<Obj*>(enemy))
+
 struct MouthSlots;
 
 namespace PSM {

@@ -76,18 +76,18 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE END
 
 	void genItem();
-	void checkFlyStart();
+	bool checkFlyStart();
 	void fly();
 	void restFly();
 	void restCheck();
-	void checkRestOn();
-	void checkRestOff();
+	bool checkRestOn();
+	bool checkRestOff();
 	void resetRestPos();
 	void leave();
 	void leaveInit();
 	void setNextGoal();
 	void setTraceGoal();
-	void isFallEnd();
+	bool isFallEnd();
 	void deadEffect();
 	void fallBehavior();
 	void updateCluster();
@@ -100,7 +100,7 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	SpectralidType mSpecType;           // _2BC
 	SpectralidSpawnSource mSpawnSource; // _2C0
-	u8 _2C4[0x4];                       // _2C4, unknown
+	int mFlyTime;                       // _2C4
 	EnemyBase* mSpawningEnemy;          // _2C8
 	Vector3f _2CC;                      // _2CC
 	FSM* mFsm;                          // _2D8
@@ -263,6 +263,16 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	SHIJIMICHOU_Wait  = 0,
+	SHIJIMICHOU_Fly   = 1,
+	SHIJIMICHOU_Fall  = 2,
+	SHIJIMICHOU_Dead  = 3,
+	SHIJIMICHOU_Leave = 4,
+	SHIJIMICHOU_Rest  = 5,
+	SHIJIMICHOU_StateCount,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -271,7 +281,10 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
-	inline State(int); // likely
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
@@ -295,6 +308,7 @@ struct StateFall : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int mFallTimer; // _10
 };
 
 struct StateFly : public State {
@@ -305,6 +319,7 @@ struct StateFly : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int mFlyTimer; // _10
 };
 
 struct StateLeave : public State {
@@ -325,6 +340,12 @@ struct StateRest : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10;  // _10
+	int _14;  // _14
+	int _18;  // _18
+	bool _1C; // _1C
+	bool _1D; // _1D
+	bool _1E; // _1E
 };
 
 struct StateWait : public State {
@@ -335,6 +356,7 @@ struct StateWait : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int mWaitTimer; // _10
 };
 /////////////////////////////////////////////////////////////////
 } // namespace ShijimiChou
