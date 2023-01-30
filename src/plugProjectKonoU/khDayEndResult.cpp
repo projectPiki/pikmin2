@@ -6603,44 +6603,11 @@ bool ObjDayEndResultTitl::doUpdateFadein()
 bool ObjDayEndResultTitl::doUpdate()
 {
 	updateCommon();
-	if (mTimer++ >= msVal._00 || getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
+	if (++mTimer >= msVal._00 || getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
 		return true;
 	} else {
 		return false;
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       updateCommon__Q32kh6Screen19ObjDayEndResultTitlFv
-lwz      r3, 0x4c(r31)
-addi     r3, r3, 1
-stw      r3, 0x4c(r31)
-lwz      r0, msVal__Q32kh6Screen19ObjDayEndResultTitl@sda21(r13)
-cmplw    r3, r0
-bge      lbl_8040A4D4
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x17, 0x17
-beq      lbl_8040A4DC
-
-lbl_8040A4D4:
-li       r3, 1
-b        lbl_8040A4E0
-
-lbl_8040A4DC:
-li       r3, 0
-
-lbl_8040A4E0:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
