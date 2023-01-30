@@ -114,6 +114,7 @@ struct J3DModelData {
 	JUTNameTab* getTextureName() const { return mMaterialTable.getTextureName(); }
 	u16 getWEvlpMtxNum() const { return mJointTree.getWEvlpMtxNum(); }
 	u32 getModelDataType() const { return mJointTree.getModelDataType(); }
+	void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
 	void* getVtxNrmArray() const { return mVertexData.getVtxNrmArray(); }
 	GXColor* getVtxColorArray(u8 idx) const { return mVertexData.getVtxColorArray(idx); }
 

@@ -277,13 +277,13 @@ struct Creature : public CellObject {
 	{
 		return getPosition();
 	}
-	virtual bool isSuckReady() { return true; }        // _19C (weak)
-	virtual BOOL isSuckArriveWait() { return FALSE; }  // _1A0 (weak)
-	virtual bool stimulate(Interaction& data);         // _1A4 (weak)
-	virtual char* getCreatureName();                   // _1A8 (weak)
-	virtual s32 getCreatureID() { return -1; }         // _1AC (weak)
-	virtual u16 getObjType() { return mObjectTypeID; } // _28 (weak)
-	virtual bool collisionUpdatable()                  // _14 (weak)
+	virtual bool isSuckReady() { return true; }            // _19C (weak)
+	virtual BOOL isSuckArriveWait() { return FALSE; }      // _1A0 (weak)
+	virtual bool stimulate(Interaction& data);             // _1A4 (weak)
+	virtual char* getCreatureName() { return "Creature"; } // _1A8 (weak)
+	virtual s32 getCreatureID() { return -1; }             // _1AC (weak)
+	virtual u16 getObjType() { return mObjectTypeID; }     // _28 (weak)
+	virtual bool collisionUpdatable()                      // _14 (weak)
 	{
 		return mUpdateContext.updatable();
 	}

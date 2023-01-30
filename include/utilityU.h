@@ -35,7 +35,7 @@ PSM::ActorDirector_TrackOn* PSMGetIchouForLugieD();
 PSM::ActorDirector_TrackOn* PSMGetIchouForOrimerD();
 PSM::ActorDirector_Kehai* PSMGetKehaiD();
 PSM::ActorDirector_TempoChange* PSMGetLifeD();
-f64 PSMGetNoukouDist(); // { return 300.0; };
+f32 PSMGetNoukouDist(); // { return 300.0; };
 PSM::ActorDirector_TrackOn* PSMGetOtakaraEventD();
 PSM::TrackOnDirector_Voting* PSMGetPikiBattleD();
 PSM::PikminNumberDirector* PSMGetPikminNumD();

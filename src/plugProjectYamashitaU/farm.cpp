@@ -1,89 +1,19 @@
+#include "Graphics.h"
+#include "Game/Farm.h"
 #include "Game/Creature.h"
 #include "Game/FieldVtxColorMgr.h"
+#include "Game/Interaction.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "System.h"
 #include "Vector3.h"
+#include "Viewport.h"
 #include "types.h"
-#include "Game/Farm.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047B6C8
-    lbl_8047B6C8:
-        .asciz "ObstacleNode"
-        .skip 3
-    .global lbl_8047B6D8
-    lbl_8047B6D8:
-        .4byte 0x506C616E
-        .4byte 0x744E6F64
-        .4byte 0x65000000
-        .4byte 0x4661726D
-        .4byte 0x20726573
-        .4byte 0x6F757263
-        .4byte 0x65000000
-        .4byte 0x63726561
-        .4byte 0x74654D6F
-        .4byte 0x64656C00
-        .4byte 0x76747843
-        .4byte 0x6C72416E
-        .4byte 0x6D000000
-    .global lbl_8047B70C
-    lbl_8047B70C:
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game4Farm4Farm
-    __vt__Q34Game4Farm4Farm:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Farm4FarmFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q34Game4Farm8Obstacle
-    __vt__Q34Game4Farm8Obstacle:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Farm8ObstacleFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q34Game4Farm5Plant
-    __vt__Q34Game4Farm5Plant:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Farm5PlantFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80517E78
-    lbl_80517E78:
-        .4byte 0x00000000
-    .global lbl_80517E7C
-    lbl_80517E7C:
-        .4byte 0x945F8D6B
-        .4byte 0x00000000
-    .global lbl_80517E84
-    lbl_80517E84:
-        .4byte 0x6D646C44
-        .4byte 0x61746100
-    .global lbl_80517E8C
-    lbl_80517E8C:
-        .4byte 0x00000000
-    .global lbl_80517E90
-    lbl_80517E90:
-        .float 1.0
-        .4byte 0x00000000
-    .global lbl_80517E98
-    lbl_80517E98:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
 
 namespace Game {
 namespace Farm {
 static void _Print(char*, ...) { OSReport(""); }
+
 /*
  * --INFO--
  * Address:	801234F8
@@ -117,13 +47,38 @@ Farm::Farm()
  * Address:	801235E4
  * Size:	000200
  */
-void Farm::loadResource(unsigned long p1, void* mdlData)
+void Farm::loadResource(u32 p1, void* mdlData)
 {
 	sys->heapStatusStart("Farm resource", nullptr);
 	sys->heapStatusStart("mdlData", nullptr);
 	mModelData = J3DModelLoaderDataBase::load(mdlData, 0x20000000);
 	sys->heapStatusEnd("mdlData");
-	mPosition = Vector3f::zero;
+	mPosition = Vector3f(0.0f);
+
+	Vector3f* vtxPos = (Vector3f*)mModelData->getVtxPosArray();
+	for (u16 i = 0; i < mModelData->getVertexData()->getVtxNum(); i++) {
+		mPosition.x += (vtxPos)[i].x;
+		mPosition.y += (vtxPos)[i].y;
+		mPosition.z += (vtxPos)[i].z;
+	}
+
+	f32 norm = 1.0f / mModelData->getVertexData()->getVtxNum();
+	mPosition.x *= norm;
+	mPosition.y *= norm;
+	mPosition.z *= norm;
+
+	sys->heapStatusStart("createModel", nullptr);
+	mModel = new SysShape::Model(mModelData, 0, p1);
+	sys->heapStatusEnd("createModel");
+
+	sys->heapStatusStart("vtxClrAnm", nullptr);
+	mVtxColorMgr = new FieldVtxColorMgr(mModelData);
+	mVtxColorMgr->initVtxColor();
+	add(mVtxColorMgr);
+	sys->heapStatusEnd("vtxClrAnm");
+
+	mModel->mJ3dModel->setVtxColorCalc(mVtxColorMgr, DeformAttach_0);
+	sys->heapStatusEnd("Farm resource");
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -318,20 +273,6 @@ Obstacle* Farm::addObstacle(Game::Creature* creature, float p2, float p3)
 
 /*
  * --INFO--
- * Address:	80123908
- * Size:	00000C
- */
-// void Creature::getCreatureName()
-// {
-// 	/*
-// 	lis      r3, lbl_8047B70C@ha
-// 	addi     r3, r3, lbl_8047B70C@l
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
  * Address:	80123914
  * Size:	000114
  */
@@ -372,8 +313,39 @@ Plant* Farm::createNewPlant(Game::Creature* creature)
  * Address:	80123B1C
  * Size:	0001DC
  */
-void Farm::updateObjectRelation(bool)
+void Farm::updateObjectRelation(bool doInteract)
 {
+	FOREACH_NODE(Plant, mPlantRootNode.mChild, plantNode)
+	{
+		Vector3f plantPos = plantNode->mCreature->getPosition();
+		int counter       = 0;
+		FOREACH_NODE(Obstacle, mObstacleRootNode.mChild, obstacleNode)
+		{
+			Vector3f obstaclePos = obstacleNode->mCreature->getPosition();
+			f32 dist             = _distanceBetween(obstaclePos, plantPos);
+			f32 factor           = obstacleNode->mVtxColorControl->_10;
+			if (dist < factor) {
+				if (dist < factor * obstacleNode->mVtxColorControl->mPower) {
+					counter--;
+				} else {
+					counter++;
+				}
+			}
+		}
+
+		plantNode->_1C = counter;
+
+		if (doInteract) {
+			if (plantNode->_1C > 0) {
+				InteractFarmHaero haero(plantNode->mCreature, plantNode->_1C);
+				plantNode->mCreature->stimulate(haero);
+
+			} else if (plantNode->_1C < 0) {
+				InteractFarmKarero karero(plantNode->mCreature, -plantNode->_1C);
+				plantNode->mCreature->stimulate(karero);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -522,8 +494,27 @@ lbl_80123CBC:
  * Address:	80123CF8
  * Size:	000108
  */
-void Farm::doDebugDraw(Graphics&)
+void Farm::doDebugDraw(Graphics& gfx)
 {
+	gfx.initPrimDraw(gfx.mCurrentViewport->getMatrix(false));
+
+	FOREACH_NODE(Obstacle, mObstacleRootNode.mChild, obstacle)
+	{
+		Vector3f creaturePos = obstacle->mCreature->getPosition();
+		gfx._084             = 255;
+		gfx._085             = 255;
+		gfx._086             = 255;
+		gfx._087             = 255;
+		gfx.drawSphere(creaturePos, obstacle->mVtxColorControl->_10);
+
+		gfx._084 = 255;
+		gfx._085 = 55;
+		gfx._086 = 55;
+		gfx._087 = 255;
+		gfx.drawSphere(creaturePos, obstacle->mVtxColorControl->mPower * obstacle->mVtxColorControl->_10);
+	}
+
+	FOREACH_NODE(Obstacle, mObstacleRootNode.mChild, obstacle2) { }
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
