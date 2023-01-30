@@ -56,7 +56,7 @@ void Farm::loadResource(u32 p1, void* mdlData)
 	mPosition = Vector3f(0.0f);
 
 	Vector3f* vtxPos = (Vector3f*)mModelData->getVtxPosArray();
-	for (u16 i = 0; i < mModelData->getVertexData()->getVtxNum(); i++) {
+	for (u16 i = 0; (u32)i < mModelData->getVertexData()->getVtxNum(); i++) {
 		mPosition.x += (vtxPos)[i].x;
 		mPosition.y += (vtxPos)[i].y;
 		mPosition.z += (vtxPos)[i].z;
@@ -79,147 +79,6 @@ void Farm::loadResource(u32 p1, void* mdlData)
 
 	mModel->mJ3dModel->setVtxColorCalc(mVtxColorMgr, DeformAttach_0);
 	sys->heapStatusEnd("Farm resource");
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r6, lbl_8047B6C8@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	addi     r30, r6, lbl_8047B6C8@l
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	li       r5, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	addi     r4, r30, 0x1c
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_80517E84@sda21
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	mr       r3, r29
-	lis      r4, 0x2000
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	stw      r3, 0x24(r31)
-	addi     r4, r2, lbl_80517E84@sda21
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lfs      f0, lbl_80517E8C@sda21(r2)
-	li       r5, 0
-	stfs     f0, 0x18(r31)
-	stfs     f0, 0x1c(r31)
-	stfs     f0, 0x20(r31)
-	lwz      r3, 0x24(r31)
-	lwz      r4, 0xa0(r3)
-	b        lbl_801236AC
-
-lbl_80123670:
-	mulli    r0, r0, 0xc
-	lfs      f1, 0x18(r31)
-	addi     r5, r5, 1
-	add      r3, r4, r0
-	lfs      f0, 0(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r31)
-	lfs      f1, 0x1c(r31)
-	lfs      f0, 4(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x1c(r31)
-	lfs      f1, 0x20(r31)
-	lfs      f0, 8(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x20(r31)
-
-lbl_801236AC:
-	lwz      r3, 0x24(r31)
-	clrlwi   r0, r5, 0x10
-	lwz      r3, 0x88(r3)
-	cmplw    r0, r3
-	blt      lbl_80123670
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f2, lbl_80517E98@sda21(r2)
-	addi     r4, r30, 0x2c
-	stw      r0, 8(r1)
-	li       r5, 0
-	lfs      f3, lbl_80517E90@sda21(r2)
-	lfd      f1, 8(r1)
-	lfs      f0, 0x18(r31)
-	fsubs    f1, f1, f2
-	fdivs    f1, f3, f1
-	fmuls    f0, f0, f1
-	stfs     f0, 0x18(r31)
-	lfs      f0, 0x1c(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x1c(r31)
-	lfs      f0, 0x20(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x20(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80123738
-	lwz      r4, 0x24(r31)
-	mr       r6, r28
-	li       r5, 0
-	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
-	mr       r0, r3
-
-lbl_80123738:
-	stw      r0, 0x28(r31)
-	addi     r4, r30, 0x2c
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x38
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x3c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80123774
-	lwz      r4, 0x24(r31)
-	bl       __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData
-	mr       r0, r3
-
-lbl_80123774:
-	stw      r0, 0x2c(r31)
-	lwz      r3, 0x2c(r31)
-	bl       initVtxColor__Q24Game16FieldVtxColorMgrFv
-	lwz      r4, 0x2c(r31)
-	cmplwi   r4, 0
-	beq      lbl_80123790
-	addi     r4, r4, 0xc
-
-lbl_80123790:
-	mr       r3, r31
-	bl       add__5CNodeFP5CNode
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x38
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r3, 0x28(r31)
-	li       r5, 0
-	lwz      r4, 0x2c(r31)
-	lwz      r3, 8(r3)
-	bl       setVtxColorCalc__8J3DModelFP15J3DVtxColorCalc19J3DDeformAttachFlag
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x1c
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -248,7 +107,7 @@ void Farm::doEntry() { mModel->mJ3dModel->entry(); }
  * Address:	80123850
  * Size:	000024
  */
-void Farm::doSetView(unsigned long viewNumber) { mModel->setCurrentViewNo(viewNumber); }
+void Farm::doSetView(u32 viewNumber) { mModel->setCurrentViewNo(viewNumber); }
 
 /*
  * --INFO--
@@ -262,7 +121,7 @@ void Farm::doViewCalc() { mModel->viewCalc(); }
  * Address:	80123898
  * Size:	000070
  */
-Obstacle* Farm::addObstacle(Game::Creature* creature, float p2, float p3)
+Obstacle* Farm::addObstacle(Creature* creature, f32 p2, f32 p3)
 {
 	Obstacle* obstacle = createNewObstacle(creature, p2, p3);
 	obstacle->setName(creature->getCreatureName());
@@ -276,7 +135,7 @@ Obstacle* Farm::addObstacle(Game::Creature* creature, float p2, float p3)
  * Address:	80123914
  * Size:	000114
  */
-Obstacle* Farm::createNewObstacle(Game::Creature* creature, float p2, float p3)
+Obstacle* Farm::createNewObstacle(Creature* creature, f32 p2, f32 p3)
 {
 	Obstacle* obstacle = new Obstacle(this, mVtxColorMgr, creature, p2, p3);
 	mObstacleRootNode.add(obstacle);
@@ -288,7 +147,7 @@ Obstacle* Farm::createNewObstacle(Game::Creature* creature, float p2, float p3)
  * Address:	80123A28
  * Size:	000044
  */
-Plant* Farm::addPlant(Game::Creature* creature)
+Plant* Farm::addPlant(Creature* creature)
 {
 	Plant* plant = createNewPlant(creature);
 	updateObjectRelation(true);
@@ -300,7 +159,7 @@ Plant* Farm::addPlant(Game::Creature* creature)
  * Address:	80123A6C
  * Size:	0000B0
  */
-Plant* Farm::createNewPlant(Game::Creature* creature)
+Plant* Farm::createNewPlant(Creature* creature)
 {
 	Plant* plant = new Plant(creature);
 	plant->setName(creature->getCreatureName());
@@ -501,10 +360,11 @@ void Farm::doDebugDraw(Graphics& gfx)
 	FOREACH_NODE(Obstacle, mObstacleRootNode.mChild, obstacle)
 	{
 		Vector3f creaturePos = obstacle->mCreature->getPosition();
-		gfx._084             = 255;
-		gfx._085             = 255;
-		gfx._086             = 255;
-		gfx._087             = 255;
+
+		gfx._084 = 255;
+		gfx._085 = 255;
+		gfx._086 = 255;
+		gfx._087 = 255;
 		gfx.drawSphere(creaturePos, obstacle->mVtxColorControl->_10);
 
 		gfx._084 = 255;

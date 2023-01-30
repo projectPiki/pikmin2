@@ -17,7 +17,7 @@ namespace Farm {
  * Address:	80124018
  * Size:	0000C0
  */
-FarmMgr::FarmMgr(unsigned long p1)
+FarmMgr::FarmMgr(u32 p1)
     : GenericObjectMgr()
     , CNode("”_kƒ}ƒl[ƒWƒƒ")
     , _1C(p1)
@@ -122,7 +122,7 @@ void FarmMgr::doViewCalc()
  * Address:	80124340
  * Size:	000004
  */
-void FarmMgr::doSimulation(float) { }
+void FarmMgr::doSimulation(f32) { }
 
 /*
  * --INFO--
@@ -193,7 +193,7 @@ Farm* FarmMgr::getNearestFarm(Vector3f& position)
  * Address:	80124474
  * Size:	000120
  */
-Obstacle* FarmMgr::addObstacle(Game::Creature* creature, float p2, float p3)
+Obstacle* FarmMgr::addObstacle(Creature* creature, f32 p2, f32 p3)
 {
 	Vector3f position = creature->getPosition();
 	Farm* farm        = getNearestFarm(position);
@@ -208,7 +208,7 @@ Obstacle* FarmMgr::addObstacle(Game::Creature* creature, float p2, float p3)
  * Address:	80124594
  * Size:	0000F0
  */
-Plant* FarmMgr::addPlant(Game::Creature* creature)
+Plant* FarmMgr::addPlant(Creature* creature)
 {
 	Vector3f position = creature->getPosition();
 	Farm* farm        = getNearestFarm(position);
