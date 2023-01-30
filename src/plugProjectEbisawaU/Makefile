@@ -47,6 +47,8 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 
+$(EBISAWA_FILES): CFLAGS += -sym on
+
 DEPENDS += $(EBISAWA_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectEbisawaU/plugProjectEbisawaU.a: $(EBISAWA_FILES)

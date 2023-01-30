@@ -13,6 +13,8 @@ UTILITY_FILES:=\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o\
 
+$(UTILITY_FILES): CFLAGS += -sym on
+
 DEPENDS += $(UTILITY_FILES:.o=.d)
 
 $(BUILD_DIR)/src/utilityU/utilityU.a: $(UTILITY_FILES)

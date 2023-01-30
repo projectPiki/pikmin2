@@ -14,6 +14,8 @@ HIKINO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSBgmTrack.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o\
 
+$(HIKINO_FILES): CFLAGS += -sym on
+
 DEPENDS += $(HIKINO_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectHikinoU/plugProjectHikinoU.a: $(HIKINO_FILES)
