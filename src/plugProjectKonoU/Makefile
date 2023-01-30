@@ -7,7 +7,7 @@ KONO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKonoU/khReadyGo.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khFinalFloor.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khDayEndResult.o\
-	$(BUILD_DIR)/asm/plugProjectKonoU/khUtil.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/khUtil.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khFinalResult.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khPayDept.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khWinLose.o\

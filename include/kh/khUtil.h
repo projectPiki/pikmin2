@@ -51,6 +51,18 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 
 	static khUtilFadePane* create(P2DScreen::Mgr*, u64, u8);
 
+	inline void createNode(J2DPane* pane)
+	{
+		khPaneNode* currNode = &mPaneNode;
+		while (currNode->mNext) {
+			currNode = currNode->mNext;
+		}
+
+		khPaneNode* node = new khPaneNode(pane);
+		P2ASSERTLINE(64, node);
+		currNode->mNext = node;
+	}
+
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
 	khPaneNode mPaneNode; // _1C
@@ -81,6 +93,8 @@ struct khUtilColorAnm : public P2DScreen::CallBackNode {
 	virtual ~khUtilColorAnm() { } // _08 (weak)
 	virtual void update();        // _10 (weak)
 	virtual void do_update() { }  // _1C (weak)
+
+	inline JUtility::TColor& getColor(int id) const { return mColorList[id]; }
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::Node
