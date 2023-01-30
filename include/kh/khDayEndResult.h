@@ -29,7 +29,7 @@ struct MailSaveData {
 	MailSaveData()
 	{
 		for (int i = 0; i < 16; i++) {
-			m_pastLogs[i] = 0;
+			mPastLogs[i] = 0;
 		}
 	}
 
@@ -38,8 +38,8 @@ struct MailSaveData {
 	void write(Stream&);
 	void set_history(s8);
 
-	u8 m_pastLogs[0x10]; // _00
-	s8 m_history[0x14];  // _10
+	u8 mPastLogs[0x10]; // _00
+	s8 mHistory[0x14];  // _10
 };
 
 struct IncP {
@@ -112,9 +112,9 @@ struct DispDayEndResultMail : public og::Screen::DispMemberBase {
 // 'End of Day Results' screen
 struct DispDayEndResultTitl : public og::Screen::DispMemberBase {
 
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
+	virtual u32 getSize() { return sizeof(DispDayEndResultTitl); }    // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }                     // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT_TITLE; } // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
@@ -122,10 +122,16 @@ struct DispDayEndResultTitl : public og::Screen::DispMemberBase {
 
 struct DispDayEndResult : public og::Screen::DispMemberBase {
 
-	virtual u32 getSize();            // _08 (weak)
-	virtual u32 getOwnerID();         // _0C (weak)
-	virtual u64 getMemberID();        // _10 (weak)
-	virtual void doSetSubMemberAll(); // _14 (weak)
+	virtual u32 getSize() { return sizeof(DispDayEndResult); }  // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }               // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT; } // _10 (weak)
+	virtual void doSetSubMemberAll()
+	{
+		setSubMember(&mTitle);
+		setSubMember(&mItem);
+		setSubMember(&mIncP);
+		setSubMember(&mMail);
+	} // _14 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
@@ -542,13 +548,13 @@ struct ObjDayEndResultTitl : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	P2DScreen::Mgr_tuning* _38; // _38
-	J2DAnmTransform* _3C;       // _3C
-	J2DAnmTextureSRTKey* _40;   // _40
-	f32 _44;                    // _44
-	f32 _48;                    // _48
-	u32 _4C;                    // _4C
-	u8 _50;                     // _50
+	P2DScreen::Mgr_tuning* mScreenMain; // _38
+	J2DAnmTransform* mMainAnimTrans;    // _3C
+	J2DAnmTextureSRTKey* mMainAnimSRT;  // _40
+	f32 mAnimTimer1;                    // _44
+	f32 mAnimTimer2;                    // _48
+	u32 mTimer;                         // _4C
+	u8 mAlpha;                          // _50
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -558,7 +564,7 @@ struct ObjDayEndResultTitl : public ::Screen::ObjBase {
 		}
 
 		u32 _00; // _00
-		u32 _04; // _04
+		u8 _04;  // _04
 	} msVal;
 };
 

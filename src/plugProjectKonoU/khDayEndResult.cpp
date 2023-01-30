@@ -6418,13 +6418,13 @@ blr
  */
 ObjDayEndResultTitl::ObjDayEndResultTitl()
 {
-	_38 = nullptr;
-	_3C = nullptr;
-	_40 = nullptr;
-	_48 = 0.0f;
-	_44 = 0.0f;
-	_4C = 0;
-	_50 = 0;
+	mScreenMain    = nullptr;
+	mMainAnimTrans = nullptr;
+	mMainAnimSRT   = nullptr;
+	mAnimTimer2    = 0.0f;
+	mAnimTimer1    = 0.0f;
+	mTimer         = 0;
+	mAlpha         = 0;
 }
 
 /*
@@ -6432,8 +6432,29 @@ ObjDayEndResultTitl::ObjDayEndResultTitl()
  * Address:	8040A25C
  * Size:	0001BC
  */
-void ObjDayEndResultTitl::doCreate(JKRArchive*)
+void ObjDayEndResultTitl::doCreate(JKRArchive* arc)
 {
+	mScreenMain = new P2DScreen::Mgr_tuning;
+	mScreenMain->set("result_title_new.blo", 0x1040000, arc);
+	mMainAnimTrans = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title_new.bck", arc)));
+	mMainAnimSRT
+	    = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title_new.bpk", arc)));
+
+	mScreenMain->setAnimation(mMainAnimTrans);
+	mScreenMain->setAnimation(mMainAnimSRT);
+	setInfAlpha(mScreenMain);
+
+	u64 tags[4] = { 'nuki_tex', 'efect_00', 'efect_01', '\0' };
+	for (int i = 0; tags[i] != 0; i++) {
+		J2DPictureEx* pane = static_cast<J2DPictureEx*>(mScreenMain->search(tags[i]));
+		if (pane) {
+			J2DMaterial* mat                     = pane->getMaterial();
+			mat->mPeBlock.mBlendInfo.mType       = 1;
+			mat->mPeBlock.mBlendInfo.mSrcFactor  = 7;
+			mat->mPeBlock.mBlendInfo.mDestFactor = 6;
+			// mat->mPeBlock.mBlendInfo.??? = 0;
+		}
+	}
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -6562,43 +6583,16 @@ blr
  */
 bool ObjDayEndResultTitl::doUpdateFadein()
 {
-	return false;
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       updateCommon__Q32kh6Screen19ObjDayEndResultTitlFv
-lwz      r3, 0x38(r31)
-lbz      r4, 0x50(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-addi     r3, r13, msVal__Q32kh6Screen19ObjDayEndResultTitl@sda21
-lbz      r4, 0x50(r31)
-lbz      r3, 4(r3)
-subfic   r0, r3, 0xff
-cmpw     r4, r0
-ble      lbl_8040A470
-li       r0, 0xff
-li       r3, 1
-stb      r0, 0x50(r31)
-b        lbl_8040A47C
+	updateCommon();
+	mScreenMain->setAlpha(mAlpha);
 
-lbl_8040A470:
-add      r0, r4, r3
-li       r3, 0
-stb      r0, 0x50(r31)
-
-lbl_8040A47C:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (mAlpha > 255 - msVal._04) {
+		mAlpha = 255;
+		return true;
+	} else {
+		mAlpha += msVal._04;
+		return false;
+	}
 }
 
 /*
@@ -6608,7 +6602,12 @@ blr
  */
 bool ObjDayEndResultTitl::doUpdate()
 {
-	return false;
+	updateCommon();
+	if (mTimer++ >= msVal._00 || getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
+		return true;
+	} else {
+		return false;
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -6651,42 +6650,17 @@ blr
  */
 bool ObjDayEndResultTitl::doUpdateFadeout()
 {
+	updateCommon();
+	mScreenMain->setAlpha(mAlpha);
+
+	if (mAlpha < msVal._04) {
+		mAlpha = 0;
+		return true;
+	} else {
+		mAlpha -= msVal._04;
+		return false;
+	}
 	return false;
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       updateCommon__Q32kh6Screen19ObjDayEndResultTitlFv
-lwz      r3, 0x38(r31)
-lbz      r4, 0x50(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-addi     r3, r13, msVal__Q32kh6Screen19ObjDayEndResultTitl@sda21
-lbz      r0, 0x50(r31)
-lbz      r3, 4(r3)
-cmplw    r0, r3
-bge      lbl_8040A548
-li       r0, 0
-li       r3, 1
-stb      r0, 0x50(r31)
-b        lbl_8040A554
-
-lbl_8040A548:
-subf     r0, r3, r0
-li       r3, 0
-stb      r0, 0x50(r31)
-
-lbl_8040A554:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -6696,61 +6670,11 @@ blr
  */
 void ObjDayEndResultTitl::doUpdateFadeoutFinish()
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stw      r31, 0x2c(r1)
-mr       r31, r3
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, __vt__Q26Screen12SceneArgBase@ha
-li       r6, 1
-addi     r9, r4, __vt__Q26Screen12SceneArgBase@l
-lis      r4, __vt__Q26Screen13StartSceneArg@ha
-stw      r9, 8(r1)
-addi     r0, r4, __vt__Q26Screen13StartSceneArg@l
-lis      r4, __vt__Q32kh6Screen20SArgDayEndResultBase@ha
-lis      r7, __vt__Q26Screen11SetSceneArg@ha
-stw      r0, 8(r1)
-addi     r5, r4, __vt__Q32kh6Screen20SArgDayEndResultBase@l
-lis      r4, __vt__Q32kh6Screen20SArgDayEndResultItem@ha
-li       r8, 0x4e23
-stw      r9, 0x10(r1)
-addi     r9, r7, __vt__Q26Screen11SetSceneArg@l
-li       r7, 0
-addi     r0, r4, __vt__Q32kh6Screen20SArgDayEndResultItem@l
-stw      r5, 8(r1)
-stw      r3, 0x1c(r1)
-mr       r3, r31
-stw      r9, 0x10(r1)
-stw      r8, 0x14(r1)
-stb      r7, 0x18(r1)
-stb      r6, 0x19(r1)
-stb      r6, 0xc(r1)
-stw      r0, 8(r1)
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 0x10
-bl       setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-clrlwi.  r0, r3, 0x18
-beq      lbl_8040A620
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 8
-bl       startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-
-lbl_8040A620:
-lwz      r0, 0x34(r1)
-lwz      r31, 0x2c(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	::Screen::SetSceneArg arg(SCENE_DAY_END_RESULT_ITEM, getDispMember(), 0, 1);
+	SArgDayEndResultItem sarg(1);
+	if (getOwner()->setScene(arg)) {
+		getOwner()->startScene(&sarg);
+	}
 }
 
 /*
@@ -6760,90 +6684,18 @@ blr
  */
 void ObjDayEndResultTitl::doDraw(Graphics& gfx)
 {
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-stw      r31, 0x4c(r1)
-stw      r30, 0x48(r1)
-stw      r29, 0x44(r1)
-mr       r29, r4
-addi     r31, r29, 0xbc
-stw      r28, 0x40(r1)
-mr       r28, r3
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-li       r0, 0xff
-mr       r3, r31
-stb      r0, 0x18(r1)
-addi     r4, r1, 8
-addi     r5, r1, 0xc
-addi     r6, r1, 0x10
-stb      r0, 0x19(r1)
-addi     r7, r1, 0x14
-stb      r0, 0x1a(r1)
-stb      r0, 0x1b(r1)
-lwz      r0, 0x18(r1)
-stw      r0, 0x14(r1)
-stw      r0, 0x10(r1)
-stw      r0, 0xc(r1)
-stw      r0, 8(r1)
-bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-li       r3, 0
-bl       GXSetColorUpdate
-li       r3, 1
-bl       GXSetAlphaUpdate
-bl       getRenderModeObj__6SystemFv
-lhz      r30, 6(r3)
-bl       getRenderModeObj__6SystemFv
-lhz      r4, 4(r3)
-lis      r0, 0x4330
-lfs      f3, lbl_805200A8@sda21(r2)
-mr       r3, r31
-stw      r4, 0x34(r1)
-addi     r4, r1, 0x1c
-lfd      f2, lbl_805200C8@sda21(r2)
-stw      r0, 0x30(r1)
-lfd      f0, 0x30(r1)
-stw      r30, 0x3c(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x38(r1)
-lfd      f0, 0x38(r1)
-fadds    f1, f3, f1
-stfs     f3, 0x1c(r1)
-fsubs    f0, f0, f2
-stfs     f3, 0x20(r1)
-fadds    f0, f3, f0
-stfs     f1, 0x24(r1)
-stfs     f0, 0x28(r1)
-bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-li       r3, 1
-bl       GXSetColorUpdate
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x38(r28)
-mr       r4, r29
-mr       r5, r31
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x54(r1)
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-lwz      r29, 0x44(r1)
-lwz      r28, 0x40(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
+	J2DOrthoGraph* graf = &gfx.mOrthoGraph;
+	graf->setPort();
+	graf->setColor(JUtility::TColor(255, 255, 255, 255));
+	GXSetColorUpdate(GX_FALSE);
+	GXSetAlphaUpdate(GX_TRUE);
+	f32 zero = 0.0f;
+	u16 y    = System::getRenderModeObj()->efbHeight;
+	u16 x    = System::getRenderModeObj()->fbWidth;
+	graf->fillBox(JGeometry::TBox2f(0.0f, 0.0f, zero + x, zero + y));
+	GXSetColorUpdate(GX_TRUE);
+	graf->setPort();
+	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 }
 
 /*
@@ -6853,68 +6705,19 @@ blr
  */
 void ObjDayEndResultTitl::updateCommon()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lfs      f0, 0x44(r3)
-lwz      r3, 0x3c(r3)
-stfs     f0, 8(r3)
-lfs      f0, 0x48(r31)
-lwz      r3, 0x40(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x38(r31)
-bl       animation__9J2DScreenFv
-lfs      f1, 0x44(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x44(r31)
-lwz      r3, 0x3c(r31)
-lfs      f2, 0x44(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_8040A7F8
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x44(r31)
+	mMainAnimTrans->mCurrentFrame = mAnimTimer1;
+	mMainAnimSRT->mCurrentFrame   = mAnimTimer2;
+	mScreenMain->animation();
 
-lbl_8040A7F8:
-lfs      f1, 0x48(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x48(r31)
-lwz      r3, 0x40(r31)
-lfs      f2, 0x48(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_8040A844
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x48(r31)
+	mAnimTimer1 += 1.0f;
+	if (mAnimTimer1 >= mMainAnimTrans->mMaxFrame) {
+		mAnimTimer1 = 0.0f;
+	}
 
-lbl_8040A844:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	mAnimTimer2 += 1.0f;
+	if (mAnimTimer2 >= mMainAnimSRT->mMaxFrame) {
+		mAnimTimer2 = 0.0f;
+	}
 }
 
 /*
