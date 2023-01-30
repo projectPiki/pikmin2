@@ -41,7 +41,7 @@ MORIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/umiMushiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/umiMushiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushi.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouState.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/shijimiChouState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/shijimiChouAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/shijimiChouMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChou.o\

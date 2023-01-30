@@ -600,6 +600,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline f32 getSubmergedDepth() const { return *mWaterBox->getSeaHeightPtr() - mPosition.y; }
 
+	inline Vector3f getTargetVelocity() { return mTargetVelocity; }
+	inline void setTargetVelocity(const Vector3f& ref) { mTargetVelocity = ref; }
+
 #pragma region Events
 	inline void resetEvents()
 	{

@@ -163,73 +163,15 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_IsFlying);
 
 	if (CG_PARMS(OBJ(enemy))->_94C) {
-		// smfh i hate stack vector shenanigans.
-		Vector3f vel;
-		Vector3f* velPtr       = &vel;
-		*velPtr                = enemy->mTargetVelocity;
-		enemy->mTargetVelocity = Vector3f(vel.x, -20.0f, vel.z);
+		f32 x = enemy->getTargetVelocity().x;
+		f32 y = -20.0f;
+		f32 z = enemy->getTargetVelocity().z;
+		enemy->setTargetVelocity(Vector3f(x, y, z));
 	}
 
 	OBJ(enemy)->_2CC = enemy->getPosition();
 	enemy->mSoundObj->startSound(PSSE_EN_BUTTERFLY_HIT, 0);
 	mFallTimer = 0;
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r31)
-	lwz      r3, 0xc0(r31)
-	lbz      r0, 0x94c(r3)
-	cmplwi   r0, 0
-	beq      lbl_80387C74
-	lfs      f1, 0x1d4(r31)
-	lfs      f2, 0x1d8(r31)
-	lfs      f3, 0x1dc(r31)
-	lfs      f0, lbl_8051EE40@sda21(r2)
-	stfs     f1, 0x14(r1)
-	stfs     f0, 0x1d8(r31)
-	stfs     f2, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	stfs     f3, 0x1dc(r31)
-
-lbl_80387C74:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	li       r4, 0x5917
-	li       r5, 0
-	stfs     f0, 0x2cc(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x2d0(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x2d4(r31)
-	lwz      r3, 0x28c(r31)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x10(r30)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
