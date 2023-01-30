@@ -229,13 +229,11 @@ bool ObjDayEndResultBase::doUpdateFadein()
 {
 	updateCommon();
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
-	J2DPane* itemPane              = mScreenMain->search('NitemW');
-	itemPane->animationTransform();
+	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += msVal._08;
 
-	J2DPane* allPane = mScreenStars->search('Nall');
-	allPane->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
+	mScreenStars->search('Nall')->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
 
 	return (u8)(mMainAnimTimer1 >= mFadeinMaxFrame);
 }
@@ -260,13 +258,11 @@ bool ObjDayEndResultBase::doUpdateFadeout()
 {
 	updateCommon();
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
-	J2DPane* itemPane              = mScreenMain->search('NitemW');
-	itemPane->animationTransform();
+	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += msVal._08;
 
-	J2DPane* allPane = mScreenStars->search('Nall');
-	allPane->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
+	mScreenStars->search('Nall')->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
 
 	return (u8)(mMainAnimTimer1 >= mFadeoutMaxFrame);
 }
@@ -556,8 +552,7 @@ bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 
 	mMainAnimTimer1 = mFadeinMinFrame;
 
-	J2DPane* pane = mScreenStars->search('Nall');
-	setInfAlpha(pane);
+	setInfAlpha(mScreenStars->search('Nall'));
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 	return true;
 }
@@ -672,8 +667,7 @@ bool ObjDayEndResultItem::doUpdateFadeout()
 
 	mMainAnimTimer1 += ObjDayEndResultBase::msVal._08;
 
-	J2DPane* pane = mScreenStars->search('Nall');
-	pane->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
+	mScreenStars->search('Nall')->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
 
 	bool result;
 	if (mMainAnimTimer1 >= mFadeoutMaxFrame) {
