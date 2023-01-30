@@ -164,7 +164,7 @@ void EnemyMgrBase::doViewCalc()
  * Address:	8012F1A4
  * Size:	0000EC
  */
-void EnemyMgrBase::doSimulation(float arg)
+void EnemyMgrBase::doSimulation(f32 arg)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
@@ -213,7 +213,7 @@ void* EnemyMgrBase::getNext(void* object)
  * Address:	8012F3C8
  * Size:	000184
  */
-EnemyBase* EnemyMgrBase::birth(Game::EnemyBirthArg& arg)
+EnemyBase* EnemyMgrBase::birth(EnemyBirthArg& arg)
 {
 	if (arg.mTypeID == ~EnemyTypeID::EnemyID_Pelplant) {
 		arg.mTypeID = getEnemyTypeID();
@@ -316,7 +316,7 @@ bool EnemyMgrBase::isValidEnemyTypeID()
  * Address:	8012F79C
  * Size:	000100
  */
-void Game::EnemyMgrBase::setupSoundViewerAndBas()
+void EnemyMgrBase::setupSoundViewerAndBas()
 {
 	PSGame::SoundCreatureMgr soundMgr;
 
@@ -668,7 +668,7 @@ void EnemyMgrBase::doEntryAlwaysMovieActor()
  * Address:	801305DC
  * Size:	00009C
  */
-void EnemyMgrBase::doSimulationAlwaysMovieActor(float arg)
+void EnemyMgrBase::doSimulationAlwaysMovieActor(f32 arg)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);

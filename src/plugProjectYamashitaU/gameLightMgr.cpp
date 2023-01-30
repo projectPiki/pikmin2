@@ -1,4 +1,6 @@
 #include "types.h"
+#include "nans.h"
+#include "Game/GameLight.h"
 
 /*
     Generated from dpostproc
@@ -3210,17 +3212,6 @@ GameLightEventNode::GameLightEventNode()
 	*/
 }
 
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8011F348
- * Size:	000004
- */
-void Vector3f::Vector3() { }
-
-namespace Game {
-
 /*
  * --INFO--
  * Address:	8011F34C
@@ -3294,61 +3285,6 @@ lbl_8011F40C:
 	blr
 	*/
 }
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8011F428
- * Size:	000090
- */
-LightMgr::~LightMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8011F49C
-	lis      r4, __vt__8LightMgr@ha
-	addi     r3, r30, 0x34
-	addi     r0, r4, __vt__8LightMgr@l
-	li       r4, -1
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	addic.   r0, r30, 0x18
-	beq      lbl_8011F480
-	lis      r4, __vt__15AmbientLightObj@ha
-	addi     r3, r30, 0x18
-	addi     r0, r4, __vt__15AmbientLightObj@l
-	li       r4, 0
-	stw      r0, 0x18(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8011F480:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8011F49C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8011F49C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
 
 /*
  * --INFO--
@@ -6811,47 +6747,6 @@ lbl_8012239C:
 	*/
 }
 
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	801223BC
- * Size:	000060
- */
-AmbientLightObj::~AmbientLightObj()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80122400
-	lis      r5, __vt__15AmbientLightObj@ha
-	li       r4, 0
-	addi     r0, r5, __vt__15AmbientLightObj@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80122400
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80122400:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
 /*
  * --INFO--
  * Address:	8012241C
@@ -6867,24 +6762,3 @@ void complement<float>(float, float, float)
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80122428
- * Size:	000028
- */
-void __sinit_gameLightMgr_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804AC420@ha
-	stw      r0, lbl_805158A0@sda21(r13)
-	stfsu    f0, lbl_804AC420@l(r3)
-	stfs     f0, lbl_805158A4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

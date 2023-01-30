@@ -9,7 +9,7 @@ namespace ChappyBase {
  * Address:	80116648
  * Size:	000150
  */
-void ChappyBase::FSM::init(Game::EnemyBase* base)
+void ChappyBase::FSM::init(EnemyBase* base)
 {
 	create(CHAPPY_Count);
 
@@ -62,7 +62,7 @@ StateSleep::StateSleep(int stateID)
  */
 void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	SleepArg* arg = (SleepArg*)stateArg;
+	SleepArg* arg = static_cast<SleepArg*>(stateArg);
 	if (arg && arg->_00) {
 		enemy->startMotion(4, nullptr);
 		enemy->setMotionFrame(70.0f);
@@ -79,7 +79,7 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->enableEvent(0, EB_Constraint);
 	}
 
-	((Obj*)enemy)->setUnderGround();
+	OBJ(enemy)->setUnderGround();
 }
 
 /*
@@ -100,18 +100,18 @@ void StateSleep::exec(EnemyBase* enemy)
 		}
 
 	} else {
-		if (!enemy->isFinishMotion() && ((Obj*)enemy)->isWakeup()) {
+		if (!enemy->isFinishMotion() && OBJ(enemy)->isWakeup()) {
 			setNextState(enemy, CHAPPY_Turn);
 		}
 
 		if (enemy->mCurAnim->mIsPlaying) {
 			// WTF?
 			if (enemy->mCurAnim->mType == KEYEVENT_NULL) {
-				((Obj*)enemy)->startSleepEffect();
+				OBJ(enemy)->startSleepEffect();
 			} else if (enemy->mCurAnim->mType == 3) {
-				((Obj*)enemy)->finishSleepEffect();
+				OBJ(enemy)->finishSleepEffect();
 			} else if (enemy->mCurAnim->mType == 4) {
-				((Obj*)enemy)->createSmokeEffect();
+				OBJ(enemy)->createSmokeEffect();
 			} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
 				transit(enemy, mNextState, nullptr);
 			}
@@ -130,7 +130,7 @@ void StateSleep::exec(EnemyBase* enemy)
  */
 void StateSleep::cleanup(EnemyBase* enemy)
 {
-	((Obj*)enemy)->setAnimationSpeed(30.0f);
+	OBJ(enemy)->setAnimationSpeed(30.0f);
 
 	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_Hana) {
 		enemy->hardConstraintOff();
@@ -138,8 +138,8 @@ void StateSleep::cleanup(EnemyBase* enemy)
 		enemy->constraintOff();
 	}
 
-	((Obj*)enemy)->resetUnderGround();
-	((Obj*)enemy)->finishSleepEffect();
+	OBJ(enemy)->resetUnderGround();
+	OBJ(enemy)->finishSleepEffect();
 }
 
 /*
@@ -149,7 +149,7 @@ void StateSleep::cleanup(EnemyBase* enemy)
  */
 void StateSleep::setNextState(EnemyBase* enemy, int stateID)
 {
-	((Obj*)enemy)->setAnimationSpeed(60.0f);
+	OBJ(enemy)->setAnimationSpeed(60.0f);
 	enemy->finishMotion();
 	mNextState = stateID;
 }
@@ -185,7 +185,7 @@ void StateDead::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			((Obj*)enemy)->flickAttackBomb();
+			OBJ(enemy)->flickAttackBomb();
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
 			enemy->kill(nullptr);
 		}
@@ -238,7 +238,7 @@ StateTurn::StateTurn(int stateID)
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
-	((Obj*)enemy)->setAnimationSpeed(40.0f);
+	OBJ(enemy)->setAnimationSpeed(40.0f);
 	enemy->startMotion(7, nullptr);
 }
 
@@ -824,7 +824,7 @@ lbl_80117480:
  * Address:	801174E0
  * Size:	000038
  */
-void ChappyBase::StateTurn::cleanup(Game::EnemyBase* enemy)
+void ChappyBase::StateTurn::cleanup(EnemyBase* enemy)
 {
 	enemy->setEmotionCaution();
 	enemy->resetAnimSpeed();
@@ -849,7 +849,7 @@ StateWalk::StateWalk(int stateID)
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
-	((Obj*)enemy)->setAnimationSpeed(40.0f);
+	OBJ(enemy)->setAnimationSpeed(40.0f);
 	enemy->startMotion(3, nullptr);
 }
 
@@ -1987,9 +1987,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
 	enemy->startMotion(2, nullptr);
-	((Obj*)enemy)->setAnimationSpeed(40.0f);
+	OBJ(enemy)->setAnimationSpeed(40.0f);
 	enemy->disableEvent(0, EB_IsFlickEnabled);
-	((Obj*)enemy)->createFlickEffect();
+	OBJ(enemy)->createFlickEffect();
 }
 
 /*
@@ -2190,7 +2190,7 @@ lbl_801187E0:
 void StateFlick::cleanup(EnemyBase* enemy)
 {
 	enemy->setEmotionCaution();
-	((Obj*)enemy)->setAnimationSpeed(30.0f);
+	OBJ(enemy)->setAnimationSpeed(30.0f);
 	enemy->enableEvent(0, EB_IsFlickEnabled);
 }
 
@@ -2809,7 +2809,7 @@ lbl_80119064:
  * Address:	801190B4
  * Size:	000004
  */
-void StateTurnToHome::cleanup(Game::EnemyBase* enemy) { }
+void StateTurnToHome::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--

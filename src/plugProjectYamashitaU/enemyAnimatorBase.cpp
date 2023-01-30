@@ -20,7 +20,7 @@ EnemyAnimatorBase::EnemyAnimatorBase()
  * Address:	801279B8
  * Size:	000124
  */
-void EnemyAnimatorBase::animate(float speed)
+void EnemyAnimatorBase::animate(f32 speed)
 {
 	if (!(mFlags.typeView & EANIM_FLAG_STOPPED)) {
 		if (mFlags.typeView & EANIM_FLAG_FINISHED) {
@@ -52,7 +52,7 @@ void EnemyAnimatorBase::animate(float speed)
  * Address:	80127ADC
  * Size:	000124
  */
-void EnemyAnimatorBase::animate(int animatorNum, float speed)
+void EnemyAnimatorBase::animate(int animatorNum, f32 speed)
 {
 	if (!(mFlags.typeView & EANIM_FLAG_STOPPED)) {
 		if (mFlags.typeView & EANIM_FLAG_FINISHED) {

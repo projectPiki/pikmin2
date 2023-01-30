@@ -1,4 +1,5 @@
 #include "types.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -4439,27 +4440,6 @@ lbl_80115F54:
 	lwz      r31, 0xc(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80115F68
- * Size:	000028
- */
-void __sinit_enemyAction_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804ABC48@ha
-	stw      r0, lbl_80515878@sda21(r13)
-	stfsu    f0, lbl_804ABC48@l(r3)
-	stfs     f0, lbl_8051587C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
 	blr
 	*/
 }

@@ -1592,17 +1592,20 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 	}
 
 	if (flag & 2) {
-		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pypkyo1', &mYesterdayPikis[1], 5, true, false, arc);
+		mPikiCountersList[counters++]
+		    = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pypkyo1', &mYesterdayPikis[1], 5, true, false, arc);
 		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pypmade1', &mTodayPikis[1], 8, true, false, arc);
 	}
 
 	if (flag & 4) {
-		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbpkyo1', &mYesterdayPikis[2], 5, true, false, arc);
+		mPikiCountersList[counters++]
+		    = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbpkyo1', &mYesterdayPikis[2], 5, true, false, arc);
 		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbpmade1', &mTodayPikis[2], 8, true, false, arc);
 	}
 
 	if (flag & 8) {
-		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pwpkyo1', &mYesterdayPikis[3], 5, true, false, arc);
+		mPikiCountersList[counters++]
+		    = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pwpkyo1', &mYesterdayPikis[3], 5, true, false, arc);
 		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pwpmade1', &mTodayPikis[3], 8, true, false, arc);
 	}
 

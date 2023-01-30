@@ -45,8 +45,7 @@ lbl_80517CE0:
 	.4byte 0x80000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData
-__ct__Q24Game16FieldVtxColorMgrFP12J3DModelData:
+.fn __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData global
 /* 80122450 0011F390  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80122454 0011F394  7C 08 02 A6 */	mflr r0
 /* 80122458 0011F398  3C E0 80 4F */	lis r7, __vt__5CNode@ha
@@ -91,9 +90,9 @@ __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData:
 /* 801224F4 0011F434  7C 08 03 A6 */	mtlr r0
 /* 801224F8 0011F438  38 21 00 10 */	addi r1, r1, 0x10
 /* 801224FC 0011F43C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData
 
-.global createFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFv
-createFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFv:
+.fn createFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFv global
 /* 80122500 0011F440  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80122504 0011F444  7C 08 02 A6 */	mflr r0
 /* 80122508 0011F448  38 80 FF FC */	li r4, -4
@@ -231,9 +230,9 @@ createFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFv:
 /* 801226EC 0011F62C  7C 08 03 A6 */	mtlr r0
 /* 801226F0 0011F630  38 21 00 20 */	addi r1, r1, 0x20
 /* 801226F4 0011F634  4E 80 00 20 */	blr 
+.endfn createFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFv
 
-.global __ct__Q24Game17FieldVtxColorInfoFv
-__ct__Q24Game17FieldVtxColorInfoFv:
+.fn __ct__Q24Game17FieldVtxColorInfoFv weak
 /* 801226F8 0011F638  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 801226FC 0011F63C  38 00 00 00 */	li r0, 0
 /* 80122700 0011F640  38 84 FF FF */	addi r4, r4, 0x0000FFFF@l
@@ -241,6 +240,7 @@ __ct__Q24Game17FieldVtxColorInfoFv:
 /* 80122708 0011F648  B0 83 00 02 */	sth r4, 2(r3)
 /* 8012270C 0011F64C  98 03 00 04 */	stb r0, 4(r3)
 /* 80122710 0011F650  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game17FieldVtxColorInfoFv
 
 .global initVtxColor__Q24Game16FieldVtxColorMgrFv
 initVtxColor__Q24Game16FieldVtxColorMgrFv:

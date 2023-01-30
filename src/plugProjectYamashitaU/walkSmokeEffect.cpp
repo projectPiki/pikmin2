@@ -35,7 +35,7 @@ void Obj::update(EnemyBase* enemy)
 		if ((vec.y - mPosition.y) < 0.0f) {
 			if (vec.y < mapMgr->getMinY(vec)) {
 				if (!enemy->inWater()) {
-					float scaleMod                    = enemy->mScaleModifier;
+					f32 scaleMod                      = enemy->mScaleModifier;
 					EnemyTypeID::EEnemyTypeID enemyID = enemy->getEnemyTypeID();
 
 					efx::ArgEnemyType effectArg(vec, enemyID, scaleMod);
@@ -89,7 +89,7 @@ void Mgr::alloc(int count)
  * Address:	8012A418
  * Size:	0001C8
  */
-void Mgr::update(Game::EnemyBase* enemy)
+void Mgr::update(EnemyBase* enemy)
 {
 	for (int i = 0; i < mObjCount; i++) {
 		mObjects[i].update(enemy);
@@ -101,7 +101,7 @@ void Mgr::update(Game::EnemyBase* enemy)
  * Address:	8012A5E0
  * Size:	000090
  */
-void Mgr::setup(int objIdx, SysShape::Model* model, char* name, float p1)
+void Mgr::setup(int objIdx, SysShape::Model* model, char* name, f32 p1)
 {
 	Matrixf* worldMat = model->getJoint(name)->getWorldMatrix();
 

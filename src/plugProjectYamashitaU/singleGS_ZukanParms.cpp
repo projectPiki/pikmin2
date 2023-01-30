@@ -1,4 +1,6 @@
 #include "types.h"
+#include "nans.h"
+#include "Game/IllustratedBook.h"
 
 /*
     Generated from dpostproc
@@ -2505,24 +2507,3 @@ lbl_80132828:
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80132844
- * Size:	000028
- */
-void __sinit_singleGS_ZukanParms_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804AF9C8@ha
-	stw      r0, lbl_805158C8@sda21(r13)
-	stfsu    f0, lbl_804AF9C8@l(r3)
-	stfs     f0, lbl_805158CC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

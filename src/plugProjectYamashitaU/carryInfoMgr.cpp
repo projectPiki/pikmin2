@@ -531,7 +531,7 @@ lbl_8011B6B8:
  * Address:	8011B6EC
  * Size:	000328
  */
-f32 CarryInfo::drawNumber(Graphics& gfx, float xpos, float ypos, int dispNum, Color4& color, float scale)
+f32 CarryInfo::drawNumber(Graphics& gfx, f32 xpos, f32 ypos, int dispNum, Color4& color, f32 scale)
 {
 	if (dispNum < 10) {
 		drawNumberPrim(gfx, xpos, ypos, dispNum, color, scale);

@@ -9,7 +9,7 @@ namespace Game {
  * Address:	8010BA00
  * Size:	00007C
  */
-bool InteractHipdrop::actEnemy(Game::EnemyBase* enemy)
+bool InteractHipdrop::actEnemy(EnemyBase* enemy)
 {
 	bool callback = enemy->pressCallBack(mCreature, mDamage, mCollPart);
 	if (!callback) {
@@ -23,7 +23,7 @@ bool InteractHipdrop::actEnemy(Game::EnemyBase* enemy)
  * Address:	8010BA7C
  * Size:	000074
  */
-bool InteractEarthquake::actEnemy(Game::EnemyBase* enemy)
+bool InteractEarthquake::actEnemy(EnemyBase* enemy)
 {
 	bool callback = false;
 	if (!enemy->checkBirthTypeDropEarthquake()) {
@@ -37,21 +37,21 @@ bool InteractEarthquake::actEnemy(Game::EnemyBase* enemy)
  * Address:	8010BAF0
  * Size:	000040
  */
-bool InteractPress::actEnemy(Game::EnemyBase* enemy) { return enemy->pressCallBack(mCreature, mDamage, mCollPart); }
+bool InteractPress::actEnemy(EnemyBase* enemy) { return enemy->pressCallBack(mCreature, mDamage, mCollPart); }
 
 /*
  * --INFO--
  * Address:	8010BB30
  * Size:	000040
  */
-bool InteractFlyCollision::actEnemy(Game::EnemyBase* enemy) { return enemy->flyCollisionCallBack(mCreature, _08, mCollPart); }
+bool InteractFlyCollision::actEnemy(EnemyBase* enemy) { return enemy->flyCollisionCallBack(mCreature, _08, mCollPart); }
 
 /*
  * --INFO--
  * Address:	8010BB70
  * Size:	00011C
  */
-bool InteractAttack::actEnemy(Game::EnemyBase* enemy)
+bool InteractAttack::actEnemy(EnemyBase* enemy)
 {
 	bool isSuccess = false;
 
@@ -88,14 +88,14 @@ bool InteractAttack::actEnemy(Game::EnemyBase* enemy)
  * Address:	8010BC8C
  * Size:	000038
  */
-bool InteractDrop::actEnemy(Game::EnemyBase* enemy) { return enemy->dropCallBack(mCreature); }
+bool InteractDrop::actEnemy(EnemyBase* enemy) { return enemy->dropCallBack(mCreature); }
 
 /*
  * --INFO--
  * Address:	8010BCC4
  * Size:	000078
  */
-bool InteractBomb::actEnemy(Game::EnemyBase* enemy)
+bool InteractBomb::actEnemy(EnemyBase* enemy)
 {
 	bool callback = false;
 	if (!enemy->isBeforeAppearState()) {
