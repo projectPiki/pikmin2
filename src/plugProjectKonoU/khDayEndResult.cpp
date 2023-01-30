@@ -12,7 +12,7 @@
 namespace kh {
 namespace Screen {
 
-static const J2DPane* bufferPanes[2];
+u64 arrow[6] = { 'Nyaji01', 'Nyaji02', 'Nyaji03', 'Nyaji04', 'Nyaji05', 'Nyaji06' };
 
 static void _Printf(char* format) { OSReport(format, __FILE__); }
 
@@ -139,31 +139,31 @@ DispDayEndResultMail::DispDayEndResultMail(JKRHeap* heap, MailCategory category)
  */
 ObjDayEndResultBase::ObjDayEndResultBase()
 {
-	mResultTitleMgr          = nullptr;
-	mResultTitleAnmTransform = nullptr;
-	mResultTitleAnmColor     = nullptr;
-	mScreenMain              = nullptr;
-	_50                      = nullptr;
-	_54                      = nullptr;
-	_58                      = nullptr;
-	_5C                      = nullptr;
-	mScreenStars             = nullptr;
-	_74                      = nullptr;
-	_78                      = nullptr;
-	_6C                      = 0.0f;
-	_68                      = 0.0f;
-	_64                      = 0.0f;
-	_60                      = 0.0f;
-	_48                      = 0.0f;
-	_44                      = 0.0f;
-	_88                      = 0.0f;
-	_84                      = 0.0f;
-	_80                      = 0.0f;
-	_7C                      = 0.0f;
-	mNextBtnFadePane         = nullptr;
-	_95                      = 255;
-	_94                      = 255;
-	mFlags                   = 0;
+	mScreenTitle       = nullptr;
+	mTitleAnmTransform = nullptr;
+	mTitleAnmColor     = nullptr;
+	mScreenMain        = nullptr;
+	mMainAnimTrans1    = nullptr;
+	mMainAnimTrans2    = nullptr;
+	mMainAnimSRT       = nullptr;
+	mMainAnimTev       = nullptr;
+	mScreenStars       = nullptr;
+	mStarsAnimColor    = nullptr;
+	mStarsAnimTimer1   = 0.0f;
+	mMainAnimTimer4    = 0.0f;
+	mMainAnimTimer3    = 0.0f;
+	mMainAnimTimer2    = 0.0f;
+	mMainAnimTimer1    = 0.0f;
+	mTitleAnimTimer2   = 0.0f;
+	mTitleAnimTimer1   = 0.0f;
+	mFadeoutMaxFrame   = 0.0f;
+	mFadeoutMinFrame   = 0.0f;
+	mFadeinMaxFrame    = 0.0f;
+	mFadeinMinFrame    = 0.0f;
+	mNextBtnFadePane   = nullptr;
+	_95                = 255;
+	_94                = 255;
+	mFlags             = 0;
 }
 
 /*
@@ -173,16 +173,15 @@ ObjDayEndResultBase::ObjDayEndResultBase()
  */
 void ObjDayEndResultBase::doCreate(JKRArchive* archive)
 {
-	mResultTitleMgr = new P2DScreen::Mgr_tuning;
-	mResultTitleMgr->set("result_title.blo", 0x01040000, archive);
-	mResultTitleAnmTransform
+	mScreenTitle = new P2DScreen::Mgr_tuning;
+	mScreenTitle->set("result_title.blo", 0x01040000, archive);
+	mTitleAnmTransform
 	    = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title.bck", archive)));
-	mResultTitleAnmColor
-	    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title.bpk", archive)));
+	mTitleAnmColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title.bpk", archive)));
 
-	mResultTitleMgr->setAnimation(mResultTitleAnmTransform);
-	mResultTitleMgr->setAnimation(mResultTitleAnmColor);
-	mNextBtnFadePane = khUtilFadePane::create(mResultTitleMgr, 'Nbtn2', 8);
+	mScreenTitle->setAnimation(mTitleAnmTransform);
+	mScreenTitle->setAnimation(mTitleAnmColor);
+	mNextBtnFadePane = khUtilFadePane::create(mScreenTitle, 'Nbtn2', 8);
 	mNextBtnFadePane->fadeout();
 	mNextBtnFadePane->set_init_alpha(0);
 }
@@ -229,16 +228,16 @@ void ObjDayEndResultBase::doUpdateFinish()
 bool ObjDayEndResultBase::doUpdateFadein()
 {
 	updateCommon();
-	_50->mCurrentFrame = _60;
-	J2DPane* itemPane  = mScreenMain->search('NitemW');
+	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	J2DPane* itemPane              = mScreenMain->search('NitemW');
 	itemPane->animationTransform();
 
-	_60 += msVal._08;
+	mMainAnimTimer1 += msVal._08;
 
 	J2DPane* allPane = mScreenStars->search('Nall');
-	allPane->setAlpha((_60 - _7C) / (_80 - _7C) * 255.0f);
+	allPane->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
 
-	return (u8)(_60 >= _80);
+	return (u8)(mMainAnimTimer1 >= mFadeinMaxFrame);
 }
 
 /*
@@ -260,16 +259,16 @@ void ObjDayEndResultBase::doUpdateFadeinFinish()
 bool ObjDayEndResultBase::doUpdateFadeout()
 {
 	updateCommon();
-	_50->mCurrentFrame = _60;
-	J2DPane* itemPane  = mScreenMain->search('NitemW');
+	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	J2DPane* itemPane              = mScreenMain->search('NitemW');
 	itemPane->animationTransform();
 
-	_60 += msVal._08;
+	mMainAnimTimer1 += msVal._08;
 
 	J2DPane* allPane = mScreenStars->search('Nall');
-	allPane->setAlpha((1.0f - (_60 - _84) / (_88 - _84)) * 255.0f);
+	allPane->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
 
-	return (u8)(_60 >= _88);
+	return (u8)(mMainAnimTimer1 >= mFadeoutMaxFrame);
 }
 
 /*
@@ -281,8 +280,8 @@ void ObjDayEndResultBase::doDraw(Graphics& gfx)
 {
 	gfx.mOrthoGraph.setPort();
 
-	mResultTitleMgr->setXY(msVal._1C, 0.0f);
-	mResultTitleMgr->draw(gfx, gfx.mOrthoGraph);
+	mScreenTitle->setXY(msVal._1C, 0.0f);
+	mScreenTitle->draw(gfx, gfx.mOrthoGraph);
 
 	gfx.mOrthoGraph.setPort();
 	mScreenStars->setXY(msVal._14, 0.0f);
@@ -298,55 +297,55 @@ void ObjDayEndResultBase::doDraw(Graphics& gfx)
  */
 void ObjDayEndResultBase::updateCommon()
 {
-	mResultTitleAnmTransform->mCurrentFrame = _44;
-	mResultTitleAnmColor->mCurrentFrame     = _48;
-	mResultTitleMgr->animation();
+	mTitleAnmTransform->mCurrentFrame = mTitleAnimTimer1;
+	mTitleAnmColor->mCurrentFrame     = mTitleAnimTimer2;
+	mScreenTitle->animation();
 
-	_44++;
-	_48++;
+	mTitleAnimTimer1 += 1.0f;
+	mTitleAnimTimer2 += 1.0f;
 
-	if (_44 >= mResultTitleAnmTransform->mMaxFrame) {
-		_44 = 0.0f;
+	if (mTitleAnimTimer1 >= mTitleAnmTransform->mMaxFrame) {
+		mTitleAnimTimer1 = 0.0f;
 	}
 
-	if (_48 >= mResultTitleAnmColor->mMaxFrame) {
-		_48 = 0.0f;
+	if (mTitleAnimTimer2 >= mTitleAnmColor->mMaxFrame) {
+		mTitleAnimTimer2 = 0.0f;
 	}
 
-	_58->mCurrentFrame = _68;
-	_5C->mCurrentFrame = _6C;
+	mMainAnimSRT->mCurrentFrame = mMainAnimTimer3;
+	mMainAnimTev->mCurrentFrame = mMainAnimTimer4;
 	mScreenMain->animation();
 
-	_68++;
-	_6C++;
+	mMainAnimTimer3 += 1.0f;
+	mMainAnimTimer4 += 1.0f;
 
-	if (_68 >= _58->mMaxFrame) {
-		_68 = 0.0f;
+	if (mMainAnimTimer3 >= mMainAnimSRT->mMaxFrame) {
+		mMainAnimTimer3 = 0.0f;
 	}
 
-	if (_6C >= _5C->mMaxFrame) {
-		_6C = 0.0f;
+	if (mMainAnimTimer4 >= mMainAnimTev->mMaxFrame) {
+		mMainAnimTimer4 = 0.0f;
 	}
 
-	_54->mCurrentFrame = _64;
+	mMainAnimTrans2->mCurrentFrame = mMainAnimTimer2;
 	mScreenMain->search('Ntitle')->animationTransform();
 
-	_64++;
+	mMainAnimTimer2 += 1.0f;
 
-	if (_64 >= _54->mMaxFrame) {
-		_64 = 0.0f;
+	if (mMainAnimTimer2 >= mMainAnimTrans2->mMaxFrame) {
+		mMainAnimTimer2 = 0.0f;
 	}
 
-	_74->mCurrentFrame = _78;
+	mStarsAnimColor->mCurrentFrame = mStarsAnimTimer1;
 	mScreenStars->animation();
 
-	_78++;
+	mStarsAnimTimer1 += 1.0f;
 
-	if (_78 >= _74->mMaxFrame) {
-		_78 = 0.0f;
+	if (mStarsAnimTimer1 >= mStarsAnimColor->mMaxFrame) {
+		mStarsAnimTimer1 = 0.0f;
 	}
 
-	mResultTitleMgr->update();
+	mScreenTitle->update();
 }
 
 /*
@@ -357,14 +356,14 @@ void ObjDayEndResultBase::updateCommon()
 void ObjDayEndResultBase::setFadeinFrm()
 {
 	if (mFlags & 0x8) {
-		_7C = getFadeinDownMinFrm();
-		_80 = getFadeinDownMaxFrm();
+		mFadeinMinFrame = getFadeinDownMinFrm();
+		mFadeinMaxFrame = getFadeinDownMaxFrm();
 	} else {
-		_7C = getFadeinUpMinFrm();
-		_80 = getFadeinUpMaxFrm();
+		mFadeinMinFrame = getFadeinUpMinFrm();
+		mFadeinMaxFrame = getFadeinUpMaxFrm();
 	}
 
-	_60 = _7C;
+	mMainAnimTimer1 = mFadeinMinFrame;
 }
 
 /*
@@ -375,14 +374,14 @@ void ObjDayEndResultBase::setFadeinFrm()
 void ObjDayEndResultBase::setFadeoutFrm()
 {
 	if (mFlags & 0x10) {
-		_84 = getFadeoutDownMinFrm();
-		_88 = getFadeoutDownMaxFrm();
+		mFadeoutMinFrame = getFadeoutDownMinFrm();
+		mFadeoutMaxFrame = getFadeoutDownMaxFrm();
 	} else {
-		_84 = getFadeoutUpMinFrm();
-		_88 = getFadeoutUpMaxFrm();
+		mFadeoutMinFrame = getFadeoutUpMinFrm();
+		mFadeoutMaxFrame = getFadeoutUpMaxFrm();
 	}
 
-	_60 = _84;
+	mMainAnimTimer1 = mFadeoutMinFrame;
 }
 
 /*
@@ -392,32 +391,32 @@ void ObjDayEndResultBase::setFadeoutFrm()
  */
 ObjDayEndResultItem::ObjDayEndResultItem()
 {
-	mStatus       = ITEMSTATUS_ForceScroll;
-	_9C           = nullptr;
-	_A0           = 0.0f;
-	_A8           = nullptr;
-	_A4           = nullptr;
-	_B0           = nullptr;
-	_AC           = nullptr;
-	_D0           = 0;
-	_CC           = 0;
-	_C8           = 0;
-	_C4           = 0;
-	mStickAnimMgr = nullptr;
-	_B8           = nullptr;
-	_C0           = nullptr;
-	_BC           = nullptr;
-	_D4           = 0.0f;
-	_DC           = 0.0f;
-	_E0           = -6;
-	_D8           = nullptr;
-	_E4           = ObjDayEndResultBase::msVal._24;
-	_E8           = 0;
-	_F0           = 0;
-	_EC           = 0;
-	_F4           = 0;
-	_F9           = 0;
-	_F8           = 0;
+	mStatus                 = ITEMSTATUS_ForceScroll;
+	mMainAnimTrans3         = nullptr;
+	mMainAnimTimer5         = 0.0f;
+	mTotalPokoCounter       = nullptr;
+	mTodayPokoCounter       = nullptr;
+	mTreasurePokoCounter[1] = nullptr;
+	mTreasurePokoCounter[0] = nullptr;
+	mTreasurePokoCount[1]   = 0;
+	mTreasurePokoCount[0]   = 0;
+	mTodaysPokoCount        = 0;
+	mTotalPokoCount         = 0;
+	mStickAnimMgr           = nullptr;
+	mFadePane3DStick        = nullptr;
+	mFadePaneDownArrow      = nullptr;
+	mFadePaneUpArrow        = nullptr;
+	mCurrentScrollYPos      = 0.0f;
+	mItemRowHeight          = 0.0f;
+	mCurrentSelectId        = -6;
+	mMaxScrollId            = 0;
+	mScollMoveTargetTime    = ObjDayEndResultBase::msVal._24;
+	mScrollMoveCounter      = 0;
+	mGXScissorBottomY       = 0;
+	mGXScissorTopY          = 0;
+	mTotalValueDelay        = 0;
+	mScrollDownDelay        = 0;
+	mScrollUpDelay          = 0;
 }
 
 /*
@@ -431,26 +430,27 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 
 	mScreenMain = new P2DScreen::Mgr_tuning;
 	mScreenMain->set("result_item.blo", 0x00040000, archive);
-	void* resource = JKRFileLoader::getGlbResource("result_item.bck", archive);
-	_50            = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
-	_54            = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
-	_9C            = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	void* resource  = JKRFileLoader::getGlbResource("result_item.bck", archive);
+	mMainAnimTrans1 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	mMainAnimTrans2 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	mMainAnimTrans3 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
 
-	_58 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item.btk", archive)));
-	_5C = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item.brk", archive)));
+	mMainAnimSRT = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item.btk", archive)));
+	mMainAnimTev = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item.brk", archive)));
 
-	mScreenMain->setAnimation(_58);
-	mScreenMain->setAnimation(_5C);
+	mScreenMain->setAnimation(mMainAnimSRT);
+	mScreenMain->setAnimation(mMainAnimTev);
 
-	mScreenMain->search('NitemW')->setAnimation(_50);
-	mScreenMain->search('Ntitle')->setAnimation(_54);
-	mScreenMain->search('N_3d')->setAnimation(_9C);
+	mScreenMain->search('NitemW')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Ntitle')->setAnimation(mMainAnimTrans2);
+	mScreenMain->search('N_3d')->setAnimation(mMainAnimTrans3);
 
 	mScreenStars = new P2DScreen::Mgr_tuning;
 	mScreenStars->set("result_itemConstellation.blo", 0x40000, archive);
 
-	_74 = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_itemConstellation.bpk", archive)));
-	mScreenStars->setAnimation(_74);
+	mStarsAnimColor
+	    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_itemConstellation.bpk", archive)));
+	mScreenStars->setAnimation(mStarsAnimColor);
 
 	og::Screen::setCallBackMessage(mScreenMain);
 
@@ -461,14 +461,14 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 	if (dispResult->mItem.mNodeCount > 6) {
 		mFlags |= 0x1;
-		_D8 = dispResult->mItem.mNodeCount - 6;
+		mMaxScrollId = dispResult->mItem.mNodeCount - 6;
 	}
 
 	f32 y1 = mScreenMain->search('Nsetp00')->getBounds()->i.y;
 	f32 y2 = mScreenMain->search('Nsetp01')->getBounds()->i.y;
 
-	_DC = y2 - y1;
-	_D4 = _DC * (1 - _E0);
+	mItemRowHeight     = y2 - y1;
+	mCurrentScrollYPos = mItemRowHeight * (1 - mCurrentSelectId);
 
 	u64 code;
 	if (dispResult->mItem.mPayedDebt) {
@@ -481,49 +481,49 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 		code = 'Pfin01';
 	}
 
-	_C8 = 0;
-	_C4 = dispResult->mItem.mTotalPokos - dispResult->mItem.mTodaysPokoAmount;
+	mTodaysPokoCount = 0;
+	mTotalPokoCount  = dispResult->mItem.mTotalPokos - dispResult->mItem.mTodaysPokoAmount;
 
-	_A4 = og::Screen::setCallBack_CounterRV(mScreenMain, 'Ptokyop1', &_C8, 9, true, false, archive);
+	mTodayPokoCounter = og::Screen::setCallBack_CounterRV(mScreenMain, 'Ptokyop1', &mTodaysPokoCount, 9, true, false, archive);
 
-	_A8 = og::Screen::setCallBack_CounterRV(mScreenMain, code, &_C4, 9, true, false, archive);
+	mTotalPokoCounter = og::Screen::setCallBack_CounterRV(mScreenMain, code, &mTotalPokoCount, 9, true, false, archive);
 
-	_AC = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pmad00_1', &_CC, 9, false, false, archive);
+	mTreasurePokoCounter[0] = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pmad00_1', &mTreasurePokoCount[0], 9, false, false, archive);
 
-	_B0 = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pmad01_1', &_D0, 9, false, false, archive);
+	mTreasurePokoCounter[1] = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pmad01_1', &mTreasurePokoCount[1], 9, false, false, archive);
 
 	og::Screen::CallBack_Picture* callback = og::Screen::setCallBack_3DStick(archive, mScreenMain, 'P3d');
 	mStickAnimMgr                          = new og::Screen::StickAnimMgr(callback);
 	mStickAnimMgr->stickUpDown();
 
-	_BC = khUtilFadePane::create(mScreenMain, 'Nyame_u', 16);
-	_BC->fadeout();
+	mFadePaneUpArrow = khUtilFadePane::create(mScreenMain, 'Nyame_u', 16);
+	mFadePaneUpArrow->fadeout();
 
-	_C0 = khUtilFadePane::create(mScreenMain, 'Nyame_l', 16);
-	_C0->fadeout();
+	mFadePaneDownArrow = khUtilFadePane::create(mScreenMain, 'Nyame_l', 16);
+	mFadePaneDownArrow->fadeout();
 
-	_B8 = khUtilFadePane::create(mScreenMain, 'P3d', 16);
-	_B8->add(mScreenMain->search('N_3d'));
-	_B8->fadeout();
+	mFadePane3DStick = khUtilFadePane::create(mScreenMain, 'P3d', 16);
+	mFadePane3DStick->add(mScreenMain->search('N_3d'));
+	mFadePane3DStick->fadeout();
 
 	mScreenMain->search('Nsetp02')->hide();
 	mScreenMain->search('Nsetp03')->hide();
 	mScreenMain->search('Nsetp04')->hide();
 	mScreenMain->search('Nsetp05')->hide();
-	mResultTitleMgr->search('Nbtn1')->hide();
+	mScreenTitle->search('Nbtn1')->hide();
 
 	if (dispResult->mItem.mHasNothing) {
-		mStatus = ITEMSTATUS_Normal;
-		_C8     = dispResult->mItem.mTodaysPokoAmount;
-		_C4     = dispResult->mItem.mTotalPokos;
-		_A4->show();
-		_A8->show();
+		mStatus          = ITEMSTATUS_Normal;
+		mTodaysPokoCount = dispResult->mItem.mTodaysPokoAmount;
+		mTotalPokoCount  = dispResult->mItem.mTotalPokos;
+		mTodayPokoCounter->show();
+		mTotalPokoCounter->show();
 		mNextBtnFadePane->fadein();
-		_E0 = 0;
-		_D4 = 0.0f;
+		mCurrentSelectId   = 0;
+		mCurrentScrollYPos = 0.0f;
 		if (mFlags & 0x1) {
-			_C0->fadein();
-			_B8->fadein();
+			mFadePaneDownArrow->fadein();
+			mFadePane3DStick->fadein();
 		}
 		mFlags |= 0x40;
 	}
@@ -547,14 +547,14 @@ bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 	}
 
 	if (mFlags & 0x8) {
-		_7C = getFadeinDownMinFrm();
-		_80 = getFadeinDownMaxFrm();
+		mFadeinMinFrame = getFadeinDownMinFrm();
+		mFadeinMaxFrame = getFadeinDownMaxFrm();
 	} else {
-		_7C = getFadeinUpMinFrm();
-		_80 = getFadeinUpMaxFrm();
+		mFadeinMinFrame = getFadeinUpMinFrm();
+		mFadeinMaxFrame = getFadeinUpMaxFrm();
 	}
 
-	_60 = _7C;
+	mMainAnimTimer1 = mFadeinMinFrame;
 
 	J2DPane* pane = mScreenStars->search('Nall');
 	setInfAlpha(pane);
@@ -570,15 +570,15 @@ bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 bool ObjDayEndResultItem::doUpdateFadein()
 {
 	updateCommon();
-	_50->mCurrentFrame = _60;
+	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	_60 += ObjDayEndResultBase::msVal._08;
+	mMainAnimTimer1 += ObjDayEndResultBase::msVal._08;
 
-	mScreenStars->search('Nall')->setAlpha((_60 - _7C) / (_80 - _7C) * 255.0f);
+	mScreenStars->search('Nall')->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
 
 	bool result;
-	if (_60 >= _80) {
+	if (mMainAnimTimer1 >= mFadeinMaxFrame) {
 		result = true;
 	} else {
 		result = false;
@@ -619,8 +619,8 @@ bool ObjDayEndResultItem::doUpdate()
 		break;
 	}
 
-	if (getGamePad()->mButton.mButtonDown & 0x100) {
-		if (getGamePad()->mButton.mButtonDown & 0x100 && !isFlag(0x40)) {
+	if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
+		if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A && !isFlag(0x40)) {
 			mFlags |= 0x20;
 		}
 
@@ -629,29 +629,28 @@ bool ObjDayEndResultItem::doUpdate()
 			::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_INC_P, dispIncP, 0, 1);
 
 			if (getOwner()->setScene(setArg)) {
-				SArgDayEndResultIncP argIncP;
+				SArgDayEndResultIncP argIncP(1);
 				getOwner()->startScene(&argIncP);
-
 				mFlags &= ~0x10;
 			}
 		}
 	}
 
 	if (mFlags & 0x20) {
-		_E0     = _D8;
-		_D4     = -_DC * _E0;
-		_E8     = 0;
-		mStatus = ITEMSTATUS_Normal;
+		mCurrentSelectId   = mMaxScrollId;
+		mCurrentScrollYPos = -mItemRowHeight * mCurrentSelectId;
+		mScrollMoveCounter = 0;
+		mStatus            = ITEMSTATUS_Normal;
 
 		if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
 			JUT_PANICLINE(664, "disp member err");
 		}
 
 		DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
-		_C8                          = dispResult->mItem.mTodaysPokoAmount;
-		_C4                          = dispResult->mItem.mTotalPokos;
-		_A4->startPuyoUp(1.0f);
-		_A8->startPuyoUp(1.0f);
+		mTodaysPokoCount             = dispResult->mItem.mTodaysPokoAmount;
+		mTotalPokoCount              = dispResult->mItem.mTotalPokos;
+		mTodayPokoCounter->startPuyoUp(1.0f);
+		mTotalPokoCounter->startPuyoUp(1.0f);
 		mNextBtnFadePane->fadein();
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
 		mFlags &= ~0x20;
@@ -668,16 +667,16 @@ bool ObjDayEndResultItem::doUpdate()
 bool ObjDayEndResultItem::doUpdateFadeout()
 {
 	updateCommon();
-	_50->mCurrentFrame = _60;
+	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	_60 += ObjDayEndResultBase::msVal._08;
+	mMainAnimTimer1 += ObjDayEndResultBase::msVal._08;
 
 	J2DPane* pane = mScreenStars->search('Nall');
-	pane->setAlpha((1.0f - (_60 - _84) / (_88 - _84)) * 255.0f);
+	pane->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
 
 	bool result;
-	if (_60 >= _88) {
+	if (mMainAnimTimer1 >= mFadeoutMaxFrame) {
 		result = true;
 	} else {
 		result = false;
@@ -706,10 +705,7 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	J2DPane* pane1               = mScreenMain->search('NALL2');
 	J2DPane* pane2               = mScreenMain->search('N_3d');
 
-	J2DPane* panes[2] = { const_cast<J2DPane*>(bufferPanes[0]), const_cast<J2DPane*>(bufferPanes[1]) };
-
-	panes[0]       = mScreenMain->search('Nsetp00');
-	J2DPane* pane3 = mScreenMain->search('Nsetp01');
+	J2DPane* panes[2] = { mScreenMain->search('Nsetp00'), mScreenMain->search('Nsetp01') };
 
 	u64 icons[2] = { 'iPicon00', 'iPicon01' };
 	u64 names[2] = { 'Piname00', 'Piname01' };
@@ -717,47 +713,76 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	pane1->show();
 	pane2->hide();
 	panes[0]->hide();
-	pane3->hide();
-	panes[1] = pane3;
+	panes[1]->hide();
 
 	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 	u32 left   = 0;
 	u32 top    = 0;
 	u32 width  = 0;
 	u32 height = 0;
-	GXSetScissor(left, top, width, height);
-	GXSetScissor(left, _EC, width, _F0);
+	GXGetScissor(&left, &top, &width, &height);
+	GXSetScissor(left, mGXScissorTopY, width, mGXScissorBottomY);
 
 	pane1->hide();
 	pane2->hide();
 
-	f32 p1 = 2.0f * _DC;
+	f32 p1 = 2.0f * mItemRowHeight;
 
 	for (int i = 0; i < 2; i++) {
-		panes[i]->add(0.0f, _D4 - p1);
+		panes[i]->add(0.0f, mCurrentScrollYPos - p1);
 	}
 
 	for (int i = 0; i < 2; i++) {
 		mScreenMain->search(icons[i])->show();
 		mScreenMain->search(names[i])->show();
-		_AC->show();
+		mTreasurePokoCounter[i]->show();
 	}
 
-	int i = 0;
-	for (Game::Result::TNode* resultNode = dispResult->mItem.mResultNode; resultNode;
-	     resultNode                      = static_cast<Game::Result::TNode*>(resultNode->mNext), i++) {
-		f32 check = i * _DC + _D4;
-		if (check < -_DC || _F0 < check) {
+	int i    = 0;
+	f32 offs = mItemRowHeight * 2.0f;
+	FOREACH_NODE(Game::Result::TNode, dispResult->mItem.mResultNode->mChild, cNode)
+	{
+		u32 isOdd = i & 1;
+		f32 check = (f32)i * mItemRowHeight + mCurrentScrollYPos;
+		if (check < -mItemRowHeight || mGXScissorBottomY < check) {
 			panes[i]->add(0.0f, p1);
-			continue;
+		} else {
+			panes[isOdd]->show();
+			panes[isOdd + 1]->hide();
+			panes[isOdd % 2]->add(0.0f, p1);
+
+			JUTTexture* texture = cNode->mTexture;
+			setTex(mScreenMain, icons[i], texture->_20);
+			if (!cNode->mMesgTag) {
+				mScreenMain->search(names[isOdd])->hide();
+			} else {
+				mScreenMain->search(names[isOdd])->setMsgID(cNode->mMesgTag);
+			}
+			mTreasurePokoCount[isOdd] = cNode->mTotalPokos;
+			mTreasurePokoCounter[isOdd]->update();
+			mScreenMain->draw(gfx, gfx.mOrthoGraph);
 		}
+		i++;
+	}
 
-		panes[i]->show();
-		panes[i + 1]->hide();
-		panes[i % 2]->add(0.0f, p1);
+	for (; i < 6; i++) {
+		int isOdd = i & 1;
+		panes[isOdd]->hide();
+		panes[isOdd]->show();
+		panes[isOdd]->add(0.0f, offs);
+		mScreenMain->search(icons[isOdd])->hide();
+		mScreenMain->search(names[isOdd])->hide();
+		mTreasurePokoCounter[isOdd]->hide();
+		mScreenMain->draw(gfx, gfx.mOrthoGraph);
+	}
 
-		JUTTexture* texture = resultNode->mTexture;
-		setTex(mScreenMain, icons[i], texture->_20);
+	GXSetScissor(left, top, width, height);
+	if (mFlags & 1 && mStatus != ITEMSTATUS_ForceScroll && mStatus != ITEMSTATUS_DrumRoll && mStatus != ITEMSTATUS_TotalValue) {
+		pane1->hide();
+		pane2->hide();
+		panes[0]->hide();
+		panes[1]->hide();
+		mScreenMain->draw(gfx, gfx.mOrthoGraph);
 	}
 	/*
 stwu     r1, -0xa0(r1)
@@ -1230,53 +1255,53 @@ blr
 void ObjDayEndResultItem::statusNormal()
 {
 	if (mFlags & 0x1) {
-		if (_E0 == 0) {
-			_BC->fadeout();
-			_C0->fadein();
+		if (mCurrentSelectId == 0) {
+			mFadePaneUpArrow->fadeout();
+			mFadePaneDownArrow->fadein();
 			mStickAnimMgr->stickDown();
-		} else if (_E0 == _D8) {
-			_BC->fadein();
-			_C0->fadeout();
+		} else if (mCurrentSelectId == mMaxScrollId) {
+			mFadePaneUpArrow->fadein();
+			mFadePaneDownArrow->fadeout();
 			mStickAnimMgr->stickUp();
 		} else {
-			_BC->fadein();
-			_C0->fadein();
+			mFadePaneUpArrow->fadein();
+			mFadePaneDownArrow->fadein();
 			mStickAnimMgr->stickUpDown();
 		}
-		_B8->fadein();
+		mFadePane3DStick->fadein();
 	} else {
-		_BC->fadeout();
-		_C0->fadeout();
-		_B8->fadeout();
+		mFadePaneUpArrow->fadeout();
+		mFadePaneDownArrow->fadeout();
+		mFadePane3DStick->fadeout();
 	}
 
 	if (mFlags & 0x1) {
-		if (getGamePad()->mButton.mMask & 0x08000008 && _E0 != 0) {
-			_E0--;
-			if (_F8 >= 1) {
-				_E4 = ObjDayEndResultBase::msVal._28;
+		if (getGamePad()->mButton.mMask & Controller::PRESS_UP && mCurrentSelectId != 0) {
+			mCurrentSelectId--;
+			if (mScrollUpDelay >= 1) {
+				mScollMoveTargetTime = ObjDayEndResultBase::msVal._28;
 			} else {
-				_F8++;
+				mScrollUpDelay++;
 			}
 
-			_F9     = 0;
-			mStatus = ITEMSTATUS_ScrollUp;
+			mScrollDownDelay = 0;
+			mStatus          = ITEMSTATUS_ScrollUp;
 			statusScrollUp();
-		} else if (getGamePad()->mButton.mMask & 0x04000004 && _E0 != _D8) {
-			_E0++;
-			if (_F9 >= 1) {
-				_E4 = ObjDayEndResultBase::msVal._28;
+		} else if (getGamePad()->mButton.mMask & Controller::PRESS_DOWN && mCurrentSelectId != mMaxScrollId) {
+			mCurrentSelectId++;
+			if (mScrollDownDelay >= 1) {
+				mScollMoveTargetTime = ObjDayEndResultBase::msVal._28;
 			} else {
-				_F9++;
+				mScrollDownDelay++;
 			}
 
-			_F8     = 0;
-			mStatus = ITEMSTATUS_ScrollDown;
+			mScrollUpDelay = 0;
+			mStatus        = ITEMSTATUS_ScrollDown;
 			statusScrollDown();
 		} else {
-			_F9 = 0;
-			_F8 = 0;
-			_E4 = ObjDayEndResultBase::msVal._24;
+			mScrollDownDelay     = 0;
+			mScrollUpDelay       = 0;
+			mScollMoveTargetTime = ObjDayEndResultBase::msVal._24;
 		}
 	}
 }
@@ -1288,11 +1313,11 @@ void ObjDayEndResultItem::statusNormal()
  */
 void ObjDayEndResultItem::statusScrollUp()
 {
-	f32 p1 = _DC * (_E0 + 1) * (_E4 - _E8);
-	_D4    = -((_E8 * (_DC * _E0) + p1) / _E4);
-	if (_E8++ == _E4) {
-		_E8     = 1;
-		mStatus = ITEMSTATUS_Normal;
+	f32 p1             = mItemRowHeight * (mCurrentSelectId + 1) * (mScollMoveTargetTime - mScrollMoveCounter);
+	mCurrentScrollYPos = -((mScrollMoveCounter * (mItemRowHeight * mCurrentSelectId) + p1) / mScollMoveTargetTime);
+	if (mScrollMoveCounter++ == mScollMoveTargetTime) {
+		mScrollMoveCounter = 1;
+		mStatus            = ITEMSTATUS_Normal;
 	}
 
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
@@ -1305,11 +1330,11 @@ void ObjDayEndResultItem::statusScrollUp()
  */
 void ObjDayEndResultItem::statusScrollDown()
 {
-	f32 p1 = _DC * (_E0 - 1) * (_E4 - _E8);
-	_D4    = -((_E8 * (_DC * _E0) + p1) / _E4);
-	if (_E8++ == _E4) {
-		_E8     = 1;
-		mStatus = ITEMSTATUS_Normal;
+	f32 p1             = mItemRowHeight * (mCurrentSelectId - 1) * (mScollMoveTargetTime - mScrollMoveCounter);
+	mCurrentScrollYPos = -((mScrollMoveCounter * (mItemRowHeight * mCurrentSelectId) + p1) / mScollMoveTargetTime);
+	if (mScrollMoveCounter++ == mScollMoveTargetTime) {
+		mScrollMoveCounter = 1;
+		mStatus            = ITEMSTATUS_Normal;
 	}
 
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
@@ -1322,12 +1347,12 @@ void ObjDayEndResultItem::statusScrollDown()
  */
 void ObjDayEndResultItem::statusForceScroll()
 {
-	f32 p1 = _DC * (_E0 - 1) * (_E4 - _E8);
-	_D4    = -((_E8 * (_DC * _E0) + p1) / _E4);
-	if (_E8++ == _E4) {
-		if (_E0 == _D8) {
-			_E8     = 1;
-			mStatus = ITEMSTATUS_DrumRoll;
+	f32 p1             = mItemRowHeight * (mCurrentSelectId - 1) * (mScollMoveTargetTime - mScrollMoveCounter);
+	mCurrentScrollYPos = -((mScrollMoveCounter * (mItemRowHeight * mCurrentSelectId) + p1) / mScollMoveTargetTime);
+	if (mScrollMoveCounter++ == mScollMoveTargetTime) {
+		if (mCurrentSelectId == mMaxScrollId) {
+			mScrollMoveCounter = 1;
+			mStatus            = ITEMSTATUS_DrumRoll;
 		} else {
 			if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
 				JUT_PANICLINE(958, "disp member err");
@@ -1337,14 +1362,15 @@ void ObjDayEndResultItem::statusForceScroll()
 
 			int i                           = 0;
 			Game::Result::TNode* resultNode = static_cast<Game::Result::TNode*>(dispResult->mItem.mResultNode->mChild);
-			for (resultNode; resultNode && i != _E0 + 6; resultNode = static_cast<Game::Result::TNode*>(resultNode->mNext), i++) { }
+			for (resultNode; resultNode && i != mCurrentSelectId + 6;
+			     resultNode = static_cast<Game::Result::TNode*>(resultNode->mNext), i++) { }
 
 			if (resultNode && resultNode->mLostNum == 0) {
-				_C8 += resultNode->mTotalPokos;
+				mTodaysPokoCount += resultNode->mTotalPokos;
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_COIN_COUNT, 0);
 			}
-			_E8 = 1;
-			_E0++;
+			mScrollMoveCounter = 1;
+			mCurrentSelectId++;
 		}
 	}
 
@@ -1358,8 +1384,8 @@ void ObjDayEndResultItem::statusForceScroll()
  */
 void ObjDayEndResultItem::statusDrumRoll()
 {
-	_F4     = ObjDayEndResultBase::msVal._50;
-	mStatus = ITEMSTATUS_TotalValue;
+	mTotalValueDelay = ObjDayEndResultBase::msVal._50;
+	mStatus          = ITEMSTATUS_TotalValue;
 }
 
 /*
@@ -1369,20 +1395,20 @@ void ObjDayEndResultItem::statusDrumRoll()
  */
 void ObjDayEndResultItem::statusTotalValue()
 {
-	if (_F4 == 0) {
+	if (mTotalValueDelay == 0) {
 		if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
 			JUT_PANICLINE(1011, "disp member err");
 		}
 
 		DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
-		_C4                          = dispResult->mItem.mTotalPokos;
-		_A8->startPuyoUp(1.0f);
+		mTotalPokoCount              = dispResult->mItem.mTotalPokos;
+		mTotalPokoCounter->startPuyoUp(1.0f);
 		mNextBtnFadePane->fadein();
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
 		mStatus = ITEMSTATUS_Normal;
 		mFlags |= 0x40;
 	} else {
-		_F4--;
+		mTotalValueDelay--;
 	}
 }
 
@@ -1400,17 +1426,17 @@ void ObjDayEndResultItem::updateCommon()
 
 	// this is so dumb. SO DUMB.
 	f32 yTop;
-	_EC = 0.5f + (yTop = topLeft.y);
-	_F0 = centerLeft.y - yTop;
+	mGXScissorTopY    = 0.5f + (yTop = topLeft.y);
+	mGXScissorBottomY = centerLeft.y - yTop;
 
 	mScreenMain->animation();
 
-	_9C->mCurrentFrame = _A0;
+	mMainAnimTrans3->mCurrentFrame = mMainAnimTimer5;
 	mScreenMain->search('N_3d')->animationTransform();
 
-	_A0++;
-	if (_A0 >= _9C->mMaxFrame) {
-		_A0 = 0.0f;
+	mMainAnimTimer5++;
+	if (mMainAnimTimer5 >= mMainAnimTrans3->mMaxFrame) {
+		mMainAnimTimer5 = 0.0f;
 	}
 }
 
@@ -1421,53 +1447,40 @@ void ObjDayEndResultItem::updateCommon()
  */
 ObjDayEndResultIncP::ObjDayEndResultIncP()
 {
-	_CC  = 0;
-	_D0  = 0;
-	_D4  = 0;
-	_D8  = 0;
-	_DC  = 0;
-	_E0  = 0;
-	_E4  = 0;
-	_E8  = 0;
-	_EC  = 0;
-	_F0  = 0;
-	_F4  = 0;
-	_F8  = 0;
-	_FC  = 0;
-	_100 = 0;
-	_104 = 0;
-	_108 = 0;
-	_10C = 0;
-	_110 = 0;
-	_114 = 0;
-	_118 = 0;
-	_11C = 0;
-	_120 = 0;
-	_124 = 0;
-	_128 = 0;
-	_12C = 0;
-	_130 = 0;
-	_134 = 0;
-	_138 = 0;
+	for (int i = 0; i < 6; i++) {
+		mYesterdayPikis[i] = 0;
+	}
 
-	mStatus     = INCPSTATUS_Slot;
-	mScreenMain = nullptr;
-	_A0         = nullptr;
-	_9C         = nullptr;
-	_A4         = 399.0f;
-	_A8         = 404.0f;
-	_AC         = nullptr;
-	_B8         = 10;
-	_B4         = nullptr;
-	_B0         = nullptr;
-	mScaleMgr   = nullptr;
-	_154        = ObjDayEndResultBase::msVal._50;
-	_13C[0]     = 0.0f;
-	_13C[1]     = 0.0f;
-	_13C[2]     = 0.0f;
-	_13C[3]     = 0.0f;
-	_13C[4]     = 0.0f;
-	_13C[5]     = 0.0f;
+	for (int i = 0; i < 6; i++) {
+		mTodayPikis[i] = 0;
+	}
+
+	for (int i = 0; i < 8; i++) {
+		mTodayDeaths[i] = 0;
+	}
+
+	for (int i = 0; i < 8; i++) {
+		mTotalDeaths[i] = 0;
+	}
+
+	mStatus               = INCPSTATUS_Slot;
+	mScreenMain           = nullptr;
+	mMainAnimTrans4       = nullptr;
+	mMainAnimTrans3       = nullptr;
+	mMainAnimTimer5       = 399.0f;
+	mMainAnimTimer6       = 404.0f;
+	mPikiCountersList     = nullptr;
+	mCounterNum           = 10;
+	mPikiCounterToday     = nullptr;
+	mPikiCounterYesterday = nullptr;
+	mScaleMgr             = nullptr;
+	mSlotChangeDelay      = ObjDayEndResultBase::msVal._50;
+	mArrowAngles[0]       = 0.0f;
+	mArrowAngles[1]       = 0.0f;
+	mArrowAngles[2]       = 0.0f;
+	mArrowAngles[3]       = 0.0f;
+	mArrowAngles[4]       = 0.0f;
+	mArrowAngles[5]       = 0.0f;
 }
 
 /*
@@ -1475,1334 +1488,1542 @@ ObjDayEndResultIncP::ObjDayEndResultIncP()
  * Address:	804056D8
  * Size:	001374
  */
-void ObjDayEndResultIncP::doCreate(JKRArchive* archive)
+void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 {
-	ObjDayEndResultBase::doCreate(archive); // probably
-	                                        /*
-	                                    stwu     r1, -0x70(r1)
-	                                    mflr     r0
-	                                    lis      r5, lbl_80498830@ha
-	                                    stw      r0, 0x74(r1)
-	                                    stmw     r22, 0x48(r1)
-	                                    mr       r30, r3
-	                                    mr       r31, r4
-	                                    li       r3, 0x148
-	                                    addi     r27, r5, lbl_80498830@l
-	                                    bl       __nw__FUl
-	                                    or.      r0, r3, r3
-	                                    beq      lbl_80405710
-	                                    bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	                                    mr       r0, r3
-	                                    
-	                                    lbl_80405710:
-	                                    stw      r0, 0x38(r30)
-	                                    mr       r6, r31
-	                                    addi     r4, r27, 0x14
-	                                    lis      r5, 0x104
-	                                    lwz      r3, 0x38(r30)
-	                                    bl       set__9J2DScreenFPCcUlP10JKRArchive
-	                                    mr       r4, r31
-	                                    addi     r3, r27, 0x28
-	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
-	                                    stw      r3, 0x3c(r30)
-	                                    mr       r4, r31
-	                                    addi     r3, r27, 0x3c
-	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
-	                                    stw      r3, 0x40(r30)
-	                                    lwz      r3, 0x38(r30)
-	                                    lwz      r4, 0x3c(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x38(r30)
-	                                    lwz      r4, 0x40(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x64(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lis      r4, 0x62746E32@ha
-	                                    lwz      r3, 0x38(r30)
-	                                    addi     r6, r4, 0x62746E32@l
-	                                    li       r5, 0x4e
-	                                    li       r7, 8
-	                                    bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-	                                    stw      r3, 0x8c(r30)
-	                                    lwz      r3, 0x8c(r30)
-	                                    bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-	                                    lwz      r3, 0x8c(r30)
-	                                    li       r4, 0
-	                                    bl       set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc
-	                                    li       r3, 0x148
-	                                    bl       __nw__FUl
-	                                    or.      r0, r3, r3
-	                                    beq      lbl_804057C8
-	                                    bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	                                    mr       r0, r3
-	                                    
-	                                    lbl_804057C8:
-	                                    stw      r0, 0x4c(r30)
-	                                    mr       r6, r31
-	                                    addi     r4, r27, 0x130
-	                                    lis      r5, 4
-	                                    lwz      r3, 0x4c(r30)
-	                                    bl       set__9J2DScreenFPCcUlP10JKRArchive
-	                                    mr       r4, r31
-	                                    addi     r3, r27, 0x148
-	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	                                    mr       r22, r3
-	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
-	                                    stw      r3, 0x50(r30)
-	                                    mr       r3, r22
-	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
-	                                    stw      r3, 0x54(r30)
-	                                    mr       r3, r22
-	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
-	                                    stw      r3, 0x9c(r30)
-	                                    mr       r3, r22
-	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
-	                                    stw      r3, 0xa0(r30)
-	                                    mr       r4, r31
-	                                    addi     r3, r27, 0x160
-	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
-	                                    stw      r3, 0x58(r30)
-	                                    mr       r4, r31
-	                                    addi     r3, r27, 0x178
-	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
-	                                    stw      r3, 0x5c(r30)
-	                                    lwz      r3, 0x4c(r30)
-	                                    lwz      r4, 0x58(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x6c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lwz      r4, 0x5c(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x70(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x656D5731@ha
-	                                    lis      r4, 0x004E6974@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x656D5731@l
-	                                    addi     r5, r4, 0x004E6974@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0x9c(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r4, 0x74656D57@ha
-	                                    addi     r6, r4, 0x74656D57@l
-	                                    li       r5, 0x4e69
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0x50(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x74703030@ha
-	                                    lis      r4, 0x004E7365@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x74703030@l
-	                                    addi     r5, r4, 0x004E7365@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0x50(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x74703031@ha
-	                                    lis      r4, 0x004E7365@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x74703031@l
-	                                    addi     r5, r4, 0x004E7365@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0x50(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x74703032@ha
-	                                    lis      r4, 0x004E7365@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x74703032@l
-	                                    addi     r5, r4, 0x004E7365@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0x50(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x74703033@ha
-	                                    lis      r4, 0x004E7365@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x74703033@l
-	                                    addi     r5, r4, 0x004E7365@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0x50(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x74703034@ha
-	                                    lis      r4, 0x004E7365@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x74703034@l
-	                                    addi     r5, r4, 0x004E7365@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0x50(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x74703035@ha
-	                                    lis      r4, 0x004E7365@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x74703035@l
-	                                    addi     r5, r4, 0x004E7365@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0x50(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r4, 0x69746C65@ha
-	                                    addi     r6, r4, 0x69746C65@l
-	                                    li       r5, 0x4e74
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0x54(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r4, 0x64656164@ha
-	                                    addi     r6, r4, 0x64656164@l
-	                                    li       r5, 0x4e
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r4, 0xa0(r30)
-	                                    lwz      r12, 0x60(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r3, 0x148
-	                                    bl       __nw__FUl
-	                                    or.      r0, r3, r3
-	                                    beq      lbl_80405AB0
-	                                    bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	                                    mr       r0, r3
-	                                    
-	                                    lbl_80405AB0:
-	                                    stw      r0, 0x70(r30)
-	                                    mr       r6, r31
-	                                    addi     r4, r27, 0x190
-	                                    lis      r5, 4
-	                                    lwz      r3, 0x70(r30)
-	                                    bl       set__9J2DScreenFPCcUlP10JKRArchive
-	                                    mr       r4, r31
-	                                    addi     r3, r27, 0x1b0
-	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
-	                                    stw      r3, 0x74(r30)
-	                                    lwz      r3, 0x70(r30)
-	                                    lwz      r4, 0x74(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x64(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x4c(r30)
-	                                    bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
-	                                    mr       r3, r30
-	                                    bl       getDispMember__Q26Screen7ObjBaseFv
-	                                    lis      r4, 0x52534C54@ha
-	                                    lis      r5, 0x0044455F@ha
-	                                    addi     r6, r4, 0x52534C54@l
-	                                    li       r4, 0x4b48
-	                                    addi     r5, r5, 0x0044455F@l
-	                                    bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	                                    clrlwi.  r0, r3, 0x18
-	                                    bne      lbl_80405B38
-	                                    addi     r3, r27, 0
-	                                    addi     r5, r27, 0xd0
-	                                    li       r4, 0x486
-	                                    crclr    6
-	                                    bl       panic_f__12JUTExceptionFPCciPCce
-	                                    
-	                                    lbl_80405B38:
-	                                    mr       r3, r30
-	                                    bl       getDispMember__Q26Screen7ObjBaseFv
-	                                    mr       r28, r3
-	                                    lwz      r3, 0x3c(r3)
-	                                    lwz      r0, 0(r3)
-	                                    stw      r0, 0xcc(r30)
-	                                    lwz      r0, 4(r3)
-	                                    stw      r0, 0xd0(r30)
-	                                    lwz      r0, 8(r3)
-	                                    stw      r0, 0xd4(r30)
-	                                    lwz      r0, 0xc(r3)
-	                                    stw      r0, 0xd8(r30)
-	                                    lwz      r0, 0x10(r3)
-	                                    stw      r0, 0xdc(r30)
-	                                    lwz      r0, 0x14(r3)
-	                                    stw      r0, 0xe0(r30)
-	                                    lwz      r3, 0x3c(r28)
-	                                    lwz      r0, 0x18(r3)
-	                                    stw      r0, 0xe4(r30)
-	                                    lwz      r0, 0x1c(r3)
-	                                    stw      r0, 0xe8(r30)
-	                                    lwz      r0, 0x20(r3)
-	                                    stw      r0, 0xec(r30)
-	                                    lwz      r0, 0x24(r3)
-	                                    stw      r0, 0xf0(r30)
-	                                    lwz      r0, 0x28(r3)
-	                                    stw      r0, 0xf4(r30)
-	                                    lwz      r0, 0x2c(r3)
-	                                    stw      r0, 0xf8(r30)
-	                                    lwz      r3, 0x3c(r28)
-	                                    lwz      r0, 0x30(r3)
-	                                    stw      r0, 0xfc(r30)
-	                                    lwz      r0, 0x34(r3)
-	                                    stw      r0, 0x100(r30)
-	                                    lwz      r0, 0x38(r3)
-	                                    stw      r0, 0x104(r30)
-	                                    lwz      r0, 0x3c(r3)
-	                                    stw      r0, 0x108(r30)
-	                                    lwz      r0, 0x40(r3)
-	                                    stw      r0, 0x10c(r30)
-	                                    lwz      r0, 0x44(r3)
-	                                    stw      r0, 0x110(r30)
-	                                    lwz      r0, 0x48(r3)
-	                                    stw      r0, 0x114(r30)
-	                                    lwz      r0, 0x4c(r3)
-	                                    stw      r0, 0x118(r30)
-	                                    lwz      r3, 0x3c(r28)
-	                                    lwz      r0, 0x50(r3)
-	                                    stw      r0, 0x11c(r30)
-	                                    lwz      r0, 0x54(r3)
-	                                    stw      r0, 0x120(r30)
-	                                    lwz      r0, 0x58(r3)
-	                                    stw      r0, 0x124(r30)
-	                                    lwz      r0, 0x5c(r3)
-	                                    stw      r0, 0x128(r30)
-	                                    lwz      r0, 0x60(r3)
-	                                    stw      r0, 0x12c(r30)
-	                                    lwz      r0, 0x64(r3)
-	                                    stw      r0, 0x130(r30)
-	                                    lwz      r0, 0x68(r3)
-	                                    stw      r0, 0x134(r30)
-	                                    lwz      r0, 0x6c(r3)
-	                                    stw      r0, 0x138(r30)
-	                                    lwz      r3, 0x3c(r28)
-	                                    lbz      r29, 0x70(r3)
-	                                    clrlwi.  r26, r29, 0x1f
-	                                    bne      lbl_80405CD4
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x72653031@ha
-	                                    lis      r4, 0x4E666967@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x72653031@l
-	                                    addi     r5, r4, 0x4E666967@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x6B693031@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E7069@ha
-	                                    addi     r6, r5, 0x6B693031@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E7069@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x70693031@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E746F@ha
-	                                    addi     r6, r5, 0x70693031@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E746F@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    stb      r0, 0xb0(r3)
-	                                    lwz      r3, 0xb8(r30)
-	                                    addi     r0, r3, -2
-	                                    stw      r0, 0xb8(r30)
-	                                    
-	                                    lbl_80405CD4:
-	                                    rlwinm.  r25, r29, 0, 0x1e, 0x1e
-	                                    bne      lbl_80405D6C
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x72653032@ha
-	                                    lis      r4, 0x4E666967@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x72653032@l
-	                                    addi     r5, r4, 0x4E666967@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x6B693032@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E7069@ha
-	                                    addi     r6, r5, 0x6B693032@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E7069@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x70693032@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E746F@ha
-	                                    addi     r6, r5, 0x70693032@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E746F@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    stb      r0, 0xb0(r3)
-	                                    lwz      r3, 0xb8(r30)
-	                                    addi     r0, r3, -2
-	                                    stw      r0, 0xb8(r30)
-	                                    
-	                                    lbl_80405D6C:
-	                                    rlwinm.  r24, r29, 0, 0x1d, 0x1d
-	                                    bne      lbl_80405E04
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x72653033@ha
-	                                    lis      r4, 0x4E666967@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x72653033@l
-	                                    addi     r5, r4, 0x4E666967@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x6B693033@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E7069@ha
-	                                    addi     r6, r5, 0x6B693033@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E7069@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x70693033@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E746F@ha
-	                                    addi     r6, r5, 0x70693033@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E746F@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    stb      r0, 0xb0(r3)
-	                                    lwz      r3, 0xb8(r30)
-	                                    addi     r0, r3, -2
-	                                    stw      r0, 0xb8(r30)
-	                                    
-	                                    lbl_80405E04:
-	                                    rlwinm.  r23, r29, 0, 0x1c, 0x1c
-	                                    bne      lbl_80405E9C
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x72653034@ha
-	                                    lis      r4, 0x4E666967@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x72653034@l
-	                                    addi     r5, r4, 0x4E666967@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x6B693034@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E7069@ha
-	                                    addi     r6, r5, 0x6B693034@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E7069@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x70693034@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E746F@ha
-	                                    addi     r6, r5, 0x70693034@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E746F@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    stb      r0, 0xb0(r3)
-	                                    lwz      r3, 0xb8(r30)
-	                                    addi     r0, r3, -2
-	                                    stw      r0, 0xb8(r30)
-	                                    
-	                                    lbl_80405E9C:
-	                                    rlwinm.  r29, r29, 0, 0x1b, 0x1b
-	                                    bne      lbl_80405F34
-	                                    lwz      r3, 0x4c(r30)
-	                                    lis      r5, 0x72653035@ha
-	                                    lis      r4, 0x4E666967@ha
-	                                    lwz      r12, 0(r3)
-	                                    addi     r6, r5, 0x72653035@l
-	                                    addi     r5, r4, 0x4E666967@l
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x6B693035@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E7069@ha
-	                                    addi     r6, r5, 0x6B693035@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E7069@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    lis      r5, 0x70693035@ha
-	                                    stb      r0, 0xb0(r3)
-	                                    lis      r4, 0x004E746F@ha
-	                                    addi     r6, r5, 0x70693035@l
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r5, r4, 0x004E746F@l
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r0, 0
-	                                    stb      r0, 0xb0(r3)
-	                                    lwz      r3, 0xb8(r30)
-	                                    addi     r0, r3, -2
-	                                    stw      r0, 0xb8(r30)
-	                                    
-	                                    lbl_80405F34:
-	                                    lwz      r0, 0xb8(r30)
-	                                    li       r22, 0
-	                                    slwi     r3, r0, 2
-	                                    bl       __nwa__FUl
-	                                    cmpwi    r26, 0
-	                                    stw      r3, 0xac(r30)
-	                                    beq      lbl_80405FC8
-	                                    stw      r31, 8(r1)
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x00507270@ha
-	                                    addi     r7, r30, 0xcc
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x00507270@l
-	                                    li       r8, 5
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x61646531@ha
-	                                    lis      r4, 0x5072706D@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x61646531@l
-	                                    addi     r5, r4, 0x5072706D@l
-	                                    addi     r7, r30, 0xe4
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 1
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r4, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    li       r22, 2
-	                                    stwx     r3, r4, r0
-	                                    
-	                                    lbl_80405FC8:
-	                                    cmpwi    r25, 0
-	                                    beq      lbl_80406048
-	                                    stw      r31, 8(r1)
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x00507970@ha
-	                                    addi     r7, r30, 0xd0
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x00507970@l
-	                                    li       r8, 5
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x61646531@ha
-	                                    lis      r4, 0x5079706D@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x61646531@l
-	                                    addi     r5, r4, 0x5079706D@l
-	                                    addi     r7, r30, 0xe8
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r22, r22, 1
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r4, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    addi     r22, r22, 1
-	                                    stwx     r3, r4, r0
-	                                    
-	                                    lbl_80406048:
-	                                    cmpwi    r24, 0
-	                                    beq      lbl_804060C8
-	                                    stw      r31, 8(r1)
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x00506270@ha
-	                                    addi     r7, r30, 0xd4
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x00506270@l
-	                                    li       r8, 5
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x61646531@ha
-	                                    lis      r4, 0x5062706D@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x61646531@l
-	                                    addi     r5, r4, 0x5062706D@l
-	                                    addi     r7, r30, 0xec
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r22, r22, 1
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r4, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    addi     r22, r22, 1
-	                                    stwx     r3, r4, r0
-	                                    
-	                                    lbl_804060C8:
-	                                    cmpwi    r23, 0
-	                                    beq      lbl_80406148
-	                                    stw      r31, 8(r1)
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x00507770@ha
-	                                    addi     r7, r30, 0xd8
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x00507770@l
-	                                    li       r8, 5
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x61646531@ha
-	                                    lis      r4, 0x5077706D@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x61646531@l
-	                                    addi     r5, r4, 0x5077706D@l
-	                                    addi     r7, r30, 0xf0
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r22, r22, 1
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r4, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    addi     r22, r22, 1
-	                                    stwx     r3, r4, r0
-	                                    
-	                                    lbl_80406148:
-	                                    cmpwi    r29, 0
-	                                    beq      lbl_804061C4
-	                                    stw      r31, 8(r1)
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x50626C70@ha
-	                                    addi     r7, r30, 0xdc
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x50626C70@l
-	                                    li       r8, 5
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6D616431@ha
-	                                    lis      r4, 0x50626C70@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6D616431@l
-	                                    addi     r5, r4, 0x50626C70@l
-	                                    addi     r7, r30, 0xf4
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r22, r22, 1
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r4, 0xac(r30)
-	                                    slwi     r0, r22, 2
-	                                    stwx     r3, r4, r0
-	                                    
-	                                    lbl_804061C4:
-	                                    stw      r31, 8(r1)
-	                                    lis      r5, 0x79706F31@ha
-	                                    lis      r4, 0x50746F6B@ha
-	                                    addi     r7, r30, 0xe0
-	                                    lwz      r3, 0x4c(r30)
-	                                    addi     r6, r5, 0x79706F31@l
-	                                    addi     r5, r4, 0x50746F6B@l
-	                                    li       r8, 5
-	                                    li       r9, 0
-	                                    li       r10, 0
-	                                    bl
-	                                    setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
-	                                    r3, 0xb0(r30) lis      r4, 0x64706F31@ha lis      r3, 0x50746F6D@ha addi     r7,
-	                                    r30, 0xf8 stw      r31, 8(r1) addi     r6, r4, 0x64706F31@l addi     r5, r3,
-	                                    0x50746F6D@l li       r8, 8 lwz      r3, 0x4c(r30) li       r9, 0 li       r10,
-	                                    0 bl setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    stw      r3, 0xb4(r30)
-	                                    lwz      r3, 0xb0(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x24(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0xb4(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x24(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r23, 0
-	                                    li       r22, 0
-	                                    b        lbl_80406278
-	                                    
-	                                    lbl_80406258:
-	                                    lwz      r3, 0xac(r30)
-	                                    lfs      f1, lbl_805200DC@sda21(r2)
-	                                    lwzx     r3, r3, r22
-	                                    lfs      f2, lbl_805200E0@sda21(r2)
-	                                    lfs      f3, lbl_805200E4@sda21(r2)
-	                                    bl       setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
-	                                    addi     r22, r22, 4
-	                                    addi     r23, r23, 1
-	                                    
-	                                    lbl_80406278:
-	                                    lwz      r0, 0xb8(r30)
-	                                    cmpw     r23, r0
-	                                    blt      lbl_80406258
-	                                    li       r22, 0
-	                                    li       r3, 0x38
-	                                    bl       __nwa__FUl
-	                                    stw      r3, 0xbc(r30)
-	                                    lis      r4, 0x6B796F31@ha
-	                                    lis      r3, 0x00507461@ha
-	                                    addi     r7, r30, 0xfc
-	                                    stw      r31, 8(r1)
-	                                    addi     r6, r4, 0x6B796F31@l
-	                                    addi     r5, r3, 0x00507461@l
-	                                    li       r8, 4
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x61646531@ha
-	                                    lis      r4, 0x5074616D@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x61646531@l
-	                                    addi     r5, r4, 0x5074616D@l
-	                                    addi     r7, r30, 0x11c
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 1
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x00506E69@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x00506E69@l
-	                                    addi     r7, r30, 0x100
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 4
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 2
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x61646531@ha
-	                                    lis      r4, 0x506E696D@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x61646531@l
-	                                    addi     r5, r4, 0x506E696D@l
-	                                    addi     r7, r30, 0x120
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 3
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x0050686F@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x0050686F@l
-	                                    addi     r7, r30, 0x104
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 4
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 4
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x61646531@ha
-	                                    lis      r4, 0x50686F6D@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x61646531@l
-	                                    addi     r5, r4, 0x50686F6D@l
-	                                    addi     r7, r30, 0x124
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 5
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x00507375@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x00507375@l
-	                                    addi     r7, r30, 0x108
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 4
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 6
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x61646531@ha
-	                                    lis      r4, 0x5073756D@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x61646531@l
-	                                    addi     r5, r4, 0x5073756D@l
-	                                    addi     r7, r30, 0x128
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 7
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x50646570@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x50646570@l
-	                                    addi     r7, r30, 0x10c
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 4
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 8
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6D616431@ha
-	                                    lis      r4, 0x50646570@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6D616431@l
-	                                    addi     r5, r4, 0x50646570@l
-	                                    addi     r7, r30, 0x12c
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 9
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x50626170@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x50626170@l
-	                                    addi     r7, r30, 0x110
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 4
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 0xa
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6D616431@ha
-	                                    lis      r4, 0x50626170@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6D616431@l
-	                                    addi     r5, r4, 0x50626170@l
-	                                    addi     r7, r30, 0x130
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 0xb
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6B796F31@ha
-	                                    lis      r4, 0x50646F70@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6B796F31@l
-	                                    addi     r5, r4, 0x50646F70@l
-	                                    addi     r7, r30, 0x114
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 4
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 0xc
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6D616431@ha
-	                                    lis      r4, 0x50646F70@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6D616431@l
-	                                    addi     r5, r4, 0x50646F70@l
-	                                    addi     r7, r30, 0x134
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 8
-	                                    li       r9, 1
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    li       r22, 0xd
-	                                    bl
-	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    lwz      r6, 0xbc(r30)
-	                                    slwi     r0, r22, 2
-	                                    lis      r5, 0x6B797031@ha
-	                                    lis      r4, 0x5064746F@ha
-	                                    stwx     r3, r6, r0
-	                                    addi     r6, r5, 0x6B797031@l
-	                                    addi     r5, r4, 0x5064746F@l
-	                                    addi     r7, r30, 0x118
-	                                    stw      r31, 8(r1)
-	                                    li       r8, 4
-	                                    li       r9, 0
-	                                    li       r10, 0
-	                                    lwz      r3, 0x4c(r30)
-	                                    bl
-	                                    setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
-	                                    r3, 0xc0(r30) lis      r4, 0x6D647031@ha lis      r3, 0x5064746F@ha addi     r7,
-	                                    r30, 0x138 stw      r31, 8(r1) addi     r6, r4, 0x6D647031@l addi     r5, r3,
-	                                    0x5064746F@l li       r8, 8 lwz      r3, 0x4c(r30) li       r9, 0 li       r10,
-	                                    0 bl setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-	                                    stw      r3, 0xc4(r30)
-	                                    lwz      r3, 0xc0(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x24(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0xc4(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x24(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    li       r23, 0
-	                                    li       r22, 0
-	                                    
-	                                    lbl_80406668:
-	                                    lwz      r3, 0xbc(r30)
-	                                    lfs      f1, lbl_805200DC@sda21(r2)
-	                                    lwzx     r3, r3, r22
-	                                    lfs      f2, lbl_805200E0@sda21(r2)
-	                                    lfs      f3, lbl_805200E4@sda21(r2)
-	                                    bl       setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
-	                                    addi     r23, r23, 1
-	                                    addi     r22, r22, 4
-	                                    cmpwi    r23, 0xe
-	                                    blt      lbl_80406668
-	                                    li       r3, 0x1c
-	                                    bl       __nw__FUl
-	                                    or.      r0, r3, r3
-	                                    beq      lbl_804066A8
-	                                    bl       __ct__Q32og6Screen8ScaleMgrFv
-	                                    mr       r0, r3
-	                                    
-	                                    lbl_804066A8:
-	                                    lis      r3, arrow__Q22kh6Screen@ha
-	                                    stw      r0, 0xc8(r30)
-	                                    addi     r23, r3, arrow__Q22kh6Screen@l
-	                                    li       r25, 0
-	                                    li       r22, 0
-	                                    mr       r24, r23
-	                                    
-	                                    lbl_804066C0:
-	                                    lwz      r3, 0x4c(r30)
-	                                    lwz      r5, 0(r24)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r6, 4(r24)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    addi     r25, r25, 1
-	                                    stb      r22, 0xb0(r3)
-	                                    cmpwi    r25, 6
-	                                    addi     r24, r24, 8
-	                                    blt      lbl_804066C0
-	                                    lwz      r29, 0x100(r27)
-	                                    li       r0, 2
-	                                    lwz      r26, 0x104(r27)
-	                                    mr       r4, r30
-	                                    lwz      r25, 0x108(r27)
-	                                    addi     r3, r1, 0x10
-	                                    lwz      r24, 0x10c(r27)
-	                                    li       r5, 0
-	                                    lwz      r22, 0x110(r27)
-	                                    lwz      r12, 0x114(r27)
-	                                    lwz      r11, 0x118(r27)
-	                                    lwz      r10, 0x11c(r27)
-	                                    lwz      r9, 0x120(r27)
-	                                    lwz      r8, 0x124(r27)
-	                                    lwz      r7, 0x128(r27)
-	                                    lwz      r6, 0x12c(r27)
-	                                    lfs      f0, lbl_805200E8@sda21(r2)
-	                                    stw      r29, 0x10(r1)
-	                                    lwz      r27, 0xcc(r30)
-	                                    fneg     f1, f0
-	                                    stw      r26, 0x14(r1)
-	                                    lwz      r26, 0xe4(r30)
-	                                    stw      r25, 0x18(r1)
-	                                    lwz      r25, 0xd0(r30)
-	                                    stw      r24, 0x1c(r1)
-	                                    lwz      r24, 0xe8(r30)
-	                                    stw      r22, 0x20(r1)
-	                                    lwz      r22, 0xd4(r30)
-	                                    stw      r12, 0x24(r1)
-	                                    lwz      r12, 0xec(r30)
-	                                    stw      r11, 0x28(r1)
-	                                    lwz      r11, 0xd8(r30)
-	                                    stw      r10, 0x2c(r1)
-	                                    lwz      r10, 0xf0(r30)
-	                                    stw      r9, 0x30(r1)
-	                                    lwz      r9, 0xdc(r30)
-	                                    stw      r8, 0x34(r1)
-	                                    lwz      r8, 0xf4(r30)
-	                                    stw      r7, 0x38(r1)
-	                                    lwz      r7, 0xe0(r30)
-	                                    stw      r6, 0x3c(r1)
-	                                    lwz      r6, 0xf8(r30)
-	                                    stw      r27, 0x10(r1)
-	                                    stw      r26, 0x14(r1)
-	                                    stw      r25, 0x18(r1)
-	                                    stw      r24, 0x1c(r1)
-	                                    stw      r22, 0x20(r1)
-	                                    stw      r12, 0x24(r1)
-	                                    stw      r11, 0x28(r1)
-	                                    stw      r10, 0x2c(r1)
-	                                    stw      r9, 0x30(r1)
-	                                    stw      r8, 0x34(r1)
-	                                    stw      r7, 0x38(r1)
-	                                    stw      r6, 0x3c(r1)
-	                                    mtctr    r0
-	                                    
-	                                    lbl_804067CC:
-	                                    lwz      r6, 0(r3)
-	                                    lwz      r0, 4(r3)
-	                                    cmplw    r6, r0
-	                                    bge      lbl_804067E4
-	                                    stfs     f0, 0x13c(r4)
-	                                    b        lbl_804067EC
-	                                    
-	                                    lbl_804067E4:
-	                                    ble      lbl_804067EC
-	                                    stfs     f1, 0x13c(r4)
-	                                    
-	                                    lbl_804067EC:
-	                                    lwz      r6, 8(r3)
-	                                    lwz      r0, 0xc(r3)
-	                                    cmplw    r6, r0
-	                                    bge      lbl_80406804
-	                                    stfs     f0, 0x140(r4)
-	                                    b        lbl_8040680C
-	                                    
-	                                    lbl_80406804:
-	                                    ble      lbl_8040680C
-	                                    stfs     f1, 0x140(r4)
-	                                    
-	                                    lbl_8040680C:
-	                                    lwz      r6, 0x10(r3)
-	                                    lwz      r0, 0x14(r3)
-	                                    cmplw    r6, r0
-	                                    bge      lbl_80406824
-	                                    stfs     f0, 0x144(r4)
-	                                    b        lbl_8040682C
-	                                    
-	                                    lbl_80406824:
-	                                    ble      lbl_8040682C
-	                                    stfs     f1, 0x144(r4)
-	                                    
-	                                    lbl_8040682C:
-	                                    addi     r3, r3, 0x18
-	                                    addi     r4, r4, 0xc
-	                                    addi     r5, r5, 2
-	                                    bdnz     lbl_804067CC
-	                                    lbz      r0, 0x40(r28)
-	                                    cmplwi   r0, 0
-	                                    beq      lbl_80406918
-	                                    li       r5, 0
-	                                    li       r6, 0
-	                                    stw      r5, 0x98(r30)
-	                                    li       r4, 1
-	                                    b        lbl_8040687C
-	                                    
-	                                    lbl_8040685C:
-	                                    lwz      r3, 0xac(r30)
-	                                    addi     r6, r6, 1
-	                                    lwzx     r3, r3, r5
-	                                    stb      r4, 0xac(r3)
-	                                    lwz      r3, 0xac(r30)
-	                                    lwzx     r3, r3, r5
-	                                    addi     r5, r5, 4
-	                                    stb      r4, 0xa9(r3)
-	                                    
-	                                    lbl_8040687C:
-	                                    lwz      r0, 0xb8(r30)
-	                                    cmpw     r6, r0
-	                                    blt      lbl_8040685C
-	                                    lwz      r3, 0xb0(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x20(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0xb4(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x20(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0x8c(r30)
-	                                    bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-	                                    li       r24, 0
-	                                    li       r22, 1
-	                                    
-	                                    lbl_804068C0:
-	                                    cmpwi    r24, 5
-	                                    beq      lbl_804068DC
-	                                    lwz      r3, 0x3c(r28)
-	                                    slw      r0, r22, r24
-	                                    lbz      r3, 0x70(r3)
-	                                    and.     r0, r3, r0
-	                                    beq      lbl_804068FC
-	                                    
-	                                    lbl_804068DC:
-	                                    lwz      r3, 0x4c(r30)
-	                                    lwz      r5, 0(r23)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r6, 4(r23)
-	                                    lwz      r12, 0x3c(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    stb      r22, 0xb0(r3)
-	                                    
-	                                    lbl_804068FC:
-	                                    addi     r24, r24, 1
-	                                    addi     r23, r23, 8
-	                                    cmpwi    r24, 6
-	                                    blt      lbl_804068C0
-	                                    lwz      r0, 0x90(r30)
-	                                    ori      r0, r0, 0x40
-	                                    stw      r0, 0x90(r30)
-	                                    
-	                                    lbl_80406918:
-	                                    li       r0, 1
-	                                    stb      r0, 0x40(r28)
-	                                    lbz      r0, 0x41(r28)
-	                                    cmplwi   r0, 0
-	                                    beq      lbl_80406A38
-	                                    li       r0, 2
-	                                    li       r3, 0
-	                                    mtctr    r0
-	                                    
-	                                    lbl_80406938:
-	                                    lwz      r4, 0xbc(r30)
-	                                    li       r0, 1
-	                                    addi     r10, r3, 4
-	                                    addi     r9, r3, 8
-	                                    lwzx     r4, r4, r3
-	                                    addi     r8, r3, 0xc
-	                                    addi     r7, r3, 0x10
-	                                    addi     r6, r3, 0x14
-	                                    stb      r0, 0xac(r4)
-	                                    addi     r5, r3, 0x18
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r3
-	                                    addi     r3, r3, 0x1c
-	                                    stb      r0, 0xa9(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r10
-	                                    stb      r0, 0xac(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r10
-	                                    stb      r0, 0xa9(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r9
-	                                    stb      r0, 0xac(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r9
-	                                    stb      r0, 0xa9(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r8
-	                                    stb      r0, 0xac(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r8
-	                                    stb      r0, 0xa9(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r7
-	                                    stb      r0, 0xac(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r7
-	                                    stb      r0, 0xa9(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r6
-	                                    stb      r0, 0xac(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r6
-	                                    stb      r0, 0xa9(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r5
-	                                    stb      r0, 0xac(r4)
-	                                    lwz      r4, 0xbc(r30)
-	                                    lwzx     r4, r4, r5
-	                                    stb      r0, 0xa9(r4)
-	                                    bdnz     lbl_80406938
-	                                    lwz      r3, 0xc0(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x20(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r3, 0xc4(r30)
-	                                    lwz      r12, 0(r3)
-	                                    lwz      r12, 0x20(r12)
-	                                    mtctr    r12
-	                                    bctrl
-	                                    lwz      r0, 0x90(r30)
-	                                    ori      r0, r0, 0x100
-	                                    stw      r0, 0x90(r30)
-	                                    
-	                                    lbl_80406A38:
-	                                    lmw      r22, 0x48(r1)
-	                                    lwz      r0, 0x74(r1)
-	                                    mtlr     r0
-	                                    addi     r1, r1, 0x70
-	                                    blr
-	                                        */
+	ObjDayEndResultBase::doCreate(arc);
+	mScreenMain = new P2DScreen::Mgr_tuning;
+	mScreenMain->set("result_fuetaheta.blo", 0x40000, arc);
+
+	void* resource  = JKRFileLoader::getGlbResource("result_item.bck", arc);
+	mMainAnimTrans1 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	mMainAnimTrans2 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	mMainAnimTrans3 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	mMainAnimTrans4 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	mMainAnimSRT
+	    = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_fuetaheta.btk", arc)));
+	mMainAnimTev = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_fuetaheta.brk", arc)));
+	mScreenMain->setAnimation(mMainAnimSRT);
+	mScreenMain->setAnimation(mMainAnimTev);
+
+	mScreenMain->search('NitemW1')->setAnimation(mMainAnimTrans3);
+	mScreenMain->search('NitemW')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp00')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp01')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp02')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp03')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp04')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp05')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('NitemW')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Ntitle')->setAnimation(mMainAnimTrans2);
+	mScreenMain->search('Ndead')->setAnimation(mMainAnimTrans4);
+
+	mScreenStars = new P2DScreen::Mgr_tuning;
+	mScreenStars->set("result_fueta_constellation.blo", 0x40000, arc);
+
+	mStarsAnimColor
+	    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_fueta_constellation.bpk", arc)));
+	mScreenStars->setAnimation(mStarsAnimColor);
+
+	og::Screen::setCallBackMessage(mScreenMain);
+
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(1158, "disp member err");
+	}
+
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+
+	for (int i = 0; i < 6; i++) {
+		mYesterdayPikis[i] = dispResult->mIncP.mPikminInfo->mYesterdayPikiCounts[i];
+	}
+
+	for (int i = 0; i < 6; i++) {
+		mTodayPikis[i] = dispResult->mIncP.mPikminInfo->mTodayPikiCounts[i];
+	}
+
+	for (int i = 0; i < 8; i++) {
+		mTodayDeaths[i] = dispResult->mIncP.mPikminInfo->mTodayPikiDeaths[i];
+	}
+
+	for (int i = 0; i < 8; i++) {
+		mTotalDeaths[i] = dispResult->mIncP.mPikminInfo->mTotalPikiDeaths[i];
+	}
+
+	u32 flag = dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag;
+	if (!(flag & 1)) {
+		mScreenMain->search('Nfigre01')->hide();
+		mScreenMain->search('Npiki01')->hide();
+		mScreenMain->search('Ntotp01')->hide();
+		mCounterNum -= 2;
+	}
+
+	if (!(flag & 2)) {
+		mScreenMain->search('Nfigre02')->hide();
+		mScreenMain->search('Npiki02')->hide();
+		mScreenMain->search('Ntotp02')->hide();
+		mCounterNum -= 2;
+	}
+
+	if (!(flag & 4)) {
+		mScreenMain->search('Nfigre03')->hide();
+		mScreenMain->search('Npiki03')->hide();
+		mScreenMain->search('Ntotp03')->hide();
+		mCounterNum -= 2;
+	}
+
+	if (!(flag & 8)) {
+		mScreenMain->search('Nfigre04')->hide();
+		mScreenMain->search('Npiki04')->hide();
+		mScreenMain->search('Ntotp04')->hide();
+		mCounterNum -= 2;
+	}
+
+	if (!(flag & 0x10)) {
+		mScreenMain->search('Nfigre05')->hide();
+		mScreenMain->search('Npiki05')->hide();
+		mScreenMain->search('Ntotp05')->hide();
+		mCounterNum -= 2;
+	}
+
+	mPikiCountersList = new og::Screen::CallBack_CounterSlot*[mCounterNum];
+	int counters      = 0;
+	if (flag & 1) {
+		mPikiCountersList[0] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Prpkyo1', &mYesterdayPikis[0], 5, true, false, arc);
+		mPikiCountersList[1] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Prpmade1', &mTodayPikis[0], 8, true, false, arc);
+		counters             = 2;
+	}
+
+	if (flag & 2) {
+		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pypkyo1', &mYesterdayPikis[1], 5, true, false, arc);
+		counters++;
+		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pypmade1', &mTodayPikis[1], 8, true, false, arc);
+		counters++;
+	}
+
+	if (flag & 4) {
+		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbpkyo1', &mYesterdayPikis[2], 5, true, false, arc);
+		counters++;
+		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbpmade1', &mTodayPikis[2], 8, true, false, arc);
+		counters++;
+	}
+
+	if (flag & 8) {
+		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pwpkyo1', &mYesterdayPikis[3], 5, true, false, arc);
+		counters++;
+		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pwpmade1', &mTodayPikis[3], 8, true, false, arc);
+		counters++;
+	}
+
+	if (flag & 0x10) {
+		mPikiCountersList[counters]
+		    = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pblpkyo1', &mYesterdayPikis[1], 5, true, false, arc);
+		counters++;
+		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pblpmad1', &mTodayPikis[1], 8, true, false, arc);
+		counters++;
+	}
+
+	mPikiCounterYesterday = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptokypo1', &mYesterdayPikis[5], 5, true, false, arc);
+	mPikiCounterToday     = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptomdpo1', &mTodayPikis[5], 8, true, false, arc);
+	mPikiCounterYesterday->hide();
+	mPikiCounterToday->hide();
+
+	for (int i = 0; i < mCounterNum; i++) {
+		mPikiCountersList[i]->setPuyoParam(2.5f, 35.0f, 0.3f);
+	}
+
+	mDeathCountersList     = new og::Screen::CallBack_CounterSlot*[14];
+	mDeathCountersList[0]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptakyo1', &mTodayDeaths[0], 4, true, false, nullptr);
+	mDeathCountersList[1]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptamade1', &mTotalDeaths[0], 8, true, false, nullptr);
+	mDeathCountersList[2]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pnikyo1', &mTodayDeaths[1], 4, true, false, nullptr);
+	mDeathCountersList[3]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pnimade1', &mTotalDeaths[1], 8, true, false, nullptr);
+	mDeathCountersList[4]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Phokyo1', &mTodayDeaths[2], 4, true, false, nullptr);
+	mDeathCountersList[5]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Phomade1', &mTotalDeaths[2], 8, true, false, nullptr);
+	mDeathCountersList[6]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Psukyo1', &mTodayDeaths[3], 4, true, false, nullptr);
+	mDeathCountersList[7]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Psumade1', &mTotalDeaths[3], 8, true, false, nullptr);
+	mDeathCountersList[8]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdepkyo1', &mTodayDeaths[4], 4, true, false, nullptr);
+	mDeathCountersList[9]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdepmad1', &mTotalDeaths[4], 8, true, false, nullptr);
+	mDeathCountersList[10] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbapkyo1', &mTodayDeaths[5], 4, true, false, nullptr);
+	mDeathCountersList[11] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbapmad1', &mTotalDeaths[5], 8, true, false, nullptr);
+	mDeathCountersList[12] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdopkyo1', &mTodayDeaths[6], 4, true, false, nullptr);
+	mDeathCountersList[13] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdopmad1', &mTotalDeaths[6], 8, true, false, nullptr);
+	mDeathCounterToday     = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pdtokyp1', &mTotalDeaths[7], 4, false, false, arc);
+	mDeathCounterTotal     = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pdtomdp1', &mTotalDeaths[7], 8, false, false, arc);
+	mDeathCounterToday->hide();
+	mDeathCounterTotal->hide();
+
+	for (int i = 0; i < 14; i++) {
+		mDeathCountersList[i]->setPuyoParam(2.5f, 35.0f, 0.3f);
+	}
+
+	mScaleMgr = new og::Screen::ScaleMgr;
+
+	for (int i = 0; i < 6; i++) {
+		mScreenMain->search(arrow[i])->hide();
+	}
+
+	int counts[12] = { mYesterdayPikis[0], mTodayPikis[0], mYesterdayPikis[1], mTodayPikis[1], mYesterdayPikis[2], mTodayPikis[2],
+		               mYesterdayPikis[3], mTodayPikis[3], mYesterdayPikis[4], mTodayPikis[4], mYesterdayPikis[5], mTodayPikis[5] };
+
+	for (int i = 0; i < 12; i++) {
+		if (counts[i] < counts[i + 1]) {
+			mArrowAngles[i] = 30.0f;
+		} else if (counts[i] > counts[i + 1]) {
+			mArrowAngles[i] = -30.0f;
+		}
+	}
+
+	if (dispResult->mIncP._0C) {
+		mStatus = INCPSTATUS_Normal;
+		for (int i = 0; i < mCounterNum; i++) {
+			mPikiCountersList[i]->_AC = 1;
+			mPikiCountersList[i]->_A9 = 1;
+		}
+		mPikiCounterYesterday->show();
+		mPikiCounterToday->show();
+		mNextBtnFadePane->fadein();
+		for (int i = 0; i < 6; i++) {
+			if (i == 5 || dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag & i) {
+				mScreenMain->search(arrow[i])->show();
+			}
+		}
+		mFlags |= 0x40;
+	}
+	dispResult->mIncP._0C = 1;
+
+	if (dispResult->mIncP._0D) {
+		for (int i = 0; i < 14; i++) {
+			mDeathCountersList[i]->_AC = 1;
+			mDeathCountersList[i]->_A9 = 1;
+		}
+		mDeathCounterToday->show();
+		mDeathCounterTotal->show();
+		mFlags |= 0x100;
+	}
+
+	/*
+stwu     r1, -0x70(r1)
+mflr     r0
+lis      r5, lbl_80498830@ha
+stw      r0, 0x74(r1)
+stmw     r22, 0x48(r1)
+mr       r30, r3
+mr       r31, r4
+li       r3, 0x148
+addi     r27, r5, lbl_80498830@l
+bl       __nw__FUl
+or.      r0, r3, r3
+beq      lbl_80405710
+bl       __ct__Q29P2DScreen10Mgr_tuningFv
+mr       r0, r3
+
+lbl_80405710:
+stw      r0, 0x38(r30)
+mr       r6, r31
+addi     r4, r27, 0x14
+lis      r5, 0x104
+lwz      r3, 0x38(r30)
+bl       set__9J2DScreenFPCcUlP10JKRArchive
+mr       r4, r31
+addi     r3, r27, 0x28
+bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+bl       load__20J2DAnmLoaderDataBaseFPCv
+stw      r3, 0x3c(r30)
+mr       r4, r31
+addi     r3, r27, 0x3c
+bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+bl       load__20J2DAnmLoaderDataBaseFPCv
+stw      r3, 0x40(r30)
+lwz      r3, 0x38(r30)
+lwz      r4, 0x3c(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x38(r30)
+lwz      r4, 0x40(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x64(r12)
+mtctr    r12
+bctrl
+lis      r4, 0x62746E32@ha
+lwz      r3, 0x38(r30)
+addi     r6, r4, 0x62746E32@l
+li       r5, 0x4e
+li       r7, 8
+bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
+stw      r3, 0x8c(r30)
+lwz      r3, 0x8c(r30)
+bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
+lwz      r3, 0x8c(r30)
+li       r4, 0
+bl       set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc
+li       r3, 0x148
+bl       __nw__FUl
+or.      r0, r3, r3
+beq      lbl_804057C8
+bl       __ct__Q29P2DScreen10Mgr_tuningFv
+mr       r0, r3
+
+lbl_804057C8:
+stw      r0, 0x4c(r30)
+mr       r6, r31
+addi     r4, r27, 0x130
+lis      r5, 4
+lwz      r3, 0x4c(r30)
+bl       set__9J2DScreenFPCcUlP10JKRArchive
+mr       r4, r31
+addi     r3, r27, 0x148
+bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+mr       r22, r3
+bl       load__20J2DAnmLoaderDataBaseFPCv
+stw      r3, 0x50(r30)
+mr       r3, r22
+bl       load__20J2DAnmLoaderDataBaseFPCv
+stw      r3, 0x54(r30)
+mr       r3, r22
+bl       load__20J2DAnmLoaderDataBaseFPCv
+stw      r3, 0x9c(r30)
+mr       r3, r22
+bl       load__20J2DAnmLoaderDataBaseFPCv
+stw      r3, 0xa0(r30)
+mr       r4, r31
+addi     r3, r27, 0x160
+bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+bl       load__20J2DAnmLoaderDataBaseFPCv
+stw      r3, 0x58(r30)
+mr       r4, r31
+addi     r3, r27, 0x178
+bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+bl       load__20J2DAnmLoaderDataBaseFPCv
+stw      r3, 0x5c(r30)
+lwz      r3, 0x4c(r30)
+lwz      r4, 0x58(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x6c(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lwz      r4, 0x5c(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x70(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r5, 0x656D5731@ha
+lis      r4, 0x004E6974@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x656D5731@l
+addi     r5, r4, 0x004E6974@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0x9c(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r4, 0x74656D57@ha
+addi     r6, r4, 0x74656D57@l
+li       r5, 0x4e69
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0x50(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r5, 0x74703030@ha
+lis      r4, 0x004E7365@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x74703030@l
+addi     r5, r4, 0x004E7365@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0x50(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r5, 0x74703031@ha
+lis      r4, 0x004E7365@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x74703031@l
+addi     r5, r4, 0x004E7365@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0x50(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r5, 0x74703032@ha
+lis      r4, 0x004E7365@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x74703032@l
+addi     r5, r4, 0x004E7365@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0x50(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r5, 0x74703033@ha
+lis      r4, 0x004E7365@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x74703033@l
+addi     r5, r4, 0x004E7365@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0x50(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r5, 0x74703034@ha
+lis      r4, 0x004E7365@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x74703034@l
+addi     r5, r4, 0x004E7365@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0x50(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r5, 0x74703035@ha
+lis      r4, 0x004E7365@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x74703035@l
+addi     r5, r4, 0x004E7365@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0x50(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r4, 0x69746C65@ha
+addi     r6, r4, 0x69746C65@l
+li       r5, 0x4e74
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0x54(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+lis      r4, 0x64656164@ha
+addi     r6, r4, 0x64656164@l
+li       r5, 0x4e
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+lwz      r12, 0(r3)
+lwz      r4, 0xa0(r30)
+lwz      r12, 0x60(r12)
+mtctr    r12
+bctrl
+li       r3, 0x148
+bl       __nw__FUl
+or.      r0, r3, r3
+beq      lbl_80405AB0
+bl       __ct__Q29P2DScreen10Mgr_tuningFv
+mr       r0, r3
+
+lbl_80405AB0:
+stw      r0, 0x70(r30)
+mr       r6, r31
+addi     r4, r27, 0x190
+lis      r5, 4
+lwz      r3, 0x70(r30)
+bl       set__9J2DScreenFPCcUlP10JKRArchive
+mr       r4, r31
+addi     r3, r27, 0x1b0
+bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+bl       load__20J2DAnmLoaderDataBaseFPCv
+stw      r3, 0x74(r30)
+lwz      r3, 0x70(r30)
+lwz      r4, 0x74(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x64(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x4c(r30)
+bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
+mr       r3, r30
+bl       getDispMember__Q26Screen7ObjBaseFv
+lis      r4, 0x52534C54@ha
+lis      r5, 0x0044455F@ha
+addi     r6, r4, 0x52534C54@l
+li       r4, 0x4b48
+addi     r5, r5, 0x0044455F@l
+bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+clrlwi.  r0, r3, 0x18
+bne      lbl_80405B38
+addi     r3, r27, 0
+addi     r5, r27, 0xd0
+li       r4, 0x486
+crclr    6
+bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_80405B38:
+mr       r3, r30
+bl       getDispMember__Q26Screen7ObjBaseFv
+mr       r28, r3
+lwz      r3, 0x3c(r3)
+lwz      r0, 0(r3)
+stw      r0, 0xcc(r30)
+lwz      r0, 4(r3)
+stw      r0, 0xd0(r30)
+lwz      r0, 8(r3)
+stw      r0, 0xd4(r30)
+lwz      r0, 0xc(r3)
+stw      r0, 0xd8(r30)
+lwz      r0, 0x10(r3)
+stw      r0, 0xdc(r30)
+lwz      r0, 0x14(r3)
+stw      r0, 0xe0(r30)
+lwz      r3, 0x3c(r28)
+lwz      r0, 0x18(r3)
+stw      r0, 0xe4(r30)
+lwz      r0, 0x1c(r3)
+stw      r0, 0xe8(r30)
+lwz      r0, 0x20(r3)
+stw      r0, 0xec(r30)
+lwz      r0, 0x24(r3)
+stw      r0, 0xf0(r30)
+lwz      r0, 0x28(r3)
+stw      r0, 0xf4(r30)
+lwz      r0, 0x2c(r3)
+stw      r0, 0xf8(r30)
+lwz      r3, 0x3c(r28)
+lwz      r0, 0x30(r3)
+stw      r0, 0xfc(r30)
+lwz      r0, 0x34(r3)
+stw      r0, 0x100(r30)
+lwz      r0, 0x38(r3)
+stw      r0, 0x104(r30)
+lwz      r0, 0x3c(r3)
+stw      r0, 0x108(r30)
+lwz      r0, 0x40(r3)
+stw      r0, 0x10c(r30)
+lwz      r0, 0x44(r3)
+stw      r0, 0x110(r30)
+lwz      r0, 0x48(r3)
+stw      r0, 0x114(r30)
+lwz      r0, 0x4c(r3)
+stw      r0, 0x118(r30)
+lwz      r3, 0x3c(r28)
+lwz      r0, 0x50(r3)
+stw      r0, 0x11c(r30)
+lwz      r0, 0x54(r3)
+stw      r0, 0x120(r30)
+lwz      r0, 0x58(r3)
+stw      r0, 0x124(r30)
+lwz      r0, 0x5c(r3)
+stw      r0, 0x128(r30)
+lwz      r0, 0x60(r3)
+stw      r0, 0x12c(r30)
+lwz      r0, 0x64(r3)
+stw      r0, 0x130(r30)
+lwz      r0, 0x68(r3)
+stw      r0, 0x134(r30)
+lwz      r0, 0x6c(r3)
+stw      r0, 0x138(r30)
+lwz      r3, 0x3c(r28)
+lbz      r29, 0x70(r3)
+clrlwi.  r26, r29, 0x1f
+bne      lbl_80405CD4
+lwz      r3, 0x4c(r30)
+lis      r5, 0x72653031@ha
+lis      r4, 0x4E666967@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x72653031@l
+addi     r5, r4, 0x4E666967@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x6B693031@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E7069@ha
+addi     r6, r5, 0x6B693031@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E7069@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x70693031@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E746F@ha
+addi     r6, r5, 0x70693031@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E746F@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+stb      r0, 0xb0(r3)
+lwz      r3, 0xb8(r30)
+addi     r0, r3, -2
+stw      r0, 0xb8(r30)
+
+lbl_80405CD4:
+rlwinm.  r25, r29, 0, 0x1e, 0x1e
+bne      lbl_80405D6C
+lwz      r3, 0x4c(r30)
+lis      r5, 0x72653032@ha
+lis      r4, 0x4E666967@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x72653032@l
+addi     r5, r4, 0x4E666967@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x6B693032@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E7069@ha
+addi     r6, r5, 0x6B693032@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E7069@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x70693032@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E746F@ha
+addi     r6, r5, 0x70693032@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E746F@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+stb      r0, 0xb0(r3)
+lwz      r3, 0xb8(r30)
+addi     r0, r3, -2
+stw      r0, 0xb8(r30)
+
+lbl_80405D6C:
+rlwinm.  r24, r29, 0, 0x1d, 0x1d
+bne      lbl_80405E04
+lwz      r3, 0x4c(r30)
+lis      r5, 0x72653033@ha
+lis      r4, 0x4E666967@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x72653033@l
+addi     r5, r4, 0x4E666967@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x6B693033@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E7069@ha
+addi     r6, r5, 0x6B693033@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E7069@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x70693033@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E746F@ha
+addi     r6, r5, 0x70693033@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E746F@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+stb      r0, 0xb0(r3)
+lwz      r3, 0xb8(r30)
+addi     r0, r3, -2
+stw      r0, 0xb8(r30)
+
+lbl_80405E04:
+rlwinm.  r23, r29, 0, 0x1c, 0x1c
+bne      lbl_80405E9C
+lwz      r3, 0x4c(r30)
+lis      r5, 0x72653034@ha
+lis      r4, 0x4E666967@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x72653034@l
+addi     r5, r4, 0x4E666967@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x6B693034@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E7069@ha
+addi     r6, r5, 0x6B693034@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E7069@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x70693034@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E746F@ha
+addi     r6, r5, 0x70693034@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E746F@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+stb      r0, 0xb0(r3)
+lwz      r3, 0xb8(r30)
+addi     r0, r3, -2
+stw      r0, 0xb8(r30)
+
+lbl_80405E9C:
+rlwinm.  r29, r29, 0, 0x1b, 0x1b
+bne      lbl_80405F34
+lwz      r3, 0x4c(r30)
+lis      r5, 0x72653035@ha
+lis      r4, 0x4E666967@ha
+lwz      r12, 0(r3)
+addi     r6, r5, 0x72653035@l
+addi     r5, r4, 0x4E666967@l
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x6B693035@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E7069@ha
+addi     r6, r5, 0x6B693035@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E7069@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+lis      r5, 0x70693035@ha
+stb      r0, 0xb0(r3)
+lis      r4, 0x004E746F@ha
+addi     r6, r5, 0x70693035@l
+lwz      r3, 0x4c(r30)
+addi     r5, r4, 0x004E746F@l
+lwz      r12, 0(r3)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+li       r0, 0
+stb      r0, 0xb0(r3)
+lwz      r3, 0xb8(r30)
+addi     r0, r3, -2
+stw      r0, 0xb8(r30)
+
+lbl_80405F34:
+lwz      r0, 0xb8(r30)
+li       r22, 0
+slwi     r3, r0, 2
+bl       __nwa__FUl
+cmpwi    r26, 0
+stw      r3, 0xac(r30)
+beq      lbl_80405FC8
+stw      r31, 8(r1)
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x00507270@ha
+addi     r7, r30, 0xcc
+lwz      r3, 0x4c(r30)
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x00507270@l
+li       r8, 5
+li       r9, 1
+li       r10, 0
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xac(r30)
+slwi     r0, r22, 2
+lis      r5, 0x61646531@ha
+lis      r4, 0x5072706D@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x61646531@l
+addi     r5, r4, 0x5072706D@l
+addi     r7, r30, 0xe4
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 1
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r4, 0xac(r30)
+slwi     r0, r22, 2
+li       r22, 2
+stwx     r3, r4, r0
+
+lbl_80405FC8:
+cmpwi    r25, 0
+beq      lbl_80406048
+stw      r31, 8(r1)
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x00507970@ha
+addi     r7, r30, 0xd0
+lwz      r3, 0x4c(r30)
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x00507970@l
+li       r8, 5
+li       r9, 1
+li       r10, 0
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xac(r30)
+slwi     r0, r22, 2
+lis      r5, 0x61646531@ha
+lis      r4, 0x5079706D@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x61646531@l
+addi     r5, r4, 0x5079706D@l
+addi     r7, r30, 0xe8
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+addi     r22, r22, 1
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r4, 0xac(r30)
+slwi     r0, r22, 2
+addi     r22, r22, 1
+stwx     r3, r4, r0
+
+lbl_80406048:
+cmpwi    r24, 0
+beq      lbl_804060C8
+stw      r31, 8(r1)
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x00506270@ha
+addi     r7, r30, 0xd4
+lwz      r3, 0x4c(r30)
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x00506270@l
+li       r8, 5
+li       r9, 1
+li       r10, 0
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xac(r30)
+slwi     r0, r22, 2
+lis      r5, 0x61646531@ha
+lis      r4, 0x5062706D@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x61646531@l
+addi     r5, r4, 0x5062706D@l
+addi     r7, r30, 0xec
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+addi     r22, r22, 1
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r4, 0xac(r30)
+slwi     r0, r22, 2
+addi     r22, r22, 1
+stwx     r3, r4, r0
+
+lbl_804060C8:
+cmpwi    r23, 0
+beq      lbl_80406148
+stw      r31, 8(r1)
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x00507770@ha
+addi     r7, r30, 0xd8
+lwz      r3, 0x4c(r30)
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x00507770@l
+li       r8, 5
+li       r9, 1
+li       r10, 0
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xac(r30)
+slwi     r0, r22, 2
+lis      r5, 0x61646531@ha
+lis      r4, 0x5077706D@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x61646531@l
+addi     r5, r4, 0x5077706D@l
+addi     r7, r30, 0xf0
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+addi     r22, r22, 1
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r4, 0xac(r30)
+slwi     r0, r22, 2
+addi     r22, r22, 1
+stwx     r3, r4, r0
+
+lbl_80406148:
+cmpwi    r29, 0
+beq      lbl_804061C4
+stw      r31, 8(r1)
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x50626C70@ha
+addi     r7, r30, 0xdc
+lwz      r3, 0x4c(r30)
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x50626C70@l
+li       r8, 5
+li       r9, 1
+li       r10, 0
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xac(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6D616431@ha
+lis      r4, 0x50626C70@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6D616431@l
+addi     r5, r4, 0x50626C70@l
+addi     r7, r30, 0xf4
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+addi     r22, r22, 1
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r4, 0xac(r30)
+slwi     r0, r22, 2
+stwx     r3, r4, r0
+
+lbl_804061C4:
+stw      r31, 8(r1)
+lis      r5, 0x79706F31@ha
+lis      r4, 0x50746F6B@ha
+addi     r7, r30, 0xe0
+lwz      r3, 0x4c(r30)
+addi     r6, r5, 0x79706F31@l
+addi     r5, r4, 0x50746F6B@l
+li       r8, 5
+li       r9, 0
+li       r10, 0
+bl
+setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
+r3, 0xb0(r30) lis      r4, 0x64706F31@ha lis      r3, 0x50746F6D@ha addi     r7,
+r30, 0xf8 stw      r31, 8(r1) addi     r6, r4, 0x64706F31@l addi     r5, r3,
+0x50746F6D@l li       r8, 8 lwz      r3, 0x4c(r30) li       r9, 0 li       r10,
+0 bl setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+stw      r3, 0xb4(r30)
+lwz      r3, 0xb0(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x24(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0xb4(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x24(r12)
+mtctr    r12
+bctrl
+li       r23, 0
+li       r22, 0
+b        lbl_80406278
+
+lbl_80406258:
+lwz      r3, 0xac(r30)
+lfs      f1, lbl_805200DC@sda21(r2)
+lwzx     r3, r3, r22
+lfs      f2, lbl_805200E0@sda21(r2)
+lfs      f3, lbl_805200E4@sda21(r2)
+bl       setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
+addi     r22, r22, 4
+addi     r23, r23, 1
+
+lbl_80406278:
+lwz      r0, 0xb8(r30)
+cmpw     r23, r0
+blt      lbl_80406258
+li       r22, 0
+li       r3, 0x38
+bl       __nwa__FUl
+stw      r3, 0xbc(r30)
+lis      r4, 0x6B796F31@ha
+lis      r3, 0x00507461@ha
+addi     r7, r30, 0xfc
+stw      r31, 8(r1)
+addi     r6, r4, 0x6B796F31@l
+addi     r5, r3, 0x00507461@l
+li       r8, 4
+lwz      r3, 0x4c(r30)
+li       r9, 1
+li       r10, 0
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x61646531@ha
+lis      r4, 0x5074616D@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x61646531@l
+addi     r5, r4, 0x5074616D@l
+addi     r7, r30, 0x11c
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 1
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x00506E69@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x00506E69@l
+addi     r7, r30, 0x100
+stw      r31, 8(r1)
+li       r8, 4
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 2
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x61646531@ha
+lis      r4, 0x506E696D@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x61646531@l
+addi     r5, r4, 0x506E696D@l
+addi     r7, r30, 0x120
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 3
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x0050686F@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x0050686F@l
+addi     r7, r30, 0x104
+stw      r31, 8(r1)
+li       r8, 4
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 4
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x61646531@ha
+lis      r4, 0x50686F6D@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x61646531@l
+addi     r5, r4, 0x50686F6D@l
+addi     r7, r30, 0x124
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 5
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x00507375@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x00507375@l
+addi     r7, r30, 0x108
+stw      r31, 8(r1)
+li       r8, 4
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 6
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x61646531@ha
+lis      r4, 0x5073756D@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x61646531@l
+addi     r5, r4, 0x5073756D@l
+addi     r7, r30, 0x128
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 7
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x50646570@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x50646570@l
+addi     r7, r30, 0x10c
+stw      r31, 8(r1)
+li       r8, 4
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 8
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6D616431@ha
+lis      r4, 0x50646570@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6D616431@l
+addi     r5, r4, 0x50646570@l
+addi     r7, r30, 0x12c
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 9
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x50626170@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x50626170@l
+addi     r7, r30, 0x110
+stw      r31, 8(r1)
+li       r8, 4
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 0xa
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6D616431@ha
+lis      r4, 0x50626170@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6D616431@l
+addi     r5, r4, 0x50626170@l
+addi     r7, r30, 0x130
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 0xb
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6B796F31@ha
+lis      r4, 0x50646F70@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6B796F31@l
+addi     r5, r4, 0x50646F70@l
+addi     r7, r30, 0x114
+stw      r31, 8(r1)
+li       r8, 4
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 0xc
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6D616431@ha
+lis      r4, 0x50646F70@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6D616431@l
+addi     r5, r4, 0x50646F70@l
+addi     r7, r30, 0x134
+stw      r31, 8(r1)
+li       r8, 8
+li       r9, 1
+li       r10, 0
+lwz      r3, 0x4c(r30)
+li       r22, 0xd
+bl
+setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+lwz      r6, 0xbc(r30)
+slwi     r0, r22, 2
+lis      r5, 0x6B797031@ha
+lis      r4, 0x5064746F@ha
+stwx     r3, r6, r0
+addi     r6, r5, 0x6B797031@l
+addi     r5, r4, 0x5064746F@l
+addi     r7, r30, 0x118
+stw      r31, 8(r1)
+li       r8, 4
+li       r9, 0
+li       r10, 0
+lwz      r3, 0x4c(r30)
+bl
+setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
+r3, 0xc0(r30) lis      r4, 0x6D647031@ha lis      r3, 0x5064746F@ha addi     r7,
+r30, 0x138 stw      r31, 8(r1) addi     r6, r4, 0x6D647031@l addi     r5, r3,
+0x5064746F@l li       r8, 8 lwz      r3, 0x4c(r30) li       r9, 0 li       r10,
+0 bl setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+stw      r3, 0xc4(r30)
+lwz      r3, 0xc0(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x24(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0xc4(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x24(r12)
+mtctr    r12
+bctrl
+li       r23, 0
+li       r22, 0
+
+lbl_80406668:
+lwz      r3, 0xbc(r30)
+lfs      f1, lbl_805200DC@sda21(r2)
+lwzx     r3, r3, r22
+lfs      f2, lbl_805200E0@sda21(r2)
+lfs      f3, lbl_805200E4@sda21(r2)
+bl       setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
+addi     r23, r23, 1
+addi     r22, r22, 4
+cmpwi    r23, 0xe
+blt      lbl_80406668
+li       r3, 0x1c
+bl       __nw__FUl
+or.      r0, r3, r3
+beq      lbl_804066A8
+bl       __ct__Q32og6Screen8ScaleMgrFv
+mr       r0, r3
+
+lbl_804066A8:
+lis      r3, arrow__Q22kh6Screen@ha
+stw      r0, 0xc8(r30)
+addi     r23, r3, arrow__Q22kh6Screen@l
+li       r25, 0
+li       r22, 0
+mr       r24, r23
+
+lbl_804066C0:
+lwz      r3, 0x4c(r30)
+lwz      r5, 0(r24)
+lwz      r12, 0(r3)
+lwz      r6, 4(r24)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+addi     r25, r25, 1
+stb      r22, 0xb0(r3)
+cmpwi    r25, 6
+addi     r24, r24, 8
+blt      lbl_804066C0
+lwz      r29, 0x100(r27)
+li       r0, 2
+lwz      r26, 0x104(r27)
+mr       r4, r30
+lwz      r25, 0x108(r27)
+addi     r3, r1, 0x10
+lwz      r24, 0x10c(r27)
+li       r5, 0
+lwz      r22, 0x110(r27)
+lwz      r12, 0x114(r27)
+lwz      r11, 0x118(r27)
+lwz      r10, 0x11c(r27)
+lwz      r9, 0x120(r27)
+lwz      r8, 0x124(r27)
+lwz      r7, 0x128(r27)
+lwz      r6, 0x12c(r27)
+lfs      f0, lbl_805200E8@sda21(r2)
+stw      r29, 0x10(r1)
+lwz      r27, 0xcc(r30)
+fneg     f1, f0
+stw      r26, 0x14(r1)
+lwz      r26, 0xe4(r30)
+stw      r25, 0x18(r1)
+lwz      r25, 0xd0(r30)
+stw      r24, 0x1c(r1)
+lwz      r24, 0xe8(r30)
+stw      r22, 0x20(r1)
+lwz      r22, 0xd4(r30)
+stw      r12, 0x24(r1)
+lwz      r12, 0xec(r30)
+stw      r11, 0x28(r1)
+lwz      r11, 0xd8(r30)
+stw      r10, 0x2c(r1)
+lwz      r10, 0xf0(r30)
+stw      r9, 0x30(r1)
+lwz      r9, 0xdc(r30)
+stw      r8, 0x34(r1)
+lwz      r8, 0xf4(r30)
+stw      r7, 0x38(r1)
+lwz      r7, 0xe0(r30)
+stw      r6, 0x3c(r1)
+lwz      r6, 0xf8(r30)
+stw      r27, 0x10(r1)
+stw      r26, 0x14(r1)
+stw      r25, 0x18(r1)
+stw      r24, 0x1c(r1)
+stw      r22, 0x20(r1)
+stw      r12, 0x24(r1)
+stw      r11, 0x28(r1)
+stw      r10, 0x2c(r1)
+stw      r9, 0x30(r1)
+stw      r8, 0x34(r1)
+stw      r7, 0x38(r1)
+stw      r6, 0x3c(r1)
+mtctr    r0
+
+lbl_804067CC:
+lwz      r6, 0(r3)
+lwz      r0, 4(r3)
+cmplw    r6, r0
+bge      lbl_804067E4
+stfs     f0, 0x13c(r4)
+b        lbl_804067EC
+
+lbl_804067E4:
+ble      lbl_804067EC
+stfs     f1, 0x13c(r4)
+
+lbl_804067EC:
+lwz      r6, 8(r3)
+lwz      r0, 0xc(r3)
+cmplw    r6, r0
+bge      lbl_80406804
+stfs     f0, 0x140(r4)
+b        lbl_8040680C
+
+lbl_80406804:
+ble      lbl_8040680C
+stfs     f1, 0x140(r4)
+
+lbl_8040680C:
+lwz      r6, 0x10(r3)
+lwz      r0, 0x14(r3)
+cmplw    r6, r0
+bge      lbl_80406824
+stfs     f0, 0x144(r4)
+b        lbl_8040682C
+
+lbl_80406824:
+ble      lbl_8040682C
+stfs     f1, 0x144(r4)
+
+lbl_8040682C:
+addi     r3, r3, 0x18
+addi     r4, r4, 0xc
+addi     r5, r5, 2
+bdnz     lbl_804067CC
+lbz      r0, 0x40(r28)
+cmplwi   r0, 0
+beq      lbl_80406918
+li       r5, 0
+li       r6, 0
+stw      r5, 0x98(r30)
+li       r4, 1
+b        lbl_8040687C
+
+lbl_8040685C:
+lwz      r3, 0xac(r30)
+addi     r6, r6, 1
+lwzx     r3, r3, r5
+stb      r4, 0xac(r3)
+lwz      r3, 0xac(r30)
+lwzx     r3, r3, r5
+addi     r5, r5, 4
+stb      r4, 0xa9(r3)
+
+lbl_8040687C:
+lwz      r0, 0xb8(r30)
+cmpw     r6, r0
+blt      lbl_8040685C
+lwz      r3, 0xb0(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x20(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0xb4(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x20(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0x8c(r30)
+bl       fadein__Q32kh6Screen14khUtilFadePaneFv
+li       r24, 0
+li       r22, 1
+
+lbl_804068C0:
+cmpwi    r24, 5
+beq      lbl_804068DC
+lwz      r3, 0x3c(r28)
+slw      r0, r22, r24
+lbz      r3, 0x70(r3)
+and.     r0, r3, r0
+beq      lbl_804068FC
+
+lbl_804068DC:
+lwz      r3, 0x4c(r30)
+lwz      r5, 0(r23)
+lwz      r12, 0(r3)
+lwz      r6, 4(r23)
+lwz      r12, 0x3c(r12)
+mtctr    r12
+bctrl
+stb      r22, 0xb0(r3)
+
+lbl_804068FC:
+addi     r24, r24, 1
+addi     r23, r23, 8
+cmpwi    r24, 6
+blt      lbl_804068C0
+lwz      r0, 0x90(r30)
+ori      r0, r0, 0x40
+stw      r0, 0x90(r30)
+
+lbl_80406918:
+li       r0, 1
+stb      r0, 0x40(r28)
+lbz      r0, 0x41(r28)
+cmplwi   r0, 0
+beq      lbl_80406A38
+li       r0, 2
+li       r3, 0
+mtctr    r0
+
+lbl_80406938:
+lwz      r4, 0xbc(r30)
+li       r0, 1
+addi     r10, r3, 4
+addi     r9, r3, 8
+lwzx     r4, r4, r3
+addi     r8, r3, 0xc
+addi     r7, r3, 0x10
+addi     r6, r3, 0x14
+stb      r0, 0xac(r4)
+addi     r5, r3, 0x18
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r3
+addi     r3, r3, 0x1c
+stb      r0, 0xa9(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r10
+stb      r0, 0xac(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r10
+stb      r0, 0xa9(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r9
+stb      r0, 0xac(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r9
+stb      r0, 0xa9(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r8
+stb      r0, 0xac(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r8
+stb      r0, 0xa9(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r7
+stb      r0, 0xac(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r7
+stb      r0, 0xa9(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r6
+stb      r0, 0xac(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r6
+stb      r0, 0xa9(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r5
+stb      r0, 0xac(r4)
+lwz      r4, 0xbc(r30)
+lwzx     r4, r4, r5
+stb      r0, 0xa9(r4)
+bdnz     lbl_80406938
+lwz      r3, 0xc0(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x20(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0xc4(r30)
+lwz      r12, 0(r3)
+lwz      r12, 0x20(r12)
+mtctr    r12
+bctrl
+lwz      r0, 0x90(r30)
+ori      r0, r0, 0x100
+stw      r0, 0x90(r30)
+
+lbl_80406A38:
+lmw      r22, 0x48(r1)
+lwz      r0, 0x74(r1)
+mtlr     r0
+addi     r1, r1, 0x70
+blr
+	*/
 }
 
 /*
@@ -2812,7 +3033,26 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* archive)
  */
 bool ObjDayEndResultIncP::doUpdateFadein()
 {
-	return false;
+	updateCommon();
+	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mScreenMain->search('NitemW')->animationTransform();
+
+	mMainAnimTimer1 += ObjDayEndResultBase::msVal._08;
+
+	mScreenStars->search('Nall')->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
+
+	bool result;
+	if (mMainAnimTimer1 >= mFadeinMaxFrame) {
+		result = true;
+	} else {
+		result = false;
+	}
+
+	mScreenMain->update();
+	for (int i = 0; i < 6; i++) {
+		mScreenMain->search(arrow[i])->setAngle(mArrowAngles[i]);
+	}
+	return result;
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -2925,344 +3165,95 @@ blr
  */
 bool ObjDayEndResultIncP::doUpdate()
 {
+	updateCommon();
+
+	switch (mStatus) {
+	case INCPSTATUS_Normal:
+		statusNormal();
+		break;
+	case INCPSTATUS_Fadeout:
+		statusFadeout();
+		break;
+	case INCPSTATUS_DecP:
+		statusDecP();
+		break;
+	case INCPSTATUS_Fadein:
+		statusFadein();
+		break;
+	case INCPSTATUS_Slot:
+		statusSlot();
+		break;
+	case INCPSTATUS_DecPSlot:
+		statusDecPSlot();
+		break;
+	}
+
+	if (getGamePad()->mButton.mButtonDown & (Controller::PRESS_A | Controller::PRESS_B)) {
+		if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A && mStatus == INCPSTATUS_Slot && !isFlag(0x40)) {
+			mFlags |= 0x20;
+		}
+
+		if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A && mStatus == INCPSTATUS_DecPSlot && !isFlag(0x100)) {
+			mFlags |= 0x80;
+		}
+
+		if (mStatus == INCPSTATUS_Normal || mStatus == INCPSTATUS_DecP) {
+			if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
+				::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_MAIL, getDispMember(), 0, 1);
+				if (getOwner()->setScene(setArg)) {
+					SArgDayEndResultMail argMail(1);
+					getOwner()->startScene(&argMail);
+					mFlags &= ~0x10;
+				}
+			} else if (getGamePad()->mButton.mButtonDown & Controller::PRESS_B) {
+				::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_ITEM, getDispMember(), 0, 1);
+				if (getOwner()->setScene(setArg)) {
+					SArgDayEndResultItem argItem(0);
+					getOwner()->startScene(&argItem);
+					mFlags |= 0x10;
+				}
+			}
+		}
+	}
+
+	if (mFlags & 0x20) {
+		for (int i = 0; i < mCounterNum; i++) {
+			og::Screen::CallBack_CounterSlot* slot = mPikiCountersList[i];
+			if (!slot->_A9 || slot->_A8) {
+				slot->startSlot(0.0f);
+			}
+		}
+		effectCommon();
+		mNextBtnFadePane->fadein();
+		mFlags &= ~0x20;
+		mFlags |= 0x40;
+		mStatus = INCPSTATUS_Normal;
+	}
+
+	if (mFlags & 0x80) {
+		for (int i = 0; i < 14; i++) {
+			og::Screen::CallBack_CounterSlot* slot = mDeathCountersList[i];
+			if (!slot->_A9 || slot->_A8) {
+				slot->startSlot(0.0f);
+			}
+		}
+		mDeathCounterToday->show();
+		mDeathCounterTotal->show();
+		mDeathCounterToday->startPuyoUp(1.0f);
+		mDeathCounterTotal->startPuyoUp(1.0f);
+
+		if (mTodayDeaths[7] == 0) {
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0);
+		} else {
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECRE_SUM, 0);
+			PSSystem::spSysIF->playSystemSe(PSSE_PK_RESULT_DECREMENT, 0);
+		}
+		mFlags &= ~0x80;
+		mFlags |= 0x100;
+		mStatus = INCPSTATUS_DecP;
+	}
+
 	return false;
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-stw      r31, 0x4c(r1)
-mr       r31, r3
-stw      r30, 0x48(r1)
-stw      r29, 0x44(r1)
-lwz      r12, 0(r3)
-lwz      r12, 0x78(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x98(r31)
-cmpwi    r0, 3
-beq      lbl_80406C50
-bge      lbl_80406C1C
-cmpwi    r0, 1
-beq      lbl_80406C38
-bge      lbl_80406C44
-cmpwi    r0, 0
-bge      lbl_80406C2C
-b        lbl_80406C70
-
-lbl_80406C1C:
-cmpwi    r0, 5
-beq      lbl_80406C68
-bge      lbl_80406C70
-b        lbl_80406C5C
-
-lbl_80406C2C:
-mr       r3, r31
-bl       statusNormal__Q32kh6Screen19ObjDayEndResultIncPFv
-b        lbl_80406C70
-
-lbl_80406C38:
-mr       r3, r31
-bl       statusFadeout__Q32kh6Screen19ObjDayEndResultIncPFv
-b        lbl_80406C70
-
-lbl_80406C44:
-mr       r3, r31
-bl       statusDecP__Q32kh6Screen19ObjDayEndResultIncPFv
-b        lbl_80406C70
-
-lbl_80406C50:
-mr       r3, r31
-bl       statusFadein__Q32kh6Screen19ObjDayEndResultIncPFv
-b        lbl_80406C70
-
-lbl_80406C5C:
-mr       r3, r31
-bl       statusSlot__Q32kh6Screen19ObjDayEndResultIncPFv
-b        lbl_80406C70
-
-lbl_80406C68:
-mr       r3, r31
-bl       statusDecPSlot__Q32kh6Screen19ObjDayEndResultIncPFv
-
-lbl_80406C70:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x16, 0x17
-beq      lbl_80406EB4
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x17, 0x17
-beq      lbl_80406CBC
-lwz      r0, 0x98(r31)
-cmpwi    r0, 4
-bne      lbl_80406CBC
-lwz      r0, 0x90(r31)
-rlwinm.  r0, r0, 0, 0x19, 0x19
-bne      lbl_80406CBC
-lwz      r0, 0x90(r31)
-ori      r0, r0, 0x20
-stw      r0, 0x90(r31)
-
-lbl_80406CBC:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x17, 0x17
-beq      lbl_80406CF4
-lwz      r0, 0x98(r31)
-cmpwi    r0, 5
-bne      lbl_80406CF4
-lwz      r0, 0x90(r31)
-rlwinm.  r0, r0, 0, 0x17, 0x17
-bne      lbl_80406CF4
-lwz      r0, 0x90(r31)
-ori      r0, r0, 0x80
-stw      r0, 0x90(r31)
-
-lbl_80406CF4:
-lwz      r0, 0x98(r31)
-cmpwi    r0, 0
-beq      lbl_80406D08
-cmpwi    r0, 2
-bne      lbl_80406EB4
-
-lbl_80406D08:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x17, 0x17
-beq      lbl_80406DE0
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r5, __vt__Q26Screen12SceneArgBase@ha
-lis      r4, __vt__Q26Screen11SetSceneArg@ha
-addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
-li       r5, 0x4e25
-stw      r0, 0x28(r1)
-addi     r6, r4, __vt__Q26Screen11SetSceneArg@l
-li       r4, 0
-li       r0, 1
-stw      r3, 0x34(r1)
-mr       r3, r31
-stw      r6, 0x28(r1)
-stw      r5, 0x2c(r1)
-stb      r4, 0x30(r1)
-stb      r0, 0x31(r1)
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 0x28
-bl       setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-clrlwi.  r0, r3, 0x18
-beq      lbl_80406EB4
-lis      r4, __vt__Q26Screen12SceneArgBase@ha
-lis      r3, __vt__Q26Screen13StartSceneArg@ha
-addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
-lis      r5, __vt__Q32kh6Screen20SArgDayEndResultBase@ha
-stw      r0, 0x10(r1)
-addi     r0, r3, __vt__Q26Screen13StartSceneArg@l
-lis      r3, __vt__Q32kh6Screen20SArgDayEndResultMail@ha
-li       r4, 1
-stw      r0, 0x10(r1)
-addi     r5, r5, __vt__Q32kh6Screen20SArgDayEndResultBase@l
-addi     r0, r3, __vt__Q32kh6Screen20SArgDayEndResultMail@l
-mr       r3, r31
-stw      r5, 0x10(r1)
-stb      r4, 0x14(r1)
-stw      r0, 0x10(r1)
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 0x10
-bl       startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-lwz      r0, 0x90(r31)
-rlwinm   r0, r0, 0, 0x1c, 0x1a
-stw      r0, 0x90(r31)
-b        lbl_80406EB4
-
-lbl_80406DE0:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x16, 0x16
-beq      lbl_80406EB4
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r5, __vt__Q26Screen12SceneArgBase@ha
-lis      r4, __vt__Q26Screen11SetSceneArg@ha
-addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
-li       r5, 0x4e23
-stw      r0, 0x18(r1)
-addi     r6, r4, __vt__Q26Screen11SetSceneArg@l
-li       r4, 0
-li       r0, 1
-stw      r3, 0x24(r1)
-mr       r3, r31
-stw      r6, 0x18(r1)
-stw      r5, 0x1c(r1)
-stb      r4, 0x20(r1)
-stb      r0, 0x21(r1)
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 0x18
-bl       setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-clrlwi.  r0, r3, 0x18
-beq      lbl_80406EB4
-lis      r4, __vt__Q26Screen12SceneArgBase@ha
-lis      r3, __vt__Q26Screen13StartSceneArg@ha
-addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
-lis      r5, __vt__Q32kh6Screen20SArgDayEndResultBase@ha
-stw      r0, 8(r1)
-addi     r0, r3, __vt__Q26Screen13StartSceneArg@l
-lis      r3, __vt__Q32kh6Screen20SArgDayEndResultItem@ha
-li       r4, 0
-stw      r0, 8(r1)
-addi     r5, r5, __vt__Q32kh6Screen20SArgDayEndResultBase@l
-addi     r0, r3, __vt__Q32kh6Screen20SArgDayEndResultItem@l
-mr       r3, r31
-stw      r5, 8(r1)
-stb      r4, 0xc(r1)
-stw      r0, 8(r1)
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 8
-bl       startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-lwz      r0, 0x90(r31)
-ori      r0, r0, 0x10
-stw      r0, 0x90(r31)
-
-lbl_80406EB4:
-lwz      r0, 0x90(r31)
-rlwinm.  r0, r0, 0, 0x1a, 0x1a
-beq      lbl_80406F38
-li       r29, 0
-li       r30, 0
-b        lbl_80406EFC
-
-lbl_80406ECC:
-lwz      r3, 0xac(r31)
-lwzx     r3, r3, r30
-lbz      r0, 0xa9(r3)
-cmplwi   r0, 0
-beq      lbl_80406EEC
-lbz      r0, 0xa8(r3)
-cmplwi   r0, 0
-beq      lbl_80406EF4
-
-lbl_80406EEC:
-lfs      f1, lbl_805200A8@sda21(r2)
-bl       startSlot__Q32og6Screen20CallBack_CounterSlotFf
-
-lbl_80406EF4:
-addi     r30, r30, 4
-addi     r29, r29, 1
-
-lbl_80406EFC:
-lwz      r0, 0xb8(r31)
-cmpw     r29, r0
-blt      lbl_80406ECC
-mr       r3, r31
-bl       effectCommon__Q32kh6Screen19ObjDayEndResultIncPFv
-lwz      r3, 0x8c(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x90(r31)
-li       r0, 0
-rlwinm   r3, r3, 0, 0x1b, 0x19
-stw      r3, 0x90(r31)
-lwz      r3, 0x90(r31)
-ori      r3, r3, 0x40
-stw      r3, 0x90(r31)
-stw      r0, 0x98(r31)
-
-lbl_80406F38:
-lwz      r0, 0x90(r31)
-rlwinm.  r0, r0, 0, 0x18, 0x18
-beq      lbl_80407024
-li       r29, 0
-li       r30, 0
-
-lbl_80406F4C:
-lwz      r3, 0xbc(r31)
-lwzx     r3, r3, r30
-lbz      r0, 0xa9(r3)
-cmplwi   r0, 0
-beq      lbl_80406F6C
-lbz      r0, 0xa8(r3)
-cmplwi   r0, 0
-beq      lbl_80406F74
-
-lbl_80406F6C:
-lfs      f1, lbl_805200A8@sda21(r2)
-bl       startSlot__Q32og6Screen20CallBack_CounterSlotFf
-
-lbl_80406F74:
-addi     r29, r29, 1
-addi     r30, r30, 4
-cmpwi    r29, 0xe
-blt      lbl_80406F4C
-lwz      r3, 0xc0(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xc4(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xc0(r31)
-lfs      f1, lbl_805200B0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, 0xc4(r31)
-lfs      f1, lbl_805200B0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r0, 0x118(r31)
-cmplwi   r0, 0
-bne      lbl_80406FE4
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1806
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_80407004
-
-lbl_80406FE4:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x182b
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x2860
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_80407004:
-lwz      r3, 0x90(r31)
-li       r0, 2
-rlwinm   r3, r3, 0, 0x19, 0x17
-stw      r3, 0x90(r31)
-lwz      r3, 0x90(r31)
-ori      r3, r3, 0x100
-stw      r3, 0x90(r31)
-stw      r0, 0x98(r31)
-
-lbl_80407024:
-lwz      r0, 0x54(r1)
-li       r3, 0
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-lwz      r29, 0x44(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
 }
 
 /*
@@ -3272,7 +3263,26 @@ blr
  */
 bool ObjDayEndResultIncP::doUpdateFadeout()
 {
-	return false;
+	updateCommon();
+	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mScreenMain->search('NitemW')->animationTransform();
+
+	mMainAnimTimer1 += ObjDayEndResultBase::msVal._08;
+
+	mScreenStars->search('Nall')->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
+
+	bool result;
+	if (mMainAnimTimer1 >= mFadeoutMaxFrame) {
+		result = true;
+	} else {
+		result = false;
+	}
+
+	mScreenMain->update();
+	for (int i = 0; i < 6; i++) {
+		mScreenMain->search(arrow[i])->setAngle(mArrowAngles[i]);
+	}
+	return result;
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -3413,82 +3423,29 @@ void ObjDayEndResultIncP::statusNormal()
  */
 void ObjDayEndResultIncP::statusFadeout()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f0, lbl_805200D8@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lfs      f1, 0xa4(r3)
-lwz      r4, 0x9c(r3)
-stfs     f1, 8(r4)
-lfs      f1, 0xa4(r3)
-fcmpo    cr0, f1, f0
-bge      lbl_804073A0
-lfs      f0, lbl_805200B0@sda21(r2)
-fadds    f0, f1, f0
-stfs     f0, 0xa4(r31)
-b        lbl_8040744C
+	mMainAnimTrans3->mCurrentFrame = mMainAnimTimer5;
+	if (mMainAnimTimer5 < 404.0f) {
+		mMainAnimTimer5 += 1.0f;
+		return;
+	}
 
-lbl_804073A0:
-lfs      f1, 0xa8(r31)
-lwz      r4, 0xa0(r31)
-lfs      f0, lbl_805200EC@sda21(r2)
-stfs     f1, 8(r4)
-lfs      f1, 0xa8(r31)
-fcmpo    cr0, f1, f0
-bge      lbl_804073CC
-lfs      f0, lbl_805200B0@sda21(r2)
-fadds    f0, f1, f0
-stfs     f0, 0xa8(r31)
-b        lbl_8040744C
+	mMainAnimTrans4->mCurrentFrame = mMainAnimTimer6;
+	if (mMainAnimTimer6 < 409.0f) {
+		mMainAnimTimer6 += 1.0f;
+		return;
+	}
 
-lbl_804073CC:
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_8040740C
-lis      r3, lbl_80498830@ha
-lis      r5, lbl_80498900@ha
-addi     r3, r3, lbl_80498830@l
-li       r4, 0x605
-addi     r5, r5, lbl_80498900@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8040740C:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lbz      r0, 0x41(r3)
-cmplwi   r0, 0
-bne      lbl_80407444
-li       r0, 1
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-stb      r0, 0x41(r3)
-addi     r3, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-li       r0, 5
-lbz      r3, 0x50(r3)
-stw      r3, 0x154(r31)
-stw      r0, 0x98(r31)
-b        lbl_8040744C
-
-lbl_80407444:
-li       r0, 2
-stw      r0, 0x98(r31)
-
-lbl_8040744C:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(1541, "disp member err");
+	}
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+	if (!dispResult->mIncP._0D) {
+		dispResult->mIncP._0D = true;
+		mSlotChangeDelay      = msVal._50;
+		mStatus               = INCPSTATUS_DecPSlot;
+	} else {
+		mStatus = INCPSTATUS_DecP;
+	}
 }
 
 /*
@@ -3511,15 +3468,15 @@ void ObjDayEndResultIncP::statusDecP()
  */
 void ObjDayEndResultIncP::statusFadein()
 {
-	_A0->mCurrentFrame = _A8;
-	if (_A8 > 404.0f) {
-		_A8--;
+	mMainAnimTrans4->mCurrentFrame = mMainAnimTimer6;
+	if (mMainAnimTimer6 > 404.0f) {
+		mMainAnimTimer6--;
 		return;
 	}
 
-	_9C->mCurrentFrame = _A4;
-	if (_A4 > 399.0f) {
-		_A4--;
+	mMainAnimTrans3->mCurrentFrame = mMainAnimTimer5;
+	if (mMainAnimTimer5 > 399.0f) {
+		mMainAnimTimer5--;
 		return;
 	}
 
@@ -3533,102 +3490,29 @@ void ObjDayEndResultIncP::statusFadein()
  */
 void ObjDayEndResultIncP::statusSlot()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-stw      r30, 0x18(r1)
-addi     r30, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-stw      r29, 0x14(r1)
-li       r29, 0
-stw      r28, 0x10(r1)
-li       r28, 0
-b        lbl_804075CC
+	for (int i = 0; i < mCounterNum; i++) {
+		if (i == 0 && !mPikiCountersList[0]->_A9) {
+			mPikiCountersList[i]->startSlot(msVal._10);
+			callIncPSE(i);
+		}
 
-lbl_80407548:
-cmpwi    r28, 0
-bne      lbl_8040757C
-lwz      r4, 0xac(r31)
-lwz      r3, 0(r4)
-lbz      r0, 0xa9(r3)
-cmplwi   r0, 0
-bne      lbl_8040757C
-lwzx     r3, r4, r29
-lfs      f1, 0x10(r30)
-bl       startSlot__Q32og6Screen20CallBack_CounterSlotFf
-mr       r3, r31
-mr       r4, r28
-bl       callIncPSE__Q32kh6Screen19ObjDayEndResultIncPFi
+		if (mPikiCountersList[i - 1]->_AA && !mPikiCountersList[i]->_A9) {
+			mPikiCountersList[i]->startSlot(msVal._10);
+			callIncPSE(i);
+			break;
+		}
+	}
 
-lbl_8040757C:
-lwz      r5, 0xac(r31)
-add      r4, r5, r29
-lwz      r3, -4(r4)
-lbz      r0, 0xaa(r3)
-cmplwi   r0, 0
-beq      lbl_804075C4
-lwz      r3, 0(r4)
-lbz      r0, 0xa9(r3)
-cmplwi   r0, 0
-bne      lbl_804075C4
-slwi     r0, r28, 2
-lfs      f1, 0x10(r30)
-lwzx     r3, r5, r0
-bl       startSlot__Q32og6Screen20CallBack_CounterSlotFf
-mr       r3, r31
-mr       r4, r28
-bl       callIncPSE__Q32kh6Screen19ObjDayEndResultIncPFi
-b        lbl_804075D8
-
-lbl_804075C4:
-addi     r29, r29, 4
-addi     r28, r28, 1
-
-lbl_804075CC:
-lwz      r0, 0xb8(r31)
-cmpw     r28, r0
-blt      lbl_80407548
-
-lbl_804075D8:
-lwz      r0, 0xb8(r31)
-lwz      r3, 0xac(r31)
-slwi     r0, r0, 2
-add      r3, r3, r0
-lwz      r3, -4(r3)
-lbz      r0, 0xaa(r3)
-cmplwi   r0, 0
-beq      lbl_80407634
-lwz      r3, 0x154(r31)
-cmpwi    r3, 0
-bne      lbl_8040762C
-mr       r3, r31
-bl       effectCommon__Q32kh6Screen19ObjDayEndResultIncPFv
-lwz      r3, 0x8c(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-li       r0, 0
-stw      r0, 0x98(r31)
-lwz      r0, 0x90(r31)
-ori      r0, r0, 0x40
-stw      r0, 0x90(r31)
-b        lbl_80407634
-
-lbl_8040762C:
-addi     r0, r3, -1
-stw      r0, 0x154(r31)
-
-lbl_80407634:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	if (mPikiCountersList[mCounterNum - 1]->_AA) {
+		if (!mSlotChangeDelay) {
+			effectCommon();
+			mNextBtnFadePane->fadein();
+			mStatus = INCPSTATUS_Normal;
+			mFlags |= 0x40;
+		} else {
+			mSlotChangeDelay--;
+		}
+	}
 }
 
 /*
@@ -3638,127 +3522,37 @@ blr
  */
 void ObjDayEndResultIncP::statusDecPSlot()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-stw      r30, 0x18(r1)
-addi     r30, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-stw      r29, 0x14(r1)
-li       r29, 0
-stw      r28, 0x10(r1)
-li       r28, 0
+	for (int i = 0; i < 14; i++) {
+		if (i == 0 && !mDeathCountersList[0]->_A9) {
+			mDeathCountersList[i]->startSlot(msVal._10);
+			callDecPSE(i);
+		}
 
-lbl_80407684:
-cmpwi    r28, 0
-bne      lbl_804076B8
-lwz      r4, 0xbc(r31)
-lwz      r3, 0(r4)
-lbz      r0, 0xa9(r3)
-cmplwi   r0, 0
-bne      lbl_804076B8
-lwzx     r3, r4, r29
-lfs      f1, 0x10(r30)
-bl       startSlot__Q32og6Screen20CallBack_CounterSlotFf
-mr       r3, r31
-mr       r4, r28
-bl       callDecPSE__Q32kh6Screen19ObjDayEndResultIncPFi
+		if (mDeathCountersList[i - 1]->_AA && !mDeathCountersList[i]->_A9) {
+			mDeathCountersList[i]->startSlot(msVal._10);
+			callDecPSE(i);
+			break;
+		}
+	}
 
-lbl_804076B8:
-lwz      r5, 0xbc(r31)
-add      r4, r5, r29
-lwz      r3, -4(r4)
-lbz      r0, 0xaa(r3)
-cmplwi   r0, 0
-beq      lbl_80407700
-lwz      r3, 0(r4)
-lbz      r0, 0xa9(r3)
-cmplwi   r0, 0
-bne      lbl_80407700
-slwi     r0, r28, 2
-lfs      f1, 0x10(r30)
-lwzx     r3, r5, r0
-bl       startSlot__Q32og6Screen20CallBack_CounterSlotFf
-mr       r3, r31
-mr       r4, r28
-bl       callDecPSE__Q32kh6Screen19ObjDayEndResultIncPFi
-b        lbl_80407710
-
-lbl_80407700:
-addi     r28, r28, 1
-addi     r29, r29, 4
-cmpwi    r28, 0xe
-blt      lbl_80407684
-
-lbl_80407710:
-lwz      r3, 0xbc(r31)
-lwz      r3, 0x34(r3)
-lbz      r0, 0xaa(r3)
-cmplwi   r0, 0
-beq      lbl_804077D0
-lwz      r3, 0x154(r31)
-cmpwi    r3, 0
-bne      lbl_804077C8
-lwz      r3, 0xc0(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xc4(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xc0(r31)
-lfs      f1, lbl_805200B0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, 0xc4(r31)
-lfs      f1, lbl_805200B0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r0, 0x118(r31)
-cmplwi   r0, 0
-bne      lbl_80407790
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1806
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_804077B0
-
-lbl_80407790:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x182b
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x2860
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_804077B0:
-lwz      r3, 0x90(r31)
-li       r0, 2
-ori      r3, r3, 0x100
-stw      r3, 0x90(r31)
-stw      r0, 0x98(r31)
-b        lbl_804077D0
-
-lbl_804077C8:
-addi     r0, r3, -1
-stw      r0, 0x154(r31)
-
-lbl_804077D0:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	if (mDeathCountersList[13]->_AA) {
+		if (!mSlotChangeDelay) {
+			mDeathCounterToday->show();
+			mDeathCounterTotal->show();
+			mDeathCounterToday->startPuyoUp(1.0f);
+			mDeathCounterTotal->startPuyoUp(1.0f);
+			if (mTodayDeaths[7] == 0) {
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0);
+			} else {
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECRE_SUM, 0);
+				PSSystem::spSysIF->playSystemSe(PSSE_PK_RESULT_DECREMENT, 0);
+			}
+			mFlags |= 0x100;
+			mStatus = INCPSTATUS_DecP;
+		} else {
+			mSlotChangeDelay--;
+		}
+	}
 }
 
 /*
@@ -3766,8 +3560,25 @@ blr
  * Address:	804077F0
  * Size:	000088
  */
-void ObjDayEndResultIncP::callIncPSE(int)
+void ObjDayEndResultIncP::callIncPSE(int id)
 {
+	u32 soundID;
+	bool flag = id & 1;
+	if (flag) {
+		u32 count2 = *mPikiCountersList[id - 1]->mCountPtr;
+		u32 count1 = *mPikiCountersList[id]->mCountPtr;
+		if (count2 < count1) {
+			soundID = PSSE_SY_PIKI_INCREMENT;
+		} else if (count2 > count1) {
+			soundID = PSSE_SY_PIKI_DECREMENT;
+		} else {
+			soundID = PSSE_SY_MENU_PLUS_MINUS;
+		}
+	} else {
+		soundID = PSSE_SY_MENU_PLUS_MINUS;
+	}
+
+	PSSystem::spSysIF->playSystemSe(soundID, 0);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -3819,8 +3630,15 @@ blr
  * Address:	80407878
  * Size:	00004C
  */
-void ObjDayEndResultIncP::callDecPSE(int)
+void ObjDayEndResultIncP::callDecPSE(int id)
 {
+	u32 soundID = PSSE_SY_PIKI_DECREMENT;
+	u32 count2  = *mDeathCountersList[id]->mCountPtr;
+	if (!count2) {
+		soundID = PSSE_SY_MENU_PLUS_MINUS;
+	}
+
+	PSSystem::spSysIF->playSystemSe(soundID, 0);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -3853,6 +3671,33 @@ blr
  */
 void ObjDayEndResultIncP::effectCommon()
 {
+	mPikiCounterYesterday->show();
+	mPikiCounterToday->show();
+	mPikiCounterYesterday->startPuyoUp(1.0f);
+	mPikiCounterToday->startPuyoUp(1.0f);
+
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(1730, "disp member err");
+	}
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+
+	for (int i = 0; i < 6; i++) {
+		if (i == 5 || dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag & i) {
+			mScreenMain->search(arrow[i])->show();
+		}
+	}
+	mScaleMgr->up();
+
+	if (mYesterdayPikis[5] < mTodayPikis[5]) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_INCRE_SUM, 0);
+		PSSystem::spSysIF->playSystemSe(PSSE_PK_RESULT_INCREMENT, 0);
+	} else if (mYesterdayPikis[5] > mTodayPikis[5]) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECRE_SUM, 0);
+		PSSystem::spSysIF->playSystemSe(PSSE_PK_RESULT_DECREMENT, 0);
+	} else {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0);
+	}
+
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -3976,243 +3821,16 @@ blr
  */
 void ObjDayEndResultIncP::updateCommon()
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stfd     f31, 0x20(r1)
-psq_st   f31, 40(r1), 0, qr0
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-stw      r28, 0x10(r1)
-mr       r31, r3
-lfs      f0, 0x44(r3)
-lwz      r3, 0x3c(r3)
-stfs     f0, 8(r3)
-lfs      f0, 0x48(r31)
-lwz      r3, 0x40(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x38(r31)
-bl       animation__9J2DScreenFv
-lfs      f0, 0x44(r31)
-lis      r0, 0x4330
-lfs      f2, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f0, f2
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x44(r31)
-lfs      f0, 0x48(r31)
-fadds    f0, f0, f2
-stfs     f0, 0x48(r31)
-lwz      r3, 0x3c(r31)
-lfs      f2, 0x44(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80407AEC
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x44(r31)
+	ObjDayEndResultBase::updateCommon();
+	mScreenMain->update();
+	f32 scale = mScaleMgr->calc();
+	for (int i = 0; i < 6; i++) {
+		mScreenMain->search(arrow[i])->updateScale(scale);
+	}
 
-lbl_80407AEC:
-lwz      r3, 0x40(r31)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lha      r0, 6(r3)
-lfd      f1, lbl_805200B8@sda21(r2)
-xoris    r0, r0, 0x8000
-lfs      f2, 0x48(r31)
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80407B28
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x48(r31)
-
-lbl_80407B28:
-lfs      f0, 0x68(r31)
-lwz      r3, 0x58(r31)
-stfs     f0, 8(r3)
-lfs      f0, 0x6c(r31)
-lwz      r3, 0x5c(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x4c(r31)
-bl       animation__9J2DScreenFv
-lfs      f0, 0x68(r31)
-lis      r0, 0x4330
-lfs      f2, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f0, f2
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x68(r31)
-lfs      f0, 0x6c(r31)
-fadds    f0, f0, f2
-stfs     f0, 0x6c(r31)
-lwz      r3, 0x58(r31)
-lfs      f2, 0x68(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80407BA0
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x68(r31)
-
-lbl_80407BA0:
-lwz      r3, 0x5c(r31)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lha      r0, 6(r3)
-lfd      f1, lbl_805200B8@sda21(r2)
-xoris    r0, r0, 0x8000
-lfs      f2, 0x6c(r31)
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80407BDC
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x6c(r31)
-
-lbl_80407BDC:
-lfs      f0, 0x64(r31)
-lis      r3, 0x69746C65@ha
-lwz      r4, 0x54(r31)
-addi     r6, r3, 0x69746C65@l
-li       r5, 0x4e74
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lfs      f1, 0x64(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x64(r31)
-lwz      r3, 0x54(r31)
-lfs      f2, 0x64(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80407C58
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x64(r31)
-
-lbl_80407C58:
-lfs      f0, 0x78(r31)
-lwz      r3, 0x74(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x70(r31)
-bl       animation__9J2DScreenFv
-lfs      f1, 0x78(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x78(r31)
-lwz      r3, 0x74(r31)
-lfs      f2, 0x78(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80407CB8
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x78(r31)
-
-lbl_80407CB8:
-lwz      r3, 0x38(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xc8(r31)
-bl       calc__Q32og6Screen8ScaleMgrFv
-lis      r3, arrow__Q22kh6Screen@ha
-fmr      f31, f1
-addi     r29, r3, arrow__Q22kh6Screen@l
-li       r28, 0
-mr       r30, r29
-
-lbl_80407CFC:
-lwz      r3, 0x4c(r31)
-lwz      r5, 0(r30)
-lwz      r12, 0(r3)
-lwz      r6, 4(r30)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-stfs     f31, 0xcc(r3)
-stfs     f31, 0xd0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-addi     r28, r28, 1
-addi     r30, r30, 8
-cmpwi    r28, 6
-blt      lbl_80407CFC
-mr       r30, r31
-li       r28, 0
-
-lbl_80407D48:
-lwz      r3, 0x4c(r31)
-lfs      f31, 0x13c(r30)
-lwz      r12, 0(r3)
-lwz      r5, 0(r29)
-lwz      r12, 0x3c(r12)
-lwz      r6, 4(r29)
-mtctr    r12
-bctrl
-stfs     f31, 0xc0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-addi     r28, r28, 1
-addi     r29, r29, 8
-cmpwi    r28, 6
-addi     r30, r30, 4
-blt      lbl_80407D48
-psq_l    f31, 40(r1), 0, qr0
-lwz      r0, 0x34(r1)
-lfd      f31, 0x20(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	for (int i = 0; i < 6; i++) {
+		mScreenMain->search(arrow[i])->setAngle(mArrowAngles[i]);
+	}
 }
 
 /*

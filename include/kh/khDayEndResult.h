@@ -139,7 +139,7 @@ struct DispDayEndResult : public og::Screen::DispMemberBase {
 // SCENE ARGS
 
 struct SArgDayEndResultBase : public ::Screen::StartSceneArg {
-	inline SArgDayEndResultBase() { _04 = 1; }
+	inline SArgDayEndResultBase(int i) { _04 = i; }
 
 	virtual int getClassSize() { return sizeof(SArgDayEndResultBase); } // _0C (weak)
 
@@ -149,6 +149,11 @@ struct SArgDayEndResultBase : public ::Screen::StartSceneArg {
 };
 
 struct SArgDayEndResultIncP : public SArgDayEndResultBase {
+	SArgDayEndResultIncP(int i)
+	    : SArgDayEndResultBase(i)
+	{
+	}
+
 	virtual int getClassSize() { return sizeof(SArgDayEndResultIncP); }           // _0C (weak)
 	virtual SceneType getSceneType() const { return SCENE_DAY_END_RESULT_INC_P; } // _08 (weak)
 
@@ -157,6 +162,11 @@ struct SArgDayEndResultIncP : public SArgDayEndResultBase {
 };
 
 struct SArgDayEndResultItem : public SArgDayEndResultBase {
+	SArgDayEndResultItem(int i)
+	    : SArgDayEndResultBase(i)
+	{
+	}
+
 	virtual int getClassSize() { return sizeof(SArgDayEndResultItem); }          // _0C (weak)
 	virtual SceneType getSceneType() const { return SCENE_DAY_END_RESULT_ITEM; } // _08 (weak)
 
@@ -165,6 +175,11 @@ struct SArgDayEndResultItem : public SArgDayEndResultBase {
 };
 
 struct SArgDayEndResultMail : public SArgDayEndResultBase {
+	SArgDayEndResultMail(int i)
+	    : SArgDayEndResultBase(i)
+	{
+	}
+
 	virtual int getClassSize() { return sizeof(SArgDayEndResultMail); }          // _0C (weak)
 	virtual SceneType getSceneType() const { return SCENE_DAY_END_RESULT_MAIL; } // _08 (weak)
 
@@ -211,31 +226,31 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	P2DScreen::Mgr_tuning* mResultTitleMgr;    // _38
-	J2DAnmTransform* mResultTitleAnmTransform; // _3C
-	J2DAnmColor* mResultTitleAnmColor;         // _40
-	f32 _44;                                   // _44
-	f32 _48;                                   // _48
-	P2DScreen::Mgr_tuning* mScreenMain;        // _4C
-	J2DAnmTransform* _50;                      // _50
-	J2DAnmTransform* _54;                      // _54
-	J2DAnmTextureSRTKey* _58;                  // _58
-	J2DAnmTevRegKey* _5C;                      // _5C
-	f32 _60;                                   // _60
-	f32 _64;                                   // _64
-	f32 _68;                                   // _68
-	f32 _6C;                                   // _6C
-	P2DScreen::Mgr_tuning* mScreenStars;       // _70
-	J2DAnmColor* _74;                          // _74
-	f32 _78;                                   // _78
-	f32 _7C;                                   // _7C
-	f32 _80;                                   // _80
-	f32 _84;                                   // _84
-	f32 _88;                                   // _88
-	khUtilFadePane* mNextBtnFadePane;          // _8C
-	u32 mFlags;                                // _90
-	u8 _94;                                    // _94
-	u8 _95;                                    // _95
+	P2DScreen::Mgr_tuning* mScreenTitle; // _38
+	J2DAnmTransform* mTitleAnmTransform; // _3C
+	J2DAnmColor* mTitleAnmColor;         // _40
+	f32 mTitleAnimTimer1;                // _44
+	f32 mTitleAnimTimer2;                // _48
+	P2DScreen::Mgr_tuning* mScreenMain;  // _4C
+	J2DAnmTransform* mMainAnimTrans1;    // _50
+	J2DAnmTransform* mMainAnimTrans2;    // _54
+	J2DAnmTextureSRTKey* mMainAnimSRT;   // _58
+	J2DAnmTevRegKey* mMainAnimTev;       // _5C
+	f32 mMainAnimTimer1;                 // _60
+	f32 mMainAnimTimer2;                 // _64
+	f32 mMainAnimTimer3;                 // _68
+	f32 mMainAnimTimer4;                 // _6C
+	P2DScreen::Mgr_tuning* mScreenStars; // _70
+	J2DAnmColor* mStarsAnimColor;        // _74
+	f32 mStarsAnimTimer1;                // _78
+	f32 mFadeinMinFrame;                 // _7C
+	f32 mFadeinMaxFrame;                 // _80
+	f32 mFadeoutMinFrame;                // _84
+	f32 mFadeoutMaxFrame;                // _88
+	khUtilFadePane* mNextBtnFadePane;    // _8C
+	u32 mFlags;                          // _90
+	u8 _94;                              // _94
+	u8 _95;                              // _95
 
 	struct StaticValues {
 		inline StaticValues()
@@ -339,49 +354,25 @@ struct ObjDayEndResultIncP : public ObjDayEndResultBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_98 = ObjDayEndResultBase
-	int mStatus;                            // _98
-	J2DAnmTransform* _9C;                   // _9C
-	J2DAnmTransform* _A0;                   // _A0
-	f32 _A4;                                // _A4
-	f32 _A8;                                // _A8
-	og::Screen::CallBack_CounterSlot** _AC; // _AC
-	og::Screen::CallBack_CounterRV* _B0;    // _B0
-	og::Screen::CallBack_CounterRV* _B4;    // _B4
-	int _B8;                                // _B8
-	og::Screen::CallBack_CounterSlot** _BC; // _BC, array of 14 ptrs?
-	og::Screen::CallBack_CounterRV* _C0;    // _C0
-	og::Screen::CallBack_CounterRV* _C4;    // _C4
-	og::Screen::ScaleMgr* mScaleMgr;        // _C8
-	u32 _CC;                                // _CC
-	u32 _D0;                                // _D0
-	u32 _D4;                                // _D4
-	u32 _D8;                                // _D8
-	u32 _DC;                                // _DC
-	u32 _E0;                                // _E0
-	u32 _E4;                                // _E4
-	u32 _E8;                                // _E8
-	u32 _EC;                                // _EC
-	u32 _F0;                                // _F0
-	u32 _F4;                                // _F4
-	u32 _F8;                                // _F8
-	u32 _FC;                                // _FC
-	u32 _100;                               // _100
-	u32 _104;                               // _104
-	u32 _108;                               // _108
-	u32 _10C;                               // _10C
-	u32 _110;                               // _110
-	u32 _114;                               // _114
-	u32 _118;                               // _118
-	u32 _11C;                               // _11C
-	u32 _120;                               // _120
-	u32 _124;                               // _124
-	u32 _128;                               // _128
-	u32 _12C;                               // _12C
-	u32 _130;                               // _130
-	u32 _134;                               // _134
-	u32 _138;                               // _138
-	f32 _13C[6];                            // _13C
-	int _154;                               // _154
+	int mStatus;                                           // _98
+	J2DAnmTransform* mMainAnimTrans3;                      // _9C
+	J2DAnmTransform* mMainAnimTrans4;                      // _A0
+	f32 mMainAnimTimer5;                                   // _A4
+	f32 mMainAnimTimer6;                                   // _A8
+	og::Screen::CallBack_CounterSlot** mPikiCountersList;  // _AC
+	og::Screen::CallBack_CounterRV* mPikiCounterYesterday; // _B0
+	og::Screen::CallBack_CounterRV* mPikiCounterToday;     // _B4
+	int mCounterNum;                                       // _B8
+	og::Screen::CallBack_CounterSlot** mDeathCountersList; // _BC
+	og::Screen::CallBack_CounterRV* mDeathCounterToday;    // _C0
+	og::Screen::CallBack_CounterRV* mDeathCounterTotal;    // _C4
+	og::Screen::ScaleMgr* mScaleMgr;                       // _C8
+	u32 mYesterdayPikis[6];                                // _CC
+	u32 mTodayPikis[6];                                    // _E4
+	u32 mTodayDeaths[8];                                   // _FC
+	u32 mTotalDeaths[8];                                   // _11C
+	f32 mArrowAngles[6];                                   // _13C
+	int mSlotChangeDelay;                                  // _154
 };
 
 struct ObjDayEndResultMail : public ObjDayEndResultBase {
@@ -509,32 +500,30 @@ struct ObjDayEndResultItem : public ObjDayEndResultBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_98 = ObjDayEndResultBase
-	Status mStatus;                          // _98
-	J2DAnmTransform* _9C;                    // _9C
-	f32 _A0;                                 // _A0
-	og::Screen::CallBack_CounterRV* _A4;     // _A4
-	og::Screen::CallBack_CounterRV* _A8;     // _A8
-	og::Screen::CallBack_CounterRV* _AC;     // _AC
-	og::Screen::CallBack_CounterRV* _B0;     // _B0
-	og::Screen::StickAnimMgr* mStickAnimMgr; // _B4
-	khUtilFadePane* _B8;                     // _B8
-	khUtilFadePane* _BC;                     // _BC
-	khUtilFadePane* _C0;                     // _C0
-	u32 _C4;                                 // _C4
-	u32 _C8;                                 // _C8
-	u32 _CC;                                 // _CC
-	u32 _D0;                                 // _D0
-	f32 _D4;                                 // _D4
-	int _D8;                                 // _D8
-	f32 _DC;                                 // _DC
-	int _E0;                                 // _E0
-	int _E4;                                 // _E4
-	int _E8;                                 // _E8
-	u32 _EC;                                 // _EC
-	u32 _F0;                                 // _F0
-	int _F4;                                 // _F4
-	u8 _F8;                                  // _F8
-	u8 _F9;                                  // _F9
+	Status mStatus;                                          // _98
+	J2DAnmTransform* mMainAnimTrans3;                        // _9C
+	f32 mMainAnimTimer5;                                     // _A0
+	og::Screen::CallBack_CounterRV* mTodayPokoCounter;       // _A4
+	og::Screen::CallBack_CounterRV* mTotalPokoCounter;       // _A8
+	og::Screen::CallBack_CounterRV* mTreasurePokoCounter[2]; // _AC
+	og::Screen::StickAnimMgr* mStickAnimMgr;                 // _B4
+	khUtilFadePane* mFadePane3DStick;                        // _B8
+	khUtilFadePane* mFadePaneUpArrow;                        // _BC
+	khUtilFadePane* mFadePaneDownArrow;                      // _C0
+	u32 mTotalPokoCount;                                     // _C4
+	u32 mTodaysPokoCount;                                    // _C8
+	u32 mTreasurePokoCount[2];                               // _CC
+	f32 mCurrentScrollYPos;                                  // _D4
+	int mMaxScrollId;                                        // _D8
+	f32 mItemRowHeight;                                      // _DC
+	int mCurrentSelectId;                                    // _E0
+	int mScollMoveTargetTime;                                // _E4
+	int mScrollMoveCounter;                                  // _E8
+	u32 mGXScissorTopY;                                      // _EC
+	u32 mGXScissorBottomY;                                   // _F0
+	int mTotalValueDelay;                                    // _F4
+	u8 mScrollUpDelay;                                       // _F8
+	u8 mScrollDownDelay;                                     // _F9
 };
 
 struct ObjDayEndResultTitl : public ::Screen::ObjBase {
