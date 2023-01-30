@@ -115,8 +115,7 @@
  * Address:	8005921C
  * Size:	000030
  */
-void J2DTexMtx::load(unsigned long p1) { GXLoadTexMtxImm(mMtx, p1 * 3 + 0x1E, (_GXTexMtxType)mInfo._00); }
-
+void J2DTexMtx::load(u32 size) { GXLoadTexMtxImm(mMtx, size * 3 + 30, (GXTexMtxType)mInfo.getTexMtxType()); }
 /*
  * --INFO--
  * Address:	8005924C
@@ -124,9 +123,9 @@ void J2DTexMtx::load(unsigned long p1) { GXLoadTexMtxImm(mMtx, p1 * 3 + 0x1E, (_
  */
 void J2DTexMtx::calc()
 {
-	if (mInfo._01 == 0) {
-		getTextureMtx(mInfo.mTextureSRTInfo, Vec(mInfo._04), mMtx);
-	} else if (mInfo._01 == 1) {
+	if (mInfo.mTexMtxDCC == 0) {
+		getTextureMtx(mInfo.mTextureSRTInfo, mInfo.mCenter, mMtx);
+	} else if (mInfo.mTexMtxDCC == 1) {
 		getTextureMtxMaya(mInfo.mTextureSRTInfo, mMtx);
 	}
 }
@@ -136,13 +135,13 @@ void J2DTexMtx::calc()
  * Address:	800592B4
  * Size:	000190
  */
-void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, float (*mtx)[4])
+void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, Mtx mtx)
 {
 	float theta = (info._08 * PI) / 180.0f;
 	mtx[0][0]   = info._00 * cosf_kludge(theta);
 	mtx[0][1]   = -info._00 * sinf_kludge(theta);
 	mtx[0][2]   = 0.0f;
-	mtx[0][3]   = info._0C + p2.x + p2.x * (-info._00 * cosf_kludge(theta)) + p2.y * (info._00 * sinf_kludge(theta));
+	mtx[0][3]   = info._0C + p2.x + p2.x * (-info._00 * cosf_kludge(theta)) + (info._00 * sinf_kludge(theta)) * p2.y;
 	mtx[1][0]   = info._04 * sinf_kludge(theta);
 	mtx[1][1]   = info._04 * cosf_kludge(theta);
 	mtx[1][2]   = 0.0f;
@@ -261,8 +260,9 @@ void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, float (*mtx
  * Address:	80059444
  * Size:	000180
  */
-void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo&, float (*)[4])
+void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo& info, Mtx mtx)
 {
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -368,8 +368,10 @@ void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo&, float (*)[4])
  * Address:	800595C4
  * Size:	000054
  */
-void J2DIndTevStage::load(unsigned char)
+void J2DIndTevStage::load(u8 tevStage)
 {
+	GXSetTevIndirect((GXTevStageID)tevStage, getIndStage(), getIndFormat(), getBiasSel(), getMtxSel(), getWrapS(), getWrapT(), getPrev(),
+	                 getLod(), getAlphaSel());
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -400,69 +402,18 @@ void J2DIndTevStage::load(unsigned char)
  * Address:	80059618
  * Size:	000030
  */
-void J2DIndTexMtx::load(unsigned char p1)
-{
-	// GXSetIndTexMtx(p1 + 1, this, _18);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	clrlwi   r6, r4, 0x18
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lbz      r5, 0x18(r3)
-	addi     r3, r6, 1
-	bl       GXSetIndTexMtx
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DIndTexMtx::load(u8 mtxID) { GXSetIndTexMtx((GXIndTexMtxID)(mtxID + 1), mMtxInfo.mMtx, mMtxInfo.mScale); }
 
 /*
  * --INFO--
  * Address:	80059648
  * Size:	000030
  */
-void J2DIndTexCoordScale::load(unsigned char p1)
-{
-	// GXSetIndTexCoordScale(p1, _00, _01);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	clrlwi   r3, r4, 0x18
-	stw      r0, 0x14(r1)
-	lbz      r4, 0(r5)
-	lbz      r5, 1(r5)
-	bl       GXSetIndTexCoordScale
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DIndTexCoordScale::load(u8 stage) { GXSetIndTexCoordScale((GXIndTexStageID)stage, mScaleInfo.getScaleS(), mScaleInfo.getScaleT()); }
 
 /*
  * --INFO--
  * Address:	80059678
  * Size:	000030
  */
-void J2DIndTexOrder::load(unsigned char p1)
-{
-	// GXSetIndTexOrder(p1, _00, _01);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	clrlwi   r3, r4, 0x18
-	stw      r0, 0x14(r1)
-	lbz      r4, 0(r5)
-	lbz      r5, 1(r5)
-	bl       GXSetIndTexOrder
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DIndTexOrder::load(u8 stage) { GXSetIndTexOrder((GXIndTexStageID)stage, (GXTexCoordID)mCoord, (GXTexMapID)mMap); }

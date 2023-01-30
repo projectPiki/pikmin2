@@ -27,13 +27,8 @@ struct J2DIndTexCoordScale {
 };
 
 struct J2DIndTexMtxInfo {
-	f32 _00; // _00, should probably be a Mtx23
-	f32 _04; // _04
-	f32 _08; // _08
-	f32 _0C; // _0C
-	f32 _10; // _10
-	f32 _14; // _14
-	u8 _18;  // _18
+	Mtx23 mMtx; // _00
+	s8 mScale;  // _18
 };
 
 /**
@@ -58,8 +53,8 @@ struct J2DIndTexOrder {
 	J2DIndTexOrder();
 	void load(u8);
 
-	u8 _00; // _00
-	u8 _01; // _01
+	u8 mCoord; // _00
+	u8 mMap;   // _01
 };
 
 struct J2DIndBlock {
