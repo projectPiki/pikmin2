@@ -51,7 +51,7 @@ endif
 
 BUILD_DIR := build/$(NAME).$(VERSION)
 ifeq ($(EPILOGUE_PROCESS),1)
-EPILOGUE_DIR := epilogue/$(NAME).$(VERSION)
+EPILOGUE_DIR := build/epilogue/$(NAME).$(VERSION)
 endif
 
 # Inputs
@@ -186,8 +186,8 @@ ifeq ($(USE_AOI),1)
 endif
 
 clean:
-	rm -f -d -r build
 	rm -f -d -r epilogue
+	rm -f -d -r build
 	find . -name '*.o' -exec rm {} +
 	find . -name 'ctx.c' -exec rm {} +
 	find ./include -name "*.s" -type f -delete
@@ -241,15 +241,21 @@ $(BUILD_DIR)/%.o: %.cpp
 ifeq ($(EPILOGUE_PROCESS),1)
 $(EPILOGUE_DIR)/%.o: %.c $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
+	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $(word 2,$^)
+	$(QUIET) touch $@
 
 $(EPILOGUE_DIR)/%.o: %.cp $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
+	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $(word 2,$^)
+	$(QUIET) touch $@
 
 $(EPILOGUE_DIR)/%.o: %.cpp $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
+	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $(word 2,$^)
+	$(QUIET) touch $@
 endif
 # If we need Frank, add the following after the @echo
 # $(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
