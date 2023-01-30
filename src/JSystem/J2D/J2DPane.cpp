@@ -7,103 +7,9 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/JSupport/JSUStream.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JUtility/JUTResource.h"
 
 JGeometry::TBox2f J2DPane::static_mBounds(0.0f, 0.0f, 0.0f, 0.0f);
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_J2DPane_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804A0678
-    lbl_804A0678:
-        .4byte lbl_80039544
-        .4byte lbl_80039558
-        .4byte lbl_80039594
-        .4byte lbl_800395CC
-        .4byte lbl_80039580
-        .4byte lbl_800395BC
-        .4byte lbl_800395A8
-        .4byte lbl_8003956C
-    .global __vt__7J2DPane
-    __vt__7J2DPane:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__7J2DPaneFv
-        .4byte getTypeID__7J2DPaneCFv
-        .4byte move__7J2DPaneFff
-        .4byte add__7J2DPaneFff
-        .4byte resize__7J2DPaneFff
-        .4byte setCullBack__7J2DPaneFb
-        .4byte setCullBack__7J2DPaneF11_GXCullMode
-        .4byte setAlpha__7J2DPaneFUc
-        .4byte setConnectParent__7J2DPaneFb
-        .4byte calcMtx__7J2DPaneFv
-        .4byte update__7J2DPaneFv
-        .4byte drawSelf__7J2DPaneFff
-        .4byte drawSelf__7J2DPaneFffPA3_A4_f
-        .4byte search__7J2DPaneFUx
-        .4byte searchUserInfo__7J2DPaneFUx
-        .4byte makeMatrix__7J2DPaneFff
-        .4byte makeMatrix__7J2DPaneFffff
-        .4byte isUsed__7J2DPaneFPC7ResTIMG
-        .4byte isUsed__7J2DPaneFPC7ResFONT
-        .4byte clearAnmTransform__7J2DPaneFv
-        .4byte rewriteAlpha__7J2DPaneFv
-        .4byte setAnimation__7J2DPaneFP10J2DAnmBase
-        .4byte setAnimation__7J2DPaneFP15J2DAnmTransform
-        .4byte setAnimation__7J2DPaneFP11J2DAnmColor
-        .4byte setAnimation__7J2DPaneFP16J2DAnmTexPattern
-        .4byte setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey
-        .4byte setAnimation__7J2DPaneFP15J2DAnmTevRegKey
-        .4byte setAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setAnimation__7J2DPaneFP14J2DAnmVtxColor
-        .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
-        .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
-        .4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
-        .4byte animationPane__7J2DPaneFPC15J2DAnmTransform
-        .4byte 0
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global static_mBounds__7J2DPane
-    static_mBounds__7J2DPane:
-        .skip 0x10
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805167C0
-    lbl_805167C0:
-        .4byte 0x00000000
-    .global lbl_805167C4
-    lbl_805167C4:
-        .float 1.0
-    .global lbl_805167C8
-    lbl_805167C8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_805167D0
-    lbl_805167D0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_805167D8
-    lbl_805167D8:
-        .float 0.5
-    .global lbl_805167DC
-    lbl_805167DC:
-        .4byte 0x3C8EFA35
-    .global lbl_805167E0
-    lbl_805167E0:
-        .4byte 0x437F0000
-    .global lbl_805167E4
-    lbl_805167E4:
-        .4byte 0x43B40000
-    .global lbl_805167E8
-    lbl_805167E8:
-        .4byte 0x477FFF00
-        .4byte 0x00000000
-*/
 
 /*
  * --INFO--
@@ -112,66 +18,17 @@ JGeometry::TBox2f J2DPane::static_mBounds(0.0f, 0.0f, 0.0f, 0.0f);
  */
 J2DPane::J2DPane()
     : mTree(this)
-    , mTransform(nullptr)
-    , mBloBlockType('PAN1')
-    , mIsVisible(true)
-    , mTag(0)
-    , mMessageID(0)
-    , mBounds(0.0f, 0.0f, 0.0f, 0.0f)
 {
+	mTransform    = nullptr;
+	mBloBlockType = 'PAN1';
+	mIsVisible    = true;
+	mTag          = 0;
+	mMessageID    = 0;
+	mBounds.set(0.0f, 0.0f, 0.0f, 0.0f);
+
 	initiate();
 	changeUseTrans(nullptr);
 	calcMtx();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__7J2DPane@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__7J2DPane@l
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r31, r30, 0xdc
-	stw      r0, 0(r3)
-	mr       r3, r31
-	bl       initiate__10JSUPtrListFv
-	mr       r4, r30
-	addi     r3, r31, 0xc
-	bl       __ct__10JSUPtrLinkFPv
-	li       r4, 0
-	lis      r3, 0x50414E31@ha
-	stw      r4, 0xf8(r30)
-	addi     r3, r3, 0x50414E31@l
-	li       r0, 1
-	lfs      f0, lbl_805167C0@sda21(r2)
-	stw      r3, 8(r30)
-	mr       r3, r30
-	stb      r0, 0xb0(r30)
-	stw      r4, 0x14(r30)
-	stw      r4, 0x10(r30)
-	stw      r4, 0x1c(r30)
-	stw      r4, 0x18(r30)
-	stfs     f0, 0x20(r30)
-	stfs     f0, 0x24(r30)
-	stfs     f0, 0x28(r30)
-	stfs     f0, 0x2c(r30)
-	bl       initiate__7J2DPaneFv
-	mr       r3, r30
-	li       r4, 0
-	bl       changeUseTrans__7J2DPaneFP7J2DPane
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -182,7 +39,7 @@ J2DPane::J2DPane()
 void J2DPane::calcMtx()
 {
 	if (mTree.getList()) {
-		makeMatrix(_0D4.x, _0D4.y);
+		makeMatrix(mOffset.x, mOffset.y);
 	}
 }
 
@@ -200,20 +57,19 @@ void J2DPane::makeMatrix(float f1, float f2) { makeMatrix(f1, f2, -mBounds.i.x, 
  */
 void J2DPane::initiate()
 {
-	_004 = 0xFFFF;
-	_0B8 = 0.0f;
-	_0BC = 0.0f;
-	_0C0 = 0.0f;
+	_004    = 0xFFFF;
+	mAngleX = 0.0f;
+	mAngleY = 0.0f;
+	mAngleZ = 0.0f;
 	mAnchorPoint.set(0.0f, 0.0f);
-	mBasePosition = J2DPOS_TopLeft;
-	mRotationAxis = 122; // 0x7A
-	mScale.x      = 1.0f;
-	mScale.y      = 1.0f;
-	mCullMode     = 0;
-	mAlpha        = 0xFF;
-	_0B4          = true;
-	mColorAlpha   = 0xFF;
-	mIsConnected  = 0;
+	mBasePosition      = J2DPOS_TopLeft;
+	mRotationAxis      = J2DROTATE_Z;
+	mScale             = JGeometry::TVec2f(1.0f);
+	mCullMode          = GX_CULL_NONE;
+	mAlpha             = 255;
+	mIsInfluencedAlpha = true;
+	mColorAlpha        = 255;
+	mIsConnected       = 0;
 	calcMtx();
 }
 
@@ -323,11 +179,11 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 	bottomRight.y = input->readS16() + topLeft.y;
 	mBounds.set(topLeft, bottomRight);
 	valuesRemaining -= 6;
-	_0B8 = 0.0f;
-	_0BC = 0.0f;
-	_0C0 = 0.0f;
+	mAngleX = 0.0f;
+	mAngleY = 0.0f;
+	mAngleZ = 0.0f;
 	if (valuesRemaining != 0) {
-		_0C0 = input->readU16();
+		mAngleZ = input->readU16();
 		valuesRemaining--;
 	}
 	if (valuesRemaining != 0) {
@@ -337,8 +193,8 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 	} else {
 		mBasePosition = J2DPOS_TopLeft;
 	}
-	mRotationAxis = 0x7A;
-	mAlpha        = 0xFF;
+	mRotationAxis = J2DROTATE_Z;
+	mAlpha        = 255;
 	if (valuesRemaining != 0) {
 		mAlpha = input->readByte();
 		valuesRemaining--;
@@ -353,7 +209,7 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 		parent->mTree.appendChild(&mTree);
 	}
 	mCullMode    = 0;
-	mColorAlpha  = 0xFF;
+	mColorAlpha  = 255;
 	mIsConnected = 0;
 	_004         = -1;
 	mScale.x     = 1.0f;
@@ -372,165 +228,42 @@ void J2DPane::changeUseTrans(J2DPane* parent)
 {
 	JGeometry::TVec2f v1(0.0f, 0.0f);
 	if (mBasePosition % 3 == 1) {
-		v1.x = (mBounds.f.x - mBounds.i.x) * 0.5f;
+		v1.x = mBounds.getWidth() / 2;
 	} else if (mBasePosition % 3 == 2) {
-		v1.x = (mBounds.f.x - mBounds.i.x);
-		// } else {
-		// 	v1.x = 0.0f;
+		v1.x = mBounds.getWidth();
 	}
+
 	if (mBasePosition / 3 == 1) {
-		v1.y = (mBounds.f.y - mBounds.i.y) * 0.5f;
+		v1.y = mBounds.getHeight() / 2;
 	} else if (mBasePosition / 3 == 2) {
-		v1.y = (mBounds.f.y - mBounds.i.y);
-		// } else {
-		// 	v1.y = 0.0f;
+		v1.y = mBounds.getHeight();
 	}
-	_0D4 = mBounds.i;
-	_0D4.add(v1);
+
+	mOffset.x = mBounds.i.x + v1.x;
+	mOffset.y = mBounds.i.y + v1.y;
+
 	mAnchorPoint = v1;
-	v1.set(-_0D4.x, -_0D4.y);
+	v1.set(-mOffset.x, -mOffset.y);
 	mBounds.addPos(v1);
-	if (parent == nullptr) {
-		return;
+
+	if (parent) {
+		u8 parentBasePos = parent->mBasePosition;
+		f32 width        = parent->mBounds.getWidth();
+		f32 height       = parent->mBounds.getHeight();
+		v1.set(parent->mBounds.getWidth(), parent->mBounds.getHeight());
+
+		if (parentBasePos % 3 == 1) {
+			mOffset.x -= width / 2;
+		} else if (parentBasePos % 3 == 2) {
+			mOffset.x -= width;
+		}
+
+		if (parentBasePos / 3 == 1) {
+			mOffset.y -= height / 2;
+		} else if (parentBasePos / 3 == 2) {
+			mOffset.y -= height;
+		}
 	}
-	v1.set(parent->mBounds.getWidth(), parent->mBounds.getHeight());
-	if (mBasePosition % 3 == 1) {
-		_0D4.x = -(v1.x * 0.5f - _0D4.x);
-	} else if (mBasePosition % 3 == 2) {
-		_0D4.x = _0D4.x - v1.x;
-	}
-	if (mBasePosition / 3 == 1) {
-		_0D4.y = -(v1.y * 0.5f - _0D4.y);
-	} else if (mBasePosition / 3 == 2) {
-		_0D4.y = _0D4.y - v1.y;
-	}
-	/*
-	lis      r5, 0x55555556@ha
-	lbz      r6, 0xb7(r3)
-	addi     r0, r5, 0x55555556@l
-	lfs      f3, lbl_805167C0@sda21(r2)
-	mulhw    r5, r0, r6
-	fmr      f4, f3
-	srwi     r0, r5, 0x1f
-	add      r0, r5, r0
-	mulli    r0, r0, 3
-	subf     r0, r0, r6
-	cmpwi    r0, 1
-	bne      lbl_80037470
-	lfs      f2, 0x28(r3)
-	lfs      f1, 0x20(r3)
-	lfs      f0, lbl_805167D8@sda21(r2)
-	fsubs    f1, f2, f1
-	fmuls    f3, f1, f0
-	b        lbl_80037484
-
-lbl_80037470:
-	cmpwi    r0, 2
-	bne      lbl_80037484
-	lfs      f1, 0x28(r3)
-	lfs      f0, 0x20(r3)
-	fsubs    f3, f1, f0
-
-lbl_80037484:
-	lis      r5, 0x55555556@ha
-	addi     r0, r5, 0x55555556@l
-	mulhw    r5, r0, r6
-	srwi     r0, r5, 0x1f
-	add      r0, r5, r0
-	cmpwi    r0, 1
-	bne      lbl_800374B8
-	lfs      f2, 0x2c(r3)
-	lfs      f1, 0x24(r3)
-	lfs      f0, lbl_805167D8@sda21(r2)
-	fsubs    f1, f2, f1
-	fmuls    f4, f1, f0
-	b        lbl_800374CC
-
-lbl_800374B8:
-	cmpwi    r0, 2
-	bne      lbl_800374CC
-	lfs      f1, 0x2c(r3)
-	lfs      f0, 0x24(r3)
-	fsubs    f4, f1, f0
-
-lbl_800374CC:
-	lfs      f0, 0x20(r3)
-	cmplwi   r4, 0
-	fadds    f0, f0, f3
-	stfs     f0, 0xd4(r3)
-	lfs      f0, 0x24(r3)
-	fadds    f0, f0, f4
-	stfs     f0, 0xd8(r3)
-	stfs     f3, 0xc4(r3)
-	stfs     f4, 0xc8(r3)
-	lfs      f0, 0xd4(r3)
-	lfs      f1, 0xd8(r3)
-	fneg     f2, f0
-	lfs      f0, 0x20(r3)
-	fneg     f1, f1
-	fadds    f0, f0, f2
-	stfs     f0, 0x20(r3)
-	lfs      f0, 0x24(r3)
-	fadds    f0, f0, f1
-	stfs     f0, 0x24(r3)
-	lfs      f0, 0x28(r3)
-	fadds    f0, f0, f2
-	stfs     f0, 0x28(r3)
-	lfs      f0, 0x2c(r3)
-	fadds    f0, f0, f1
-	stfs     f0, 0x2c(r3)
-	beqlr
-	lis      r5, 0x55555556@ha
-	lbz      r6, 0xb7(r4)
-	addi     r0, r5, 0x55555556@l
-	lfs      f3, 0x28(r4)
-	mulhw    r5, r0, r6
-	lfs      f2, 0x20(r4)
-	lfs      f1, 0x2c(r4)
-	lfs      f0, 0x24(r4)
-	fsubs    f2, f3, f2
-	fsubs    f3, f1, f0
-	srwi     r0, r5, 0x1f
-	add      r0, r5, r0
-	mulli    r0, r0, 3
-	subf     r0, r0, r6
-	cmpwi    r0, 1
-	bne      lbl_80037588
-	lfs      f1, lbl_805167D8@sda21(r2)
-	lfs      f0, 0xd4(r3)
-	fnmsubs  f0, f2, f1, f0
-	stfs     f0, 0xd4(r3)
-	b        lbl_8003759C
-
-lbl_80037588:
-	cmpwi    r0, 2
-	bne      lbl_8003759C
-	lfs      f0, 0xd4(r3)
-	fsubs    f0, f0, f2
-	stfs     f0, 0xd4(r3)
-
-lbl_8003759C:
-	lis      r4, 0x55555556@ha
-	addi     r0, r4, 0x55555556@l
-	mulhw    r4, r0, r6
-	srwi     r0, r4, 0x1f
-	add      r0, r4, r0
-	cmpwi    r0, 1
-	bne      lbl_800375CC
-	lfs      f1, lbl_805167D8@sda21(r2)
-	lfs      f0, 0xd8(r3)
-	fnmsubs  f0, f3, f1, f0
-	stfs     f0, 0xd8(r3)
-	blr
-
-lbl_800375CC:
-	cmpwi    r0, 2
-	bnelr
-	lfs      f0, 0xd8(r3)
-	fsubs    f0, f0, f3
-	stfs     f0, 0xd8(r3)
-	blr
-	*/
 }
 
 /*
@@ -540,76 +273,11 @@ lbl_800375CC:
  */
 J2DPane::~J2DPane()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	or.      r29, r3, r3
-	beq      lbl_800376A4
-	lis      r3, __vt__7J2DPane@ha
-	addi     r0, r3, __vt__7J2DPane@l
-	stw      r0, 0(r29)
-	lwz      r31, 0xdc(r29)
-	cmplwi   r31, 0
-	beq      lbl_8003765C
-	addi     r31, r31, -12
-	b        lbl_8003765C
-
-lbl_80037628:
-	lwz      r4, 0x18(r31)
-	cmplwi   r4, 0
-	beq      lbl_80037638
-	addi     r4, r4, -12
-
-lbl_80037638:
-	lwz      r3, 0xc(r31)
-	mr       r31, r4
-	cmplwi   r3, 0
-	beq      lbl_8003765C
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8003765C:
-	cmplwi   r31, 0
-	bne      lbl_80037628
-	addic.   r0, r29, 0xdc
-	beq      lbl_80037694
-	addic.   r0, r29, 0xe8
-	beq      lbl_80037680
-	addi     r3, r29, 0xe8
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_80037680:
-	addic.   r0, r29, 0xdc
-	beq      lbl_80037694
-	addi     r3, r29, 0xdc
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_80037694:
-	extsh.   r0, r30
-	ble      lbl_800376A4
-	mr       r3, r29
-	bl       __dl__FPv
-
-lbl_800376A4:
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JSUTreeIterator<J2DPane> iterator;
+	for (iterator = mTree.getFirstChild(); iterator != mTree.getEndChild();) {
+		J2DPane* child = (iterator++).getObject();
+		delete child;
+	}
 }
 
 /*
@@ -620,8 +288,9 @@ lbl_800376A4:
 bool J2DPane::appendChild(J2DPane* child)
 {
 	if (child == nullptr) {
-		return 0;
+		return false;
 	}
+
 	J2DPane* oldParent = child->getParentPane();
 	bool appendResult  = mTree.appendChild(&child->mTree);
 	if ((appendResult) && oldParent == nullptr) {
@@ -639,7 +308,7 @@ bool J2DPane::appendChild(J2DPane* child)
 bool J2DPane::prependChild(J2DPane* child)
 {
 	if (child == nullptr) {
-		return 0;
+		return false;
 	}
 	J2DPane* oldParent = child->getParentPane();
 	bool prependResult = mTree.prependChild(&child->mTree);
@@ -694,8 +363,75 @@ bool J2DPane::removeChild(J2DPane* child)
  * Address:	800378D8
  * Size:	000658
  */
-void J2DPane::draw(float, float, const J2DGrafContext*, bool, bool)
+void J2DPane::draw(f32 x, f32 y, const J2DGrafContext* grafContext, bool isOrthoGraf, bool check)
 {
+	bool unkBool = check && mIsVisible;
+	if (grafContext->getGrafType() != 1) {
+		isOrthoGraf = false;
+	}
+
+	JSUTree<J2DPane>* parentTree = mTree.getParent();
+	J2DPane* parent              = nullptr;
+	if (parentTree) {
+		parent = parentTree->getObject();
+	}
+
+	if (mBounds.isValid()) {
+		mGlobalBounds = mBounds;
+
+		mGlobalBounds.addPos(mOffset.x, mOffset.y);
+
+		if (unkBool) {
+			mClipRect = mBounds;
+			rewriteAlpha();
+		}
+
+		if (parent) {
+			f32 width  = parent->mGlobalBounds.i.x - parent->mBounds.i.x;
+			f32 height = parent->mGlobalBounds.i.y - parent->mBounds.i.y;
+			mGlobalBounds.addPos(width, height);
+			PSMTXConcat(parent->mGlobalMtx, mPositionMtx, mGlobalMtx);
+
+			if (unkBool) {
+				if (isOrthoGraf) {
+					mClipRect = mGlobalBounds;
+					mClipRect.intersect(parent->mClipRect);
+				}
+
+				mColorAlpha = mAlpha;
+				if (mIsInfluencedAlpha) {
+					mColorAlpha = (mAlpha * parent->mColorAlpha) / 255;
+				}
+			}
+		} else {
+			mGlobalBounds.addPos(x, y);
+			makeMatrix(mOffset.x + x, mOffset.y + y);
+			PSMTXCopy(mPositionMtx, mGlobalMtx);
+			mClipRect   = mGlobalBounds;
+			mColorAlpha = mAlpha;
+		}
+
+		JGeometry::TBox2<f32> scissorBounds(0.0f, 0.0f, 0.0f, 0.0f);
+		if (unkBool && isOrthoGraf) {
+			((J2DOrthoGraph*)grafContext)->scissorBounds(&scissorBounds, &mClipRect);
+		}
+
+		if (unkBool && (mClipRect.isValid() || !isOrthoGraf)) {
+			// this is troublesome.
+			J2DGrafContext tmpGraf = *grafContext;
+			if (isOrthoGraf) {
+				tmpGraf.scissor(scissorBounds);
+				tmpGraf.setScissor();
+			}
+			GXSetCullMode((GXCullMode)mCullMode);
+			drawSelf(x, y, &tmpGraf.mPosMtx);
+		}
+
+		JSUTreeIterator<J2DPane> iter;
+		for (iter = mTree.getFirstChild(); iter != mTree.getEndChild(); ++iter) {
+			iter.getObject()->draw(0, 0, grafContext, isOrthoGraf, unkBool);
+		}
+	}
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -1164,178 +900,55 @@ lbl_80037F0C:
  * Address:	80037F38
  * Size:	000248
  */
-void J2DPane::place(const JGeometry::TBox2f&)
+void J2DPane::place(const JGeometry::TBox2f& box)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lfs      f1, lbl_805167C0@sda21(r2)
-	lfs      f0, 0x20(r3)
-	fcmpu    cr0, f1, f0
-	bne      lbl_80037F94
-	lfs      f2, 0(r4)
-	lfs      f0, 8(r4)
-	stfs     f1, 8(r1)
-	fsubs    f0, f0, f2
-	stfs     f2, 0xd4(r30)
-	stfs     f0, 0x10(r1)
-	b        lbl_80037FEC
+	JGeometry::TBox2<f32> tmpBox;
 
-lbl_80037F94:
-	lfs      f0, 0x28(r30)
-	fcmpu    cr0, f1, f0
-	bne      lbl_80037FC0
-	lfs      f2, 8(r4)
-	lfs      f0, 0(r4)
-	stfs     f1, 0x10(r1)
-	fsubs    f0, f2, f0
-	stfs     f2, 0xd4(r30)
-	fneg     f0, f0
-	stfs     f0, 8(r1)
-	b        lbl_80037FEC
+	if (mBounds.i.x == 0.0f) {
+		tmpBox.i.x = 0.0f;
+		tmpBox.f.x = box.getWidth();
+		mOffset.x  = box.i.x;
+	} else if (mBounds.f.x == 0.0f) {
+		tmpBox.i.x = -box.getWidth();
+		tmpBox.f.x = 0.0f;
+		mOffset.x  = box.f.x;
+	} else {
+		tmpBox.i.x = -(box.getWidth() / 2);
+		tmpBox.f.x = box.getWidth() / 2;
+		mOffset.x  = (box.i.x + box.f.x) / 2;
+	}
 
-lbl_80037FC0:
-	lfs      f0, 8(r4)
-	lfs      f3, 0(r4)
-	lfs      f1, lbl_805167D8@sda21(r2)
-	fsubs    f2, f0, f3
-	fadds    f0, f3, f0
-	fmuls    f2, f2, f1
-	fmuls    f0, f0, f1
-	fneg     f1, f2
-	stfs     f2, 0x10(r1)
-	stfs     f0, 0xd4(r30)
-	stfs     f1, 8(r1)
+	if (mBounds.i.y == 0.0f) {
+		tmpBox.i.y = 0.0f;
+		tmpBox.f.y = box.getHeight();
+		mOffset.y  = box.i.y;
+	} else if (mBounds.f.y == 0.0f) {
+		tmpBox.i.y = -box.getHeight();
+		tmpBox.f.y = 0.0f;
+		mOffset.y  = box.f.y;
+	} else {
+		tmpBox.i.y = -(box.getHeight() / 2);
+		tmpBox.f.y = box.getHeight() / 2;
+		mOffset.y  = (box.i.y + box.f.y) / 2;
+	}
 
-lbl_80037FEC:
-	lfs      f1, lbl_805167C0@sda21(r2)
-	lfs      f0, 0x24(r30)
-	fcmpu    cr0, f1, f0
-	bne      lbl_80038018
-	lfs      f2, 4(r4)
-	lfs      f0, 0xc(r4)
-	stfs     f1, 0xc(r1)
-	fsubs    f0, f0, f2
-	stfs     f2, 0xd8(r30)
-	stfs     f0, 0x14(r1)
-	b        lbl_80038070
+	f32 xOff = tmpBox.i.x - mBounds.i.x;
+	f32 yOff = tmpBox.i.y - mBounds.i.y;
+	for (J2DPane* child = getFirstChildPane(); child; child = child->getNextChildPane()) {
+		child->mOffset.x += xOff;
+		child->mOffset.y += yOff;
+		if (xOff != 0.0f || yOff != 0.0f) {
+			child->calcMtx();
+		}
+	}
+	mBounds = tmpBox;
 
-lbl_80038018:
-	lfs      f0, 0x2c(r30)
-	fcmpu    cr0, f1, f0
-	bne      lbl_80038044
-	lfs      f2, 0xc(r4)
-	lfs      f0, 4(r4)
-	stfs     f1, 0x14(r1)
-	fsubs    f0, f2, f0
-	stfs     f2, 0xd8(r30)
-	fneg     f0, f0
-	stfs     f0, 0xc(r1)
-	b        lbl_80038070
-
-lbl_80038044:
-	lfs      f0, 0xc(r4)
-	lfs      f3, 4(r4)
-	lfs      f1, lbl_805167D8@sda21(r2)
-	fsubs    f2, f0, f3
-	fadds    f0, f3, f0
-	fmuls    f2, f2, f1
-	fmuls    f0, f0, f1
-	fneg     f1, f2
-	stfs     f2, 0x14(r1)
-	stfs     f0, 0xd8(r30)
-	stfs     f1, 0xc(r1)
-
-lbl_80038070:
-	lfs      f3, 8(r1)
-	mr       r3, r30
-	lfs      f2, 0x20(r30)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x24(r30)
-	fsubs    f30, f3, f2
-	fsubs    f29, f1, f0
-	bl       getFirstChildPane__7J2DPaneFv
-	lfs      f31, lbl_805167C0@sda21(r2)
-	mr       r31, r3
-	b        lbl_800380E4
-
-lbl_8003809C:
-	lfs      f0, 0xd4(r31)
-	fcmpu    cr0, f31, f30
-	fadds    f0, f0, f30
-	stfs     f0, 0xd4(r31)
-	lfs      f0, 0xd8(r31)
-	fadds    f0, f0, f29
-	stfs     f0, 0xd8(r31)
-	bne      lbl_800380C4
-	fcmpu    cr0, f31, f29
-	beq      lbl_800380D8
-
-lbl_800380C4:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800380D8:
-	mr       r3, r31
-	bl       getNextChildPane__7J2DPaneFv
-	mr       r31, r3
-
-lbl_800380E4:
-	cmplwi   r31, 0
-	bne      lbl_8003809C
-	lwz      r4, 8(r1)
-	mr       r3, r30
-	lwz      r0, 0xc(r1)
-	stw      r4, 0x20(r30)
-	lwz      r4, 0x10(r1)
-	stw      r0, 0x24(r30)
-	lwz      r0, 0x14(r1)
-	stw      r4, 0x28(r30)
-	stw      r0, 0x2c(r30)
-	bl       getParentPane__7J2DPaneFv
-	cmplwi   r3, 0
-	beq      lbl_8003813C
-	lfs      f1, 0xd4(r30)
-	lfs      f0, 0x20(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0xd4(r30)
-	lfs      f1, 0xd8(r30)
-	lfs      f0, 0x24(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0xd8(r30)
-
-lbl_8003813C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	J2DPane* parent = getParentPane();
+	if (parent) {
+		mOffset.x += parent->mBounds.i.x;
+		mOffset.y += parent->mBounds.i.y;
+	}
+	calcMtx();
 }
 
 /*
@@ -1345,31 +958,9 @@ lbl_8003813C:
  */
 void J2DPane::move(float x, float y)
 {
-	// place(JGeometry::TBox2f(JGeometry::TVec2f(x + (mBounds.maxX - mBounds.minX), y + (mBounds.maxY - mBounds.minY)),
-	// JGeometry::TVec2f(x, y)));
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	addi     r4, r1, 8
-	lfs      f5, 0x28(r3)
-	lfs      f4, 0x20(r3)
-	lfs      f3, 0x2c(r3)
-	lfs      f0, 0x24(r3)
-	fsubs    f4, f5, f4
-	fsubs    f0, f3, f0
-	stfs     f1, 8(r1)
-	fadds    f1, f1, f4
-	stfs     f2, 0xc(r1)
-	fadds    f0, f2, f0
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	bl       "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	f32 width  = getWidth();
+	f32 height = getHeight();
+	place(JGeometry::TBox2<f32>(x, y, x + width, y + height));
 }
 
 /*
@@ -1379,9 +970,7 @@ void J2DPane::move(float x, float y)
  */
 void J2DPane::add(float x, float y)
 {
-	// _0D4[0] = _0D4[0] + x;
-	// _0D4[1] = _0D4[1] + y;
-	_0D4.add(JGeometry::TVec2f(x, y));
+	mOffset.add(JGeometry::TVec2f(x, y));
 	calcMtx();
 }
 
@@ -1390,78 +979,23 @@ void J2DPane::add(float x, float y)
  * Address:	80038218
  * Size:	000108
  */
-void J2DPane::resize(float, float)
+void J2DPane::resize(f32 x, f32 y)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	fmr      f30, f1
-	lfs      f3, 0x20(r3)
-	fmr      f31, f2
-	stfs     f3, 8(r1)
-	lfs      f2, 0x24(r3)
-	stfs     f2, 0xc(r1)
-	lfs      f1, 0x28(r3)
-	stfs     f1, 0x10(r1)
-	lfs      f0, 0x2c(r3)
-	stfs     f0, 0x14(r1)
-	lfs      f5, 0xd8(r3)
-	lfs      f4, 0xd4(r3)
-	fadds    f2, f2, f5
-	fadds    f3, f3, f4
-	fadds    f1, f1, f4
-	fadds    f0, f0, f5
-	stfs     f2, 0xc(r1)
-	stfs     f3, 8(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	bl       getParentPane__7J2DPaneFv
-	cmplwi   r3, 0
-	beq      lbl_800382D8
-	lfs      f0, 0x24(r3)
-	lfs      f1, 0x20(r3)
-	fneg     f5, f0
-	lfs      f2, 0xc(r1)
-	lfs      f0, 0x14(r1)
-	fneg     f4, f1
-	lfs      f3, 8(r1)
-	lfs      f1, 0x10(r1)
-	fadds    f3, f3, f4
-	fadds    f2, f2, f5
-	fadds    f1, f1, f4
-	fadds    f0, f0, f5
-	stfs     f3, 8(r1)
-	stfs     f2, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
+	JGeometry::TBox2<f32> box = mBounds;
 
-lbl_800382D8:
-	lfs      f1, 8(r1)
-	mr       r3, r31
-	lfs      f0, 0xc(r1)
-	addi     r4, r1, 8
-	fadds    f1, f1, f30
-	fadds    f0, f0, f31
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	bl       "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	// f32 tX = mOffset.x;
+	// f32 tY = mOffset.y;
+
+	box.addPos(mOffset.x, mOffset.y);
+
+	const J2DPane* parent = getParentPane();
+	if (parent) {
+		box.addPos(-parent->mBounds.i.x, -parent->mBounds.i.y);
+	}
+
+	box.f.x = box.i.x + x;
+	box.f.y = box.i.y + y;
+	place(box);
 }
 
 /*
@@ -1472,73 +1006,12 @@ lbl_800382D8:
 JGeometry::TBox2f* J2DPane::getBounds()
 {
 	static_mBounds = mBounds;
-	static_mBounds.addPos(_0D4);
-	// static_mBounds  = mBounds.addingPos(_0D4);
+	static_mBounds.addPos(mOffset.x, mOffset.y);
 	J2DPane* parent = getParentPane();
 	if (parent != nullptr) {
 		static_mBounds.addPos(-parent->mBounds.i.x, -parent->mBounds.i.y);
 	}
 	return &static_mBounds;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, static_mBounds__7J2DPane@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r5, static_mBounds__7J2DPane@l
-	lwz      r4, 0x20(r3)
-	lwz      r0, 0x24(r3)
-	stw      r4, 0(r31)
-	stw      r0, 4(r31)
-	lfs      f3, 0(r31)
-	lwz      r4, 0x28(r3)
-	lwz      r0, 0x2c(r3)
-	lfs      f2, 4(r31)
-	stw      r4, 8(r31)
-	stw      r0, 0xc(r31)
-	lfs      f1, 8(r31)
-	lfs      f4, 0xd4(r3)
-	lfs      f5, 0xd8(r3)
-	lfs      f0, 0xc(r31)
-	fadds    f3, f3, f4
-	fadds    f2, f2, f5
-	fadds    f1, f1, f4
-	fadds    f0, f0, f5
-	stfs     f3, 0(r31)
-	stfs     f2, 4(r31)
-	stfs     f1, 8(r31)
-	stfs     f0, 0xc(r31)
-	bl       getParentPane__7J2DPaneFv
-	cmplwi   r3, 0
-	beq      lbl_800383E4
-	lfs      f0, 0x24(r3)
-	lis      r4, static_mBounds__7J2DPane@ha
-	lfs      f1, 0x20(r3)
-	addi     r3, r4, static_mBounds__7J2DPane@l
-	fneg     f5, f0
-	lfs      f2, 4(r31)
-	lfs      f0, 0xc(r31)
-	fneg     f4, f1
-	lfs      f3, 0(r3)
-	lfs      f1, 8(r31)
-	fadds    f3, f3, f4
-	fadds    f2, f2, f5
-	fadds    f1, f1, f4
-	fadds    f0, f0, f5
-	stfs     f3, 0(r3)
-	stfs     f2, 4(r31)
-	stfs     f1, 8(r31)
-	stfs     f0, 0xc(r31)
-
-lbl_800383E4:
-	lwz      r0, 0x14(r1)
-	lis      r3, static_mBounds__7J2DPane@ha
-	addi     r3, r3, static_mBounds__7J2DPane@l
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1546,12 +1019,12 @@ lbl_800383E4:
  * Address:	80038400
  * Size:	000030
  */
-void J2DPane::rotate(float anchorX, float anchorY, J2DRotateAxis axis, float f4)
+void J2DPane::rotate(f32 anchorX, f32 anchorY, J2DRotateAxis axis, f32 angle)
 {
 	mAnchorPoint.x = anchorX;
 	mAnchorPoint.y = anchorY;
 	mRotationAxis  = (u8)axis;
-	rotate(f4);
+	rotate(angle);
 }
 
 /*
@@ -1564,13 +1037,13 @@ void J2DPane::rotate(float anchorX, float anchorY, J2DRotateAxis axis, float f4)
 void J2DPane::rotate(float f1)
 {
 	s8 axis = mRotationAxis;
-	if (axis == 0x78) {
-		_0B8 = f1;
+	if (axis == J2DROTATE_X) {
+		mAngleX = f1;
 	} else {
-		if (axis == 0x79) {
-			_0BC = f1;
+		if (axis == J2DROTATE_Y) {
+			mAngleY = f1;
 		} else {
-			_0C0 = f1;
+			mAngleZ = f1;
 		}
 	}
 	calcMtx();
@@ -1591,59 +1064,11 @@ float J2DPane::getRotate() const
  * Address:	80038488
  * Size:	00007C
  */
-void J2DPane::clip(const JGeometry::TBox2<float>& box)
+void J2DPane::clip(const JGeometry::TBox2f& bounds)
 {
-	if (mClipRect.i.x <= box.i.x + mGlobalBounds.i.x) {
-		mClipRect.i.x = box.i.x + mGlobalBounds.i.x;
-	}
-	if (mClipRect.i.y <= box.i.y + mGlobalBounds.i.y) {
-		mClipRect.i.y = box.i.y + mGlobalBounds.i.y;
-	}
-	if (mClipRect.f.x > box.f.x + mGlobalBounds.i.x) {
-		mClipRect.f.x = box.f.x + mGlobalBounds.i.x;
-	}
-	if (mClipRect.f.y > box.f.y + mGlobalBounds.i.y) {
-		mClipRect.f.y = box.f.y + mGlobalBounds.i.y;
-	}
-	/*
-	lfs      f2, 0(r4)
-	lfs      f1, 0x30(r3)
-	lfs      f4, 8(r4)
-	fadds    f2, f2, f1
-	lfs      f0, 0x40(r3)
-	lfs      f3, 4(r4)
-	fadds    f4, f4, f1
-	lfs      f1, 0x34(r3)
-	lfs      f5, 0xc(r4)
-	fcmpo    cr0, f0, f2
-	fadds    f3, f3, f1
-	fadds    f5, f5, f1
-	cror     2, 0, 2
-	bne      lbl_800384C4
-	stfs     f2, 0x40(r3)
-
-lbl_800384C4:
-	lfs      f0, 0x44(r3)
-	fcmpo    cr0, f0, f3
-	cror     2, 0, 2
-	bne      lbl_800384D8
-	stfs     f3, 0x44(r3)
-
-lbl_800384D8:
-	lfs      f0, 0x48(r3)
-	fcmpo    cr0, f0, f4
-	cror     2, 1, 2
-	bne      lbl_800384EC
-	stfs     f4, 0x48(r3)
-
-lbl_800384EC:
-	lfs      f0, 0x4c(r3)
-	fcmpo    cr0, f0, f5
-	cror     2, 1, 2
-	bnelr
-	stfs     f5, 0x4c(r3)
-	blr
-	*/
+	JGeometry::TBox2<f32> boxA(bounds);
+	boxA.addPos(mGlobalBounds.i.x, mGlobalBounds.i.y);
+	mClipRect.intersect(boxA);
 }
 
 /*
@@ -1651,64 +1076,19 @@ lbl_800384EC:
  * Address:	80038504
  * Size:	0000B0
  */
-J2DPane* J2DPane::search(u64)
+J2DPane* J2DPane::search(u64 tag)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r6
-	lwz      r0, 0x10(r3)
-	lwz      r4, 0x14(r3)
-	xor      r0, r30, r0
-	xor      r4, r29, r4
-	or.      r0, r4, r0
-	bne      lbl_80038540
-	b        lbl_80038598
+	if (tag == mTag) {
+		return this;
+	}
 
-lbl_80038540:
-	lwz      r31, 0xdc(r3)
-	cmplwi   r31, 0
-	beq      lbl_8003858C
-	addi     r31, r31, -12
-	b        lbl_8003858C
-
-lbl_80038554:
-	lwz      r3, 0xc(r31)
-	mr       r6, r29
-	mr       r5, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_8003857C
-	b        lbl_80038598
-
-lbl_8003857C:
-	lwz      r31, 0x18(r31)
-	cmplwi   r31, 0
-	beq      lbl_8003858C
-	addi     r31, r31, -12
-
-lbl_8003858C:
-	cmplwi   r31, 0
-	bne      lbl_80038554
-	li       r3, 0
-
-lbl_80038598:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JSUTreeIterator<J2DPane> iter;
+	for (iter = mTree.getFirstChild(); iter != mTree.getEndChild(); ++iter) {
+		if (J2DPane* result = iter.getObject()->search(tag)) {
+			return result;
+		}
+	}
+	return nullptr;
 }
 
 /*
@@ -1729,129 +1109,6 @@ void J2DPane::gather(J2DPane** gatheredPanes, u64 minID, u64 maxID, int gathered
 		iterator->gather(gatheredPanes, minID, maxID, gatheredLimit, gatheredCount);
 	}
 }
-
-/*
- * @generated{getNextChild__17JSUTree<7J2DPane>CFv}
- * --INFO--
- * Address:	800388C4
- * Size:	000014
- */
-// template <> J2DPane* JSUTree<J2DPane>::getNextChild() const
-// {
-// 	/*
-// 	lwz      r3, 0x18(r3)
-// 	cmplwi   r3, 0
-// 	beqlr
-// 	addi     r3, r3, -12
-// 	blr
-// 	*/
-// }
-
-/*
- * @generated{__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>}
- * --INFO--
- * Address:	800388D8
- * Size:	000018
- */
-// template <>
-// bool JSUTreeIterator<J2DPane>::operator!=(const JSUTree<J2DPane>*) const
-// {
-// 	/*
-// 	lwz      r0, 0(r3)
-// 	subf     r3, r0, r4
-// 	subf     r0, r4, r0
-// 	or       r0, r3, r0
-// 	srwi     r3, r0, 0x1f
-// 	blr
-// 	*/
-// }
-
-/*
- * @generated{getEndChild__17JSUTree<7J2DPane>CFv}
- * --INFO--
- * Address:	800388F0
- * Size:	000008
- */
-// template <> J2DPane* JSUTree<J2DPane>::getEndChild() const { return nullptr; }
-
-/*
- * @generated{__pp__25JSUTreeIterator<7J2DPane>Fv}
- * --INFO--
- * Address:	800388F8
- * Size:	00001C
- */
-// template <> void JSUTreeIterator<J2DPane>::operator++()
-// {
-// 	/*
-// 	lwz      r4, 0(r3)
-// 	lwz      r4, 0x18(r4)
-// 	cmplwi   r4, 0
-// 	beq      lbl_8003890C
-// 	addi     r4, r4, -12
-
-// lbl_8003890C:
-// 	stw      r4, 0(r3)
-// 	blr
-// 	*/
-// }
-
-/*
- * @generated{__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>}
- * --INFO--
- * Address:	80038914
- * Size:	000008
- */
-// template <> JSUTreeIterator<J2DPane>::JSUTreeIterator(JSUTree<J2DPane>* a1)
-// {
-// 	// Generated from stw r4, 0x0(r3)
-// 	mTree = a1;
-// }
-
-/*
- * @generated{__rf__25JSUTreeIterator<7J2DPane>CFv}
- * --INFO--
- * Address:	8003891C
- * Size:	00000C
- */
-// template <> J2DPane* JSUTreeIterator<J2DPane>::operator->() const
-// {
-// 	/*
-// 	lwz      r3, 0(r3)
-// 	lwz      r3, 0xc(r3)
-// 	blr
-// 	*/
-// }
-
-/*
- * @generated{getFirstChild__17JSUTree<7J2DPane>CFv}
- * --INFO--
- * Address:	80038928
- * Size:	000014
- */
-// template <> J2DPane* JSUTree<J2DPane>::getFirstChild() const
-// {
-// 	/*
-// 	lwz      r3, 0(r3)
-// 	cmplwi   r3, 0
-// 	beqlr
-// 	addi     r3, r3, -12
-// 	blr
-// 	*/
-// }
-
-/*
- * @generated{getObject__17JSUTree<7J2DPane>CFv}
- * --INFO--
- * Address:	8003893C
- * Size:	000008
- */
-// template <> J2DPane* JSUTree<J2DPane>::getObject() const
-// {
-// 	/*
-// 	lwz      r3, 0xc(r3)
-// 	blr
-// 	*/
-// }
 
 /*
  * --INFO--
@@ -1918,108 +1175,20 @@ bool J2DPane::isUsed(const ResFONT* resource)
  * Address:	80038B04
  * Size:	000140
  */
-void J2DPane::makeMatrix(float f1, float f2, float f3, float f4)
+void J2DPane::makeMatrix(float x, float y, float xAngOff, float yAngOff)
 {
-	Mtx mtx6;
-	Mtx trans;
-	Mtx mtx4;
-	Mtx mtx3;
-	Mtx mtx2;
-	Mtx mtx1;
-	float x = mAnchorPoint.x - f3;
-	float y = mAnchorPoint.y - f4;
-	PSMTXTrans(trans, -x, -y, 0.0f);
-	PSMTXRotRad(mtx1, 0x78, _0B8 * 0.01745329f);
-	PSMTXRotRad(mtx2, 0x79, _0BC * 0.01745329f);
-	PSMTXRotRad(mtx3, 0x7A, _0C0 * 0.01745329f);
-	PSMTXConcat(mtx3, mtx1, mtx6);
-	PSMTXConcat(mtx2, mtx6, mtx4);
-	PSMTXScaleApply(trans, mPositionMtx, mScale.x, mScale.y, 1.0f);
-	PSMTXConcat(mtx4, mPositionMtx, mtx6);
-	PSMTXTransApply(mtx6, mPositionMtx, f1 + x, f2 + y, 0.0f);
-
-	/*
-	stwu     r1, -0x170(r1)
-	mflr     r0
-	stw      r0, 0x174(r1)
-	stfd     f31, 0x160(r1)
-	psq_st   f31, 360(r1), 0, qr0
-	stfd     f30, 0x150(r1)
-	psq_st   f30, 344(r1), 0, qr0
-	stfd     f29, 0x140(r1)
-	psq_st   f29, 328(r1), 0, qr0
-	stfd     f28, 0x130(r1)
-	psq_st   f28, 312(r1), 0, qr0
-	stw      r31, 0x12c(r1)
-	mr       r31, r3
-	fmr      f28, f1
-	lfs      f1, 0xc4(r3)
-	fmr      f29, f2
-	lfs      f0, 0xc8(r3)
-	addi     r3, r1, 0x38
-	fsubs    f31, f1, f3
-	fsubs    f30, f0, f4
-	lfs      f3, lbl_805167C0@sda21(r2)
-	fneg     f1, f31
-	fneg     f2, f30
-	bl       PSMTXTrans
-	lfs      f1, lbl_805167DC@sda21(r2)
-	addi     r3, r1, 0xf8
-	lfs      f0, 0xb8(r31)
-	li       r4, 0x78
-	fmuls    f1, f1, f0
-	bl       PSMTXRotRad
-	lfs      f1, lbl_805167DC@sda21(r2)
-	addi     r3, r1, 0xc8
-	lfs      f0, 0xbc(r31)
-	li       r4, 0x79
-	fmuls    f1, f1, f0
-	bl       PSMTXRotRad
-	lfs      f0, 0xc0(r31)
-	addi     r3, r1, 0x98
-	lfs      f1, lbl_805167DC@sda21(r2)
-	li       r4, 0x7a
-	fneg     f0, f0
-	fmuls    f1, f1, f0
-	bl       PSMTXRotRad
-	addi     r3, r1, 0x98
-	addi     r4, r1, 0xf8
-	addi     r5, r1, 8
-	bl       PSMTXConcat
-	addi     r3, r1, 0xc8
-	addi     r4, r1, 8
-	addi     r5, r1, 0x68
-	bl       PSMTXConcat
-	lfs      f1, 0xcc(r31)
-	addi     r3, r1, 0x38
-	lfs      f2, 0xd0(r31)
-	addi     r4, r31, 0x50
-	lfs      f3, lbl_805167C4@sda21(r2)
-	bl       PSMTXScaleApply
-	addi     r3, r1, 0x68
-	addi     r4, r31, 0x50
-	addi     r5, r1, 8
-	bl       PSMTXConcat
-	fadds    f1, f28, f31
-	lfs      f3, lbl_805167C0@sda21(r2)
-	fadds    f2, f29, f30
-	addi     r3, r1, 8
-	addi     r4, r31, 0x50
-	bl       PSMTXTransApply
-	psq_l    f31, 360(r1), 0, qr0
-	lfd      f31, 0x160(r1)
-	psq_l    f30, 344(r1), 0, qr0
-	lfd      f30, 0x150(r1)
-	psq_l    f29, 328(r1), 0, qr0
-	lfd      f29, 0x140(r1)
-	psq_l    f28, 312(r1), 0, qr0
-	lfd      f28, 0x130(r1)
-	lwz      r0, 0x174(r1)
-	lwz      r31, 0x12c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x170
-	blr
-	*/
+	f32 tmpX = mAnchorPoint.x - xAngOff;
+	f32 tmpY = mAnchorPoint.y - yAngOff;
+	Mtx rotX, rotY, rotZ, rotMtx, mtx, tmp;
+	PSMTXTrans(mtx, -tmpX, -tmpY, 0);
+	PSMTXRotRad(rotX, J2DROTATE_X, MTXDegToRad(mAngleX));
+	PSMTXRotRad(rotY, J2DROTATE_Y, MTXDegToRad(mAngleY));
+	PSMTXRotRad(rotZ, J2DROTATE_Z, MTXDegToRad(-mAngleZ));
+	PSMTXConcat(rotZ, rotX, tmp);
+	PSMTXConcat(rotY, tmp, rotMtx);
+	PSMTXScaleApply(mtx, mPositionMtx, mScale.x, mScale.y, 1.0f);
+	PSMTXConcat(rotMtx, mPositionMtx, tmp);
+	PSMTXTransApply(tmp, mPositionMtx, x + tmpX, y + tmpY, 0.0f);
 }
 
 /*
@@ -2043,94 +1212,24 @@ void J2DPane::setCullBack(GXCullMode cullMode)
 void J2DPane::setBasePosition(J2DBasePosition base)
 {
 	mBasePosition  = base;
-	mRotationAxis  = 122; // 0x7A
+	mRotationAxis  = J2DROTATE_Z; // 0x7A
 	mAnchorPoint.x = 0.0f;
 	if (base % 3 == 1) {
-		mAnchorPoint.x = (mBounds.f.x - mBounds.i.x) * 0.5f;
+		mAnchorPoint.x = getWidth() / 2;
 	} else {
 		if (base % 3 == 2) {
-			mAnchorPoint.x = mBounds.f.x - mBounds.i.x;
+			mAnchorPoint.x = getWidth();
 		}
 	}
 	mAnchorPoint.y = 0.0f;
 	if (base / 3 == 1) {
-		mAnchorPoint.y = (mBounds.f.y - mBounds.i.y) * 0.5f;
+		mAnchorPoint.y = getHeight() / 2;
 	} else {
 		if (base / 3 == 2) {
-			mAnchorPoint.y = mBounds.f.y - mBounds.i.y;
+			mAnchorPoint.y = getHeight();
 		}
 	}
 	calcMtx();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, 0x55555556@ha
-	lfs      f0, lbl_805167C0@sda21(r2)
-	stw      r0, 0x14(r1)
-	addi     r0, r5, 0x55555556@l
-	mulhw    r5, r0, r4
-	stb      r4, 0xb7(r3)
-	li       r0, 0x7a
-	stb      r0, 0xb6(r3)
-	srwi     r0, r5, 0x1f
-	stfs     f0, 0xc4(r3)
-	add      r0, r5, r0
-	mulli    r0, r0, 3
-	subf     r0, r0, r4
-	cmpwi    r0, 1
-	bne      lbl_80038D1C
-	lfs      f2, 0x28(r3)
-	lfs      f1, 0x20(r3)
-	lfs      f0, lbl_805167D8@sda21(r2)
-	fsubs    f1, f2, f1
-	fmuls    f0, f1, f0
-	stfs     f0, 0xc4(r3)
-	b        lbl_80038D34
-
-lbl_80038D1C:
-	cmpwi    r0, 2
-	bne      lbl_80038D34
-	lfs      f1, 0x28(r3)
-	lfs      f0, 0x20(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 0xc4(r3)
-
-lbl_80038D34:
-	lis      r5, 0x55555556@ha
-	lfs      f0, lbl_805167C0@sda21(r2)
-	addi     r0, r5, 0x55555556@l
-	mulhw    r4, r0, r4
-	stfs     f0, 0xc8(r3)
-	srwi     r0, r4, 0x1f
-	add      r0, r4, r0
-	cmpwi    r0, 1
-	bne      lbl_80038D74
-	lfs      f2, 0x2c(r3)
-	lfs      f1, 0x24(r3)
-	lfs      f0, lbl_805167D8@sda21(r2)
-	fsubs    f1, f2, f1
-	fmuls    f0, f1, f0
-	stfs     f0, 0xc8(r3)
-	b        lbl_80038D8C
-
-lbl_80038D74:
-	cmpwi    r0, 2
-	bne      lbl_80038D8C
-	lfs      f1, 0x2c(r3)
-	lfs      f0, 0x24(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 0xc8(r3)
-
-lbl_80038D8C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2138,165 +1237,75 @@ lbl_80038D8C:
  * Address:	80038DAC
  * Size:	0001E4
  */
-void J2DPane::setInfluencedAlpha(bool, bool)
+void J2DPane::setInfluencedAlpha(bool isInfluencedAlpha, bool check)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	stw      r28, 0x20(r1)
-	clrlwi.  r0, r5, 0x18
-	mr       r30, r3
-	mr       r31, r4
-	beq      lbl_80038F5C
-	lbz      r4, 0xb4(r30)
-	clrlwi   r0, r31, 0x18
-	cmplw    r4, r0
-	beq      lbl_80038F5C
-	bl       getParentPane__7J2DPaneFv
-	lfd      f30, lbl_805167D0@sda21(r2)
-	li       r28, 0xff
-	lfs      f31, lbl_805167E0@sda21(r2)
-	lis      r29, 0x4330
-	b        lbl_80038E6C
+	if (check && mIsInfluencedAlpha != isInfluencedAlpha) {
+		J2DPane* parent = getParentPane();
+		u8 alpha        = 255;
 
-lbl_80038E10:
-	lbz      r5, 0xb2(r3)
-	cmplwi   r5, 0
-	bne      lbl_80038E24
-	li       r28, 0
-	b        lbl_80038E74
+		for (parent; parent; parent = parent->getParentPane()) {
+			if (parent->mAlpha == 0) {
+				alpha = 0;
+				break;
+			}
+			alpha = (((f32)alpha) * parent->mAlpha / 255);
+			if (!parent->mIsInfluencedAlpha) {
+				break;
+			}
+		}
 
-lbl_80038E24:
-	clrlwi   r4, r28, 0x18
-	lbz      r0, 0xb4(r3)
-	stw      r4, 0xc(r1)
-	cmplwi   r0, 0
-	stw      r29, 8(r1)
-	lfd      f0, 8(r1)
-	stw      r5, 0x14(r1)
-	fsubs    f1, f0, f30
-	stw      r29, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f30
-	fmuls    f0, f1, f0
-	fdivs    f0, f0, f31
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r28, 0x1c(r1)
-	beq      lbl_80038E74
-	bl       getParentPane__7J2DPaneFv
+		if (isInfluencedAlpha) {
+			if (alpha == 0) {
+				setAlpha(0);
+			} else {
+				f32 fAlpha = ((f32)mAlpha) / alpha * 255;
 
-lbl_80038E6C:
-	cmplwi   r3, 0
-	bne      lbl_80038E10
+				u8 alpha;
+				if (fAlpha > 255) {
+					alpha = 255;
+				} else {
+					alpha = fAlpha;
+				}
+				setAlpha(alpha);
+			}
+		} else {
+			setAlpha((f32)(alpha * mAlpha) / 255);
+		}
+	}
 
-lbl_80038E74:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_80038F0C
-	clrlwi.  r5, r28, 0x18
-	bne      lbl_80038EA0
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80038F5C
-
-lbl_80038EA0:
-	lbz      r4, 0xb2(r30)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	mr       r3, r30
-	lfd      f2, lbl_805167D0@sda21(r2)
-	stw      r4, 0x1c(r1)
-	lfs      f3, lbl_805167E0@sda21(r2)
-	lfd      f0, 0x18(r1)
-	stw      r5, 0x14(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fdivs    f0, f1, f0
-	fmuls    f0, f3, f0
-	fcmpo    cr0, f0, f3
-	ble      lbl_80038EEC
-	li       r4, 0xff
-	b        lbl_80038EF8
-
-lbl_80038EEC:
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-
-lbl_80038EF8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80038F5C
-
-lbl_80038F0C:
-	lbz      r4, 0xb2(r30)
-	clrlwi   r5, r28, 0x18
-	lis      r0, 0x4330
-	mr       r3, r30
-	mullw    r4, r5, r4
-	lwz      r12, 0(r30)
-	stw      r0, 0x18(r1)
-	lfd      f2, lbl_805167C8@sda21(r2)
-	lfs      f0, lbl_805167E0@sda21(r2)
-	lwz      r12, 0x24(r12)
-	xoris    r0, r4, 0x8000
-	stw      r0, 0x1c(r1)
-	lfd      f1, 0x18(r1)
-	fsubs    f1, f1, f2
-	fdivs    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r4, 0x14(r1)
-	mtctr    r12
-	bctrl
-
-lbl_80038F5C:
-	stb      r31, 0xb4(r30)
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	mIsInfluencedAlpha = isInfluencedAlpha;
 }
-
-/*
- * --INFO--
- * Address:	80038F90
- * Size:	000008
- */
-// void J2DPane::setAlpha(u8 alpha) { mAlpha = alpha; }
 
 /*
  * --INFO--
  * Address:	80038F98
  * Size:	0000D8
  */
-JGeometry::TVec3f J2DPane::getGlbVtx(u8) const
+JGeometry::TVec3f J2DPane::getGlbVtx(u8 idx) const
 {
+	JGeometry::TVec3<f32> out;
+	if (idx >= 4) {
+		out = JGeometry::TVec3f(0.0f);
+		return out;
+	} else {
+		f32 x, y;
+		if (idx & 1) {
+			x = mBounds.f.x;
+		} else {
+			x = mBounds.i.x;
+		}
+
+		if (idx & 2) {
+			y = mBounds.f.y;
+		} else {
+			y = mBounds.i.y;
+		}
+
+		out.x = x * mGlobalMtx[0][0] + y * mGlobalMtx[0][1] + mGlobalMtx[0][3];
+		out.y = x * mGlobalMtx[1][0] + y * mGlobalMtx[1][1] + mGlobalMtx[1][3];
+		out.z = x * mGlobalMtx[2][0] + y * mGlobalMtx[2][1] + mGlobalMtx[2][3];
+		return out;
+	}
 	/*
 	clrlwi   r6, r5, 0x18
 	stwu     r1, -0x20(r1)
@@ -2409,6 +1418,54 @@ J2DPane* J2DPane::getParentPane() { return (mTree.getParent() == nullptr) ? null
  */
 void J2DPane::makePaneExStream(J2DPane* parent, JSURandomInputStream* input)
 {
+	input->getPosition();
+
+	J2DPaneExBlock data;
+	input->read(&data, sizeof(data));
+	// field_0x4 = data.field_0xa;
+	// mVisible = !!data.mVisible;
+	// mInfoTag = data.mInfoTag;
+	// mUserInfoTag = data.mUserInfoTag;
+	// mScaleX = data.mScaleX;
+	// mScaleY = data.mScaleY;
+	// mRotateX = data.mRotateX;
+	// mRotateY = data.mRotateY;
+	// mRotateZ = data.mRotateZ;
+	// mTranslateX = data.mTranslateX;
+	// mTranslateY = data.mTranslateY;
+	// mRotAxis = ROTATE_Z;
+
+	if (data.mBasePosition % 3 == 0) {
+		// mRotateOffsetX = 0;
+	} else if (data.mBasePosition % 3 == 1) {
+		// mRotateOffsetX = data.mRotOffsetX / 2;
+	} else {
+		// mRotateOffsetX = data.mRotOffsetX;
+	}
+
+	if (data.mBasePosition / 3 == 0) {
+		// mRotateOffsetY = 0;
+	} else if (data.mBasePosition / 3 == 1) {
+		// mRotateOffsetY = data.mRotOffsetY / 2;
+	} else {
+		// mRotateOffsetY = data.mRotOffsetY;
+	}
+
+	// mBounds.set(-mRotateOffsetX, -mRotateOffsetY, data.mRotOffsetX - mRotateOffsetX,
+	// data.mRotOffsetY - mRotateOffsetY);
+	mBasePosition = data.mBasePosition;
+
+	mAlpha             = 255;
+	mIsInfluencedAlpha = false;
+
+	if (parent != NULL) {
+		parent->mTree.appendChild(&mTree);
+	}
+
+	mCullMode    = GX_CULL_NONE;
+	mColorAlpha  = 255;
+	mIsConnected = false;
+	calcMtx();
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -2565,68 +1622,29 @@ lbl_800392C4:
  * Address:	80039308
  * Size:	0000B8
  */
-s16 J2DPane::J2DCast_F32_to_S16(f32, u8)
+s16 J2DPane::J2DCast_F32_to_S16(f32 value, u8 cutoff)
 {
-	/*
-	clrlwi   r0, r3, 0x18
-	stwu     r1, -0x20(r1)
-	cmplwi   r0, 0xf
-	blt      lbl_80039320
-	li       r3, 0
-	b        lbl_800393B8
-
-lbl_80039320:
-	lfs      f0, lbl_805167C0@sda21(r2)
-	fmr      f3, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80039334
-	fneg     f3, f1
-
-lbl_80039334:
-	clrlwi   r0, r3, 0x18
-	li       r3, 1
-	slw      r0, r3, r0
-	lis      r4, 0x4330
-	xoris    r0, r0, 0x8000
-	lis      r3, 0x00008000@ha
-	stw      r0, 0xc(r1)
-	addi     r0, r3, 0x00008000@l
-	lfd      f2, lbl_805167C8@sda21(r2)
-	stw      r4, 8(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r3, 0x14(r1)
-	cmpw     r3, r0
-	blt      lbl_80039398
-	lfs      f0, lbl_805167C0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80039390
-	li       r3, -32768
-	b        lbl_800393B8
-
-lbl_80039390:
-	li       r3, 0x7fff
-	b        lbl_800393B8
-
-lbl_80039398:
-	lfs      f0, lbl_805167C0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_800393B4
-	nor      r3, r3, r3
-	addi     r0, r3, 1
-	extsh    r3, r0
-	b        lbl_800393B8
-
-lbl_800393B4:
-	extsh    r3, r3
-
-lbl_800393B8:
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (cutoff >= 15) {
+		return 0;
+	} else {
+		f32 tmpF;
+		tmpF = value;
+		if (value < 0) {
+			tmpF = -value;
+		}
+		int tmp = tmpF * (1 << cutoff);
+		if (tmp >= 0x8000) {
+			if (value < 0) {
+				return 0x8000;
+			} else {
+				return 0x7FFF;
+			}
+		} else if (value < 0) {
+			return ~tmp + 1;
+		} else {
+			return tmp;
+		}
+	}
 }
 
 /*
@@ -2634,101 +1652,38 @@ lbl_800393B8:
  * Address:	800393C0
  * Size:	00014C
  */
-void* J2DPane::getPointer(JSURandomInputStream*, u32, JKRArchive*)
+void* J2DPane::getPointer(JSURandomInputStream* stream, u32 p1, JKRArchive* archive)
 {
-	/*
-	stwu     r1, -0x120(r1)
-	mflr     r0
-	stw      r0, 0x124(r1)
-	li       r0, 0
-	stw      r31, 0x11c(r1)
-	stw      r30, 0x118(r1)
-	or.      r30, r6, r6
-	stw      r29, 0x114(r1)
-	mr       r29, r5
-	stw      r28, 0x110(r1)
-	mr       r28, r4
-	stb      r0, 8(r1)
-	bne      lbl_80039464
-	lwz      r0, mDataManage__9J2DScreen@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80039410
-	addi     r3, r1, 8
-	li       r6, 0
-	bl       getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive
-	b        lbl_800394EC
+	JUTResReference resRef;
 
-lbl_80039410:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-	mr       r4, r28
-	mr       r5, r29
-	addi     r3, r1, 8
-	li       r6, 0
-	bl       getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive
-	cmplwi   r3, 0
-	bne      lbl_800394EC
-	mr       r3, r28
-	mr       r4, r31
-	li       r5, 0
-	bl       seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
-	lwz      r3, mDataManage__9J2DScreen@sda21(r13)
-	mr       r4, r28
-	bl       get__13J2DDataManageFP14JSUInputStream
-	b        lbl_800394EC
+	void* pointer;
+	if (archive == nullptr) {
+		if (J2DScreen::getDataManage() == nullptr) {
+			pointer = resRef.getResource(stream, p1, nullptr);
+		} else {
+			s32 prevPos = stream->getPosition();
+			pointer     = resRef.getResource(stream, p1, nullptr);
+			if (pointer == nullptr) {
+				stream->seek(prevPos, SEEK_SET);
+				pointer = J2DScreen::getDataManage()->get(stream);
+			}
+		}
+	} else {
+		s32 prevPos = stream->getPosition();
+		pointer     = resRef.getResource(stream, p1, archive);
+		if (pointer == nullptr) {
+			stream->seek(prevPos, SEEK_SET);
+			pointer = resRef.getResource(stream, p1, nullptr);
+		}
 
-lbl_80039464:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r30
-	addi     r3, r1, 8
-	bl       getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive
-	cmplwi   r3, 0
-	bne      lbl_800394BC
-	mr       r3, r28
-	mr       r4, r31
-	li       r5, 0
-	bl       seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
-	mr       r4, r28
-	mr       r5, r29
-	addi     r3, r1, 8
-	li       r6, 0
-	bl       getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive
-
-lbl_800394BC:
-	cmplwi   r3, 0
-	bne      lbl_800394EC
-	lwz      r0, mDataManage__9J2DScreen@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800394EC
-	mr       r3, r28
-	mr       r4, r31
-	li       r5, 0
-	bl       seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
-	lwz      r3, mDataManage__9J2DScreen@sda21(r13)
-	mr       r4, r28
-	bl       get__13J2DDataManageFP14JSUInputStream
-
-lbl_800394EC:
-	lwz      r0, 0x124(r1)
-	lwz      r31, 0x11c(r1)
-	lwz      r30, 0x118(r1)
-	lwz      r29, 0x114(r1)
-	lwz      r28, 0x110(r1)
-	mtlr     r0
-	addi     r1, r1, 0x120
-	blr
-	*/
+		if (pointer == nullptr) {
+			if (J2DScreen::getDataManage() != nullptr) {
+				stream->seek(prevPos, SEEK_SET);
+				pointer = J2DScreen::getDataManage()->get(stream);
+			}
+		}
+	}
+	return pointer;
 }
 
 /*
@@ -2923,78 +1878,20 @@ const J2DAnmTransform* J2DPane::animationPane(const J2DAnmTransform* animation)
  * Address:	80039958
  * Size:	000108
  */
-void J2DPane::updateTransform(const J2DAnmTransform*)
+void J2DPane::updateTransform(const J2DAnmTransform* transform)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lhz      r0, 4(r3)
-	cmplwi   r0, 0xffff
-	beq      lbl_80039A4C
-	cmplwi   r4, 0
-	beq      lbl_80039A4C
-	mr       r3, r4
-	mr       r4, r0
-	lwz      r12, 0(r3)
-	addi     r5, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	lis      r0, 0x4330
-	stw      r0, 0x28(r1)
-	mr       r3, r31
-	lfd      f2, lbl_805167D0@sda21(r2)
-	stfs     f0, 0xcc(r31)
-	lfs      f3, lbl_805167E4@sda21(r2)
-	lfs      f0, 0x10(r1)
-	lfs      f1, lbl_805167E8@sda21(r2)
-	stfs     f0, 0xd0(r31)
-	lha      r4, 0x14(r1)
-	stw      r0, 0x30(r1)
-	clrlwi   r4, r4, 0x10
-	stw      r4, 0x2c(r1)
-	lfd      f0, 0x28(r1)
-	stw      r0, 0x38(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f3, f0
-	fdivs    f0, f0, f1
-	stfs     f0, 0xb8(r31)
-	lha      r0, 0x18(r1)
-	clrlwi   r0, r0, 0x10
-	stw      r0, 0x34(r1)
-	lfd      f0, 0x30(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f3, f0
-	fdivs    f0, f0, f1
-	stfs     f0, 0xbc(r31)
-	lha      r0, 0x16(r1)
-	clrlwi   r0, r0, 0x10
-	stw      r0, 0x3c(r1)
-	lfd      f0, 0x38(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f3, f0
-	fdivs    f0, f0, f1
-	stfs     f0, 0xc0(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0xd4(r31)
-	lfs      f0, 0x24(r1)
-	stfs     f0, 0xd8(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80039A4C:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (_004 != 0xFFFF && transform != NULL) {
+		J3DTransformInfo info;
+		transform->getTransform(_004, &info);
+		mScale.x  = info.mScale.x;
+		mScale.y  = info.mScale.z;
+		mAngleX   = (u16)info.mRotation.x * 360.0f / 65535.0f;
+		mAngleY   = (u16)info.mRotation.z * 360.0f / 65535.0f;
+		mAngleZ   = (u16)info.mRotation.y * 360.0f / 65535.0f;
+		mOffset.x = info.mTranslation.x;
+		mOffset.y = info.mTranslation.z;
+		calcMtx();
+	}
 }
 
 /*
@@ -3019,11 +1916,11 @@ lbl_80039A4C:
  */
 void J2DPane::setCullBack(bool shouldCullBack)
 {
-	u8 cullMode = GX_CULL_NONE;
+	GXCullMode cullMode = GX_CULL_NONE;
 	if (shouldCullBack) {
 		cullMode = GX_CULL_BACK;
 	}
-	setCullBack(cullMode);
+	setCullBack((GXCullMode)cullMode);
 }
 
 /*
@@ -3050,10 +1947,3 @@ bool J2DPane::setConnectParent(bool connectParent)
  * Size:	000004
  */
 // void J2DPane::drawSelf(float, float) { }
-
-/*
- * --INFO--
- * Address:	80039AC0
- * Size:	00001C
- */
-// void __sinit_J2DPane_cpp() { }

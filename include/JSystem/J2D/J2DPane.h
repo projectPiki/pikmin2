@@ -267,7 +267,7 @@ struct J2DPane {
 
 	inline void resetAngle()
 	{
-		mAngle = 0.0f;
+		mAngleZ = 0.0f;
 		calcMtx();
 	}
 
@@ -285,7 +285,7 @@ struct J2DPane {
 
 	inline void setAngle(f32 a)
 	{
-		mAngle = a;
+		mAngleZ = a;
 		calcMtx();
 	}
 
@@ -299,7 +299,7 @@ struct J2DPane {
 	f32 getTranslateX() const { return mOffset.x; }
 	f32 getTranslateY() const { return mOffset.y; }
 	int getKind() const { return mBloBlockType; }
-	f32 getRotateZ() const { return mAngle; }
+	f32 getRotateZ() const { return mAngleZ; }
 	f32 getRotOffsetX() const { return mAnchorPoint.x; }
 	f32 getRotOffsetY() const { return mAnchorPoint.y; }
 	Mtx* getGlobalMtx() { return &mGlobalMtx; }
@@ -319,7 +319,7 @@ struct J2DPane {
 	bool prependChild(J2DPane* child);
 	bool removeChild(J2DPane* child);
 
-	s16 J2DCast_F32_to_S16(f32, u8);
+	static s16 J2DCast_F32_to_S16(f32, u8);
 
 	// Unused/inlined:
 	bool insertChild(J2DPane* before, J2DPane* child);
@@ -346,9 +346,9 @@ struct J2DPane {
 	bool mIsConnected;               // _0B5
 	u8 mRotationAxis;                // _0B6
 	u8 mBasePosition;                // _0B7
-	f32 _0B8;                        // _0B8
-	f32 _0BC;                        // _0BC
-	f32 mAngle;                      // _0C0
+	f32 mAngleX;                     // _0B8
+	f32 mAngleY;                     // _0BC
+	f32 mAngleZ;                     // _0C0
 	JGeometry::TVec2f mAnchorPoint;  // _0C4
 	JGeometry::TVec2f mScale;        // _0CC
 	JGeometry::TVec2f mOffset;       // _0D4
@@ -860,7 +860,7 @@ struct J2DTextBoxEx : public J2DTextBox {
 
 	virtual ~J2DTextBoxEx();                                                        // _08
 	virtual void setCullBack(bool shouldCullBack);                                  // _1C (weak)
-	virtual void setCullBack(_GXCullMode cullMode);                                 // _20
+	virtual void setCullBack(GXCullMode cullMode);                                  // _20
 	virtual void setAlpha(u8 alpha);                                                // _24
 	virtual void drawSelf(f32, f32, f32 (*)[3][4]);                                 // _38
 	virtual bool isUsed(const ResTIMG* resource);                                   // _4C (weak)
@@ -998,7 +998,7 @@ struct J2DWindowEx : public J2DWindow {
 
 	virtual ~J2DWindowEx();                                                                                           // _08
 	virtual void setCullBack(bool shouldCullBack);                                                                    // _1C (weak)
-	virtual void setCullBack(_GXCullMode cullMode);                                                                   // _20
+	virtual void setCullBack(GXCullMode cullMode);                                                                    // _20
 	virtual void setAlpha(unsigned char);                                                                             // _24
 	virtual void drawSelf(f32, f32, f32 (*)[3][4]);                                                                   // _38
 	virtual bool isUsed(const ResTIMG* resource);                                                                     // _4C
