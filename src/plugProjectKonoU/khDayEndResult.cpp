@@ -1507,7 +1507,6 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 	mScreenMain->search('Nsetp03')->setAnimation(mMainAnimTrans1);
 	mScreenMain->search('Nsetp04')->setAnimation(mMainAnimTrans1);
 	mScreenMain->search('Nsetp05')->setAnimation(mMainAnimTrans1);
-	mScreenMain->search('NitemW')->setAnimation(mMainAnimTrans1);
 	mScreenMain->search('Ntitle')->setAnimation(mMainAnimTrans2);
 	mScreenMain->search('Ndead')->setAnimation(mMainAnimTrans4);
 
@@ -1526,55 +1525,61 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
+	kh::Screen::IncP* inca;
+
+	inca = dispResult->mIncP.mPikminInfo;
 	for (int i = 0; i < 6; i++) {
-		mYesterdayPikis[i] = dispResult->mIncP.mPikminInfo->mYesterdayPikiCounts[i];
+		mYesterdayPikis[i] = inca->mYesterdayPikiCounts[i];
 	}
 
+	inca = dispResult->mIncP.mPikminInfo;
 	for (int i = 0; i < 6; i++) {
-		mTodayPikis[i] = dispResult->mIncP.mPikminInfo->mTodayPikiCounts[i];
+		mTodayPikis[i] = inca->mTodayPikiCounts[i];
 	}
 
+	inca = dispResult->mIncP.mPikminInfo;
 	for (int i = 0; i < 8; i++) {
-		mTodayDeaths[i] = dispResult->mIncP.mPikminInfo->mTodayPikiDeaths[i];
+		mTodayDeaths[i] = inca->mTodayPikiDeaths[i];
 	}
 
+	inca = dispResult->mIncP.mPikminInfo;
 	for (int i = 0; i < 8; i++) {
-		mTotalDeaths[i] = dispResult->mIncP.mPikminInfo->mTotalPikiDeaths[i];
+		mTotalDeaths[i] = inca->mTotalPikiDeaths[i];
 	}
 
 	u32 flag = dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag;
 	if (!(flag & 1)) {
 		mScreenMain->search('Nfigre01')->hide();
 		mScreenMain->search('Npiki01')->hide();
-		mScreenMain->search('Ntotp01')->hide();
+		mScreenMain->search('Ntopi01')->hide();
 		mCounterNum -= 2;
 	}
 
 	if (!(flag & 2)) {
 		mScreenMain->search('Nfigre02')->hide();
 		mScreenMain->search('Npiki02')->hide();
-		mScreenMain->search('Ntotp02')->hide();
+		mScreenMain->search('Ntopi02')->hide();
 		mCounterNum -= 2;
 	}
 
 	if (!(flag & 4)) {
 		mScreenMain->search('Nfigre03')->hide();
 		mScreenMain->search('Npiki03')->hide();
-		mScreenMain->search('Ntotp03')->hide();
+		mScreenMain->search('Ntopi03')->hide();
 		mCounterNum -= 2;
 	}
 
 	if (!(flag & 8)) {
 		mScreenMain->search('Nfigre04')->hide();
 		mScreenMain->search('Npiki04')->hide();
-		mScreenMain->search('Ntotp04')->hide();
+		mScreenMain->search('Ntopi04')->hide();
 		mCounterNum -= 2;
 	}
 
 	if (!(flag & 0x10)) {
 		mScreenMain->search('Nfigre05')->hide();
 		mScreenMain->search('Npiki05')->hide();
-		mScreenMain->search('Ntotp05')->hide();
+		mScreenMain->search('Ntopi05')->hide();
 		mCounterNum -= 2;
 	}
 
@@ -1589,30 +1594,26 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 	if (flag & 2) {
 		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pypkyo1', &mYesterdayPikis[1], 5, true, false, arc);
 		counters++;
-		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pypmade1', &mTodayPikis[1], 8, true, false, arc);
-		counters++;
+		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pypmade1', &mTodayPikis[1], 8, true, false, arc);
 	}
 
 	if (flag & 4) {
 		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbpkyo1', &mYesterdayPikis[2], 5, true, false, arc);
 		counters++;
-		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbpmade1', &mTodayPikis[2], 8, true, false, arc);
-		counters++;
+		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbpmade1', &mTodayPikis[2], 8, true, false, arc);
 	}
 
 	if (flag & 8) {
 		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pwpkyo1', &mYesterdayPikis[3], 5, true, false, arc);
 		counters++;
-		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pwpmade1', &mTodayPikis[3], 8, true, false, arc);
-		counters++;
+		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pwpmade1', &mTodayPikis[3], 8, true, false, arc);
 	}
 
 	if (flag & 0x10) {
 		mPikiCountersList[counters]
 		    = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pblpkyo1', &mYesterdayPikis[1], 5, true, false, arc);
 		counters++;
-		mPikiCountersList[counters] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pblpmad1', &mTodayPikis[1], 8, true, false, arc);
-		counters++;
+		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pblpmad1', &mTodayPikis[1], 8, true, false, arc);
 	}
 
 	mPikiCounterYesterday = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptokypo1', &mYesterdayPikis[5], 5, true, false, arc);
@@ -1623,7 +1624,7 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 	for (int i = 0; i < mCounterNum; i++) {
 		mPikiCountersList[i]->setPuyoParam(2.5f, 35.0f, 0.3f);
 	}
-
+	// unrolled loop?
 	mDeathCountersList     = new og::Screen::CallBack_CounterSlot*[14];
 	mDeathCountersList[0]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptakyo1', &mTodayDeaths[0], 4, true, false, nullptr);
 	mDeathCountersList[1]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptamade1', &mTotalDeaths[0], 8, true, false, nullptr);
