@@ -46,3 +46,5 @@ sheet.tsv
 *.log
 build.ninja
 __pycache__
+.ninja_deps
+.ninja_log

@@ -3,7 +3,7 @@ LIBS = [
     {
         "lib": "JSystem",
         "cflags": "$cflags_base",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             "JSystem/object/object-particle",
@@ -238,7 +238,7 @@ LIBS = [
     },
     {
         "lib": "Dolphin",
-        "mwcc_version": "1.2.5",
+        "mw_version": "1.2.5",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -434,7 +434,7 @@ LIBS = [
     {
         "lib": "plugProjectYamashitaU",
         "cflags": "$cflags_pikmin",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             "plugProjectYamashitaU/enemyBase",
@@ -494,7 +494,7 @@ LIBS = [
     {
         "lib": "plugProjectKandoU",
         "cflags": "$cflags_pikmin",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             ["plugProjectKandoU/pikiAnimator", True],
@@ -637,7 +637,7 @@ LIBS = [
     {
         "lib": "plugProjectNishimuraU",
         "cflags": "$cflags_pikmin",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             "plugProjectNishimuraU/nslibmath",
@@ -880,7 +880,7 @@ LIBS = [
     {
         "lib": "plugProjectOgawaU",
         "cflags": "$cflags_pikmin",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             ["plugProjectOgawaU/ogScreen", True],
@@ -968,7 +968,7 @@ LIBS = [
     {
         "lib": "plugProjectHikinoU",
         "cflags": "$cflags_pikmin",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             "plugProjectHikinoU/PSSeq",
@@ -990,7 +990,7 @@ LIBS = [
     {
         "lib": "plugProjectMorimuraU",
         "cflags": "$cflags_pikmin",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             "plugProjectMorimuraU/dayEndCount",
@@ -1058,7 +1058,7 @@ LIBS = [
     {
         "lib": "plugProjectEbisawaU",
         "cflags": "$cflags_pikmin",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             "plugProjectEbisawaU/efxBase",
@@ -1113,7 +1113,7 @@ LIBS = [
     {
         "lib": "plugProjectKonoU",
         "cflags": "$cflags_pikmin",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             "plugProjectKonoU/khWorldMap",
@@ -1135,7 +1135,7 @@ LIBS = [
     {
         "lib": "sysBootupU",
         "cflags": "$cflags_base",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             ["sysBootupU/sysBootup", True],
@@ -1144,7 +1144,7 @@ LIBS = [
     {
         "lib": "sysCommonU",
         "cflags": "$cflags_base",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             ["sysCommonU/node", True],
@@ -1168,7 +1168,7 @@ LIBS = [
     {
         "lib": "sysGCU",
         "cflags": "$cflags_base",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             "sysGCU/system",
@@ -1247,7 +1247,7 @@ LIBS = [
     {
         "lib": "utilityU",
         "cflags": "$cflags_base",
-        "mwcc_version": "2.6",
+        "mw_version": "2.6",
         "host": True,
         "objects": [
             "utilityU/menu",
@@ -1273,6 +1273,7 @@ if __name__ == "__main__":
     import sys
     import argparse
 
+    from pathlib import Path
     from shutil import which
     from tools import ninja_syntax
 
@@ -1296,31 +1297,54 @@ if __name__ == "__main__":
         help="don't check hash of resulting dol",
     )
     parser.add_argument(
-        "--static-libs",
+        "--no-static-libs",
         dest="static_libs",
-        action="store_true",
-        help="build and use static libs",
+        action="store_false",
+        help="don't build and use static libs",
     )
     parser.add_argument(
         "--devkitppc",
         dest="devkitppc",
+        type=Path,
         help="path to devkitPPC",
     )
     if os.name != "nt" and not "_NT-" in os.uname().sysname:
         parser.add_argument(
             "--wine",
             dest="wine",
+            type=Path,
             help="path to wine (or wibo)",
         )
     parser.add_argument(
         "--build-dtk",
         dest="build_dtk",
+        type=Path,
         help="path to decomp-toolkit source",
+    )
+    parser.add_argument(
+        "--debug",
+        dest="debug",
+        action="store_true",
+        help="build with debug info (non-matching)",
+    )
+    parser.add_argument(
+        "--compilers",
+        dest="compilers",
+        type=Path,
+        default=Path("tools/mwcc_compiler"),
+        help="path to compilers",
+    )
+    parser.add_argument(
+        "--build-dir",
+        dest="build_dir",
+        type=Path,
+        default=Path("build"),
+        help="base build directory",
     )
     args = parser.parse_args()
 
     # On Windows, we need this to use && in commands
-    ALLOW_CHAIN = "cmd /c " if os.name == "nt" else ""
+    chain = "cmd /c " if os.name == "nt" else ""
 
     out = io.StringIO()
     n = ninja_syntax.Writer(out)
@@ -1334,177 +1358,204 @@ if __name__ == "__main__":
     if os.name != "nt" and "DEVKITPPC" in os.environ and not args.devkitppc:
         configure_args.extend(["--devkitppc", os.environ["DEVKITPPC"]])
     n.variable("configure_args", configure_args)
+    n.variable("python", sys.executable)
     n.newline()
 
     ###
     # Variables
     ###
     n.comment("Variables")
-    n.variable("version", args.version.lower())
+    version = args.version.lower()
     if args.version.lower() == "usa":
-        n.variable("version_num", "1")
+        version_num = "1"
     else:
         sys.exit(f'Invalid version "{args.version}"')
-    n.variable("builddir", "build/pikmin2.$version")
+    n.variable("out", args.build_dir / f"pikmin2.{version}")
+    build_path = Path("$out")
     if args.devkitppc:
-        n.variable("devkitppc", args.devkitppc)
+        dkp_path = args.devkitppc
     elif os.name == "nt":
-        n.variable("devkitppc", "C:\devkitPro\devkitPPC")
+        dkp_path = Path("C:\devkitPro\devkitPPC")
     elif "DEVKITPPC" in os.environ:
-        n.variable("devkitppc", os.environ["DEVKITPPC"])
+        dkp_path = Path(os.environ["DEVKITPPC"])
     else:
-        n.variable("devkitppc", "/opt/devkitpro/devkitPPC")
-    n.variable(
-        "cflags_base",
-        "-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse -nosyspath -use_lmw_stmw on -MMD -DVERSION=$version_num -DNONMATCHING=0 -i include/",
-    )
-    n.variable(
-        "cflags_pikmin",
-        "-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse -nosyspath -use_lmw_stmw on -common on -MMD -DVERSION=$version_num -DNONMATCHING=0 -i include/",
-    )
-    # n.variable(
-    #     "cflags_retro",
-    #     "$cflags_base -use_lmw_stmw on -str reuse,pool,readonly -gccinc -inline deferred,noauto -common on",
-    # )
-    # n.variable(
-    #     "cflags_runtime",
-    #     "$cflags_base -use_lmw_stmw on -str reuse,pool,readonly -gccinc -inline deferred,auto",
-    # )
-    # n.variable("cflags_musyx", "$cflags_base -str reuse,pool,readonly")
-    n.variable("asflags", "-mgekko -I include/ --defsym version=$version_num -W")
-    ldflags = "-fp fmadd -nodefaults -lcf ldscript.lcf -w off"
+        dkp_path = Path("/opt/devkitpro/devkitPPC")
+
+    cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse -nosyspath -use_lmw_stmw on -MMD -DVERSION={version_num} -DNONMATCHING=0 -i include"
+    if args.debug:
+        cflags_base += " -sym on -D_DEBUG"
+    else:
+        cflags_base += " -DNDEBUG"
+    n.variable("cflags_base", cflags_base)
+    n.variable("cflags_pikmin", "$cflags_base -common on")
+
+    asflags = f"-mgekko -I include --defsym version={version_num} -W --strip-local-absolute -gdwarf-2"
+    n.variable("asflags", asflags)
+
+    ldflags = "-fp fmadd -nodefaults -lcf ldscript.lcf"
     if args.map:
-        n.variable("map", "$builddir/pikmin2UP.MAP")
-        ldflags += " -map $map"
+        map_path = build_path / "pikmin2UP.MAP"
+        ldflags += f" -map {map_path} -mapunused"
+    if args.debug:
+        ldflags += " -g"
     n.variable("ldflags", ldflags)
-    n.variable("mwcc_version", "2.6")
-    n.variable("python", sys.executable)
+
+    n.variable("mw_version", "2.6")
     if os.name == "nt":
-        n.variable("exe", ".exe")
+        exe = ".exe"
+        wine = ""
     else:
         if "_NT-" in os.uname().sysname:
             # MSYS2
-            n.variable("wine", "")
+            wine = ""
         elif args.wine:
-            n.variable("wine", args.wine + " ")
+            wine = f"{args.wine} "
         elif which("wibo") is not None:
-            n.variable("wine", "wibo ")
+            wine = "wibo "
         else:
-            n.variable("wine", "wine ")
-        n.variable("exe", "")
+            wine = "wine "
+        exe = ""
+    n.newline()
+
+    ###
+    # Tooling
+    ###
+    n.comment("decomp-toolkit")
+
+    tools_path = Path("tools")
+    build_tools_path = args.build_dir / "tools"
+
+    def path(input: list[Path] | Path | None) -> list[str] | None:
+        if input is None:
+            return None
+        elif isinstance(input, list):
+            return list(map(str, input))
+        else:
+            return [str(input)]
+
+    if args.build_dtk:
+        dtk = build_tools_path / "release" / f"dtk{exe}"
+        n.rule(
+            name="cargo",
+            command="cargo build --release --manifest-path $in --bin $bin --target-dir $target",
+            description="CARGO $bin",
+            depfile=path(Path("$target") / "release" / "$bin.d"),
+            deps="gcc",
+        )
+        n.build(
+            outputs=path(dtk),
+            rule="cargo",
+            inputs=path(args.build_dtk / "Cargo.toml"),
+            variables={
+                "bin": "dtk",
+                "target": build_tools_path,
+            },
+        )
+    else:
+        dtk = build_tools_path / f"dtk{exe}"
+        download_dtk = tools_path / "download_dtk.py"
+        n.rule(
+            name="download_dtk",
+            command=f"$python {download_dtk} $in $out",
+            description="DOWNLOAD $out",
+        )
+        n.build(
+            outputs=path(dtk),
+            rule="download_dtk",
+            inputs=path([tools_path / "dtk_version"]),
+            implicit=path([download_dtk]),
+        )
     n.newline()
 
     ###
     # Rules
     ###
-    if os.name == "nt":
-        n.comment("MWCC build")
-        n.rule(
-            name="mwcc",
-            command="tools\\mwcc_compiler\\$mwcc_version\\mwcceppc.exe $cflags -c $in -o $basedir",
-            description="MWCC $out",
-            depfile="$basefile.d",
-            deps="gcc",
-        )
-        n.newline()
-        n.comment("MWCC build with franklite")
-        n.rule(
-            name="mwcc_frank",
-            command=ALLOW_CHAIN
-            + "tools\\mwcc_compiler\\$mwcc_version\\mwcceppc.exe $cflags -c $in -o $basedir && "
-            + "$python tools/franklite.py $out $out",
-            description="FRANK $out",
-            depfile="$basefile.d",
-            deps="gcc",
-        )
-        n.newline()
-        n.comment("Link ELF file")
-        n.rule(
-            name="link",
-            command="tools\\mwcc_compiler\\$mwcc_version\\mwldeppc.exe $ldflags -o $out @$out.rsp",
-            description="LINK $out",
-            rspfile="$out.rsp",
-            rspfile_content="$in",
-        )
-        n.newline()
-        n.comment("Assemble asm")
-        n.rule(
-            name="as",
-            command="$devkitppc\\bin\\powerpc-eabi-as.exe $asflags -o $out $in -MD $out.d",
-            description="AS $out",
-            depfile="$out.d",
-            deps="gcc",
-        )
-        n.newline()
-        n.comment("Create static library")
-        n.rule(
-            name="ar",
-            command="$devkitppc\\bin\\powerpc-eabi-ar.exe crs $out $in",
-            description="AR $out",
-        )
-        n.newline()
-    else:
-        n.comment("MWCC build")
-        n.rule(
-            name="mwcc",
-            command="${wine}tools/mwcc_compiler/$mwcc_version/mwcceppc.exe $cflags -c $in -o $basedir && "
-            + "$python tools/transform-dep.py $basefile.d $basefile.d",
-            description="MWCC $out",
-            depfile="$basefile.d",
-            deps="gcc",
-        )
-        n.newline()
-        n.comment("MWCC build with franklite")
-        n.rule(
-            name="mwcc_frank",
-            command="${wine}tools/mwcc_compiler/$mwcc_version/mwcceppc.exe $cflags -c $in -o $basedir && "
-            + "$python tools/franklite.py $out $out && "
-            + "$python tools/transform-dep.py $basefile.d $basefile.d",
-            description="FRANK $out",
-            depfile="$basefile.d",
-            deps="gcc",
-        )
-        n.newline()
-        n.comment("Link ELF file")
-        n.rule(
-            name="link",
-            command="${wine}tools/mwcc_compiler/$mwcc_version/mwldeppc.exe $ldflags -o $out @$out.rsp",
-            description="LINK $out",
-            rspfile="$out.rsp",
-            rspfile_content="$in",
-        )
-        n.newline()
-        n.comment("Assemble asm")
-        n.rule(
-            name="as",
-            command="$devkitppc/bin/powerpc-eabi-as $asflags -o $out $in -MD $out.d",
-            description="AS $out",
-            depfile="$out.d",
-            deps="gcc",
-        )
-        n.newline()
-        n.comment("Create static library")
-        n.rule(
-            name="ar",
-            command="$devkitppc/bin/powerpc-eabi-ar crs $out $in",
-            description="AR $out",
-        )
-        n.newline()
+    compiler_path = args.compilers / "$mw_version"
+    mwcc = compiler_path / "mwcceppc.exe"
+    mwld = compiler_path / "mwldeppc.exe"
+    franklite = tools_path / "franklite.py"
+    gnu_as = dkp_path / "bin" / f"powerpc-eabi-as{exe}"
+
+    mwcc_cmd = f"{chain}{wine}{mwcc} $cflags -c $in -o $basedir"
+    mwcc_frank_cmd = f"{mwcc_cmd} && $python {franklite} $out $out"
+    mwld_cmd = f"{wine}{mwld} $ldflags -o $out @$out.rsp"
+    as_cmd = (
+        f"{chain}{gnu_as} $asflags -o $out $in -MD $out.d"
+        + f" && {dtk} elf fixup $out $out"
+    )
+    ar_cmd = f"{dtk} ar create $out @$out.rsp"
+
+    if os.name != "nt":
+        transform_dep = tools_path / "transform-dep.py"
+        transform_dep_cmd = f" && $python {transform_dep} $basefile.d $basefile.d"
+        mwcc_cmd += transform_dep_cmd
+        mwcc_frank_cmd += transform_dep_cmd
+
+    n.comment("Link ELF file")
+    n.rule(
+        name="link",
+        command=mwld_cmd,
+        description="LINK $out",
+        rspfile="$out.rsp",
+        rspfile_content="$in_newline",
+    )
+    n.newline()
+
+    n.comment("MWCC build")
+    n.rule(
+        name="mwcc",
+        command=mwcc_cmd,
+        description="MWCC $out",
+        depfile="$basefile.d",
+        deps="gcc",
+    )
+    n.newline()
+
+    n.comment("MWCC build with franklite")
+    n.rule(
+        name="mwcc_frank",
+        command=mwcc_frank_cmd,
+        description="FRANK $out",
+        depfile="$basefile.d",
+        deps="gcc",
+    )
+    n.newline()
+
+    n.comment("Assemble asm")
+    n.rule(
+        name="as",
+        command=as_cmd,
+        description="AS $out",
+        depfile="$out.d",
+        deps="gcc",
+    )
+    n.newline()
+
+    n.comment("Create static library")
+    n.rule(
+        name="ar",
+        command=ar_cmd,
+        description="AR $out",
+        rspfile="$out.rsp",
+        rspfile_content="$in_newline",
+    )
+    n.newline()
+
     n.comment("Host build")
-    n.variable("host_cflags", "-I include/ -Wno-trigraphs")
+    n.variable("host_cflags", "-I include -Wno-trigraphs")
     n.variable(
         "host_cppflags",
-        "-std=c++98 -I include/ -fno-exceptions -fno-rtti -D_CRT_SECURE_NO_WARNINGS -Wno-trigraphs -Wno-c++11-extensions",
+        "-std=c++98 -I include -fno-exceptions -fno-rtti -D_CRT_SECURE_NO_WARNINGS -Wno-trigraphs -Wno-c++11-extensions",
     )
     n.rule(
         name="host_cc",
         command="clang $host_cflags -c -o $out $in",
-        description="host_cc $out",
+        description="CC $out",
     )
     n.rule(
         name="host_cpp",
         command="clang++ $host_cppflags -c -o $out $in",
-        description="host_c++ $out",
+        description="CXX $out",
     )
     n.newline()
 
@@ -1512,8 +1563,16 @@ if __name__ == "__main__":
     # Rules for source files
     ###
     n.comment("Source files")
-    all_source_files = []
-    all_host_source_files = []
+    src_path = Path("src")
+    asm_path = Path("asm")
+    build_src_path = build_path / "src"
+    build_host_path = build_path / "host"
+    build_asm_path = build_path / "asm"
+    build_lib_path = build_path / "lib"
+
+    source_inputs = []
+    host_source_inputs = []
+    link_inputs = []
     for lib in LIBS:
         inputs = []
         if "lib" in lib:
@@ -1521,105 +1580,97 @@ if __name__ == "__main__":
             n.comment(f"{lib_name}.a")
         else:
             n.comment("Loose files")
+
         for object in lib["objects"]:
             completed = None
             add_to_all = True
+            options = {
+                "mw_version": None,
+                "cflags": None,
+            }
             if type(object) is list:
+                if len(object) > 1:
+                    completed = object[1]
                 if len(object) > 2:
-                    add_to_all = object[2]
-                completed = object[1]
+                    options.update(object[3])
                 object = object[0]
 
-            mwcc_version = lib["mwcc_version"]
+            mw_version = options["mw_version"] or lib["mw_version"]
             c_file = None
-            if os.path.exists(os.path.join("src", f"{object}.cpp")):
-                c_file = os.path.join("src", f"{object}.cpp")
-            elif os.path.exists(os.path.join("src", f"{object}.c")):
-                c_file = os.path.join("src", f"{object}.c")
+            if os.path.exists(src_path / f"{object}.cpp"):
+                c_file = src_path / f"{object}.cpp"
+            elif os.path.exists(src_path / f"{object}.c"):
+                c_file = src_path / f"{object}.c"
             if c_file is not None:
-                # if completed is None:
-                #     print(f"Mark as incomplete: {c_file}")
                 rule = "mwcc"
-                if mwcc_version == "1.2.5e":
-                    mwcc_version = "1.2.5"
+                if mw_version == "1.2.5e":
+                    mw_version = "1.2.5"
                     rule = "mwcc_frank"
                 n.build(
-                    outputs=f"$builddir/src/{object}.o",
+                    outputs=path(build_src_path / f"{object}.o"),
                     rule=rule,
-                    inputs=c_file,
+                    inputs=path(c_file),
                     variables={
-                        "mwcc_version": mwcc_version,
-                        "cflags": lib["cflags"],
-                        "basedir": os.path.dirname(f"$builddir/src/{object}"),
-                        "basefile": f"$builddir/src/{object}",
+                        "mw_version": mw_version,
+                        "cflags": options["cflags"] or lib["cflags"],
+                        "basedir": os.path.dirname(build_src_path / f"{object}"),
+                        "basefile": path(build_src_path / f"{object}"),
                     },
                 )
                 if lib["host"]:
                     n.build(
-                        outputs=f"$builddir/host/{object}.o",
-                        rule="host_cc" if c_file.endswith(".c") else "host_cpp",
-                        inputs=c_file,
+                        outputs=path(build_host_path / f"{object}.o"),
+                        rule="host_cc" if c_file.suffix == ".c" else "host_cpp",
+                        inputs=path(c_file),
                         variables={
-                            "basedir": os.path.dirname(f"$builddir/src/{object}"),
-                            "basefile": f"$builddir/src/{object}",
+                            "basedir": os.path.dirname(build_host_path / object),
+                            "basefile": path(build_host_path / object),
                         },
                     )
                     if add_to_all:
-                        all_host_source_files.append(f"$builddir/host/{object}.o")
+                        host_source_inputs.append(build_host_path / f"{object}.o")
                 if add_to_all:
-                    all_source_files.append(f"$builddir/src/{object}.o")
-            if os.path.exists(os.path.join("asm", f"{object}.s")):
+                    source_inputs.append(build_src_path / f"{object}.o")
+            if os.path.exists(asm_path / f"{object}.s"):
                 n.build(
-                    outputs=f"$builddir/asm/{object}.o",
+                    outputs=path(build_asm_path / f"{object}.o"),
                     rule="as",
-                    inputs=f"asm/{object}.s",
+                    inputs=path(asm_path / f"{object}.s"),
+                    implicit=path(dtk),
                 )
             if completed:
-                inputs.append(f"$builddir/src/{object}.o")
+                inputs.append(build_src_path / f"{object}.o")
             else:
-                inputs.append(f"$builddir/asm/{object}.o")
+                inputs.append(build_asm_path / f"{object}.o")
         if args.static_libs and "lib" in lib:
             lib_name = lib["lib"]
             n.build(
-                outputs=f"$builddir/lib/{lib_name}.a",
+                outputs=path(build_lib_path / f"{lib_name}.a"),
                 rule="ar",
-                inputs=inputs,
+                inputs=path(inputs),
+                implicit=path(dtk),
             )
+            link_inputs.append(build_lib_path / f"{lib_name}.a")
+        else:
+            link_inputs.extend(inputs)
         n.newline()
 
     ###
     # Link
     ###
     n.comment("Link")
-    inputs = []
-    for lib in LIBS:
-        if args.static_libs and "lib" in lib:
-            lib_name = lib["lib"]
-            inputs.append(f"$builddir/lib/{lib_name}.a")
-        else:
-            for object in lib["objects"]:
-                completed = False
-
-                if type(object) is list:
-                    completed = object[1]
-                    object = object[0]
-
-                if completed:
-                    inputs.append(f"$builddir/src/{object}.o")
-                else:
-                    inputs.append(f"$builddir/asm/{object}.o")
     if args.map:
         n.build(
-            outputs="$builddir/main.elf",
+            outputs=path(build_path / "main.elf"),
             rule="link",
-            inputs=inputs,
-            implicit_outputs="$map",
+            inputs=path(link_inputs),
+            implicit_outputs=path(map_path),
         )
     else:
         n.build(
-            outputs="$builddir/main.elf",
+            outputs=path(build_path / "main.elf"),
             rule="link",
-            inputs=inputs,
+            inputs=path(link_inputs),
         )
     n.newline()
 
@@ -1630,7 +1681,7 @@ if __name__ == "__main__":
     n.build(
         outputs="all_source",
         rule="phony",
-        inputs=all_source_files,
+        inputs=path(source_inputs),
     )
     n.newline()
 
@@ -1641,55 +1692,24 @@ if __name__ == "__main__":
     n.build(
         outputs="all_source_host",
         rule="phony",
-        inputs=all_host_source_files,
+        inputs=path(host_source_inputs),
     )
     n.newline()
 
     ###
-    # Tooling
+    # Generate DOL
     ###
-    n.comment("decomp-toolkit")
-    if args.build_dtk:
-        n.variable("dtk", os.path.join("build", "tools", "release", "dtk$exe"))
-        n.rule(
-            name="cargo",
-            command="cargo build --release --manifest-path $in --bin $bin --target-dir $target",
-            description="CARGO $bin",
-            depfile="$target/release/$bin.d",
-            deps="gcc",
-        )
-        n.build(
-            outputs="$dtk",
-            rule="cargo",
-            inputs=os.path.join(args.build_dtk, "Cargo.toml"),
-            variables={
-                "bin": "dtk",
-                "target": os.path.join("build", "tools"),
-            },
-        )
-    else:
-        n.variable("dtk", os.path.join("build", "tools", "dtk$exe"))
-        n.rule(
-            name="download_dtk",
-            command="$python tools/download_dtk.py $in $out",
-            description="DOWNLOAD $out",
-        )
-        n.build(
-            outputs="$dtk",
-            rule="download_dtk",
-            inputs="dtk_version",
-            implicit=["tools/download_dtk.py"],
-        )
+    n.comment("Generate DOL")
     n.rule(
         name="elf2dol",
-        command="$dtk elf2dol $in $out",
+        command=f"{dtk} elf2dol $in $out",
         description="DOL $out",
     )
     n.build(
-        outputs="$builddir/main.dol",
+        outputs=path(build_path / "main.dol"),
         rule="elf2dol",
-        inputs="$builddir/main.elf",
-        implicit="$dtk",
+        inputs=path(build_path / "main.elf"),
+        implicit=path(dtk),
     )
     n.newline()
 
@@ -1700,14 +1720,14 @@ if __name__ == "__main__":
         n.comment("Check DOL hash")
         n.rule(
             name="check",
-            command="$dtk shasum -c $in -o $out",
+            command=f"{dtk} shasum -c $in -o $out",
             description="CHECK $in",
         )
         n.build(
-            outputs="$builddir/main.dol.ok",
+            outputs=path(build_path / "main.dol.ok"),
             rule="check",
-            inputs="sha1/pikmin2.$version.sha1",
-            implicit=["$builddir/main.dol", "$dtk"],
+            inputs=f"sha1/pikmin2.{version}.sha1",
+            implicit=path([build_path / "main.dol", dtk]),
         )
         n.newline()
 
@@ -1722,9 +1742,10 @@ if __name__ == "__main__":
             description="PROGRESS $in",
         )
         n.build(
-            outputs="$builddir/main.dol.progress",
+            outputs=path(build_path / "main.dol.progress"),
             rule="progress",
-            inputs=["$builddir/main.dol", "$map"],
+            inputs=path([build_path / "main.dol", map_path]),
+            implicit="progress.py",
         )
         n.newline()
 
@@ -1740,7 +1761,7 @@ if __name__ == "__main__":
     n.build(
         outputs="build.ninja",
         rule="configure",
-        implicit=["configure.py", "tools/ninja_syntax.py"],
+        implicit=path(["configure.py", tools_path / "ninja_syntax.py"]),
     )
     n.newline()
 
@@ -1749,13 +1770,13 @@ if __name__ == "__main__":
     ###
     n.comment("Default rule")
     if args.check:
-        dol_out = "$builddir/main.dol.ok"
+        dol_out = build_path / "main.dol.ok"
     else:
-        dol_out = "$builddir/main.dol"
+        dol_out = build_path / "main.dol"
     if args.map:
-        n.default([dol_out, "$builddir/main.dol.progress"])
+        n.default(path([dol_out, build_path / "main.dol.progress"]))
     else:
-        n.default([dol_out])
+        n.default(path([dol_out]))
 
     with open("build.ninja", "w") as f:
         f.write(out.getvalue())
