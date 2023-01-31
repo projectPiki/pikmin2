@@ -25,7 +25,7 @@ struct Plant;
 struct Farm : public CNode {
 	Farm();
 
-	virtual ~Farm() {}; // _08 (weak)
+	virtual ~Farm(); // _08 (weak)
 
 	void loadResource(u32, void*);
 	void update();
@@ -53,16 +53,9 @@ struct Farm : public CNode {
  * @size{0x24}
  */
 struct Obstacle : public CNode {
-	Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, f32 p2, f32 p3) // unused/inlined
-	    : CNode("")
-	    , mFarm(farm)
-	{
-		Vector3f position = creature->getPosition();
-		mCreature         = creature;
-		mVtxColorControl  = vtxColorMgr->createNewControl(position, p2, p3);
-	}
+	Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, f32 p2, f32 p3);
 
-	virtual ~Obstacle() {}; // _08 (weak)
+	virtual ~Obstacle(); // _08 (weak)
 
 	void setPower(f32);
 
@@ -78,14 +71,9 @@ struct Obstacle : public CNode {
  * @size{0x20}
  */
 struct Plant : public CNode {
-	Plant(Game::Creature* creature)
-	    : CNode("")
-	    , mCreature(creature)
-	    , _1C()
-	{
-	}
+	Plant(Game::Creature* creature);
 
-	virtual ~Plant() {}; // _08 (weak)
+	virtual ~Plant(); // _08 (weak)
 
 	// Unused/inlined:
 	void sendInteraction();

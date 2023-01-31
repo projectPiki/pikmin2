@@ -18,7 +18,7 @@ YAMASHITA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/gameLightMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/vtxAnm.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInfo.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/farm.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/farm.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/farmMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/genEnemy.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/timeMgr.o\
