@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     container: ghcr.io/primedecomp/build:main
     strategy:
@@ -32,3 +33,20 @@ jobs:
       with:
         name: pikmin2UP-${{matrix.version}}.MAP
         path: build/*/pikmin2UP.MAP
+
+  build_make:
+    name: Build (legacy)
+    runs-on: ubuntu-latest
+    container: ghcr.io/primedecomp/build:main
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [usa, usa.demo]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Install dependencies
+      run: |
+        apk add --no-cache make gcc musl-dev
+    - name: Build
+      run: make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=/compilers/GC
