@@ -244,6 +244,7 @@ struct FileState : public State {
 	// Unused/inlined:
 	void first_init(SingleGameSection*);
 
+	unknown _10;              // _10
 	Controller* _14;          // _14
 	Delegate<FileState>* _18; // _18
 	JKRExpHeap* _1C;          // _1C

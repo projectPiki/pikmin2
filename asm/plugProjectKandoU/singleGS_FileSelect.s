@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80482748
 lbl_80482748:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -14,15 +13,13 @@ lbl_80482748:
 	.4byte 0x6C654753
 	.4byte 0x5F47616D
 	.4byte 0x65000000
-.global lbl_80482764
 lbl_80482764:
 	.4byte 0x50534761
 	.4byte 0x6D652E68
 	.4byte 0x00000000
-.global lbl_80482770
 lbl_80482770:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -41,23 +38,22 @@ lbl_80482770:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C07E0
-lbl_804C07E0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804C07EC
-lbl_804C07EC:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804C07EC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdload__Q34Game10SingleGame9FileStateFv
-.global "__vt__39Delegate<Q34Game10SingleGame9FileState>"
-"__vt__39Delegate<Q34Game10SingleGame9FileState>":
+.endobj lbl_804C07EC
+.obj __vt__39Delegate<Q34Game10SingleGame9FileState>, weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__39Delegate<Q34Game10SingleGame9FileState>Fv"
-.global __vt__Q34Game10SingleGame9FileState
-__vt__Q34Game10SingleGame9FileState:
+.endobj __vt__39Delegate<Q34Game10SingleGame9FileState>
+.obj __vt__Q34Game10SingleGame9FileState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
@@ -76,29 +72,28 @@ __vt__Q34Game10SingleGame9FileState:
 	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-	.4byte 0
+.endobj __vt__Q34Game10SingleGame9FileState
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C20
-lbl_80515C20:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515C24
-lbl_80515C24:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A070
-lbl_8051A070:
+.obj lbl_8051A070, local
 	.float 1.0
-.global lbl_8051A074
-lbl_8051A074:
-	.4byte 0x40800000
+.endobj lbl_8051A070
+.obj lbl_8051A074, local
+	.float 4.0
+.endobj lbl_8051A074
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game10SingleGame9FileStateFv
-__ct__Q34Game10SingleGame9FileStateFv:
+.fn __ct__Q34Game10SingleGame9FileStateFv, global
 /* 8021C718 00219658  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021C71C 0021965C  7C 08 02 A6 */	mflr r0
 /* 8021C720 00219660  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
@@ -143,10 +138,10 @@ __ct__Q34Game10SingleGame9FileStateFv:
 /* 8021C7B4 002196F4  7C 08 03 A6 */	mtlr r0
 /* 8021C7B8 002196F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021C7BC 002196FC  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game10SingleGame9FileStateFv
 
 .if version == 1
-.global init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 8021C7C0 00219700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021C7C4 00219704  7C 08 02 A6 */	mflr r0
 /* 8021C7C8 00219708  90 01 00 14 */	stw r0, 0x14(r1)
@@ -186,9 +181,9 @@ init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 /* 8021C850 00219790  7C 08 03 A6 */	mtlr r0
 /* 8021C854 00219794  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021C858 00219798  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .else
-.global init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 8021C7C0 00219700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021C7C4 00219704  7C 08 02 A6 */	mflr r0
 /* 8021C7C8 00219708  90 01 00 14 */	stw r0, 0x14(r1)
@@ -228,10 +223,10 @@ init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 /* 8021C850 00219790  7C 08 03 A6 */	mtlr r0
 /* 8021C854 00219794  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021C858 00219798  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .endif
 
-.global dvdload__Q34Game10SingleGame9FileStateFv
-dvdload__Q34Game10SingleGame9FileStateFv:
+.fn dvdload__Q34Game10SingleGame9FileStateFv, global
 /* 8021C85C 0021979C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8021C860 002197A0  7C 08 02 A6 */	mflr r0
 /* 8021C864 002197A4  3C 80 80 48 */	lis r4, lbl_80482748@ha
@@ -340,9 +335,9 @@ dvdload__Q34Game10SingleGame9FileStateFv:
 /* 8021C9EC 0021992C  7C 08 03 A6 */	mtlr r0
 /* 8021C9F0 00219930  38 21 00 50 */	addi r1, r1, 0x50
 /* 8021C9F4 00219934  4E 80 00 20 */	blr 
+.endfn dvdload__Q34Game10SingleGame9FileStateFv
 
-.global exec__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection, global
 /* 8021C9F8 00219938  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8021C9FC 0021993C  7C 08 02 A6 */	mflr r0
 /* 8021CA00 00219940  90 01 00 34 */	stw r0, 0x34(r1)
@@ -452,10 +447,10 @@ exec__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
 /* 8021CB80 00219AC0  7C 08 03 A6 */	mtlr r0
 /* 8021CB84 00219AC4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8021CB88 00219AC8  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection
 
 .if version == 1
-.global startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection
-startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
+.fn startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection, global
 /* 8021CB8C 00219ACC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8021CB90 00219AD0  7C 08 02 A6 */	mflr r0
 /* 8021CB94 00219AD4  3C C0 80 48 */	lis r6, lbl_80482748@ha
@@ -626,9 +621,9 @@ startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
 /* 8021CDFC 00219D3C  7C 08 03 A6 */	mtlr r0
 /* 8021CE00 00219D40  38 21 00 40 */	addi r1, r1, 0x40
 /* 8021CE04 00219D44  4E 80 00 20 */	blr 
+.endfn startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection
 .else
-.global startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection
-startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
+.fn startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection, global
 /* 8021CB8C 00219ACC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8021CB90 00219AD0  7C 08 02 A6 */	mflr r0
 /* 8021CB94 00219AD4  3C C0 80 48 */	lis r6, lbl_80482748@ha
@@ -799,10 +794,10 @@ startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
 /* 8021CDFC 00219D3C  7C 08 03 A6 */	mtlr r0
 /* 8021CE00 00219D40  38 21 00 40 */	addi r1, r1, 0x40
 /* 8021CE04 00219D44  4E 80 00 20 */	blr 
+.endfn startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection
 .endif
 
-.global draw__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionR8Graphics
-draw__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn draw__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 8021CE08 00219D48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021CE0C 00219D4C  7C 08 02 A6 */	mflr r0
 /* 8021CE10 00219D50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -852,9 +847,9 @@ draw__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionR8Graphics:
 /* 8021CEBC 00219DFC  7C 08 03 A6 */	mtlr r0
 /* 8021CEC0 00219E00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021CEC4 00219E04  4E 80 00 20 */	blr 
+.endfn draw__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionR8Graphics
 
-.global cleanup__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection, global
 /* 8021CEC8 00219E08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021CECC 00219E0C  7C 08 02 A6 */	mflr r0
 /* 8021CED0 00219E10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -910,9 +905,9 @@ cleanup__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
 /* 8021CF90 00219ED0  7C 08 03 A6 */	mtlr r0
 /* 8021CF94 00219ED4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021CF98 00219ED8  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection
 
-.global "invoke__39Delegate<Q34Game10SingleGame9FileState>Fv"
-"invoke__39Delegate<Q34Game10SingleGame9FileState>Fv":
+.fn invoke__39Delegate<Q34Game10SingleGame9FileState>Fv, weak
 /* 8021CF9C 00219EDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021CFA0 00219EE0  7C 08 02 A6 */	mflr r0
 /* 8021CFA4 00219EE4  7C 64 1B 78 */	mr r4, r3
@@ -925,16 +920,17 @@ cleanup__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
 /* 8021CFC0 00219F00  7C 08 03 A6 */	mtlr r0
 /* 8021CFC4 00219F04  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021CFC8 00219F08  4E 80 00 20 */	blr 
+.endfn invoke__39Delegate<Q34Game10SingleGame9FileState>Fv
 
-.global __sinit_singleGS_FileSelect_cpp
-__sinit_singleGS_FileSelect_cpp:
+.fn __sinit_singleGS_FileSelect_cpp, local
 /* 8021CFCC 00219F0C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8021CFD0 00219F10  38 00 FF FF */	li r0, -1
 /* 8021CFD4 00219F14  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8021CFD8 00219F18  3C 60 80 4C */	lis r3, lbl_804C07E0@ha
-/* 8021CFDC 00219F1C  90 0D 95 A0 */	stw r0, lbl_80515C20@sda21(r13)
-/* 8021CFE0 00219F20  D4 03 07 E0 */	stfsu f0, lbl_804C07E0@l(r3)
-/* 8021CFE4 00219F24  D0 0D 95 A4 */	stfs f0, lbl_80515C24@sda21(r13)
+/* 8021CFD8 00219F18  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8021CFDC 00219F1C  90 0D 95 A0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8021CFE0 00219F20  D4 03 07 E0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8021CFE4 00219F24  D0 0D 95 A4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8021CFE8 00219F28  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8021CFEC 00219F2C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8021CFF0 00219F30  4E 80 00 20 */	blr 
+.endfn __sinit_singleGS_FileSelect_cpp

@@ -113,13 +113,15 @@
 */
 
 namespace Game {
+namespace SingleGame {
 
 /*
  * --INFO--
  * Address:	8021C718
  * Size:	0000A8
  */
-SingleGame::FileState::FileState()
+FileState::FileState()
+    : State(SGS_File)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -176,7 +178,7 @@ lbl_8021C798:
  * Address:	8021C7C0
  * Size:	00009C
  */
-void SingleGame::FileState::init(Game::SingleGameSection* section, Game::StateArg* arg)
+void FileState::init(Game::SingleGameSection* section, Game::StateArg* arg)
 {
 	moviePlayer->reset();
 	_24                    = 1;
@@ -185,7 +187,7 @@ void SingleGame::FileState::init(Game::SingleGameSection* section, Game::StateAr
 	section->refreshHIO();
 	Screen::gGame2DMgr->mScreenMgr->reset();
 	sys->setFrameRate(1);
-	playData->_20 = 0;
+	playData->mDeadNaviID[0] = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -234,7 +236,7 @@ void SingleGame::FileState::init(Game::SingleGameSection* section, Game::StateAr
  * Address:	........
  * Size:	0000E4
  */
-void SingleGame::FileState::first_init(Game::SingleGameSection*)
+void FileState::first_init(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -244,7 +246,7 @@ void SingleGame::FileState::first_init(Game::SingleGameSection*)
  * Address:	8021C85C
  * Size:	00019C
  */
-void SingleGame::FileState::dvdload()
+void FileState::dvdload()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -368,7 +370,7 @@ lbl_8021C970:
  * Address:	8021C9F8
  * Size:	000194
  */
-void SingleGame::FileState::exec(Game::SingleGameSection*)
+void FileState::exec(Game::SingleGameSection*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -496,7 +498,7 @@ lbl_8021CB70:
  * Address:	8021CB8C
  * Size:	00027C
  */
-void SingleGame::FileState::startGame(Game::SingleGameSection*)
+void FileState::startGame(Game::SingleGameSection*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -688,7 +690,7 @@ lbl_8021CDE8:
  * Address:	8021CE08
  * Size:	0000C0
  */
-void SingleGame::FileState::draw(Game::SingleGameSection*, Graphics&)
+void FileState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -749,7 +751,7 @@ lbl_8021CEB0:
  * Address:	8021CEC8
  * Size:	0000D4
  */
-void SingleGame::FileState::cleanup(Game::SingleGameSection*)
+void FileState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -812,6 +814,7 @@ lbl_8021CF30:
 	*/
 }
 
+} // namespace SingleGame
 } // namespace Game
 
 /*
@@ -819,7 +822,7 @@ lbl_8021CF30:
  * Address:	8021CF9C
  * Size:	000030
  */
-// void Delegate<Game::SingleGame::FileState>::invoke()
+// void Delegate<Game::FileState>::invoke()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -836,24 +839,3 @@ lbl_8021CF30:
 // 	blr
 // 	*/
 // }
-
-/*
- * --INFO--
- * Address:	8021CFCC
- * Size:	000028
- */
-void __sinit_singleGS_FileSelect_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C07E0@ha
-	stw      r0, lbl_80515C20@sda21(r13)
-	stfsu    f0, lbl_804C07E0@l(r3)
-	stfs     f0, lbl_80515C24@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
