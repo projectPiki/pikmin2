@@ -18,6 +18,7 @@ namespace Miulin {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum StateID {
+	MIULIN_NULL        = -1,
 	MIULIN_Wait        = 0,
 	MIULIN_Walk        = 1,
 	MIULIN_AttackStart = 2,
@@ -125,7 +126,8 @@ struct StateWalk : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u8 _10[0x8]; // _10, unknown
+	int _10; // _10
+	int _14; // _14
 };
 /////////////////////////////////////////////////////////////////
 
@@ -172,7 +174,7 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	Vector3f mGoalPosition;             // _2BC
-	Miulin::StateID mNextState;         // _2C8
+	StateID mNextState;                 // _2C8
 	SysShape::Joint* mKoshiJoint;       // _2CC
 	u32 _2D0;                           // _2D0
 	Vector3f _2D4;                      // _2D4

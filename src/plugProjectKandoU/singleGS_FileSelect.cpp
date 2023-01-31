@@ -124,54 +124,10 @@ namespace SingleGame {
 FileState::FileState()
     : State(SGS_File)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
-	lis      r4, __vt__Q34Game10SingleGame5State@ha
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r4, r4, __vt__Q34Game10SingleGame5State@l
-	stw      r0, 0(r3)
-	lis      r3, __vt__Q34Game10SingleGame9FileState@ha
-	addi     r0, r3, __vt__Q34Game10SingleGame9FileState@l
-	stw      r5, 4(r31)
-	li       r3, 0xb0
-	stw      r5, 8(r31)
-	stw      r4, 0(r31)
-	stw      r0, 0(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8021C778
-	li       r4, 0
-	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
-	mr       r0, r3
-
-lbl_8021C778:
-	stw      r0, 0x14(r31)
-	li       r3, 0xb0
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8021C798
-	li       r4, 2
-	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
-	mr       r0, r3
-
-lbl_8021C798:
-	stw      r0, 0x34(r31)
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x20(r31)
-	stw      r0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_14 = new Controller(JUTGamePad::PORT_0);
+	_34 = new Controller(JUTGamePad::PORT_2);
+	_20 = nullptr;
+	_1C = nullptr;
 }
 
 /*

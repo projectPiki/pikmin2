@@ -93,6 +93,15 @@ StateWalk::StateWalk(int stateID)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+	OBJ(enemy)->mNextState = MIULIN_NULL;
+	enemy->startMotion(5, nullptr);
+	_14 = 0;
+	if (enemy->mTargetCreature) {
+		_10                = 0;
+		Vector3f targetPos = enemy->mTargetCreature->getPosition();
+		Vector3f pos       = enemy->getPosition();
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
