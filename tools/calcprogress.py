@@ -23,6 +23,8 @@ import struct
 import re
 import math
 import csv
+import json
+import argparse
 from datetime import datetime
 
 ###############################################
@@ -156,6 +158,12 @@ def update_csv(
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Calculate progress.")
+    parser.add_argument("dol", help="Path to DOL")
+    parser.add_argument("map", help="Path to map")
+    parser.add_argument("-o", "--output", help="JSON output file")
+    args = parser.parse_args()
+
     # Sum up DOL section sizes
     dol_handle = open(sys.argv[1], "rb")
 
@@ -244,7 +252,7 @@ if __name__ == "__main__":
             # Has the object file changed?
             last_object = cur_object
             cur_object = match_obj.group("Object").strip()
-            if last_object != cur_object:
+            if last_object != cur_object or cur_object.endswith(" (asm)"):
                 continue
             # Is the symbol a file-wide section?
             symb = match_obj.group("Symbol")
@@ -287,6 +295,18 @@ if __name__ == "__main__":
 
     sentence = f"\nYou have {codeCount} out of {CODE_FRAC} {CODE_ITEM} and {dataCount} out of {DATA_FRAC} {DATA_ITEM}."
     print(sentence)
+
+    if args.output:
+        data = {
+            "dol": {
+                "code": decomp_code_size,
+                "code/total": dol_code_size,
+                "data": decomp_data_size,
+                "data/total": dol_data_size,
+            }
+        }
+        with open(args.output, "w") as f:
+            json.dump(data, f)
 
     update_csv(
         code_count=codeCount,
