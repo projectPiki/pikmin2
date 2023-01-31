@@ -16,6 +16,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Git config
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Build
       run: |
         python configure.py --map --version ${{matrix.version}} --compilers /compilers/GC
@@ -45,6 +47,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Git config
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Install dependencies
       run: apk add --no-cache make gcc musl-dev
     - name: Build
