@@ -8,7 +8,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    container: ghcr.io/primedecomp/build:main
+    container: ghcr.io/projectpiki/build:main
     strategy:
       fail-fast: false
       matrix:
@@ -23,12 +23,12 @@ jobs:
         python configure.py --map --version ${{matrix.version}} --compilers /compilers/GC
         ninja
     - name: Upload progress
-      if: false # github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/main'
       continue-on-error: true
       env:
         PROGRESS_API_KEY: ${{secrets.PROGRESS_API_KEY}}
       run: |
-        python tools/upload-progress.py -b https://progress.deco.mp/ -p prime -v ${{matrix.version}} \
+        python tools/upload-progress.py -b https://progress.deco.mp/ -p pikmin2 -v ${{matrix.version}} \
           build/pikmin2.${{matrix.version}}/main.dol.progress
     - name: Upload map
       uses: actions/upload-artifact@v3
@@ -39,7 +39,7 @@ jobs:
   build_make:
     name: Build (legacy)
     runs-on: ubuntu-latest
-    container: ghcr.io/primedecomp/build:main
+    container: ghcr.io/projectpiki/build:main
     strategy:
       fail-fast: false
       matrix:
@@ -49,7 +49,5 @@ jobs:
       uses: actions/checkout@v3
     - name: Git config
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-    - name: Install dependencies
-      run: apk add --no-cache make gcc musl-dev
     - name: Build
       run: make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=/compilers/GC
