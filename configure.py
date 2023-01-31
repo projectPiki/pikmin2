@@ -486,7 +486,7 @@ LIBS = [
             ["Dolphin/MSL_C/file_io", True],
             ["Dolphin/MSL_C/FILE_POS", True],
             ["Dolphin/MSL_C/locale", True, {"cflags": "$cflags_base -common off -str pool"}],
-            ["Dolphin/MSL_C/mbstring", True, {"cflags": "-Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common off -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)"}],
+            ["Dolphin/MSL_C/mbstring", True, {"cflags": "$cflags_base -common off -inline noauto,deferred"}],
             ["Dolphin/MSL_C/mem", True],
             "Dolphin/MSL_C/mem_funcs",
             ["Dolphin/MSL_C/misc_io", True],
@@ -1269,7 +1269,7 @@ LIBS = [
             ["plugProjectOgawaU/ogObjSMenuBase", True],
             "plugProjectOgawaU/ogObjCourseName",
             ["plugProjectOgawaU/ogUtil", True],
-            "plugProjectOgawaU/ogSceneCourseName",
+            ["plugProjectOgawaU/ogSceneCourseName", True],
             ["plugProjectOgawaU/ogObjKantei", True],
             ["plugProjectOgawaU/ogSceneKantei", True],
             ["plugProjectOgawaU/ogObjSpecialItem", True],
@@ -1733,7 +1733,7 @@ if __name__ == "__main__":
     else:
         dkp_path = Path("/opt/devkitpro/devkitPPC")
 
-    cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse -nosyspath -use_lmw_stmw on -MMD -DVERSION={version_num} -DNONMATCHING=0 -i include"
+    cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse -nosyspath -use_lmw_stmw on -w off -MMD -DVERSION={version_num} -DNONMATCHING=0 -i include"
     if args.debug:
         cflags_base += " -sym on -D_DEBUG"
     else:
@@ -1944,7 +1944,7 @@ if __name__ == "__main__":
                 if len(object) > 1:
                     completed = object[1]
                 if len(object) > 2:
-                    options.update(object[3])
+                    options.update(object[2])
                 object = object[0]
 
             mw_version = options["mw_version"] or lib["mw_version"]
