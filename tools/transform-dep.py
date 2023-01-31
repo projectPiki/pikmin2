@@ -50,21 +50,6 @@ def import_d_file(in_file: str) -> str:
         else:
             out_lines.append(line.replace('\\', '/'))
 
-        headers: List[str] = []
-        for line in it:
-            suffix = ''
-            if line.endswith(' \\\n'):
-                suffix = ' \\'
-                path = line.lstrip()[:-3]
-            else:
-                path = line.strip()
-
-            path = convert_path(path)
-            headers.append(path)
-            out_lines.append(f"\t{path}{suffix}\n")
-        # the metrowerks compiler doesn't support -MP
-        out_lines.extend([f'{header}:\n' for header in headers])
-
     return ''.join(out_lines)
 
 
