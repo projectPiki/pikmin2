@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [usa]
+        version: [usa, usa.demo]
     steps:
     - name: Checkout
       uses: actions/checkout@v3
