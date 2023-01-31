@@ -3307,13 +3307,11 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			mRocketPosition = Vector2f(getPaneCenterX(cPointPane), getPaneCenterY(cPointPane));
 			mRocketScale    = 0.01f;
 			paneRocket->setOffset(mRocketPosition.x, mRocketPosition.y);
-			paneRocket->mAngle = atan2(-mRocketAngle.x, -mRocketAngle.y);
-			paneRocket->calcMtx();
+			paneRocket->setAngle(atan2(-mRocketAngle.x, -mRocketAngle.y));
 			paneRocket->updateScale(mRocketScale);
 			for (int i = 0; i < mOnyonCount; i++) {
 				mOnyonArray[i].mOnyonPane->setOffset(mRocketPosition.x, mRocketPosition.y);
-				mOnyonArray[i].mOnyonPane->mAngle = atan2(-mRocketAngle.x, -mRocketAngle.y);
-				mOnyonArray[i].mOnyonPane->calcMtx();
+				mOnyonArray[i].mOnyonPane->setAngle(atan2(-mRocketAngle.x, -mRocketAngle.y));
 				mOnyonArray[i].mOnyonPane->updateScale(mRocketScale);
 			}
 			mRocketMoveCounter = 0;
@@ -5719,8 +5717,7 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 {
 	J2DPane* shipPane = mScreenRocket->search('NROCKET');
 	shipPane->setOffset(mRocketPosition.x, mRocketPosition.y);
-	shipPane->mAngle = JMath::atanTable_.atan2_(-mRocketAngle.x, -mRocketAngle.y) * 57.295776f;
-	shipPane->calcMtx();
+	shipPane->setAngle(JMath::atanTable_.atan2_(-mRocketAngle.x, -mRocketAngle.y) * 57.295776f);
 
 	f32 scale = tag2num(pane->mMessageID);
 	mRocketScale *= msVal._08 + (1.0f - msVal._08) * scale;
@@ -8365,8 +8362,7 @@ void WorldMap::OnyonDynamics::update(WorldMap* map)
 {
 	f32 scale = map->mScreenRocket->search('NROCKET')->mScale.x;
 	mOnyonPane->setOffset(scale * JMath::sincosTable_.mTable[mRotateAngle].first * 50.0f + mOffset.x, mOffset.y);
-	mOnyonPane->mAngle = (JMath::atanTable_.atan2_(-mAngle.x, -mAngle.y));
-	mOnyonPane->calcMtx();
+	mOnyonPane->setAngle(JMath::atanTable_.atan2_(-mAngle.x, -mAngle.y));
 	mOnyonPane->updateScale(scale);
 	mEfxPosition.x = mOnyonPane->mGlobalMtx[0][3];
 	mEfxPosition.y = mOnyonPane->mGlobalMtx[1][3];

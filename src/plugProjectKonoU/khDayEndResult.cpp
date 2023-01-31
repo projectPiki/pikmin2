@@ -1547,7 +1547,7 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 		mTotalDeaths[i] = inca->mTotalPikiDeaths[i];
 	}
 
-	u32 flag = dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag;
+	int flag = dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag;
 	if (!(flag & 1)) {
 		mScreenMain->search('Nfigre01')->hide();
 		mScreenMain->search('Npiki01')->hide();
@@ -1583,12 +1583,13 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 		mCounterNum -= 2;
 	}
 
-	mPikiCountersList = new og::Screen::CallBack_CounterSlot*[mCounterNum];
 	int counters      = 0;
+	mPikiCountersList = new og::Screen::CallBack_CounterSlot*[mCounterNum];
 	if (flag & 1) {
-		mPikiCountersList[0] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Prpkyo1', &mYesterdayPikis[0], 5, true, false, arc);
-		mPikiCountersList[1] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Prpmade1', &mTodayPikis[0], 8, true, false, arc);
-		counters             = 2;
+		mPikiCountersList[counters++]
+		    = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Prpkyo1', &mYesterdayPikis[0], 5, true, false, arc);
+		mPikiCountersList[counters++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Prpmade1', &mTodayPikis[0], 8, true, false, arc);
+		counters                      = 2;
 	}
 
 	if (flag & 2) {
@@ -1624,23 +1625,24 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 		mPikiCountersList[i]->setPuyoParam(2.5f, 35.0f, 0.3f);
 	}
 	// unrolled loop?
-	mDeathCountersList     = new og::Screen::CallBack_CounterSlot*[14];
-	mDeathCountersList[0]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptakyo1', &mTodayDeaths[0], 4, true, false, nullptr);
-	mDeathCountersList[1]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptamade1', &mTotalDeaths[0], 8, true, false, nullptr);
-	mDeathCountersList[2]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pnikyo1', &mTodayDeaths[1], 4, true, false, nullptr);
-	mDeathCountersList[3]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pnimade1', &mTotalDeaths[1], 8, true, false, nullptr);
-	mDeathCountersList[4]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Phokyo1', &mTodayDeaths[2], 4, true, false, nullptr);
-	mDeathCountersList[5]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Phomade1', &mTotalDeaths[2], 8, true, false, nullptr);
-	mDeathCountersList[6]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Psukyo1', &mTodayDeaths[3], 4, true, false, nullptr);
-	mDeathCountersList[7]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Psumade1', &mTotalDeaths[3], 8, true, false, nullptr);
-	mDeathCountersList[8]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdepkyo1', &mTodayDeaths[4], 4, true, false, nullptr);
-	mDeathCountersList[9]  = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdepmad1', &mTotalDeaths[4], 8, true, false, nullptr);
-	mDeathCountersList[10] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbapkyo1', &mTodayDeaths[5], 4, true, false, nullptr);
-	mDeathCountersList[11] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbapmad1', &mTotalDeaths[5], 8, true, false, nullptr);
-	mDeathCountersList[12] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdopkyo1', &mTodayDeaths[6], 4, true, false, nullptr);
-	mDeathCountersList[13] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdopmad1', &mTotalDeaths[6], 8, true, false, nullptr);
-	mDeathCounterToday     = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pdtokyp1', &mTotalDeaths[7], 4, false, false, arc);
-	mDeathCounterTotal     = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pdtomdp1', &mTotalDeaths[7], 8, false, false, arc);
+	int counters2                   = 0;
+	mDeathCountersList              = new og::Screen::CallBack_CounterSlot*[14];
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptakyo1', &mTodayDeaths[0], 4, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptamade1', &mTotalDeaths[0], 8, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pnikyo1', &mTodayDeaths[1], 4, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pnimade1', &mTotalDeaths[1], 8, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Phokyo1', &mTodayDeaths[2], 4, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Phomade1', &mTotalDeaths[2], 8, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Psukyo1', &mTodayDeaths[3], 4, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Psumade1', &mTotalDeaths[3], 8, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdepkyo1', &mTodayDeaths[4], 4, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdepmad1', &mTotalDeaths[4], 8, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbapkyo1', &mTodayDeaths[5], 4, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pbapmad1', &mTotalDeaths[5], 8, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdopkyo1', &mTodayDeaths[6], 4, true, false, arc);
+	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Pdopmad1', &mTotalDeaths[6], 8, true, false, arc);
+	mDeathCounterToday              = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pdtokyp1', &mTotalDeaths[7], 4, false, false, arc);
+	mDeathCounterTotal              = og::Screen::setCallBack_CounterRV(mScreenMain, 'Pdtomdp1', &mTotalDeaths[7], 8, false, false, arc);
 	mDeathCounterToday->hide();
 	mDeathCounterTotal->hide();
 
@@ -1657,11 +1659,13 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 	int counts[12] = { mYesterdayPikis[0], mTodayPikis[0], mYesterdayPikis[1], mTodayPikis[1], mYesterdayPikis[2], mTodayPikis[2],
 		               mYesterdayPikis[3], mTodayPikis[3], mYesterdayPikis[4], mTodayPikis[4], mYesterdayPikis[5], mTodayPikis[5] };
 
+	f32 angle1 = 30.0f;
+	f32 angle2 = -angle1;
 	for (int i = 0; i < 12; i++) {
 		if (counts[i] < counts[i + 1]) {
-			mArrowAngles[i] = 30.0f;
+			mArrowAngles[i] = angle1;
 		} else if (counts[i] > counts[i + 1]) {
-			mArrowAngles[i] = -30.0f;
+			mArrowAngles[i] = angle2;
 		}
 	}
 
@@ -1675,7 +1679,7 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 		mPikiCounterToday->show();
 		mNextBtnFadePane->fadein();
 		for (int i = 0; i < 6; i++) {
-			if (i == 5 || dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag & i) {
+			if (i == 5 || dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag & 1 << i) {
 				mScreenMain->search(arrow[i])->show();
 			}
 		}
@@ -3676,7 +3680,7 @@ void ObjDayEndResultIncP::effectCommon()
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
 	for (int i = 0; i < 6; i++) {
-		if (i == 5 || dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag & i) {
+		if (i == 5 || dispResult->mIncP.mPikminInfo->mPikminUnlockedFlag & 1 << i) {
 			mScreenMain->search(arrow[i])->show();
 		}
 	}
@@ -3691,121 +3695,6 @@ void ObjDayEndResultIncP::effectCommon()
 	} else {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0);
 	}
-
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stmw     r27, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xb0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xb4(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xb0(r31)
-lfs      f1, lbl_805200B0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, 0xb4(r31)
-lfs      f1, lbl_805200B0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_8040795C
-lis      r3, lbl_80498830@ha
-lis      r5, lbl_80498900@ha
-addi     r3, r3, lbl_80498830@l
-li       r4, 0x6c2
-addi     r5, r5, lbl_80498900@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8040795C:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, arrow__Q22kh6Screen@ha
-mr       r29, r3
-addi     r28, r4, arrow__Q22kh6Screen@l
-li       r27, 0
-li       r30, 1
-
-lbl_80407978:
-cmpwi    r27, 5
-beq      lbl_80407994
-lwz      r3, 0x3c(r29)
-slw      r0, r30, r27
-lbz      r3, 0x70(r3)
-and.     r0, r3, r0
-beq      lbl_804079B4
-
-lbl_80407994:
-lwz      r3, 0x4c(r31)
-lwz      r5, 0(r28)
-lwz      r12, 0(r3)
-lwz      r6, 4(r28)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-stb      r30, 0xb0(r3)
-
-lbl_804079B4:
-addi     r27, r27, 1
-addi     r28, r28, 8
-cmpwi    r27, 6
-blt      lbl_80407978
-lwz      r3, 0xc8(r31)
-bl       up__Q32og6Screen8ScaleMgrFv
-lwz      r3, 0xe0(r31)
-lwz      r0, 0xf8(r31)
-cmplw    r3, r0
-bge      lbl_80407A00
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1829
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x285f
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_80407A38
-
-lbl_80407A00:
-ble      lbl_80407A28
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x182b
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x2860
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_80407A38
-
-lbl_80407A28:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1806
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_80407A38:
-lmw      r27, 0xc(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
 }
 
 /*
@@ -3832,8 +3721,115 @@ void ObjDayEndResultIncP::updateCommon()
  * Address:	80407DB8
  * Size:	0008B4
  */
-void ObjDayEndResultMail::doCreate(JKRArchive*)
+void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 {
+	ObjDayEndResultBase::doCreate(arc);
+	mScreenMain = new P2DScreen::Mgr_tuning;
+	mScreenMain->set("result_mail.blo", 0x40000, arc);
+
+	void* resource  = JKRFileLoader::getGlbResource("result_mail.bck", arc);
+	mMainAnimTrans1 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	mMainAnimTrans2 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	mMainAnimTrans3 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	mMainAnimTrans4 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+
+	mMainAnimSRT = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_mail.btk", arc)));
+	mMainAnimTev = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_mail.brk", arc)));
+	mScreenMain->setAnimation(mMainAnimSRT);
+	mScreenMain->setAnimation(mMainAnimTev);
+
+	mScreenMain->search('NitemW1')->setAnimation(mMainAnimTrans3);
+	mScreenMain->search('NitemW')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp01')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp02')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp03')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp04')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp05')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Pset_p')->setAnimation(mMainAnimTrans4);
+	mScreenMain->search('Ntitle')->setAnimation(mMainAnimTrans2);
+	mScreenMain->search('Nicon')->setAnimation(mMainAnimTrans3);
+
+	mScreenCharacter = new P2DScreen::Mgr_tuning;
+	mScreenCharacter->set("result_maile_big_icon.blo", 0x1040000, arc);
+	mCharacterAnimTrans
+	    = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_maile_big_icon.bck", arc)));
+	mScreenCharacter->search('NitemW')->setAnimation(mCharacterAnimTrans);
+
+	mScreenStars = new P2DScreen::Mgr_tuning;
+	mScreenStars->set("result_mail_constellation.blo", 0x40000, arc);
+	mStarsAnimColor
+	    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_mail_constellation.bpk", arc)));
+	mScreenStars->setAnimation(mStarsAnimColor);
+
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(1902, "disp member err");
+	}
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+
+	mSaveMgr = ebi::Save::TMgr::createInstance();
+	mSaveMgr->doLoadResource(JKRGetCurrentHeap());
+	mSaveMgr->setControllers(getGamePad());
+
+	mCurrentDay = dispResult->mMail.mDayCount;
+	mMaxDay     = dispResult->mMail.mDayCount;
+	mDayCounter = og::Screen::setCallBack_CounterDay(mScreenMain, 'Pday2_1', 'Pday2_2', 'Pday1', &mCurrentDay, 3, arc);
+	mDayCounter->setPuyoAnim(true);
+	setCallBackMessage(mScreenMain);
+
+	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
+	if (dispResult->mMail.mHeap) {
+		mIconArchive  = scene->mMemArchive;
+		mMailIconAnms = new MailIconAnm[20];
+
+		for (int i = 0; i < 20; i++) {
+			u8 id = scene->mMailFlags[i];
+			if (id == -1)
+				break;
+			if (id == -2) {
+				mMailIconAnms[i].mTIMG      = nullptr;
+				mMailIconAnms[i].mIconCount = 0;
+			} else {
+				char* path = scene->mTableData[id]->mFileName;
+				char buf[64];
+				do {
+					mMailIconAnms[i].mIconCount++;
+					sprintf(buf, "%s%003d.bti", path, mMailIconAnms[i].mIconCount);
+				} while (JKRFileLoader::getGlbResource(buf, mIconArchive));
+				mMailIconAnms[i].mIconCount--;
+				if (mMailIconAnms[i].mIconCount) {
+					mMailIconAnms[i].mTIMG = new ResTIMG*[mMailIconAnms[i].mIconCount];
+				}
+
+				for (int j = 0; i < mMailIconAnms[j].mIconCount; j++) {
+					char buf2[64];
+					sprintf(buf, "%s%003d.bti", path, j);
+					mMailIconAnms[i].mTIMG[j] = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource(buf2, mIconArchive));
+				}
+			}
+		}
+		setTex(mScreenMain, 'Pset_p', mMailIconAnms[0].mTIMG[0]);
+	}
+	MailTableData* data = scene->mTableData[scene->mMailFlags[0]];
+	mScreenMain->search('Ttext')->setMsgID(data->mMessageID);
+	mFadePaneArrowL = khUtilFadePane::create(mScreenMain, 'Nyaji_l', 32);
+	mFadePaneArrowR = khUtilFadePane::create(mScreenMain, 'Nyaji_r', 32);
+
+	if (mMaxDay == 1) {
+		mFadePaneArrowR->fadeout();
+		mFadePaneArrowR->set_init_alpha(0);
+	}
+	mFadePaneArrowL->fadeout();
+	mFadePaneArrowL->set_init_alpha(0);
+	setInfAlpha(mScreenCharacter->search('NitemW'));
+	changeAlpha();
+	if (dispResult->mMail._18) {
+		mStatus = MAILSTATUS_Normal;
+		mAlpha  = 255;
+		changeAlpha();
+		mNextBtnFadePane->fadein();
+		_DC = 1.0f;
+		_D8 = 1.0f;
+	}
 	/*
 stwu     r1, -0x140(r1)
 mflr     r0
@@ -5538,10 +5534,10 @@ void ObjDayEndResultMail::statusOpenH()
 		mStatus = MAILSTATUS_Normal;
 	}
 
-	_E8 += 32;
+	mAlpha += 32;
 
-	if (_E8 > 255) {
-		_E8 = 255;
+	if (mAlpha > 255) {
+		mAlpha = 255;
 	}
 
 	changeAlpha();
@@ -5855,7 +5851,7 @@ blr
  * Address:	80409908
  * Size:	000064
  */
-void ObjDayEndResultMail::changeAlpha() { _9C->search('NitemW')->setAlpha(255 - _E8); }
+void ObjDayEndResultMail::changeAlpha() { mScreenCharacter->search('NitemW')->setAlpha(255 - mAlpha); }
 
 /*
  * --INFO--
@@ -5870,9 +5866,9 @@ void ObjDayEndResultMail::doDraw(Graphics& gfx)
 	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 
 	gfx.mOrthoGraph.setPort();
-	_9C->draw(gfx, gfx.mOrthoGraph);
+	mScreenCharacter->draw(gfx, gfx.mOrthoGraph);
 
-	if (mFlags & 0x4) {
+	if (mFlags & 4) {
 		gfx.mPerspGraph.setPort();
 		mScreenMain->search('Nsetpoin');
 		mSaveMgr->draw();
@@ -6688,7 +6684,7 @@ void ObjDayEndResultTitl::updateCommon()
  */
 SceneDayEndResultMail::SceneDayEndResultMail()
 {
-	_220        = 0;
+	mTableData  = nullptr;
 	mMemArchive = nullptr;
 }
 
@@ -7111,8 +7107,8 @@ blr
 }
 
 // members aren't getting initialised in correct order for some reason?
-ObjDayEndResultBase::StaticValues ObjDayEndResultBase::msVal = ObjDayEndResultBase::StaticValues();
-ObjDayEndResultTitl::StaticValues ObjDayEndResultTitl::msVal = ObjDayEndResultTitl::StaticValues();
+ObjDayEndResultBase::StaticValues ObjDayEndResultBase::msVal;
+ObjDayEndResultTitl::StaticValues ObjDayEndResultTitl::msVal;
 
 } // namespace Screen
 } // namespace kh

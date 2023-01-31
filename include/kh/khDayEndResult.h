@@ -396,12 +396,12 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 	struct MailIconAnm {
 		MailIconAnm()
 		{
-			_00 = 0;
-			_04 = 0;
+			mTIMG      = nullptr;
+			mIconCount = 0;
 		}
 
-		u32 _00; // _00, unknown
-		u32 _04; // _04, unknown
+		ResTIMG** mTIMG; // _00
+		int mIconCount;  // _04
 	};
 
 	virtual ~ObjDayEndResultMail() { }                          // _08 (weak)
@@ -441,27 +441,27 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_98 = ObjDayEndResultBase
-	Status mStatus;                       // _98
-	P2DScreen::Mgr_tuning* _9C;           // _9C
-	J2DAnmTransform* _A0;                 // _A0
-	ebi::Save::TMgr* mSaveMgr;            // _A4
-	J2DAnmTransform* _A8;                 // _A8
-	J2DAnmTransform* _AC;                 // _AC
-	f32 _B0;                              // _B0
-	og::Screen::CallBack_CounterDay* _B4; // _B4
-	int _B8;                              // _B8
-	u32 _BC;                              // _BC
-	JKRMemArchive* mMemArchive;           // _C0
-	MailIconAnm* mMailIconAnms;           // _C4, array of 20 icon anms
-	u32 _C8;                              // _C8, unknown
-	khUtilFadePane* _CC;                  // _CC
-	khUtilFadePane* _D0;                  // _D0
-	og::Screen::CallBack_Message* _D4;    // _D4
-	f32 _D8;                              // _D8
-	f32 _DC;                              // _DC
-	f32 _E0;                              // _E0
-	f32 _E4;                              // _E4
-	int _E8;                              // _E8
+	Status mStatus;                               // _98
+	P2DScreen::Mgr_tuning* mScreenCharacter;      // _9C
+	J2DAnmTransform* mCharacterAnimTrans;         // _A0
+	ebi::Save::TMgr* mSaveMgr;                    // _A4
+	J2DAnmTransform* mMainAnimTrans3;             // _A8
+	J2DAnmTransform* mMainAnimTrans4;             // _AC
+	f32 _B0;                                      // _B0
+	og::Screen::CallBack_CounterDay* mDayCounter; // _B4
+	int mMaxDay;                                  // _B8
+	u32 mCurrentDay;                              // _BC
+	JKRMemArchive* mIconArchive;                  // _C0
+	MailIconAnm* mMailIconAnms;                   // _C4, array of 20 icon anms
+	u32 _C8;                                      // _C8, unknown
+	khUtilFadePane* mFadePaneArrowL;              // _CC
+	khUtilFadePane* mFadePaneArrowR;              // _D0
+	og::Screen::CallBack_Message* _D4;            // _D4
+	f32 _D8;                                      // _D8
+	f32 _DC;                                      // _DC
+	f32 _E0;                                      // _E0
+	f32 _E4;                                      // _E4
+	int mAlpha;                                   // _E8
 };
 
 struct ObjDayEndResultItem : public ObjDayEndResultBase {
@@ -601,6 +601,13 @@ struct SceneDayEndResultItem : public ::Screen::SceneBase {
 	// TODO: work out if this has extra members
 };
 
+struct MailTableData {
+	u64 mMessageID;
+	u8 mFlag[3];
+	char* mFileName;
+	u8 mSaveFlag;
+};
+
 struct SceneDayEndResultMail : public ::Screen::SceneBase {
 	SceneDayEndResultMail();
 
@@ -613,9 +620,9 @@ struct SceneDayEndResultMail : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	u32 _220;                   // _220, unknown
+	MailTableData** mTableData; // _220, unknown
 	JKRMemArchive* mMemArchive; // _224
-	u8 _228[0x14];              // _228, unknown
+	u8 mMailFlags[20];          // _228, unknown
 };
 
 struct SceneDayEndResultTitl : public ::Screen::SceneBase {
