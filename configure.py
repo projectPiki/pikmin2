@@ -1985,8 +1985,8 @@ if __name__ == "__main__":
 
         for object in lib["objects"]:
             completed = None
-            add_to_all = True
             options = {
+                "add_to_all": True,
                 "mw_version": None,
                 "cflags": None,
             }
@@ -2039,9 +2039,9 @@ if __name__ == "__main__":
                             "basefile": path(build_host_path / object),
                         },
                     )
-                    if add_to_all:
+                    if options["add_to_all"]:
                         host_source_inputs.append(build_host_path / f"{object}.o")
-                if add_to_all:
+                if options["add_to_all"]:
                     source_inputs.append(build_src_path / f"{object}.o")
             if os.path.exists(asm_path / f"{object}.s"):
                 n.build(
