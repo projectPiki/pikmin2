@@ -8,7 +8,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    container: ghcr.io/primedecomp/build:main
+    container: ghcr.io/projectpiki/build:main
     strategy:
       fail-fast: false
       matrix:
@@ -39,7 +39,7 @@ jobs:
   build_make:
     name: Build (legacy)
     runs-on: ubuntu-latest
-    container: ghcr.io/primedecomp/build:main
+    container: ghcr.io/projectpiki/build:main
     strategy:
       fail-fast: false
       matrix:
@@ -49,7 +49,5 @@ jobs:
       uses: actions/checkout@v3
     - name: Git config
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-    - name: Install dependencies
-      run: apk add --no-cache make gcc musl-dev
     - name: Build
       run: make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=/compilers/GC
