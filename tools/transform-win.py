@@ -6,10 +6,18 @@ def import_d_file(in_file) -> str:
 
     with open(in_file) as file:
       for idx, line in enumerate(file):
-          if line.endswith(' \\\n'):
-            out_text += line[:-3].replace('\\', '/') + " \\\n"
+          if idx != 0:
+            path_found_pos = line.find("include")
+            line = "\t" + line[path_found_pos:]
+            if line.endswith(' \\\n'):
+              out_text += line[:-3].replace('\\', '/') + " \\\n"
+            else:
+              out_text += line.replace('\\', '/')
           else:
-            out_text += line.replace('\\', '/')
+            if line.endswith(' \\\n'):
+              out_text += line[:-3].replace('\\', '/') + " \\\n"
+            else:
+              out_text += line.replace('\\', '/')
 
     return out_text
 
