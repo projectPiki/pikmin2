@@ -839,7 +839,7 @@ LIBS = [
             "plugProjectYamashitaU/gameLightMgr",
             "plugProjectYamashitaU/vtxAnm",
             ["plugProjectYamashitaU/enemyInfo", True],
-            "plugProjectYamashitaU/farm",
+            ["plugProjectYamashitaU/farm", True],
             ["plugProjectYamashitaU/farmMgr", True],
             "plugProjectYamashitaU/genEnemy",
             ["plugProjectYamashitaU/timeMgr", True],
