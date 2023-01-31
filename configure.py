@@ -1724,6 +1724,12 @@ if __name__ == "__main__":
         default=Path("build"),
         help="base build directory",
     )
+    parser.add_argument(
+        "--franklite",
+        dest="franklite",
+        action="store_true",
+        help="use franklite.py instead of frank.py",
+    )
     args = parser.parse_args()
 
     # On Windows, we need this to use && in commands
@@ -1766,7 +1772,7 @@ if __name__ == "__main__":
     else:
         dkp_path = Path("/opt/devkitpro/devkitPPC")
 
-    cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse,readonly -nosyspath -use_lmw_stmw on -sdata 8 -sdata2 8 -MMD -DVERNUM={version_num} -i include"
+    cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse,readonly -nosyspath -use_lmw_stmw on -sdata 8 -sdata2 8 -DVERNUM={version_num} -i include"
     if args.debug:
         cflags_base += " -sym on -D_DEBUG"
     else:
@@ -1860,11 +1866,20 @@ if __name__ == "__main__":
     compiler_path = args.compilers / "$mw_version"
     mwcc = compiler_path / "mwcceppc.exe"
     mwld = compiler_path / "mwldeppc.exe"
+    frank = tools_path / "frank.py"
     franklite = tools_path / "franklite.py"
     gnu_as = dkp_path / "bin" / f"powerpc-eabi-as{exe}"
 
-    mwcc_cmd = f"{chain}{wine}{mwcc} $cflags -c $in -o $basedir"
-    mwcc_frank_cmd = f"{mwcc_cmd} && $python {franklite} $out $out"
+    mwcc_cmd = f"{chain}{wine}{mwcc} $cflags -MMD -c $in -o $basedir"
+    if args.franklite:
+        mwcc_frank_cmd = f"{mwcc_cmd} && $python {franklite} $out $out"
+    else:
+        profile_mwcc = args.compilers / "1.2.5e" / "mwcceppc.exe"
+        mwcc_frank_cmd = (
+            f"{chain}{wine}{mwcc} $cflags -MMD -c $in -o $basedir"
+            + f" && {wine}{profile_mwcc} $cflags -c $in -o $out.profile"
+            + f" && $python {frank} $out $out.profile $out"
+        )
     mwld_cmd = f"{wine}{mwld} $ldflags -o $out @$out.rsp"
     as_cmd = (
         f"{chain}{gnu_as} $asflags -o $out $in -MD $out.d"
@@ -1994,9 +2009,14 @@ if __name__ == "__main__":
                 c_file = src_path / f"{object}.C"
             if c_file is not None:
                 rule = "mwcc"
+                implicit = []
                 if mw_version == "1.2.5e":
                     mw_version = "1.2.5"
                     rule = "mwcc_frank"
+                    if args.franklite:
+                        implicit.append(franklite)
+                    else:
+                        implicit.append(frank)
                 n.build(
                     outputs=path(build_src_path / f"{object}.o"),
                     rule=rule,
@@ -2007,6 +2027,7 @@ if __name__ == "__main__":
                         "basedir": os.path.dirname(build_src_path / f"{object}"),
                         "basefile": path(build_src_path / f"{object}"),
                     },
+                    implicit=path(implicit),
                 )
                 if lib["host"]:
                     n.build(
