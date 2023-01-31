@@ -3,6 +3,7 @@
 #include "System.h"
 #include "types.h"
 #include "Game/SingleGame.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -188,47 +189,6 @@ void FileState::init(Game::SingleGameSection* section, Game::StateArg* arg)
 	Screen::gGame2DMgr->mScreenMgr->reset();
 	sys->setFrameRate(1);
 	playData->mDeadNaviID[0] = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       reset__Q24Game11MoviePlayerFv
-	li       r0, 1
-	lfs      f1, lbl_8051A070@sda21(r2)
-	stb      r0, 0x24(r30)
-	lwz      r0, 0xd4(r31)
-	stw      r0, 0x18(r31)
-	lwz      r3, 0xd4(r31)
-	bl       start__8WipeBaseFf
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r3, 0x18(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, sys@sda21(r13)
-	li       r4, 1
-	bl       setFrameRate__6SystemFi
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r0, 0
-	stb      r0, 0x20(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -816,26 +776,3 @@ lbl_8021CF30:
 
 } // namespace SingleGame
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8021CF9C
- * Size:	000030
- */
-// void Delegate<Game::FileState>::invoke()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	mr       r4, r3
-// 	stw      r0, 0x14(r1)
-// 	addi     r12, r4, 8
-// 	lwz      r3, 4(r3)
-// 	bl       __ptmf_scall
-// 	nop
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
