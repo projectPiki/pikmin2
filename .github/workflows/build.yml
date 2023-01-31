@@ -7,34 +7,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: devkitpro/devkitppc:latest
-    env:
-      WINEPREFIX: ${{github.workspace}}/.wine
+    container: ghcr.io/primedecomp/build:main
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [usa]
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Checkout WiBo
-      uses: actions/checkout@v3
-      with:
-        repository: decompals/WiBo
-        path: tools/WiBo
-    - name: Install dependencies
-      run: |
-        sudo dpkg --add-architecture i386
-        sudo apt-get update
-        sudo apt-get -y install build-essential gcc-multilib g++-multilib libc6:i386
-        curl -L https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip \
-          | bsdtar -xvf- -C tools --exclude Wii
-        mv tools/GC/* tools/mwcc_compiler/
-    - name: Build WiBo
-      working-directory: tools/WiBo
-      run: |
-        cmake -B build
-        cmake --build build
     - name: Build
-      run: make -j$(nproc) WINE=./tools/WiBo/build/wibo MAPGENFLAG=1
+      run: |
+        python configure.py --map --version ${{matrix.version}} --compilers /compilers/GC
+        ninja
+    - name: Upload progress
+      if: false # github.ref == 'refs/heads/main'
+      continue-on-error: true
+      env:
+        PROGRESS_API_KEY: ${{secrets.PROGRESS_API_KEY}}
+      run: |
+        python tools/upload-progress.py -b https://progress.deco.mp/ -p prime -v ${{matrix.version}} \
+          build/pikmin2.${{matrix.version}}/main.dol.progress
     - name: Upload map
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        name: pikmin2UP.MAP
+        name: pikmin2UP-${{matrix.version}}.MAP
         path: build/*/pikmin2UP.MAP
