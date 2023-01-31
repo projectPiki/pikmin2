@@ -436,7 +436,7 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 	void changeAlpha();
 	void setCallBackMessage(P2DScreen::Mgr*, J2DPane*);
 	void setCallBackMessage(P2DScreen::Mgr*);
-	void skipped() const;
+	bool skipped() const;
 
 	// _00     = VTBL1
 	// _18     = VTBL2
@@ -447,9 +447,9 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 	ebi::Save::TMgr* mSaveMgr;                    // _A4
 	J2DAnmTransform* mMainAnimTrans3;             // _A8
 	J2DAnmTransform* mMainAnimTrans4;             // _AC
-	f32 _B0;                                      // _B0
+	f32 mSideMoveTimer;                           // _B0
 	og::Screen::CallBack_CounterDay* mDayCounter; // _B4
-	int mMaxDay;                                  // _B8
+	u32 mMaxDay;                                  // _B8
 	u32 mCurrentDay;                              // _BC
 	JKRMemArchive* mIconArchive;                  // _C0
 	MailIconAnm* mMailIconAnms;                   // _C4, array of 20 icon anms
@@ -457,8 +457,8 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 	khUtilFadePane* mFadePaneArrowL;              // _CC
 	khUtilFadePane* mFadePaneArrowR;              // _D0
 	og::Screen::CallBack_Message* _D4;            // _D4
-	f32 _D8;                                      // _D8
-	f32 _DC;                                      // _DC
+	f32 mCharacterIconScaleX;                     // _D8
+	f32 mCharacterIconScaleY;                     // _DC
 	f32 _E0;                                      // _E0
 	f32 _E4;                                      // _E4
 	int mAlpha;                                   // _E8

@@ -3740,6 +3740,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 
 	mScreenMain->search('NitemW1')->setAnimation(mMainAnimTrans3);
 	mScreenMain->search('NitemW')->setAnimation(mMainAnimTrans1);
+	mScreenMain->search('Nsetp00')->setAnimation(mMainAnimTrans1);
 	mScreenMain->search('Nsetp01')->setAnimation(mMainAnimTrans1);
 	mScreenMain->search('Nsetp02')->setAnimation(mMainAnimTrans1);
 	mScreenMain->search('Nsetp03')->setAnimation(mMainAnimTrans1);
@@ -3767,11 +3768,13 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
 	mSaveMgr = ebi::Save::TMgr::createInstance();
+	mSaveMgr->mSaveMenu.loadResource();
 	mSaveMgr->doLoadResource(JKRGetCurrentHeap());
 	mSaveMgr->setControllers(getGamePad());
 
-	mCurrentDay = dispResult->mMail.mDayCount;
-	mMaxDay     = dispResult->mMail.mDayCount;
+	int day     = dispResult->mMail.mDayCount;
+	mCurrentDay = day;
+	mMaxDay     = day;
 	mDayCounter = og::Screen::setCallBack_CounterDay(mScreenMain, 'Pday2_1', 'Pday2_2', 'Pday1', &mCurrentDay, 3, arc);
 	mDayCounter->setPuyoAnim(true);
 	setCallBackMessage(mScreenMain);
@@ -3800,7 +3803,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 					mMailIconAnms[i].mTIMG = new ResTIMG*[mMailIconAnms[i].mIconCount];
 				}
 
-				for (int j = 0; i < mMailIconAnms[j].mIconCount; j++) {
+				for (int j = 0; i < mMailIconAnms[i].mIconCount; j++) {
 					char buf2[64];
 					sprintf(buf, "%s%003d.bti", path, j);
 					mMailIconAnms[i].mTIMG[j] = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource(buf2, mIconArchive));
@@ -3815,11 +3818,11 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	mFadePaneArrowR = khUtilFadePane::create(mScreenMain, 'Nyaji_r', 32);
 
 	if (mMaxDay == 1) {
-		mFadePaneArrowR->fadeout();
-		mFadePaneArrowR->set_init_alpha(0);
+		mFadePaneArrowL->fadeout();
+		mFadePaneArrowL->set_init_alpha(0);
 	}
-	mFadePaneArrowL->fadeout();
-	mFadePaneArrowL->set_init_alpha(0);
+	mFadePaneArrowR->fadeout();
+	mFadePaneArrowR->set_init_alpha(0);
 	setInfAlpha(mScreenCharacter->search('NitemW'));
 	changeAlpha();
 	if (dispResult->mMail._18) {
@@ -3827,8 +3830,8 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 		mAlpha  = 255;
 		changeAlpha();
 		mNextBtnFadePane->fadein();
-		_DC = 1.0f;
-		_D8 = 1.0f;
+		mCharacterIconScaleY = 1.0f;
+		mCharacterIconScaleX = 1.0f;
 	}
 	/*
 stwu     r1, -0x140(r1)
@@ -4431,115 +4434,28 @@ blr
  * Address:	8040867C
  * Size:	000170
  */
-bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg*)
+bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg* arg)
 {
-	return false;
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-cmplwi   r4, 0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-beq      lbl_804086B4
-lbz      r0, 4(r4)
-cmplwi   r0, 0
-beq      lbl_804086B4
-lwz      r0, 0x90(r31)
-rlwinm   r0, r0, 0, 0x1d, 0x1b
-stw      r0, 0x90(r31)
-b        lbl_804086C0
+	const StartSceneArg* sarg = static_cast<const StartSceneArg*>(arg);
 
-lbl_804086B4:
-lwz      r0, 0x90(r31)
-ori      r0, r0, 8
-stw      r0, 0x90(r31)
+	if (arg && sarg->_00) {
+		mFlags &= ~0x8;
+	} else {
+		mFlags |= 0x8;
+	}
+	setFadeinFrm();
 
-lbl_804086C0:
-lwz      r0, 0x90(r31)
-rlwinm.  r0, r0, 0, 0x1c, 0x1c
-beq      lbl_80408700
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x8c(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x7c(r31)
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x90(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x80(r31)
-b        lbl_80408730
+	setInfAlpha(mScreenStars->search('Nall'));
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 
-lbl_80408700:
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x7c(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x7c(r31)
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x80(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x80(r31)
-
-lbl_80408730:
-lfs      f0, 0x7c(r31)
-lis      r3, 0x4E616C6C@ha
-addi     r6, r3, 0x4E616C6C@l
-li       r5, 0
-stfs     f0, 0x60(r31)
-lwz      r3, 0x70(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       setInfAlpha__Q22kh6ScreenFP7J2DPane
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_804087B0
-lis      r3, lbl_80498830@ha
-lis      r5, lbl_80498900@ha
-addi     r3, r3, lbl_80498830@l
-li       r4, 0x7e6
-addi     r5, r5, lbl_80498900@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804087B0:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lbz      r0, 0x5c(r3)
-cmplwi   r0, 0
-bne      lbl_804087D4
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x187d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_804087D4:
-lwz      r0, 0x14(r1)
-li       r3, 1
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(2022, "disp member err");
+	}
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+	if (!dispResult->mMail._18) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MAIL_RECIEVE, 0);
+	}
+	return true;
 }
 
 /*
@@ -4549,123 +4465,26 @@ blr
  */
 bool ObjDayEndResultMail::doUpdateFadein()
 {
-	return false;
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-stw      r0, 0x44(r1)
-stfd     f31, 0x30(r1)
-psq_st   f31, 56(r1), 0, qr0
-stfd     f30, 0x20(r1)
-psq_st   f30, 40(r1), 0, qr0
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-mr       r30, r3
-lfs      f0, 0x60(r3)
-lwz      r4, 0xac(r3)
-stfs     f0, 8(r4)
-lwz      r12, 0(r3)
-lwz      r12, 0x78(r12)
-mtctr    r12
-bctrl
-lfs      f0, 0x60(r30)
-lis      r3, 0x74656D57@ha
-lwz      r4, 0x50(r30)
-addi     r6, r3, 0x74656D57@l
-li       r5, 0x4e69
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lis      r3, 0x4E616C6C@ha
-addi     r4, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, 0x60(r30)
-lfs      f0, 8(r4)
-addi     r6, r3, 0x4E616C6C@l
-li       r5, 0
-fadds    f0, f1, f0
-stfs     f0, 0x60(r30)
-lwz      r3, 0x70(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lfs      f2, 0x7c(r30)
-lfs      f1, 0x60(r30)
-lfs      f0, 0x80(r30)
-fsubs    f1, f1, f2
-lwz      r12, 0(r3)
-fsubs    f0, f0, f2
-lfs      f2, lbl_805200AC@sda21(r2)
-lwz      r12, 0x24(r12)
-fdivs    f0, f1, f0
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r4, 0xc(r1)
-mtctr    r12
-bctrl
-lfs      f1, 0x60(r30)
-lfs      f0, 0x80(r30)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_804088F0
-li       r31, 1
-b        lbl_804088F4
+	mMainAnimTrans4->mCurrentFrame = mMainAnimTimer1;
+	updateCommon();
+	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mScreenMain->search('NitemW')->animationTransform();
 
-lbl_804088F0:
-li       r31, 0
+	mMainAnimTimer1 += msVal._08;
 
-lbl_804088F4:
-lwz      r4, 0xa0(r30)
-lis      r3, 0x74656D57@ha
-addi     r6, r3, 0x74656D57@l
-li       r5, 0x4e69
-stfs     f1, 8(r4)
-lwz      r3, 0x9c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lwz      r3, 0x4c(r30)
-lis      r5, 0x656D5730@ha
-lis      r4, 0x004E6974@ha
-lfs      f30, 0xdc(r30)
-lwz      r12, 0(r3)
-addi     r6, r5, 0x656D5730@l
-addi     r5, r4, 0x004E6974@l
-lfs      f31, 0xd8(r30)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-stfs     f31, 0xcc(r3)
-stfs     f30, 0xd0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-mr       r3, r31
-psq_l    f31, 56(r1), 0, qr0
-lfd      f31, 0x30(r1)
-psq_l    f30, 40(r1), 0, qr0
-lfd      f30, 0x20(r1)
-lwz      r31, 0x1c(r1)
-lwz      r0, 0x44(r1)
-lwz      r30, 0x18(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	mScreenStars->search('Nall')->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
+
+	bool result;
+	if (mMainAnimTimer1 >= mFadeinMaxFrame) {
+		result = true;
+	} else {
+		result = false;
+	}
+	mCharacterAnimTrans->mCurrentFrame = mMainAnimTimer1;
+	mScreenCharacter->search('NitemW')->animationTransform();
+	mScreenMain->search('NitemW0')->updateScale(mCharacterIconScaleX, mCharacterIconScaleY);
+	mScreenMain->update();
+	return result;
 }
 
 /*
@@ -4675,6 +4494,67 @@ blr
  */
 bool ObjDayEndResultMail::doUpdate()
 {
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(2062, "disp member err");
+	}
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+
+	if (mFlags & 4) {
+		mSaveMgr->update();
+		if (mSaveMgr->isFinish()) {
+			switch (mSaveMgr->mCurrStateID) {
+			case 2:
+			case 0:
+				dispResult->mMail._14 = 1;
+				break;
+
+			case 1:
+				mFlags &= ~4;
+				break;
+
+			case 3:
+				dispResult->mMail._14 = 2;
+				break;
+			}
+		}
+	} else {
+		switch (mStatus) {
+		case MAILSTATUS_Normal:
+			statusNormal();
+			break;
+		case MAILSTATUS_FadeoutToLeft:
+			statusFadeoutToLeft();
+			break;
+		case MAILSTATUS_FadeinFromLeft:
+			statusFadeoutToLeft();
+			break;
+		case MAILSTATUS_FadeoutToRight:
+			statusFadeoutToLeft();
+			break;
+		case MAILSTATUS_FadeinFromRight:
+			statusFadeoutToLeft();
+			break;
+		case MAILSTATUS_WaitOpen:
+			statusWaitOpen();
+			break;
+		case MAILSTATUS_OpenW:
+			statusOpenW();
+			break;
+		case MAILSTATUS_OpenH:
+			statusOpenH();
+			break;
+		}
+		u8 a = (u8)_C8++ / 4;
+		if (mMailIconAnms[mMaxDay - mCurrentDay].mIconCount < a) {
+			a   = 0;
+			_C8 = 0;
+		}
+		setTex(mScreenMain, 'Pset_p', mMailIconAnms[mMaxDay - mCurrentDay].mTIMG[a]);
+		updateCommon();
+		mScreenMain->search('NitemW0')->updateScale(mCharacterIconScaleX, mCharacterIconScaleY);
+	}
+
+	mScreenMain->update();
 	return false;
 	/*
 stwu     r1, -0x30(r1)
@@ -4889,122 +4769,26 @@ blr
  */
 bool ObjDayEndResultMail::doUpdateFadeout()
 {
-	return false;
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-stw      r0, 0x44(r1)
-stfd     f31, 0x30(r1)
-psq_st   f31, 56(r1), 0, qr0
-stfd     f30, 0x20(r1)
-psq_st   f30, 40(r1), 0, qr0
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-lwz      r12, 0(r3)
-mr       r30, r3
-lwz      r12, 0x78(r12)
-mtctr    r12
-bctrl
-lfs      f0, 0x60(r30)
-lis      r3, 0x74656D57@ha
-lwz      r4, 0x50(r30)
-addi     r6, r3, 0x74656D57@l
-li       r5, 0x4e69
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lis      r3, 0x4E616C6C@ha
-addi     r4, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, 0x60(r30)
-lfs      f0, 8(r4)
-addi     r6, r3, 0x4E616C6C@l
-li       r5, 0
-fadds    f0, f1, f0
-stfs     f0, 0x60(r30)
-lwz      r3, 0x70(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lfs      f2, 0x84(r30)
-lfs      f1, 0x60(r30)
-lfs      f0, 0x88(r30)
-fsubs    f1, f1, f2
-lwz      r12, 0(r3)
-fsubs    f0, f0, f2
-lfs      f2, lbl_805200B0@sda21(r2)
-lfs      f3, lbl_805200AC@sda21(r2)
-lwz      r12, 0x24(r12)
-fdivs    f0, f1, f0
-fsubs    f0, f2, f0
-fmuls    f0, f3, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r4, 0xc(r1)
-mtctr    r12
-bctrl
-lfs      f1, 0x60(r30)
-lfs      f0, 0x88(r30)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_80408D24
-li       r31, 1
-b        lbl_80408D28
+	updateCommon();
+	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mScreenMain->search('NitemW')->animationTransform();
 
-lbl_80408D24:
-li       r31, 0
+	mMainAnimTimer1 += msVal._08;
 
-lbl_80408D28:
-lwz      r4, 0xa0(r30)
-lis      r3, 0x74656D57@ha
-addi     r6, r3, 0x74656D57@l
-li       r5, 0x4e69
-stfs     f1, 8(r4)
-lwz      r3, 0x9c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lwz      r3, 0x4c(r30)
-lis      r5, 0x656D5730@ha
-lis      r4, 0x004E6974@ha
-lfs      f30, 0xdc(r30)
-lwz      r12, 0(r3)
-addi     r6, r5, 0x656D5730@l
-addi     r5, r4, 0x004E6974@l
-lfs      f31, 0xd8(r30)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-stfs     f31, 0xcc(r3)
-stfs     f30, 0xd0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-mr       r3, r31
-psq_l    f31, 56(r1), 0, qr0
-lfd      f31, 0x30(r1)
-psq_l    f30, 40(r1), 0, qr0
-lfd      f30, 0x20(r1)
-lwz      r31, 0x1c(r1)
-lwz      r0, 0x44(r1)
-lwz      r30, 0x18(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	mScreenStars->search('Nall')->setAlpha((1.0f - ((mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)))
+	                                       * 255.0f);
+
+	bool result;
+	if (mMainAnimTimer1 >= mFadeoutMaxFrame) {
+		result = true;
+	} else {
+		result = false;
+	}
+	mCharacterAnimTrans->mCurrentFrame = mMainAnimTimer1;
+	mScreenCharacter->search('NitemW')->animationTransform();
+	mScreenMain->search('NitemW0')->updateScale(mCharacterIconScaleX, mCharacterIconScaleY);
+	mScreenMain->update();
+	return result;
 }
 
 /*
@@ -5014,6 +4798,36 @@ blr
  */
 void ObjDayEndResultMail::statusNormal()
 {
+	if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
+		mFlags |= 4;
+		mSaveMgr->start();
+	} else if (getGamePad()->mButton.mButtonDown & Controller::PRESS_B) {
+		DispDayEndResultIncP* dispIncP = static_cast<DispDayEndResultIncP*>(getDispMember());
+		::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_INC_P, dispIncP, 0, 1);
+		if (getOwner()->setScene(setArg)) {
+			SArgDayEndResultIncP argIncP(0);
+			getOwner()->startScene(&argIncP);
+			mFlags |= 0x10;
+		}
+	} else if (getGamePad()->mButton.mMask & Controller::PRESS_L) {
+		if (mCurrentDay > 1 && (mMaxDay - (mCurrentDay - 1)) < 20) {
+			SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
+			if (mMaxDay - (mCurrentDay - 1) != 19 || (s8)scene->mMailFlags[19] != -2) {
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+				mFadePaneArrowR->fadein();
+				mStatus        = MAILSTATUS_FadeoutToRight;
+				mSideMoveTimer = 399.0f;
+			}
+		}
+	} else if (getGamePad()->mButton.mMask & Controller::PRESS_R) {
+		if (mCurrentDay < mMaxDay) {
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+			mFadePaneArrowL->fadein();
+			mStatus        = MAILSTATUS_FadeoutToLeft;
+			mSideMoveTimer = 349.0f;
+		}
+	}
+
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -5168,58 +4982,22 @@ blr
  */
 void ObjDayEndResultMail::statusFadeoutToLeft()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f0, lbl_805200F4@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lfs      f1, 0xb0(r3)
-lwz      r4, 0xa8(r3)
-stfs     f1, 8(r4)
-lfs      f1, 0xb0(r3)
-fcmpo    cr0, f1, f0
-ble      lbl_8040902C
-lfs      f0, lbl_805200B0@sda21(r2)
-fsubs    f0, f1, f0
-stfs     f0, 0xb0(r31)
-b        lbl_80409080
+	mMainAnimTrans3->mCurrentFrame = mSideMoveTimer;
+	if (mSideMoveTimer > 344.0f) {
+		mSideMoveTimer -= 1.0f;
+	} else {
+		mCurrentDay++;
+		if (skipped()) {
+			mCurrentDay++;
+		}
 
-lbl_8040902C:
-lwz      r4, 0xbc(r31)
-addi     r0, r4, 1
-stw      r0, 0xbc(r31)
-bl       skipped__Q32kh6Screen19ObjDayEndResultMailCFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_80409050
-lwz      r3, 0xbc(r31)
-addi     r0, r3, 1
-stw      r0, 0xbc(r31)
-
-lbl_80409050:
-lwz      r3, 0xbc(r31)
-lwz      r0, 0xb8(r31)
-cmplw    r3, r0
-blt      lbl_80409068
-lwz      r3, 0xd0(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-
-lbl_80409068:
-mr       r3, r31
-bl       changeMail__Q32kh6Screen19ObjDayEndResultMailFv
-li       r0, 2
-lfs      f0, lbl_805200D8@sda21(r2)
-stw      r0, 0x98(r31)
-stfs     f0, 0xb0(r31)
-
-lbl_80409080:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+		if (mCurrentDay >= mMaxDay) {
+			mFadePaneArrowR->fadeout();
+		}
+		changeMail();
+		mStatus        = MAILSTATUS_FadeinFromLeft;
+		mSideMoveTimer = 404.0f;
+	}
 }
 
 /*
@@ -5229,24 +5007,12 @@ blr
  */
 void ObjDayEndResultMail::statusFadeinFromLeft()
 {
-	/*
-lfs      f1, 0xb0(r3)
-lwz      r4, 0xa8(r3)
-lfs      f0, lbl_805200D4@sda21(r2)
-stfs     f1, 8(r4)
-lfs      f1, 0xb0(r3)
-fcmpo    cr0, f1, f0
-ble      lbl_804090C0
-lfs      f0, lbl_805200B0@sda21(r2)
-fsubs    f0, f1, f0
-stfs     f0, 0xb0(r3)
-blr
-
-lbl_804090C0:
-li       r0, 0
-stw      r0, 0x98(r3)
-blr
-	*/
+	mMainAnimTrans3->mCurrentFrame = mSideMoveTimer;
+	if (mSideMoveTimer > 344.0f) {
+		mSideMoveTimer -= 1.0f;
+	} else {
+		mStatus = MAILSTATUS_Normal;
+	}
 }
 
 /*
@@ -5256,64 +5022,22 @@ blr
  */
 void ObjDayEndResultMail::statusFadeoutToRight()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f0, lbl_805200D8@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lfs      f1, 0xb0(r3)
-lwz      r4, 0xa8(r3)
-stfs     f1, 8(r4)
-lfs      f1, 0xb0(r3)
-fcmpo    cr0, f1, f0
-bge      lbl_8040910C
-lfs      f0, lbl_805200B0@sda21(r2)
-fadds    f0, f1, f0
-stfs     f0, 0xb0(r31)
-b        lbl_80409170
+	mMainAnimTrans3->mCurrentFrame = mSideMoveTimer;
+	if (mSideMoveTimer < 404.0f) {
+		mSideMoveTimer += 1.0f;
+	} else {
+		mCurrentDay--;
+		if (skipped()) {
+			mCurrentDay--;
+		}
 
-lbl_8040910C:
-lwz      r4, 0xbc(r31)
-addi     r0, r4, -1
-stw      r0, 0xbc(r31)
-bl       skipped__Q32kh6Screen19ObjDayEndResultMailCFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_80409130
-lwz      r3, 0xbc(r31)
-addi     r0, r3, -1
-stw      r0, 0xbc(r31)
-
-lbl_80409130:
-lwz      r3, 0xbc(r31)
-cmplwi   r3, 1
-ble      lbl_80409150
-lwz      r0, 0xb8(r31)
-addi     r3, r3, -1
-subf     r0, r3, r0
-cmplwi   r0, 0x14
-blt      lbl_80409158
-
-lbl_80409150:
-lwz      r3, 0xcc(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-
-lbl_80409158:
-mr       r3, r31
-bl       changeMail__Q32kh6Screen19ObjDayEndResultMailFv
-li       r0, 4
-lfs      f0, lbl_805200F4@sda21(r2)
-stw      r0, 0x98(r31)
-stfs     f0, 0xb0(r31)
-
-lbl_80409170:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+		if (mCurrentDay <= 1 || 20 <= (mMaxDay - (mCurrentDay - 1))) {
+			mFadePaneArrowL->fadeout();
+		}
+		changeMail();
+		mStatus        = MAILSTATUS_FadeinFromRight;
+		mSideMoveTimer = 344.0f;
+	}
 }
 
 /*
@@ -5323,24 +5047,12 @@ blr
  */
 void ObjDayEndResultMail::statusFadeinFromRight()
 {
-	/*
-lfs      f1, 0xb0(r3)
-lwz      r4, 0xa8(r3)
-lfs      f0, lbl_805200F0@sda21(r2)
-stfs     f1, 8(r4)
-lfs      f1, 0xb0(r3)
-fcmpo    cr0, f1, f0
-bge      lbl_804091B0
-lfs      f0, lbl_805200B0@sda21(r2)
-fadds    f0, f1, f0
-stfs     f0, 0xb0(r3)
-blr
-
-lbl_804091B0:
-li       r0, 0
-stw      r0, 0x98(r3)
-blr
-	*/
+	mMainAnimTrans3->mCurrentFrame = mSideMoveTimer;
+	if (mSideMoveTimer < 349.0f) {
+		mSideMoveTimer += 1.0f;
+	} else {
+		mStatus = MAILSTATUS_Normal;
+	}
 }
 
 /*
@@ -5525,11 +5237,11 @@ blr
 void ObjDayEndResultMail::statusOpenH()
 {
 	_E4 *= ObjDayEndResultBase::msVal._48;
-	_E4 += (1.0f - _DC) * ObjDayEndResultBase::msVal._44;
-	_DC += _E4;
+	_E4 += (1.0f - mCharacterIconScaleX) * ObjDayEndResultBase::msVal._44;
+	mCharacterIconScaleX += _E4;
 
-	if (_E4 < 0.0f && (_DC - 1.0f) < 0.1f) {
-		_DC = 1.0f;
+	if (_E4 < 0.0f && (mCharacterIconScaleX - 1.0f) < 0.1f) {
+		mCharacterIconScaleX = 1.0f;
 		mNextBtnFadePane->fadein();
 		mStatus = MAILSTATUS_Normal;
 	}
@@ -6372,7 +6084,7 @@ blr
  * Address:	8040A198
  * Size:	00005C
  */
-void ObjDayEndResultMail::skipped() const
+bool ObjDayEndResultMail::skipped() const
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -7106,7 +6818,6 @@ blr
 	*/
 }
 
-// members aren't getting initialised in correct order for some reason?
 ObjDayEndResultBase::StaticValues ObjDayEndResultBase::msVal;
 ObjDayEndResultTitl::StaticValues ObjDayEndResultTitl::msVal;
 

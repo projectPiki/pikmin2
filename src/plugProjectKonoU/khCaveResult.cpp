@@ -2588,8 +2588,7 @@ void LostItemMgr::draw(P2DScreen::Mgr_tuning* screen, u64 tag, const ResTIMG* ti
 			pane->calcMtx();
 
 			pane->setAlpha(mItemList[i].mAlpha);
-			pane->mAngle = 360.0f * (f32)mItemList[i].mAngle / 65536.0f;
-			pane->calcMtx();
+			pane->setAngle(360.0f * (f32)mItemList[i].mAngle / 65536.0f);
 
 			screen->draw(gfx, gfx.mOrthoGraph);
 		}
