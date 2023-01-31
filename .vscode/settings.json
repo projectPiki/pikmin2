@@ -14,6 +14,7 @@
     "types.h": "c",
     "rand.h": "c",
     "os.h": "c",
-    "ppcarch.h": "c"
+    "ppcarch.h": "c",
+    "dsp.h": "c"
   }
 }

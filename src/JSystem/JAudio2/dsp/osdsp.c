@@ -23,7 +23,7 @@ STRUCT_DSP_TASK* DSPAddTask(STRUCT_DSP_TASK* task)
  * Address:	800AAC80
  * Size:	00007C
  */
-void DSPAddPriorTask(STRUCT_DSP_TASK* task)
+void DSPAddPriorTask__FP15STRUCT_DSP_TASK(STRUCT_DSP_TASK* task)
 {
 	int interrupts;
 	if (DSP_prior_task != nullptr) {

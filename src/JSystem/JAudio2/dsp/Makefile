@@ -1,7 +1,7 @@
 JAUDIO2_DSP_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/dsp/dspproc.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/dsp/dsptask.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio2/dsp/osdsp.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/dsp/osdsp.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/dsp/osdsp_task.o\
 
 $(JAUDIO2_DSP_FILES): CFLAGS += -func_align 32

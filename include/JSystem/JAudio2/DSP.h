@@ -44,11 +44,19 @@ void DspStartWork(unsigned long p1, void (*p2)(unsigned short));
 void DspFinishWork(unsigned short p1);
 
 // osdsp.c
+#ifdef __cplusplus
+extern "C" {
 STRUCT_DSP_TASK* DSPAddTask(STRUCT_DSP_TASK* task);
+}
+#endif // ifdef __cplusplus
 void DSPAddPriorTask(STRUCT_DSP_TASK* task);
 
 // osdsp_task.c
-// void __DSPHandler();
+#ifdef __cplusplus
+extern "C" {
+void __DSPHandler();
+}
+#endif // ifdef __cplusplus
 void DsyncFrame2(unsigned long p1, unsigned long p2, unsigned long p3);
 void Dsp_Update_Request();
 BOOL Dsp_Running_Check();

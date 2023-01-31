@@ -45,7 +45,7 @@
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/dsp/osdsp.c">JAudio2/dsp/osdsp.c</a> | 768 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTPalette.cpp">JUtility/JUTPalette.cpp</a> | 1630 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/dsp/osdsp.c">JAudio2/dsp/osdsp.c</a> | 789 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTPalette.cpp">JUtility/JUTPalette.cpp</a> | 1630 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAS/JASRegisterParam.cpp">JAudio2/JAS/JASRegisterParam.cpp</a> | 1869 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAS/JASTrackInterrupt.cpp">JAudio2/JAS/JASTrackInterrupt.cpp</a> | 2031 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAS/JASInstRand.cpp">JAudio2/JAS/JASInstRand.cpp</a> | 2302 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio2/JAS/JASReport.cpp">JAudio2/JAS/JASReport.cpp</a> | 2425 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAExTexShape.cpp">JParticle/JPAExTexShape.cpp</a> | 2654 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/object-id.cpp">JStudio/object-id.cpp</a> | 2697 |

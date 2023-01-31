@@ -363,7 +363,7 @@ LIBS = [
         "objects": [
             "JSystem/JAudio2/dsp/dspproc",
             "JSystem/JAudio2/dsp/dsptask",
-            "JSystem/JAudio2/dsp/osdsp",
+            ["JSystem/JAudio2/dsp/osdsp", True],
             "JSystem/JAudio2/dsp/osdsp_task",
         ],
     },
