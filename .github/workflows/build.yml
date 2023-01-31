@@ -23,12 +23,12 @@ jobs:
         python configure.py --map --version ${{matrix.version}} --compilers /compilers/GC
         ninja
     - name: Upload progress
-      if: false # github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/main'
       continue-on-error: true
       env:
         PROGRESS_API_KEY: ${{secrets.PROGRESS_API_KEY}}
       run: |
-        python tools/upload-progress.py -b https://progress.deco.mp/ -p prime -v ${{matrix.version}} \
+        python tools/upload-progress.py -b https://progress.deco.mp/ -p pikmin2 -v ${{matrix.version}} \
           build/pikmin2.${{matrix.version}}/main.dol.progress
     - name: Upload map
       uses: actions/upload-artifact@v3

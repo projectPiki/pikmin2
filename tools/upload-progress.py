@@ -19,7 +19,7 @@ def get_git_commit_sha() -> str:
 def generate_url(args: argparse.Namespace) -> str:
     url_components = [args.base_url.rstrip('/'), 'data']
 
-    for arg in [args.project, args.version]:
+    for arg in [args.project, args.version.replace('.', '-')]:
         if arg != "":
             url_components.append(arg)
 

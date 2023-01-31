@@ -1,15 +1,23 @@
-# Pikmin 2
-Pikmin 2 decompilation to C++/C
+Pikmin 2 [![Build Status]][actions] ![Code Progress] ![Data Progress]
+========
 
-```diff
-- INFORMATION! -
+[Build Status]: https://github.com/projectPiki/pikmin2/actions/workflows/build.yml/badge.svg
+[actions]: https://github.com/projectPiki/pikmin2/actions/workflows/build.yml
+[Code Progress]: https://img.shields.io/endpoint?label=Code&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fpikmin2%2Fusa%2Fdol%2F%3Fmode%3Dshield%26measure%3Dcode
+[Data Progress]: https://img.shields.io/endpoint?label=Data&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fpikmin2%2Fusa%2Fdol%2F%3Fmode%3Dshield%26measure%3Ddata
 
-The ROM this repository builds can be shifted. You are able to add
-and remove code as you see fit, for modding or research purposes.
+A decompilation of Pikmin 2.
+
+This repository builds the following DOLs:
+
+```
+90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a  build/pikmin2.usa/main.dol
+3730939092688902af4866be66d4a8404ae752c7  build/pikmin2.usa.demo/main.dol
 ```
 
-It builds the following DOL:
-pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
+> **Note**  
+> The ROM this repository builds can be shifted. You are able to add
+> and remove code as you see fit, for modding or research purposes.
 
 ## Building
 
