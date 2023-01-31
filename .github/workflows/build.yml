@@ -46,7 +46,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Install dependencies
-      run: |
-        apk add --no-cache make gcc musl-dev
+      run: apk add --no-cache make gcc musl-dev
     - name: Build
       run: make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=/compilers/GC
