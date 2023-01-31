@@ -158,8 +158,7 @@ void TekiStat::Mgr::write(Stream& stream)
 {
 	stream.writeInt(mCount);
 	for (int i = 0; i < mCount; i++) {
-		P2ASSERTBOUNDSLINE(76, 0, i, mCount);
-		mData[i].write(stream);
+		getTekiInfo(i)->write(stream);
 	}
 }
 
@@ -177,8 +176,7 @@ void TekiStat::Mgr::read(Stream& stream)
 
 	mCount = newCount;
 	for (int i = 0; i < mCount; i++) {
-		P2ASSERTBOUNDSLINE(76, 0, i, mCount);
-		mData[i].read(stream);
+		getTekiInfo(i)->read(stream);
 	}
 }
 } // namespace Game
