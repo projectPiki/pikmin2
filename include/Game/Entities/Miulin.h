@@ -163,7 +163,7 @@ struct Obj : public EnemyBase {
 	bool isStartWalk();
 	void setReturnState();
 	void walkFunc();
-	void turnFunc(f32);
+	f32 turnFunc(f32);
 	bool isReachToGoal(f32);
 	void setNextGoal();
 	bool nextTargetTurnCheck();

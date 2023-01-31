@@ -1398,7 +1398,7 @@ LIBS = [
             "plugProjectMorimuraU/kingChappyState",
             ["plugProjectMorimuraU/kingChappyMgr", True],
             "plugProjectMorimuraU/kingChappy",
-            "plugProjectMorimuraU/miulinState",
+            ["plugProjectMorimuraU/miulinState", True],
             ["plugProjectMorimuraU/miulinAnimator", True],
             ["plugProjectMorimuraU/miulinMgr", True],
             "plugProjectMorimuraU/miulin",

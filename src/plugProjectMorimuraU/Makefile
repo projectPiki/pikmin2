@@ -21,7 +21,7 @@ MORIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/kingChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappy.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinState.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/miulinState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/miulinAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/miulinMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulin.o\

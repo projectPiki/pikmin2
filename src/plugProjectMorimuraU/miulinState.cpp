@@ -1,6 +1,9 @@
 #include "Game/Entities/Miulin.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
+#include "Game/PikiMgr.h"
+#include "Game/Navi.h"
+#include "Game/rumble.h"
 
 namespace Game {
 namespace Miulin {
@@ -101,102 +104,12 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 		_10                = 0;
 		Vector3f targetPos = enemy->mTargetCreature->getPosition();
 		Vector3f pos       = enemy->getPosition();
-	}
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r31, r4
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	mr       r30, r3
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	li       r0, -1
-	mr       r3, r31
-	stw      r0, 0x2c8(r31)
-	li       r4, 5
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	li       r3, 0
-	stw      r3, 0x14(r30)
-	lwz      r0, 0x230(r31)
-	cmplwi   r0, 0
-	beq      lbl_80362AC8
-	stw      r3, 0x10(r30)
-	addi     r3, r1, 0x20
-	lwz      r4, 0x230(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lfs      f31, 0x20(r1)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x28(r1)
-	mtctr    r12
-	bctrl
-	lfs      f4, 0x14(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x1c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f3, 0x18(r1)
-	fsubs    f1, f31, f4
-	fsubs    f2, f30, f0
-	stfs     f4, 8(r1)
-	stfs     f3, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	lwz      r3, 0xc0(r31)
-	fabs     f3, f1
-	lfs      f1, lbl_8051E79C@sda21(r2)
-	lfs      f0, 0x8bc(r3)
-	lfs      f2, lbl_8051E798@sda21(r2)
-	frsp     f3, f3
-	fmuls    f0, f1, f0
-	lfs      f1, lbl_8051E794@sda21(r2)
-	fmuls    f0, f2, f0
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f3, f0
-	ble      lbl_80362AC8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
 
-lbl_80362AC8:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+		f32 angle = angDist(angXZ(targetPos.x, targetPos.z, pos), enemy->getFaceDir());
+		if (FABS(angle) > 3.0f * (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mFp06.mValue))) {
+			transit(enemy, MIULIN_Turn, nullptr);
+		}
+	}
 }
 
 /*
@@ -206,253 +119,79 @@ lbl_80362AC8:
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r31, r4
-	mr       r30, r3
-	lwz      r0, 0x2c8(r4)
-	cmpwi    r0, 0
-	bge      lbl_80362D28
-	lwz      r4, 0x14(r30)
-	mr       r3, r31
-	addi     r0, r4, 1
-	stw      r0, 0x14(r30)
-	bl       walkFunc__Q34Game6Miulin3ObjFv
-	lbz      r0, 0x2e4(r31)
-	cmplwi   r0, 0
-	beq      lbl_80362B54
-	lfs      f1, lbl_8051E7A0@sda21(r2)
-	mr       r3, r31
-	bl       turnFunc__Q34Game6Miulin3ObjFf
+	if (OBJ(enemy)->mNextState < 0) {
+		_14++;
+		OBJ(enemy)->walkFunc();
+		if (OBJ(enemy)->_2E4) {
+			OBJ(enemy)->turnFunc(1.0f);
+		}
 
-lbl_80362B54:
-	lbz      r0, 0x2e4(r31)
-	cmplwi   r0, 0
-	bne      lbl_80362BA8
-	mr       r3, r31
-	bl       isOutOfTerritory__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80362B84
-	lwz      r3, 0xc0(r31)
-	lwz      r4, 0x10(r30)
-	lwz      r0, 0x81c(r3)
-	cmpw     r4, r0
-	ble      lbl_80362BA8
+		if (!OBJ(enemy)->_2E4 && (OBJ(enemy)->isOutOfTerritory() || _10 > CG_PROPERPARMS(OBJ(enemy)).mIp01.mValue)) {
+			OBJ(enemy)->setReturnState();
+			enemy->finishMotion();
+			OBJ(enemy)->mNextState = MIULIN_Turn;
+			_10                    = 0;
 
-lbl_80362B84:
-	mr       r3, r31
-	bl       setReturnState__Q34Game6Miulin3ObjFv
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r3, 5
-	li       r0, 0
-	stw      r3, 0x2c8(r31)
-	stw      r0, 0x10(r30)
-	b        lbl_80362D28
+		} else if (OBJ(enemy)->isReachToGoal(10.0f)) {
+			if (OBJ(enemy)->_2E4) {
+				enemy->finishMotion();
+				OBJ(enemy)->mNextState = MIULIN_Wait;
 
-lbl_80362BA8:
-	lfs      f1, lbl_8051E7A4@sda21(r2)
-	mr       r3, r31
-	bl       isReachToGoal__Q34Game6Miulin3ObjFf
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80362C00
-	lbz      r0, 0x2e4(r31)
-	cmplwi   r0, 0
-	beq      lbl_80362BDC
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r0, 0
-	stw      r0, 0x2c8(r31)
-	b        lbl_80362D28
+			} else if (OBJ(enemy)->nextTargetTurnCheck()) {
+				enemy->finishMotion();
+				OBJ(enemy)->mNextState = MIULIN_Turn;
+			}
+		} else if (_14 > 30) {
+			f32 x;
+			f32 z;
+			Creature* creature = enemy->mTargetCreature;
+			if (creature) {
+				_10                  = 0;
+				Vector3f creaturePos = creature->getPosition();
+				x                    = creaturePos.x;
+				z                    = creaturePos.z;
+			} else {
+				if (!OBJ(enemy)->isFindTarget()) {
+					Vector3f goalPos = enemy->getGoalPos();
+					x                = goalPos.x;
+					z                = goalPos.z;
+				}
+				_10++;
+			}
 
-lbl_80362BDC:
-	mr       r3, r31
-	bl       nextTargetTurnCheck__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80362D28
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r0, 5
-	stw      r0, 0x2c8(r31)
-	b        lbl_80362D28
+			Vector3f pos = enemy->getPosition();
+			f32 angle    = angDist(angXZ(x, z, pos), enemy->getFaceDir());
+			if (FABS(angle) > 3.0f * (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mFp06.mValue))) {
+				enemy->finishMotion();
+				OBJ(enemy)->mNextState = MIULIN_Turn;
+			}
+		}
+	}
 
-lbl_80362C00:
-	lwz      r0, 0x14(r30)
-	cmpwi    r0, 0x1e
-	ble      lbl_80362D28
-	lwz      r4, 0x230(r31)
-	cmplwi   r4, 0
-	beq      lbl_80362C40
-	li       r0, 0
-	addi     r3, r1, 0x2c
-	stw      r0, 0x10(r30)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 0x2c(r1)
-	lfs      f30, 0x34(r1)
-	b        lbl_80362C7C
+	if (enemy->mHealth <= 0.0f) {
+		OBJ(enemy)->mNextState = MIULIN_Dead;
+		enemy->finishMotion();
 
-lbl_80362C40:
-	mr       r3, r31
-	bl       isFindTarget__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80362C70
-	mr       r4, r31
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r31)
-	lwz      r12, 0x198(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 0x20(r1)
-	lfs      f30, 0x28(r1)
+	} else if (EnemyFunc::isStartFlick(enemy, false)) {
+		OBJ(enemy)->mNextState = MIULIN_Flick;
+		enemy->finishMotion();
 
-lbl_80362C70:
-	lwz      r3, 0x10(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r30)
+	} else if (OBJ(enemy)->isAttackStart()) {
+		OBJ(enemy)->mNextState = MIULIN_AttackStart;
+		enemy->finishMotion();
+	}
 
-lbl_80362C7C:
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f4, 0x14(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x1c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f3, 0x18(r1)
-	fsubs    f1, f31, f4
-	fsubs    f2, f30, f0
-	stfs     f4, 8(r1)
-	stfs     f3, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	lwz      r3, 0xc0(r31)
-	fabs     f3, f1
-	lfs      f1, lbl_8051E79C@sda21(r2)
-	lfs      f0, 0x8bc(r3)
-	lfs      f2, lbl_8051E798@sda21(r2)
-	frsp     f3, f3
-	fmuls    f0, f1, f0
-	lfs      f1, lbl_8051E794@sda21(r2)
-	fmuls    f0, f2, f0
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f3, f0
-	ble      lbl_80362D28
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r0, 5
-	stw      r0, 0x2c8(r31)
+	if (enemy->isFinishMotion()) {
+		enemy->setAnimSpeed(1.5f * EnemyAnimatorBase::defaultAnimSpeed);
+		enemy->mTargetVelocity = Vector3f(0.0f);
+	}
 
-lbl_80362D28:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051E788@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80362D50
-	li       r0, 7
-	mr       r3, r31
-	stw      r0, 0x2c8(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80362D98
-
-lbl_80362D50:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80362D78
-	li       r0, 6
-	mr       r3, r31
-	stw      r0, 0x2c8(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80362D98
-
-lbl_80362D78:
-	mr       r3, r31
-	bl       isAttackStart__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80362D98
-	li       r0, 2
-	mr       r3, r31
-	stw      r0, 0x2c8(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_80362D98:
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80362DCC
-	lfs      f1, lbl_8051E7A8@sda21(r2)
-	mr       r3, r31
-	lfs      f0, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	fmuls    f1, f1, f0
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lfs      f0, lbl_8051E788@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-
-lbl_80362DCC:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80362E2C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80362E2C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c8(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       resetAnimSpeed__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051E788@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	stfs     f0, 0x1c8(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-
-lbl_80362E2C:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, OBJ(enemy)->mNextState, nullptr);
+		enemy->resetAnimSpeed();
+		enemy->mTargetVelocity  = Vector3f(0.0f);
+		enemy->mCurrentVelocity = Vector3f(0.0f);
+	}
 }
 
 /*
@@ -520,594 +259,94 @@ void StateAttacking::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttacking::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stfd     f29, 0xb0(r1)
-	psq_st   f29, 184(r1), 0, qr0
-	stfd     f28, 0xa0(r1)
-	psq_st   f28, 168(r1), 0, qr0
-	stw      r31, 0x9c(r1)
-	stw      r30, 0x98(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036301C
-	lfs      f1, lbl_8051E7AC@sda21(r2)
-	mr       r3, r31
-	bl       turnFunc__Q34Game6Miulin3ObjFf
+	if (_10) {
+		OBJ(enemy)->turnFunc(0.5f);
+	}
 
-lbl_8036301C:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_803637BC
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 3
-	beq      lbl_8036372C
-	bge      lbl_80363048
-	cmpwi    r0, 2
-	bge      lbl_80363054
-	b        lbl_803637BC
+	Vector3f pos;
+	Vector3f effectPos;
 
-lbl_80363048:
-	cmpwi    r0, 0x3e8
-	beq      lbl_80363768
-	b        lbl_803637BC
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
+		case KEYEVENT_2:
+			_10             = 0;
+			pos             = enemy->getPosition();
+			const f32 theta = enemy->getFaceDir();
+			f32 weight      = CG_PROPERPARMS(OBJ(enemy)).mFp08.mValue;
+			effectPos       = Vector3f(weight * pikmin2_sinf(theta), 0.0f, weight * pikmin2_cosf(theta));
+			pos.x += effectPos.x;
+			pos.y += effectPos.y;
+			pos.z += effectPos.z;
 
-lbl_80363054:
-	li       r0, 0
-	mr       r4, r31
-	stb      r0, 0x10(r30)
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x20(r1)
-	mr       r3, r31
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	stfs     f2, 0x70(r1)
-	stfs     f1, 0x74(r1)
-	stfs     f0, 0x78(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	lfs      f0, lbl_8051E788@sda21(r2)
-	lwz      r3, 0xc0(r31)
-	fcmpo    cr0, f2, f0
-	lfs      f4, 0x90c(r3)
-	bge      lbl_803630BC
-	fneg     f2, f2
+			f32 maxY   = 20.0f + pos.y;
+			f32 minY   = pos.y - 20.0f;
+			f32 radius = SQUARE(CG_PARMS(enemy)->mGeneral.mAttackRadius.mValue);
 
-lbl_803630BC:
-	lfs      f3, lbl_8051E7B0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051E788@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f2, f3
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 0x80(r1)
-	lwz      r0, 0x84(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f6, f4, f0
-	bge      lbl_80363118
-	lfs      f0, lbl_8051E7B4@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x88(r1)
-	lwz      r0, 0x8c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_80363130
+			Iterator<Piki> iterPiki(pikiMgr);
 
-lbl_80363118:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x90(r1)
-	lwz      r0, 0x94(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
+			CI_LOOP(iterPiki)
+			{
+				Piki* piki = *iterPiki;
+				if (piki->isAlive() && piki->mSticker != enemy) {
+					Vector3f pikiPos = piki->getPosition();
+					if (maxY > pikiPos.y && minY < pikiPos.y && sqrDistanceXZ(pos, pikiPos) < radius) {
+						if (enemy->mTargetCreature == piki) {
+							enemy->mTargetCreature = nullptr;
+						}
+						InteractBury bury(enemy, 0.0f);
+						piki->stimulate(bury);
+					}
+				}
+			}
 
-lbl_80363130:
-	fmuls    f5, f4, f0
-	lfs      f4, lbl_8051E788@sda21(r2)
-	lfs      f2, 0x70(r1)
-	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
-	lfs      f0, 0x74(r1)
-	li       r0, 0
-	lfs      f1, 0x78(r1)
-	fadds    f3, f2, f5
-	fadds    f2, f0, f4
-	lfs      f0, lbl_8051E7B8@sda21(r2)
-	fadds    f1, f1, f6
-	stfs     f5, 0x64(r1)
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	stfs     f4, 0x68(r1)
-	cmplwi   r0, 0
-	fadds    f31, f0, f2
-	stfs     f6, 0x6c(r1)
-	fsubs    f30, f2, f0
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
-	stfs     f3, 0x70(r1)
-	stfs     f2, 0x74(r1)
-	stfs     f1, 0x78(r1)
-	lwz      r5, 0xc0(r31)
-	lfs      f0, 0x5b4(r5)
-	fmuls    f29, f0, f0
-	stw      r4, 0x54(r1)
-	stw      r0, 0x60(r1)
-	stw      r0, 0x58(r1)
-	stw      r3, 0x5c(r1)
-	bne      lbl_803631C0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x58(r1)
-	b        lbl_803633E8
+			Iterator<Navi> iterNavi(naviMgr);
 
-lbl_803631C0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x58(r1)
-	b        lbl_8036322C
+			CI_LOOP(iterNavi)
+			{
+				Navi* navi = *iterNavi;
+				if (navi->isAlive()) {
+					Vector3f naviPos = navi->getPosition();
+					if (maxY > naviPos.y && minY < naviPos.y && sqrDistanceXZ(pos, naviPos) < radius) {
+						if (enemy->mTargetCreature == navi) {
+							enemy->mTargetCreature = nullptr;
+						}
+						InteractBury bury(enemy, 5.0f);
+						navi->stimulate(bury);
+					}
+				}
+			}
 
-lbl_803631D8:
-	lwz      r3, 0x5c(r1)
-	lwz      r4, 0x58(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x60(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803633E8
-	lwz      r3, 0x5c(r1)
-	lwz      r4, 0x58(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x58(r1)
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
+			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
+			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
-lbl_8036322C:
-	lwz      r12, 0x54(r1)
-	addi     r3, r1, 0x54
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803631D8
-	b        lbl_803633E8
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
 
-lbl_8036324C:
-	lwz      r3, 0x5c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8036332C
-	lwz      r0, 0xf4(r30)
-	cmplw    r0, r31
-	beq      lbl_8036332C
-	mr       r4, r30
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x18(r1)
-	lfs      f2, 0x14(r1)
-	fcmpo    cr0, f31, f0
-	lfs      f3, 0x1c(r1)
-	ble      lbl_8036332C
-	fcmpo    cr0, f30, f0
-	bge      lbl_8036332C
-	lfs      f0, 0x78(r1)
-	lfs      f1, 0x70(r1)
-	fsubs    f0, f0, f3
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f29
-	bge      lbl_8036332C
-	lwz      r0, 0x230(r31)
-	cmplw    r0, r30
-	bne      lbl_803632F0
-	li       r0, 0
-	stw      r0, 0x230(r31)
+			enemy->mToFlick = 0.0f;
+			effectPos       = Vector3f(-20.0f, 0.0f, 31.0f);
+			OBJ(enemy)->attackEffect(effectPos);
+			rumbleMgr->startRumble(12, pos, 2);
+			break;
 
-lbl_803632F0:
-	lis      r3, __vt__Q24Game11Interaction@ha
-	lfs      f0, lbl_8051E788@sda21(r2)
-	addi     r0, r3, __vt__Q24Game11Interaction@l
-	lis      r3, __vt__Q24Game12InteractBury@ha
-	stw      r0, 0x48(r1)
-	addi     r0, r3, __vt__Q24Game12InteractBury@l
-	mr       r3, r30
-	addi     r4, r1, 0x48
-	stw      r31, 0x4c(r1)
-	stw      r0, 0x48(r1)
-	stfs     f0, 0x50(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
+		case KEYEVENT_3:
+			effectPos = Vector3f(11.0f, 0.0f, 56.0f);
+			OBJ(enemy)->attackEffect(effectPos);
+			rumbleMgr->startRumble(12, pos, 2);
+			break;
 
-lbl_8036332C:
-	lwz      r0, 0x60(r1)
-	cmplwi   r0, 0
-	bne      lbl_80363358
-	lwz      r3, 0x5c(r1)
-	lwz      r4, 0x58(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x58(r1)
-	b        lbl_803633E8
+		case KEYEVENT_END:
+			OBJ(enemy)->mNextState = MIULIN_AttackEnd;
+			if (!(enemy->mHealth <= 0.0f) && OBJ(enemy)->isAttackStart()) {
+				OBJ(enemy)->mNextState = MIULIN_Attacking;
+			}
 
-lbl_80363358:
-	lwz      r3, 0x5c(r1)
-	lwz      r4, 0x58(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x58(r1)
-	b        lbl_803633CC
-
-lbl_80363378:
-	lwz      r3, 0x5c(r1)
-	lwz      r4, 0x58(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x60(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803633E8
-	lwz      r3, 0x5c(r1)
-	lwz      r4, 0x58(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x58(r1)
-
-lbl_803633CC:
-	lwz      r12, 0x54(r1)
-	addi     r3, r1, 0x54
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80363378
-
-lbl_803633E8:
-	lwz      r3, 0x5c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x58(r1)
-	cmplw    r4, r3
-	bne      lbl_8036324C
-	li       r0, 0
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lis      r4, "__vt__22Iterator<Q24Game4Navi>"@ha
-	stw      r0, 0x44(r1)
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
-	cmplwi   r0, 0
-	stw      r4, 0x38(r1)
-	stw      r0, 0x3c(r1)
-	stw      r3, 0x40(r1)
-	bne      lbl_80363448
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x3c(r1)
-	b        lbl_80363664
-
-lbl_80363448:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x3c(r1)
-	b        lbl_803634B4
-
-lbl_80363460:
-	lwz      r3, 0x40(r1)
-	lwz      r4, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x44(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80363664
-	lwz      r3, 0x40(r1)
-	lwz      r4, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x3c(r1)
-
-lbl_803634B4:
-	lwz      r12, 0x38(r1)
-	addi     r3, r1, 0x38
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80363460
-	b        lbl_80363664
-
-lbl_803634D4:
-	lwz      r3, 0x40(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803635A8
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 8(r1)
-	fcmpo    cr0, f31, f0
-	lfs      f3, 0x10(r1)
-	ble      lbl_803635A8
-	fcmpo    cr0, f30, f0
-	bge      lbl_803635A8
-	lfs      f0, 0x78(r1)
-	lfs      f1, 0x70(r1)
-	fsubs    f0, f0, f3
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f29
-	bge      lbl_803635A8
-	lwz      r0, 0x230(r31)
-	cmplw    r0, r30
-	bne      lbl_8036356C
-	li       r0, 0
-	stw      r0, 0x230(r31)
-
-lbl_8036356C:
-	lis      r3, __vt__Q24Game11Interaction@ha
-	lfs      f0, lbl_8051E7BC@sda21(r2)
-	addi     r0, r3, __vt__Q24Game11Interaction@l
-	lis      r3, __vt__Q24Game12InteractBury@ha
-	stw      r0, 0x2c(r1)
-	addi     r0, r3, __vt__Q24Game12InteractBury@l
-	mr       r3, r30
-	addi     r4, r1, 0x2c
-	stw      r31, 0x30(r1)
-	stw      r0, 0x2c(r1)
-	stfs     f0, 0x34(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803635A8:
-	lwz      r0, 0x44(r1)
-	cmplwi   r0, 0
-	bne      lbl_803635D4
-	lwz      r3, 0x40(r1)
-	lwz      r4, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x3c(r1)
-	b        lbl_80363664
-
-lbl_803635D4:
-	lwz      r3, 0x40(r1)
-	lwz      r4, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x3c(r1)
-	b        lbl_80363648
-
-lbl_803635F4:
-	lwz      r3, 0x40(r1)
-	lwz      r4, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x44(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80363664
-	lwz      r3, 0x40(r1)
-	lwz      r4, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x3c(r1)
-
-lbl_80363648:
-	lwz      r12, 0x38(r1)
-	addi     r3, r1, 0x38
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803635F4
-
-lbl_80363664:
-	lwz      r3, 0x40(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x3c(r1)
-	cmplw    r4, r3
-	bne      lbl_803634D4
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051E7C0@sda21(r2)
-	li       r4, 0
-	lfs      f30, 0x4c4(r5)
-	lfs      f31, 0x4ec(r5)
-	lfs      f28, 0x514(r5)
-	fmr      f2, f30
-	fmr      f3, f31
-	lfs      f29, 0x53c(r5)
-	fmr      f1, f28
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	fmr      f1, f29
-	lfs      f4, lbl_8051E7C0@sda21(r2)
-	fmr      f2, f30
-	mr       r3, r31
-	fmr      f3, f31
-	li       r4, 0
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	fmr      f1, f28
-	lfs      f4, lbl_8051E7C0@sda21(r2)
-	fmr      f2, f30
-	mr       r3, r31
-	fmr      f3, f31
-	li       r4, 0
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	lfs      f2, lbl_8051E788@sda21(r2)
-	mr       r3, r31
-	lfs      f1, lbl_8051E7C4@sda21(r2)
-	addi     r4, r1, 0x64
-	stfs     f2, 0x20c(r31)
-	lfs      f0, lbl_8051E7C8@sda21(r2)
-	stfs     f1, 0x64(r1)
-	stfs     f2, 0x68(r1)
-	stfs     f0, 0x6c(r1)
-	bl       "attackEffect__Q34Game6Miulin3ObjFR10Vector3<f>"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x70
-	li       r4, 0xc
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_803637BC
-
-lbl_8036372C:
-	lfs      f2, lbl_8051E7CC@sda21(r2)
-	mr       r3, r31
-	lfs      f1, lbl_8051E788@sda21(r2)
-	addi     r4, r1, 0x64
-	lfs      f0, lbl_8051E7D0@sda21(r2)
-	stfs     f2, 0x64(r1)
-	stfs     f1, 0x68(r1)
-	stfs     f0, 0x6c(r1)
-	bl       "attackEffect__Q34Game6Miulin3ObjFR10Vector3<f>"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x70
-	li       r4, 0xc
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_803637BC
-
-lbl_80363768:
-	li       r0, 4
-	lfs      f0, lbl_8051E788@sda21(r2)
-	stw      r0, 0x2c8(r31)
-	lfs      f1, 0x200(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	beq      lbl_8036379C
-	mr       r3, r31
-	bl       isAttackStart__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8036379C
-	li       r0, 3
-	stw      r0, 0x2c8(r31)
-
-lbl_8036379C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c8(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803637BC:
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	psq_l    f29, 184(r1), 0, qr0
-	lfd      f29, 0xb0(r1)
-	psq_l    f28, 168(r1), 0, qr0
-	lfd      f28, 0xa0(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r30, 0x98(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
+			transit(enemy, OBJ(enemy)->mNextState, nullptr);
+			break;
+		}
+	}
 }
 
 /*
@@ -1169,77 +408,23 @@ StateTurn::StateTurn(int stateID)
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r31, r4
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	mr       r30, r3
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	mr       r3, r31
-	bl       isFindTarget__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803639B8
-	mr       r3, r31
-	bl       setNextGoal__Q34Game6Miulin3ObjFv
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+	if (!OBJ(enemy)->isFindTarget()) {
+		OBJ(enemy)->setNextGoal();
+	}
 
-lbl_803639B8:
-	lwz      r3, 0xc0(r31)
-	lbz      r0, 0x2e4(r31)
-	lfs      f1, lbl_8051E79C@sda21(r2)
-	lfs      f0, 0x8bc(r3)
-	cmplwi   r0, 0
-	lfs      f2, lbl_8051E798@sda21(r2)
-	fmuls    f0, f1, f0
-	fmuls    f31, f2, f0
-	beq      lbl_803639E0
-	lfs      f31, lbl_8051E7DC@sda21(r2)
+	f32 maxAngle = (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mFp06.mValue));
+	if (OBJ(enemy)->_2E4) {
+		maxAngle = 0.01f;
+	}
 
-lbl_803639E0:
-	lfs      f1, lbl_8051E7A0@sda21(r2)
-	mr       r3, r31
-	bl       turnFunc__Q34Game6Miulin3ObjFf
-	fcmpo    cr0, f1, f31
-	bge      lbl_80363A18
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80363A44
-
-lbl_80363A18:
-	mr       r3, r31
-	li       r4, 8
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f0, lbl_8051E788@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	stfs     f0, 0x1c8(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-
-lbl_80363A44:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (OBJ(enemy)->turnFunc(1.0f) < maxAngle) {
+		transit(enemy, MIULIN_Walk, nullptr);
+	} else {
+		enemy->startMotion(8, nullptr);
+		enemy->mTargetVelocity  = Vector3f(0.0f);
+		enemy->mCurrentVelocity = Vector3f(0.0f);
+	}
 }
 
 /*
@@ -1249,118 +434,35 @@ lbl_80363A44:
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051E788@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80363AA8
-	li       r0, 7
-	mr       r3, r31
-	stw      r0, 0x2c8(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80363B60
+	if (enemy->mHealth <= 0.0f) {
+		OBJ(enemy)->mNextState = MIULIN_Dead;
+		enemy->finishMotion();
 
-lbl_80363AA8:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80363AD0
-	li       r0, 6
-	mr       r3, r31
-	stw      r0, 0x2c8(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80363B60
+	} else if (EnemyFunc::isStartFlick(enemy, false)) {
+		OBJ(enemy)->mNextState = MIULIN_Flick;
+		enemy->finishMotion();
 
-lbl_80363AD0:
-	mr       r3, r31
-	bl       isAttackStart__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80363AF4
-	li       r0, 2
-	mr       r3, r31
-	stw      r0, 0x2c8(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80363B60
+	} else if (OBJ(enemy)->isAttackStart()) {
+		OBJ(enemy)->mNextState = MIULIN_AttackStart;
+		enemy->finishMotion();
 
-lbl_80363AF4:
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80363B1C
-	lfs      f1, lbl_8051E7A8@sda21(r2)
-	mr       r3, r31
-	lfs      f0, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	fmuls    f1, f1, f0
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	b        lbl_80363B24
+	} else {
+		if (enemy->isFinishMotion()) {
+			enemy->setAnimSpeed(1.5f * EnemyAnimatorBase::defaultAnimSpeed);
+		} else {
+			OBJ(enemy)->isFindTarget();
+		}
 
-lbl_80363B1C:
-	mr       r3, r31
-	bl       isFindTarget__Q34Game6Miulin3ObjFv
+		if (OBJ(enemy)->turnFunc(1.0f) < (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mFp06.mValue))) {
+			enemy->finishMotion();
+			OBJ(enemy)->mNextState = MIULIN_Walk;
+		}
+	}
 
-lbl_80363B24:
-	lfs      f1, lbl_8051E7A0@sda21(r2)
-	mr       r3, r31
-	bl       turnFunc__Q34Game6Miulin3ObjFf
-	lwz      r3, 0xc0(r31)
-	lfs      f2, lbl_8051E79C@sda21(r2)
-	lfs      f0, 0x8bc(r3)
-	lfs      f3, lbl_8051E798@sda21(r2)
-	fmuls    f0, f2, f0
-	fmuls    f0, f3, f0
-	fcmpo    cr0, f1, f0
-	bge      lbl_80363B60
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r0, 1
-	stw      r0, 0x2c8(r31)
-
-lbl_80363B60:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80363BC4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80363BC4
-	lwz      r0, 0x2c8(r31)
-	cmpwi    r0, 0
-	bge      lbl_80363BA4
-	lis      r3, lbl_80491694@ha
-	lis      r5, lbl_804916A4@ha
-	addi     r3, r3, lbl_80491694@l
-	li       r4, 0x1f1
-	addi     r5, r5, lbl_804916A4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80363BA4:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c8(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80363BC4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		JUT_ASSERTLINE(497, OBJ(enemy)->mNextState >= 0, "state -1\n");
+		transit(enemy, OBJ(enemy)->mNextState, nullptr);
+	}
 }
 
 /*
@@ -1393,119 +495,31 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stfd     f28, 0x10(r1)
-	psq_st   f28, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r31, r4
-	mr       r30, r3
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80363DBC
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 3
-	bne      lbl_80363D30
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051E7C0@sda21(r2)
-	li       r4, 0
-	lfs      f30, 0x4c4(r5)
-	lfs      f29, 0x4ec(r5)
-	lfs      f28, 0x514(r5)
-	fmr      f2, f30
-	fmr      f3, f29
-	lfs      f31, 0x53c(r5)
-	fmr      f1, f28
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	fmr      f1, f31
-	lfs      f4, lbl_8051E7C0@sda21(r2)
-	fmr      f2, f30
-	mr       r3, r31
-	fmr      f3, f29
-	li       r4, 0
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	fmr      f1, f28
-	lfs      f4, lbl_8051E7C0@sda21(r2)
-	fmr      f2, f30
-	mr       r3, r31
-	fmr      f3, f29
-	li       r4, 0
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	lfs      f0, lbl_8051E788@sda21(r2)
-	stfs     f0, 0x20c(r31)
-	b        lbl_80363DBC
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_3) {
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
+			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
+			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
-lbl_80363D30:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80363DBC
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051E788@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80363D68
-	lwz      r12, 0(r3)
-	li       r5, 7
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80363DBC
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
 
-lbl_80363D68:
-	mr       r3, r31
-	bl       isAttackStart__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80363D9C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80363DBC
+			enemy->mToFlick = 0.0f;
 
-lbl_80363D9C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
+			if (enemy->mHealth <= 0.0f) {
+				transit(enemy, MIULIN_Dead, nullptr);
 
-lbl_80363DBC:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	psq_l    f28, 24(r1), 0, qr0
-	lfd      f28, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+			} else if (OBJ(enemy)->isAttackStart()) {
+				transit(enemy, MIULIN_AttackStart, nullptr);
+
+			} else {
+				transit(enemy, MIULIN_Turn, nullptr);
+			}
+		}
+	}
 }
 
 /*
