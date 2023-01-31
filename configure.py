@@ -1818,7 +1818,7 @@ if __name__ == "__main__":
     tools_path = Path("tools")
     build_tools_path = args.build_dir / "tools"
 
-    def path(input: list[Path] | Path | None) -> list[str] | None:
+    def path(input):
         if input is None:
             return None
         elif isinstance(input, list):
