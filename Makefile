@@ -124,7 +124,11 @@ LD      := $(WINE) tools/mwcc_compiler/$(MWLD_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
 
+ifneq ($(WINDOWS),1)
 TRANSFORM_DEP := tools/transform-dep.py
+else
+TRANSFORM_DEP := tools/transform-win.py
+endif
 FRANK := tools/franklite.py
 
 # Options
@@ -207,10 +211,10 @@ $(ELF): $(O_FILES) $(LDSCRIPT)
 
 -include include_link.mk
 
-ifneq ($(WINDOWS),1)
-	DEPENDS := $(DEPENDS:.d=.d.unix)
-endif
+DEPENDS := $(DEPENDS:.d=.d.unix)
+ifneq ($(MAKECMDGOALS), clean)
 -include $(DEPENDS)
+endif
 
 $(BUILD_DIR)/%.o: %.s
 	@echo Assembling $<
