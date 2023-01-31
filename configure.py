@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
 LIBS = [
     {
+        "mw_version": "",
+        "objects": [
+            "ctors",
+            "dtors",
+        ],
+    },
+    {
         "lib": "JStudio_JParticle",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -12,7 +19,7 @@ LIBS = [
     },
     {
         "lib": "JMessage",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -24,7 +31,7 @@ LIBS = [
     },
     {
         "lib": "JStudio",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -44,7 +51,7 @@ LIBS = [
     },
     {
         "lib": "JStudio_JStage",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -59,7 +66,7 @@ LIBS = [
     },
     {
         "lib": "JStudio_JMessage",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -69,7 +76,7 @@ LIBS = [
     },
     {
         "lib": "JStudio_JAudio",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -79,7 +86,7 @@ LIBS = [
     },
     {
         "lib": "J3DU",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -91,7 +98,7 @@ LIBS = [
     },
     {
         "lib": "JKernel",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -123,7 +130,7 @@ LIBS = [
     },
     {
         "lib": "JSupport",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -136,7 +143,7 @@ LIBS = [
     },
     {
         "lib": "JGadget",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -148,7 +155,7 @@ LIBS = [
     },
     {
         "lib": "JUtility",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -177,7 +184,7 @@ LIBS = [
     },
     {
         "lib": "JMath",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -188,7 +195,7 @@ LIBS = [
     },
     {
         "lib": "J2D",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -216,7 +223,7 @@ LIBS = [
     },
     {
         "lib": "J3D",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -256,7 +263,7 @@ LIBS = [
     },
     {
         "lib": "JFramework",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -266,7 +273,7 @@ LIBS = [
     },
     {
         "lib": "JParticle",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -289,7 +296,7 @@ LIBS = [
     },
     {
         "lib": "JStage",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -301,7 +308,7 @@ LIBS = [
     },
     {
         "lib": "JAudio2_JAS",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -350,7 +357,7 @@ LIBS = [
     },
     {
         "lib": "JAudio2_DSP",
-        "cflags": "$cflags_base -func_align 32",
+        "cflags": "$cflags_pikmin -func_align 32",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -362,7 +369,7 @@ LIBS = [
     },
     {
         "lib": "JAudio2_JAI",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -386,7 +393,7 @@ LIBS = [
     },
     {
         "lib": "JAudio2_JAD",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -395,7 +402,7 @@ LIBS = [
     },
     {
         "lib": "JAudio2_JAL",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -404,7 +411,7 @@ LIBS = [
     },
     {
         "lib": "JAudio2_JAU",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -414,13 +421,21 @@ LIBS = [
     },
     {
         "lib": "TRK_MINNOW_DOLPHIN",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "2.6",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
-            ["Dolphin/TRK_MINNOW_DOLPHIN/mainloop", True, {"cflags": "$cflags_base -common off -sdata 0"}],
+            [
+                "Dolphin/TRK_MINNOW_DOLPHIN/mainloop",
+                True,
+                {"cflags": "$cflags_base -sdata 0"},
+            ],
             ["Dolphin/TRK_MINNOW_DOLPHIN/nubevent", True],
-            ["Dolphin/TRK_MINNOW_DOLPHIN/nubinit", True, {"cflags": "$cflags_base -common off -sdata 0"}],
+            [
+                "Dolphin/TRK_MINNOW_DOLPHIN/nubinit",
+                True,
+                {"cflags": "$cflags_base -sdata 0"},
+            ],
             ["Dolphin/TRK_MINNOW_DOLPHIN/msg", True],
             "Dolphin/TRK_MINNOW_DOLPHIN/msgbuf",
             "Dolphin/TRK_MINNOW_DOLPHIN/serpoll",
@@ -437,10 +452,18 @@ LIBS = [
             "Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e",
             "Dolphin/TRK_MINNOW_DOLPHIN/__exception",
             "Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk",
-            ["Dolphin/TRK_MINNOW_DOLPHIN/main_TRK", True, {"cflags": "$cflags_base -common off -sdata 0"}],
+            [
+                "Dolphin/TRK_MINNOW_DOLPHIN/main_TRK",
+                True,
+                {"cflags": "$cflags_base -sdata 0"},
+            ],
             "Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue",
             ["Dolphin/TRK_MINNOW_DOLPHIN/targcont", True],
-            ["Dolphin/TRK_MINNOW_DOLPHIN/target_options", True, {"cflags": "$cflags_base -common off -sdata 0"}],
+            [
+                "Dolphin/TRK_MINNOW_DOLPHIN/target_options",
+                True,
+                {"cflags": "$cflags_base -sdata 0"},
+            ],
             "Dolphin/TRK_MINNOW_DOLPHIN/mslsupp",
             ["Dolphin/TRK_MINNOW_DOLPHIN/UDP_Stubs", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/ddh/main", True],
@@ -452,8 +475,8 @@ LIBS = [
     },
     {
         "lib": "Runtime",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "2.6",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             ["Dolphin/Runtime/__va_arg", True],
@@ -469,8 +492,8 @@ LIBS = [
     },
     {
         "lib": "MSL_C",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "2.6",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             ["Dolphin/MSL_C/abort_exit", True],
@@ -485,8 +508,16 @@ LIBS = [
             ["Dolphin/MSL_C/errno", True],
             ["Dolphin/MSL_C/file_io", True],
             ["Dolphin/MSL_C/FILE_POS", True],
-            ["Dolphin/MSL_C/locale", True, {"cflags": "$cflags_base -common off -str pool"}],
-            ["Dolphin/MSL_C/mbstring", True, {"cflags": "$cflags_base -common off -inline noauto,deferred"}],
+            [
+                "Dolphin/MSL_C/locale",
+                True,
+                {"cflags": "$cflags_base -str pool"},
+            ],
+            [
+                "Dolphin/MSL_C/mbstring",
+                True,
+                {"cflags": "$cflags_base -inline noauto,deferred"},
+            ],
             ["Dolphin/MSL_C/mem", True],
             "Dolphin/MSL_C/mem_funcs",
             ["Dolphin/MSL_C/misc_io", True],
@@ -535,8 +566,8 @@ LIBS = [
     },
     {
         "lib": "OdemuExi2",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/OdemuExi2/DebuggerDriver",
@@ -544,8 +575,8 @@ LIBS = [
     },
     {
         "lib": "vi",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/vi/vi",
@@ -553,8 +584,8 @@ LIBS = [
     },
     {
         "lib": "amcstubs",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             ["Dolphin/amcstubs/AmcExi2Stubs", True],
@@ -562,8 +593,8 @@ LIBS = [
     },
     {
         "lib": "ar",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/ar/ar",
@@ -572,8 +603,8 @@ LIBS = [
     },
     {
         "lib": "base",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             ["Dolphin/base/PPCArch", True],
@@ -581,8 +612,8 @@ LIBS = [
     },
     {
         "lib": "card",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/card/CARDBios",
@@ -603,8 +634,8 @@ LIBS = [
     },
     {
         "lib": "db",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off -str noreadonly",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
             ["Dolphin/db/db", True],
@@ -612,8 +643,8 @@ LIBS = [
     },
     {
         "lib": "dsp",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/dsp/dsp",
@@ -623,24 +654,24 @@ LIBS = [
     },
     {
         "lib": "dvd",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off -str noreadonly",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
             "Dolphin/dvd/dvdlow",
             "Dolphin/dvd/dvdfs",
             "Dolphin/dvd/dvd",
-            ["Dolphin/dvd/dvdqueue", True, {"mw_version": "1.2.5e"}],
+            ["Dolphin/dvd/dvdqueue", True],
             ["Dolphin/dvd/dvderror", True],
-            ["Dolphin/dvd/dvdidutils", True, {"mw_version": "1.2.5e"}],
+            ["Dolphin/dvd/dvdidutils", True],
             ["Dolphin/dvd/dvdFatal", True],
-            ["Dolphin/dvd/fstload", True, {"mw_version": "1.2.5e"}],
+            ["Dolphin/dvd/fstload", True],
         ],
     },
     {
         "lib": "exi",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/exi/EXIBios",
@@ -649,8 +680,8 @@ LIBS = [
     },
     {
         "lib": "gd",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             ["Dolphin/gd/GDBase", True],
@@ -659,8 +690,8 @@ LIBS = [
     },
     {
         "lib": "gx",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/gx/GXInit",
@@ -681,8 +712,8 @@ LIBS = [
     },
     {
         "lib": "mtx",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/mtx/mtx",
@@ -693,8 +724,8 @@ LIBS = [
     },
     {
         "lib": "odenotstub",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             ["Dolphin/odenotstub/odenotstub", True],
@@ -702,22 +733,22 @@ LIBS = [
     },
     {
         "lib": "os",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off -str noreadonly",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
-            ["Dolphin/os/OS", True, {"mw_version": "1.2.5e"}],
+            ["Dolphin/os/OS", True],
             "Dolphin/os/OSAlarm",
             ["Dolphin/os/OSAlloc", True],
             ["Dolphin/os/OSArena", True],
-            ["Dolphin/os/OSAudioSystem", True, {"mw_version": "1.2.5e"}],
-            ["Dolphin/os/OSCache", True, {"mw_version": "1.2.5e"}],
+            ["Dolphin/os/OSAudioSystem", True],
+            ["Dolphin/os/OSCache", True],
             "Dolphin/os/OSContext",
             "Dolphin/os/OSError",
             "Dolphin/os/OSFont",
             "Dolphin/os/OSInterrupt",
             ["Dolphin/os/OSLink", True],
-            ["Dolphin/os/OSMessage", True, {"mw_version": "1.2.5e"}],
+            ["Dolphin/os/OSMessage", True],
             "Dolphin/os/OSMemory",
             "Dolphin/os/OSMutex",
             "Dolphin/os/OSReboot",
@@ -734,8 +765,8 @@ LIBS = [
     },
     {
         "lib": "pad",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/pad/Padclamp",
@@ -744,8 +775,8 @@ LIBS = [
     },
     {
         "lib": "si",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off -str noreadonly",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
             "Dolphin/si/SIBios",
@@ -754,8 +785,8 @@ LIBS = [
     },
     {
         "lib": "ai",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/ai/ai",
@@ -763,8 +794,8 @@ LIBS = [
     },
     {
         "lib": "thp",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base",
         "host": False,
         "objects": [
             "Dolphin/thp/THPDec",
@@ -773,13 +804,13 @@ LIBS = [
     },
     {
         "lib": "gba",
-        "mw_version": "1.2.5",
-        "cflags": "$cflags_base -common off -str noreadonly",
+        "mw_version": "1.2.5e",
+        "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
             ["Dolphin/gba/GBA", True],
             ["Dolphin/gba/GBARead", True],
-            ["Dolphin/gba/GBAWrite", True, {"mw_version": "1.2.5e"}],
+            ["Dolphin/gba/GBAWrite", True],
             "Dolphin/gba/GBAXfer",
         ],
     },
@@ -1486,7 +1517,7 @@ LIBS = [
     },
     {
         "lib": "sysBootupU",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -1495,7 +1526,7 @@ LIBS = [
     },
     {
         "lib": "sysCommonU",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -1519,7 +1550,7 @@ LIBS = [
     },
     {
         "lib": "sysGCU",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -1598,7 +1629,7 @@ LIBS = [
     },
     {
         "lib": "utilityU",
-        "cflags": "$cflags_base -sym on",
+        "cflags": "$cflags_pikmin -sym on",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -1634,7 +1665,7 @@ if __name__ == "__main__":
         "--version",
         dest="version",
         default="usa",
-        help="version to build (usa)",
+        help="version to build (usa, usa.demo)",
     )
     parser.add_argument(
         "--map",
@@ -1719,6 +1750,8 @@ if __name__ == "__main__":
     n.comment("Variables")
     version = args.version.lower()
     if args.version.lower() == "usa":
+        version_num = "2"
+    elif args.version.lower() == "usa.demo":
         version_num = "1"
     else:
         sys.exit(f'Invalid version "{args.version}"')
@@ -1733,11 +1766,11 @@ if __name__ == "__main__":
     else:
         dkp_path = Path("/opt/devkitpro/devkitPPC")
 
-    cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse -nosyspath -use_lmw_stmw on -w off -MMD -DVERSION={version_num} -DNONMATCHING=0 -i include"
+    cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse,readonly -nosyspath -use_lmw_stmw on -sdata 8 -sdata2 8 -MMD -DVERNUM={version_num} -i include"
     if args.debug:
         cflags_base += " -sym on -D_DEBUG"
     else:
-        cflags_base += " -DNDEBUG"
+        cflags_base += " -DNDEBUG -w off"
     n.variable("cflags_base", cflags_base)
     n.variable("cflags_pikmin", "$cflags_base -common on")
 
@@ -1750,6 +1783,8 @@ if __name__ == "__main__":
         ldflags += f" -map {map_path} -mapunused"
     if args.debug:
         ldflags += " -g"
+    else:
+        ldflags += " -w off"
     n.variable("ldflags", ldflags)
 
     n.variable("mw_version", "2.6")
@@ -1951,8 +1986,12 @@ if __name__ == "__main__":
             c_file = None
             if os.path.exists(src_path / f"{object}.cpp"):
                 c_file = src_path / f"{object}.cpp"
+            elif os.path.exists(src_path / f"{object}.cp"):
+                c_file = src_path / f"{object}.cp"
             elif os.path.exists(src_path / f"{object}.c"):
                 c_file = src_path / f"{object}.c"
+            elif os.path.exists(src_path / f"{object}.C"):
+                c_file = src_path / f"{object}.C"
             if c_file is not None:
                 rule = "mwcc"
                 if mw_version == "1.2.5e":
@@ -2088,16 +2127,17 @@ if __name__ == "__main__":
     ###
     if args.map:
         n.comment("Check progress")
+        calc_progress = tools_path / "calcprogress.py"
         n.rule(
             name="progress",
-            command="$python progress.py $in -o $out",
+            command=f"$python {calc_progress} $in -o $out",
             description="PROGRESS $in",
         )
         n.build(
             outputs=path(build_path / "main.dol.progress"),
             rule="progress",
             inputs=path([build_path / "main.dol", map_path]),
-            implicit="progress.py",
+            implicit=path([calc_progress]),
         )
         n.newline()
 
