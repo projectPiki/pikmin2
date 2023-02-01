@@ -143,6 +143,8 @@ struct System : public OSMutexObject {
 	static ERenderMode mRenderMode;
 	static GXVerifyArg sVerifyArg;
 
+	inline f32 getFrameLength() const { return mDeltaTime; }
+
 	// _00-_18 = OSMutexObject
 	JKRHeap* mBackupHeap;                        // _18
 	u32 mCpuRetraceCount;                        // _1C

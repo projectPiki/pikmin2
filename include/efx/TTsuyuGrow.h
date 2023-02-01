@@ -37,8 +37,8 @@ struct TTsuyuGrow2 : public TSimpleMtx2 {
 	// _00-_14 = TSimpleMtx2
 };
 
-struct TTsuyuGrowOn : public TSimple1 {
-	inline TTsuyuGrowOn()
+struct TTsuyuGrowon : public TSimple1 {
+	inline TTsuyuGrowon()
 	    : TSimple1(PID_TsuyuGrowOn)
 	{
 	}

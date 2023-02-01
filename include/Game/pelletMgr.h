@@ -569,18 +569,18 @@ struct PelletGoalState : public PelletState {
 
 	bool checkMovie(Pellet*);
 
-	Creature* mOnyon; // _10
-	f32 _14;          // _14
-	f32 mDistance;    // _18
-	f32 mSuckDelay;   // _1C
-	f32 mScale;       // _20
-	f32 mSuckTime;
-	Vector3f mCurrPos;
-	bool mStartSuck;
-	f32 mTimer;
-	u8 mInDemo;     // _3C, unknown
-	u8 mIsWaiting;  // _3D
-	u8 mDidSuikomi; // _3E
+	Creature* mOnyon;  // _10
+	f32 _14;           // _14
+	f32 mDistance;     // _18
+	f32 mSuckDelay;    // _1C
+	f32 mScale;        // _20
+	f32 mSuckTime;     // _24
+	Vector3f mCurrPos; // _28
+	bool mStartSuck;   // _34
+	f32 mTimer;        // _38
+	u8 mInDemo;        // _3C
+	u8 mIsWaiting;     // _3D
+	u8 mDidSuikomi;    // _3E
 };
 
 struct PelletGoalWaitState : public PelletState {
@@ -623,10 +623,10 @@ struct PelletReturnState : public PelletState {
 	void flick(Pellet*);
 	void getWayPont(int);
 
-	f32 mTimer;      // _10
-	f32 mPeltYScale; // _14
-	u8 mDoEfx;       // _18
-	u8 mDoFlick;
+	f32 mTimer;                     // _10
+	f32 mPeltYScale;                // _14
+	u8 mDoEfx;                      // _18
+	u8 mDoFlick;                    // _19
 	u16 mState;                     // _1A
 	u32 mPathCheckID;               // _1C
 	Vector3f mGoalPos;              // _20

@@ -80,6 +80,8 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 
 	inline bool isFlag(u32 flag) { return mFlags & flag; }
 
+	inline BaseGameSection* getSection() { return mSection; }
+
 	u8 mFlags;                 // _3C /* bitfield */
 	TimeMgr* mTimeMgr;         // _40
 	GameSystemMode mMode;      // _44
