@@ -417,6 +417,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 
 	inline int getPokoValue() { return mConfig->mParams.mMoney.mData; }
 
+	inline f32 getStickRadius() { return mConfig->mParams.mRadius.mData; }
+
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?

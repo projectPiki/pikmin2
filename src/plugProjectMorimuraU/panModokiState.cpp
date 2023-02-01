@@ -1,5 +1,7 @@
 #include "Game/Entities/PanModokiBase.h"
 #include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Game/Stickers.h"
 
 namespace Game {
 namespace PanModokiBase {
@@ -43,7 +45,7 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* panModoki = static_cast<Obj*>(enemy);
+	Obj* panModoki = OBJ(enemy);
 	if (panModoki->getCarryTarget()) {
 		panModoki->endStick();
 		panModoki->mTargetCreature = nullptr;
@@ -66,7 +68,7 @@ void StateDead::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying) {
 		if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
-			static_cast<Obj*>(enemy)->boundEffect();
+			OBJ(enemy)->boundEffect();
 
 		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 			enemy->kill(nullptr);
@@ -97,8 +99,8 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
 	}
 
-	static_cast<Obj*>(enemy)->mNextState = PANMODOKI_NULL;
-	enemy->mTargetCreature               = nullptr;
+	OBJ(enemy)->mNextState = PANMODOKI_NULL;
+	enemy->mTargetCreature = nullptr;
 }
 
 /*
@@ -108,85 +110,26 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8034CD14
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034CDBC
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, PANMODOKI_Dead, nullptr);
+		return;
+	}
 
-lbl_8034CD14:
-	lfs      f1, 0x32c(r31)
-	mr       r3, r31
-	bl       isReachToGoal__Q34Game13PanModokiBase3ObjFf
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034CD34
-	mr       r3, r31
-	li       r4, 0
-	bl       findNextRoutePoint__Q34Game13PanModokiBase3ObjFb
+	if (OBJ(enemy)->isReachToGoal(OBJ(enemy)->_32C)) {
+		OBJ(enemy)->findNextRoutePoint(false);
+	}
 
-lbl_8034CD34:
-	lwz      r0, 0x344(r31)
-	cmpwi    r0, 0
-	bge      lbl_8034CD54
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x304(r12)
-	mtctr    r12
-	bctrl
+	if (OBJ(enemy)->mNextState < 0) {
+		OBJ(enemy)->walkFunc();
+	}
 
-lbl_8034CD54:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034CDBC
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8034CDBC
-	lwz      r5, 0x344(r31)
-	cmpwi    r5, 0
-	bge      lbl_8034CDA0
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034CDBC
-
-lbl_8034CDA0:
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	mr       r4, r31
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8034CDBC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		if (OBJ(enemy)->mNextState < 0) {
+			transit(enemy, PANMODOKI_Walk, nullptr);
+		} else {
+			transit(enemy, OBJ(enemy)->mNextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -207,79 +150,30 @@ StateBack::StateBack(int stateID)
  */
 void StateBack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	mr       r3, r30
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	mr       r31, r3
-	cmpwi    r31, 2
-	beq      lbl_8034CE54
-	mr       r3, r30
-	li       r4, 2
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	int animIdx = enemy->getCurrAnimIndex();
+	if (animIdx != 2) {
+		enemy->startMotion(2, nullptr);
+	}
 
-lbl_8034CE54:
-	lwz      r4, 0xc0(r30)
-	mr       r3, r30
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	lfs      f0, 0x844(r4)
-	fmuls    f1, f1, f0
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	cmpwi    r31, 3
-	bne      lbl_8034CE84
-	mr       r3, r30
-	bl       getFirstKeyFrame__Q24Game9EnemyBaseFv
-	mr       r3, r30
-	bl       setMotionFrame__Q24Game9EnemyBaseFf
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
 
-lbl_8034CE84:
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	mr       r3, r30
-	stfs     f0, 0x1d4(r30)
-	stfs     f0, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	stfs     f0, 0x1c8(r30)
-	stfs     f0, 0x1cc(r30)
-	stfs     f0, 0x1d0(r30)
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_8034CED4
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	addi     r4, r1, 8
-	stfs     f0, 8(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
+	if (animIdx == 3) {
+		enemy->setMotionFrame(enemy->getFirstKeyFrame());
+	}
 
-lbl_8034CED4:
-	mr       r3, r30
-	li       r4, 0
-	bl       setPathFinder__Q34Game13PanModokiBase3ObjFb
-	li       r0, 1
-	li       r3, -1
-	stb      r0, 0x2e4(r30)
-	li       r0, 0
-	stw      r3, 0x344(r30)
-	stw      r0, 0x10(r29)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
+
+	Pellet* target = OBJ(enemy)->getCarryTarget();
+	if (target) {
+		Vector3f vel(0.0f);
+		target->setVelocity(vel);
+	}
+
+	OBJ(enemy)->setPathFinder(false);
+	OBJ(enemy)->_2E4       = 1;
+	OBJ(enemy)->mNextState = PANMODOKI_NULL;
+	_10                    = 0;
 }
 
 /*
@@ -289,360 +183,69 @@ lbl_8034CED4:
  */
 void StateBack::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	stw      r28, 0x50(r1)
-	mr       r30, r4
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	lfs      f1, 0x200(r4)
-	mr       r29, r3
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8034CF70
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034D3BC
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, PANMODOKI_Dead, nullptr);
+		return;
+	}
 
-lbl_8034CF70:
-	lwz      r0, 0x344(r30)
-	cmpwi    r0, 0
-	bge      lbl_8034D368
-	mr       r3, r30
-	bl       isEndPathFinder__Q34Game13PanModokiBase3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034CFB8
-	mr       r3, r30
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	cmpwi    r3, 8
-	bne      lbl_8034CFAC
-	mr       r3, r30
-	li       r4, 2
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	if (OBJ(enemy)->mNextState < 0) {
+		if (OBJ(enemy)->isEndPathFinder()) {
+			if (enemy->getCurrAnimIndex() == 8) {
+				enemy->startMotion(2, nullptr);
+			}
+			OBJ(enemy)->carryTarget(1.0f);
+		}
 
-lbl_8034CFAC:
-	lfs      f1, lbl_8051E3EC@sda21(r2)
-	mr       r3, r30
-	bl       carryTarget__Q34Game13PanModokiBase3ObjFf
+		if (!OBJ(enemy)->canBack()) {
+			transit(enemy, PANMODOKI_Pulled, nullptr);
+		} else if (!enemy->mTargetCreature) {
+			enemy->finishMotion();
+			OBJ(enemy)->mNextState = PANMODOKI_Walk;
+		}
 
-lbl_8034CFB8:
-	mr       r3, r30
-	bl       canBack__Q34Game13PanModokiBase3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034CFEC
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034D008
+		if (OBJ(enemy)->isCarryToGoal()) {
+			enemy->mTargetVelocity  = Vector3f(0.0f);
+			enemy->mCurrentVelocity = Vector3f(0.0f);
+			transit(enemy, PANMODOKI_CarryEnd, nullptr);
+		} else {
+			Pellet* target = OBJ(enemy)->getCarryTarget();
+			if (target) {
+				bool check = false;
+				if ((gameSystem && gameSystem->mMode == GSM_VERSUS_MODE && !enemy->isStickTo() && !target->mCaptureMatrix)
+				    || (target->getKind() == PELTYPE_CARCASS && !target->isAlive())
+				    || FABS(target->getPosition().y - enemy->getPosition().y) > 50.0f) {
 
-lbl_8034CFEC:
-	lwz      r0, 0x230(r30)
-	cmplwi   r0, 0
-	bne      lbl_8034D008
-	mr       r3, r30
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r0, 1
-	stw      r0, 0x344(r30)
+					check = true;
+				}
 
-lbl_8034D008:
-	mr       r3, r30
-	bl       isCarryToGoal__Q34Game13PanModokiBase3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D058
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 0xa
-	stfs     f0, 0x1d4(r30)
-	li       r6, 0
-	stfs     f0, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	stfs     f0, 0x1c8(r30)
-	stfs     f0, 0x1cc(r30)
-	stfs     f0, 0x1d0(r30)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034D368
+				if (!check) {
+					Stickers stickers(target);
+					Iterator<Creature> iter(&stickers);
 
-lbl_8034D058:
-	mr       r3, r30
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	or.      r28, r3, r3
-	beq      lbl_8034D368
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r31, 0
-	cmplwi   r3, 0
-	beq      lbl_8034D0A0
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_8034D0A0
-	mr       r3, r30
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034D0A0
-	lwz      r0, 0xb8(r28)
-	cmplwi   r0, 0
-	beq      lbl_8034D12C
+					CI_LOOP(iter)
+					{
+						Creature* creature = *iter;
+						if (creature->isTeki() && creature != enemy) {
+							check = true;
+						}
+					}
+				}
 
-lbl_8034D0A0:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_8034D0DC
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D12C
+				if (check) {
+					OBJ(enemy)->releaseCarryTarget();
+					transit(enemy, PANMODOKI_Wait, nullptr);
+					return;
+				}
+			}
+		}
+	}
 
-lbl_8034D0DC:
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r28
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r28)
-	lfs      f31, 0xc(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x18(r1)
-	lfs      f0, lbl_8051E3F0@sda21(r2)
-	fsubs    f1, f1, f31
-	fabs     f1, f1
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8034D130
-
-lbl_8034D12C:
-	li       r31, 1
-
-lbl_8034D130:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_8034D334
-	mr       r4, r28
-	addi     r3, r1, 0x30
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x30
-	cmplwi   r0, 0
-	stw      r4, 0x20(r1)
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x24(r1)
-	stw      r3, 0x28(r1)
-	bne      lbl_8034D184
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8034D308
-
-lbl_8034D184:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8034D1F0
-
-lbl_8034D19C:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034D308
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_8034D1F0:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D19C
-	b        lbl_8034D308
-
-lbl_8034D210:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r28, r3
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D24C
-	cmplw    r28, r30
-	beq      lbl_8034D24C
-	li       r31, 1
-
-lbl_8034D24C:
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_8034D278
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8034D308
-
-lbl_8034D278:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8034D2EC
-
-lbl_8034D298:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034D308
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_8034D2EC:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D298
-
-lbl_8034D308:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_8034D210
-	addi     r3, r1, 0x30
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-
-lbl_8034D334:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8034D368
-	mr       r3, r30
-	bl       releaseCarryTarget__Q34Game13PanModokiBase3ObjFv
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 7
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034D3BC
-
-lbl_8034D368:
-	lwz      r3, 0x188(r30)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034D3BC
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8034D3BC
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r6, 0
-	lwz      r5, 0x344(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x344(r30)
-	cmpwi    r0, 3
-	bne      lbl_8034D3BC
-	mr       r3, r30
-	li       r4, 1
-	bl       changeCarryDir__Q34Game13PanModokiBase3ObjFb
-
-lbl_8034D3BC:
-	psq_l    f31, 104(r1), 0, qr0
-	lwz      r0, 0x74(r1)
-	lfd      f31, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	lwz      r28, 0x50(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, OBJ(enemy)->mNextState, nullptr);
+		if (OBJ(enemy)->mNextState == PANMODOKI_Pulled) {
+			OBJ(enemy)->changeCarryDir(true);
+		}
+	}
 }
 
 /*
@@ -663,54 +266,19 @@ StatePulled::StatePulled(int stateID)
  */
 void StatePulled::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	mr       r3, r30
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	mr       r31, r3
-	mr       r3, r30
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r4, 0xc0(r30)
-	mr       r3, r30
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	lfs      f0, 0x844(r4)
-	fmuls    f1, f1, f0
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	cmpwi    r31, 2
-	bne      lbl_8034D484
-	mr       r3, r30
-	bl       getFirstKeyFrame__Q24Game9EnemyBaseFv
-	mr       r3, r30
-	bl       setMotionFrame__Q24Game9EnemyBaseFf
+	int animIdx = enemy->getCurrAnimIndex();
+	enemy->startMotion(3, nullptr);
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
 
-lbl_8034D484:
-	mr       r3, r30
-	bl       createPulledSmokeEffect__Q34Game13PanModokiBase3ObjFv
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	li       r3, 0
-	li       r0, -1
-	stfs     f0, 0x1d4(r30)
-	stfs     f0, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	stfs     f0, 0x1c8(r30)
-	stfs     f0, 0x1cc(r30)
-	stfs     f0, 0x1d0(r30)
-	stb      r3, 0x2e4(r30)
-	stw      r0, 0x344(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (animIdx == 2) {
+		enemy->setMotionFrame(enemy->getFirstKeyFrame());
+	}
+
+	OBJ(enemy)->createPulledSmokeEffect();
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
+	OBJ(enemy)->_2E4        = 0;
+	OBJ(enemy)->mNextState  = PANMODOKI_NULL;
 }
 
 /*
@@ -720,357 +288,70 @@ lbl_8034D484:
  */
 void StatePulled::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	stw      r28, 0x50(r1)
-	mr       r30, r4
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	lfs      f1, 0x200(r4)
-	mr       r29, r3
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8034D52C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034D974
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, PANMODOKI_Dead, nullptr);
+		return;
+	}
 
-lbl_8034D52C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x28
-	bne      lbl_8034D580
-	lwz      r3, 0x188(r30)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034D580
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	bne      lbl_8034D580
-	lwz      r3, 0x28c(r30)
-	li       r4, 0x598b
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
+	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_OoPanModoki) {
+		if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_NULL) {
+			enemy->mSoundObj->startSound(PSSE_EN_OPAN_HIPPARARE, 0);
+		}
+	}
 
-lbl_8034D580:
-	lwz      r0, 0x344(r30)
-	cmpwi    r0, 0
-	bge      lbl_8034D90C
-	mr       r3, r30
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	or.      r28, r3, r3
-	beq      lbl_8034D8FC
-	mr       r3, r30
-	bl       canBack__Q34Game13PanModokiBase3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D5FC
-	mr       r3, r28
-	bl       getStateID__Q24Game6PelletFv
-	cmpwi    r3, 1
-	beq      lbl_8034D90C
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D90C
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034D90C
+	if (OBJ(enemy)->mNextState < 0) {
+		Pellet* target = OBJ(enemy)->getCarryTarget();
+		if (target) {
+			if (OBJ(enemy)->canBack()) {
+				if (target->getStateID() != PELSTATE_Goal && target->isAlive()) {
+					transit(enemy, PANMODOKI_Back, nullptr);
+				}
 
-lbl_8034D5FC:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r31, 0
-	cmplwi   r3, 0
-	beq      lbl_8034D634
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_8034D634
-	mr       r3, r30
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034D634
-	lwz      r0, 0xb8(r28)
-	cmplwi   r0, 0
-	beq      lbl_8034D6C0
+			} else {
+				bool check = false;
+				if ((gameSystem && gameSystem->mMode == GSM_VERSUS_MODE && !enemy->isStickTo() && !target->mCaptureMatrix)
+				    || (target->getKind() == PELTYPE_CARCASS && !target->isAlive())
+				    || FABS(target->getPosition().y - enemy->getPosition().y) > 50.0f) {
 
-lbl_8034D634:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_8034D670
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D6C0
+					check = true;
+				}
 
-lbl_8034D670:
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r28
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r28)
-	lfs      f31, 0xc(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x18(r1)
-	lfs      f0, lbl_8051E3F0@sda21(r2)
-	fsubs    f1, f1, f31
-	fabs     f1, f1
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8034D6C4
+				if (!check) {
+					Stickers stickers(target);
+					Iterator<Creature> iter(&stickers);
 
-lbl_8034D6C0:
-	li       r31, 1
+					CI_LOOP(iter)
+					{
+						Creature* creature = *iter;
+						if (creature->isTeki() && creature != enemy) {
+							check = true;
+						}
+					}
+				}
 
-lbl_8034D6C4:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_8034D8C8
-	mr       r4, r28
-	addi     r3, r1, 0x30
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x30
-	cmplwi   r0, 0
-	stw      r4, 0x20(r1)
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x24(r1)
-	stw      r3, 0x28(r1)
-	bne      lbl_8034D718
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8034D89C
+				if (check) {
+					OBJ(enemy)->releaseCarryTarget();
+					transit(enemy, PANMODOKI_Wait, nullptr);
+					return;
+				}
+			}
 
-lbl_8034D718:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8034D784
+		} else {
+			enemy->finishMotion();
+			OBJ(enemy)->mNextState = PANMODOKI_Walk;
+		}
+	}
 
-lbl_8034D730:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034D89C
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
+	OBJ(enemy)->carryTarget(1.0f);
 
-lbl_8034D784:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D730
-	b        lbl_8034D89C
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, OBJ(enemy)->mNextState, nullptr);
+		if (OBJ(enemy)->mNextState == PANMODOKI_Back) {
+			OBJ(enemy)->changeCarryDir(false);
+		}
+	}
 
-lbl_8034D7A4:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r28, r3
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D7E0
-	cmplw    r28, r30
-	beq      lbl_8034D7E0
-	li       r31, 1
-
-lbl_8034D7E0:
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_8034D80C
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8034D89C
-
-lbl_8034D80C:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8034D880
-
-lbl_8034D82C:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034D89C
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_8034D880:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034D82C
-
-lbl_8034D89C:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_8034D7A4
-	addi     r3, r1, 0x30
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-
-lbl_8034D8C8:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8034D90C
-	mr       r3, r30
-	bl       releaseCarryTarget__Q34Game13PanModokiBase3ObjFv
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 7
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034D974
-
-lbl_8034D8FC:
-	mr       r3, r30
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r0, 1
-	stw      r0, 0x344(r30)
-
-lbl_8034D90C:
-	lfs      f1, lbl_8051E3EC@sda21(r2)
-	mr       r3, r30
-	bl       carryTarget__Q34Game13PanModokiBase3ObjFf
-	lwz      r3, 0x188(r30)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034D96C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8034D96C
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r6, 0
-	lwz      r5, 0x344(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x344(r30)
-	cmpwi    r0, 2
-	bne      lbl_8034D96C
-	mr       r3, r30
-	li       r4, 0
-	bl       changeCarryDir__Q34Game13PanModokiBase3ObjFb
-
-lbl_8034D96C:
-	mr       r3, r30
-	bl       checkSucked__Q34Game13PanModokiBase3ObjFv
-
-lbl_8034D974:
-	psq_l    f31, 104(r1), 0, qr0
-	lwz      r0, 0x74(r1)
-	lfd      f31, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	lwz      r28, 0x50(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	OBJ(enemy)->checkSucked();
 }
 
 /*
@@ -1078,7 +359,7 @@ lbl_8034D974:
  * Address:	8034D99C
  * Size:	000024
  */
-void StatePulled::cleanup(EnemyBase* enemy) { static_cast<Obj*>(enemy)->fadePulledSmokeEffect(); }
+void StatePulled::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadePulledSmokeEffect(); }
 
 /*
  * --INFO--
@@ -1098,44 +379,13 @@ StateAppear::StateAppear(int stateID)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 4
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	mr       r3, r31
-	bl       checkNearHomeGraphIndex__Q34Game13PanModokiBase3ObjFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       createAppearEffect__Q34Game13PanModokiBase3ObjFv
-	mr       r3, r31
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(4, nullptr);
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+	OBJ(enemy)->checkNearHomeGraphIndex();
+	OBJ(enemy)->appearRumble();
+	OBJ(enemy)->createAppearEffect();
+	enemy->hardConstraintOn();
 }
-
-/*
- * --INFO--
- * Address:	8034DA6C
- * Size:	000004
- */
-void Obj::appearRumble() { }
 
 /*
  * --INFO--
@@ -1144,35 +394,10 @@ void Obj::appearRumble() { }
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_8034DAC0
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8034DAC0
-	lwz      r12, 0(r3)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-
-lbl_8034DAC0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, PANMODOKI_Walk, nullptr);
+		enemy->hardConstraintOff();
+	}
 }
 
 /*
@@ -1193,34 +418,10 @@ StateHide::StateHide(int stateID)
  */
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	stw      r0, 0x10(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(5, nullptr);
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	mHideTimer             = 0;
 }
 
 /*
@@ -1230,92 +431,27 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateHide::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034DC00
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_8034DBD0
-	mr       r3, r31
-	bl       createHideEffect__Q34Game13PanModokiBase3ObjFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2fc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034DC00
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_2) {
+			OBJ(enemy)->createHideEffect();
+			OBJ(enemy)->hideRumble();
 
-lbl_8034DBD0:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8034DC00
-	mr       r3, r31
-	bl       fadeHideEffect__Q34Game13PanModokiBase3ObjFv
-	lwz      r4, 0xc0(r31)
-	mr       r3, r31
-	lfs      f0, 0x104(r4)
-	stfs     f0, 0x200(r31)
-	bl       endCarry__Q34Game13PanModokiBase3ObjFv
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
+		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
+			OBJ(enemy)->fadeHideEffect();
+			enemy->mHealth = CG_PARMS(enemy)->mGeneral.mHealth.mValue;
+			OBJ(enemy)->endCarry();
+			enemy->enableEvent(0, EB_IsImmuneBitter);
+		}
+	}
 
-lbl_8034DC00:
-	mr       r3, r31
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	cmplwi   r3, 0
-	bne      lbl_8034DC78
-	lwz      r3, 0x10(r30)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	addi     r0, r3, 1
-	lfd      f2, lbl_8051E410@sda21(r2)
-	stw      r0, 0x10(r30)
-	lwz      r0, 0x10(r30)
-	lwz      r3, 0xc0(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfs      f0, 0x95c(r3)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_8034DC78
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r31)
-
-lbl_8034DC78:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (!OBJ(enemy)->getCarryTarget()) {
+		mHideTimer++;
+		if (mHideTimer > CG_PROPERPARMS(enemy).mFp15.mValue) {
+			transit(enemy, PANMODOKI_Appear, nullptr);
+			enemy->disableEvent(0, EB_IsImmuneBitter);
+		}
+	}
 }
-
-/*
- * --INFO--
- * Address:	8034DC90
- * Size:	000004
- */
-void Obj::hideRumble() { }
 
 /*
  * --INFO--
@@ -1335,79 +471,29 @@ StateDamage::StateDamage(int stateID)
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 6
-	mr       r3, r31
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_8034DD44
-	lwz      r3, 0x334(r3)
-	li       r4, 2
-	bl       giveup__Q24Game11PelletCarryFUs
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
-	li       r0, 0
-	stw      r0, 0x230(r31)
+	enemy->startMotion(6, nullptr);
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+	enemy->mTargetVelocity = Vector3f(0.0f);
 
-lbl_8034DD44:
-	lbz      r0, 0x2f1(r31)
-	lwz      r4, 0xc0(r31)
-	cmplwi   r0, 0
-	lfs      f31, 0x90c(r4)
-	beq      lbl_8034DDA8
-	mr       r3, r31
-	lfs      f31, 0x8e4(r4)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x300(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x28
-	bne      lbl_8034DDA8
-	lwz      r3, 0x28c(r31)
-	li       r4, 0x598a
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
+	Pellet* target = OBJ(enemy)->getCarryTarget();
+	if (target) {
+		target->mPelletCarry->giveup(2);
+		enemy->endStick();
+		enemy->mTargetCreature = nullptr;
+	}
 
-lbl_8034DDA8:
-	fmr      f1, f31
-	lfs      f2, lbl_8051E3EC@sda21(r2)
-	mr       r3, r31
-	bl       addDamage__Q24Game9EnemyBaseFff
-	mr       r3, r31
-	bl       boundEffect__Q34Game13PanModokiBase3ObjFv
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	f32 damage = CG_PROPERPARMS(enemy).mFp06.mValue;
+	if (OBJ(enemy)->_2F1) {
+		damage = CG_PROPERPARMS(enemy).mFp04.mValue;
+		OBJ(enemy)->damageRumble();
+
+		if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_OoPanModoki) {
+			enemy->mSoundObj->startSound(PSSE_EN_OPAN_DOWN_NEW, 0);
+		}
+	}
+
+	enemy->addDamage(damage, 1.0f);
+	OBJ(enemy)->boundEffect();
 }
 
 /*
@@ -1417,44 +503,13 @@ lbl_8034DDA8:
  */
 void StateDamage::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_8034DE4C
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8034DE4C
-	lfs      f1, 0x200(r4)
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8034DE34
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034DE4C
-
-lbl_8034DE34:
-	lwz      r12, 0(r3)
-	li       r5, 7
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8034DE4C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		if (enemy->mHealth <= 0.0f) {
+			transit(enemy, PANMODOKI_Dead, nullptr);
+		} else {
+			transit(enemy, PANMODOKI_Wait, nullptr);
+		}
+	}
 }
 
 /*
@@ -1475,36 +530,11 @@ StateWait::StateWait(int stateID)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 8
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	li       r3, 0
-	li       r0, 1
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	stw      r3, 0x10(r30)
-	stw      r0, 0x344(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(8, nullptr);
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	mWaitTimer             = 0;
+	OBJ(enemy)->mNextState = PANMODOKI_Walk;
 }
 
 /*
@@ -1514,75 +544,20 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8034DF54
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034DFE4
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, PANMODOKI_Dead, nullptr);
+		return;
+	}
 
-lbl_8034DF54:
-	lwz      r3, 0x10(r30)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	addi     r0, r3, 1
-	lfd      f2, lbl_8051E410@sda21(r2)
-	stw      r0, 0x10(r30)
-	lwz      r0, 0x10(r30)
-	lwz      r3, 0xc0(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfs      f0, 0x934(r3)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_8034DFA8
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034DFA8
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	mWaitTimer++;
 
-lbl_8034DFA8:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034DFE4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8034DFE4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x344(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	if (mWaitTimer > CG_PROPERPARMS(enemy).mFp14.mValue && !enemy->isFinishMotion()) {
+		enemy->finishMotion();
+	}
 
-lbl_8034DFE4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, OBJ(enemy)->mNextState, nullptr);
+	}
 }
 
 /*
@@ -1603,82 +578,21 @@ StateStick::StateStick(int stateID)
  */
 void StateStick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	cmpwi    r3, 1
-	beq      lbl_8034E090
-	mr       r3, r30
-	li       r4, 1
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r4, 0xc0(r30)
-	mr       r3, r30
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	lfs      f0, 0x844(r4)
-	fmuls    f1, f1, f0
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
+	if (enemy->getCurrAnimIndex() != 1) {
+		enemy->startMotion(1, nullptr);
+		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
+	}
 
-lbl_8034E090:
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	mr       r3, r30
-	stfs     f0, 0x1d4(r30)
-	stfs     f0, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	stfs     f0, 0x1c8(r30)
-	stfs     f0, 0x1cc(r30)
-	stfs     f0, 0x1d0(r30)
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	or.      r31, r3, r3
-	beq      lbl_8034E0F0
-	mr       r3, r30
-	mr       r4, r31
-	bl       isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034E0F0
-	mr       r3, r31
-	li       r4, 0x270f
-	lwz      r12, 0(r31)
-	lwz      r12, 0x168(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034E114
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
 
-lbl_8034E0F0:
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034E124
-
-lbl_8034E114:
-	li       r3, 0
-	li       r0, 1
-	stw      r3, 0x10(r29)
-	stw      r0, 0x344(r30)
-
-lbl_8034E124:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Pellet* target = OBJ(enemy)->getCarryTarget();
+	if (!target || !OBJ(enemy)->isTargetable(target) || !target->isSlotFree(9999)) {
+		transit(enemy, PANMODOKI_Walk, nullptr);
+	} else {
+		_10                    = 0;
+		OBJ(enemy)->mNextState = PANMODOKI_Walk;
+	}
 }
 
 /*
@@ -1688,6 +602,47 @@ lbl_8034E124:
  */
 void StateStick::exec(EnemyBase* enemy)
 {
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, PANMODOKI_Dead, nullptr);
+		return;
+	}
+
+	Pellet* target = OBJ(enemy)->getCarryTarget();
+	if (!target) {
+		transit(enemy, PANMODOKI_Walk, nullptr);
+		return;
+	}
+
+	// this needs fixing
+	Vector3f targetPos = target->getPosition();
+	f32 z              = targetPos.z - enemy->getPosition().z;
+	f32 x              = targetPos.x - enemy->getPosition().x;
+	f32 stickRadius    = target->getStickRadius();
+	f32 dist           = x * x + z * z;
+	if (dist < SQUARE(1.2f * OBJ(enemy)->_32C + stickRadius)) {
+		if (OBJ(enemy)->isTargetable(target) && target->isSlotFree(9999)) {
+			enemy->mCurrentVelocity = Vector3f(0.0f);
+			enemy->mTargetVelocity  = Vector3f(0.0f);
+			enemy->startStick(target, 9999);
+			target->startPick();
+			OBJ(enemy)->setCarryDir(false);
+			transit(enemy, PANMODOKI_Back, nullptr);
+		} else {
+			transit(enemy, PANMODOKI_Walk, nullptr);
+		}
+	} else {
+		EnemyFunc::walkToTarget(enemy, targetPos, CG_PARMS(enemy)->mGeneral.mMoveSpeed.mValue / 2, CG_PROPERPARMS(enemy).mFp02.mValue,
+		                        CG_PROPERPARMS(enemy).mFp05.mValue);
+
+		// this needs fixing (surprise surprise)
+		enemy->changeFaceDir(targetPos);
+
+		_10++;
+		f32 rad = 2.5f * OBJ(enemy)->_32C;
+		if (_10 > 200 || dist > SQUARE(rad) || !target || !OBJ(enemy)->isTargetable(target)) {
+			transit(enemy, OBJ(enemy)->mNextState, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -1961,12 +916,12 @@ void StateSucked::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(8, nullptr);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 
-	if (static_cast<Obj*>(enemy)->getCarryTarget()) {
+	if (OBJ(enemy)->getCarryTarget()) {
 		enemy->endStick();
 		enemy->mTargetCreature = nullptr;
 	}
 
-	static_cast<Obj*>(enemy)->_2F1 = 1;
+	OBJ(enemy)->_2F1 = 1;
 }
 
 /*
@@ -1974,7 +929,7 @@ void StateSucked::init(EnemyBase* enemy, StateArg* stateArg)
  * Address:	8034E5A4
  * Size:	00000C
  */
-void StateSucked::exec(EnemyBase* enemy) { static_cast<Obj*>(enemy)->_2F1 = 1; }
+void StateSucked::exec(EnemyBase* enemy) { OBJ(enemy)->_2F1 = 1; }
 
 /*
  * --INFO--
@@ -1994,35 +949,8 @@ StateCarryEnd::StateCarryEnd(int stateID)
  */
 void StateCarryEnd::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	stfs     f0, 0x10(r30)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x14(r30)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x18(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	enemy->hardConstraintOn();
+	_10 = enemy->getPosition();
 }
 
 /*
@@ -2032,6 +960,10 @@ void StateCarryEnd::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateCarryEnd::exec(EnemyBase* enemy)
 {
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, PANMODOKI_Dead, nullptr);
+		return;
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0

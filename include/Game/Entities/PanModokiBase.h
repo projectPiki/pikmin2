@@ -81,8 +81,8 @@ struct Obj : public EnemyBase {
 	virtual void startCarcassMotion();                         // _2C4
 	virtual void doStartMovie();                               // _2F0
 	virtual void doEndMovie();                                 // _2F4
-	virtual void appearRumble();                               // _2F8 (weak)
-	virtual void hideRumble();                                 // _2FC (weak)
+	virtual void appearRumble() { }                            // _2F8 (weak)
+	virtual void hideRumble() { }                              // _2FC (weak)
 	virtual void damageRumble();                               // _300
 	virtual void walkFunc();                                   // _304
 	virtual bool canTarget(int, int) = 0;                      // _308
@@ -113,9 +113,9 @@ struct Obj : public EnemyBase {
 
 	void updateCaptureMatrix();
 	void findNextRoutePoint(bool);
-	void isCarryToGoal();
-	void isReachToGoal(f32);
-	void canBack();
+	bool isCarryToGoal();
+	bool isReachToGoal(f32);
+	bool canBack();
 	void findNearestPellet();
 	Pellet* getCarryTarget();
 	void releaseCarryTarget();
@@ -126,11 +126,11 @@ struct Obj : public EnemyBase {
 	void endCarry();
 	void checkSucked();
 	void suckFinish();
-	void isEndPathFinder();
+	bool isEndPathFinder();
 	void setPathFinder(bool);
 	void releasePathFinder();
 	void killNest();
-	void isTargetable(Pellet*);
+	bool isTargetable(Pellet*);
 	void calcSlotGlobalPos(Vector3f&);
 	void boundEffect();
 	void createAppearEffect();
@@ -287,9 +287,7 @@ struct StateCarryEnd : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
-	u32 _14; // _14, unknown
-	u32 _18; // _18, unknown
+	Vector3f _10; // _10, position maybe?
 };
 
 struct StateDamage : public State {
@@ -320,7 +318,7 @@ struct StateHide : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
+	int mHideTimer; // _10, time hidden/underground
 };
 
 struct StatePulled : public State {
@@ -342,7 +340,7 @@ struct StateStick : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
+	int _10; // _10, unknown
 };
 
 struct StateSucked : public State {
@@ -363,7 +361,7 @@ struct StateWait : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
+	int mWaitTimer; // _10, unknown
 };
 
 struct StateWalk : public State {
