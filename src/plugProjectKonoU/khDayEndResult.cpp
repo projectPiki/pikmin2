@@ -8,6 +8,8 @@
 #include "og/Screen/StickAnimMgr.h"
 #include "Controller.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
+#include "og/newScreen/ogUtil.h"
+#include "LoadResource.h"
 
 namespace kh {
 namespace Screen {
@@ -442,10 +444,10 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 	mScreenMain->search('N_3d')->setAnimation(mMainAnimTrans3);
 
 	mScreenStars = new P2DScreen::Mgr_tuning;
-	mScreenStars->set("result_itemConstellation.blo", 0x40000, archive);
+	mScreenStars->set("result_item_constellation.blo", 0x40000, archive);
 
 	mStarsAnimColor
-	    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_itemConstellation.bpk", archive)));
+	    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item_constellation.bpk", archive)));
 	mScreenStars->setAnimation(mStarsAnimColor);
 
 	og::Screen::setCallBackMessage(mScreenMain);
@@ -4544,222 +4546,19 @@ bool ObjDayEndResultMail::doUpdate()
 			statusOpenH();
 			break;
 		}
-		u8 a = (u8)_C8++ / 4;
-		if (mMailIconAnms[mMaxDay - mCurrentDay].mIconCount < a) {
-			a   = 0;
-			_C8 = 0;
+		int texID = ++mCharacterIconTimer;
+		texID /= 4;
+		if (texID >= mMailIconAnms[mMaxDay - mCurrentDay].mIconCount) {
+			texID               = 0;
+			mCharacterIconTimer = 0;
 		}
-		setTex(mScreenMain, 'Pset_p', mMailIconAnms[mMaxDay - mCurrentDay].mTIMG[a]);
+		setTex(mScreenMain, 'Pset_p', mMailIconAnms[mMaxDay - mCurrentDay].mTIMG[texID]);
 		updateCommon();
 		mScreenMain->search('NitemW0')->updateScale(mCharacterIconScaleX, mCharacterIconScaleY);
 	}
 
 	mScreenMain->update();
 	return false;
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stfd     f31, 0x20(r1)
-psq_st   f31, 40(r1), 0, qr0
-stfd     f30, 0x10(r1)
-psq_st   f30, 24(r1), 0, qr0
-stw      r31, 0xc(r1)
-stw      r30, 8(r1)
-mr       r31, r3
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_80408A0C
-lis      r3, lbl_80498830@ha
-lis      r5, lbl_80498900@ha
-addi     r3, r3, lbl_80498830@l
-li       r4, 0x80e
-addi     r5, r5, lbl_80498900@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80408A0C:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lwz      r0, 0x90(r31)
-mr       r30, r3
-rlwinm.  r0, r0, 0, 0x1d, 0x1d
-beq      lbl_80408A94
-lwz      r3, 0xa4(r31)
-bl       update__Q33ebi4Save4TMgrFv
-lwz      r3, 0xa4(r31)
-bl       isFinish__Q33ebi4Save4TMgrFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_80408BE4
-lwz      r3, 0xa4(r31)
-lwz      r0, 0x474(r3)
-cmpwi    r0, 2
-beq      lbl_80408A6C
-bge      lbl_80408A60
-cmpwi    r0, 0
-beq      lbl_80408A6C
-bge      lbl_80408A78
-b        lbl_80408BE4
-
-lbl_80408A60:
-cmpwi    r0, 4
-bge      lbl_80408BE4
-b        lbl_80408A88
-
-lbl_80408A6C:
-li       r0, 1
-stw      r0, 0x58(r30)
-b        lbl_80408BE4
-
-lbl_80408A78:
-lwz      r0, 0x90(r31)
-rlwinm   r0, r0, 0, 0x1e, 0x1c
-stw      r0, 0x90(r31)
-b        lbl_80408BE4
-
-lbl_80408A88:
-li       r0, 2
-stw      r0, 0x58(r30)
-b        lbl_80408BE4
-
-lbl_80408A94:
-lwz      r0, 0x98(r31)
-cmplwi   r0, 7
-bgt      lbl_80408B14
-lis      r3, lbl_804EADA8@ha
-slwi     r0, r0, 2
-addi     r3, r3, lbl_804EADA8@l
-lwzx     r0, r3, r0
-mtctr    r0
-bctr
-.global  lbl_80408AB8
-
-lbl_80408AB8:
-mr       r3, r31
-bl       statusNormal__Q32kh6Screen19ObjDayEndResultMailFv
-b        lbl_80408B14
-.global  lbl_80408AC4
-
-lbl_80408AC4:
-mr       r3, r31
-bl       statusFadeoutToLeft__Q32kh6Screen19ObjDayEndResultMailFv
-b        lbl_80408B14
-.global  lbl_80408AD0
-
-lbl_80408AD0:
-mr       r3, r31
-bl       statusFadeinFromLeft__Q32kh6Screen19ObjDayEndResultMailFv
-b        lbl_80408B14
-.global  lbl_80408ADC
-
-lbl_80408ADC:
-mr       r3, r31
-bl       statusFadeoutToRight__Q32kh6Screen19ObjDayEndResultMailFv
-b        lbl_80408B14
-.global  lbl_80408AE8
-
-lbl_80408AE8:
-mr       r3, r31
-bl       statusFadeinFromRight__Q32kh6Screen19ObjDayEndResultMailFv
-b        lbl_80408B14
-.global  lbl_80408AF4
-
-lbl_80408AF4:
-mr       r3, r31
-bl       statusWaitOpen__Q32kh6Screen19ObjDayEndResultMailFv
-b        lbl_80408B14
-.global  lbl_80408B00
-
-lbl_80408B00:
-mr       r3, r31
-bl       statusOpenW__Q32kh6Screen19ObjDayEndResultMailFv
-b        lbl_80408B14
-.global  lbl_80408B0C
-
-lbl_80408B0C:
-mr       r3, r31
-bl       statusOpenH__Q32kh6Screen19ObjDayEndResultMailFv
-
-lbl_80408B14:
-lwz      r3, 0xc8(r31)
-addi     r0, r3, 1
-stw      r0, 0xc8(r31)
-srawi    r0, r0, 2
-addze    r6, r0
-lwz      r3, 0xbc(r31)
-lwz      r0, 0xb8(r31)
-lwz      r4, 0xc4(r31)
-subf     r0, r3, r0
-slwi     r0, r0, 3
-add      r3, r4, r0
-lwz      r0, 4(r3)
-cmpw     r6, r0
-blt      lbl_80408B58
-li       r0, 0
-li       r6, 0
-stw      r0, 0xc8(r31)
-
-lbl_80408B58:
-lwz      r4, 0xbc(r31)
-lis      r5, 0x65745F70@ha
-lwz      r3, 0xb8(r31)
-slwi     r0, r6, 2
-lwz      r7, 0xc4(r31)
-addi     r6, r5, 0x65745F70@l
-subf     r4, r4, r3
-lwz      r3, 0x4c(r31)
-slwi     r4, r4, 3
-li       r5, 0x5073
-lwzx     r4, r7, r4
-lwzx     r7, r4, r0
-bl       setTex__Q22kh6ScreenFP9J2DScreenUxPC7ResTIMG
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x78(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r5, 0x656D5730@ha
-lis      r4, 0x004E6974@ha
-lfs      f30, 0xdc(r31)
-lwz      r12, 0(r3)
-addi     r6, r5, 0x656D5730@l
-addi     r5, r4, 0x004E6974@l
-lfs      f31, 0xd8(r31)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-stfs     f31, 0xcc(r3)
-stfs     f30, 0xd0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-
-lbl_80408BE4:
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-li       r3, 0
-psq_l    f31, 40(r1), 0, qr0
-lfd      f31, 0x20(r1)
-psq_l    f30, 24(r1), 0, qr0
-lfd      f30, 0x10(r1)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x34(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
 }
 
 /*
@@ -4812,7 +4611,8 @@ void ObjDayEndResultMail::statusNormal()
 	} else if (getGamePad()->mButton.mMask & Controller::PRESS_L) {
 		if (mCurrentDay > 1 && (mMaxDay - (mCurrentDay - 1)) < 20) {
 			SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
-			if (mMaxDay - (mCurrentDay - 1) != 19 || (s8)scene->mMailFlags[19] != -2) {
+			s8* flag                     = scene->mMailFlags;
+			if (mMaxDay - (mCurrentDay - 1) != 19 || (flag[mMaxDay - (mCurrentDay - 1)]) != -2) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 				mFadePaneArrowR->fadein();
 				mStatus        = MAILSTATUS_FadeoutToRight;
@@ -4827,152 +4627,6 @@ void ObjDayEndResultMail::statusNormal()
 			mSideMoveTimer = 349.0f;
 		}
 	}
-
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stw      r31, 0x2c(r1)
-mr       r31, r3
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x17, 0x17
-beq      lbl_80408E14
-lwz      r0, 0x90(r31)
-ori      r0, r0, 4
-stw      r0, 0x90(r31)
-lwz      r3, 0xa4(r31)
-bl       start__Q33ebi4Save4TMgrFv
-b        lbl_80408FD8
-
-lbl_80408E14:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x16, 0x16
-beq      lbl_80408EEC
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r5, __vt__Q26Screen12SceneArgBase@ha
-lis      r4, __vt__Q26Screen11SetSceneArg@ha
-addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
-li       r5, 0x4e24
-stw      r0, 0x10(r1)
-addi     r6, r4, __vt__Q26Screen11SetSceneArg@l
-li       r4, 0
-li       r0, 1
-stw      r3, 0x1c(r1)
-mr       r3, r31
-stw      r6, 0x10(r1)
-stw      r5, 0x14(r1)
-stb      r4, 0x18(r1)
-stb      r0, 0x19(r1)
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 0x10
-bl       setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-clrlwi.  r0, r3, 0x18
-beq      lbl_80408FD8
-lis      r4, __vt__Q26Screen12SceneArgBase@ha
-lis      r3, __vt__Q26Screen13StartSceneArg@ha
-addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
-lis      r5, __vt__Q32kh6Screen20SArgDayEndResultBase@ha
-stw      r0, 8(r1)
-addi     r0, r3, __vt__Q26Screen13StartSceneArg@l
-lis      r3, __vt__Q32kh6Screen20SArgDayEndResultIncP@ha
-li       r4, 0
-stw      r0, 8(r1)
-addi     r5, r5, __vt__Q32kh6Screen20SArgDayEndResultBase@l
-addi     r0, r3, __vt__Q32kh6Screen20SArgDayEndResultIncP@l
-mr       r3, r31
-stw      r5, 8(r1)
-stb      r4, 0xc(r1)
-stw      r0, 8(r1)
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 8
-bl       startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-lwz      r0, 0x90(r31)
-ori      r0, r0, 0x10
-stw      r0, 0x90(r31)
-b        lbl_80408FD8
-
-lbl_80408EEC:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x18(r3)
-rlwinm.  r0, r0, 0, 0x19, 0x19
-beq      lbl_80408F8C
-lwz      r3, 0xbc(r31)
-cmplwi   r3, 1
-ble      lbl_80408FD8
-lwz      r0, 0xb8(r31)
-addi     r3, r3, -1
-subf     r0, r3, r0
-cmplwi   r0, 0x14
-bge      lbl_80408FD8
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r4, 0xbc(r31)
-addi     r5, r3, 0x228
-lwz      r0, 0xb8(r31)
-addi     r3, r4, -1
-subf     r0, r3, r0
-cmplwi   r0, 0x13
-bne      lbl_80408F60
-lbzx     r0, r5, r0
-extsb    r0, r0
-cmpwi    r0, -2
-beq      lbl_80408FD8
-
-lbl_80408F60:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, 0xd0(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-li       r0, 3
-lfs      f0, lbl_805200D4@sda21(r2)
-stw      r0, 0x98(r31)
-stfs     f0, 0xb0(r31)
-b        lbl_80408FD8
-
-lbl_80408F8C:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x18(r3)
-rlwinm.  r0, r0, 0, 0x1a, 0x1a
-beq      lbl_80408FD8
-lwz      r3, 0xbc(r31)
-lwz      r0, 0xb8(r31)
-cmplw    r3, r0
-bge      lbl_80408FD8
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, 0xcc(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-li       r0, 1
-lfs      f0, lbl_805200F0@sda21(r2)
-stw      r0, 0x98(r31)
-stfs     f0, 0xb0(r31)
-
-lbl_80408FD8:
-lwz      r0, 0x34(r1)
-lwz      r31, 0x2c(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
 }
 
 /*
@@ -5062,103 +4716,40 @@ void ObjDayEndResultMail::statusFadeinFromRight()
  */
 void ObjDayEndResultMail::statusWaitOpen()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-stw      r30, 8(r1)
-mr       r30, r3
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_80409214
-lis      r3, lbl_80498830@ha
-lis      r5, lbl_80498900@ha
-addi     r3, r3, lbl_80498830@l
-li       r4, 0x8f1
-addi     r5, r5, lbl_80498900@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(2289, "disp member err");
+	}
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+	dispResult->mMail._18        = 1;
 
-lbl_80409214:
-mr       r3, r30
-bl       getDispMember__Q26Screen7ObjBaseFv
-mr       r31, r3
-li       r0, 1
-stb      r0, 0x5c(r3)
-mr       r3, r30
-lwz      r12, 0(r30)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x60(r31)
-lwz      r3, 0x220(r3)
-slwi     r0, r0, 2
-lwzx     r3, r3, r0
-lbz      r0, 0xa(r3)
-extsb    r0, r0
-cmpwi    r0, 3
-beq      lbl_804092A0
-bge      lbl_80409278
-cmpwi    r0, 1
-beq      lbl_80409290
-bge      lbl_80409298
-cmpwi    r0, 0
-bge      lbl_80409288
-b        lbl_804092B8
+	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
 
-lbl_80409278:
-cmpwi    r0, 5
-beq      lbl_804092B0
-bge      lbl_804092B8
-b        lbl_804092A8
-
-lbl_80409288:
-li       r4, 0x1876
-b        lbl_804092BC
-
-lbl_80409290:
-li       r4, 0x1877
-b        lbl_804092BC
-
-lbl_80409298:
-li       r4, 0x1878
-b        lbl_804092BC
-
-lbl_804092A0:
-li       r4, 0x1879
-b        lbl_804092BC
-
-lbl_804092A8:
-li       r4, 0x187a
-b        lbl_804092BC
-
-lbl_804092B0:
-li       r4, 0x187b
-b        lbl_804092BC
-
-lbl_804092B8:
-li       r4, 0x187c
-
-lbl_804092BC:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-li       r0, 6
-stw      r0, 0x98(r30)
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	s8 soundType = scene->mTableData[dispResult->mMail.mTodayMailID]->mFlag[2];
+	int soundID;
+	switch (soundType) {
+	case 0:
+		soundID = PSSE_SY_MAIL_SHACHO;
+		break;
+	case 1:
+		soundID = PSSE_SY_MAIL_ORIMA_WIFE;
+		break;
+	case 2:
+		soundID = PSSE_SY_MAIL_ORIMA_SON;
+		break;
+	case 3:
+		soundID = PSSE_SY_MAIL_ORIMA_DAUGHTER;
+		break;
+	case 4:
+		soundID = PSSE_SY_MAIL_LOUIE_GRANMA;
+		break;
+	case 5:
+		soundID = PSSE_SY_MAIL_SHACHO_WIFE;
+		break;
+	default:
+		soundID = PSSE_SY_MAIL_SPAM;
+	}
+	PSSystem::spSysIF->playSystemSe(soundID, 0);
+	mStatus = MAILSTATUS_OpenW;
 }
 
 /*
@@ -5168,65 +4759,22 @@ blr
  */
 void ObjDayEndResultMail::statusOpenW()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, lbl_805200F8@sda21(r2)
-stw      r0, 0x14(r1)
-addi     r4, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f4, lbl_805200B0@sda21(r2)
-lfs      f1, 0xe0(r3)
-lfs      f0, 0x48(r4)
-fmuls    f1, f1, f0
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f1, 0xe0(r3)
-lfs      f3, 0xdc(r3)
-lfs      f1, 0x3c(r4)
-fsubs    f2, f2, f3
-fmadds   f1, f2, f1, f3
-stfs     f1, 0xdc(r3)
-lfs      f1, 0xd8(r3)
-lfs      f2, 0x3c(r4)
-fsubs    f3, f4, f1
-lfs      f1, 0xe0(r3)
-fmadds   f1, f3, f2, f1
-stfs     f1, 0xe0(r3)
-lfs      f2, 0xd8(r3)
-lfs      f1, 0xe0(r3)
-fadds    f1, f2, f1
-stfs     f1, 0xd8(r3)
-lfs      f1, 0xe0(r3)
-fcmpo    cr0, f1, f0
-bge      lbl_80409388
-lfs      f1, 0xd8(r3)
-lfs      f0, lbl_805200FC@sda21(r2)
-fsubs    f1, f1, f4
-fcmpo    cr0, f1, f0
-bge      lbl_80409388
-stfs     f4, 0xd8(r3)
-li       r0, 7
-lfs      f0, 0x40(r4)
-stfs     f0, 0xe4(r3)
-stw      r0, 0x98(r3)
+	mOpenWTimer *= ObjDayEndResultBase::msVal._48;
+	mCharacterIconScaleY += (0.02f - mCharacterIconScaleY) * msVal._3C;
+	mOpenWTimer += (1.0f - mCharacterIconScaleX) * ObjDayEndResultBase::msVal._3C;
+	mCharacterIconScaleX += mOpenWTimer;
 
-lbl_80409388:
-lwz      r4, 0xe8(r3)
-addi     r0, r4, 0x20
-stw      r0, 0xe8(r3)
-lwz      r0, 0xe8(r3)
-cmpwi    r0, 0xff
-ble      lbl_804093A8
-li       r0, 0xff
-stw      r0, 0xe8(r3)
+	if (mOpenWTimer < 0.0f && (mCharacterIconScaleX - 1.0f) < 0.1f) {
+		mCharacterIconScaleX = 1.0f;
+		mOpenHTimer          = msVal._40;
+		mStatus              = MAILSTATUS_OpenH;
+	}
 
-lbl_804093A8:
-bl       changeAlpha__Q32kh6Screen19ObjDayEndResultMailFv
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mAlpha += 32;
+	if (mAlpha > 255) {
+		mAlpha = 255;
+	}
+	changeAlpha();
 }
 
 /*
@@ -5236,22 +4784,20 @@ blr
  */
 void ObjDayEndResultMail::statusOpenH()
 {
-	_E4 *= ObjDayEndResultBase::msVal._48;
-	_E4 += (1.0f - mCharacterIconScaleX) * ObjDayEndResultBase::msVal._44;
-	mCharacterIconScaleX += _E4;
+	mOpenHTimer *= ObjDayEndResultBase::msVal._48;
+	mOpenHTimer += (1.0f - mCharacterIconScaleY) * ObjDayEndResultBase::msVal._44;
+	mCharacterIconScaleY += mOpenHTimer;
 
-	if (_E4 < 0.0f && (mCharacterIconScaleX - 1.0f) < 0.1f) {
-		mCharacterIconScaleX = 1.0f;
+	if (mOpenHTimer < 0.0f && (mCharacterIconScaleY - 1.0f) < 0.1f) {
+		mCharacterIconScaleY = 1.0f;
 		mNextBtnFadePane->fadein();
 		mStatus = MAILSTATUS_Normal;
 	}
 
 	mAlpha += 32;
-
 	if (mAlpha > 255) {
 		mAlpha = 255;
 	}
-
 	changeAlpha();
 }
 
@@ -5262,6 +4808,26 @@ void ObjDayEndResultMail::statusOpenH()
  */
 void ObjDayEndResultMail::changeMail()
 {
+	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
+	mCharacterIconTimer          = 0;
+	setTex(mScreenMain, 'Pset_p', mMailIconAnms[mMaxDay - mCurrentDay].mTIMG[0]);
+	mScreenMain->search(scene->mTableData[mMaxDay - mCurrentDay]->mMessageID);
+
+	if (mMaxDay == mCurrentDay) {
+		mMessage->mMinX = 1.0f;
+		mMessage->mMinY = 1.0f;
+		mMessage->mMaxX = 1.0f;
+		mMessage->mMaxY = 1.0f;
+		mScreenMain->search('Pset_p');
+		mScreenMain->search('Picon_b');
+	} else {
+		mMessage->mMinX = msVal._2C;
+		mMessage->mMinY = msVal._30;
+		mMessage->mMaxX = msVal._34;
+		mMessage->mMaxY = msVal._38;
+		mScreenMain->search('Pset_p');
+		mScreenMain->search('Picon_b');
+	}
 	/*
 stwu     r1, -0x80(r1)
 mflr     r0
@@ -5594,182 +5160,8 @@ void ObjDayEndResultMail::doDraw(Graphics& gfx)
  */
 void ObjDayEndResultMail::updateCommon()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lfs      f0, 0x44(r3)
-lwz      r3, 0x3c(r3)
-stfs     f0, 8(r3)
-lfs      f0, 0x48(r31)
-lwz      r3, 0x40(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x38(r31)
-bl       animation__9J2DScreenFv
-lfs      f0, 0x44(r31)
-lis      r0, 0x4330
-lfs      f2, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f0, f2
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x44(r31)
-lfs      f0, 0x48(r31)
-fadds    f0, f0, f2
-stfs     f0, 0x48(r31)
-lwz      r3, 0x3c(r31)
-lfs      f2, 0x44(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80409BBC
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x44(r31)
-
-lbl_80409BBC:
-lwz      r3, 0x40(r31)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lha      r0, 6(r3)
-lfd      f1, lbl_805200B8@sda21(r2)
-xoris    r0, r0, 0x8000
-lfs      f2, 0x48(r31)
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80409BF8
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x48(r31)
-
-lbl_80409BF8:
-lfs      f0, 0x68(r31)
-lwz      r3, 0x58(r31)
-stfs     f0, 8(r3)
-lfs      f0, 0x6c(r31)
-lwz      r3, 0x5c(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x4c(r31)
-bl       animation__9J2DScreenFv
-lfs      f0, 0x68(r31)
-lis      r0, 0x4330
-lfs      f2, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f0, f2
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x68(r31)
-lfs      f0, 0x6c(r31)
-fadds    f0, f0, f2
-stfs     f0, 0x6c(r31)
-lwz      r3, 0x58(r31)
-lfs      f2, 0x68(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80409C70
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x68(r31)
-
-lbl_80409C70:
-lwz      r3, 0x5c(r31)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lha      r0, 6(r3)
-lfd      f1, lbl_805200B8@sda21(r2)
-xoris    r0, r0, 0x8000
-lfs      f2, 0x6c(r31)
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80409CAC
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x6c(r31)
-
-lbl_80409CAC:
-lfs      f0, 0x64(r31)
-lis      r3, 0x69746C65@ha
-lwz      r4, 0x54(r31)
-addi     r6, r3, 0x69746C65@l
-li       r5, 0x4e74
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lfs      f1, 0x64(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x64(r31)
-lwz      r3, 0x54(r31)
-lfs      f2, 0x64(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80409D28
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x64(r31)
-
-lbl_80409D28:
-lfs      f0, 0x78(r31)
-lwz      r3, 0x74(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x70(r31)
-bl       animation__9J2DScreenFv
-lfs      f1, 0x78(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x78(r31)
-lwz      r3, 0x74(r31)
-lfs      f2, 0x78(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80409D88
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x78(r31)
-
-lbl_80409D88:
-lwz      r3, 0x38(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-bl       animation__9J2DScreenFv
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	ObjDayEndResultBase::updateCommon();
+	mScreenMain->animation();
 }
 
 /*
@@ -5779,6 +5171,22 @@ blr
  */
 void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 {
+	if (pane->getTypeID() == 19 && pane->getUserInfo()) {
+		og::Screen::CallBack_Message* mesg = new og::Screen::CallBack_Message;
+		u64 tag                            = pane->mTag; // getTagName() ?
+		mgr->addCallBack(tag, mesg);
+		static_cast<J2DTextBox*>(pane)->setString("");
+		if (tag == 'Ttext') {
+			mMessage = mesg;
+		}
+	}
+
+	JSUTree<J2DPane>* tree = pane->getPaneTree();
+	JSUTreeIterator<J2DPane> iter(tree->getFirstChild());
+	while (iter != tree->getEndChild()) {
+		setCallBackMessage(mgr, iter.getObject());
+		++iter;
+	}
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -6062,22 +5470,7 @@ blr
  * Address:	8040A174
  * Size:	000024
  */
-void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr)
-{
-	setCallBackMessage(mgr, mgr);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-mr       r5, r4
-stw      r0, 0x14(r1)
-bl
-setCallBackMessage__Q32kh6Screen19ObjDayEndResultMailFPQ29P2DScreen3MgrP7J2DPane
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr) { setCallBackMessage(mgr, mgr); }
 
 /*
  * --INFO--
@@ -6086,31 +5479,8 @@ blr
  */
 bool ObjDayEndResultMail::skipped() const
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r4, 0xbc(r31)
-lwz      r0, 0xb8(r31)
-subf     r0, r4, r0
-add      r3, r3, r0
-lbz      r0, 0x228(r3)
-extsb    r0, r0
-subfic   r0, r0, -2
-cntlzw   r0, r0
-srwi     r3, r0, 5
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
+	return scene->mMailFlags[mMaxDay - mCurrentDay] == -2;
 }
 
 /*
@@ -6140,7 +5510,7 @@ void ObjDayEndResultTitl::doCreate(JKRArchive* arc)
 	mScreenMain->set("result_title_new.blo", 0x1040000, arc);
 	mMainAnimTrans = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title_new.bck", arc)));
 	mMainAnimSRT
-	    = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title_new.bpk", arc)));
+	    = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title_new.btk", arc)));
 
 	mScreenMain->setAnimation(mMainAnimTrans);
 	mScreenMain->setAnimation(mMainAnimSRT);
@@ -6405,8 +5775,38 @@ SceneDayEndResultMail::SceneDayEndResultMail()
  * Address:	8040A8A0
  * Size:	00058C
  */
-void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand*)
+void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 {
+	MailTableFile* file = nullptr;
+	LoadResource::Arg arg1("/user/Koono/mail_table.szs");
+	LoadResource::Node* node1 = gLoadResourceMgr->mountArchive(arg1);
+	if (node1) {
+		file = static_cast<MailTableFile*>(JKRFileLoader::getGlbResource("mail_table.bin", node1->mArchive));
+	} else {
+		JUT_ASSERTLINE(2674, node1, "failed");
+	}
+
+	s8 saveFlags[16] = { Game::playData->mMailSaveData.mHistory[0] };
+	int entries      = file->mEntries;
+	for (int i = 0; i < entries; i++) {
+		MailTableData* data = new MailTableData;
+
+		mTableData[i] = data;
+	}
+
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(2690, "disp member err");
+	}
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+
+	og::newScreen::makeLanguageResName(mName, "result_mail.szs");
+	LoadResource::Arg arg(mName);
+	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
+	if (node) {
+		registObj(new ObjDayEndResultMail, node->mArchive);
+	} else {
+		JUT_ASSERTLINE(2764, node, "failed");
+	}
 	/*
 stwu     r1, -0xd0(r1)
 mflr     r0
