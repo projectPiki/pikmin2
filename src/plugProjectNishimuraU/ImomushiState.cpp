@@ -467,104 +467,12 @@ void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->startMotion(4, nullptr);
 
-	f32 faceDir = imomushi->getFaceDir(); // slight misordering here but should be equivalent
-	f32 cos     = pikmin2_cosf(faceDir);
-	f32 sin     = pikmin2_sinf(faceDir);
+	const f32 faceDir = imomushi->getFaceDir();
+	f32 cos           = pikmin2_cosf(faceDir);
+	f32 sin           = pikmin2_sinf(faceDir);
 
 	imomushi->_2D8 = Vector3f(sin, 0.01f, cos);
 	imomushi->_2E4 = Vector3f(-sin, 0.0f, -cos);
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	li       r0, -1
-	addi     r3, r1, 8
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r0, 0x2c4(r4)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	mr       r3, r31
-	lfs      f2, 0x10(r1)
-	bl       setStickDiff__Q34Game8Imomushi3ObjFff
-	lwz      r4, 0x230(r31)
-	mr       r3, r31
-	lwz      r4, 0x114(r4)
-	lwz      r4, 0(r4)
-	lwz      r4, 0x10(r4)
-	bl       startClimbPlant__Q34Game8Imomushi3ObjFP8CollPart
-	lfs      f0, lbl_8051C378@sda21(r2)
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	lfs      f0, lbl_8051C378@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_802BB32C
-	fneg     f2, f2
-
-lbl_802BB32C:
-	lfs      f3, lbl_8051C388@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051C378@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f2, f3
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f4, 4(r3)
-	bge      lbl_802BB384
-	lfs      f0, lbl_8051C38C@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_802BB39C
-
-lbl_802BB384:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-
-lbl_802BB39C:
-	stfs     f0, 0x2d8(r31)
-	fneg     f2, f0
-	lfs      f3, lbl_8051C390@sda21(r2)
-	fneg     f0, f4
-	lfs      f1, lbl_8051C378@sda21(r2)
-	stfs     f3, 0x2dc(r31)
-	stfs     f4, 0x2e0(r31)
-	stfs     f2, 0x2e4(r31)
-	stfs     f1, 0x2e8(r31)
-	stfs     f0, 0x2ec(r31)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
