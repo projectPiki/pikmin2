@@ -1,4 +1,5 @@
 #include "Dolphin/os.h"
+#include "Dolphin/dsp.h"
 #include "JSystem/JAudio2/DSP.h"
 #include "types.h"
 

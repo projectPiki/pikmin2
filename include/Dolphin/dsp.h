@@ -7,6 +7,9 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+void __DSP_insert_task(void* task);
+void __DSP_boot_task(void* task);
+
 typedef struct DSPTask {
 	s32 _00;             // _00
 	u32 _04;             // _04
