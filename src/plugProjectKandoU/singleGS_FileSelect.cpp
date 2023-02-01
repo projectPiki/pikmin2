@@ -4,6 +4,13 @@
 #include "types.h"
 #include "Game/SingleGame.h"
 #include "nans.h"
+#include "PSGame/SceneInfo.h"
+#include "PSSystem/PSGame.h"
+#include "PSM/Scene.h"
+#include "TParticle2dMgr.h"
+#include "Game/GameSystem.h"
+
+static const char name[] = "SingleGS_Game";
 
 /*
     Generated from dpostproc
@@ -124,10 +131,10 @@ namespace SingleGame {
 FileState::FileState()
     : State(SGS_File)
 {
-	_14 = new Controller(JUTGamePad::PORT_0);
-	_34 = new Controller(JUTGamePad::PORT_2);
-	_20 = nullptr;
-	_1C = nullptr;
+	mMainController  = new Controller(JUTGamePad::PORT_0);
+	mDebugController = new Controller(JUTGamePad::PORT_2);
+	mBackupHeap      = nullptr;
+	mMainHeap        = nullptr;
 }
 
 /*
@@ -135,10 +142,10 @@ FileState::FileState()
  * Address:	8021C7C0
  * Size:	00009C
  */
-void FileState::init(Game::SingleGameSection* section, Game::StateArg* arg)
+void FileState::init(SingleGameSection* section, StateArg* arg)
 {
 	moviePlayer->reset();
-	_24                    = 1;
+	mIsNotInitialized      = true;
 	section->mDisplayWiper = section->mWipeInFader;
 	section->mWipeInFader->start(1.0f);
 	section->refreshHIO();
@@ -152,7 +159,7 @@ void FileState::init(Game::SingleGameSection* section, Game::StateArg* arg)
  * Address:	........
  * Size:	0000E4
  */
-void FileState::first_init(Game::SingleGameSection*)
+void FileState::first_init(SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -164,6 +171,31 @@ void FileState::first_init(Game::SingleGameSection*)
  */
 void FileState::dvdload()
 {
+	PSGame::SceneInfo info;
+	info.mSceneType = PSGame::SceneInfo::FILE_SELECT;
+	info.mCameras   = 0;
+
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&info);
+
+	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
+	sceneMgr->checkScene();
+	sceneMgr->mScenes->mChild->scene1stLoadSync();
+
+	sceneMgr = PSSystem::getSceneMgr();
+	sceneMgr->checkScene();
+	sceneMgr->mScenes->mChild->startMainSeq();
+
+	mFSMgr                      = ebi::FileSelect::TMgr::createInstance();
+	ebi::FileSelect::TMgr* tmgr = mFSMgr;
+	tmgr->mMgrFS.mMainScreen.loadResource();
+	JKRHeap* heap = JKRGetCurrentHeap();
+	tmgr->mCardErrorMgr.loadResource(heap);
+	static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->loadResource(heap);
+	Controller* input            = mMainController;
+	ebi::FileSelect::TMgr* tmgr2 = mFSMgr;
+	tmgr2->mMgrFS.setController(input);
+	tmgr2->mCardErrorMgr.mController = input;
+	playData->reset();
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -286,127 +318,39 @@ lbl_8021C970:
  * Address:	8021C9F8
  * Size:	000194
  */
-void FileState::exec(Game::SingleGameSection*)
+void FileState::exec(SingleGameSection* game)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	stw      r29, 0x24(r1)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8021CAD0
-	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-	stw      r0, 0x20(r30)
-	lwz      r29, 0x20(r30)
-	mr       r3, r29
-	bl       getFreeSize__7JKRHeapFv
-	mr       r4, r29
-	li       r5, 1
-	bl       create__10JKRExpHeapFUlP7JKRHeapb
-	stw      r3, 0x1c(r30)
-	lwz      r3, 0x1c(r30)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8021CAA8
-	lis      r4, lbl_804C07EC@ha
-	lis      r5, __vt__9IDelegate@ha
-	addi     r8, r4, lbl_804C07EC@l
-	lis      r4, "__vt__39Delegate<Q34Game10SingleGame9FileState>"@ha
-	lwz      r7, 0(r8)
-	addi     r5, r5, __vt__9IDelegate@l
-	lwz      r6, 4(r8)
-	addi     r0, r4, "__vt__39Delegate<Q34Game10SingleGame9FileState>"@l
-	lwz      r4, 8(r8)
-	stw      r7, 8(r1)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stw      r30, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0xc(r1)
-	stw      r4, 0x10(r1)
-	stw      r4, 0x10(r3)
+	if (mIsNotInitialized) {
+		mBackupHeap = JKRGetCurrentHeap();
+		mMainHeap   = JKRExpHeap::create(mBackupHeap->getFreeSize(), mBackupHeap, true);
+		mMainHeap->becomeCurrentHeap();
 
-lbl_8021CAA8:
-	stw      r3, 0x18(r30)
-	mr       r3, r31
-	li       r5, 0
-	lwz      r4, 0x18(r30)
-	bl       loadSync__Q24Game15BaseGameSectionFP9IDelegateb
-	lwz      r3, 0x2c(r30)
-	bl       start__Q33ebi10FileSelect4TMgrFv
-	li       r0, 0
-	stb      r0, 0x24(r30)
-	b        lbl_8021CB70
-
-lbl_8021CAD0:
-	lwz      r0, 0x1c(r30)
-	cmplwi   r0, 0
-	beq      lbl_8021CB70
-	lwz      r3, particle2dMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8021CAEC
-	bl       update__14TParticle2dMgrFv
-
-lbl_8021CAEC:
-	mr       r3, r31
-	bl       doUpdate__Q24Game14BaseHIOSectionFv
-	lwz      r3, 0x2c(r30)
-	bl       update__Q33ebi10FileSelect4TMgrFv
-	lwz      r3, 0x2c(r30)
-	bl       isFinish__Q33ebi10FileSelect4TMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8021CB70
-	lwz      r3, 0x2c(r30)
-	lwz      r0, 0xfe4(r3)
-	cmpwi    r0, 2
-	beq      lbl_8021CB38
-	bge      lbl_8021CB2C
-	cmpwi    r0, 1
-	bge      lbl_8021CB48
-	b        lbl_8021CB70
-
-lbl_8021CB2C:
-	cmpwi    r0, 4
-	bge      lbl_8021CB70
-	b        lbl_8021CB68
-
-lbl_8021CB38:
-	mr       r3, r30
-	mr       r4, r31
-	bl startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection b
-lbl_8021CB70
-
-lbl_8021CB48:
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	li       r0, 0
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r5, 0x40(r5)
-	stw      r0, 0x218(r5)
-	bl startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection b
-lbl_8021CB70
-
-lbl_8021CB68:
-	mr       r3, r31
-	bl       flow_goto_title__Q24Game17SingleGameSectionFv
-
-lbl_8021CB70:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		mLoadDelegate = new Delegate<FileState>(this, dvdload);
+		game->loadSync(mLoadDelegate, false);
+		mFSMgr->start();
+		mIsNotInitialized = false;
+	} else {
+		if (mMainHeap) {
+			if (particle2dMgr) {
+				particle2dMgr->update();
+			}
+			game->BaseHIOSection::doUpdate();
+			mFSMgr->update();
+			if (mFSMgr->isFinish()) {
+				switch (mFSMgr->mState) {
+				case 2:
+					startGame(game);
+					break;
+				case 1:
+					gameSystem->mTimeMgr->mDayCount = 0;
+					startGame(game);
+					break;
+				case 3:
+					game->flow_goto_title();
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -414,8 +358,64 @@ lbl_8021CB70:
  * Address:	8021CB8C
  * Size:	00027C
  */
-void FileState::startGame(Game::SingleGameSection*)
+void FileState::startGame(SingleGameSection* game)
 {
+	int state = playData->mLoadType;
+	if (particle2dMgr) {
+		particle2dMgr->killAll();
+	}
+	switch (state) {
+	case 0: // new file start
+	{
+		MovieArg arg(THPPlayer::OPENING_1);
+		transit(game, SGS_Movie, &arg);
+		break;
+	}
+	case 1: // go to world map
+	{
+		transit(game, SGS_Select, nullptr);
+		break;
+	}
+	case 2: // loading into an overworld
+	{
+		game->mDisplayWiper = game->mWipeInFader;
+		game->mWipeInFader->start(4.0f);
+		game->mCurrentCourseInfo = playData->getCurrentCourse();
+		P2ASSERTLINE(469, game->mCurrentCourseInfo);
+
+		u8 flag = 1;
+		if (playData->mDeadNaviID[0] & 1 && playData->mDeadNaviID[0] & 2) {
+			flag = 2;
+		}
+		LoadArg arg(1, flag, 1, 0);
+		transit(game, SGS_Load, &arg);
+		break;
+	}
+	case 3: // loading into a cave
+	{
+		ID32 id;
+		CourseInfo* info = playData->getCurrentCourse();
+		int floor;
+		playData->getCurrentCave(id, floor);
+		game->mCurrentCourseInfo = info;
+		game->mCurrentFloor      = floor;
+		game->mCaveID            = id;
+		game->mInCave            = true;
+		strcpy(game->mCaveFilename, info->getCaveinfoFilename_FromID(id));
+		game->loadMainMapSituation();
+		LoadArg arg(0, 1, 1, 0);
+		transit(game, SGS_Load, &arg);
+		break;
+	}
+	case 4: // continue after pay debt
+	{
+		EndingArg arg(1);
+		transit(game, SGS_Ending, &arg);
+		break;
+	}
+	default:
+		JUT_PANICLINE(529, "unknown saveFlag (%d)\n", state);
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -606,60 +606,18 @@ lbl_8021CDE8:
  * Address:	8021CE08
  * Size:	0000C0
  */
-void FileState::draw(Game::SingleGameSection*, Graphics&)
+void FileState::draw(SingleGameSection* game, Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	beq      lbl_8021CEB0
-	addi     r3, r31, 0x190
-	lwz      r12, 0x190(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, particle2dMgr@sda21(r13)
-	li       r4, 1
-	li       r5, 0
-	bl       draw__14TParticle2dMgrFUcUs
-	addi     r3, r31, 0xbc
-	lwz      r12, 0xbc(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x190
-	lwz      r12, 0x190(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2c(r30)
-	bl       draw__Q33ebi10FileSelect4TMgrFv
-	addi     r3, r31, 0x190
-	lwz      r12, 0x190(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, particle2dMgr@sda21(r13)
-	li       r4, 0
-	li       r5, 0
-	bl       draw__14TParticle2dMgrFUcUs
-	lwz      r3, 0x2c(r30)
-	bl       showInfo__Q33ebi10FileSelect4TMgrFv
-
-lbl_8021CEB0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mMainHeap) {
+		gfx.mPerspGraph.setPort();
+		particle2dMgr->draw(1, 0);
+		gfx.mOrthoGraph.setPort();
+		gfx.mPerspGraph.setPort();
+		mFSMgr->draw();
+		gfx.mPerspGraph.setPort();
+		particle2dMgr->draw(0, 0);
+		mFSMgr->showInfo();
+	}
 }
 
 /*
@@ -667,67 +625,18 @@ lbl_8021CEB0:
  * Address:	8021CEC8
  * Size:	0000D4
  */
-void FileState::cleanup(Game::SingleGameSection*)
+void FileState::cleanup(SingleGameSection* game)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8021CF08
-	lis      r3, lbl_80482764@ha
-	lis      r5, lbl_80482770@ha
-	addi     r3, r3, lbl_80482764@l
-	li       r4, 0x1d3
-	addi     r5, r5, lbl_80482770@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8021CF08:
-	lwz      r31, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r31, 0
-	bne      lbl_8021CF30
-	lis      r3, lbl_80482764@ha
-	lis      r5, lbl_80482770@ha
-	addi     r3, r3, lbl_80482764@l
-	li       r4, 0x1dc
-	addi     r5, r5, lbl_80482770@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8021CF30:
-	mr       r3, r31
-	bl       deleteCurrentScene__Q28PSSystem8SceneMgrFv
-	lwz      r3, 0x2c(r30)
-	bl       forceQuit__Q33ebi10FileSelect4TMgrFv
-	lwz      r3, 0x1c(r30)
-	bl       freeAll__7JKRHeapFv
-	lwz      r3, 0x1c(r30)
-	bl       destroy__7JKRHeapFv
-	li       r0, 0
-	stw      r0, 0x1c(r30)
-	lwz      r3, 0x20(r30)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r3, sys@sda21(r13)
-	li       r4, 2
-	bl       setFrameRate__6SystemFi
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r3, 0x18(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(sceneMgr);
+	sceneMgr->deleteCurrentScene();
+	mFSMgr->forceQuit();
+	mMainHeap->freeAll();
+	mMainHeap->destroy();
+	mMainHeap = nullptr;
+	mBackupHeap->becomeCurrentHeap();
+	sys->setFrameRate(2);
+	Screen::gGame2DMgr->mScreenMgr->reset();
 }
 
 } // namespace SingleGame

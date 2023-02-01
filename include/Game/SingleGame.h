@@ -14,12 +14,7 @@
 #include "IDelegate.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "ObjectMgr.h"
-
-namespace ebi {
-namespace FileSelect {
-struct TMgr;
-}
-} // namespace ebi
+#include "ebi/FileSelect.h"
 
 namespace kh {
 namespace Screen {
@@ -199,6 +194,11 @@ struct DayEndState : public State {
 	PikiContainer _18; // _18
 };
 
+struct EndingArg : public StateArg {
+	EndingArg(int state) { mState = state; }
+	u8 mState;
+};
+
 /**
  * @size{0x30}
  */
@@ -244,17 +244,17 @@ struct FileState : public State {
 	// Unused/inlined:
 	void first_init(SingleGameSection*);
 
-	unknown _10;              // _10
-	Controller* _14;          // _14
-	Delegate<FileState>* _18; // _18
-	JKRExpHeap* _1C;          // _1C
-	JKRHeap* _20;             // _20
-	u8 _24;                   // _24
+	unknown _10;                        // _10
+	Controller* mMainController;        // _14
+	Delegate<FileState>* mLoadDelegate; // _18
+	JKRExpHeap* mMainHeap;              // _1C
+	JKRHeap* mBackupHeap;               // _20
+	bool mIsNotInitialized;             // _24
 	u32 : 0;
-	u8 _28[4];                          // _28
-	struct ebi::FileSelect::TMgr* mMgr; // _2C
-	u8 _30[4];                          // _30
-	Controller* _34;                    // _34
+	u8 _28[4];                            // _28
+	struct ebi::FileSelect::TMgr* mFSMgr; // _2C
+	u8 _30[4];                            // _30
+	Controller* mDebugController;         // _34
 };
 
 struct GameArg : public StateArg {
@@ -406,6 +406,7 @@ struct MainResultState : public State {
 };
 
 struct MovieArg : public StateArg {
+	MovieArg(THPPlayer::EMovieIndex id) { mMovieIndex = id; }
 	THPPlayer::EMovieIndex mMovieIndex; // _00
 };
 

@@ -232,6 +232,7 @@ struct TMgr {
 	void forceQuitSeq();
 	void update();
 	void draw();
+	void setController(Controller*);
 
 	Screen::FileSelect::TMainScreen mMainScreen; // _00
 	u32 _BF8;                                    // _BF8

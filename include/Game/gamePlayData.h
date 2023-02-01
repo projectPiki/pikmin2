@@ -354,7 +354,7 @@ struct PlayData : public CNode {
 	inline bool isStoryFlag(StoryFlags flag) { return mStoryFlags & flag; }
 
 	bool _18;                               // _18
-	u8 _19;                                 // _19
+	u8 mLoadType;                           // _19
 	u32 _1C;                                // _1C
 	u8 mDeadNaviID[2];                      // _20
 	f32 mNaviLifeMax[2];                    // _24
