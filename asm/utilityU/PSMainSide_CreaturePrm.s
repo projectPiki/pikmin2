@@ -5,23 +5,27 @@ lbl_constructor:
 	
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049E0F0:
+.obj lbl_8049E0F0, local
 	.asciz "Opening1"
+.endobj lbl_8049E0F0
 .balign 4
-lbl_8049E0FC:
+.obj lbl_8049E0FC, local
 	.asciz "Opening2"
+.endobj lbl_8049E0FC
 .balign 4
-lbl_8049E108:
+.obj lbl_8049E108, local
 	.asciz "Staffroll"
+.endobj lbl_8049E108
 .balign 4
-lbl_8049E114:
+.obj lbl_8049E114, local
 	.asciz "PSMainSide_CreaturePrm.cpp"
+.endobj lbl_8049E114
 .balign 4
-lbl_8049E130:
+.obj lbl_8049E130, local
 	.asciz "P2Assert"
+.endobj lbl_8049E130
 .balign 4
-.global cVolMaxDist_Kehai__Q23PSM11CreaturePrm
-cVolMaxDist_Kehai__Q23PSM11CreaturePrm:
+.obj cVolMaxDist_Kehai__Q23PSM11CreaturePrm, global
 	.float 150.0
 	.float 100.0
 	.float 500.0
@@ -29,8 +33,8 @@ cVolMaxDist_Kehai__Q23PSM11CreaturePrm:
 	.float 600.0
 	.float 800.0
 	.float 300.0
-.global cVolMaxDist_Battle__Q23PSM11CreaturePrm
-cVolMaxDist_Battle__Q23PSM11CreaturePrm:
+.endobj cVolMaxDist_Kehai__Q23PSM11CreaturePrm
+.obj cVolMaxDist_Battle__Q23PSM11CreaturePrm, global
 	.float 210.0
 	.float 140.0
 	.float 700.0
@@ -38,8 +42,8 @@ cVolMaxDist_Battle__Q23PSM11CreaturePrm:
 	.float 840.0
 	.float 1120.0
 	.float 420.0
-.global cVolZeroDist_Kehai__Q23PSM11CreaturePrm
-cVolZeroDist_Kehai__Q23PSM11CreaturePrm:
+.endobj cVolMaxDist_Battle__Q23PSM11CreaturePrm
+.obj cVolZeroDist_Kehai__Q23PSM11CreaturePrm, global
 	.float 300.0
 	.float 200.0
 	.float 1000.0
@@ -47,8 +51,8 @@ cVolZeroDist_Kehai__Q23PSM11CreaturePrm:
 	.float 1200.0
 	.float 1600.0
 	.float 600.0
-.global cVolZeroDist_Battle__Q23PSM11CreaturePrm
-cVolZeroDist_Battle__Q23PSM11CreaturePrm:
+.endobj cVolZeroDist_Kehai__Q23PSM11CreaturePrm
+.obj cVolZeroDist_Battle__Q23PSM11CreaturePrm, global
 	.float 420.0
 	.float 280.0
 	.float 1400.0
@@ -56,8 +60,8 @@ cVolZeroDist_Battle__Q23PSM11CreaturePrm:
 	.float 1680.0
 	.float 2240.0
 	.float 840.0
-.global cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm
-cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm:
+.endobj cVolZeroDist_Battle__Q23PSM11CreaturePrm
+.obj cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm, global
 	.float 233.99998
 	.float 156.0
 	.float 780.0
@@ -65,93 +69,94 @@ cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm:
 	.float 935.99994
 	.float 1248.0
 	.float 467.99997
+.endobj cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global sThpDemoDinamics__3PSM
-sThpDemoDinamics__3PSM:
+.obj sThpDemoDinamics__3PSM, global
 	.float 0.8
 	.float 0.38
 	.float 0.94
 	.byte 0x01
-	.skip 3
+.balign 4
 	.4byte lbl_8049E0F0
 	.float 0.9
 	.float 0.22
 	.float 0.98
 	.byte 0x01
-	.skip 3
+.balign 4
 	.4byte lbl_8049E0FC
 	.float 0.7
 	.float 0.38
 	.float 0.98
 	.byte 0x01
-	.skip 3
+.balign 4
 	.4byte lbl_80520DB8
 	.float 0.8
 	.float 0.44
 	.float 0.99
 	.byte 0x01
-	.skip 3
+.balign 4
 	.4byte lbl_80520DC0
 	.float 0.57
 	.float 1.0
 	.float 1.0
 	.byte 0x00
-	.skip 3
+.balign 4
 	.4byte lbl_8049E108
 	.float 0.5
 	.float 1.0
 	.float 1.0
 	.byte 0x00
-	.skip 3
+.balign 4
 	.4byte lbl_80520DC8
 	.float 0.7
 	.float 1.0
 	.float 1.0
 	.byte 0x00
-	.skip 3
+.balign 4
 	.4byte lbl_80520DD0
 	.float 0.7
 	.float 1.0
 	.float 1.0
 	.byte 0x00
-	.skip 3
+.balign 4
 	.4byte lbl_80520DD8
 	.float 0.7
 	.float 1.0
 	.float 1.0
 	.byte 0x00
-	.skip 3
+.balign 4
 	.4byte lbl_80520DE0
 	.float 0.7
 	.float 1.0
 	.float 1.0
 	.byte 0x00
-	.skip 3
+.balign 4
 	.4byte lbl_80520DE8
 	.float 0.7
 	.float 1.0
 	.float 1.0
 	.byte 0x00
-	.skip 3
+.balign 4
 	.4byte lbl_80520DF0
 	.float 0.7
 	.float 1.0
 	.float 1.0
 	.byte 0x00
-	.skip 3
+.balign 4
 	.4byte lbl_80520DF8
-.global __vt__Q23PSM11CreaturePrm
-__vt__Q23PSM11CreaturePrm:
+.endobj sThpDemoDinamics__3PSM
+.obj __vt__Q23PSM11CreaturePrm, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM11CreaturePrmFv
-.global "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"
-"__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>":
+.endobj __vt__Q23PSM11CreaturePrm
+.obj __vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>, weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv"
+.endobj __vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .lcomm lbl_80506A80, 0xC, 4
@@ -160,92 +165,93 @@ __vt__Q23PSM11CreaturePrm:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sCamFov__3PSM
-sCamFov__3PSM:
+.obj sCamFov__3PSM, global
 	.float 0.25
-.global sBoss_ViewDist__3PSM
-sBoss_ViewDist__3PSM:
+.endobj sCamFov__3PSM
+.obj sBoss_ViewDist__3PSM, global
 	.float 1300.0
-.global sBoss_ViewDistVol__3PSM
-sBoss_ViewDistVol__3PSM:
+.endobj sBoss_ViewDist__3PSM
+.obj sBoss_ViewDistVol__3PSM, global
 	.float 0.3
-.global sBoss_DistMax__3PSM
-sBoss_DistMax__3PSM:
+.endobj sBoss_ViewDistVol__3PSM
+.obj sBoss_DistMax__3PSM, global
 	.float 4000.0
+.endobj sBoss_DistMax__3PSM
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sTHPDinamicsProc__3PSM
-sTHPDinamicsProc__3PSM:
+.obj sTHPDinamicsProc__3PSM, global
 	.skip 0x4
+.endobj sTHPDinamicsProc__3PSM
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520DB8
-lbl_80520DB8:
+.obj lbl_80520DB8, local
 	.asciz "Ending1"
-.global lbl_80520DC0
-lbl_80520DC0:
+.endobj lbl_80520DB8
+.balign 4
+.obj lbl_80520DC0, local
 	.asciz "Ending2"
-.global lbl_80520DC8
-lbl_80520DC8:
+.endobj lbl_80520DC0
+.balign 4
+.obj lbl_80520DC8, local
 	.asciz "Play1"
-	.skip 2
-.global lbl_80520DD0
-lbl_80520DD0:
+.endobj lbl_80520DC8
+.balign 4
+.obj lbl_80520DD0, local
 	.asciz "Play2"
-	.skip 2
-.global lbl_80520DD8
-lbl_80520DD8:
+.endobj lbl_80520DD0
+.balign 4
+.obj lbl_80520DD8, local
 	.asciz "Play3"
-	.skip 2
-.global lbl_80520DE0
-lbl_80520DE0:
+.endobj lbl_80520DD8
+.balign 4
+.obj lbl_80520DE0, local
 	.asciz "Play4"
-	.skip 2
-.global lbl_80520DE8
-lbl_80520DE8:
+.endobj lbl_80520DE0
+.balign 4
+.obj lbl_80520DE8, local
 	.asciz "Play5"
-	.skip 2
-.global lbl_80520DF0
-lbl_80520DF0:
+.endobj lbl_80520DE8
+.balign 4
+.obj lbl_80520DF0, local
 	.asciz "Play6"
-	.skip 2
-.global lbl_80520DF8
-lbl_80520DF8:
+.endobj lbl_80520DF0
+.balign 4
+.obj lbl_80520DF8, local
 	.asciz "Crime"
-	.skip 2
-.global lbl_80520E00
-lbl_80520E00:
+.endobj lbl_80520DF8
+.balign 4
+.obj lbl_80520E00, local
 	.float 0.0
-.global lbl_80520E04
-lbl_80520E04:
+.endobj lbl_80520E00
+.obj lbl_80520E04, local
 	.float 1.0
-.global lbl_80520E08
-lbl_80520E08:
+.endobj lbl_80520E04
+.obj lbl_80520E08, local
 	.float -1.0
-.global lbl_80520E0C
-lbl_80520E0C:
+.endobj lbl_80520E08
+.obj lbl_80520E0C, local
 	.float 400.0
-.global lbl_80520E10
-lbl_80520E10:
+.endobj lbl_80520E0C
+.obj lbl_80520E10, local
 	.float 0.8
-.global lbl_80520E14
-lbl_80520E14:
+.endobj lbl_80520E10
+.obj lbl_80520E14, local
 	.float 700.0
-.global cNoukouDistance__Q23PSM11CreaturePrm
-cNoukouDistance__Q23PSM11CreaturePrm:
+.endobj lbl_80520E14
+.obj cNoukouDistance__Q23PSM11CreaturePrm, global
 	.float 300.0
-.global cSeFxMix__Q23PSM11CreaturePrm
-cSeFxMix__Q23PSM11CreaturePrm:
+.endobj cNoukouDistance__Q23PSM11CreaturePrm
+.obj cSeFxMix__Q23PSM11CreaturePrm, global
 	.float 0.07
-.global cSeFxMix_cave__Q23PSM11CreaturePrm
-cSeFxMix_cave__Q23PSM11CreaturePrm:
+.endobj cSeFxMix__Q23PSM11CreaturePrm
+.obj cSeFxMix_cave__Q23PSM11CreaturePrm, global
 	.float 1.0
+.endobj cSeFxMix_cave__Q23PSM11CreaturePrm
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID
-setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID:
+.fn setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID, global
 /* 804724A0 0046F3E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804724A4 0046F3E4  7C 08 02 A6 */	mflr r0
 /* 804724A8 0046F3E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -275,9 +281,9 @@ setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID:
 /* 80472504 0046F444  7C 08 03 A6 */	mtlr r0
 /* 80472508 0046F448  38 21 00 10 */	addi r1, r1, 0x10
 /* 8047250C 0046F44C  4E 80 00 20 */	blr 
+.endfn setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID
 
-.global setSetting__Q23PSM15THPDinamicsProcFPQ23PSM15THPDemoDinamics
-setSetting__Q23PSM15THPDinamicsProcFPQ23PSM15THPDemoDinamics:
+.fn setSetting__Q23PSM15THPDinamicsProcFPQ23PSM15THPDemoDinamics, global
 /* 80472510 0046F450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472514 0046F454  7C 08 02 A6 */	mflr r0
 /* 80472518 0046F458  90 01 00 14 */	stw r0, 0x14(r1)
@@ -352,9 +358,9 @@ setSetting__Q23PSM15THPDinamicsProcFPQ23PSM15THPDemoDinamics:
 /* 80472614 0046F554  7C 08 03 A6 */	mtlr r0
 /* 80472618 0046F558  38 21 00 10 */	addi r1, r1, 0x10
 /* 8047261C 0046F55C  4E 80 00 20 */	blr 
+.endfn setSetting__Q23PSM15THPDinamicsProcFPQ23PSM15THPDemoDinamics
 
-.global dinamics__Q23PSM15THPDinamicsProcFf
-dinamics__Q23PSM15THPDinamicsProcFf:
+.fn dinamics__Q23PSM15THPDinamicsProcFf, global
 /* 80472620 0046F560  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80472624 0046F564  7C 08 02 A6 */	mflr r0
 /* 80472628 0046F568  90 01 00 24 */	stw r0, 0x24(r1)
@@ -441,9 +447,9 @@ dinamics__Q23PSM15THPDinamicsProcFf:
 /* 80472744 0046F684  7C 08 03 A6 */	mtlr r0
 /* 80472748 0046F688  38 21 00 20 */	addi r1, r1, 0x20
 /* 8047274C 0046F68C  4E 80 00 20 */	blr 
+.endfn dinamics__Q23PSM15THPDinamicsProcFf
 
-.global __dt__Q23PSM11CreaturePrmFv
-__dt__Q23PSM11CreaturePrmFv:
+.fn __dt__Q23PSM11CreaturePrmFv, weak
 /* 80472750 0046F690  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472754 0046F694  7C 08 02 A6 */	mflr r0
 /* 80472758 0046F698  90 01 00 14 */	stw r0, 0x14(r1)
@@ -471,9 +477,9 @@ __dt__Q23PSM11CreaturePrmFv:
 /* 804727A8 0046F6E8  7C 08 03 A6 */	mtlr r0
 /* 804727AC 0046F6EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804727B0 0046F6F0  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM11CreaturePrmFv
 
-.global "__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv"
-"__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv":
+.fn __dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv, weak
 /* 804727B4 0046F6F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804727B8 0046F6F8  7C 08 02 A6 */	mflr r0
 /* 804727BC 0046F6FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -495,8 +501,9 @@ __dt__Q23PSM11CreaturePrmFv:
 /* 804727F8 0046F738  7C 08 03 A6 */	mtlr r0
 /* 804727FC 0046F73C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80472800 0046F740  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv
 
-__sinit_PSMainSide_CreaturePrm_cpp: # static initializer
+.fn __sinit_PSMainSide_CreaturePrm_cpp, local
 /* 80472804 0046F744  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472808 0046F748  7C 08 02 A6 */	mflr r0
 /* 8047280C 0046F74C  3C 60 80 4F */	lis r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@ha
@@ -537,3 +544,4 @@ __sinit_PSMainSide_CreaturePrm_cpp: # static initializer
 /* 80472898 0046F7D8  7C 08 03 A6 */	mtlr r0
 /* 8047289C 0046F7DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804728A0 0046F7E0  4E 80 00 20 */	blr 
+.endfn __sinit_PSMainSide_CreaturePrm_cpp

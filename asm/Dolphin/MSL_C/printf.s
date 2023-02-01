@@ -1,7 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-"@stringBase0":
+.obj @stringBase0, local
 	.4byte 0x002D494E
 	.4byte 0x46002D69
 	.4byte 0x6E660049
@@ -11,11 +11,12 @@
 	.4byte 0x2D6E616E
 	.4byte 0x004E414E
 	.4byte 0x006E616E
-	.4byte 0x00000000
+	.byte 0
+.endobj @stringBase0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A6F28:
+.obj lbl_804A6F28, local
 	.4byte .L_800C8C20
 	.4byte .L_800C8C30
 	.4byte .L_800C8C30
@@ -49,7 +50,8 @@ lbl_804A6F28:
 	.4byte .L_800C8C30
 	.4byte .L_800C8C30
 	.4byte .L_800C8C20
-lbl_804A6FAC:
+.endobj lbl_804A6F28
+.obj lbl_804A6FAC, local
 	.4byte .L_800C8EE4
 	.4byte .L_800C8EF0
 	.4byte .L_800C8EF0
@@ -83,7 +85,8 @@ lbl_804A6FAC:
 	.4byte .L_800C8EF0
 	.4byte .L_800C8EF0
 	.4byte .L_800C8EE4
-lbl_804A7030:
+.endobj lbl_804A6FAC
+.obj lbl_804A7030, local
 	.4byte .L_800C9420
 	.4byte .L_800C9550
 	.4byte .L_800C9550
@@ -140,7 +143,8 @@ lbl_804A7030:
 	.4byte .L_800C9550
 	.4byte .L_800C9550
 	.4byte .L_800C93A0
-lbl_804A7110:
+.endobj lbl_804A7030
+.obj lbl_804A7110, local
 	.4byte .L_800C9150
 	.4byte .L_800C918C
 	.4byte .L_800C918C
@@ -158,22 +162,22 @@ lbl_804A7110:
 	.4byte .L_800C918C
 	.4byte .L_800C918C
 	.4byte .L_800C9174
+.endobj lbl_804A7110
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-"@wstringBase0":
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj @wstringBase0, local
+	.2byte 0x0000
+.endobj @wstringBase0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805170D0:
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj lbl_805170D0, local
+	.double 0
+.endobj lbl_805170D0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global sprintf
-sprintf:
+.fn sprintf, global
 /* 800C7438 000C4378  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 800C743C 000C437C  7C 08 02 A6 */	mflr r0
 /* 800C7440 000C4380  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -233,9 +237,9 @@ sprintf:
 /* 800C750C 000C444C  7C 08 03 A6 */	mtlr r0
 /* 800C7510 000C4450  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 800C7514 000C4454  4E 80 00 20 */	blr 
+.endfn sprintf
 
-.global snprintf
-snprintf:
+.fn snprintf, global
 /* 800C7518 000C4458  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 800C751C 000C445C  7C 08 02 A6 */	mflr r0
 /* 800C7520 000C4460  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -292,9 +296,9 @@ snprintf:
 /* 800C75E0 000C4520  7C 08 03 A6 */	mtlr r0
 /* 800C75E4 000C4524  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 800C75E8 000C4528  4E 80 00 20 */	blr 
+.endfn snprintf
 
-.global vsprintf
-vsprintf:
+.fn vsprintf, global
 /* 800C75EC 000C452C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C75F0 000C4530  7C 08 02 A6 */	mflr r0
 /* 800C75F4 000C4534  7C A6 2B 78 */	mr r6, r5
@@ -327,9 +331,9 @@ vsprintf:
 /* 800C7658 000C4598  7C 08 03 A6 */	mtlr r0
 /* 800C765C 000C459C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C7660 000C45A0  4E 80 00 20 */	blr 
+.endfn vsprintf
 
-.global vsnprintf
-vsnprintf:
+.fn vsnprintf, global
 /* 800C7664 000C45A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C7668 000C45A8  7C 08 02 A6 */	mflr r0
 /* 800C766C 000C45AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -361,9 +365,9 @@ vsnprintf:
 /* 800C76CC 000C460C  7C 08 03 A6 */	mtlr r0
 /* 800C76D0 000C4610  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C76D4 000C4614  4E 80 00 20 */	blr 
+.endfn vsnprintf
 
-.global vprintf
-vprintf:
+.fn vprintf, global
 /* 800C76D8 000C4618  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C76DC 000C461C  7C 08 02 A6 */	mflr r0
 /* 800C76E0 000C4620  3C A0 80 4A */	lis r5, __files@ha
@@ -404,9 +408,9 @@ vprintf:
 /* 800C7764 000C46A4  7C 08 03 A6 */	mtlr r0
 /* 800C7768 000C46A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C776C 000C46AC  4E 80 00 20 */	blr 
+.endfn vprintf
 
-.global __StringWrite
-__StringWrite:
+.fn __StringWrite, global
 /* 800C7770 000C46B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C7774 000C46B4  7C 08 02 A6 */	mflr r0
 /* 800C7778 000C46B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -435,9 +439,9 @@ __StringWrite:
 /* 800C77D0 000C4710  7C 08 03 A6 */	mtlr r0
 /* 800C77D4 000C4714  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C77D8 000C4718  4E 80 00 20 */	blr 
+.endfn __StringWrite
 
-.global __FileWrite
-__FileWrite:
+.fn __FileWrite, global
 /* 800C77DC 000C471C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C77E0 000C4720  7C 08 02 A6 */	mflr r0
 /* 800C77E4 000C4724  90 01 00 14 */	stw r0, 0x14(r1)
@@ -462,9 +466,9 @@ __FileWrite:
 /* 800C7828 000C4768  7C 08 03 A6 */	mtlr r0
 /* 800C782C 000C476C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C7830 000C4770  4E 80 00 20 */	blr 
+.endfn __FileWrite
 
-.global __pformatter
-__pformatter:
+.fn __pformatter, local
 /* 800C7834 000C4774  94 21 FD 40 */	stwu r1, -0x2c0(r1)
 /* 800C7838 000C4778  7C 08 02 A6 */	mflr r0
 /* 800C783C 000C477C  90 01 02 C4 */	stw r0, 0x2c4(r1)
@@ -1007,9 +1011,9 @@ __pformatter:
 /* 800C7F9C 000C4EDC  7C 08 03 A6 */	mtlr r0
 /* 800C7FA0 000C4EE0  38 21 02 C0 */	addi r1, r1, 0x2c0
 /* 800C7FA4 000C4EE4  4E 80 00 20 */	blr 
+.endfn __pformatter
 
-.global float2str
-float2str:
+.fn float2str, local
 /* 800C7FA8 000C4EE8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800C7FAC 000C4EEC  7C 08 02 A6 */	mflr r0
 /* 800C7FB0 000C4EF0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1536,9 +1540,9 @@ float2str:
 /* 800C86B8 000C55F8  7C 08 03 A6 */	mtlr r0
 /* 800C86BC 000C55FC  38 21 00 50 */	addi r1, r1, 0x50
 /* 800C86C0 000C5600  4E 80 00 20 */	blr 
+.endfn float2str
 
-.global round_decimal
-round_decimal:
+.fn round_decimal, local
 /* 800C86C4 000C5604  2C 04 00 00 */	cmpwi r4, 0
 /* 800C86C8 000C5608  40 80 00 20 */	bge .L_800C86E8
 .L_800C86CC:
@@ -1627,9 +1631,9 @@ round_decimal:
 /* 800C87E4 000C5724  41 82 FE E8 */	beq .L_800C86CC
 /* 800C87E8 000C5728  98 83 00 04 */	stb r4, 4(r3)
 /* 800C87EC 000C572C  4E 80 00 20 */	blr 
+.endfn round_decimal
 
-.global double2hex
-double2hex:
+.fn double2hex, local
 /* 800C87F0 000C5730  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 800C87F4 000C5734  7C 08 02 A6 */	mflr r0
 /* 800C87F8 000C5738  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1863,9 +1867,9 @@ double2hex:
 /* 800C8B1C 000C5A5C  7C 08 03 A6 */	mtlr r0
 /* 800C8B20 000C5A60  38 21 00 80 */	addi r1, r1, 0x80
 /* 800C8B24 000C5A64  4E 80 00 20 */	blr 
+.endfn double2hex
 
-.global longlong2str
-longlong2str:
+.fn longlong2str, local
 /* 800C8B28 000C5A68  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800C8B2C 000C5A6C  7C 08 02 A6 */	mflr r0
 /* 800C8B30 000C5A70  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2087,9 +2091,9 @@ longlong2str:
 /* 800C8E30 000C5D70  7C 08 03 A6 */	mtlr r0
 /* 800C8E34 000C5D74  38 21 00 30 */	addi r1, r1, 0x30
 /* 800C8E38 000C5D78  4E 80 00 20 */	blr 
+.endfn longlong2str
 
-.global long2str
-long2str:
+.fn long2str, local
 /* 800C8E3C 000C5D7C  38 C0 00 00 */	li r6, 0
 /* 800C8E40 000C5D80  2C 03 00 00 */	cmpwi r3, 0
 /* 800C8E44 000C5D84  98 C4 FF FF */	stb r6, -1(r4)
@@ -2264,9 +2268,9 @@ long2str:
 .L_800C908C:
 /* 800C908C 000C5FCC  7C C3 33 78 */	mr r3, r6
 /* 800C9090 000C5FD0  4E 80 00 20 */	blr 
+.endfn long2str
 
-.global parse_format
-parse_format:
+.fn parse_format, local
 /* 800C9094 000C5FD4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800C9098 000C5FD8  7C 08 02 A6 */	mflr r0
 /* 800C909C 000C5FDC  38 E0 00 00 */	li r7, 0
@@ -2638,3 +2642,4 @@ parse_format:
 /* 800C958C 000C64CC  7C 08 03 A6 */	mtlr r0
 /* 800C9590 000C64D0  38 21 00 30 */	addi r1, r1, 0x30
 /* 800C9594 000C64D4  4E 80 00 20 */	blr 
+.endfn parse_format

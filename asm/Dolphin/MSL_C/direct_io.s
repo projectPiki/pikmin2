@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __fwrite
-__fwrite:
+.fn __fwrite, global
 /* 800C6288 000C31C8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800C628C 000C31CC  7C 08 02 A6 */	mflr r0
 /* 800C6290 000C31D0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -220,9 +219,9 @@ __fwrite:
 /* 800C6588 000C34C8  7C 08 03 A6 */	mtlr r0
 /* 800C658C 000C34CC  38 21 00 30 */	addi r1, r1, 0x30
 /* 800C6590 000C34D0  4E 80 00 20 */	blr 
+.endfn __fwrite
 
-.global fwrite
-fwrite:
+.fn fwrite, global
 /* 800C6594 000C34D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C6598 000C34D8  7C 08 02 A6 */	mflr r0
 /* 800C659C 000C34DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -254,3 +253,4 @@ fwrite:
 /* 800C6604 000C3544  7C 08 03 A6 */	mtlr r0
 /* 800C6608 000C3548  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C660C 000C354C  4E 80 00 20 */	blr 
+.endfn fwrite

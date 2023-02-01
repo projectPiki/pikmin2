@@ -1,81 +1,72 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049D9A8
-lbl_8049D9A8:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F42
-	.4byte 0x6F73734D
-	.4byte 0x67722E63
-	.4byte 0x70700000
-.global lbl_8049D9C0
-lbl_8049D9C0:
+.obj lbl_8049D9A8, local
+	.asciz "PSMainSide_BossMgr.cpp"
+.endobj lbl_8049D9A8
+.balign 4
+.obj lbl_8049D9C0, local
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
+.endobj lbl_8049D9C0
+.balign 4
+.obj lbl_8049D9CC, local
+	.asciz "PSGame.h"
+.endobj lbl_8049D9CC
+.balign 4
+.obj lbl_8049D9D8, local
+	.asciz "PSScene.h"
+.endobj lbl_8049D9D8
+.balign 4
+.obj lbl_8049D9E4, local
+	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8049D9E4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q33PSM12BossBgmFader17TypedProc_MidBoss
+.obj __vt__Q33PSM12BossBgmFader17TypedProc_MidBoss, global
 __vt__Q33PSM12BossBgmFader17TypedProc_MidBoss:
 	.4byte 0
 	.4byte 0
 	.4byte update__Q33PSM12BossBgmFader17TypedProc_MidBossFv
-.global __vt__Q33PSM12BossBgmFader9TypedProc
-__vt__Q33PSM12BossBgmFader9TypedProc:
+.endobj __vt__Q33PSM12BossBgmFader17TypedProc_MidBoss
+.obj __vt__Q33PSM12BossBgmFader9TypedProc, global
 	.4byte 0
 	.4byte 0
 	.4byte update__Q33PSM12BossBgmFader9TypedProcFv
+.endobj __vt__Q33PSM12BossBgmFader9TypedProc
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520CB8
-lbl_80520CB8:
+.obj lbl_80520CB8, local
 	.float 0.5
-.global lbl_80520CBC
-lbl_80520CBC:
-	.4byte 0x4E6E6B28
-.global lbl_80520CC0
-lbl_80520CC0:
-	.4byte 0x00000000
-.global lbl_80520CC4
-lbl_80520CC4:
-	.4byte 0x4B095440
-.global lbl_80520CC8
-lbl_80520CC8:
-	.4byte 0x4CBEBC20
-.global lbl_80520CCC
-lbl_80520CCC:
+.endobj lbl_80520CB8
+.obj lbl_80520CBC, local
+	.float 1.0E9
+.endobj lbl_80520CBC
+.obj lbl_80520CC0, local
+	.float 0.0
+.endobj lbl_80520CC0
+.obj lbl_80520CC4, local
+	.float 9000000.0
+.endobj lbl_80520CC4
+.obj lbl_80520CC8, local
+	.float 1.0E8
+.endobj lbl_80520CC8
+.obj lbl_80520CCC, local
 	.float 1.0
-.global lbl_80520CD0
-lbl_80520CD0:
-	.4byte 0x447A0000
-.global lbl_80520CD4
-lbl_80520CD4:
-	.4byte 0x44160000
-.global lbl_80520CD8
-lbl_80520CD8:
-	.4byte 0x43C80000
-	.4byte 0x00000000
+.endobj lbl_80520CCC
+.obj lbl_80520CD0, local
+	.float 1000.0
+.endobj lbl_80520CD0
+.obj lbl_80520CD4, local
+	.float 600.0
+.endobj lbl_80520CD4
+.obj lbl_80520CD8, local
+	.float 400.0
+.endobj lbl_80520CD8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global update__Q33PSM12BossBgmFader9TypedProcFv
-update__Q33PSM12BossBgmFader9TypedProcFv:
+.fn update__Q33PSM12BossBgmFader9TypedProcFv, global
 /* 8046C6B8 004695F8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8046C6BC 004695FC  7C 08 02 A6 */	mflr r0
 /* 8046C6C0 00469600  90 01 00 44 */	stw r0, 0x44(r1)
@@ -207,9 +198,9 @@ update__Q33PSM12BossBgmFader9TypedProcFv:
 /* 8046C884 004697C4  7C 08 03 A6 */	mtlr r0
 /* 8046C888 004697C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8046C88C 004697CC  4E 80 00 20 */	blr 
+.endfn update__Q33PSM12BossBgmFader9TypedProcFv
 
-.global update__Q33PSM12BossBgmFader17TypedProc_MidBossFv
-update__Q33PSM12BossBgmFader17TypedProc_MidBossFv:
+.fn update__Q33PSM12BossBgmFader17TypedProc_MidBossFv, global
 /* 8046C890 004697D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C894 004697D4  7C 08 02 A6 */	mflr r0
 /* 8046C898 004697D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -226,9 +217,9 @@ update__Q33PSM12BossBgmFader17TypedProc_MidBossFv:
 /* 8046C8C0 00469800  7C 08 03 A6 */	mtlr r0
 /* 8046C8C4 00469804  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C8C8 00469808  4E 80 00 20 */	blr 
+.endfn update__Q33PSM12BossBgmFader17TypedProc_MidBossFv
 
-.global __ct__Q33PSM12BossBgmFader3MgrFv
-__ct__Q33PSM12BossBgmFader3MgrFv:
+.fn __ct__Q33PSM12BossBgmFader3MgrFv, global
 /* 8046C8CC 0046980C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C8D0 00469810  7C 08 02 A6 */	mflr r0
 /* 8046C8D4 00469814  3C 80 80 4F */	lis r4, "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@ha
@@ -289,9 +280,9 @@ __ct__Q33PSM12BossBgmFader3MgrFv:
 /* 8046C9AC 004698EC  7C 08 03 A6 */	mtlr r0
 /* 8046C9B0 004698F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C9B4 004698F4  4E 80 00 20 */	blr 
+.endfn __ct__Q33PSM12BossBgmFader3MgrFv
 
-.global "appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<Q23PSM9EnemyBoss>"
-"appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<Q23PSM9EnemyBoss>":
+.fn appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<Q23PSM9EnemyBoss>, global
 /* 8046C9B8 004698F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C9BC 004698FC  7C 08 02 A6 */	mflr r0
 /* 8046C9C0 00469900  38 63 00 04 */	addi r3, r3, 4
@@ -301,9 +292,9 @@ __ct__Q33PSM12BossBgmFader3MgrFv:
 /* 8046C9D0 00469910  7C 08 03 A6 */	mtlr r0
 /* 8046C9D4 00469914  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C9D8 00469918  4E 80 00 20 */	blr 
+.endfn appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<Q23PSM9EnemyBoss>
 
-.global exec__Q33PSM12BossBgmFader3MgrFv
-exec__Q33PSM12BossBgmFader3MgrFv:
+.fn exec__Q33PSM12BossBgmFader3MgrFv, global
 /* 8046C9DC 0046991C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8046C9E0 00469920  7C 08 02 A6 */	mflr r0
 /* 8046C9E4 00469924  90 01 00 44 */	stw r0, 0x44(r1)
@@ -831,3 +822,4 @@ exec__Q33PSM12BossBgmFader3MgrFv:
 /* 8046D138 0046A078  7C 08 03 A6 */	mtlr r0
 /* 8046D13C 0046A07C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8046D140 0046A080  4E 80 00 20 */	blr 
+.endfn exec__Q33PSM12BossBgmFader3MgrFv

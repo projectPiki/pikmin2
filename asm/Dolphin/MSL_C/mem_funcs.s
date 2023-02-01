@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __copy_longs_rev_unaligned
-__copy_longs_rev_unaligned:
+.fn __copy_longs_rev_unaligned, global
 /* 800C7158 000C4098  7D 63 2A 14 */	add r11, r3, r5
 /* 800C715C 000C409C  7D 44 2A 14 */	add r10, r4, r5
 /* 800C7160 000C40A0  55 63 07 BF */	clrlwi. r3, r11, 0x1e
@@ -51,9 +50,9 @@ __copy_longs_rev_unaligned:
 /* 800C71F8 000C4138  9C 0B FF FF */	stbu r0, -1(r11)
 /* 800C71FC 000C413C  40 82 FF F4 */	bne .L_800C71F0
 /* 800C7200 000C4140  4E 80 00 20 */	blr 
+.endfn __copy_longs_rev_unaligned
 
-.global __copy_longs_unaligned
-__copy_longs_unaligned:
+.fn __copy_longs_unaligned, global
 /* 800C7204 000C4144  7C 03 00 D0 */	neg r0, r3
 /* 800C7208 000C4148  39 04 FF FF */	addi r8, r4, -1
 /* 800C720C 000C414C  54 06 07 BF */	clrlwi. r6, r0, 0x1e
@@ -107,9 +106,9 @@ __copy_longs_unaligned:
 /* 800C72B8 000C41F8  9C 03 00 01 */	stbu r0, 1(r3)
 /* 800C72BC 000C41FC  40 82 FF F4 */	bne .L_800C72B0
 /* 800C72C0 000C4200  4E 80 00 20 */	blr 
+.endfn __copy_longs_unaligned
 
-.global __copy_longs_rev_aligned
-__copy_longs_rev_aligned:
+.fn __copy_longs_rev_aligned, global
 /* 800C72C4 000C4204  7C E3 2A 14 */	add r7, r3, r5
 /* 800C72C8 000C4208  7C C4 2A 14 */	add r6, r4, r5
 /* 800C72CC 000C420C  54 E3 07 BF */	clrlwi. r3, r7, 0x1e
@@ -159,9 +158,9 @@ __copy_longs_rev_aligned:
 /* 800C7360 000C42A0  9C 07 FF FF */	stbu r0, -1(r7)
 /* 800C7364 000C42A4  40 82 FF F4 */	bne .L_800C7358
 /* 800C7368 000C42A8  4E 80 00 20 */	blr 
+.endfn __copy_longs_rev_aligned
 
-.global __copy_longs_aligned
-__copy_longs_aligned:
+.fn __copy_longs_aligned, global
 /* 800C736C 000C42AC  7C 03 00 D0 */	neg r0, r3
 /* 800C7370 000C42B0  38 84 FF FF */	addi r4, r4, -1
 /* 800C7374 000C42B4  54 06 07 BF */	clrlwi. r6, r0, 0x1e
@@ -216,3 +215,4 @@ __copy_longs_aligned:
 /* 800C741C 000C435C  9C 03 00 01 */	stbu r0, 1(r3)
 /* 800C7420 000C4360  40 82 FF F4 */	bne .L_800C7414
 /* 800C7424 000C4364  4E 80 00 20 */	blr 
+.endfn __copy_longs_aligned

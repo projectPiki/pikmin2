@@ -1,7 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-"@stringBase0":
+.obj @stringBase0, local
 	.ascii "1"
 	.ascii "7"
 	.asciz "9769313486231580793729011405303420"
@@ -64,10 +64,11 @@
 	.ascii "2"
 	.ascii "5"
 	.asciz "6"
+.endobj @stringBase0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-pow_10$416:
+.obj pow_10$416, local
 	.double 10.0
 	.double 100.0
 	.double 1000.0
@@ -76,7 +77,9 @@ pow_10$416:
 	.double 1000000.0
 	.double 10000000.0
 	.double 100000000.0
-lbl_804A6AC8:
+.endobj pow_10$416
+.balign 4
+.obj lbl_804A6AC8, local
 	.4byte .L_800C473C
 	.4byte .L_800C5BD8
 	.4byte .L_800C5BD8
@@ -150,32 +153,37 @@ lbl_804A6AC8:
 	.4byte .L_800C58E4
 	.4byte .L_800C59E0
 	.4byte .L_800C5ADC
+.endobj lbl_804A6AC8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80517098:
+.obj lbl_80517098, local
 	.double 0.0
+.endobj lbl_80517098
 .balign 8
-lbl_805170A0:
+.obj lbl_805170A0, local
 	.double 1.0
-.balign 8
-lbl_805170A8:
+.endobj lbl_805170A0
+.obj lbl_805170A8, local
 	.double -1.0
+.endobj lbl_805170A8
 .balign 8
-lbl_805170B0:
+.obj lbl_805170B0, local
 	.double 5.0
+.endobj lbl_805170B0
 .balign 8
-lbl_805170B8:
+.obj lbl_805170B8, local
 	.4byte 0x43300000
 	.4byte 0x00000000
+.endobj lbl_805170B8
 .balign 8
-lbl_805170C0:
+.obj lbl_805170C0, local
 	.4byte 0x43300000
 	.4byte 0x80000000
+.endobj lbl_805170C0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dec2num
-__dec2num:
+.fn __dec2num, global
 /* 800C2B1C 000BFA5C  94 21 FE 10 */	stwu r1, -0x1f0(r1)
 /* 800C2B20 000BFA60  7C 08 02 A6 */	mflr r0
 /* 800C2B24 000BFA64  90 01 01 F4 */	stw r0, 0x1f4(r1)
@@ -1397,9 +1405,9 @@ __dec2num:
 /* 800C3B90 000C0AD0  7C 08 03 A6 */	mtlr r0
 /* 800C3B94 000C0AD4  38 21 01 F0 */	addi r1, r1, 0x1f0
 /* 800C3B98 000C0AD8  4E 80 00 20 */	blr 
+.endfn __dec2num
 
-.global __num2dec
-__num2dec:
+.fn __num2dec, global
 /* 800C3B9C 000C0ADC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C3BA0 000C0AE0  7C 08 02 A6 */	mflr r0
 /* 800C3BA4 000C0AE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1522,8 +1530,9 @@ __num2dec:
 /* 800C3D34 000C0C74  7C 08 03 A6 */	mtlr r0
 /* 800C3D38 000C0C78  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C3D3C 000C0C7C  4E 80 00 20 */	blr 
+.endfn __num2dec
 
-__num2dec_internal: # local function
+.fn __num2dec_internal, local
 /* 800C3D40 000C0C80  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 800C3D44 000C0C84  7C 08 02 A6 */	mflr r0
 /* 800C3D48 000C0C88  C8 02 8D 38 */	lfd f0, lbl_80517098@sda21(r2)
@@ -1801,8 +1810,9 @@ __num2dec_internal: # local function
 /* 800C40E8 000C1028  7C 08 03 A6 */	mtlr r0
 /* 800C40EC 000C102C  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 800C40F0 000C1030  4E 80 00 20 */	blr 
+.endfn __num2dec_internal
 
-__minus_dec: # local function
+.fn __minus_dec, local
 /* 800C40F4 000C1034  80 04 00 00 */	lwz r0, 0(r4)
 /* 800C40F8 000C1038  80 C4 00 04 */	lwz r6, 4(r4)
 /* 800C40FC 000C103C  90 03 00 00 */	stw r0, 0(r3)
@@ -2156,8 +2166,9 @@ __minus_dec: # local function
 /* 800C45E4 000C1524  38 04 00 01 */	addi r0, r4, 1
 /* 800C45E8 000C1528  98 03 00 04 */	stb r0, 4(r3)
 /* 800C45EC 000C152C  4E 80 00 20 */	blr 
+.endfn __minus_dec
 
-__equals_dec: # local function
+.fn __equals_dec, local
 /* 800C45F0 000C1530  88 A3 00 05 */	lbz r5, 5(r3)
 /* 800C45F4 000C1534  28 05 00 00 */	cmplwi r5, 0
 /* 800C45F8 000C1538  40 82 00 14 */	bne .L_800C460C
@@ -2238,8 +2249,9 @@ __equals_dec: # local function
 .L_800C46F4:
 /* 800C46F4 000C1634  38 60 00 00 */	li r3, 0
 /* 800C46F8 000C1638  4E 80 00 20 */	blr 
+.endfn __equals_dec
 
-__two_exp: # local function
+.fn __two_exp, local
 /* 800C46FC 000C163C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800C4700 000C1640  7C 08 02 A6 */	mflr r0
 /* 800C4704 000C1644  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3977,8 +3989,9 @@ __two_exp: # local function
 /* 800C5E74 000C2DB4  7C 08 03 A6 */	mtlr r0
 /* 800C5E78 000C2DB8  38 21 00 70 */	addi r1, r1, 0x70
 /* 800C5E7C 000C2DBC  4E 80 00 20 */	blr 
+.endfn __two_exp
 
-__timesdec: # local function
+.fn __timesdec, local
 /* 800C5E80 000C2DC0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800C5E84 000C2DC4  3C E0 CC CD */	lis r7, 0xCCCCCCCD@ha
 /* 800C5E88 000C2DC8  89 85 00 04 */	lbz r12, 4(r5)
@@ -4156,3 +4169,4 @@ __timesdec: # local function
 /* 800C60EC 000C302C  BB 61 00 5C */	lmw r27, 0x5c(r1)
 /* 800C60F0 000C3030  38 21 00 70 */	addi r1, r1, 0x70
 /* 800C60F4 000C3034  4E 80 00 20 */	blr 
+.endfn __timesdec

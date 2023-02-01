@@ -1,15 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049CD78:
+.obj lbl_8049CD78, local
 	.asciz "menu.cpp"
+.endobj lbl_8049CD78
 .balign 4
-lbl_8049CD84:
+.obj lbl_8049CD84, local
 	.asciz "MenuList is wrong.\n"
+.endobj lbl_8049CD84
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804EDCC8:
+.obj lbl_804EDCC8, local
 	.4byte .L_80456ACC
 	.4byte .L_80456954
 	.4byte .L_80456970
@@ -43,24 +45,29 @@ lbl_804EDCC8:
 	.4byte .L_80456ACC
 	.4byte .L_80456ACC
 	.4byte .L_804569BC
+.endobj lbl_804EDCC8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520BE8:
+.obj lbl_80520BE8, local
 	.asciz "root"
+.endobj lbl_80520BE8
 .balign 4
-lbl_80520BF0:
+.obj lbl_80520BF0, local
 	.float 0.0
-lbl_80520BF4:
+.endobj lbl_80520BF0
+.obj lbl_80520BF4, local
 	.float 1.0
-lbl_80520BF8:
+.endobj lbl_80520BF4
+.obj lbl_80520BF8, local
 	.float 7.0
-lbl_80520BFC:
+.endobj lbl_80520BF8
+.obj lbl_80520BFC, local
 	.float 8.0
+.endobj lbl_80520BFC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__4MenuFP10JUTGamePadP7JUTFontb
-__ct__4MenuFP10JUTGamePadP7JUTFontb:
+.fn __ct__4MenuFP10JUTGamePadP7JUTFontb, global
 /* 80456184 004530C4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80456188 004530C8  7C 08 02 A6 */	mflr r0
 /* 8045618C 004530CC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -137,9 +144,9 @@ __ct__4MenuFP10JUTGamePadP7JUTFontb:
 /* 804562A4 004531E4  7C 08 03 A6 */	mtlr r0
 /* 804562A8 004531E8  38 21 00 30 */	addi r1, r1, 0x30
 /* 804562AC 004531EC  4E 80 00 20 */	blr 
+.endfn __ct__4MenuFP10JUTGamePadP7JUTFontb
 
-.global "addOption__4MenuFiPcP18IDelegate1<R4Menu>b"
-"addOption__4MenuFiPcP18IDelegate1<R4Menu>b":
+.fn addOption__4MenuFiPcP18IDelegate1<R4Menu>b, global
 /* 804562B0 004531F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804562B4 004531F4  7C 08 02 A6 */	mflr r0
 /* 804562B8 004531F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -191,9 +198,9 @@ __ct__4MenuFP10JUTGamePadP7JUTFontb:
 /* 80456364 004532A4  7C 08 03 A6 */	mtlr r0
 /* 80456368 004532A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045636C 004532AC  4E 80 00 20 */	blr 
+.endfn addOption__4MenuFiPcP18IDelegate1<R4Menu>b
 
-.global "addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>"
-"addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>":
+.fn addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>, global
 /* 80456370 004532B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80456374 004532B4  7C 08 02 A6 */	mflr r0
 /* 80456378 004532B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -248,9 +255,9 @@ __ct__4MenuFP10JUTGamePadP7JUTFontb:
 /* 8045642C 0045336C  7C 08 03 A6 */	mtlr r0
 /* 80456430 00453370  38 21 00 20 */	addi r1, r1, 0x20
 /* 80456434 00453374  4E 80 00 20 */	blr 
+.endfn addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>
 
-.global doUpdate__4MenuFb
-doUpdate__4MenuFb:
+.fn doUpdate__4MenuFb, global
 /* 80456438 00453378  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045643C 0045337C  7C 08 02 A6 */	mflr r0
 /* 80456440 00453380  C0 42 28 98 */	lfs f2, lbl_80520BF8@sda21(r2)
@@ -505,9 +512,9 @@ doUpdate__4MenuFb:
 /* 804567CC 0045370C  7C 08 03 A6 */	mtlr r0
 /* 804567D0 00453710  38 21 00 20 */	addi r1, r1, 0x20
 /* 804567D4 00453714  4E 80 00 20 */	blr 
+.endfn doUpdate__4MenuFb
 
-.global "__ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>"
-"__ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>":
+.fn __ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>, global
 /* 804567D8 00453718  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804567DC 0045371C  7C 08 02 A6 */	mflr r0
 /* 804567E0 00453720  90 01 00 24 */	stw r0, 0x24(r1)
@@ -534,9 +541,9 @@ doUpdate__4MenuFb:
 /* 80456834 00453774  7C 08 03 A6 */	mtlr r0
 /* 80456838 00453778  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045683C 0045377C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>
 
-.global __ct__Q24Menu8MenuItemFQ34Menu8MenuItem9cTypeFlagiPc
-__ct__Q24Menu8MenuItemFQ34Menu8MenuItem9cTypeFlagiPc:
+.fn __ct__Q24Menu8MenuItemFQ34Menu8MenuItem9cTypeFlagiPc, global
 /* 80456840 00453780  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80456844 00453784  7C 08 02 A6 */	mflr r0
 /* 80456848 00453788  90 01 00 24 */	stw r0, 0x24(r1)
@@ -569,9 +576,9 @@ __ct__Q24Menu8MenuItemFQ34Menu8MenuItem9cTypeFlagiPc:
 /* 804568B4 004537F4  7C 08 03 A6 */	mtlr r0
 /* 804568B8 004537F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 804568BC 004537FC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Menu8MenuItemFQ34Menu8MenuItem9cTypeFlagiPc
 
-.global getNext__Q24Menu8MenuItemFv
-getNext__Q24Menu8MenuItemFv:
+.fn getNext__Q24Menu8MenuItemFv, global
 /* 804568C0 00453800  80 63 00 2C */	lwz r3, 0x2c(r3)
 /* 804568C4 00453804  28 03 00 00 */	cmplwi r3, 0
 /* 804568C8 00453808  41 82 00 0C */	beq .L_804568D4
@@ -580,9 +587,9 @@ getNext__Q24Menu8MenuItemFv:
 .L_804568D4:
 /* 804568D4 00453814  38 60 00 00 */	li r3, 0
 /* 804568D8 00453818  4E 80 00 20 */	blr 
+.endfn getNext__Q24Menu8MenuItemFv
 
-.global getPrev__Q24Menu8MenuItemFv
-getPrev__Q24Menu8MenuItemFv:
+.fn getPrev__Q24Menu8MenuItemFv, global
 /* 804568DC 0045381C  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 804568E0 00453820  28 03 00 00 */	cmplwi r3, 0
 /* 804568E4 00453824  41 82 00 0C */	beq .L_804568F0
@@ -591,9 +598,9 @@ getPrev__Q24Menu8MenuItemFv:
 .L_804568F0:
 /* 804568F0 00453830  38 60 00 00 */	li r3, 0
 /* 804568F4 00453834  4E 80 00 20 */	blr 
+.endfn getPrev__Q24Menu8MenuItemFv
 
-.global checkEvents__Q24Menu8MenuItemFP4Menui
-checkEvents__Q24Menu8MenuItemFP4Menui:
+.fn checkEvents__Q24Menu8MenuItemFP4Menui, global
 /* 804568F8 00453838  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804568FC 0045383C  7C 08 02 A6 */	mflr r0
 /* 80456900 00453840  90 01 00 24 */	stw r0, 0x24(r1)
@@ -735,3 +742,4 @@ checkEvents__Q24Menu8MenuItemFP4Menui:
 /* 80456AEC 00453A2C  7C 08 03 A6 */	mtlr r0
 /* 80456AF0 00453A30  38 21 00 20 */	addi r1, r1, 0x20
 /* 80456AF4 00453A34  4E 80 00 20 */	blr 
+.endfn checkEvents__Q24Menu8MenuItemFP4Menui

@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __GBAHandler
-__GBAHandler:
+.fn __GBAHandler, local
 /* 800FEF58 000FBE98  7C 08 02 A6 */	mflr r0
 /* 800FEF5C 000FBE9C  90 01 00 04 */	stw r0, 4(r1)
 /* 800FEF60 000FBEA0  94 21 FD 08 */	stwu r1, -0x2f8(r1)
@@ -62,9 +61,9 @@ __GBAHandler:
 /* 800FF028 000FBF68  38 21 02 F8 */	addi r1, r1, 0x2f8
 /* 800FF02C 000FBF6C  7C 08 03 A6 */	mtlr r0
 /* 800FF030 000FBF70  4E 80 00 20 */	blr 
+.endfn __GBAHandler
 
-.global __GBASyncCallback
-__GBASyncCallback:
+.fn __GBASyncCallback, global
 /* 800FF034 000FBF74  7C 08 02 A6 */	mflr r0
 /* 800FF038 000FBF78  3C 80 80 4F */	lis r4, __GBA@ha
 /* 800FF03C 000FBF7C  90 01 00 04 */	stw r0, 4(r1)
@@ -78,9 +77,9 @@ __GBASyncCallback:
 /* 800FF05C 000FBF9C  38 21 00 08 */	addi r1, r1, 8
 /* 800FF060 000FBFA0  7C 08 03 A6 */	mtlr r0
 /* 800FF064 000FBFA4  4E 80 00 20 */	blr 
+.endfn __GBASyncCallback
 
-.global __GBASync
-__GBASync:
+.fn __GBASync, global
 /* 800FF068 000FBFA8  7C 08 02 A6 */	mflr r0
 /* 800FF06C 000FBFAC  3C 80 80 4F */	lis r4, __GBA@ha
 /* 800FF070 000FBFB0  90 01 00 04 */	stw r0, 4(r1)
@@ -110,9 +109,9 @@ __GBASync:
 /* 800FF0C8 000FC008  38 21 00 18 */	addi r1, r1, 0x18
 /* 800FF0CC 000FC00C  7C 08 03 A6 */	mtlr r0
 /* 800FF0D0 000FC010  4E 80 00 20 */	blr 
+.endfn __GBASync
 
-.global TypeAndStatusCallback
-TypeAndStatusCallback:
+.fn TypeAndStatusCallback, local
 /* 800FF0D4 000FC014  7C 08 02 A6 */	mflr r0
 /* 800FF0D8 000FC018  90 01 00 04 */	stw r0, 4(r1)
 /* 800FF0DC 000FC01C  94 21 FD 10 */	stwu r1, -0x2f0(r1)
@@ -191,9 +190,9 @@ TypeAndStatusCallback:
 /* 800FF1EC 000FC12C  38 21 02 F0 */	addi r1, r1, 0x2f0
 /* 800FF1F0 000FC130  7C 08 03 A6 */	mtlr r0
 /* 800FF1F4 000FC134  4E 80 00 20 */	blr 
+.endfn TypeAndStatusCallback
 
-.global __GBATransfer
-__GBATransfer:
+.fn __GBATransfer, global
 /* 800FF1F8 000FC138  7C 08 02 A6 */	mflr r0
 /* 800FF1FC 000FC13C  90 01 00 04 */	stw r0, 4(r1)
 /* 800FF200 000FC140  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -223,3 +222,4 @@ __GBATransfer:
 /* 800FF260 000FC1A0  38 21 00 30 */	addi r1, r1, 0x30
 /* 800FF264 000FC1A4  7C 08 03 A6 */	mtlr r0
 /* 800FF268 000FC1A8  4E 80 00 20 */	blr 
+.endfn __GBATransfer

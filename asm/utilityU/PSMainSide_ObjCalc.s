@@ -1,34 +1,33 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049E1C8
-lbl_8049E1C8:
+.obj lbl_8049E1C8, local
 	.asciz "PSMainSide_ObjCalc.cpp"
-	.skip 1
-.global lbl_8049E1E0
-lbl_8049E1E0:
+.endobj lbl_8049E1C8
+.balign 4
+.obj lbl_8049E1E0, local
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049E1EC
-lbl_8049E1EC:
+.endobj lbl_8049E1E0
+.balign 4
+.obj lbl_8049E1EC, local
 	.4byte 0x82A082E8
 	.4byte 0x82A682C8
 	.4byte 0x82A28350
 	.4byte 0x815B8358
     .asciz "1"
-	.skip 2
-.global lbl_8049E200
-lbl_8049E200:
+.endobj lbl_8049E1EC
+.balign 4
+.obj lbl_8049E200, local
 	.4byte 0x82A082E8
 	.4byte 0x82A682C8
 	.4byte 0x82A28350
 	.4byte 0x815B8358
     .asciz "2"
+.endobj lbl_8049E200
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23PSM14ObjCalc_2PGame
-__vt__Q23PSM14ObjCalc_2PGame:
+.obj __vt__Q23PSM14ObjCalc_2PGame, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM14ObjCalc_2PGameFv
@@ -36,8 +35,8 @@ __vt__Q23PSM14ObjCalc_2PGame:
 	.4byte getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec
 	.4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
 	.4byte is1PGame__Q23PSM14ObjCalc_2PGameFv
-.global __vt__Q23PSM18ObjCalc_SingleGame
-__vt__Q23PSM18ObjCalc_SingleGame:
+.endobj __vt__Q23PSM14ObjCalc_2PGame
+.obj __vt__Q23PSM18ObjCalc_SingleGame, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM18ObjCalc_SingleGameFv
@@ -45,16 +44,17 @@ __vt__Q23PSM18ObjCalc_SingleGame:
 	.4byte getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec
 	.4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
 	.4byte is1PGame__Q23PSM11ObjCalcBaseFv
+.endobj __vt__Q23PSM18ObjCalc_SingleGame
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520E28:
+.obj lbl_80520E28, local
 	.float 100000.0
 	.float 1000000.0
+.endobj lbl_80520E28
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv
-newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv:
+.fn newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv, global
 /* 804728A4 0046F7E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804728A8 0046F7E8  7C 08 02 A6 */	mflr r0
 /* 804728AC 0046F7EC  38 60 00 0C */	li r3, 0xc
@@ -80,19 +80,19 @@ newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv:
 /* 804728F8 0046F838  7C 08 03 A6 */	mtlr r0
 /* 804728FC 0046F83C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80472900 0046F840  4E 80 00 20 */	blr 
+.endfn newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv
 
-.global getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature
-getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature:
+.fn getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature, global
 /* 80472904 0046F844  88 63 00 08 */	lbz r3, 8(r3)
 /* 80472908 0046F848  4E 80 00 20 */	blr 
+.endfn getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature
 
-.global getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec
-getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec:
+.fn getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec, global
 /* 8047290C 0046F84C  88 63 00 08 */	lbz r3, 8(r3)
 /* 80472910 0046F850  4E 80 00 20 */	blr 
+.endfn getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec
 
-.global newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv
-newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv:
+.fn newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv, global
 /* 80472914 0046F854  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472918 0046F858  7C 08 02 A6 */	mflr r0
 /* 8047291C 0046F85C  38 60 00 08 */	li r3, 8
@@ -117,9 +117,9 @@ newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv:
 /* 80472964 0046F8A4  7C 08 03 A6 */	mtlr r0
 /* 80472968 0046F8A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8047296C 0046F8AC  4E 80 00 20 */	blr 
+.endfn newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv
 
-.global getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec
-getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec:
+.fn getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec, global
 /* 80472970 0046F8B0  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80472974 0046F8B4  7C 08 02 A6 */	mflr r0
 /* 80472978 0046F8B8  90 01 00 94 */	stw r0, 0x94(r1)
@@ -374,9 +374,9 @@ getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec:
 /* 80472D20 0046FC60  7C 08 03 A6 */	mtlr r0
 /* 80472D24 0046FC64  38 21 00 90 */	addi r1, r1, 0x90
 /* 80472D28 0046FC68  4E 80 00 20 */	blr 
+.endfn getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec
 
-.global getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature
-getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature:
+.fn getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature, global
 /* 80472D2C 0046FC6C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80472D30 0046FC70  7C 08 02 A6 */	mflr r0
 /* 80472D34 0046FC74  90 01 00 24 */	stw r0, 0x24(r1)
@@ -432,9 +432,9 @@ getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature:
 /* 80472DE8 0046FD28  7C 08 03 A6 */	mtlr r0
 /* 80472DEC 0046FD2C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80472DF0 0046FD30  4E 80 00 20 */	blr 
+.endfn getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature
 
-.global __dt__Q23PSM18ObjCalc_SingleGameFv
-__dt__Q23PSM18ObjCalc_SingleGameFv:
+.fn __dt__Q23PSM18ObjCalc_SingleGameFv, weak
 /* 80472DF4 0046FD34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472DF8 0046FD38  7C 08 02 A6 */	mflr r0
 /* 80472DFC 0046FD3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -466,9 +466,9 @@ __dt__Q23PSM18ObjCalc_SingleGameFv:
 /* 80472E5C 0046FD9C  7C 08 03 A6 */	mtlr r0
 /* 80472E60 0046FDA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80472E64 0046FDA4  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM18ObjCalc_SingleGameFv
 
-.global __dt__Q23PSM14ObjCalc_2PGameFv
-__dt__Q23PSM14ObjCalc_2PGameFv:
+.fn __dt__Q23PSM14ObjCalc_2PGameFv, weak
 /* 80472E68 0046FDA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472E6C 0046FDAC  7C 08 02 A6 */	mflr r0
 /* 80472E70 0046FDB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -500,8 +500,9 @@ __dt__Q23PSM14ObjCalc_2PGameFv:
 /* 80472ED0 0046FE10  7C 08 03 A6 */	mtlr r0
 /* 80472ED4 0046FE14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80472ED8 0046FE18  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM14ObjCalc_2PGameFv
 
-.global is1PGame__Q23PSM14ObjCalc_2PGameFv
-is1PGame__Q23PSM14ObjCalc_2PGameFv:
+.fn is1PGame__Q23PSM14ObjCalc_2PGameFv, weak
 /* 80472EDC 0046FE1C  38 60 00 00 */	li r3, 0
 /* 80472EE0 0046FE20  4E 80 00 20 */	blr 
+.endfn is1PGame__Q23PSM14ObjCalc_2PGameFv

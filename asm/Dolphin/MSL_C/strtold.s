@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047A100
-lbl_8047A100:
+.obj lbl_8047A100, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -13,33 +12,34 @@ lbl_8047A100:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_8047A12C
-lbl_8047A12C:
+	.2byte 0x0000
+.endobj lbl_8047A100
+.balign 4
+.obj lbl_8047A12C, local
 	.4byte 0x494E4649
 	.4byte 0x4E495459
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047A12C
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805170D8
-lbl_805170D8:
+.obj lbl_805170D8, local
 	.4byte 0x4E414E28
-.global lbl_805170DC
-lbl_805170DC:
-	.4byte 0x00000000
-.global lbl_805170E0
-lbl_805170E0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_805170E8
-lbl_805170E8:
+	.byte 0
+.endobj lbl_805170D8
+.balign 8
+.obj lbl_805170E0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_805170E0
+.balign 8
+.obj lbl_805170E8, local
+	.4byte 0x00000000
+	.4byte 0x00000000
+.endobj lbl_805170E8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __strtold
-__strtold:
+.fn __strtold, global
 /* 800CA92C 000C786C  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 800CA930 000C7870  7C 08 02 A6 */	mflr r0
 /* 800CA934 000C7874  3D 00 80 48 */	lis r8, lbl_8047A100@ha
@@ -307,7 +307,7 @@ __strtold:
 .L_800CACDC:
 /* 800CACDC 000C7C1C  80 62 8D 78 */	lwz r3, lbl_805170D8@sda21(r2)
 /* 800CACE0 000C7C20  39 E1 00 11 */	addi r15, r1, 0x11
-/* 800CACE4 000C7C24  88 02 8D 7C */	lbz r0, lbl_805170DC@sda21(r2)
+/* 800CACE4 000C7C24  88 02 8D 7C */	lbz r0, (lbl_805170D8+4)@sda21(r2)
 /* 800CACE8 000C7C28  3A 80 00 01 */	li r20, 1
 /* 800CACEC 000C7C2C  90 61 00 10 */	stw r3, 0x10(r1)
 /* 800CACF0 000C7C30  3A 60 00 00 */	li r19, 0
@@ -1208,3 +1208,4 @@ __strtold:
 /* 800CB92C 000C886C  7C 08 03 A6 */	mtlr r0
 /* 800CB930 000C8870  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 800CB934 000C8874  4E 80 00 20 */	blr 
+.endfn __strtold

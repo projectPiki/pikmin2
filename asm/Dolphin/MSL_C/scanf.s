@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047A0D8
-lbl_8047A0D8:
+.obj lbl_8047A0D8, local
 	.4byte 0x00000000
 	.4byte 0x7FFFFFFF
 	.4byte 0x00000000
@@ -13,11 +12,11 @@ lbl_8047A0D8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047A0D8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A7158
-lbl_804A7158:
+.obj lbl_804A7158, local
 	.4byte .L_800CA318
 	.4byte .L_800CA59C
 	.4byte .L_800CA318
@@ -70,10 +69,10 @@ lbl_804A7158:
 	.4byte .L_800CA59C
 	.4byte .L_800CA59C
 	.4byte .L_800CA300
+.endobj lbl_804A7158
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global sscanf
-sscanf:
+.fn sscanf, global
 /* 800C95C0 000C6500  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 800C95C4 000C6504  7C 08 02 A6 */	mflr r0
 /* 800C95C8 000C6508  90 01 00 94 */	stw r0, 0x94(r1)
@@ -127,9 +126,9 @@ sscanf:
 /* 800C9678 000C65B8  7C 08 03 A6 */	mtlr r0
 /* 800C967C 000C65BC  38 21 00 90 */	addi r1, r1, 0x90
 /* 800C9680 000C65C0  4E 80 00 20 */	blr 
+.endfn sscanf
 
-.global __StringRead
-__StringRead:
+.fn __StringRead, global
 /* 800C9684 000C65C4  2C 05 00 01 */	cmpwi r5, 1
 /* 800C9688 000C65C8  7C 66 1B 78 */	mr r6, r3
 /* 800C968C 000C65CC  41 82 00 4C */	beq .L_800C96D8
@@ -174,9 +173,9 @@ __StringRead:
 .L_800C970C:
 /* 800C970C 000C664C  38 60 00 00 */	li r3, 0
 /* 800C9710 000C6650  4E 80 00 20 */	blr 
+.endfn __StringRead
 
-.global __sformatter
-__sformatter:
+.fn __sformatter, local
 /* 800C9714 000C6654  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 800C9718 000C6658  7C 08 02 A6 */	mflr r0
 /* 800C971C 000C665C  3C E0 80 4A */	lis r7, __ctype_map@ha
@@ -257,7 +256,7 @@ __sformatter:
 .L_800C9830:
 /* 800C9830 000C6770  7F 43 D3 78 */	mr r3, r26
 /* 800C9834 000C6774  38 81 00 18 */	addi r4, r1, 0x18
-/* 800C9838 000C6778  48 00 08 89 */	bl parse_format1
+/* 800C9838 000C6778  48 00 08 89 */	bl parse_format
 /* 800C983C 000C677C  88 01 00 18 */	lbz r0, 0x18(r1)
 /* 800C9840 000C6780  7C 7A 1B 78 */	mr r26, r3
 /* 800C9844 000C6784  28 00 00 00 */	cmplwi r0, 0
@@ -900,9 +899,9 @@ __sformatter:
 /* 800CA0B4 000C6FF4  7C 08 03 A6 */	mtlr r0
 /* 800CA0B8 000C6FF8  38 21 00 80 */	addi r1, r1, 0x80
 /* 800CA0BC 000C6FFC  4E 80 00 20 */	blr 
+.endfn __sformatter
 
-.global parse_format1
-parse_format1:
+.fn parse_format, local
 /* 800CA0C0 000C7000  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800CA0C4 000C7004  3C C0 80 48 */	lis r6, lbl_8047A0D8@ha
 /* 800CA0C8 000C7008  8C A3 00 01 */	lbzu r5, 1(r3)
@@ -1280,3 +1279,4 @@ parse_format1:
 /* 800CA5FC 000C753C  83 C1 00 38 */	lwz r30, 0x38(r1)
 /* 800CA600 000C7540  38 21 00 40 */	addi r1, r1, 0x40
 /* 800CA604 000C7544  4E 80 00 20 */	blr 
+.endfn parse_format

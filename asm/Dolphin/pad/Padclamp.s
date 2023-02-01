@@ -1,35 +1,33 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global ClampRegion
-ClampRegion:
+.obj ClampRegion, local
 	.4byte 0x1EB40F48
 	.4byte 0x280F3B1F
-	.4byte 0x382C0000
-	.4byte 0x00000000
+	.2byte 0x382C
+.endobj ClampRegion
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517758
-lbl_80517758:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80517760
-lbl_80517760:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
-.global lbl_80517768
-lbl_80517768:
-	.4byte 0x40080000
-	.4byte 0x00000000
-.global lbl_80517770
-lbl_80517770:
+.obj lbl_80517758, local
+	.float 0.0
+.endobj lbl_80517758
+.balign 8
+.obj lbl_80517760, local
+	.double 0.5
+.endobj lbl_80517760
+.balign 8
+.obj lbl_80517768, local
+	.double 3.0
+.endobj lbl_80517768
+.balign 8
+.obj lbl_80517770, local
 	.4byte 0x43300000
 	.4byte 0x80000000
+.endobj lbl_80517770
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global ClampStick
-ClampStick:
+.fn ClampStick, local
 /* 800F3048 000EFF88  88 03 00 00 */	lbz r0, 0(r3)
 /* 800F304C 000EFF8C  89 84 00 00 */	lbz r12, 0(r4)
 /* 800F3050 000EFF90  7C 00 07 75 */	extsb. r0, r0
@@ -117,9 +115,9 @@ ClampStick:
 /* 800F316C 000F00AC  98 A3 00 00 */	stb r5, 0(r3)
 /* 800F3170 000F00B0  98 04 00 00 */	stb r0, 0(r4)
 /* 800F3174 000F00B4  4E 80 00 20 */	blr 
+.endfn ClampStick
 
-.global ClampCircle
-ClampCircle:
+.fn ClampCircle, local
 /* 800F3178 000F00B8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800F317C 000F00BC  7C C6 07 74 */	extsb r6, r6
 /* 800F3180 000F00C0  7C E6 00 D0 */	neg r7, r6
@@ -235,9 +233,9 @@ ClampCircle:
 /* 800F3314 000F0254  98 04 00 00 */	stb r0, 0(r4)
 /* 800F3318 000F0258  38 21 00 40 */	addi r1, r1, 0x40
 /* 800F331C 000F025C  4E 80 00 20 */	blr 
+.endfn ClampCircle
 
-.global PADClamp
-PADClamp:
+.fn PADClamp, global
 /* 800F3320 000F0260  7C 08 02 A6 */	mflr r0
 /* 800F3324 000F0264  3C 80 80 48 */	lis r4, ClampRegion@ha
 /* 800F3328 000F0268  90 01 00 04 */	stw r0, 4(r1)
@@ -314,9 +312,9 @@ PADClamp:
 /* 800F3428 000F0368  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F342C 000F036C  7C 08 03 A6 */	mtlr r0
 /* 800F3430 000F0370  4E 80 00 20 */	blr 
+.endfn PADClamp
 
-.global PADClampCircle
-PADClampCircle:
+.fn PADClampCircle, global
 /* 800F3434 000F0374  7C 08 02 A6 */	mflr r0
 /* 800F3438 000F0378  3C 80 80 48 */	lis r4, ClampRegion@ha
 /* 800F343C 000F037C  90 01 00 04 */	stw r0, 4(r1)
@@ -391,3 +389,4 @@ PADClampCircle:
 /* 800F3534 000F0474  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F3538 000F0478  7C 08 03 A6 */	mtlr r0
 /* 800F353C 000F047C  4E 80 00 20 */	blr 
+.endfn PADClampCircle

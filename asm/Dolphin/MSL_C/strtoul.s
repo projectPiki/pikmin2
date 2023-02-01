@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A7228
-lbl_804A7228:
+.obj lbl_804A7228, local
 	.4byte .L_800CBE6C
 	.4byte .L_800CBBB4
 	.4byte .L_800CBC54
@@ -20,8 +19,8 @@ lbl_804A7228:
 	.4byte .L_800CBE6C
 	.4byte .L_800CBE6C
 	.4byte .L_800CBCEC
-.global lbl_804A726C
-lbl_804A726C:
+.endobj lbl_804A7228
+.obj lbl_804A726C, local
 	.4byte .L_800CC1F0
 	.4byte .L_800CBFA4
 	.4byte .L_800CC044
@@ -39,10 +38,10 @@ lbl_804A726C:
 	.4byte .L_800CC1F0
 	.4byte .L_800CC1F0
 	.4byte .L_800CC0DC
+.endobj lbl_804A726C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global strtol
-strtol:
+.fn strtol, global
 /* 800CB938 000C8878  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800CB93C 000C887C  7C 08 02 A6 */	mflr r0
 /* 800CB940 000C8880  38 E0 00 00 */	li r7, 0
@@ -108,9 +107,9 @@ strtol:
 /* 800CBA1C 000C895C  7C 08 03 A6 */	mtlr r0
 /* 800CBA20 000C8960  38 21 00 30 */	addi r1, r1, 0x30
 /* 800CBA24 000C8964  4E 80 00 20 */	blr 
+.endfn strtol
 
-.global strtoul
-strtoul:
+.fn strtoul, global
 /* 800CBA28 000C8968  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800CBA2C 000C896C  7C 08 02 A6 */	mflr r0
 /* 800CBA30 000C8970  38 E0 00 00 */	li r7, 0
@@ -157,9 +156,9 @@ strtoul:
 /* 800CBAC8 000C8A08  7C 08 03 A6 */	mtlr r0
 /* 800CBACC 000C8A0C  38 21 00 30 */	addi r1, r1, 0x30
 /* 800CBAD0 000C8A10  4E 80 00 20 */	blr 
+.endfn strtoul
 
-.global __strtoull
-__strtoull:
+.fn __strtoull, global
 /* 800CBAD4 000C8A14  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800CBAD8 000C8A18  7C 08 02 A6 */	mflr r0
 /* 800CBADC 000C8A1C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -453,9 +452,9 @@ __strtoull:
 /* 800CBED4 000C8E14  7C 08 03 A6 */	mtlr r0
 /* 800CBED8 000C8E18  38 21 00 50 */	addi r1, r1, 0x50
 /* 800CBEDC 000C8E1C  4E 80 00 20 */	blr 
+.endfn __strtoull
 
-.global __strtoul
-__strtoul:
+.fn __strtoul, global
 /* 800CBEE0 000C8E20  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800CBEE4 000C8E24  7C 08 02 A6 */	mflr r0
 /* 800CBEE8 000C8E28  90 01 00 44 */	stw r0, 0x44(r1)
@@ -712,3 +711,4 @@ __strtoul:
 /* 800CC24C 000C918C  7C 08 03 A6 */	mtlr r0
 /* 800CC250 000C9190  38 21 00 40 */	addi r1, r1, 0x40
 /* 800CC254 000C9194  4E 80 00 20 */	blr 
+.endfn __strtoul

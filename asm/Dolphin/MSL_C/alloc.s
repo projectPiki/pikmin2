@@ -1,29 +1,28 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global fix_pool_sizes
-fix_pool_sizes:
+.obj fix_pool_sizes, local
 	.4byte 0x00000004
 	.4byte 0x0000000C
 	.4byte 0x00000014
 	.4byte 0x00000024
 	.4byte 0x00000034
 	.4byte 0x00000044
+.endobj fix_pool_sizes
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global protopool$192
-protopool$192:
+.obj protopool$192, local
 	.skip 0x38
+.endobj protopool$192
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global init$193
-init$193:
-	.skip 0x8
+.obj init$193, local
+	.skip 0x1
+.endobj init$193
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global free
-free:
+.fn free, global
 /* 800C2550 000BF490  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C2554 000BF494  7C 08 02 A6 */	mflr r0
 /* 800C2558 000BF498  90 01 00 14 */	stw r0, 0x14(r1)
@@ -53,9 +52,9 @@ free:
 /* 800C25B4 000BF4F4  7C 08 03 A6 */	mtlr r0
 /* 800C25B8 000BF4F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C25BC 000BF4FC  4E 80 00 20 */	blr 
+.endfn free
 
-.global __pool_free
-__pool_free:
+.fn __pool_free, global
 /* 800C25C0 000BF500  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C25C4 000BF504  7C 08 02 A6 */	mflr r0
 /* 800C25C8 000BF508  28 04 00 00 */	cmplwi r4, 0
@@ -82,9 +81,9 @@ __pool_free:
 /* 800C260C 000BF54C  7C 08 03 A6 */	mtlr r0
 /* 800C2610 000BF550  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C2614 000BF554  4E 80 00 20 */	blr 
+.endfn __pool_free
 
-.global deallocate_from_fixed_pools
-deallocate_from_fixed_pools:
+.fn deallocate_from_fixed_pools, global
 /* 800C2618 000BF558  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C261C 000BF55C  7C 08 02 A6 */	mflr r0
 /* 800C2620 000BF560  3C C0 80 48 */	lis r6, fix_pool_sizes@ha
@@ -180,9 +179,9 @@ deallocate_from_fixed_pools:
 /* 800C2764 000BF6A4  7C 08 03 A6 */	mtlr r0
 /* 800C2768 000BF6A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C276C 000BF6AC  4E 80 00 20 */	blr 
+.endfn deallocate_from_fixed_pools
 
-.global deallocate_from_var_pools
-deallocate_from_var_pools:
+.fn deallocate_from_var_pools, local
 /* 800C2770 000BF6B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C2774 000BF6B4  7C 08 02 A6 */	mflr r0
 /* 800C2778 000BF6B8  39 04 FF F8 */	addi r8, r4, -8
@@ -366,3 +365,4 @@ deallocate_from_var_pools:
 /* 800C29F8 000BF938  7C 08 03 A6 */	mtlr r0
 /* 800C29FC 000BF93C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C2A00 000BF940  4E 80 00 20 */	blr 
+.endfn deallocate_from_var_pools

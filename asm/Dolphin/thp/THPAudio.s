@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global THPAudioDecode
-THPAudioDecode: # global function
+.fn THPAudioDecode, global
 /* 800FE6B0 000FB5F0  7C 08 02 A6 */	mflr r0
 /* 800FE6B4 000FB5F4  28 03 00 00 */	cmplwi r3, 0
 /* 800FE6B8 000FB5F8  90 01 00 04 */	stw r0, 4(r1)
@@ -258,8 +257,9 @@ THPAudioDecode: # global function
 /* 800FEA54 000FB994  38 21 00 58 */	addi r1, r1, 0x58
 /* 800FEA58 000FB998  7C 08 03 A6 */	mtlr r0
 /* 800FEA5C 000FB99C  4E 80 00 20 */	blr 
+.endfn THPAudioDecode
 
-__THPAudioGetNewSample: # local function
+.fn __THPAudioGetNewSample, local
 /* 800FEA60 000FB9A0  80 03 00 04 */	lwz r0, 4(r3)
 /* 800FEA64 000FB9A4  54 00 07 3F */	clrlwi. r0, r0, 0x1c
 /* 800FEA68 000FB9A8  40 82 00 3C */	bne .L_800FEAA4
@@ -299,8 +299,9 @@ __THPAudioGetNewSample: # local function
 /* 800FEAE4 000FBA24  90 03 00 04 */	stw r0, 4(r3)
 /* 800FEAE8 000FBA28  7C A3 2B 78 */	mr r3, r5
 /* 800FEAEC 000FBA2C  4E 80 00 20 */	blr 
+.endfn __THPAudioGetNewSample
 
-__THPAudioInitialize: # local function
+.fn __THPAudioInitialize, local
 /* 800FEAF0 000FBA30  90 83 00 00 */	stw r4, 0(r3)
 /* 800FEAF4 000FBA34  38 00 00 02 */	li r0, 2
 /* 800FEAF8 000FBA38  90 03 00 04 */	stw r0, 4(r3)
@@ -316,3 +317,4 @@ __THPAudioInitialize: # local function
 /* 800FEB20 000FBA60  38 04 00 01 */	addi r0, r4, 1
 /* 800FEB24 000FBA64  90 03 00 00 */	stw r0, 0(r3)
 /* 800FEB28 000FBA68  4E 80 00 20 */	blr 
+.endfn __THPAudioInitialize
