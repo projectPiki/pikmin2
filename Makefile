@@ -191,7 +191,6 @@ ifeq ($(USE_AOI),1)
 endif
 
 clean:
-	rm -f -d -r epilogue
 	rm -f -d -r build
 	find . -name '*.o' -exec rm {} +
 	find . -name 'ctx.c' -exec rm {} +
