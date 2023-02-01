@@ -191,20 +191,20 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                                                   // _2F8 (weak)
 	//////////////// VTABLE END
 
-	void isReachToGoal(f32);
+	bool isReachToGoal(f32);
 	void walkFunc();
 	void setNextGoal();
 	void changeColor();
 	void resetColor();
-	void turnFunc();
+	f32 turnFunc();
 	void resetWalkParm();
-	void isChangeNavi();
-	void isFindTarget();
-	void isAttackStart();
-	void isNeedTurn();
-	void isOutOfTerritory(f32);
-	void canMove();
-	void outMove();
+	bool isChangeNavi();
+	bool isFindTarget();
+	bool isAttackStart();
+	bool isNeedTurn();
+	bool isOutOfTerritory(f32);
+	bool canMove();
+	bool outMove();
 	void setFindAnim();
 	void fadeAllEffect();
 	void fadeColorEffect();
@@ -333,7 +333,10 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
-	inline State(int); // likely
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
@@ -347,6 +350,8 @@ struct StateAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	bool mIsTongueActive; // _10, is 'tongue'/tendrils out and able to eat piki
+	bool mTongueHasPiki;  // _11, has 'tongue'/tendrils captured any piki
 };
 
 struct StateDead : public State {
@@ -427,6 +432,7 @@ struct StateWait : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int mWaitTimer; // _10
 };
 
 struct StateWalk : public State {
@@ -437,6 +443,8 @@ struct StateWalk : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int mBlindMoveTimer; // _10
+	int mBlindWaitTimer; // _14
 };
 /////////////////////////////////////////////////////////////////
 } // namespace UmiMushi
