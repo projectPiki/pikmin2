@@ -1,37 +1,37 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global init$484
-init$484:
+.obj init$484, local
+	.skip 0x1
+.endobj init$484
+.balign 4
+.obj oRandom$483, local
 	.skip 0x4
-.global oRandom$483
-oRandom$483:
-	.skip 0x4
+.endobj oRandom$483
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global cEqualCSlope__7JALCalc
-cEqualCSlope__7JALCalc:
+.obj cEqualCSlope__7JALCalc, global
 	.float 1.0
-.global cEqualPSlope__7JALCalc
-cEqualPSlope__7JALCalc:
+.endobj cEqualCSlope__7JALCalc
+.obj cEqualPSlope__7JALCalc, global
 	.float 0.5
-.global lbl_80517080
-lbl_80517080:
-	.4byte 0x00000000
-.global lbl_80517084
-lbl_80517084:
+.endobj cEqualPSlope__7JALCalc
+.obj lbl_80517080, local
+	.float 0.0
+.endobj lbl_80517080
+.obj lbl_80517084, local
 	.float 1.0
-.global lbl_80517088
-lbl_80517088:
-	.4byte 0x40000000
-.global lbl_8051708C
-lbl_8051708C:
-	.4byte 0xC0000000
+.endobj lbl_80517084
+.obj lbl_80517088, local
+	.float 2.0
+.endobj lbl_80517088
+.obj lbl_8051708C, local
+	.float -2.0
+.endobj lbl_8051708C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global linearTransform__7JALCalcFfffffb
-linearTransform__7JALCalcFfffffb:
+.fn linearTransform__7JALCalcFfffffb, global
 /* 800BA244 000B7184  EC 03 10 28 */	fsubs f0, f3, f2
 /* 800BA248 000B7188  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800BA24C 000B718C  EC 41 10 28 */	fsubs f2, f1, f2
@@ -60,9 +60,9 @@ lbl_800BA298:
 /* 800BA29C 000B71DC  4C 80 00 20 */	bgelr 
 /* 800BA2A0 000B71E0  FC 20 28 90 */	fmr f1, f5
 /* 800BA2A4 000B71E4  4E 80 00 20 */	blr 
+.endfn linearTransform__7JALCalcFfffffb
 
-.global getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
-getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign:
+.fn getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign, global
 /* 800BA2A8 000B71E8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800BA2AC 000B71EC  7C 08 02 A6 */	mflr r0
 /* 800BA2B0 000B71F0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -172,9 +172,9 @@ getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign:
 /* 800BA428 000B7368  7C 08 03 A6 */	mtlr r0
 /* 800BA42C 000B736C  38 21 00 50 */	addi r1, r1, 0x50
 /* 800BA430 000B7370  4E 80 00 20 */	blr 
+.endfn getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
 
-.global getRandom__7JALCalcFfff
-getRandom__7JALCalcFfff:
+.fn getRandom__7JALCalcFfff, global
 /* 800BA434 000B7374  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800BA438 000B7378  7C 08 02 A6 */	mflr r0
 /* 800BA43C 000B737C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -225,9 +225,9 @@ getRandom__7JALCalcFfff:
 /* 800BA4E8 000B7428  7C 08 03 A6 */	mtlr r0
 /* 800BA4EC 000B742C  38 21 00 60 */	addi r1, r1, 0x60
 /* 800BA4F0 000B7430  4E 80 00 20 */	blr 
+.endfn getRandom__7JALCalcFfff
 
-.global getRandom_0_1__7JALCalcFv
-getRandom_0_1__7JALCalcFv:
+.fn getRandom_0_1__7JALCalcFv, global
 /* 800BA4F4 000B7434  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BA4F8 000B7438  7C 08 02 A6 */	mflr r0
 /* 800BA4FC 000B743C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -257,3 +257,4 @@ getRandom_0_1__7JALCalcFv:
 /* 800BA558 000B7498  7C 08 03 A6 */	mtlr r0
 /* 800BA55C 000B749C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BA560 000B74A0  4E 80 00 20 */	blr 
+.endfn getRandom_0_1__7JALCalcFv

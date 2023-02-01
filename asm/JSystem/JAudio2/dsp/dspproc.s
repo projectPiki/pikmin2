@@ -1,23 +1,25 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-DSP_MIXERLEVEL:
+.obj DSP_MIXERLEVEL, local
 	.2byte 0x4000
+.endobj DSP_MIXERLEVEL
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-flag:
+.obj flag, local
 	.skip 4
+.endobj flag
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516ED0:
+.obj lbl_80516ED0, local
 	.float 4096.0
+.endobj lbl_80516ED0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .balign 32, 0
-.global DSPReleaseHalt2__FUl
-DSPReleaseHalt2__FUl:
+.fn DSPReleaseHalt2__FUl, global
 /* 800AA760 000A76A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AA764 000A76A4  7C 08 02 A6 */	mflr r0
 /* 800AA768 000A76A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -36,17 +38,17 @@ DSPReleaseHalt2__FUl:
 /* 800AA79C 000A76DC  7C 08 03 A6 */	mtlr r0
 /* 800AA7A0 000A76E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AA7A4 000A76E4  4E 80 00 20 */	blr 
+.endfn DSPReleaseHalt2__FUl
 
 .balign 32, 0
-.global setup_callback__FUs
-setup_callback__FUs:
+.fn setup_callback__FUs, local
 /* 800AA7C0 000A7700  38 00 00 00 */	li r0, 0
 /* 800AA7C4 000A7704  90 0D 8B 30 */	stw r0, flag@sda21(r13)
 /* 800AA7C8 000A7708  4E 80 00 20 */	blr 
+.endfn setup_callback__FUs
 
 .balign 32, 0
-.global DsetupTable__FUlUlUlUlUl
-DsetupTable__FUlUlUlUlUl:
+.fn DsetupTable__FUlUlUlUlUl, global
 /* 800AA7E0 000A7720  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AA7E4 000A7724  7C 08 02 A6 */	mflr r0
 /* 800AA7E8 000A7728  39 00 00 01 */	li r8, 1
@@ -73,10 +75,10 @@ DsetupTable__FUlUlUlUlUl:
 /* 800AA838 000A7778  7C 08 03 A6 */	mtlr r0
 /* 800AA83C 000A777C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AA840 000A7780  4E 80 00 20 */	blr 
+.endfn DsetupTable__FUlUlUlUlUl
 
 .balign 32, 0
-.global DsetMixerLevel__Ff
-DsetMixerLevel__Ff:
+.fn DsetMixerLevel__Ff, global
 /* 800AA860 000A77A0  C0 02 8B 70 */	lfs f0, lbl_80516ED0@sda21(r2)
 /* 800AA864 000A77A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AA868 000A77A8  EC 00 00 72 */	fmuls f0, f0, f1
@@ -86,10 +88,10 @@ DsetMixerLevel__Ff:
 /* 800AA878 000A77B8  B0 0D 81 38 */	sth r0, DSP_MIXERLEVEL@sda21(r13)
 /* 800AA87C 000A77BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AA880 000A77C0  4E 80 00 20 */	blr 
+.endfn DsetMixerLevel__Ff
 
 .balign 32, 0
-.global DsyncFrame__FUlUlUl
-DsyncFrame__FUlUlUl:
+.fn DsyncFrame__FUlUlUl, global
 /* 800AA8A0 000A77E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AA8A4 000A77E4  7C 08 02 A6 */	mflr r0
 /* 800AA8A8 000A77E8  54 63 82 1E */	rlwinm r3, r3, 0x10, 8, 0xf
@@ -108,3 +110,4 @@ DsyncFrame__FUlUlUl:
 /* 800AA8DC 000A781C  7C 08 03 A6 */	mtlr r0
 /* 800AA8E0 000A7820  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AA8E4 000A7824  4E 80 00 20 */	blr 
+.endfn DsyncFrame__FUlUlUl

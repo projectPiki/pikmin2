@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 32
-.global jdsp
-jdsp:
+.obj jdsp, global
 	.4byte 0x029F0012
 	.4byte 0x00000000
 	.4byte 0x02FF0000
@@ -1867,6 +1866,7 @@ jdsp:
 	.4byte 0x00988001
 	.4byte 0x02BF00EB
 	.4byte 0x02DF0000
+.endobj jdsp
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .lcomm audio_task, 0x60, 32
@@ -1875,15 +1875,16 @@ jdsp:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-taskreadp: # local data
+.obj taskreadp, local
 	.skip 0x4
-taskwritep: # local data
+.endobj taskreadp
+.obj taskwritep, local
 	.skip 0x4
+.endobj taskwritep
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .balign 32, 0
-.global DspHandShake__FPv
-DspHandShake__FPv:
+.fn DspHandShake__FPv, local
 /* 800AA900 000A7840  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AA904 000A7844  7C 08 02 A6 */	mflr r0
 /* 800AA908 000A7848  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1899,10 +1900,10 @@ DspHandShake__FPv:
 /* 800AA92C 000A786C  7C 08 03 A6 */	mtlr r0
 /* 800AA930 000A7870  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AA934 000A7874  4E 80 00 20 */	blr 
+.endfn DspHandShake__FPv
 
 .balign 32, 0
-.global DspBoot__FPFPv_v
-DspBoot__FPFPv_v:
+.fn DspBoot__FPFPv_v, global
 /* 800AA940 000A7880  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AA944 000A7884  7C 08 02 A6 */	mflr r0
 /* 800AA948 000A7888  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1946,10 +1947,10 @@ DspBoot__FPFPv_v:
 /* 800AA9E0 000A7920  7C 08 03 A6 */	mtlr r0
 /* 800AA9E4 000A7924  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AA9E8 000A7928  4E 80 00 20 */	blr 
+.endfn DspBoot__FPFPv_v
 
 .balign 32, 0
-.global DSPSendCommands2__FPUlUlPFUs_v
-DSPSendCommands2__FPUlUlPFUs_v:
+.fn DSPSendCommands2__FPUlUlPFUs_v, global
 /* 800AAA00 000A7940  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AAA04 000A7944  7C 08 02 A6 */	mflr r0
 /* 800AAA08 000A7948  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2017,9 +2018,10 @@ DSPSendCommands2__FPUlUlPFUs_v:
 /* 800AAADC 000A7A1C  7C 08 03 A6 */	mtlr r0
 /* 800AAAE0 000A7A20  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AAAE4 000A7A24  4E 80 00 20 */	blr 
+.endfn DSPSendCommands2__FPUlUlPFUs_v
 
 .balign 32, 0
-DspInitWork__Fv: # local function
+.fn DspInitWork__Fv, local
 /* 800AAB00 000A7A40  38 60 00 00 */	li r3, 0
 /* 800AAB04 000A7A44  3C 80 80 4F */	lis r4, taskwork@ha
 /* 800AAB08 000A7A48  38 00 00 10 */	li r0, 0x10
@@ -2032,10 +2034,10 @@ DspInitWork__Fv: # local function
 /* 800AAB20 000A7A60  90 C4 00 04 */	stw r6, 4(r4)
 /* 800AAB24 000A7A64  42 00 FF F4 */	bdnz .L_800AAB18
 /* 800AAB28 000A7A68  4E 80 00 20 */	blr 
+.endfn DspInitWork__Fv
 
 .balign 32, 0
-.global DspStartWork__FUlPFUs_v
-DspStartWork__FUlPFUs_v:
+.fn DspStartWork__FUlPFUs_v, global
 /* 800AAB40 000A7A80  80 ED 8B 3C */	lwz r7, taskwritep@sda21(r13)
 /* 800AAB44 000A7A84  80 0D 8B 38 */	lwz r0, taskreadp@sda21(r13)
 /* 800AAB48 000A7A88  38 C7 00 01 */	addi r6, r7, 1
@@ -2055,10 +2057,10 @@ DspStartWork__FUlPFUs_v:
 /* 800AAB7C 000A7ABC  7C A5 3A 14 */	add r5, r5, r7
 /* 800AAB80 000A7AC0  90 85 00 04 */	stw r4, 4(r5)
 /* 800AAB84 000A7AC4  4E 80 00 20 */	blr 
+.endfn DspStartWork__FUlPFUs_v
 
 .balign 32, 0
-.global DspFinishWork__FUs
-DspFinishWork__FUs:
+.fn DspFinishWork__FUs, global
 /* 800AABA0 000A7AE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AABA4 000A7AE4  7C 08 02 A6 */	mflr r0
 /* 800AABA8 000A7AE8  3C 80 80 4F */	lis r4, taskwork@ha
@@ -2087,3 +2089,4 @@ DspFinishWork__FUs:
 /* 800AABFC 000A7B3C  7C 08 03 A6 */	mtlr r0
 /* 800AAC00 000A7B40  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AAC04 000A7B44  4E 80 00 20 */	blr 
+.endfn DspFinishWork__FUs

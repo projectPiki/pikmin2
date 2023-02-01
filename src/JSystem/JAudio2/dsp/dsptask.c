@@ -3,13 +3,15 @@
 #include "JSystem/JAudio2/DSP.h"
 
 static STRUCT_DSP_TASK audio_task;
+static u8 AUDIO_YIELD_BUFFER[0x2000];
+static u8 taskwork[0x80];
 
 /*
  * --INFO--
  * Address:	800AA900
  * Size:	000038
  */
-void DspHandShake(void* a1)
+void DspHandShake__FPv(void* a1)
 {
 	do {
 		;
@@ -42,7 +44,7 @@ void DspHandShake(void* a1)
  * Address:	800AA940
  * Size:	0000AC
  */
-void DspBoot(void (*p1)(void*))
+void DspBoot__FPFPv_v(void (*p1)(void*))
 {
 	DspInitWork();
 	audio_task._04 = 0xF0;
@@ -113,7 +115,7 @@ void DspBoot(void (*p1)(void*))
  * Address:	800AAA00
  * Size:	0000E8
  */
-void DSPSendCommands2(unsigned long* p1, unsigned long p2, void (*p3)(unsigned short))
+void DSPSendCommands2__FPUlUlPFUs_v(u32* p1, u32 p2, void (*p3)(u16))
 {
 	/*
 	.loc_0x0:
@@ -201,8 +203,10 @@ void DSPSendCommands2(unsigned long* p1, unsigned long p2, void (*p3)(unsigned s
  * Address:	800AAB00
  * Size:	00002C
  */
-void DspInitWork()
+void DspInitWork__Fv()
 {
+	while (taskwork) { }
+
 	/*
 	.loc_0x0:
 	  li        r3, 0
@@ -226,7 +230,7 @@ void DspInitWork()
  * Address:	800AAB40
  * Size:	000048
  */
-void DspStartWork(unsigned long p1, void (*p2)(unsigned short))
+void DspStartWork__FUlPFUs_v(u32 p1, void (*p2)(u16))
 {
 	/*
 	.loc_0x0:
@@ -258,7 +262,7 @@ void DspStartWork(unsigned long p1, void (*p2)(unsigned short))
  * Address:	800AABA0
  * Size:	000068
  */
-void DspFinishWork(unsigned short p1)
+void DspFinishWork__FUs(u16 p1)
 {
 	/*
 	.loc_0x0:

@@ -11,7 +11,7 @@ static u16 DSP_MIXERLEVEL = 0x4000;
  * Address:	........
  * Size:	000024
  */
-void DSPSendCommands(unsigned long* p1, unsigned long p2)
+void DSPSendCommands__FPUlUl(u32* p1, u32 p2)
 {
 	// UNUSED FUNCTION
 }
@@ -21,7 +21,7 @@ void DSPSendCommands(unsigned long* p1, unsigned long p2)
  * Address:	........
  * Size:	000038
  */
-void DSPReleaseHalt3(unsigned long p1, unsigned short p2)
+void DSPReleaseHalt3__FUlUs(u32 p1, u16 p2)
 {
 	// UNUSED FUNCTION
 }
@@ -31,11 +31,11 @@ void DSPReleaseHalt3(unsigned long p1, unsigned short p2)
  * Address:	800AA760
  * Size:	000048
  */
-void DSPReleaseHalt2(unsigned long msg)
+void DSPReleaseHalt2__FUl(u32 msg)
 {
-	unsigned long msgs[5];
+	u32 msgs[5];
 	msgs[0] = (msg << 16) | DSP_CreateMap2(msg);
-	DSPSendCommands2(msgs, 0, NULL);
+	DSPSendCommands2__FPUlUlPFUs_v(msgs, 0, NULL);
 
 	/*
 	.loc_0x0:
@@ -65,7 +65,7 @@ void DSPReleaseHalt2(unsigned long msg)
  * Address:	........
  * Size:	000034
  */
-void DSPReleaseHalt()
+void DSPReleaseHalt__Fv()
 {
 	// UNUSED FUNCTION
 }
@@ -75,7 +75,7 @@ void DSPReleaseHalt()
  * Address:	........
  * Size:	00003C
  */
-void DSPWaitFinish()
+void DSPWaitFinish__Fv()
 {
 	// UNUSED FUNCTION
 }
@@ -85,7 +85,7 @@ void DSPWaitFinish()
  * Address:	........
  * Size:	000040
  */
-void Dswap(unsigned long p1, unsigned long p2, unsigned long p3)
+void Dswap__FUlUlUl(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
@@ -95,7 +95,7 @@ void Dswap(unsigned long p1, unsigned long p2, unsigned long p3)
  * Address:	........
  * Size:	000048
  */
-void Dmix(unsigned long p1, unsigned long p2, unsigned long p3, short p4)
+void Dmix__FUlUlUls(u32 p1, u32 p2, u32 p3, short p4)
 {
 	// UNUSED FUNCTION
 }
@@ -105,7 +105,7 @@ void Dmix(unsigned long p1, unsigned long p2, unsigned long p3, short p4)
  * Address:	........
  * Size:	000040
  */
-void Dcopy(unsigned long p1, unsigned long p2, unsigned long p3)
+void Dcopy__FUlUlUl(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
@@ -115,7 +115,7 @@ void Dcopy(unsigned long p1, unsigned long p2, unsigned long p3)
  * Address:	........
  * Size:	000044
  */
-void DloadBuffer1(unsigned long p1, unsigned long p2)
+void DloadBuffer1__FUlUl(u32 p1, u32 p2)
 {
 	// UNUSED FUNCTION
 }
@@ -125,7 +125,7 @@ void DloadBuffer1(unsigned long p1, unsigned long p2)
  * Address:	........
  * Size:	000040
  */
-void DloadBuffer(u32 p1, u32 p2, u32 p3)
+void DloadBuffer__FUlUlUl(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
@@ -135,7 +135,7 @@ void DloadBuffer(u32 p1, u32 p2, u32 p3)
  * Address:	........
  * Size:	000044
  */
-void DsaveBuffer(unsigned short p1, unsigned long p2, unsigned long p3)
+void DsaveBuffer__FUsUlUl(u16 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
@@ -145,23 +145,14 @@ void DsaveBuffer(unsigned short p1, unsigned long p2, unsigned long p3)
  * Address:	800AA7C0
  * Size:	00000C
  */
-void setup_callback(unsigned short p1)
-{
-	flag = 0;
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, -0x74D0(r13)
-	  blr
-	*/
-}
+void setup_callback__FUs(u16 p1) { flag = 0; }
 
 /*
  * --INFO--
  * Address:	800AA7E0
  * Size:	000064
  */
-void DsetupTable(unsigned long p1, unsigned long p2, unsigned long p3, unsigned long p4, unsigned long p5)
+void DsetupTable__FUlUlUlUlUl(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5)
 {
 	u32 commands[5];
 	commands[0] = p1 & 0xFFFF | 0x81000000;
@@ -170,39 +161,9 @@ void DsetupTable(unsigned long p1, unsigned long p2, unsigned long p3, unsigned 
 	commands[3] = p4;
 	commands[4] = p5;
 	flag        = 1;
-	DSPSendCommands2(commands, 5, setup_callback);
+	DSPSendCommands2__FPUlUlPFUs_v(commands, 5, setup_callback__FUs);
 	while (flag != 0)
 		;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r8, 0x1
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r3,0,16,31
-	  oris      r9, r0, 0x8100
-	  lis       r3, 0x800B
-	  stw       r4, 0xC(r1)
-	  subi      r0, r3, 0x5840
-	  addi      r3, r1, 0x8
-	  li        r4, 0x5
-	  stw       r5, 0x10(r1)
-	  mr        r5, r0
-	  stw       r9, 0x8(r1)
-	  stw       r6, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r8, -0x74D0(r13)
-	  bl        0x1DC
-
-	.loc_0x48:
-	  lwz       r0, -0x74D0(r13)
-	  cmpwi     r0, 0
-	  bne+      .loc_0x48
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -210,14 +171,14 @@ void DsetupTable(unsigned long p1, unsigned long p2, unsigned long p3, unsigned 
  * Address:	800AA860
  * Size:	000024
  */
-void DsetMixerLevel(float mixerLevel) { DSP_MIXERLEVEL = 4096.0f * mixerLevel; }
+void DsetMixerLevel__Ff(float mixerLevel) { DSP_MIXERLEVEL = 4096.0f * mixerLevel; }
 
 /*
  * --INFO--
  * Address:	800AA8A0
  * Size:	000048
  */
-void DsyncFrame(unsigned long p1, unsigned long p2, unsigned long p3)
+void DsyncFrame__FUlUlUl(u32 p1, u32 p2, u32 p3)
 {
 	/*
 	.loc_0x0:
@@ -247,7 +208,7 @@ void DsyncFrame(unsigned long p1, unsigned long p2, unsigned long p3)
  * Address:	........
  * Size:	00000C
  */
-void wait_callback(unsigned short p1)
+void wait_callback__FUs(u16 p1)
 {
 	// UNUSED FUNCTION
 }
@@ -257,7 +218,7 @@ void wait_callback(unsigned short p1)
  * Address:	........
  * Size:	00004C
  */
-void DwaitFrame()
+void DwaitFrame__Fv()
 {
 	// UNUSED FUNCTION
 }
@@ -267,7 +228,7 @@ void DwaitFrame()
  * Address:	........
  * Size:	00003C
  */
-void DiplSec(unsigned long p1, void (*p2)(unsigned short))
+void DiplSec__FUlPFUs_v(u32 p1, void (*p2)(u16))
 {
 	// UNUSED FUNCTION
 }
@@ -277,7 +238,7 @@ void DiplSec(unsigned long p1, void (*p2)(unsigned short))
  * Address:	........
  * Size:	00003C
  */
-void DagbSec(unsigned long p1, void (*p2)(unsigned short))
+void DagbSec__FUlPFUs_v(u32 p1, void (*p2)(u16))
 {
 	// UNUSED FUNCTION
 }
@@ -287,7 +248,7 @@ void DagbSec(unsigned long p1, void (*p2)(unsigned short))
  * Address:	........
  * Size:	00000C
  */
-void dummy_callback(unsigned short p1)
+void dummy_callback__FUs(u16 p1)
 {
 	// UNUSED FUNCTION
 }
@@ -297,7 +258,7 @@ void dummy_callback(unsigned short p1)
  * Address:	........
  * Size:	000054
  */
-void DsetDolbyDelay(unsigned long p1, unsigned short p2)
+void DsetDolbyDelay__FUlUs(u32 p1, u16 p2)
 {
 	// UNUSED FUNCTION
 }
