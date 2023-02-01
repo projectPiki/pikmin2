@@ -357,7 +357,7 @@ LIBS = [
     },
     {
         "lib": "JAudio2_DSP",
-        "cflags": "$cflags_pikmin -func_align 32",
+        "cflags": "$cflags_pikmin -func_align 32 -inline noauto -common off",
         "mw_version": "2.6",
         "host": True,
         "objects": [

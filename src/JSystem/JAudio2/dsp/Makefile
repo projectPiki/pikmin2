@@ -4,7 +4,7 @@ JAUDIO2_DSP_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio2/dsp/osdsp.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/dsp/osdsp_task.o\
 
-$(JAUDIO2_DSP_FILES): CFLAGS += -func_align 32
+$(JAUDIO2_DSP_FILES): CFLAGS += -func_align 32 -inline noauto -common off
 
 DEPENDS += $(JAUDIO2_DSP_FILES:.o=.d)
 

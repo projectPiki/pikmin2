@@ -5,19 +5,20 @@
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-DSP_prior_yield:
+.obj DSP_prior_yield, local
 	.skip 0x1
+.endobj DSP_prior_yield
 .balign 4
-AUDIO_UPDATE_REQUEST:
+.obj AUDIO_UPDATE_REQUEST, local
 	.skip 0x4
-.global DSP_prior_task
-DSP_prior_task:
+.endobj AUDIO_UPDATE_REQUEST
+.obj DSP_prior_task, global
 	.skip 0x4
+.endobj DSP_prior_task
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .balign 32, 0
-.global __DSPHandler
-__DSPHandler:
+.fn __DSPHandler, global
 /* 800AAD00 000A7C40  94 21 FD 20 */	stwu r1, -0x2e0(r1)
 /* 800AAD04 000A7C44  7C 08 02 A6 */	mflr r0
 /* 800AAD08 000A7C48  3C C0 CC 00 */	lis r6, 0xCC00500A@ha
@@ -233,10 +234,10 @@ __DSPHandler:
 /* 800AAFF8 000A7F38  7C 08 03 A6 */	mtlr r0
 /* 800AAFFC 000A7F3C  38 21 02 E0 */	addi r1, r1, 0x2e0
 /* 800AB000 000A7F40  4E 80 00 20 */	blr 
+.endfn __DSPHandler
 
 .balign 32, 0
-.global DsyncFrame2__FUlUlUl
-DsyncFrame2__FUlUlUl:
+.fn DsyncFrame2__FUlUlUl, global
 /* 800AB020 000A7F60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AB024 000A7F64  7C 08 02 A6 */	mflr r0
 /* 800AB028 000A7F68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -259,9 +260,10 @@ DsyncFrame2__FUlUlUl:
 /* 800AB064 000A7FA4  7C 08 03 A6 */	mtlr r0
 /* 800AB068 000A7FA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AB06C 000A7FAC  4E 80 00 20 */	blr 
+.endfn DsyncFrame2__FUlUlUl
 
 .balign 32, 0
-Dsp_Update_Request__Fv: # local function
+.fn Dsp_Update_Request__Fv, local
 /* 800AB080 000A7FC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AB084 000A7FC4  7C 08 02 A6 */	mflr r0
 /* 800AB088 000A7FC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -279,19 +281,20 @@ Dsp_Update_Request__Fv: # local function
 /* 800AB0B4 000A7FF4  7C 08 03 A6 */	mtlr r0
 /* 800AB0B8 000A7FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AB0BC 000A7FFC  4E 80 00 20 */	blr 
+.endfn Dsp_Update_Request__Fv
 
 .balign 32, 0
-.global Dsp_Running_Check__Fv
-Dsp_Running_Check__Fv:
+.fn Dsp_Running_Check__Fv, global
 /* 800AB0C0 000A8000  88 0D 8B 40 */	lbz r0, DSP_prior_yield@sda21(r13)
 /* 800AB0C4 000A8004  20 00 00 01 */	subfic r0, r0, 1
 /* 800AB0C8 000A8008  7C 00 00 34 */	cntlzw r0, r0
 /* 800AB0CC 000A800C  54 03 D9 7E */	srwi r3, r0, 5
 /* 800AB0D0 000A8010  4E 80 00 20 */	blr 
+.endfn Dsp_Running_Check__Fv
 
 .balign 32, 0
-.global Dsp_Running_Start__Fv
-Dsp_Running_Start__Fv:
+.fn Dsp_Running_Start__Fv, global
 /* 800AB0E0 000A8020  38 00 00 01 */	li r0, 1
 /* 800AB0E4 000A8024  98 0D 8B 40 */	stb r0, DSP_prior_yield@sda21(r13)
 /* 800AB0E8 000A8028  4E 80 00 20 */	blr 
+.endfn Dsp_Running_Start__Fv
