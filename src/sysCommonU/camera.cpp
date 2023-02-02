@@ -732,7 +732,7 @@ void Camera::updatePlanes()
 Vector3f Camera::getLookAtPosition()
 {
 	if (isRunning() && mJstObject) {
-		return mJstObject->_9C;
+		return mJstObject->mViewTargetPos;
 	} else {
 		return getLookAtPosition_();
 	}
@@ -828,11 +828,11 @@ float Camera::getFar()
 void Camera::setProjection()
 {
 	float far     = getFar();
-	Mtx44* matrix = &_B4;
+	Mtx44* matrix = &mProjectionMtx;
 	float near    = getNear();
 
 	C_MTXPerspective(mViewAngle, mAspectRatio, near, far, *matrix);
-	GXSetProjection(_B4, GX_PERSPECTIVE);
+	GXSetProjection(mProjectionMtx, GX_PERSPECTIVE);
 }
 
 /*
@@ -842,7 +842,7 @@ void Camera::setProjection()
  */
 void Camera::update()
 {
-	PSMTX44Copy(_B4, _F4);
+	PSMTX44Copy(mProjectionMtx, _F4);
 	Matrixf* viewMatrix = getViewMatrix(0);
 	PSMTXCopy(viewMatrix->mMatrix.mtxView, mCurViewMatrix.mMatrix.mtxView);
 	// temp_r3 = this->unk140;
@@ -886,7 +886,7 @@ Matrixf* Camera::getViewMatrix(bool b)
  * Size:	000120
  */
 // WIP: https://decomp.me/scratch/Lrkv8
-void Camera::calcProperDistance(float, float)
+f32 Camera::calcProperDistance(f32, f32)
 {
 	/*
 	lfs      f0, lbl_80520384@sda21(r2)

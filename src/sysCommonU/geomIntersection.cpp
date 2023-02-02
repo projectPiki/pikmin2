@@ -21,7 +21,7 @@ namespace Sys {
  * Address:	8041C9CC
  * Size:	0004F0
  */
-void Triangle::intersect(Sys::VertexTable&, Sys::Triangle::SphereSweep&)
+bool Triangle::intersect(Sys::VertexTable&, Sys::Triangle::SphereSweep&)
 {
 	/*
 	stwu     r1, -0x80(r1)

@@ -6,6 +6,7 @@
 #include "Dolphin/math.h"
 #include "sysMath.h"
 #include "Vector3.h"
+#include "Plane.h"
 
 #define FABS(x) (float)__fabs(x)
 

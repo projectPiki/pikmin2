@@ -65,7 +65,7 @@ namespace Sys {
  * Address:	8041CEBC
  * Size:	000170
  */
-void* OBBTree::clone(Matrixf&)
+Sys::OBBTree* OBBTree::clone(Matrixf&)
 {
 	/*
 	stwu     r1, -0x30(r1)

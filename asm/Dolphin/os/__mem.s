@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .init, "ax"  # 0x80003100 - 0x80005600
 
-.global memset
-memset:
+.fn memset, global
 /* 800050B4 000020B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800050B8 000020B8  7C 08 02 A6 */	mflr r0
 /* 800050BC 000020BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15,9 +14,9 @@ memset:
 /* 800050D8 000020D8  7C 08 03 A6 */	mtlr r0
 /* 800050DC 000020DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800050E0 000020E0  4E 80 00 20 */	blr 
+.endfn memset
 
-.global __fill_mem
-__fill_mem:
+.fn __fill_mem, global
 /* 800050E4 000020E4  28 05 00 20 */	cmplwi r5, 0x20
 /* 800050E8 000020E8  54 84 06 3E */	clrlwi r4, r4, 0x18
 /* 800050EC 000020EC  38 C3 FF FF */	addi r6, r3, -1
@@ -73,9 +72,9 @@ __fill_mem:
 /* 80005190 00002190  9C E6 00 01 */	stbu r7, 1(r6)
 /* 80005194 00002194  40 82 FF F8 */	bne .L_8000518C
 /* 80005198 00002198  4E 80 00 20 */	blr 
+.endfn __fill_mem
 
-.global memcpy
-memcpy:
+.fn memcpy, global
 /* 8000519C 0000219C  7C 04 18 40 */	cmplw r4, r3
 /* 800051A0 000021A0  41 80 00 28 */	blt .L_800051C8
 /* 800051A4 000021A4  38 84 FF FF */	addi r4, r4, -1
@@ -101,3 +100,4 @@ memcpy:
 /* 800051E0 000021E0  34 A5 FF FF */	addic. r5, r5, -1
 /* 800051E4 000021E4  40 82 FF F4 */	bne .L_800051D8
 /* 800051E8 000021E8  4E 80 00 20 */	blr 
+.endfn memcpy

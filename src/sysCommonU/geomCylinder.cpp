@@ -68,24 +68,24 @@ Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3, float p4)
 // void set__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f()
 void Cylinder::set(const Vector3f& p1, const Vector3f& p2, float p3)
 {
-	_00.x      = (p1.x + p2.x) * 0.5f;
-	_00.y      = (p1.y + p2.y) * 0.5f;
-	_00.z      = (p1.z + p2.z) * 0.5f;
-	_0C.x      = p2.x - p1.x;
-	_0C.y      = p2.y - p1.y;
-	_0C.z      = p2.z - p1.z;
-	float root = pikmin2_sqrtf(_0C.z * _0C.z + _0C.x * _0C.x + _0C.y * _0C.y);
+	mCenter.x  = (p1.x + p2.x) * 0.5f;
+	mCenter.y  = (p1.y + p2.y) * 0.5f;
+	mCenter.z  = (p1.z + p2.z) * 0.5f;
+	mAxis.x    = p2.x - p1.x;
+	mAxis.y    = p2.y - p1.y;
+	mAxis.z    = p2.z - p1.z;
+	float root = pikmin2_sqrtf(mAxis.z * mAxis.z + mAxis.x * mAxis.x + mAxis.y * mAxis.y);
 	if (root > 0.0f) {
-		_0C.x *= 1.0f / root;
-		_0C.y *= 1.0f / root;
-		_0C.z *= 1.0f / root;
+		mAxis.x *= 1.0f / root;
+		mAxis.y *= 1.0f / root;
+		mAxis.z *= 1.0f / root;
 		// Suspicious assignment to reg here. Maybe inlined Vector3f::multiply?
 		// Never mind. Ghidra isn't handling the branches correctly...
 	} else {
 		root = p3;
 	}
-	_18 = root;
-	_1C = p3;
+	mLength = root;
+	mRadius = p3;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

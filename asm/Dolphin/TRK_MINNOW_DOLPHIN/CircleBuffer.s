@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global CircleBufferReadBytes
-CircleBufferReadBytes:
+.fn CircleBufferReadBytes, global
 /* 800C0F94 000BDED4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C0F98 000BDED8  7C 08 02 A6 */	mflr r0
 /* 800C0F9C 000BDEDC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -74,9 +73,9 @@ CircleBufferReadBytes:
 /* 800C1090 000BDFD0  7C 08 03 A6 */	mtlr r0
 /* 800C1094 000BDFD4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C1098 000BDFD8  4E 80 00 20 */	blr 
+.endfn CircleBufferReadBytes
 
-.global CircleBufferWriteBytes
-CircleBufferWriteBytes:
+.fn CircleBufferWriteBytes, global
 /* 800C109C 000BDFDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C10A0 000BDFE0  7C 08 02 A6 */	mflr r0
 /* 800C10A4 000BDFE4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -148,9 +147,9 @@ CircleBufferWriteBytes:
 /* 800C1198 000BE0D8  7C 08 03 A6 */	mtlr r0
 /* 800C119C 000BE0DC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C11A0 000BE0E0  4E 80 00 20 */	blr 
+.endfn CircleBufferWriteBytes
 
-.global CircleBufferInitialize
-CircleBufferInitialize:
+.fn CircleBufferInitialize, global
 /* 800C11A4 000BE0E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C11A8 000BE0E8  7C 08 02 A6 */	mflr r0
 /* 800C11AC 000BE0EC  7C 66 1B 78 */	mr r6, r3
@@ -171,8 +170,9 @@ CircleBufferInitialize:
 /* 800C11E8 000BE128  7C 08 03 A6 */	mtlr r0
 /* 800C11EC 000BE12C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C11F0 000BE130  4E 80 00 20 */	blr 
+.endfn CircleBufferInitialize
 
-.global CBGetBytesAvailableForRead
-CBGetBytesAvailableForRead:
+.fn CBGetBytesAvailableForRead, global
 /* 800C11F4 000BE134  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 800C11F8 000BE138  4E 80 00 20 */	blr 
+.endfn CBGetBytesAvailableForRead

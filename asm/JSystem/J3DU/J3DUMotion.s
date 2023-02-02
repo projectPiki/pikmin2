@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global "__vt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-"__vt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>":
+.obj "__vt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
@@ -14,6 +13,7 @@
 	.4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
 	.4byte "init__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
 	.4byte "calc__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
+.endobj "__vt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
 .global "__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
 "__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>":
 	.4byte 0

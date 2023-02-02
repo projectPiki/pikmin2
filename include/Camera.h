@@ -111,7 +111,7 @@ struct Camera : public CullFrustum {
 	Matrixf mCurViewMatrix;                // _034
 	f32 mNear;                             // _064 - distance to 'near' plane
 	f32 mFar;                              // _068 - distance to 'far' plane
-	bool isFixed;                          // _06C
+	bool mIsFixed;                         // _06C
 	f32 mProjectionNear;                   // _070 - projected distance to 'near' plane when not in fixed camera
 	f32 mProjectionFar;                    // _074 - projected distance to 'far' plane when not in fixed camera
 	Vector3f mSoundPosition;               // _078

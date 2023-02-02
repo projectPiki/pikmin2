@@ -54,8 +54,7 @@ lbl_80516760:
 .endobj lbl_80516778
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-"atan2___Q25JMath18TAtanTable<1024,f>CFff":
+.fn "atan2___Q25JMath18TAtanTable<1024,f>CFff", global
 /* 80035108 00032048  C0 02 83 D8 */	lfs f0, lbl_80516738@sda21(r2)
 /* 8003510C 0003204C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80035110 00032050  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -229,6 +228,7 @@ lbl_80516760:
 /* 80035354 00032294  FC 20 00 90 */	fmr f1, f0
 /* 80035358 00032298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003535C 0003229C  4E 80 00 20 */	blr 
+.endfn "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 
 .fn __sinit_JMATrigonometric_cpp, local
 /* 80035360 000322A0  94 21 FF A0 */	stwu r1, -0x60(r1)
@@ -348,9 +348,9 @@ lbl_80516760:
 /* 8003551C 0003245C  4E 80 00 20 */	blr 
 .endfn __sinit_JMATrigonometric_cpp
 
-.global "__ct__Q23std9pair<f,f>Fv"
-"__ct__Q23std9pair<f,f>Fv":
+.fn "__ct__Q23std9pair<f,f>Fv", weak
 /* 80035520 00032460  C0 02 83 D8 */	lfs f0, lbl_80516738@sda21(r2)
 /* 80035524 00032464  D0 03 00 00 */	stfs f0, 0(r3)
 /* 80035528 00032468  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8003552C 0003246C  4E 80 00 20 */	blr 
+.endfn "__ct__Q23std9pair<f,f>Fv"

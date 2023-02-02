@@ -31,6 +31,7 @@ struct OBB : public CNode {
 	virtual ~OBB() { } // _08 (weak)
 
 	void create2(VertexTable&, TriangleTable&, Matrix3f&, Matrix3f&, Vector3f&);
+	bool intersect(Sphere&);
 	void autoDivide(VertexTable&, TriangleTable&, int, int);
 	void determineDivPlane(VertexTable&, TriangleTable&);
 	bool divide(VertexTable&, TriangleTable&);

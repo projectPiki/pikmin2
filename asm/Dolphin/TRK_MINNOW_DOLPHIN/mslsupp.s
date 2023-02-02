@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __close_console
-__close_console:
+.fn __close_console, global
 /* 800C0A0C 000BD94C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C0A10 000BD950  7C 08 02 A6 */	mflr r0
 /* 800C0A14 000BD954  90 01 00 14 */	stw r0, 0x14(r1)
@@ -42,9 +41,9 @@ __close_console:
 /* 800C0A84 000BD9C4  7C 08 03 A6 */	mtlr r0
 /* 800C0A88 000BD9C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C0A8C 000BD9CC  4E 80 00 20 */	blr 
+.endfn __close_console
 
-.global __TRK_write_console
-__TRK_write_console:
+.fn __TRK_write_console, global
 /* 800C0A90 000BD9D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C0A94 000BD9D4  7C 08 02 A6 */	mflr r0
 /* 800C0A98 000BD9D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -99,9 +98,9 @@ __TRK_write_console:
 /* 800C0B40 000BDA80  7C 08 03 A6 */	mtlr r0
 /* 800C0B44 000BDA84  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C0B48 000BDA88  4E 80 00 20 */	blr 
+.endfn __TRK_write_console
 
-.global __read_console
-__read_console:
+.fn __read_console, global
 /* 800C0B4C 000BDA8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C0B50 000BDA90  7C 08 02 A6 */	mflr r0
 /* 800C0B54 000BDA94  90 01 00 24 */	stw r0, 0x24(r1)
@@ -156,3 +155,4 @@ __read_console:
 /* 800C0BFC 000BDB3C  7C 08 03 A6 */	mtlr r0
 /* 800C0C00 000BDB40  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C0C04 000BDB44  4E 80 00 20 */	blr 
+.endfn __read_console
