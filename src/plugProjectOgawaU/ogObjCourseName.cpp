@@ -78,16 +78,17 @@ void ObjCourseName::doCreate(JKRArchive* arc)
 	}
 	og::Screen::setAlphaScreen(mScreen);
 
-	u64 tags[4] = { 'nuki_tex', 'efect_00', 'efect_01', '\0' };
-	for (int i = 0; tags[i] != 0; i++) {
-		J2DPictureEx* pane = static_cast<J2DPictureEx*>(mScreen->search(tags[i]));
+	J2DBlend info           = J2DBlend(1, 7, 6, 0);
+	u64 tags[4]             = { 'nuki_tex', 'efect_00', 'efect_01', 0 };
+	volatile J2DBlend info2 = info;
+	J2DScreen* screen       = mScreen; // j2dscreen inline pls help
+	int i                   = 0;
+	while (true) {
+		if (tags[i++] == 0)
+			break;
+		J2DPictureEx* pane = static_cast<J2DPictureEx*>(screen->search(tags[i]));
 		if (pane) {
-			J2DMaterial* mat                     = pane->getMaterial();
-			mat->mPeBlock.mBlendInfo.mType       = 1;
-			mat->mPeBlock.mBlendInfo.mSrcFactor  = 7;
-			mat->mPeBlock.mBlendInfo.mDestFactor = 6;
-			// mat->mPeBlock.mBlendInfo.??? = 0;
-			// theres a 4th byte but I am not touching these deep j2d structs
+			pane->getMaterial()->mPeBlock.mBlendInfo.set(info);
 		}
 	}
 
@@ -355,10 +356,10 @@ bool ObjCourseName::commonUpdate()
 	} else {
 		og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(getDispMember());
 		if (disp->isID(OWNER_OGA, MEMBER_COURSE_NAME)) {
-			if (disp->_0C) {
+			if (disp->mIsCounting) {
 				mState = 1;
 			}
-			if (disp->_0D) {
+			if (disp->mIsExiting) {
 				mDoEnd = true;
 			}
 		}

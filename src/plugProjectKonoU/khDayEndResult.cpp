@@ -3975,15 +3975,17 @@ void ObjDayEndResultTitl::doCreate(JKRArchive* arc)
 	mScreenMain->setAnimation(mMainAnimSRT);
 	setInfAlpha(mScreenMain);
 
-	u64 tags[4] = { 'nuki_tex', 'efect_00', 'efect_01', '\0' };
-	for (int i = 0; tags[i] != 0; i++) {
-		J2DPictureEx* pane = static_cast<J2DPictureEx*>(mScreenMain->search(tags[i]));
+	J2DBlend info           = J2DBlend(1, 7, 6, 0);
+	u64 tags[4]             = { 'nuki_tex', 'efect_00', 'efect_01', 0 };
+	volatile J2DBlend info2 = info;
+	J2DScreen* screen       = mScreenMain;
+	int i                   = 0;
+	while (true) {
+		if (tags[i++] == 0)
+			break;
+		J2DPictureEx* pane = static_cast<J2DPictureEx*>(screen->search(tags[i]));
 		if (pane) {
-			J2DMaterial* mat                     = pane->getMaterial();
-			mat->mPeBlock.mBlendInfo.mType       = 1;
-			mat->mPeBlock.mBlendInfo.mSrcFactor  = 7;
-			mat->mPeBlock.mBlendInfo.mDestFactor = 6;
-			// mat->mPeBlock.mBlendInfo.??? = 0;
+			pane->getMaterial()->mPeBlock.mBlendInfo.set(info);
 		}
 	}
 	/*
