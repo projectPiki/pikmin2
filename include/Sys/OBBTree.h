@@ -37,6 +37,13 @@ struct OBBTree : public TriDivider {
 	void findRayIntersection(RayIntersectInfo&, Matrixf&, Matrixf&);
 	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, f32);
 	void traceMove_new_global(Game::MoveInfo&, f32);
+	void traceMove_original(Matrixf&, Matrixf&, Game::MoveInfo&, float);
+
+	void draw(Graphics&);
+	void write(Stream&);
+	void writeVertsOnly(Stream&);
+	void writeWithoutVerts(Stream&);
+	void testIntersection(Sys::Sphere&, Vector3f&);
 
 	OBB mRoot; // _20
 };

@@ -48,6 +48,20 @@ struct OBB : public CNode {
 	void traceMoveTriList_new_global(Game::MoveInfo&, VertexTable&, TriangleTable&, int&, Triangle**, f32*, Vector3f*);
 	void traceMove_new_global(Game::MoveInfo&, VertexTable&, TriangleTable&, int&, Triangle**, f32*, Vector3f*);
 
+	f32 calcPointDist(Vector3f&);
+	bool intersect(Vector3f&);
+	bool intersect(Sys::VertexTable&, Sys::Triangle&);
+	void draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&);
+	void constructOBB2(Sys::VertexTable&, Sys::TriangleTable&);
+	void countDivResult(Sys::VertexTable&, Sys::TriangleTable&, int, int&, int&);
+	void testIntersectionTriList(Sys::Sphere&, Vector3f&, Sys::VertexTable&, Sys::TriangleTable&);
+	void testIntersection(Sys::Sphere&, Vector3f&, Sys::VertexTable&, Sys::TriangleTable&);
+	void traceMoveTriList_original(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTable&, Matrixf&, Matrixf&, int&, Sys::Triangle**, f32*,
+	                               Vector3f*);
+	void traceMove_original(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTable&, Matrixf&, Matrixf&, int&, Sys::Triangle**, f32*,
+	                        Vector3f*);
+	void write(Stream&);
+
 	bool isLeaf() { return (!mHalfA && !mHalfB); }
 
 	Plane mSidePlanes[6];       // _18

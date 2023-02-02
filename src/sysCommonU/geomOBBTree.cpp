@@ -65,7 +65,7 @@ namespace Sys {
  * Address:	8041CEBC
  * Size:	000170
  */
-Sys::OBBTree* OBBTree::clone(Matrixf&)
+OBBTree* OBBTree::clone(Matrixf&)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -177,14 +177,12 @@ OBB::OBB()
 	// UNUSED FUNCTION
 }
 
-} // namespace Sys
-
 /*
  * --INFO--
  * Address:	........
  * Size:	0000C8
  */
-void calcPointDist__Q23Sys3OBBFR10Vector3f()
+f32 OBB::calcPointDist(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -194,12 +192,10 @@ void calcPointDist__Q23Sys3OBBFR10Vector3f()
  * Address:	........
  * Size:	0000C0
  */
-void intersect__Q23Sys3OBBFR10Vector3f()
+bool OBB::intersect(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
-
-namespace Sys {
 
 /*
  * --INFO--
@@ -246,7 +242,7 @@ void OBB::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&)
  * Address:	8041D02C
  * Size:	000704
  */
-void create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<float>()
+void OBB::create2(Sys::VertexTable&, Sys::TriangleTable&, Matrix3f&, Matrix3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -923,22 +919,22 @@ lbl_8041D9F4:
 	*/
 }
 
-} // namespace Sys
+// } // namespace Sys
 
-/*
- * --INFO--
- * Address:	8041DA08
- * Size:	000008
- */
-void ArrayContainer<int>::getNum()
-{
-	/*
-	lwz      r3, 0x1c(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8041DA08
+//  * Size:	000008
+//  */
+// void ArrayContainer<int>::getNum()
+// {
+// 	/*
+// 	lwz      r3, 0x1c(r3)
+// 	blr
+// 	*/
+// }
 
-namespace Sys {
+// namespace Sys {
 
 /*
  * --INFO--
@@ -1097,7 +1093,7 @@ lbl_8041DB4C:
  * Address:	8041DBD4
  * Size:	000480
  */
-void OBB::divide(Sys::VertexTable&, Sys::TriangleTable&)
+bool OBB::divide(Sys::VertexTable&, Sys::TriangleTable&)
 {
 	/*
 	stwu     r1, -0x140(r1)
@@ -1913,7 +1909,7 @@ lbl_8041E640:
  * Address:	8041E65C
  * Size:	000030
  */
-void Plane::calcDist(const Vector3f&) const
+f32 Plane::calcDist(const Vector3f&) const
 {
 	/*
 	lfs      f1, 4(r4)
@@ -1938,7 +1934,7 @@ namespace Sys {
  * Address:	8041E68C
  * Size:	000028
  */
-void OBB::isLeaf()
+bool OBB::isLeaf()
 {
 	/*
 	lwz      r0, 0xc0(r3)
@@ -2461,14 +2457,12 @@ lbl_8041EC1C:
 	*/
 }
 
-} // namespace Sys
-
 /*
  * --INFO--
  * Address:	........
  * Size:	000070
  */
-void testIntersection__Q23Sys7OBBTreeFRQ23Sys6SphereR10Vector3f()
+void OBBTree::testIntersection(Sys::Sphere&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -2478,7 +2472,7 @@ void testIntersection__Q23Sys7OBBTreeFRQ23Sys6SphereR10Vector3f()
  * Address:	........
  * Size:	000180
  */
-void testIntersectionTriList__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTableRQ23Sys13TriangleTable()
+void OBB::testIntersectionTriList(Sys::Sphere&, Vector3f&, Sys::VertexTable&, Sys::TriangleTable&)
 {
 	// UNUSED FUNCTION
 }
@@ -2488,7 +2482,7 @@ void testIntersectionTriList__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11Vert
  * Address:	........
  * Size:	00019C
  */
-void testIntersection__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTableRQ23Sys13TriangleTable()
+void OBB::testIntersection(Sys::Sphere&, Vector3f&, Sys::VertexTable&, Sys::TriangleTable&)
 {
 	// UNUSED FUNCTION
 }
@@ -2498,8 +2492,8 @@ void testIntersection__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTable
  * Address:	........
  * Size:	000224
  */
-void traceMoveTriList_original__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
-    float>()
+void OBB::traceMoveTriList_original(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTable&, Matrixf&, Matrixf&, int&, Sys::Triangle**,
+                                    f32*, Vector3f*)
 {
 	// UNUSED FUNCTION
 }
@@ -2509,20 +2503,18 @@ void traceMoveTriList_original__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTable
  * Address:	........
  * Size:	0007F0
  */
-void traceMove_original__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
-    float>()
+void OBB::traceMove_original(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTable&, Matrixf&, Matrixf&, int&, Sys::Triangle**, f32*,
+                             Vector3f*)
 {
 	// UNUSED FUNCTION
 }
-
-namespace Sys {
 
 /*
  * --INFO--
  * Address:	8041EC6C
  * Size:	0005C0
  */
-void OBB::findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&)
+bool OBB::findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3020,7 +3012,7 @@ lbl_8041F218:
  * Address:	8041F22C
  * Size:	000114
  */
-void OBB::findRayIntersectionTriList(Sys::RayIntersectInfo&, Matrixf&, Matrixf&)
+bool OBB::findRayIntersectionTriList(Sys::RayIntersectInfo&, Matrixf&, Matrixf&)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3106,7 +3098,7 @@ lbl_8041F31C:
  * Address:	8041F340
  * Size:	000178
  */
-void OBB::findTriLists(Sys::Sphere&)
+Sys::TriIndexList* OBB::findTriLists(Sys::Sphere&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3230,14 +3222,12 @@ lbl_8041F49C:
 	*/
 }
 
-} // namespace Sys
-
 /*
  * --INFO--
  * Address:	8041F4B8
  * Size:	00002C
  */
-void getMinY__Q23Sys7OBBTreeFR10Vector3f()
+f32 OBBTree::getMinY(Vector3f&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3259,7 +3249,7 @@ void getMinY__Q23Sys7OBBTreeFR10Vector3f()
  * Address:	8041F4E4
  * Size:	0006C0
  */
-void getMinY__Q23Sys3OBBFR10Vector3f RQ23Sys13TriangleTablef()
+f32 OBB::getMinY(Vector3f&, Sys::TriangleTable&, f32)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -3814,7 +3804,7 @@ lbl_8041FB74:
  * Address:	8041FBA4
  * Size:	0000B4
  */
-void getMinYTriList__Q23Sys3OBBFR10Vector3f RQ23Sys13TriangleTable()
+f32 OBB::getMinYTriList(Vector3f&, Sys::TriangleTable&)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3870,8 +3860,6 @@ lbl_8041FC2C:
 	blr
 	*/
 }
-
-namespace Sys {
 
 /*
  * --INFO--
@@ -4119,7 +4107,7 @@ lbl_8041FF64:
  * Address:	8041FF78
  * Size:	000024
  */
-void OBBTree::findTriLists(Sys::Sphere&)
+Sys::TriIndexList* OBBTree::findTriLists(Sys::Sphere&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4146,5 +4134,5 @@ void OBBTree::getBoundBox(BoundBox&) { }
  * Address:	8041FFA0
  * Size:	000008
  */
-TriDivider* TriDivider::do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*) { return null; }
+TriDivider* TriDivider::do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*) { return nullptr; }
 } // namespace Sys

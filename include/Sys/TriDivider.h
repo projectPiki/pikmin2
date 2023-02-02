@@ -4,6 +4,7 @@
 #include "BoundBox.h"
 #include "Matrixf.h"
 #include "Vector3.h"
+#include "Graphics.h"
 #include "CNode.h"
 
 namespace Game {
@@ -37,6 +38,8 @@ struct TriDivider : public CNode {
 	void traceMove_new_global(Game::MoveInfo&, f32);
 	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, f32);
 	void traceMove(Matrixf&, Matrixf&, Game::MoveInfo&, f32);
+
+	void drawTriList(Graphics&, Sys::TriIndexList*);
 
 	VertexTable* mVertexTable;     // _18
 	TriangleTable* mTriangleTable; // _1C
