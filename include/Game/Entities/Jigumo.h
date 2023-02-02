@@ -23,6 +23,24 @@ bool mouthScaleCallBack(J3DJoint*, int);
 
 struct FSM;
 
+enum StateID {
+	JIGUMO_NULL    = -1,
+	JIGUMO_Wait    = 0,
+	JIGUMO_Appear  = 1,
+	JIGUMO_Hide    = 2,
+	JIGUMO_Dead    = 3,
+	JIGUMO_Attack  = 4,
+	JIGUMO_Miss    = 5,
+	JIGUMO_Return  = 6,
+	JIGUMO_Carry   = 7,
+	JIGUMO_Flick   = 8,
+	JIGUMO_Eat     = 9,
+	JIGUMO_Search  = 10,
+	JIGUMO_SAttack = 11,
+	JIGUMO_SMiss   = 12,
+	JIGUMO_StateCount,
+};
+
 struct ConditionHeightCheckPiki : public Condition<Piki> {
 	virtual bool satisfy(Piki*); // _08 (weak)
 
@@ -78,7 +96,7 @@ struct Obj : public EnemyBase {
 	void revisionAnimPos(f32);
 	void getWalkSpeed();
 	void velocityControl();
-	void getNearestPikiOrNavi(f32, f32);
+	FakePiki* getNearestPikiOrNavi(f32, f32);
 	void effectStart();
 	void effectStop();
 	void boundEffect();
@@ -95,13 +113,13 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	Vector3f _2BC;                 // _2BC
 	Vector3f mGoalPosition;        // _2C8
-	int _2D4;                      // _2D4
+	StateID mNextState;            // _2D4
 	MouthSlots mMouthSlots;        // _2D8
 	u8 _2E0[0x8];                  // _2E0
 	u8 _2E8;                       // _2E8, unknown
 	u8 _2E9;                       // _2E9, unknown
-	u8 _2EA[0x2];                  // _2EA, probably padding
-	u8 _2EC[0x24];                 // _2EC, unknown
+	f32 _2EC;                      // _2EC
+	u8 _2F0[0x20];                 // _2F0, unknown
 	Quat _310;                     // _310
 	Quat _320;                     // _320
 	u8 _330[0x30];                 // _330, unknown
@@ -244,6 +262,11 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
@@ -256,6 +279,7 @@ struct StateAppear : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int mAppearTimer; // _10, unknown
 };
 
 struct StateAttack : public State {
@@ -267,6 +291,7 @@ struct StateAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
 };
 
 struct StateCarry : public State {
@@ -328,6 +353,7 @@ struct StateMiss : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
 };
 
 struct StateReturn : public State {
@@ -350,6 +376,7 @@ struct StateSAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
 };
 
 struct StateSearch : public State {
@@ -360,6 +387,7 @@ struct StateSearch : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
 };
 
 struct StateSMiss : public State {

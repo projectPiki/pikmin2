@@ -1,490 +1,33 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_jigumoState_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E2908
-    lbl_804E2908:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game6Jigumo10StateSMiss
-    __vt__Q34Game6Jigumo10StateSMiss:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo10StateSMissFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo10StateSMissFPQ24Game9EnemyBase .4byte
-   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo12StateSAttack
-    __vt__Q34Game6Jigumo12StateSAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo11StateSearch
-    __vt__Q34Game6Jigumo11StateSearch:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo11StateSearchFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo11StateSearchFPQ24Game9EnemyBase .4byte
-   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo8StateEat
-    __vt__Q34Game6Jigumo8StateEat:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game6Jigumo8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game6Jigumo8StateEatFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo10StateFlick
-    __vt__Q34Game6Jigumo10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo10StateFlickFPQ24Game9EnemyBase .4byte
-   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo10StateCarry
-    __vt__Q34Game6Jigumo10StateCarry:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo11StateReturn
-    __vt__Q34Game6Jigumo11StateReturn:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo9StateMiss
-    __vt__Q34Game6Jigumo9StateMiss:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo9StateMissFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo9StateMissFPQ24Game9EnemyBase .4byte
-   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo24ConditionHeightCheckPiki
-    __vt__Q34Game6Jigumo24ConditionHeightCheckPiki:
-        .4byte 0
-        .4byte 0
-        .4byte satisfy__Q34Game6Jigumo24ConditionHeightCheckPikiFPQ24Game4Piki
-    .global __vt__Q34Game6Jigumo11StateAttack
-    __vt__Q34Game6Jigumo11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo9StateDead
-    __vt__Q34Game6Jigumo9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo9StateDeadFPQ24Game9EnemyBase .4byte
-   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo9StateHide
-    __vt__Q34Game6Jigumo9StateHide:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo9StateHideFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo9StateHideFPQ24Game9EnemyBase .4byte
-   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo11StateAppear
-    __vt__Q34Game6Jigumo11StateAppear:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo11StateAppearFPQ24Game9EnemyBase .4byte
-   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo9StateWait
-    __vt__Q34Game6Jigumo9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Jigumo9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Jigumo9StateWaitFPQ24Game9EnemyBase .4byte
-   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo5State
-    __vt__Q34Game6Jigumo5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Jigumo3FSM
-    __vt__Q34Game6Jigumo3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game6Jigumo3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515F58
-    lbl_80515F58:
-        .skip 0x4
-    .global lbl_80515F5C
-    lbl_80515F5C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051E870
-    lbl_8051E870:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051E878
-    lbl_8051E878:
-        .4byte 0x61707065
-        .4byte 0x61720000
-    .global lbl_8051E880
-    lbl_8051E880:
-        .4byte 0x00000000
-    .global lbl_8051E884
-    lbl_8051E884:
-        .float 1.0
-    .global lbl_8051E888
-    lbl_8051E888:
-        .4byte 0x40A00000
-    .global lbl_8051E88C
-    lbl_8051E88C:
-        .4byte 0x43B40000
-    .global lbl_8051E890
-    lbl_8051E890:
-        .4byte 0x40C90FDB
-    .global lbl_8051E894
-    lbl_8051E894:
-        .4byte 0x3F07AE14
-    .global lbl_8051E898
-    lbl_8051E898:
-        .4byte 0x68696465
-        .4byte 0x00000000
-    .global lbl_8051E8A0
-    lbl_8051E8A0:
-        .4byte 0xC47A0000
-    .global lbl_8051E8A4
-    lbl_8051E8A4:
-        .float 0.05
-    .global lbl_8051E8A8
-    lbl_8051E8A8:
-        .4byte 0x40490FDB
-    .global lbl_8051E8AC
-    lbl_8051E8AC:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051E8B4
-    lbl_8051E8B4:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051E8BC
-    lbl_8051E8BC:
-        .4byte 0x3BB60B61
-    .global lbl_8051E8C0
-    lbl_8051E8C0:
-        .4byte 0x41C80000
-    .global lbl_8051E8C4
-    lbl_8051E8C4:
-        .4byte 0x41200000
-    .global lbl_8051E8C8
-    lbl_8051E8C8:
-        .4byte 0x42C80000
-    .global lbl_8051E8CC
-    lbl_8051E8CC:
-        .4byte 0x6D697373
-        .4byte 0x00000000
-    .global lbl_8051E8D4
-    lbl_8051E8D4:
-        .4byte 0x72657475
-        .4byte 0x726E0000
-    .global lbl_8051E8DC
-    lbl_8051E8DC:
-        .4byte 0x41A00000
-    .global lbl_8051E8E0
-    lbl_8051E8E0:
-        .4byte 0x63617272
-        .4byte 0x79000000
-    .global lbl_8051E8E8
-    lbl_8051E8E8:
-        .4byte 0x3F8CCCCD
-    .global lbl_8051E8EC
-    lbl_8051E8EC:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051E8F4
-    lbl_8051E8F4:
-        .4byte 0x65617400
-    .global lbl_8051E8F8
-    lbl_8051E8F8:
-        .float 0.1
-    .global lbl_8051E8FC
-    lbl_8051E8FC:
-        .4byte 0x43960000
-    .global lbl_8051E900
-    lbl_8051E900:
-        .4byte 0x73656172
-        .4byte 0x63680000
-    .global lbl_8051E908
-    lbl_8051E908:
-        .4byte 0x3C23D70A
-    .global lbl_8051E90C
-    lbl_8051E90C:
-        .4byte 0x73617474
-        .4byte 0x61636B00
-    .global lbl_8051E914
-    lbl_8051E914:
-        .4byte 0x42480000
-    .global lbl_8051E918
-    lbl_8051E918:
-        .4byte 0x736D6973
-        .4byte 0x73000000
-*/
+#include "Game/Entities/Jigumo.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Game/rumble.h"
+#include "nans.h"
 
 namespace Game {
+namespace Jigumo {
 
 /*
  * --INFO--
  * Address:	80365FF4
  * Size:	000204
  */
-void Jigumo::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0xd
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8036602C
-	li       r4, 0
-	bl       __ct__Q34Game6Jigumo9StateWaitFi
-	mr       r4, r3
-
-lbl_8036602C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80366050
-	li       r4, 1
-	bl       __ct__Q34Game6Jigumo11StateAppearFi
-	mr       r4, r3
-
-lbl_80366050:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80366074
-	li       r4, 2
-	bl       __ct__Q34Game6Jigumo9StateHideFi
-	mr       r4, r3
-
-lbl_80366074:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80366098
-	li       r4, 3
-	bl       __ct__Q34Game6Jigumo9StateDeadFi
-	mr       r4, r3
-
-lbl_80366098:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803660BC
-	li       r4, 4
-	bl       __ct__Q34Game6Jigumo11StateAttackFi
-	mr       r4, r3
-
-lbl_803660BC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803660E0
-	li       r4, 5
-	bl       __ct__Q34Game6Jigumo9StateMissFi
-	mr       r4, r3
-
-lbl_803660E0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80366104
-	li       r4, 6
-	bl       __ct__Q34Game6Jigumo11StateReturnFi
-	mr       r4, r3
-
-lbl_80366104:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80366128
-	li       r4, 7
-	bl       __ct__Q34Game6Jigumo10StateCarryFi
-	mr       r4, r3
-
-lbl_80366128:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8036614C
-	li       r4, 8
-	bl       __ct__Q34Game6Jigumo10StateFlickFi
-	mr       r4, r3
-
-lbl_8036614C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80366170
-	li       r4, 9
-	bl       __ct__Q34Game6Jigumo8StateEatFi
-	mr       r4, r3
-
-lbl_80366170:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80366194
-	li       r4, 0xa
-	bl       __ct__Q34Game6Jigumo11StateSearchFi
-	mr       r4, r3
-
-lbl_80366194:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803661B8
-	li       r4, 0xb
-	bl       __ct__Q34Game6Jigumo12StateSAttackFi
-	mr       r4, r3
-
-lbl_803661B8:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803661DC
-	li       r4, 0xc
-	bl       __ct__Q34Game6Jigumo10StateSMissFi
-	mr       r4, r3
-
-lbl_803661DC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(JIGUMO_StateCount);
+	registerState(new StateWait(JIGUMO_Wait));
+	registerState(new StateAppear(JIGUMO_Appear));
+	registerState(new StateHide(JIGUMO_Hide));
+	registerState(new StateDead(JIGUMO_Dead));
+	registerState(new StateAttack(JIGUMO_Attack));
+	registerState(new StateMiss(JIGUMO_Miss));
+	registerState(new StateReturn(JIGUMO_Return));
+	registerState(new StateCarry(JIGUMO_Carry));
+	registerState(new StateFlick(JIGUMO_Flick));
+	registerState(new StateEat(JIGUMO_Eat));
+	registerState(new StateSearch(JIGUMO_Search));
+	registerState(new StateSAttack(JIGUMO_SAttack));
+	registerState(new StateSMiss(JIGUMO_SMiss));
 }
 
 /*
@@ -492,25 +35,10 @@ lbl_803661DC:
  * Address:	803661F8
  * Size:	00003C
  */
-Jigumo::StateWait::StateWait(int)
+StateWait::StateWait(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo9StateWait@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo9StateWait@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E870@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "wait";
 }
 
 /*
@@ -518,34 +46,12 @@ Jigumo::StateWait::StateWait(int)
  * Address:	80366234
  * Size:	000060
  */
-void Jigumo::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0xf
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f0, 0x198(r31)
-	li       r3, 0
-	li       r0, -1
-	stfs     f0, 0x18c(r31)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x190(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x194(r31)
-	stw      r3, 0x230(r31)
-	stw      r0, 0x2d4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(15, nullptr);
+	enemy->mPosition       = enemy->mHomePosition;
+	enemy->mTargetCreature = nullptr;
+	OBJ(enemy)->mNextState = JIGUMO_NULL;
 }
 
 /*
@@ -553,80 +59,27 @@ void Jigumo::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80366294
  * Size:	000100
  */
-void Jigumo::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lwz      r0, 0x2d4(r4)
-	cmpwi    r0, 0
-	bge      lbl_8036633C
-	lwz      r4, 0xc0(r30)
-	mr       r3, r30
-	lfs      f1, 0x424(r4)
-	lfs      f2, 0x3d4(r4)
-	bl       getNearestPikiOrNavi__Q34Game6Jigumo3ObjFff
-	or.      r31, r3, r3
-	beq      lbl_80366324
-	stw      r31, 0x230(r30)
-	mr       r3, r30
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	li       r0, 0xa
-	lfs      f2, 0x10(r1)
-	lfs      f0, 8(r1)
-	stfs     f0, 0x2c8(r30)
-	stfs     f1, 0x2cc(r30)
-	stfs     f2, 0x2d0(r30)
-	stw      r0, 0x2d4(r30)
-	b        lbl_8036633C
+	if (OBJ(enemy)->mNextState < 0) {
+		FakePiki* target
+		    = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mViewAngle.mValue, CG_PARMS(enemy)->mGeneral.mSightRadius.mValue);
+		if (target) {
+			enemy->mTargetCreature = target;
+			enemy->finishMotion();
+			Vector3f targetPos        = target->getPosition();
+			OBJ(enemy)->mGoalPosition = targetPos;
+			OBJ(enemy)->mNextState    = JIGUMO_Search;
+		} else {
+			enemy->finishMotion();
+			OBJ(enemy)->_2E8       = 1;
+			OBJ(enemy)->mNextState = JIGUMO_Hide;
+		}
+	}
 
-lbl_80366324:
-	mr       r3, r30
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r3, 1
-	li       r0, 2
-	stb      r3, 0x2e8(r30)
-	stw      r0, 0x2d4(r30)
-
-lbl_8036633C:
-	lwz      r3, 0x188(r30)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80366378
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80366378
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r6, 0
-	lwz      r5, 0x2d4(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80366378:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, OBJ(enemy)->mNextState, nullptr);
+	}
 }
 
 /*
@@ -634,25 +87,10 @@ lbl_80366378:
  * Address:	80366394
  * Size:	00003C
  */
-Jigumo::StateAppear::StateAppear(int)
+StateAppear::StateAppear(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo11StateAppear@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo11StateAppear@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E878@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "appear";
 }
 
 /*
@@ -660,90 +98,27 @@ Jigumo::StateAppear::StateAppear(int)
  * Address:	803663D0
  * Size:	000138
  */
-void Jigumo::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
+void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       stopMotion__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051E880@sda21(r2)
-	lis      r3, 0x626F6479@ha
-	li       r0, 0
-	stfs     f0, 0x20c(r31)
-	addi     r4, r3, 0x626F6479@l
-	lwz      r3, 0x1e0(r31)
-	oris     r3, r3, 0x40
-	stw      r3, 0x1e0(r31)
-	lfs      f0, 0x198(r31)
-	stfs     f0, 0x18c(r31)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x190(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x194(r31)
-	stb      r0, 0x2e8(r31)
-	lwz      r3, 0x114(r31)
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x68656164@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x68656164@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	li       r0, 0
-	lfs      f0, lbl_8051E884@sda21(r2)
-	stb      r0, 0x384(r31)
-	lfs      f2, 0x200(r31)
-	fcmpo    cr0, f2, f0
-	bge      lbl_803664E8
-	lfs      f1, lbl_8051E888@sda21(r2)
-	lfs      f0, lbl_8051E880@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x200(r31)
-	stfs     f0, 0x208(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stw      r0, 0x1e0(r31)
+	enemy->startMotion(0, nullptr);
+	enemy->stopMotion();
+	enemy->hardConstraintOn();
+	enemy->setAtari(false);
+	enemy->setAlive(false);
+	enemy->mToFlick = 0.0f;
+	enemy->enableEvent(0, EB_IsImmuneBitter);
+	enemy->mPosition                                  = enemy->mHomePosition;
+	OBJ(enemy)->_2E8                                  = 0;
+	enemy->mCollTree->getCollPart('body')->mSpecialID = '____';
+	enemy->mCollTree->getCollPart('head')->mSpecialID = '____';
+	OBJ(enemy)->_384                                  = 0;
+	if (enemy->mHealth < 1.0f) {
+		enemy->mHealth += 5.0f;
+		enemy->mInstantDamage = 0.0f;
+		enemy->disableEvent(0, EB_IsTakingDamage);
+	}
 
-lbl_803664E8:
-	li       r0, 0
-	stw      r0, 0x10(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mAppearTimer = 0;
 }
 
 /*
@@ -751,8 +126,58 @@ lbl_803664E8:
  * Address:	80366508
  * Size:	000324
  */
-void Jigumo::StateAppear::exec(Game::EnemyBase*)
+void StateAppear::exec(EnemyBase* enemy)
 {
+	mAppearTimer++;
+	if (mAppearTimer > CG_PROPERPARMS(enemy).mIp01.mValue) {
+		if (enemy->isStopMotion()) {
+			f32 terrRad = CG_PARMS(enemy)->mGeneral.mTerritoryRadius.mValue;
+			bool check;
+			if (EnemyFunc::isThereOlimar(enemy, terrRad, nullptr)) {
+				check = true;
+			} else if (EnemyFunc::isTherePikmin(enemy, terrRad, nullptr)) {
+				check = true;
+			} else {
+				check = false;
+			}
+
+			if (check) {
+				enemy->startMotion();
+
+				Vector3f pos = enemy->getPosition();
+				rumbleMgr->startRumble(8, pos, 2);
+
+				FakePiki* target       = OBJ(enemy)->getNearestPikiOrNavi(360.0f, terrRad);
+				enemy->mTargetCreature = target;
+				if (target) {
+					Vector3f targetPos = target->getPosition();
+					// this inline needs fixing but seems the most real
+					f32 angleDist = enemy->turnToTarget(targetPos, TAU, 1.0f);
+
+					enemy->mFaceDir    = roundAng(angleDist + enemy->getFaceDir());
+					enemy->mRotation.y = enemy->mFaceDir;
+					OBJ(enemy)->_2EC   = enemy->mFaceDir;
+				}
+			}
+
+		} else if (enemy->mCurAnim->mIsPlaying) {
+			if (enemy->mCurAnim->mType == KEYEVENT_2) {
+				if (enemy->mWaterBox) {
+					enemy->createEfxHamon();
+				} else {
+					Vector3f dropPos = enemy->getPosition();
+					enemy->createDropEffect(dropPos, 0.53f * enemy->mScaleModifier);
+				}
+
+				enemy->disableEvent(0, EB_IsImmuneBitter);
+			}
+			if (enemy->mCurAnim->mType == KEYEVENT_END) {
+				transit(enemy, JIGUMO_Wait, nullptr);
+				enemy->setAlive(true);
+				enemy->enableEvent(0, EB_LifegaugeVisible);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -985,25 +410,10 @@ lbl_8036680C:
  * Address:	8036682C
  * Size:	00003C
  */
-Jigumo::StateHide::StateHide(int)
+StateHide::StateHide(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo9StateHide@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo9StateHide@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E898@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "hide";
 }
 
 /*
@@ -1011,7 +421,7 @@ Jigumo::StateHide::StateHide(int)
  * Address:	80366868
  * Size:	000128
  */
-void Jigumo::StateHide::init(Game::EnemyBase*, Game::StateArg*)
+void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1101,7 +511,7 @@ lbl_803668AC:
  * Address:	80366990
  * Size:	000170
  */
-void Jigumo::StateHide::exec(Game::EnemyBase*)
+void StateHide::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1210,25 +620,10 @@ lbl_80366AE8:
  * Address:	80366B00
  * Size:	00003C
  */
-Jigumo::StateDead::StateDead(int)
+StateDead::StateDead(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo9StateDead@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo9StateDead@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E8AC@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "dead";
 }
 
 /*
@@ -1236,7 +631,7 @@ Jigumo::StateDead::StateDead(int)
  * Address:	80366B3C
  * Size:	00005C
  */
-void Jigumo::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1270,7 +665,7 @@ void Jigumo::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80366B98
  * Size:	0000C0
  */
-void Jigumo::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1333,25 +728,10 @@ lbl_80366C44:
  * Address:	80366C58
  * Size:	00003C
  */
-Jigumo::StateAttack::StateAttack(int)
+StateAttack::StateAttack(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo11StateAttack@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo11StateAttack@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E8B4@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "attack";
 }
 
 /*
@@ -1359,7 +739,7 @@ Jigumo::StateAttack::StateAttack(int)
  * Address:	80366C94
  * Size:	0000BC
  */
-void Jigumo::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1417,7 +797,7 @@ void Jigumo::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80366D50
  * Size:	000488
  */
-void Jigumo::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -1736,7 +1116,7 @@ lbl_8036719C:
  * Address:	803671D8
  * Size:	00001C
  */
-void Jigumo::Obj::getGoalPos()
+Vector3f Obj::getGoalPos()
 {
 	/*
 	lfs      f0, 0x2c8(r4)
@@ -1754,7 +1134,7 @@ void Jigumo::Obj::getGoalPos()
  * Address:	803671F4
  * Size:	000038
  */
-void Jigumo::StateAttack::cleanup(Game::EnemyBase*)
+void StateAttack::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1779,25 +1159,10 @@ void Jigumo::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	8036722C
  * Size:	00003C
  */
-Jigumo::StateMiss::StateMiss(int)
+StateMiss::StateMiss(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo9StateMiss@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo9StateMiss@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E8CC@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "miss";
 }
 
 /*
@@ -1805,7 +1170,7 @@ Jigumo::StateMiss::StateMiss(int)
  * Address:	80367268
  * Size:	00004C
  */
-void Jigumo::StateMiss::init(Game::EnemyBase*, Game::StateArg*)
+void StateMiss::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1835,7 +1200,7 @@ void Jigumo::StateMiss::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	803672B4
  * Size:	000200
  */
-void Jigumo::StateMiss::exec(Game::EnemyBase*)
+void StateMiss::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -1984,25 +1349,10 @@ lbl_8036747C:
  * Address:	803674B4
  * Size:	00003C
  */
-Jigumo::StateReturn::StateReturn(int)
+StateReturn::StateReturn(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo11StateReturn@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo11StateReturn@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E8D4@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "return";
 }
 
 /*
@@ -2010,7 +1360,7 @@ Jigumo::StateReturn::StateReturn(int)
  * Address:	803674F0
  * Size:	000040
  */
-void Jigumo::StateReturn::init(Game::EnemyBase*, Game::StateArg*)
+void StateReturn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2037,7 +1387,7 @@ void Jigumo::StateReturn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80367530
  * Size:	000174
  */
-void Jigumo::StateReturn::exec(Game::EnemyBase*)
+void StateReturn::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2151,7 +1501,7 @@ lbl_8036768C:
  * Address:	803676A4
  * Size:	00002C
  */
-void Jigumo::StateReturn::cleanup(Game::EnemyBase*)
+void StateReturn::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2173,25 +1523,10 @@ void Jigumo::StateReturn::cleanup(Game::EnemyBase*)
  * Address:	803676D0
  * Size:	00003C
  */
-Jigumo::StateCarry::StateCarry(int)
+StateCarry::StateCarry(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo10StateCarry@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo10StateCarry@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E8E0@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "carry";
 }
 
 /*
@@ -2199,7 +1534,7 @@ Jigumo::StateCarry::StateCarry(int)
  * Address:	8036770C
  * Size:	000040
  */
-void Jigumo::StateCarry::init(Game::EnemyBase*, Game::StateArg*)
+void StateCarry::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2226,7 +1561,7 @@ void Jigumo::StateCarry::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8036774C
  * Size:	000190
  */
-void Jigumo::StateCarry::exec(Game::EnemyBase*)
+void StateCarry::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2347,7 +1682,7 @@ lbl_803678B4:
  * Address:	803678DC
  * Size:	00002C
  */
-void Jigumo::StateCarry::cleanup(Game::EnemyBase*)
+void StateCarry::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2369,25 +1704,10 @@ void Jigumo::StateCarry::cleanup(Game::EnemyBase*)
  * Address:	80367908
  * Size:	00003C
  */
-Jigumo::StateFlick::StateFlick(int)
+StateFlick::StateFlick(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo10StateFlick@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo10StateFlick@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E8EC@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "flick";
 }
 
 /*
@@ -2395,7 +1715,7 @@ Jigumo::StateFlick::StateFlick(int)
  * Address:	80367944
  * Size:	0000CC
  */
-void Jigumo::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2461,7 +1781,7 @@ lbl_803679A4:
  * Address:	80367A10
  * Size:	0000FC
  */
-void Jigumo::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2543,25 +1863,10 @@ lbl_80367AE0:
  * Address:	80367B0C
  * Size:	00003C
  */
-Jigumo::StateEat::StateEat(int)
+StateEat::StateEat(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo8StateEat@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo8StateEat@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E8F4@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "eat";
 }
 
 /*
@@ -2569,7 +1874,7 @@ Jigumo::StateEat::StateEat(int)
  * Address:	80367B48
  * Size:	000058
  */
-void Jigumo::StateEat::init(Game::EnemyBase*, Game::StateArg*)
+void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2602,7 +1907,7 @@ void Jigumo::StateEat::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80367BA0
  * Size:	000120
  */
-void Jigumo::StateEat::exec(Game::EnemyBase*)
+void StateEat::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2700,25 +2005,10 @@ lbl_80367CA8:
  * Address:	80367CC0
  * Size:	00003C
  */
-Jigumo::StateSearch::StateSearch(int)
+StateSearch::StateSearch(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo11StateSearch@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo11StateSearch@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E900@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "search";
 }
 
 /*
@@ -2726,7 +2016,7 @@ Jigumo::StateSearch::StateSearch(int)
  * Address:	80367CFC
  * Size:	000088
  */
-void Jigumo::StateSearch::init(Game::EnemyBase*, Game::StateArg*)
+void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2771,7 +2061,7 @@ void Jigumo::StateSearch::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80367D84
  * Size:	000614
  */
-void Jigumo::StateSearch::exec(Game::EnemyBase*)
+void StateSearch::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -3199,25 +2489,10 @@ lbl_80368360:
  * Address:	80368398
  * Size:	00003C
  */
-Jigumo::StateSAttack::StateSAttack(int)
+StateSAttack::StateSAttack(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo12StateSAttack@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo12StateSAttack@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E90C@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "sattack";
 }
 
 /*
@@ -3225,7 +2500,7 @@ Jigumo::StateSAttack::StateSAttack(int)
  * Address:	803683D4
  * Size:	000058
  */
-void Jigumo::StateSAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateSAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3258,7 +2533,7 @@ void Jigumo::StateSAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8036842C
  * Size:	000238
  */
-void Jigumo::StateSAttack::exec(Game::EnemyBase*)
+void StateSAttack::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3438,7 +2713,7 @@ lbl_8036864C:
  * Address:	80368664
  * Size:	000024
  */
-void Jigumo::StateSAttack::cleanup(Game::EnemyBase*)
+void StateSAttack::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3458,25 +2733,10 @@ void Jigumo::StateSAttack::cleanup(Game::EnemyBase*)
  * Address:	80368688
  * Size:	00003C
  */
-Jigumo::StateSMiss::StateSMiss(int)
+StateSMiss::StateSMiss(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Jigumo5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game6Jigumo10StateSMiss@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game6Jigumo5State@l
-	addi     r5, r5, __vt__Q34Game6Jigumo10StateSMiss@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E918@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	mName = "smiss";
 }
 
 /*
@@ -3484,7 +2744,7 @@ Jigumo::StateSMiss::StateSMiss(int)
  * Address:	803686C4
  * Size:	00002C
  */
-void Jigumo::StateSMiss::init(Game::EnemyBase*, Game::StateArg*)
+void StateSMiss::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3506,7 +2766,7 @@ void Jigumo::StateSMiss::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	803686F0
  * Size:	000050
  */
-void Jigumo::StateSMiss::exec(Game::EnemyBase*)
+void StateSMiss::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3539,7 +2799,7 @@ lbl_80368730:
  * Address:	80368740
  * Size:	0000F0
  */
-void Jigumo::ConditionHeightCheckPiki::satisfy(Game::Piki* p)
+bool ConditionHeightCheckPiki::satisfy(Piki* p)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3612,26 +2872,5 @@ lbl_80368810:
 	blr
 	*/
 }
-
+} // namespace Jigumo
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80368830
- * Size:	000028
- */
-void __sinit_jigumoState_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804E2908@ha
-	stw      r0, lbl_80515F58@sda21(r13)
-	stfsu    f0, lbl_804E2908@l(r3)
-	stfs     f0, lbl_80515F5C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
