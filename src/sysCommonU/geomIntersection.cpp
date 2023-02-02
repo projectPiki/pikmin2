@@ -1,18 +1,8 @@
 #include "Sys/Triangle.h"
 #include "Sys/TriangleTable.h"
+#include "Sys/geometry.h"
+#include "Sys/Edge.h"
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805203B0
-    lbl_805203B0:
-        .float 5.0
-    .global lbl_805203B4
-    lbl_805203B4:
-        .float 0.0
-*/
 
 namespace Sys {
 
@@ -21,8 +11,106 @@ namespace Sys {
  * Address:	8041C9CC
  * Size:	0004F0
  */
-bool Triangle::intersect(Sys::VertexTable&, Sys::Triangle::SphereSweep&)
+bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep& sweep)
 {
+
+	float distSweep    = planeDist(sweep.mSphere.mPosition, mTrianglePlane);
+	Vector3f* sweepVec = &sweep._30;
+	switch (sweep._1C) {
+
+	case 0:
+		if (!(FABS(distSweep) > sweep.mSphere.mRadius)) {
+			break;
+		} else {
+			return false;
+		}
+
+	case 1:
+		if (distSweep > sweep.mSphere.mRadius) {
+			return false;
+		}
+		if (distSweep < (-sweep.mSphere.mRadius - 5.0f)) {
+			return false;
+		}
+		break;
+
+	case 2:
+		Edge edge_intersect;
+		edge_intersect.mStartPos = sweep._00;
+		edge_intersect.mEndPos   = sweep.mSphere.mPosition;
+		Vector3f diff            = edge_intersect.mStartPos - edge_intersect.mEndPos;
+
+		if (lenVec(diff) == 0.0f) {
+			if (distSweep > sweep.mSphere.mRadius) {
+				return false;
+			}
+			break;
+		}
+
+		bool isIntersect = intersect(edge_intersect, sweep.mSphere.mRadius, *sweepVec, sweep._2C);
+		if (isIntersect) {
+			sweep.mNormal.x = mTrianglePlane.a;
+			sweep.mNormal.y = mTrianglePlane.b;
+			sweep.mNormal.z = mTrianglePlane.c;
+		}
+		return isIntersect;
+	}
+
+	float edgeDists[3];
+	for (int i = 0; i < 3; i++) {
+		edgeDists[i] = planeDist(sweep.mSphere.mPosition, mEdgePlanes[i]);
+	}
+
+	if ((edgeDists[0] <= 0.0f) && (edgeDists[1] <= 0.0f) && (edgeDists[2] <= 0.0f)) {
+		sweep.mNormal.x = mTrianglePlane.a;
+		sweep.mNormal.y = mTrianglePlane.b;
+		sweep.mNormal.z = mTrianglePlane.c;
+		sweep._2C       = sweep.mSphere.mRadius - distSweep;
+
+		Vector3f new_norm = sweep.mNormal * sweep.mSphere.mRadius;
+		sweep._30         = sweep.mSphere.mPosition - new_norm;
+		return true;
+	}
+
+	Sphere ball(sweep.mSphere.mPosition, sweep.mSphere.mRadius);
+	Edge edge_in;
+	float t; // sp8
+
+	int vertA         = mVertices.x;
+	int vertB         = mVertices.y;
+	edge_in.mStartPos = vtxTable.mObjects[vertA]; // sp28, 2C, 30
+	edge_in.mEndPos   = vtxTable.mObjects[vertB]; // sp34, 38, 3C
+	                                              // = vert_A;
+	                                              // = vert_B;
+
+	if (ball.intersect(edge_in, t, sweep.mNormal, sweep._2C)) {
+		Vector3f new_norm = sweep.mNormal * sweep.mSphere.mRadius;
+		sweep._30         = sweep.mSphere.mPosition - new_norm;
+		return true;
+	}
+
+	vertA             = mVertices.y;
+	vertB             = mVertices.z;
+	edge_in.mStartPos = vtxTable.mObjects[vertA]; // sp28, 2C, 30
+	edge_in.mEndPos   = vtxTable.mObjects[vertB]; // sp34, 38, 3C
+
+	if (ball.intersect(edge_in, t, sweep.mNormal, sweep._2C)) {
+		Vector3f new_norm = sweep.mNormal * sweep.mSphere.mRadius;
+		sweep._30         = sweep.mSphere.mPosition - new_norm;
+		return true;
+	}
+
+	vertA             = mVertices.z;
+	vertB             = mVertices.x;
+	edge_in.mStartPos = vtxTable.mObjects[vertA]; // sp28, 2C, 30
+	edge_in.mEndPos   = vtxTable.mObjects[vertB]; // sp34, 38, 3C
+
+	if (ball.intersect(edge_in, t, sweep.mNormal, sweep._2C)) {
+		Vector3f new_norm = sweep.mNormal * sweep.mSphere.mRadius;
+		sweep._30         = sweep.mSphere.mPosition - new_norm;
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
