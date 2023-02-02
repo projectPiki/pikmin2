@@ -1616,7 +1616,7 @@ LIBS = [
             "sysGCU/illustratedBookMessage",
             ["sysGCU/sysDrawBuffer", True],
             ["sysGCU/dvdErrorMessage", True],
-            "sysGCU/pikmin2AramMgr",
+            ["sysGCU/pikmin2AramMgr", True],
             ["sysGCU/messageAnalyzer", True],
         ],
     },

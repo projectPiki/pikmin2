@@ -38,4 +38,10 @@ struct JKRDvdRipper {
 	static JSUList<JKRDMCommand> sDvdAsyncList;
 };
 
+inline void* JKRLoadToMainRAM(char* filename)
+{
+	return JKRDvdRipper::loadToMainRAM(filename, nullptr, Switch_1, 0, JKRGetCurrentHeap(), JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
+	                                   nullptr);
+}
+
 #endif
