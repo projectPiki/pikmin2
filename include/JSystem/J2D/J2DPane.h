@@ -412,6 +412,8 @@ struct J2DScreen : public J2DPane {
 		}
 	}
 
+	inline void setBlendInfo(J2DBlend info, u64* tags);
+
 	static void* getNameResource(const char*);
 
 	static J2DDataManage* getDataManage() { return mDataManage; }

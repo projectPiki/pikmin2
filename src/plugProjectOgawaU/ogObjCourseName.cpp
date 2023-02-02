@@ -44,7 +44,25 @@ ObjCourseName::ObjCourseName(char const* name)
  * Size:	0000AC
  */
 ObjCourseName::~ObjCourseName() { }
+} // namespace newScreen
+} // namespace og
 
+inline void J2DScreen::setBlendInfo(J2DBlend info, u64* tags)
+{
+	J2DBlend blend = info;
+	while (true) {
+		if (!*tags) {
+			return;
+		}
+		J2DPictureEx* pane = static_cast<J2DPictureEx*>(search(*(tags++)));
+		if (pane) {
+			pane->getMaterial()->mPeBlock.mBlendInfo.set(blend);
+		}
+	}
+}
+
+namespace og {
+namespace newScreen {
 /*
  * --INFO--
  * Address:	80317570
@@ -72,25 +90,15 @@ void ObjCourseName::doCreate(JKRArchive* arc)
 	mAnims         = new og::Screen::AnimGroup(5);
 	char** list    = animFileTableCourse[owner->mCourseIndex];
 	char* listItem = list[0];
-	for (int i = 0; listItem != nullptr; i++) {
+	for (int i = 0; listItem != nullptr; listItem = list[i + 1], i++) {
 		og::Screen::registAnimGroupScreen(mAnims, arc, mScreen, listItem, 1.0f);
-		listItem = list[i + 1];
 	}
+
 	og::Screen::setAlphaScreen(mScreen);
 
-	J2DBlend info           = J2DBlend(1, 7, 6, 0);
-	u64 tags[4]             = { 'nuki_tex', 'efect_00', 'efect_01', 0 };
-	volatile J2DBlend info2 = info;
-	J2DScreen* screen       = mScreen; // j2dscreen inline pls help
-	int i                   = 0;
-	while (true) {
-		if (tags[i++] == 0)
-			break;
-		J2DPictureEx* pane = static_cast<J2DPictureEx*>(screen->search(tags[i]));
-		if (pane) {
-			pane->getMaterial()->mPeBlock.mBlendInfo.set(info);
-		}
-	}
+	J2DBlend info = J2DBlend(1, 7, 6, 0);
+	u64 tags[4]   = { 'nuki_tex', 'efect_00', 'efect_01', 0 };
+	mScreen->setBlendInfo(info, tags);
 
 	J2DPane* pane = mScreen->search('nuki_tex');
 	if (pane) {
