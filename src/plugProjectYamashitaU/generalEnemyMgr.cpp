@@ -671,7 +671,7 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 	sys->heapStatusNormal();
 	sys->heapStatusEnd("allocateEnemys");
 	currentHeap->becomeCurrentHeap();
-	mHeap->_69 = 1;
+	mHeap->mInitFlag = 1;
 	delete resourceNode;
 
 	gParmArc = nullptr;
