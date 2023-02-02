@@ -2,35 +2,24 @@
 #include "Sys/Cylinder.h"
 #include "Vector3.h"
 #include "sysMath.h"
+#include "Sys/geometry.h"
+#include "Sys/Triangle.h"
 
 namespace Sys {
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805203E8
-    lbl_805203E8:
-        .float 0.5
-    .global lbl_805203EC
-    lbl_805203EC:
-        .float 0.0
-    .global lbl_805203F0
-    lbl_805203F0:
-        .float 1.0
-        .4byte 0x00000000
-*/
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000104
  */
-// void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f()
-Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3)
+Cylinder::Cylinder(const Vector3f& start, const Vector3f& end, f32 radius)
 {
-	// UNUSED FUNCTION
-	set(p1, p2, p3);
+	mCenter = (start + end) * 0.5;
+	mAxis   = end - start;
+
+	f32 length = normalise(&mAxis);
+	mLength    = length;
+	mRadius    = radius;
 }
 
 /*
@@ -38,26 +27,12 @@ Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3)
  * Address:	80421628
  * Size:	00003C
  */
-// void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f ff()
-Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3, float p4)
+Cylinder::Cylinder(const Vector3f& center, const Vector3f& axis, f32 len, f32 radius)
 {
-	/*
-	lfs      f3, 0(r4)
-	lfs      f0, 4(r4)
-	stfs     f3, 0(r3)
-	lfs      f3, 8(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0(r5)
-	stfs     f3, 8(r3)
-	lfs      f3, 4(r5)
-	stfs     f0, 0xc(r3)
-	lfs      f0, 8(r5)
-	stfs     f3, 0x10(r3)
-	stfs     f0, 0x14(r3)
-	stfs     f1, 0x18(r3)
-	stfs     f2, 0x1c(r3)
-	blr
-	*/
+	mCenter = center;
+	mAxis   = axis;
+	mLength = len;
+	mRadius = radius;
 }
 
 /*
@@ -65,97 +40,14 @@ Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3, float p4)
  * Address:	80421664
  * Size:	000100
  */
-// void set__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f()
-void Cylinder::set(const Vector3f& p1, const Vector3f& p2, float p3)
+void Cylinder::set(const Vector3f& start, const Vector3f& end, f32 radius)
 {
-	mCenter.x  = (p1.x + p2.x) * 0.5f;
-	mCenter.y  = (p1.y + p2.y) * 0.5f;
-	mCenter.z  = (p1.z + p2.z) * 0.5f;
-	mAxis.x    = p2.x - p1.x;
-	mAxis.y    = p2.y - p1.y;
-	mAxis.z    = p2.z - p1.z;
-	float root = pikmin2_sqrtf(mAxis.z * mAxis.z + mAxis.x * mAxis.x + mAxis.y * mAxis.y);
-	if (root > 0.0f) {
-		mAxis.x *= 1.0f / root;
-		mAxis.y *= 1.0f / root;
-		mAxis.z *= 1.0f / root;
-		// Suspicious assignment to reg here. Maybe inlined Vector3f::multiply?
-		// Never mind. Ghidra isn't handling the branches correctly...
-	} else {
-		root = p3;
-	}
-	mLength = root;
-	mRadius = p3;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lfs      f2, 0(r4)
-	mr       r31, r3
-	lfs      f0, 0(r5)
-	fmr      f31, f1
-	lfs      f4, 4(r4)
-	lfs      f3, 4(r5)
-	fadds    f1, f2, f0
-	lfs      f5, lbl_805203E8@sda21(r2)
-	fsubs    f0, f0, f2
-	fadds    f2, f4, f3
-	lfs      f8, 8(r4)
-	lfs      f7, 8(r5)
-	fmuls    f1, f1, f5
-	fadds    f6, f8, f7
-	fmuls    f2, f2, f5
-	stfs     f1, 0(r3)
-	fsubs    f3, f3, f4
-	fmuls    f1, f6, f5
-	stfs     f2, 4(r3)
-	fsubs    f2, f7, f8
-	stfs     f1, 8(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f3, 0x10(r3)
-	stfs     f2, 0x14(r3)
-	lfs      f1, 0xc(r3)
-	lfs      f0, 0x10(r3)
-	lfs      f2, 0x14(r3)
-	fmuls    f1, f1, f1
-	fmuls    f0, f0, f0
-	fmuls    f2, f2, f2
-	fadds    f0, f1, f0
-	fadds    f1, f2, f0
-	bl       pikmin2_sqrtf__Ff
-	lfs      f0, lbl_805203EC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8042173C
-	lfs      f2, lbl_805203F0@sda21(r2)
-	lfs      f0, 0xc(r31)
-	fdivs    f2, f2, f1
-	fmuls    f0, f0, f2
-	stfs     f0, 0xc(r31)
-	lfs      f0, 0x10(r31)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x10(r31)
-	lfs      f0, 0x14(r31)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x14(r31)
-	b        lbl_80421740
+	mCenter = (start + end) * 0.5;
+	mAxis   = end - start;
 
-lbl_8042173C:
-	fmr      f1, f0
-
-lbl_80421740:
-	stfs     f1, 0x18(r31)
-	stfs     f31, 0x1c(r31)
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	f32 length = normalise(&mAxis);
+	mLength    = length;
+	mRadius    = radius;
 }
 
 /*
@@ -173,8 +65,24 @@ bool Cylinder::intersect(Plane const& plane)
  * Address:	80421764
  * Size:	000190
  */
-bool Cylinder::culled(Plane const& plane)
+bool Cylinder::culled(Plane const& inputPlane)
 {
+	Vector3f scaledAxis = mAxis * (0.5f * mLength);
+
+	Vector3f lowerVec = mCenter - scaledAxis;
+	Vector3f upperVec = mCenter + scaledAxis;
+
+	Vector3f planeVec(inputPlane.a, inputPlane.b, inputPlane.c);
+	f32 dotPlane     = dot(mAxis, planeVec);
+	f32 scaledRadius = mRadius * pikmin2_sqrtf(-((dotPlane * dotPlane) - 1.0f));
+
+	f32 below = scaledRadius + planeDist(lowerVec, (Plane&)inputPlane);
+	f32 above = scaledRadius + planeDist(upperVec, (Plane&)inputPlane);
+
+	if ((below > 0.0f) || (above > 0.0f)) {
+		return false;
+	}
+	return true;
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -290,8 +198,36 @@ lbl_80421894:
  * Address:	804218F4
  * Size:	0001D8
  */
-bool Cylinder::intersect(Triangle const& triangle, float& p2)
+bool Cylinder::intersect(Triangle const& triangle, f32& p2)
 {
+	for (int i = 0; i < 3; i++) {
+		if (culled(triangle.mEdgePlanes[i])) {
+			return 0;
+		}
+	}
+
+	Vector3f scaledAxis = mAxis * (0.5f * mLength);
+
+	Vector3f planeVec(triangle.mTrianglePlane.a, triangle.mTrianglePlane.b, triangle.mTrianglePlane.c);
+	f32 dotPlane = dot(mAxis, planeVec);
+
+	Vector3f lowerVec = mCenter - scaledAxis;
+	Vector3f upperVec = mCenter + scaledAxis;
+
+	f32 scaledRadius = mRadius * pikmin2_sqrtf(-((dotPlane * dotPlane) - 1.0f));
+	f32 below        = planeDist(lowerVec, (Plane&)triangle.mTrianglePlane) - scaledRadius;
+	f32 above        = planeDist(upperVec, (Plane&)triangle.mTrianglePlane) + scaledRadius;
+
+	if ((below * above) > 0.0f) {
+		return false;
+	}
+
+	if (below < 0.0f) {
+		p2 = -below;
+	} else {
+		p2 = -above;
+	}
+	return true;
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0

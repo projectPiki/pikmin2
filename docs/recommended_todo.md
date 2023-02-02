@@ -197,7 +197,7 @@
 ### <section id="sysCommonU">sysCommonU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomCylinder.cpp">geomCylinder.cpp</a> | 9686 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomIntersection.cpp">geomIntersection.cpp</a> | 11556 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomCylinder.cpp">geomCylinder.cpp</a> | 8617 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomIntersection.cpp">geomIntersection.cpp</a> | 11114 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/camera.cpp">camera.cpp</a> | 36899 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomTraceMove.cpp">geomTraceMove.cpp</a> | 38247 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/sysMath.cpp">sysMath.cpp</a> | 40590 |
 
