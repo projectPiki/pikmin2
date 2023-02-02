@@ -35,7 +35,7 @@ struct TTestBase : public Screen::ObjBase {
 	virtual bool doUpdateFadeout();                              // _60
 	virtual og::Screen::DispMemberBase* getDispMemberBase() = 0; // _78
 
-	static u64 mIsSection;
+	static bool mIsSection;
 
 	// _00     = VTBL1
 	// _18     = VTBL2

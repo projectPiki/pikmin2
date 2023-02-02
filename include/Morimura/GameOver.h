@@ -7,40 +7,53 @@
 #include "Game/Navi.h"
 
 namespace Morimura {
+void addYPos(J2DPane*, f32);
+
 struct TGameOverScreen {
+	TGameOverScreen(JKRArchive*, int);
+
+	void init(const char*, u32);
 	void setPosY(f32);
-	JKRArchive* _00;              // _00
-	P2DScreen::Mgr_tuning* _04;   // _04
-	og::Screen::AnimScreen** _08; // _08
-	TGXSetPane* _0C;              // _0C
-	int _10;                      // _10
-	int _14;                      // _14
-	P2DScreen::Mgr_tuning* _18;   // _18
-	og::Screen::AnimScreen** _1C; //
+	void addAnim(char*);
+	void update();
+	void draw(Graphics&, J2DPerspGraph*);
+	void orgdraw(Graphics&, J2DPerspGraph*);
+	void setFadeAlpha(u8);
+
+	JKRArchive* mArchive;                // _00
+	P2DScreen::Mgr_tuning* mScreen;      // _04
+	og::Screen::AnimScreen** mAnimList;  // _08
+	TGXSetPane* mGXPane;                 // _0C
+	int mAnimCountMax;                   // _10
+	int mAnimCountCurrent;               // _14
+	P2DScreen::Mgr_tuning* mScreen2;     // _18
+	og::Screen::AnimScreen** mAnimList2; // _1C
 };
 
 struct TGameOverBase : public TTestBase {
-	TGameOverBase();
 	TGameOverBase(char* name);
 
-	virtual ~TGameOverBase() { }                                              // _08 (weak)
-	virtual bool doUpdate();                                                  // _58
-	virtual bool doUpdateFadeout() { return TTestBase::doUpdateFadeout(); }   // _60 (weak)
-	virtual void doDraw(Graphics& gfx);                                       // _68
-	virtual og::Screen::DispMemberBase* getDispMemberBase() { return mDisp; } // _78 (weak)
+	virtual ~TGameOverBase() { }                                                                // _08 (weak)
+	virtual bool doUpdate();                                                                    // _58
+	virtual bool doUpdateFadeout() { return mIsSection ? TTestBase::doUpdateFadeout() : true; } // _60 (weak)
+	virtual void doDraw(Graphics& gfx);                                                         // _68
+	virtual og::Screen::DispMemberBase* getDispMemberBase() { return mDisp; }                   // _78 (weak)
+
+	// unused/inline
+	void init();
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_78 = TTestBase
 	JKRArchive* mArchive;              // _78
 	TGameOverScreen* mGameOverScreen;  // _7C
-	og::Screen::DispMemberBase* mDisp; // _80, unknown
-	u8 _84;                            // _84
-	u8 _85;                            // _85
-	s16 _86;                           // _86
-	u32 mType;                         // _88, unknown
-	s16 _8C;                           // _8C
-	s16 _8E;                           // _8E
+	og::Screen::DispMemberBase* mDisp; // _80
+	u8 mFadeAlpha;                     // _84
+	bool mDoOrgDraw;                   // _85
+	s16 mTimer;                        // _86
+	u32 mType;                         // _88
+	s16 mTimeSpeed;                    // _8C
+	s16 mMaxTime;                      // _8E
 };
 
 struct TGameOver2D : public TGameOverBase {

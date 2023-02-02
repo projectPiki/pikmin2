@@ -80,8 +80,8 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		Morimura::TOrimaDown2D* screen = static_cast<Morimura::TOrimaDown2D*>(mScreenObj[0]);
 		P2ASSERTLINE(149, screen);
 		screen->mGameOverScreen->setPosY(ObjWinLoseReason::msVal.mYOffsetP1);
-		screen->mType = 1;
-		screen->_8C   = ObjWinLoseReason::msVal._18;
+		screen->mType      = 1;
+		screen->mTimeSpeed = ObjWinLoseReason::msVal._18;
 		break;
 	}
 	case 2: // piki extinct
@@ -91,8 +91,8 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		Morimura::TPikminDown2D* screen = static_cast<Morimura::TPikminDown2D*>(mScreenObj[0]);
 		P2ASSERTLINE(159, screen);
 		screen->mGameOverScreen->setPosY(ObjWinLoseReason::msVal.mYOffsetP1);
-		screen->mType = 1;
-		screen->_8C   = ObjWinLoseReason::msVal._18;
+		screen->mType      = 1;
+		screen->mTimeSpeed = ObjWinLoseReason::msVal._18;
 		break;
 	}
 	case 3: {
@@ -115,8 +115,8 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		Morimura::TOrimaDown2D* screen = static_cast<Morimura::TOrimaDown2D*>(mScreenObj[1]);
 		P2ASSERTLINE(180, screen);
 		screen->mGameOverScreen->setPosY(ObjWinLoseReason::msVal.mYOffsetP2);
-		screen->mType = 2;
-		screen->_8C   = ObjWinLoseReason::msVal._18;
+		screen->mType      = 2;
+		screen->mTimeSpeed = ObjWinLoseReason::msVal._18;
 		break;
 	}
 	case 2: // piki extinct
@@ -126,8 +126,8 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		Morimura::TPikminDown2D* screen = static_cast<Morimura::TPikminDown2D*>(mScreenObj[1]);
 		P2ASSERTLINE(190, screen);
 		screen->mGameOverScreen->setPosY(ObjWinLoseReason::msVal.mYOffsetP2);
-		screen->mType = 2;
-		screen->_8C   = ObjWinLoseReason::msVal._18;
+		screen->mType      = 2;
+		screen->mTimeSpeed = ObjWinLoseReason::msVal._18;
 		break;
 	}
 	case 3: // default (marble?)
@@ -211,7 +211,7 @@ void SceneWinLoseReason::doUpdateActive()
 			if (mCounter == ObjWinLoseReason::msVal.mProgressFrame) {
 				Morimura::TGameOverBase* obj = static_cast<Morimura::TGameOverBase*>(mScreenObj[i]);
 				P2ASSERTLINE(272, obj);
-				obj->_8C = -ObjWinLoseReason::msVal._18;
+				obj->mTimeSpeed = -ObjWinLoseReason::msVal._18;
 			} else if (mCounter > ObjWinLoseReason::msVal.mFinishFrame) {
 				mDone[i] = true;
 			}

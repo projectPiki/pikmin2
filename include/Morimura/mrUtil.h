@@ -104,12 +104,12 @@ struct TScissorPane : public J2DPictureEx {
 };
 
 struct TGXSetPane : public J2DPictureEx {
-	virtual ~TGXSetPane();                 // _08 (weak)
+	TGXSetPane();
+	virtual ~TGXSetPane() { }              // _08 (weak)
 	virtual void drawSelf(f32, f32, Mtx*); // _38
 
 	// _00      = VTBL
 	// _00-_1A8 = J2DPictureEx
-	u8 _1A8[0x1A8]; // _1A8, unknown
 };
 
 struct TMovePane {

@@ -1,7 +1,7 @@
 #include "Morimura/Bases.h"
 
 namespace Morimura {
-u64 TTestBase::mIsSection;
+bool TTestBase::mIsSection;
 
 /*
  * --INFO--
