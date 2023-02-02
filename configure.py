@@ -1,13 +1,6 @@
 #!/usr/bin/env python3
 LIBS = [
     {
-        "mw_version": "",
-        "objects": [
-            "ctors",
-            "dtors",
-        ],
-    },
-    {
         "lib": "JStudio_JParticle",
         "cflags": "$cflags_pikmin",
         "mw_version": "2.6",

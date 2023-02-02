@@ -1,30 +1,33 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__11JASInstRand
-__vt__11JASInstRand:
+.obj __vt__11JASInstRand, global
 	.4byte 0
 	.4byte 0
 	.4byte getY__11JASInstRandCFii
+.endobj __vt__11JASInstRand
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-init$644:
+.obj init$644, local
 	.skip 0x1
+.endobj init$644
 .balign 4
-oRandom$643:
+.obj oRandom$643, local
 	.skip 0x4
+.endobj oRandom$643
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516CF0:
+.obj lbl_80516CF0, local
 	.float 2.0
-lbl_80516CF4:
+.endobj lbl_80516CF0
+.obj lbl_80516CF4, local
 	.float 1.0
+.endobj lbl_80516CF4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getY__11JASInstRandCFii
-getY__11JASInstRandCFii:
+.fn getY__11JASInstRandCFii, global
 /* 8009B4E8 00098428  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009B4EC 0009842C  7C 08 02 A6 */	mflr r0
 /* 8009B4F0 00098430  90 01 00 24 */	stw r0, 0x24(r1)
@@ -67,3 +70,4 @@ getY__11JASInstRandCFii:
 /* 8009B580 000984C0  7C 08 03 A6 */	mtlr r0
 /* 8009B584 000984C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8009B588 000984C8  4E 80 00 20 */	blr 
+.endfn getY__11JASInstRandCFii

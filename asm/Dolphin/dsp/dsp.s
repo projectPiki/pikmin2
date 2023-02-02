@@ -1,63 +1,67 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A7938:
+.obj lbl_804A7938, local
 	.asciz "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16 (0x2301) >>"
+.endobj lbl_804A7938
 .balign 4
-lbl_804A7980:
+.obj lbl_804A7980, local
 	.asciz "DSPInit(): Build Date: %s %s\n"
+.endobj lbl_804A7980
 .balign 4
-lbl_804A79A0:
+.obj lbl_804A79A0, local
 	.asciz "Apr 17 2003"
+.endobj lbl_804A79A0
 .balign 4
-lbl_804A79AC:
+.obj lbl_804A79AC, local
 	.asciz "12:34:16"
+.endobj lbl_804A79AC
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __DSPVersion
-__DSPVersion:
+.obj __DSPVersion, global
 	.4byte lbl_804A7938
+.endobj __DSPVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-__DSP_init_flag: # local object
+.obj __DSP_init_flag, local
 	.skip 4
+.endobj __DSP_init_flag
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global DSPCheckMailToDSP
-DSPCheckMailToDSP:
+.fn DSPCheckMailToDSP, global
 /* 800DACB0 000D7BF0  3C 60 CC 00 */	lis r3, 0xCC005000@ha
 /* 800DACB4 000D7BF4  A0 03 50 00 */	lhz r0, 0xCC005000@l(r3)
 /* 800DACB8 000D7BF8  54 03 8F FE */	rlwinm r3, r0, 0x11, 0x1f, 0x1f
 /* 800DACBC 000D7BFC  4E 80 00 20 */	blr 
+.endfn DSPCheckMailToDSP
 
-.global DSPCheckMailFromDSP
-DSPCheckMailFromDSP:
+.fn DSPCheckMailFromDSP, global
 /* 800DACC0 000D7C00  3C 60 CC 00 */	lis r3, 0xCC005004@ha
 /* 800DACC4 000D7C04  A0 03 50 04 */	lhz r0, 0xCC005004@l(r3)
 /* 800DACC8 000D7C08  54 03 8F FE */	rlwinm r3, r0, 0x11, 0x1f, 0x1f
 /* 800DACCC 000D7C0C  4E 80 00 20 */	blr 
+.endfn DSPCheckMailFromDSP
 
-.global DSPReadMailFromDSP
-DSPReadMailFromDSP:
+.fn DSPReadMailFromDSP, global
 /* 800DACD0 000D7C10  3C 60 CC 00 */	lis r3, 0xCC005000@ha
 /* 800DACD4 000D7C14  38 63 50 00 */	addi r3, r3, 0xCC005000@l
 /* 800DACD8 000D7C18  A0 03 00 04 */	lhz r0, 4(r3)
 /* 800DACDC 000D7C1C  A0 63 00 06 */	lhz r3, 6(r3)
 /* 800DACE0 000D7C20  50 03 80 1E */	rlwimi r3, r0, 0x10, 0, 0xf
 /* 800DACE4 000D7C24  4E 80 00 20 */	blr 
+.endfn DSPReadMailFromDSP
 
-.global DSPSendMailToDSP
-DSPSendMailToDSP:
+.fn DSPSendMailToDSP, global
 /* 800DACE8 000D7C28  3C 80 CC 00 */	lis r4, 0xCC005000@ha
 /* 800DACEC 000D7C2C  54 60 84 3E */	srwi r0, r3, 0x10
 /* 800DACF0 000D7C30  B0 04 50 00 */	sth r0, 0xCC005000@l(r4)
 /* 800DACF4 000D7C34  B0 64 50 02 */	sth r3, 0x5002(r4)
 /* 800DACF8 000D7C38  4E 80 00 20 */	blr 
+.endfn DSPSendMailToDSP
 
-.global DSPAssertInt
-DSPAssertInt:
+.fn DSPAssertInt, global
 /* 800DACFC 000D7C3C  7C 08 02 A6 */	mflr r0
 /* 800DAD00 000D7C40  90 01 00 04 */	stw r0, 4(r1)
 /* 800DAD04 000D7C44  94 21 FF F8 */	stwu r1, -8(r1)
@@ -74,9 +78,9 @@ DSPAssertInt:
 /* 800DAD30 000D7C70  38 21 00 08 */	addi r1, r1, 8
 /* 800DAD34 000D7C74  7C 08 03 A6 */	mtlr r0
 /* 800DAD38 000D7C78  4E 80 00 20 */	blr 
+.endfn DSPAssertInt
 
-.global DSPInit
-DSPInit:
+.fn DSPInit, global
 /* 800DAD3C 000D7C7C  7C 08 02 A6 */	mflr r0
 /* 800DAD40 000D7C80  3C 60 80 4A */	lis r3, lbl_804A7938@ha
 /* 800DAD44 000D7C84  90 01 00 04 */	stw r0, 4(r1)
@@ -127,3 +131,4 @@ DSPInit:
 /* 800DADF4 000D7D34  38 21 00 10 */	addi r1, r1, 0x10
 /* 800DADF8 000D7D38  7C 08 03 A6 */	mtlr r0
 /* 800DADFC 000D7D3C  4E 80 00 20 */	blr 
+.endfn DSPInit

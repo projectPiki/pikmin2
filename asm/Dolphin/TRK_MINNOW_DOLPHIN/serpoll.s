@@ -1,128 +1,68 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80479740
-lbl_80479740:
-	.4byte 0x54524B5F
-	.4byte 0x5061636B
-	.4byte 0x65745F48
-	.4byte 0x65616465
-	.4byte 0x72200920
-	.4byte 0x20202025
-	.4byte 0x6C642062
-	.4byte 0x79746573
-	.4byte 0x0A000000
-	.4byte 0x54524B5F
-	.4byte 0x434D445F
-	.4byte 0x52656164
-	.4byte 0x4D656D6F
-	.4byte 0x72792020
-	.4byte 0x20202025
-	.4byte 0x6C642062
-	.4byte 0x79746573
-	.4byte 0x0A000000
-	.4byte 0x54524B5F
-	.4byte 0x434D445F
-	.4byte 0x57726974
-	.4byte 0x654D656D
-	.4byte 0x6F727920
-	.4byte 0x20202025
-	.4byte 0x6C642062
-	.4byte 0x79746573
-	.4byte 0x0A000000
-	.4byte 0x54524B5F
-	.4byte 0x434D445F
-	.4byte 0x436F6E6E
-	.4byte 0x65637420
-	.4byte 0x09202020
-	.4byte 0x20256C64
-	.4byte 0x20627974
-	.4byte 0x65730A00
-	.4byte 0x54524B5F
-	.4byte 0x434D445F
-	.4byte 0x5265706C
-	.4byte 0x7941636B
-	.4byte 0x09202020
-	.4byte 0x20256C64
-	.4byte 0x20627974
-	.4byte 0x65730A00
-	.4byte 0x54524B5F
-	.4byte 0x434D445F
-	.4byte 0x52656164
-	.4byte 0x52656769
-	.4byte 0x73746572
-	.4byte 0x7309256C
-	.4byte 0x64206279
-	.4byte 0x7465730A
-	.4byte 0x00000000
-	.4byte 0x54657374
-	.4byte 0x466F7250
-	.4byte 0x61636B65
-	.4byte 0x74203A20
-	.4byte 0x46726565
-	.4byte 0x42756666
-	.4byte 0x65722069
-	.4byte 0x73202025
-	.4byte 0x6C640A00
-	.4byte 0x52656164
-	.4byte 0x696E6720
-	.4byte 0x7061796C
-	.4byte 0x6F616420
-	.4byte 0x256C6420
-	.4byte 0x62797465
-	.4byte 0x730A0000
-	.4byte 0x54657374
-	.4byte 0x466F7250
-	.4byte 0x61636B65
-	.4byte 0x74203A20
-	.4byte 0x496E7661
-	.4byte 0x6C696420
-	.4byte 0x73697A65
-	.4byte 0x206F6620
-	.4byte 0x7061636B
-	.4byte 0x65742068
-	.4byte 0x64722E73
-	.4byte 0x697A650A
-	.4byte 0x00000000
-	.4byte 0x54657374
-	.4byte 0x466F7250
-	.4byte 0x61636B65
-	.4byte 0x74203A20
-	.4byte 0x496E7661
-	.4byte 0x6C696420
-	.4byte 0x73697A65
-	.4byte 0x206F6620
-	.4byte 0x7061636B
-	.4byte 0x65740A00
-	.4byte 0x54657374
-	.4byte 0x466F7250
-	.4byte 0x61636B65
-	.4byte 0x74207265
-	.4byte 0x7475726E
-	.4byte 0x696E6720
-	.4byte 0x256C640A
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj lbl_80479740, local
+	.asciz "TRK_Packet_Header \t    %ld bytes\n"
+.endobj lbl_80479740
+.balign 4
+.obj lbl_80479764, local
+	.asciz "TRK_CMD_ReadMemory     %ld bytes\n"
+.endobj lbl_80479764
+.balign 4
+.obj lbl_80479788, local
+	.asciz "TRK_CMD_WriteMemory    %ld bytes\n"
+.endobj lbl_80479788
+.balign 4
+.obj lbl_804797AC, local
+	.asciz "TRK_CMD_Connect \t    %ld bytes\n"
+.endobj lbl_804797AC
+.balign 4
+.obj lbl_804797CC, local
+	.asciz "TRK_CMD_ReplyAck\t    %ld bytes\n"
+.endobj lbl_804797CC
+.balign 4
+.obj lbl_804797EC, local
+	.asciz "TRK_CMD_ReadRegisters\t%ld bytes\n"
+.endobj lbl_804797EC
+.balign 4
+.obj lbl_80479810, local
+	.asciz "TestForPacket : FreeBuffer is  %ld\n"
+.endobj lbl_80479810
+.balign 4
+.obj lbl_80479834, local
+	.asciz "Reading payload %ld bytes\n"
+.endobj lbl_80479834
+.balign 4
+.obj lbl_80479850, local
+	.asciz "TestForPacket : Invalid size of packet hdr.size\n"
+.endobj lbl_80479850
+.balign 4
+.obj lbl_80479884, local
+	.asciz "TestForPacket : Invalid size of packet\n"
+.endobj lbl_80479884
+.balign 4
+.obj lbl_804798AC, local
+	.asciz "TestForPacket returning %ld\n"
+.endobj lbl_804798AC
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global gTRKFramingState
-gTRKFramingState:
+.obj gTRKFramingState, local
 	.skip 0x14
+.endobj gTRKFramingState
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global gTRKInputPendingPtr
-gTRKInputPendingPtr:
+.obj gTRKInputPendingPtr, global
 	.skip 0x4
+.endobj gTRKInputPendingPtr
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global TRKTerminateSerialHandler
-TRKTerminateSerialHandler:
+.fn TRKTerminateSerialHandler, global
 /* 800BC0C8 000B9008  38 60 00 00 */	li r3, 0
 /* 800BC0CC 000B900C  4E 80 00 20 */	blr 
+.endfn TRKTerminateSerialHandler
 
-.global TRKInitializeSerialHandler
-TRKInitializeSerialHandler:
+.fn TRKInitializeSerialHandler, global
 /* 800BC0D0 000B9010  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BC0D4 000B9014  7C 08 02 A6 */	mflr r0
 /* 800BC0D8 000B9018  3C 60 80 4F */	lis r3, gTRKFramingState@ha
@@ -172,9 +112,9 @@ TRKInitializeSerialHandler:
 /* 800BC188 000B90C8  7C 08 03 A6 */	mtlr r0
 /* 800BC18C 000B90CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BC190 000B90D0  4E 80 00 20 */	blr 
+.endfn TRKInitializeSerialHandler
 
-.global TRKProcessInput
-TRKProcessInput:
+.fn TRKProcessInput, global
 /* 800BC194 000B90D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BC198 000B90D8  7C 08 02 A6 */	mflr r0
 /* 800BC19C 000B90DC  38 80 00 02 */	li r4, 2
@@ -195,9 +135,9 @@ TRKProcessInput:
 /* 800BC1D8 000B9118  7C 08 03 A6 */	mtlr r0
 /* 800BC1DC 000B911C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BC1E0 000B9120  4E 80 00 20 */	blr 
+.endfn TRKProcessInput
 
-.global TRKGetInput
-TRKGetInput:
+.fn TRKGetInput, global
 /* 800BC1E4 000B9124  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BC1E8 000B9128  7C 08 02 A6 */	mflr r0
 /* 800BC1EC 000B912C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -223,9 +163,9 @@ TRKGetInput:
 /* 800BC238 000B9178  7C 08 03 A6 */	mtlr r0
 /* 800BC23C 000B917C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BC240 000B9180  4E 80 00 20 */	blr 
+.endfn TRKGetInput
 
-.global TRKTestForPacket
-TRKTestForPacket:
+.fn TRKTestForPacket, global
 /* 800BC244 000B9184  94 21 F7 20 */	stwu r1, -0x8e0(r1)
 /* 800BC248 000B9188  7C 08 02 A6 */	mflr r0
 /* 800BC24C 000B918C  3C 60 80 48 */	lis r3, lbl_80479740@ha
@@ -310,3 +250,4 @@ TRKTestForPacket:
 /* 800BC374 000B92B4  7C 08 03 A6 */	mtlr r0
 /* 800BC378 000B92B8  38 21 08 E0 */	addi r1, r1, 0x8e0
 /* 800BC37C 000B92BC  4E 80 00 20 */	blr 
+.endfn TRKTestForPacket

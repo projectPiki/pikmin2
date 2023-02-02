@@ -1,16 +1,18 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805203E8:
+.obj lbl_805203E8, local
 	.float 0.5
-lbl_805203EC:
+.endobj lbl_805203E8
+.obj lbl_805203EC, local
 	.float 0.0
-lbl_805203F0:
+.endobj lbl_805203EC
+.obj lbl_805203F0, local
 	.float 1.0
+.endobj lbl_805203F0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "__ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
-"__ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f":
+.fn __ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>ff, global
 /* 80421628 0041E568  C0 64 00 00 */	lfs f3, 0(r4)
 /* 8042162C 0041E56C  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80421630 0041E570  D0 63 00 00 */	stfs f3, 0(r3)
@@ -26,9 +28,9 @@ lbl_805203F0:
 /* 80421658 0041E598  D0 23 00 18 */	stfs f1, 0x18(r3)
 /* 8042165C 0041E59C  D0 43 00 1C */	stfs f2, 0x1c(r3)
 /* 80421660 0041E5A0  4E 80 00 20 */	blr 
+.endfn __ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>ff
 
-.global "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
-"set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f":
+.fn set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f, global
 /* 80421664 0041E5A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80421668 0041E5A8  7C 08 02 A6 */	mflr r0
 /* 8042166C 0041E5AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -95,9 +97,9 @@ lbl_805203F0:
 /* 80421758 0041E698  7C 08 03 A6 */	mtlr r0
 /* 8042175C 0041E69C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80421760 0041E6A0  4E 80 00 20 */	blr 
+.endfn set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f
 
-.global culled__Q23Sys8CylinderFRC5Plane
-culled__Q23Sys8CylinderFRC5Plane:
+.fn culled__Q23Sys8CylinderFRC5Plane, global
 /* 80421764 0041E6A4  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80421768 0041E6A8  7C 08 02 A6 */	mflr r0
 /* 8042176C 0041E6AC  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -201,9 +203,9 @@ culled__Q23Sys8CylinderFRC5Plane:
 /* 804218E8 0041E828  7C 08 03 A6 */	mtlr r0
 /* 804218EC 0041E82C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 804218F0 0041E830  4E 80 00 20 */	blr 
+.endfn culled__Q23Sys8CylinderFRC5Plane
 
-.global intersect__Q23Sys8CylinderFRCQ23Sys8TriangleRf
-intersect__Q23Sys8CylinderFRCQ23Sys8TriangleRf:
+.fn intersect__Q23Sys8CylinderFRCQ23Sys8TriangleRf, global
 /* 804218F4 0041E834  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 804218F8 0041E838  7C 08 02 A6 */	mflr r0
 /* 804218FC 0041E83C  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -328,3 +330,4 @@ intersect__Q23Sys8CylinderFRCQ23Sys8TriangleRf:
 /* 80421AC0 0041EA00  7C 08 03 A6 */	mtlr r0
 /* 80421AC4 0041EA04  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80421AC8 0041EA08  4E 80 00 20 */	blr 
+.endfn intersect__Q23Sys8CylinderFRCQ23Sys8TriangleRf

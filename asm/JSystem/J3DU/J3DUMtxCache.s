@@ -1,13 +1,13 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805164C8:
+.obj lbl_805164C8, local
 	.4byte 0x43300000
 	.4byte 0x80000000
+.endobj lbl_805164C8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__24J3DUMtxAnmCacheTableBaseFv
-__dt__24J3DUMtxAnmCacheTableBaseFv:
+.fn __dt__24J3DUMtxAnmCacheTableBaseFv, global
 /* 800177EC 0001472C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800177F0 00014730  7C 08 02 A6 */	mflr r0
 /* 800177F4 00014734  90 01 00 14 */	stw r0, 0x14(r1)
@@ -33,9 +33,9 @@ __dt__24J3DUMtxAnmCacheTableBaseFv:
 /* 8001783C 0001477C  7C 08 03 A6 */	mtlr r0
 /* 80017840 00014780  38 21 00 10 */	addi r1, r1, 0x10
 /* 80017844 00014784  4E 80 00 20 */	blr 
+.endfn __dt__24J3DUMtxAnmCacheTableBaseFv
 
-.global __ct__20J3DUMtxAnmCacheTableFP8J3DModelP15J3DAnmTransform
-__ct__20J3DUMtxAnmCacheTableFP8J3DModelP15J3DAnmTransform:
+.fn __ct__20J3DUMtxAnmCacheTableFP8J3DModelP15J3DAnmTransform, global
 /* 80017848 00014788  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001784C 0001478C  7C 08 02 A6 */	mflr r0
 /* 80017850 00014790  90 01 00 24 */	stw r0, 0x24(r1)
@@ -69,9 +69,9 @@ __ct__20J3DUMtxAnmCacheTableFP8J3DModelP15J3DAnmTransform:
 /* 800178C0 00014800  7C 08 03 A6 */	mtlr r0
 /* 800178C4 00014804  38 21 00 20 */	addi r1, r1, 0x20
 /* 800178C8 00014808  4E 80 00 20 */	blr 
+.endfn __ct__20J3DUMtxAnmCacheTableFP8J3DModelP15J3DAnmTransform
 
-.global "init<20J3DUMtxAnmCacheTable>__26@unnamed@J3DUMtxCache_cpp@FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable"
-"init<20J3DUMtxAnmCacheTable>__26@unnamed@J3DUMtxCache_cpp@FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable":
+.fn init<20J3DUMtxAnmCacheTable>__26@unnamed@J3DUMtxCache_cpp@FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable, weak
 /* 800178CC 0001480C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800178D0 00014810  7C 08 02 A6 */	mflr r0
 /* 800178D4 00014814  90 01 00 64 */	stw r0, 0x64(r1)
@@ -158,3 +158,4 @@ __ct__20J3DUMtxAnmCacheTableFP8J3DModelP15J3DAnmTransform:
 /* 80017A04 00014944  7C 08 03 A6 */	mtlr r0
 /* 80017A08 00014948  38 21 00 60 */	addi r1, r1, 0x60
 /* 80017A0C 0001494C  4E 80 00 20 */	blr 
+.endfn init<20J3DUMtxAnmCacheTable>__26@unnamed@J3DUMtxCache_cpp@FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable

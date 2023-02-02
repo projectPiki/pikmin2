@@ -1,24 +1,23 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q216JStudio_JMessage13TCreateObject
-__vt__Q216JStudio_JMessage13TCreateObject:
+.obj __vt__Q216JStudio_JMessage13TCreateObject, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q216JStudio_JMessage13TCreateObjectFv
 	.4byte create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
 	.4byte find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object
-.global __vt__Q216JStudio_JMessage18TCreateObject_base
-__vt__Q216JStudio_JMessage18TCreateObject_base:
+.endobj __vt__Q216JStudio_JMessage13TCreateObject
+.obj __vt__Q216JStudio_JMessage18TCreateObject_base, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
 	.4byte 0
+.endobj __vt__Q216JStudio_JMessage18TCreateObject_base
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl"
-"createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl":
+.fn createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl, local
 /* 80014DF8 00011D38  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80014DFC 00011D3C  7C 08 02 A6 */	mflr r0
 /* 80014E00 00011D40  90 01 00 24 */	stw r0, 0x24(r1)
@@ -72,9 +71,9 @@ __vt__Q216JStudio_JMessage18TCreateObject_base:
 /* 80014EA8 00011DE8  7C 08 03 A6 */	mtlr r0
 /* 80014EAC 00011DEC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80014EB0 00011DF0  4E 80 00 20 */	blr 
+.endfn createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl
 
-.global create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
-create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object:
+.fn create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object, global
 /* 80014EB4 00011DF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80014EB8 00011DF8  7C 08 02 A6 */	mflr r0
 /* 80014EBC 00011DFC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -123,9 +122,9 @@ create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudi
 /* 80014F54 00011E94  7C 08 03 A6 */	mtlr r0
 /* 80014F58 00011E98  38 21 00 20 */	addi r1, r1, 0x20
 /* 80014F5C 00011E9C  4E 80 00 20 */	blr 
+.endfn create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
 
-.global __dt__Q216JStudio_JMessage13TCreateObjectFv
-__dt__Q216JStudio_JMessage13TCreateObjectFv:
+.fn __dt__Q216JStudio_JMessage13TCreateObjectFv, global
 /* 80014F60 00011EA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80014F64 00011EA4  7C 08 02 A6 */	mflr r0
 /* 80014F68 00011EA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -156,8 +155,9 @@ __dt__Q216JStudio_JMessage13TCreateObjectFv:
 /* 80014FC4 00011F04  7C 08 03 A6 */	mtlr r0
 /* 80014FC8 00011F08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80014FCC 00011F0C  4E 80 00 20 */	blr 
+.endfn __dt__Q216JStudio_JMessage13TCreateObjectFv
 
-.global find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object
-find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object:
+.fn find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object, global
 /* 80014FD0 00011F10  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80014FD4 00011F14  4E 80 00 20 */	blr 
+.endfn find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object

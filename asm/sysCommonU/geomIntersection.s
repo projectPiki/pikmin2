@@ -1,14 +1,15 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805203B0:
+.obj lbl_805203B0, local
 	.float 5.0
-lbl_805203B4:
+.endobj lbl_805203B0
+.obj lbl_805203B4, local
 	.float 0.0
+.endobj lbl_805203B4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ33Sys8Triangle11SphereSweep
-intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ33Sys8Triangle11SphereSweep:
+.fn intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ33Sys8Triangle11SphereSweep, global
 /* 8041C9CC 0041990C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8041C9D0 00419910  7C 08 02 A6 */	mflr r0
 /* 8041C9D4 00419914  90 01 00 84 */	stw r0, 0x84(r1)
@@ -337,3 +338,4 @@ intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ33Sys8Triangle11SphereSweep:
 /* 8041CEB0 00419DF0  7C 08 03 A6 */	mtlr r0
 /* 8041CEB4 00419DF4  38 21 00 80 */	addi r1, r1, 0x80
 /* 8041CEB8 00419DF8  4E 80 00 20 */	blr 
+.endfn intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ33Sys8Triangle11SphereSweep

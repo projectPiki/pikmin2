@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global GXCallDisplayList
-GXCallDisplayList:
+.fn GXCallDisplayList, global
 /* 800E93D8 000E6318  7C 08 02 A6 */	mflr r0
 /* 800E93DC 000E631C  90 01 00 04 */	stw r0, 4(r1)
 /* 800E93E0 000E6320  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -33,3 +32,4 @@ GXCallDisplayList:
 /* 800E943C 000E637C  38 21 00 18 */	addi r1, r1, 0x18
 /* 800E9440 000E6380  7C 08 03 A6 */	mtlr r0
 /* 800E9444 000E6384  4E 80 00 20 */	blr 
+.endfn GXCallDisplayList

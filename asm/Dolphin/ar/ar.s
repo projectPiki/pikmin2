@@ -1,46 +1,45 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A7680
-lbl_804A7680:
+.obj lbl_804A7680, local
 	.asciz "<< Dolphin SDK - AR\trelease build: Nov 26 2003 05:19:42 (0x2301) >>"
+.endobj lbl_804A7680
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __ARVersion
-__ARVersion:
+.obj __ARVersion, global
 	.4byte lbl_804A7680
+.endobj __ARVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global __AR_Callback
-__AR_Callback:
+.obj __AR_Callback, local
 	.skip 0x4
-.global __AR_Size
-__AR_Size:
+.endobj __AR_Callback
+.obj __AR_Size, local
 	.skip 0x4
-.global __AR_InternalSize
-__AR_InternalSize:
+.endobj __AR_Size
+.obj __AR_InternalSize, local
 	.skip 0x4
-.global __AR_ExpansionSize
-__AR_ExpansionSize:
+.endobj __AR_InternalSize
+.obj __AR_ExpansionSize, local
 	.skip 0x4
-.global __AR_StackPointer
-__AR_StackPointer:
+.endobj __AR_ExpansionSize
+.obj __AR_StackPointer, local
 	.skip 0x4
-.global __AR_FreeBlocks
-__AR_FreeBlocks:
+.endobj __AR_StackPointer
+.obj __AR_FreeBlocks, local
 	.skip 0x4
-.global __AR_BlockLength
-__AR_BlockLength:
+.endobj __AR_FreeBlocks
+.obj __AR_BlockLength, local
 	.skip 0x4
-.global __AR_init_flag
-__AR_init_flag:
+.endobj __AR_BlockLength
+.obj __AR_init_flag, local
 	.skip 0x4
+.endobj __AR_init_flag
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global ARRegisterDMACallback
-ARRegisterDMACallback:
+.fn ARRegisterDMACallback, global
 /* 800D2674 000CF5B4  7C 08 02 A6 */	mflr r0
 /* 800D2678 000CF5B8  90 01 00 04 */	stw r0, 4(r1)
 /* 800D267C 000CF5BC  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -58,9 +57,9 @@ ARRegisterDMACallback:
 /* 800D26AC 000CF5EC  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D26B0 000CF5F0  7C 08 03 A6 */	mtlr r0
 /* 800D26B4 000CF5F4  4E 80 00 20 */	blr 
+.endfn ARRegisterDMACallback
 
-.global ARGetDMAStatus
-ARGetDMAStatus:
+.fn ARGetDMAStatus, global
 /* 800D26B8 000CF5F8  7C 08 02 A6 */	mflr r0
 /* 800D26BC 000CF5FC  90 01 00 04 */	stw r0, 4(r1)
 /* 800D26C0 000CF600  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -76,9 +75,9 @@ ARGetDMAStatus:
 /* 800D26E8 000CF628  38 21 00 10 */	addi r1, r1, 0x10
 /* 800D26EC 000CF62C  7C 08 03 A6 */	mtlr r0
 /* 800D26F0 000CF630  4E 80 00 20 */	blr 
+.endfn ARGetDMAStatus
 
-.global ARStartDMA
-ARStartDMA:
+.fn ARStartDMA, global
 /* 800D26F4 000CF634  7C 08 02 A6 */	mflr r0
 /* 800D26F8 000CF638  90 01 00 04 */	stw r0, 4(r1)
 /* 800D26FC 000CF63C  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -139,9 +138,9 @@ ARStartDMA:
 /* 800D27D8 000CF718  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D27DC 000CF71C  7C 08 03 A6 */	mtlr r0
 /* 800D27E0 000CF720  4E 80 00 20 */	blr 
+.endfn ARStartDMA
 
-.global ARAlloc
-ARAlloc:
+.fn ARAlloc, global
 /* 800D27E4 000CF724  7C 08 02 A6 */	mflr r0
 /* 800D27E8 000CF728  90 01 00 04 */	stw r0, 4(r1)
 /* 800D27EC 000CF72C  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -168,9 +167,9 @@ ARAlloc:
 /* 800D2840 000CF780  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D2844 000CF784  7C 08 03 A6 */	mtlr r0
 /* 800D2848 000CF788  4E 80 00 20 */	blr 
+.endfn ARAlloc
 
-.global ARInit
-ARInit:
+.fn ARInit, global
 /* 800D284C 000CF78C  7C 08 02 A6 */	mflr r0
 /* 800D2850 000CF790  90 01 00 04 */	stw r0, 4(r1)
 /* 800D2854 000CF794  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -222,19 +221,19 @@ ARInit:
 /* 800D2904 000CF844  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D2908 000CF848  7C 08 03 A6 */	mtlr r0
 /* 800D290C 000CF84C  4E 80 00 20 */	blr 
+.endfn ARInit
 
-.global ARGetBaseAddress
-ARGetBaseAddress:
+.fn ARGetBaseAddress, global
 /* 800D2910 000CF850  38 60 40 00 */	li r3, 0x4000
 /* 800D2914 000CF854  4E 80 00 20 */	blr 
+.endfn ARGetBaseAddress
 
-.global ARGetSize
-ARGetSize:
+.fn ARGetSize, global
 /* 800D2918 000CF858  80 6D 8D 5C */	lwz r3, __AR_Size@sda21(r13)
 /* 800D291C 000CF85C  4E 80 00 20 */	blr 
+.endfn ARGetSize
 
-.global __ARHandler
-__ARHandler:
+.fn __ARHandler, local
 /* 800D2920 000CF860  7C 08 02 A6 */	mflr r0
 /* 800D2924 000CF864  3C 60 CC 00 */	lis r3, 0xCC005000@ha
 /* 800D2928 000CF868  90 01 00 04 */	stw r0, 4(r1)
@@ -266,9 +265,9 @@ __ARHandler:
 /* 800D298C 000CF8CC  38 21 02 E0 */	addi r1, r1, 0x2e0
 /* 800D2990 000CF8D0  7C 08 03 A6 */	mtlr r0
 /* 800D2994 000CF8D4  4E 80 00 20 */	blr 
+.endfn __ARHandler
 
-.global __ARClearInterrupt
-__ARClearInterrupt:
+.fn __ARClearInterrupt, global
 /* 800D2998 000CF8D8  3C 60 CC 00 */	lis r3, 0xCC005000@ha
 /* 800D299C 000CF8DC  38 63 50 00 */	addi r3, r3, 0xCC005000@l
 /* 800D29A0 000CF8E0  A0 83 00 0A */	lhz r4, 0xa(r3)
@@ -277,16 +276,16 @@ __ARClearInterrupt:
 /* 800D29AC 000CF8EC  60 00 00 20 */	ori r0, r0, 0x20
 /* 800D29B0 000CF8F0  B0 03 00 0A */	sth r0, 0xa(r3)
 /* 800D29B4 000CF8F4  4E 80 00 20 */	blr 
+.endfn __ARClearInterrupt
 
-.global __ARGetInterruptStatus
-__ARGetInterruptStatus:
+.fn __ARGetInterruptStatus, global
 /* 800D29B8 000CF8F8  3C 60 CC 00 */	lis r3, 0xCC00500A@ha
 /* 800D29BC 000CF8FC  A0 03 50 0A */	lhz r0, 0xCC00500A@l(r3)
 /* 800D29C0 000CF900  54 03 06 B4 */	rlwinm r3, r0, 0, 0x1a, 0x1a
 /* 800D29C4 000CF904  4E 80 00 20 */	blr 
+.endfn __ARGetInterruptStatus
 
-.global __ARChecksize
-__ARChecksize:
+.fn __ARChecksize, local
 /* 800D29C8 000CF908  7C 08 02 A6 */	mflr r0
 /* 800D29CC 000CF90C  3C 60 CC 00 */	lis r3, 0xCC005000@ha
 /* 800D29D0 000CF910  90 01 00 04 */	stw r0, 4(r1)
@@ -1861,3 +1860,4 @@ __ARChecksize:
 /* 800D41B0 000D10F0  38 21 02 C0 */	addi r1, r1, 0x2c0
 /* 800D41B4 000D10F4  7C 08 03 A6 */	mtlr r0
 /* 800D41B8 000D10F8  4E 80 00 20 */	blr 
+.endfn __ARChecksize

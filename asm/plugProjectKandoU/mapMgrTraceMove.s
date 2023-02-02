@@ -5,44 +5,41 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BEF00
-lbl_804BEF00:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mTraceMoveOptLevel__Q24Game6MapMgr
-mTraceMoveOptLevel__Q24Game6MapMgr:
-	.4byte 0x01000000
+.obj mTraceMoveOptLevel__Q24Game6MapMgr, global
+	.byte 0x01
+.endobj mTraceMoveOptLevel__Q24Game6MapMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515BB0
-lbl_80515BB0:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515BB4
-lbl_80515BB4:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519D60
-lbl_80519D60:
-	.4byte 0x00000000
-.global lbl_80519D64
-lbl_80519D64:
+.obj lbl_80519D60, local
+	.float 0.0
+.endobj lbl_80519D60
+.obj lbl_80519D64, local
 	.float 0.5
-.global lbl_80519D68
-lbl_80519D68:
+.endobj lbl_80519D64
+.obj lbl_80519D68, local
 	.float 1.0
-	.4byte 0x00000000
+.endobj lbl_80519D68
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof
-traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof:
+.fn traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof, global
 /* 8020508C 00201FCC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80205090 00201FD0  7C 08 02 A6 */	mflr r0
 /* 80205094 00201FD4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -118,9 +115,9 @@ traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof:
 /* 80205194 002020D4  7C 08 03 A6 */	mtlr r0
 /* 80205198 002020D8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8020519C 002020DC  4E 80 00 20 */	blr 
+.endfn traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof
 
-.global traceMove__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof
-traceMove__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof:
+.fn traceMove__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof, global
 /* 802051A0 002020E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802051A4 002020E4  7C 08 02 A6 */	mflr r0
 /* 802051A8 002020E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -129,9 +126,9 @@ traceMove__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof:
 /* 802051B4 002020F4  7C 08 03 A6 */	mtlr r0
 /* 802051B8 002020F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802051BC 002020FC  4E 80 00 20 */	blr 
+.endfn traceMove__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof
 
-.global traceMove_test1203_cylinder__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof
-traceMove_test1203_cylinder__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof:
+.fn traceMove_test1203_cylinder__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof, global
 /* 802051C0 00202100  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 802051C4 00202104  7C 08 02 A6 */	mflr r0
 /* 802051C8 00202108  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -247,7 +244,7 @@ traceMove_test1203_cylinder__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof:
 /* 80205368 002022A8  C0 5A 00 0C */	lfs f2, 0xc(r26)
 /* 8020536C 002022AC  38 61 00 0C */	addi r3, r1, 0xc
 /* 80205370 002022B0  38 BF 00 1C */	addi r5, r31, 0x1c
-/* 80205374 002022B4  48 21 C2 B5 */	bl "__ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+/* 80205374 002022B4  48 21 C2 B5 */	bl "__ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>ff"
 /* 80205378 002022B8  7F A4 EB 78 */	mr r4, r29
 /* 8020537C 002022BC  38 61 00 0C */	addi r3, r1, 0xc
 /* 80205380 002022C0  38 A1 00 08 */	addi r5, r1, 8
@@ -387,16 +384,17 @@ traceMove_test1203_cylinder__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof:
 /* 80205570 002024B0  7C 08 03 A6 */	mtlr r0
 /* 80205574 002024B4  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80205578 002024B8  4E 80 00 20 */	blr 
+.endfn traceMove_test1203_cylinder__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof
 
-.global __sinit_mapMgrTraceMove_cpp
-__sinit_mapMgrTraceMove_cpp:
+.fn __sinit_mapMgrTraceMove_cpp, local
 /* 8020557C 002024BC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80205580 002024C0  38 00 FF FF */	li r0, -1
 /* 80205584 002024C4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80205588 002024C8  3C 60 80 4C */	lis r3, lbl_804BEF00@ha
-/* 8020558C 002024CC  90 0D 95 30 */	stw r0, lbl_80515BB0@sda21(r13)
-/* 80205590 002024D0  D4 03 EF 00 */	stfsu f0, lbl_804BEF00@l(r3)
-/* 80205594 002024D4  D0 0D 95 34 */	stfs f0, lbl_80515BB4@sda21(r13)
+/* 80205588 002024C8  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8020558C 002024CC  90 0D 95 30 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80205590 002024D0  D4 03 EF 00 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80205594 002024D4  D0 0D 95 34 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80205598 002024D8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8020559C 002024DC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802055A0 002024E0  4E 80 00 20 */	blr 
+.endfn __sinit_mapMgrTraceMove_cpp

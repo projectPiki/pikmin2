@@ -5,12 +5,12 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__11BlendCamera
-__vt__11BlendCamera:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__11BlendCamera, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11BlendCameraFv
@@ -42,8 +42,8 @@ __vt__11BlendCamera:
 	.4byte isSpecialCamera__6CameraFv
 	.4byte updateMatrix__6CameraFv
 	.4byte doUpdate__11BlendCameraFv
-.global __vt__12LookAtCamera
-__vt__12LookAtCamera:
+.endobj __vt__11BlendCamera
+.obj __vt__12LookAtCamera, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12LookAtCameraFv
@@ -76,8 +76,8 @@ __vt__12LookAtCamera:
 	.4byte updateMatrix__12LookAtCameraFv
 	.4byte doUpdate__6CameraFv
 	.4byte startVibration__12LookAtCameraFi
-.global __vt__6Camera
-__vt__6Camera:
+.endobj __vt__12LookAtCamera
+.obj __vt__6Camera, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__6CameraFv
@@ -109,8 +109,8 @@ __vt__6Camera:
 	.4byte isSpecialCamera__6CameraFv
 	.4byte updateMatrix__6CameraFv
 	.4byte doUpdate__6CameraFv
-.global __vt__11CullFrustum
-__vt__11CullFrustum:
+.endobj __vt__6Camera
+.obj __vt__11CullFrustum, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11CullFrustumFv
@@ -132,54 +132,72 @@ __vt__11CullFrustum:
 	.4byte getViewMatrix__11CullFrustumFb
 	.4byte getPosition__11CullFrustumFv
 	.4byte updatePlanes__11CullFrustumFv
+.endobj __vt__11CullFrustum
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520358:
+.obj lbl_80520358, local
 	.float 0.0
-lbl_8052035C:
+.endobj lbl_80520358
+.obj lbl_8052035C, local
 	.float 1.0
-lbl_80520360:
+.endobj lbl_8052035C
+.obj lbl_80520360, local
 	.float 60.0
+.endobj lbl_80520360
 .balign 8
-lbl_80520368:
+.obj lbl_80520368, local
 	.4byte 0x43300000
 	.4byte 0x80000000
-lbl_80520370: # pi
-	.float 3.1415927
-lbl_80520374:
+.endobj lbl_80520368
+.obj lbl_80520370, local
+	.float 3.1415927 # pi
+.endobj lbl_80520370
+.obj lbl_80520374, local
 	.float 360.0
-lbl_80520378:
+.endobj lbl_80520374
+.obj lbl_80520378, local
 	.float 128000.0
-lbl_8052037C:
+.endobj lbl_80520378
+.obj lbl_8052037C, local
 	.float 0.7
-lbl_80520380:
+.endobj lbl_8052037C
+.obj lbl_80520380, local
 	.float 100.0
-lbl_80520384:
+.endobj lbl_80520380
+.obj lbl_80520384, local
 	.float 0.01
-lbl_80520388:
+.endobj lbl_80520384
+.obj lbl_80520388, local
 	.float 0.5
-lbl_8052038C:
+.endobj lbl_80520388
+.obj lbl_8052038C, local
 	.float 180.0
-lbl_80520390:
+.endobj lbl_8052038C
+.obj lbl_80520390, local
 	.float 325.9493
-lbl_80520394:
+.endobj lbl_80520390
+.obj lbl_80520394, local
 	.float -325.9493
-lbl_80520398:
+.endobj lbl_80520394
+.obj lbl_80520398, local
 	.float 2.0
-lbl_8052039C:
+.endobj lbl_80520398
+.obj lbl_8052039C, local
 	.float 1000.0
+.endobj lbl_8052039C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global isVisible__9CullPlaneFRQ23Sys6Sphere
-isVisible__9CullPlaneFRQ23Sys6Sphere:
+.fn isVisible__9CullPlaneFRQ23Sys6Sphere, global
 /* 8041A190 004170D0  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 8041A194 004170D4  38 C0 00 00 */	li r6, 0
 /* 8041A198 004170D8  80 03 00 1C */	lwz r0, 0x1c(r3)
@@ -211,9 +229,9 @@ isVisible__9CullPlaneFRQ23Sys6Sphere:
 .L_8041A1F8:
 /* 8041A1F8 00417138  38 60 00 01 */	li r3, 1
 /* 8041A1FC 0041713C  4E 80 00 20 */	blr 
+.endfn isVisible__9CullPlaneFRQ23Sys6Sphere
 
-.global isCylinderVisible__9CullPlaneFRQ23Sys8Cylinder
-isCylinderVisible__9CullPlaneFRQ23Sys8Cylinder:
+.fn isCylinderVisible__9CullPlaneFRQ23Sys8Cylinder, global
 /* 8041A200 00417140  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041A204 00417144  7C 08 02 A6 */	mflr r0
 /* 8041A208 00417148  90 01 00 24 */	stw r0, 0x24(r1)
@@ -252,9 +270,9 @@ isCylinderVisible__9CullPlaneFRQ23Sys8Cylinder:
 /* 8041A27C 004171BC  7C 08 03 A6 */	mtlr r0
 /* 8041A280 004171C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041A284 004171C4  4E 80 00 20 */	blr 
+.endfn isCylinderVisible__9CullPlaneFRQ23Sys8Cylinder
 
-.global getUpVector__11CullFrustumFv
-getUpVector__11CullFrustumFv:
+.fn getUpVector__11CullFrustumFv, global
 /* 8041A288 004171C8  80 84 00 30 */	lwz r4, 0x30(r4)
 /* 8041A28C 004171CC  C0 24 00 14 */	lfs f1, 0x14(r4)
 /* 8041A290 004171D0  C0 44 00 18 */	lfs f2, 0x18(r4)
@@ -263,9 +281,9 @@ getUpVector__11CullFrustumFv:
 /* 8041A29C 004171DC  D0 23 00 04 */	stfs f1, 4(r3)
 /* 8041A2A0 004171E0  D0 43 00 08 */	stfs f2, 8(r3)
 /* 8041A2A4 004171E4  4E 80 00 20 */	blr 
+.endfn getUpVector__11CullFrustumFv
 
-.global getSideVector__11CullFrustumFv
-getSideVector__11CullFrustumFv:
+.fn getSideVector__11CullFrustumFv, global
 /* 8041A2A8 004171E8  80 84 00 30 */	lwz r4, 0x30(r4)
 /* 8041A2AC 004171EC  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8041A2B0 004171F0  C0 44 00 04 */	lfs f2, 4(r4)
@@ -277,9 +295,9 @@ getSideVector__11CullFrustumFv:
 /* 8041A2C8 00417208  D0 43 00 04 */	stfs f2, 4(r3)
 /* 8041A2CC 0041720C  D0 23 00 08 */	stfs f1, 8(r3)
 /* 8041A2D0 00417210  4E 80 00 20 */	blr 
+.endfn getSideVector__11CullFrustumFv
 
-.global getViewVector__11CullFrustumFv
-getViewVector__11CullFrustumFv:
+.fn getViewVector__11CullFrustumFv, global
 /* 8041A2D4 00417214  80 84 00 30 */	lwz r4, 0x30(r4)
 /* 8041A2D8 00417218  C0 04 00 20 */	lfs f0, 0x20(r4)
 /* 8041A2DC 0041721C  C0 44 00 24 */	lfs f2, 0x24(r4)
@@ -291,9 +309,9 @@ getViewVector__11CullFrustumFv:
 /* 8041A2F4 00417234  D0 43 00 04 */	stfs f2, 4(r3)
 /* 8041A2F8 00417238  D0 23 00 08 */	stfs f1, 8(r3)
 /* 8041A2FC 0041723C  4E 80 00 20 */	blr 
+.endfn getViewVector__11CullFrustumFv
 
-.global getPosition__11CullFrustumFv
-getPosition__11CullFrustumFv:
+.fn getPosition__11CullFrustumFv, global
 /* 8041A300 00417240  80 84 00 30 */	lwz r4, 0x30(r4)
 /* 8041A304 00417244  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 8041A308 00417248  C0 24 00 0C */	lfs f1, 0xc(r4)
@@ -323,9 +341,9 @@ getPosition__11CullFrustumFv:
 /* 8041A368 004172A8  D0 43 00 04 */	stfs f2, 4(r3)
 /* 8041A36C 004172AC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8041A370 004172B0  4E 80 00 20 */	blr 
+.endfn getPosition__11CullFrustumFv
 
-.global updatePlanes__11CullFrustumFv
-updatePlanes__11CullFrustumFv:
+.fn updatePlanes__11CullFrustumFv, global
 /* 8041A374 004172B4  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8041A378 004172B8  7C 08 02 A6 */	mflr r0
 /* 8041A37C 004172BC  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -507,9 +525,9 @@ updatePlanes__11CullFrustumFv:
 /* 8041A63C 0041757C  7C 08 03 A6 */	mtlr r0
 /* 8041A640 00417580  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 8041A644 00417584  4E 80 00 20 */	blr 
+.endfn updatePlanes__11CullFrustumFv
 
-.global __ct__6CameraFv
-__ct__6CameraFv:
+.fn __ct__6CameraFv, global
 /* 8041A648 00417588  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041A64C 0041758C  7C 08 02 A6 */	mflr r0
 /* 8041A650 00417590  90 01 00 24 */	stw r0, 0x24(r1)
@@ -596,9 +614,9 @@ __ct__6CameraFv:
 /* 8041A794 004176D4  7C 08 03 A6 */	mtlr r0
 /* 8041A798 004176D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041A79C 004176DC  4E 80 00 20 */	blr 
+.endfn __ct__6CameraFv
 
-.global __dt__11CullFrustumFv
-__dt__11CullFrustumFv:
+.fn __dt__11CullFrustumFv, weak
 /* 8041A7A0 004176E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041A7A4 004176E4  7C 08 02 A6 */	mflr r0
 /* 8041A7A8 004176E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -641,18 +659,18 @@ __dt__11CullFrustumFv:
 /* 8041A834 00417774  7C 08 03 A6 */	mtlr r0
 /* 8041A838 00417778  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041A83C 0041777C  4E 80 00 20 */	blr 
+.endfn __dt__11CullFrustumFv
 
-.global setFixNearFar__6CameraFbff
-setFixNearFar__6CameraFbff:
+.fn setFixNearFar__6CameraFbff, global
 /* 8041A840 00417780  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 8041A844 00417784  98 83 00 6C */	stb r4, 0x6c(r3)
 /* 8041A848 00417788  4D 82 00 20 */	beqlr 
 /* 8041A84C 0041778C  D0 23 00 64 */	stfs f1, 0x64(r3)
 /* 8041A850 00417790  D0 43 00 68 */	stfs f2, 0x68(r3)
 /* 8041A854 00417794  4E 80 00 20 */	blr 
+.endfn setFixNearFar__6CameraFbff
 
-.global copyFrom__6CameraFP6Camera
-copyFrom__6CameraFP6Camera:
+.fn copyFrom__6CameraFP6Camera, global
 /* 8041A858 00417798  C0 04 00 70 */	lfs f0, 0x70(r4)
 /* 8041A85C 0041779C  39 00 00 00 */	li r8, 0
 /* 8041A860 004177A0  38 E0 00 00 */	li r7, 0
@@ -697,9 +715,9 @@ copyFrom__6CameraFP6Camera:
 /* 8041A8F4 00417834  7C 08 00 00 */	cmpw r8, r0
 /* 8041A8F8 00417838  41 80 FF B4 */	blt .L_8041A8AC
 /* 8041A8FC 0041783C  4E 80 00 20 */	blr 
+.endfn copyFrom__6CameraFP6Camera
 
-.global updatePlanes__6CameraFv
-updatePlanes__6CameraFv:
+.fn updatePlanes__6CameraFv, global
 /* 8041A900 00417840  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8041A904 00417844  7C 08 02 A6 */	mflr r0
 /* 8041A908 00417848  90 01 00 74 */	stw r0, 0x74(r1)
@@ -802,9 +820,9 @@ updatePlanes__6CameraFv:
 /* 8041AA8C 004179CC  7C 08 03 A6 */	mtlr r0
 /* 8041AA90 004179D0  38 21 00 70 */	addi r1, r1, 0x70
 /* 8041AA94 004179D4  4E 80 00 20 */	blr 
+.endfn updatePlanes__6CameraFv
 
-.global getLookAtPosition__6CameraFv
-getLookAtPosition__6CameraFv:
+.fn getLookAtPosition__6CameraFv, global
 /* 8041AA98 004179D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041AA9C 004179DC  7C 08 02 A6 */	mflr r0
 /* 8041AAA0 004179E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -852,9 +870,9 @@ getLookAtPosition__6CameraFv:
 /* 8041AB3C 00417A7C  7C 08 03 A6 */	mtlr r0
 /* 8041AB40 00417A80  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041AB44 00417A84  4E 80 00 20 */	blr 
+.endfn getLookAtPosition__6CameraFv
 
-.global getLookAtPosition___6CameraFv
-getLookAtPosition___6CameraFv:
+.fn getLookAtPosition___6CameraFv, weak
 /* 8041AB48 00417A88  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 8041AB4C 00417A8C  C4 04 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r4)
 /* 8041AB50 00417A90  D0 03 00 00 */	stfs f0, 0(r3)
@@ -863,14 +881,14 @@ getLookAtPosition___6CameraFv:
 /* 8041AB5C 00417A9C  C0 04 00 08 */	lfs f0, 8(r4)
 /* 8041AB60 00417AA0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8041AB64 00417AA4  4E 80 00 20 */	blr 
+.endfn getLookAtPosition___6CameraFv
 
-.global isRunning__Q34Game5P2JST12ObjectCameraFv
-isRunning__Q34Game5P2JST12ObjectCameraFv:
+.fn isRunning__Q34Game5P2JST12ObjectCameraFv, weak
 /* 8041AB68 00417AA8  88 63 00 C4 */	lbz r3, 0xc4(r3)
 /* 8041AB6C 00417AAC  4E 80 00 20 */	blr 
+.endfn isRunning__Q34Game5P2JST12ObjectCameraFv
 
-.global getPosition__6CameraFv
-getPosition__6CameraFv:
+.fn getPosition__6CameraFv, global
 /* 8041AB70 00417AB0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041AB74 00417AB4  7C 08 02 A6 */	mflr r0
 /* 8041AB78 00417AB8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -940,9 +958,9 @@ getPosition__6CameraFv:
 /* 8041AC6C 00417BAC  7C 08 03 A6 */	mtlr r0
 /* 8041AC70 00417BB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041AC74 00417BB4  4E 80 00 20 */	blr 
+.endfn getPosition__6CameraFv
 
-.global getPositionPtr__6CameraFv
-getPositionPtr__6CameraFv:
+.fn getPositionPtr__6CameraFv, global
 /* 8041AC78 00417BB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041AC7C 00417BBC  7C 08 02 A6 */	mflr r0
 /* 8041AC80 00417BC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -981,14 +999,14 @@ getPositionPtr__6CameraFv:
 /* 8041ACF8 00417C38  7C 08 03 A6 */	mtlr r0
 /* 8041ACFC 00417C3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041AD00 00417C40  4E 80 00 20 */	blr 
+.endfn getPositionPtr__6CameraFv
 
-.global on_getPositionPtr__6CameraFv
-on_getPositionPtr__6CameraFv:
+.fn on_getPositionPtr__6CameraFv, weak
 /* 8041AD04 00417C44  38 60 00 00 */	li r3, 0
 /* 8041AD08 00417C48  4E 80 00 20 */	blr 
+.endfn on_getPositionPtr__6CameraFv
 
-.global getNear__6CameraFv
-getNear__6CameraFv:
+.fn getNear__6CameraFv, global
 /* 8041AD0C 00417C4C  88 03 00 6C */	lbz r0, 0x6c(r3)
 /* 8041AD10 00417C50  28 00 00 00 */	cmplwi r0, 0
 /* 8041AD14 00417C54  41 82 00 0C */	beq .L_8041AD20
@@ -997,9 +1015,9 @@ getNear__6CameraFv:
 .L_8041AD20:
 /* 8041AD20 00417C60  C0 23 00 70 */	lfs f1, 0x70(r3)
 /* 8041AD24 00417C64  4E 80 00 20 */	blr 
+.endfn getNear__6CameraFv
 
-.global getFar__6CameraFv
-getFar__6CameraFv:
+.fn getFar__6CameraFv, global
 /* 8041AD28 00417C68  88 03 00 6C */	lbz r0, 0x6c(r3)
 /* 8041AD2C 00417C6C  28 00 00 00 */	cmplwi r0, 0
 /* 8041AD30 00417C70  41 82 00 0C */	beq .L_8041AD3C
@@ -1008,9 +1026,9 @@ getFar__6CameraFv:
 .L_8041AD3C:
 /* 8041AD3C 00417C7C  C0 23 00 74 */	lfs f1, 0x74(r3)
 /* 8041AD40 00417C80  4E 80 00 20 */	blr 
+.endfn getFar__6CameraFv
 
-.global setProjection__6CameraFv
-setProjection__6CameraFv:
+.fn setProjection__6CameraFv, global
 /* 8041AD44 00417C84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041AD48 00417C88  7C 08 02 A6 */	mflr r0
 /* 8041AD4C 00417C8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1043,9 +1061,9 @@ setProjection__6CameraFv:
 /* 8041ADA8 00417CE8  7C 08 03 A6 */	mtlr r0
 /* 8041ADAC 00417CEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041ADB0 00417CF0  4E 80 00 20 */	blr 
+.endfn setProjection__6CameraFv
 
-.global update__6CameraFv
-update__6CameraFv:
+.fn update__6CameraFv, global
 /* 8041ADB4 00417CF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041ADB8 00417CF8  7C 08 02 A6 */	mflr r0
 /* 8041ADBC 00417CFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1123,13 +1141,13 @@ update__6CameraFv:
 /* 8041AED0 00417E10  7C 08 03 A6 */	mtlr r0
 /* 8041AED4 00417E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041AED8 00417E18  4E 80 00 20 */	blr 
+.endfn update__6CameraFv
 
-.global updateMatrix__6CameraFv
-updateMatrix__6CameraFv:
+.fn updateMatrix__6CameraFv, weak
 /* 8041AEDC 00417E1C  4E 80 00 20 */	blr 
+.endfn updateMatrix__6CameraFv
 
-.global getViewMatrix__6CameraFb
-getViewMatrix__6CameraFb:
+.fn getViewMatrix__6CameraFb, global
 /* 8041AEE0 00417E20  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 8041AEE4 00417E24  41 82 00 0C */	beq .L_8041AEF0
 /* 8041AEE8 00417E28  38 63 00 34 */	addi r3, r3, 0x34
@@ -1137,9 +1155,9 @@ getViewMatrix__6CameraFb:
 .L_8041AEF0:
 /* 8041AEF0 00417E30  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 8041AEF4 00417E34  4E 80 00 20 */	blr 
+.endfn getViewMatrix__6CameraFb
 
-.global calcProperDistance__6CameraFff
-calcProperDistance__6CameraFff:
+.fn calcProperDistance__6CameraFff, global
 /* 8041AEF8 00417E38  C0 02 20 24 */	lfs f0, lbl_80520384@sda21(r2)
 /* 8041AEFC 00417E3C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041AF00 00417E40  FC 02 00 40 */	fcmpo cr0, f2, f0
@@ -1218,9 +1236,9 @@ calcProperDistance__6CameraFff:
 .L_8041B010:
 /* 8041B010 00417F50  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041B014 00417F54  4E 80 00 20 */	blr 
+.endfn calcProperDistance__6CameraFff
 
-.global updateScreenConstants__6CameraFv
-updateScreenConstants__6CameraFv:
+.fn updateScreenConstants__6CameraFv, global
 /* 8041B018 00417F58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041B01C 00417F5C  C0 42 20 28 */	lfs f2, lbl_80520388@sda21(r2)
 /* 8041B020 00417F60  C0 03 00 28 */	lfs f0, 0x28(r3)
@@ -1280,9 +1298,9 @@ updateScreenConstants__6CameraFv:
 /* 8041B0EC 0041802C  D0 03 01 3C */	stfs f0, 0x13c(r3)
 /* 8041B0F0 00418030  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041B0F4 00418034  4E 80 00 20 */	blr 
+.endfn updateScreenConstants__6CameraFv
 
-.global calcScreenSize__6CameraFRQ23Sys6Sphere
-calcScreenSize__6CameraFRQ23Sys6Sphere:
+.fn calcScreenSize__6CameraFRQ23Sys6Sphere, global
 /* 8041B0F8 00418038  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041B0FC 0041803C  7C 08 02 A6 */	mflr r0
 /* 8041B100 00418040  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1329,9 +1347,9 @@ calcScreenSize__6CameraFRQ23Sys6Sphere:
 /* 8041B1A4 004180E4  7C 08 03 A6 */	mtlr r0
 /* 8041B1A8 004180E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041B1AC 004180EC  4E 80 00 20 */	blr 
+.endfn calcScreenSize__6CameraFRQ23Sys6Sphere
 
-.global updateSoundCamera__6CameraFf
-updateSoundCamera__6CameraFf:
+.fn updateSoundCamera__6CameraFf, global
 /* 8041B1B0 004180F0  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 8041B1B4 004180F4  7C 08 02 A6 */	mflr r0
 /* 8041B1B8 004180F8  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -1526,9 +1544,9 @@ updateSoundCamera__6CameraFf:
 /* 8041B48C 004183CC  7C 08 03 A6 */	mtlr r0
 /* 8041B490 004183D0  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 8041B494 004183D4  4E 80 00 20 */	blr 
+.endfn updateSoundCamera__6CameraFf
 
-.global __ct__12LookAtCameraFv
-__ct__12LookAtCameraFv:
+.fn __ct__12LookAtCameraFv, global
 /* 8041B498 004183D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041B49C 004183DC  7C 08 02 A6 */	mflr r0
 /* 8041B4A0 004183E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1636,9 +1654,9 @@ __ct__12LookAtCameraFv:
 /* 8041B638 00418578  7C 08 03 A6 */	mtlr r0
 /* 8041B63C 0041857C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041B640 00418580  4E 80 00 20 */	blr 
+.endfn __ct__12LookAtCameraFv
 
-.global __dt__6CameraFv
-__dt__6CameraFv:
+.fn __dt__6CameraFv, weak
 /* 8041B644 00418584  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041B648 00418588  7C 08 02 A6 */	mflr r0
 /* 8041B64C 0041858C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1685,9 +1703,9 @@ __dt__6CameraFv:
 /* 8041B6E8 00418628  7C 08 03 A6 */	mtlr r0
 /* 8041B6EC 0041862C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041B6F0 00418630  4E 80 00 20 */	blr 
+.endfn __dt__6CameraFv
 
-.global updateMatrix__12LookAtCameraFv
-updateMatrix__12LookAtCameraFv:
+.fn updateMatrix__12LookAtCameraFv, global
 /* 8041B6F4 00418634  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041B6F8 00418638  7C 08 02 A6 */	mflr r0
 /* 8041B6FC 0041863C  7C 66 1B 78 */	mr r6, r3
@@ -1701,9 +1719,9 @@ updateMatrix__12LookAtCameraFv:
 /* 8041B71C 0041865C  7C 08 03 A6 */	mtlr r0
 /* 8041B720 00418660  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041B724 00418664  4E 80 00 20 */	blr 
+.endfn updateMatrix__12LookAtCameraFv
 
-.global __ct__11BlendCameraFiPP6Camera
-__ct__11BlendCameraFiPP6Camera:
+.fn __ct__11BlendCameraFiPP6Camera, global
 /* 8041B728 00418668  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8041B72C 0041866C  7C 08 02 A6 */	mflr r0
 /* 8041B730 00418670  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1800,9 +1818,9 @@ __ct__11BlendCameraFiPP6Camera:
 /* 8041B89C 004187DC  7C 08 03 A6 */	mtlr r0
 /* 8041B8A0 004187E0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8041B8A4 004187E4  4E 80 00 20 */	blr 
+.endfn __ct__11BlendCameraFiPP6Camera
 
-.global setCameras__11BlendCameraFPP6Camera
-setCameras__11BlendCameraFPP6Camera:
+.fn setCameras__11BlendCameraFPP6Camera, global
 /* 8041B8A8 004187E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041B8AC 004187EC  7C 08 02 A6 */	mflr r0
 /* 8041B8B0 004187F0  7C 87 23 78 */	mr r7, r4
@@ -1840,9 +1858,9 @@ setCameras__11BlendCameraFPP6Camera:
 /* 8041B928 00418868  7C 08 03 A6 */	mtlr r0
 /* 8041B92C 0041886C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041B930 00418870  4E 80 00 20 */	blr 
+.endfn setCameras__11BlendCameraFPP6Camera
 
-.global setBlendFactor__11BlendCameraFf
-setBlendFactor__11BlendCameraFf:
+.fn setBlendFactor__11BlendCameraFf, global
 /* 8041B934 00418874  C0 02 1F F8 */	lfs f0, lbl_80520358@sda21(r2)
 /* 8041B938 00418878  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041B93C 0041887C  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -1869,9 +1887,9 @@ setBlendFactor__11BlendCameraFf:
 /* 8041B988 004188C8  D0 23 01 4C */	stfs f1, 0x14c(r3)
 /* 8041B98C 004188CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041B990 004188D0  4E 80 00 20 */	blr 
+.endfn setBlendFactor__11BlendCameraFf
 
-.global doUpdate__11BlendCameraFv
-doUpdate__11BlendCameraFv:
+.fn doUpdate__11BlendCameraFv, global
 /* 8041B994 004188D4  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 8041B998 004188D8  7C 08 02 A6 */	mflr r0
 /* 8041B99C 004188DC  90 01 01 24 */	stw r0, 0x124(r1)
@@ -2043,9 +2061,9 @@ doUpdate__11BlendCameraFv:
 /* 8041BC30 00418B70  7C 08 03 A6 */	mtlr r0
 /* 8041BC34 00418B74  38 21 01 20 */	addi r1, r1, 0x120
 /* 8041BC38 00418B78  4E 80 00 20 */	blr 
+.endfn doUpdate__11BlendCameraFv
 
-.global __dt__11BlendCameraFv
-__dt__11BlendCameraFv:
+.fn __dt__11BlendCameraFv, weak
 /* 8041BC3C 00418B7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041BC40 00418B80  7C 08 02 A6 */	mflr r0
 /* 8041BC44 00418B84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2096,13 +2114,14 @@ __dt__11BlendCameraFv:
 /* 8041BCF0 00418C30  7C 08 03 A6 */	mtlr r0
 /* 8041BCF4 00418C34  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041BCF8 00418C38  4E 80 00 20 */	blr 
+.endfn __dt__11BlendCameraFv
 
-.global getViewMatrix__11CullFrustumFb
-getViewMatrix__11CullFrustumFb:
+.fn getViewMatrix__11CullFrustumFb, weak
 /* 8041BCFC 00418C3C  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 8041BD00 00418C40  4E 80 00 20 */	blr 
+.endfn getViewMatrix__11CullFrustumFb
 
-__sinit_camera_cpp: # static initializer
+.fn __sinit_camera_cpp, local
 /* 8041BD04 00418C44  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8041BD08 00418C48  38 00 FF FF */	li r0, -1
 /* 8041BD0C 00418C4C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2113,3 +2132,4 @@ __sinit_camera_cpp: # static initializer
 /* 8041BD20 00418C60  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8041BD24 00418C64  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8041BD28 00418C68  4E 80 00 20 */	blr 
+.endfn __sinit_camera_cpp

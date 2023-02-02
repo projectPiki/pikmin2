@@ -11,36 +11,47 @@ lbl_constructor:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516738:
+.obj lbl_80516738, local
 	.float 0.0
-lbl_8051673C:
+.endobj lbl_80516738
+.obj lbl_8051673C, local
 	.float 1.5707964
-lbl_80516740:
+.endobj lbl_8051673C
+.obj lbl_80516740, local
 	.float 0.5
-lbl_80516744:
+.endobj lbl_80516740
+.obj lbl_80516744, local
 	.float 1024.0
-lbl_80516748:
+.endobj lbl_80516744
+.obj lbl_80516748, local
 	.float -1.5707964
-lbl_8051674C:
+.endobj lbl_80516748
+.obj lbl_8051674C, local
 	.float 3.1415927
-lbl_80516750:
+.endobj lbl_8051674C
+.obj lbl_80516750, local
 	.float -3.1415927
+.endobj lbl_80516750
 .balign 8
-lbl_80516758:
+.obj lbl_80516758, local
 	.double 6.2831854820251465
+.endobj lbl_80516758
 .balign 8
 lbl_80516760:
 	.double 2048.0
 .balign 8
-lbl_80516768:
+.obj lbl_80516768, local
 	.4byte 0x3F500000
 	.4byte 0x00000000
-lbl_80516770:
+.endobj lbl_80516768
+.obj lbl_80516770, local
 	.float 0.7853982
+.endobj lbl_80516770
 .balign 8
-lbl_80516778:
+.obj lbl_80516778, local
 	.4byte 0x43300000
 	.4byte 0x80000000
+.endobj lbl_80516778
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "atan2___Q25JMath18TAtanTable<1024,f>CFff"
@@ -337,7 +348,7 @@ lbl_80516778:
 /* 8003551C 0003245C  4E 80 00 20 */	blr 
 .endfn __sinit_JMATrigonometric_cpp
 
-.global "__ct__Q23std9pair<f,f>Fv" # weak function
+.global "__ct__Q23std9pair<f,f>Fv"
 "__ct__Q23std9pair<f,f>Fv":
 /* 80035520 00032460  C0 02 83 D8 */	lfs f0, lbl_80516738@sda21(r2)
 /* 80035524 00032464  D0 03 00 00 */	stfs f0, 0(r3)

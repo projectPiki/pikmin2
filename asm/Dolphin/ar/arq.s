@@ -1,41 +1,51 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A76C8:
+.obj lbl_804A76C8, local
 	.asciz "<< Dolphin SDK - ARQ\trelease build: Nov 26 2003 05:19:43 (0x2301) >>"
+.endobj lbl_804A76C8
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __ARQVersion
-__ARQVersion:
+.obj __ARQVersion, global
 	.4byte lbl_804A76C8
+.endobj __ARQVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-__ARQRequestQueueHi:
+.obj __ARQRequestQueueHi, local
 	.skip 0x4
-__ARQRequestTailHi:
+.endobj __ARQRequestQueueHi
+.obj __ARQRequestTailHi, local
 	.skip 0x4
-__ARQRequestQueueLo:
+.endobj __ARQRequestTailHi
+.obj __ARQRequestQueueLo, local
 	.skip 0x4
-__ARQRequestTailLo:
+.endobj __ARQRequestQueueLo
+.obj __ARQRequestTailLo, local
 	.skip 0x4
-__ARQRequestPendingHi:
+.endobj __ARQRequestTailLo
+.obj __ARQRequestPendingHi, local
 	.skip 0x4
-__ARQRequestPendingLo:
+.endobj __ARQRequestPendingHi
+.obj __ARQRequestPendingLo, local
 	.skip 0x4
-__ARQCallbackHi:
+.endobj __ARQRequestPendingLo
+.obj __ARQCallbackHi, local
 	.skip 0x4
-__ARQCallbackLo:
+.endobj __ARQCallbackHi
+.obj __ARQCallbackLo, local
 	.skip 0x4
-__ARQChunkSize:
+.endobj __ARQCallbackLo
+.obj __ARQChunkSize, local
 	.skip 0x4
-__ARQ_init_flag:
+.endobj __ARQChunkSize
+.obj __ARQ_init_flag, local
 	.skip 0x4
+.endobj __ARQ_init_flag
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ARQServiceQueueLo
-__ARQServiceQueueLo:
+.fn __ARQServiceQueueLo, global
 /* 800D41BC 000D10FC  7C 08 02 A6 */	mflr r0
 /* 800D41C0 000D1100  90 01 00 04 */	stw r0, 4(r1)
 /* 800D41C4 000D1104  94 21 FF F8 */	stwu r1, -8(r1)
@@ -107,13 +117,13 @@ __ARQServiceQueueLo:
 /* 800D42B0 000D11F0  38 21 00 08 */	addi r1, r1, 8
 /* 800D42B4 000D11F4  7C 08 03 A6 */	mtlr r0
 /* 800D42B8 000D11F8  4E 80 00 20 */	blr 
+.endfn __ARQServiceQueueLo
 
-.global __ARQCallbackHack
-__ARQCallbackHack:
+.fn __ARQCallbackHack, global
 /* 800D42BC 000D11FC  4E 80 00 20 */	blr 
+.endfn __ARQCallbackHack
 
-.global __ARQInterruptServiceRoutine
-__ARQInterruptServiceRoutine:
+.fn __ARQInterruptServiceRoutine, global
 /* 800D42C0 000D1200  7C 08 02 A6 */	mflr r0
 /* 800D42C4 000D1204  90 01 00 04 */	stw r0, 4(r1)
 /* 800D42C8 000D1208  94 21 FF F8 */	stwu r1, -8(r1)
@@ -171,9 +181,9 @@ __ARQInterruptServiceRoutine:
 /* 800D4380 000D12C0  38 21 00 08 */	addi r1, r1, 8
 /* 800D4384 000D12C4  7C 08 03 A6 */	mtlr r0
 /* 800D4388 000D12C8  4E 80 00 20 */	blr 
+.endfn __ARQInterruptServiceRoutine
 
-.global ARQInit
-ARQInit:
+.fn ARQInit, global
 /* 800D438C 000D12CC  7C 08 02 A6 */	mflr r0
 /* 800D4390 000D12D0  90 01 00 04 */	stw r0, 4(r1)
 /* 800D4394 000D12D4  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -203,9 +213,9 @@ ARQInit:
 /* 800D43F0 000D1330  38 21 00 10 */	addi r1, r1, 0x10
 /* 800D43F4 000D1334  7C 08 03 A6 */	mtlr r0
 /* 800D43F8 000D1338  4E 80 00 20 */	blr 
+.endfn ARQInit
 
-.global ARQPostRequest
-ARQPostRequest:
+.fn ARQPostRequest, global
 /* 800D43FC 000D133C  7C 08 02 A6 */	mflr r0
 /* 800D4400 000D1340  28 0A 00 00 */	cmplwi r10, 0
 /* 800D4404 000D1344  90 01 00 04 */	stw r0, 4(r1)
@@ -306,3 +316,4 @@ ARQPostRequest:
 /* 800D454C 000D148C  38 21 00 38 */	addi r1, r1, 0x38
 /* 800D4550 000D1490  7C 08 03 A6 */	mtlr r0
 /* 800D4554 000D1494  4E 80 00 20 */	blr 
+.endfn ARQPostRequest

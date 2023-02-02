@@ -1,45 +1,51 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A79B8:
+.obj lbl_804A79B8, local
 	.asciz "DSP is booting task: 0x%08X\n"
+.endobj lbl_804A79B8
 .balign 4
-lbl_804A79D8:
+.obj lbl_804A79D8, local
 	.asciz "__DSP_boot_task()  : IRAM MMEM ADDR: 0x%08X\n"
+.endobj lbl_804A79D8
 .balign 4
-lbl_804A7A08:
+.obj lbl_804A7A08, local
 	.asciz "__DSP_boot_task()  : IRAM DSP ADDR : 0x%08X\n"
+.endobj lbl_804A7A08
 .balign 4
-lbl_804A7A38:
+.obj lbl_804A7A38, local
 	.asciz "__DSP_boot_task()  : IRAM LENGTH   : 0x%08X\n"
+.endobj lbl_804A7A38
 .balign 4
-lbl_804A7A68:
+.obj lbl_804A7A68, local
 	.asciz "__DSP_boot_task()  : DRAM MMEM ADDR: 0x%08X\n"
+.endobj lbl_804A7A68
 .balign 4
-lbl_804A7A98:
+.obj lbl_804A7A98, local
 	.asciz "__DSP_boot_task()  : Start Vector  : 0x%08X\n"
+.endobj lbl_804A7A98
 .balign 4
-lbl_804A7AC8:
+.obj lbl_804A7AC8, local
 	.asciz "__DSP_add_task() : Added task    : 0x%08X\n"
+.endobj lbl_804A7AC8
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global __DSP_tmp_task
-__DSP_tmp_task:
+.obj __DSP_tmp_task, global
 	.skip 0x4
-.global __DSP_last_task
-__DSP_last_task:
+.endobj __DSP_tmp_task
+.obj __DSP_last_task, global
 	.skip 0x4
-.global __DSP_first_task
-__DSP_first_task:
+.endobj __DSP_last_task
+.obj __DSP_first_task, global
 	.skip 0x4
-.global __DSP_curr_task
-__DSP_curr_task:
+.endobj __DSP_first_task
+.obj __DSP_curr_task, global
 	.skip 0x4
+.endobj __DSP_curr_task
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __DSP_exec_task
-__DSP_exec_task:
+.fn __DSP_exec_task, global
 /* 800DAE50 000D7D90  7C 08 02 A6 */	mflr r0
 /* 800DAE54 000D7D94  90 01 00 04 */	stw r0, 4(r1)
 /* 800DAE58 000D7D98  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -165,9 +171,9 @@ __DSP_exec_task:
 /* 800DAFE4 000D7F24  38 21 00 18 */	addi r1, r1, 0x18
 /* 800DAFE8 000D7F28  7C 08 03 A6 */	mtlr r0
 /* 800DAFEC 000D7F2C  4E 80 00 20 */	blr 
+.endfn __DSP_exec_task
 
-.global __DSP_boot_task
-__DSP_boot_task:
+.fn __DSP_boot_task, global
 /* 800DAFF0 000D7F30  7C 08 02 A6 */	mflr r0
 /* 800DAFF4 000D7F34  3C 80 80 4A */	lis r4, lbl_804A79B8@ha
 /* 800DAFF8 000D7F38  90 01 00 04 */	stw r0, 4(r1)
@@ -278,9 +284,9 @@ __DSP_boot_task:
 /* 800DB170 000D80B0  38 21 00 18 */	addi r1, r1, 0x18
 /* 800DB174 000D80B4  7C 08 03 A6 */	mtlr r0
 /* 800DB178 000D80B8  4E 80 00 20 */	blr 
+.endfn __DSP_boot_task
 
-.global __DSP_insert_task
-__DSP_insert_task:
+.fn __DSP_insert_task, global
 /* 800DB17C 000D80BC  80 0D 8D C0 */	lwz r0, __DSP_first_task@sda21(r13)
 /* 800DB180 000D80C0  28 00 00 00 */	cmplwi r0, 0
 /* 800DB184 000D80C4  40 82 00 20 */	bne .L_800DB1A4
@@ -327,9 +333,9 @@ __DSP_insert_task:
 /* 800DB210 000D8150  90 03 00 3C */	stw r0, 0x3c(r3)
 /* 800DB214 000D8154  90 6D 8D BC */	stw r3, __DSP_last_task@sda21(r13)
 /* 800DB218 000D8158  4E 80 00 20 */	blr 
+.endfn __DSP_insert_task
 
-.global __DSP_remove_task
-__DSP_remove_task:
+.fn __DSP_remove_task, global
 /* 800DB21C 000D815C  38 80 00 00 */	li r4, 0
 /* 800DB220 000D8160  90 83 00 08 */	stw r4, 8(r3)
 /* 800DB224 000D8164  38 00 00 03 */	li r0, 3
@@ -370,3 +376,4 @@ __DSP_remove_task:
 /* 800DB2A4 000D81E4  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 800DB2A8 000D81E8  90 03 00 3C */	stw r0, 0x3c(r3)
 /* 800DB2AC 000D81EC  4E 80 00 20 */	blr 
+.endfn __DSP_remove_task

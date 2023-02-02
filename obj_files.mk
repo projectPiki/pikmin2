@@ -1,9 +1,5 @@
 # Linker order for every file, passed to the Metrowerks linker.
 
-GROUP_0_FILES:=\
-	$(BUILD_DIR)/asm/ctors.o\
-	$(BUILD_DIR)/asm/dtors.o\
-
 JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/JSystem.a\
 

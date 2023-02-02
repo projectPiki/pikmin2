@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805203E0:
+.obj lbl_805203E0, local
 	.float 1.0
+.endobj lbl_805203E0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global traceMove_new__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof
-traceMove_new__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof:
+.fn traceMove_new__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof, global
 /* 8041FFA8 0041CEE8  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 8041FFAC 0041CEEC  7C 08 02 A6 */	mflr r0
 /* 8041FFB0 0041CEF0  90 01 01 34 */	stw r0, 0x134(r1)
@@ -122,9 +122,9 @@ traceMove_new__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof:
 /* 8042015C 0041D09C  7C 08 03 A6 */	mtlr r0
 /* 80420160 0041D0A0  38 21 01 30 */	addi r1, r1, 0x130
 /* 80420164 0041D0A4  4E 80 00 20 */	blr 
+.endfn traceMove_new__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof
 
-.global "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
-"traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>":
+.fn traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>, global
 /* 80420168 0041D0A8  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8042016C 0041D0AC  7C 08 02 A6 */	mflr r0
 /* 80420170 0041D0B0  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -325,9 +325,9 @@ traceMove_new__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof:
 /* 80420458 0041D398  7C 08 03 A6 */	mtlr r0
 /* 8042045C 0041D39C  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80420460 0041D3A0  4E 80 00 20 */	blr 
+.endfn traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>
 
-.global "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
-"traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>":
+.fn traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>, global
 /* 80420464 0041D3A4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80420468 0041D3A8  7C 08 02 A6 */	mflr r0
 /* 8042046C 0041D3AC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -868,9 +868,9 @@ traceMove_new__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof:
 /* 80420C48 0041DB88  7C 08 03 A6 */	mtlr r0
 /* 80420C4C 0041DB8C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80420C50 0041DB90  4E 80 00 20 */	blr 
+.endfn traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>
 
-.global traceMove_new_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof
-traceMove_new_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof:
+.fn traceMove_new_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof, global
 /* 80420C54 0041DB94  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80420C58 0041DB98  7C 08 02 A6 */	mflr r0
 /* 80420C5C 0041DB9C  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -910,9 +910,9 @@ traceMove_new_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof:
 /* 80420CE0 0041DC20  7C 08 03 A6 */	mtlr r0
 /* 80420CE4 0041DC24  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 80420CE8 0041DC28  4E 80 00 20 */	blr 
+.endfn traceMove_new_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof
 
-.global "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
-"traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>":
+.fn traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>, global
 /* 80420CEC 0041DC2C  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80420CF0 0041DC30  7C 08 02 A6 */	mflr r0
 /* 80420CF4 0041DC34  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -1068,9 +1068,9 @@ traceMove_new_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof:
 /* 80420F2C 0041DE6C  7C 08 03 A6 */	mtlr r0
 /* 80420F30 0041DE70  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80420F34 0041DE74  4E 80 00 20 */	blr 
+.endfn traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>
 
-.global "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
-"traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>":
+.fn traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>, global
 /* 80420F38 0041DE78  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80420F3C 0041DE7C  7C 08 02 A6 */	mflr r0
 /* 80420F40 0041DE80  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1547,3 +1547,4 @@ traceMove_new_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof:
 /* 8042161C 0041E55C  7C 08 03 A6 */	mtlr r0
 /* 80421620 0041E560  38 21 00 30 */	addi r1, r1, 0x30
 /* 80421624 0041E564  4E 80 00 20 */	blr 
+.endfn traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>

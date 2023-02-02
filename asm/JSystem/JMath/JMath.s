@@ -1,14 +1,15 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516728:
+.obj lbl_80516728, local
 	.double 0.0
-lbl_80516730:
+.endobj lbl_80516728
+.obj lbl_80516730, local
 	.float 1.0
+.endobj lbl_80516730
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global JMAEulerToQuat__FsssP10Quaternion
-JMAEulerToQuat__FsssP10Quaternion:
+.fn JMAEulerToQuat__FsssP10Quaternion, global
 /* 80034F08 00031E48  7C 68 07 34 */	extsh r8, r3
 /* 80034F0C 00031E4C  7C 87 07 34 */	extsh r7, r4
 /* 80034F10 00031E50  55 00 0F FE */	srwi r0, r8, 0x1f
@@ -56,9 +57,9 @@ JMAEulerToQuat__FsssP10Quaternion:
 /* 80034FB8 00031EF8  D0 46 00 04 */	stfs f2, 4(r6)
 /* 80034FBC 00031EFC  D0 06 00 08 */	stfs f0, 8(r6)
 /* 80034FC0 00031F00  4E 80 00 20 */	blr 
+.endfn JMAEulerToQuat__FsssP10Quaternion
 
-.global JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion
-JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion:
+.fn JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion, global
 /* 80034FC4 00031F04  E0 03 00 00 */	psq_l f0, 0(r3), 0, qr0
 /* 80034FC8 00031F08  E0 64 00 00 */	psq_l f3, 0(r4), 0, qr0
 /* 80034FCC 00031F0C  E0 43 00 08 */	psq_l f2, 8(r3), 0, qr0
@@ -114,9 +115,9 @@ JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion:
 /* 80035090 00031FD0  D0 25 00 08 */	stfs f1, 8(r5)
 /* 80035094 00031FD4  D0 05 00 0C */	stfs f0, 0xc(r5)
 /* 80035098 00031FD8  4E 80 00 20 */	blr 
+.endfn JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion
 
-.global JMAMTXApplyScale__FPA4_CfPA4_ffff
-JMAMTXApplyScale__FPA4_CfPA4_ffff:
+.fn JMAMTXApplyScale__FPA4_CfPA4_ffff, global
 /* 8003509C 00031FDC  FC C0 08 90 */	fmr f6, f1
 /* 800350A0 00031FE0  E0 23 00 00 */	psq_l f1, 0(r3), 0, qr0
 /* 800350A4 00031FE4  FC 00 10 90 */	fmr f0, f2
@@ -142,3 +143,4 @@ JMAMTXApplyScale__FPA4_CfPA4_ffff:
 /* 800350F4 00032034  F0 44 00 18 */	psq_st f2, 24(r4), 0, qr0
 /* 800350F8 00032038  F0 64 00 28 */	psq_st f3, 40(r4), 0, qr0
 /* 800350FC 0003203C  4E 80 00 20 */	blr 
+.endfn JMAMTXApplyScale__FPA4_CfPA4_ffff

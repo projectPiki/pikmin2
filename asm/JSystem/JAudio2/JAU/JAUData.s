@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q210JADUtility10PrmSetBase
-__vt__Q210JADUtility10PrmSetBase:
+.obj __vt__Q210JADUtility10PrmSetBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q210JADUtility10PrmSetBaseFv
@@ -12,26 +11,26 @@ __vt__Q210JADUtility10PrmSetBase:
 	.4byte afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
 	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
 	.4byte afterGetFromFree__Q210JADUtility10PrmSetBaseFv
-.global __vt__Q210JADUtility10PrmSetTree
-__vt__Q210JADUtility10PrmSetTree:
+.endobj __vt__Q210JADUtility10PrmSetBase
+.obj __vt__Q210JADUtility10PrmSetTree, weak
 	.4byte 0
 	.4byte 0
 	.4byte "beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
 	.4byte "beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
 	.4byte "afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
 	.4byte "afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase"
-.global "__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"
-"__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>":
+.endobj __vt__Q210JADUtility10PrmSetTree
+.obj __vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>, weak
 	.4byte 0
 	.4byte 0
 	.4byte "beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
 	.4byte "beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
 	.4byte "afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
 	.4byte "afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase"
+.endobj __vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q210JADUtility10PrmSetBaseFb
-__ct__Q210JADUtility10PrmSetBaseFb:
+.fn __ct__Q210JADUtility10PrmSetBaseFb, global
 /* 800BA564 000B74A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BA568 000B74A8  7C 08 02 A6 */	mflr r0
 /* 800BA56C 000B74AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -75,9 +74,9 @@ __ct__Q210JADUtility10PrmSetBaseFb:
 /* 800BA604 000B7544  7C 08 03 A6 */	mtlr r0
 /* 800BA608 000B7548  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BA60C 000B754C  4E 80 00 20 */	blr 
+.endfn __ct__Q210JADUtility10PrmSetBaseFb
 
-.global load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream
-load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream:
+.fn load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream, global
 /* 800BA610 000B7550  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BA614 000B7554  7C 08 02 A6 */	mflr r0
 /* 800BA618 000B7558  90 01 00 24 */	stw r0, 0x24(r1)
@@ -118,9 +117,9 @@ load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream:
 /* 800BA69C 000B75DC  7C 08 03 A6 */	mtlr r0
 /* 800BA6A0 000B75E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BA6A4 000B75E4  4E 80 00 20 */	blr 
+.endfn load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream
 
-.global load__Q210JADUtility7PrmBaseFR20JSUMemoryInputStream
-load__Q210JADUtility7PrmBaseFR20JSUMemoryInputStream:
+.fn load__Q210JADUtility7PrmBaseFR20JSUMemoryInputStream, weak
 /* 800BA6A8 000B75E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BA6AC 000B75EC  7C 08 02 A6 */	mflr r0
 /* 800BA6B0 000B75F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -138,9 +137,9 @@ load__Q210JADUtility7PrmBaseFR20JSUMemoryInputStream:
 /* 800BA6DC 000B761C  7C 08 03 A6 */	mtlr r0
 /* 800BA6E0 000B7620  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BA6E4 000B7624  4E 80 00 20 */	blr 
+.endfn load__Q210JADUtility7PrmBaseFR20JSUMemoryInputStream
 
-.global __dt__Q210JADUtility10PrmSetBaseFv
-__dt__Q210JADUtility10PrmSetBaseFv:
+.fn __dt__Q210JADUtility10PrmSetBaseFv, weak
 /* 800BA6E8 000B7628  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BA6EC 000B762C  7C 08 02 A6 */	mflr r0
 /* 800BA6F0 000B7630  90 01 00 14 */	stw r0, 0x14(r1)
@@ -205,40 +204,41 @@ __dt__Q210JADUtility10PrmSetBaseFv:
 /* 800BA7C4 000B7704  7C 08 03 A6 */	mtlr r0
 /* 800BA7C8 000B7708  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BA7CC 000B770C  4E 80 00 20 */	blr 
+.endfn __dt__Q210JADUtility10PrmSetBaseFv
 
-.global appendAfter__Q210JADUtility10PrmSetBaseFv
-appendAfter__Q210JADUtility10PrmSetBaseFv:
+.fn appendAfter__Q210JADUtility10PrmSetBaseFv, weak
 /* 800BA7D0 000B7710  4E 80 00 20 */	blr 
+.endfn appendAfter__Q210JADUtility10PrmSetBaseFv
 
-.global afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
-afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase:
+.fn afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase, weak
 /* 800BA7D4 000B7714  4E 80 00 20 */	blr 
+.endfn afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
 
-.global afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
-afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase:
+.fn afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase, weak
 /* 800BA7D8 000B7718  4E 80 00 20 */	blr 
+.endfn afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
 
-.global getEraseLink__Q210JADUtility10PrmSetBaseFv
-getEraseLink__Q210JADUtility10PrmSetBaseFv:
+.fn getEraseLink__Q210JADUtility10PrmSetBaseFv, weak
 /* 800BA7DC 000B771C  38 60 00 00 */	li r3, 0
 /* 800BA7E0 000B7720  4E 80 00 20 */	blr 
+.endfn getEraseLink__Q210JADUtility10PrmSetBaseFv
 
-.global afterGetFromFree__Q210JADUtility10PrmSetBaseFv
-afterGetFromFree__Q210JADUtility10PrmSetBaseFv:
+.fn afterGetFromFree__Q210JADUtility10PrmSetBaseFv, weak
 /* 800BA7E4 000B7724  4E 80 00 20 */	blr 
+.endfn afterGetFromFree__Q210JADUtility10PrmSetBaseFv
 
-.global "beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
-"beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase":
+.fn beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase, weak
 /* 800BA7E8 000B7728  4E 80 00 20 */	blr 
+.endfn beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase
 
-.global "beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
-"beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase":
+.fn beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase, weak
 /* 800BA7EC 000B772C  4E 80 00 20 */	blr 
+.endfn beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase
 
-.global "afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
-"afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase":
+.fn afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase, weak
 /* 800BA7F0 000B7730  4E 80 00 20 */	blr 
+.endfn afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase
 
-.global "afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase"
-"afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase":
+.fn afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase, weak
 /* 800BA7F4 000B7734  4E 80 00 20 */	blr 
+.endfn afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase

@@ -1,70 +1,59 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global AI_VERSION_STRING
-AI_VERSION_STRING:
+.obj lbl_804AA068, local
 	.asciz "<< Dolphin SDK - AI\trelease build: Apr 17 2003 12:33:54 (0x2301) >>"
+.endobj lbl_804AA068
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __AIVersion
-__AIVersion:
-	.4byte AI_VERSION_STRING
+.obj __AIVersion, global
+	.4byte lbl_804AA068
+.endobj __AIVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global __AIS_Callback
-__AIS_Callback:
+.obj __AIS_Callback, local
 	.skip 0x4
-.global __AID_Callback
-__AID_Callback:
+.endobj __AIS_Callback
+.obj __AID_Callback, local
 	.skip 0x4
-.global __CallbackStack
-__CallbackStack:
+.endobj __AID_Callback
+.obj __CallbackStack, local
 	.skip 0x4
-.global __OldStack
-__OldStack:
+.endobj __CallbackStack
+.obj __OldStack, local
 	.skip 0x4
-.global __AI_init_flag
-__AI_init_flag:
+.endobj __OldStack
+.obj __AI_init_flag, local
 	.skip 0x4
-.global __AID_Active
-__AID_Active:
+.endobj __AI_init_flag
+.obj __AID_Active, local
 	.skip 0x4
-.global bound_32KHz
-bound_32KHz:
-	.skip 0x4
-.global lbl_805156D4
-lbl_805156D4:
-	.skip 0x4
-.global bound_48KHz
-bound_48KHz:
-	.skip 0x4
-.global lbl_805156DC
-lbl_805156DC:
-	.skip 0x4
-.global min_wait
-min_wait:
-	.skip 0x4
-.global lbl_805156E4
-lbl_805156E4:
-	.skip 0x4
-.global max_wait
-max_wait:
-	.skip 0x4
-.global lbl_805156EC
-lbl_805156EC:
-	.skip 0x4
-.global buffer
-buffer:
-	.skip 0x4
-.global lbl_805156F4
-lbl_805156F4:
-	.skip 0xC
+.endobj __AID_Active
+.balign 8
+.obj bound_32KHz, local
+	.skip 0x8
+.endobj bound_32KHz
+.balign 8
+.obj bound_48KHz, local
+	.skip 0x8
+.endobj bound_48KHz
+.balign 8
+.obj min_wait, local
+	.skip 0x8
+.endobj min_wait
+.balign 8
+.obj max_wait, local
+	.skip 0x8
+.endobj max_wait
+.balign 8
+.obj buffer, local
+	.skip 0x8
+.endobj buffer
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global AIRegisterDMACallback
-AIRegisterDMACallback:
+.fn AIRegisterDMACallback, global
 /* 800F6864 000F37A4  7C 08 02 A6 */	mflr r0
 /* 800F6868 000F37A8  90 01 00 04 */	stw r0, 4(r1)
 /* 800F686C 000F37AC  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -82,9 +71,9 @@ AIRegisterDMACallback:
 /* 800F689C 000F37DC  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F68A0 000F37E0  7C 08 03 A6 */	mtlr r0
 /* 800F68A4 000F37E4  4E 80 00 20 */	blr 
+.endfn AIRegisterDMACallback
 
-.global AIInitDMA
-AIInitDMA:
+.fn AIInitDMA, global
 /* 800F68A8 000F37E8  7C 08 02 A6 */	mflr r0
 /* 800F68AC 000F37EC  90 01 00 04 */	stw r0, 4(r1)
 /* 800F68B0 000F37F0  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -119,27 +108,27 @@ AIInitDMA:
 /* 800F6924 000F3864  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F6928 000F3868  7C 08 03 A6 */	mtlr r0
 /* 800F692C 000F386C  4E 80 00 20 */	blr 
+.endfn AIInitDMA
 
-.global AIStartDMA
-AIStartDMA:
+.fn AIStartDMA, global
 /* 800F6930 000F3870  3C 60 CC 00 */	lis r3, 0xCC005000@ha
 /* 800F6934 000F3874  38 63 50 00 */	addi r3, r3, 0xCC005000@l
 /* 800F6938 000F3878  A0 03 00 36 */	lhz r0, 0x36(r3)
 /* 800F693C 000F387C  60 00 80 00 */	ori r0, r0, 0x8000
 /* 800F6940 000F3880  B0 03 00 36 */	sth r0, 0x36(r3)
 /* 800F6944 000F3884  4E 80 00 20 */	blr 
+.endfn AIStartDMA
 
-.global AIStopDMA
-AIStopDMA:
+.fn AIStopDMA, global
 /* 800F6948 000F3888  3C 60 CC 00 */	lis r3, 0xCC005000@ha
 /* 800F694C 000F388C  38 63 50 00 */	addi r3, r3, 0xCC005000@l
 /* 800F6950 000F3890  A0 03 00 36 */	lhz r0, 0x36(r3)
 /* 800F6954 000F3894  54 00 04 5E */	rlwinm r0, r0, 0, 0x11, 0xf
 /* 800F6958 000F3898  B0 03 00 36 */	sth r0, 0x36(r3)
 /* 800F695C 000F389C  4E 80 00 20 */	blr 
+.endfn AIStopDMA
 
-.global AISetStreamPlayState
-AISetStreamPlayState:
+.fn AISetStreamPlayState, global
 /* 800F6960 000F38A0  7C 08 02 A6 */	mflr r0
 /* 800F6964 000F38A4  90 01 00 04 */	stw r0, 4(r1)
 /* 800F6968 000F38A8  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -196,16 +185,16 @@ AISetStreamPlayState:
 /* 800F6A2C 000F396C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F6A30 000F3970  7C 08 03 A6 */	mtlr r0
 /* 800F6A34 000F3974  4E 80 00 20 */	blr 
+.endfn AISetStreamPlayState
 
-.global AIGetStreamPlayState
-AIGetStreamPlayState:
+.fn AIGetStreamPlayState, global
 /* 800F6A38 000F3978  3C 60 CC 00 */	lis r3, 0xCC006C00@ha
 /* 800F6A3C 000F397C  80 03 6C 00 */	lwz r0, 0xCC006C00@l(r3)
 /* 800F6A40 000F3980  54 03 07 FE */	clrlwi r3, r0, 0x1f
 /* 800F6A44 000F3984  4E 80 00 20 */	blr 
+.endfn AIGetStreamPlayState
 
-.global AISetDSPSampleRate
-AISetDSPSampleRate:
+.fn AISetDSPSampleRate, global
 /* 800F6A48 000F3988  7C 08 02 A6 */	mflr r0
 /* 800F6A4C 000F398C  90 01 00 04 */	stw r0, 4(r1)
 /* 800F6A50 000F3990  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -263,17 +252,17 @@ AISetDSPSampleRate:
 /* 800F6B1C 000F3A5C  38 21 00 28 */	addi r1, r1, 0x28
 /* 800F6B20 000F3A60  7C 08 03 A6 */	mtlr r0
 /* 800F6B24 000F3A64  4E 80 00 20 */	blr 
+.endfn AISetDSPSampleRate
 
-.global AIGetDSPSampleRate
-AIGetDSPSampleRate:
+.fn AIGetDSPSampleRate, global
 /* 800F6B28 000F3A68  3C 60 CC 00 */	lis r3, 0xCC006C00@ha
 /* 800F6B2C 000F3A6C  80 03 6C 00 */	lwz r0, 0xCC006C00@l(r3)
 /* 800F6B30 000F3A70  54 00 D7 FE */	rlwinm r0, r0, 0x1a, 0x1f, 0x1f
 /* 800F6B34 000F3A74  68 03 00 01 */	xori r3, r0, 1
 /* 800F6B38 000F3A78  4E 80 00 20 */	blr 
+.endfn AIGetDSPSampleRate
 
-.global __AI_set_stream_sample_rate
-__AI_set_stream_sample_rate:
+.fn __AI_set_stream_sample_rate, local
 /* 800F6B3C 000F3A7C  7C 08 02 A6 */	mflr r0
 /* 800F6B40 000F3A80  90 01 00 04 */	stw r0, 4(r1)
 /* 800F6B44 000F3A84  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -328,16 +317,16 @@ __AI_set_stream_sample_rate:
 /* 800F6C04 000F3B44  38 21 00 30 */	addi r1, r1, 0x30
 /* 800F6C08 000F3B48  7C 08 03 A6 */	mtlr r0
 /* 800F6C0C 000F3B4C  4E 80 00 20 */	blr 
+.endfn __AI_set_stream_sample_rate
 
-.global AIGetStreamSampleRate
-AIGetStreamSampleRate:
+.fn AIGetStreamSampleRate, global
 /* 800F6C10 000F3B50  3C 60 CC 00 */	lis r3, 0xCC006C00@ha
 /* 800F6C14 000F3B54  80 03 6C 00 */	lwz r0, 0xCC006C00@l(r3)
 /* 800F6C18 000F3B58  54 03 FF FE */	rlwinm r3, r0, 0x1f, 0x1f, 0x1f
 /* 800F6C1C 000F3B5C  4E 80 00 20 */	blr 
+.endfn AIGetStreamSampleRate
 
-.global AISetStreamVolLeft
-AISetStreamVolLeft:
+.fn AISetStreamVolLeft, global
 /* 800F6C20 000F3B60  3C 80 CC 00 */	lis r4, 0xCC006C00@ha
 /* 800F6C24 000F3B64  38 84 6C 00 */	addi r4, r4, 0xCC006C00@l
 /* 800F6C28 000F3B68  80 04 00 04 */	lwz r0, 4(r4)
@@ -345,16 +334,16 @@ AISetStreamVolLeft:
 /* 800F6C30 000F3B70  50 60 06 3E */	rlwimi r0, r3, 0, 0x18, 0x1f
 /* 800F6C34 000F3B74  90 04 00 04 */	stw r0, 4(r4)
 /* 800F6C38 000F3B78  4E 80 00 20 */	blr 
+.endfn AISetStreamVolLeft
 
-.global AIGetStreamVolLeft
-AIGetStreamVolLeft:
+.fn AIGetStreamVolLeft, global
 /* 800F6C3C 000F3B7C  3C 60 CC 00 */	lis r3, 0xCC006C04@ha
 /* 800F6C40 000F3B80  80 03 6C 04 */	lwz r0, 0xCC006C04@l(r3)
 /* 800F6C44 000F3B84  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 800F6C48 000F3B88  4E 80 00 20 */	blr 
+.endfn AIGetStreamVolLeft
 
-.global AISetStreamVolRight
-AISetStreamVolRight:
+.fn AISetStreamVolRight, global
 /* 800F6C4C 000F3B8C  3C 80 CC 00 */	lis r4, 0xCC006C00@ha
 /* 800F6C50 000F3B90  38 84 6C 00 */	addi r4, r4, 0xCC006C00@l
 /* 800F6C54 000F3B94  80 04 00 04 */	lwz r0, 4(r4)
@@ -362,16 +351,16 @@ AISetStreamVolRight:
 /* 800F6C5C 000F3B9C  50 60 44 2E */	rlwimi r0, r3, 8, 0x10, 0x17
 /* 800F6C60 000F3BA0  90 04 00 04 */	stw r0, 4(r4)
 /* 800F6C64 000F3BA4  4E 80 00 20 */	blr 
+.endfn AISetStreamVolRight
 
-.global AIGetStreamVolRight
-AIGetStreamVolRight:
+.fn AIGetStreamVolRight, global
 /* 800F6C68 000F3BA8  3C 60 CC 00 */	lis r3, 0xCC006C04@ha
 /* 800F6C6C 000F3BAC  80 03 6C 04 */	lwz r0, 0xCC006C04@l(r3)
 /* 800F6C70 000F3BB0  54 03 C6 3E */	rlwinm r3, r0, 0x18, 0x18, 0x1f
 /* 800F6C74 000F3BB4  4E 80 00 20 */	blr 
+.endfn AIGetStreamVolRight
 
-.global AIInit
-AIInit:
+.fn AIInit, global
 /* 800F6C78 000F3BB8  7C 08 02 A6 */	mflr r0
 /* 800F6C7C 000F3BBC  90 01 00 04 */	stw r0, 4(r1)
 /* 800F6C80 000F3BC0  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -408,18 +397,18 @@ AIInit:
 /* 800F6CFC 000F3C3C  7C 6A 18 16 */	mulhwu r3, r10, r3
 /* 800F6D00 000F3C40  55 08 BA 7E */	srwi r8, r8, 9
 /* 800F6D04 000F3C44  54 E7 BA 7E */	srwi r7, r7, 9
-/* 800F6D08 000F3C48  91 0D 90 54 */	stw r8, lbl_805156D4@sda21(r13)
+/* 800F6D08 000F3C48  91 0D 90 54 */	stw r8, (bound_32KHz+4)@sda21(r13)
 /* 800F6D0C 000F3C4C  54 A5 BA 7E */	srwi r5, r5, 9
 /* 800F6D10 000F3C50  54 84 BA 7E */	srwi r4, r4, 9
-/* 800F6D14 000F3C54  90 ED 90 5C */	stw r7, lbl_805156DC@sda21(r13)
+/* 800F6D14 000F3C54  90 ED 90 5C */	stw r7, (bound_48KHz+4)@sda21(r13)
 /* 800F6D18 000F3C58  3B E0 00 00 */	li r31, 0
 /* 800F6D1C 000F3C5C  54 63 BA 7E */	srwi r3, r3, 9
-/* 800F6D20 000F3C60  90 AD 90 64 */	stw r5, lbl_805156E4@sda21(r13)
+/* 800F6D20 000F3C60  90 AD 90 64 */	stw r5, (min_wait+4)@sda21(r13)
 /* 800F6D24 000F3C64  3C C0 CC 00 */	lis r6, 0xCC006C00@ha
-/* 800F6D28 000F3C68  90 6D 90 74 */	stw r3, lbl_805156F4@sda21(r13)
+/* 800F6D28 000F3C68  90 6D 90 74 */	stw r3, (buffer+4)@sda21(r13)
 /* 800F6D2C 000F3C6C  38 60 00 01 */	li r3, 1
 /* 800F6D30 000F3C70  80 06 6C 00 */	lwz r0, 0xCC006C00@l(r6)
-/* 800F6D34 000F3C74  90 8D 90 6C */	stw r4, lbl_805156EC@sda21(r13)
+/* 800F6D34 000F3C74  90 8D 90 6C */	stw r4, (max_wait+4)@sda21(r13)
 /* 800F6D38 000F3C78  54 00 06 F2 */	rlwinm r0, r0, 0, 0x1b, 0x19
 /* 800F6D3C 000F3C7C  60 00 00 20 */	ori r0, r0, 0x20
 /* 800F6D40 000F3C80  93 ED 90 50 */	stw r31, bound_32KHz@sda21(r13)
@@ -464,9 +453,9 @@ AIInit:
 /* 800F6DD8 000F3D18  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F6DDC 000F3D1C  7C 08 03 A6 */	mtlr r0
 /* 800F6DE0 000F3D20  4E 80 00 20 */	blr 
+.endfn AIInit
 
-.global __AISHandler
-__AISHandler:
+.fn __AISHandler, local
 /* 800F6DE4 000F3D24  7C 08 02 A6 */	mflr r0
 /* 800F6DE8 000F3D28  90 01 00 04 */	stw r0, 4(r1)
 /* 800F6DEC 000F3D2C  94 21 FD 20 */	stwu r1, -0x2e0(r1)
@@ -499,9 +488,9 @@ __AISHandler:
 /* 800F6E54 000F3D94  38 21 02 E0 */	addi r1, r1, 0x2e0
 /* 800F6E58 000F3D98  7C 08 03 A6 */	mtlr r0
 /* 800F6E5C 000F3D9C  4E 80 00 20 */	blr 
+.endfn __AISHandler
 
-.global __AIDHandler
-__AIDHandler:
+.fn __AIDHandler, local
 /* 800F6E60 000F3DA0  7C 08 02 A6 */	mflr r0
 /* 800F6E64 000F3DA4  3C 60 CC 00 */	lis r3, 0xCC005000@ha
 /* 800F6E68 000F3DA8  90 01 00 04 */	stw r0, 4(r1)
@@ -548,9 +537,9 @@ __AIDHandler:
 /* 800F6F00 000F3E40  38 21 02 E0 */	addi r1, r1, 0x2e0
 /* 800F6F04 000F3E44  7C 08 03 A6 */	mtlr r0
 /* 800F6F08 000F3E48  4E 80 00 20 */	blr 
+.endfn __AIDHandler
 
-.global __AICallbackStackSwitch
-__AICallbackStackSwitch:
+.fn __AICallbackStackSwitch, local
 /* 800F6F0C 000F3E4C  7C 08 02 A6 */	mflr r0
 /* 800F6F10 000F3E50  90 01 00 04 */	stw r0, 4(r1)
 /* 800F6F14 000F3E54  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -573,9 +562,9 @@ __AICallbackStackSwitch:
 /* 800F6F58 000F3E98  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F6F5C 000F3E9C  7C 08 03 A6 */	mtlr r0
 /* 800F6F60 000F3EA0  4E 80 00 20 */	blr 
+.endfn __AICallbackStackSwitch
 
-.global __AI_SRC_INIT
-__AI_SRC_INIT:
+.fn __AI_SRC_INIT, local
 /* 800F6F64 000F3EA4  7C 08 02 A6 */	mflr r0
 /* 800F6F68 000F3EA8  90 01 00 04 */	stw r0, 4(r1)
 /* 800F6F6C 000F3EAC  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -634,10 +623,10 @@ __AI_SRC_INIT:
 /* 800F7024 000F3F64  41 82 FF F8 */	beq .L_800F701C
 /* 800F7028 000F3F68  4B FF BB 69 */	bl OSGetTime
 /* 800F702C 000F3F6C  7D 1A 20 10 */	subfc r8, r26, r4
-/* 800F7030 000F3F70  81 8D 90 54 */	lwz r12, lbl_805156D4@sda21(r13)
+/* 800F7030 000F3F70  81 8D 90 54 */	lwz r12, (bound_32KHz+4)@sda21(r13)
 /* 800F7034 000F3F74  80 BF 6C 00 */	lwz r5, 0x6c00(r31)
 /* 800F7038 000F3F78  7C FB 19 10 */	subfe r7, r27, r3
-/* 800F703C 000F3F7C  81 4D 90 74 */	lwz r10, lbl_805156F4@sda21(r13)
+/* 800F703C 000F3F7C  81 4D 90 74 */	lwz r10, (buffer+4)@sda21(r13)
 /* 800F7040 000F3F80  6C E7 80 00 */	xoris r7, r7, 0x8000
 /* 800F7044 000F3F84  54 A5 07 FA */	rlwinm r5, r5, 0, 0x1f, 0x1d
 /* 800F7048 000F3F88  81 6D 90 50 */	lwz r11, bound_32KHz@sda21(r13)
@@ -657,7 +646,7 @@ __AI_SRC_INIT:
 /* 800F7080 000F3FC0  41 82 00 14 */	beq .L_800F7094
 /* 800F7084 000F3FC4  83 AD 90 60 */	lwz r29, min_wait@sda21(r13)
 /* 800F7088 000F3FC8  38 00 00 01 */	li r0, 1
-/* 800F708C 000F3FCC  83 8D 90 64 */	lwz r28, lbl_805156E4@sda21(r13)
+/* 800F708C 000F3FCC  83 8D 90 64 */	lwz r28, (min_wait+4)@sda21(r13)
 /* 800F7090 000F3FD0  48 00 00 68 */	b .L_800F70F8
 .L_800F7094:
 /* 800F7094 000F3FD4  7C CC 50 14 */	addc r6, r12, r10
@@ -669,7 +658,7 @@ __AI_SRC_INIT:
 /* 800F70AC 000F3FEC  7C A5 00 D0 */	neg r5, r5
 /* 800F70B0 000F3FF0  2C 05 00 00 */	cmpwi r5, 0
 /* 800F70B4 000F3FF4  40 82 00 40 */	bne .L_800F70F4
-/* 800F70B8 000F3FF8  80 AD 90 5C */	lwz r5, lbl_805156DC@sda21(r13)
+/* 800F70B8 000F3FF8  80 AD 90 5C */	lwz r5, (bound_48KHz+4)@sda21(r13)
 /* 800F70BC 000F3FFC  80 0D 90 58 */	lwz r0, bound_48KHz@sda21(r13)
 /* 800F70C0 000F4000  7C CA 28 10 */	subfc r6, r10, r5
 /* 800F70C4 000F4004  7C 09 01 10 */	subfe r0, r9, r0
@@ -682,7 +671,7 @@ __AI_SRC_INIT:
 /* 800F70E0 000F4020  41 82 00 14 */	beq .L_800F70F4
 /* 800F70E4 000F4024  83 AD 90 68 */	lwz r29, max_wait@sda21(r13)
 /* 800F70E8 000F4028  38 00 00 01 */	li r0, 1
-/* 800F70EC 000F402C  83 8D 90 6C */	lwz r28, lbl_805156EC@sda21(r13)
+/* 800F70EC 000F402C  83 8D 90 6C */	lwz r28, (max_wait+4)@sda21(r13)
 /* 800F70F0 000F4030  48 00 00 08 */	b .L_800F70F8
 .L_800F70F4:
 /* 800F70F4 000F4034  38 00 00 00 */	li r0, 0
@@ -709,3 +698,4 @@ __AI_SRC_INIT:
 /* 800F713C 000F407C  38 21 00 30 */	addi r1, r1, 0x30
 /* 800F7140 000F4080  7C 08 03 A6 */	mtlr r0
 /* 800F7144 000F4084  4E 80 00 20 */	blr 
+.endfn __AI_SRC_INIT

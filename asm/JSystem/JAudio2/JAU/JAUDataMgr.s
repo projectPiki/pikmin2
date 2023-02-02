@@ -1,36 +1,35 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q210JADUtility6StrPrm
-__vt__Q210JADUtility6StrPrm:
+.obj __vt__Q210JADUtility6StrPrm, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q210JADUtility6StrPrmFv
 	.4byte save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream
 	.4byte load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream
-.global "__vt__Q210JADUtility10PrmHio<Pc>"
-"__vt__Q210JADUtility10PrmHio<Pc>":
+.endobj __vt__Q210JADUtility6StrPrm
+.obj __vt__Q210JADUtility10PrmHio<Pc>, weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility10PrmHio<Pc>Fv"
 	.4byte "save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream"
-.global "__vt__Q210JADUtility7Prm<Pc>"
-"__vt__Q210JADUtility7Prm<Pc>":
+.endobj __vt__Q210JADUtility10PrmHio<Pc>
+.obj __vt__Q210JADUtility7Prm<Pc>, weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility7Prm<Pc>Fv"
 	.4byte "save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream"
-.global __vt__Q210JADUtility7PrmBase
-__vt__Q210JADUtility7PrmBase:
+.endobj __vt__Q210JADUtility7Prm<Pc>
+.obj __vt__Q210JADUtility7PrmBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q210JADUtility7PrmBaseFv
 	.4byte save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream
 	.4byte load__Q210JADUtility7PrmBaseFR20JSUMemoryInputStream
-.global __vt__Q210JADUtility11DataMgrNode
-__vt__Q210JADUtility11DataMgrNode:
+.endobj __vt__Q210JADUtility7PrmBase
+.obj __vt__Q210JADUtility11DataMgrNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q210JADUtility11DataMgrNodeFv
@@ -46,8 +45,8 @@ __vt__Q210JADUtility11DataMgrNode:
 	.4byte 0
 	.4byte "@592@28@__dt__Q210JADUtility11DataMgrNodeFv"
 	.4byte "@592@28@init__Q210JADUtility11DataMgrNodeFv"
-.global __vt__Q210JADUtility15DataLoadMgrNode
-__vt__Q210JADUtility15DataLoadMgrNode:
+.endobj __vt__Q210JADUtility11DataMgrNode
+.obj __vt__Q210JADUtility15DataLoadMgrNode, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q210JADUtility15DataLoadMgrNodeFv
@@ -61,21 +60,22 @@ __vt__Q210JADUtility15DataLoadMgrNode:
 	.4byte 0
 	.4byte "@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv"
 	.4byte "@532@28@init__Q210JADUtility15DataLoadMgrNodeFv"
-.global __vt__Q210JADUtility11DataMgrBase
-__vt__Q210JADUtility11DataMgrBase:
+.endobj __vt__Q210JADUtility15DataLoadMgrNode
+.obj __vt__Q210JADUtility11DataMgrBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q210JADUtility11DataMgrBaseFv
 	.4byte init__Q210JADUtility11DataMgrBaseFv
+.endobj __vt__Q210JADUtility11DataMgrBase
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80517090:
+.obj lbl_80517090, local
 	.2byte 0x0000
+.endobj lbl_80517090
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q210JADUtility11DataMgrBaseFv
-__ct__Q210JADUtility11DataMgrBaseFv:
+.fn __ct__Q210JADUtility11DataMgrBaseFv, global
 /* 800BA7F8 000B7738  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BA7FC 000B773C  7C 08 02 A6 */	mflr r0
 /* 800BA800 000B7740  90 01 00 14 */	stw r0, 0x14(r1)
@@ -93,9 +93,9 @@ __ct__Q210JADUtility11DataMgrBaseFv:
 /* 800BA830 000B7770  7C 08 03 A6 */	mtlr r0
 /* 800BA834 000B7774  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BA838 000B7778  4E 80 00 20 */	blr 
+.endfn __ct__Q210JADUtility11DataMgrBaseFv
 
-.global __dt__Q210JADUtility11DataMgrBaseFv
-__dt__Q210JADUtility11DataMgrBaseFv:
+.fn __dt__Q210JADUtility11DataMgrBaseFv, global
 /* 800BA83C 000B777C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BA840 000B7780  7C 08 02 A6 */	mflr r0
 /* 800BA844 000B7784  90 01 00 14 */	stw r0, 0x14(r1)
@@ -128,9 +128,9 @@ __dt__Q210JADUtility11DataMgrBaseFv:
 /* 800BA8A8 000B77E8  7C 08 03 A6 */	mtlr r0
 /* 800BA8AC 000B77EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BA8B0 000B77F0  4E 80 00 20 */	blr 
+.endfn __dt__Q210JADUtility11DataMgrBaseFv
 
-.global __dt__Q210JADUtility15DataLoadMgrNodeFv
-__dt__Q210JADUtility15DataLoadMgrNodeFv:
+.fn __dt__Q210JADUtility15DataLoadMgrNodeFv, global
 /* 800BA8B4 000B77F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BA8B8 000B77F8  7C 08 02 A6 */	mflr r0
 /* 800BA8BC 000B77FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -185,14 +185,14 @@ __dt__Q210JADUtility15DataLoadMgrNodeFv:
 /* 800BA970 000B78B0  7C 08 03 A6 */	mtlr r0
 /* 800BA974 000B78B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BA978 000B78B8  4E 80 00 20 */	blr 
+.endfn __dt__Q210JADUtility15DataLoadMgrNodeFv
 
-.global isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv
-isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv: # weak function
+.fn isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv, weak
 /* 800BA97C 000B78BC  38 60 00 00 */	li r3, 0
 /* 800BA980 000B78C0  4E 80 00 20 */	blr 
+.endfn isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv
 
-.global initInstanceExt__Q210JADUtility15DataLoadMgrNodeFPvl
-initInstanceExt__Q210JADUtility15DataLoadMgrNodeFPvl:
+.fn initInstanceExt__Q210JADUtility15DataLoadMgrNodeFPvl, global
 /* 800BA984 000B78C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BA988 000B78C8  7C 08 02 A6 */	mflr r0
 /* 800BA98C 000B78CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -257,17 +257,17 @@ initInstanceExt__Q210JADUtility15DataLoadMgrNodeFPvl:
 /* 800BAA68 000B79A8  7C 08 03 A6 */	mtlr r0
 /* 800BAA6C 000B79AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BAA70 000B79B0  4E 80 00 20 */	blr 
+.endfn initInstanceExt__Q210JADUtility15DataLoadMgrNodeFPvl
 
-.global setFlagsAsExternal__Q210JADUtility15DataLoadMgrNodeFPv
-setFlagsAsExternal__Q210JADUtility15DataLoadMgrNodeFPv:
+.fn setFlagsAsExternal__Q210JADUtility15DataLoadMgrNodeFPv, global
 /* 800BAA74 000B79B4  80 A3 00 00 */	lwz r5, 0(r3)
 /* 800BAA78 000B79B8  38 00 00 03 */	li r0, 3
 /* 800BAA7C 000B79BC  90 85 00 18 */	stw r4, 0x18(r5)
 /* 800BAA80 000B79C0  90 03 00 08 */	stw r0, 8(r3)
 /* 800BAA84 000B79C4  4E 80 00 20 */	blr 
+.endfn setFlagsAsExternal__Q210JADUtility15DataLoadMgrNodeFPv
 
-.global __ct__Q210JADUtility11DataMgrNodeFv
-__ct__Q210JADUtility11DataMgrNodeFv:
+.fn __ct__Q210JADUtility11DataMgrNodeFv, global
 /* 800BAA88 000B79C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAA8C 000B79CC  7C 08 02 A6 */	mflr r0
 /* 800BAA90 000B79D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -358,9 +358,9 @@ __ct__Q210JADUtility11DataMgrNodeFv:
 /* 800BABD8 000B7B18  7C 08 03 A6 */	mtlr r0
 /* 800BABDC 000B7B1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BABE0 000B7B20  4E 80 00 20 */	blr 
+.endfn __ct__Q210JADUtility11DataMgrNodeFv
 
-.global __dt__Q210JADUtility6StrPrmFv
-__dt__Q210JADUtility6StrPrmFv: # weak function
+.fn __dt__Q210JADUtility6StrPrmFv, weak
 /* 800BABE4 000B7B24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BABE8 000B7B28  7C 08 02 A6 */	mflr r0
 /* 800BABEC 000B7B2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -406,9 +406,9 @@ __dt__Q210JADUtility6StrPrmFv: # weak function
 /* 800BAC80 000B7BC0  7C 08 03 A6 */	mtlr r0
 /* 800BAC84 000B7BC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BAC88 000B7BC8  4E 80 00 20 */	blr 
+.endfn __dt__Q210JADUtility6StrPrmFv
 
-.global "__dt__Q210JADUtility10PrmHio<Pc>Fv"
-"__dt__Q210JADUtility10PrmHio<Pc>Fv": # weak function
+.fn __dt__Q210JADUtility10PrmHio<Pc>Fv, weak
 /* 800BAC8C 000B7BCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAC90 000B7BD0  7C 08 02 A6 */	mflr r0
 /* 800BAC94 000B7BD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -450,9 +450,9 @@ __dt__Q210JADUtility6StrPrmFv: # weak function
 /* 800BAD18 000B7C58  7C 08 03 A6 */	mtlr r0
 /* 800BAD1C 000B7C5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BAD20 000B7C60  4E 80 00 20 */	blr 
+.endfn __dt__Q210JADUtility10PrmHio<Pc>Fv
 
-.global "__dt__Q210JADUtility7Prm<Pc>Fv"
-"__dt__Q210JADUtility7Prm<Pc>Fv": # weak function
+.fn __dt__Q210JADUtility7Prm<Pc>Fv, weak
 /* 800BAD24 000B7C64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAD28 000B7C68  7C 08 02 A6 */	mflr r0
 /* 800BAD2C 000B7C6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -490,9 +490,9 @@ __dt__Q210JADUtility6StrPrmFv: # weak function
 /* 800BADA0 000B7CE0  7C 08 03 A6 */	mtlr r0
 /* 800BADA4 000B7CE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BADA8 000B7CE8  4E 80 00 20 */	blr 
+.endfn __dt__Q210JADUtility7Prm<Pc>Fv
 
-.global __dt__Q210JADUtility7PrmBaseFv
-__dt__Q210JADUtility7PrmBaseFv: # weak function
+.fn __dt__Q210JADUtility7PrmBaseFv, weak
 /* 800BADAC 000B7CEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BADB0 000B7CF0  7C 08 02 A6 */	mflr r0
 /* 800BADB4 000B7CF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -525,9 +525,9 @@ __dt__Q210JADUtility7PrmBaseFv: # weak function
 /* 800BAE18 000B7D58  7C 08 03 A6 */	mtlr r0
 /* 800BAE1C 000B7D5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BAE20 000B7D60  4E 80 00 20 */	blr 
+.endfn __dt__Q210JADUtility7PrmBaseFv
 
-.global save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream
-save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream: # weak function
+.fn save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream, weak
 /* 800BAE24 000B7D64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BAE28 000B7D68  7C 08 02 A6 */	mflr r0
 /* 800BAE2C 000B7D6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -572,9 +572,9 @@ save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream: # weak function
 /* 800BAEB8 000B7DF8  7C 08 03 A6 */	mtlr r0
 /* 800BAEBC 000B7DFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BAEC0 000B7E00  4E 80 00 20 */	blr 
+.endfn save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream
 
-.global load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream
-load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream: # weak function
+.fn load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream, weak
 /* 800BAEC4 000B7E04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAEC8 000B7E08  7C 08 02 A6 */	mflr r0
 /* 800BAECC 000B7E0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -619,9 +619,9 @@ load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream: # weak function
 /* 800BAF58 000B7E98  7C 08 03 A6 */	mtlr r0
 /* 800BAF5C 000B7E9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BAF60 000B7EA0  4E 80 00 20 */	blr 
+.endfn load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream
 
-.global save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream
-save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream: # weak function
+.fn save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream, weak
 /* 800BAF64 000B7EA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BAF68 000B7EA8  7C 08 02 A6 */	mflr r0
 /* 800BAF6C 000B7EAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -654,9 +654,9 @@ save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream: # weak function
 /* 800BAFD0 000B7F10  7C 08 03 A6 */	mtlr r0
 /* 800BAFD4 000B7F14  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BAFD8 000B7F18  4E 80 00 20 */	blr 
+.endfn save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream
 
-.global __dt__Q210JADUtility11DataMgrNodeFv
-__dt__Q210JADUtility11DataMgrNodeFv: # weak function
+.fn __dt__Q210JADUtility11DataMgrNodeFv, weak
 /* 800BAFDC 000B7F1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAFE0 000B7F20  7C 08 02 A6 */	mflr r0
 /* 800BAFE4 000B7F24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -752,14 +752,14 @@ __dt__Q210JADUtility11DataMgrNodeFv: # weak function
 /* 800BB134 000B8074  7C 08 03 A6 */	mtlr r0
 /* 800BB138 000B8078  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BB13C 000B807C  4E 80 00 20 */	blr 
+.endfn __dt__Q210JADUtility11DataMgrNodeFv
 
-.global getPath__Q210JADUtility11DataMgrNodeFv
-getPath__Q210JADUtility11DataMgrNodeFv: # weak function
+.fn getPath__Q210JADUtility11DataMgrNodeFv, weak
 /* 800BB140 000B8080  38 63 00 0C */	addi r3, r3, 0xc
 /* 800BB144 000B8084  4E 80 00 20 */	blr 
+.endfn getPath__Q210JADUtility11DataMgrNodeFv
 
-.global setPath__Q210JADUtility11DataMgrNodeFPc
-setPath__Q210JADUtility11DataMgrNodeFPc: # weak function
+.fn setPath__Q210JADUtility11DataMgrNodeFPc, weak
 /* 800BB148 000B8088  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB14C 000B808C  7C 08 02 A6 */	mflr r0
 /* 800BB150 000B8090  90 01 00 14 */	stw r0, 0x14(r1)
@@ -781,9 +781,9 @@ setPath__Q210JADUtility11DataMgrNodeFPc: # weak function
 /* 800BB18C 000B80CC  7C 08 03 A6 */	mtlr r0
 /* 800BB190 000B80D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BB194 000B80D4  4E 80 00 20 */	blr 
+.endfn setPath__Q210JADUtility11DataMgrNodeFPc
 
-.global init__Q210JADUtility11DataMgrNodeFv
-init__Q210JADUtility11DataMgrNodeFv: # weak function
+.fn init__Q210JADUtility11DataMgrNodeFv, weak
 /* 800BB198 000B80D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB19C 000B80DC  7C 08 02 A6 */	mflr r0
 /* 800BB1A0 000B80E0  38 80 00 00 */	li r4, 0
@@ -801,9 +801,9 @@ init__Q210JADUtility11DataMgrNodeFv: # weak function
 /* 800BB1D0 000B8110  7C 08 03 A6 */	mtlr r0
 /* 800BB1D4 000B8114  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BB1D8 000B8118  4E 80 00 20 */	blr 
+.endfn init__Q210JADUtility11DataMgrNodeFv
 
-.global init__Q210JADUtility15DataLoadMgrNodeFv
-init__Q210JADUtility15DataLoadMgrNodeFv: # weak function
+.fn init__Q210JADUtility15DataLoadMgrNodeFv, weak
 /* 800BB1DC 000B811C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB1E0 000B8120  7C 08 02 A6 */	mflr r0
 /* 800BB1E4 000B8124  38 80 00 00 */	li r4, 0
@@ -821,9 +821,9 @@ init__Q210JADUtility15DataLoadMgrNodeFv: # weak function
 /* 800BB214 000B8154  7C 08 03 A6 */	mtlr r0
 /* 800BB218 000B8158  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BB21C 000B815C  4E 80 00 20 */	blr 
+.endfn init__Q210JADUtility15DataLoadMgrNodeFv
 
-.global init__Q210JADUtility11DataMgrBaseFv
-init__Q210JADUtility11DataMgrBaseFv: # weak function
+.fn init__Q210JADUtility11DataMgrBaseFv, weak
 /* 800BB220 000B8160  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB224 000B8164  7C 08 02 A6 */	mflr r0
 /* 800BB228 000B8168  38 80 00 00 */	li r4, 0
@@ -839,9 +839,9 @@ init__Q210JADUtility11DataMgrBaseFv: # weak function
 /* 800BB250 000B8190  7C 08 03 A6 */	mtlr r0
 /* 800BB254 000B8194  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BB258 000B8198  4E 80 00 20 */	blr 
+.endfn init__Q210JADUtility11DataMgrBaseFv
 
-.global "save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream"
-"save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream": # weak function
+.fn save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream, weak
 /* 800BB25C 000B819C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BB260 000B81A0  7C 08 02 A6 */	mflr r0
 /* 800BB264 000B81A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -877,9 +877,9 @@ init__Q210JADUtility11DataMgrBaseFv: # weak function
 /* 800BB2D4 000B8214  7C 08 03 A6 */	mtlr r0
 /* 800BB2D8 000B8218  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BB2DC 000B821C  4E 80 00 20 */	blr 
+.endfn save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream
 
-.global "load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream"
-"load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream": # weak function
+.fn load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream, weak
 /* 800BB2E0 000B8220  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB2E4 000B8224  7C 08 02 A6 */	mflr r0
 /* 800BB2E8 000B8228  90 01 00 14 */	stw r0, 0x14(r1)
@@ -905,35 +905,36 @@ init__Q210JADUtility11DataMgrBaseFv: # weak function
 /* 800BB334 000B8274  7C 08 03 A6 */	mtlr r0
 /* 800BB338 000B8278  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BB33C 000B827C  4E 80 00 20 */	blr 
+.endfn load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream
 
-.global "@532@28@init__Q210JADUtility15DataLoadMgrNodeFv"
-"@532@28@init__Q210JADUtility15DataLoadMgrNodeFv": # weak function
+.fn @532@28@init__Q210JADUtility15DataLoadMgrNodeFv, weak
 /* 800BB340 000B8280  39 60 00 1C */	li r11, 0x1c
 /* 800BB344 000B8284  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB348 000B8288  7C 63 5A 14 */	add r3, r3, r11
 /* 800BB34C 000B828C  38 63 FD EC */	addi r3, r3, -532
 /* 800BB350 000B8290  4B FF FE 8C */	b init__Q210JADUtility15DataLoadMgrNodeFv
+.endfn @532@28@init__Q210JADUtility15DataLoadMgrNodeFv
 
-.global "@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv"
-"@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv": # weak function
+.fn @532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv, weak
 /* 800BB354 000B8294  39 60 00 1C */	li r11, 0x1c
 /* 800BB358 000B8298  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB35C 000B829C  7C 63 5A 14 */	add r3, r3, r11
 /* 800BB360 000B82A0  38 63 FD EC */	addi r3, r3, -532
 /* 800BB364 000B82A4  4B FF F5 50 */	b __dt__Q210JADUtility15DataLoadMgrNodeFv
+.endfn @532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv
 
-.global "@592@28@init__Q210JADUtility11DataMgrNodeFv"
-"@592@28@init__Q210JADUtility11DataMgrNodeFv": # weak function
+.fn @592@28@init__Q210JADUtility11DataMgrNodeFv, weak
 /* 800BB368 000B82A8  39 60 00 1C */	li r11, 0x1c
 /* 800BB36C 000B82AC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB370 000B82B0  7C 63 5A 14 */	add r3, r3, r11
 /* 800BB374 000B82B4  38 63 FD B0 */	addi r3, r3, -592
 /* 800BB378 000B82B8  4B FF FE 20 */	b init__Q210JADUtility11DataMgrNodeFv
+.endfn @592@28@init__Q210JADUtility11DataMgrNodeFv
 
-.global "@592@28@__dt__Q210JADUtility11DataMgrNodeFv"
-"@592@28@__dt__Q210JADUtility11DataMgrNodeFv": # weak function
+.fn @592@28@__dt__Q210JADUtility11DataMgrNodeFv, weak
 /* 800BB37C 000B82BC  39 60 00 1C */	li r11, 0x1c
 /* 800BB380 000B82C0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB384 000B82C4  7C 63 5A 14 */	add r3, r3, r11
 /* 800BB388 000B82C8  38 63 FD B0 */	addi r3, r3, -592
 /* 800BB38C 000B82CC  4B FF FC 50 */	b __dt__Q210JADUtility11DataMgrNodeFv
+.endfn @592@28@__dt__Q210JADUtility11DataMgrNodeFv

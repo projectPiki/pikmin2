@@ -1,38 +1,37 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13J3DShapeTable
-__vt__13J3DShapeTable:
+.obj __vt__13J3DShapeTable, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13J3DShapeTableFv
-.global __vt__12J3DModelData
-__vt__12J3DModelData:
+.endobj __vt__13J3DShapeTable
+.obj __vt__12J3DModelData, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12J3DModelDataFv
+.endobj __vt__12J3DModelData
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sInterruptFlag$1509
-sInterruptFlag$1509:
+.obj sInterruptFlag$1509, local
 	.skip 0x4
-.global init$1510
-init$1510:
-	.skip 0x4
+.endobj sInterruptFlag$1509
+.obj init$1510, local
+	.skip 0x1
+.endobj init$1510
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global clear__12J3DModelDataFv
-clear__12J3DModelDataFv:
+.fn clear__12J3DModelDataFv, global
 /* 80083794 000806D4  38 00 00 00 */	li r0, 0
 /* 80083798 000806D8  90 03 00 04 */	stw r0, 4(r3)
 /* 8008379C 000806DC  90 03 00 08 */	stw r0, 8(r3)
 /* 800837A0 000806E0  B0 03 00 0C */	sth r0, 0xc(r3)
 /* 800837A4 000806E4  B0 03 00 0E */	sth r0, 0xe(r3)
 /* 800837A8 000806E8  4E 80 00 20 */	blr 
+.endfn clear__12J3DModelDataFv
 
-.global __ct__12J3DModelDataFv
-__ct__12J3DModelDataFv:
+.fn __ct__12J3DModelDataFv, global
 /* 800837AC 000806EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800837B0 000806F0  7C 08 02 A6 */	mflr r0
 /* 800837B4 000806F4  3C 80 80 4A */	lis r4, __vt__12J3DModelData@ha
@@ -65,9 +64,9 @@ __ct__12J3DModelDataFv:
 /* 80083820 00080760  7C 08 03 A6 */	mtlr r0
 /* 80083824 00080764  38 21 00 10 */	addi r1, r1, 0x10
 /* 80083828 00080768  4E 80 00 20 */	blr 
+.endfn __ct__12J3DModelDataFv
 
-.global __dt__13J3DShapeTableFv
-__dt__13J3DShapeTableFv:
+.fn __dt__13J3DShapeTableFv, weak
 /* 8008382C 0008076C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80083830 00080770  7C 08 02 A6 */	mflr r0
 /* 80083834 00080774  90 01 00 14 */	stw r0, 0x14(r1)
@@ -87,9 +86,9 @@ __dt__13J3DShapeTableFv:
 /* 80083868 000807A8  7C 08 03 A6 */	mtlr r0
 /* 8008386C 000807AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80083870 000807B0  4E 80 00 20 */	blr 
+.endfn __dt__13J3DShapeTableFv
 
-.global __dt__12J3DJointTreeFv
-__dt__12J3DJointTreeFv:
+.fn __dt__12J3DJointTreeFv, weak
 /* 80083874 000807B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80083878 000807B8  7C 08 02 A6 */	mflr r0
 /* 8008387C 000807BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -116,9 +115,9 @@ __dt__12J3DJointTreeFv:
 /* 800838CC 0008080C  7C 08 03 A6 */	mtlr r0
 /* 800838D0 00080810  38 21 00 10 */	addi r1, r1, 0x10
 /* 800838D4 00080814  4E 80 00 20 */	blr 
+.endfn __dt__12J3DJointTreeFv
 
-.global newSharedDisplayList__12J3DModelDataFUl
-newSharedDisplayList__12J3DModelDataFUl:
+.fn newSharedDisplayList__12J3DModelDataFUl, global
 /* 800838D8 00080818  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800838DC 0008081C  7C 08 02 A6 */	mflr r0
 /* 800838E0 00080820  90 01 00 24 */	stw r0, 0x24(r1)
@@ -160,9 +159,9 @@ newSharedDisplayList__12J3DModelDataFUl:
 /* 80083960 000808A0  7C 08 03 A6 */	mtlr r0
 /* 80083964 000808A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80083968 000808A8  4E 80 00 20 */	blr 
+.endfn newSharedDisplayList__12J3DModelDataFUl
 
-.global indexToPtr__12J3DModelDataFv
-indexToPtr__12J3DModelDataFv:
+.fn indexToPtr__12J3DModelDataFv, global
 /* 8008396C 000808AC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80083970 000808B0  7C 08 02 A6 */	mflr r0
 /* 80083974 000808B4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -215,9 +214,9 @@ indexToPtr__12J3DModelDataFv:
 /* 80083A24 00080964  7C 08 03 A6 */	mtlr r0
 /* 80083A28 00080968  38 21 00 30 */	addi r1, r1, 0x30
 /* 80083A2C 0008096C  4E 80 00 20 */	blr 
+.endfn indexToPtr__12J3DModelDataFv
 
-.global makeSharedDL__12J3DModelDataFv
-makeSharedDL__12J3DModelDataFv:
+.fn makeSharedDL__12J3DModelDataFv, global
 /* 80083A30 00080970  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80083A34 00080974  7C 08 02 A6 */	mflr r0
 /* 80083A38 00080978  90 01 00 24 */	stw r0, 0x24(r1)
@@ -252,9 +251,9 @@ makeSharedDL__12J3DModelDataFv:
 /* 80083AA4 000809E4  7C 08 03 A6 */	mtlr r0
 /* 80083AA8 000809E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80083AAC 000809EC  4E 80 00 20 */	blr 
+.endfn makeSharedDL__12J3DModelDataFv
 
-.global simpleCalcMaterial__12J3DModelDataFUsPA4_f
-simpleCalcMaterial__12J3DModelDataFUsPA4_f:
+.fn simpleCalcMaterial__12J3DModelDataFUsPA4_f, global
 /* 80083AB0 000809F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80083AB4 000809F4  7C 08 02 A6 */	mflr r0
 /* 80083AB8 000809F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -312,9 +311,9 @@ simpleCalcMaterial__12J3DModelDataFUsPA4_f:
 /* 80083B6C 00080AAC  7C 08 03 A6 */	mtlr r0
 /* 80083B70 00080AB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80083B74 00080AB4  4E 80 00 20 */	blr 
+.endfn simpleCalcMaterial__12J3DModelDataFUsPA4_f
 
-.global syncJ3DSysFlags__12J3DModelDataCFv
-syncJ3DSysFlags__12J3DModelDataCFv:
+.fn syncJ3DSysFlags__12J3DModelDataCFv, global
 /* 80083B78 00080AB8  80 03 00 08 */	lwz r0, 8(r3)
 /* 80083B7C 00080ABC  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 80083B80 00080AC0  41 82 00 1C */	beq .L_80083B9C
@@ -331,9 +330,9 @@ syncJ3DSysFlags__12J3DModelDataCFv:
 /* 80083BA8 00080AE8  54 00 00 80 */	rlwinm r0, r0, 0, 2, 0
 /* 80083BAC 00080AEC  90 03 00 34 */	stw r0, 0x34(r3)
 /* 80083BB0 00080AF0  4E 80 00 20 */	blr 
+.endfn syncJ3DSysFlags__12J3DModelDataCFv
 
-.global __dt__12J3DModelDataFv
-__dt__12J3DModelDataFv:
+.fn __dt__12J3DModelDataFv, weak
 /* 80083BB4 00080AF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80083BB8 00080AF8  7C 08 02 A6 */	mflr r0
 /* 80083BBC 00080AFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -375,3 +374,4 @@ __dt__12J3DModelDataFv:
 /* 80083C40 00080B80  7C 08 03 A6 */	mtlr r0
 /* 80083C44 00080B84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80083C48 00080B88  4E 80 00 20 */	blr 
+.endfn __dt__12J3DModelDataFv

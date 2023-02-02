@@ -5,11 +5,13 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.L_80499648:
+.obj lbl_80499648, local
 	.asciz "sysMath.cpp"
+.endobj lbl_80499648
 .balign 4
-.L_80499654:
+.obj lbl_80499654, local
 	.asciz "acosf %f\n"
+.endobj lbl_80499654
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # sysMath.cpp
@@ -23,52 +25,76 @@ lbl_constructor:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520268:
+.obj lbl_80520268, local
 	.float -325.9493
-lbl_8052026C:
+.endobj lbl_80520268
+.obj lbl_8052026C, local
 	.float 325.9493
-lbl_80520270:
+.endobj lbl_8052026C
+.obj lbl_80520270, local
 	.float 0.0
-lbl_80520274:
+.endobj lbl_80520270
+.obj lbl_80520274, local
 	.float -1.0
-lbl_80520278:
+.endobj lbl_80520274
+.obj lbl_80520278, local
 	.float 1.0
-lbl_8052027C:
+.endobj lbl_80520278
+.obj lbl_8052027C, local
 	.float 3.1415927 # pi
-lbl_80520280:
+.endobj lbl_8052027C
+.obj lbl_80520280, local
 	.float 1023.5
-lbl_80520284:
+.endobj lbl_80520280
+.obj lbl_80520284, local
 	.float 1.5707964 # half-pi
-lbl_80520288:
+.endobj lbl_80520284
+.obj lbl_80520288, local
 	.float 0.5
-lbl_8052028C:
+.endobj lbl_80520288
+.obj lbl_8052028C, local
 	.float 1.5
-lbl_80520290:
+.endobj lbl_8052028C
+.obj lbl_80520290, local
 	.float -1.5
-lbl_80520294:
+.endobj lbl_80520290
+.obj lbl_80520294, local
 	.float 2.0
-lbl_80520298:
+.endobj lbl_80520294
+.obj lbl_80520298, local
 	.float 4.5
-lbl_8052029C:
+.endobj lbl_80520298
+.obj lbl_8052029C, local
 	.float 5.0
-lbl_805202A0:
+.endobj lbl_8052029C
+.obj lbl_805202A0, local
 	.float -4.5
-lbl_805202A4:
+.endobj lbl_805202A0
+.obj lbl_805202A4, local
 	.float 4.0
-lbl_805202A8:
-	.float 6.2831855
-lbl_805202AC:
+.endobj lbl_805202A4
+.obj lbl_805202A8, local
+	.float 6.2831855 # tau
+.endobj lbl_805202A8
+.obj lbl_805202AC, local
 	.float 0.01
-lbl_805202B0:
+.endobj lbl_805202AC
+.balign 8
+.obj lbl_805202B0, local
 	.double 0.0
-lbl_805202B8:
+.endobj lbl_805202B0
+.obj lbl_805202B8, local
 	.float 1.0E-5
-lbl_805202BC:
+.endobj lbl_805202B8
+.obj lbl_805202BC, local
 	.float 0.25
-lbl_805202C0:
+.endobj lbl_805202BC
+.obj lbl_805202C0, local
 	.float 32768.0
-lbl_805202C4:
+.endobj lbl_805202C0
+.obj lbl_805202C4, local
 	.float -32768.0
+.endobj lbl_805202C4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .fn pikmin2_sinf__Ff, global
@@ -1381,10 +1407,10 @@ lbl_805202C4:
 /* 804129B0 0040F8F0  40 81 00 24 */	ble .L_804129D4
 .L_804129B4:
 /* 804129B4 0040F8F4  FC 20 F0 90 */	fmr f1, f30
-/* 804129B8 0040F8F8  3C 60 80 4A */	lis r3, .L_80499648@ha
-/* 804129BC 0040F8FC  3C 80 80 4A */	lis r4, .L_80499654@ha
-/* 804129C0 0040F900  38 A4 96 54 */	addi r5, r4, .L_80499654@l
-/* 804129C4 0040F904  38 63 96 48 */	addi r3, r3, .L_80499648@l
+/* 804129B8 0040F8F8  3C 60 80 4A */	lis r3, lbl_80499648@ha
+/* 804129BC 0040F8FC  3C 80 80 4A */	lis r4, lbl_80499654@ha
+/* 804129C0 0040F900  38 A4 96 54 */	addi r5, r4, lbl_80499654@l
+/* 804129C4 0040F904  38 63 96 48 */	addi r3, r3, lbl_80499648@l
 /* 804129C8 0040F908  38 80 00 41 */	li r4, 0x41
 /* 804129CC 0040F90C  4C C6 32 42 */	crset 6
 /* 804129D0 0040F910  4B C1 7C 71 */	bl panic_f__12JUTExceptionFPCciPCce
