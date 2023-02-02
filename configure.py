@@ -1378,7 +1378,7 @@ LIBS = [
         "objects": [
             "plugProjectMorimuraU/dayEndCount",
             "plugProjectMorimuraU/hurryUp2D",
-            "plugProjectMorimuraU/gameOver2D",
+            ["plugProjectMorimuraU/gameOver2D", True],
             ["plugProjectMorimuraU/testBase", True],
             ["plugProjectMorimuraU/bombState", True],
             ["plugProjectMorimuraU/bombAnimator", True],

@@ -78,189 +78,32 @@ void TGameOverBase::doDraw(Graphics& gfx)
 		u16 y2 = System::getRenderModeObj()->efbHeight;
 		u16 y1 = y2;
 		switch (mType) {
-		case 2:
-			y0 = y2 / 2;
-			break;
 		case 1:
 			y1 = y2 / 2;
+			break;
+		case 2:
+			y0 = y2 / 2;
 			break;
 		}
 		GXSetScissor(0, y0, System::getRenderModeObj()->fbWidth, y1);
 
 		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-		// you thought you were safe from GX register setting?
 
-		System::getRenderModeObj();
-		System::getRenderModeObj();
+		GXPosition3u16(0, y0, 0);
+		GXPosition3u16(System::getRenderModeObj()->fbWidth, y0, 0);
+
+		GXPosition3u16(System::getRenderModeObj()->fbWidth, y1, 0);
+		GXPosition3u16(0, y1, 0);
 
 		GXSetDstAlpha(GX_FALSE, mFadeAlpha);
-		GXSetScissor(0, y0, System::getRenderModeObj()->fbWidth, y1);
 		persp->setPort();
+		GXSetScissor(0, y0, System::getRenderModeObj()->fbWidth, y1);
+
 		if (mGameOverScreen) {
 			mGameOverScreen->draw(gfx, persp);
 		}
 		GXSetScissor(0, 0, System::getRenderModeObj()->fbWidth, System::getRenderModeObj()->efbHeight);
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r24, 0x10(r1)
-	mr       r28, r3
-	mr       r29, r4
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_803480D4
-	li       r3, 1
-	li       r4, 0
-	bl       GXSetPixelFmt
-
-lbl_803480D4:
-	lbz      r0, 0x85(r28)
-	addi     r31, r29, 0x190
-	cmplwi   r0, 0
-	bne      lbl_803480F8
-	lwz      r3, 0x7c(r28)
-	mr       r4, r29
-	mr       r5, r31
-	bl       orgdraw__Q28Morimura15TGameOverScreenFR8GraphicsP13J2DPerspGraph
-	b        lbl_803482D0
-
-lbl_803480F8:
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 2
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	li       r3, 0
-	bl       GXSetColorUpdate
-	li       r3, 1
-	bl       GXSetAlphaUpdate
-	lbz      r0, 0x84(r28)
-	li       r3, 1
-	subfic   r0, r0, 0xff
-	clrlwi   r4, r0, 0x18
-	bl       GXSetDstAlpha
-	li       r24, 0
-	bl       getRenderModeObj__6SystemFv
-	lwz      r0, 0x88(r28)
-	lhz      r3, 6(r3)
-	cmpwi    r0, 2
-	mr       r30, r3
-	beq      lbl_803481CC
-	bge      lbl_803481D4
-	cmpwi    r0, 1
-	bge      lbl_803481C0
-	b        lbl_803481D4
-
-lbl_803481C0:
-	rlwinm   r0, r3, 0x1f, 0x11, 0x1f
-	mr       r30, r0
-	b        lbl_803481D4
-
-lbl_803481CC:
-	rlwinm   r0, r3, 0x1f, 0x11, 0x1f
-	mr       r24, r0
-
-lbl_803481D4:
-	bl       getRenderModeObj__6SystemFv
-	lhz      r5, 4(r3)
-	clrlwi   r25, r24, 0x10
-	clrlwi   r26, r30, 0x10
-	li       r3, 0
-	mr       r4, r25
-	mr       r6, r26
-	bl       GXSetScissor
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	li       r0, 0
-	lis      r3, 0xCC008000@ha
-	sth      r0, 0xCC008000@l(r3)
-	mr       r27, r25
-	sth      r24, -0x8000(r3)
-	sth      r0, -0x8000(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r3, 0xCC008000@ha
-	li       r0, 0
-	sth      r4, 0xCC008000@l(r3)
-	sth      r27, -0x8000(r3)
-	sth      r0, -0x8000(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r3, 4(r3)
-	lis      r4, 0xCC008000@ha
-	li       r0, 0
-	sth      r3, 0xCC008000@l(r4)
-	li       r3, 0
-	sth      r30, -0x8000(r4)
-	sth      r0, -0x8000(r4)
-	sth      r0, -0x8000(r4)
-	sth      r30, -0x8000(r4)
-	sth      r0, -0x8000(r4)
-	lbz      r4, 0x84(r28)
-	bl       GXSetDstAlpha
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	bl       getRenderModeObj__6SystemFv
-	lhz      r5, 4(r3)
-	mr       r4, r25
-	mr       r6, r26
-	li       r3, 0
-	bl       GXSetScissor
-	lwz      r3, 0x7c(r28)
-	cmplwi   r3, 0
-	beq      lbl_803482B0
-	mr       r4, r29
-	mr       r5, r31
-	bl       draw__Q28Morimura15TGameOverScreenFR8GraphicsP13J2DPerspGraph
-
-lbl_803482B0:
-	bl       getRenderModeObj__6SystemFv
-	lhz      r28, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r5, 4(r3)
-	mr       r6, r28
-	li       r3, 0
-	li       r4, 0
-	bl       GXSetScissor
-
-lbl_803482D0:
-	lmw      r24, 0x10(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -382,179 +225,26 @@ void TGameOverScreen::init(char const* path, u32 flags)
 	mScreen2 = new P2DScreen::Mgr_tuning;
 	mScreen2->set(path, flags, mArchive);
 
-	mGXPane = new TGXSetPane;
+	J2DBlend info  = J2DBlend(1, 7, 6, 0);
+	u64 taglist[9] = { 'back', 'efect_00', 'efect_01', 'kuronuki', 'kuro_u', 'kuro_d', 'kuro_l', 'kuro_r', 'capusel' };
+	mGXPane        = new TGXSetPane;
 	mScreen->appendChild(mGXPane);
 
-	u64 taglist[9] = { 'back', 'efect_00', 'efect_01', 'kuronuki', 'kuro_u', 'kuro_d', 'kuro_l', 'kuro_r', 'capusel' };
 	for (int i = 0; i < 9; i++) {
 		// great use of a for loop here
-		if (i < 3 || i > 7) {
+		if (i < 3 || i >= 8) {
 			J2DPane* pane = mScreen->search(taglist[i]);
 			P2ASSERTLINE(298, pane);
 			mScreen->removeChild(pane);
 			mScreen->appendChild(pane);
 			if (i < 3) {
-				J2DMaterial* mat                     = static_cast<J2DPictureEx*>(pane)->getMaterial();
-				mat->mPeBlock.mBlendInfo.mType       = 1;
-				mat->mPeBlock.mBlendInfo.mDestFactor = 7;
-				mat->mPeBlock.mBlendInfo.mSrcFactor  = 6;
+				static_cast<J2DPictureEx*>(pane)->getMaterial()->mPeBlock.mBlendInfo.set(info);
 			}
 		}
 	}
+
 	mAnimList  = new og::Screen::AnimScreen*[mAnimCountMax];
 	mAnimList2 = new og::Screen::AnimScreen*[mAnimCountMax];
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	lis      r6, lbl_804902F8@ha
-	stw      r0, 0x84(r1)
-	stmw     r27, 0x6c(r1)
-	mr       r30, r3
-	mr       r28, r4
-	mr       r27, r5
-	addi     r31, r6, lbl_804902F8@l
-	li       r3, 0x148
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80348670
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	mr       r0, r3
-
-lbl_80348670:
-	stw      r0, 4(r30)
-	mr       r4, r28
-	mr       r5, r27
-	lwz      r3, 4(r30)
-	lwz      r6, 0(r30)
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	li       r3, 0x148
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803486A0
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	mr       r0, r3
-
-lbl_803486A0:
-	stw      r0, 0x18(r30)
-	mr       r4, r28
-	mr       r5, r27
-	lwz      r3, 0x18(r30)
-	lwz      r6, 0(r30)
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	li       r4, 1
-	li       r7, 7
-	li       r6, 6
-	li       r3, 0
-	li       r0, 9
-	stb      r4, 0xc(r1)
-	addi     r5, r1, 0x1c
-	addi     r4, r31, 0x17c
-	stb      r7, 0xd(r1)
-	stb      r6, 0xe(r1)
-	stb      r3, 0xf(r1)
-	mtctr    r0
-
-lbl_803486E8:
-	lwz      r3, 4(r4)
-	lwzu     r0, 8(r4)
-	stw      r3, 4(r5)
-	stwu     r0, 8(r5)
-	bdnz     lbl_803486E8
-	li       r3, 0x1a8
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8034874C
-	lfs      f1, lbl_8051E2E0@sda21(r2)
-	lis      r4, 0x74657374@ha
-	lfs      f0, lbl_8051E2E4@sda21(r2)
-	addi     r6, r4, 0x74657374@l
-	stfs     f1, 0x10(r1)
-	addi     r7, r1, 0x10
-	li       r5, 0
-	addi     r8, r2, lbl_8051E2E8@sda21
-	stfs     f1, 0x14(r1)
-	lis      r9, 0x110
-	stfs     f0, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "__ct__12J2DPictureExFUxRCQ29JGeometry8TBox2<f>PCcUl"
-	lis      r3, __vt__Q28Morimura10TGXSetPane@ha
-	addi     r0, r3, __vt__Q28Morimura10TGXSetPane@l
-	stw      r0, 0(r29)
-
-lbl_8034874C:
-	stw      r29, 0xc(r30)
-	lwz      r3, 4(r30)
-	lwz      r4, 0xc(r30)
-	bl       appendChild__7J2DPaneFP7J2DPane
-	li       r28, 0
-	addi     r29, r1, 0x20
-
-lbl_80348764:
-	cmpwi    r28, 3
-	blt      lbl_80348774
-	cmpwi    r28, 8
-	blt      lbl_80348808
-
-lbl_80348774:
-	lwz      r3, 4(r30)
-	lwz      r5, 0(r29)
-	lwz      r12, 0(r3)
-	lwz      r6, 4(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r27, r3, r3
-	bne      lbl_803487AC
-	addi     r3, r31, 0x1c8
-	addi     r5, r31, 0x1d8
-	li       r4, 0x12a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803487AC:
-	lwz      r3, 4(r30)
-	mr       r4, r27
-	bl       removeChild__7J2DPaneFP7J2DPane
-	lwz      r3, 4(r30)
-	mr       r4, r27
-	bl       appendChild__7J2DPaneFP7J2DPane
-	cmpwi    r28, 3
-	bge      lbl_80348808
-	mr       r3, r27
-	lwz      r0, 0xc(r1)
-	lwz      r12, 0(r27)
-	stw      r0, 8(r1)
-	lwz      r12, 0x13c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r4, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r4, 0x7c(r3)
-	lbz      r4, 0xa(r1)
-	stb      r0, 0x7d(r3)
-	lbz      r0, 0xb(r1)
-	stb      r4, 0x7e(r3)
-	stb      r0, 0x7f(r3)
-
-lbl_80348808:
-	addi     r28, r28, 1
-	addi     r29, r29, 8
-	cmpwi    r28, 9
-	blt      lbl_80348764
-	lwz      r0, 0x10(r30)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 8(r30)
-	lwz      r0, 0x10(r30)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x1c(r30)
-	lmw      r27, 0x6c(r1)
-	lwz      r0, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /*
@@ -645,16 +335,4 @@ void TGameOverScreen::setFadeAlpha(u8 alpha)
 	mScreen2->search('efect_01')->setAlpha(alpha);
 	mScreen2->search('capusel')->setAlpha(alpha);
 }
-
-/*
- * --INFO--
- * Address:	80348C20
- * Size:	00002C
- */
-void TGXSetPane::drawSelf(f32, f32, float (*)[3][4])
-{
-	GXSetColorUpdate(GX_TRUE);
-	GXSetAlphaUpdate(GX_FALSE);
-}
-
 } // namespace Morimura

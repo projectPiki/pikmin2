@@ -8,7 +8,7 @@ struct J2DPEBlock {
 	/** @fabricated */
 	inline J2DPEBlock()
 	    : mAlphaComp()
-	    , mBlendInfo(j2dDefaultBlendInfo)
+	    , mBlendInfo()
 	{
 		initialize();
 	}
@@ -19,8 +19,7 @@ struct J2DPEBlock {
 	void setGX();
 
 	J2DAlphaComp mAlphaComp; // _00
-	J2DBlendInfo mBlendInfo; // _04
-	u8 _07;                  // _07
+	J2DBlend mBlendInfo;     // _04
 	u8 mDither;              // _08
 };
 

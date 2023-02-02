@@ -66,6 +66,24 @@ extern J2DBlendInfo j2dDefaultBlendInfo;
 struct J2DBlend {
 	J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
 
+	J2DBlend(u8 type, u8 srcFactor, u8 destFactor, u8 op)
+	    : mBlendInfo(type, srcFactor, destFactor)
+	    , mOp(op)
+	{
+	}
+
+	void operator=(J2DBlend const& other)
+	{
+		mBlendInfo = other.mBlendInfo;
+		mOp        = other.mOp;
+	}
+
+	inline void set(J2DBlend blend)
+	{
+		mBlendInfo = blend.mBlendInfo;
+		mOp        = blend.mOp;
+	}
+
 	J2DBlendInfo mBlendInfo; // _00
 	u8 mOp;                  // _03
 };

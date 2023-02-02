@@ -33,11 +33,11 @@ struct TGameOverScreen {
 struct TGameOverBase : public TTestBase {
 	TGameOverBase(char* name);
 
-	virtual ~TGameOverBase() { }                                                                // _08 (weak)
+	// virtual ~TGameOverBase() { }                                                                // _08 (weak)
 	virtual bool doUpdate();                                                                    // _58
-	virtual bool doUpdateFadeout() { return mIsSection ? TTestBase::doUpdateFadeout() : true; } // _60 (weak)
 	virtual void doDraw(Graphics& gfx);                                                         // _68
 	virtual og::Screen::DispMemberBase* getDispMemberBase() { return mDisp; }                   // _78 (weak)
+	virtual bool doUpdateFadeout() { return mIsSection ? TTestBase::doUpdateFadeout() : true; } // _60 (weak)
 
 	// unused/inline
 	void init();
@@ -62,7 +62,7 @@ struct TGameOver2D : public TGameOverBase {
 	{
 	}
 
-	virtual ~TGameOver2D() { }          // _08 (weak)
+	// virtual ~TGameOver2D() { }          // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1
@@ -76,7 +76,7 @@ struct TLujiDown2D : public TGameOverBase {
 	{
 	}
 
-	virtual ~TLujiDown2D() { }          // _08 (weak)
+	// virtual ~TLujiDown2D() { }          // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1
@@ -90,7 +90,7 @@ struct TOrimaDown2D : public TGameOverBase {
 	{
 	}
 
-	virtual ~TOrimaDown2D() { }         // _08 (weak)
+	// virtual ~TOrimaDown2D() { }         // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1
@@ -104,7 +104,7 @@ struct TPikminDown2D : public TGameOverBase {
 	{
 	}
 
-	virtual ~TPikminDown2D() { }        // _08 (weak)
+	// virtual ~TPikminDown2D() { }        // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1
@@ -118,7 +118,7 @@ struct TPresidentDown2D : public TGameOverBase {
 	{
 	}
 
-	virtual ~TPresidentDown2D() { }     // _08 (weak)
+	// virtual ~TPresidentDown2D() { }     // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1

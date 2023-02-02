@@ -104,9 +104,17 @@ struct TScissorPane : public J2DPictureEx {
 };
 
 struct TGXSetPane : public J2DPictureEx {
-	TGXSetPane();
-	virtual ~TGXSetPane() { }              // _08 (weak)
-	virtual void drawSelf(f32, f32, Mtx*); // _38
+	TGXSetPane()
+	    : J2DPictureEx('test', JGeometry::TBox2f(0.0f, 0.0f, 10.0f, 10.0f), "dummy", 0x1100000)
+	{
+	}
+
+	virtual ~TGXSetPane() { }             // _08 (weak)
+	virtual void drawSelf(f32, f32, Mtx*) // _38
+	{
+		GXSetColorUpdate(GX_TRUE);
+		GXSetAlphaUpdate(GX_FALSE);
+	}
 
 	// _00      = VTBL
 	// _00-_1A8 = J2DPictureEx
