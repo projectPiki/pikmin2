@@ -214,7 +214,7 @@ str_enemyResList:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-"sAramResName2D__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
+.obj sAramResName2D__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@, local
 	.4byte str_resground
 	.4byte str_rescave
 	.4byte str_res_SMenuMap
@@ -228,12 +228,14 @@ str_enemyResList:
 	.4byte str_res_AnaDemo
 	.4byte str_res_Contena
 	.4byte str_res_Ufo
-"sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
+.endobj sAramResName2D__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@
+.obj sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@, local
 	.4byte str_mIMG_tutorial
 	.4byte str_mIMG_forest
 	.4byte str_mIMG_yakushima
 	.4byte str_mIMG_last
-"sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
+.endobj sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@
+.obj sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@, local
 	.4byte str_m_s00
 	.4byte str_m_s0B
 	.4byte str_m_s09
@@ -253,7 +255,8 @@ str_enemyResList:
 	.4byte str_m_s0E
 	.4byte str_m_s12
 	.4byte str_m_s21
-"sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
+.endobj sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@
+.obj sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@, local
 	.4byte str_k_onyon_A
 	.4byte str_k_onyon_T
 	.4byte str_k_pod_A
@@ -278,26 +281,27 @@ str_enemyResList:
 	.4byte str_k_slopeU_T
 	.4byte str_k_lBridge_A
 	.4byte str_k_lBridge_T
-.global __vt__Q211Pikmin2ARAM3Mgr
-__vt__Q211Pikmin2ARAM3Mgr:
+.endobj sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@
+.obj __vt__Q211Pikmin2ARAM3Mgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q211Pikmin2ARAM3MgrFv
+.endobj __vt__Q211Pikmin2ARAM3Mgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global gPikmin2AramMgr
-gPikmin2AramMgr:
+.obj gPikmin2AramMgr, global
 	.skip 0x4
+.endobj gPikmin2AramMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520BE0:
+.obj lbl_80520BE0, local
 	.asciz "EOF"
+.endobj lbl_80520BE0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q211Pikmin2ARAM3MgrFv
-init__Q211Pikmin2ARAM3MgrFv:
+.fn init__Q211Pikmin2ARAM3MgrFv, global
 /* 80455C30 00452B70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80455C34 00452B74  7C 08 02 A6 */	mflr r0
 /* 80455C38 00452B78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -324,23 +328,23 @@ init__Q211Pikmin2ARAM3MgrFv:
 /* 80455C84 00452BC4  7C 08 03 A6 */	mtlr r0
 /* 80455C88 00452BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80455C8C 00452BCC  4E 80 00 20 */	blr 
+.endfn init__Q211Pikmin2ARAM3MgrFv
 
-.global __ct__Q211Pikmin2ARAM3MgrFv
-__ct__Q211Pikmin2ARAM3MgrFv:
+.fn __ct__Q211Pikmin2ARAM3MgrFv, global
 /* 80455C90 00452BD0  3C 80 80 4F */	lis r4, __vt__Q211Pikmin2ARAM3Mgr@ha
 /* 80455C94 00452BD4  38 00 00 00 */	li r0, 0
 /* 80455C98 00452BD8  38 84 DC 50 */	addi r4, r4, __vt__Q211Pikmin2ARAM3Mgr@l
 /* 80455C9C 00452BDC  90 83 00 00 */	stw r4, 0(r3)
 /* 80455CA0 00452BE0  98 03 00 04 */	stb r0, 4(r3)
 /* 80455CA4 00452BE4  4E 80 00 20 */	blr 
+.endfn __ct__Q211Pikmin2ARAM3MgrFv
 
-.global setLoadPermission__Q211Pikmin2ARAM3MgrFb
-setLoadPermission__Q211Pikmin2ARAM3MgrFb:
+.fn setLoadPermission__Q211Pikmin2ARAM3MgrFb, global
 /* 80455CA8 00452BE8  98 83 00 04 */	stb r4, 4(r3)
 /* 80455CAC 00452BEC  4E 80 00 20 */	blr 
+.endobj setLoadPermission__Q211Pikmin2ARAM3MgrFb
 
-.global load__Q211Pikmin2ARAM3MgrFv
-load__Q211Pikmin2ARAM3MgrFv:
+.fn load__Q211Pikmin2ARAM3MgrFv, global
 /* 80455CB0 00452BF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80455CB4 00452BF4  7C 08 02 A6 */	mflr r0
 /* 80455CB8 00452BF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -365,9 +369,9 @@ load__Q211Pikmin2ARAM3MgrFv:
 /* 80455D04 00452C44  7C 08 03 A6 */	mtlr r0
 /* 80455D08 00452C48  38 21 00 10 */	addi r1, r1, 0x10
 /* 80455D0C 00452C4C  4E 80 00 20 */	blr 
+.endfn load__Q211Pikmin2ARAM3MgrFv
 
-.global dump__Q211Pikmin2ARAM3MgrFv
-dump__Q211Pikmin2ARAM3MgrFv:
+.fn dump__Q211Pikmin2ARAM3MgrFv, global
 /* 80455D10 00452C50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80455D14 00452C54  7C 08 02 A6 */	mflr r0
 /* 80455D18 00452C58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -377,9 +381,9 @@ dump__Q211Pikmin2ARAM3MgrFv:
 /* 80455D28 00452C68  7C 08 03 A6 */	mtlr r0
 /* 80455D2C 00452C6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80455D30 00452C70  4E 80 00 20 */	blr 
+.endfn dump__Q211Pikmin2ARAM3MgrFv
 
-.global loadEnemy__Q211Pikmin2ARAM3MgrFv
-loadEnemy__Q211Pikmin2ARAM3MgrFv:
+.fn loadEnemy__Q211Pikmin2ARAM3MgrFv, global
 /* 80455D34 00452C74  94 21 FB B0 */	stwu r1, -0x450(r1)
 /* 80455D38 00452C78  7C 08 02 A6 */	mflr r0
 /* 80455D3C 00452C7C  3C 80 80 4A */	lis r4, lbl_8049C410@ha
@@ -491,9 +495,9 @@ loadEnemy__Q211Pikmin2ARAM3MgrFv:
 /* 80455ECC 00452E0C  7C 08 03 A6 */	mtlr r0
 /* 80455ED0 00452E10  38 21 04 50 */	addi r1, r1, 0x450
 /* 80455ED4 00452E14  4E 80 00 20 */	blr 
+.endfn loadEnemy__Q211Pikmin2ARAM3MgrFv
 
-.global load2D__Q211Pikmin2ARAM3MgrFv
-load2D__Q211Pikmin2ARAM3MgrFv:
+.fn load2D__Q211Pikmin2ARAM3MgrFv, global
 /* 80455ED8 00452E18  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 80455EDC 00452E1C  7C 08 02 A6 */	mflr r0
 /* 80455EE0 00452E20  90 01 01 24 */	stw r0, 0x124(r1)
@@ -542,9 +546,9 @@ load2D__Q211Pikmin2ARAM3MgrFv:
 /* 80455F84 00452EC4  7C 08 03 A6 */	mtlr r0
 /* 80455F88 00452EC8  38 21 01 20 */	addi r1, r1, 0x120
 /* 80455F8C 00452ECC  4E 80 00 20 */	blr 
+.endfn load2D__Q211Pikmin2ARAM3MgrFv
 
-.global loadDemo__Q211Pikmin2ARAM3MgrFv
-loadDemo__Q211Pikmin2ARAM3MgrFv:
+.fn loadDemo__Q211Pikmin2ARAM3MgrFv, global
 /* 80455F90 00452ED0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80455F94 00452ED4  7C 08 02 A6 */	mflr r0
 /* 80455F98 00452ED8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -576,9 +580,9 @@ loadDemo__Q211Pikmin2ARAM3MgrFv:
 /* 80455FFC 00452F3C  7C 08 03 A6 */	mtlr r0
 /* 80456000 00452F40  38 21 00 20 */	addi r1, r1, 0x20
 /* 80456004 00452F44  4E 80 00 20 */	blr 
+.endfn loadDemo__Q211Pikmin2ARAM3MgrFv
 
-.global loadItem__Q211Pikmin2ARAM3MgrFv
-loadItem__Q211Pikmin2ARAM3MgrFv:
+.fn loadItem__Q211Pikmin2ARAM3MgrFv, global
 /* 80456008 00452F48  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045600C 00452F4C  7C 08 02 A6 */	mflr r0
 /* 80456010 00452F50  90 01 00 24 */	stw r0, 0x24(r1)
@@ -610,9 +614,9 @@ loadItem__Q211Pikmin2ARAM3MgrFv:
 /* 80456074 00452FB4  7C 08 03 A6 */	mtlr r0
 /* 80456078 00452FB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045607C 00452FBC  4E 80 00 20 */	blr 
+.endfn loadItem__Q211Pikmin2ARAM3MgrFv
 
-.global __dt__Q211Pikmin2ARAM3MgrFv
-__dt__Q211Pikmin2ARAM3MgrFv: # weak function
+.fn __dt__Q211Pikmin2ARAM3MgrFv, weak
 /* 80456080 00452FC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456084 00452FC4  7C 08 02 A6 */	mflr r0
 /* 80456088 00452FC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -632,3 +636,4 @@ __dt__Q211Pikmin2ARAM3MgrFv: # weak function
 /* 804560BC 00452FFC  7C 08 03 A6 */	mtlr r0
 /* 804560C0 00453000  38 21 00 10 */	addi r1, r1, 0x10
 /* 804560C4 00453004  4E 80 00 20 */	blr 
+.endfn __dt__Q211Pikmin2ARAM3MgrFv

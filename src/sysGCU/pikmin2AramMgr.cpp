@@ -1,4 +1,8 @@
 #include "types.h"
+#include "Pikmin2ARAM.h"
+#include "ARAM.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /*
     Generated from dpostproc
@@ -285,7 +289,7 @@
     lbl_80520BE0:
         .asciz "EOF"
 */
-
+Pikmin2ARAM::Mgr* gPikmin2AramMgr;
 /*
  * --INFO--
  * Address:	80455C30
@@ -293,36 +297,8 @@
  */
 void Pikmin2ARAM::Mgr::init()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, gPikmin2AramMgr@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80455C64
-	lis      r3, lbl_8049C410@ha
-	lis      r5, lbl_8049CD54@ha
-	addi     r3, r3, lbl_8049C410@l
-	li       r4, 0xbe
-	addi     r5, r5, lbl_8049CD54@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80455C64:
-	li       r3, 8
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80455C7C
-	bl       __ct__Q211Pikmin2ARAM3MgrFv
-	mr       r0, r3
-
-lbl_80455C7C:
-	stw      r0, gPikmin2AramMgr@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(190, !gPikmin2AramMgr);
+	gPikmin2AramMgr = new Pikmin2ARAM::Mgr;
 }
 
 /*
@@ -330,17 +306,7 @@ lbl_80455C7C:
  * Address:	80455C90
  * Size:	000018
  */
-Pikmin2ARAM::Mgr::Mgr()
-{
-	/*
-	lis      r4, __vt__Q211Pikmin2ARAM3Mgr@ha
-	li       r0, 0
-	addi     r4, r4, __vt__Q211Pikmin2ARAM3Mgr@l
-	stw      r4, 0(r3)
-	stb      r0, 4(r3)
-	blr
-	*/
-}
+Pikmin2ARAM::Mgr::Mgr() { mLoadPermission = false; }
 
 /*
  * --INFO--
@@ -350,7 +316,7 @@ Pikmin2ARAM::Mgr::Mgr()
 void Pikmin2ARAM::Mgr::setLoadPermission(bool a1)
 {
 	// Generated from stb r4, 0x4(r3)
-	_04 = a1;
+	mLoadPermission = a1;
 }
 
 /*
@@ -358,7 +324,7 @@ void Pikmin2ARAM::Mgr::setLoadPermission(bool a1)
  * Address:	........
  * Size:	000010
  */
-void Pikmin2ARAM::Mgr::isEntryOnly()
+bool Pikmin2ARAM::Mgr::isEntryOnly()
 {
 	// UNUSED FUNCTION
 }
@@ -370,32 +336,13 @@ void Pikmin2ARAM::Mgr::isEntryOnly()
  */
 void Pikmin2ARAM::Mgr::load()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       loadEnemy__Q211Pikmin2ARAM3MgrFv
-	mr       r3, r30
-	bl       load2D__Q211Pikmin2ARAM3MgrFv
-	mr       r3, r30
-	bl       loadDemo__Q211Pikmin2ARAM3MgrFv
-	mr       r3, r30
-	bl       loadItem__Q211Pikmin2ARAM3MgrFv
-	mr       r3, r30
-	bl       dump__Q211Pikmin2ARAM3MgrFv
-	mr       r3, r31
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JKRHeap* heap = JKRHeap::sCurrentHeap;
+	loadEnemy();
+	load2D();
+	loadDemo();
+	loadItem();
+	dump();
+	heap->becomeCurrentHeap();
 }
 
 /*
@@ -403,20 +350,7 @@ void Pikmin2ARAM::Mgr::load()
  * Address:	80455D10
  * Size:	000024
  */
-void Pikmin2ARAM::Mgr::dump()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, gAramMgr@sda21(r13)
-	bl       dump__Q24ARAM3MgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Pikmin2ARAM::Mgr::dump() { gAramMgr->dump(); }
 
 /*
  * --INFO--
@@ -694,37 +628,6 @@ lbl_8045603C:
 	lwz      r29, 0x14(r1)
 	mtlr     r0
 	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80456080
- * Size:	000048
- */
-Pikmin2ARAM::Mgr::~Mgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_804560B0
-	lis      r5, __vt__Q211Pikmin2ARAM3Mgr@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__Q211Pikmin2ARAM3Mgr@l
-	stw      r0, 0(r31)
-	ble      lbl_804560B0
-	bl       __dl__FPv
-
-lbl_804560B0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
 	blr
 	*/
 }
