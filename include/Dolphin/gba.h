@@ -50,7 +50,7 @@ extern GBA __GBA[4];
 extern BOOL __GBAReset;
 
 void GBAInit();
-unknown __GBATransfer(int portIndex, unknown, unknown, GBAProcHandler);
+BOOL __GBATransfer(int portIndex, u32, u32, GBAProcHandler);
 int __GBASync(int portIndex);
 void __GBASyncCallback(int portIndex, int);
 BOOL OnReset();
@@ -60,6 +60,11 @@ int GBAReset(int portIndex, u8* p2);
 int GBAGetStatus(int portIndex, u8* p2);
 int GBARead(int portIndex, u8* p2, u8* p3);
 int GBAWrite(int portIndex, u8* p2, u8* p3);
+
+static inline GBAProcHandler getGBAHandler(GBA* gba)
+{
+    return gba->_38;
+}
 
 #ifdef __cplusplus
 }
