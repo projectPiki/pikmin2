@@ -2017,8 +2017,9 @@ void ObjDayEndResultIncP::statusDecPSlot()
 void ObjDayEndResultIncP::callIncPSE(int id)
 {
 	u32 soundID;
-	u32 test = id;
-	if ((id & 1 ^ test >> 31) != test >> 31) { // wtf
+
+	u32 test = id & ~1;
+	if (((u32)(id & 1) ^ test) - test) {
 		u32 count2 = *mPikiCountersList[id - 1]->mCountPtr;
 		u32 count1 = *mPikiCountersList[id]->mCountPtr;
 		if (count2 < count1) {
@@ -2088,7 +2089,7 @@ void ObjDayEndResultIncP::callDecPSE(int id)
 {
 	PSSystem::SysIF* sys = PSSystem::spSysIF;
 	u32 soundID          = PSSE_SY_PIKI_DECREMENT;
-	u32 count2           = *mDeathCountersList[id & 0x3ffffffe]->mCountPtr; // wtf again
+	u32 count2           = *mDeathCountersList[id & ~1]->mCountPtr;
 	if (!count2) {
 		soundID = PSSE_SY_MENU_PLUS_MINUS;
 	}
