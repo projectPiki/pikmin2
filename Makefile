@@ -98,6 +98,7 @@ ifeq ($(WINDOWS),1)
   WINE :=
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as.exe
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp.exe -P
+  SHA1SUM := sha1sum
   PYTHON  := python
 else
   WIBO   := $(shell command -v wibo 2> /dev/null)
@@ -112,6 +113,7 @@ else
   DEVKITPPC ?= /opt/devkitpro/devkitPPC
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
+  SHA1SUM := shasum
   PYTHON  := python3
 endif
 COMPILERS ?= tools/mwcc_compiler
@@ -121,7 +123,6 @@ CC_EPI  = $(WINE) $(COMPILERS)/$(MWCC_EPI_VERSION)/$(MWCC_EPI_EXE)
 endif
 LD      := $(WINE) $(COMPILERS)/$(MWLD_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
-SHA1SUM := sha1sum
 
 ifneq ($(WINDOWS),1)
 TRANSFORM_DEP := tools/transform-dep.py
