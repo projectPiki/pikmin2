@@ -32,7 +32,7 @@ struct DispCaveResult : public og::Screen::DispMemberBase {
 	JKRHeap* mHeap;                   // _08
 	Game::Result::TNode* mResultNode; // _0C
 	u32 mTreasureNodeCount;           // _10
-	u32 _14;                          // _14, unknown
+	u32 mTotalNotLostTreasures;       // _14
 	u32 mLostTreasures;               // _18
 	u32 mCollectedOtakara;            // _1C
 	u32 mMaxOtakara;                  // _20

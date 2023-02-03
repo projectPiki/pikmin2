@@ -7,6 +7,14 @@
 #include "og/newScreen/ogUtil.h"
 #include "LoadResource.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
+#include "Dolphin/rand.h"
+
+static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+
+char* bloNames[16] = { "result_final_image00.blo", "result_final_image01.blo", "result_final_image02.blo", "result_final_image03.blo",
+	                   "result_final_image04.blo", "result_final_image05.blo", "result_final_image06.blo", "result_final_image07.blo",
+	                   "result_final_image08.blo", "result_final_image09.blo", "result_final_image10.blo", "result_final_image11.blo",
+	                   "result_final_image12.blo", "result_final_image13.blo", "result_final_image14.blo", "result_final_image15.blo" };
 
 namespace kh {
 namespace Screen {
@@ -72,8 +80,8 @@ ObjFinalResult::ObjFinalResult()
 	mScrollMoveProgress = 0;
 	mAutoScrollDelay    = msVal._08;
 	mState              = StatusForceScroll;
-	_14D                = -1;
-	_14C                = -1;
+	mRandAnimCounter2   = -1;
+	mRandAnimCounter1   = -1;
 
 	mFlags = 0;
 	mFlags |= 8;
@@ -1195,7 +1203,8 @@ void ObjFinalResult::doDraw(Graphics& gfx)
 	DispFinalResult* disp  = static_cast<DispFinalResult*>(getDispMember());
 	TotalResultData** data = &disp->mTotalResultData;
 	for (int i = 0; i < 16; i++) {
-		data[i]->mScreen = nullptr;
+		data[i]->_18 = 0;
+		data[i]->_18 = 0;
 	}
 
 	if (mState == StatusNormal) {
@@ -1206,7 +1215,7 @@ void ObjFinalResult::doDraw(Graphics& gfx)
 		if (mState == StatusScrollUp) {
 			thing = -mScrollMove;
 			page  = mCurrentPage + 1;
-		} else if (mState == StatusScrollDown) {
+		} else {
 			thing = mScrollMove;
 			page  = mCurrentPage - 1;
 		}
@@ -1218,18 +1227,18 @@ void ObjFinalResult::doDraw(Graphics& gfx)
 	GXSetScissor(x1, x2, y1, y2);
 	gfx.mOrthoGraph.setPort();
 	pane1->hide();
-	pane2->hide();
+	pane2->show();
 	pane3->hide();
 	mScreen->draw(gfx, gfx.mOrthoGraph);
 
 	if (mFadeAlpha) {
 		gfx.mOrthoGraph.setPort();
-		gfx.mOrthoGraph.setColor(JUtility::TColor(mFadeAlpha));
+		gfx.mOrthoGraph.setColor(JUtility::TColor(0, 0, 0, mFadeAlpha));
 
 		f32 zero = 0.0f;
-		u16 x    = sys->getRenderModeObj()->fbWidth;
 		u16 y    = sys->getRenderModeObj()->efbHeight;
-		gfx.mOrthoGraph.fillBox(JGeometry::TBox2f(0.0f, 0.0f, x + zero, y + zero));
+		u16 x    = sys->getRenderModeObj()->fbWidth;
+		gfx.mOrthoGraph.fillBox(JGeometry::TBox2f(0.0f, 0.0f, zero + x, zero + y));
 	}
 
 	if (mFlags & SaveOpen) {
@@ -1516,16 +1525,85 @@ blr
  */
 void ObjFinalResult::updateCommon()
 {
+	Vector3f pos1 = mScreen->search('Nmask')->getGlbVtx(0);
+	Vector3f pos2 = mScreen->search('Nmask')->getGlbVtx(3);
+	f32 y         = pos1.y;
+	_140          = y + 0.5f;
+	_144          = pos2.y - y;
+
+	mAnmTrans5->mCurrentFrame = mAnimTimers[2];
+	mAnimTimers[2] += 1.0f;
+	if (mAnimTimers[2] >= mAnmTrans5->mMaxFrame) {
+		mAnimTimers[2] = 0.0f;
+	}
+
+	mAnmTrans1->mCurrentFrame = mAnimTimers[3];
+	mAnmCol1->mCurrentFrame   = mAnimTimers[3];
+	mAnimTimers[3] += 1.0f;
+	if (mAnimTimers[3] >= 99.0f) {
+		mAnimTimers[3] = 0.0f;
+	}
+
+	mAnmTrans4->mCurrentFrame = mAnimTimers[4];
+	mAnmCol2->mCurrentFrame   = mAnimTimers[4];
+	mAnimTimers[4] += 1.0f;
+	if (mAnimTimers[4] >= 59.0f) {
+		mAnimTimers[4] = 0.0f;
+	}
+
+	mAnmTrans6->mCurrentFrame = mAnimTimers[5];
+	mAnmCol3->mCurrentFrame   = mAnimTimers[5];
+	mAnmSRT->mCurrentFrame    = mAnimTimers[6];
+	mAnmTev->mCurrentFrame    = mAnimTimers[7];
+	mAnimTimers[5] += 1.0f;
+	if (mAnimTimers[5] >= mAnmCol3->mMaxFrame) {
+		mAnimTimers[5] = 0.0f;
+	}
+
+	mAnimTimers[6] += 1.0f;
+	if (mAnimTimers[6] >= mAnmSRT->mMaxFrame) {
+		mAnimTimers[6] = 0.0f;
+	}
+
+	mAnimTimers[7] += 1.0f;
+	if (mAnimTimers[7] >= mAnmTev->mMaxFrame) {
+		mAnimTimers[7] = 0.0f;
+	}
+
+	mAnmTrans2->mCurrentFrame = mAnimTimers[0];
+
+	if (mRandAnimCounter1 == 0) {
+		mAnimTimers[0] += msVal.mAnimSpeed;
+		if (mAnimTimers[0] >= 40.0f) {
+			mAnimTimers[0]    = 0.0f;
+			mRandAnimCounter1 = (f32)msVal._1D * randFloat() + (f32)msVal._1C;
+		}
+	} else {
+		mRandAnimCounter1--;
+	}
+
+	mAnmTrans3->mCurrentFrame = mAnimTimers[1];
+
+	if (mRandAnimCounter2 == 0) {
+		mAnimTimers[1] += msVal.mAnimSpeed;
+		if (mAnimTimers[1] >= 49.0f) {
+			mAnimTimers[1]    = 0.0f;
+			mRandAnimCounter2 = (f32)msVal._1D * randFloat() + (f32)msVal._1C;
+		}
+	} else {
+		mRandAnimCounter2--;
+	}
+
 	mScreen->animation();
 	f32 time = mTimer;
-	if (time >= 1.0f) {
-		mColor = getClr(time, msVal.mColors[0], msVal.mColors[1]);
-	} else if (time >= 2.0f) {
-		mColor = getClr(time - 1.0f, msVal.mColors[1], msVal.mColors[2]);
-	} else if (time >= 3.0f) {
-		mColor = getClr(time - 2.0f, msVal.mColors[2], msVal.mColors[1]);
-	} else if (time >= 4.0f) {
-		mColor = getClr(time - 3.0f, msVal.mColors[1], msVal.mColors[0]);
+	if (1.0f < time) {
+		mColor = getClr(msVal.mColors[0], msVal.mColors[1], time);
+	} else if (time < 2.0f) {
+		mColor = getClr(msVal.mColors[1], msVal.mColors[2], time - 1.0f);
+	} else if (time < 3.0f) {
+		mColor = getClr(msVal.mColors[2], msVal.mColors[1], time - 2.0f);
+	} else if (time < 4.0f) {
+		mColor = getClr(msVal.mColors[1], msVal.mColors[0], time - 3.0f);
 	}
 
 	mTimer += msVal._0C;
@@ -1533,423 +1611,6 @@ void ObjFinalResult::updateCommon()
 		mTimer -= 4.0f;
 	}
 	mScreen->update();
-	/*
-stwu     r1, -0x80(r1)
-mflr     r0
-stw      r0, 0x84(r1)
-stfd     f31, 0x70(r1)
-psq_st   f31, 120(r1), 0, qr0
-stw      r31, 0x6c(r1)
-mr       r31, r3
-lis      r4, 0x6D61736B@ha
-lwz      r3, 0x3c(r3)
-addi     r6, r4, 0x6D61736B@l
-li       r5, 0x4e
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-mr       r4, r3
-addi     r3, r1, 0x24
-li       r5, 0
-bl       getGlbVtx__7J2DPaneCFUc
-lwz      r3, 0x3c(r31)
-lis      r4, 0x6D61736B@ha
-lwz      r7, 0x24(r1)
-addi     r6, r4, 0x6D61736B@l
-lwz      r12, 0(r3)
-li       r5, 0x4e
-lwz      r4, 0x28(r1)
-lwz      r0, 0x2c(r1)
-lwz      r12, 0x3c(r12)
-stw      r7, 0x3c(r1)
-stw      r4, 0x40(r1)
-stw      r0, 0x44(r1)
-mtctr    r12
-bctrl
-mr       r4, r3
-addi     r3, r1, 0x18
-li       r5, 3
-bl       getGlbVtx__7J2DPaneCFUc
-lfs      f0, lbl_805201B0@sda21(r2)
-lfs      f31, 0x40(r1)
-lwz      r4, 0x18(r1)
-lwz      r3, 0x1c(r1)
-fadds    f1, f0, f31
-lwz      r0, 0x20(r1)
-stw      r4, 0x30(r1)
-stw      r3, 0x34(r1)
-stw      r0, 0x38(r1)
-bl       __cvt_fp2unsigned
-lfs      f0, 0x34(r1)
-stw      r3, 0x140(r31)
-fsubs    f1, f0, f31
-bl       __cvt_fp2unsigned
-stw      r3, 0x144(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805201B4@sda21(r2)
-lfs      f2, 0x74(r31)
-lwz      r3, 0x50(r31)
-stw      r0, 0x48(r1)
-lfd      f1, lbl_805201D8@sda21(r2)
-stfs     f2, 8(r3)
-lfs      f2, 0x74(r31)
-fadds    f0, f2, f0
-stfs     f0, 0x74(r31)
-lwz      r3, 0x50(r31)
-lfs      f2, 0x74(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x4c(r1)
-lfd      f0, 0x48(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_8040D704
-lfs      f0, lbl_805201A0@sda21(r2)
-stfs     f0, 0x74(r31)
-
-lbl_8040D704:
-lfs      f0, 0x78(r31)
-lwz      r3, 0x40(r31)
-lfs      f1, lbl_805201B4@sda21(r2)
-stfs     f0, 8(r3)
-lfs      f0, lbl_805201B8@sda21(r2)
-lfs      f2, 0x78(r31)
-lwz      r3, 0x58(r31)
-stfs     f2, 8(r3)
-lfs      f2, 0x78(r31)
-fadds    f1, f2, f1
-stfs     f1, 0x78(r31)
-lfs      f1, 0x78(r31)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_8040D748
-lfs      f0, lbl_805201A0@sda21(r2)
-stfs     f0, 0x78(r31)
-
-lbl_8040D748:
-lfs      f0, 0x7c(r31)
-lwz      r3, 0x4c(r31)
-lfs      f1, lbl_805201B4@sda21(r2)
-stfs     f0, 8(r3)
-lfs      f0, lbl_805201BC@sda21(r2)
-lfs      f2, 0x7c(r31)
-lwz      r3, 0x5c(r31)
-stfs     f2, 8(r3)
-lfs      f2, 0x7c(r31)
-fadds    f1, f2, f1
-stfs     f1, 0x7c(r31)
-lfs      f1, 0x7c(r31)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_8040D78C
-lfs      f0, lbl_805201A0@sda21(r2)
-stfs     f0, 0x7c(r31)
-
-lbl_8040D78C:
-lfs      f1, 0x80(r31)
-lis      r0, 0x4330
-lwz      r3, 0x54(r31)
-lfs      f0, lbl_805201B4@sda21(r2)
-stfs     f1, 8(r3)
-lfd      f1, lbl_805201D8@sda21(r2)
-lfs      f2, 0x80(r31)
-lwz      r3, 0x60(r31)
-stw      r0, 0x48(r1)
-stfs     f2, 8(r3)
-lfs      f2, 0x84(r31)
-lwz      r3, 0x64(r31)
-stfs     f2, 8(r3)
-lfs      f2, 0x88(r31)
-lwz      r3, 0x68(r31)
-stfs     f2, 8(r3)
-lfs      f2, 0x80(r31)
-fadds    f0, f2, f0
-stfs     f0, 0x80(r31)
-lwz      r3, 0x60(r31)
-lfs      f2, 0x80(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x4c(r1)
-lfd      f0, 0x48(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_8040D808
-lfs      f0, lbl_805201A0@sda21(r2)
-stfs     f0, 0x80(r31)
-
-lbl_8040D808:
-lfs      f1, 0x84(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805201B4@sda21(r2)
-stw      r0, 0x48(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805201D8@sda21(r2)
-stfs     f0, 0x84(r31)
-lwz      r3, 0x64(r31)
-lfs      f2, 0x84(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x4c(r1)
-lfd      f0, 0x48(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_8040D854
-lfs      f0, lbl_805201A0@sda21(r2)
-stfs     f0, 0x84(r31)
-
-lbl_8040D854:
-lfs      f1, 0x88(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805201B4@sda21(r2)
-stw      r0, 0x48(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805201D8@sda21(r2)
-stfs     f0, 0x88(r31)
-lwz      r3, 0x68(r31)
-lfs      f2, 0x88(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x4c(r1)
-lfd      f0, 0x48(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_8040D8A0
-lfs      f0, lbl_805201A0@sda21(r2)
-stfs     f0, 0x88(r31)
-
-lbl_8040D8A0:
-lfs      f0, 0x6c(r31)
-lwz      r3, 0x44(r31)
-stfs     f0, 8(r3)
-lbz      r3, 0x14c(r31)
-cmplwi   r3, 0
-bne      lbl_8040D95C
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-lfs      f2, 0x6c(r31)
-lfs      f1, msVal__Q32kh6Screen14ObjFinalResult@l(r3)
-lfs      f0, lbl_805201C0@sda21(r2)
-fadds    f1, f2, f1
-stfs     f1, 0x6c(r31)
-lfs      f1, 0x6c(r31)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_8040D964
-lfs      f0, lbl_805201A0@sda21(r2)
-stfs     f0, 0x6c(r31)
-bl       rand
-lis      r5, 0x4330
-xoris    r0, r3, 0x8000
-stw      r0, 0x4c(r1)
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-addi     r4, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-lfd      f2, lbl_805201D8@sda21(r2)
-stw      r5, 0x48(r1)
-lbz      r3, 0x1d(r4)
-lfd      f1, 0x48(r1)
-lfs      f0, lbl_805201C4@sda21(r2)
-fsubs    f1, f1, f2
-lbz      r0, 0x1c(r4)
-stw      r3, 0x54(r1)
-lfd      f2, lbl_805201A8@sda21(r2)
-fdivs    f3, f1, f0
-stw      r5, 0x50(r1)
-lfd      f1, 0x50(r1)
-stw      r0, 0x5c(r1)
-stw      r5, 0x58(r1)
-lfd      f0, 0x58(r1)
-fsubs    f1, f1, f2
-fsubs    f0, f0, f2
-fmadds   f0, f1, f3, f0
-fctiwz   f0, f0
-stfd     f0, 0x60(r1)
-lwz      r0, 0x64(r1)
-stb      r0, 0x14c(r31)
-b        lbl_8040D964
-
-lbl_8040D95C:
-addi     r0, r3, -1
-stb      r0, 0x14c(r31)
-
-lbl_8040D964:
-lfs      f0, 0x70(r31)
-lwz      r3, 0x48(r31)
-stfs     f0, 8(r3)
-lbz      r3, 0x14d(r31)
-cmplwi   r3, 0
-bne      lbl_8040DA20
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-lfs      f2, 0x70(r31)
-lfs      f1, msVal__Q32kh6Screen14ObjFinalResult@l(r3)
-lfs      f0, lbl_805201C8@sda21(r2)
-fadds    f1, f2, f1
-stfs     f1, 0x70(r31)
-lfs      f1, 0x70(r31)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_8040DA28
-lfs      f0, lbl_805201A0@sda21(r2)
-stfs     f0, 0x70(r31)
-bl       rand
-lis      r5, 0x4330
-xoris    r0, r3, 0x8000
-stw      r0, 0x64(r1)
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-addi     r4, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-lfd      f2, lbl_805201D8@sda21(r2)
-stw      r5, 0x60(r1)
-lbz      r3, 0x1d(r4)
-lfd      f1, 0x60(r1)
-lfs      f0, lbl_805201C4@sda21(r2)
-fsubs    f1, f1, f2
-lbz      r0, 0x1c(r4)
-stw      r3, 0x5c(r1)
-lfd      f2, lbl_805201A8@sda21(r2)
-fdivs    f3, f1, f0
-stw      r5, 0x58(r1)
-lfd      f1, 0x58(r1)
-stw      r0, 0x54(r1)
-stw      r5, 0x50(r1)
-lfd      f0, 0x50(r1)
-fsubs    f1, f1, f2
-fsubs    f0, f0, f2
-fmadds   f0, f1, f3, f0
-fctiwz   f0, f0
-stfd     f0, 0x48(r1)
-lwz      r0, 0x4c(r1)
-stb      r0, 0x14d(r31)
-b        lbl_8040DA28
-
-lbl_8040DA20:
-addi     r0, r3, -1
-stb      r0, 0x14d(r31)
-
-lbl_8040DA28:
-lwz      r3, 0x3c(r31)
-bl       animation__9J2DScreenFv
-lfs      f1, 0x120(r31)
-lfs      f2, lbl_805201B4@sda21(r2)
-fcmpo    cr0, f1, f2
-bge      lbl_8040DA80
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-mr       r4, r31
-addi     r6, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-addi     r5, r6, 0x10
-addi     r3, r1, 0x14
-addi     r6, r6, 0x14
-bl
-getClr__Q32kh6Screen14ObjFinalResultFRCQ28JUtility6TColorRCQ28JUtility6TColorf
-lbz      r0, 0x14(r1)
-stb      r0, 0x124(r31)
-lbz      r0, 0x15(r1)
-stb      r0, 0x125(r31)
-lbz      r0, 0x16(r1)
-stb      r0, 0x126(r31)
-lbz      r0, 0x17(r1)
-stb      r0, 0x127(r31)
-b        lbl_8040DB6C
-
-lbl_8040DA80:
-lfs      f0, lbl_805201A4@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_8040DAD0
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-fsubs    f1, f1, f2
-addi     r6, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-mr       r4, r31
-addi     r3, r1, 0x10
-addi     r5, r6, 0x14
-addi     r6, r6, 0x18
-bl
-getClr__Q32kh6Screen14ObjFinalResultFRCQ28JUtility6TColorRCQ28JUtility6TColorf
-lbz      r0, 0x10(r1)
-stb      r0, 0x124(r31)
-lbz      r0, 0x11(r1)
-stb      r0, 0x125(r31)
-lbz      r0, 0x12(r1)
-stb      r0, 0x126(r31)
-lbz      r0, 0x13(r1)
-stb      r0, 0x127(r31)
-b        lbl_8040DB6C
-
-lbl_8040DAD0:
-lfs      f2, lbl_805201CC@sda21(r2)
-fcmpo    cr0, f1, f2
-bge      lbl_8040DB20
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-fsubs    f1, f1, f0
-addi     r6, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-mr       r4, r31
-addi     r3, r1, 0xc
-addi     r5, r6, 0x18
-addi     r6, r6, 0x14
-bl
-getClr__Q32kh6Screen14ObjFinalResultFRCQ28JUtility6TColorRCQ28JUtility6TColorf
-lbz      r0, 0xc(r1)
-stb      r0, 0x124(r31)
-lbz      r0, 0xd(r1)
-stb      r0, 0x125(r31)
-lbz      r0, 0xe(r1)
-stb      r0, 0x126(r31)
-lbz      r0, 0xf(r1)
-stb      r0, 0x127(r31)
-b        lbl_8040DB6C
-
-lbl_8040DB20:
-lfs      f0, lbl_805201D0@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_8040DB6C
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-fsubs    f1, f1, f2
-addi     r6, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-mr       r4, r31
-addi     r3, r1, 8
-addi     r5, r6, 0x14
-addi     r6, r6, 0x10
-bl
-getClr__Q32kh6Screen14ObjFinalResultFRCQ28JUtility6TColorRCQ28JUtility6TColorf
-lbz      r0, 8(r1)
-stb      r0, 0x124(r31)
-lbz      r0, 9(r1)
-stb      r0, 0x125(r31)
-lbz      r0, 0xa(r1)
-stb      r0, 0x126(r31)
-lbz      r0, 0xb(r1)
-stb      r0, 0x127(r31)
-
-lbl_8040DB6C:
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-lfs      f2, 0x120(r31)
-addi     r3, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-lfs      f0, lbl_805201D0@sda21(r2)
-lfs      f1, 0xc(r3)
-fadds    f1, f2, f1
-stfs     f1, 0x120(r31)
-lfs      f1, 0x120(r31)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_8040DBA0
-fsubs    f0, f1, f0
-stfs     f0, 0x120(r31)
-
-lbl_8040DBA0:
-lwz      r3, 0x3c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-psq_l    f31, 120(r1), 0, qr0
-lwz      r0, 0x84(r1)
-lfd      f31, 0x70(r1)
-lwz      r31, 0x6c(r1)
-mtlr     r0
-addi     r1, r1, 0x80
-blr
-	*/
 }
 
 /*
@@ -2791,11 +2452,6 @@ TotalResultData** SceneFinalResult::createDispMember(const int*, const int*, Gam
 {
 	TotalResultData** data = new TotalResultData*;
 	if (data) {
-		char* bloNames[16]
-		    = { "result_final_image00.blo", "result_final_image01.blo", "result_final_image02.blo", "result_final_image03.blo",
-			    "result_final_image04.blo", "result_final_image05.blo", "result_final_image06.blo", "result_final_image07.blo",
-			    "result_final_image08.blo", "result_final_image09.blo", "result_final_image10.blo", "result_final_image11.blo",
-			    "result_final_image12.blo", "result_final_image13.blo", "result_final_image14.blo", "result_final_image15.blo" };
 		int scoreIDs[16] = { 0, 8, 2, 1, 3, 4, 5, 6, 7, 14, 10, 11, 9, 13, 12 };
 		LoadResource::Arg arg("/new_screen/cmn/result_final_image.szs");
 		LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);

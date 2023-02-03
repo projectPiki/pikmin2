@@ -653,9 +653,9 @@ struct SceneDayEndResultMail : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	MailTableData** mTableData; // _220, unknown
-	JKRMemArchive* mMemArchive; // _224
-	s8 mMailFlags[20];          // _228, unknown
+	MailTableData** mTableData;  // _220, unknown
+	JKRMemArchive* mIconArchive; // _224
+	s8 mMailFlags[20];           // _228, unknown
 };
 
 struct SceneDayEndResultTitl : public ::Screen::SceneBase {

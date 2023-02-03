@@ -41,22 +41,22 @@ DispCaveResult::DispCaveResult(Game::Result::TNode* node, u32 death, u32 otakara
  */
 void DispCaveResult::init(Game::Result::TNode* node, u32 death, bool caveComp)
 {
-	mResultNode        = node;
-	mLostTreasures     = 0;
-	_14                = 0;
-	mCavePokos         = 0;
-	mTreasureNodeCount = 0;
+	mResultNode            = node;
+	mLostTreasures         = 0;
+	mTotalNotLostTreasures = 0;
+	mCavePokos             = 0;
+	mTreasureNodeCount     = 0;
 
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		if (cNode->mQuantity > 0 || cNode->mLostNum != 0) {
-			_14++;
+		if (cNode->mPokoValue > 0 || cNode->mLostNum != 0) {
+			mTotalNotLostTreasures++;
 		}
 		mTreasureNodeCount++;
 		mLostTreasures += cNode->mLostNum;
 
-		if (cNode->mQuantity > 0 || !cNode->mLostNum) {
-			mCavePokos += cNode->mPokoValue;
+		if (cNode->mPokoValue > 0 || !cNode->mLostNum) {
+			mCavePokos += cNode->mTotalPokos;
 		}
 	}
 
@@ -207,7 +207,7 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 
 	mCavePokos    = 0;
 	mDeadPiki     = 0;
-	mOtakaraCount = disp->mCollectedOtakara + disp->mLostTreasures - disp->_14;
+	mOtakaraCount = disp->mCollectedOtakara + disp->mLostTreasures - disp->mTotalNotLostTreasures;
 	mMaxOtakara   = disp->mMaxOtakara;
 	mTotalPokos   = disp->mTotalPokos - disp->mCavePokos;
 
@@ -460,15 +460,16 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 				next = cNode->getNextIndex(cNode->mQuantity, cNode->mLostNum);
 				setAlpha(isOdd, 255);
 			}
+			int isEven = !(i % 2);
 			paneList[isOdd]->hide();
-			paneList[isOdd]->show();
+			paneList[isEven]->show();
 			paneList[isOdd]->add(0.0f, offs);
 			setTex(mScreenMain, icontags[isOdd], cNode->mTexture->_20);
 			u64 tag = cNode->mMesgTag;
 			if (tag == 0) {
 				mScreenMain->search(icontags[isOdd])->hide();
 			} else {
-				mScreenMain->search(icontags[isOdd])->setMsgID(tag);
+				mScreenMain->search(icontags[isOdd])->setMsgID(tag + 1);
 			}
 			mCurrOtaValues[isOdd] = next;
 			mCounterOtaValues[isOdd]->update();
@@ -503,13 +504,13 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 
 	if (mAlpha) {
 		gfx.mOrthoGraph.setPort();
-		JUtility::TColor c(mAlpha);
+		JUtility::TColor c(0, 0, 0, mAlpha);
 		gfx.mOrthoGraph.setColor(c);
 
-		u32 x    = System::getRenderModeObj()->fbWidth;
 		u32 y    = System::getRenderModeObj()->efbHeight;
+		u32 x    = System::getRenderModeObj()->fbWidth;
 		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, x + zero, 0.0f, y + zero);
+		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
 		gfx.mOrthoGraph.fillBox(box);
 	}
 
@@ -1538,7 +1539,9 @@ void ObjCaveResult::statusLost()
 {
 	if (!mChangeStateDelay) {
 		int i = 0;
-		JGeometry::TVec2f pos(_100, _FC);
+		JGeometry::TVec2f pos;
+		pos.x = _FC;
+		pos.y = _100;
 		FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 		{
 			if (cNode->mLostNum != 0 && ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {

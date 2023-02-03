@@ -690,7 +690,6 @@ bool ObjDayEndResultItem::doUpdateFadeout()
 void ObjDayEndResultItem::doDraw(Graphics& gfx)
 {
 	ObjDayEndResultBase::doDraw(gfx);
-
 	gfx.mOrthoGraph.setPort();
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
@@ -718,14 +717,12 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	u32 height = 0;
 	GXGetScissor(&left, &top, &width, &height);
 	GXSetScissor(left, mGXScissorTopY, width, mGXScissorBottomY);
-
 	pane1->hide();
 	pane2->hide();
-
-	f32 p1 = 2.0f * mItemRowHeight;
+	f32 offs = mItemRowHeight * 2.0f;
 
 	for (int i = 0; i < 2; i++) {
-		panes[i]->add(0.0f, mCurrentScrollYPos - p1);
+		panes[i]->add(0.0f, mCurrentScrollYPos - offs);
 	}
 
 	for (int i = 0; i < 2; i++) {
@@ -734,28 +731,27 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 		mTreasurePokoCounter[i]->show();
 	}
 
-	u32 i    = 0;
-	f32 offs = mItemRowHeight * 2.0f;
+	u32 i = 0;
 	FOREACH_NODE(Game::Result::TNode, dispResult->mItem.mResultNode->mChild, cNode)
 	{
+		int pokos = cNode->mTotalPokos;
 		int isOdd = i % 2;
 		f32 check = (f32)i * mItemRowHeight + mCurrentScrollYPos;
 		if (check < -mItemRowHeight || mGXScissorBottomY < check) {
-			panes[i]->add(0.0f, p1);
+			panes[isOdd]->add(0.0f, offs);
 		} else {
 			int isEven = !(i % 2);
-			panes[isEven]->show();
-			panes[isOdd]->hide();
-			panes[isEven]->add(0.0f, p1);
+			panes[isEven]->hide();
+			panes[isOdd]->show();
+			panes[isEven]->add(0.0f, offs);
 
-			JUTTexture* texture = cNode->mTexture;
-			setTex(mScreenMain, icons[i], texture->_20);
+			setTex(mScreenMain, icons[isOdd], cNode->mTexture->_20);
 			if (!cNode->mMesgTag) {
 				mScreenMain->search(names[isOdd])->hide();
 			} else {
-				mScreenMain->search(names[isOdd])->setMsgID(cNode->mMesgTag);
+				mScreenMain->search(names[isOdd])->setMsgID(cNode->mMesgTag + 1);
 			}
-			mTreasurePokoCount[isOdd] = cNode->mTotalPokos;
+			mTreasurePokoCount[isOdd] = pokos;
 			mTreasurePokoCounter[isOdd]->update();
 			mScreenMain->draw(gfx, gfx.mOrthoGraph);
 		}
@@ -777,7 +773,7 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	GXSetScissor(left, top, width, height);
 	if (mFlags & 1 && mStatus != ITEMSTATUS_ForceScroll && mStatus != ITEMSTATUS_DrumRoll && mStatus != ITEMSTATUS_TotalValue) {
 		pane1->hide();
-		pane2->hide();
+		pane2->show();
 		panes[0]->hide();
 		panes[1]->hide();
 		mScreenMain->draw(gfx, gfx.mOrthoGraph);
@@ -1821,7 +1817,6 @@ bool ObjDayEndResultIncP::doUpdate()
 		mFlags |= 0x100;
 		mStatus = INCPSTATUS_DecP;
 	}
-
 	return false;
 }
 
@@ -2022,8 +2017,8 @@ void ObjDayEndResultIncP::statusDecPSlot()
 void ObjDayEndResultIncP::callIncPSE(int id)
 {
 	u32 soundID;
-	bool flag = (id > 0) ? id : -id; // this needs fixing
-	if (flag) {
+	u32 test = id;
+	if ((id & 1 ^ test >> 31) != test >> 31) { // wtf
 		u32 count2 = *mPikiCountersList[id - 1]->mCountPtr;
 		u32 count1 = *mPikiCountersList[id]->mCountPtr;
 		if (count2 < count1) {
@@ -2091,36 +2086,14 @@ blr
  */
 void ObjDayEndResultIncP::callDecPSE(int id)
 {
-	u32 soundID = PSSE_SY_PIKI_DECREMENT;
-	u32 count2  = *mDeathCountersList[id]->mCountPtr;
+	PSSystem::SysIF* sys = PSSystem::spSysIF;
+	u32 soundID          = PSSE_SY_PIKI_DECREMENT;
+	u32 count2           = *mDeathCountersList[id & 0x3ffffffe]->mCountPtr; // wtf again
 	if (!count2) {
 		soundID = PSSE_SY_MENU_PLUS_MINUS;
 	}
 
-	PSSystem::spSysIF->playSystemSe(soundID, 0);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-rlwinm   r0, r4, 2, 0, 0x1c
-li       r4, 0x182a
-lwz      r5, 0xbc(r3)
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-lwzx     r5, r5, r0
-lwz      r5, 0x20(r5)
-lwz      r0, 0(r5)
-cmplwi   r0, 0
-bne      lbl_804078AC
-li       r4, 0x1806
-
-lbl_804078AC:
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	sys->playSystemSe(soundID, 0);
 }
 
 /*
@@ -2186,7 +2159,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 {
 	ObjDayEndResultBase::doCreate(arc);
 	mScreenMain = new P2DScreen::Mgr_tuning;
-	mScreenMain->set("result_mail.blo", 0x40000, arc);
+	mScreenMain->set("result_mail.blo", 0x1040000, arc);
 
 	void* resource  = JKRFileLoader::getGlbResource("result_mail.bck", arc);
 	mMainAnimTrans1 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
@@ -2228,9 +2201,10 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
-	mSaveMgr = ebi::Save::TMgr::createInstance();
-	mSaveMgr->mSaveMenu.loadResource();
-	mSaveMgr->doLoadResource(JKRGetCurrentHeap());
+	mSaveMgr             = ebi::Save::TMgr::createInstance();
+	ebi::Save::TMgr* mgr = mSaveMgr;
+	mgr->mSaveMenu.loadResource();
+	mgr->doLoadResource(JKRGetCurrentHeap());
 	mSaveMgr->setControllers(getGamePad());
 
 	int day     = dispResult->mMail.mDayCount;
@@ -2242,7 +2216,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 
 	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
 	if (dispResult->mMail.mHeap) {
-		mIconArchive  = scene->mMemArchive;
+		mIconArchive  = scene->mIconArchive;
 		mMailIconAnms = new MailIconAnm[20];
 
 		for (int i = 0; i < 20; i++) {
@@ -2257,7 +2231,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 				char buf[64];
 				do {
 					mMailIconAnms[i].mIconCount++;
-					sprintf(buf, "%s%003d.bti", path, mMailIconAnms[i].mIconCount);
+					sprintf(buf, "%s%003d.bti", path);
 				} while (JKRFileLoader::getGlbResource(buf, mIconArchive));
 				mMailIconAnms[i].mIconCount--;
 				if (mMailIconAnms[i].mIconCount) {
@@ -2266,7 +2240,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 
 				for (int j = 0; i < mMailIconAnms[i].mIconCount; j++) {
 					char buf2[64];
-					sprintf(buf, "%s%003d.bti", path, j);
+					sprintf(buf2, "%s%003d.bti", path, j);
 					mMailIconAnms[i].mTIMG[j] = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource(buf2, mIconArchive));
 				}
 			}
@@ -3975,19 +3949,9 @@ void ObjDayEndResultTitl::doCreate(JKRArchive* arc)
 	mScreenMain->setAnimation(mMainAnimSRT);
 	setInfAlpha(mScreenMain);
 
-	J2DBlend info           = J2DBlend(1, 7, 6, 0);
-	u64 tags[4]             = { 'nuki_tex', 'efect_00', 'efect_01', 0 };
-	volatile J2DBlend info2 = info;
-	J2DScreen* screen       = mScreenMain;
-	int i                   = 0;
-	while (true) {
-		if (tags[i++] == 0)
-			break;
-		J2DPictureEx* pane = static_cast<J2DPictureEx*>(screen->search(tags[i]));
-		if (pane) {
-			pane->getMaterial()->mPeBlock.mBlendInfo.set(info);
-		}
-	}
+	J2DBlend info = J2DBlend(1, 7, 6, 0);
+	u64 tags[4]   = { 'nuki_tex', 'efect_00', 'efect_01', 0 };
+	mScreenMain->setBlendInfo(info, tags);
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -4227,8 +4191,8 @@ void ObjDayEndResultTitl::updateCommon()
  */
 SceneDayEndResultMail::SceneDayEndResultMail()
 {
-	mTableData  = nullptr;
-	mMemArchive = nullptr;
+	mTableData   = nullptr;
+	mIconArchive = nullptr;
 }
 
 /*
@@ -4253,6 +4217,14 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 		MailTableData* data = new MailTableData;
 
 		mTableData[i] = data;
+	}
+
+	LoadResource::Arg arg2("/user/Koono/mail_icon.szs");
+	LoadResource::Node* node2 = gLoadResourceMgr->mountArchive(arg2);
+	if (node2) {
+		mIconArchive = static_cast<JKRMemArchive*>(node2->mArchive);
+	} else {
+		JUT_ASSERTLINE(2749, node2, "no exist");
 	}
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {

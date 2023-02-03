@@ -44,25 +44,7 @@ ObjCourseName::ObjCourseName(char const* name)
  * Size:	0000AC
  */
 ObjCourseName::~ObjCourseName() { }
-} // namespace newScreen
-} // namespace og
 
-inline void J2DScreen::setBlendInfo(J2DBlend info, u64* tags)
-{
-	J2DBlend blend = info;
-	while (true) {
-		if (!*tags) {
-			return;
-		}
-		J2DPictureEx* pane = static_cast<J2DPictureEx*>(search(*(tags++)));
-		if (pane) {
-			pane->getMaterial()->mPeBlock.mBlendInfo.set(blend);
-		}
-	}
-}
-
-namespace og {
-namespace newScreen {
 /*
  * --INFO--
  * Address:	80317570

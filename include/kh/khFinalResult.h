@@ -101,13 +101,13 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 	int mScrollTargetPos;                              // _134
 	int mScrollMoveProgress;                           // _138
 	int mAutoScrollDelay;
-	int _140;
-	int _144;
-	int mState;    // _148
-	u8 _14C;       // _14C
-	u8 _14D;       // _14D
-	u8 mFlags;     // _14E
-	u8 mFadeAlpha; // _14F
+	u32 _140;
+	u32 _144;
+	int mState;           // _148
+	u8 mRandAnimCounter1; // _14C
+	u8 mRandAnimCounter2; // _14D
+	u8 mFlags;            // _14E
+	u8 mFadeAlpha;        // _14F
 
 	static struct StaticValues {
 		inline StaticValues()
