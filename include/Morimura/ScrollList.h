@@ -7,6 +7,8 @@ namespace Morimura {
 struct TScaleUpCounter;
 
 struct TIndexGroup {
+	TIndexGroup();
+
 	f32 _00;     // _00
 	f32 _04;     // _04
 	f32 _08;     // _08
@@ -31,9 +33,23 @@ struct TIconInfo {
 };
 
 struct TIndexPane {
+	TIndexPane(P2DScreen::Mgr_tuning* scrn, u64 tag) {
+		_00 = 0;
+		mPane = scrn->search(tag);
+		mPane2 = nullptr;
+		_0C = 0;
+		_10 = 0;
+		_18 = 0.0f;
+		mIconInfos = nullptr;
+		_24 = nullptr;
+		_1C = mPane->mOffset.y;
+	}
+
+	void setIndex(int);
+
 	int _00;                // _00
-	J2DPane* _04;           // _04
-	J2DPane* _08;           // _08
+	J2DPane* mPane;           // _04
+	J2DPane* mPane2;           // _08
 	int _0C;                // _0C
 	int _10;                // _10
 	int _14;                // _14
@@ -44,6 +60,9 @@ struct TIndexPane {
 };
 
 struct TListScreen : public TScreenBase {
+	TListScreen(JKRArchive* arc, int id) : TScreenBase(arc, id) {
+
+	}
 	virtual void create(const char*, u32); // _08
 
 	// _00     = VTBL
@@ -53,19 +72,19 @@ struct TListScreen : public TScreenBase {
 struct TScrollList : public TTestBase {
 	TScrollList(char*);
 
-	virtual ~TScrollList();                       // _08 (weak)
-	virtual bool isListShow(int);                 // _7C (weak)
+	virtual ~TScrollList() { }                       // _08 (weak)
+	virtual bool isListShow(int) { return true; }                 // _7C (weak)
 	virtual void paneInit()       = 0;            // _80
 	virtual void changePaneInfo() = 0;            // _84
-	virtual void getIdMax()       = 0;            // _88
-	virtual void getNameID(int)   = 0;            // _8C
+	virtual int getIdMax()       = 0;             // _88
+	virtual u64 getNameID(int)   = 0;            // _8C
 	virtual void getUpdateIndex(int&, bool);      // _90
-	virtual void setShortenIndex(int, int, bool); // _94 (weak)
-	virtual void doUpdateIn();                    // _98 (weak)
-	virtual void doUpdateOut();                   // _9C (weak)
-	virtual void changeTextTevBlock(int);         // _A0 (weak)
+	virtual void setShortenIndex(int, int, bool) { } // _94 (weak)
+	virtual void doUpdateIn() { }                   // _98 (weak)
+	virtual void doUpdateOut() { }                   // _9C (weak)
+	virtual void changeTextTevBlock(int) { }         // _A0 (weak)
 	virtual void updateIndex(bool);               // _A4
-	virtual void setPaneCharacter(int);           // _A8 (weak)
+	virtual void setPaneCharacter(int) { }           // _A8 (weak)
 
 	void updateList();
 	void changeIndex();
@@ -74,12 +93,12 @@ struct TScrollList : public TTestBase {
 	// _18     = VTBL2
 	// _00-_78 = TTestBase
 	JKRArchive* mArchive; // _78
-	TScreenBase* _7C;     // _7C
-	Controller* _80;      // _80
-	TIndexGroup* _84;     // _84
-	TIndexPane** _88;     // _88, array of ptrs?
+	TScreenBase* mMainScreen;     // _7C
+	Controller* mController;      // _80
+	TIndexGroup* mIndexGroup;     // _84
+	TIndexPane** mIndexPaneList;     // _88, array of ptrs?
 	u8 _8C;               // _8C
-	s16 _8E;              // _8E
+	s16 mMaxSelect;              // _8E
 	int _90;              // _90
 	int _94;              // _94
 	int _98;              // _98

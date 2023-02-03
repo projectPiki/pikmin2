@@ -9,6 +9,8 @@ struct J2DPane;
 
 namespace Morimura {
 
+void setScreenAlpha(J2DPane*, u8);
+
 struct TOffsetMsgSet {
 	TOffsetMsgSet(u64*, u64, int);
 	TOffsetMsgSet(u64*, u64, int, u64*, int*);
@@ -60,6 +62,9 @@ struct TScaleUpCounter : public og::Screen::CallBack_CounterRV {
 	f32 _AC; // _AC
 };
 
+TScaleUpCounter* setScaleUpCounter(P2DScreen::Mgr*, u64, u32*, u16, JKRArchive*);
+TScaleUpCounter* setScaleUpCounter2(P2DScreen::Mgr*, u64, u64, u32*, u16, JKRArchive*);
+
 struct TCounterRV : public og::Screen::CallBack_CounterRV {
 	TCounterRV(char**, u16, u16, JKRArchive*);
 
@@ -79,28 +84,28 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 };
 
 struct TCallbackScissor : public P2DScreen::CallBackNode {
+	TCallbackScissor() {
+		mBounds.set(0.0f);
+	}
 
 	virtual ~TCallbackScissor() { }                // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	f32 mX1; // _1C
-	f32 mY1; // _20
-	f32 mX2; // _24
-	f32 mY2; // _28
+	JGeometry::TBox2f mBounds;	// _1C
 };
 
 struct TScissorPane : public J2DPictureEx {
+	TScissorPane() {
+
+	}
 	virtual ~TScissorPane() { }            // _08 (weak)
 	virtual void drawSelf(f32, f32, Mtx*); // _38
 
 	// _00      = VTBL
 	// _00-_1A8 = J2DPictureEx
-	f32 _1A8; // _1A8
-	f32 _1AC; // _1AC
-	f32 _1B0; // _1B0
-	f32 _1B4; // _1B4
+	JGeometry::TBox2f mBounds; // _1A8
 };
 
 struct TGXSetPane : public J2DPictureEx {

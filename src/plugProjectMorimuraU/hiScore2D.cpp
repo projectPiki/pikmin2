@@ -1,560 +1,18 @@
-#include "types.h"
+#include "Morimura/HiScore.h"
+#include "Game/Data.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "Morimura/mrUtil.h"
 
-/*
-    Generated from dpostproc
+static const char name[] = "hiScore2D";
 
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_hiScore2D_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804932E0
-    lbl_804932E0:
-        .asciz "hiScore2D"
-        .skip 2
-    .global lbl_804932EC
-    lbl_804932EC:
-        .asciz "timg/hi_score_00.bti"
-        .skip 3
-    .global lbl_80493304
-    lbl_80493304:
-        .asciz "timg/hi_score_01.bti"
-        .skip 3
-    .global lbl_8049331C
-    lbl_8049331C:
-        .asciz "timg/hi_score_02.bti"
-        .skip 3
-    .global lbl_80493334
-    lbl_80493334:
-        .asciz "timg/hi_score_03.bti"
-        .skip 3
-    .global lbl_8049334C
-    lbl_8049334C:
-        .asciz "timg/hi_score_04.bti"
-        .skip 3
-    .global lbl_80493364
-    lbl_80493364:
-        .asciz "timg/hi_score_05.bti"
-        .skip 3
-    .global lbl_8049337C
-    lbl_8049337C:
-        .asciz "timg/hi_score_06.bti"
-        .skip 3
-    .global lbl_80493394
-    lbl_80493394:
-        .asciz "timg/hi_score_07.bti"
-        .skip 3
-    .global lbl_804933AC
-    lbl_804933AC:
-        .asciz "timg/hi_score_08.bti"
-        .skip 3
-    .global lbl_804933C4
-    lbl_804933C4:
-        .asciz "timg/hi_score_09.bti"
-        .skip 3
-    .global lbl_804933DC
-    lbl_804933DC:
-        .asciz "timg/hi_score_10.bti"
-        .skip 3
-    .global lbl_804933F4
-    lbl_804933F4:
-        .asciz "timg/hi_score_11.bti"
-        .skip 3
-    .global lbl_8049340C
-    lbl_8049340C:
-        .asciz "timg/hi_score_12.bti"
-        .skip 3
-    .global lbl_80493424
-    lbl_80493424:
-        .asciz "timg/hi_score_13.bti"
-        .skip 3
-    .global lbl_8049343C
-    lbl_8049343C:
-        .asciz "timg/hi_score_14.bti"
-        .skip 3
-    .global lbl_80493454
-    lbl_80493454:
-        .asciz "timg/hi_score_15.bti"
-        .skip 3
-        .4byte lbl_804932EC
-        .4byte lbl_80493304
-        .4byte lbl_8049331C
-        .4byte lbl_80493334
-        .4byte lbl_8049334C
-        .4byte lbl_80493364
-        .4byte lbl_8049337C
-        .4byte lbl_80493394
-        .4byte lbl_804933AC
-        .4byte lbl_804933C4
-        .4byte lbl_804933DC
-        .4byte lbl_804933F4
-        .4byte lbl_8049340C
-        .4byte lbl_80493424
-        .4byte lbl_8049343C
-        .4byte lbl_80493454
-        .skip 4
-        .4byte 0x004E6D65
-        .4byte 0x6E753030
-        .4byte 0x004E6D65
-        .4byte 0x6E753031
-        .4byte 0x004E6D65
-        .4byte 0x6E753032
-        .4byte 0x004E6D65
-        .4byte 0x6E753033
-        .4byte 0x004E6D65
-        .4byte 0x6E753034
-        .4byte 0x00546D65
-        .4byte 0x6E753030
-        .4byte 0x00546D65
-        .4byte 0x6E753031
-        .4byte 0x00546D65
-        .4byte 0x6E753032
-        .4byte 0x00546D65
-        .4byte 0x6E753033
-        .4byte 0x00546D65
-        .4byte 0x6E753034
-        .4byte 0x00506865
-        .4byte 0x31737431
-        .4byte 0x00506865
-        .4byte 0x326E6431
-        .4byte 0x00506865
-        .4byte 0x33726431
-        .4byte 0x00506F74
-        .4byte 0x31737431
-        .4byte 0x00506F74
-        .4byte 0x326E6431
-        .4byte 0x00506F74
-        .4byte 0x33726431
-        .4byte 0x00506865
-        .4byte 0x31737434
-        .4byte 0x00506865
-        .4byte 0x326E6434
-        .4byte 0x00506865
-        .4byte 0x33726434
-        .4byte 0x00506F74
-        .4byte 0x31737434
-        .4byte 0x00506F74
-        .4byte 0x326E6434
-        .4byte 0x00506F74
-        .4byte 0x33726434
-        .4byte 0x00506865
-        .4byte 0x31737435
-        .4byte 0x00506865
-        .4byte 0x326E6435
-        .4byte 0x00506865
-        .4byte 0x33726435
-        .4byte 0x00506F74
-        .4byte 0x31737435
-        .4byte 0x00506F74
-        .4byte 0x326E6435
-        .4byte 0x00506F74
-        .4byte 0x33726435
-        .4byte 0x00506865
-        .4byte 0x31737431
-        .4byte 0x00506865
-        .4byte 0x326E6431
-        .4byte 0x00506865
-        .4byte 0x33726431
-        .4byte 0x00506F74
-        .4byte 0x31737431
-        .4byte 0x00506F74
-        .4byte 0x326E6431
-        .4byte 0x00506F74
-        .4byte 0x33726431
-        .4byte 0x00506865
-        .4byte 0x31737432
-        .4byte 0x00506865
-        .4byte 0x326E6432
-        .4byte 0x00506865
-        .4byte 0x33726432
-        .4byte 0x00506F74
-        .4byte 0x31737432
-        .4byte 0x00506F74
-        .4byte 0x326E6432
-        .4byte 0x00506F74
-        .4byte 0x33726432
-    .global lbl_804935F0
-    lbl_804935F0:
-        .4byte 0x68695363
-        .4byte 0x6F726532
-        .4byte 0x442E6370
-        .4byte 0x70000000
-    .global lbl_80493600
-    lbl_80493600:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x68695F73
-        .4byte 0x636F7265
-        .4byte 0x5F6D6169
-        .4byte 0x6E2E626C
-        .4byte 0x6F000000
-        .4byte 0x68695F73
-        .4byte 0x636F7265
-        .4byte 0x5F6D6169
-        .4byte 0x6E2E6263
-        .4byte 0x6B000000
-        .4byte 0x68695F73
-        .4byte 0x636F7265
-        .4byte 0x5F6D6169
-        .4byte 0x6E2E6270
-        .4byte 0x6B000000
-        .4byte 0x68695F73
-        .4byte 0x636F7265
-        .4byte 0x5F6C6973
-        .4byte 0x742E626C
-        .4byte 0x6F000000
-        .4byte 0x61737365
-        .4byte 0x7274696E
-        .4byte 0x64657820
-        .4byte 0x3D202564
-        .4byte 0x200A0000
-        .4byte 0x68695F73
-        .4byte 0x636F7265
-        .4byte 0x5F30302E
-        .4byte 0x62746900
-    .global lbl_80493680
-    lbl_80493680:
-        .4byte 0x7265735F
-        .4byte 0x68697363
-        .4byte 0x6F72652E
-        .4byte 0x737A7300
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6800
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global mPicTexture__Q28Morimura8THiScore
-    mPicTexture__Q28Morimura8THiScore:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global mNameID__Q28Morimura8THiScore
-    mNameID__Q28Morimura8THiScore:
-        .4byte 0x00383530
-        .4byte 0x325F3030
-        .4byte 0x00383530
-        .4byte 0x335F3030
-        .4byte 0x00383530
-        .4byte 0x345F3030
-        .4byte 0x00383530
-        .4byte 0x355F3030
-        .4byte 0x00383530
-        .4byte 0x365F3030
-        .4byte 0x00383530
-        .4byte 0x375F3030
-        .4byte 0x00383530
-        .4byte 0x385F3030
-        .4byte 0x00383530
-        .4byte 0x395F3030
-        .4byte 0x00383531
-        .4byte 0x305F3030
-        .4byte 0x00383531
-        .4byte 0x315F3030
-        .4byte 0x00383531
-        .4byte 0x325F3030
-        .4byte 0x00383531
-        .4byte 0x335F3030
-        .4byte 0x00383531
-        .4byte 0x345F3030
-        .4byte 0x00383531
-        .4byte 0x355F3030
-        .4byte 0x00383531
-        .4byte 0x365F3030
-        .4byte 0x00383531
-        .4byte 0x375F3030
-    .global mHiscoreDataOrder__Q28Morimura8THiScore
-    mHiscoreDataOrder__Q28Morimura8THiScore:
-        .4byte 0x00000000
-        .4byte 0x00000008
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000003
-        .4byte 0x00000004
-        .4byte 0x00000005
-        .4byte 0x00000006
-        .4byte 0x00000007
-        .4byte 0x0000000E
-        .4byte 0x0000000A
-        .4byte 0x0000000B
-        .4byte 0x00000009
-        .4byte 0x0000000D
-        .4byte 0x0000000C
-        .4byte 0x0000000F
-    .global __vt__Q28Morimura13THiScoreScene
-    __vt__Q28Morimura13THiScoreScene:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q28Morimura13THiScoreSceneFv
-        .4byte getOwnerID__Q28Morimura13THiScoreSceneFv
-        .4byte getMemberID__Q28Morimura13THiScoreSceneFv
-        .4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
-        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
-        .4byte getResName__Q28Morimura13THiScoreSceneCFv
-        .4byte doCreateObj__Q28Morimura13THiScoreSceneFP10JKRArchive
-        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
-        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
-        .4byte doUpdateActive__Q26Screen9SceneBaseFv
-        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-        .4byte
-   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
-   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
-   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
-   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
-   doGetFinishState__Q26Screen9SceneBaseFv .global
-   __vt__Q28Morimura19DispMemberHighScore
-    __vt__Q28Morimura19DispMemberHighScore:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q28Morimura19DispMemberHighScoreFv
-        .4byte getOwnerID__Q28Morimura19DispMemberHighScoreFv
-        .4byte getMemberID__Q28Morimura19DispMemberHighScoreFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q28Morimura8THiScore
-    __vt__Q28Morimura8THiScore:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28Morimura8THiScoreFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q28Morimura8THiScoreFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q28Morimura9TTestBaseFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q28Morimura8THiScoreFP10JKRArchive
-        .4byte doUpdateFadein__Q28Morimura9TTestBaseFv
-        .4byte doUpdateFadeinFinish__Q28Morimura8THiScoreFv
-        .4byte doUpdate__Q28Morimura8THiScoreFv
-        .4byte doUpdateFinish__Q28Morimura9TTestBaseFv
-        .4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
-        .4byte doUpdateFadeoutFinish__Q28Morimura8THiScoreFv
-        .4byte doDraw__Q28Morimura8THiScoreFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-        .4byte getDispMemberBase__Q28Morimura8THiScoreFv
-        .4byte isListShow__Q28Morimura11TScrollListFi
-        .4byte paneInit__Q28Morimura8THiScoreFv
-        .4byte changePaneInfo__Q28Morimura8THiScoreFv
-        .4byte getIdMax__Q28Morimura8THiScoreFv
-        .4byte getNameID__Q28Morimura8THiScoreFi
-        .4byte getUpdateIndex__Q28Morimura11TScrollListFRib
-        .4byte setShortenIndex__Q28Morimura11TScrollListFiib
-        .4byte doUpdateIn__Q28Morimura11TScrollListFv
-        .4byte doUpdateOut__Q28Morimura11TScrollListFv
-        .4byte changeTextTevBlock__Q28Morimura8THiScoreFi
-        .4byte updateIndex__Q28Morimura11TScrollListFb
-        .4byte setPaneCharacter__Q28Morimura8THiScoreFi
-    .global __vt__Q28Morimura18THiScoreListScreen
-    __vt__Q28Morimura18THiScoreListScreen:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q28Morimura18THiScoreListScreenFPCcUl
-        .4byte update__Q28Morimura18THiScoreListScreenFv
-        .4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
-    .global __vt__Q28Morimura15THiScoreIndPane
-    __vt__Q28Morimura15THiScoreIndPane:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28Morimura15THiScoreIndPaneFv
-        .4byte getChildCount__5CNodeFv
-        .4byte draw__Q28Morimura15THiScoreIndPaneFv
-        .4byte 0
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global mScrollParm__Q28Morimura8THiScore
-    mScrollParm__Q28Morimura8THiScore:
-        .skip 0x14
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global mPictureOffsetY__Q28Morimura8THiScore
-    mPictureOffsetY__Q28Morimura8THiScore:
-        .float -8.0
-    .global mChangeAlpha__Q28Morimura8THiScore
-    mChangeAlpha__Q28Morimura8THiScore:
-        .4byte 0x01000000
-    .global mListOffsetY__Q28Morimura8THiScore
-    mListOffsetY__Q28Morimura8THiScore:
-        .float 25.0
-    .global mClearListHeightRate__Q28Morimura8THiScore
-    mClearListHeightRate__Q28Morimura8THiScore:
-        .float 1.55
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mForceClear__Q28Morimura8THiScore
-    mForceClear__Q28Morimura8THiScore:
-        .skip 0x1
-    .global mForceClear2__Q28Morimura8THiScore
-    mForceClear2__Q28Morimura8THiScore:
-        .skip 0x1
-    .global mLoopDrum__Q28Morimura8THiScore
-    mLoopDrum__Q28Morimura8THiScore:
-        .skip 0x6
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051EC18
-    lbl_8051EC18:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_8051EC20
-    lbl_8051EC20:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051EC28
-    lbl_8051EC28:
-        .4byte 0x43B40000
-    .global lbl_8051EC2C
-    lbl_8051EC2C:
-        .4byte 0x40C90FDB
-    .global lbl_8051EC30
-    lbl_8051EC30:
-        .4byte 0x40A00000
-    .global lbl_8051EC34
-    lbl_8051EC34:
-        .4byte 0x44200000
-    .global lbl_8051EC38
-    lbl_8051EC38:
-        .4byte 0x43F00000
-    .global lbl_8051EC3C
-    lbl_8051EC3C:
-        .4byte 0x68697363
-        .4byte 0x6F726500
-    .global lbl_8051EC44
-    lbl_8051EC44:
-        .float 1.0
-    .global lbl_8051EC48
-    lbl_8051EC48:
-        .float 0.05
-    .global lbl_8051EC4C
-    lbl_8051EC4C:
-        .4byte 0x3CA3D70A
-    .global lbl_8051EC50
-    lbl_8051EC50:
-        .float 0.25
-    .global lbl_8051EC54
-    lbl_8051EC54:
-        .4byte 0x41000000
-    .global lbl_8051EC58
-    lbl_8051EC58:
-        .4byte 0x3F99999A
-    .global lbl_8051EC5C
-    lbl_8051EC5C:
-        .4byte 0x3F7D70A4
-    .global lbl_8051EC60
-    lbl_8051EC60:
-        .4byte 0x3F8CCCCD
-    .global lbl_8051EC64
-    lbl_8051EC64:
-        .4byte 0x40000000
-    .global lbl_8051EC68
-    lbl_8051EC68:
-        .4byte 0xBF800000
-    .global lbl_8051EC6C
-    lbl_8051EC6C:
-        .float 0.1
-    .global lbl_8051EC70
-    lbl_8051EC70:
-        .4byte 0x41A00000
-    .global lbl_8051EC74
-    lbl_8051EC74:
-        .float 0.5
-    .global lbl_8051EC78
-    lbl_8051EC78:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051EC7C
-    lbl_8051EC7C:
-        .4byte 0x437F0000
-    .global lbl_8051EC80
-    lbl_8051EC80:
-        .float 0.04
-    .global lbl_8051EC84
-    lbl_8051EC84:
-        .4byte 0x3F400000
-    .global lbl_8051EC88
-    lbl_8051EC88:
-        .4byte 0x3F59999A
-    .global lbl_8051EC8C
-    lbl_8051EC8C:
-        .4byte 0xC3A2F983
-    .global lbl_8051EC90
-    lbl_8051EC90:
-        .4byte 0x43A2F983
-    .global lbl_8051EC94
-    lbl_8051EC94:
-        .4byte 0xC1A00000
-    .global lbl_8051EC98
-    lbl_8051EC98:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051ECA0
-    lbl_8051ECA0:
-        .4byte 0x41200000
-    .global lbl_8051ECA4
-    lbl_8051ECA4:
-        .4byte 0x47000000
-    .global lbl_8051ECA8
-    lbl_8051ECA8:
-        .4byte 0x42C80000
-    .global lbl_8051ECAC
-    lbl_8051ECAC:
-        .4byte 0x42DC0000
-    .global lbl_8051ECB0
-    lbl_8051ECB0:
-        .4byte 0x447A0000
-    .global lbl_8051ECB4
-    lbl_8051ECB4:
-        .4byte 0x44898000
-    .global lbl_8051ECB8
-    lbl_8051ECB8:
-        .4byte 0x47C35000
-    .global lbl_8051ECBC
-    lbl_8051ECBC:
-        .4byte 0x3F666666
-    .global lbl_8051ECC0
-    lbl_8051ECC0:
-        .4byte 0x3FC00000
-        .4byte 0x00000000
-*/
+namespace Morimura {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000254
  */
-void Morimura::setScreenAlpha(J2DPane*, unsigned char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void J2DPane::isInfluencedAlpha() const
+void setScreenAlpha(J2DPane*, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -564,8 +22,40 @@ void J2DPane::isInfluencedAlpha() const
  * Address:	8037C9AC
  * Size:	000214
  */
-void Morimura::THiScoreIndPane::draw()
+void THiScoreIndPane::draw()
 {
+	GXSetColorUpdate(GX_TRUE);
+	GXSetAlphaUpdate(GX_FALSE);
+	GXSetDstAlpha(GX_FALSE,0);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_ONE, GX_BL_ZERO, GX_LO_CLEAR);
+	GXSetNumTexGens(0);
+	GXSetNumIndStages(0);
+	GXSetNumChans(1);
+	GXColor color;
+	color.r = 0;
+	color.g = 0;
+	color.b = 0;
+	color.a = 255;
+	GXSetChanMatColor(GX_COLOR0A0, color);
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetCullMode(GX_CULL_NONE);
+	GXSetNumTevStages(1);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+	Mtx mtx;
+	PSMTXIdentity(mtx);
+	GXLoadPosMtxImm(mtx, 0);
+	GXSetCurrentMtx(0);
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	// gx register stuff
+
+	GXSetDstAlpha(GX_FALSE, 0);
+	GXSetAlphaUpdate(GX_FALSE);
+	TIndPane::draw();
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -708,7 +198,7 @@ void Morimura::THiScoreIndPane::draw()
  * Address:	........
  * Size:	000030
  */
-void Morimura::THiScoreIndPane::setRadius(short, float)
+void THiScoreIndPane::setRadius(s16, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -718,7 +208,8 @@ void Morimura::THiScoreIndPane::setRadius(short, float)
  * Address:	........
  * Size:	000048
  */
-Morimura::THiScoreListScreen::THiScoreListScreen(JKRArchive*, int)
+THiScoreListScreen::THiScoreListScreen(JKRArchive* arc, int)
+	: TListScreen(arc,0)
 {
 	// UNUSED FUNCTION
 }
@@ -728,8 +219,35 @@ Morimura::THiScoreListScreen::THiScoreListScreen(JKRArchive*, int)
  * Address:	8037CBC0
  * Size:	00032C
  */
-void Morimura::THiScoreListScreen::create(char const*, unsigned long)
+void THiScoreListScreen::create(char const* path, u32 screenFlags)
 {
+	mScreenObj = new P2DScreen::Mgr_tuning;
+	mScreenObj->set(path, screenFlags, mArchive);
+
+	TCallbackScissor* scis = new TCallbackScissor;
+
+	JGeometry::TBox2f* bounds = mScreenObj->search('Nlist1')->getBounds();
+	JGeometry::TBox2f box(bounds->i.x * mScreenObj->mstTuningScaleX, (bounds->i.y-5.0f) * mScreenObj->mstTuningScaleY, (bounds->f.x+5.0f) * mScreenObj->mstTuningScaleX, bounds->f.y * mScreenObj->mstTuningScaleY);
+	scis->mBounds = box;
+	mScreenObj->addCallBack('Nlist1', scis);
+
+	TScissorPane* scispane = new TScissorPane;
+	scispane->mBounds = box;
+	mScreenObj->search('Pmap_l')->appendChild(scispane);
+
+	TScissorPane* scispane2 = new TScissorPane;
+	scispane2->mBounds = JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f);
+	mScreenObj->search('Nlist1')->appendChild(scispane2);
+
+	og::Screen::setCallBackMessage(mScreenObj);
+
+	TCallbackScissor* scis2 = new TCallbackScissor;
+	JGeometry::TBox2f box2(0.0f, 0.0f, 640.0f, 480.0f);
+	scis2->mBounds = box2;
+
+	mScreenObj->addCallBack('Tmenu04', scis2);
+	og::Screen::setAlphaScreen(mScreenObj);
+
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -952,141 +470,301 @@ lbl_8037CE70:
  * Address:	8037CEEC
  * Size:	0001CC
  */
-Morimura::THiScore::THiScore()
+THiScore::THiScore()
+	:	TScrollList("hiscore"),
+	mListScreen(nullptr),
+	mIndPane(nullptr),
+	mHighScorePic(nullptr),
+	mSelIconPane(0),
+	m3DStickPane(nullptr),
+	mStickAnimPic(nullptr),
+	mStickAnimMgr(nullptr),
+	mScaleMgrList(nullptr),
+	mIsAllTreasures(false),
+	mState(false),
+	_180(1.0f),
+	_184(0.0f),
+	_188(0.05f),
+	_18C(0.0f),
+	_190(0.0f),
+	_194(0.02f),
+	_198(0.25f),
+	_19C(0.0f),
+	_1A0(0.0f)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r4, r2, lbl_8051EC3C@sda21
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28Morimura11TScrollListFPc
-	lis      r4, __vt__Q28Morimura8THiScore@ha
-	li       r0, 0
-	addi     r4, r4, __vt__Q28Morimura8THiScore@l
-	lfs      f4, lbl_8051EC44@sda21(r2)
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x10
-	lis      r3, "__ct__10Vector2<f>Fv"@ha
-	lfs      f3, lbl_8051EC18@sda21(r2)
-	stw      r5, 0x18(r31)
-	addi     r4, r3, "__ct__10Vector2<f>Fv"@l
-	lfs      f2, lbl_8051EC48@sda21(r2)
-	addi     r3, r31, 0x1a4
-	stw      r0, 0xb4(r31)
-	li       r5, 0
-	lfs      f1, lbl_8051EC4C@sda21(r2)
-	li       r6, 8
-	stw      r0, 0xb8(r31)
-	li       r7, 4
-	lfs      f0, lbl_8051EC50@sda21(r2)
-	stw      r0, 0xbc(r31)
-	stw      r0, 0xc0(r31)
-	stw      r0, 0xd4(r31)
-	stw      r0, 0xd8(r31)
-	stw      r0, 0xdc(r31)
-	stw      r0, 0xe0(r31)
-	stb      r0, 0x174(r31)
-	stw      r0, 0x178(r31)
-	stfs     f4, 0x180(r31)
-	stfs     f3, 0x184(r31)
-	stfs     f2, 0x188(r31)
-	stfs     f3, 0x18c(r31)
-	stfs     f3, 0x190(r31)
-	stfs     f1, 0x194(r31)
-	stfs     f0, 0x198(r31)
-	stfs     f3, 0x19c(r31)
-	stfs     f3, 0x1a0(r31)
-	bl       __construct_array
-	li       r5, 0
-	lis      r3, mScrollParm__Q28Morimura8THiScore@ha
-	stb      r5, 0x1c4(r31)
-	li       r0, 5
-	lfs      f5, lbl_8051EC18@sda21(r2)
-	addi     r4, r3, mScrollParm__Q28Morimura8THiScore@l
-	stb      r5, 0x1c5(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051EC54@sda21(r2)
-	stb      r5, 0x1c6(r31)
-	lfs      f3, lbl_8051EC58@sda21(r2)
-	stb      r5, 0x1c7(r31)
-	lfs      f2, lbl_8051EC5C@sda21(r2)
-	stw      r5, 0x1c8(r31)
-	lfs      f1, lbl_8051EC60@sda21(r2)
-	stw      r5, 0x1cc(r31)
-	lfs      f0, lbl_8051EC64@sda21(r2)
-	stw      r5, 0x1d0(r31)
-	stw      r5, 0x1d4(r31)
-	stfs     f5, 0x1f8(r31)
-	sth      r0, 0x8e(r31)
-	stw      r5, 0xfc(r31)
-	stw      r5, 0xe4(r31)
-	stw      r5, 0x144(r31)
-	stw      r5, 0x15c(r31)
-	stw      r5, 0x114(r31)
-	stw      r5, 0x12c(r31)
-	stw      r5, 0x100(r31)
-	stw      r5, 0xe8(r31)
-	stw      r5, 0x148(r31)
-	stw      r5, 0x160(r31)
-	stw      r5, 0x118(r31)
-	stw      r5, 0x130(r31)
-	stw      r5, 0x104(r31)
-	stw      r5, 0xec(r31)
-	stw      r5, 0x14c(r31)
-	stw      r5, 0x164(r31)
-	stw      r5, 0x11c(r31)
-	stw      r5, 0x134(r31)
-	stw      r5, 0x108(r31)
-	stw      r5, 0xf0(r31)
-	stw      r5, 0x150(r31)
-	stw      r5, 0x168(r31)
-	stw      r5, 0x120(r31)
-	stw      r5, 0x138(r31)
-	stw      r5, 0x10c(r31)
-	stw      r5, 0xf4(r31)
-	stw      r5, 0x154(r31)
-	stw      r5, 0x16c(r31)
-	stw      r5, 0x124(r31)
-	stw      r5, 0x13c(r31)
-	stw      r5, 0x110(r31)
-	stw      r5, 0xf8(r31)
-	stw      r5, 0x158(r31)
-	stw      r5, 0x170(r31)
-	stw      r5, 0x128(r31)
-	stw      r5, 0x140(r31)
-	stw      r5, 0xc4(r31)
-	stw      r5, 0xc8(r31)
-	stw      r5, 0xcc(r31)
-	stw      r5, 0xd0(r31)
-	stfs     f4, 0(r4)
-	stfs     f3, 8(r4)
-	stfs     f2, 4(r4)
-	stfs     f1, 0xc(r4)
-	stfs     f0, 0x10(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	_1C4 = 0;
+	_1C5 = 0;
+	mErrorSoundCounter = 0;
+	mDoEnd = 0;
+	mTevBlock[0] = nullptr;
+	mTevBlock[1] = nullptr;
+	mColorBlock[0] = nullptr;
+	mColorBlock[1] = nullptr;
+	_1F8[0] = 0.0f;
+	mMaxSelect = 5;
 
-/*
- * --INFO--
- * Address:	8037D0B8
- * Size:	000004
- */
-void Vector2<float>::Vector2() { }
+	mScoreCounts[0] = 0;
+	mScaleCounter1[0] = nullptr;
+	mCurrScore1[0] = 0;
+	mCurrScore2[0] = 0;
+	mScaleCounter2[0] = nullptr;
+	mScaleCounter3[0] = nullptr;
+
+	mScoreCounts[1] = 0;
+	mScaleCounter1[1] = nullptr;
+	mCurrScore1[1] = 0;
+	mCurrScore2[1] = 0;
+	mScaleCounter2[1] = nullptr;
+	mScaleCounter3[1] = nullptr;
+
+	mScoreCounts[2] = 0;
+	mScaleCounter1[2] = nullptr;
+	mCurrScore1[2] = 0;
+	mCurrScore2[2] = 0;
+	mScaleCounter2[2] = nullptr;
+	mScaleCounter3[2] = nullptr;
+
+	mScoreCounts[3] = 0;
+	mScaleCounter1[3] = nullptr;
+	mCurrScore1[3] = 0;
+	mCurrScore2[3] = 0;
+	mScaleCounter2[3] = nullptr;
+	mScaleCounter3[3] = nullptr;
+
+	mScoreCounts[4] = 0;
+	mScaleCounter1[4] = nullptr;
+	mCurrScore1[4] = 0;
+	mCurrScore2[4] = 0;
+	mScaleCounter2[4] = nullptr;
+	mScaleCounter3[4] = nullptr;
+
+	mScoreCounts[5] = 0;
+	mScaleCounter1[5] = nullptr;
+	mCurrScore1[5] = 0;
+	mCurrScore2[5] = 0;
+	mScaleCounter2[5] = nullptr;
+	mScaleCounter3[5] = nullptr;
+
+	mSelIconCorners[0] = 0;
+	mSelIconCorners[1] = 0;
+	mSelIconCorners[2] = 0;
+	mSelIconCorners[3] = 0;
+
+	msVal._00 = 8.0f;
+	msVal._08 = 0.99f;
+	msVal._04 = 1.2f;
+	msVal._0C = 1.1f;
+	msVal._10 = 2.0f;
+}
 
 /*
  * --INFO--
  * Address:	8037D0BC
  * Size:	00105C
  */
-void Morimura::THiScore::doCreate(JKRArchive*)
+void THiScore::doCreate(JKRArchive* arc)
 {
+	mArchive = arc;
+
+	DispMemberHighScore* disp = static_cast<DispMemberHighScore*>(getDispMember());
+	if (disp->isID(OWNER_MRMR, MEMBER_HIGH_SCORE)) {
+		mDisp = disp;
+		P2ASSERTLINE(287, mDisp);
+		mIsAllTreasures = sys->getPlayCommonData()->_00 & 2;
+	} else {
+		mDisp = new DispMemberHighScore;
+		mIsSection = true;
+	}
+
+	if (mForceClear) {
+		mIsAllTreasures = true;
+	}
+
+	if (!mIsAllTreasures) {
+		mScaleMgrList = new og::Screen::ScaleMgr*[mMaxSelect];
+		for (int i = 0; i < mMaxSelect; i++) {
+			mScaleMgrList[i] = new og::Screen::ScaleMgr;
+		}
+	}
+
+	mController = getGamePad();
+// clang-format off
+	const char* timgname[16] = {"timg/hi_score_00.bti", "timg/hi_score_01.bti", "timg/hi_score_02.bti", "timg/hi_score_03.bti",
+								"timg/hi_score_04.bti", "timg/hi_score_05.bti", "timg/hi_score_06.bti", "timg/hi_score_07.bti",
+								"timg/hi_score_08.bti", "timg/hi_score_09.bti", "timg/hi_score_10.bti", "timg/hi_score_11.bti",
+								"timg/hi_score_12.bti", "timg/hi_score_13.bti", "timg/hi_score_14.bti", "timg/hi_score_15.bti"};
+// clang-format on
+
+
+	// if the image archive was found, use it to get the images, otherwise get them from the main screen archive
+	if (mDisp->mImageArchive) {
+		for (int i = 0; i < 16; i++) {
+			mPicTexture[i] = static_cast<ResTIMG*>(mDisp->mImageArchive->getResource(timgname[i]));
+			P2ASSERTLINE(325, mPicTexture[i]);
+		}	
+	} else {
+		for (int i = 0; i < 16; i++) {
+			mPicTexture[i] = static_cast<ResTIMG*>(mArchive->getResource(timgname[i]));
+			P2ASSERTLINE(325, mPicTexture[i]);
+		}
+	}
+
+	mMainScreen = new TScreenBase(arc, 2);
+	mMainScreen->create("hi_score_main.blo", 0x20000);
+	mMainScreen->addAnim("hi_score_main.bck");
+	mMainScreen->addAnim("hi_score_main.bpk");
+
+	P2DScreen::Mgr_tuning* screen = mMainScreen->mScreenObj;
+	mStickAnimPic = og::Screen::setCallBack_3DStickSmall(mArchive, screen, 'ota3dl');
+	m3DStickPane = screen->search('ota3dl');
+	P2ASSERTLINE(347, m3DStickPane);
+	P2ASSERTLINE(348, mStickAnimPic);
+	mStickAnimPic->mAnimGroup->setSpeed(2.0f);
+	mStickAnimPic->mAnimGroup->start();
+	mStickAnimMgr = new og::Screen::StickAnimMgr(mStickAnimPic);
+	P2ASSERTLINE(353, mStickAnimMgr);
+
+	mHighScorePic = static_cast<J2DPictureEx*>(screen->search('PICT_001'));
+	P2ASSERTLINE(357, mStickAnimMgr);
+
+	mListScreen = new THiScoreListScreen(arc,0);
+	mListScreen->create("hi_score_list.blo", 0x20000);
+
+	P2DScreen::Mgr_tuning* screen2 = mListScreen->mScreenObj;
+	_1F8[2] = screen2->search('Nlist1')->mOffset.x;
+	_1F8[3] = screen2->search('Nlist1')->mOffset.y;
+	_1F8[4] = screen2->search('Nselicon')->mOffset.x;
+	_1F8[5] = screen2->search('Nselicon')->mOffset.y;
+	mSelIconPane = screen2->search('Nselicon');
+	if (mSelIconPane) {
+		mSelIconCorners[0] = screen2->search('Psel_lu');
+		P2ASSERTLINE(375, mSelIconCorners[0]);
+		mSelIconCorners[1] = screen2->search('Psel_ru');
+		P2ASSERTLINE(378, mSelIconCorners[1]);
+		mSelIconCorners[2] = screen2->search('Psel_ll');
+		P2ASSERTLINE(381, mSelIconCorners[2]);
+		mSelIconCorners[3] = screen2->search('Psel_rl');
+		P2ASSERTLINE(384, mSelIconCorners[3]);
+	}
+
+	_B0 = 1;
+	_90 = 0;
+	_94 = 2;
+	_98 = mMaxSelect - 1;
+
+	u64 tags1[5] = {'Nmenu00', 'Nmenu01', 'Nmenu02', 'Nmenu03', 'Nmenu04'};
+	u64 tags2[5] = {'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04'};
+
+	J2DPane* pane = screen2->search(tags1[_90]);
+	P2ASSERTLINE(401, pane);
+	_A0 = pane->mOffset.y;
+
+	pane = screen2->search(tags1[_98]);
+	P2ASSERTLINE(405, pane);
+	_A4 = pane->mOffset.y;
+
+	mIndexPaneList = new TIndexPane*[mMaxSelect];
+
+	for (int i = 0; i < mMaxSelect; i++) {
+		mIndexPaneList[i] = new TIndexPane(screen2, tags1[i]);
+		mIndexPaneList[i]->mPane2 = screen2->search(tags2[i]);
+
+		JUT_ASSERTLINE(415, screen2->search(tags1[i]), "assertindex = %d \n", i);
+
+		mIndexPaneList[i]->mPane->getFirstChildPane()->getFirstChildPane()->setInfluencedAlpha(false, false);
+
+		J2DPane* cPane = mIndexPaneList[i]->mPane2;
+		P2ASSERTLINE(428, cPane);
+		cPane->setMsgID(getNameID(i));
+		cPane = cPane->getFirstChildPane();
+		P2ASSERTLINE(428, cPane);
+		cPane->setInfluencedAlpha(false, false);
+		cPane->setMsgID(getNameID(i));
+		mIndexPaneList[i]->setIndex(i);
+	}
+
+	if (mIsAllTreasures) {
+		for (int i = 0; i < mMaxSelect; i++) {
+			J2DPane* cPane = mIndexPaneList[i]->mPane;
+			cPane->appendChild(cPane->getFirstChildPane()->getFirstChildPane());
+
+			cPane = mIndexPaneList[i]->mPane->getFirstChildPane();
+			if (cPane->getParentPane()) {
+				cPane->getParentPane()->removeChild(cPane);
+			}
+			mIndexPaneList[i]->mPane2->appendChild(mIndexPaneList[i]->mPane);
+
+			J2DPictureEx* pic = static_cast<J2DPictureEx*>(mIndexPaneList[i]->mPane);
+			if (mPicTexture[i]) {
+				pic->changeTexture(mPicTexture[i],0);
+			}
+			changeTevBlock(pic->getMaterial()->mTevBlock, mHighScorePic->getMaterial()->mTevBlock);
+			changeColorBlock(&pic->getMaterial()->mColorBlock, &mHighScorePic->getMaterial()->mColorBlock);
+		}
+	}
+
+	mIndexPaneList[0]->mPane->show();
+	mIndexGroup = new TIndexGroup;
+	updateLayout();
+	TIndexGroup* group = mIndexGroup;
+	group->_00 = msVal._00;
+	group->_04 = msVal._04;
+	group->_08 = msVal._08;
+	group->_0C = msVal._0C;
+	group->_10 = msVal._10;
+
+	J2DPane* total = mMainScreen->mScreenObj->search('Tot3rds');
+	P2ASSERTLINE(469, total);
+	total->setMsgID('8472_00');	// 3rd
+
+	u64 tagList0[6] = {'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1'};
+	u64 tagList1[6] = {'Phe1st4', 'Phe2nd4', 'Phe3rd4', 'Pot1st4', 'Pot2nd4', 'Pot3rd4'};
+	u64 tagList2[6] = {'Phe1st5', 'Phe2nd5', 'Phe3rd5', 'Pot1st5', 'Pot2nd5', 'Pot3rd5'};
+	u64 tagList3[6] = {'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1'};
+	u64 tagList4[6] = {'Phe1st2', 'Phe2nd2', 'Phe3rd2', 'Pot1st2', 'Pot2nd2', 'Pot3rd2'};
+	for (int i = 0; i < 6; i++) {
+		mScaleCounter1[i] = Morimura::setScaleUpCounter(mMainScreen->mScreenObj, tagList0[i], &mScoreCounts[i], 10, mArchive);
+		mScaleCounter2[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList1[i], tagList3[i], &mCurrScore1[i], 10, mArchive);
+		mScaleCounter3[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList2[i], tagList4[i], &mCurrScore2[i], 10, mArchive);
+		mScaleCounter3[i]->setZeroAlpha(255);
+		mScaleCounter3[i]->setPuyoAnimZero(true);
+	}
+
+	paneInit();
+
+	mIndPane = new THiScoreIndPane(mHighScorePic);
+	mIndPane->createIndTexture("hi_score_00.bti");
+	mIndPane->createCaptureTexture(GX_TF_I4);
+	mIndPane->mTexture1->storeTIMG(mPicTexture[0],(u8)0);
+	mIndPane->mTexture2->storeTIMG(mPicTexture[0],(u8)0);
+
+	ResTIMG* img = mIndPane->mTexture1->_20;
+	P2ASSERTLINE(507, img);
+	img->mTransparency = 2;
+
+	img = mIndPane->mTexture2->_20;
+	P2ASSERTLINE(512, img);
+	img->mTransparency = 2;
+
+	img = mIndPane->mTexture3->_20;
+	P2ASSERTLINE(516, img);
+	img->mTransparency = 2;
+	changePaneInfo();
+
+	f32 yoffs = mIndexGroup->_18;
+	for (int i = 0; i < 2; i++) {
+
+		for (int j = 0; j < mMaxSelect; j++) {
+			TIndexPane* IDPane = mIndexPaneList[i];
+			IDPane->mPane->setOffset(0.0f, IDPane->_1C + yoffs);
+			mIndexPaneList[i]->_1C = mIndexPaneList[i]->mPane->mOffset.y;
+		}
+		updateIndex(0);
+		mIndexGroup->_14 = 0.0f;
+		mIndexGroup->_20 = 0;
+		changePaneInfo();
+	}
+
 	/*
 	stwu     r1, -0x2c0(r1)
 	mflr     r0
@@ -2205,47 +1883,10 @@ lbl_8037E030:
 
 /*
  * --INFO--
- * Address:	8037E118
- * Size:	000060
- */
-Morimura::TIndPane::~TIndPane()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8037E15C
-	lis      r5, __vt__Q28Morimura8TIndPane@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28Morimura8TIndPane@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8037E15C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8037E15C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8037E178
  * Size:	00001C
  */
-void Morimura::THiScore::getNameID(int)
+u64 THiScore::getNameID(int)
 {
 	/*
 	lis      r3, mNameID__Q28Morimura8THiScore@ha
@@ -2263,7 +1904,7 @@ void Morimura::THiScore::getNameID(int)
  * Address:	8037E194
  * Size:	0009F0
  */
-void Morimura::THiScore::doUpdate()
+bool THiScore::doUpdate()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -3010,7 +2651,7 @@ lbl_8037EB44:
  * Address:	8037EB84
  * Size:	000030
  */
-void Morimura::THiScoreListScreen::update()
+void THiScoreListScreen::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3033,7 +2674,7 @@ void Morimura::THiScoreListScreen::update()
  * Address:	8037EBB4
  * Size:	0001A8
  */
-void Morimura::THiScore::doDraw(Graphics& gfx)
+void THiScore::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -3153,7 +2794,7 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
  * Address:	8037ED5C
  * Size:	000358
  */
-void Morimura::THiScore::paneInit()
+void THiScore::paneInit()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3373,7 +3014,7 @@ lbl_8051ECA0@sda21(r2) lwzx     r3, r3, r0 lfs      f0, lbl_8051EC70@sda21(r2)
  * Address:	8037F0B4
  * Size:	00005C
  */
-void Morimura::THiScore::doUpdateFadeinFinish()
+void THiScore::doUpdateFadeinFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3409,7 +3050,7 @@ lbl_8037F100:
  * Address:	8037F110
  * Size:	00001C
  */
-void Morimura::THiScore::doUpdateFadeoutFinish()
+void THiScore::doUpdateFadeoutFinish()
 {
 	/*
 	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
@@ -3427,7 +3068,7 @@ void Morimura::THiScore::doUpdateFadeoutFinish()
  * Address:	8037F12C
  * Size:	0005C4
  */
-void Morimura::THiScore::changePaneInfo()
+void THiScore::changePaneInfo()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3859,7 +3500,7 @@ lbl_8037F6CC:
  * Address:	8037F6F0
  * Size:	000124
  */
-void Morimura::THiScore::setPaneCharacter(int)
+void THiScore::setPaneCharacter(int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3947,7 +3588,7 @@ lbl_8037F7F4:
  * Address:	8037F814
  * Size:	00044C
  */
-void Morimura::THiScore::getRecord(int, int)
+void THiScore::getRecord(int, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4283,7 +3924,7 @@ lbl_8037FC48:
  * Address:	8037FC60
  * Size:	00043C
  */
-void Morimura::THiScore::changeTextTevBlock(int)
+void THiScore::changeTextTevBlock(int)
 {
 	/*
 	stwu     r1, -0x100(r1)
@@ -4575,7 +4216,7 @@ lbl_80380088:
  * Address:	8038009C
  * Size:	00021C
  */
-void Morimura::THiScore::copyTevBlock(J2DTevBlock*, J2DTevBlock*)
+void THiScore::copyTevBlock(J2DTevBlock*, J2DTevBlock*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4725,7 +4366,7 @@ lbl_8038027C:
  * Address:	803802B8
  * Size:	00021C
  */
-void Morimura::THiScore::changeTevBlock(J2DTevBlock*, J2DTevBlock*)
+void THiScore::changeTevBlock(J2DTevBlock*, J2DTevBlock*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4875,7 +4516,7 @@ lbl_80380498:
  * Address:	803804D4
  * Size:	000080
  */
-void Morimura::THiScore::copyColorBlock(J2DColorBlock*, J2DColorBlock*)
+void THiScore::copyColorBlock(J2DColorBlock*, J2DColorBlock*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4922,7 +4563,7 @@ lbl_80380540:
  * Address:	80380554
  * Size:	000080
  */
-void Morimura::THiScore::changeColorBlock(J2DColorBlock*, J2DColorBlock*)
+void THiScore::changeColorBlock(J2DColorBlock*, J2DColorBlock*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4969,7 +4610,7 @@ lbl_803805C0:
  * Address:	803805D4
  * Size:	000180
  */
-void Morimura::THiScore::updateLayout()
+void THiScore::updateLayout()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -5082,44 +4723,9 @@ lbl_8038071C:
  * Address:	80380754
  * Size:	000050
  */
-Morimura::THiScoreScene::THiScoreScene()
+THiScoreScene::THiScoreScene()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q26Screen9SceneBaseFv
-	lis      r4, __vt__Q28Morimura9THIOScene@ha
-	lis      r3, __vt__Q28Morimura13THiScoreScene@ha
-	addi     r0, r4, __vt__Q28Morimura9THIOScene@l
-	li       r4, 0
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q28Morimura13THiScoreScene@l
-	mr       r3, r31
-	stw      r4, 0x220(r31)
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
-/*
- * --INFO--
- * Address:	803807A4
- * Size:	00000C
- */
-void Morimura::THiScoreScene::getResName() const
-{
-	/*
-	lis      r3, lbl_80493680@ha
-	addi     r3, r3, lbl_80493680@l
-	blr
-	*/
 }
 
 /*
@@ -5127,7 +4733,7 @@ void Morimura::THiScoreScene::getResName() const
  * Address:	803807B0
  * Size:	000068
  */
-void Morimura::THiScoreScene::doCreateObj(JKRArchive*)
+void THiScoreScene::doCreateObj(JKRArchive*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5163,82 +4769,10 @@ lbl_803807E8:
 
 /*
  * --INFO--
- * Address:	80380818
- * Size:	000008
- */
-u32 Morimura::THiScoreScene::getSceneType() { return 0x2736; }
-
-/*
- * --INFO--
- * Address:	80380820
- * Size:	00000C
- */
-void Morimura::THiScoreScene::getOwnerID()
-{
-	/*
-	lis      r3, 0x4D524D52@ha
-	addi     r3, r3, 0x4D524D52@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8038082C
- * Size:	000010
- */
-void Morimura::THiScoreScene::getMemberID()
-{
-	/*
-	lis      r4, 0x48495343@ha
-	li       r3, 0
-	addi     r4, r4, 0x48495343@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8038083C
- * Size:	000008
- */
-u32 Morimura::DispMemberHighScore::getSize() { return 0x10; }
-
-/*
- * --INFO--
- * Address:	80380844
- * Size:	00000C
- */
-void Morimura::DispMemberHighScore::getOwnerID()
-{
-	/*
-	lis      r3, 0x4D524D52@ha
-	addi     r3, r3, 0x4D524D52@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80380850
- * Size:	000010
- */
-void Morimura::DispMemberHighScore::getMemberID()
-{
-	/*
-	lis      r4, 0x48495343@ha
-	li       r3, 0
-	addi     r4, r4, 0x48495343@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	80380860
  * Size:	000034
  */
-void Morimura::THiScore::getDispMemberBase()
+og::Screen::DispMemberBase* THiScore::getDispMemberBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5255,147 +4789,6 @@ lbl_80380880:
 
 lbl_80380884:
 	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80380894
- * Size:	000008
- */
-u32 Morimura::THiScore::getIdMax() { return 0x10; }
-
-/*
- * --INFO--
- * Address:	8038089C
- * Size:	000004
- */
-void Morimura::TScrollList::setShortenIndex(int, int, bool) { }
-
-/*
- * --INFO--
- * Address:	803808A0
- * Size:	000004
- */
-void Morimura::TScrollList::doUpdateIn() { }
-
-/*
- * --INFO--
- * Address:	803808A4
- * Size:	000004
- */
-void Morimura::TScrollList::doUpdateOut() { }
-
-/*
- * --INFO--
- * Address:	803808A8
- * Size:	0000DC
- */
-Morimura::THiScore::~THiScore()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80380968
-	lis      r4, __vt__Q28Morimura8THiScore@ha
-	addi     r4, r4, __vt__Q28Morimura8THiScore@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_80380958
-	lis      r4, __vt__Q28Morimura11TScrollList@ha
-	addi     r4, r4, __vt__Q28Morimura11TScrollList@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_80380958
-	lis      r4, __vt__Q28Morimura9TTestBase@ha
-	addi     r4, r4, __vt__Q28Morimura9TTestBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_80380958
-	lis      r4, __vt__Q26Screen7ObjBase@ha
-	addi     r4, r4, __vt__Q26Screen7ObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_80380958
-	lis      r4, __vt__Q26Screen8IObjBase@ha
-	addi     r4, r4, __vt__Q26Screen8IObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	bl       del__5CNodeFv
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_80380958:
-	extsh.   r0, r31
-	ble      lbl_80380968
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80380968:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80380984
- * Size:	000070
- */
-Morimura::THiScoreIndPane::~THiScoreIndPane()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803809D8
-	lis      r4, __vt__Q28Morimura15THiScoreIndPane@ha
-	addi     r0, r4, __vt__Q28Morimura15THiScoreIndPane@l
-	stw      r0, 0(r30)
-	beq      lbl_803809C8
-	lis      r5, __vt__Q28Morimura8TIndPane@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28Morimura8TIndPane@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803809C8:
-	extsh.   r0, r31
-	ble      lbl_803809D8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803809D8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
@@ -5425,15 +4818,4 @@ void __sinit_hiScore2D_cpp()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80380A24
- * Size:	000008
- */
-@24 @Morimura::THiScore::~THiScore()
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q28Morimura8THiScoreFv
-	*/
-}
+} // namespace Morimura
