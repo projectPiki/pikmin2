@@ -804,7 +804,7 @@ LIBS = [
             ["Dolphin/gba/GBA", True],
             ["Dolphin/gba/GBARead", True],
             ["Dolphin/gba/GBAWrite", True],
-            "Dolphin/gba/GBAXfer",
+            ["Dolphin/gba/GBAXfer", True],
         ],
     },
     {
