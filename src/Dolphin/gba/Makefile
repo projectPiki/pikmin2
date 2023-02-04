@@ -9,6 +9,7 @@ GBA_UNSCHEDULED:=\
 	$(EPILOGUE_DIR)/src/Dolphin/gba/GBAXfer.o\
 
 $(GBA_FILES): CFLAGS += -common off -str noreadonly
+$(GBA_UNSCHEDULED): CFLAGS += -common off -str noreadonly
 $(GBA_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(GBA_FILES:.o=.d)

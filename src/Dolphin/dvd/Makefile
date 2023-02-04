@@ -14,6 +14,7 @@ DVD_UNSCHEDULED:=\
 	$(EPILOGUE_DIR)/src/Dolphin/dvd/fstload.o\
 
 $(DVD_FILES): CFLAGS += -common off -str noreadonly
+$(DVD_UNSCHEDULED): CFLAGS += -common off -str noreadonly
 $(DVD_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(DVD_FILES:.o=.d)

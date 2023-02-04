@@ -61,10 +61,7 @@ int GBAGetStatus(int portIndex, u8* p2);
 int GBARead(int portIndex, u8* p2, u8* p3);
 int GBAWrite(int portIndex, u8* p2, u8* p3);
 
-static inline GBAProcHandler getGBAHandler(GBA* gba)
-{
-    return gba->_38;
-}
+static inline GBAProcHandler getGBAHandler(GBA* gba) { return gba->_38; }
 
 #ifdef __cplusplus
 }
