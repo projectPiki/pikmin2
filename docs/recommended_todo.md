@@ -21,12 +21,11 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXDisplayList.c">gx/GXDisplayList.c</a> | 647 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/Runtime/__init_cpp_exceptions.cpp">Runtime/__init_cpp_exceptions.cpp</a> | 659 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/Runtime/global_destructor_chain.c">Runtime/global_destructor_chain.c</a> | 965 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDNet.c">card/CARDNet.c</a> | 2505 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/mtx/mtxvec.c">mtx/mtxvec.c</a> | 3122 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gba/GBAXfer.c">gba/GBAXfer.c</a> | 3891 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDDir.c">card/CARDDir.c</a> | 4548 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/mslsupp.c">TRK_MINNOW_DOLPHIN/mslsupp.c</a> | 4555 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/CircleBuffer.c">TRK_MINNOW_DOLPHIN/CircleBuffer.c</a> | 4715 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.c">TRK_MINNOW_DOLPHIN/serpoll.c</a> | 4793 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDRdwr.c">card/CARDRdwr.c</a> | 4881 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/dsp/dsp.c">dsp/dsp.c</a> | 5020 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c">TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c</a> | 5554 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/MSL_C/mem_funcs.c">MSL_C/mem_funcs.c</a> | 5682 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/mtx/mtx44.c">mtx/mtx44.c</a> | 5987 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/pad/Padclamp.c">pad/Padclamp.c</a> | 6237 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/mtx/mtxvec.c">mtx/mtxvec.c</a> | 3122 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDDir.c">card/CARDDir.c</a> | 4548 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/mslsupp.c">TRK_MINNOW_DOLPHIN/mslsupp.c</a> | 4555 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/CircleBuffer.c">TRK_MINNOW_DOLPHIN/CircleBuffer.c</a> | 4715 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.c">TRK_MINNOW_DOLPHIN/serpoll.c</a> | 4793 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDRdwr.c">card/CARDRdwr.c</a> | 4881 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/dsp/dsp.c">dsp/dsp.c</a> | 5020 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c">TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c</a> | 5554 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/MSL_C/mem_funcs.c">MSL_C/mem_funcs.c</a> | 5682 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/mtx/mtx44.c">mtx/mtx44.c</a> | 5987 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/MSL_C/direct_io.c">MSL_C/direct_io.c</a> | 6259 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSMemory.c">os/OSMemory.c</a> | 6385 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSReboot.c">os/OSReboot.c</a> | 6397 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDWrite.c">card/CARDWrite.c</a> | 6434 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDCreate.c">card/CARDCreate.c</a> | 6611 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSResetSW.c">os/OSResetSW.c</a> | 6856 |
@@ -40,7 +39,6 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 11230 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/MSL_C/alloc.c">MSL_C/alloc.c</a> | 12018 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 12046 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTransform.c">gx/GXTransform.c</a> | 12379 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDFormat.c">card/CARDFormat.c</a> | 13901 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSAlarm.c">os/OSAlarm.c</a> | 13932 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXLight.c">gx/GXLight.c</a> | 14151 |
 
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |

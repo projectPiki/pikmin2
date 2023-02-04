@@ -759,10 +759,10 @@ LIBS = [
     {
         "lib": "pad",
         "mw_version": "1.2.5e",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_base -fp_contract off ",
         "host": False,
         "objects": [
-            "Dolphin/pad/Padclamp",
+            ["Dolphin/pad/Padclamp", True],
             "Dolphin/pad/Pad",
         ],
     },

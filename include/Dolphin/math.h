@@ -104,21 +104,20 @@ inline int __fpclassifyd(f64 x)
 #define isfinite(x) ((fpclassify(x) > 2))
 
 inline f32 dolsqrtf(f32 x)
-{ // regswaps still
-	volatile f32 y;
+{
+	static const double _half  = .5;
+	static const double _three = 3.0;
+	volatile float y;
 	if (x > 0.0f) {
-		f64 guess        = __frsqrte(x);
-		f64 intermediate = guess * guess * x;
-		guess            = 0.5 * guess * (3.0 - intermediate);
-		intermediate     = guess * guess * x;
-		guess            = 0.5 * guess * (3.0 - intermediate);
-		intermediate     = guess * guess * x;
-		guess            = 0.5 * guess * (3.0 - intermediate);
-		y                = x * guess;
+
+		double guess = __frsqrte((double)x);                         // returns an approximation to
+		guess        = _half * guess * (_three - guess * guess * x); // now have 12 sig bits
+		guess        = _half * guess * (_three - guess * guess * x); // now have 24 sig bits
+		guess        = _half * guess * (_three - guess * guess * x); // now have 32 sig bits
+		y            = (float)(x * guess);
 		return y;
-	} else {
-		return x;
 	}
+	return x;
 }
 
 #define ispositive(x) ((((u8*)&x)[0] & 0x80) != 0)
