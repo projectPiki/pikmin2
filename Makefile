@@ -98,7 +98,6 @@ ifeq ($(WINDOWS),1)
   WINE :=
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as.exe
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp.exe -P
-  SHA1SUM := sha1sum
   PYTHON  := python
 else
   WIBO   := $(shell command -v wibo 2> /dev/null)
@@ -113,12 +112,6 @@ else
   DEVKITPPC ?= /opt/devkitpro/devkitPPC
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
-  # Mac has shasum instead of sha1sum
-  ifeq ($(UNAME_S),Darwin)
-  	SHA1SUM := shasum
-  else
-    SHA1SUM := sha1sum
-  endif
   PYTHON  := python3
 endif
 COMPILERS ?= tools/mwcc_compiler
@@ -127,7 +120,9 @@ ifeq ($(EPILOGUE_PROCESS),1)
 CC_EPI  = $(WINE) $(COMPILERS)/$(MWCC_EPI_VERSION)/$(MWCC_EPI_EXE)
 endif
 LD      := $(WINE) $(COMPILERS)/$(MWLD_VERSION)/mwldeppc.exe
-ELF2DOL := tools/elf2dol
+DTK     := tools/dtk
+ELF2DOL := $(DTK) elf2dol
+SHASUM  := $(DTK) shasum
 
 ifneq ($(WINDOWS),1)
 TRANSFORM_DEP := tools/transform-dep.py
@@ -179,14 +174,12 @@ DUMMY != mkdir -p $(ALL_DIRS)
 # DUMMY != mkdir -p $(EPI_DIRS)
 # endif
 
-.PHONY: tools
-
 $(LDSCRIPT): ldscript.lcf
 	$(QUIET) $(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
-$(DOL): $(ELF) | tools
+$(DOL): $(ELF) | $(DTK)
 	$(QUIET) $(ELF2DOL) $< $@
-	$(QUIET) $(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
+	$(QUIET) $(SHASUM) -c sha1/$(NAME).$(VERSION).sha1
 ifneq ($(findstring -map,$(LDFLAGS)),)
 	$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
 endif
@@ -196,12 +189,10 @@ endif
 
 clean:
 	rm -f -d -r build
-	find . -name '*.o' -exec rm {} +
-	find . -name 'ctx.c' -exec rm {} +
-	find ./include -name "*.s" -type f -delete
-	$(MAKE) -C tools clean
-tools:
-	$(MAKE) -C tools
+
+$(DTK): tools/dtk_version
+	@echo "Downloading $@"
+	$(QUIET) $(PYTHON) tools/download_dtk.py $< $@
 
 # ELF creation makefile instructions
 $(ELF): $(O_FILES) $(LDSCRIPT)
@@ -250,21 +241,21 @@ ifeq ($(EPILOGUE_PROCESS),1)
 $(EPILOGUE_DIR)/%.o: %.c $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
 	$(QUIET) mkdir -p $(dir $@)
-	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
+	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $(dir $@) $<
 	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
 	$(QUIET) touch $@
 
 $(EPILOGUE_DIR)/%.o: %.cp $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
 	$(QUIET) mkdir -p $(dir $@)
-	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
+	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $(dir $@) $<
 	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
 	$(QUIET) touch $@
 
 $(EPILOGUE_DIR)/%.o: %.cpp $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
 	$(QUIET) mkdir -p $(dir $@)
-	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
+	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $(dir $@) $<
 	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
 	$(QUIET) touch $@
 endif

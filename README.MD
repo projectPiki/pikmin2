@@ -23,7 +23,6 @@ This repository builds the following DOLs:
 
 ### Required Tools
 * [devkitPro](https://devkitpro.org/wiki/Getting_Started)
-* gcc
 * python 
 
 ### Instructions
@@ -33,7 +32,7 @@ This repository builds the following DOLs:
 	
 	```
 	pacman -S msys2-keyring
-	pacman -S gcc git python
+	pacman -S git python
 	```
 
 1. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
@@ -62,7 +61,7 @@ This repository builds the following DOLs:
 	4. Extract contents of `.zip` to obtain an executable version.
 
 - To set up objdiff for this project:
-	1. Place `objdiff.exe` in the main directory of the `pikmin2` repo, i.e. `pikmin2/objdiff.exe`.
+	1. Run `objdiff.exe`.
 	2. Set:
 		- Build config: `None`.
 		- Select project dir: `/path/to/cloned/pikmin2`

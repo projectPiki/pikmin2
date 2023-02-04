@@ -1809,7 +1809,6 @@ if __name__ == "__main__":
     n.comment("decomp-toolkit")
 
     tools_path = Path("tools")
-    build_tools_path = args.build_dir / "tools"
 
     def path(input):
         if input is None:
@@ -1820,7 +1819,7 @@ if __name__ == "__main__":
             return [str(input)]
 
     if args.build_dtk:
-        dtk = build_tools_path / "release" / f"dtk{exe}"
+        dtk = tools_path / "release" / f"dtk{exe}"
         n.rule(
             name="cargo",
             command="cargo build --release --manifest-path $in --bin $bin --target-dir $target",
@@ -1834,11 +1833,11 @@ if __name__ == "__main__":
             inputs=path(args.build_dtk / "Cargo.toml"),
             variables={
                 "bin": "dtk",
-                "target": build_tools_path,
+                "target": tools_path,
             },
         )
     else:
-        dtk = build_tools_path / f"dtk{exe}"
+        dtk = tools_path / f"dtk{exe}"
         download_dtk = tools_path / "download_dtk.py"
         n.rule(
             name="download_dtk",
