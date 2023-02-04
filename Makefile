@@ -113,7 +113,12 @@ else
   DEVKITPPC ?= /opt/devkitpro/devkitPPC
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
-  SHA1SUM := sha1sum
+  # Mac has shasum instead of sha1sum
+  ifeq ($(UNAME_S),Darwin)
+  	SHA1SUM := shasum
+  else
+    SHA1SUM := sha1sum
+  endif
   PYTHON  := python3
 endif
 COMPILERS ?= tools/mwcc_compiler
