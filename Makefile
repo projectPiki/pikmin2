@@ -113,7 +113,7 @@ else
   DEVKITPPC ?= /opt/devkitpro/devkitPPC
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
-  SHA1SUM := shasum
+  SHA1SUM := sha1sum
   PYTHON  := python3
 endif
 COMPILERS ?= tools/mwcc_compiler
