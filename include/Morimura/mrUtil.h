@@ -143,18 +143,26 @@ struct TMovePane {
 };
 
 struct THuWhitePaneSet : public J2DPictureEx {
-	virtual ~THuWhitePaneSet();            // _08 (weak)
+	THuWhitePaneSet(J2DPane* pane)
+	    : J2DPictureEx('test', JGeometry::TBox2f(0.0f, 0.0f, pane->mBounds.f.x - pane->mBounds.i.x, pane->mBounds.f.y - pane->mBounds.i.y),
+	                   "sunh_w.bti", 0x1100000)
+	{
+		_1A8 = 0.0f;
+		_1AC = 0.0f;
+	}
+
+	virtual ~THuWhitePaneSet() { }         // _08 (weak)
 	virtual void drawSelf(f32, f32, Mtx*); // _38
 
 	void gxSet();
 
 	// _00      = VTBL
 	// _00-_1A8 = J2DPictureEx
-	f32 _1A8;     // _1A8
-	f32 _1AC;     // _1AC
-	Matrixf _1B0; // _1B0
-	u8 _1E0;      // _1E0
-	u8 _1E1[0x7]; // _1E1, unknown
+	f32 _1A8;        // _1A8
+	f32 _1AC;        // _1AC
+	Matrixf mMatrix; // _1B0
+	u8 mAlpha;       // _1E0
+	u8 _1E1[0x7];    // _1E1, unknown
 };
 
 struct TIndPane : public CNode {

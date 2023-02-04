@@ -1,21 +1,7 @@
 #ifndef _MORIMURA_HURRYUP_H
 #define _MORIMURA_HURRYUP_H
 
-#include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUtility/TColor.h"
 #include "Morimura/Bases.h"
-#include "Screen/Enums.h"
-#include "og/Screen/ogScreen.h"
-#include "Screen/screenObj.h"
-#include "types.h"
-
-struct Graphics;
-struct JKRArchive;
-struct J2DPane;
-
-namespace P2DScreen {
-struct Mgr_tuning;
-}
 
 namespace Morimura {
 struct THuWhitePaneSet;
@@ -30,17 +16,20 @@ struct THurryUp2D : public TTestBase {
 	struct TStateParam {
 		TStateParam();
 
-		u8 _00[0xC]; // _00
+		u8 mAlpha1;     // _00
+		u8 mAlpha2;     // _01
+		f32 mScale;     // _04
+		f32 mGoalScale; // _08
 	};
 
 	THurryUp2D();
 
-	virtual ~THurryUp2D() { }                                                       // _08 (weak)
-	virtual bool doStart(const ::Screen::StartSceneArg*);                           // _44
-	virtual void doCreate(JKRArchive*);                                             // _4C
-	virtual bool doUpdate();                                                        // _58
-	virtual void doDraw(Graphics& gfx);                                             // _68
-	virtual og::Screen::DispMemberBase* getDispMemberBase() { return mDispMember; } // _78 (weak)
+	virtual ~THurryUp2D() { }                                                                                // _08 (weak)
+	virtual bool doStart(const ::Screen::StartSceneArg*);                                                    // _44
+	virtual void doCreate(JKRArchive*);                                                                      // _4C
+	virtual bool doUpdate();                                                                                 // _58
+	virtual void doDraw(Graphics& gfx);                                                                      // _68
+	virtual og::Screen::DispMemberBase* getDispMemberBase() { return mIsSection ? mDisp : getDispMember(); } // _78 (weak)
 
 	void init();
 	void move();
@@ -48,29 +37,29 @@ struct THurryUp2D : public TTestBase {
 	void scaleUp2();
 	void colorUp();
 	void changeState(int, f32);
+	void calcCount();
 
-	JKRArchive* mArchive;                       // _78
-	P2DScreen::Mgr_tuning* _7C;                 // _7C
-	J2DPane* _80;                               // _80
-	J2DPane* _84;                               // _84
-	J2DPane* _88;                               // _88
-	THuWhitePaneSet* _8C;                       // _8C
-	J2DPane* _90;                               // _90
-	J2DPane* _94;                               // _94
-	J2DPane* _98;                               // _98
-	f32 _9C;                                    // _9C
-	f32 _A0;                                    // _A0
-	f32 _A4;                                    // _A4
-	f32 _A8;                                    // _A8
-	og::Screen::DispMemberHurryUp* mDispMember; // _AC
-	int _B0;                                    // _B0
-	f32 _B4;                                    // _B4
-	f32 _B8;                                    // _B8
-	f32 _BC;                                    // _BC
-	u8 _C0[4];                                  // _C0
-	u8 _C4;                                     // _C4
-	u32 : 0;
-	u8 _C8[8];              // _C8
+	JKRArchive* mArchive;           // _78
+	P2DScreen::Mgr_tuning* mScreen; // _7C
+	J2DPane* mPane1;                // _80
+	J2DPane* mPane2;                // _84
+	J2DPane* mPane3;                // _88
+	THuWhitePaneSet* mWhitePane;    // _8C
+	J2DPane* mPane4;                // _90
+	J2DPane* mPane5;                // _94
+	J2DPane* mPane6;                // _98
+	JGeometry::TVec2f mPane1Pos;
+	JGeometry::TVec2f mPane2Pos;
+	og::Screen::DispMemberHurryUp* mDisp; // _AC
+	int mState;                           // _B0
+	f32 mTimer;                           // _B4
+	f32 _B8;                              // _B8
+	f32 _BC;                              // _BC
+	u16 _C0;                              // _C0
+	u16 _C2;
+	bool mDoDraw; // _C4
+	f32 _C8;
+	f32 mTimeMax;
 	TStateParam mParams[6]; // _D0
 };
 
