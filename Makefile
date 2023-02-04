@@ -88,7 +88,7 @@ DEPENDS += $(MAKECMDGOALS:.o=.d)
 
 MWCC_VERSION := 2.6
 ifeq ($(EPILOGUE_PROCESS),1)
-MWCC_EPI_VERSION := 1.2.5
+MWCC_EPI_VERSION := 1.2.5e
 MWCC_EPI_EXE := mwcceppc.exe
 endif
 MWLD_VERSION := 2.6
@@ -129,7 +129,7 @@ TRANSFORM_DEP := tools/transform-dep.py
 else
 TRANSFORM_DEP := tools/transform-win.py
 endif
-FRANK := tools/franklite.py
+FRANK := tools/frank.py
 
 # Options
 INCLUDES := -i include/
@@ -245,19 +245,22 @@ ifeq ($(EPILOGUE_PROCESS),1)
 $(EPILOGUE_DIR)/%.o: %.c $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
 	$(QUIET) mkdir -p $(dir $@)
-	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $(word 2,$^)
+	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
+	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
 	$(QUIET) touch $@
 
 $(EPILOGUE_DIR)/%.o: %.cp $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
 	$(QUIET) mkdir -p $(dir $@)
-	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $(word 2,$^)
+	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
+	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
 	$(QUIET) touch $@
 
 $(EPILOGUE_DIR)/%.o: %.cpp $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
 	$(QUIET) mkdir -p $(dir $@)
-	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $(word 2,$^)
+	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
+	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
 	$(QUIET) touch $@
 endif
 # If we need Frank, add the following after the @echo

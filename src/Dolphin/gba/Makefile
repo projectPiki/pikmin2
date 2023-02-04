@@ -2,11 +2,11 @@ GBA_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/gba/GBA.o\
 	$(BUILD_DIR)/src/Dolphin/gba/GBARead.o\
 	$(BUILD_DIR)/src/Dolphin/gba/GBAWrite.o\
-	$(BUILD_DIR)/src/Dolphin/gba/GBAXfer.o
+	$(BUILD_DIR)/src/Dolphin/gba/GBAXfer.o\
 
 GBA_UNSCHEDULED:=\
 	$(EPILOGUE_DIR)/src/Dolphin/gba/GBAWrite.o\
-	$(EPILOGUE_DIR)/src/Dolphin/gba/GBAXfer.o
+	$(EPILOGUE_DIR)/src/Dolphin/gba/GBAXfer.o\
 
 $(GBA_FILES): CFLAGS += -common off -str noreadonly
 $(GBA_FILES): MWCC_VERSION := 1.2.5
