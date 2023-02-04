@@ -26,7 +26,7 @@ void THiScoreIndPane::draw()
 {
 	GXSetColorUpdate(GX_TRUE);
 	GXSetAlphaUpdate(GX_FALSE);
-	GXSetDstAlpha(GX_FALSE,0);
+	GXSetDstAlpha(GX_FALSE, 0);
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_ONE, GX_BL_ZERO, GX_LO_CLEAR);
 	GXSetNumTexGens(0);
 	GXSetNumIndStages(0);
@@ -209,7 +209,7 @@ void THiScoreIndPane::setRadius(s16, f32)
  * Size:	000048
  */
 THiScoreListScreen::THiScoreListScreen(JKRArchive* arc, int)
-	: TListScreen(arc,0)
+    : TListScreen(arc, 0)
 {
 	// UNUSED FUNCTION
 }
@@ -227,16 +227,17 @@ void THiScoreListScreen::create(char const* path, u32 screenFlags)
 	TCallbackScissor* scis = new TCallbackScissor;
 
 	JGeometry::TBox2f* bounds = mScreenObj->search('Nlist1')->getBounds();
-	JGeometry::TBox2f box(bounds->i.x * mScreenObj->mstTuningScaleX, (bounds->i.y-5.0f) * mScreenObj->mstTuningScaleY, (bounds->f.x+5.0f) * mScreenObj->mstTuningScaleX, bounds->f.y * mScreenObj->mstTuningScaleY);
+	JGeometry::TBox2f box(bounds->i.x * mScreenObj->mstTuningScaleX, (bounds->i.y - 5.0f) * mScreenObj->mstTuningScaleY,
+	                      (bounds->f.x + 5.0f) * mScreenObj->mstTuningScaleX, bounds->f.y * mScreenObj->mstTuningScaleY);
 	scis->mBounds = box;
 	mScreenObj->addCallBack('Nlist1', scis);
 
 	TScissorPane* scispane = new TScissorPane;
-	scispane->mBounds = box;
+	scispane->mBounds      = box;
 	mScreenObj->search('Pmap_l')->appendChild(scispane);
 
 	TScissorPane* scispane2 = new TScissorPane;
-	scispane2->mBounds = JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f);
+	scispane2->mBounds      = JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f);
 	mScreenObj->search('Nlist1')->appendChild(scispane2);
 
 	og::Screen::setCallBackMessage(mScreenObj);
@@ -471,77 +472,77 @@ lbl_8037CE70:
  * Size:	0001CC
  */
 THiScore::THiScore()
-	:	TScrollList("hiscore"),
-	mListScreen(nullptr),
-	mIndPane(nullptr),
-	mHighScorePic(nullptr),
-	mSelIconPane(0),
-	m3DStickPane(nullptr),
-	mStickAnimPic(nullptr),
-	mStickAnimMgr(nullptr),
-	mScaleMgrList(nullptr),
-	mIsAllTreasures(false),
-	mState(false),
-	_180(1.0f),
-	_184(0.0f),
-	_188(0.05f),
-	_18C(0.0f),
-	_190(0.0f),
-	_194(0.02f),
-	_198(0.25f),
-	_19C(0.0f),
-	_1A0(0.0f)
+    : TScrollList("hiscore")
+    , mListScreen(nullptr)
+    , mIndPane(nullptr)
+    , mHighScorePic(nullptr)
+    , mSelIconPane(0)
+    , m3DStickPane(nullptr)
+    , mStickAnimPic(nullptr)
+    , mStickAnimMgr(nullptr)
+    , mScaleMgrList(nullptr)
+    , mIsAllTreasures(false)
+    , mState(false)
+    , _180(1.0f)
+    , _184(0.0f)
+    , _188(0.05f)
+    , _18C(0.0f)
+    , _190(0.0f)
+    , _194(0.02f)
+    , _198(0.25f)
+    , _19C(0.0f)
+    , _1A0(0.0f)
 {
-	_1C4 = 0;
-	_1C5 = 0;
+	_1C4               = 0;
+	_1C5               = 0;
 	mErrorSoundCounter = 0;
-	mDoEnd = 0;
-	mTevBlock[0] = nullptr;
-	mTevBlock[1] = nullptr;
-	mColorBlock[0] = nullptr;
-	mColorBlock[1] = nullptr;
-	_1F8[0] = 0.0f;
-	mMaxSelect = 5;
+	mDoEnd             = 0;
+	mTevBlock[0]       = nullptr;
+	mTevBlock[1]       = nullptr;
+	mColorBlock[0]     = nullptr;
+	mColorBlock[1]     = nullptr;
+	_1F8[0]            = 0.0f;
+	mMaxSelect         = 5;
 
-	mScoreCounts[0] = 0;
+	mScoreCounts[0]   = 0;
 	mScaleCounter1[0] = nullptr;
-	mCurrScore1[0] = 0;
-	mCurrScore2[0] = 0;
+	mCurrScore1[0]    = 0;
+	mCurrScore2[0]    = 0;
 	mScaleCounter2[0] = nullptr;
 	mScaleCounter3[0] = nullptr;
 
-	mScoreCounts[1] = 0;
+	mScoreCounts[1]   = 0;
 	mScaleCounter1[1] = nullptr;
-	mCurrScore1[1] = 0;
-	mCurrScore2[1] = 0;
+	mCurrScore1[1]    = 0;
+	mCurrScore2[1]    = 0;
 	mScaleCounter2[1] = nullptr;
 	mScaleCounter3[1] = nullptr;
 
-	mScoreCounts[2] = 0;
+	mScoreCounts[2]   = 0;
 	mScaleCounter1[2] = nullptr;
-	mCurrScore1[2] = 0;
-	mCurrScore2[2] = 0;
+	mCurrScore1[2]    = 0;
+	mCurrScore2[2]    = 0;
 	mScaleCounter2[2] = nullptr;
 	mScaleCounter3[2] = nullptr;
 
-	mScoreCounts[3] = 0;
+	mScoreCounts[3]   = 0;
 	mScaleCounter1[3] = nullptr;
-	mCurrScore1[3] = 0;
-	mCurrScore2[3] = 0;
+	mCurrScore1[3]    = 0;
+	mCurrScore2[3]    = 0;
 	mScaleCounter2[3] = nullptr;
 	mScaleCounter3[3] = nullptr;
 
-	mScoreCounts[4] = 0;
+	mScoreCounts[4]   = 0;
 	mScaleCounter1[4] = nullptr;
-	mCurrScore1[4] = 0;
-	mCurrScore2[4] = 0;
+	mCurrScore1[4]    = 0;
+	mCurrScore2[4]    = 0;
 	mScaleCounter2[4] = nullptr;
 	mScaleCounter3[4] = nullptr;
 
-	mScoreCounts[5] = 0;
+	mScoreCounts[5]   = 0;
 	mScaleCounter1[5] = nullptr;
-	mCurrScore1[5] = 0;
-	mCurrScore2[5] = 0;
+	mCurrScore1[5]    = 0;
+	mCurrScore2[5]    = 0;
 	mScaleCounter2[5] = nullptr;
 	mScaleCounter3[5] = nullptr;
 
@@ -572,7 +573,7 @@ void THiScore::doCreate(JKRArchive* arc)
 		P2ASSERTLINE(287, mDisp);
 		mIsAllTreasures = sys->getPlayCommonData()->_00 & 2;
 	} else {
-		mDisp = new DispMemberHighScore;
+		mDisp      = new DispMemberHighScore;
 		mIsSection = true;
 	}
 
@@ -588,20 +589,19 @@ void THiScore::doCreate(JKRArchive* arc)
 	}
 
 	mController = getGamePad();
-// clang-format off
+	// clang-format off
 	const char* timgname[16] = {"timg/hi_score_00.bti", "timg/hi_score_01.bti", "timg/hi_score_02.bti", "timg/hi_score_03.bti",
 								"timg/hi_score_04.bti", "timg/hi_score_05.bti", "timg/hi_score_06.bti", "timg/hi_score_07.bti",
 								"timg/hi_score_08.bti", "timg/hi_score_09.bti", "timg/hi_score_10.bti", "timg/hi_score_11.bti",
 								"timg/hi_score_12.bti", "timg/hi_score_13.bti", "timg/hi_score_14.bti", "timg/hi_score_15.bti"};
-// clang-format on
-
+	// clang-format on
 
 	// if the image archive was found, use it to get the images, otherwise get them from the main screen archive
 	if (mDisp->mImageArchive) {
 		for (int i = 0; i < 16; i++) {
 			mPicTexture[i] = static_cast<ResTIMG*>(mDisp->mImageArchive->getResource(timgname[i]));
 			P2ASSERTLINE(325, mPicTexture[i]);
-		}	
+		}
 	} else {
 		for (int i = 0; i < 16; i++) {
 			mPicTexture[i] = static_cast<ResTIMG*>(mArchive->getResource(timgname[i]));
@@ -615,8 +615,8 @@ void THiScore::doCreate(JKRArchive* arc)
 	mMainScreen->addAnim("hi_score_main.bpk");
 
 	P2DScreen::Mgr_tuning* screen = mMainScreen->mScreenObj;
-	mStickAnimPic = og::Screen::setCallBack_3DStickSmall(mArchive, screen, 'ota3dl');
-	m3DStickPane = screen->search('ota3dl');
+	mStickAnimPic                 = og::Screen::setCallBack_3DStickSmall(mArchive, screen, 'ota3dl');
+	m3DStickPane                  = screen->search('ota3dl');
 	P2ASSERTLINE(347, m3DStickPane);
 	P2ASSERTLINE(348, mStickAnimPic);
 	mStickAnimPic->mAnimGroup->setSpeed(2.0f);
@@ -627,15 +627,15 @@ void THiScore::doCreate(JKRArchive* arc)
 	mHighScorePic = static_cast<J2DPictureEx*>(screen->search('PICT_001'));
 	P2ASSERTLINE(357, mStickAnimMgr);
 
-	mListScreen = new THiScoreListScreen(arc,0);
+	mListScreen = new THiScoreListScreen(arc, 0);
 	mListScreen->create("hi_score_list.blo", 0x20000);
 
 	P2DScreen::Mgr_tuning* screen2 = mListScreen->mScreenObj;
-	_1F8[2] = screen2->search('Nlist1')->mOffset.x;
-	_1F8[3] = screen2->search('Nlist1')->mOffset.y;
-	_1F8[4] = screen2->search('Nselicon')->mOffset.x;
-	_1F8[5] = screen2->search('Nselicon')->mOffset.y;
-	mSelIconPane = screen2->search('Nselicon');
+	_1F8[2]                        = screen2->search('Nlist1')->mOffset.x;
+	_1F8[3]                        = screen2->search('Nlist1')->mOffset.y;
+	_1F8[4]                        = screen2->search('Nselicon')->mOffset.x;
+	_1F8[5]                        = screen2->search('Nselicon')->mOffset.y;
+	mSelIconPane                   = screen2->search('Nselicon');
 	if (mSelIconPane) {
 		mSelIconCorners[0] = screen2->search('Psel_lu');
 		P2ASSERTLINE(375, mSelIconCorners[0]);
@@ -652,8 +652,8 @@ void THiScore::doCreate(JKRArchive* arc)
 	_94 = 2;
 	_98 = mMaxSelect - 1;
 
-	u64 tags1[5] = {'Nmenu00', 'Nmenu01', 'Nmenu02', 'Nmenu03', 'Nmenu04'};
-	u64 tags2[5] = {'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04'};
+	u64 tags1[5] = { 'Nmenu00', 'Nmenu01', 'Nmenu02', 'Nmenu03', 'Nmenu04' };
+	u64 tags2[5] = { 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04' };
 
 	J2DPane* pane = screen2->search(tags1[_90]);
 	P2ASSERTLINE(401, pane);
@@ -666,7 +666,7 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndexPaneList = new TIndexPane*[mMaxSelect];
 
 	for (int i = 0; i < mMaxSelect; i++) {
-		mIndexPaneList[i] = new TIndexPane(screen2, tags1[i]);
+		mIndexPaneList[i]         = new TIndexPane(screen2, tags1[i]);
 		mIndexPaneList[i]->mPane2 = screen2->search(tags2[i]);
 
 		JUT_ASSERTLINE(415, screen2->search(tags1[i]), "assertindex = %d \n", i);
@@ -696,7 +696,7 @@ void THiScore::doCreate(JKRArchive* arc)
 
 			J2DPictureEx* pic = static_cast<J2DPictureEx*>(mIndexPaneList[i]->mPane);
 			if (mPicTexture[i]) {
-				pic->changeTexture(mPicTexture[i],0);
+				pic->changeTexture(mPicTexture[i], 0);
 			}
 			changeTevBlock(pic->getMaterial()->mTevBlock, mHighScorePic->getMaterial()->mTevBlock);
 			changeColorBlock(&pic->getMaterial()->mColorBlock, &mHighScorePic->getMaterial()->mColorBlock);
@@ -707,21 +707,21 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndexGroup = new TIndexGroup;
 	updateLayout();
 	TIndexGroup* group = mIndexGroup;
-	group->_00 = msVal._00;
-	group->_04 = msVal._04;
-	group->_08 = msVal._08;
-	group->_0C = msVal._0C;
-	group->_10 = msVal._10;
+	group->_00         = msVal._00;
+	group->_04         = msVal._04;
+	group->_08         = msVal._08;
+	group->_0C         = msVal._0C;
+	group->_10         = msVal._10;
 
 	J2DPane* total = mMainScreen->mScreenObj->search('Tot3rds');
 	P2ASSERTLINE(469, total);
-	total->setMsgID('8472_00');	// 3rd
+	total->setMsgID('8472_00'); // 3rd
 
-	u64 tagList0[6] = {'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1'};
-	u64 tagList1[6] = {'Phe1st4', 'Phe2nd4', 'Phe3rd4', 'Pot1st4', 'Pot2nd4', 'Pot3rd4'};
-	u64 tagList2[6] = {'Phe1st5', 'Phe2nd5', 'Phe3rd5', 'Pot1st5', 'Pot2nd5', 'Pot3rd5'};
-	u64 tagList3[6] = {'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1'};
-	u64 tagList4[6] = {'Phe1st2', 'Phe2nd2', 'Phe3rd2', 'Pot1st2', 'Pot2nd2', 'Pot3rd2'};
+	u64 tagList0[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
+	u64 tagList1[6] = { 'Phe1st4', 'Phe2nd4', 'Phe3rd4', 'Pot1st4', 'Pot2nd4', 'Pot3rd4' };
+	u64 tagList2[6] = { 'Phe1st5', 'Phe2nd5', 'Phe3rd5', 'Pot1st5', 'Pot2nd5', 'Pot3rd5' };
+	u64 tagList3[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
+	u64 tagList4[6] = { 'Phe1st2', 'Phe2nd2', 'Phe3rd2', 'Pot1st2', 'Pot2nd2', 'Pot3rd2' };
 	for (int i = 0; i < 6; i++) {
 		mScaleCounter1[i] = Morimura::setScaleUpCounter(mMainScreen->mScreenObj, tagList0[i], &mScoreCounts[i], 10, mArchive);
 		mScaleCounter2[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList1[i], tagList3[i], &mCurrScore1[i], 10, mArchive);
@@ -735,8 +735,8 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndPane = new THiScoreIndPane(mHighScorePic);
 	mIndPane->createIndTexture("hi_score_00.bti");
 	mIndPane->createCaptureTexture(GX_TF_I4);
-	mIndPane->mTexture1->storeTIMG(mPicTexture[0],(u8)0);
-	mIndPane->mTexture2->storeTIMG(mPicTexture[0],(u8)0);
+	mIndPane->mTexture1->storeTIMG(mPicTexture[0], (u8)0);
+	mIndPane->mTexture2->storeTIMG(mPicTexture[0], (u8)0);
 
 	ResTIMG* img = mIndPane->mTexture1->_20;
 	P2ASSERTLINE(507, img);
@@ -4723,10 +4723,7 @@ lbl_8038071C:
  * Address:	80380754
  * Size:	000050
  */
-THiScoreScene::THiScoreScene()
-{
-
-}
+THiScoreScene::THiScoreScene() { }
 
 /*
  * --INFO--

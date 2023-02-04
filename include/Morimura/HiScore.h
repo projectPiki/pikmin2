@@ -10,9 +10,10 @@
 
 namespace Morimura {
 struct DispMemberHighScore : public og::Screen::DispMemberBase {
-	DispMemberHighScore() {
+	DispMemberHighScore()
+	{
 		mImageArchive = nullptr;
-		_0C = false;
+		_0C           = false;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberHighScore); } // _08 (weak)
@@ -22,12 +23,13 @@ struct DispMemberHighScore : public og::Screen::DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	JKRArchive* mImageArchive; // _08, unknown ptr
-	bool _0C;  // _0C
+	bool _0C;                  // _0C
 };
 
 struct THiScoreIndPane : public TIndPane {
-	THiScoreIndPane(J2DPane* pane) : TIndPane("hi_score_00.bti", pane->mBounds.f.x - pane->mBounds.i.x, pane->mBounds.f.y - pane->mBounds.i.y) {
-
+	THiScoreIndPane(J2DPane* pane)
+	    : TIndPane("hi_score_00.bti", pane->mBounds.f.x - pane->mBounds.i.x, pane->mBounds.f.y - pane->mBounds.i.y)
+	{
 	}
 
 	virtual ~THiScoreIndPane() { } // _08 (weak)
@@ -51,11 +53,11 @@ struct THiScoreListScreen : public TListScreen {
 struct THiScoreScene : public THIOScene {
 	THiScoreScene();
 
-	virtual SceneType getSceneType() { return SCENE_HIGH_SCORE; }       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }     // _0C (weak)
+	virtual SceneType getSceneType() { return SCENE_HIGH_SCORE; }        // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }            // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_HIGH_SCORE; }   // _10 (weak)
 	virtual const char* getResName() const { return "res_hiscore.szs"; } // _1C
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
+	virtual void doCreateObj(JKRArchive*);                               // _20 (weak)
 
 	// _00      = VTBL
 	// _00-_224 = THIOScene
@@ -65,7 +67,7 @@ struct THiScoreScene : public THIOScene {
 struct THiScore : public TScrollList {
 	THiScore();
 
-	virtual ~THiScore() { }                                     // _08 (weak)
+	virtual ~THiScore() { }                                  // _08 (weak)
 	virtual void doCreate(JKRArchive*);                      // _4C
 	virtual void doUpdateFadeinFinish();                     // _54
 	virtual bool doUpdate();                                 // _58
@@ -74,8 +76,8 @@ struct THiScore : public TScrollList {
 	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)
 	virtual void paneInit();                                 // _80
 	virtual void changePaneInfo();                           // _84
-	virtual int getIdMax() { return 16; }                   // _88 (weak)
-	virtual u64 getNameID(int);                             // _8C (weak)
+	virtual int getIdMax() { return 16; }                    // _88 (weak)
+	virtual u64 getNameID(int);                              // _8C (weak)
 	virtual void changeTextTevBlock(int);                    // _A0
 	virtual void setPaneCharacter(int);                      // _A8
 
@@ -91,22 +93,22 @@ struct THiScore : public TScrollList {
 	// _00-_B4 = TScrollList
 	THiScoreListScreen* mListScreen; // _B4
 	THiScoreIndPane* mIndPane;       // _B8
-	J2DPictureEx* mHighScorePic;	//_BC
+	J2DPictureEx* mHighScorePic;     //_BC
 	J2DPane* mSelIconPane;
 	J2DPane* mSelIconCorners[4];
 	J2DPane* m3DStickPane;
 	og::Screen::CallBack_Picture* mStickAnimPic;
 	og::Screen::StickAnimMgr* mStickAnimMgr;
 	og::Screen::ScaleMgr** mScaleMgrList;
-	TScaleUpCounter* mScaleCounter1[6];	// _E4
-	u32 mScoreCounts[6];	// _FC
-	TScaleUpCounter* mScaleCounter2[6];	// _114
-	TScaleUpCounter* mScaleCounter3[6];	// _12c
-	u32 mCurrScore1[6];	// _144
-	u32 mCurrScore2[6];	// _15C
-	bool mIsAllTreasures;	// _174
-	int mState;					// _178
-	DispMemberHighScore* mDisp; // _17C
+	TScaleUpCounter* mScaleCounter1[6]; // _E4
+	u32 mScoreCounts[6];                // _FC
+	TScaleUpCounter* mScaleCounter2[6]; // _114
+	TScaleUpCounter* mScaleCounter3[6]; // _12c
+	u32 mCurrScore1[6];                 // _144
+	u32 mCurrScore2[6];                 // _15C
+	bool mIsAllTreasures;               // _174
+	int mState;                         // _178
+	DispMemberHighScore* mDisp;         // _17C
 	f32 _180;
 	f32 _184;
 	f32 _188;
@@ -116,14 +118,14 @@ struct THiScore : public TScrollList {
 	f32 _198;
 	f32 _19C;
 	f32 _1A0;
-	Vector2f mCoords[4];		// _1A4
+	Vector2f mCoords[4]; // _1A4
 	u8 _1C4;
 	u8 _1C5;
-	u8 mErrorSoundCounter;		// _1C6
-	u8 mDoEnd;					// _1C7
-	J2DTevBlock* mTevBlock[2];		//_1C8
-	J2DColorBlock* mColorBlock[2];	// _1D0
-	GXColorS10 mColors[4];				// _1D8
+	u8 mErrorSoundCounter;         // _1C6
+	u8 mDoEnd;                     // _1C7
+	J2DTevBlock* mTevBlock[2];     //_1C8
+	J2DColorBlock* mColorBlock[2]; // _1D0
+	GXColorS10 mColors[4];         // _1D8
 	f32 _1F8[6];
 
 	static bool mForceClear;
@@ -133,9 +135,9 @@ struct THiScore : public TScrollList {
 		// WARNING: the actual THiScore constructor overwrites these
 		inline StaticValues()
 		{
-			_00      = 8.0f;
-			_04      = 0.9f;
-			_08      = 1.1f;
+			_00 = 8.0f;
+			_04 = 0.9f;
+			_08 = 1.1f;
 			_0C = 1.5f;
 			_10 = 2.0f;
 		}

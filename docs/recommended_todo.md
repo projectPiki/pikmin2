@@ -137,7 +137,7 @@
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 63575 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 66399 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 63581 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 66450 |
 
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |

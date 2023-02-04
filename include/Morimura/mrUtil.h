@@ -84,22 +84,18 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 };
 
 struct TCallbackScissor : public P2DScreen::CallBackNode {
-	TCallbackScissor() {
-		mBounds.set(0.0f);
-	}
+	TCallbackScissor() { mBounds.set(0.0f); }
 
 	virtual ~TCallbackScissor() { }                // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	JGeometry::TBox2f mBounds;	// _1C
+	JGeometry::TBox2f mBounds; // _1C
 };
 
 struct TScissorPane : public J2DPictureEx {
-	TScissorPane() {
-
-	}
+	TScissorPane() { }
 	virtual ~TScissorPane() { }            // _08 (weak)
 	virtual void drawSelf(f32, f32, Mtx*); // _38
 

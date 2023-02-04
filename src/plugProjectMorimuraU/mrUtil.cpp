@@ -12,7 +12,7 @@ namespace Morimura {
 void TCallbackScissor::draw(Graphics& gfx, J2DGrafContext& graf)
 {
 	gfx.mPerspGraph.setPort();
-	GXSetScissor(mX1, mY1, mX2 - mX1, mY2 - mY1);
+	GXSetScissor(mBounds.i.x, mBounds.i.y, mBounds.f.x - mBounds.i.x, mBounds.f.y - mBounds.i.y);
 }
 
 /*
@@ -403,6 +403,6 @@ void TScissorPane::drawSelf(f32, f32, Mtx*)
 	PSMTXIdentity(mtx.mMatrix.mtxView);
 	GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
 
-	GXSetScissor(_1A8, _1AC, _1B0 - _1A8, _1B4 - _1AC);
+	GXSetScissor(mBounds.i.x, mBounds.i.y, mBounds.f.x - mBounds.i.x, mBounds.f.y - mBounds.i.y);
 }
 } // namespace Morimura
