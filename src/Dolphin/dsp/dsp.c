@@ -10,17 +10,10 @@ char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16"
  * Address:	800DACB0
  * Size:	000010
  */
-u16 DSPCheckMailToDSP(void)
+u32 DSPCheckMailToDSP(void)
 {
-	u16 result = HW_REG(0xCC005000, u16);
-	return result >> 0xF;
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  lhz       r0, 0x5000(r3)
-	  rlwinm    r3,r0,17,31,31
-	  blr
-	*/
+	u32 result = HW_REG(0xCC005000, u16);
+	return result >> 0xF & 1;
 }
 
 /*
@@ -28,10 +21,10 @@ u16 DSPCheckMailToDSP(void)
  * Address:	800DACC0
  * Size:	000010
  */
-u16 DSPCheckMailFromDSP(void)
+u32 DSPCheckMailFromDSP(void)
 {
 	u16 result = HW_REG(0xCC005004, u16);
-	return result >> 0xF;
+	return result >> 0xF & 1;
 	/*
 	.loc_0x0:
 	  lis       r3, 0xCC00

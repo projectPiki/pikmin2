@@ -637,12 +637,12 @@ LIBS = [
     {
         "lib": "dsp",
         "mw_version": "1.2.5e",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
             "Dolphin/dsp/dsp",
             ["Dolphin/dsp/dsp_debug", True],
-            "Dolphin/dsp/dsp_task",
+            ["Dolphin/dsp/dsp_task", True],
         ],
     },
     {

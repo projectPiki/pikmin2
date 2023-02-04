@@ -12,7 +12,7 @@ STRUCT_DSP_TASK* DSPAddTask(STRUCT_DSP_TASK* task)
 {
 	int interrupts;
 	interrupts = OSDisableInterrupts();
-	__DSP_insert_task(task);
+	__DSP_insert_task((DSPTask*)task);
 	task->_00 = 0;
 	task->_08 = 1;
 	OSRestoreInterrupts(interrupts);
@@ -35,6 +35,6 @@ void DSPAddPriorTask__FP15STRUCT_DSP_TASK(STRUCT_DSP_TASK* task)
 	DSP_prior_task = task;
 	task->_00      = 0;
 	task->_08      = 1;
-	__DSP_boot_task(task);
+	__DSP_boot_task((DSPTask*)task);
 	OSRestoreInterrupts(interrupts);
 }
