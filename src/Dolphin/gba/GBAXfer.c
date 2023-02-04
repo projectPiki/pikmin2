@@ -2,7 +2,6 @@
 #include "Dolphin/os.h"
 #include "Dolphin/si.h"
 
-
 /*
  * --INFO--
  * Address:	800FEF58
@@ -14,7 +13,7 @@ static void __GBAHandler(int portIndex, u32 p2, OSContext* context)
 	GBAProcHandler procHandler;
 	GBA* gba = &__GBA[portIndex];
 	OSContext syncContext;
-    
+
 	if (__GBAReset == FALSE) {
 		if (p2 & 0xF) {
 			gba->_20 = 1;
@@ -98,7 +97,6 @@ int __GBASync(int portIndex)
 	*/
 }
 
-
 /*
  * --INFO--
  * Address:	800FF0D4
@@ -106,40 +104,38 @@ int __GBASync(int portIndex)
  */
 static void TypeAndStatusCallback(int portIndex, u32 flags)
 {
-    GBA* gba = &__GBA[portIndex];
-    OSContext* osContext;
-    GBAProcHandler procHandler;
-    OSContext sp10;
-    GBASyncCallback syncCallback;
+	GBA* gba = &__GBA[portIndex];
+	OSContext* osContext;
+	GBAProcHandler procHandler;
+	OSContext sp10;
+	GBASyncCallback syncCallback;
 
-
-    
-    if (__GBAReset == FALSE) {
-        if ((u8)flags != 0 || ((flags & 0xFFFF0000) + 0xFFFC0000) != 0) {
-            gba->_20 = 1;
-        } else {
-            if (SITransfer(portIndex, gba, gba->_0C, &gba->_05, gba->_10, &__GBAHandler, gba->_30, gba->_34) != 0) {
-                return;
-            }
-            gba->_20 = 2;
-        }
-        procHandler = getGBAHandler(gba);
-        if (procHandler != NULL) {
-            gba->_38 = NULL;
-            procHandler(portIndex);
-        }
-        if (gba->mSyncCallback != NULL) {
-            osContext = OSGetCurrentContext();
-            OSClearContext(&sp10);
-            OSSetCurrentContext(&sp10);
-            syncCallback = gba->mSyncCallback;
-            gba->mSyncCallback = NULL;
-            syncCallback(portIndex, gba->_20);
-            OSClearContext(&sp10);
-            OSSetCurrentContext(osContext);
-            __OSReschedule();
-        }
-    }
+	if (__GBAReset == FALSE) {
+		if ((u8)flags != 0 || ((flags & 0xFFFF0000) + 0xFFFC0000) != 0) {
+			gba->_20 = 1;
+		} else {
+			if (SITransfer(portIndex, gba, gba->_0C, &gba->_05, gba->_10, &__GBAHandler, gba->_30, gba->_34) != 0) {
+				return;
+			}
+			gba->_20 = 2;
+		}
+		procHandler = getGBAHandler(gba);
+		if (procHandler != NULL) {
+			gba->_38 = NULL;
+			procHandler(portIndex);
+		}
+		if (gba->mSyncCallback != NULL) {
+			osContext = OSGetCurrentContext();
+			OSClearContext(&sp10);
+			OSSetCurrentContext(&sp10);
+			syncCallback       = gba->mSyncCallback;
+			gba->mSyncCallback = NULL;
+			syncCallback(portIndex, gba->_20);
+			OSClearContext(&sp10);
+			OSSetCurrentContext(osContext);
+			__OSReschedule();
+		}
+	}
 }
 
 /*
@@ -149,18 +145,17 @@ static void TypeAndStatusCallback(int portIndex, u32 flags)
  */
 BOOL __GBATransfer(int portIndex, u32 arg1, u32 arg2, GBAProcHandler gbaProcHandler)
 {
-    uint interruptsTemp;
-    GBA* gba = &__GBA[portIndex];
-    
-    interruptsTemp = OSDisableInterrupts();
-    gba->_38 = gbaProcHandler;
-    gba->_0C = arg1;
-    gba->_10 = arg2;
-    SIGetTypeAsync(portIndex, &TypeAndStatusCallback);
-    OSRestoreInterrupts(interruptsTemp);
-    return FALSE;
-}
+	uint interruptsTemp;
+	GBA* gba = &__GBA[portIndex];
 
+	interruptsTemp = OSDisableInterrupts();
+	gba->_38       = gbaProcHandler;
+	gba->_0C       = arg1;
+	gba->_10       = arg2;
+	SIGetTypeAsync(portIndex, &TypeAndStatusCallback);
+	OSRestoreInterrupts(interruptsTemp);
+	return FALSE;
+}
 
 /*
  * --INFO--

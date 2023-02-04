@@ -31,6 +31,7 @@ OS_UNSCHEDULED:=\
 	$(EPILOGUE_DIR)/src/Dolphin/os/OSMessage.o\
 
 $(OS_FILES): CFLAGS += -common off -str noreadonly
+$(OS_UNSCHEDULED): CFLAGS += -common off -str noreadonly
 $(OS_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(OS_FILES:.o=.d)

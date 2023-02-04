@@ -6,6 +6,7 @@ SI_UNSCHEDULED:=\
 	$(EPILOGUE_DIR)/src/Dolphin/si/SISamplingRate.o\
 
 $(SI_FILES): CFLAGS += -common off -str noreadonly
+$(SI_UNSCHEDULED): CFLAGS += -common off -str noreadonly
 $(SI_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(SI_FILES:.o=.d)
