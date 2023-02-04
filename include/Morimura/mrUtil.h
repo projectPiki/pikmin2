@@ -166,6 +166,27 @@ struct TIndPane : public CNode {
 	void createIndTexture(const char*);
 	void createCaptureTexture(_GXTexFmt);
 
+	inline void setAngleTimer(f32 time)
+	{
+		_44 = 0;
+		_3C = -6;
+		_38 = 0.0f;
+		_34 = 0.0f;
+		_40 = (time * 360.0f) / TAU;
+	}
+
+	inline void setXY(f32 x, f32 y)
+	{
+		_34 = x;
+		_38 = y;
+	}
+
+	inline void setFlag(int flag)
+	{
+		_3C = 0;
+		_44 = flag;
+	}
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	JUTTexture* mTexture1; // _18

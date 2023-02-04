@@ -134,7 +134,7 @@ struct Graphics : public _GraphicsParent {
 	void perspPrintf(PerspPrintfInfo&, Vector3f&, char*, ...);
 
 	void initGX();
-	void dirtyInitGX();
+	static void dirtyInitGX();
 	static void clearInitGX();
 
 	// _GraphicsParent _000

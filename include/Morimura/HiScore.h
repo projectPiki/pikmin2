@@ -9,6 +9,7 @@
 #include "og/Screen/StickAnimMgr.h"
 
 namespace Morimura {
+
 struct DispMemberHighScore : public og::Screen::DispMemberBase {
 	DispMemberHighScore()
 	{
@@ -67,21 +68,21 @@ struct THiScoreScene : public THIOScene {
 struct THiScore : public TScrollList {
 	THiScore();
 
-	virtual ~THiScore() { }                                  // _08 (weak)
-	virtual void doCreate(JKRArchive*);                      // _4C
-	virtual void doUpdateFadeinFinish();                     // _54
-	virtual bool doUpdate();                                 // _58
-	virtual void doUpdateFadeoutFinish();                    // _64
-	virtual void doDraw(Graphics& gfx);                      // _68
-	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)
-	virtual void paneInit();                                 // _80
-	virtual void changePaneInfo();                           // _84
-	virtual int getIdMax() { return 16; }                    // _88 (weak)
-	virtual u64 getNameID(int);                              // _8C (weak)
-	virtual void changeTextTevBlock(int);                    // _A0
-	virtual void setPaneCharacter(int);                      // _A8
+	virtual ~THiScore() { }                                                                                  // _08 (weak)
+	virtual void doCreate(JKRArchive*);                                                                      // _4C
+	virtual void doUpdateFadeinFinish();                                                                     // _54
+	virtual bool doUpdate();                                                                                 // _58
+	virtual void doUpdateFadeoutFinish();                                                                    // _64
+	virtual void doDraw(Graphics& gfx);                                                                      // _68
+	virtual og::Screen::DispMemberBase* getDispMemberBase() { return mIsSection ? mDisp : getDispMember(); } // _78 (weak)
+	virtual void paneInit();                                                                                 // _80
+	virtual void changePaneInfo();                                                                           // _84
+	virtual int getIdMax() { return 16; }                                                                    // _88 (weak)
+	virtual u64 getNameID(int id);                                                                           // _8C (weak)
+	virtual void changeTextTevBlock(int);                                                                    // _A0
+	virtual void setPaneCharacter(int);                                                                      // _A8
 
-	void getRecord(int, int);
+	int getRecord(int, int);
 	void copyTevBlock(J2DTevBlock*, J2DTevBlock*);
 	void changeTevBlock(J2DTevBlock*, J2DTevBlock*);
 	void copyColorBlock(J2DColorBlock*, J2DColorBlock*);
@@ -94,26 +95,26 @@ struct THiScore : public TScrollList {
 	THiScoreListScreen* mListScreen; // _B4
 	THiScoreIndPane* mIndPane;       // _B8
 	J2DPictureEx* mHighScorePic;     //_BC
-	J2DPane* mSelIconPane;
-	J2DPane* mSelIconCorners[4];
+	J2DPane* mSelIconPane;           // _C0
+	J2DPane* mSelIconCorners[4];     // _C4
 	J2DPane* m3DStickPane;
-	og::Screen::CallBack_Picture* mStickAnimPic;
-	og::Screen::StickAnimMgr* mStickAnimMgr;
-	og::Screen::ScaleMgr** mScaleMgrList;
-	TScaleUpCounter* mScaleCounter1[6]; // _E4
-	u32 mScoreCounts[6];                // _FC
-	TScaleUpCounter* mScaleCounter2[6]; // _114
-	TScaleUpCounter* mScaleCounter3[6]; // _12c
-	u32 mCurrScore1[6];                 // _144
-	u32 mCurrScore2[6];                 // _15C
-	bool mIsAllTreasures;               // _174
-	int mState;                         // _178
-	DispMemberHighScore* mDisp;         // _17C
-	f32 _180;
+	og::Screen::CallBack_Picture* mStickAnimPic; // _D8
+	og::Screen::StickAnimMgr* mStickAnimMgr;     // _DC
+	og::Screen::ScaleMgr** mScaleMgrList;        // _E0
+	TScaleUpCounter* mScaleCounter1[6];          // _E4
+	u32 mScoreCounts[6];                         // _FC
+	TScaleUpCounter* mScaleCounter2[6];          // _114
+	TScaleUpCounter* mScaleCounter3[6];          // _12c
+	u32 mCurrScore1[6];                          // _144
+	u32 mCurrScore2[6];                          // _15C
+	bool mIsAllTreasures;                        // _174
+	int mState;                                  // _178
+	DispMemberHighScore* mDisp;                  // _17C
+	f32 mAlphaTimer;
 	f32 _184;
-	f32 _188;
-	f32 _18C;
-	f32 _190;
+	f32 mAngleGrowRate;
+	f32 mPaneAngle;
+	f32 mPaneAngle2;
 	f32 _194;
 	f32 _198;
 	f32 _19C;
@@ -126,9 +127,16 @@ struct THiScore : public TScrollList {
 	J2DTevBlock* mTevBlock[2];     //_1C8
 	J2DColorBlock* mColorBlock[2]; // _1D0
 	GXColorS10 mColors[4];         // _1D8
-	f32 _1F8[6];
+	f32 _1F8;
+	f32 _1FC;
+	Vector2f mPaneListPos;
+	Vector2f mPaneIconPos;
 
 	static bool mForceClear;
+	static bool mForceResetParm;
+	static bool mChangeAlpha;
+	static bool mForceClear2;
+	static bool mLoopDrum;
 	static ResTIMG* mPicTexture[16];
 
 	static struct StaticValues {
@@ -146,7 +154,7 @@ struct THiScore : public TScrollList {
 		f32 _08;
 		f32 _0C;
 		f32 _10;
-	} msVal;
+	} mScrollParm;
 };
 
 } // namespace Morimura

@@ -14,8 +14,7 @@ TTestBase::TTestBase(char* name)
 	mTimerLength  = 0.5f;
 	mFadeFraction = 0.0f;
 	mFadeAlpha    = 0;
-
-	_45 = 0;
+	mCanInput     = false;
 
 	strcpy(mBaseName, name);
 	mName = mBaseName;
@@ -31,8 +30,7 @@ bool TTestBase::doStart(Screen::StartSceneArg const*)
 	mFadeFraction = 0.0f;
 	mTimer        = 0.0f;
 	mFadeAlpha    = 0;
-
-	_45 = 0;
+	mCanInput     = false;
 
 	return true;
 }

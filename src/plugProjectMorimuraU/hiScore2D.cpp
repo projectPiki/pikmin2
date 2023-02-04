@@ -2,10 +2,16 @@
 #include "Game/Data.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "Morimura/mrUtil.h"
+#include "Controller.h"
+#include "PSSystem/PSSystemIF.h"
+#include "trig.h"
 
 static const char name[] = "hiScore2D";
 
 namespace Morimura {
+
+const f32 mListOffsetY    = 25.0f;
+const f32 mPictureOffsetY = -8.0f;
 
 /*
  * --INFO--
@@ -483,11 +489,11 @@ THiScore::THiScore()
     , mScaleMgrList(nullptr)
     , mIsAllTreasures(false)
     , mState(false)
-    , _180(1.0f)
+    , mAlphaTimer(1.0f)
     , _184(0.0f)
-    , _188(0.05f)
-    , _18C(0.0f)
-    , _190(0.0f)
+    , mAngleGrowRate(0.05f)
+    , mPaneAngle(0.0f)
+    , mPaneAngle2(0.0f)
     , _194(0.02f)
     , _198(0.25f)
     , _19C(0.0f)
@@ -501,7 +507,7 @@ THiScore::THiScore()
 	mTevBlock[1]       = nullptr;
 	mColorBlock[0]     = nullptr;
 	mColorBlock[1]     = nullptr;
-	_1F8[0]            = 0.0f;
+	_1F8               = 0.0f;
 	mMaxSelect         = 5;
 
 	mScoreCounts[0]   = 0;
@@ -551,11 +557,11 @@ THiScore::THiScore()
 	mSelIconCorners[2] = 0;
 	mSelIconCorners[3] = 0;
 
-	msVal._00 = 8.0f;
-	msVal._08 = 0.99f;
-	msVal._04 = 1.2f;
-	msVal._0C = 1.1f;
-	msVal._10 = 2.0f;
+	mScrollParm._00 = 8.0f;
+	mScrollParm._08 = 0.99f;
+	mScrollParm._04 = 1.2f;
+	mScrollParm._0C = 1.1f;
+	mScrollParm._10 = 2.0f;
 }
 
 /*
@@ -596,7 +602,7 @@ void THiScore::doCreate(JKRArchive* arc)
 								"timg/hi_score_12.bti", "timg/hi_score_13.bti", "timg/hi_score_14.bti", "timg/hi_score_15.bti"};
 	// clang-format on
 
-	// if the image archive was found, use it to get the images, otherwise get them from the main screen archive
+	// if the image archive was found, use it to get the images, otherwise get default from the main screen archive
 	if (mDisp->mImageArchive) {
 		for (int i = 0; i < 16; i++) {
 			mPicTexture[i] = static_cast<ResTIMG*>(mDisp->mImageArchive->getResource(timgname[i]));
@@ -604,8 +610,8 @@ void THiScore::doCreate(JKRArchive* arc)
 		}
 	} else {
 		for (int i = 0; i < 16; i++) {
-			mPicTexture[i] = static_cast<ResTIMG*>(mArchive->getResource(timgname[i]));
-			P2ASSERTLINE(325, mPicTexture[i]);
+			mPicTexture[i] = static_cast<ResTIMG*>(mArchive->getResource("timg/hi_score_00.bti"));
+			P2ASSERTLINE(331, mPicTexture[i]);
 		}
 	}
 
@@ -625,56 +631,56 @@ void THiScore::doCreate(JKRArchive* arc)
 	P2ASSERTLINE(353, mStickAnimMgr);
 
 	mHighScorePic = static_cast<J2DPictureEx*>(screen->search('PICT_001'));
-	P2ASSERTLINE(357, mStickAnimMgr);
+	P2ASSERTLINE(357, mHighScorePic);
 
 	mListScreen = new THiScoreListScreen(arc, 0);
 	mListScreen->create("hi_score_list.blo", 0x20000);
 
-	P2DScreen::Mgr_tuning* screen2 = mListScreen->mScreenObj;
-	_1F8[2]                        = screen2->search('Nlist1')->mOffset.x;
-	_1F8[3]                        = screen2->search('Nlist1')->mOffset.y;
-	_1F8[4]                        = screen2->search('Nselicon')->mOffset.x;
-	_1F8[5]                        = screen2->search('Nselicon')->mOffset.y;
-	mSelIconPane                   = screen2->search('Nselicon');
+	screen         = mListScreen->mScreenObj;
+	mPaneListPos.x = screen->search('Nlist1')->mOffset.x;
+	mPaneListPos.y = screen->search('Nlist1')->mOffset.y;
+	mPaneIconPos.x = screen->search('Nselicon')->mOffset.x;
+	mPaneIconPos.y = screen->search('Nselicon')->mOffset.y;
+	mSelIconPane   = screen->search('Nselicon');
 	if (mSelIconPane) {
-		mSelIconCorners[0] = screen2->search('Psel_lu');
+		mSelIconCorners[0] = screen->search('Psel_lu');
 		P2ASSERTLINE(375, mSelIconCorners[0]);
-		mSelIconCorners[1] = screen2->search('Psel_ru');
+		mSelIconCorners[1] = screen->search('Psel_ru');
 		P2ASSERTLINE(378, mSelIconCorners[1]);
-		mSelIconCorners[2] = screen2->search('Psel_ll');
+		mSelIconCorners[2] = screen->search('Psel_ll');
 		P2ASSERTLINE(381, mSelIconCorners[2]);
-		mSelIconCorners[3] = screen2->search('Psel_rl');
+		mSelIconCorners[3] = screen->search('Psel_rl');
 		P2ASSERTLINE(384, mSelIconCorners[3]);
 	}
 
-	_B0 = 1;
-	_90 = 0;
-	_94 = 2;
-	_98 = mMaxSelect - 1;
+	_B0            = 1;
+	_90            = 0;
+	mCurrentSelect = 2;
+	_98            = mMaxSelect - 1;
 
 	u64 tags1[5] = { 'Nmenu00', 'Nmenu01', 'Nmenu02', 'Nmenu03', 'Nmenu04' };
 	u64 tags2[5] = { 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04' };
 
-	J2DPane* pane = screen2->search(tags1[_90]);
+	J2DPane* pane = screen->search(tags1[_90]);
 	P2ASSERTLINE(401, pane);
 	_A0 = pane->mOffset.y;
 
-	pane = screen2->search(tags1[_98]);
+	pane = screen->search(tags1[_98]);
 	P2ASSERTLINE(405, pane);
 	_A4 = pane->mOffset.y;
 
 	mIndexPaneList = new TIndexPane*[mMaxSelect];
 
 	for (int i = 0; i < mMaxSelect; i++) {
-		mIndexPaneList[i]         = new TIndexPane(screen2, tags1[i]);
-		mIndexPaneList[i]->mPane2 = screen2->search(tags2[i]);
+		mIndexPaneList[i]         = new TIndexPane(screen, tags1[i]);
+		mIndexPaneList[i]->mPane2 = screen->search(tags2[i]);
 
-		JUT_ASSERTLINE(415, screen2->search(tags1[i]), "assertindex = %d \n", i);
+		JUT_ASSERTLINE(415, screen->search(tags1[i]), "assertindex = %d \n", i);
 
 		mIndexPaneList[i]->mPane->getFirstChildPane()->getFirstChildPane()->setInfluencedAlpha(false, false);
 
 		J2DPane* cPane = mIndexPaneList[i]->mPane2;
-		P2ASSERTLINE(428, cPane);
+		P2ASSERTLINE(423, cPane);
 		cPane->setMsgID(getNameID(i));
 		cPane = cPane->getFirstChildPane();
 		P2ASSERTLINE(428, cPane);
@@ -694,12 +700,13 @@ void THiScore::doCreate(JKRArchive* arc)
 			}
 			mIndexPaneList[i]->mPane2->appendChild(mIndexPaneList[i]->mPane);
 
-			J2DPictureEx* pic = static_cast<J2DPictureEx*>(mIndexPaneList[i]->mPane);
+			J2DPictureEx* pic = static_cast<J2DPictureEx*>(mIndexPaneList[i]->mPane->getFirstChildPane());
 			if (mPicTexture[i]) {
 				pic->changeTexture(mPicTexture[i], 0);
 			}
-			changeTevBlock(pic->getMaterial()->mTevBlock, mHighScorePic->getMaterial()->mTevBlock);
-			changeColorBlock(&pic->getMaterial()->mColorBlock, &mHighScorePic->getMaterial()->mColorBlock);
+			J2DTevBlock* tev = pic->getMaterial()->mTevBlock;
+			changeTevBlock(tev, mHighScorePic->getMaterial()->mTevBlock);
+			changeColorBlock(&mHighScorePic->getMaterial()->mColorBlock, &pic->getMaterial()->mColorBlock);
 		}
 	}
 
@@ -707,25 +714,25 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndexGroup = new TIndexGroup;
 	updateLayout();
 	TIndexGroup* group = mIndexGroup;
-	group->_00         = msVal._00;
-	group->_04         = msVal._04;
-	group->_08         = msVal._08;
-	group->_0C         = msVal._0C;
-	group->_10         = msVal._10;
+	group->_00         = mScrollParm._00;
+	group->_04         = mScrollParm._04;
+	group->_08         = mScrollParm._08;
+	group->_0C         = mScrollParm._0C;
+	group->_10         = mScrollParm._10;
 
 	J2DPane* total = mMainScreen->mScreenObj->search('Tot3rds');
 	P2ASSERTLINE(469, total);
 	total->setMsgID('8472_00'); // 3rd
 
 	u64 tagList0[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
-	u64 tagList1[6] = { 'Phe1st4', 'Phe2nd4', 'Phe3rd4', 'Pot1st4', 'Pot2nd4', 'Pot3rd4' };
 	u64 tagList2[6] = { 'Phe1st5', 'Phe2nd5', 'Phe3rd5', 'Pot1st5', 'Pot2nd5', 'Pot3rd5' };
 	u64 tagList3[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
+	u64 tagList1[6] = { 'Phe1st4', 'Phe2nd4', 'Phe3rd4', 'Pot1st4', 'Pot2nd4', 'Pot3rd4' };
 	u64 tagList4[6] = { 'Phe1st2', 'Phe2nd2', 'Phe3rd2', 'Pot1st2', 'Pot2nd2', 'Pot3rd2' };
 	for (int i = 0; i < 6; i++) {
 		mScaleCounter1[i] = Morimura::setScaleUpCounter(mMainScreen->mScreenObj, tagList0[i], &mScoreCounts[i], 10, mArchive);
-		mScaleCounter2[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList1[i], tagList3[i], &mCurrScore1[i], 10, mArchive);
-		mScaleCounter3[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList2[i], tagList4[i], &mCurrScore2[i], 10, mArchive);
+		mScaleCounter2[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList1[i], tagList3[i], &mCurrScore1[i], 3, mArchive);
+		mScaleCounter3[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList2[i], tagList4[i], &mCurrScore2[i], 3, mArchive);
 		mScaleCounter3[i]->setZeroAlpha(255);
 		mScaleCounter3[i]->setPuyoAnimZero(true);
 	}
@@ -738,15 +745,15 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndPane->mTexture1->storeTIMG(mPicTexture[0], (u8)0);
 	mIndPane->mTexture2->storeTIMG(mPicTexture[0], (u8)0);
 
-	ResTIMG* img = mIndPane->mTexture1->_20;
+	ResTIMG* img = mIndPane->mTexture3->_20;
 	P2ASSERTLINE(507, img);
 	img->mTransparency = 2;
 
-	img = mIndPane->mTexture2->_20;
+	img = mIndPane->mTexture1->_20;
 	P2ASSERTLINE(512, img);
 	img->mTransparency = 2;
 
-	img = mIndPane->mTexture3->_20;
+	img = mIndPane->mTexture2->_20;
 	P2ASSERTLINE(516, img);
 	img->mTransparency = 2;
 	changePaneInfo();
@@ -755,13 +762,14 @@ void THiScore::doCreate(JKRArchive* arc)
 	for (int i = 0; i < 2; i++) {
 
 		for (int j = 0; j < mMaxSelect; j++) {
-			TIndexPane* IDPane = mIndexPaneList[i];
+			TIndexPane* IDPane = mIndexPaneList[j];
 			IDPane->mPane->setOffset(0.0f, IDPane->_1C + yoffs);
-			mIndexPaneList[i]->_1C = mIndexPaneList[i]->mPane->mOffset.y;
+			mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
 		}
 		updateIndex(0);
-		mIndexGroup->_14 = 0.0f;
-		mIndexGroup->_20 = 0;
+		TIndexGroup* grp = mIndexGroup;
+		grp->_14         = 0.0f;
+		grp->_20         = 0;
 		changePaneInfo();
 	}
 
@@ -1880,23 +1888,33 @@ lbl_8037E030:
 	blr
 	*/
 }
-
 /*
  * --INFO--
  * Address:	8037E178
  * Size:	00001C
  */
-u64 THiScore::getNameID(int)
+u64 THiScore::getNameID(int id)
 {
-	/*
-	lis      r3, mNameID__Q28Morimura8THiScore@ha
-	slwi     r4, r4, 3
-	addi     r0, r3, mNameID__Q28Morimura8THiScore@l
-	add      r4, r0, r4
-	lwz      r3, 0(r4)
-	lwz      r4, 4(r4)
-	blr
-	*/
+	static u64 mNameID[16] = {
+		'8502_00', // "Days Spent:"
+		'8503_00', // "Total Pikmin Lost:"
+		'8504_00', // "Pikmin Lost in Battle:"
+		'8505_00', // "Pikmin Left Behind:"
+		'8506_00', // "Pikmin Lost to Fire:"
+		'8507_00', // "Pikmin Lost to Water:"
+		'8508_00', // "Pikmin Lost to Electricity:"
+		'8509_00', // "Pikmin Lost to Explosions:"
+		'8510_00', // "Pikmin Lost to Poison:"
+		'8511_00', // "Pikmin Born:"
+		'8512_00', // "Red Pikmin Born:"
+		'8513_00', // "Yellow Pikmin Born:"
+		'8514_00', // "Blue Pikmin Born:"
+		'8515_00', // "White Pikmin Born:"
+		'8516_00', // "Purple Pikmin Born:"
+		'8517_00'  // "Play Time:"
+	};
+
+	return mNameID[id];
 }
 
 /*
@@ -1906,6 +1924,201 @@ u64 THiScore::getNameID(int)
  */
 bool THiScore::doUpdate()
 {
+	if (mCanInput) {
+		if (mController->mButton.mButtonDown & Controller::PRESS_B) {
+			if (!mIsSection) {
+				P2ASSERTLINE(549, getOwner());
+				getOwner()->endScene(nullptr);
+				mDoEnd    = 0;
+				mCanInput = false;
+				changePaneInfo();
+			}
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
+		}
+	} else {
+		u32 press = mController->mButton.mMask;
+		if (press & Controller::PRESS_DOWN) {
+			if (mState != 1) {
+				if (_184 == 0.0f) {
+					_184 = 1.0f;
+				}
+				mIndexGroup->upIndex();
+			} else {
+				if (!mIndexGroup->_20 && mErrorSoundCounter == 0) {
+					mErrorSoundCounter = 1;
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
+				}
+			}
+		} else if (press & Controller::PRESS_UP) {
+			if (mState != 2) {
+				if (_184 == 0.0f) {
+					_184 = 1.0f;
+				}
+				mIndexGroup->downIndex();
+			} else {
+				if (!mIndexGroup->_20 && mErrorSoundCounter == 0) {
+					mErrorSoundCounter = 1;
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
+				}
+			}
+		}
+	}
+
+	if (mErrorSoundCounter) {
+		mErrorSoundCounter++;
+		if (mErrorSoundCounter > 30)
+			mErrorSoundCounter = 0;
+	}
+
+	mListScreen->update();
+	mMainScreen->update();
+
+	if (mIsAllTreasures) {
+		mListScreen->mScreenObj->search('Nlist1')->setOffset(mPaneListPos.x, mPaneListPos.y + mListOffsetY);
+		mListScreen->mScreenObj->search('Nselicon')->setOffset(mPaneIconPos.x, mPaneIconPos.y + mListOffsetY);
+	}
+
+	if (updateList()) {
+		changePaneInfo();
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+		if (mScaleMgrList) {
+			mScaleMgrList[mCurrentSelect]->up(0.1f, 20.0f, 0.5f, 0.0f);
+		}
+		for (int i = 0; i < 6; i++) {
+			mScaleCounter1[i]->forceScaleUp(true);
+			mScaleCounter2[i]->forceScaleUp(true);
+			mScaleCounter3[i]->forceScaleUp(true);
+		}
+	}
+
+	f32 test = mAlphaTimer;
+	if (test < 0.2f) {
+		test = 0.0f;
+	}
+	mListScreen->mScreenObj->search('Nheten')->setAlpha(test * 255.0f);
+	mListScreen->mScreenObj->search('Notten')->setAlpha(test * 255.0f);
+
+	for (int i = 0; i < 6; i++) {
+		mScaleCounter1[i]->getMotherPane()->setAlpha(test * 255.0f);
+		mScaleCounter2[i]->getMotherPane()->setAlpha(test * 255.0f);
+		mScaleCounter3[i]->getMotherPane()->setAlpha(test * 255.0f);
+	}
+
+	if (!mIndexGroup->_20) {
+		mAlphaTimer += 0.04f;
+		if (mAlphaTimer > 1.0f) {
+			mAlphaTimer = 1.0f;
+			_184        = 0.0f;
+		}
+	} else {
+		mAlphaTimer *= 0.75f;
+		if (mAlphaTimer < 0.1f) {
+			mAlphaTimer = 0.0f;
+		}
+	}
+
+	f32 invAlpha = 1.0f - mAlphaTimer;
+	mPaneAngle += mAngleGrowRate;
+	if (mPaneAngle > TAU) {
+		mPaneAngle -= TAU;
+	}
+	if (!_1C4) {
+		f32 alpha = mAlphaTimer;
+		if (alpha > 0.2f) {
+			alpha *= 2.0f;
+		}
+		if (alpha > 1.0f) {
+			alpha = 1.0f;
+		}
+		if (alpha == 0.0f) {
+			if (!_1C5) {
+				mIndPane->setAngleTimer(alpha);
+			} else {
+				mIndPane->setXY(0.0f, 0.0f);
+			}
+		} else {
+			mIndPane->setFlag(1);
+			mIndPane->setXY(alpha * _184 * 1.1f, 0.0f);
+		}
+		mHighScorePic->setAlpha(alpha * 255.0f);
+	}
+
+	if (mForceResetParm) {
+		mForceResetParm  = false;
+		TIndexGroup* grp = mIndexGroup;
+		grp->_00         = mScrollParm._00;
+		grp->_04         = mScrollParm._04;
+		grp->_08         = mScrollParm._08;
+		grp->_0C         = mScrollParm._0C;
+		grp->_10         = mScrollParm._10;
+	}
+
+	mHighScorePic->addOffsetY(mPictureOffsetY);
+
+	if (mScaleMgrList) {
+		for (int i = 0; i < mMaxSelect; i++) {
+			mIndexPaneList[i]->mPane->updateScale(mScaleMgrList[i]->calc());
+		}
+	} else {
+		for (int i = 0; i < mMaxSelect; i++) {
+			mIndexPaneList[i]->mPane->getFirstChildPane()->updateScale(1.0f, 2.0f);
+		}
+	}
+
+	if (mIsAllTreasures) {
+		for (int i = 0; i < mMaxSelect; i++) {
+			TIndexPane* pane = mIndexPaneList[i];
+			pane->mPane2->setOffset(pane->mPane->mOffset.x, 0.5f * -_1FC);
+		}
+	}
+
+	if (mSelIconPane) {
+		mPaneAngle2 += _198;
+		if (mPaneAngle2 > TAU) {
+			mPaneAngle2 -= TAU;
+		}
+		_19C          = _194 * pikmin2_sinf(mPaneAngle2) + 0.85f;
+		f32 test      = 0.0f;
+		J2DPane* pane = mIndexPaneList[mCurrentSelect]->mPane->getFirstChildPane();
+		if (mIsAllTreasures) {
+			test = -_1FC * 0.5f;
+			pane = mIndexPaneList[mCurrentSelect]->mPane2;
+		}
+		pane->setBasePosition(J2DPOS_Center);
+		for (int i = 0; i < 4; i++) {
+			f32 x, y;
+			switch (i) {
+			case 0:
+				x = -20.0f;
+				y = 0.0f;
+				break;
+			case 1:
+				x = 20.0f;
+				y = 0.0f;
+				break;
+			case 2:
+				x = -20.0f;
+				y = 0.0f;
+				if (mIsAllTreasures) {
+					f32 zero = 0.0f;
+					y        = (pane->mBounds.f.y - pane->mBounds.i.y) * 2.0f + zero;
+				}
+				break;
+			case 3:
+				x = 20.0f;
+				y = 0.0f;
+				if (mIsAllTreasures) {
+					f32 zero = 0.0f;
+					y        = (pane->mBounds.f.y - pane->mBounds.i.y) * 2.0f + zero;
+				}
+				break;
+			}
+			f32 x2 = _19C * pane->getGlbVtx(i).x - pane->mGlobalMtx[0][3] + _1A0;
+			f32 y2 = _19C * test + pane->getGlbVtx(i).y - pane->mGlobalMtx[1][3];
+			mSelIconCorners[i]->setOffset(x2 + x, y2 + y);
+		}
+	}
+	return false;
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -2651,23 +2864,7 @@ lbl_8037EB44:
  * Address:	8037EB84
  * Size:	000030
  */
-void THiScoreListScreen::update()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void THiScoreListScreen::update() { mScreenObj->update(); }
 
 /*
  * --INFO--
@@ -2676,6 +2873,25 @@ void THiScoreListScreen::update()
  */
 void THiScore::doDraw(Graphics& gfx)
 {
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
+	if (mDoEnd) {
+		gfx.mOrthoGraph.setPort();
+		Graphics::dirtyInitGX();
+		mIndPane->draw();
+		mIndPane->mTexture3->capture(0, 0, GX_CTF_R4, false, 0);
+		graf->setPort();
+	}
+
+	mListScreen->draw(gfx, graf);
+	mMainScreen->draw(gfx, graf);
+	graf->setColor(JUtility::TColor(0, 0, 0, 255 - mFadeAlpha));
+	GXSetAlphaUpdate(GX_FALSE);
+
+	f32 zero = 0.0f;
+	u16 y    = System::getRenderModeObj()->efbHeight;
+	u16 x    = System::getRenderModeObj()->fbWidth;
+	graf->fillBox(JGeometry::TBox2f(0.0f, 0.0f, zero + x, zero + y));
+	GXSetAlphaUpdate(GX_TRUE);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -2796,6 +3012,50 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
  */
 void THiScore::paneInit()
 {
+	mHighScorePic->changeTexture(mPicTexture[0], 0);
+
+	J2DPictureEx* pane = static_cast<J2DPictureEx*>(mIndexPaneList[_90]->mPane2->getFirstChildPane());
+	mTevBlock[0]       = new J2DTevBlock2;
+	copyTevBlock(mTevBlock[0], pane->getMaterial()->mTevBlock);
+
+	J2DGXColorS10* col = mTevBlock[0]->getTevColor(0);
+	mColors[2].r       = col->r;
+	mColors[2].g       = col->g;
+	mColors[2].b       = col->b;
+	mColors[2].a       = col->a;
+
+	col          = mTevBlock[0]->getTevColor(1);
+	mColors[3].r = col->r;
+	mColors[3].g = col->g;
+	mColors[3].b = col->b;
+	mColors[3].a = col->a;
+
+	pane           = static_cast<J2DPictureEx*>(mIndexPaneList[_90]->mPane2);
+	mColorBlock[0] = new J2DColorBlock;
+	copyColorBlock(mColorBlock[0], &pane->getMaterial()->mColorBlock);
+
+	pane         = static_cast<J2DPictureEx*>(mIndexPaneList[_98]->mPane2->getFirstChildPane());
+	mTevBlock[1] = new J2DTevBlock2;
+	copyTevBlock(mTevBlock[1], pane->getMaterial()->mTevBlock);
+
+	col          = mTevBlock[1]->getTevColor(0);
+	mColors[0].r = col->r;
+	mColors[0].g = col->g;
+	mColors[0].b = col->b;
+	mColors[0].a = col->a;
+
+	col          = mTevBlock[1]->getTevColor(1);
+	mColors[1].r = col->r;
+	mColors[1].g = col->g;
+	mColors[1].b = col->b;
+	mColors[1].a = col->a;
+
+	pane           = static_cast<J2DPictureEx*>(mIndexPaneList[_98]->mPane2);
+	mColorBlock[1] = new J2DColorBlock;
+	copyColorBlock(mColorBlock[1], &pane->getMaterial()->mColorBlock);
+
+	_A8 = mIndexPaneList[mCurrentSelect]->_1C - 10.0f;
+	_AC = _A8 + 20.0f;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3016,33 +3276,11 @@ lbl_8051ECA0@sda21(r2) lwzx     r3, r3, r0 lfs      f0, lbl_8051EC70@sda21(r2)
  */
 void THiScore::doUpdateFadeinFinish()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	li       r3, 1
-	stw      r0, 0x14(r1)
-	stb      r3, 0x45(r4)
-	lbz      r0, mChangeAlpha__Q28Morimura8THiScore@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8037F100
-	stb      r3, 0x1c7(r4)
-	li       r5, 0
-	lwz      r3, 0xbc(r4)
-	lwz      r4, 0xb8(r4)
-	lwz      r12, 0(r3)
-	lwz      r4, 0x20(r4)
-	lwz      r12, 0x110(r12)
-	lwz      r4, 0x20(r4)
-	mtctr    r12
-	bctrl
-
-lbl_8037F100:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCanInput = true;
+	if (!mChangeAlpha) {
+		mDoEnd = 1;
+		mHighScorePic->changeTexture(mIndPane->mTexture3->_20, 0);
+	}
 }
 
 /*
@@ -3052,15 +3290,10 @@ lbl_8037F100:
  */
 void THiScore::doUpdateFadeoutFinish()
 {
-	/*
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	cmplwi   r0, 0
-	bnelr
-	lwz      r3, 0x17c(r3)
-	li       r0, 1
-	stb      r0, 0xc(r3)
-	blr
-	*/
+	if (mIsSection) {
+		return;
+	}
+	mDisp->_0C = 1;
 }
 
 /*
@@ -3070,6 +3303,112 @@ void THiScore::doUpdateFadeoutFinish()
  */
 void THiScore::changePaneInfo()
 {
+	_1F8 = 0.0f;
+
+	int id = mIndexPaneList[mCurrentSelect]->getIndex();
+
+	if (mIsAllTreasures || (mIsSection && mForceClear)) {
+		mHighScorePic->show();
+		mMainScreen->mScreenObj->search('Notakara')->show();
+	} else {
+		mHighScorePic->show();
+		if (!mIsSection && !(sys->getPlayCommonData()->_00 & 1)) {
+			mHighScorePic->hide();
+		}
+		mMainScreen->mScreenObj->search('Notakara')->hide();
+		if (mForceClear2) {
+			mHighScorePic->show();
+		}
+	}
+
+	// show the : when the current selection is play time only
+	u32 id2 = mIndexPaneList[mCurrentSelect]->getIndex();
+	if (id2 == 15) {
+		mMainScreen->mScreenObj->search('Mheten')->show();
+		if (mIsAllTreasures) {
+			mMainScreen->mScreenObj->search('Motten')->show();
+		}
+	} else {
+		P2ASSERTLINE(917, mMainScreen->mScreenObj->search('Nheten'));
+		P2ASSERTLINE(918, mMainScreen->mScreenObj->search('Notten'));
+		mMainScreen->mScreenObj->search('Nheten')->hide();
+		mMainScreen->mScreenObj->search('Nheten')->hide();
+	}
+
+	for (int i = 0; i < 6; i++) {
+		int score = getRecord(i, id);
+		// use compeltely different counters for the play time versus the other scores
+		if (id2 != 0) {
+			mScaleCounter2[i]->getMotherPane()->show();
+			mScaleCounter3[i]->getMotherPane()->show();
+			mScaleCounter2[i]->setBlind(false);
+			mScaleCounter3[i]->setBlind(false);
+			mScaleCounter1[i]->getMotherPane()->hide();
+
+			// if a sore is negative, assume it isnt set
+			if (score <= -1) {
+				score = 0;
+				mScaleCounter2[i]->setBlind(true);
+				mScaleCounter3[i]->setBlind(true);
+			}
+			mCurrScore1[i] = score % 10;
+			mCurrScore2[i] = (score / 10) * 0x100;
+		} else {
+			mScaleCounter2[i]->getMotherPane()->hide();
+			mScaleCounter3[i]->getMotherPane()->hide();
+			mScaleCounter1[i]->getMotherPane()->show();
+			mScaleCounter1[i]->setBlind(false);
+
+			if (score <= -1) {
+				score = 0;
+				mScaleCounter1[i]->setBlind(true);
+			}
+			mScoreCounts[i] = score;
+		}
+	}
+
+	if (mDoEnd && !mChangeAlpha) {
+		mIndPane->mTexture1->storeTIMG(mPicTexture[id], (u8)0);
+		mIndPane->mTexture2->storeTIMG(mPicTexture[id], (u8)0);
+	} else {
+		mHighScorePic->changeTexture(mPicTexture[id], 0);
+	}
+
+	if (!mLoopDrum) {
+		mState = 0;
+		mStickAnimMgr->stickUpDown();
+		int id3 = mIndexPaneList[mCurrentSelect]->getIndex();
+		f32 y1  = mIndexPaneList[mCurrentSelect]->_1C;
+
+		if (id3 == 0) {
+			mState = 1;
+			mStickAnimMgr->stickDown();
+		}
+		if (id3 == 15) {
+			mState = 2;
+			mStickAnimMgr->stickUp();
+		}
+
+		if (mState == 0) {
+			mErrorSoundCounter = 0;
+		} else {
+			mErrorSoundCounter = 1;
+		}
+
+		for (int i = 0; i < mMaxSelect; i++) {
+			mIndexPaneList[i]->mPane->show();
+			mIndexPaneList[i]->mPane2->show();
+			if (mIndexPaneList[i]->getIndex() != id3) {
+				TIndexPane* pane = mIndexPaneList[i];
+				f32 y2           = pane->_1C;
+				pane->getIndex();
+				if (mIndexPaneList[i]->getIndex() > id3 && y1 > y2 || mIndexPaneList[i]->getIndex() < id3 && y1 < y2) {
+					mIndexPaneList[i]->mPane->hide();
+					mIndexPaneList[i]->mPane2->hide();
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3500,8 +3839,19 @@ lbl_8037F6CC:
  * Address:	8037F6F0
  * Size:	000124
  */
-void THiScore::setPaneCharacter(int)
+void THiScore::setPaneCharacter(int id)
 {
+	int index = mIndexPaneList[id]->getIndex();
+	u64 tag   = getNameID(index);
+	mIndexPaneList[id]->mPane2->setMsgID(tag);
+
+	J2DPane* pane = mIndexPaneList[id]->mPane2->getFirstChildPane();
+	P2ASSERTLINE(1031, pane);
+	pane->setMsgID(getNameID(index));
+
+	if (mIsAllTreasures && mPicTexture[index]) {
+		static_cast<J2DPictureEx*>(mIndexPaneList[id]->mPane->getFirstChildPane())->changeTexture(mPicTexture[index], 0);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3588,7 +3938,7 @@ lbl_8037F7F4:
  * Address:	8037F814
  * Size:	00044C
  */
-void THiScore::getRecord(int, int)
+int THiScore::getRecord(int, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4730,89 +5080,13 @@ THiScoreScene::THiScoreScene() { }
  * Address:	803807B0
  * Size:	000068
  */
-void THiScoreScene::doCreateObj(JKRArchive*)
+void THiScoreScene::doCreateObj(JKRArchive* arc)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 0x210
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_803807E8
-	bl       __ct__Q28Morimura8THiScoreFv
-	mr       r31, r3
-
-lbl_803807E8:
-	mr       r3, r29
-	mr       r4, r31
-	mr       r5, r30
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	stw      r31, 0x220(r29)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	THiScore* obj = new THiScore;
+	registObj(obj, arc);
+	mObject = obj;
 }
 
-/*
- * --INFO--
- * Address:	80380860
- * Size:	000034
- */
-og::Screen::DispMemberBase* THiScore::getDispMemberBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80380880
-	lwz      r3, 0x17c(r3)
-	b        lbl_80380884
-
-lbl_80380880:
-	bl       getDispMember__Q26Screen7ObjBaseFv
-
-lbl_80380884:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803809F4
- * Size:	000030
- */
-void __sinit_hiScore2D_cpp()
-{
-	/*
-	lfs      f4, lbl_8051EC54@sda21(r2)
-	lis      r3, mScrollParm__Q28Morimura8THiScore@ha
-	lfs      f3, lbl_8051ECBC@sda21(r2)
-	stfsu    f4, mScrollParm__Q28Morimura8THiScore@l(r3)
-	lfs      f2, lbl_8051EC60@sda21(r2)
-	lfs      f1, lbl_8051ECC0@sda21(r2)
-	lfs      f0, lbl_8051EC64@sda21(r2)
-	stfs     f3, 4(r3)
-	stfs     f2, 8(r3)
-	stfs     f1, 0xc(r3)
-	stfs     f0, 0x10(r3)
-	blr
-	*/
-}
+THiScore::StaticValues THiScore::mScrollParm;
 
 } // namespace Morimura

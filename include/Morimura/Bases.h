@@ -44,7 +44,7 @@ struct TTestBase : public Screen::ObjBase {
 	f32 mTimerLength;     // _3C
 	f32 mFadeFraction;    // _40
 	u8 mFadeAlpha;        // _44
-	u8 _45;               // _45
+	bool mCanInput;       // _45
 	char mBaseName[0x32]; // _46
 };
 

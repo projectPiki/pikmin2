@@ -9,6 +9,9 @@ struct TScaleUpCounter;
 struct TIndexGroup {
 	TIndexGroup();
 
+	void downIndex();
+	void upIndex();
+
 	f32 _00;     // _00
 	f32 _04;     // _04
 	f32 _08;     // _08
@@ -17,7 +20,7 @@ struct TIndexGroup {
 	f32 _14;     // _14
 	f32 _18;     // _18
 	f32 _1C;     // _1C
-	u32 _20;     // _20, unknown
+	int _20;     // _20, unknown
 	u8 _24;      // _24
 	f32 _28;     // _28
 	u8 _2C[0x4]; // _2C, unknown
@@ -35,18 +38,20 @@ struct TIconInfo {
 struct TIndexPane {
 	TIndexPane(P2DScreen::Mgr_tuning* scrn, u64 tag)
 	{
-		_00        = 0;
-		mPane      = scrn->search(tag);
-		mPane2     = nullptr;
-		_0C        = 0;
-		_10        = 0;
-		_18        = 0.0f;
-		mIconInfos = nullptr;
-		_24        = nullptr;
-		_1C        = mPane->mOffset.y;
+		J2DPane* pane = scrn->search(tag);
+		_00           = 0;
+		mPane         = pane;
+		mPane2        = nullptr;
+		_0C           = 0;
+		_10           = 0;
+		_18           = 0.0f;
+		mIconInfos    = nullptr;
+		_24           = nullptr;
+		_1C           = mPane->mOffset.y;
 	}
 
 	void setIndex(int);
+	int getIndex();
 
 	int _00;                // _00
 	J2DPane* mPane;         // _04
@@ -88,7 +93,7 @@ struct TScrollList : public TTestBase {
 	virtual void updateIndex(bool);                  // _A4
 	virtual void setPaneCharacter(int) { }           // _A8 (weak)
 
-	void updateList();
+	bool updateList();
 	void changeIndex();
 
 	// _00     = VTBL1
@@ -102,7 +107,7 @@ struct TScrollList : public TTestBase {
 	u8 _8C;                      // _8C
 	s16 mMaxSelect;              // _8E
 	int _90;                     // _90
-	int _94;                     // _94
+	int mCurrentSelect;          // _94
 	int _98;                     // _98
 	int _9C;                     // _9C
 	f32 _A0;                     // _A0
