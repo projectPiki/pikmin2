@@ -116,20 +116,20 @@ Brain::Brain(Game::Piki* piki)
 {
 	// is this some form of unrolled loop?
 	mActions = new Action*[14]; // probably an enum for action count
-	addAction(mActions[0] = new ActFormation(piki));
-	addAction(mActions[1] = new ActFree(piki));
-	addAction(mActions[2] = new ActEnter(piki));
-	addAction(mActions[3] = new ActExit(piki));
-	addAction(mActions[4] = new ActTransport(piki));
-	addAction(mActions[5] = new ActAttack(piki));
-	addAction(mActions[6] = new ActBreakGate(piki));
-	addAction(mActions[7] = new ActBreakRock(piki));
-	addAction(mActions[8] = new ActCrop(piki));
-	addAction(mActions[9] = new ActWeed(piki));
-	addAction(mActions[10] = new ActBridge(piki));
-	addAction(mActions[11] = new ActTeki(piki));
-	addAction(mActions[12] = new ActRescue(piki));
-	addAction(mActions[13] = new ActBattle(piki));
+	addAction(new ActFormation(piki));
+	addAction(new ActFree(piki));
+	addAction(new ActEnter(piki));
+	addAction(new ActExit(piki));
+	addAction(new ActTransport(piki));
+	addAction(new ActAttack(piki));
+	addAction(new ActBreakGate(piki));
+	addAction(new ActBreakRock(piki));
+	addAction(new ActCrop(piki));
+	addAction(new ActWeed(piki));
+	addAction(new ActBridge(piki));
+	addAction(new ActTeki(piki));
+	addAction(new ActRescue(piki));
+	addAction(new ActBattle(piki));
 
 	/*
 	stwu     r1, -0x10(r1)
