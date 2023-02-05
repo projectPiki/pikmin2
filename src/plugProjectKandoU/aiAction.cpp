@@ -59,13 +59,13 @@
         .4byte 0x00000000
         .4byte 0x00000000
 */
-
+namespace PikiAI {
 /*
  * --INFO--
  * Address:	80196A18
  * Size:	00001C
  */
-PikiAI::Action::Action(Game::Piki* piki)
+Action::Action(Game::Piki* piki)
 {
 	mParent = piki;
 	mName   = "Action";
@@ -86,7 +86,7 @@ PikiAI::Action::Action(Game::Piki* piki)
  * Address:	80196A34
  * Size:	000030
  */
-void PikiAI::Action::getInfo(char* dest)
+void Action::getInfo(char* dest)
 {
 	// dest = Action
 	sprintf(dest, "%s", mName);
@@ -112,8 +112,25 @@ void PikiAI::Action::getInfo(char* dest)
  * Address:	80196A64
  * Size:	000280
  */
-PikiAI::Brain::Brain(Game::Piki* piki)
+Brain::Brain(Game::Piki* piki)
 {
+	// is this some form of unrolled loop?
+	mActions = new Action*[14]; // probably an enum for action count
+	addAction(mActions[0] = new ActFormation(piki));
+	addAction(mActions[1] = new ActFree(piki));
+	addAction(mActions[2] = new ActEnter(piki));
+	addAction(mActions[3] = new ActExit(piki));
+	addAction(mActions[4] = new ActTransport(piki));
+	addAction(mActions[5] = new ActAttack(piki));
+	addAction(mActions[6] = new ActBreakGate(piki));
+	addAction(mActions[7] = new ActBreakRock(piki));
+	addAction(mActions[8] = new ActCrop(piki));
+	addAction(mActions[9] = new ActWeed(piki));
+	addAction(mActions[10] = new ActBridge(piki));
+	addAction(mActions[11] = new ActTeki(piki));
+	addAction(mActions[12] = new ActRescue(piki));
+	addAction(mActions[13] = new ActBattle(piki));
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -311,14 +328,14 @@ lbl_80196CB4:
  * Address:	80196CE4
  * Size:	00001C
  */
-void PikiAI::Brain::addAction(PikiAI::Action* action) { mActions[mActionCnt++] = action; }
+void Brain::addAction(Action* action) { mActions[mActionCnt++] = action; }
 
 /*
  * --INFO--
  * Address:	80196D00
  * Size:	000024
  */
-PikiAI::Action* PikiAI::Brain::getCurrAction()
+Action* Brain::getCurrAction()
 {
 	if (mActionId != -1) {
 		return mActions[mActionId];
@@ -331,7 +348,7 @@ PikiAI::Action* PikiAI::Brain::getCurrAction()
  * Address:	........
  * Size:	00000C
  */
-void PikiAI::Brain::init()
+void Brain::init()
 {
 	// UNUSED FUNCTION
 }
@@ -341,7 +358,7 @@ void PikiAI::Brain::init()
  * Address:	80196D24
  * Size:	000258
  */
-void PikiAI::Brain::exec()
+void Brain::exec()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -526,35 +543,35 @@ lbl_80196F64:
  * Address:	80196F7C
  * Size:	000004
  */
-void PikiAI::Action::emotion_fail() { }
+void Action::emotion_fail() { }
 
 /*
  * --INFO--
  * Address:	80196F80
  * Size:	000004
  */
-void PikiAI::Action::emotion_success() { }
+void Action::emotion_success() { }
 
 /*
  * --INFO--
  * Address:	80196F84
  * Size:	000008
  */
-u32 PikiAI::Action::getNextAIType() { return 0x0; }
+u32 Action::getNextAIType() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80196F8C
  * Size:	000008
  */
-int PikiAI::Action::exec() { return 0x1; }
+int Action::exec() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80196F94
  * Size:	000100
  */
-void PikiAI::Brain::start(int, PikiAI::ActionArg*)
+void Brain::start(int, ActionArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -647,7 +664,7 @@ lbl_80197078:
  * Address:	801970A0
  * Size:	000210
  */
-Game::Navi* PikiAI::Brain::searchOrima()
+Game::Navi* Brain::searchOrima()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -802,3 +819,4 @@ lbl_80197278:
 	blr
 	*/
 }
+} // namespace PikiAI
