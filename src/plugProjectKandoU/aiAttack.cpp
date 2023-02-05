@@ -1,4 +1,7 @@
 #include "types.h"
+#include "PikiAI.h"
+#include "Game/Piki.h"
+#include "Game/PikiState.h"
 
 /*
     Generated from dpostproc
@@ -167,37 +170,6 @@ void PikiAI::ActAttack::getInfo(char* dest)
 {
 	char* actions[] = { "SA", "AJ", "JA", "JP", "LT" };
 	sprintf(dest, "attack %s", actions[_18]);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  stw       r0, 0x24(r1)
-	  lwzu      r11, -0xD54(r5)
-	  lhz       r0, 0x18(r3)
-	  lis       r3, 0x8048
-	  lwz       r10, 0x4(r5)
-	  subi      r6, r3, 0xD40
-	  lwz       r9, 0x8(r5)
-	  mr        r3, r4
-	  lwz       r8, 0xC(r5)
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r7, 0x10(r5)
-	  addi      r5, r1, 0x8
-	  stw       r11, 0x8(r1)
-	  mr        r4, r6
-	  stw       r10, 0xC(r1)
-	  stw       r9, 0x10(r1)
-	  stw       r8, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  lwzx      r5, r5, r0
-	  crclr     6, 0x6
-	  bl        -0xD90F0
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -207,6 +179,7 @@ void PikiAI::ActAttack::getInfo(char* dest)
  */
 void PikiAI::ActAttack::emotion_success()
 {
+	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, nullptr);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -233,69 +206,13 @@ void PikiAI::ActAttack::emotion_success()
  * Address:	801A0580
  * Size:	0000D4
  */
-PikiAI::ActAttack::ActAttack(Game::Piki* p)
+// vtable size issues?
+PikiAI::ActAttack::ActAttack(Game::Piki* piki)
+    : Action(piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r5
-	beq      lbl_801A05B8
-	addi     r0, r31, 0x38
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r0, 0xc(r31)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	stw      r0, 0x38(r31)
-
-lbl_801A05B8:
-	mr       r3, r31
-	mr       r4, r30
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r3, __vt__Q26PikiAI9ActAttack@ha
-	addi     r0, r31, 0x38
-	addi     r4, r3, __vt__Q26PikiAI9ActAttack@l
-	li       r3, 0x2c
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x40
-	lwz      r4, 0xc(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0xc(r31)
-	subf     r0, r4, r0
-	stw      r0, 4(r4)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801A060C
-	mr       r5, r30
-	li       r4, 1
-	bl       __ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_801A060C:
-	stw      r0, 0x1c(r31)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801A062C
-	mr       r4, r30
-	bl       __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_801A062C:
-	stw      r0, 0x20(r31)
-	addi     r0, r2, lbl_8051908C@sda21
-	mr       r3, r31
-	stw      r0, 8(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mStickAttack = new ActStickAttack(piki);
+	mApproachPos = new ActApproachPos(piki);
+	mName        = "Attack";
 }
 
 /*
@@ -303,7 +220,7 @@ lbl_801A062C:
  * Address:	801A0654
  * Size:	00011C
  */
-void PikiAI::ActAttack::init(PikiAI::ActionArg*)
+void PikiAI::ActAttack::init(ActionArg* initarg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -740,7 +657,7 @@ lbl_801A0B7C:
  * Address:	801A0B98
  * Size:	00094C
  */
-void PikiAI::ActAttack::exec()
+int PikiAI::ActAttack::exec()
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -1705,91 +1622,5 @@ void PikiAI::ActAttack::onKeyEvent(SysShape::KeyEvent const&)
 	li       r0, 1
 	stb      r0, 0x36(r3)
 	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801A1888
- * Size:	000058
- */
-void FindCondition::satisfy(CollPart*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r0, 0x10(r4)
-	cmplwi   r0, 0
-	bne      lbl_801A18C8
-	lis      r5, 0x2A2A2A2A@ha
-	addi     r3, r4, 0x30
-	addi     r4, r5, 0x2A2A2A2A@l
-	li       r5, 0x2a
-	bl       match__4ID32FUlc
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A18C8
-	li       r31, 1
-
-lbl_801A18C8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801A18E0
- * Size:	00000C
- */
-void PikiAI::ApproachPosActionArg::getName()
-{
-	/*
-	lis      r3, lbl_8047F304@ha
-	addi     r3, r3, lbl_8047F304@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801A18EC
- * Size:	00000C
- */
-void PikiAI::StickAttackActionArg::getName()
-{
-	/*
-	lis      r3, lbl_8047F31C@ha
-	addi     r3, r3, lbl_8047F31C@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801A18F8
- * Size:	000008
- */
-u32 PikiAI::ActAttack::getNextAIType() { return 0x1; }
-
-/*
- * --INFO--
- * Address:	801A1900
- * Size:	000014
- */
-void @56 @4 @PikiAI::ActAttack::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -56
-	b        onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent
 	*/
 }

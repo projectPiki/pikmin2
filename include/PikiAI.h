@@ -203,6 +203,7 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 
 	void initStickAttack();
 	void initAdjust();
+	void initJump();
 	void initJumpAdjust();
 	void calcAttackPos();
 
@@ -211,7 +212,7 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 	// _0C-_10 = MotionListener*
 	Game::Creature* mCreature;    // _10
 	CollPart* mCollPart;          // _14
-	s16 _18;                      // _18
+	u16 _18;                      // _18
 	ActStickAttack* mStickAttack; // _1C
 	ActApproachPos* mApproachPos; // _20
 	Sys::Sphere* mAttackSphere;   // _24
