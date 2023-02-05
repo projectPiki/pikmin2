@@ -22,6 +22,8 @@ struct THurryUp2D : public TTestBase {
 		f32 mGoalScale; // _08
 	};
 
+	enum HurryUpState { StateInit, StatePlaySE, StateScaleUp1, StateColorUp, StateScaleUp2 };
+
 	THurryUp2D();
 
 	virtual ~THurryUp2D() { }                                                                                // _08 (weak)
@@ -39,28 +41,35 @@ struct THurryUp2D : public TTestBase {
 	void changeState(int, f32);
 	void calcCount();
 
-	JKRArchive* mArchive;           // _78
-	P2DScreen::Mgr_tuning* mScreen; // _7C
-	J2DPane* mPane1;                // _80
-	J2DPane* mPane2;                // _84
-	J2DPane* mPane3;                // _88
-	THuWhitePaneSet* mWhitePane;    // _8C
-	J2DPane* mPane4;                // _90
-	J2DPane* mPane5;                // _94
-	J2DPane* mPane6;                // _98
-	JGeometry::TVec2f mPane1Pos;
-	JGeometry::TVec2f mPane2Pos;
+	JKRArchive* mArchive;                 // _78
+	P2DScreen::Mgr_tuning* mScreen;       // _7C
+	J2DPane* mPaneHurry;                  // _80
+	J2DPane* mPaneSundown;                // _84
+	J2DPane* mPaneSunW;                   // _88
+	THuWhitePaneSet* mWhitePane;          // _8C
+	J2DPane* mPaneSunL;                   // _90
+	J2DPane* mPaneHurry2;                 // _94
+	J2DPane* mPaneSundown2;               // _98
+	JGeometry::TVec2f mPane1Pos;          // _9C
+	JGeometry::TVec2f mPane2Pos;          // _A4
 	og::Screen::DispMemberHurryUp* mDisp; // _AC
 	int mState;                           // _B0
 	f32 mTimer;                           // _B4
-	f32 _B8;                              // _B8
-	f32 _BC;                              // _BC
+	f32 mAlphaMod1;                       // _B8
+	f32 mAlphaMod2;                       // _BC
 	u16 _C0;                              // _C0
-	u16 _C2;
-	bool mDoDraw; // _C4
-	f32 _C8;
-	f32 mTimeMax;
-	TStateParam mParams[6]; // _D0
+	u16 _C2;                              // _C2
+	bool mDoDraw;                         // _C4
+	f32 _C8;                              // _C8
+	f32 mTimeMax;                         // _CC
+	TStateParam mParams[6];               // _D0
+
+	static const f32 mInitPosX;  // = 900.0f;
+	static const f32 mMoveSp;    // = 12.0f;
+	static const f32 mScaleRate; // = 1.02f;
+	static const f32 mScaleSp1;  // 0.01f;
+	static const f32 mColorUpSp; // 1.0f;
+	static const f32 mScaleSp2;  // 0.1f;
 };
 
 /**

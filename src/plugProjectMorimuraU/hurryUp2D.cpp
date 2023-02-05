@@ -1,297 +1,16 @@
 #include "Morimura/HurryUp.h"
 #include "Morimura/mrUtil.h"
 #include "PSSystem/PSSystemIF.h"
+#include "Game/GameSystem.h"
+#include "Game/MoviePlayer.h"
+#include "Game/gamePlayData.h"
+#include "Game/Navi.h"
 #include "nans.h"
 
 static const char name[] = "hurryUp2D";
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_hurryUp2D_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80490280
-    lbl_80490280:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x68757272
-        .4byte 0x79557032
-        .4byte 0x44000000
-    .global lbl_80490298
-    lbl_80490298:
-        .4byte 0x48757272
-        .4byte 0x79557032
-        .4byte 0x44000000
-        .4byte 0x73756E64
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-    .global lbl_804902B0
-    lbl_804902B0:
-        .4byte 0x68757272
-        .4byte 0x79557032
-        .4byte 0x442E6370
-        .4byte 0x70000000
-    .global lbl_804902C0
-    lbl_804902C0:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x73756E68
-        .4byte 0x5F772E62
-        .4byte 0x74690000
-    .global lbl_804902D8
-    lbl_804902D8:
-        .4byte 0x6730395F
-        .4byte 0x66697273
-        .4byte 0x745F7375
-        .4byte 0x6E736574
-        .4byte 0x00000000
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6800
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804DB2E8
-    lbl_804DB2E8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q28Morimura10THurryUp2D
-    __vt__Q28Morimura10THurryUp2D:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28Morimura10THurryUp2DFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q28Morimura10THurryUp2DFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q28Morimura10THurryUp2DFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q28Morimura10THurryUp2DFP10JKRArchive
-        .4byte doUpdateFadein__Q28Morimura9TTestBaseFv
-        .4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
-        .4byte doUpdate__Q28Morimura10THurryUp2DFv
-        .4byte doUpdateFinish__Q28Morimura9TTestBaseFv
-        .4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
-        .4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
-        .4byte doDraw__Q28Morimura10THurryUp2DFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-        .4byte getDispMemberBase__Q28Morimura10THurryUp2DFv
-    .global __vt__Q28Morimura15THuWhitePaneSet
-    __vt__Q28Morimura15THuWhitePaneSet:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28Morimura15THuWhitePaneSetFv
-        .4byte getTypeID__10J2DPictureCFv
-        .4byte move__7J2DPaneFff
-        .4byte add__7J2DPaneFff
-        .4byte resize__7J2DPaneFff
-        .4byte setCullBack__12J2DPictureExFb
-        .4byte setCullBack__12J2DPictureExF11_GXCullMode
-        .4byte setAlpha__12J2DPictureExFUc
-        .4byte setConnectParent__7J2DPaneFb
-        .4byte calcMtx__7J2DPaneFv
-        .4byte update__7J2DPaneFv
-        .4byte drawSelf__10J2DPictureFff
-        .4byte drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f
-        .4byte search__7J2DPaneFUx
-        .4byte searchUserInfo__7J2DPaneFUx
-        .4byte makeMatrix__7J2DPaneFff
-        .4byte makeMatrix__7J2DPaneFffff
-        .4byte isUsed__12J2DPictureExFPC7ResTIMG
-        .4byte isUsed__12J2DPictureExFPC7ResFONT
-        .4byte clearAnmTransform__7J2DPaneFv
-        .4byte rewriteAlpha__12J2DPictureExFv
-        .4byte setAnimation__12J2DPictureExFP10J2DAnmBase
-        .4byte setAnimation__12J2DPictureExFP15J2DAnmTransform
-        .4byte setAnimation__12J2DPictureExFP11J2DAnmColor
-        .4byte setAnimation__12J2DPictureExFP16J2DAnmTexPattern
-        .4byte setAnimation__12J2DPictureExFP19J2DAnmTextureSRTKey
-        .4byte setAnimation__12J2DPictureExFP15J2DAnmTevRegKey
-        .4byte setAnimation__12J2DPictureExFP20J2DAnmVisibilityFull
-        .4byte setAnimation__12J2DPictureExFP14J2DAnmVtxColor
-        .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
-        .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
-        .4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
-        .4byte animationPane__12J2DPictureExFPC15J2DAnmTransform
-        .4byte initiate__12J2DPictureExFPC7ResTIMGPC7ResTLUT
-        .4byte prepareTexture__12J2DPictureExFUc
-        .4byte append__12J2DPictureExFPC7ResTIMGf
-        .4byte append__12J2DPictureExFPC7ResTIMGP10JUTPalettef
-        .4byte append__12J2DPictureExFPCcf
-        .4byte append__12J2DPictureExFPCcP10JUTPalettef
-        .4byte append__12J2DPictureExFP10JUTTexturef
-        .4byte prepend__12J2DPictureExFPC7ResTIMGf
-        .4byte prepend__12J2DPictureExFPC7ResTIMGP10JUTPalettef
-        .4byte prepend__12J2DPictureExFPCcf
-        .4byte prepend__12J2DPictureExFPCcP10JUTPalettef
-        .4byte prepend__12J2DPictureExFP10JUTTexturef
-        .4byte insert__12J2DPictureExFPC7ResTIMGUcf
-        .4byte insert__12J2DPictureExFPC7ResTIMGP10JUTPaletteUcf
-        .4byte insert__12J2DPictureExFPCcUcf
-        .4byte insert__12J2DPictureExFPCcP10JUTPaletteUcf
-        .4byte insert__12J2DPictureExFP10JUTTextureUcf
-        .4byte remove__12J2DPictureExFUc
-        .4byte remove__12J2DPictureExFv
-        .4byte remove__12J2DPictureExFP10JUTTexture
-        .4byte draw__12J2DPictureExFffbbb
-        .4byte draw__12J2DPictureExFffUcbbb
-        .4byte draw__12J2DPictureExFffffbbb
-        .4byte drawOut__12J2DPictureExFffffff
-        .4byte drawOut__12J2DPictureExFffffffff
-        .4byte
-   "drawOut__12J2DPictureExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-        .4byte load__12J2DPictureExF11_GXTexMapIDUc
-        .4byte load__12J2DPictureExFUc
-        .4byte setBlendRatio__10J2DPictureFffffffff
-        .4byte setBlendColorRatio__12J2DPictureExFffffffff
-        .4byte setBlendAlphaRatio__12J2DPictureExFffffffff
-        .4byte changeTexture__12J2DPictureExFPC7ResTIMGUc
-        .4byte changeTexture__12J2DPictureExFPCcUc
-        .4byte changeTexture__12J2DPictureExFPC7ResTIMGUcP10JUTPalette
-        .4byte changeTexture__12J2DPictureExFPCcUcP10JUTPalette
-        .4byte getTexture__12J2DPictureExCFUc
-        .4byte getTextureCount__12J2DPictureExCFv
-        .4byte setBlack__12J2DPictureExFQ28JUtility6TColor
-        .4byte setWhite__12J2DPictureExFQ28JUtility6TColor
-        .4byte
-   setBlackWhite__12J2DPictureExFQ28JUtility6TColorQ28JUtility6TColor .4byte
-   getBlack__12J2DPictureExCFv .4byte getWhite__12J2DPictureExCFv .4byte
-   getMaterial__12J2DPictureExCFv .4byte
-   drawFullSet__12J2DPictureExFffffPA3_A4_f .4byte
-   drawTexCoord__12J2DPictureExFffffssssssssPA3_A4_f .4byte
-   getUsableTlut__12J2DPictureExFUc .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global mInitPosX__Q28Morimura10THurryUp2D
-    mInitPosX__Q28Morimura10THurryUp2D:
-        .float 900.0
-    .global mMoveSp__Q28Morimura10THurryUp2D
-    mMoveSp__Q28Morimura10THurryUp2D:
-        .float 12.0
-    .global mScaleSp1__Q28Morimura10THurryUp2D
-    mScaleSp1__Q28Morimura10THurryUp2D:
-        .float 0.01
-    .global mScaleSp2__Q28Morimura10THurryUp2D
-    mScaleSp2__Q28Morimura10THurryUp2D:
-        .float 0.1
-    .global mScaleRate__Q28Morimura10THurryUp2D
-    mScaleRate__Q28Morimura10THurryUp2D:
-        .float 1.02
-    .global mColorUpSp__Q28Morimura10THurryUp2D
-    mColorUpSp__Q28Morimura10THurryUp2D:
-        .float 1.0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515F18
-    lbl_80515F18:
-        .skip 0x4
-    .global lbl_80515F1C
-    lbl_80515F1C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051E258
-    lbl_8051E258:
-        .4byte 0x00000000
-    .global lbl_8051E25C
-    lbl_8051E25C:
-        .4byte 0x437F0000
-    .global lbl_8051E260
-    lbl_8051E260:
-        .float 0.5
-        .4byte 0x00000000
-    .global lbl_8051E268
-    lbl_8051E268:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051E270
-    lbl_8051E270:
-        .float 1.0
-    .global lbl_8051E274
-    lbl_8051E274:
-        .4byte 0x3F4CCCCD
-    .global lbl_8051E278
-    lbl_8051E278:
-        .4byte 0x3727C5AC
-    .global lbl_8051E27C
-    lbl_8051E27C:
-        .4byte 0x3F4D9168
-    .global lbl_8051E280
-    lbl_8051E280:
-        .4byte 0x41200000
-    .global lbl_8051E284
-    lbl_8051E284:
-        .4byte 0xFFFFFF00
-    .global lbl_8051E288
-    lbl_8051E288:
-        .4byte 0x42600000
-    .global lbl_8051E28C
-    lbl_8051E28C:
-        .4byte 0x40C90FDB
-    .global lbl_8051E290
-    lbl_8051E290:
-        .4byte 0x43B40000
-    .global lbl_8051E294
-    lbl_8051E294:
-        .4byte 0x42A00000
-    .global lbl_8051E298
-    lbl_8051E298:
-        .4byte 0xC3A2F983
-    .global lbl_8051E29C
-    lbl_8051E29C:
-        .4byte 0x43A2F983
-    .global lbl_8051E2A0
-    lbl_8051E2A0:
-        .4byte 0xBF800000
-        .4byte 0x00000000
-    .global lbl_8051E2A8
-    lbl_8051E2A8:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051E2B0
-    lbl_8051E2B0:
-        .4byte 0x38345AE6
-    .global lbl_8051E2B4
-    lbl_8051E2B4:
-        .4byte 0x38D1B717
-    .global lbl_8051E2B8
-    lbl_8051E2B8:
-        .4byte 0x3F666666
-    .global lbl_8051E2BC
-    lbl_8051E2BC:
-        .4byte 0x3F866666
-    .global lbl_8051E2C0
-    lbl_8051E2C0:
-        .4byte 0x40000000
-    .global lbl_8051E2C4
-    lbl_8051E2C4:
-        .4byte 0x42700000
-    .global lbl_8051E2C8
-    lbl_8051E2C8:
-        .4byte 0x42F00000
-        .4byte 0x00000000
-*/
-
 namespace Morimura {
 
-const f32 mInitPosX = 900.0f;
 /*
  * --INFO--
  * Address:	80346178
@@ -504,14 +223,14 @@ void THuWhitePaneSet::gxSet()
 THurryUp2D::THurryUp2D()
     : TTestBase("HurryUp2D")
     , mScreen(nullptr)
-    , mPane1(nullptr)
-    , mPane2(nullptr)
-    , mPane3(nullptr)
+    , mPaneHurry(nullptr)
+    , mPaneSundown(nullptr)
+    , mPaneSunW(nullptr)
     , mWhitePane(nullptr)
-    , mPane4(nullptr)
-    , mPane5(nullptr)
-    , mPane6(nullptr)
-    , mState(0)
+    , mPaneSunL(nullptr)
+    , mPaneHurry2(nullptr)
+    , mPaneSundown2(nullptr)
+    , mState(StateInit)
     , mTimer(0.0f)
     , _C0(0)
     , _C2(0)
@@ -554,27 +273,27 @@ void THurryUp2D::doCreate(JKRArchive* arc)
 	mScreen = new P2DScreen::Mgr_tuning;
 	mScreen->set("sund.blo", 0x20000, arc);
 
-	mPane1 = mScreen->search('hurr');
-	P2ASSERTLINE(150, mPane1);
-	mPane2 = mScreen->search('sund');
-	P2ASSERTLINE(153, mPane2);
-	mPane4 = mScreen->search('sunl');
-	P2ASSERTLINE(156, mPane4);
-	mPane3 = mScreen->search('sunw');
-	P2ASSERTLINE(159, mPane3);
-	mPane5 = mScreen->search('hur2');
-	P2ASSERTLINE(162, mPane5);
-	mPane6 = mScreen->search('sun2');
-	P2ASSERTLINE(165, mPane6);
+	mPaneHurry = mScreen->search('hurr');
+	P2ASSERTLINE(150, mPaneHurry);
+	mPaneSundown = mScreen->search('sund');
+	P2ASSERTLINE(153, mPaneSundown);
+	mPaneSunL = mScreen->search('sunl');
+	P2ASSERTLINE(156, mPaneSunL);
+	mPaneSunW = mScreen->search('sunw');
+	P2ASSERTLINE(159, mPaneSunW);
+	mPaneHurry2 = mScreen->search('hur2');
+	P2ASSERTLINE(162, mPaneHurry2);
+	mPaneSundown2 = mScreen->search('sun2');
+	P2ASSERTLINE(165, mPaneSundown2);
 
-	mWhitePane = new THuWhitePaneSet(mPane3);
-	P2ASSERTLINE(169, mPane3);
+	mWhitePane = new THuWhitePaneSet(mPaneSunW);
+	P2ASSERTLINE(169, mPaneSunW);
 	mWhitePane->setBasePosition(J2DPOS_Center);
 	mWhitePane->setAlpha(0);
 	mWhitePane->mAlpha = 0;
-	mPane4->appendChild(mWhitePane);
-	mPane1Pos = mPane1->mOffset;
-	mPane2Pos = mPane2->mOffset;
+	mPaneSunL->appendChild(mWhitePane);
+	mPane1Pos = mPaneHurry->mOffset;
+	mPane2Pos = mPaneSundown->mOffset;
 
 	/*
 	stwu     r1, -0x30(r1)
@@ -853,24 +572,24 @@ bool THurryUp2D::doUpdate()
 	}
 
 	switch (mState) {
-	case 0:
+	case StateInit:
 		init();
-		changeState(1, 0.0f);
+		changeState(StatePlaySE, 0.0f);
 		break;
-	case 1:
+	case StatePlaySE:
 		if (mTimer == 10.0f) {
 			P2ASSERTLINE(210, PSSystem::spSysIF);
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_EVENING_ALERT, 0);
 		}
 		move();
 		break;
-	case 2:
+	case StateScaleUp1:
 		scaleUp1();
 		break;
-	case 3:
+	case StateColorUp:
 		colorUp();
 		break;
-	case 4:
+	case StateScaleUp2:
 		scaleUp2();
 		break;
 	}
@@ -1217,7 +936,7 @@ void THurryUp2D::calcCount()
  */
 void THurryUp2D::init()
 {
-	mState   = 0;
+	mState   = StateInit;
 	mTimer   = 0.0f;
 	mTimeMax = 0.0f;
 
@@ -1236,40 +955,40 @@ void THurryUp2D::init()
 	mParams[4].mScale     = 1.0f;
 	mParams[4].mGoalScale = 2.0f;
 
-	mPane1->hide();
-	mPane1->setOffset(mPane1Pos.x + mInitPosX, mPane1Pos.y);
-	mPane1->setBasePosition(J2DPOS_Center);
-	mPane1->updateScale(0.5f);
-	mPane1->setAlpha(100);
+	mPaneHurry->hide();
+	mPaneHurry->setOffset(mPane1Pos.x + mInitPosX, mPane1Pos.y);
+	mPaneHurry->setBasePosition(J2DPOS_Center);
+	mPaneHurry->updateScale(0.5f);
+	mPaneHurry->setAlpha(100);
 
-	mPane2->hide();
-	mPane2->setOffset(mPane2Pos.x - mInitPosX, mPane2Pos.y);
-	mPane2->setBasePosition(J2DPOS_Center);
-	mPane2->updateScale(0.5f);
-	mPane2->setAlpha(100);
+	mPaneSundown->hide();
+	mPaneSundown->setOffset(mPane2Pos.x - mInitPosX, mPane2Pos.y);
+	mPaneSundown->setBasePosition(J2DPOS_Center);
+	mPaneSundown->updateScale(0.5f);
+	mPaneSundown->setAlpha(100);
 
-	mPane4->setBasePosition(J2DPOS_Center);
-	mPane4->updateScale(mParams[2].mScale);
-	mPane4->setAlpha(100);
-	mPane4->hide();
+	mPaneSunL->setBasePosition(J2DPOS_Center);
+	mPaneSunL->updateScale(mParams[2].mScale);
+	mPaneSunL->setAlpha(100);
+	mPaneSunL->hide();
 
-	mPane3->setBasePosition(J2DPOS_Center);
-	mPane3->updateScale(1.0f);
-	mPane3->hide();
+	mPaneSunW->setBasePosition(J2DPOS_Center);
+	mPaneSunW->updateScale(1.0f);
+	mPaneSunW->hide();
 
-	mPane5->setBasePosition(J2DPOS_Center);
-	mPane5->updateScale(0.5f);
-	mPane5->hide();
-	mPane5->setAlpha(100);
+	mPaneHurry2->setBasePosition(J2DPOS_Center);
+	mPaneHurry2->updateScale(0.5f);
+	mPaneHurry2->hide();
+	mPaneHurry2->setAlpha(100);
 
-	mPane6->setBasePosition(J2DPOS_Center);
-	mPane6->updateScale(0.5f);
-	mPane6->hide();
-	mPane6->setAlpha(100);
+	mPaneSundown2->setBasePosition(J2DPOS_Center);
+	mPaneSundown2->updateScale(0.5f);
+	mPaneSundown2->hide();
+	mPaneSundown2->setAlpha(100);
 
 	if (mDoDraw) {
 		mWhitePane->show();
-		static_cast<J2DPictureEx*>(mPane3)->getMaterial()->mPeBlock.mBlendInfo.set(J2DBlend(1, 6, 7, 0));
+		static_cast<J2DPictureEx*>(mPaneSunW)->getMaterial()->mPeBlock.mBlendInfo.set(J2DBlend(1, 6, 7, 0));
 		mWhitePane->getMaterial()->mPeBlock.mBlendInfo.set(J2DBlend(1, 1, 0, 0));
 		mWhitePane->mAlpha = 0;
 	} else {
@@ -1281,19 +1000,19 @@ void THurryUp2D::init()
 	if (mIsSection) {
 		test = 0.0001f;
 	}
-	mState    = 1;
 	int check = (mDisp->mCurrSunRatio - mDisp->mDuration) / test;
+	mState    = StatePlaySE;
 	int time  = check;
-	if (check > 74) {
+	if (check >= 74) {
 		time   = check - 75;
-		mState = 2;
-		if (time > 8) {
+		mState = StateScaleUp1;
+		if (time >= 8) {
 			time   = check - 84;
-			mState = 3;
-			if (time > 63) {
+			mState = StateColorUp;
+			if (time >= 63) {
 				time   = check - 148;
-				mState = 4;
-				if (time > 5) {
+				mState = StateScaleUp2;
+				if (time >= 5) {
 					time = check - 154;
 				}
 			}
@@ -1625,6 +1344,42 @@ lbl_80347304:
  */
 void THurryUp2D::move()
 {
+	f32 time = mMoveSp * 60.0f * sys->mDeltaTime;
+	mPaneHurry->setOffset(-(time * mTimer - (mPane1Pos.x + mInitPosX)), mPane1Pos.y);
+	mPaneSundown->setOffset((time * mTimer + (mPane2Pos.x - mInitPosX)), mPane2Pos.y);
+
+	u8 alpha = mParams[1].mAlpha1 * mFadeFraction;
+	mPaneHurry->setAlpha(alpha);
+	mPaneSundown->setAlpha(alpha);
+
+	if (mPaneHurry->mOffset.x < mPane1Pos.x) {
+		mPaneHurry2->show();
+		mPaneSundown2->show();
+		f32 scale     = mParams[mState].mScale;
+		f32 gscale    = mParams[mState].mGoalScale;
+		int i         = FABS(mPane1Pos.x - mPaneHurry->mOffset.x) / time;
+		const f32 mod = mScaleRate;
+		for (i; i > 0; i--) {
+			if (scale < gscale) {
+				scale *= mod;
+			}
+			if (scale > gscale) {
+				scale = gscale;
+			}
+		}
+		J2DPane* pane = mPaneHurry2;
+		if (pane->mAlpha < 255) {
+			u8 alpha = mFadeFraction * u8(mAlphaMod1 * scale + mAlphaMod2);
+			pane->setAlpha(alpha);
+			mPaneSundown2->setAlpha(alpha);
+		}
+		mPaneHurry2->updateScale(scale);
+		mPaneSundown2->updateScale(scale);
+	}
+
+	if (mPaneHurry->mOffset.x < mPane1Pos.x - mInitPosX && (mPaneHurry2->mScale.x >= mParams[mState].mGoalScale)) {
+		changeState(StateScaleUp1, 0.0f);
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1829,6 +1584,25 @@ lbl_803475EC:
  */
 void THurryUp2D::scaleUp1()
 {
+	J2DPane* pane = mPaneSunL;
+	f32 goal      = mParams[mState].mGoalScale;
+	f32 scale;
+	if (pane->mScale.x < goal) {
+		scale = mTimer * mScaleSp1 * 60.0f * sys->mDeltaTime + mParams[mState].mScale;
+		if (scale >= goal) {
+			scale = goal;
+		}
+		pane->setAlpha(mFadeFraction * u8(mAlphaMod1 * scale + mAlphaMod2));
+	} else {
+		scale = 1.0f;
+		changeState(StateColorUp, 0.0f);
+	}
+
+	mPaneSunL->updateScale(scale);
+
+	u8 alpha = mFadeFraction * 255.0f;
+	mPaneHurry2->setAlpha(alpha);
+	mPaneSundown2->setAlpha(alpha);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1936,6 +1710,23 @@ lbl_803476F8:
  */
 void THurryUp2D::colorUp()
 {
+	u8 alpha = 255;
+	u8 calc  = sys->mDeltaTime * 120.0f * mColorUpSp;
+	f32 time = calc;
+	if (time * mTimer < mParams[mState].mAlpha2) {
+		f32 time2 = mParams[mState].mAlpha1;
+		alpha     = mTimer * calc + time2;
+	} else {
+		changeState(StateScaleUp2, 0.0f);
+	}
+
+	mWhitePane->setAlpha(255);
+	mWhitePane->mAlpha = alpha;
+	mPaneSunL->setAlpha(alpha * mFadeFraction);
+	mPaneSunW->setAlpha(255);
+	u8 alpha2 = mFadeFraction * 255.0f;
+	mPaneHurry2->setAlpha(alpha2);
+	mPaneSundown2->setAlpha(alpha2);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2059,6 +1850,32 @@ lbl_80347850:
  */
 void THurryUp2D::scaleUp2()
 {
+	f32 goal = mParams[mState].mGoalScale;
+	if (mPaneSunL->mScale.x < goal) {
+		f32 scale = mTimer * mScaleSp2 * 60.0f * sys->mDeltaTime + mParams[mState].mScale;
+		if (scale > goal) {
+			scale = goal;
+		}
+		u8 alpha = mFadeFraction * u8(mAlphaMod1 * scale + mAlphaMod2);
+		mPaneHurry2->setAlpha(alpha);
+		mPaneSundown2->setAlpha(alpha);
+		mPaneSunL->setAlpha(alpha);
+		mPaneSunW->setAlpha(alpha);
+		mWhitePane->setAlpha(0);
+		mPaneSunL->updateScale(scale);
+	} else {
+		if (!mIsSection && (Game::gameSystem->mFlags & 0x20) && !mIsSection && Game::moviePlayer
+		    && !Game::playData->isDemoFlag(Game::DEMO_First_Sunset_Warning)) {
+			Game::MoviePlayArg arg("g09_first_sunset", nullptr, nullptr, 0);
+			Game::Navi* navi = Game::naviMgr->getActiveNavi();
+			if (navi && navi->mCamera) {
+				Game::playData->setDemoFlag(Game::DEMO_First_Sunset_Warning);
+				Game::moviePlayer->mTargetNavi   = navi;
+				Game::moviePlayer->mActingCamera = navi->mCamera;
+				Game::moviePlayer->play(arg);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2218,171 +2035,47 @@ lbl_80347B4C:
  * Address:	80347B6C
  * Size:	000254
  */
-void THurryUp2D::changeState(int, f32)
+void THurryUp2D::changeState(int state, f32 speed)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfd      f4, lbl_8051E2A8@sda21(r2)
-	stw      r0, 0x24(r1)
-	lis      r0, 0x4330
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r4, 0xb0(r3)
-	stfs     f1, 0xb4(r3)
-	lwz      r3, 0xb0(r3)
-	stw      r0, 8(r1)
-	mulli    r3, r3, 0xc
-	stw      r0, 0x10(r1)
-	add      r4, r31, r3
-	lbz      r3, 0xd1(r4)
-	lbz      r0, 0xd0(r4)
-	stw      r3, 0xc(r1)
-	lfs      f1, 0xd8(r4)
-	stw      r0, 0x14(r1)
-	lfd      f3, 8(r1)
-	lfd      f2, 0x10(r1)
-	lfs      f0, 0xd4(r4)
-	fsubs    f3, f3, f4
-	fsubs    f2, f2, f4
-	fsubs    f0, f1, f0
-	fsubs    f1, f3, f2
-	fdivs    f0, f1, f0
-	stfs     f0, 0xb8(r31)
-	lwz      r0, 0xb0(r31)
-	lfs      f1, 0xb8(r31)
-	mulli    r0, r0, 0xc
-	add      r3, r31, r0
-	lfs      f0, 0xd8(r3)
-	fnmsubs  f0, f1, f0, f3
-	stfs     f0, 0xbc(r31)
-	lwz      r0, 0xb0(r31)
-	cmpwi    r0, 2
-	beq      lbl_80347C4C
-	bge      lbl_80347C18
-	cmpwi    r0, 0
-	beq      lbl_80347C24
-	bge      lbl_80347C34
-	b        lbl_80347DAC
+	mState = state;
+	mTimer = speed;
 
-lbl_80347C18:
-	cmpwi    r0, 5
-	bge      lbl_80347DAC
-	b        lbl_80347CD8
+	f32 alpha  = mParams[mState].mAlpha2;
+	mAlphaMod1 = (alpha - mParams[mState].mAlpha1) / (mParams[mState].mGoalScale - mParams[mState].mScale);
+	mAlphaMod2 = -(mAlphaMod1 * mParams[mState].mGoalScale - alpha);
 
-lbl_80347C24:
-	lwz      r3, 0x8c(r31)
-	li       r0, 0
-	stb      r0, 0x1e0(r3)
-	b        lbl_80347DAC
-
-lbl_80347C34:
-	lwz      r3, 0x80(r31)
-	li       r0, 1
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x84(r31)
-	stb      r0, 0xb0(r3)
-	b        lbl_80347DAC
-
-lbl_80347C4C:
-	lwz      r3, 0x80(r31)
-	li       r0, 0
-	lfs      f0, lbl_8051E270@sda21(r2)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x84(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x94(r31)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x98(r31)
-	lfs      f0, lbl_8051E270@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x94(r31)
-	li       r0, 1
-	li       r4, 0
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x98(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x90(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x90(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80347DAC
-
-lbl_80347CD8:
-	lwz      r3, 0x90(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x88(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x94(r31)
-	lfs      f0, lbl_8051E270@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x98(r31)
-	lfs      f0, lbl_8051E270@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x90(r31)
-	lfs      f0, lbl_8051E270@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x88(r31)
-	lfs      f0, lbl_8051E270@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x94(r31)
-	li       r0, 1
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x98(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x90(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x88(r31)
-	stb      r0, 0xb0(r3)
-
-lbl_80347DAC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	switch (mState) {
+	case StateInit:
+		mWhitePane->mAlpha = 0;
+		break;
+	case StatePlaySE:
+		mPaneHurry->show();
+		mPaneSundown->show();
+		break;
+	case StateScaleUp1:
+		mPaneHurry->hide();
+		mPaneSundown->hide();
+		mPaneHurry2->updateScale(1.0f);
+		mPaneSundown2->updateScale(1.0f);
+		mPaneHurry2->show();
+		mPaneSundown2->show();
+		mPaneSunL->show();
+		mPaneSunL->setAlpha(0);
+		break;
+	case StateColorUp:
+	case StateScaleUp2:
+		mPaneSunL->setAlpha(0);
+		mPaneSunW->setAlpha(0);
+		mPaneHurry2->updateScale(1.0f);
+		mPaneSundown2->updateScale(1.0f);
+		mPaneSunL->updateScale(1.0f);
+		mPaneSunW->updateScale(1.0f);
+		mPaneHurry2->show();
+		mPaneSundown2->show();
+		mPaneSunL->show();
+		mPaneSunW->show();
+		break;
+	}
 }
 
 } // namespace Morimura
