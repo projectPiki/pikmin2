@@ -2156,8 +2156,7 @@ changeState__Q28Morimura10THurryUp2DFif:
 /* 80347DB8 00344CF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80347DBC 00344CFC  4E 80 00 20 */	blr 
 
-.global getDispMemberBase__Q28Morimura10THurryUp2DFv
-getDispMemberBase__Q28Morimura10THurryUp2DFv: # weak function
+.fn getDispMemberBase__Q28Morimura10THurryUp2DFv, weak
 /* 80347DC0 00344D00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80347DC4 00344D04  7C 08 02 A6 */	mflr r0
 /* 80347DC8 00344D08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2173,9 +2172,9 @@ getDispMemberBase__Q28Morimura10THurryUp2DFv: # weak function
 /* 80347DE8 00344D28  7C 08 03 A6 */	mtlr r0
 /* 80347DEC 00344D2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80347DF0 00344D30  4E 80 00 20 */	blr 
+.endfn getDispMemberBase__Q28Morimura10THurryUp2DFv
 
-.global __dt__Q28Morimura10THurryUp2DFv
-__dt__Q28Morimura10THurryUp2DFv: # weak function
+.fn __dt__Q28Morimura10THurryUp2DFv, weak
 /* 80347DF4 00344D34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80347DF8 00344D38  7C 08 02 A6 */	mflr r0
 /* 80347DFC 00344D3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2227,9 +2226,9 @@ __dt__Q28Morimura10THurryUp2DFv: # weak function
 /* 80347EAC 00344DEC  7C 08 03 A6 */	mtlr r0
 /* 80347EB0 00344DF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80347EB4 00344DF4  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura10THurryUp2DFv
 
-.global __dt__Q28Morimura15THuWhitePaneSetFv
-__dt__Q28Morimura15THuWhitePaneSetFv: # weak function
+.fn __dt__Q28Morimura15THuWhitePaneSetFv, weak
 /* 80347EB8 00344DF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80347EBC 00344DFC  7C 08 02 A6 */	mflr r0
 /* 80347EC0 00344E00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2255,8 +2254,9 @@ __dt__Q28Morimura15THuWhitePaneSetFv: # weak function
 /* 80347F0C 00344E4C  7C 08 03 A6 */	mtlr r0
 /* 80347F10 00344E50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80347F14 00344E54  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura15THuWhitePaneSetFv
 
-__sinit_hurryUp2D_cpp: # static initializer
+.fn __sinit_hurryUp2D_cpp, local
 /* 80347F18 00344E58  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80347F1C 00344E5C  38 00 FF FF */	li r0, -1
 /* 80347F20 00344E60  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2267,8 +2267,9 @@ __sinit_hurryUp2D_cpp: # static initializer
 /* 80347F34 00344E74  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80347F38 00344E78  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80347F3C 00344E7C  4E 80 00 20 */	blr 
+.endfn __sinit_hurryUp2D_cpp
 
-.global "@24@__dt__Q28Morimura10THurryUp2DFv"
-"@24@__dt__Q28Morimura10THurryUp2DFv":
+.fn @24@__dt__Q28Morimura10THurryUp2DFv, weak
 /* 80347F40 00344E80  38 63 FF E8 */	addi r3, r3, -24
 /* 80347F44 00344E84  4B FF FE B0 */	b __dt__Q28Morimura10THurryUp2DFv
+.endfn @24@__dt__Q28Morimura10THurryUp2DFv

@@ -304,37 +304,37 @@ void THuWhitePaneSet::drawSelf(f32 x, f32 y, Mtx* mtx)
 	GXSetAlphaUpdate(GX_TRUE);
 	GXSetDstAlpha(GX_TRUE, 0);
 
-	f32 x1 = (mBounds.f.x - mBounds.i.x) + x;
-	f32 y1 = (mBounds.f.y - mBounds.i.y) + y;
+	f32 y1 = (mBounds.f.x - mBounds.i.x) + y;
+	f32 x1 = (mBounds.f.y - mBounds.i.y) + x;
 	Mtx test;
 	PSMTXConcat(*mtx, mGlobalMtx, test);
 	GXLoadPosMtxImm(test, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-	GXPosition3f32(x, y, 0.0f);
-	GXPosition3f32(x, y, 0.0f);
-	GXPosition3f32(x, y, 0.0f);
-	GXPosition3f32(x1, y1, 0.0f);
+	GXPosition3f32(y, x, 0.0f);
+	GXPosition3f32(y1, x, 0.0f);
+	GXPosition3f32(y1, x1, 0.0f);
+	GXPosition3f32(y, x1, 0.0f);
 
 	GXSetDstAlpha(GX_FALSE, 0);
 	J2DPictureEx::drawSelf(x, y, mtx);
 	gxSet();
 	GXSetDstAlpha(GX_TRUE, 0);
 
-	y1 = f32(255 - mAlpha) * (mBounds.f.x - mBounds.i.x) / 255.0f;
+	x1 = f32(255 - mAlpha) * (mBounds.f.x - mBounds.i.x) / 255.0f;
 	GXLoadPosMtxImm(test, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-	x1 -= y1;
-	GXPosition3f32(x1, y, 0.0f);
-	GXPosition3f32(x, y, 0.0f);
-	GXPosition3f32(x, y, 0.0f);
-	GXPosition3f32(x1, y1, 0.0f);
+	y -= x1;
+	GXPosition3f32(y, x, 0.0f);
+	GXPosition3f32(y1, x, 0.0f);
+	GXPosition3f32(y1, x1, 0.0f);
+	GXPosition3f32(y, x1, 0.0f);
 
 	GXSetDstAlpha(GX_FALSE, 0);
 	GXSetColorUpdate(GX_TRUE);
 	PSMTXCopy(test, mMatrix.mMatrix.mtxView);
 
-	x1   = -((mBounds.f.y - mBounds.i.y) * 0.5f - y1);
+	x1   = -((mBounds.f.y - mBounds.i.y) * 0.5f - x);
 	_1A8 = y1;
 	_1AC = x1;
 
