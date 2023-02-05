@@ -463,7 +463,7 @@ void PikiAI::ActAttack::initJumpAdjust()
  * Address:	801A0948
  * Size:	00008C
  */
-void PikiAI::ActAttack::applicable()
+bool PikiAI::ActAttack::applicable()
 {
 	/*
 	stwu     r1, -0x20(r1)

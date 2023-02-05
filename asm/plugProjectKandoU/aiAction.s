@@ -9,8 +9,7 @@ govNAN___Q24Game5P2JST:
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q26PikiAI6Action
-__vt__Q26PikiAI6Action:
+.obj __vt__Q26PikiAI6Action, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI6ActionFPQ26PikiAI9ActionArg
@@ -26,6 +25,7 @@ __vt__Q26PikiAI6Action:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
+.endobj __vt__Q26PikiAI6Action
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -835,7 +835,7 @@ searchOrima__Q26PikiAI5BrainFv:
 doDirectDraw__Q26PikiAI6ActionFR8Graphics:
 /* 801972B0 001941F0  4E 80 00 20 */	blr 
 
-__sinit_aiAction_cpp: # static initializer
+.fn __sinit_aiAction_cpp, local
 /* 801972B4 001941F4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801972B8 001941F8  38 00 FF FF */	li r0, -1
 /* 801972BC 001941FC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -846,3 +846,4 @@ __sinit_aiAction_cpp: # static initializer
 /* 801972D0 00194210  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801972D4 00194214  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801972D8 00194218  4E 80 00 20 */	blr 
+.endfn __sinit_aiAction_cpp

@@ -121,19 +121,19 @@ struct CreatureActionArg : public ActionArg {
 };
 
 struct Action {
-	Action(Game::Piki* p);
+	Action(Game::Piki* piki);
 
-	virtual void init(ActionArg* settings);                                // _08 (weak)
+	virtual void init(ActionArg* settings) { }                             // _08 (weak)
 	virtual int exec();                                                    // _0C (weak)
 	virtual void cleanup();                                                // _10 (weak)
 	virtual void emotion_success();                                        // _14 (weak)
 	virtual void emotion_fail();                                           // _18 (weak)
-	virtual void applicable();                                             // _1C (weak)
+	virtual bool applicable() { return true; }                             // _1C (weak)
 	virtual u32 getNextAIType();                                           // _20 (weak)
 	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24 (weak)
 	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28 (weak)
 	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event);      // _2C (weak)
-	virtual void doDirectDraw(Graphics& gfx);                              // _30 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { }                           // _30 (weak)
 	virtual void wallCallback(Vector3f& pos);                              // _34 (weak)
 	virtual void getInfo(char*);                                           // _38
 
@@ -194,7 +194,7 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 	virtual int exec();                                                    // _0C
 	virtual void cleanup();                                                // _10
 	virtual void emotion_success();                                        // _14
-	virtual void applicable();                                             // _1C
+	virtual bool applicable();                                             // _1C
 	virtual u32 getNextAIType();                                           // _20 (weak)
 	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24
 	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
@@ -1046,12 +1046,13 @@ struct Brain {
 	Brain(Game::Piki* p);
 
 	void addAction(PikiAI::Action*);
+	void init();
 	void exec();
-	void getCurrAction();
+	PikiAI::Action* getCurrAction();
 	Game::Navi* searchOrima();
 	void start(int, PikiAI::ActionArg*);
 
-	Action* mActions;  // _00, might be array of ptrs instead
+	Action** mActions; // _00, might be array of ptrs instead
 	int mActionCnt;    // _04
 	int mActionId;     // _08
 	Game::Piki* mPiki; // _0C

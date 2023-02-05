@@ -1,4 +1,8 @@
 #include "types.h"
+#include "PikiAI.h"
+#include "Game/Piki.h"
+#include "Game/PikiState.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -61,10 +65,10 @@
  * Address:	80196A18
  * Size:	00001C
  */
-PikiAI::Action::Action(Game::Piki* p)
+PikiAI::Action::Action(Game::Piki* piki)
 {
-	_04 = piki;
-	_08 = "Action";
+	mParent = piki;
+	mName   = "Action";
 	/*
 	.loc_0x0:
 	  lis       r5, 0x804B
@@ -85,7 +89,7 @@ PikiAI::Action::Action(Game::Piki* p)
 void PikiAI::Action::getInfo(char* dest)
 {
 	// dest = Action
-	sprintf(dest, "%s", _08);
+	sprintf(dest, "%s", mName);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -108,7 +112,7 @@ void PikiAI::Action::getInfo(char* dest)
  * Address:	80196A64
  * Size:	000280
  */
-PikiAI::Brain::Brain(Game::Piki* p)
+PikiAI::Brain::Brain(Game::Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -307,39 +311,19 @@ lbl_80196CB4:
  * Address:	80196CE4
  * Size:	00001C
  */
-void PikiAI::Brain::addAction(PikiAI::Action*)
-{
-	/*
-	lwz      r6, 4(r3)
-	lwz      r7, 0(r3)
-	addi     r5, r6, 1
-	slwi     r0, r6, 2
-	stw      r5, 4(r3)
-	stwx     r4, r7, r0
-	blr
-	*/
-}
+void PikiAI::Brain::addAction(PikiAI::Action* action) { mActions[mActionCnt++] = action; }
 
 /*
  * --INFO--
  * Address:	80196D00
  * Size:	000024
  */
-void PikiAI::Brain::getCurrAction()
+PikiAI::Action* PikiAI::Brain::getCurrAction()
 {
-	/*
-	lwz      r0, 8(r3)
-	cmpwi    r0, -1
-	beq      lbl_80196D1C
-	lwz      r3, 0(r3)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	blr
-
-lbl_80196D1C:
-	li       r3, 0
-	blr
-	*/
+	if (mActionId != -1) {
+		return mActions[mActionId];
+	}
+	return nullptr;
 }
 
 /*
@@ -563,7 +547,7 @@ u32 PikiAI::Action::getNextAIType() { return 0x0; }
  * Address:	80196F8C
  * Size:	000008
  */
-u32 PikiAI::Action::exec() { return 0x1; }
+int PikiAI::Action::exec() { return 0x1; }
 
 /*
  * --INFO--
@@ -660,24 +644,10 @@ lbl_80197078:
 
 /*
  * --INFO--
- * Address:	80197094
- * Size:	000008
- */
-u32 PikiAI::Action::applicable() { return 0x1; }
-
-/*
- * --INFO--
- * Address:	8019709C
- * Size:	000004
- */
-void PikiAI::Action::init(PikiAI::ActionArg*) { }
-
-/*
- * --INFO--
  * Address:	801970A0
  * Size:	000210
  */
-void PikiAI::Brain::searchOrima()
+Game::Navi* PikiAI::Brain::searchOrima()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -829,34 +799,6 @@ lbl_80197278:
 	lwz      r29, 0x94(r1)
 	mtlr     r0
 	addi     r1, r1, 0xb0
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801972B0
- * Size:	000004
- */
-void PikiAI::Action::doDirectDraw(Graphics&) { }
-
-/*
- * --INFO--
- * Address:	801972B4
- * Size:	000028
- */
-void __sinit_aiAction_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B4A60@ha
-	stw      r0, lbl_805159D8@sda21(r13)
-	stfsu    f0, lbl_804B4A60@l(r3)
-	stfs     f0, lbl_805159DC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
 	blr
 	*/
 }
