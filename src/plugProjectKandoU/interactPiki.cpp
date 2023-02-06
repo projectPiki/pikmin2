@@ -36,12 +36,12 @@ bool InteractFueFuki::actPiki(Game::Piki* piki)
 	if (piki->mCurrentState->invincible(piki)) {
 		return false;
 	}
-	if (piki->mBrain->mActionId == PikiAI::ACT_TEKI || !piki->isPikmin()) {
+	if (piki->mBrain->mActionId == PikiAI::ACT_Teki || !piki->isPikmin()) {
 		return false;
 	}
 	if (piki->mCurrentState->callable()) {
 		PikiAI::CreatureActionArg fueFukiArg = mCreature;
-		piki->mBrain->start(PikiAI::ACT_TEKI, &fueFukiArg);
+		piki->mBrain->start(PikiAI::ACT_Teki, &fueFukiArg);
 		return true;
 	}
 	return false;
@@ -171,7 +171,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 	currState = piki->mCurrentState;
 
 	bool callable;
-	if (actionID == PikiAI::ACT_TEKI) {
+	if (actionID == PikiAI::ACT_Teki) {
 		bool pikiChappyCalled;
 		if (currState->mId != PIKISTATE_Panic) {
 			return false;
@@ -190,7 +190,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 		currState->onFlute(piki, (Navi*)mCreature);
 	}
 	if (!currState->dead() && callable) {
-		if (actionID != PikiAI::ACT_FORMATION || (actionID == PikiAI::ACT_FORMATION && currState->mId == PIKISTATE_Emotion)
+		if (actionID != PikiAI::ACT_Formation || (actionID == PikiAI::ACT_Formation && currState->mId == PIKISTATE_Emotion)
 		    || (_08 && piki->mNavi != mCreature && actionID == 0)) {
 			Navi* vsNavi = (Navi*)mCreature;
 			if (gameSystem->isVersusMode()) {
@@ -572,10 +572,10 @@ bool InteractGas::actPiki(Game::Piki* piki)
  */
 bool InteractBattle::actPiki(Game::Piki* piki)
 {
-	if (piki->getCurrActionID() != PikiAI::ACT_BATTLE) {
+	if (piki->getCurrActionID() != PikiAI::ACT_Battle) {
 		P2ASSERTLINE(1073, mCreature->isPiki());
 		PikiAI::ActBattleArg battleArg(static_cast<Piki*>(mCreature), true);
-		piki->mBrain->start(PikiAI::ACT_BATTLE, &battleArg);
+		piki->mBrain->start(PikiAI::ACT_Battle, &battleArg);
 		return true;
 	}
 	return false;

@@ -306,6 +306,8 @@ struct Creature : public CellObject {
 		return false;
 	}
 
+	inline bool isCreatureFlag(u32 flag) const { return mFlags.typeView & flag; }
+
 	inline void killInline(CreatureKillArg* arg);
 
 	void applyAirDrag(f32, f32, f32);

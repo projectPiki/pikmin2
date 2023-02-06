@@ -478,7 +478,7 @@ void SingleGame::CaveState::check_SMenu(SingleGameSection* game)
 			Piki* piki = *it;
 			if (piki->isAlive()) {
 				piki->endStick();
-				piki->mBrain->start(PikiAI::ACT_FREE, nullptr);
+				piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 			}
 		}
 		return;
@@ -1174,7 +1174,7 @@ void SingleGame::CaveState::onMovieCommand(SingleGameSection* game, int command)
 		{
 			Piki* piki = *it;
 			if (piki->isAlive()) {
-				piki->mBrain->start(PikiAI::ACT_FREE, nullptr);
+				piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 				piki->movie_begin(false);
 				PanicStateArg arg;
 				arg.mPanicType = 3;

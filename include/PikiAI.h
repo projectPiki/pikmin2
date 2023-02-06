@@ -81,20 +81,28 @@ struct ActTransport;
 struct ActWeed;
 
 enum PikiBrainAction {
-	ACT_FORMATION  = 0,
-	ACT_FREE       = 1,
-	ACT_ENTER      = 2,
-	ACT_EXIT       = 3,
-	ACT_TRANSPORT  = 4,
-	ACT_BORE       = 5,
-	ACT_BREAK_GATE = 6,
-	ACT_BREAK_ROCK = 7,
-	ACT_CROP       = 8,
-	ACT_WEED       = 9,
-	ACT_BRIDGE     = 10,
-	ACT_TEKI       = 11,
-	ACT_RESCUE     = 12,
-	ACT_BATTLE     = 13
+	ACT_NULL      = -1,
+	ACT_Formation = 0,
+	ACT_Free      = 1,
+	ACT_Enter     = 2,
+	ACT_Exit      = 3,
+	ACT_Transport = 4,
+	ACT_Bore      = 5,
+	ACT_BreakGate = 6,
+	ACT_BreakRock = 7,
+	ACT_Crop      = 8,
+	ACT_Weed      = 9,
+	ACT_Bridge    = 10,
+	ACT_Teki      = 11,
+	ACT_Rescue    = 12,
+	ACT_Battle    = 13,
+	ACT_ActionCount, // total number of actions
+};
+
+enum ActionExitCode {
+	ACTEXEC_Success  = 0, // action is finished and completed successfully
+	ACTEXEC_Continue = 1, // action is unfinshed
+	ACTEXEC_Fail     = 2, // action is finished and failed
 };
 
 struct ActionArg {
@@ -124,19 +132,19 @@ struct CreatureActionArg : public ActionArg {
 struct Action {
 	Action(Game::Piki* piki);
 
-	virtual void init(ActionArg* settings) { }                             // _08 (weak)
-	virtual int exec();                                                    // _0C (weak)
-	virtual void cleanup();                                                // _10 (weak)
-	virtual void emotion_success();                                        // _14 (weak)
-	virtual void emotion_fail();                                           // _18 (weak)
-	virtual bool applicable() { return true; }                             // _1C (weak)
-	virtual u32 getNextAIType();                                           // _20 (weak)
-	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24 (weak)
-	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28 (weak)
-	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event);      // _2C (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }                           // _30 (weak)
-	virtual void wallCallback(Vector3f& pos);                              // _34 (weak)
-	virtual void getInfo(char*);                                           // _38
+	virtual void init(ActionArg* settings) { }                                // _08 (weak)
+	virtual int exec() { return ACTEXEC_Continue; }                           // _0C (weak)
+	virtual void cleanup() { }                                                // _10 (weak)
+	virtual void emotion_success() { }                                        // _14 (weak)
+	virtual void emotion_fail() { }                                           // _18 (weak)
+	virtual bool applicable() { return true; }                                // _1C (weak)
+	virtual u32 getNextAIType() { return ACT_Formation; }                     // _20 (weak)
+	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit) { }        // _24 (weak)
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event) { } // _28 (weak)
+	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event) { }      // _2C (weak)
+	virtual void doDirectDraw(Graphics& gfx) { }                              // _30 (weak)
+	virtual void wallCallback(Vector3f& pos) { }                              // _34 (weak)
+	virtual void getInfo(char*);                                              // _38
 
 	// _00 = VTBL
 	Game::Piki* mParent; // _04
@@ -1051,7 +1059,7 @@ struct Brain {
 	void exec();
 	PikiAI::Action* getCurrAction();
 	Game::Navi* searchOrima();
-	void start(int, PikiAI::ActionArg*);
+	bool start(int, PikiAI::ActionArg*);
 
 	Action** mActions; // _00, might be array of ptrs instead
 	int mActionCnt;    // _04

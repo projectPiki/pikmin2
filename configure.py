@@ -897,7 +897,7 @@ LIBS = [
             "plugProjectKandoU/interactPiki",
             "plugProjectKandoU/gameCPlate",
             ["plugProjectKandoU/updateMgr", True],
-            "plugProjectKandoU/aiAction",
+            ["plugProjectKandoU/aiAction", True],
             "plugProjectKandoU/aiPrimitives",
             "plugProjectKandoU/aiFormation",
             "plugProjectKandoU/creatureStick",
