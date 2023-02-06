@@ -80,14 +80,13 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 
 	// _00     = VTBL
 	// _00-_A8 = og::Screen::CallBack_CounterRV
-	u8 _A8;                               // _A8
-	u8 _A9;                               // _A9
-	u8 _AA;                               // _AA
-	u8 _AB;                               // _AB
+	JUtility::TColor mColor;              // _A8
 	efx2d::T2DCountKira** mEfxCountKiras; // _AC, array of ptrs?
-	u8 _B0;                               // _B0
+	u8 mEnabled;                          // _B0
 	u8 _B1;                               // _B1
 };
+
+TCounterRV* setTCounterRV(P2DScreen::Mgr*, u64, u64, u64, u32*, u16, u16, JKRArchive*);
 
 struct TCallbackScissor : public P2DScreen::CallBackNode {
 	TCallbackScissor() { mBounds.set(0.0f); }
@@ -134,33 +133,35 @@ struct TMovePane {
 	void update();
 	void move();
 	void turn();
-	void getAngDist();
-	void hosei();
+	f32 getAngDist();
+	bool hosei();
 	void rolling();
 	void stick();
 	void forceTurn();
 	void startStick(J2DPane*);
-	void isReachToGoal();
+	bool isReachToGoal();
 	void reset();
 
-	J2DPane* _00; // _00
-	u32 _04;      // _04, unknown
-	f32 _08;      // _08
-	f32 _0C;      // _0C
-	f32 _10;      // _10
-	f32 _14;      // _14
-	f32 _18;      // _18
-	f32 _1C;      // _1C
-	f32 _20;      // _20
-	f32 _24;      // _24
-	f32 _28;      // _28
-	f32 _2C;      // _2C
-	u8 _30[0x8];  // _30, unknown
-	f32 _38;      // _38
-	int _3C;      // _3C, current operation maybe?
-	int _40;      // _40
-	u32 _44;      // _44, unknown
-	u32 _48;      // _48, unknown
+	J2DPane* mPane;      // _00
+	J2DPane* mStickPane; // _04
+	JGeometry::TVec2f mOffset;
+	JGeometry::TVec2f mPanePosition;  // _10
+	JGeometry::TVec2f mPaneGoal;      // _18
+	JGeometry::TVec2f mVelocity;      // _20
+	f32 mAngleSin;                    // _28
+	f32 mAngleCos;                    // _2C
+	JGeometry::TVec2f mStickPosition; // _30
+	f32 mAngle;                       // _38
+	int mState;                       // _3C
+	int mCounter;                     // _40
+	u32 _44;                          // _44, unknown
+	u32 _48;                          // _48, unknown
+
+	static f32 mMoveSpeed;
+	static f32 mDemoSpeedUpRate;
+	static f32 mAccel;
+	static f32 mAngRate;
+	static f32 mAngVelMax;
 };
 
 struct THuWhitePaneSet : public J2DPictureEx {

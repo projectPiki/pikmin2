@@ -1,6 +1,9 @@
 #include "Morimura/Challenge.h"
 #include "Morimura/mrUtil.h"
-#include "efx2d/T2DCavecomp.h"
+#include "trig.h"
+#include "og/newScreen/ogUtil.h"
+#include "JSystem/JMath.h"
+#include "LoadResource.h"
 
 /*
     Generated from dpostproc
@@ -623,109 +626,26 @@ namespace Morimura {
  * Address:	80393348
  * Size:	000020
  */
-void TChallengeResultScreen::create(char const*, unsigned long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       create__Q28Morimura11TScreenBaseFPCcUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TChallengeResultScreen::create(char const* path, u32 flag) { TScreenBase::create(path, flag); }
 
 /*
  * --INFO--
  * Address:	80393368
  * Size:	000118
  */
-void TChallengeResultScreen::createAnimPane(char*)
+void TChallengeResultScreen::createAnimPane(char* path)
 {
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	lis      r5, lbl_80494780@ha
-	stw      r0, 0xc4(r1)
-	li       r0, 0x13
-	addi     r5, r5, lbl_80494780@l
-	addi     r6, r1, 4
-	stmw     r27, 0xac(r1)
-	mr       r31, r4
-	mr       r30, r3
-	addi     r4, r5, -4
-	mtctr    r0
+	u64 tagList[19] = { 'Nhl_00', 'Nhl_01', 'Nhl_02', 'Nhl_03', 'Nhl_04', 'Nhl_05', 'Nhl_06',   'Nhl_07',   'Nhl_08',
+		                'Nhl_09', 'Nhl_10', 'Nhl_11', 'Nhl_12', 'Nhl_13', 'Nhl_14', 'Pmsen003', 'Pmsen004', 'Pmsen007', 'Pmsen009' };
+	mAnimPaneCount  = 19;
+	mAnimPanes      = new og::Screen::AnimPane*[mAnimPaneCount];
 
-lbl_80393398:
-	lwz      r3, 4(r4)
-	lwzu     r0, 8(r4)
-	stw      r3, 4(r6)
-	stwu     r0, 8(r6)
-	bdnz     lbl_80393398
-	li       r0, 0x13
-	stw      r0, 0x18(r30)
-	lwz      r0, 0x18(r30)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x1c(r30)
-	addi     r28, r1, 8
-	li       r27, 0
-	li       r29, 0
-	b        lbl_80393420
-
-lbl_803933D4:
-	li       r3, 0x44
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803933EC
-	bl       __ct__Q32og6Screen8AnimPaneFv
-	mr       r0, r3
-
-lbl_803933EC:
-	lwz      r3, 0x1c(r30)
-	mr       r9, r31
-	stwx     r0, r3, r29
-	lwz      r3, 0x1c(r30)
-	lwz      r4, 0xc(r30)
-	lwzx     r3, r3, r29
-	lwz      r5, 8(r30)
-	lwz      r7, 0(r28)
-	lwz      r8, 4(r28)
-	bl       init__Q32og6Screen8AnimPaneFP10JKRArchiveP9J2DScreenUxPc
-	addi     r29, r29, 4
-	addi     r28, r28, 8
-	addi     r27, r27, 1
-
-lbl_80393420:
-	lwz      r0, 0x18(r30)
-	cmpw     r27, r0
-	blt      lbl_803933D4
-	li       r3, 0x44
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80393444
-	bl       __ct__Q32og6Screen8AnimPaneFv
-	mr       r0, r3
-
-lbl_80393444:
-	stw      r0, 0x2c(r30)
-	lis      r4, 0x5F303031@ha
-	lis      r5, 0x4E554C4C@ha
-	mr       r9, r31
-	lwz      r3, 0x2c(r30)
-	addi     r8, r4, 0x5F303031@l
-	lwz      r4, 0xc(r30)
-	addi     r7, r5, 0x4E554C4C@l
-	lwz      r5, 8(r30)
-	bl       init__Q32og6Screen8AnimPaneFP10JKRArchiveP9J2DScreenUxPc
-	lmw      r27, 0xac(r1)
-	lwz      r0, 0xc4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
+	for (int i = 0; i < mAnimPaneCount; i++) {
+		mAnimPanes[i] = new og::Screen::AnimPane;
+		mAnimPanes[i]->init(mArchive, mScreenObj, tagList[i], path);
+	}
+	mResultAnimPane = new og::Screen::AnimPane;
+	mResultAnimPane->init(mArchive, mScreenObj, 'NULL_001', path);
 }
 
 /*
@@ -735,42 +655,11 @@ lbl_80393444:
  */
 void TChallengeResultScreen::updateBckPane()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       updateBckPane__Q28Morimura16TChallengeScreenFv
-	lwz      r3, 0x2c(r31)
-	bl       update__Q32og6Screen12AnimBaseBaseFv
-	lwz      r3, 0x2c(r31)
-	lfs      f0, lbl_8051F080@sda21(r2)
-	lfs      f1, 0x18(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_803934C0
-	lfs      f0, lbl_8051F084@sda21(r2)
-	stfs     f0, 0x18(r3)
-
-lbl_803934C0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-TChallengeResultDemoScreen::TChallengeResultDemoScreen(JKRArchive* arc, int anims)
-    : TScreenBase(arc, anims)
-{
-	// UNUSED FUNCTION
+	TChallengeScreen::updateBckPane();
+	mResultAnimPane->update();
+	if (mResultAnimPane->mCurrentFrame >= 120.0f) {
+		mResultAnimPane->mCurrentFrame = 0.0f;
+	}
 }
 
 /*
@@ -778,78 +667,18 @@ TChallengeResultDemoScreen::TChallengeResultDemoScreen(JKRArchive* arc, int anim
  * Address:	803934D4
  * Size:	0000F8
  */
-void TChallengeResultDemoScreen::create(char const*, unsigned long)
+void TChallengeResultDemoScreen::create(char const* path, u32 flag)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q28Morimura11TScreenBaseFPCcUl
-	li       r3, 0x44
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80393504
-	bl       __ct__Q32og6Screen8AnimPaneFv
-	mr       r0, r3
+	TScreenBase::create(path, flag);
 
-lbl_80393504:
-	stw      r0, 0x18(r31)
-	lis      r3, lbl_80494818@ha
-	addi     r9, r3, lbl_80494818@l
-	lis      r7, 0x5F303031@ha
-	lis      r6, 0x4E554C4C@ha
-	lwz      r3, 0x18(r31)
-	addi     r8, r7, 0x5F303031@l
-	lwz      r4, 0xc(r31)
-	lwz      r5, 8(r31)
-	addi     r7, r6, 0x4E554C4C@l
-	bl       init__Q32og6Screen8AnimPaneFP10JKRArchiveP9J2DScreenUxPc
-	li       r3, 0x44
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80393548
-	bl       __ct__Q32og6Screen8AnimPaneFv
-	mr       r0, r3
+	mAnimPane1 = new og::Screen::AnimPane;
+	mAnimPane1->init(mArchive, mScreenObj, 'NULL_001', "challenge_modo_result_demo.bck");
 
-lbl_80393548:
-	stw      r0, 0x1c(r31)
-	lis      r3, lbl_80494818@ha
-	addi     r9, r3, lbl_80494818@l
-	lis      r7, 0x626F6E73@ha
-	lis      r6, 0x004E7269@ha
-	lwz      r3, 0x1c(r31)
-	addi     r8, r7, 0x626F6E73@l
-	lwz      r4, 0xc(r31)
-	lwz      r5, 8(r31)
-	addi     r7, r6, 0x004E7269@l
-	bl       init__Q32og6Screen8AnimPaneFP10JKRArchiveP9J2DScreenUxPc
-	li       r3, 0x44
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8039358C
-	bl       __ct__Q32og6Screen8AnimPaneFv
-	mr       r0, r3
+	mAnimPane2 = new og::Screen::AnimPane;
+	mAnimPane2->init(mArchive, mScreenObj, 'Nribons', "challenge_modo_result_demo.bck");
 
-lbl_8039358C:
-	stw      r0, 0x20(r31)
-	lis      r3, lbl_80494818@ha
-	addi     r9, r3, lbl_80494818@l
-	lis      r7, 0x6F6E7332@ha
-	lis      r6, 0x4E726962@ha
-	lwz      r3, 0x20(r31)
-	addi     r8, r7, 0x6F6E7332@l
-	lwz      r4, 0xc(r31)
-	lwz      r5, 8(r31)
-	addi     r7, r6, 0x4E726962@l
-	bl       init__Q32og6Screen8AnimPaneFP10JKRArchiveP9J2DScreenUxPc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mAnimPane3 = new og::Screen::AnimPane;
+	mAnimPane3->init(mArchive, mScreenObj, 'Nribons2', "challenge_modo_result_demo.bck");
 }
 
 /*
@@ -859,73 +688,19 @@ lbl_8039358C:
  */
 void TChallengeResultDemoScreen::update()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 8(r3)
-	cmplwi   r3, 0
-	beq      lbl_8039368C
-	lbz      r0, 0x24(r29)
-	cmplwi   r0, 0
-	beq      lbl_8039368C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, lbl_8051F088@sda21(r2)
-	li       r30, 0
-	li       r31, 0
-	b        lbl_80393660
-
-lbl_80393628:
-	lwz      r3, 4(r29)
-	lwzx     r3, r3, r31
-	bl       update__Q32og6Screen12AnimBaseBaseFv
-	cmpwi    r30, 0
-	bne      lbl_80393658
-	lwz      r3, 4(r29)
-	lwz      r3, 0(r3)
-	lfs      f0, 0x18(r3)
-	fcmpo    cr0, f0, f31
-	cror     2, 1, 2
-	bne      lbl_80393658
-	stfs     f31, 0x18(r3)
-
-lbl_80393658:
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_80393660:
-	lwz      r0, 0x10(r29)
-	cmpw     r30, r0
-	blt      lbl_80393628
-	lwz      r3, 0x18(r29)
-	bl       update__Q32og6Screen12AnimBaseBaseFv
-	lwz      r3, 0x1c(r29)
-	bl       update__Q32og6Screen12AnimBaseBaseFv
-	lwz      r3, 0x20(r29)
-	bl       update__Q32og6Screen12AnimBaseBaseFv
-	lwz      r3, 8(r29)
-	bl       animation__9J2DScreenFv
-
-lbl_8039368C:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (mScreenObj && mIsActive) {
+		mScreenObj->update();
+		for (int i = 0; i < mAnimScreenCountMax; i++) {
+			mAnimScreens[i]->update();
+			if (i == 0 && mAnimScreens[0]->mCurrentFrame >= 20.0f) {
+				mAnimScreens[0]->mCurrentFrame = 20.0f;
+			}
+		}
+		mAnimPane1->update();
+		mAnimPane2->update();
+		mAnimPane3->update();
+		mScreenObj->animation();
+	}
 }
 
 /*
@@ -933,23 +708,11 @@ lbl_8039368C:
  * Address:	803936B0
  * Size:	00002C
  */
-void TChallengeResultDemoScreen::draw(Graphics&, J2DPerspGraph*)
+void TChallengeResultDemoScreen::draw(Graphics& gfx, J2DPerspGraph* graf)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_803936CC
-	bl       draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
-
-lbl_803936CC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mIsActive) {
+		TScreenBase::draw(gfx, graf);
+	}
 }
 
 /*
@@ -997,43 +760,16 @@ TMovePane::TMovePane()
  * Address:	803936DC
  * Size:	00007C
  */
-void TMovePane::setPane(J2DPane*)
+void TMovePane::setPane(J2DPane* pane)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_80393718
-	lis      r3, lbl_80494850@ha
-	lis      r5, lbl_80494868@ha
-	addi     r3, r3, lbl_80494850@l
-	li       r4, 0x10f
-	addi     r5, r5, lbl_80494868@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80393718:
-	stw      r31, 0(r30)
-	li       r4, 4
-	lwz      r3, 0(r30)
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lfs      f1, 0xd8(r31)
-	mr       r3, r30
-	lfs      f0, 0xd4(r31)
-	stfs     f0, 0x10(r30)
-	stfs     f1, 0x14(r30)
-	bl       reset__Q28Morimura9TMovePaneFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(271, pane);
+	mPane = pane;
+	mPane->setBasePosition(J2DPOS_Center);
+	// this should be an inline but it wont match
+	f32 y           = pane->mOffset.y;
+	mPanePosition.x = pane->mOffset.x;
+	mPanePosition.y = y;
+	reset();
 }
 
 /*
@@ -1043,87 +779,31 @@ lbl_80393718:
  */
 void TMovePane::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x3c(r3)
-	cmpwi    r0, 3
-	beq      lbl_803937AC
-	bge      lbl_8039378C
-	cmpwi    r0, 1
-	beq      lbl_8039379C
-	bge      lbl_803937A4
-	b        lbl_803937D0
+	switch (mState) {
+	case 1:
+		move();
+		break;
+	case 2:
+		turn();
+		break;
+	case 3:
+		if (hosei()) {
+			mState = 0;
+		}
+		break;
+	case 4:
+		stick();
+		break;
+	case 5:
+		rolling();
+		break;
+	}
 
-lbl_8039378C:
-	cmpwi    r0, 5
-	beq      lbl_803937CC
-	bge      lbl_803937D0
-	b        lbl_803937C4
-
-lbl_8039379C:
-	bl       move__Q28Morimura9TMovePaneFv
-	b        lbl_803937D0
-
-lbl_803937A4:
-	bl       turn__Q28Morimura9TMovePaneFv
-	b        lbl_803937D0
-
-lbl_803937AC:
-	bl       hosei__Q28Morimura9TMovePaneFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803937D0
-	li       r0, 0
-	stw      r0, 0x3c(r31)
-	b        lbl_803937D0
-
-lbl_803937C4:
-	bl       stick__Q28Morimura9TMovePaneFv
-	b        lbl_803937D0
-
-lbl_803937CC:
-	bl       rolling__Q28Morimura9TMovePaneFv
-
-lbl_803937D0:
-	lwz      r3, 0(r31)
-	lfs      f1, 0x1c(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, 0xd4(r3)
-	stfs     f1, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051F08C@sda21(r2)
-	lfs      f0, 0x38(r31)
-	fsubs    f1, f1, f0
-	bl       roundAng__Ff
-	lfs      f0, lbl_8051F090@sda21(r2)
-	lwz      r3, 0(r31)
-	fmuls    f1, f0, f1
-	lfs      f0, lbl_8051F08C@sda21(r2)
-	fdivs    f0, f1, f0
-	stfs     f0, 0xc0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x40(r31)
-	cmpwi    r3, 0
-	ble      lbl_80393840
-	addi     r0, r3, 1
-	stw      r0, 0x40(r31)
-
-lbl_80393840:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mPane->setOffset(mPaneGoal.x, mPaneGoal.y);
+	mPane->setAngle(roundAng(TAU - mAngle) * 360.0f / TAU);
+	if (mCounter > 0) {
+		mCounter++;
+	}
 }
 
 /*
@@ -1133,6 +813,22 @@ lbl_80393840:
  */
 void TMovePane::move()
 {
+	turn();
+	mAngleSin = pikmin2_sinf(mAngle) * mMoveSpeed * mDemoSpeedUpRate;
+	mAngleCos = -pikmin2_cosf(mAngle) * mMoveSpeed * mDemoSpeedUpRate;
+
+	f32 x = (mAngleSin - mVelocity.x) * mAccel * mDemoSpeedUpRate;
+	f32 y = (mAngleCos - mVelocity.y) * mAccel * mDemoSpeedUpRate;
+	x += mVelocity.x;
+	y += mVelocity.y;
+	mVelocity.x = x;
+	mVelocity.y = y;
+
+	mPaneGoal.x += mVelocity.x;
+	mPaneGoal.y += mVelocity.y;
+	if (isReachToGoal()) {
+		mState = 3;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1243,6 +939,11 @@ lbl_803939AC:
  */
 void TMovePane::turn()
 {
+	f32 calc = getAngDist() * mAngRate * mDemoSpeedUpRate;
+	if (FABS(calc) > mAngVelMax * PI * mDemoSpeedUpRate) {
+		calc = calc > 0.0f ? (PI * mAngVelMax) : -(PI * mAngVelMax);
+	}
+	mAngle = roundAng(mAngle + calc);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1291,45 +992,18 @@ lbl_80393A28:
  * Address:	80393A4C
  * Size:	00007C
  */
-void TMovePane::getAngDist()
+f32 TMovePane::getAngDist()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051F084@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lfs      f2, 8(r3)
-	lfs      f1, 0x18(r3)
-	fsubs    f1, f2, f1
-	fcmpu    cr0, f0, f1
-	bne      lbl_80393A7C
-	lfs      f1, lbl_8051F0A4@sda21(r2)
-
-lbl_80393A7C:
-	lfs      f3, 0xc(r31)
-	lfs      f2, 0x1c(r31)
-	lfs      f0, lbl_8051F084@sda21(r2)
-	fsubs    f2, f3, f2
-	fcmpu    cr0, f0, f2
-	bne      lbl_80393A98
-	lfs      f2, lbl_8051F0A4@sda21(r2)
-
-lbl_80393A98:
-	fneg     f2, f2
-	lis      r3, atanTable___5JMath@ha
-	addi     r3, r3, atanTable___5JMath@l
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lfs      f2, 0x38(r31)
-	bl       angDist__Fff
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	f32 distX = mOffset.x - mPaneGoal.x;
+	if (distX == 0.0f) {
+		distX = 0.1f;
+	}
+	f32 distY = mOffset.y - mPaneGoal.y;
+	if (distY == 0.0f) {
+		distY = 0.1f;
+	}
+	f32 angle = JMath::atanTable_.atan2_(distX, -distY);
+	return angDist(roundAng(angle), mAngle);
 }
 
 /*
@@ -1337,8 +1011,28 @@ lbl_80393A98:
  * Address:	80393AC8
  * Size:	000204
  */
-void TMovePane::hosei()
+bool TMovePane::hosei()
 {
+	bool ret  = false;
+	mAngleSin = 0.0f;
+	mAngleCos = 0.0f;
+	mVelocity = 0.0f;
+	f32 x     = (mOffset.x - mPaneGoal.x) * 0.05f * mDemoSpeedUpRate;
+	f32 y     = (mOffset.y - mPaneGoal.y) * 0.05f * mDemoSpeedUpRate;
+	mPaneGoal.x += x;
+	mPaneGoal.y += y;
+	if (FABS(x) < 0.05f && FABS(y) < 0.05f) {
+		ret         = true;
+		mPaneGoal.x = mOffset.x;
+		mPaneGoal.y = mOffset.y;
+	}
+
+	mOffset.y -= 100.0f;
+	turn();
+	if (FABS(getAngDist()) > 0.01f)
+		ret = false;
+	mOffset.y += 100.0f;
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1495,20 +1189,10 @@ lbl_80393CA0:
  */
 void TMovePane::rolling()
 {
-	/*
-	lfs      f3, lbl_8051F0B4@sda21(r2)
-	lfs      f2, mDemoSpeedUpRate__Q28Morimura16TChallengeResult@sda21(r13)
-	lfs      f1, 0x38(r3)
-	lfs      f0, lbl_8051F08C@sda21(r2)
-	fmadds   f1, f3, f2, f1
-	stfs     f1, 0x38(r3)
-	lfs      f1, 0x38(r3)
-	fcmpo    cr0, f1, f0
-	blelr
-	fsubs    f0, f1, f0
-	stfs     f0, 0x38(r3)
-	blr
-	*/
+	mAngle += 0.5f * mDemoSpeedUpRate;
+	if (mAngle > TAU) {
+		mAngle -= TAU;
+	}
 }
 
 /*
@@ -1518,6 +1202,10 @@ void TMovePane::rolling()
  */
 void TMovePane::stick()
 {
+	turn();
+	JUT_ASSERTLINE(445, mStickPane, "no stick pane\n");
+	mPaneGoal.x = mStickPosition.x + mStickPane->mGlobalMtx[0][3];
+	mPaneGoal.y = mStickPosition.y + mStickPane->mGlobalMtx[1][3];
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1632,8 +1320,11 @@ void TMovePane::startStick(J2DPane*)
  * Address:	80393E28
  * Size:	000034
  */
-void TMovePane::isReachToGoal()
+bool TMovePane::isReachToGoal()
 {
+	f32 x = mPaneGoal.x - mOffset.x;
+	f32 y = mPaneGoal.y - mOffset.y;
+	return (x * x + y * y > 600.0f);
 	/*
 	lfs      f1, 0x1c(r3)
 	lfs      f0, 0xc(r3)
@@ -1658,60 +1349,18 @@ void TMovePane::isReachToGoal()
  */
 void TMovePane::reset()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051F084@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stfs     f1, 0x20(r3)
-	stfs     f1, 0x24(r3)
-	lfs      f0, 0x20(r3)
-	stfs     f0, 0x28(r3)
-	lfs      f0, 0x24(r3)
-	stfs     f0, 0x2c(r3)
-	lfs      f0, 0x10(r3)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x14(r3)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 0x18(r3)
-	stfs     f0, 8(r3)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0xc(r3)
-	stw      r0, 0x3c(r3)
-	stw      r0, 0x40(r3)
-	stfs     f1, 0x38(r3)
-	lwz      r3, 0(r3)
-	lfs      f1, 0x1c(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, 0xd4(r3)
-	stfs     f1, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051F08C@sda21(r2)
-	lfs      f0, 0x38(r31)
-	fsubs    f1, f1, f0
-	bl       roundAng__Ff
-	lfs      f0, lbl_8051F090@sda21(r2)
-	lwz      r3, 0(r31)
-	fmuls    f1, f0, f1
-	lfs      f0, lbl_8051F08C@sda21(r2)
-	fdivs    f0, f1, f0
-	stfs     f0, 0xc0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mVelocity   = 0.0f;
+	mAngleSin   = mVelocity.x;
+	mAngleCos   = mVelocity.y;
+	mPaneGoal.x = mPanePosition.x;
+	mPaneGoal.y = mPanePosition.y;
+	mOffset.x   = mPaneGoal.x;
+	mOffset.y   = mPaneGoal.y;
+	mState      = 0;
+	mCounter    = 0;
+	mAngle      = 0.0f;
+	mPane->setOffset(mPaneGoal.x, mPaneGoal.y);
+	mPane->setAngle(roundAng(TAU - mAngle) * 360.0f / TAU);
 }
 
 /*
@@ -1719,81 +1368,14 @@ void TMovePane::reset()
  * Address:	80393F2C
  * Size:	000100
  */
-void setTCounterRV(P2DScreen::Mgr*, u64, u64, u64, u32*, u16, u16, JKRArchive*)
+TCounterRV* setTCounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, u32* data, u16 flag1, u16 flag2, JKRArchive* arc)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r20, 0x10(r1)
-	  mr        r24, r3
-	  lwz       r31, 0x48(r1)
-	  mr        r26, r5
-	  lhz       r20, 0x4E(r1)
-	  mr        r25, r6
-	  lhz       r21, 0x52(r1)
-	  mr        r28, r7
-	  lwz       r22, 0x54(r1)
-	  mr        r27, r8
-	  mr        r30, r9
-	  mr        r29, r10
-	  li        r3, 0xB4
-	  bl        -0x3700C8
-	  mr.       r23, r3
-	  beq-      .loc_0x68
-	  lis       r4, 0x804D
-	  mr        r5, r20
-	  addi      r4, r4, 0x7E18
-	  mr        r6, r21
-	  mr        r7, r22
-	  bl        .loc_0x100
-	  mr        r23, r3
-
-	.loc_0x68:
-	  cmplwi    r23, 0
-	  bne-      .loc_0x8C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x4850
-	  li        r4, 0x206
-	  addi      r5, r5, 0x4868
-	  crclr     6, 0x6
-	  bl        -0x369974
-
-	.loc_0x8C:
-	  stw       r31, 0x8(r1)
-	  li        r0, 0x1
-	  mr        r3, r23
-	  mr        r4, r24
-	  stw       r0, 0xC(r1)
-	  mr        r6, r25
-	  mr        r5, r26
-	  mr        r8, r27
-	  lwz       r12, 0x0(r23)
-	  mr        r7, r28
-	  mr        r10, r29
-	  mr        r9, r30
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r23
-	  li        r4, 0
-	  bl        -0x88824
-	  mr        r3, r24
-	  mr        r6, r25
-	  mr        r5, r26
-	  mr        r7, r23
-	  bl        0xA0B14
-	  mr        r3, r23
-	  lmw       r20, 0x10(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x100:
-	*/
+	TCounterRV* counter = new TCounterRV(const_cast<char**>(og::Screen::SujiTex32), flag1, flag2, arc);
+	P2ASSERTLINE(518, counter);
+	counter->init(screen, tag1, tag2, tag3, data, true);
+	counter->setPuyoAnim(false);
+	screen->addCallBack(tag1, counter);
+	return counter;
 }
 
 /*
@@ -1803,7 +1385,16 @@ void setTCounterRV(P2DScreen::Mgr*, u64, u64, u64, u32*, u16, u16, JKRArchive*)
  */
 TCounterRV::TCounterRV(char** a1, u16 a2, u16 a3, JKRArchive* arc)
     : CallBack_CounterRV(a1, a2, a3, arc)
+    , mEfxCountKiras(nullptr)
+    , mEnabled(false)
+    , _B1(false)
+    , mColor(255, 255, 255, 255)
 {
+	mEfxCountKiras = new efx2d::T2DCountKira*[mCounterLimit];
+	for (int i = 0; i < mCounterLimit; i++) {
+		mEfxCountKiras[i] = new efx2d::T2DCountKira;
+	}
+	setPuyoAnim(false);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1898,6 +1489,14 @@ TCounterRV::TCounterRV(char** a1, u16 a2, u16 a3, JKRArchive* arc)
  */
 void TCounterRV::update()
 {
+	og::Screen::CallBack_CounterRV::update();
+	for (int i = 0; i < mCounterLimit; i++) {
+		og::Screen::CounterKeta* keta = mCounters[i];
+		P2ASSERTLINE(557, keta);
+		volatile JUtility::TColor color  = mColor;
+		volatile JUtility::TColor color2 = mColor;
+		keta->mPicture->setWhite(mColor);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1968,72 +1567,18 @@ lbl_8039420C:
  * Address:	80394238
  * Size:	0000D8
  */
-void TCounterRV::setValue(bool, bool)
+void TCounterRV::setValue(bool flag1, bool flag2)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	lbz      r0, 0xb0(r3)
-	cmplwi   r0, 0
-	beq      lbl_803942E8
-	li       r0, 0
-	li       r4, 1
-	stb      r0, 0xb0(r27)
-	bl       setPuyoAnim__Q32og6Screen18CallBack_CounterRVFb
-	lwz      r3, 0x24(r27)
-	bl       CalcKeta__Q22og6ScreenFUl
-	lfs      f30, lbl_8051F0A8@sda21(r2)
-	clrlwi   r29, r3, 0x10
-	lfd      f31, lbl_8051F0D0@sda21(r2)
-	li       r28, 0
-	li       r30, 0
-	lis      r31, 0x4330
-	b        lbl_803942DC
-
-lbl_8039429C:
-	subf     r0, r28, r29
-	lwz      r3, 0x7c(r27)
-	xoris    r0, r0, 0x8000
-	stw      r31, 8(r1)
-	lwzx     r3, r3, r30
-	stw      r0, 0xc(r1)
-	lwz      r3, 8(r3)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051F0C0@sda21(r2)
-	fsubs    f0, f0, f31
-	lfs      f2, lbl_8051F0C4@sda21(r2)
-	lfs      f3, lbl_8051F0C8@sda21(r2)
-	fmuls    f4, f30, f0
-	bl       up__Q32og6Screen8ScaleMgrFffff
-	addi     r30, r30, 4
-	addi     r28, r28, 1
-
-lbl_803942DC:
-	cmpw     r28, r29
-	blt      lbl_8039429C
-	b        lbl_803942EC
-
-lbl_803942E8:
-	bl       setValue__Q32og6Screen18CallBack_CounterRVFbb
-
-lbl_803942EC:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (mEnabled) {
+		mEnabled = false;
+		setPuyoAnim(true);
+		u16 max = og::Screen::CalcKeta(mInitialDisplayValue);
+		for (int i = 0; i < max; i++) {
+			mCounters[i]->mScaleMgr->up(0.4f, 50.0f, 0.8f, 0.05f * f32(max - i));
+		}
+	} else {
+		og::Screen::CallBack_CounterRV::setValue(flag1, flag2);
+	}
 }
 
 /*
@@ -2174,6 +1719,11 @@ void TClearTexture::getEffectPosition(Vector2f&)
 TChallengeResult::TChallengeResult()
     : TTestBase("challengeResult")
 {
+	mResultDemoScreen = nullptr;
+	mResultScreen     = nullptr;
+	mSaveMgr          = nullptr;
+	mControls         = nullptr;
+	mDisp             = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -8044,6 +7594,15 @@ lbl_803995C0:
  */
 void TChallengeResultScene::doUserCallBackFunc(Resource::MgrCommand*)
 {
+	og::newScreen::makeLanguageResName(mName, "res_challengeResult.szs");
+	LoadResource::Arg arg(mName);
+	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
+	P2ASSERTLINE(2345, node);
+	JKRArchive* arc = node->mArchive;
+
+	TChallengeResult* obj = new TChallengeResult;
+	registObj(obj, arc);
+	mObject = obj;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

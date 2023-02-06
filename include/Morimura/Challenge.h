@@ -6,7 +6,10 @@
 #include "Screen/Enums.h"
 #include "og/Screen/ogScreen.h"
 #include "ebi/Save.h"
-struct JKRExpHeap;
+#include "Game/VsGame.h"
+#include "Game/ChallengeGame.h"
+#include "Morimura/mrUtil.h"
+#include "efx2d/T2DCavecomp.h"
 
 namespace og {
 namespace Screen {
@@ -94,7 +97,14 @@ struct TChallengePlayModeScreen : public TScreenBase {
 };
 
 struct TChallengeResultDemoScreen : public TScreenBase {
-	TChallengeResultDemoScreen(JKRArchive*, int);
+	TChallengeResultDemoScreen(JKRArchive* arc, int anims)
+	    : TScreenBase(arc, anims)
+	{
+		mAnimPane1 = nullptr;
+		mAnimPane2 = nullptr;
+		mAnimPane3 = nullptr;
+		mIsActive  = false;
+	}
 
 	virtual void create(const char*, u32);        // _08
 	virtual void update();                        // _0C
@@ -106,10 +116,10 @@ struct TChallengeResultDemoScreen : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
-	og::Screen::AnimPane* _18; // _18
-	og::Screen::AnimPane* _1C; // _1C
-	og::Screen::AnimPane* _20; // _20
-	u8 _24;                    // _24
+	og::Screen::AnimPane* mAnimPane1; // _18
+	og::Screen::AnimPane* mAnimPane2; // _1C
+	og::Screen::AnimPane* mAnimPane3; // _20
+	bool mIsActive;                   // _24
 };
 
 struct TChallengeScreen : public TScreenBase {
@@ -138,7 +148,7 @@ struct TChallengeResultScreen : public TChallengeScreen {
 
 	// _00     = VTBL
 	// _00-_2C = TChallengeScreen
-	og::Screen::AnimPane* _2C; // _2C
+	og::Screen::AnimPane* mResultAnimPane; // _2C
 };
 
 // unused struct? or entirely inlined
@@ -184,6 +194,7 @@ struct TChallengeEndCount2p : public TChallengeEndCount {
 };
 
 struct TChallengeResult : public TTestBase {
+	TChallengeResult();
 	struct VectorUnit {
 		VectorUnit() { }
 
@@ -192,8 +203,6 @@ struct TChallengeResult : public TTestBase {
 		f32 _08; // _08
 		f32 _0C; // _0C
 	};
-
-	TChallengeResult();
 
 	virtual ~TChallengeResult() { }                                                                          // _08 (weak)
 	virtual void doCreate(JKRArchive*);                                                                      // _4C
@@ -213,13 +222,48 @@ struct TChallengeResult : public TTestBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_78 = TTestBase
-	JKRArchive* _78;                               // _78
+	JKRArchive* mArchive;                          // _78
 	TChallengeResultScreen* mResultScreen;         // _7C
 	TChallengeResultDemoScreen* mResultDemoScreen; // _80
 	ebi::Save::TMgr* mSaveMgr;                     // _84
 	Controller* mControls;                         // _88
 	DispMemberChallengeResult* mDisp;              // _8C
-	u8 _90[0x16C];                                 // _90, TODO: fill these in from ghidra
+	og::Screen::CallBack_CounterRV* mCounters[11]; // _90
+	J2DPictureEx* mScissorPic;                     // _BC
+	J2DPane* mPaneList[6];                         // _C0
+	TMovePane* mMovePane[3];
+	J2DPane* mScorePane[3];
+	Vector2f mPosList1[3];
+	Vector2f mPoslist2[3];
+	f32 _120;
+	f32 _124;
+	VectorUnit mVecUnit[4]; // _128
+	f32 _168[4];
+	f32 mMoveTimer; // _178
+	int _17C[4];
+	J2DScreen* mScreens[5];               // _18C
+	TOffsetMsgSet* mMesgOffs;             // _1A0
+	efx2d::T2DCavecompLoop* mEfxCompLoop; // _1A4
+	int _1A8;
+	int mPokoscore;
+	int mTotalScore;
+	int mPokos;
+	int mTimeBonus;
+	int mPikiCount;
+	int score0;
+	u8 mFlags[4];
+	int mDemoState;
+	int _1CC[5];
+	bool mIsSaveOpen;
+	int _1E4;
+	u8 _1E8;
+	u8 _1E9;
+	f32 mTimer; // _1EC
+	f32 mSpeed;
+	f32 mTimer2;
+	Game::VsGame::StageList* mStageListVs; // _1F8
+	int _1FC;
+	Game::ChallengeGame::StageList* mStageListChal;
 };
 
 struct TChallengeSelect : public TTestBase {
