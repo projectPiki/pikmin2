@@ -170,9 +170,9 @@ struct TTitleMgr : public CNode {
 	void setController(Controller*);
 	void inField(TObjBase*);
 	void inViewField(TObjBase*);
-	void isInViewField(TObjBase*);
+	bool isInViewField(TObjBase*);
 	void isOutViewField(Vector2f&, f32);
-	void isOutViewField(TObjBase*);
+	bool isOutViewField(TObjBase*);
 	Vector2f getPosOutOfViewField();
 	void start();
 	void breakup();

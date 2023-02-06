@@ -33,17 +33,20 @@ struct TParam : public TParamBase {
 	Parm<f32> mControlStateTime; // _1C4, kg14
 };
 
-struct TAnimFolder {
-	virtual void getAnimRes(long); // _08 (weak)
+struct TAnimFolder : public E3DAnimFolderBase {
+	virtual E3DAnimRes* getAnimRes(long); // _08 (weak)
+
+	void load(J3DModelData*, JKRArchive*);
 
 	// _00 = VTBL
-	E3DAnimRes mAnims[2]; // _04
+	E3DAnimRes mAnims[2]; // _04 - - move, wait
 };
 
 struct TAnimator {
 	TAnimator();
 
 	void setArchive(JKRArchive*);
+	J3DModel* newJ3DModel();
 
 	TAnimFolder mAnimFolder;  // _00
 	J3DModelData* mModelData; // _84
@@ -65,7 +68,24 @@ struct TMgr : public CNode {
 };
 
 struct TUnit : public TObjBase {
-	enum enumState { UNKNOWN };
+	enum enumState { UNKNOWN, UNKNOWN_5 = 5 };
+		inline TUnit()
+	{
+		mCounter = 0; 
+		mCounter2 = 0; 
+		mAnim._0C = nullptr;
+		mAnim.pAnimFolder_0x10 = nullptr;
+		mTargetPos   = Vector2f(0.0f);
+		mTargetAngle = Vector2f(1.0f, 0.0f);
+		u32 time  = 0.0f / sys->mDeltaTime;
+		mCounter = time;
+		mCounter2  = time;
+		mControl = nullptr;
+		mManager      = nullptr;
+		mStateID = 0;
+		mActionID = -1;
+	}
+
 
 	virtual u32 getCreatureType(); // _08 (weak)
 	virtual bool isCalc();         // _0C
@@ -81,11 +101,15 @@ struct TUnit : public TObjBase {
 
 	// _00     = VTBL
 	// _00-_2C = TObjBase
-	u8 _2C[0x18];         // _2C, unknown
+	Vector2f mTargetPos;   // _2C
+	Vector2f mTargetAngle; // _34
+	u32 mCounter;         // _3C
+	u32 mCounter2;         // _40
 	Controller* mControl; // _44
 	TMgr* mManager;       // _48
 	E3DAnimCtrl mAnim;    // _4C
-	u8 _60[0x8];          // _60, unknown
+	s32 mStateID;          // _60
+	u32 mActionID;          // _64
 };
 } // namespace Kogane
 } // namespace title
