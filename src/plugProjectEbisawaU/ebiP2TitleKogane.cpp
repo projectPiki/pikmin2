@@ -5,8 +5,7 @@
 #include "Controller.h"
 #include "Dolphin/rand.h"
 #include "trig.h"
-#define _(x)        (x)
-
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -250,7 +249,7 @@ static const char ebiP2TitleKoganeName[]  = "ebiP2TitleKogane";
 Kogane::TMgr::TMgr()
     : CNode("KoganeMgr")
 {
-    mAnimator = new TAnimator;
+	mAnimator = new TAnimator;
 	mObject   = new TUnit;
 }
 
@@ -272,7 +271,6 @@ void Kogane::TMgr::setArchive(JKRArchive* arc)
  */
 void Kogane::TMgr::initUnit() { mObject->init(this); }
 
-
 /*
  * --INFO--
  * Address:	........
@@ -288,10 +286,7 @@ void Kogane::TAnimFolder::load(J3DModelData*, JKRArchive*)
  * Address:	803E7518
  * Size:	000068
  */
-Kogane::TAnimator::TAnimator()
-{
-    mModelData = nullptr;
-}
+Kogane::TAnimator::TAnimator() { mModelData = nullptr; }
 /*
  * --INFO--
  * Address:	803E7580
@@ -302,21 +297,23 @@ void Kogane::TAnimator::setArchive(JKRArchive* arc)
 	void* file = arc->getResource("kogane/kogane_title.bmd");
 	P2ASSERTLINE(0x75, file);
 	mModelData = J3DModelLoaderDataBase::load(file, 0x240030);
-    
-    for (u16 i = 0; i < (mModelData->mShapeTable).mCount; i++) 
-    { 
-        mModelData->mShapeTable.mItems[i]->mFlags = (mModelData->mShapeTable.mItems[i]->mFlags & 0xFFFF0FFF)|0x2000 ;
 
-    }
+	for (u16 i = 0; i < (mModelData->mShapeTable).mCount; i++) {
+		mModelData->mShapeTable.mItems[i]->mFlags = (mModelData->mShapeTable.mItems[i]->mFlags & 0xFFFF0FFF) | 0x2000;
+	}
 	mModelData->newSharedDisplayList(0x40000);
-    mModelData->makeSharedDL();
-    mAnimFolder.mAnims[0].load(mModelData,arc,"kogane/kogane_move.bck");
-    mAnimFolder.mAnims[0].mMode = 1;
-    mAnimFolder.mAnims[1].load(mModelData,arc,"kogane/kogane_wait.bck");
-    mAnimFolder.mAnims[1].mMode = 1;
-
-
+	mModelData->makeSharedDL();
+	mAnimFolder.mAnims[0].load(mModelData, arc, "kogane/kogane_move.bck");
+	mAnimFolder.mAnims[0].mMode = 1;
+	mAnimFolder.mAnims[1].load(mModelData, arc, "kogane/kogane_wait.bck");
+	mAnimFolder.mAnims[1].mMode = 1;
 }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000078
+ */
 J3DModel* Kogane::TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x20000, 1); }
 
 /*
@@ -324,10 +321,7 @@ J3DModel* Kogane::TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x2
  * Address:	803E769C
  * Size:	000008
  */
-void Kogane::TUnit::setController(Controller* a1)
-{
-	mControl = a1;
-}
+void Kogane::TUnit::setController(Controller* a1) { mControl = a1; }
 /*
  * --INFO--
  * Address:	803E76A4
@@ -335,8 +329,8 @@ void Kogane::TUnit::setController(Controller* a1)
  */
 void Kogane::TUnit::init(TMgr* mgr)
 {
-    mManager = mgr;
-    mModel   = mManager->mAnimator->newJ3DModel();
+	mManager = mgr;
+	mModel   = mManager->mAnimator->newJ3DModel();
 	mAnim.setAnimFolder(&mManager->mAnimator->mAnimFolder);
 
 	mPos      = titleMgr->getPosOutOfViewField();
@@ -366,10 +360,9 @@ void Kogane::TUnit::startZigzagWalk(Vector2f& pos1, Vector2f& pos2)
  */
 void Kogane::TUnit::goHome()
 {
-    if (mStateID != 0)
-    {
-        startState((enumState)5);
-    }
+	if (mStateID != 0) {
+		startState((enumState)5);
+	}
 }
 
 /*
@@ -377,31 +370,21 @@ void Kogane::TUnit::goHome()
  * Address:	803E7814
  * Size:	000024
  */
-void Kogane::TUnit::outOfCalc()
-{
-	startState((enumState)0);
-}
+void Kogane::TUnit::outOfCalc() { startState((enumState)0); }
 
 /*
  * --INFO--
  * Address:	803E7838
  * Size:	000014
  */
-bool Kogane::TUnit::isCalc()
-{
-	return (bool) mStateID != 0;
-}
+bool Kogane::TUnit::isCalc() { return (bool)mStateID != 0; }
 
 /*
  * --INFO--
  * Address:	803E784C
  * Size:	000014
  */
-bool Kogane::TUnit::isController()
-{
-    return (u8) (mStateID == 6);
-};
-
+bool Kogane::TUnit::isController() { return (u8)(mStateID == 6); };
 
 /*
  * --INFO--
@@ -411,18 +394,17 @@ bool Kogane::TUnit::isController()
 void Kogane::TUnit::startState(enumState state)
 {
 
-    mStateID = state;
-    switch(state)
-    {
-        case KSTATE_Inactive: 
+	mStateID = state;
+	switch (state) {
+	case KSTATE_Inactive:
 		mPos = title::titleMgr->getPosOutOfViewField();
 
-        case KSTATE_Controlled: 
+	case KSTATE_Controlled:
 		u32 time  = mManager->mParams.mControlStateTime.mValue / sys->mDeltaTime;
 		mCounter  = time;
 		mCounter2 = time;
-        break;
-        case KSTATE_Wait: 
+		break;
+	case KSTATE_Wait:
 		f32 max, min;
 		min       = mManager->mParams.mMinWaitTime.mValue;
 		max       = mManager->mParams.mMaxWaitTime.mValue;
@@ -430,13 +412,13 @@ void Kogane::TUnit::startState(enumState state)
 		mCounter  = time2;
 		mCounter2 = time2;
 		break;
-        case KSTATE_Turn: 
+	case KSTATE_Turn:
 		f32 angle    = mManager->mParams.mWalkRandomAngle.mValue;
 		f32 line     = JMath::atanTable_.atan2_(mTargetPos.y - mPos.y, mTargetPos.x - mPos.x);
 		f32 test     = angle * DEG2RAD * PI * (randFloat() * 2.0f + -1.0f) + line;
 		mTargetAngle = Vector2f(pikmin2_cosf(test), pikmin2_sinf(test));
 		break;
-        case KSTATE_Walk:
+	case KSTATE_Walk:
 		f32 max2, min2;
 		max2 = mManager->mParams.mMaxMoveTime.mValue;
 		min2 = mManager->mParams.mMinMoveTime.mValue;
@@ -446,7 +428,7 @@ void Kogane::TUnit::startState(enumState state)
 		mCounter2 = time3;
 		break;
 
-	    case KSTATE_4: 
+	case KSTATE_4:
 		Vector2f negPos(-mPos.x, -mPos.y);
 		f32 len = _sqrtf(negPos.x * negPos.x + negPos.y * negPos.y);
 		if (len != 0.0f) {
@@ -456,10 +438,8 @@ void Kogane::TUnit::startState(enumState state)
 		}
 		mAngle = negPos;
 		break;
-
-    }
+	}
 };
-
 
 /*
  * --INFO--
@@ -468,261 +448,190 @@ void Kogane::TUnit::startState(enumState state)
  */
 void Kogane::TUnit::update()
 {
-    if (!isCalc())
+	if (!isCalc())
 		return;
-        
-    if ( (mStateID != KSTATE_Inactive) && (mStateID != KSTATE_5) && (mStateID != KSTATE_4)) 
-    {
-        if (mControl && mControl->mSStick.mStickMag > 0.7f) {
-            startState(KSTATE_Controlled);
-        }
-    }
 
-    s32 actionId = (s32)mActionID;
-    switch(mStateID) {
-        case KSTATE_Controlled: {
-            if (mCounter != 0) {
-                mCounter--;
-            }
-            mActionID = 0;
-            if (mControl != nullptr) {
-                f32 stickX = mControl->mSStick.mXPos;
-                if (FABS(stickX) > 0.7f) {
-                    
-                    f32 turnProduct = stickX * mManager->mParams.mTurnRate.mValue;
+	if ((mStateID != KSTATE_Inactive) && (mStateID != KSTATE_5) && (mStateID != KSTATE_4)) {
+		if (mControl && mControl->mSStick.mStickMag > 0.7f) {
+			startState(KSTATE_Controlled);
+		}
+	}
 
-                    f32 angleX = -mAngle.x;
-                    f32 angleY = mAngle.y;
-                    f32 yProduct = (angleY * turnProduct);
-                    f32 xProduct = (angleX * turnProduct);
-                    mAngle = Vector2f(
-                        mAngle.x + yProduct, mAngle.y + xProduct
-                    );
-                    f32 val = _sqrtfvec(mAngle); 
-                    if (val != 0.0) 
-                    {
-                        mAngle.x = mAngle.x * (1.0f / val);
-                        mAngle.y = mAngle.y * (1.0f / val);
-                    }
-                    mActionID = 1;
+	s32 actionId = (s32)mActionID;
+	switch (mStateID) {
+	case KSTATE_Controlled: {
+		if (mCounter != 0) {
+			mCounter--;
+		}
+		mActionID = 0;
+		if (mControl != nullptr) {
+			f32 stickX = mControl->mSStick.mXPos;
+			if (FABS(stickX) > 0.7f) {
 
+				f32 turnProduct = stickX * mManager->mParams.mTurnRate.mValue;
 
-                }
+				f32 angleX   = -mAngle.x;
+				f32 angleY   = mAngle.y;
+				f32 yProduct = (angleY * turnProduct);
+				f32 xProduct = (angleX * turnProduct);
+				mAngle       = Vector2f(mAngle.x + yProduct, mAngle.y + xProduct);
+				f32 val      = _sqrtfvec(mAngle);
+				if (val != 0.0) {
+					mAngle.x = mAngle.x * (1.0f / val);
+					mAngle.y = mAngle.y * (1.0f / val);
+				}
+				mActionID = 1;
+			}
+		}
+		f32 stickY = mControl->mSStick.mYPos;
+		if (stickY > 0.7f) {
+			f32 paramProd = stickY * mParms[0];
+			f32 xProd     = (mAngle.x * paramProd);
+			f32 yProd     = (mAngle.y * paramProd);
+			mPos          = Vector2f(mPos.x + xProd, mPos.y + yProd);
+			mActionID     = 2;
+		}
+		if (mCounter == 0) {
+			startState(KSTATE_5);
+		}
 
-            }
-            f32 stickY = mControl->mSStick.mYPos;
-            if (stickY > 0.7f) {
-                f32 paramProd = stickY * mParms[0];
-                f32 xProd = (mAngle.x * paramProd);
-                f32 yProd = (mAngle.y * paramProd);
-                mPos = Vector2f(mPos.x + xProd, mPos.y + yProd);
-                mActionID = 2;
-            }
-            if (mCounter == 0) {
-                startState(KSTATE_5);
-            }
+	} break;
+	case KSTATE_Wait: {
+		mActionID = 0;
+		if (mCounter != 0) {
+			mCounter--;
+		}
+		if (mCounter == 0) {
+			startState(KSTATE_Turn);
+		}
+	} break;
+	case KSTATE_Turn: {
+		mActionID    = 1;
+		f32 product  = 60.0f * sys->mDeltaTime * 0.5f * 0.1f;
+		f32 xProduct = mTargetAngle.x * product;
+		f32 yProduct = mTargetAngle.y * product;
+		mAngle       = Vector2f(mAngle.x + xProduct, mAngle.y + yProduct);
+		f32 val      = _sqrtfvec(mAngle);
+		if (val != 0.0) {
+			mAngle.x = mAngle.x * (1.0f / val);
+			mAngle.y = mAngle.y * (1.0f / val);
+		}
+		f32 yDiff   = mAngle.y - mTargetAngle.y;
+		f32 xDiff   = mAngle.x - mTargetAngle.x;
+		f32 yDiffSq = yDiff * yDiff;
+		f32 xDiffSq = xDiff * xDiff;
+		f32 len     = (xDiff * xDiff) + yDiffSq;
+		len         = _sqrtf(len);
+		if (len < 0.1) {
+			startState(KSTATE_Walk);
+		}
+	} break;
+	case KSTATE_Walk: {
+		mActionID = 2;
+		if (mCounter != 0) {
+			mCounter--;
+		}
+		if (mCounter == 0) {
+			startState(KSTATE_Wait);
+		} else {
+			f32 xParam = mAngle.x * mParms[0];
+			f32 yParam = mAngle.y * mParms[0];
+			mPos       = Vector2f(mPos.x + xParam, mPos.y + yParam);
+		}
 
-        }
-        break;
-        case KSTATE_Wait: {
-            mActionID = 0;
-            if (mCounter != 0) {
-                mCounter--;
-            }
-            if (mCounter == 0) {
-                startState(KSTATE_Turn);
-            }
-        }
-        break;
-        case KSTATE_Turn: {
-            mActionID = 1;
-            f32 product = 60.0f * sys->mDeltaTime * 0.5f * 0.1f ;
-            f32 xProduct = mTargetAngle.x * product;
-            f32 yProduct = mTargetAngle.y * product;
-            mAngle = Vector2f(mAngle.x + xProduct, mAngle.y + yProduct);
-            f32 val = _sqrtfvec(mAngle); 
-            if (val != 0.0) 
-            {
-                mAngle.x = mAngle.x * (1.0f / val);
-                mAngle.y = mAngle.y * (1.0f / val);
-            }
-            f32 yDiff = mAngle.y - mTargetAngle.y;
-            f32 xDiff = mAngle.x - mTargetAngle.x;
-            f32 yDiffSq = yDiff * yDiff;
-            f32 xDiffSq = xDiff * xDiff;
-            f32 len = (xDiff * xDiff) + yDiffSq;
-            len = _sqrtf(len);
-            if (len < 0.1) {
-                startState(KSTATE_Walk);
-            }
-        }
-        break;
-        case KSTATE_Walk: { 
-            mActionID = 2;
-            if (mCounter != 0) {
-                mCounter--;
-            }
-            if (mCounter == 0) {
-                startState(KSTATE_Wait);
-            }
-            else {
-                f32 xParam = mAngle.x * mParms[0];
-                f32 yParam = mAngle.y * mParms[0];
-                mPos = Vector2f(mPos.x + xParam, mPos.y + yParam);
-            }
-            
-        }
-        break;
-        case KSTATE_4: {
-            mActionID = 2;
-            f32 val = _sqrtfvec(mAngle); 
-            if (val != 0.0) 
-            {
-                mAngle.x = mAngle.x * (1.0f / val);
-                mAngle.y = mAngle.y * (1.0f / val);
-            }
-            f32 xParam = mAngle.x * mParms[0];
-            f32 yParam = mAngle.y * mParms[0];
-            mPos = Vector2f(mPos.x + xParam, mPos.y + yParam);
-        }
-        break;
-        case KSTATE_5: { 
-            mActionID = 2;
-            f32 val = _sqrtfvec(mAngle);  
-            if (val != 0.0) 
-            {
-                mAngle.x = mAngle.x * (1.0f / val);
-                mAngle.y = mAngle.y * (1.0f / val);
-            }
-            f32 xParam = mAngle.x * mParms[0];
-            f32 yParam = mAngle.y * mParms[0];
-            mPos = Vector2f(mPos.x + xParam, mPos.y + yParam);
-        }
-        break;
-    } 
+	} break;
+	case KSTATE_4: {
+		mActionID = 2;
+		f32 val   = _sqrtfvec(mAngle);
+		if (val != 0.0) {
+			mAngle.x = mAngle.x * (1.0f / val);
+			mAngle.y = mAngle.y * (1.0f / val);
+		}
+		f32 xParam = mAngle.x * mParms[0];
+		f32 yParam = mAngle.y * mParms[0];
+		mPos       = Vector2f(mPos.x + xParam, mPos.y + yParam);
+	} break;
+	case KSTATE_5: {
+		mActionID = 2;
+		f32 val   = _sqrtfvec(mAngle);
+		if (val != 0.0) {
+			mAngle.x = mAngle.x * (1.0f / val);
+			mAngle.y = mAngle.y * (1.0f / val);
+		}
+		f32 xParam = mAngle.x * mParms[0];
+		f32 yParam = mAngle.y * mParms[0];
+		mPos       = Vector2f(mPos.x + xParam, mPos.y + yParam);
+	} break;
+	}
 
-    switch(mStateID) {
-        case KSTATE_Inactive: 
-        mPos      = titleMgr->getPosOutOfViewField();
-        case KSTATE_4: 
-        if (titleMgr->isInViewField(this)) {
-            startState(KSTATE_Walk);
-        }
-        break;
-        case KSTATE_5: 
-        if (titleMgr->isOutViewField(this)) {
-            startState(KSTATE_Inactive);
-        }
-        break;
-        default:
-        titleMgr->inViewField(this);
-        break;
+	switch (mStateID) {
+	case KSTATE_Inactive:
+		mPos = titleMgr->getPosOutOfViewField();
+	case KSTATE_4:
+		if (titleMgr->isInViewField(this)) {
+			startState(KSTATE_Walk);
+		}
+		break;
+	case KSTATE_5:
+		if (titleMgr->isOutViewField(this)) {
+			startState(KSTATE_Inactive);
+		}
+		break;
+	default:
+		titleMgr->inViewField(this);
+		break;
+	}
+	if ((s32)mActionID != actionId) // Check if action has changed since begining of function call
+	{
+		switch (mActionID) {
+		case KOGANEACT_1: {
+			mAnim.init(0, 1.0);
+			mAnim.play();
 
-    }
-    if ((s32) mActionID != actionId) // Check if action has changed since begining of function call
-    {
-        switch(mActionID) {
-        case KOGANEACT_1: {
-            mAnim.init(0, 1.0);
-            mAnim.play();
+		} break;
+		case KOGANEACT_2: {
+			mAnim.init(0, 1.0);
+			mAnim.play();
 
-        }
-        break;
-        case KOGANEACT_2: {
-            mAnim.init(0, 1.0);
-            mAnim.play();
-            
-        }
-        break;
-        case KOGANEACT_0: {
-            mAnim.init(1, 1.0);
-            mAnim.play();
-        }
-        break;
-
-        }
-    }
-    calcModelBaseMtx_();
-    if (mAnim._0C != nullptr) {
-        switch(mAnim._08) {
-            case 1:
-            mAnim._00 += mAnim._04 * mAnim._0C->float_0x18;
-            if (mAnim._00 > mAnim._0C->mLoopEnd ) {
-                mAnim._00 -= mAnim._0C->mLoopEnd - mAnim._0C->mLoopStart;
-            }
-            break;
-            case 2:
-            mAnim._00 += mAnim._04 * mAnim._0C->float_0x18;
-            if (  mAnim._00 >=   mAnim._0C->float_0xC) {
-                mAnim._00 = mAnim._0C->float_0xC;
-                mAnim._08 = 3;
-            }
-            break;
-            case 0:
-            case 3:
-            case 4:
-            break;
-
-        }
-    }
-    J3DModel* model = mModel;
-    if (mAnim._0C != nullptr) {
-        mAnim._0C->pAnmTransform_0x0->mCurrentFrame  = mAnim._00;
-        model->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnim._0C->pMtxCalcAnm_0x4;
-        //mModel->mModelData
-    }
-    mModel->calc();
-    mModel->entry();
-    return mModel ->viewCalc();
+		} break;
+		case KOGANEACT_0: {
+			mAnim.init(1, 1.0);
+			mAnim.play();
+		} break;
+		}
+	}
+	calcModelBaseMtx_();
+	if (mAnim._0C != nullptr) {
+		switch (mAnim._08) {
+		case 1:
+			mAnim._00 += mAnim._04 * mAnim._0C->float_0x18;
+			if (mAnim._00 > mAnim._0C->mLoopEnd) {
+				mAnim._00 -= mAnim._0C->mLoopEnd - mAnim._0C->mLoopStart;
+			}
+			break;
+		case 2:
+			mAnim._00 += mAnim._04 * mAnim._0C->float_0x18;
+			if (mAnim._00 >= mAnim._0C->float_0xC) {
+				mAnim._00 = mAnim._0C->float_0xC;
+				mAnim._08 = 3;
+			}
+			break;
+		case 0:
+		case 3:
+		case 4:
+			break;
+		}
+	}
+	J3DModel* model = mModel;
+	if (mAnim._0C != nullptr) {
+		mAnim._0C->pAnmTransform_0x0->mCurrentFrame        = mAnim._00;
+		model->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnim._0C->pMtxCalcAnm_0x4;
+		// mModel->mModelData
+	}
+	mModel->calc();
+	mModel->entry();
+	return mModel->viewCalc();
 }
-
-/*
- * --INFO--
- * Address:	803E8264
- * Size:	00032C
- */
-Kogane::TParam::TParam()    
-    : mScale(this, 'b000', "スケール", 2.0f, 0.0f, 10.0f) 
-    , mCullRadius(this, 'b001', "カリング半径", 50.0f, 0.0f, 500.0f)
-    , mCollRadius(this, 'b002', "コリジョン半径", 50.0f, 0.0f, 500.0f)
-    , mPikiReactRadius(this, 'b003', "ピクミン反応半径", 150.0f, 0.0f, 500.0f)
-    , mWalkRandomAngle(this, 'kg00', "歩行ランダム角度", 60.0f, 0.0f, 90.0f)
-    , mWalkSpeed(this, 'kg01', "歩行速度", 10.0f, 0.0f, 100.0f)
-    , mTurnRate(this, 'kg15', "旋回性能x5C", 0.1f, 0.0f, 1.0f) // x5C literal required for match
-    , mMinWaitTime(this, 'kg10', "待ち時間最小(秒)", 1.0f, 0.0f, 10.0f)
-    , mMaxWaitTime(this, 'kg11', "待ち時間最大(秒)", 1.5f, 0.0f, 10.0f)
-    , mMinMoveTime(this, 'kg12', "移動時間最小(秒)", 0.3f, 0.0f, 10.0f)
-    , mMaxMoveTime(this, 'kg13', "移動時間最大(秒)", 1.0f, 0.0f, 10.0f)
-    , mControlStateTime(this, 'kg14', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f) 
-{
-}
-
-/*
- * --INFO--
- * Address:	803E8590
- * Size:	000008
- */
-u32 Kogane::TUnit::getCreatureType() { return 0x5; }
-
-/*
- * --INFO--
- * Address:	803E8598
- * Size:	000014
- */
-E3DAnimRes* Kogane::TAnimFolder::getAnimRes(long id)  { return &mAnims[id]; }
-
-/*
- * --INFO--
- * Address:	803E85AC
- * Size:	000004
- */
-E3DAnimRes::E3DAnimRes() {
-    return;
- }
-
-
-
 
 } // namespace title
 } // namespace ebi
-

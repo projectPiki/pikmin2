@@ -45,13 +45,12 @@ inline f32 _lenVec2D(Vector2f& vec)
 	return _sqrtf(a.y + vec.x * vec.x);
 }
 
-
 inline f32 _sqrtfvec(Vector2f& vec) // function doesn't quite match usage in ebiP2TitleKogane
 {
-	f32 val =  (vec.x * vec.x)  + (vec.y * vec.y);
+	f32 val = (vec.x * vec.x) + (vec.y * vec.y);
 	if ((val > 0.0f)) {
-		f32 fmadds =  (vec.x * vec.x)  + (vec.y * vec.y);
-		if (fmadds > 0.0f){	
+		f32 fmadds = (vec.x * vec.x) + (vec.y * vec.y);
+		if (fmadds > 0.0f) {
 			f32 __sqrtf_h;
 			FRSQRTE(val, &__sqrtf_h);
 			val = __sqrtf_h * val;
@@ -59,7 +58,5 @@ inline f32 _sqrtfvec(Vector2f& vec) // function doesn't quite match usage in ebi
 	}
 	return val;
 }
-
-
 
 #endif

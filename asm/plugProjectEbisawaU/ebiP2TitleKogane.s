@@ -5,120 +5,142 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804974A0:
+.obj lbl_804974A0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_804974A0
 .balign 4
-lbl_804974AC:
+.obj lbl_804974AC, local
 	.asciz "ebiP2TitleKogane"
+.endobj lbl_804974AC
 .balign 4
-lbl_804974C0:
+.obj lbl_804974C0, local
 	.asciz "KoganeMgr"
+.endobj lbl_804974C0
 .balign 4
-lbl_804974CC: # Shift-JIS
+.obj lbl_804974CC, local
 	.4byte 0x83588350
 	.4byte 0x815B838B
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804974CC
 .balign 4
-lbl_804974D8: # Shift-JIS
+.obj lbl_804974D8, local
 	.4byte 0x834A838A
 	.4byte 0x8393834F
 	.4byte 0x94BC8C61
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804974D8
 .balign 4
-lbl_804974E8: # Shift-JIS
+.obj lbl_804974E8, local
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839394BC
-	.4byte 0x8C610000
+	.byte 0x8C, 0x61, 0x00
+.endobj lbl_804974E8
 .balign 4
-lbl_804974F8: # Shift-JIS
+.obj lbl_804974F8, local
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x94BD899E
 	.4byte 0x94BC8C61
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804974F8
 .balign 4
-lbl_8049750C: # Shift-JIS
+.obj lbl_8049750C, local
 	.4byte 0x95E08D73
 	.4byte 0x83898393
 	.4byte 0x835F8380
 	.4byte 0x8A709378
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8049750C
 .balign 4
-lbl_80497520: # Shift-JIS
+.obj lbl_80497520, local
 	.4byte 0x95E08D73
 	.4byte 0x91AC9378
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80497520
 .balign 4
-lbl_8049752C: # Shift-JIS
+.obj lbl_8049752C, local
 	.4byte 0x90F989F1
 	.4byte 0x90AB945C
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8049752C
 .balign 4
-lbl_80497538: # Shift-JIS
+.obj lbl_80497538, local
 	.4byte 0x91D282BF
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x28956229
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80497538
 .balign 4
-lbl_8049754C: # Shift-JIS
+.obj lbl_8049754C, local
 	.4byte 0x91D282BF
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x28956229
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8049754C
 .balign 4
-lbl_80497560: # Shift-JIS
+.obj lbl_80497560, local
 	.4byte 0x88DA93AE
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x28956229
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80497560
 .balign 4
-lbl_80497574: # Shift-JIS
+.obj lbl_80497574, local
 	.4byte 0x88DA93AE
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x28956229
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80497574
 .balign 4
-lbl_80497588: # Shift-JIS
+.obj lbl_80497588, local
 	.4byte 0x83528393
 	.4byte 0x8367838D
 	.4byte 0x815B8389
 	.4byte 0x8FF391D4
 	.4byte 0x8E9E8AD4
 	.4byte 0x28956229
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80497588
 .balign 4
-lbl_804975A4:
+.obj lbl_804975A4, local
 	.asciz "param/param_kogane.txt"
+.endobj lbl_804975A4
 .balign 4
-lbl_804975BC:
+.obj lbl_804975BC, local
 	.asciz "kogane/kogane_move.bck"
+.endobj lbl_804975BC
 .balign 4
-lbl_804975D4:
+.obj lbl_804975D4, local
 	.asciz "kogane/kogane_wait.bck"
+.endobj lbl_804975D4
 .balign 4
-lbl_804975EC:
+.obj lbl_804975EC, local
 	.asciz "kogane/kogane_title.bmd"
+.endobj lbl_804975EC
 .balign 4
-lbl_80497604:
+.obj lbl_80497604, local
 	.asciz "ebiP2TitleKogane.cpp"
+.endobj lbl_80497604
 .balign 4
-lbl_8049761C:
+.obj lbl_8049761C, local
 	.asciz "P2Assert"
+.endobj lbl_8049761C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804E9E1C:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804E9E1C, local
 	.4byte .L_803E78A8
 	.4byte .L_803E78E8
 	.4byte .L_803E7940
@@ -126,88 +148,114 @@ lbl_804E9E1C:
 	.4byte .L_803E7AB0
 	.4byte .L_803E7B0C
 	.4byte .L_803E78C4
-.global __vt__Q43ebi5title6Kogane5TUnit
-__vt__Q43ebi5title6Kogane5TUnit:
+.endobj lbl_804E9E1C
+.obj __vt__Q43ebi5title6Kogane5TUnit, global
 	.4byte 0
 	.4byte 0
 	.4byte getCreatureType__Q43ebi5title6Kogane5TUnitFv
 	.4byte isCalc__Q43ebi5title6Kogane5TUnitFv
-.global __vt__Q43ebi5title6Kogane11TAnimFolder
-__vt__Q43ebi5title6Kogane11TAnimFolder:
+.endobj __vt__Q43ebi5title6Kogane5TUnit
+.obj __vt__Q43ebi5title6Kogane11TAnimFolder, weak
 	.4byte 0
 	.4byte 0
 	.4byte getAnimRes__Q43ebi5title6Kogane11TAnimFolderFl
-.global __vt__Q23ebi17E3DAnimFolderBase
-__vt__Q23ebi17E3DAnimFolderBase:
+.endobj __vt__Q43ebi5title6Kogane11TAnimFolder
+.obj __vt__Q23ebi17E3DAnimFolderBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj __vt__Q23ebi17E3DAnimFolderBase
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FD00:
+.obj lbl_8051FD00, local
 	.float 0.0
-lbl_8051FD04:
+.endobj lbl_8051FD00
+.obj lbl_8051FD04, local
 	.float -1.0
-lbl_8051FD08:
+.endobj lbl_8051FD04
+.obj lbl_8051FD08, local
 	.float 1.0
+.endobj lbl_8051FD08
 .balign 4
-lbl_8051FD0C:
+.obj lbl_8051FD0C, local
 	.asciz "Parms"
+.endobj lbl_8051FD0C
 .balign 4
-lbl_8051FD14:
+.obj lbl_8051FD14, local
 	.float 2.0
-lbl_8051FD18:
+.endobj lbl_8051FD14
+.obj lbl_8051FD18, local
 	.float 10.0
-lbl_8051FD1C:
+.endobj lbl_8051FD18
+.obj lbl_8051FD1C, local
 	.float 50.0
-lbl_8051FD20:
+.endobj lbl_8051FD1C
+.obj lbl_8051FD20, local
 	.float 500.0
-lbl_8051FD24:
+.endobj lbl_8051FD20
+.obj lbl_8051FD24, local
 	.float 150.0
-lbl_8051FD28:
+.endobj lbl_8051FD24
+.obj lbl_8051FD28, local
 	.float 60.0
-lbl_8051FD2C:
+.endobj lbl_8051FD28
+.obj lbl_8051FD2C, local
 	.float 90.0
-lbl_8051FD30:
+.endobj lbl_8051FD2C
+.obj lbl_8051FD30, local
 	.float 100.0
-lbl_8051FD34:
+.endobj lbl_8051FD30
+.obj lbl_8051FD34, local
 	.float 0.1
-lbl_8051FD38:
+.endobj lbl_8051FD34
+.obj lbl_8051FD38, local
 	.float 1.5
-lbl_8051FD3C:
+.endobj lbl_8051FD38
+.obj lbl_8051FD3C, local
 	.float 0.3
-lbl_8051FD40:
+.endobj lbl_8051FD3C
+.obj lbl_8051FD40, local
 	.float 5.0
-lbl_8051FD44:
+.endobj lbl_8051FD40
+.obj lbl_8051FD44, local
 	.float 32767.0
-lbl_8051FD48: #pi
+.endobj lbl_8051FD44
+.obj lbl_8051FD48, local
 	.float 3.1415927
-lbl_8051FD4C:
+.endobj lbl_8051FD48
+.obj lbl_8051FD4C, local
 	.float 0.0055555557
-lbl_8051FD50:
+.endobj lbl_8051FD4C
+.obj lbl_8051FD50, local
 	.float -325.9493
-lbl_8051FD54:
+.endobj lbl_8051FD50
+.obj lbl_8051FD54, local
 	.float 325.9493
+.endobj lbl_8051FD54
 .balign 8
-lbl_8051FD58:
+.obj lbl_8051FD58, local
 	.4byte 0x43300000
 	.4byte 0x80000000
-lbl_8051FD60:
+.endobj lbl_8051FD58
+.obj lbl_8051FD60, local
 	.float 0.7
-lbl_8051FD64:
+.endobj lbl_8051FD60
+.obj lbl_8051FD64, local
 	.float 0.5
+.endobj lbl_8051FD64
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q43ebi5title6Kogane4TMgrFv
-__ct__Q43ebi5title6Kogane4TMgrFv:
+.fn __ct__Q43ebi5title6Kogane4TMgrFv, global
 /* 803E7358 003E4298  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E735C 003E429C  7C 08 02 A6 */	mflr r0
 /* 803E7360 003E42A0  3C 80 80 4F */	lis r4, __vt__5CNode@ha
@@ -292,9 +340,9 @@ __ct__Q43ebi5title6Kogane4TMgrFv:
 /* 803E7494 003E43D4  7C 08 03 A6 */	mtlr r0
 /* 803E7498 003E43D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E749C 003E43DC  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Kogane4TMgrFv
 
-.global setArchive__Q43ebi5title6Kogane4TMgrFP10JKRArchive
-setArchive__Q43ebi5title6Kogane4TMgrFP10JKRArchive:
+.fn setArchive__Q43ebi5title6Kogane4TMgrFP10JKRArchive, global
 /* 803E74A0 003E43E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E74A4 003E43E4  7C 08 02 A6 */	mflr r0
 /* 803E74A8 003E43E8  3C A0 80 49 */	lis r5, lbl_804975A4@ha
@@ -315,9 +363,9 @@ setArchive__Q43ebi5title6Kogane4TMgrFP10JKRArchive:
 /* 803E74E4 003E4424  7C 08 03 A6 */	mtlr r0
 /* 803E74E8 003E4428  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E74EC 003E442C  4E 80 00 20 */	blr 
+.endfn setArchive__Q43ebi5title6Kogane4TMgrFP10JKRArchive
 
-.global initUnit__Q43ebi5title6Kogane4TMgrFv
-initUnit__Q43ebi5title6Kogane4TMgrFv:
+.fn initUnit__Q43ebi5title6Kogane4TMgrFv, global
 /* 803E74F0 003E4430  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E74F4 003E4434  7C 08 02 A6 */	mflr r0
 /* 803E74F8 003E4438  7C 64 1B 78 */	mr r4, r3
@@ -328,9 +376,9 @@ initUnit__Q43ebi5title6Kogane4TMgrFv:
 /* 803E750C 003E444C  7C 08 03 A6 */	mtlr r0
 /* 803E7510 003E4450  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E7514 003E4454  4E 80 00 20 */	blr 
+.endfn initUnit__Q43ebi5title6Kogane4TMgrFv
 
-.global __ct__Q43ebi5title6Kogane9TAnimatorFv
-__ct__Q43ebi5title6Kogane9TAnimatorFv:
+.fn __ct__Q43ebi5title6Kogane9TAnimatorFv, global
 /* 803E7518 003E4458  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E751C 003E445C  7C 08 02 A6 */	mflr r0
 /* 803E7520 003E4460  3C 80 80 4F */	lis r4, __vt__Q23ebi17E3DAnimFolderBase@ha
@@ -357,9 +405,9 @@ __ct__Q43ebi5title6Kogane9TAnimatorFv:
 /* 803E7574 003E44B4  7C 08 03 A6 */	mtlr r0
 /* 803E7578 003E44B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E757C 003E44BC  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Kogane9TAnimatorFv
 
-.global setArchive__Q43ebi5title6Kogane9TAnimatorFP10JKRArchive
-setArchive__Q43ebi5title6Kogane9TAnimatorFP10JKRArchive:
+.fn setArchive__Q43ebi5title6Kogane9TAnimatorFP10JKRArchive, global
 /* 803E7580 003E44C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E7584 003E44C4  7C 08 02 A6 */	mflr r0
 /* 803E7588 003E44C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -434,14 +482,14 @@ setArchive__Q43ebi5title6Kogane9TAnimatorFP10JKRArchive:
 /* 803E7690 003E45D0  7C 08 03 A6 */	mtlr r0
 /* 803E7694 003E45D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E7698 003E45D8  4E 80 00 20 */	blr 
+.endfn setArchive__Q43ebi5title6Kogane9TAnimatorFP10JKRArchive
 
-.global setController__Q43ebi5title6Kogane5TUnitFP10Controller
-setController__Q43ebi5title6Kogane5TUnitFP10Controller:
+.fn setController__Q43ebi5title6Kogane5TUnitFP10Controller, global
 /* 803E769C 003E45DC  90 83 00 44 */	stw r4, 0x44(r3)
 /* 803E76A0 003E45E0  4E 80 00 20 */	blr 
+.endfn setController__Q43ebi5title6Kogane5TUnitFP10Controller
 
-.global init__Q43ebi5title6Kogane5TUnitFPQ43ebi5title6Kogane4TMgr
-init__Q43ebi5title6Kogane5TUnitFPQ43ebi5title6Kogane4TMgr:
+.fn init__Q43ebi5title6Kogane5TUnitFPQ43ebi5title6Kogane4TMgr global
 /* 803E76A4 003E45E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E76A8 003E45E8  7C 08 02 A6 */	mflr r0
 /* 803E76AC 003E45EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -504,9 +552,9 @@ init__Q43ebi5title6Kogane5TUnitFPQ43ebi5title6Kogane4TMgr:
 /* 803E778C 003E46CC  7C 08 03 A6 */	mtlr r0
 /* 803E7790 003E46D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E7794 003E46D4  4E 80 00 20 */	blr 
+.endfn init__Q43ebi5title6Kogane5TUnitFPQ43ebi5title6Kogane4TMgr
 
-.global "startZigzagWalk__Q43ebi5title6Kogane5TUnitFR10Vector2<f>R10Vector2<f>"
-"startZigzagWalk__Q43ebi5title6Kogane5TUnitFR10Vector2<f>R10Vector2<f>":
+.fn startZigzagWalk__Q43ebi5title6Kogane5TUnitFR10Vector2<f>R10Vector2<f>, global
 /* 803E7798 003E46D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E779C 003E46DC  7C 08 02 A6 */	mflr r0
 /* 803E77A0 003E46E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -526,9 +574,9 @@ init__Q43ebi5title6Kogane5TUnitFPQ43ebi5title6Kogane4TMgr:
 /* 803E77D8 003E4718  7C 08 03 A6 */	mtlr r0
 /* 803E77DC 003E471C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E77E0 003E4720  4E 80 00 20 */	blr 
+.endfn startZigzagWalk__Q43ebi5title6Kogane5TUnitFR10Vector2<f>R10Vector2<f>
 
-.global goHome__Q43ebi5title6Kogane5TUnitFv
-goHome__Q43ebi5title6Kogane5TUnitFv:
+.fn goHome__Q43ebi5title6Kogane5TUnitFv, global
 /* 803E77E4 003E4724  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E77E8 003E4728  7C 08 02 A6 */	mflr r0
 /* 803E77EC 003E472C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -542,9 +590,9 @@ goHome__Q43ebi5title6Kogane5TUnitFv:
 /* 803E7808 003E4748  7C 08 03 A6 */	mtlr r0
 /* 803E780C 003E474C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E7810 003E4750  4E 80 00 20 */	blr 
+.endfn goHome__Q43ebi5title6Kogane5TUnitFv
 
-.global outOfCalc__Q43ebi5title6Kogane5TUnitFv
-outOfCalc__Q43ebi5title6Kogane5TUnitFv:
+.fn outOfCalc__Q43ebi5title6Kogane5TUnitFv, global
 /* 803E7814 003E4754  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E7818 003E4758  7C 08 02 A6 */	mflr r0
 /* 803E781C 003E475C  38 80 00 00 */	li r4, 0
@@ -554,25 +602,25 @@ outOfCalc__Q43ebi5title6Kogane5TUnitFv:
 /* 803E782C 003E476C  7C 08 03 A6 */	mtlr r0
 /* 803E7830 003E4770  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E7834 003E4774  4E 80 00 20 */	blr 
+.endfn outOfCalc__Q43ebi5title6Kogane5TUnitFv
 
-.global isCalc__Q43ebi5title6Kogane5TUnitFv
-isCalc__Q43ebi5title6Kogane5TUnitFv:
+.fn isCalc__Q43ebi5title6Kogane5TUnitFv, global
 /* 803E7838 003E4778  80 63 00 60 */	lwz r3, 0x60(r3)
 /* 803E783C 003E477C  7C 03 00 D0 */	neg r0, r3
 /* 803E7840 003E4780  7C 00 1B 78 */	or r0, r0, r3
 /* 803E7844 003E4784  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 803E7848 003E4788  4E 80 00 20 */	blr 
+.endfn isCalc__Q43ebi5title6Kogane5TUnitFv
 
-.global isController__Q43ebi5title6Kogane5TUnitFv
-isController__Q43ebi5title6Kogane5TUnitFv:
+.fn isController__Q43ebi5title6Kogane5TUnitFv, global
 /* 803E784C 003E478C  80 03 00 60 */	lwz r0, 0x60(r3)
 /* 803E7850 003E4790  20 00 00 06 */	subfic r0, r0, 6
 /* 803E7854 003E4794  7C 00 00 34 */	cntlzw r0, r0
 /* 803E7858 003E4798  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 803E785C 003E479C  4E 80 00 20 */	blr 
+.endfn isController__Q43ebi5title6Kogane5TUnitFv
 
-.global startState__Q43ebi5title6Kogane5TUnitFQ53ebi5title6Kogane5TUnit9enumState
-startState__Q43ebi5title6Kogane5TUnitFQ53ebi5title6Kogane5TUnit9enumState:
+.fn startState__Q43ebi5title6Kogane5TUnitFQ53ebi5title6Kogane5TUnit9enumState, global
 /* 803E7860 003E47A0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803E7864 003E47A4  7C 08 02 A6 */	mflr r0
 /* 803E7868 003E47A8  90 01 00 64 */	stw r0, 0x64(r1)
@@ -766,9 +814,9 @@ startState__Q43ebi5title6Kogane5TUnitFQ53ebi5title6Kogane5TUnit9enumState:
 /* 803E7B24 003E4A64  7C 08 03 A6 */	mtlr r0
 /* 803E7B28 003E4A68  38 21 00 60 */	addi r1, r1, 0x60
 /* 803E7B2C 003E4A6C  4E 80 00 20 */	blr 
+.endfn startState__Q43ebi5title6Kogane5TUnitFQ53ebi5title6Kogane5TUnit9enumState
 
-.global update__Q43ebi5title6Kogane5TUnitFv
-update__Q43ebi5title6Kogane5TUnitFv:
+.fn update__Q43ebi5title6Kogane5TUnitFv, global
 /* 803E7B30 003E4A70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E7B34 003E4A74  7C 08 02 A6 */	mflr r0
 /* 803E7B38 003E4A78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1275,9 +1323,9 @@ update__Q43ebi5title6Kogane5TUnitFv:
 /* 803E8258 003E5198  7C 08 03 A6 */	mtlr r0
 /* 803E825C 003E519C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E8260 003E51A0  4E 80 00 20 */	blr 
+.endfn update__Q43ebi5title6Kogane5TUnitFv
 
-.global __ct__Q43ebi5title6Kogane6TParamFv
-__ct__Q43ebi5title6Kogane6TParamFv:
+.fn __ct__Q43ebi5title6Kogane6TParamFv, weak
 /* 803E8264 003E51A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E8268 003E51A8  7C 08 02 A6 */	mflr r0
 /* 803E826C 003E51AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1482,25 +1530,26 @@ __ct__Q43ebi5title6Kogane6TParamFv:
 /* 803E8584 003E54C4  7C 08 03 A6 */	mtlr r0
 /* 803E8588 003E54C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E858C 003E54CC  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Kogane6TParamFv
 
-.global getCreatureType__Q43ebi5title6Kogane5TUnitFv
-getCreatureType__Q43ebi5title6Kogane5TUnitFv:
+.fn getCreatureType__Q43ebi5title6Kogane5TUnitFv, weak
 /* 803E8590 003E54D0  38 60 00 05 */	li r3, 5
 /* 803E8594 003E54D4  4E 80 00 20 */	blr 
+.endfn getCreatureType__Q43ebi5title6Kogane5TUnitFv
 
-.global getAnimRes__Q43ebi5title6Kogane11TAnimFolderFl
-getAnimRes__Q43ebi5title6Kogane11TAnimFolderFl:
+.fn getAnimRes__Q43ebi5title6Kogane11TAnimFolderFl, weak
 /* 803E8598 003E54D8  54 84 28 34 */	slwi r4, r4, 5
 /* 803E859C 003E54DC  7C 60 1B 78 */	mr r0, r3
 /* 803E85A0 003E54E0  38 64 00 04 */	addi r3, r4, 4
 /* 803E85A4 003E54E4  7C 60 1A 14 */	add r3, r0, r3
 /* 803E85A8 003E54E8  4E 80 00 20 */	blr 
+.endfn getAnimRes__Q43ebi5title6Kogane11TAnimFolderFl
 
-.global __ct__Q23ebi10E3DAnimResFv
-__ct__Q23ebi10E3DAnimResFv:
+.fn __ct__Q23ebi10E3DAnimResFv, weak
 /* 803E85AC 003E54EC  4E 80 00 20 */	blr 
+.endfn __ct__Q23ebi10E3DAnimResFv
 
-__sinit_ebiP2TitleKogane_cpp: # static initializer
+.fn __sinit_ebiP2TitleKogane_cpp, local
 /* 803E85B0 003E54F0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803E85B4 003E54F4  38 00 FF FF */	li r0, -1
 /* 803E85B8 003E54F8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1511,3 +1560,4 @@ __sinit_ebiP2TitleKogane_cpp: # static initializer
 /* 803E85CC 003E550C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803E85D0 003E5510  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803E85D4 003E5514  4E 80 00 20 */	blr 
+.endfn __sinit_ebiP2TitleKogane_cpp

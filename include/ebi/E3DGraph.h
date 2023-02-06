@@ -12,7 +12,7 @@
 
 namespace ebi {
 struct E3DAnimRes {
-	E3DAnimRes();
+	E3DAnimRes() { }
 
 	void load(J3DModelData*, JKRArchive*, char*);
 

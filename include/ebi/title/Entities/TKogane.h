@@ -17,7 +17,21 @@ namespace Kogane {
 struct TUnit;
 
 struct TParam : public TParamBase {
-	TParam();
+	TParam()
+	    : mScale(this, 'b000', "スケール", 2.0f, 0.0f, 10.0f)
+	    , mCullRadius(this, 'b001', "カリング半径", 50.0f, 0.0f, 500.0f)
+	    , mCollRadius(this, 'b002', "コリジョン半径", 50.0f, 0.0f, 500.0f)
+	    , mPikiReactRadius(this, 'b003', "ピクミン反応半径", 150.0f, 0.0f, 500.0f)
+	    , mWalkRandomAngle(this, 'kg00', "歩行ランダム角度", 60.0f, 0.0f, 90.0f)
+	    , mWalkSpeed(this, 'kg01', "歩行速度", 10.0f, 0.0f, 100.0f)
+	    , mTurnRate(this, 'kg15', "旋回性能x5C", 0.1f, 0.0f, 1.0f) // x5C literal required for match
+	    , mMinWaitTime(this, 'kg10', "待ち時間最小(秒)", 1.0f, 0.0f, 10.0f)
+	    , mMaxWaitTime(this, 'kg11', "待ち時間最大(秒)", 1.5f, 0.0f, 10.0f)
+	    , mMinMoveTime(this, 'kg12', "移動時間最小(秒)", 0.3f, 0.0f, 10.0f)
+	    , mMaxMoveTime(this, 'kg13', "移動時間最大(秒)", 1.0f, 0.0f, 10.0f)
+	    , mControlStateTime(this, 'kg14', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f)
+	{
+	}
 
 	Parm<f32> mScale;            // _0C, b000
 	Parm<f32> mCullRadius;       // _34, b001
@@ -34,7 +48,7 @@ struct TParam : public TParamBase {
 };
 
 struct TAnimFolder : public E3DAnimFolderBase {
-	virtual E3DAnimRes* getAnimRes(long); // _08 (weak)
+	virtual E3DAnimRes* getAnimRes(long id) { return &mAnims[id]; } // _08 (weak)
 
 	void load(J3DModelData*, JKRArchive*);
 
@@ -55,7 +69,7 @@ struct TAnimator {
 struct TMgr : public CNode {
 	TMgr();
 
-	virtual ~TMgr(); // _08 (weak)
+	virtual ~TMgr() { } // _08 (weak)
 
 	void setArchive(JKRArchive*);
 	void initUnit();
@@ -77,7 +91,7 @@ struct TUnit : public TObjBase {
 		KOGANEACT_3    = 3,
 		KOGANEACT_4    = 4,
 	};
-	enum enumState { 
+	enum enumState {
 		KSTATE_Inactive   = 0,
 		KSTATE_Wait       = 1,
 		KSTATE_Turn       = 2,
@@ -86,27 +100,26 @@ struct TUnit : public TObjBase {
 		KSTATE_5          = 5,
 		KSTATE_Controlled = 6,
 
-	 };
-		inline TUnit()
+	};
+	inline TUnit()
 	{
-		mCounter = 0; 
-		mCounter2 = 0; 
-		mAnim._0C = nullptr;
+		mCounter               = 0;
+		mCounter2              = 0;
+		mAnim._0C              = nullptr;
 		mAnim.pAnimFolder_0x10 = nullptr;
-		mTargetPos   = Vector2f(0.0f);
-		mTargetAngle = Vector2f(1.0f, 0.0f);
-		u32 time  = 0.0f / sys->mDeltaTime;
-		mCounter = time;
-		mCounter2  = time;
-		mControl = nullptr;
-		mManager      = nullptr;
-		mStateID = 0;
-		mActionID = -1;
+		mTargetPos             = Vector2f(0.0f);
+		mTargetAngle           = Vector2f(1.0f, 0.0f);
+		u32 time               = 0.0f / sys->mDeltaTime;
+		mCounter               = time;
+		mCounter2              = time;
+		mControl               = nullptr;
+		mManager               = nullptr;
+		mStateID               = 0;
+		mActionID              = -1;
 	}
 
-
-	virtual u32 getCreatureType(); // _08 (weak)
-	virtual bool isCalc();         // _0C
+	virtual u32 getCreatureType() { return 5; } // _08 (weak)
+	virtual bool isCalc();                      // _0C
 
 	void setController(Controller*);
 	void init(TMgr*);
@@ -121,14 +134,15 @@ struct TUnit : public TObjBase {
 	// _00-_2C = TObjBase
 	Vector2f mTargetPos;   // _2C
 	Vector2f mTargetAngle; // _34
-	u32 mCounter;         // _3C
+	u32 mCounter;          // _3C
 	u32 mCounter2;         // _40
-	Controller* mControl; // _44
-	TMgr* mManager;       // _48
-	E3DAnimCtrl mAnim;    // _4C
+	Controller* mControl;  // _44
+	TMgr* mManager;        // _48
+	E3DAnimCtrl mAnim;     // _4C
 	s32 mStateID;          // _60
-	u32 mActionID;          // _64
+	u32 mActionID;         // _64
 };
+
 } // namespace Kogane
 } // namespace title
 } // namespace ebi
