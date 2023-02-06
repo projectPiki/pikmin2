@@ -621,6 +621,29 @@
 static const char name[] = "challengeResult2D";
 
 namespace Morimura {
+
+bool TChallengeResult::mForceDemoStart          = false;
+u8 TChallengeResult::mTestStageId               = 0;
+JKRHeap* TChallengeResult::mDebugHeapParent     = nullptr;
+JKRHeap* TChallengeResult::mDebugHeap           = nullptr;
+JUTTexture* TChallengeResult::mLeafTexture      = nullptr;
+JUTTexture* TChallengeResult::mFlowerTexture    = nullptr;
+JUTTexture* TChallengeResult::mRedFlowerTexture = nullptr;
+
+f32 TChallengeResult::mMoveSpeed       = 12.0f;
+f32 TChallengeResult::mAngRate         = 0.3f;
+f32 TChallengeResult::mAngVelMax       = 20.0f;
+f32 TChallengeResult::mAccel           = 0.1f;
+bool TChallengeResult::mTestDemo       = true;
+bool TChallengeResult::mComplete       = true;
+u16 TChallengeResult::mTestRankInOrder = 0xFFFF;
+f32 TChallengeResult::mFlashInterval   = 40.0f;
+f32 TChallengeResult::mDemoSpeedUpRate = 2.0f;
+f32 TChallengeResult::mDemoSpeedUpMax  = 3.0f;
+GXColor TChallengeResult::mFlashColor  = { 255, 255, 0, 255 };
+
+const int cRandArray[] = { 0, 1, 2, 0, 2, 1, 1, 0, 2, 1, 2, 0, 2, 1, 0, 2, 0, 1, 0 };
+
 /*
  * --INFO--
  * Address:	80393348
@@ -715,6 +738,11 @@ void TChallengeResultDemoScreen::draw(Graphics& gfx, J2DPerspGraph* graf)
 	}
 }
 
+// these almost certainly go in setComplete below once it gets made
+static const u32 Tribon00 = 'Tribon00';
+static const u32 Tribon01 = 'Tribon01';
+static const u32 Tribon02 = 'Tribon02';
+
 /*
  * --INFO--
  * Address:	........
@@ -729,10 +757,19 @@ void TChallengeResultDemoScreen::startDemo()
  * --INFO--
  * Address:	........
  * Size:	0000CC
+ * NB: This is just a guess to get the ribon u64s in rodata.
+ * Should be tweaked when needed in TChallengeResult::setInfo.
  */
-void TChallengeResultDemoScreen::setComplete(bool)
+void TChallengeResultDemoScreen::setComplete(bool isComplete)
 {
-	// UNUSED FUNCTION
+	mAnimPane1                  = nullptr;
+	TChallengeResult::mComplete = isComplete;
+	u64 ribons[]                = { 'Tribon00', 'Tribon01', 'Tribon02' };
+	for (int i = 0; i < 3; i++) {
+		J2DPane* pane = mScreenObj->search(ribons[i]);
+		P2ASSERTLINE(224, pane);
+		pane->setMsgID('1_00467');
+	}
 }
 
 /*
@@ -765,10 +802,7 @@ void TMovePane::setPane(J2DPane* pane)
 	P2ASSERTLINE(271, pane);
 	mPane = pane;
 	mPane->setBasePosition(J2DPOS_Center);
-	// this should be an inline but it wont match
-	f32 y           = pane->mOffset.y;
-	mPanePosition.x = pane->mOffset.x;
-	mPanePosition.y = y;
+	mPanePosition = JGeometry::TVec2f(pane->mOffset);
 	reset();
 }
 
@@ -800,7 +834,8 @@ void TMovePane::update()
 	}
 
 	mPane->setOffset(mPaneGoal.x, mPaneGoal.y);
-	mPane->setAngle(roundAng(TAU - mAngle) * 360.0f / TAU);
+	f32 ang = roundAng(TAU - mAngle); // needed to load floats in right order lol
+	mPane->setAngle(ang * 360.0f / TAU);
 	if (mCounter > 0) {
 		mCounter++;
 	}
@@ -814,11 +849,11 @@ void TMovePane::update()
 void TMovePane::move()
 {
 	turn();
-	mAngleSin = pikmin2_sinf(mAngle) * mMoveSpeed * mDemoSpeedUpRate;
-	mAngleCos = -pikmin2_cosf(mAngle) * mMoveSpeed * mDemoSpeedUpRate;
+	mAngleSin = pikmin2_sinf(mAngle) * TChallengeResult::mMoveSpeed * TChallengeResult::mDemoSpeedUpRate;
+	mAngleCos = -pikmin2_cosf(mAngle) * TChallengeResult::mMoveSpeed * TChallengeResult::mDemoSpeedUpRate;
 
-	f32 x = (mAngleSin - mVelocity.x) * mAccel * mDemoSpeedUpRate;
-	f32 y = (mAngleCos - mVelocity.y) * mAccel * mDemoSpeedUpRate;
+	f32 x = (mAngleSin - mVelocity.x) * TChallengeResult::mAccel * TChallengeResult::mDemoSpeedUpRate;
+	f32 y = (mAngleCos - mVelocity.y) * TChallengeResult::mAccel * TChallengeResult::mDemoSpeedUpRate;
 	x += mVelocity.x;
 	y += mVelocity.y;
 	mVelocity.x = x;
@@ -939,9 +974,10 @@ lbl_803939AC:
  */
 void TMovePane::turn()
 {
-	f32 calc = getAngDist() * mAngRate * mDemoSpeedUpRate;
-	if (FABS(calc) > mAngVelMax * PI * mDemoSpeedUpRate) {
-		calc = calc > 0.0f ? (PI * mAngVelMax) : -(PI * mAngVelMax);
+	f32 calc  = getAngDist() * TChallengeResult::mAngRate * TChallengeResult::mDemoSpeedUpRate;
+	f32 limit = PI * (DEG2RAD * (TChallengeResult::mAngVelMax * TChallengeResult::mDemoSpeedUpRate));
+	if (FABS(calc) > limit) {
+		calc = calc > 0.0f ? limit : -limit;
 	}
 	mAngle = roundAng(mAngle + calc);
 	/*
@@ -1017,8 +1053,8 @@ bool TMovePane::hosei()
 	mAngleSin = 0.0f;
 	mAngleCos = 0.0f;
 	mVelocity = 0.0f;
-	f32 x     = (mOffset.x - mPaneGoal.x) * 0.05f * mDemoSpeedUpRate;
-	f32 y     = (mOffset.y - mPaneGoal.y) * 0.05f * mDemoSpeedUpRate;
+	f32 x     = (mOffset.x - mPaneGoal.x) * 0.05f * TChallengeResult::mDemoSpeedUpRate;
+	f32 y     = (mOffset.y - mPaneGoal.y) * 0.05f * TChallengeResult::mDemoSpeedUpRate;
 	mPaneGoal.x += x;
 	mPaneGoal.y += y;
 	if (FABS(x) < 0.05f && FABS(y) < 0.05f) {
@@ -1189,7 +1225,7 @@ lbl_80393CA0:
  */
 void TMovePane::rolling()
 {
-	mAngle += 0.5f * mDemoSpeedUpRate;
+	mAngle += 0.5f * TChallengeResult::mDemoSpeedUpRate;
 	if (mAngle > TAU) {
 		mAngle -= TAU;
 	}
@@ -1492,10 +1528,11 @@ void TCounterRV::update()
 	og::Screen::CallBack_CounterRV::update();
 	for (int i = 0; i < mCounterLimit; i++) {
 		og::Screen::CounterKeta* keta = mCounters[i];
-		P2ASSERTLINE(557, keta);
-		volatile JUtility::TColor color  = mColor;
-		volatile JUtility::TColor color2 = mColor;
-		keta->mPicture->setWhite(mColor);
+		J2DPicture* pic               = keta->mPicture;
+		P2ASSERTLINE(557, pic);
+		JUtility::TColor white;
+		getColor(white);
+		pic->setWhite(white);
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -1718,206 +1755,113 @@ void TClearTexture::getEffectPosition(Vector2f&)
  */
 TChallengeResult::TChallengeResult()
     : TTestBase("challengeResult")
+    , mResultDemoScreen(nullptr)
+    , mResultScreen(nullptr)
+    , mSaveMgr(nullptr)
+    , mControls(nullptr)
+    , mDisp(nullptr)
+    , _90(nullptr)
+    , _94(nullptr)
+    , _98(nullptr)
+    , _9C(nullptr)
+    , _A0(nullptr)
+    , mScissorPic(nullptr)
+    , _C0(nullptr)
+    , _C4(nullptr)
+    , _C8(nullptr)
+    , _CC(nullptr)
+    , _D0(nullptr)
+    , _D4(nullptr)
 {
-	mResultDemoScreen = nullptr;
-	mResultScreen     = nullptr;
-	mSaveMgr          = nullptr;
-	mControls         = nullptr;
-	mDisp             = nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_80494884@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, lbl_80494884@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28Morimura9TTestBaseFPc
-	lis      r4, __vt__Q28Morimura16TChallengeResult@ha
-	li       r0, 0
-	addi     r4, r4, __vt__Q28Morimura16TChallengeResult@l
-	lis      r3, "__ct__10Vector2<f>Fv"@ha
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x10
-	addi     r4, r3, "__ct__10Vector2<f>Fv"@l
-	addi     r3, r31, 0xf0
-	stw      r5, 0x18(r31)
-	li       r5, 0
-	li       r6, 8
-	li       r7, 3
-	stw      r0, 0x7c(r31)
-	stw      r0, 0x80(r31)
-	stw      r0, 0x84(r31)
-	stw      r0, 0x88(r31)
-	stw      r0, 0x8c(r31)
-	stw      r0, 0x90(r31)
-	stw      r0, 0x94(r31)
-	stw      r0, 0x98(r31)
-	stw      r0, 0x9c(r31)
-	stw      r0, 0xa0(r31)
-	stw      r0, 0xbc(r31)
-	stw      r0, 0xc0(r31)
-	stw      r0, 0xc4(r31)
-	stw      r0, 0xc8(r31)
-	stw      r0, 0xcc(r31)
-	stw      r0, 0xd0(r31)
-	stw      r0, 0xd4(r31)
-	bl       __construct_array
-	lis      r4, "__ct__10Vector2<f>Fv"@ha
-	addi     r3, r31, 0x108
-	addi     r4, r4, "__ct__10Vector2<f>Fv"@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 3
-	bl       __construct_array
-	lis      r4, __ct__Q38Morimura16TChallengeResult10VectorUnitFv@ha
-	addi     r3, r31, 0x128
-	addi     r4, r4, __ct__Q38Morimura16TChallengeResult10VectorUnitFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 4
-	bl       __construct_array
-	li       r9, 0
-	li       r5, 6
-	stw      r9, 0x1a0(r31)
-	li       r4, 1
-	li       r3, -1
-	lfs      f1, lbl_8051F084@sda21(r2)
-	stw      r9, 0x1a4(r31)
-	li       r0, 3
-	mr       r10, r9
-	mr       r11, r9
-	stw      r9, 0x1a8(r31)
-	stw      r9, 0x1ac(r31)
-	stw      r9, 0x1b0(r31)
-	stb      r9, 0x1c4(r31)
-	stb      r9, 0x1c5(r31)
-	stb      r9, 0x1c6(r31)
-	stb      r9, 0x1c7(r31)
-	sth      r5, 0x1dc(r31)
-	sth      r4, 0x1de(r31)
-	stb      r9, 0x1e0(r31)
-	stw      r3, 0x1e4(r31)
-	stb      r9, 0x1e8(r31)
-	stb      r9, 0x1e9(r31)
-	stfs     f1, 0x1ec(r31)
-	stfs     f1, 0x1f4(r31)
-	stw      r9, 0x1f8(r31)
-	lfs      f0, mDemoSpeedUpRate__Q28Morimura16TChallengeResult@sda21(r13)
-	stfs     f0, 0x1f0(r31)
-	mtctr    r0
+	mMesgOffs    = nullptr;
+	mEfxCompLoop = nullptr;
+	_1A8         = 0;
+	mPokoscore   = 0;
+	mTotalScore  = 0;
 
-lbl_80394454:
-	addi     r0, r10, 0xa4
-	addi     r3, r10, 0xb0
-	stwx     r9, r31, r0
-	addi     r0, r10, 0x17c
-	addi     r8, r10, 0x1b8
-	addi     r7, r11, 0xf0
-	stwx     r9, r31, r3
-	addi     r6, r11, 0xf4
-	addi     r5, r11, 0x108
-	addi     r4, r11, 0x10c
-	stwx     r9, r31, r0
-	addi     r3, r10, 0xd8
-	addi     r0, r10, 0xe4
-	addi     r10, r10, 4
-	stwx     r9, r31, r8
-	addi     r11, r11, 8
-	stfsx    f1, r31, r7
-	stfsx    f1, r31, r6
-	stfsx    f1, r31, r5
-	stfsx    f1, r31, r4
-	stwx     r9, r31, r3
-	stwx     r9, r31, r0
-	bdnz     lbl_80394454
-	stw      r9, 0x17c(r31)
-	li       r3, 0x14
-	lfs      f0, lbl_8051F084@sda21(r2)
-	stw      r9, 0x180(r31)
-	lfs      f12, lbl_8051F0F0@sda21(r2)
-	stw      r9, 0x184(r31)
-	lfs      f11, lbl_8051F0F4@sda21(r2)
-	stw      r9, 0x188(r31)
-	lfs      f10, lbl_8051F0F8@sda21(r2)
-	stw      r9, 0x18c(r31)
-	lfs      f9, lbl_8051F0FC@sda21(r2)
-	stw      r9, 0x190(r31)
-	lfs      f8, lbl_8051F100@sda21(r2)
-	stw      r9, 0x194(r31)
-	lfs      f7, lbl_8051F104@sda21(r2)
-	stw      r9, 0x198(r31)
-	lfs      f6, lbl_8051F108@sda21(r2)
-	stw      r9, 0x19c(r31)
-	lfs      f5, lbl_8051F10C@sda21(r2)
-	stfs     f0, 0x120(r31)
-	lfs      f4, lbl_8051F110@sda21(r2)
-	stfs     f0, 0x124(r31)
-	lfs      f3, lbl_8051F114@sda21(r2)
-	stfs     f0, 0x178(r31)
-	lfs      f2, lbl_8051F118@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	lfs      f1, lbl_8051F11C@sda21(r2)
-	stfs     f0, 0x1d8(r31)
-	lfs      f0, lbl_8051F120@sda21(r2)
-	stfs     f12, 0x128(r31)
-	stfs     f11, 0x12c(r31)
-	stfs     f10, 0x130(r31)
-	stfs     f11, 0x134(r31)
-	stfs     f9, 0x138(r31)
-	stfs     f11, 0x13c(r31)
-	stfs     f8, 0x140(r31)
-	stfs     f11, 0x144(r31)
-	stfs     f7, 0x148(r31)
-	stfs     f11, 0x14c(r31)
-	stfs     f6, 0x150(r31)
-	stfs     f11, 0x154(r31)
-	stfs     f5, 0x158(r31)
-	stfs     f4, 0x15c(r31)
-	stfs     f3, 0x160(r31)
-	stfs     f4, 0x164(r31)
-	stfs     f2, 0x168(r31)
-	stfs     f1, 0x16c(r31)
-	stfs     f0, 0x170(r31)
-	stfs     f1, 0x174(r31)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_803945E4
-	lis      r5, __vt__Q25efx2d7TBaseIF@ha
-	lis      r4, __vt__Q25efx2d5TBase@ha
-	addi     r0, r5, __vt__Q25efx2d7TBaseIF@l
-	lis      r6, __vt__18JPAEmitterCallBack@ha
-	stw      r0, 0(r3)
-	addi     r0, r4, __vt__Q25efx2d5TBase@l
-	lis      r5, __vt__Q25efx2d8TForever@ha
-	lis      r4, __vt__Q25efx2d15T2DCavecompLoop@ha
-	stw      r0, 0(r3)
-	li       r9, 0
-	addi     r7, r5, __vt__Q25efx2d8TForever@l
-	addi     r4, r4, __vt__Q25efx2d15T2DCavecompLoop@l
-	stb      r9, 4(r3)
-	addi     r8, r6, __vt__18JPAEmitterCallBack@l
-	addi     r6, r7, 0x18
-	li       r5, 0xc
-	stb      r9, 5(r3)
-	addi     r0, r4, 0x18
-	stw      r8, 8(r3)
-	stw      r7, 0(r3)
-	stw      r6, 8(r3)
-	sth      r5, 0xc(r3)
-	stw      r9, 0x10(r3)
-	stw      r4, 0(r3)
-	stw      r0, 8(r3)
+	for (int i = 0; i < 4; i++) {
+		mFlags[i] = 0;
+	}
 
-lbl_803945E4:
-	stw      r3, 0x1a4(r31)
-	mr       r3, r31
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_1DC        = 6;
+	_1DE        = 1;
+	mIsSaveOpen = false;
+	_1E4        = -1;
+	_1E8        = 0;
+	_1E9        = 0;
+
+	mTimer     = 0.0f;
+	mTimer2    = 0.0f;
+	mStageList = nullptr;
+	mSpeed     = mDemoSpeedUpRate;
+
+	for (int i = 0; i < 3; i++) {
+		_A4[i]        = nullptr;
+		_B0[i]        = nullptr;
+		_17C[i]       = nullptr;
+		mBonuses[i]   = 0;
+		mPosList1[i]  = Vector2f(0.0f);
+		mPosList2[i]  = Vector2f(0.0f);
+		mMovePane[i]  = nullptr;
+		mScorePane[i] = nullptr;
+	}
+
+	_17C[0] = 0;
+	_17C[1] = 0;
+	_17C[2] = 0;
+	_188    = 0;
+
+	for (int i = 0; i < 5; i++) {
+		mScreens[i] = nullptr;
+	}
+
+	_120       = 0.0f;
+	_124       = 0.0f;
+	mMoveTimer = 0.0f;
+	_1D4       = 0.0f;
+	_1D8       = 0.0f;
+
+	mVecUnit[0]._00 = 225.0f;
+	mVecUnit[0]._04 = 250.0f;
+	mVecUnit[0]._08 = 40.0f;
+	mVecUnit[0]._0C = 250.0f;
+
+	mVecUnit[1]._00 = 405.0f;
+	mVecUnit[1]._04 = 250.0f;
+	mVecUnit[1]._08 = 240.0f;
+	mVecUnit[1]._0C = 250.0f;
+
+	mVecUnit[2]._00 = 585.0f;
+	mVecUnit[2]._04 = 250.0f;
+	mVecUnit[2]._08 = 430.0f;
+	mVecUnit[2]._0C = 250.0f;
+
+	mVecUnit[3]._00 = 440.0f;
+	mVecUnit[3]._04 = 170.0f;
+	mVecUnit[3]._08 = 200.0f;
+	mVecUnit[3]._0C = 170.0f;
+
+	_168._00 = 70.0f;
+	_168._04 = 30.0f;
+	_168._08 = -115.0f;
+	_168._0C = 30.0f;
+
+	mEfxCompLoop = new efx2d::T2DCavecompLoop;
+}
+
+/*
+ * --INFO--
+ * Address:	80394604
+ * Size:	0000F4
+ */
+TChallengeResult::~TChallengeResult()
+{
+	if (mDebugHeap) {
+		mDisp->mHeap->freeAll();
+		mDebugHeap->destroy();
+	}
+
+	mDebugHeap = nullptr;
 }
 
 /*

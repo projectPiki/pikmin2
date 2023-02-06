@@ -78,6 +78,8 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 	void startScaleAnim();
 	void reset();
 
+	inline void getColor(JUtility::TColor& color) { color.set(mColor); }
+
 	// _00     = VTBL
 	// _00-_A8 = og::Screen::CallBack_CounterRV
 	JUtility::TColor mColor;              // _A8
@@ -156,12 +158,6 @@ struct TMovePane {
 	int mCounter;                     // _40
 	u32 _44;                          // _44, unknown
 	u32 _48;                          // _48, unknown
-
-	static f32 mMoveSpeed;
-	static f32 mDemoSpeedUpRate;
-	static f32 mAccel;
-	static f32 mAngRate;
-	static f32 mAngVelMax;
 };
 
 struct THuWhitePaneSet : public J2DPictureEx {
