@@ -64,12 +64,12 @@ struct THurryUp2D : public TTestBase {
 	f32 mTimeMax;                         // _CC
 	TStateParam mParams[6];               // _D0
 
-	static const f32 mInitPosX;  // = 900.0f;
-	static const f32 mMoveSp;    // = 12.0f;
-	static const f32 mScaleRate; // = 1.02f;
-	static const f32 mScaleSp1;  // 0.01f;
-	static const f32 mColorUpSp; // 1.0f;
-	static const f32 mScaleSp2;  // 0.1f;
+	static f32 mInitPosX;  // = 900.0f;
+	static f32 mMoveSp;    // = 12.0f;
+	static f32 mScaleRate; // = 1.02f;
+	static f32 mScaleSp1;  // 0.01f;
+	static f32 mColorUpSp; // 1.0f;
+	static f32 mScaleSp2;  // 0.1f;
 };
 
 /**

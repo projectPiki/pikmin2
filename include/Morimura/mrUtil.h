@@ -168,8 +168,7 @@ struct THuWhitePaneSet : public J2DPictureEx {
 	    : J2DPictureEx('test', JGeometry::TBox2f(0.0f, 0.0f, pane->mBounds.f.x - pane->mBounds.i.x, pane->mBounds.f.y - pane->mBounds.i.y),
 	                   "sunh_w.bti", 0x1100000)
 	{
-		_1A8 = 0.0f;
-		_1AC = 0.0f;
+		_1A8 = Vector2f(0.0f);
 	}
 
 	virtual ~THuWhitePaneSet() { }         // _08 (weak)
@@ -179,8 +178,7 @@ struct THuWhitePaneSet : public J2DPictureEx {
 
 	// _00      = VTBL
 	// _00-_1A8 = J2DPictureEx
-	f32 _1A8;        // _1A8
-	f32 _1AC;        // _1AC
+	Vector2f _1A8;   // _1A8
 	Matrixf mMatrix; // _1B0
 	u8 mAlpha;       // _1E0
 	u8 _1E1[0x7];    // _1E1, unknown

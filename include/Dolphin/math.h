@@ -103,7 +103,7 @@ inline int __fpclassifyd(f64 x)
 
 #define isfinite(x) ((fpclassify(x) > 2))
 
-inline f32 dolsqrtf(f32 x)
+static inline f32 dolsqrtf(f32 x)
 {
 	static const double _half  = .5;
 	static const double _three = 3.0;

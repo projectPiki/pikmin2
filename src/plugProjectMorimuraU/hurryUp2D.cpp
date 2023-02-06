@@ -7,195 +7,62 @@
 #include "Game/Navi.h"
 #include "nans.h"
 
-static const char name[] = "hurryUp2D";
+static const int unusedHurryUpArray[] = { 0, 0, 0 };
+static const char name[]              = "hurryUp2D";
 
 namespace Morimura {
+
+f32 THurryUp2D::mInitPosX  = 900.0f;
+f32 THurryUp2D::mMoveSp    = 12.0f;
+f32 THurryUp2D::mScaleSp1  = 0.01f;
+f32 THurryUp2D::mScaleSp2  = 0.1f;
+f32 THurryUp2D::mScaleRate = 1.02f;
+f32 THurryUp2D::mColorUpSp = 1.0f;
 
 /*
  * --INFO--
  * Address:	80346178
  * Size:	000224
  */
-void THuWhitePaneSet::drawSelf(f32 x, f32 y, Mtx* mtx)
+void THuWhitePaneSet::drawSelf(f32 height, f32 width, Mtx* mtx)
 {
 	gxSet();
 	GXSetColorUpdate(GX_FALSE);
 	GXSetAlphaUpdate(GX_TRUE);
 	GXSetDstAlpha(GX_TRUE, 0);
 
-	f32 y1 = (mBounds.f.x - mBounds.i.x) + y;
-	f32 x1 = (mBounds.f.y - mBounds.i.y) + x;
+	f32 xOffs = getWidth() + width;
+	f32 yOffs = getHeight() + height;
+
 	Mtx test;
 	PSMTXConcat(*mtx, mGlobalMtx, test);
 	GXLoadPosMtxImm(test, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-	GXPosition3f32(y, x, 0.0f);
-	GXPosition3f32(y1, x, 0.0f);
-	GXPosition3f32(y1, x1, 0.0f);
-	GXPosition3f32(y, x1, 0.0f);
+	GXPosition3f32(width, height, 0.0f);
+	GXPosition3f32(xOffs, height, 0.0f);
+	GXPosition3f32(xOffs, yOffs, 0.0f);
+	GXPosition3f32(width, yOffs, 0.0f);
 
 	GXSetDstAlpha(GX_FALSE, 0);
-	J2DPictureEx::drawSelf(x, y, mtx);
+	J2DPictureEx::drawSelf(height, width, mtx);
 	gxSet();
 	GXSetDstAlpha(GX_TRUE, 0);
 
-	x1 = f32(255 - mAlpha) * (mBounds.f.x - mBounds.i.x) / 255.0f;
+	f32 xFactor = f32(255 - mAlpha) * getWidth() / 255.0f;
 	GXLoadPosMtxImm(test, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-	y -= x1;
-	GXPosition3f32(y, x, 0.0f);
-	GXPosition3f32(y1, x, 0.0f);
-	GXPosition3f32(y1, x1, 0.0f);
-	GXPosition3f32(y, x1, 0.0f);
+	xFactor = xOffs - xFactor;
+	GXPosition3f32(xFactor, height, 0.0f);
+	GXPosition3f32(xOffs, height, 0.0f);
+	GXPosition3f32(xOffs, yOffs, 0.0f);
+	GXPosition3f32(xFactor, yOffs, 0.0f);
 
 	GXSetDstAlpha(GX_FALSE, 0);
 	GXSetColorUpdate(GX_TRUE);
 	PSMTXCopy(test, mMatrix.mMatrix.mtxView);
 
-	x1   = -((mBounds.f.y - mBounds.i.y) * 0.5f - x);
-	_1A8 = y1;
-	_1AC = x1;
-
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stfd     f28, 0x50(r1)
-	psq_st   f28, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	fmr      f31, f1
-	mr       r30, r3
-	fmr      f30, f2
-	mr       r31, r4
-	bl       gxSet__Q28Morimura15THuWhitePaneSetFv
-	li       r3, 0
-	bl       GXSetColorUpdate
-	li       r3, 1
-	bl       GXSetAlphaUpdate
-	li       r3, 1
-	li       r4, 0
-	bl       GXSetDstAlpha
-	lfs      f3, 0x28(r30)
-	mr       r3, r31
-	lfs      f2, 0x20(r30)
-	addi     r4, r30, 0x80
-	lfs      f1, 0x2c(r30)
-	addi     r5, r1, 8
-	lfs      f0, 0x24(r30)
-	fsubs    f2, f3, f2
-	fsubs    f0, f1, f0
-	fadds    f29, f30, f2
-	fadds    f28, f31, f0
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lis      r5, 0xCC008000@ha
-	lfs      f0, lbl_8051E258@sda21(r2)
-	stfs     f30, 0xCC008000@l(r5)
-	li       r3, 0
-	li       r4, 0
-	stfs     f31, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	stfs     f29, -0x8000(r5)
-	stfs     f31, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	stfs     f29, -0x8000(r5)
-	stfs     f28, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	stfs     f30, -0x8000(r5)
-	stfs     f28, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	bl       GXSetDstAlpha
-	fmr      f1, f31
-	mr       r3, r30
-	fmr      f2, f30
-	mr       r4, r31
-	bl       drawSelf__12J2DPictureExFffPA3_A4_f
-	mr       r3, r30
-	bl       gxSet__Q28Morimura15THuWhitePaneSetFv
-	li       r3, 1
-	li       r4, 0
-	bl       GXSetDstAlpha
-	lbz      r4, 0x1e0(r30)
-	lis      r0, 0x4330
-	stw      r0, 0x38(r1)
-	addi     r3, r1, 8
-	subfic   r0, r4, 0xff
-	lfd      f3, lbl_8051E268@sda21(r2)
-	xoris    r0, r0, 0x8000
-	lfs      f1, 0x28(r30)
-	stw      r0, 0x3c(r1)
-	li       r4, 0
-	lfs      f0, 0x20(r30)
-	lfd      f2, 0x38(r1)
-	fsubs    f1, f1, f0
-	lfs      f0, lbl_8051E25C@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f2, f1
-	fdivs    f30, f1, f0
-	bl       GXLoadPosMtxImm
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	fsubs    f30, f29, f30
-	lis      r5, 0xCC008000@ha
-	lfs      f0, lbl_8051E258@sda21(r2)
-	li       r3, 0
-	li       r4, 0
-	stfs     f30, 0xCC008000@l(r5)
-	stfs     f31, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	stfs     f29, -0x8000(r5)
-	stfs     f31, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	stfs     f29, -0x8000(r5)
-	stfs     f28, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	stfs     f30, -0x8000(r5)
-	stfs     f28, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	bl       GXSetDstAlpha
-	li       r3, 1
-	bl       GXSetColorUpdate
-	addi     r3, r1, 8
-	addi     r4, r30, 0x1b0
-	bl       PSMTXCopy
-	lfs      f1, 0x2c(r30)
-	lfs      f0, 0x24(r30)
-	lfs      f2, lbl_8051E260@sda21(r2)
-	fsubs    f0, f1, f0
-	stfs     f30, 0x1a8(r30)
-	fnmsubs  f0, f2, f0, f28
-	stfs     f0, 0x1ac(r30)
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	psq_l    f28, 88(r1), 0, qr0
-	lfd      f28, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	_1A8 = Vector2f(xFactor, yOffs - getHeight() * 0.5f);
 }
 
 /*
@@ -292,263 +159,8 @@ void THurryUp2D::doCreate(JKRArchive* arc)
 	mWhitePane->setAlpha(0);
 	mWhitePane->mAlpha = 0;
 	mPaneSunL->appendChild(mWhitePane);
-	mPane1Pos = mPaneHurry->mOffset;
-	mPane2Pos = mPaneSundown->mOffset;
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	lis      r4, lbl_80490280@ha
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	addi     r31, r4, lbl_80490280@l
-	stw      r28, 0x20(r1)
-	stw      r30, 0x78(r3)
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lis      r4, 0x004F4741@ha
-	lis      r6, 0x4F554E44@ha
-	mr       r28, r3
-	li       r5, 0x4752
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r6, 0x4F554E44@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80346568
-	addi     r0, r28, 0x78
-	stw      r0, 0xac(r29)
-	b        lbl_803465B0
-
-lbl_80346568:
-	li       r3, 0x10
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_803465A4
-	lis      r5, __vt__Q32og6Screen14DispMemberBase@ha
-	lis      r4, __vt__Q32og6Screen17DispMemberHurryUp@ha
-	addi     r0, r5, __vt__Q32og6Screen14DispMemberBase@l
-	li       r5, 0
-	stw      r0, 0(r3)
-	addi     r0, r4, __vt__Q32og6Screen17DispMemberHurryUp@l
-	lfs      f0, lbl_8051E274@sda21(r2)
-	stw      r5, 4(r3)
-	stw      r0, 0(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f0, 8(r3)
-
-lbl_803465A4:
-	stw      r3, 0xac(r29)
-	li       r0, 1
-	stb      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-
-lbl_803465B0:
-	li       r3, 0x148
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803465C8
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	mr       r0, r3
-
-lbl_803465C8:
-	stw      r0, 0x7c(r29)
-	mr       r6, r30
-	addi     r4, r31, 0x24
-	lis      r5, 2
-	lwz      r3, 0x7c(r29)
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	lwz      r3, 0x7c(r29)
-	lis      r4, 0x68757272@ha
-	addi     r6, r4, 0x68757272@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x80(r29)
-	lwz      r0, 0x80(r29)
-	cmplwi   r0, 0
-	bne      lbl_80346624
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x40
-	li       r4, 0x96
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80346624:
-	lwz      r3, 0x7c(r29)
-	lis      r4, 0x73756E64@ha
-	addi     r6, r4, 0x73756E64@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x84(r29)
-	lwz      r0, 0x84(r29)
-	cmplwi   r0, 0
-	bne      lbl_80346668
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x40
-	li       r4, 0x99
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80346668:
-	lwz      r3, 0x7c(r29)
-	lis      r4, 0x73756E6C@ha
-	addi     r6, r4, 0x73756E6C@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x90(r29)
-	lwz      r0, 0x90(r29)
-	cmplwi   r0, 0
-	bne      lbl_803466AC
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x40
-	li       r4, 0x9c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803466AC:
-	lwz      r3, 0x7c(r29)
-	lis      r4, 0x73756E77@ha
-	addi     r6, r4, 0x73756E77@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x88(r29)
-	lwz      r0, 0x88(r29)
-	cmplwi   r0, 0
-	bne      lbl_803466F0
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x40
-	li       r4, 0x9f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803466F0:
-	lwz      r3, 0x7c(r29)
-	lis      r4, 0x68757232@ha
-	addi     r6, r4, 0x68757232@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x94(r29)
-	lwz      r0, 0x94(r29)
-	cmplwi   r0, 0
-	bne      lbl_80346734
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x40
-	li       r4, 0xa2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80346734:
-	lwz      r3, 0x7c(r29)
-	lis      r4, 0x73756E32@ha
-	addi     r6, r4, 0x73756E32@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x98(r29)
-	lwz      r0, 0x98(r29)
-	cmplwi   r0, 0
-	bne      lbl_80346778
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x40
-	li       r4, 0xa5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80346778:
-	li       r3, 0x1e8
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803467EC
-	lwz      r9, 0x88(r29)
-	lis      r4, 0x74657374@ha
-	lfs      f0, lbl_8051E258@sda21(r2)
-	addi     r6, r4, 0x74657374@l
-	lfs      f4, 0x2c(r9)
-	addi     r7, r1, 8
-	lfs      f3, 0x24(r9)
-	addi     r8, r31, 0x4c
-	lfs      f2, 0x28(r9)
-	li       r5, 0
-	lfs      f1, 0x20(r9)
-	fsubs    f3, f4, f3
-	lis      r9, 0x110
-	fsubs    f1, f2, f1
-	stfs     f0, 8(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f3, 0x14(r1)
-	bl       "__ct__12J2DPictureExFUxRCQ29JGeometry8TBox2<f>PCcUl"
-	lis      r3, __vt__Q28Morimura15THuWhitePaneSet@ha
-	lfs      f0, lbl_8051E258@sda21(r2)
-	addi     r0, r3, __vt__Q28Morimura15THuWhitePaneSet@l
-	stw      r0, 0(r30)
-	stfs     f0, 0x1a8(r30)
-	stfs     f0, 0x1ac(r30)
-
-lbl_803467EC:
-	stw      r30, 0x8c(r29)
-	lwz      r0, 0x88(r29)
-	cmplwi   r0, 0
-	bne      lbl_80346810
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x40
-	li       r4, 0xa9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80346810:
-	lwz      r3, 0x8c(r29)
-	li       r4, 4
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0x8c(r29)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x8c(r29)
-	li       r0, 0
-	stb      r0, 0x1e0(r3)
-	lwz      r3, 0x90(r29)
-	lwz      r4, 0x8c(r29)
-	bl       appendChild__7J2DPaneFP7J2DPane
-	lwz      r3, 0x80(r29)
-	lfs      f1, 0xd8(r3)
-	lfs      f0, 0xd4(r3)
-	stfs     f0, 0x9c(r29)
-	stfs     f1, 0xa0(r29)
-	lwz      r3, 0x84(r29)
-	lfs      f1, 0xd8(r3)
-	lfs      f0, 0xd4(r3)
-	stfs     f0, 0xa4(r29)
-	stfs     f1, 0xa8(r29)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mPane1Pos = JGeometry::TVec2f(mPaneHurry->mOffset);
+	mPane2Pos = JGeometry::TVec2f(mPaneSundown->mOffset);
 }
 
 /*
@@ -614,6 +226,7 @@ void THurryUp2D::doDraw(Graphics& gfx)
 	gfx.mPerspGraph.setPort();
 	mScreen->draw(gfx, gfx.mPerspGraph);
 	if (mState == 3 && mDoDraw) {
+
 		GXClearVtxDesc();
 		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
 		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
@@ -1380,201 +993,6 @@ void THurryUp2D::move()
 	if (mPaneHurry->mOffset.x < mPane1Pos.x - mInitPosX && (mPaneHurry2->mScale.x >= mParams[mState].mGoalScale)) {
 		changeState(StateScaleUp1, 0.0f);
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	lfs      f1, lbl_8051E2C4@sda21(r2)
-	mr       r31, r3
-	lfs      f0, mMoveSp__Q28Morimura10THurryUp2D@sda21(r13)
-	lwz      r3, sys@sda21(r13)
-	fmuls    f3, f1, f0
-	lfs      f1, 0x9c(r31)
-	lfs      f2, 0x54(r3)
-	lfs      f0, mInitPosX__Q28Morimura10THurryUp2D@sda21(r13)
-	fmuls    f31, f3, f2
-	lfs      f2, 0xb4(r31)
-	fadds    f0, f1, f0
-	lwz      r3, 0x80(r31)
-	lfs      f1, 0xa0(r31)
-	fnmsubs  f0, f31, f2, f0
-	stfs     f0, 0xd4(r3)
-	stfs     f1, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xa4(r31)
-	lfs      f0, mInitPosX__Q28Morimura10THurryUp2D@sda21(r13)
-	lwz      r3, 0x84(r31)
-	fsubs    f0, f1, f0
-	lfs      f1, 0xb4(r31)
-	lfs      f2, 0xa8(r31)
-	fmadds   f0, f31, f1, f0
-	stfs     f0, 0xd4(r3)
-	stfs     f2, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r4, 0xdc(r31)
-	lis      r0, 0x4330
-	lwz      r3, 0x80(r31)
-	stw      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	stw      r0, 8(r1)
-	lfd      f2, lbl_8051E2A8@sda21(r2)
-	lfd      f1, 8(r1)
-	lfs      f0, 0x40(r31)
-	fsubs    f1, f1, f2
-	lwz      r12, 0x24(r12)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r30, 0x14(r1)
-	mr       r4, r30
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x84(r31)
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x80(r31)
-	lfs      f0, 0x9c(r31)
-	lfs      f1, 0xd4(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8034759C
-	lwz      r3, 0x94(r31)
-	li       r0, 1
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x98(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x80(r31)
-	lwz      r0, 0xb0(r31)
-	lfs      f1, 0x9c(r31)
-	lfs      f0, 0xd4(r3)
-	mulli    r0, r0, 0xc
-	lfs      f2, mScaleRate__Q28Morimura10THurryUp2D@sda21(r13)
-	fsubs    f0, f1, f0
-	add      r3, r31, r0
-	lfs      f30, 0xd4(r3)
-	fabs     f0, f0
-	lfs      f1, 0xd8(r3)
-	frsp     f0, f0
-	fdivs    f0, f0, f31
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_803474E0
-
-lbl_803474C4:
-	fcmpo    cr0, f30, f1
-	bge      lbl_803474D0
-	fmuls    f30, f30, f2
-
-lbl_803474D0:
-	fcmpo    cr0, f30, f1
-	ble      lbl_803474DC
-	fmr      f30, f1
-
-lbl_803474DC:
-	bdnz     lbl_803474C4
-
-lbl_803474E0:
-	lwz      r3, 0x94(r31)
-	lbz      r0, 0xb2(r3)
-	cmplwi   r0, 0xff
-	bge      lbl_80347564
-	lfs      f1, 0xb8(r31)
-	lis      r0, 0x4330
-	lfs      f0, 0xbc(r31)
-	lwz      r12, 0(r3)
-	fmadds   f0, f1, f30, f0
-	stw      r0, 8(r1)
-	lfd      f1, lbl_8051E2A8@sda21(r2)
-	lfs      f2, 0x40(r31)
-	fctiwz   f0, f0
-	lwz      r12, 0x24(r12)
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	clrlwi   r0, r0, 0x18
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r30, 0x1c(r1)
-	mr       r4, r30
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x98(r31)
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80347564:
-	lwz      r3, 0x94(r31)
-	stfs     f30, 0xcc(r3)
-	stfs     f30, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x98(r31)
-	stfs     f30, 0xcc(r3)
-	stfs     f30, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8034759C:
-	lfs      f1, 0x9c(r31)
-	lfs      f0, mInitPosX__Q28Morimura10THurryUp2D@sda21(r13)
-	lwz      r3, 0x80(r31)
-	fsubs    f0, f1, f0
-	lfs      f1, 0xd4(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803475EC
-	lwz      r0, 0xb0(r31)
-	lwz      r3, 0x94(r31)
-	mulli    r0, r0, 0xc
-	lfs      f1, 0xcc(r3)
-	add      r3, r31, r0
-	lfs      f0, 0xd8(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_803475EC
-	lfs      f1, lbl_8051E258@sda21(r2)
-	mr       r3, r31
-	li       r4, 2
-	bl       changeState__Q28Morimura10THurryUp2DFif
-
-lbl_803475EC:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -1588,7 +1006,8 @@ void THurryUp2D::scaleUp1()
 	f32 goal      = mParams[mState].mGoalScale;
 	f32 scale;
 	if (pane->mScale.x < goal) {
-		scale = mTimer * mScaleSp1 * 60.0f * sys->mDeltaTime + mParams[mState].mScale;
+		f32 factor = mTimer * mScaleSp1 * 60.0f;
+		scale      = factor * sys->mDeltaTime + mParams[mState].mScale;
 		if (scale >= goal) {
 			scale = goal;
 		}
@@ -1603,104 +1022,6 @@ void THurryUp2D::scaleUp1()
 	u8 alpha = mFadeFraction * 255.0f;
 	mPaneHurry2->setAlpha(alpha);
 	mPaneSundown2->setAlpha(alpha);
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r0, 0xb0(r3)
-	lwz      r5, 0x90(r3)
-	mulli    r0, r0, 0xc
-	lfs      f0, 0xcc(r5)
-	add      r4, r30, r0
-	lfs      f4, 0xd8(r4)
-	fcmpo    cr0, f0, f4
-	bge      lbl_803476E8
-	lfs      f1, 0xb4(r30)
-	lfs      f0, mScaleSp1__Q28Morimura10THurryUp2D@sda21(r13)
-	lwz      r3, sys@sda21(r13)
-	fmuls    f2, f1, f0
-	lfs      f3, lbl_8051E2C4@sda21(r2)
-	lfs      f1, 0x54(r3)
-	lfs      f0, 0xd4(r4)
-	fmuls    f2, f3, f2
-	fmadds   f31, f2, f1, f0
-	fcmpo    cr0, f31, f4
-	cror     2, 1, 2
-	bne      lbl_80347688
-	fmr      f31, f4
-
-lbl_80347688:
-	lfs      f1, 0xb8(r30)
-	lis      r0, 0x4330
-	lfs      f0, 0xbc(r30)
-	mr       r3, r5
-	lwz      r12, 0(r5)
-	fmadds   f0, f1, f31, f0
-	stw      r0, 0x10(r1)
-	lfd      f1, lbl_8051E2A8@sda21(r2)
-	lfs      f2, 0x40(r30)
-	fctiwz   f0, f0
-	lwz      r12, 0x24(r12)
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	clrlwi   r0, r0, 0x18
-	stw      r0, 0x14(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f1
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r4, 0x1c(r1)
-	mtctr    r12
-	bctrl
-	b        lbl_803476F8
-
-lbl_803476E8:
-	lfs      f31, lbl_8051E270@sda21(r2)
-	li       r4, 3
-	lfs      f1, lbl_8051E258@sda21(r2)
-	bl       changeState__Q28Morimura10THurryUp2DFif
-
-lbl_803476F8:
-	lwz      r3, 0x90(r30)
-	stfs     f31, 0xcc(r3)
-	stfs     f31, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051E25C@sda21(r2)
-	lfs      f0, 0x40(r30)
-	lwz      r3, 0x94(r30)
-	fmuls    f0, f1, f0
-	lwz      r12, 0(r3)
-	fctiwz   f0, f0
-	lwz      r12, 0x24(r12)
-	stfd     f0, 0x18(r1)
-	lwz      r31, 0x1c(r1)
-	mr       r4, r31
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x98(r30)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -1711,11 +1032,11 @@ lbl_803476F8:
 void THurryUp2D::colorUp()
 {
 	u8 alpha = 255;
-	u8 calc  = sys->mDeltaTime * 120.0f * mColorUpSp;
-	f32 time = calc;
+	f32 v1   = mColorUpSp * (sys->mDeltaTime * 120.0f);
+	f32 time = (int)v1;
 	if (time * mTimer < mParams[mState].mAlpha2) {
 		f32 time2 = mParams[mState].mAlpha1;
-		alpha     = mTimer * calc + time2;
+		alpha     = mTimer * (int)v1 + time2;
 	} else {
 		changeState(StateScaleUp2, 0.0f);
 	}
@@ -1727,120 +1048,6 @@ void THurryUp2D::colorUp()
 	u8 alpha2 = mFadeFraction * 255.0f;
 	mPaneHurry2->setAlpha(alpha2);
 	mPaneSundown2->setAlpha(alpha2);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, 0x4330
-	lfs      f1, lbl_8051E2C8@sda21(r2)
-	stw      r0, 0x34(r1)
-	lfd      f3, lbl_8051E268@sda21(r2)
-	stw      r31, 0x2c(r1)
-	li       r31, 0xff
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r4, sys@sda21(r13)
-	lwz      r0, 0xb0(r3)
-	lfs      f0, 0x54(r4)
-	mulli    r0, r0, 0xc
-	lfs      f2, mColorUpSp__Q28Morimura10THurryUp2D@sda21(r13)
-	fmuls    f0, f1, f0
-	stw      r5, 0x10(r1)
-	lfs      f4, 0xb4(r3)
-	add      r4, r30, r0
-	fmuls    f0, f2, f0
-	lbz      r0, 0xd1(r4)
-	stw      r5, 0x18(r1)
-	lfd      f2, lbl_8051E2A8@sda21(r2)
-	fctiwz   f1, f0
-	stw      r0, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	stfd     f1, 8(r1)
-	fsubs    f0, f0, f2
-	lwz      r0, 0xc(r1)
-	xoris    r6, r0, 0x8000
-	stw      r6, 0x14(r1)
-	lfd      f1, 0x10(r1)
-	fsubs    f1, f1, f3
-	fmuls    f1, f1, f4
-	fcmpo    cr0, f1, f0
-	bge      lbl_80347844
-	lbz      r0, 0xd0(r4)
-	stw      r6, 0x1c(r1)
-	stw      r5, 0x18(r1)
-	lfd      f0, 0x18(r1)
-	stw      r0, 0x14(r1)
-	fsubs    f1, f0, f3
-	stw      r5, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fmadds   f0, f4, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r31, 0xc(r1)
-	b        lbl_80347850
-
-lbl_80347844:
-	lfs      f1, lbl_8051E258@sda21(r2)
-	li       r4, 4
-	bl       changeState__Q28Morimura10THurryUp2DFif
-
-lbl_80347850:
-	lwz      r3, 0x8c(r30)
-	li       r4, 0xff
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r3, r31, 0x18
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lwz      r3, 0x8c(r30)
-	stw      r0, 0x18(r1)
-	lfd      f2, lbl_8051E2A8@sda21(r2)
-	stb      r31, 0x1e0(r3)
-	lfd      f1, 0x18(r1)
-	lfs      f0, 0x40(r30)
-	fsubs    f1, f1, f2
-	lwz      r3, 0x90(r30)
-	lwz      r12, 0(r3)
-	fmuls    f0, f1, f0
-	lwz      r12, 0x24(r12)
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r4, 0x14(r1)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x88(r30)
-	li       r4, 0xff
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051E25C@sda21(r2)
-	lfs      f0, 0x40(r30)
-	lwz      r3, 0x94(r30)
-	fmuls    f0, f1, f0
-	lwz      r12, 0(r3)
-	fctiwz   f0, f0
-	lwz      r12, 0x24(r12)
-	stfd     f0, 8(r1)
-	lwz      r31, 0xc(r1)
-	mr       r4, r31
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x98(r30)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -1876,158 +1083,6 @@ void THurryUp2D::scaleUp2()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	lwz      r0, 0xb0(r3)
-	lwz      r3, 0x90(r3)
-	mulli    r0, r0, 0xc
-	lfs      f0, 0xcc(r3)
-	add      r4, r30, r0
-	lfs      f4, 0xd8(r4)
-	fcmpo    cr0, f0, f4
-	bge      lbl_80347A7C
-	lfs      f1, 0xb4(r30)
-	lfs      f0, mScaleSp2__Q28Morimura10THurryUp2D@sda21(r13)
-	lwz      r3, sys@sda21(r13)
-	fmuls    f2, f1, f0
-	lfs      f3, lbl_8051E2C4@sda21(r2)
-	lfs      f1, 0x54(r3)
-	lfs      f0, 0xd4(r4)
-	fmuls    f2, f3, f2
-	fmadds   f31, f2, f1, f0
-	fcmpo    cr0, f31, f4
-	ble      lbl_8034799C
-	fmr      f31, f4
-
-lbl_8034799C:
-	lfs      f1, 0xb8(r30)
-	lis      r0, 0x4330
-	lfs      f0, 0xbc(r30)
-	lwz      r3, 0x94(r30)
-	fmadds   f0, f1, f31, f0
-	stw      r0, 0x48(r1)
-	lwz      r12, 0(r3)
-	lfd      f1, lbl_8051E2A8@sda21(r2)
-	fctiwz   f0, f0
-	lfs      f2, 0x40(r30)
-	lwz      r12, 0x24(r12)
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	clrlwi   r0, r0, 0x18
-	stw      r0, 0x4c(r1)
-	lfd      f0, 0x48(r1)
-	fsubs    f0, f0, f1
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x50(r1)
-	lwz      r31, 0x54(r1)
-	mr       r4, r31
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x98(r30)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x90(r30)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x88(r30)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x8c(r30)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x90(r30)
-	stfs     f31, 0xcc(r3)
-	stfs     f31, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80347B4C
-
-lbl_80347A7C:
-	lbz      r4, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	cmplwi   r4, 0
-	bne      lbl_80347B4C
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_80347B4C
-	cmplwi   r4, 0
-	bne      lbl_80347B4C
-	lwz      r0, moviePlayer__4Game@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80347B4C
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x15
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80347B4C
-	lfs      f0, lbl_8051E258@sda21(r2)
-	lis      r4, lbl_804902D8@ha
-	li       r0, 0
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	addi     r4, r4, lbl_804902D8@l
-	stw      r0, 0xc(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stfs     f0, 0x20(r1)
-	stfs     f0, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x34(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x38(r1)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	or.      r31, r3, r3
-	beq      lbl_80347B4C
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_80347B4C
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x15
-	bl       setDemoFlag__Q24Game8PlayDataFi
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	addi     r4, r1, 8
-	stw      r31, 0x18c(r3)
-	lwz      r0, 0x280(r31)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	stw      r0, 0x190(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-
-lbl_80347B4C:
-	psq_l    f31, 104(r1), 0, qr0
-	lwz      r0, 0x74(r1)
-	lfd      f31, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
