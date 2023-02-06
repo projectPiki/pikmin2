@@ -22,6 +22,9 @@ struct Vector2 {
 
 	operator JGeometry::TVec2f() { return JGeometry::TVec2f(x, y); }
 
+	inline f32 length() const;
+	inline f32 normalise();
+
 	T x, y;
 };
 
@@ -57,6 +60,35 @@ inline f32 _sqrtfvec(Vector2f& vec) // function doesn't quite match usage in ebi
 		}
 	}
 	return val;
+}
+
+template <>
+inline f32 Vector2f::length() const
+{
+	Vector2f vec(x, y);
+	f32 x2 = x * x;
+	f32 y2 = y * y;
+
+	if (x2 + y2 > 0.0f) {
+		f32 sqrLen = vec.x * vec.x + y * y;
+		return sqrtf(sqrLen);
+	} else {
+		return 0.0f;
+	}
+}
+
+template <>
+inline f32 Vector2f::normalise()
+{
+	f32 len = length();
+
+	if (len != 0.0f) {
+		f32 norm = 1.0f / len;
+		x *= norm;
+		y *= norm;
+		return len;
+	}
+	return 0.0f;
 }
 
 #endif

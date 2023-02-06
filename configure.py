@@ -1472,7 +1472,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebiCardMgr_Load", True],
             ["plugProjectEbisawaU/ebiP2TitleCoordMgr", True],
             "plugProjectEbisawaU/ebiP2TitlePikmin",
-            "plugProjectEbisawaU/ebiP2TitleKogane",
+            ["plugProjectEbisawaU/ebiP2TitleKogane", True],
             "plugProjectEbisawaU/ebiP2TitleChappy",
             ["plugProjectEbisawaU/ebiScreenTMBack", True],
             "plugProjectEbisawaU/ebiMainTitleMgr",

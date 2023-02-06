@@ -53,7 +53,7 @@ struct TAnimFolder : public E3DAnimFolderBase {
 	void load(J3DModelData*, JKRArchive*);
 
 	// _00 = VTBL
-	E3DAnimRes mAnims[2]; // _04 - - move, wait
+	E3DAnimRes mAnims[2]; // _04, move, wait
 };
 
 struct TAnimator {
@@ -82,7 +82,6 @@ struct TMgr : public CNode {
 };
 
 struct TUnit : public TObjBase {
-
 	enum enumAction {
 		KOGANEACT_NULL = -1,
 		KOGANEACT_0    = 0,
@@ -91,16 +90,18 @@ struct TUnit : public TObjBase {
 		KOGANEACT_3    = 3,
 		KOGANEACT_4    = 4,
 	};
+
 	enum enumState {
 		KSTATE_Inactive   = 0,
 		KSTATE_Wait       = 1,
 		KSTATE_Turn       = 2,
 		KSTATE_Walk       = 3,
-		KSTATE_4          = 4,
-		KSTATE_5          = 5,
+		KSTATE_ZigZagWalk = 4,
+		KSTATE_GoHome     = 5,
 		KSTATE_Controlled = 6,
 
 	};
+
 	inline TUnit()
 	{
 		mCounter               = 0;
@@ -114,8 +115,8 @@ struct TUnit : public TObjBase {
 		mCounter2              = time;
 		mControl               = nullptr;
 		mManager               = nullptr;
-		mStateID               = 0;
-		mActionID              = -1;
+		mStateID               = KSTATE_Inactive;
+		mActionID              = KOGANEACT_NULL;
 	}
 
 	virtual u32 getCreatureType() { return 5; } // _08 (weak)
@@ -139,8 +140,8 @@ struct TUnit : public TObjBase {
 	Controller* mControl;  // _44
 	TMgr* mManager;        // _48
 	E3DAnimCtrl mAnim;     // _4C
-	s32 mStateID;          // _60
-	u32 mActionID;         // _64
+	enumState mStateID;    // _60
+	enumAction mActionID;  // _64
 };
 
 } // namespace Kogane

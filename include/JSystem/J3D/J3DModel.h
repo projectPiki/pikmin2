@@ -176,15 +176,15 @@ struct J3DModel {
 
 	inline J3DModelData* getModelData() { return mModelData; }
 
-	void onFlag(u32 flag) { mFlags.typeView |= flag; }
-	void offFlag(u32 flag) { mFlags.typeView &= ~flag; }
-	bool checkFlag(u32 flag) const { return mFlags.typeView & flag; }
+	void onFlag(u32 flag) { mFlags |= flag; }
+	void offFlag(u32 flag) { mFlags &= ~flag; }
+	bool checkFlag(u32 flag) const { return mFlags & flag; }
 
-	bool isCpuSkinningOn() const { return (mFlags.typeView & J3DMODEL_Unk3) && (mFlags.typeView & J3DMODEL_Unk4); }
+	bool isCpuSkinningOn() const { return (mFlags & J3DMODEL_Unk3) && (mFlags & J3DMODEL_Unk4); }
 
 	Mtx& getBaseTRMtx() { return mPosMtx; }
 	void i_setBaseTRMtx(Mtx m) { PSMTXCopy(m, mPosMtx); }
-	u32 getMtxCalcMode() const { return mFlags.typeView & J3DMODEL_Unk3; }
+	u32 getMtxCalcMode() const { return mFlags & J3DMODEL_Unk3; }
 	J3DVertexBuffer* getVertexBuffer() const { return (J3DVertexBuffer*)&mVertexBuffer; }
 	J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPackets[idx]; }
 	J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePackets[idx]; }
@@ -197,17 +197,17 @@ struct J3DModel {
 		mModelScale.y = scale.y;
 		mModelScale.z = scale.z;
 	}
-	void setUserArea(u32 area) { mUserArea.typeView = area; }
-	u32 getUserArea() const { return mUserArea.typeView; }
+	void setUserArea(u32 area) { mUserArea = area; }
+	u32 getUserArea() const { return mUserArea; }
 	JGeometry::TVec3f* getBaseScale() { return &mModelScale; }
 	void setAnmMtx(int i, Mtx m) { mMtxBuffer->setAnmMtx(i, m); }
 
 	// _00 VTBL
 	J3DModelData* mModelData;       // _04
-	BitFlag<u32> mFlags;            // _08
+	u32 mFlags;                     // _08
 	u32 mDiffFlag;                  // _0C
 	J3DCalcCallBack mCalcCallBack;  // _10
-	BitFlag<u32> mUserArea;         // _14
+	u32 mUserArea;                  // _14
 	JGeometry::TVec3f mModelScale;  // _18
 	Mtx mPosMtx;                    // _24
 	Mtx mInternalView;              // _54
