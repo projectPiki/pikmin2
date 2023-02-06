@@ -5,27 +5,29 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__27Pikmin_TCreateObject_JAudio
-__vt__27Pikmin_TCreateObject_JAudio:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__27Pikmin_TCreateObject_JAudio, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__27Pikmin_TCreateObject_JAudioFv
 	.4byte create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+.endobj __vt__27Pikmin_TCreateObject_JAudio
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__27Pikmin_TCreateObject_JAudioFP8JAIBasicPCQ26JStage7TSystem
-__ct__27Pikmin_TCreateObject_JAudioFP8JAIBasicPCQ26JStage7TSystem:
+.fn __ct__27Pikmin_TCreateObject_JAudioFP8JAIBasicPCQ26JStage7TSystem, global
 /* 80454D30 00451C70  3D 00 80 4A */	lis r8, __vt__Q27JStudio13TCreateObject@ha
 /* 80454D34 00451C74  3C E0 80 4A */	lis r7, __vt__Q214JStudio_JAudio13TCreateObject@ha
 /* 80454D38 00451C78  38 08 E6 7C */	addi r0, r8, __vt__Q27JStudio13TCreateObject@l
@@ -41,9 +43,9 @@ __ct__27Pikmin_TCreateObject_JAudioFP8JAIBasicPCQ26JStage7TSystem:
 /* 80454D60 00451CA0  90 A3 00 10 */	stw r5, 0x10(r3)
 /* 80454D64 00451CA4  90 03 00 00 */	stw r0, 0(r3)
 /* 80454D68 00451CA8  4E 80 00 20 */	blr 
+.endfn __ct__27Pikmin_TCreateObject_JAudioFP8JAIBasicPCQ26JStage7TSystem
 
-.global create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
-create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object:
+.fn create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object, global
 /* 80454D6C 00451CAC  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 80454D70 00451CB0  7C 08 02 A6 */	mflr r0
 /* 80454D74 00451CB4  90 01 01 24 */	stw r0, 0x124(r1)
@@ -156,9 +158,9 @@ create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data2
 /* 80454EF4 00451E34  7C 08 03 A6 */	mtlr r0
 /* 80454EF8 00451E38  38 21 01 20 */	addi r1, r1, 0x120
 /* 80454EFC 00451E3C  4E 80 00 20 */	blr 
+.endfn create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
 
-.global __dt__27Pikmin_TCreateObject_JAudioFv
-__dt__27Pikmin_TCreateObject_JAudioFv: # weak function
+.fn __dt__27Pikmin_TCreateObject_JAudioFv, weak
 /* 80454F00 00451E40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80454F04 00451E44  7C 08 02 A6 */	mflr r0
 /* 80454F08 00451E48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -184,8 +186,9 @@ __dt__27Pikmin_TCreateObject_JAudioFv: # weak function
 /* 80454F54 00451E94  7C 08 03 A6 */	mtlr r0
 /* 80454F58 00451E98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80454F5C 00451E9C  4E 80 00 20 */	blr 
+.endfn __dt__27Pikmin_TCreateObject_JAudioFv
 
-__sinit_moviePlayerAudio_cpp: # static initializer
+.fn __sinit_moviePlayerAudio_cpp, local
 /* 80454F60 00451EA0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80454F64 00451EA4  38 00 FF FF */	li r0, -1
 /* 80454F68 00451EA8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -196,3 +199,4 @@ __sinit_moviePlayerAudio_cpp: # static initializer
 /* 80454F7C 00451EBC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80454F80 00451EC0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80454F84 00451EC4  4E 80 00 20 */	blr 
+.endfn __sinit_moviePlayerAudio_cpp
