@@ -68,9 +68,15 @@ TScaleUpCounter* setScaleUpCounter2(P2DScreen::Mgr*, u64, u64, u32*, u16, JKRArc
 struct TCounterRV : public og::Screen::CallBack_CounterRV {
 	TCounterRV(char**, u16, u16, JKRArchive*);
 
-	virtual ~TCounterRV();             // _08 (weak)
+	virtual ~TCounterRV() { }          // _08 (weak)
 	virtual void update();             // _10
 	virtual void setValue(bool, bool); // _28
+
+	// unused functions
+	void createKiraEffect(f32, int);
+	void fadeKiraEffect();
+	void startScaleAnim();
+	void reset();
 
 	// _00     = VTBL
 	// _00-_A8 = og::Screen::CallBack_CounterRV
@@ -122,6 +128,21 @@ struct TGXSetPane : public J2DPictureEx {
 };
 
 struct TMovePane {
+	TMovePane();
+
+	void setPane(J2DPane*);
+	void update();
+	void move();
+	void turn();
+	void getAngDist();
+	void hosei();
+	void rolling();
+	void stick();
+	void forceTurn();
+	void startStick(J2DPane*);
+	void isReachToGoal();
+	void reset();
+
 	J2DPane* _00; // _00
 	u32 _04;      // _04, unknown
 	f32 _08;      // _08
@@ -208,6 +229,15 @@ struct TIndPane : public CNode {
 	f32 _40;               // _40
 	u8 _44;                // _44
 };
+
+// unused struct?
+struct TClearTexture {
+	void resetTexture();
+	void changeTexture(bool);
+	void getPosition(Vector2f&);
+	void getEffectPosition(Vector2f&);
+};
+
 } // namespace Morimura
 
 #endif

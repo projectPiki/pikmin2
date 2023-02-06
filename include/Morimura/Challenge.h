@@ -5,7 +5,7 @@
 #include "Morimura/Window.h"
 #include "Screen/Enums.h"
 #include "og/Screen/ogScreen.h"
-
+#include "ebi/Save.h"
 struct JKRExpHeap;
 
 namespace og {
@@ -94,9 +94,15 @@ struct TChallengePlayModeScreen : public TScreenBase {
 };
 
 struct TChallengeResultDemoScreen : public TScreenBase {
+	TChallengeResultDemoScreen(JKRArchive*, int);
+
 	virtual void create(const char*, u32);        // _08
 	virtual void update();                        // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*); // _10
+
+	void startDemo();
+	void setComplete(bool);
+	void reset();
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
@@ -135,6 +141,15 @@ struct TChallengeResultScreen : public TChallengeScreen {
 	og::Screen::AnimPane* _2C; // _2C
 };
 
+// unused struct? or entirely inlined
+struct TChallengeResultCounter {
+	TChallengeResultCounter(unsigned long*, int, int);
+	void start();
+	void stop();
+	void getFillRate();
+	void update();
+};
+
 struct TChallengeEndCount : public TDayEndCount {
 	TChallengeEndCount();
 
@@ -170,6 +185,8 @@ struct TChallengeEndCount2p : public TChallengeEndCount {
 
 struct TChallengeResult : public TTestBase {
 	struct VectorUnit {
+		VectorUnit() { }
+
 		f32 _00; // _00
 		f32 _04; // _04
 		f32 _08; // _08
@@ -178,12 +195,12 @@ struct TChallengeResult : public TTestBase {
 
 	TChallengeResult();
 
-	virtual ~TChallengeResult();                             // _08 (weak)
-	virtual void doCreate(JKRArchive*);                      // _4C
-	virtual bool doUpdate();                                 // _58
-	virtual void doUpdateFadeoutFinish();                    // _64
-	virtual void doDraw(Graphics& gfx);                      // _68
-	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)
+	virtual ~TChallengeResult() { }                                                                          // _08 (weak)
+	virtual void doCreate(JKRArchive*);                                                                      // _4C
+	virtual bool doUpdate();                                                                                 // _58
+	virtual void doUpdateFadeoutFinish();                                                                    // _64
+	virtual void doDraw(Graphics& gfx);                                                                      // _68
+	virtual og::Screen::DispMemberBase* getDispMemberBase() { return mIsSection ? mDisp : getDispMember(); } // _78 (weak)
 
 	void setInfo();
 	void updateDemo();
@@ -191,6 +208,7 @@ struct TChallengeResult : public TTestBase {
 	void startRankInDemo();
 	void startDemo();
 	void fadeEffect();
+	void setDebugHeapParent(JKRHeap*);
 
 	// _00     = VTBL1
 	// _18     = VTBL2
@@ -198,7 +216,10 @@ struct TChallengeResult : public TTestBase {
 	JKRArchive* _78;                               // _78
 	TChallengeResultScreen* mResultScreen;         // _7C
 	TChallengeResultDemoScreen* mResultDemoScreen; // _80
-	u8 _84[0x178];                                 // _84, TODO: fill these in from ghidra
+	ebi::Save::TMgr* mSaveMgr;                     // _84
+	Controller* mControls;                         // _88
+	DispMemberChallengeResult* mDisp;              // _8C
+	u8 _90[0x16C];                                 // _90, TODO: fill these in from ghidra
 };
 
 struct TChallengeSelect : public TTestBase {
