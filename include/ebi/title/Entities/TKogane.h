@@ -68,7 +68,25 @@ struct TMgr : public CNode {
 };
 
 struct TUnit : public TObjBase {
-	enum enumState { UNKNOWN, UNKNOWN_5 = 5 };
+
+	enum enumAction {
+		KOGANEACT_NULL = -1,
+		KOGANEACT_0    = 0,
+		KOGANEACT_1    = 1,
+		KOGANEACT_2    = 2,
+		KOGANEACT_3    = 3,
+		KOGANEACT_4    = 4,
+	};
+	enum enumState { 
+		KSTATE_Inactive   = 0,
+		KSTATE_Wait       = 1,
+		KSTATE_Turn       = 2,
+		KSTATE_Walk       = 3,
+		KSTATE_4          = 4,
+		KSTATE_5          = 5,
+		KSTATE_Controlled = 6,
+
+	 };
 		inline TUnit()
 	{
 		mCounter = 0; 
