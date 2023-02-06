@@ -6,7 +6,6 @@
 #include "Screen/Enums.h"
 #include "og/Screen/ogScreen.h"
 #include "ebi/Save.h"
-#include "Game/VsGame.h"
 #include "Game/ChallengeGame.h"
 #include "Morimura/mrUtil.h"
 #include "efx2d/T2DCavecomp.h"
@@ -261,9 +260,7 @@ struct TChallengeResult : public TTestBase {
 	f32 mTimer; // _1EC
 	f32 mSpeed;
 	f32 mTimer2;
-	Game::VsGame::StageList* mStageListVs; // _1F8
-	int _1FC;
-	Game::ChallengeGame::StageList* mStageListChal;
+	Game::ChallengeGame::StageList* mStageList; // _1F8
 };
 
 struct TChallengeSelect : public TTestBase {

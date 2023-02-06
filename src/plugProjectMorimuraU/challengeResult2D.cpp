@@ -635,8 +635,8 @@ void TChallengeResultScreen::create(char const* path, u32 flag) { TScreenBase::c
  */
 void TChallengeResultScreen::createAnimPane(char* path)
 {
-	u64 tagList[19] = { 'Nhl_00', 'Nhl_01', 'Nhl_02', 'Nhl_03', 'Nhl_04', 'Nhl_05', 'Nhl_06',   'Nhl_07',   'Nhl_08',
-		                'Nhl_09', 'Nhl_10', 'Nhl_11', 'Nhl_12', 'Nhl_13', 'Nhl_14', 'Pmsen003', 'Pmsen004', 'Pmsen007', 'Pmsen009' };
+	u64 tagList[19] = { 'Nhl_00', 'Nhl_01', 'Nhl_02', 'Nhl_03', 'Nhl_04', 'Nhl_05',   'Nhl_06',   'Nhl_07',   'Nhl_08',  'Nhl_09',
+		                'Nhl_10', 'Nhl_11', 'Nhl_12', 'Nhl_13', 'Nhl_14', 'Pmsen003', 'Pmsen004', 'Pmsen007', 'Pmsen009' };
 	mAnimPaneCount  = 19;
 	mAnimPanes      = new og::Screen::AnimPane*[mAnimPaneCount];
 
