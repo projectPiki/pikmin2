@@ -1,27 +1,30 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A9EB8:
+.obj lbl_804A9EB8, local
 	.asciz "<< Dolphin SDK - SI\trelease build: Apr 17 2003 12:33:19 (0x2301) >>"
-.global Si
-Si:
+.endobj lbl_804A9EB8
+.obj Si, local
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global Type
-Type:
+.endobj Si
+.obj Type, local
 	.4byte 0x00000008
 	.4byte 0x00000008
 	.4byte 0x00000008
 	.4byte 0x00000008
+.endobj Type
 .balign 4
-lbl_804A9F20:
+.obj lbl_804A9F20, local
 	.asciz "No response"
+.endobj lbl_804A9F20
 .balign 4
-lbl_804A9F2C:
+.obj lbl_804A9F2C, local
 	.asciz "N64 controller"
+.endobj lbl_804A9F2C
 .balign 4
 lbl_804A9F3C:
 	.asciz "N64 microphone"
@@ -88,19 +91,21 @@ cmdFixDevice$327:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __SIVersion
-__SIVersion:
+.obj __SIVersion, global
 	.4byte lbl_804A9EB8
+.endobj __SIVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-cmdTypeAndStatus$78:
+.obj cmdTypeAndStatus$78, local
 	.skip 4
-cmdTypeAndStatus$372:
+.endobj cmdTypeAndStatus$78
+.obj cmdTypeAndStatus$372, local
 	.skip 4
-.global __PADFixBits
-__PADFixBits:
+.endobj cmdTypeAndStatus$372
+.obj __PADFixBits, global
 	.skip 4
+.endobj __PADFixBits
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global SIBusy

@@ -1,16 +1,15 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __CARDVendorID
-__CARDVendorID:
+.obj __CARDVendorID, global
 	.2byte 0xFFFF
-.global __CARDPermMask
-__CARDPermMask:
+.endobj __CARDVendorID
+.obj __CARDPermMask, global
 	.byte 0x1C
+.endobj __CARDPermMask
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global CARDGetSerialNo
-CARDGetSerialNo:
+.fn CARDGetSerialNo, global
 /* 800DAB00 000D7A40  7C 08 02 A6 */	mflr r0
 /* 800DAB04 000D7A44  2C 03 00 00 */	cmpwi r3, 0
 /* 800DAB08 000D7A48  90 01 00 04 */	stw r0, 4(r1)
@@ -64,3 +63,4 @@ CARDGetSerialNo:
 /* 800DABB8 000D7AF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800DABBC 000D7AFC  7C 08 03 A6 */	mtlr r0
 /* 800DABC0 000D7B00  4E 80 00 20 */	blr 
+.endfn CARDGetSerialNo

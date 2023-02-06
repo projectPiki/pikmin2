@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global WriteCallback2
-WriteCallback2:
+.fn WriteCallback, local
 /* 800DA2BC 000D71FC  7C 08 02 A6 */	mflr r0
 /* 800DA2C0 000D7200  90 01 00 04 */	stw r0, 4(r1)
 /* 800DA2C4 000D7204  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -72,8 +71,8 @@ WriteCallback2:
 /* 800DA3B8 000D72F8  48 00 00 28 */	b .L_800DA3E0
 .L_800DA3BC:
 /* 800DA3BC 000D72FC  80 1F 00 0C */	lwz r0, 0xc(r31)
-/* 800DA3C0 000D7300  3C 60 80 0E */	lis r3, EraseCallback2@ha
-/* 800DA3C4 000D7304  38 A3 A4 2C */	addi r5, r3, EraseCallback2@l
+/* 800DA3C0 000D7300  3C 60 80 0E */	lis r3, EraseCallback@ha
+/* 800DA3C4 000D7304  38 A3 A4 2C */	addi r5, r3, EraseCallback@l
 /* 800DA3C8 000D7308  7C 80 21 D6 */	mullw r4, r0, r4
 /* 800DA3CC 000D730C  38 7E 00 00 */	addi r3, r30, 0
 /* 800DA3D0 000D7310  4B FF B0 31 */	bl __CARDEraseSector
@@ -102,9 +101,9 @@ WriteCallback2:
 /* 800DA420 000D7360  38 21 00 20 */	addi r1, r1, 0x20
 /* 800DA424 000D7364  7C 08 03 A6 */	mtlr r0
 /* 800DA428 000D7368  4E 80 00 20 */	blr 
+.endfn WriteCallback
 
-.global EraseCallback2
-EraseCallback2:
+.fn EraseCallback, local
 /* 800DA42C 000D736C  7C 08 02 A6 */	mflr r0
 /* 800DA430 000D7370  90 01 00 04 */	stw r0, 4(r1)
 /* 800DA434 000D7374  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -120,8 +119,8 @@ EraseCallback2:
 /* 800DA45C 000D739C  7F E0 2A 14 */	add r31, r0, r5
 /* 800DA460 000D73A0  41 80 00 30 */	blt .L_800DA490
 /* 800DA464 000D73A4  80 9F 00 C0 */	lwz r4, 0xc0(r31)
-/* 800DA468 000D73A8  3C 60 80 0E */	lis r3, WriteCallback2@ha
-/* 800DA46C 000D73AC  38 E3 A2 BC */	addi r7, r3, WriteCallback2@l
+/* 800DA468 000D73A8  3C 60 80 0E */	lis r3, WriteCallback@ha
+/* 800DA46C 000D73AC  38 E3 A2 BC */	addi r7, r3, WriteCallback@l
 /* 800DA470 000D73B0  80 BF 00 0C */	lwz r5, 0xc(r31)
 /* 800DA474 000D73B4  A0 04 00 10 */	lhz r0, 0x10(r4)
 /* 800DA478 000D73B8  80 DF 00 B4 */	lwz r6, 0xb4(r31)
@@ -151,9 +150,9 @@ EraseCallback2:
 /* 800DA4D0 000D7410  38 21 00 20 */	addi r1, r1, 0x20
 /* 800DA4D4 000D7414  7C 08 03 A6 */	mtlr r0
 /* 800DA4D8 000D7418  4E 80 00 20 */	blr 
+.endfn EraseCallback
 
-.global CARDWriteAsync
-CARDWriteAsync:
+.fn CARDWriteAsync, global
 /* 800DA4DC 000D741C  7C 08 02 A6 */	mflr r0
 /* 800DA4E0 000D7420  90 01 00 04 */	stw r0, 4(r1)
 /* 800DA4E4 000D7424  94 21 FF C8 */	stwu r1, -0x38(r1)
@@ -207,8 +206,8 @@ CARDWriteAsync:
 /* 800DA590 000D74D0  38 03 46 6C */	addi r0, r3, __CARDDefaultApiCallback@l
 .L_800DA594:
 /* 800DA594 000D74D4  80 81 00 1C */	lwz r4, 0x1c(r1)
-/* 800DA598 000D74D8  3C 60 80 0E */	lis r3, EraseCallback2@ha
-/* 800DA59C 000D74DC  38 A3 A4 2C */	addi r5, r3, EraseCallback2@l
+/* 800DA598 000D74D8  3C 60 80 0E */	lis r3, EraseCallback@ha
+/* 800DA59C 000D74DC  38 A3 A4 2C */	addi r5, r3, EraseCallback@l
 /* 800DA5A0 000D74E0  90 04 00 D0 */	stw r0, 0xd0(r4)
 /* 800DA5A4 000D74E4  80 61 00 1C */	lwz r3, 0x1c(r1)
 /* 800DA5A8 000D74E8  93 E3 00 B4 */	stw r31, 0xb4(r3)
@@ -231,9 +230,9 @@ CARDWriteAsync:
 /* 800DA5E4 000D7524  38 21 00 38 */	addi r1, r1, 0x38
 /* 800DA5E8 000D7528  7C 08 03 A6 */	mtlr r0
 /* 800DA5EC 000D752C  4E 80 00 20 */	blr 
+.endfn CARDWriteAsync
 
-.global CARDWrite
-CARDWrite:
+.fn CARDWrite, global
 /* 800DA5F0 000D7530  7C 08 02 A6 */	mflr r0
 /* 800DA5F4 000D7534  3C E0 80 0D */	lis r7, __CARDSyncCallback@ha
 /* 800DA5F8 000D7538  90 01 00 04 */	stw r0, 4(r1)
@@ -254,3 +253,4 @@ CARDWrite:
 /* 800DA62C 000D756C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800DA630 000D7570  7C 08 03 A6 */	mtlr r0
 /* 800DA634 000D7574  4E 80 00 20 */	blr 
+.endfn CARDWrite

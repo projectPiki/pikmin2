@@ -1,7 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-__THPJpegNaturalOrder: # local object
+.obj __THPJpegNaturalOrder, local
 	.4byte 0x00010810
 	.4byte 0x0902030A
 	.4byte 0x11182019
@@ -22,7 +22,9 @@ __THPJpegNaturalOrder: # local object
 	.4byte 0x3F3F3F3F
 	.4byte 0x3F3F3F3F
 	.4byte 0x3F3F3F3F
-__THPAANScaleFactor: # local object
+.endobj __THPJpegNaturalOrder
+.balign 8
+.obj __THPAANScaleFactor, local
 	.double 1.0
 	.double 1.3870398998260498
 	.double 1.3065630197525024
@@ -31,97 +33,121 @@ __THPAANScaleFactor: # local object
 	.double 0.78569495677948
 	.double 0.5411961078643799
 	.double 0.27589938044548035
+.endobj __THPAANScaleFactor
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-THP_VERSION_STRING: # local string
+.obj lbl_804AA0B0, local
 	.asciz "<< Dolphin SDK - THP\trelease build: Jan  9 2004 13:06:55 (0x2301) >>"
+.endobj lbl_804AA0B0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 32
-.global __THPIDCTWorkspace
-__THPIDCTWorkspace:
+.obj __THPIDCTWorkspace, local
 	.skip 0x100
-.global __THPLCWork512
-__THPLCWork512:
+.endobj __THPIDCTWorkspace
+.obj __THPLCWork512, local
 	.skip 0xC
-.global __THPLCWork672
-__THPLCWork672:
+.endobj __THPLCWork512
+.obj __THPLCWork672, local
 	.skip 0xC
-.global __THPMCUBuffer
-__THPMCUBuffer:
-	.skip 0x28
+.endobj __THPLCWork672
+.obj __THPMCUBuffer, local
+	.skip 0x18
+.endobj __THPMCUBuffer
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __THPVersion
-__THPVersion: # global object
-	.4byte THP_VERSION_STRING
+.obj __THPVersion, global
+	.4byte lbl_804AA0B0
+.endobj __THPVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 32
-Ydchuff: # local object
+.obj Ydchuff, local
 	.skip 4
+.endobj Ydchuff
 .balign 32
-Udchuff: # local object
+.obj Udchuff, local
 	.skip 4
+.endobj Udchuff
 .balign 32
-Vdchuff: # local object
+.obj Vdchuff, local
 	.skip 4
+.endobj Vdchuff
 .balign 32
-Yachuff: # local object
+.obj Yachuff, local
 	.skip 4
+.endobj Yachuff
 .balign 32
-Uachuff: # local object
+.obj Uachuff, local
 	.skip 4
+.endobj Uachuff
 .balign 32
-Vachuff: # local object
+.obj Vachuff, local
 	.skip 4
-__THPHuffmanBits: # local object
+.endobj Vachuff
+.obj __THPHuffmanBits, local
 	.skip 4
-__THPHuffmanSizeTab: # local object
+.endobj __THPHuffmanBits
+.obj __THPHuffmanSizeTab, local
 	.skip 4
-__THPHuffmanCodeTab: # local object
+.endobj __THPHuffmanSizeTab
+.obj __THPHuffmanCodeTab, local
 	.skip 4
+.endobj __THPHuffmanCodeTab
 .balign 32
-Gbase: # local object
+.obj Gbase, local
 	.skip 4
+.endobj Gbase
 .balign 32
-Gwid: # local object
+.obj Gwid, local
 	.skip 4
+.endobj Gwid
 .balign 32
-Gq: # local object
+.obj Gq, local
 	.skip 4
-__THPOldGQR5: # local object
+.endobj Gq
+.obj __THPOldGQR5, local
 	.skip 4
-__THPOldGQR6: # local object
+.endobj __THPOldGQR5
+.obj __THPOldGQR6, local
 	.skip 4
-__THPWorkArea: # local object
+.endobj __THPOldGQR6
+.obj __THPWorkArea, local
 	.skip 4
-__THPInfo: # local object
+.endobj __THPWorkArea
+.obj __THPInfo, local
 	.skip 4
-__THPInitFlag: # local object
+.endobj __THPInfo
+.obj __THPInitFlag, local
 	.skip 4
+.endobj __THPInitFlag
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80517778:
+.obj lbl_80517778, local
 	.4byte 0x43300000
 	.4byte 0x00000000
-lbl_80517780: #sqrt (2)
-	.float 1.4142135
-lbl_80517784: #sqrt (2+sqrt(2))
-	.float 1.847759
-lbl_80517788: #sqrt (4-2(sqrt(2)))
-	.float 1.0823922
-lbl_8051778C: #probably some irrational number pattern
-	.float -2.613126
-lbl_80517790:
+.endobj lbl_80517778
+.obj lbl_80517780
+	.float 1.4142135 # sqrt (2)
+.endobj lbl_80517780
+.obj lbl_80517784, local
+	.float 1.847759 # sqrt (2+sqrt(2))
+.endobj lbl_80517784
+.obj lbl_80517788, local
+	.float 1.0823922 # sqrt (4-2(sqrt(2)))
+.endobj lbl_80517788
+.obj lbl_8051778C, local
+	.float -2.613126 # probably some irrational number pattern
+.endobj lbl_8051778C
+.obj lbl_80517790, local
 	.float 1024.0
+.endobj lbl_80517790
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global THPVideoDecode
-THPVideoDecode: # global func
+.fn THPVideoDecode, global
 /* 800F7148 000F4088  7C 08 02 A6 */	mflr r0
 /* 800F714C 000F408C  90 01 00 04 */	stw r0, 4(r1)
 /* 800F7150 000F4090  94 21 FF C8 */	stwu r1, -0x38(r1)
@@ -288,8 +314,9 @@ THPVideoDecode: # global func
 /* 800F7380 000F42C0  38 21 00 38 */	addi r1, r1, 0x38
 /* 800F7384 000F42C4  7C 08 03 A6 */	mtlr r0
 /* 800F7388 000F42C8  4E 80 00 20 */	blr 
+.endfn THPVideoDecode
 
-__THPSetupBuffers: # local func
+.fn __THPSetupBuffers, local
 /* 800F738C 000F42CC  80 8D 91 8C */	lwz r4, __THPWorkArea@sda21(r13)
 /* 800F7390 000F42D0  3C 60 80 4F */	lis r3, __THPMCUBuffer@ha
 /* 800F7394 000F42D4  38 A3 74 98 */	addi r5, r3, __THPMCUBuffer@l
@@ -307,8 +334,9 @@ __THPSetupBuffers: # local func
 /* 800F73C4 000F4304  90 65 00 10 */	stw r3, 0x10(r5)
 /* 800F73C8 000F4308  90 05 00 14 */	stw r0, 0x14(r5)
 /* 800F73CC 000F430C  4E 80 00 20 */	blr 
+.endfn __THPSetupBuffers
 
-__THPReadFrameHeader: # local func
+.fn __THPReadFrameHeader, local
 /* 800F73D0 000F4310  80 8D 91 90 */	lwz r4, __THPInfo@sda21(r13)
 /* 800F73D4 000F4314  80 64 06 9C */	lwz r3, 0x69c(r4)
 /* 800F73D8 000F4318  38 03 00 02 */	addi r0, r3, 2
@@ -395,8 +423,9 @@ __THPReadFrameHeader: # local func
 /* 800F7500 000F4440  41 80 FF 84 */	blt .L_800F7484
 /* 800F7504 000F4444  38 60 00 00 */	li r3, 0
 /* 800F7508 000F4448  4E 80 00 20 */	blr 
+.endfn __THPReadFrameHeader
 
-__THPReadScaneHeader: # local func
+.fn __THPReadScaneHeader, local
 /* 800F750C 000F444C  80 8D 91 90 */	lwz r4, __THPInfo@sda21(r13)
 /* 800F7510 000F4450  80 64 06 9C */	lwz r3, 0x69c(r4)
 /* 800F7514 000F4454  38 03 00 02 */	addi r0, r3, 2
@@ -473,8 +502,9 @@ __THPReadScaneHeader: # local func
 /* 800F761C 000F455C  80 8D 91 90 */	lwz r4, __THPInfo@sda21(r13)
 /* 800F7620 000F4560  B0 04 06 90 */	sth r0, 0x690(r4)
 /* 800F7624 000F4564  4E 80 00 20 */	blr 
+.endfn __THPReadScaneHeader
 
-__THPReadQuantizationTable: # local func
+.fn __THPReadQuantizationTable, local
 /* 800F7628 000F4568  94 21 FE 78 */	stwu r1, -0x188(r1)
 /* 800F762C 000F456C  3C 80 80 48 */	lis r4, __THPJpegNaturalOrder@ha
 /* 800F7630 000F4570  38 84 A4 90 */	addi r4, r4, __THPJpegNaturalOrder@l
@@ -719,8 +749,9 @@ __THPReadQuantizationTable: # local func
 /* 800F79D8 000F4918  BA A1 01 5C */	lmw r21, 0x15c(r1)
 /* 800F79DC 000F491C  38 21 01 88 */	addi r1, r1, 0x188
 /* 800F79E0 000F4920  4E 80 00 20 */	blr 
+.endfn __THPReadQuantizationTable
 
-__THPReadHuffmanTableSpecification: # local func
+.fn __THPReadHuffmanTableSpecification, local
 /* 800F79E4 000F4924  7C 08 02 A6 */	mflr r0
 /* 800F79E8 000F4928  90 01 00 04 */	stw r0, 4(r1)
 /* 800F79EC 000F492C  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -844,8 +875,9 @@ __THPReadHuffmanTableSpecification: # local func
 /* 800F7BB8 000F4AF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F7BBC 000F4AFC  7C 08 03 A6 */	mtlr r0
 /* 800F7BC0 000F4B00  4E 80 00 20 */	blr 
+.endfn __THPReadHuffmanTableSpecification
 
-__THPHuffGenerateSizeTable: # local func
+.fn __THPHuffGenerateSizeTable, local
 /* 800F7BC4 000F4B04  38 C0 00 00 */	li r6, 0
 /* 800F7BC8 000F4B08  38 E0 00 01 */	li r7, 1
 .L_800F7BCC:
@@ -911,8 +943,9 @@ __THPHuffGenerateSizeTable: # local func
 /* 800F7CA8 000F4BE8  38 00 00 00 */	li r0, 0
 /* 800F7CAC 000F4BEC  7C 03 31 AE */	stbx r0, r3, r6
 /* 800F7CB0 000F4BF0  4E 80 00 20 */	blr 
+.endfn __THPHuffGenerateSizeTable
 
-__THPHuffGenerateCodeTable: # local func
+.fn __THPHuffGenerateCodeTable, local
 /* 800F7CB4 000F4BF4  80 CD 91 28 */	lwz r6, __THPHuffmanSizeTab@sda21(r13)
 /* 800F7CB8 000F4BF8  39 00 00 00 */	li r8, 0
 /* 800F7CBC 000F4BFC  80 AD 91 2C */	lwz r5, __THPHuffmanCodeTab@sda21(r13)
@@ -943,8 +976,9 @@ __THPHuffGenerateCodeTable: # local func
 /* 800F7D10 000F4C50  28 00 00 00 */	cmplwi r0, 0
 /* 800F7D14 000F4C54  40 82 FF BC */	bne .L_800F7CD0
 /* 800F7D18 000F4C58  4E 80 00 20 */	blr 
+.endfn __THPHuffGenerateCodeTable
 
-__THPHuffGenerateDecoderTables: # local func
+.fn __THPHuffGenerateDecoderTables, local
 /* 800F7D1C 000F4C5C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800F7D20 000F4C60  80 8D 91 90 */	lwz r4, __THPInfo@sda21(r13)
 /* 800F7D24 000F4C64  1C 60 00 E0 */	mulli r3, r0, 0xe0
@@ -1065,8 +1099,9 @@ __THPHuffGenerateDecoderTables: # local func
 /* 800F7ECC 000F4E0C  38 03 FF FF */	addi r0, r3, 0x000FFFFF@l
 /* 800F7ED0 000F4E10  90 07 00 88 */	stw r0, 0x88(r7)
 /* 800F7ED4 000F4E14  4E 80 00 20 */	blr 
+.endfn __THPHuffGenerateDecoderTables
 
-__THPRestartDefinition: # local func
+.fn __THPRestartDefinition, local
 /* 800F7ED8 000F4E18  80 6D 91 90 */	lwz r3, __THPInfo@sda21(r13)
 /* 800F7EDC 000F4E1C  38 00 00 01 */	li r0, 1
 /* 800F7EE0 000F4E20  98 03 06 A9 */	stb r0, 0x6a9(r3)
@@ -1088,8 +1123,9 @@ __THPRestartDefinition: # local func
 /* 800F7F20 000F4E60  A0 03 06 AA */	lhz r0, 0x6aa(r3)
 /* 800F7F24 000F4E64  B0 03 06 AC */	sth r0, 0x6ac(r3)
 /* 800F7F28 000F4E68  4E 80 00 20 */	blr 
+.endfn __THPRestartDefinition
 
-__THPPrepBitStream: # local func
+.fn __THPPrepBitStream, local
 /* 800F7F2C 000F4E6C  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 800F7F30 000F4E70  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 800F7F34 000F4E74  80 6D 91 90 */	lwz r3, __THPInfo@sda21(r13)
@@ -1248,8 +1284,9 @@ __THPPrepBitStream: # local func
 /* 800F816C 000F50AC  83 E1 00 14 */	lwz r31, 0x14(r1)
 /* 800F8170 000F50B0  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F8174 000F50B4  4E 80 00 20 */	blr 
+.endfn __THPPrepBitStream
 
-__THPDecompressYUV: # local func
+.fn __THPDecompressYUV, local
 /* 800F8178 000F50B8  7C 08 02 A6 */	mflr r0
 /* 800F817C 000F50BC  90 01 00 04 */	stw r0, 4(r1)
 /* 800F8180 000F50C0  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -1325,8 +1362,9 @@ __THPDecompressYUV: # local func
 /* 800F8278 000F51B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F827C 000F51BC  7C 08 03 A6 */	mtlr r0
 /* 800F8280 000F51C0  4E 80 00 20 */	blr 
+.endfn __THPDecompressYUV
 
-__THPDecompressiMCURow512x448: # local func
+.fn __THPDecompressiMCURow512x448, local
 /* 800F8284 000F51C4  7C 08 02 A6 */	mflr r0
 /* 800F8288 000F51C8  3C 60 80 4F */	lis r3, __THPIDCTWorkspace@ha
 /* 800F828C 000F51CC  90 01 00 04 */	stw r0, 4(r1)
@@ -3071,8 +3109,9 @@ __THPDecompressiMCURow512x448: # local func
 /* 800F9D00 000F6C40  38 21 00 38 */	addi r1, r1, 0x38
 /* 800F9D04 000F6C44  7C 08 03 A6 */	mtlr r0
 /* 800F9D08 000F6C48  4E 80 00 20 */	blr 
+.endfn __THPDecompressiMCURow512x448
 
-__THPDecompressiMCURow640x480: # local func
+.fn __THPDecompressiMCURow640x480
 /* 800F9D0C 000F6C4C  7C 08 02 A6 */	mflr r0
 /* 800F9D10 000F6C50  3C 60 80 4F */	lis r3, __THPIDCTWorkspace@ha
 /* 800F9D14 000F6C54  90 01 00 04 */	stw r0, 4(r1)
@@ -4818,8 +4857,9 @@ __THPDecompressiMCURow640x480: # local func
 /* 800FB78C 000F86CC  38 21 00 38 */	addi r1, r1, 0x38
 /* 800FB790 000F86D0  7C 08 03 A6 */	mtlr r0
 /* 800FB794 000F86D4  4E 80 00 20 */	blr 
+.endfn __THPDecompressiMCURow640x480
 
-__THPDecompressiMCURowNxN: # local func
+.fn __THPDecompressiMCURowNxN, local
 /* 800FB798 000F86D8  7C 08 02 A6 */	mflr r0
 /* 800FB79C 000F86DC  3C 80 80 4F */	lis r4, __THPIDCTWorkspace@ha
 /* 800FB7A0 000F86E0  90 01 00 04 */	stw r0, 4(r1)
@@ -6573,8 +6613,9 @@ __THPDecompressiMCURowNxN: # local func
 /* 800FD238 000FA178  38 21 00 40 */	addi r1, r1, 0x40
 /* 800FD23C 000FA17C  7C 08 03 A6 */	mtlr r0
 /* 800FD240 000FA180  4E 80 00 20 */	blr 
+.endfn __THPDecompressiMCURowNxN
 
-__THPHuffDecodeDCTCompY: #local func
+.fn __THPHuffDecodeDCTCompY, local
 /* 800FD244 000FA184  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800FD248 000FA188  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 800FD24C 000FA18C  93 C1 00 18 */	stw r30, 0x18(r1)
@@ -7038,8 +7079,9 @@ __THPHuffDecodeDCTCompY: #local func
 /* 800FD8B4 000FA7F4  83 A1 00 14 */	lwz r29, 0x14(r1)
 /* 800FD8B8 000FA7F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800FD8BC 000FA7FC  4E 80 00 20 */	blr 
+.endfn __THPHuffDecodeDCTCompY
 
-__THPHuffDecodeDCTCompU: # local func
+.fn __THPHuffDecodeDCTCompU, local
 /* 800FD8C0 000FA800  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 800FD8C4 000FA804  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 800FD8C8 000FA808  93 C1 00 10 */	stw r30, 0x10(r1)
@@ -7515,8 +7557,9 @@ __THPHuffDecodeDCTCompU: # local func
 /* 800FDF5C 000FAE9C  83 C1 00 10 */	lwz r30, 0x10(r1)
 /* 800FDF60 000FAEA0  38 21 00 18 */	addi r1, r1, 0x18
 /* 800FDF64 000FAEA4  4E 80 00 20 */	blr 
+.endfn __THPHuffDecodeDCTCompU
 
-__THPHuffDecodeDCTCompV: # local func
+.fn __THPHuffDecodeDCTCompV, local
 /* 800FDF68 000FAEA8  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 800FDF6C 000FAEAC  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 800FDF70 000FAEB0  93 C1 00 10 */	stw r30, 0x10(r1)
@@ -7992,9 +8035,9 @@ __THPHuffDecodeDCTCompV: # local func
 /* 800FE604 000FB544  83 C1 00 10 */	lwz r30, 0x10(r1)
 /* 800FE608 000FB548  38 21 00 18 */	addi r1, r1, 0x18
 /* 800FE60C 000FB54C  4E 80 00 20 */	blr 
+.endfn __THPHuffDecodeDCTCompV
 
-.global THPInit
-THPInit: # global func
+.fn THPInit, global
 /* 800FE610 000FB550  7C 08 02 A6 */	mflr r0
 /* 800FE614 000FB554  3C 80 80 4F */	lis r4, __THPIDCTWorkspace@ha
 /* 800FE618 000FB558  90 01 00 04 */	stw r0, 4(r1)
@@ -8035,3 +8078,4 @@ THPInit: # global func
 /* 800FE6A4 000FB5E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800FE6A8 000FB5E8  7C 08 03 A6 */	mtlr r0
 /* 800FE6AC 000FB5EC  4E 80 00 20 */	blr 
+.endfn THPInit

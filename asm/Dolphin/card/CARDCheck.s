@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __CARDCheckSum
-__CARDCheckSum:
+.fn __CARDCheckSum, global
 /* 800D73CC 000D430C  38 00 00 00 */	li r0, 0
 /* 800D73D0 000D4310  7C 84 0E 70 */	srawi r4, r4, 1
 /* 800D73D4 000D4314  B0 06 00 00 */	sth r0, 0(r6)
@@ -116,9 +115,9 @@ __CARDCheckSum:
 /* 800D7570 000D44B0  38 00 00 00 */	li r0, 0
 /* 800D7574 000D44B4  B0 06 00 00 */	sth r0, 0(r6)
 /* 800D7578 000D44B8  4E 80 00 20 */	blr 
+.endfn __CARDCheckSum
 
-.global VerifyID
-VerifyID:
+.fn VerifyID, local
 /* 800D757C 000D44BC  7C 08 02 A6 */	mflr r0
 /* 800D7580 000D44C0  90 01 00 04 */	stw r0, 4(r1)
 /* 800D7584 000D44C4  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -294,9 +293,9 @@ VerifyID:
 /* 800D77F4 000D4734  38 21 00 30 */	addi r1, r1, 0x30
 /* 800D77F8 000D4738  7C 08 03 A6 */	mtlr r0
 /* 800D77FC 000D473C  4E 80 00 20 */	blr 
+.endfn VerifyID
 
-.global VerifyDir
-VerifyDir:
+.fn VerifyDir, local
 /* 800D7800 000D4740  7C 08 02 A6 */	mflr r0
 /* 800D7804 000D4744  90 01 00 04 */	stw r0, 4(r1)
 /* 800D7808 000D4748  94 21 FF C8 */	stwu r1, -0x38(r1)
@@ -457,9 +456,9 @@ VerifyDir:
 /* 800D7A34 000D4974  38 21 00 38 */	addi r1, r1, 0x38
 /* 800D7A38 000D4978  7C 08 03 A6 */	mtlr r0
 /* 800D7A3C 000D497C  4E 80 00 20 */	blr 
+.endfn VerifyDir
 
-.global VerifyFAT
-VerifyFAT:
+.fn VerifyFAT, local
 /* 800D7A40 000D4980  7C 08 02 A6 */	mflr r0
 /* 800D7A44 000D4984  38 A0 00 00 */	li r5, 0
 /* 800D7A48 000D4988  90 01 00 04 */	stw r0, 4(r1)
@@ -641,9 +640,9 @@ VerifyFAT:
 /* 800D7CB8 000D4BF8  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D7CBC 000D4BFC  7C 08 03 A6 */	mtlr r0
 /* 800D7CC0 000D4C00  4E 80 00 20 */	blr 
+.endfn VerifyFAT
 
-.global __CARDVerify
-__CARDVerify:
+.fn __CARDVerify, global
 /* 800D7CC4 000D4C04  7C 08 02 A6 */	mflr r0
 /* 800D7CC8 000D4C08  90 01 00 04 */	stw r0, 4(r1)
 /* 800D7CCC 000D4C0C  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -684,9 +683,9 @@ __CARDVerify:
 /* 800D7D44 000D4C84  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D7D48 000D4C88  7C 08 03 A6 */	mtlr r0
 /* 800D7D4C 000D4C8C  4E 80 00 20 */	blr 
+.endfn __CARDVerify
 
-.global CARDCheckExAsync
-CARDCheckExAsync:
+.fn CARDCheckExAsync, global
 /* 800D7D50 000D4C90  7C 08 02 A6 */	mflr r0
 /* 800D7D54 000D4C94  90 01 00 04 */	stw r0, 4(r1)
 /* 800D7D58 000D4C98  94 21 FF A8 */	stwu r1, -0x58(r1)
@@ -1077,9 +1076,9 @@ CARDCheckExAsync:
 /* 800D82D4 000D5214  38 21 00 58 */	addi r1, r1, 0x58
 /* 800D82D8 000D5218  7C 08 03 A6 */	mtlr r0
 /* 800D82DC 000D521C  4E 80 00 20 */	blr 
+.endfn CARDCheckExAsync
 
-.global CARDCheck
-CARDCheck:
+.fn CARDCheck, global
 /* 800D82E0 000D5220  7C 08 02 A6 */	mflr r0
 /* 800D82E4 000D5224  3C 80 80 0D */	lis r4, __CARDSyncCallback@ha
 /* 800D82E8 000D5228  90 01 00 04 */	stw r0, 4(r1)
@@ -1103,3 +1102,4 @@ CARDCheck:
 /* 800D8328 000D5268  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D832C 000D526C  7C 08 03 A6 */	mtlr r0
 /* 800D8330 000D5270  4E 80 00 20 */	blr 
+.endfn CARDCheck

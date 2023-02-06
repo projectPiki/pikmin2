@@ -1,12 +1,12 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __CARDGetDirBlock
-__CARDGetDirBlock:
+.fn __CARDGetDirBlock, global
 /* 800D7168 000D40A8  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 800D716C 000D40AC  4E 80 00 20 */	blr 
+.endfn __CARDGetDirBlock
 
-WriteCallback:
+.fn WriteCallback, local
 /* 800D7170 000D40B0  7C 08 02 A6 */	mflr r0
 /* 800D7174 000D40B4  90 01 00 04 */	stw r0, 4(r1)
 /* 800D7178 000D40B8  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -63,8 +63,9 @@ WriteCallback:
 /* 800D7234 000D4174  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D7238 000D4178  7C 08 03 A6 */	mtlr r0
 /* 800D723C 000D417C  4E 80 00 20 */	blr 
+.endfn WriteCallback
 
-EraseCallback:
+.fn EraseCallback, local
 /* 800D7240 000D4180  7C 08 02 A6 */	mflr r0
 /* 800D7244 000D4184  90 01 00 04 */	stw r0, 4(r1)
 /* 800D7248 000D4188  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -118,9 +119,9 @@ EraseCallback:
 /* 800D72FC 000D423C  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D7300 000D4240  7C 08 03 A6 */	mtlr r0
 /* 800D7304 000D4244  4E 80 00 20 */	blr 
+.endfn EraseCallback
 
-.global __CARDUpdateDir
-__CARDUpdateDir:
+.fn __CARDUpdateDir, global
 /* 800D7308 000D4248  7C 08 02 A6 */	mflr r0
 /* 800D730C 000D424C  90 01 00 04 */	stw r0, 4(r1)
 /* 800D7310 000D4250  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -172,3 +173,4 @@ __CARDUpdateDir:
 /* 800D73C0 000D4300  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D73C4 000D4304  7C 08 03 A6 */	mtlr r0
 /* 800D73C8 000D4308  4E 80 00 20 */	blr 
+.endfn __CARDUpdateDir

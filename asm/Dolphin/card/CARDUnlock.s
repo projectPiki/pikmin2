@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 8
-.global CardData
-CardData:
+.balign 32
+.obj CardData, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -91,16 +90,16 @@ CardData:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj CardData
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global next_1
-next_1:
+.obj next, local
 	.4byte 0x00000001
+.endobj next
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global bitrev
-bitrev:
+.fn bitrev, local
 /* 800D5920 000D2860  38 00 00 08 */	li r0, 8
 /* 800D5924 000D2864  7C 09 03 A6 */	mtctr r0
 /* 800D5928 000D2868  54 66 0F FE */	srwi r6, r3, 0x1f
@@ -205,9 +204,9 @@ bitrev:
 /* 800D5A80 000D29C0  42 00 FE C0 */	bdnz .L_800D5940
 /* 800D5A84 000D29C4  7C E3 3B 78 */	mr r3, r7
 /* 800D5A88 000D29C8  4E 80 00 20 */	blr 
+.endfn bitrev
 
-.global ReadArrayUnlock
-ReadArrayUnlock:
+.fn ReadArrayUnlock, local
 /* 800D5A8C 000D29CC  7C 08 02 A6 */	mflr r0
 /* 800D5A90 000D29D0  90 01 00 04 */	stw r0, 4(r1)
 /* 800D5A94 000D29D4  94 21 FF C0 */	stwu r1, -0x40(r1)
@@ -294,9 +293,9 @@ ReadArrayUnlock:
 /* 800D5BC4 000D2B04  38 21 00 40 */	addi r1, r1, 0x40
 /* 800D5BC8 000D2B08  7C 08 03 A6 */	mtlr r0
 /* 800D5BCC 000D2B0C  4E 80 00 20 */	blr 
+.endfn ReadArrayUnlock
 
-.global DummyLen
-DummyLen:
+.fn DummyLen, local
 /* 800D5BD0 000D2B10  7C 08 02 A6 */	mflr r0
 /* 800D5BD4 000D2B14  90 01 00 04 */	stw r0, 4(r1)
 /* 800D5BD8 000D2B18  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -306,14 +305,14 @@ DummyLen:
 /* 800D5BE8 000D2B28  93 A1 00 1C */	stw r29, 0x1c(r1)
 /* 800D5BEC 000D2B2C  3B A0 00 00 */	li r29, 0
 /* 800D5BF0 000D2B30  48 01 CF B9 */	bl OSGetTick
-/* 800D5BF4 000D2B34  90 6D 82 90 */	stw r3, next_1@sda21(r13)
+/* 800D5BF4 000D2B34  90 6D 82 90 */	stw r3, next@sda21(r13)
 /* 800D5BF8 000D2B38  3C 60 41 C6 */	lis r3, 0x41C64E6D@ha
 /* 800D5BFC 000D2B3C  3B E3 4E 6D */	addi r31, r3, 0x41C64E6D@l
-/* 800D5C00 000D2B40  80 0D 82 90 */	lwz r0, next_1@sda21(r13)
+/* 800D5C00 000D2B40  80 0D 82 90 */	lwz r0, next@sda21(r13)
 /* 800D5C04 000D2B44  7C 60 F9 D6 */	mullw r3, r0, r31
 /* 800D5C08 000D2B48  38 03 30 39 */	addi r0, r3, 0x3039
-/* 800D5C0C 000D2B4C  90 0D 82 90 */	stw r0, next_1@sda21(r13)
-/* 800D5C10 000D2B50  80 0D 82 90 */	lwz r0, next_1@sda21(r13)
+/* 800D5C0C 000D2B4C  90 0D 82 90 */	stw r0, next@sda21(r13)
+/* 800D5C10 000D2B50  80 0D 82 90 */	lwz r0, next@sda21(r13)
 /* 800D5C14 000D2B54  54 03 86 FE */	rlwinm r3, r0, 0x10, 0x1b, 0x1f
 /* 800D5C18 000D2B58  38 63 00 01 */	addi r3, r3, 1
 /* 800D5C1C 000D2B5C  48 00 00 40 */	b .L_800D5C5C
@@ -325,13 +324,13 @@ DummyLen:
 /* 800D5C30 000D2B70  40 81 00 08 */	ble .L_800D5C38
 /* 800D5C34 000D2B74  3B C0 00 01 */	li r30, 1
 .L_800D5C38:
-/* 800D5C38 000D2B78  90 0D 82 90 */	stw r0, next_1@sda21(r13)
+/* 800D5C38 000D2B78  90 0D 82 90 */	stw r0, next@sda21(r13)
 /* 800D5C3C 000D2B7C  3B BD 00 01 */	addi r29, r29, 1
-/* 800D5C40 000D2B80  80 0D 82 90 */	lwz r0, next_1@sda21(r13)
+/* 800D5C40 000D2B80  80 0D 82 90 */	lwz r0, next@sda21(r13)
 /* 800D5C44 000D2B84  7C 60 F9 D6 */	mullw r3, r0, r31
 /* 800D5C48 000D2B88  38 03 30 39 */	addi r0, r3, 0x3039
-/* 800D5C4C 000D2B8C  90 0D 82 90 */	stw r0, next_1@sda21(r13)
-/* 800D5C50 000D2B90  80 0D 82 90 */	lwz r0, next_1@sda21(r13)
+/* 800D5C4C 000D2B8C  90 0D 82 90 */	stw r0, next@sda21(r13)
+/* 800D5C50 000D2B90  80 0D 82 90 */	lwz r0, next@sda21(r13)
 /* 800D5C54 000D2B94  54 03 86 FE */	rlwinm r3, r0, 0x10, 0x1b, 0x1f
 /* 800D5C58 000D2B98  38 63 00 01 */	addi r3, r3, 1
 .L_800D5C5C:
@@ -351,9 +350,9 @@ DummyLen:
 /* 800D5C88 000D2BC8  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D5C8C 000D2BCC  7C 08 03 A6 */	mtlr r0
 /* 800D5C90 000D2BD0  4E 80 00 20 */	blr 
+.endfn DummyLen
 
-.global __CARDUnlock
-__CARDUnlock:
+.fn __CARDUnlock, global
 /* 800D5C94 000D2BD4  7C 08 02 A6 */	mflr r0
 /* 800D5C98 000D2BD8  90 01 00 04 */	stw r0, 4(r1)
 /* 800D5C9C 000D2BDC  94 21 FE E0 */	stwu r1, -0x120(r1)
@@ -371,16 +370,16 @@ __CARDUnlock:
 /* 800D5CCC 000D2C0C  3B A3 00 00 */	addi r29, r3, 0
 /* 800D5CD0 000D2C10  3A DC 00 20 */	addi r22, r28, 0x20
 /* 800D5CD4 000D2C14  48 01 CE D5 */	bl OSGetTick
-/* 800D5CD8 000D2C18  90 6D 82 90 */	stw r3, next_1@sda21(r13)
+/* 800D5CD8 000D2C18  90 6D 82 90 */	stw r3, next@sda21(r13)
 /* 800D5CDC 000D2C1C  3C 60 41 C6 */	lis r3, 0x41C64E6D@ha
 /* 800D5CE0 000D2C20  3C A0 7F ED */	lis r5, 0x7FEC8000@ha
-/* 800D5CE4 000D2C24  80 8D 82 90 */	lwz r4, next_1@sda21(r13)
+/* 800D5CE4 000D2C24  80 8D 82 90 */	lwz r4, next@sda21(r13)
 /* 800D5CE8 000D2C28  38 03 4E 6D */	addi r0, r3, 0x41C64E6D@l
 /* 800D5CEC 000D2C2C  3B 25 80 00 */	addi r25, r5, 0x7FEC8000@l
 /* 800D5CF0 000D2C30  7C 64 01 D6 */	mullw r3, r4, r0
 /* 800D5CF4 000D2C34  38 03 30 39 */	addi r0, r3, 0x3039
-/* 800D5CF8 000D2C38  90 0D 82 90 */	stw r0, next_1@sda21(r13)
-/* 800D5CFC 000D2C3C  80 0D 82 90 */	lwz r0, next_1@sda21(r13)
+/* 800D5CF8 000D2C38  90 0D 82 90 */	stw r0, next@sda21(r13)
+/* 800D5CFC 000D2C3C  80 0D 82 90 */	lwz r0, next@sda21(r13)
 /* 800D5D00 000D2C40  54 00 84 7E */	rlwinm r0, r0, 0x10, 0x11, 0x1f
 /* 800D5D04 000D2C44  7F 39 03 78 */	or r25, r25, r0
 /* 800D5D08 000D2C48  57 39 00 26 */	rlwinm r25, r25, 0, 0, 0x13
@@ -1098,9 +1097,9 @@ __CARDUnlock:
 /* 800D67E0 000D3720  38 21 01 20 */	addi r1, r1, 0x120
 /* 800D67E4 000D3724  7C 08 03 A6 */	mtlr r0
 /* 800D67E8 000D3728  4E 80 00 20 */	blr 
+.endfn __CARDUnlock
 
-.global InitCallback
-InitCallback:
+.fn InitCallback, local
 /* 800D67EC 000D372C  7C 08 02 A6 */	mflr r0
 /* 800D67F0 000D3730  3C 80 80 4F */	lis r4, __CARDBlock@ha
 /* 800D67F4 000D3734  90 01 00 04 */	stw r0, 4(r1)
@@ -1132,9 +1131,9 @@ InitCallback:
 /* 800D6850 000D3790  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D6854 000D3794  7C 08 03 A6 */	mtlr r0
 /* 800D6858 000D3798  4E 80 00 20 */	blr 
+.endfn InitCallback
 
-.global DoneCallback
-DoneCallback:
+.fn DoneCallback, local
 /* 800D685C 000D379C  7C 08 02 A6 */	mflr r0
 /* 800D6860 000D37A0  3C 80 80 4F */	lis r4, __CARDBlock@ha
 /* 800D6864 000D37A4  90 01 00 04 */	stw r0, 4(r1)
@@ -1346,3 +1345,4 @@ DoneCallback:
 /* 800D6B74 000D3AB4  38 21 00 88 */	addi r1, r1, 0x88
 /* 800D6B78 000D3AB8  7C 08 03 A6 */	mtlr r0
 /* 800D6B7C 000D3ABC  4E 80 00 20 */	blr 
+.endfn DoneCallback

@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global FormatCallback
-FormatCallback:
+.fn FormatCallback, local
 /* 800D8E2C 000D5D6C  7C 08 02 A6 */	mflr r0
 /* 800D8E30 000D5D70  90 01 00 04 */	stw r0, 4(r1)
 /* 800D8E34 000D5D74  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -88,9 +87,9 @@ FormatCallback:
 /* 800D8F64 000D5EA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D8F68 000D5EA8  7C 08 03 A6 */	mtlr r0
 /* 800D8F6C 000D5EAC  4E 80 00 20 */	blr 
+.endfn FormatCallback
 
-.global __CARDFormatRegionAsync
-__CARDFormatRegionAsync:
+.fn __CARDFormatRegionAsync, global
 /* 800D8F70 000D5EB0  7C 08 02 A6 */	mflr r0
 /* 800D8F74 000D5EB4  90 01 00 04 */	stw r0, 4(r1)
 /* 800D8F78 000D5EB8  94 21 FF A8 */	stwu r1, -0x58(r1)
@@ -512,9 +511,9 @@ __CARDFormatRegionAsync:
 /* 800D95BC 000D64FC  38 21 00 58 */	addi r1, r1, 0x58
 /* 800D95C0 000D6500  7C 08 03 A6 */	mtlr r0
 /* 800D95C4 000D6504  4E 80 00 20 */	blr 
+.endfn __CARDFormatRegionAsync
 
-.global CARDFormat
-CARDFormat:
+.fn CARDFormat, global
 /* 800D95C8 000D6508  7C 08 02 A6 */	mflr r0
 /* 800D95CC 000D650C  90 01 00 04 */	stw r0, 4(r1)
 /* 800D95D0 000D6510  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -538,3 +537,4 @@ CARDFormat:
 /* 800D9610 000D6550  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D9614 000D6554  7C 08 03 A6 */	mtlr r0
 /* 800D9618 000D6558  4E 80 00 20 */	blr 
+.endfn CARDFormat

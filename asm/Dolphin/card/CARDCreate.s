@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global CreateCallbackFat
-CreateCallbackFat:
+.fn CreateCallbackFat, local
 /* 800D9AB0 000D69F0  7C 08 02 A6 */	mflr r0
 /* 800D9AB4 000D69F4  90 01 00 04 */	stw r0, 4(r1)
 /* 800D9AB8 000D69F8  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -81,9 +80,9 @@ CreateCallbackFat:
 /* 800D9BD4 000D6B14  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D9BD8 000D6B18  7C 08 03 A6 */	mtlr r0
 /* 800D9BDC 000D6B1C  4E 80 00 20 */	blr 
+.endfn CreateCallbackFat
 
-.global CARDCreateAsync
-CARDCreateAsync:
+.fn CARDCreateAsync, global
 /* 800D9BE0 000D6B20  7C 08 02 A6 */	mflr r0
 /* 800D9BE4 000D6B24  90 01 00 04 */	stw r0, 4(r1)
 /* 800D9BE8 000D6B28  94 21 FF B8 */	stwu r1, -0x48(r1)
@@ -234,9 +233,9 @@ CARDCreateAsync:
 /* 800D9DF4 000D6D34  38 21 00 48 */	addi r1, r1, 0x48
 /* 800D9DF8 000D6D38  7C 08 03 A6 */	mtlr r0
 /* 800D9DFC 000D6D3C  4E 80 00 20 */	blr 
+.endfn CARDCreateAsync
 
-.global CARDCreate
-CARDCreate:
+.fn CARDCreate, global
 /* 800D9E00 000D6D40  7C 08 02 A6 */	mflr r0
 /* 800D9E04 000D6D44  3C E0 80 0D */	lis r7, __CARDSyncCallback@ha
 /* 800D9E08 000D6D48  90 01 00 04 */	stw r0, 4(r1)
@@ -257,3 +256,4 @@ CARDCreate:
 /* 800D9E3C 000D6D7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D9E40 000D6D80  7C 08 03 A6 */	mtlr r0
 /* 800D9E44 000D6D84  4E 80 00 20 */	blr 
+.endfn CARDCreate

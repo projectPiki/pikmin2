@@ -1,7 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-BlockReadCallback:
+.fn BlockReadCallback, local
 /* 800D6B80 000D3AC0  7C 08 02 A6 */	mflr r0
 /* 800D6B84 000D3AC4  90 01 00 04 */	stw r0, 4(r1)
 /* 800D6B88 000D3AC8  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -60,9 +60,9 @@ BlockReadCallback:
 /* 800D6C50 000D3B90  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D6C54 000D3B94  7C 08 03 A6 */	mtlr r0
 /* 800D6C58 000D3B98  4E 80 00 20 */	blr 
+.endfn BlockReadCallback
 
-.global __CARDRead
-__CARDRead:
+.fn __CARDRead, global
 /* 800D6C5C 000D3B9C  7C 08 02 A6 */	mflr r0
 /* 800D6C60 000D3BA0  1D 23 01 10 */	mulli r9, r3, 0x110
 /* 800D6C64 000D3BA4  90 01 00 04 */	stw r0, 4(r1)
@@ -90,8 +90,9 @@ __CARDRead:
 /* 800D6CB4 000D3BF4  38 21 00 08 */	addi r1, r1, 8
 /* 800D6CB8 000D3BF8  7C 08 03 A6 */	mtlr r0
 /* 800D6CBC 000D3BFC  4E 80 00 20 */	blr 
+.endfn __CARDRead
 
-BlockWriteCallback:
+.fn BlockWriteCallback, local
 /* 800D6CC0 000D3C00  7C 08 02 A6 */	mflr r0
 /* 800D6CC4 000D3C04  90 01 00 04 */	stw r0, 4(r1)
 /* 800D6CC8 000D3C08  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -150,9 +151,9 @@ BlockWriteCallback:
 /* 800D6D90 000D3CD0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D6D94 000D3CD4  7C 08 03 A6 */	mtlr r0
 /* 800D6D98 000D3CD8  4E 80 00 20 */	blr 
+.endfn BlockWriteCallback
 
-.global __CARDWrite
-__CARDWrite:
+.fn __CARDWrite, global
 /* 800D6D9C 000D3CDC  7C 08 02 A6 */	mflr r0
 /* 800D6DA0 000D3CE0  1D 23 01 10 */	mulli r9, r3, 0x110
 /* 800D6DA4 000D3CE4  90 01 00 04 */	stw r0, 4(r1)
@@ -180,3 +181,4 @@ __CARDWrite:
 /* 800D6DF4 000D3D34  38 21 00 08 */	addi r1, r1, 8
 /* 800D6DF8 000D3D38  7C 08 03 A6 */	mtlr r0
 /* 800D6DFC 000D3D3C  4E 80 00 20 */	blr 
+.endfn __CARDWrite

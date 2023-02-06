@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global SectorSizeTable
-SectorSizeTable:
+.obj SectorSizeTable, local
 	.4byte 0x00002000
 	.4byte 0x00004000
 	.4byte 0x00008000
@@ -11,8 +10,8 @@ SectorSizeTable:
 	.4byte 0x00040000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global LatencyTable
-LatencyTable:
+.endobj SectorSizeTable
+.obj LatencyTable, local
 	.4byte 0x00000004
 	.4byte 0x00000008
 	.4byte 0x00000010
@@ -21,10 +20,10 @@ LatencyTable:
 	.4byte 0x00000080
 	.4byte 0x00000100
 	.4byte 0x00000200
+.endobj LatencyTable
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global IsCard
-IsCard:
+.fn IsCard, local
 /* 800D8334 000D5274  54 60 00 1F */	rlwinm. r0, r3, 0, 0, 0xf
 /* 800D8338 000D5278  41 82 00 24 */	beq .L_800D835C
 /* 800D833C 000D527C  3C 03 80 00 */	addis r0, r3, 0x8000
@@ -85,9 +84,9 @@ IsCard:
 .L_800D83F8:
 /* 800D83F8 000D5338  38 60 00 01 */	li r3, 1
 /* 800D83FC 000D533C  4E 80 00 20 */	blr 
+.endfn IsCard
 
-.global CARDProbe
-CARDProbe:
+.fn CARDProbe, global
 /* 800D8400 000D5340  7C 08 02 A6 */	mflr r0
 /* 800D8404 000D5344  3C 80 80 00 */	lis r4, 0x800030E3@ha
 /* 800D8408 000D5348  90 01 00 04 */	stw r0, 4(r1)
@@ -104,9 +103,9 @@ CARDProbe:
 /* 800D842C 000D536C  38 21 00 08 */	addi r1, r1, 8
 /* 800D8430 000D5370  7C 08 03 A6 */	mtlr r0
 /* 800D8434 000D5374  4E 80 00 20 */	blr 
+.endfn CARDProbe
 
-.global CARDProbeEx
-CARDProbeEx:
+.fn CARDProbeEx, global
 /* 800D8438 000D5378  7C 08 02 A6 */	mflr r0
 /* 800D843C 000D537C  90 01 00 04 */	stw r0, 4(r1)
 /* 800D8440 000D5380  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -218,9 +217,9 @@ CARDProbeEx:
 /* 800D85A8 000D54E8  38 21 00 30 */	addi r1, r1, 0x30
 /* 800D85AC 000D54EC  7C 08 03 A6 */	mtlr r0
 /* 800D85B0 000D54F0  4E 80 00 20 */	blr 
+.endfn CARDProbeEx
 
-.global DoMount
-DoMount:
+.fn DoMount, local
 /* 800D85B4 000D54F4  7C 08 02 A6 */	mflr r0
 /* 800D85B8 000D54F8  90 01 00 04 */	stw r0, 4(r1)
 /* 800D85BC 000D54FC  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -501,9 +500,9 @@ DoMount:
 /* 800D89B8 000D58F8  38 21 00 30 */	addi r1, r1, 0x30
 /* 800D89BC 000D58FC  7C 08 03 A6 */	mtlr r0
 /* 800D89C0 000D5900  4E 80 00 20 */	blr 
+.endfn DoMount
 
-.global __CARDMountCallback
-__CARDMountCallback:
+.fn __CARDMountCallback, global
 /* 800D89C4 000D5904  7C 08 02 A6 */	mflr r0
 /* 800D89C8 000D5908  90 01 00 04 */	stw r0, 4(r1)
 /* 800D89CC 000D590C  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -589,9 +588,9 @@ __CARDMountCallback:
 /* 800D8AF0 000D5A30  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D8AF4 000D5A34  7C 08 03 A6 */	mtlr r0
 /* 800D8AF8 000D5A38  4E 80 00 20 */	blr 
+.endfn __CARDMountCallback
 
-.global CARDMountAsync
-CARDMountAsync:
+.fn CARDMountAsync, global
 /* 800D8AFC 000D5A3C  7C 08 02 A6 */	mflr r0
 /* 800D8B00 000D5A40  90 01 00 04 */	stw r0, 4(r1)
 /* 800D8B04 000D5A44  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -706,9 +705,9 @@ CARDMountAsync:
 /* 800D8C90 000D5BD0  38 21 00 30 */	addi r1, r1, 0x30
 /* 800D8C94 000D5BD4  7C 08 03 A6 */	mtlr r0
 /* 800D8C98 000D5BD8  4E 80 00 20 */	blr 
+.endfn CARDMountAsync
 
-.global CARDMount
-CARDMount:
+.fn CARDMount, global
 /* 800D8C9C 000D5BDC  7C 08 02 A6 */	mflr r0
 /* 800D8CA0 000D5BE0  3C C0 80 0D */	lis r6, __CARDSyncCallback@ha
 /* 800D8CA4 000D5BE4  90 01 00 04 */	stw r0, 4(r1)
@@ -729,9 +728,9 @@ CARDMount:
 /* 800D8CD8 000D5C18  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D8CDC 000D5C1C  7C 08 03 A6 */	mtlr r0
 /* 800D8CE0 000D5C20  4E 80 00 20 */	blr 
+.endfn CARDMount
 
-.global DoUnmount
-DoUnmount:
+.fn DoUnmount, local
 /* 800D8CE4 000D5C24  7C 08 02 A6 */	mflr r0
 /* 800D8CE8 000D5C28  90 01 00 04 */	stw r0, 4(r1)
 /* 800D8CEC 000D5C2C  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -772,9 +771,9 @@ DoUnmount:
 /* 800D8D74 000D5CB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D8D78 000D5CB8  7C 08 03 A6 */	mtlr r0
 /* 800D8D7C 000D5CBC  4E 80 00 20 */	blr 
+.endfn DoUnmount
 
-.global CARDUnmount
-CARDUnmount:
+.fn CARDUnmount, global
 /* 800D8D80 000D5CC0  7C 08 02 A6 */	mflr r0
 /* 800D8D84 000D5CC4  90 01 00 04 */	stw r0, 4(r1)
 /* 800D8D88 000D5CC8  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -821,3 +820,4 @@ CARDUnmount:
 /* 800D8E20 000D5D60  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D8E24 000D5D64  7C 08 03 A6 */	mtlr r0
 /* 800D8E28 000D5D68  4E 80 00 20 */	blr 
+.endfn CARDUnmount

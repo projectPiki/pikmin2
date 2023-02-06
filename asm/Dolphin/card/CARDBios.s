@@ -1,48 +1,46 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A7710:
+.obj lbl_804A7710, local
 	.asciz "<< Dolphin SDK - CARD\trelease build: Apr 17 2003 12:34:19 (0x2301) >>"
+.endobj lbl_804A7710
 .balign 4
-ResetFunctionInfo:
+.obj ResetFunctionInfo, local
 	.4byte OnReset
 	.4byte 0x0000007F
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.endobj ResetFunctionInfo
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global __CARDBlock
-__CARDBlock:
+.balign 8
+.obj __CARDBlock, global
 	.skip 0x220
-.global __CARDDiskNone
-__CARDDiskNone:
+.endobj __CARDBlock
+.balign 4
+.obj __CARDDiskNone, global
 	.skip 0x20
+.endobj __CARDDiskNone
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __CARDVersion
-__CARDVersion:
+.obj __CARDVersion, global
 	.4byte lbl_804A7710
+.endobj __CARDVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global __CARDEncode
-__CARDEncode:
+.obj __CARDEncode, local
 	.skip 2
+.endobj __CARDEncode
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __CARDDefaultApiCallback
-__CARDDefaultApiCallback:
+.fn __CARDDefaultApiCallback, global
 /* 800D466C 000D15AC  4E 80 00 20 */	blr 
+.endfn __CARDDefaultApiCallback
 
-.global __CARDSyncCallback
-__CARDSyncCallback:
+.fn __CARDSyncCallback, global
 /* 800D4670 000D15B0  7C 08 02 A6 */	mflr r0
 /* 800D4674 000D15B4  1C 83 01 10 */	mulli r4, r3, 0x110
 /* 800D4678 000D15B8  90 01 00 04 */	stw r0, 4(r1)
@@ -56,9 +54,9 @@ __CARDSyncCallback:
 /* 800D4698 000D15D8  38 21 00 08 */	addi r1, r1, 8
 /* 800D469C 000D15DC  7C 08 03 A6 */	mtlr r0
 /* 800D46A0 000D15E0  4E 80 00 20 */	blr 
+.endfn __CARDSyncCallback
 
-.global __CARDExtHandler
-__CARDExtHandler:
+.fn __CARDExtHandler, global
 /* 800D46A4 000D15E4  7C 08 02 A6 */	mflr r0
 /* 800D46A8 000D15E8  90 01 00 04 */	stw r0, 4(r1)
 /* 800D46AC 000D15EC  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -116,9 +114,9 @@ __CARDExtHandler:
 /* 800D4770 000D16B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D4774 000D16B4  7C 08 03 A6 */	mtlr r0
 /* 800D4778 000D16B8  4E 80 00 20 */	blr 
+.endfn __CARDExtHandler
 
-.global __CARDExiHandler
-__CARDExiHandler:
+.fn __CARDExiHandler, global
 /* 800D477C 000D16BC  7C 08 02 A6 */	mflr r0
 /* 800D4780 000D16C0  90 01 00 04 */	stw r0, 4(r1)
 /* 800D4784 000D16C4  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -195,9 +193,9 @@ __CARDExiHandler:
 /* 800D4888 000D17C8  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D488C 000D17CC  7C 08 03 A6 */	mtlr r0
 /* 800D4890 000D17D0  4E 80 00 20 */	blr 
+.endfn __CARDExiHandler
 
-.global __CARDTxHandler
-__CARDTxHandler:
+.fn __CARDTxHandler, global
 /* 800D4894 000D17D4  7C 08 02 A6 */	mflr r0
 /* 800D4898 000D17D8  90 01 00 04 */	stw r0, 4(r1)
 /* 800D489C 000D17DC  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -244,9 +242,9 @@ __CARDTxHandler:
 /* 800D4930 000D1870  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D4934 000D1874  7C 08 03 A6 */	mtlr r0
 /* 800D4938 000D1878  4E 80 00 20 */	blr 
+.endfn __CARDTxHandler
 
-.global __CARDUnlockedHandler
-__CARDUnlockedHandler:
+.fn __CARDUnlockedHandler, global
 /* 800D493C 000D187C  7C 08 02 A6 */	mflr r0
 /* 800D4940 000D1880  90 01 00 04 */	stw r0, 4(r1)
 /* 800D4944 000D1884  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -283,9 +281,9 @@ __CARDUnlockedHandler:
 /* 800D49B4 000D18F4  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D49B8 000D18F8  7C 08 03 A6 */	mtlr r0
 /* 800D49BC 000D18FC  4E 80 00 20 */	blr 
+.endfn __CARDUnlockedHandler
 
-.global __CARDEnableInterrupt
-__CARDEnableInterrupt:
+.fn __CARDEnableInterrupt, global
 /* 800D49C0 000D1900  7C 08 02 A6 */	mflr r0
 /* 800D49C4 000D1904  38 A0 00 04 */	li r5, 4
 /* 800D49C8 000D1908  90 01 00 04 */	stw r0, 4(r1)
@@ -339,9 +337,9 @@ __CARDEnableInterrupt:
 /* 800D4A74 000D19B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D4A78 000D19B8  7C 08 03 A6 */	mtlr r0
 /* 800D4A7C 000D19BC  4E 80 00 20 */	blr 
+.endfn __CARDEnableInterrupt
 
-.global __CARDReadStatus
-__CARDReadStatus:
+.fn __CARDReadStatus, global
 /* 800D4A80 000D19C0  7C 08 02 A6 */	mflr r0
 /* 800D4A84 000D19C4  38 A0 00 04 */	li r5, 4
 /* 800D4A88 000D19C8  90 01 00 04 */	stw r0, 4(r1)
@@ -405,9 +403,9 @@ __CARDReadStatus:
 /* 800D4B64 000D1AA4  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D4B68 000D1AA8  7C 08 03 A6 */	mtlr r0
 /* 800D4B6C 000D1AAC  4E 80 00 20 */	blr 
+.endfn __CARDReadStatus
 
-.global __CARDClearStatus
-__CARDClearStatus:
+.fn __CARDClearStatus, global
 /* 800D4B70 000D1AB0  7C 08 02 A6 */	mflr r0
 /* 800D4B74 000D1AB4  38 80 00 00 */	li r4, 0
 /* 800D4B78 000D1AB8  90 01 00 04 */	stw r0, 4(r1)
@@ -454,8 +452,9 @@ __CARDClearStatus:
 /* 800D4C10 000D1B50  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D4C14 000D1B54  7C 08 03 A6 */	mtlr r0
 /* 800D4C18 000D1B58  4E 80 00 20 */	blr 
+.endfn __CARDClearStatus
 
-TimeoutHandler:
+.fn TimeoutHandler, local
 /* 800D4C1C 000D1B5C  7C 08 02 A6 */	mflr r0
 /* 800D4C20 000D1B60  3C 80 80 4F */	lis r4, __CARDBlock@ha
 /* 800D4C24 000D1B64  90 01 00 04 */	stw r0, 4(r1)
@@ -499,8 +498,9 @@ TimeoutHandler:
 /* 800D4CB4 000D1BF4  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D4CB8 000D1BF8  7C 08 03 A6 */	mtlr r0
 /* 800D4CBC 000D1BFC  4E 80 00 20 */	blr 
+.endfn TimeoutHandler
 
-Retry:
+.fn Retry, local
 /* 800D4CC0 000D1C00  7C 08 02 A6 */	mflr r0
 /* 800D4CC4 000D1C04  38 A0 00 04 */	li r5, 4
 /* 800D4CC8 000D1C08  90 01 00 04 */	stw r0, 4(r1)
@@ -652,8 +652,9 @@ Retry:
 /* 800D4EE0 000D1E20  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D4EE4 000D1E24  7C 08 03 A6 */	mtlr r0
 /* 800D4EE8 000D1E28  4E 80 00 20 */	blr 
+.endfn Retry
 
-UnlockedCallback:
+.fn UnlockedCallback, local
 /* 800D4EEC 000D1E2C  7C 08 02 A6 */	mflr r0
 /* 800D4EF0 000D1E30  2C 04 00 00 */	cmpwi r4, 0
 /* 800D4EF4 000D1E34  90 01 00 04 */	stw r0, 4(r1)
@@ -728,8 +729,9 @@ UnlockedCallback:
 /* 800D4FF0 000D1F30  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D4FF4 000D1F34  7C 08 03 A6 */	mtlr r0
 /* 800D4FF8 000D1F38  4E 80 00 20 */	blr 
+.endfn UnlockedCallback
 
-__CARDStart:
+.fn __CARDStart, local
 /* 800D4FFC 000D1F3C  7C 08 02 A6 */	mflr r0
 /* 800D5000 000D1F40  90 01 00 04 */	stw r0, 4(r1)
 /* 800D5004 000D1F44  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -849,9 +851,9 @@ __CARDStart:
 /* 800D51A4 000D20E4  38 21 00 30 */	addi r1, r1, 0x30
 /* 800D51A8 000D20E8  7C 08 03 A6 */	mtlr r0
 /* 800D51AC 000D20EC  4E 80 00 20 */	blr 
+.endfn __CARDStart
 
-.global __CARDReadSegment
-__CARDReadSegment:
+.fn __CARDReadSegment, global
 /* 800D51B0 000D20F0  7C 08 02 A6 */	mflr r0
 /* 800D51B4 000D20F4  38 C0 00 05 */	li r6, 5
 /* 800D51B8 000D20F8  90 01 00 04 */	stw r0, 4(r1)
@@ -933,9 +935,9 @@ __CARDReadSegment:
 /* 800D52D8 000D2218  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D52DC 000D221C  7C 08 03 A6 */	mtlr r0
 /* 800D52E0 000D2220  4E 80 00 20 */	blr 
+.endfn __CARDReadSegment
 
-.global __CARDWritePage
-__CARDWritePage:
+.fn __CARDWritePage, global
 /* 800D52E4 000D2224  7C 08 02 A6 */	mflr r0
 /* 800D52E8 000D2228  38 E0 00 05 */	li r7, 5
 /* 800D52EC 000D222C  90 01 00 04 */	stw r0, 4(r1)
@@ -1011,9 +1013,9 @@ __CARDWritePage:
 /* 800D53F4 000D2334  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D53F8 000D2338  7C 08 03 A6 */	mtlr r0
 /* 800D53FC 000D233C  4E 80 00 20 */	blr 
+.endfn __CARDWritePage
 
-.global __CARDEraseSector
-__CARDEraseSector:
+.fn __CARDEraseSector, global
 /* 800D5400 000D2340  7C 08 02 A6 */	mflr r0
 /* 800D5404 000D2344  90 01 00 04 */	stw r0, 4(r1)
 /* 800D5408 000D2348  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -1074,9 +1076,9 @@ __CARDEraseSector:
 /* 800D54D4 000D2414  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D54D8 000D2418  7C 08 03 A6 */	mtlr r0
 /* 800D54DC 000D241C  4E 80 00 20 */	blr 
+.endfn __CARDEraseSector
 
-.global CARDInit
-CARDInit:
+.fn CARDInit, global
 /* 800D54E0 000D2420  7C 08 02 A6 */	mflr r0
 /* 800D54E4 000D2424  3C 60 80 4F */	lis r3, __CARDBlock@ha
 /* 800D54E8 000D2428  90 01 00 04 */	stw r0, 4(r1)
@@ -1123,14 +1125,14 @@ CARDInit:
 /* 800D5580 000D24C0  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D5584 000D24C4  7C 08 03 A6 */	mtlr r0
 /* 800D5588 000D24C8  4E 80 00 20 */	blr 
+.endfn CARDInit
 
-.global __CARDGetFontEncode
-__CARDGetFontEncode:
+.fn __CARDGetFontEncode, global
 /* 800D558C 000D24CC  A0 6D 8D A0 */	lhz r3, __CARDEncode@sda21(r13)
 /* 800D5590 000D24D0  4E 80 00 20 */	blr 
+.endfn __CARDGetFontEncode
 
-.global __CARDSetDiskID
-__CARDSetDiskID:
+.fn __CARDSetDiskID, global
 /* 800D5594 000D24D4  28 03 00 00 */	cmplwi r3, 0
 /* 800D5598 000D24D8  3C 80 80 4F */	lis r4, __CARDBlock@ha
 /* 800D559C 000D24DC  38 84 5A F0 */	addi r4, r4, __CARDBlock@l
@@ -1149,9 +1151,9 @@ __CARDSetDiskID:
 .L_800D55C4:
 /* 800D55C4 000D2504  90 64 02 1C */	stw r3, 0x21c(r4)
 /* 800D55C8 000D2508  4E 80 00 20 */	blr 
+.endfn __CARDSetDiskID
 
-.global __CARDGetControlBlock
-__CARDGetControlBlock:
+.fn __CARDGetControlBlock, global
 /* 800D55CC 000D250C  7C 08 02 A6 */	mflr r0
 /* 800D55D0 000D2510  1C C3 01 10 */	mulli r6, r3, 0x110
 /* 800D55D4 000D2514  90 01 00 04 */	stw r0, 4(r1)
@@ -1204,9 +1206,9 @@ __CARDGetControlBlock:
 /* 800D5678 000D25B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D567C 000D25BC  7C 08 03 A6 */	mtlr r0
 /* 800D5680 000D25C0  4E 80 00 20 */	blr 
+.endfn __CARDGetControlBlock
 
-.global __CARDPutControlBlock
-__CARDPutControlBlock:
+.fn __CARDPutControlBlock, global
 /* 800D5684 000D25C4  7C 08 02 A6 */	mflr r0
 /* 800D5688 000D25C8  90 01 00 04 */	stw r0, 4(r1)
 /* 800D568C 000D25CC  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -1234,9 +1236,9 @@ __CARDPutControlBlock:
 /* 800D56DC 000D261C  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D56E0 000D2620  7C 08 03 A6 */	mtlr r0
 /* 800D56E4 000D2624  4E 80 00 20 */	blr 
+.endfn __CARDPutControlBlock
 
-.global CARDFreeBlocks
-CARDFreeBlocks:
+.fn CARDFreeBlocks, global
 /* 800D56E8 000D2628  7C 08 02 A6 */	mflr r0
 /* 800D56EC 000D262C  90 01 00 04 */	stw r0, 4(r1)
 /* 800D56F0 000D2630  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -1334,9 +1336,9 @@ CARDFreeBlocks:
 /* 800D582C 000D276C  38 21 00 30 */	addi r1, r1, 0x30
 /* 800D5830 000D2770  7C 08 03 A6 */	mtlr r0
 /* 800D5834 000D2774  4E 80 00 20 */	blr 
+.endfn CARDFreeBlocks
 
-.global __CARDSync
-__CARDSync:
+.fn __CARDSync, global
 /* 800D5838 000D2778  7C 08 02 A6 */	mflr r0
 /* 800D583C 000D277C  90 01 00 04 */	stw r0, 4(r1)
 /* 800D5840 000D2780  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -1380,8 +1382,9 @@ __CARDSync:
 /* 800D58C4 000D2804  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D58C8 000D2808  7C 08 03 A6 */	mtlr r0
 /* 800D58CC 000D280C  4E 80 00 20 */	blr 
+.endfn __CARDSync
 
-OnReset:
+.fn OnReset, local
 /* 800D58D0 000D2810  7C 08 02 A6 */	mflr r0
 /* 800D58D4 000D2814  2C 03 00 00 */	cmpwi r3, 0
 /* 800D58D8 000D2818  90 01 00 04 */	stw r0, 4(r1)
@@ -1405,3 +1408,4 @@ OnReset:
 /* 800D5914 000D2854  38 21 00 08 */	addi r1, r1, 8
 /* 800D5918 000D2858  7C 08 03 A6 */	mtlr r0
 /* 800D591C 000D285C  4E 80 00 20 */	blr 
+.endfn OnReset

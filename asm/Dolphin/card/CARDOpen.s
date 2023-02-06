@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __CARDCompareFileName
-__CARDCompareFileName:
+.fn __CARDCompareFileName, global
 /* 800D961C 000D655C  38 A3 00 08 */	addi r5, r3, 8
 /* 800D9620 000D6560  38 E0 00 20 */	li r7, 0x20
 /* 800D9624 000D6564  48 00 00 3C */	b .L_800D9660
@@ -33,9 +32,9 @@ __CARDCompareFileName:
 .L_800D967C:
 /* 800D967C 000D65BC  38 60 00 00 */	li r3, 0
 /* 800D9680 000D65C0  4E 80 00 20 */	blr 
+.endfn __CARDCompareFileName
 
-.global __CARDAccess
-__CARDAccess:
+.fn __CARDAccess, global
 /* 800D9684 000D65C4  7C 08 02 A6 */	mflr r0
 /* 800D9688 000D65C8  90 01 00 04 */	stw r0, 4(r1)
 /* 800D968C 000D65CC  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -77,9 +76,9 @@ __CARDAccess:
 /* 800D970C 000D664C  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D9710 000D6650  7C 08 03 A6 */	mtlr r0
 /* 800D9714 000D6654  4E 80 00 20 */	blr 
+.endfn __CARDAccess
 
-.global __CARDIsWritable
-__CARDIsWritable:
+.fn __CARDIsWritable, global
 /* 800D9718 000D6658  7C 08 02 A6 */	mflr r0
 /* 800D971C 000D665C  90 01 00 04 */	stw r0, 4(r1)
 /* 800D9720 000D6660  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -164,9 +163,9 @@ __CARDIsWritable:
 /* 800D9840 000D6780  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D9844 000D6784  7C 08 03 A6 */	mtlr r0
 /* 800D9848 000D6788  4E 80 00 20 */	blr 
+.endfn __CARDIsWritable
 
-.global __CARDIsReadable
-__CARDIsReadable:
+.fn __CARDIsReadable, global
 /* 800D984C 000D678C  7C 08 02 A6 */	mflr r0
 /* 800D9850 000D6790  90 01 00 04 */	stw r0, 4(r1)
 /* 800D9854 000D6794  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -232,9 +231,9 @@ __CARDIsReadable:
 /* 800D9934 000D6874  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D9938 000D6878  7C 08 03 A6 */	mtlr r0
 /* 800D993C 000D687C  4E 80 00 20 */	blr 
+.endfn __CARDIsReadable
 
-.global CARDOpen
-CARDOpen:
+.fn CARDOpen, global
 /* 800D9940 000D6880  7C 08 02 A6 */	mflr r0
 /* 800D9944 000D6884  90 01 00 04 */	stw r0, 4(r1)
 /* 800D9948 000D6888  38 00 FF FF */	li r0, -1
@@ -315,9 +314,9 @@ CARDOpen:
 /* 800D9A50 000D6990  38 21 00 38 */	addi r1, r1, 0x38
 /* 800D9A54 000D6994  7C 08 03 A6 */	mtlr r0
 /* 800D9A58 000D6998  4E 80 00 20 */	blr 
+.endfn CARDOpen
 
-.global CARDClose
-CARDClose:
+.fn CARDClose, global
 /* 800D9A5C 000D699C  7C 08 02 A6 */	mflr r0
 /* 800D9A60 000D69A0  90 01 00 04 */	stw r0, 4(r1)
 /* 800D9A64 000D69A4  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -341,3 +340,4 @@ CARDClose:
 /* 800D9AA4 000D69E4  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D9AA8 000D69E8  7C 08 03 A6 */	mtlr r0
 /* 800D9AAC 000D69EC  4E 80 00 20 */	blr 
+.endfn CARDClose
