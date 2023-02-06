@@ -408,20 +408,21 @@ bool Kogane::TUnit::isController()
  * Address:	803E7860
  * Size:	0002D0
  */
-void Kogane::TUnit::startState(ebi::title::Kogane::TUnit::enumState state)
+void Kogane::TUnit::startState(enumState state)
 {
 
     mStateID = state;
     switch(state)
     {
-        case 0: // Inactive
+        case KSTATE_Inactive: 
 		mPos = title::titleMgr->getPosOutOfViewField();
-        case 6: // Seems to be controlled
+
+        case KSTATE_Controlled: 
 		u32 time  = mManager->mParams.mControlStateTime.mValue / sys->mDeltaTime;
 		mCounter  = time;
 		mCounter2 = time;
         break;
-        case 1: // Wait
+        case KSTATE_Wait: 
 		f32 max, min;
 		min       = mManager->mParams.mMinWaitTime.mValue;
 		max       = mManager->mParams.mMaxWaitTime.mValue;
@@ -429,13 +430,13 @@ void Kogane::TUnit::startState(ebi::title::Kogane::TUnit::enumState state)
 		mCounter  = time2;
 		mCounter2 = time2;
 		break;
-        case 2: // Turn
+        case KSTATE_Turn: 
 		f32 angle    = mManager->mParams.mWalkRandomAngle.mValue;
 		f32 line     = JMath::atanTable_.atan2_(mTargetPos.y - mPos.y, mTargetPos.x - mPos.x);
 		f32 test     = angle * DEG2RAD * PI * (randFloat() * 2.0f + -1.0f) + line;
 		mTargetAngle = Vector2f(pikmin2_cosf(test), pikmin2_sinf(test));
 		break;
-        case 3: // walk
+        case KSTATE_Walk:
 		f32 max2, min2;
 		max2 = mManager->mParams.mMaxMoveTime.mValue;
 		min2 = mManager->mParams.mMinMoveTime.mValue;
@@ -445,7 +446,7 @@ void Kogane::TUnit::startState(ebi::title::Kogane::TUnit::enumState state)
 		mCounter2 = time3;
 		break;
 
-	    case 4: // AI_5 in Chappy
+	    case KSTATE_4: 
 		Vector2f negPos(-mPos.x, -mPos.y);
 		f32 len = _sqrtf(negPos.x * negPos.x + negPos.y * negPos.y);
 		if (len != 0.0f) {
@@ -470,16 +471,16 @@ void Kogane::TUnit::update()
     if (!isCalc())
 		return;
         
-    if ( (mStateID != 0) && (mStateID != 5) && (mStateID != 4)) 
+    if ( (mStateID != KSTATE_Inactive) && (mStateID != KSTATE_5) && (mStateID != KSTATE_4)) 
     {
         if (mControl && mControl->mSStick.mStickMag > 0.7f) {
-            startState((enumState)6);
+            startState(KSTATE_Controlled);
         }
     }
 
     s32 actionId = (s32)mActionID;
     switch(mStateID) {
-        case 6: {
+        case KSTATE_Controlled: {
             if (mCounter != 0) {
                 mCounter--;
             }
@@ -518,22 +519,22 @@ void Kogane::TUnit::update()
                 mActionID = 2;
             }
             if (mCounter == 0) {
-                startState((enumState)5);
+                startState(KSTATE_5);
             }
 
         }
         break;
-        case 1: {
+        case KSTATE_Wait: {
             mActionID = 0;
             if (mCounter != 0) {
                 mCounter--;
             }
             if (mCounter == 0) {
-                startState((enumState)2);
+                startState(KSTATE_Turn);
             }
         }
         break;
-        case 2: {
+        case KSTATE_Turn: {
             mActionID = 1;
             f32 product = 60.0f * sys->mDeltaTime * 0.5f * 0.1f ;
             f32 xProduct = mTargetAngle.x * product;
@@ -552,17 +553,17 @@ void Kogane::TUnit::update()
             f32 len = (xDiff * xDiff) + yDiffSq;
             len = _sqrtf(len);
             if (len < 0.1) {
-                startState((enumState)3);
+                startState(KSTATE_Walk);
             }
         }
         break;
-        case 3: { 
+        case KSTATE_Walk: { 
             mActionID = 2;
             if (mCounter != 0) {
                 mCounter--;
             }
             if (mCounter == 0) {
-                startState((enumState)1);
+                startState(KSTATE_Wait);
             }
             else {
                 f32 xParam = mAngle.x * mParms[0];
@@ -572,7 +573,7 @@ void Kogane::TUnit::update()
             
         }
         break;
-        case 4: {
+        case KSTATE_4: {
             mActionID = 2;
             f32 val = _sqrtfvec(mAngle); 
             if (val != 0.0) 
@@ -585,7 +586,7 @@ void Kogane::TUnit::update()
             mPos = Vector2f(mPos.x + xParam, mPos.y + yParam);
         }
         break;
-        case 5: { 
+        case KSTATE_5: { 
             mActionID = 2;
             f32 val = _sqrtfvec(mAngle);  
             if (val != 0.0) 
@@ -601,16 +602,16 @@ void Kogane::TUnit::update()
     } 
 
     switch(mStateID) {
-        case 0: 
+        case KSTATE_Inactive: 
         mPos      = titleMgr->getPosOutOfViewField();
-        case 4: 
+        case KSTATE_4: 
         if (titleMgr->isInViewField(this)) {
-            startState((enumState)3);
+            startState(KSTATE_Walk);
         }
         break;
-        case 5: 
+        case KSTATE_5: 
         if (titleMgr->isOutViewField(this)) {
-            startState((enumState)0);
+            startState(KSTATE_Inactive);
         }
         break;
         default:
@@ -621,19 +622,19 @@ void Kogane::TUnit::update()
     if ((s32) mActionID != actionId) // Check if action has changed since begining of function call
     {
         switch(mActionID) {
-        case 1: {
+        case KOGANEACT_1: {
             mAnim.init(0, 1.0);
             mAnim.play();
 
         }
         break;
-        case 2: {
+        case KOGANEACT_2: {
             mAnim.init(0, 1.0);
             mAnim.play();
             
         }
         break;
-        case 0: {
+        case KOGANEACT_0: {
             mAnim.init(1, 1.0);
             mAnim.play();
         }
