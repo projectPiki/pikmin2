@@ -7,6 +7,7 @@
 #include "Condition.h"
 #include "Collinfo.h"
 #include "Game/SlotChangeListener.h"
+#include "Sys/Sphere.h"
 
 namespace Sys {
 struct Triangle;
@@ -215,7 +216,7 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 	u16 _18;                      // _18
 	ActStickAttack* mStickAttack; // _1C
 	ActApproachPos* mApproachPos; // _20
-	Sys::Sphere* mAttackSphere;   // _24
+	Sys::Sphere mAttackSphere;    // _24
 	s16 _34;                      // _34
 	u8 _36;                       // _36
 	                              // _38 = MotionListener
