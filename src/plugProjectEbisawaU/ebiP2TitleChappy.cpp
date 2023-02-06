@@ -40,7 +40,7 @@ static void fakeEbiTitleChappyFunc(char* format)
 	Parm<f32> mHitRadius(nullptr, 'ch21', "当たり半径", 100.0f, 0.0f, 500.0f);
 	Parm<f32> mWalkAngleRand(nullptr, 'ch00', "歩行ランダム角度", 30.0f, 0.0f, 90.0f);
 	Parm<f32> mWalkSpeed(nullptr, 'ch01', "歩行速度", 8.0f, 0.0f, 100.0f);
-	Parm<f32> mTurnSpeed(nullptr, 'ch23', "旋回性能\ ", 0.05f, 0.0f, 1.0f);
+	Parm<f32> mTurnSpeed(nullptr, 'ch23', "旋回性能x5C", 0.05f, 0.0f, 1.0f); // x5C literal required for match
 	Parm<f32> mMinWaitTime(nullptr, 'ch10', "待ち時間最小(秒)", 0.3f, 0.0f, 10.0f);
 	Parm<f32> mMaxWaitTime(nullptr, 'ch11', "待ち時間最大(秒)", 1.0f, 0.0f, 10.0f);
 	Parm<f32> mMinWalkTime(nullptr, 'ch12', "移動時間最小(秒)", 0.5f, 0.0f, 10.0f);
@@ -55,7 +55,7 @@ static void fakeEbiTitleChappyFunc(char* format)
  */
 void Chappy::TMgr::setArchive(JKRArchive* arc)
 {
-	mParams.loadSettingFile(arc, "param/paramChappy.txt");
+	mParams.loadSettingFile(arc, "param/param_chappy.txt");
 	mAnimator->setArchive(arc);
 }
 
@@ -1313,7 +1313,7 @@ Chappy::TParam::TParam()
     , mHitRadius(this, 'ch21', "当たり半径", 100.0f, 0.0f, 500.0f)
     , mWalkAngleRand(this, 'ch00', "歩行ランダム角度", 30.0f, 0.0f, 90.0f)
     , mWalkSpeed(this, 'ch01', "歩行速度", 8.0f, 0.0f, 100.0f)
-    , mTurnSpeed(this, 'ch23', "旋回性能\ ", 0.05f, 0.0f, 1.0f)
+    , mTurnSpeed(this, 'ch23', "旋回性能x5C", 0.05f, 0.0f, 1.0f)  // x5C literal required for match
     , mMinWaitTime(this, 'ch10', "待ち時間最小(秒)", 0.3f, 0.0f, 10.0f)
     , mMaxWaitTime(this, 'ch11', "待ち時間最大(秒)", 1.0f, 0.0f, 10.0f)
     , mMinWalkTime(this, 'ch12', "移動時間最小(秒)", 0.5f, 0.0f, 10.0f)

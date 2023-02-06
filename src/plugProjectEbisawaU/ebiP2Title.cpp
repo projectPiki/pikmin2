@@ -3522,7 +3522,7 @@ namespace title {
  * Address:	803BEF24
  * Size:	000088
  */
-void TTitleMgr::isInViewField(ebi::title::TObjBase*)
+bool TTitleMgr::isInViewField(ebi::title::TObjBase*)
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -3605,7 +3605,7 @@ namespace title {
  * Address:	803BEFF0
  * Size:	000088
  */
-void TTitleMgr::isOutViewField(ebi::title::TObjBase*)
+bool TTitleMgr::isOutViewField(ebi::title::TObjBase*)
 {
 	/*
 stwu     r1, -0x20(r1)
