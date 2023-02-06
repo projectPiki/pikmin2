@@ -2,171 +2,18 @@
 #include "PikiAI.h"
 #include "Game/Piki.h"
 #include "Game/PikiState.h"
+#include "Dolphin/rand.h"
 
-/*
-    Generated from dpostproc
+static const char aiAttackName[] = "aiAttack";
 
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047F2A0
-    lbl_8047F2A0:
-        .asciz "actAttack"
-        .skip 2
-    lbl_8047F2AC:
-        .4byte lbl_80519078
-        .4byte lbl_8051907C
-        .4byte lbl_80519080
-        .4byte lbl_80519084
-        .4byte lbl_80519088
-    .global lbl_8047F2C0
-    lbl_8047F2C0:
-        .4byte 0x61747461
-        .4byte 0x636B2025
-        .4byte 0x73000000
-        .4byte 0x41637441
-        .4byte 0x74746163
-        .4byte 0x6B417267
-        .4byte 0x00000000
-        .4byte 0x61694174
-        .4byte 0x7461636B
-        .4byte 0x2E637070
-        .4byte 0x00000000
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x41637469
-        .4byte 0x6F6E4172
-        .4byte 0x67000000
-    .global lbl_8047F304
-    lbl_8047F304:
-        .4byte 0x41707072
-        .4byte 0x6F616368
-        .4byte 0x506F7341
-        .4byte 0x6374696F
-        .4byte 0x6E417267
-        .4byte 0x00000000
-    .global lbl_8047F31C
-    lbl_8047F31C:
-        .4byte 0x53746963
-        .4byte 0x6B417474
-        .4byte 0x61636B41
-        .4byte 0x6374696F
-        .4byte 0x6E417267
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__13FindCondition
-    __vt__13FindCondition:
-        .4byte 0
-        .4byte 0
-        .4byte satisfy__13FindConditionFP8CollPart
-    .global "__vt__20Condition<8CollPart>"
-    "__vt__20Condition<8CollPart>":
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q26PikiAI20ApproachPosActionArg
-    __vt__Q26PikiAI20ApproachPosActionArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q26PikiAI20ApproachPosActionArgFv
-    .global __vt__Q26PikiAI20StickAttackActionArg
-    __vt__Q26PikiAI20StickAttackActionArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q26PikiAI20StickAttackActionArgFv
-    .global __vt__Q26PikiAI9ActAttack
-    __vt__Q26PikiAI9ActAttack:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q26PikiAI9ActAttackFPQ26PikiAI9ActionArg
-        .4byte exec__Q26PikiAI9ActAttackFv
-        .4byte cleanup__Q26PikiAI9ActAttackFv
-        .4byte emotion_success__Q26PikiAI9ActAttackFv
-        .4byte emotion_fail__Q26PikiAI6ActionFv
-        .4byte applicable__Q26PikiAI9ActAttackFv
-        .4byte getNextAIType__Q26PikiAI9ActAttackFv
-        .4byte bounceCallback__Q26PikiAI9ActAttackFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q26PikiAI9ActAttackFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   doDirectDraw__Q26PikiAI6ActionFR8Graphics .4byte
-   "wallCallback__Q26PikiAI6ActionFR10Vector3<f>" .4byte
-   getInfo__Q26PikiAI9ActAttackFPc .4byte
-   onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent .4byte 0 .4byte 0
-        .4byte "@56@4@onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent"
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519078
-    lbl_80519078:
-        .asciz "SA"
-        .skip 1
-    .global lbl_8051907C
-    lbl_8051907C:
-        .asciz "AJ"
-        .skip 1
-    .global lbl_80519080
-    lbl_80519080:
-        .asciz "JA"
-        .skip 1
-    .global lbl_80519084
-    lbl_80519084:
-        .asciz "JP"
-        .skip 1
-    .global lbl_80519088
-    lbl_80519088:
-        .asciz "LT"
-        .skip 1
-    .global lbl_8051908C
-    lbl_8051908C:
-        .asciz "Attack"
-        .skip 1
-    .global lbl_80519094
-    lbl_80519094:
-        .float 32768.0
-    .global lbl_80519098
-    lbl_80519098:
-        .float 0.8
-        .skip 4
-    .global lbl_805190A0
-    lbl_805190A0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_805190A8
-    lbl_805190A8:
-        .4byte 0x41200000
-    .global lbl_805190AC
-    lbl_805190AC:
-        .float -1.0
-    .global lbl_805190B0
-    lbl_805190B0:
-        .4byte 0x40000000
-    .global lbl_805190B4
-    lbl_805190B4:
-        .4byte 0x41A00000
-    .global lbl_805190B8
-    lbl_805190B8:
-        .4byte 0x00000000
-    .global lbl_805190BC
-    lbl_805190BC:
-        .float 1.0
-    .global lbl_805190C0
-    lbl_805190C0:
-        .4byte 0x42C80000
-    .global lbl_805190C4
-    lbl_805190C4:
-        .4byte 0x43480000
-    .global lbl_805190C8
-    lbl_805190C8:
-        .float 0.5
-*/
+namespace PikiAI {
 
 /*
  * --INFO--
  * Address:	801A04CC
  * Size:	000070
  */
-void PikiAI::ActAttack::getInfo(char* dest)
+void ActAttack::getInfo(char* dest)
 {
 	char* actions[] = { "SA", "AJ", "JA", "JP", "LT" };
 	sprintf(dest, "attack %s", actions[_18]);
@@ -177,28 +24,10 @@ void PikiAI::ActAttack::getInfo(char* dest)
  * Address:	801A053C
  * Size:	000044
  */
-void PikiAI::ActAttack::emotion_success()
+void ActAttack::emotion_success()
 {
-	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, nullptr);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0x13
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	addi     r6, r1, 8
-	sth      r0, 8(r1)
-	lwz      r4, 4(r3)
-	lwz      r3, 0x28c(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Game::EmotionStateArg emotionArg(1);
+	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, &emotionArg);
 }
 
 /*
@@ -206,8 +35,7 @@ void PikiAI::ActAttack::emotion_success()
  * Address:	801A0580
  * Size:	0000D4
  */
-// vtable size issues?
-PikiAI::ActAttack::ActAttack(Game::Piki* piki)
+ActAttack::ActAttack(Game::Piki* piki)
     : Action(piki)
 {
 	mStickAttack = new ActStickAttack(piki);
@@ -220,91 +48,29 @@ PikiAI::ActAttack::ActAttack(Game::Piki* piki)
  * Address:	801A0654
  * Size:	00011C
  */
-void PikiAI::ActAttack::init(ActionArg* initarg)
+void ActAttack::init(ActionArg* initarg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	or.      r29, r4, r4
-	lis      r4, lbl_8047F2A0@ha
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	addi     r31, r4, lbl_8047F2A0@l
-	beq      lbl_801A06B8
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x2c
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	beq      lbl_801A06B8
-	li       r30, 1
+	bool incorrectArg = false;
+	if (initarg) {
+		bool comp = (strcmp("ActAttackArg", initarg->getName()) == 0);
+		if (comp) {
+			incorrectArg = true;
+		}
+	}
+	P2ASSERTLINE(144, incorrectArg);
+	ActAttackArg* attackArg = static_cast<ActAttackArg*>(initarg);
+	mCreature               = attackArg->mCreature;
+	mCollPart               = attackArg->mCollPart;
 
-lbl_801A06B8:
-	clrlwi.  r0, r30, 0x18
-	bne      lbl_801A06D4
-	addi     r3, r31, 0x3c
-	addi     r5, r31, 0x4c
-	li       r4, 0x90
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (mParent->isStickTo()) {
+		initStickAttack();
+	} else if (randFloat() > 0.8f) {
+		initJumpAdjust();
+	} else {
+		initAdjust();
+	}
 
-lbl_801A06D4:
-	lwz      r0, 4(r29)
-	stw      r0, 0x10(r28)
-	lwz      r0, 8(r29)
-	stw      r0, 0x14(r28)
-	lwz      r3, 4(r28)
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0700
-	mr       r3, r28
-	bl       initStickAttack__Q26PikiAI9ActAttackFv
-	b        lbl_801A0748
-
-lbl_801A0700:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_805190A0@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_80519094@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_80519098@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801A0740
-	mr       r3, r28
-	bl       initJumpAdjust__Q26PikiAI9ActAttackFv
-	b        lbl_801A0748
-
-lbl_801A0740:
-	mr       r3, r28
-	bl       initAdjust__Q26PikiAI9ActAttackFv
-
-lbl_801A0748:
-	li       r0, 0
-	stb      r0, 0x36(r28)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_36 = 0;
 }
 
 /*
@@ -312,43 +78,12 @@ lbl_801A0748:
  * Address:	801A0770
  * Size:	000084
  */
-void PikiAI::ActAttack::initStickAttack()
+void ActAttack::initStickAttack()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r3, 4(r3)
-	bl       getAttackDamage__Q24Game4PikiFv
-	lwz      r5, 0x10(r31)
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	lis      r3, __vt__Q26PikiAI20StickAttackActionArg@ha
-	stw      r0, 8(r1)
-	addi     r4, r3, __vt__Q26PikiAI20StickAttackActionArg@l
-	li       r3, 2
-	li       r0, 0
-	stw      r4, 8(r1)
-	addi     r4, r1, 8
-	stfs     f1, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r3, 0x14(r1)
-	stb      r0, 0x18(r1)
-	lwz      r3, 0x1c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	sth      r0, 0x18(r31)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	f32 damage = mParent->getAttackDamage();
+	StickAttackActionArg stickArg(damage, mCreature, 2, 0);
+	mStickAttack->init(&stickArg);
+	_18 = 0;
 }
 
 /*
@@ -356,8 +91,14 @@ void PikiAI::ActAttack::initStickAttack()
  * Address:	801A07F4
  * Size:	0000A8
  */
-void PikiAI::ActAttack::initAdjust()
+void ActAttack::initAdjust()
 {
+	calcAttackPos();
+	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, -1.0f, 0, 0);
+	approachArg._18 = 1;
+	approachArg._19 = 1;
+	_18             = 1;
+	mApproachPos->init(&approachArg);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -409,8 +150,14 @@ void PikiAI::ActAttack::initAdjust()
  * Address:	801A089C
  * Size:	0000AC
  */
-void PikiAI::ActAttack::initJumpAdjust()
+void ActAttack::initJumpAdjust()
 {
+	calcAttackPos();
+	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, -1.0f, 0, 0);
+	approachArg._18 = 1;
+	approachArg._19 = 1;
+	_18             = 2;
+	mApproachPos->init(&approachArg);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -463,49 +210,15 @@ void PikiAI::ActAttack::initJumpAdjust()
  * Address:	801A0948
  * Size:	00008C
  */
-bool PikiAI::ActAttack::applicable()
+bool ActAttack::applicable()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 4(r3)
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0974
-	li       r3, 1
-	b        lbl_801A09C0
+	if (mParent->isStickTo()) {
+		return true;
+	}
 
-lbl_801A0974:
-	mr       r3, r31
-	bl       calcAttackPos__Q26PikiAI9ActAttackFv
-	lwz      r4, 4(r31)
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x28(r31)
-	lfs      f1, 0xc(r1)
-	lfs      f0, lbl_805190B4@sda21(r2)
-	fsubs    f1, f2, f1
-	fabs     f1, f1
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	rlwinm   r0, r0, 2, 0x1f, 0x1f
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-
-lbl_801A09C0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	calcAttackPos();
+	Vector3f pos = mParent->getPosition();
+	return !(FABS(mAttackSphere.mPosition.y - pos.y) > 20.0f);
 }
 
 /*
@@ -513,7 +226,7 @@ lbl_801A09C0:
  * Address:	........
  * Size:	0000D8
  */
-void PikiAI::ActAttack::initJump()
+void ActAttack::initJump()
 {
 	// UNUSED FUNCTION
 }
@@ -523,7 +236,7 @@ void PikiAI::ActAttack::initJump()
  * Address:	801A09D4
  * Size:	0001C4
  */
-void PikiAI::ActAttack::calcAttackPos()
+void ActAttack::calcAttackPos()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -657,7 +370,7 @@ lbl_801A0B7C:
  * Address:	801A0B98
  * Size:	00094C
  */
-int PikiAI::ActAttack::exec()
+int ActAttack::exec()
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -1335,7 +1048,7 @@ lbl_801A14C8:
  * Address:	801A14E4
  * Size:	000054
  */
-void PikiAI::ActAttack::cleanup()
+void ActAttack::cleanup()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1371,7 +1084,7 @@ lbl_801A1528:
  * Address:	801A1538
  * Size:	0000E0
  */
-void PikiAI::ActAttack::collisionCallback(Game::Piki*, Game::CollEvent&)
+void ActAttack::collisionCallback(Game::Piki*, Game::CollEvent&)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1440,7 +1153,7 @@ lbl_801A15FC:
  * Address:	801A1618
  * Size:	00024C
  */
-void PikiAI::ActAttack::bounceCallback(Game::Piki*, Sys::Triangle*)
+void ActAttack::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -1610,7 +1323,7 @@ lbl_801A1848:
  * Address:	801A1864
  * Size:	000024
  */
-void PikiAI::ActAttack::onKeyEvent(SysShape::KeyEvent const&)
+void ActAttack::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	lwz      r0, 0x1c(r4)
@@ -1624,3 +1337,5 @@ void PikiAI::ActAttack::onKeyEvent(SysShape::KeyEvent const&)
 	blr
 	*/
 }
+
+} // namespace PikiAI
