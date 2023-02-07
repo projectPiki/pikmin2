@@ -1,4 +1,4 @@
-#include "Morimura/Challenge.h"
+#include "Morimura/challengeResult2D.h"
 #include "Morimura/mrUtil.h"
 #include "trig.h"
 #include "og/newScreen/ogUtil.h"
@@ -622,13 +622,13 @@ static const char name[] = "challengeResult2D";
 
 namespace Morimura {
 
-bool TChallengeResult::mForceDemoStart          = false;
-u8 TChallengeResult::mTestStageId               = 0;
-JKRHeap* TChallengeResult::mDebugHeapParent     = nullptr;
-JKRHeap* TChallengeResult::mDebugHeap           = nullptr;
-JUTTexture* TChallengeResult::mLeafTexture      = nullptr;
-JUTTexture* TChallengeResult::mFlowerTexture    = nullptr;
-JUTTexture* TChallengeResult::mRedFlowerTexture = nullptr;
+bool TChallengeResult::mForceDemoStart       = false;
+u8 TChallengeResult::mTestStageId            = 0;
+JKRHeap* TChallengeResult::mDebugHeapParent  = nullptr;
+JKRExpHeap* TChallengeResult::mDebugHeap     = nullptr;
+ResTIMG* TChallengeResult::mLeafTexture      = nullptr;
+ResTIMG* TChallengeResult::mFlowerTexture    = nullptr;
+ResTIMG* TChallengeResult::mRedFlowerTexture = nullptr;
 
 f32 TChallengeResult::mMoveSpeed       = 12.0f;
 f32 TChallengeResult::mAngRate         = 0.3f;
@@ -768,7 +768,7 @@ void TChallengeResultDemoScreen::setComplete(bool isComplete)
 	for (int i = 0; i < 3; i++) {
 		J2DPane* pane = mScreenObj->search(ribons[i]);
 		P2ASSERTLINE(224, pane);
-		pane->setMsgID('1_00467');
+		pane->setMsgID('4872_00');
 	}
 }
 
@@ -784,19 +784,10 @@ void TChallengeResultDemoScreen::reset()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000028
- */
-TMovePane::TMovePane()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803936DC
  * Size:	00007C
  */
+#pragma dont_inline on
 void TMovePane::setPane(J2DPane* pane)
 {
 	P2ASSERTLINE(271, pane);
@@ -805,6 +796,7 @@ void TMovePane::setPane(J2DPane* pane)
 	mPanePosition = JGeometry::TVec2f(pane->mOffset);
 	reset();
 }
+#pragma dont_inline off
 
 /*
  * --INFO--
@@ -1404,6 +1396,7 @@ void TMovePane::reset()
  * Address:	80393F2C
  * Size:	000100
  */
+#pragma dont_inline on
 TCounterRV* setTCounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, u32* data, u16 flag1, u16 flag2, JKRArchive* arc)
 {
 	TCounterRV* counter = new TCounterRV(const_cast<char**>(og::Screen::SujiTex32), flag1, flag2, arc);
@@ -1413,6 +1406,7 @@ TCounterRV* setTCounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, 
 	screen->addCallBack(tag1, counter);
 	return counter;
 }
+#pragma dont_inline off
 
 /*
  * --INFO--
@@ -1760,22 +1754,22 @@ TChallengeResult::TChallengeResult()
     , mSaveMgr(nullptr)
     , mControls(nullptr)
     , mDisp(nullptr)
-    , _90(nullptr)
-    , _94(nullptr)
-    , _98(nullptr)
-    , _9C(nullptr)
-    , _A0(nullptr)
+    , mCounter1(nullptr)
+    , mCounter2(nullptr)
+    , mCounter3(nullptr)
+    , mCounter4(nullptr)
+    , mCounter5(nullptr)
     , mScissorPic(nullptr)
-    , _C0(nullptr)
-    , _C4(nullptr)
-    , _C8(nullptr)
-    , _CC(nullptr)
-    , _D0(nullptr)
-    , _D4(nullptr)
+    , mPane1(nullptr)
+    , mPane2(nullptr)
+    , mPane3(nullptr)
+    , mPane4(nullptr)
+    , mPane5(nullptr)
+    , mPane6(nullptr)
 {
 	mMesgOffs    = nullptr;
 	mEfxCompLoop = nullptr;
-	_1A8         = 0;
+	mScore1      = 0;
 	mPokoscore   = 0;
 	mTotalScore  = 0;
 
@@ -1796,23 +1790,23 @@ TChallengeResult::TChallengeResult()
 	mSpeed     = mDemoSpeedUpRate;
 
 	for (int i = 0; i < 3; i++) {
-		_A4[i]        = nullptr;
-		_B0[i]        = nullptr;
-		_17C[i]       = nullptr;
-		mBonuses[i]   = 0;
-		mPosList1[i]  = Vector2f(0.0f);
-		mPosList2[i]  = Vector2f(0.0f);
-		mMovePane[i]  = nullptr;
-		mScorePane[i] = nullptr;
+		mCounters1[i]        = nullptr;
+		mHighScoreCounter[i] = nullptr;
+		_17C[i]              = nullptr;
+		mBonuses[i]          = 0;
+		mPosList1[i]         = Vector2f(0.0f);
+		mPosList2[i]         = Vector2f(0.0f);
+		mOnyonMovePane[i]    = nullptr;
+		mOnyonPane[i]        = nullptr;
 	}
 
 	_17C[0] = 0;
 	_17C[1] = 0;
 	_17C[2] = 0;
-	_188    = 0;
+	_17C[3] = 0;
 
 	for (int i = 0; i < 5; i++) {
-		mScreens[i] = nullptr;
+		_18C[i] = nullptr;
 	}
 
 	_120       = 0.0f;
@@ -1879,1629 +1873,263 @@ void TChallengeResult::setDebugHeapParent(JKRHeap*)
  * Address:	803946F8
  * Size:	001854
  */
-void TChallengeResult::doCreate(JKRArchive*)
+void TChallengeResult::doCreate(JKRArchive* arc)
 {
-	/*
-	stwu     r1, -0x480(r1)
-	mflr     r0
-	stw      r0, 0x484(r1)
-	stmw     r23, 0x45c(r1)
-	mr       r28, r4
-	lis      r4, lbl_80494720@ha
-	mr       r27, r3
-	addi     r31, r4, lbl_80494720@l
-	stw      r28, 0x78(r3)
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lis      r4, 0x4D524D52@ha
-	lis      r6, 0x53554C54@ha
-	lis      r5, 0x43485245@ha
-	mr       r25, r3
-	addi     r4, r4, 0x4D524D52@l
-	addi     r6, r6, 0x53554C54@l
-	addi     r5, r5, 0x43485245@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80394750
-	stw      r25, 0x8c(r27)
-	b        lbl_80394758
-
-lbl_80394750:
-	li       r0, 1
-	stb      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-
-lbl_80394758:
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8039488C
-	lwz      r4, mDebugHeapParent__Q28Morimura16TChallengeResult@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_803947F4
-	lis      r3, 0x10
-	li       r5, 1
-	bl       create__10JKRExpHeapFUlP7JKRHeapb
-	cmplwi   r3, 0
-	stw      r3, mDebugHeap__Q28Morimura16TChallengeResult@sda21(r13)
-	bne      lbl_8039479C
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x3cf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8039479C:
-	lwz      r4, mDebugHeap__Q28Morimura16TChallengeResult@sda21(r13)
-	li       r3, 0x14
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	cmplwi   r3, 0
-	beq      lbl_803947E0
-	lis      r5, __vt__Q32og6Screen14DispMemberBase@ha
-	lis      r4, __vt__Q28Morimura25DispMemberChallengeResult@ha
-	addi     r0, r5, __vt__Q32og6Screen14DispMemberBase@l
-	li       r5, 0
-	stw      r0, 0(r3)
-	addi     r0, r4, __vt__Q28Morimura25DispMemberChallengeResult@l
-	stw      r5, 4(r3)
-	stw      r0, 0(r3)
-	stw      r5, 8(r3)
-	stw      r5, 0xc(r3)
-	stw      r5, 0x10(r3)
-
-lbl_803947E0:
-	stw      r3, 0x8c(r27)
-	lwz      r0, mDebugHeap__Q28Morimura16TChallengeResult@sda21(r13)
-	lwz      r3, 0x8c(r27)
-	stw      r0, 0xc(r3)
-	b        lbl_80394808
-
-lbl_803947F4:
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x188
-	li       r4, 0x3d6
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394808:
-	li       r3, 0x94
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80394820
-	bl       __ct__Q34Game13ChallengeGame9StageListFv
-	mr       r0, r3
-
-lbl_80394820:
-	stw      r0, 0x1f8(r27)
-	li       r0, 0
-	addi     r3, r31, 0x1b0
-	li       r4, 0
-	stw      r0, 8(r1)
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 2
-	li       r9, 0
-	li       r10, 0
-	bl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	cmplwi   r3, 0
-	beq      lbl_8039488C
-	mr       r4, r3
-	addi     r3, r1, 0x38
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x44(r1)
-	bne      lbl_80394880
-	li       r0, 0
-	stw      r0, 0x44c(r1)
-
-lbl_80394880:
-	lwz      r3, 0x1f8(r27)
-	addi     r4, r1, 0x38
-	bl       read__Q34Game13ChallengeGame9StageListFR6Stream
-
-lbl_8039488C:
-	mr       r3, r27
-	bl       getGamePad__Q26Screen7ObjBaseCFv
-	stw      r3, 0x88(r27)
-	lwz      r0, 0x88(r27)
-	cmplwi   r0, 0
-	bne      lbl_803948B8
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x3ee
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803948B8:
-	lwz      r3, 0x78(r27)
-	addi     r4, r31, 0x1d4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	stw      r3, mLeafTexture__Q28Morimura16TChallengeResult@sda21(r13)
-	bne      lbl_803948F0
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x3f2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803948F0:
-	lwz      r3, 0x78(r27)
-	addi     r4, r31, 0x1e8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	stw      r3, mFlowerTexture__Q28Morimura16TChallengeResult@sda21(r13)
-	bne      lbl_80394928
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x3f5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394928:
-	lwz      r3, 0x78(r27)
-	addi     r4, r31, 0x200
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	stw      r3, mRedFlowerTexture__Q28Morimura16TChallengeResult@sda21(r13)
-	bne      lbl_80394960
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x3f8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394960:
-	bl       createInstance__Q33ebi4Save4TMgrFv
-	stw      r3, 0x84(r27)
-	lwz      r25, 0x84(r27)
-	addi     r3, r25, 0x18
-	bl       loadResource__Q33ebi6Screen9TSaveMenuFv
-	lwz      r24, sCurrentHeap__7JKRHeap@sda21(r13)
-	addi     r3, r25, 0x100
-	mr       r4, r24
-	bl       loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap
-	lwz      r3, sys@sda21(r13)
-	mr       r4, r24
-	lwz      r3, 0x5c(r3)
-	bl       loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap
-	lwz      r3, 0x8c(r27)
-	lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
-	lwz      r3, 0xc(r3)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_803949D4
-	mr       r4, r28
-	li       r5, 7
-	bl       __ct__Q28Morimura16TChallengeScreenFP10JKRArchivei
-	lis      r3, __vt__Q28Morimura22TChallengeResultScreen@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q28Morimura22TChallengeResultScreen@l
-	stw      r3, 0(r25)
-	stw      r0, 0x2c(r25)
-
-lbl_803949D4:
-	stw      r25, 0x7c(r27)
-	addi     r4, r31, 0x218
-	lis      r5, 0x104
-	lwz      r3, 0x7c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x7c(r27)
-	addi     r4, r31, 0x234
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x7c(r27)
-	addi     r4, r31, 0x234
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lwz      r3, 0x7c(r27)
-	addi     r4, r31, 0x250
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lwz      r3, 0x7c(r27)
-	addi     r4, r31, 0x26c
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lwz      r3, 0x7c(r27)
-	addi     r4, r31, 0x288
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lwz      r3, 0x7c(r27)
-	addi     r4, r31, 0x2a4
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lwz      r3, 0x7c(r27)
-	addi     r4, r31, 0x2c0
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lwz      r3, 0x7c(r27)
-	addi     r4, r31, 0x2e0
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lfd      f1, 0x178(r31)
-	li       r3, 0x18
-	lfd      f0, 0x180(r31)
-	stfd     f1, 0x28(r1)
-	stfd     f0, 0x30(r1)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80394AA0
-	lis      r6, 0x305F3030@ha
-	lis      r5, 0x00343930@ha
-	addi     r4, r1, 0x28
-	li       r7, 2
-	addi     r6, r6, 0x305F3030@l
-	addi     r5, r5, 0x00343930@l
-	bl       __ct__Q28Morimura13TOffsetMsgSetFPUxUxi
-	mr       r0, r3
-
-lbl_80394AA0:
-	stw      r0, 0x1a0(r27)
-	lis      r4, 0x66656374@ha
-	lis      r3, 0x00506566@ha
-	lwz      r7, 0x7c(r27)
-	addi     r6, r4, 0x66656374@l
-	addi     r5, r3, 0x00506566@l
-	lwz      r29, 8(r7)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	lis      r5, 0x65637431@ha
-	stb      r0, 0xb0(r3)
-	mr       r3, r29
-	lis      r4, 0x50656666@ha
-	addi     r6, r5, 0x65637431@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x50656666@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	lis      r4, 0x79656C31@ha
-	stb      r0, 0xb0(r3)
-	mr       r3, r29
-	addi     r6, r4, 0x79656C31@l
-	li       r5, 0x54
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc0(r27)
-	lwz      r0, 0xc0(r27)
-	cmplwi   r0, 0
-	bne      lbl_80394B48
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x422
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394B48:
-	mr       r3, r29
-	lis      r4, 0x79656C32@ha
-	lwz      r12, 0(r29)
-	addi     r6, r4, 0x79656C32@l
-	li       r5, 0x54
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc4(r27)
-	lwz      r0, 0xc4(r27)
-	cmplwi   r0, 0
-	bne      lbl_80394B8C
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x425
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394B8C:
-	mr       r3, r29
-	lis      r4, 0x79656C33@ha
-	lwz      r12, 0(r29)
-	addi     r6, r4, 0x79656C33@l
-	li       r5, 0x54
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc8(r27)
-	lwz      r0, 0xc8(r27)
-	cmplwi   r0, 0
-	bne      lbl_80394BD0
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x428
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394BD0:
-	mr       r3, r29
-	lis      r4, 0x79656C34@ha
-	lwz      r12, 0(r29)
-	addi     r6, r4, 0x79656C34@l
-	li       r5, 0x54
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xcc(r27)
-	lwz      r0, 0xcc(r27)
-	cmplwi   r0, 0
-	bne      lbl_80394C14
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x42b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394C14:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80394C48
-	li       r0, 0
-	lfs      f0, lbl_8051F084@sda21(r2)
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	stfs     f0, 0x38(r3)
-	stw      r0, 0x3c(r3)
-	stw      r0, 0x40(r3)
-	stw      r0, 0x44(r3)
-	stw      r0, 0x48(r3)
-
-lbl_80394C48:
-	stw      r3, 0xd8(r27)
-	mr       r3, r29
-	lis      r4, 0x4E524544@ha
-	li       r5, 0
-	lwz      r12, 0(r29)
-	addi     r6, r4, 0x4E524544@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xe4(r27)
-	li       r3, 0x4c
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80394CA4
-	li       r0, 0
-	lfs      f0, lbl_8051F084@sda21(r2)
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	stfs     f0, 0x38(r3)
-	stw      r0, 0x3c(r3)
-	stw      r0, 0x40(r3)
-	stw      r0, 0x44(r3)
-	stw      r0, 0x48(r3)
-
-lbl_80394CA4:
-	stw      r3, 0xdc(r27)
-	mr       r3, r29
-	lis      r5, 0x4C4C4F57@ha
-	lis      r4, 0x004E5945@ha
-	lwz      r12, 0(r29)
-	addi     r6, r5, 0x4C4C4F57@l
-	addi     r5, r4, 0x004E5945@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xe8(r27)
-	li       r3, 0x4c
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80394D04
-	li       r0, 0
-	lfs      f0, lbl_8051F084@sda21(r2)
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	stfs     f0, 0x38(r3)
-	stw      r0, 0x3c(r3)
-	stw      r0, 0x40(r3)
-	stw      r0, 0x44(r3)
-	stw      r0, 0x48(r3)
-
-lbl_80394D04:
-	stw      r3, 0xe0(r27)
-	mr       r3, r29
-	lis      r4, 0x424C5545@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r29)
-	addi     r6, r4, 0x424C5545@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xec(r27)
-	mr       r25, r27
-	li       r24, 0
-
-lbl_80394D34:
-	lwz      r0, 0xd8(r25)
-	cmplwi   r0, 0
-	bne      lbl_80394D54
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x439
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394D54:
-	lwz      r3, 0xd8(r25)
-	lwz      r4, 0xe4(r25)
-	bl       setPane__Q28Morimura9TMovePaneFP7J2DPane
-	addi     r24, r24, 1
-	addi     r25, r25, 4
-	cmpwi    r24, 3
-	blt      lbl_80394D34
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_80394E1C
-	mr       r3, r29
-	lis      r5, 0x5F303434@ha
-	lwz      r12, 0(r29)
-	lis      r4, 0x50494354@ha
-	addi     r6, r5, 0x5F303434@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	mr       r25, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lis      r5, 0x5F303433@ha
-	lis      r4, 0x50494354@ha
-	lwz      r12, 0x3c(r12)
-	addi     r6, r5, 0x5F303433@l
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x78(r27)
-	li       r0, 0
-	cmplwi   r3, 0
-	stb      r0, 0(r26)
-	stw      r4, 4(r26)
-	stw      r3, 8(r26)
-	stw      r25, 0xc(r26)
-	bne      lbl_80394E00
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x129
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394E00:
-	cmplwi   r25, 0
-	bne      lbl_80394E1C
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x12a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394E1C:
-	stw      r26, 0x18c(r27)
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_80394ECC
-	mr       r3, r29
-	lis      r5, 0x5F303432@ha
-	lwz      r12, 0(r29)
-	lis      r4, 0x50494354@ha
-	addi     r6, r5, 0x5F303432@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	mr       r25, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lis      r5, 0x5F303431@ha
-	lis      r4, 0x50494354@ha
-	lwz      r12, 0x3c(r12)
-	addi     r6, r5, 0x5F303431@l
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x78(r27)
-	li       r0, 0
-	cmplwi   r3, 0
-	stb      r0, 0(r26)
-	stw      r4, 4(r26)
-	stw      r3, 8(r26)
-	stw      r25, 0xc(r26)
-	bne      lbl_80394EB0
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x129
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394EB0:
-	cmplwi   r25, 0
-	bne      lbl_80394ECC
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x12a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394ECC:
-	stw      r26, 0x190(r27)
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_80394F7C
-	mr       r3, r29
-	lis      r5, 0x5F303139@ha
-	lwz      r12, 0(r29)
-	lis      r4, 0x50494354@ha
-	addi     r6, r5, 0x5F303139@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	mr       r25, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lis      r5, 0x5F303138@ha
-	lis      r4, 0x50494354@ha
-	lwz      r12, 0x3c(r12)
-	addi     r6, r5, 0x5F303138@l
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x78(r27)
-	li       r0, 0
-	cmplwi   r3, 0
-	stb      r0, 0(r26)
-	stw      r4, 4(r26)
-	stw      r3, 8(r26)
-	stw      r25, 0xc(r26)
-	bne      lbl_80394F60
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x129
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394F60:
-	cmplwi   r25, 0
-	bne      lbl_80394F7C
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x12a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80394F7C:
-	stw      r26, 0x194(r27)
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_8039502C
-	mr       r3, r29
-	lis      r5, 0x5F303438@ha
-	lwz      r12, 0(r29)
-	lis      r4, 0x50494354@ha
-	addi     r6, r5, 0x5F303438@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	mr       r25, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lis      r5, 0x5F303437@ha
-	lis      r4, 0x50494354@ha
-	lwz      r12, 0x3c(r12)
-	addi     r6, r5, 0x5F303437@l
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x78(r27)
-	li       r0, 0
-	cmplwi   r3, 0
-	stb      r0, 0(r26)
-	stw      r4, 4(r26)
-	stw      r3, 8(r26)
-	stw      r25, 0xc(r26)
-	bne      lbl_80395010
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x129
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395010:
-	cmplwi   r25, 0
-	bne      lbl_8039502C
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x12a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8039502C:
-	stw      r26, 0x198(r27)
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_803950DC
-	mr       r3, r29
-	lis      r5, 0x5F303436@ha
-	lwz      r12, 0(r29)
-	lis      r4, 0x50494354@ha
-	addi     r6, r5, 0x5F303436@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	mr       r26, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lis      r5, 0x5F303435@ha
-	lis      r4, 0x50494354@ha
-	lwz      r12, 0x3c(r12)
-	addi     r6, r5, 0x5F303435@l
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x78(r27)
-	li       r0, 0
-	cmplwi   r3, 0
-	stb      r0, 0(r25)
-	stw      r4, 4(r25)
-	stw      r3, 8(r25)
-	stw      r26, 0xc(r25)
-	bne      lbl_803950C0
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x129
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803950C0:
-	cmplwi   r26, 0
-	bne      lbl_803950DC
-	addi     r3, r31, 0x300
-	addi     r5, r31, 0x148
-	li       r4, 0x12a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803950DC:
-	stw      r25, 0x19c(r27)
-	lis      r4, 0x6B6F3030@ha
-	addi     r0, r27, 0x1a8
-	lis      r3, 0x0050706F@ha
-	stw      r0, 8(r1)
-	addi     r5, r3, 0x0050706F@l
-	li       r0, 5
-	mr       r3, r29
-	stw      r0, 0xc(r1)
-	mr       r7, r5
-	mr       r9, r5
-	addi     r6, r4, 0x6B6F3030@l
-	stw      r0, 0x10(r1)
-	addi     r8, r4, 0x3031
-	addi     r10, r4, 0x3034
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0x94(r27) lwz      r3, 0x94(r27) bl
-getMotherPane__Q32og6Screen18CallBack_CounterRVFv li       r0, 0 lis      r4,
-0x6B6F3030@ha stb      r0, 0xb0(r3) addi     r5, r27, 0x1a8 lis      r3,
-0x0050706F@ha li       r0, 5 stw      r5, 8(r1) addi     r5, r3, 0x0050706F@l mr
-r3, r29 addi     r6, r4, 0x6B6F3030@l stw      r0, 0xc(r1) mr       r7, r5 mr
-r9, r5 addi     r8, r4, 0x3031 stw      r0, 0x10(r1) addi     r10, r4, 0x3034
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0x90(r27) mr       r3, r29 lis      r5, 0x6B6F3032@ha lis      r4,
-0x0050706F@ha lwz      r12, 0(r29) addi     r6, r5, 0x6B6F3032@l addi     r5,
-r4, 0x0050706F@l lwz      r12, 0x3c(r12) mtctr    r12 bctrl or.      r26, r3, r3
-	bne      lbl_803951C0
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x44f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803951C0:
-	li       r0, 0
-	lis      r5, 0x6B6F3033@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	lis      r4, 0x0050706F@ha
-	addi     r6, r5, 0x6B6F3033@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x0050706F@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395208
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x453
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395208:
-	li       r0, 0
-	lis      r5, 0x6B6F3034@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	lis      r4, 0x0050706F@ha
-	addi     r6, r5, 0x6B6F3034@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x0050706F@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395250
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x457
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395250:
-	li       r0, 0
-	lis      r4, 0x73743031@ha
-	stb      r0, 0xb0(r26)
-	addi     r5, r27, 0x1a8
-	li       r0, 5
-	mr       r3, r29
-	stw      r5, 8(r1)
-	addi     r6, r4, 0x73743031@l
-	addi     r8, r4, 0x3032
-	addi     r10, r4, 0x3035
-	stw      r0, 0xc(r1)
-	li       r5, 0x5031
-	li       r7, 0x5031
-	li       r9, 0x5031
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0xb0(r27) lwz      r3, 0xb0(r27) bl
-getMotherPane__Q32og6Screen18CallBack_CounterRVFv li       r0, 0 lis      r4,
-0x6E643031@ha stb      r0, 0xb0(r3) addi     r5, r27, 0x1a8 li       r0, 5 mr
-r3, r29 stw      r5, 8(r1) addi     r6, r4, 0x6E643031@l addi     r8, r4, 0x3032
-	addi     r10, r4, 0x3035
-	stw      r0, 0xc(r1)
-	li       r5, 0x5032
-	li       r7, 0x5032
-	li       r9, 0x5032
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0xb4(r27) lwz      r3, 0xb4(r27) bl
-getMotherPane__Q32og6Screen18CallBack_CounterRVFv li       r0, 0 lis      r4,
-0x72643031@ha stb      r0, 0xb0(r3) addi     r5, r27, 0x1a8 li       r0, 5 mr
-r3, r29 stw      r5, 8(r1) addi     r6, r4, 0x72643031@l addi     r8, r4, 0x3032
-	addi     r10, r4, 0x3035
-	stw      r0, 0xc(r1)
-	li       r5, 0x5033
-	li       r7, 0x5033
-	li       r9, 0x5033
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0xb8(r27) lwz      r3, 0xb8(r27) bl
-getMotherPane__Q32og6Screen18CallBack_CounterRVFv li       r0, 0 lis      r5,
-0x65637431@ha stb      r0, 0xb0(r3) mr       r3, r29 lis      r4, 0x50656666@ha
-	addi     r6, r5, 0x65637431@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x50656666@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xd4(r27)
-	lwz      r0, 0xd4(r27)
-	cmplwi   r0, 0
-	bne      lbl_8039539C
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x466
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8039539C:
-	li       r3, 0x1b8
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_803953BC
-	bl       __ct__12J2DPictureExFv
-	lis      r3, __vt__Q28Morimura12TScissorPane@ha
-	addi     r0, r3, __vt__Q28Morimura12TScissorPane@l
-	stw      r0, 0(r26)
-
-lbl_803953BC:
-	stw      r26, 0xbc(r27)
-	lwz      r3, 0xb8(r27)
-	bl       getMotherPane__Q32og6Screen18CallBack_CounterRVFv
-	bl       getParentPane__7J2DPaneFv
-	lwz      r4, 0xbc(r27)
-	bl       appendChild__7J2DPaneFP7J2DPane
-	addi     r0, r27, 0x1b8
-	lis      r4, 0x73743031@ha
-	stw      r0, 8(r1)
-	li       r0, 5
-	mr       r3, r29
-	addi     r6, r4, 0x73743031@l
-	stw      r0, 0xc(r1)
-	addi     r8, r4, 0x3032
-	addi     r10, r4, 0x3035
-	li       r5, 0x5031
-	stw      r0, 0x10(r1)
-	li       r7, 0x5031
-	li       r9, 0x5031
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0xa4(r27) mr       r3, r29 lis      r4, 0x73743031@ha li       r5, 0x5031
-	lwz      r12, 0(r29)
-	addi     r6, r4, 0x73743031@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395454
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x46f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395454:
-	li       r0, 0
-	lis      r4, 0x73743032@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x73743032@l
-	li       r5, 0x5031
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395498
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x473
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395498:
-	li       r0, 0
-	lis      r4, 0x73743033@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x73743033@l
-	li       r5, 0x5031
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_803954DC
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x477
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803954DC:
-	li       r0, 0
-	lis      r4, 0x73743034@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x73743034@l
-	li       r5, 0x5031
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395520
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x47b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395520:
-	li       r0, 0
-	lis      r4, 0x73743035@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x73743035@l
-	li       r5, 0x5031
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395564
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x47f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395564:
-	li       r0, 0
-	lis      r4, 0x6E643031@ha
-	stb      r0, 0xb0(r26)
-	addi     r5, r27, 0x1bc
-	li       r0, 5
-	mr       r3, r29
-	stw      r5, 8(r1)
-	addi     r6, r4, 0x6E643031@l
-	addi     r8, r4, 0x3032
-	addi     r10, r4, 0x3035
-	stw      r0, 0xc(r1)
-	li       r5, 0x5032
-	li       r7, 0x5032
-	li       r9, 0x5032
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0xa8(r27) mr       r3, r29 lis      r4, 0x6E643031@ha li       r5, 0x5032
-	lwz      r12, 0(r29)
-	addi     r6, r4, 0x6E643031@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_803955EC
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x486
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803955EC:
-	li       r0, 0
-	lis      r4, 0x6E643032@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x6E643032@l
-	li       r5, 0x5032
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395630
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x48a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395630:
-	li       r0, 0
-	lis      r4, 0x6E643033@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x6E643033@l
-	li       r5, 0x5032
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395674
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x48e
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395674:
-	li       r0, 0
-	lis      r4, 0x6E643034@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x6E643034@l
-	li       r5, 0x5032
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_803956B8
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x492
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803956B8:
-	li       r0, 0
-	lis      r4, 0x6E643035@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x6E643035@l
-	li       r5, 0x5032
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_803956FC
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x496
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803956FC:
-	li       r0, 0
-	lis      r4, 0x72643031@ha
-	stb      r0, 0xb0(r26)
-	addi     r5, r27, 0x1c0
-	li       r0, 5
-	mr       r3, r29
-	stw      r5, 8(r1)
-	addi     r6, r4, 0x72643031@l
-	addi     r8, r4, 0x3032
-	addi     r10, r4, 0x3035
-	stw      r0, 0xc(r1)
-	li       r5, 0x5033
-	li       r7, 0x5033
-	li       r9, 0x5033
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0xac(r27) lis      r4, 0x72643031@ha lfs      f0, lbl_8051F11C@sda21(r2) mr
-r3, r29 addi     r6, r4, 0x72643031@l li       r5, 0x5033 stfs     f0,
-0x1cc(r27) lwz      r12, 0(r29) lwz      r12, 0x3c(r12) mtctr    r12 bctrl or.
-r26, r3, r3 bne      lbl_8039578C addi     r3, r31, 0x130 addi     r5, r31,
-0x148 li       r4, 0x49d crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8039578C:
-	li       r0, 0
-	lis      r4, 0x72643032@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x72643032@l
-	li       r5, 0x5033
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_803957D0
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4a1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803957D0:
-	li       r0, 0
-	lis      r4, 0x72643033@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x72643033@l
-	li       r5, 0x5033
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395814
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4a5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395814:
-	li       r0, 0
-	lis      r4, 0x72643034@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x72643034@l
-	li       r5, 0x5033
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395858
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4a9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395858:
-	li       r0, 0
-	lis      r4, 0x72643035@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	addi     r6, r4, 0x72643035@l
-	li       r5, 0x5033
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_8039589C
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4ad
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8039589C:
-	li       r0, 0
-	li       r3, 0x1b8
-	stb      r0, 0xb0(r26)
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_803958C4
-	bl       __ct__12J2DPictureExFv
-	lis      r3, __vt__Q28Morimura12TScissorPane@ha
-	addi     r0, r3, __vt__Q28Morimura12TScissorPane@l
-	stw      r0, 0(r25)
-
-lbl_803958C4:
-	lfs      f2, lbl_8051F084@sda21(r2)
-	lfs      f1, lbl_8051F124@sda21(r2)
-	stfs     f2, 0x18(r1)
-	lfs      f0, lbl_8051F128@sda21(r2)
-	stfs     f2, 0x1c(r1)
-	lwz      r3, 0x18(r1)
-	stfs     f1, 0x20(r1)
-	lwz      r0, 0x1c(r1)
-	stw      r3, 0x1a8(r25)
-	lwz      r3, 0x20(r1)
-	stfs     f0, 0x24(r1)
-	stw      r0, 0x1ac(r25)
-	lwz      r0, 0x24(r1)
-	stw      r3, 0x1b0(r25)
-	stw      r0, 0x1b4(r25)
-	lwz      r3, 0xac(r27)
-	bl       getMotherPane__Q32og6Screen18CallBack_CounterRVFv
-	bl       getParentPane__7J2DPaneFv
-	mr       r4, r25
-	bl       appendChild__7J2DPaneFP7J2DPane
-	addi     r0, r27, 0x1ac
-	lis      r4, 0x73653031@ha
-	stw      r0, 8(r1)
-	li       r5, 5
-	lis      r3, 0x00506B61@ha
-	li       r0, 0
-	stw      r5, 0xc(r1)
-	addi     r5, r3, 0x00506B61@l
-	mr       r3, r29
-	addi     r6, r4, 0x73653031@l
-	stw      r0, 0x10(r1)
-	mr       r7, r5
-	mr       r9, r5
-	addi     r8, r4, 0x3032
-	lwz      r0, 0x78(r27)
-	addi     r10, r4, 0x3034
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0x98(r27) mr       r3, r29 lis      r5, 0x73653031@ha lis      r4,
-0x00506B61@ha lwz      r12, 0(r29) addi     r6, r5, 0x73653031@l addi     r5,
-r4, 0x00506B61@l lwz      r12, 0x3c(r12) mtctr    r12 bctrl or.      r26, r3, r3
-	bne      lbl_803959A0
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4b8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803959A0:
-	li       r0, 0
-	lis      r5, 0x73653032@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	lis      r4, 0x00506B61@ha
-	addi     r6, r5, 0x73653032@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x00506B61@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_803959E8
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4bc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803959E8:
-	li       r0, 0
-	lis      r5, 0x73653033@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	lis      r4, 0x00506B61@ha
-	addi     r6, r5, 0x73653033@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x00506B61@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395A30
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4c0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395A30:
-	li       r0, 0
-	lis      r5, 0x73653034@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	lis      r4, 0x00506B61@ha
-	addi     r6, r5, 0x73653034@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x00506B61@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395A78
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4c4
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395A78:
-	li       r10, 0
-	lis      r4, 0x6B693031@ha
-	stb      r10, 0xb0(r26)
-	addi     r5, r27, 0x1b4
-	lis      r3, 0x00507069@ha
-	li       r0, 4
-	stw      r5, 8(r1)
-	addi     r5, r3, 0x00507069@l
-	mr       r3, r29
-	addi     r6, r4, 0x6B693031@l
-	stw      r0, 0xc(r1)
-	mr       r7, r5
-	mr       r9, r5
-	addi     r8, r4, 0x3032
-	stw      r10, 0x10(r1)
-	addi     r10, r4, 0x3033
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0xa0(r27) mr       r3, r29 lis      r5, 0x6B693031@ha lis      r4,
-0x00507069@ha lwz      r12, 0(r29) addi     r6, r5, 0x6B693031@l addi     r5,
-r4, 0x00507069@l lwz      r12, 0x3c(r12) mtctr    r12 bctrl or.      r26, r3, r3
-	bne      lbl_80395B08
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4cb
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395B08:
-	li       r0, 0
-	lis      r5, 0x6B693032@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	lis      r4, 0x00507069@ha
-	addi     r6, r5, 0x6B693032@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x00507069@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395B50
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4cf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395B50:
-	li       r0, 0
-	lis      r5, 0x6B693033@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	lis      r4, 0x00507069@ha
-	addi     r6, r5, 0x6B693033@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x00507069@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395B98
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395B98:
-	li       r10, 0
-	lis      r4, 0x6D653031@ha
-	stb      r10, 0xb0(r26)
-	addi     r5, r27, 0x1b0
-	lis      r3, 0x00507469@ha
-	li       r0, 5
-	stw      r5, 8(r1)
-	addi     r5, r3, 0x00507469@l
-	mr       r3, r29
-	addi     r6, r4, 0x6D653031@l
-	stw      r0, 0xc(r1)
-	mr       r7, r5
-	mr       r9, r5
-	addi     r8, r4, 0x3032
-	stw      r10, 0x10(r1)
-	addi     r10, r4, 0x3033
-	lwz      r0, 0x78(r27)
-	stw      r0, 0x14(r1)
-	bl setTCounterRV__8MorimuraFPQ29P2DScreen3MgrUxUxUxPUlUsUsP10JKRArchive stw
-r3, 0x9c(r27) mr       r3, r29 lis      r5, 0x6D653031@ha lis      r4,
-0x00507469@ha lwz      r12, 0(r29) addi     r6, r5, 0x6D653031@l addi     r5,
-r4, 0x00507469@l lwz      r12, 0x3c(r12) mtctr    r12 bctrl or.      r26, r3, r3
-	bne      lbl_80395C28
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4da
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395C28:
-	li       r0, 0
-	lis      r5, 0x6D653032@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	lis      r4, 0x00507469@ha
-	addi     r6, r5, 0x6D653032@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x00507469@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395C70
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4de
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395C70:
-	li       r0, 0
-	lis      r5, 0x6D653033@ha
-	stb      r0, 0xb0(r26)
-	mr       r3, r29
-	lis      r4, 0x00507469@ha
-	addi     r6, r5, 0x6D653033@l
-	lwz      r12, 0(r29)
-	addi     r5, r4, 0x00507469@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r26, r3, r3
-	bne      lbl_80395CB8
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4e2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395CB8:
-	li       r0, 0
-	li       r3, 0x28
-	stb      r0, 0xb0(r26)
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_80395D10
-	addi     r0, r27, 0x1ac
-	li       r5, 0
-	stw      r0, 0(r26)
-	li       r4, 5
-	li       r0, 4
-	li       r3, 0x14
-	lwz      r6, 0x1ac(r27)
-	stw      r6, 4(r26)
-	stw      r5, 8(r26)
-	stw      r5, 0xc(r26)
-	stw      r5, 0x1c(r26)
-	stw      r5, 0x20(r26)
-	stw      r4, 0x14(r26)
-	stw      r0, 0x18(r26)
-	bl       __nwa__FUl
-	stw      r3, 0x24(r26)
-
-lbl_80395D10:
-	stw      r26, 0x17c(r27)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_80395D64
-	addi     r0, r27, 0x1b4
-	li       r5, 0
-	stw      r0, 0(r26)
-	li       r4, 4
-	li       r0, 3
-	li       r3, 0x10
-	lwz      r6, 0x1b4(r27)
-	stw      r6, 4(r26)
-	stw      r5, 8(r26)
-	stw      r5, 0xc(r26)
-	stw      r5, 0x1c(r26)
-	stw      r5, 0x20(r26)
-	stw      r4, 0x14(r26)
-	stw      r0, 0x18(r26)
-	bl       __nwa__FUl
-	stw      r3, 0x24(r26)
-
-lbl_80395D64:
-	stw      r26, 0x180(r27)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_80395DB8
-	addi     r0, r27, 0x1b0
-	li       r5, 0
-	stw      r0, 0(r26)
-	li       r4, 5
-	li       r0, 3
-	li       r3, 0x14
-	lwz      r6, 0x1b0(r27)
-	stw      r6, 4(r26)
-	stw      r5, 8(r26)
-	stw      r5, 0xc(r26)
-	stw      r5, 0x1c(r26)
-	stw      r5, 0x20(r26)
-	stw      r4, 0x14(r26)
-	stw      r0, 0x18(r26)
-	bl       __nwa__FUl
-	stw      r3, 0x24(r26)
-
-lbl_80395DB8:
-	stw      r26, 0x184(r27)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_80395E08
-	addi     r0, r27, 0x1a8
-	li       r4, 0
-	stw      r0, 0(r26)
-	li       r0, 5
-	li       r3, 0x14
-	lwz      r5, 0x1a8(r27)
-	stw      r5, 4(r26)
-	stw      r4, 8(r26)
-	stw      r4, 0xc(r26)
-	stw      r4, 0x1c(r26)
-	stw      r4, 0x20(r26)
-	stw      r0, 0x14(r26)
-	stw      r0, 0x18(r26)
-	bl       __nwa__FUl
-	stw      r3, 0x24(r26)
-
-lbl_80395E08:
-	stw      r26, 0x188(r27)
-	mr       r25, r27
-	mr       r24, r27
-	li       r23, 0
-
-lbl_80395E18:
-	lwz      r3, 0xa4(r25)
-	bl       getMotherPane__Q32og6Screen18CallBack_CounterRVFv
-	or.      r26, r3, r3
-	bne      lbl_80395E3C
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4ef
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395E3C:
-	lfs      f0, 0xd4(r26)
-	addi     r23, r23, 1
-	cmpwi    r23, 3
-	addi     r25, r25, 4
-	stfs     f0, 0xf0(r24)
-	lfs      f0, 0xd8(r26)
-	stfs     f0, 0xf4(r24)
-	addi     r24, r24, 8
-	blt      lbl_80395E18
-	mr       r3, r29
-	lis      r4, 0x6162746E@ha
-	lwz      r12, 0(r29)
-	addi     r6, r4, 0x6162746E@l
-	li       r5, 0x4e
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xd0(r27)
-	lwz      r0, 0xd0(r27)
-	cmplwi   r0, 0
-	bne      lbl_80395EA4
-	addi     r3, r31, 0x130
-	addi     r5, r31, 0x148
-	li       r4, 0x4f6
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80395EA4:
-	lwz      r3, 0xd0(r27)
-	li       r4, 0
-	li       r5, 0
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_80395EF0
-	mr       r4, r28
-	li       r5, 2
-	bl       __ct__Q28Morimura11TScreenBaseFP10JKRArchivei
-	lis      r3, __vt__Q28Morimura26TChallengeResultDemoScreen@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q28Morimura26TChallengeResultDemoScreen@l
-	stw      r3, 0(r29)
-	stw      r0, 0x18(r29)
-	stw      r0, 0x1c(r29)
-	stw      r0, 0x20(r29)
-	stb      r0, 0x24(r29)
-
-lbl_80395EF0:
-	stw      r29, 0x80(r27)
-	addi     r4, r31, 0x314
-	lis      r5, 2
-	lwz      r3, 0x80(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x80(r27)
-	addi     r4, r31, 0xf8
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lwz      r3, 0x80(r27)
-	addi     r4, r31, 0x334
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	mr       r3, r30
-	bl       becomeCurrentHeap__7JKRHeapFv
-	mr       r3, r27
-	bl       setInfo__Q28Morimura16TChallengeResultFv
-	lmw      r23, 0x45c(r1)
-	lwz      r0, 0x484(r1)
-	mtlr     r0
-	addi     r1, r1, 0x480
-	blr
-	*/
+	mArchive                        = arc;
+	DispMemberChallengeResult* disp = static_cast<DispMemberChallengeResult*>(getDispMember());
+	if (disp->isID(OWNER_MRMR, MEMBER_CHALLENGE_RESULT)) {
+		mDisp = disp;
+	} else {
+		mIsSection = true;
+	}
+
+	if (mIsSection) {
+		if (mDebugHeapParent) {
+			mDebugHeap = JKRExpHeap::create(0x100000, mDebugHeapParent, true);
+			P2ASSERTLINE(975, mDebugHeap);
+			mDisp        = new (mDebugHeap, 0) DispMemberChallengeResult;
+			mDisp->mHeap = mDebugHeap;
+		} else {
+			JUT_PANICLINE(982, "set DebugHeapParent. mail to morimun.\n");
+		}
+		mStageList = new Game::ChallengeGame::StageList;
+		void* file = JKRDvdRipper::loadToMainRAM("/user/Matoba/challenge/stages.txt", nullptr, Switch_0, 0, nullptr,
+		                                         JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+		if (file) {
+			RamStream strm(file, -1);
+			strm.resetPosition(true, 1);
+			mStageList->read(strm);
+		}
+	}
+	mControls = getGamePad();
+	P2ASSERTLINE(1006, mControls);
+
+	mLeafTexture = static_cast<ResTIMG*>(mArchive->getResource("timg/leaf_icon.bti"));
+	P2ASSERTLINE(1010, mLeafTexture);
+	mFlowerTexture = static_cast<ResTIMG*>(mArchive->getResource("timg/flower_icon.bti"));
+	P2ASSERTLINE(1013, mFlowerTexture);
+	mRedFlowerTexture = static_cast<ResTIMG*>(mArchive->getResource("timg/flower_p_icon.bti"));
+	P2ASSERTLINE(1016, mRedFlowerTexture);
+	mSaveMgr = ebi::Save::TMgr::createInstance();
+	loadSaveMgrResources();
+
+	JKRHeap* backupheap = JKRGetCurrentHeap();
+	mDisp->mHeap->becomeCurrentHeap();
+
+	mResultScreen = new TChallengeResultScreen(arc, 7);
+	mResultScreen->create("challenge_modo_result.blo", 0x1040000);
+	mResultScreen->createAnimPane("challenge_modo_result.bck");
+	mResultScreen->addAnim("challenge_modo_result.bck");
+	mResultScreen->addAnim("challenge_modo_result.bpk");
+	mResultScreen->addAnim("challenge_modo_result.btp");
+	mResultScreen->addAnim("challenge_modo_result.brk");
+	mResultScreen->addAnim("challenge_modo_result.btk");
+	mResultScreen->addAnim("challenge_modo_result_02.btk");
+	mResultScreen->addAnim("challenge_modo_result_03.btk");
+
+	u64 levelTags[2] = { '4901_00', '4910_00' }; // "Explorer's Cave"
+	mMesgOffs        = new TOffsetMsgSet(levelTags, '4900_00', 2);
+
+	P2DScreen::Mgr_tuning* screen = mResultScreen->mScreenObj;
+	screen->search('Peffect')->show();
+	screen->search('Peffect1')->show();
+
+	mPane1 = screen->search('Tyel1');
+	P2ASSERTLINE(1058, mPane1);
+	mPane2 = screen->search('Tyel2');
+	P2ASSERTLINE(1061, mPane2);
+	mPane3 = screen->search('Tyel3');
+	P2ASSERTLINE(1064, mPane3);
+	mPane4 = screen->search('Tyel4');
+	P2ASSERTLINE(1067, mPane4);
+
+	mOnyonMovePane[0] = new TMovePane;
+	mOnyonPane[0]     = screen->search('NRED');
+
+	mOnyonMovePane[1] = new TMovePane;
+	mOnyonPane[1]     = screen->search('NYELLOW');
+
+	mOnyonMovePane[2] = new TMovePane;
+	mOnyonPane[2]     = screen->search('NBLUE');
+
+	for (int i = 0; i < 3; i++) {
+		P2ASSERTLINE(1081, mOnyonMovePane[i]);
+		mOnyonMovePane[i]->setPane(mOnyonPane[i]);
+	}
+
+	_18C[0] = new IDontKnow(this, screen, 'PICT_044', 'PICT_043');
+	_18C[1] = new IDontKnow(this, screen, 'PICT_042', 'PICT_041');
+	_18C[2] = new IDontKnow(this, screen, 'PICT_019', 'PICT_018');
+	_18C[3] = new IDontKnow(this, screen, 'PICT_048', 'PICT_047');
+	_18C[4] = new IDontKnow(this, screen, 'PICT_046', 'PICT_045');
+
+	mCounter2 = setTCounterRV(screen, 'Ppoko00', 'Ppoko01', 'Ppoko04', &mScore1, 5, 5, mArchive);
+	mCounter2->getMotherPane()->hide();
+	mCounter1 = setTCounterRV(screen, 'Ppoko00', 'Ppoko01', 'Ppoko04', &mScore1, 5, 5, mArchive);
+
+	J2DPane* pane = screen->search('Ppoko02');
+	P2ASSERTLINE(1103, pane);
+	pane->hide();
+
+	pane = screen->search('Ppoko03');
+	P2ASSERTLINE(1107, pane);
+	pane->hide();
+
+	pane = screen->search('Ppoko04');
+	P2ASSERTLINE(1111, pane);
+	pane->hide();
+
+	mHighScoreCounter[0] = setTCounterRV(screen, 'P1st01', 'P1st02', 'P1st05', &mScore1, 5, 5, mArchive);
+	mHighScoreCounter[0]->getMotherPane()->hide();
+	mHighScoreCounter[1] = setTCounterRV(screen, 'P2nd01', 'P2nd02', 'P2nd05', &mScore1, 5, 5, mArchive);
+	mHighScoreCounter[1]->getMotherPane()->hide();
+	mHighScoreCounter[2] = setTCounterRV(screen, 'P3rd01', 'P3rd02', 'P3rd05', &mScore1, 5, 5, mArchive);
+	mHighScoreCounter[2]->getMotherPane()->hide();
+
+	mPane6 = screen->search('Peffect1');
+	P2ASSERTLINE(1126, mPane6);
+	mScissorPic = new TScissorPane;
+
+	mHighScoreCounter[2]->getMotherPane()->getParentPane()->appendChild(mScissorPic);
+	mCounters1[0] = setTCounterRV(screen, 'P1st01', 'P1st02', 'P1st05', &mBonuses[0], 5, 5, mArchive);
+
+	pane = screen->search('P1st01');
+	P2ASSERTLINE(1135, pane);
+	pane->hide();
+
+	pane = screen->search('P1st02');
+	P2ASSERTLINE(1139, pane);
+	pane->hide();
+
+	pane = screen->search('P1st03');
+	P2ASSERTLINE(1143, pane);
+	pane->hide();
+
+	pane = screen->search('P1st04');
+	P2ASSERTLINE(1147, pane);
+	pane->hide();
+
+	pane = screen->search('P1st05');
+	P2ASSERTLINE(1151, pane);
+	pane->hide();
+
+	mCounters1[1] = setTCounterRV(screen, 'P2nd01', 'P2nd02', 'P2nd05', &mBonuses[1], 5, 5, mArchive);
+
+	pane = screen->search('P2nd01');
+	P2ASSERTLINE(1158, pane);
+	pane->hide();
+
+	pane = screen->search('P2nd02');
+	P2ASSERTLINE(1162, pane);
+	pane->hide();
+
+	pane = screen->search('P2nd03');
+	P2ASSERTLINE(1166, pane);
+	pane->hide();
+
+	pane = screen->search('P2nd04');
+	P2ASSERTLINE(1170, pane);
+	pane->hide();
+
+	pane = screen->search('P2nd05');
+	P2ASSERTLINE(1174, pane);
+	pane->hide();
+
+	mCounters1[2] = setTCounterRV(screen, 'P3rd01', 'P3rd02', 'P3rd05', &mBonuses[2], 5, 5, mArchive);
+	_1CC[0]       = 30.0f;
+
+	pane = screen->search('P3rd01');
+	P2ASSERTLINE(1181, pane);
+	pane->hide();
+
+	pane = screen->search('P3rd02');
+	P2ASSERTLINE(1185, pane);
+	pane->hide();
+
+	pane = screen->search('P3rd03');
+	P2ASSERTLINE(1189, pane);
+	pane->hide();
+
+	pane = screen->search('P3rd04');
+	P2ASSERTLINE(1193, pane);
+	pane->hide();
+
+	pane = screen->search('P3rd05');
+	P2ASSERTLINE(1197, pane);
+	pane->hide();
+
+	TScissorPane* tpane = new TScissorPane;
+	tpane->mBounds      = JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f);
+	mCounters1[2]->getMotherPane()->getParentPane()->appendChild(tpane);
+
+	mCounter3 = setTCounterRV(screen, 'Pkase01', 'Pkase02', 'Pkase04', &mPokoscore, 5, 0, mArchive);
+
+	pane = screen->search('Pkase01');
+	P2ASSERTLINE(1208, pane);
+	pane->hide();
+
+	pane = screen->search('Pkase02');
+	P2ASSERTLINE(1212, pane);
+	pane->hide();
+
+	pane = screen->search('Pkase03');
+	P2ASSERTLINE(1216, pane);
+	pane->hide();
+
+	pane = screen->search('Pkase04');
+	P2ASSERTLINE(1220, pane);
+	pane->hide();
+
+	mCounter5 = setTCounterRV(screen, 'Ppiki01', 'Ppiki02', 'Ppiki03', &mPokos, 4, 0, mArchive);
+
+	pane = screen->search('Ppiki01');
+	P2ASSERTLINE(1227, pane);
+	pane->hide();
+
+	pane = screen->search('Ppiki02');
+	P2ASSERTLINE(1231, pane);
+	pane->hide();
+
+	pane = screen->search('Ppiki03');
+	P2ASSERTLINE(1235, pane);
+	pane->hide();
+
+	mCounter4 = setTCounterRV(screen, 'Ptime01', 'Ptime02', 'Ptime03', &mTotalScore, 5, 0, mArchive);
+
+	pane = screen->search('Ptime01');
+	P2ASSERTLINE(1242, pane);
+	pane->hide();
+
+	pane = screen->search('Ptime02');
+	P2ASSERTLINE(1246, pane);
+	pane->hide();
+
+	pane = screen->search('Ptime03');
+	P2ASSERTLINE(1250, pane);
+	pane->hide();
+
+	_17C[0] = new IDontKnow2(&mPokoscore, 5, 4);
+	_17C[1] = new IDontKnow2(&mPokos, 4, 3);
+	_17C[2] = new IDontKnow2(&mTotalScore, 5, 3);
+	_17C[3] = new IDontKnow2(&mScore1, 5, 5);
+
+	for (int i = 0; i < 3; i++) {
+		J2DPane* pane = mCounters1[i]->getMotherPane();
+		P2ASSERTLINE(1263, pane);
+		mPosList1[i].x = pane->mOffset.x;
+		mPosList1[i].y = pane->mOffset.y;
+	}
+
+	mPane5 = screen->search('Nabtn');
+	P2ASSERTLINE(1270, mPane5);
+	mPane5->setInfluencedAlpha(false, false);
+
+	mResultDemoScreen = new TChallengeResultDemoScreen(arc, 2);
+	mResultDemoScreen->create("challenge_modo_result_demo.blo", 0x20000);
+	mResultDemoScreen->addAnim("challenge_modo_result_demo.bck");
+	mResultDemoScreen->addAnim("challenge_modo_result_demo.bva");
+	backupheap->becomeCurrentHeap();
+	setInfo();
 }
 
 /*

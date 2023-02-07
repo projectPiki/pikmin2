@@ -141,6 +141,11 @@ struct TChallengeScreen : public TScreenBase {
 };
 
 struct TChallengeResultScreen : public TChallengeScreen {
+	TChallengeResultScreen(JKRArchive* arc, int anims)
+	    : TChallengeScreen(arc, anims)
+	{
+		mResultAnimPane = nullptr;
+	}
 	virtual void create(const char*, u32); // _08
 	virtual void createAnimPane(char*);    // _14
 	virtual void updateBckPane();          // _18
@@ -192,6 +197,33 @@ struct TChallengeEndCount2p : public TChallengeEndCount {
 	// _00-_D4 = TChallengeEndCount
 };
 
+// two structs with 0 functions to go off, no idea what to call them
+struct IDontKnow2 {
+	IDontKnow2(u32* val, int a1, int a2)
+	{
+		_00 = val;
+		_04 = *val;
+		_08 = 0;
+		_0C = 0;
+		_1C = 0;
+		_20 = 0;
+		_14 = a1;
+		_18 = a2;
+		_24 = new int[a1];
+	}
+
+	u32* _00;
+	u32 _04;
+	int _08;
+	int _0C;
+	int _10;
+	int _14;
+	int _18;
+	int _1C;
+	int _20;
+	int* _24;
+};
+
 struct TChallengeResult : public TTestBase {
 	TChallengeResult();
 	struct VectorUnit {
@@ -202,6 +234,33 @@ struct TChallengeResult : public TTestBase {
 		f32 _08; // _08
 		f32 _0C; // _0C
 	};
+
+	struct IDontKnow {
+		IDontKnow(TChallengeResult* obj, P2DScreen::Mgr_tuning* screen, u64 tag1, u64 tag2)
+		{
+			J2DPane* pane1   = screen->search(tag1);
+			J2DPane* pane2   = screen->search(tag2);
+			JKRArchive* test = obj->mArchive;
+			_00              = 0;
+			mArchive         = test;
+			mPane1           = pane2;
+			mPane2           = pane1;
+			P2ASSERTLINE(297, pane2);
+			P2ASSERTLINE(298, pane1);
+		}
+
+		u8 _00;
+		JKRArchive* mArchive;
+		J2DPane* mPane1;
+		J2DPane* mPane2;
+	};
+
+	inline void loadSaveMgrResources()
+	{
+		ebi::Save::TMgr* saveMgr = mSaveMgr;
+		saveMgr->mSaveMenu.loadResource();
+		saveMgr->doLoadResource(JKRGetCurrentHeap());
+	}
 
 	virtual ~TChallengeResult();                                                                             // _08
 	virtual void doCreate(JKRArchive*);                                                                      // _4C
@@ -219,12 +278,12 @@ struct TChallengeResult : public TTestBase {
 	void setDebugHeapParent(JKRHeap*);
 
 	static bool mForceDemoStart;
-	static u8 mTestStageId;               // could be a u16, unsure
-	static JKRHeap* mDebugHeapParent;     // could be a different heap type
-	static JKRHeap* mDebugHeap;           // could be a different heap type
-	static JUTTexture* mLeafTexture;      // could be a different texture type (ResTIMG*?)
-	static JUTTexture* mFlowerTexture;    // could be a different texture type (ResTIMG*?)
-	static JUTTexture* mRedFlowerTexture; // could be a different texture type (ResTIMG*?)
+	static u8 mTestStageId; // could be a u16, unsure
+	static JKRHeap* mDebugHeapParent;
+	static JKRExpHeap* mDebugHeap;
+	static ResTIMG* mLeafTexture;
+	static ResTIMG* mFlowerTexture;
+	static ResTIMG* mRedFlowerTexture;
 
 	static f32 mMoveSpeed;       // 12.0f
 	static f32 mAngRate;         // 0.3f
@@ -241,60 +300,59 @@ struct TChallengeResult : public TTestBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_78 = TTestBase
-	JKRArchive* mArchive;                          // _78
-	TChallengeResultScreen* mResultScreen;         // _7C
-	TChallengeResultDemoScreen* mResultDemoScreen; // _80
-	ebi::Save::TMgr* mSaveMgr;                     // _84
-	Controller* mControls;                         // _88
-	DispMemberChallengeResult* mDisp;              // _8C
-	og::Screen::CallBack_CounterRV* _90;           // _90
-	og::Screen::CallBack_CounterRV* _94;           // _94
-	og::Screen::CallBack_CounterRV* _98;           // _98
-	og::Screen::CallBack_CounterRV* _9C;           // _9C
-	og::Screen::CallBack_CounterRV* _A0;           // _A0
-	og::Screen::CallBack_CounterRV* _A4[3];        // _A4
-	og::Screen::CallBack_CounterRV* _B0[3];        // _B0
-	J2DPictureEx* mScissorPic;                     // _BC
-	J2DPane* _C0;                                  // _C0
-	J2DPane* _C4;                                  // _C4
-	J2DPane* _C8;                                  // _C8
-	J2DPane* _CC;                                  // _CC
-	J2DPane* _D0;                                  // _D0
-	J2DPane* _D4;                                  // _D4
-	TMovePane* mMovePane[3];                       // _D8
-	J2DPane* mScorePane[3];                        // _E4
-	Vector2f mPosList1[3];                         // _F0
-	Vector2f mPosList2[3];                         // _108
-	f32 _120;                                      // _120
-	f32 _124;                                      // _124
-	VectorUnit mVecUnit[4];                        // _128
-	VectorUnit _168;                               // _168
-	f32 mMoveTimer;                                // _178
-	int _17C[3];                                   // _17C
-	int _188;                                      // _188
-	J2DScreen* mScreens[5];                        // _18C
-	TOffsetMsgSet* mMesgOffs;                      // _1A0
-	efx2d::T2DCavecompLoop* mEfxCompLoop;          // _1A4
-	int _1A8;                                      // _1A8
-	int mPokoscore;                                // _1AC
-	int mTotalScore;                               // _1B0
-	int mPokos;                                    // _1B4
-	int mBonuses[3];                               // _1B8, time bonus, piki count, score0
-	u8 mFlags[4];                                  // _1C4
-	int mDemoState;                                // _1C8
-	int _1CC[2];                                   // _1CC
-	f32 _1D4;                                      // _1D4
-	f32 _1D8;                                      // _1D8
-	u16 _1DC;                                      // _1DC
-	u16 _1DE;                                      // _1DE
-	bool mIsSaveOpen;                              // _1E0
-	int _1E4;                                      // _1E4
-	u8 _1E8;                                       // _1E8
-	u8 _1E9;                                       // _1E9
-	f32 mTimer;                                    // _1EC
-	f32 mSpeed;                                    // _1F0
-	f32 mTimer2;                                   // _1F4
-	Game::ChallengeGame::StageList* mStageList;    // _1F8
+	JKRArchive* mArchive;                                 // _78
+	TChallengeResultScreen* mResultScreen;                // _7C
+	TChallengeResultDemoScreen* mResultDemoScreen;        // _80
+	ebi::Save::TMgr* mSaveMgr;                            // _84
+	Controller* mControls;                                // _88
+	DispMemberChallengeResult* mDisp;                     // _8C
+	TCounterRV* mCounter1;                                // _90
+	TCounterRV* mCounter2;                                // _94
+	TCounterRV* mCounter3;                                // _98
+	TCounterRV* mCounter4;                                // _9C
+	TCounterRV* mCounter5;                                // _A0
+	og::Screen::CallBack_CounterRV* mCounters1[3];        // _A4
+	og::Screen::CallBack_CounterRV* mHighScoreCounter[3]; // _B0
+	J2DPictureEx* mScissorPic;                            // _BC
+	J2DPane* mPane1;                                      // _C0
+	J2DPane* mPane2;                                      // _C4
+	J2DPane* mPane3;                                      // _C8
+	J2DPane* mPane4;                                      // _CC
+	J2DPane* mPane5;                                      // _D0
+	J2DPane* mPane6;                                      // _D4
+	TMovePane* mOnyonMovePane[3];                         // _D8
+	J2DPane* mOnyonPane[3];                               // _E4
+	Vector2f mPosList1[3];                                // _F0
+	Vector2f mPosList2[3];                                // _108
+	f32 _120;                                             // _120
+	f32 _124;                                             // _124
+	VectorUnit mVecUnit[4];                               // _128
+	VectorUnit _168;                                      // _168
+	f32 mMoveTimer;                                       // _178
+	IDontKnow2* _17C[4];                                  // _17C
+	IDontKnow* _18C[5];                                   // _18C
+	TOffsetMsgSet* mMesgOffs;                             // _1A0
+	efx2d::T2DCavecompLoop* mEfxCompLoop;                 // _1A4
+	u32 mScore1;                                          // _1A8
+	u32 mPokoscore;                                       // _1AC
+	u32 mTotalScore;                                      // _1B0
+	u32 mPokos;                                           // _1B4
+	u32 mBonuses[3];                                      // _1B8, time bonus, piki count, score0
+	u8 mFlags[4];                                         // _1C4
+	int mDemoState;                                       // _1C8
+	f32 _1CC[2];                                          // _1CC
+	f32 _1D4;                                             // _1D4
+	f32 _1D8;                                             // _1D8
+	u16 _1DC;                                             // _1DC
+	u16 _1DE;                                             // _1DE
+	bool mIsSaveOpen;                                     // _1E0
+	int _1E4;                                             // _1E4
+	u8 _1E8;                                              // _1E8
+	u8 _1E9;                                              // _1E9
+	f32 mTimer;                                           // _1EC
+	f32 mSpeed;                                           // _1F0
+	f32 mTimer2;                                          // _1F4
+	Game::ChallengeGame::StageList* mStageList;           // _1F8
 };
 
 struct TChallengeSelect : public TTestBase {
@@ -360,6 +418,7 @@ struct TChallengeSelectExplanationWindow : TSelectExplanationWindow {
 	// _00     = VTBL
 	// _00-_30 = TSelectExplanationWindow
 };
+
 } // namespace Morimura
 
 #endif

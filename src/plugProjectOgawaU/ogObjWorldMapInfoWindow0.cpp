@@ -1,4 +1,4 @@
-#include "Morimura/Challenge.h"
+#include "Morimura/challengeResult2D.h"
 #include "Morimura/VsSelect.h"
 #include "Morimura/Zukan.h"
 #include "og/Screen/MenuMgr.h"

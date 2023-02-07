@@ -9,7 +9,7 @@
 #include "PSGame/SceneInfo.h"
 #include "PSGame/PikScene.h"
 #include "Screen/Game2DMgr.h"
-#include "Morimura/Challenge.h"
+#include "Morimura/challengeResult2d.h"
 #include "Controller.h"
 #include "TParticle2dMgr.h"
 #include "System.h"
@@ -134,7 +134,7 @@ void ResultState::prepareMorimuraInfo(VsGameSection* section)
 void ResultState::dvdload()
 {
 	PSGame::SceneInfo scene;
-	scene.mSceneType = 0x10;
+	scene.mSceneType = PSGame::SceneInfo::CHALLENGE_RESULTS;
 	scene.mCameras   = 0;
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&scene);
 

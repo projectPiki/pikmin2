@@ -4,7 +4,7 @@
 #include "Morimura/DayEndCount.h"
 #include "Morimura/Zukan.h"
 #include "Morimura/HiScore.h"
-#include "Morimura/Challenge.h"
+#include "Morimura/challengeResult2d.h"
 #include "Morimura/VsSelect.h"
 #include "og/newScreen/Ground.h"
 #include "og/newScreen/Cave.h"
