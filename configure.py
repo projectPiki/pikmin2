@@ -991,7 +991,7 @@ LIBS = [
             ["plugProjectKandoU/mapPartsView", True],
             "plugProjectKandoU/singleGS_Ending",
             ["plugProjectKandoU/gameIconTexture", True],
-            "plugProjectKandoU/gameTekiStat",
+            ["plugProjectKandoU/gameTekiStat", True],
             ["plugProjectKandoU/gameHighscore", True],
             "plugProjectKandoU/gamePlayCommonData",
             ["plugProjectKandoU/pelletCarry", True],

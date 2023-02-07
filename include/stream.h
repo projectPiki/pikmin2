@@ -74,6 +74,13 @@ struct Stream {
 		}
 	}
 
+	inline void writeBytes(u8* s, int count)
+	{
+		for (int i = 0; i < count; i++) {
+			writeByte(s[i]);
+		}
+	}
+
 	int mEndian;                      // _04
 	int mPosition;                    // _08
 	int mMode;                        // _0C
