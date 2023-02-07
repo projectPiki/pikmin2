@@ -2010,7 +2010,7 @@ void ObjDayEndResultIncP::statusDecPSlot()
 		}
 	}
 }
-
+static const int someDumbUnusedArray[0x40] = { 0 }; // not actually unused according to pikhacker
 /*
  * --INFO--
  * Address:	804077F0

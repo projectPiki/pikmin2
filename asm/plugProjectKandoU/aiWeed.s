@@ -5,56 +5,67 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80481EF8:
+.obj lbl_80481EF8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80481EF8
 .balign 4
-lbl_80481F04:
+.obj lbl_80481F04, local
 	.asciz "ActWeedArg"
+.endobj lbl_80481F04
 .balign 4
-lbl_80481F10:
+.obj lbl_80481F10, local
 	.asciz "aiWeed.cpp"
+.endobj lbl_80481F10
 .balign 4
-lbl_80481F1C:
+.obj lbl_80481F1C, local
 	.asciz "P2Assert"
+.endobj lbl_80481F1C
 .balign 4
-lbl_80481F28:
+.obj lbl_80481F28, local
 	.asciz "no actweedarg"
+.endobj lbl_80481F28
 .balign 4
-lbl_80481F38:
+.obj lbl_80481F38, local
 	.asciz "ActWeed:no target"
+.endobj lbl_80481F38
 .balign 4
-lbl_80481F4C:
+.obj lbl_80481F4C, local
 	.asciz "no flockmgr"
+.endobj lbl_80481F4C
 .balign 4
-lbl_80481F58:
+.obj lbl_80481F58, local
 	.asciz "ActionArg"
+.endobj lbl_80481F58
 .balign 4
-lbl_80481F64:
+.obj lbl_80481F64, local
 	.asciz "flockMgr.h"
+.endobj lbl_80481F64
 .balign 4
-lbl_80481F70:
+.obj lbl_80481F70, local
 	.asciz "FlockAttackActionArg"
+.endobj lbl_80481F70
 .balign 4
-lbl_80481F88:
+.obj lbl_80481F88, local
 	.asciz "ApproachPosActionArg"
+.endobj lbl_80481F88
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q23efx9TWeedPull
-__vt__Q23efx9TWeedPull:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q23efx9TWeedPull, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q26PikiAI14ActFlockAttack
-__vt__Q26PikiAI14ActFlockAttack:
+.endobj __vt__Q23efx9TWeedPull
+.obj __vt__Q26PikiAI14ActFlockAttack, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI14ActFlockAttackFPQ26PikiAI9ActionArg
@@ -74,13 +85,13 @@ __vt__Q26PikiAI14ActFlockAttack:
 	.4byte 0
 	.4byte 0
 	.4byte "@40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent"
-.global __vt__Q26PikiAI20FlockAttackActionArg
-__vt__Q26PikiAI20FlockAttackActionArg:
+.endobj __vt__Q26PikiAI14ActFlockAttack
+.obj __vt__Q26PikiAI20FlockAttackActionArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI20FlockAttackActionArgFv
-.global __vt__Q26PikiAI7ActWeed
-__vt__Q26PikiAI7ActWeed:
+.endobj __vt__Q26PikiAI20FlockAttackActionArg
+.obj __vt__Q26PikiAI7ActWeed, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI7ActWeedFPQ26PikiAI9ActionArg
@@ -96,44 +107,55 @@ __vt__Q26PikiAI7ActWeed:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI7ActWeedFPc
+.endobj __vt__Q26PikiAI7ActWeed
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519EB8:
+.obj lbl_80519EB8, local
 	.asciz "SA"
+.endobj lbl_80519EB8
 .balign 4
-lbl_80519EBC:
+.obj lbl_80519EBC, local
 	.asciz "AJ"
+.endobj lbl_80519EBC
 .balign 4
-lbl_80519EC0:
+.obj lbl_80519EC0, local
 	.4byte lbl_80519EB8
 	.4byte lbl_80519EBC
+.endobj lbl_80519EC0
 .balign 4
-lbl_80519EC8:
+.obj lbl_80519EC8, local
 	.asciz "Weed %s"
+.endobj lbl_80519EC8
 .balign 4
-lbl_80519ED0:
+.obj lbl_80519ED0, local
 	.asciz "Weed"
+.endobj lbl_80519ED0
 .balign 4
-lbl_80519ED8:
+.obj lbl_80519ED8, local
 	.float 10.0
-lbl_80519EDC:
+.endobj lbl_80519ED8
+.obj lbl_80519EDC, local
 	.float 4.0
-lbl_80519EE0:
+.endobj lbl_80519EDC
+.obj lbl_80519EE0, local
 	.float -1.0
-lbl_80519EE4:
+.endobj lbl_80519EE0
+.obj lbl_80519EE4, local
 	.float 0.0
+.endobj lbl_80519EE4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getInfo__Q26PikiAI7ActWeedFPc
-getInfo__Q26PikiAI7ActWeedFPc:
+.fn getInfo__Q26PikiAI7ActWeedFPc, global
 /* 8020D784 0020A6C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020D788 0020A6C8  7C 08 02 A6 */	mflr r0
 /* 8020D78C 0020A6CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -153,9 +175,9 @@ getInfo__Q26PikiAI7ActWeedFPc:
 /* 8020D7C4 0020A704  7C 08 03 A6 */	mtlr r0
 /* 8020D7C8 0020A708  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020D7CC 0020A70C  4E 80 00 20 */	blr 
+.endfn getInfo__Q26PikiAI7ActWeedFPc
 
-.global __ct__Q26PikiAI7ActWeedFPQ24Game4Piki
-__ct__Q26PikiAI7ActWeedFPQ24Game4Piki:
+.fn __ct__Q26PikiAI7ActWeedFPQ24Game4Piki, global
 /* 8020D7D0 0020A710  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020D7D4 0020A714  7C 08 02 A6 */	mflr r0
 /* 8020D7D8 0020A718  90 01 00 14 */	stw r0, 0x14(r1)
@@ -195,9 +217,9 @@ __ct__Q26PikiAI7ActWeedFPQ24Game4Piki:
 /* 8020D858 0020A798  7C 08 03 A6 */	mtlr r0
 /* 8020D85C 0020A79C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020D860 0020A7A0  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI7ActWeedFPQ24Game4Piki
 
-.global init__Q26PikiAI7ActWeedFPQ26PikiAI9ActionArg
-init__Q26PikiAI7ActWeedFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI7ActWeedFPQ26PikiAI9ActionArg, global
 /* 8020D864 0020A7A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8020D868 0020A7A8  7C 08 02 A6 */	mflr r0
 /* 8020D86C 0020A7AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -298,9 +320,9 @@ init__Q26PikiAI7ActWeedFPQ26PikiAI9ActionArg:
 /* 8020D9C8 0020A908  7C 08 03 A6 */	mtlr r0
 /* 8020D9CC 0020A90C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8020D9D0 0020A910  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI7ActWeedFPQ26PikiAI9ActionArg
 
-.global decideTarget__Q26PikiAI7ActWeedFv
-decideTarget__Q26PikiAI7ActWeedFv:
+.fn decideTarget__Q26PikiAI7ActWeedFv, global
 /* 8020D9D4 0020A914  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8020D9D8 0020A918  7C 08 02 A6 */	mflr r0
 /* 8020D9DC 0020A91C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -327,9 +349,9 @@ decideTarget__Q26PikiAI7ActWeedFv:
 /* 8020DA30 0020A970  7C 08 03 A6 */	mtlr r0
 /* 8020DA34 0020A974  38 21 00 30 */	addi r1, r1, 0x30
 /* 8020DA38 0020A978  4E 80 00 20 */	blr 
+.endfn decideTarget__Q26PikiAI7ActWeedFv
 
-.global initAdjust__Q26PikiAI7ActWeedFv
-initAdjust__Q26PikiAI7ActWeedFv:
+.fn initAdjust__Q26PikiAI7ActWeedFv, global
 /* 8020DA3C 0020A97C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8020DA40 0020A980  7C 08 02 A6 */	mflr r0
 /* 8020DA44 0020A984  90 01 00 64 */	stw r0, 0x64(r1)
@@ -432,9 +454,9 @@ initAdjust__Q26PikiAI7ActWeedFv:
 /* 8020DBB8 0020AAF8  7C 08 03 A6 */	mtlr r0
 /* 8020DBBC 0020AAFC  38 21 00 60 */	addi r1, r1, 0x60
 /* 8020DBC0 0020AB00  4E 80 00 20 */	blr 
+.endfn initAdjust__Q26PikiAI7ActWeedFv
 
-.global calcAttackPos__Q26PikiAI7ActWeedFv
-calcAttackPos__Q26PikiAI7ActWeedFv:
+.fn calcAttackPos__Q26PikiAI7ActWeedFv, global
 /* 8020DBC4 0020AB04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8020DBC8 0020AB08  7C 08 02 A6 */	mflr r0
 /* 8020DBCC 0020AB0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -490,9 +512,9 @@ calcAttackPos__Q26PikiAI7ActWeedFv:
 /* 8020DC88 0020ABC8  7C 08 03 A6 */	mtlr r0
 /* 8020DC8C 0020ABCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8020DC90 0020ABD0  4E 80 00 20 */	blr 
+.endfn calcAttackPos__Q26PikiAI7ActWeedFv
 
-.global exec__Q26PikiAI7ActWeedFv
-exec__Q26PikiAI7ActWeedFv:
+.fn exec__Q26PikiAI7ActWeedFv, global
 /* 8020DC94 0020ABD4  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8020DC98 0020ABD8  7C 08 02 A6 */	mflr r0
 /* 8020DC9C 0020ABDC  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -1052,9 +1074,9 @@ exec__Q26PikiAI7ActWeedFv:
 /* 8020E4C8 0020B408  7C 08 03 A6 */	mtlr r0
 /* 8020E4CC 0020B40C  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 8020E4D0 0020B410  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI7ActWeedFv
 
-.global cleanup__Q26PikiAI7ActWeedFv
-cleanup__Q26PikiAI7ActWeedFv:
+.fn cleanup__Q26PikiAI7ActWeedFv, global
 /* 8020E4D4 0020B414  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020E4D8 0020B418  7C 08 02 A6 */	mflr r0
 /* 8020E4DC 0020B41C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1084,13 +1106,13 @@ cleanup__Q26PikiAI7ActWeedFv:
 /* 8020E530 0020B470  7C 08 03 A6 */	mtlr r0
 /* 8020E534 0020B474  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020E538 0020B478  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI7ActWeedFv
 
-.global collisionCallback__Q26PikiAI7ActWeedFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q26PikiAI7ActWeedFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q26PikiAI7ActWeedFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 8020E53C 0020B47C  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q26PikiAI7ActWeedFPQ24Game4PikiRQ24Game9CollEvent
 
-.global __ct__Q26PikiAI14ActFlockAttackFPQ24Game4Piki
-__ct__Q26PikiAI14ActFlockAttackFPQ24Game4Piki:
+.fn __ct__Q26PikiAI14ActFlockAttackFPQ24Game4Piki, global
 /* 8020E540 0020B480  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020E544 0020B484  7C 08 02 A6 */	mflr r0
 /* 8020E548 0020B488  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1126,9 +1148,9 @@ __ct__Q26PikiAI14ActFlockAttackFPQ24Game4Piki:
 /* 8020E5BC 0020B4FC  7C 08 03 A6 */	mtlr r0
 /* 8020E5C0 0020B500  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020E5C4 0020B504  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI14ActFlockAttackFPQ24Game4Piki
 
-.global init__Q26PikiAI14ActFlockAttackFPQ26PikiAI9ActionArg
-init__Q26PikiAI14ActFlockAttackFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI14ActFlockAttackFPQ26PikiAI9ActionArg, global
 /* 8020E5C8 0020B508  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8020E5CC 0020B50C  7C 08 02 A6 */	mflr r0
 /* 8020E5D0 0020B510  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1212,9 +1234,9 @@ init__Q26PikiAI14ActFlockAttackFPQ26PikiAI9ActionArg:
 /* 8020E6F4 0020B634  7C 08 03 A6 */	mtlr r0
 /* 8020E6F8 0020B638  38 21 00 20 */	addi r1, r1, 0x20
 /* 8020E6FC 0020B63C  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI14ActFlockAttackFPQ26PikiAI9ActionArg
 
-.global exec__Q26PikiAI14ActFlockAttackFv
-exec__Q26PikiAI14ActFlockAttackFv:
+.fn exec__Q26PikiAI14ActFlockAttackFv, global
 /* 8020E700 0020B640  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8020E704 0020B644  7C 08 02 A6 */	mflr r0
 /* 8020E708 0020B648  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1426,9 +1448,9 @@ exec__Q26PikiAI14ActFlockAttackFv:
 /* 8020EA18 0020B958  7C 08 03 A6 */	mtlr r0
 /* 8020EA1C 0020B95C  38 21 00 90 */	addi r1, r1, 0x90
 /* 8020EA20 0020B960  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI14ActFlockAttackFv
 
-.global onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent
-onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent, global
 /* 8020EA24 0020B964  80 04 00 1C */	lwz r0, 0x1c(r4)
 /* 8020EA28 0020B968  2C 00 00 03 */	cmpwi r0, 3
 /* 8020EA2C 0020B96C  41 82 00 30 */	beq .L_8020EA5C
@@ -1458,20 +1480,21 @@ onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent:
 /* 8020EA7C 0020B9BC  60 00 00 04 */	ori r0, r0, 4
 /* 8020EA80 0020B9C0  98 03 00 1C */	stb r0, 0x1c(r3)
 /* 8020EA84 0020B9C4  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent
 
-.global cleanup__Q26PikiAI14ActFlockAttackFv
-cleanup__Q26PikiAI14ActFlockAttackFv:
+.fn cleanup__Q26PikiAI14ActFlockAttackFv, global
 /* 8020EA88 0020B9C8  38 00 00 00 */	li r0, 0
 /* 8020EA8C 0020B9CC  90 03 00 14 */	stw r0, 0x14(r3)
 /* 8020EA90 0020B9D0  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI14ActFlockAttackFv
 
-.global getName__Q26PikiAI20FlockAttackActionArgFv
-getName__Q26PikiAI20FlockAttackActionArgFv: # weak function
+.fn getName__Q26PikiAI20FlockAttackActionArgFv, weak
 /* 8020EA94 0020B9D4  3C 60 80 48 */	lis r3, lbl_80481F70@ha
 /* 8020EA98 0020B9D8  38 63 1F 70 */	addi r3, r3, lbl_80481F70@l
 /* 8020EA9C 0020B9DC  4E 80 00 20 */	blr 
+.endfn getName__Q26PikiAI20FlockAttackActionArgFv
 
-__sinit_aiWeed_cpp: # static initializer
+.fn __sinit_aiWeed_cpp, local
 /* 8020EAA0 0020B9E0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8020EAA4 0020B9E4  38 00 FF FF */	li r0, -1
 /* 8020EAA8 0020B9E8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1482,11 +1505,12 @@ __sinit_aiWeed_cpp: # static initializer
 /* 8020EABC 0020B9FC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8020EAC0 0020BA00  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8020EAC4 0020BA04  4E 80 00 20 */	blr 
+.endfn __sinit_aiWeed_cpp
 
-.global "@40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent"
-"@40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent": # weak function
+.fn @40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent, weak
 /* 8020EAC8 0020BA08  39 60 00 04 */	li r11, 4
 /* 8020EACC 0020BA0C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8020EAD0 0020BA10  7C 63 5A 14 */	add r3, r3, r11
 /* 8020EAD4 0020BA14  38 63 FF D8 */	addi r3, r3, -40
 /* 8020EAD8 0020BA18  4B FF FF 4C */	b onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent
+.endfn @40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent

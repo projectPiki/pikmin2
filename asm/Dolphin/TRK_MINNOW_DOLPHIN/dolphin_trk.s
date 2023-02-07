@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .init, "ax"  # 0x80003100 - 0x80005600
 
-.global __TRK_reset
-__TRK_reset:
+.fn __TRK_reset, global
 /* 80005088 00002088  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000508C 0000208C  7C 08 02 A6 */	mflr r0
 /* 80005090 00002090  38 60 00 00 */	li r3, 0
@@ -14,10 +13,11 @@ __TRK_reset:
 /* 800050A8 000020A8  7C 08 03 A6 */	mtlr r0
 /* 800050AC 000020AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800050B0 000020B0  4E 80 00 20 */	blr 
+.endfn __TRK_reset
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-TRK_ISR_OFFSETS:
+.obj TRK_ISR_OFFSETS, local
 	.4byte 0x00000100
 	.4byte 0x00000200
 	.4byte 0x00000300
@@ -33,15 +33,16 @@ TRK_ISR_OFFSETS:
 	.4byte 0x00001300
 	.4byte 0x00001400
 	.4byte 0x00001700
+.endobj TRK_ISR_OFFSETS
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
-lc_base:
+.obj lc_base, local
 	.skip 0x4
+.endobj lc_base
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global InitMetroTRK
-InitMetroTRK:
+.fn InitMetroTRK, global
 /* 800BFDD0 000BCD10  38 21 FF FC */	addi r1, r1, -4
 /* 800BFDD4 000BCD14  90 61 00 00 */	stw r3, 0(r1)
 /* 800BFDD8 000BCD18  3C 60 80 4F */	lis r3, gTRKCPUState@h
@@ -81,9 +82,9 @@ InitMetroTRK:
 .L_800BFE60:
 /* 800BFE60 000BCDA0  48 00 05 AC */	b TRK_main
 /* 800BFE64 000BCDA4  4E 80 00 20 */	blr 
+.endfn InitMetroTRK
 
-.global InitMetroTRK_BBA
-InitMetroTRK_BBA:
+.fn InitMetroTRK_BBA, global
 /* 800BFE68 000BCDA8  38 21 FF FC */	addi r1, r1, -4
 /* 800BFE6C 000BCDAC  90 61 00 00 */	stw r3, 0(r1)
 /* 800BFE70 000BCDB0  3C 60 80 4F */	lis r3, gTRKCPUState@h
@@ -122,9 +123,9 @@ InitMetroTRK_BBA:
 .L_800BFEF4:
 /* 800BFEF4 000BCE34  48 00 05 18 */	b TRK_main
 /* 800BFEF8 000BCE38  4E 80 00 20 */	blr 
+.endfn InitMetroTRK_BBA
 
-.global TRK__write_aram
-TRK__write_aram:
+.fn TRK__write_aram, global
 /* 800BFEFC 000BCE3C  54 2B 06 FE */	clrlwi r11, r1, 0x1b
 /* 800BFF00 000BCE40  7C 2C 0B 78 */	mr r12, r1
 /* 800BFF04 000BCE44  21 6B FF 80 */	subfic r11, r11, -128
@@ -260,9 +261,9 @@ TRK__write_aram:
 /* 800C00DC 000BD01C  7C 08 03 A6 */	mtlr r0
 /* 800C00E0 000BD020  7D 41 53 78 */	mr r1, r10
 /* 800C00E4 000BD024  4E 80 00 20 */	blr 
+.endfn TRK__write_aram
 
-.global TRK__read_aram
-TRK__read_aram:
+.fn TRK__read_aram, global
 /* 800C00E8 000BD028  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C00EC 000BD02C  7C 08 02 A6 */	mflr r0
 /* 800C00F0 000BD030  28 04 40 00 */	cmplwi r4, 0x4000
@@ -347,9 +348,9 @@ TRK__read_aram:
 /* 800C0210 000BD150  7C 08 03 A6 */	mtlr r0
 /* 800C0214 000BD154  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C0218 000BD158  4E 80 00 20 */	blr 
+.endfn TRK__read_aram
 
-.global TRKInitializeTarget
-TRKInitializeTarget:
+.fn TRKInitializeTarget, global
 /* 800C021C 000BD15C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C0220 000BD160  7C 08 02 A6 */	mflr r0
 /* 800C0224 000BD164  3C 60 80 4F */	lis r3, gTRKState@ha
@@ -369,9 +370,9 @@ TRKInitializeTarget:
 /* 800C025C 000BD19C  7C 08 03 A6 */	mtlr r0
 /* 800C0260 000BD1A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C0264 000BD1A4  4E 80 00 20 */	blr 
+.endfn TRKInitializeTarget
 
-.global __TRK_copy_vectors
-__TRK_copy_vectors:
+.fn __TRK_copy_vectors, global
 /* 800C0268 000BD1A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C026C 000BD1AC  7C 08 02 A6 */	mflr r0
 /* 800C0270 000BD1B0  3C 60 80 4F */	lis r3, lc_base@ha
@@ -454,9 +455,9 @@ __TRK_copy_vectors:
 /* 800C0388 000BD2C8  7C 08 03 A6 */	mtlr r0
 /* 800C038C 000BD2CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C0390 000BD2D0  4E 80 00 20 */	blr 
+.endfn __TRK_copy_vectors
 
-.global TRKTargetTranslate
-TRKTargetTranslate:
+.fn TRKTargetTranslate, global
 /* 800C0394 000BD2D4  3C 80 80 4F */	lis r4, lc_base@ha
 /* 800C0398 000BD2D8  38 84 48 00 */	addi r4, r4, lc_base@l
 /* 800C039C 000BD2DC  80 84 00 00 */	lwz r4, 0(r4)
@@ -481,9 +482,9 @@ TRKTargetTranslate:
 /* 800C03E0 000BD320  54 60 00 BE */	clrlwi r0, r3, 2
 /* 800C03E4 000BD324  64 03 80 00 */	oris r3, r0, 0x8000
 /* 800C03E8 000BD328  4E 80 00 20 */	blr 
+.endfn TRKTargetTranslate
 
-.global EnableMetroTRKInterrupts
-EnableMetroTRKInterrupts:
+.fn EnableMetroTRKInterrupts, global
 /* 800C03EC 000BD32C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C03F0 000BD330  7C 08 02 A6 */	mflr r0
 /* 800C03F4 000BD334  90 01 00 14 */	stw r0, 0x14(r1)
@@ -492,3 +493,4 @@ EnableMetroTRKInterrupts:
 /* 800C0400 000BD340  7C 08 03 A6 */	mtlr r0
 /* 800C0404 000BD344  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C0408 000BD348  4E 80 00 20 */	blr 
+.endfn EnableMetroTRKInterrupts

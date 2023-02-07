@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global TRKSaveExtended1Block
-TRKSaveExtended1Block:
+.fn TRKSaveExtended1Block, global
 /* 800BFA60 000BC9A0  3C 40 80 4F */	lis r2, gTRKCPUState@h
 /* 800BFA64 000BC9A4  60 42 43 28 */	ori r2, r2, gTRKCPUState@l
 /* 800BFA68 000BC9A8  7E 00 04 A6 */	mfsr r16, 0
@@ -114,9 +113,9 @@ TRKSaveExtended1Block:
 /* 800BFC0C 000BCB4C  7F F6 02 A6 */	mfspr r31, 0x16
 /* 800BFC10 000BCB50  93 E2 02 78 */	stw r31, 0x278(r2)
 /* 800BFC14 000BCB54  4E 80 00 20 */	blr 
+.endfn TRKSaveExtended1Block
 
-.global TRKRestoreExtended1Block
-TRKRestoreExtended1Block:
+.fn TRKRestoreExtended1Block, global
 /* 800BFC18 000BCB58  3C 40 80 4F */	lis r2, gTRKCPUState@h
 /* 800BFC1C 000BCB5C  60 42 43 28 */	ori r2, r2, gTRKCPUState@l
 /* 800BFC20 000BCB60  3C A0 80 4A */	lis r5, gTRKRestoreFlags@h
@@ -231,3 +230,4 @@ TRKRestoreExtended1Block:
 /* 800BFDC4 000BCD04  7F D2 FB A6 */	mtspr 0x3f2, r30
 /* 800BFDC8 000BCD08  7F FA 43 A6 */	mtspr 0x11a, r31
 /* 800BFDCC 000BCD0C  4E 80 00 20 */	blr 
+.endfn TRKRestoreExtended1Block

@@ -5,36 +5,35 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80482748:
+.obj lbl_80482748, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x53696E67
-	.4byte 0x6C654753
-	.4byte 0x5F47616D
-	.4byte 0x65000000
-lbl_80482764:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-lbl_80482770:
-	.asciz "P2Assert"
+.endobj lbl_80482748
 .balign 4
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x73696E67
-	.4byte 0x6C654753
-	.4byte 0x5F46696C
-	.4byte 0x6553656C
-	.4byte 0x6563742E
-	.4byte 0x63707000
-	.4byte 0x756E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x73617665
-	.4byte 0x466C6167
-	.4byte 0x20282564
-	.4byte 0x290A0000
+.obj lbl_80482754, local
+	.asciz "SingleGS_Game"
+.endobj lbl_80482754
+.balign 4
+.obj lbl_80482764, local
+	.asciz "PSGame.h"
+.endobj lbl_80482764
+.balign 4
+.obj lbl_80482770, local
+	.asciz "P2Assert"
+.endobj lbl_80482770
+.balign 4
+.obj lbl_8048277C, local
+	.asciz "PSScene.h"
+.endobj lbl_8048277C
+.balign 4
+.obj lbl_80482788, local
+	.asciz "singleGS_FileSelect.cpp"
+.endobj lbl_80482788
+.balign 4
+.obj lbl_804827A0, local
+	.asciz "unknown saveFlag (%d)\n"
+.endobj lbl_804827A0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

@@ -1,57 +1,73 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80479910:
+.obj lbl_80479910, local
 	.asciz "\nMetroTRK Option : SerialIO - "
+.endobj lbl_80479910
 .balign 4
-lbl_80479930:
+.obj lbl_80479930, local
 	.asciz "Enable\n"
+.endobj lbl_80479930
 .balign 4
-lbl_80479938:
+.obj lbl_80479938, local
 	.asciz "Disable\n"
+.endobj lbl_80479938
 .balign 4
-lbl_80479944:
+.obj lbl_80479944, local
 	.asciz "DoContinue\n"
+.endobj lbl_80479944
 .balign 4
-lbl_80479950:
+.obj lbl_80479950, local
 	.asciz "DoFlushCache unimplemented!!!\n"
+.endobj lbl_80479950
 .balign 4
-lbl_80479970:
+.obj lbl_80479970, local
 	.asciz "SendACK : Calling MessageSend\n"
+.endobj lbl_80479970
 .balign 4
-lbl_80479990:
+.obj lbl_80479990, local
 	.asciz "MessageSend err : %ld\n"
+.endobj lbl_80479990
 .balign 4
-lbl_804799A8:
+.obj lbl_804799A8, local
 	.asciz "DoReadRegisters : Buffer length 0x%08x\n"
+.endobj lbl_804799A8
 .balign 4
-lbl_804799D0:
+.obj lbl_804799D0, local
 	.asciz "DoReadRegisters : Error reading  default regs 0x%08x\n"
+.endobj lbl_804799D0
 .balign 4
-lbl_80479A08:
+.obj lbl_80479A08, local
 	.asciz "DoReadRegisters : Error FP regs 0x%08x\n"
+.endobj lbl_80479A08
 .balign 4
-lbl_80479A30:
+.obj lbl_80479A30, local
 	.asciz "DoReadRegisters : Error extended1 regs 0x%08x\n"
+.endobj lbl_80479A30
 .balign 4
-lbl_80479A60:
+.obj lbl_80479A60, local
 	.asciz "DoReadRegisters : Error extended2 regs 0x%08x\n"
+.endobj lbl_80479A60
 .balign 4
-lbl_80479A90:
+.obj lbl_80479A90, local
 	.asciz "WriteMemory (0x%02x) : 0x%08x 0x%08x 0x%08x\n"
+.endobj lbl_80479A90
 .balign 4
-lbl_80479AC0:
+.obj lbl_80479AC0, local
 	.asciz "ReadMemory (0x%02x) : 0x%08x 0x%08x 0x%08x\n"
+.endobj lbl_80479AC0
 .balign 4
-lbl_80479AEC:
+.obj lbl_80479AEC, local
 	.asciz "%02x "
+.endobj lbl_80479AEC
 .balign 4
-lbl_80479AF4:
+.obj lbl_80479AF4, local
 	.asciz "\n"
+.endobj lbl_80479AF4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A6878:
+.obj lbl_804A6878, local
 	.4byte .L_800BD0A8
 	.4byte .L_800BD0C8
 	.4byte .L_800BD0A0
@@ -59,7 +75,8 @@ lbl_804A6878:
 	.4byte .L_800BD0B0
 	.4byte .L_800BD0B8
 	.4byte .L_800BD0C0
-lbl_804A6894:
+.endobj lbl_804A6878
+.obj lbl_804A6894, local
 	.4byte .L_800BD2EC
 	.4byte .L_800BD30C
 	.4byte .L_800BD2E4
@@ -67,16 +84,16 @@ lbl_804A6894:
 	.4byte .L_800BD2F4
 	.4byte .L_800BD2FC
 	.4byte .L_800BD304
+.endobj lbl_804A6894
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
-.global IsTRKConnected
-IsTRKConnected:
+.obj IsTRKConnected, local
 	.skip 0x4
+.endobj IsTRKConnected
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global TRKDoSetOption
-TRKDoSetOption:
+.fn TRKDoSetOption, global
 /* 800BC584 000B94C4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800BC588 000B94C8  7C 08 02 A6 */	mflr r0
 /* 800BC58C 000B94CC  3C 80 80 48 */	lis r4, lbl_80479910@ha
@@ -122,9 +139,9 @@ TRKDoSetOption:
 /* 800BC620 000B9560  7C 08 03 A6 */	mtlr r0
 /* 800BC624 000B9564  38 21 00 50 */	addi r1, r1, 0x50
 /* 800BC628 000B9568  4E 80 00 20 */	blr 
+.endfn TRKDoSetOption
 
-.global TRKDoStop
-TRKDoStop:
+.fn TRKDoStop, global
 /* 800BC62C 000B956C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800BC630 000B9570  7C 08 02 A6 */	mflr r0
 /* 800BC634 000B9574  90 01 00 54 */	stw r0, 0x54(r1)
@@ -174,9 +191,9 @@ TRKDoStop:
 /* 800BC6C8 000B9608  7C 08 03 A6 */	mtlr r0
 /* 800BC6CC 000B960C  38 21 00 50 */	addi r1, r1, 0x50
 /* 800BC6D0 000B9610  4E 80 00 20 */	blr 
+.endfn TRKDoStop
 
-.global TRKDoStep
-TRKDoStep:
+.fn TRKDoStep, global
 /* 800BC6D4 000B9614  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 800BC6D8 000B9618  7C 08 02 A6 */	mflr r0
 /* 800BC6DC 000B961C  38 80 00 00 */	li r4, 0
@@ -324,9 +341,9 @@ TRKDoStep:
 /* 800BC8E8 000B9828  7C 08 03 A6 */	mtlr r0
 /* 800BC8EC 000B982C  38 21 01 60 */	addi r1, r1, 0x160
 /* 800BC8F0 000B9830  4E 80 00 20 */	blr 
+.endfn TRKDoStep
 
-.global TRKDoContinue
-TRKDoContinue:
+.fn TRKDoContinue, global
 /* 800BC8F4 000B9834  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 800BC8F8 000B9838  7C 08 02 A6 */	mflr r0
 /* 800BC8FC 000B983C  3C 80 80 48 */	lis r4, lbl_80479944@ha
@@ -373,9 +390,9 @@ TRKDoContinue:
 /* 800BC998 000B98D8  7C 08 03 A6 */	mtlr r0
 /* 800BC99C 000B98DC  38 21 00 90 */	addi r1, r1, 0x90
 /* 800BC9A0 000B98E0  4E 80 00 20 */	blr 
+.endfn TRKDoContinue
 
-.global TRKDoWriteRegisters
-TRKDoWriteRegisters:
+.fn TRKDoWriteRegisters, global
 /* 800BC9A4 000B98E4  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 800BC9A8 000B98E8  7C 08 02 A6 */	mflr r0
 /* 800BC9AC 000B98EC  38 80 00 00 */	li r4, 0
@@ -561,9 +578,9 @@ TRKDoWriteRegisters:
 /* 800BCC28 000B9B68  7C 08 03 A6 */	mtlr r0
 /* 800BCC2C 000B9B6C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 800BCC30 000B9B70  4E 80 00 20 */	blr 
+.endfn TRKDoWriteRegisters
 
-.global TRKDoReadRegisters
-TRKDoReadRegisters:
+.fn TRKDoReadRegisters, global
 /* 800BCC34 000B9B74  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 800BCC38 000B9B78  7C 08 02 A6 */	mflr r0
 /* 800BCC3C 000B9B7C  3C A0 80 48 */	lis r5, lbl_80479910@ha
@@ -763,9 +780,9 @@ TRKDoReadRegisters:
 /* 800BCF08 000B9E48  7C 08 03 A6 */	mtlr r0
 /* 800BCF0C 000B9E4C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 800BCF10 000B9E50  4E 80 00 20 */	blr 
+.endfn TRKDoReadRegisters
 
-.global TRKDoWriteMemory
-TRKDoWriteMemory:
+.fn TRKDoWriteMemory, global
 /* 800BCF14 000B9E54  54 2B 06 FE */	clrlwi r11, r1, 0x1b
 /* 800BCF18 000B9E58  7C 2C 0B 78 */	mr r12, r1
 /* 800BCF1C 000B9E5C  21 6B F6 C0 */	subfic r11, r11, -2368
@@ -922,9 +939,9 @@ TRKDoWriteMemory:
 /* 800BD144 000BA084  7C 08 03 A6 */	mtlr r0
 /* 800BD148 000BA088  7D 41 53 78 */	mr r1, r10
 /* 800BD14C 000BA08C  4E 80 00 20 */	blr 
+.endfn TRKDoWriteMemory
 
-.global TRKDoReadMemory
-TRKDoReadMemory:
+.fn TRKDoReadMemory, global
 /* 800BD150 000BA090  54 2B 06 FE */	clrlwi r11, r1, 0x1b
 /* 800BD154 000BA094  7C 2C 0B 78 */	mr r12, r1
 /* 800BD158 000BA098  21 6B F6 C0 */	subfic r11, r11, -2368
@@ -1084,19 +1101,19 @@ TRKDoReadMemory:
 /* 800BD388 000BA2C8  7C 08 03 A6 */	mtlr r0
 /* 800BD38C 000BA2CC  7D 41 53 78 */	mr r1, r10
 /* 800BD390 000BA2D0  4E 80 00 20 */	blr 
+.endfn TRKDoReadMemory
 
-.global TRKDoSupportMask
-TRKDoSupportMask:
+.fn TRKDoSupportMask, global
 /* 800BD394 000BA2D4  38 60 00 00 */	li r3, 0
 /* 800BD398 000BA2D8  4E 80 00 20 */	blr 
+.endfn TRKDoSupportMask
 
-.global TRKDoVersions
-TRKDoVersions:
+.fn TRKDoVersions, global
 /* 800BD39C 000BA2DC  38 60 00 00 */	li r3, 0
 /* 800BD3A0 000BA2E0  4E 80 00 20 */	blr 
+.endfn TRKDoVersions
 
-.global TRKDoOverride
-TRKDoOverride:
+.fn TRKDoOverride, global
 /* 800BD3A4 000BA2E4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800BD3A8 000BA2E8  7C 08 02 A6 */	mflr r0
 /* 800BD3AC 000BA2EC  38 80 00 00 */	li r4, 0
@@ -1119,9 +1136,9 @@ TRKDoOverride:
 /* 800BD3F0 000BA330  7C 08 03 A6 */	mtlr r0
 /* 800BD3F4 000BA334  38 21 00 50 */	addi r1, r1, 0x50
 /* 800BD3F8 000BA338  4E 80 00 20 */	blr 
+.endfn TRKDoOverride
 
-.global TRKDoReset
-TRKDoReset:
+.fn TRKDoReset, global
 /* 800BD3FC 000BA33C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800BD400 000BA340  7C 08 02 A6 */	mflr r0
 /* 800BD404 000BA344  38 80 00 00 */	li r4, 0
@@ -1144,9 +1161,9 @@ TRKDoReset:
 /* 800BD448 000BA388  7C 08 03 A6 */	mtlr r0
 /* 800BD44C 000BA38C  38 21 00 50 */	addi r1, r1, 0x50
 /* 800BD450 000BA390  4E 80 00 20 */	blr 
+.endfn TRKDoReset
 
-.global TRKDoDisconnect
-TRKDoDisconnect:
+.fn TRKDoDisconnect, global
 /* 800BD454 000BA394  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800BD458 000BA398  7C 08 02 A6 */	mflr r0
 /* 800BD45C 000BA39C  3C 60 80 4F */	lis r3, IsTRKConnected@ha
@@ -1177,9 +1194,9 @@ TRKDoDisconnect:
 /* 800BD4C0 000BA400  7C 08 03 A6 */	mtlr r0
 /* 800BD4C4 000BA404  38 21 00 60 */	addi r1, r1, 0x60
 /* 800BD4C8 000BA408  4E 80 00 20 */	blr 
+.endfn TRKDoDisconnect
 
-.global TRKDoConnect
-TRKDoConnect:
+.fn TRKDoConnect, global
 /* 800BD4CC 000BA40C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800BD4D0 000BA410  7C 08 02 A6 */	mflr r0
 /* 800BD4D4 000BA414  3C 60 80 4F */	lis r3, IsTRKConnected@ha
@@ -1205,22 +1222,22 @@ TRKDoConnect:
 /* 800BD524 000BA464  7C 08 03 A6 */	mtlr r0
 /* 800BD528 000BA468  38 21 00 50 */	addi r1, r1, 0x50
 /* 800BD52C 000BA46C  4E 80 00 20 */	blr 
+.endfn TRKDoConnect
 
-.global SetTRKConnected
-SetTRKConnected:
+.fn SetTRKConnected, global
 /* 800BD530 000BA470  3C 80 80 4F */	lis r4, IsTRKConnected@ha
 /* 800BD534 000BA474  90 64 42 78 */	stw r3, IsTRKConnected@l(r4)
 /* 800BD538 000BA478  4E 80 00 20 */	blr 
+.endfn SetTRKConnected
 
-.global GetTRKConnected
-GetTRKConnected:
+.fn GetTRKConnected, global
 /* 800BD53C 000BA47C  3C 60 80 4F */	lis r3, IsTRKConnected@ha
 /* 800BD540 000BA480  38 63 42 78 */	addi r3, r3, IsTRKConnected@l
 /* 800BD544 000BA484  80 63 00 00 */	lwz r3, 0(r3)
 /* 800BD548 000BA488  4E 80 00 20 */	blr 
+.endfn GetTRKConnected
 
-.global OutputData
-OutputData:
+.fn OutputData, global
 /* 800BD54C 000BA48C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BD550 000BA490  7C 08 02 A6 */	mflr r0
 /* 800BD554 000BA494  3C C0 80 48 */	lis r6, lbl_80479AEC@ha
@@ -1266,3 +1283,4 @@ OutputData:
 /* 800BD5E8 000BA528  7C 08 03 A6 */	mtlr r0
 /* 800BD5EC 000BA52C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BD5F0 000BA530  4E 80 00 20 */	blr 
+.endfn OutputData

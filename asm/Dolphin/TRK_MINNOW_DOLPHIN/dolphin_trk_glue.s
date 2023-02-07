@@ -1,9 +1,9 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global EndofProgramInstruction$162
-EndofProgramInstruction$162:
+.obj EndofProgramInstruction$162, local
 	.4byte 0x00454E44
+.endobj EndofProgramInstruction$162
 .global lbl_80479C4C
 lbl_80479C4C:
 	.4byte 0x25730A00

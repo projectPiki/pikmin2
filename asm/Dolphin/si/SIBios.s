@@ -26,68 +26,77 @@
 	.asciz "N64 controller"
 .endobj lbl_804A9F2C
 .balign 4
-lbl_804A9F3C:
+.obj lbl_804A9F3C, local
 	.asciz "N64 microphone"
+.endobj lbl_804A9F3C
 .balign 4
-lbl_804A9F4C:
+.obj lbl_804A9F4C, local
 	.asciz "N64 keyboard"
+.endobj lbl_804A9F4C
 .balign 4
-lbl_804A9F5C:
+.obj lbl_804A9F5C, local
 	.asciz "N64 mouse"
+.endobj lbl_804A9F5C
 .balign 4
-lbl_804A9F68:
+.obj lbl_804A9F68, local
 	.asciz "GameBoy Advance"
+.endobj lbl_804A9F68
 .balign 4
-lbl_804A9F78:
+.obj lbl_804A9F78, local
 	.asciz "Standard controller"
+.endobj lbl_804A9F78
 .balign 4
-lbl_804A9F8C:
+.obj lbl_804A9F8C, local
 	.asciz "Wireless receiver"
+.endobj lbl_804A9F8C
 .balign 4
-lbl_804A9FA0:
+.obj lbl_804A9FA0, local
 	.asciz "WaveBird controller"
+.endobj lbl_804A9FA0
 .balign 4
-lbl_804A9FB4:
+.obj lbl_804A9FB4, local
 	.asciz "Keyboard"
+.endobj lbl_804A9FB4
 .balign 4
-lbl_804A9FC0:
+.obj lbl_804A9FC0, local
 	.asciz "Steering"
+.endobj lbl_804A9FC0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
-.global Packet
-Packet:
+.obj Packet, local
 	.skip 0x80
+.endobj Packet
 .balign 8
-.global Alarm
-Alarm:
+.obj Alarm, local
 	.skip 0xA0
+.endobj Alarm
 .balign 8
-.global TypeTime
-TypeTime:
+.obj TypeTime, local
 	.skip 0x20
+.endobj TypeTime
 .balign 8
-.global XferTime
-XferTime:
+.obj XferTime, local
 	.skip 0x20
-.global TypeCallback
-TypeCallback:
+.endobj XferTime
+.obj TypeCallback, local
 	.skip 0x40
-.global RDSTHandler
-RDSTHandler:
+.endobj TypeCallback
+.obj RDSTHandler, local
 	.skip 0x10
-.global InputBufferValid
-InputBufferValid:
+.endobj RDSTHandler
+.obj InputBufferValid, local
 	.skip 0x10
-.global InputBuffer
-InputBuffer:
+.endobj InputBufferValid
+.obj InputBuffer, local
 	.skip 0x20
-.global InputBufferVcount
-InputBufferVcount:
+.endobj InputBuffer
+.obj InputBufferVcount, local
 	.skip 0x10
-.global cmdFixDevice$327
-cmdFixDevice$327:
+.endobj InputBufferVcount
+.obj cmdFixDevice$327, local
 	.skip 0x10
+.endobj cmdFixDevice$327
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -108,8 +117,7 @@ cmdFixDevice$327:
 .endobj __PADFixBits
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global SIBusy
-SIBusy:
+.fn SIBusy, global
 /* 800F4EFC 000F1E3C  3C 60 80 4B */	lis r3, Si@ha
 /* 800F4F00 000F1E40  80 03 9E FC */	lwz r0, Si@l(r3)
 /* 800F4F04 000F1E44  2C 00 FF FF */	cmpwi r0, -1
@@ -119,9 +127,9 @@ SIBusy:
 .L_800F4F14:
 /* 800F4F14 000F1E54  38 60 00 00 */	li r3, 0
 /* 800F4F18 000F1E58  4E 80 00 20 */	blr 
+.endfn SIBusy
 
-.global SIIsChanBusy
-SIIsChanBusy:
+.fn SIIsChanBusy, global
 /* 800F4F1C 000F1E5C  3C 80 80 4F */	lis r4, Packet@ha
 /* 800F4F20 000F1E60  54 65 28 34 */	slwi r5, r3, 5
 /* 800F4F24 000F1E64  38 04 71 80 */	addi r0, r4, Packet@l
@@ -138,9 +146,9 @@ SIIsChanBusy:
 .L_800F4F50:
 /* 800F4F50 000F1E90  7C A3 2B 78 */	mr r3, r5
 /* 800F4F54 000F1E94  4E 80 00 20 */	blr 
+.endfn SIIsChanBusy
 
-.global CompleteTransfer
-CompleteTransfer:
+.fn CompleteTransfer, local
 /* 800F4F58 000F1E98  7C 08 02 A6 */	mflr r0
 /* 800F4F5C 000F1E9C  3C 60 CC 00 */	lis r3, 0xCC006400@ha
 /* 800F4F60 000F1EA0  90 01 00 04 */	stw r0, 4(r1)
@@ -346,9 +354,9 @@ CompleteTransfer:
 /* 800F5248 000F2188  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F524C 000F218C  7C 08 03 A6 */	mtlr r0
 /* 800F5250 000F2190  4E 80 00 20 */	blr 
+.endfn CompleteTransfer
 
-.global SIInterruptHandler
-SIInterruptHandler:
+.fn SIInterruptHandler, local
 /* 800F5254 000F2194  7C 08 02 A6 */	mflr r0
 /* 800F5258 000F2198  3C A0 CC 00 */	lis r5, 0xCC006434@ha
 /* 800F525C 000F219C  90 01 00 04 */	stw r0, 4(r1)
@@ -573,9 +581,9 @@ SIInterruptHandler:
 /* 800F558C 000F24CC  38 21 00 48 */	addi r1, r1, 0x48
 /* 800F5590 000F24D0  7C 08 03 A6 */	mtlr r0
 /* 800F5594 000F24D4  4E 80 00 20 */	blr 
+.endfn SIInterruptHandler
 
-.global SIEnablePollingInterrupt
-SIEnablePollingInterrupt:
+.fn SIEnablePollingInterrupt, local
 /* 800F5598 000F24D8  7C 08 02 A6 */	mflr r0
 /* 800F559C 000F24DC  3C 80 80 4F */	lis r4, Packet@ha
 /* 800F55A0 000F24E0  90 01 00 04 */	stw r0, 4(r1)
@@ -618,9 +626,9 @@ SIEnablePollingInterrupt:
 /* 800F5624 000F2564  38 21 00 30 */	addi r1, r1, 0x30
 /* 800F5628 000F2568  7C 08 03 A6 */	mtlr r0
 /* 800F562C 000F256C  4E 80 00 20 */	blr 
+.endfn SIEnablePollingInterrupt
 
-.global SIRegisterPollingHandler
-SIRegisterPollingHandler:
+.fn SIRegisterPollingHandler, global
 /* 800F5630 000F2570  7C 08 02 A6 */	mflr r0
 /* 800F5634 000F2574  90 01 00 04 */	stw r0, 4(r1)
 /* 800F5638 000F2578  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -677,9 +685,9 @@ SIRegisterPollingHandler:
 /* 800F56F0 000F2630  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F56F4 000F2634  7C 08 03 A6 */	mtlr r0
 /* 800F56F8 000F2638  4E 80 00 20 */	blr 
+.endfn SIRegisterPollingHandler
 
-.global SIUnregisterPollingHandler
-SIUnregisterPollingHandler:
+.fn SIUnregisterPollingHandler, global
 /* 800F56FC 000F263C  7C 08 02 A6 */	mflr r0
 /* 800F5700 000F2640  90 01 00 04 */	stw r0, 4(r1)
 /* 800F5704 000F2644  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -746,9 +754,9 @@ SIUnregisterPollingHandler:
 /* 800F57E4 000F2724  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F57E8 000F2728  7C 08 03 A6 */	mtlr r0
 /* 800F57EC 000F272C  4E 80 00 20 */	blr 
+.endfn SIUnregisterPollingHandler
 
-.global SIInit
-SIInit:
+.fn SIInit, global
 /* 800F57F0 000F2730  7C 08 02 A6 */	mflr r0
 /* 800F57F4 000F2734  3C 80 80 4F */	lis r4, Packet@ha
 /* 800F57F8 000F2738  90 01 00 04 */	stw r0, 4(r1)
@@ -795,9 +803,9 @@ SIInit:
 /* 800F5898 000F27D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800F589C 000F27DC  7C 08 03 A6 */	mtlr r0
 /* 800F58A0 000F27E0  4E 80 00 20 */	blr 
+.endfn SIInit
 
-.global __SITransfer
-__SITransfer:
+.fn __SITransfer, local
 /* 800F58A4 000F27E4  7C 08 02 A6 */	mflr r0
 /* 800F58A8 000F27E8  3D 20 80 4B */	lis r9, lbl_804A9EB8@ha
 /* 800F58AC 000F27EC  90 01 00 04 */	stw r0, 4(r1)
@@ -942,9 +950,9 @@ __SITransfer:
 /* 800F5AA4 000F29E4  38 21 00 48 */	addi r1, r1, 0x48
 /* 800F5AA8 000F29E8  7C 08 03 A6 */	mtlr r0
 /* 800F5AAC 000F29EC  4E 80 00 20 */	blr 
+.endfn __SITransfer
 
-.global SIGetStatus
-SIGetStatus:
+.fn SIGetStatus, global
 /* 800F5AB0 000F29F0  7C 08 02 A6 */	mflr r0
 /* 800F5AB4 000F29F4  90 01 00 04 */	stw r0, 4(r1)
 /* 800F5AB8 000F29F8  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -977,24 +985,24 @@ SIGetStatus:
 /* 800F5B20 000F2A60  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F5B24 000F2A64  7C 08 03 A6 */	mtlr r0
 /* 800F5B28 000F2A68  4E 80 00 20 */	blr 
+.endfn SIGetStatus
 
-.global SISetCommand
-SISetCommand:
+.fn SISetCommand, global
 /* 800F5B2C 000F2A6C  1C 03 00 0C */	mulli r0, r3, 0xc
 /* 800F5B30 000F2A70  3C 60 CC 00 */	lis r3, 0xCC006400@ha
 /* 800F5B34 000F2A74  38 63 64 00 */	addi r3, r3, 0xCC006400@l
 /* 800F5B38 000F2A78  7C 83 01 2E */	stwx r4, r3, r0
 /* 800F5B3C 000F2A7C  4E 80 00 20 */	blr 
+.endfn SISetCommand
 
-.global SITransferCommands
-SITransferCommands:
+.fn SITransferCommands, global
 /* 800F5B40 000F2A80  3C 60 CC 00 */	lis r3, 0xCC006438@ha
 /* 800F5B44 000F2A84  3C 00 80 00 */	lis r0, 0x8000
 /* 800F5B48 000F2A88  90 03 64 38 */	stw r0, 0xCC006438@l(r3)
 /* 800F5B4C 000F2A8C  4E 80 00 20 */	blr 
+.endfn SITransferCommands
 
-.global SISetXY
-SISetXY:
+.fn SISetXY, global
 /* 800F5B50 000F2A90  7C 08 02 A6 */	mflr r0
 /* 800F5B54 000F2A94  90 01 00 04 */	stw r0, 4(r1)
 /* 800F5B58 000F2A98  54 80 40 2E */	slwi r0, r4, 8
@@ -1022,9 +1030,9 @@ SISetXY:
 /* 800F5BB0 000F2AF0  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F5BB4 000F2AF4  7C 08 03 A6 */	mtlr r0
 /* 800F5BB8 000F2AF8  4E 80 00 20 */	blr 
+.endfn SISetXY
 
-.global SIEnablePolling
-SIEnablePolling:
+.fn SIEnablePolling, global
 /* 800F5BBC 000F2AFC  7C 08 02 A6 */	mflr r0
 /* 800F5BC0 000F2B00  90 01 00 04 */	stw r0, 4(r1)
 /* 800F5BC4 000F2B04  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -1066,9 +1074,9 @@ SIEnablePolling:
 /* 800F5C4C 000F2B8C  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F5C50 000F2B90  7C 08 03 A6 */	mtlr r0
 /* 800F5C54 000F2B94  4E 80 00 20 */	blr 
+.endfn SIEnablePolling
 
-.global SIDisablePolling
-SIDisablePolling:
+.fn SIDisablePolling, global
 /* 800F5C58 000F2B98  7C 08 02 A6 */	mflr r0
 /* 800F5C5C 000F2B9C  90 01 00 04 */	stw r0, 4(r1)
 /* 800F5C60 000F2BA0  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -1098,8 +1106,9 @@ SIDisablePolling:
 /* 800F5CB8 000F2BF8  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F5CBC 000F2BFC  7C 08 03 A6 */	mtlr r0
 /* 800F5CC0 000F2C00  4E 80 00 20 */	blr 
+.endfn SIDisablePolling
 
-SIGetResponseRaw:
+.fn SIGetResponseRaw, local
 /* 800F5CC4 000F2C04  7C 08 02 A6 */	mflr r0
 /* 800F5CC8 000F2C08  3C 80 80 4F */	lis r4, Packet@ha
 /* 800F5CCC 000F2C0C  90 01 00 04 */	stw r0, 4(r1)
@@ -1156,9 +1165,9 @@ SIGetResponseRaw:
 /* 800F5D8C 000F2CCC  38 21 00 28 */	addi r1, r1, 0x28
 /* 800F5D90 000F2CD0  7C 08 03 A6 */	mtlr r0
 /* 800F5D94 000F2CD4  4E 80 00 20 */	blr 
+.endfn SIGetResponseRaw
 
-.global SIGetResponse
-SIGetResponse:
+.fn SIGetResponse, global
 /* 800F5D98 000F2CD8  7C 08 02 A6 */	mflr r0
 /* 800F5D9C 000F2CDC  3C A0 80 4F */	lis r5, Packet@ha
 /* 800F5DA0 000F2CE0  90 01 00 04 */	stw r0, 4(r1)
@@ -1210,8 +1219,9 @@ SIGetResponse:
 /* 800F5E50 000F2D90  38 21 00 28 */	addi r1, r1, 0x28
 /* 800F5E54 000F2D94  7C 08 03 A6 */	mtlr r0
 /* 800F5E58 000F2D98  4E 80 00 20 */	blr 
+.endfn SIGetResponse
 
-AlarmHandler:
+.fn AlarmHandler, local
 /* 800F5E5C 000F2D9C  7C 08 02 A6 */	mflr r0
 /* 800F5E60 000F2DA0  3C 80 80 4F */	lis r4, Alarm@ha
 /* 800F5E64 000F2DA4  90 01 00 04 */	stw r0, 4(r1)
@@ -1248,9 +1258,9 @@ AlarmHandler:
 /* 800F5EDC 000F2E1C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F5EE0 000F2E20  7C 08 03 A6 */	mtlr r0
 /* 800F5EE4 000F2E24  4E 80 00 20 */	blr 
+.endfn AlarmHandler
 
-.global SITransfer
-SITransfer:
+.fn SITransfer, global
 /* 800F5EE8 000F2E28  7C 08 02 A6 */	mflr r0
 /* 800F5EEC 000F2E2C  90 01 00 04 */	stw r0, 4(r1)
 /* 800F5EF0 000F2E30  94 21 FF A0 */	stwu r1, -0x60(r1)
@@ -1349,8 +1359,9 @@ SITransfer:
 /* 800F6048 000F2F88  38 21 00 60 */	addi r1, r1, 0x60
 /* 800F604C 000F2F8C  7C 08 03 A6 */	mtlr r0
 /* 800F6050 000F2F90  4E 80 00 20 */	blr 
+.endfn SITransfer
 
-GetTypeCallback:
+.fn GetTypeCallback, local
 /* 800F6054 000F2F94  7C 08 02 A6 */	mflr r0
 /* 800F6058 000F2F98  90 01 00 04 */	stw r0, 4(r1)
 /* 800F605C 000F2F9C  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -1529,9 +1540,9 @@ GetTypeCallback:
 /* 800F62E0 000F3220  38 21 00 30 */	addi r1, r1, 0x30
 /* 800F62E4 000F3224  7C 08 03 A6 */	mtlr r0
 /* 800F62E8 000F3228  4E 80 00 20 */	blr 
+.endfn GetTypeCallback
 
-.global SIGetType
-SIGetType:
+.fn SIGetType, global
 /* 800F62EC 000F322C  7C 08 02 A6 */	mflr r0
 /* 800F62F0 000F3230  90 01 00 04 */	stw r0, 4(r1)
 /* 800F62F4 000F3234  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -1651,9 +1662,9 @@ SIGetType:
 /* 800F64A4 000F33E4  38 21 00 28 */	addi r1, r1, 0x28
 /* 800F64A8 000F33E8  7C 08 03 A6 */	mtlr r0
 /* 800F64AC 000F33EC  4E 80 00 20 */	blr 
+.endfn SIGetType
 
-.global SIGetTypeAsync
-SIGetTypeAsync:
+.fn SIGetTypeAsync, global
 /* 800F64B0 000F33F0  7C 08 02 A6 */	mflr r0
 /* 800F64B4 000F33F4  90 01 00 04 */	stw r0, 4(r1)
 /* 800F64B8 000F33F8  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -1738,9 +1749,9 @@ SIGetTypeAsync:
 /* 800F65E0 000F3520  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F65E4 000F3524  7C 08 03 A6 */	mtlr r0
 /* 800F65E8 000F3528  4E 80 00 20 */	blr 
+.endfn SIGetTypeAsync
 
-.global SIDecodeType
-SIDecodeType:
+.fn SIDecodeType, global
 /* 800F65EC 000F352C  54 60 07 39 */	rlwinm. r0, r3, 0, 0x1c, 0x1c
 /* 800F65F0 000F3530  54 64 06 3E */	clrlwi r4, r3, 0x18
 /* 800F65F4 000F3534  54 65 00 2E */	rlwinm r5, r3, 0, 0, 0x17
@@ -1836,9 +1847,9 @@ SIDecodeType:
 .L_800F6730:
 /* 800F6730 000F3670  38 60 00 40 */	li r3, 0x40
 /* 800F6734 000F3674  4E 80 00 20 */	blr 
+.endfn SIDecodeType
 
-.global SIProbe
-SIProbe:
+.fn SIProbe, global
 /* 800F6738 000F3678  7C 08 02 A6 */	mflr r0
 /* 800F673C 000F367C  90 01 00 04 */	stw r0, 4(r1)
 /* 800F6740 000F3680  94 21 FF F8 */	stwu r1, -8(r1)
@@ -1848,3 +1859,4 @@ SIProbe:
 /* 800F6750 000F3690  38 21 00 08 */	addi r1, r1, 8
 /* 800F6754 000F3694  7C 08 03 A6 */	mtlr r0
 /* 800F6758 000F3698  4E 80 00 20 */	blr 
+.endfn SIProbe

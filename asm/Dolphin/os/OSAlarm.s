@@ -1,20 +1,21 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-ResetFunctionInfo:
+.obj ResetFunctionInfo, local
 	.4byte OnReset
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj ResetFunctionInfo
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-AlarmQueue:
+.obj AlarmQueue, local
 	.skip 8
+.endobj AlarmQueue
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global OSInitAlarm
-OSInitAlarm:
+.fn OSInitAlarm, global
 /* 800EBAB4 000E89F4  7C 08 02 A6 */	mflr r0
 /* 800EBAB8 000E89F8  38 60 00 08 */	li r3, 8
 /* 800EBABC 000E89FC  90 01 00 04 */	stw r0, 4(r1)
@@ -38,15 +39,16 @@ OSInitAlarm:
 /* 800EBB00 000E8A40  38 21 00 08 */	addi r1, r1, 8
 /* 800EBB04 000E8A44  7C 08 03 A6 */	mtlr r0
 /* 800EBB08 000E8A48  4E 80 00 20 */	blr 
+.endfn OSInitAlarm
 
-.global OSCreateAlarm
-OSCreateAlarm:
+.fn OSCreateAlarm, global
 /* 800EBB0C 000E8A4C  38 00 00 00 */	li r0, 0
 /* 800EBB10 000E8A50  90 03 00 00 */	stw r0, 0(r3)
 /* 800EBB14 000E8A54  90 03 00 04 */	stw r0, 4(r3)
 /* 800EBB18 000E8A58  4E 80 00 20 */	blr 
+.endfn OSCreateAlarm
 
-InsertAlarm:
+.fn InsertAlarm, local
 /* 800EBB1C 000E8A5C  7C 08 02 A6 */	mflr r0
 /* 800EBB20 000E8A60  90 01 00 04 */	stw r0, 4(r1)
 /* 800EBB24 000E8A64  94 21 FF C0 */	stwu r1, -0x40(r1)
@@ -206,9 +208,9 @@ InsertAlarm:
 /* 800EBD60 000E8CA0  38 21 00 40 */	addi r1, r1, 0x40
 /* 800EBD64 000E8CA4  7C 08 03 A6 */	mtlr r0
 /* 800EBD68 000E8CA8  4E 80 00 20 */	blr 
+.endfn InsertAlarm
 
-.global OSSetAlarm
-OSSetAlarm:
+.fn OSSetAlarm, global
 /* 800EBD6C 000E8CAC  7C 08 02 A6 */	mflr r0
 /* 800EBD70 000E8CB0  90 01 00 04 */	stw r0, 4(r1)
 /* 800EBD74 000E8CB4  94 21 FF C8 */	stwu r1, -0x38(r1)
@@ -235,9 +237,9 @@ OSSetAlarm:
 /* 800EBDC8 000E8D08  38 21 00 38 */	addi r1, r1, 0x38
 /* 800EBDCC 000E8D0C  7C 08 03 A6 */	mtlr r0
 /* 800EBDD0 000E8D10  4E 80 00 20 */	blr 
+.endfn OSSetAlarm
 
-.global OSCancelAlarm
-OSCancelAlarm:
+.fn OSCancelAlarm, global
 /* 800EBDD4 000E8D14  7C 08 02 A6 */	mflr r0
 /* 800EBDD8 000E8D18  90 01 00 04 */	stw r0, 4(r1)
 /* 800EBDDC 000E8D1C  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -317,8 +319,9 @@ OSCancelAlarm:
 /* 800EBEE4 000E8E24  38 21 00 20 */	addi r1, r1, 0x20
 /* 800EBEE8 000E8E28  7C 08 03 A6 */	mtlr r0
 /* 800EBEEC 000E8E2C  4E 80 00 20 */	blr 
+.endfn OSCancelAlarm
 
-DecrementerExceptionCallback:
+.fn DecrementerExceptionCallback, local
 /* 800EBEF0 000E8E30  7C 08 02 A6 */	mflr r0
 /* 800EBEF4 000E8E34  90 01 00 04 */	stw r0, 4(r1)
 /* 800EBEF8 000E8E38  94 21 FD 10 */	stwu r1, -0x2f0(r1)
@@ -470,8 +473,9 @@ DecrementerExceptionCallback:
 /* 800EC114 000E9054  38 21 02 F0 */	addi r1, r1, 0x2f0
 /* 800EC118 000E9058  7C 08 03 A6 */	mtlr r0
 /* 800EC11C 000E905C  4E 80 00 20 */	blr 
+.endfn DecrementerExceptionCallback
 
-DecrementerExceptionHandler:
+.fn DecrementerExceptionHandler, local
 /* 800EC120 000E9060  90 04 00 00 */	stw r0, 0(r4)
 /* 800EC124 000E9064  90 24 00 04 */	stw r1, 4(r4)
 /* 800EC128 000E9068  90 44 00 08 */	stw r2, 8(r4)
@@ -492,8 +496,9 @@ DecrementerExceptionHandler:
 /* 800EC164 000E90A4  90 04 01 C0 */	stw r0, 0x1c0(r4)
 /* 800EC168 000E90A8  94 21 FF F8 */	stwu r1, -8(r1)
 /* 800EC16C 000E90AC  4B FF FD 84 */	b DecrementerExceptionCallback
+.endfn DecrementerExceptionHandler
 
-OnReset:
+.fn OnReset, local
 /* 800EC170 000E90B0  7C 08 02 A6 */	mflr r0
 /* 800EC174 000E90B4  90 01 00 04 */	stw r0, 4(r1)
 /* 800EC178 000E90B8  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -544,3 +549,4 @@ OnReset:
 /* 800EC204 000E9144  38 21 00 18 */	addi r1, r1, 0x18
 /* 800EC208 000E9148  7C 08 03 A6 */	mtlr r0
 /* 800EC20C 000E914C  4E 80 00 20 */	blr 
+.endfn OnReset

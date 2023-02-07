@@ -1,18 +1,18 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80479720:
+.obj lbl_80479720, local
 	.asciz "ERROR : No buffer available\n"
+.endobj lbl_80479720
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
-.global gTRKMsgBufs
-gTRKMsgBufs:
+.obj gTRKMsgBufs, global
 	.skip 0x19B0
+.endobj gTRKMsgBufs
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global TRKReadBuffer_ui32
-TRKReadBuffer_ui32:
+.fn TRKReadBuffer_ui32, global
 /* 800BB88C 000B87CC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800BB890 000B87D0  7C 08 02 A6 */	mflr r0
 /* 800BB894 000B87D4  3C C0 80 4F */	lis r6, gTRKBigEndian@ha
@@ -80,9 +80,9 @@ TRKReadBuffer_ui32:
 /* 800BB970 000B88B0  7C 08 03 A6 */	mtlr r0
 /* 800BB974 000B88B4  38 21 00 30 */	addi r1, r1, 0x30
 /* 800BB978 000B88B8  4E 80 00 20 */	blr 
+.endfn TRKReadBuffer_ui32
 
-.global TRKReadBuffer_ui8
-TRKReadBuffer_ui8:
+.fn TRKReadBuffer_ui8, global
 /* 800BB97C 000B88BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BB980 000B88C0  7C 08 02 A6 */	mflr r0
 /* 800BB984 000B88C4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -125,9 +125,9 @@ TRKReadBuffer_ui8:
 /* 800BBA08 000B8948  7C 08 03 A6 */	mtlr r0
 /* 800BBA0C 000B894C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BBA10 000B8950  4E 80 00 20 */	blr 
+.endfn TRKReadBuffer_ui8
 
-.global TRKReadBuffer1_ui64
-TRKReadBuffer1_ui64:
+.fn TRKReadBuffer1_ui64, global
 /* 800BBA14 000B8954  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800BBA18 000B8958  7C 08 02 A6 */	mflr r0
 /* 800BBA1C 000B895C  3C A0 80 4F */	lis r5, gTRKBigEndian@ha
@@ -190,9 +190,9 @@ TRKReadBuffer1_ui64:
 /* 800BBAF0 000B8A30  7C 08 03 A6 */	mtlr r0
 /* 800BBAF4 000B8A34  38 21 00 30 */	addi r1, r1, 0x30
 /* 800BBAF8 000B8A38  4E 80 00 20 */	blr 
+.endfn TRKReadBuffer1_ui64
 
-.global TRKAppendBuffer_ui32
-TRKAppendBuffer_ui32:
+.fn TRKAppendBuffer_ui32, global
 /* 800BBAFC 000B8A3C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800BBB00 000B8A40  7C 08 02 A6 */	mflr r0
 /* 800BBB04 000B8A44  3C C0 80 4F */	lis r6, gTRKBigEndian@ha
@@ -264,9 +264,9 @@ TRKAppendBuffer_ui32:
 /* 800BBBEC 000B8B2C  7C 08 03 A6 */	mtlr r0
 /* 800BBBF0 000B8B30  38 21 00 30 */	addi r1, r1, 0x30
 /* 800BBBF4 000B8B34  4E 80 00 20 */	blr 
+.endfn TRKAppendBuffer_ui32
 
-.global TRKAppendBuffer_ui8
-TRKAppendBuffer_ui8:
+.fn TRKAppendBuffer_ui8, global
 /* 800BBBF8 000B8B38  39 20 00 00 */	li r9, 0
 /* 800BBBFC 000B8B3C  38 00 00 00 */	li r0, 0
 /* 800BBC00 000B8B40  48 00 00 48 */	b .L_800BBC48
@@ -298,9 +298,9 @@ TRKAppendBuffer_ui8:
 .L_800BBC58:
 /* 800BBC58 000B8B98  7C 03 03 78 */	mr r3, r0
 /* 800BBC5C 000B8B9C  4E 80 00 20 */	blr 
+.endfn TRKAppendBuffer_ui8
 
-.global TRKAppendBuffer1_ui64
-TRKAppendBuffer1_ui64:
+.fn TRKAppendBuffer1_ui64, global
 /* 800BBC60 000B8BA0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800BBC64 000B8BA4  7C 08 02 A6 */	mflr r0
 /* 800BBC68 000B8BA8  3C 80 80 4F */	lis r4, gTRKBigEndian@ha
@@ -369,9 +369,9 @@ TRKAppendBuffer1_ui64:
 /* 800BBD50 000B8C90  7C 08 03 A6 */	mtlr r0
 /* 800BBD54 000B8C94  38 21 00 30 */	addi r1, r1, 0x30
 /* 800BBD58 000B8C98  4E 80 00 20 */	blr 
+.endfn TRKAppendBuffer1_ui64
 
-.global TRKReadBuffer
-TRKReadBuffer:
+.fn TRKReadBuffer, global
 /* 800BBD5C 000B8C9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BBD60 000B8CA0  7C 08 02 A6 */	mflr r0
 /* 800BBD64 000B8CA4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -410,9 +410,9 @@ TRKReadBuffer:
 /* 800BBDDC 000B8D1C  7C 08 03 A6 */	mtlr r0
 /* 800BBDE0 000B8D20  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BBDE4 000B8D24  4E 80 00 20 */	blr 
+.endfn TRKReadBuffer
 
-.global TRKAppendBuffer
-TRKAppendBuffer:
+.fn TRKAppendBuffer, global
 /* 800BBDE8 000B8D28  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BBDEC 000B8D2C  7C 08 02 A6 */	mflr r0
 /* 800BBDF0 000B8D30  90 01 00 24 */	stw r0, 0x24(r1)
@@ -459,9 +459,9 @@ TRKAppendBuffer:
 /* 800BBE80 000B8DC0  7C 08 03 A6 */	mtlr r0
 /* 800BBE84 000B8DC4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BBE88 000B8DC8  4E 80 00 20 */	blr 
+.endfn TRKAppendBuffer
 
-.global TRKSetBufferPosition
-TRKSetBufferPosition:
+.fn TRKSetBufferPosition, global
 /* 800BBE8C 000B8DCC  28 04 08 80 */	cmplwi r4, 0x880
 /* 800BBE90 000B8DD0  38 A0 00 00 */	li r5, 0
 /* 800BBE94 000B8DD4  40 81 00 0C */	ble .L_800BBEA0
@@ -476,9 +476,9 @@ TRKSetBufferPosition:
 .L_800BBEB4:
 /* 800BBEB4 000B8DF4  7C A3 2B 78 */	mr r3, r5
 /* 800BBEB8 000B8DF8  4E 80 00 20 */	blr 
+.endfn TRKSetBufferPosition
 
-.global TRKResetBuffer
-TRKResetBuffer:
+.fn TRKResetBuffer, global
 /* 800BBEBC 000B8DFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BBEC0 000B8E00  7C 08 02 A6 */	mflr r0
 /* 800BBEC4 000B8E04  2C 04 00 00 */	cmpwi r4, 0
@@ -496,9 +496,9 @@ TRKResetBuffer:
 /* 800BBEF0 000B8E30  7C 08 03 A6 */	mtlr r0
 /* 800BBEF4 000B8E34  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BBEF8 000B8E38  4E 80 00 20 */	blr 
+.endfn TRKResetBuffer
 
-.global TRKReleaseBuffer
-TRKReleaseBuffer:
+.fn TRKReleaseBuffer, global
 /* 800BBEFC 000B8E3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BBF00 000B8E40  7C 08 02 A6 */	mflr r0
 /* 800BBF04 000B8E44  2C 03 FF FF */	cmpwi r3, -1
@@ -525,9 +525,9 @@ TRKReleaseBuffer:
 /* 800BBF54 000B8E94  7C 08 03 A6 */	mtlr r0
 /* 800BBF58 000B8E98  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BBF5C 000B8E9C  4E 80 00 20 */	blr 
+.endfn TRKReleaseBuffer
 
-.global TRKGetBuffer
-TRKGetBuffer:
+.fn TRKGetBuffer, global
 /* 800BBF60 000B8EA0  2C 03 00 00 */	cmpwi r3, 0
 /* 800BBF64 000B8EA4  38 00 00 00 */	li r0, 0
 /* 800BBF68 000B8EA8  41 80 00 1C */	blt .L_800BBF84
@@ -540,9 +540,9 @@ TRKGetBuffer:
 .L_800BBF84:
 /* 800BBF84 000B8EC4  7C 03 03 78 */	mr r3, r0
 /* 800BBF88 000B8EC8  4E 80 00 20 */	blr 
+.endfn TRKGetBuffer
 
-.global TRKGetFreeBuffer
-TRKGetFreeBuffer:
+.fn TRKGetFreeBuffer, global
 /* 800BBF8C 000B8ECC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BBF90 000B8ED0  7C 08 02 A6 */	mflr r0
 /* 800BBF94 000B8ED4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -598,9 +598,9 @@ TRKGetFreeBuffer:
 /* 800BC048 000B8F88  7C 08 03 A6 */	mtlr r0
 /* 800BC04C 000B8F8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BC050 000B8F90  4E 80 00 20 */	blr 
+.endfn TRKGetFreeBuffer
 
-.global TRKInitializeMessageBuffers
-TRKInitializeMessageBuffers:
+.fn TRKInitializeMessageBuffers, global
 /* 800BC054 000B8F94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BC058 000B8F98  7C 08 02 A6 */	mflr r0
 /* 800BC05C 000B8F9C  3C 60 80 4F */	lis r3, gTRKMsgBufs@ha
@@ -631,3 +631,4 @@ TRKInitializeMessageBuffers:
 /* 800BC0BC 000B8FFC  7C 08 03 A6 */	mtlr r0
 /* 800BC0C0 000B9000  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BC0C4 000B9004  4E 80 00 20 */	blr 
+.endfn TRKInitializeMessageBuffers

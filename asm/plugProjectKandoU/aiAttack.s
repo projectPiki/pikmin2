@@ -1,36 +1,45 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047F2A0:
+.obj lbl_8047F2A0, local
 	.asciz "actAttack"
+.endobj lbl_8047F2A0
 .balign 4
-lbl_8047F2AC:
+.obj lbl_8047F2AC, local
 	.4byte lbl_80519078
 	.4byte lbl_8051907C
 	.4byte lbl_80519080
 	.4byte lbl_80519084
 	.4byte lbl_80519088
+.endobj lbl_8047F2AC
 .balign 4
-lbl_8047F2C0:
+.obj lbl_8047F2C0, local
 	.asciz "attack %s"
+.endobj lbl_8047F2C0
 .balign 4
-lbl_8047F2CC:
+.obj lbl_8047F2CC, local
 	.asciz "ActAttackArg"
+.endobj lbl_8047F2CC
 .balign 4
-lbl_8047F2DC:
+.obj lbl_8047F2DC, local
 	.asciz "aiAttack.cpp"
+.endobj lbl_8047F2DC
 .balign 4
-lbl_8047F2EC:
+.obj lbl_8047F2EC, local
 	.asciz "P2Assert"
+.endobj lbl_8047F2EC
 .balign 4
-lbl_8047F2F8:
+.obj lbl_8047F2F8, local
 	.asciz "ActionArg"
+.endobj lbl_8047F2F8
 .balign 4
-lbl_8047F304:
+.obj lbl_8047F304, local
 	.asciz "ApproachPosActionArg"
+.endobj lbl_8047F304
 .balign 4
-lbl_8047F31C:
+.obj lbl_8047F31C, local
 	.asciz "StickAttackActionArg"
+.endobj lbl_8047F31C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -78,50 +87,68 @@ lbl_8047F31C:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519078:
+.obj lbl_80519078, local
 	.asciz "SA"
+.endobj lbl_80519078
 .balign 4
-lbl_8051907C:
+.obj lbl_8051907C, local
 	.asciz "AJ"
+.endobj lbl_8051907C
 .balign 4
-lbl_80519080:
+.obj lbl_80519080, local
 	.asciz "JA"
+.endobj lbl_80519080
 .balign 4
-lbl_80519084:
+.obj lbl_80519084, local
 	.asciz "JP"
+.endobj lbl_80519084
 .balign 4
-lbl_80519088:
+.obj lbl_80519088, local
 	.asciz "LT"
+.endobj lbl_80519088
 .balign 4
-lbl_8051908C:
+.obj lbl_8051908C, local
 	.asciz "Attack"
+.endobj lbl_8051908C
 .balign 4
-lbl_80519094:
+.obj lbl_80519094, local
 	.float 32768.0
-lbl_80519098:
+.endobj lbl_80519094
+.obj lbl_80519098, local
 	.float 0.8
+.endobj lbl_80519098
 .balign 8
-lbl_805190A0:
+.obj lbl_805190A0, local
 	.4byte 0x43300000
 	.4byte 0x80000000
-lbl_805190A8:
+.endobj lbl_805190A0
+.obj lbl_805190A8, local
 	.float 10.0
-lbl_805190AC:
+.endobj lbl_805190A8
+.obj lbl_805190AC, local
 	.float -1.0
-lbl_805190B0:
+.endobj lbl_805190AC
+.obj lbl_805190B0, local
 	.float 2.0
-lbl_805190B4:
+.endobj lbl_805190B0
+.obj lbl_805190B4, local
 	.float 20.0
-lbl_805190B8:
+.endobj lbl_805190B4
+.obj lbl_805190B8, local
 	.float 0.0
-lbl_805190BC:
+.endobj lbl_805190B8
+.obj lbl_805190BC, local
 	.float 1.0
-lbl_805190C0:
+.endobj lbl_805190BC
+.obj lbl_805190C0, local
 	.float 100.0
-lbl_805190C4:
+.endobj lbl_805190C0
+.obj lbl_805190C4, local
 	.float 200.0
-lbl_805190C8:
+.endobj lbl_805190C4
+.obj lbl_805190C8, local
 	.float 0.5
+.endobj lbl_805190C8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .fn getInfo__Q26PikiAI9ActAttackFPc, global
