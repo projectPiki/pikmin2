@@ -20,6 +20,7 @@
 namespace Game {
 namespace KingChappy {
 enum StateID {
+	KINGCHAPPY_NULL     = -1,
 	KINGCHAPPY_Walk     = 0,
 	KINGCHAPPY_Attack   = 1,
 	KINGCHAPPY_Dead     = 2,
@@ -207,12 +208,12 @@ struct Obj : public EnemyBase {
 	void getTonguePosVel(Vector3f&, Vector3f&);
 	void setNextGoal();
 	void searchTarget();
-	void isOutOfTerritory(f32);
+	bool isOutOfTerritory(f32);
 	bool forceTransit(int);
 	void requestTransit(int);
 	void walkFunc();
-	void turnFunc(f32);
-	void isReachToGoal(f32);
+	f32 turnFunc(f32);
+	bool isReachToGoal(f32);
 	void checkAttack(bool);
 	void checkFlick(bool);
 	void checkDead(bool);
@@ -238,7 +239,7 @@ struct Obj : public EnemyBase {
 	SysShape::Joint* mTongueJoint2;      // _2DC, 'bero5'
 	SysShape::Joint* mMouthJoint2;       // _2E0, 'kuti'
 	u8 _2E4;                             // _2E4
-	u32 _2E8;                            // _2E8, unknown
+	StateID mNextState;                  // _2E8
 	u8 _2EC;                             // _2EC
 	int _2F0;                            // _2F0
 	Vector3f _2F4;                       // _2F4, initialised as mHomePosition (but y = 0.0f)
@@ -314,6 +315,11 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 struct State : public EnemyFSMState {
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
@@ -326,6 +332,7 @@ struct StateAppear : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
 };
 
 struct StateAttack : public State {
@@ -337,6 +344,10 @@ struct StateAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10; // _10, unknown
+	int _14; // _14, unknown
+	int _18; // _18, unknown
+	u8 _1C;  // _1C
 };
 
 struct StateCaution : public State {
@@ -358,6 +369,7 @@ struct StateDamage : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10; // _10, unknown
 };
 
 struct StateDead : public State {
@@ -371,6 +383,10 @@ struct StateDead : public State {
 	// _00-_10 	= EnemyFSMState
 };
 
+struct StateEatArg : public StateArg {
+	u8 _00; // _00, corresponds to _10 in StateEat
+};
+
 struct StateEat : public State {
 	StateEat(int);
 
@@ -379,6 +395,7 @@ struct StateEat : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u8 _10; // _10, unknown
 };
 
 struct StateFlick : public State {
@@ -412,6 +429,8 @@ struct StateHideWait : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
+	u32 _14; // _14, unknown
 };
 
 struct StateSwallow : public State {
@@ -443,6 +462,8 @@ struct StateWalk : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10; // _10, unknown
+	u32 _14; // _14, unknown
 };
 
 struct StateWarCry : public State {
