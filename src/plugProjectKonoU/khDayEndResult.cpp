@@ -707,8 +707,10 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 
 	pane1->show();
 	pane2->hide();
-	panes[0]->hide();
-	panes[1]->hide();
+
+	for (int i = 0; i < 2; i++) {
+		panes[i]->hide();
+	}
 
 	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 	u32 left   = 0;
