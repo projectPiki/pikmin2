@@ -42,6 +42,13 @@ enum StateID {
 };
 
 struct ConditionHeightCheckPiki : public Condition<Piki> {
+	inline ConditionHeightCheckPiki(EnemyBase* enemy)
+	    : mCreature(enemy)
+	{
+		mMinHeight = enemy->getPosition().y - 25.0f;
+		mMaxHeight = enemy->getPosition().y + 10.0f;
+	}
+
 	virtual bool satisfy(Piki* piki) // _08 (weak)
 	{
 		if (!piki->isStickTo()) {
@@ -69,9 +76,9 @@ struct ConditionHeightCheckPiki : public Condition<Piki> {
 	}
 
 	// _00 VTBL
-	Creature* mCreature; // _04
-	f32 mMinHeight;      // _08
-	f32 mMaxHeight;      // _0C
+	EnemyBase* mCreature; // _04
+	f32 mMinHeight;       // _08
+	f32 mMaxHeight;       // _0C
 };
 
 struct Obj : public EnemyBase {

@@ -1,5 +1,6 @@
 #include "Game/Entities/Jigumo.h"
 #include "Game/EnemyAnimKeyEvent.h"
+#include "Game/FakePiki.h"
 #include "Game/EnemyFunc.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
@@ -556,6 +557,65 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
+	if (_11) {
+		FakePiki* target = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mSearchAngle.mValue,
+		                                                    CG_PARMS(enemy)->mGeneral.mSearchDistance.mValue);
+		if (target) {
+			enemy->changeFaceDir(target);
+			OBJ(enemy)->mGoalPosition = Vector3f(enemy->getPosition());
+		}
+	}
+
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_2) {
+			_10 = 1;
+			enemy->hardConstraintOff();
+			enemy->setAtari(true);
+			enemy->setAlive(true);
+			_11 = 0;
+			OBJ(enemy)->effectStart();
+			if (enemy->mWaterBox) {
+				enemy->mSoundObj->startSound(PSSE_JIGUMO_ATTACK_WATER, 0);
+			} else {
+				enemy->mSoundObj->startSound(PSSE_JIGUMO_ATTACK_SOIL, 0);
+			}
+
+		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
+			_10                       = 0;
+			enemy->mCurrentVelocity   = Vector3f(0.0f);
+			enemy->mTargetVelocity    = Vector3f(0.0f);
+			OBJ(enemy)->_2EC          = roundAng(PI + enemy->mFaceDir);
+			OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
+			OBJ(enemy)->_344          = 0.0f;
+			transit(enemy, OBJ(enemy)->mNextState, nullptr);
+		}
+	}
+
+	if (_10) {
+		EnemyFunc::attackNavi(enemy, CG_PARMS(enemy)->mGeneral.mAttackRadius.mValue, CG_PARMS(enemy)->mGeneral.mAttackHitAngle.mValue,
+		                      CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
+		OBJ(enemy)->walkFunc();
+
+		ConditionHeightCheckPiki heightCheck(enemy);
+		if (EnemyFunc::eatPikmin(enemy, &heightCheck) > 0) {
+			OBJ(enemy)->mNextState = JIGUMO_Carry;
+			OBJ(enemy)->_2E8       = 1;
+			_10                    = 0;
+			OBJ(enemy)->effectStop();
+			enemy->mTargetVelocity = Vector3f(0.0f);
+		}
+
+		Vector3f pos     = OBJ(enemy)->getPosition();
+		Vector3f goalPos = OBJ(enemy)->getGoalPos();
+		Vector3f diff    = pos - goalPos;
+		if (diff.x * diff.x + diff.y * diff.y + diff.z * diff.z < 100.0f) {
+			_10 = 0;
+			OBJ(enemy)->effectStop();
+			enemy->mTargetVelocity = Vector3f(0.0f);
+		}
+	}
+
+	OBJ(enemy)->velocityControl();
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -909,6 +969,20 @@ void StateMiss::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMiss::exec(EnemyBase* enemy)
 {
+	if (CG_PARMS(enemy)->_8FC) {
+		Vector3f goalPos = OBJ(enemy)->getGoalPos();
+		f32 angleDist    = enemy->changeFaceDir(goalPos);
+		if (FABS(angleDist) < 0.05f) {
+			enemy->finishMotion();
+		}
+
+		if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+			transit(enemy, JIGUMO_Return, nullptr);
+		}
+
+	} else if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, JIGUMO_Return, nullptr);
+	}
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
