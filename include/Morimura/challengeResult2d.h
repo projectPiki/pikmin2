@@ -157,11 +157,34 @@ struct TChallengeResultScreen : public TChallengeScreen {
 
 // unused struct? or entirely inlined
 struct TChallengeResultCounter {
-	TChallengeResultCounter(unsigned long*, int, int);
+	TChallengeResultCounter(u32* val, int a1, int a2)
+	{
+		_00 = val;
+		_04 = *val;
+		_08 = 0;
+		_0C = 0;
+		_1C = 0;
+		_20 = 0;
+		_14 = a1;
+		_18 = a2;
+		_24 = new int[a1];
+	}
+
 	void start();
 	void stop();
 	void getFillRate();
 	void update();
+
+	u32* _00;
+	u32 _04;
+	int _08;
+	int _0C;
+	int _10;
+	int _14;
+	int _18;
+	int _1C;
+	int _20;
+	int* _24;
 };
 
 struct TChallengeEndCount : public TDayEndCount {
@@ -197,33 +220,6 @@ struct TChallengeEndCount2p : public TChallengeEndCount {
 	// _00-_D4 = TChallengeEndCount
 };
 
-// two structs with 0 functions to go off, no idea what to call them
-struct IDontKnow2 {
-	IDontKnow2(u32* val, int a1, int a2)
-	{
-		_00 = val;
-		_04 = *val;
-		_08 = 0;
-		_0C = 0;
-		_1C = 0;
-		_20 = 0;
-		_14 = a1;
-		_18 = a2;
-		_24 = new int[a1];
-	}
-
-	u32* _00;
-	u32 _04;
-	int _08;
-	int _0C;
-	int _10;
-	int _14;
-	int _18;
-	int _1C;
-	int _20;
-	int* _24;
-};
-
 struct TChallengeResult : public TTestBase {
 	TChallengeResult();
 	struct VectorUnit {
@@ -235,6 +231,7 @@ struct TChallengeResult : public TTestBase {
 		f32 _0C; // _0C
 	};
 
+	// this struct has 0 functions to go off, not sure what to call it yet
 	struct IDontKnow {
 		IDontKnow(TChallengeResult* obj, P2DScreen::Mgr_tuning* screen, u64 tag1, u64 tag2)
 		{
@@ -329,7 +326,7 @@ struct TChallengeResult : public TTestBase {
 	VectorUnit mVecUnit[4];                               // _128
 	VectorUnit _168;                                      // _168
 	f32 mMoveTimer;                                       // _178
-	IDontKnow2* _17C[4];                                  // _17C
+	TChallengeResultCounter* mResultCounters[4];          // _17C
 	IDontKnow* _18C[5];                                   // _18C
 	TOffsetMsgSet* mMesgOffs;                             // _1A0
 	efx2d::T2DCavecompLoop* mEfxCompLoop;                 // _1A4

@@ -1655,16 +1655,6 @@ void TCounterRV::reset()
 /*
  * --INFO--
  * Address:	........
- * Size:	000060
- */
-TChallengeResultCounter::TChallengeResultCounter(unsigned long*, int, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	000138
  */
 void TChallengeResultCounter::start()
@@ -1792,7 +1782,7 @@ TChallengeResult::TChallengeResult()
 	for (int i = 0; i < 3; i++) {
 		mCounters1[i]        = nullptr;
 		mHighScoreCounter[i] = nullptr;
-		_17C[i]              = nullptr;
+		mResultCounters[i]   = nullptr;
 		mBonuses[i]          = 0;
 		mPosList1[i]         = Vector2f(0.0f);
 		mPosList2[i]         = Vector2f(0.0f);
@@ -1800,10 +1790,10 @@ TChallengeResult::TChallengeResult()
 		mOnyonPane[i]        = nullptr;
 	}
 
-	_17C[0] = 0;
-	_17C[1] = 0;
-	_17C[2] = 0;
-	_17C[3] = 0;
+	mResultCounters[0] = 0;
+	mResultCounters[1] = 0;
+	mResultCounters[2] = 0;
+	mResultCounters[3] = 0;
 
 	for (int i = 0; i < 5; i++) {
 		_18C[i] = nullptr;
@@ -2108,10 +2098,10 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 	P2ASSERTLINE(1250, pane);
 	pane->hide();
 
-	_17C[0] = new IDontKnow2(&mPokoscore, 5, 4);
-	_17C[1] = new IDontKnow2(&mPokos, 4, 3);
-	_17C[2] = new IDontKnow2(&mTotalScore, 5, 3);
-	_17C[3] = new IDontKnow2(&mScore1, 5, 5);
+	mResultCounters[0] = new TChallengeResultCounter(&mPokoscore, 5, 4);
+	mResultCounters[1] = new TChallengeResultCounter(&mPokos, 4, 3);
+	mResultCounters[2] = new TChallengeResultCounter(&mTotalScore, 5, 3);
+	mResultCounters[3] = new TChallengeResultCounter(&mScore1, 5, 5);
 
 	for (int i = 0; i < 3; i++) {
 		J2DPane* pane = mCounters1[i]->getMotherPane();
