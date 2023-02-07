@@ -72,6 +72,8 @@ inline f32 absVal(f32 val) { return (val > 0.0f) ? val : -val; }
 
 inline int absVal(int val) { return (val > 0) ? val : -val; }
 
+inline f32 boundVal(f32 val, f32 limit) { return (val > 0.0f) ? limit : -limit; }
+
 inline f32 adjustVal(f32 y, f32 x, f32 delta)
 {
 	f32 diff = absVal(y - x);

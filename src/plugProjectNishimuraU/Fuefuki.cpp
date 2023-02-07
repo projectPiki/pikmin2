@@ -72,12 +72,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mDropGroup = 0;
 	_2C0       = 0;
 	resetAppearTimer();
-	mAirborneTimer = 0.0f;
+	mStateTimer = 0.0f;
 	resetWhisleTimer(true);
 	_2D4                   = 0.0f;
 	mWhistleRadiusModifier = 0.0f;
 
-	mStateID = FUEFUKI_NULL;
+	mNextState = FUEFUKI_NULL;
 	mFsm->start(this, FUEFUKI_Land, nullptr);
 }
 

@@ -598,6 +598,24 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
+	inline f32 turnToTarget2(Vector3f& XZ, f32 scale, f32 angLimit)
+	{
+		Vector3f pos       = getPosition();
+		Vector3f targetPos = XZ;
+
+		f32 angleDist   = angDist(angXZ(targetPos.x, targetPos.z, pos), getFaceDir());
+		f32 approxSpeed = angleDist * scale;
+		f32 limit       = (DEG2RAD * angLimit) * PI;
+		if (FABS(approxSpeed) > limit) {
+			approxSpeed = boundVal(approxSpeed, limit);
+		}
+
+		mFaceDir    = roundAng(approxSpeed + getFaceDir());
+		mRotation.y = mFaceDir;
+
+		return angleDist;
+	}
+
 	inline f32 getDamageAnimFrac(f32 scale) { return (mDamageAnimTimer / scale); }
 
 	inline f32 getSqrHomeRadius() const
