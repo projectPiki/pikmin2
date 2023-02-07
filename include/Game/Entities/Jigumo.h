@@ -42,9 +42,36 @@ enum StateID {
 };
 
 struct ConditionHeightCheckPiki : public Condition<Piki> {
-	virtual bool satisfy(Piki*); // _08 (weak)
+	virtual bool satisfy(Piki* piki) // _08 (weak)
+	{
+		if (!piki->isStickTo()) {
+			bool check       = false;
+			Creature* jigumo = mCreature;
+
+			if (piki->isPikmin() && piki->mSticker != jigumo && !piki->isStickToMouth()) {
+				check = true;
+			}
+
+			if (check) {
+				Vector3f pikiPos = piki->getPosition();
+				if (pikiPos.y > mMaxHeight) {
+					return false;
+				}
+
+				if (pikiPos.y < mMinHeight) {
+					return false;
+				}
+
+				return true;
+			}
+		}
+		return false;
+	}
 
 	// _00 VTBL
+	Creature* mCreature; // _04
+	f32 mMinHeight;      // _08
+	f32 mMaxHeight;      // _0C
 };
 
 struct Obj : public EnemyBase {
@@ -62,7 +89,7 @@ struct Obj : public EnemyBase {
 	virtual void collisionCallback(CollEvent& event);       // _EC
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual bool needShadow();                              // _138
-	virtual Vector3f getGoalPos();                          // _198 (weak)
+	virtual Vector3f getGoalPos() { return mGoalPosition; } // _198 (weak)
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
@@ -90,7 +117,7 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                              // _2F8 (weak)
 	//////////////// VTABLE END
 
-	void getGoalDist();
+	f32 getGoalDist();
 	void walkFunc();
 	void calcBaseTrMatrix();
 	void revisionAnimPos(f32);
@@ -122,7 +149,9 @@ struct Obj : public EnemyBase {
 	u8 _2F0[0x20];                 // _2F0, unknown
 	Quat _310;                     // _310
 	Quat _320;                     // _320
-	u8 _330[0x30];                 // _330, unknown
+	u8 _330[0x14];                 // _330, unknown
+	f32 _344;                      // _344
+	u8 _348[0x18];                 // _348, unknown
 	u16 _360;                      // _360
 	Vector3f _364;                 // _364
 	efx::TJgmAttack* mEfxAttack;   // _370
@@ -291,7 +320,8 @@ struct StateAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
+	u8 _10; // _10
+	u8 _11; // _11
 };
 
 struct StateCarry : public State {
@@ -353,7 +383,7 @@ struct StateMiss : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
+	u8 _10; // _10
 };
 
 struct StateReturn : public State {
@@ -376,7 +406,8 @@ struct StateSAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
+	u8 _10; // _10
+	u8 _11; // _11
 };
 
 struct StateSearch : public State {

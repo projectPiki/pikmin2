@@ -1,6 +1,7 @@
 #include "Game/Entities/Jigumo.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
+#include "Game/CameraMgr.h"
 #include "Game/rumble.h"
 #include "nans.h"
 
@@ -423,87 +424,26 @@ StateHide::StateHide(int stateID)
  */
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lbz      r0, 0x2e8(r4)
-	cmplwi   r0, 0
-	beq      lbl_8036689C
-	mr       r3, r31
-	li       r4, 7
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	b        lbl_803668AC
+	if (OBJ(enemy)->_2E8) {
+		enemy->startMotion(7, nullptr);
+	} else {
+		enemy->startMotion(8, nullptr);
+	}
 
-lbl_8036689C:
-	mr       r3, r31
-	li       r4, 8
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	OBJ(enemy)->_2BC        = enemy->mPosition;
+	enemy->mCurrentVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->hardConstraintOn();
+	enemy->setAtari(false);
+	enemy->mCollTree->getCollPart('body')->mSpecialID = '____';
+	enemy->mCollTree->getCollPart('head')->mSpecialID = '____';
+	OBJ(enemy)->_384                                  = 0;
+	enemy->disableEvent(0, EB_LifegaugeVisible);
 
-lbl_803668AC:
-	lfs      f1, 0x18c(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051E880@sda21(r2)
-	stfs     f1, 0x2bc(r31)
-	lfs      f1, 0x190(r31)
-	stfs     f1, 0x2c0(r31)
-	lfs      f1, 0x194(r31)
-	stfs     f1, 0x2c4(r31)
-	stfs     f0, 0x1c8(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, 0x626F6479@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x626F6479@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x68656164@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x68656164@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	li       r0, 0
-	lfs      f4, lbl_8051E8A0@sda21(r2)
-	stb      r0, 0x384(r31)
-	mr       r3, r31
-	li       r4, 0
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x15, 0x13
-	stw      r0, 0x1e0(r31)
-	lwz      r5, 0xc0(r31)
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue, CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue,
+	                            CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+
+	enemy->setEmotionCaution();
 }
 
 /*
@@ -513,106 +453,25 @@ lbl_803668AC:
  */
 void StateHide::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	lbz      r0, 0x2e8(r4)
-	cmplwi   r0, 0
-	bne      lbl_803669D0
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051E8A4@sda21(r2)
-	mr       r3, r31
-	fmuls    f1, f0, f1
-	bl       revisionAnimPos__Q34Game6Jigumo3ObjFf
+	if (!OBJ(enemy)->_2E8) {
+		OBJ(enemy)->revisionAnimPos(0.05f * enemy->getMotionFrame());
+	}
 
-lbl_803669D0:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80366AE8
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80366AE8
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x254(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_80366A94
-	lis      r3, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx10TJgmBubble@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple1@l
-	li       r6, 0xc1
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	addi     r0, r3, __vt__Q23efx10TJgmBubble@l
-	mr       r4, r31
-	addi     r3, r1, 8
-	sth      r6, 0x28(r1)
-	stw      r5, 0x2c(r1)
-	stw      r0, 0x24(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	lis      r3, __vt__Q23efx3Arg@ha
-	lfs      f1, 0xc(r1)
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	lfs      f0, 0x10(r1)
-	addi     r3, r1, 0x24
-	stw      r0, 0x14(r1)
-	addi     r4, r1, 0x14
-	stfs     f2, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		enemy->enableEvent(0, EB_IsCullable);
+		enemy->fadeEfxHamon();
+		if (enemy->mWaterBox) {
+			efx::TJgmBubble bubbleFX;
+			efx::Arg fxArg(enemy->getPosition());
+			bubbleFX.create(&fxArg);
+		}
 
-lbl_80366A94:
-	lfs      f1, lbl_8051E8A8@sda21(r2)
-	lfs      f0, 0x1fc(r31)
-	fadds    f1, f1, f0
-	bl       roundAng__Ff
-	stfs     f1, 0x2ec(r31)
-	mr       r3, r30
-	lfs      f0, lbl_8051E880@sda21(r2)
-	mr       r4, r31
-	lfs      f1, 0x198(r31)
-	li       r5, 1
-	li       r6, 0
-	stfs     f1, 0x2c8(r31)
-	lfs      f1, 0x19c(r31)
-	stfs     f1, 0x2cc(r31)
-	lfs      f1, 0x1a0(r31)
-	stfs     f1, 0x2d0(r31)
-	stfs     f0, 0x344(r31)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+		OBJ(enemy)->_2EC = roundAng(PI + enemy->mFaceDir);
 
-lbl_80366AE8:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
+		OBJ(enemy)->_344          = 0.0f;
+		transit(enemy, JIGUMO_Appear, nullptr);
+	}
 }
 
 /*
@@ -633,31 +492,10 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 4
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f0, lbl_8051E880@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x1c8(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(4, nullptr);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->deathProcedure();
 }
 
 /*
@@ -667,60 +505,18 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80366C44
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80366C28
-	mr       r3, r31
-	bl       boundEffect__Q34Game6Jigumo3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 8
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_2) {
+			OBJ(enemy)->boundEffect();
+			Vector3f pos = enemy->getPosition();
+			cameraMgr->startVibration(0, pos, 2);
+			rumbleMgr->startRumble(8, pos, 2);
+		}
 
-lbl_80366C28:
-	lwz      r3, 0x188(r31)
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80366C44
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_80366C44:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		if (enemy->mCurAnim->mType == KEYEVENT_END) {
+			enemy->kill(nullptr);
+		}
+	}
 }
 
 /*
@@ -741,55 +537,16 @@ StateAttack::StateAttack(int stateID)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x1e0(r31)
-	lis      r3, 0x626F6479@ha
-	li       r6, 5
-	li       r5, 0
-	rlwinm   r4, r0, 0, 0x1a, 0x18
-	li       r0, 1
-	stw      r4, 0x1e0(r31)
-	addi     r4, r3, 0x626F6479@l
-	stw      r6, 0x2d4(r31)
-	stb      r5, 0x2e8(r31)
-	stb      r5, 0x10(r30)
-	stb      r0, 0x11(r30)
-	lwz      r3, 0x114(r31)
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x68656164@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x68656164@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F745F5F@l
-	bl       __as__4ID32FUl
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x384(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(1, nullptr);
+	enemy->disableEvent(0, EB_IsCullable);
+	OBJ(enemy)->mNextState                            = JIGUMO_Miss;
+	OBJ(enemy)->_2E8                                  = 0;
+	_10                                               = 0;
+	_11                                               = 1;
+	enemy->mCollTree->getCollPart('body')->mSpecialID = 'st__';
+	enemy->mCollTree->getCollPart('head')->mSpecialID = '_t__';
+	OBJ(enemy)->_384                                  = 1;
+	enemy->setEmotionExcitement();
 }
 
 /*
@@ -1113,45 +870,13 @@ lbl_8036719C:
 
 /*
  * --INFO--
- * Address:	803671D8
- * Size:	00001C
- */
-Vector3f Obj::getGoalPos()
-{
-	/*
-	lfs      f0, 0x2c8(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 0x2cc(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0x2d0(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	803671F4
  * Size:	000038
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       effectStop__Q34Game6Jigumo3ObjFv
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OBJ(enemy)->effectStop();
+	enemy->setEmotionCaution();
 }
 
 /*
@@ -1172,27 +897,9 @@ StateMiss::StateMiss(int stateID)
  */
 void StateMiss::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r4
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r3, r6
-	lfs      f0, 0x1fc(r4)
-	li       r4, 0x10
-	stfs     f0, 0x2ec(r6)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	li       r0, 0
-	stb      r0, 0x10(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OBJ(enemy)->_2EC = enemy->mFaceDir;
+	enemy->startMotion(16, nullptr);
+	_10 = 0;
 }
 
 /*
@@ -1362,24 +1069,8 @@ StateReturn::StateReturn(int stateID)
  */
 void StateReturn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0xa
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       effectStart__Q34Game6Jigumo3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(10, nullptr);
+	OBJ(enemy)->effectStart();
 }
 
 /*
@@ -1389,111 +1080,32 @@ void StateReturn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateReturn::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       walkFunc__Q34Game6Jigumo3ObjFv
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051E880@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8036758C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036768C
+	OBJ(enemy)->walkFunc();
 
-lbl_8036758C:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803675CC
-	li       r0, 6
-	mr       r3, r30
-	stw      r0, 0x2d4(r31)
-	mr       r4, r31
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803675FC
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, JIGUMO_Dead, nullptr);
+		return;
+	}
 
-lbl_803675CC:
-	mr       r3, r31
-	bl       getGoalDist__Q34Game6Jigumo3ObjFv
-	lfs      f2, lbl_8051E8DC@sda21(r2)
-	lfs      f0, 0x1f8(r31)
-	fmuls    f0, f2, f0
-	fmuls    f0, f0, f0
-	fcmpo    cr0, f1, f0
-	bge      lbl_803675FC
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x385(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (EnemyFunc::isStartFlick(enemy, false)) {
+		OBJ(enemy)->mNextState = JIGUMO_Return;
+		transit(enemy, JIGUMO_Flick, nullptr);
 
-lbl_803675FC:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036768C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8036768C
-	lfs      f0, lbl_8051E880@sda21(r2)
-	stfs     f0, 0x1c8(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 0
-	ble      lbl_8036766C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 2
-	stw      r0, 0x2d4(r31)
-	b        lbl_8036768C
+	} else if (OBJ(enemy)->getGoalDist() < SQUARE(20.0f * enemy->mScaleModifier)) {
+		OBJ(enemy)->_385 = 0;
+		enemy->finishMotion();
+	}
 
-lbl_8036766C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036768C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		enemy->mCurrentVelocity = Vector3f(0.0f);
+		enemy->mTargetVelocity  = Vector3f(0.0f);
+		if (enemy->mStuckPikminCount > 0) {
+			transit(enemy, JIGUMO_Flick, nullptr);
+			OBJ(enemy)->mNextState = JIGUMO_Hide;
+		} else {
+			transit(enemy, JIGUMO_Hide, nullptr);
+		}
+	}
 }
 
 /*
@@ -1503,19 +1115,8 @@ lbl_8036768C:
  */
 void StateReturn::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stb      r0, 0x385(r4)
-	bl       effectStop__Q34Game6Jigumo3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OBJ(enemy)->_385 = 1;
+	OBJ(enemy)->effectStop();
 }
 
 /*
@@ -1536,24 +1137,8 @@ StateCarry::StateCarry(int stateID)
  */
 void StateCarry::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 2
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       effectStart__Q34Game6Jigumo3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(2, nullptr);
+	OBJ(enemy)->effectStart();
 }
 
 /*
@@ -1563,118 +1148,39 @@ void StateCarry::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateCarry::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stfd     f30, 0x10(r1)
-	psq_st   f30, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	bl       walkFunc__Q34Game6Jigumo3ObjFv
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051E880@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_803677B8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803678B4
+	OBJ(enemy)->walkFunc();
 
-lbl_803677B8:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803677F8
-	li       r0, 7
-	mr       r3, r30
-	stw      r0, 0x2d4(r31)
-	mr       r4, r31
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803678B4
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, JIGUMO_Dead, nullptr);
+		return;
+	}
 
-lbl_803677F8:
-	mr       r3, r31
-	bl       getGoalDist__Q34Game6Jigumo3ObjFv
-	lfs      f3, lbl_8051E8C4@sda21(r2)
-	fmr      f31, f1
-	lfs      f2, 0x1f8(r31)
-	lfs      f1, lbl_8051E8DC@sda21(r2)
-	lfs      f0, lbl_8051E8E8@sda21(r2)
-	fmadds   f30, f3, f2, f1
-	fmuls    f30, f30, f30
-	fmuls    f0, f0, f30
-	fcmpo    cr0, f31, f0
-	bge      lbl_80367838
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r0, 0
-	stb      r0, 0x385(r31)
+	if (EnemyFunc::isStartFlick(enemy, false)) {
+		OBJ(enemy)->mNextState = JIGUMO_Carry;
+		transit(enemy, JIGUMO_Flick, nullptr);
+		return;
+	}
 
-lbl_80367838:
-	fcmpo    cr0, f31, f30
-	bge      lbl_803678B4
-	lfs      f0, lbl_8051E880@sda21(r2)
-	stfs     f0, 0x1c8(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 1
-	ble      lbl_80367894
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 9
-	stw      r0, 0x2d4(r31)
-	b        lbl_803678B4
+	f32 goalDist = OBJ(enemy)->getGoalDist();
+	f32 limit    = 10.0f * enemy->mScaleModifier + 20.0f;
+	limit *= limit;
+	if (goalDist < 1.1f * limit) {
+		enemy->finishMotion();
+		OBJ(enemy)->_385 = 0;
+	}
 
-lbl_80367894:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	if (goalDist < limit) {
+		enemy->mCurrentVelocity = Vector3f(0.0f);
+		enemy->mTargetVelocity  = Vector3f(0.0f);
 
-lbl_803678B4:
-	psq_l    f31, 40(r1), 0, qr0
-	lfd      f31, 0x20(r1)
-	psq_l    f30, 24(r1), 0, qr0
-	lfd      f30, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x34(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		if (enemy->mStuckPikminCount > 1) {
+			transit(enemy, JIGUMO_Flick, nullptr);
+			OBJ(enemy)->mNextState = JIGUMO_Eat;
+
+		} else {
+			transit(enemy, JIGUMO_Eat, nullptr);
+		}
+	}
 }
 
 /*
@@ -1684,19 +1190,8 @@ lbl_803678B4:
  */
 void StateCarry::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stb      r0, 0x385(r4)
-	bl       effectStop__Q34Game6Jigumo3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OBJ(enemy)->_385 = 1;
+	OBJ(enemy)->effectStop();
 }
 
 /*
@@ -1717,63 +1212,17 @@ StateFlick::StateFlick(int stateID)
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_8051E880@sda21(r2)
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	stfs     f0, 0x1c8(r4)
-	stfs     f0, 0x1cc(r4)
-	stfs     f0, 0x1d0(r4)
-	lbz      r0, 0x2e8(r4)
-	cmplwi   r0, 0
-	beq      lbl_80367994
-	mr       r3, r31
-	li       r4, 6
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	b        lbl_803679A4
+	enemy->mTargetVelocity  = Vector3f(0.0f);
+	enemy->mCurrentVelocity = Vector3f(0.0f);
+	if (OBJ(enemy)->_2E8) {
+		enemy->startMotion(6, nullptr);
+	} else {
+		enemy->startMotion(9, nullptr);
+	}
 
-lbl_80367994:
-	mr       r3, r31
-	li       r4, 9
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-
-lbl_803679A4:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 8
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Vector3f pos = enemy->getPosition();
+	cameraMgr->startVibration(0, pos, 2);
+	rumbleMgr->startRumble(8, pos, 2);
 }
 
 /*
@@ -1783,79 +1232,28 @@ lbl_803679A4:
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stfd     f29, 0x10(r1)
-	psq_st   f29, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80367AE0
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80367AAC
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051E8A0@sda21(r2)
-	li       r4, 0
-	lfs      f30, 0x4c4(r5)
-	lfs      f29, 0x4ec(r5)
-	fmr      f2, f30
-	lfs      f31, 0x53c(r5)
-	fmr      f3, f29
-	lfs      f1, 0x514(r5)
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	fmr      f1, f31
-	lfs      f4, lbl_8051E8A0@sda21(r2)
-	fmr      f2, f30
-	mr       r3, r31
-	fmr      f3, f29
-	li       r4, 0
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f0, lbl_8051E880@sda21(r2)
-	stfs     f0, 0x20c(r31)
-	b        lbl_80367AE0
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_2) {
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
+			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
+			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
-lbl_80367AAC:
-	cmplwi   r0, 3
-	bne      lbl_80367AC0
-	mr       r3, r31
-	bl       boundEffect__Q34Game6Jigumo3ObjFv
-	b        lbl_80367AE0
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
+			enemy->mToFlick = 0.0f;
+			return;
+		}
 
-lbl_80367AC0:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80367AE0
-	lwz      r12, 0(r3)
-	li       r6, 0
-	lwz      r5, 0x2d4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+		if (enemy->mCurAnim->mType == KEYEVENT_3) {
+			OBJ(enemy)->boundEffect();
+			return;
+		}
 
-lbl_80367AE0:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	psq_l    f29, 24(r1), 0, qr0
-	lfd      f29, 0x10(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		if (enemy->mCurAnim->mType == KEYEVENT_END) {
+			transit(enemy, OBJ(enemy)->mNextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -1876,30 +1274,9 @@ StateEat::StateEat(int stateID)
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 5
-	lfs      f0, 0x18c(r31)
-	mr       r3, r31
-	stfs     f0, 0x2bc(r31)
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x194(r31)
-	stfs     f0, 0x2c4(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OBJ(enemy)->_2BC = enemy->mPosition;
+	enemy->startMotion(5, nullptr);
+	enemy->hardConstraintOn();
 }
 
 /*
@@ -1909,95 +1286,35 @@ void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateEat::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051E8F8@sda21(r2)
-	mr       r3, r31
-	fmuls    f1, f0, f1
-	bl       revisionAnimPos__Q34Game6Jigumo3ObjFf
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80367CA8
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 8
-	beq      lbl_80367C38
-	bge      lbl_80367C08
-	cmpwi    r0, 7
-	bge      lbl_80367C2C
-	cmpwi    r0, 2
-	bge      lbl_80367C14
-	b        lbl_80367CA8
+	OBJ(enemy)->revisionAnimPos(0.1f * enemy->getMotionFrame());
 
-lbl_80367C08:
-	cmpwi    r0, 0x3e8
-	beq      lbl_80367C54
-	b        lbl_80367CA8
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
+		case KEYEVENT_2:
+		case KEYEVENT_3:
+		case KEYEVENT_4:
+		case KEYEVENT_5:
+		case KEYEVENT_6:
+			if (enemy->mWaterBox) {
+				OBJ(enemy)->eatWaterEffect();
+			}
+			break;
+		case KEYEVENT_7:
+			OBJ(enemy)->_2E9 = 1;
+			break;
+		case KEYEVENT_8:
+			EnemyFunc::swallowPikmin(enemy, 300.0f, nullptr);
+			OBJ(enemy)->_2E9 = 0;
+			break;
+		case KEYEVENT_END:
+			if (enemy->mHealth == 0.0f) {
+				transit(enemy, JIGUMO_Dead, nullptr);
 
-lbl_80367C14:
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_80367CA8
-	mr       r3, r31
-	bl       eatWaterEffect__Q34Game6Jigumo3ObjFv
-	b        lbl_80367CA8
-
-lbl_80367C2C:
-	li       r0, 1
-	stb      r0, 0x2e9(r31)
-	b        lbl_80367CA8
-
-lbl_80367C38:
-	lfs      f1, lbl_8051E8FC@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	bl
-"swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	li       r0, 0
-	stb      r0, 0x2e9(r31)
-	b        lbl_80367CA8
-
-lbl_80367C54:
-	lfs      f1, lbl_8051E880@sda21(r2)
-	lfs      f0, 0x200(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_80367C88
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80367CA8
-
-lbl_80367C88:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80367CA8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			} else {
+				transit(enemy, JIGUMO_Hide, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -2018,42 +1335,12 @@ StateSearch::StateSearch(int stateID)
  */
 void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0xd
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 0
-	li       r0, -1
-	stw      r3, 0x230(r31)
-	stb      r3, 0x2e9(r31)
-	stw      r0, 0x10(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(13, nullptr);
+	enemy->setAtari(false);
+	enemy->setAlive(false);
+	enemy->mTargetCreature = nullptr;
+	OBJ(enemy)->_2E9       = 0;
+	_10                    = -1;
 }
 
 /*
@@ -2502,30 +1789,10 @@ StateSAttack::StateSAttack(int stateID)
  */
 void StateSAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0xb
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x10(r30)
-	stb      r0, 0x11(r30)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(11, nullptr);
+	_10 = 0;
+	_11 = 0;
+	enemy->setEmotionExcitement();
 }
 
 /*
@@ -2535,177 +1802,64 @@ void StateSAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSAttack::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x924(r3)
-	fcmpu    cr0, f0, f1
-	bne      lbl_80368498
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x11(r30)
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
+	if (enemy->getMotionFrame() == CG_PARMS(enemy)->_924) {
+		_11 = 1;
+		enemy->setAtari(true);
+		enemy->setAlive(true);
+	}
 
-lbl_80368498:
-	lbz      r0, 0x11(r30)
-	cmplwi   r0, 0
-	beq      lbl_803684E8
-	mr       r3, r31
-	li       r4, 0
-	bl
-"eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Q24Game4Piki>"
-	cmpwi    r3, 0
-	beq      lbl_803684C0
-	li       r0, 1
-	stb      r0, 0x10(r30)
+	if (_11) {
+		if (EnemyFunc::eatPikmin(enemy, nullptr)) {
+			_10 = 1;
+		}
 
-lbl_803684C0:
-	lfs      f1, lbl_8051E914@sda21(r2)
-	mr       r3, r31
-	lwz      r6, 0xc0(r31)
-	li       r4, 0
-	lfs      f0, 0x1f8(r31)
-	li       r5, 0
-	lfs      f2, 0x5dc(r6)
-	fmuls    f1, f1, f0
-	lfs      f3, 0x604(r6)
-	bl
-"attackNavi__Q24Game9EnemyFuncFPQ24Game8CreaturefffP8CollPartP23Condition<Q24Game4Navi>"
+		EnemyFunc::attackNavi(enemy, 50.0f * enemy->mScaleModifier, CG_PARMS(enemy)->mGeneral.mAttackHitAngle.mValue,
+		                      CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
+	}
 
-lbl_803684E8:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036864C
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 9
-	beq      lbl_80368604
-	bge      lbl_80368520
-	cmpwi    r0, 3
-	beq      lbl_80368584
-	bge      lbl_803685EC
-	cmpwi    r0, 2
-	bge      lbl_80368538
-	b        lbl_8036864C
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
+		case KEYEVENT_2:
+			if (enemy->mWaterBox) {
+				enemy->mSoundObj->startSound(PSSE_JIGUMO_ATTACK_WATER, 0);
+			} else {
+				enemy->mSoundObj->startSound(PSSE_JIGUMO_ATTACK_SOIL, 0);
+			}
+			break;
 
-lbl_80368520:
-	cmpwi    r0, 0x3e8
-	beq      lbl_8036862C
-	bge      lbl_8036864C
-	cmpwi    r0, 0xb
-	bge      lbl_8036864C
-	b        lbl_80368610
+		case KEYEVENT_3:
+			_11 = 0;
+			enemy->setAtari(false);
+			enemy->setAlive(false);
+			if (!_10) {
+				transit(enemy, JIGUMO_SMiss, nullptr);
+			}
+			break;
 
-lbl_80368538:
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_80368564
-	lwz      r3, 0x28c(r31)
-	li       r4, 0x58d2
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036864C
+		case KEYEVENT_4:
+		case KEYEVENT_5:
+		case KEYEVENT_6:
+		case KEYEVENT_7:
+		case KEYEVENT_8:
+			if (enemy->mWaterBox) {
+				OBJ(enemy)->eatWaterEffect();
+			}
+			break;
 
-lbl_80368564:
-	lwz      r3, 0x28c(r31)
-	li       r4, 0x58d1
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036864C
+		case KEYEVENT_9:
+			OBJ(enemy)->_2E9 = 1;
+			break;
 
-lbl_80368584:
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x11(r30)
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x10(r30)
-	cmplwi   r0, 0
-	bne      lbl_8036864C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xc
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036864C
+		case KEYEVENT_10:
+			EnemyFunc::swallowPikmin(enemy, 300.0f, nullptr);
+			OBJ(enemy)->_2E9 = 0;
+			break;
 
-lbl_803685EC:
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_8036864C
-	mr       r3, r31
-	bl       eatWaterEffect__Q34Game6Jigumo3ObjFv
-	b        lbl_8036864C
-
-lbl_80368604:
-	li       r0, 1
-	stb      r0, 0x2e9(r31)
-	b        lbl_8036864C
-
-lbl_80368610:
-	lfs      f1, lbl_8051E8FC@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	bl
-"swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	li       r0, 0
-	stb      r0, 0x2e9(r31)
-	b        lbl_8036864C
-
-lbl_8036862C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xa
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036864C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		case KEYEVENT_END:
+			transit(enemy, JIGUMO_Search, nullptr);
+			break;
+		}
+	}
 }
 
 /*
@@ -2713,20 +1867,7 @@ lbl_8036864C:
  * Address:	80368664
  * Size:	000024
  */
-void StateSAttack::cleanup(EnemyBase* enemy)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateSAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
@@ -2744,22 +1885,7 @@ StateSMiss::StateSMiss(int stateID)
  * Address:	803686C4
  * Size:	00002C
  */
-void StateSMiss::init(EnemyBase* enemy, StateArg* stateArg)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 0xc
-	stw      r0, 0x14(r1)
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateSMiss::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(12, nullptr); }
 
 /*
  * --INFO--
@@ -2768,109 +1894,9 @@ void StateSMiss::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSMiss::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80368730
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80368730
-	lwz      r12, 0(r3)
-	li       r5, 0xa
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80368730:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80368740
- * Size:	0000F0
- */
-bool ConditionHeightCheckPiki::satisfy(Piki* p)
-{
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8036880C
-	mr       r3, r29
-	lwz      r30, 4(r28)
-	lwz      r12, 0(r29)
-	li       r31, 0
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803687B8
-	lwz      r0, 0xf4(r29)
-	cmplw    r0, r30
-	beq      lbl_803687B8
-	mr       r3, r29
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803687B8
-	li       r31, 1
-
-lbl_803687B8:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8036880C
-	mr       r4, r29
-	addi     r3, r1, 8
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0xc(r28)
-	fcmpo    cr0, f1, f0
-	ble      lbl_803687F0
-	li       r3, 0
-	b        lbl_80368810
-
-lbl_803687F0:
-	lfs      f0, 8(r28)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r0, r0, 0x1f
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	b        lbl_80368810
-
-lbl_8036880C:
-	li       r3, 0
-
-lbl_80368810:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, JIGUMO_Search, nullptr);
+	}
 }
 } // namespace Jigumo
 } // namespace Game
