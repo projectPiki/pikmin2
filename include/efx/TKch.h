@@ -113,6 +113,11 @@ struct TKchDownsmoke : public TSimple1 {
 };
 
 struct TKchFlickSand : public TSimple2 {
+	inline TKchFlickSand()
+	    : TSimple2(PID_KchFlickSand_1, PID_KchFlickSand_2)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL

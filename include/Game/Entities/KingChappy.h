@@ -332,7 +332,7 @@ struct StateAppear : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
+	u8 _10; // _10
 };
 
 struct StateAttack : public State {
@@ -344,9 +344,9 @@ struct StateAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10, unknown
-	int _14; // _14, unknown
-	int _18; // _18, unknown
+	int _10; // _10
+	int _14; // _14
+	int _18; // _18
 	u8 _1C;  // _1C
 };
 
@@ -429,8 +429,8 @@ struct StateHideWait : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
-	u32 _14; // _14, unknown
+	int _10; // _10, unknown
+	u8 _14;  // _14
 };
 
 struct StateSwallow : public State {

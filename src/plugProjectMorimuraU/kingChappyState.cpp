@@ -5,6 +5,7 @@
 #include "Game/rumble.h"
 #include "Game/MapMgr.h"
 #include "Game/Navi.h"
+#include "Game/PikiMgr.h"
 #include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "nans.h"
@@ -841,7 +842,96 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
+		case KEYEVENT_END_BLEND:
+			OBJ(enemy)->endBlendAnimation();
+			break;
 
+		case KEYEVENT_2:
+			Vector3f pos = enemy->getPosition();
+			f32 faceDir  = enemy->getFaceDir();
+			efx::ArgRotYScale argScale(pos, faceDir, enemy->mScaleModifier);
+			if (enemy->mWaterBox) {
+				efx::TKchApWat wat;
+				wat.create(&argScale);
+				enemy->mSoundObj->startSound(PSSE_EN_KING_WATER_APPEAR, 0);
+			} else {
+				efx::TKchFlickSand sand;
+				sand.create(&argScale);
+			}
+
+			cameraMgr->startVibration(3, pos, 2);
+			rumbleMgr->startRumble(11, pos, 2);
+
+			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
+			PSM::checkBoss(soundObj);
+			if (soundObj) {
+				soundObj->jumpRequest(4);
+			}
+
+			break;
+
+		case KEYEVENT_3:
+			f32 yMax         = 25.0f + OBJ(enemy)->_300.y;                                     // f31
+			f32 yMin         = OBJ(enemy)->_300.y - 30.0f;                                     // f30
+			Vector3f footPos = OBJ(enemy)->_300;                                               // f28, na, f27
+			f32 trampleRange = SQUARE(*CG_PROPERPARMS(enemy).mFp08() * enemy->mScaleModifier); // f29
+
+			Iterator<Piki> iterPiki(pikiMgr);
+
+			CI_LOOP(iterPiki)
+			{
+				Piki* piki = *iterPiki;
+				if (piki->isAlive()) {
+					Vector3f pikiPos = piki->getPosition();
+					if (yMax > pikiPos.y && yMin < pikiPos.y && sqrDistanceXZ(footPos, pikiPos) < trampleRange) {
+						InteractPress pikiPress(enemy, CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr);
+						piki->stimulate(pikiPress);
+					}
+				}
+			}
+
+			Iterator<Navi> iterNavi(naviMgr);
+
+			bool naviCheck = true;
+
+			CI_LOOP(iterNavi)
+			{
+				Navi* navi = *iterNavi;
+				if (navi->isAlive()) {
+					Vector3f naviPos = navi->getPosition();
+					if (yMax > naviPos.y && yMin < naviPos.y && sqrDistanceXZ(footPos, naviPos) < trampleRange) {
+						InteractPress naviPress(enemy, CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr);
+						navi->stimulate(naviPress);
+						naviCheck = false;
+					}
+				}
+			}
+
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
+			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
+			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue * enemy->mScaleModifier;
+
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, enemy->getFaceDir(), nullptr);
+			if (naviCheck) {
+				EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
+			}
+			enemy->mToFlick = 0.0f;
+			if (!enemy->isEvent(0, EB_PS3)) {
+				enemy->disableEvent(0, EB_IsEnemyNotBitter);
+			}
+			break;
+
+		case KEYEVENT_END:
+			transit(enemy, KINGCHAPPY_Walk, nullptr);
+			break;
+		}
+	}
+
+	OBJ(enemy)->checkDead(true);
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0
@@ -1485,15 +1575,7 @@ lbl_8035A91C:
  * Address:	8035A96C
  * Size:	000010
  */
-void StateFlick::cleanup(EnemyBase* enemy)
-{
-	/*
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r4)
-	blr
-	*/
-}
+void StateFlick::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemyNotBitter); }
 
 /*
  * --INFO--
@@ -1525,6 +1607,82 @@ void StateWarCry::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWarCry::exec(EnemyBase* enemy)
 {
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
+		case KEYEVENT_END_BLEND:
+			OBJ(enemy)->endBlendAnimation();
+			break;
+
+		case KEYEVENT_2:
+			OBJ(enemy)->createEffect(3);
+			break;
+
+		case KEYEVENT_3:
+			OBJ(enemy)->createEffect(2);
+			OBJ(enemy)->requestTransit(KINGCHAPPY_Appear);
+			OBJ(enemy)->requestTransit(KINGCHAPPY_WarCry);
+			Vector3f rumblePos = enemy->getPosition();
+			cameraMgr->startVibration(26, rumblePos, 2);
+			rumbleMgr->startRumble(3, rumblePos, 2);
+			break;
+
+		case KEYEVENT_4:
+			Vector3f kingPos = enemy->getPosition();
+			f32 yMin         = kingPos.y - 20.0f; // f29
+			f32 yMax         = 30.0f + yMin;      // f28
+			Iterator<Piki> iterPiki(pikiMgr);
+			CI_LOOP(iterPiki)
+			{
+				Piki* piki = *iterPiki;
+				if (piki->isAlive()) {
+					Vector3f pikiPos = piki->getPosition();
+					if (yMax > pikiPos.y && yMin < pikiPos.y) {
+						f32 angDist         = enemy->changeFaceDir(piki);
+						Vector3f newPikiPos = piki->getPosition();
+						Vector3f newKingPos = enemy->getPosition();
+						bool distCheck      = false;
+						if (FABS(angDist) <= sqrDistanceXZ(newPikiPos, newKingPos)) { // this should be two checks + also wrong
+							distCheck = true;
+						}
+						if (distCheck) {
+							InteractAstonish astonish(enemy, 100.0f);
+							piki->stimulate(astonish);
+						}
+					}
+				}
+			}
+
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
+			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
+			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue * enemy->mScaleModifier;
+
+			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, enemy->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
+
+			enemy->mToFlick = 0.0f;
+			break;
+
+		case KEYEVENT_5:
+			OBJ(enemy)->fadeEffect(2);
+			break;
+
+		case KEYEVENT_6:
+			OBJ(enemy)->fadeEffect(3);
+			break;
+
+		case KEYEVENT_END:
+			if (enemy->mHealth <= 0.0f) {
+				transit(enemy, KINGCHAPPY_Dead, nullptr);
+			} else {
+				transit(enemy, KINGCHAPPY_Walk, nullptr);
+			}
+			break;
+		}
+	}
+
+	OBJ(enemy)->checkDead(true);
 	/*
 	stwu     r1, -0x160(r1)
 	mflr     r0
@@ -2224,48 +2382,15 @@ StateHide::StateHide(int stateID)
  */
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	li       r4, 4
-	mr       r3, r31
-	bl startMotionSelf__Q34Game10KingChappy3ObjFiPQ28SysShape14MotionListener mr
-	r3, r31 bl       setEmotionCaution__Q24Game9EnemyBaseFv lfs      f0,
-	lbl_8051E578@sda21(r2) mr       r3, r31 stfs     f0, 0x1d4(r31) stfs     f0,
-	0x1d8(r31) stfs     f0, 0x1dc(r31) lwz      r0, 0x1e0(r31) oris     r0, r0,
-	0x40 stw      r0, 0x1e0(r31) bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 6
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xd
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	OBJ(enemy)->startMotionSelf(4, nullptr);
+	enemy->setEmotionCaution();
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	enemy->enableEvent(0, EB_IsImmuneBitter);
+	enemy->hardConstraintOn();
+
+	Vector3f pos = enemy->getPosition();
+	cameraMgr->startVibration(6, pos, 2);
+	rumbleMgr->startRumble(13, pos, 2);
 }
 
 /*
@@ -2275,140 +2400,33 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateHide::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8035B8C8
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 0x3e8
-	beq      lbl_8035B818
-	bge      lbl_8035B798
-	cmpwi    r0, 3
-	beq      lbl_8035B8C8
-	bge      lbl_8035B78C
-	cmpwi    r0, 2
-	bge      lbl_8035B7B0
-	b        lbl_8035B8C8
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
+		case KEYEVENT_END_BLEND:
+			OBJ(enemy)->endBlendAnimation();
+			break;
 
-lbl_8035B78C:
-	cmpwi    r0, 5
-	bge      lbl_8035B8C8
-	b        lbl_8035B808
+		case KEYEVENT_2:
+			OBJ(enemy)->createEffect(1);
+			if (enemy->mWaterBox) {
+				enemy->mSoundObj->startSound(PSSE_EN_KING_WATER_APPEAR, 0);
+			} else {
+				enemy->mSoundObj->startSound(PSSE_EN_KING_APPEAR, 0);
+			}
+			break;
 
-lbl_8035B798:
-	cmpwi    r0, 0x7d0
-	beq      lbl_8035B7A4
-	b        lbl_8035B8C8
+		case KEYEVENT_4:
+			OBJ(enemy)->fadeEffect(1);
+			break;
 
-lbl_8035B7A4:
-	mr       r3, r29
-	bl       endBlendAnimation__Q34Game10KingChappy3ObjFv
-	b        lbl_8035B8C8
-
-lbl_8035B7B0:
-	mr       r3, r29
-	li       r4, 1
-	bl       createEffect__Q34Game10KingChappy3ObjFi
-	lwz      r0, 0x280(r29)
-	cmplwi   r0, 0
-	beq      lbl_8035B7E8
-	lwz      r3, 0x28c(r29)
-	li       r4, 0x5806
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8035B8C8
-
-lbl_8035B7E8:
-	lwz      r3, 0x28c(r29)
-	li       r4, 0x585a
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8035B8C8
-
-lbl_8035B808:
-	mr       r3, r29
-	li       r4, 1
-	bl       fadeEffect__Q34Game10KingChappy3ObjFi
-	b        lbl_8035B8C8
-
-lbl_8035B818:
-	lwz      r30, 0x28c(r29)
-	li       r31, 0
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 5
-	beq      lbl_8035B874
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_8035B874
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 7
-	bne      lbl_8035B878
-
-lbl_8035B874:
-	li       r31, 1
-
-lbl_8035B878:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_8035B89C
-	lis      r3, lbl_804910F0@ha
-	lis      r5, lbl_80491108@ha
-	addi     r3, r3, lbl_804910F0@l
-	li       r4, 0x454
-	addi     r5, r5, lbl_80491108@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8035B89C:
-	mr       r3, r30
-	li       r4, 0
-	bl       setAppearFlag__Q23PSM9EnemyBossFb
-	mr       r3, r28
-	mr       r4, r29
-	lwz      r12, 0(r28)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8035B8C8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		case KEYEVENT_END:
+			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
+			PSM::checkBoss(soundObj);
+			soundObj->setAppearFlag(false);
+			transit(enemy, KINGCHAPPY_HideWait, nullptr);
+			break;
+		}
+	}
 }
 
 /*
@@ -2418,29 +2436,9 @@ lbl_8035B8C8:
  */
 void StateHide::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	mr       r3, r31
-	bl       fadeEffect__Q34Game10KingChappy3ObjFi
-	mr       r3, r31
-	li       r4, 0
-	bl       fadeEffect__Q34Game10KingChappy3ObjFi
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x254(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OBJ(enemy)->fadeEffect(1);
+	OBJ(enemy)->fadeEffect(0);
+	enemy->fadeEfxHamon();
 }
 
 /*
@@ -2461,40 +2459,13 @@ StateHideWait::StateHideWait(int stateID)
  */
 void StateHideWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0xa
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r0, 0x10(r3)
-	mr       r3, r31
-	bl startMotionSelf__Q34Game10KingChappy3ObjFiPQ28SysShape14MotionListener
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0x15, 0x13
-	stw      r0, 0x1e0(r31)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	bl       fadeEffect__Q34Game10KingChappy3ObjFi
-	li       r0, 0
-	stb      r0, 0x14(r30)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_10 = 0;
+	OBJ(enemy)->startMotionSelf(10, nullptr);
+	enemy->disableEvent(0, EB_LifegaugeVisible);
+	enemy->hardConstraintOn();
+	OBJ(enemy)->fadeEffect(0);
+	_14 = 0;
+	enemy->enableEvent(0, EB_IsImmuneBitter);
 }
 
 /*
@@ -2504,125 +2475,40 @@ void StateHideWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateHideWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x254(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x14(r30)
-	cmplwi   r0, 0
-	bne      lbl_8035BA60
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_8035BA60
-	mr       r3, r31
-	li       r4, 8
-	bl       createEffect__Q34Game10KingChappy3ObjFi
-	li       r0, 1
-	stb      r0, 0x14(r30)
+	enemy->fadeEfxHamon();
+	if (!_14 && enemy->mWaterBox) {
+		OBJ(enemy)->createEffect(8);
+		_14 = 1;
+	}
 
-lbl_8035BA60:
-	lwz      r3, 0x10(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r30)
-	lbz      r0, 0x2ec(r31)
-	cmplwi   r0, 0
-	bne      lbl_8035BA8C
-	lwz      r3, 0xc0(r31)
-	lwz      r4, 0x10(r30)
-	lwz      r0, 0xb8c(r3)
-	cmpw     r4, r0
-	ble      lbl_8035BB10
+	_10++;
 
-lbl_8035BA8C:
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f0, 0x1f8(r31)
-	li       r4, 0
-	lfs      f1, 0x844(r5)
-	fmuls    f31, f1, f0
-	fmr      f1, f31
-	bl
-"isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8035BABC
-	li       r0, 1
-	b        lbl_8035BAE0
+	if (OBJ(enemy)->_2EC || _10 > CG_PROPERPARMS(enemy).mIp02.mValue) {
+		f32 range = CG_PROPERPARMS(enemy).mFp02.mValue * enemy->mScaleModifier;
 
-lbl_8035BABC:
-	fmr      f1, f31
-	mr       r3, r31
-	li       r4, 0
-	bl
-"isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8035BADC
-	li       r0, 1
-	b        lbl_8035BAE0
+		bool doWake;
+		if (EnemyFunc::isThereOlimar(enemy, range, nullptr)) {
+			doWake = true;
+		} else if (EnemyFunc::isTherePikmin(enemy, range, nullptr)) {
+			doWake = true;
+		} else {
+			doWake = false;
+		}
 
-lbl_8035BADC:
-	li       r0, 0
+		if (doWake) {
+			transit(enemy, KINGCHAPPY_Appear, nullptr);
+			OBJ(enemy)->_2EC = 0;
+		}
+	}
 
-lbl_8035BAE0:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8035BB10
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xa
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x2ec(r31)
-
-lbl_8035BB10:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8035BB68
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x7d0
-	bne      lbl_8035BB38
-	mr       r3, r31
-	bl       endBlendAnimation__Q34Game10KingChappy3ObjFv
-	b        lbl_8035BB68
-
-lbl_8035BB38:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8035BB68
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xa
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x2ec(r31)
-
-lbl_8035BB68:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			OBJ(enemy)->endBlendAnimation();
+		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
+			transit(enemy, KINGCHAPPY_Appear, nullptr);
+			OBJ(enemy)->_2EC = 0;
+		}
+	}
 }
 
 /*
@@ -2632,24 +2518,8 @@ lbl_8035BB68:
  */
 void StateHideWait::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 8
-	mr       r3, r31
-	bl       fadeEffect__Q34Game10KingChappy3ObjFi
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OBJ(enemy)->fadeEffect(8);
+	enemy->disableEvent(0, EB_IsImmuneBitter);
 }
 
 /*
@@ -2670,203 +2540,37 @@ StateAppear::StateAppear(int stateID)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stw      r31, 0x7c(r1)
-	stw      r30, 0x78(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	li       r4, 9
-	li       r5, 0
-	bl startMotionSelf__Q34Game10KingChappy3ObjFiPQ28SysShape14MotionListener mr
-r3, r31 bl       searchTarget__Q34Game10KingChappy3ObjFv mr       r3, r31 bl
-setEmotionExcitement__Q24Game9EnemyBaseFv lwz      r4, 0x1e0(r31) li       r0, 1
-	mr       r3, r31
-	rlwinm   r4, r4, 0, 0xa, 8
-	stw      r4, 0x1e0(r31)
-	lwz      r4, 0x1e0(r31)
-	oris     r4, r4, 0x20
-	stw      r4, 0x1e0(r31)
-	stb      r0, 0x10(r30)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	fmr      f31, f1
-	lwz      r12, 0(r31)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lfs      f1, 0xc(r1)
-	lis      r3, __vt__Q23efx12ArgRotYScale@ha
-	lfs      f0, 0x10(r1)
-	addi     r4, r4, __vt__Q23efx3Arg@l
-	stfs     f2, 0x14(r1)
-	addi     r0, r3, __vt__Q23efx12ArgRotYScale@l
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lfs      f3, 0x1f8(r31)
-	stw      r4, 0x38(r1)
-	stfs     f2, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	stfs     f0, 0x44(r1)
-	stw      r0, 0x38(r1)
-	stfs     f31, 0x48(r1)
-	stfs     f3, 0x4c(r1)
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_8035BD7C
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r5, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple5@ha
-	stw      r0, 0x50(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple5@l
-	lis      r3, __vt__Q23efx9TKchApWat@ha
-	li       r4, 0x211
-	stw      r0, 0x50(r1)
-	addi     r0, r3, __vt__Q23efx9TKchApWat@l
-	li       r9, 0x212
-	li       r8, 0x213
-	li       r7, 0x214
-	li       r6, 0x215
-	sth      r4, 0x54(r1)
-	addi     r3, r1, 0x50
-	addi     r4, r1, 0x38
-	sth      r9, 0x56(r1)
-	sth      r8, 0x58(r1)
-	sth      r7, 0x5a(r1)
-	sth      r6, 0x5c(r1)
-	stw      r5, 0x60(r1)
-	stw      r5, 0x64(r1)
-	stw      r5, 0x68(r1)
-	stw      r5, 0x6c(r1)
-	stw      r5, 0x70(r1)
-	stw      r0, 0x50(r1)
-	bl       create__Q23efx9TKchApWatFPQ23efx3Arg
-	lwz      r3, 0x28c(r31)
-	li       r4, 0x5806
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8035BDF0
+	OBJ(enemy)->startMotionSelf(9, nullptr);
+	OBJ(enemy)->searchTarget();
+	enemy->setEmotionExcitement();
+	enemy->disableEvent(0, EB_IsImmuneBitter);
+	enemy->enableEvent(0, EB_IsEnemyNotBitter);
+	_10 = 1;
 
-lbl_8035BD7C:
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r5, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple3@ha
-	stw      r0, 0x20(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple3@l
-	lis      r3, __vt__Q23efx10TKchApSand@ha
-	li       r4, 0x20e
-	stw      r0, 0x20(r1)
-	addi     r0, r3, __vt__Q23efx10TKchApSand@l
-	li       r7, 0x20f
-	li       r6, 0x210
-	sth      r4, 0x24(r1)
-	addi     r3, r1, 0x20
-	addi     r4, r1, 0x38
-	sth      r7, 0x26(r1)
-	sth      r6, 0x28(r1)
-	stw      r5, 0x2c(r1)
-	stw      r5, 0x30(r1)
-	stw      r5, 0x34(r1)
-	stw      r0, 0x20(r1)
-	bl       create__Q23efx10TKchApSandFPQ23efx3Arg
-	lwz      r3, 0x28c(r31)
-	li       r4, 0x585a
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
+	f32 faceDir  = enemy->getFaceDir();
+	Vector3f pos = enemy->getPosition();
+	efx::ArgRotYScale argScale(pos, faceDir, enemy->mScaleModifier);
 
-lbl_8035BDF0:
-	mr       r3, r31
-	li       r4, 0
-	bl       createEffect__Q34Game10KingChappy3ObjFi
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x250(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xf
-	li       r6, 2
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xc
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r30, 0x28c(r31)
-	li       r31, 0
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 5
-	beq      lbl_8035BE94
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_8035BE94
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 7
-	bne      lbl_8035BE98
+	if (enemy->mWaterBox) {
+		efx::TKchApWat waterFX;
+		waterFX.create(&argScale);
+		enemy->mSoundObj->startSound(PSSE_EN_KING_WATER_APPEAR, 0);
+	} else {
+		efx::TKchApSand sandFX;
+		sandFX.create(&argScale);
+		enemy->mSoundObj->startSound(PSSE_EN_KING_APPEAR, 0);
+	}
 
-lbl_8035BE94:
-	li       r31, 1
+	OBJ(enemy)->createEffect(0);
+	enemy->createEfxHamon();
+	cameraMgr->startVibration(15, pos, 2);
+	rumbleMgr->startRumble(12, pos, 2);
 
-lbl_8035BE98:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_8035BEBC
-	lis      r3, lbl_804910F0@ha
-	lis      r5, lbl_80491108@ha
-	addi     r3, r3, lbl_804910F0@l
-	li       r4, 0x454
-	addi     r5, r5, lbl_80491108@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8035BEBC:
-	cmplwi   r30, 0
-	beq      lbl_8035BED0
-	mr       r3, r30
-	li       r4, 1
-	bl       setAppearFlag__Q23PSM9EnemyBossFb
-
-lbl_8035BED0:
-	psq_l    f31, 136(r1), 0, qr0
-	lwz      r0, 0x94(r1)
-	lfd      f31, 0x80(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
+	PSM::checkBoss(soundObj);
+	if (soundObj) {
+		soundObj->setAppearFlag(true);
+	}
 }
 
 /*
@@ -2876,127 +2580,41 @@ lbl_8035BED0:
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_8035C060
-	lwz      r0, 0x1c(r5)
-	cmpwi    r0, 0x3e8
-	beq      lbl_8035C028
-	bge      lbl_8035BF58
-	cmpwi    r0, 3
-	beq      lbl_8035BF70
-	bge      lbl_8035BF4C
-	b        lbl_8035C060
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
+		case KEYEVENT_END_BLEND:
+			OBJ(enemy)->endBlendAnimation();
+			break;
 
-lbl_8035BF4C:
-	cmpwi    r0, 5
-	bge      lbl_8035C060
-	b        lbl_8035BFC4
+		case KEYEVENT_2:
+			// probably some commented out code
+			break;
 
-lbl_8035BF58:
-	cmpwi    r0, 0x7d0
-	beq      lbl_8035BF64
-	b        lbl_8035C060
+		case KEYEVENT_3:
+			_10             = 0;
+			f32 shakePower  = CG_PROPERPARMS(enemy).mFp10.mValue;
+			f32 shakeDamage = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
+			f32 shakeRange  = CG_PROPERPARMS(enemy).mFp09.mValue;
 
-lbl_8035BF64:
-	mr       r3, r31
-	bl       endBlendAnimation__Q34Game10KingChappy3ObjFv
-	b        lbl_8035C060
+			EnemyFunc::flickNearbyPikmin(enemy, shakeRange, shakePower, shakeDamage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, shakeRange, shakePower, shakeDamage, -1000.0f, nullptr);
+			break;
 
-lbl_8035BF70:
-	li       r0, 0
-	lfs      f4, lbl_8051E5A4@sda21(r2)
-	stb      r0, 0x10(r3)
-	mr       r3, r31
-	li       r4, 0
-	lwz      r5, 0xc0(r31)
-	lfs      f31, 0x984(r5)
-	lfs      f30, 0x4ec(r5)
-	lfs      f29, 0x95c(r5)
-	fmr      f2, f31
-	fmr      f3, f30
-	fmr      f1, f29
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	fmr      f1, f29
-	lfs      f4, lbl_8051E5A4@sda21(r2)
-	fmr      f2, f31
-	mr       r3, r31
-	fmr      f3, f30
-	li       r4, 0
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	b        lbl_8035C060
+		case KEYEVENT_4:
+			OBJ(enemy)->createBounceEffect();
+			Vector3f pos = enemy->getPosition();
+			cameraMgr->startVibration(6, pos, 2);
+			rumbleMgr->startRumble(11, pos, 2);
+			break;
 
-lbl_8035BFC4:
-	mr       r3, r31
-	bl       createBounceEffect__Q34Game10KingChappy3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 6
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_8035C060
-
-lbl_8035C028:
-	lwz      r12, 0(r3)
-	li       r5, 0xb
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x800
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r31)
-
-lbl_8035C060:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+		case KEYEVENT_END:
+			transit(enemy, KINGCHAPPY_Caution, nullptr);
+			enemy->hardConstraintOff();
+			enemy->enableEvent(0, EB_LifegaugeVisible);
+			enemy->disableEvent(0, EB_IsEnemyNotBitter);
+			break;
+		}
+	}
 }
 
 /*
@@ -3015,22 +2633,7 @@ StateCaution::StateCaution(int stateID)
  * Address:	8035C0C8
  * Size:	00002C
  */
-void StateCaution::init(EnemyBase* enemy, StateArg* stateArg)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 0xc
-	stw      r0, 0x14(r1)
-	li       r5, 0
-	bl startMotionSelf__Q34Game10KingChappy3ObjFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateCaution::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(12, nullptr); }
 
 /*
  * --INFO--
@@ -3039,37 +2642,14 @@ void StateCaution::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateCaution::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_8035C148
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x7d0
-	bne      lbl_8035C128
-	mr       r3, r4
-	bl       endBlendAnimation__Q34Game10KingChappy3ObjFv
-	b        lbl_8035C148
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			OBJ(enemy)->endBlendAnimation();
 
-lbl_8035C128:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8035C148
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8035C148:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
+			transit(enemy, KINGCHAPPY_Walk, nullptr);
+		}
+	}
 }
 
 /*
@@ -3088,22 +2668,7 @@ StateSwallow::StateSwallow(int stateID)
  * Address:	8035C194
  * Size:	00002C
  */
-void StateSwallow::init(EnemyBase* enemy, StateArg* stateArg)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 7
-	stw      r0, 0x14(r1)
-	li       r5, 0
-	bl startMotionSelf__Q34Game10KingChappy3ObjFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateSwallow::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(7, nullptr); }
 
 /*
  * --INFO--
@@ -3112,50 +2677,14 @@ void StateSwallow::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSwallow::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8035C23C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x7d0
-	bne      lbl_8035C204
-	mr       r3, r31
-	bl       endBlendAnimation__Q34Game10KingChappy3ObjFv
-	b        lbl_8035C23C
-
-lbl_8035C204:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8035C23C
-	lfs      f1, lbl_8051E600@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	bl
-"swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8035C23C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			OBJ(enemy)->endBlendAnimation();
+		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
+			EnemyFunc::swallowPikmin(enemy, 300.0f, nullptr);
+			transit(enemy, KINGCHAPPY_Walk, nullptr);
+		}
+	}
 }
 
 } // namespace KingChappy

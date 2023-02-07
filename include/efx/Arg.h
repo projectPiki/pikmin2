@@ -294,12 +294,22 @@ struct ArgRotYScale : public Arg {
 	{
 	}
 
+	inline ArgRotYScale(Vector3f& position, f32 faceDir, f32 scale)
+	    : Arg(position)
+	    , mFaceDir(faceDir)
+	    , mScale(scale)
+	{
+	}
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgRotYScale";
 	}
-	f32 mFaceDir;
-	f32 mScale;
+
+	// _00     = VTBL
+	// _00-_10 = Arg
+	f32 mFaceDir; // _10
+	f32 mScale;   // _14
 };
 
 struct ArgType : public Arg {
