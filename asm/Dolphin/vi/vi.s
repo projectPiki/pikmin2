@@ -1,11 +1,11 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A72B0
-lbl_804A72B0:
+.obj lbl_804A72B0, local
 	.asciz "<< Dolphin SDK - VI\trelease build: Apr 17 2003 12:33:22 (0x2301) >>"
-.global timing
-timing:
+.endobj lbl_804A72B0
+.balign 4
+.obj timing, local
 	.4byte 0x060000F0
 	.4byte 0x00180019
 	.4byte 0x00030002
@@ -101,8 +101,8 @@ timing:
 	.4byte 0x01AD4047
 	.4byte 0x69B40187
 	.4byte 0x7A00019C
-.global taps
-taps:
+.endobj timing
+.obj taps, local
 	.4byte 0x01F001DC
 	.4byte 0x01AE0174
 	.4byte 0x012900DB
@@ -116,8 +116,8 @@ taps:
 	.4byte 0x0013000F
 	.4byte 0x000C0008
 	.4byte 0x00010000
-.global lbl_804A74A4
-lbl_804A74A4:
+.endobj taps
+.obj lbl_804A74A4, local
 	.4byte .L_800D0B0C
 	.4byte .L_800D0B14
 	.4byte .L_800D0B4C
@@ -145,93 +145,37 @@ lbl_804A74A4:
 	.4byte .L_800D0B6C
 	.4byte .L_800D0B7C
 	.4byte .L_800D0B74
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A0A
-	.4byte 0x00000000
-	.4byte 0x20212021
-	.4byte 0x20212043
-	.4byte 0x20412055
-	.4byte 0x20542049
-	.4byte 0x204F204E
-	.4byte 0x20212021
-	.4byte 0x20212020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x2020200A
-	.4byte 0x00000000
-	.4byte 0x54686973
-	.4byte 0x20545620
-	.4byte 0x666F726D
-	.4byte 0x61742022
-	.4byte 0x44454255
-	.4byte 0x475F5041
-	.4byte 0x4C222069
-	.4byte 0x73206F6E
-	.4byte 0x6C792066
-	.4byte 0x6F72200A
-	.4byte 0x00000000
-	.4byte 0x74656D70
-	.4byte 0x6F726172
-	.4byte 0x7920736F
-	.4byte 0x6C757469
-	.4byte 0x6F6E2075
-	.4byte 0x6E74696C
-	.4byte 0x2050414C
-	.4byte 0x20444143
-	.4byte 0x20626F61
-	.4byte 0x7264200A
-	.4byte 0x00000000
-	.4byte 0x69732061
-	.4byte 0x7661696C
-	.4byte 0x61626C65
-	.4byte 0x2E20506C
-	.4byte 0x65617365
-	.4byte 0x20646F20
-	.4byte 0x4E4F5420
-	.4byte 0x75736520
-	.4byte 0x74686973
-	.4byte 0x2020200A
-	.4byte 0x00000000
-	.4byte 0x6D6F6465
-	.4byte 0x20696E20
-	.4byte 0x7265616C
-	.4byte 0x2067616D
-	.4byte 0x65732121
-	.4byte 0x21202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x2020200A
-	.4byte 0x00000000
-	.4byte 0x5649436F
-	.4byte 0x6E666967
-	.4byte 0x75726528
-	.4byte 0x293A2054
-	.4byte 0x72696564
-	.4byte 0x20746F20
-	.4byte 0x6368616E
-	.4byte 0x6765206D
-	.4byte 0x6F646520
-	.4byte 0x66726F6D
-	.4byte 0x20282564
-	.4byte 0x2920746F
-	.4byte 0x20282564
-	.4byte 0x292C2077
-	.4byte 0x68696368
-	.4byte 0x20697320
-	.4byte 0x666F7262
-	.4byte 0x69646465
-	.4byte 0x6E0A0000
-.global lbl_804A7664
-lbl_804A7664:
+.endobj lbl_804A74A4
+.balign 4
+.obj lbl_804A7510, local
+	.asciz "***************************************\n"
+.endobj lbl_804A7510
+.balign 4
+.obj lbl_804A753C, local
+	.asciz " ! ! ! C A U T I O N ! ! !             \n"
+.endobj lbl_804A753C
+.balign 4
+.obj lbl_804A7568, local
+	.asciz "This TV format \"DEBUG_PAL\" is only for \n"
+.endobj lbl_804A7568
+.balign 4
+.obj lbl_804A7594, local
+	.asciz "temporary solution until PAL DAC board \n"
+.endobj lbl_804A7594
+.balign 4
+.obj lbl_804A75C0, local
+	.asciz "is available. Please do NOT use this   \n"
+.endobj lbl_804A75C0
+.balign 4
+.obj lbl_804A75EC, local
+	.asciz "mode in real games!!!                  \n"
+.endobj lbl_804A75EC
+.balign 4
+.obj lbl_804A7618, local
+	.asciz "VIConfigure(): Tried to change mode from (%d) to (%d), which is forbidden\n"
+.endobj lbl_804A7618
+.balign 4
+.obj lbl_804A7664, local
 	.4byte .L_800D235C
 	.4byte .L_800D2364
 	.4byte .L_800D236C
@@ -239,100 +183,98 @@ lbl_804A7664:
 	.4byte .L_800D2364
 	.4byte .L_800D236C
 	.4byte .L_800D235C
+.endobj lbl_804A7664
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global regs
-regs:
-	.skip 0x78
-.global shdwRegs
-shdwRegs:
-	.skip 0x78
-.global HorVer
-HorVer:
+.balign 4
+.obj regs, local
+	.skip 0x76
+.endobj regs
+.balign 4
+.obj shdwRegs, local
+	.skip 0x76
+.endobj shdwRegs
+.balign 4
+.obj HorVer, local
 	.skip 0x58
+.endobj HorVer
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __VIVersion
-__VIVersion:
+.obj __VIVersion, global
 	.4byte lbl_804A72B0
-.global lbl_805148EC
-lbl_805148EC:
+.endobj __VIVersion
+.obj lbl_805148EC, local
 	.asciz "vi.c"
-	.skip 3
+.endobj lbl_805148EC
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global IsInitialized
-IsInitialized:
+.obj IsInitialized, local
 	.skip 0x4
-.global retraceCount
-retraceCount:
+.endobj IsInitialized
+.obj retraceCount, local
 	.skip 0x4
-.global flushFlag
-flushFlag:
+.endobj retraceCount
+.obj flushFlag, local
 	.skip 0x4
-.global retraceQueue
-retraceQueue:
+.endobj flushFlag
+.obj retraceQueue, local
 	.skip 0x8
-.global PreCB
-PreCB:
+.endobj retraceQueue
+.obj PreCB, local
 	.skip 0x4
-.global PostCB
-PostCB:
+.endobj PreCB
+.obj PostCB, local
 	.skip 0x4
-.global PositionCallback
-PositionCallback:
+.endobj PostCB
+.obj PositionCallback, local
 	.skip 0x4
-.global encoderType
-encoderType:
+.endobj PositionCallback
+.obj encoderType, local
 	.skip 0x4
-.global displayOffsetH
-displayOffsetH:
+.endobj encoderType
+.obj displayOffsetH, local
 	.skip 0x2
-.global displayOffsetV
-displayOffsetV:
+.endobj displayOffsetH
+.obj displayOffsetV, local
 	.skip 0x2
-.global changeMode
-changeMode:
+.endobj displayOffsetV
+.obj changeMode, local
+	.skip 0x4
+.endobj changeMode
+.balign 8
+.obj changed, local
 	.skip 0x8
-.global changed
-changed:
+.endobj changed
+.obj shdwChangeMode, local
 	.skip 0x4
-.global lbl_805153AC
-lbl_805153AC:
-	.skip 0x4
-.global shdwChangeMode
-shdwChangeMode:
+.endobj shdwChangeMode
+.balign 8
+.obj shdwChanged, local
 	.skip 0x8
-.global shdwChanged
-shdwChanged:
+.endobj shdwChanged
+.obj CurrTiming, local
 	.skip 0x4
-.global lbl_805153BC
-lbl_805153BC:
+.endobj CurrTiming
+.obj CurrTvMode, local
 	.skip 0x4
-.global CurrTiming
-CurrTiming:
+.endobj CurrTvMode
+.obj NextBufAddr, local
 	.skip 0x4
-.global CurrTvMode
-CurrTvMode:
+.endobj NextBufAddr
+.obj CurrBufAddr, local
 	.skip 0x4
-.global NextBufAddr
-NextBufAddr:
+.endobj CurrBufAddr
+.obj FBSet, local
 	.skip 0x4
-.global CurrBufAddr
-CurrBufAddr:
+.endobj FBSet
+.obj message$343, local
 	.skip 0x4
-.global FBSet
-FBSet:
-	.skip 0x4
-.global message$343
-message$343:
-	.skip 0x4
+.endobj message$343
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __VIRetraceHandler
-__VIRetraceHandler:
+.fn __VIRetraceHandler, local
 /* 800D07E8 000CD728  7C 08 02 A6 */	mflr r0
 /* 800D07EC 000CD72C  3C 60 CC 00 */	lis r3, 0xCC002000@ha
 /* 800D07F0 000CD730  90 01 00 04 */	stw r0, 4(r1)
@@ -431,7 +373,7 @@ __VIRetraceHandler:
 .L_800D0940:
 /* 800D0940 000CD880  80 6D 8D 38 */	lwz r3, shdwChanged@sda21(r13)
 /* 800D0944 000CD884  38 A0 00 20 */	li r5, 0x20
-/* 800D0948 000CD888  83 6D 8D 3C */	lwz r27, lbl_805153BC@sda21(r13)
+/* 800D0948 000CD888  83 6D 8D 3C */	lwz r27, (shdwChanged+4)@sda21(r13)
 /* 800D094C 000CD88C  38 9B 00 00 */	addi r4, r27, 0
 /* 800D0950 000CD890  4B FF 17 C1 */	bl __shr2u
 /* 800D0954 000CD894  7C 84 00 34 */	cntlzw r4, r4
@@ -455,15 +397,15 @@ __VIRetraceHandler:
 /* 800D0994 000CD8D4  80 0D 8D 38 */	lwz r0, shdwChanged@sda21(r13)
 /* 800D0998 000CD8D8  7C 65 18 F8 */	nor r5, r3, r3
 /* 800D099C 000CD8DC  7C 84 20 F8 */	nor r4, r4, r4
-/* 800D09A0 000CD8E0  80 6D 8D 3C */	lwz r3, lbl_805153BC@sda21(r13)
+/* 800D09A0 000CD8E0  80 6D 8D 3C */	lwz r3, (shdwChanged+4)@sda21(r13)
 /* 800D09A4 000CD8E4  7C 00 28 38 */	and r0, r0, r5
 /* 800D09A8 000CD8E8  7C 63 20 38 */	and r3, r3, r4
-/* 800D09AC 000CD8EC  90 6D 8D 3C */	stw r3, lbl_805153BC@sda21(r13)
+/* 800D09AC 000CD8EC  90 6D 8D 3C */	stw r3, (shdwChanged+4)@sda21(r13)
 /* 800D09B0 000CD8F0  90 0D 8D 38 */	stw r0, shdwChanged@sda21(r13)
 .L_800D09B4:
 /* 800D09B4 000CD8F4  80 0D 8D 38 */	lwz r0, shdwChanged@sda21(r13)
 /* 800D09B8 000CD8F8  38 80 00 00 */	li r4, 0
-/* 800D09BC 000CD8FC  80 6D 8D 3C */	lwz r3, lbl_805153BC@sda21(r13)
+/* 800D09BC 000CD8FC  80 6D 8D 3C */	lwz r3, (shdwChanged+4)@sda21(r13)
 /* 800D09C0 000CD900  7C 00 22 78 */	xor r0, r0, r4
 /* 800D09C4 000CD904  7C 63 22 78 */	xor r3, r3, r4
 /* 800D09C8 000CD908  7C 60 03 79 */	or. r0, r3, r0
@@ -508,9 +450,9 @@ __VIRetraceHandler:
 /* 800D0A50 000CD990  38 21 02 F8 */	addi r1, r1, 0x2f8
 /* 800D0A54 000CD994  7C 08 03 A6 */	mtlr r0
 /* 800D0A58 000CD998  4E 80 00 20 */	blr 
+.endfn __VIRetraceHandler
 
-.global VISetPreRetraceCallback
-VISetPreRetraceCallback:
+.fn VISetPreRetraceCallback, global
 /* 800D0A5C 000CD99C  7C 08 02 A6 */	mflr r0
 /* 800D0A60 000CD9A0  90 01 00 04 */	stw r0, 4(r1)
 /* 800D0A64 000CD9A4  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -528,9 +470,9 @@ VISetPreRetraceCallback:
 /* 800D0A94 000CD9D4  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D0A98 000CD9D8  7C 08 03 A6 */	mtlr r0
 /* 800D0A9C 000CD9DC  4E 80 00 20 */	blr 
+.endfn VISetPreRetraceCallback
 
-.global VISetPostRetraceCallback
-VISetPostRetraceCallback:
+.fn VISetPostRetraceCallback, global
 /* 800D0AA0 000CD9E0  7C 08 02 A6 */	mflr r0
 /* 800D0AA4 000CD9E4  90 01 00 04 */	stw r0, 4(r1)
 /* 800D0AA8 000CD9E8  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -548,9 +490,9 @@ VISetPostRetraceCallback:
 /* 800D0AD8 000CDA18  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D0ADC 000CDA1C  7C 08 03 A6 */	mtlr r0
 /* 800D0AE0 000CDA20  4E 80 00 20 */	blr 
+.endfn VISetPostRetraceCallback
 
-.global getTiming
-getTiming:
+.fn getTiming, local
 /* 800D0AE4 000CDA24  28 03 00 1A */	cmplwi r3, 0x1a
 /* 800D0AE8 000CDA28  3C 80 80 4A */	lis r4, lbl_804A72B0@ha
 /* 800D0AEC 000CDA2C  38 A4 72 B0 */	addi r5, r4, lbl_804A72B0@l
@@ -606,9 +548,9 @@ getTiming:
 .L_800D0B7C:
 /* 800D0B7C 000CDABC  38 60 00 00 */	li r3, 0
 /* 800D0B80 000CDAC0  4E 80 00 20 */	blr 
+.endfn getTiming
 
-.global __VIInit
-__VIInit:
+.fn __VIInit, global
 /* 800D0B84 000CDAC4  7C 08 02 A6 */	mflr r0
 /* 800D0B88 000CDAC8  90 01 00 04 */	stw r0, 4(r1)
 /* 800D0B8C 000CDACC  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -742,9 +684,9 @@ __VIInit:
 /* 800D0D78 000CDCB8  38 21 00 30 */	addi r1, r1, 0x30
 /* 800D0D7C 000CDCBC  7C 08 03 A6 */	mtlr r0
 /* 800D0D80 000CDCC0  4E 80 00 20 */	blr 
+.endfn __VIInit
 
-.global VIInit
-VIInit:
+.fn VIInit, global
 /* 800D0D84 000CDCC4  7C 08 02 A6 */	mflr r0
 /* 800D0D88 000CDCC8  3C 80 80 4A */	lis r4, lbl_804A72B0@ha
 /* 800D0D8C 000CDCCC  90 01 00 04 */	stw r0, 4(r1)
@@ -776,10 +718,10 @@ VIInit:
 /* 800D0DF0 000CDD30  93 ED 8C FC */	stw r31, retraceCount@sda21(r13)
 /* 800D0DF4 000CDD34  3C 60 CC 00 */	lis r3, 0xCC002000@ha
 /* 800D0DF8 000CDD38  38 63 20 00 */	addi r3, r3, 0xCC002000@l
-/* 800D0DFC 000CDD3C  93 ED 8D 2C */	stw r31, lbl_805153AC@sda21(r13)
+/* 800D0DFC 000CDD3C  93 ED 8D 2C */	stw r31, (changed+4)@sda21(r13)
 /* 800D0E00 000CDD40  38 00 02 80 */	li r0, 0x280
 /* 800D0E04 000CDD44  93 ED 8D 28 */	stw r31, changed@sda21(r13)
-/* 800D0E08 000CDD48  93 ED 8D 3C */	stw r31, lbl_805153BC@sda21(r13)
+/* 800D0E08 000CDD48  93 ED 8D 3C */	stw r31, (shdwChanged+4)@sda21(r13)
 /* 800D0E0C 000CDD4C  93 ED 8D 38 */	stw r31, shdwChanged@sda21(r13)
 /* 800D0E10 000CDD50  93 ED 8D 20 */	stw r31, changeMode@sda21(r13)
 /* 800D0E14 000CDD54  93 ED 8D 30 */	stw r31, shdwChangeMode@sda21(r13)
@@ -1067,9 +1009,9 @@ VIInit:
 /* 800D1228 000CE168  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D122C 000CE16C  7C 08 03 A6 */	mtlr r0
 /* 800D1230 000CE170  4E 80 00 20 */	blr 
+.endfn VIInit
 
-.global VIWaitForRetrace
-VIWaitForRetrace:
+.fn VIWaitForRetrace, global
 /* 800D1234 000CE174  7C 08 02 A6 */	mflr r0
 /* 800D1238 000CE178  90 01 00 04 */	stw r0, 4(r1)
 /* 800D123C 000CE17C  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -1092,9 +1034,9 @@ VIWaitForRetrace:
 /* 800D127C 000CE1BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800D1280 000CE1C0  7C 08 03 A6 */	mtlr r0
 /* 800D1284 000CE1C4  4E 80 00 20 */	blr 
+.endfn VIWaitForRetrace
 
-.global setFbbRegs
-setFbbRegs:
+.fn setFbbRegs, local
 /* 800D1288 000CE1C8  94 21 FF B8 */	stwu r1, -0x48(r1)
 /* 800D128C 000CE1CC  3D 20 80 4F */	lis r9, regs@ha
 /* 800D1290 000CE1D0  39 29 59 A8 */	addi r9, r9, regs@l
@@ -1218,9 +1160,9 @@ setFbbRegs:
 /* 800D1440 000CE380  B0 09 00 1E */	sth r0, 0x1e(r9)
 /* 800D1444 000CE384  3C 00 00 02 */	lis r0, 2
 /* 800D1448 000CE388  81 4D 8D 28 */	lwz r10, changed@sda21(r13)
-/* 800D144C 000CE38C  81 8D 8D 2C */	lwz r12, lbl_805153AC@sda21(r13)
+/* 800D144C 000CE38C  81 8D 8D 2C */	lwz r12, (changed+4)@sda21(r13)
 /* 800D1450 000CE390  7D 4A 43 78 */	or r10, r10, r8
-/* 800D1454 000CE394  91 8D 8D 2C */	stw r12, lbl_805153AC@sda21(r13)
+/* 800D1454 000CE394  91 8D 8D 2C */	stw r12, (changed+4)@sda21(r13)
 /* 800D1458 000CE398  91 4D 8D 28 */	stw r10, changed@sda21(r13)
 /* 800D145C 000CE39C  81 44 00 00 */	lwz r10, 0(r4)
 /* 800D1460 000CE3A0  88 83 00 3C */	lbz r4, 0x3c(r3)
@@ -1230,24 +1172,24 @@ setFbbRegs:
 /* 800D1470 000CE3B0  7D 64 23 78 */	or r4, r11, r4
 /* 800D1474 000CE3B4  B0 89 00 1C */	sth r4, 0x1c(r9)
 /* 800D1478 000CE3B8  80 8D 8D 28 */	lwz r4, changed@sda21(r13)
-/* 800D147C 000CE3BC  81 4D 8D 2C */	lwz r10, lbl_805153AC@sda21(r13)
+/* 800D147C 000CE3BC  81 4D 8D 2C */	lwz r10, (changed+4)@sda21(r13)
 /* 800D1480 000CE3C0  7C 80 03 78 */	or r0, r4, r0
-/* 800D1484 000CE3C4  91 4D 8D 2C */	stw r10, lbl_805153AC@sda21(r13)
+/* 800D1484 000CE3C4  91 4D 8D 2C */	stw r10, (changed+4)@sda21(r13)
 /* 800D1488 000CE3C8  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D148C 000CE3CC  80 05 00 00 */	lwz r0, 0(r5)
 /* 800D1490 000CE3D0  B0 09 00 26 */	sth r0, 0x26(r9)
 /* 800D1494 000CE3D4  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1498 000CE3D8  80 8D 8D 2C */	lwz r4, lbl_805153AC@sda21(r13)
+/* 800D1498 000CE3D8  80 8D 8D 2C */	lwz r4, (changed+4)@sda21(r13)
 /* 800D149C 000CE3DC  60 00 10 00 */	ori r0, r0, 0x1000
-/* 800D14A0 000CE3E0  90 8D 8D 2C */	stw r4, lbl_805153AC@sda21(r13)
+/* 800D14A0 000CE3E0  90 8D 8D 2C */	stw r4, (changed+4)@sda21(r13)
 /* 800D14A4 000CE3E4  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D14A8 000CE3E8  80 05 00 00 */	lwz r0, 0(r5)
 /* 800D14AC 000CE3EC  54 00 84 3E */	srwi r0, r0, 0x10
 /* 800D14B0 000CE3F0  B0 09 00 24 */	sth r0, 0x24(r9)
 /* 800D14B4 000CE3F4  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D14B8 000CE3F8  80 8D 8D 2C */	lwz r4, lbl_805153AC@sda21(r13)
+/* 800D14B8 000CE3F8  80 8D 8D 2C */	lwz r4, (changed+4)@sda21(r13)
 /* 800D14BC 000CE3FC  60 00 20 00 */	ori r0, r0, 0x2000
-/* 800D14C0 000CE400  90 8D 8D 2C */	stw r4, lbl_805153AC@sda21(r13)
+/* 800D14C0 000CE400  90 8D 8D 2C */	stw r4, (changed+4)@sda21(r13)
 /* 800D14C4 000CE404  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D14C8 000CE408  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 800D14CC 000CE40C  2C 00 00 00 */	cmpwi r0, 0
@@ -1256,40 +1198,40 @@ setFbbRegs:
 /* 800D14D8 000CE418  38 08 80 00 */	addi r0, r8, -32768
 /* 800D14DC 000CE41C  B0 69 00 22 */	sth r3, 0x22(r9)
 /* 800D14E0 000CE420  80 6D 8D 28 */	lwz r3, changed@sda21(r13)
-/* 800D14E4 000CE424  80 8D 8D 2C */	lwz r4, lbl_805153AC@sda21(r13)
+/* 800D14E4 000CE424  80 8D 8D 2C */	lwz r4, (changed+4)@sda21(r13)
 /* 800D14E8 000CE428  60 63 40 00 */	ori r3, r3, 0x4000
-/* 800D14EC 000CE42C  90 8D 8D 2C */	stw r4, lbl_805153AC@sda21(r13)
+/* 800D14EC 000CE42C  90 8D 8D 2C */	stw r4, (changed+4)@sda21(r13)
 /* 800D14F0 000CE430  90 6D 8D 28 */	stw r3, changed@sda21(r13)
 /* 800D14F4 000CE434  80 66 00 00 */	lwz r3, 0(r6)
 /* 800D14F8 000CE438  54 63 84 3E */	srwi r3, r3, 0x10
 /* 800D14FC 000CE43C  B0 69 00 20 */	sth r3, 0x20(r9)
 /* 800D1500 000CE440  80 6D 8D 28 */	lwz r3, changed@sda21(r13)
-/* 800D1504 000CE444  80 8D 8D 2C */	lwz r4, lbl_805153AC@sda21(r13)
+/* 800D1504 000CE444  80 8D 8D 2C */	lwz r4, (changed+4)@sda21(r13)
 /* 800D1508 000CE448  7C 60 03 78 */	or r0, r3, r0
-/* 800D150C 000CE44C  90 8D 8D 2C */	stw r4, lbl_805153AC@sda21(r13)
+/* 800D150C 000CE44C  90 8D 8D 2C */	stw r4, (changed+4)@sda21(r13)
 /* 800D1510 000CE450  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D1514 000CE454  80 07 00 00 */	lwz r0, 0(r7)
 /* 800D1518 000CE458  B0 09 00 2A */	sth r0, 0x2a(r9)
 /* 800D151C 000CE45C  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1520 000CE460  80 6D 8D 2C */	lwz r3, lbl_805153AC@sda21(r13)
+/* 800D1520 000CE460  80 6D 8D 2C */	lwz r3, (changed+4)@sda21(r13)
 /* 800D1524 000CE464  60 00 04 00 */	ori r0, r0, 0x400
-/* 800D1528 000CE468  90 6D 8D 2C */	stw r3, lbl_805153AC@sda21(r13)
+/* 800D1528 000CE468  90 6D 8D 2C */	stw r3, (changed+4)@sda21(r13)
 /* 800D152C 000CE46C  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D1530 000CE470  80 07 00 00 */	lwz r0, 0(r7)
 /* 800D1534 000CE474  54 00 84 3E */	srwi r0, r0, 0x10
 /* 800D1538 000CE478  B0 09 00 28 */	sth r0, 0x28(r9)
 /* 800D153C 000CE47C  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1540 000CE480  80 6D 8D 2C */	lwz r3, lbl_805153AC@sda21(r13)
+/* 800D1540 000CE480  80 6D 8D 2C */	lwz r3, (changed+4)@sda21(r13)
 /* 800D1544 000CE484  60 00 08 00 */	ori r0, r0, 0x800
-/* 800D1548 000CE488  90 6D 8D 2C */	stw r3, lbl_805153AC@sda21(r13)
+/* 800D1548 000CE488  90 6D 8D 2C */	stw r3, (changed+4)@sda21(r13)
 /* 800D154C 000CE48C  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 .L_800D1550:
 /* 800D1550 000CE490  83 E1 00 44 */	lwz r31, 0x44(r1)
 /* 800D1554 000CE494  38 21 00 48 */	addi r1, r1, 0x48
 /* 800D1558 000CE498  4E 80 00 20 */	blr 
+.endfn setFbbRegs
 
-.global setVerticalRegs
-setVerticalRegs:
+.fn setVerticalRegs, local
 /* 800D155C 000CE49C  94 21 FF D8 */	stwu r1, -0x28(r1)
 /* 800D1560 000CE4A0  3D 60 80 4F */	lis r11, regs@ha
 /* 800D1564 000CE4A4  39 6B 59 A8 */	addi r11, r11, regs@l
@@ -1364,44 +1306,44 @@ setVerticalRegs:
 /* 800D1664 000CE5A4  3D 20 01 00 */	lis r9, 0x100
 /* 800D1668 000CE5A8  80 AD 8D 28 */	lwz r5, changed@sda21(r13)
 /* 800D166C 000CE5AC  3D 00 02 00 */	lis r8, 0x200
-/* 800D1670 000CE5B0  81 4D 8D 2C */	lwz r10, lbl_805153AC@sda21(r13)
+/* 800D1670 000CE5B0  81 4D 8D 2C */	lwz r10, (changed+4)@sda21(r13)
 /* 800D1674 000CE5B4  7C A4 23 78 */	or r4, r5, r4
 /* 800D1678 000CE5B8  3C A0 00 40 */	lis r5, 0x40
-/* 800D167C 000CE5BC  91 4D 8D 2C */	stw r10, lbl_805153AC@sda21(r13)
+/* 800D167C 000CE5BC  91 4D 8D 2C */	stw r10, (changed+4)@sda21(r13)
 /* 800D1680 000CE5C0  90 8D 8D 28 */	stw r4, changed@sda21(r13)
 /* 800D1684 000CE5C4  3C 80 00 80 */	lis r4, 0x80
 /* 800D1688 000CE5C8  B0 0B 00 0E */	sth r0, 0xe(r11)
 /* 800D168C 000CE5CC  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1690 000CE5D0  81 4D 8D 2C */	lwz r10, lbl_805153AC@sda21(r13)
+/* 800D1690 000CE5D0  81 4D 8D 2C */	lwz r10, (changed+4)@sda21(r13)
 /* 800D1694 000CE5D4  7C 00 4B 78 */	or r0, r0, r9
-/* 800D1698 000CE5D8  91 4D 8D 2C */	stw r10, lbl_805153AC@sda21(r13)
+/* 800D1698 000CE5D8  91 4D 8D 2C */	stw r10, (changed+4)@sda21(r13)
 /* 800D169C 000CE5DC  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D16A0 000CE5E0  B0 CB 00 0C */	sth r6, 0xc(r11)
 /* 800D16A4 000CE5E4  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D16A8 000CE5E8  80 CD 8D 2C */	lwz r6, lbl_805153AC@sda21(r13)
+/* 800D16A8 000CE5E8  80 CD 8D 2C */	lwz r6, (changed+4)@sda21(r13)
 /* 800D16AC 000CE5EC  7C 00 43 78 */	or r0, r0, r8
-/* 800D16B0 000CE5F0  90 CD 8D 2C */	stw r6, lbl_805153AC@sda21(r13)
+/* 800D16B0 000CE5F0  90 CD 8D 2C */	stw r6, (changed+4)@sda21(r13)
 /* 800D16B4 000CE5F4  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D16B8 000CE5F8  B0 6B 00 12 */	sth r3, 0x12(r11)
 /* 800D16BC 000CE5FC  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D16C0 000CE600  80 6D 8D 2C */	lwz r3, lbl_805153AC@sda21(r13)
+/* 800D16C0 000CE600  80 6D 8D 2C */	lwz r3, (changed+4)@sda21(r13)
 /* 800D16C4 000CE604  7C 00 2B 78 */	or r0, r0, r5
-/* 800D16C8 000CE608  90 6D 8D 2C */	stw r3, lbl_805153AC@sda21(r13)
+/* 800D16C8 000CE608  90 6D 8D 2C */	stw r3, (changed+4)@sda21(r13)
 /* 800D16CC 000CE60C  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D16D0 000CE610  B0 EB 00 10 */	sth r7, 0x10(r11)
 /* 800D16D4 000CE614  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D16D8 000CE618  80 6D 8D 2C */	lwz r3, lbl_805153AC@sda21(r13)
+/* 800D16D8 000CE618  80 6D 8D 2C */	lwz r3, (changed+4)@sda21(r13)
 /* 800D16DC 000CE61C  7C 00 23 78 */	or r0, r0, r4
-/* 800D16E0 000CE620  90 6D 8D 2C */	stw r3, lbl_805153AC@sda21(r13)
+/* 800D16E0 000CE620  90 6D 8D 2C */	stw r3, (changed+4)@sda21(r13)
 /* 800D16E4 000CE624  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D16E8 000CE628  83 E1 00 24 */	lwz r31, 0x24(r1)
 /* 800D16EC 000CE62C  83 C1 00 20 */	lwz r30, 0x20(r1)
 /* 800D16F0 000CE630  83 A1 00 1C */	lwz r29, 0x1c(r1)
 /* 800D16F4 000CE634  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D16F8 000CE638  4E 80 00 20 */	blr 
+.endfn setVerticalRegs
 
-.global VIConfigure
-VIConfigure:
+.fn VIConfigure, global
 /* 800D16FC 000CE63C  7C 08 02 A6 */	mflr r0
 /* 800D1700 000CE640  3C A0 80 4A */	lis r5, lbl_804A72B0@ha
 /* 800D1704 000CE644  90 01 00 04 */	stw r0, 4(r1)
@@ -1709,15 +1651,15 @@ VIConfigure:
 /* 800D1B24 000CEA64  60 00 10 00 */	ori r0, r0, 0x1000
 /* 800D1B28 000CEA68  80 AD 8D 28 */	lwz r5, changed@sda21(r13)
 /* 800D1B2C 000CEA6C  38 9D 00 02 */	addi r4, r29, 2
-/* 800D1B30 000CEA70  80 CD 8D 2C */	lwz r6, lbl_805153AC@sda21(r13)
+/* 800D1B30 000CEA70  80 CD 8D 2C */	lwz r6, (changed+4)@sda21(r13)
 /* 800D1B34 000CEA74  60 A5 00 40 */	ori r5, r5, 0x40
-/* 800D1B38 000CEA78  90 CD 8D 2C */	stw r6, lbl_805153AC@sda21(r13)
+/* 800D1B38 000CEA78  90 CD 8D 2C */	stw r6, (changed+4)@sda21(r13)
 /* 800D1B3C 000CEA7C  90 AD 8D 28 */	stw r5, changed@sda21(r13)
 /* 800D1B40 000CEA80  B0 1D 00 30 */	sth r0, 0x30(r29)
 /* 800D1B44 000CEA84  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1B48 000CEA88  80 AD 8D 2C */	lwz r5, lbl_805153AC@sda21(r13)
+/* 800D1B48 000CEA88  80 AD 8D 2C */	lwz r5, (changed+4)@sda21(r13)
 /* 800D1B4C 000CEA8C  60 00 00 80 */	ori r0, r0, 0x80
-/* 800D1B50 000CEA90  90 AD 8D 2C */	stw r5, lbl_805153AC@sda21(r13)
+/* 800D1B50 000CEA90  90 AD 8D 2C */	stw r5, (changed+4)@sda21(r13)
 /* 800D1B54 000CEA94  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D1B58 000CEA98  80 1C 00 00 */	lwz r0, 0(r28)
 /* 800D1B5C 000CEA9C  A0 BD 00 02 */	lhz r5, 2(r29)
@@ -1755,9 +1697,9 @@ VIConfigure:
 /* 800D1BC4 000CEB04  3C 00 40 00 */	lis r0, 0x4000
 /* 800D1BC8 000CEB08  38 DD 00 6C */	addi r6, r29, 0x6c
 /* 800D1BCC 000CEB0C  80 8D 8D 28 */	lwz r4, changed@sda21(r13)
-/* 800D1BD0 000CEB10  80 AD 8D 2C */	lwz r5, lbl_805153AC@sda21(r13)
+/* 800D1BD0 000CEB10  80 AD 8D 2C */	lwz r5, (changed+4)@sda21(r13)
 /* 800D1BD4 000CEB14  7C 80 03 78 */	or r0, r4, r0
-/* 800D1BD8 000CEB18  90 AD 8D 2C */	stw r5, lbl_805153AC@sda21(r13)
+/* 800D1BD8 000CEB18  90 AD 8D 2C */	stw r5, (changed+4)@sda21(r13)
 /* 800D1BDC 000CEB1C  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D1BE0 000CEB20  80 1F 00 00 */	lwz r0, 0(r31)
 /* 800D1BE4 000CEB24  A0 9D 00 6C */	lhz r4, 0x6c(r29)
@@ -1777,9 +1719,9 @@ VIConfigure:
 /* 800D1C10 000CEB50  B0 06 00 00 */	sth r0, 0(r6)
 /* 800D1C14 000CEB54  2C 07 00 00 */	cmpwi r7, 0
 /* 800D1C18 000CEB58  80 8D 8D 28 */	lwz r4, changed@sda21(r13)
-/* 800D1C1C 000CEB5C  80 0D 8D 2C */	lwz r0, lbl_805153AC@sda21(r13)
+/* 800D1C1C 000CEB5C  80 0D 8D 2C */	lwz r0, (changed+4)@sda21(r13)
 /* 800D1C20 000CEB60  60 00 02 00 */	ori r0, r0, 0x200
-/* 800D1C24 000CEB64  90 0D 8D 2C */	stw r0, lbl_805153AC@sda21(r13)
+/* 800D1C24 000CEB64  90 0D 8D 2C */	stw r0, (changed+4)@sda21(r13)
 /* 800D1C28 000CEB68  90 8D 8D 28 */	stw r4, changed@sda21(r13)
 /* 800D1C2C 000CEB6C  A0 98 00 00 */	lhz r4, 0(r24)
 /* 800D1C30 000CEB70  A0 B0 00 00 */	lhz r5, 0(r16)
@@ -1800,15 +1742,15 @@ VIConfigure:
 /* 800D1C64 000CEBA4  B0 1D 00 4A */	sth r0, 0x4a(r29)
 /* 800D1C68 000CEBA8  3C 00 04 00 */	lis r0, 0x400
 /* 800D1C6C 000CEBAC  80 CD 8D 28 */	lwz r6, changed@sda21(r13)
-/* 800D1C70 000CEBB0  80 ED 8D 2C */	lwz r7, lbl_805153AC@sda21(r13)
+/* 800D1C70 000CEBB0  80 ED 8D 2C */	lwz r7, (changed+4)@sda21(r13)
 /* 800D1C74 000CEBB4  7C E0 03 78 */	or r0, r7, r0
-/* 800D1C78 000CEBB8  90 0D 8D 2C */	stw r0, lbl_805153AC@sda21(r13)
+/* 800D1C78 000CEBB8  90 0D 8D 2C */	stw r0, (changed+4)@sda21(r13)
 /* 800D1C7C 000CEBBC  90 CD 8D 28 */	stw r6, changed@sda21(r13)
 /* 800D1C80 000CEBC0  B1 1D 00 70 */	sth r8, 0x70(r29)
 /* 800D1C84 000CEBC4  80 CD 8D 28 */	lwz r6, changed@sda21(r13)
-/* 800D1C88 000CEBC8  80 0D 8D 2C */	lwz r0, lbl_805153AC@sda21(r13)
+/* 800D1C88 000CEBC8  80 0D 8D 2C */	lwz r0, (changed+4)@sda21(r13)
 /* 800D1C8C 000CEBCC  60 00 00 80 */	ori r0, r0, 0x80
-/* 800D1C90 000CEBD0  90 0D 8D 2C */	stw r0, lbl_805153AC@sda21(r13)
+/* 800D1C90 000CEBD0  90 0D 8D 2C */	stw r0, (changed+4)@sda21(r13)
 /* 800D1C94 000CEBD4  90 CD 8D 28 */	stw r6, changed@sda21(r13)
 /* 800D1C98 000CEBD8  48 00 00 24 */	b .L_800D1CBC
 .L_800D1C9C:
@@ -1816,9 +1758,9 @@ VIConfigure:
 /* 800D1CA0 000CEBE0  B0 1D 00 4A */	sth r0, 0x4a(r29)
 /* 800D1CA4 000CEBE4  3C 00 04 00 */	lis r0, 0x400
 /* 800D1CA8 000CEBE8  80 CD 8D 28 */	lwz r6, changed@sda21(r13)
-/* 800D1CAC 000CEBEC  80 ED 8D 2C */	lwz r7, lbl_805153AC@sda21(r13)
+/* 800D1CAC 000CEBEC  80 ED 8D 2C */	lwz r7, (changed+4)@sda21(r13)
 /* 800D1CB0 000CEBF0  7C E0 03 78 */	or r0, r7, r0
-/* 800D1CB4 000CEBF4  90 0D 8D 2C */	stw r0, lbl_805153AC@sda21(r13)
+/* 800D1CB4 000CEBF4  90 0D 8D 2C */	stw r0, (changed+4)@sda21(r13)
 /* 800D1CB8 000CEBF8  90 CD 8D 28 */	stw r6, changed@sda21(r13)
 .L_800D1CBC:
 /* 800D1CBC 000CEBFC  A0 03 00 00 */	lhz r0, 0(r3)
@@ -1832,19 +1774,19 @@ VIConfigure:
 /* 800D1CDC 000CEC1C  81 4D 8D 28 */	lwz r10, changed@sda21(r13)
 /* 800D1CE0 000CEC20  3C C0 00 10 */	lis r6, 0x10
 /* 800D1CE4 000CEC24  3C 80 00 20 */	lis r4, 0x20
-/* 800D1CE8 000CEC28  81 6D 8D 2C */	lwz r11, lbl_805153AC@sda21(r13)
+/* 800D1CE8 000CEC28  81 6D 8D 2C */	lwz r11, (changed+4)@sda21(r13)
 /* 800D1CEC 000CEC2C  7D 4A 1B 78 */	or r10, r10, r3
 /* 800D1CF0 000CEC30  3C 60 00 04 */	lis r3, 4
-/* 800D1CF4 000CEC34  91 6D 8D 2C */	stw r11, lbl_805153AC@sda21(r13)
+/* 800D1CF4 000CEC34  91 6D 8D 2C */	stw r11, (changed+4)@sda21(r13)
 /* 800D1CF8 000CEC38  91 4D 8D 28 */	stw r10, changed@sda21(r13)
 /* 800D1CFC 000CEC3C  89 5E 00 1D */	lbz r10, 0x1d(r30)
 /* 800D1D00 000CEC40  89 7E 00 1E */	lbz r11, 0x1e(r30)
 /* 800D1D04 000CEC44  51 4B 44 2E */	rlwimi r11, r10, 8, 0x10, 0x17
 /* 800D1D08 000CEC48  B1 7D 00 04 */	sth r11, 4(r29)
 /* 800D1D0C 000CEC4C  81 4D 8D 28 */	lwz r10, changed@sda21(r13)
-/* 800D1D10 000CEC50  81 6D 8D 2C */	lwz r11, lbl_805153AC@sda21(r13)
+/* 800D1D10 000CEC50  81 6D 8D 2C */	lwz r11, (changed+4)@sda21(r13)
 /* 800D1D14 000CEC54  7D 48 43 78 */	or r8, r10, r8
-/* 800D1D18 000CEC58  91 6D 8D 2C */	stw r11, lbl_805153AC@sda21(r13)
+/* 800D1D18 000CEC58  91 6D 8D 2C */	stw r11, (changed+4)@sda21(r13)
 /* 800D1D1C 000CEC5C  91 0D 8D 28 */	stw r8, changed@sda21(r13)
 /* 800D1D20 000CEC60  89 1E 00 1F */	lbz r8, 0x1f(r30)
 /* 800D1D24 000CEC64  89 5E 00 1C */	lbz r10, 0x1c(r30)
@@ -1859,17 +1801,17 @@ VIConfigure:
 /* 800D1D48 000CEC88  81 4D 8D 28 */	lwz r10, changed@sda21(r13)
 /* 800D1D4C 000CEC8C  7C 0C 00 50 */	subf r0, r12, r0
 /* 800D1D50 000CEC90  56 08 BA 7E */	srwi r8, r16, 9
-/* 800D1D54 000CEC94  81 6D 8D 2C */	lwz r11, lbl_805153AC@sda21(r13)
+/* 800D1D54 000CEC94  81 6D 8D 2C */	lwz r11, (changed+4)@sda21(r13)
 /* 800D1D58 000CEC98  54 00 08 3C */	slwi r0, r0, 1
 /* 800D1D5C 000CEC9C  7D 49 4B 78 */	or r9, r10, r9
-/* 800D1D60 000CECA0  91 6D 8D 2C */	stw r11, lbl_805153AC@sda21(r13)
+/* 800D1D60 000CECA0  91 6D 8D 2C */	stw r11, (changed+4)@sda21(r13)
 /* 800D1D64 000CECA4  7D 00 03 78 */	or r0, r8, r0
 /* 800D1D68 000CECA8  91 2D 8D 28 */	stw r9, changed@sda21(r13)
 /* 800D1D6C 000CECAC  B0 1D 00 08 */	sth r0, 8(r29)
 /* 800D1D70 000CECB0  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1D74 000CECB4  81 0D 8D 2C */	lwz r8, lbl_805153AC@sda21(r13)
+/* 800D1D74 000CECB4  81 0D 8D 2C */	lwz r8, (changed+4)@sda21(r13)
 /* 800D1D78 000CECB8  7C 00 3B 78 */	or r0, r0, r7
-/* 800D1D7C 000CECBC  91 0D 8D 2C */	stw r8, lbl_805153AC@sda21(r13)
+/* 800D1D7C 000CECBC  91 0D 8D 2C */	stw r8, (changed+4)@sda21(r13)
 /* 800D1D80 000CECC0  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D1D84 000CECC4  A0 1E 00 10 */	lhz r0, 0x10(r30)
 /* 800D1D88 000CECC8  88 FE 00 0C */	lbz r7, 0xc(r30)
@@ -1877,9 +1819,9 @@ VIConfigure:
 /* 800D1D90 000CECD0  7C E0 03 78 */	or r0, r7, r0
 /* 800D1D94 000CECD4  B0 1D 00 16 */	sth r0, 0x16(r29)
 /* 800D1D98 000CECD8  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1D9C 000CECDC  80 ED 8D 2C */	lwz r7, lbl_805153AC@sda21(r13)
+/* 800D1D9C 000CECDC  80 ED 8D 2C */	lwz r7, (changed+4)@sda21(r13)
 /* 800D1DA0 000CECE0  7C 00 33 78 */	or r0, r0, r6
-/* 800D1DA4 000CECE4  90 ED 8D 2C */	stw r7, lbl_805153AC@sda21(r13)
+/* 800D1DA4 000CECE4  90 ED 8D 2C */	stw r7, (changed+4)@sda21(r13)
 /* 800D1DA8 000CECE8  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D1DAC 000CECEC  A0 1E 00 14 */	lhz r0, 0x14(r30)
 /* 800D1DB0 000CECF0  88 DE 00 0E */	lbz r6, 0xe(r30)
@@ -1887,9 +1829,9 @@ VIConfigure:
 /* 800D1DB8 000CECF8  7C C0 03 78 */	or r0, r6, r0
 /* 800D1DBC 000CECFC  B0 1D 00 14 */	sth r0, 0x14(r29)
 /* 800D1DC0 000CED00  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1DC4 000CED04  80 CD 8D 2C */	lwz r6, lbl_805153AC@sda21(r13)
+/* 800D1DC4 000CED04  80 CD 8D 2C */	lwz r6, (changed+4)@sda21(r13)
 /* 800D1DC8 000CED08  7C 00 23 78 */	or r0, r0, r4
-/* 800D1DCC 000CED0C  90 CD 8D 2C */	stw r6, lbl_805153AC@sda21(r13)
+/* 800D1DCC 000CED0C  90 CD 8D 2C */	stw r6, (changed+4)@sda21(r13)
 /* 800D1DD0 000CED10  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D1DD4 000CED14  A0 1E 00 12 */	lhz r0, 0x12(r30)
 /* 800D1DD8 000CED18  88 9E 00 0D */	lbz r4, 0xd(r30)
@@ -1897,9 +1839,9 @@ VIConfigure:
 /* 800D1DE0 000CED20  7C 80 03 78 */	or r0, r4, r0
 /* 800D1DE4 000CED24  B0 1D 00 1A */	sth r0, 0x1a(r29)
 /* 800D1DE8 000CED28  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1DEC 000CED2C  80 8D 8D 2C */	lwz r4, lbl_805153AC@sda21(r13)
+/* 800D1DEC 000CED2C  80 8D 8D 2C */	lwz r4, (changed+4)@sda21(r13)
 /* 800D1DF0 000CED30  7C 00 1B 78 */	or r0, r0, r3
-/* 800D1DF4 000CED34  90 8D 8D 2C */	stw r4, lbl_805153AC@sda21(r13)
+/* 800D1DF4 000CED34  90 8D 8D 2C */	stw r4, (changed+4)@sda21(r13)
 /* 800D1DF8 000CED38  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D1DFC 000CED3C  A0 1E 00 16 */	lhz r0, 0x16(r30)
 /* 800D1E00 000CED40  88 7E 00 0F */	lbz r3, 0xf(r30)
@@ -1909,9 +1851,9 @@ VIConfigure:
 /* 800D1E10 000CED50  80 6D 8D 28 */	lwz r3, changed@sda21(r13)
 /* 800D1E14 000CED54  3C 00 00 08 */	lis r0, 8
 /* 800D1E18 000CED58  38 DD 01 1C */	addi r6, r29, 0x11c
-/* 800D1E1C 000CED5C  80 8D 8D 2C */	lwz r4, lbl_805153AC@sda21(r13)
+/* 800D1E1C 000CED5C  80 8D 8D 2C */	lwz r4, (changed+4)@sda21(r13)
 /* 800D1E20 000CED60  7C 60 03 78 */	or r0, r3, r0
-/* 800D1E24 000CED64  90 8D 8D 2C */	stw r4, lbl_805153AC@sda21(r13)
+/* 800D1E24 000CED64  90 8D 8D 2C */	stw r4, (changed+4)@sda21(r13)
 /* 800D1E28 000CED68  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 /* 800D1E2C 000CED6C  A0 7B 00 00 */	lhz r3, 0(r27)
 /* 800D1E30 000CED70  80 99 00 00 */	lwz r4, 0(r25)
@@ -1947,10 +1889,10 @@ VIConfigure:
 /* 800D1EA0 000CEDE0  B0 9D 00 48 */	sth r4, 0x48(r29)
 /* 800D1EA4 000CEDE4  80 8D 8D 28 */	lwz r4, changed@sda21(r13)
 /* 800D1EA8 000CEDE8  80 0D 8D 50 */	lwz r0, FBSet@sda21(r13)
-/* 800D1EAC 000CEDEC  80 AD 8D 2C */	lwz r5, lbl_805153AC@sda21(r13)
+/* 800D1EAC 000CEDEC  80 AD 8D 2C */	lwz r5, (changed+4)@sda21(r13)
 /* 800D1EB0 000CEDF0  28 00 00 00 */	cmplwi r0, 0
 /* 800D1EB4 000CEDF4  7C A0 1B 78 */	or r0, r5, r3
-/* 800D1EB8 000CEDF8  90 0D 8D 2C */	stw r0, lbl_805153AC@sda21(r13)
+/* 800D1EB8 000CEDF8  90 0D 8D 2C */	stw r0, (changed+4)@sda21(r13)
 /* 800D1EBC 000CEDFC  90 8D 8D 28 */	stw r4, changed@sda21(r13)
 /* 800D1EC0 000CEE00  41 82 00 1C */	beq .L_800D1EDC
 /* 800D1EC4 000CEE04  38 7D 00 F0 */	addi r3, r29, 0xf0
@@ -1978,9 +1920,9 @@ VIConfigure:
 /* 800D1F18 000CEE58  38 21 00 78 */	addi r1, r1, 0x78
 /* 800D1F1C 000CEE5C  7C 08 03 A6 */	mtlr r0
 /* 800D1F20 000CEE60  4E 80 00 20 */	blr 
+.endfn VIConfigure
 
-.global VIFlush
-VIFlush:
+.fn VIFlush, global
 /* 800D1F24 000CEE64  7C 08 02 A6 */	mflr r0
 /* 800D1F28 000CEE68  3C 60 80 4F */	lis r3, regs@ha
 /* 800D1F2C 000CEE6C  90 01 00 04 */	stw r0, 4(r1)
@@ -1999,18 +1941,18 @@ VIFlush:
 /* 800D1F60 000CEEA0  90 6D 8D 30 */	stw r3, shdwChangeMode@sda21(r13)
 /* 800D1F64 000CEEA4  90 0D 8D 20 */	stw r0, changeMode@sda21(r13)
 /* 800D1F68 000CEEA8  80 8D 8D 38 */	lwz r4, shdwChanged@sda21(r13)
-/* 800D1F6C 000CEEAC  80 AD 8D 3C */	lwz r5, lbl_805153BC@sda21(r13)
+/* 800D1F6C 000CEEAC  80 AD 8D 3C */	lwz r5, (shdwChanged+4)@sda21(r13)
 /* 800D1F70 000CEEB0  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
-/* 800D1F74 000CEEB4  80 6D 8D 2C */	lwz r3, lbl_805153AC@sda21(r13)
+/* 800D1F74 000CEEB4  80 6D 8D 2C */	lwz r3, (changed+4)@sda21(r13)
 /* 800D1F78 000CEEB8  7C 80 03 78 */	or r0, r4, r0
 /* 800D1F7C 000CEEBC  7C A3 1B 78 */	or r3, r5, r3
-/* 800D1F80 000CEEC0  90 6D 8D 3C */	stw r3, lbl_805153BC@sda21(r13)
+/* 800D1F80 000CEEC0  90 6D 8D 3C */	stw r3, (shdwChanged+4)@sda21(r13)
 /* 800D1F84 000CEEC4  90 0D 8D 38 */	stw r0, shdwChanged@sda21(r13)
 /* 800D1F88 000CEEC8  48 00 00 78 */	b .L_800D2000
 .L_800D1F8C:
 /* 800D1F8C 000CEECC  80 6D 8D 28 */	lwz r3, changed@sda21(r13)
 /* 800D1F90 000CEED0  38 A0 00 20 */	li r5, 0x20
-/* 800D1F94 000CEED4  83 8D 8D 2C */	lwz r28, lbl_805153AC@sda21(r13)
+/* 800D1F94 000CEED4  83 8D 8D 2C */	lwz r28, (changed+4)@sda21(r13)
 /* 800D1F98 000CEED8  38 9C 00 00 */	addi r4, r28, 0
 /* 800D1F9C 000CEEDC  4B FF 01 75 */	bl __shr2u
 /* 800D1FA0 000CEEE0  7C 84 00 34 */	cntlzw r4, r4
@@ -2034,15 +1976,15 @@ VIFlush:
 /* 800D1FE0 000CEF20  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
 /* 800D1FE4 000CEF24  7C 65 18 F8 */	nor r5, r3, r3
 /* 800D1FE8 000CEF28  7C 84 20 F8 */	nor r4, r4, r4
-/* 800D1FEC 000CEF2C  80 6D 8D 2C */	lwz r3, lbl_805153AC@sda21(r13)
+/* 800D1FEC 000CEF2C  80 6D 8D 2C */	lwz r3, (changed+4)@sda21(r13)
 /* 800D1FF0 000CEF30  7C 00 28 38 */	and r0, r0, r5
 /* 800D1FF4 000CEF34  7C 63 20 38 */	and r3, r3, r4
-/* 800D1FF8 000CEF38  90 6D 8D 2C */	stw r3, lbl_805153AC@sda21(r13)
+/* 800D1FF8 000CEF38  90 6D 8D 2C */	stw r3, (changed+4)@sda21(r13)
 /* 800D1FFC 000CEF3C  90 0D 8D 28 */	stw r0, changed@sda21(r13)
 .L_800D2000:
 /* 800D2000 000CEF40  80 0D 8D 28 */	lwz r0, changed@sda21(r13)
 /* 800D2004 000CEF44  38 60 00 00 */	li r3, 0
-/* 800D2008 000CEF48  80 8D 8D 2C */	lwz r4, lbl_805153AC@sda21(r13)
+/* 800D2008 000CEF48  80 8D 8D 2C */	lwz r4, (changed+4)@sda21(r13)
 /* 800D200C 000CEF4C  7C 00 1A 78 */	xor r0, r0, r3
 /* 800D2010 000CEF50  7C 83 1A 78 */	xor r3, r4, r3
 /* 800D2014 000CEF54  7C 60 03 79 */	or. r0, r3, r0
@@ -2061,9 +2003,9 @@ VIFlush:
 /* 800D2048 000CEF88  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D204C 000CEF8C  7C 08 03 A6 */	mtlr r0
 /* 800D2050 000CEF90  4E 80 00 20 */	blr 
+.endfn VIFlush
 
-.global VISetNextFrameBuffer
-VISetNextFrameBuffer:
+.fn VISetNextFrameBuffer, global
 /* 800D2054 000CEF94  7C 08 02 A6 */	mflr r0
 /* 800D2058 000CEF98  3C 80 80 4F */	lis r4, regs@ha
 /* 800D205C 000CEF9C  90 01 00 04 */	stw r0, 4(r1)
@@ -2091,14 +2033,14 @@ VISetNextFrameBuffer:
 /* 800D20B4 000CEFF4  38 21 00 18 */	addi r1, r1, 0x18
 /* 800D20B8 000CEFF8  7C 08 03 A6 */	mtlr r0
 /* 800D20BC 000CEFFC  4E 80 00 20 */	blr 
+.endfn VISetNextFrameBuffer
 
-.global VIGetCurrentFrameBuffer
-VIGetCurrentFrameBuffer:
+.fn VIGetCurrentFrameBuffer, global
 /* 800D20C0 000CF000  80 6D 8D 4C */	lwz r3, CurrBufAddr@sda21(r13)
 /* 800D20C4 000CF004  4E 80 00 20 */	blr 
+.endfn VIGetCurrentFrameBuffer
 
-.global VISetBlack
-VISetBlack:
+.fn VISetBlack, global
 /* 800D20C8 000CF008  7C 08 02 A6 */	mflr r0
 /* 800D20CC 000CF00C  3C 80 80 4F */	lis r4, regs@ha
 /* 800D20D0 000CF010  90 01 00 04 */	stw r0, 4(r1)
@@ -2130,14 +2072,14 @@ VISetBlack:
 /* 800D2138 000CF078  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D213C 000CF07C  7C 08 03 A6 */	mtlr r0
 /* 800D2140 000CF080  4E 80 00 20 */	blr 
+.endfn VISetBlack
 
-.global VIGetRetraceCount
-VIGetRetraceCount:
+.fn VIGetRetraceCount, global
 /* 800D2144 000CF084  80 6D 8C FC */	lwz r3, retraceCount@sda21(r13)
 /* 800D2148 000CF088  4E 80 00 20 */	blr 
+.endfn VIGetRetraceCount
 
-.global GetCurrentDisplayPosition
-GetCurrentDisplayPosition:
+.fn GetCurrentDisplayPosition, local
 /* 800D214C 000CF08C  3C A0 CC 00 */	lis r5, 0xCC002000@ha
 /* 800D2150 000CF090  38 E5 20 00 */	addi r7, r5, 0xCC002000@l
 /* 800D2154 000CF094  A4 07 00 2C */	lhzu r0, 0x2c(r7)
@@ -2154,9 +2096,9 @@ GetCurrentDisplayPosition:
 /* 800D217C 000CF0BC  90 03 00 00 */	stw r0, 0(r3)
 /* 800D2180 000CF0C0  91 24 00 00 */	stw r9, 0(r4)
 /* 800D2184 000CF0C4  4E 80 00 20 */	blr 
+.endfn GetCurrentDisplayPosition
 
-.global getCurrentFieldEvenOdd
-getCurrentFieldEvenOdd:
+.fn getCurrentFieldEvenOdd, local
 /* 800D2188 000CF0C8  3C 60 CC 00 */	lis r3, 0xCC002000@ha
 /* 800D218C 000CF0CC  38 E3 20 00 */	addi r7, r3, 0xCC002000@l
 /* 800D2190 000CF0D0  A4 07 00 2C */	lhzu r0, 0x2c(r7)
@@ -2185,9 +2127,9 @@ getCurrentFieldEvenOdd:
 .L_800D21E8:
 /* 800D21E8 000CF128  38 60 00 00 */	li r3, 0
 /* 800D21EC 000CF12C  4E 80 00 20 */	blr 
+.endfn getCurrentFieldEvenOdd
 
-.global VIGetNextField
-VIGetNextField:
+.fn VIGetNextField, global
 /* 800D21F0 000CF130  7C 08 02 A6 */	mflr r0
 /* 800D21F4 000CF134  90 01 00 04 */	stw r0, 4(r1)
 /* 800D21F8 000CF138  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -2229,9 +2171,9 @@ VIGetNextField:
 /* 800D2280 000CF1C0  38 21 00 28 */	addi r1, r1, 0x28
 /* 800D2284 000CF1C4  7C 08 03 A6 */	mtlr r0
 /* 800D2288 000CF1C8  4E 80 00 20 */	blr 
+.endfn VIGetNextField
 
-.global VIGetCurrentLine
-VIGetCurrentLine:
+.fn VIGetCurrentLine, global
 /* 800D228C 000CF1CC  7C 08 02 A6 */	mflr r0
 /* 800D2290 000CF1D0  90 01 00 04 */	stw r0, 4(r1)
 /* 800D2294 000CF1D4  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -2272,9 +2214,9 @@ VIGetCurrentLine:
 /* 800D2318 000CF258  38 21 00 20 */	addi r1, r1, 0x20
 /* 800D231C 000CF25C  7C 08 03 A6 */	mtlr r0
 /* 800D2320 000CF260  4E 80 00 20 */	blr 
+.endfn VIGetCurrentLine
 
-.global VIGetTvFormat
-VIGetTvFormat:
+.fn VIGetTvFormat, global
 /* 800D2324 000CF264  7C 08 02 A6 */	mflr r0
 /* 800D2328 000CF268  90 01 00 04 */	stw r0, 4(r1)
 /* 800D232C 000CF26C  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -2305,9 +2247,9 @@ VIGetTvFormat:
 /* 800D2380 000CF2C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800D2384 000CF2C4  7C 08 03 A6 */	mtlr r0
 /* 800D2388 000CF2C8  4E 80 00 20 */	blr 
+.endfn VIGetTvFormat
 
-.global VIGetDTVStatus
-VIGetDTVStatus:
+.fn VIGetDTVStatus, global
 /* 800D238C 000CF2CC  7C 08 02 A6 */	mflr r0
 /* 800D2390 000CF2D0  90 01 00 04 */	stw r0, 4(r1)
 /* 800D2394 000CF2D4  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -2323,9 +2265,9 @@ VIGetDTVStatus:
 /* 800D23BC 000CF2FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800D23C0 000CF300  7C 08 03 A6 */	mtlr r0
 /* 800D23C4 000CF304  4E 80 00 20 */	blr 
+.endfn VIGetDTVStatus
 
-.global __VIDisplayPositionToXY
-__VIDisplayPositionToXY:
+.fn __VIDisplayPositionToXY, global
 /* 800D23C8 000CF308  81 2D 8D 40 */	lwz r9, CurrTiming@sda21(r13)
 /* 800D23CC 000CF30C  3C E0 80 4F */	lis r7, HorVer@ha
 /* 800D23D0 000CF310  38 E7 5A 98 */	addi r7, r7, HorVer@l
@@ -2477,9 +2419,9 @@ __VIDisplayPositionToXY:
 /* 800D25D8 000CF518  38 03 FF FF */	addi r0, r3, -1
 /* 800D25DC 000CF51C  B0 05 00 00 */	sth r0, 0(r5)
 /* 800D25E0 000CF520  4E 80 00 20 */	blr 
+.endfn __VIDisplayPositionToXY
 
-.global __VIGetCurrentPosition
-__VIGetCurrentPosition:
+.fn __VIGetCurrentPosition, global
 /* 800D25E4 000CF524  7C 08 02 A6 */	mflr r0
 /* 800D25E8 000CF528  3C E0 CC 00 */	lis r7, 0xCC002000@ha
 /* 800D25EC 000CF52C  90 01 00 04 */	stw r0, 4(r1)
@@ -2505,3 +2447,4 @@ __VIGetCurrentPosition:
 /* 800D2638 000CF578  38 21 00 08 */	addi r1, r1, 8
 /* 800D263C 000CF57C  7C 08 03 A6 */	mtlr r0
 /* 800D2640 000CF580  4E 80 00 20 */	blr 
+.endfn __VIGetCurrentPosition

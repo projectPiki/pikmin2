@@ -1,31 +1,37 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80483828:
+.obj lbl_80483828, local
 	.asciz "cellIterator.cpp"
+.endobj lbl_80483828
 .balign 4
-lbl_8048383C:
+.obj lbl_8048383C, local
 	.asciz "xy %f %f\n%f %f\n"
+.endobj lbl_8048383C
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A300:
+.obj lbl_8051A300, local
 	.float 0.0
-lbl_8051A304:
+.endobj lbl_8051A300
+.obj lbl_8051A304, local
 	.float 1.0
-lbl_8051A308:
+.endobj lbl_8051A304
+.obj lbl_8051A308, local
 	.asciz "x %f>%f"
+.endobj lbl_8051A308
 .balign 4
-lbl_8051A310:
+.obj lbl_8051A310, local
 	.asciz "y %f>%f"
+.endobj lbl_8051A310
 .balign 8
-lbl_8051A318:
+.obj lbl_8051A318, local
 	.4byte 0x43300000
 	.4byte 0x00000000
+.endobj lbl_8051A318
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game15CellIteratorArgFv
-__ct__Q24Game15CellIteratorArgFv:
+.fn __ct__Q24Game15CellIteratorArgFv, global
 /* 8022E36C 0022B2AC  38 80 00 00 */	li r4, 0
 /* 8022E370 0022B2B0  C0 02 BF A0 */	lfs f0, lbl_8051A300@sda21(r2)
 /* 8022E374 0022B2B4  90 83 00 10 */	stw r4, 0x10(r3)
@@ -39,9 +45,9 @@ __ct__Q24Game15CellIteratorArgFv:
 /* 8022E394 0022B2D4  98 83 00 1D */	stb r4, 0x1d(r3)
 /* 8022E398 0022B2D8  98 83 00 1C */	stb r4, 0x1c(r3)
 /* 8022E39C 0022B2DC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15CellIteratorArgFv
 
-.global __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere
-__ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere:
+.fn __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere, global
 /* 8022E3A0 0022B2E0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8022E3A4 0022B2E4  38 A0 00 00 */	li r5, 0
 /* 8022E3A8 0022B2E8  D0 03 00 00 */	stfs f0, 0(r3)
@@ -58,9 +64,9 @@ __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere:
 /* 8022E3D4 0022B314  98 A3 00 1D */	stb r5, 0x1d(r3)
 /* 8022E3D8 0022B318  98 A3 00 1C */	stb r5, 0x1c(r3)
 /* 8022E3DC 0022B31C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere
 
-.global __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
-__ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg:
+.fn __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg, global
 /* 8022E3E0 0022B320  38 A0 00 00 */	li r5, 0
 /* 8022E3E4 0022B324  C0 02 BF A0 */	lfs f0, lbl_8051A300@sda21(r2)
 /* 8022E3E8 0022B328  90 A3 00 34 */	stw r5, 0x34(r3)
@@ -92,9 +98,9 @@ __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg:
 /* 8022E450 0022B390  88 04 00 1D */	lbz r0, 0x1d(r4)
 /* 8022E454 0022B394  98 03 00 41 */	stb r0, 0x41(r3)
 /* 8022E458 0022B398  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
 
-.global first__Q24Game12CellIteratorFv
-first__Q24Game12CellIteratorFv:
+.fn first__Q24Game12CellIteratorFv, global
 /* 8022E45C 0022B39C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022E460 0022B3A0  7C 08 02 A6 */	mflr r0
 /* 8022E464 0022B3A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -138,9 +144,9 @@ first__Q24Game12CellIteratorFv:
 /* 8022E4F4 0022B434  7C 08 03 A6 */	mtlr r0
 /* 8022E4F8 0022B438  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022E4FC 0022B43C  4E 80 00 20 */	blr 
+.endfn first__Q24Game12CellIteratorFv
 
-.global next__Q24Game12CellIteratorFv
-next__Q24Game12CellIteratorFv:
+.fn next__Q24Game12CellIteratorFv, global
 /* 8022E500 0022B440  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022E504 0022B444  7C 08 02 A6 */	mflr r0
 /* 8022E508 0022B448  90 01 00 14 */	stw r0, 0x14(r1)
@@ -154,16 +160,16 @@ next__Q24Game12CellIteratorFv:
 /* 8022E528 0022B468  7C 08 03 A6 */	mtlr r0
 /* 8022E52C 0022B46C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022E530 0022B470  4E 80 00 20 */	blr 
+.endfn next__Q24Game12CellIteratorFv
 
-.global isDone__Q24Game12CellIteratorFv
-isDone__Q24Game12CellIteratorFv:
+.fn isDone__Q24Game12CellIteratorFv, global
 /* 8022E534 0022B474  80 03 00 00 */	lwz r0, 0(r3)
 /* 8022E538 0022B478  7C 00 00 34 */	cntlzw r0, r0
 /* 8022E53C 0022B47C  54 03 D9 7E */	srwi r3, r0, 5
 /* 8022E540 0022B480  4E 80 00 20 */	blr 
+.endfn isDone__Q24Game12CellIteratorFv
 
-.global __ml__Q24Game12CellIteratorFv
-__ml__Q24Game12CellIteratorFv:
+.fn __ml__Q24Game12CellIteratorFv, global
 /* 8022E544 0022B484  80 63 00 00 */	lwz r3, 0(r3)
 /* 8022E548 0022B488  28 03 00 00 */	cmplwi r3, 0
 /* 8022E54C 0022B48C  41 82 00 0C */	beq .L_8022E558
@@ -172,9 +178,9 @@ __ml__Q24Game12CellIteratorFv:
 .L_8022E558:
 /* 8022E558 0022B498  38 60 00 00 */	li r3, 0
 /* 8022E55C 0022B49C  4E 80 00 20 */	blr 
+.endfn __ml__Q24Game12CellIteratorFv
 
-.global getCellObject__Q24Game12CellIteratorFv
-getCellObject__Q24Game12CellIteratorFv:
+.fn getCellObject__Q24Game12CellIteratorFv, global
 /* 8022E560 0022B4A0  80 63 00 00 */	lwz r3, 0(r3)
 /* 8022E564 0022B4A4  28 03 00 00 */	cmplwi r3, 0
 /* 8022E568 0022B4A8  41 82 00 0C */	beq .L_8022E574
@@ -183,9 +189,9 @@ getCellObject__Q24Game12CellIteratorFv:
 .L_8022E574:
 /* 8022E574 0022B4B4  38 60 00 00 */	li r3, 0
 /* 8022E578 0022B4B8  4E 80 00 20 */	blr 
+.endfn getCellObject__Q24Game12CellIteratorFv
 
-.global step__Q24Game12CellIteratorFv
-step__Q24Game12CellIteratorFv:
+.fn step__Q24Game12CellIteratorFv, global
 /* 8022E57C 0022B4BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022E580 0022B4C0  7C 08 02 A6 */	mflr r0
 /* 8022E584 0022B4C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -250,9 +256,9 @@ step__Q24Game12CellIteratorFv:
 /* 8022E65C 0022B59C  7C 08 03 A6 */	mtlr r0
 /* 8022E660 0022B5A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022E664 0022B5A4  4E 80 00 20 */	blr 
+.endfn step__Q24Game12CellIteratorFv
 
-.global find__Q24Game12CellIteratorFv
-find__Q24Game12CellIteratorFv:
+.fn find__Q24Game12CellIteratorFv, global
 /* 8022E668 0022B5A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022E66C 0022B5AC  7C 08 02 A6 */	mflr r0
 /* 8022E670 0022B5B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -329,9 +335,9 @@ find__Q24Game12CellIteratorFv:
 /* 8022E76C 0022B6AC  7C 08 03 A6 */	mtlr r0
 /* 8022E770 0022B6B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022E774 0022B6B4  4E 80 00 20 */	blr 
+.endfn find__Q24Game12CellIteratorFv
 
-.global satisfy__Q24Game12CellIteratorFv
-satisfy__Q24Game12CellIteratorFv:
+.fn satisfy__Q24Game12CellIteratorFv, global
 /* 8022E778 0022B6B8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8022E77C 0022B6BC  7C 08 02 A6 */	mflr r0
 /* 8022E780 0022B6C0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -438,9 +444,9 @@ satisfy__Q24Game12CellIteratorFv:
 /* 8022E8F8 0022B838  7C 08 03 A6 */	mtlr r0
 /* 8022E8FC 0022B83C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8022E900 0022B840  4E 80 00 20 */	blr 
+.endfn satisfy__Q24Game12CellIteratorFv
 
-.global calcExtent__Q24Game12CellIteratorFv
-calcExtent__Q24Game12CellIteratorFv:
+.fn calcExtent__Q24Game12CellIteratorFv, global
 /* 8022E904 0022B844  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8022E908 0022B848  7C 08 02 A6 */	mflr r0
 /* 8022E90C 0022B84C  C8 42 BF B8 */	lfd f2, lbl_8051A318@sda21(r2)
@@ -543,7 +549,8 @@ calcExtent__Q24Game12CellIteratorFv:
 /* 8022EA84 0022B9C4  7C 08 03 A6 */	mtlr r0
 /* 8022EA88 0022B9C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8022EA8C 0022B9CC  4E 80 00 20 */	blr 
+.endfn calcExtent__Q24Game12CellIteratorFv
 
-.global dump__Q24Game12CellIteratorFv
-dump__Q24Game12CellIteratorFv:
+.fn dump__Q24Game12CellIteratorFv, global
 /* 8022EA90 0022B9D0  4E 80 00 20 */	blr 
+.endfn dump__Q24Game12CellIteratorFv

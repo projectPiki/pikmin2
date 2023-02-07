@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A8810
-lbl_804A8810:
+.obj lbl_804A8810, local
 	.4byte .L_800E9EEC
 	.4byte .L_800E9F08
 	.4byte .L_800E9F24
@@ -26,8 +25,8 @@ lbl_804A8810:
 	.4byte .L_800EA1B0
 	.4byte .L_800E9F78
 	.4byte .L_800EA1BC
-.global lbl_804A886C
-lbl_804A886C:
+.endobj lbl_804A8810
+.obj lbl_804A886C, local
 	.4byte .L_800E9AC0
 	.4byte .L_800E9AE0
 	.4byte .L_800E9B00
@@ -64,11 +63,10 @@ lbl_804A886C:
 	.4byte .L_800E9EA8
 	.4byte .L_800E9C00
 	.4byte .L_800E9EC0
-	.4byte 0x00000000
+.endobj lbl_804A886C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global GXSetGPMetric
-GXSetGPMetric:
+.fn GXSetGPMetric, global
 /* 800E9984 000E68C4  80 A2 92 90 */	lwz r5, __GXData@sda21(r2)
 /* 800E9988 000E68C8  80 05 05 9C */	lwz r0, 0x59c(r5)
 /* 800E998C 000E68CC  2C 00 00 22 */	cmpwi r0, 0x22
@@ -668,16 +666,16 @@ GXSetGPMetric:
 /* 800EA1C0 000E7100  38 00 00 00 */	li r0, 0
 /* 800EA1C4 000E7104  B0 03 00 02 */	sth r0, 2(r3)
 /* 800EA1C8 000E7108  4E 80 00 20 */	blr 
+.endfn GXSetGPMetric
 
-.global GXClearGPMetric
-GXClearGPMetric:
+.fn GXClearGPMetric, global
 /* 800EA1CC 000E710C  80 6D 8E B4 */	lwz r3, __cpReg@sda21(r13)
 /* 800EA1D0 000E7110  38 00 00 04 */	li r0, 4
 /* 800EA1D4 000E7114  B0 03 00 04 */	sth r0, 4(r3)
 /* 800EA1D8 000E7118  4E 80 00 20 */	blr 
+.endfn GXClearGPMetric
 
-.global GXReadXfRasMetric
-GXReadXfRasMetric:
+.fn GXReadXfRasMetric, global
 /* 800EA1DC 000E711C  80 ED 8E B4 */	lwz r7, __cpReg@sda21(r13)
 /* 800EA1E0 000E7120  39 47 00 42 */	addi r10, r7, 0x42
 /* 800EA1E4 000E7124  A1 07 00 42 */	lhz r8, 0x42(r7)
@@ -731,3 +729,4 @@ GXReadXfRasMetric:
 /* 800EA294 000E71D4  7C 00 1B 78 */	or r0, r0, r3
 /* 800EA298 000E71D8  90 04 00 00 */	stw r0, 0(r4)
 /* 800EA29C 000E71DC  4E 80 00 20 */	blr 
+.endfn GXReadXfRasMetric

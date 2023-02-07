@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __GXSetDirtyState
-__GXSetDirtyState:
+.fn __GXSetDirtyState, global
 /* 800E5908 000E2848  7C 08 02 A6 */	mflr r0
 /* 800E590C 000E284C  90 01 00 04 */	stw r0, 4(r1)
 /* 800E5910 000E2850  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -41,9 +40,9 @@ __GXSetDirtyState:
 /* 800E597C 000E28BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800E5980 000E28C0  7C 08 03 A6 */	mtlr r0
 /* 800E5984 000E28C4  4E 80 00 20 */	blr 
+.endfn __GXSetDirtyState
 
-.global GXBegin
-GXBegin:
+.fn GXBegin, global
 /* 800E5988 000E28C8  7C 08 02 A6 */	mflr r0
 /* 800E598C 000E28CC  90 01 00 04 */	stw r0, 4(r1)
 /* 800E5990 000E28D0  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -104,9 +103,9 @@ GXBegin:
 /* 800E5A4C 000E298C  38 21 00 28 */	addi r1, r1, 0x28
 /* 800E5A50 000E2990  7C 08 03 A6 */	mtlr r0
 /* 800E5A54 000E2994  4E 80 00 20 */	blr 
+.endfn GXBegin
 
-.global __GXSendFlushPrim
-__GXSendFlushPrim:
+.fn __GXSendFlushPrim, global
 /* 800E5A58 000E2998  80 62 92 90 */	lwz r3, __GXData@sda21(r2)
 /* 800E5A5C 000E299C  38 00 00 98 */	li r0, 0x98
 /* 800E5A60 000E29A0  3C A0 CC 01 */	lis r5, 0xCC008000@ha
@@ -145,9 +144,9 @@ __GXSendFlushPrim:
 /* 800E5AD4 000E2A14  38 00 00 01 */	li r0, 1
 /* 800E5AD8 000E2A18  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E5ADC 000E2A1C  4E 80 00 20 */	blr 
+.endfn __GXSendFlushPrim
 
-.global GXSetLineWidth
-GXSetLineWidth:
+.fn GXSetLineWidth, global
 /* 800E5AE0 000E2A20  80 E2 92 90 */	lwz r7, __GXData@sda21(r2)
 /* 800E5AE4 000E2A24  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800E5AE8 000E2A28  38 60 00 61 */	li r3, 0x61
@@ -164,9 +163,9 @@ GXSetLineWidth:
 /* 800E5B14 000E2A54  90 65 80 00 */	stw r3, 0xCC008000@l(r5)
 /* 800E5B18 000E2A58  B0 07 00 02 */	sth r0, 2(r7)
 /* 800E5B1C 000E2A5C  4E 80 00 20 */	blr 
+.endfn GXSetLineWidth
 
-.global GXSetPointSize
-GXSetPointSize:
+.fn GXSetPointSize, global
 /* 800E5B20 000E2A60  80 E2 92 90 */	lwz r7, __GXData@sda21(r2)
 /* 800E5B24 000E2A64  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800E5B28 000E2A68  38 60 00 61 */	li r3, 0x61
@@ -183,9 +182,9 @@ GXSetPointSize:
 /* 800E5B54 000E2A94  90 65 80 00 */	stw r3, 0xCC008000@l(r5)
 /* 800E5B58 000E2A98  B0 07 00 02 */	sth r0, 2(r7)
 /* 800E5B5C 000E2A9C  4E 80 00 20 */	blr 
+.endfn GXSetPointSize
 
-.global GXEnableTexOffsets
-GXEnableTexOffsets:
+.fn GXEnableTexOffsets, global
 /* 800E5B60 000E2AA0  80 E2 92 90 */	lwz r7, __GXData@sda21(r2)
 /* 800E5B64 000E2AA4  54 63 10 3A */	slwi r3, r3, 2
 /* 800E5B68 000E2AA8  54 A0 06 3E */	clrlwi r0, r5, 0x18
@@ -204,9 +203,9 @@ GXEnableTexOffsets:
 /* 800E5B9C 000E2ADC  90 64 80 00 */	stw r3, 0xCC008000@l(r4)
 /* 800E5BA0 000E2AE0  B0 07 00 02 */	sth r0, 2(r7)
 /* 800E5BA4 000E2AE4  4E 80 00 20 */	blr 
+.endfn GXEnableTexOffsets
 
-.global GXSetCullMode
-GXSetCullMode:
+.fn GXSetCullMode, global
 /* 800E5BA8 000E2AE8  2C 03 00 02 */	cmpwi r3, 2
 /* 800E5BAC 000E2AEC  41 82 00 1C */	beq .L_800E5BC8
 /* 800E5BB0 000E2AF0  40 80 00 1C */	bge .L_800E5BCC
@@ -227,9 +226,9 @@ GXSetCullMode:
 /* 800E5BE0 000E2B20  60 00 00 04 */	ori r0, r0, 4
 /* 800E5BE4 000E2B24  90 04 05 AC */	stw r0, 0x5ac(r4)
 /* 800E5BE8 000E2B28  4E 80 00 20 */	blr 
+.endfn GXSetCullMode
 
-.global GXSetCoPlanar
-GXSetCoPlanar:
+.fn GXSetCoPlanar, global
 /* 800E5BEC 000E2B2C  80 C2 92 90 */	lwz r6, __GXData@sda21(r2)
 /* 800E5BF0 000E2B30  38 80 00 61 */	li r4, 0x61
 /* 800E5BF4 000E2B34  3C 00 FE 08 */	lis r0, 0xfe08
@@ -243,9 +242,9 @@ GXSetCoPlanar:
 /* 800E5C14 000E2B54  80 06 02 04 */	lwz r0, 0x204(r6)
 /* 800E5C18 000E2B58  90 03 80 00 */	stw r0, 0xCC008000@l(r3)
 /* 800E5C1C 000E2B5C  4E 80 00 20 */	blr 
+.endfn GXSetCoPlanar
 
-.global __GXSetGenMode
-__GXSetGenMode:
+.fn __GXSetGenMode, global
 /* 800E5C20 000E2B60  38 00 00 61 */	li r0, 0x61
 /* 800E5C24 000E2B64  80 82 92 90 */	lwz r4, __GXData@sda21(r2)
 /* 800E5C28 000E2B68  3C A0 CC 01 */	lis r5, 0xCC008000@ha
@@ -255,3 +254,4 @@ __GXSetGenMode:
 /* 800E5C38 000E2B78  90 65 80 00 */	stw r3, 0xCC008000@l(r5)
 /* 800E5C3C 000E2B7C  B0 04 00 02 */	sth r0, 2(r4)
 /* 800E5C40 000E2B80  4E 80 00 20 */	blr 
+.endfn __GXSetGenMode

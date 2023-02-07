@@ -1,18 +1,11 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 8
-.global lbl_804A8060
-lbl_804A8060:
+.balign 32
+.obj lbl_804A8060, local
 	.asciz "<< Dolphin SDK - GX\trelease build: Nov 26 2003 05:19:07 (0x2301) >>"
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global DefaultTexData
-DefaultTexData:
+.endobj lbl_804A8060
+.balign 32
+.obj DefaultTexData, local
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
@@ -21,8 +14,8 @@ DefaultTexData:
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
-.global GXDefaultVATList
-GXDefaultVATList:
+.endobj DefaultTexData
+.obj GXDefaultVATList, local
 	.4byte 0x00000009
 	.4byte 0x00000001
 	.4byte 0x00000004
@@ -75,8 +68,8 @@ GXDefaultVATList:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global GXDefaultProjData
-GXDefaultProjData:
+.endobj GXDefaultVATList
+.obj GXDefaultProjData, local
 	.float 1.0
 	.float 0.0
 	.float 1.0
@@ -84,8 +77,8 @@ GXDefaultProjData:
 	.float -1.0
 	.float -2.0
 	.float 0.0
-.global GXTexRegionAddrTable
-GXTexRegionAddrTable:
+.endobj GXDefaultProjData
+.obj GXTexRegionAddrTable, local
 	.4byte 0x00000000
 	.4byte 0x00010000
 	.4byte 0x00020000
@@ -134,92 +127,91 @@ GXTexRegionAddrTable:
 	.4byte 0x00050000
 	.4byte 0x000A0000
 	.4byte 0x00070000
-.global GXResetFuncInfo
-GXResetFuncInfo:
+.endobj GXTexRegionAddrTable
+.obj GXResetFuncInfo, local
 	.4byte __GXShutdown
 	.4byte 0x0000007F
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj GXResetFuncInfo
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global FifoObj
-FifoObj:
+.obj FifoObj, local
 	.skip 0x80
-.global gxData
-gxData:
+.endobj FifoObj
+.obj gxData, local
 	.skip 0x5B0
+.endobj gxData
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __GXVersion
-__GXVersion:
+.obj __GXVersion, global
 	.4byte lbl_804A8060
+.endobj __GXVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global __piReg
-__piReg:
+.obj __piReg, global
 	.skip 0x4
-.global __cpReg
-__cpReg:
+.endobj __piReg
+.obj __cpReg, global
 	.skip 0x4
-.global __peReg
-__peReg:
+.endobj __cpReg
+.obj __peReg, global
 	.skip 0x4
-.global __memReg
-__memReg:
+.endobj __peReg
+.obj __memReg, global
 	.skip 0x4
-.global peCount$35
-peCount$35:
+.endobj __memReg
+.obj peCount$35, local
+	.skip 0x4
+.endobj peCount$35
+.balign 8
+.obj time$36, local
 	.skip 0x8
-.global time$36
-time$36:
+.endobj time$36
+.obj calledOnce$37, local
 	.skip 0x4
-.global lbl_8051554C
-lbl_8051554C:
+.endobj calledOnce$37
+.obj resetFuncRegistered$70, local
 	.skip 0x4
-.global calledOnce$37
-calledOnce$37:
-	.skip 0x4
-.global resetFuncRegistered$70
-resetFuncRegistered$70:
-	.skip 0x4
+.endobj resetFuncRegistered$70
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global __GXData
-__GXData:
+.obj __GXData, global
 	.4byte gxData
-.global lbl_805175F4
-lbl_805175F4:
-	.4byte 0x4B800000
-.global lbl_805175F8
-lbl_805175F8:
-	.4byte 0x00000000
-.global lbl_805175FC
-lbl_805175FC:
+.endobj __GXData
+.obj lbl_805175F4, local
+	.float 1.6777216E7
+.endobj lbl_805175F4
+.obj lbl_805175F8, local
+	.float 0.0
+.endobj lbl_805175F8
+.obj lbl_805175FC, local
 	.4byte 0x404040FF
-.global lbl_80517600
-lbl_80517600:
+.endobj lbl_805175FC
+.obj lbl_80517600, local
 	.4byte 0x00000000
-.global lbl_80517604
-lbl_80517604:
+.endobj lbl_80517600
+.obj lbl_80517604, local
 	.4byte 0xFFFFFFFF
-.global lbl_80517608
-lbl_80517608:
+.endobj lbl_80517604
+.obj lbl_80517608, local
 	.float 1.0
-.global lbl_8051760C
-lbl_8051760C:
+.endobj lbl_80517608
+.obj lbl_8051760C, local
 	.float 0.1
-.global lbl_80517610
-lbl_80517610:
+.endobj lbl_8051760C
+.balign 8
+.obj lbl_80517610, local
 	.4byte 0x43300000
 	.4byte 0x00000000
+.endobj lbl_80517610
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __GXDefaultTexRegionCallback
-__GXDefaultTexRegionCallback:
+.fn __GXDefaultTexRegionCallback, local
 /* 800E2680 000DF5C0  7C 08 02 A6 */	mflr r0
 /* 800E2684 000DF5C4  90 01 00 04 */	stw r0, 4(r1)
 /* 800E2688 000DF5C8  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -290,9 +282,9 @@ __GXDefaultTexRegionCallback:
 /* 800E2770 000DF6B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E2774 000DF6B4  7C 08 03 A6 */	mtlr r0
 /* 800E2778 000DF6B8  4E 80 00 20 */	blr 
+.endfn __GXDefaultTexRegionCallback
 
-.global __GXDefaultTlutRegionCallback
-__GXDefaultTlutRegionCallback:
+.fn __GXDefaultTlutRegionCallback, local
 /* 800E277C 000DF6BC  28 03 00 14 */	cmplwi r3, 0x14
 /* 800E2780 000DF6C0  41 80 00 0C */	blt .L_800E278C
 /* 800E2784 000DF6C4  38 60 00 00 */	li r3, 0
@@ -304,9 +296,9 @@ __GXDefaultTlutRegionCallback:
 /* 800E2798 000DF6D8  7C 60 1A 14 */	add r3, r0, r3
 .L_800E279C:
 /* 800E279C 000DF6DC  4E 80 00 20 */	blr 
+.endfn __GXDefaultTlutRegionCallback
 
-.global __GXShutdown
-__GXShutdown:
+.fn __GXShutdown, local
 /* 800E27A0 000DF6E0  7C 08 02 A6 */	mflr r0
 /* 800E27A4 000DF6E4  90 01 00 04 */	stw r0, 4(r1)
 /* 800E27A8 000DF6E8  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -333,7 +325,7 @@ __GXShutdown:
 /* 800E27F4 000DF734  7C 00 1B 78 */	or r0, r0, r3
 /* 800E27F8 000DF738  90 0D 8E C0 */	stw r0, peCount$35@sda21(r13)
 /* 800E27FC 000DF73C  48 01 03 95 */	bl OSGetTime
-/* 800E2800 000DF740  90 8D 8E CC */	stw r4, lbl_8051554C@sda21(r13)
+/* 800E2800 000DF740  90 8D 8E CC */	stw r4, (time$36+4)@sda21(r13)
 /* 800E2804 000DF744  38 00 00 01 */	li r0, 1
 /* 800E2808 000DF748  90 6D 8E C8 */	stw r3, time$36@sda21(r13)
 /* 800E280C 000DF74C  38 60 00 00 */	li r3, 0
@@ -354,7 +346,7 @@ __GXShutdown:
 /* 800E283C 000DF77C  A1 45 00 00 */	lhz r10, 0(r5)
 /* 800E2840 000DF780  7C 07 00 40 */	cmplw r7, r0
 /* 800E2844 000DF784  40 82 FF F0 */	bne .L_800E2834
-/* 800E2848 000DF788  80 CD 8E CC */	lwz r6, lbl_8051554C@sda21(r13)
+/* 800E2848 000DF788  80 CD 8E CC */	lwz r6, (time$36+4)@sda21(r13)
 /* 800E284C 000DF78C  38 00 00 00 */	li r0, 0
 /* 800E2850 000DF790  80 AD 8E C8 */	lwz r5, time$36@sda21(r13)
 /* 800E2854 000DF794  54 E9 80 1E */	slwi r9, r7, 0x10
@@ -376,7 +368,7 @@ __GXShutdown:
 /* 800E2890 000DF7D0  80 0D 8E C0 */	lwz r0, peCount$35@sda21(r13)
 /* 800E2894 000DF7D4  7C 05 00 40 */	cmplw r5, r0
 /* 800E2898 000DF7D8  41 82 00 80 */	beq .L_800E2918
-/* 800E289C 000DF7DC  90 8D 8E CC */	stw r4, lbl_8051554C@sda21(r13)
+/* 800E289C 000DF7DC  90 8D 8E CC */	stw r4, (time$36+4)@sda21(r13)
 /* 800E28A0 000DF7E0  90 6D 8E C8 */	stw r3, time$36@sda21(r13)
 /* 800E28A4 000DF7E4  38 60 00 00 */	li r3, 0
 /* 800E28A8 000DF7E8  90 AD 8E C0 */	stw r5, peCount$35@sda21(r13)
@@ -416,9 +408,9 @@ __GXShutdown:
 /* 800E2924 000DF864  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E2928 000DF868  7C 08 03 A6 */	mtlr r0
 /* 800E292C 000DF86C  4E 80 00 20 */	blr 
+.endfn __GXShutdown
 
-.global GXInit
-GXInit:
+.fn GXInit, global
 /* 800E2930 000DF870  7C 08 02 A6 */	mflr r0
 /* 800E2934 000DF874  90 01 00 04 */	stw r0, 4(r1)
 /* 800E2938 000DF878  94 21 FF C0 */	stwu r1, -0x40(r1)
@@ -924,9 +916,9 @@ GXInit:
 /* 800E30BC 000DFFFC  38 21 00 40 */	addi r1, r1, 0x40
 /* 800E30C0 000E0000  7C 08 03 A6 */	mtlr r0
 /* 800E30C4 000E0004  4E 80 00 20 */	blr 
+.endfn GXInit
 
-.global __GXInitGX
-__GXInitGX:
+.fn __GXInitGX, global
 /* 800E30C8 000E0008  7C 08 02 A6 */	mflr r0
 /* 800E30CC 000E000C  90 01 00 04 */	stw r0, 4(r1)
 /* 800E30D0 000E0010  94 21 FF 60 */	stwu r1, -0xa0(r1)
@@ -1538,3 +1530,4 @@ __GXInitGX:
 /* 800E39F4 000E0934  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 800E39F8 000E0938  7C 08 03 A6 */	mtlr r0
 /* 800E39FC 000E093C  4E 80 00 20 */	blr 
+.endfn __GXInitGX

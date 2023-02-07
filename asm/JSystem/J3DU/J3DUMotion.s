@@ -14,8 +14,7 @@
 	.4byte "init__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
 	.4byte "calc__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
 .endobj "__vt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-.global "__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-"__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>":
+.obj "__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
@@ -27,6 +26,7 @@
 	.4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
 	.4byte "init__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
 	.4byte "calc__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
+.endobj "__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
 .global "__vt__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
 "__vt__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>":
 	.4byte 0
@@ -108,12 +108,15 @@ __vt__10J3DMtxCalc:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805164B8:
+.obj lbl_805164B8, local
 	.float 0.0
-lbl_805164BC:
+.endobj lbl_805164B8
+.obj lbl_805164BC, local
 	.float 1.0
-lbl_805164C0:
+.endobj lbl_805164BC
+.obj lbl_805164C0, local
 	.float 0.005
+.endobj lbl_805164C0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global J3DUNewMtxCalcAnm__FUlP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransform14J3DMtxCalcFlag

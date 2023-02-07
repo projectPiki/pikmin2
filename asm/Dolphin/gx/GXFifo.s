@@ -1,25 +1,31 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-CPUFifo:
+.obj CPUFifo, local
 	.skip 0x4
-GPFifo:
+.endobj CPUFifo
+.obj GPFifo, local
 	.skip 0x4
-__GXCurrentThread:
+.endobj GPFifo
+.obj __GXCurrentThread, local
 	.skip 0x4
-CPGPLinked:
+.endobj __GXCurrentThread
+.obj CPGPLinked, local
 	.skip 0x1
+.endobj CPGPLinked
 .balign 4
-GXOverflowSuspendInProgress:
+.obj GXOverflowSuspendInProgress, local
 	.skip 0x4
-BreakPointCB:
+.endobj GXOverflowSuspendInProgress
+.obj BreakPointCB, local
 	.skip 0x4
-__GXOverflowCount:
+.endobj BreakPointCB
+.obj __GXOverflowCount, local
 	.skip 0x4
+.endobj __GXOverflowCount
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global GXCPInterruptHandler
-GXCPInterruptHandler:
+.fn GXCPInterruptHandler, local
 /* 800E3A00 000E0940  7C 08 02 A6 */	mflr r0
 /* 800E3A04 000E0944  90 01 00 04 */	stw r0, 4(r1)
 /* 800E3A08 000E0948  94 21 FD 20 */	stwu r1, -0x2e0(r1)
@@ -100,9 +106,9 @@ GXCPInterruptHandler:
 /* 800E3B28 000E0A68  38 21 02 E0 */	addi r1, r1, 0x2e0
 /* 800E3B2C 000E0A6C  7C 08 03 A6 */	mtlr r0
 /* 800E3B30 000E0A70  4E 80 00 20 */	blr 
+.endfn GXCPInterruptHandler
 
-.global GXInitFifoBase
-GXInitFifoBase:
+.fn GXInitFifoBase, global
 /* 800E3B34 000E0A74  7C 08 02 A6 */	mflr r0
 /* 800E3B38 000E0A78  90 01 00 04 */	stw r0, 4(r1)
 /* 800E3B3C 000E0A7C  38 05 FF FC */	addi r0, r5, -4
@@ -130,9 +136,9 @@ GXInitFifoBase:
 /* 800E3B94 000E0AD4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E3B98 000E0AD8  7C 08 03 A6 */	mtlr r0
 /* 800E3B9C 000E0ADC  4E 80 00 20 */	blr 
+.endfn GXInitFifoBase
 
-.global GXInitFifoPtrs
-GXInitFifoPtrs:
+.fn GXInitFifoPtrs, global
 /* 800E3BA0 000E0AE0  7C 08 02 A6 */	mflr r0
 /* 800E3BA4 000E0AE4  90 01 00 04 */	stw r0, 4(r1)
 /* 800E3BA8 000E0AE8  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -162,15 +168,15 @@ GXInitFifoPtrs:
 /* 800E3C04 000E0B44  38 21 00 28 */	addi r1, r1, 0x28
 /* 800E3C08 000E0B48  7C 08 03 A6 */	mtlr r0
 /* 800E3C0C 000E0B4C  4E 80 00 20 */	blr 
+.endfn GXInitFifoPtrs
 
-.global GXInitFifoLimits
-GXInitFifoLimits:
+.fn GXInitFifoLimits, global
 /* 800E3C10 000E0B50  90 83 00 0C */	stw r4, 0xc(r3)
 /* 800E3C14 000E0B54  90 A3 00 10 */	stw r5, 0x10(r3)
 /* 800E3C18 000E0B58  4E 80 00 20 */	blr 
+.endfn GXInitFifoLimits
 
-.global GXSetCPUFifo
-GXSetCPUFifo:
+.fn GXSetCPUFifo, global
 /* 800E3C1C 000E0B5C  7C 08 02 A6 */	mflr r0
 /* 800E3C20 000E0B60  90 01 00 04 */	stw r0, 4(r1)
 /* 800E3C24 000E0B64  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -248,9 +254,9 @@ GXSetCPUFifo:
 /* 800E3D38 000E0C78  38 21 00 18 */	addi r1, r1, 0x18
 /* 800E3D3C 000E0C7C  7C 08 03 A6 */	mtlr r0
 /* 800E3D40 000E0C80  4E 80 00 20 */	blr 
+.endfn GXSetCPUFifo
 
-.global GXSetGPFifo
-GXSetGPFifo:
+.fn GXSetGPFifo, global
 /* 800E3D44 000E0C84  7C 08 02 A6 */	mflr r0
 /* 800E3D48 000E0C88  90 01 00 04 */	stw r0, 4(r1)
 /* 800E3D4C 000E0C8C  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -347,9 +353,9 @@ GXSetGPFifo:
 /* 800E3EB0 000E0DF0  38 21 00 18 */	addi r1, r1, 0x18
 /* 800E3EB4 000E0DF4  7C 08 03 A6 */	mtlr r0
 /* 800E3EB8 000E0DF8  4E 80 00 20 */	blr 
+.endfn GXSetGPFifo
 
-.global GXSaveCPUFifo
-GXSaveCPUFifo:
+.fn GXSaveCPUFifo, global
 /* 800E3EBC 000E0DFC  7C 08 02 A6 */	mflr r0
 /* 800E3EC0 000E0E00  90 01 00 04 */	stw r0, 4(r1)
 /* 800E3EC4 000E0E04  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -363,9 +369,9 @@ GXSaveCPUFifo:
 /* 800E3EE4 000E0E24  38 21 00 18 */	addi r1, r1, 0x18
 /* 800E3EE8 000E0E28  7C 08 03 A6 */	mtlr r0
 /* 800E3EEC 000E0E2C  4E 80 00 20 */	blr 
+.endfn GXSaveCPUFifo
 
-.global __GXSaveCPUFifoAux
-__GXSaveCPUFifoAux:
+.fn __GXSaveCPUFifoAux, global
 /* 800E3EF0 000E0E30  7C 08 02 A6 */	mflr r0
 /* 800E3EF4 000E0E34  90 01 00 04 */	stw r0, 4(r1)
 /* 800E3EF8 000E0E38  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -418,9 +424,9 @@ __GXSaveCPUFifoAux:
 /* 800E3FAC 000E0EEC  38 21 00 18 */	addi r1, r1, 0x18
 /* 800E3FB0 000E0EF0  7C 08 03 A6 */	mtlr r0
 /* 800E3FB4 000E0EF4  4E 80 00 20 */	blr 
+.endfn __GXSaveCPUFifoAux
 
-.global GXGetGPStatus
-GXGetGPStatus:
+.fn GXGetGPStatus, global
 /* 800E3FB8 000E0EF8  81 2D 8E B4 */	lwz r9, __cpReg@sda21(r13)
 /* 800E3FBC 000E0EFC  81 02 92 90 */	lwz r8, __GXData@sda21(r2)
 /* 800E3FC0 000E0F00  A0 09 00 00 */	lhz r0, 0(r9)
@@ -441,9 +447,9 @@ GXGetGPStatus:
 /* 800E3FFC 000E0F3C  54 00 E7 FE */	rlwinm r0, r0, 0x1c, 0x1f, 0x1f
 /* 800E4000 000E0F40  98 07 00 00 */	stb r0, 0(r7)
 /* 800E4004 000E0F44  4E 80 00 20 */	blr 
+.endfn GXGetGPStatus
 
-.global GXSetBreakPtCallback
-GXSetBreakPtCallback:
+.fn GXSetBreakPtCallback, global
 /* 800E4008 000E0F48  7C 08 02 A6 */	mflr r0
 /* 800E400C 000E0F4C  90 01 00 04 */	stw r0, 4(r1)
 /* 800E4010 000E0F50  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -461,9 +467,9 @@ GXSetBreakPtCallback:
 /* 800E4040 000E0F80  38 21 00 18 */	addi r1, r1, 0x18
 /* 800E4044 000E0F84  7C 08 03 A6 */	mtlr r0
 /* 800E4048 000E0F88  4E 80 00 20 */	blr 
+.endfn GXSetBreakPtCallback
 
-.global __GXFifoInit
-__GXFifoInit:
+.fn __GXFifoInit, global
 /* 800E404C 000E0F8C  7C 08 02 A6 */	mflr r0
 /* 800E4050 000E0F90  3C 60 80 0E */	lis r3, GXCPInterruptHandler@ha
 /* 800E4054 000E0F94  90 01 00 04 */	stw r0, 4(r1)
@@ -483,9 +489,9 @@ __GXFifoInit:
 /* 800E408C 000E0FCC  38 21 00 08 */	addi r1, r1, 8
 /* 800E4090 000E0FD0  7C 08 03 A6 */	mtlr r0
 /* 800E4094 000E0FD4  4E 80 00 20 */	blr 
+.endfn __GXFifoInit
 
-.global __GXFifoReadEnable
-__GXFifoReadEnable:
+.fn __GXFifoReadEnable, local
 /* 800E4098 000E0FD8  80 82 92 90 */	lwz r4, __GXData@sda21(r2)
 /* 800E409C 000E0FDC  38 00 00 01 */	li r0, 1
 /* 800E40A0 000E0FE0  80 64 00 08 */	lwz r3, 8(r4)
@@ -495,9 +501,9 @@ __GXFifoReadEnable:
 /* 800E40B0 000E0FF0  80 6D 8E B4 */	lwz r3, __cpReg@sda21(r13)
 /* 800E40B4 000E0FF4  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E40B8 000E0FF8  4E 80 00 20 */	blr 
+.endfn __GXFifoReadEnable
 
-.global __GXFifoReadDisable
-__GXFifoReadDisable:
+.fn __GXFifoReadDisable, local
 /* 800E40BC 000E0FFC  80 82 92 90 */	lwz r4, __GXData@sda21(r2)
 /* 800E40C0 000E1000  38 00 00 00 */	li r0, 0
 /* 800E40C4 000E1004  80 64 00 08 */	lwz r3, 8(r4)
@@ -507,9 +513,9 @@ __GXFifoReadDisable:
 /* 800E40D4 000E1014  80 6D 8E B4 */	lwz r3, __cpReg@sda21(r13)
 /* 800E40D8 000E1018  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E40DC 000E101C  4E 80 00 20 */	blr 
+.endfn __GXFifoReadDisable
 
-.global __GXFifoLink
-__GXFifoLink:
+.fn __GXFifoLink, local
 /* 800E40E0 000E1020  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800E40E4 000E1024  41 82 00 0C */	beq .L_800E40F0
 /* 800E40E8 000E1028  38 80 00 01 */	li r4, 1
@@ -525,9 +531,9 @@ __GXFifoLink:
 /* 800E4108 000E1048  80 6D 8E B4 */	lwz r3, __cpReg@sda21(r13)
 /* 800E410C 000E104C  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E4110 000E1050  4E 80 00 20 */	blr 
+.endfn __GXFifoLink
 
-.global __GXWriteFifoIntEnable
-__GXWriteFifoIntEnable:
+.fn __GXWriteFifoIntEnable, local
 /* 800E4114 000E1054  80 A2 92 90 */	lwz r5, __GXData@sda21(r2)
 /* 800E4118 000E1058  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800E411C 000E105C  80 85 00 08 */	lwz r4, 8(r5)
@@ -540,9 +546,9 @@ __GXWriteFifoIntEnable:
 /* 800E4138 000E1078  80 6D 8E B4 */	lwz r3, __cpReg@sda21(r13)
 /* 800E413C 000E107C  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E4140 000E1080  4E 80 00 20 */	blr 
+.endfn __GXWriteFifoIntEnable
 
-.global __GXWriteFifoIntReset
-__GXWriteFifoIntReset:
+.fn __GXWriteFifoIntReset, local
 /* 800E4144 000E1084  80 A2 92 90 */	lwz r5, __GXData@sda21(r2)
 /* 800E4148 000E1088  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800E414C 000E108C  80 85 00 10 */	lwz r4, 0x10(r5)
@@ -555,9 +561,9 @@ __GXWriteFifoIntReset:
 /* 800E4168 000E10A8  80 6D 8E B4 */	lwz r3, __cpReg@sda21(r13)
 /* 800E416C 000E10AC  B0 03 00 04 */	sth r0, 4(r3)
 /* 800E4170 000E10B0  4E 80 00 20 */	blr 
+.endfn __GXWriteFifoIntReset
 
-.global __GXCleanGPFifo
-__GXCleanGPFifo:
+.fn __GXCleanGPFifo, global
 /* 800E4174 000E10B4  7C 08 02 A6 */	mflr r0
 /* 800E4178 000E10B8  90 01 00 04 */	stw r0, 4(r1)
 /* 800E417C 000E10BC  94 21 FF 58 */	stwu r1, -0xa8(r1)
@@ -627,13 +633,14 @@ __GXCleanGPFifo:
 /* 800E4268 000E11A8  38 21 00 A8 */	addi r1, r1, 0xa8
 /* 800E426C 000E11AC  7C 08 03 A6 */	mtlr r0
 /* 800E4270 000E11B0  4E 80 00 20 */	blr 
+.endfn __GXCleanGPFifo
 
-.global GXGetCPUFifo
-GXGetCPUFifo:
+.fn GXGetCPUFifo, global
 /* 800E4274 000E11B4  80 6D 8E D8 */	lwz r3, CPUFifo@sda21(r13)
 /* 800E4278 000E11B8  4E 80 00 20 */	blr 
+.endfn GXGetCPUFifo
 
-.global GXGetGPFifo
-GXGetGPFifo:
+.fn GXGetGPFifo, global
 /* 800E427C 000E11BC  80 6D 8E DC */	lwz r3, GPFifo@sda21(r13)
 /* 800E4280 000E11C0  4E 80 00 20 */	blr 
+.endfn GXGetGPFifo

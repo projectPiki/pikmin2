@@ -5,26 +5,22 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80481FA0
-lbl_80481FA0:
-	.4byte 0x666C6F63
-	.4byte 0x6B4D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_80481FB0
-lbl_80481FB0:
+.obj lbl_80481FA0, local
+	.asciz "flockMgr.cpp"
+.endobj lbl_80481FA0
+.balign 4
+.obj lbl_80481FB0, local
 	.asciz "P2Assert"
-	.skip 3
+.endobj lbl_80481FB0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BFB60
-lbl_804BFB60:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q24Game12BaseFlockMgr
-__vt__Q24Game12BaseFlockMgr:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q24Game12BaseFlockMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -37,35 +33,34 @@ __vt__Q24Game12BaseFlockMgr:
 	.4byte doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai
 	.4byte isWeed__Q24Game12BaseFlockMgrFi
 	.4byte fear__Q24Game12BaseFlockMgrFi
-	.4byte 0
+.endobj __vt__Q24Game12BaseFlockMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515BD0
-lbl_80515BD0:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515BD4
-lbl_80515BD4:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519EE8
-lbl_80519EE8:
-	.4byte 0x46480000
-.global lbl_80519EEC
-lbl_80519EEC:
-	.4byte 0x00000000
-.global lbl_80519EF0
-lbl_80519EF0:
+.obj lbl_80519EE8, local
+	.float 12800.0
+.endobj lbl_80519EE8
+.obj lbl_80519EEC, local
+	.float 0.0
+.endobj lbl_80519EEC
+.obj lbl_80519EF0, local
 	.float 0.5
-.global lbl_80519EF4
-lbl_80519EF4:
+.endobj lbl_80519EF0
+.obj lbl_80519EF4, local
 	.float 1.0
+.endobj lbl_80519EF4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global update__Q24Game12BaseFlockMgrFv
-update__Q24Game12BaseFlockMgrFv:
+.fn update__Q24Game12BaseFlockMgrFv, global
 /* 8020EADC 0020BA1C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8020EAE0 0020BA20  7C 08 02 A6 */	mflr r0
 /* 8020EAE4 0020BA24  90 01 00 24 */	stw r0, 0x24(r1)
@@ -127,9 +122,9 @@ update__Q24Game12BaseFlockMgrFv:
 /* 8020EBB0 0020BAF0  7C 08 03 A6 */	mtlr r0
 /* 8020EBB4 0020BAF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8020EBB8 0020BAF8  4E 80 00 20 */	blr 
+.endfn update__Q24Game12BaseFlockMgrFv
 
-.global "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
-"getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>":
+.fn getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>, global
 /* 8020EBBC 0020BAFC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8020EBC0 0020BB00  7C 08 02 A6 */	mflr r0
 /* 8020EBC4 0020BB04  90 01 00 34 */	stw r0, 0x34(r1)
@@ -220,9 +215,9 @@ update__Q24Game12BaseFlockMgrFv:
 /* 8020ED04 0020BC44  7C 08 03 A6 */	mtlr r0
 /* 8020ED08 0020BC48  38 21 00 30 */	addi r1, r1, 0x30
 /* 8020ED0C 0020BC4C  4E 80 00 20 */	blr 
+.endfn getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>
 
-.global attackFlock__Q24Game12BaseFlockMgrFif
-attackFlock__Q24Game12BaseFlockMgrFif:
+.fn attackFlock__Q24Game12BaseFlockMgrFif, global
 /* 8020ED10 0020BC50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8020ED14 0020BC54  7C 08 02 A6 */	mflr r0
 /* 8020ED18 0020BC58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -299,9 +294,9 @@ attackFlock__Q24Game12BaseFlockMgrFif:
 /* 8020EE20 0020BD60  7C 08 03 A6 */	mtlr r0
 /* 8020EE24 0020BD64  38 21 00 20 */	addi r1, r1, 0x20
 /* 8020EE28 0020BD68  4E 80 00 20 */	blr 
+.endfn attackFlock__Q24Game12BaseFlockMgrFif
 
-.global resolveCollision__Q24Game12BaseFlockMgrFf
-resolveCollision__Q24Game12BaseFlockMgrFf:
+.fn resolveCollision__Q24Game12BaseFlockMgrFf, global
 /* 8020EE2C 0020BD6C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8020EE30 0020BD70  7C 08 02 A6 */	mflr r0
 /* 8020EE34 0020BD74  90 01 00 44 */	stw r0, 0x44(r1)
@@ -482,9 +477,9 @@ resolveCollision__Q24Game12BaseFlockMgrFf:
 /* 8020F0B4 0020BFF4  7C 08 03 A6 */	mtlr r0
 /* 8020F0B8 0020BFF8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8020F0BC 0020BFFC  4E 80 00 20 */	blr 
+.endfn resolveCollision__Q24Game12BaseFlockMgrFf
 
-.global doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai
-doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai:
+.fn doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai, global
 /* 8020F0C0 0020C000  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8020F0C4 0020C004  7C 08 02 A6 */	mflr r0
 /* 8020F0C8 0020C008  90 01 00 64 */	stw r0, 0x64(r1)
@@ -595,16 +590,17 @@ doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai:
 /* 8020F24C 0020C18C  7C 08 03 A6 */	mtlr r0
 /* 8020F250 0020C190  38 21 00 60 */	addi r1, r1, 0x60
 /* 8020F254 0020C194  4E 80 00 20 */	blr 
+.endfn doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai
 
-.global __sinit_flockMgr_cpp
-__sinit_flockMgr_cpp:
+.fn __sinit_flockMgr_cpp, local
 /* 8020F258 0020C198  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8020F25C 0020C19C  38 00 FF FF */	li r0, -1
 /* 8020F260 0020C1A0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8020F264 0020C1A4  3C 60 80 4C */	lis r3, lbl_804BFB60@ha
-/* 8020F268 0020C1A8  90 0D 95 50 */	stw r0, lbl_80515BD0@sda21(r13)
-/* 8020F26C 0020C1AC  D4 03 FB 60 */	stfsu f0, lbl_804BFB60@l(r3)
-/* 8020F270 0020C1B0  D0 0D 95 54 */	stfs f0, lbl_80515BD4@sda21(r13)
+/* 8020F264 0020C1A4  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8020F268 0020C1A8  90 0D 95 50 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8020F26C 0020C1AC  D4 03 FB 60 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8020F270 0020C1B0  D0 0D 95 54 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8020F274 0020C1B4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8020F278 0020C1B8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8020F27C 0020C1BC  4E 80 00 20 */	blr 
+.endfn __sinit_flockMgr_cpp

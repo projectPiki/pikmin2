@@ -1,7 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A7FE0:
+.obj lbl_804A7FE0, local
 	.4byte .L_800E1CE8
 	.4byte .L_800E1CF0
 	.4byte .L_800E1D00
@@ -28,16 +28,10 @@ lbl_804A7FE0:
 	.4byte .L_800E1ED8
 	.4byte .L_800E1ED8
 	.4byte .L_800E1DAC
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.endobj lbl_804A7FE0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global GDSetVtxDescv
-GDSetVtxDescv:
+.fn GDSetVtxDescv, global
 /* 800E1C70 000DEBB0  7C 08 02 A6 */	mflr r0
 /* 800E1C74 000DEBB4  3C 80 80 4A */	lis r4, lbl_804A7FE0@ha
 /* 800E1C78 000DEBB8  90 01 00 04 */	stw r0, 4(r1)
@@ -456,9 +450,9 @@ GDSetVtxDescv:
 /* 800E2260 000DF1A0  38 21 00 58 */	addi r1, r1, 0x58
 /* 800E2264 000DF1A4  7C 08 03 A6 */	mtlr r0
 /* 800E2268 000DF1A8  4E 80 00 20 */	blr 
+.endfn GDSetVtxDescv
 
-.global GDSetArray
-GDSetArray:
+.fn GDSetArray, global
 /* 800E226C 000DF1AC  7C 08 02 A6 */	mflr r0
 /* 800E2270 000DF1B0  2C 03 00 19 */	cmpwi r3, 0x19
 /* 800E2274 000DF1B4  90 01 00 04 */	stw r0, 4(r1)
@@ -598,9 +592,9 @@ GDSetArray:
 /* 800E246C 000DF3AC  38 21 00 28 */	addi r1, r1, 0x28
 /* 800E2470 000DF3B0  7C 08 03 A6 */	mtlr r0
 /* 800E2474 000DF3B4  4E 80 00 20 */	blr 
+.endfn GDSetArray
 
-.global GDSetArrayRaw
-GDSetArrayRaw:
+.fn GDSetArrayRaw, global
 /* 800E2478 000DF3B8  7C 08 02 A6 */	mflr r0
 /* 800E247C 000DF3BC  2C 03 00 19 */	cmpwi r3, 0x19
 /* 800E2480 000DF3C0  90 01 00 04 */	stw r0, 4(r1)
@@ -739,3 +733,4 @@ GDSetArrayRaw:
 /* 800E2674 000DF5B4  38 21 00 28 */	addi r1, r1, 0x28
 /* 800E2678 000DF5B8  7C 08 03 A6 */	mtlr r0
 /* 800E267C 000DF5BC  4E 80 00 20 */	blr 
+.endfn GDSetArrayRaw

@@ -295,7 +295,7 @@ void acoshf(void)
  * Address:	........
  * Size:	000130
  */
-void modff(float, float*)
+void modff(float f1, float* fp)
 {
 	// UNUSED FUNCTION
 }
@@ -305,7 +305,7 @@ void modff(float, float*)
  * Address:	........
  * Size:	000008
  */
-double fabs(double)
+double fabs(double x)
 {
 	// UNUSED FUNCTION
 }
@@ -475,21 +475,21 @@ void coshf(void)
  * Address:	800CFC50
  * Size:	000024
  */
-float tanf(float __x) { return tan((double)__x); }
+__declspec(weak) float tanf(float __x) { return tan((double)__x); }
 
 /*
  * --INFO--
  * Address:	800CFC74
  * Size:	000024
  */
-float sinf(float __x) { return sin((double)__x); }
+__declspec(weak) float sinf(float __x) { return sin((double)__x); }
 
 /*
  * --INFO--
  * Address:	800CFC98
  * Size:	000024
  */
-float cosf(float __x) { return cos((double)__x); }
+__declspec(weak) float cosf(float __x) { return cos((double)__x); }
 
 /*
  * --INFO--
@@ -1036,7 +1036,7 @@ void scalbln(void)
  * Address:	........
  * Size:	000020
  */
-double scalbn(double, int)
+double scalbn(double x, int y)
 {
 	// UNUSED FUNCTION
 }

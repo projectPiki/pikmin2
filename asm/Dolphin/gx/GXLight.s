@@ -1,7 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A8530:
+.obj lbl_804A8530, local
 	.4byte .L_800E69EC
 	.4byte .L_800E68FC
 	.4byte .L_800E6910
@@ -9,45 +9,60 @@ lbl_804A8530:
 	.4byte .L_800E6950
 	.4byte .L_800E697C
 	.4byte .L_800E69B0
+.endobj lbl_804A8530
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80517628:
+.obj lbl_80517628, local
 	.float 0.0
-lbl_8051762C:
+.endobj lbl_80517628
+.obj lbl_8051762C, local
 	.float 90.0
-lbl_80517630: # pi
-	.float 3.1415927
-lbl_80517634:
+.endobj lbl_8051762C
+.obj lbl_80517630, local
+	.float 3.1415927 # pi
+.endobj lbl_80517630
+.obj lbl_80517634, local
 	.float 180.0
-lbl_80517638:
+.endobj lbl_80517634
+.obj lbl_80517638, local
 	.float -1000.0
-lbl_8051763C:
+.endobj lbl_80517638
+.obj lbl_8051763C, local
 	.float 1000.0
-lbl_80517640:
+.endobj lbl_8051763C
+.obj lbl_80517640, local
 	.float 1.0
-lbl_80517644:
+.endobj lbl_80517640
+.obj lbl_80517644, local
 	.float 2.0
-lbl_80517648:
+.endobj lbl_80517644
+.obj lbl_80517648, local
 	.float -4.0
-lbl_8051764C:
+.endobj lbl_80517648
+.obj lbl_8051764C, local
 	.float 4.0
-lbl_80517650:
+.endobj lbl_8051764C
+.obj lbl_80517650, local
 	.float -2.0
-lbl_80517654:
+.endobj lbl_80517650
+.obj lbl_80517654, local
 	.float 0.5
+.endobj lbl_80517654
 .balign 8
-lbl_80517658:
+.obj lbl_80517658, local
 	.double 0.5
+.endobj lbl_80517658
 .balign 8
-lbl_80517660:
+.obj lbl_80517660, local
 	.double 3.0
-lbl_80517668:
+.endobj lbl_80517660
+.obj lbl_80517668, local
 	.float -9.9999998E17
+.endobj lbl_80517668
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global GXInitLightAttn
-GXInitLightAttn:
+.fn GXInitLightAttn, global
 /* 800E6870 000E37B0  D0 23 00 10 */	stfs f1, 0x10(r3)
 /* 800E6874 000E37B4  D0 43 00 14 */	stfs f2, 0x14(r3)
 /* 800E6878 000E37B8  D0 63 00 18 */	stfs f3, 0x18(r3)
@@ -55,9 +70,9 @@ GXInitLightAttn:
 /* 800E6880 000E37C0  D0 A3 00 20 */	stfs f5, 0x20(r3)
 /* 800E6884 000E37C4  D0 C3 00 24 */	stfs f6, 0x24(r3)
 /* 800E6888 000E37C8  4E 80 00 20 */	blr 
+.endfn GXInitLightAttn
 
-.global GXInitLightSpot
-GXInitLightSpot:
+.fn GXInitLightSpot, global
 /* 800E688C 000E37CC  7C 08 02 A6 */	mflr r0
 /* 800E6890 000E37D0  90 01 00 04 */	stw r0, 4(r1)
 /* 800E6894 000E37D4  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -168,9 +183,9 @@ GXInitLightSpot:
 /* 800E6A10 000E3950  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E6A14 000E3954  7C 08 03 A6 */	mtlr r0
 /* 800E6A18 000E3958  4E 80 00 20 */	blr 
+.endfn GXInitLightSpot
 
-.global GXInitLightDistAttn
-GXInitLightDistAttn:
+.fn GXInitLightDistAttn, global
 /* 800E6A1C 000E395C  C0 02 92 C8 */	lfs f0, lbl_80517628@sda21(r2)
 /* 800E6A20 000E3960  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E6A24 000E3964  40 80 00 08 */	bge .L_800E6A2C
@@ -232,16 +247,16 @@ GXInitLightDistAttn:
 /* 800E6AE0 000E3A20  D0 63 00 20 */	stfs f3, 0x20(r3)
 /* 800E6AE4 000E3A24  D0 83 00 24 */	stfs f4, 0x24(r3)
 /* 800E6AE8 000E3A28  4E 80 00 20 */	blr 
+.endfn GXInitLightDistAttn
 
-.global GXInitLightPos
-GXInitLightPos:
+.fn GXInitLightPos, global
 /* 800E6AEC 000E3A2C  D0 23 00 28 */	stfs f1, 0x28(r3)
 /* 800E6AF0 000E3A30  D0 43 00 2C */	stfs f2, 0x2c(r3)
 /* 800E6AF4 000E3A34  D0 63 00 30 */	stfs f3, 0x30(r3)
 /* 800E6AF8 000E3A38  4E 80 00 20 */	blr 
+.endfn GXInitLightPos
 
-.global GXInitLightDir
-GXInitLightDir:
+.fn GXInitLightDir, global
 /* 800E6AFC 000E3A3C  FC 80 08 50 */	fneg f4, f1
 /* 800E6B00 000E3A40  FC 20 10 50 */	fneg f1, f2
 /* 800E6B04 000E3A44  FC 00 18 50 */	fneg f0, f3
@@ -249,9 +264,9 @@ GXInitLightDir:
 /* 800E6B0C 000E3A4C  D0 23 00 38 */	stfs f1, 0x38(r3)
 /* 800E6B10 000E3A50  D0 03 00 3C */	stfs f0, 0x3c(r3)
 /* 800E6B14 000E3A54  4E 80 00 20 */	blr 
+.endfn GXInitLightDir
 
-.global GXInitSpecularDir
-GXInitSpecularDir:
+.fn GXInitSpecularDir, global
 /* 800E6B18 000E3A58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800E6B1C 000E3A5C  FC 00 08 50 */	fneg f0, f1
 /* 800E6B20 000E3A60  FC 80 10 50 */	fneg f4, f2
@@ -312,15 +327,15 @@ GXInitSpecularDir:
 /* 800E6BF0 000E3B30  D0 03 00 30 */	stfs f0, 0x30(r3)
 /* 800E6BF4 000E3B34  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E6BF8 000E3B38  4E 80 00 20 */	blr 
+.endfn GXInitSpecularDir
 
-.global GXInitLightColor
-GXInitLightColor:
+.fn GXInitLightColor, global
 /* 800E6BFC 000E3B3C  80 04 00 00 */	lwz r0, 0(r4)
 /* 800E6C00 000E3B40  90 03 00 0C */	stw r0, 0xc(r3)
 /* 800E6C04 000E3B44  4E 80 00 20 */	blr 
+.endfn GXInitLightColor
 
-.global GXLoadLightObjImm
-GXLoadLightObjImm:
+.fn GXLoadLightObjImm, global
 /* 800E6C08 000E3B48  7C 80 00 34 */	cntlzw r0, r4
 /* 800E6C0C 000E3B4C  20 00 00 1F */	subfic r0, r0, 0x1f
 /* 800E6C10 000E3B50  54 05 26 76 */	rlwinm r5, r0, 4, 0x19, 0x1b
@@ -352,9 +367,9 @@ GXLoadLightObjImm:
 /* 800E6C78 000E3BB8  38 00 00 01 */	li r0, 1
 /* 800E6C7C 000E3BBC  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E6C80 000E3BC0  4E 80 00 20 */	blr 
+.endfn GXLoadLightObjImm
 
-.global GXSetChanAmbColor
-GXSetChanAmbColor:
+.fn GXSetChanAmbColor, global
 /* 800E6C84 000E3BC4  2C 03 00 03 */	cmpwi r3, 3
 /* 800E6C88 000E3BC8  41 82 00 84 */	beq .L_800E6D0C
 /* 800E6C8C 000E3BCC  40 80 00 1C */	bge .L_800E6CA8
@@ -423,9 +438,9 @@ GXSetChanAmbColor:
 /* 800E6D68 000E3CA8  B0 A4 00 02 */	sth r5, 2(r4)
 /* 800E6D6C 000E3CAC  90 E3 00 A8 */	stw r7, 0xa8(r3)
 /* 800E6D70 000E3CB0  4E 80 00 20 */	blr 
+.endfn GXSetChanAmbColor
 
-.global GXSetChanMatColor
-GXSetChanMatColor:
+.fn GXSetChanMatColor, global
 /* 800E6D74 000E3CB4  2C 03 00 03 */	cmpwi r3, 3
 /* 800E6D78 000E3CB8  41 82 00 84 */	beq .L_800E6DFC
 /* 800E6D7C 000E3CBC  40 80 00 1C */	bge .L_800E6D98
@@ -494,9 +509,9 @@ GXSetChanMatColor:
 /* 800E6E58 000E3D98  B0 A4 00 02 */	sth r5, 2(r4)
 /* 800E6E5C 000E3D9C  90 E3 00 B0 */	stw r7, 0xb0(r3)
 /* 800E6E60 000E3DA0  4E 80 00 20 */	blr 
+.endfn GXSetChanMatColor
 
-.global GXSetNumChans
-GXSetNumChans:
+.fn GXSetNumChans, global
 /* 800E6E64 000E3DA4  80 C2 92 90 */	lwz r6, __GXData@sda21(r2)
 /* 800E6E68 000E3DA8  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 800E6E6C 000E3DAC  38 80 00 10 */	li r4, 0x10
@@ -512,9 +527,9 @@ GXSetNumChans:
 /* 800E6E94 000E3DD4  60 00 00 04 */	ori r0, r0, 4
 /* 800E6E98 000E3DD8  90 06 05 AC */	stw r0, 0x5ac(r6)
 /* 800E6E9C 000E3DDC  4E 80 00 20 */	blr 
+.endfn GXSetNumChans
 
-.global GXSetChanCtrl
-GXSetChanCtrl:
+.fn GXSetChanCtrl, global
 /* 800E6EA0 000E3DE0  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800E6EA4 000E3DE4  38 80 00 00 */	li r4, 0
 /* 800E6EA8 000E3DE8  50 04 0F BC */	rlwimi r4, r0, 1, 0x1e, 0x1e
@@ -564,3 +579,4 @@ GXSetChanCtrl:
 /* 800E6F4C 000E3E8C  38 00 00 01 */	li r0, 1
 /* 800E6F50 000E3E90  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E6F54 000E3E94  4E 80 00 20 */	blr 
+.endfn GXSetChanCtrl

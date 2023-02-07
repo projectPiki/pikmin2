@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A82A0
-lbl_804A82A0:
+.obj lbl_804A82A0, local
 	.4byte .L_800E42A4
 	.4byte .L_800E42B8
 	.4byte .L_800E42CC
@@ -29,8 +28,8 @@ lbl_804A82A0:
 	.4byte .L_800E4498
 	.4byte .L_800E4498
 	.4byte .L_800E43A0
-.global lbl_804A8308
-lbl_804A8308:
+.endobj lbl_804A82A0
+.obj lbl_804A8308, local
 	.4byte .L_800E4744
 	.4byte .L_800E476C
 	.4byte .L_800E47C0
@@ -48,8 +47,8 @@ lbl_804A8308:
 	.4byte .L_800E4934
 	.4byte .L_800E4934
 	.4byte .L_800E476C
-.global lbl_804A834C
-lbl_804A834C:
+.endobj lbl_804A8308
+.obj lbl_804A834C, local
 	.4byte .L_800E49B4
 	.4byte .L_800E49DC
 	.4byte .L_800E4A30
@@ -67,8 +66,8 @@ lbl_804A834C:
 	.4byte .L_800E4BA4
 	.4byte .L_800E4BA4
 	.4byte .L_800E49DC
-.global lbl_804A8390
-lbl_804A8390:
+.endobj lbl_804A834C
+.obj lbl_804A8390, local
 	.4byte .L_800E4EE8
 	.4byte .L_800E4EFC
 	.4byte .L_800E4F10
@@ -76,8 +75,8 @@ lbl_804A8390:
 	.4byte .L_800E4F38
 	.4byte .L_800E4F4C
 	.4byte .L_800E4F60
-.global lbl_804A83AC
-lbl_804A83AC:
+.endobj lbl_804A8390
+.obj lbl_804A83AC, local
 	.4byte .L_800E4D54
 	.4byte .L_800E4D60
 	.4byte .L_800E4D6C
@@ -99,22 +98,22 @@ lbl_804A83AC:
 	.4byte .L_800E4DD0
 	.4byte .L_800E4D84
 	.4byte .L_800E4D8C
+.endobj lbl_804A83AC
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global tbl1$263
-tbl1$263:
+.fn tbl1$263, local
 	.4byte 0x00040102
-.global tbl2$264
-tbl2$264:
+.endfn tbl1$263
+.fn tbl2$264, local
 	.4byte 0x00080102
-.global tbl3$265
-tbl3$265:
+.endfn tbl2$264
+.fn tbl3$265, local
 	.4byte 0x000C0102
+.endfn tbl3$265
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global GXSetVtxDesc
-GXSetVtxDesc:
+.fn GXSetVtxDesc, global
 /* 800E4284 000E11C4  28 03 00 19 */	cmplwi r3, 0x19
 /* 800E4288 000E11C8  41 81 02 10 */	bgt .L_800E4498
 /* 800E428C 000E11CC  3C A0 80 4B */	lis r5, lbl_804A82A0@ha
@@ -298,9 +297,9 @@ GXSetVtxDesc:
 /* 800E44E4 000E1424  60 00 00 08 */	ori r0, r0, 8
 /* 800E44E8 000E1428  90 03 05 AC */	stw r0, 0x5ac(r3)
 /* 800E44EC 000E142C  4E 80 00 20 */	blr 
+.endfn GXSetVtxDesc
 
-.global __GXSetVCD
-__GXSetVCD:
+.fn __GXSetVCD, global
 /* 800E44F0 000E1430  38 C0 00 08 */	li r6, 8
 /* 800E44F4 000E1434  80 82 92 90 */	lwz r4, __GXData@sda21(r2)
 /* 800E44F8 000E1438  3C A0 CC 01 */	lis r5, 0xCC008000@ha
@@ -351,9 +350,9 @@ __GXSetVCD:
 /* 800E45A0 000E14E0  38 00 00 01 */	li r0, 1
 /* 800E45A4 000E14E4  B0 05 00 02 */	sth r0, 2(r5)
 /* 800E45A8 000E14E8  4E 80 00 20 */	blr 
+.endfn __GXSetVCD
 
-.global __GXCalculateVLim
-__GXCalculateVLim:
+.fn __GXCalculateVLim, global
 /* 800E45AC 000E14EC  80 62 92 90 */	lwz r3, __GXData@sda21(r2)
 /* 800E45B0 000E14F0  A0 03 00 04 */	lhz r0, 4(r3)
 /* 800E45B4 000E14F4  28 00 00 00 */	cmplwi r0, 0
@@ -429,9 +428,9 @@ __GXCalculateVLim:
 /* 800E46C4 000E1604  7C 00 22 14 */	add r0, r0, r4
 /* 800E46C8 000E1608  B0 03 00 06 */	sth r0, 6(r3)
 /* 800E46CC 000E160C  4E 80 00 20 */	blr 
+.endfn __GXCalculateVLim
 
-.global GXClearVtxDesc
-GXClearVtxDesc:
+.fn GXClearVtxDesc, global
 /* 800E46D0 000E1610  80 82 92 90 */	lwz r4, __GXData@sda21(r2)
 /* 800E46D4 000E1614  38 A0 00 00 */	li r5, 0
 /* 800E46D8 000E1618  38 00 00 01 */	li r0, 1
@@ -446,9 +445,9 @@ GXClearVtxDesc:
 /* 800E46FC 000E163C  60 00 00 08 */	ori r0, r0, 8
 /* 800E4700 000E1640  90 04 05 AC */	stw r0, 0x5ac(r4)
 /* 800E4704 000E1644  4E 80 00 20 */	blr 
+.endfn GXClearVtxDesc
 
-.global GXSetVtxAttrFmt
-GXSetVtxAttrFmt:
+.fn GXSetVtxAttrFmt, global
 /* 800E4708 000E1648  38 04 FF F7 */	addi r0, r4, -9
 /* 800E470C 000E164C  81 02 92 90 */	lwz r8, __GXData@sda21(r2)
 /* 800E4710 000E1650  54 64 10 3A */	slwi r4, r3, 2
@@ -614,9 +613,9 @@ GXSetVtxAttrFmt:
 /* 800E4958 000E1898  7C 60 03 78 */	or r0, r3, r0
 /* 800E495C 000E189C  98 05 05 AB */	stb r0, 0x5ab(r5)
 /* 800E4960 000E18A0  4E 80 00 20 */	blr 
+.endfn GXSetVtxAttrFmt
 
-.global GXSetVtxAttrFmtv
-GXSetVtxAttrFmtv:
+.fn GXSetVtxAttrFmtv, global
 /* 800E4964 000E18A4  80 C2 92 90 */	lwz r6, __GXData@sda21(r2)
 /* 800E4968 000E18A8  54 60 10 3A */	slwi r0, r3, 2
 /* 800E496C 000E18AC  3C A0 80 4B */	lis r5, lbl_804A834C@ha
@@ -793,9 +792,9 @@ GXSetVtxAttrFmtv:
 /* 800E4BD8 000E1B18  7C 60 03 78 */	or r0, r3, r0
 /* 800E4BDC 000E1B1C  98 05 05 AB */	stb r0, 0x5ab(r5)
 /* 800E4BE0 000E1B20  4E 80 00 20 */	blr 
+.endfn GXSetVtxAttrFmtv
 
-.global __GXSetVAT
-__GXSetVAT:
+.fn __GXSetVAT, global
 /* 800E4BE4 000E1B24  81 42 92 90 */	lwz r10, __GXData@sda21(r2)
 /* 800E4BE8 000E1B28  39 80 00 00 */	li r12, 0
 /* 800E4BEC 000E1B2C  39 60 00 00 */	li r11, 0
@@ -838,9 +837,9 @@ __GXSetVAT:
 /* 800E4C74 000E1BB4  38 00 00 00 */	li r0, 0
 /* 800E4C78 000E1BB8  98 03 05 AB */	stb r0, 0x5ab(r3)
 /* 800E4C7C 000E1BBC  4E 80 00 20 */	blr 
+.endfn __GXSetVAT
 
-.global GXSetArray
-GXSetArray:
+.fn GXSetArray, global
 /* 800E4C80 000E1BC0  2C 03 00 19 */	cmpwi r3, 0x19
 /* 800E4C84 000E1BC4  40 82 00 08 */	bne .L_800E4C8C
 /* 800E4C88 000E1BC8  38 60 00 0A */	li r3, 0xa
@@ -878,16 +877,16 @@ GXSetArray:
 /* 800E4D00 000E1C40  7C 63 02 14 */	add r3, r3, r0
 /* 800E4D04 000E1C44  90 83 00 98 */	stw r4, 0x98(r3)
 /* 800E4D08 000E1C48  4E 80 00 20 */	blr 
+.endfn GXSetArray
 
-.global GXInvalidateVtxCache
-GXInvalidateVtxCache:
+.fn GXInvalidateVtxCache, global
 /* 800E4D0C 000E1C4C  38 00 00 48 */	li r0, 0x48
 /* 800E4D10 000E1C50  3C 60 CC 01 */	lis r3, 0xCC008000@ha
 /* 800E4D14 000E1C54  98 03 80 00 */	stb r0, 0xCC008000@l(r3)
 /* 800E4D18 000E1C58  4E 80 00 20 */	blr 
+.endfn GXInvalidateVtxCache
 
-.global GXSetTexCoordGen2
-GXSetTexCoordGen2:
+.fn GXSetTexCoordGen2, global
 /* 800E4D1C 000E1C5C  7C 08 02 A6 */	mflr r0
 /* 800E4D20 000E1C60  28 05 00 14 */	cmplwi r5, 0x14
 /* 800E4D24 000E1C64  90 01 00 04 */	stw r0, 4(r1)
@@ -1080,9 +1079,9 @@ GXSetTexCoordGen2:
 /* 800E4F90 000E1ED0  38 21 00 08 */	addi r1, r1, 8
 /* 800E4F94 000E1ED4  7C 08 03 A6 */	mtlr r0
 /* 800E4F98 000E1ED8  4E 80 00 20 */	blr 
+.endfn GXSetTexCoordGen2
 
-.global GXSetNumTexGens
-GXSetNumTexGens:
+.fn GXSetNumTexGens, global
 /* 800E4F9C 000E1EDC  80 C2 92 90 */	lwz r6, __GXData@sda21(r2)
 /* 800E4FA0 000E1EE0  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 800E4FA4 000E1EE4  38 80 00 10 */	li r4, 0x10
@@ -1098,3 +1097,4 @@ GXSetNumTexGens:
 /* 800E4FCC 000E1F0C  60 00 00 04 */	ori r0, r0, 4
 /* 800E4FD0 000E1F10  90 06 05 AC */	stw r0, 0x5ac(r6)
 /* 800E4FD4 000E1F14  4E 80 00 20 */	blr 
+.endfn GXSetNumTexGens

@@ -1,51 +1,77 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A7ED0
-lbl_804A7ED0:
+.obj lbl_804A7ED0, local
 	.asciz "<< Dolphin SDK - EXI\trelease build: Apr 17 2003 12:33:17 (0x2301) >>"
-	.skip 3
+.endobj lbl_804A7ED0
+.balign 4
+.obj lbl_804A7F18, local
 	.asciz "Memory Card 59"
-	.skip 1
+.endobj lbl_804A7F18
+.balign 4
+.obj lbl_804A7F28, local
 	.asciz "Memory Card 123"
+.endobj lbl_804A7F28
+.balign 4
+.obj lbl_804A7F38, local
 	.asciz "Memory Card 251"
+.endobj lbl_804A7F38
+.balign 4
+.obj lbl_804A7F48, local
 	.asciz "Memory Card 507"
+.endobj lbl_804A7F48
+.balign 4
+.obj lbl_804A7F58, local
 	.asciz "Memory Card 1019"
-	.skip 3
+.endobj lbl_804A7F58
+.balign 4
+.obj lbl_804A7F6C, local
 	.asciz "Memory Card 2043"
-	.skip 3
+.endobj lbl_804A7F6C
+.balign 4
+.obj lbl_804A7F80, local
 	.asciz "USB Adapter"
+.endobj lbl_804A7F80
+.balign 4
+.obj lbl_804A7F8C, local
 	.asciz "Net Card"
-	.skip 3
+.endobj lbl_804A7F8C
+.balign 4
+.obj lbl_804A7F98, local
 	.asciz "Artist Ether"
-	.skip 3
+.endobj lbl_804A7F98
+.balign 4
+.obj lbl_804A7FA8, local
 	.asciz "Broadband Adapter"
-	.skip 2
+.endobj lbl_804A7FA8
+.balign 4
+.obj lbl_804A7FBC, local
 	.asciz "Stream Hanger"
-	.skip 2
+.endobj lbl_804A7FBC
+.balign 4
+.obj lbl_804A7FCC, local
 	.asciz "IS-DOL-VIEWER"
-	.skip 2
+.endobj lbl_804A7FCC
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global Ecb
-Ecb:
+.obj Ecb, local
 	.skip 0xC0
+.endobj Ecb
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __EXIVersion
-__EXIVersion:
+.obj __EXIVersion, global
 	.4byte lbl_804A7ED0
+.endobj __EXIVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global IDSerialPort1
-IDSerialPort1:
-	.skip 0x8
+.obj IDSerialPort1, local
+	.skip 0x4
+.endobj IDSerialPort1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global SetExiInterruptMask
-SetExiInterruptMask:
+.fn SetExiInterruptMask, local
 /* 800DFB54 000DCA94  7C 08 02 A6 */	mflr r0
 /* 800DFB58 000DCA98  90 01 00 04 */	stw r0, 4(r1)
 /* 800DFB5C 000DCA9C  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -119,9 +145,9 @@ SetExiInterruptMask:
 /* 800DFC3C 000DCB7C  38 21 00 18 */	addi r1, r1, 0x18
 /* 800DFC40 000DCB80  7C 08 03 A6 */	mtlr r0
 /* 800DFC44 000DCB84  4E 80 00 20 */	blr 
+.endfn SetExiInterruptMask
 
-.global EXIImm
-EXIImm:
+.fn EXIImm, global
 /* 800DFC48 000DCB88  7C 08 02 A6 */	mflr r0
 /* 800DFC4C 000DCB8C  90 01 00 04 */	stw r0, 4(r1)
 /* 800DFC50 000DCB90  94 21 FF C0 */	stwu r1, -0x40(r1)
@@ -285,9 +311,9 @@ EXIImm:
 /* 800DFE98 000DCDD8  38 21 00 40 */	addi r1, r1, 0x40
 /* 800DFE9C 000DCDDC  7C 08 03 A6 */	mtlr r0
 /* 800DFEA0 000DCDE0  4E 80 00 20 */	blr 
+.endfn EXIImm
 
-.global EXIImmEx
-EXIImmEx:
+.fn EXIImmEx, global
 /* 800DFEA4 000DCDE4  7C 08 02 A6 */	mflr r0
 /* 800DFEA8 000DCDE8  90 01 00 04 */	stw r0, 4(r1)
 /* 800DFEAC 000DCDEC  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -335,9 +361,9 @@ EXIImmEx:
 /* 800DFF38 000DCE78  38 21 00 30 */	addi r1, r1, 0x30
 /* 800DFF3C 000DCE7C  7C 08 03 A6 */	mtlr r0
 /* 800DFF40 000DCE80  4E 80 00 20 */	blr 
+.endfn EXIImmEx
 
-.global EXIDma
-EXIDma:
+.fn EXIDma, global
 /* 800DFF44 000DCE84  7C 08 02 A6 */	mflr r0
 /* 800DFF48 000DCE88  90 01 00 04 */	stw r0, 4(r1)
 /* 800DFF4C 000DCE8C  94 21 FF C0 */	stwu r1, -0x40(r1)
@@ -401,9 +427,9 @@ EXIDma:
 /* 800E0024 000DCF64  38 21 00 40 */	addi r1, r1, 0x40
 /* 800E0028 000DCF68  7C 08 03 A6 */	mtlr r0
 /* 800E002C 000DCF6C  4E 80 00 20 */	blr 
+.endfn EXIDma
 
-.global EXISync
-EXISync:
+.fn EXISync, global
 /* 800E0030 000DCF70  7C 08 02 A6 */	mflr r0
 /* 800E0034 000DCF74  90 01 00 04 */	stw r0, 4(r1)
 /* 800E0038 000DCF78  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -562,9 +588,9 @@ EXISync:
 /* 800E0270 000DD1B0  38 21 00 30 */	addi r1, r1, 0x30
 /* 800E0274 000DD1B4  7C 08 03 A6 */	mtlr r0
 /* 800E0278 000DD1B8  4E 80 00 20 */	blr 
+.endfn EXISync
 
-.global EXIClearInterrupts
-EXIClearInterrupts:
+.fn EXIClearInterrupts, global
 /* 800E027C 000DD1BC  1C 03 00 14 */	mulli r0, r3, 0x14
 /* 800E0280 000DD1C0  3C 60 CC 00 */	lis r3, 0xCC006800@ha
 /* 800E0284 000DD1C4  38 E3 68 00 */	addi r7, r3, 0xCC006800@l
@@ -586,9 +612,9 @@ EXIClearInterrupts:
 .L_800E02BC:
 /* 800E02BC 000DD1FC  90 07 00 00 */	stw r0, 0(r7)
 /* 800E02C0 000DD200  4E 80 00 20 */	blr 
+.endfn EXIClearInterrupts
 
-.global EXISetExiCallback
-EXISetExiCallback:
+.fn EXISetExiCallback, global
 /* 800E02C4 000DD204  7C 08 02 A6 */	mflr r0
 /* 800E02C8 000DD208  90 01 00 04 */	stw r0, 4(r1)
 /* 800E02CC 000DD20C  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -622,9 +648,9 @@ EXISetExiCallback:
 /* 800E0334 000DD274  38 21 00 28 */	addi r1, r1, 0x28
 /* 800E0338 000DD278  7C 08 03 A6 */	mtlr r0
 /* 800E033C 000DD27C  4E 80 00 20 */	blr 
+.endfn EXISetExiCallback
 
-.global __EXIProbe
-__EXIProbe:
+.fn __EXIProbe, local
 /* 800E0340 000DD280  7C 08 02 A6 */	mflr r0
 /* 800E0344 000DD284  90 01 00 04 */	stw r0, 4(r1)
 /* 800E0348 000DD288  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -726,9 +752,9 @@ __EXIProbe:
 /* 800E04A8 000DD3E8  38 21 00 28 */	addi r1, r1, 0x28
 /* 800E04AC 000DD3EC  7C 08 03 A6 */	mtlr r0
 /* 800E04B0 000DD3F0  4E 80 00 20 */	blr 
+.endfn __EXIProbe
 
-.global EXIProbe
-EXIProbe:
+.fn EXIProbe, global
 /* 800E04B4 000DD3F4  7C 08 02 A6 */	mflr r0
 /* 800E04B8 000DD3F8  90 01 00 04 */	stw r0, 4(r1)
 /* 800E04BC 000DD3FC  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -763,9 +789,9 @@ EXIProbe:
 /* 800E0528 000DD468  38 21 00 18 */	addi r1, r1, 0x18
 /* 800E052C 000DD46C  7C 08 03 A6 */	mtlr r0
 /* 800E0530 000DD470  4E 80 00 20 */	blr 
+.endfn EXIProbe
 
-.global EXIProbeEx
-EXIProbeEx:
+.fn EXIProbeEx, global
 /* 800E0534 000DD474  7C 08 02 A6 */	mflr r0
 /* 800E0538 000DD478  90 01 00 04 */	stw r0, 4(r1)
 /* 800E053C 000DD47C  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -816,9 +842,9 @@ EXIProbeEx:
 /* 800E05DC 000DD51C  38 21 00 18 */	addi r1, r1, 0x18
 /* 800E05E0 000DD520  7C 08 03 A6 */	mtlr r0
 /* 800E05E4 000DD524  4E 80 00 20 */	blr 
+.endfn EXIProbeEx
 
-.global EXIAttach
-EXIAttach:
+.fn EXIAttach, global
 /* 800E05E8 000DD528  7C 08 02 A6 */	mflr r0
 /* 800E05EC 000DD52C  90 01 00 04 */	stw r0, 4(r1)
 /* 800E05F0 000DD530  94 21 FF C0 */	stwu r1, -0x40(r1)
@@ -892,9 +918,9 @@ EXIAttach:
 /* 800E06E8 000DD628  38 21 00 40 */	addi r1, r1, 0x40
 /* 800E06EC 000DD62C  7C 08 03 A6 */	mtlr r0
 /* 800E06F0 000DD630  4E 80 00 20 */	blr 
+.endfn EXIAttach
 
-.global EXIDetach
-EXIDetach:
+.fn EXIDetach, global
 /* 800E06F4 000DD634  7C 08 02 A6 */	mflr r0
 /* 800E06F8 000DD638  90 01 00 04 */	stw r0, 4(r1)
 /* 800E06FC 000DD63C  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -945,9 +971,9 @@ EXIDetach:
 /* 800E07A4 000DD6E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E07A8 000DD6E8  7C 08 03 A6 */	mtlr r0
 /* 800E07AC 000DD6EC  4E 80 00 20 */	blr 
+.endfn EXIDetach
 
-.global EXISelect
-EXISelect:
+.fn EXISelect, global
 /* 800E07B0 000DD6F0  7C 08 02 A6 */	mflr r0
 /* 800E07B4 000DD6F4  90 01 00 04 */	stw r0, 4(r1)
 /* 800E07B8 000DD6F8  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -1030,9 +1056,9 @@ EXISelect:
 /* 800E08D0 000DD810  38 21 00 30 */	addi r1, r1, 0x30
 /* 800E08D4 000DD814  7C 08 03 A6 */	mtlr r0
 /* 800E08D8 000DD818  4E 80 00 20 */	blr 
+.endfn EXISelect
 
-.global EXIDeselect
-EXIDeselect:
+.fn EXIDeselect, global
 /* 800E08DC 000DD81C  7C 08 02 A6 */	mflr r0
 /* 800E08E0 000DD820  90 01 00 04 */	stw r0, 4(r1)
 /* 800E08E4 000DD824  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -1108,9 +1134,9 @@ EXIDeselect:
 /* 800E09E0 000DD920  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E09E4 000DD924  7C 08 03 A6 */	mtlr r0
 /* 800E09E8 000DD928  4E 80 00 20 */	blr 
+.endfn EXIDeselect
 
-.global EXIIntrruptHandler
-EXIIntrruptHandler:
+.fn EXIIntrruptHandler, local
 /* 800E09EC 000DD92C  7C 08 02 A6 */	mflr r0
 /* 800E09F0 000DD930  90 01 00 04 */	stw r0, 4(r1)
 /* 800E09F4 000DD934  94 21 FD 08 */	stwu r1, -0x2f8(r1)
@@ -1162,9 +1188,9 @@ EXIIntrruptHandler:
 /* 800E0AA8 000DD9E8  38 21 02 F8 */	addi r1, r1, 0x2f8
 /* 800E0AAC 000DD9EC  7C 08 03 A6 */	mtlr r0
 /* 800E0AB0 000DD9F0  4E 80 00 20 */	blr 
+.endfn EXIIntrruptHandler
 
-.global TCIntrruptHandler
-TCIntrruptHandler:
+.fn TCIntrruptHandler, local
 /* 800E0AB4 000DD9F4  7C 08 02 A6 */	mflr r0
 /* 800E0AB8 000DD9F8  90 01 00 04 */	stw r0, 4(r1)
 /* 800E0ABC 000DD9FC  94 21 FD 08 */	stwu r1, -0x2f8(r1)
@@ -1305,9 +1331,9 @@ TCIntrruptHandler:
 /* 800E0CC0 000DDC00  38 21 02 F8 */	addi r1, r1, 0x2f8
 /* 800E0CC4 000DDC04  7C 08 03 A6 */	mtlr r0
 /* 800E0CC8 000DDC08  4E 80 00 20 */	blr 
+.endfn TCIntrruptHandler
 
-.global EXTIntrruptHandler
-EXTIntrruptHandler:
+.fn EXTIntrruptHandler, local
 /* 800E0CCC 000DDC0C  7C 08 02 A6 */	mflr r0
 /* 800E0CD0 000DDC10  90 01 00 04 */	stw r0, 4(r1)
 /* 800E0CD4 000DDC14  94 21 FD 18 */	stwu r1, -0x2e8(r1)
@@ -1361,9 +1387,9 @@ EXTIntrruptHandler:
 /* 800E0D90 000DDCD0  38 21 02 E8 */	addi r1, r1, 0x2e8
 /* 800E0D94 000DDCD4  7C 08 03 A6 */	mtlr r0
 /* 800E0D98 000DDCD8  4E 80 00 20 */	blr 
+.endfn EXTIntrruptHandler
 
-.global EXIInit
-EXIInit:
+.fn EXIInit, global
 /* 800E0D9C 000DDCDC  7C 08 02 A6 */	mflr r0
 /* 800E0DA0 000DDCE0  90 01 00 04 */	stw r0, 4(r1)
 /* 800E0DA4 000DDCE4  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -1485,9 +1511,9 @@ EXIInit:
 /* 800E0F64 000DDEA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E0F68 000DDEA8  7C 08 03 A6 */	mtlr r0
 /* 800E0F6C 000DDEAC  4E 80 00 20 */	blr 
+.endfn EXIInit
 
-.global EXILock
-EXILock:
+.fn EXILock, global
 /* 800E0F70 000DDEB0  7C 08 02 A6 */	mflr r0
 /* 800E0F74 000DDEB4  90 01 00 04 */	stw r0, 4(r1)
 /* 800E0F78 000DDEB8  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -1555,9 +1581,9 @@ EXILock:
 /* 800E1058 000DDF98  38 21 00 30 */	addi r1, r1, 0x30
 /* 800E105C 000DDF9C  7C 08 03 A6 */	mtlr r0
 /* 800E1060 000DDFA0  4E 80 00 20 */	blr 
+.endfn EXILock
 
-.global EXIUnlock
-EXIUnlock:
+.fn EXIUnlock, global
 /* 800E1064 000DDFA4  7C 08 02 A6 */	mflr r0
 /* 800E1068 000DDFA8  90 01 00 04 */	stw r0, 4(r1)
 /* 800E106C 000DDFAC  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -1617,18 +1643,18 @@ EXIUnlock:
 /* 800E1134 000DE074  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E1138 000DE078  7C 08 03 A6 */	mtlr r0
 /* 800E113C 000DE07C  4E 80 00 20 */	blr 
+.endfn EXIUnlock
 
-.global EXIGetState
-EXIGetState:
+.fn EXIGetState, global
 /* 800E1140 000DE080  54 64 30 32 */	slwi r4, r3, 6
 /* 800E1144 000DE084  3C 60 80 4F */	lis r3, Ecb@ha
 /* 800E1148 000DE088  38 03 5F 28 */	addi r0, r3, Ecb@l
 /* 800E114C 000DE08C  7C 60 22 14 */	add r3, r0, r4
 /* 800E1150 000DE090  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 800E1154 000DE094  4E 80 00 20 */	blr 
+.endfn EXIGetState
 
-.global UnlockedHandler
-UnlockedHandler:
+.fn UnlockedHandler, local
 /* 800E1158 000DE098  7C 08 02 A6 */	mflr r0
 /* 800E115C 000DE09C  90 01 00 04 */	stw r0, 4(r1)
 /* 800E1160 000DE0A0  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -1639,9 +1665,9 @@ UnlockedHandler:
 /* 800E1174 000DE0B4  38 21 00 18 */	addi r1, r1, 0x18
 /* 800E1178 000DE0B8  7C 08 03 A6 */	mtlr r0
 /* 800E117C 000DE0BC  4E 80 00 20 */	blr 
+.endfn UnlockedHandler
 
-.global EXIGetID
-EXIGetID:
+.fn EXIGetID, global
 /* 800E1180 000DE0C0  7C 08 02 A6 */	mflr r0
 /* 800E1184 000DE0C4  90 01 00 04 */	stw r0, 4(r1)
 /* 800E1188 000DE0C8  94 21 FF B8 */	stwu r1, -0x48(r1)
@@ -1902,3 +1928,4 @@ EXIGetID:
 /* 800E1524 000DE464  38 21 00 48 */	addi r1, r1, 0x48
 /* 800E1528 000DE468  7C 08 03 A6 */	mtlr r0
 /* 800E152C 000DE46C  4E 80 00 20 */	blr 
+.endfn EXIGetID

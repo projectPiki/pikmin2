@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global p2f$362
-p2f$362:
+.obj p2f$362, local
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
@@ -11,63 +10,60 @@ p2f$362:
 	.4byte 0x00000004
 	.4byte 0x00000004
 	.4byte 0x00000005
+.endobj p2f$362
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805176A0
-lbl_805176A0:
-	.4byte 0x00000000
-.global lbl_805176A4
-lbl_805176A4:
+.obj lbl_805176A0, local
+	.float 0.0
+.endobj lbl_805176A0
+.obj lbl_805176A4, local
 	.float 1.0
-.global lbl_805176A8
-lbl_805176A8:
+.endobj lbl_805176A4
+.obj lbl_805176A8, local
 	.float 0.5
-	.4byte 0x00000000
-.global lbl_805176B0
-lbl_805176B0:
-	.4byte 0x3FF00000
-	.4byte 0x00000000
-.global lbl_805176B8
-lbl_805176B8:
-	.4byte 0x40000000
-	.4byte 0x00000000
-.global lbl_805176C0
-lbl_805176C0:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
-.global lbl_805176C8
-lbl_805176C8:
-	.4byte 0x4B00001E
-	.4byte 0x00000000
-.global lbl_805176D0
-lbl_805176D0:
+.endobj lbl_805176A8
+.balign 8
+.obj lbl_805176B0, local
+	.double 1.0
+.endobj lbl_805176B0
+.obj lbl_805176B8, local
+	.float 2.0
+.endobj lbl_805176B8
+.balign 8
+.obj lbl_805176C0, local
+	.double 0.5
+.endobj lbl_805176C0
+.obj lbl_805176C8, local
+	.float 8388638.0
+.endobj lbl_805176C8
+.balign 8
+.obj lbl_805176D0, local
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805176D8
-lbl_805176D8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_805176E0
-lbl_805176E0:
-	.4byte 0x3FDDB3D0
-	.4byte 0x00000000
-.global lbl_805176E8
-lbl_805176E8:
-	.4byte 0x40080000
-	.4byte 0x00000000
-.global lbl_805176F0
-lbl_805176F0:
-	.4byte 0x43800000
-	.4byte 0x00000000
-.global lbl_805176F8
-lbl_805176F8:
+.endobj lbl_805176D0
+.balign 8
+.obj lbl_805176D8, local
+	.double 0.0
+.endobj lbl_805176D8
+.obj lbl_805176E0, local
+	.float 1.73205
+.endobj lbl_805176E0
+.balign 8
+.obj lbl_805176E8, local
+	.double 3.0
+.endobj lbl_805176E8
+.obj lbl_805176F0, local
+	.float 256.0
+.endobj lbl_805176F0
+.balign 8
+.obj lbl_805176F8, local
 	.4byte 0x43300000
 	.4byte 0x00000000
+.endobj lbl_805176F8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global GXSetFog
-GXSetFog:
+.fn GXSetFog, global
 /* 800E8BE0 000E5B20  7C 08 02 A6 */	mflr r0
 /* 800E8BE4 000E5B24  90 01 00 04 */	stw r0, 4(r1)
 /* 800E8BE8 000E5B28  94 21 FF A0 */	stwu r1, -0x60(r1)
@@ -217,9 +213,9 @@ GXSetFog:
 /* 800E8DF8 000E5D38  38 21 00 60 */	addi r1, r1, 0x60
 /* 800E8DFC 000E5D3C  7C 08 03 A6 */	mtlr r0
 /* 800E8E00 000E5D40  4E 80 00 20 */	blr 
+.endfn GXSetFog
 
-.global GXInitFogAdjTable
-GXInitFogAdjTable:
+.fn GXInitFogAdjTable, global
 /* 800E8E04 000E5D44  7C 08 02 A6 */	mflr r0
 /* 800E8E08 000E5D48  90 01 00 04 */	stw r0, 4(r1)
 /* 800E8E0C 000E5D4C  94 21 FF 80 */	stwu r1, -0x80(r1)
@@ -332,9 +328,9 @@ GXInitFogAdjTable:
 /* 800E8FA8 000E5EE8  38 21 00 80 */	addi r1, r1, 0x80
 /* 800E8FAC 000E5EEC  7C 08 03 A6 */	mtlr r0
 /* 800E8FB0 000E5EF0  4E 80 00 20 */	blr 
+.endfn GXInitFogAdjTable
 
-.global GXSetFogRangeAdj
-GXSetFogRangeAdj:
+.fn GXSetFogRangeAdj, global
 /* 800E8FB4 000E5EF4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800E8FB8 000E5EF8  41 82 00 E4 */	beq .L_800E909C
 /* 800E8FBC 000E5EFC  38 C0 00 00 */	li r6, 0
@@ -409,9 +405,9 @@ GXSetFogRangeAdj:
 /* 800E90CC 000E600C  38 00 00 00 */	li r0, 0
 /* 800E90D0 000E6010  B0 04 00 02 */	sth r0, 2(r4)
 /* 800E90D4 000E6014  4E 80 00 20 */	blr 
+.endfn GXSetFogRangeAdj
 
-.global GXSetBlendMode
-GXSetBlendMode:
+.fn GXSetBlendMode, global
 /* 800E90D8 000E6018  81 02 92 90 */	lwz r8, __GXData@sda21(r2)
 /* 800E90DC 000E601C  20 03 00 03 */	subfic r0, r3, 3
 /* 800E90E0 000E6020  7C 07 00 34 */	cntlzw r7, r0
@@ -433,9 +429,9 @@ GXSetBlendMode:
 /* 800E9120 000E6060  90 E8 01 D0 */	stw r7, 0x1d0(r8)
 /* 800E9124 000E6064  B0 08 00 02 */	sth r0, 2(r8)
 /* 800E9128 000E6068  4E 80 00 20 */	blr 
+.endfn GXSetBlendMode
 
-.global GXSetColorUpdate
-GXSetColorUpdate:
+.fn GXSetColorUpdate, global
 /* 800E912C 000E606C  80 A2 92 90 */	lwz r5, __GXData@sda21(r2)
 /* 800E9130 000E6070  38 00 00 61 */	li r0, 0x61
 /* 800E9134 000E6074  3C 80 CC 01 */	lis r4, 0xCC008000@ha
@@ -447,9 +443,9 @@ GXSetColorUpdate:
 /* 800E914C 000E608C  90 C5 01 D0 */	stw r6, 0x1d0(r5)
 /* 800E9150 000E6090  B0 05 00 02 */	sth r0, 2(r5)
 /* 800E9154 000E6094  4E 80 00 20 */	blr 
+.endfn GXSetColorUpdate
 
-.global GXSetAlphaUpdate
-GXSetAlphaUpdate:
+.fn GXSetAlphaUpdate, global
 /* 800E9158 000E6098  80 A2 92 90 */	lwz r5, __GXData@sda21(r2)
 /* 800E915C 000E609C  38 00 00 61 */	li r0, 0x61
 /* 800E9160 000E60A0  3C 80 CC 01 */	lis r4, 0xCC008000@ha
@@ -461,9 +457,9 @@ GXSetAlphaUpdate:
 /* 800E9178 000E60B8  90 C5 01 D0 */	stw r6, 0x1d0(r5)
 /* 800E917C 000E60BC  B0 05 00 02 */	sth r0, 2(r5)
 /* 800E9180 000E60C0  4E 80 00 20 */	blr 
+.endfn GXSetAlphaUpdate
 
-.global GXSetZMode
-GXSetZMode:
+.fn GXSetZMode, global
 /* 800E9184 000E60C4  80 C2 92 90 */	lwz r6, __GXData@sda21(r2)
 /* 800E9188 000E60C8  38 00 00 61 */	li r0, 0x61
 /* 800E918C 000E60CC  80 E6 01 D8 */	lwz r7, 0x1d8(r6)
@@ -477,9 +473,9 @@ GXSetZMode:
 /* 800E91AC 000E60EC  90 E6 01 D8 */	stw r7, 0x1d8(r6)
 /* 800E91B0 000E60F0  B0 06 00 02 */	sth r0, 2(r6)
 /* 800E91B4 000E60F4  4E 80 00 20 */	blr 
+.endfn GXSetZMode
 
-.global GXSetZCompLoc
-GXSetZCompLoc:
+.fn GXSetZCompLoc, global
 /* 800E91B8 000E60F8  80 C2 92 90 */	lwz r6, __GXData@sda21(r2)
 /* 800E91BC 000E60FC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800E91C0 000E6100  38 60 00 61 */	li r3, 0x61
@@ -493,9 +489,9 @@ GXSetZCompLoc:
 /* 800E91E0 000E6120  90 64 80 00 */	stw r3, 0xCC008000@l(r4)
 /* 800E91E4 000E6124  B0 06 00 02 */	sth r0, 2(r6)
 /* 800E91E8 000E6128  4E 80 00 20 */	blr 
+.endfn GXSetZCompLoc
 
-.global GXSetPixelFmt
-GXSetPixelFmt:
+.fn GXSetPixelFmt, global
 /* 800E91EC 000E612C  3C A0 80 4B */	lis r5, p2f$362@ha
 /* 800E91F0 000E6130  80 E2 92 90 */	lwz r7, __GXData@sda21(r2)
 /* 800E91F4 000E6134  54 66 10 3A */	slwi r6, r3, 2
@@ -553,9 +549,9 @@ GXSetPixelFmt:
 /* 800E92B4 000E61F4  38 00 00 00 */	li r0, 0
 /* 800E92B8 000E61F8  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E92BC 000E61FC  4E 80 00 20 */	blr 
+.endfn GXSetPixelFmt
 
-.global GXSetDither
-GXSetDither:
+.fn GXSetDither, global
 /* 800E92C0 000E6200  80 A2 92 90 */	lwz r5, __GXData@sda21(r2)
 /* 800E92C4 000E6204  38 00 00 61 */	li r0, 0x61
 /* 800E92C8 000E6208  3C 80 CC 01 */	lis r4, 0xCC008000@ha
@@ -567,9 +563,9 @@ GXSetDither:
 /* 800E92E0 000E6220  90 C5 01 D0 */	stw r6, 0x1d0(r5)
 /* 800E92E4 000E6224  B0 05 00 02 */	sth r0, 2(r5)
 /* 800E92E8 000E6228  4E 80 00 20 */	blr 
+.endfn GXSetDither
 
-.global GXSetDstAlpha
-GXSetDstAlpha:
+.fn GXSetDstAlpha, global
 /* 800E92EC 000E622C  80 C2 92 90 */	lwz r6, __GXData@sda21(r2)
 /* 800E92F0 000E6230  54 85 06 3E */	clrlwi r5, r4, 0x18
 /* 800E92F4 000E6234  38 00 00 61 */	li r0, 0x61
@@ -585,9 +581,9 @@ GXSetDstAlpha:
 /* 800E931C 000E625C  90 66 01 D4 */	stw r3, 0x1d4(r6)
 /* 800E9320 000E6260  B0 06 00 02 */	sth r0, 2(r6)
 /* 800E9324 000E6264  4E 80 00 20 */	blr 
+.endfn GXSetDstAlpha
 
-.global GXSetFieldMask
-GXSetFieldMask:
+.fn GXSetFieldMask, global
 /* 800E9328 000E6268  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800E932C 000E626C  80 82 92 90 */	lwz r4, __GXData@sda21(r2)
 /* 800E9330 000E6270  38 A0 00 00 */	li r5, 0
@@ -602,9 +598,9 @@ GXSetFieldMask:
 /* 800E9354 000E6294  38 00 00 00 */	li r0, 0
 /* 800E9358 000E6298  B0 04 00 02 */	sth r0, 2(r4)
 /* 800E935C 000E629C  4E 80 00 20 */	blr 
+.endfn GXSetFieldMask
 
-.global GXSetFieldMode
-GXSetFieldMode:
+.fn GXSetFieldMode, global
 /* 800E9360 000E62A0  7C 08 02 A6 */	mflr r0
 /* 800E9364 000E62A4  90 01 00 04 */	stw r0, 4(r1)
 /* 800E9368 000E62A8  54 80 06 3E */	clrlwi r0, r4, 0x18
@@ -635,3 +631,4 @@ GXSetFieldMode:
 /* 800E93CC 000E630C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E93D0 000E6310  7C 08 03 A6 */	mtlr r0
 /* 800E93D4 000E6314  4E 80 00 20 */	blr 
+.endfn GXSetFieldMode

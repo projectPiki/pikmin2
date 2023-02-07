@@ -1,22 +1,21 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global Chan
-Chan:
+.obj Chan, local
 	.skip 0x4
-.global Dev
-Dev:
+.endobj Chan
+.obj Dev, local
 	.skip 0x4
-.global Enabled
-Enabled:
+.endobj Dev
+.obj Enabled, local
 	.skip 0x4
-.global BarnacleEnabled
-BarnacleEnabled:
+.endobj Enabled
+.obj BarnacleEnabled, local
 	.skip 0x4
+.endobj BarnacleEnabled
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global ProbeBarnacle
-ProbeBarnacle:
+.fn ProbeBarnacle, local
 /* 800E1530 000DE470  7C 08 02 A6 */	mflr r0
 /* 800E1534 000DE474  90 01 00 04 */	stw r0, 4(r1)
 /* 800E1538 000DE478  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -123,9 +122,9 @@ ProbeBarnacle:
 /* 800E16B0 000DE5F0  38 21 00 28 */	addi r1, r1, 0x28
 /* 800E16B4 000DE5F4  7C 08 03 A6 */	mtlr r0
 /* 800E16B8 000DE5F8  4E 80 00 20 */	blr 
+.endobj ProbeBarnacle
 
-.global __OSEnableBarnacle
-__OSEnableBarnacle:
+.fn __OSEnableBarnacle, global
 /* 800E16BC 000DE5FC  7C 08 02 A6 */	mflr r0
 /* 800E16C0 000DE600  90 01 00 04 */	stw r0, 4(r1)
 /* 800E16C4 000DE604  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -246,9 +245,9 @@ __OSEnableBarnacle:
 /* 800E186C 000DE7AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800E1870 000DE7B0  7C 08 03 A6 */	mtlr r0
 /* 800E1874 000DE7B4  4E 80 00 20 */	blr 
+.endfn __OSEnableBarnacle
 
-.global InitializeUART
-InitializeUART:
+.fn InitializeUART, global
 /* 800E1878 000DE7B8  7C 08 02 A6 */	mflr r0
 /* 800E187C 000DE7BC  90 01 00 04 */	stw r0, 4(r1)
 /* 800E1880 000DE7C0  94 21 FF F8 */	stwu r1, -8(r1)
@@ -280,9 +279,9 @@ InitializeUART:
 /* 800E18DC 000DE81C  38 21 00 08 */	addi r1, r1, 8
 /* 800E18E0 000DE820  7C 08 03 A6 */	mtlr r0
 /* 800E18E4 000DE824  4E 80 00 20 */	blr 
+.endfn InitializeUART
 
-.global WriteUARTN
-WriteUARTN:
+.fn WriteUARTN, global
 /* 800E18E8 000DE828  7C 08 02 A6 */	mflr r0
 /* 800E18EC 000DE82C  90 01 00 04 */	stw r0, 4(r1)
 /* 800E18F0 000DE830  94 21 FF C8 */	stwu r1, -0x38(r1)
@@ -438,3 +437,4 @@ WriteUARTN:
 /* 800E1AF8 000DEA38  38 21 00 38 */	addi r1, r1, 0x38
 /* 800E1AFC 000DEA3C  7C 08 03 A6 */	mtlr r0
 /* 800E1B00 000DEA40  4E 80 00 20 */	blr 
+.endfn WriteUARTN

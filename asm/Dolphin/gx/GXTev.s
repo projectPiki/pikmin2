@@ -1,36 +1,35 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global TEVCOpTableST0
-TEVCOpTableST0:
+.obj TEVCOpTableST0, local
 	.4byte 0xC008F8AF
 	.4byte 0xC008A89F
 	.4byte 0xC008AC8F
 	.4byte 0xC008FFF8
 	.4byte 0xC008FFFA
-.global TEVCOpTableST1
-TEVCOpTableST1:
+.endobj TEVCOpTableST0
+.obj TEVCOpTableST1, local
 	.4byte 0xC008F80F
 	.4byte 0xC008089F
 	.4byte 0xC0080C8F
 	.4byte 0xC008FFF8
 	.4byte 0xC008FFF0
-.global TEVAOpTableST0
-TEVAOpTableST0:
+.endobj TEVCOpTableST1
+.obj TEVAOpTableST0, local
 	.4byte 0xC108F2F0
 	.4byte 0xC108FFD0
 	.4byte 0xC108F2F0
 	.4byte 0xC108FFC0
 	.4byte 0xC108FFD0
-.global TEVAOpTableST1
-TEVAOpTableST1:
+.endobj TEVAOpTableST0
+.obj TEVAOpTableST1, local
 	.4byte 0xC108F070
 	.4byte 0xC108FF80
 	.4byte 0xC108F070
 	.4byte 0xC108FFC0
 	.4byte 0xC108FF80
-.global c2r$364
-c2r$364:
+.endobj TEVAOpTableST1
+.obj c2r$364, local
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000000
@@ -40,11 +39,10 @@ c2r$364:
 	.4byte 0x00000007
 	.4byte 0x00000005
 	.4byte 0x00000006
-	.4byte 0x00000000
+.endobj c2r$364
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global GXSetTevOp
-GXSetTevOp:
+.fn GXSetTevOp, global
 /* 800E847C 000E53BC  2C 03 00 00 */	cmpwi r3, 0
 /* 800E8480 000E53C0  3C A0 80 4B */	lis r5, TEVCOpTableST0@ha
 /* 800E8484 000E53C4  38 05 87 78 */	addi r0, r5, TEVCOpTableST0@l
@@ -82,9 +80,9 @@ GXSetTevOp:
 /* 800E84FC 000E543C  91 06 01 70 */	stw r8, 0x170(r6)
 /* 800E8500 000E5440  B0 07 00 02 */	sth r0, 2(r7)
 /* 800E8504 000E5444  4E 80 00 20 */	blr 
+.endfn GXSetTevOp
 
-.global GXSetTevColorIn
-GXSetTevColorIn:
+.fn GXSetTevColorIn, global
 /* 800E8508 000E5448  81 22 92 90 */	lwz r9, __GXData@sda21(r2)
 /* 800E850C 000E544C  54 63 10 3A */	slwi r3, r3, 2
 /* 800E8510 000E5450  38 00 00 61 */	li r0, 0x61
@@ -102,9 +100,9 @@ GXSetTevColorIn:
 /* 800E8540 000E5480  90 88 01 30 */	stw r4, 0x130(r8)
 /* 800E8544 000E5484  B0 09 00 02 */	sth r0, 2(r9)
 /* 800E8548 000E5488  4E 80 00 20 */	blr 
+.endfn GXSetTevColorIn
 
-.global GXSetTevAlphaIn
-GXSetTevAlphaIn:
+.fn GXSetTevAlphaIn, global
 /* 800E854C 000E548C  81 22 92 90 */	lwz r9, __GXData@sda21(r2)
 /* 800E8550 000E5490  54 63 10 3A */	slwi r3, r3, 2
 /* 800E8554 000E5494  38 00 00 61 */	li r0, 0x61
@@ -122,9 +120,9 @@ GXSetTevAlphaIn:
 /* 800E8584 000E54C4  90 88 01 70 */	stw r4, 0x170(r8)
 /* 800E8588 000E54C8  B0 09 00 02 */	sth r0, 2(r9)
 /* 800E858C 000E54CC  4E 80 00 20 */	blr 
+.endfn GXSetTevAlphaIn
 
-.global GXSetTevColorOp
-GXSetTevColorOp:
+.fn GXSetTevColorOp, global
 /* 800E8590 000E54D0  80 02 92 90 */	lwz r0, __GXData@sda21(r2)
 /* 800E8594 000E54D4  54 69 10 3A */	slwi r9, r3, 2
 /* 800E8598 000E54D8  2C 04 00 01 */	cmpwi r4, 1
@@ -153,9 +151,9 @@ GXSetTevColorOp:
 /* 800E85EC 000E552C  91 43 01 30 */	stw r10, 0x130(r3)
 /* 800E85F0 000E5530  B0 04 00 02 */	sth r0, 2(r4)
 /* 800E85F4 000E5534  4E 80 00 20 */	blr 
+.endfn GXSetTevColorOp
 
-.global GXSetTevAlphaOp
-GXSetTevAlphaOp:
+.fn GXSetTevAlphaOp, global
 /* 800E85F8 000E5538  80 02 92 90 */	lwz r0, __GXData@sda21(r2)
 /* 800E85FC 000E553C  54 69 10 3A */	slwi r9, r3, 2
 /* 800E8600 000E5540  2C 04 00 01 */	cmpwi r4, 1
@@ -184,9 +182,9 @@ GXSetTevAlphaOp:
 /* 800E8654 000E5594  91 43 01 70 */	stw r10, 0x170(r3)
 /* 800E8658 000E5598  B0 04 00 02 */	sth r0, 2(r4)
 /* 800E865C 000E559C  4E 80 00 20 */	blr 
+.endfn GXSetTevAlphaOp
 
-.global GXSetTevColor
-GXSetTevColor:
+.fn GXSetTevColor, global
 /* 800E8660 000E55A0  88 A4 00 00 */	lbz r5, 0(r4)
 /* 800E8664 000E55A4  54 67 08 3C */	slwi r7, r3, 1
 /* 800E8668 000E55A8  88 04 00 03 */	lbz r0, 3(r4)
@@ -218,9 +216,9 @@ GXSetTevColor:
 /* 800E86D0 000E5610  90 C4 80 00 */	stw r6, 0xCC008000@l(r4)
 /* 800E86D4 000E5614  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E86D8 000E5618  4E 80 00 20 */	blr 
+.endfn GXSetTevColor
 
-.global GXSetTevColorS10
-GXSetTevColorS10:
+.fn GXSetTevColorS10, global
 /* 800E86DC 000E561C  A8 04 00 00 */	lha r0, 0(r4)
 /* 800E86E0 000E5620  54 68 08 3C */	slwi r8, r3, 1
 /* 800E86E4 000E5624  38 A0 00 00 */	li r5, 0
@@ -252,9 +250,9 @@ GXSetTevColorS10:
 /* 800E874C 000E568C  90 C4 80 00 */	stw r6, 0xCC008000@l(r4)
 /* 800E8750 000E5690  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E8754 000E5694  4E 80 00 20 */	blr 
+.endfn GXSetTevColorS10
 
-.global GXSetTevKColor
-GXSetTevKColor:
+.fn GXSetTevKColor, global
 /* 800E8758 000E5698  88 A4 00 00 */	lbz r5, 0(r4)
 /* 800E875C 000E569C  54 66 08 3C */	slwi r6, r3, 1
 /* 800E8760 000E56A0  88 04 00 03 */	lbz r0, 3(r4)
@@ -284,9 +282,9 @@ GXSetTevKColor:
 /* 800E87C0 000E5700  91 04 80 00 */	stw r8, 0xCC008000@l(r4)
 /* 800E87C4 000E5704  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E87C8 000E5708  4E 80 00 20 */	blr 
+.endfn GXSetTevKColor
 
-.global GXSetTevKColorSel
-GXSetTevKColorSel:
+.fn GXSetTevKColorSel, global
 /* 800E87CC 000E570C  7C 65 0E 70 */	srawi r5, r3, 1
 /* 800E87D0 000E5710  80 C2 92 90 */	lwz r6, __GXData@sda21(r2)
 /* 800E87D4 000E5714  54 60 07 FF */	clrlwi. r0, r3, 0x1f
@@ -312,9 +310,9 @@ GXSetTevKColorSel:
 /* 800E881C 000E575C  90 85 80 00 */	stw r4, 0xCC008000@l(r5)
 /* 800E8820 000E5760  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E8824 000E5764  4E 80 00 20 */	blr 
+.endfn GXSetTevKColorSel
 
-.global GXSetTevKAlphaSel
-GXSetTevKAlphaSel:
+.fn GXSetTevKAlphaSel, global
 /* 800E8828 000E5768  7C 65 0E 70 */	srawi r5, r3, 1
 /* 800E882C 000E576C  80 C2 92 90 */	lwz r6, __GXData@sda21(r2)
 /* 800E8830 000E5770  54 60 07 FF */	clrlwi. r0, r3, 0x1f
@@ -340,9 +338,9 @@ GXSetTevKAlphaSel:
 /* 800E8878 000E57B8  90 85 80 00 */	stw r4, 0xCC008000@l(r5)
 /* 800E887C 000E57BC  B0 03 00 02 */	sth r0, 2(r3)
 /* 800E8880 000E57C0  4E 80 00 20 */	blr 
+.endfn GXSetTevKAlphaSel
 
-.global GXSetTevSwapMode
-GXSetTevSwapMode:
+.fn GXSetTevSwapMode, global
 /* 800E8884 000E57C4  54 63 10 3A */	slwi r3, r3, 2
 /* 800E8888 000E57C8  80 E2 92 90 */	lwz r7, __GXData@sda21(r2)
 /* 800E888C 000E57CC  39 03 01 70 */	addi r8, r3, 0x170
@@ -361,9 +359,9 @@ GXSetTevSwapMode:
 /* 800E88C0 000E5800  90 64 80 00 */	stw r3, 0xCC008000@l(r4)
 /* 800E88C4 000E5804  B0 07 00 02 */	sth r0, 2(r7)
 /* 800E88C8 000E5808  4E 80 00 20 */	blr 
+.endfn GXSetTevSwapMode
 
-.global GXSetTevSwapModeTable
-GXSetTevSwapModeTable:
+.fn GXSetTevSwapModeTable, global
 /* 800E88CC 000E580C  54 69 08 3C */	slwi r9, r3, 1
 /* 800E88D0 000E5810  81 02 92 90 */	lwz r8, __GXData@sda21(r2)
 /* 800E88D4 000E5814  54 63 18 38 */	slwi r3, r3, 3
@@ -396,9 +394,9 @@ GXSetTevSwapModeTable:
 /* 800E8940 000E5880  90 64 80 00 */	stw r3, 0xCC008000@l(r4)
 /* 800E8944 000E5884  B0 08 00 02 */	sth r0, 2(r8)
 /* 800E8948 000E5888  4E 80 00 20 */	blr 
+.endfn GXSetTevSwapModeTable
 
-.global GXSetAlphaCompare
-GXSetAlphaCompare:
+.fn GXSetAlphaCompare, global
 /* 800E894C 000E588C  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800E8950 000E5890  80 82 92 90 */	lwz r4, __GXData@sda21(r2)
 /* 800E8954 000E5894  3D 00 F3 00 */	lis r8, 0xf300
@@ -416,9 +414,9 @@ GXSetAlphaCompare:
 /* 800E8984 000E58C4  90 E3 80 00 */	stw r7, 0xCC008000@l(r3)
 /* 800E8988 000E58C8  B0 04 00 02 */	sth r0, 2(r4)
 /* 800E898C 000E58CC  4E 80 00 20 */	blr 
+.endfn GXSetAlphaCompare
 
-.global GXSetZTexture
-GXSetZTexture:
+.fn GXSetZTexture, global
 /* 800E8990 000E58D0  2C 04 00 13 */	cmpwi r4, 0x13
 /* 800E8994 000E58D4  38 00 00 F4 */	li r0, 0xf4
 /* 800E8998 000E58D8  38 C0 00 00 */	li r6, 0
@@ -460,9 +458,9 @@ GXSetZTexture:
 /* 800E8A10 000E5950  90 E5 80 00 */	stw r7, 0xCC008000@l(r5)
 /* 800E8A14 000E5954  B0 04 00 02 */	sth r0, 2(r4)
 /* 800E8A18 000E5958  4E 80 00 20 */	blr 
+.endfn GXSetZTexture
 
-.global GXSetTevOrder
-GXSetTevOrder:
+.fn GXSetTevOrder, global
 /* 800E8A1C 000E595C  7C 67 0E 70 */	srawi r7, r3, 1
 /* 800E8A20 000E5960  81 22 92 90 */	lwz r9, __GXData@sda21(r2)
 /* 800E8A24 000E5964  54 AA 06 2C */	rlwinm r10, r5, 0, 0x18, 0x16
@@ -578,9 +576,9 @@ GXSetTevOrder:
 /* 800E8BAC 000E5AEC  60 00 00 01 */	ori r0, r0, 1
 /* 800E8BB0 000E5AF0  90 03 05 AC */	stw r0, 0x5ac(r3)
 /* 800E8BB4 000E5AF4  4E 80 00 20 */	blr 
+.endfn GXSetTevOrder
 
-.global GXSetNumTevStages
-GXSetNumTevStages:
+.fn GXSetNumTevStages, global
 /* 800E8BB8 000E5AF8  80 82 92 90 */	lwz r4, __GXData@sda21(r2)
 /* 800E8BBC 000E5AFC  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 800E8BC0 000E5B00  38 03 FF FF */	addi r0, r3, -1
@@ -591,3 +589,4 @@ GXSetNumTevStages:
 /* 800E8BD4 000E5B14  60 00 00 04 */	ori r0, r0, 4
 /* 800E8BD8 000E5B18  90 04 05 AC */	stw r0, 0x5ac(r4)
 /* 800E8BDC 000E5B1C  4E 80 00 20 */	blr 
+.endfn GXSetNumTevStages

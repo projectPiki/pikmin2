@@ -1,28 +1,27 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517730
-lbl_80517730:
+.obj lbl_80517730, local
 	.float 1.0
-.global lbl_80517734
-lbl_80517734:
-	.4byte 0x40000000
-.global lbl_80517738
-lbl_80517738:
-	.4byte 0x00000000
-.global lbl_8051773C
-lbl_8051773C:
+.endobj lbl_80517730
+.obj lbl_80517734, local
+	.float 2.0
+.endobj lbl_80517734
+.obj lbl_80517738, local
+	.float 0.0
+.endobj lbl_80517738
+.obj lbl_8051773C, local
 	.float -1.0
-.global lbl_80517740
-lbl_80517740:
+.endobj lbl_8051773C
+.obj lbl_80517740, local
 	.float 0.5
-.global lbl_80517744
-lbl_80517744:
-	.4byte 0x3C8EFA35
+.endobj lbl_80517740
+.obj lbl_80517744, local
+	.float 0.017453292
+.endobj lbl_80517744
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global C_MTXPerspective
-C_MTXPerspective:
+.fn C_MTXPerspective, global
 /* 800EAD08 000E7C48  7C 08 02 A6 */	mflr r0
 /* 800EAD0C 000E7C4C  90 01 00 04 */	stw r0, 4(r1)
 /* 800EAD10 000E7C50  94 21 FF C0 */	stwu r1, -0x40(r1)
@@ -75,9 +74,9 @@ C_MTXPerspective:
 /* 800EADCC 000E7D0C  38 21 00 40 */	addi r1, r1, 0x40
 /* 800EADD0 000E7D10  7C 08 03 A6 */	mtlr r0
 /* 800EADD4 000E7D14  4E 80 00 20 */	blr 
+.endfn C_MTXPerspective
 
-.global C_MTXOrtho
-C_MTXOrtho:
+.fn C_MTXOrtho, global
 /* 800EADD8 000E7D18  ED 04 18 28 */	fsubs f8, f4, f3
 /* 800EADDC 000E7D1C  C1 22 93 D0 */	lfs f9, lbl_80517730@sda21(r2)
 /* 800EADE0 000E7D20  EC 01 10 28 */	fsubs f0, f1, f2
@@ -116,9 +115,9 @@ C_MTXOrtho:
 /* 800EAE64 000E7DA4  D0 63 00 38 */	stfs f3, 0x38(r3)
 /* 800EAE68 000E7DA8  D1 23 00 3C */	stfs f9, 0x3c(r3)
 /* 800EAE6C 000E7DAC  4E 80 00 20 */	blr 
+.endfn C_MTXOrtho
 
-.global PSMTX44Copy
-PSMTX44Copy:
+.fn PSMTX44Copy, global
 /* 800EAE70 000E7DB0  E0 23 00 00 */	psq_l f1, 0(r3), 0, qr0
 /* 800EAE74 000E7DB4  F0 24 00 00 */	psq_st f1, 0(r4), 0, qr0
 /* 800EAE78 000E7DB8  E0 23 00 08 */	psq_l f1, 8(r3), 0, qr0
@@ -136,3 +135,4 @@ PSMTX44Copy:
 /* 800EAEA8 000E7DE8  E0 23 00 38 */	psq_l f1, 56(r3), 0, qr0
 /* 800EAEAC 000E7DEC  F0 24 00 38 */	psq_st f1, 56(r4), 0, qr0
 /* 800EAEB0 000E7DF0  4E 80 00 20 */	blr 
+.endfn PSMTX44Copy
