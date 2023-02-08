@@ -52,7 +52,7 @@ lbl_8049DA9C:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804EF880:
+.obj lbl_804EF880, local
 	.4byte .L_8046F928
 	.4byte .L_8046FB60
 	.4byte .L_8046F9D8
@@ -61,6 +61,7 @@ lbl_804EF880:
 	.4byte .L_8046FD34
 	.4byte .L_8046FEA8
 	.4byte .L_8046FF14
+.endobj lbl_804EF880
 lbl_804EF8A0:
 	.4byte .L_80470060
 	.4byte .L_80470068
@@ -124,13 +125,12 @@ __vt__Q23PSM19GroundDirector_Cave:
 	.4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"
-"__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>":
+.obj __vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>, weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv"
-.global __vt__Q23PSM17DirectorMgr_Scene
-__vt__Q23PSM17DirectorMgr_Scene:
+.endobj __vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>
+.obj __vt__Q23PSM17DirectorMgr_Scene, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM17DirectorMgr_SceneFv
@@ -140,7 +140,7 @@ __vt__Q23PSM17DirectorMgr_Scene:
 	.4byte "@12@__dt__Q23PSM17DirectorMgr_SceneFv"
 	.4byte isSlave__Q23PSM17DirectorMgr_SceneFv
 	.4byte newPikminNumberDirector__Q23PSM17DirectorMgr_SceneFiUcRQ28PSSystem11DirectedBgm
-	.4byte 0
+.endobj __vt__Q23PSM17DirectorMgr_Scene
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -2103,8 +2103,7 @@ isSlave__Q23PSM17DirectorMgr_SceneFv:
 /* 80470D54 0046DC94  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80470D58 0046DC98  4E 80 00 20 */	blr 
 
-.global __dt__Q23PSM15BgmTrackMapFileFv
-__dt__Q23PSM15BgmTrackMapFileFv:
+.fn __dt__Q23PSM15BgmTrackMapFileFv, weak
 /* 80470D5C 0046DC9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470D60 0046DCA0  7C 08 02 A6 */	mflr r0
 /* 80470D64 0046DCA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2141,6 +2140,7 @@ __dt__Q23PSM15BgmTrackMapFileFv:
 /* 80470DD8 0046DD18  7C 08 03 A6 */	mtlr r0
 /* 80470DDC 0046DD1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80470DE0 0046DD20  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM15BgmTrackMapFileFv
 
 .global __dt__Q23PSM19GroundDirector_CaveFv
 __dt__Q23PSM19GroundDirector_CaveFv:
@@ -2199,8 +2199,7 @@ directOn__Q23PSM19GroundDirector_CaveFv:
 directOff__Q23PSM19GroundDirector_CaveFv:
 /* 80470E98 0046DDD8  4E 80 00 20 */	blr 
 
-.global "__dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv"
-"__dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv":
+.fn __dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv, weak
 /* 80470E9C 0046DDDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470EA0 0046DDE0  7C 08 02 A6 */	mflr r0
 /* 80470EA4 0046DDE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2222,6 +2221,7 @@ directOff__Q23PSM19GroundDirector_CaveFv:
 /* 80470EE0 0046DE20  7C 08 03 A6 */	mtlr r0
 /* 80470EE4 0046DE24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80470EE8 0046DE28  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv
 
 .global "@12@__dt__Q23PSM17DirectorMgr_SceneFv"
 "@12@__dt__Q23PSM17DirectorMgr_SceneFv":

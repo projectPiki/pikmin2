@@ -1,82 +1,105 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049DE78:
+.obj lbl_8049DE78, local
 	.asciz "PSMainSide_TrackMap.cpp"
+.endobj lbl_8049DE78
 .balign 4
-lbl_8049DE90:
+.obj lbl_8049DE90, local
 	.asciz "not loaded\n"
+.endobj lbl_8049DE90
 .balign 4
-lbl_8049DE9C:
+.obj lbl_8049DE9C, local
 	.asciz "endoffile"
+.endobj lbl_8049DE9C
 .balign 4
-lbl_8049DEA8:
+.obj lbl_8049DEA8, local
 	.asciz "not find\ntrack map\n(%s)"
+.endobj lbl_8049DEA8
 .balign 4
-lbl_8049DEC0:
+.obj lbl_8049DEC0, local
 	.asciz "basic trk over\n(%s)\n(Cur=%d)"
+.endobj lbl_8049DEC0
 .balign 4
-lbl_8049DEE0:
+.obj lbl_8049DEE0, local
 	.asciz "event trk over\n(%s)\n(Cur=%d)"
+.endobj lbl_8049DEE0
 .balign 4
-lbl_8049DF00:
+.obj lbl_8049DF00, local
 	.asciz "otakara trk over\n(%s)\n(Cur=%d)"
+.endobj lbl_8049DF00
 .balign 4
-lbl_8049DF20:
+.obj lbl_8049DF20, local
 	.asciz "kehai trk over\n(%s)\n(Cur=%d)"
+.endobj lbl_8049DF20
 .balign 4
-lbl_8049DF40:
+.obj lbl_8049DF40, local
 	.asciz "battle trk over\n(%s)\n(Cur=%d)"
+.endobj lbl_8049DF40
 .balign 4
-lbl_8049DF60:
+.obj lbl_8049DF60, local
 	.asciz "ground trk over\n(%s)\n(Cur=%d)"
+.endobj lbl_8049DF60
 .balign 4
-lbl_8049DF80:
+.obj lbl_8049DF80, local
 	.asciz "abnormal pik num\n(%s)\n(Cur=%d)"
+.endobj lbl_8049DF80
 .balign 4
-lbl_8049DFA0:
+.obj lbl_8049DFA0, local
 	.asciz "abnormal pik mask\n(%s)\n(Cur=%d)"
+.endobj lbl_8049DFA0
 .balign 4
-lbl_8049DFC0:
+.obj lbl_8049DFC0, local
 	.asciz "file num over\ntrack map\n(%s)"
+.endobj lbl_8049DFC0
 .balign 4
-lbl_8049DFE0:
+.obj lbl_8049DFE0, local
 	.asciz "P2Assert"
+.endobj lbl_8049DFE0
 .balign 4
-lbl_8049DFEC:
+.obj lbl_8049DFEC, local
 	.asciz "not find info\n"
+.endobj lbl_8049DFEC
 .balign 4
-lbl_8049DFFC:
+.obj lbl_8049DFFC, local
 	.asciz "basic trk over\n(Cur=%d)\n"
+.endobj lbl_8049DFFC
 .balign 4
-lbl_8049E018:
+.obj lbl_8049E018, local
 	.asciz "event trk over\n(Cur=%d)\n"
+.endobj lbl_8049E018
 .balign 4
-lbl_8049E034:
+.obj lbl_8049E034, local
 	.asciz "otakara trk over\n(Cur=%d)\n"
+.endobj lbl_8049E034
 .balign 4
-lbl_8049E050:
+.obj lbl_8049E050, local
 	.asciz "kehai trk over\n(Cur=%d)\n"
+.endobj lbl_8049E050
 .balign 4
-lbl_8049E06C:
+.obj lbl_8049E06C, local
 	.asciz "battle trk over\n(Cur=%d)\n"
+.endobj lbl_8049E06C
 .balign 4
-lbl_8049E088:
+.obj lbl_8049E088, local
 	.asciz "ground trk over\n(Cur=%d)\n"
+.endobj lbl_8049E088
 .balign 4
-lbl_8049E0A4:
+.obj lbl_8049E0A4, local
 	.asciz "abnormal pik num\n(Cur=%d)\n"
+.endobj lbl_8049E0A4
 .balign 4
-lbl_8049E0C0:
+.obj lbl_8049E0C0, local
 	.asciz "abnormal pik mask\n(Cur=%d)\n"
+.endobj lbl_8049E0C0
 .balign 4
-lbl_8049E0DC:
+.obj lbl_8049E0DC, local
 	.asciz "file num over\n"
+.endobj lbl_8049E0DC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23PSM15BgmTrackMapFile
-__vt__Q23PSM15BgmTrackMapFile:
+.obj __vt__Q23PSM15BgmTrackMapFile, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM15BgmTrackMapFileFv
@@ -84,15 +107,16 @@ __vt__Q23PSM15BgmTrackMapFile:
 	.4byte 0
 	.4byte 0
 	.4byte "@28@__dt__Q23PSM15BgmTrackMapFileFv"
+.endobj __vt__Q23PSM15BgmTrackMapFile
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520DB0:
+.obj lbl_80520DB0, local
 	.asciz ""
+.endobj lbl_80520DB0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q23PSM15BgmTrackMapFileFb
-__ct__Q23PSM15BgmTrackMapFileFb:
+.fn __ct__Q23PSM15BgmTrackMapFileFb, global
 /* 804718D0 0046E810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804718D4 0046E814  7C 08 02 A6 */	mflr r0
 /* 804718D8 0046E818  90 01 00 14 */	stw r0, 0x14(r1)
@@ -137,9 +161,9 @@ __ct__Q23PSM15BgmTrackMapFileFb:
 /* 8047196C 0046E8AC  7C 08 03 A6 */	mtlr r0
 /* 80471970 0046E8B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80471974 0046E8B4  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM15BgmTrackMapFileFb
 
-.global readTrackMap__Q23PSM15BgmTrackMapFileFPCc
-readTrackMap__Q23PSM15BgmTrackMapFileFPCc:
+.fn readTrackMap__Q23PSM15BgmTrackMapFileFPCc, global
 /* 80471978 0046E8B8  94 21 FB 70 */	stwu r1, -0x490(r1)
 /* 8047197C 0046E8BC  7C 08 02 A6 */	mflr r0
 /* 80471980 0046E8C0  90 01 04 94 */	stw r0, 0x494(r1)
@@ -646,9 +670,9 @@ readTrackMap__Q23PSM15BgmTrackMapFileFPCc:
 /* 804720E8 0046F028  7C 08 03 A6 */	mtlr r0
 /* 804720EC 0046F02C  38 21 04 90 */	addi r1, r1, 0x490
 /* 804720F0 0046F030  4E 80 00 20 */	blr 
+.endfn readTrackMap__Q23PSM15BgmTrackMapFileFPCc
 
-.global read__Q23PSM15BgmTrackMapFileFR6Stream
-read__Q23PSM15BgmTrackMapFileFR6Stream:
+.fn read__Q23PSM15BgmTrackMapFileFR6Stream, global
 /* 804720F4 0046F034  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804720F8 0046F038  7C 08 02 A6 */	mflr r0
 /* 804720FC 0046F03C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -831,9 +855,9 @@ read__Q23PSM15BgmTrackMapFileFR6Stream:
 /* 8047237C 0046F2BC  7C 08 03 A6 */	mtlr r0
 /* 80472380 0046F2C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80472384 0046F2C4  4E 80 00 20 */	blr 
+.endfn read__Q23PSM15BgmTrackMapFileFR6Stream
 
-.global __ct__Q23PSM11BgmTrackMapFv
-__ct__Q23PSM11BgmTrackMapFv:
+.fn __ct__Q23PSM11BgmTrackMapFv, weak
 /* 80472388 0046F2C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8047238C 0046F2CC  7C 08 02 A6 */	mflr r0
 /* 80472390 0046F2D0  38 C0 00 00 */	li r6, 0
@@ -904,7 +928,9 @@ __ct__Q23PSM11BgmTrackMapFv:
 /* 8047248C 0046F3CC  7C 08 03 A6 */	mtlr r0
 /* 80472490 0046F3D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80472494 0046F3D4  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM11BgmTrackMapFv
 
-"@28@__dt__Q23PSM15BgmTrackMapFileFv":
+.fn @28@__dt__Q23PSM15BgmTrackMapFileFv, weak
 /* 80472498 0046F3D8  38 63 FF E4 */	addi r3, r3, -28
 /* 8047249C 0046F3DC  4B FF E8 C0 */	b __dt__Q23PSM15BgmTrackMapFileFv
+.endfn @28@__dt__Q23PSM15BgmTrackMapFileFv

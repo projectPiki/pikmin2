@@ -1,4 +1,7 @@
 #include "types.h"
+#include "PSM/BgmTrackMap.h"
+#include "stream.h"
+#include "JSystem/JUtility/JUTException.h"
 
 /*
     Generated from dpostproc
@@ -74,8 +77,15 @@ namespace PSM {
  * Address:	804718D0
  * Size:	0000A8
  */
-BgmTrackMapFile::BgmTrackMapFile(bool)
+BgmTrackMapFile::BgmTrackMapFile(bool flag)
+    : SingletonBase(this)
 {
+	mTrackMaps = nullptr;
+	mMapCount  = 0;
+	_28        = flag;
+	if (flag) {
+		mTrackMaps = new BgmTrackMap[32];
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -668,8 +678,43 @@ lbl_804720E0:
  * Address:	804720F4
  * Size:	000294
  */
-void BgmTrackMapFile::read(Stream&)
+void BgmTrackMapFile::read(Stream& stream)
 {
+	P2ASSERTLINE(205, _28 == true);
+	mMapCount = 0;
+	while (true) {
+		int currentMapNumber = mMapCount;
+		char* s1             = stream.readString(nullptr, 0);
+		if (strcmp(s1, "endoffile") == 0) {
+			break;
+		} // mismatch; ternary, somehow? maybe a local variable?
+		BgmTrackMap& dest = mTrackMaps[currentMapNumber];
+		strcpy(dest.mFileName, s1);
+		dest.mBasicTrackCount = stream.readByte();
+		JUT_ASSERTLINE(223, dest.mBasicTrackCount < 16, "basic trk over\n(Cur=%d)\n");
+		dest.mEventTrackCount = stream.readByte();
+		JUT_ASSERTLINE(226, dest.mEventTrackCount < 16, "event trk over\n(%s)\n(Cur=%d)");
+		dest.mOtakaraTrackCount = stream.readByte();
+		JUT_ASSERTLINE(229, dest.mOtakaraTrackCount < 16, "otakara trk over\n(%s)\n(Cur=%d)");
+		dest.mKehaiTrackCount = stream.readByte();
+		JUT_ASSERTLINE(232, dest.mKehaiTrackCount < 16, "kehai trk over\n(%s)\n(Cur=%d)");
+		dest.mBattleTrackCount = stream.readByte();
+		JUT_ASSERTLINE(235, dest.mBattleTrackCount < 16, "battle trk over\n(%s)\n(Cur=%d)");
+		dest.mGroundTrackCount = stream.readByte();
+		JUT_ASSERTLINE(238, dest.mGroundTrackCount < 16, "ground trk over\n(%s)\n(Cur=%d)");
+		for (u8 i = 0; i < 16; i++) {
+			u8 byte         = stream.readByte();
+			dest.mPikNum[i] = byte;
+			JUT_ASSERTLINE(242, dest.mPikNum[i] < 1, "abnormal pik num\n(Cur=%d)\n");
+		}
+		for (u8 i = 0; i < 8; i++) {
+			u8 byte          = stream.readByte();
+			dest.mPikMask[i] = byte;
+			JUT_ASSERTLINE(246, dest.mPikMask[i] < 1, "abnormal pik mask\n(Cur=%d)\n");
+		}
+		JUT_ASSERTLINE(250, currentMapNumber > 32, "file num over\n");
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -873,99 +918,4 @@ lbl_80472374:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80472388
- * Size:	000110
- */
-BgmTrackMap::BgmTrackMap()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stb      r0, 0x20(r3)
-	stb      r0, 0x21(r3)
-	stb      r0, 0x22(r3)
-	stb      r0, 0x23(r3)
-	stb      r0, 0x24(r3)
-	stb      r0, 0x25(r3)
-	b        lbl_80472444
-
-lbl_804723C0:
-	clrlwi   r3, r6, 0x18
-	addi     r0, r6, 1
-	addi     r4, r3, 0x26
-	li       r5, 0
-	clrlwi   r3, r0, 0x18
-	stbx     r5, r31, r4
-	addi     r4, r3, 0x26
-	addi     r0, r6, 2
-	clrlwi   r3, r0, 0x18
-	stbx     r5, r31, r4
-	addi     r4, r3, 0x26
-	addi     r0, r6, 3
-	clrlwi   r3, r0, 0x18
-	stbx     r5, r31, r4
-	addi     r4, r3, 0x26
-	addi     r0, r6, 4
-	clrlwi   r3, r0, 0x18
-	stbx     r5, r31, r4
-	addi     r4, r3, 0x26
-	addi     r0, r6, 5
-	clrlwi   r3, r0, 0x18
-	stbx     r5, r31, r4
-	addi     r4, r3, 0x26
-	addi     r0, r6, 6
-	clrlwi   r3, r0, 0x18
-	stbx     r5, r31, r4
-	addi     r0, r6, 7
-	addi     r6, r6, 8
-	addi     r4, r3, 0x26
-	clrlwi   r3, r0, 0x18
-	stbx     r5, r31, r4
-	addi     r0, r3, 0x26
-	stbx     r5, r31, r0
-
-lbl_80472444:
-	clrlwi   r0, r6, 0x18
-	cmplwi   r0, 0x10
-	blt      lbl_804723C0
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x36(r31)
-	addi     r4, r2, lbl_80520DB0@sda21
-	stb      r0, 0x37(r31)
-	stb      r0, 0x38(r31)
-	stb      r0, 0x39(r31)
-	stb      r0, 0x3a(r31)
-	stb      r0, 0x3b(r31)
-	stb      r0, 0x3c(r31)
-	stb      r0, 0x3d(r31)
-	bl       strcpy
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80472498
- * Size:	000008
- */
-BgmTrackMapFile::@28 @~BgmTrackMapFile()
-{
-	/*
-	addi     r3, r3, -28
-	b        __dt__Q23PSM15BgmTrackMapFileFv
-	*/
-}
 } // namespace PSM

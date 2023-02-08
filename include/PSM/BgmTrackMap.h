@@ -2,9 +2,27 @@
 #define _PSM_BGMTRACKMAP_H
 
 #include "PSSystem/SeqData.h"
+#include "Dolphin/string.h"
 
 namespace PSM {
 struct BgmTrackMap {
+	BgmTrackMap()
+	{
+		mBasicTrackCount   = 0;
+		mEventTrackCount   = 0;
+		mOtakaraTrackCount = 0;
+		mKehaiTrackCount   = 0;
+		mBattleTrackCount  = 0;
+		mGroundTrackCount  = 0;
+		for (u8 i = 0; i < 16; i++) {
+			mPikNum[i] = 0;
+		}
+		for (u8 i = 0; i < 8; i++) {
+			mPikMask[i] = 0;
+		}
+		strcpy(mFileName, "");
+	};
+
 	char mFileName[32];    // _00
 	u8 mBasicTrackCount;   // _20
 	u8 mEventTrackCount;   // _21
@@ -19,8 +37,10 @@ struct BgmTrackMap {
 struct BgmTrackMapFile : public PSSystem::TextDataBase, public PSSystem::SingletonBase<BgmTrackMapFile> {
 	BgmTrackMapFile(bool);
 
-	virtual ~BgmTrackMapFile(); // _08 (weak)
-	virtual void read(Stream&); // _0C
+	virtual ~BgmTrackMapFile() { } // _08 (weak)
+	virtual void read(Stream&);    // _0C
+
+	void readTrackMap(const char*);
 
 	// _00     = VTBL 1
 	// _1C     = VTBL 2
