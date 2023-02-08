@@ -597,7 +597,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		fuefuki->mTargetVelocity = Vector3f(0.0f);
 	}
 
-	if (fuefuki->mStateTimer > 3.0f) {
+	if (fuefuki->mStateTimer > 5.0f) {
 		if (fuefuki->_2D4 > 0.0f) {
 			fuefuki->mNextState = FUEFUKI_Turn;
 		} else {
