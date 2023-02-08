@@ -170,6 +170,13 @@ struct JKRTask : public JKRThread {
 	void waitQueueMessageBlock(OSMessageQueue*, int*);
 	void waitQueueMessage(OSMessageQueue*, int*);
 
+	OSMessage waitMessageBlock()
+	{
+		OSMessage msg;
+		// OSReceiveMessage(_94, &msg, OS_MESSAGE_BLOCKING);
+		return msg;
+	}
+
 	static void destroy(JKRTask*);
 
 	static JSUList<JKRTask> sTaskList;

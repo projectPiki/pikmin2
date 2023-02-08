@@ -7,49 +7,6 @@
 
 // TODO: Restore the other unused/inlined functions.
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_JKRThread_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__7JKRTask
-    __vt__7JKRTask:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__7JKRTaskFv
-        .4byte run__7JKRTaskFv
-    .global __vt__9JKRThread
-    __vt__9JKRThread:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__9JKRThreadFv
-        .4byte run__9JKRThreadFv
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global sThreadList__9JKRThread
-    sThreadList__9JKRThread:
-        .skip 0x38
-    .global sTaskList__7JKRTask
-    sTaskList__7JKRTask:
-        .skip 0xC
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sManager__15JKRThreadSwitch
-    sManager__15JKRThreadSwitch:
-        .skip 0x4
-    .global sTotalCount__15JKRThreadSwitch
-    sTotalCount__15JKRThreadSwitch:
-        .skip 0x4
-    .global sTotalStart__15JKRThreadSwitch
-    sTotalStart__15JKRThreadSwitch:
-        .skip 0x4
-    .global lbl_80514EE4
-    lbl_80514EE4:
-        .skip 0x4
-*/
-
 JSUList<JKRThread> JKRThread::sThreadList(false);
 JSUList<JKRTask> JKRTask::sTaskList;
 
@@ -66,8 +23,7 @@ u64 JKRThreadSwitch::sTotalStart;
 JKRThread::JKRThread(unsigned long stackSize, int msgCount, int threadPriority)
     : JKRDisposer()
     , mLink(this)
-    , _60()
-    , _70(0)
+    , mLoadInfo()
 {
 	JKRHeap* heap = JKRHeap::findFromRoot(this);
 	if (heap == nullptr) {
@@ -86,8 +42,7 @@ JKRThread::JKRThread(unsigned long stackSize, int msgCount, int threadPriority)
 JKRThread::JKRThread(JKRHeap* heap, unsigned long stackSize, int msgCount, int threadPriority)
     : JKRDisposer()
     , mLink(this)
-    , _60()
-    , _70(0)
+    , mLoadInfo()
 {
 	if (heap == nullptr) {
 		heap = JKRHeap::sCurrentHeap;
@@ -105,8 +60,7 @@ JKRThread::JKRThread(JKRHeap* heap, unsigned long stackSize, int msgCount, int t
 JKRThread::JKRThread(OSThread* thread, int msgCount)
     : JKRDisposer()
     , mLink(this)
-    , _60()
-    , _70(0)
+    , mLoadInfo()
 {
 	mHeap      = nullptr;
 	mThread    = thread;
@@ -146,8 +100,8 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int msgCount)
 	mMsgBuffer = (OSMessage*)JKRHeap::alloc(mMsgCount << 2, 0, heap);
 	OSInitMessageQueue(&mMsgQueue, (void**)mMsgBuffer, mMsgCount);
 	JKRThread::sThreadList.append(&mLink);
-	_74 = 0;
-	_78 = 0;
+	mCurrentHeap      = 0;
+	mCurrentHeapError = 0;
 }
 
 /*
@@ -183,12 +137,12 @@ void* JKRThread::start(void* thread) { return static_cast<JKRThread*>(thread)->r
  * Address:	........
  * Size:	000038
  */
-JKRThread_0x60* JKRThread::searchThreadLoad(OSThread* osThread)
+JKRThread::TLoad* JKRThread::searchThreadLoad(OSThread* osThread)
 {
 	// UNUSED FUNCTION
 	for (JSULink<JKRThread>* link = JKRThread::sThreadList.getFirst(); link != nullptr; link = link->getNext()) {
 		if (link->getObject()->mThread == osThread) {
-			return &link->getObject()->_60;
+			return &link->getObject()->mLoadInfo;
 		}
 	}
 	return nullptr;
@@ -210,35 +164,35 @@ void JKRThreadSwitch::loopProc()
 	}
 	OSDisableInterrupts();
 	OSDisableScheduler();
-	JKRThread_0x60* v1 = JKRThread::searchThreadLoad(OSGetCurrentThread());
+	JKRThread::TLoad* v1 = JKRThread::searchThreadLoad(OSGetCurrentThread());
 	// OSThread* osThread = OSGetCurrentThread();
 	// JKRThread_0x60* v1;
 	// for (JSULink<JKRThread>* link = JKRThread::sThreadList.getFirst(); link != nullptr; link = link->getNext()) {
 	// 	if (link->getObject()->mThread == osThread) {
-	// 		v1 = &link->getObject()->_60;
+	// 		v1 = &link->getObject()->mLoadInfo;
 	// 	}
 	// }
 	// v1  = nullptr;
 	_0C = 0;
 	_18 = OSGetTime() - sTotalStart;
 	if (v1 != nullptr) {
-		v1->_04 += OSGetTick() - v1->_0C;
+		v1->mCost += OSGetTick() - v1->mLastTick;
 	}
 	if (_20 != 0) {
-		v_08(_24);
+		// v1->draw(_24);
 	} else {
-		v_0C(_24);
+		// v1->draw(_24);
 	}
 	for (JSULink<JKRThread>* link = JKRThread::sThreadList.getFirst(); link != nullptr; link = link->getNext()) {
-		JKRThread* thread = link->getObject();
-		thread->_60._08   = 0;
-		thread->_60._04   = 0;
-		thread->_60._0C   = 0;
+		JKRThread* thread              = link->getObject();
+		thread->mLoadInfo.mSwitchCount = 0;
+		thread->mLoadInfo.mCost        = 0;
+		thread->mLoadInfo.mLastTick    = 0;
 	}
 	sTotalCount = 0;
 	sTotalStart = OSGetTime();
 	if (v1 != nullptr) {
-		v1->_0C = OSGetTick();
+		v1->mLastTick = OSGetTick();
 	}
 	OSEnableScheduler();
 	OSEnableInterrupts();
@@ -424,8 +378,9 @@ JKRTask* JKRTask::create(int msgCount, int threadPriority, unsigned long stackSi
 void* JKRTask::run()
 {
 	Message* msg;
+	OSInitFastCast();
 	while (true) {
-		OSReceiveMessage(&mMsgQueue, (void**)&msg, OS_MESSAGE_BLOCKING);
+		// OSReceiveMessage(&mMsgQueue, (OSMessage*)msg, OS_MESSAGE_BLOCKING);
 		if (msg->_00 != nullptr) {
 			msg->_00(msg->_04);
 			if (_94 != nullptr) {
@@ -511,8 +466,8 @@ bool JKRTask::request(RequestCallback callback, void* p2, void* p3)
 	msg->_00        = callback;
 	msg->_04        = p2;
 	msg->_08        = p3;
-	bool sendResult = (OSSendMessage(&mMsgQueue, msg, OS_MESSAGE_NON_BLOCKING) != FALSE);
-	if (sendResult == false) {
+	bool sendResult = (OSSendMessage(&mMsgQueue, msg, OS_MESSAGE_NON_BLOCKING));
+	if (!sendResult) {
 		msg->_00 = nullptr;
 	}
 	return sendResult;

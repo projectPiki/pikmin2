@@ -151,7 +151,6 @@ void TekiStat::Info::read(Stream& stream)
  * --INFO--
  * Address:	80233B40
  * Size:	0000C0
- * NONMATCHING
  * write__Q34Game8TekiStat3MgrFR6Stream
  */
 void TekiStat::Mgr::write(Stream& stream)
@@ -166,7 +165,6 @@ void TekiStat::Mgr::write(Stream& stream)
  * --INFO--
  * Address:	80233C00
  * Size:	0000EC
- * NOT SURE IF MATCHES
  * read__Q34Game8TekiStat3MgrFR6Stream
  */
 void TekiStat::Mgr::read(Stream& stream)
