@@ -1,22 +1,26 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-ResetCallback: # local object
+.obj ResetCallback, local
 	.skip 4
-Down: # local object
+.endobj ResetCallback
+.obj Down, local
 	.skip 4
-LastState: # local object
+.endobj Down
+.obj LastState, local
 	.skip 4
+.endobj LastState
 .balign 8
-HoldUp: # local object
+.obj HoldUp, local
 	.skip 8
+.endobj HoldUp
 .balign 8
-HoldDown: # local object
+.obj HoldDown, local
 	.skip 8
+.endobj HoldDown
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __OSResetSWInterruptHandler
-__OSResetSWInterruptHandler:
+.fn __OSResetSWInterruptHandler, global
 /* 800F06D0 000ED610  7C 08 02 A6 */	mflr r0
 /* 800F06D4 000ED614  90 01 00 04 */	stw r0, 4(r1)
 /* 800F06D8 000ED618  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -81,9 +85,9 @@ __OSResetSWInterruptHandler:
 /* 800F07B8 000ED6F8  38 21 00 28 */	addi r1, r1, 0x28
 /* 800F07BC 000ED6FC  7C 08 03 A6 */	mtlr r0
 /* 800F07C0 000ED700  4E 80 00 20 */	blr 
+.endfn __OSResetSWInterruptHandler
 
-.global OSGetResetButtonState
-OSGetResetButtonState:
+.fn OSGetResetButtonState, global
 /* 800F07C4 000ED704  7C 08 02 A6 */	mflr r0
 /* 800F07C8 000ED708  90 01 00 04 */	stw r0, 4(r1)
 /* 800F07CC 000ED70C  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -263,9 +267,9 @@ OSGetResetButtonState:
 /* 800F0A50 000ED990  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F0A54 000ED994  7C 08 03 A6 */	mtlr r0
 /* 800F0A58 000ED998  4E 80 00 20 */	blr 
+.endfn OSGetResetButtonState
 
-.global OSGetResetSwitchState
-OSGetResetSwitchState:
+.fn OSGetResetSwitchState, global
 /* 800F0A5C 000ED99C  7C 08 02 A6 */	mflr r0
 /* 800F0A60 000ED9A0  90 01 00 04 */	stw r0, 4(r1)
 /* 800F0A64 000ED9A4  94 21 FF F8 */	stwu r1, -8(r1)
@@ -274,3 +278,4 @@ OSGetResetSwitchState:
 /* 800F0A70 000ED9B0  38 21 00 08 */	addi r1, r1, 8
 /* 800F0A74 000ED9B4  7C 08 03 A6 */	mtlr r0
 /* 800F0A78 000ED9B8  4E 80 00 20 */	blr 
+.endfn OSGetResetSwitchState

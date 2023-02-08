@@ -4,78 +4,42 @@
 .obj EndofProgramInstruction$162, local
 	.4byte 0x00454E44
 .endobj EndofProgramInstruction$162
-.global lbl_80479C4C
-lbl_80479C4C:
-	.4byte 0x25730A00
-	.4byte 0x4465766B
-	.4byte 0x69742073
-	.4byte 0x65742074
-	.4byte 0x6F203A20
-	.4byte 0x256C640A
-	.4byte 0x00000000
-	.4byte 0x4D657472
-	.4byte 0x6F54524B
-	.4byte 0x203A2053
-	.4byte 0x65742074
-	.4byte 0x6F204242
-	.4byte 0x410A0000
-	.4byte 0x4D657472
-	.4byte 0x6F54524B
-	.4byte 0x203A2053
-	.4byte 0x65742074
-	.4byte 0x6F204744
-	.4byte 0x45562068
-	.4byte 0x61726477
-	.4byte 0x6172650A
-	.4byte 0x00000000
-	.4byte 0x4D657472
-	.4byte 0x6F54524B
-	.4byte 0x203A2053
-	.4byte 0x65742074
-	.4byte 0x6F20414D
-	.4byte 0x43204444
-	.4byte 0x48206861
-	.4byte 0x72647761
-	.4byte 0x72650A00
-	.4byte 0x4D657472
-	.4byte 0x6F54524B
-	.4byte 0x203A2053
-	.4byte 0x65742074
-	.4byte 0x6F20554E
-	.4byte 0x4B4E4F57
-	.4byte 0x4E206861
-	.4byte 0x72647761
-	.4byte 0x72652E20
-	.4byte 0x28256C64
-	.4byte 0x290A0000
-	.4byte 0x4D657472
-	.4byte 0x6F54524B
-	.4byte 0x203A2049
-	.4byte 0x6E76616C
-	.4byte 0x69642068
-	.4byte 0x61726477
-	.4byte 0x61726520
-	.4byte 0x49442070
-	.4byte 0x61737365
-	.4byte 0x64206672
-	.4byte 0x6F6D204F
-	.4byte 0x530A0000
-	.4byte 0x4D657472
-	.4byte 0x6F54524B
-	.4byte 0x203A2044
-	.4byte 0x65666175
-	.4byte 0x6C74696E
-	.4byte 0x6720746F
-	.4byte 0x20474445
-	.4byte 0x56204861
-	.4byte 0x72647761
-	.4byte 0x72650A00
-	.4byte 0x00000000
+.balign 4
+.obj lbl_80479C4C, local
+	.asciz "%s\n"
+.endobj lbl_80479C4C
+.balign 4
+.obj lbl_80479C50, local
+	.asciz "Devkit set to : %ld\n"
+.endobj lbl_80479C50
+.balign 4
+.obj lbl_80479C68, local
+	.asciz "MetroTRK : Set to BBA\n"
+.endobj lbl_80479C68
+.balign 4
+.obj lbl_80479C80, local
+	.asciz "MetroTRK : Set to GDEV hardware\n"
+.endobj lbl_80479C80
+.balign 4
+.obj lbl_80479CA4, local
+	.asciz "MetroTRK : Set to AMC DDH hardware\n"
+.endobj lbl_80479CA4
+.balign 4
+.obj lbl_80479CC8, local
+	.asciz "MetroTRK : Set to UNKNOWN hardware. (%ld)\n"
+.endobj lbl_80479CC8
+.balign 4
+.obj lbl_80479CF4, local
+	.asciz "MetroTRK : Invalid hardware ID passed from OS\n"
+.endobj lbl_80479CF4
+.balign 4
+.obj lbl_80479D24, local
+	.asciz "MetroTRK : Defaulting to GDEV Hardware\n"
+.endobj lbl_80479D24
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global gDBCommTable
-gDBCommTable:
+.obj gDBCommTable, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -86,19 +50,20 @@ gDBCommTable:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj gDBCommTable
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
-.global TRK_Use_BBA
-TRK_Use_BBA:
+.obj TRK_Use_BBA, global
+	.skip 0x1
+.endobj TRK_Use_BBA
+.balign 4
+.obj _MetroTRK_Has_Framing, global
 	.skip 0x4
-.global _MetroTRK_Has_Framing
-_MetroTRK_Has_Framing:
-	.skip 0x4
+.endobj _MetroTRK_Has_Framing
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global TRKLoadContext
-TRKLoadContext:
+.fn TRKLoadContext, global
 /* 800C0464 000BD3A4  80 03 00 00 */	lwz r0, 0(r3)
 /* 800C0468 000BD3A8  80 23 00 04 */	lwz r1, 4(r3)
 /* 800C046C 000BD3AC  80 43 00 08 */	lwz r2, 8(r3)
@@ -135,13 +100,13 @@ TRKLoadContext:
 /* 800C04E0 000BD420  80 9F 01 9C */	lwz r4, 0x19c(r31)
 /* 800C04E4 000BD424  83 FF 00 7C */	lwz r31, 0x7c(r31)
 /* 800C04E8 000BD428  4B FF DA 0C */	b TRKInterruptHandler
+.endfn TRKLoadContext
 
-.global TRKUARTInterruptHandler
-TRKUARTInterruptHandler:
+.fn TRKUARTInterruptHandler, global
 /* 800C04EC 000BD42C  4E 80 00 20 */	blr 
+.endfn TRKUARTInterruptHandler
 
-.global InitializeProgramEndTrap
-InitializeProgramEndTrap:
+.fn InitializeProgramEndTrap, global
 /* 800C04F0 000BD430  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C04F4 000BD434  7C 08 02 A6 */	mflr r0
 /* 800C04F8 000BD438  3C 80 80 0D */	lis r4, PPCHalt@ha
@@ -164,9 +129,9 @@ InitializeProgramEndTrap:
 /* 800C053C 000BD47C  7C 08 03 A6 */	mtlr r0
 /* 800C0540 000BD480  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C0544 000BD484  4E 80 00 20 */	blr 
+.endfn InitializeProgramEndTrap
 
-.global TRK_board_display
-TRK_board_display:
+.fn TRK_board_display, global
 /* 800C0548 000BD488  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C054C 000BD48C  7C 08 02 A6 */	mflr r0
 /* 800C0550 000BD490  3C A0 80 48 */	lis r5, lbl_80479C4C@ha
@@ -179,9 +144,9 @@ TRK_board_display:
 /* 800C056C 000BD4AC  7C 08 03 A6 */	mtlr r0
 /* 800C0570 000BD4B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C0574 000BD4B4  4E 80 00 20 */	blr 
+.endfn TRK_board_display
 
-.global UnreserveEXI2Port
-UnreserveEXI2Port:
+.fn UnreserveEXI2Port, global
 /* 800C0578 000BD4B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C057C 000BD4BC  7C 08 02 A6 */	mflr r0
 /* 800C0580 000BD4C0  3C 60 80 4A */	lis r3, gDBCommTable@ha
@@ -194,9 +159,9 @@ UnreserveEXI2Port:
 /* 800C059C 000BD4DC  7C 08 03 A6 */	mtlr r0
 /* 800C05A0 000BD4E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C05A4 000BD4E4  4E 80 00 20 */	blr 
+.endfn UnreserveEXI2Port
 
-.global ReserveEXI2Port
-ReserveEXI2Port:
+.fn ReserveEXI2Port, global
 /* 800C05A8 000BD4E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C05AC 000BD4EC  7C 08 02 A6 */	mflr r0
 /* 800C05B0 000BD4F0  3C 60 80 4A */	lis r3, gDBCommTable@ha
@@ -209,9 +174,9 @@ ReserveEXI2Port:
 /* 800C05CC 000BD50C  7C 08 03 A6 */	mtlr r0
 /* 800C05D0 000BD510  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C05D4 000BD514  4E 80 00 20 */	blr 
+.endfn ReserveEXI2Port
 
-.global TRKWriteUARTN
-TRKWriteUARTN:
+.fn TRKWriteUARTN, global
 /* 800C05D8 000BD518  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C05DC 000BD51C  7C 08 02 A6 */	mflr r0
 /* 800C05E0 000BD520  3C A0 80 4A */	lis r5, gDBCommTable@ha
@@ -227,9 +192,9 @@ TRKWriteUARTN:
 /* 800C0608 000BD548  7C 08 03 A6 */	mtlr r0
 /* 800C060C 000BD54C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C0610 000BD550  4E 80 00 20 */	blr 
+.endfn TRKWriteUARTN
 
-.global TRKReadUARTN
-TRKReadUARTN:
+.fn TRKReadUARTN, global
 /* 800C0614 000BD554  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C0618 000BD558  7C 08 02 A6 */	mflr r0
 /* 800C061C 000BD55C  3C A0 80 4A */	lis r5, gDBCommTable@ha
@@ -245,9 +210,9 @@ TRKReadUARTN:
 /* 800C0644 000BD584  7C 08 03 A6 */	mtlr r0
 /* 800C0648 000BD588  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C064C 000BD58C  4E 80 00 20 */	blr 
+.endfn TRKReadUARTN
 
-.global TRKPollUART
-TRKPollUART:
+.fn TRKPollUART, global
 /* 800C0650 000BD590  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C0654 000BD594  7C 08 02 A6 */	mflr r0
 /* 800C0658 000BD598  3C 60 80 4A */	lis r3, gDBCommTable@ha
@@ -260,9 +225,9 @@ TRKPollUART:
 /* 800C0674 000BD5B4  7C 08 03 A6 */	mtlr r0
 /* 800C0678 000BD5B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C067C 000BD5BC  4E 80 00 20 */	blr 
+.endfn TRKPollUART
 
-.global EnableEXI2Interrupts
-EnableEXI2Interrupts:
+.fn EnableEXI2Interrupts, global
 /* 800C0680 000BD5C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C0684 000BD5C4  7C 08 02 A6 */	mflr r0
 /* 800C0688 000BD5C8  3C 60 80 4F */	lis r3, TRK_Use_BBA@ha
@@ -282,9 +247,9 @@ EnableEXI2Interrupts:
 /* 800C06BC 000BD5FC  7C 08 03 A6 */	mtlr r0
 /* 800C06C0 000BD600  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C06C4 000BD604  4E 80 00 20 */	blr 
+.endfn EnableEXI2Interrupts
 
-.global TRKInitializeIntDrivenUART
-TRKInitializeIntDrivenUART:
+.fn TRKInitializeIntDrivenUART, global
 /* 800C06C8 000BD608  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C06CC 000BD60C  7C 08 02 A6 */	mflr r0
 /* 800C06D0 000BD610  3C 80 80 0C */	lis r4, TRKEXICallBack@ha
@@ -305,9 +270,9 @@ TRKInitializeIntDrivenUART:
 /* 800C070C 000BD64C  7C 08 03 A6 */	mtlr r0
 /* 800C0710 000BD650  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C0714 000BD654  4E 80 00 20 */	blr 
+.endfn TRKInitializeIntDrivenUART
 
-.global InitMetroTRKCommTable
-InitMetroTRKCommTable:
+.fn InitMetroTRKCommTable, global
 /* 800C0718 000BD658  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C071C 000BD65C  7C 08 02 A6 */	mflr r0
 /* 800C0720 000BD660  3C 80 80 48 */	lis r4, EndofProgramInstruction$162@ha
@@ -468,9 +433,9 @@ InitMetroTRKCommTable:
 /* 800C0978 000BD8B8  7C 08 03 A6 */	mtlr r0
 /* 800C097C 000BD8BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C0980 000BD8C0  4E 80 00 20 */	blr 
+.endfn InitMetroTRKCommTable
 
-.global TRKEXICallBack
-TRKEXICallBack:
+.fn TRKEXICallBack, global
 /* 800C0984 000BD8C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C0988 000BD8C8  7C 08 02 A6 */	mflr r0
 /* 800C098C 000BD8CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -485,3 +450,4 @@ TRKEXICallBack:
 /* 800C09B0 000BD8F0  7C 08 03 A6 */	mtlr r0
 /* 800C09B4 000BD8F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C09B8 000BD8F8  4E 80 00 20 */	blr 
+.endfn TRKEXICallBack

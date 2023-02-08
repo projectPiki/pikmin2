@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 32
-.global Scb
-Scb:
+.obj Scb, local
 	.skip 0x54
+.endobj Scb
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-WriteSramCallback:
+.fn WriteSramCallback, local
 /* 800F0A7C 000ED9BC  7C 08 02 A6 */	mflr r0
 /* 800F0A80 000ED9C0  3C 60 80 4F */	lis r3, Scb@ha
 /* 800F0A84 000ED9C4  90 01 00 04 */	stw r0, 4(r1)
@@ -32,8 +32,9 @@ WriteSramCallback:
 /* 800F0AD0 000EDA10  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F0AD4 000EDA14  7C 08 03 A6 */	mtlr r0
 /* 800F0AD8 000EDA18  4E 80 00 20 */	blr 
+.endfn WriteSramCallback
 
-WriteSram:
+.fn WriteSram, local
 /* 800F0ADC 000EDA1C  7C 08 02 A6 */	mflr r0
 /* 800F0AE0 000EDA20  3C C0 80 0F */	lis r6, WriteSramCallback@ha
 /* 800F0AE4 000EDA24  90 01 00 04 */	stw r0, 4(r1)
@@ -107,9 +108,9 @@ WriteSram:
 /* 800F0BE8 000EDB28  38 21 00 28 */	addi r1, r1, 0x28
 /* 800F0BEC 000EDB2C  7C 08 03 A6 */	mtlr r0
 /* 800F0BF0 000EDB30  4E 80 00 20 */	blr 
+.endfn WriteSram
 
-.global __OSInitSram
-__OSInitSram:
+.fn __OSInitSram, global
 /* 800F0BF4 000EDB34  7C 08 02 A6 */	mflr r0
 /* 800F0BF8 000EDB38  3C 60 80 4F */	lis r3, Scb@ha
 /* 800F0BFC 000EDB3C  90 01 00 04 */	stw r0, 4(r1)
@@ -192,9 +193,9 @@ __OSInitSram:
 /* 800F0D24 000EDC64  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F0D28 000EDC68  7C 08 03 A6 */	mtlr r0
 /* 800F0D2C 000EDC6C  4E 80 00 20 */	blr 
+.endfn __OSInitSram
 
-.global __OSLockSram
-__OSLockSram:
+.fn __OSLockSram, global
 /* 800F0D30 000EDC70  7C 08 02 A6 */	mflr r0
 /* 800F0D34 000EDC74  3C 60 80 4F */	lis r3, Scb@ha
 /* 800F0D38 000EDC78  90 01 00 04 */	stw r0, 4(r1)
@@ -220,9 +221,9 @@ __OSLockSram:
 /* 800F0D80 000EDCC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800F0D84 000EDCC4  7C 08 03 A6 */	mtlr r0
 /* 800F0D88 000EDCC8  4E 80 00 20 */	blr 
+.endfn __OSLockSram
 
-.global __OSLockSramEx
-__OSLockSramEx:
+.fn __OSLockSramEx, global
 /* 800F0D8C 000EDCCC  7C 08 02 A6 */	mflr r0
 /* 800F0D90 000EDCD0  3C 60 80 4F */	lis r3, Scb@ha
 /* 800F0D94 000EDCD4  90 01 00 04 */	stw r0, 4(r1)
@@ -248,8 +249,9 @@ __OSLockSramEx:
 /* 800F0DDC 000EDD1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800F0DE0 000EDD20  7C 08 03 A6 */	mtlr r0
 /* 800F0DE4 000EDD24  4E 80 00 20 */	blr 
+.endfn __OSLockSramEx
 
-UnlockSram:
+.fn UnlockSram, local
 /* 800F0DE8 000EDD28  7C 08 02 A6 */	mflr r0
 /* 800F0DEC 000EDD2C  2C 03 00 00 */	cmpwi r3, 0
 /* 800F0DF0 000EDD30  90 01 00 04 */	stw r0, 4(r1)
@@ -469,9 +471,9 @@ UnlockSram:
 /* 800F1118 000EE058  38 21 00 30 */	addi r1, r1, 0x30
 /* 800F111C 000EE05C  7C 08 03 A6 */	mtlr r0
 /* 800F1120 000EE060  4E 80 00 20 */	blr 
+.endfn UnlockSram
 
-.global __OSUnlockSram
-__OSUnlockSram:
+.fn __OSUnlockSram, global
 /* 800F1124 000EE064  7C 08 02 A6 */	mflr r0
 /* 800F1128 000EE068  38 80 00 00 */	li r4, 0
 /* 800F112C 000EE06C  90 01 00 04 */	stw r0, 4(r1)
@@ -481,9 +483,9 @@ __OSUnlockSram:
 /* 800F113C 000EE07C  38 21 00 08 */	addi r1, r1, 8
 /* 800F1140 000EE080  7C 08 03 A6 */	mtlr r0
 /* 800F1144 000EE084  4E 80 00 20 */	blr 
+.endfn __OSUnlockSram
 
-.global __OSUnlockSramEx
-__OSUnlockSramEx:
+.fn __OSUnlockSramEx, global
 /* 800F1148 000EE088  7C 08 02 A6 */	mflr r0
 /* 800F114C 000EE08C  38 80 00 14 */	li r4, 0x14
 /* 800F1150 000EE090  90 01 00 04 */	stw r0, 4(r1)
@@ -493,16 +495,16 @@ __OSUnlockSramEx:
 /* 800F1160 000EE0A0  38 21 00 08 */	addi r1, r1, 8
 /* 800F1164 000EE0A4  7C 08 03 A6 */	mtlr r0
 /* 800F1168 000EE0A8  4E 80 00 20 */	blr 
+.endfn __OSUnlockSramEx
 
-.global __OSSyncSram
-__OSSyncSram:
+.fn __OSSyncSram, global
 /* 800F116C 000EE0AC  3C 60 80 4F */	lis r3, Scb@ha
 /* 800F1170 000EE0B0  38 63 66 E0 */	addi r3, r3, Scb@l
 /* 800F1174 000EE0B4  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 800F1178 000EE0B8  4E 80 00 20 */	blr 
+.endfn __OSSyncSram
 
-.global __OSReadROM
-__OSReadROM:
+.fn __OSReadROM, global
 /* 800F117C 000EE0BC  7C 08 02 A6 */	mflr r0
 /* 800F1180 000EE0C0  90 01 00 04 */	stw r0, 4(r1)
 /* 800F1184 000EE0C4  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -579,9 +581,9 @@ __OSReadROM:
 /* 800F1294 000EE1D4  38 21 00 28 */	addi r1, r1, 0x28
 /* 800F1298 000EE1D8  7C 08 03 A6 */	mtlr r0
 /* 800F129C 000EE1DC  4E 80 00 20 */	blr 
+.endfn __OSReadROM
 
-.global OSGetSoundMode
-OSGetSoundMode:
+.fn OSGetSoundMode, global
 /* 800F12A0 000EE1E0  7C 08 02 A6 */	mflr r0
 /* 800F12A4 000EE1E4  3C 60 80 4F */	lis r3, Scb@ha
 /* 800F12A8 000EE1E8  90 01 00 04 */	stw r0, 4(r1)
@@ -618,9 +620,9 @@ OSGetSoundMode:
 /* 800F1314 000EE254  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F1318 000EE258  7C 08 03 A6 */	mtlr r0
 /* 800F131C 000EE25C  4E 80 00 20 */	blr 
+.endfn OSGetSoundMode
 
-.global OSSetSoundMode
-OSSetSoundMode:
+.fn OSSetSoundMode, global
 /* 800F1320 000EE260  7C 08 02 A6 */	mflr r0
 /* 800F1324 000EE264  3C 80 80 4F */	lis r4, Scb@ha
 /* 800F1328 000EE268  90 01 00 04 */	stw r0, 4(r1)
@@ -666,9 +668,9 @@ OSSetSoundMode:
 /* 800F13B8 000EE2F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F13BC 000EE2FC  7C 08 03 A6 */	mtlr r0
 /* 800F13C0 000EE300  4E 80 00 20 */	blr 
+.endfn OSSetSoundMode
 
-.global OSGetProgressiveMode
-OSGetProgressiveMode:
+.fn OSGetProgressiveMode, global
 /* 800F13C4 000EE304  7C 08 02 A6 */	mflr r0
 /* 800F13C8 000EE308  3C 60 80 4F */	lis r3, Scb@ha
 /* 800F13CC 000EE30C  90 01 00 04 */	stw r0, 4(r1)
@@ -699,9 +701,9 @@ OSGetProgressiveMode:
 /* 800F1428 000EE368  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F142C 000EE36C  7C 08 03 A6 */	mtlr r0
 /* 800F1430 000EE370  4E 80 00 20 */	blr 
+.endfn OSGetProgressiveMode
 
-.global OSSetProgressiveMode
-OSSetProgressiveMode:
+.fn OSSetProgressiveMode, global
 /* 800F1434 000EE374  7C 08 02 A6 */	mflr r0
 /* 800F1438 000EE378  3C 80 80 4F */	lis r4, Scb@ha
 /* 800F143C 000EE37C  90 01 00 04 */	stw r0, 4(r1)
@@ -747,9 +749,9 @@ OSSetProgressiveMode:
 /* 800F14CC 000EE40C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F14D0 000EE410  7C 08 03 A6 */	mtlr r0
 /* 800F14D4 000EE414  4E 80 00 20 */	blr 
+.endfn OSSetProgressiveMode
 
-.global OSSetEuRgb60Mode
-OSSetEuRgb60Mode:
+.fn OSSetEuRgb60Mode, global
 /* 800F14D8 000EE418  7C 08 02 A6 */	mflr r0
 /* 800F14DC 000EE41C  3C 80 80 4F */	lis r4, Scb@ha
 /* 800F14E0 000EE420  90 01 00 04 */	stw r0, 4(r1)
@@ -795,9 +797,9 @@ OSSetEuRgb60Mode:
 /* 800F1570 000EE4B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F1574 000EE4B4  7C 08 03 A6 */	mtlr r0
 /* 800F1578 000EE4B8  4E 80 00 20 */	blr 
+.endfn OSSetEuRgb60Mode
 
-.global OSGetWirelessID
-OSGetWirelessID:
+.fn OSGetWirelessID, global
 /* 800F157C 000EE4BC  7C 08 02 A6 */	mflr r0
 /* 800F1580 000EE4C0  3C 80 80 4F */	lis r4, Scb@ha
 /* 800F1584 000EE4C4  90 01 00 04 */	stw r0, 4(r1)
@@ -833,9 +835,9 @@ OSGetWirelessID:
 /* 800F15F4 000EE534  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F15F8 000EE538  7C 08 03 A6 */	mtlr r0
 /* 800F15FC 000EE53C  4E 80 00 20 */	blr 
+.endfn OSGetWirelessID
 
-.global OSSetWirelessID
-OSSetWirelessID:
+.fn OSSetWirelessID, global
 /* 800F1600 000EE540  7C 08 02 A6 */	mflr r0
 /* 800F1604 000EE544  3C A0 80 4F */	lis r5, Scb@ha
 /* 800F1608 000EE548  90 01 00 04 */	stw r0, 4(r1)
@@ -883,9 +885,9 @@ OSSetWirelessID:
 /* 800F16A0 000EE5E0  38 21 00 28 */	addi r1, r1, 0x28
 /* 800F16A4 000EE5E4  7C 08 03 A6 */	mtlr r0
 /* 800F16A8 000EE5E8  4E 80 00 20 */	blr 
+.endfn OSSetWirelessID
 
-.global OSGetGbsMode
-OSGetGbsMode:
+.fn OSGetGbsMode, global
 /* 800F16AC 000EE5EC  7C 08 02 A6 */	mflr r0
 /* 800F16B0 000EE5F0  3C 60 80 4F */	lis r3, Scb@ha
 /* 800F16B4 000EE5F4  90 01 00 04 */	stw r0, 4(r1)
@@ -916,9 +918,9 @@ OSGetGbsMode:
 /* 800F1710 000EE650  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F1714 000EE654  7C 08 03 A6 */	mtlr r0
 /* 800F1718 000EE658  4E 80 00 20 */	blr 
+.endfn OSGetGbsMode
 
-.global OSSetGbsMode
-OSSetGbsMode:
+.fn OSSetGbsMode, global
 /* 800F171C 000EE65C  7C 08 02 A6 */	mflr r0
 /* 800F1720 000EE660  54 64 04 3E */	clrlwi r4, r3, 0x10
 /* 800F1724 000EE664  90 01 00 04 */	stw r0, 4(r1)
@@ -971,3 +973,4 @@ OSSetGbsMode:
 /* 800F17C8 000EE708  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F17CC 000EE70C  7C 08 03 A6 */	mtlr r0
 /* 800F17D0 000EE710  4E 80 00 20 */	blr 
+.endfn OSSetGbsMode

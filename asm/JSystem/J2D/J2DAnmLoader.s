@@ -51,8 +51,9 @@ __vt__10J2DAnmBase:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805168C0:
+.obj lbl_805168C0, local
 	.float 0.0
+.endobj lbl_805168C0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__20J2DAnmLoaderDataBaseFPCv

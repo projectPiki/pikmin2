@@ -1,54 +1,24 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80479AF8
-lbl_80479AF8:
-	.4byte 0x43616C6C
-	.4byte 0x696E6720
-	.4byte 0x4D657373
-	.4byte 0x61676553
-	.4byte 0x656E640A
-	.4byte 0x00000000
-	.4byte 0x6D73675F
-	.4byte 0x636F6D6D
-	.4byte 0x616E6420
-	.4byte 0x3A203078
-	.4byte 0x25303278
-	.4byte 0x20686472
-	.4byte 0x2D3E636D
-	.4byte 0x64494420
-	.4byte 0x30782530
-	.4byte 0x32780A00
-	.4byte 0x6D73675F
-	.4byte 0x6572726F
-	.4byte 0x72203A20
-	.4byte 0x30782530
-	.4byte 0x32780A00
-	.4byte 0x52657175
-	.4byte 0x65737453
-	.4byte 0x656E6420
-	.4byte 0x3A204261
-	.4byte 0x64206163
-	.4byte 0x6B206F72
-	.4byte 0x206E6F6E
-	.4byte 0x2061636B
-	.4byte 0x20726563
-	.4byte 0x65697665
-	.4byte 0x64206D73
-	.4byte 0x675F636F
-	.4byte 0x6D6D616E
-	.4byte 0x64203A20
-	.4byte 0x30782530
-	.4byte 0x3278206D
-	.4byte 0x73675F65
-	.4byte 0x72726F72
-	.4byte 0x20307825
-	.4byte 0x3032780A
-	.4byte 0x00000000
+.obj lbl_80479AF8, local
+	.asciz "Calling MessageSend\n"
+.endobj lbl_80479AF8
+.balign 4
+.obj lbl_80479B10, local
+	.asciz "msg_command : 0x%02x hdr->cmdID 0x%02x\n"
+.endobj lbl_80479B10
+.balign 4
+.obj lbl_80479B38, local
+	.asciz "msg_error : 0x%02x\n"
+.endobj lbl_80479B38
+.balign 4
+.obj lbl_80479B4C, local
+	.asciz "RequestSend : Bad ack or non ack received msg_command : 0x%02x msg_error 0x%02x\n"
+.endobj lbl_80479B4C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global HandlePositionFileSupportRequest
-HandlePositionFileSupportRequest:
+.fn HandlePositionFileSupportRequest, global
 /* 800BD5F4 000BA534  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800BD5F8 000BA538  7C 08 02 A6 */	mflr r0
 /* 800BD5FC 000BA53C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -120,9 +90,9 @@ HandlePositionFileSupportRequest:
 /* 800BD6F8 000BA638  7C 08 03 A6 */	mtlr r0
 /* 800BD6FC 000BA63C  38 21 00 70 */	addi r1, r1, 0x70
 /* 800BD700 000BA640  4E 80 00 20 */	blr 
+.endfn HandlePositionFileSupportRequest
 
-.global HandleCloseFileSupportRequest
-HandleCloseFileSupportRequest:
+.fn HandleCloseFileSupportRequest, global
 /* 800BD704 000BA644  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800BD708 000BA648  7C 08 02 A6 */	mflr r0
 /* 800BD70C 000BA64C  38 A0 00 40 */	li r5, 0x40
@@ -185,9 +155,9 @@ HandleCloseFileSupportRequest:
 /* 800BD7E0 000BA720  7C 08 03 A6 */	mtlr r0
 /* 800BD7E4 000BA724  38 21 00 70 */	addi r1, r1, 0x70
 /* 800BD7E8 000BA728  4E 80 00 20 */	blr 
+.endfn HandleCloseFileSupportRequest
 
-.global HandleOpenFileSupportRequest
-HandleOpenFileSupportRequest:
+.fn HandleOpenFileSupportRequest, global
 /* 800BD7EC 000BA72C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800BD7F0 000BA730  7C 08 02 A6 */	mflr r0
 /* 800BD7F4 000BA734  90 01 00 74 */	stw r0, 0x74(r1)
@@ -262,9 +232,9 @@ HandleOpenFileSupportRequest:
 /* 800BD8FC 000BA83C  7C 08 03 A6 */	mtlr r0
 /* 800BD900 000BA840  38 21 00 70 */	addi r1, r1, 0x70
 /* 800BD904 000BA844  4E 80 00 20 */	blr 
+.endfn HandleOpenFileSupportRequest
 
-.global TRKRequestSend
-TRKRequestSend:
+.fn TRKRequestSend, global
 /* 800BD908 000BA848  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800BD90C 000BA84C  7C 08 02 A6 */	mflr r0
 /* 800BD910 000BA850  90 01 00 44 */	stw r0, 0x44(r1)
@@ -398,9 +368,9 @@ TRKRequestSend:
 /* 800BDADC 000BAA1C  7C 08 03 A6 */	mtlr r0
 /* 800BDAE0 000BAA20  38 21 00 40 */	addi r1, r1, 0x40
 /* 800BDAE4 000BAA24  4E 80 00 20 */	blr 
+.endfn TRKRequestSend
 
-.global TRKSuppAccessFile
-TRKSuppAccessFile:
+.fn TRKSuppAccessFile, global
 /* 800BDAE8 000BAA28  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 800BDAEC 000BAA2C  7C 08 02 A6 */	mflr r0
 /* 800BDAF0 000BAA30  90 01 00 94 */	stw r0, 0x94(r1)
@@ -553,3 +523,4 @@ TRKSuppAccessFile:
 /* 800BDCFC 000BAC3C  7C 08 03 A6 */	mtlr r0
 /* 800BDD00 000BAC40  38 21 00 90 */	addi r1, r1, 0x90
 /* 800BDD04 000BAC44  4E 80 00 20 */	blr 
+.endfn TRKSuppAccessFile

@@ -22,6 +22,7 @@ cOpenMaxFrm__Q22kh6Screen:
 lbl_80497CA0:
 	.asciz "P2Assert"
 .balign 4
+lbl_80497CAC:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -7786,8 +7787,7 @@ __dt__Q32kh6Screen16khUtilColorAnmWMFv:
 /* 803F83D0 003F5310  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F83D4 003F5314  4E 80 00 20 */	blr 
 
-.global __dt__Q32kh6Screen16khUtilFadePaneWMFv
-__dt__Q32kh6Screen16khUtilFadePaneWMFv:
+.fn __dt__Q32kh6Screen16khUtilFadePaneWMFv, weak
 /* 803F83D8 003F5318  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F83DC 003F531C  7C 08 02 A6 */	mflr r0
 /* 803F83E0 003F5320  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7834,13 +7834,13 @@ __dt__Q32kh6Screen16khUtilFadePaneWMFv:
 /* 803F8478 003F53B8  7C 08 03 A6 */	mtlr r0
 /* 803F847C 003F53BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F8480 003F53C0  4E 80 00 20 */	blr 
+.endfn __dt__Q32kh6Screen16khUtilFadePaneWMFv
 
-.global fadein_finish__Q32kh6Screen14khUtilFadePaneFv
-fadein_finish__Q32kh6Screen14khUtilFadePaneFv:
+.fn fadein_finish__Q32kh6Screen14khUtilFadePaneFv, weak
 /* 803F8484 003F53C4  4E 80 00 20 */	blr 
+.endfn fadein_finish__Q32kh6Screen14khUtilFadePaneFv
 
-.global __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv
-__dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv:
+.fn __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv, weak
 /* 803F8488 003F53C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F848C 003F53CC  7C 08 02 A6 */	mflr r0
 /* 803F8490 003F53D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7860,6 +7860,7 @@ __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv:
 /* 803F84C4 003F5404  7C 08 03 A6 */	mtlr r0
 /* 803F84C8 003F5408  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F84CC 003F540C  4E 80 00 20 */	blr 
+.endfn __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv
 
 .fn __sinit_khWorldMap_cpp, local
 /* 803F84D0 003F5410  94 21 FF B0 */	stwu r1, -0x50(r1)
@@ -7970,21 +7971,21 @@ __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv:
 /* 803F8674 003F55B4  4E 80 00 20 */	blr 
 .endfn __sinit_khWorldMap_cpp
 
-.global "__ct__Q29JGeometry8TVec2<f>Fv"
-"__ct__Q29JGeometry8TVec2<f>Fv":
+.fn "__ct__Q29JGeometry8TVec2<f>Fv", weak
 /* 803F8678 003F55B8  4E 80 00 20 */	blr 
+.endfn "__ct__Q29JGeometry8TVec2<f>Fv"
 
-.global "@8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv"
-"@8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv":
+.fn "@8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv", weak
 /* 803F867C 003F55BC  38 63 FF F8 */	addi r3, r3, -8
 /* 803F8680 003F55C0  4B FF FB B8 */	b __dt__Q35efx2d8WorldMap13T2DRocketGlowFv
+.endfn "@8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv"
 
-.global "@8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv"
-"@8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv":
+.fn "@8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv", weak
 /* 803F8684 003F55C4  38 63 FF F8 */	addi r3, r3, -8
 /* 803F8688 003F55C8  4B FF FB 14 */	b __dt__Q35efx2d8WorldMap11T2DMapFlareFv
+.endfn "@8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv"
 
-.global "@8@__dt__Q35efx2d8WorldMap10T2DShstar1Fv"
-"@8@__dt__Q35efx2d8WorldMap10T2DShstar1Fv":
+.fn "@8@__dt__Q35efx2d8WorldMap10T2DShstar1Fv", weak
 /* 803F868C 003F55CC  38 63 FF F8 */	addi r3, r3, -8
 /* 803F8690 003F55D0  4B FF FA 70 */	b __dt__Q35efx2d8WorldMap10T2DShstar1Fv
+.endfn "@8@__dt__Q35efx2d8WorldMap10T2DShstar1Fv"

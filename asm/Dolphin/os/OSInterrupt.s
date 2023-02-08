@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global InterruptPrioTable
-InterruptPrioTable:
+.obj InterruptPrioTable, local
 	.4byte 0x00000100
 	.4byte 0x00000040
 	.4byte 0xF8000000
@@ -14,29 +13,27 @@ InterruptPrioTable:
 	.4byte 0x04000000
 	.4byte 0x00004000
 	.4byte 0xFFFFFFFF
-	.4byte 0x00000000
+.endobj InterruptPrioTable
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global InterruptHandlerTable
-InterruptHandlerTable:
+.obj InterruptHandlerTable, local
 	.skip 0x4
-.global __OSLastInterruptSrr0
-__OSLastInterruptSrr0:
+.endobj InterruptHandlerTable
+.obj __OSLastInterruptSrr0, global
 	.skip 0x4
-.global __OSLastInterrupt
-__OSLastInterrupt:
+.endobj __OSLastInterruptSrr0
+.obj __OSLastInterrupt, global
+	.skip 0x2
+.endobj __OSLastInterrupt
+.balign 8
+.obj __OSLastInterruptTime, global
 	.skip 0x8
-.global __OSLastInterruptTime
-__OSLastInterruptTime:
-	.skip 0x4
-.global lbl_80515614
-lbl_80515614:
-	.skip 0x4
+.endobj __OSLastInterruptTime
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global OSDisableInterrupts
-OSDisableInterrupts:
+.fn OSDisableInterrupts, global
+.global __RAS_OSDisableInterrupts_begin
 __RAS_OSDisableInterrupts_begin:
 /* 800EEC38 000EBB78  7C 60 00 A6 */	mfmsr r3
 /* 800EEC3C 000EBB7C  54 64 04 5E */	rlwinm r4, r3, 0, 0x11, 0xf
@@ -45,17 +42,17 @@ __RAS_OSDisableInterrupts_begin:
 __RAS_OSDisableInterrupts_end:
 /* 800EEC44 000EBB84  54 63 8F FE */	rlwinm r3, r3, 0x11, 0x1f, 0x1f
 /* 800EEC48 000EBB88  4E 80 00 20 */	blr 
+.endfn OSDisableInterrupts
 
-.global OSEnableInterrupts
-OSEnableInterrupts:
+.fn OSEnableInterrupts, global
 /* 800EEC4C 000EBB8C  7C 60 00 A6 */	mfmsr r3
 /* 800EEC50 000EBB90  60 64 80 00 */	ori r4, r3, 0x8000
 /* 800EEC54 000EBB94  7C 80 01 24 */	mtmsr r4
 /* 800EEC58 000EBB98  54 63 8F FE */	rlwinm r3, r3, 0x11, 0x1f, 0x1f
 /* 800EEC5C 000EBB9C  4E 80 00 20 */	blr 
+.endfn OSEnableInterrupts
 
-.global OSRestoreInterrupts
-OSRestoreInterrupts:
+.fn OSRestoreInterrupts, global
 /* 800EEC60 000EBBA0  2C 03 00 00 */	cmpwi r3, 0
 /* 800EEC64 000EBBA4  7C 80 00 A6 */	mfmsr r4
 /* 800EEC68 000EBBA8  41 82 00 0C */	beq .L_800EEC74
@@ -67,9 +64,9 @@ OSRestoreInterrupts:
 /* 800EEC78 000EBBB8  7C A0 01 24 */	mtmsr r5
 /* 800EEC7C 000EBBBC  54 83 8F FE */	rlwinm r3, r4, 0x11, 0x1f, 0x1f
 /* 800EEC80 000EBBC0  4E 80 00 20 */	blr 
+.endfn OSRestoreInterrupts
 
-.global __OSSetInterruptHandler
-__OSSetInterruptHandler:
+.fn __OSSetInterruptHandler, global
 /* 800EEC84 000EBBC4  7C 60 07 34 */	extsh r0, r3
 /* 800EEC88 000EBBC8  80 6D 8F 80 */	lwz r3, InterruptHandlerTable@sda21(r13)
 /* 800EEC8C 000EBBCC  54 00 10 3A */	slwi r0, r0, 2
@@ -77,17 +74,17 @@ __OSSetInterruptHandler:
 /* 800EEC94 000EBBD4  80 65 00 00 */	lwz r3, 0(r5)
 /* 800EEC98 000EBBD8  90 85 00 00 */	stw r4, 0(r5)
 /* 800EEC9C 000EBBDC  4E 80 00 20 */	blr 
+.endfn __OSSetInterruptHandler
 
-.global __OSGetInterruptHandler
-__OSGetInterruptHandler:
+.fn __OSGetInterruptHandler, global
 /* 800EECA0 000EBBE0  7C 60 07 34 */	extsh r0, r3
 /* 800EECA4 000EBBE4  80 6D 8F 80 */	lwz r3, InterruptHandlerTable@sda21(r13)
 /* 800EECA8 000EBBE8  54 00 10 3A */	slwi r0, r0, 2
 /* 800EECAC 000EBBEC  7C 63 00 2E */	lwzx r3, r3, r0
 /* 800EECB0 000EBBF0  4E 80 00 20 */	blr 
+.endfn __OSGetInterruptHandler
 
-.global __OSInterruptInit
-__OSInterruptInit:
+.fn __OSInterruptInit, global
 /* 800EECB4 000EBBF4  7C 08 02 A6 */	mflr r0
 /* 800EECB8 000EBBF8  90 01 00 04 */	stw r0, 4(r1)
 /* 800EECBC 000EBBFC  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -117,9 +114,9 @@ __OSInterruptInit:
 /* 800EED1C 000EBC5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800EED20 000EBC60  7C 08 03 A6 */	mtlr r0
 /* 800EED24 000EBC64  4E 80 00 20 */	blr 
+.endfn __OSInterruptInit
 
-.global SetInterruptMask
-SetInterruptMask:
+.fn SetInterruptMask, local
 /* 800EED28 000EBC68  7C 60 00 34 */	cntlzw r0, r3
 /* 800EED2C 000EBC6C  2C 00 00 0C */	cmpwi r0, 0xc
 /* 800EED30 000EBC70  40 80 00 24 */	bge .L_800EED54
@@ -339,9 +336,9 @@ SetInterruptMask:
 /* 800EEFF8 000EBF38  54 63 06 E0 */	rlwinm r3, r3, 0, 0x1b, 0x10
 .L_800EEFFC:
 /* 800EEFFC 000EBF3C  4E 80 00 20 */	blr 
+.endfn SetInterruptMask
 
-.global __OSMaskInterrupts
-__OSMaskInterrupts:
+.fn __OSMaskInterrupts, global
 /* 800EF000 000EBF40  7C 08 02 A6 */	mflr r0
 /* 800EF004 000EBF44  90 01 00 04 */	stw r0, 4(r1)
 /* 800EF008 000EBF48  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -380,9 +377,9 @@ __OSMaskInterrupts:
 /* 800EF07C 000EBFBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800EF080 000EBFC0  7C 08 03 A6 */	mtlr r0
 /* 800EF084 000EBFC4  4E 80 00 20 */	blr 
+.endfn __OSMaskInterrupts
 
-.global __OSUnmaskInterrupts
-__OSUnmaskInterrupts:
+.fn __OSUnmaskInterrupts, global
 /* 800EF088 000EBFC8  7C 08 02 A6 */	mflr r0
 /* 800EF08C 000EBFCC  90 01 00 04 */	stw r0, 4(r1)
 /* 800EF090 000EBFD0  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -421,9 +418,9 @@ __OSUnmaskInterrupts:
 /* 800EF104 000EC044  38 21 00 20 */	addi r1, r1, 0x20
 /* 800EF108 000EC048  7C 08 03 A6 */	mtlr r0
 /* 800EF10C 000EC04C  4E 80 00 20 */	blr 
+.endfn __OSUnmaskInterrupts
 
-.global __OSDispatchInterrupt
-__OSDispatchInterrupt:
+.fn __OSDispatchInterrupt, global
 /* 800EF110 000EC050  7C 08 02 A6 */	mflr r0
 /* 800EF114 000EC054  90 01 00 04 */	stw r0, 4(r1)
 /* 800EF118 000EC058  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -643,7 +640,7 @@ __OSDispatchInterrupt:
 /* 800EF3EC 000EC32C  40 81 00 1C */	ble .L_800EF408
 /* 800EF3F0 000EC330  B3 AD 8F 88 */	sth r29, __OSLastInterrupt@sda21(r13)
 /* 800EF3F4 000EC334  48 00 37 9D */	bl OSGetTime
-/* 800EF3F8 000EC338  90 8D 8F 94 */	stw r4, lbl_80515614@sda21(r13)
+/* 800EF3F8 000EC338  90 8D 8F 94 */	stw r4, (__OSLastInterruptTime+4)@sda21(r13)
 /* 800EF3FC 000EC33C  90 6D 8F 90 */	stw r3, __OSLastInterruptTime@sda21(r13)
 /* 800EF400 000EC340  80 1E 01 98 */	lwz r0, 0x198(r30)
 /* 800EF404 000EC344  90 0D 8F 84 */	stw r0, __OSLastInterruptSrr0@sda21(r13)
@@ -668,9 +665,9 @@ __OSDispatchInterrupt:
 /* 800EF448 000EC388  38 21 00 28 */	addi r1, r1, 0x28
 /* 800EF44C 000EC38C  7C 08 03 A6 */	mtlr r0
 /* 800EF450 000EC390  4E 80 00 20 */	blr 
+.endfn __OSDispatchInterrupt
 
-.global ExternalInterruptHandler
-ExternalInterruptHandler:
+.fn ExternalInterruptHandler, local
 /* 800EF454 000EC394  90 04 00 00 */	stw r0, 0(r4)
 /* 800EF458 000EC398  90 24 00 04 */	stw r1, 4(r4)
 /* 800EF45C 000EC39C  90 44 00 08 */	stw r2, 8(r4)
@@ -691,3 +688,4 @@ ExternalInterruptHandler:
 /* 800EF498 000EC3D8  90 04 01 C0 */	stw r0, 0x1c0(r4)
 /* 800EF49C 000EC3DC  94 21 FF F8 */	stwu r1, -8(r1)
 /* 800EF4A0 000EC3E0  4B FF FC 70 */	b __OSDispatchInterrupt
+.endfn ExternalInterruptHandler

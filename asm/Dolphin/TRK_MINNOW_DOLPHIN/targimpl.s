@@ -50,11 +50,11 @@
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global gTRKRestoreFlags
-gTRKRestoreFlags:
+.obj gTRKRestoreFlags, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.byte 0
+.endobj gTRKRestoreFlags
 .balign 4
 .obj gTRKExceptionStatus, local
 	.4byte 0x00000000
@@ -94,18 +94,17 @@ gTRKRestoreFlags:
 .endobj TRKvalue128_temp
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __TRK_get_MSR
-__TRK_get_MSR:
+.fn __TRK_get_MSR, global
 /* 800BDEA8 000BADE8  7C 60 00 A6 */	mfmsr r3
 /* 800BDEAC 000BADEC  4E 80 00 20 */	blr 
+.endfn __TRK_get_MSR
 
-.global __TRK_set_MSR
-__TRK_set_MSR:
+.fn __TRK_set_MSR, global
 /* 800BDEB0 000BADF0  7C 60 01 24 */	mtmsr r3
 /* 800BDEB4 000BADF4  4E 80 00 20 */	blr 
+.endfn __TRK_set_MSR
 
-.global TRK_ppc_memcpy
-TRK_ppc_memcpy:
+.fn TRK_ppc_memcpy, local
 /* 800BDEB8 000BADF8  7D 00 00 A6 */	mfmsr r8
 /* 800BDEBC 000BADFC  39 40 00 00 */	li r10, 0
 .L_800BDEC0:
@@ -123,9 +122,9 @@ TRK_ppc_memcpy:
 /* 800BDEE8 000BAE28  7D 00 01 24 */	mtmsr r8
 /* 800BDEEC 000BAE2C  7C 00 04 AC */	sync 0
 /* 800BDEF0 000BAE30  4E 80 00 20 */	blr 
+.endfn TRK_ppc_memcpy
 
-.global TRKInterruptHandler
-TRKInterruptHandler:
+.fn TRKInterruptHandler, global
 /* 800BDEF4 000BAE34  7C 5A 03 A6 */	mtspr 0x1a, r2
 /* 800BDEF8 000BAE38  7C 9B 03 A6 */	mtspr 0x1b, r4
 /* 800BDEFC 000BAE3C  7C 93 42 A6 */	mfspr r4, 0x113
@@ -229,9 +228,9 @@ TRKInterruptHandler:
 /* 800BE07C 000BAFBC  80 22 00 04 */	lwz r1, 0x4(r2)
 /* 800BE080 000BAFC0  80 42 00 08 */	lwz r2, 0x8(r2)
 /* 800BE084 000BAFC4  48 00 09 20 */	b TRKPostInterruptEvent
+.endfn TRKInterruptHandler
 
-.global TRKExceptionHandler
-TRKExceptionHandler:
+.fn TRKExceptionHandler, global
 /* 800BE088 000BAFC8  3C 40 80 4A */	lis r2, gTRKExceptionStatus@h
 /* 800BE08C 000BAFCC  60 42 68 BC */	ori r2, r2, gTRKExceptionStatus@l
 /* 800BE090 000BAFD0  B0 62 00 08 */	sth r3, 0x8(r2)
@@ -273,9 +272,9 @@ TRKExceptionHandler:
 /* 800BE118 000BB058  7C 51 42 A6 */	mfspr r2, 0x111
 /* 800BE11C 000BB05C  7C 72 42 A6 */	mfspr r3, 0x112
 /* 800BE120 000BB060  4C 00 00 64 */	rfi 
+.endfn TRKExceptionHandler
 
-.global TRKSwapAndGo
-TRKSwapAndGo:
+.fn TRKSwapAndGo, global
 /* 800BE124 000BB064  3C 60 80 4F */	lis r3, gTRKState@h
 /* 800BE128 000BB068  60 63 42 84 */	ori r3, r3, gTRKState@l
 /* 800BE12C 000BB06C  BC 03 00 00 */	stmw r0, 0(r3)
@@ -326,9 +325,9 @@ TRKSwapAndGo:
 /* 800BE1DC 000BB11C  80 22 00 04 */	lwz r1, 0x4(r2)
 /* 800BE1E0 000BB120  80 42 00 08 */	lwz r2, 0x8(r2)
 /* 800BE1E4 000BB124  4C 00 00 64 */	rfi 
+.endfn TRKSwapAndGo
 
-.global TRKInterruptHandlerEnableInterrupts
-TRKInterruptHandlerEnableInterrupts:
+.fn TRKInterruptHandlerEnableInterrupts, global
 /* 800BE1E8 000BB128  3C 40 80 4F */	lis r2, gTRKState@h
 /* 800BE1EC 000BB12C  60 42 42 84 */	ori r2, r2, gTRKState@l
 /* 800BE1F0 000BB130  80 02 00 8C */	lwz r0, 0x8C(r2)
@@ -350,9 +349,9 @@ TRKInterruptHandlerEnableInterrupts:
 /* 800BE230 000BB170  80 22 00 04 */	lwz r1, 0x4(r2)
 /* 800BE234 000BB174  80 42 00 08 */	lwz r2, 0x8(r2)
 /* 800BE238 000BB178  48 00 07 6C */	b TRKPostInterruptEvent
+.endfn TRKInterruptHandlerEnableInterrupts
 
-.global ReadFPSCR
-ReadFPSCR:
+.fn ReadFPSCR, global
 /* 800BE23C 000BB17C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800BE240 000BB180  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 800BE244 000BB184  F3 E1 00 20 */	psq_st f31, 32(r1), 0, qr0
@@ -362,9 +361,9 @@ ReadFPSCR:
 /* 800BE254 000BB194  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 800BE258 000BB198  38 21 00 40 */	addi r1, r1, 0x40
 /* 800BE25C 000BB19C  4E 80 00 20 */	blr 
+.endfn ReadFPSCR
 
-.global WriteFPSCR
-WriteFPSCR:
+.fn WriteFPSCR, global
 /* 800BE260 000BB1A0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800BE264 000BB1A4  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 800BE268 000BB1A8  F3 E1 00 20 */	psq_st f31, 32(r1), 0, qr0
@@ -374,9 +373,9 @@ WriteFPSCR:
 /* 800BE278 000BB1B8  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 800BE27C 000BB1BC  38 21 00 40 */	addi r1, r1, 0x40
 /* 800BE280 000BB1C0  4E 80 00 20 */	blr 
+.endfn WriteFPSCR
 
-.global TRKTargetAccessARAM
-TRKTargetAccessARAM:
+.fn TRKTargetAccessARAM, global
 /* 800BE284 000BB1C4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800BE288 000BB1C8  7C 08 02 A6 */	mflr r0
 /* 800BE28C 000BB1CC  3C E0 80 4A */	lis r7, gTRKExceptionStatus@ha
@@ -429,39 +428,39 @@ TRKTargetAccessARAM:
 /* 800BE33C 000BB27C  7C 08 03 A6 */	mtlr r0
 /* 800BE340 000BB280  38 21 00 30 */	addi r1, r1, 0x30
 /* 800BE344 000BB284  4E 80 00 20 */	blr 
+.endfn TRKTargetAccessARAM
 
-.global TRKTargetSetInputPendingPtr
-TRKTargetSetInputPendingPtr:
+.fn TRKTargetSetInputPendingPtr, global
 /* 800BE348 000BB288  3C 80 80 4F */	lis r4, gTRKState@ha
 /* 800BE34C 000BB28C  38 84 42 84 */	addi r4, r4, gTRKState@l
 /* 800BE350 000BB290  90 64 00 A0 */	stw r3, 0xa0(r4)
 /* 800BE354 000BB294  4E 80 00 20 */	blr 
+.endfn TRKTargetSetInputPendingPtr
 
-.global TRKTargetStop
-TRKTargetStop:
+.fn TRKTargetStop, global
 /* 800BE358 000BB298  3C 60 80 4F */	lis r3, gTRKState@ha
 /* 800BE35C 000BB29C  38 00 00 01 */	li r0, 1
 /* 800BE360 000BB2A0  38 83 42 84 */	addi r4, r3, gTRKState@l
 /* 800BE364 000BB2A4  38 60 00 00 */	li r3, 0
 /* 800BE368 000BB2A8  90 04 00 98 */	stw r0, 0x98(r4)
 /* 800BE36C 000BB2AC  4E 80 00 20 */	blr 
+.endfn TRKTargetStop
 
-.global TRKTargetSetStopped
-TRKTargetSetStopped:
+.fn TRKTargetSetStopped, global
 /* 800BE370 000BB2B0  3C 80 80 4F */	lis r4, gTRKState@ha
 /* 800BE374 000BB2B4  38 84 42 84 */	addi r4, r4, gTRKState@l
 /* 800BE378 000BB2B8  90 64 00 98 */	stw r3, 0x98(r4)
 /* 800BE37C 000BB2BC  4E 80 00 20 */	blr 
+.endfn TRKTargetSetStopped
 
-.global TRKTargetStopped
-TRKTargetStopped:
+.fn TRKTargetStopped, global
 /* 800BE380 000BB2C0  3C 60 80 4F */	lis r3, gTRKState@ha
 /* 800BE384 000BB2C4  38 63 42 84 */	addi r3, r3, gTRKState@l
 /* 800BE388 000BB2C8  80 63 00 98 */	lwz r3, 0x98(r3)
 /* 800BE38C 000BB2CC  4E 80 00 20 */	blr 
+.endfn TRKTargetStopped
 
-.global TRKTargetSupportRequest
-TRKTargetSupportRequest:
+.fn TRKTargetSupportRequest, global
 /* 800BE390 000BB2D0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800BE394 000BB2D4  7C 08 02 A6 */	mflr r0
 /* 800BE398 000BB2D8  3C 60 80 4F */	lis r3, gTRKCPUState@ha
@@ -600,16 +599,16 @@ TRKTargetSupportRequest:
 /* 800BE584 000BB4C4  7C 08 03 A6 */	mtlr r0
 /* 800BE588 000BB4C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 800BE58C 000BB4CC  4E 80 00 20 */	blr 
+.endfn TRKTargetSupportRequest
 
-.global TRKTargetGetPC
-TRKTargetGetPC:
+.fn TRKTargetGetPC, global
 /* 800BE590 000BB4D0  3C 60 80 4F */	lis r3, gTRKCPUState@ha
 /* 800BE594 000BB4D4  38 63 43 28 */	addi r3, r3, gTRKCPUState@l
 /* 800BE598 000BB4D8  80 63 00 80 */	lwz r3, 0x80(r3)
 /* 800BE59C 000BB4DC  4E 80 00 20 */	blr 
+.endfn TRKTargetGetPC
 
-.global TRKTargetStepOutOfRange
-TRKTargetStepOutOfRange:
+.fn TRKTargetStepOutOfRange, global
 /* 800BE5A0 000BB4E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BE5A4 000BB4E4  7C 08 02 A6 */	mflr r0
 /* 800BE5A8 000BB4E8  2C 05 00 00 */	cmpwi r5, 0
@@ -660,9 +659,9 @@ TRKTargetStepOutOfRange:
 /* 800BE64C 000BB58C  7C 08 03 A6 */	mtlr r0
 /* 800BE650 000BB590  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BE654 000BB594  4E 80 00 20 */	blr 
+.endfn TRKTargetStepOutOfRange
 
-.global TRKTargetSingleStep
-TRKTargetSingleStep:
+.fn TRKTargetSingleStep, global
 /* 800BE658 000BB598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BE65C 000BB59C  7C 08 02 A6 */	mflr r0
 /* 800BE660 000BB5A0  2C 04 00 00 */	cmpwi r4, 0
@@ -710,9 +709,9 @@ TRKTargetSingleStep:
 /* 800BE6F8 000BB638  7C 08 03 A6 */	mtlr r0
 /* 800BE6FC 000BB63C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BE700 000BB640  4E 80 00 20 */	blr 
+.endfn TRKTargetSingleStep
 
-.global TRKTargetAddExceptionInfo
-TRKTargetAddExceptionInfo:
+.fn TRKTargetAddExceptionInfo, global
 /* 800BE704 000BB644  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800BE708 000BB648  7C 08 02 A6 */	mflr r0
 /* 800BE70C 000BB64C  38 80 00 00 */	li r4, 0
@@ -746,9 +745,9 @@ TRKTargetAddExceptionInfo:
 /* 800BE77C 000BB6BC  7C 08 03 A6 */	mtlr r0
 /* 800BE780 000BB6C0  38 21 00 60 */	addi r1, r1, 0x60
 /* 800BE784 000BB6C4  4E 80 00 20 */	blr 
+.endfn TRKTargetAddExceptionInfo
 
-.global TRKTargetAddStopInfo
-TRKTargetAddStopInfo:
+.fn TRKTargetAddStopInfo, global
 /* 800BE788 000BB6C8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800BE78C 000BB6CC  7C 08 02 A6 */	mflr r0
 /* 800BE790 000BB6D0  38 80 00 00 */	li r4, 0
@@ -784,9 +783,9 @@ TRKTargetAddStopInfo:
 /* 800BE808 000BB748  7C 08 03 A6 */	mtlr r0
 /* 800BE80C 000BB74C  38 21 00 60 */	addi r1, r1, 0x60
 /* 800BE810 000BB750  4E 80 00 20 */	blr 
+.endfn TRKTargetAddStopInfo
 
-.global TRKTargetInterrupt
-TRKTargetInterrupt:
+.fn TRKTargetInterrupt, global
 /* 800BE814 000BB754  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BE818 000BB758  7C 08 02 A6 */	mflr r0
 /* 800BE81C 000BB75C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -896,9 +895,9 @@ TRKTargetInterrupt:
 /* 800BE998 000BB8D8  7C 08 03 A6 */	mtlr r0
 /* 800BE99C 000BB8DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BE9A0 000BB8E0  4E 80 00 20 */	blr 
+.endfn TRKTargetInterrupt
 
-.global TRKPostInterruptEvent
-TRKPostInterruptEvent:
+.fn TRKPostInterruptEvent, global
 /* 800BE9A4 000BB8E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BE9A8 000BB8E8  7C 08 02 A6 */	mflr r0
 /* 800BE9AC 000BB8EC  3C 60 80 4F */	lis r3, gTRKState@ha
@@ -948,9 +947,9 @@ TRKPostInterruptEvent:
 /* 800BEA44 000BB984  7C 08 03 A6 */	mtlr r0
 /* 800BEA48 000BB988  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BEA4C 000BB98C  4E 80 00 20 */	blr 
+.endfn TRKPostInterruptEvent
 
-.global TRKTargetAccessExtended2
-TRKTargetAccessExtended2:
+.fn TRKTargetAccessExtended2, global
 /* 800BEA50 000BB990  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 800BEA54 000BB994  7C 08 02 A6 */	mflr r0
 /* 800BEA58 000BB998  90 01 01 34 */	stw r0, 0x134(r1)
@@ -1231,9 +1230,9 @@ TRKTargetAccessExtended2:
 /* 800BEE7C 000BBDBC  7C 08 03 A6 */	mtlr r0
 /* 800BEE80 000BBDC0  38 21 01 30 */	addi r1, r1, 0x130
 /* 800BEE84 000BBDC4  4E 80 00 20 */	blr 
+.endfn TRKTargetAccessExtended2
 
-.global TRKTargetAccessExtended1
-TRKTargetAccessExtended1:
+.fn TRKTargetAccessExtended1, global
 /* 800BEE88 000BBDC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BEE8C 000BBDCC  7C 08 02 A6 */	mflr r0
 /* 800BEE90 000BBDD0  28 04 00 60 */	cmplwi r4, 0x60
@@ -1333,9 +1332,9 @@ TRKTargetAccessExtended1:
 /* 800BEFEC 000BBF2C  7C 08 03 A6 */	mtlr r0
 /* 800BEFF0 000BBF30  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BEFF4 000BBF34  4E 80 00 20 */	blr 
+.endfn TRKTargetAccessExtended1
 
-.global TRKTargetAccessFP
-TRKTargetAccessFP:
+.fn TRKTargetAccessFP, global
 /* 800BEFF8 000BBF38  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 800BEFFC 000BBF3C  7C 08 02 A6 */	mflr r0
 /* 800BF000 000BBF40  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -1685,9 +1684,9 @@ TRKTargetAccessFP:
 /* 800BF4F8 000BC438  7C 08 03 A6 */	mtlr r0
 /* 800BF4FC 000BC43C  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 800BF500 000BC440  4E 80 00 20 */	blr 
+.endfn TRKTargetAccessFP
 
-.global TRKTargetAccessDefault
-TRKTargetAccessDefault:
+.fn TRKTargetAccessDefault, global
 /* 800BF504 000BC444  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BF508 000BC448  7C 08 02 A6 */	mflr r0
 /* 800BF50C 000BC44C  28 04 00 24 */	cmplwi r4, 0x24
@@ -1754,9 +1753,9 @@ TRKTargetAccessDefault:
 /* 800BF5EC 000BC52C  7C 08 03 A6 */	mtlr r0
 /* 800BF5F0 000BC530  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BF5F4 000BC534  4E 80 00 20 */	blr 
+.endfn TRKTargetAccessDefault
 
-.global TRKTargetReadInstruction
-TRKTargetReadInstruction:
+.fn TRKTargetReadInstruction, global
 /* 800BF5F8 000BC538  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BF5FC 000BC53C  7C 08 02 A6 */	mflr r0
 /* 800BF600 000BC540  38 C0 00 00 */	li r6, 0
@@ -1777,9 +1776,9 @@ TRKTargetReadInstruction:
 /* 800BF638 000BC578  7C 08 03 A6 */	mtlr r0
 /* 800BF63C 000BC57C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BF640 000BC580  4E 80 00 20 */	blr 
+.endfn TRKTargetReadInstruction
 
-.global TRKTargetAccessMemory
-TRKTargetAccessMemory:
+.fn TRKTargetAccessMemory, global
 /* 800BF644 000BC584  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800BF648 000BC588  7C 08 02 A6 */	mflr r0
 /* 800BF64C 000BC58C  3C C0 80 4A */	lis r6, gTRKExceptionStatus@ha
@@ -1867,9 +1866,9 @@ TRKTargetAccessMemory:
 /* 800BF784 000BC6C4  7C 08 03 A6 */	mtlr r0
 /* 800BF788 000BC6C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 800BF78C 000BC6CC  4E 80 00 20 */	blr 
+.endfn TRKTargetAccessMemory
 
-.global TRKValidMemory32
-TRKValidMemory32:
+.fn TRKValidMemory32, global
 /* 800BF790 000BC6D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BF794 000BC6D4  7C 08 02 A6 */	mflr r0
 /* 800BF798 000BC6D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2058,3 +2057,4 @@ TRKValidMemory32:
 /* 800BFA28 000BC968  7C 08 03 A6 */	mtlr r0
 /* 800BFA2C 000BC96C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BFA30 000BC970  4E 80 00 20 */	blr 
+.endfn TRKValidMemory32

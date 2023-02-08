@@ -30,34 +30,41 @@
 .endobj @262
 
 .section ._exidx, "a"  # 0x80005660 - 0x800056C0
-.global lbl_80005660
-lbl_80005660:
+.obj lbl_80005660, local
 	.4byte __destroy_new_array
 	.4byte 0x0000007C
 	.4byte "@205"
+.endobj lbl_80005660
+.obj lbl_8000566C, local
 	.4byte __destroy_arr
 	.4byte 0x00000078
 	.4byte "@210"
+.endobj lbl_8000566C
+.obj lbl_80005678, local
 	.4byte __construct_array
 	.4byte 0x000000FC
 	.4byte "@231"
+.endobj lbl_80005678
+.obj lbl_80005684, local
 	.4byte __dt__26__partial_array_destructorFv
 	.4byte 0x000000B8
 	.4byte "@239"
+.endobj lbl_80005684
+.obj lbl_80005690
 	.4byte __construct_new_array
 	.4byte 0x00000104
 	.4byte "@262"
-.global lbl_8000569C
-lbl_8000569C:
+.endobj lbl_80005690
+.obj lbl_8000569C, global # _eti_init_info
 	.4byte lbl_80005660
 	.4byte lbl_8000569C
 	.4byte __destroy_new_array
 	.4byte 0x000003AC
 	.skip 0x10
+.endobj lbl_8000569C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __destroy_new_array
-__destroy_new_array:
+.fn __destroy_new_array, global
 /* 800C1748 000BE688  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C174C 000BE68C  7C 08 02 A6 */	mflr r0
 /* 800C1750 000BE690  90 01 00 24 */	stw r0, 0x24(r1)
@@ -93,9 +100,9 @@ __destroy_new_array:
 /* 800C17B8 000BE6F8  7C 08 03 A6 */	mtlr r0
 /* 800C17BC 000BE6FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C17C0 000BE700  4E 80 00 20 */	blr 
+.endfn __destroy_new_array
 
-.global __destroy_arr
-__destroy_arr:
+.fn __destroy_arr, global
 /* 800C17C4 000BE704  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C17C8 000BE708  7C 08 02 A6 */	mflr r0
 /* 800C17CC 000BE70C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -128,9 +135,9 @@ __destroy_arr:
 /* 800C1830 000BE770  7C 08 03 A6 */	mtlr r0
 /* 800C1834 000BE774  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C1838 000BE778  4E 80 00 20 */	blr 
+.endfn __destroy_arr
 
-.global __construct_array
-__construct_array:
+.fn __construct_array, global
 /* 800C183C 000BE77C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800C1840 000BE780  7C 08 02 A6 */	mflr r0
 /* 800C1844 000BE784  90 01 00 34 */	stw r0, 0x34(r1)
@@ -199,9 +206,9 @@ __construct_array:
 /* 800C192C 000BE86C  7C 08 03 A6 */	mtlr r0
 /* 800C1930 000BE870  38 21 00 30 */	addi r1, r1, 0x30
 /* 800C1934 000BE874  4E 80 00 20 */	blr 
+.endfn __construct_array
 
-.global __dt__26__partial_array_destructorFv
-__dt__26__partial_array_destructorFv:
+.fn __dt__26__partial_array_destructorFv, weak
 /* 800C1938 000BE878  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800C193C 000BE87C  7C 08 02 A6 */	mflr r0
 /* 800C1940 000BE880  90 01 00 24 */	stw r0, 0x24(r1)
@@ -252,9 +259,9 @@ __dt__26__partial_array_destructorFv:
 /* 800C19E4 000BE924  7C 08 03 A6 */	mtlr r0
 /* 800C19E8 000BE928  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C19EC 000BE92C  4E 80 00 20 */	blr 
+.endfn __dt__26__partial_array_destructorFv
 
-.global __construct_new_array
-__construct_new_array:
+.fn __construct_new_array, global
 /* 800C19F0 000BE930  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800C19F4 000BE934  7C 08 02 A6 */	mflr r0
 /* 800C19F8 000BE938  90 01 00 44 */	stw r0, 0x44(r1)
@@ -325,3 +332,4 @@ __construct_new_array:
 /* 800C1AE8 000BEA28  7C 08 03 A6 */	mtlr r0
 /* 800C1AEC 000BEA2C  38 21 00 40 */	addi r1, r1, 0x40
 /* 800C1AF0 000BEA30  4E 80 00 20 */	blr 
+.endfn __construct_new_array

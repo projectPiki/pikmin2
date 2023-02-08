@@ -1,47 +1,60 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A8DB8:
+.obj lbl_804A8DB8, local
 	.asciz "------------------------- Context 0x%08x -------------------------\n"
+.endobj lbl_804A8DB8
 .balign 4
-lbl_804A8DFC:
+.obj lbl_804A8DFC, local
 	.asciz "r%-2d  = 0x%08x (%14d)  r%-2d  = 0x%08x (%14d)\n"
+.endobj lbl_804A8DFC
 .balign 4
-lbl_804A8E2C:
+.obj lbl_804A8E2C, local
 	.asciz "LR   = 0x%08x                   CR   = 0x%08x\n"
+.endobj lbl_804A8E2C
 .balign 4
-lbl_804A8E5C:
+.obj lbl_804A8E5C, local
 	.asciz "SRR0 = 0x%08x                   SRR1 = 0x%08x\n"
+.endobj lbl_804A8E5C
 .balign 4
-lbl_804A8E8C:
+.obj lbl_804A8E8C, local
 	.asciz "\nGQRs----------\n"
+.endobj lbl_804A8E8C
 .balign 4
-lbl_804A8EA0:
+.obj lbl_804A8EA0, local
 	.asciz "gqr%d = 0x%08x \t gqr%d = 0x%08x\n"
+.endobj lbl_804A8EA0
 .balign 4
-lbl_804A8EC4:
+.obj lbl_804A8EC4, local
 	.asciz "\n\nFPRs----------\n"
+.endobj lbl_804A8EC4
 .balign 4
-lbl_804A8ED8:
+.obj lbl_804A8ED8, local
 	.asciz "fr%d \t= %d \t fr%d \t= %d\n"
+.endobj lbl_804A8ED8
 .balign 4
-lbl_804A8EF4:
+.obj lbl_804A8EF4, local
 	.asciz "\n\nPSFs----------\n"
+.endobj lbl_804A8EF4
 .balign 4
-lbl_804A8F08:
+.obj lbl_804A8F08, local
 	.asciz "ps%d \t= 0x%x \t ps%d \t= 0x%x\n"
+.endobj lbl_804A8F08
 .balign 4
-lbl_804A8F28:
+.obj lbl_804A8F28, local
 	.asciz "\nAddress:      Back Chain    LR Save\n"
+.endobj lbl_804A8F28
 .balign 4
-lbl_804A8F50:
+.obj lbl_804A8F50, local
 	.asciz "0x%08x:   0x%08x    0x%08x\n"
+.endobj lbl_804A8F50
 .balign 4
-lbl_804A8F6C:
+.obj lbl_804A8F6C, local
 	.asciz "FPU-unavailable handler installed\n"
+.endobj lbl_804A8F6C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-__OSLoadFPUContext: # local function
+.fn __OSLoadFPUContext, local
 /* 800ECD50 000E9C90  A0 A4 01 A2 */	lhz r5, 0x1a2(r4)
 /* 800ECD54 000E9C94  54 A5 07 FF */	clrlwi. r5, r5, 0x1f
 /* 800ECD58 000E9C98  41 82 01 18 */	beq .L_800ECE70
@@ -117,8 +130,9 @@ __OSLoadFPUContext: # local function
 /* 800ECE6C 000E9DAC  CB E4 01 88 */	lfd f31, 0x188(r4)
 .L_800ECE70:
 /* 800ECE70 000E9DB0  4E 80 00 20 */	blr 
+.endfn __OSLoadFPUContext
 
-__OSSaveFPUContext: # local function
+.fn __OSSaveFPUContext, local
 /* 800ECE74 000E9DB4  A0 65 01 A2 */	lhz r3, 0x1a2(r5)
 /* 800ECE78 000E9DB8  60 63 00 01 */	ori r3, r3, 1
 /* 800ECE7C 000E9DBC  B0 65 01 A2 */	sth r3, 0x1a2(r5)
@@ -194,14 +208,14 @@ __OSSaveFPUContext: # local function
 /* 800ECF94 000E9ED4  F3 E5 02 C0 */	psq_st f31, 704(r5), 0, qr0
 .L_800ECF98:
 /* 800ECF98 000E9ED8  4E 80 00 20 */	blr 
+.endfn __OSSaveFPUContext
 
-.global OSSaveFPUContext
-OSSaveFPUContext:
+.fn OSSaveFPUContext, global
 /* 800ECF9C 000E9EDC  38 A3 00 00 */	addi r5, r3, 0
 /* 800ECFA0 000E9EE0  4B FF FE D4 */	b __OSSaveFPUContext
+.endfn OSSaveFPUContext
 
-.global OSSetCurrentContext
-OSSetCurrentContext:
+.fn OSSetCurrentContext, global
 /* 800ECFA4 000E9EE4  3C 80 80 00 */	lis r4, 0x800000D4@ha
 /* 800ECFA8 000E9EE8  90 64 00 D4 */	stw r3, 0x800000D4@l(r4)
 /* 800ECFAC 000E9EEC  54 65 00 BE */	clrlwi r5, r3, 2
@@ -226,15 +240,15 @@ OSSetCurrentContext:
 /* 800ECFF4 000E9F34  7C C0 01 24 */	mtmsr r6
 /* 800ECFF8 000E9F38  4C 00 01 2C */	isync 
 /* 800ECFFC 000E9F3C  4E 80 00 20 */	blr 
+.endfn OSSetCurrentContext
 
-.global OSGetCurrentContext
-OSGetCurrentContext:
+.fn OSGetCurrentContext, global
 /* 800ED000 000E9F40  3C 60 80 00 */	lis r3, 0x800000D4@ha
 /* 800ED004 000E9F44  80 63 00 D4 */	lwz r3, 0x800000D4@l(r3)
 /* 800ED008 000E9F48  4E 80 00 20 */	blr 
+.endfn OSGetCurrentContext
 
-.global OSSaveContext
-OSSaveContext:
+.fn OSSaveContext, global
 /* 800ED00C 000E9F4C  BD A3 00 34 */	stmw r13, 0x34(r3)
 /* 800ED010 000E9F50  7C 11 E2 A6 */	mfspr r0, 0x391
 /* 800ED014 000E9F54  90 03 01 A8 */	stw r0, 0x1a8(r3)
@@ -267,9 +281,9 @@ OSSaveContext:
 /* 800ED080 000E9FC0  90 03 00 0C */	stw r0, 0xc(r3)
 /* 800ED084 000E9FC4  38 60 00 00 */	li r3, 0
 /* 800ED088 000E9FC8  4E 80 00 20 */	blr 
+.endfn OSSaveContext
 
-.global OSLoadContext
-OSLoadContext:
+.fn OSLoadContext, global
 /* 800ED08C 000E9FCC  3C 80 80 0F */	lis r4, OSDisableInterrupts@ha
 /* 800ED090 000E9FD0  80 C3 01 98 */	lwz r6, 0x198(r3)
 /* 800ED094 000E9FD4  38 A4 EC 38 */	addi r5, r4, OSDisableInterrupts@l
@@ -327,14 +341,14 @@ OSLoadContext:
 /* 800ED158 000EA098  80 83 00 10 */	lwz r4, 0x10(r3)
 /* 800ED15C 000EA09C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 800ED160 000EA0A0  4C 00 00 64 */	rfi 
+.endfn OSLoadContext
 
-.global OSGetStackPointer
-OSGetStackPointer:
+.fn OSGetStackPointer, global
 /* 800ED164 000EA0A4  7C 23 0B 78 */	mr r3, r1
 /* 800ED168 000EA0A8  4E 80 00 20 */	blr 
+.endfn OSGetStackPointer
 
-.global OSClearContext
-OSClearContext:
+.fn OSClearContext, global
 /* 800ED16C 000EA0AC  38 A0 00 00 */	li r5, 0
 /* 800ED170 000EA0B0  B0 A3 01 A0 */	sth r5, 0x1a0(r3)
 /* 800ED174 000EA0B4  3C 80 80 00 */	lis r4, 0x800000D8@ha
@@ -345,9 +359,9 @@ OSClearContext:
 /* 800ED188 000EA0C8  90 A4 00 D8 */	stw r5, 0xd8(r4)
 .L_800ED18C:
 /* 800ED18C 000EA0CC  4E 80 00 20 */	blr 
+.endfn OSClearContext
 
-.global OSInitContext
-OSInitContext:
+.fn OSInitContext, global
 /* 800ED190 000EA0D0  90 83 01 98 */	stw r4, 0x198(r3)
 /* 800ED194 000EA0D4  90 A3 00 04 */	stw r5, 4(r3)
 /* 800ED198 000EA0D8  39 60 00 00 */	li r11, 0
@@ -395,9 +409,9 @@ OSInitContext:
 /* 800ED240 000EA180  90 03 01 BC */	stw r0, 0x1bc(r3)
 /* 800ED244 000EA184  90 03 01 C0 */	stw r0, 0x1c0(r3)
 /* 800ED248 000EA188  4B FF FF 24 */	b OSClearContext
+.endfn OSInitContext
 
-.global OSDumpContext
-OSDumpContext:
+.fn OSDumpContext, global
 /* 800ED24C 000EA18C  7C 08 02 A6 */	mflr r0
 /* 800ED250 000EA190  90 01 00 04 */	stw r0, 4(r1)
 /* 800ED254 000EA194  94 21 FD 08 */	stwu r1, -0x2f8(r1)
@@ -588,8 +602,9 @@ OSDumpContext:
 /* 800ED4E8 000EA428  38 21 02 F8 */	addi r1, r1, 0x2f8
 /* 800ED4EC 000EA42C  7C 08 03 A6 */	mtlr r0
 /* 800ED4F0 000EA430  4E 80 00 20 */	blr 
+.endfn OSDumpContext
 
-OSSwitchFPUContext: # local function
+.fn OSSwitchFPUContext, local
 /* 800ED4F4 000EA434  7C A0 00 A6 */	mfmsr r5
 /* 800ED4F8 000EA438  60 A5 20 00 */	ori r5, r5, 0x2000
 /* 800ED4FC 000EA43C  7C A0 01 24 */	mtmsr r5
@@ -625,9 +640,9 @@ OSSwitchFPUContext: # local function
 /* 800ED56C 000EA4AC  80 64 00 0C */	lwz r3, 0xc(r4)
 /* 800ED570 000EA4B0  80 84 00 10 */	lwz r4, 0x10(r4)
 /* 800ED574 000EA4B4  4C 00 00 64 */	rfi 
+.endfn OSSwitchFPUContext
 
-.global __OSContextInit
-__OSContextInit:
+.fn __OSContextInit, global
 /* 800ED578 000EA4B8  7C 08 02 A6 */	mflr r0
 /* 800ED57C 000EA4BC  90 01 00 04 */	stw r0, 4(r1)
 /* 800ED580 000EA4C0  94 21 FF F8 */	stwu r1, -8(r1)
@@ -646,9 +661,9 @@ __OSContextInit:
 /* 800ED5B4 000EA4F4  38 21 00 08 */	addi r1, r1, 8
 /* 800ED5B8 000EA4F8  7C 08 03 A6 */	mtlr r0
 /* 800ED5BC 000EA4FC  4E 80 00 20 */	blr 
+.endfn __OSContextInit
 
-.global OSFillFPUContext
-OSFillFPUContext:
+.fn OSFillFPUContext, global
 /* 800ED5C0 000EA500  7C A0 00 A6 */	mfmsr r5
 /* 800ED5C4 000EA504  60 A5 20 00 */	ori r5, r5, 0x2000
 /* 800ED5C8 000EA508  7C A0 01 24 */	mtmsr r5
@@ -725,3 +740,4 @@ OSFillFPUContext:
 /* 800ED6E4 000EA624  F3 E3 02 C0 */	psq_st f31, 704(r3), 0, qr0
 .L_800ED6E8:
 /* 800ED6E8 000EA628  4E 80 00 20 */	blr 
+.endfn OSFillFPUContext

@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global HankakuToCode
-HankakuToCode:
+.obj HankakuToCode, local
 	.4byte 0x020C020D
 	.4byte 0x020E020F
 	.4byte 0x02100211
@@ -99,8 +98,8 @@ HankakuToCode:
 	.4byte 0x02A402A5
 	.4byte 0x02A602A7
 	.4byte 0x02A802A9
-.global Zenkaku2Code
-Zenkaku2Code:
+.endobj HankakuToCode
+.obj Zenkaku2Code, local
 	.4byte 0x00000001
 	.4byte 0x00020003
 	.4byte 0x00040005
@@ -711,42 +710,39 @@ Zenkaku2Code:
 	.4byte 0x03160317
 	.4byte 0x03180319
 	.4byte 0x031A031B
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.2byte 0x0000
+.endobj Zenkaku2Code
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global fontEncode$80
-fontEncode$80:
-	.4byte 0xFFFF0000
+.obj fontEncode$80, local
+	.2byte 0xFFFF
+.endobj fontEncode$80
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global FontData
-FontData:
+.obj FontData, local
 	.skip 0x4
-.global SheetImage
-SheetImage:
+.endobj FontData
+.obj SheetImage, local
 	.skip 0x4
-.global WidthTable
-WidthTable:
+.endobj SheetImage
+.obj WidthTable, local
 	.skip 0x4
-.global CharsInSheet
-CharsInSheet:
+.endobj WidthTable
+.obj CharsInSheet, local
 	.skip 0x4
+.endobj CharsInSheet
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517750
-lbl_80517750:
+.obj lbl_80517750, local
 	.4byte 0x2ABE003D
-.global lbl_80517754
-lbl_80517754:
 	.4byte 0x003D003D
+.endobj lbl_80517750
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global GetFontCode
-GetFontCode:
+.fn GetFontCode, local
 /* 800EDD98 000EACD8  7C 08 02 A6 */	mflr r0
 /* 800EDD9C 000EACDC  90 01 00 04 */	stw r0, 4(r1)
 /* 800EDDA0 000EACE0  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -863,9 +859,9 @@ GetFontCode:
 /* 800EDF28 000EAE68  38 21 00 18 */	addi r1, r1, 0x18
 /* 800EDF2C 000EAE6C  7C 08 03 A6 */	mtlr r0
 /* 800EDF30 000EAE70  4E 80 00 20 */	blr 
+.endfn GetFontCode
 
-.global Decode
-Decode:
+.fn Decode, local
 /* 800EDF34 000EAE74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800EDF38 000EAE78  38 C3 00 10 */	addi r6, r3, 0x10
 /* 800EDF3C 000EAE7C  39 40 00 00 */	li r10, 0
@@ -968,9 +964,9 @@ Decode:
 /* 800EE09C 000EAFDC  83 A1 00 14 */	lwz r29, 0x14(r1)
 /* 800EE0A0 000EAFE0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800EE0A4 000EAFE4  4E 80 00 20 */	blr 
+.endfn Decode
 
-.global OSGetFontEncode
-OSGetFontEncode:
+.fn OSGetFontEncode, global
 /* 800EE0A8 000EAFE8  A0 6D 83 70 */	lhz r3, fontEncode$80@sda21(r13)
 /* 800EE0AC 000EAFEC  28 03 00 01 */	cmplwi r3, 1
 /* 800EE0B0 000EAFF0  4C 81 00 20 */	blelr 
@@ -998,9 +994,9 @@ OSGetFontEncode:
 .L_800EE0F8:
 /* 800EE0F8 000EB038  A0 6D 83 70 */	lhz r3, fontEncode$80@sda21(r13)
 /* 800EE0FC 000EB03C  4E 80 00 20 */	blr 
+.endfn OSGetFontEncode
 
-.global ReadROM
-ReadROM:
+.fn ReadROM, local
 /* 800EE100 000EB040  7C 08 02 A6 */	mflr r0
 /* 800EE104 000EB044  90 01 00 04 */	stw r0, 4(r1)
 /* 800EE108 000EB048  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -1041,9 +1037,9 @@ ReadROM:
 /* 800EE180 000EB0C0  38 21 00 28 */	addi r1, r1, 0x28
 /* 800EE184 000EB0C4  7C 08 03 A6 */	mtlr r0
 /* 800EE188 000EB0C8  4E 80 00 20 */	blr 
+.endfn ReadROM
 
-.global OSLoadFont
-OSLoadFont:
+.fn OSLoadFont, global
 /* 800EE18C 000EB0CC  7C 08 02 A6 */	mflr r0
 /* 800EE190 000EB0D0  90 01 00 04 */	stw r0, 4(r1)
 /* 800EE194 000EB0D4  38 00 00 00 */	li r0, 0
@@ -1133,7 +1129,7 @@ OSLoadFont:
 /* 800EE2B8 000EB1F8  40 82 01 E8 */	bne .L_800EE4A0
 /* 800EE2BC 000EB1FC  80 82 93 F0 */	lwz r4, lbl_80517750@sda21(r2)
 /* 800EE2C0 000EB200  38 60 00 54 */	li r3, 0x54
-/* 800EE2C4 000EB204  80 02 93 F4 */	lwz r0, lbl_80517754@sda21(r2)
+/* 800EE2C4 000EB204  80 02 93 F4 */	lwz r0, (lbl_80517750+4)@sda21(r2)
 /* 800EE2C8 000EB208  90 81 00 1C */	stw r4, 0x1c(r1)
 /* 800EE2CC 000EB20C  90 01 00 20 */	stw r0, 0x20(r1)
 /* 800EE2D0 000EB210  4B FF FA C9 */	bl GetFontCode
@@ -1261,9 +1257,9 @@ OSLoadFont:
 /* 800EE4B4 000EB3F4  38 21 00 40 */	addi r1, r1, 0x40
 /* 800EE4B8 000EB3F8  7C 08 03 A6 */	mtlr r0
 /* 800EE4BC 000EB3FC  4E 80 00 20 */	blr 
+.endfn OSLoadFont
 
-.global ExpandFontSheet
-ExpandFontSheet:
+.fn ExpandFontSheet, local
 /* 800EE4C0 000EB400  7C 08 02 A6 */	mflr r0
 /* 800EE4C4 000EB404  90 01 00 04 */	stw r0, 4(r1)
 /* 800EE4C8 000EB408  94 21 FF F8 */	stwu r1, -8(r1)
@@ -1508,9 +1504,9 @@ ExpandFontSheet:
 /* 800EE864 000EB7A4  38 21 00 08 */	addi r1, r1, 8
 /* 800EE868 000EB7A8  7C 08 03 A6 */	mtlr r0
 /* 800EE86C 000EB7AC  4E 80 00 20 */	blr 
+.endfn ExpandFontSheet
 
-.global OSInitFont
-OSInitFont:
+.fn OSInitFont, global
 /* 800EE870 000EB7B0  7C 08 02 A6 */	mflr r0
 /* 800EE874 000EB7B4  90 01 00 04 */	stw r0, 4(r1)
 /* 800EE878 000EB7B8  94 21 FF F8 */	stwu r1, -8(r1)
@@ -1578,9 +1574,9 @@ OSInitFont:
 /* 800EE944 000EB884  38 21 00 08 */	addi r1, r1, 8
 /* 800EE948 000EB888  7C 08 03 A6 */	mtlr r0
 /* 800EE94C 000EB88C  4E 80 00 20 */	blr 
+.endfn OSInitFont
 
-.global OSGetFontTexture
-OSGetFontTexture:
+.fn OSGetFontTexture, global
 /* 800EE950 000EB890  7C 08 02 A6 */	mflr r0
 /* 800EE954 000EB894  90 01 00 04 */	stw r0, 4(r1)
 /* 800EE958 000EB898  94 21 FF C8 */	stwu r1, -0x38(r1)
@@ -1701,9 +1697,9 @@ OSGetFontTexture:
 /* 800EEAEC 000EBA2C  38 21 00 38 */	addi r1, r1, 0x38
 /* 800EEAF0 000EBA30  7C 08 03 A6 */	mtlr r0
 /* 800EEAF4 000EBA34  4E 80 00 20 */	blr 
+.endfn OSGetFontTexture
 
-.global OSGetFontWidth
-OSGetFontWidth:
+.fn OSGetFontWidth, global
 /* 800EEAF8 000EBA38  7C 08 02 A6 */	mflr r0
 /* 800EEAFC 000EBA3C  90 01 00 04 */	stw r0, 4(r1)
 /* 800EEB00 000EBA40  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -1798,3 +1794,4 @@ OSGetFontWidth:
 /* 800EEC2C 000EBB6C  38 21 00 18 */	addi r1, r1, 0x18
 /* 800EEC30 000EBB70  7C 08 03 A6 */	mtlr r0
 /* 800EEC34 000EBB74  4E 80 00 20 */	blr 
+.endfn OSGetFontWidth

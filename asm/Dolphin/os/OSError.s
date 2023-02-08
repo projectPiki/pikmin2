@@ -553,7 +553,7 @@
 /* 800EDD6C 000EACAC  4C C6 31 82 */	crclr 6
 /* 800EDD70 000EACB0  80 AD 8F 84 */	lwz r5, __OSLastInterruptSrr0@sda21(r13)
 /* 800EDD74 000EACB4  80 ED 8F 90 */	lwz r7, __OSLastInterruptTime@sda21(r13)
-/* 800EDD78 000EACB8  81 0D 8F 94 */	lwz r8, lbl_80515614@sda21(r13)
+/* 800EDD78 000EACB8  81 0D 8F 94 */	lwz r8, (__OSLastInterruptTime+4)@sda21(r13)
 /* 800EDD7C 000EACBC  4B FF F9 71 */	bl OSReport
 /* 800EDD80 000EACC0  4B FE 68 19 */	bl PPCHalt
 /* 800EDD84 000EACC4  BA C1 00 18 */	lmw r22, 0x18(r1)

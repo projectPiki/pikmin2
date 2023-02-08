@@ -1,38 +1,37 @@
 .include "macros.inc"
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 32
-.global Header
-Header:
+.obj Header, local
 	.skip 0x20
+.endobj Header
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global SaveStart
-SaveStart:
+.obj SaveStart, local
 	.skip 0x4
-.global SaveEnd
-SaveEnd:
+.endobj SaveStart
+.obj SaveEnd, local
 	.skip 0x4
-.global Prepared
-Prepared:
-	.skip 0x8
+.endobj SaveEnd
+.obj Prepared, local
+	.skip 0x4
+.endobj Prepared
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global Run
-Run:
+.fn Run, local
 /* 800EFF4C 000ECE8C  7C 00 04 AC */	sync 0
 /* 800EFF50 000ECE90  4C 00 01 2C */	isync 
 /* 800EFF54 000ECE94  7C 68 03 A6 */	mtlr r3
 /* 800EFF58 000ECE98  4E 80 00 20 */	blr 
+.endfn Run
 
-.global Callback
-Callback:
+.fn Callback, local
 /* 800EFF5C 000ECE9C  38 00 00 01 */	li r0, 1
 /* 800EFF60 000ECEA0  90 0D 8F A0 */	stw r0, Prepared@sda21(r13)
 /* 800EFF64 000ECEA4  4E 80 00 20 */	blr 
+.endfn Callback
 
-.global __OSReboot
-__OSReboot:
+.fn __OSReboot, global
 /* 800EFF68 000ECEA8  7C 08 02 A6 */	mflr r0
 /* 800EFF6C 000ECEAC  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFF70 000ECEB0  94 21 FC 80 */	stwu r1, -0x380(r1)
@@ -260,9 +259,10 @@ __OSReboot:
 /* 800F028C 000ED1CC  38 21 03 80 */	addi r1, r1, 0x380
 /* 800F0290 000ED1D0  7C 08 03 A6 */	mtlr r0
 /* 800F0294 000ED1D4  4E 80 00 20 */	blr 
+.endfn __OSReboot
 
-.global OSSetSaveRegion
-OSSetSaveRegion:
+.fn OSSetSaveRegion, global
 /* 800F0298 000ED1D8  90 6D 8F 98 */	stw r3, SaveStart@sda21(r13)
 /* 800F029C 000ED1DC  90 8D 8F 9C */	stw r4, SaveEnd@sda21(r13)
 /* 800F02A0 000ED1E0  4E 80 00 20 */	blr 
+.endfn OSSetSaveRegion

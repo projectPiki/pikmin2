@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global OSInitMutex
-OSInitMutex:
+.fn OSInitMutex, global
 /* 800EFB30 000ECA70  7C 08 02 A6 */	mflr r0
 /* 800EFB34 000ECA74  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFB38 000ECA78  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -17,9 +16,9 @@ OSInitMutex:
 /* 800EFB5C 000ECA9C  38 21 00 18 */	addi r1, r1, 0x18
 /* 800EFB60 000ECAA0  7C 08 03 A6 */	mtlr r0
 /* 800EFB64 000ECAA4  4E 80 00 20 */	blr 
+.endfn OSInitMutex
 
-.global OSLockMutex
-OSLockMutex:
+.fn OSLockMutex, global
 /* 800EFB68 000ECAA8  7C 08 02 A6 */	mflr r0
 /* 800EFB6C 000ECAAC  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFB70 000ECAB0  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -81,9 +80,9 @@ OSLockMutex:
 /* 800EFC38 000ECB78  38 21 00 20 */	addi r1, r1, 0x20
 /* 800EFC3C 000ECB7C  7C 08 03 A6 */	mtlr r0
 /* 800EFC40 000ECB80  4E 80 00 20 */	blr 
+.endfn OSLockMutex
 
-.global OSUnlockMutex
-OSUnlockMutex:
+.fn OSUnlockMutex, global
 /* 800EFC44 000ECB84  7C 08 02 A6 */	mflr r0
 /* 800EFC48 000ECB88  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFC4C 000ECB8C  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -140,9 +139,9 @@ OSUnlockMutex:
 /* 800EFD00 000ECC40  38 21 00 20 */	addi r1, r1, 0x20
 /* 800EFD04 000ECC44  7C 08 03 A6 */	mtlr r0
 /* 800EFD08 000ECC48  4E 80 00 20 */	blr 
+.endfn OSUnlockMutex
 
-.global __OSUnlockAllMutex
-__OSUnlockAllMutex:
+.fn __OSUnlockAllMutex, global
 /* 800EFD0C 000ECC4C  7C 08 02 A6 */	mflr r0
 /* 800EFD10 000ECC50  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFD14 000ECC54  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -175,9 +174,9 @@ __OSUnlockAllMutex:
 /* 800EFD70 000ECCB0  38 21 00 18 */	addi r1, r1, 0x18
 /* 800EFD74 000ECCB4  7C 08 03 A6 */	mtlr r0
 /* 800EFD78 000ECCB8  4E 80 00 20 */	blr 
+.endfn __OSUnlockAllMutex
 
-.global OSTryLockMutex
-OSTryLockMutex:
+.fn OSTryLockMutex, global
 /* 800EFD7C 000ECCBC  7C 08 02 A6 */	mflr r0
 /* 800EFD80 000ECCC0  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFD84 000ECCC4  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -230,9 +229,9 @@ OSTryLockMutex:
 /* 800EFE2C 000ECD6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800EFE30 000ECD70  7C 08 03 A6 */	mtlr r0
 /* 800EFE34 000ECD74  4E 80 00 20 */	blr 
+.endfn OSTryLockMutex
 
-.global OSInitCond
-OSInitCond:
+.fn OSInitCond, global
 /* 800EFE38 000ECD78  7C 08 02 A6 */	mflr r0
 /* 800EFE3C 000ECD7C  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFE40 000ECD80  94 21 FF F8 */	stwu r1, -8(r1)
@@ -241,9 +240,9 @@ OSInitCond:
 /* 800EFE4C 000ECD8C  38 21 00 08 */	addi r1, r1, 8
 /* 800EFE50 000ECD90  7C 08 03 A6 */	mtlr r0
 /* 800EFE54 000ECD94  4E 80 00 20 */	blr 
+.endfn OSInitCond
 
-.global OSWaitCond
-OSWaitCond:
+.fn OSWaitCond, global
 /* 800EFE58 000ECD98  7C 08 02 A6 */	mflr r0
 /* 800EFE5C 000ECD9C  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFE60 000ECDA0  94 21 FF D8 */	stwu r1, -0x28(r1)
@@ -303,9 +302,9 @@ OSWaitCond:
 /* 800EFF20 000ECE60  38 21 00 28 */	addi r1, r1, 0x28
 /* 800EFF24 000ECE64  7C 08 03 A6 */	mtlr r0
 /* 800EFF28 000ECE68  4E 80 00 20 */	blr 
+.endfn OSWaitCond
 
-.global OSSignalCond
-OSSignalCond:
+.fn OSSignalCond, global
 /* 800EFF2C 000ECE6C  7C 08 02 A6 */	mflr r0
 /* 800EFF30 000ECE70  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFF34 000ECE74  94 21 FF F8 */	stwu r1, -8(r1)
@@ -314,3 +313,4 @@ OSSignalCond:
 /* 800EFF40 000ECE80  38 21 00 08 */	addi r1, r1, 8
 /* 800EFF44 000ECE84  7C 08 03 A6 */	mtlr r0
 /* 800EFF48 000ECE88  4E 80 00 20 */	blr 
+.endfn OSSignalCond

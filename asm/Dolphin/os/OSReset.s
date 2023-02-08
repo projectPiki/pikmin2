@@ -1,15 +1,16 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-ResetFunctionQueue: # local object
+.obj ResetFunctionQueue, local
 	.skip 0x8
+.endobj ResetFunctionQueue
 .balign 4
-bootThisDol: # local object
+.obj bootThisDol, local
 	.skip 0x4
+.endobj bootThisDol
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global OSRegisterResetFunction
-OSRegisterResetFunction:
+.fn OSRegisterResetFunction, global
 /* 800F02A4 000ED1E4  80 AD 8F A8 */	lwz r5, ResetFunctionQueue@sda21(r13)
 /* 800F02A8 000ED1E8  48 00 00 08 */	b .L_800F02B0
 .L_800F02AC:
@@ -50,8 +51,9 @@ OSRegisterResetFunction:
 .L_800F0320:
 /* 800F0320 000ED260  90 64 00 08 */	stw r3, 8(r4)
 /* 800F0324 000ED264  4E 80 00 20 */	blr 
+.endfn OSRegisterResetFunction
 
-Reset: # local function
+.fn Reset, local
 /* 800F0328 000ED268  48 00 00 20 */	b .L_800F0348
 .L_800F032C:
 /* 800F032C 000ED26C  7D 10 FA A6 */	mfspr r8, 0x3f0
@@ -89,9 +91,9 @@ Reset: # local function
 /* 800F0390 000ED2D0  4B FF FF FC */	b .L_800F038C
 .L_800F0394:
 /* 800F0394 000ED2D4  4B FF FF 98 */	b .L_800F032C
+.endfn Reset
 
-.global __OSDoHotReset
-__OSDoHotReset:
+.fn __OSDoHotReset, global
 /* 800F0398 000ED2D8  7C 08 02 A6 */	mflr r0
 /* 800F039C 000ED2DC  90 01 00 04 */	stw r0, 4(r1)
 /* 800F03A0 000ED2E0  94 21 FF E8 */	stwu r1, -0x18(r1)
@@ -110,9 +112,9 @@ __OSDoHotReset:
 /* 800F03D4 000ED314  38 21 00 18 */	addi r1, r1, 0x18
 /* 800F03D8 000ED318  7C 08 03 A6 */	mtlr r0
 /* 800F03DC 000ED31C  4E 80 00 20 */	blr 
+.endfn __OSDoHotReset
 
-.global OSResetSystem
-OSResetSystem:
+.fn OSResetSystem, global
 /* 800F03E0 000ED320  7C 08 02 A6 */	mflr r0
 /* 800F03E4 000ED324  90 01 00 04 */	stw r0, 4(r1)
 /* 800F03E8 000ED328  94 21 FF C0 */	stwu r1, -0x40(r1)
@@ -322,9 +324,9 @@ OSResetSystem:
 /* 800F0690 000ED5D0  38 21 00 40 */	addi r1, r1, 0x40
 /* 800F0694 000ED5D4  7C 08 03 A6 */	mtlr r0
 /* 800F0698 000ED5D8  4E 80 00 20 */	blr 
+.endfn OSResetSystem
 
-.global OSGetResetCode
-OSGetResetCode:
+.fn OSGetResetCode, global
 /* 800F069C 000ED5DC  3C 60 80 00 */	lis r3, 0x800030E2@ha
 /* 800F06A0 000ED5E0  88 03 30 E2 */	lbz r0, 0x800030E2@l(r3)
 /* 800F06A4 000ED5E4  28 00 00 00 */	cmplwi r0, 0
@@ -340,3 +342,4 @@ OSGetResetCode:
 /* 800F06C8 000ED608  54 03 E8 FE */	srwi r3, r0, 3
 .L_800F06CC:
 /* 800F06CC 000ED60C  4E 80 00 20 */	blr 
+.endfn OSGetResetCode

@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global YearDays
-YearDays:
+.obj YearDays, local
 	.4byte 0x00000000
 	.4byte 0x0000001F
 	.4byte 0x0000003B
@@ -15,8 +14,9 @@ YearDays:
 	.4byte 0x00000111
 	.4byte 0x00000130
 	.4byte 0x0000014E
-.global LeapYearDays
-LeapYearDays:
+.endobj YearDays
+.balign 4
+.obj LeapYearDays, local
 	.4byte 0x00000000
 	.4byte 0x0000001F
 	.4byte 0x0000003C
@@ -29,24 +29,24 @@ LeapYearDays:
 	.4byte 0x00000112
 	.4byte 0x00000131
 	.4byte 0x0000014F
+.endobj LeapYearDays
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global OSGetTime
-OSGetTime:
+.fn OSGetTime, global
 /* 800F2B90 000EFAD0  7C 6D 42 E6 */	mftbu r3
 /* 800F2B94 000EFAD4  7C 8C 42 E6 */	mftb r4, 0x10c
 /* 800F2B98 000EFAD8  7C AD 42 E6 */	mftbu r5
 /* 800F2B9C 000EFADC  7C 03 28 00 */	cmpw r3, r5
 /* 800F2BA0 000EFAE0  40 82 FF F0 */	bne OSGetTime
 /* 800F2BA4 000EFAE4  4E 80 00 20 */	blr 
+.endfn OSGetTime
 
-.global OSGetTick
-OSGetTick:
+.fn OSGetTick, global
 /* 800F2BA8 000EFAE8  7C 6C 42 E6 */	mftb r3, 0x10c
 /* 800F2BAC 000EFAEC  4E 80 00 20 */	blr 
+.endfn OSGetTick
 
-.global __OSGetSystemTime
-__OSGetSystemTime:
+.fn __OSGetSystemTime, global
 /* 800F2BB0 000EFAF0  7C 08 02 A6 */	mflr r0
 /* 800F2BB4 000EFAF4  90 01 00 04 */	stw r0, 4(r1)
 /* 800F2BB8 000EFAF8  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -72,9 +72,9 @@ __OSGetSystemTime:
 /* 800F2C08 000EFB48  38 21 00 20 */	addi r1, r1, 0x20
 /* 800F2C0C 000EFB4C  7C 08 03 A6 */	mtlr r0
 /* 800F2C10 000EFB50  4E 80 00 20 */	blr 
+.endfn __OSGetSystemTime
 
-.global GetDates
-GetDates:
+.fn GetDates, local
 /* 800F2C14 000EFB54  3C A0 92 49 */	lis r5, 0x92492493@ha
 /* 800F2C18 000EFB58  38 05 24 93 */	addi r0, r5, 0x92492493@l
 /* 800F2C1C 000EFB5C  38 E3 00 06 */	addi r7, r3, 6
@@ -190,9 +190,9 @@ GetDates:
 /* 800F2DA4 000EFCE4  38 03 00 01 */	addi r0, r3, 1
 /* 800F2DA8 000EFCE8  90 04 00 0C */	stw r0, 0xc(r4)
 /* 800F2DAC 000EFCEC  4E 80 00 20 */	blr 
+.endfn GetDates
 
-.global OSTicksToCalendarTime
-OSTicksToCalendarTime:
+.fn OSTicksToCalendarTime, global
 /* 800F2DB0 000EFCF0  7C 08 02 A6 */	mflr r0
 /* 800F2DB4 000EFCF4  90 01 00 04 */	stw r0, 4(r1)
 /* 800F2DB8 000EFCF8  94 21 FF C8 */	stwu r1, -0x38(r1)
@@ -324,3 +324,4 @@ OSTicksToCalendarTime:
 /* 800F2FA8 000EFEE8  38 21 00 38 */	addi r1, r1, 0x38
 /* 800F2FAC 000EFEEC  7C 08 03 A6 */	mtlr r0
 /* 800F2FB0 000EFEF0  4E 80 00 20 */	blr 
+.endfn OSTicksToCalendarTime

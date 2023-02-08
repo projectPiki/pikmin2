@@ -1,18 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global __constants
-__constants:
+.obj __constants, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x41F00000
 	.4byte 0x00000000
 	.4byte 0x41E00000
 	.4byte 0x00000000
+.endobj __constants
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __cvt_fp2unsigned
-__cvt_fp2unsigned:
+.fn __cvt_fp2unsigned, global
 /* 800C1B4C 000BEA8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C1B50 000BEA90  3C 80 80 47 */	lis r4, __constants@h
 /* 800C1B54 000BEA94  60 84 9F 20 */	ori r4, r4, __constants@l
@@ -38,9 +37,9 @@ __cvt_fp2unsigned:
 .L_800C1BA0:
 /* 800C1BA0 000BEAE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C1BA4 000BEAE4  4E 80 00 20 */	blr 
+.endfn __cvt_fp2unsigned
 
-.global __save_fpr
-__save_fpr:
+.fn __save_fpr, local
 /* 800C1BA8 000BEAE8  D9 CB FF 70 */	stfd f14, -0x90(r11)
 /* 800C1BAC 000BEAEC  D9 EB FF 78 */	stfd f15, -0x88(r11)
 /* 800C1BB0 000BEAF0  DA 0B FF 80 */	stfd f16, -0x80(r11)
@@ -69,9 +68,9 @@ _savefpr_28:
 /* 800C1BE8 000BEB28  DB CB FF F0 */	stfd f30, -0x10(r11)
 /* 800C1BEC 000BEB2C  DB EB FF F8 */	stfd f31, -8(r11)
 /* 800C1BF0 000BEB30  4E 80 00 20 */	blr 
+.endfn __save_fpr
 
-.global __restore_fpr
-__restore_fpr:
+.fn __restore_fpr, local
 /* 800C1BF4 000BEB34  C9 CB FF 70 */	lfd f14, -0x90(r11)
 /* 800C1BF8 000BEB38  C9 EB FF 78 */	lfd f15, -0x88(r11)
 /* 800C1BFC 000BEB3C  CA 0B FF 80 */	lfd f16, -0x80(r11)
@@ -100,9 +99,9 @@ _restfpr_28:
 /* 800C1C34 000BEB74  CB CB FF F0 */	lfd f30, -0x10(r11)
 /* 800C1C38 000BEB78  CB EB FF F8 */	lfd f31, -8(r11)
 /* 800C1C3C 000BEB7C  4E 80 00 20 */	blr 
+.endfn __restore_fpr
 
-.global __save_gpr
-__save_gpr:
+.fn __save_gpr, local
 /* 800C1C40 000BEB80  91 CB FF B8 */	stw r14, -0x48(r11)
 /* 800C1C44 000BEB84  91 EB FF BC */	stw r15, -0x44(r11)
 /* 800C1C48 000BEB88  92 0B FF C0 */	stw r16, -0x40(r11)
@@ -125,9 +124,9 @@ _savegpr_26:
 /* 800C1C80 000BEBC0  93 CB FF F8 */	stw r30, -8(r11)
 /* 800C1C84 000BEBC4  93 EB FF FC */	stw r31, -4(r11)
 /* 800C1C88 000BEBC8  4E 80 00 20 */	blr 
+.endfn __save_gpr
 
-.global __restore_gpr
-__restore_gpr:
+.fn __restore_gpr, local
 /* 800C1C8C 000BEBCC  81 CB FF B8 */	lwz r14, -0x48(r11)
 /* 800C1C90 000BEBD0  81 EB FF BC */	lwz r15, -0x44(r11)
 /* 800C1C94 000BEBD4  82 0B FF C0 */	lwz r16, -0x40(r11)
@@ -150,9 +149,9 @@ _restgpr_26:
 /* 800C1CCC 000BEC0C  83 CB FF F8 */	lwz r30, -8(r11)
 /* 800C1CD0 000BEC10  83 EB FF FC */	lwz r31, -4(r11)
 /* 800C1CD4 000BEC14  4E 80 00 20 */	blr 
+.endfn __restore_gpr
 
-.global __div2u
-__div2u:
+.fn __div2u, global
 /* 800C1CD8 000BEC18  2C 03 00 00 */	cmpwi r3, 0
 /* 800C1CDC 000BEC1C  7C 60 00 34 */	cntlzw r0, r3
 /* 800C1CE0 000BEC20  7C 89 00 34 */	cntlzw r9, r4
@@ -221,9 +220,9 @@ __div2u:
 /* 800C1DB8 000BECF8  38 80 00 00 */	li r4, 0
 /* 800C1DBC 000BECFC  38 60 00 00 */	li r3, 0
 /* 800C1DC0 000BED00  4E 80 00 20 */	blr 
+.endfn __div2u
 
-.global __div2i
-__div2i:
+.fn __div2i, global
 /* 800C1DC4 000BED04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C1DC8 000BED08  54 69 00 01 */	rlwinm. r9, r3, 0, 0, 0
 /* 800C1DCC 000BED0C  41 82 00 0C */	beq .L_800C1DD8
@@ -314,9 +313,9 @@ __div2i:
 .L_800C1EF4:
 /* 800C1EF4 000BEE34  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C1EF8 000BEE38  4E 80 00 20 */	blr 
+.endfn __div2i
 
-.global __mod2u
-__mod2u:
+.fn __mod2u, global
 /* 800C1EFC 000BEE3C  2C 03 00 00 */	cmpwi r3, 0
 /* 800C1F00 000BEE40  7C 60 00 34 */	cntlzw r0, r3
 /* 800C1F04 000BEE44  7C 89 00 34 */	cntlzw r9, r4
@@ -382,9 +381,9 @@ __mod2u:
 /* 800C1FD4 000BEF14  7C E3 3B 78 */	mr r3, r7
 /* 800C1FD8 000BEF18  4E 80 00 20 */	blr 
 /* 800C1FDC 000BEF1C  4E 80 00 20 */	blr 
+.endfn __mod2u
 
-.global __mod2i
-__mod2i:
+.fn __mod2i, global
 /* 800C1FE0 000BEF20  2F 83 00 00 */	cmpwi cr7, r3, 0
 /* 800C1FE4 000BEF24  40 9C 00 0C */	bge cr7, .L_800C1FF0
 /* 800C1FE8 000BEF28  20 84 00 00 */	subfic r4, r4, 0
@@ -463,9 +462,9 @@ __mod2i:
 /* 800C20E0 000BF020  20 84 00 00 */	subfic r4, r4, 0
 /* 800C20E4 000BF024  7C 63 01 90 */	subfze r3, r3
 /* 800C20E8 000BF028  4E 80 00 20 */	blr 
+.endfn __mod2i
 
-.global __shl2i
-__shl2i:
+.fn __shl2i, global
 /* 800C20EC 000BF02C  21 05 00 20 */	subfic r8, r5, 0x20
 /* 800C20F0 000BF030  31 25 FF E0 */	addic r9, r5, -32
 /* 800C20F4 000BF034  7C 63 28 30 */	slw r3, r3, r5
@@ -475,9 +474,9 @@ __shl2i:
 /* 800C2104 000BF044  7C 63 53 78 */	or r3, r3, r10
 /* 800C2108 000BF048  7C 84 28 30 */	slw r4, r4, r5
 /* 800C210C 000BF04C  4E 80 00 20 */	blr 
+.endfn __shl2i
 
-.global __shr2u
-__shr2u:
+.fn __shr2u, global
 /* 800C2110 000BF050  21 05 00 20 */	subfic r8, r5, 0x20
 /* 800C2114 000BF054  31 25 FF E0 */	addic r9, r5, -32
 /* 800C2118 000BF058  7C 84 2C 30 */	srw r4, r4, r5
@@ -487,9 +486,9 @@ __shr2u:
 /* 800C2128 000BF068  7C 84 53 78 */	or r4, r4, r10
 /* 800C212C 000BF06C  7C 63 2C 30 */	srw r3, r3, r5
 /* 800C2130 000BF070  4E 80 00 20 */	blr 
+.endfn __shr2u
 
-.global __shr2i
-__shr2i:
+.fn __shr2i, global
 /* 800C2134 000BF074  21 05 00 20 */	subfic r8, r5, 0x20
 /* 800C2138 000BF078  35 25 FF E0 */	addic. r9, r5, -32
 /* 800C213C 000BF07C  7C 84 2C 30 */	srw r4, r4, r5
@@ -501,9 +500,9 @@ __shr2i:
 .L_800C2154:
 /* 800C2154 000BF094  7C 63 2E 30 */	sraw r3, r3, r5
 /* 800C2158 000BF098  4E 80 00 20 */	blr 
+.endfn __shr2i
 
-.global __cvt_ull_dbl
-__cvt_ull_dbl:
+.fn __cvt_ull_dbl, global
 /* 800C215C 000BF09C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C2160 000BF0A0  7C 67 23 79 */	or. r7, r3, r4
 /* 800C2164 000BF0A4  38 C0 00 00 */	li r6, 0
@@ -546,9 +545,9 @@ __cvt_ull_dbl:
 /* 800C21EC 000BF12C  C8 21 00 08 */	lfd f1, 8(r1)
 /* 800C21F0 000BF130  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C21F4 000BF134  4E 80 00 20 */	blr 
+.endfn __cvt_ull_dbl
 
-.global __cvt_dbl_usll
-__cvt_dbl_usll:
+.fn __cvt_dbl_usll, global
 /* 800C21F8 000BF138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800C21FC 000BF13C  D8 21 00 08 */	stfd f1, 8(r1)
 /* 800C2200 000BF140  80 61 00 08 */	lwz r3, 8(r1)
@@ -606,3 +605,4 @@ __cvt_dbl_usll:
 .L_800C22BC:
 /* 800C22BC 000BF1FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C22C0 000BF200  4E 80 00 20 */	blr 
+.endfn __cvt_dbl_usll

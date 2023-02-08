@@ -1,14 +1,15 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-ResetFunctionInfo:
+.obj ResetFunctionInfo, local
 	.4byte OnReset
 	.4byte 0x0000007F
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj ResetFunctionInfo
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-OnReset:
+.fn OnReset, local
 /* 800EF794 000EC6D4  7C 08 02 A6 */	mflr r0
 /* 800EF798 000EC6D8  2C 03 00 00 */	cmpwi r3, 0
 /* 800EF79C 000EC6DC  90 01 00 04 */	stw r0, 4(r1)
@@ -25,9 +26,9 @@ OnReset:
 /* 800EF7C4 000EC704  38 21 00 08 */	addi r1, r1, 8
 /* 800EF7C8 000EC708  7C 08 03 A6 */	mtlr r0
 /* 800EF7CC 000EC70C  4E 80 00 20 */	blr 
+.endfn OnReset
 
-.global MEMIntrruptHandler
-MEMIntrruptHandler:
+.fn MEMIntrruptHandler, local
 /* 800EF7D0 000EC710  7C 08 02 A6 */	mflr r0
 /* 800EF7D4 000EC714  3C 60 CC 00 */	lis r3, 0xCC004000@ha
 /* 800EF7D8 000EC718  90 01 00 04 */	stw r0, 4(r1)
@@ -57,9 +58,9 @@ MEMIntrruptHandler:
 /* 800EF830 000EC770  38 21 00 08 */	addi r1, r1, 8
 /* 800EF834 000EC774  7C 08 03 A6 */	mtlr r0
 /* 800EF838 000EC778  4E 80 00 20 */	blr 
+.endfn MEMIntrruptHandler
 
-.global OSProtectRange
-OSProtectRange:
+.fn OSProtectRange, global
 /* 800EF83C 000EC77C  7C 08 02 A6 */	mflr r0
 /* 800EF840 000EC780  90 01 00 04 */	stw r0, 4(r1)
 /* 800EF844 000EC784  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -111,9 +112,9 @@ OSProtectRange:
 /* 800EF8F4 000EC834  38 21 00 30 */	addi r1, r1, 0x30
 /* 800EF8F8 000EC838  7C 08 03 A6 */	mtlr r0
 /* 800EF8FC 000EC83C  4E 80 00 20 */	blr 
+.endfn OSProtectRange
 
-.global Config24MB
-Config24MB:
+.fn Config24MB, local
 /* 800EF900 000EC840  38 E0 00 00 */	li r7, 0
 /* 800EF904 000EC844  3C 80 00 00 */	lis r4, 0x00000002@ha
 /* 800EF908 000EC848  38 84 00 02 */	addi r4, r4, 0x00000002@l
@@ -146,9 +147,9 @@ Config24MB:
 /* 800EF974 000EC8B4  7C 68 02 A6 */	mflr r3
 /* 800EF978 000EC8B8  7C 7A 03 A6 */	mtspr 0x1a, r3
 /* 800EF97C 000EC8BC  4C 00 00 64 */	rfi 
+.endfn Config24MB
 
-.global Config48MB
-Config48MB:
+.fn Config48MB, local
 /* 800EF980 000EC8C0  38 E0 00 00 */	li r7, 0
 /* 800EF984 000EC8C4  3C 80 00 00 */	lis r4, 0x00000002@ha
 /* 800EF988 000EC8C8  38 84 00 02 */	addi r4, r4, 0x00000002@l
@@ -181,18 +182,18 @@ Config48MB:
 /* 800EF9F4 000EC934  7C 68 02 A6 */	mflr r3
 /* 800EF9F8 000EC938  7C 7A 03 A6 */	mtspr 0x1a, r3
 /* 800EF9FC 000EC93C  4C 00 00 64 */	rfi 
+.endfn Config48MB
 
-.global RealMode
-RealMode:
+.fn RealMode, local
 /* 800EFA00 000EC940  54 63 00 BE */	clrlwi r3, r3, 2
 /* 800EFA04 000EC944  7C 7A 03 A6 */	mtspr 0x1a, r3
 /* 800EFA08 000EC948  7C 60 00 A6 */	mfmsr r3
 /* 800EFA0C 000EC94C  54 63 07 32 */	rlwinm r3, r3, 0, 0x1c, 0x19
 /* 800EFA10 000EC950  7C 7B 03 A6 */	mtspr 0x1b, r3
 /* 800EFA14 000EC954  4C 00 00 64 */	rfi 
+.endfn RealMode
 
-.global __OSInitMemoryProtection
-__OSInitMemoryProtection:
+.fn __OSInitMemoryProtection, global
 /* 800EFA18 000EC958  7C 08 02 A6 */	mflr r0
 /* 800EFA1C 000EC95C  90 01 00 04 */	stw r0, 4(r1)
 /* 800EFA20 000EC960  94 21 FF B0 */	stwu r1, -0x50(r1)
@@ -266,3 +267,4 @@ __OSInitMemoryProtection:
 /* 800EFB24 000ECA64  38 21 00 50 */	addi r1, r1, 0x50
 /* 800EFB28 000ECA68  7C 08 03 A6 */	mtlr r0
 /* 800EFB2C 000ECA6C  4E 80 00 20 */	blr 
+.endfn __OSInitMemoryProtection
