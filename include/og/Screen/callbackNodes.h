@@ -90,6 +90,8 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	void setZeroAlpha(u8);
 	void startPuyoUp(f32);
 
+	inline J2DPicture* getKetaPicture(int i) { return mCounters[i]->mPicture; }
+
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
 	char** mCharacterTexturePaths;    // _1C

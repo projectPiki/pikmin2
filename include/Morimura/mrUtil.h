@@ -78,11 +78,25 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 	void startScaleAnim();
 	void reset();
 
-	inline void getColor(JUtility::TColor& color) { color.set(mColor); }
+	inline void setColor(u8 c)
+	{
+		mColor.a = c;
+		mColor.b = c;
+		mColor.g = c;
+		mColor.r = c;
+	}
+
+	inline void setColor(u8 r, u8 g, u8 b, u8 a)
+	{
+		mColor.r = r;
+		mColor.g = g;
+		mColor.b = b;
+		mColor.a = a;
+	}
 
 	// _00     = VTBL
 	// _00-_A8 = og::Screen::CallBack_CounterRV
-	JUtility::TColor mColor;              // _A8
+	GXColor mColor;                       // _A8
 	efx2d::T2DCountKira** mEfxCountKiras; // _AC, array of ptrs?
 	u8 mEnabled;                          // _B0
 	u8 _B1;                               // _B1

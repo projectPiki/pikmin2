@@ -769,14 +769,14 @@ void TChallengeResultDemoScreen::startDemo()
  */
 void TChallengeResultDemoScreen::setComplete(bool isComplete)
 {
-	mAnimPane1                  = nullptr;
-	TChallengeResult::mComplete = isComplete;
-	u64 ribons[]                = { 'Tribon00', 'Tribon01', 'Tribon02' };
-	for (int i = 0; i < 3; i++) {
-		J2DPane* pane = mScreenObj->search(ribons[i]);
-		P2ASSERTLINE(224, pane);
-		pane->setMsgID('4872_00');
-	}
+	// mAnimPane1                  = nullptr;
+	// TChallengeResult::mComplete = isComplete;
+	// u64 ribons[]                = { 'Tribon00', 'Tribon01', 'Tribon02' };
+	// for (int i = 0; i < 3; i++) {
+	// 	J2DPane* pane = mScreenObj->search(ribons[i]);
+	// 	P2ASSERTLINE(224, pane);
+	// 	pane->setMsgID('4872_00');
+	// }
 }
 
 /*
@@ -1057,9 +1057,8 @@ bool TMovePane::hosei()
 	mPaneGoal.x += x;
 	mPaneGoal.y += y;
 	if (FABS(x) < 0.05f && FABS(y) < 0.05f) {
-		ret         = true;
-		mPaneGoal.x = mOffset.x;
-		mPaneGoal.y = mOffset.y;
+		ret       = true;
+		mPaneGoal = mOffset;
 	}
 
 	mOffset.y -= 100.0f;
@@ -1359,22 +1358,7 @@ bool TMovePane::isReachToGoal()
 {
 	f32 x = mPaneGoal.x - mOffset.x;
 	f32 y = mPaneGoal.y - mOffset.y;
-	return (x * x + y * y > 600.0f);
-	/*
-	lfs      f1, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	lfs      f2, 0x18(r3)
-	fsubs    f3, f1, f0
-	lfs      f1, 8(r3)
-	lfs      f0, lbl_8051F0B8@sda21(r2)
-	fsubs    f2, f2, f1
-	fmuls    f1, f3, f3
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
+	return (x * x + y * y < 600.0f);
 }
 
 /*
@@ -1425,98 +1409,13 @@ TCounterRV::TCounterRV(char** a1, u16 a2, u16 a3, JKRArchive* arc)
     , mEfxCountKiras(nullptr)
     , mEnabled(false)
     , _B1(false)
-    , mColor(255, 255, 255, 255)
 {
+	setColor(255);
 	mEfxCountKiras = new efx2d::T2DCountKira*[mCounterLimit];
 	for (int i = 0; i < mCounterLimit; i++) {
 		mEfxCountKiras[i] = new efx2d::T2DCountKira;
 	}
 	setPuyoAnim(false);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  bl        -0x88B1C
-	  lis       r4, 0x804E
-	  li        r3, 0
-	  addi      r4, r4, 0x52C4
-	  li        r0, 0xFF
-	  stw       r4, 0x0(r27)
-	  stw       r3, 0xAC(r27)
-	  stb       r3, 0xB0(r27)
-	  stb       r3, 0xB1(r27)
-	  stb       r0, 0xAB(r27)
-	  stb       r0, 0xAA(r27)
-	  stb       r0, 0xA9(r27)
-	  stb       r0, 0xA8(r27)
-	  lhz       r0, 0x2E(r27)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x3700D0
-	  lis       r5, 0x804E
-	  lis       r4, 0x804E
-	  addi      r5, r5, 0x7420
-	  stw       r3, 0xAC(r27)
-	  addi      r3, r4, 0x7610
-	  li        r28, 0
-	  addi      r30, r5, 0x18
-	  li        r31, 0
-	  addi      r29, r3, 0x18
-	  b         .loc_0x100
-
-	.loc_0x7C:
-	  li        r3, 0x18
-	  bl        -0x370208
-	  cmplwi    r3, 0
-	  beq-      .loc_0xF0
-	  lis       r5, 0x804C
-	  lis       r4, 0x804C
-	  addi      r0, r5, 0x14F0
-	  lis       r6, 0x804A
-	  stw       r0, 0x0(r3)
-	  addi      r0, r4, 0x14D8
-	  lis       r5, 0x804E
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r8, 0
-	  subi      r7, r6, 0x1D84
-	  addi      r6, r5, 0x7420
-	  stb       r8, 0x4(r3)
-	  li        r5, 0x8
-	  addi      r0, r4, 0x7610
-	  lfs       f0, 0xD5C(r2)
-	  stb       r8, 0x5(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r30, 0x8(r3)
-	  sth       r5, 0xC(r3)
-	  stw       r8, 0x10(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r29, 0x8(r3)
-	  stfs      f0, 0x14(r3)
-
-	.loc_0xF0:
-	  lwz       r4, 0xAC(r27)
-	  addi      r28, r28, 0x1
-	  stwx      r3, r4, r31
-	  addi      r31, r31, 0x4
-
-	.loc_0x100:
-	  lhz       r0, 0x2E(r27)
-	  cmpw      r28, r0
-	  blt+      .loc_0x7C
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        -0x88968
-	  mr        r3, r27
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -1528,76 +1427,10 @@ void TCounterRV::update()
 {
 	og::Screen::CallBack_CounterRV::update();
 	for (int i = 0; i < mCounterLimit; i++) {
-		og::Screen::CounterKeta* keta = mCounters[i];
-		J2DPicture* pic               = keta->mPicture;
+		J2DPicture* pic = getKetaPicture(i);
 		P2ASSERTLINE(557, pic);
-		JUtility::TColor white;
-		getColor(white);
-		pic->setWhite(white);
+		pic->setWhite(mColor);
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	bl       update__Q32og6Screen18CallBack_CounterRVFv
-	li       r29, 0
-	li       r30, 0
-	b        lbl_8039420C
-
-lbl_8039418C:
-	lwz      r3, 0x7c(r28)
-	lwzx     r3, r3, r30
-	lwz      r31, 0(r3)
-	cmplwi   r31, 0
-	bne      lbl_803941BC
-	lis      r3, lbl_80494850@ha
-	lis      r5, lbl_80494868@ha
-	addi     r3, r3, lbl_80494850@l
-	li       r4, 0x22d
-	addi     r5, r5, lbl_80494868@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803941BC:
-	lwz      r0, 0xa8(r28)
-	mr       r3, r31
-	addi     r4, r1, 0x10
-	stw      r0, 8(r1)
-	lbz      r7, 8(r1)
-	lbz      r6, 9(r1)
-	lbz      r5, 0xa(r1)
-	lbz      r0, 0xb(r1)
-	stb      r7, 0xc(r1)
-	stb      r6, 0xd(r1)
-	stb      r5, 0xe(r1)
-	stb      r0, 0xf(r1)
-	lwz      r0, 0xc(r1)
-	stw      r0, 0x10(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x12c(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 4
-	addi     r29, r29, 1
-
-lbl_8039420C:
-	lhz      r0, 0x2e(r28)
-	cmpw     r29, r0
-	blt      lbl_8039418C
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -2299,10 +2132,10 @@ bool TChallengeResult::doUpdate()
 		u8 g      = mFlashColor.g * calc1 + calc2;
 		u8 b      = mFlashColor.b * calc1 + calc2;
 
-		mCounter1->mColor.set(r, g, b, 255);
-		mHighScoreCounter[0]->mColor.set(r, g, b, 255);
-		mHighScoreCounter[1]->mColor.set(r, g, b, 255);
-		mHighScoreCounter[2]->mColor.set(r, g, b, 255);
+		mCounter1->setColor(r, g, b, 255);
+		for (int i = 0; i < 3; i++) {
+			mHighScoreCounter[i]->setColor(r, g, b, 255);
+		}
 	}
 
 	if (mDemoState == 6) {
@@ -3047,8 +2880,9 @@ void TChallengeResult::doDraw(Graphics& gfx)
 		mSaveMgr->draw();
 	}
 	gfx.mPerspGraph.setPort();
-	JUtility::TColor color(0, 0, 0, 255 - mFadeAlpha);
-	graf->setColor(color, color, color, color);
+	JUtility::TColor color;
+	color = JUtility::TColor(0, 0, 0, 255 - mFadeAlpha);
+	graf->setColor(color);
 	GXSetAlphaUpdate(GX_FALSE);
 
 	f32 zero = 0.0f;
@@ -3057,99 +2891,6 @@ void TChallengeResult::doDraw(Graphics& gfx)
 	graf->fillBox(JGeometry::TBox2f(0.0f, 0.0f, zero + x, zero + y));
 
 	GXSetAlphaUpdate(GX_TRUE);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	mr       r30, r4
-	addi     r31, r30, 0x190
-	stw      r29, 0x44(r1)
-	mr       r29, r3
-	mr       r5, r31
-	lwz      r3, 0x7c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x80(r29)
-	mr       r4, r30
-	mr       r5, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x1e0(r29)
-	cmplwi   r0, 0
-	beq      lbl_80396978
-	lwz      r3, 0x84(r29)
-	bl       draw__Q33ebi4Save4TMgrFv
-
-lbl_80396978:
-	addi     r3, r30, 0x190
-	lwz      r12, 0x190(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lbz      r3, 0x44(r29)
-	li       r0, -1
-	stw      r0, 0x1c(r1)
-	li       r0, 0
-	subfic   r8, r3, 0xff
-	mr       r3, r31
-	stb      r0, 0x1c(r1)
-	addi     r4, r1, 0xc
-	addi     r5, r1, 0x10
-	addi     r6, r1, 0x14
-	stb      r0, 0x1d(r1)
-	addi     r7, r1, 0x18
-	stb      r0, 0x1e(r1)
-	stb      r8, 0x1f(r1)
-	lwz      r0, 0x1c(r1)
-	stw      r0, 8(r1)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0xc(r1)
-	bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-	li       r3, 0
-	bl       GXSetAlphaUpdate
-	bl       getRenderModeObj__6SystemFv
-	lhz      r30, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lfs      f3, lbl_8051F084@sda21(r2)
-	mr       r3, r31
-	stw      r4, 0x34(r1)
-	addi     r4, r1, 0x20
-	lfd      f2, lbl_8051F0E8@sda21(r2)
-	stw      r0, 0x30(r1)
-	lfd      f0, 0x30(r1)
-	stw      r30, 0x3c(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x38(r1)
-	lfd      f0, 0x38(r1)
-	fadds    f1, f3, f1
-	stfs     f3, 0x20(r1)
-	fsubs    f0, f0, f2
-	stfs     f3, 0x24(r1)
-	fadds    f0, f3, f0
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-	li       r3, 1
-	bl       GXSetAlphaUpdate
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -3173,10 +2914,10 @@ void TChallengeResult::setInfo()
 	mDemoState  = 0;
 	mIsSaveOpen = false;
 
-	mHighScoreCounter[0]->mColor.set(255, 255, 255, 255);
-	mHighScoreCounter[1]->mColor.set(255, 255, 255, 255);
-	mHighScoreCounter[2]->mColor.set(255, 255, 255, 255);
-	mCounter1->mColor.set(255, 255, 255, 255);
+	for (int i = 0; i < 3; i++) {
+		mHighScoreCounter[i]->setColor(255, 255, 255, 255);
+	}
+	mCounter1->setColor(255, 255, 255, 255);
 
 	for (int i = 0; i < 5; i++) {
 		IDontKnow* obj = _18C[i];
@@ -6511,61 +6252,11 @@ void TChallengeResultScene::doUserCallBackFunc(Resource::MgrCommand*)
 	LoadResource::Arg arg(mName);
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
 	P2ASSERTLINE(2345, node);
-	JKRArchive* arc = node->mArchive;
+	JKRArchive* arc = node->getArchive();
 
 	TChallengeResult* obj = new TChallengeResult;
 	registObj(obj, arc);
 	mObject = obj;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	lis      r4, lbl_80494720@ha
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	addi     r30, r4, lbl_80494720@l
-	addi     r4, r30, 0x3d0
-	stw      r29, 0x44(r1)
-	mr       r29, r3
-	addi     r3, r29, 4
-	bl       makeLanguageResName__Q22og9newScreenFPcPCc
-	addi     r3, r1, 8
-	addi     r4, r29, 4
-	bl       __ct__Q212LoadResource3ArgFPCc
-	lwz      r3, gLoadResourceMgr@sda21(r13)
-	addi     r4, r1, 8
-	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-	or.      r31, r3, r3
-	bne      lbl_80399654
-	addi     r3, r30, 0x130
-	addi     r5, r30, 0x148
-	li       r4, 0x929
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80399654:
-	lwz      r30, 0x34(r31)
-	li       r3, 0x1fc
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80399670
-	bl       __ct__Q28Morimura16TChallengeResultFv
-	mr       r31, r3
-
-lbl_80399670:
-	mr       r3, r29
-	mr       r4, r31
-	mr       r5, r30
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	stw      r31, 0x220(r29)
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 } // namespace Morimura

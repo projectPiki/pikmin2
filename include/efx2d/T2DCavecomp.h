@@ -22,7 +22,7 @@ struct T2DCavecompLoop : public TForever {
 	{
 	}
 
-	virtual ~T2DCavecompLoop(); // _34 (weak)
+	virtual ~T2DCavecompLoop() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TForever
