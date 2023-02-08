@@ -271,6 +271,14 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = uji->mTargetCreature;
 		if (target && target->isAlive()) {
+			uji->changeFaceDir(target);
+			f32 speed = CG_PARMS(uji)->mGeneral.mMoveSpeed.mValue;
+
+			f32 sinTheta = (f32)sin(uji->getFaceDir());
+			f32 y        = uji->getTargetVelocity().y;
+			f32 cosTheta = (f32)cos(uji->getFaceDir());
+
+			uji->mTargetVelocity = Vector3f(speed * sinTheta, y, speed * cosTheta);
 
 		} else {
 			uji->mNextState = UJIA_GoHome;
