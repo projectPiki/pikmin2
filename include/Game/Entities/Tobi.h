@@ -20,6 +20,25 @@ struct Item;
 namespace Tobi {
 struct FSM;
 
+enum StateID {
+	TOBI_NULL       = -1,
+	TOBI_Dead       = 0,
+	TOBI_Press      = 1,
+	TOBI_Stay       = 2,
+	TOBI_Appear     = 3,
+	TOBI_Dive       = 4,
+	TOBI_Move       = 5,
+	TOBI_MoveSide   = 6,
+	TOBI_MoveCentre = 7,
+	TOBI_MoveTop    = 8,
+	TOBI_GoHome     = 9,
+	TOBI_Fly        = 10,
+	TOBI_Attack1    = 11,
+	TOBI_Attack2    = 12,
+	TOBI_Eat        = 13,
+	TOBI_StateCount,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -50,19 +69,19 @@ struct Obj : public EnemyBase {
 
 	void lifeIncrement();
 	void randomFlyingTarget();
-	void isFlyingLife();
+	bool isFlyingLife();
 	void setInWaterDamage();
 	void resetAppearCheck();
-	void isAppearCheck();
+	bool isAppearCheck();
 	void resetBridgeSearch();
 	void setBridgeSearch();
 	void setNearestBridge();
 	void setCullingCheck();
-	void checkBreakOrMove();
-	void isBreakBridge();
-	void moveBridgeSide();
-	void moveBridgeCentre();
-	void moveBridgeTop();
+	int checkBreakOrMove();
+	bool isBreakBridge();
+	bool moveBridgeSide();
+	bool moveBridgeCentre();
+	bool moveBridgeTop();
 	void breakTargetBridge();
 	void createAppearEffect();
 	void createDisAppearEffect();
@@ -75,9 +94,9 @@ struct Obj : public EnemyBase {
 	u8 _2C0;                   // _2C0, guess based on Ujia/b
 	bool mIsUnderground;       // _2C1, guess based on Ujia/b
 	u16 _2C2;                  // _2C2, guess based on Ujia/b
-	int _2C4;                  // _2C4
+	StateID mNextState;        // _2C4
 	MouthSlots mMouthSlots;    // _2C8
-	Vector3f _2D0;             // _2D0
+	Vector3f mTargetPosition;  // _2D0
 	ItemBridge::Item* mBridge; // _2DC, guess based on Ujia/b
 	f32 _2E0;                  // _2E0, guess based on Ujia/b
 	f32 _2E4;                  // _2E4, guess based on Ujia/b
@@ -154,11 +173,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAppear : public State {
+	inline StateAppear()
+	    : State(TOBI_Appear, "appear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -168,6 +198,11 @@ struct StateAppear : public State {
 };
 
 struct StateAttack1 : public State {
+	inline StateAttack1()
+	    : State(TOBI_Attack1, "attack1")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -177,6 +212,11 @@ struct StateAttack1 : public State {
 };
 
 struct StateAttack2 : public State {
+	inline StateAttack2()
+	    : State(TOBI_Attack2, "attack2")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -186,6 +226,11 @@ struct StateAttack2 : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(TOBI_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -195,6 +240,11 @@ struct StateDead : public State {
 };
 
 struct StateDive : public State {
+	inline StateDive()
+	    : State(TOBI_Dive, "dive")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -204,6 +254,11 @@ struct StateDive : public State {
 };
 
 struct StateEat : public State {
+	inline StateEat()
+	    : State(TOBI_Eat, "eat")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -213,6 +268,11 @@ struct StateEat : public State {
 };
 
 struct StateFly : public State {
+	inline StateFly()
+	    : State(TOBI_Fly, "fly")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -222,6 +282,11 @@ struct StateFly : public State {
 };
 
 struct StateGoHome : public State {
+	inline StateGoHome()
+	    : State(TOBI_GoHome, "gohome")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -231,6 +296,11 @@ struct StateGoHome : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(TOBI_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -240,6 +310,11 @@ struct StateMove : public State {
 };
 
 struct StateMoveCentre : public State {
+	inline StateMoveCentre()
+	    : State(TOBI_MoveCentre, "movecentre")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -249,6 +324,11 @@ struct StateMoveCentre : public State {
 };
 
 struct StateMoveSide : public State {
+	inline StateMoveSide()
+	    : State(TOBI_MoveSide, "moveside")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -258,6 +338,11 @@ struct StateMoveSide : public State {
 };
 
 struct StateMoveTop : public State {
+	inline StateMoveTop()
+	    : State(TOBI_MoveTop, "movetop")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -267,6 +352,11 @@ struct StateMoveTop : public State {
 };
 
 struct StatePress : public State {
+	inline StatePress()
+	    : State(TOBI_Press, "press")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -276,6 +366,11 @@ struct StatePress : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(TOBI_Stay, "stay")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

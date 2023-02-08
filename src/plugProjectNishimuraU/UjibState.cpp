@@ -898,162 +898,44 @@ void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack2::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	bl       setInWaterDamage__Q34Game4Ujib3ObjFv
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8025CAAC
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_8025C92C
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x20
-	stw      r0, 0x1e0(r31)
-	b        lbl_8025CAAC
+	Obj* uji = OBJ(enemy);
+	uji->setInWaterDamage();
 
-lbl_8025C92C:
-	cmplwi   r0, 3
-	bne      lbl_8025C944
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r31)
-	b        lbl_8025CAAC
+	if (uji->mCurAnim->mIsPlaying) {
+		if (uji->mCurAnim->mType == KEYEVENT_2) {
+			uji->enableEvent(0, EB_IsEnemyNotBitter);
 
-lbl_8025C944:
-	cmplwi   r0, 4
-	bne      lbl_8025C97C
-	lwz      r6, 0xc0(r31)
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	lfs      f1, 0x5b4(r6)
-	lfs      f2, 0x5dc(r6)
-	lfs      f3, 0x604(r6)
-	bl
-"attackNavi__Q24Game9EnemyFuncFPQ24Game8CreaturefffP8CollPartP23Condition<Q24Game4Navi>"
-	mr       r3, r31
-	li       r4, 0
-	bl
-"eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Q24Game4Piki>" b
-lbl_8025CAAC
+		} else if (uji->mCurAnim->mType == KEYEVENT_3) {
+			uji->disableEvent(0, EB_IsEnemyNotBitter);
 
-lbl_8025C97C:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8025CAAC
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051ABEC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8025C9BC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8025CAAC
+		} else if (uji->mCurAnim->mType == KEYEVENT_4) {
+			EnemyFunc::attackNavi(uji, CG_PARMS(uji)->mGeneral.mAttackRadius.mValue, CG_PARMS(uji)->mGeneral.mAttackHitAngle.mValue,
+			                      CG_PARMS(uji)->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
+			EnemyFunc::eatPikmin(uji, nullptr);
 
-lbl_8025C9BC:
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 0
-	beq      lbl_8025C9EC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xc
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8025CAAC
+		} else if (uji->mCurAnim->mType == KEYEVENT_END) {
+			if (uji->mHealth <= 0.0f) {
+				transit(uji, UJIB_Dead, nullptr);
+				return;
+			}
 
-lbl_8025C9EC:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lfs      f31, 0x198(r31)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x19c(r31)
-	lfs      f29, 0x1a0(r31)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 8(r1)
-	fsubs    f3, f0, f30
-	lfs      f1, 0x10(r1)
-	fsubs    f2, f2, f31
-	lfs      f0, lbl_8051ABEC@sda21(r2)
-	fsubs    f1, f1, f29
-	fmuls    f3, f3, f3
-	fmuls    f4, f1, f1
-	fmadds   f1, f2, f2, f3
-	fadds    f1, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8025CA54
-	ble      lbl_8025CA58
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8025CA58
+			if (uji->mStuckPikminCount) {
+				transit(uji, UJIB_Eat, nullptr);
+				return;
+			}
 
-lbl_8025CA54:
-	fmr      f1, f0
+			Vector3f homePos2 = uji->mHomePosition;
+			Vector3f position = uji->getPosition();
+			Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-lbl_8025CA58:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x35c(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8025CA8C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8025CAAC
+			if (_length2(diff) > CG_PARMS(uji)->mGeneral.mTerritoryRadius.mValue) {
+				transit(uji, UJIB_GoHome, nullptr);
+				return;
+			}
 
-lbl_8025CA8C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8025CAAC:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+			transit(uji, UJIB_Move, nullptr);
+		}
+	}
 }
 
 /*
@@ -1081,127 +963,33 @@ void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateEat::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	bl       setInWaterDamage__Q34Game4Ujib3ObjFv
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051ABEC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8025CB9C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8025CCA0
+	Obj* uji = OBJ(enemy);
+	uji->setInWaterDamage();
 
-lbl_8025CB9C:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8025CCA0
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_8025CBD8
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	li       r4, 0
-	lfs      f1, 0x81c(r5)
-	bl
-"swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	mr       r3, r31
-	bl       createEatEffect__Q34Game4Ujib3ObjFv
-	b        lbl_8025CCA0
+	if (uji->mHealth <= 0.0f) {
+		transit(uji, UJIB_Dead, nullptr);
+		return;
+	}
 
-lbl_8025CBD8:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8025CCA0
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lfs      f31, 0x198(r31)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x19c(r31)
-	lfs      f29, 0x1a0(r31)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 8(r1)
-	fsubs    f3, f0, f30
-	lfs      f1, 0x10(r1)
-	fsubs    f2, f2, f31
-	lfs      f0, lbl_8051ABEC@sda21(r2)
-	fsubs    f1, f1, f29
-	fmuls    f3, f3, f3
-	fmuls    f4, f1, f1
-	fmadds   f1, f2, f2, f3
-	fadds    f1, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8025CC48
-	ble      lbl_8025CC4C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8025CC4C
+	if (uji->mCurAnim->mIsPlaying) {
+		if (uji->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::swallowPikmin(uji, CG_PROPERPARMS(uji).mPoisonDamage.mValue, nullptr);
+			uji->createEatEffect();
 
-lbl_8025CC48:
-	fmr      f1, f0
+		} else if (uji->mCurAnim->mType == KEYEVENT_END) {
 
-lbl_8025CC4C:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x35c(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8025CC80
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8025CCA0
+			Vector3f homePos2 = uji->mHomePosition;
+			Vector3f position = uji->getPosition();
+			Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-lbl_8025CC80:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+			if (_length2(diff) > CG_PARMS(uji)->mGeneral.mTerritoryRadius.mValue) {
+				transit(uji, UJIB_GoHome, nullptr);
+				return;
+			}
 
-lbl_8025CCA0:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+			transit(uji, UJIB_Move, nullptr);
+		}
+	}
 }
 
 /*
