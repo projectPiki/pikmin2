@@ -1,53 +1,53 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__20J2DAnmFullLoader_v15
-__vt__20J2DAnmFullLoader_v15:
+.obj __vt__20J2DAnmFullLoader_v15, global
 	.4byte 0
 	.4byte 0
 	.4byte load__20J2DAnmFullLoader_v15FPCv
 	.4byte setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv
 	.4byte __dt__20J2DAnmFullLoader_v15Fv
-.global __vt__19J2DAnmKeyLoader_v15
-__vt__19J2DAnmKeyLoader_v15:
+.endobj __vt__20J2DAnmFullLoader_v15
+.obj __vt__19J2DAnmKeyLoader_v15, global
 	.4byte 0
 	.4byte 0
 	.4byte load__19J2DAnmKeyLoader_v15FPCv
 	.4byte setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv
 	.4byte __dt__19J2DAnmKeyLoader_v15Fv
-.global __vt__12J2DAnmLoader
-__vt__12J2DAnmLoader:
+.endobj __vt__19J2DAnmKeyLoader_v15
+.obj __vt__12J2DAnmLoader, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12J2DAnmLoaderFv
-.global __vt__20J2DAnmVisibilityFull
-__vt__20J2DAnmVisibilityFull:
+.endobj __vt__12J2DAnmLoader
+.obj __vt__20J2DAnmVisibilityFull, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__20J2DAnmVisibilityFullFv
 	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
-.global __vt__14J2DAnmVtxColor
-__vt__14J2DAnmVtxColor:
+.endobj __vt__20J2DAnmVisibilityFull
+.obj __vt__14J2DAnmVtxColor, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14J2DAnmVtxColorFv
 	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
 	.4byte getColor__14J2DAnmVtxColorCFUcUsP8_GXColor
-.global __vt__15J2DAnmTransform
-__vt__15J2DAnmTransform:
+.endobj __vt__14J2DAnmVtxColor
+.obj __vt__15J2DAnmTransform, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__15J2DAnmTransformFv
 	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
 	.4byte getTransform__15J2DAnmTransformCFUsP16J3DTransformInfo
-.global __vt__10J2DAnmBase
-__vt__10J2DAnmBase:
+.endobj __vt__15J2DAnmTransform
+.obj __vt__10J2DAnmBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__10J2DAnmBaseFv
 	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
+.endobj __vt__10J2DAnmBase
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -56,8 +56,7 @@ __vt__10J2DAnmBase:
 .endobj lbl_805168C0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global load__20J2DAnmLoaderDataBaseFPCv
-load__20J2DAnmLoaderDataBaseFPCv:
+.fn load__20J2DAnmLoaderDataBaseFPCv, global
 /* 8004791C 0004485C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80047920 00044860  7C 08 02 A6 */	mflr r0
 /* 80047924 00044864  90 01 00 64 */	stw r0, 0x64(r1)
@@ -575,9 +574,9 @@ load__20J2DAnmLoaderDataBaseFPCv:
 /* 800480AC 00044FEC  7C 08 03 A6 */	mtlr r0
 /* 800480B0 00044FF0  38 21 00 60 */	addi r1, r1, 0x60
 /* 800480B4 00044FF4  4E 80 00 20 */	blr 
+.endfn load__20J2DAnmLoaderDataBaseFPCv
 
-.global __dt__14J2DAnmVtxColorFv
-__dt__14J2DAnmVtxColorFv:
+.fn __dt__14J2DAnmVtxColorFv, weak
 /* 800480B8 00044FF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800480BC 00044FFC  7C 08 02 A6 */	mflr r0
 /* 800480C0 00045000  90 01 00 14 */	stw r0, 0x14(r1)
@@ -603,9 +602,9 @@ __dt__14J2DAnmVtxColorFv:
 /* 80048108 00045048  7C 08 03 A6 */	mtlr r0
 /* 8004810C 0004504C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048110 00045050  4E 80 00 20 */	blr 
+.endfn __dt__14J2DAnmVtxColorFv
 
-.global __dt__11J2DAnmColorFv
-__dt__11J2DAnmColorFv:
+.fn __dt__11J2DAnmColorFv, weak
 /* 80048114 00045054  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048118 00045058  7C 08 02 A6 */	mflr r0
 /* 8004811C 0004505C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -638,9 +637,9 @@ __dt__11J2DAnmColorFv:
 /* 8004817C 000450BC  7C 08 03 A6 */	mtlr r0
 /* 80048180 000450C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048184 000450C4  4E 80 00 20 */	blr 
+.endfn __dt__11J2DAnmColorFv
 
-.global __dt__15J2DAnmTransformFv
-__dt__15J2DAnmTransformFv:
+.fn __dt__15J2DAnmTransformFv, weak
 /* 80048188 000450C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004818C 000450CC  7C 08 02 A6 */	mflr r0
 /* 80048190 000450D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -666,9 +665,9 @@ __dt__15J2DAnmTransformFv:
 /* 800481D8 00045118  7C 08 03 A6 */	mtlr r0
 /* 800481DC 0004511C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800481E0 00045120  4E 80 00 20 */	blr 
+.endfn __dt__15J2DAnmTransformFv
 
-.global __dt__10J2DAnmBaseFv
-__dt__10J2DAnmBaseFv:
+.fn __dt__10J2DAnmBaseFv, weak
 /* 800481E4 00045124  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800481E8 00045128  7C 08 02 A6 */	mflr r0
 /* 800481EC 0004512C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -688,9 +687,9 @@ __dt__10J2DAnmBaseFv:
 /* 80048220 00045160  7C 08 03 A6 */	mtlr r0
 /* 80048224 00045164  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048228 00045168  4E 80 00 20 */	blr 
+.endfn __dt__10J2DAnmBaseFv
 
-.global __ct__19J2DAnmKeyLoader_v15Fv
-__ct__19J2DAnmKeyLoader_v15Fv:
+.fn __ct__19J2DAnmKeyLoader_v15Fv, global
 /* 8004822C 0004516C  3C A0 80 4A */	lis r5, __vt__12J2DAnmLoader@ha
 /* 80048230 00045170  3C 80 80 4A */	lis r4, __vt__19J2DAnmKeyLoader_v15@ha
 /* 80048234 00045174  38 A5 0C 18 */	addi r5, r5, __vt__12J2DAnmLoader@l
@@ -698,9 +697,9 @@ __ct__19J2DAnmKeyLoader_v15Fv:
 /* 8004823C 0004517C  38 04 0C 04 */	addi r0, r4, __vt__19J2DAnmKeyLoader_v15@l
 /* 80048240 00045180  90 03 00 00 */	stw r0, 0(r3)
 /* 80048244 00045184  4E 80 00 20 */	blr 
+.endfn __ct__19J2DAnmKeyLoader_v15Fv
 
-.global __dt__12J2DAnmLoaderFv
-__dt__12J2DAnmLoaderFv:
+.fn __dt__12J2DAnmLoaderFv, weak
 /* 80048248 00045188  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004824C 0004518C  7C 08 02 A6 */	mflr r0
 /* 80048250 00045190  90 01 00 14 */	stw r0, 0x14(r1)
@@ -720,9 +719,9 @@ __dt__12J2DAnmLoaderFv:
 /* 80048284 000451C4  7C 08 03 A6 */	mtlr r0
 /* 80048288 000451C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004828C 000451CC  4E 80 00 20 */	blr 
+.endfn __dt__12J2DAnmLoaderFv
 
-.global __dt__19J2DAnmKeyLoader_v15Fv
-__dt__19J2DAnmKeyLoader_v15Fv:
+.fn __dt__19J2DAnmKeyLoader_v15Fv, global
 /* 80048290 000451D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048294 000451D4  7C 08 02 A6 */	mflr r0
 /* 80048298 000451D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -748,9 +747,9 @@ __dt__19J2DAnmKeyLoader_v15Fv:
 /* 800482E0 00045220  7C 08 03 A6 */	mtlr r0
 /* 800482E4 00045224  38 21 00 10 */	addi r1, r1, 0x10
 /* 800482E8 00045228  4E 80 00 20 */	blr 
+.endfn __dt__19J2DAnmKeyLoader_v15Fv
 
-.global load__19J2DAnmKeyLoader_v15FPCv
-load__19J2DAnmKeyLoader_v15FPCv:
+.fn load__19J2DAnmKeyLoader_v15FPCv, global
 /* 800482EC 0004522C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800482F0 00045230  7C 08 02 A6 */	mflr r0
 /* 800482F4 00045234  3C A0 54 52 */	lis r5, 0x54524B31@ha
@@ -825,9 +824,9 @@ load__19J2DAnmKeyLoader_v15FPCv:
 /* 800483E4 00045324  7C 08 03 A6 */	mtlr r0
 /* 800483E8 00045328  38 21 00 20 */	addi r1, r1, 0x20
 /* 800483EC 0004532C  4E 80 00 20 */	blr 
+.endfn load__19J2DAnmKeyLoader_v15FPCv
 
-.global setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv
-setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv:
+.fn setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv, global
 /* 800483F0 00045330  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800483F4 00045334  7C 08 02 A6 */	mflr r0
 /* 800483F8 00045338  3C C0 54 52 */	lis r6, 0x54524B31@ha
@@ -922,9 +921,9 @@ setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv:
 /* 80048538 00045478  7C 08 03 A6 */	mtlr r0
 /* 8004853C 0004547C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80048540 00045480  4E 80 00 20 */	blr 
+.endfn setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv
 
-.global readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData
-readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData:
+.fn readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData, global
 /* 80048544 00045484  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048548 00045488  7C 08 02 A6 */	mflr r0
 /* 8004854C 0004548C  7C 85 23 78 */	mr r5, r4
@@ -935,9 +934,9 @@ readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData:
 /* 80048560 000454A0  7C 08 03 A6 */	mtlr r0
 /* 80048564 000454A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048568 000454A8  4E 80 00 20 */	blr 
+.endfn readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData
 
-.global setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData
-setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData:
+.fn setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData, global
 /* 8004856C 000454AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048570 000454B0  7C 08 02 A6 */	mflr r0
 /* 80048574 000454B4  C0 02 85 60 */	lfs f0, lbl_805168C0@sda21(r2)
@@ -977,9 +976,9 @@ setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformK
 /* 800485FC 0004553C  7C 08 03 A6 */	mtlr r0
 /* 80048600 00045540  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048604 00045544  4E 80 00 20 */	blr 
+.endfn setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData
 
-.global readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData
-readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData:
+.fn readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData, global
 /* 80048608 00045548  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004860C 0004554C  7C 08 02 A6 */	mflr r0
 /* 80048610 00045550  7C 85 23 78 */	mr r5, r4
@@ -990,9 +989,9 @@ readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData:
 /* 80048624 00045564  7C 08 03 A6 */	mtlr r0
 /* 80048628 00045568  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004862C 0004556C  4E 80 00 20 */	blr 
+.endfn readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData
 
-.global setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData
-setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData:
+.fn setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData, global
 /* 80048630 00045570  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048634 00045574  7C 08 02 A6 */	mflr r0
 /* 80048638 00045578  A0 C5 00 0C */	lhz r6, 0xc(r5)
@@ -1121,9 +1120,9 @@ setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureS
 /* 80048810 00045750  7C 08 03 A6 */	mtlr r0
 /* 80048814 00045754  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048818 00045758  4E 80 00 20 */	blr 
+.endfn setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData
 
-.global readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData
-readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData:
+.fn readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData, global
 /* 8004881C 0004575C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048820 00045760  7C 08 02 A6 */	mflr r0
 /* 80048824 00045764  7C 85 23 78 */	mr r5, r4
@@ -1134,9 +1133,9 @@ readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData:
 /* 80048838 00045778  7C 08 03 A6 */	mtlr r0
 /* 8004883C 0004577C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048840 00045780  4E 80 00 20 */	blr 
+.endfn readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData
 
-.global setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData
-setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData:
+.fn setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData, global
 /* 80048844 00045784  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048848 00045788  7C 08 02 A6 */	mflr r0
 /* 8004884C 0004578C  C0 02 85 60 */	lfs f0, lbl_805168C0@sda21(r2)
@@ -1196,9 +1195,9 @@ setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData:
 /* 80048924 00045864  7C 08 03 A6 */	mtlr r0
 /* 80048928 00045868  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004892C 0004586C  4E 80 00 20 */	blr 
+.endfn setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData
 
-.global readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData
-readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData:
+.fn readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData, global
 /* 80048930 00045870  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048934 00045874  7C 08 02 A6 */	mflr r0
 /* 80048938 00045878  7C 85 23 78 */	mr r5, r4
@@ -1209,9 +1208,9 @@ readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData:
 /* 8004894C 0004588C  7C 08 03 A6 */	mtlr r0
 /* 80048950 00045890  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048954 00045894  4E 80 00 20 */	blr 
+.endfn readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData
 
-.global setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData
-setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData:
+.fn setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData, global
 /* 80048958 00045898  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004895C 0004589C  7C 08 02 A6 */	mflr r0
 /* 80048960 000458A0  C0 02 85 60 */	lfs f0, lbl_805168C0@sda21(r2)
@@ -1275,9 +1274,9 @@ setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyD
 /* 80048A48 00045988  7C 08 03 A6 */	mtlr r0
 /* 80048A4C 0004598C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048A50 00045990  4E 80 00 20 */	blr 
+.endfn setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData
 
-.global load__20J2DAnmFullLoader_v15FPCv
-load__20J2DAnmFullLoader_v15FPCv:
+.fn load__20J2DAnmFullLoader_v15FPCv, global
 /* 80048A54 00045994  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80048A58 00045998  7C 08 02 A6 */	mflr r0
 /* 80048A5C 0004599C  3C A0 54 50 */	lis r5, 0x54505431@ha
@@ -1352,9 +1351,9 @@ load__20J2DAnmFullLoader_v15FPCv:
 /* 80048B4C 00045A8C  7C 08 03 A6 */	mtlr r0
 /* 80048B50 00045A90  38 21 00 20 */	addi r1, r1, 0x20
 /* 80048B54 00045A94  4E 80 00 20 */	blr 
+.endfn load__20J2DAnmFullLoader_v15FPCv
 
-.global setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv
-setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv:
+.fn setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv, global
 /* 80048B58 00045A98  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80048B5C 00045A9C  7C 08 02 A6 */	mflr r0
 /* 80048B60 00045AA0  3C C0 54 50 */	lis r6, 0x54505431@ha
@@ -1449,9 +1448,9 @@ setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv:
 /* 80048CA0 00045BE0  7C 08 03 A6 */	mtlr r0
 /* 80048CA4 00045BE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80048CA8 00045BE8  4E 80 00 20 */	blr 
+.endfn setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv
 
-.global __ct__20J2DAnmFullLoader_v15Fv
-__ct__20J2DAnmFullLoader_v15Fv:
+.fn __ct__20J2DAnmFullLoader_v15Fv, global
 /* 80048CAC 00045BEC  3C A0 80 4A */	lis r5, __vt__12J2DAnmLoader@ha
 /* 80048CB0 00045BF0  3C 80 80 4A */	lis r4, __vt__20J2DAnmFullLoader_v15@ha
 /* 80048CB4 00045BF4  38 A5 0C 18 */	addi r5, r5, __vt__12J2DAnmLoader@l
@@ -1459,9 +1458,9 @@ __ct__20J2DAnmFullLoader_v15Fv:
 /* 80048CBC 00045BFC  38 04 0B F0 */	addi r0, r4, __vt__20J2DAnmFullLoader_v15@l
 /* 80048CC0 00045C00  90 03 00 00 */	stw r0, 0(r3)
 /* 80048CC4 00045C04  4E 80 00 20 */	blr 
+.endfn __ct__20J2DAnmFullLoader_v15Fv
 
-.global __dt__20J2DAnmFullLoader_v15Fv
-__dt__20J2DAnmFullLoader_v15Fv:
+.fn __dt__20J2DAnmFullLoader_v15Fv, global
 /* 80048CC8 00045C08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048CCC 00045C0C  7C 08 02 A6 */	mflr r0
 /* 80048CD0 00045C10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1487,9 +1486,9 @@ __dt__20J2DAnmFullLoader_v15Fv:
 /* 80048D18 00045C58  7C 08 03 A6 */	mtlr r0
 /* 80048D1C 00045C5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048D20 00045C60  4E 80 00 20 */	blr 
+.endfn __dt__20J2DAnmFullLoader_v15Fv
 
-.global readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData
-readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData:
+.fn readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData, global
 /* 80048D24 00045C64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048D28 00045C68  7C 08 02 A6 */	mflr r0
 /* 80048D2C 00045C6C  7C 85 23 78 */	mr r5, r4
@@ -1500,9 +1499,9 @@ readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData:
 /* 80048D40 00045C80  7C 08 03 A6 */	mtlr r0
 /* 80048D44 00045C84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048D48 00045C88  4E 80 00 20 */	blr 
+.endfn readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData
 
-.global setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData
-setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData:
+.fn setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData, global
 /* 80048D4C 00045C8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048D50 00045C90  7C 08 02 A6 */	mflr r0
 /* 80048D54 00045C94  C0 02 85 60 */	lfs f0, lbl_805168C0@sda21(r2)
@@ -1540,9 +1539,9 @@ setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransfor
 /* 80048DD4 00045D14  7C 08 03 A6 */	mtlr r0
 /* 80048DD8 00045D18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048DDC 00045D1C  4E 80 00 20 */	blr 
+.endfn setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData
 
-.global readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData
-readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData:
+.fn readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData, global
 /* 80048DE0 00045D20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048DE4 00045D24  7C 08 02 A6 */	mflr r0
 /* 80048DE8 00045D28  7C 85 23 78 */	mr r5, r4
@@ -1553,9 +1552,9 @@ readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData:
 /* 80048DFC 00045D3C  7C 08 03 A6 */	mtlr r0
 /* 80048E00 00045D40  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048E04 00045D44  4E 80 00 20 */	blr 
+.endfn readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData
 
-.global setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData
-setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData:
+.fn setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData, global
 /* 80048E08 00045D48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048E0C 00045D4C  7C 08 02 A6 */	mflr r0
 /* 80048E10 00045D50  C0 02 85 60 */	lfs f0, lbl_805168C0@sda21(r2)
@@ -1607,9 +1606,9 @@ setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData:
 /* 80048EC8 00045E08  7C 08 03 A6 */	mtlr r0
 /* 80048ECC 00045E0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048ED0 00045E10  4E 80 00 20 */	blr 
+.endfn setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData
 
-.global readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData
-readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData:
+.fn readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData, global
 /* 80048ED4 00045E14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048ED8 00045E18  7C 08 02 A6 */	mflr r0
 /* 80048EDC 00045E1C  7C 85 23 78 */	mr r5, r4
@@ -1620,9 +1619,9 @@ readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData:
 /* 80048EF0 00045E30  7C 08 03 A6 */	mtlr r0
 /* 80048EF4 00045E34  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048EF8 00045E38  4E 80 00 20 */	blr 
+.endfn readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData
 
-.global setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData
-setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData:
+.fn setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData, global
 /* 80048EFC 00045E3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048F00 00045E40  7C 08 02 A6 */	mflr r0
 /* 80048F04 00045E44  C0 02 85 60 */	lfs f0, lbl_805168C0@sda21(r2)
@@ -1664,9 +1663,9 @@ setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPattern
 /* 80048F94 00045ED4  7C 08 03 A6 */	mtlr r0
 /* 80048F98 00045ED8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048F9C 00045EDC  4E 80 00 20 */	blr 
+.endfn setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData
 
-.global readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData
-readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData:
+.fn readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData, global
 /* 80048FA0 00045EE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048FA4 00045EE4  7C 08 02 A6 */	mflr r0
 /* 80048FA8 00045EE8  7C 85 23 78 */	mr r5, r4
@@ -1677,9 +1676,9 @@ readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData:
 /* 80048FBC 00045EFC  7C 08 03 A6 */	mtlr r0
 /* 80048FC0 00045F00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048FC4 00045F04  4E 80 00 20 */	blr 
+.endfn readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData
 
-.global setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData
-setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData:
+.fn setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData, global
 /* 80048FC8 00045F08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048FCC 00045F0C  7C 08 02 A6 */	mflr r0
 /* 80048FD0 00045F10  C0 02 85 60 */	lfs f0, lbl_805168C0@sda21(r2)
@@ -1779,9 +1778,9 @@ setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData:
 /* 80049148 00046088  7C 08 03 A6 */	mtlr r0
 /* 8004914C 0004608C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80049150 00046090  4E 80 00 20 */	blr 
+.endfn setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData
 
-.global readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData
-readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData:
+.fn readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData, global
 /* 80049154 00046094  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049158 00046098  7C 08 02 A6 */	mflr r0
 /* 8004915C 0004609C  7C 85 23 78 */	mr r5, r4
@@ -1792,9 +1791,9 @@ readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData:
 /* 80049170 000460B0  7C 08 03 A6 */	mtlr r0
 /* 80049174 000460B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80049178 000460B8  4E 80 00 20 */	blr 
+.endfn readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData
 
-.global setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData
-setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData:
+.fn setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData, global
 /* 8004917C 000460BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049180 000460C0  7C 08 02 A6 */	mflr r0
 /* 80049184 000460C4  C0 02 85 60 */	lfs f0, lbl_805168C0@sda21(r2)
@@ -1826,9 +1825,9 @@ setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibi
 /* 800491EC 0004612C  7C 08 03 A6 */	mtlr r0
 /* 800491F0 00046130  38 21 00 10 */	addi r1, r1, 0x10
 /* 800491F4 00046134  4E 80 00 20 */	blr 
+.endfn setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData
 
-.global readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData
-readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData:
+.fn readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData, global
 /* 800491F8 00046138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800491FC 0004613C  7C 08 02 A6 */	mflr r0
 /* 80049200 00046140  7C 85 23 78 */	mr r5, r4
@@ -1839,9 +1838,9 @@ readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData:
 /* 80049214 00046154  7C 08 03 A6 */	mtlr r0
 /* 80049218 00046158  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004921C 0004615C  4E 80 00 20 */	blr 
+.endfn readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData
 
-.global setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData
-setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData:
+.fn setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData, global
 /* 80049220 00046160  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049224 00046164  7C 08 02 A6 */	mflr r0
 /* 80049228 00046168  C0 02 85 60 */	lfs f0, lbl_805168C0@sda21(r2)
@@ -1905,9 +1904,9 @@ setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFu
 /* 80049310 00046250  7C 08 03 A6 */	mtlr r0
 /* 80049314 00046254  38 21 00 10 */	addi r1, r1, 0x10
 /* 80049318 00046258  4E 80 00 20 */	blr 
+.endfn setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData
 
-.global __dt__20J2DAnmVisibilityFullFv
-__dt__20J2DAnmVisibilityFullFv:
+.fn __dt__20J2DAnmVisibilityFullFv, weak
 /* 8004931C 0004625C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049320 00046260  7C 08 02 A6 */	mflr r0
 /* 80049324 00046264  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1933,13 +1932,13 @@ __dt__20J2DAnmVisibilityFullFv:
 /* 8004936C 000462AC  7C 08 03 A6 */	mtlr r0
 /* 80049370 000462B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80049374 000462B4  4E 80 00 20 */	blr 
+.endfn __dt__20J2DAnmVisibilityFullFv
 
-.global searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
-searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
+.fn searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen, weak
 /* 80049378 000462B8  4E 80 00 20 */	blr 
+.endfn searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
 
-.global "JSUConvertOffsetToPtr<25J3DAnmVisibilityFullTable>__FPCvPCv"
-"JSUConvertOffsetToPtr<25J3DAnmVisibilityFullTable>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<25J3DAnmVisibilityFullTable>__FPCvPCv", weak
 /* 8004937C 000462BC  28 04 00 00 */	cmplwi r4, 0
 /* 80049380 000462C0  40 82 00 0C */	bne .L_8004938C
 /* 80049384 000462C4  38 60 00 00 */	li r3, 0
@@ -1947,9 +1946,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_8004938C:
 /* 8004938C 000462CC  7C 63 22 14 */	add r3, r3, r4
 /* 80049390 000462D0  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<25J3DAnmVisibilityFullTable>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<18J3DAnmKRegKeyTable>__FPCvPCv"
-"JSUConvertOffsetToPtr<18J3DAnmKRegKeyTable>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<18J3DAnmKRegKeyTable>__FPCvPCv", weak
 /* 80049394 000462D4  28 04 00 00 */	cmplwi r4, 0
 /* 80049398 000462D8  40 82 00 0C */	bne .L_800493A4
 /* 8004939C 000462DC  38 60 00 00 */	li r3, 0
@@ -1957,9 +1956,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_800493A4:
 /* 800493A4 000462E4  7C 63 22 14 */	add r3, r3, r4
 /* 800493A8 000462E8  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<18J3DAnmKRegKeyTable>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<18J3DAnmCRegKeyTable>__FPCvPCv"
-"JSUConvertOffsetToPtr<18J3DAnmCRegKeyTable>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<18J3DAnmCRegKeyTable>__FPCvPCv", weak
 /* 800493AC 000462EC  28 04 00 00 */	cmplwi r4, 0
 /* 800493B0 000462F0  40 82 00 0C */	bne .L_800493BC
 /* 800493B4 000462F4  38 60 00 00 */	li r3, 0
@@ -1967,9 +1966,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_800493BC:
 /* 800493BC 000462FC  7C 63 22 14 */	add r3, r3, r4
 /* 800493C0 00046300  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<18J3DAnmCRegKeyTable>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<25J3DAnmTexPatternFullTable>__FPCvPCv"
-"JSUConvertOffsetToPtr<25J3DAnmTexPatternFullTable>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<25J3DAnmTexPatternFullTable>__FPCvPCv", weak
 /* 800493C4 00046304  28 04 00 00 */	cmplwi r4, 0
 /* 800493C8 00046308  40 82 00 0C */	bne .L_800493D4
 /* 800493CC 0004630C  38 60 00 00 */	li r3, 0
@@ -1977,9 +1976,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_800493D4:
 /* 800493D4 00046314  7C 63 22 14 */	add r3, r3, r4
 /* 800493D8 00046318  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<25J3DAnmTexPatternFullTable>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<20J3DAnmColorFullTable>__FPCvPCv"
-"JSUConvertOffsetToPtr<20J3DAnmColorFullTable>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<20J3DAnmColorFullTable>__FPCvPCv", weak
 /* 800493DC 0004631C  28 04 00 00 */	cmplwi r4, 0
 /* 800493E0 00046320  40 82 00 0C */	bne .L_800493EC
 /* 800493E4 00046324  38 60 00 00 */	li r3, 0
@@ -1987,9 +1986,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_800493EC:
 /* 800493EC 0004632C  7C 63 22 14 */	add r3, r3, r4
 /* 800493F0 00046330  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<20J3DAnmColorFullTable>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<24J3DAnmTransformFullTable>__FPCvPCv"
-"JSUConvertOffsetToPtr<24J3DAnmTransformFullTable>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<24J3DAnmTransformFullTable>__FPCvPCv", weak
 /* 800493F4 00046334  28 04 00 00 */	cmplwi r4, 0
 /* 800493F8 00046338  40 82 00 0C */	bne .L_80049404
 /* 800493FC 0004633C  38 60 00 00 */	li r3, 0
@@ -1997,9 +1996,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_80049404:
 /* 80049404 00046344  7C 63 22 14 */	add r3, r3, r4
 /* 80049408 00046348  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<24J3DAnmTransformFullTable>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<23J3DAnmVtxColorIndexData>__FPCvPCv"
-"JSUConvertOffsetToPtr<23J3DAnmVtxColorIndexData>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<23J3DAnmVtxColorIndexData>__FPCvPCv", weak
 /* 8004940C 0004634C  28 04 00 00 */	cmplwi r4, 0
 /* 80049410 00046350  40 82 00 0C */	bne .L_8004941C
 /* 80049414 00046354  38 60 00 00 */	li r3, 0
@@ -2007,9 +2006,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_8004941C:
 /* 8004941C 0004635C  7C 63 22 14 */	add r3, r3, r4
 /* 80049420 00046360  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<23J3DAnmVtxColorIndexData>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<19J3DAnmColorKeyTable>__FPCvPCv"
-"JSUConvertOffsetToPtr<19J3DAnmColorKeyTable>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<19J3DAnmColorKeyTable>__FPCvPCv", weak
 /* 80049424 00046364  28 04 00 00 */	cmplwi r4, 0
 /* 80049428 00046368  40 82 00 0C */	bne .L_80049434
 /* 8004942C 0004636C  38 60 00 00 */	li r3, 0
@@ -2017,9 +2016,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_80049434:
 /* 80049434 00046374  7C 63 22 14 */	add r3, r3, r4
 /* 80049438 00046378  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<19J3DAnmColorKeyTable>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<3Vec>__FPCvPCv"
-"JSUConvertOffsetToPtr<3Vec>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<3Vec>__FPCvPCv", weak
 /* 8004943C 0004637C  28 04 00 00 */	cmplwi r4, 0
 /* 80049440 00046380  40 82 00 0C */	bne .L_8004944C
 /* 80049444 00046384  38 60 00 00 */	li r3, 0
@@ -2027,9 +2026,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_8004944C:
 /* 8004944C 0004638C  7C 63 22 14 */	add r3, r3, r4
 /* 80049450 00046390  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<3Vec>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
-"JSUConvertOffsetToPtr<Uc>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<Uc>__FPCvPCv", weak
 /* 80049454 00046394  28 04 00 00 */	cmplwi r4, 0
 /* 80049458 00046398  40 82 00 0C */	bne .L_80049464
 /* 8004945C 0004639C  38 60 00 00 */	li r3, 0
@@ -2037,9 +2036,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_80049464:
 /* 80049464 000463A4  7C 63 22 14 */	add r3, r3, r4
 /* 80049468 000463A8  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv"
-"JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv", weak
 /* 8004946C 000463AC  28 04 00 00 */	cmplwi r4, 0
 /* 80049470 000463B0  40 82 00 0C */	bne .L_8004947C
 /* 80049474 000463B4  38 60 00 00 */	li r3, 0
@@ -2047,9 +2046,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_8004947C:
 /* 8004947C 000463BC  7C 63 22 14 */	add r3, r3, r4
 /* 80049480 000463C0  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<Us>__FPCvPCv"
-"JSUConvertOffsetToPtr<Us>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<Us>__FPCvPCv", weak
 /* 80049484 000463C4  28 04 00 00 */	cmplwi r4, 0
 /* 80049488 000463C8  40 82 00 0C */	bne .L_80049494
 /* 8004948C 000463CC  38 60 00 00 */	li r3, 0
@@ -2057,9 +2056,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_80049494:
 /* 80049494 000463D4  7C 63 22 14 */	add r3, r3, r4
 /* 80049498 000463D8  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Us>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<s>__FPCvPCv"
-"JSUConvertOffsetToPtr<s>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<s>__FPCvPCv", weak
 /* 8004949C 000463DC  28 04 00 00 */	cmplwi r4, 0
 /* 800494A0 000463E0  40 82 00 0C */	bne .L_800494AC
 /* 800494A4 000463E4  38 60 00 00 */	li r3, 0
@@ -2067,9 +2066,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_800494AC:
 /* 800494AC 000463EC  7C 63 22 14 */	add r3, r3, r4
 /* 800494B0 000463F0  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<s>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<f>__FPCvPCv"
-"JSUConvertOffsetToPtr<f>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<f>__FPCvPCv", weak
 /* 800494B4 000463F4  28 04 00 00 */	cmplwi r4, 0
 /* 800494B8 000463F8  40 82 00 0C */	bne .L_800494C4
 /* 800494BC 000463FC  38 60 00 00 */	li r3, 0
@@ -2077,9 +2076,9 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_800494C4:
 /* 800494C4 00046404  7C 63 22 14 */	add r3, r3, r4
 /* 800494C8 00046408  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<f>__FPCvPCv"
 
-.global "JSUConvertOffsetToPtr<23J3DAnmTransformKeyTable>__FPCvPCv"
-"JSUConvertOffsetToPtr<23J3DAnmTransformKeyTable>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<23J3DAnmTransformKeyTable>__FPCvPCv", weak
 /* 800494CC 0004640C  28 04 00 00 */	cmplwi r4, 0
 /* 800494D0 00046410  40 82 00 0C */	bne .L_800494DC
 /* 800494D4 00046414  38 60 00 00 */	li r3, 0
@@ -2087,3 +2086,4 @@ searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen:
 .L_800494DC:
 /* 800494DC 0004641C  7C 63 22 14 */	add r3, r3, r4
 /* 800494E0 00046420  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<23J3DAnmTransformKeyTable>__FPCvPCv"

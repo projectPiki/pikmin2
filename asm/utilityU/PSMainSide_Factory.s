@@ -5,28 +5,35 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049CE68:
+.obj lbl_8049CE68, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8049CE68
 .balign 4
-lbl_8049CE74:
+.obj lbl_8049CE74, local
 	.asciz "PSMainSide_Factory.cpp"
+.endobj lbl_8049CE74
 .balign 4
-lbl_8049CE8C:
+.obj lbl_8049CE8C, local
 	.asciz "P2Assert"
+.endobj lbl_8049CE8C
 .balign 4
-lbl_8049CE98:
+.obj lbl_8049CE98, local
 	.asciz "PSGame.h"
+.endobj lbl_8049CE98
 .balign 4
-lbl_8049CEA4:
+.obj lbl_8049CEA4, local
 	.asciz "PSScene.h"
+.endobj lbl_8049CEA4
 .balign 4
-lbl_8049CEB0:
+.obj lbl_8049CEB0, local
 	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8049CEB0
 .balign 4
-lbl_8049CED4:
+.obj lbl_8049CED4, local
 	.asciz "PSMainSide_Scene.h"
+.endobj lbl_8049CED4
 .balign 4
 lbl_8049CEE8:
 	.asciz "kuro_post.bms"
@@ -78,7 +85,7 @@ lbl_8049CF90: # Shift-JIS "乱数位置Avoid"
 	.4byte 0x97909094
 	.4byte 0x88CA9275
 	.4byte 0x41766F69
-	.4byte 0x64000000
+	.2byte 0x6400
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

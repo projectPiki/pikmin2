@@ -5,69 +5,53 @@ lbl_constructor:
 	
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049D908
-lbl_8049D908:
+.obj lbl_8049D908, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_8049D914
-lbl_8049D914:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F53
-	.4byte 0x63656E65
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_8049D92C
-lbl_8049D92C:
+.endobj lbl_8049D908
+.balign 4
+.obj lbl_8049D914, local
+	.asciz "PSMainSide_Scene.cpp"
+.endobj lbl_8049D914
+.balign 4
+.obj lbl_8049D92C, local
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049D938
-lbl_8049D938:
-	.4byte 0x5053436F
-	.4byte 0x6D6D6F6E
-	.4byte 0x2E680000
-.global lbl_8049D944
-lbl_8049D944:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-.global lbl_8049D95C
-lbl_8049D95C:
-	.4byte 0x50535379
-	.4byte 0x7374656D
-	.4byte 0x49462E68
-	.4byte 0x00000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-.global lbl_8049D990
-lbl_8049D990:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F53
-	.4byte 0x63656E65
-	.4byte 0x2E680000
-	.4byte 0x00000000
+.endobj lbl_8049D92C
+.balign 4
+.obj lbl_8049D938, local
+	.asciz "PSCommon.h"
+.endobj lbl_8049D938
+.balign 4
+.obj lbl_8049D944, local
+	.asciz "PSGame.h"
+.endobj lbl_8049D944
+.balign 4
+.obj lbl_8049D950, local
+	.asciz "PSScene.h"
+.endobj lbl_8049D950
+.balign 4
+.obj lbl_8049D95C, local
+	.asciz "PSSystemIF.h"
+.endobj lbl_8049D95C
+.balign 4
+.obj lbl_8049D96C, local
+	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8049D96C
+.balign 4
+.obj lbl_8049D990, local
+	.asciz "PSMainSide_Scene.h"
+.endobj lbl_8049D990
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EF268
-lbl_804EF268:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q23PSM15Scene_NoObjects
-__vt__Q23PSM15Scene_NoObjects:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.balign 4
+.obj __vt__Q23PSM15Scene_NoObjects, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q28PSSystem5SceneFv
@@ -89,8 +73,8 @@ __vt__Q23PSM15Scene_NoObjects:
 	.4byte pauseOff_2D__Q23PSM9SceneBaseFv
 	.4byte pauseOn_Demo__Q23PSM9SceneBaseFv
 	.4byte pauseOff_Demo__Q23PSM9SceneBaseFv
-.global __vt__Q23PSM14Scene_WorldMap
-__vt__Q23PSM14Scene_WorldMap:
+.endobj __vt__Q23PSM15Scene_NoObjects
+.obj __vt__Q23PSM14Scene_WorldMap, weak
 	.4byte 0
 	.4byte 0
 	.4byte init__Q28PSSystem5SceneFv
@@ -112,8 +96,8 @@ __vt__Q23PSM14Scene_WorldMap:
 	.4byte pauseOff_2D__Q23PSM9SceneBaseFv
 	.4byte pauseOn_Demo__Q23PSM9SceneBaseFv
 	.4byte pauseOff_Demo__Q23PSM9SceneBaseFv
-.global __vt__Q23PSM11Scene_Zukan
-__vt__Q23PSM11Scene_Zukan:
+.endobj __vt__Q23PSM14Scene_WorldMap
+.obj __vt__Q23PSM11Scene_Zukan, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q28PSSystem5SceneFv
@@ -136,8 +120,8 @@ __vt__Q23PSM11Scene_Zukan:
 	.4byte pauseOn_Demo__Q23PSM9SceneBaseFv
 	.4byte pauseOff_Demo__Q23PSM9SceneBaseFv
 	.4byte onStartMainSeq__Q23PSM13Scene_ObjectsFv
-.global __vt__Q23PSM15Scene_Challenge
-__vt__Q23PSM15Scene_Challenge:
+.endobj __vt__Q23PSM11Scene_Zukan
+.obj __vt__Q23PSM15Scene_Challenge, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q23PSM15Scene_ChallengeFv
@@ -167,8 +151,8 @@ __vt__Q23PSM15Scene_Challenge:
 	.4byte akubiOK__Q23PSM15Scene_ChallengeFv
 	.4byte isPollutUp__Q23PSM10Scene_CaveFv
 	.4byte getPollutUpTimer__Q23PSM10Scene_CaveCFv
-.global __vt__Q23PSM10Scene_Cave
-__vt__Q23PSM10Scene_Cave:
+.endobj __vt__Q23PSM15Scene_Challenge
+.obj __vt__Q23PSM10Scene_Cave, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q23PSM10Scene_CaveFv
@@ -198,8 +182,8 @@ __vt__Q23PSM10Scene_Cave:
 	.4byte akubiOK__Q23PSM10Scene_CaveFv
 	.4byte isPollutUp__Q23PSM10Scene_CaveFv
 	.4byte getPollutUpTimer__Q23PSM10Scene_CaveCFv
-.global __vt__Q23PSM12Scene_Ground
-__vt__Q23PSM12Scene_Ground:
+.endobj __vt__Q23PSM10Scene_Cave
+.obj __vt__Q23PSM12Scene_Ground, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q23PSM10Scene_GameFv
@@ -229,18 +213,18 @@ __vt__Q23PSM12Scene_Ground:
 	.4byte akubiOK__Q23PSM10Scene_GameFv
 	.4byte isPollutUp__Q23PSM12Scene_GroundFv
 	.4byte getPollutUpTimer__Q23PSM12Scene_GroundCFv
-.global "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"
-"__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>":
+.endobj __vt__Q23PSM12Scene_Ground
+.obj "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>Fv"
-.global __vt__Q33PSM12BossBgmFader3Mgr
-__vt__Q33PSM12BossBgmFader3Mgr:
+.endobj "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"
+.obj __vt__Q33PSM12BossBgmFader3Mgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q33PSM12BossBgmFader3MgrFv
-.global __vt__Q23PSM10Scene_Game
-__vt__Q23PSM10Scene_Game:
+.endobj __vt__Q33PSM12BossBgmFader3Mgr
+.obj __vt__Q23PSM10Scene_Game, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q23PSM10Scene_GameFv
@@ -270,13 +254,13 @@ __vt__Q23PSM10Scene_Game:
 	.4byte akubiOK__Q23PSM10Scene_GameFv
 	.4byte isPollutUp__Q23PSM10Scene_GameFv
 	.4byte getPollutUpTimer__Q23PSM10Scene_GameCFv
-.global "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"
-"__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>":
+.endobj __vt__Q23PSM10Scene_Game
+.obj "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>Fv"
-.global __vt__Q23PSM11ObjCalcBase
-__vt__Q23PSM11ObjCalcBase:
+.endobj "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"
+.obj __vt__Q23PSM11ObjCalcBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM11ObjCalcBaseFv
@@ -284,8 +268,8 @@ __vt__Q23PSM11ObjCalcBase:
 	.4byte 0
 	.4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
 	.4byte is1PGame__Q23PSM11ObjCalcBaseFv
-.global __vt__Q23PSM13Scene_Objects
-__vt__Q23PSM13Scene_Objects:
+.endobj __vt__Q23PSM11ObjCalcBase
+.obj __vt__Q23PSM13Scene_Objects, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q28PSSystem5SceneFv
@@ -308,8 +292,8 @@ __vt__Q23PSM13Scene_Objects:
 	.4byte pauseOn_Demo__Q23PSM9SceneBaseFv
 	.4byte pauseOff_Demo__Q23PSM9SceneBaseFv
 	.4byte onStartMainSeq__Q23PSM13Scene_ObjectsFv
-.global __vt__Q23PSM10Scene_Demo
-__vt__Q23PSM10Scene_Demo:
+.endobj __vt__Q23PSM13Scene_Objects
+.obj __vt__Q23PSM10Scene_Demo, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q28PSSystem5SceneFv
@@ -331,8 +315,8 @@ __vt__Q23PSM10Scene_Demo:
 	.4byte pauseOff_2D__Q23PSM9SceneBaseFv
 	.4byte pauseOn_Demo__Q23PSM9SceneBaseFv
 	.4byte pauseOff_Demo__Q23PSM9SceneBaseFv
-.global __vt__Q23PSM12Scene_Global
-__vt__Q23PSM12Scene_Global:
+.endobj __vt__Q23PSM10Scene_Demo
+.obj __vt__Q23PSM12Scene_Global, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q28PSSystem5SceneFv
@@ -354,8 +338,8 @@ __vt__Q23PSM12Scene_Global:
 	.4byte pauseOff_2D__Q23PSM9SceneBaseFv
 	.4byte pauseOn_Demo__Q23PSM9SceneBaseFv
 	.4byte pauseOff_Demo__Q23PSM9SceneBaseFv
-.global __vt__Q23PSM9SceneBase
-__vt__Q23PSM9SceneBase:
+.endobj __vt__Q23PSM12Scene_Global
+.obj __vt__Q23PSM9SceneBase, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q28PSSystem5SceneFv
@@ -377,44 +361,44 @@ __vt__Q23PSM9SceneBase:
 	.4byte pauseOff_2D__Q23PSM9SceneBaseFv
 	.4byte pauseOn_Demo__Q23PSM9SceneBaseFv
 	.4byte pauseOff_Demo__Q23PSM9SceneBaseFv
+.endobj __vt__Q23PSM9SceneBase
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516318
-lbl_80516318:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_8051631C
-lbl_8051631C:
+.endobj gu32NAN___Q24Game5P2JST
+.balign 4
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520C98
-lbl_80520C98:
-	.4byte 0x3DA3D70A
-.global lbl_80520C9C
-lbl_80520C9C:
-	.4byte 0x00000000
-.global lbl_80520CA0
-lbl_80520CA0:
+.obj lbl_80520C98, local
+	.float 0.08
+.endobj lbl_80520C98
+.obj lbl_80520C9C, local
+	.float 0.0
+.endobj lbl_80520C9C
+.obj lbl_80520CA0, local
 	.float 1.0
-.global lbl_80520CA4
-lbl_80520CA4:
+.endobj lbl_80520CA0
+.obj lbl_80520CA4, local
 	.float 0.3
-.global cEvenning_fadeOuTime__Q23PSM12Scene_Ground
-cEvenning_fadeOuTime__Q23PSM12Scene_Ground:
+.endobj lbl_80520CA4
+.obj cEvenning_fadeOuTime__Q23PSM12Scene_Ground, global
 	.4byte 0x00000096
-.global cEvenning_fadeInTime__Q23PSM12Scene_Ground
-cEvenning_fadeInTime__Q23PSM12Scene_Ground:
+.endobj cEvenning_fadeOuTime__Q23PSM12Scene_Ground
+.obj cEvenning_fadeInTime__Q23PSM12Scene_Ground, global
 	.4byte 0x00000096
-.global lbl_80520CB0
-lbl_80520CB0:
-	.4byte 0x3F4CCCCD
-	.4byte 0x00000000
+.endobj cEvenning_fadeInTime__Q23PSM12Scene_Ground
+.obj lbl_80520CB0, local
+	.float 0.8
+.endobj lbl_80520CB0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q23PSM9SceneBaseFUcPQ26PSGame9SceneInfo
-__ct__Q23PSM9SceneBaseFUcPQ26PSGame9SceneInfo:
+.fn __ct__Q23PSM9SceneBaseFUcPQ26PSGame9SceneInfo, global
 /* 80467630 00464570  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467634 00464574  7C 08 02 A6 */	mflr r0
 /* 80467638 00464578  90 01 00 14 */	stw r0, 0x14(r1)
@@ -449,14 +433,14 @@ __ct__Q23PSM9SceneBaseFUcPQ26PSGame9SceneInfo:
 /* 804676A8 004645E8  7C 08 03 A6 */	mtlr r0
 /* 804676AC 004645EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804676B0 004645F0  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM9SceneBaseFUcPQ26PSGame9SceneInfo
 
-.global getSceneFx__Q23PSM9SceneBaseFv
-getSceneFx__Q23PSM9SceneBaseFv:
+.fn getSceneFx__Q23PSM9SceneBaseFv, global
 /* 804676B4 004645F4  C0 22 29 38 */	lfs f1, lbl_80520C98@sda21(r2)
 /* 804676B8 004645F8  4E 80 00 20 */	blr 
+.endfn getSceneFx__Q23PSM9SceneBaseFv
 
-.global becomeSceneCamera__Q23PSM9SceneBaseFv
-becomeSceneCamera__Q23PSM9SceneBaseFv:
+.fn becomeSceneCamera__Q23PSM9SceneBaseFv, global
 /* 804676BC 004645FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804676C0 00464600  7C 08 02 A6 */	mflr r0
 /* 804676C4 00464604  90 01 00 14 */	stw r0, 0x14(r1)
@@ -480,9 +464,9 @@ becomeSceneCamera__Q23PSM9SceneBaseFv:
 /* 80467708 00464648  7C 08 03 A6 */	mtlr r0
 /* 8046770C 0046464C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467710 00464650  4E 80 00 20 */	blr 
+.endfn becomeSceneCamera__Q23PSM9SceneBaseFv
 
-.global getSceneInfoA__Q23PSM9SceneBaseFv
-getSceneInfoA__Q23PSM9SceneBaseFv:
+.fn getSceneInfoA__Q23PSM9SceneBaseFv, global
 /* 80467714 00464654  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467718 00464658  7C 08 02 A6 */	mflr r0
 /* 8046771C 0046465C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -505,9 +489,9 @@ getSceneInfoA__Q23PSM9SceneBaseFv:
 /* 8046775C 0046469C  7C 08 03 A6 */	mtlr r0
 /* 80467760 004646A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467764 004646A4  4E 80 00 20 */	blr 
+.endfn getSceneInfoA__Q23PSM9SceneBaseFv
 
-.global pauseOn_2D__Q23PSM9SceneBaseFUcUc
-pauseOn_2D__Q23PSM9SceneBaseFUcUc:
+.fn pauseOn_2D__Q23PSM9SceneBaseFUcUc, global
 /* 80467768 004646A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046776C 004646AC  7C 08 02 A6 */	mflr r0
 /* 80467770 004646B0  38 63 00 10 */	addi r3, r3, 0x10
@@ -518,9 +502,9 @@ pauseOn_2D__Q23PSM9SceneBaseFUcUc:
 /* 80467784 004646C4  7C 08 03 A6 */	mtlr r0
 /* 80467788 004646C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046778C 004646CC  4E 80 00 20 */	blr 
+.endfn pauseOn_2D__Q23PSM9SceneBaseFUcUc
 
-.global pauseOff_2D__Q23PSM9SceneBaseFv
-pauseOff_2D__Q23PSM9SceneBaseFv:
+.fn pauseOff_2D__Q23PSM9SceneBaseFv, global
 /* 80467790 004646D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467794 004646D4  7C 08 02 A6 */	mflr r0
 /* 80467798 004646D8  38 63 00 10 */	addi r3, r3, 0x10
@@ -530,17 +514,17 @@ pauseOff_2D__Q23PSM9SceneBaseFv:
 /* 804677A8 004646E8  7C 08 03 A6 */	mtlr r0
 /* 804677AC 004646EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804677B0 004646F0  4E 80 00 20 */	blr 
+.endfn pauseOff_2D__Q23PSM9SceneBaseFv
 
-.global pauseOn_Demo__Q23PSM9SceneBaseFv
-pauseOn_Demo__Q23PSM9SceneBaseFv:
+.fn pauseOn_Demo__Q23PSM9SceneBaseFv, global
 /* 804677B4 004646F4  4E 80 00 20 */	blr 
+.endfn pauseOn_Demo__Q23PSM9SceneBaseFv
 
-.global pauseOff_Demo__Q23PSM9SceneBaseFv
-pauseOff_Demo__Q23PSM9SceneBaseFv:
+.fn pauseOff_Demo__Q23PSM9SceneBaseFv, global
 /* 804677B8 004646F8  4E 80 00 20 */	blr 
+.endfn pauseOff_Demo__Q23PSM9SceneBaseFv
 
-.global __ct__Q23PSM12Scene_GlobalFUcPQ26PSGame9SceneInfo
-__ct__Q23PSM12Scene_GlobalFUcPQ26PSGame9SceneInfo:
+.fn __ct__Q23PSM12Scene_GlobalFUcPQ26PSGame9SceneInfo, global
 /* 804677BC 004646FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804677C0 00464700  7C 08 02 A6 */	mflr r0
 /* 804677C4 00464704  90 01 00 14 */	stw r0, 0x14(r1)
@@ -578,9 +562,9 @@ __ct__Q23PSM12Scene_GlobalFUcPQ26PSGame9SceneInfo:
 /* 80467840 00464780  7C 08 03 A6 */	mtlr r0
 /* 80467844 00464784  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467848 00464788  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM12Scene_GlobalFUcPQ26PSGame9SceneInfo
 
-.global __dt__Q23PSM12Scene_GlobalFv
-__dt__Q23PSM12Scene_GlobalFv:
+.fn __dt__Q23PSM12Scene_GlobalFv, global
 /* 8046784C 0046478C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467850 00464790  7C 08 02 A6 */	mflr r0
 /* 80467854 00464794  90 01 00 14 */	stw r0, 0x14(r1)
@@ -635,14 +619,14 @@ __dt__Q23PSM12Scene_GlobalFv:
 /* 80467908 00464848  7C 08 03 A6 */	mtlr r0
 /* 8046790C 0046484C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467910 00464850  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM12Scene_GlobalFv
 
-.global getCamDistVol__Q23PSM12Scene_GlobalFUc
-getCamDistVol__Q23PSM12Scene_GlobalFUc:
+.fn getCamDistVol__Q23PSM12Scene_GlobalFUc, global
 /* 80467914 00464854  C0 22 29 3C */	lfs f1, lbl_80520C9C@sda21(r2)
 /* 80467918 00464858  4E 80 00 20 */	blr 
+.endfn getCamDistVol__Q23PSM12Scene_GlobalFUc
 
-.global getGlobalStream__Q23PSM12Scene_GlobalFv
-getGlobalStream__Q23PSM12Scene_GlobalFv:
+.fn getGlobalStream__Q23PSM12Scene_GlobalFv, global
 /* 8046791C 0046485C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467920 00464860  7C 08 02 A6 */	mflr r0
 /* 80467924 00464864  38 80 00 01 */	li r4, 1
@@ -682,9 +666,9 @@ getGlobalStream__Q23PSM12Scene_GlobalFv:
 /* 804679A4 004648E4  7C 08 03 A6 */	mtlr r0
 /* 804679A8 004648E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 804679AC 004648EC  4E 80 00 20 */	blr 
+.endfn getGlobalStream__Q23PSM12Scene_GlobalFv
 
-.global startGlobalStream__Q23PSM12Scene_GlobalFUl
-startGlobalStream__Q23PSM12Scene_GlobalFUl:
+.fn startGlobalStream__Q23PSM12Scene_GlobalFUl, global
 /* 804679B0 004648F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804679B4 004648F4  7C 08 02 A6 */	mflr r0
 /* 804679B8 004648F8  38 63 00 10 */	addi r3, r3, 0x10
@@ -734,9 +718,9 @@ startGlobalStream__Q23PSM12Scene_GlobalFUl:
 /* 80467A60 004649A0  7C 08 03 A6 */	mtlr r0
 /* 80467A64 004649A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467A68 004649A8  4E 80 00 20 */	blr 
+.endfn startGlobalStream__Q23PSM12Scene_GlobalFUl
 
-.global __ct__Q23PSM10Scene_DemoFUcPQ26PSGame9SceneInfo
-__ct__Q23PSM10Scene_DemoFUcPQ26PSGame9SceneInfo:
+.fn __ct__Q23PSM10Scene_DemoFUcPQ26PSGame9SceneInfo, global
 /* 80467A6C 004649AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467A70 004649B0  7C 08 02 A6 */	mflr r0
 /* 80467A74 004649B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -776,9 +760,9 @@ __ct__Q23PSM10Scene_DemoFUcPQ26PSGame9SceneInfo:
 /* 80467AF8 00464A38  7C 08 03 A6 */	mtlr r0
 /* 80467AFC 00464A3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467B00 00464A40  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM10Scene_DemoFUcPQ26PSGame9SceneInfo
 
-.global getSeSceneGate__Q23PSM10Scene_DemoFPQ23PSM7ObjBaseUl
-getSeSceneGate__Q23PSM10Scene_DemoFPQ23PSM7ObjBaseUl:
+.fn getSeSceneGate__Q23PSM10Scene_DemoFPQ23PSM7ObjBaseUl, global
 /* 80467B04 00464A44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467B08 00464A48  7C 08 02 A6 */	mflr r0
 /* 80467B0C 00464A4C  28 04 00 00 */	cmplwi r4, 0
@@ -816,14 +800,14 @@ getSeSceneGate__Q23PSM10Scene_DemoFPQ23PSM7ObjBaseUl:
 /* 80467B7C 00464ABC  7C 08 03 A6 */	mtlr r0
 /* 80467B80 00464AC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467B84 00464AC4  4E 80 00 20 */	blr 
+.endfn getSeSceneGate__Q23PSM10Scene_DemoFPQ23PSM7ObjBaseUl
 
-.global getCamDistVol__Q23PSM10Scene_DemoFUc
-getCamDistVol__Q23PSM10Scene_DemoFUc:
+.fn getCamDistVol__Q23PSM10Scene_DemoFUc, global
 /* 80467B88 00464AC8  C0 22 FD A4 */	lfs f1, sDefaultVol__Q26PSGame9CameraMgr@sda21(r2)
 /* 80467B8C 00464ACC  4E 80 00 20 */	blr 
+.endfn getCamDistVol__Q23PSM10Scene_DemoFUc
 
-.global __ct__Q23PSM13Scene_ObjectsFUcPQ26PSGame9SceneInfo
-__ct__Q23PSM13Scene_ObjectsFUcPQ26PSGame9SceneInfo:
+.fn __ct__Q23PSM13Scene_ObjectsFUcPQ26PSGame9SceneInfo, global
 /* 80467B90 00464AD0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80467B94 00464AD4  7C 08 02 A6 */	mflr r0
 /* 80467B98 00464AD8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -898,9 +882,9 @@ __ct__Q23PSM13Scene_ObjectsFUcPQ26PSGame9SceneInfo:
 /* 80467C98 00464BD8  7C 08 03 A6 */	mtlr r0
 /* 80467C9C 00464BDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80467CA0 00464BE0  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM13Scene_ObjectsFUcPQ26PSGame9SceneInfo
 
-.global __dt__Q23PSM13Scene_ObjectsFv
-__dt__Q23PSM13Scene_ObjectsFv:
+.fn __dt__Q23PSM13Scene_ObjectsFv, global
 /* 80467CA4 00464BE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467CA8 00464BE8  7C 08 02 A6 */	mflr r0
 /* 80467CAC 00464BEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -968,9 +952,9 @@ __dt__Q23PSM13Scene_ObjectsFv:
 /* 80467D90 00464CD0  7C 08 03 A6 */	mtlr r0
 /* 80467D94 00464CD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467D98 00464CD8  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM13Scene_ObjectsFv
 
-.global __dt__Q23PSM11ObjCalcBaseFv
-__dt__Q23PSM11ObjCalcBaseFv:
+.fn __dt__Q23PSM11ObjCalcBaseFv, weak
 /* 80467D9C 00464CDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467DA0 00464CE0  7C 08 02 A6 */	mflr r0
 /* 80467DA4 00464CE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -998,9 +982,9 @@ __dt__Q23PSM11ObjCalcBaseFv:
 /* 80467DF4 00464D34  7C 08 03 A6 */	mtlr r0
 /* 80467DF8 00464D38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467DFC 00464D3C  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM11ObjCalcBaseFv
 
-.global adaptObjMgr__Q23PSM13Scene_ObjectsFv
-adaptObjMgr__Q23PSM13Scene_ObjectsFv:
+.fn adaptObjMgr__Q23PSM13Scene_ObjectsFv, global
 /* 80467E00 00464D40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467E04 00464D44  7C 08 02 A6 */	mflr r0
 /* 80467E08 00464D48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1026,9 +1010,9 @@ adaptObjMgr__Q23PSM13Scene_ObjectsFv:
 /* 80467E54 00464D94  7C 08 03 A6 */	mtlr r0
 /* 80467E58 00464D98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467E5C 00464D9C  4E 80 00 20 */	blr 
+.endfn adaptObjMgr__Q23PSM13Scene_ObjectsFv
 
-.global detachObjMgr__Q23PSM13Scene_ObjectsFv
-detachObjMgr__Q23PSM13Scene_ObjectsFv:
+.fn detachObjMgr__Q23PSM13Scene_ObjectsFv, global
 /* 80467E60 00464DA0  80 83 00 2C */	lwz r4, 0x2c(r3)
 /* 80467E64 00464DA4  28 04 00 00 */	cmplwi r4, 0
 /* 80467E68 00464DA8  4D 82 00 20 */	beqlr 
@@ -1036,9 +1020,9 @@ detachObjMgr__Q23PSM13Scene_ObjectsFv:
 /* 80467E70 00464DB0  90 04 00 2C */	stw r0, 0x2c(r4)
 /* 80467E74 00464DB4  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 80467E78 00464DB8  4E 80 00 20 */	blr 
+.endfn detachObjMgr__Q23PSM13Scene_ObjectsFv
 
-.global startMainSeq__Q23PSM13Scene_ObjectsFv
-startMainSeq__Q23PSM13Scene_ObjectsFv:
+.fn startMainSeq__Q23PSM13Scene_ObjectsFv, global
 /* 80467E7C 00464DBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467E80 00464DC0  7C 08 02 A6 */	mflr r0
 /* 80467E84 00464DC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1055,9 +1039,9 @@ startMainSeq__Q23PSM13Scene_ObjectsFv:
 /* 80467EB0 00464DF0  7C 08 03 A6 */	mtlr r0
 /* 80467EB4 00464DF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467EB8 00464DF8  4E 80 00 20 */	blr 
+.endfn startMainSeq__Q23PSM13Scene_ObjectsFv
 
-.global onStartMainSeq__Q23PSM13Scene_ObjectsFv
-onStartMainSeq__Q23PSM13Scene_ObjectsFv:
+.fn onStartMainSeq__Q23PSM13Scene_ObjectsFv, global
 /* 80467EBC 00464DFC  80 83 00 34 */	lwz r4, 0x34(r3)
 /* 80467EC0 00464E00  3C 04 10 00 */	addis r0, r4, 0x1000
 /* 80467EC4 00464E04  28 00 00 00 */	cmplwi r0, 0
@@ -1067,17 +1051,17 @@ onStartMainSeq__Q23PSM13Scene_ObjectsFv:
 /* 80467ED4 00464E14  98 83 00 30 */	stb r4, 0x30(r3)
 /* 80467ED8 00464E18  90 03 00 34 */	stw r0, 0x34(r3)
 /* 80467EDC 00464E1C  4E 80 00 20 */	blr 
+.endfn onStartMainSeq__Q23PSM13Scene_ObjectsFv
 
-.global getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl
-getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl:
+.fn getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl, global
 /* 80467EE0 00464E20  88 63 00 30 */	lbz r3, 0x30(r3)
 /* 80467EE4 00464E24  7C 03 00 D0 */	neg r0, r3
 /* 80467EE8 00464E28  7C 00 1B 78 */	or r0, r0, r3
 /* 80467EEC 00464E2C  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80467EF0 00464E30  4E 80 00 20 */	blr 
+.endfn getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl
 
-.global getCamDistVol__Q23PSM13Scene_ObjectsFUc
-getCamDistVol__Q23PSM13Scene_ObjectsFUc:
+.fn getCamDistVol__Q23PSM13Scene_ObjectsFUc, global
 /* 80467EF4 00464E34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467EF8 00464E38  7C 08 02 A6 */	mflr r0
 /* 80467EFC 00464E3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1087,9 +1071,9 @@ getCamDistVol__Q23PSM13Scene_ObjectsFUc:
 /* 80467F0C 00464E4C  7C 08 03 A6 */	mtlr r0
 /* 80467F10 00464E50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467F14 00464E54  4E 80 00 20 */	blr 
+.endfn getCamDistVol__Q23PSM13Scene_ObjectsFUc
 
-.global exec__Q23PSM13Scene_ObjectsFv
-exec__Q23PSM13Scene_ObjectsFv:
+.fn exec__Q23PSM13Scene_ObjectsFv, global
 /* 80467F18 00464E58  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80467F1C 00464E5C  7C 08 02 A6 */	mflr r0
 /* 80467F20 00464E60  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1229,9 +1213,9 @@ exec__Q23PSM13Scene_ObjectsFv:
 /* 8046811C 0046505C  7C 08 03 A6 */	mtlr r0
 /* 80468120 00465060  38 21 00 80 */	addi r1, r1, 0x80
 /* 80468124 00465064  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM13Scene_ObjectsFv
 
-.global init__Q23PSM10Scene_GameFv
-init__Q23PSM10Scene_GameFv:
+.fn init__Q23PSM10Scene_GameFv, global
 /* 80468128 00465068  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046812C 0046506C  7C 08 02 A6 */	mflr r0
 /* 80468130 00465070  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1306,9 +1290,9 @@ init__Q23PSM10Scene_GameFv:
 /* 80468230 00465170  7C 08 03 A6 */	mtlr r0
 /* 80468234 00465174  38 21 00 10 */	addi r1, r1, 0x10
 /* 80468238 00465178  4E 80 00 20 */	blr 
+.endfn init__Q23PSM10Scene_GameFv
 
-.global __dt__Q23PSM10Scene_GameFv
-__dt__Q23PSM10Scene_GameFv:
+.fn __dt__Q23PSM10Scene_GameFv, global
 /* 8046823C 0046517C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80468240 00465180  7C 08 02 A6 */	mflr r0
 /* 80468244 00465184  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1408,9 +1392,9 @@ __dt__Q23PSM10Scene_GameFv:
 /* 80468398 004652D8  7C 08 03 A6 */	mtlr r0
 /* 8046839C 004652DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804683A0 004652E0  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM10Scene_GameFv
 
-.global __dt__Q33PSM12BossBgmFader3MgrFv
-__dt__Q33PSM12BossBgmFader3MgrFv:
+.fn __dt__Q33PSM12BossBgmFader3MgrFv, weak
 /* 804683A4 004652E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804683A8 004652E8  7C 08 02 A6 */	mflr r0
 /* 804683AC 004652EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1458,9 +1442,9 @@ __dt__Q33PSM12BossBgmFader3MgrFv:
 /* 80468448 00465388  7C 08 03 A6 */	mtlr r0
 /* 8046844C 0046538C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80468450 00465390  4E 80 00 20 */	blr 
+.endfn __dt__Q33PSM12BossBgmFader3MgrFv
 
-.global attachBossFaderMgr__Q23PSM10Scene_GameFv
-attachBossFaderMgr__Q23PSM10Scene_GameFv:
+.fn attachBossFaderMgr__Q23PSM10Scene_GameFv, global
 /* 80468454 00465394  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80468458 00465398  7C 08 02 A6 */	mflr r0
 /* 8046845C 0046539C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1484,9 +1468,9 @@ attachBossFaderMgr__Q23PSM10Scene_GameFv:
 /* 804684A0 004653E0  7C 08 03 A6 */	mtlr r0
 /* 804684A4 004653E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 804684A8 004653E8  4E 80 00 20 */	blr 
+.endfn attachBossFaderMgr__Q23PSM10Scene_GameFv
 
-.global bossKilled__Q23PSM10Scene_GameFPQ23PSM9EnemyBoss
-bossKilled__Q23PSM10Scene_GameFPQ23PSM9EnemyBoss:
+.fn bossKilled__Q23PSM10Scene_GameFPQ23PSM9EnemyBoss, global
 /* 804684AC 004653EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804684B0 004653F0  7C 08 02 A6 */	mflr r0
 /* 804684B4 004653F4  3C 60 80 4A */	lis r3, lbl_8049D908@ha
@@ -1622,9 +1606,9 @@ bossKilled__Q23PSM10Scene_GameFPQ23PSM9EnemyBoss:
 /* 8046867C 004655BC  7C 08 03 A6 */	mtlr r0
 /* 80468680 004655C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80468684 004655C4  4E 80 00 20 */	blr 
+.endfn bossKilled__Q23PSM10Scene_GameFPQ23PSM9EnemyBoss
 
-.global startMainSeq__Q23PSM10Scene_GameFv
-startMainSeq__Q23PSM10Scene_GameFv:
+.fn startMainSeq__Q23PSM10Scene_GameFv, global
 /* 80468688 004655C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046868C 004655CC  7C 08 02 A6 */	mflr r0
 /* 80468690 004655D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1695,9 +1679,9 @@ startMainSeq__Q23PSM10Scene_GameFv:
 /* 8046877C 004656BC  7C 08 03 A6 */	mtlr r0
 /* 80468780 004656C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80468784 004656C4  4E 80 00 20 */	blr 
+.endfn startMainSeq__Q23PSM10Scene_GameFv
 
-.global stopMainSeq__Q23PSM10Scene_GameFUl
-stopMainSeq__Q23PSM10Scene_GameFUl:
+.fn stopMainSeq__Q23PSM10Scene_GameFUl, global
 /* 80468788 004656C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046878C 004656CC  7C 08 02 A6 */	mflr r0
 /* 80468790 004656D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1738,9 +1722,9 @@ stopMainSeq__Q23PSM10Scene_GameFUl:
 /* 80468808 00465748  7C 08 03 A6 */	mtlr r0
 /* 8046880C 0046574C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80468810 00465750  4E 80 00 20 */	blr 
+.endfn stopMainSeq__Q23PSM10Scene_GameFUl
 
-.global stopAllSound__Q23PSM10Scene_GameFUl
-stopAllSound__Q23PSM10Scene_GameFUl:
+.fn stopAllSound__Q23PSM10Scene_GameFUl, global
 /* 80468814 00465754  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80468818 00465758  7C 08 02 A6 */	mflr r0
 /* 8046881C 0046575C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1762,9 +1746,9 @@ stopAllSound__Q23PSM10Scene_GameFUl:
 /* 80468858 00465798  7C 08 03 A6 */	mtlr r0
 /* 8046885C 0046579C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80468860 004657A0  4E 80 00 20 */	blr 
+.endfn stopAllSound__Q23PSM10Scene_GameFUl
 
-.global exec__Q23PSM10Scene_GameFv
-exec__Q23PSM10Scene_GameFv:
+.fn exec__Q23PSM10Scene_GameFv, global
 /* 80468864 004657A4  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80468868 004657A8  7C 08 02 A6 */	mflr r0
 /* 8046886C 004657AC  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2029,14 +2013,14 @@ exec__Q23PSM10Scene_GameFv:
 /* 80468C1C 00465B5C  7C 08 03 A6 */	mtlr r0
 /* 80468C20 00465B60  38 21 00 90 */	addi r1, r1, 0x90
 /* 80468C24 00465B64  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM10Scene_GameFv
 
-.global getEnvSe__Q23PSM10Scene_GameFv
-getEnvSe__Q23PSM10Scene_GameFv:
+.fn getEnvSe__Q23PSM10Scene_GameFv, global
 /* 80468C28 00465B68  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 80468C2C 00465B6C  4E 80 00 20 */	blr 
+.endfn getEnvSe__Q23PSM10Scene_GameFv
 
-.global adaptEnvSe__Q23PSM10Scene_GameFPQ28PSSystem8EnvSeMgr
-adaptEnvSe__Q23PSM10Scene_GameFPQ28PSSystem8EnvSeMgr:
+.fn adaptEnvSe__Q23PSM10Scene_GameFPQ28PSSystem8EnvSeMgr, global
 /* 80468C30 00465B70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80468C34 00465B74  7C 08 02 A6 */	mflr r0
 /* 80468C38 00465B78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2060,9 +2044,9 @@ adaptEnvSe__Q23PSM10Scene_GameFPQ28PSSystem8EnvSeMgr:
 /* 80468C7C 00465BBC  7C 08 03 A6 */	mtlr r0
 /* 80468C80 00465BC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80468C84 00465BC4  4E 80 00 20 */	blr 
+.endfn adaptEnvSe__Q23PSM10Scene_GameFPQ28PSSystem8EnvSeMgr
 
-.global bossAppear__Q23PSM10Scene_GameFPQ23PSM9EnemyBossUs
-bossAppear__Q23PSM10Scene_GameFPQ23PSM9EnemyBossUs:
+.fn bossAppear__Q23PSM10Scene_GameFPQ23PSM9EnemyBossUs, global
 /* 80468C88 00465BC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80468C8C 00465BCC  7C 08 02 A6 */	mflr r0
 /* 80468C90 00465BD0  3C C0 80 4A */	lis r6, lbl_8049D908@ha
@@ -2134,9 +2118,9 @@ bossAppear__Q23PSM10Scene_GameFPQ23PSM9EnemyBossUs:
 /* 80468D7C 00465CBC  7C 08 03 A6 */	mtlr r0
 /* 80468D80 00465CC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80468D84 00465CC4  4E 80 00 20 */	blr 
+.endfn bossAppear__Q23PSM10Scene_GameFPQ23PSM9EnemyBossUs
 
-.global pauseOn_2D__Q23PSM10Scene_GameFUcUc
-pauseOn_2D__Q23PSM10Scene_GameFUcUc:
+.fn pauseOn_2D__Q23PSM10Scene_GameFUcUc, global
 /* 80468D88 00465CC8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80468D8C 00465CCC  7C 08 02 A6 */	mflr r0
 /* 80468D90 00465CD0  54 84 06 3E */	clrlwi r4, r4, 0x18
@@ -2508,9 +2492,9 @@ pauseOn_2D__Q23PSM10Scene_GameFUcUc:
 /* 804692F4 00466234  7C 08 03 A6 */	mtlr r0
 /* 804692F8 00466238  38 21 00 30 */	addi r1, r1, 0x30
 /* 804692FC 0046623C  4E 80 00 20 */	blr 
+.endfn pauseOn_2D__Q23PSM10Scene_GameFUcUc
 
-.global pauseOff_2D__Q23PSM10Scene_GameFv
-pauseOff_2D__Q23PSM10Scene_GameFv:
+.fn pauseOff_2D__Q23PSM10Scene_GameFv, global
 /* 80469300 00466240  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80469304 00466244  7C 08 02 A6 */	mflr r0
 /* 80469308 00466248  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2528,9 +2512,9 @@ pauseOff_2D__Q23PSM10Scene_GameFv:
 /* 80469334 00466274  7C 08 03 A6 */	mtlr r0
 /* 80469338 00466278  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046933C 0046627C  4E 80 00 20 */	blr 
+.endfn pauseOff_2D__Q23PSM10Scene_GameFv
 
-.global pauseOn_Demo__Q23PSM10Scene_GameFv
-pauseOn_Demo__Q23PSM10Scene_GameFv:
+.fn pauseOn_Demo__Q23PSM10Scene_GameFv, global
 /* 80469340 00466280  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80469344 00466284  7C 08 02 A6 */	mflr r0
 /* 80469348 00466288  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2889,13 +2873,13 @@ pauseOn_Demo__Q23PSM10Scene_GameFv:
 /* 8046987C 004667BC  7C 08 03 A6 */	mtlr r0
 /* 80469880 004667C0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80469884 004667C4  4E 80 00 20 */	blr 
+.endfn pauseOn_Demo__Q23PSM10Scene_GameFv
 
-.global pauseOff_Demo__Q23PSM10Scene_GameFv
-pauseOff_Demo__Q23PSM10Scene_GameFv:
+.fn pauseOff_Demo__Q23PSM10Scene_GameFv, global
 /* 80469888 004667C8  4E 80 00 20 */	blr 
+.endfn pauseOff_Demo__Q23PSM10Scene_GameFv
 
-.global akubiOK__Q23PSM10Scene_GameFv
-akubiOK__Q23PSM10Scene_GameFv:
+.fn akubiOK__Q23PSM10Scene_GameFv, global
 /* 8046988C 004667CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80469890 004667D0  7C 08 02 A6 */	mflr r0
 /* 80469894 004667D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2945,9 +2929,9 @@ akubiOK__Q23PSM10Scene_GameFv:
 /* 80469934 00466874  7C 08 03 A6 */	mtlr r0
 /* 80469938 00466878  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046993C 0046687C  4E 80 00 20 */	blr 
+.endfn akubiOK__Q23PSM10Scene_GameFv
 
-.global __ct__Q23PSM12Scene_GroundFUcPQ26PSGame9SceneInfo
-__ct__Q23PSM12Scene_GroundFUcPQ26PSGame9SceneInfo:
+.fn __ct__Q23PSM12Scene_GroundFUcPQ26PSGame9SceneInfo, global
 /* 80469940 00466880  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80469944 00466884  7C 08 02 A6 */	mflr r0
 /* 80469948 00466888  3C C0 80 4A */	lis r6, lbl_8049D908@ha
@@ -3052,9 +3036,9 @@ __ct__Q23PSM12Scene_GroundFUcPQ26PSGame9SceneInfo:
 /* 80469AB8 004669F8  7C 08 03 A6 */	mtlr r0
 /* 80469ABC 004669FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80469AC0 00466A00  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM12Scene_GroundFUcPQ26PSGame9SceneInfo
 
-.global exec__Q23PSM12Scene_GroundFv
-exec__Q23PSM12Scene_GroundFv:
+.fn exec__Q23PSM12Scene_GroundFv, global
 /* 80469AC4 00466A04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80469AC8 00466A08  7C 08 02 A6 */	mflr r0
 /* 80469ACC 00466A0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3073,15 +3057,15 @@ exec__Q23PSM12Scene_GroundFv:
 /* 80469AFC 00466A3C  7C 08 03 A6 */	mtlr r0
 /* 80469B00 00466A40  38 21 00 10 */	addi r1, r1, 0x10
 /* 80469B04 00466A44  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM12Scene_GroundFv
 
-.global setPollutUp__Q23PSM12Scene_GroundFv
-setPollutUp__Q23PSM12Scene_GroundFv:
+.fn setPollutUp__Q23PSM12Scene_GroundFv, global
 /* 80469B08 00466A48  38 00 00 00 */	li r0, 0
 /* 80469B0C 00466A4C  90 03 00 5C */	stw r0, 0x5c(r3)
 /* 80469B10 00466A50  4E 80 00 20 */	blr 
+.endfn setPollutUp__Q23PSM12Scene_GroundFv
 
-.global fadeMainBgm__Q23PSM12Scene_GroundFfUlQ33PSM12Scene_Ground4Time
-fadeMainBgm__Q23PSM12Scene_GroundFfUlQ33PSM12Scene_Ground4Time:
+.fn fadeMainBgm__Q23PSM12Scene_GroundFfUlQ33PSM12Scene_Ground4Time, global
 /* 80469B14 00466A54  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80469B18 00466A58  7C 08 02 A6 */	mflr r0
 /* 80469B1C 00466A5C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3196,9 +3180,9 @@ fadeMainBgm__Q23PSM12Scene_GroundFfUlQ33PSM12Scene_Ground4Time:
 /* 80469CB4 00466BF4  7C 08 03 A6 */	mtlr r0
 /* 80469CB8 00466BF8  38 21 00 30 */	addi r1, r1, 0x30
 /* 80469CBC 00466BFC  4E 80 00 20 */	blr 
+.endfn fadeMainBgm__Q23PSM12Scene_GroundFfUlQ33PSM12Scene_Ground4Time
 
-.global jumpMainBgm__Q23PSM12Scene_GroundFUc
-jumpMainBgm__Q23PSM12Scene_GroundFUc:
+.fn jumpMainBgm__Q23PSM12Scene_GroundFUc, global
 /* 80469CC0 00466C00  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80469CC4 00466C04  7C 08 02 A6 */	mflr r0
 /* 80469CC8 00466C08  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3309,9 +3293,9 @@ jumpMainBgm__Q23PSM12Scene_GroundFUc:
 /* 80469E38 00466D78  7C 08 03 A6 */	mtlr r0
 /* 80469E3C 00466D7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80469E40 00466D80  4E 80 00 20 */	blr 
+.endfn jumpMainBgm__Q23PSM12Scene_GroundFUc
 
-.global changeEnvSE_Noon__Q23PSM12Scene_GroundFv
-changeEnvSE_Noon__Q23PSM12Scene_GroundFv:
+.fn changeEnvSE_Noon__Q23PSM12Scene_GroundFv, global
 /* 80469E44 00466D84  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 80469E48 00466D88  28 03 00 00 */	cmplwi r3, 0
 /* 80469E4C 00466D8C  4D 82 00 20 */	beqlr 
@@ -3336,9 +3320,9 @@ changeEnvSE_Noon__Q23PSM12Scene_GroundFv:
 /* 80469E88 00466DC8  28 05 00 00 */	cmplwi r5, 0
 /* 80469E8C 00466DCC  40 82 FF D4 */	bne .L_80469E60
 /* 80469E90 00466DD0  4E 80 00 20 */	blr 
+.endfn changeEnvSE_Noon__Q23PSM12Scene_GroundFv
 
-.global __ct__Q23PSM10Scene_CaveFUcPQ26PSGame9SceneInfo
-__ct__Q23PSM10Scene_CaveFUcPQ26PSGame9SceneInfo:
+.fn __ct__Q23PSM10Scene_CaveFUcPQ26PSGame9SceneInfo, global
 /* 80469E94 00466DD4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80469E98 00466DD8  7C 08 02 A6 */	mflr r0
 /* 80469E9C 00466DDC  3C C0 80 4A */	lis r6, lbl_8049D908@ha
@@ -3472,14 +3456,14 @@ __ct__Q23PSM10Scene_CaveFUcPQ26PSGame9SceneInfo:
 /* 8046A06C 00466FAC  7C 08 03 A6 */	mtlr r0
 /* 8046A070 00466FB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046A074 00466FB4  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM10Scene_CaveFUcPQ26PSGame9SceneInfo
 
-.global getSceneFx__Q23PSM10Scene_CaveFv
-getSceneFx__Q23PSM10Scene_CaveFv:
+.fn getSceneFx__Q23PSM10Scene_CaveFv, global
 /* 8046A078 00466FB8  C0 23 00 60 */	lfs f1, 0x60(r3)
 /* 8046A07C 00466FBC  4E 80 00 20 */	blr 
+.endfn getSceneFx__Q23PSM10Scene_CaveFv
 
-.global isBossFloor__Q23PSM10Scene_CaveFv
-isBossFloor__Q23PSM10Scene_CaveFv:
+.fn isBossFloor__Q23PSM10Scene_CaveFv, global
 /* 8046A080 00466FC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046A084 00466FC4  7C 08 02 A6 */	mflr r0
 /* 8046A088 00466FC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3492,9 +3476,9 @@ isBossFloor__Q23PSM10Scene_CaveFv:
 /* 8046A0A4 00466FE4  7C 08 03 A6 */	mtlr r0
 /* 8046A0A8 00466FE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046A0AC 00466FEC  4E 80 00 20 */	blr 
+.endfn isBossFloor__Q23PSM10Scene_CaveFv
 
-.global exec__Q23PSM10Scene_CaveFv
-exec__Q23PSM10Scene_CaveFv:
+.fn exec__Q23PSM10Scene_CaveFv, global
 /* 8046A0B0 00466FF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046A0B4 00466FF4  7C 08 02 A6 */	mflr r0
 /* 8046A0B8 00466FF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3513,9 +3497,9 @@ exec__Q23PSM10Scene_CaveFv:
 /* 8046A0E8 00467028  7C 08 03 A6 */	mtlr r0
 /* 8046A0EC 0046702C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046A0F0 00467030  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM10Scene_CaveFv
 
-.global stopPollutionSe__Q23PSM10Scene_CaveFv
-stopPollutionSe__Q23PSM10Scene_CaveFv:
+.fn stopPollutionSe__Q23PSM10Scene_CaveFv, global
 /* 8046A0F4 00467034  80 83 00 44 */	lwz r4, 0x44(r3)
 /* 8046A0F8 00467038  28 04 00 00 */	cmplwi r4, 0
 /* 8046A0FC 0046703C  41 82 00 38 */	beq .L_8046A134
@@ -3540,9 +3524,9 @@ stopPollutionSe__Q23PSM10Scene_CaveFv:
 /* 8046A134 00467074  38 00 00 00 */	li r0, 0
 /* 8046A138 00467078  90 03 00 64 */	stw r0, 0x64(r3)
 /* 8046A13C 0046707C  4E 80 00 20 */	blr 
+.endfn stopPollutionSe__Q23PSM10Scene_CaveFv
 
-.global startPollutUpSe__Q23PSM10Scene_CaveFv
-startPollutUpSe__Q23PSM10Scene_CaveFv:
+.fn startPollutUpSe__Q23PSM10Scene_CaveFv, global
 /* 8046A140 00467080  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046A144 00467084  7C 08 02 A6 */	mflr r0
 /* 8046A148 00467088  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3607,9 +3591,9 @@ startPollutUpSe__Q23PSM10Scene_CaveFv:
 /* 8046A22C 0046716C  7C 08 03 A6 */	mtlr r0
 /* 8046A230 00467170  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046A234 00467174  4E 80 00 20 */	blr 
+.endfn startPollutUpSe__Q23PSM10Scene_CaveFv
 
-.global startMainSeq__Q23PSM10Scene_CaveFv
-startMainSeq__Q23PSM10Scene_CaveFv:
+.fn startMainSeq__Q23PSM10Scene_CaveFv, global
 /* 8046A238 00467178  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046A23C 0046717C  7C 08 02 A6 */	mflr r0
 /* 8046A240 00467180  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3700,9 +3684,9 @@ startMainSeq__Q23PSM10Scene_CaveFv:
 /* 8046A370 004672B0  7C 08 03 A6 */	mtlr r0
 /* 8046A374 004672B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046A378 004672B8  4E 80 00 20 */	blr 
+.endfn startMainSeq__Q23PSM10Scene_CaveFv
 
-.global init__Q23PSM10Scene_CaveFv
-init__Q23PSM10Scene_CaveFv:
+.fn init__Q23PSM10Scene_CaveFv, global
 /* 8046A37C 004672BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046A380 004672C0  7C 08 02 A6 */	mflr r0
 /* 8046A384 004672C4  3C 80 80 4A */	lis r4, lbl_8049D908@ha
@@ -3863,9 +3847,9 @@ init__Q23PSM10Scene_CaveFv:
 /* 8046A5BC 004674FC  7C 08 03 A6 */	mtlr r0
 /* 8046A5C0 00467500  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046A5C4 00467504  4E 80 00 20 */	blr 
+.endfn init__Q23PSM10Scene_CaveFv
 
-.global bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs
-bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs:
+.fn bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs, global
 /* 8046A5C8 00467508  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046A5CC 0046750C  7C 08 02 A6 */	mflr r0
 /* 8046A5D0 00467510  3C C0 80 4A */	lis r6, lbl_8049D908@ha
@@ -3996,9 +3980,9 @@ bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs:
 /* 8046A78C 004676CC  7C 08 03 A6 */	mtlr r0
 /* 8046A790 004676D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046A794 004676D4  4E 80 00 20 */	blr 
+.endfn bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs
 
-.global bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss
-bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss:
+.fn bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss, global
 /* 8046A798 004676D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046A79C 004676DC  7C 08 02 A6 */	mflr r0
 /* 8046A7A0 004676E0  3C A0 80 4A */	lis r5, lbl_8049D908@ha
@@ -4225,9 +4209,9 @@ bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss:
 /* 8046AAA4 004679E4  7C 08 03 A6 */	mtlr r0
 /* 8046AAA8 004679E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046AAAC 004679EC  4E 80 00 20 */	blr 
+.endfn bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss
 
-.global akubiOK__Q23PSM10Scene_CaveFv
-akubiOK__Q23PSM10Scene_CaveFv:
+.fn akubiOK__Q23PSM10Scene_CaveFv, global
 /* 8046AAB0 004679F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046AAB4 004679F4  7C 08 02 A6 */	mflr r0
 /* 8046AAB8 004679F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4287,9 +4271,9 @@ akubiOK__Q23PSM10Scene_CaveFv:
 /* 8046AB78 00467AB8  7C 08 03 A6 */	mtlr r0
 /* 8046AB7C 00467ABC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046AB80 00467AC0  4E 80 00 20 */	blr 
+.endfn akubiOK__Q23PSM10Scene_CaveFv
 
-.global __ct__Q23PSM15Scene_ChallengeFUcPQ26PSGame9SceneInfo
-__ct__Q23PSM15Scene_ChallengeFUcPQ26PSGame9SceneInfo:
+.fn __ct__Q23PSM15Scene_ChallengeFUcPQ26PSGame9SceneInfo, global
 /* 8046AB84 00467AC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046AB88 00467AC8  7C 08 02 A6 */	mflr r0
 /* 8046AB8C 00467ACC  3C C0 80 4A */	lis r6, lbl_8049D908@ha
@@ -4425,9 +4409,9 @@ __ct__Q23PSM15Scene_ChallengeFUcPQ26PSGame9SceneInfo:
 /* 8046AD64 00467CA4  7C 08 03 A6 */	mtlr r0
 /* 8046AD68 00467CA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046AD6C 00467CAC  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM15Scene_ChallengeFUcPQ26PSGame9SceneInfo
 
-.global __dt__Q23PSM10Scene_CaveFv
-__dt__Q23PSM10Scene_CaveFv:
+.fn __dt__Q23PSM10Scene_CaveFv, weak
 /* 8046AD70 00467CB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046AD74 00467CB4  7C 08 02 A6 */	mflr r0
 /* 8046AD78 00467CB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4531,9 +4515,9 @@ __dt__Q23PSM10Scene_CaveFv:
 /* 8046AEDC 00467E1C  7C 08 03 A6 */	mtlr r0
 /* 8046AEE0 00467E20  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046AEE4 00467E24  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM10Scene_CaveFv
 
-.global init__Q23PSM15Scene_ChallengeFv
-init__Q23PSM15Scene_ChallengeFv:
+.fn init__Q23PSM15Scene_ChallengeFv, global
 /* 8046AEE8 00467E28  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046AEEC 00467E2C  7C 08 02 A6 */	mflr r0
 /* 8046AEF0 00467E30  3C 80 80 4A */	lis r4, lbl_8049D908@ha
@@ -4694,9 +4678,9 @@ init__Q23PSM15Scene_ChallengeFv:
 /* 8046B128 00468068  7C 08 03 A6 */	mtlr r0
 /* 8046B12C 0046806C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046B130 00468070  4E 80 00 20 */	blr 
+.endfn init__Q23PSM15Scene_ChallengeFv
 
-.global startMainSeq__Q23PSM15Scene_ChallengeFv
-startMainSeq__Q23PSM15Scene_ChallengeFv:
+.fn startMainSeq__Q23PSM15Scene_ChallengeFv, global
 /* 8046B134 00468074  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046B138 00468078  7C 08 02 A6 */	mflr r0
 /* 8046B13C 0046807C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4836,9 +4820,9 @@ startMainSeq__Q23PSM15Scene_ChallengeFv:
 /* 8046B324 00468264  7C 08 03 A6 */	mtlr r0
 /* 8046B328 00468268  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046B32C 0046826C  4E 80 00 20 */	blr 
+.endfn startMainSeq__Q23PSM15Scene_ChallengeFv
 
-.global akubiOK__Q23PSM15Scene_ChallengeFv
-akubiOK__Q23PSM15Scene_ChallengeFv:
+.fn akubiOK__Q23PSM15Scene_ChallengeFv, global
 /* 8046B330 00468270  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046B334 00468274  7C 08 02 A6 */	mflr r0
 /* 8046B338 00468278  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4872,14 +4856,14 @@ akubiOK__Q23PSM15Scene_ChallengeFv:
 /* 8046B39C 004682DC  7C 08 03 A6 */	mtlr r0
 /* 8046B3A0 004682E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046B3A4 004682E4  4E 80 00 20 */	blr 
+.endfn akubiOK__Q23PSM15Scene_ChallengeFv
 
-.global getCamDistVol__Q23PSM11Scene_ZukanFUc
-getCamDistVol__Q23PSM11Scene_ZukanFUc:
+.fn getCamDistVol__Q23PSM11Scene_ZukanFUc, global
 /* 8046B3A8 004682E8  C0 22 29 50 */	lfs f1, lbl_80520CB0@sda21(r2)
 /* 8046B3AC 004682EC  4E 80 00 20 */	blr 
+.endfn getCamDistVol__Q23PSM11Scene_ZukanFUc
 
-.global getSeSceneGate__Q23PSM11Scene_ZukanFPQ23PSM7ObjBaseUl
-getSeSceneGate__Q23PSM11Scene_ZukanFPQ23PSM7ObjBaseUl:
+.fn getSeSceneGate__Q23PSM11Scene_ZukanFPQ23PSM7ObjBaseUl, global
 /* 8046B3B0 004682F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046B3B4 004682F4  7C 08 02 A6 */	mflr r0
 /* 8046B3B8 004682F8  54 A3 17 BF */	rlwinm. r3, r5, 2, 0x1e, 0x1f
@@ -4934,9 +4918,9 @@ getSeSceneGate__Q23PSM11Scene_ZukanFPQ23PSM7ObjBaseUl:
 /* 8046B460 004683A0  7C 08 03 A6 */	mtlr r0
 /* 8046B464 004683A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046B468 004683A8  4E 80 00 20 */	blr 
+.endfn getSeSceneGate__Q23PSM11Scene_ZukanFPQ23PSM7ObjBaseUl
 
-.global __ct__Q23PSM14Scene_WorldMapFUcPQ26PSGame9SceneInfo
-__ct__Q23PSM14Scene_WorldMapFUcPQ26PSGame9SceneInfo:
+.fn __ct__Q23PSM14Scene_WorldMapFUcPQ26PSGame9SceneInfo, global
 /* 8046B46C 004683AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046B470 004683B0  7C 08 02 A6 */	mflr r0
 /* 8046B474 004683B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4992,9 +4976,9 @@ __ct__Q23PSM14Scene_WorldMapFUcPQ26PSGame9SceneInfo:
 /* 8046B534 00468474  7C 08 03 A6 */	mtlr r0
 /* 8046B538 00468478  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046B53C 0046847C  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM14Scene_WorldMapFUcPQ26PSGame9SceneInfo
 
-.global __dt__Q23PSM15Scene_NoObjectsFv
-__dt__Q23PSM15Scene_NoObjectsFv:
+.fn __dt__Q23PSM15Scene_NoObjectsFv, weak
 /* 8046B540 00468480  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046B544 00468484  7C 08 02 A6 */	mflr r0
 /* 8046B548 00468488  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5025,14 +5009,14 @@ __dt__Q23PSM15Scene_NoObjectsFv:
 /* 8046B5A4 004684E4  7C 08 03 A6 */	mtlr r0
 /* 8046B5A8 004684E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046B5AC 004684EC  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM15Scene_NoObjectsFv
 
-.global getCamDistVol__Q23PSM15Scene_NoObjectsFUc
-getCamDistVol__Q23PSM15Scene_NoObjectsFUc:
+.fn getCamDistVol__Q23PSM15Scene_NoObjectsFUc, global
 /* 8046B5B0 004684F0  C0 22 FD A4 */	lfs f1, sDefaultVol__Q26PSGame9CameraMgr@sda21(r2)
 /* 8046B5B4 004684F4  4E 80 00 20 */	blr 
+.endfn getCamDistVol__Q23PSM15Scene_NoObjectsFUc
 
-.global PSChangeBgm_ChallengeGame__Fv
-PSChangeBgm_ChallengeGame__Fv:
+.fn PSChangeBgm_ChallengeGame__Fv, global
 /* 8046B5B8 004684F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046B5BC 004684FC  7C 08 02 A6 */	mflr r0
 /* 8046B5C0 00468500  3C 60 80 4A */	lis r3, lbl_8049D908@ha
@@ -5153,9 +5137,9 @@ PSChangeBgm_ChallengeGame__Fv:
 /* 8046B764 004686A4  7C 08 03 A6 */	mtlr r0
 /* 8046B768 004686A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046B76C 004686AC  4E 80 00 20 */	blr 
+.endfn PSChangeBgm_ChallengeGame__Fv
 
-.global PSStart2DStream__FUl
-PSStart2DStream__FUl:
+.fn PSStart2DStream__FUl, global
 /* 8046B770 004686B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046B774 004686B4  7C 08 02 A6 */	mflr r0
 /* 8046B778 004686B8  3C 80 80 4A */	lis r4, lbl_8049D908@ha
@@ -5224,9 +5208,9 @@ PSStart2DStream__FUl:
 /* 8046B864 004687A4  7C 08 03 A6 */	mtlr r0
 /* 8046B868 004687A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046B86C 004687AC  4E 80 00 20 */	blr 
+.endfn PSStart2DStream__FUl
 
-.global PSStop2DStream__Fv
-PSStop2DStream__Fv:
+.fn PSStop2DStream__Fv, global
 /* 8046B870 004687B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046B874 004687B4  7C 08 02 A6 */	mflr r0
 /* 8046B878 004687B8  3C 60 80 4A */	lis r3, lbl_8049D908@ha
@@ -5290,9 +5274,9 @@ PSStop2DStream__Fv:
 /* 8046B950 00468890  7C 08 03 A6 */	mtlr r0
 /* 8046B954 00468894  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046B958 00468898  4E 80 00 20 */	blr 
+.endfn PSStop2DStream__Fv
 
-.global PSPause_StartMenuOn__Fv
-PSPause_StartMenuOn__Fv:
+.fn PSPause_StartMenuOn__Fv, global
 /* 8046B95C 0046889C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046B960 004688A0  7C 08 02 A6 */	mflr r0
 /* 8046B964 004688A4  38 60 00 02 */	li r3, 2
@@ -5424,9 +5408,9 @@ PSPause_StartMenuOn__Fv:
 /* 8046BB3C 00468A7C  7C 08 03 A6 */	mtlr r0
 /* 8046BB40 00468A80  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046BB44 00468A84  4E 80 00 20 */	blr 
+.endfn PSPause_StartMenuOn__Fv
 
-.global PSPause_StartMenuOff__Fv
-PSPause_StartMenuOff__Fv:
+.fn PSPause_StartMenuOff__Fv, global
 /* 8046BB48 00468A88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046BB4C 00468A8C  7C 08 02 A6 */	mflr r0
 /* 8046BB50 00468A90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5435,9 +5419,9 @@ PSPause_StartMenuOff__Fv:
 /* 8046BB5C 00468A9C  7C 08 03 A6 */	mtlr r0
 /* 8046BB60 00468AA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046BB64 00468AA4  4E 80 00 20 */	blr 
+.endfn PSPause_StartMenuOff__Fv
 
-.global PSPauseOn__FUcUc
-PSPauseOn__FUcUc:
+.fn PSPauseOn__FUcUc, global
 /* 8046BB68 00468AA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046BB6C 00468AAC  7C 08 02 A6 */	mflr r0
 /* 8046BB70 00468AB0  3C A0 80 4A */	lis r5, lbl_8049D908@ha
@@ -5501,9 +5485,9 @@ PSPauseOn__FUcUc:
 /* 8046BC48 00468B88  7C 08 03 A6 */	mtlr r0
 /* 8046BC4C 00468B8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046BC50 00468B90  4E 80 00 20 */	blr 
+.endfn PSPauseOn__FUcUc
 
-.global PSPauseOff__Fv
-PSPauseOff__Fv:
+.fn PSPauseOff__Fv, global
 /* 8046BC54 00468B94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046BC58 00468B98  7C 08 02 A6 */	mflr r0
 /* 8046BC5C 00468B9C  3C 60 80 4A */	lis r3, lbl_8049D908@ha
@@ -5559,9 +5543,9 @@ PSPauseOff__Fv:
 /* 8046BD14 00468C54  7C 08 03 A6 */	mtlr r0
 /* 8046BD18 00468C58  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046BD1C 00468C5C  4E 80 00 20 */	blr 
+.endfn PSPauseOff__Fv
 
-.global PSStartChallengeTimeUpStream__Fv
-PSStartChallengeTimeUpStream__Fv:
+.fn PSStartChallengeTimeUpStream__Fv, global
 /* 8046BD20 00468C60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046BD24 00468C64  7C 08 02 A6 */	mflr r0
 /* 8046BD28 00468C68  3C 60 80 4A */	lis r3, lbl_8049D908@ha
@@ -5685,9 +5669,9 @@ PSStartChallengeTimeUpStream__Fv:
 /* 8046BEDC 00468E1C  7C 08 03 A6 */	mtlr r0
 /* 8046BEE0 00468E20  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046BEE4 00468E24  4E 80 00 20 */	blr 
+.endfn PSStartChallengeTimeUpStream__Fv
 
-.global PSMuteSE_on2D__Fv
-PSMuteSE_on2D__Fv:
+.fn PSMuteSE_on2D__Fv, global
 /* 8046BEE8 00468E28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046BEEC 00468E2C  7C 08 02 A6 */	mflr r0
 /* 8046BEF0 00468E30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5735,9 +5719,9 @@ PSMuteSE_on2D__Fv:
 /* 8046BF90 00468ED0  7C 08 03 A6 */	mtlr r0
 /* 8046BF94 00468ED4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046BF98 00468ED8  4E 80 00 20 */	blr 
+.endfn PSMuteSE_on2D__Fv
 
-.global PSMuteOffSE_on2D__Fv
-PSMuteOffSE_on2D__Fv:
+.fn PSMuteOffSE_on2D__Fv, global
 /* 8046BF9C 00468EDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046BFA0 00468EE0  7C 08 02 A6 */	mflr r0
 /* 8046BFA4 00468EE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5785,9 +5769,9 @@ PSMuteOffSE_on2D__Fv:
 /* 8046C044 00468F84  7C 08 03 A6 */	mtlr r0
 /* 8046C048 00468F88  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C04C 00468F8C  4E 80 00 20 */	blr 
+.endfn PSMuteOffSE_on2D__Fv
 
-.global __dt__Q23PSM10Scene_DemoFv
-__dt__Q23PSM10Scene_DemoFv:
+.fn __dt__Q23PSM10Scene_DemoFv, weak
 /* 8046C050 00468F90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C054 00468F94  7C 08 02 A6 */	mflr r0
 /* 8046C058 00468F98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5818,29 +5802,29 @@ __dt__Q23PSM10Scene_DemoFv:
 /* 8046C0B4 00468FF4  7C 08 03 A6 */	mtlr r0
 /* 8046C0B8 00468FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C0BC 00468FFC  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM10Scene_DemoFv
 
-.global isCave__Q23PSM10Scene_CaveFv
-isCave__Q23PSM10Scene_CaveFv:
+.fn isCave__Q23PSM10Scene_CaveFv, weak
 /* 8046C0C0 00469000  38 60 00 01 */	li r3, 1
 /* 8046C0C4 00469004  4E 80 00 20 */	blr 
+.endfn isCave__Q23PSM10Scene_CaveFv
 
-.global getPollutUpTimer__Q23PSM10Scene_CaveCFv
-getPollutUpTimer__Q23PSM10Scene_CaveCFv:
+.fn getPollutUpTimer__Q23PSM10Scene_CaveCFv, weak
 /* 8046C0C8 00469008  80 63 00 64 */	lwz r3, 0x64(r3)
 /* 8046C0CC 0046900C  4E 80 00 20 */	blr 
+.endfn getPollutUpTimer__Q23PSM10Scene_CaveCFv
 
-.global isDemoScene__Q23PSM10Scene_GameFv
-isDemoScene__Q23PSM10Scene_GameFv:
+.fn isDemoScene__Q23PSM10Scene_GameFv, weak
 /* 8046C0D0 00469010  38 60 00 00 */	li r3, 0
 /* 8046C0D4 00469014  4E 80 00 20 */	blr 
+.endfn isDemoScene__Q23PSM10Scene_GameFv
 
-.global isGameScene__Q23PSM10Scene_GameFv
-isGameScene__Q23PSM10Scene_GameFv:
+.fn isGameScene__Q23PSM10Scene_GameFv, weak
 /* 8046C0D8 00469018  38 60 00 01 */	li r3, 1
 /* 8046C0DC 0046901C  4E 80 00 20 */	blr 
+.endfn isGameScene__Q23PSM10Scene_GameFv
 
-.global __dt__Q23PSM12Scene_GroundFv
-__dt__Q23PSM12Scene_GroundFv:
+.fn __dt__Q23PSM12Scene_GroundFv, weak
 /* 8046C0E0 00469020  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C0E4 00469024  7C 08 02 A6 */	mflr r0
 /* 8046C0E8 00469028  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5944,43 +5928,43 @@ __dt__Q23PSM12Scene_GroundFv:
 /* 8046C24C 0046918C  7C 08 03 A6 */	mtlr r0
 /* 8046C250 00469190  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C254 00469194  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM12Scene_GroundFv
 
-.global isPollutUp__Q23PSM12Scene_GroundFv
-isPollutUp__Q23PSM12Scene_GroundFv:
+.fn isPollutUp__Q23PSM12Scene_GroundFv, weak
 /* 8046C258 00469198  80 83 00 5C */	lwz r4, 0x5c(r3)
 /* 8046C25C 0046919C  20 64 FF FF */	subfic r3, r4, -1
 /* 8046C260 004691A0  38 04 00 01 */	addi r0, r4, 1
 /* 8046C264 004691A4  7C 60 03 78 */	or r0, r3, r0
 /* 8046C268 004691A8  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8046C26C 004691AC  4E 80 00 20 */	blr 
+.endfn isPollutUp__Q23PSM12Scene_GroundFv
 
-.global getPollutUpTimer__Q23PSM12Scene_GroundCFv
-getPollutUpTimer__Q23PSM12Scene_GroundCFv:
+.fn getPollutUpTimer__Q23PSM12Scene_GroundCFv, weak
 /* 8046C270 004691B0  80 63 00 5C */	lwz r3, 0x5c(r3)
 /* 8046C274 004691B4  4E 80 00 20 */	blr 
+.endfn getPollutUpTimer__Q23PSM12Scene_GroundCFv
 
-.global isBossFloor__Q23PSM10Scene_GameFv
-isBossFloor__Q23PSM10Scene_GameFv:
+.fn isBossFloor__Q23PSM10Scene_GameFv, weak
 /* 8046C278 004691B8  38 60 00 00 */	li r3, 0
 /* 8046C27C 004691BC  4E 80 00 20 */	blr 
+.endfn isBossFloor__Q23PSM10Scene_GameFv
 
-.global isPollutUp__Q23PSM10Scene_GameFv
-isPollutUp__Q23PSM10Scene_GameFv:
+.fn isPollutUp__Q23PSM10Scene_GameFv, weak
 /* 8046C280 004691C0  38 60 00 00 */	li r3, 0
 /* 8046C284 004691C4  4E 80 00 20 */	blr 
+.endfn isPollutUp__Q23PSM10Scene_GameFv
 
-.global getPollutUpTimer__Q23PSM10Scene_GameCFv
-getPollutUpTimer__Q23PSM10Scene_GameCFv:
+.fn getPollutUpTimer__Q23PSM10Scene_GameCFv, weak
 /* 8046C288 004691C8  38 60 FF FF */	li r3, -1
 /* 8046C28C 004691CC  4E 80 00 20 */	blr 
+.endfn getPollutUpTimer__Q23PSM10Scene_GameCFv
 
-.global isDemoScene__Q23PSM10Scene_DemoFv
-isDemoScene__Q23PSM10Scene_DemoFv:
+.fn isDemoScene__Q23PSM10Scene_DemoFv, weak
 /* 8046C290 004691D0  38 60 00 01 */	li r3, 1
 /* 8046C294 004691D4  4E 80 00 20 */	blr 
+.endfn isDemoScene__Q23PSM10Scene_DemoFv
 
-.global getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl
-getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl:
+.fn getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl, weak
 /* 8046C298 004691D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C29C 004691DC  7C 08 02 A6 */	mflr r0
 /* 8046C2A0 004691E0  3C 60 80 4A */	lis r3, lbl_8049D990@ha
@@ -5996,9 +5980,9 @@ getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl:
 /* 8046C2C8 00469208  7C 08 03 A6 */	mtlr r0
 /* 8046C2CC 0046920C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C2D0 00469210  4E 80 00 20 */	blr 
+.endfn getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl
 
-.global __dt__Q23PSM14Scene_WorldMapFv
-__dt__Q23PSM14Scene_WorldMapFv:
+.fn __dt__Q23PSM14Scene_WorldMapFv, weak
 /* 8046C2D4 00469214  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C2D8 00469218  7C 08 02 A6 */	mflr r0
 /* 8046C2DC 0046921C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6033,9 +6017,9 @@ __dt__Q23PSM14Scene_WorldMapFv:
 /* 8046C348 00469288  7C 08 03 A6 */	mtlr r0
 /* 8046C34C 0046928C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C350 00469290  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM14Scene_WorldMapFv
 
-.global __dt__Q23PSM11Scene_ZukanFv
-__dt__Q23PSM11Scene_ZukanFv:
+.fn __dt__Q23PSM11Scene_ZukanFv, weak
 /* 8046C354 00469294  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C358 00469298  7C 08 02 A6 */	mflr r0
 /* 8046C35C 0046929C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6111,9 +6095,9 @@ __dt__Q23PSM11Scene_ZukanFv:
 /* 8046C45C 0046939C  7C 08 03 A6 */	mtlr r0
 /* 8046C460 004693A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C464 004693A4  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM11Scene_ZukanFv
 
-.global __dt__Q23PSM15Scene_ChallengeFv
-__dt__Q23PSM15Scene_ChallengeFv:
+.fn __dt__Q23PSM15Scene_ChallengeFv, weak
 /* 8046C468 004693A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C46C 004693AC  7C 08 02 A6 */	mflr r0
 /* 8046C470 004693B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6221,9 +6205,9 @@ __dt__Q23PSM15Scene_ChallengeFv:
 /* 8046C5E4 00469524  7C 08 03 A6 */	mtlr r0
 /* 8046C5E8 00469528  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C5EC 0046952C  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM15Scene_ChallengeFv
 
-.global "__dt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>Fv"
-"__dt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>Fv":
+.fn "__dt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>Fv", weak
 /* 8046C5F0 00469530  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C5F4 00469534  7C 08 02 A6 */	mflr r0
 /* 8046C5F8 00469538  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6245,9 +6229,9 @@ __dt__Q23PSM15Scene_ChallengeFv:
 /* 8046C634 00469574  7C 08 03 A6 */	mtlr r0
 /* 8046C638 00469578  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C63C 0046957C  4E 80 00 20 */	blr 
+.endfn "__dt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>Fv"
 
-.global "__dt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>Fv"
-"__dt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>Fv":
+.fn "__dt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>Fv", weak
 /* 8046C640 00469580  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C644 00469584  7C 08 02 A6 */	mflr r0
 /* 8046C648 00469588  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6269,15 +6253,16 @@ __dt__Q23PSM15Scene_ChallengeFv:
 /* 8046C684 004695C4  7C 08 03 A6 */	mtlr r0
 /* 8046C688 004695C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C68C 004695CC  4E 80 00 20 */	blr 
+.endfn "__dt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>Fv"
 
 .fn __sinit_PSMainSide_Scene_cpp, local
 /* 8046C690 004695D0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8046C694 004695D4  38 00 FF FF */	li r0, -1
 /* 8046C698 004695D8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8046C69C 004695DC  3C 60 80 4F */	lis r3, lbl_804EF268@ha
-/* 8046C6A0 004695E0  90 0D 9C 98 */	stw r0, lbl_80516318@sda21(r13)
-/* 8046C6A4 004695E4  D4 03 F2 68 */	stfsu f0, lbl_804EF268@l(r3)
-/* 8046C6A8 004695E8  D0 0D 9C 9C */	stfs f0, lbl_8051631C@sda21(r13)
+/* 8046C69C 004695DC  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8046C6A0 004695E0  90 0D 9C 98 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8046C6A4 004695E4  D4 03 F2 68 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8046C6A8 004695E8  D0 0D 9C 9C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8046C6AC 004695EC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8046C6B0 004695F0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8046C6B4 004695F4  4E 80 00 20 */	blr 

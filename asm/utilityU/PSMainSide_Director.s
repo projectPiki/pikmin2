@@ -1,43 +1,45 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049CD98:
+.obj lbl_8049CD98, local
 	.asciz "damageD  "
-	.skip 2
-lbl_8049CDA4:
+.endobj lbl_8049CD98
+.balign 4
+.obj lbl_8049CDA4, local
 	.asciz "lifeD    "
-	.skip 2
+.endobj lbl_8049CDA4
+.balign 4
 lbl_8049CDB0:
 	.asciz "pikminD  "
-	.skip 2
+.balign 4
 lbl_8049CDBC:
 	.asciz "PSMainSide_Director.cpp"
+.balign 4
 lbl_8049CDD4:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 lbl_8049CDE0:
 	.asciz "PSDirector.h"
-	.skip 3
+.balign 4
 	.asciz "PSCommon.h"
-	.skip 1
+.balign 4
 	.asciz "PSGame.h"
-	.skip 3
+.balign 4
 	.asciz "PSScene.h"
-	.skip 2
+.balign 4
 	.asciz "get sound scene at\ninvalid timming\n"
+.balign 4
 	.asciz "PSMainSide_ObjSound.h"
-	.skip 2
+.balign 4
 lbl_8049CE50:
 	.asciz "pikatkD  "
-	.skip 2
+.balign 4
 lbl_8049CE5C:
 	.asciz "tentionD "
-	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23PSM13ExiteDirector
-__vt__Q23PSM13ExiteDirector:
+.obj __vt__Q23PSM13ExiteDirector, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM13ExiteDirectorFv
@@ -52,6 +54,7 @@ __vt__Q23PSM13ExiteDirector:
 	.4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.endobj __vt__Q23PSM13ExiteDirector
 .global __vt__Q23PSM17PikAttackDirector
 __vt__Q23PSM17PikAttackDirector:
 	.4byte 0

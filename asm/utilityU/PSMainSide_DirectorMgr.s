@@ -1,54 +1,101 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049DA80:
+.obj lbl_8049DA80, local
 	.asciz "PSMainSide_DirectorMgr.cpp"
-	.skip 1
-lbl_8049DA9C:
+.endobj lbl_8049DA80
+.balign 4
+.obj lbl_8049DA9C, local
 	.asciz "P2Assert"
-	.skip 3
+.endobj lbl_8049DA9C
+.balign 4
+.obj lbl_8049DAA8, local
 	.asciz "caveglass.bms"
-	.skip 2
+.endobj lbl_8049DAA8
+.balign 4
+.obj lbl_8049DAB8, local
 	.asciz "caverelax.bms"
-	.skip 2
+.endobj lbl_8049DAB8
+.balign 4
+.obj lbl_8049DAC8, local
 	.asciz "/user/Totaka/trackMap_Seq_T.txt"
+.endobj lbl_8049DAC8
+.balign 4
+.obj lbl_8049DAE8, local
 	.asciz "caveconc.bms"
-	.skip 3
+.endobj lbl_8049DAE8
+.balign 4
+.obj lbl_8049DAF8, local
 	.asciz "/user/Totaka/trackMap_Cond_T.txt"
-	.skip 3
+.endobj lbl_8049DAF8
+.balign 4
+.obj lbl_8049DB1C, local
 	.asciz "cavesoil.bms"
-	.skip 3
+.endobj lbl_8049DB1C
+.balign 4
+.obj lbl_8049DB2C, local
 	.asciz "cavemetal.bms"
-	.skip 2
+.endobj lbl_8049DB2C
+.balign 4
+.obj lbl_8049DB3C, local
 	.asciz "/user/Wakai/trackMap_Cond_W.txt"
+.endobj lbl_8049DB3C
+.balign 4
+.obj lbl_8049DB5C, local
 	.asciz "/user/Wakai/trackMap_Seq_W.txt"
-	.skip 1
+.endobj lbl_8049DB5C
+.balign 4
+.obj lbl_8049DB7C, local
 	.asciz "track map is\nnot initialized\n"
-	.skip 2
+.endobj lbl_8049DB7C
+.balign 4
+.obj lbl_8049DB9C, local
 	.asciz "kehaiD   "
-	.skip 2
+.endobj lbl_8049DB9C
+.balign 4
+.obj lbl_8049DBA8, local
 	.asciz "battleD  "
-	.skip 2
+.endobj lbl_8049DBA8
+.balign 4
+.obj lbl_8049DBB4, local
 	.asciz "OtakaraD"
-	.skip 3
+.endobj lbl_8049DBB4
+.balign 4
+.obj lbl_8049DBC0, local
 	.asciz "GroundD  "
-	.skip 2
+.endobj lbl_8049DBC0
+.balign 4
+.obj lbl_8049DBCC, local
 	.asciz "PSGame.h"
-	.skip 3
+.endobj lbl_8049DBCC
+.balign 4
+.obj lbl_8049DBD8, local
 	.asciz "PSCommon.h"
-	.skip 1
+.endobj lbl_8049DBD8
+.balign 4
+.obj lbl_8049DBE4, local
 	.asciz "eventD   "
-	.skip 2
+.endobj lbl_8049DBE4
+.balign 4
+.obj lbl_8049DBF0, local
 	.asciz "OriBeedaD"
-	.skip 2
+.endobj lbl_8049DBF0
+.balign 4
+.obj lbl_8049DBFC, local
 	.asciz "RugBeedaD"
-	.skip 2
+.endobj lbl_8049DBFC
+.balign 4
+.obj lbl_8049DC08, local
 	.asciz "OriIchouD"
-	.skip 2
+.endobj lbl_8049DC08
+.balign 4
+.obj lbl_8049DC14, local
 	.asciz "RouIchouD"
-	.skip 2
+.endobj lbl_8049DC14
+.balign 4
+.obj lbl_8049DC20, local
 	.asciz "PikBattlD"
-	.skip 2
+.endobj lbl_8049DC20
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -62,7 +109,7 @@ lbl_8049DA9C:
 	.4byte .L_8046FEA8
 	.4byte .L_8046FF14
 .endobj lbl_804EF880
-lbl_804EF8A0:
+.obj lbl_804EF8A0, local
 	.4byte .L_80470060
 	.4byte .L_80470068
 	.4byte .L_80470070
@@ -71,7 +118,8 @@ lbl_804EF8A0:
 	.4byte .L_80470088
 	.4byte .L_80470090
 	.4byte .L_80470098
-lbl_804EF8C0:
+.endobj lbl_804EF8A0
+.obj lbl_804EF8C0, local
 	.4byte .L_80470518
 	.4byte .L_804705F8
 	.4byte .L_804706D4
@@ -80,8 +128,8 @@ lbl_804EF8C0:
 	.4byte .L_804708F0
 	.4byte .L_804709C4
 	.4byte .L_80470A98
-.global __vt__Q23PSM20DirectorMgr_2PBattle
-__vt__Q23PSM20DirectorMgr_2PBattle:
+.endobj lbl_804EF8C0
+.obj __vt__Q23PSM20DirectorMgr_2PBattle, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM20DirectorMgr_2PBattleFv
@@ -89,8 +137,8 @@ __vt__Q23PSM20DirectorMgr_2PBattle:
 	.4byte 0
 	.4byte 0
 	.4byte "@12@__dt__Q23PSM20DirectorMgr_2PBattleFv"
-.global __vt__Q23PSM18DirectorMgr_Battle
-__vt__Q23PSM18DirectorMgr_Battle:
+.endobj __vt__Q23PSM20DirectorMgr_2PBattle
+.obj __vt__Q23PSM18DirectorMgr_Battle, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM18DirectorMgr_BattleFv
@@ -98,8 +146,8 @@ __vt__Q23PSM18DirectorMgr_Battle:
 	.4byte 0
 	.4byte 0
 	.4byte "@12@__dt__Q23PSM18DirectorMgr_BattleFv"
-.global __vt__Q23PSM25DirectorMgr_Scene_AutoBgm
-__vt__Q23PSM25DirectorMgr_Scene_AutoBgm:
+.endobj __vt__Q23PSM18DirectorMgr_Battle
+.obj __vt__Q23PSM25DirectorMgr_Scene_AutoBgm, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
@@ -109,8 +157,8 @@ __vt__Q23PSM25DirectorMgr_Scene_AutoBgm:
 	.4byte "@12@__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv"
 	.4byte isSlave__Q23PSM17DirectorMgr_SceneFv
 	.4byte newPikminNumberDirector__Q23PSM25DirectorMgr_Scene_AutoBgmFiUcRQ28PSSystem11DirectedBgm
-.global __vt__Q23PSM19GroundDirector_Cave
-__vt__Q23PSM19GroundDirector_Cave:
+.endobj __vt__Q23PSM25DirectorMgr_Scene_AutoBgm
+.obj __vt__Q23PSM19GroundDirector_Cave, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM19GroundDirector_CaveFv
@@ -125,6 +173,7 @@ __vt__Q23PSM19GroundDirector_Cave:
 	.4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.endobj __vt__Q23PSM19GroundDirector_Cave
 .obj __vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>, weak
 	.4byte 0
 	.4byte 0
@@ -144,29 +193,40 @@ __vt__Q23PSM19GroundDirector_Cave:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520D60:
+.obj lbl_80520D60, local
 	.asciz ""
-	.skip 3
-lbl_80520D64:
+.endobj lbl_80520D60
+.balign 4
+.obj lbl_80520D64, local
 	.asciz "new_"
-	.skip 3
-lbl_80520D6C:
+.endobj lbl_80520D64
+.balign 4
+.obj lbl_80520D6C, local
 	.asciz "eventD"
-	.skip 1
-lbl_80520D74:
+.endobj lbl_80520D6C
+.balign 4
+.obj lbl_80520D74, local
 	.float 200.0
-lbl_80520D78:
+.endobj lbl_80520D74
+.balign 4
+.obj lbl_80520D78, local
 	.float 1500.0
-lbl_80520D7C:
+.endobj lbl_80520D78
+.balign 4
+.obj lbl_80520D7C, local
 	.asciz "PSSeq.h"
-lbl_80520D84:
+.endobj lbl_80520D7C
+.balign 4
+.obj lbl_80520D84, local
 	.float 300.0
-lbl_80520D88:
+.endobj lbl_80520D84
+.balign 4
+.obj lbl_80520D88, local
 	.float 600.0
+.endobj lbl_80520D88
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q23PSM17DirectorMgr_SceneFPQ23PSM17DirectorMgr_SceneUc
-__ct__Q23PSM17DirectorMgr_SceneFPQ23PSM17DirectorMgr_SceneUc:
+.fn __ct__Q23PSM17DirectorMgr_SceneFPQ23PSM17DirectorMgr_SceneUc, global
 /* 8046F2BC 0046C1FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046F2C0 0046C200  7C 08 02 A6 */	mflr r0
 /* 8046F2C4 0046C204  90 01 00 24 */	stw r0, 0x24(r1)
@@ -367,9 +427,9 @@ __ct__Q23PSM17DirectorMgr_SceneFPQ23PSM17DirectorMgr_SceneUc:
 /* 8046F588 0046C4C8  7C 08 03 A6 */	mtlr r0
 /* 8046F58C 0046C4CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046F590 0046C4D0  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM17DirectorMgr_SceneFPQ23PSM17DirectorMgr_SceneUc
 
-.global __dt__Q23PSM17DirectorMgr_SceneFv
-__dt__Q23PSM17DirectorMgr_SceneFv:
+.fn __dt__Q23PSM17DirectorMgr_SceneFv, global
 /* 8046F594 0046C4D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046F598 0046C4D8  7C 08 02 A6 */	mflr r0
 /* 8046F59C 0046C4DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -407,9 +467,9 @@ __dt__Q23PSM17DirectorMgr_SceneFv:
 /* 8046F614 0046C554  7C 08 03 A6 */	mtlr r0
 /* 8046F618 0046C558  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046F61C 0046C55C  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM17DirectorMgr_SceneFv
 
-.global initTrackMap__Q23PSM17DirectorMgr_SceneFRQ28PSSystem11DirectedBgm
-initTrackMap__Q23PSM17DirectorMgr_SceneFRQ28PSSystem11DirectedBgm:
+.fn initTrackMap__Q23PSM17DirectorMgr_SceneFRQ28PSSystem11DirectedBgm, global
 /* 8046F620 0046C560  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8046F624 0046C564  7C 08 02 A6 */	mflr r0
 /* 8046F628 0046C568  3C A0 80 4A */	lis r5, lbl_8049DA80@ha
@@ -586,9 +646,9 @@ initTrackMap__Q23PSM17DirectorMgr_SceneFRQ28PSSystem11DirectedBgm:
 /* 8046F8A8 0046C7E8  7C 08 03 A6 */	mtlr r0
 /* 8046F8AC 0046C7EC  38 21 00 90 */	addi r1, r1, 0x90
 /* 8046F8B0 0046C7F0  4E 80 00 20 */	blr 
+.endfn initTrackMap__Q23PSM17DirectorMgr_SceneFRQ28PSSystem11DirectedBgm
 
-.global newDirector__Q23PSM17DirectorMgr_SceneFUcRQ28PSSystem11DirectedBgm
-newDirector__Q23PSM17DirectorMgr_SceneFUcRQ28PSSystem11DirectedBgm:
+.fn newDirector__Q23PSM17DirectorMgr_SceneFUcRQ28PSSystem11DirectedBgm, global
 /* 8046F8B4 0046C7F4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8046F8B8 0046C7F8  7C 08 02 A6 */	mflr r0
 /* 8046F8BC 0046C7FC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1128,9 +1188,9 @@ newDirector__Q23PSM17DirectorMgr_SceneFUcRQ28PSSystem11DirectedBgm:
 /* 80470018 0046CF58  7C 08 03 A6 */	mtlr r0
 /* 8047001C 0046CF5C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80470020 0046CF60  4E 80 00 20 */	blr 
+.endfn newDirector__Q23PSM17DirectorMgr_SceneFUcRQ28PSSystem11DirectedBgm
 
-.global adaptDirectorActor__Q23PSM17DirectorMgr_SceneFPQ28PSSystem12DirectorBaseUc
-adaptDirectorActor__Q23PSM17DirectorMgr_SceneFPQ28PSSystem12DirectorBaseUc:
+.fn adaptDirectorActor__Q23PSM17DirectorMgr_SceneFPQ28PSSystem12DirectorBaseUc, global
 /* 80470024 0046CF64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470028 0046CF68  7C 08 02 A6 */	mflr r0
 /* 8047002C 0046CF6C  54 A6 06 3E */	clrlwi r6, r5, 0x18
@@ -1183,9 +1243,9 @@ adaptDirectorActor__Q23PSM17DirectorMgr_SceneFPQ28PSSystem12DirectorBaseUc:
 /* 804700C0 0046D000  7C 08 03 A6 */	mtlr r0
 /* 804700C4 0046D004  38 21 00 10 */	addi r1, r1, 0x10
 /* 804700C8 0046D008  4E 80 00 20 */	blr 
+.endfn adaptDirectorActor__Q23PSM17DirectorMgr_SceneFPQ28PSSystem12DirectorBaseUc
 
-.global newPikminNumberDirector__Q23PSM17DirectorMgr_SceneFiUcRQ28PSSystem11DirectedBgm
-newPikminNumberDirector__Q23PSM17DirectorMgr_SceneFiUcRQ28PSSystem11DirectedBgm:
+.fn newPikminNumberDirector__Q23PSM17DirectorMgr_SceneFiUcRQ28PSSystem11DirectedBgm, global
 /* 804700CC 0046D00C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804700D0 0046D010  7C 08 02 A6 */	mflr r0
 /* 804700D4 0046D014  38 60 00 50 */	li r3, 0x50
@@ -1225,9 +1285,9 @@ newPikminNumberDirector__Q23PSM17DirectorMgr_SceneFiUcRQ28PSSystem11DirectedBgm:
 /* 80470154 0046D094  7C 08 03 A6 */	mtlr r0
 /* 80470158 0046D098  38 21 00 20 */	addi r1, r1, 0x20
 /* 8047015C 0046D09C  4E 80 00 20 */	blr 
+.endfn newPikminNumberDirector__Q23PSM17DirectorMgr_SceneFiUcRQ28PSSystem11DirectedBgm
 
-.global newPikminNumberDirector__Q23PSM25DirectorMgr_Scene_AutoBgmFiUcRQ28PSSystem11DirectedBgm
-newPikminNumberDirector__Q23PSM25DirectorMgr_Scene_AutoBgmFiUcRQ28PSSystem11DirectedBgm:
+.fn newPikminNumberDirector__Q23PSM25DirectorMgr_Scene_AutoBgmFiUcRQ28PSSystem11DirectedBgm, global
 /* 80470160 0046D0A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80470164 0046D0A4  7C 08 02 A6 */	mflr r0
 /* 80470168 0046D0A8  38 60 00 54 */	li r3, 0x54
@@ -1266,9 +1326,9 @@ newPikminNumberDirector__Q23PSM25DirectorMgr_Scene_AutoBgmFiUcRQ28PSSystem11Dire
 /* 804701E4 0046D124  7C 08 03 A6 */	mtlr r0
 /* 804701E8 0046D128  38 21 00 20 */	addi r1, r1, 0x20
 /* 804701EC 0046D12C  4E 80 00 20 */	blr 
+.endfn newPikminNumberDirector__Q23PSM25DirectorMgr_Scene_AutoBgmFiUcRQ28PSSystem11DirectedBgm
 
-.global __ct__Q23PSM18DirectorMgr_BattleFv
-__ct__Q23PSM18DirectorMgr_BattleFv:
+.fn __ct__Q23PSM18DirectorMgr_BattleFv, global
 /* 804701F0 0046D130  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804701F4 0046D134  7C 08 02 A6 */	mflr r0
 /* 804701F8 0046D138  38 80 00 02 */	li r4, 2
@@ -1289,9 +1349,9 @@ __ct__Q23PSM18DirectorMgr_BattleFv:
 /* 80470234 0046D174  7C 08 03 A6 */	mtlr r0
 /* 80470238 0046D178  38 21 00 10 */	addi r1, r1, 0x10
 /* 8047023C 0046D17C  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM18DirectorMgr_BattleFv
 
-.global newDirector__Q23PSM18DirectorMgr_BattleFUcRQ28PSSystem11DirectedBgm
-newDirector__Q23PSM18DirectorMgr_BattleFUcRQ28PSSystem11DirectedBgm:
+.fn newDirector__Q23PSM18DirectorMgr_BattleFUcRQ28PSSystem11DirectedBgm, global
 /* 80470240 0046D180  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80470244 0046D184  7C 08 02 A6 */	mflr r0
 /* 80470248 0046D188  3C 60 80 4A */	lis r3, lbl_8049DA80@ha
@@ -1456,9 +1516,9 @@ newDirector__Q23PSM18DirectorMgr_BattleFUcRQ28PSSystem11DirectedBgm:
 /* 80470478 0046D3B8  7C 08 03 A6 */	mtlr r0
 /* 8047047C 0046D3BC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80470480 0046D3C0  4E 80 00 20 */	blr 
+.endfn newDirector__Q23PSM18DirectorMgr_BattleFUcRQ28PSSystem11DirectedBgm
 
-.global __ct__Q23PSM20DirectorMgr_2PBattleFv
-__ct__Q23PSM20DirectorMgr_2PBattleFv:
+.fn __ct__Q23PSM20DirectorMgr_2PBattleFv, global
 /* 80470484 0046D3C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470488 0046D3C8  7C 08 02 A6 */	mflr r0
 /* 8047048C 0046D3CC  38 80 00 08 */	li r4, 8
@@ -1479,9 +1539,9 @@ __ct__Q23PSM20DirectorMgr_2PBattleFv:
 /* 804704C8 0046D408  7C 08 03 A6 */	mtlr r0
 /* 804704CC 0046D40C  38 21 00 10 */	addi r1, r1, 0x10
 /* 804704D0 0046D410  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM20DirectorMgr_2PBattleFv
 
-.global newDirector__Q23PSM20DirectorMgr_2PBattleFUcRQ28PSSystem11DirectedBgm
-newDirector__Q23PSM20DirectorMgr_2PBattleFUcRQ28PSSystem11DirectedBgm:
+.fn newDirector__Q23PSM20DirectorMgr_2PBattleFUcRQ28PSSystem11DirectedBgm, global
 /* 804704D4 0046D414  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804704D8 0046D418  7C 08 02 A6 */	mflr r0
 /* 804704DC 0046D41C  3C 60 80 4A */	lis r3, lbl_8049DA80@ha
@@ -1968,9 +2028,9 @@ newDirector__Q23PSM20DirectorMgr_2PBattleFUcRQ28PSSystem11DirectedBgm:
 /* 80470B80 0046DAC0  7C 08 03 A6 */	mtlr r0
 /* 80470B84 0046DAC4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80470B88 0046DAC8  4E 80 00 20 */	blr 
+.endfn newDirector__Q23PSM20DirectorMgr_2PBattleFUcRQ28PSSystem11DirectedBgm
 
-.global __dt__Q23PSM20DirectorMgr_2PBattleFv
-__dt__Q23PSM20DirectorMgr_2PBattleFv:
+.fn __dt__Q23PSM20DirectorMgr_2PBattleFv, weak
 /* 80470B8C 0046DACC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470B90 0046DAD0  7C 08 02 A6 */	mflr r0
 /* 80470B94 0046DAD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2008,9 +2068,9 @@ __dt__Q23PSM20DirectorMgr_2PBattleFv:
 /* 80470C0C 0046DB4C  7C 08 03 A6 */	mtlr r0
 /* 80470C10 0046DB50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80470C14 0046DB54  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM20DirectorMgr_2PBattleFv
 
-.global __dt__Q23PSM18DirectorMgr_BattleFv
-__dt__Q23PSM18DirectorMgr_BattleFv:
+.fn __dt__Q23PSM18DirectorMgr_BattleFv, weak
 /* 80470C18 0046DB58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470C1C 0046DB5C  7C 08 02 A6 */	mflr r0
 /* 80470C20 0046DB60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2048,9 +2108,9 @@ __dt__Q23PSM18DirectorMgr_BattleFv:
 /* 80470C98 0046DBD8  7C 08 03 A6 */	mtlr r0
 /* 80470C9C 0046DBDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80470CA0 0046DBE0  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM18DirectorMgr_BattleFv
 
-.global __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
-__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv:
+.fn __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv, weak
 /* 80470CA4 0046DBE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470CA8 0046DBE8  7C 08 02 A6 */	mflr r0
 /* 80470CAC 0046DBEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2094,14 +2154,15 @@ __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv:
 /* 80470D3C 0046DC7C  7C 08 03 A6 */	mtlr r0
 /* 80470D40 0046DC80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80470D44 0046DC84  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
 
-.global isSlave__Q23PSM17DirectorMgr_SceneFv
-isSlave__Q23PSM17DirectorMgr_SceneFv:
+.fn isSlave__Q23PSM17DirectorMgr_SceneFv, weak
 /* 80470D48 0046DC88  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 80470D4C 0046DC8C  7C 03 00 D0 */	neg r0, r3
 /* 80470D50 0046DC90  7C 00 1B 78 */	or r0, r0, r3
 /* 80470D54 0046DC94  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80470D58 0046DC98  4E 80 00 20 */	blr 
+.endfn isSlave__Q23PSM17DirectorMgr_SceneFv
 
 .fn __dt__Q23PSM15BgmTrackMapFileFv, weak
 /* 80470D5C 0046DC9C  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -2142,8 +2203,7 @@ isSlave__Q23PSM17DirectorMgr_SceneFv:
 /* 80470DE0 0046DD20  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM15BgmTrackMapFileFv
 
-.global __dt__Q23PSM19GroundDirector_CaveFv
-__dt__Q23PSM19GroundDirector_CaveFv:
+.fn __dt__Q23PSM19GroundDirector_CaveFv, weak
 /* 80470DE4 0046DD24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470DE8 0046DD28  7C 08 02 A6 */	mflr r0
 /* 80470DEC 0046DD2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2190,14 +2250,15 @@ __dt__Q23PSM19GroundDirector_CaveFv:
 /* 80470E88 0046DDC8  7C 08 03 A6 */	mtlr r0
 /* 80470E8C 0046DDCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80470E90 0046DDD0  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM19GroundDirector_CaveFv
 
-.global directOn__Q23PSM19GroundDirector_CaveFv
-directOn__Q23PSM19GroundDirector_CaveFv:
+.fn directOn__Q23PSM19GroundDirector_CaveFv, weak
 /* 80470E94 0046DDD4  4E 80 00 20 */	blr 
+.endfn directOn__Q23PSM19GroundDirector_CaveFv
 
-.global directOff__Q23PSM19GroundDirector_CaveFv
-directOff__Q23PSM19GroundDirector_CaveFv:
+.fn directOff__Q23PSM19GroundDirector_CaveFv, weak
 /* 80470E98 0046DDD8  4E 80 00 20 */	blr 
+.endfn directOff__Q23PSM19GroundDirector_CaveFv
 
 .fn __dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv, weak
 /* 80470E9C 0046DDDC  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -2223,22 +2284,22 @@ directOff__Q23PSM19GroundDirector_CaveFv:
 /* 80470EE8 0046DE28  4E 80 00 20 */	blr 
 .endfn __dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv
 
-.global "@12@__dt__Q23PSM17DirectorMgr_SceneFv"
-"@12@__dt__Q23PSM17DirectorMgr_SceneFv":
+.fn "@12@__dt__Q23PSM17DirectorMgr_SceneFv", weak
 /* 80470EEC 0046DE2C  38 63 FF F4 */	addi r3, r3, -12
 /* 80470EF0 0046DE30  4B FF E6 A4 */	b __dt__Q23PSM17DirectorMgr_SceneFv
+.endfn "@12@__dt__Q23PSM17DirectorMgr_SceneFv"
 
-.global "@12@__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv"
-"@12@__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv":
+.fn "@12@__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv", weak
 /* 80470EF4 0046DE34  38 63 FF F4 */	addi r3, r3, -12
 /* 80470EF8 0046DE38  4B FF FD AC */	b __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
+.endfn "@12@__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv"
 
-.global "@12@__dt__Q23PSM18DirectorMgr_BattleFv"
-"@12@__dt__Q23PSM18DirectorMgr_BattleFv":
+.fn "@12@__dt__Q23PSM18DirectorMgr_BattleFv", weak
 /* 80470EFC 0046DE3C  38 63 FF F4 */	addi r3, r3, -12
 /* 80470F00 0046DE40  4B FF FD 18 */	b __dt__Q23PSM18DirectorMgr_BattleFv
+.endfn "@12@__dt__Q23PSM18DirectorMgr_BattleFv"
 
-.global "@12@__dt__Q23PSM20DirectorMgr_2PBattleFv"
-"@12@__dt__Q23PSM20DirectorMgr_2PBattleFv":
+.fn "@12@__dt__Q23PSM20DirectorMgr_2PBattleFv", weak
 /* 80470F04 0046DE44  38 63 FF F4 */	addi r3, r3, -12
 /* 80470F08 0046DE48  4B FF FC 84 */	b __dt__Q23PSM20DirectorMgr_2PBattleFv
+.endfn "@12@__dt__Q23PSM20DirectorMgr_2PBattleFv"

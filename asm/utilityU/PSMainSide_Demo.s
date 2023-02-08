@@ -1,382 +1,500 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049D080:
+.obj lbl_8049D080, local
 	.asciz "PSMainSide_Demo.cpp"
+.endobj lbl_8049D080
 .balign 4
-lbl_8049D094:
+.obj lbl_8049D094, local
 	.asciz "P2Assert"
+.endobj lbl_8049D094
 .balign 4
-lbl_8049D0A0:
+.obj lbl_8049D0A0, local
 	.asciz "PSGame.h"
+.endobj lbl_8049D0A0
 .balign 4
-lbl_8049D0AC:
+.obj lbl_8049D0AC, local
 	.asciz "PSScene.h"
+.endobj lbl_8049D0AC
 .balign 4
-lbl_8049D0B8:
+.obj lbl_8049D0B8, local
 	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8049D0B8
 .balign 4
-lbl_8049D0DC:
+.obj lbl_8049D0DC, local
 	.asciz "s21_dayend_takeoff"
+.endobj lbl_8049D0DC
 .balign 4
-audio_info: # unnamed rodata struct formatted as u32 array at 0x8049D0F0
+.obj audio_info, local # unnamed rodata struct formatted as u32 array at 0x8049D0F0
 	.4byte 0
 	.4byte 0x7F030000
 	.float 1.0
 	.float 0.0078125
+.endobj audio_info
 .balign 4
-lbl_8049D100:
+.obj lbl_8049D100, local
 	.asciz "s02_dayend_result"
+.endobj lbl_8049D100
 .balign 4
-lbl_8049D114:
+.obj lbl_8049D114, local
 	.asciz "s01_dayend"
+.endobj lbl_8049D114
 .balign 4
-lbl_8049D120:
+.obj lbl_8049D120, local
 	.asciz "s03_orimadown"
+.endobj lbl_8049D120
 .balign 4
-lbl_8049D130:
+.obj lbl_8049D130, local
 	.asciz "s05_pikminzero"
+.endobj lbl_8049D130
 .balign 4
-lbl_8049D140:
+.obj lbl_8049D140, local
 	.asciz "s11_dope_first_b"
+.endobj lbl_8049D140
 .balign 4
-lbl_8049D154:
+.obj lbl_8049D154, local
 	.asciz "s11_dope_first_r"
+.endobj lbl_8049D154
 .balign 4
-lbl_8049D168:
+.obj lbl_8049D168, local
 	.asciz "s11_dopebin_first_b"
+.endobj lbl_8049D168
 .balign 4
-lbl_8049D17C:
+.obj lbl_8049D17C, local
 	.asciz "s11_dopebin_first_r"
+.endobj lbl_8049D17C
 .balign 4
-lbl_8049D190:
+.obj lbl_8049D190, local
 	.asciz "s17_suck_equipment"
+.endobj lbl_8049D190
 .balign 4
-lbl_8049D1A4:
+.obj lbl_8049D1A4, local
 	.asciz "s22_cv_suck_equipment"
+.endobj lbl_8049D1A4
 .balign 4
-lbl_8049D1BC:
+.obj lbl_8049D1BC, local
 	.asciz "s10_suck_treasure"
+.endobj lbl_8049D1BC
 .balign 4
-lbl_8049D1D0:
+.obj lbl_8049D1D0, local
 	.asciz "s22_cv_suck_treasure"
+.endobj lbl_8049D1D0
 .balign 4
-lbl_8049D1E8:
+.obj lbl_8049D1E8, local
 	.asciz "s04_dayend_orimadown"
+.endobj lbl_8049D1E8
 .balign 4
-lbl_8049D200:
+.obj lbl_8049D200, local
 	.asciz "s06_dayend_pikminzero"
+.endobj lbl_8049D200
 .balign 4
-lbl_8049D218:
+.obj lbl_8049D218, local
 	.asciz "g1A_red_doping"
+.endobj lbl_8049D218
 .balign 4
-lbl_8049D228:
+.obj lbl_8049D228, local
 	.asciz "g1B_black_doping"
+.endobj lbl_8049D228
 .balign 4
-lbl_8049D23C:
+.obj lbl_8049D23C, local
 	.asciz "g02_boot_onyonR"
+.endobj lbl_8049D23C
 .balign 4
-lbl_8049D24C:
+.obj lbl_8049D24C, local
 	.asciz "g1E_boot_onyonY"
+.endobj lbl_8049D24C
 .balign 4
-lbl_8049D25C:
+.obj lbl_8049D25C, local
 	.asciz "g20_boot_onyonB"
+.endobj lbl_8049D25C
 .balign 4
-lbl_8049D26C:
+.obj lbl_8049D26C, local
 	.asciz "g03_meet_redpikmin"
+.endobj lbl_8049D26C
 .balign 4
-lbl_8049D280:
+.obj lbl_8049D280, local
 	.asciz "g1F_meet_yellowpikmin"
+.endobj lbl_8049D280
 .balign 4
-lbl_8049D298:
+.obj lbl_8049D298, local
 	.asciz "g21_meet_bluepikmin"
+.endobj lbl_8049D298
 .balign 4
-lbl_8049D2AC:
+.obj lbl_8049D2AC, local
 	.asciz "g24_meet_blackpikmin"
+.endobj lbl_8049D2AC
 .balign 4
-lbl_8049D2C4:
+.obj lbl_8049D2C4, local
 	.asciz "g27_meet_whitepikmin"
+.endobj lbl_8049D2C4
 .balign 4
-lbl_8049D2DC:
+.obj lbl_8049D2DC, local
 	.asciz "g33_camera_demo"
+.endobj lbl_8049D2DC
 .balign 4
-lbl_8049D2EC:
+.obj lbl_8049D2EC, local
 	.asciz "s09_holein"
+.endobj lbl_8049D2EC
 .balign 4
-lbl_8049D2F8:
+.obj lbl_8049D2F8, local
 	.asciz "s16_find_item_00"
+.endobj lbl_8049D2F8
 .balign 4
-lbl_8049D30C:
+.obj lbl_8049D30C, local
 	.asciz "s16_find_item_01"
+.endobj lbl_8049D30C
 .balign 4
-lbl_8049D320:
+.obj lbl_8049D320, local
 	.asciz "s16_find_item_02"
+.endobj lbl_8049D320
 .balign 4
-lbl_8049D334:
+.obj lbl_8049D334, local
 	.asciz "s16_find_item_03"
+.endobj lbl_8049D334
 .balign 4
-lbl_8049D348:
+.obj lbl_8049D348, local
 	.asciz "s16_find_item_04"
+.endobj lbl_8049D348
 .balign 4
-lbl_8049D35C:
+.obj lbl_8049D35C, local
 	.asciz "s16_find_item_05"
+.endobj lbl_8049D35C
 .balign 4
-lbl_8049D370:
+.obj lbl_8049D370, local
 	.asciz "s16_find_item_06"
+.endobj lbl_8049D370
 .balign 4
-lbl_8049D384:
+.obj lbl_8049D384, local
 	.asciz "s16_find_item_07"
+.endobj lbl_8049D384
 .balign 4
-lbl_8049D398:
+.obj lbl_8049D398, local
 	.asciz "s16_find_item_08"
+.endobj lbl_8049D398
 .balign 4
-lbl_8049D3AC:
+.obj lbl_8049D3AC, local
 	.asciz "s16_find_item_09"
+.endobj lbl_8049D3AC
 .balign 4
-lbl_8049D3C0:
+.obj lbl_8049D3C0, local
 	.asciz "s16_find_item_10"
+.endobj lbl_8049D3C0
 .balign 4
-lbl_8049D3D4:
+.obj lbl_8049D3D4, local
 	.asciz "s16_find_item_11"
+.endobj lbl_8049D3D4
 .balign 4
-lbl_8049D3E8:
+.obj lbl_8049D3E8, local
 	.asciz "s16_find_item_12"
+.endobj lbl_8049D3E8
 .balign 4
-lbl_8049D3FC:
+.obj lbl_8049D3FC, local
 	.asciz "s0C_cv_escape"
+.endobj lbl_8049D3FC
 .balign 4
-lbl_8049D40C:
+.obj lbl_8049D40C, local
 	.asciz "g01_pick_me"
+.endobj lbl_8049D40C
 .balign 4
-lbl_8049D418:
+.obj lbl_8049D418, local
 	.asciz "g04_find_treasure"
+.endobj lbl_8049D418
 .balign 4
-lbl_8049D42C:
+.obj lbl_8049D42C, local
 	.asciz "g05_find_cave_f_01"
+.endobj lbl_8049D42C
 .balign 4
-lbl_8049D440:
+.obj lbl_8049D440, local
 	.asciz "g05_find_cave_f_02"
+.endobj lbl_8049D440
 .balign 4
-lbl_8049D454:
+.obj lbl_8049D454, local
 	.asciz "g05_find_cave_f_03"
+.endobj lbl_8049D454
 .balign 4
-lbl_8049D468:
+.obj lbl_8049D468, local
 	.asciz "g05_find_cave_f_04"
+.endobj lbl_8049D468
 .balign 4
-lbl_8049D47C:
+.obj lbl_8049D47C, local
 	.asciz "g05_find_cave_l_01"
+.endobj lbl_8049D47C
 .balign 4
-lbl_8049D490:
+.obj lbl_8049D490, local
 	.asciz "g05_find_cave_l_02"
+.endobj lbl_8049D490
 .balign 4
-lbl_8049D4A4:
+.obj lbl_8049D4A4, local
 	.asciz "g05_find_cave_l_03"
+.endobj lbl_8049D4A4
 .balign 4
-lbl_8049D4B8:
+.obj lbl_8049D4B8, local
 	.asciz "g05_find_cave_t_01"
+.endobj lbl_8049D4B8
 .balign 4
-lbl_8049D4CC:
+.obj lbl_8049D4CC, local
 	.asciz "g05_find_cave_t_02"
+.endobj lbl_8049D4CC
 .balign 4
-lbl_8049D4E0:
+.obj lbl_8049D4E0, local
 	.asciz "g05_find_cave_t_03"
+.endobj lbl_8049D4E0
 .balign 4
-lbl_8049D4F4:
+.obj lbl_8049D4F4, local
 	.asciz "g05_find_cave_y_01"
+.endobj lbl_8049D4F4
 .balign 4
-lbl_8049D508:
+.obj lbl_8049D508, local
 	.asciz "g05_find_cave_y_02"
+.endobj lbl_8049D508
 .balign 4
-lbl_8049D51C:
+.obj lbl_8049D51C, local
 	.asciz "g05_find_cave_y_03"
+.endobj lbl_8049D51C
 .balign 4
-lbl_8049D530:
+.obj lbl_8049D530, local
 	.asciz "g05_find_cave_y_04"
+.endobj lbl_8049D530
 .balign 4
-lbl_8049D544:
+.obj lbl_8049D544, local
 	.asciz "g0A_cv_find_hole"
+.endobj lbl_8049D544
 .balign 4
-lbl_8049D558:
+.obj lbl_8049D558, local
 	.asciz "g0B_cv_find_fountain"
+.endobj lbl_8049D558
 .balign 4
-lbl_8049D570:
+.obj lbl_8049D570, local
 	.asciz "g18_find_gate"
+.endobj lbl_8049D570
 .balign 4
-lbl_8049D580:
+.obj lbl_8049D580, local
 	.asciz "g19_find_rock"
+.endobj lbl_8049D580
 .balign 4
-lbl_8049D590:
+.obj lbl_8049D590, local
 	.asciz "g2D_red_extract"
+.endobj lbl_8049D590
 .balign 4
-lbl_8049D5A0:
+.obj lbl_8049D5A0, local
 	.asciz "g2E_black_extract"
+.endobj lbl_8049D5A0
 .balign 4
-lbl_8049D5B4:
+.obj lbl_8049D5B4, local
 	.asciz "g34_yellow_extract"
+.endobj lbl_8049D5B4
 .balign 4
-lbl_8049D5C8:
+.obj lbl_8049D5C8, local
 	.asciz "g37_get_louie"
+.endobj lbl_8049D5C8
 .balign 4
-lbl_8049D5D8:
+.obj lbl_8049D5D8, local
 	.asciz "g38_find_whitepom"
+.endobj lbl_8049D5D8
 .balign 4
-lbl_8049D5EC:
+.obj lbl_8049D5EC, local
 	.asciz "g39_find_blackpom"
+.endobj lbl_8049D5EC
 .balign 4
-lbl_8049D600:
+.obj lbl_8049D600, local
 	.asciz "x01_gamestart"
+.endobj lbl_8049D600
 .balign 4
-lbl_8049D610:
+.obj lbl_8049D610, local
 	.asciz "x02_watch_red_pikmin"
+.endobj lbl_8049D610
 .balign 4
-lbl_8049D628:
+.obj lbl_8049D628, local
 	.asciz "x06_join"
+.endobj lbl_8049D628
 .balign 4
-lbl_8049D634:
+.obj lbl_8049D634, local
 	.asciz "x12_drain_water"
+.endobj lbl_8049D634
 .balign 4
-lbl_8049D644:
+.obj lbl_8049D644, local
 	.asciz "x10_find_yellow_onyon"
+.endobj lbl_8049D644
 .balign 4
-lbl_8049D65C:
+.obj lbl_8049D65C, local
 	.asciz "x11_find_blue_onyon"
+.endobj lbl_8049D65C
 .balign 4
-lbl_8049D670:
+.obj lbl_8049D670, local
 	.asciz "x16_hiba"
+.endobj lbl_8049D670
 .balign 4
-lbl_8049D67C:
+.obj lbl_8049D67C, local
 	.asciz "x13_exp_leafchappy"
+.endobj lbl_8049D67C
 .balign 4
-lbl_8049D690:
+.obj lbl_8049D690, local
 	.asciz "x20_blackman"
+.endobj lbl_8049D690
 .balign 4
-lbl_8049D6A0:
+.obj lbl_8049D6A0, local
 	.asciz "s13_pikmin_supply"
+.endobj lbl_8049D6A0
 .balign 4
-lbl_8049D6B4:
+.obj lbl_8049D6B4, local
 	.asciz "s0B_cv_coursein"
+.endobj lbl_8049D6B4
 .balign 4
-lbl_8049D6C4:
+.obj lbl_8049D6C4, local
 	.asciz "s0E_return_cave"
+.endobj lbl_8049D6C4
 .balign 4
-lbl_8049D6D4:
+.obj lbl_8049D6D4, local
 	.asciz "e00_E3_cavestart"
+.endobj lbl_8049D6D4
 .balign 4
-lbl_8049D6E8:
+.obj lbl_8049D6E8, local
 	.asciz "g07_cv_gamestart"
+.endobj lbl_8049D6E8
 .balign 4
-lbl_8049D6FC:
+.obj lbl_8049D6FC, local
 	.asciz "g08_first_return"
+.endobj lbl_8049D6FC
 .balign 4
-lbl_8049D710:
+.obj lbl_8049D710, local
 	.asciz "g09_first_sunset"
+.endobj lbl_8049D710
 .balign 4
-lbl_8049D724:
+.obj lbl_8049D724, local
 	.asciz "g16_100_pikmin"
+.endobj lbl_8049D724
 .balign 4
-lbl_8049D734:
+.obj lbl_8049D734, local
 	.asciz "g16_95_pikmin"
+.endobj lbl_8049D734
 .balign 4
-lbl_8049D744:
+.obj lbl_8049D744, local
 	.asciz "g26_inout_black"
+.endobj lbl_8049D744
 .balign 4
-lbl_8049D754:
+.obj lbl_8049D754, local
 	.asciz "g29_inout_white"
+.endobj lbl_8049D754
 .balign 4
-lbl_8049D764:
+.obj lbl_8049D764, local
 	.asciz "g2B_white_poison"
+.endobj lbl_8049D764
 .balign 4
-lbl_8049D778:
+.obj lbl_8049D778, local
 	.asciz "g2C_inout_red"
+.endobj lbl_8049D778
 .balign 4
-lbl_8049D788:
+.obj lbl_8049D788, local
 	.asciz "g36_find_louie"
+.endobj lbl_8049D788
 .balign 4
-lbl_8049D798:
+.obj lbl_8049D798, local
 	.asciz "x01_coursein_forest"
+.endobj lbl_8049D798
 .balign 4
-lbl_8049D7AC:
+.obj lbl_8049D7AC, local
 	.asciz "x01_coursein_yakushima"
+.endobj lbl_8049D7AC
 .balign 4
-lbl_8049D7C4:
+.obj lbl_8049D7C4, local
 	.asciz "x01_coursein_last"
+.endobj lbl_8049D7C4
 .balign 4
-lbl_8049D7D8:
+.obj lbl_8049D7D8, local
 	.asciz "x04_exp_y"
+.endobj lbl_8049D7D8
 .balign 4
-lbl_8049D7E4:
+.obj lbl_8049D7E4, local
 	.asciz "x05_louiestart"
+.endobj lbl_8049D7E4
 .balign 4
-lbl_8049D7F4:
+.obj lbl_8049D7F4, local
 	.asciz "x07_first_recovery"
+.endobj lbl_8049D7F4
 .balign 4
-lbl_8049D808:
+.obj lbl_8049D808, local
 	.asciz "x08_cv_suck_carcass"
+.endobj lbl_8049D808
 .balign 4
-lbl_8049D81C:
+.obj lbl_8049D81C, local
 	.asciz "x09_exp_detector"
+.endobj lbl_8049D81C
 .balign 4
-lbl_8049D830:
+.obj lbl_8049D830, local
 	.asciz "x14_white_dig"
+.endobj lbl_8049D830
 .balign 4
-lbl_8049D840:
+.obj lbl_8049D840, local
 	.asciz "g32_get_map"
+.endobj lbl_8049D840
 .balign 4
-lbl_8049D84C:
+.obj lbl_8049D84C, local
 	.asciz "g35_president_gamestart"
+.endobj lbl_8049D84C
 .balign 4
-lbl_8049D864:
+.obj lbl_8049D864, local
 	.asciz "x15_exp_x"
+.endobj lbl_8049D864
 .balign 4
-lbl_8049D870:
+.obj lbl_8049D870, local
 	.asciz "x17_join_guide"
+.endobj lbl_8049D870
 .balign 4
-lbl_8049D880:
+.obj lbl_8049D880, local
 	.asciz "x18_exp_pellet"
+.endobj lbl_8049D880
 .balign 4
-lbl_8049D890:
+.obj lbl_8049D890, local
 	.asciz "x03_find_red_onyon"
+.endobj lbl_8049D890
 .balign 4
-lbl_8049D8A4:
+.obj lbl_8049D8A4, local
 	.asciz "x19_vs_bedama"
+.endobj lbl_8049D8A4
 .balign 4
-lbl_8049D8B4:
+.obj lbl_8049D8B4, local
 	.asciz "g2F_appear_hole"
+.endobj lbl_8049D8B4
 .balign 4
-lbl_8049D8C4:
+.obj lbl_8049D8C4, local
 	.asciz "g30_appear_fountain"
+.endobj lbl_8049D8C4
 .balign 4
-lbl_8049D8D8:
+.obj lbl_8049D8D8, local
 	.asciz "PSMainSide_Scene.h"
+.endobj lbl_8049D8D8
 .balign 4
-lbl_8049D8EC:
+.obj lbl_8049D8EC, local
 	.asciz "PSCommon.h"
+.endobj lbl_8049D8EC
 .balign 4
-lbl_8049D8F8:
+.obj lbl_8049D8F8, local
 	.asciz "s12_cv_giveup"
+.endobj lbl_8049D8F8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23PSM4Demo
-__vt__Q23PSM4Demo:
+.obj __vt__Q23PSM4Demo, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM4DemoFv
 	.4byte init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg
 	.4byte initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc
 	.4byte initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo
+.endobj __vt__Q23PSM4Demo
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520C90:
+.obj lbl_80520C90, local
 	.asciz ""
+.endobj lbl_80520C90
 .balign 4
-lbl_80520C94:
+.obj lbl_80520C94, local
 	.asciz "key"
+.endobj lbl_80520C94
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q23PSM4DemoFv
-__ct__Q23PSM4DemoFv:
+.fn __ct__Q23PSM4DemoFv, global
 /* 80463FE8 00460F28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80463FEC 00460F2C  7C 08 02 A6 */	mflr r0
 /* 80463FF0 00460F30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -400,9 +518,9 @@ __ct__Q23PSM4DemoFv:
 /* 80464038 00460F78  7C 08 03 A6 */	mtlr r0
 /* 8046403C 00460F7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80464040 00460F80  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM4DemoFv
 
-.global init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg
-init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg:
+.fn init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg, global
 /* 80464044 00460F84  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80464048 00460F88  7C 08 02 A6 */	mflr r0
 /* 8046404C 00460F8C  3D 00 80 4A */	lis r8, lbl_8049D080@ha
@@ -543,9 +661,9 @@ init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg:
 /* 80464244 00461184  7C 08 03 A6 */	mtlr r0
 /* 80464248 00461188  38 21 00 40 */	addi r1, r1, 0x40
 /* 8046424C 0046118C  4E 80 00 20 */	blr 
+.endfn init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg
 
-.global demo1stLoadSync__Q23PSM4DemoFv
-demo1stLoadSync__Q23PSM4DemoFv:
+.fn demo1stLoadSync__Q23PSM4DemoFv, global
 /* 80464250 00461190  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80464254 00461194  7C 08 02 A6 */	mflr r0
 /* 80464258 00461198  3C 60 80 4A */	lis r3, lbl_8049D080@ha
@@ -610,9 +728,9 @@ demo1stLoadSync__Q23PSM4DemoFv:
 /* 80464330 00461270  7C 08 03 A6 */	mtlr r0
 /* 80464334 00461274  38 21 00 10 */	addi r1, r1, 0x10
 /* 80464338 00461278  4E 80 00 20 */	blr 
+.endfn demo1stLoadSync__Q23PSM4DemoFv
 
-.global initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo
-initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo:
+.fn initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo, global
 /* 8046433C 0046127C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80464340 00461280  7C 08 02 A6 */	mflr r0
 /* 80464344 00461284  3C C0 80 4A */	lis r6, lbl_8049D0DC@ha
@@ -632,9 +750,9 @@ initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo:
 /* 80464378 004612B8  7C 08 03 A6 */	mtlr r0
 /* 8046437C 004612BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80464380 004612C0  4E 80 00 20 */	blr 
+.endfn initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo
 
-.global initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc
-initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc:
+.fn initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc, global
 /* 80464384 004612C4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80464388 004612C8  7C 08 02 A6 */	mflr r0
 /* 8046438C 004612CC  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2736,9 +2854,9 @@ initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc:
 /* 8046611C 0046305C  7C 08 03 A6 */	mtlr r0
 /* 80466120 00463060  38 21 00 70 */	addi r1, r1, 0x70
 /* 80466124 00463064  4E 80 00 20 */	blr 
+.endfn initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc
 
-.global __dt__Q23PSM4DemoFv
-__dt__Q23PSM4DemoFv:
+.fn __dt__Q23PSM4DemoFv, global
 /* 80466128 00463068  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046612C 0046306C  7C 08 02 A6 */	mflr r0
 /* 80466130 00463070  3C A0 80 4A */	lis r5, lbl_8049D080@ha
@@ -2845,9 +2963,9 @@ __dt__Q23PSM4DemoFv:
 /* 804662A0 004631E0  7C 08 03 A6 */	mtlr r0
 /* 804662A4 004631E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 804662A8 004631E8  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM4DemoFv
 
-.global onDemoTop__Q23PSM4DemoFv
-onDemoTop__Q23PSM4DemoFv:
+.fn onDemoTop__Q23PSM4DemoFv, global
 /* 804662AC 004631EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804662B0 004631F0  7C 08 02 A6 */	mflr r0
 /* 804662B4 004631F4  3C 80 80 4A */	lis r4, lbl_8049D080@ha
@@ -3320,9 +3438,9 @@ onDemoTop__Q23PSM4DemoFv:
 /* 80466960 004638A0  7C 08 03 A6 */	mtlr r0
 /* 80466964 004638A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80466968 004638A8  4E 80 00 20 */	blr 
+.endfn onDemoTop__Q23PSM4DemoFv
 
-.global becomeSceneCamera__Q23PSM4DemoFv
-becomeSceneCamera__Q23PSM4DemoFv:
+.fn becomeSceneCamera__Q23PSM4DemoFv, global
 /* 8046696C 004638AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80466970 004638B0  7C 08 02 A6 */	mflr r0
 /* 80466974 004638B4  3C 60 80 4A */	lis r3, lbl_8049D080@ha
@@ -3393,9 +3511,9 @@ becomeSceneCamera__Q23PSM4DemoFv:
 /* 80466A64 004639A4  7C 08 03 A6 */	mtlr r0
 /* 80466A68 004639A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80466A6C 004639AC  4E 80 00 20 */	blr 
+.endfn becomeSceneCamera__Q23PSM4DemoFv
 
-.global onDemoFadeoutStart__Q23PSM4DemoFUl
-onDemoFadeoutStart__Q23PSM4DemoFUl:
+.fn onDemoFadeoutStart__Q23PSM4DemoFUl, global
 /* 80466A70 004639B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80466A74 004639B4  7C 08 02 A6 */	mflr r0
 /* 80466A78 004639B8  3C 60 80 4A */	lis r3, lbl_8049D080@ha
@@ -3464,9 +3582,9 @@ onDemoFadeoutStart__Q23PSM4DemoFUl:
 /* 80466B60 00463AA0  7C 08 03 A6 */	mtlr r0
 /* 80466B64 00463AA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80466B68 00463AA8  4E 80 00 20 */	blr 
+.endfn onDemoFadeoutStart__Q23PSM4DemoFUl
 
-.global onDemoEnd__Q23PSM4DemoFv
-onDemoEnd__Q23PSM4DemoFv:
+.fn onDemoEnd__Q23PSM4DemoFv, global
 /* 80466B6C 00463AAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80466B70 00463AB0  7C 08 02 A6 */	mflr r0
 /* 80466B74 00463AB4  3C 80 80 4A */	lis r4, lbl_8049D080@ha
@@ -3915,9 +4033,9 @@ onDemoEnd__Q23PSM4DemoFv:
 /* 804671C4 00464104  7C 08 03 A6 */	mtlr r0
 /* 804671C8 00464108  38 21 00 20 */	addi r1, r1, 0x20
 /* 804671CC 0046410C  4E 80 00 20 */	blr 
+.endfn onDemoEnd__Q23PSM4DemoFv
 
-.global onMessageEnd__Q23PSM4DemoFi
-onMessageEnd__Q23PSM4DemoFi:
+.fn onMessageEnd__Q23PSM4DemoFi, global
 /* 804671D0 00464110  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804671D4 00464114  7C 08 02 A6 */	mflr r0
 /* 804671D8 00464118  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4087,9 +4205,9 @@ onMessageEnd__Q23PSM4DemoFi:
 /* 8046742C 0046436C  7C 08 03 A6 */	mtlr r0
 /* 80467430 00464370  38 21 00 20 */	addi r1, r1, 0x20
 /* 80467434 00464374  4E 80 00 20 */	blr 
+.endfn onMessageEnd__Q23PSM4DemoFi
 
-.global PSMCancelToPauseOffMainBgm__Fv
-PSMCancelToPauseOffMainBgm__Fv:
+.fn PSMCancelToPauseOffMainBgm__Fv, global
 /* 80467438 00464378  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046743C 0046437C  7C 08 02 A6 */	mflr r0
 /* 80467440 00464380  3C 60 80 4A */	lis r3, lbl_8049D080@ha
@@ -4152,9 +4270,9 @@ PSMCancelToPauseOffMainBgm__Fv:
 /* 80467510 00464450  7C 08 03 A6 */	mtlr r0
 /* 80467514 00464454  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467518 00464458  4E 80 00 20 */	blr 
+.endfn PSMCancelToPauseOffMainBgm__Fv
 
-.global PSMGetGameSceneA__Fv
-PSMGetGameSceneA__Fv:
+.fn PSMGetGameSceneA__Fv, weak
 /* 8046751C 0046445C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467520 00464460  7C 08 02 A6 */	mflr r0
 /* 80467524 00464464  3C 60 80 4A */	lis r3, lbl_8049D080@ha
@@ -4219,22 +4337,23 @@ PSMGetGameSceneA__Fv:
 /* 804675FC 0046453C  7C 08 03 A6 */	mtlr r0
 /* 80467600 00464540  38 21 00 10 */	addi r1, r1, 0x10
 /* 80467604 00464544  4E 80 00 20 */	blr 
+.endfn PSMGetGameSceneA__Fv
 
-.global isPollutUp__Q23PSM10Scene_CaveFv
-isPollutUp__Q23PSM10Scene_CaveFv:
+.fn isPollutUp__Q23PSM10Scene_CaveFv, weak
 /* 80467608 00464548  80 83 00 64 */	lwz r4, 0x64(r3)
 /* 8046760C 0046454C  20 64 FF FF */	subfic r3, r4, -1
 /* 80467610 00464550  38 04 00 01 */	addi r0, r4, 1
 /* 80467614 00464554  7C 60 03 78 */	or r0, r3, r0
 /* 80467618 00464558  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8046761C 0046455C  4E 80 00 20 */	blr 
+.endfn isPollutUp__Q23PSM10Scene_CaveFv
 
-.global getEnvSe__Q23PSM9SceneBaseFv
-getEnvSe__Q23PSM9SceneBaseFv:
+.fn getEnvSe__Q23PSM9SceneBaseFv, weak
 /* 80467620 00464560  38 60 00 00 */	li r3, 0
 /* 80467624 00464564  4E 80 00 20 */	blr 
+.endfn getEnvSe__Q23PSM9SceneBaseFv
 
-.global setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
-setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode:
+.fn setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode, weak
 /* 80467628 00464568  90 83 00 04 */	stw r4, 4(r3)
 /* 8046762C 0046456C  4E 80 00 20 */	blr 
+.endfn setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode

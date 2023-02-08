@@ -5,24 +5,28 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497C70:
+.obj lbl_80497C70, local
 	.asciz "khWorldMap.cpp"
+.endobj lbl_80497C70
 .balign 4
-cOpenMinFrm__Q22kh6Screen:
+.obj cOpenMinFrm__Q22kh6Screen, local
 	.float 0.0
 	.float 300.0
 	.float 600.0
 	.float 900.0
-cOpenMaxFrm__Q22kh6Screen:
+.endobj cOpenMinFrm__Q22kh6Screen
+.obj cOpenMaxFrm__Q22kh6Screen, local
 	.float 300.0
 	.float 600.0
 	.float 900.0
 	.float 1100.0
+.endobj cOpenMaxFrm__Q22kh6Screen
 .balign 4
-lbl_80497CA0:
+.obj lbl_80497CA0, local
 	.asciz "P2Assert"
+.endobj lbl_80497CA0
 .balign 4
-lbl_80497CAC:
+.obj lbl_80497CAC, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -55,35 +59,44 @@ lbl_80497CAC:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80497CAC
 .balign 4
-lbl_80497D2C:
+.obj lbl_80497D2C, local
 	.asciz "worldmap_icon.blo"
+.endobj lbl_80497D2C
 .balign 4
-lbl_80497D40:
+.obj lbl_80497D40, local
 	.asciz "worldmap_icon.bck"
+.endobj lbl_80497D40
 .balign 4
-lbl_80497D54:
+.obj lbl_80497D54, local
 	.asciz "worldmap_icon.btp"
+.endobj lbl_80497D54
 .balign 4
-lbl_80497D68:
+.obj lbl_80497D68, local
 	.asciz "worldmap_gicon.blo"
+.endobj lbl_80497D68
 .balign 4
-lbl_80497D7C:
+.obj lbl_80497D7C, local
 	.asciz "worldmap_gicon.bck"
+.endobj lbl_80497D7C
 .balign 4
-lbl_80497D90:
+.obj lbl_80497D90, local
 	.asciz "worldmap_gicon.btp"
+.endobj lbl_80497D90
 .balign 4
-lbl_80497DA4:
+.obj lbl_80497DA4, local
 	.4byte lbl_80497D2C
 	.4byte lbl_80497D40
 	.4byte lbl_80497D54
 	.4byte lbl_80497D68
 	.4byte lbl_80497D7C
 	.4byte lbl_80497D90
+.endobj lbl_80497DA4
 .balign 4
-lbl_80497DBC:
+.obj lbl_80497DBC, local
 	.asciz "world_map_info.blo"
+.endobj lbl_80497DBC
 .balign 4
 lbl_80497DD0:
 	.asciz "world_map_info.btk"
@@ -433,11 +446,13 @@ lbl_80498328:
 	.4byte 0x00004E77
 	.4byte 0x61697433
 .balign 4
-lbl_80498348:
+.obj lbl_80498348, local
 	.asciz "ArgDirScale"
+.endobj lbl_80498348
 .balign 4
-lbl_80498354:
+.obj lbl_80498354, local
 	.asciz "ArgScale"
+.endobj lbl_80498354
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -608,7 +623,7 @@ lbl_8051FF20:
 	.float 32.0
 lbl_8051FF24:
 	.float 3.0
-lbl_8051FF28: #tau
+lbl_8051FF28: # tau
 	.float 6.2831855
 lbl_8051FF2C:
 	.float 0.95
@@ -630,7 +645,7 @@ lbl_8051FF48:
 	.4byte 0x00000000
 lbl_8051FF50:
 	.float 0.99
-lbl_8051FF54: #pi
+lbl_8051FF54: # pi
 	.float 3.1415927
 lbl_8051FF58:
 	.float 0.02

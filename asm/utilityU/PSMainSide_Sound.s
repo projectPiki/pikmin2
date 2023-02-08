@@ -5,13 +5,12 @@ lbl_constructor:
 	
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049DC30
-lbl_8049DC30:
+.obj lbl_8049DC30, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global smACosPrm__Q23PSM7SeSound
-smACosPrm__Q23PSM7SeSound:
+.endobj lbl_8049DC30
+.obj smACosPrm__Q23PSM7SeSound, global # array of 100 floats
 	.4byte 0x40490FD8
 	.4byte 0x403C3D92
 	.4byte 0x4036E62E
@@ -113,18 +112,20 @@ smACosPrm__Q23PSM7SeSound:
 	.4byte 0x3E914D72
 	.4byte 0x3E4D249E
 	.4byte 0x00000000
-.global lbl_8049DDD0
-lbl_8049DDD0:
+.endobj smACosPrm__Q23PSM7SeSound
+.balign 4
+.obj lbl_8049DDD0, local
 	.4byte 0x50534D61
 	.4byte 0x696E5369
 	.4byte 0x64655F53
 	.4byte 0x6F756E64
 	.4byte 0x2E637070
 	.4byte 0x00000000
-.global lbl_8049DDE8
+.endobj lbl_8049DDD0
+.balign 4
 lbl_8049DDE8:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x5053436F
 	.4byte 0x6D6D6F6E
 	.4byte 0x2E680000
@@ -163,11 +164,10 @@ lbl_8049DE10:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EF9A8
-lbl_804EF9A8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q23PSM7SeSound
 __vt__Q23PSM7SeSound:
 	.4byte 0
@@ -1001,9 +1001,9 @@ calcDolby__Q23PSM7SeSoundFRC3Vecf:
 /* 804718A8 0046E7E8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 804718AC 0046E7EC  38 00 FF FF */	li r0, -1
 /* 804718B0 0046E7F0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 804718B4 0046E7F4  3C 60 80 4F */	lis r3, lbl_804EF9A8@ha
+/* 804718B4 0046E7F4  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 804718B8 0046E7F8  90 0D 9C B0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
-/* 804718BC 0046E7FC  D4 03 F9 A8 */	stfsu f0, lbl_804EF9A8@l(r3)
+/* 804718BC 0046E7FC  D4 03 F9 A8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
 /* 804718C0 0046E800  D0 0D 9C B4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 804718C4 0046E804  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804718C8 0046E808  D0 03 00 08 */	stfs f0, 8(r3)

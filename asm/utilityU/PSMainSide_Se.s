@@ -1,17 +1,16 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049DA08
 lbl_8049DA08:
 	.4byte 0x50534D61
 	.4byte 0x696E5369
 	.4byte 0x64655F53
 	.4byte 0x652E6370
 	.4byte 0x70000000
-.global lbl_8049DA1C
+.balign 4
 lbl_8049DA1C:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x67616D65
 	.4byte 0x53746174
 	.4byte 0x2E680000
@@ -169,8 +168,7 @@ sLaderNoiseVolumeExp:
 	.float 7.18
 .global sLaderNoiseFuefukiTimerCenter
 sLaderNoiseFuefukiTimerCenter:
-	.byte 0x0
-	.byte 0x3C
+	.2byte 0x003C
 .global sLaderNoiseFuefukiTimerRandam
 sLaderNoiseFuefukiTimerRandam:
 	.2byte 0x0008
@@ -294,7 +292,7 @@ lbl_80520D50:
 .global lbl_80520D54
 lbl_80520D54:
 	.4byte 0x3E4CCCCD
-.global lbl_80520D58
+.balign 8
 lbl_80520D58:
 	.4byte 0x43300000
 	.4byte 0x80000000

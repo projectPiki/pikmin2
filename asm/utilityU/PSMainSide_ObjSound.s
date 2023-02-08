@@ -1,40 +1,35 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049CFA0
-lbl_8049CFA0:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F4F
-	.4byte 0x626A536F
-	.4byte 0x756E642E
-	.4byte 0x63707000
-.global lbl_8049CFB8
-lbl_8049CFB8:
+.obj lbl_8049CFA0, local
+	.asciz "PSMainSide_ObjSound.cpp"
+.endobj lbl_8049CFA0
+.balign 4
+.obj lbl_8049CFB8, local
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049CFC4
-lbl_8049CFC4:
-	.4byte 0x50534D61
-	.4byte 0x74682E68
-	.4byte 0x00000000
-.global lbl_8049CFD0
-lbl_8049CFD0:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-.global lbl_8049CFE8
-lbl_8049CFE8:
+.endobj lbl_8049CFB8
+.balign 4
+.obj lbl_8049CFC4, local
+	.asciz "PSMath.h"
+.endobj lbl_8049CFC4
+.balign 4
+.obj lbl_8049CFD0, local
+	.asciz "PSGame.h"
+.endobj lbl_8049CFD0
+.balign 4
+.obj lbl_8049CFDC, local
+	.asciz "PSScene.h"
+.endobj lbl_8049CFDC
+.balign 4
+.obj lbl_8049CFE8, local
 	.4byte 0x8E679770
 	.4byte 0x8BD68E7E
 	.4byte 0x8DC490B6
 	.4byte 0x8AD69094
-	.4byte 0x00000000
-.global lbl_8049CFFC
-lbl_8049CFFC:
+	.byte 0
+.endobj lbl_8049CFE8
+.balign 4
+.obj lbl_8049CFFC, local
 	.4byte 0x4A414941
 	.4byte 0x6E696D65
 	.4byte 0x536F756E
@@ -50,31 +45,23 @@ lbl_8049CFFC:
 	.4byte 0x88D98FED
 	.4byte 0x82C582B7
 	.4byte 0x81420A00
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-.global lbl_8049D05C
-lbl_8049D05C:
-	.4byte 0x5053436F
-	.4byte 0x6D6D6F6E
-	.4byte 0x2E680000
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F4F
-	.4byte 0x626A536F
-	.4byte 0x756E642E
-	.4byte 0x68000000
+.endobj lbl_8049CFFC
+.balign 4
+.obj lbl_8049D038, local
+	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8049D038
+.balign 4
+.obj lbl_8049D05C, local
+	.asciz "PSCommon.h"
+.endobj lbl_8049D05C
+.balign 4
+.obj lbl_8049D068, local
+	.asciz "PSMainSide_ObjSound.h"
+.endobj lbl_8049D068
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EE370
-lbl_804EE370:
+.obj lbl_804EE370, local
 	.4byte .L_804629F8
 	.4byte .L_80462A00
 	.4byte .L_80462A08
@@ -198,8 +185,8 @@ lbl_804EE370:
 	.4byte .L_80462AB4
 	.4byte .L_80462AB4
 	.4byte .L_80462AA8
-.global __vt__Q23PSM7Cluster
-__vt__Q23PSM7Cluster:
+.endobj lbl_804EE370
+.obj __vt__Q23PSM7Cluster, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -234,8 +221,8 @@ __vt__Q23PSM7Cluster:
 	.4byte startSound__Q23PSM11CreatureObjFUlUl
 	.4byte startSound__Q23PSM11CreatureObjFUcUlUl
 	.4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
-.global __vt__Q23PSM4Navi
-__vt__Q23PSM4Navi:
+.endobj __vt__Q23PSM7Cluster
+.obj __vt__Q23PSM4Navi, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -270,8 +257,8 @@ __vt__Q23PSM4Navi:
 	.4byte startSound__Q23PSM4NaviFUlUl
 	.4byte startSound__Q23PSM11CreatureObjFUcUlUl
 	.4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
-.global __vt__Q23PSM4Piki
-__vt__Q23PSM4Piki:
+.endobj __vt__Q23PSM4Navi
+.obj __vt__Q23PSM4Piki, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -306,8 +293,8 @@ __vt__Q23PSM4Piki:
 	.4byte startSound__Q23PSM11CreatureObjFUlUl
 	.4byte startSound__Q23PSM11CreatureObjFUcUlUl
 	.4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
-.global __vt__Q23PSM10PelletItem
-__vt__Q23PSM10PelletItem:
+.endobj __vt__Q23PSM4Piki
+.obj __vt__Q23PSM10PelletItem, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -346,8 +333,8 @@ __vt__Q23PSM10PelletItem:
 	.4byte otakaraEventRestart__Q23PSM7OtakaraFv
 	.4byte otakaraEventStop__Q23PSM7OtakaraFv
 	.4byte otakaraEventFinish__Q23PSM7OtakaraFv
-.global __vt__Q23PSM13PelletOtakara
-__vt__Q23PSM13PelletOtakara:
+.endobj __vt__Q23PSM10PelletItem
+.obj __vt__Q23PSM13PelletOtakara, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -386,8 +373,8 @@ __vt__Q23PSM13PelletOtakara:
 	.4byte otakaraEventRestart__Q23PSM7OtakaraFv
 	.4byte otakaraEventStop__Q23PSM7OtakaraFv
 	.4byte otakaraEventFinish__Q23PSM7OtakaraFv
-.global __vt__Q23PSM7Otakara
-__vt__Q23PSM7Otakara:
+.endobj __vt__Q23PSM13PelletOtakara
+.obj __vt__Q23PSM7Otakara, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -426,8 +413,8 @@ __vt__Q23PSM7Otakara:
 	.4byte otakaraEventRestart__Q23PSM7OtakaraFv
 	.4byte otakaraEventStop__Q23PSM7OtakaraFv
 	.4byte otakaraEventFinish__Q23PSM7OtakaraFv
-.global __vt__Q23PSM8WorkItem
-__vt__Q23PSM8WorkItem:
+.endobj __vt__Q23PSM7Otakara
+.obj __vt__Q23PSM8WorkItem, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -466,8 +453,8 @@ __vt__Q23PSM8WorkItem:
 	.4byte eventRestart__Q23PSM8WorkItemFv
 	.4byte eventStop__Q23PSM8WorkItemFv
 	.4byte eventFinish__Q23PSM8WorkItemFv
-.global __vt__Q23PSM25OtakaraEventLink_2PBattle
-__vt__Q23PSM25OtakaraEventLink_2PBattle:
+.endobj __vt__Q23PSM8WorkItem
+.obj __vt__Q23PSM25OtakaraEventLink_2PBattle, global
 	.4byte 0
 	.4byte 0
 	.4byte getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv
@@ -476,8 +463,8 @@ __vt__Q23PSM25OtakaraEventLink_2PBattle:
 	.4byte eventStop__Q23PSM25OtakaraEventLink_2PBattleFv
 	.4byte eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv
 	.4byte is2PBattle__Q23PSM25OtakaraEventLink_2PBattleFv
-.global __vt__Q23PSM16OtakaraEventLink
-__vt__Q23PSM16OtakaraEventLink:
+.endobj __vt__Q23PSM25OtakaraEventLink_2PBattle
+.obj __vt__Q23PSM16OtakaraEventLink, global
 	.4byte 0
 	.4byte 0
 	.4byte getListDirectorActor__Q23PSM16OtakaraEventLinkFv
@@ -486,8 +473,8 @@ __vt__Q23PSM16OtakaraEventLink:
 	.4byte eventStop__Q23PSM12DirectorLinkFv
 	.4byte eventFinish__Q23PSM16OtakaraEventLinkFv
 	.4byte is2PBattle__Q23PSM16OtakaraEventLinkFv
-.global __vt__Q23PSM9EventLink
-__vt__Q23PSM9EventLink:
+.endobj __vt__Q23PSM16OtakaraEventLink
+.obj __vt__Q23PSM9EventLink, global
 	.4byte 0
 	.4byte 0
 	.4byte getListDirectorActor__Q23PSM9EventLinkFv
@@ -495,6 +482,7 @@ __vt__Q23PSM9EventLink:
 	.4byte eventRestart__Q23PSM12DirectorLinkFv
 	.4byte eventStop__Q23PSM12DirectorLinkFv
 	.4byte eventFinish__Q23PSM12DirectorLinkFv
+.endobj __vt__Q23PSM9EventLink
 .global __vt__Q23PSM12DirectorLink
 __vt__Q23PSM12DirectorLink:
 	.4byte 0
@@ -1082,55 +1070,43 @@ __vt__Q23PSM7ObjBase:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sBigBoss__Q23PSM12EnemyBigBoss
-sBigBoss__Q23PSM12EnemyBigBoss:
+.obj sBigBoss__Q23PSM12EnemyBigBoss, global
 	.skip 0x4
-.global sDopedPikminNum__Q23PSM4Piki
-sDopedPikminNum__Q23PSM4Piki:
+.endobj sBigBoss__Q23PSM12EnemyBigBoss
+.obj sDopedPikminNum__Q23PSM4Piki, global
 	.skip 0x4
+.endobj sDopedPikminNum__Q23PSM4Piki
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520C50
 lbl_80520C50:
 	.4byte 0x00000000
-.global lbl_80520C54
 lbl_80520C54:
 	.float 0.5
-.global lbl_80520C58
 lbl_80520C58:
 	.4byte 0x42FE0000
-.global lbl_80520C5C
 lbl_80520C5C:
 	.float 1.0
-.global lbl_80520C60
 lbl_80520C60:
 	.4byte 0x3D000000
-	.4byte 0x00000000
-.global lbl_80520C68
+.balign 8
 lbl_80520C68:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520C70
+.balign 8
 lbl_80520C70:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80520C78
 lbl_80520C78:
 	.4byte 0x4B189680
-.global lbl_80520C7C
 lbl_80520C7C:
 	.4byte 0x43FA0000
-.global lbl_80520C80
 lbl_80520C80:
 	.4byte 0x3F4CCCCD
-.global lbl_80520C84
 lbl_80520C84:
 	.4byte 0x3F266666
-.global lbl_80520C88
 lbl_80520C88:
 	.float 0.7
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q23PSM7ObjBaseFv
@@ -7722,7 +7698,6 @@ checkHappaChappySE__Q23PSM4PikiFUl:
 /* 80462A28 0045F968  38 80 28 6C */	li r4, 0x286c
 /* 80462A2C 0045F96C  48 00 00 8C */	b .L_80462AB8
 .L_80462A30:
-.L_80462A30:
 /* 80462A30 0045F970  38 80 28 6D */	li r4, 0x286d
 /* 80462A34 0045F974  48 00 00 84 */	b .L_80462AB8
 .L_80462A38:
@@ -7770,20 +7745,6 @@ checkHappaChappySE__Q23PSM4PikiFUl:
 .L_80462AA8:
 /* 80462AA8 0045F9E8  38 80 28 7B */	li r4, 0x287b
 /* 80462AAC 0045F9EC  48 00 00 0C */	b .L_80462AB8
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
-.L_80462AB0:
 .L_80462AB0:
 /* 80462AB0 0045F9F0  48 00 00 08 */	b .L_80462AB8
 .L_80462AB4:
