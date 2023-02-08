@@ -8,6 +8,7 @@
 #include "Game/Interaction.h"
 #include "efx/THebi.h"
 #include "Iterator.h"
+#include "Dolphin/rand.h"
 #include "nans.h"
 
 namespace Game {
@@ -1307,7 +1308,7 @@ void StateEat::exec(EnemyBase* enemy)
 	if (snagret->mCurAnim->mIsPlaying) {
 		if ((u32)snagret->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(snagret->mParms);
-			EnemyFunc::swallowPikmin(snagret, parms->mProperParms.mFp21.mValue, nullptr);
+			EnemyFunc::swallowPikmin(snagret, parms->mProperParms.mPoisonDamage.mValue, nullptr);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {
 			snagret->setAttackPosition();

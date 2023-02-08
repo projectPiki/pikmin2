@@ -1740,7 +1740,7 @@ if __name__ == "__main__":
     if os.name != "nt" and "DEVKITPPC" in os.environ and not args.devkitppc:
         configure_args.extend(["--devkitppc", os.environ["DEVKITPPC"]])
     n.variable("configure_args", configure_args)
-    n.variable("python", sys.executable)
+    n.variable("python", f"\"{sys.executable}\"")
     n.newline()
 
     ###

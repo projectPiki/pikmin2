@@ -8,6 +8,7 @@
 #include "Game/Interaction.h"
 #include "efx/THebi.h"
 #include "Iterator.h"
+#include "Dolphin/rand.h"
 #include "nans.h"
 
 namespace Game {
@@ -135,7 +136,7 @@ void StateStay::exec(EnemyBase* enemy)
 	Obj* snagret     = static_cast<Obj*>(enemy);
 	Creature* target = nullptr;
 	Parms* parms     = static_cast<Parms*>(snagret->mParms);
-	if (snagret->mStateTimer > parms->mProperParms._854.mValue) {
+	if (snagret->mStateTimer > parms->mProperParms.mFp12.mValue) {
 		f32 territory    = parms->mGeneral.mTerritoryRadius.mValue;
 		Vector3f homePos = Vector3f(snagret->mHomePosition);
 		f32 tSqr         = territory * territory;
@@ -200,7 +201,7 @@ void StateStay::exec(EnemyBase* enemy)
 		snagret->appearNearByTarget(target);
 		snagret->setBossAppearBGM();
 		Parms* parms = static_cast<Parms*>(snagret->mParms);
-		if (randWeightFloat(1.0f) < parms->mProperParms._804.mValue) {
+		if (randWeightFloat(1.0f) < parms->mProperParms.mFp01.mValue) {
 			transit(snagret, SNAKECROW_Appear1, nullptr);
 		} else {
 			transit(snagret, SNAKECROW_Appear2, nullptr);
@@ -923,7 +924,7 @@ void StateWait::exec(EnemyBase* enemy)
 			f32 approxSpeed;
 			EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(snagret->mParms);
 			f32 fov               = parms->mGeneral.mViewAngle.mValue;
-			f32 visionHeight      = parms->mGeneral.tgtg5.mValue;
+			f32 visionHeight      = parms->mGeneral.mSearchHeight.mValue;
 			f32 sightRadius       = parms->mGeneral.mSightRadius.mValue;
 			f32 privRadius        = parms->mGeneral.mPrivateRadius.mValue;
 			Vector3f creaturePos  = previousTarget->getPosition();
@@ -989,7 +990,7 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 
 	if (!snagret->isFinishMotion()) {
-		if (snagret->mHealth <= 0.0f || snagret->mStateTimer > static_cast<Parms*>(snagret->mParms)->mProperParms._82C.mValue
+		if (snagret->mHealth <= 0.0f || snagret->mStateTimer > static_cast<Parms*>(snagret->mParms)->mProperParms.mFp11.mValue
 		    || EnemyFunc::isStartFlick(snagret, false) || snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 			snagret->finishMotion();
 		}
@@ -1003,7 +1004,7 @@ void StateWait::exec(EnemyBase* enemy)
 			}
 
 			Parms* parms = static_cast<Parms*>(snagret->mParms);
-			if (snagret->mStateTimer > parms->mProperParms._82C.mValue || EnemyFunc::isStartFlick(snagret, false)) {
+			if (snagret->mStateTimer > parms->mProperParms.mFp11.mValue || EnemyFunc::isStartFlick(snagret, false)) {
 				transit(snagret, SNAKECROW_Disappear, nullptr);
 				return;
 			}
@@ -1638,7 +1639,7 @@ void StateEat::exec(EnemyBase* enemy)
 	if (snagret->mCurAnim->mIsPlaying) {
 		if ((u32)snagret->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(snagret->mParms);
-			EnemyFunc::swallowPikmin(snagret, parms->mProperParms._87C.mValue, nullptr);
+			EnemyFunc::swallowPikmin(snagret, parms->mProperParms.mPoisonDamage.mValue, nullptr);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {
 			if (snagret->mHealth <= 0.0f) {
