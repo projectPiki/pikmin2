@@ -441,7 +441,7 @@ LIBS = [
             ["Dolphin/TRK_MINNOW_DOLPHIN/flush_cache", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/mem_TRK", True],
             "Dolphin/TRK_MINNOW_DOLPHIN/targimpl",
-            ["Dolphin/TRK_MINNOW_DOLPHIN/targsupp", True],
+            ["Dolphin/TRK_MINNOW_DOLPHIN/targsupp", False],
             "Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e",
             "Dolphin/TRK_MINNOW_DOLPHIN/__exception",
             "Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk",

@@ -1,13 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global gTRKMemMap
-gTRKMemMap:
+.obj gTRKMemMap, global
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000001
 	.4byte 0x00000001
-lbl_80479BB0:
+.endobj gTRKMemMap
+.obj lbl_80479BB0, local
 	.4byte 0x60000000
 	.4byte 0x60000000
 	.4byte 0x60000000
@@ -18,7 +18,8 @@ lbl_80479BB0:
 	.4byte 0x60000000
 	.4byte 0x60000000
 	.4byte 0x60000000
-lbl_80479BD8:
+.endobj lbl_80479BB0
+.obj lbl_80479BD8, local
 	.4byte 0x60000000
 	.4byte 0x60000000
 	.4byte 0x60000000
@@ -29,7 +30,8 @@ lbl_80479BD8:
 	.4byte 0x60000000
 	.4byte 0x60000000
 	.4byte 0x60000000
-lbl_80479C00:
+.endobj lbl_80479BD8
+.obj lbl_80479C00, local
 	.4byte 0x60000000
 	.4byte 0x60000000
 	.4byte 0x60000000
@@ -40,8 +42,11 @@ lbl_80479C00:
 	.4byte 0x60000000
 	.4byte 0x60000000
 	.4byte 0x60000000
-lbl_80479C28:
+.endobj lbl_80479C00
+.balign 4
+.obj lbl_80479C28, local
 	.asciz "TargetDoStep()\n"
+.endobj lbl_80479C28
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -49,38 +54,44 @@ lbl_80479C28:
 gTRKRestoreFlags:
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x00000000
-gTRKExceptionStatus:
+	.byte 0
+.balign 4
+.obj gTRKExceptionStatus, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x01000000
-gTRKStepStatus:
+.endobj gTRKExceptionStatus
+.balign 4
+.obj gTRKStepStatus, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj gTRKStepStatus
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
-.global TRK_saved_exceptionID
-TRK_saved_exceptionID:
+.obj TRK_saved_exceptionID, local
 	.skip 0x2
+.endobj TRK_saved_exceptionID
 .balign 4
-.global gTRKState
-gTRKState:
+.obj gTRKState, global
 	.skip 0xA4
+.endobj gTRKState
 .balign 8
-.global gTRKCPUState
-gTRKCPUState:
+.obj gTRKCPUState, global
 	.skip 0x430
-.global gTRKSaveState
-gTRKSaveState:
+.endobj gTRKCPUState
+.balign 4
+.obj gTRKSaveState, global
 	.skip 0x94
-.global TRKvalue128_temp
-TRKvalue128_temp:
+.endobj gTRKSaveState
+.balign 4
+.obj TRKvalue128_temp, global
 	.skip 0x10
+.endobj TRKvalue128_temp
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __TRK_get_MSR
@@ -2047,6 +2058,3 @@ TRKValidMemory32:
 /* 800BFA28 000BC968  7C 08 03 A6 */	mtlr r0
 /* 800BFA2C 000BC96C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BFA30 000BC970  4E 80 00 20 */	blr 
-/* 800BFA34 000BC974  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800BFA38 000BC978  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800BFA3C 000BC97C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */

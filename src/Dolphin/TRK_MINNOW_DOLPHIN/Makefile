@@ -14,7 +14,7 @@ TRK_MINNOW_DOLPHIN_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/flush_cache.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mem_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/targimpl.o\
-	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/targsupp.o\
+	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/targsupp.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/__exception.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.o\
