@@ -1,4 +1,13 @@
 #include "types.h"
+#include "PSM/Cluster.h"
+#include "PSM/WorldMapRocket.h"
+#include "PSM/PikiHumming.h"
+#include "PSM/Piki.h"
+#include "PS.h"
+#include "PSSystem/PSSystemIF.h"
+#include "JSystem/JAudio2/JALCalc.h"
+#include "Game/EnemyBase.h"
+#include "PSM/EnemyBase.h"
 
 /*
     Generated from dpostproc
@@ -306,173 +315,65 @@ namespace PSM {
  * Address:	8046D144
  * Size:	00021C
  */
-void ClusterFactory::partInit(unsigned char)
+void ClusterFactory::partInit(u8 unknownID)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bl       __ct__Q38PSSystem9ClusterSe11PartInitArgFv
-	lwz      r0, 8(r29)
-	cmpwi    r0, 1
-	beq      lbl_8046D254
-	bge      lbl_8046D300
-	cmpwi    r0, 0
-	bge      lbl_8046D18C
-	b        lbl_8046D300
-
-lbl_8046D18C:
-	clrlwi   r0, r30, 0x18
-	cmpwi    r0, 1
-	beq      lbl_8046D1DC
-	bge      lbl_8046D1A8
-	cmpwi    r0, 0
-	bge      lbl_8046D1B4
-	b        lbl_8046D234
-
-lbl_8046D1A8:
-	cmpwi    r0, 3
-	bge      lbl_8046D234
-	b        lbl_8046D208
-
-lbl_8046D1B4:
-	li       r5, 0x19
-	li       r4, 0x16
-	li       r3, 0x10
-	li       r0, 0x3054
-	stb      r5, 8(r1)
-	stb      r5, 0xa(r1)
-	stb      r4, 0xb(r1)
-	stb      r3, 9(r1)
-	stw      r0, 0xc(r1)
-	b        lbl_8046D31C
-
-lbl_8046D1DC:
-	li       r6, 0x16
-	li       r5, 0x10
-	li       r4, 0xe
-	li       r3, 8
-	li       r0, 0x3053
-	stb      r6, 8(r1)
-	stb      r5, 0xa(r1)
-	stb      r4, 0xb(r1)
-	stb      r3, 9(r1)
-	stw      r0, 0xc(r1)
-	b        lbl_8046D31C
-
-lbl_8046D208:
-	li       r6, 0xe
-	li       r5, 8
-	li       r4, 5
-	li       r3, 0
-	li       r0, 0x3052
-	stb      r6, 8(r1)
-	stb      r5, 0xa(r1)
-	stb      r4, 0xb(r1)
-	stb      r3, 9(r1)
-	stw      r0, 0xc(r1)
-	b        lbl_8046D31C
-
-lbl_8046D234:
-	lis      r3, lbl_8049DA08@ha
-	lis      r5, lbl_8049DA1C@ha
-	addi     r3, r3, lbl_8049DA08@l
-	li       r4, 0x3e
-	addi     r5, r5, lbl_8049DA1C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_8046D31C
-
-lbl_8046D254:
-	clrlwi   r0, r30, 0x18
-	cmpwi    r0, 1
-	beq      lbl_8046D298
-	bge      lbl_8046D270
-	cmpwi    r0, 0
-	bge      lbl_8046D27C
-	b        lbl_8046D2E0
-
-lbl_8046D270:
-	cmpwi    r0, 3
-	bge      lbl_8046D2E0
-	b        lbl_8046D2BC
-
-lbl_8046D27C:
-	li       r4, 0x64
-	li       r3, 0x46
-	li       r0, 0x3c
-	stb      r4, 8(r1)
-	stb      r3, 0xb(r1)
-	stb      r0, 9(r1)
-	b        lbl_8046D31C
-
-lbl_8046D298:
-	li       r5, 0x46
-	li       r4, 0x3c
-	li       r3, 0x28
-	li       r0, 0x1e
-	stb      r5, 8(r1)
-	stb      r4, 0xa(r1)
-	stb      r3, 0xb(r1)
-	stb      r0, 9(r1)
-	b        lbl_8046D31C
-
-lbl_8046D2BC:
-	li       r5, 0x28
-	li       r4, 0x1e
-	li       r3, 0xa
-	li       r0, 0
-	stb      r5, 8(r1)
-	stb      r4, 0xa(r1)
-	stb      r3, 0xb(r1)
-	stb      r0, 9(r1)
-	b        lbl_8046D31C
-
-lbl_8046D2E0:
-	lis      r3, lbl_8049DA08@ha
-	lis      r5, lbl_8049DA1C@ha
-	addi     r3, r3, lbl_8049DA08@l
-	li       r4, 0x5f
-	addi     r5, r5, lbl_8049DA1C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_8046D31C
-
-lbl_8046D300:
-	lis      r3, lbl_8049DA08@ha
-	lis      r5, lbl_8049DA1C@ha
-	addi     r3, r3, lbl_8049DA08@l
-	li       r4, 0x64
-	addi     r5, r5, lbl_8049DA1C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046D31C:
-	lbz      r0, 8(r1)
-	stb      r0, 0(r31)
-	lbz      r0, 9(r1)
-	stb      r0, 1(r31)
-	lbz      r0, 0xa(r1)
-	stb      r0, 2(r31)
-	lbz      r0, 0xb(r1)
-	stb      r0, 3(r31)
-	lwz      r0, 0xc(r1)
-	stw      r0, 4(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	PSSystem::ClusterSe::PartInitArg arg;
+	switch (_04->mPart->mInitArg.mSoundID) {
+		case 1: {
+			switch (unknownID) {
+				case 0:
+					arg._00[0] = 0x19;
+					arg._00[3] = 0x46;
+					arg._00[1] = 0x3c;
+					break;
+				case 1:
+					arg._00[0] = 0x46;
+					arg._00[2] = 0x3c;
+					arg._00[3] = 0x28;
+					arg._00[1] = 0x1e;
+					break;
+				case 2:
+					arg._00[0] = 0x28;
+					arg._00[2] = 0x1e;
+					arg._00[3] = 0x0a;
+					arg._00[1] = 0x00;
+					break;
+			}
+			P2ASSERTLINE(62, false);
+			break;
+		}
+		case 2: {
+			switch (unknownID) {
+				case 0:
+					arg._00[0] = 0x64;
+					arg._00[3] = 0x46;
+					arg._00[1] = 0x3c;
+					break;
+				case 1:
+					arg._00[0] = 0x46;
+					arg._00[2] = 0x3c;
+					arg._00[3] = 0x28;
+					arg._00[1] = 0x1e;
+					break;
+				case 2:
+					arg._00[0] = 0x28;
+					arg._00[2] = 0x1e;
+					arg._00[3] = 0x0a;
+					arg._00[1] = 0x00;
+					break;
+				default:
+					P2ASSERTLINE(95, false);
+			}
+			break;
+		}
+		case 0:
+			P2ASSERTLINE(100, false);
+			break;
+	}
+	for (int i = 0; i < 4; i++) {
+		_04->_00[i] = arg._00[i];
+	}
+	_04->mPart->mInitArg.mSoundID = arg.mSoundID;
 }
 
 /*
@@ -480,39 +381,15 @@ lbl_8046D31C:
  * Address:	8046D360
  * Size:	000074
  */
-WorldMapRocket::WorldMapRocket()
+WorldMapRocket::WorldMapRocket() : JADHioNode(nullptr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__10JADHioNodeFPCc
-	lis      r3, __vt__Q23PSM14WorldMapRocket@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q23PSM14WorldMapRocket@l
-	lfs      f1, lbl_80520CE0@sda21(r2)
-	stw      r3, 0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_80520CE4@sda21(r2)
-	stw      r0, 4(r31)
-	lfs      f2, lbl_80520CE8@sda21(r2)
-	stfs     f1, 8(r31)
-	lfs      f1, lbl_80520CEC@sda21(r2)
-	stfs     f0, 0xc(r31)
-	lfs      f0, lbl_80520CF0@sda21(r2)
-	stfs     f2, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	stfs     f0, 0x18(r31)
-	stfs     f2, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mState = PSMRocket_0;
+	_08 = 0.0f;
+	_0C = 608.0f;
+	_10 = 4.0f;
+	_14 = 100.0f;
+	_18 = 260.0f;
+	_1C = 4.0f;
 }
 
 /*
@@ -520,371 +397,98 @@ WorldMapRocket::WorldMapRocket()
  * Address:	8046D3D4
  * Size:	000060
  */
-WorldMapRocket::~WorldMapRocket()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8046D418
-	lis      r5, __vt__Q23PSM14WorldMapRocket@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q23PSM14WorldMapRocket@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-	extsh.   r0, r31
-	ble      lbl_8046D418
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8046D418:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+WorldMapRocket::~WorldMapRocket() { }
 
 /*
  * --INFO--
  * Address:	8046D434
  * Size:	000490
  */
-void WorldMapRocket::startRocketSE(float, float)
+JAISe* WorldMapRocket::startRocketSE(float transform1, float transform2)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stfd     f30, 0x10(r1)
-	psq_st   f30, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	fmr      f30, f1
-	mr       r30, r3
-	fmr      f31, f2
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1021
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	or.      r31, r3, r3
-	beq      lbl_8046D898
-	fmr      f1, f30
-	lfs      f2, 8(r30)
-	lfs      f3, 0xc(r30)
-	li       r3, 0
-	lfs      f4, lbl_80520CE0@sda21(r2)
-	lfs      f5, lbl_80520CF4@sda21(r2)
-	bl       linearTransform__7JALCalcFfffffb
-	lfs      f6, lbl_80520CF8@sda21(r2)
-	fcmpo    cr0, f1, f6
-	bge      lbl_8046D4C0
-	lfs      f2, lbl_80520CE0@sda21(r2)
-	fmr      f3, f6
-	lfs      f4, 0x10(r30)
-	li       r3, 1
-	fmr      f5, f2
-	bl       getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
-	b        lbl_8046D4DC
+	JAISe* se = PSSystem::spSysIF->playSystemSe(PSSE_SY_ROCKET_SMOKE, 0);
+	unsigned char r6;
 
-lbl_8046D4C0:
-	lfs      f3, lbl_80520CF4@sda21(r2)
-	fmr      f2, f6
-	fmr      f5, f6
-	lfs      f4, 0x10(r30)
-	fmr      f6, f3
-	li       r3, 0
-	bl       getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
+	static f32 tmpVol;
+	static int init;
 
-lbl_8046D4DC:
-	fmr      f30, f1
-	lfs      f2, 0x14(r30)
-	fmr      f1, f31
-	lfs      f3, 0x18(r30)
-	lfs      f4, lbl_80520CE0@sda21(r2)
-	li       r3, 0
-	lfs      f5, lbl_80520CF4@sda21(r2)
-	bl       linearTransform__7JALCalcFfffffb
-	lfs      f6, lbl_80520CF8@sda21(r2)
-	fcmpo    cr0, f1, f6
-	bge      lbl_8046D528
-	lfs      f2, lbl_80520CE0@sda21(r2)
-	fmr      f3, f6
-	lfs      f4, 0x1c(r30)
-	li       r3, 1
-	fmr      f5, f2
-	bl       getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
-	fmr      f31, f1
-	b        lbl_8046D548
+	if (!se) return se;
 
-lbl_8046D528:
-	lfs      f3, lbl_80520CF4@sda21(r2)
-	fmr      f2, f6
-	fmr      f5, f6
-	lfs      f4, 0x1c(r30)
-	fmr      f6, f3
-	li       r3, 0
-	bl       getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
-	fmr      f31, f1
+	f32 transform = JALCalc::linearTransform(transform1, _08, _0C, 0.0f, 1.0f, false);
+	if (transform > 0.5f) {
+		JALCalc::getParamByExp(transform, 0.5f, 1.0f, _10, 0.5f, 1.0f, JALCalc::CS_0);
+	}
+	else {
+		JALCalc::getParamByExp(transform, 0.0f, 0.5f, _10, 0.0f, 0.5f, JALCalc::CS_1);
+	}
+	transform = JALCalc::linearTransform(transform1, _14, _18, 0.0f, 1.0f, false);
+	if (transform > 0.5f) {
+		JALCalc::getParamByExp(transform, 0.5f, 1.0f, _1C, 0.5f, 1.0f, JALCalc::CS_0);
+	}
+	else {
+		JALCalc::getParamByExp(transform, 0.0f, 0.5f, _1C, 0.0f, 0.5f, JALCalc::CS_1);
+	}
 
-lbl_8046D548:
-	lwz      r0, 4(r30)
-	cmpwi    r0, 3
-	beq      lbl_8046D594
-	mr       r3, r31
-	fmr      f1, f30
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	fmr      f1, f31
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
 
-lbl_8046D594:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 7
-	bgt      lbl_8046D898
-	lis      r3, lbl_804EF6F0@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804EF6F0@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-
-lbl_8046D5B8:
-	mr       r3, r31
-	lfs      f1, lbl_80520CF4@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 2
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f1, lbl_80520CFC@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 2
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80520D00@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8046D898
-	li       r0, 4
-	stw      r0, 4(r30)
-	b        lbl_8046D898
-
-lbl_8046D62C:
-	mr       r3, r31
-	lfs      f1, lbl_80520CF4@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 2
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f1, lbl_80520CFC@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 2
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80520D00@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8046D898
-	li       r0, 4
-	stw      r0, 4(r30)
-	b        lbl_8046D898
-
-lbl_8046D6A0:
-	mr       r3, r31
-	lfs      f1, lbl_80520CF4@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 5
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f1, lbl_80520D04@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 5
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80520D08@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8046D898
-	li       r0, 4
-	stw      r0, 4(r30)
-	b        lbl_8046D898
-
-lbl_8046D714:
-	mr       r3, r31
-	lfs      f1, lbl_80520CF8@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 0x1e
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f1, lbl_80520D0C@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 0x1e
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046D898
-
-lbl_8046D758:
-	mr       r3, r31
-	lfs      f1, lbl_80520D10@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 0xa
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f1, lbl_80520CF4@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 0xa
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046D898
-
-lbl_8046D79C:
-	lbz      r0, init$3527@sda21(r13)
-	extsb.   r0, r0
-	bne      lbl_8046D7CC
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stfs     f1, tmpVol$3526@sda21(r13)
-	stb      r0, init$3527@sda21(r13)
-
-lbl_8046D7CC:
-	mr       r3, r31
-	lfs      f1, lbl_80520D14@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 2
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046D898
-
-lbl_8046D7F0:
-	mr       r3, r31
-	lfs      f1, tmpVol$3526@sda21(r13)
-	lwz      r12, 0x10(r31)
-	li       r4, 5
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, tmpVol$3526@sda21(r13)
-	fcmpu    cr0, f2, f1
-	bne      lbl_8046D898
-	lfs      f0, lbl_80520CF8@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_8046D84C
-	li       r0, 5
-	stw      r0, 4(r30)
-	b        lbl_8046D898
-
-lbl_8046D84C:
-	li       r0, 4
-	stw      r0, 4(r30)
-	b        lbl_8046D898
-
-lbl_8046D858:
-	mr       r3, r31
-	lfs      f1, lbl_80520CE0@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f1, lbl_80520CE0@sda21(r2)
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046D898:
-	mr       r3, r31
-	psq_l    f31, 40(r1), 0, qr0
-	lfd      f31, 0x20(r1)
-	psq_l    f30, 24(r1), 0, qr0
-	lfd      f30, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x34(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	switch (mState)
+	{
+	case PSMRocket_0:
+		se->setVolume(0.0f, 0, 0);
+		se->setPitch(0.0f, 0, 0);
+		break;
+	case PSMRocket_1:
+		se->setVolume(1.0f, 2, 0);
+		se->setPitch(2.0f, 2, 0);
+		if (se->getPitch(0) >= 2.0f) {
+			mState = PSMRocket_4;
+		}
+		break;
+	case PSMRocket_2:
+		se->setVolume(1.0f, 2, 0);
+		se->setPitch(2.0f, 2, 0);
+		if (se->getPitch(0) >= 2.0f) {
+			mState = PSMRocket_4;
+		}
+		break;
+	case PSMRocket_3:
+		se->setVolume(1.0f, 5, 0);
+		se->setPitch(2.0f, 5, 0);
+		if (se->getPitch(0) >= 3.0f) {
+			mState = PSMRocket_4;
+		}
+		break;
+	case PSMRocket_4:
+		se->setVolume(0.5f, 30, 0);
+		se->setPitch(1.0f, 30, 0);
+		break;
+	case PSMRocket_5:
+		se->setVolume(0.5f, 30, 0);
+		se->setPitch(1.0f, 30, 0);
+		break;
+	case PSMRocket_6:
+		if (init == 0) {
+			tmpVol = se->getVolume(0);
+			init = 1;
+		}
+		se->setVolume(0.1f, 2, 0);
+		break;
+	case PSMRocket_7:
+		se->setVolume(tmpVol, 5, 0);
+		if (se->getVolume(0) == tmpVol) {
+			if (tmpVol > 0.5f) {
+				mState = PSMRocket_4;
+			}
+			else {
+				mState = PSMRocket_5;
+			}
+		}
+		break;
+	}
+	if (mState != PSMRocket_3) {
+		se->setPan(0.0f, 0, 1);
+		se->setDolby(0.0f, 0, 1);
+	}
+	return se;
 }
 
 /*
@@ -895,7 +499,7 @@ lbl_8046D898:
 void WorldMapRocket::stateChange(PSM::WorldMapRocket::rocketState a1)
 {
 	// Generated from stw r4, 0x4(r3)
-	_04 = a1;
+	mState = a1;
 }
 
 /*
@@ -912,71 +516,36 @@ PikiHumming::PikiHumming() { }
  */
 PikiHummingMgr::PikiHummingMgr()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0xa
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	stw      r0, 0(r3)
-	li       r0, 0
-	li       r3, 0x64
-	stw      r0, 4(r31)
-	stw      r0, 8(r31)
-	bl       __nwa__FUl
-	lis      r4, __ct__Q23PSM11PikiHummingFv@ha
-	li       r5, 0
-	addi     r4, r4, __ct__Q23PSM11PikiHummingFv@l
-	li       r6, 0x1c
-	li       r7, 3
-	bl       __construct_new_array
-	stw      r3, 0xc(r31)
-	li       r12, 0
-	li       r0, 0x287e
-	li       r3, 0x48
-	lwz      r30, 0xc(r31)
-	li       r10, 4
-	li       r11, -1
-	li       r9, 1
-	stw      r12, 0x14(r30)
-	li       r8, 0x2885
-	li       r6, 0x12c
-	li       r7, 2
-	stw      r0, 4(r30)
-	li       r5, 0x2882
-	li       r4, 0xa0
-	li       r0, 3
-	stw      r3, 8(r30)
-	mr       r3, r31
-	stw      r10, 0xc(r30)
-	stw      r12, 0(r30)
-	stb      r12, 0x18(r30)
-	stw      r11, 0x10(r30)
-	lwz      r10, 0xc(r31)
-	stw      r9, 0x30(r10)
-	stw      r8, 0x20(r10)
-	stw      r6, 0x24(r10)
-	stw      r7, 0x28(r10)
-	stw      r12, 0x1c(r10)
-	stb      r12, 0x34(r10)
-	stw      r11, 0x2c(r10)
-	lwz      r6, 0xc(r31)
-	stw      r7, 0x4c(r6)
-	stw      r5, 0x3c(r6)
-	stw      r4, 0x40(r6)
-	stw      r0, 0x44(r6)
-	stw      r12, 0x38(r6)
-	stb      r12, 0x50(r6)
-	stw      r11, 0x48(r6)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_00 = 10;
+	_04 = 0;
+	_08 = 0;
+	mHummingArray = new PikiHumming[3];
+	PikiHumming* shouting = &mHummingArray[0];
+	shouting->_14 = 0;
+	shouting->mSoundID = PSSE_PK_SHOUT01;
+	shouting->_08 = 72;
+	shouting->_0C = 4;
+	shouting->_00 = 0;
+	shouting->_18 = 0;
+	shouting->_10 = -1;
+
+	PikiHumming* ainoutaRU = &mHummingArray[1];
+	ainoutaRU->_14 = 1;
+	ainoutaRU->mSoundID = PSSE_PK_AINOUTA_RU;
+	ainoutaRU->_08 = 300;
+	ainoutaRU->_0C = 2;
+	ainoutaRU->_00 = 0;
+	ainoutaRU->_18 = 0;
+	ainoutaRU->_10 = -1;
+
+	PikiHumming* humming = &mHummingArray[2];
+	humming->_14 = 2;
+	humming->mSoundID = PSSE_PK_HUMING01;
+	humming->_08 = 160;
+	humming->_0C = 3;
+	humming->_00 = 0;
+	humming->_18 = 0;
+	humming->_10 = -1;
 }
 
 /*
@@ -1534,7 +1103,7 @@ lbl_8046E09C:
  * Address:	8046E0B4
  * Size:	00015C
  */
-PSM::SeSound* PSStartSoundVec(ulong, Vec*)
+PSM::SeSound* PSStartSoundVec(unsigned long, Vec*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1674,204 +1243,102 @@ lbl_8046E264:
  * Address:	8046E27C
  * Size:	000198
  */
-void PSStartEnemyGhostSE(Game::EnemyBase*, float)
+JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, float)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stfd     f30, 0x10(r1)
-	psq_st   f30, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x580a
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_8046E3E8
-	mr       r3, r30
-	lfs      f31, lbl_80520CE0@sda21(r2)
-	lwz      r12, 0(r30)
-	fmr      f30, f31
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0x54
-	bgt      lbl_8046E3A8
-	lis      r4, lbl_804EF710@ha
-	slwi     r0, r3, 2
-	addi     r3, r4, lbl_804EF710@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
+	JAISound* ghost = enemy->getJAIObject()->startSound(PSSE_EN_ENEMY_GHOST, 0);
+	if (ghost) {
+		f32 volume = 0.0f;
+        f32 pitch = 0.0f;
+		switch (enemy->getEnemyTypeID())
+		{
+		case Game::EnemyTypeID::EnemyID_KingChappy:
+			volume = 1.0f;
+            pitch  = 0.8f;
+			break;
+		case Game::EnemyTypeID::EnemyID_FireChappy:
+		case Game::EnemyTypeID::EnemyID_KumaChappy:
+		case Game::EnemyTypeID::EnemyID_OoPanModoki:
+			volume = 1.0f;
+            pitch  = 0.9f;
+			break;
+		case Game::EnemyTypeID::EnemyID_Chappy:
+		case Game::EnemyTypeID::EnemyID_BlueChappy:
+		case Game::EnemyTypeID::EnemyID_YellowChappy:
+			volume = 1.0f;
+			pitch  = 1.0f;
+			break;
+		case Game::EnemyTypeID::EnemyID_MiniHoudai:
+			volume = 1.0f;
+            pitch  = 1.1f;
+			break;
+		case Game::EnemyTypeID::EnemyID_SnakeCrow:
+		case Game::EnemyTypeID::EnemyID_SnakeWhole:
+		case Game::EnemyTypeID::EnemyID_Kabuto:
+		case Game::EnemyTypeID::EnemyID_Hana:
+			volume = 1.0f;
+            pitch  = 1.2f;
+			break;
+		case Game::EnemyTypeID::EnemyID_Armor:
+		case Game::EnemyTypeID::EnemyID_Catfish:
+		case Game::EnemyTypeID::EnemyID_Miulin:
+		case Game::EnemyTypeID::EnemyID_BombSarai:
+			volume = 0.9f;
+            pitch  = 1.3f;
+			break;
+		case Game::EnemyTypeID::EnemyID_Frog:
+		case Game::EnemyTypeID::EnemyID_MaroFrog:
+		case Game::EnemyTypeID::EnemyID_Tank:
+		case Game::EnemyTypeID::EnemyID_Wtank:
+			volume = 0.8f;
+            pitch  = 1.4f;
+			break;
+		case Game::EnemyTypeID::EnemyID_Sarai:
+		case Game::EnemyTypeID::EnemyID_ElecBug:
+		case Game::EnemyTypeID::EnemyID_Demon:
+		case Game::EnemyTypeID::EnemyID_PanModoki:
+		case Game::EnemyTypeID::EnemyID_Fuefuki:
+		case Game::EnemyTypeID::EnemyID_Jigumo:
+		case Game::EnemyTypeID::EnemyID_LeafChappy:
+			volume = 0.7f;
+            pitch  = 1.5f;
+			break;
+		case Game::EnemyTypeID::EnemyID_Kochappy:
+		case Game::EnemyTypeID::EnemyID_BlueKochappy:
+		case Game::EnemyTypeID::EnemyID_YellowKochappy:
+		case Game::EnemyTypeID::EnemyID_KumaKochappy:
+		case Game::EnemyTypeID::EnemyID_Sokkuri:
+			volume = 0.6f;
+			pitch  = 1.6f;
+			break;
+		case Game::EnemyTypeID::EnemyID_Tadpole:
+		case Game::EnemyTypeID::EnemyID_Baby:
+			volume = 0.6f;
+            pitch  = 1.7f;
+			break;
 
-lbl_8046E310:
-	lfs      f31, lbl_80520CF4@sda21(r2)
-	lfs      f30, lbl_80520D18@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E31C:
-
-lbl_8046E31C:
-
-lbl_8046E31C:
-	lfs      f31, lbl_80520CF4@sda21(r2)
-	lfs      f30, lbl_80520D1C@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E328:
-
-lbl_8046E328:
-
-lbl_8046E328:
-	lfs      f31, lbl_80520CF4@sda21(r2)
-	fmr      f30, f31
-	b        lbl_8046E3A8
-
-lbl_8046E334:
-	lfs      f31, lbl_80520CF4@sda21(r2)
-	lfs      f30, lbl_80520D20@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E340:
-
-lbl_8046E340:
-
-lbl_8046E340:
-
-lbl_8046E340:
-	lfs      f31, lbl_80520CF4@sda21(r2)
-	lfs      f30, lbl_80520D24@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E34C:
-
-lbl_8046E34C:
-
-lbl_8046E34C:
-
-lbl_8046E34C:
-	lfs      f31, lbl_80520D1C@sda21(r2)
-	lfs      f30, lbl_80520D28@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E358:
-
-lbl_8046E358:
-
-lbl_8046E358:
-
-lbl_8046E358:
-	lfs      f31, lbl_80520D18@sda21(r2)
-	lfs      f30, lbl_80520D2C@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E364:
-
-lbl_8046E364:
-
-lbl_8046E364:
-
-lbl_8046E364:
-
-lbl_8046E364:
-
-lbl_8046E364:
-
-lbl_8046E364:
-	lfs      f31, lbl_80520D30@sda21(r2)
-	lfs      f30, lbl_80520D0C@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E370:
-
-lbl_8046E370:
-
-lbl_8046E370:
-
-lbl_8046E370:
-
-lbl_8046E370:
-	lfs      f31, lbl_80520D34@sda21(r2)
-	lfs      f30, lbl_80520D38@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E37C:
-
-lbl_8046E37C:
-	lfs      f31, lbl_80520D34@sda21(r2)
-	lfs      f30, lbl_80520D3C@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E388:
-
-lbl_8046E388:
-
-lbl_8046E388:
-
-lbl_8046E388:
-	lfs      f31, lbl_80520D34@sda21(r2)
-	lfs      f30, lbl_80520D40@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E394:
-
-lbl_8046E394:
-
-lbl_8046E394:
-
-lbl_8046E394:
-
-lbl_8046E394:
-	lfs      f31, lbl_80520CF8@sda21(r2)
-	lfs      f30, lbl_80520D00@sda21(r2)
-	b        lbl_8046E3A8
-
-lbl_8046E3A0:
-	lfs      f31, lbl_80520D44@sda21(r2)
-	lfs      f30, lbl_80520D08@sda21(r2)
-
-lbl_8046E3A8:
-	mr       r3, r31
-	fmr      f1, f31
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	fmr      f1, f30
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046E3E8:
-	mr       r3, r31
-	psq_l    f31, 40(r1), 0, qr0
-	lfd      f31, 0x20(r1)
-	psq_l    f30, 24(r1), 0, qr0
-	lfd      f30, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x34(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		case Game::EnemyTypeID::EnemyID_UjiA:
+		case Game::EnemyTypeID::EnemyID_UjiB:
+		case Game::EnemyTypeID::EnemyID_Tobi:
+		case Game::EnemyTypeID::EnemyID_TamagoMushi:
+			volume = 0.5f;
+			pitch  = 2.0f;
+			break;
+		case Game::EnemyTypeID::EnemyID_FireOtakara:
+		case Game::EnemyTypeID::EnemyID_WaterOtakara:
+		case Game::EnemyTypeID::EnemyID_GasOtakara:
+		case Game::EnemyTypeID::EnemyID_ElecOtakara:
+			volume = 0.6f;
+            pitch  = 1.8f;
+			break;
+		case Game::EnemyTypeID::EnemyID_ShijimiChou:
+			volume = 0.4f;
+            pitch  = 2.3f;
+			break;
+		}
+		ghost->setVolume(volume, 0, 0);
+		ghost->setPitch(pitch, 0, 0);
+	}
+	return ghost;
 }
 
 /*
@@ -2892,7 +2359,7 @@ lbl_8046F188:
  * Address:	8046F1A0
  * Size:	00007C
  */
-void PSPlayCaveHoleSound(PSM::Creature*)
+unknown PSPlayCaveHoleSound(PSM::Creature*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2960,7 +2427,8 @@ void ClusterFactory::identifyPart(unsigned char)
  * Address:	8046F24C
  * Size:	000070
  */
-void JAIBasic::startSoundVecReturnHandleT<JAISound>(JAISound**, unsigned long, Vec*, unsigned long, unsigned long, unsigned char)
+template <typename T>
+T* startSoundVecReturnHandleT(T** handlePtr, u32 p2, Vec* p3, u32 p4, u32 p5, u8 p6)
 {
 	/*
 	.loc_0x0:

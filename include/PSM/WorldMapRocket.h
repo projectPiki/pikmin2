@@ -19,7 +19,7 @@ struct WorldMapRocket : public JADHioNode {
 
 	virtual ~WorldMapRocket(); // _08
 
-	void startRocketSE(f32, f32);
+	JAISe* startRocketSE(f32, f32);
 	void stateChange(rocketState);
 
 	// _00 VTBL

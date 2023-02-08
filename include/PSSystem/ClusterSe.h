@@ -5,6 +5,12 @@
 #include "JSystem/JAudio2/JAI/JAInter.h"
 #include "SoundID.h"
 
+namespace JAInter
+{
+	struct Object;
+} // namespace JAInter
+
+
 namespace PSSystem {
 namespace ClusterSe {
 
@@ -41,7 +47,7 @@ struct Factory {
 	virtual void constructPart();      // _08
 	virtual void identifyPart(u8) = 0; // _0C
 
-	u8 _04[0x4]; // _04 - unknown
+	Mgr* _04; // _04 - unknown
 };
 
 } // namespace ClusterSe

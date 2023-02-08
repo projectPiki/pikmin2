@@ -11,6 +11,7 @@ struct EnemyBase;
 
 namespace PSM {
 struct Creature;
+struct SeSound;
 } // namespace PSM
 
 void PSChangeBgm_ChallengeGame();
@@ -28,7 +29,7 @@ void PSStartChallengeTimeUpStream();
 void PSStartEnemyDownSmokeSE(Game::EnemyBase*, f32);
 void PSStartEnemyDownWatSE(Game::EnemyBase*, f32);
 void PSStartEnemyFatalHitSE(Game::EnemyBase*, f32);
-void PSStartEnemyGhostSE(Game::EnemyBase*, f32);
+JAISound* PSStartEnemyGhostSE(Game::EnemyBase*, f32);
 PSM::SeSound* PSStartSoundVec(u32, Vec*);
 void PSStartTreasureLaderSE(f32);
 void PSStartTresureLaderNoiseSE(u8, f32, f32);

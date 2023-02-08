@@ -25,7 +25,7 @@ struct SysIF : public JAIBasic {
 	virtual void initIF(const SetupArg&); // _28
 
 	void stopSoundSystem();
-	void playSystemSe(u32, u32);
+	JAISe* playSystemSe(u32, u32);
 	void playSystemSe(u32, JAISound**, u32);
 	void mainLoop();
 	void setConfigVol_Se(f32);
