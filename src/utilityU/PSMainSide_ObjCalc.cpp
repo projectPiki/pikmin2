@@ -130,8 +130,7 @@ u8 ObjCalc_2PGame::getPlayerNo(Vec& pos)
 			dist.z   = pos.z - z;
 			dists[i] = dist.sqrMagnitude();
 		}
-		u8 ret = (dists[0] < dists[1]);
-		return ret;
+		return !(dists[0] < dists[1]);
 	default:
 		JUT_PANICLINE(77, "P2Assert");
 		return 0;
@@ -429,24 +428,4 @@ u8 ObjCalc_2PGame::getPlayerNo(PSM::Creature* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80472DF4
- * Size:	000074
- */
-ObjCalc_SingleGame::~ObjCalc_SingleGame() { }
-
-/*
- * --INFO--
- * Address:	80472E68
- * Size:	000074
- */
-ObjCalc_2PGame::~ObjCalc_2PGame() { }
-
-/*
- * --INFO--
- * Address:	80472EDC
- * Size:	000008
- */
-bool ObjCalc_2PGame::is1PGame() { return false; }
 } // namespace PSM

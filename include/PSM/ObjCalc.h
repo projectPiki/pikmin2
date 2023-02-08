@@ -28,7 +28,7 @@ struct ObjCalcBase : public PSSystem::SingletonBase<ObjCalcBase> {
 struct ObjCalc_SingleGame : public ObjCalcBase {
 
 	ObjCalc_SingleGame() { mPlayerNum = 0; }
-	virtual ~ObjCalc_SingleGame();     // _08 (weak)
+	virtual ~ObjCalc_SingleGame() { }  // _08 (weak)
 	virtual u8 getPlayerNo(Creature*); // _0C
 	virtual u8 getPlayerNo(Vec&);      // _10
 
@@ -43,10 +43,10 @@ struct ObjCalc_2PGame : public ObjCalcBase {
 
 	ObjCalc_2PGame() { }
 
-	virtual ~ObjCalc_2PGame();         // _08 (weak)
-	virtual u8 getPlayerNo(Creature*); // _0C
-	virtual u8 getPlayerNo(Vec&);      // _10
-	virtual bool is1PGame();           // _18 (weak)
+	virtual ~ObjCalc_2PGame() { }             // _08 (weak)
+	virtual u8 getPlayerNo(Creature*);        // _0C
+	virtual u8 getPlayerNo(Vec&);             // _10
+	virtual bool is1PGame() { return false; } // _18 (weak)
 
 	void newInstance_2PGame();
 
