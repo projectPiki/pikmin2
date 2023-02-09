@@ -347,6 +347,11 @@ inline f32 sqrDistanceXZ(Vector3f& vec1, Vector3f& vec2)
 	return x * x + z * z;
 }
 
+inline bool inRadius(f32 r, Vector3f& vec1, Vector3f& vec2)
+{
+	return sqrDistanceXZ(vec1, vec2) < r * r;
+}
+
 inline f32 _distanceXZ(Vector3f& vec1, Vector3f& vec2)
 {
 	Vector2f vec;

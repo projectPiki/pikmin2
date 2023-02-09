@@ -69,6 +69,12 @@ struct Matrixf {
 		p2.z = (*this)(p1, 2);
 	}
 
+	void setRow(int p1, Vector3f& p2) {
+		(*this)(p1, 0) = p2.x;
+		(*this)(p1, 1) = p2.y;
+		(*this)(p1, 2) = p2.z;
+	}
+
 	inline Vector3f getBasis(int p1) { return Vector3f((*this)(0, p1), (*this)(1, p1), (*this)(2, p1)); }
 
 	/**
