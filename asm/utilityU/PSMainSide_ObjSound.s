@@ -671,8 +671,7 @@
 	.4byte onAppear1st__Q23PSM12EnemyMidBossFv
 	.4byte onDisappear__Q23PSM9EnemyBossFv
 .endobj __vt__Q23PSM12EnemyMidBoss
-.global __vt__Q23PSM9EnemyBoss
-__vt__Q23PSM9EnemyBoss:
+.obj __vt__Q23PSM9EnemyBoss, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -733,8 +732,8 @@ __vt__Q23PSM9EnemyBoss:
 	.4byte onAppear__Q23PSM9EnemyBossFv
 	.4byte onAppear1st__Q23PSM9EnemyBossFv
 	.4byte onDisappear__Q23PSM9EnemyBossFv
-.global __vt__Q23PSM8EnemyBig
-__vt__Q23PSM8EnemyBig:
+.endobj __vt__Q23PSM9EnemyBoss
+.obj __vt__Q23PSM8EnemyBig, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -788,8 +787,8 @@ __vt__Q23PSM8EnemyBig:
 	.4byte setKilled__Q23PSM9EnemyBaseFv
 	.4byte updateKehai__Q23PSM9EnemyBaseFv
 	.4byte updateBattle__Q23PSM9EnemyBaseFv
-.global __vt__Q23PSM9Tsuyukusa
-__vt__Q23PSM9Tsuyukusa:
+.endobj __vt__Q23PSM8EnemyBig
+.obj __vt__Q23PSM9Tsuyukusa, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -824,8 +823,8 @@ __vt__Q23PSM9Tsuyukusa:
 	.4byte startSound__Q23PSM11CreatureObjFUlUl
 	.4byte startSound__Q23PSM11CreatureObjFUcUlUl
 	.4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
-.global __vt__Q23PSM18EnemyNotAggressive
-__vt__Q23PSM18EnemyNotAggressive:
+.endobj __vt__Q23PSM9Tsuyukusa
+.obj __vt__Q23PSM18EnemyNotAggressive, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -882,8 +881,8 @@ __vt__Q23PSM18EnemyNotAggressive:
 	.4byte kehaiOn__Q23PSM18EnemyNotAggressiveFv
 	.4byte kehaiOff__Q23PSM18EnemyNotAggressiveFv
 	.4byte battleOn__Q23PSM18EnemyNotAggressiveFv
-.global __vt__Q23PSM9EnemyBase
-__vt__Q23PSM9EnemyBase:
+.endobj __vt__Q23PSM18EnemyNotAggressive
+.obj __vt__Q23PSM9EnemyBase, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -937,20 +936,20 @@ __vt__Q23PSM9EnemyBase:
 	.4byte setKilled__Q23PSM9EnemyBaseFv
 	.4byte updateKehai__Q23PSM9EnemyBaseFv
 	.4byte updateBattle__Q23PSM9EnemyBaseFv
-.global __vt__Q23PSM9KehaiLink
-__vt__Q23PSM9KehaiLink:
+.endobj __vt__Q23PSM9EnemyBase
+.obj __vt__Q23PSM9KehaiLink, global
 	.4byte 0
 	.4byte 0
 	.4byte kehaiOn__Q23PSM9KehaiLinkFv
 	.4byte kehaiOff__Q23PSM9KehaiLinkFv
-.global __vt__Q23PSM10BattleLink
-__vt__Q23PSM10BattleLink:
+.endobj __vt__Q23PSM9KehaiLink
+.obj __vt__Q23PSM10BattleLink, global
 	.4byte 0
 	.4byte 0
 	.4byte battleOn__Q23PSM10BattleLinkFv
 	.4byte battleOff__Q23PSM10BattleLinkFv
-.global __vt__Q23PSM13CreatureAnime
-__vt__Q23PSM13CreatureAnime:
+.endobj __vt__Q23PSM10BattleLink
+.obj __vt__Q23PSM13CreatureAnime, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -992,8 +991,8 @@ __vt__Q23PSM13CreatureAnime:
 	.4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
 	.4byte onCalcTurnOn__Q23PSM13CreatureAnimeFv
 	.4byte onCalcTurnOff__Q23PSM13CreatureAnimeFv
-.global __vt__Q23PSM11CreatureObj
-__vt__Q23PSM11CreatureObj:
+.endobj __vt__Q23PSM13CreatureAnime
+.obj __vt__Q23PSM11CreatureObj, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -1028,8 +1027,8 @@ __vt__Q23PSM11CreatureObj:
 	.4byte startSound__Q23PSM11CreatureObjFUlUl
 	.4byte startSound__Q23PSM11CreatureObjFUcUlUl
 	.4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
-.global __vt__Q23PSM8Creature
-__vt__Q23PSM8Creature:
+.endobj __vt__Q23PSM11CreatureObj
+.obj __vt__Q23PSM8Creature, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -1046,8 +1045,8 @@ __vt__Q23PSM8Creature:
 	.4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
 	.4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
 	.4byte 0
-.global __vt__Q23PSM6ObjMgr
-__vt__Q23PSM6ObjMgr:
+.endobj __vt__Q23PSM8Creature
+.obj __vt__Q23PSM6ObjMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -1057,8 +1056,8 @@ __vt__Q23PSM6ObjMgr:
 	.4byte 0
 	.4byte "@16@__dt__Q23PSM6ObjMgrFv"
 	.4byte __dt__Q23PSM6ObjMgrFv
-.global __vt__Q23PSM7ObjBase
-__vt__Q23PSM7ObjBase:
+.endobj __vt__Q23PSM6ObjMgr
+.obj __vt__Q23PSM7ObjBase, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -1067,6 +1066,7 @@ __vt__Q23PSM7ObjBase:
 	.4byte __dt__Q23PSM7ObjBaseFv
 	.4byte 0
 	.4byte 0
+.endobj __vt__Q23PSM7ObjBase
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -1079,38 +1079,49 @@ __vt__Q23PSM7ObjBase:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520C50:
-	.4byte 0x00000000
-lbl_80520C54:
+.obj lbl_80520C50, local
+	.float 0.0
+.endobj lbl_80520C50
+.obj lbl_80520C54, local
 	.float 0.5
-lbl_80520C58:
-	.4byte 0x42FE0000
-lbl_80520C5C:
+.endobj lbl_80520C54
+.obj lbl_80520C58, local
+	.float 127.0
+.endobj lbl_80520C58
+.obj lbl_80520C5C, local
 	.float 1.0
-lbl_80520C60:
-	.4byte 0x3D000000
+.endobj lbl_80520C5C
+.obj lbl_80520C60, local
+	.float 0.03125
+.endobj lbl_80520C60
 .balign 8
-lbl_80520C68:
+.obj lbl_80520C68, local
 	.4byte 0x43300000
 	.4byte 0x00000000
+.endobj lbl_80520C68
 .balign 8
-lbl_80520C70:
+.obj lbl_80520C70, local
 	.4byte 0x43300000
 	.4byte 0x80000000
-lbl_80520C78:
-	.4byte 0x4B189680
-lbl_80520C7C:
-	.4byte 0x43FA0000
-lbl_80520C80:
-	.4byte 0x3F4CCCCD
-lbl_80520C84:
-	.4byte 0x3F266666
-lbl_80520C88:
+.endobj lbl_80520C70
+.obj lbl_80520C78, local
+	.float 1.0E7
+.endobj lbl_80520C78
+.obj lbl_80520C7C, local
+	.float 500.0
+.endobj lbl_80520C7C
+.obj lbl_80520C80, local
+	.float 0.8
+.endobj lbl_80520C80
+.obj lbl_80520C84, local
+	.float 0.65
+.endobj lbl_80520C84
+.obj lbl_80520C88, local
 	.float 0.7
+.endobj lbl_80520C88
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q23PSM7ObjBaseFv
-__dt__Q23PSM7ObjBaseFv:
+.fn __dt__Q23PSM7ObjBaseFv, global
 /* 8045CE64 00459DA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CE68 00459DA8  7C 08 02 A6 */	mflr r0
 /* 8045CE6C 00459DAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1145,9 +1156,9 @@ __dt__Q23PSM7ObjBaseFv:
 /* 8045CED8 00459E18  7C 08 03 A6 */	mtlr r0
 /* 8045CEDC 00459E1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CEE0 00459E20  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM7ObjBaseFv
 
-.global frameEnd_onPlaySe__Q23PSM6ObjMgrFv
-frameEnd_onPlaySe__Q23PSM6ObjMgrFv:
+.fn frameEnd_onPlaySe__Q23PSM6ObjMgrFv, global
 /* 8045CEE4 00459E24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CEE8 00459E28  7C 08 02 A6 */	mflr r0
 /* 8045CEEC 00459E2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1169,9 +1180,9 @@ frameEnd_onPlaySe__Q23PSM6ObjMgrFv:
 /* 8045CF24 00459E64  7C 08 03 A6 */	mtlr r0
 /* 8045CF28 00459E68  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CF2C 00459E6C  4E 80 00 20 */	blr 
+.endfn frameEnd_onPlaySe__Q23PSM6ObjMgrFv
 
-.global __dt__Q23PSM6ObjMgrFv
-__dt__Q23PSM6ObjMgrFv:
+.fn __dt__Q23PSM6ObjMgrFv, global
 /* 8045CF30 00459E70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045CF34 00459E74  7C 08 02 A6 */	mflr r0
 /* 8045CF38 00459E78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1242,6 +1253,7 @@ __dt__Q23PSM6ObjMgrFv:
 /* 8045D028 00459F68  7C 08 03 A6 */	mtlr r0
 /* 8045D02C 00459F6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045D030 00459F70  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM6ObjMgrFv
 
 .global exec__Q23PSM8CreatureFv
 exec__Q23PSM8CreatureFv:
