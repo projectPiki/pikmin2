@@ -3,10 +3,9 @@
 
 #include "types.h"
 
-inline Vector2<u16> getScreenSize() {
-    return Vector2<u16>(
-        System::getRenderModeObj()->fbWidth, 
-        System::getRenderModeObj()->efbHeight);
+inline Vector2<u16> getScreenSize()
+{
+	return Vector2<u16>(System::getRenderModeObj()->fbWidth, System::getRenderModeObj()->efbHeight);
 } // doesn't have to be an inline
 
 struct Graphics;

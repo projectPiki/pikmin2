@@ -11,9 +11,9 @@
 namespace PSSystem {
 inline SceneMgr* getSceneMgr()
 {
-	
+
 	P2ASSERTLINE(467, spSceneMgr);
-	
+
 	return spSceneMgr;
 }
 

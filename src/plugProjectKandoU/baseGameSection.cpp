@@ -1148,12 +1148,10 @@ BaseGameSection::~BaseGameSection()
 	itemMgr->clearGlobalPointers();
 
 	PelletOtakara::mgr = nullptr;
-	PelletFruit::mgr = nullptr;
+	PelletFruit::mgr   = nullptr;
 	PelletItem::mgr    = nullptr;
 	PelletNumber::mgr  = nullptr;
 	PelletCarcass::mgr = nullptr;
-	
-
 }
 
 /*
@@ -1173,15 +1171,13 @@ void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
  * Size:	000120
  */
 
-
-
 u32 BaseGameSection::waitSyncLoad(bool dontPause)
 {
 	static int col;
 	static s8 init;
-	
+
 	if (!init) {
-		col = 0;
+		col  = 0;
 		init = 1;
 	}
 	col++;
@@ -1192,7 +1188,7 @@ u32 BaseGameSection::waitSyncLoad(bool dontPause)
 	while (true) {
 		beginFrame();
 		beginRender();
-		
+
 		j3dSys.drawInit();
 		GXSetViewport(0.0f, 0.0f, 608.0f, 480.0f, 0.0f, 1.0f);
 		GXSetScissor(0, 0x10, 0x260, 0x1c0);
@@ -1200,19 +1196,17 @@ u32 BaseGameSection::waitSyncLoad(bool dontPause)
 
 		// I have no clue
 
-		if (m_dvdThreadCommand.m_mode != 2);
+		if (mDvdThreadCommand.mMode != 2)
+			;
 
 		else if (!dontPause) {
 			gameSystem->setPause(false, "waitSyncLoad", 3);
 			return;
-		}
-		else break;
+		} else
+			break;
 
 		endFrame();
 	}
-	
-	
-	
 }
 
 /*
@@ -1234,9 +1228,9 @@ void BaseGameSection::dvdloadGameSystem()
  */
 void BaseGameSection::init()
 {
-	m_xfbFlags = 0;
-	_48 = 0;
-	m_draw2DCreature = nullptr;
+	mXfbFlags       = 0;
+	mMoney          = 0;
+	mDraw2DCreature = nullptr;
 	System::FragmentationChecker initFrag("BGS::init", false);
 	{
 		System::FragmentationChecker heapFrag("heapStatus", false);
@@ -1244,46 +1238,43 @@ void BaseGameSection::init()
 	}
 
 	sys->enableCPULockDetector(480);
-	Delegate<BaseGameSection> delegate (this, dvdloadGameSystem);
+	Delegate<BaseGameSection> delegate(this, dvdloadGameSystem);
 	beginFrame();
 	beginRender();
 	j3dSys.drawInit();
 	GXSetViewport(0.0f, 0.0f, 608.0f, 480.0f, 0.0f, 1.0f);
 	GXSetScissor(0, 0x10, 0x260, 0x1c0);
-	m_graphics->m_orthoGraph.setPort();
+	mGraphics->mOrthoGraph.setPort();
 	endRender();
-	sys->dvdLoadUseCallBack(&m_dvdThreadCommand, &delegate);
+	sys->dvdLoadUseCallBack(&mDvdThreadCommand, &delegate);
 
 	waitSyncLoad(true);
 
 	BaseHIOSection::initHIO(nullptr);
 
-	m_treasureLightMgr = new TreasureLight::Mgr;
+	mTreasureLightMgr = new TreasureLight::Mgr;
 	System::assert_fragmentation("baseGameSection::initHIO");
-	moviePlayer = new MoviePlayer;
-	m_movieFinishCallback = new Delegate3<BaseGameSection, MovieConfig*, u32, u32>(this, movieDone);
-	m_movieStartCallback = new Delegate3<BaseGameSection, MovieConfig*, u32, u32>(this, onMovieStart);
+	moviePlayer          = new MoviePlayer;
+	mMovieFinishCallback = new Delegate3<BaseGameSection, MovieConfig*, u32, u32>(this, movieDone);
+	mMovieStartCallback  = new Delegate3<BaseGameSection, MovieConfig*, u32, u32>(this, onMovieStart);
 
 	sys->setFrameRate(2);
 	System::assert_fragmentation("BaseGameSection::MoviePlayer");
 	initJ3D();
-	_11C = true;
+	_11C   = true;
 	mapMgr = nullptr;
 	System::assert_fragmentation("BaseGameSection::InitJ3D");
 	System::assert_fragmentation("BaseGameSection::Before 2D");
-	
+
 	og::Lib2D::create();
 	Screen::Game2DMgr::create();
-	Screen::gGame2DMgr->m_screenMgr->_90 = 1;
+	Screen::gGame2DMgr->mScreenMgr->_90 = 1;
 	System::assert_fragmentation("BaseGameSection::Game2DMgr");
-	m_xfbTexture2 = 0;
-	m_xfbTexture1 = 0;
+	mXfbTexture2 = 0;
+	mXfbTexture1 = 0;
 	onInit();
 	sys->heapStatusEnd("baseGameSection::init");
-	m_treasureGetState = false;
-
-
-
+	mTreasureGetState = false;
 }
 
 /*
@@ -1322,18 +1313,18 @@ bool BaseGameSection::doUpdate()
 	SysShape::Model::cullCount = 0;
 	gameSystem->startFrame();
 	Screen::gGame2DMgr->update();
-	if (m_isBlendCameraActive) {
+	if (mIsBlendCameraActive) {
 		updateBlendCamera();
 	}
 	mapMgr->update();
-	sys->m_timers->_start("doAnim", true);
+	sys->mTimers->_start("doAnim", true);
 	doAnimation();
-	sys->m_timers->_stop("doAnim");
-	sys->m_timers->_start("ENI", true);
-	sys->m_timers->_start("ENI-A", true);
+	sys->mTimers->_stop("doAnim");
+	sys->mTimers->_start("ENI", true);
+	sys->mTimers->_start("ENI-A", true);
 	doEntry();
-	sys->m_timers->_stop("ENT-A");
-	sys->m_timers->_start("ENT-B", true);
+	sys->mTimers->_stop("ENT-A");
+	sys->mTimers->_start("ENT-B", true);
 
 	if (rumbleMgr) {
 		rumbleMgr->update();
@@ -1347,12 +1338,12 @@ bool BaseGameSection::doUpdate()
 	if (carryInfoMgr) {
 		carryInfoMgr->update();
 	}
-	if (m_lightMgr) {
-		m_lightMgr->update();
+	if (mLightMgr) {
+		mLightMgr->update();
 	}
 	SysShape::Model::setViewCalcModeInd();
-	for (int vpIdx = 0; vpIdx < sys->m_gfx->m_viewportCount; vpIdx++) {
-		Viewport* viewport = sys->m_gfx->getViewport(vpIdx);
+	for (int vpIdx = 0; vpIdx < sys->mGfx->mViewportCount; vpIdx++) {
+		Viewport* viewport = sys->mGfx->getViewport(vpIdx);
 		if (viewport && viewport->viewable()) {
 			j3dSetView(viewport, false);
 		}
@@ -1362,47 +1353,45 @@ bool BaseGameSection::doUpdate()
 		platMgr->resetOnCount();
 	}
 
-	sys->m_timers->_stop("ENT-B");
-	sys->m_timers->_stop("ENT");
-	sys->m_timers->_start("doSim", true);
+	sys->mTimers->_stop("ENT-B");
+	sys->mTimers->_stop("ENT");
+	sys->mTimers->_start("doSim", true);
 
-	#pragma
+#pragma
 	if (!gameSystem->paused()) {
-		float frameRate = 1.0f / sys->m_deltaTime;
-		sys->m_timers->_start("coll", true);
-		if (!(gameSystem->m_flags & 0x4)) {
+		float frameRate = 1.0f / sys->mDeltaTime;
+		sys->mTimers->_start("coll", true);
+		if (!(gameSystem->mFlags & 0x4)) {
 			sys->getTime();
 			cellMgr->resolveCollision();
 			CellPyramid::sSpeedUpResolveColl = true;
 		}
-		sys->m_timers->_stop("coll");
+		sys->mTimers->_stop("coll");
 		doSimulation(frameRate);
-
 	}
 
-	sys->m_timers->_stop("doSim");
-	sys->m_timers->_start("particle", true);
-	if (!gameSystem->m_isFrozen && !gameSystem->paused() && particleMgr) {
+	sys->mTimers->_stop("doSim");
+	sys->mTimers->_start("particle", true);
+	if (!gameSystem->mIsFrozen && !gameSystem->paused() && particleMgr) {
 		particleMgr->update();
 	}
 	if (particle2dMgr) {
 		particle2dMgr->update();
 	}
-	sys->m_timers->_stop("particle");
+	sys->mTimers->_stop("particle");
 	onUpdate();
-	if (moviePlayer && !gameSystem->m_isMoviePause) {
+	if (moviePlayer && !gameSystem->mIsMoviePause) {
 		if (gameSystem->isMultiplayerMode()) {
-			moviePlayer->update(m_controllerP1, m_controllerP2);
-		}
-		else {
-			moviePlayer->update(m_controllerP1, nullptr);
+			moviePlayer->update(mControllerP1, mControllerP2);
+		} else {
+			moviePlayer->update(mControllerP1, nullptr);
 		}
 	}
 	if (shadowMgr) {
 		shadowMgr->init();
 	}
 	gameSystem->endFrame();
-	return m_isMainActive;
+	return mIsMainActive;
 }
 
 /*
@@ -1426,12 +1415,10 @@ void BaseGameSection::doDraw(Graphics& gfx)
 			cameraMgr->update();
 			cameraMgr->controllerUnLock(2);
 		}
-		
-	} 
-	else if (cameraMgr) {
+
+	} else if (cameraMgr) {
 		cameraMgr->update();
 	}
-	
 
 	sys->mTimers->_start("_draw3D_", true);
 	draw3D(gfx);
@@ -1464,20 +1451,19 @@ void BaseGameSection::pre2dDraw(Graphics&) { }
  * Size:	000078
  */
 
-
 // movieConfig struct jank
 void BaseGameSection::movieDone(MovieConfig* config, u32, u32)
 {
-	Creature* c = (Creature*)config[1].m_param.m_parent;
+	Creature* c = (Creature*)config[1].mParam.mParent;
 	if (c) {
 		c->movie_end(true);
-		((Creature*)config[1].m_param.m_parent)->kill(nullptr);
-		config[1].m_param.m_parent = nullptr;
+		((Creature*)config[1].mParam.mParent)->kill(nullptr);
+		config[1].mParam.mParent = nullptr;
 		Screen::gGame2DMgr->close_SpecialItem();
 		Screen::gGame2DMgr->close_Kantei();
-		config[1].m_param.m_next = nullptr;
-	}sizeof(MovieConfig);
-
+		config[1].mParam.mNext = nullptr;
+	}
+	sizeof(MovieConfig);
 }
 
 /*
@@ -1496,18 +1482,18 @@ void BaseGameSection::onMovieCommand(int cmd)
 {
 
 	switch (cmd) {
-		case 0:
-			break;
-		case 2:
-			if (moviePlayer && !(moviePlayer->m_flags & 0x2)) {
-				createFallPikminSound();
-			}
-			break;
-		case 3:
-			if (gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_timeMgr->m_dayCount == 0) {
-				pikiMgr->forceEnterPikmins(false);
-			}
-			break;
+	case 0:
+		break;
+	case 2:
+		if (moviePlayer && !(moviePlayer->mFlags & 0x2)) {
+			createFallPikminSound();
+		}
+		break;
+	case 3:
+		if (gameSystem->mMode == GSM_STORY_MODE && gameSystem->mTimeMgr->mDayCount == 0) {
+			pikiMgr->forceEnterPikmins(false);
+		}
+		break;
 	}
 }
 
@@ -1518,8 +1504,9 @@ void BaseGameSection::onMovieCommand(int cmd)
  */
 
 // unfortunatly this probably isn't real inline, however I'm not writing the full code out bc that's stupid
-inline void j3dStuff(Sys::DrawBuffers*& buffer, Sys::DrawBuffer::CreateArg& drawArg, bool doFog) {
-	
+inline void j3dStuff(Sys::DrawBuffers*& buffer, Sys::DrawBuffer::CreateArg& drawArg, bool doFog)
+{
+
 	drawArg.mSize = 0x80;
 	drawArg.mName = "normal";
 
@@ -1532,13 +1519,15 @@ inline void j3dStuff(Sys::DrawBuffers*& buffer, Sys::DrawBuffer::CreateArg& draw
 
 	drawArg.mSize = 1;
 	drawArg.mName = "map";
-	if (doFog) drawArg.mSortType = J3DDrawBuffer::J3DSORT_NonSort;
+	if (doFog)
+		drawArg.mSortType = J3DDrawBuffer::J3DSORT_NonSort;
 
 	buffer->get(2)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = "piki";
-	if (doFog) drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
+	if (doFog)
+		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
 
 	buffer->get(3)->create(drawArg);
 
@@ -1577,41 +1566,37 @@ void BaseGameSection::initJ3D()
 {
 	_12C = new Sys::DrawBuffers;
 	_130 = new Sys::DrawBuffers;
-	
-	_12C->allocate(10);
-	_12C->m_name = "OPA";
-	{
-	Sys::DrawBuffer::CreateArg drawArg;
-	drawArg._0C = 0;
-	drawArg._10 = 0;
-	j3dStuff(_12C, drawArg, true);
-	}
 
+	_12C->allocate(10);
+	_12C->mName = "OPA";
+	{
+		Sys::DrawBuffer::CreateArg drawArg;
+		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
+		drawArg.mDrawType = J3DDrawBuffer::J3DDRAW_Head;
+		j3dStuff(_12C, drawArg, true);
+	}
 
 	_130->allocate(10);
-	_130->m_name = "XLU";
-	
-	{
-	Sys::DrawBuffer::CreateArg drawArg;
-	
-	drawArg._0C = 0;
-	drawArg._10 = 0;
-	
-	drawArg._04.typeView |= 1;
+	_130->mName = "XLU";
 
-	j3dStuff(_130, drawArg, false);
+	{
+		Sys::DrawBuffer::CreateArg drawArg;
+
+		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
+		drawArg.mDrawType = J3DDrawBuffer::J3DDRAW_Head;
+
+		drawArg.mFlags.typeView |= 1;
+
+		j3dStuff(_130, drawArg, false);
 	}
 
-	
 	addGenNode(_12C);
 	addGenNode(_130);
 
-	j3dSys._48 = _12C->get(0)->_1C;
-	j3dSys._4C = _130->get(0)->_1C;
+	j3dSys.mDrawBuffer[0] = _12C->get(0)->mBuffer;
+	j3dSys.mDrawBuffer[1] = _130->get(0)->mBuffer;
 
-	System::FragmentationChecker frag ("poyol", false);
-
-
+	System::FragmentationChecker frag("poyol", false);
 }
 
 /*
@@ -1625,13 +1610,9 @@ void BaseGameSection::initResources()
 	setupFloatMemory();
 }
 
-Vector2f getRectSkew() {
-	return Vector2f(0.0f, -80.0f);
-}
+Vector2f getRectSkew() { return Vector2f(0.0f, -80.0f); }
 
-Vector2f getBottomLeft() {
-	return Vector2f(0.0f, 0.0f);
-}
+Vector2f getBottomLeft() { return Vector2f(0.0f, 0.0f); }
 
 /*
  * --INFO--
@@ -1640,16 +1621,15 @@ Vector2f getBottomLeft() {
  */
 void BaseGameSection::initViewports(Graphics& gfx)
 {
-	m_splitter = new HorizonalSplitter(&gfx);
+	mSplitter = new HorizonalSplitter(&gfx);
 	setSplitter(false);
-	
 
 	Viewport* olimarViewport = gfx.getViewport(0);
-	olimarViewport->m_camera = m_playCameras[0];
+	olimarViewport->mCamera  = mOlimarCamera;
 	olimarViewport->updateCameraAspect();
 
 	Viewport* louieViewport = gfx.getViewport(1);
-	louieViewport->m_camera = m_playCameras[1];
+	louieViewport->mCamera  = mLouieCamera;
 	louieViewport->updateCameraAspect();
 
 	shadowMgr->setViewport(gfx.getViewport(0), 0);
@@ -1659,25 +1639,21 @@ void BaseGameSection::initViewports(Graphics& gfx)
 	cameraMgr->setViewport(gfx.getViewport(1), 1);
 
 	cameraMgr->init(0);
-	m_treasureZoomCamera = new ZoomCamera;
-	m_treasureGetViewport = new Viewport;
-	m_treasureGetViewport->m_vpId = 2;
+	mTreasureZoomCamera         = new ZoomCamera;
+	mTreasureGetViewport        = new Viewport;
+	mTreasureGetViewport->mVpId = 2;
 
-	Vector2<u16> screenSize = getScreenSize(); 
+	Vector2<u16> screenSize = getScreenSize();
 	getScreenSize();
-	Vector2f rectSkew = getRectSkew();
-	Vector2f topRight = rectSkew + screenSize;
+	Vector2f rectSkew   = getRectSkew();
+	Vector2f topRight   = Vector2f(rectSkew.x + screenSize.x, rectSkew.y + screenSize.y);
 	Vector2f bottomLeft = getBottomLeft() + rectSkew;
 	// float moment
 	Rectf rect(bottomLeft.x, bottomLeft.y, topRight.x, topRight.y);
 
-
-	m_treasureGetViewport->setRect(rect);
-	m_treasureGetViewport->m_camera = m_treasureZoomCamera;
-	m_treasureGetViewport->updateCameraAspect();
-
-
-
+	mTreasureGetViewport->setRect(rect);
+	mTreasureGetViewport->mCamera = mTreasureZoomCamera;
+	mTreasureGetViewport->updateCameraAspect();
 }
 
 } // namespace Game
@@ -1738,8 +1714,8 @@ void BaseGameSection::initGenerators()
 	void* mgrData[64];
 	char pathBuffer[256];
 	int currentIndex;
-	CourseInfo* courseInfo = Game::mapMgr->m_courseInfo;
-	if (Game::mapMgr->m_courseInfo) {
+	CourseInfo* courseInfo = Game::mapMgr->mCourseInfo;
+	if (Game::mapMgr->mCourseInfo) {
 		Game::PelletBirthBuffer::clear();
 		Game::generatorCache->loadGenerators(Game::mapMgr->mCourseInfo->mCourseIndex);
 		Game::generatorCache->updateUseList();
@@ -1796,7 +1772,7 @@ void BaseGameSection::initGenerators()
 		}
 		uint dayCount = gameSystem->mTimeMgr->mDayCount;
 		for (int i = 0; i < Game::mapMgr->mCourseInfo->mLimitGenInfo.mCount; i++) {
-			LimitGen* gen = (LimitGen*)Game::mapMgr->mCourseInfo->mLimitGenInfo.m_owner.getChildAt(i);
+			LimitGen* gen = (LimitGen*)Game::mapMgr->mCourseInfo->mLimitGenInfo.mOwner.getChildAt(i);
 			if (gen->_18 <= dayCount && dayCount <= gen->_1C) {
 				if (playData->mLimitGen[Game::mapMgr->mCourseInfo->mCourseIndex].mNonLoops.isFlag(i) == false) {
 					sprintf(pathBuffer, "%s/nonloop/%s", Game::mapMgr->mCourseInfo->mAbeFolder, gen->mName);
@@ -8166,8 +8142,8 @@ namespace Game {
 void BaseGameSection::setDrawBuffer(int index)
 {
 	P2ASSERTBOUNDSLINE(5295, 1, index, 10);
-	j3dSys._48 = _12C->get(index)->_1C;
-	j3dSys._4C = _130->get(index)->_1C;
+	j3dSys.mDrawBuffer[0] = _12C->get(index)->mBuffer;
+	j3dSys.mDrawBuffer[1] = _130->get(index)->mBuffer;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

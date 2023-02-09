@@ -84,7 +84,6 @@ struct Model : public MtxObject {
 
 	static int cullCount;
 
-
 	static u8 viewCalcMode;
 };
 
