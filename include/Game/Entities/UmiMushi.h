@@ -261,7 +261,7 @@ struct Obj : public EnemyBase {
 	Vector3f mHamonPosition;                 // _38C
 	FSM* mFsm;                               // _398
 	EnemyTypeID::EEnemyTypeID mBloysterType; // _39C
-	u32 _3A0;                                // _3A0
+	u16* mJointIndices;                      // _3A0
 	                                         // _3A4 = PelletView
 };
 
