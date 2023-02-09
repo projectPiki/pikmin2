@@ -320,14 +320,14 @@ void JASWaveArc::onDispose()
 void JASWaveArc::setEntryNum(long entryNum)
 {
 	// UNUSED FUNCTION
-	DVDPlayer player;
+	DVDFileInfo player;
 	if (0 > entryNum) {
 		return;
 	}
 	if (DVDFastOpen(entryNum, &player) == FALSE) {
 		return;
 	}
-	mFileSize = player.mFileSize;
+	mFileSize = player.length;
 	DVDClose(&player);
 	mFileNumber = entryNum;
 }

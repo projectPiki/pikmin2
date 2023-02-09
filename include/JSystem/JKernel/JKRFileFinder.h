@@ -56,8 +56,8 @@ struct JKRDvdFinder : public JKRFileFinder {
 
 	// _00     = VTBL
 	// _00-_14 = JKRFileFinder
-	OSFstEntry mFstEntry; // _14
-	bool mIsDvdOpen;      // _20
+	DVDDir mFstEntry; // _14
+	bool mIsDvdOpen;  // _20
 };
 
 #endif

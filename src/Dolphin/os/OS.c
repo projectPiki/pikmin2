@@ -62,23 +62,23 @@ BOOL __DBIsExceptionMarked(u8);
 void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar);
 extern char* __OSResetSWInterruptHandler[];
 
-typedef struct DVDCommandBlock DVDCommandBlock;
+// typedef struct DVDCommandBlock DVDCommandBlock;
 typedef struct DVDDriveInfo DVDDriveInfo;
-typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
-struct DVDCommandBlock {
-	DVDCommandBlock* next;
-	DVDCommandBlock* prev;
-	u32 command;
-	s32 state;
-	u32 offset;
-	u32 length;
-	void* addr;
-	u32 currTransferSize;
-	u32 transferredSize;
-	DVDDiskID* id;
-	DVDCBCallback callback;
-	void* userData;
-};
+// typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
+// struct DVDCommandBlock {
+// 	DVDCommandBlock* next;
+// 	DVDCommandBlock* prev;
+// 	u32 command;
+// 	s32 state;
+// 	u32 offset;
+// 	u32 length;
+// 	void* addr;
+// 	u32 currTransferSize;
+// 	u32 transferredSize;
+// 	DVDDiskID* id;
+// 	DVDCBCallback callback;
+// 	void* userData;
+// };
 struct DVDDriveInfo {
 	u16 _00;
 	u16 deviceCode;

@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "Dolphin/PPCArch.h"
+#include "Dolphin/dvd.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -113,17 +114,17 @@ typedef struct OSContext {
 
 } OSContext;
 
-typedef struct DVDDiskID DVDDiskID;
+// typedef struct DVDDiskID DVDDiskID;
 
-struct DVDDiskID {
-	char gameName[4];
-	char company[2];
-	u8 diskNumber;
-	u8 gameVersion;
-	u8 streaming;
-	u8 streamingBufSize; // 0 = default
-	u8 padding[22];      // 0's are stored
-};
+// struct DVDDiskID {
+// 	char gameName[4];
+// 	char company[2];
+// 	u8 diskNumber;
+// 	u8 gameVersion;
+// 	u8 streaming;
+// 	u8 streamingBufSize; // 0 = default
+// 	u8 padding[22];      // 0's are stored
+// };
 
 typedef struct OSBootInfo_s {
 	DVDDiskID DVDDiskID; // 0x0

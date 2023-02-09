@@ -9,6 +9,13 @@
 
 struct JSUFileInputStream;
 struct JKRAramBlock;
+struct JKRDvdFile;
+
+// fabricated
+struct JKRDVDFileInfo : public DVDFileInfo {
+	// _00-_3C = DVDFileInfo
+	JKRDvdFile* mFile; // _3C
+};
 
 struct JKRFile : public JKRDisposer {
 	inline JKRFile()
@@ -36,13 +43,13 @@ struct JKRDvdFile : public JKRFile {
 	JKRDvdFile();
 	JKRDvdFile(const char*);
 	JKRDvdFile(long);
-	virtual ~JKRDvdFile();                                           // _08
-	virtual bool open(const char*);                                  // _0C
-	virtual void close();                                            // _10
-	virtual int readData(void*, long, long);                         // _14
-	virtual int writeData(const void*, long, long);                  // _18
-	virtual int getFileSize() const { return mDvdPlayer.mFileSize; } // _1C (weak)
-	virtual bool open(long);                                         // _20
+	virtual ~JKRDvdFile();                                        // _08
+	virtual bool open(const char*);                               // _0C
+	virtual void close();                                         // _10
+	virtual int readData(void*, long, long);                      // _14
+	virtual int writeData(const void*, long, long);               // _18
+	virtual int getFileSize() const { return mDvdPlayer.length; } // _1C (weak)
+	virtual bool open(long);                                      // _20
 
 	inline int readDataAsync(void* addr, s32 length, s32 offset)
 	{
@@ -80,7 +87,7 @@ struct JKRDvdFile : public JKRFile {
 	OSThread* _50;                    // _50
 	JSUFileInputStream* mInputStream; // _54
 	u32 _58;                          // _58
-	DVDPlayer mDvdPlayer;             // _5C
+	DVDFileInfo mDvdPlayer;           // _5C
 	JKRDvdFile* mDvdFile;             // _98  Gets assigned `this` in initiate.
 	OSMessageQueue mMessageQueue1;    // _9C
 	void* mMessage1;                  // _BC  Single msg slot for _9C

@@ -76,7 +76,7 @@ struct JASAramStream {
 	u8 _1B0;                         // _1B0
 	u32 _1B4;                        // _1B4
 	f32 _1B8;                        // _1B8
-	DVDPlayer _1BC;                  // _1BC
+	DVDFileInfo _1BC;                // _1BC
 	u32 _1F8;                        // _1F8
 	int _1FC;                        // _1FC
 	int _200;                        // _200

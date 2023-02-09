@@ -2,89 +2,166 @@
 #define _DOLPHIN_DVD_H
 
 #include "types.h"
-#include "Dolphin/os.h"
-
-struct DVDQueue {
-	struct DVDQueue* mHead; // _00
-	struct DVDQueue* mTail; // _04
-};
+// #include "Dolphin/os.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
 
-#pragma cplusplus on
-struct DVDPlayer {
-	struct DVDPlayer* _00; // _00
-	struct DVDPlayer* _04; // _04
-	int _08;               // _08
-	int _0C;               // _0C
-	u8* mStartAddress;     // _10
-	long mByteCount;       // _14
-	void* mInputBuffer;    // _18
-	u8 _1C[4];             // _1C
-	u32 _20;               // _20
-	u8 _24[4];             // _24
-	void* _28;             // _28
-	u8 _2C[4];             // _2C
-	u32 _30;               // _30
-	u32 mFileSize;         // _34
-	void* mFunc;           // _38
+/////////// DVD TYPES ///////////
+typedef struct DVDCommandBlock DVDCommandBlock;
+typedef struct DVDFileInfo DVDFileInfo;
+
+// Callback function types.
+typedef void (*DVDCallback)(s32 result, DVDFileInfo* fileInfo);
+typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
+typedef void DVDDoneReadCallback(long, DVDFileInfo*);
+
+// Struct for DVD information (size 0x20)
+typedef struct DVDDiskID {
+	char gameName[4]; // _00
+	char company[2];  // _04
+	u8 diskNumber;    // _06
+	u8 gameVersion;   // _07
+	u8 streaming;     // _08
+	u8 streamBufSize; // _09, default = 0
+	u8 padding[22];   // _0A, all 0s
+} DVDDiskID;
+
+// Struct for command information (size 0x30).
+struct DVDCommandBlock {
+	DVDCommandBlock* next;  // _00
+	DVDCommandBlock* prev;  // _04
+	u32 command;            // _08
+	s32 state;              // _0C
+	u32 offset;             // _10
+	u32 length;             // _14
+	void* addr;             // _18
+	u32 currTransferSize;   // _1C
+	u32 transferredSize;    // _20
+	DVDDiskID* id;          // _24
+	DVDCBCallback callback; // _28
+	void* userData;         // _2C
 };
-#pragma cplusplus reset
 
-typedef struct {
-	u8 _00[0x3C]; // _00
-	void* _3C;    // _3C /* ptr to unknown */
-} DVDFileInfo;
+// Struct for file information (size 0x3C).
+// NB: we had this as DVDPlayer previously.
+struct DVDFileInfo {
+	DVDCommandBlock cBlock; // _00
+	u32 startAddr;          // _30
+	u32 length;             // _34
+	DVDCallback callback;   // _38
+};
 
-typedef BOOL DVDDoneReadCallback(long, DVDFileInfo*);
-typedef void DVDState(OSDummyCommandBlock*);
-typedef void DVDLowCallback(u32);
+// Struct for directory information (size 0xC).
+typedef struct DVDDir {
+	u32 entryNum; // _00
+	u32 location; // _04
+	u32 next;     // _08
+} DVDDir;
 
+// Struct for directory entries (size 0xC).
+typedef struct DVDDirEntry {
+	u32 entryNum; // _00
+	BOOL isDir;   // _04
+	char* name;   // _08
+} DVDDirEntry;
+
+// Struct for handing queues.
+typedef struct DVDQueue DVDQueue;
+
+struct DVDQueue {
+	DVDQueue* mHead; // _00
+	DVDQueue* mTail; // _04
+};
+
+//////////////////////////////////
+
+///////// DVD FUNCTIONS //////////
+// Basic DVD functions.
 void DVDInit();
+BOOL DVDOpen(char* filename, DVDFileInfo* fileInfo);
+BOOL DVDFastOpen(s32 entryNum, DVDFileInfo* fileInfo);
+s32 DVDReadPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, s32 prio);
+BOOL DVDReadAsyncPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, DVDCallback callback, s32 prio);
+BOOL DVDClose(DVDFileInfo* fileInfo);
 
-// TODO: Incomplete set of functions.
-BOOL DVDOpen(const char*, struct DVDPlayer*);
-BOOL DVDFastOpen(long, struct DVDPlayer*);
-BOOL DVDClose(struct DVDPlayer*);
-int DVDCancel(struct DVDPlayer*); // Definitely int; returns -1 on failure.
 void DVDResume();
-void DVDReset();
-int DVDReadPrio(struct DVDPlayer* player, void* readBuffer, s32 byteCount, u32 startOffset, s32 queueIndex);
-BOOL DVDReadAsyncPrio(struct DVDPlayer*, void*, long, long, DVDDoneReadCallback*, int);
-BOOL DVDReadAbsAsyncPrio(struct DVDPlayer* player, void* readBuffer, long byteCount, u8* startAddress,
-                         DVDDoneReadCallback* doneReadCallback, int queueIndex);
 
-BOOL DVDConvertEntrynumToPath(int, char*);
-int DVDConvertPathToEntrynum(char*);
+BOOL DVDCancelAsync(DVDCommandBlock* block, DVDCBCallback callback);
+s32 DVDCancel(DVDCommandBlock* block);
 
-BOOL DVDOpenDir(char*, OSFstEntry*);
-BOOL DVDReadDir(OSFstEntry*, OSFstEntry*);
-BOOL DVDCloseDir(OSFstEntry*);
-int DVDChangeDir(char*); // this might be a BOOL, but the problem there
-                         // is it's treated as 4 bytes...
+s32 DVDChangeDisk(DVDCommandBlock* block, DVDDiskID* id);
+BOOL DVDChangeDiskAsync(DVDCommandBlock* block, DVDDiskID* id, DVDCBCallback callback);
 
-BOOL DVDCompareDiskID(DVDDiskID*, DVDDiskID*);
+// Status functions.
+s32 DVDGetCommandBlockStatus(DVDCommandBlock* block);
+s32 DVDGetDriveStatus();
+BOOL DVDSetAutoInvalidation(BOOL doAutoInval);
+void* DVDGetFSTLocation();
 
-int DVDGetDriveStatus();
-int DVDGetCommandBlockStatus(struct DVDPlayer*);
+// DVD Dir functions.
+BOOL DVDOpenDir(char* dirName, DVDDir* dir);
+BOOL DVDReadDir(DVDDir* dir, DVDDirEntry* dirEntry);
+BOOL DVDCloseDir(DVDDir* dir);
+BOOL DVDGetCurrentDir(char* path, u32 maxLength);
+BOOL DVDChangeDir(char* dirName);
+s32 DVDConvertPathToEntrynum(char* path);
 
-BOOL __DVDPushWaitingQueue(int, struct DVDQueue*);
-struct DVDQueue* __DVDPopWaitingQueue();
-BOOL __DVDCheckWaitingQueue();
-void __DVDClearWaitingQueue();
+// Other disk functions.
+s32 DVDGetTransferredSize(DVDFileInfo* fileInfo);
+DVDDiskID* DVDGetCurrentDiskID();
+BOOL DVDCompareDiskID(DVDDiskID* id1, DVDDiskID* id2);
 
-BOOL __DVDLowTestAlarm(OSAlarm*);
-void __DVDFSInit();
-void __fstLoad();
+BOOL DVDCheckDisk();
 
-u8 ErrorCode2Num(u32);
-void __DVDStoreErrorCode(u32);
-void __DVDPrintFatalMessage();
+// Unused/inlined in P2.
+void DVDPause();
+s32 DVDSeekPrio(DVDFileInfo* fileInfo, s32 offset, s32 prio);
+BOOL DVDSeekAsyncPrio(DVDFileInfo* fileInfo, s32 offset, DVDCallback callback, s32 prio);
+s32 DVDGetFileInfoStatus(DVDFileInfo* fileInfo);
+BOOL DVDFastOpenDir(s32 entryNum, DVDDir* dir);
+BOOL DVDCancelAllAsync(DVDCBCallback callback);
+s32 DVDCancelAll();
+void DVDDumpWaitingQueue();
 
-extern OSThreadQueue __DVDThreadQueue;
-extern DVDState* LastState;
+//////////////////////////////////
+
+////// USEFUL DVD DEFINES ////////
+// Macro for reading.
+#define DVDReadAsync(fileInfo, addr, length, offset, callback) DVDReadAsyncPrio((fileInfo), (addr), (length), (offset), (callback), 2)
+
+// Minimum transfer size.
+#define DVD_MIN_TRANSFER_SIZE 32
+
+// DVD states.
+#define DVD_STATE_FATAL_ERROR   -1
+#define DVD_STATE_END           0
+#define DVD_STATE_BUSY          1
+#define DVD_STATE_WAITING       2
+#define DVD_STATE_COVER_CLOSED  3
+#define DVD_STATE_NO_DISK       4
+#define DVD_STATE_COVER_OPEN    5
+#define DVD_STATE_WRONG_DISK    6
+#define DVD_STATE_MOTOR_STOPPED 7
+#define DVD_STATE_PAUSING       8
+#define DVD_STATE_IGNORED       9
+#define DVD_STATE_CANCELED      10
+#define DVD_STATE_RETRY         11
+
+// File info states.
+#define DVD_FILEINFO_READY 0
+#define DVD_FILEINFO_BUSY  1
+
+// DVD results.
+#define DVD_RESULT_GOOD        0
+#define DVD_RESULT_FATAL_ERROR -1
+#define DVD_RESULT_IGNORED     -2
+#define DVD_RESULT_CANCELED    -3
+
+#define DVD_AIS_SUCCESS 0
+
+//////////////////////////////////
 
 #ifdef __cplusplus
 };

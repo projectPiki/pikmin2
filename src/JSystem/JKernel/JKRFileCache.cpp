@@ -474,8 +474,8 @@ long JKRFileCache::getResSize(const void* resource) const
  */
 u32 JKRFileCache::countFile(const char* p1) const
 {
-	OSFstEntry dir;
-	OSFstEntry file;
+	DVDDir dir;
+	DVDDirEntry file;
 	int count  = 0;
 	char* path = getDvdPathName(p1);
 	if (DVDOpenDir(path, &dir)) {
@@ -584,17 +584,17 @@ bool JKRFileCache::findFile(char* directoryPath, const char* fileName) const
 	bool result = false;
 	int cmpResult;
 	size_t len = strlen(directoryPath);
-	OSFstEntry entry;
+	DVDDir entry;
 	if (DVDOpenDir(directoryPath, &entry)) {
 		char* endOfPath = directoryPath + len;
-		OSFstEntry next;
+		DVDDirEntry next;
 		while (DVDReadDir(&entry, &next) != FALSE) {
 			// do {
-			if (next.mNextEntryNum == 0) {
+			if (next.entryNum == 0) {
 				break;
 			}
 			*endOfPath = '/';
-			strcpy(endOfPath + 1, next.mFileNameMaybe);
+			strcpy(endOfPath + 1, next.name);
 			result = findFile(directoryPath, fileName);
 			if (result) {
 				goto close;
