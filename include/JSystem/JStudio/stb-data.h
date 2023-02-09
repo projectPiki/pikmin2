@@ -72,7 +72,14 @@ struct TParse_TBlock {
 };
 
 struct TParse_TBlock_object {
-	int* filedata;
+
+	struct TData {
+		int _00; // _00
+		int _04; // _04
+		int _08; // _08
+		const char _0C; // _0C
+	};
+	TData* filedata;
 };
 
 /** @size{0x20} */

@@ -60,13 +60,19 @@ struct TAdaptor_sound : public JStudio::TAdaptor {
 };
 
 struct TCreateObject : public JStudio::TCreateObject {
+	TCreateObject(JAIBasic* jai, const JStage::TSystem* system)
+	{
+		_04 = jai;
+		_08 = system;
+	}
 	virtual ~TCreateObject();                                                                                // _08
 	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
 
 	// _00 = VTBL
-	u8 _04[0x8];              // _04, unknown
-	JAIBasic* _0C;            // _0C
-	JStage::TSystem* mSystem; // _10
+	JAIBasic* _04;              // _04, unknown
+	const JStage::TSystem* _08; // _08, unknown
+	JAIBasic* _0C;              // _0C
+	JStage::TSystem* mSystem;   // _10
 };
 } // namespace JStudio_JAudio
 
