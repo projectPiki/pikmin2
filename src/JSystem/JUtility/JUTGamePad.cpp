@@ -33,7 +33,7 @@ u8 JUTGamePad::CRumble::mStatus[4];
 u32 JUTGamePad::CRumble::mEnabled;
 JUTGamePad::C3ButtonReset::Callback JUTGamePad::C3ButtonReset::sCallback;
 u32 JUTGamePad::C3ButtonReset::sCallbackArg;
-s64 JUTGamePad::C3ButtonReset::sThreshold = (OSGetTicksPerSecond() / 60 * 30);
+s64 JUTGamePad::C3ButtonReset::sThreshold = (OS_TIMER_CLOCK / 60 * 30);
 bool JUTGamePad::C3ButtonReset::sResetSwitchPushing;
 bool JUTGamePad::C3ButtonReset::sResetOccurred;
 JUTGamePad::EPadPort JUTGamePad::C3ButtonReset::sResetOccurredPort;

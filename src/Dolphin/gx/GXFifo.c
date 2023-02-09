@@ -423,9 +423,9 @@ void GXSaveCPUFifo(GXFifoObj* fifo)
 void __GXSaveCPUFifoAux(GXFifoObj* fifo)
 {
 	int interrupts = OSDisableInterrupts();
-	fifo->base     = OSCachedToPhysical(__piReg->fifoBase);
-	fifo->end      = OSCachedToPhysical(__piReg->fifoEnd);
-	fifo->writePtr = OSCachedToPhysical(__piReg->cpuFIFOCurrentWritePtrMaybe & 0xFBFFFFFF);
+	fifo->base     = OSPhysicalToCached(__piReg->fifoBase);
+	fifo->end      = OSPhysicalToCached(__piReg->fifoEnd);
+	fifo->writePtr = OSPhysicalToCached(__piReg->cpuFIFOCurrentWritePtrMaybe & 0xFBFFFFFF);
 	if (CPGPLinked != 0) {
 		fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + ((u32)__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);
 		// fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + (u32)(__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);

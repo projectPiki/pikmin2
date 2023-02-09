@@ -12,14 +12,6 @@ __declspec(section ".init") extern char _db_stack_end[];
 #define OS_DVD_DEVICECODE       0x800030E6
 #define DEBUGFLAG_ADDR          0x800030E8
 #define OS_DEBUG_ADDRESS_2      0x800030E9
-#define RETAIL                  0x0
-#define DEVKIT                  0x10000000
-#define TDEVKIT                 0x20000000
-#define MAC_EMULATOR            0x10000000
-#define PC_EMULATOR             0x10000001
-#define ARTHUR                  0x10000002
-#define MINNOW                  0x10000003
-#define __OS_INTERRUPT_PI_RSW   0x16
 #define DB_EXCEPTIONRET_OFFSET  0xC
 #define DB_EXCEPTIONDEST_OFFSET 0x8
 #define MSR_RI_BIT              0x1E
@@ -91,12 +83,11 @@ struct DVDDriveInfo {
 
 // The exception table.  It points to a location in LoMem.  It is set by
 // OSExceptionInit
-typedef u32 __OSExceptionHandler;
+// typedef u32 __OSExceptionHandler;
 #define OS_EXCEPTIONTABLE_ADDR 0x3000
 #define OS_DBJUMPPOINT_ADDR    0x60
 
 vu16 __OSDeviceCode : (OS_BASE_CACHED | OS_DVD_DEVICECODE);
-#define OSPhysicalToCached(paddr) ((void*)((u32)(paddr)-OS_BASE_CACHED))
 void OSDefaultExceptionHandler(__OSException exception, OSContext* context);
 static DVDDriveInfo DriveInfo ATTRIBUTE_ALIGN(32);
 static DVDCommandBlock DriveBlock;
@@ -110,7 +101,7 @@ static f64 ZeroF;
 static f32 ZeroPS[2];
 static BOOL AreWeInitialized = FALSE;
 static __OSExceptionHandler* OSExceptionTable;
-u64 __OSStartTime;
+OSTime __OSStartTime;
 BOOL __OSInIPL;
 void* __OSSavedRegionStart;
 void* __OSSavedRegionEnd;
@@ -402,7 +393,7 @@ void OSInit(void)
 
 		// inputConsoleType = (BootInfo == NULL || (inputConsoleType = BootInfo->consoleType) == 0) ? 0x10000002 : BootInfo->consoleType;
 		if (BootInfo == NULL || (inputConsoleType = BootInfo->consoleType) == 0) {
-			inputConsoleType = ARTHUR; // default console type
+			inputConsoleType = OS_CONSOLE_ARTHUR; // default console type
 		} else {
 			inputConsoleType = BootInfo->consoleType;
 		}
@@ -410,23 +401,23 @@ void OSInit(void)
 		// work out what console type this corresponds to and report it
 		// consoleTypeSwitchHi = inputConsoleType & 0xF0000000;
 		switch (inputConsoleType & 0xF0000000) { // check "first" byte
-		case RETAIL:
+		case OS_CONSOLE_RETAIL:
 			OSReport("Retail %d\n", inputConsoleType);
 			break;
-		case DEVKIT:
-		case TDEVKIT:
+		case OS_CONSOLE_DEVELOPMENT:
+		case OS_CONSOLE_TDEVKIT:
 			// consoleTypeSwitchLo = (inputConsoleType & 0x0FFFFFFF);
 			switch (inputConsoleType & 0x0FFFFFFF) { // if "first" byte is 2, check "the rest"
-			case MAC_EMULATOR:
+			case OS_CONSOLE_EMULATOR:
 				OSReport("Mac Emulator\n");
 				break;
-			case PC_EMULATOR:
+			case OS_CONSOLE_PC_EMULATOR:
 				OSReport("PC Emulator\n");
 				break;
-			case ARTHUR:
+			case OS_CONSOLE_ARTHUR:
 				OSReport("EPPC Arthur\n");
 				break;
-			case MINNOW:
+			case OS_CONSOLE_MINNOW:
 				OSReport("EPPC Minnow\n");
 				break;
 			default: // if none of the above, just report the info we have
@@ -499,11 +490,7 @@ void __OSDBINTEND(void);
 void __OSDBJUMPSTART(void);
 void __OSDBJUMPEND(void);
 
-#define __OS_EXCEPTION_MAX 15
-
 #define NOP 0x60000000
-
-__OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler);
 
 /*
  * --INFO--
@@ -580,7 +567,7 @@ static void OSExceptionInit(void)
 
 	// install default exception handlers
 	for (exception = 0; exception < __OS_EXCEPTION_MAX; exception++) {
-		__OSSetExceptionHandler(exception, (u32)OSDefaultExceptionHandler);
+		__OSSetExceptionHandler(exception, OSDefaultExceptionHandler);
 	}
 
 	// restore the old opcode, so that we can re-start an application without

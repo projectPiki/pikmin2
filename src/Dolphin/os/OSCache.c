@@ -2,15 +2,15 @@
 #include "Dolphin/db.h"
 #define PPCSYNC sc // system call performs PPCSync()
 // clang-format off
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void DCFlashInvalidate(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000010
+//  */
+// void DCFlashInvalidate(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -30,85 +30,85 @@ asm void DCEnable(void)
     blr
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
- */
-void DCDisable(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000014
+//  */
+// void DCDisable(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
- */
-void DCFreeze(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000014
+//  */
+// void DCFreeze(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void DCUnfreeze(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000010
+//  */
+// void DCUnfreeze(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void DCTouchLoad(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000008
+//  */
+// void DCTouchLoad(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void DCBlockZero(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000008
+//  */
+// void DCBlockZero(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void DCBlockStore(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000008
+//  */
+// void DCBlockStore(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void DCBlockFlush(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000008
+//  */
+// void DCBlockFlush(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void DCBlockInvalidate(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000008
+//  */
+// void DCBlockInvalidate(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -319,55 +319,55 @@ asm void ICFlashInvalidate(void)
     blr
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
- */
-void ICDisable(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000014
+//  */
+// void ICDisable(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
- */
-void ICFreeze(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000014
+//  */
+// void ICFreeze(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void ICUnfreeze(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000010
+//  */
+// void ICUnfreeze(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void ICBlockInvalidate(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000008
+//  */
+// void ICBlockInvalidate(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void ICSync(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000008
+//  */
+// void ICSync(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 #define CACHE_LINES 1024
 #define LC_LINES    512
@@ -478,35 +478,35 @@ _loop:
     blr
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
- */
-void LCAllocOneTag(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000014
+//  */
+// void LCAllocOneTag(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void LCAllocTags(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000040
+//  */
+// void LCAllocTags(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void LCLoadBlocks(void* destTag, void* srcAddr, u32 numBlocks)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000024
+//  */
+// void LCLoadBlocks(void* destTag, void* srcAddr, u32 numBlocks)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -531,35 +531,35 @@ asm void LCStoreBlocks(
     blr
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-void LCAlloc(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000070
+//  */
+// void LCAlloc(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-void LCAllocNoInvalidate(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000070
+//  */
+// void LCAllocNoInvalidate(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
- */
-u32 LCLoadData(void* destAddr, void* srcAddr, u32 nBytes)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0000AC
+//  */
+// u32 LCLoadData(void* destAddr, void* srcAddr, u32 nBytes)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 // clang-format on
 /*
@@ -589,15 +589,15 @@ u32 LCStoreData(void* destAddr, // to main memory destination
 	return numTransactions;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
- */
-u32 LCQueueLength(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00000C
+//  */
+// u32 LCQueueLength(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 // clang-format off
 /*
@@ -619,15 +619,15 @@ _waitloop:
 }
 
 // clang-format on
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
- */
-void LCFlushQueue(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000048
+//  */
+// void LCFlushQueue(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -691,25 +691,25 @@ void L2GlobalInvalidate(void)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void L2SetDataOnly(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000040
+//  */
+// void L2SetDataOnly(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void L2SetWriteThrough(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000040
+//  */
+// void L2SetWriteThrough(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--

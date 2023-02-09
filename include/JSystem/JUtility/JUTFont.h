@@ -141,27 +141,27 @@ struct JUTRomFont : public JUTFont {
 	JUTRomFont();
 	JUTRomFont(JKRHeap*);
 
-	virtual ~JUTRomFont();                                                    // _08
-	virtual void setGX();                                                     // _0C
-	virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool);                // _14
-	virtual int getWidth() const { return spFontHeader_->mWidth; };           // _28
-	virtual int getLeading() const { return spFontHeader_->mLeading; };       // _18
-	virtual int getAscent() const { return spFontHeader_->mAscent; };         // _1C
-	virtual int getDescent() const { return spFontHeader_->mDescent; };       // _20
-	virtual int getHeight() const { return getAscent() + getDescent(); };     // _24
-	virtual void getWidthEntry(int, JUTFont::TWidth*) const;                  // _2C
-	virtual int getCellWidth() const { return spFontHeader_->mCellWidth; };   // _30
-	virtual int getCellHeight() const { return spFontHeader_->mCellHeight; }; // _34
-	virtual ResFONT* getResFont() const { return nullptr; };                  // _3C
-	virtual int getFontType() const { return spAboutEncoding_->mFontType; };  // _38
-	virtual bool isLeadByte(int) const;                                       // _40
+	virtual ~JUTRomFont();                                                   // _08
+	virtual void setGX();                                                    // _0C
+	virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool);               // _14
+	virtual int getWidth() const { return spFontHeader_->width; };           // _28
+	virtual int getLeading() const { return spFontHeader_->leading; };       // _18
+	virtual int getAscent() const { return spFontHeader_->ascent; };         // _1C
+	virtual int getDescent() const { return spFontHeader_->descent; };       // _20
+	virtual int getHeight() const { return getAscent() + getDescent(); };    // _24
+	virtual void getWidthEntry(int, JUTFont::TWidth*) const;                 // _2C
+	virtual int getCellWidth() const { return spFontHeader_->cellWidth; };   // _30
+	virtual int getCellHeight() const { return spFontHeader_->cellHeight; }; // _34
+	virtual ResFONT* getResFont() const { return nullptr; };                 // _3C
+	virtual int getFontType() const { return spAboutEncoding_->mFontType; }; // _38
+	virtual bool isLeadByte(int) const;                                      // _40
 	// virtual void loadImage(int, _GXTexMapID) = 0;                           // _44
 
 	void initiate(JKRHeap*);
 	void loadImage(JKRHeap*);
 
 	static AboutEncoding* spAboutEncoding_;
-	static FontHeader* spFontHeader_;
+	static OSFontHeader* spFontHeader_;
 	static u32 suFontHeaderRefered_; // they misspelled referred
 	static AboutEncoding saoAboutEncoding_[2];
 };

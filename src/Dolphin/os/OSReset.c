@@ -5,7 +5,7 @@
  * Address:	800F02A4
  * Size:	000084
  */
-void OSRegisterResetFunction(OSFunctionInfo* info)
+void OSRegisterResetFunction(OSResetFunctionInfo* info)
 {
 	/*
 	.loc_0x0:

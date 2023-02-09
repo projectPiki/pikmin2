@@ -15,6 +15,7 @@
     "rand.h": "c",
     "os.h": "c",
     "ppcarch.h": "c",
-    "dsp.h": "c"
+    "dsp.h": "c",
+    "osbootinfo.h": "c"
   }
 }

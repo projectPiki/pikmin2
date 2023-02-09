@@ -29,6 +29,10 @@ struct OSMessageQueue {
 #define OS_MESSAGE_NOBLOCK (0)
 #define OS_MESSAGE_BLOCK   (1)
 
+typedef enum {
+	OS_MSG_PERSISTENT = (1 << 0),
+} OSMessageFlags;
+
 //////////////////////////////////
 
 /////// MESSAGE FUNCTIONS ////////

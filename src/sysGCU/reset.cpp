@@ -65,7 +65,7 @@ void ResetManager::update()
 				} else {
 					*((u32*)DOL_ADDR_LIMIT)    = 'vald';
 					*((u8*)DOL_ADDR_LIMIT + 4) = System::mRenderMode;
-					OSSetSaveRegion(DOL_ADDR_LIMIT, DOL_ADDR_LIMIT + 8);
+					OSSetSaveRegion((void*)DOL_ADDR_LIMIT, (void*)(DOL_ADDR_LIMIT + 8));
 					OSResetSystem(false, 0, false);
 				}
 				break;

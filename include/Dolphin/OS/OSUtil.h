@@ -20,12 +20,19 @@ extern "C" {
 #define OS_BASE_CACHED   (0x80000000)
 #define OS_BASE_UNCACHED (0xC0000000)
 
+// Necessary for inline asm functions.
+#define OS_CACHED_REGION_PREFIX   (0x8000)
+#define OS_UNCACHED_REGION_PREFIX (0xC000)
+#define OS_PHYSICAL_MASK          (0x3FFF)
+
 //////////////////////////////////
 
 ////////// CLOCK UTILS ///////////
 // Time and tick typedefs for convenience.
 typedef s64 OSTime;
 typedef u32 OSTick;
+
+extern OSTime __OSStartTime;
 
 // Clock speeds.
 u32 __OSBusClock AT_ADDRESS(OS_BASE_CACHED | 0x00F8);
@@ -69,6 +76,18 @@ typedef struct OSCalendarTime {
 // Calendar time functions.
 OSTime OSCalendarTimeToTicks(OSCalendarTime* timeDate);
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* timeDate);
+
+// Macros for rounding to 32-alignment.
+#define OSRoundUp32B(x)   (((u32)(x) + 0x1F) & ~(0x1F))
+#define OSRoundDown32B(x) (((u32)(x)) & ~(0x1F))
+
+// Address conversions.
+#define OSPhysicalToCached(paddr)    ((void*)((u32)(paddr) + OS_BASE_CACHED))
+#define OSPhysicalToUncached(paddr)  ((void*)((u32)(paddr) + OS_BASE_UNCACHED))
+#define OSCachedToPhysical(caddr)    ((u32)((u8*)(caddr)-OS_BASE_CACHED))
+#define OSUncachedToPhysical(ucaddr) ((u32)((u8*)(ucaddr)-OS_BASE_UNCACHED))
+#define OSCachedToUncached(caddr)    ((void*)((u8*)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
+#define OSUncachedToCached(ucaddr)   ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 
 //////////////////////////////////
 

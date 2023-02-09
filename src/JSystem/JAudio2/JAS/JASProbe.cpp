@@ -78,7 +78,7 @@ void JASProbe::stop()
 	// volatile JASCriticalSection a;
 	int interrupts = OSDisableInterrupts();
 	_08            = (u32)OSGetTime() - mStartTime;
-	_08 /= OSGetTicksPerSecond() / 59.94f;
+	_08 /= OS_TIMER_CLOCK / 59.94f;
 	if (_10 < _08 && 100 < _1A8) {
 		_10 = _08;
 	}

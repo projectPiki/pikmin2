@@ -241,9 +241,9 @@ void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsi
 		break;
 	case OS_ERROR_PROTECTION:
 		OSReport("\n");
-		OSReport("AI DMA Address =   0x%04x%04x\n", OS_AI_DMA_ADDR_HI, OS_AI_DMA_ADDR_LO); // fix this code block -epoch
-		OSReport("ARAM DMA Address = 0x%04x%04x\n", OS_ARAM_DMA_ADDR_HI, OS_ARAM_DMA_ADDR_LO);
-		OSReport("DI DMA Address =   0x%08x\n", OS_DI_DMA_ADDR);
+		OSReport("AI DMA Address =   0x%04x%04x\n", __DSPRegs[0x18], __DSPRegs[0x18 + 1]); // fix this code block -epoch
+		OSReport("ARAM DMA Address = 0x%04x%04x\n", __DSPRegs[0x10], __DSPRegs[0x10 + 1]);
+		OSReport("DI DMA Address =   0x%08x\n", __DIRegs[0x5]);
 		break;
 	}
 

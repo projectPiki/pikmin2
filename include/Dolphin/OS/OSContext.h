@@ -30,6 +30,9 @@ typedef struct OSContext {
 // NB: size of context + padding for stack frame header.
 #define __OS_CONTEXT_FRAME 768
 
+// Current context address (for asm functions).
+#define OS_CURRENTCONTEXT_PADDR 0xC0
+
 //////////////////////////////////
 
 /////// CONTEXT FUNCTIONS ////////

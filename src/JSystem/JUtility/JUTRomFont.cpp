@@ -4,7 +4,7 @@
 #include "types.h"
 
 JUTRomFont::AboutEncoding* JUTRomFont::spAboutEncoding_;
-JUTRomFont::FontHeader* JUTRomFont::spFontHeader_;
+OSFontHeader* JUTRomFont::spFontHeader_;
 u32 JUTRomFont::suFontHeaderRefered_; // they misspelled referred
 JUTRomFont::AboutEncoding JUTRomFont::saoAboutEncoding_[2]
     = { 0, 0x00020120, &JUTFont::isLeadByte_1Byte, 2, 0x00120F00, &JUTFont::isLeadByte_ShiftJIS };
@@ -70,9 +70,9 @@ void JUTRomFont::loadImage(JKRHeap* param_1)
 		spAboutEncoding_ = &saoAboutEncoding_[OSGetFontEncode()];
 		byteCount        = (spAboutEncoding_->mDataSize);
 		JUTReportConsole_f("IPLROM fontdata size : %u\n", byteCount);
-		spFontHeader_ = (FontHeader*)JKRHeap::alloc(byteCount, 0x20, param_1);
-		OSInitFont();
-		_08 = spFontHeader_->mWidth;
+		spFontHeader_ = (OSFontHeader*)JKRHeap::alloc(byteCount, 0x20, param_1);
+		OSInitFont(spFontHeader_);
+		_08 = spFontHeader_->width;
 	}
 	suFontHeaderRefered_++;
 }

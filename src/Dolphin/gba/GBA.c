@@ -2,11 +2,8 @@
 #include "Dolphin/dsp.h"
 #include "Dolphin/os.h"
 
-#define OS_BUS_CLOCK_SPEED_ADDR   0xF8
-#define OSPhysicalToCached(paddr) ((void*)((u32)(paddr)-OS_BASE_CACHED))
-
-char* __GBAVersion                      = "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>";
-static OSFunctionInfo ResetFunctionInfo = { OnReset, 0x7E };
+char* __GBAVersion                           = "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>";
+static OSResetFunctionInfo ResetFunctionInfo = { OnReset, 0x7E };
 static SecParam SecParams[4] ATTRIBUTE_ALIGN(32);
 GBA __GBA[4];
 static BOOL Initialized;

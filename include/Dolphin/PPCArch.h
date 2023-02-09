@@ -14,7 +14,8 @@ extern "C" {
 #define HID2              0x398
 #define HID2_LCE_BIT      3
 #define MSR_ME            0x1000
-#define LC_BASE_PREFIX    0xE000
+#define LC_BASE_PREFIX    (0xE000)
+#define LC_BASE           (LC_BASE_PREFIX << 16)
 #define DBAT3L            3
 #define DBAT3U            3
 #define DMA_U             0x39a
@@ -23,6 +24,8 @@ extern "C" {
 #define DMA_L_TRIGGER     2
 #define LC_MAX_DMA_BLOCKS 128
 #define LC_MAX_DMA_BYTES  0x1000
+
+#define LCGetBase() ((void*)LC_BASE)
 
 #define MSR_IR 0x00000020 // instruction relocate
 #define MSR_DR 0x00000010 // data relocate

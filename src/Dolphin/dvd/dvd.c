@@ -56,14 +56,14 @@ typedef enum DVDCommand {
 	Command_F
 } DVDCommand;
 
-typedef void OptionalCommandChecker(OSDummyCommandBlock*, DVDLowCallback*);
-// TODO: CancelCB may or may not take any arguments. Assuming based on read usage that it's (int, OSDummyCommandBlock*).
+typedef void OptionalCommandChecker(DVDCommandBlock*, DVDLowCallback*);
+// TODO: CancelCB may or may not take any arguments. Assuming based on read usage that it's (int, DVDCommandBlock*).
 // CancelCallback is never actually set to a function that uses arguments, so it's hard to tell.
-typedef void CancelCB(int, OSDummyCommandBlock*);
+typedef void CancelCB(int, DVDCommandBlock*);
 
 // forward declarations for local functions, as needed:
 void AlarmHandler(unknown p1, OSContext* context);
-void cbForCancelSync(int, OSDummyCommandBlock*);
+void cbForCancelSync(int, DVDCommandBlock*);
 void cbForStateBusy(u32 p1);
 void cbForStateCheckID1(u32 p1);
 void cbForStateCheckID2(u32 p1);
@@ -75,12 +75,12 @@ void cbForStateReadingFST(u32 p1);
 void cbForStateGettingError(u32 p1);
 void cbForStateGoToRetry(u32 p1);
 void cbForUnrecoveredErrorRetry(u32 p1);
-void defaultOptionalCommandChecker(OSDummyCommandBlock*, DVDLowCallback*);
-void stateBusy(OSDummyCommandBlock*);
-void stateCheckID2(OSDummyCommandBlock*);
-void stateCheckID2a(OSDummyCommandBlock*);
-void stateCheckID3(OSDummyCommandBlock*);
-void stateCoverClosed_CMD(OSDummyCommandBlock*);
+void defaultOptionalCommandChecker(DVDCommandBlock*, DVDLowCallback*);
+void stateBusy(DVDCommandBlock*);
+void stateCheckID2(DVDCommandBlock*);
+void stateCheckID2a(DVDCommandBlock*);
+void stateCheckID3(DVDCommandBlock*);
+void stateCoverClosed_CMD(DVDCommandBlock*);
 void stateGettingError();
 void stateGoToRetry();
 void stateMotorStopped();
@@ -90,7 +90,7 @@ void stateTimeout();
 // bss.0:
 _BB2 BB2;
 DVDDiskID CurrDiskID;
-OSDummyCommandBlock DummyCommandBlock;
+DVDCommandBlock DummyCommandBlock;
 OSAlarm ResetAlarm;
 
 // .sbss:
@@ -116,7 +116,7 @@ BOOL PausingFlag;
 BOOL PauseFlag;
 OSBootInfo* bootInfo;
 DVDDiskID* IDShouldBe;
-OSDummyCommandBlock* executing;
+DVDCommandBlock* executing;
 
 // .sdata: (not exhaustive; DMACommand must be at some point after DVDInit)
 static char* __DVDVersion                           = "<< Dolphin SDK - DVD\trelease build: Sep 16 2003 09:50:54 (0x2301) >>";
@@ -148,7 +148,7 @@ void UnknownDVDAutoInvalidateInline(struct DVDPlayer* player)
  * Address:	800DCD28
  * Size:	000004
  */
-void defaultOptionalCommandChecker(OSDummyCommandBlock*, DVDLowCallback*) { }
+void defaultOptionalCommandChecker(DVDCommandBlock*, DVDLowCallback*) { }
 
 /*
  * --INFO--
@@ -260,7 +260,7 @@ void UnknownDVDChangeDiskInline()
  * Address:	800DCDF8
  * Size:	000094
  */
-void stateReadingFST(OSDummyCommandBlock* cmdBlock)
+void stateReadingFST(DVDCommandBlock* cmdBlock)
 {
 	LastState = stateReadingFST;
 	UnknownDVDChangeDiskInline();
@@ -315,7 +315,7 @@ void stateReadingFST(OSDummyCommandBlock* cmdBlock)
  */
 void cbForStateReadingFST(u32 p1)
 {
-	OSDummyCommandBlock* cmdBlock;
+	DVDCommandBlock* cmdBlock;
 	if (p1 == 0x10) {
 		executing->_0C = -1;
 		stateTimeout();
@@ -341,7 +341,7 @@ void cbForStateReadingFST(u32 p1)
  */
 void cbForStateError(u32 p1)
 {
-	OSDummyCommandBlock* cmdBlock;
+	DVDCommandBlock* cmdBlock;
 	if (p1 == 0x10) {
 		executing->_0C = -1;
 		stateTimeout();
@@ -936,7 +936,7 @@ void stateGoToRetry(void) { DVDLowStopMotor(cbForStateGoToRetry); }
 void cbForStateGoToRetry(u32 p1)
 {
 	BOOL keepGoing;
-	OSDummyCommandBlock* cmdBlock;
+	DVDCommandBlock* cmdBlock;
 	if (p1 == 0x10) {
 		executing->_0C = -1;
 		__DVDStoreErrorCode(0x1234568);
@@ -1189,14 +1189,14 @@ void stateCheckID(void)
  * Address:	800DD6C8
  * Size:	000034
  */
-void stateCheckID3(OSDummyCommandBlock* cmdBlock) { DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID3); }
+void stateCheckID3(DVDCommandBlock* cmdBlock) { DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID3); }
 
 /*
  * --INFO--
  * Address:	800DD6FC
  * Size:	000034
  */
-void stateCheckID2a(OSDummyCommandBlock* cmdBlock) { DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID2a); }
+void stateCheckID2a(DVDCommandBlock* cmdBlock) { DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID2a); }
 
 /*
  * --INFO--
@@ -1223,7 +1223,7 @@ void cbForStateCheckID2a(u32 p1)
  * Address:	800DD7A4
  * Size:	000038
  */
-void stateCheckID2(OSDummyCommandBlock* cmdBlock)
+void stateCheckID2(DVDCommandBlock* cmdBlock)
 {
 	// TODO: second param might be `sizeof(_BB2)`
 	DVDLowRead(&BB2, 0x20, 0x420, cbForStateCheckID2);
@@ -1253,7 +1253,7 @@ void stateCheckID2(OSDummyCommandBlock* cmdBlock)
  */
 void cbForStateCheckID1(u32 p1)
 {
-	OSDummyCommandBlock* cmdBlock = executing;
+	DVDCommandBlock* cmdBlock = executing;
 	BOOL isReady;
 	if (p1 == 0x10) {
 		executing->_0C = -1;
@@ -1464,7 +1464,7 @@ void cbForStateCheckID2(u32 p1)
 
 void stuffs(int p1, int p2, int p3, int p4)
 {
-	OSDummyCommandBlock* cmdBlock;
+	DVDCommandBlock* cmdBlock;
 	// BOOL isCancelled = Canceling;
 	// if (FALSE != isCancelled) {
 	// if (FALSE != Canceling) {
@@ -1501,7 +1501,7 @@ inline void SetRetryCount(u32 retries) { NumInternalRetry = retries; }
 void cbForStateCheckID3(u32 p1)
 {
 	// BOOL isReady;
-	// OSDummyCommandBlock* cmdBlock;
+	// DVDCommandBlock* cmdBlock;
 	// int retries = 0;
 	if (p1 == 0x10) {
 		executing->_0C = -1;
@@ -1657,7 +1657,7 @@ void AlarmHandler(unknown p1, OSContext* context)
  */
 void stateCoverClosed(void)
 {
-	OSDummyCommandBlock* cmdBlock;
+	DVDCommandBlock* cmdBlock;
 	switch (CurrCommand) {
 	case 0x4:
 	case 0x5:
@@ -1748,7 +1748,7 @@ void stateCoverClosed(void)
  * Address:	800DDBE0
  * Size:	000030
  */
-void stateCoverClosed_CMD(OSDummyCommandBlock* cmdBlock) { DVDLowReadDiskID(&CurrDiskID, cbForStateCoverClosed); }
+void stateCoverClosed_CMD(DVDCommandBlock* cmdBlock) { DVDLowReadDiskID(&CurrDiskID, cbForStateCoverClosed); }
 
 /*
  * --INFO--
@@ -1868,7 +1868,7 @@ void cbForStateMotorStopped(u32 p1)
  */
 void stateReady(void)
 {
-	OSDummyCommandBlock* cmdBlock;
+	DVDCommandBlock* cmdBlock;
 	// u32 resume;
 	if (__DVDCheckWaitingQueue() == FALSE) {
 		executing = nullptr;
@@ -1879,7 +1879,7 @@ void stateReady(void)
 		executing   = nullptr;
 		return;
 	}
-	executing = (OSDummyCommandBlock*)__DVDPopWaitingQueue();
+	executing = (DVDCommandBlock*)__DVDPopWaitingQueue();
 	if (FatalErrorFlag != 0) {
 		executing->_0C = -1;
 		cmdBlock       = executing;
@@ -2125,10 +2125,10 @@ void stateReady(void)
  * Address:	800DDFBC
  * Size:	000320
  */
-void stateBusy(OSDummyCommandBlock* cmdBlock)
+void stateBusy(DVDCommandBlock* cmdBlock)
 {
-	OSDummyCommandBlock* prev = executing;
-	LastState                 = stateBusy;
+	DVDCommandBlock* prev = executing;
+	LastState             = stateBusy;
 	switch (cmdBlock->_08) {
 	case 0x5:
 		SOMESYNC();
@@ -4221,7 +4221,7 @@ int DVDCancel(struct DVDPlayer* player)
  * Address:	800DF1E4
  * Size:	000024
  */
-void cbForCancelSync(int p1, OSDummyCommandBlock* cmdBlock) { OSWakeupThread(&__DVDThreadQueue); }
+void cbForCancelSync(int p1, DVDCommandBlock* cmdBlock) { OSWakeupThread(&__DVDThreadQueue); }
 
 /*
  * --INFO--
