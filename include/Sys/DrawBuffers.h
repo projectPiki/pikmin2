@@ -18,8 +18,16 @@ struct DrawBuffer : public CNode {
 	};
 
 	struct CreateArg {
+
+		CreateArg()
+		{
+			mSize = 1;
+			mName = "noname\0"; // IMPORTANT !!!
+			mFlags.clear();
+		}
+
 		u32 mSize;                          // _00
-		u16 mFlags;                         // _04
+		BitFlag<u16> mFlags;                // _04
 		const char* mName;                  // _08
 		J3DDrawBuffer::ESortType mSortType; // _0C
 		J3DDrawBuffer::EDrawType mDrawType; // _10

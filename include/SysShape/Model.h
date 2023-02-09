@@ -40,7 +40,7 @@ struct Model : public MtxObject {
 	s16 getJointIndex(char*);
 	Joint* getJoint(char*);
 	void setViewCalcModeImm();
-	void setViewCalcModeInd();
+	static void setViewCalcModeInd();
 	void viewCalc();
 	void setCurrentViewNo(u32);
 	void isMtxImmediate();
@@ -81,6 +81,8 @@ struct Model : public MtxObject {
 	J3DModel* mJ3dModel; // _08
 	int mJointCount;     // _0C
 	Joint* mJoints;      // _10
+
+	static int cullCount;
 
 	static u8 viewCalcMode;
 };

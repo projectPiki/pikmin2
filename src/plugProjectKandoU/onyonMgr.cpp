@@ -498,7 +498,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		if (gameSystem->mIsInCave) {
 			playData->mCavePokoCount += money;
 		} else {
-			gameSystem->mSection->_PADDING00 += money;
+			gameSystem->mSection->mMoney += money;
 		}
 	}
 

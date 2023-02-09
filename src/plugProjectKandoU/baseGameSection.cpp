@@ -32,6 +32,31 @@
 #include "wipe.h"
 #include "nans.h"
 #include "SysTimers.h"
+#include "Game/PelletBirthBuffer.h"
+#include "Splitter.h"
+#include "PSSystem/SingletonBase.h"
+#include "Sys/DrawBuffers.h"
+#include "Game/Entities/ItemBigFountain.h"
+#include "PSSystem/PSGame.h"
+#include "PSSystem/PSScene.h"
+#include "TParticle2dMgr.h"
+
+#include "Game/Entities/PelletCarcass.h"
+#include "Game/Entities/PelletFruit.h"
+#include "Game/Entities/PelletItem.h"
+#include "Game/Entities/PelletNumber.h"
+#include "Game/Entities/PelletOtakara.h"
+
+#include "Game/GameLight.h"
+
+#include "Dolphin/dvd.h"
+#include "System.h"
+
+#include "og/ogLib2D.h"
+#include "Screen/Game2DMgr.h"
+#include "Game/PikiMgr.h"
+
+#include "Splitter.h"
 
 /*
     Generated from dpostproc
@@ -1078,146 +1103,6 @@ blr
 }
 } // namespace Game
 
-/**
- * @generated{__dt__11WipeInFaderFv}
- * @generated{__dt__12WipeOutFaderFv}
- * @generated{__dt__8WipeBaseFv}
- * @generatedAndInlined{__dt__16DvdThreadCommandFv}
- */
-
-// /*
-//  * --INFO--
-//  * Address:	8014AFBC
-//  * Size:	000070
-//  */
-// WipeInFader::~WipeInFader()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8014B010
-// 	lis      r4, __vt__11WipeInFader@ha
-// 	addi     r0, r4, __vt__11WipeInFader@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8014B000
-// 	lis      r5, __vt__8WipeBase@ha
-// 	li       r4, 0
-// 	addi     r0, r5, __vt__8WipeBase@l
-// 	stw      r0, 0(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_8014B000:
-// 	extsh.   r0, r31
-// 	ble      lbl_8014B010
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8014B010:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8014B02C
-//  * Size:	000070
-//  */
-// WipeOutFader::~WipeOutFader()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8014B080
-// 	lis      r4, __vt__12WipeOutFader@ha
-// 	addi     r0, r4, __vt__12WipeOutFader@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8014B070
-// 	lis      r5, __vt__8WipeBase@ha
-// 	li       r4, 0
-// 	addi     r0, r5, __vt__8WipeBase@l
-// 	stw      r0, 0(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_8014B070:
-// 	extsh.   r0, r31
-// 	ble      lbl_8014B080
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8014B080:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8014B09C
-//  * Size:	000060
-//  */
-// WipeBase::~WipeBase()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8014B0E0
-// 	lis      r5, __vt__8WipeBase@ha
-// 	li       r4, 0
-// 	addi     r0, r5, __vt__8WipeBase@l
-// 	stw      r0, 0(r30)
-// 	bl       __dt__5CNodeFv
-// 	extsh.   r0, r31
-// 	ble      lbl_8014B0E0
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8014B0E0:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000060
-//  */
-// DvdThreadCommand::~DvdThreadCommand()
-// {
-// 	// UNUSED FUNCTION
-// }
-
 namespace Game {
 
 /*
@@ -1231,39 +1116,6 @@ void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 	mFbTexture                    = mXfbImage;
 	mXfbImage                     = texture;
 	Game::gameSystem->mXfbTexture = mXfbImage;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x158(r3)
-	cmplwi   r0, 0
-	beq      lbl_8014B140
-	lis      r3, lbl_8047C964@ha
-	lis      r5, lbl_8047C978@ha
-	addi     r3, r3, lbl_8047C964@l
-	li       r4, 0x5f3
-	addi     r5, r5, lbl_8047C978@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8014B140:
-	lwz      r0, 0x154(r30)
-	stw      r0, 0x158(r30)
-	stw      r31, 0x154(r30)
-	lwz      r0, 0x154(r30)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stw      r0, 0x54(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1273,41 +1125,10 @@ lbl_8014B140:
  */
 void BaseGameSection::restoreFBTexture()
 {
-	JUT_ASSERTLINE(1533, mFbTexture == nullptr, "useSpecificFBTexture ã—ã¦ãªã??½—\n");
+	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture ã—ã¦ãªã??½—\n");
 	mXfbImage                     = mFbTexture;
 	mFbTexture                    = nullptr;
 	Game::gameSystem->mXfbTexture = mXfbImage;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x158(r3)
-	cmplwi   r0, 0
-	bne      lbl_8014B1AC
-	lis      r3, lbl_8047C964@ha
-	lis      r5, lbl_8047C988@ha
-	addi     r3, r3, lbl_8047C964@l
-	li       r4, 0x5fd
-	addi     r5, r5, lbl_8047C988@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8014B1AC:
-	lwz      r3, 0x158(r31)
-	li       r0, 0
-	stw      r3, 0x154(r31)
-	stw      r0, 0x158(r31)
-	lwz      r0, 0x154(r31)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stw      r0, 0x54(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1317,85 +1138,20 @@ lbl_8014B1AC:
  */
 BaseGameSection::~BaseGameSection()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	or.      r31, r3, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	beq      lbl_8014B2D0
-	lis      r4, __vt__Q24Game15BaseGameSection@ha
-	li       r3, 0
-	addi     r0, r4, __vt__Q24Game15BaseGameSection@l
-	stw      r0, 0(r31)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	stw      r3, theExpHeap@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8014B23C
-	lis      r3, lbl_8047C9AC@ha
-	lis      r5, lbl_8047C9B8@ha
-	addi     r3, r3, lbl_8047C9AC@l
-	li       r4, 0x1d3
-	addi     r5, r5, lbl_8047C9B8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(sceneMgr);
+	sceneMgr->deleteCurrentScene();
+	TParticle2dMgr::deleteInstance();
+	particleMgr->deleteInstance_TPkEffectMgr();
+	ParticleMgr::deleteInstance();
 
-lbl_8014B23C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_8014B264
-	lis      r3, lbl_8047C9AC@ha
-	lis      r5, lbl_8047C9B8@ha
-	addi     r3, r3, lbl_8047C9AC@l
-	li       r4, 0x1dc
-	addi     r5, r5, lbl_8047C9B8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	itemMgr->clearGlobalPointers();
 
-lbl_8014B264:
-	mr       r3, r30
-	bl       deleteCurrentScene__Q28PSSystem8SceneMgrFv
-	bl       deleteInstance__14TParticle2dMgrFv
-	lwz      r3, particleMgr@sda21(r13)
-	bl       deleteInstance_TPkEffectMgr__11ParticleMgrFv
-	bl       deleteInstance__11ParticleMgrFv
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	bl       clearGlobalPointers__Q24Game7ItemMgrFv
-	li       r3, 0
-	addic.   r0, r31, 0x5c
-	stw      r3, mgr__Q24Game13PelletOtakara@sda21(r13)
-	stw      r3, mgr__Q24Game11PelletFruit@sda21(r13)
-	stw      r3, mgr__Q24Game10PelletItem@sda21(r13)
-	stw      r3, mgr__Q24Game12PelletNumber@sda21(r13)
-	stw      r3, mgr__Q24Game13PelletCarcass@sda21(r13)
-	beq      lbl_8014B2B4
-	addic.   r3, r31, 0xb8
-	beq      lbl_8014B2B4
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8014B2B4:
-	mr       r3, r31
-	li       r4, 0
-	bl       __dt__Q24Game14BaseHIOSectionFv
-	extsh.   r0, r29
-	ble      lbl_8014B2D0
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8014B2D0:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	PelletOtakara::mgr = nullptr;
+	PelletFruit::mgr   = nullptr;
+	PelletItem::mgr    = nullptr;
+	PelletNumber::mgr  = nullptr;
+	PelletCarcass::mgr = nullptr;
 }
 
 /*
@@ -1407,28 +1163,6 @@ void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
 {
 	sys->dvdLoadUseCallBack(&mDvdThreadCommand, delegate);
 	waitSyncLoad(p2);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	mr       r5, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r4, r30, 0x5c
-	lwz      r3, sys@sda21(r13)
-	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	mr       r3, r30
-	mr       r4, r31
-	bl       waitSyncLoad__Q24Game15BaseGameSectionFb
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1436,92 +1170,43 @@ void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
  * Address:	8014B340
  * Size:	000120
  */
-void BaseGameSection::waitSyncLoad(bool)
+
+u32 BaseGameSection::waitSyncLoad(bool dontPause)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lbz      r0, init$4568@sda21(r13)
-	extsb.   r0, r0
-	bne      lbl_8014B37C
-	li       r3, 0
-	li       r0, 1
-	stw      r3, col$4567@sda21(r13)
-	stb      r0, init$4568@sda21(r13)
+	static int col;
+	static s8 init;
 
-lbl_8014B37C:
-	lwz      r4, col$4567@sda21(r13)
-	mr       r3, r29
-	addi     r0, r4, 1
-	stw      r0, col$4567@sda21(r13)
-	bl       endFrame__7SectionFv
-	clrlwi.  r0, r30, 0x18
-	bne      lbl_8014B3B0
-	lis      r4, lbl_8047C9C4@ha
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r4, lbl_8047C9C4@l
-	li       r6, 3
-	li       r4, 1
-	bl       setPause__Q24Game10GameSystemFbPci
+	if (!init) {
+		col  = 0;
+		init = 1;
+	}
+	col++;
+	endFrame();
+	if (!dontPause) {
+		gameSystem->setPause(true, "waitSyncLoad", 3);
+	}
+	while (true) {
+		beginFrame();
+		beginRender();
 
-lbl_8014B3B0:
-	lis      r3, j3dSys@ha
-	addi     r31, r3, j3dSys@l
+		j3dSys.drawInit();
+		GXSetViewport(0.0f, 0.0f, 608.0f, 480.0f, 0.0f, 1.0f);
+		GXSetScissor(0, 0x10, 0x260, 0x1c0);
+		endRender();
 
-lbl_8014B3B8:
-	mr       r3, r29
-	bl       beginFrame__7SectionFv
-	mr       r3, r29
-	bl       beginRender__7SectionFv
-	mr       r3, r31
-	bl       drawInit__6J3DSysFv
-	lfs      f1, lbl_80518498@sda21(r2)
-	lfs      f3, lbl_8051849C@sda21(r2)
-	fmr      f2, f1
-	lfs      f4, lbl_805184A0@sda21(r2)
-	fmr      f5, f1
-	lfs      f6, lbl_805184A4@sda21(r2)
-	bl       GXSetViewport
-	li       r3, 0
-	li       r4, 0x10
-	li       r5, 0x260
-	li       r6, 0x1c0
-	bl       GXSetScissor
-	mr       r3, r29
-	bl       endRender__7SectionFv
-	lwz      r0, 0x74(r29)
-	cmpwi    r0, 2
-	bne      lbl_8014B438
-	clrlwi.  r0, r30, 0x18
-	bne      lbl_8014B444
-	lis      r4, lbl_8047C9C4@ha
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r4, lbl_8047C9C4@l
-	li       r6, 3
-	li       r4, 0
-	bl       setPause__Q24Game10GameSystemFbPci
-	b        lbl_8014B444
+		// I have no clue
 
-lbl_8014B438:
-	mr       r3, r29
-	bl       endFrame__7SectionFv
-	b        lbl_8014B3B8
+		if (mDvdThreadCommand.mMode != 2)
+			;
 
-lbl_8014B444:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		else if (!dontPause) {
+			gameSystem->setPause(false, "waitSyncLoad", 3);
+			return;
+		} else
+			break;
+
+		endFrame();
+	}
 }
 
 /*
@@ -1534,30 +1219,6 @@ void BaseGameSection::dvdloadGameSystem()
 	GameSystem* gs   = new GameSystem(this);
 	Game::gameSystem = gs;
 	gs->init();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x5c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014B490
-	mr       r4, r31
-	bl       __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection
-	mr       r0, r3
-
-lbl_8014B490:
-	stw      r0, gameSystem__4Game@sda21(r13)
-	mr       r3, r0
-	bl       init__Q24Game10GameSystemFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1567,242 +1228,53 @@ lbl_8014B490:
  */
 void BaseGameSection::init()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x64(r1)
-	li       r0, 0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	mr       r29, r3
-	stw      r28, 0x50(r1)
-	stb      r0, 0x164(r3)
-	lis      r3, lbl_8047C948@ha
-	addi     r31, r3, lbl_8047C948@l
-	stw      r0, 0x48(r29)
-	lis      r3, lbl_804B0C70@ha
-	addi     r30, r3, lbl_804B0C70@l
-	addi     r4, r31, 0x8c
-	stw      r0, 0x13c(r29)
-	addi     r3, r1, 0x10
-	bl       __ct__Q26System20FragmentationCheckerFPcb
-	addi     r3, r1, 8
-	addi     r4, r31, 0x98
-	li       r5, 0
-	bl       __ct__Q26System20FragmentationCheckerFPcb
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0xa4
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	addi     r3, r1, 8
-	li       r4, -1
-	bl       __dt__Q26System20FragmentationCheckerFv
-	lwz      r3, sys@sda21(r13)
-	li       r4, 0x1e0
-	bl       enableCPULockDetector__6SystemFi
-	lis      r3, __vt__9IDelegate@ha
-	lwz      r5, 0x34(r30)
-	addi     r6, r3, __vt__9IDelegate@l
-	lwz      r4, 0x38(r30)
-	lwz      r0, 0x3c(r30)
-	lis      r3, "__vt__34Delegate<Q24Game15BaseGameSection>"@ha
-	stw      r6, 0x30(r1)
-	addi     r6, r3, "__vt__34Delegate<Q24Game15BaseGameSection>"@l
-	mr       r3, r29
-	stw      r6, 0x30(r1)
-	stw      r29, 0x34(r1)
-	stw      r5, 0x38(r1)
-	stw      r4, 0x3c(r1)
-	stw      r0, 0x40(r1)
-	bl       beginFrame__7SectionFv
-	mr       r3, r29
-	bl       beginRender__7SectionFv
-	lis      r3, j3dSys@ha
-	addi     r3, r3, j3dSys@l
-	bl       drawInit__6J3DSysFv
-	lfs      f1, lbl_80518498@sda21(r2)
-	lfs      f3, lbl_8051849C@sda21(r2)
-	fmr      f2, f1
-	lfs      f4, lbl_805184A0@sda21(r2)
-	fmr      f5, f1
-	lfs      f6, lbl_805184A4@sda21(r2)
-	bl       GXSetViewport
-	li       r3, 0
-	li       r4, 0x10
-	li       r5, 0x260
-	li       r6, 0x1c0
-	bl       GXSetScissor
-	lwz      r3, 0x2c(r29)
-	lwzu     r12, 0xbc(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	bl       endRender__7SectionFv
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r29, 0x5c
-	addi     r5, r1, 0x30
-	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	lbz      r0, init$4568@sda21(r13)
-	extsb.   r0, r0
-	bne      lbl_8014B600
-	li       r3, 0
-	li       r0, 1
-	stw      r3, col$4567@sda21(r13)
-	stb      r0, init$4568@sda21(r13)
+	mXfbFlags       = 0;
+	mMoney          = 0;
+	mDraw2DCreature = nullptr;
+	System::FragmentationChecker initFrag("BGS::init", false);
+	{
+		System::FragmentationChecker heapFrag("heapStatus", false);
+		sys->heapStatusStart("baseGameSection::init", nullptr);
+	}
 
-lbl_8014B600:
-	lwz      r4, col$4567@sda21(r13)
-	mr       r3, r29
-	addi     r0, r4, 1
-	stw      r0, col$4567@sda21(r13)
-	bl       endFrame__7SectionFv
-	lis      r3, j3dSys@ha
-	addi     r28, r3, j3dSys@l
+	sys->enableCPULockDetector(480);
+	Delegate<BaseGameSection> delegate(this, dvdloadGameSystem);
+	beginFrame();
+	beginRender();
+	j3dSys.drawInit();
+	GXSetViewport(0.0f, 0.0f, 608.0f, 480.0f, 0.0f, 1.0f);
+	GXSetScissor(0, 0x10, 0x260, 0x1c0);
+	mGraphics->mOrthoGraph.setPort();
+	endRender();
+	sys->dvdLoadUseCallBack(&mDvdThreadCommand, &delegate);
 
-lbl_8014B61C:
-	mr       r3, r29
-	bl       beginFrame__7SectionFv
-	mr       r3, r29
-	bl       beginRender__7SectionFv
-	mr       r3, r28
-	bl       drawInit__6J3DSysFv
-	lfs      f1, lbl_80518498@sda21(r2)
-	lfs      f3, lbl_8051849C@sda21(r2)
-	fmr      f2, f1
-	lfs      f4, lbl_805184A0@sda21(r2)
-	fmr      f5, f1
-	lfs      f6, lbl_805184A4@sda21(r2)
-	bl       GXSetViewport
-	li       r3, 0
-	li       r4, 0x10
-	li       r5, 0x260
-	li       r6, 0x1c0
-	bl       GXSetScissor
-	mr       r3, r29
-	bl       endRender__7SectionFv
-	lwz      r0, 0x74(r29)
-	cmpwi    r0, 2
-	beq      lbl_8014B684
-	mr       r3, r29
-	bl       endFrame__7SectionFv
-	b        lbl_8014B61C
+	waitSyncLoad(true);
 
-lbl_8014B684:
-	mr       r3, r29
-	li       r4, 0
-	bl       initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
-	li       r3, 0x60
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014B6A8
-	bl       __ct__Q213TreasureLight3MgrFv
-	mr       r0, r3
+	BaseHIOSection::initHIO(nullptr);
 
-lbl_8014B6A8:
-	stw      r0, 0xf8(r29)
-	addi     r3, r31, 0xbc
-	bl       assert_fragmentation__6SystemFPc
-	li       r3, 0x1f8
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014B6CC
-	bl       __ct__Q24Game11MoviePlayerFv
-	mr       r0, r3
+	mTreasureLightMgr = new TreasureLight::Mgr;
+	System::assert_fragmentation("baseGameSection::initHIO");
+	moviePlayer          = new MoviePlayer;
+	mMovieFinishCallback = new Delegate3<BaseGameSection, MovieConfig*, u32, u32>(this, movieDone);
+	mMovieStartCallback  = new Delegate3<BaseGameSection, MovieConfig*, u32, u32>(this, onMovieStart);
 
-lbl_8014B6CC:
-	stw      r0, moviePlayer__4Game@sda21(r13)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8014B720
-	lwz      r8, 0x40(r30)
-	lis      r4, "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"@ha
-	lwz      r7, 0x44(r30)
-	addi     r5, r4, "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"@l
-	lwz      r6, 0x48(r30)
-	lis      r4,
-"__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"@ha
-	addi     r0, r4,
-"__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"@l stw
-r8, 0x24(r1) stw      r5, 0(r3) stw      r0, 0(r3) stw      r29, 4(r3) stw r8,
-8(r3) stw      r7, 0xc(r3) stw      r7, 0x28(r1) stw      r6, 0x2c(r1) stw r6,
-0x10(r3)
+	sys->setFrameRate(2);
+	System::assert_fragmentation("BaseGameSection::MoviePlayer");
+	initJ3D();
+	_11C   = true;
+	mapMgr = nullptr;
+	System::assert_fragmentation("BaseGameSection::InitJ3D");
+	System::assert_fragmentation("BaseGameSection::Before 2D");
 
-lbl_8014B720:
-	stw      r3, 0xc8(r29)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8014B774
-	lwz      r8, 0x4c(r30)
-	lis      r4, "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"@ha
-	lwz      r7, 0x50(r30)
-	addi     r5, r4, "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"@l
-	lwz      r6, 0x54(r30)
-	lis      r4,
-"__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"@ha
-	addi     r0, r4,
-"__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"@l stw
-r8, 0x18(r1) stw      r5, 0(r3) stw      r0, 0(r3) stw      r29, 4(r3) stw r8,
-8(r3) stw      r7, 0xc(r3) stw      r7, 0x1c(r1) stw      r6, 0x20(r1) stw r6,
-0x10(r3)
-
-lbl_8014B774:
-	stw      r3, 0xcc(r29)
-	li       r4, 2
-	lwz      r3, sys@sda21(r13)
-	bl       setFrameRate__6SystemFi
-	addi     r3, r31, 0xd8
-	bl       assert_fragmentation__6SystemFPc
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xf8(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	li       r0, 0
-	stb      r3, 0x11c(r29)
-	addi     r3, r31, 0xf8
-	stw      r0, mapMgr__4Game@sda21(r13)
-	bl       assert_fragmentation__6SystemFPc
-	addi     r3, r31, 0x114
-	bl       assert_fragmentation__6SystemFPc
-	bl       create__Q22og5Lib2DFv
-	bl       create__Q26Screen9Game2DMgrFv
-	lwz      r4, gGame2DMgr__6Screen@sda21(r13)
-	li       r0, 1
-	addi     r3, r31, 0x130
-	lwz      r4, 0x18(r4)
-	stb      r0, 0x90(r4)
-	bl       assert_fragmentation__6SystemFPc
-	li       r0, 0
-	mr       r3, r29
-	stw      r0, 0x160(r29)
-	stw      r0, 0x15c(r29)
-	lwz      r12, 0(r29)
-	lwz      r12, 0xf0(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0xa4
-	bl       heapStatusEnd__6SystemFPc
-	li       r0, 0
-	addi     r3, r1, 0x10
-	stw      r0, 0x134(r29)
-	li       r4, -1
-	bl       __dt__Q26System20FragmentationCheckerFv
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	lwz      r28, 0x50(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	og::Lib2D::create();
+	Screen::Game2DMgr::create();
+	Screen::gGame2DMgr->mScreenMgr->_90 = 1;
+	System::assert_fragmentation("BaseGameSection::Game2DMgr");
+	mXfbTexture2 = 0;
+	mXfbTexture1 = 0;
+	onInit();
+	sys->heapStatusEnd("baseGameSection::init");
+	mTreasureGetState = false;
 }
 
 /*
@@ -1822,23 +1294,6 @@ void BaseGameSection::drawInit(Graphics& gfx, Section::EDrawInitMode mode)
 	if (mode == Two) {
 		section_fadeout();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r5, 2
-	stw      r0, 0x14(r1)
-	bne      lbl_8014B868
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8014B868:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1855,280 +1310,88 @@ void BaseGameSection::section_fadeout() { }
  */
 bool BaseGameSection::doUpdate()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	li       r0, 0
-	mr       r31, r3
-	stw      r0, cullCount__Q28SysShape5Model@sda21(r13)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       update__Q26Screen9Game2DMgrFv
-	lbz      r0, 0x58(r31)
-	cmplwi   r0, 0
-	beq      lbl_8014B8D8
-	mr       r3, r31
-	bl       updateBlendCamera__Q24Game15BaseGameSectionFv
+	SysShape::Model::cullCount = 0;
+	gameSystem->startFrame();
+	Screen::gGame2DMgr->update();
+	if (mIsBlendCameraActive) {
+		updateBlendCamera();
+	}
+	mapMgr->update();
+	sys->mTimers->_start("doAnim", true);
+	doAnimation();
+	sys->mTimers->_stop("doAnim");
+	sys->mTimers->_start("ENI", true);
+	sys->mTimers->_start("ENI-A", true);
+	doEntry();
+	sys->mTimers->_stop("ENT-A");
+	sys->mTimers->_start("ENT-B", true);
 
-lbl_8014B8D8:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184A8@sda21
-	li       r5, 1
-	lwz      r3, 0x28(r3)
-	bl       _start__9SysTimersFPcb
-	mr       r3, r31
-	bl       doAnimation__Q24Game15BaseGameSectionFv
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184A8@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184B0@sda21
-	li       r5, 1
-	lwz      r3, 0x28(r3)
-	bl       _start__9SysTimersFPcb
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184B4@sda21
-	li       r5, 1
-	lwz      r3, 0x28(r3)
-	bl       _start__9SysTimersFPcb
-	mr       r3, r31
-	bl       doEntry__Q24Game15BaseGameSectionFv
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184B4@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184BC@sda21
-	li       r5, 1
-	lwz      r3, 0x28(r3)
-	bl       _start__9SysTimersFPcb
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014B97C
-	bl       update__Q24Game9RumbleMgrFv
+	if (rumbleMgr) {
+		rumbleMgr->update();
+	}
+	if (shadowMgr) {
+		shadowMgr->update();
+	}
+	if (lifeGaugeMgr) {
+		lifeGaugeMgr->update();
+	}
+	if (carryInfoMgr) {
+		carryInfoMgr->update();
+	}
+	if (mLightMgr) {
+		mLightMgr->update();
+	}
+	SysShape::Model::setViewCalcModeInd();
+	for (int vpIdx = 0; vpIdx < sys->mGfx->mViewportCount; vpIdx++) {
+		Viewport* viewport = sys->mGfx->getViewport(vpIdx);
+		if (viewport && viewport->viewable()) {
+			j3dSetView(viewport, false);
+		}
+	}
+	BaseHIOSection::doUpdate();
+	if (platMgr) {
+		platMgr->resetOnCount();
+	}
 
-lbl_8014B97C:
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014B98C
-	bl       update__Q24Game9ShadowMgrFv
+	sys->mTimers->_stop("ENT-B");
+	sys->mTimers->_stop("ENT");
+	sys->mTimers->_start("doSim", true);
 
-lbl_8014B98C:
-	lwz      r3, lifeGaugeMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014B99C
-	bl       update__12LifeGaugeMgrFv
+#pragma
+	if (!gameSystem->paused()) {
+		float frameRate = 1.0f / sys->mDeltaTime;
+		sys->mTimers->_start("coll", true);
+		if (!(gameSystem->mFlags & 0x4)) {
+			sys->getTime();
+			cellMgr->resolveCollision();
+			CellPyramid::sSpeedUpResolveColl = true;
+		}
+		sys->mTimers->_stop("coll");
+		doSimulation(frameRate);
+	}
 
-lbl_8014B99C:
-	lwz      r3, carryInfoMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014B9B8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8014B9B8:
-	lwz      r3, 0x128(r31)
-	cmplwi   r3, 0
-	beq      lbl_8014B9D4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8014B9D4:
-	bl       setViewCalcModeInd__Q28SysShape5ModelFv
-	li       r30, 0
-	b        lbl_8014BA10
-
-lbl_8014B9E0:
-	mr       r4, r30
-	bl       getViewport__8GraphicsFi
-	or.      r29, r3, r3
-	beq      lbl_8014BA0C
-	bl       viewable__8ViewportFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8014BA0C
-	mr       r3, r31
-	mr       r4, r29
-	li       r5, 0
-	bl       j3dSetView__Q24Game15BaseGameSectionFP8Viewportb
-
-lbl_8014BA0C:
-	addi     r30, r30, 1
-
-lbl_8014BA10:
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x24(r3)
-	lwz      r0, 0x264(r3)
-	cmpw     r30, r0
-	blt      lbl_8014B9E0
-	mr       r3, r31
-	bl       doUpdate__Q24Game14BaseHIOSectionFv
-	lwz      r3, platMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014BA3C
-	bl       resetOnCount__Q24Game7PlatMgrFv
-
-lbl_8014BA3C:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184BC@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184B0@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184C4@sda21
-	li       r5, 1
-	lwz      r3, 0x28(r3)
-	bl       _start__9SysTimersFPcb
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       paused__Q24Game10GameSystemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8014BAE4
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184CC@sda21
-	lfs      f0, lbl_805184A4@sda21(r2)
-	li       r5, 1
-	lfs      f1, 0x54(r3)
-	lwz      r3, 0x28(r3)
-	fdivs    f31, f1, f0
-	bl       _start__9SysTimersFPcb
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	bne      lbl_8014BAC8
-	lwz      r3, sys@sda21(r13)
-	bl       getTime__6SystemFv
-	lwz      r3, cellMgr__4Game@sda21(r13)
-	bl       resolveCollision__Q24Game11CellPyramidFv
-	li       r0, 1
-	stb      r0, sSpeedUpResolveColl__Q24Game11CellPyramid@sda21(r13)
-
-lbl_8014BAC8:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184CC@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	fmr      f1, f31
-	mr       r3, r31
-	bl       doSimulation__Q24Game15BaseGameSectionFf
-
-lbl_8014BAE4:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805184C4@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	lwz      r6, sys@sda21(r13)
-	lis      r3, lbl_8047CA94@ha
-	addi     r4, r3, lbl_8047CA94@l
-	li       r5, 1
-	lwz      r3, 0x28(r6)
-	bl       _start__9SysTimersFPcb
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x4a(r3)
-	cmplwi   r0, 0
-	bne      lbl_8014BB44
-	bl       paused__Q24Game10GameSystemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8014BB44
-	lwz      r3, particleMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014BB44
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8014BB44:
-	lwz      r3, particle2dMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014BB54
-	bl       update__14TParticle2dMgrFv
-
-lbl_8014BB54:
-	lwz      r5, sys@sda21(r13)
-	lis      r3, lbl_8047CA94@ha
-	addi     r4, r3, lbl_8047CA94@l
-	lwz      r3, 0x28(r5)
-	bl       _stop__9SysTimersFPc
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014BBD8
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x4d(r4)
-	cmplwi   r0, 0
-	bne      lbl_8014BBD8
-	lwz      r4, 0x44(r4)
-	li       r0, 0
-	cmpwi    r4, 1
-	beq      lbl_8014BBB0
-	cmpwi    r4, 3
-	bne      lbl_8014BBB4
-
-lbl_8014BBB0:
-	li       r0, 1
-
-lbl_8014BBB4:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8014BBCC
-	lwz      r4, 0x10c(r31)
-	lwz      r5, 0x110(r31)
-	bl       update__Q24Game11MoviePlayerFP10ControllerP10Controller
-	b        lbl_8014BBD8
-
-lbl_8014BBCC:
-	lwz      r4, 0x10c(r31)
-	li       r5, 0
-	bl       update__Q24Game11MoviePlayerFP10ControllerP10Controller
-
-lbl_8014BBD8:
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014BBE8
-	bl       init__Q24Game9ShadowMgrFv
-
-lbl_8014BBE8:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	lbz      r3, 0x34(r31)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	sys->mTimers->_stop("doSim");
+	sys->mTimers->_start("particle", true);
+	if (!gameSystem->mIsFrozen && !gameSystem->paused() && particleMgr) {
+		particleMgr->update();
+	}
+	if (particle2dMgr) {
+		particle2dMgr->update();
+	}
+	sys->mTimers->_stop("particle");
+	onUpdate();
+	if (moviePlayer && !gameSystem->mIsMoviePause) {
+		if (gameSystem->isMultiplayerMode()) {
+			moviePlayer->update(mControllerP1, mControllerP2);
+		} else {
+			moviePlayer->update(mControllerP1, nullptr);
+		}
+	}
+	if (shadowMgr) {
+		shadowMgr->init();
+	}
+	gameSystem->endFrame();
+	return mIsMainActive;
 }
 
 /*
@@ -2146,20 +1409,22 @@ void BaseGameSection::onUpdate() { }
 void BaseGameSection::doDraw(Graphics& gfx)
 {
 	captureRadarmap(gfx);
-	if (Game::gameSystem->paused() == false) {
-		if (Game::cameraMgr) {
-			Game::cameraMgr->update();
+	if (gameSystem->paused()) {
+		if (cameraMgr) {
+			cameraMgr->controllerLock(2);
+			cameraMgr->update();
+			cameraMgr->controllerUnLock(2);
 		}
-	} else if (Game::cameraMgr) {
-		Game::cameraMgr->controllerLock(2);
-		Game::cameraMgr->update();
-		Game::cameraMgr->controllerUnLock(2);
+
+	} else if (cameraMgr) {
+		cameraMgr->update();
 	}
+
 	sys->mTimers->_start("_draw3D_", true);
 	draw3D(gfx);
 	sys->mTimers->_stop("_draw3D_");
-	if (Game::moviePlayer != nullptr && Game::gameSystem->mIsMoviePause == false) {
-		Game::moviePlayer->drawLoading(gfx);
+	if (moviePlayer && !gameSystem->mIsMoviePause) {
+		moviePlayer->drawLoading(gfx);
 	}
 	pre2dDraw(gfx);
 	gfx.setToken("2d");
@@ -2168,113 +1433,9 @@ void BaseGameSection::doDraw(Graphics& gfx)
 		drawOtakaraWindow(gfx);
 	}
 	Screen::gGame2DMgr->drawKanteiMsg(gfx);
-	if (Game::moviePlayer != nullptr && Game::gameSystem->mIsMoviePause == false) {
-		Game::moviePlayer->draw(gfx);
+	if (moviePlayer && !gameSystem->mIsMoviePause) {
+		moviePlayer->draw(gfx);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       captureRadarmap__Q24Game15BaseGameSectionFR8Graphics
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       paused__Q24Game10GameSystemFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8014BC84
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014BC94
-	li       r4, 2
-	bl       controllerLock__Q24Game9CameraMgrFi
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	bl       update__Q24Game9CameraMgrFv
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r4, 2
-	bl       controllerUnLock__Q24Game9CameraMgrFi
-	b        lbl_8014BC94
-
-lbl_8014BC84:
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014BC94
-	bl       update__Q24Game9CameraMgrFv
-
-lbl_8014BC94:
-	lwz      r6, sys@sda21(r13)
-	lis      r3, lbl_8047CAA0@ha
-	addi     r4, r3, lbl_8047CAA0@l
-	li       r5, 1
-	lwz      r3, 0x28(r6)
-	bl       _start__9SysTimersFPcb
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, sys@sda21(r13)
-	lis      r3, lbl_8047CAA0@ha
-	addi     r4, r3, lbl_8047CAA0@l
-	lwz      r3, 0x28(r5)
-	bl       _stop__9SysTimersFPc
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014BCFC
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x4d(r4)
-	cmplwi   r0, 0
-	bne      lbl_8014BCFC
-	mr       r4, r31
-	bl       drawLoading__Q24Game11MoviePlayerFR8Graphics
-
-lbl_8014BCFC:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	addi     r4, r2, lbl_805184D4@sda21
-	bl       setToken__8GraphicsFPc
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x110(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x13c(r30)
-	cmplwi   r0, 0
-	beq      lbl_8014BD50
-	mr       r3, r30
-	mr       r4, r31
-	bl       drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
-
-lbl_8014BD50:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	mr       r4, r31
-	bl       drawKanteiMsg__Q26Screen9Game2DMgrFR8Graphics
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8014BD80
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x4d(r4)
-	cmplwi   r0, 0
-	bne      lbl_8014BD80
-	mr       r4, r31
-	bl       draw__Q24Game11MoviePlayerFR8Graphics
-
-lbl_8014BD80:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2289,43 +1450,20 @@ void BaseGameSection::pre2dDraw(Graphics&) { }
  * Address:	8014BD9C
  * Size:	000078
  */
-void BaseGameSection::movieDone(Game::MovieConfig*, unsigned long, unsigned long)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xB4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x13C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x64
-	  li        r4, 0x1
-	  bl        -0x102E4
-	  lwz       r3, 0x13C(r31)
-	  li        r4, 0
-	  bl        -0x10CEC
-	  li        r0, 0
-	  stw       r0, 0x13C(r31)
-	  lwz       r3, -0x6560(r13)
-	  bl        0x2B1760
-	  lwz       r3, -0x6560(r13)
-	  bl        0x2B15D0
-	  li        r0, 0
-	  stw       r0, 0x134(r31)
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+// movieConfig struct jank
+void BaseGameSection::movieDone(MovieConfig* config, u32, u32)
+{
+	Creature* c = (Creature*)config[1].mParam.mParent;
+	if (c) {
+		c->movie_end(true);
+		((Creature*)config[1].mParam.mParent)->kill(nullptr);
+		config[1].mParam.mParent = nullptr;
+		Screen::gGame2DMgr->close_SpecialItem();
+		Screen::gGame2DMgr->close_Kantei();
+		config[1].mParam.mNext = nullptr;
+	}
+	sizeof(MovieConfig);
 }
 
 /*
@@ -2340,53 +1478,23 @@ void BaseGameSection::onMovieDone(Game::MovieConfig*, unsigned long, unsigned lo
  * Address:	8014BE18
  * Size:	00008C
  */
-void BaseGameSection::onMovieCommand(int)
+void BaseGameSection::onMovieCommand(int cmd)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 2
-	stw      r0, 0x14(r1)
-	beq      lbl_8014BE48
-	bge      lbl_8014BE3C
-	cmpwi    r4, 0
-	beq      lbl_8014BE94
-	b        lbl_8014BE94
 
-lbl_8014BE3C:
-	cmpwi    r4, 4
-	bge      lbl_8014BE94
-	b        lbl_8014BE68
-
-lbl_8014BE48:
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_8014BE94
-	lwz      r0, 0x1f0(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8014BE94
-	bl       createFallPikminSound__Q24Game15BaseGameSectionFv
-	b        lbl_8014BE94
-
-lbl_8014BE68:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 0
-	bne      lbl_8014BE94
-	lwz      r3, 0x40(r3)
-	lwz      r0, 0x218(r3)
-	cmplwi   r0, 0
-	bne      lbl_8014BE94
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       forceEnterPikmins__Q24Game7PikiMgrFUc
-
-lbl_8014BE94:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (cmd) {
+	case 0:
+		break;
+	case 2:
+		if (moviePlayer && !(moviePlayer->mFlags & 0x2)) {
+			createFallPikminSound();
+		}
+		break;
+	case 3:
+		if (gameSystem->mMode == GSM_STORY_MODE && gameSystem->mTimeMgr->mDayCount == 0) {
+			pikiMgr->forceEnterPikmins(false);
+		}
+		break;
+	}
 }
 
 /*
@@ -2394,290 +1502,101 @@ lbl_8014BE94:
  * Address:	8014BEA4
  * Size:	000450
  */
+
+// unfortunatly this probably isn't real inline, however I'm not writing the full code out bc that's stupid
+inline void j3dStuff(Sys::DrawBuffers*& buffer, Sys::DrawBuffer::CreateArg& drawArg, bool doFog)
+{
+
+	drawArg.mSize = 0x80;
+	drawArg.mName = "normal";
+
+	buffer->get(0)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = (doFog) ? "normal-fogoff" : "normal";
+
+	buffer->get(1)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "map";
+	if (doFog)
+		drawArg.mSortType = J3DDrawBuffer::J3DSORT_NonSort;
+
+	buffer->get(2)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "piki";
+	if (doFog)
+		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
+
+	buffer->get(3)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "post";
+
+	buffer->get(4)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "2d";
+
+	buffer->get(5)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "first";
+
+	buffer->get(6)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "postshadow";
+
+	buffer->get(7)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "objectlast";
+
+	buffer->get(8)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "farm";
+
+	buffer->get(9)->create(drawArg);
+}
+
 void BaseGameSection::initJ3D()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, lbl_8047C948@ha
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	addi     r31, r4, lbl_8047C948@l
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014BEDC
-	bl       __ct__Q23Sys11DrawBuffersFv
-	mr       r0, r3
+	_12C = new Sys::DrawBuffers;
+	_130 = new Sys::DrawBuffers;
 
-lbl_8014BEDC:
-	stw      r0, 0x12c(r30)
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014BEF8
-	bl       __ct__Q23Sys11DrawBuffersFv
-	mr       r0, r3
+	_12C->allocate(10);
+	_12C->mName = "OPA";
+	{
+		Sys::DrawBuffer::CreateArg drawArg;
+		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
+		drawArg.mDrawType = J3DDrawBuffer::J3DDRAW_Head;
+		j3dStuff(_12C, drawArg, true);
+	}
 
-lbl_8014BEF8:
-	stw      r0, 0x130(r30)
-	li       r4, 0xa
-	lwz      r3, 0x12c(r30)
-	bl       allocate__Q23Sys11DrawBuffersFi
-	lwz      r3, 0x12c(r30)
-	addi     r0, r2, lbl_805184D8@sda21
-	li       r7, 0
-	li       r6, 1
-	stw      r0, 0x14(r3)
-	addi     r5, r2, lbl_805184DC@sda21
-	li       r3, 0x80
-	addi     r0, r2, lbl_805184E4@sda21
-	stb      r7, 0x28(r1)
-	li       r4, 0
-	stb      r7, 0x29(r1)
-	stw      r6, 0x24(r1)
-	stw      r5, 0x2c(r1)
-	stb      r7, 0x28(r1)
-	stb      r7, 0x29(r1)
-	stw      r7, 0x30(r1)
-	stw      r7, 0x34(r1)
-	stw      r3, 0x24(r1)
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x164
-	li       r3, 1
-	stw      r3, 0x24(r1)
-	li       r4, 1
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r4, 1
-	addi     r3, r2, lbl_805184EC@sda21
-	li       r0, 5
-	stw      r4, 0x24(r1)
-	li       r4, 2
-	stw      r3, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r4, 1
-	addi     r3, r2, lbl_805184F0@sda21
-	li       r0, 0
-	stw      r4, 0x24(r1)
-	li       r4, 3
-	stw      r3, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184F8@sda21
-	stw      r3, 0x24(r1)
-	li       r4, 4
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184D4@sda21
-	stw      r3, 0x24(r1)
-	li       r4, 5
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_80518500@sda21
-	stw      r3, 0x24(r1)
-	li       r4, 6
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x174
-	li       r3, 1
-	stw      r3, 0x24(r1)
-	li       r4, 7
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x180
-	li       r3, 1
-	stw      r3, 0x24(r1)
-	li       r4, 8
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_80518508@sda21
-	stw      r3, 0x24(r1)
-	li       r4, 9
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	lwz      r3, 0x130(r30)
-	li       r4, 0xa
-	bl       allocate__Q23Sys11DrawBuffersFi
-	lwz      r3, 0x130(r30)
-	addi     r0, r2, lbl_80518510@sda21
-	li       r8, 0
-	li       r7, 1
-	stw      r0, 0x14(r3)
-	addi     r6, r2, lbl_805184DC@sda21
-	li       r3, 0x80
-	addi     r0, r2, lbl_805184E4@sda21
-	stb      r8, 0x14(r1)
-	li       r4, 0
-	stb      r8, 0x15(r1)
-	stb      r8, 0x14(r1)
-	stb      r8, 0x15(r1)
-	lhz      r5, 0x14(r1)
-	stw      r7, 0x10(r1)
-	ori      r5, r5, 1
-	stw      r6, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r8, 0x20(r1)
-	sth      r5, 0x14(r1)
-	stw      r3, 0x10(r1)
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184E4@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 1
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184EC@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 2
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184F0@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 3
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184F8@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 4
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184D4@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 5
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_80518500@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 6
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x174
-	li       r3, 1
-	stw      r3, 0x10(r1)
-	li       r4, 7
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x180
-	li       r3, 1
-	stw      r3, 0x10(r1)
-	li       r4, 8
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_80518508@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 9
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	lwz      r4, 0x12c(r30)
-	mr       r3, r30
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-	lwz      r4, 0x130(r30)
-	mr       r3, r30
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-	lwz      r3, 0x12c(r30)
-	li       r4, 0
-	bl       get__Q23Sys11DrawBuffersFi
-	lis      r4, j3dSys@ha
-	lwz      r0, 0x1c(r3)
-	addi     r3, r4, j3dSys@l
-	li       r4, 0
-	stw      r0, 0x48(r3)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	lwz      r0, 0x1c(r3)
-	lis      r3, j3dSys@ha
-	addi     r4, r3, j3dSys@l
-	addi     r3, r1, 8
-	stw      r0, 0x4c(r4)
-	addi     r4, r2, lbl_80518514@sda21
-	li       r5, 0
-	bl       __ct__Q26System20FragmentationCheckerFPcb
-	addi     r3, r1, 8
-	li       r4, -1
-	bl       __dt__Q26System20FragmentationCheckerFv
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	_130->allocate(10);
+	_130->mName = "XLU";
+
+	{
+		Sys::DrawBuffer::CreateArg drawArg;
+
+		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
+		drawArg.mDrawType = J3DDrawBuffer::J3DDRAW_Head;
+
+		drawArg.mFlags.typeView |= 1;
+
+		j3dStuff(_130, drawArg, false);
+	}
+
+	addGenNode(_12C);
+	addGenNode(_130);
+
+	j3dSys.mDrawBuffer[0] = _12C->get(0)->mBuffer;
+	j3dSys.mDrawBuffer[1] = _130->get(0)->mBuffer;
+
+	System::FragmentationChecker frag("poyol", false);
 }
 
 /*
@@ -2689,159 +1608,52 @@ void BaseGameSection::initResources()
 {
 	setupFixMemory();
 	setupFloatMemory();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setupFixMemory__Q24Game15BaseGameSectionFv
-	mr       r3, r31
-	bl       setupFloatMemory__Q24Game15BaseGameSectionFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
+
+Vector2f getRectSkew() { return Vector2f(0.0f, -80.0f); }
+
+Vector2f getBottomLeft() { return Vector2f(0.0f, 0.0f); }
 
 /*
  * --INFO--
  * Address:	8014C328
  * Size:	0001E4
  */
-void BaseGameSection::initViewports(Graphics&)
+void BaseGameSection::initViewports(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	li       r3, 0x18
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r4
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014C364
-	mr       r4, r29
-	bl       __ct__17HorizonalSplitterFP8Graphics
-	mr       r0, r3
+	mSplitter = new HorizonalSplitter(&gfx);
+	setSplitter(false);
 
-lbl_8014C364:
-	stw      r0, 0x118(r31)
-	mr       r3, r31
-	li       r4, 0
-	bl       setSplitter__Q24Game15BaseGameSectionFb
-	lwz      r30, 0x104(r31)
-	mr       r3, r29
-	li       r4, 0
-	bl       getViewport__8GraphicsFi
-	stw      r30, 0x44(r3)
-	bl       updateCameraAspect__8ViewportFv
-	lwz      r30, 0x108(r31)
-	mr       r3, r29
-	li       r4, 1
-	bl       getViewport__8GraphicsFi
-	stw      r30, 0x44(r3)
-	bl       updateCameraAspect__8ViewportFv
-	mr       r3, r29
-	li       r4, 0
-	bl       getViewport__8GraphicsFi
-	mr       r4, r3
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	li       r5, 0
-	bl       setViewport__Q24Game9ShadowMgrFP8Viewporti
-	mr       r3, r29
-	li       r4, 1
-	bl       getViewport__8GraphicsFi
-	mr       r4, r3
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	li       r5, 1
-	bl       setViewport__Q24Game9ShadowMgrFP8Viewporti
-	mr       r3, r29
-	li       r4, 0
-	bl       getViewport__8GraphicsFi
-	mr       r4, r3
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r5, 0
-	bl       setViewport__Q24Game9CameraMgrFP8Viewporti
-	mr       r3, r29
-	li       r4, 1
-	bl       getViewport__8GraphicsFi
-	mr       r4, r3
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r5, 1
-	bl       setViewport__Q24Game9CameraMgrFP8Viewporti
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       init__Q24Game9CameraMgrFi
-	li       r3, 0x1b0
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8014C440
-	bl       __ct__12LookAtCameraFv
-	lis      r3, __vt__Q34Game15BaseGameSection10ZoomCamera@ha
-	addi     r0, r3, __vt__Q34Game15BaseGameSection10ZoomCamera@l
-	stw      r0, 0(r30)
+	Viewport* olimarViewport = gfx.getViewport(0);
+	olimarViewport->mCamera  = mOlimarCamera;
+	olimarViewport->updateCameraAspect();
 
-lbl_8014C440:
-	stw      r30, 0x14c(r31)
-	li       r3, 0x58
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014C45C
-	bl       __ct__8ViewportFv
-	mr       r0, r3
+	Viewport* louieViewport = gfx.getViewport(1);
+	louieViewport->mCamera  = mLouieCamera;
+	louieViewport->updateCameraAspect();
 
-lbl_8014C45C:
-	stw      r0, 0x138(r31)
-	li       r0, 2
-	lwz      r3, 0x138(r31)
-	sth      r0, 0x18(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r30, 4(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r29, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	bl       getRenderModeObj__6SystemFv
-	lfs      f3, lbl_80518498@sda21(r2)
-	lis      r0, 0x4330
-	stw      r30, 0x1c(r1)
-	addi     r4, r1, 8
-	fmr      f4, f3
-	lfs      f0, lbl_8051851C@sda21(r2)
-	stw      r0, 0x18(r1)
-	lfd      f2, lbl_80518520@sda21(r2)
-	fsubs    f4, f4, f0
-	lfd      f1, 0x18(r1)
-	stw      r29, 0x24(r1)
-	fsubs    f1, f1, f2
-	stw      r0, 0x20(r1)
-	lfd      f0, 0x20(r1)
-	fadds    f1, f3, f1
-	stfs     f3, 8(r1)
-	fsubs    f0, f0, f2
-	stfs     f4, 0xc(r1)
-	fadds    f0, f4, f0
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x138(r31)
-	bl       "setRect__8ViewportFR7Rect<f>"
-	lwz      r3, 0x138(r31)
-	lwz      r0, 0x14c(r31)
-	stw      r0, 0x44(r3)
-	bl       updateCameraAspect__8ViewportFv
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	shadowMgr->setViewport(gfx.getViewport(0), 0);
+	shadowMgr->setViewport(gfx.getViewport(1), 1);
+
+	cameraMgr->setViewport(gfx.getViewport(0), 0);
+	cameraMgr->setViewport(gfx.getViewport(1), 1);
+
+	cameraMgr->init(0);
+	mTreasureZoomCamera         = new ZoomCamera;
+	mTreasureGetViewport        = new Viewport;
+	mTreasureGetViewport->mVpId = 2;
+
+	Vector2<u16> screenSize = getScreenSize();
+	getScreenSize();
+	Vector2f rectSkew   = getRectSkew();
+	Vector2f topRight   = Vector2f(rectSkew.x + screenSize.x, rectSkew.y + screenSize.y);
+	Vector2f bottomLeft = getBottomLeft() + rectSkew;
+	// float moment
+	Rectf rect(bottomLeft.x, bottomLeft.y, topRight.x, topRight.y);
+
+	mTreasureGetViewport->setRect(rect);
+	mTreasureGetViewport->mCamera = mTreasureZoomCamera;
+	mTreasureGetViewport->updateCameraAspect();
 }
 
 } // namespace Game
@@ -2851,63 +1663,6 @@ lbl_8014C45C:
  * Address:	8014C50C
  * Size:	0000C0
  */
-LookAtCamera::~LookAtCamera()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8014C5B0
-	lis      r4, __vt__12LookAtCamera@ha
-	addi     r0, r4, __vt__12LookAtCamera@l
-	stw      r0, 0(r30)
-	beq      lbl_8014C5A0
-	lis      r4, __vt__6Camera@ha
-	addi     r0, r4, __vt__6Camera@l
-	stw      r0, 0(r30)
-	beq      lbl_8014C5A0
-	lis      r4, __vt__11CullFrustum@ha
-	addi     r0, r4, __vt__11CullFrustum@l
-	stw      r0, 0(r30)
-	beq      lbl_8014C5A0
-	lis      r4, __vt__9CullPlane@ha
-	addi     r0, r4, __vt__9CullPlane@l
-	stw      r0, 0(r30)
-	beq      lbl_8014C5A0
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8014C5A0
-	lis      r4, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, "__vt__17Container<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8014C5A0
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8014C5A0:
-	extsh.   r0, r31
-	ble      lbl_8014C5B0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8014C5B0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 namespace Game {
 
@@ -2919,8 +1674,7 @@ namespace Game {
 void BaseGameSection::initGenerators()
 {
 	Game::generatorCache->clearGeneratorList();
-	Generator::initializeSystem();
-	CourseInfo* courseInfo = Game::mapMgr->mCourseInfo;
+	Generator::initialiseSystem();
 
 	GeneratorMgr* mgr  = new GeneratorMgr();
 	Game::generatorMgr = mgr;
@@ -2960,12 +1714,13 @@ void BaseGameSection::initGenerators()
 	void* mgrData[64];
 	char pathBuffer[256];
 	int currentIndex;
-	if (courseInfo) {
+	CourseInfo* courseInfo = Game::mapMgr->mCourseInfo;
+	if (Game::mapMgr->mCourseInfo) {
 		Game::PelletBirthBuffer::clear();
-		Game::generatorCache->loadGenerators(courseInfo->mCourseIndex);
+		Game::generatorCache->loadGenerators(Game::mapMgr->mCourseInfo->mCourseIndex);
 		Game::generatorCache->updateUseList();
 		currentIndex = 0;
-		sprintf(pathBuffer, "%s/defaultgen.txt", courseInfo->mAbeFolder);
+		sprintf(pathBuffer, "%s/defaultgen.txt", Game::mapMgr->mCourseInfo->mAbeFolder);
 		void* data
 		    = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 		if (data) {
@@ -2981,7 +1736,7 @@ void BaseGameSection::initGenerators()
 			mgrData[0]   = data;
 		}
 
-		sprintf(pathBuffer, "/%s/plantsgen.txt", courseInfo->mAbeFolder);
+		sprintf(pathBuffer, "/%s/plantsgen.txt", Game::mapMgr->mCourseInfo->mAbeFolder);
 		if (DVDConvertPathToEntrynum(pathBuffer) != -1) {
 			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
 			                                         nullptr);
@@ -2998,9 +1753,9 @@ void BaseGameSection::initGenerators()
 			}
 		}
 
-		if (Game::playData->courseVisited(courseInfo->mCourseIndex) == false) {
-			Game::playData->visitCourse(courseInfo->mCourseIndex);
-			sprintf(pathBuffer, "%s/initgen.txt", courseInfo->mAbeFolder);
+		if (Game::playData->courseVisited(Game::mapMgr->mCourseInfo->mCourseIndex) == false) {
+			Game::playData->visitCourse(Game::mapMgr->mCourseInfo->mCourseIndex);
+			sprintf(pathBuffer, "%s/initgen.txt", Game::mapMgr->mCourseInfo->mAbeFolder);
 			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
 			                                         nullptr);
 			if (data) {
@@ -3015,12 +1770,12 @@ void BaseGameSection::initGenerators()
 				mgrs[currentIndex++]  = Game::onceGeneratorMgr;
 			}
 		}
-		uint dayCount = Game::gameSystem->mTimeMgr->mDayCount;
-		for (int i = 0; i < courseInfo->mLimitGenCount; i++) {
-			LimitGen* gen = (LimitGen*)courseInfo->mLimitGenOwner.getChildAt(i);
+		uint dayCount = gameSystem->mTimeMgr->mDayCount;
+		for (int i = 0; i < Game::mapMgr->mCourseInfo->mLimitGenInfo.mCount; i++) {
+			LimitGen* gen = (LimitGen*)Game::mapMgr->mCourseInfo->mLimitGenInfo.mOwner.getChildAt(i);
 			if (gen->_18 <= dayCount && dayCount <= gen->_1C) {
-				if (Game::playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.isFlag(i) == false) {
-					sprintf(pathBuffer, "%s/nonloop/%s", courseInfo->mAbeFolder, gen->mName);
+				if (playData->mLimitGen[Game::mapMgr->mCourseInfo->mCourseIndex].mNonLoops.isFlag(i) == false) {
+					sprintf(pathBuffer, "%s/nonloop/%s", Game::mapMgr->mCourseInfo->mAbeFolder, gen->mName);
 					void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
 					                                         nullptr, nullptr);
 					if (data) {
@@ -3037,7 +1792,7 @@ void BaseGameSection::initGenerators()
 						mgrData[currentIndex] = data;
 						mgrs[currentIndex++]  = nonloopMgr;
 						Game::limitGeneratorMgr->addMgr(nonloopMgr);
-						Game::playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.setFlag(i);
+						Game::playData->mLimitGen[Game::mapMgr->mCourseInfo->mCourseIndex].mNonLoops.setFlag(i);
 					}
 				}
 			}
@@ -8303,37 +7058,6 @@ lbl_80150664:
  * Address:	801506A0
  * Size:	000060
  */
-ModelEffectData::~ModelEffectData()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801506E4
-	lis      r5, __vt__15ModelEffectData@ha
-	li       r4, 0
-	addi     r0, r5, __vt__15ModelEffectData@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801506E4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801506E4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 /*
  * --INFO--
@@ -9310,28 +8034,28 @@ void BaseGameSection::onSetSoundScene() { }
  * Address:	801513D4
  * Size:	000008
  */
-s32 BaseGameSection::getCurrFloor() { return -0x1; }
+int BaseGameSection::getCurrFloor() { return -1; }
 
 /*
  * --INFO--
  * Address:	801513DC
  * Size:	000008
  */
-u32 BaseGameSection::challengeDisablePelplant() { return 0x1; }
+bool BaseGameSection::challengeDisablePelplant() { return true; }
 
 /*
  * --INFO--
  * Address:	801513E4
  * Size:	000008
  */
-s32 BaseGameSection::getVsEditNumber() { return -0x2; }
+int BaseGameSection::getVsEditNumber() { return -0x2; }
 
 /*
  * --INFO--
  * Address:	801513EC
  * Size:	000008
  */
-void BaseGameSection::getEditorFilename()
+char* BaseGameSection::getEditorFilename()
 {
 	/*
 	addi     r3, r2, lbl_80518588@sda21
@@ -9344,7 +8068,7 @@ void BaseGameSection::getEditorFilename()
  * Address:	801513F4
  * Size:	00000C
  */
-void BaseGameSection::getCaveFilename()
+char* BaseGameSection::getCaveFilename()
 {
 	/*
 	lis      r3, lbl_8047CD58@ha
@@ -9365,7 +8089,7 @@ void BaseGameSection::onSetupFloatMemory() { }
  * Address:	80151404
  * Size:	000008
  */
-u32 BaseGameSection::isDevelopSection() { return 0x1; }
+bool BaseGameSection::isDevelopSection() { return true; }
 
 } // namespace Game
 
@@ -9374,7 +8098,7 @@ u32 BaseGameSection::isDevelopSection() { return 0x1; }
  * Address:	8015140C
  * Size:	000050
  */
-void __dt__Q28PSSystem28SingletonBase<PSM::ObjMgr> Fv()
+PSSystem::SingletonBase<PSM::ObjBase>::~SingletonBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9407,10 +8131,6 @@ lbl_80151444:
  * Address:	........
  * Size:	000054
  */
-void JSUList<PSM::ObjBase>::~JSUList()
-{
-	// UNUSED FUNCTION
-}
 
 namespace Game {
 
@@ -9422,8 +8142,8 @@ namespace Game {
 void BaseGameSection::setDrawBuffer(int index)
 {
 	P2ASSERTBOUNDSLINE(5295, 1, index, 10);
-	j3dSys._48 = _12C->get(index)->_1C;
-	j3dSys._4C = _130->get(index)->_1C;
+	j3dSys.mDrawBuffer[0] = _12C->get(index)->mBuffer;
+	j3dSys.mDrawBuffer[1] = _130->get(index)->mBuffer;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -9683,7 +8403,7 @@ void BaseGameSection::drawRadarmap(Graphics&)
  * Address:	80151738
  * Size:	000018
  */
-void PikiCond_ExceptChappyPikmin::satisfy(Game::Piki* p)
+bool PikiCond_ExceptChappyPikmin::satisfy(Game::Piki* p)
 {
 	/*
 	lbz      r4, 0x2b8(r4)
@@ -9869,8 +8589,8 @@ namespace Game {
  */
 bool BaseGameSection::forceFinish()
 {
-	mIsFinishedMaybe = true;
-	return mIsFinishedMaybe;
+	mIsLoadingDVD = true;
+	return mIsLoadingDVD;
 	/*
 	li       r0, 1
 	stb      r0, 0x37(r3)

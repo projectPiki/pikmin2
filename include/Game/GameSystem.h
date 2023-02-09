@@ -67,7 +67,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	void setDrawBuffer(int);
 	void setFrozen(bool, char*);
 	void setMoviePause(bool, char*);
-	void setPause(bool, char*, int);
+	u32 setPause(bool, char*, int);
 	int startPause(bool, int, char*);
 
 	inline bool isVersusMode() { return mMode == GSM_VERSUS_MODE; }

@@ -34,7 +34,7 @@ DrawBuffer::~DrawBuffer() { }
 void DrawBuffer::create(Sys::DrawBuffer::CreateArg& arg)
 {
 	u32 bufferSize = arg.mSize;
-	setFlag(arg.mFlags);
+	setFlag(arg.mFlags.typeView);
 	mName = arg.mName;
 	P2ASSERTLINE(42, mBuffer == nullptr);
 	mBuffer            = new J3DDrawBuffer(bufferSize);
