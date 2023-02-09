@@ -4,36 +4,6 @@
 #include "nans.h"
 
 /*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_moviePlayerAudio_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804ED8C8
-    lbl_804ED8C8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__27Pikmin_TCreateObject_JAudio
-    __vt__27Pikmin_TCreateObject_JAudio:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__27Pikmin_TCreateObject_JAudioFv
-        .4byte
-   create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805162F8
-    lbl_805162F8:
-        .skip 0x4
-    .global lbl_805162FC
-    lbl_805162FC:
-        .skip 0x4
-*/
-
-/*
  * --INFO--
  * Address:	........
  * Size:	0000CC
@@ -61,7 +31,7 @@ Pikmin_TCreateObject_JAudio::Pikmin_TCreateObject_JAudio(JAIBasic* jai, const JS
  */
 bool Pikmin_TCreateObject_JAudio::create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data)
 {
-	char buf[264];
+	char buf[256];
 	const char* str    = &(data.filedata->_0C);
 	const char first_c = *(str);
 	if (first_c != '#') {
