@@ -5,11 +5,9 @@
 #include "JSystem/JAudio2/JAI/JAInter.h"
 #include "SoundID.h"
 
-namespace JAInter
-{
-	struct Object;
+namespace JAInter {
+struct Object;
 } // namespace JAInter
-
 
 namespace PSSystem {
 namespace ClusterSe {

@@ -55,6 +55,7 @@ lbl_80498480:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.balign 4
 lbl_80498494:
 	.asciz "result_doukutu.szs"
 .balign 4

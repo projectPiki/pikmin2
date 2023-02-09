@@ -319,56 +319,56 @@ void ClusterFactory::partInit(u8 unknownID)
 {
 	PSSystem::ClusterSe::PartInitArg arg;
 	switch (_04->mPart->mInitArg.mSoundID) {
-		case 1: {
-			switch (unknownID) {
-				case 0:
-					arg._00[0] = 0x19;
-					arg._00[3] = 0x46;
-					arg._00[1] = 0x3c;
-					break;
-				case 1:
-					arg._00[0] = 0x46;
-					arg._00[2] = 0x3c;
-					arg._00[3] = 0x28;
-					arg._00[1] = 0x1e;
-					break;
-				case 2:
-					arg._00[0] = 0x28;
-					arg._00[2] = 0x1e;
-					arg._00[3] = 0x0a;
-					arg._00[1] = 0x00;
-					break;
-			}
-			P2ASSERTLINE(62, false);
-			break;
-		}
-		case 2: {
-			switch (unknownID) {
-				case 0:
-					arg._00[0] = 0x64;
-					arg._00[3] = 0x46;
-					arg._00[1] = 0x3c;
-					break;
-				case 1:
-					arg._00[0] = 0x46;
-					arg._00[2] = 0x3c;
-					arg._00[3] = 0x28;
-					arg._00[1] = 0x1e;
-					break;
-				case 2:
-					arg._00[0] = 0x28;
-					arg._00[2] = 0x1e;
-					arg._00[3] = 0x0a;
-					arg._00[1] = 0x00;
-					break;
-				default:
-					P2ASSERTLINE(95, false);
-			}
-			break;
-		}
+	case 1: {
+		switch (unknownID) {
 		case 0:
-			P2ASSERTLINE(100, false);
+			arg._00[0] = 0x19;
+			arg._00[3] = 0x46;
+			arg._00[1] = 0x3c;
 			break;
+		case 1:
+			arg._00[0] = 0x46;
+			arg._00[2] = 0x3c;
+			arg._00[3] = 0x28;
+			arg._00[1] = 0x1e;
+			break;
+		case 2:
+			arg._00[0] = 0x28;
+			arg._00[2] = 0x1e;
+			arg._00[3] = 0x0a;
+			arg._00[1] = 0x00;
+			break;
+		}
+		P2ASSERTLINE(62, false);
+		break;
+	}
+	case 2: {
+		switch (unknownID) {
+		case 0:
+			arg._00[0] = 0x64;
+			arg._00[3] = 0x46;
+			arg._00[1] = 0x3c;
+			break;
+		case 1:
+			arg._00[0] = 0x46;
+			arg._00[2] = 0x3c;
+			arg._00[3] = 0x28;
+			arg._00[1] = 0x1e;
+			break;
+		case 2:
+			arg._00[0] = 0x28;
+			arg._00[2] = 0x1e;
+			arg._00[3] = 0x0a;
+			arg._00[1] = 0x00;
+			break;
+		default:
+			P2ASSERTLINE(95, false);
+		}
+		break;
+	}
+	case 0:
+		P2ASSERTLINE(100, false);
+		break;
 	}
 	for (int i = 0; i < 4; i++) {
 		_04->_00[i] = arg._00[i];
@@ -381,15 +381,16 @@ void ClusterFactory::partInit(u8 unknownID)
  * Address:	8046D360
  * Size:	000074
  */
-WorldMapRocket::WorldMapRocket() : JADHioNode(nullptr)
+WorldMapRocket::WorldMapRocket()
+    : JADHioNode(nullptr)
 {
 	mState = PSMRocket_0;
-	_08 = 0.0f;
-	_0C = 608.0f;
-	_10 = 4.0f;
-	_14 = 100.0f;
-	_18 = 260.0f;
-	_1C = 4.0f;
+	_08    = 0.0f;
+	_0C    = 608.0f;
+	_10    = 4.0f;
+	_14    = 100.0f;
+	_18    = 260.0f;
+	_1C    = 4.0f;
 }
 
 /*
@@ -412,26 +413,23 @@ JAISe* WorldMapRocket::startRocketSE(float transform1, float transform2)
 	static f32 tmpVol;
 	static int init;
 
-	if (!se) return se;
+	if (!se)
+		return se;
 
 	f32 transform = JALCalc::linearTransform(transform1, _08, _0C, 0.0f, 1.0f, false);
 	if (transform > 0.5f) {
 		JALCalc::getParamByExp(transform, 0.5f, 1.0f, _10, 0.5f, 1.0f, JALCalc::CS_0);
-	}
-	else {
+	} else {
 		JALCalc::getParamByExp(transform, 0.0f, 0.5f, _10, 0.0f, 0.5f, JALCalc::CS_1);
 	}
 	transform = JALCalc::linearTransform(transform1, _14, _18, 0.0f, 1.0f, false);
 	if (transform > 0.5f) {
 		JALCalc::getParamByExp(transform, 0.5f, 1.0f, _1C, 0.5f, 1.0f, JALCalc::CS_0);
-	}
-	else {
+	} else {
 		JALCalc::getParamByExp(transform, 0.0f, 0.5f, _1C, 0.0f, 0.5f, JALCalc::CS_1);
 	}
 
-
-	switch (mState)
-	{
+	switch (mState) {
 	case PSMRocket_0:
 		se->setVolume(0.0f, 0, 0);
 		se->setPitch(0.0f, 0, 0);
@@ -468,7 +466,7 @@ JAISe* WorldMapRocket::startRocketSE(float transform1, float transform2)
 	case PSMRocket_6:
 		if (init == 0) {
 			tmpVol = se->getVolume(0);
-			init = 1;
+			init   = 1;
 		}
 		se->setVolume(0.1f, 2, 0);
 		break;
@@ -477,8 +475,7 @@ JAISe* WorldMapRocket::startRocketSE(float transform1, float transform2)
 		if (se->getVolume(0) == tmpVol) {
 			if (tmpVol > 0.5f) {
 				mState = PSMRocket_4;
-			}
-			else {
+			} else {
 				mState = PSMRocket_5;
 			}
 		}
@@ -516,36 +513,36 @@ PikiHumming::PikiHumming() { }
  */
 PikiHummingMgr::PikiHummingMgr()
 {
-	_00 = 10;
-	_04 = 0;
-	_08 = 0;
-	mHummingArray = new PikiHumming[3];
+	_00                   = 10;
+	_04                   = 0;
+	_08                   = 0;
+	mHummingArray         = new PikiHumming[3];
 	PikiHumming* shouting = &mHummingArray[0];
-	shouting->_14 = 0;
-	shouting->mSoundID = PSSE_PK_SHOUT01;
-	shouting->_08 = 72;
-	shouting->_0C = 4;
-	shouting->_00 = 0;
-	shouting->_18 = 0;
-	shouting->_10 = -1;
+	shouting->_14         = 0;
+	shouting->mSoundID    = PSSE_PK_SHOUT01;
+	shouting->_08         = 72;
+	shouting->_0C         = 4;
+	shouting->_00         = 0;
+	shouting->_18         = 0;
+	shouting->_10         = -1;
 
 	PikiHumming* ainoutaRU = &mHummingArray[1];
-	ainoutaRU->_14 = 1;
-	ainoutaRU->mSoundID = PSSE_PK_AINOUTA_RU;
-	ainoutaRU->_08 = 300;
-	ainoutaRU->_0C = 2;
-	ainoutaRU->_00 = 0;
-	ainoutaRU->_18 = 0;
-	ainoutaRU->_10 = -1;
+	ainoutaRU->_14         = 1;
+	ainoutaRU->mSoundID    = PSSE_PK_AINOUTA_RU;
+	ainoutaRU->_08         = 300;
+	ainoutaRU->_0C         = 2;
+	ainoutaRU->_00         = 0;
+	ainoutaRU->_18         = 0;
+	ainoutaRU->_10         = -1;
 
 	PikiHumming* humming = &mHummingArray[2];
-	humming->_14 = 2;
-	humming->mSoundID = PSSE_PK_HUMING01;
-	humming->_08 = 160;
-	humming->_0C = 3;
-	humming->_00 = 0;
-	humming->_18 = 0;
-	humming->_10 = -1;
+	humming->_14         = 2;
+	humming->mSoundID    = PSSE_PK_HUMING01;
+	humming->_08         = 160;
+	humming->_0C         = 3;
+	humming->_00         = 0;
+	humming->_18         = 0;
+	humming->_10         = -1;
 }
 
 /*
@@ -1248,18 +1245,17 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, float)
 	JAISound* ghost = enemy->getJAIObject()->startSound(PSSE_EN_ENEMY_GHOST, 0);
 	if (ghost) {
 		f32 volume = 0.0f;
-        f32 pitch = 0.0f;
-		switch (enemy->getEnemyTypeID())
-		{
+		f32 pitch  = 0.0f;
+		switch (enemy->getEnemyTypeID()) {
 		case Game::EnemyTypeID::EnemyID_KingChappy:
 			volume = 1.0f;
-            pitch  = 0.8f;
+			pitch  = 0.8f;
 			break;
 		case Game::EnemyTypeID::EnemyID_FireChappy:
 		case Game::EnemyTypeID::EnemyID_KumaChappy:
 		case Game::EnemyTypeID::EnemyID_OoPanModoki:
 			volume = 1.0f;
-            pitch  = 0.9f;
+			pitch  = 0.9f;
 			break;
 		case Game::EnemyTypeID::EnemyID_Chappy:
 		case Game::EnemyTypeID::EnemyID_BlueChappy:
@@ -1269,28 +1265,28 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, float)
 			break;
 		case Game::EnemyTypeID::EnemyID_MiniHoudai:
 			volume = 1.0f;
-            pitch  = 1.1f;
+			pitch  = 1.1f;
 			break;
 		case Game::EnemyTypeID::EnemyID_SnakeCrow:
 		case Game::EnemyTypeID::EnemyID_SnakeWhole:
 		case Game::EnemyTypeID::EnemyID_Kabuto:
 		case Game::EnemyTypeID::EnemyID_Hana:
 			volume = 1.0f;
-            pitch  = 1.2f;
+			pitch  = 1.2f;
 			break;
 		case Game::EnemyTypeID::EnemyID_Armor:
 		case Game::EnemyTypeID::EnemyID_Catfish:
 		case Game::EnemyTypeID::EnemyID_Miulin:
 		case Game::EnemyTypeID::EnemyID_BombSarai:
 			volume = 0.9f;
-            pitch  = 1.3f;
+			pitch  = 1.3f;
 			break;
 		case Game::EnemyTypeID::EnemyID_Frog:
 		case Game::EnemyTypeID::EnemyID_MaroFrog:
 		case Game::EnemyTypeID::EnemyID_Tank:
 		case Game::EnemyTypeID::EnemyID_Wtank:
 			volume = 0.8f;
-            pitch  = 1.4f;
+			pitch  = 1.4f;
 			break;
 		case Game::EnemyTypeID::EnemyID_Sarai:
 		case Game::EnemyTypeID::EnemyID_ElecBug:
@@ -1300,7 +1296,7 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, float)
 		case Game::EnemyTypeID::EnemyID_Jigumo:
 		case Game::EnemyTypeID::EnemyID_LeafChappy:
 			volume = 0.7f;
-            pitch  = 1.5f;
+			pitch  = 1.5f;
 			break;
 		case Game::EnemyTypeID::EnemyID_Kochappy:
 		case Game::EnemyTypeID::EnemyID_BlueKochappy:
@@ -1313,7 +1309,7 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, float)
 		case Game::EnemyTypeID::EnemyID_Tadpole:
 		case Game::EnemyTypeID::EnemyID_Baby:
 			volume = 0.6f;
-            pitch  = 1.7f;
+			pitch  = 1.7f;
 			break;
 
 		case Game::EnemyTypeID::EnemyID_UjiA:
@@ -1328,11 +1324,11 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, float)
 		case Game::EnemyTypeID::EnemyID_GasOtakara:
 		case Game::EnemyTypeID::EnemyID_ElecOtakara:
 			volume = 0.6f;
-            pitch  = 1.8f;
+			pitch  = 1.8f;
 			break;
 		case Game::EnemyTypeID::EnemyID_ShijimiChou:
 			volume = 0.4f;
-            pitch  = 2.3f;
+			pitch  = 2.3f;
 			break;
 		}
 		ghost->setVolume(volume, 0, 0);
