@@ -155,7 +155,6 @@ struct TChallengeResultScreen : public TChallengeScreen {
 	og::Screen::AnimPane* mResultAnimPane; // _2C
 };
 
-// unused struct? or entirely inlined
 struct TChallengeResultCounter {
 	TChallengeResultCounter(u32* val, int a1, int a2)
 	{
@@ -177,7 +176,7 @@ struct TChallengeResultCounter {
 
 	u32* mDisplayValue;
 	u32 _04;
-	int mState;
+	int mState; // _08
 	int _0C;
 	int _10;
 	int _14;
@@ -220,36 +219,15 @@ struct TChallengeEndCount2p : public TChallengeEndCount {
 	// _00-_D4 = TChallengeEndCount
 };
 
+struct TClearTexture; // temp so challengeresult can use it
+
 struct TChallengeResult : public TTestBase {
 	TChallengeResult();
 	struct VectorUnit {
 		VectorUnit() { }
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
-	};
-
-	// this struct has 0 functions to go off, not sure what to call it yet
-	struct IDontKnow {
-		IDontKnow(TChallengeResult* obj, P2DScreen::Mgr_tuning* screen, u64 tag1, u64 tag2)
-		{
-			J2DPane* pane1   = screen->search(tag1);
-			J2DPane* pane2   = screen->search(tag2);
-			JKRArchive* test = obj->mArchive;
-			_00              = 0;
-			mArchive         = test;
-			mPane1           = static_cast<J2DPictureEx*>(pane2);
-			mPane2           = static_cast<J2DPictureEx*>(pane1);
-			P2ASSERTLINE(297, pane2);
-			P2ASSERTLINE(298, pane1);
-		}
-
-		u8 _00;
-		JKRArchive* mArchive; // _04
-		J2DPictureEx* mPane1; // _08
-		J2DPictureEx* mPane2; // _0C
+		Vector2f _00;
+		Vector2f _08;
 	};
 
 	inline void loadSaveMgrResources()
@@ -327,7 +305,7 @@ struct TChallengeResult : public TTestBase {
 	VectorUnit _168;                               // _168
 	f32 mMoveTimer;                                // _178
 	TChallengeResultCounter* mResultCounters[4];   // _17C
-	IDontKnow* _18C[5];                            // _18C
+	TClearTexture* mClearTexture[5];               // _18C
 	TOffsetMsgSet* mMesgOffs;                      // _1A0
 	efx2d::T2DCavecompLoop* mEfxCompLoop;          // _1A4
 	u32 mScoreTotal;                               // _1A8
@@ -337,10 +315,11 @@ struct TChallengeResult : public TTestBase {
 	u32 mHighScoreValues[3];                       // _1B8
 	u8 mFlags[4];                                  // _1C4
 	int mDemoState;                                // _1C8
-	f32 _1CC[2];                                   // _1CC
+	f32 _1CC;                                      // _1CC
+	int mCounter;                                  // _1D0
 	f32 _1D4;                                      // _1D4
 	f32 _1D8;                                      // _1D8
-	u16 _1DC;                                      // _1DC
+	s16 _1DC;                                      // _1DC
 	u16 mTestDefaultPokoScore;                     // _1DE
 	bool mIsSaveOpen;                              // _1E0
 	int mRankInSlot;                               // _1E4
@@ -350,6 +329,36 @@ struct TChallengeResult : public TTestBase {
 	f32 mSpeed;                                    // _1F0
 	f32 mTimer2;                                   // _1F4
 	Game::ChallengeGame::StageList* mStageList;    // _1F8
+};
+
+struct TClearTexture {
+	TClearTexture(TChallengeResult* obj, P2DScreen::Mgr_tuning* screen, u64 tag1, u64 tag2)
+	{
+		J2DPane* pane1   = screen->search(tag1);
+		J2DPane* pane2   = screen->search(tag2);
+		JKRArchive* test = obj->mArchive;
+		_00              = 0;
+		mArchive         = test;
+		mPane1           = static_cast<J2DPictureEx*>(pane2);
+		mPane2           = static_cast<J2DPictureEx*>(pane1);
+		P2ASSERTLINE(297, pane2);
+		P2ASSERTLINE(298, pane1);
+	}
+
+	void resetTexture();
+	void changeTexture(bool);
+	void getPosition(Vector2f&);
+	void getEffectPosition(Vector2f&);
+
+	u8 _00;
+	JKRArchive* mArchive; // _04
+	J2DPictureEx* mPane1; // _08
+	J2DPictureEx* mPane2; // _0C
+	int _10;
+	int _14;
+	int _18;
+	int _1C;
+	int _20;
 };
 
 struct TChallengeSelect : public TTestBase {

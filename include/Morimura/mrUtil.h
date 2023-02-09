@@ -167,9 +167,9 @@ struct TMovePane {
 	bool isReachToGoal();
 	void reset();
 
-	J2DPane* mPane;      // _00
-	J2DPane* mStickPane; // _04
-	JGeometry::TVec2f mOffset;
+	J2DPane* mPane;                   // _00
+	J2DPane* mStickPane;              // _04
+	JGeometry::TVec2f mOffset;        // _08
 	JGeometry::TVec2f mPanePosition;  // _10
 	JGeometry::TVec2f mPaneGoal;      // _18
 	JGeometry::TVec2f mVelocity;      // _20
@@ -180,7 +180,7 @@ struct TMovePane {
 	int mState;                       // _3C
 	int mCounter;                     // _40
 	u32 _44;                          // _44, unknown
-	u32 _48;                          // _48, unknown
+	int _48;                          // _48, unknown
 };
 
 struct THuWhitePaneSet : public J2DPictureEx {
@@ -246,14 +246,6 @@ struct TIndPane : public CNode {
 	s16 _3C;               // _3C
 	f32 _40;               // _40
 	u8 _44;                // _44
-};
-
-// unused struct?
-struct TClearTexture {
-	void resetTexture();
-	void changeTexture(bool);
-	void getPosition(Vector2f&);
-	void getEffectPosition(Vector2f&);
 };
 
 } // namespace Morimura
