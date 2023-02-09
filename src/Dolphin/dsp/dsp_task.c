@@ -1,16 +1,16 @@
 #include "Dolphin/dsp.h"
 
-DSPTask* __DSP_curr_task;
-DSPTask* __DSP_first_task;
-DSPTask* __DSP_last_task;
-DSPTask* __DSP_tmp_task;
+DSPTaskInfo* __DSP_curr_task;
+DSPTaskInfo* __DSP_first_task;
+DSPTaskInfo* __DSP_last_task;
+DSPTaskInfo* __DSP_tmp_task;
 
 /*
  * --INFO--
  * Address:	800DAE50
  * Size:	0001A0
  */
-void __DSP_exec_task(DSPTask* curr, DSPTask* next)
+void __DSP_exec_task(DSPTaskInfo* curr, DSPTaskInfo* next)
 {
 	if (curr) {
 		DSPSendMailToDSP((u32)(curr->dram_mmem_addr));
@@ -83,7 +83,7 @@ void __DSP_exec_task(DSPTask* curr, DSPTask* next)
  * Address:	800DAFF0
  * Size:	00018C
  */
-void __DSP_boot_task(DSPTask* task)
+void __DSP_boot_task(DSPTaskInfo* task)
 {
 
 	volatile u32 mail;
@@ -131,10 +131,10 @@ void __DSP_boot_task(DSPTask* task)
  * Address:	800DB17C
  * Size:	0000A0
  */
-void __DSP_insert_task(DSPTask* task)
+void __DSP_insert_task(DSPTaskInfo* task)
 {
 
-	DSPTask* temp;
+	DSPTaskInfo* temp;
 
 	if (__DSP_first_task == NULL) {
 		__DSP_first_task = __DSP_last_task = __DSP_curr_task = task;
@@ -172,7 +172,7 @@ void __DSP_insert_task(DSPTask* task)
  * Size:	000078
  */
 // Unused, but close enough.
-void __DSP_add_task(DSPTask* task)
+void __DSP_add_task(DSPTaskInfo* task)
 {
 	if (__DSP_last_task == NULL) {
 		__DSP_first_task = __DSP_last_task = __DSP_curr_task = task;
@@ -191,7 +191,7 @@ void __DSP_add_task(DSPTask* task)
  * Address:	800DB21C
  * Size:	000094
  */
-void __DSP_remove_task(DSPTask* task)
+void __DSP_remove_task(DSPTaskInfo* task)
 {
 
 	task->flags = DSP_TASK_FLAG_CLEARALL;

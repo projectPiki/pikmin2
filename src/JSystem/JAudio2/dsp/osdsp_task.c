@@ -2,7 +2,7 @@
 
 u8 DSP_prior_yield;
 int AUDIO_UPDATE_REQUEST;
-STRUCT_DSP_TASK* DSP_prior_task;
+DSPTaskInfo* DSP_prior_task;
 u32 sync_stack[3];
 
 /*
@@ -10,7 +10,7 @@ u32 sync_stack[3];
  * Address:	........
  * Size:	000008
  */
-void DebugPrint_TaskInfo__FP15STRUCT_DSP_TASK(STRUCT_DSP_TASK* task)
+void DebugPrint_TaskInfo__FP15STRUCT_DSP_TASK(DSPTaskInfo* task)
 {
 	// UNUSED FUNCTION
 }
@@ -20,7 +20,7 @@ void DebugPrint_TaskInfo__FP15STRUCT_DSP_TASK(STRUCT_DSP_TASK* task)
  * Address:	........
  * Size:	000040
  */
-void Check_Broken__FP15STRUCT_DSP_TASK(STRUCT_DSP_TASK* task)
+void Check_Broken__FP15STRUCT_DSP_TASK(DSPTaskInfo* task)
 {
 	// UNUSED FUNCTION
 }
@@ -40,7 +40,7 @@ void Check_PriorBroken__Fv()
  * Address:	800AAD00
  * Size:	000304
  */
-void __DSPHandler(void)
+void __DSPHandler(__OSInterrupt interrupt, OSContext* context)
 {
 	/*
 	.loc_0x0:

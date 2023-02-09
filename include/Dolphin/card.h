@@ -134,8 +134,7 @@ typedef struct {
 	s32 _024;                                      // _024
 	unknown _028;                                  // _028
 	u32 _02C;                                      // _02C
-	DSPTask _030;                                  // _030
-	u8 _070[0x10];                                 // _070
+	DSPTaskInfo _030;                              // _030
 	CARDMemoryCard* _080;                          // _080
 	CARDDirectoryBlock* _084;                      // _084
 	CARDFatBlock* _088;                            // _088

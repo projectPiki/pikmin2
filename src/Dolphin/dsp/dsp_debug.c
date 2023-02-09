@@ -6,7 +6,7 @@
  * Size:	000050
  */
 
-void __DSP_debug_printf(char*, ...) { }
+void __DSP_debug_printf(const char* format, ...) { }
 
 /*
  * --INFO--

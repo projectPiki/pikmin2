@@ -8,13 +8,13 @@
  * Address:	800AAC20
  * Size:	000060
  */
-STRUCT_DSP_TASK* DSPAddTask(STRUCT_DSP_TASK* task)
+DSPTaskInfo* DSPAddTask(DSPTaskInfo* task)
 {
 	int interrupts;
 	interrupts = OSDisableInterrupts();
-	__DSP_insert_task((DSPTask*)task);
-	task->_00 = 0;
-	task->_08 = 1;
+	__DSP_insert_task(task);
+	task->state = DSP_TASK_STATE_INIT;
+	task->flags = DSP_TASK_FLAG_ATTACHED;
 	OSRestoreInterrupts(interrupts);
 	return task;
 }
@@ -24,7 +24,7 @@ STRUCT_DSP_TASK* DSPAddTask(STRUCT_DSP_TASK* task)
  * Address:	800AAC80
  * Size:	00007C
  */
-void DSPAddPriorTask__FP15STRUCT_DSP_TASK(STRUCT_DSP_TASK* task)
+void DSPAddPriorTask__FP15STRUCT_DSP_TASK(DSPTaskInfo* task)
 {
 	int interrupts;
 	if (DSP_prior_task != nullptr) {
@@ -33,8 +33,8 @@ void DSPAddPriorTask__FP15STRUCT_DSP_TASK(STRUCT_DSP_TASK* task)
 	}
 	interrupts     = OSDisableInterrupts();
 	DSP_prior_task = task;
-	task->_00      = 0;
-	task->_08      = 1;
-	__DSP_boot_task((DSPTask*)task);
+	task->state    = DSP_TASK_STATE_INIT;
+	task->flags    = DSP_TASK_FLAG_ATTACHED;
+	__DSP_boot_task(task);
 	OSRestoreInterrupts(interrupts);
 }

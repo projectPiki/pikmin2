@@ -2,31 +2,7 @@
 #define _JSYSTEM_DSP_H
 
 #include "types.h"
-
-// These functions should NOT be declared extern C, because the symbol map has their names mangled.
-// #ifdef __cplusplus
-// extern "C" {
-// #endif // ifdef __cplusplus
-
-typedef struct _STRUCT_DSP_TASK {
-	s32 _00;                      // _00
-	u32 _04;                      // _04
-	u32 _08;                      // _08
-	u32 _0C;                      // _0C
-	u32 _10;                      // _10
-	u32 _14;                      // _14
-	u32 _18;                      // _18
-	u32 _1C;                      // _1C
-	u32 _20;                      // _20
-	u16 _24;                      // _24
-	u16 _26;                      // _26
-	void* _28;                    // _28
-	u32 _2C;                      // _2C
-	void* _30;                    // _30
-	void* _34;                    // _34
-	struct _STRUCT_DSP_TASK* _38; // _38
-	struct _STRUCT_DSP_TASK* _3C; // _3C
-} STRUCT_DSP_TASK;
+#include "Dolphin/dsp.h"
 
 // dspproc.c
 void DSPReleaseHalt2(u32 msg);
@@ -37,7 +13,7 @@ void DsyncFrame(u32 p1, u32 p2, u32 p3);
 
 // dsptask.c
 void DspHandShake(void* a1);
-void DspBoot(void (*p1)(void*));
+void DspBoot(DSPCallback callback);
 void DSPSendCommands2(u32* p1, u32 p2, void (*p3)(u16));
 void DspInitWork();
 void DspStartWork(u32 p1, void (*p2)(u16));
@@ -49,14 +25,9 @@ extern "C" {
 STRUCT_DSP_TASK* DSPAddTask(STRUCT_DSP_TASK* task);
 }
 #endif // ifdef __cplusplus
-void DSPAddPriorTask(STRUCT_DSP_TASK* task);
+void DSPAddPriorTask(DSPTaskInfo* task);
 
 // osdsp_task.c
-#ifdef __cplusplus
-extern "C" {
-void __DSPHandler();
-}
-#endif // ifdef __cplusplus
 void DsyncFrame2(u32 p1, u32 p2, u32 p3);
 void Dsp_Update_Request();
 BOOL Dsp_Running_Check();
@@ -68,7 +39,7 @@ void DSPSendCommands(u32* p1, u32 p2);
 void DSPReleaseHalt();
 void DSPWaitFinish();
 void Dswap(u32 p1, u32 p2, u32 p3);
-void Dmix(u32 p1, u32 p2, u32 p3, short p4);
+void Dmix(u32 p1, u32 p2, u32 p3, s16 p4);
 void Dcopy(u32 p1, u32 p2, u32 p3);
 void DloadBuffer1(u32 p1, u32 p2);
 void DloadBuffer(u32 p1, u32 p2, u32 p3);
@@ -81,10 +52,6 @@ void dummy_callback(u16 p1);
 void DsetDolbyDelay(u32 p1, u16 p2);
 
 extern u8 DSP_prior_yield;
-extern STRUCT_DSP_TASK* DSP_prior_task;
-
-// #ifdef __cplusplus
-// }
-// #endif // ifdef __cplusplus
+extern DSPTaskInfo* DSP_prior_task;
 
 #endif

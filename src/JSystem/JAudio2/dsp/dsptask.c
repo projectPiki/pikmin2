@@ -2,7 +2,7 @@
 #include "types.h"
 #include "JSystem/JAudio2/DSP.h"
 
-static STRUCT_DSP_TASK audio_task;
+static DSPTaskInfo audio_task;
 static u8 AUDIO_YIELD_BUFFER[0x2000];
 static u8 taskwork[0x80];
 
@@ -44,22 +44,22 @@ void DspHandShake__FPv(void* a1)
  * Address:	800AA940
  * Size:	0000AC
  */
-void DspBoot__FPFPv_v(void (*p1)(void*))
+void DspBoot__FPFPv_v(DSPCallback callback)
 {
 	DspInitWork();
-	audio_task._04 = 0xF0;
-	audio_task._0C = 0x4A44E0;
-	audio_task._10 = 0x1D20;
-	audio_task._14 = 0;
-	audio_task._18 = 0x4F07E0;
-	audio_task._1C = 0x2000;
-	audio_task._20 = 0;
-	audio_task._24 = 0;
-	audio_task._26 = 0x10;
-	audio_task._28 = DspHandShake;
-	audio_task._2C = 0;
-	audio_task._30 = nullptr;
-	audio_task._34 = p1;
+	audio_task.priority          = 0xF0;
+	audio_task.iram_mmem_addr    = 0x4A44E0;
+	audio_task.iram_length       = 0x1D20;
+	audio_task.iram_addr         = 0;
+	audio_task.dram_mmem_addr    = 0x4F07E0;
+	audio_task.dram_length       = 0x2000;
+	audio_task.dram_addr         = 0;
+	audio_task.dsp_init_vector   = 0;
+	audio_task.dsp_resume_vector = 0x10;
+	audio_task.init_cb           = DspHandShake;
+	audio_task.res_cb            = nullptr;
+	audio_task.done_cb           = nullptr;
+	audio_task.req_cb            = callback;
 	DSPInit();
 	DSPAddPriorTask(&audio_task);
 	/*
