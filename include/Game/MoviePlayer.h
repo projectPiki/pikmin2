@@ -73,7 +73,7 @@ struct MovieConfig : public CNode {
 	MovieConfig();
 
 	virtual ~MovieConfig() { } // _08 (weak)
-
+	
 	void dump();
 	bool isSkippable();
 	bool isNeverSkippable();

@@ -44,7 +44,7 @@ struct Viewport : CNode {
 	f32 mY2;           // _38
 	s8 mFlags;         // _3C
 	Matrixf* mViewMat; // _40
-	Camera* mCamera;   // _44
+	LookAtCamera* mCamera;   // _44
 	f32 _48;           // _48
 	f32 mVpScaleY;     // _4C
 	f32 port;          // _50

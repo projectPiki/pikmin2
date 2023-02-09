@@ -54,7 +54,9 @@
 
 #include "og/ogLib2D.h"
 #include "Screen/Game2DMgr.h"
+#include "Game/PikiMgr.h"
 
+#include "Splitter.h"
 
 /*
     Generated from dpostproc
@@ -1175,17 +1177,37 @@ void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
 
 u32 BaseGameSection::waitSyncLoad(bool dontPause)
 {
+	static int col;
+	static s8 init;
+	
+	if (!init) {
+		col = 0;
+		init = 1;
+	}
+	col++;
 	endFrame();
-	while (true)
-	{
+	if (!dontPause) {
+		gameSystem->setPause(true, "waitSyncLoad", 3);
+	}
+	while (true) {
 		beginFrame();
 		beginRender();
+		
 		j3dSys.drawInit();
 		GXSetViewport(0.0f, 0.0f, 608.0f, 480.0f, 0.0f, 1.0f);
 		GXSetScissor(0, 0x10, 0x260, 0x1c0);
 		endRender();
 
-		if (m_dvdThreadCommand.m_mode == 2) break;
+		// I have no clue
+
+		if (m_dvdThreadCommand.m_mode != 2);
+
+		else if (!dontPause) {
+			gameSystem->setPause(false, "waitSyncLoad", 3);
+			return;
+		}
+		else break;
+
 		endFrame();
 	}
 	
@@ -1441,43 +1463,21 @@ void BaseGameSection::pre2dDraw(Graphics&) { }
  * Address:	8014BD9C
  * Size:	000078
  */
-void BaseGameSection::movieDone(MovieConfig*, unsigned long, unsigned long)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xB4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x13C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x64
-	  li        r4, 0x1
-	  bl        -0x102E4
-	  lwz       r3, 0x13C(r31)
-	  li        r4, 0
-	  bl        -0x10CEC
-	  li        r0, 0
-	  stw       r0, 0x13C(r31)
-	  lwz       r3, -0x6560(r13)
-	  bl        0x2B1760
-	  lwz       r3, -0x6560(r13)
-	  bl        0x2B15D0
-	  li        r0, 0
-	  stw       r0, 0x134(r31)
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+
+// movieConfig struct jank
+void BaseGameSection::movieDone(MovieConfig* config, u32, u32)
+{
+	Creature* c = (Creature*)config[1].m_param.m_parent;
+	if (c) {
+		c->movie_end(true);
+		((Creature*)config[1].m_param.m_parent)->kill(nullptr);
+		config[1].m_param.m_parent = nullptr;
+		Screen::gGame2DMgr->close_SpecialItem();
+		Screen::gGame2DMgr->close_Kantei();
+		config[1].m_param.m_next = nullptr;
+	}sizeof(MovieConfig);
+
 }
 
 /*
@@ -1492,53 +1492,23 @@ void BaseGameSection::onMovieDone(Game::MovieConfig*, unsigned long, unsigned lo
  * Address:	8014BE18
  * Size:	00008C
  */
-void BaseGameSection::onMovieCommand(int)
+void BaseGameSection::onMovieCommand(int cmd)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 2
-	stw      r0, 0x14(r1)
-	beq      lbl_8014BE48
-	bge      lbl_8014BE3C
-	cmpwi    r4, 0
-	beq      lbl_8014BE94
-	b        lbl_8014BE94
 
-lbl_8014BE3C:
-	cmpwi    r4, 4
-	bge      lbl_8014BE94
-	b        lbl_8014BE68
-
-lbl_8014BE48:
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_8014BE94
-	lwz      r0, 0x1f0(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8014BE94
-	bl       createFallPikminSound__Q24Game15BaseGameSectionFv
-	b        lbl_8014BE94
-
-lbl_8014BE68:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 0
-	bne      lbl_8014BE94
-	lwz      r3, 0x40(r3)
-	lwz      r0, 0x218(r3)
-	cmplwi   r0, 0
-	bne      lbl_8014BE94
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       forceEnterPikmins__Q24Game7PikiMgrFUc
-
-lbl_8014BE94:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (cmd) {
+		case 0:
+			break;
+		case 2:
+			if (moviePlayer && !(moviePlayer->m_flags & 0x2)) {
+				createFallPikminSound();
+			}
+			break;
+		case 3:
+			if (gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_timeMgr->m_dayCount == 0) {
+				pikiMgr->forceEnterPikmins(false);
+			}
+			break;
+	}
 }
 
 /*
@@ -1546,290 +1516,102 @@ lbl_8014BE94:
  * Address:	8014BEA4
  * Size:	000450
  */
+
+// unfortunatly this probably isn't real inline, however I'm not writing the full code out bc that's stupid
+inline void j3dStuff(Sys::DrawBuffers*& buffer, Sys::DrawBuffer::CreateArg& drawArg, bool doFog) {
+	
+	drawArg.mSize = 0x80;
+	drawArg.mName = "normal";
+
+	buffer->get(0)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = (doFog) ? "normal-fogoff" : "normal";
+
+	buffer->get(1)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "map";
+	if (doFog) drawArg.mSortType = J3DDrawBuffer::J3DSORT_NonSort;
+
+	buffer->get(2)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "piki";
+	if (doFog) drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
+
+	buffer->get(3)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "post";
+
+	buffer->get(4)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "2d";
+
+	buffer->get(5)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "first";
+
+	buffer->get(6)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "postshadow";
+
+	buffer->get(7)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "objectlast";
+
+	buffer->get(8)->create(drawArg);
+
+	drawArg.mSize = 1;
+	drawArg.mName = "farm";
+
+	buffer->get(9)->create(drawArg);
+}
+
 void BaseGameSection::initJ3D()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, lbl_8047C948@ha
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	addi     r31, r4, lbl_8047C948@l
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014BEDC
-	bl       __ct__Q23Sys11DrawBuffersFv
-	mr       r0, r3
+	_12C = new Sys::DrawBuffers;
+	_130 = new Sys::DrawBuffers;
+	
+	_12C->allocate(10);
+	_12C->m_name = "OPA";
+	{
+	Sys::DrawBuffer::CreateArg drawArg;
+	drawArg._0C = 0;
+	drawArg._10 = 0;
+	j3dStuff(_12C, drawArg, true);
+	}
 
-lbl_8014BEDC:
-	stw      r0, 0x12c(r30)
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014BEF8
-	bl       __ct__Q23Sys11DrawBuffersFv
-	mr       r0, r3
 
-lbl_8014BEF8:
-	stw      r0, 0x130(r30)
-	li       r4, 0xa
-	lwz      r3, 0x12c(r30)
-	bl       allocate__Q23Sys11DrawBuffersFi
-	lwz      r3, 0x12c(r30)
-	addi     r0, r2, lbl_805184D8@sda21
-	li       r7, 0
-	li       r6, 1
-	stw      r0, 0x14(r3)
-	addi     r5, r2, lbl_805184DC@sda21
-	li       r3, 0x80
-	addi     r0, r2, lbl_805184E4@sda21
-	stb      r7, 0x28(r1)
-	li       r4, 0
-	stb      r7, 0x29(r1)
-	stw      r6, 0x24(r1)
-	stw      r5, 0x2c(r1)
-	stb      r7, 0x28(r1)
-	stb      r7, 0x29(r1)
-	stw      r7, 0x30(r1)
-	stw      r7, 0x34(r1)
-	stw      r3, 0x24(r1)
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x164
-	li       r3, 1
-	stw      r3, 0x24(r1)
-	li       r4, 1
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r4, 1
-	addi     r3, r2, lbl_805184EC@sda21
-	li       r0, 5
-	stw      r4, 0x24(r1)
-	li       r4, 2
-	stw      r3, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r4, 1
-	addi     r3, r2, lbl_805184F0@sda21
-	li       r0, 0
-	stw      r4, 0x24(r1)
-	li       r4, 3
-	stw      r3, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184F8@sda21
-	stw      r3, 0x24(r1)
-	li       r4, 4
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184D4@sda21
-	stw      r3, 0x24(r1)
-	li       r4, 5
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_80518500@sda21
-	stw      r3, 0x24(r1)
-	li       r4, 6
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x174
-	li       r3, 1
-	stw      r3, 0x24(r1)
-	li       r4, 7
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x180
-	li       r3, 1
-	stw      r3, 0x24(r1)
-	li       r4, 8
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_80518508@sda21
-	stw      r3, 0x24(r1)
-	li       r4, 9
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x12c(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x24
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	lwz      r3, 0x130(r30)
-	li       r4, 0xa
-	bl       allocate__Q23Sys11DrawBuffersFi
-	lwz      r3, 0x130(r30)
-	addi     r0, r2, lbl_80518510@sda21
-	li       r8, 0
-	li       r7, 1
-	stw      r0, 0x14(r3)
-	addi     r6, r2, lbl_805184DC@sda21
-	li       r3, 0x80
-	addi     r0, r2, lbl_805184E4@sda21
-	stb      r8, 0x14(r1)
-	li       r4, 0
-	stb      r8, 0x15(r1)
-	stb      r8, 0x14(r1)
-	stb      r8, 0x15(r1)
-	lhz      r5, 0x14(r1)
-	stw      r7, 0x10(r1)
-	ori      r5, r5, 1
-	stw      r6, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r8, 0x20(r1)
-	sth      r5, 0x14(r1)
-	stw      r3, 0x10(r1)
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184E4@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 1
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184EC@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 2
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184F0@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 3
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184F8@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 4
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_805184D4@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 5
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_80518500@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 6
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x174
-	li       r3, 1
-	stw      r3, 0x10(r1)
-	li       r4, 7
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	addi     r0, r31, 0x180
-	li       r3, 1
-	stw      r3, 0x10(r1)
-	li       r4, 8
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	li       r3, 1
-	addi     r0, r2, lbl_80518508@sda21
-	stw      r3, 0x10(r1)
-	li       r4, 9
-	stw      r0, 0x18(r1)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	addi     r4, r1, 0x10
-	bl       create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg
-	lwz      r4, 0x12c(r30)
-	mr       r3, r30
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-	lwz      r4, 0x130(r30)
-	mr       r3, r30
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-	lwz      r3, 0x12c(r30)
-	li       r4, 0
-	bl       get__Q23Sys11DrawBuffersFi
-	lis      r4, j3dSys@ha
-	lwz      r0, 0x1c(r3)
-	addi     r3, r4, j3dSys@l
-	li       r4, 0
-	stw      r0, 0x48(r3)
-	lwz      r3, 0x130(r30)
-	bl       get__Q23Sys11DrawBuffersFi
-	lwz      r0, 0x1c(r3)
-	lis      r3, j3dSys@ha
-	addi     r4, r3, j3dSys@l
-	addi     r3, r1, 8
-	stw      r0, 0x4c(r4)
-	addi     r4, r2, lbl_80518514@sda21
-	li       r5, 0
-	bl       __ct__Q26System20FragmentationCheckerFPcb
-	addi     r3, r1, 8
-	li       r4, -1
-	bl       __dt__Q26System20FragmentationCheckerFv
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	_130->allocate(10);
+	_130->m_name = "XLU";
+	
+	{
+	Sys::DrawBuffer::CreateArg drawArg;
+	
+	drawArg._0C = 0;
+	drawArg._10 = 0;
+	
+	drawArg._04.typeView |= 1;
+
+	j3dStuff(_130, drawArg, false);
+	}
+
+	
+	addGenNode(_12C);
+	addGenNode(_130);
+
+	j3dSys._48 = _12C->get(0)->_1C;
+	j3dSys._4C = _130->get(0)->_1C;
+
+	System::FragmentationChecker frag ("poyol", false);
+
+
 }
 
 /*
@@ -1841,21 +1623,14 @@ void BaseGameSection::initResources()
 {
 	setupFixMemory();
 	setupFloatMemory();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setupFixMemory__Q24Game15BaseGameSectionFv
-	mr       r3, r31
-	bl       setupFloatMemory__Q24Game15BaseGameSectionFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+}
+
+Vector2f getRectSkew() {
+	return Vector2f(0.0f, -80.0f);
+}
+
+Vector2f getBottomLeft() {
+	return Vector2f(0.0f, 0.0f);
 }
 
 /*
@@ -1863,137 +1638,46 @@ void BaseGameSection::initResources()
  * Address:	8014C328
  * Size:	0001E4
  */
-void BaseGameSection::initViewports(Graphics&)
+void BaseGameSection::initViewports(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	li       r3, 0x18
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r4
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014C364
-	mr       r4, r29
-	bl       __ct__17HorizonalSplitterFP8Graphics
-	mr       r0, r3
+	m_splitter = new HorizonalSplitter(&gfx);
+	setSplitter(false);
+	
 
-lbl_8014C364:
-	stw      r0, 0x118(r31)
-	mr       r3, r31
-	li       r4, 0
-	bl       setSplitter__Q24Game15BaseGameSectionFb
-	lwz      r30, 0x104(r31)
-	mr       r3, r29
-	li       r4, 0
-	bl       getViewport__8GraphicsFi
-	stw      r30, 0x44(r3)
-	bl       updateCameraAspect__8ViewportFv
-	lwz      r30, 0x108(r31)
-	mr       r3, r29
-	li       r4, 1
-	bl       getViewport__8GraphicsFi
-	stw      r30, 0x44(r3)
-	bl       updateCameraAspect__8ViewportFv
-	mr       r3, r29
-	li       r4, 0
-	bl       getViewport__8GraphicsFi
-	mr       r4, r3
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	li       r5, 0
-	bl       setViewport__Q24Game9ShadowMgrFP8Viewporti
-	mr       r3, r29
-	li       r4, 1
-	bl       getViewport__8GraphicsFi
-	mr       r4, r3
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	li       r5, 1
-	bl       setViewport__Q24Game9ShadowMgrFP8Viewporti
-	mr       r3, r29
-	li       r4, 0
-	bl       getViewport__8GraphicsFi
-	mr       r4, r3
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r5, 0
-	bl       setViewport__Q24Game9CameraMgrFP8Viewporti
-	mr       r3, r29
-	li       r4, 1
-	bl       getViewport__8GraphicsFi
-	mr       r4, r3
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r5, 1
-	bl       setViewport__Q24Game9CameraMgrFP8Viewporti
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       init__Q24Game9CameraMgrFi
-	li       r3, 0x1b0
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8014C440
-	bl       __ct__12LookAtCameraFv
-	lis      r3, __vt__Q34Game15BaseGameSection10ZoomCamera@ha
-	addi     r0, r3, __vt__Q34Game15BaseGameSection10ZoomCamera@l
-	stw      r0, 0(r30)
+	Viewport* olimarViewport = gfx.getViewport(0);
+	olimarViewport->m_camera = m_playCameras[0];
+	olimarViewport->updateCameraAspect();
 
-lbl_8014C440:
-	stw      r30, 0x14c(r31)
-	li       r3, 0x58
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014C45C
-	bl       __ct__8ViewportFv
-	mr       r0, r3
+	Viewport* louieViewport = gfx.getViewport(1);
+	louieViewport->m_camera = m_playCameras[1];
+	louieViewport->updateCameraAspect();
 
-lbl_8014C45C:
-	stw      r0, 0x138(r31)
-	li       r0, 2
-	lwz      r3, 0x138(r31)
-	sth      r0, 0x18(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r30, 4(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r29, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	bl       getRenderModeObj__6SystemFv
-	lfs      f3, lbl_80518498@sda21(r2)
-	lis      r0, 0x4330
-	stw      r30, 0x1c(r1)
-	addi     r4, r1, 8
-	fmr      f4, f3
-	lfs      f0, lbl_8051851C@sda21(r2)
-	stw      r0, 0x18(r1)
-	lfd      f2, lbl_80518520@sda21(r2)
-	fsubs    f4, f4, f0
-	lfd      f1, 0x18(r1)
-	stw      r29, 0x24(r1)
-	fsubs    f1, f1, f2
-	stw      r0, 0x20(r1)
-	lfd      f0, 0x20(r1)
-	fadds    f1, f3, f1
-	stfs     f3, 8(r1)
-	fsubs    f0, f0, f2
-	stfs     f4, 0xc(r1)
-	fadds    f0, f4, f0
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x138(r31)
-	bl       "setRect__8ViewportFR7Rect<f>"
-	lwz      r3, 0x138(r31)
-	lwz      r0, 0x14c(r31)
-	stw      r0, 0x44(r3)
-	bl       updateCameraAspect__8ViewportFv
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	shadowMgr->setViewport(gfx.getViewport(0), 0);
+	shadowMgr->setViewport(gfx.getViewport(1), 1);
+
+	cameraMgr->setViewport(gfx.getViewport(0), 0);
+	cameraMgr->setViewport(gfx.getViewport(1), 1);
+
+	cameraMgr->init(0);
+	m_treasureZoomCamera = new ZoomCamera;
+	m_treasureGetViewport = new Viewport;
+	m_treasureGetViewport->m_vpId = 2;
+
+	Vector2<u16> screenSize = getScreenSize(); 
+	getScreenSize();
+	Vector2f rectSkew = getRectSkew();
+	Vector2f topRight = rectSkew + screenSize;
+	Vector2f bottomLeft = getBottomLeft() + rectSkew;
+	// float moment
+	Rectf rect(bottomLeft.x, bottomLeft.y, topRight.x, topRight.y);
+
+
+	m_treasureGetViewport->setRect(rect);
+	m_treasureGetViewport->m_camera = m_treasureZoomCamera;
+	m_treasureGetViewport->updateCameraAspect();
+
+
+
 }
 
 } // namespace Game
@@ -2015,7 +1699,6 @@ void BaseGameSection::initGenerators()
 {
 	Game::generatorCache->clearGeneratorList();
 	Generator::initialiseSystem();
-	CourseInfo* courseInfo = Game::mapMgr->mCourseInfo;
 
 	GeneratorMgr* mgr  = new GeneratorMgr();
 	Game::generatorMgr = mgr;
@@ -2055,12 +1738,13 @@ void BaseGameSection::initGenerators()
 	void* mgrData[64];
 	char pathBuffer[256];
 	int currentIndex;
-	if (courseInfo) {
+	CourseInfo* courseInfo = Game::mapMgr->m_courseInfo;
+	if (Game::mapMgr->m_courseInfo) {
 		Game::PelletBirthBuffer::clear();
-		Game::generatorCache->loadGenerators(courseInfo->mCourseIndex);
+		Game::generatorCache->loadGenerators(Game::mapMgr->mCourseInfo->mCourseIndex);
 		Game::generatorCache->updateUseList();
 		currentIndex = 0;
-		sprintf(pathBuffer, "%s/defaultgen.txt", courseInfo->mAbeFolder);
+		sprintf(pathBuffer, "%s/defaultgen.txt", Game::mapMgr->mCourseInfo->mAbeFolder);
 		void* data
 		    = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 		if (data) {
@@ -2076,7 +1760,7 @@ void BaseGameSection::initGenerators()
 			mgrData[0]   = data;
 		}
 
-		sprintf(pathBuffer, "/%s/plantsgen.txt", courseInfo->mAbeFolder);
+		sprintf(pathBuffer, "/%s/plantsgen.txt", Game::mapMgr->mCourseInfo->mAbeFolder);
 		if (DVDConvertPathToEntrynum(pathBuffer) != -1) {
 			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
 			                                         nullptr);
@@ -2093,9 +1777,9 @@ void BaseGameSection::initGenerators()
 			}
 		}
 
-		if (Game::playData->courseVisited(courseInfo->mCourseIndex) == false) {
-			Game::playData->visitCourse(courseInfo->mCourseIndex);
-			sprintf(pathBuffer, "%s/initgen.txt", courseInfo->mAbeFolder);
+		if (Game::playData->courseVisited(Game::mapMgr->mCourseInfo->mCourseIndex) == false) {
+			Game::playData->visitCourse(Game::mapMgr->mCourseInfo->mCourseIndex);
+			sprintf(pathBuffer, "%s/initgen.txt", Game::mapMgr->mCourseInfo->mAbeFolder);
 			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
 			                                         nullptr);
 			if (data) {
@@ -2111,11 +1795,11 @@ void BaseGameSection::initGenerators()
 			}
 		}
 		uint dayCount = gameSystem->mTimeMgr->mDayCount;
-		for (int i = 0; i < courseInfo->mLimitGenInfo.m_count; i++) {
-			LimitGen* gen = (LimitGen*)courseInfo->mLimitGenInfo.m_owner.getChildAt(i);
+		for (int i = 0; i < Game::mapMgr->mCourseInfo->mLimitGenInfo.mCount; i++) {
+			LimitGen* gen = (LimitGen*)Game::mapMgr->mCourseInfo->mLimitGenInfo.m_owner.getChildAt(i);
 			if (gen->_18 <= dayCount && dayCount <= gen->_1C) {
-				if (playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.isFlag(i) == false) {
-					sprintf(pathBuffer, "%s/nonloop/%s", courseInfo->mAbeFolder, gen->mName);
+				if (playData->mLimitGen[Game::mapMgr->mCourseInfo->mCourseIndex].mNonLoops.isFlag(i) == false) {
+					sprintf(pathBuffer, "%s/nonloop/%s", Game::mapMgr->mCourseInfo->mAbeFolder, gen->mName);
 					void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
 					                                         nullptr, nullptr);
 					if (data) {
@@ -2132,7 +1816,7 @@ void BaseGameSection::initGenerators()
 						mgrData[currentIndex] = data;
 						mgrs[currentIndex++]  = nonloopMgr;
 						Game::limitGeneratorMgr->addMgr(nonloopMgr);
-						Game::playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.setFlag(i);
+						Game::playData->mLimitGen[Game::mapMgr->mCourseInfo->mCourseIndex].mNonLoops.setFlag(i);
 					}
 				}
 			}

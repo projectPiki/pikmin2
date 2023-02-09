@@ -3,6 +3,12 @@
 
 #include "types.h"
 
+inline Vector2<u16> getScreenSize() {
+    return Vector2<u16>(
+        System::getRenderModeObj()->fbWidth, 
+        System::getRenderModeObj()->efbHeight);
+} // doesn't have to be an inline
+
 struct Graphics;
 
 struct Splitter {
@@ -12,8 +18,8 @@ struct Splitter {
 	// _00 VTBL
 };
 
-struct HorizontalSplitter : public Splitter {
-	HorizontalSplitter(Graphics*);
+struct HorizonalSplitter : public Splitter {
+	HorizonalSplitter(Graphics*);
 
 	virtual void split2(f32); // _08
 

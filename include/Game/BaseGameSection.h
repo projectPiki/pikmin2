@@ -253,8 +253,7 @@ struct BaseGameSection : public BaseHIOSection {
 	TreasureLight::Mgr* mTreasureLightMgr;                     // _F8
 	JKRHeap* mTheExpHeap;                                      // _FC
 	JKRHeap* _100;                                             // _100
-	PlayCamera* mOlimarCamera;                                 // _104
-	PlayCamera* mLouieCamera;                                  // _108
+	PlayCamera* mPlayCameras[2];                               // _104
 	Controller* mControllerP1;                                 // _10C
 	Controller* mControllerP2;                                 // _110
 	int mPlayerMode;                                           // _114
