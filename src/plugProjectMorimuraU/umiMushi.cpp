@@ -740,16 +740,15 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::doUpdate()
 {
-    m_fsm->exec(this);
-    _38C = m_position; // blobing pos??
-    WaterBox* water = m_waterBox;
-    if (water) {
-        _38C.y = *water->getSeaHeightPtr();
-    }
-    else {
-        _38C.y -= 50.0f;
-    }
-} 
+	mFsm->exec(this);
+	mHamonPosition  = mPosition; // blobing pos??
+	WaterBox* water = mWaterBox;
+	if (water) {
+		mHamonPosition.y = *water->getSeaHeightPtr();
+	} else {
+		mHamonPosition.y -= 50.0f;
+	}
+}
 
 /*
  * --INFO--
@@ -758,82 +757,78 @@ void Obj::doUpdate()
  */
 void Obj::doAnimationCullingOff()
 {
-    
-    if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-        curU = this;
-    }
-    EnemyBase::doAnimationCullingOff();
-    m_shadowMgr->update();
-    if (m_targetNavi && _2DC) {
-        if (_300 == 0) {
-            if (m_targetNavi->m_naviIndex == 0) {
-                m_soundObj->startSound(PSSE_EN_UMI_SEARCH_ORIMER, 0);
-            }
-            else {
-                m_soundObj->startSound(PSSE_EN_UMI_SEARCH_LUGIE, 0);
-            }
-        }
-        _300++;
-        if (_300 >= 30) {
-            _300 = 0;
-        }
-    }
-    if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushi) {
-        PSM::EnemyBoss* bossSound = static_cast<PSM::EnemyBoss*>(m_soundObj);
-        checkBoss(bossSound);
-        if (bossSound) {
-            if (m_sticked) {
-                bossSound->postPikiAttack(true);
-            }
-            else {
-                bossSound->postPikiAttack(true);
-            }
-        }
-    }
-    Mtx* worldMtxPtr;
-    if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-        
-        for (int slot = 0; slot < m_mouthSlots.getMax(); slot++) {
-            if (!m_mouthSlots.getStuckCreature(slot)) continue;
 
-            Mtx* mtxs = m_model->m_j3dModel->m_mtxBuffer->m_worldMatrices;
-            int idx = m_jointIndexes[slot];
-            
-            worldMtxPtr = &mtxs[idx];
-            Mtx& worldMtx = *worldMtxPtr;
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		curU = this;
+	}
+	EnemyBase::doAnimationCullingOff();
+	mShadowMgr->update();
+	if (mTargetNavi && _2DC) {
+		if (_300 == 0) {
+			if (mTargetNavi->mNaviIndex == 0) {
+				mSoundObj->startSound(PSSE_EN_UMI_SEARCH_ORIMER, 0);
+			} else {
+				mSoundObj->startSound(PSSE_EN_UMI_SEARCH_LUGIE, 0);
+			}
+		}
+		_300++;
+		if (_300 >= 30) {
+			_300 = 0;
+		}
+	}
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushi) {
+		PSM::EnemyBoss* bossSound = static_cast<PSM::EnemyBoss*>(mSoundObj);
+		checkBoss(bossSound);
+		if (bossSound) {
+			if (mSticked) {
+				bossSound->postPikiAttack(true);
+			} else {
+				bossSound->postPikiAttack(true);
+			}
+		}
+	}
+	Mtx* worldMtxPtr;
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
 
+		for (int slot = 0; slot < mMouthSlots.getMax(); slot++) {
+			if (!mMouthSlots.getStuckCreature(slot))
+				continue;
 
-            Vector3f vec0 (worldMtx[0][0], worldMtx[1][0], worldMtx[2][0]);
-            Vector3f vec1 (worldMtx[0][1], worldMtx[1][1], worldMtx[2][1]);
-            Vector3f vec2 (worldMtx[0][2], worldMtx[1][2], worldMtx[2][2]);
-            // Vector3f vec3 (worldMtx[0][3], worldMtx[1][3], worldMtx[2][3]);
+			Mtx* mtxs = mModel->mJ3dModel->mMtxBuffer->mWorldMatrices;
+			int idx   = mJointIndices[slot];
 
-            float mtxFactor = vec1.normalise();
-            mtxFactor *= 2.0f;
-            if (mtxFactor > 2.0f) {
-                mtxFactor = 2.0f;
-            }
-            PSVECCrossProduct((Vec*)&vec1, (Vec*)&vec2, (Vec*)&vec0);
-            vec0.normalise();
-            PSVECCrossProduct((Vec*)&vec0, (Vec*)&vec1, (Vec*)&vec2);
-            vec2.normalise();
+			worldMtxPtr   = &mtxs[idx];
+			Mtx& worldMtx = *worldMtxPtr;
 
-            worldMtx[0][0] = vec0.x * mtxFactor;
-            worldMtx[1][0] = vec0.y * mtxFactor;
-            worldMtx[2][0] = vec0.z * mtxFactor;
+			Vector3f vec0(worldMtx[0][0], worldMtx[1][0], worldMtx[2][0]);
+			Vector3f vec1(worldMtx[0][1], worldMtx[1][1], worldMtx[2][1]);
+			Vector3f vec2(worldMtx[0][2], worldMtx[1][2], worldMtx[2][2]);
+			// Vector3f vec3 (worldMtx[0][3], worldMtx[1][3], worldMtx[2][3]);
 
-            worldMtx[0][1] = vec1.x * mtxFactor;
-            worldMtx[1][1] = vec1.y * mtxFactor;
-            worldMtx[2][1] = vec1.z * mtxFactor;
+			float mtxFactor = vec1.normalise();
+			mtxFactor *= 2.0f;
+			if (mtxFactor > 2.0f) {
+				mtxFactor = 2.0f;
+			}
+			PSVECCrossProduct((Vec*)&vec1, (Vec*)&vec2, (Vec*)&vec0);
+			vec0.normalise();
+			PSVECCrossProduct((Vec*)&vec0, (Vec*)&vec1, (Vec*)&vec2);
+			vec2.normalise();
 
-            worldMtx[0][2] = vec2.x * mtxFactor;
-            worldMtx[1][2] = vec2.y * mtxFactor;
-            worldMtx[2][2] = vec2.z * mtxFactor;
-            
-        }
-        
-    }
-    curU = nullptr;
+			worldMtx[0][0] = vec0.x * mtxFactor;
+			worldMtx[1][0] = vec0.y * mtxFactor;
+			worldMtx[2][0] = vec0.z * mtxFactor;
+
+			worldMtx[0][1] = vec1.x * mtxFactor;
+			worldMtx[1][1] = vec1.y * mtxFactor;
+			worldMtx[2][1] = vec1.z * mtxFactor;
+
+			worldMtx[0][2] = vec2.x * mtxFactor;
+			worldMtx[1][2] = vec2.y * mtxFactor;
+			worldMtx[2][2] = vec2.z * mtxFactor;
+		}
+	}
+	curU = nullptr;
 }
 
 /*
@@ -868,10 +863,10 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::changeMaterial()
 {
-    J3DModel* model = m_model->m_j3dModel;
-    _310->m_tevBlock->setTevColor(0, _314);
-    model->calcMaterial();
-    _354->animate(30.0f);
+	J3DModel* model = mModel->mJ3dModel;
+	_310->mTevBlock->setTevColor(0, _314);
+	model->calcMaterial();
+	_354->animate(30.0f);
 }
 
 /*
@@ -917,13 +912,13 @@ void Obj::doEndMovie()
  */
 void Obj::getShadowParam(ShadowParam& parms)
 {
-    m_headJoint->getWorldMatrix()->getTranslation(parms.m_position);
-    parms.m_position.y = m_position.y + 5.0f;
-    parms.m_boundingSphere.m_position.x = 0.0f;
-    parms.m_boundingSphere.m_position.y = 1.0f;
-    parms.m_boundingSphere.m_position.z = 0.0f;
-    parms.m_boundingSphere.m_radius = 10.0f;
-    parms.m_size = m_scaleModifier * 80.0f;
+	mHeadJoint->getWorldMatrix()->getTranslation(parms.mPosition);
+	parms.mPosition.y                 = mPosition.y + 5.0f;
+	parms.mBoundingSphere.mPosition.x = 0.0f;
+	parms.mBoundingSphere.mPosition.y = 1.0f;
+	parms.mBoundingSphere.mPosition.z = 0.0f;
+	parms.mBoundingSphere.mRadius     = 10.0f;
+	parms.mSize                       = mScaleModifier * 80.0f;
 }
 
 /*
@@ -933,11 +928,11 @@ void Obj::getShadowParam(ShadowParam& parms)
  */
 void Obj::doSimulation(f32 speed)
 {
-    --_2E0;
-    if (_2E0 < 0) {
-        _2E0 = 0;
-    }
-    EnemyBase::doSimulation(speed);
+	--_2E0;
+	if (_2E0 < 0) {
+		_2E0 = 0;
+	}
+	EnemyBase::doSimulation(speed);
 }
 
 /*
@@ -947,31 +942,26 @@ void Obj::doSimulation(f32 speed)
  */
 bool Obj::damageCallBack(Creature* creature, f32 strength, CollPart* part)
 {
-    if (isEvent(0, EB_IsBittered)) {
-        addDamage(strength, 1.0f);
-        return true;
-    }
-    P2ASSERTLINE(678, creature);
-    creature->isPiki();
-    Piki* piki = static_cast<Piki*>(creature);
-    if (part) {
-        if (piki->isAlive() && piki->isStickTo()) {
-            addDamage(strength, 1.0f);
-            return true;
-        }
-    }
-    else {
-        if (piki->isAlive() && piki->getPosition().y < m_position.y + 50.0f) {
-            addDamage(strength * C_PROPERPARMS.m_damageRate.m_value, 1.0f);
-            return true;
-        }
-    }
-    return false;
-    
+	if (isEvent(0, EB_IsBittered)) {
+		addDamage(strength, 1.0f);
+		return true;
+	}
+	P2ASSERTLINE(678, creature);
+	creature->isPiki();
+	Piki* piki = static_cast<Piki*>(creature);
+	if (part) {
+		if (piki->isAlive() && piki->isStickTo()) {
+			addDamage(strength, 1.0f);
+			return true;
+		}
+	} else {
+		if (piki->isAlive() && piki->getPosition().y < mPosition.y + 50.0f) {
+			addDamage(strength * C_PROPERPARMS.mDamageRate.mValue, 1.0f);
+			return true;
+		}
+	}
+	return false;
 }
-
-
-
 
 /*
  * --INFO--
@@ -980,16 +970,16 @@ bool Obj::damageCallBack(Creature* creature, f32 strength, CollPart* part)
  */
 bool Obj::pressCallBack(Creature* creature, f32 strength, CollPart* part)
 {
-    
-    P2ASSERTLINE(714, creature);
-    if (creature->isPiki()) {
-        Piki* piki = static_cast<Piki*>(creature);
-        
-        if ((int)piki->m_pikiKind == Purple) {
-            strength *= C_PROPERPARMS.m_purpleDamageRate.m_value;
-        }    
-    }
-    return EnemyBase::pressCallBack(creature, strength, part);
+
+	P2ASSERTLINE(714, creature);
+	if (creature->isPiki()) {
+		Piki* piki = static_cast<Piki*>(creature);
+
+		if ((int)piki->mPikiKind == Purple) {
+			strength *= C_PROPERPARMS.mPurpleDamageRate.mValue;
+		}
+	}
+	return EnemyBase::pressCallBack(creature, strength, part);
 }
 
 /*
@@ -999,15 +989,15 @@ bool Obj::pressCallBack(Creature* creature, f32 strength, CollPart* part)
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 strength, CollPart* part)
 {
-    P2ASSERTLINE(733, creature);
-    if (creature->isPiki()) {
-        Piki* piki = static_cast<Piki*>(creature);
-        
-        if ((int)piki->m_pikiKind == Purple) {
-            strength *= C_PROPERPARMS.m_purpleDamageRate.m_value;
-        }    
-    }
-    return EnemyBase::hipdropCallBack(creature, strength, part);
+	P2ASSERTLINE(733, creature);
+	if (creature->isPiki()) {
+		Piki* piki = static_cast<Piki*>(creature);
+
+		if ((int)piki->mPikiKind == Purple) {
+			strength *= C_PROPERPARMS.mPurpleDamageRate.mValue;
+		}
+	}
+	return EnemyBase::hipdropCallBack(creature, strength, part);
 }
 
 /*
@@ -1039,27 +1029,20 @@ void Obj::collisionCallback(CollEvent& event) { EnemyBase::collisionCallback(eve
  */
 void Obj::initMouthSlots()
 {
-    m_mouthSlots.alloc(7);
-    char* mouthSlotNames[7] = 
-    {"kamu_joint1", "kamu_joint2", 
-    "kamu_joint3", "kamu_joint4", 
-    "kamu_joint5", "kamu_joint6", 
-    "kamu_joint7"};
-    m_jointIndexes = new u16[7];
+	mMouthSlots.alloc(7);
+	char* mouthSlotNames[7] = { "kamu_joint1", "kamu_joint2", "kamu_joint3", "kamu_joint4", "kamu_joint5", "kamu_joint6", "kamu_joint7" };
+	mJointIndices           = new u16[7];
 
-    for (int i = 0; i < m_mouthSlots.getMax(); i++) {
-        m_mouthSlots.setup(i, m_model, mouthSlotNames[i]);
-        u32 jointIdx = m_model->getJointIndex(mouthSlotNames[i]);
-        m_jointIndexes[i] = jointIdx;
-        if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-            m_mouthSlots.getSlot(i)->m_radius = 25.0f;
-        }
-        else {
-            m_mouthSlots.getSlot(i)->m_radius = 30.0f;
-        }
-
-    }
-
+	for (int i = 0; i < mMouthSlots.getMax(); i++) {
+		mMouthSlots.setup(i, mModel, mouthSlotNames[i]);
+		u32 jointIdx     = mModel->getJointIndex(mouthSlotNames[i]);
+		mJointIndices[i] = jointIdx;
+		if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+			mMouthSlots.getSlot(i)->mRadius = 25.0f;
+		} else {
+			mMouthSlots.getSlot(i)->mRadius = 30.0f;
+		}
+	}
 }
 
 /*
@@ -1069,11 +1052,11 @@ void Obj::initMouthSlots()
  */
 void Obj::doStartStoneState()
 {
-    EnemyBase::doStartStoneState();
-    m_collTree->getCollPart('head')->m_specialID = 'st__';
-    m_collTree->getCollPart('kuti')->m_specialID = 'st__';
-    m_collTree->getCollPart('ketu')->m_specialID = 'st__';
-    fadeAllEffect();
+	EnemyBase::doStartStoneState();
+	mCollTree->getCollPart('head')->mSpecialID = 'st__';
+	mCollTree->getCollPart('kuti')->mSpecialID = 'st__';
+	mCollTree->getCollPart('ketu')->mSpecialID = 'st__';
+	fadeAllEffect();
 }
 
 /*
@@ -1083,20 +1066,14 @@ void Obj::doStartStoneState()
  */
 void Obj::doFinishStoneState()
 {
-    EnemyBase::doFinishStoneState();
-    m_collTree->getCollPart('head')->m_specialID = '____';
-    m_collTree->getCollPart('kuti')->m_specialID = '____';
-    m_collTree->getCollPart('ketu')->m_specialID = '____';
-    EnemyFunc::flickStickPikmin (
-        this, 
-        C_PARMS->m_general.m_shakeRateMaybe.m_value, 
-        C_PARMS->m_general.m_shakeKnockback.m_value,
-        C_PARMS->m_general.m_shakeDamage.m_value,
-        -1000.0f,
-        nullptr
-    );
-    m_toFlick = 0.0f;
-    createColorEffect();
+	EnemyBase::doFinishStoneState();
+	mCollTree->getCollPart('head')->mSpecialID = '____';
+	mCollTree->getCollPart('kuti')->mSpecialID = '____';
+	mCollTree->getCollPart('ketu')->mSpecialID = '____';
+	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeRateMaybe.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
+	                            C_PARMS->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	mToFlick = 0.0f;
+	createColorEffect();
 }
 
 /*
@@ -1113,10 +1090,10 @@ void Obj::startCarcassMotion() { EnemyBase::startMotion(8, nullptr); }
  */
 void Obj::doGetLifeGaugeParam(LifeGaugeParam& settings)
 {
-    EnemyBase::doGetLifeGaugeParam(settings);
-    if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-        settings.m_position.y = 60.0f;
-    }
+	EnemyBase::doGetLifeGaugeParam(settings);
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		settings.mPosition.y = 60.0f;
+	}
 }
 
 /*
@@ -1127,11 +1104,11 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& settings)
 bool Obj::isReachToGoal(f32 radius)
 {
 	_2F4++;
-    if (_2F4 > 800) {
-        _2F4 = 0;
-        return true;
-    }
-    return sqrDistanceXZ(m_position, _2BC) < SQUARE(radius); // how is this not matching >:O
+	if (_2F4 > 800) {
+		_2F4 = 0;
+		return true;
+	}
+	return sqrDistanceXZ(mPosition, _2BC) < SQUARE(radius); // how is this not matching >:O
 }
 
 /*
@@ -1141,75 +1118,69 @@ bool Obj::isReachToGoal(f32 radius)
  */
 void Obj::walkFunc()
 {
-	f32 speed         = C_PARMS->m_general.m_moveSpeed.m_value;
+	f32 speed         = C_PARMS->mGeneral.mMoveSpeed.mValue;
 	f32 inA1C         = C_PARMS->_A1C;
-	f32 rotationAccel = C_PARMS->m_general.m_rotationalAccel.m_value;
-	f32 rotationSpeed = C_PARMS->m_general.m_rotationalSpeed.m_value;
+	f32 rotationAccel = C_PARMS->mGeneral.mRotationalAccel.mValue;
+	f32 rotationSpeed = C_PARMS->mGeneral.mRotationalSpeed.mValue;
 
-    _2FC += C_PARMS->_A20;
-    if (_2FC > 360.0f) {
-        _2FC -= 360.0f;
-    }
-    
-    f32 somethingRotation = sin(_2FC);
-    f32 idk = inA1C * somethingRotation;
-    if (!C_PARMS->_A10) {
-        idk = 0.0f;
-    }
-    m_faceDir = _2F8;
-    f32 faceDirRads = idk * PI * DEG2RAD;
-    Vector3f position = getPosition();
-    Vector2f stupidVec2 = Vector2f(
-        position.x - _2BC.x, position.z - _2BC.z
-    );
-    f32 tailAngMaybe = JMath::atanTable_.atan2_(stupidVec2.x, stupidVec2.y);
-    tailAngMaybe = roundAng(tailAngMaybe);
-    f32 faceDir = getFaceDir();
-    angDist(tailAngMaybe, faceDir);
+	_2FC += C_PARMS->_A20;
+	if (_2FC > 360.0f) {
+		_2FC -= 360.0f;
+	}
 
-    f32 totalRotation = tailAngMaybe * rotationAccel;
-    f32 rotationSpeedRadians = rotationSpeed * PI * DEG2RAD;
-    f32 rotationAmount = totalRotation;
-    if (rotationSpeedRadians < FABS(totalRotation)) {
-        rotationAmount = rotationSpeedRadians;
-        if (totalRotation <= 0.0f) {
-            totalRotation = -totalRotation;
-        }
-    }
+	f32 somethingRotation = sin(_2FC);
+	f32 idk               = inA1C * somethingRotation;
+	if (!C_PARMS->_A10) {
+		idk = 0.0f;
+	}
+	mFaceDir            = _2F8;
+	f32 faceDirRads     = idk * PI * DEG2RAD;
+	Vector3f position   = getPosition();
+	Vector2f stupidVec2 = Vector2f(position.x - _2BC.x, position.z - _2BC.z);
+	f32 tailAngMaybe    = JMath::atanTable_.atan2_(stupidVec2.x, stupidVec2.y);
+	tailAngMaybe        = roundAng(tailAngMaybe);
+	f32 faceDir         = getFaceDir();
+	angDist(tailAngMaybe, faceDir);
 
-    faceDir = getFaceDir();
-    m_faceDir = roundAng(faceDir + totalRotation);
+	f32 totalRotation        = tailAngMaybe * rotationAccel;
+	f32 rotationSpeedRadians = rotationSpeed * PI * DEG2RAD;
+	f32 rotationAmount       = totalRotation;
+	if (rotationSpeedRadians < FABS(totalRotation)) {
+		rotationAmount = rotationSpeedRadians;
+		if (totalRotation <= 0.0f) {
+			totalRotation = -totalRotation;
+		}
+	}
 
-    m_rotation.y = m_faceDir;
+	faceDir  = getFaceDir();
+	mFaceDir = roundAng(faceDir + totalRotation);
 
-    f32 deltaFaceDir = faceDirRads + m_faceDir;
+	mRotation.y = mFaceDir;
 
-    f32 sinSmth = pikmin2_sinf(deltaFaceDir) * speed;
-    f32 cosSmth = pikmin2_cosf(deltaFaceDir) * speed;
+	f32 deltaFaceDir = faceDirRads + mFaceDir;
 
-    _2F8 = m_faceDir;
+	f32 sinSmth = pikmin2_sinf(deltaFaceDir) * speed;
+	f32 cosSmth = pikmin2_cosf(deltaFaceDir) * speed;
 
-    m_faceDir += faceDirRads;
-    m_rotation.y = m_faceDir;
+	_2F8 = mFaceDir;
 
-    m_targetVelocity = Vector3f(
-        sinSmth, m_targetVelocity.y, cosSmth
-    );
+	mFaceDir += faceDirRads;
+	mRotation.y = mFaceDir;
 
-    _2F0++;
+	mTargetVelocity = Vector3f(sinSmth, mTargetVelocity.y, cosSmth);
 
-    if (_2F0 > 120) {
-        if (sqrDistanceXZ(m_position, _2E4) < SQUARE(30.0f)) {
-            _2E0 = 120;
-            m_targetCreature = nullptr;
-            _2BC = m_homePosition;
-        }
-        _2E4 = m_position;
-        _2F0 = 0;
-    }
-    m_soundObj->startSound(PSSE_EN_UMI_ZURUZURU, 0);
+	_2F0++;
 
-
+	if (_2F0 > 120) {
+		if (sqrDistanceXZ(mPosition, _2E4) < SQUARE(30.0f)) {
+			_2E0            = 120;
+			mTargetCreature = nullptr;
+			_2BC            = mHomePosition;
+		}
+		_2E4 = mPosition;
+		_2F0 = 0;
+	}
+	mSoundObj->startSound(PSSE_EN_UMI_ZURUZURU, 0);
 }
 
 /*
@@ -2012,7 +1983,7 @@ lbl_803859AC:
  * Address:	80385AB8
  * Size:	0001BC
  */
-void Obj::turnFunc()
+f32 Obj::turnFunc()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2153,7 +2124,7 @@ void Obj::resetWalkParm()
  * Address:	80385C88
  * Size:	000248
  */
-void Obj::isChangeNavi()
+bool Obj::isChangeNavi()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2329,7 +2300,7 @@ lbl_80385EA0:
  * Address:	80385ED0
  * Size:	0001D8
  */
-void Obj::isFindTarget()
+bool Obj::isFindTarget()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2470,7 +2441,7 @@ lbl_80386074:
  * Address:	803860A8
  * Size:	000240
  */
-void Obj::isAttackStart()
+bool Obj::isAttackStart()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -2635,7 +2606,7 @@ lbl_803862AC:
  * Address:	803862E8
  * Size:	0001B4
  */
-void Obj::isNeedTurn()
+bool Obj::isNeedTurn()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2761,7 +2732,7 @@ lbl_80386478:
  * Address:	8038649C
  * Size:	00005C
  */
-void Obj::isOutOfTerritory(f32)
+bool Obj::isOutOfTerritory(f32)
 {
 	/*
 	lwz      r4, gameSystem__4Game@sda21(r13)
@@ -2807,7 +2778,7 @@ void Obj::returnHome()
  * Address:	803864F8
  * Size:	00012C
  */
-void Obj::canMove()
+bool Obj::canMove()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2901,7 +2872,7 @@ lbl_80386608:
  * Address:	80386624
  * Size:	000490
  */
-void Obj::outMove()
+bool Obj::outMove()
 {
 	/*
 	stwu     r1, -0xc0(r1)
