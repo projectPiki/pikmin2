@@ -17,7 +17,6 @@ typedef struct OSThreadLink OSThreadLink;
 typedef struct OSMutex OSMutex;
 typedef struct OSMutexQueue OSMutexQueue;
 typedef struct OSMutexLink OSMutexLink;
-typedef struct OSCond OSCond;
 
 // Useful typedef for priority calls - 0 (high) to 31 (low).
 typedef s32 OSPriority;

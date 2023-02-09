@@ -5,11 +5,9 @@
 __declspec(section ".init") extern char _db_stack_end[];
 
 // memory locations for important stuff
-#define OS_CACHED_REGION_PREFIX 0x8000
 #define OS_DBINTERFACE_ADDR     0x40
 #define OS_BI2_DEBUG_ADDRESS    0x800000F4
 #define OS_BI2_DEBUGFLAG_OFFSET 0xC
-#define OS_BASE_CACHED          0x80000000
 #define PAD3_BUTTON_ADDR        0x800030E4
 #define OS_DVD_DEVICECODE       0x800030E6
 #define DEBUGFLAG_ADDR          0x800030E8

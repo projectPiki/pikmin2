@@ -2,7 +2,6 @@
 #include "Dolphin/dsp.h"
 #include "Dolphin/os.h"
 
-#define OS_BASE_CACHED            0x80000000
 #define OS_BUS_CLOCK_SPEED_ADDR   0xF8
 #define OSPhysicalToCached(paddr) ((void*)((u32)(paddr)-OS_BASE_CACHED))
 
