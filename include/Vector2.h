@@ -20,11 +20,6 @@ struct Vector2 {
 		y = val;
 	}
 
-	template <typename O>
-	inline operator Vector2<O>() {
-		return Vector2<O>((O)x, (O)y);
-	} 
-
 	operator JGeometry::TVec2f() { return JGeometry::TVec2f(x, y); }
 
 	inline f32 length() const;

@@ -128,7 +128,7 @@ struct MoviePlayArg {
 	char* mCourseName;                                    // _04
 	char* mPelletName;                                    // _08
 	IDelegate3<MovieConfig*, u32, u32>* mDelegateEnd;     // _0C
-	IDelegate3<MovieConfig*, void*, u32>* mDelegateStart; // _10 /* Second type is unknown. */
+	IDelegate3<MovieConfig*, u32, u32>* mDelegateStart; // _10 /* Second type is unknown. */
 	u32 _14;                                              // _14
 	Vector3f mOrigin;                                     // _18 /* previously called mItemPosition */
 	f32 mAngle;                                           // _24 /* previously called mItemFaceDirection */

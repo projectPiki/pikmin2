@@ -3,8 +3,10 @@
 
 #include "Rect.h"
 #include "types.h"
+#include "CNode.h"
 
 struct Camera;
+struct LookAtCamera;
 struct J2DGrafContext;
 struct J2DOrthoGraph;
 struct Matrixf;

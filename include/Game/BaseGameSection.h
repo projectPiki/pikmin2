@@ -232,14 +232,14 @@ struct BaseGameSection : public BaseHIOSection {
 	// _00 		= VTBL
 	// _00-_48 	= BaseHIOSection
 	// should there not be another 0x4 here in USA (not demo)? ...
-	u32 _48;                                                   // _48
+	u32 mMoney;                                                // _48
 	u32 _4C;                                            	   // _4C
 	BlendCamera* mBlendCamera;                                 // _50
 	f32 mBlendFactor;                                          // _54
 	bool mIsBlendCameraActive;                                 // _58
 	DvdThreadCommand mDvdThreadCommand;                        // _5C
 	IDelegate3<MovieConfig*, u32, u32>* mMovieFinishCallback;  // _C8
-	IDelegate3<MovieConfig*, u32, u32>* mMovieStartCallback; // _CC
+	IDelegate3<MovieConfig*, u32, u32>* mMovieStartCallback;   // _CC
 	BlackFader* mBlackFader;                                   // _D0
 	WipeInFader* mWipeInFader;                                 // _D4
 	WipeOutFader* mWipeOutFader;                               // _D8
@@ -253,7 +253,8 @@ struct BaseGameSection : public BaseHIOSection {
 	TreasureLight::Mgr* mTreasureLightMgr;                     // _F8
 	JKRHeap* mTheExpHeap;                                      // _FC
 	JKRHeap* _100;                                             // _100
-	PlayCamera* mPlayCameras[2];                               // _104
+	PlayCamera* mOlimarCamera;                                 // _104
+	PlayCamera* mLouieCamera;                                  // _108
 	Controller* mControllerP1;                                 // _10C
 	Controller* mControllerP2;                                 // _110
 	int mPlayerMode;                                           // _114
@@ -288,6 +289,6 @@ struct BaseGameSection : public BaseHIOSection {
 };
 } // namespace Game
 
-JKRHeap* theExpHeap;
+extern JKRHeap* theExpHeap;
 
 #endif
