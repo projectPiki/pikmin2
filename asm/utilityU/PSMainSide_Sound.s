@@ -123,8 +123,9 @@ lbl_constructor:
 	.4byte 0x00000000
 .endobj lbl_8049DDD0
 .balign 4
-lbl_8049DDE8:
+.obj lbl_8049DDE8, local
 	.asciz "P2Assert"
+.endobj lbl_8049DDE8
 .balign 4
 	.4byte 0x5053436F
 	.4byte 0x6D6D6F6E
@@ -264,26 +265,20 @@ init$3854:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520D90
 lbl_80520D90:
 	.float 1.0
-.global lbl_80520D94
 lbl_80520D94:
 	.4byte 0x00000000
-.global lbl_80520D98
 lbl_80520D98:
 	.4byte 0x42480000
-.global lbl_80520D9C
 lbl_80520D9C:
 	.4byte 0x41700000
-.global lbl_80520DA0
+.balign 8
 lbl_80520DA0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520DA8
 lbl_80520DA8:
 	.float 0.5
-.global lbl_80520DAC
 lbl_80520DAC:
 	.4byte 0x40490E56
 

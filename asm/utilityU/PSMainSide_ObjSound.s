@@ -483,8 +483,7 @@
 	.4byte eventStop__Q23PSM12DirectorLinkFv
 	.4byte eventFinish__Q23PSM12DirectorLinkFv
 .endobj __vt__Q23PSM9EventLink
-.global __vt__Q23PSM12DirectorLink
-__vt__Q23PSM12DirectorLink:
+.obj __vt__Q23PSM12DirectorLink, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -492,8 +491,8 @@ __vt__Q23PSM12DirectorLink:
 	.4byte eventRestart__Q23PSM12DirectorLinkFv
 	.4byte eventStop__Q23PSM12DirectorLinkFv
 	.4byte eventFinish__Q23PSM12DirectorLinkFv
-.global __vt__Q23PSM19Enemy_SpecialChappy
-__vt__Q23PSM19Enemy_SpecialChappy:
+.endobj __vt__Q23PSM12DirectorLink
+.obj __vt__Q23PSM19Enemy_SpecialChappy, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -547,8 +546,8 @@ __vt__Q23PSM19Enemy_SpecialChappy:
 	.4byte setKilled__Q23PSM9EnemyBaseFv
 	.4byte updateKehai__Q23PSM9EnemyBaseFv
 	.4byte updateBattle__Q23PSM9EnemyBaseFv
-.global __vt__Q23PSM12EnemyBigBoss
-__vt__Q23PSM12EnemyBigBoss:
+.endobj __vt__Q23PSM19Enemy_SpecialChappy
+.obj __vt__Q23PSM12EnemyBigBoss, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -609,8 +608,8 @@ __vt__Q23PSM12EnemyBigBoss:
 	.4byte onAppear__Q23PSM9EnemyBossFv
 	.4byte onAppear1st__Q23PSM12EnemyBigBossFv
 	.4byte onDisappear__Q23PSM9EnemyBossFv
-.global __vt__Q23PSM12EnemyMidBoss
-__vt__Q23PSM12EnemyMidBoss:
+.endobj __vt__Q23PSM12EnemyBigBoss
+.obj __vt__Q23PSM12EnemyMidBoss, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -671,6 +670,7 @@ __vt__Q23PSM12EnemyMidBoss:
 	.4byte onAppear__Q23PSM9EnemyBossFv
 	.4byte onAppear1st__Q23PSM12EnemyMidBossFv
 	.4byte onDisappear__Q23PSM9EnemyBossFv
+.endobj __vt__Q23PSM12EnemyMidBoss
 .global __vt__Q23PSM9EnemyBoss
 __vt__Q23PSM9EnemyBoss:
 	.4byte 0

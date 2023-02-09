@@ -1,13 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80499EE8:
+.obj lbl_80499EE8, local
 	.asciz "heapStatus.cpp"
+.endobj lbl_80499EE8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__8HeapInfo
-__vt__8HeapInfo:
+.obj __vt__8HeapInfo, global
 	.4byte 0
 	.4byte 0
 	.4byte update__4NodeFv
@@ -17,18 +17,20 @@ __vt__8HeapInfo:
 	.4byte 0
 	.4byte "@36@__dt__8HeapInfoFv"
 	.4byte __dt__8HeapInfoFv
+.endobj __vt__8HeapInfo
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520598:
+.obj lbl_80520598, local
 	.asciz "root"
+.endobj lbl_80520598
 .balign 4
-lbl_805205A0:
+.obj lbl_805205A0, local
 	.asciz "EXIT\n"
+.endobj lbl_805205A0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__10HeapStatusFv
-__ct__10HeapStatusFv:
+.fn __ct__10HeapStatusFv, global
 /* 8042AFC4 00427F04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042AFC8 00427F08  7C 08 02 A6 */	mflr r0
 /* 8042AFCC 00427F0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -73,9 +75,9 @@ __ct__10HeapStatusFv:
 /* 8042B068 00427FA8  7C 08 03 A6 */	mtlr r0
 /* 8042B06C 00427FAC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042B070 00427FB0  4E 80 00 20 */	blr 
+.endfn __ct__10HeapStatusFv
 
-.global __dt__8HeapInfoFv
-__dt__8HeapInfoFv:
+.fn __dt__8HeapInfoFv, global
 /* 8042B074 00427FB4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042B078 00427FB8  7C 08 02 A6 */	mflr r0
 /* 8042B07C 00427FBC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -186,31 +188,31 @@ __dt__8HeapInfoFv:
 /* 8042B208 00428148  7C 08 03 A6 */	mtlr r0
 /* 8042B20C 0042814C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042B210 00428150  4E 80 00 20 */	blr 
+.endfn __dt__8HeapInfoFv
 
-.global "getNextChild__18JSUTree<8CoreNode>CFv"
-"getNextChild__18JSUTree<8CoreNode>CFv":
+.fn "getNextChild__18JSUTree<8CoreNode>CFv", weak
 /* 8042B214 00428154  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 8042B218 00428158  28 03 00 00 */	cmplwi r3, 0
 /* 8042B21C 0042815C  4D 82 00 20 */	beqlr 
 /* 8042B220 00428160  38 63 FF F4 */	addi r3, r3, -12
 /* 8042B224 00428164  4E 80 00 20 */	blr 
+.endfn "getNextChild__18JSUTree<8CoreNode>CFv"
 
-.global "__ne__26JSUTreeIterator<8CoreNode>CFPC18JSUTree<8CoreNode>"
-"__ne__26JSUTreeIterator<8CoreNode>CFPC18JSUTree<8CoreNode>":
+.fn "__ne__26JSUTreeIterator<8CoreNode>CFPC18JSUTree<8CoreNode>", weak
 /* 8042B228 00428168  80 03 00 00 */	lwz r0, 0(r3)
 /* 8042B22C 0042816C  7C 60 20 50 */	subf r3, r0, r4
 /* 8042B230 00428170  7C 04 00 50 */	subf r0, r4, r0
 /* 8042B234 00428174  7C 60 03 78 */	or r0, r3, r0
 /* 8042B238 00428178  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8042B23C 0042817C  4E 80 00 20 */	blr 
+.endfn "__ne__26JSUTreeIterator<8CoreNode>CFPC18JSUTree<8CoreNode>"
 
-.global "getEndChild__18JSUTree<8CoreNode>CFv"
-"getEndChild__18JSUTree<8CoreNode>CFv":
+.fn "getEndChild__18JSUTree<8CoreNode>CFv", weak
 /* 8042B240 00428180  38 60 00 00 */	li r3, 0
 /* 8042B244 00428184  4E 80 00 20 */	blr 
+.endfn "getEndChild__18JSUTree<8CoreNode>CFv"
 
-.global "__pp__26JSUTreeIterator<8CoreNode>Fv"
-"__pp__26JSUTreeIterator<8CoreNode>Fv":
+.fn "__pp__26JSUTreeIterator<8CoreNode>Fv", weak
 /* 8042B248 00428188  80 83 00 00 */	lwz r4, 0(r3)
 /* 8042B24C 0042818C  80 84 00 18 */	lwz r4, 0x18(r4)
 /* 8042B250 00428190  28 04 00 00 */	cmplwi r4, 0
@@ -219,28 +221,28 @@ __dt__8HeapInfoFv:
 .L_8042B25C:
 /* 8042B25C 0042819C  90 83 00 00 */	stw r4, 0(r3)
 /* 8042B260 004281A0  4E 80 00 20 */	blr 
+.endfn "__pp__26JSUTreeIterator<8CoreNode>Fv"
 
-.global "getObject__26JSUTreeIterator<8CoreNode>CFv"
-"getObject__26JSUTreeIterator<8CoreNode>CFv":
+.fn "getObject__26JSUTreeIterator<8CoreNode>CFv", weak
 /* 8042B264 004281A4  80 63 00 00 */	lwz r3, 0(r3)
 /* 8042B268 004281A8  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8042B26C 004281AC  4E 80 00 20 */	blr 
+.endfn "getObject__26JSUTreeIterator<8CoreNode>CFv"
 
-.global "__ct__26JSUTreeIterator<8CoreNode>FP18JSUTree<8CoreNode>"
-"__ct__26JSUTreeIterator<8CoreNode>FP18JSUTree<8CoreNode>":
+.fn "__ct__26JSUTreeIterator<8CoreNode>FP18JSUTree<8CoreNode>", weak
 /* 8042B270 004281B0  90 83 00 00 */	stw r4, 0(r3)
 /* 8042B274 004281B4  4E 80 00 20 */	blr 
+.endfn "__ct__26JSUTreeIterator<8CoreNode>FP18JSUTree<8CoreNode>"
 
-.global "getFirstChild__18JSUTree<8CoreNode>CFv"
-"getFirstChild__18JSUTree<8CoreNode>CFv":
+.fn "getFirstChild__18JSUTree<8CoreNode>CFv", weak
 /* 8042B278 004281B8  80 63 00 00 */	lwz r3, 0(r3)
 /* 8042B27C 004281BC  28 03 00 00 */	cmplwi r3, 0
 /* 8042B280 004281C0  4D 82 00 20 */	beqlr 
 /* 8042B284 004281C4  38 63 FF F4 */	addi r3, r3, -12
 /* 8042B288 004281C8  4E 80 00 20 */	blr 
+.endfn "getFirstChild__18JSUTree<8CoreNode>CFv"
 
-.global search__8HeapInfoFP8HeapInfo
-search__8HeapInfoFP8HeapInfo:
+.fn search__8HeapInfoFP8HeapInfo, global
 /* 8042B28C 004281CC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8042B290 004281D0  7C 08 02 A6 */	mflr r0
 /* 8042B294 004281D4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -380,7 +382,9 @@ search__8HeapInfoFP8HeapInfo:
 /* 8042B458 00428398  7C 08 03 A6 */	mtlr r0
 /* 8042B45C 0042839C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8042B460 004283A0  4E 80 00 20 */	blr 
+.endfn search__8HeapInfoFP8HeapInfo
 
-"@36@__dt__8HeapInfoFv":
+.fn "@36@__dt__8HeapInfoFv", weak
 /* 8042B464 004283A4  38 63 FF DC */	addi r3, r3, -36
 /* 8042B468 004283A8  4B FF FC 0C */	b __dt__8HeapInfoFv
+.endfn "@36@__dt__8HeapInfoFv"

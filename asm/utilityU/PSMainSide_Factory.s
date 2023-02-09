@@ -35,65 +35,77 @@ lbl_constructor:
 	.asciz "PSMainSide_Scene.h"
 .endobj lbl_8049CED4
 .balign 4
-lbl_8049CEE8:
+.obj lbl_8049CEE8, local
 	.asciz "kuro_post.bms"
+.endobj lbl_8049CEE8
 .balign 4
-lbl_8049CEF8:
+.obj lbl_8049CEF8, local
 	.asciz "PSCommon.h"
+.endobj lbl_8049CEF8
 .balign 4
-lbl_8049CF04:
+.obj lbl_8049CF04, local
 	.asciz "m_boss.bms"
+.endobj lbl_8049CF04
 .balign 4
-lbl_8049CF10:
+.obj lbl_8049CF10, local
 	.asciz "l_boss.bms"
+.endobj lbl_8049CF10
 .balign 4
-lbl_8049CF1C:
+.obj lbl_8049CF1C, local
 	.asciz "battle_t.bms"
+.endobj lbl_8049CF1C
 .balign 4
-lbl_8049CF2C: # these are structs of five floats
+.obj lbl_8049CF2C, local # these are structs of five floats
 	.float 1500.0
 	.float 479.0
 	.float 707.0
 	.float 808.0
 	.float 1.0
-lbl_8049CF40: # these are structs of five floats
+.endobj lbl_8049CF2C
+.obj lbl_8049CF40, local
 	.float 1500.0
 	.float 479.0
 	.float 707.0
 	.float 808.0
 	.float 1.0
-lbl_8049CF54: # these are structs of five floats
+.endobj lbl_8049CF40
+.obj lbl_8049CF54, local
 	.float 1500.0
 	.float 379.0
 	.float 579.0
 	.float 1031.0
 	.float 0.9
-lbl_8049CF68: # these are structs of five floats
+.endobj lbl_8049CF54
+.obj lbl_8049CF68, local
 	.float 1500.0
 	.float 479.0
 	.float 707.0
 	.float 808.0
 	.float 1.0
-lbl_8049CF7C: # these are structs of five floats
+.endobj lbl_8049CF68
+.obj lbl_8049CF7C, local
 	.float 1500.0
 	.float 379.0
 	.float 479.0
 	.float 1131.0
 	.float 1.0
+.endobj lbl_8049CF7C
 .balign 4
-lbl_8049CF90: # Shift-JIS "乱数位置Avoid"
+.obj lbl_8049CF90, local
 	.4byte 0x97909094
 	.4byte 0x88CA9275
 	.4byte 0x41766F69
 	.2byte 0x6400
+.endobj lbl_8049CF90 # Shift-JIS "乱数位置Avoid"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804EE164:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804EE164, local
 	.4byte .L_8045A578
 	.4byte .L_8045A5CC
 	.4byte .L_8045A5CC
@@ -115,7 +127,8 @@ lbl_804EE164:
 	.4byte .L_8045A618
 	.4byte .L_8045A618
 	.4byte .L_8045A5CC
-lbl_804EE1B8:
+.endobj lbl_804EE164
+.obj lbl_804EE1B8, local
 	.4byte .L_8045AB94
 	.4byte .L_8045AC24
 	.4byte .L_8045ACB4
@@ -131,7 +144,8 @@ lbl_804EE1B8:
 	.4byte .L_8045B4FC
 	.4byte .L_8045B5D0
 	.4byte .L_8045B6A4
-lbl_804EE1F4:
+.endobj lbl_804EE1B8
+.obj lbl_804EE1F4, local
 	.4byte .L_8045C8C8
 	.4byte .L_8045C820
 	.4byte .L_8045C8C8
@@ -145,8 +159,8 @@ lbl_804EE1F4:
 	.4byte .L_8045C868
 	.4byte .L_8045C880
 	.4byte .L_8045C8C8
-.global __vt__Q23PSM10BigBossSeq
-__vt__Q23PSM10BigBossSeq:
+.endobj lbl_804EE1F4
+.obj __vt__Q23PSM10BigBossSeq, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM10BigBossSeqFv
@@ -173,8 +187,8 @@ __vt__Q23PSM10BigBossSeq:
 	.4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
 	.4byte onJump__Q23PSM10BigBossSeqFUs
 	.4byte jumpCheck__Q23PSM10BigBossSeqFUs
-.global __vt__Q23PSM13MiddleBossSeq
-__vt__Q23PSM13MiddleBossSeq:
+.endobj __vt__Q23PSM10BigBossSeq
+.obj __vt__Q23PSM13MiddleBossSeq, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM13MiddleBossSeqFv
@@ -201,8 +215,8 @@ __vt__Q23PSM13MiddleBossSeq:
 	.4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
 	.4byte onJump__Q23PSM13MiddleBossSeqFUs
 	.4byte jumpCheck__Q23PSM13MiddleBossSeqFUs
-.global __vt__Q23PSM8SceneMgr
-__vt__Q23PSM8SceneMgr:
+.endobj __vt__Q23PSM13MiddleBossSeq
+.obj __vt__Q23PSM8SceneMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem8SceneMgrFv
@@ -213,70 +227,83 @@ __vt__Q23PSM8SceneMgr:
 	.4byte newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase
 	.4byte curSceneIsBigBossFloor__Q23PSM8SceneMgrFv
 	.4byte newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo
-.global __vt__Q28PSSystem8SceneMgr
-__vt__Q28PSSystem8SceneMgr:
+.endobj __vt__Q23PSM8SceneMgr
+.obj __vt__Q28PSSystem8SceneMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem8SceneMgrFv
-.global __vt__Q23PSM15EnvSeObjBuilder
-__vt__Q23PSM15EnvSeObjBuilder:
+.endobj __vt__Q28PSSystem8SceneMgr
+.obj __vt__Q23PSM15EnvSeObjBuilder, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM15EnvSeObjBuilderFv
 	.4byte onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase
 	.4byte newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec
-.global __vt__Q23PSM24EnvSe_Perspective_AvoidY
-__vt__Q23PSM24EnvSe_Perspective_AvoidY:
+.endobj __vt__Q23PSM15EnvSeObjBuilder
+.obj __vt__Q23PSM24EnvSe_Perspective_AvoidY, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem9EnvSeBaseFv
 	.4byte play__Q23PSM24EnvSe_Perspective_AvoidYFv
 	.4byte getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv
 	.4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
-.global __vt__Q23PSM12Env_Pollutin
-__vt__Q23PSM12Env_Pollutin:
+.endobj __vt__Q23PSM24EnvSe_Perspective_AvoidY
+.obj __vt__Q23PSM12Env_Pollutin, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem9EnvSeBaseFv
 	.4byte play__Q23PSM12Env_PollutinFv
 	.4byte getCastType__Q23PSM12Env_PollutinFv
 	.4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
+.endobj __vt__Q23PSM12Env_Pollutin
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520C20:
+.obj lbl_80520C20, local
 	.float 1.0
-lbl_80520C24:
+.endobj lbl_80520C20
+.obj lbl_80520C24, local
 	.float 0.0
-lbl_80520C28:
+.endobj lbl_80520C24
+.obj lbl_80520C28, local
 	.float 400.0
-lbl_80520C2C:
+.endobj lbl_80520C28
+.obj lbl_80520C2C, local
 	.float 479.0
-lbl_80520C30:
+.endobj lbl_80520C2C
+.obj lbl_80520C30, local
 	.float 0.0018554
-lbl_80520C34:
+.endobj lbl_80520C30
+.obj lbl_80520C34, local
 	.float 8.554E-4
-lbl_80520C38:
+.endobj lbl_80520C34
+.obj lbl_80520C38, local
 	.float 0.5
-lbl_80520C3C:
+.endobj lbl_80520C38
+.obj lbl_80520C3C, local
 	.float 379.0
-lbl_80520C40:
+.endobj lbl_80520C3C
+.obj lbl_80520C40, local
 	.float 0.28
-lbl_80520C44:
+.endobj lbl_80520C40
+.obj lbl_80520C44, local
 	.float 0.6
-lbl_80520C48:
+.endobj lbl_80520C44
+.obj lbl_80520C48, local
 	.float 10000.0
+.endobj lbl_80520C48
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global play__Q23PSM12Env_PollutinFv
-play__Q23PSM12Env_PollutinFv:
+.fn play__Q23PSM12Env_PollutinFv, global
 /* 80459BD4 00456B14  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80459BD8 00456B18  7C 08 02 A6 */	mflr r0
 /* 80459BDC 00456B1C  3C 80 80 4A */	lis r4, lbl_8049CE68@ha
@@ -447,9 +474,9 @@ play__Q23PSM12Env_PollutinFv:
 /* 80459E3C 00456D7C  7C 08 03 A6 */	mtlr r0
 /* 80459E40 00456D80  38 21 00 20 */	addi r1, r1, 0x20
 /* 80459E44 00456D84  4E 80 00 20 */	blr 
+.endfn play__Q23PSM12Env_PollutinFv
 
-.global play__Q23PSM24EnvSe_Perspective_AvoidYFv
-play__Q23PSM24EnvSe_Perspective_AvoidYFv:
+.fn play__Q23PSM24EnvSe_Perspective_AvoidYFv, global
 /* 80459E48 00456D88  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80459E4C 00456D8C  7C 08 02 A6 */	mflr r0
 /* 80459E50 00456D90  90 01 00 64 */	stw r0, 0x64(r1)
@@ -623,9 +650,9 @@ play__Q23PSM24EnvSe_Perspective_AvoidYFv:
 /* 8045A0BC 00456FFC  7C 08 03 A6 */	mtlr r0
 /* 8045A0C0 00457000  38 21 00 60 */	addi r1, r1, 0x60
 /* 8045A0C4 00457004  4E 80 00 20 */	blr 
+.endfn play__Q23PSM24EnvSe_Perspective_AvoidYFv
 
-.global newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec
-newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec:
+.fn newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec, global
 /* 8045A0C8 00457008  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8045A0CC 0045700C  7C 08 02 A6 */	mflr r0
 /* 8045A0D0 00457010  90 01 00 44 */	stw r0, 0x44(r1)
@@ -667,9 +694,9 @@ newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec:
 /* 8045A15C 0045709C  7C 08 03 A6 */	mtlr r0
 /* 8045A160 004570A0  38 21 00 40 */	addi r1, r1, 0x40
 /* 8045A164 004570A4  4E 80 00 20 */	blr 
+.endfn newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec
 
-.global onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase
-onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase:
+.fn onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase, global
 /* 8045A168 004570A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045A16C 004570AC  80 A3 00 50 */	lwz r5, 0x50(r3)
 /* 8045A170 004570B0  80 03 00 54 */	lwz r0, 0x54(r3)
@@ -693,9 +720,9 @@ onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase:
 /* 8045A1B8 004570F8  D0 04 00 5C */	stfs f0, 0x5c(r4)
 /* 8045A1BC 004570FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045A1C0 00457100  4E 80 00 20 */	blr 
+.endfn onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase
 
-.global __ct__Q23PSM8SceneMgrFv
-__ct__Q23PSM8SceneMgrFv:
+.fn __ct__Q23PSM8SceneMgrFv, global
 /* 8045A1C4 00457104  3C 80 80 4F */	lis r4, __vt__Q28PSSystem8SceneMgr@ha
 /* 8045A1C8 00457108  3C A0 80 4E */	lis r5, __vt__Q26PSGame11PikSceneMgr@ha
 /* 8045A1CC 0045710C  38 04 E3 20 */	addi r0, r4, __vt__Q28PSSystem8SceneMgr@l
@@ -711,9 +738,9 @@ __ct__Q23PSM8SceneMgrFv:
 /* 8045A1F4 00457134  98 C3 00 10 */	stb r6, 0x10(r3)
 /* 8045A1F8 00457138  90 03 00 00 */	stw r0, 0(r3)
 /* 8045A1FC 0045713C  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM8SceneMgrFv
 
-.global newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
-newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo:
+.fn newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo, global
 /* 8045A200 00457140  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045A204 00457144  7C 08 02 A6 */	mflr r0
 /* 8045A208 00457148  38 60 00 88 */	li r3, 0x88
@@ -771,17 +798,17 @@ newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo:
 /* 8045A2CC 0045720C  7C 08 03 A6 */	mtlr r0
 /* 8045A2D0 00457210  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045A2D4 00457214  4E 80 00 20 */	blr 
+.endfn newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
 
-.global curSceneIsBigBossFloor__Q23PSM8SceneMgrFv
-curSceneIsBigBossFloor__Q23PSM8SceneMgrFv:
+.fn curSceneIsBigBossFloor__Q23PSM8SceneMgrFv, global
 /* 8045A2D8 00457218  80 6D 9C 90 */	lwz r3, sBigBoss__Q23PSM12EnemyBigBoss@sda21(r13)
 /* 8045A2DC 0045721C  7C 03 00 D0 */	neg r0, r3
 /* 8045A2E0 00457220  7C 00 1B 78 */	or r0, r0, r3
 /* 8045A2E4 00457224  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8045A2E8 00457228  4E 80 00 20 */	blr 
+.endfn curSceneIsBigBossFloor__Q23PSM8SceneMgrFv
 
-.global newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
-newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo:
+.fn newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo, global
 /* 8045A2EC 0045722C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045A2F0 00457230  7C 08 02 A6 */	mflr r0
 /* 8045A2F4 00457234  3C 60 80 4A */	lis r3, lbl_8049CE68@ha
@@ -906,9 +933,9 @@ newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo:
 /* 8045A4A0 004573E0  7C 08 03 A6 */	mtlr r0
 /* 8045A4A4 004573E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045A4A8 004573E8  4E 80 00 20 */	blr 
+.endfn newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
 
-.global newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo
-newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo:
+.fn newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo, global
 /* 8045A4AC 004573EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045A4B0 004573F0  7C 08 02 A6 */	mflr r0
 /* 8045A4B4 004573F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -990,10 +1017,6 @@ newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo:
 /* 8045A5C4 00457504  90 1D 00 00 */	stw r0, 0(r29)
 /* 8045A5C8 00457508  48 00 00 50 */	b .L_8045A618
 .L_8045A5CC:
-.L_8045A5CC:
-.L_8045A5CC:
-.L_8045A5CC:
-.L_8045A5CC:
 /* 8045A5CC 0045750C  38 60 00 60 */	li r3, 0x60
 /* 8045A5D0 00457510  4B BC 98 D5 */	bl __nw__FUl
 /* 8045A5D4 00457514  7C 60 1B 79 */	or. r0, r3, r3
@@ -1005,7 +1028,6 @@ newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo:
 .L_8045A5EC:
 /* 8045A5EC 0045752C  7C 1D 03 78 */	mr r29, r0
 /* 8045A5F0 00457530  48 00 00 28 */	b .L_8045A618
-.L_8045A5F4:
 .L_8045A5F4:
 /* 8045A5F4 00457534  38 60 00 2C */	li r3, 0x2c
 /* 8045A5F8 00457538  4B BC 98 AD */	bl __nw__FUl
@@ -1054,9 +1076,9 @@ newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo:
 /* 8045A694 004575D4  7C 08 03 A6 */	mtlr r0
 /* 8045A698 004575D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045A69C 004575DC  4E 80 00 20 */	blr 
+.endfn newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo
 
-.global initEnvironmentSe__Q23PSM8SceneMgrFPQ23PSM10Scene_Game
-initEnvironmentSe__Q23PSM8SceneMgrFPQ23PSM10Scene_Game:
+.fn initEnvironmentSe__Q23PSM8SceneMgrFPQ23PSM10Scene_Game, global
 /* 8045A6A0 004575E0  94 21 FE 90 */	stwu r1, -0x170(r1)
 /* 8045A6A4 004575E4  7C 08 02 A6 */	mflr r0
 /* 8045A6A8 004575E8  90 01 01 74 */	stw r0, 0x174(r1)
@@ -2817,9 +2839,9 @@ initEnvironmentSe__Q23PSM8SceneMgrFPQ23PSM10Scene_Game:
 /* 8045BF50 00458E90  7C 08 03 A6 */	mtlr r0
 /* 8045BF54 00458E94  38 21 01 70 */	addi r1, r1, 0x170
 /* 8045BF58 00458E98  4E 80 00 20 */	blr 
+.endfn initEnvironmentSe__Q23PSM8SceneMgrFPQ23PSM10Scene_Game
 
-.global SetBossBgmMuteVol__3PSMFPQ28PSSystem8EnvSeMgrUlf
-SetBossBgmMuteVol__3PSMFPQ28PSSystem8EnvSeMgrUlf:
+.fn SetBossBgmMuteVol__3PSMFPQ28PSSystem8EnvSeMgrUlf, weak
 /* 8045BF5C 00458E9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045BF60 00458EA0  7C 08 02 A6 */	mflr r0
 /* 8045BF64 00458EA4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2858,9 +2880,9 @@ SetBossBgmMuteVol__3PSMFPQ28PSSystem8EnvSeMgrUlf:
 /* 8045BFDC 00458F1C  7C 08 03 A6 */	mtlr r0
 /* 8045BFE0 00458F20  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045BFE4 00458F24  4E 80 00 20 */	blr 
+.endfn SetBossBgmMuteVol__3PSMFPQ28PSSystem8EnvSeMgrUlf
 
-.global SetNoYOfset__3PSMFPQ28PSSystem8EnvSeMgr
-SetNoYOfset__3PSMFPQ28PSSystem8EnvSeMgr:
+.fn SetNoYOfset__3PSMFPQ28PSSystem8EnvSeMgr, weak
 /* 8045BFE8 00458F28  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045BFEC 00458F2C  7C 08 02 A6 */	mflr r0
 /* 8045BFF0 00458F30  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2893,9 +2915,9 @@ SetNoYOfset__3PSMFPQ28PSSystem8EnvSeMgr:
 /* 8045C050 00458F90  7C 08 03 A6 */	mtlr r0
 /* 8045C054 00458F94  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045C058 00458F98  4E 80 00 20 */	blr 
+.endfn SetNoYOfset__3PSMFPQ28PSSystem8EnvSeMgr
 
-.global setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo
-setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo:
+.fn setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo, weak
 /* 8045C05C 00458F9C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8045C060 00458FA0  C0 24 00 04 */	lfs f1, 4(r4)
 /* 8045C064 00458FA4  D0 03 00 50 */	stfs f0, 0x50(r3)
@@ -2907,9 +2929,9 @@ setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo:
 /* 8045C07C 00458FBC  D0 23 00 5C */	stfs f1, 0x5c(r3)
 /* 8045C080 00458FC0  D0 03 00 60 */	stfs f0, 0x60(r3)
 /* 8045C084 00458FC4  4E 80 00 20 */	blr 
+.endfn setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo
 
-.global "__ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3<f>"
-"__ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3<f>":
+.fn "__ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3<f>", weak
 /* 8045C088 00458FC8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045C08C 00458FCC  7C 08 02 A6 */	mflr r0
 /* 8045C090 00458FD0  C0 A4 00 00 */	lfs f5, 0(r4)
@@ -2938,9 +2960,9 @@ setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo:
 /* 8045C0EC 0045902C  7C 08 03 A6 */	mtlr r0
 /* 8045C0F0 00459030  38 21 00 30 */	addi r1, r1, 0x30
 /* 8045C0F4 00459034  4E 80 00 20 */	blr 
+.endfn "__ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3<f>"
 
-.global "__ct__Q29JGeometry8TBox3<f>FRCQ29JGeometry8TBox3<f>"
-"__ct__Q29JGeometry8TBox3<f>FRCQ29JGeometry8TBox3<f>":
+.fn "__ct__Q29JGeometry8TBox3<f>FRCQ29JGeometry8TBox3<f>", weak
 /* 8045C0F8 00459038  C0 24 00 00 */	lfs f1, 0(r4)
 /* 8045C0FC 0045903C  C0 04 00 04 */	lfs f0, 4(r4)
 /* 8045C100 00459040  D0 23 00 00 */	stfs f1, 0(r3)
@@ -2954,9 +2976,9 @@ setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo:
 /* 8045C120 00459060  D0 23 00 10 */	stfs f1, 0x10(r3)
 /* 8045C124 00459064  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 8045C128 00459068  4E 80 00 20 */	blr 
+.endfn "__ct__Q29JGeometry8TBox3<f>FRCQ29JGeometry8TBox3<f>"
 
-.global newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase
-newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase:
+.fn newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase, global
 /* 8045C12C 0045906C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045C130 00459070  7C 08 02 A6 */	mflr r0
 /* 8045C134 00459074  3C 60 80 4A */	lis r3, lbl_8049CE68@ha
@@ -3050,9 +3072,9 @@ newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessMod
 /* 8045C284 004591C4  7C 08 03 A6 */	mtlr r0
 /* 8045C288 004591C8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8045C28C 004591CC  4E 80 00 20 */	blr 
+.endfn newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase
 
-.global __ct__Q23PSM13MiddleBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase
-__ct__Q23PSM13MiddleBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase:
+.fn __ct__Q23PSM13MiddleBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase, global
 /* 8045C290 004591D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C294 004591D4  7C 08 02 A6 */	mflr r0
 /* 8045C298 004591D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3077,9 +3099,9 @@ __ct__Q23PSM13MiddleBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBa
 /* 8045C2E4 00459224  7C 08 03 A6 */	mtlr r0
 /* 8045C2E8 00459228  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C2EC 0045922C  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM13MiddleBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase
 
-.global onJump__Q23PSM13MiddleBossSeqFUs
-onJump__Q23PSM13MiddleBossSeqFUs:
+.fn onJump__Q23PSM13MiddleBossSeqFUs, global
 /* 8045C2F0 00459230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C2F4 00459234  7C 08 02 A6 */	mflr r0
 /* 8045C2F8 00459238  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3122,9 +3144,9 @@ onJump__Q23PSM13MiddleBossSeqFUs:
 /* 8045C378 004592B8  7C 08 03 A6 */	mtlr r0
 /* 8045C37C 004592BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C380 004592C0  4E 80 00 20 */	blr 
+.endfn onJump__Q23PSM13MiddleBossSeqFUs
 
-.global exec__Q23PSM13MiddleBossSeqFv
-exec__Q23PSM13MiddleBossSeqFv:
+.fn exec__Q23PSM13MiddleBossSeqFv, global
 /* 8045C384 004592C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C388 004592C8  7C 08 02 A6 */	mflr r0
 /* 8045C38C 004592CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3142,9 +3164,9 @@ exec__Q23PSM13MiddleBossSeqFv:
 /* 8045C3B8 004592F8  7C 08 03 A6 */	mtlr r0
 /* 8045C3BC 004592FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C3C0 00459300  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM13MiddleBossSeqFv
 
-.global requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
-requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs:
+.fn requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs, global
 /* 8045C3C4 00459304  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C3C8 00459308  7C 08 02 A6 */	mflr r0
 /* 8045C3CC 0045930C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3169,9 +3191,9 @@ requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs:
 /* 8045C414 00459354  7C 08 03 A6 */	mtlr r0
 /* 8045C418 00459358  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C41C 0045935C  4E 80 00 20 */	blr 
+.endfn requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
 
-.global requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
-requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs:
+.fn requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs, global
 /* 8045C420 00459360  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C424 00459364  7C 08 02 A6 */	mflr r0
 /* 8045C428 00459368  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3196,9 +3218,9 @@ requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs:
 /* 8045C470 004593B0  7C 08 03 A6 */	mtlr r0
 /* 8045C474 004593B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C478 004593B8  4E 80 00 20 */	blr 
+.endfn requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
 
-.global requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
-requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs:
+.fn requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs, global
 /* 8045C47C 004593BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C480 004593C0  7C 08 02 A6 */	mflr r0
 /* 8045C484 004593C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3223,9 +3245,9 @@ requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs:
 /* 8045C4CC 0045940C  7C 08 03 A6 */	mtlr r0
 /* 8045C4D0 00459410  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C4D4 00459414  4E 80 00 20 */	blr 
+.endfn requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
 
-.global jumpCheck__Q23PSM13MiddleBossSeqFUs
-jumpCheck__Q23PSM13MiddleBossSeqFUs:
+.fn jumpCheck__Q23PSM13MiddleBossSeqFUs, global
 /* 8045C4D8 00459418  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C4DC 0045941C  7C 08 02 A6 */	mflr r0
 /* 8045C4E0 00459420  38 A0 00 01 */	li r5, 1
@@ -3379,9 +3401,9 @@ jumpCheck__Q23PSM13MiddleBossSeqFUs:
 /* 8045C6E0 00459620  7C 08 03 A6 */	mtlr r0
 /* 8045C6E4 00459624  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C6E8 00459628  4E 80 00 20 */	blr 
+.endfn jumpCheck__Q23PSM13MiddleBossSeqFUs
 
-.global __ct__Q23PSM10BigBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase
-__ct__Q23PSM10BigBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase:
+.fn __ct__Q23PSM10BigBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase, global
 /* 8045C6EC 0045962C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C6F0 00459630  7C 08 02 A6 */	mflr r0
 /* 8045C6F4 00459634  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3409,9 +3431,9 @@ __ct__Q23PSM10BigBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase:
 /* 8045C74C 0045968C  7C 08 03 A6 */	mtlr r0
 /* 8045C750 00459690  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C754 00459694  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM10BigBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase
 
-.global __dt__Q23PSM13MiddleBossSeqFv
-__dt__Q23PSM13MiddleBossSeqFv:
+.fn __dt__Q23PSM13MiddleBossSeqFv, weak
 /* 8045C758 00459698  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C75C 0045969C  7C 08 02 A6 */	mflr r0
 /* 8045C760 004596A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3446,9 +3468,9 @@ __dt__Q23PSM13MiddleBossSeqFv:
 /* 8045C7CC 0045970C  7C 08 03 A6 */	mtlr r0
 /* 8045C7D0 00459710  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C7D4 00459714  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM13MiddleBossSeqFv
 
-.global jumpCheck__Q23PSM10BigBossSeqFUs
-jumpCheck__Q23PSM10BigBossSeqFUs:
+.fn jumpCheck__Q23PSM10BigBossSeqFUs, global
 /* 8045C7D8 00459718  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C7DC 0045971C  7C 08 02 A6 */	mflr r0
 /* 8045C7E0 00459720  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3574,9 +3596,9 @@ jumpCheck__Q23PSM10BigBossSeqFUs:
 /* 8045C980 004598C0  7C 08 03 A6 */	mtlr r0
 /* 8045C984 004598C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045C988 004598C8  4E 80 00 20 */	blr 
+.endfn jumpCheck__Q23PSM10BigBossSeqFUs
 
-.global onJump__Q23PSM10BigBossSeqFUs
-onJump__Q23PSM10BigBossSeqFUs:
+.fn onJump__Q23PSM10BigBossSeqFUs, global
 /* 8045C98C 004598CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045C990 004598D0  7C 08 02 A6 */	mflr r0
 /* 8045C994 004598D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3620,9 +3642,9 @@ onJump__Q23PSM10BigBossSeqFUs:
 /* 8045CA18 00459958  7C 08 03 A6 */	mtlr r0
 /* 8045CA1C 0045995C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CA20 00459960  4E 80 00 20 */	blr 
+.endfn onJump__Q23PSM10BigBossSeqFUs
 
-.global __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr
-__ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr:
+.fn __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr, global
 /* 8045CA24 00459964  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CA28 00459968  7C 08 02 A6 */	mflr r0
 /* 8045CA2C 0045996C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3645,9 +3667,9 @@ __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr:
 /* 8045CA70 004599B0  7C 08 03 A6 */	mtlr r0
 /* 8045CA74 004599B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CA78 004599B8  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr
 
-.global playOk__Q23PSM14PersEnvManagerFPQ23PSM24EnvSe_Perspective_AvoidY
-playOk__Q23PSM14PersEnvManagerFPQ23PSM24EnvSe_Perspective_AvoidY:
+.fn playOk__Q23PSM14PersEnvManagerFPQ23PSM24EnvSe_Perspective_AvoidY, global
 /* 8045CA7C 004599BC  88 C3 00 04 */	lbz r6, 4(r3)
 /* 8045CA80 004599C0  38 E0 00 00 */	li r7, 0
 /* 8045CA84 004599C4  48 00 00 24 */	b .L_8045CAA8
@@ -3667,9 +3689,9 @@ playOk__Q23PSM14PersEnvManagerFPQ23PSM24EnvSe_Perspective_AvoidY:
 /* 8045CAB0 004599F0  41 80 FF D8 */	blt .L_8045CA88
 /* 8045CAB4 004599F4  38 60 00 00 */	li r3, 0
 /* 8045CAB8 004599F8  4E 80 00 20 */	blr 
+.endfn playOk__Q23PSM14PersEnvManagerFPQ23PSM24EnvSe_Perspective_AvoidY
 
-.global exec__Q23PSM14PersEnvManagerFv
-exec__Q23PSM14PersEnvManagerFv:
+.fn exec__Q23PSM14PersEnvManagerFv, global
 /* 8045CABC 004599FC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8045CAC0 00459A00  7C 08 02 A6 */	mflr r0
 /* 8045CAC4 00459A04  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3796,9 +3818,9 @@ exec__Q23PSM14PersEnvManagerFv:
 /* 8045CC74 00459BB4  7C 08 03 A6 */	mtlr r0
 /* 8045CC78 00459BB8  38 21 00 50 */	addi r1, r1, 0x50
 /* 8045CC7C 00459BBC  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM14PersEnvManagerFv
 
-.global __dt__Q23PSM10BigBossSeqFv
-__dt__Q23PSM10BigBossSeqFv: # weak function
+.fn __dt__Q23PSM10BigBossSeqFv, weak
 /* 8045CC80 00459BC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CC84 00459BC4  7C 08 02 A6 */	mflr r0
 /* 8045CC88 00459BC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3837,21 +3859,21 @@ __dt__Q23PSM10BigBossSeqFv: # weak function
 /* 8045CD04 00459C44  7C 08 03 A6 */	mtlr r0
 /* 8045CD08 00459C48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CD0C 00459C4C  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM10BigBossSeqFv
 
-.global getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv
-getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv: # weak function
+.fn getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv, weak
 /* 8045CD10 00459C50  3C 60 70 65 */	lis r3, 0x70657273@ha
 /* 8045CD14 00459C54  38 63 72 73 */	addi r3, r3, 0x70657273@l
 /* 8045CD18 00459C58  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv
 
-.global getCastType__Q23PSM12Env_PollutinFv
-getCastType__Q23PSM12Env_PollutinFv: # weak function
+.fn getCastType__Q23PSM12Env_PollutinFv, weak
 /* 8045CD1C 00459C5C  3C 60 70 6F */	lis r3, 0x706F6C6C@ha
 /* 8045CD20 00459C60  38 63 6C 6C */	addi r3, r3, 0x706F6C6C@l
 /* 8045CD24 00459C64  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM12Env_PollutinFv
 
-.global __dt__Q23PSM9SceneBaseFv
-__dt__Q23PSM9SceneBaseFv: # weak function
+.fn __dt__Q23PSM9SceneBaseFv, weak
 /* 8045CD28 00459C68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CD2C 00459C6C  7C 08 02 A6 */	mflr r0
 /* 8045CD30 00459C70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3877,9 +3899,9 @@ __dt__Q23PSM9SceneBaseFv: # weak function
 /* 8045CD7C 00459CBC  7C 08 03 A6 */	mtlr r0
 /* 8045CD80 00459CC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CD84 00459CC4  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM9SceneBaseFv
 
-.global __ct__Q28PSSystem8EnvSeMgrFv
-__ct__Q28PSSystem8EnvSeMgrFv: # weak function
+.fn __ct__Q28PSSystem8EnvSeMgrFv, weak
 /* 8045CD88 00459CC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CD8C 00459CCC  7C 08 02 A6 */	mflr r0
 /* 8045CD90 00459CD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3901,9 +3923,9 @@ __ct__Q28PSSystem8EnvSeMgrFv: # weak function
 /* 8045CDD0 00459D10  7C 08 03 A6 */	mtlr r0
 /* 8045CDD4 00459D14  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CDD8 00459D18  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem8EnvSeMgrFv
 
-.global __dt__Q23PSM15EnvSeObjBuilderFv
-__dt__Q23PSM15EnvSeObjBuilderFv: # weak function
+.fn __dt__Q23PSM15EnvSeObjBuilderFv, weak
 /* 8045CDDC 00459D1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CDE0 00459D20  7C 08 02 A6 */	mflr r0
 /* 8045CDE4 00459D24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3929,6 +3951,7 @@ __dt__Q23PSM15EnvSeObjBuilderFv: # weak function
 /* 8045CE30 00459D70  7C 08 03 A6 */	mtlr r0
 /* 8045CE34 00459D74  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CE38 00459D78  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM15EnvSeObjBuilderFv
 
 .fn __sinit_PSMainSide_Factory_cpp, local
 /* 8045CE3C 00459D7C  3C 80 80 51 */	lis r4, __float_nan@ha

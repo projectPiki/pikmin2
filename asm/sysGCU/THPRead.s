@@ -14,17 +14,17 @@
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global gTHPReaderDvdAccess
-gTHPReaderDvdAccess:
+.obj gTHPReaderDvdAccess, global
 	.skip 1
+.endobj gTHPReaderDvdAccess
 .balign 4
 # local object
-ReadThreadCreated:
+.obj ReadThreadCreated, local
 	.skip 4
+.endobj ReadThreadCreated
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global CreateReadThread
-CreateReadThread:
+.fn CreateReadThread, global
 /* 8044F58C 0044C4CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F590 0044C4D0  7C 08 02 A6 */	mflr r0
 /* 8044F594 0044C4D4  3C 80 80 45 */	lis r4, Reader__FPv@ha
@@ -67,9 +67,9 @@ CreateReadThread:
 /* 8044F620 0044C560  7C 08 03 A6 */	mtlr r0
 /* 8044F624 0044C564  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F628 0044C568  4E 80 00 20 */	blr 
+.endfn CreateReadThread
 
-.global ReadThreadStart
-ReadThreadStart:
+.fn ReadThreadStart, global
 /* 8044F62C 0044C56C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F630 0044C570  7C 08 02 A6 */	mflr r0
 /* 8044F634 0044C574  90 01 00 14 */	stw r0, 0x14(r1)
@@ -84,9 +84,9 @@ ReadThreadStart:
 /* 8044F654 0044C594  7C 08 03 A6 */	mtlr r0
 /* 8044F658 0044C598  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F65C 0044C59C  4E 80 00 20 */	blr 
+.endfn ReadThreadStart
 
-.global ReadThreadCancel
-ReadThreadCancel:
+.fn ReadThreadCancel, global
 /* 8044F660 0044C5A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F664 0044C5A4  7C 08 02 A6 */	mflr r0
 /* 8044F668 0044C5A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -103,8 +103,9 @@ ReadThreadCancel:
 /* 8044F690 0044C5D0  7C 08 03 A6 */	mtlr r0
 /* 8044F694 0044C5D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F698 0044C5D8  4E 80 00 20 */	blr 
+.endfn ReadThreadCancel
 
-Reader__FPv: #local func
+.fn Reader__FPv, local
 /* 8044F69C 0044C5DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044F6A0 0044C5E0  7C 08 02 A6 */	mflr r0
 /* 8044F6A4 0044C5E4  3C 60 80 51 */	lis r3, ActivePlayer@ha
@@ -170,9 +171,9 @@ Reader__FPv: #local func
 .L_8044F780:
 /* 8044F780 0044C6C0  3B 9C 00 01 */	addi r28, r28, 1
 /* 8044F784 0044C6C4  4B FF FF 3C */	b .L_8044F6C0
+.endfn Reader__FPv
 
-.global PopReadedBuffer
-PopReadedBuffer:
+.fn PopReadedBuffer, global
 /* 8044F788 0044C6C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F78C 0044C6CC  7C 08 02 A6 */	mflr r0
 /* 8044F790 0044C6D0  3C 60 80 50 */	lis r3, ReadedBufferQueue@ha
@@ -186,9 +187,9 @@ PopReadedBuffer:
 /* 8044F7B0 0044C6F0  7C 08 03 A6 */	mtlr r0
 /* 8044F7B4 0044C6F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F7B8 0044C6F8  4E 80 00 20 */	blr 
+.endfn PopReadedBuffer
 
-.global PushReadedBuffer
-PushReadedBuffer:
+.fn PushReadedBuffer, global
 /* 8044F7BC 0044C6FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F7C0 0044C700  7C 08 02 A6 */	mflr r0
 /* 8044F7C4 0044C704  3C A0 80 50 */	lis r5, ReadedBufferQueue@ha
@@ -201,9 +202,9 @@ PushReadedBuffer:
 /* 8044F7E0 0044C720  7C 08 03 A6 */	mtlr r0
 /* 8044F7E4 0044C724  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F7E8 0044C728  4E 80 00 20 */	blr 
+.endfn PushReadedBuffer
 
-.global PopFreeReadBuffer
-PopFreeReadBuffer:
+.fn PopFreeReadBuffer, global
 /* 8044F7EC 0044C72C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F7F0 0044C730  7C 08 02 A6 */	mflr r0
 /* 8044F7F4 0044C734  3C 60 80 50 */	lis r3, FreeReadBufferQueue@ha
@@ -217,9 +218,9 @@ PopFreeReadBuffer:
 /* 8044F814 0044C754  7C 08 03 A6 */	mtlr r0
 /* 8044F818 0044C758  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F81C 0044C75C  4E 80 00 20 */	blr 
+.endfn PopFreeReadBuffer
 
-.global PushFreeReadBuffer
-PushFreeReadBuffer:
+.fn PushFreeReadBuffer, global
 /* 8044F820 0044C760  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F824 0044C764  7C 08 02 A6 */	mflr r0
 /* 8044F828 0044C768  3C A0 80 50 */	lis r5, FreeReadBufferQueue@ha
@@ -232,9 +233,9 @@ PushFreeReadBuffer:
 /* 8044F844 0044C784  7C 08 03 A6 */	mtlr r0
 /* 8044F848 0044C788  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F84C 0044C78C  4E 80 00 20 */	blr 
+.endfn PushFreeReadBuffer
 
-.global PopReadedBuffer2
-PopReadedBuffer2:
+.fn PopReadedBuffer2, global
 /* 8044F850 0044C790  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F854 0044C794  7C 08 02 A6 */	mflr r0
 /* 8044F858 0044C798  3C 60 80 50 */	lis r3, ReadedBufferQueue2@ha
@@ -248,9 +249,9 @@ PopReadedBuffer2:
 /* 8044F878 0044C7B8  7C 08 03 A6 */	mtlr r0
 /* 8044F87C 0044C7BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F880 0044C7C0  4E 80 00 20 */	blr 
+.endfn PopReadedBuffer2
 
-.global PushReadedBuffer2
-PushReadedBuffer2:
+.fn PushReadedBuffer2, global
 /* 8044F884 0044C7C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F888 0044C7C8  7C 08 02 A6 */	mflr r0
 /* 8044F88C 0044C7CC  3C A0 80 50 */	lis r5, ReadedBufferQueue2@ha
@@ -263,3 +264,4 @@ PushReadedBuffer2:
 /* 8044F8A8 0044C7E8  7C 08 03 A6 */	mtlr r0
 /* 8044F8AC 0044C7EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F8B0 0044C7F0  4E 80 00 20 */	blr 
+.endfn PushReadedBuffer2

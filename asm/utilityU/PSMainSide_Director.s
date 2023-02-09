@@ -9,33 +9,49 @@
 	.asciz "lifeD    "
 .endobj lbl_8049CDA4
 .balign 4
-lbl_8049CDB0:
+.obj lbl_8049CDB0, local
 	.asciz "pikminD  "
+.endobj lbl_8049CDB0
 .balign 4
-lbl_8049CDBC:
+.obj lbl_8049CDBC, local
 	.asciz "PSMainSide_Director.cpp"
+.endobj lbl_8049CDBC
 .balign 4
-lbl_8049CDD4:
+.obj lbl_8049CDD4, local
 	.asciz "P2Assert"
+.endobj lbl_8049CDD4
 .balign 4
-lbl_8049CDE0:
+.obj lbl_8049CDE0, local
 	.asciz "PSDirector.h"
+.endobj lbl_8049CDE0
 .balign 4
+.obj lbl_8049CDF0, local
 	.asciz "PSCommon.h"
+.endobj lbl_8049CDF0
 .balign 4
+.obj lbl_8049CDFC, local
 	.asciz "PSGame.h"
+.endobj lbl_8049CDFC
 .balign 4
+.obj lbl_8049CE08, local
 	.asciz "PSScene.h"
+.endobj lbl_8049CE08
 .balign 4
+.obj lbl_8049CE14, local
 	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8049CE14
 .balign 4
+.obj lbl_8049CE38, local
 	.asciz "PSMainSide_ObjSound.h"
+.endobj lbl_8049CE38
 .balign 4
-lbl_8049CE50:
+.obj lbl_8049CE50, local
 	.asciz "pikatkD  "
+.endobj lbl_8049CE50
 .balign 4
-lbl_8049CE5C:
+.obj lbl_8049CE5C, local
 	.asciz "tentionD "
+.endobj lbl_8049CE5C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -55,8 +71,7 @@ lbl_8049CE5C:
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
 .endobj __vt__Q23PSM13ExiteDirector
-.global __vt__Q23PSM17PikAttackDirector
-__vt__Q23PSM17PikAttackDirector:
+.obj __vt__Q23PSM17PikAttackDirector, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM17PikAttackDirectorFv
@@ -71,8 +86,8 @@ __vt__Q23PSM17PikAttackDirector:
 	.4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM19ActorDirector_Kehai
-__vt__Q23PSM19ActorDirector_Kehai:
+.endobj __vt__Q23PSM17PikAttackDirector
+.obj __vt__Q23PSM19ActorDirector_Kehai, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM19ActorDirector_KehaiFv
@@ -91,8 +106,8 @@ __vt__Q23PSM19ActorDirector_Kehai:
 	.4byte onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
 	.4byte getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
 	.4byte getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
-.global __vt__Q23PSM20ActorDirector_Battle
-__vt__Q23PSM20ActorDirector_Battle:
+.endobj __vt__Q23PSM19ActorDirector_Kehai
+.obj __vt__Q23PSM20ActorDirector_Battle, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM20ActorDirector_BattleFv
@@ -111,8 +126,8 @@ __vt__Q23PSM20ActorDirector_Battle:
 	.4byte onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
 	.4byte getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
 	.4byte getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
-.global __vt__Q23PSM19ActorDirector_Enemy
-__vt__Q23PSM19ActorDirector_Enemy:
+.endobj __vt__Q23PSM20ActorDirector_Battle
+.obj __vt__Q23PSM19ActorDirector_Enemy, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM19ActorDirector_EnemyFv
@@ -131,8 +146,8 @@ __vt__Q23PSM19ActorDirector_Enemy:
 	.4byte onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
 	.4byte 0
 	.4byte 0
-.global __vt__Q23PSM20ActorDirector_Scaled
-__vt__Q23PSM20ActorDirector_Scaled:
+.endobj __vt__Q23PSM19ActorDirector_Enemy
+.obj __vt__Q23PSM20ActorDirector_Scaled, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM20ActorDirector_ScaledFv
@@ -149,8 +164,8 @@ __vt__Q23PSM20ActorDirector_Scaled:
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
 	.4byte getNearestDistance__Q23PSM20ActorDirector_ScaledFv
 	.4byte onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature
-.global __vt__Q23PSM21ActorDirector_TrackOn
-__vt__Q23PSM21ActorDirector_TrackOn:
+.endobj __vt__Q23PSM20ActorDirector_Scaled
+.obj __vt__Q23PSM21ActorDirector_TrackOn, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM21ActorDirector_TrackOnFv
@@ -165,15 +180,15 @@ __vt__Q23PSM21ActorDirector_TrackOn:
 	.4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM17ListDirectorActor
-__vt__Q23PSM17ListDirectorActor:
+.endobj __vt__Q23PSM21ActorDirector_TrackOn
+.obj __vt__Q23PSM17ListDirectorActor, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase
 	.4byte onUpdateFromMasterD__Q23PSM17ListDirectorActorFv
 	.4byte onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv
-.global __vt__Q23PSM22TrackOnDirector_Scaled
-__vt__Q23PSM22TrackOnDirector_Scaled:
+.endobj __vt__Q23PSM17ListDirectorActor
+.obj __vt__Q23PSM22TrackOnDirector_Scaled, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM22TrackOnDirector_ScaledFv
@@ -189,8 +204,8 @@ __vt__Q23PSM22TrackOnDirector_Scaled:
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
 	.4byte 0
-.global __vt__Q23PSM22TrackOnDirector_Voting
-__vt__Q23PSM22TrackOnDirector_Voting:
+.endobj __vt__Q23PSM22TrackOnDirector_Scaled
+.obj __vt__Q23PSM22TrackOnDirector_Voting, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM22TrackOnDirector_VotingFv
@@ -205,8 +220,8 @@ __vt__Q23PSM22TrackOnDirector_Voting:
 	.4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM19TrackOnDirectorBase
-__vt__Q23PSM19TrackOnDirectorBase:
+.endobj __vt__Q23PSM22TrackOnDirector_Voting
+.obj __vt__Q23PSM19TrackOnDirectorBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM19TrackOnDirectorBaseFv
@@ -221,8 +236,8 @@ __vt__Q23PSM19TrackOnDirectorBase:
 	.4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM28PikminNumberDirector_AutoBgm
-__vt__Q23PSM28PikminNumberDirector_AutoBgm:
+.endobj __vt__Q23PSM19TrackOnDirectorBase
+.obj __vt__Q23PSM28PikminNumberDirector_AutoBgm, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM28PikminNumberDirector_AutoBgmFv
@@ -237,8 +252,8 @@ __vt__Q23PSM28PikminNumberDirector_AutoBgm:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM20PikminNumberDirector
-__vt__Q23PSM20PikminNumberDirector:
+.endobj __vt__Q23PSM28PikminNumberDirector_AutoBgm
+.obj __vt__Q23PSM20PikminNumberDirector, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM20PikminNumberDirectorFv
@@ -253,8 +268,8 @@ __vt__Q23PSM20PikminNumberDirector:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM25ActorDirector_TempoChange
-__vt__Q23PSM25ActorDirector_TempoChange:
+.endobj __vt__Q23PSM20PikminNumberDirector
+.obj __vt__Q23PSM25ActorDirector_TempoChange, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM25ActorDirector_TempoChangeFv
@@ -269,8 +284,8 @@ __vt__Q23PSM25ActorDirector_TempoChange:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM23TempoChangeDirectorBase
-__vt__Q23PSM23TempoChangeDirectorBase:
+.endobj __vt__Q23PSM25ActorDirector_TempoChange
+.obj __vt__Q23PSM23TempoChangeDirectorBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM23TempoChangeDirectorBaseFv
@@ -285,8 +300,8 @@ __vt__Q23PSM23TempoChangeDirectorBase:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM16SwitcherDirector
-__vt__Q23PSM16SwitcherDirector:
+.endobj __vt__Q23PSM23TempoChangeDirectorBase
+.obj __vt__Q23PSM16SwitcherDirector, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM16SwitcherDirectorFv
@@ -301,8 +316,8 @@ __vt__Q23PSM16SwitcherDirector:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM14DamageDirector
-__vt__Q23PSM14DamageDirector:
+.endobj __vt__Q23PSM16SwitcherDirector
+.obj __vt__Q23PSM14DamageDirector, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM14DamageDirectorFv
@@ -317,8 +332,8 @@ __vt__Q23PSM14DamageDirector:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q23PSM15OneShotDirector
-__vt__Q23PSM15OneShotDirector:
+.endobj __vt__Q23PSM14DamageDirector
+.obj __vt__Q23PSM15OneShotDirector, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM15OneShotDirectorFv
@@ -333,27 +348,34 @@ __vt__Q23PSM15OneShotDirector:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.endobj __vt__Q23PSM15OneShotDirector
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520C00:
+.obj lbl_80520C00, local
 	.float 0.1
-lbl_80520C04:
+.endobj lbl_80520C00
+.obj lbl_80520C04, local
 	.float 5.0
-lbl_80520C08:
+.endobj lbl_80520C04
+.obj lbl_80520C08, local
 	.float 1.0
-lbl_80520C0C:
+.endobj lbl_80520C08
+.obj lbl_80520C0C, local
 	.float 0.7
-lbl_80520C10:
+.endobj lbl_80520C0C
+.obj lbl_80520C10, local
 	.float 0.0
-lbl_80520C14:
+.endobj lbl_80520C10
+.obj lbl_80520C14, local
 	.float 100000.0
-lbl_80520C18:
+.endobj lbl_80520C14
+.obj lbl_80520C18, local
 	.float 1000000.0
+.endobj lbl_80520C18
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q23PSM14DamageDirectorFv
-__ct__Q23PSM14DamageDirectorFv:
+.fn __ct__Q23PSM14DamageDirectorFv, global
 /* 80456AF8 00453A38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456AFC 00453A3C  7C 08 02 A6 */	mflr r0
 /* 80456B00 00453A40  3C 80 80 4A */	lis r4, lbl_8049CD98@ha
@@ -386,9 +408,9 @@ __ct__Q23PSM14DamageDirectorFv:
 /* 80456B6C 00453AAC  7C 08 03 A6 */	mtlr r0
 /* 80456B70 00453AB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456B74 00453AB4  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM14DamageDirectorFv
 
-.global __dt__Q23PSM15OneShotDirectorFv
-__dt__Q23PSM15OneShotDirectorFv:
+.fn __dt__Q23PSM15OneShotDirectorFv, weak
 /* 80456B78 00453AB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456B7C 00453ABC  7C 08 02 A6 */	mflr r0
 /* 80456B80 00453AC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -423,9 +445,9 @@ __dt__Q23PSM15OneShotDirectorFv:
 /* 80456BEC 00453B2C  7C 08 03 A6 */	mtlr r0
 /* 80456BF0 00453B30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456BF4 00453B34  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM15OneShotDirectorFv
 
-.global directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase
-directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase:
+.fn directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase, global
 /* 80456BF8 00453B38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456BFC 00453B3C  7C 08 02 A6 */	mflr r0
 /* 80456C00 00453B40  7C 65 1B 78 */	mr r5, r3
@@ -439,9 +461,9 @@ directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase:
 /* 80456C20 00453B60  7C 08 03 A6 */	mtlr r0
 /* 80456C24 00453B64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456C28 00453B68  4E 80 00 20 */	blr 
+.endfn directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase
 
-.global execInner__Q23PSM14DamageDirectorFv
-execInner__Q23PSM14DamageDirectorFv:
+.fn execInner__Q23PSM14DamageDirectorFv, global
 /* 80456C2C 00453B6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456C30 00453B70  7C 08 02 A6 */	mflr r0
 /* 80456C34 00453B74  7C 64 1B 78 */	mr r4, r3
@@ -458,9 +480,9 @@ execInner__Q23PSM14DamageDirectorFv:
 /* 80456C5C 00453B9C  7C 08 03 A6 */	mtlr r0
 /* 80456C60 00453BA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456C64 00453BA4  4E 80 00 20 */	blr 
+.endfn execInner__Q23PSM14DamageDirectorFv
 
-.global __dt__Q23PSM16SwitcherDirectorFv
-__dt__Q23PSM16SwitcherDirectorFv:
+.fn __dt__Q23PSM16SwitcherDirectorFv, weak
 /* 80456C68 00453BA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456C6C 00453BAC  7C 08 02 A6 */	mflr r0
 /* 80456C70 00453BB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -495,9 +517,9 @@ __dt__Q23PSM16SwitcherDirectorFv:
 /* 80456CDC 00453C1C  7C 08 03 A6 */	mtlr r0
 /* 80456CE0 00453C20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456CE4 00453C24  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM16SwitcherDirectorFv
 
-.global directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
-directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase:
+.fn directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase, global
 /* 80456CE8 00453C28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456CEC 00453C2C  7C 08 02 A6 */	mflr r0
 /* 80456CF0 00453C30  7C 65 1B 78 */	mr r5, r3
@@ -510,9 +532,9 @@ directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase:
 /* 80456D0C 00453C4C  7C 08 03 A6 */	mtlr r0
 /* 80456D10 00453C50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456D14 00453C54  4E 80 00 20 */	blr 
+.endfn directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
 
-.global directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
-directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase:
+.fn directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase, global
 /* 80456D18 00453C58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456D1C 00453C5C  7C 08 02 A6 */	mflr r0
 /* 80456D20 00453C60  7C 65 1B 78 */	mr r5, r3
@@ -525,9 +547,9 @@ directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase:
 /* 80456D3C 00453C7C  7C 08 03 A6 */	mtlr r0
 /* 80456D40 00453C80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456D44 00453C84  4E 80 00 20 */	blr 
+.endfn directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
 
-.global __ct__Q23PSM25ActorDirector_TempoChangeFv
-__ct__Q23PSM25ActorDirector_TempoChangeFv:
+.fn __ct__Q23PSM25ActorDirector_TempoChangeFv, global
 /* 80456D48 00453C88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456D4C 00453C8C  7C 08 02 A6 */	mflr r0
 /* 80456D50 00453C90  3C 80 80 4A */	lis r4, lbl_8049CDA4@ha
@@ -561,9 +583,9 @@ __ct__Q23PSM25ActorDirector_TempoChangeFv:
 /* 80456DC0 00453D00  7C 08 03 A6 */	mtlr r0
 /* 80456DC4 00453D04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456DC8 00453D08  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM25ActorDirector_TempoChangeFv
 
-.global __dt__Q23PSM23TempoChangeDirectorBaseFv
-__dt__Q23PSM23TempoChangeDirectorBaseFv:
+.fn __dt__Q23PSM23TempoChangeDirectorBaseFv, weak
 /* 80456DCC 00453D0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456DD0 00453D10  7C 08 02 A6 */	mflr r0
 /* 80456DD4 00453D14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -602,9 +624,9 @@ __dt__Q23PSM23TempoChangeDirectorBaseFv:
 /* 80456E50 00453D90  7C 08 03 A6 */	mtlr r0
 /* 80456E54 00453D94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456E58 00453D98  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM23TempoChangeDirectorBaseFv
 
-.global execInner__Q23PSM25ActorDirector_TempoChangeFv
-execInner__Q23PSM25ActorDirector_TempoChangeFv:
+.fn execInner__Q23PSM25ActorDirector_TempoChangeFv, global
 /* 80456E5C 00453D9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456E60 00453DA0  7C 08 02 A6 */	mflr r0
 /* 80456E64 00453DA4  7C 64 1B 78 */	mr r4, r3
@@ -621,9 +643,9 @@ execInner__Q23PSM25ActorDirector_TempoChangeFv:
 /* 80456E8C 00453DCC  7C 08 03 A6 */	mtlr r0
 /* 80456E90 00453DD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456E94 00453DD4  4E 80 00 20 */	blr 
+.endfn execInner__Q23PSM25ActorDirector_TempoChangeFv
 
-.global __ct__Q23PSM20PikminNumberDirectorFiUcRQ28PSSystem11DirectedBgm
-__ct__Q23PSM20PikminNumberDirectorFiUcRQ28PSSystem11DirectedBgm:
+.fn __ct__Q23PSM20PikminNumberDirectorFiUcRQ28PSSystem11DirectedBgm, global
 /* 80456E98 00453DD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456E9C 00453DDC  7C 08 02 A6 */	mflr r0
 /* 80456EA0 00453DE0  3C C0 80 4A */	lis r6, lbl_8049CDB0@ha
@@ -654,9 +676,9 @@ __ct__Q23PSM20PikminNumberDirectorFiUcRQ28PSSystem11DirectedBgm:
 /* 80456F04 00453E44  7C 08 03 A6 */	mtlr r0
 /* 80456F08 00453E48  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456F0C 00453E4C  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM20PikminNumberDirectorFiUcRQ28PSSystem11DirectedBgm
 
-.global directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase
-directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase:
+.fn directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase, global
 /* 80456F10 00453E50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456F14 00453E54  7C 08 02 A6 */	mflr r0
 /* 80456F18 00453E58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -676,9 +698,9 @@ directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase:
 /* 80456F50 00453E90  7C 08 03 A6 */	mtlr r0
 /* 80456F54 00453E94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456F58 00453E98  4E 80 00 20 */	blr 
+.endfn directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase
 
-.global directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase
-directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase:
+.fn directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase, global
 /* 80456F5C 00453E9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456F60 00453EA0  7C 08 02 A6 */	mflr r0
 /* 80456F64 00453EA4  7C 65 1B 78 */	mr r5, r3
@@ -690,9 +712,9 @@ directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase:
 /* 80456F7C 00453EBC  7C 08 03 A6 */	mtlr r0
 /* 80456F80 00453EC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456F84 00453EC4  4E 80 00 20 */	blr 
+.endfn directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase
 
-.global execInner__Q23PSM20PikminNumberDirectorFv
-execInner__Q23PSM20PikminNumberDirectorFv:
+.fn execInner__Q23PSM20PikminNumberDirectorFv, global
 /* 80456F88 00453EC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456F8C 00453ECC  7C 08 02 A6 */	mflr r0
 /* 80456F90 00453ED0  7C 64 1B 78 */	mr r4, r3
@@ -709,9 +731,9 @@ execInner__Q23PSM20PikminNumberDirectorFv:
 /* 80456FB8 00453EF8  7C 08 03 A6 */	mtlr r0
 /* 80456FBC 00453EFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80456FC0 00453F00  4E 80 00 20 */	blr 
+.endfn execInner__Q23PSM20PikminNumberDirectorFv
 
-.global __ct__Q23PSM28PikminNumberDirector_AutoBgmFiUcRQ28PSSystem11DirectedBgm
-__ct__Q23PSM28PikminNumberDirector_AutoBgmFiUcRQ28PSSystem11DirectedBgm:
+.fn __ct__Q23PSM28PikminNumberDirector_AutoBgmFiUcRQ28PSSystem11DirectedBgm, global
 /* 80456FC4 00453F04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80456FC8 00453F08  7C 08 02 A6 */	mflr r0
 /* 80456FCC 00453F0C  3C E0 80 4A */	lis r7, lbl_8049CDB0@ha
@@ -749,9 +771,9 @@ __ct__Q23PSM28PikminNumberDirector_AutoBgmFiUcRQ28PSSystem11DirectedBgm:
 /* 8045704C 00453F8C  7C 08 03 A6 */	mtlr r0
 /* 80457050 00453F90  38 21 00 20 */	addi r1, r1, 0x20
 /* 80457054 00453F94  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM28PikminNumberDirector_AutoBgmFiUcRQ28PSSystem11DirectedBgm
 
-.global __dt__Q23PSM20PikminNumberDirectorFv
-__dt__Q23PSM20PikminNumberDirectorFv:
+.fn __dt__Q23PSM20PikminNumberDirectorFv, weak
 /* 80457058 00453F98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045705C 00453F9C  7C 08 02 A6 */	mflr r0
 /* 80457060 00453FA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -790,9 +812,9 @@ __dt__Q23PSM20PikminNumberDirectorFv:
 /* 804570DC 0045401C  7C 08 03 A6 */	mtlr r0
 /* 804570E0 00454020  38 21 00 10 */	addi r1, r1, 0x10
 /* 804570E4 00454024  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM20PikminNumberDirectorFv
 
-.global directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
-directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase:
+.fn directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase, global
 /* 804570E8 00454028  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804570EC 0045402C  7C 08 02 A6 */	mflr r0
 /* 804570F0 00454030  90 01 00 14 */	stw r0, 0x14(r1)
@@ -830,9 +852,9 @@ directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase:
 /* 80457164 004540A4  7C 08 03 A6 */	mtlr r0
 /* 80457168 004540A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045716C 004540AC  4E 80 00 20 */	blr 
+.endfn directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
 
-.global directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
-directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase:
+.fn directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase, global
 /* 80457170 004540B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80457174 004540B4  7C 08 02 A6 */	mflr r0
 /* 80457178 004540B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -870,9 +892,9 @@ directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase:
 /* 804571EC 0045412C  7C 08 03 A6 */	mtlr r0
 /* 804571F0 00454130  38 21 00 10 */	addi r1, r1, 0x10
 /* 804571F4 00454134  4E 80 00 20 */	blr 
+.endfn directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
 
-.global getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
-getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase:
+.fn getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase, global
 /* 804571F8 00454138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804571FC 0045413C  7C 08 02 A6 */	mflr r0
 /* 80457200 00454140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -921,9 +943,9 @@ getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase:
 /* 804572A4 004541E4  7C 08 03 A6 */	mtlr r0
 /* 804572A8 004541E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 804572AC 004541EC  4E 80 00 20 */	blr 
+.endfn getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
 
-.global __ct__Q23PSM19TrackOnDirectorBaseFiPCcll
-__ct__Q23PSM19TrackOnDirectorBaseFiPCcll:
+.fn __ct__Q23PSM19TrackOnDirectorBaseFiPCcll, global
 /* 804572B0 004541F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804572B4 004541F4  7C 08 02 A6 */	mflr r0
 /* 804572B8 004541F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -955,9 +977,9 @@ __ct__Q23PSM19TrackOnDirectorBaseFiPCcll:
 /* 80457320 00454260  7C 08 03 A6 */	mtlr r0
 /* 80457324 00454264  38 21 00 20 */	addi r1, r1, 0x20
 /* 80457328 00454268  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM19TrackOnDirectorBaseFiPCcll
 
-.global onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
-onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack:
+.fn onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack, global
 /* 8045732C 0045426C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80457330 00454270  7C 08 02 A6 */	mflr r0
 /* 80457334 00454274  7C 83 23 78 */	mr r3, r4
@@ -971,9 +993,9 @@ onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack:
 /* 80457354 00454294  7C 08 03 A6 */	mtlr r0
 /* 80457358 00454298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045735C 0045429C  4E 80 00 20 */	blr 
+.endfn onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
 
-.global directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
-directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase:
+.fn directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase, global
 /* 80457360 004542A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80457364 004542A4  7C 08 02 A6 */	mflr r0
 /* 80457368 004542A8  7C 65 1B 78 */	mr r5, r3
@@ -996,9 +1018,9 @@ directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase:
 /* 804573A4 004542E4  7C 08 03 A6 */	mtlr r0
 /* 804573A8 004542E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 804573AC 004542EC  4E 80 00 20 */	blr 
+.endfn directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
 
-.global directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
-directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase:
+.fn directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase, global
 /* 804573B0 004542F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804573B4 004542F4  7C 08 02 A6 */	mflr r0
 /* 804573B8 004542F8  7C 65 1B 78 */	mr r5, r3
@@ -1010,9 +1032,9 @@ directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase:
 /* 804573D0 00454310  7C 08 03 A6 */	mtlr r0
 /* 804573D4 00454314  38 21 00 10 */	addi r1, r1, 0x10
 /* 804573D8 00454318  4E 80 00 20 */	blr 
+.endfn directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
 
-.global execInner__Q23PSM22TrackOnDirector_VotingFv
-execInner__Q23PSM22TrackOnDirector_VotingFv:
+.fn execInner__Q23PSM22TrackOnDirector_VotingFv, global
 /* 804573DC 0045431C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804573E0 00454320  7C 08 02 A6 */	mflr r0
 /* 804573E4 00454324  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1051,9 +1073,9 @@ execInner__Q23PSM22TrackOnDirector_VotingFv:
 /* 80457460 004543A0  7C 08 03 A6 */	mtlr r0
 /* 80457464 004543A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80457468 004543A8  4E 80 00 20 */	blr 
+.endfn execInner__Q23PSM22TrackOnDirector_VotingFv
 
-.global __dt__Q23PSM19TrackOnDirectorBaseFv
-__dt__Q23PSM19TrackOnDirectorBaseFv:
+.fn __dt__Q23PSM19TrackOnDirectorBaseFv, weak
 /* 8045746C 004543AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80457470 004543B0  7C 08 02 A6 */	mflr r0
 /* 80457474 004543B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1092,9 +1114,9 @@ __dt__Q23PSM19TrackOnDirectorBaseFv:
 /* 804574F0 00454430  7C 08 03 A6 */	mtlr r0
 /* 804574F4 00454434  38 21 00 10 */	addi r1, r1, 0x10
 /* 804574F8 00454438  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM19TrackOnDirectorBaseFv
 
-.global underDirection__Q23PSM22TrackOnDirector_ScaledFv
-underDirection__Q23PSM22TrackOnDirector_ScaledFv:
+.fn underDirection__Q23PSM22TrackOnDirector_ScaledFv, global
 /* 804574FC 0045443C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80457500 00454440  7C 08 02 A6 */	mflr r0
 /* 80457504 00454444  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1162,9 +1184,9 @@ underDirection__Q23PSM22TrackOnDirector_ScaledFv:
 /* 804575EC 0045452C  7C 08 03 A6 */	mtlr r0
 /* 804575F0 00454530  38 21 00 30 */	addi r1, r1, 0x30
 /* 804575F4 00454534  4E 80 00 20 */	blr 
+.endfn underDirection__Q23PSM22TrackOnDirector_ScaledFv
 
-.global onUpdateFromMasterD__Q23PSM17ListDirectorActorFv
-onUpdateFromMasterD__Q23PSM17ListDirectorActorFv:
+.fn onUpdateFromMasterD__Q23PSM17ListDirectorActorFv, global
 /* 804575F8 00454538  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804575FC 0045453C  7C 08 02 A6 */	mflr r0
 /* 80457600 00454540  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1202,9 +1224,9 @@ onUpdateFromMasterD__Q23PSM17ListDirectorActorFv:
 /* 80457678 004545B8  7C 08 03 A6 */	mtlr r0
 /* 8045767C 004545BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80457680 004545C0  4E 80 00 20 */	blr 
+.endfn onUpdateFromMasterD__Q23PSM17ListDirectorActorFv
 
-.global __ct__Q23PSM21ActorDirector_TrackOnFPCcill
-__ct__Q23PSM21ActorDirector_TrackOnFPCcill:
+.fn __ct__Q23PSM21ActorDirector_TrackOnFPCcill, global
 /* 80457684 004545C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80457688 004545C8  7C 08 02 A6 */	mflr r0
 /* 8045768C 004545CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1243,9 +1265,9 @@ __ct__Q23PSM21ActorDirector_TrackOnFPCcill:
 /* 80457710 00454650  7C 08 03 A6 */	mtlr r0
 /* 80457714 00454654  38 21 00 20 */	addi r1, r1, 0x20
 /* 80457718 00454658  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM21ActorDirector_TrackOnFPCcill
 
-.global execInner__Q23PSM21ActorDirector_TrackOnFv
-execInner__Q23PSM21ActorDirector_TrackOnFv:
+.fn execInner__Q23PSM21ActorDirector_TrackOnFv, global
 /* 8045771C 0045465C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80457720 00454660  7C 08 02 A6 */	mflr r0
 /* 80457724 00454664  7C 64 1B 78 */	mr r4, r3
@@ -1262,9 +1284,9 @@ execInner__Q23PSM21ActorDirector_TrackOnFv:
 /* 8045774C 0045468C  7C 08 03 A6 */	mtlr r0
 /* 80457750 00454690  38 21 00 10 */	addi r1, r1, 0x10
 /* 80457754 00454694  4E 80 00 20 */	blr 
+.endfn execInner__Q23PSM21ActorDirector_TrackOnFv
 
-.global __ct__Q23PSM20ActorDirector_ScaledFPCciffllUl
-__ct__Q23PSM20ActorDirector_ScaledFPCciffllUl:
+.fn __ct__Q23PSM20ActorDirector_ScaledFPCciffllUl, global
 /* 80457758 00454698  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8045775C 0045469C  7C 08 02 A6 */	mflr r0
 /* 80457760 004546A0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1326,9 +1348,9 @@ __ct__Q23PSM20ActorDirector_ScaledFPCciffllUl:
 /* 80457840 00454780  7C 08 03 A6 */	mtlr r0
 /* 80457844 00454784  38 21 00 40 */	addi r1, r1, 0x40
 /* 80457848 00454788  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM20ActorDirector_ScaledFPCciffllUl
 
-.global __dt__Q23PSM22TrackOnDirector_ScaledFv
-__dt__Q23PSM22TrackOnDirector_ScaledFv:
+.fn __dt__Q23PSM22TrackOnDirector_ScaledFv, weak
 /* 8045784C 0045478C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80457850 00454790  7C 08 02 A6 */	mflr r0
 /* 80457854 00454794  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1371,9 +1393,9 @@ __dt__Q23PSM22TrackOnDirector_ScaledFv:
 /* 804578E0 00454820  7C 08 03 A6 */	mtlr r0
 /* 804578E4 00454824  38 21 00 10 */	addi r1, r1, 0x10
 /* 804578E8 00454828  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM22TrackOnDirector_ScaledFv
 
-.global execInner__Q23PSM20ActorDirector_ScaledFv
-execInner__Q23PSM20ActorDirector_ScaledFv:
+.fn execInner__Q23PSM20ActorDirector_ScaledFv, global
 /* 804578EC 0045482C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804578F0 00454830  7C 08 02 A6 */	mflr r0
 /* 804578F4 00454834  7C 64 1B 78 */	mr r4, r3
@@ -1390,9 +1412,9 @@ execInner__Q23PSM20ActorDirector_ScaledFv:
 /* 8045791C 0045485C  7C 08 03 A6 */	mtlr r0
 /* 80457920 00454860  38 21 00 10 */	addi r1, r1, 0x10
 /* 80457924 00454864  4E 80 00 20 */	blr 
+.endfn execInner__Q23PSM20ActorDirector_ScaledFv
 
-.global getNearestDistance__Q23PSM20ActorDirector_ScaledFv
-getNearestDistance__Q23PSM20ActorDirector_ScaledFv:
+.fn getNearestDistance__Q23PSM20ActorDirector_ScaledFv, global
 /* 80457928 00454868  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 8045792C 0045486C  7C 08 02 A6 */	mflr r0
 /* 80457930 00454870  90 01 01 D4 */	stw r0, 0x1d4(r1)
@@ -1800,9 +1822,9 @@ getNearestDistance__Q23PSM20ActorDirector_ScaledFv:
 /* 80457F30 00454E70  7C 08 03 A6 */	mtlr r0
 /* 80457F34 00454E74  38 21 01 D0 */	addi r1, r1, 0x1d0
 /* 80457F38 00454E78  4E 80 00 20 */	blr 
+.endfn getNearestDistance__Q23PSM20ActorDirector_ScaledFv
 
-.global __ct__Q23PSM19ActorDirector_EnemyFPCcillUl
-__ct__Q23PSM19ActorDirector_EnemyFPCcillUl:
+.fn __ct__Q23PSM19ActorDirector_EnemyFPCcillUl, global
 /* 80457F3C 00454E7C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80457F40 00454E80  7C 08 02 A6 */	mflr r0
 /* 80457F44 00454E84  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1860,9 +1882,9 @@ __ct__Q23PSM19ActorDirector_EnemyFPCcillUl:
 /* 80458014 00454F54  7C 08 03 A6 */	mtlr r0
 /* 80458018 00454F58  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045801C 00454F5C  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM19ActorDirector_EnemyFPCcillUl
 
-.global __dt__Q23PSM20ActorDirector_ScaledFv
-__dt__Q23PSM20ActorDirector_ScaledFv:
+.fn __dt__Q23PSM20ActorDirector_ScaledFv, weak
 /* 80458020 00454F60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458024 00454F64  7C 08 02 A6 */	mflr r0
 /* 80458028 00454F68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1909,14 +1931,14 @@ __dt__Q23PSM20ActorDirector_ScaledFv:
 /* 804580C4 00455004  7C 08 03 A6 */	mtlr r0
 /* 804580C8 00455008  38 21 00 10 */	addi r1, r1, 0x10
 /* 804580CC 0045500C  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM20ActorDirector_ScaledFv
 
-.global onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
-onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature:
+.fn onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature, global
 /* 804580D0 00455010  90 83 00 68 */	stw r4, 0x68(r3)
 /* 804580D4 00455014  4E 80 00 20 */	blr 
+.endfn onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
 
-.global underDirection__Q23PSM19ActorDirector_EnemyFv
-underDirection__Q23PSM19ActorDirector_EnemyFv:
+.fn underDirection__Q23PSM19ActorDirector_EnemyFv, global
 /* 804580D8 00455018  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804580DC 0045501C  7C 08 02 A6 */	mflr r0
 /* 804580E0 00455020  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2042,9 +2064,9 @@ underDirection__Q23PSM19ActorDirector_EnemyFv:
 /* 8045829C 004551DC  7C 08 03 A6 */	mtlr r0
 /* 804582A0 004551E0  38 21 00 30 */	addi r1, r1, 0x30
 /* 804582A4 004551E4  4E 80 00 20 */	blr 
+.endfn underDirection__Q23PSM19ActorDirector_EnemyFv
 
-.global getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
-getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase:
+.fn getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase, global
 /* 804582A8 004551E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804582AC 004551EC  7C 08 02 A6 */	mflr r0
 /* 804582B0 004551F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2062,9 +2084,9 @@ getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase:
 /* 804582E0 00455220  7C 08 03 A6 */	mtlr r0
 /* 804582E4 00455224  38 21 00 10 */	addi r1, r1, 0x10
 /* 804582E8 00455228  4E 80 00 20 */	blr 
+.endfn getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
 
-.global getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
-getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase:
+.fn getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase, global
 /* 804582EC 0045522C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804582F0 00455230  7C 08 02 A6 */	mflr r0
 /* 804582F4 00455234  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2082,9 +2104,9 @@ getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase:
 /* 80458324 00455264  7C 08 03 A6 */	mtlr r0
 /* 80458328 00455268  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045832C 0045526C  4E 80 00 20 */	blr 
+.endfn getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
 
-.global getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
-getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase:
+.fn getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase, global
 /* 80458330 00455270  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458334 00455274  7C 08 02 A6 */	mflr r0
 /* 80458338 00455278  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2102,9 +2124,9 @@ getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase:
 /* 80458368 004552A8  7C 08 03 A6 */	mtlr r0
 /* 8045836C 004552AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80458370 004552B0  4E 80 00 20 */	blr 
+.endfn getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
 
-.global getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
-getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase:
+.fn getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase, global
 /* 80458374 004552B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458378 004552B8  7C 08 02 A6 */	mflr r0
 /* 8045837C 004552BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2122,9 +2144,9 @@ getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase:
 /* 804583AC 004552EC  7C 08 03 A6 */	mtlr r0
 /* 804583B0 004552F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 804583B4 004552F4  4E 80 00 20 */	blr 
+.endfn getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
 
-.global __ct__Q23PSM17PikAttackDirectorFi
-__ct__Q23PSM17PikAttackDirectorFi:
+.fn __ct__Q23PSM17PikAttackDirectorFi, global
 /* 804583B8 004552F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804583BC 004552FC  7C 08 02 A6 */	mflr r0
 /* 804583C0 00455300  3C A0 80 4A */	lis r5, lbl_8049CE50@ha
@@ -2156,9 +2178,9 @@ __ct__Q23PSM17PikAttackDirectorFi:
 /* 80458428 00455368  7C 08 03 A6 */	mtlr r0
 /* 8045842C 0045536C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80458430 00455370  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM17PikAttackDirectorFi
 
-.global __ct__Q23PSM13ExiteDirectorFi
-__ct__Q23PSM13ExiteDirectorFi:
+.fn __ct__Q23PSM13ExiteDirectorFi, global
 /* 80458434 00455374  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458438 00455378  7C 08 02 A6 */	mflr r0
 /* 8045843C 0045537C  3C A0 80 4A */	lis r5, lbl_8049CE5C@ha
@@ -2190,9 +2212,9 @@ __ct__Q23PSM13ExiteDirectorFi:
 /* 804584A4 004553E4  7C 08 03 A6 */	mtlr r0
 /* 804584A8 004553E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 804584AC 004553EC  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM13ExiteDirectorFi
 
-.global __ct__Q23PSM15DirectorUpdatorFPQ28PSSystem12DirectorBaseUcQ33PSM15DirectorUpdator4Type
-__ct__Q23PSM15DirectorUpdatorFPQ28PSSystem12DirectorBaseUcQ33PSM15DirectorUpdator4Type:
+.fn __ct__Q23PSM15DirectorUpdatorFPQ28PSSystem12DirectorBaseUcQ33PSM15DirectorUpdator4Type, global
 /* 804584B0 004553F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804584B4 004553F4  7C 08 02 A6 */	mflr r0
 /* 804584B8 004553F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2220,9 +2242,9 @@ __ct__Q23PSM15DirectorUpdatorFPQ28PSSystem12DirectorBaseUcQ33PSM15DirectorUpdato
 /* 8045850C 0045544C  7C 08 03 A6 */	mtlr r0
 /* 80458510 00455450  38 21 00 10 */	addi r1, r1, 0x10
 /* 80458514 00455454  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM15DirectorUpdatorFPQ28PSSystem12DirectorBaseUcQ33PSM15DirectorUpdator4Type
 
-.global directOn__Q23PSM15DirectorUpdatorFUc
-directOn__Q23PSM15DirectorUpdatorFUc:
+.fn directOn__Q23PSM15DirectorUpdatorFUc, global
 /* 80458518 00455458  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 8045851C 0045545C  38 80 00 01 */	li r4, 1
 /* 80458520 00455460  88 A3 00 09 */	lbz r5, 9(r3)
@@ -2236,9 +2258,9 @@ directOn__Q23PSM15DirectorUpdatorFUc:
 /* 80458540 00455480  7C 00 23 78 */	or r0, r0, r4
 /* 80458544 00455484  98 03 00 09 */	stb r0, 9(r3)
 /* 80458548 00455488  4E 80 00 20 */	blr 
+.endfn directOn__Q23PSM15DirectorUpdatorFUc
 
-.global directOff__Q23PSM15DirectorUpdatorFUc
-directOff__Q23PSM15DirectorUpdatorFUc:
+.fn directOff__Q23PSM15DirectorUpdatorFUc, global
 /* 8045854C 0045548C  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 80458550 00455490  38 80 00 01 */	li r4, 1
 /* 80458554 00455494  88 A3 00 09 */	lbz r5, 9(r3)
@@ -2252,9 +2274,9 @@ directOff__Q23PSM15DirectorUpdatorFUc:
 /* 80458574 004554B4  7C 00 23 78 */	or r0, r0, r4
 /* 80458578 004554B8  98 03 00 09 */	stb r0, 9(r3)
 /* 8045857C 004554BC  4E 80 00 20 */	blr 
+.endfn directOff__Q23PSM15DirectorUpdatorFUc
 
-.global frameEndWork__Q23PSM15DirectorUpdatorFv
-frameEndWork__Q23PSM15DirectorUpdatorFv:
+.fn frameEndWork__Q23PSM15DirectorUpdatorFv, global
 /* 80458580 004554C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458584 004554C4  7C 08 02 A6 */	mflr r0
 /* 80458588 004554C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2342,9 +2364,9 @@ frameEndWork__Q23PSM15DirectorUpdatorFv:
 /* 804586A0 004555E0  7C 08 03 A6 */	mtlr r0
 /* 804586A4 004555E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 804586A8 004555E8  4E 80 00 20 */	blr 
+.endfn frameEndWork__Q23PSM15DirectorUpdatorFv
 
-.global PSMGetBattleDirector__FUc
-PSMGetBattleDirector__FUc:
+.fn PSMGetBattleDirector__FUc, global
 /* 804586AC 004555EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804586B0 004555F0  7C 08 02 A6 */	mflr r0
 /* 804586B4 004555F4  3C 80 80 4A */	lis r4, lbl_8049CD98@ha
@@ -2437,9 +2459,9 @@ PSMGetBattleDirector__FUc:
 /* 804587E8 00455728  7C 08 03 A6 */	mtlr r0
 /* 804587EC 0045572C  38 21 00 20 */	addi r1, r1, 0x20
 /* 804587F0 00455730  4E 80 00 20 */	blr 
+.endfn PSMGetBattleDirector__FUc
 
-.global PSMGetKehaiD__Fv
-PSMGetKehaiD__Fv:
+.fn PSMGetKehaiD__Fv, global
 /* 804587F4 00455734  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804587F8 00455738  7C 08 02 A6 */	mflr r0
 /* 804587FC 0045573C  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -2514,9 +2536,9 @@ PSMGetKehaiD__Fv:
 /* 804588F0 00455830  7C 08 03 A6 */	mtlr r0
 /* 804588F4 00455834  38 21 00 10 */	addi r1, r1, 0x10
 /* 804588F8 00455838  4E 80 00 20 */	blr 
+.endfn PSMGetKehaiD__Fv
 
-.global PSMGetBattleD__Fv
-PSMGetBattleD__Fv:
+.fn PSMGetBattleD__Fv, global
 /* 804588FC 0045583C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458900 00455840  7C 08 02 A6 */	mflr r0
 /* 80458904 00455844  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -2591,9 +2613,9 @@ PSMGetBattleD__Fv:
 /* 804589F8 00455938  7C 08 03 A6 */	mtlr r0
 /* 804589FC 0045593C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80458A00 00455940  4E 80 00 20 */	blr 
+.endfn PSMGetBattleD__Fv
 
-.global PSMGetEventD__Fv
-PSMGetEventD__Fv:
+.fn PSMGetEventD__Fv, global
 /* 80458A04 00455944  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458A08 00455948  7C 08 02 A6 */	mflr r0
 /* 80458A0C 0045594C  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -2668,9 +2690,9 @@ PSMGetEventD__Fv:
 /* 80458B00 00455A40  7C 08 03 A6 */	mtlr r0
 /* 80458B04 00455A44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80458B08 00455A48  4E 80 00 20 */	blr 
+.endfn PSMGetEventD__Fv
 
-.global PSMGetOtakaraEventD__Fv
-PSMGetOtakaraEventD__Fv:
+.fn PSMGetOtakaraEventD__Fv, global
 /* 80458B0C 00455A4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458B10 00455A50  7C 08 02 A6 */	mflr r0
 /* 80458B14 00455A54  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -2738,9 +2760,9 @@ PSMGetOtakaraEventD__Fv:
 /* 80458BF0 00455B30  7C 08 03 A6 */	mtlr r0
 /* 80458BF4 00455B34  38 21 00 10 */	addi r1, r1, 0x10
 /* 80458BF8 00455B38  4E 80 00 20 */	blr 
+.endfn PSMGetOtakaraEventD__Fv
 
-.global PSMGetGroundD__Fv
-PSMGetGroundD__Fv:
+.fn PSMGetGroundD__Fv, global
 /* 80458BFC 00455B3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458C00 00455B40  7C 08 02 A6 */	mflr r0
 /* 80458C04 00455B44  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -2853,9 +2875,9 @@ PSMGetGroundD__Fv:
 /* 80458D84 00455CC4  7C 08 03 A6 */	mtlr r0
 /* 80458D88 00455CC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80458D8C 00455CCC  4E 80 00 20 */	blr 
+.endfn PSMGetGroundD__Fv
 
-.global PSMGetPikminNumD__Fv
-PSMGetPikminNumD__Fv:
+.fn PSMGetPikminNumD__Fv, global
 /* 80458D90 00455CD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458D94 00455CD4  7C 08 02 A6 */	mflr r0
 /* 80458D98 00455CD8  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -2923,9 +2945,9 @@ PSMGetPikminNumD__Fv:
 /* 80458E74 00455DB4  7C 08 03 A6 */	mtlr r0
 /* 80458E78 00455DB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80458E7C 00455DBC  4E 80 00 20 */	blr 
+.endfn PSMGetPikminNumD__Fv
 
-.global PSMGetDamageD__Fv
-PSMGetDamageD__Fv:
+.fn PSMGetDamageD__Fv, global
 /* 80458E80 00455DC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458E84 00455DC4  7C 08 02 A6 */	mflr r0
 /* 80458E88 00455DC8  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -2993,9 +3015,9 @@ PSMGetDamageD__Fv:
 /* 80458F64 00455EA4  7C 08 03 A6 */	mtlr r0
 /* 80458F68 00455EA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80458F6C 00455EAC  4E 80 00 20 */	blr 
+.endfn PSMGetDamageD__Fv
 
-.global PSMGetLifeD__Fv
-PSMGetLifeD__Fv:
+.fn PSMGetLifeD__Fv, global
 /* 80458F70 00455EB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80458F74 00455EB4  7C 08 02 A6 */	mflr r0
 /* 80458F78 00455EB8  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -3063,9 +3085,9 @@ PSMGetLifeD__Fv:
 /* 80459054 00455F94  7C 08 03 A6 */	mtlr r0
 /* 80459058 00455F98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045905C 00455F9C  4E 80 00 20 */	blr 
+.endfn PSMGetLifeD__Fv
 
-.global PSMGetBeedamaForOrimerD__Fv
-PSMGetBeedamaForOrimerD__Fv:
+.fn PSMGetBeedamaForOrimerD__Fv, global
 /* 80459060 00455FA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459064 00455FA4  7C 08 02 A6 */	mflr r0
 /* 80459068 00455FA8  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -3133,9 +3155,9 @@ PSMGetBeedamaForOrimerD__Fv:
 /* 80459144 00456084  7C 08 03 A6 */	mtlr r0
 /* 80459148 00456088  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045914C 0045608C  4E 80 00 20 */	blr 
+.endfn PSMGetBeedamaForOrimerD__Fv
 
-.global PSMGetBeedamaForLugieD__Fv
-PSMGetBeedamaForLugieD__Fv:
+.fn PSMGetBeedamaForLugieD__Fv, global
 /* 80459150 00456090  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459154 00456094  7C 08 02 A6 */	mflr r0
 /* 80459158 00456098  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -3203,9 +3225,9 @@ PSMGetBeedamaForLugieD__Fv:
 /* 80459234 00456174  7C 08 03 A6 */	mtlr r0
 /* 80459238 00456178  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045923C 0045617C  4E 80 00 20 */	blr 
+.endfn PSMGetBeedamaForLugieD__Fv
 
-.global PSMGetIchouForOrimerD__Fv
-PSMGetIchouForOrimerD__Fv:
+.fn PSMGetIchouForOrimerD__Fv, global
 /* 80459240 00456180  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459244 00456184  7C 08 02 A6 */	mflr r0
 /* 80459248 00456188  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -3273,9 +3295,9 @@ PSMGetIchouForOrimerD__Fv:
 /* 80459324 00456264  7C 08 03 A6 */	mtlr r0
 /* 80459328 00456268  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045932C 0045626C  4E 80 00 20 */	blr 
+.endfn PSMGetIchouForOrimerD__Fv
 
-.global PSMGetIchouForLugieD__Fv
-PSMGetIchouForLugieD__Fv:
+.fn PSMGetIchouForLugieD__Fv, global
 /* 80459330 00456270  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459334 00456274  7C 08 02 A6 */	mflr r0
 /* 80459338 00456278  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -3343,9 +3365,9 @@ PSMGetIchouForLugieD__Fv:
 /* 80459414 00456354  7C 08 03 A6 */	mtlr r0
 /* 80459418 00456358  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045941C 0045635C  4E 80 00 20 */	blr 
+.endfn PSMGetIchouForLugieD__Fv
 
-.global PSMGetPikiBattleD__Fv
-PSMGetPikiBattleD__Fv:
+.fn PSMGetPikiBattleD__Fv, global
 /* 80459420 00456360  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459424 00456364  7C 08 02 A6 */	mflr r0
 /* 80459428 00456368  3C 60 80 4A */	lis r3, lbl_8049CD98@ha
@@ -3413,9 +3435,9 @@ PSMGetPikiBattleD__Fv:
 /* 80459504 00456444  7C 08 03 A6 */	mtlr r0
 /* 80459508 00456448  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045950C 0045644C  4E 80 00 20 */	blr 
+.endfn PSMGetPikiBattleD__Fv
 
-.global __dt__Q23PSM13ExiteDirectorFv
-__dt__Q23PSM13ExiteDirectorFv:
+.fn __dt__Q23PSM13ExiteDirectorFv, weak
 /* 80459510 00456450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459514 00456454  7C 08 02 A6 */	mflr r0
 /* 80459518 00456458  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3458,23 +3480,23 @@ __dt__Q23PSM13ExiteDirectorFv:
 /* 804595A4 004564E4  7C 08 03 A6 */	mtlr r0
 /* 804595A8 004564E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 804595AC 004564EC  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM13ExiteDirectorFv
 
-.global onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature
-onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature:
+.fn onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature, weak
 /* 804595B0 004564F0  4E 80 00 20 */	blr 
+.endfn onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature
 
-.global is1PGame__Q23PSM11ObjCalcBaseFv
-is1PGame__Q23PSM11ObjCalcBaseFv:
+.fn is1PGame__Q23PSM11ObjCalcBaseFv, weak
 /* 804595B4 004564F4  38 60 00 01 */	li r3, 1
 /* 804595B8 004564F8  4E 80 00 20 */	blr 
+.endfn is1PGame__Q23PSM11ObjCalcBaseFv
 
-.global is2PBattle__Q23PSM16OtakaraEventLinkFv
-is2PBattle__Q23PSM16OtakaraEventLinkFv:
+.fn is2PBattle__Q23PSM16OtakaraEventLinkFv, weak
 /* 804595BC 004564FC  38 60 00 00 */	li r3, 0
 /* 804595C0 00456500  4E 80 00 20 */	blr 
+.endfn is2PBattle__Q23PSM16OtakaraEventLinkFv
 
-.global __dt__Q23PSM17PikAttackDirectorFv
-__dt__Q23PSM17PikAttackDirectorFv:
+.fn __dt__Q23PSM17PikAttackDirectorFv, weak
 /* 804595C4 00456504  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804595C8 00456508  7C 08 02 A6 */	mflr r0
 /* 804595CC 0045650C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3517,9 +3539,9 @@ __dt__Q23PSM17PikAttackDirectorFv:
 /* 80459658 00456598  7C 08 03 A6 */	mtlr r0
 /* 8045965C 0045659C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80459660 004565A0  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM17PikAttackDirectorFv
 
-.global __dt__Q23PSM19ActorDirector_KehaiFv
-__dt__Q23PSM19ActorDirector_KehaiFv:
+.fn __dt__Q23PSM19ActorDirector_KehaiFv, weak
 /* 80459664 004565A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459668 004565A8  7C 08 02 A6 */	mflr r0
 /* 8045966C 004565AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3574,9 +3596,9 @@ __dt__Q23PSM19ActorDirector_KehaiFv:
 /* 80459728 00456668  7C 08 03 A6 */	mtlr r0
 /* 8045972C 0045666C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80459730 00456670  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM19ActorDirector_KehaiFv
 
-.global __dt__Q23PSM20ActorDirector_BattleFv
-__dt__Q23PSM20ActorDirector_BattleFv:
+.fn __dt__Q23PSM20ActorDirector_BattleFv, weak
 /* 80459734 00456674  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459738 00456678  7C 08 02 A6 */	mflr r0
 /* 8045973C 0045667C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3631,9 +3653,9 @@ __dt__Q23PSM20ActorDirector_BattleFv:
 /* 804597F8 00456738  7C 08 03 A6 */	mtlr r0
 /* 804597FC 0045673C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80459800 00456740  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM20ActorDirector_BattleFv
 
-.global __dt__Q23PSM19ActorDirector_EnemyFv
-__dt__Q23PSM19ActorDirector_EnemyFv:
+.fn __dt__Q23PSM19ActorDirector_EnemyFv, weak
 /* 80459804 00456744  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459808 00456748  7C 08 02 A6 */	mflr r0
 /* 8045980C 0045674C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3684,9 +3706,9 @@ __dt__Q23PSM19ActorDirector_EnemyFv:
 /* 804598B8 004567F8  7C 08 03 A6 */	mtlr r0
 /* 804598BC 004567FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804598C0 00456800  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM19ActorDirector_EnemyFv
 
-.global __dt__Q23PSM21ActorDirector_TrackOnFv
-__dt__Q23PSM21ActorDirector_TrackOnFv:
+.fn __dt__Q23PSM21ActorDirector_TrackOnFv, weak
 /* 804598C4 00456804  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804598C8 00456808  7C 08 02 A6 */	mflr r0
 /* 804598CC 0045680C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3729,9 +3751,9 @@ __dt__Q23PSM21ActorDirector_TrackOnFv:
 /* 80459958 00456898  7C 08 03 A6 */	mtlr r0
 /* 8045995C 0045689C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80459960 004568A0  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM21ActorDirector_TrackOnFv
 
-.global __dt__Q23PSM22TrackOnDirector_VotingFv
-__dt__Q23PSM22TrackOnDirector_VotingFv:
+.fn __dt__Q23PSM22TrackOnDirector_VotingFv, weak
 /* 80459964 004568A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459968 004568A8  7C 08 02 A6 */	mflr r0
 /* 8045996C 004568AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3774,9 +3796,9 @@ __dt__Q23PSM22TrackOnDirector_VotingFv:
 /* 804599F8 00456938  7C 08 03 A6 */	mtlr r0
 /* 804599FC 0045693C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80459A00 00456940  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM22TrackOnDirector_VotingFv
 
-.global __dt__Q23PSM28PikminNumberDirector_AutoBgmFv
-__dt__Q23PSM28PikminNumberDirector_AutoBgmFv:
+.fn __dt__Q23PSM28PikminNumberDirector_AutoBgmFv, weak
 /* 80459A04 00456944  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459A08 00456948  7C 08 02 A6 */	mflr r0
 /* 80459A0C 0045694C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3819,9 +3841,9 @@ __dt__Q23PSM28PikminNumberDirector_AutoBgmFv:
 /* 80459A98 004569D8  7C 08 03 A6 */	mtlr r0
 /* 80459A9C 004569DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80459AA0 004569E0  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM28PikminNumberDirector_AutoBgmFv
 
-.global __dt__Q23PSM25ActorDirector_TempoChangeFv
-__dt__Q23PSM25ActorDirector_TempoChangeFv:
+.fn __dt__Q23PSM25ActorDirector_TempoChangeFv, weak
 /* 80459AA4 004569E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459AA8 004569E8  7C 08 02 A6 */	mflr r0
 /* 80459AAC 004569EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3864,9 +3886,9 @@ __dt__Q23PSM25ActorDirector_TempoChangeFv:
 /* 80459B38 00456A78  7C 08 03 A6 */	mtlr r0
 /* 80459B3C 00456A7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80459B40 00456A80  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM25ActorDirector_TempoChangeFv
 
-.global __dt__Q23PSM14DamageDirectorFv
-__dt__Q23PSM14DamageDirectorFv:
+.fn __dt__Q23PSM14DamageDirectorFv, weak
 /* 80459B44 00456A84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80459B48 00456A88  7C 08 02 A6 */	mflr r0
 /* 80459B4C 00456A8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3905,3 +3927,4 @@ __dt__Q23PSM14DamageDirectorFv:
 /* 80459BC8 00456B08  7C 08 03 A6 */	mtlr r0
 /* 80459BCC 00456B0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80459BD0 00456B10  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM14DamageDirectorFv

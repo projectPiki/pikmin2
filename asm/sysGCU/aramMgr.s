@@ -1,38 +1,41 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049A628:
+.obj lbl_8049A628, local
 	.asciz "aramMgr.cpp"
+.endobj lbl_8049A628
 .balign 4
-lbl_8049A634:
+.obj lbl_8049A634, local
 	.asciz "P2Assert"
+.endobj lbl_8049A634
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24ARAM4Node
-__vt__Q24ARAM4Node:
+.obj __vt__Q24ARAM4Node, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24ARAM4NodeFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q24ARAM4Node
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global gAramMgr
-gAramMgr:
+.obj gAramMgr, global
 	.skip 0x4
+.endobj gAramMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520770:
+.obj lbl_80520770, local
 	.asciz ""
+.endobj lbl_80520770
 .balign 4
-lbl_80520774:
+.obj lbl_80520774, local
 	.asciz "root"
+.endobj lbl_80520774
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q24ARAM3MgrFv
-init__Q24ARAM3MgrFv:
+.fn init__Q24ARAM3MgrFv, global
 /* 80432B18 0042FA58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80432B1C 0042FA5C  7C 08 02 A6 */	mflr r0
 /* 80432B20 0042FA60  38 60 00 18 */	li r3, 0x18
@@ -46,9 +49,9 @@ init__Q24ARAM3MgrFv:
 /* 80432B3C 0042FA7C  7C 08 03 A6 */	mtlr r0
 /* 80432B40 0042FA80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80432B44 0042FA84  4E 80 00 20 */	blr 
+.endfn init__Q24ARAM3MgrFv
 
-.global __ct__Q24ARAM3MgrFv
-__ct__Q24ARAM3MgrFv:
+.fn __ct__Q24ARAM3MgrFv, global
 /* 80432B48 0042FA88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80432B4C 0042FA8C  7C 08 02 A6 */	mflr r0
 /* 80432B50 0042FA90  3C 80 80 4F */	lis r4, __vt__5CNode@ha
@@ -82,9 +85,9 @@ __ct__Q24ARAM3MgrFv:
 /* 80432BBC 0042FAFC  7C 08 03 A6 */	mtlr r0
 /* 80432BC0 0042FB00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80432BC4 0042FB04  4E 80 00 20 */	blr 
+.endfn __ct__Q24ARAM3MgrFv
 
-.global dvdToAram__Q24ARAM3MgrFPCcb
-dvdToAram__Q24ARAM3MgrFPCcb:
+.fn dvdToAram__Q24ARAM3MgrFPCcb, global
 /* 80432BC8 0042FB08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80432BCC 0042FB0C  7C 08 02 A6 */	mflr r0
 /* 80432BD0 0042FB10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -245,9 +248,9 @@ dvdToAram__Q24ARAM3MgrFPCcb:
 /* 80432E08 0042FD48  7C 08 03 A6 */	mtlr r0
 /* 80432E0C 0042FD4C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80432E10 0042FD50  4E 80 00 20 */	blr 
+.endfn dvdToAram__Q24ARAM3MgrFPCcb
 
-.global __dt__Q24ARAM4NodeFv
-__dt__Q24ARAM4NodeFv:
+.fn __dt__Q24ARAM4NodeFv, weak
 /* 80432E14 0042FD54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80432E18 0042FD58  7C 08 02 A6 */	mflr r0
 /* 80432E1C 0042FD5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -273,9 +276,9 @@ __dt__Q24ARAM4NodeFv:
 /* 80432E68 0042FDA8  7C 08 03 A6 */	mtlr r0
 /* 80432E6C 0042FDAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80432E70 0042FDB0  4E 80 00 20 */	blr 
+.endfn __dt__Q24ARAM4NodeFv
 
-.global aramToMainRam__Q24ARAM3MgrFPCcPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectioniPUl
-aramToMainRam__Q24ARAM3MgrFPCcPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectioniPUl:
+.fn aramToMainRam__Q24ARAM3MgrFPCcPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectioniPUl, global
 /* 80432E74 0042FDB4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80432E78 0042FDB8  7C 08 02 A6 */	mflr r0
 /* 80432E7C 0042FDBC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -367,9 +370,9 @@ aramToMainRam__Q24ARAM3MgrFPCcPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRippe
 /* 80432FBC 0042FEFC  7C 08 03 A6 */	mtlr r0
 /* 80432FC0 0042FF00  38 21 00 50 */	addi r1, r1, 0x50
 /* 80432FC4 0042FF04  4E 80 00 20 */	blr 
+.endfn aramToMainRam__Q24ARAM3MgrFPCcPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectioniPUl
 
-.global dump__Q24ARAM3MgrFv
-dump__Q24ARAM3MgrFv:
+.fn dump__Q24ARAM3MgrFv, global
 /* 80432FC8 0042FF08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80432FCC 0042FF0C  7C 08 02 A6 */	mflr r0
 /* 80432FD0 0042FF10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -416,9 +419,9 @@ dump__Q24ARAM3MgrFv:
 /* 8043305C 0042FF9C  7C 08 03 A6 */	mtlr r0
 /* 80433060 0042FFA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80433064 0042FFA4  4E 80 00 20 */	blr 
+.endfn dump__Q24ARAM3MgrFv
 
-.global search__Q24ARAM3MgrFPCc
-search__Q24ARAM3MgrFPCc:
+.fn search__Q24ARAM3MgrFPCc, global
 /* 80433068 0042FFA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043306C 0042FFAC  7C 08 02 A6 */	mflr r0
 /* 80433070 0042FFB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -451,3 +454,4 @@ search__Q24ARAM3MgrFPCc:
 /* 804330CC 0043000C  7C 08 03 A6 */	mtlr r0
 /* 804330D0 00430010  38 21 00 20 */	addi r1, r1, 0x20
 /* 804330D4 00430014  4E 80 00 20 */	blr 
+.endfn search__Q24ARAM3MgrFPCc
