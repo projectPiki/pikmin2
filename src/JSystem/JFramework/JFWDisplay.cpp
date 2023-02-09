@@ -202,8 +202,8 @@ void JFWDisplay::prepareCopyDisp()
 }
 
 void JFWDrawDoneAlarm();
-AlarmCallback JFWThreadAlarmHandler;
-AlarmCallback JFWGXAbortAlarmHandler;
+void JFWThreadAlarmHandler(OSAlarm* alarm, OSContext* context);
+void JFWGXAbortAlarmHandler(OSAlarm* alarm, OSContext* context);
 void waitForTick(u32, u16);
 void diagnoseGpHang();
 
@@ -496,7 +496,7 @@ void waitForTick(u32 sleepTime, u16 msgTime)
 		u32 time             = (msgTime != 0) ? msgTime : 1;
 		void* msg;
 		do {
-			if (!OSReceiveMessage(JUTVideo::getManager()->getMessageQueue(), &msg, OS_MESSAGE_BLOCKING)) {
+			if (!OSReceiveMessage(JUTVideo::getManager()->getMessageQueue(), &msg, OS_MESSAGE_BLOCK)) {
 				msg = 0;
 			}
 		} while (((int)msg - (int)nextCount) < 0);

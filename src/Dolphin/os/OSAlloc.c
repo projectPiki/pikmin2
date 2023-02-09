@@ -173,15 +173,15 @@ void* OSAllocFromHeap(OSHeapHandle heap, u32 size)
 	return (u8*)cell + ALIGNMENT;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000284
- */
-void OSAllocFixed(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000284
+//  */
+// void OSAllocFixed(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -277,62 +277,62 @@ OSHeapHandle OSCreateHeap(void* start, void* end)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
- */
-void OSDestroyHeap(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000014
+//  */
+// void OSDestroyHeap(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void OSAddToHeap(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000060
+//  */
+// void OSAddToHeap(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000360
- */
-s32 OSCheckHeap(int)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000360
+//  */
+// s32 OSCheckHeap(int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
- */
-void OSReferentSize(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00000C
+//  */
+// void OSReferentSize(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
- */
-void OSDumpHeap(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000104
+//  */
+// void OSDumpHeap(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void OSVisitAllocated(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00009C
+//  */
+// void OSVisitAllocated(void)
+// {
+// 	// UNUSED FUNCTION
+// }

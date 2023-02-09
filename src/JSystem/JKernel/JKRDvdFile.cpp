@@ -176,7 +176,7 @@ long JKRDvdFile::sync()
 {
 	void* buffer[1];
 	OSLockMutex(&mMutex1);
-	OSReceiveMessage(&mMessageQueue2, buffer, OS_MESSAGE_BLOCKING);
+	OSReceiveMessage(&mMessageQueue2, buffer, OS_MESSAGE_BLOCK);
 	mThread = nullptr;
 	OSUnlockMutex(&mMutex1);
 	return (u32)*buffer;
@@ -190,7 +190,7 @@ long JKRDvdFile::sync()
 void JKRDvdFile::doneProcess(long p1, DVDFileInfo* info)
 {
 	JKRDvdFile* dvdFile = static_cast<JKRDVDFileInfo*>(info)->mFile;
-	OSSendMessage(&dvdFile->mMessageQueue2, (void*)p1, OS_MESSAGE_NON_BLOCKING);
+	OSSendMessage(&dvdFile->mMessageQueue2, (void*)p1, OS_MESSAGE_NOBLOCK);
 }
 
 /*

@@ -259,7 +259,7 @@ void InsertAlarm(void)
  * Address:	800EBD6C
  * Size:	000068
  */
-void OSSetAlarm(OSAlarm* alarm, unknown p2, unknown p3, u32 tickRateMaybe, AlarmCallback* handler)
+void OSSetAlarm(OSAlarm* alarm, unknown p2, unknown p3, u32 tickRateMaybe, OSAlarmHandler* handler)
 {
 	/*
 	.loc_0x0:

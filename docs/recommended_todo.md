@@ -38,7 +38,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10320 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/exi/EXIUart.c">exi/EXIUart.c</a> | 10329 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 11230 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/MSL_C/alloc.c">MSL_C/alloc.c</a> | 12018 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 12046 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTransform.c">gx/GXTransform.c</a> | 12379 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDFormat.c">card/CARDFormat.c</a> | 13901 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSAlarm.c">os/OSAlarm.c</a> | 13932 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDFormat.c">card/CARDFormat.c</a> | 13901 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSAlarm.c">os/OSAlarm.c</a> | 13933 |
 
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |

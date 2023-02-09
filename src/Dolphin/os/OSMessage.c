@@ -9,12 +9,12 @@
  */
 void OSInitMessageQueue(OSMessageQueue* queue, void** buffer, int capacity)
 {
-	OSInitThreadQueue(&queue->sendQueue);
-	OSInitThreadQueue(&queue->recvQueue);
-	queue->buffer   = buffer;
-	queue->capacity = capacity;
-	queue->front    = 0;
-	queue->size     = 0;
+	OSInitThreadQueue(&queue->queueSend);
+	OSInitThreadQueue(&queue->queueReceive);
+	queue->msgArray   = buffer;
+	queue->msgCount   = capacity;
+	queue->firstIndex = 0;
+	queue->usedCount  = 0;
 }
 
 /*
@@ -34,20 +34,20 @@ BOOL OSSendMessage(OSMessageQueue* queue, void* msg, int flags)
 
 	interrupt = OSDisableInterrupts();
 
-	while (queue->capacity <= queue->size) {
+	while (queue->msgCount <= queue->usedCount) {
 		if (!(flags & OS_MSG_PERSISTENT)) {
 			OSRestoreInterrupts(interrupt);
 			return FALSE;
 		}
 
-		OSSleepThread(&queue->sendQueue);
+		OSSleepThread(&queue->queueSend);
 	}
 
-	mesgId                = (queue->front + queue->size) % queue->capacity;
-	queue->buffer[mesgId] = msg;
-	queue->size++;
+	mesgId                  = (queue->firstIndex + queue->usedCount) % queue->msgCount;
+	queue->msgArray[mesgId] = msg;
+	queue->usedCount++;
 
-	OSWakeupThread(&queue->recvQueue);
+	OSWakeupThread(&queue->queueReceive);
 	OSRestoreInterrupts(interrupt);
 	return TRUE;
 }
@@ -63,23 +63,23 @@ BOOL OSReceiveMessage(OSMessageQueue* queue, void** buffer, int flags)
 
 	interrupt = OSDisableInterrupts();
 
-	while (queue->size == 0) {
+	while (queue->usedCount == 0) {
 		if (!(flags & OS_MSG_PERSISTENT)) {
 			OSRestoreInterrupts(interrupt);
 			return FALSE;
 		}
 
-		OSSleepThread(&queue->recvQueue);
+		OSSleepThread(&queue->queueReceive);
 	}
 
 	if (buffer) {
-		buffer[0] = queue->buffer[queue->front];
+		buffer[0] = queue->msgArray[queue->firstIndex];
 	}
 
-	queue->front = (queue->front + 1) % queue->capacity;
-	queue->size--;
+	queue->firstIndex = (queue->firstIndex + 1) % queue->msgCount;
+	queue->usedCount--;
 
-	OSWakeupThread(&queue->sendQueue);
+	OSWakeupThread(&queue->queueSend);
 	OSRestoreInterrupts(interrupt);
 	return TRUE;
 }
@@ -96,22 +96,22 @@ BOOL OSJamMessage(OSMessageQueue* queue, void* msg, int flags)
 
 	interrupt = OSDisableInterrupts();
 
-	while (queue->capacity <= queue->size) {
+	while (queue->msgCount <= queue->usedCount) {
 		if (!(flags & OS_MSG_PERSISTENT)) {
 			OSRestoreInterrupts(interrupt);
 			return FALSE;
 		}
 
-		OSSleepThread(&queue->sendQueue);
+		OSSleepThread(&queue->queueSend);
 	}
 
 	// Find last position in queue
-	lastMesg                    = (queue->front + queue->capacity - 1) % queue->capacity;
-	queue->front                = lastMesg;
-	queue->buffer[queue->front] = msg;
-	queue->size++;
+	lastMesg                           = (queue->firstIndex + queue->msgCount - 1) % queue->msgCount;
+	queue->firstIndex                  = lastMesg;
+	queue->msgArray[queue->firstIndex] = msg;
+	queue->usedCount++;
 
-	OSWakeupThread(&queue->recvQueue);
+	OSWakeupThread(&queue->queueReceive);
 	OSRestoreInterrupts(interrupt);
 	return TRUE;
 }

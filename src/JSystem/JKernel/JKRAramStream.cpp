@@ -55,8 +55,8 @@ void* JKRAramStream::run()
 	OSInitMessageQueue(&JKRAramStream::sMessageQueue, (void**)JKRAramStream::sMessageBuffer,
 	                   ARRAY_SIZE(sMessageBuffer)); // jank cast to void** to satisfy prototype
 	while (true) {
-		OSReceiveMessage(&JKRAramStream::sMessageQueue, (void**)&result, OS_MESSAGE_BLOCKING);
-		JKRAramStreamCommand* command = static_cast<JKRAramStreamCommand*>(result.message);
+		OSReceiveMessage(&JKRAramStream::sMessageQueue, &result, OS_MESSAGE_BLOCK);
+		JKRAramStreamCommand* command = static_cast<JKRAramStreamCommand*>(result);
 		switch (command->type) {
 		case JKRAramStreamCommand::ECT_READ:
 			readFromAram();
@@ -146,7 +146,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command)
 		}
 	}
 
-	OSSendMessage(&command->mMessageQueue, (void*)writtenLength, OS_MESSAGE_NON_BLOCKING);
+	OSSendMessage(&command->mMessageQueue, (void*)writtenLength, OS_MESSAGE_NOBLOCK);
 	return writtenLength;
 };
 
@@ -178,7 +178,7 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
 	}
 
 	OSInitMessageQueue(&command->mMessageQueue, (void**)&command->mMessage, 1);
-	OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCKING);
+	OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCK);
 	return command;
 }
 
@@ -215,7 +215,7 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
 	}
 
 	OSInitMessageQueue(&command->mMessageQueue, (void**)&command->mMessage, 1);
-	OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCKING);
+	OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCK);
 	return command;
 }
 
@@ -228,19 +228,19 @@ JKRAramStreamCommand* JKRAramStream::sync(JKRAramStreamCommand* command, BOOL is
 {
 	OSMessage msg;
 	if (isNonBlocking == FALSE) {
-		OSReceiveMessage(&command->mMessageQueue, &msg.message, OS_MESSAGE_BLOCKING);
-		if (msg.message == nullptr) {
+		OSReceiveMessage(&command->mMessageQueue, &msg, OS_MESSAGE_BLOCK);
+		if (msg == nullptr) {
 			command = nullptr;
 			return command;
 		} else {
 			return command;
 		}
 	} else {
-		BOOL receiveResult = OSReceiveMessage(&command->mMessageQueue, &msg.message, OS_MESSAGE_NON_BLOCKING);
+		BOOL receiveResult = OSReceiveMessage(&command->mMessageQueue, &msg, OS_MESSAGE_NOBLOCK);
 		if (receiveResult == FALSE) {
 			command = nullptr;
 			return command;
-		} else if (msg.message == nullptr) {
+		} else if (msg == nullptr) {
 			command = nullptr;
 			return command;
 		} else {
