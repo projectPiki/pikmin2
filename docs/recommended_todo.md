@@ -216,7 +216,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjCalc.cpp">PSMainSide_ObjCalc.cpp</a> | 9412 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_CreaturePrm.cpp">PSMainSide_CreaturePrm.cpp</a> | 14244 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_TrackMap.cpp">PSMainSide_TrackMap.cpp</a> | 17228 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/menu.cpp">menu.cpp</a> | 17991 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_TrackMap.cpp">PSMainSide_TrackMap.cpp</a> | 17220 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/menu.cpp">menu.cpp</a> | 17991 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_BossMgr.cpp">PSMainSide_BossMgr.cpp</a> | 19836 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Sound.cpp">PSMainSide_Sound.cpp</a> | 27281 |
 
 

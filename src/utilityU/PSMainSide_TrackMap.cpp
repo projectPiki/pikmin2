@@ -681,8 +681,7 @@ lbl_804720E0:
 bool BgmTrackMapFile::read(Stream& stream)
 {
 	P2ASSERTLINE(205, _28 == true);
-	mMapCount = 0;
-	while (mMapCount < 32) {
+	for (mMapCount = 0; mMapCount < 32; mMapCount++) {
 		int currentMapNumber = mMapCount;
 		char* s1             = stream.readString(nullptr, 0);
 		if (strcmp(s1, "endoffile") == 0) {
@@ -712,7 +711,6 @@ bool BgmTrackMapFile::read(Stream& stream)
 			dest.mPikMask[i] = byte;
 			JUT_ASSERTLINE(246, dest.mPikMask[i] <= 1, "abnormal pik mask\n(Cur=%d)\n", currentMapNumber);
 		}
-		mMapCount++;
 	}
 
 	JUT_PANICLINE(250, "file num over\n");
