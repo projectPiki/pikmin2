@@ -678,244 +678,45 @@ lbl_804720E0:
  * Address:	804720F4
  * Size:	000294
  */
-void BgmTrackMapFile::read(Stream& stream)
+bool BgmTrackMapFile::read(Stream& stream)
 {
 	P2ASSERTLINE(205, _28 == true);
 	mMapCount = 0;
-	while (true) {
+	while (mMapCount < 32) {
 		int currentMapNumber = mMapCount;
 		char* s1             = stream.readString(nullptr, 0);
 		if (strcmp(s1, "endoffile") == 0) {
-			break;
-		} // mismatch; ternary, somehow? maybe a local variable?
+			return true;
+		}
 		BgmTrackMap& dest = mTrackMaps[currentMapNumber];
 		strcpy(dest.mFileName, s1);
 		dest.mBasicTrackCount = stream.readByte();
-		JUT_ASSERTLINE(223, dest.mBasicTrackCount < 16, "basic trk over\n(Cur=%d)\n");
+		JUT_ASSERTLINE(223, dest.mBasicTrackCount < 16, "basic trk over\n(Cur=%d)\n", currentMapNumber);
 		dest.mEventTrackCount = stream.readByte();
-		JUT_ASSERTLINE(226, dest.mEventTrackCount < 16, "event trk over\n(%s)\n(Cur=%d)");
+		JUT_ASSERTLINE(226, dest.mEventTrackCount < 16, "event trk over\n(%s)\n(Cur=%d)", currentMapNumber);
 		dest.mOtakaraTrackCount = stream.readByte();
-		JUT_ASSERTLINE(229, dest.mOtakaraTrackCount < 16, "otakara trk over\n(%s)\n(Cur=%d)");
+		JUT_ASSERTLINE(229, dest.mOtakaraTrackCount < 16, "otakara trk over\n(%s)\n(Cur=%d)", currentMapNumber);
 		dest.mKehaiTrackCount = stream.readByte();
-		JUT_ASSERTLINE(232, dest.mKehaiTrackCount < 16, "kehai trk over\n(%s)\n(Cur=%d)");
+		JUT_ASSERTLINE(232, dest.mKehaiTrackCount < 16, "kehai trk over\n(%s)\n(Cur=%d)", currentMapNumber);
 		dest.mBattleTrackCount = stream.readByte();
-		JUT_ASSERTLINE(235, dest.mBattleTrackCount < 16, "battle trk over\n(%s)\n(Cur=%d)");
+		JUT_ASSERTLINE(235, dest.mBattleTrackCount < 16, "battle trk over\n(%s)\n(Cur=%d)", currentMapNumber);
 		dest.mGroundTrackCount = stream.readByte();
-		JUT_ASSERTLINE(238, dest.mGroundTrackCount < 16, "ground trk over\n(%s)\n(Cur=%d)");
+		JUT_ASSERTLINE(238, dest.mGroundTrackCount < 16, "ground trk over\n(%s)\n(Cur=%d)", currentMapNumber);
 		for (u8 i = 0; i < 16; i++) {
 			u8 byte         = stream.readByte();
 			dest.mPikNum[i] = byte;
-			JUT_ASSERTLINE(242, dest.mPikNum[i] < 1, "abnormal pik num\n(Cur=%d)\n");
+			JUT_ASSERTLINE(242, dest.mPikNum[i] <= 1, "abnormal pik num\n(Cur=%d)\n", currentMapNumber);
 		}
 		for (u8 i = 0; i < 8; i++) {
 			u8 byte          = stream.readByte();
 			dest.mPikMask[i] = byte;
-			JUT_ASSERTLINE(246, dest.mPikMask[i] < 1, "abnormal pik mask\n(Cur=%d)\n");
+			JUT_ASSERTLINE(246, dest.mPikMask[i] <= 1, "abnormal pik mask\n(Cur=%d)\n", currentMapNumber);
 		}
-		JUT_ASSERTLINE(250, currentMapNumber > 32, "file num over\n");
+		mMapCount++;
 	}
 
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r27, r3
-	lis      r3, lbl_8049DE78@ha
-	mr       r28, r4
-	addi     r31, r3, lbl_8049DE78@l
-	lbz      r0, 0x28(r27)
-	cmplwi   r0, 1
-	beq      lbl_80472134
-	addi     r3, r31, 0
-	addi     r5, r31, 0x168
-	li       r4, 0xcd
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80472134:
-	li       r0, 0
-	stw      r0, 0x24(r27)
-	b        lbl_80472350
-
-lbl_80472140:
-	mr       r3, r28
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	addi     r4, r31, 0x24
-	mr       r29, r3
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8047216C
-	li       r3, 1
-	b        lbl_80472374
-
-lbl_8047216C:
-	mulli    r0, r30, 0x3e
-	lwz      r3, 0x20(r27)
-	mr       r4, r29
-	add      r29, r3, r0
-	mr       r3, r29
-	bl       strcpy
-	mr       r3, r28
-	bl       readByte__6StreamFv
-	stb      r3, 0x20(r29)
-	lbz      r0, 0x20(r29)
-	cmplwi   r0, 0x10
-	blt      lbl_804721B4
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x184
-	li       r4, 0xdf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804721B4:
-	mr       r3, r28
-	bl       readByte__6StreamFv
-	stb      r3, 0x21(r29)
-	lbz      r0, 0x21(r29)
-	cmplwi   r0, 0x10
-	blt      lbl_804721E4
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1a0
-	li       r4, 0xe2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804721E4:
-	mr       r3, r28
-	bl       readByte__6StreamFv
-	stb      r3, 0x22(r29)
-	lbz      r0, 0x22(r29)
-	cmplwi   r0, 0x10
-	blt      lbl_80472214
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1bc
-	li       r4, 0xe5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80472214:
-	mr       r3, r28
-	bl       readByte__6StreamFv
-	stb      r3, 0x23(r29)
-	lbz      r0, 0x23(r29)
-	cmplwi   r0, 0x10
-	blt      lbl_80472244
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1d8
-	li       r4, 0xe8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80472244:
-	mr       r3, r28
-	bl       readByte__6StreamFv
-	stb      r3, 0x24(r29)
-	lbz      r0, 0x24(r29)
-	cmplwi   r0, 0x10
-	blt      lbl_80472274
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1f4
-	li       r4, 0xeb
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80472274:
-	mr       r3, r28
-	bl       readByte__6StreamFv
-	stb      r3, 0x25(r29)
-	lbz      r0, 0x25(r29)
-	cmplwi   r0, 0x10
-	blt      lbl_804722A4
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x210
-	li       r4, 0xee
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804722A4:
-	li       r26, 0
-	b        lbl_804722E8
-
-lbl_804722AC:
-	mr       r3, r28
-	bl       readByte__6StreamFv
-	clrlwi   r4, r26, 0x18
-	addi     r0, r4, 0x26
-	stbx     r3, r29, r0
-	lbzx     r0, r29, r0
-	cmplwi   r0, 1
-	ble      lbl_804722E4
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x22c
-	li       r4, 0xf2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804722E4:
-	addi     r26, r26, 1
-
-lbl_804722E8:
-	clrlwi   r0, r26, 0x18
-	cmplwi   r0, 0x10
-	blt      lbl_804722AC
-	li       r26, 0
-	b        lbl_80472338
-
-lbl_804722FC:
-	mr       r3, r28
-	bl       readByte__6StreamFv
-	clrlwi   r4, r26, 0x18
-	addi     r0, r4, 0x36
-	stbx     r3, r29, r0
-	lbzx     r0, r29, r0
-	cmplwi   r0, 1
-	ble      lbl_80472334
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x248
-	li       r4, 0xf6
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80472334:
-	addi     r26, r26, 1
-
-lbl_80472338:
-	clrlwi   r0, r26, 0x18
-	cmplwi   r0, 8
-	blt      lbl_804722FC
-	lwz      r3, 0x24(r27)
-	addi     r0, r3, 1
-	stw      r0, 0x24(r27)
-
-lbl_80472350:
-	lwz      r30, 0x24(r27)
-	cmpwi    r30, 0x20
-	blt      lbl_80472140
-	addi     r3, r31, 0
-	addi     r5, r31, 0x264
-	li       r4, 0xfa
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 0
-
-lbl_80472374:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JUT_PANICLINE(250, "file num over\n");
+	return false;
 }
 
 } // namespace PSM

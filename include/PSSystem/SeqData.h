@@ -17,7 +17,7 @@ struct TextDataBase : public JKRDisposer {
 	TextDataBase();
 
 	virtual ~TextDataBase();        // _08
-	virtual void read(Stream&) = 0; // _0C
+	virtual bool read(Stream&) = 0; // _0C
 
 	void load(const char*, JKRDvdRipper::EAllocDirection);
 	void onlyLoad(const char*, JKRDvdRipper::EAllocDirection);

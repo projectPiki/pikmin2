@@ -38,7 +38,7 @@ struct BgmTrackMapFile : public PSSystem::TextDataBase, public PSSystem::Singlet
 	BgmTrackMapFile(bool);
 
 	virtual ~BgmTrackMapFile() { } // _08 (weak)
-	virtual void read(Stream&);    // _0C
+	virtual bool read(Stream&);    // _0C
 
 	void readTrackMap(const char*);
 
