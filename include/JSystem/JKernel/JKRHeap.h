@@ -181,7 +181,7 @@ struct JKRHeap : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	OSMutexObject mMutex;               // _18
+	OSMutex mMutex;                     // _18
 	void* mStartAddress;                // _30
 	void* mEndAddress;                  // _34
 	u32 mHeapSize;                      // _38

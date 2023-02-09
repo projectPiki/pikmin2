@@ -32,12 +32,12 @@ struct SysIF : public JAIBasic {
 	void setConfigVol_Bgm(f32);
 	void start1stSeq();
 
-	f32 _20;              // _20
-	f32 _24;              // _24
-	OSMutexObject mMutex; // _28
-	int _40;              // _40
-	FxMgr mFxMgr;         // _44
-	u32 _48;              // _48
+	f32 _20;        // _20
+	f32 _24;        // _24
+	OSMutex mMutex; // _28
+	int _40;        // _40
+	FxMgr mFxMgr;   // _44
+	u32 _48;        // _48
 };
 
 template <typename T>

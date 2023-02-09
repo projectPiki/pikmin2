@@ -49,7 +49,7 @@ struct Mgr;
 };
 } // namespace Game
 
-struct System : public OSMutexObject {
+struct System : public OSMutex {
 	enum ERenderMode {
 		RENDERMODE_NULL = 0,
 	};
@@ -145,7 +145,7 @@ struct System : public OSMutexObject {
 
 	inline f32 getFrameLength() const { return mDeltaTime; }
 
-	// _00-_18 = OSMutexObject
+	// _00-_18 = OSMutex
 	JKRHeap* mBackupHeap;                        // _18
 	u32 mCpuRetraceCount;                        // _1C
 	u32 mCpuLockCount;                           // _20

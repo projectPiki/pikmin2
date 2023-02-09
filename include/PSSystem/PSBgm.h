@@ -85,17 +85,17 @@ struct JumpBgmSeq : public DirectedBgm {
 	// _14-_68  = SeqBase
 	// _6C-_B8  = DirectedBgm
 
-	OSMutexObject _B8;  // _B8
-	short _D0;          // _D0
-	OSMutexObject _D4;  // _D4
-	short _EC;          // _EC
-	OSMutexObject _F0;  // _F0
-	u16 _108;           // _108
-	OSMutexObject _10C; // _10C
-	u16 _124;           // _124
-	JumpBgmSeq* _128;   // _128
-	u32 _12C;           // _12C
-	short _130;         // _130
+	OSMutex _B8;      // _B8
+	short _D0;        // _D0
+	OSMutex _D4;      // _D4
+	short _EC;        // _EC
+	OSMutex _F0;      // _F0
+	u16 _108;         // _108
+	OSMutex _10C;     // _10C
+	u16 _124;         // _124
+	JumpBgmSeq* _128; // _128
+	u32 _12C;         // _12C
+	short _130;       // _130
 };
 
 } // namespace PSSystem

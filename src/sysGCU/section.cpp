@@ -17,7 +17,7 @@ static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
 extern bool gTHPReaderDvdAccess;
 
 // Some bullshit
-static OSTime sPlayTime = (*(u32*)CONSOLE_BUS_SPEED / 4) * 300;
+static OSTime sPlayTime = OS_TIMER_CLOCK * 300;
 
 /*
  * --INFO--

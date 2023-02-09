@@ -65,12 +65,12 @@ struct JKRAramHeap : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	OSMutexObject mMutex; // _18
-	JKRHeap* mHeap;       // _30
-	u32 mHeadAddress;     // _34
-	u32 mTailAddress;     // _38
-	u32 mSize;            // _3C
-	u8 mGroupID;          // _40
+	OSMutex mMutex;   // _18
+	JKRHeap* mHeap;   // _30
+	u32 mHeadAddress; // _34
+	u32 mTailAddress; // _38
+	u32 mSize;        // _3C
+	u8 mGroupID;      // _40
 };
 
 // Size: 0xA4
@@ -241,7 +241,7 @@ struct JKRAramPiece {
 	static bool orderSync(int, u32, u32, u32, JKRAramBlock*);
 	static void sendCommand(JKRAMCommand*);
 	static void startDMA(JKRAMCommand*);
-	static OSMutexObject mMutex;
+	static OSMutex mMutex;
 	static JSUList<JKRAMCommand> sAramPieceCommandList;
 
 	static void lock() { OSLockMutex(&mMutex); }
@@ -260,6 +260,6 @@ inline BOOL JKRAramPcs(int direction, u32 source, u32 destination, u32 length, J
 	return JKRAramPiece::orderSync(direction, source, destination, length, block);
 }
 
-extern OSMutexObject decompMutex;
+extern OSMutex decompMutex;
 
 #endif

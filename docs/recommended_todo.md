@@ -33,7 +33,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXGeometry.c">gx/GXGeometry.c</a> | 6983 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDBlock.c">card/CARDBlock.c</a> | 7163 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/thp/THPAudio.c">thp/THPAudio.c</a> | 7974 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/ar/arq.c">ar/arq.c</a> | 8041 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSReset.c">os/OSReset.c</a> | 8117 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSTime.c">os/OSTime.c</a> | 8247 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDRead.c">card/CARDRead.c</a> | 8271 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSMutex.c">os/OSMutex.c</a> | 8333 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDRead.c">card/CARDRead.c</a> | 8271 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSMutex.c">os/OSMutex.c</a> | 8303 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDOpen.c">card/CARDOpen.c</a> | 8692 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/card/CARDStat.c">card/CARDStat.c</a> | 8905 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10320 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/exi/EXIUart.c">exi/EXIUart.c</a> | 10329 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 11230 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/MSL_C/alloc.c">MSL_C/alloc.c</a> | 12018 |
@@ -144,7 +144,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappyState.cpp">kingChappyState.cpp</a> | 59593 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulin.cpp">miulin.cpp</a> | 61717 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushi.cpp">tamagoMushi.cpp</a> | 72662 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/dayEndCount.cpp">dayEndCount.cpp</a> | 74917 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyre.cpp">tyre.cpp</a> | 83627 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappy.cpp">kingChappy.cpp</a> | 86610 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushi.cpp">umiMushi.cpp</a> | 97881 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushi.cpp">umiMushi.cpp</a> | 97877 |
 
 ### <section id="plugProjectNishimuraU">plugProjectNishimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -201,8 +201,8 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 5241 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerAudio.cpp">moviePlayerAudio.cpp</a> | 5667 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6620 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 7154 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPAudioDecode.c">THPAudioDecode.c</a> | 7342 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6620 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 7138 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPAudioDecode.c">THPAudioDecode.c</a> | 7342 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerPauseAndDraw.cpp">moviePlayerPauseAndDraw.cpp</a> | 8587 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenScene.cpp">screenScene.cpp</a> | 9300 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPVideoDecode.c">THPVideoDecode.c</a> | 10029 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/loadResource.cpp">loadResource.cpp</a> | 11781 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/heapStatus.cpp">heapStatus.cpp</a> | 12405 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/dvdThread.cpp">dvdThread.cpp</a> | 12535 |

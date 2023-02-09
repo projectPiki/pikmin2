@@ -5,7 +5,7 @@
  * Address:	800EFB30
  * Size:	000038
  */
-void OSInitMutex(OSMutexObject* mutex)
+void OSInitMutex(OSMutex* mutex)
 {
 	/*
 	.loc_0x0:
@@ -31,7 +31,7 @@ void OSInitMutex(OSMutexObject* mutex)
  * Address:	800EFB68
  * Size:	0000DC
  */
-void OSLockMutex(OSMutexObject* mutex)
+void OSLockMutex(OSMutex* mutex)
 {
 	/*
 	.loc_0x0:
@@ -110,7 +110,7 @@ void OSLockMutex(OSMutexObject* mutex)
  * Address:	800EFC44
  * Size:	0000C8
  */
-BOOL OSUnlockMutex(OSMutexObject* mutex)
+BOOL OSUnlockMutex(OSMutex* mutex)
 {
 	/*
 	.loc_0x0:
@@ -232,7 +232,7 @@ void __OSUnlockAllMutex(OSThread* thread)
  * Address:	800EFD7C
  * Size:	0000BC
  */
-BOOL OSTryLockMutex(OSMutexObject* mutex)
+BOOL OSTryLockMutex(OSMutex* mutex)
 {
 	/*
 	.loc_0x0:
@@ -321,7 +321,7 @@ void OSInitCond(OSThreadQueue* threadQueue)
  * Address:	800EFE58
  * Size:	0000D4
  */
-u32 OSWaitCond(OSThreadQueue* threadQueue, OSMutexObject* mutex)
+u32 OSWaitCond(OSThreadQueue* threadQueue, OSMutex* mutex)
 {
 	/*
 	.loc_0x0:

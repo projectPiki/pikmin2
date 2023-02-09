@@ -54,7 +54,7 @@ struct SeqBase : JSULink<SeqBase> {
 	u8 _48;                             // _48 - unknown
 	u8 _49[0x3];                        // _49 - possibly padding
 	u32 _4C;                            // _4C - unknown
-	OSMutexObject mMutex;               // _50
+	OSMutex mMutex;                     // _50
 };
 
 /**

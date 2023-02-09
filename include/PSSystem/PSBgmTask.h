@@ -276,7 +276,7 @@ struct TaskEntryMgr : MutexList<TaskEntry> {
 };
 
 struct TaskChecker {
-	OSMutexObject _00;
+	OSMutex _00;
 	u8 _18;
 };
 

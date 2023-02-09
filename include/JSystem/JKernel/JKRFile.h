@@ -81,8 +81,8 @@ struct JKRDvdFile : public JKRFile {
 
 	// _00     = VTBL
 	// _00-_1C = JKRFile
-	OSMutexObject mMutex1;            // _1C
-	OSMutexObject mMutex2;            // _34
+	OSMutex mMutex1;                  // _1C
+	OSMutex mMutex2;                  // _34
 	JKRAramBlock* mBlock;             // _4C
 	OSThread* _50;                    // _50
 	JSUFileInputStream* mInputStream; // _54

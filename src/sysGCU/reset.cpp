@@ -17,7 +17,7 @@
  */
 ResetManager::ResetManager(f32 thres)
 {
-	JUTGamePad::C3ButtonReset::sThreshold = (*(u32*)CONSOLE_BUS_SPEED / 4) * thres;
+	JUTGamePad::C3ButtonReset::sThreshold = OS_TIMER_CLOCK * thres;
 
 	// double check the flags are reset
 	mFlags.clear();

@@ -28,7 +28,7 @@ struct MutexList : JSUList<T> {
 		return result;
 	}
 
-	OSMutexObject mMutex; // _0C
+	OSMutex mMutex; // _0C
 };
 } // namespace PSSystem
 

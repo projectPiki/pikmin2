@@ -36,8 +36,8 @@ struct DirectorBase : public JADHioNode {
 	// _00 = VTBL
 	SeqTrackBase** _04; // _04
 	int _08;            // _08
-	OSMutexObject _0C;  // _0C
-	OSMutexObject _24;  // _24
+	OSMutex _0C;        // _0C
+	OSMutex _24;        // _24
 	u8 _3C;             // _3C
 	u8 _3D[0x3];        // _3D - padding?
 	u8 _40;             // _40

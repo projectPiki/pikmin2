@@ -144,7 +144,7 @@ struct JASBasicWaveBank : public JASWaveBank {
 	void incWaveTable(const JASBasicWaveBank::TWaveGroup*);
 	void decWaveTable(const JASBasicWaveBank::TWaveGroup*);
 
-	OSMutexObject mMutex;   // _04
+	OSMutex mMutex;         // _04
 	TWaveHandle** mHandles; // _1C
 	u32 mTableSize;         // _20
 	TWaveGroup** mGroups;   // _24
