@@ -5,129 +5,23 @@
  * Address:	800D73CC
  * Size:	0001B0
  */
-void __CARDCheckSum(u16* dataToChecksum, u32 byteCount, u16* checksum1, u16* checksum2)
+void __CARDCheckSum(void* ptr, int length, u16* checksum, u16* checksumInv)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  srawi     r4, r4, 0x1
-	  sth       r0, 0x0(r6)
-	  addze.    r4, r4
-	  sth       r0, 0x0(r5)
-	  ble-      .loc_0x184
-	  rlwinm.   r0,r4,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x154
+	u16* p;
+	int i;
 
-	.loc_0x24:
-	  lhz       r7, 0x0(r5)
-	  lhz       r0, 0x0(r3)
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r5)
-	  lhz       r0, 0x0(r3)
-	  lhz       r7, 0x0(r6)
-	  not       r0, r0
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r7, 0x0(r5)
-	  lhz       r0, 0x2(r3)
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r5)
-	  lhz       r0, 0x2(r3)
-	  lhz       r7, 0x0(r6)
-	  not       r0, r0
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r7, 0x0(r5)
-	  lhz       r0, 0x4(r3)
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r5)
-	  lhz       r0, 0x4(r3)
-	  lhz       r7, 0x0(r6)
-	  not       r0, r0
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r7, 0x0(r5)
-	  lhz       r0, 0x6(r3)
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r5)
-	  lhz       r0, 0x6(r3)
-	  lhz       r7, 0x0(r6)
-	  not       r0, r0
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r7, 0x0(r5)
-	  lhz       r0, 0x8(r3)
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r5)
-	  lhz       r0, 0x8(r3)
-	  lhz       r7, 0x0(r6)
-	  not       r0, r0
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r7, 0x0(r5)
-	  lhz       r0, 0xA(r3)
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r5)
-	  lhz       r0, 0xA(r3)
-	  lhz       r7, 0x0(r6)
-	  not       r0, r0
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r7, 0x0(r5)
-	  lhz       r0, 0xC(r3)
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r5)
-	  lhz       r0, 0xC(r3)
-	  lhz       r7, 0x0(r6)
-	  not       r0, r0
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r7, 0x0(r5)
-	  lhz       r0, 0xE(r3)
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r5)
-	  lhz       r0, 0xE(r3)
-	  addi      r3, r3, 0x10
-	  lhz       r7, 0x0(r6)
-	  not       r0, r0
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r6)
-	  bdnz+     .loc_0x24
-	  andi.     r4, r4, 0x7
-	  beq-      .loc_0x184
-
-	.loc_0x154:
-	  mtctr     r4
-
-	.loc_0x158:
-	  lhz       r7, 0x0(r5)
-	  lhz       r0, 0x0(r3)
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r5)
-	  lhz       r0, 0x0(r3)
-	  addi      r3, r3, 0x2
-	  lhz       r7, 0x0(r6)
-	  not       r0, r0
-	  add       r0, r7, r0
-	  sth       r0, 0x0(r6)
-	  bdnz+     .loc_0x158
-
-	.loc_0x184:
-	  lhz       r0, 0x0(r5)
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x198
-	  li        r0, 0
-	  sth       r0, 0x0(r5)
-
-	.loc_0x198:
-	  lhz       r0, 0x0(r6)
-	  cmplwi    r0, 0xFFFF
-	  bnelr-
-	  li        r0, 0
-	  sth       r0, 0x0(r6)
-	  blr
-	*/
+	length /= sizeof(u16);
+	*checksum = *checksumInv = 0;
+	for (i = 0, p = ptr; i < length; i++, p++) {
+		*checksum += *p;
+		*checksumInv += ~*p;
+	}
+	if (*checksum == 0xffff) {
+		*checksum = 0;
+	}
+	if (*checksumInv == 0xffff) {
+		*checksumInv = 0;
+	}
 }
 
 /*
@@ -135,200 +29,44 @@ void __CARDCheckSum(u16* dataToChecksum, u32 byteCount, u16* checksum1, u16* che
  * Address:	800D757C
  * Size:	000284
  */
-int VerifyID(CARDBlock* block)
+static s32 VerifyID(CARDControl* card)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x30(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r26, r3
-	  lwz       r3, 0x80(r3)
-	  lhz       r0, 0x20(r3)
-	  addi      r27, r3, 0
-	  cmplwi    r0, 0
-	  bne-      .loc_0x38
-	  lhz       r3, 0x22(r27)
-	  lhz       r0, 0x8(r26)
-	  cmplw     r3, r0
-	  beq-      .loc_0x40
+	CARDID* id;
+	u16 checksum;
+	u16 checksumInv;
+	OSSramEx* sramEx;
+	OSTime rand;
+	int i;
 
-	.loc_0x38:
-	  li        r3, -0x6
-	  b         .loc_0x270
+	id = &card->workArea->header.id;
 
-	.loc_0x40:
-	  li        r0, 0x1FC
-	  srawi     r0, r0, 0x1
-	  addze.    r0, r0
-	  addi      r4, r27, 0
-	  li        r7, 0
-	  mr        r3, r0
-	  li        r6, 0
-	  ble-      .loc_0x118
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0xFC
+	if (id->deviceID != 0 || id->size != card->size) {
+		return CARD_RESULT_BROKEN;
+	}
 
-	.loc_0x6C:
-	  lhz       r5, 0x0(r4)
-	  not       r0, r5
-	  add       r6, r6, r5
-	  lhz       r5, 0x2(r4)
-	  add       r7, r7, r0
-	  not       r0, r5
-	  add       r6, r6, r5
-	  lhz       r5, 0x4(r4)
-	  add       r7, r7, r0
-	  not       r0, r5
-	  add       r6, r6, r5
-	  lhz       r5, 0x6(r4)
-	  add       r7, r7, r0
-	  not       r0, r5
-	  add       r6, r6, r5
-	  lhz       r5, 0x8(r4)
-	  add       r7, r7, r0
-	  not       r0, r5
-	  add       r6, r6, r5
-	  lhz       r5, 0xA(r4)
-	  add       r7, r7, r0
-	  not       r0, r5
-	  add       r6, r6, r5
-	  lhz       r5, 0xC(r4)
-	  add       r7, r7, r0
-	  not       r0, r5
-	  add       r6, r6, r5
-	  lhz       r5, 0xE(r4)
-	  add       r7, r7, r0
-	  not       r0, r5
-	  add       r6, r6, r5
-	  add       r7, r7, r0
-	  addi      r4, r4, 0x10
-	  bdnz+     .loc_0x6C
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0x118
+	__CARDCheckSum(id, sizeof(CARDID) - sizeof(u32), &checksum, &checksumInv);
+	if (id->checkSum != checksum || id->checkSumInv != checksumInv) {
+		return CARD_RESULT_BROKEN;
+	}
 
-	.loc_0xFC:
-	  mtctr     r3
+	rand   = *(OSTime*)&id->serial[12];
+	sramEx = __OSLockSramEx();
 
-	.loc_0x100:
-	  lhz       r5, 0x0(r4)
-	  addi      r4, r4, 0x2
-	  not       r0, r5
-	  add       r6, r6, r5
-	  add       r7, r7, r0
-	  bdnz+     .loc_0x100
+	for (i = 0; i < 12; i++) {
+		rand = (rand * 1103515245 + 12345) >> 16;
+		if (id->serial[i] != (u8)(sramEx->flashID[card - __CARDBlock][i] + rand)) {
+			__OSUnlockSramEx(FALSE);
+			return CARD_RESULT_BROKEN;
+		}
+		rand = ((rand * 1103515245 + 12345) >> 16) & 0x7FFF;
+	}
 
-	.loc_0x118:
-	  rlwinm    r0,r6,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x128
-	  li        r6, 0
+	__OSUnlockSramEx(FALSE);
+	if (id->encode != __CARDGetFontEncode()) {
+		return CARD_RESULT_ENCODING;
+	}
 
-	.loc_0x128:
-	  rlwinm    r0,r7,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x138
-	  li        r7, 0
-
-	.loc_0x138:
-	  lhz       r3, 0x1FC(r27)
-	  rlwinm    r0,r6,0,16,31
-	  cmplw     r3, r0
-	  bne-      .loc_0x158
-	  lhz       r3, 0x1FE(r27)
-	  rlwinm    r0,r7,0,16,31
-	  cmplw     r3, r0
-	  beq-      .loc_0x160
-
-	.loc_0x158:
-	  li        r3, -0x6
-	  b         .loc_0x270
-
-	.loc_0x160:
-	  lwz       r31, 0xC(r27)
-	  lwz       r28, 0x10(r27)
-	  bl        0x196A8
-	  lis       r4, 0x804F
-	  addi      r0, r4, 0x5AF0
-	  lis       r4, 0x7878
-	  sub       r0, r26, r0
-	  addi      r4, r4, 0x7879
-	  mulhw     r0, r4, r0
-	  srawi     r0, r0, 0x7
-	  rlwinm    r4,r0,1,31,31
-	  add       r0, r0, r4
-	  mulli     r0, r0, 0xC
-	  lis       r4, 0x41C6
-	  addi      r25, r27, 0
-	  add       r29, r3, r0
-	  addi      r30, r4, 0x4E6D
-	  li        r26, 0
-
-	.loc_0x1A8:
-	  mullw     r5, r31, r30
-	  mulhwu    r3, r28, r30
-	  li        r31, 0
-	  add       r5, r5, r3
-	  mullw     r3, r28, r31
-	  mullw     r0, r28, r30
-	  li        r28, 0x3039
-	  addc      r4, r0, r28
-	  add       r0, r5, r3
-	  adde      r3, r0, r31
-	  li        r5, 0x10
-	  bl        -0x1561C
-	  lbz       r0, 0x0(r29)
-	  lbz       r6, 0x0(r25)
-	  addc      r0, r4, r0
-	  rlwinm    r0,r0,0,24,31
-	  cmplw     r6, r0
-	  beq-      .loc_0x200
-	  li        r3, 0
-	  bl        0x199D8
-	  li        r3, -0x6
-	  b         .loc_0x270
-
-	.loc_0x200:
-	  mullw     r5, r3, r30
-	  mulhwu    r3, r4, r30
-	  add       r5, r5, r3
-	  mullw     r3, r4, r31
-	  mullw     r0, r4, r30
-	  addc      r4, r0, r28
-	  add       r0, r5, r3
-	  adde      r3, r0, r31
-	  li        r5, 0x10
-	  bl        -0x1566C
-	  addi      r26, r26, 0x1
-	  cmpwi     r26, 0xC
-	  li        r0, 0x7FFF
-	  and       r28, r4, r0
-	  and       r31, r3, r31
-	  addi      r29, r29, 0x1
-	  addi      r25, r25, 0x1
-	  blt+      .loc_0x1A8
-	  li        r3, 0
-	  bl        0x19980
-	  bl        -0x2240
-	  lhz       r0, 0x24(r27)
-	  rlwinm    r3,r3,0,16,31
-	  cmplw     r0, r3
-	  beq-      .loc_0x26C
-	  li        r3, -0xD
-	  b         .loc_0x270
-
-	.loc_0x26C:
-	  li        r3, 0
-
-	.loc_0x270:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  addi      r1, r1, 0x30
-	  mtlr      r0
-	  blr
-	*/
+	return CARD_RESULT_READY;
 }
 
 /*
@@ -336,187 +74,46 @@ int VerifyID(CARDBlock* block)
  * Address:	800D7800
  * Size:	000240
  */
-int VerifyDir(CARDBlock* block, void* p2)
+static s32 VerifyDir(CARDControl* card, int* outCurrent)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x38(r1)
-	  stw       r31, 0x34(r1)
-	  addi      r7, r1, 0x1C
-	  addi      r8, r1, 0x14
-	  stw       r30, 0x30(r1)
-	  li        r31, 0
-	  li        r30, 0
-	  stw       r29, 0x2C(r1)
-	  addi      r29, r4, 0
-	  li        r4, 0
+	CARDDirectoryBlock* dir[2];
+	CARDDirCheck* check[2];
+	u16 checkSum;
+	u16 checkSumInv;
+	int i;
+	int errors;
+	int current;
 
-	.loc_0x30:
-	  addi      r0, r4, 0x1
-	  lwz       r5, 0x80(r3)
-	  rlwinm    r0,r0,13,0,18
-	  add       r0, r5, r0
-	  stw       r0, 0x0(r7)
-	  li        r6, 0x1FFC
-	  srawi     r6, r6, 0x1
-	  lwz       r5, 0x0(r7)
-	  addze.    r6, r6
-	  li        r11, 0
-	  addi      r0, r5, 0x1FC0
-	  stw       r0, 0x0(r8)
-	  li        r10, 0
-	  lwz       r5, 0x0(r7)
-	  ble-      .loc_0x124
-	  rlwinm.   r0,r6,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x108
+	current = errors = 0;
+	for (i = 0; i < 2; i++) {
+		dir[i]   = CARDGetDirectoryBlock(card, i);
+		check[i] = &dir[i]->check;
+		__CARDCheckSum(dir[i], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum, &checkSumInv);
+		if (check[i]->checkSum != checkSum || check[i]->checkSumInv != checkSumInv) {
+			++errors;
+			current          = i;
+			card->currentDir = nullptr;
+		}
+	}
 
-	.loc_0x78:
-	  lhz       r9, 0x0(r5)
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0x2(r5)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0x4(r5)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0x6(r5)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0x8(r5)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0xA(r5)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0xC(r5)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0xE(r5)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  add       r11, r11, r0
-	  addi      r5, r5, 0x10
-	  bdnz+     .loc_0x78
-	  andi.     r6, r6, 0x7
-	  beq-      .loc_0x124
+	if (errors == 0) {
+		if (card->currentDir == 0) {
+			if ((check[0]->checkCode - check[1]->checkCode) < 0) {
+				current = 0;
+			} else {
+				current = 1;
+			}
+			card->currentDir = dir[current];
+			memcpy(dir[current], dir[current ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+		} else {
+			current = (card->currentDir == dir[0]) ? 0 : 1;
+		}
+	}
 
-	.loc_0x108:
-	  mtctr     r6
-
-	.loc_0x10C:
-	  lhz       r9, 0x0(r5)
-	  addi      r5, r5, 0x2
-	  not       r0, r9
-	  add       r10, r10, r9
-	  add       r11, r11, r0
-	  bdnz+     .loc_0x10C
-
-	.loc_0x124:
-	  rlwinm    r0,r10,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x134
-	  li        r10, 0
-
-	.loc_0x134:
-	  rlwinm    r0,r11,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x144
-	  li        r11, 0
-
-	.loc_0x144:
-	  lwz       r6, 0x0(r8)
-	  rlwinm    r5,r10,0,16,31
-	  lhz       r0, 0x3C(r6)
-	  cmplw     r5, r0
-	  bne-      .loc_0x168
-	  lhz       r0, 0x3E(r6)
-	  rlwinm    r5,r11,0,16,31
-	  cmplw     r5, r0
-	  beq-      .loc_0x178
-
-	.loc_0x168:
-	  li        r0, 0
-	  stw       r0, 0x84(r3)
-	  addi      r30, r4, 0
-	  addi      r31, r31, 0x1
-
-	.loc_0x178:
-	  addi      r4, r4, 0x1
-	  cmpwi     r4, 0x2
-	  addi      r7, r7, 0x4
-	  addi      r8, r8, 0x4
-	  blt+      .loc_0x30
-	  cmpwi     r31, 0
-	  bne-      .loc_0x214
-	  lwz       r4, 0x84(r3)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x1F8
-	  lwz       r5, 0x18(r1)
-	  lwz       r4, 0x14(r1)
-	  lha       r5, 0x3A(r5)
-	  lha       r0, 0x3A(r4)
-	  sub.      r0, r0, r5
-	  bge-      .loc_0x1C0
-	  li        r30, 0
-	  b         .loc_0x1C4
-
-	.loc_0x1C0:
-	  li        r30, 0x1
-
-	.loc_0x1C4:
-	  rlwinm    r0,r30,2,0,29
-	  addi      r6, r1, 0x1C
-	  add       r6, r6, r0
-	  lwz       r4, 0x0(r6)
-	  xori      r0, r30, 0x1
-	  rlwinm    r0,r0,2,0,29
-	  stw       r4, 0x84(r3)
-	  addi      r4, r1, 0x1C
-	  li        r5, 0x2000
-	  lwz       r3, 0x0(r6)
-	  lwzx      r4, r4, r0
-	  bl        -0xD2854
-	  b         .loc_0x214
-
-	.loc_0x1F8:
-	  lwz       r0, 0x1C(r1)
-	  cmplw     r4, r0
-	  bne-      .loc_0x20C
-	  li        r0, 0
-	  b         .loc_0x210
-
-	.loc_0x20C:
-	  li        r0, 0x1
-
-	.loc_0x210:
-	  mr        r30, r0
-
-	.loc_0x214:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x220
-	  stw       r30, 0x0(r29)
-
-	.loc_0x220:
-	  mr        r3, r31
-	  lwz       r0, 0x3C(r1)
-	  lwz       r31, 0x34(r1)
-	  lwz       r30, 0x30(r1)
-	  lwz       r29, 0x2C(r1)
-	  addi      r1, r1, 0x38
-	  mtlr      r0
-	  blr
-	*/
+	if (outCurrent) {
+		*outCurrent = current;
+	}
+	return errors;
 }
 
 /*
@@ -524,212 +121,61 @@ int VerifyDir(CARDBlock* block, void* p2)
  * Address:	800D7A40
  * Size:	000284
  */
-int VerifyFAT(CARDBlock* block, void* p2)
+static s32 VerifyFAT(CARDControl* card, int* outCurrent)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  li        r31, 0
-	  stw       r30, 0x20(r1)
-	  li        r30, 0
-	  stw       r29, 0x1C(r1)
-	  addi      r29, r4, 0
-	  addi      r4, r1, 0x10
+	CARDFatBlock* fat[2];
+	CARDFatBlock* fatp;
+	u16 nBlock;
+	u16 cFree;
+	int i;
+	u16 checkSum;
+	u16 checkSumInv;
+	int errors;
+	int current;
 
-	.loc_0x2C:
-	  li        r8, 0x1FFC
-	  lwz       r6, 0x80(r3)
-	  addi      r0, r5, 0x3
-	  srawi     r8, r8, 0x1
-	  rlwinm    r0,r0,13,0,18
-	  add       r7, r6, r0
-	  addze.    r8, r8
-	  stw       r7, 0x0(r4)
-	  addi      r6, r7, 0x4
-	  li        r11, 0
-	  li        r10, 0
-	  ble-      .loc_0x114
-	  rlwinm.   r0,r8,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0xF8
+	current = errors = 0;
+	for (i = 0; i < 2; i++) {
+		fatp = fat[i] = CARDGetFatBlock(card, i);
 
-	.loc_0x68:
-	  lhz       r9, 0x0(r6)
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0x2(r6)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0x4(r6)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0x6(r6)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0x8(r6)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0xA(r6)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0xC(r6)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  lhz       r9, 0xE(r6)
-	  add       r11, r11, r0
-	  not       r0, r9
-	  add       r10, r10, r9
-	  add       r11, r11, r0
-	  addi      r6, r6, 0x10
-	  bdnz+     .loc_0x68
-	  andi.     r8, r8, 0x7
-	  beq-      .loc_0x114
+		__CARDCheckSum(&fatp->checkCode, CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum, &checkSumInv);
+		if (fatp->checkSum != checkSum || fatp->checkSumInv != checkSumInv) {
+			++errors;
+			current          = i;
+			card->currentFat = nullptr;
+			continue;
+		}
 
-	.loc_0xF8:
-	  mtctr     r8
+		cFree = 0;
+		for (nBlock = CARD_NUM_SYSTEM_BLOCK; nBlock < card->cBlock; nBlock++) {
+			if (((u16*)fatp)[nBlock] == CARD_FAT_AVAIL) {
+				cFree++;
+			}
+		}
+		if (cFree != fatp->freeBlocks) {
+			++errors;
+			current          = i;
+			card->currentFat = nullptr;
+			continue;
+		}
+	}
 
-	.loc_0xFC:
-	  lhz       r9, 0x0(r6)
-	  addi      r6, r6, 0x2
-	  not       r0, r9
-	  add       r10, r10, r9
-	  add       r11, r11, r0
-	  bdnz+     .loc_0xFC
-
-	.loc_0x114:
-	  rlwinm    r0,r10,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x124
-	  li        r10, 0
-
-	.loc_0x124:
-	  rlwinm    r0,r11,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x134
-	  li        r11, 0
-
-	.loc_0x134:
-	  lhz       r6, 0x0(r7)
-	  rlwinm    r0,r10,0,16,31
-	  cmplw     r6, r0
-	  bne-      .loc_0x154
-	  lhz       r6, 0x2(r7)
-	  rlwinm    r0,r11,0,16,31
-	  cmplw     r6, r0
-	  beq-      .loc_0x168
-
-	.loc_0x154:
-	  li        r0, 0
-	  stw       r0, 0x88(r3)
-	  addi      r30, r5, 0
-	  addi      r31, r31, 0x1
-	  b         .loc_0x1C0
-
-	.loc_0x168:
-	  lhz       r8, 0x10(r3)
-	  addi      r6, r7, 0xA
-	  li        r10, 0
-	  li        r9, 0x5
-	  b         .loc_0x194
-
-	.loc_0x17C:
-	  lhz       r0, 0x0(r6)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x18C
-	  addi      r10, r10, 0x1
-
-	.loc_0x18C:
-	  addi      r6, r6, 0x2
-	  addi      r9, r9, 0x1
-
-	.loc_0x194:
-	  rlwinm    r0,r9,0,16,31
-	  cmplw     r0, r8
-	  blt+      .loc_0x17C
-	  lhz       r0, 0x6(r7)
-	  rlwinm    r6,r10,0,16,31
-	  cmplw     r6, r0
-	  beq-      .loc_0x1C0
-	  li        r0, 0
-	  stw       r0, 0x88(r3)
-	  addi      r30, r5, 0
-	  addi      r31, r31, 0x1
-
-	.loc_0x1C0:
-	  addi      r5, r5, 0x1
-	  cmpwi     r5, 0x2
-	  addi      r4, r4, 0x4
-	  blt+      .loc_0x2C
-	  cmpwi     r31, 0
-	  bne-      .loc_0x258
-	  lwz       r4, 0x88(r3)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x23C
-	  lwz       r5, 0x14(r1)
-	  lwz       r4, 0x10(r1)
-	  lha       r5, 0x4(r5)
-	  lha       r0, 0x4(r4)
-	  sub.      r0, r0, r5
-	  bge-      .loc_0x204
-	  li        r30, 0
-	  b         .loc_0x208
-
-	.loc_0x204:
-	  li        r30, 0x1
-
-	.loc_0x208:
-	  rlwinm    r0,r30,2,0,29
-	  addi      r6, r1, 0x10
-	  add       r6, r6, r0
-	  lwz       r4, 0x0(r6)
-	  xori      r0, r30, 0x1
-	  rlwinm    r0,r0,2,0,29
-	  stw       r4, 0x88(r3)
-	  addi      r4, r1, 0x10
-	  li        r5, 0x2000
-	  lwz       r3, 0x0(r6)
-	  lwzx      r4, r4, r0
-	  bl        -0xD2AD8
-	  b         .loc_0x258
-
-	.loc_0x23C:
-	  lwz       r0, 0x10(r1)
-	  cmplw     r4, r0
-	  bne-      .loc_0x250
-	  li        r0, 0
-	  b         .loc_0x254
-
-	.loc_0x250:
-	  li        r0, 0x1
-
-	.loc_0x254:
-	  mr        r30, r0
-
-	.loc_0x258:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x264
-	  stw       r30, 0x0(r29)
-
-	.loc_0x264:
-	  mr        r3, r31
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	if (0 == errors) {
+		if (card->currentFat == 0) {
+			if (((s16)fat[0]->checkCode - (s16)fat[1]->checkCode) < 0) {
+				current = 0;
+			} else {
+				current = 1;
+			}
+			card->currentFat = fat[current];
+			memcpy(fat[current], fat[current ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+		} else {
+			current = (card->currentFat == fat[0]) ? 0 : 1;
+		}
+	}
+	if (outCurrent) {
+		*outCurrent = current;
+	}
+	return errors;
 }
 
 /*
@@ -737,56 +183,26 @@ int VerifyFAT(CARDBlock* block, void* p2)
  * Address:	800D7CC4
  * Size:	00008C
  */
-int __CARDVerify(CARDBlock* block)
+s32 __CARDVerify(CARDControl* card)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  bl        -0x760
-	  cmpwi     r3, 0
-	  bge-      .loc_0x28
-	  b         .loc_0x74
+	s32 result;
+	int errors;
 
-	.loc_0x28:
-	  addi      r3, r30, 0
-	  li        r4, 0
-	  bl        -0x4F4
-	  addi      r31, r3, 0
-	  addi      r3, r30, 0
-	  li        r4, 0
-	  bl        -0x2C4
-	  add       r0, r31, r3
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x68
-	  bge-      .loc_0x70
-	  cmpwi     r0, 0
-	  bge-      .loc_0x60
-	  b         .loc_0x70
+	result = VerifyID(card);
+	if (result < 0) {
+		return result;
+	}
 
-	.loc_0x60:
-	  li        r3, 0
-	  b         .loc_0x74
-
-	.loc_0x68:
-	  li        r3, -0x6
-	  b         .loc_0x74
-
-	.loc_0x70:
-	  li        r3, -0x6
-
-	.loc_0x74:
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	errors = VerifyDir(card, NULL);
+	errors += VerifyFAT(card, NULL);
+	switch (errors) {
+	case 0:
+		return CARD_RESULT_READY;
+	case 1:
+		return CARD_RESULT_BROKEN;
+	default:
+		return CARD_RESULT_BROKEN;
+	}
 }
 
 /*
@@ -794,455 +210,134 @@ int __CARDVerify(CARDBlock* block)
  * Address:	800D7D50
  * Size:	000590
  */
-void CARDCheckExAsync(int slotIndex, unknown p2, CARDSyncCallback* p3)
+s32 CARDCheckExAsync(s32 channel, s32* xferBytes, CARDCallback callback)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x58(r1)
-	  stmw      r25, 0x3C(r1)
-	  mr.       r26, r4
-	  addi      r25, r3, 0
-	  addi      r27, r5, 0
-	  li        r30, 0
-	  li        r29, 0
-	  li        r28, 0
-	  beq-      .loc_0x34
-	  li        r0, 0
-	  stw       r0, 0x0(r26)
+	CARDControl* card;
+	CARDDirectoryBlock* dir[2];
+	CARDFatBlock* fat[2];
+	u16* map;
+	s32 result;
+	int errors;
+	int currentFat;
+	int currentDir;
+	s32 fileNo;
+	u16 iBlock;
+	u16 cBlock;
+	u16 cFree;
+	BOOL updateFat    = FALSE;
+	BOOL updateDir    = FALSE;
+	BOOL updateOrphan = FALSE;
 
-	.loc_0x34:
-	  addi      r3, r25, 0
-	  addi      r4, r1, 0x30
-	  bl        -0x27C0
-	  cmpwi     r3, 0
-	  bge-      .loc_0x4C
-	  b         .loc_0x57C
+	if (xferBytes) {
+		*xferBytes = 0;
+	}
 
-	.loc_0x4C:
-	  lwz       r3, 0x30(r1)
-	  bl        -0x824
-	  mr.       r4, r3
-	  bge-      .loc_0x68
-	  lwz       r3, 0x30(r1)
-	  bl        -0x272C
-	  b         .loc_0x57C
+	result = __CARDGetControlBlock(channel, &card);
+	if (result < 0) {
+		return result;
+	}
 
-	.loc_0x68:
-	  lwz       r3, 0x30(r1)
-	  addi      r4, r1, 0x18
-	  bl        -0x5C0
-	  mr        r31, r3
-	  lwz       r3, 0x30(r1)
-	  addi      r4, r1, 0x1C
-	  bl        -0x390
-	  add       r5, r31, r3
-	  cmpwi     r5, 0x1
-	  ble-      .loc_0xA0
-	  lwz       r3, 0x30(r1)
-	  li        r4, -0x6
-	  bl        -0x2764
-	  b         .loc_0x57C
+	result = VerifyID(card);
+	if (result < 0) {
+		return __CARDPutControlBlock(card, result);
+	}
 
-	.loc_0xA0:
-	  lwz       r6, 0x30(r1)
-	  lwz       r4, 0x80(r6)
-	  addi      r3, r4, 0x2000
-	  addi      r0, r4, 0x6000
-	  stw       r3, 0x28(r1)
-	  addis     r3, r4, 0x1
-	  addi      r4, r4, 0x4000
-	  stw       r0, 0x20(r1)
-	  subi      r0, r3, 0x8000
-	  stw       r4, 0x2C(r1)
-	  stw       r0, 0x24(r1)
-	  beq-      .loc_0xD8
-	  bge-      .loc_0x15C
-	  b         .loc_0x15C
+	errors = VerifyDir(card, &currentDir);
+	errors += VerifyFAT(card, &currentFat);
+	if (1 < errors) {
+		return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
+	}
 
-	.loc_0xD8:
-	  addi      r3, r6, 0x84
-	  lwz       r0, 0x84(r6)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r0, 0x18(r1)
-	  addi      r4, r1, 0x28
-	  li        r5, 0x2000
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r0, r4, r0
-	  stw       r0, 0x0(r3)
-	  lwz       r3, 0x18(r1)
-	  xori      r0, r3, 0x1
-	  rlwinm    r3,r3,2,0,29
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r3, r4, r3
-	  lwzx      r4, r4, r0
-	  bl        -0xD2CCC
-	  li        r29, 0x1
-	  b         .loc_0x15C
+	dir[0] = &card->workArea->dirBlock;
+	dir[1] = &card->workArea->dirBlockBackup;
+	fat[0] = &card->workArea->blockAllocMap;
+	fat[1] = &card->workArea->blockAllocMapBackup;
 
-	.loc_0x124:
-	  lwz       r0, 0x1C(r1)
-	  addi      r4, r1, 0x20
-	  li        r5, 0x2000
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r0, r4, r0
-	  stw       r0, 0x88(r6)
-	  lwz       r3, 0x1C(r1)
-	  xori      r0, r3, 0x1
-	  rlwinm    r3,r3,2,0,29
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r3, r4, r3
-	  lwzx      r4, r4, r0
-	  bl        -0xD2D08
-	  li        r30, 0x1
+	switch (errors) {
+	case 0:
+		break;
+	case 1:
+		if (!card->currentDir) {
+			card->currentDir = dir[currentDir];
+			memcpy(dir[currentDir], dir[currentDir ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+			updateDir = TRUE;
+		} else {
+			card->currentFat = fat[currentFat];
+			memcpy(fat[currentFat], fat[currentFat ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+			updateFat = TRUE;
+		}
+		break;
+	}
 
-	.loc_0x15C:
-	  lwz       r0, 0x1C(r1)
-	  addi      r3, r1, 0x20
-	  li        r4, 0
-	  xori      r0, r0, 0x1
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r31, r3, r0
-	  li        r5, 0x2000
-	  addi      r3, r31, 0
-	  bl        -0xD2E18
-	  li        r0, 0x7F
-	  lwz       r5, 0x30(r1)
-	  mtctr     r0
-	  li        r6, 0
+	map = (u16*)fat[currentFat ^ 1];
+	memset(map, 0, CARD_SYSTEM_BLOCK_SIZE);
 
-	.loc_0x190:
-	  lwz       r0, 0x84(r5)
-	  add       r7, r0, r6
-	  lbz       r0, 0x0(r7)
-	  cmplwi    r0, 0xFF
-	  beq-      .loc_0x248
-	  lhz       r4, 0x36(r7)
-	  li        r8, 0
-	  b         .loc_0x200
+	for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++) {
+		CARDDir* ent;
 
-	.loc_0x1B0:
-	  rlwinm    r3,r4,0,16,31
-	  cmplwi    r3, 0x5
-	  blt-      .loc_0x1E4
-	  lhz       r0, 0x10(r5)
-	  cmplw     r3, r0
-	  bge-      .loc_0x1E4
-	  rlwinm    r4,r3,1,0,30
-	  lhzx      r3, r31, r4
-	  addi      r3, r3, 0x1
-	  rlwinm    r0,r3,0,16,31
-	  sthx      r3, r31, r4
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x1F4
+		ent = &card->currentDir->entries[fileNo];
+		if (ent->gameName[0] == 0xff) {
+			continue;
+		}
 
-	.loc_0x1E4:
-	  lwz       r3, 0x30(r1)
-	  li        r4, -0x6
-	  bl        -0x28B8
-	  b         .loc_0x57C
+		for (iBlock = ent->startBlock, cBlock = 0; iBlock != 0xFFFF && cBlock < ent->length;
+		     iBlock = ((u16*)card->currentFat)[iBlock], ++cBlock) {
+			if (!CARDIsValidBlockNo(card, iBlock) || 1 < ++map[iBlock]) {
+				return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
+			}
+		}
+		if (cBlock != ent->length || iBlock != 0xFFFF) {
+			return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
+		}
+	}
 
-	.loc_0x1F4:
-	  lwz       r3, 0x88(r5)
-	  addi      r8, r8, 0x1
-	  lhzx      r4, r3, r4
+	cFree = 0;
+	for (iBlock = CARD_NUM_SYSTEM_BLOCK; iBlock < card->cBlock; iBlock++) {
+		u16 nextBlock;
 
-	.loc_0x200:
-	  rlwinm    r0,r4,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x21C
-	  lhz       r0, 0x38(r7)
-	  rlwinm    r3,r8,0,16,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x1B0
+		nextBlock = ((u16*)card->currentFat)[iBlock];
+		if (map[iBlock] == 0) {
+			if (nextBlock != CARD_FAT_AVAIL) {
+				((u16*)card->currentFat)[iBlock] = CARD_FAT_AVAIL;
+				updateOrphan                     = TRUE;
+			}
+			cFree++;
+		} else if (!CARDIsValidBlockNo(card, nextBlock) && nextBlock != 0xFFFF) {
+			return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
+		}
+	}
+	if (cFree != card->currentFat->freeBlocks) {
+		card->currentFat->freeBlocks = cFree;
+		updateOrphan                 = TRUE;
+	}
+	if (updateOrphan) {
+		__CARDCheckSum(&card->currentFat->checkCode, CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &card->currentFat->checkSum,
+		               &card->currentFat->checkSumInv);
+	}
 
-	.loc_0x21C:
-	  lhz       r0, 0x38(r7)
-	  rlwinm    r3,r8,0,16,31
-	  cmplw     r3, r0
-	  bne-      .loc_0x238
-	  rlwinm    r0,r4,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x248
+	memcpy(fat[currentFat ^ 1], fat[currentFat], CARD_SYSTEM_BLOCK_SIZE);
 
-	.loc_0x238:
-	  lwz       r3, 0x30(r1)
-	  li        r4, -0x6
-	  bl        -0x290C
-	  b         .loc_0x57C
+	if (updateDir) {
+		if (xferBytes) {
+			*xferBytes = CARD_SYSTEM_BLOCK_SIZE;
+		}
+		return __CARDUpdateDir(channel, callback);
+	}
 
-	.loc_0x248:
-	  addi      r6, r6, 0x40
-	  bdnz+     .loc_0x190
-	  lwz       r3, 0x30(r1)
-	  addi      r6, r31, 0xA
-	  li        r9, 0
-	  li        r8, 0x5
-	  li        r5, 0xA
-	  b         .loc_0x2CC
+	if (updateFat | updateOrphan) {
+		if (xferBytes) {
+			*xferBytes = CARD_SYSTEM_BLOCK_SIZE;
+		}
+		return __CARDUpdateFatBlock(channel, card->currentFat, callback);
+	}
 
-	.loc_0x268:
-	  lwz       r4, 0x88(r3)
-	  lhz       r0, 0x0(r6)
-	  add       r4, r4, r5
-	  cmplwi    r0, 0
-	  lhz       r0, 0x0(r4)
-	  bne-      .loc_0x29C
-	  cmplwi    r0, 0
-	  beq-      .loc_0x294
-	  li        r0, 0
-	  sth       r0, 0x0(r4)
-	  li        r28, 0x1
-
-	.loc_0x294:
-	  addi      r9, r9, 0x1
-	  b         .loc_0x2C0
-
-	.loc_0x29C:
-	  cmplwi    r0, 0x5
-	  blt-      .loc_0x2AC
-	  cmplw     r0, r7
-	  blt-      .loc_0x2C0
-
-	.loc_0x2AC:
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x2C0
-	  li        r4, -0x6
-	  bl        -0x2984
-	  b         .loc_0x57C
-
-	.loc_0x2C0:
-	  addi      r5, r5, 0x2
-	  addi      r6, r6, 0x2
-	  addi      r8, r8, 0x1
-
-	.loc_0x2CC:
-	  lhz       r7, 0x10(r3)
-	  rlwinm    r0,r8,0,16,31
-	  cmplw     r0, r7
-	  blt+      .loc_0x268
-	  lwz       r3, 0x88(r3)
-	  rlwinm    r4,r9,0,16,31
-	  lhzu      r0, 0x6(r3)
-	  cmplw     r4, r0
-	  beq-      .loc_0x2F8
-	  sth       r9, 0x0(r3)
-	  li        r28, 0x1
-
-	.loc_0x2F8:
-	  cmpwi     r28, 0
-	  beq-      .loc_0x4C4
-	  lwz       r3, 0x30(r1)
-	  li        r4, 0x1FFC
-	  srawi     r4, r4, 0x1
-	  lwz       r6, 0x88(r3)
-	  li        r0, 0
-	  addze.    r4, r4
-	  sth       r0, 0x2(r6)
-	  addi      r7, r6, 0x2
-	  addi      r5, r6, 0x4
-	  sth       r0, 0x0(r6)
-	  addi      r3, r4, 0
-	  ble-      .loc_0x49C
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x46C
-
-	.loc_0x33C:
-	  lhz       r4, 0x0(r6)
-	  lhz       r0, 0x0(r5)
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r0, 0x0(r5)
-	  lhz       r4, 0x0(r7)
-	  not       r0, r0
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r7)
-	  lhz       r4, 0x0(r6)
-	  lhz       r0, 0x2(r5)
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r0, 0x2(r5)
-	  lhz       r4, 0x0(r7)
-	  not       r0, r0
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r7)
-	  lhz       r4, 0x0(r6)
-	  lhz       r0, 0x4(r5)
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r0, 0x4(r5)
-	  lhz       r4, 0x0(r7)
-	  not       r0, r0
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r7)
-	  lhz       r4, 0x0(r6)
-	  lhz       r0, 0x6(r5)
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r0, 0x6(r5)
-	  lhz       r4, 0x0(r7)
-	  not       r0, r0
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r7)
-	  lhz       r4, 0x0(r6)
-	  lhz       r0, 0x8(r5)
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r0, 0x8(r5)
-	  lhz       r4, 0x0(r7)
-	  not       r0, r0
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r7)
-	  lhz       r4, 0x0(r6)
-	  lhz       r0, 0xA(r5)
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r0, 0xA(r5)
-	  lhz       r4, 0x0(r7)
-	  not       r0, r0
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r7)
-	  lhz       r4, 0x0(r6)
-	  lhz       r0, 0xC(r5)
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r0, 0xC(r5)
-	  lhz       r4, 0x0(r7)
-	  not       r0, r0
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r7)
-	  lhz       r4, 0x0(r6)
-	  lhz       r0, 0xE(r5)
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r0, 0xE(r5)
-	  addi      r5, r5, 0x10
-	  lhz       r4, 0x0(r7)
-	  not       r0, r0
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r7)
-	  bdnz+     .loc_0x33C
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0x49C
-
-	.loc_0x46C:
-	  mtctr     r3
-
-	.loc_0x470:
-	  lhz       r4, 0x0(r6)
-	  lhz       r0, 0x0(r5)
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r6)
-	  lhz       r0, 0x0(r5)
-	  addi      r5, r5, 0x2
-	  lhz       r4, 0x0(r7)
-	  not       r0, r0
-	  add       r0, r4, r0
-	  sth       r0, 0x0(r7)
-	  bdnz+     .loc_0x470
-
-	.loc_0x49C:
-	  lhz       r0, 0x0(r6)
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x4B0
-	  li        r0, 0
-	  sth       r0, 0x0(r6)
-
-	.loc_0x4B0:
-	  lhz       r0, 0x0(r7)
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x4C4
-	  li        r0, 0
-	  sth       r0, 0x0(r7)
-
-	.loc_0x4C4:
-	  lwz       r6, 0x1C(r1)
-	  addi      r4, r1, 0x20
-	  li        r5, 0x2000
-	  xori      r0, r6, 0x1
-	  rlwinm    r3,r0,2,0,29
-	  rlwinm    r0,r6,2,0,29
-	  lwzx      r3, r4, r3
-	  lwzx      r4, r4, r0
-	  bl        -0xD3098
-	  cmpwi     r29, 0
-	  beq-      .loc_0x510
-	  cmplwi    r26, 0
-	  beq-      .loc_0x500
-	  li        r0, 0x2000
-	  stw       r0, 0x0(r26)
-
-	.loc_0x500:
-	  addi      r3, r25, 0
-	  addi      r4, r27, 0
-	  bl        -0xF50
-	  b         .loc_0x57C
-
-	.loc_0x510:
-	  or.       r0, r30, r28
-	  beq-      .loc_0x540
-	  cmplwi    r26, 0
-	  beq-      .loc_0x528
-	  li        r0, 0x2000
-	  stw       r0, 0x0(r26)
-
-	.loc_0x528:
-	  lwz       r4, 0x30(r1)
-	  addi      r3, r25, 0
-	  addi      r5, r27, 0
-	  lwz       r4, 0x88(r4)
-	  bl        -0x11CC
-	  b         .loc_0x57C
-
-	.loc_0x540:
-	  lwz       r3, 0x30(r1)
-	  li        r4, 0
-	  bl        -0x2C14
-	  cmplwi    r27, 0
-	  beq-      .loc_0x578
-	  bl        0x16994
-	  addi      r12, r27, 0
-	  mtlr      r12
-	  addi      r26, r3, 0
-	  addi      r3, r25, 0
-	  li        r4, 0
-	  blrl
-	  mr        r3, r26
-	  bl        0x1699C
-
-	.loc_0x578:
-	  li        r3, 0
-
-	.loc_0x57C:
-	  lmw       r25, 0x3C(r1)
-	  lwz       r0, 0x5C(r1)
-	  addi      r1, r1, 0x58
-	  mtlr      r0
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
- */
-void CARDCheckAsync(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void CARDCheckEx(void)
-{
-	// UNUSED FUNCTION
+	__CARDPutControlBlock(card, CARD_RESULT_READY);
+	if (callback) {
+		BOOL enabled = OSDisableInterrupts();
+		callback(channel, CARD_RESULT_READY);
+		OSRestoreInterrupts(enabled);
+	}
+	return CARD_RESULT_READY;
 }
 
 /*
@@ -1250,34 +345,16 @@ void CARDCheckEx(void)
  * Address:	800D82E0
  * Size:	000054
  */
-void CARDCheck(void)
+s32 CARDCheck(s32 channel)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x800D
-	  stw       r0, 0x4(r1)
-	  addi      r5, r4, 0x4670
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  addi      r31, r3, 0
-	  addi      r4, r1, 0xC
-	  bl        -0x5B0
-	  cmpwi     r3, 0
-	  blt-      .loc_0x40
-	  addic.    r0, r1, 0xC
-	  bne-      .loc_0x38
-	  b         .loc_0x40
+	s32 result;
+	s32 xferBytes;
 
-	.loc_0x38:
-	  mr        r3, r31
-	  bl        -0x2AE4
+	result = CARDCheckExAsync(channel, &xferBytes, __CARDSyncCallback);
 
-	.loc_0x40:
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	if (result < 0 || &xferBytes == nullptr) {
+		return result;
+	}
+
+	return __CARDSync(channel);
 }

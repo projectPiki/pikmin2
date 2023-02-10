@@ -123,16 +123,50 @@ extern void TRKCloseFile(void);
 void __OSSystemCallVectorStart();
 void __OSSystemCallVectorEnd();
 
-void __OSUnlockSramEx(int);
-u8* __OSLockSramEx(void);
-
 void OSFillFPUContext(OSContext*);
 extern u32 __OSFpscrEnableBits; /** TODO: find a wrapper for this. Symbol is defined in OSError.c. */
 
 #define HW_REG(reg, type) *(volatile type*)(u32)(reg)
 
+u8 GameChoice AT_ADDRESS(OS_BASE_CACHED | 0x30E3);
+
 // u32 GameCode : 0x80000000;
 // u32 FSTLocationInRam : 0x80000038;
+
+//////////////////////////////////
+
+///////// OS RTC TYPES ///////////
+// Struct for static RAM (size 0x14).
+typedef struct OSSram {
+	u16 checkSum;      // _00
+	u16 checkSumInv;   // _02
+	u32 ead0;          // _04
+	u32 ead1;          // _08
+	u32 counterBias;   // _0C
+	s8 displayOffsetH; // _10
+	u8 ntd;            // _11
+	u8 language;       // _12
+	u8 flags;          // _13
+} OSSram;
+
+// Struct for expanded/external static RAM (size 0x2C).
+typedef struct OSSramEx {
+	u8 flashID[2][12];      // _00
+	u32 wirelessKeyboardID; // _18
+	u16 wirelessPadID[4];   // _1C
+	u8 dvdErrorCode;        // _24
+	u8 reserved_25;         // _25
+	u8 flashIDCheckSum[2];  // _26
+	u16 gbs;                // _28
+	u8 reserved_2A[2];      // _2A
+} OSSramEx;
+
+// SRAM functions.
+OSSram* __OSLockSram();
+OSSramEx* __OSLockSramEx();
+void __OSUnlockSramEx(int);
+void OSSetWirelessID(s32 channel, u16 id);
+u16 OSGetWirelessID(s32 channel);
 
 //////////////////////////////////
 

@@ -59,17 +59,18 @@ struct CARDStat {
 	u32 length;                       // _20
 	u32 time;                         // _24, secs since 01/01/2000 00:00.
 	u8 gameName[4];                   // _28
-	u8 company[4];                    // _2C
-	u8 bannerFormat;                  // _30
-	u32 iconAddr;                     // _34
-	u16 iconFormat;                   // _38
-	u16 iconSpeed;                    // _3A
-	u32 commentAddr;                  // _3C
-	u32 offsetBanner;                 // _40
-	u32 offsetBannerTlut;             // _44
-	u32 offsetIcon[CARD_ICON_MAX];    // _48
-	u32 offsetIconTlut;               // _68
-	u32 offsetData;                   // _6C
+	u8 company[2];                    // _2C
+	u8 bannerFormat;                  // _2E
+	u32 iconAddr;                     // _30
+	u16 iconFormat;                   // _34
+	u16 iconSpeed;                    // _36
+	u32 commentAddr;                  // _38
+	u32 offsetBanner;                 // _3C
+	u32 offsetBannerTlut;             // _40
+	u32 offsetIcon[CARD_ICON_MAX];    // _44
+	u32 offsetIconTlut;               // _64
+	u32 offsetData;                   // _68
+	u32 reserved_6C;                  // _6C
 };
 
 // CARD directory entry information (size 0x40).
@@ -389,6 +390,9 @@ CARDFatBlock* __CARDGetFatBlock(CARDControl* card);
 #define CARDSetIconAddress(stat, addr)    ((stat)->iconAddr = (u32)(addr))
 #define CARDSetCommentAddress(stat, addr) ((stat)->commentAddr = (u32)(addr))
 #define CARDGetFileNo(fileInfo)           ((fileInfo)->fileNo)
+
+#define CARDGetDirectoryBlock(card, i) ((CARDDirectoryBlock*)((u8*)card->workArea + (1 + i) * CARD_SYSTEM_BLOCK_SIZE))
+#define CARDGetFatBlock(card, i)       ((CARDFatBlock*)((u8*)card->workArea + (3 + i) * CARD_SYSTEM_BLOCK_SIZE))
 
 ////////////////////////////////////////////
 #ifdef __cplusplus
