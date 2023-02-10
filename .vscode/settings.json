@@ -18,6 +18,7 @@
     "dsp.h": "c",
     "osbootinfo.h": "c",
     "dvd.h": "c",
-    "osutil.h": "c"
+    "osutil.h": "c",
+    "hw_regs.h": "c"
   }
 }
