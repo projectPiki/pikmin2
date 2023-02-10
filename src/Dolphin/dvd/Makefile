@@ -1,5 +1,5 @@
 DVD_FILES:=\
-	$(BUILD_DIR)/asm/Dolphin/dvd/dvdlow.o\
+	$(BUILD_DIR)/src/Dolphin/dvd/dvdlow.o\
 	$(BUILD_DIR)/src/Dolphin/dvd/dvdfs.o\
 	$(BUILD_DIR)/asm/Dolphin/dvd/dvd.o\
 	$(BUILD_DIR)/src/Dolphin/dvd/dvdqueue.o\
@@ -9,6 +9,7 @@ DVD_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/dvd/fstload.o\
 
 DVD_UNSCHEDULED:=\
+	$(EPILOGUE_DIR)/src/Dolphin/dvd/dvdlow.o\
 	$(EPILOGUE_DIR)/src/Dolphin/dvd/dvdfs.o\
 	$(EPILOGUE_DIR)/src/Dolphin/dvd/dvdqueue.o\
 	$(EPILOGUE_DIR)/src/Dolphin/dvd/dvdidutils.o\

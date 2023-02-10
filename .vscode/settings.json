@@ -17,6 +17,7 @@
     "ppcarch.h": "c",
     "dsp.h": "c",
     "osbootinfo.h": "c",
-    "dvd.h": "c"
+    "dvd.h": "c",
+    "osutil.h": "c"
   }
 }

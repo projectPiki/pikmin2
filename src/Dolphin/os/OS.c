@@ -46,7 +46,7 @@ void __OSInitSram();
 void __OSInitSystemCall();
 void __OSInterruptInit();
 void __OSThreadInit();
-u64 __OSGetSystemTime();
+OSTime __OSGetSystemTime();
 void DBPrintf(const char*, ...);
 BOOL __DBIsExceptionMarked(u8);
 void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar);
