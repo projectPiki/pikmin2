@@ -4,7 +4,7 @@
 #include "types.h"
 
 BOOL __DSP_init_flag;
-char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16";
+char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16 (0x2301) >>";
 
 /*
  * --INFO--
