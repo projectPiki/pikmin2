@@ -5,89 +5,113 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804961D8:
+.obj lbl_804961D8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_804961D8
 .balign 4
-lbl_804961E4:
+.obj lbl_804961E4, local
 	.asciz "ebiP2TitleUnit"
+.endobj lbl_804961E4
 .balign 4
-lbl_804961F4:
+.obj lbl_804961F4, local
 	.asciz "opening.bmd"
+.endobj lbl_804961F4
 .balign 4
-lbl_80496200:
+.obj lbl_80496200, local
 	.asciz "ebiP2TitleUnit.cpp"
+.endobj lbl_80496200
 .balign 4
-lbl_80496214:
+.obj lbl_80496214, local
 	.asciz "P2Assert"
+.endobj lbl_80496214
 .balign 4
-lbl_80496220:
+.obj lbl_80496220, local
 	.asciz "opening_wait.bck"
+.endobj lbl_80496220
 .balign 4
-lbl_80496234:
+.obj lbl_80496234, local
 	.asciz "opening_kaze.bck"
+.endobj lbl_80496234
 .balign 4
-lbl_80496248:
+.obj lbl_80496248, local
 	.asciz "enemy.bmd"
+.endobj lbl_80496248
 .balign 4
-lbl_80496254:
+.obj lbl_80496254, local
 	.asciz "enemy.bck"
+.endobj lbl_80496254
 .balign 4
-lbl_80496260:
+.obj lbl_80496260, local
 	.asciz "black_plane"
+.endobj lbl_80496260
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
+.endobj govNAN___Q24Game5P2JST
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F838:
+.obj lbl_8051F838, local
 	.float 1.0
-lbl_8051F83C:
+.endobj lbl_8051F838
+.obj lbl_8051F83C, local
 	.float 0.0
-lbl_8051F840:
+.endobj lbl_8051F83C
+.obj lbl_8051F840, local
 	.float 0.5
-lbl_8051F844:
+.endobj lbl_8051F840
+.obj lbl_8051F844, local
 	.float 60.0
-lbl_8051F848:
+.endobj lbl_8051F844
+.obj lbl_8051F848, local
 	.float 0.2
-lbl_8051F84C:
+.endobj lbl_8051F848
+.obj lbl_8051F84C, local
 	.float 0.8
-lbl_8051F850:
+.endobj lbl_8051F84C
+.obj lbl_8051F850, local
 	.float -5.0000005
+.endobj lbl_8051F850
 .balign 8
-lbl_8051F858:
+.obj lbl_8051F858, local
 	.4byte 0x43300000
 	.4byte 0x00000000
+.endobj lbl_8051F858
 .balign 4
-lbl_8051F860:
+.obj lbl_8051F860, local
 	.asciz "cam.bmd"
+.endobj lbl_8051F860
 .balign 4
-lbl_8051F868:
+.obj lbl_8051F868, local
 	.asciz "cam.bck"
+.endobj lbl_8051F868
 .balign 4
-lbl_8051F870:
+.obj lbl_8051F870, local
 	.asciz "cam.brk"
+.endobj lbl_8051F870
 .balign 8
-lbl_8051F878:
+.obj lbl_8051F878, local
 	.4byte 0x43300000
 	.4byte 0x80000000
+.endobj lbl_8051F878
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc
-loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc:
+.fn loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc, global
 /* 803C0AF8 003BDA38  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 803C0AFC 003BDA3C  7C 08 02 A6 */	mflr r0
 /* 803C0B00 003BDA40  90 01 04 34 */	stw r0, 0x434(r1)
@@ -125,9 +149,9 @@ loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc:
 /* 803C0B74 003BDAB4  7C 08 03 A6 */	mtlr r0
 /* 803C0B78 003BDAB8  38 21 04 30 */	addi r1, r1, 0x430
 /* 803C0B7C 003BDABC  4E 80 00 20 */	blr 
+.endfn loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc
 
-.global calcModelBaseMtx___Q33ebi5title8TObjBaseFv
-calcModelBaseMtx___Q33ebi5title8TObjBaseFv:
+.fn calcModelBaseMtx___Q33ebi5title8TObjBaseFv, global
 /* 803C0B80 003BDAC0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803C0B84 003BDAC4  7C 08 02 A6 */	mflr r0
 /* 803C0B88 003BDAC8  C0 C2 14 DC */	lfs f6, lbl_8051F83C@sda21(r2)
@@ -172,9 +196,9 @@ calcModelBaseMtx___Q33ebi5title8TObjBaseFv:
 /* 803C0C24 003BDB64  7C 08 03 A6 */	mtlr r0
 /* 803C0C28 003BDB68  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C0C2C 003BDB6C  4E 80 00 20 */	blr 
+.endfn calcModelBaseMtx___Q33ebi5title8TObjBaseFv
 
-.global pushOut__Q33ebi5title8TObjBaseFPQ33ebi5title8TObjBase
-pushOut__Q33ebi5title8TObjBaseFPQ33ebi5title8TObjBase:
+.fn pushOut__Q33ebi5title8TObjBaseFPQ33ebi5title8TObjBase, global
 /* 803C0C30 003BDB70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C0C34 003BDB74  7C 08 02 A6 */	mflr r0
 /* 803C0C38 003BDB78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -213,9 +237,9 @@ pushOut__Q33ebi5title8TObjBaseFPQ33ebi5title8TObjBase:
 /* 803C0CB8 003BDBF8  7C 08 03 A6 */	mtlr r0
 /* 803C0CBC 003BDBFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C0CC0 003BDC00  4E 80 00 20 */	blr 
+.endfn pushOut__Q33ebi5title8TObjBaseFPQ33ebi5title8TObjBase
 
-.global setArchive__Q33ebi5title8TMapBaseFP10JKRArchive
-setArchive__Q33ebi5title8TMapBaseFP10JKRArchive:
+.fn setArchive__Q33ebi5title8TMapBaseFP10JKRArchive, global
 /* 803C0CC4 003BDC04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C0CC8 003BDC08  7C 08 02 A6 */	mflr r0
 /* 803C0CCC 003BDC0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -356,9 +380,9 @@ setArchive__Q33ebi5title8TMapBaseFP10JKRArchive:
 /* 803C0ED8 003BDE18  7C 08 03 A6 */	mtlr r0
 /* 803C0EDC 003BDE1C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C0EE0 003BDE20  4E 80 00 20 */	blr 
+.endfn setArchive__Q33ebi5title8TMapBaseFP10JKRArchive
 
-.global startWind__Q33ebi5title8TMapBaseFf
-startWind__Q33ebi5title8TMapBaseFf:
+.fn startWind__Q33ebi5title8TMapBaseFf, global
 /* 803C0EE4 003BDE24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C0EE8 003BDE28  7C 08 02 A6 */	mflr r0
 /* 803C0EEC 003BDE2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -377,9 +401,9 @@ startWind__Q33ebi5title8TMapBaseFf:
 /* 803C0F20 003BDE60  7C 08 03 A6 */	mtlr r0
 /* 803C0F24 003BDE64  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C0F28 003BDE68  4E 80 00 20 */	blr 
+.endfn startWind__Q33ebi5title8TMapBaseFf
 
-.global update__Q33ebi5title8TMapBaseFv
-update__Q33ebi5title8TMapBaseFv:
+.fn update__Q33ebi5title8TMapBaseFv, global
 /* 803C0F2C 003BDE6C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803C0F30 003BDE70  7C 08 02 A6 */	mflr r0
 /* 803C0F34 003BDE74  90 01 00 64 */	stw r0, 0x64(r1)
@@ -549,9 +573,9 @@ update__Q33ebi5title8TMapBaseFv:
 /* 803C119C 003BE0DC  7C 08 03 A6 */	mtlr r0
 /* 803C11A0 003BE0E0  38 21 00 60 */	addi r1, r1, 0x60
 /* 803C11A4 003BE0E4  4E 80 00 20 */	blr 
+.endfn update__Q33ebi5title8TMapBaseFv
 
-.global setArchive__Q33ebi5title12TBGEnemyBaseFP10JKRArchive
-setArchive__Q33ebi5title12TBGEnemyBaseFP10JKRArchive:
+.fn setArchive__Q33ebi5title12TBGEnemyBaseFP10JKRArchive, global
 /* 803C11A8 003BE0E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C11AC 003BE0EC  7C 08 02 A6 */	mflr r0
 /* 803C11B0 003BE0F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -639,9 +663,9 @@ setArchive__Q33ebi5title12TBGEnemyBaseFP10JKRArchive:
 /* 803C12EC 003BE22C  7C 08 03 A6 */	mtlr r0
 /* 803C12F0 003BE230  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C12F4 003BE234  4E 80 00 20 */	blr 
+.endfn setArchive__Q33ebi5title12TBGEnemyBaseFP10JKRArchive
 
-.global start__Q33ebi5title12TBGEnemyBaseFv
-start__Q33ebi5title12TBGEnemyBaseFv:
+.fn start__Q33ebi5title12TBGEnemyBaseFv, global
 /* 803C12F8 003BE238  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C12FC 003BE23C  7C 08 02 A6 */	mflr r0
 /* 803C1300 003BE240  90 01 00 14 */	stw r0, 0x14(r1)
@@ -665,9 +689,9 @@ start__Q33ebi5title12TBGEnemyBaseFv:
 /* 803C1348 003BE288  7C 08 03 A6 */	mtlr r0
 /* 803C134C 003BE28C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C1350 003BE290  4E 80 00 20 */	blr 
+.endfn start__Q33ebi5title12TBGEnemyBaseFv
 
-.global update__Q33ebi5title12TBGEnemyBaseFv
-update__Q33ebi5title12TBGEnemyBaseFv:
+.fn update__Q33ebi5title12TBGEnemyBaseFv, global
 /* 803C1354 003BE294  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803C1358 003BE298  7C 08 02 A6 */	mflr r0
 /* 803C135C 003BE29C  C0 E2 14 D8 */	lfs f7, lbl_8051F838@sda21(r2)
@@ -741,9 +765,9 @@ update__Q33ebi5title12TBGEnemyBaseFv:
 /* 803C146C 003BE3AC  7C 08 03 A6 */	mtlr r0
 /* 803C1470 003BE3B0  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C1474 003BE3B4  4E 80 00 20 */	blr 
+.endfn update__Q33ebi5title12TBGEnemyBaseFv
 
-.global setArchive__Q33ebi5title11TBlackPlaneFP10JKRArchive
-setArchive__Q33ebi5title11TBlackPlaneFP10JKRArchive:
+.fn setArchive__Q33ebi5title11TBlackPlaneFP10JKRArchive, global
 /* 803C1478 003BE3B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C147C 003BE3BC  7C 08 02 A6 */	mflr r0
 /* 803C1480 003BE3C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -933,9 +957,9 @@ setArchive__Q33ebi5title11TBlackPlaneFP10JKRArchive:
 /* 803C1744 003BE684  7C 08 03 A6 */	mtlr r0
 /* 803C1748 003BE688  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C174C 003BE68C  4E 80 00 20 */	blr 
+.endfn setArchive__Q33ebi5title11TBlackPlaneFP10JKRArchive
 
-.global start__Q33ebi5title11TBlackPlaneFv
-start__Q33ebi5title11TBlackPlaneFv:
+.fn start__Q33ebi5title11TBlackPlaneFv, global
 /* 803C1750 003BE690  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C1754 003BE694  7C 08 02 A6 */	mflr r0
 /* 803C1758 003BE698  90 01 00 14 */	stw r0, 0x14(r1)
@@ -976,9 +1000,9 @@ start__Q33ebi5title11TBlackPlaneFv:
 /* 803C17E4 003BE724  7C 08 03 A6 */	mtlr r0
 /* 803C17E8 003BE728  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C17EC 003BE72C  4E 80 00 20 */	blr 
+.endfn start__Q33ebi5title11TBlackPlaneFv
 
-.global updateBeforeCamera__Q33ebi5title11TBlackPlaneFv
-updateBeforeCamera__Q33ebi5title11TBlackPlaneFv:
+.fn updateBeforeCamera__Q33ebi5title11TBlackPlaneFv, global
 /* 803C17F0 003BE730  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803C17F4 003BE734  7C 08 02 A6 */	mflr r0
 /* 803C17F8 003BE738  C0 E2 14 D8 */	lfs f7, lbl_8051F838@sda21(r2)
@@ -1047,9 +1071,9 @@ updateBeforeCamera__Q33ebi5title11TBlackPlaneFv:
 /* 803C18F4 003BE834  7C 08 03 A6 */	mtlr r0
 /* 803C18F8 003BE838  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C18FC 003BE83C  4E 80 00 20 */	blr 
+.endfn updateBeforeCamera__Q33ebi5title11TBlackPlaneFv
 
-.global updateAfterCamera__Q33ebi5title11TBlackPlaneFv
-updateAfterCamera__Q33ebi5title11TBlackPlaneFv:
+.fn updateAfterCamera__Q33ebi5title11TBlackPlaneFv, global
 /* 803C1900 003BE840  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C1904 003BE844  7C 08 02 A6 */	mflr r0
 /* 803C1908 003BE848  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1070,9 +1094,9 @@ updateAfterCamera__Q33ebi5title11TBlackPlaneFv:
 /* 803C1944 003BE884  7C 08 03 A6 */	mtlr r0
 /* 803C1948 003BE888  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C194C 003BE88C  4E 80 00 20 */	blr 
+.endfn updateAfterCamera__Q33ebi5title11TBlackPlaneFv
 
-.global setLogo__Q33ebi5title11TBlackPlaneFv
-setLogo__Q33ebi5title11TBlackPlaneFv:
+.fn setLogo__Q33ebi5title11TBlackPlaneFv, global
 /* 803C1950 003BE890  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C1954 003BE894  3C 00 43 30 */	lis r0, 0x4330
 /* 803C1958 003BE898  C8 22 15 18 */	lfd f1, lbl_8051F878@sda21(r2)
@@ -1092,9 +1116,9 @@ setLogo__Q33ebi5title11TBlackPlaneFv:
 /* 803C1990 003BE8D0  D0 03 00 5C */	stfs f0, 0x5c(r3)
 /* 803C1994 003BE8D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C1998 003BE8D8  4E 80 00 20 */	blr 
+.endfn setLogo__Q33ebi5title11TBlackPlaneFv
 
-.global getCameraPos__Q33ebi5title11TBlackPlaneFv
-getCameraPos__Q33ebi5title11TBlackPlaneFv:
+.fn getCameraPos__Q33ebi5title11TBlackPlaneFv, global
 /* 803C199C 003BE8DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C19A0 003BE8E0  7C 08 02 A6 */	mflr r0
 /* 803C19A4 003BE8E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1125,8 +1149,9 @@ getCameraPos__Q33ebi5title11TBlackPlaneFv:
 /* 803C1A08 003BE948  7C 08 03 A6 */	mtlr r0
 /* 803C1A0C 003BE94C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C1A10 003BE950  4E 80 00 20 */	blr 
+.endfn getCameraPos__Q33ebi5title11TBlackPlaneFv
 
-__sinit_ebiP2TitleUnit_cpp: # static initializer
+.fn __sinit_ebiP2TitleUnit_cpp, local
 /* 803C1A14 003BE954  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803C1A18 003BE958  38 00 FF FF */	li r0, -1
 /* 803C1A1C 003BE95C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1137,3 +1162,4 @@ __sinit_ebiP2TitleUnit_cpp: # static initializer
 /* 803C1A30 003BE970  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803C1A34 003BE974  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803C1A38 003BE978  4E 80 00 20 */	blr 
+.endfn __sinit_ebiP2TitleUnit_cpp

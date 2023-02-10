@@ -15,7 +15,15 @@ typedef struct DVDFileInfo DVDFileInfo;
 // Callback function types.
 typedef void (*DVDCallback)(s32 result, DVDFileInfo* fileInfo);
 typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
+typedef void (*DVDLowCallback)(u32 intType);
 typedef void DVDDoneReadCallback(long, DVDFileInfo*);
+
+typedef struct DVDDriveInfo {
+	u16 revisionLevel; // _00
+	u16 deviceCode;    // _02
+	u32 releaseDate;   // _04
+	u8 padding[24];    // _08
+} DVDDriveInfo;
 
 // Struct for DVD information (size 0x20)
 typedef struct DVDDiskID {
@@ -87,6 +95,7 @@ BOOL DVDReadAsyncPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset,
 BOOL DVDClose(DVDFileInfo* fileInfo);
 
 void DVDResume();
+void DVDReset();
 
 BOOL DVDCancelAsync(DVDCommandBlock* block, DVDCBCallback callback);
 s32 DVDCancel(DVDCommandBlock* block);
@@ -95,7 +104,7 @@ s32 DVDChangeDisk(DVDCommandBlock* block, DVDDiskID* id);
 BOOL DVDChangeDiskAsync(DVDCommandBlock* block, DVDDiskID* id, DVDCBCallback callback);
 
 // Status functions.
-s32 DVDGetCommandBlockStatus(DVDCommandBlock* block);
+s32 DVDGetCommandBlockStatus(const DVDCommandBlock* block);
 s32 DVDGetDriveStatus();
 BOOL DVDSetAutoInvalidation(BOOL doAutoInval);
 void* DVDGetFSTLocation();

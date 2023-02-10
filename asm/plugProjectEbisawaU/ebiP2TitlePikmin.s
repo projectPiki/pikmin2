@@ -26,7 +26,7 @@ lbl_804971A0: # Shift-JIS
 	.4byte 0x8367838B
 	.4byte 0x82CC91E5
 	.4byte 0x82AB82B3
-	.4byte 0x00000000
+	.byte 0
 .balign 4
 lbl_804971BC: # Shift-JIS
 	.4byte 0x8CFC82AB
@@ -34,20 +34,20 @@ lbl_804971BC: # Shift-JIS
 	.4byte 0x8378834E
 	.4byte 0x8367838B
 	.4byte 0x8DC591E5
-	.4byte 0x00000000
+	.byte 0
 .balign 4
 lbl_804971D4: # Shift-JIS
 	.4byte 0x8DC591E5
 	.4byte 0x95E082AD
 	.4byte 0x91AC9378
-	.4byte 0x00000000
+	.byte 0
 .balign 4
 lbl_804971E4: # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x8FD593CB
 	.4byte 0x89F194F0
 	.4byte 0x8C579094
-	.4byte 0x00000000
+	.byte 0
 .balign 4
 lbl_804971F8: # Shift-JIS
 	.4byte 0x424F4944
@@ -229,16 +229,17 @@ lbl_80497488:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q43ebi5title6Pikmin5TUnit
-__vt__Q43ebi5title6Pikmin5TUnit:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q43ebi5title6Pikmin5TUnit, global
 	.4byte 0
 	.4byte 0
 	.4byte getCreatureType__Q43ebi5title6Pikmin5TUnitFv
 	.4byte isCalc__Q43ebi5title6Pikmin5TUnitFv
+.endobj __vt__Q43ebi5title6Pikmin5TUnit
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -330,8 +331,7 @@ lbl_8051FCF8:
 	.asciz "shadow1"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive
-setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive:
+.fn setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive, global
 /* 803E3DE8 003E0D28  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E3DEC 003E0D2C  7C 08 02 A6 */	mflr r0
 /* 803E3DF0 003E0D30  90 01 00 24 */	stw r0, 0x24(r1)
@@ -521,9 +521,9 @@ setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive:
 /* 803E40B4 003E0FF4  7C 08 03 A6 */	mtlr r0
 /* 803E40B8 003E0FF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E40BC 003E0FFC  4E 80 00 20 */	blr 
+.endfn setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive
 
-.global __ct__Q43ebi5title6Pikmin4TMgrFv
-__ct__Q43ebi5title6Pikmin4TMgrFv:
+.fn __ct__Q43ebi5title6Pikmin4TMgrFv, global
 /* 803E40C0 003E1000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E40C4 003E1004  7C 08 02 A6 */	mflr r0
 /* 803E40C8 003E1008  3C 80 80 4F */	lis r4, __vt__5CNode@ha
@@ -627,9 +627,9 @@ __ct__Q43ebi5title6Pikmin4TMgrFv:
 /* 803E424C 003E118C  7C 08 03 A6 */	mtlr r0
 /* 803E4250 003E1190  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E4254 003E1194  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Pikmin4TMgrFv
 
-.global __dt__Q43ebi5title6Pikmin5TUnitFv
-__dt__Q43ebi5title6Pikmin5TUnitFv:
+.fn __dt__Q43ebi5title6Pikmin5TUnitFv, weak
 /* 803E4258 003E1198  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E425C 003E119C  7C 08 02 A6 */	mflr r0
 /* 803E4260 003E11A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -662,9 +662,9 @@ __dt__Q43ebi5title6Pikmin5TUnitFv:
 /* 803E42C0 003E1200  7C 08 03 A6 */	mtlr r0
 /* 803E42C4 003E1204  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E42C8 003E1208  4E 80 00 20 */	blr 
+.endfn __dt__Q43ebi5title6Pikmin5TUnitFv
 
-.global setArchive__Q43ebi5title6Pikmin4TMgrFP10JKRArchive
-setArchive__Q43ebi5title6Pikmin4TMgrFP10JKRArchive:
+.fn setArchive__Q43ebi5title6Pikmin4TMgrFP10JKRArchive, global
 /* 803E42CC 003E120C  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 803E42D0 003E1210  7C 08 02 A6 */	mflr r0
 /* 803E42D4 003E1214  3C A0 80 49 */	lis r5, lbl_80497470@ha
@@ -721,9 +721,9 @@ setArchive__Q43ebi5title6Pikmin4TMgrFP10JKRArchive:
 /* 803E4398 003E12D8  7C 08 03 A6 */	mtlr r0
 /* 803E439C 003E12DC  38 21 04 30 */	addi r1, r1, 0x430
 /* 803E43A0 003E12E0  4E 80 00 20 */	blr 
+.endfn setArchive__Q43ebi5title6Pikmin4TMgrFP10JKRArchive
 
-.global initUnit__Q43ebi5title6Pikmin4TMgrFv
-initUnit__Q43ebi5title6Pikmin4TMgrFv:
+.fn initUnit__Q43ebi5title6Pikmin4TMgrFv, global
 /* 803E43A4 003E12E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E43A8 003E12E8  7C 08 02 A6 */	mflr r0
 /* 803E43AC 003E12EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -800,9 +800,9 @@ initUnit__Q43ebi5title6Pikmin4TMgrFv:
 /* 803E44B4 003E13F4  7C 08 03 A6 */	mtlr r0
 /* 803E44B8 003E13F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E44BC 003E13FC  4E 80 00 20 */	blr 
+.endfn initUnit__Q43ebi5title6Pikmin4TMgrFv
 
-.global update__Q43ebi5title6Pikmin4TMgrFv
-update__Q43ebi5title6Pikmin4TMgrFv:
+.fn update__Q43ebi5title6Pikmin4TMgrFv, global
 /* 803E44C0 003E1400  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803E44C4 003E1404  7C 08 02 A6 */	mflr r0
 /* 803E44C8 003E1408  90 01 00 34 */	stw r0, 0x34(r1)
@@ -914,9 +914,9 @@ update__Q43ebi5title6Pikmin4TMgrFv:
 /* 803E465C 003E159C  7C 08 03 A6 */	mtlr r0
 /* 803E4660 003E15A0  38 21 00 30 */	addi r1, r1, 0x30
 /* 803E4664 003E15A4  4E 80 00 20 */	blr 
+.endfn update__Q43ebi5title6Pikmin4TMgrFv
 
-.global "setStartPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>"
-"setStartPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>":
+.fn "setStartPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>", global
 /* 803E4668 003E15A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E466C 003E15AC  38 00 00 3E */	li r0, 0x3e
 /* 803E4670 003E15B0  7C 87 23 78 */	mr r7, r4
@@ -1009,6 +1009,7 @@ update__Q43ebi5title6Pikmin4TMgrFv:
 /* 803E47C0 003E1700  83 A1 00 14 */	lwz r29, 0x14(r1)
 /* 803E47C4 003E1704  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E47C8 003E1708  4E 80 00 20 */	blr 
+.endfn "setStartPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>"
 
 .global "setDestPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>"
 "setDestPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>":

@@ -563,7 +563,7 @@ void DVDRewindDir(DVDDir* dir) { dir->location = dir->entryNum + 1; }
  * Address:	........
  * Size:	00000C
  */
-void* DVDGetFSTLocation(void) { return BootInfo->FSTLocation; }
+void* DVDGetFSTLocation() { return BootInfo->FSTLocation; }
 
 /*
  * --INFO--
@@ -590,7 +590,7 @@ static void cbForPrepareStreamAsync(s32 result, DVDCommandBlock* block)
  * Address:	........
  * Size:	000144
  */
-void DVDPrepareStream(void)
+void DVDPrepareStream()
 {
 	// UNUSED FUNCTION
 }

@@ -53,7 +53,6 @@ void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsi
 extern char* __OSResetSWInterruptHandler[];
 
 // typedef struct DVDCommandBlock DVDCommandBlock;
-typedef struct DVDDriveInfo DVDDriveInfo;
 // typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
 // struct DVDCommandBlock {
 // 	DVDCommandBlock* next;
@@ -69,17 +68,6 @@ typedef struct DVDDriveInfo DVDDriveInfo;
 // 	DVDCBCallback callback;
 // 	void* userData;
 // };
-struct DVDDriveInfo {
-	u16 _00;
-	u16 deviceCode;
-	u32 _04;
-	u32 _08;
-	u32 _0C;
-	u32 _10;
-	u32 _14;
-	u32 _18;
-	u32 _1C;
-};
 
 // The exception table.  It points to a location in LoMem.  It is set by
 // OSExceptionInit

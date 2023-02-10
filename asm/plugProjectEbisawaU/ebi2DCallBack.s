@@ -1,16 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496678:
+.obj lbl_80496678, local
 	.asciz "ebi2DCallBack.cpp"
+.endobj lbl_80496678
 .balign 4
-lbl_8049668C:
+.obj lbl_8049668C, local
 	.asciz "P2Assert"
+.endobj lbl_8049668C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23ebi24E2DCallBack_WindowCursor
-__vt__Q23ebi24E2DCallBack_WindowCursor:
+.obj __vt__Q23ebi24E2DCallBack_WindowCursor, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23ebi24E2DCallBack_WindowCursorFv
@@ -20,6 +21,7 @@ __vt__Q23ebi24E2DCallBack_WindowCursor:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte do_update__Q23ebi24E2DCallBack_WindowCursorFv
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+.endobj __vt__Q23ebi24E2DCallBack_WindowCursor
 .global __vt__Q23ebi19E2DCallBack_AnmBase
 __vt__Q23ebi19E2DCallBack_AnmBase:
 	.4byte 0
