@@ -20,11 +20,6 @@ void DspStartWork(u32 p1, void (*p2)(u16));
 void DspFinishWork(u16 p1);
 
 // osdsp.c
-#ifdef __cplusplus
-extern "C" {
-STRUCT_DSP_TASK* DSPAddTask(STRUCT_DSP_TASK* task);
-}
-#endif // ifdef __cplusplus
 void DSPAddPriorTask(DSPTaskInfo* task);
 
 // osdsp_task.c
