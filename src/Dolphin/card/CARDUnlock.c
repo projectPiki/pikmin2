@@ -1,24 +1,74 @@
 #include "Dolphin/card.h"
 #include "Dolphin/dsp.h"
 
+static void InitCallback(void* task);
+static void DoneCallback(void* task);
+
+static u8 CardData[] ATTRIBUTE_ALIGN(32) = {
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x21, 0x02, 0xFF, 0x00, 0x21, 0x13, 0x06, 0x12, 0x03, 0x12, 0x04, 0x13, 0x05, 0x00, 0x92, 0x00, 0xFF,
+	0x00, 0x88, 0xFF, 0xFF, 0x00, 0x89, 0xFF, 0xFF, 0x00, 0x8A, 0xFF, 0xFF, 0x00, 0x8B, 0xFF, 0xFF, 0x8F, 0x00, 0x02, 0xBF, 0x00, 0x88,
+	0x16, 0xFC, 0xDC, 0xD1, 0x16, 0xFD, 0x00, 0x00, 0x16, 0xFB, 0x00, 0x01, 0x02, 0xBF, 0x00, 0x8E, 0x25, 0xFF, 0x03, 0x80, 0xFF, 0x00,
+	0x02, 0x94, 0x00, 0x27, 0x02, 0xBF, 0x00, 0x8E, 0x1F, 0xDF, 0x24, 0xFF, 0x02, 0x40, 0x0F, 0xFF, 0x00, 0x98, 0x04, 0x00, 0x00, 0x9A,
+	0x00, 0x10, 0x00, 0x99, 0x00, 0x00, 0x8E, 0x00, 0x02, 0xBF, 0x00, 0x94, 0x02, 0xBF, 0x86, 0x44, 0x02, 0xBF, 0x00, 0x88, 0x16, 0xFC,
+	0xDC, 0xD1, 0x16, 0xFD, 0x00, 0x03, 0x16, 0xFB, 0x00, 0x01, 0x8F, 0x00, 0x02, 0xBF, 0x00, 0x8E, 0x03, 0x80, 0xCD, 0xD1, 0x02, 0x94,
+	0x00, 0x48, 0x27, 0xFF, 0x03, 0x80, 0x00, 0x01, 0x02, 0x95, 0x00, 0x5A, 0x03, 0x80, 0x00, 0x02, 0x02, 0x95, 0x80, 0x00, 0x02, 0x9F,
+	0x00, 0x48, 0x00, 0x21, 0x8E, 0x00, 0x02, 0xBF, 0x00, 0x8E, 0x25, 0xFF, 0x02, 0xBF, 0x00, 0x8E, 0x25, 0xFF, 0x02, 0xBF, 0x00, 0x8E,
+	0x25, 0xFF, 0x02, 0xBF, 0x00, 0x8E, 0x00, 0xC5, 0xFF, 0xFF, 0x03, 0x40, 0x0F, 0xFF, 0x1C, 0x9F, 0x02, 0xBF, 0x00, 0x8E, 0x00, 0xC7,
+	0xFF, 0xFF, 0x02, 0xBF, 0x00, 0x8E, 0x00, 0xC6, 0xFF, 0xFF, 0x02, 0xBF, 0x00, 0x8E, 0x00, 0xC0, 0xFF, 0xFF, 0x02, 0xBF, 0x00, 0x8E,
+	0x20, 0xFF, 0x03, 0x40, 0x0F, 0xFF, 0x1F, 0x5F, 0x02, 0xBF, 0x00, 0x8E, 0x21, 0xFF, 0x02, 0xBF, 0x00, 0x8E, 0x23, 0xFF, 0x12, 0x05,
+	0x12, 0x06, 0x02, 0x9F, 0x80, 0xB5, 0x00, 0x21, 0x27, 0xFC, 0x03, 0xC0, 0x80, 0x00, 0x02, 0x9D, 0x00, 0x88, 0x02, 0xDF, 0x27, 0xFE,
+	0x03, 0xC0, 0x80, 0x00, 0x02, 0x9C, 0x00, 0x8E, 0x02, 0xDF, 0x2E, 0xCE, 0x2C, 0xCF, 0x00, 0xF8, 0xFF, 0xCD, 0x00, 0xF9, 0xFF, 0xC9,
+	0x00, 0xFA, 0xFF, 0xCB, 0x26, 0xC9, 0x02, 0xC0, 0x00, 0x04, 0x02, 0x9D, 0x00, 0x9C, 0x02, 0xDF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+static u32 next = 1;
+
+// bit manip macros for use in ReadArrayUnlock
+#define SEC_AD1(x) ((u8)(((x) >> 29) & 0x03))
+#define SEC_AD2(x) ((u8)(((x) >> 21) & 0xff))
+#define SEC_AD3(x) ((u8)(((x) >> 19) & 0x03))
+#define SEC_BA(x)  ((u8)(((x) >> 12) & 0x7f))
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000024
  */
-void CARDRand(void)
+int CARDRand()
 {
-	// UNUSED FUNCTION
+	next = next * 1103515245 + 12345;
+	return (int)((u32)(next / 65536) % 32768);
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
+ * Fun fact: making the argument of this a u32 instead of uint
+ * makes the inlined versions of this not match (:
+ * LOVE this compiler.
  */
-void CARDSrand(void)
+void CARDSrand(uint seed) { next = seed; }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000174
+ */
+u32 exnor_1st(u32 data, u32 rshift)
 {
-	// UNUSED FUNCTION
+	u32 wk;
+	u32 w;
+	u32 i;
+
+	w = data;
+	for (i = 0; i < rshift; i++) {
+		wk = ~(w ^ (w >> 7) ^ (w >> 15) ^ (w >> 23));
+		w  = (w >> 1) | ((wk << 30) & 0x40000000);
+	}
+	return w;
 }
 
 /*
@@ -26,19 +76,19 @@ void CARDSrand(void)
  * Address:	........
  * Size:	000174
  */
-void exnor_1st(void)
+u32 exnor(u32 data, u32 lshift)
 {
-	// UNUSED FUNCTION
-}
+	u32 wk;
+	u32 w;
+	u32 i;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
- */
-void exnor(void)
-{
-	// UNUSED FUNCTION
+	w = data;
+	for (i = 0; i < lshift; i++) {
+		// 1bit Left Shift
+		wk = ~(w ^ (w << 7) ^ (w << 15) ^ (w << 23));
+		w  = (w << 1) | ((wk >> 30) & 0x00000002);
+	}
+	return w;
 }
 
 /*
@@ -46,128 +96,28 @@ void exnor(void)
  * Address:	800D5920
  * Size:	00016C
  */
-uint bitrev(uint)
+u32 bitrev(u32 data)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x8
-	  mtctr     r0
-	  rlwinm    r6,r3,1,31,31
-	  li        r9, 0
-	  li        r10, 0x1
-	  li        r7, 0
-	  li        r8, 0
-	  li        r5, 0x1
+	u32 wk;
+	u32 i;
+	u32 k = 0;
+	u32 j = 1;
 
-	.loc_0x20:
-	  cmplwi    r8, 0xF
-	  ble-      .loc_0x50
-	  cmplwi    r8, 0x1F
-	  bne-      .loc_0x38
-	  or        r7, r7, r6
-	  b         .loc_0x6C
-
-	.loc_0x38:
-	  slw       r0, r5, r8
-	  and       r0, r3, r0
-	  srw       r0, r0, r10
-	  or        r7, r7, r0
-	  addi      r10, r10, 0x2
-	  b         .loc_0x6C
-
-	.loc_0x50:
-	  slw       r4, r5, r8
-	  subfic    r0, r8, 0x1F
-	  sub       r0, r0, r9
-	  and       r4, r3, r4
-	  slw       r0, r4, r0
-	  or        r7, r7, r0
-	  addi      r9, r9, 0x1
-
-	.loc_0x6C:
-	  addi      r8, r8, 0x1
-	  cmplwi    r8, 0xF
-	  ble-      .loc_0xA0
-	  cmplwi    r8, 0x1F
-	  bne-      .loc_0x88
-	  or        r7, r7, r6
-	  b         .loc_0xBC
-
-	.loc_0x88:
-	  slw       r0, r5, r8
-	  and       r0, r3, r0
-	  srw       r0, r0, r10
-	  or        r7, r7, r0
-	  addi      r10, r10, 0x2
-	  b         .loc_0xBC
-
-	.loc_0xA0:
-	  slw       r4, r5, r8
-	  subfic    r0, r8, 0x1F
-	  sub       r0, r0, r9
-	  and       r4, r3, r4
-	  slw       r0, r4, r0
-	  or        r7, r7, r0
-	  addi      r9, r9, 0x1
-
-	.loc_0xBC:
-	  addi      r8, r8, 0x1
-	  cmplwi    r8, 0xF
-	  ble-      .loc_0xF0
-	  cmplwi    r8, 0x1F
-	  bne-      .loc_0xD8
-	  or        r7, r7, r6
-	  b         .loc_0x10C
-
-	.loc_0xD8:
-	  slw       r0, r5, r8
-	  and       r0, r3, r0
-	  srw       r0, r0, r10
-	  or        r7, r7, r0
-	  addi      r10, r10, 0x2
-	  b         .loc_0x10C
-
-	.loc_0xF0:
-	  slw       r4, r5, r8
-	  subfic    r0, r8, 0x1F
-	  sub       r0, r0, r9
-	  and       r4, r3, r4
-	  slw       r0, r4, r0
-	  or        r7, r7, r0
-	  addi      r9, r9, 0x1
-
-	.loc_0x10C:
-	  addi      r8, r8, 0x1
-	  cmplwi    r8, 0xF
-	  ble-      .loc_0x140
-	  cmplwi    r8, 0x1F
-	  bne-      .loc_0x128
-	  or        r7, r7, r6
-	  b         .loc_0x15C
-
-	.loc_0x128:
-	  slw       r0, r5, r8
-	  and       r0, r3, r0
-	  srw       r0, r0, r10
-	  or        r7, r7, r0
-	  addi      r10, r10, 0x2
-	  b         .loc_0x15C
-
-	.loc_0x140:
-	  slw       r4, r5, r8
-	  subfic    r0, r8, 0x1F
-	  sub       r0, r0, r9
-	  and       r4, r3, r4
-	  slw       r0, r4, r0
-	  or        r7, r7, r0
-	  addi      r9, r9, 0x1
-
-	.loc_0x15C:
-	  addi      r8, r8, 0x1
-	  bdnz+     .loc_0x20
-	  mr        r3, r7
-	  blr
-	*/
+	wk = 0;
+	for (i = 0; i < 32; i++) {
+		if (i > 15) {
+			if (i == 31) {
+				wk |= (((data & (0x01 << 31)) >> 31) & 0x01);
+			} else {
+				wk |= ((data & (0x01 << i)) >> j);
+				j += 2;
+			}
+		} else {
+			wk |= ((data & (0x01 << i)) << (31 - i - k));
+			k++;
+		}
+	}
+	return wk;
 }
 
 /*
@@ -175,102 +125,37 @@ uint bitrev(uint)
  * Address:	800D5A8C
  * Size:	000144
  */
-void ReadArrayUnlock(int slotIndex, u32 p2, u8* buffer, int byteCount, unknown p5)
+s32 ReadArrayUnlock(s32 channel, u32 data, void* buffer, s32 rlen, s32 mode)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x40(r1)
-	  stmw      r26, 0x28(r1)
-	  addi      r29, r3, 0
-	  lis       r3, 0x804F
-	  addi      r0, r3, 0x5AF0
-	  mulli     r8, r29, 0x110
-	  addi      r26, r4, 0
-	  addi      r30, r5, 0
-	  addi      r31, r6, 0
-	  addi      r27, r7, 0
-	  addi      r3, r29, 0
-	  add       r28, r0, r8
-	  li        r4, 0
-	  li        r5, 0x4
-	  bl        0xACE4
-	  cmpwi     r3, 0
-	  bne-      .loc_0x54
-	  li        r3, -0x3
-	  b         .loc_0x130
+	CARDControl* card;
+	BOOL err;
+	u8 cmd[5];
 
-	.loc_0x54:
-	  rlwinm    r26,r26,0,0,19
-	  addi      r3, r1, 0x1C
-	  li        r4, 0
-	  li        r5, 0x5
-	  bl        -0xD0A3C
-	  li        r0, 0x52
-	  cmpwi     r27, 0
-	  stb       r0, 0x1C(r1)
-	  bne-      .loc_0x9C
-	  rlwinm    r0,r26,3,30,31
-	  stb       r0, 0x1D(r1)
-	  rlwinm    r0,r26,11,24,31
-	  rlwinm    r3,r26,13,30,31
-	  stb       r0, 0x1E(r1)
-	  rlwinm    r0,r26,20,25,31
-	  stb       r3, 0x1F(r1)
-	  stb       r0, 0x20(r1)
-	  b         .loc_0xAC
+	card = &__CARDBlock[channel];
+	if (!EXISelect(channel, 0, 4)) {
+		return CARD_RESULT_NOCARD;
+	}
 
-	.loc_0x9C:
-	  rlwinm    r0,r26,8,24,31
-	  stb       r0, 0x1D(r1)
-	  rlwinm    r0,r26,16,24,31
-	  stb       r0, 0x1E(r1)
+	data &= 0xfffff000;
+	memset(cmd, 0, 5);
+	cmd[0] = 0x52;
+	if (mode == 0) {
+		cmd[1] = SEC_AD1(data);
+		cmd[2] = SEC_AD2(data);
+		cmd[3] = SEC_AD3(data);
+		cmd[4] = SEC_BA(data);
+	} else {
+		cmd[1] = (u8)((data & 0xff000000) >> 24);
+		cmd[2] = (u8)((data & 0x00ff0000) >> 16);
+	}
 
-	.loc_0xAC:
-	  addi      r3, r29, 0
-	  addi      r4, r1, 0x1C
-	  li        r5, 0x5
-	  li        r6, 0x1
-	  bl        0xA35C
-	  lwz       r4, 0x80(r28)
-	  cntlzw    r0, r3
-	  lwz       r5, 0x14(r28)
-	  addi      r3, r29, 0
-	  rlwinm    r28,r0,27,5,31
-	  addi      r4, r4, 0x200
-	  li        r6, 0x1
-	  bl        0xA33C
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  addi      r3, r29, 0
-	  addi      r4, r30, 0
-	  addi      r5, r31, 0
-	  or        r28, r28, r0
-	  li        r6, 0
-	  bl        0xA31C
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  addi      r3, r29, 0
-	  or        r28, r28, r0
-	  bl        0xAD40
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or.       r28, r28, r0
-	  beq-      .loc_0x12C
-	  li        r3, -0x3
-	  b         .loc_0x130
+	err = FALSE;
+	err |= !EXIImmEx(channel, cmd, 5, 1);
+	err |= !EXIImmEx(channel, card->workArea->header.buffer, card->latency, 1);
+	err |= !EXIImmEx(channel, buffer, rlen, 0);
+	err |= !EXIDeselect(channel);
 
-	.loc_0x12C:
-	  li        r3, 0
-
-	.loc_0x130:
-	  lmw       r26, 0x28(r1)
-	  lwz       r0, 0x44(r1)
-	  addi      r1, r1, 0x40
-	  mtlr      r0
-	  blr
-	*/
+	return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
 }
 
 /*
@@ -278,9 +163,17 @@ void ReadArrayUnlock(int slotIndex, u32 p2, u8* buffer, int byteCount, unknown p
  * Address:	........
  * Size:	000054
  */
-void GetInitVal(void)
+u32 GetInitVal()
 {
-	// UNUSED FUNCTION
+	u32 tmp;
+	u32 tick;
+
+	tick = OSGetTick();
+	CARDSrand(tick);
+	tmp = 0x7FEC8000;
+	tmp |= CARDRand();
+	tmp &= 0xFFFFF000;
+	return tmp;
 }
 
 /*
@@ -288,70 +181,39 @@ void GetInitVal(void)
  * Address:	800D5BD0
  * Size:	0000C4
  */
-int DummyLen(void)
+s32 DummyLen()
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  stw       r30, 0x20(r1)
-	  li        r30, 0x1
-	  stw       r29, 0x1C(r1)
-	  li        r29, 0
-	  bl        0x1CFB8
-	  stw       r3, -0x7D70(r13)
-	  lis       r3, 0x41C6
-	  addi      r31, r3, 0x4E6D
-	  lwz       r0, -0x7D70(r13)
-	  mullw     r3, r0, r31
-	  addi      r0, r3, 0x3039
-	  stw       r0, -0x7D70(r13)
-	  lwz       r0, -0x7D70(r13)
-	  rlwinm    r3,r0,16,27,31
-	  addi      r3, r3, 0x1
-	  b         .loc_0x8C
+	u32 tick;
+	u32 wk;
+	s32 tmp;
+	u32 max;
 
-	.loc_0x50:
-	  bl        0x1CF88
-	  slw       r0, r3, r30
-	  addi      r30, r30, 0x1
-	  cmplwi    r30, 0x10
-	  ble-      .loc_0x68
-	  li        r30, 0x1
+	wk   = 1;
+	max  = 0;
+	tick = OSGetTick();
+	CARDSrand(tick);
 
-	.loc_0x68:
-	  stw       r0, -0x7D70(r13)
-	  addi      r29, r29, 0x1
-	  lwz       r0, -0x7D70(r13)
-	  mullw     r3, r0, r31
-	  addi      r0, r3, 0x3039
-	  stw       r0, -0x7D70(r13)
-	  lwz       r0, -0x7D70(r13)
-	  rlwinm    r3,r0,16,27,31
-	  addi      r3, r3, 0x1
+	tmp = CARDRand();
+	tmp &= 0x0000001f;
+	tmp += 1;
+	while ((tmp < 4) && (max < 10)) {
+		tick = OSGetTick();
+		tmp  = (s32)(tick << wk);
+		wk++;
+		if (wk > 16) {
+			wk = 1;
+		}
+		CARDSrand((u32)tmp);
+		tmp = CARDRand();
+		tmp &= 0x0000001f;
+		tmp += 1;
+		max++;
+	}
+	if (tmp < 4) {
+		tmp = 4;
+	}
 
-	.loc_0x8C:
-	  cmpwi     r3, 0x4
-	  bge-      .loc_0x9C
-	  cmplwi    r29, 0xA
-	  blt+      .loc_0x50
-
-	.loc_0x9C:
-	  cmpwi     r3, 0x4
-	  bge-      .loc_0xA8
-	  li        r3, 0x4
-
-	.loc_0xA8:
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	return tmp;
 }
 
 /*
@@ -359,773 +221,124 @@ int DummyLen(void)
  * Address:	800D5C94
  * Size:	000B58
  */
-int __CARDUnlock(int slotIndex, void* p2)
+s32 __CARDUnlock(s32 channel, u8 flashID[12])
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x120(r1)
-	  stmw      r22, 0xF8(r1)
-	  addi      r24, r3, 0
-	  lis       r3, 0x804F
-	  mulli     r5, r24, 0x110
-	  addi      r0, r3, 0x5AF0
-	  add       r31, r0, r5
-	  addi      r23, r4, 0
-	  addi      r30, r31, 0x30
-	  lwz       r3, 0x80(r31)
-	  addi      r0, r3, 0x2F
-	  rlwinm    r28,r0,0,0,26
-	  addi      r29, r3, 0
-	  addi      r22, r28, 0x20
-	  bl        0x1CED4
-	  stw       r3, -0x7D70(r13)
-	  lis       r3, 0x41C6
-	  lis       r5, 0x7FED
-	  lwz       r4, -0x7D70(r13)
-	  addi      r0, r3, 0x4E6D
-	  subi      r25, r5, 0x8000
-	  mullw     r3, r4, r0
-	  addi      r0, r3, 0x3039
-	  stw       r0, -0x7D70(r13)
-	  lwz       r0, -0x7D70(r13)
-	  rlwinm    r0,r0,16,17,31
-	  or        r25, r25, r0
-	  rlwinm    r25,r25,0,0,19
-	  bl        -0x13C
-	  addi      r26, r3, 0
-	  addi      r6, r26, 0
-	  addi      r3, r24, 0
-	  addi      r4, r25, 0
-	  addi      r5, r1, 0xA4
-	  li        r7, 0
-	  bl        -0x29C
-	  cmpwi     r3, 0
-	  bge-      .loc_0xA8
-	  li        r3, -0x3
-	  b         .loc_0xB44
+	u32 init_val;
+	u32 data;
 
-	.loc_0xA8:
-	  rlwinm    r3,r26,3,0,28
-	  addi      r4, r3, 0x1
-	  cmplwi    r4, 0
-	  li        r3, 0
-	  ble-      .loc_0x220
-	  cmplwi    r4, 0x8
-	  subi      r5, r4, 0x8
-	  ble-      .loc_0x1E8
-	  addi      r0, r5, 0x7
-	  rlwinm    r0,r0,29,3,31
-	  cmplwi    r5, 0
-	  mtctr     r0
-	  ble-      .loc_0x1E8
+	s32 dummy;
+	s32 rlen;
+	u32 rshift;
 
-	.loc_0xDC:
-	  rlwinm    r0,r25,25,7,31
-	  rlwinm    r5,r25,17,15,31
-	  xor       r0, r25, r0
-	  xor       r0, r5, r0
-	  rlwinm    r6,r25,9,23,31
-	  eqv       r0, r6, r0
-	  rlwinm    r5,r25,31,1,31
-	  rlwinm    r0,r0,30,1,1
-	  or        r7, r5, r0
-	  rlwinm    r0,r7,25,7,31
-	  rlwinm    r5,r7,17,15,31
-	  xor       r0, r7, r0
-	  rlwinm    r6,r7,9,23,31
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r8,r0,30,1,1
-	  rlwimi    r8,r7,31,2,31
-	  rlwinm    r0,r8,25,7,31
-	  rlwinm    r5,r8,17,15,31
-	  xor       r0, r8, r0
-	  rlwinm    r6,r8,9,23,31
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r7,r0,30,1,1
-	  rlwimi    r7,r8,31,2,31
-	  rlwinm    r0,r7,25,7,31
-	  rlwinm    r5,r7,17,15,31
-	  xor       r0, r7, r0
-	  rlwinm    r6,r7,9,23,31
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r8,r0,30,1,1
-	  rlwimi    r8,r7,31,2,31
-	  rlwinm    r0,r8,25,7,31
-	  rlwinm    r5,r8,17,15,31
-	  xor       r0, r8, r0
-	  rlwinm    r6,r8,9,23,31
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r7,r0,30,1,1
-	  rlwimi    r7,r8,31,2,31
-	  rlwinm    r0,r7,25,7,31
-	  rlwinm    r5,r7,17,15,31
-	  xor       r0, r7, r0
-	  rlwinm    r6,r7,9,23,31
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r8,r0,30,1,1
-	  rlwimi    r8,r7,31,2,31
-	  rlwinm    r0,r8,25,7,31
-	  rlwinm    r5,r8,17,15,31
-	  xor       r0, r8, r0
-	  rlwinm    r6,r8,9,23,31
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r7,r0,30,1,1
-	  rlwimi    r7,r8,31,2,31
-	  rlwinm    r0,r7,25,7,31
-	  rlwinm    r5,r7,17,15,31
-	  xor       r0, r7, r0
-	  rlwinm    r6,r7,9,23,31
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r25,r0,30,1,1
-	  rlwimi    r25,r7,31,2,31
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0xDC
+	u8 fsts;
+	u32 wk, wk1;
+	u32 Ans1 = 0;
+	u32 Ans2 = 0;
+	u32* dp;
+	u8 rbuf[64];
+	u32 para1A = 0;
+	u32 para1B = 0;
+	u32 para2A = 0;
+	u32 para2B = 0;
 
-	.loc_0x1E8:
-	  sub       r0, r4, r3
-	  cmplw     r3, r4
-	  mtctr     r0
-	  bge-      .loc_0x220
+	CARDControl* card;
+	DSPTaskInfo* task;
+	CARDDecodeParameters* param;
+	u8* input;
+	u8* output;
 
-	.loc_0x1F8:
-	  rlwinm    r0,r25,25,7,31
-	  rlwinm    r3,r25,17,15,31
-	  xor       r0, r25, r0
-	  rlwinm    r4,r25,9,23,31
-	  xor       r0, r3, r0
-	  eqv       r0, r4, r0
-	  rlwinm    r3,r25,31,1,31
-	  rlwinm    r0,r0,30,1,1
-	  or        r25, r3, r0
-	  bdnz+     .loc_0x1F8
+	card   = &__CARDBlock[channel];
+	task   = &card->task;
+	param  = (CARDDecodeParameters*)card->workArea;
+	input  = (u8*)((u8*)param + sizeof(CARDDecodeParameters));
+	input  = (u8*)OSRoundUp32B(input);
+	output = input + 32;
 
-	.loc_0x220:
-	  rlwinm    r0,r25,25,7,31
-	  rlwinm    r3,r25,17,15,31
-	  xor       r0, r25, r0
-	  rlwinm    r4,r25,9,23,31
-	  xor       r0, r3, r0
-	  eqv       r0, r4, r0
-	  rlwinm    r0,r0,31,0,0
-	  or        r0, r25, r0
-	  stw       r0, 0x2C(r31)
-	  lwz       r3, 0x2C(r31)
-	  bl        -0x5BC
-	  stw       r3, 0x2C(r31)
-	  bl        -0x314
-	  addi      r27, r3, 0
-	  addi      r6, r27, 0x14
-	  addi      r3, r24, 0
-	  addi      r5, r1, 0xA4
-	  li        r4, 0
-	  li        r7, 0x1
-	  bl        -0x474
-	  cmpwi     r3, 0
-	  bge-      .loc_0x280
-	  li        r3, -0x3
-	  b         .loc_0xB44
+	fsts     = 0;
+	init_val = GetInitVal();
 
-	.loc_0x280:
-	  li        r3, 0x4
-	  lwz       r7, 0x2C(r31)
-	  lwz       r25, 0xA4(r1)
-	  mtctr     r3
-	  lwz       r26, 0xA8(r1)
-	  lwz       r24, 0xAC(r1)
-	  xor       r25, r25, r7
-	  lwz       r0, 0xB0(r1)
-	  lwz       r5, 0xB4(r1)
+	dummy = DummyLen();
+	rlen  = dummy;
+	if (ReadArrayUnlock(channel, init_val, rbuf, rlen, 0) < 0) {
+		return CARD_RESULT_NOCARD;
+	}
 
-	.loc_0x2A4:
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  xor       r3, r4, r3
-	  rlwinm    r6,r7,23,0,8
-	  eqv       r3, r6, r3
-	  rlwinm    r4,r7,1,0,30
-	  rlwinm    r3,r3,2,30,30
-	  or        r7, r4, r3
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r9,r3,2,30,30
-	  rlwimi    r9,r7,1,0,29
-	  rlwinm    r3,r9,7,0,24
-	  rlwinm    r4,r9,15,0,16
-	  xor       r3, r9, r3
-	  rlwinm    r6,r9,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r9,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  bdnz+     .loc_0x2A4
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r3,r3,1,31,31
-	  or        r3, r7, r3
-	  stw       r3, 0x2C(r31)
-	  li        r3, 0x4
-	  mtctr     r3
-	  lwz       r7, 0x2C(r31)
-	  xor       r26, r26, r7
+	rshift         = (u32)(dummy * 8 + 1);
+	wk             = exnor_1st(init_val, rshift);
+	wk1            = ~(wk ^ (wk >> 7) ^ (wk >> 15) ^ (wk >> 23));
+	card->scramble = (wk | ((wk1 << 31) & 0x80000000));
+	card->scramble = bitrev(card->scramble);
+	dummy          = DummyLen();
+	rlen           = 20 + dummy;
+	data           = 0;
+	if (ReadArrayUnlock(channel, data, rbuf, rlen, 1) < 0) {
+		return CARD_RESULT_NOCARD;
+	}
+	dp             = (u32*)rbuf;
+	para1A         = *dp++;
+	para1B         = *dp++;
+	Ans1           = *dp++;
+	para2A         = *dp++;
+	para2B         = *dp++;
+	para1A         = (para1A ^ card->scramble);
+	rshift         = 32;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+	para1B         = (para1B ^ card->scramble);
+	rshift         = 32;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+	Ans1 ^= card->scramble;
+	rshift         = 32;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+	para2A         = (para2A ^ card->scramble);
+	rshift         = 32;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+	para2B         = (para2B ^ card->scramble);
+	rshift         = (u32)(dummy * 8);
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+	rshift         = 32 + 1;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
 
-	.loc_0x3E0:
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  xor       r3, r4, r3
-	  rlwinm    r6,r7,23,0,8
-	  eqv       r3, r6, r3
-	  rlwinm    r4,r7,1,0,30
-	  rlwinm    r3,r3,2,30,30
-	  or        r7, r4, r3
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r9,r3,2,30,30
-	  rlwimi    r9,r7,1,0,29
-	  rlwinm    r3,r9,7,0,24
-	  rlwinm    r4,r9,15,0,16
-	  xor       r3, r9, r3
-	  rlwinm    r6,r9,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r9,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  bdnz+     .loc_0x3E0
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r3,r3,1,31,31
-	  or        r3, r7, r3
-	  stw       r3, 0x2C(r31)
-	  li        r3, 0x4
-	  mtctr     r3
-	  lwz       r7, 0x2C(r31)
-	  xor       r24, r24, r7
+	*(u32*)&input[0] = para2A;
+	*(u32*)&input[4] = para2B;
 
-	.loc_0x51C:
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  xor       r3, r4, r3
-	  rlwinm    r6,r7,23,0,8
-	  eqv       r3, r6, r3
-	  rlwinm    r4,r7,1,0,30
-	  rlwinm    r3,r3,2,30,30
-	  or        r7, r4, r3
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r9,r3,2,30,30
-	  rlwimi    r9,r7,1,0,29
-	  rlwinm    r3,r9,7,0,24
-	  rlwinm    r4,r9,15,0,16
-	  xor       r3, r9, r3
-	  rlwinm    r6,r9,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r9,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  bdnz+     .loc_0x51C
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r3,r3,1,31,31
-	  or        r3, r7, r3
-	  stw       r3, 0x2C(r31)
-	  li        r3, 0x4
-	  mtctr     r3
-	  lwz       r7, 0x2C(r31)
-	  xor       r0, r0, r7
+	param->inputAddr   = input;
+	param->inputLength = 8;
+	param->outputAddr  = output;
+	param->aramAddr    = 0;
 
-	.loc_0x658:
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  xor       r3, r4, r3
-	  rlwinm    r6,r7,23,0,8
-	  eqv       r3, r6, r3
-	  rlwinm    r4,r7,1,0,30
-	  rlwinm    r3,r3,2,30,30
-	  or        r7, r4, r3
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r9,r3,2,30,30
-	  rlwimi    r9,r7,1,0,29
-	  rlwinm    r3,r9,7,0,24
-	  rlwinm    r4,r9,15,0,16
-	  xor       r3, r9, r3
-	  rlwinm    r6,r9,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r9,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  rlwinm    r6,r7,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r8,r3,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r3,r8,7,0,24
-	  rlwinm    r4,r8,15,0,16
-	  xor       r3, r8, r3
-	  rlwinm    r6,r8,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r6, r3
-	  rlwinm    r7,r3,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  bdnz+     .loc_0x658
-	  rlwinm    r3,r7,7,0,24
-	  rlwinm    r4,r7,15,0,16
-	  xor       r3, r7, r3
-	  xor       r3, r4, r3
-	  rlwinm    r6,r7,23,0,8
-	  eqv       r3, r6, r3
-	  rlwinm    r3,r3,1,31,31
-	  or        r3, r7, r3
-	  stw       r3, 0x2C(r31)
-	  rlwinm    r4,r27,3,0,28
-	  cmplwi    r4, 0
-	  lwz       r6, 0x2C(r31)
-	  li        r3, 0
-	  xor       r5, r5, r6
-	  ble-      .loc_0x900
-	  cmplwi    r4, 0x8
-	  subi      r8, r4, 0x8
-	  ble-      .loc_0x8C8
-	  addi      r7, r8, 0x7
-	  rlwinm    r7,r7,29,3,31
-	  cmplwi    r8, 0
-	  mtctr     r7
-	  ble-      .loc_0x8C8
+	DCFlushRange(input, 8);
+	DCInvalidateRange(output, 4);
+	DCFlushRange(param, sizeof(CARDDecodeParameters));
 
-	.loc_0x7BC:
-	  rlwinm    r7,r6,7,0,24
-	  rlwinm    r8,r6,15,0,16
-	  xor       r7, r6, r7
-	  xor       r7, r8, r7
-	  rlwinm    r9,r6,23,0,8
-	  eqv       r7, r9, r7
-	  rlwinm    r8,r6,1,0,30
-	  rlwinm    r6,r7,2,30,30
-	  or        r9, r8, r6
-	  rlwinm    r6,r9,7,0,24
-	  rlwinm    r7,r9,15,0,16
-	  xor       r6, r9, r6
-	  rlwinm    r8,r9,23,0,8
-	  xor       r6, r7, r6
-	  eqv       r6, r8, r6
-	  rlwinm    r10,r6,2,30,30
-	  rlwimi    r10,r9,1,0,29
-	  rlwinm    r6,r10,7,0,24
-	  rlwinm    r7,r10,15,0,16
-	  xor       r6, r10, r6
-	  rlwinm    r8,r10,23,0,8
-	  xor       r6, r7, r6
-	  eqv       r6, r8, r6
-	  rlwinm    r9,r6,2,30,30
-	  rlwimi    r9,r10,1,0,29
-	  rlwinm    r6,r9,7,0,24
-	  rlwinm    r7,r9,15,0,16
-	  xor       r6, r9, r6
-	  rlwinm    r8,r9,23,0,8
-	  xor       r6, r7, r6
-	  eqv       r6, r8, r6
-	  rlwinm    r10,r6,2,30,30
-	  rlwimi    r10,r9,1,0,29
-	  rlwinm    r6,r10,7,0,24
-	  rlwinm    r7,r10,15,0,16
-	  xor       r6, r10, r6
-	  rlwinm    r8,r10,23,0,8
-	  xor       r6, r7, r6
-	  eqv       r6, r8, r6
-	  rlwinm    r9,r6,2,30,30
-	  rlwimi    r9,r10,1,0,29
-	  rlwinm    r6,r9,7,0,24
-	  rlwinm    r7,r9,15,0,16
-	  xor       r6, r9, r6
-	  rlwinm    r8,r9,23,0,8
-	  xor       r6, r7, r6
-	  eqv       r6, r8, r6
-	  rlwinm    r10,r6,2,30,30
-	  rlwimi    r10,r9,1,0,29
-	  rlwinm    r6,r10,7,0,24
-	  rlwinm    r7,r10,15,0,16
-	  xor       r6, r10, r6
-	  rlwinm    r8,r10,23,0,8
-	  xor       r6, r7, r6
-	  eqv       r6, r8, r6
-	  rlwinm    r9,r6,2,30,30
-	  rlwimi    r9,r10,1,0,29
-	  rlwinm    r6,r9,7,0,24
-	  rlwinm    r7,r9,15,0,16
-	  xor       r6, r9, r6
-	  rlwinm    r8,r9,23,0,8
-	  xor       r6, r7, r6
-	  eqv       r6, r8, r6
-	  rlwinm    r6,r6,2,30,30
-	  rlwimi    r6,r9,1,0,29
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0x7BC
+	task->priority        = 255;
+	task->iram_mmem_addr  = (u16*)OSPhysicalToCached(CardData);
+	task->iram_length     = 0x160;
+	task->iram_addr       = 0;
+	task->dsp_init_vector = 0x10;
+	task->init_cb         = InitCallback;
+	task->res_cb          = nullptr;
+	task->done_cb         = DoneCallback;
+	task->req_cb          = nullptr;
+	DSPAddTask(task);
 
-	.loc_0x8C8:
-	  sub       r7, r4, r3
-	  cmplw     r3, r4
-	  mtctr     r7
-	  bge-      .loc_0x900
+	dp    = (u32*)flashID;
+	*dp++ = para1A;
+	*dp++ = para1B;
+	*dp   = Ans1;
 
-	.loc_0x8D8:
-	  rlwinm    r3,r6,7,0,24
-	  rlwinm    r4,r6,15,0,16
-	  xor       r3, r6, r3
-	  rlwinm    r7,r6,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r7, r3
-	  rlwinm    r4,r6,1,0,30
-	  rlwinm    r3,r3,2,30,30
-	  or        r6, r4, r3
-	  bdnz+     .loc_0x8D8
-
-	.loc_0x900:
-	  rlwinm    r3,r6,7,0,24
-	  rlwinm    r4,r6,15,0,16
-	  xor       r3, r6, r3
-	  rlwinm    r7,r6,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r7, r3
-	  rlwinm    r3,r3,1,31,31
-	  or        r3, r6, r3
-	  stw       r3, 0x2C(r31)
-	  li        r3, 0x4
-	  mtctr     r3
-	  li        r3, 0
-	  lwz       r4, 0x2C(r31)
-
-	.loc_0x934:
-	  rlwinm    r6,r4,7,0,24
-	  rlwinm    r7,r4,15,0,16
-	  xor       r6, r4, r6
-	  xor       r6, r7, r6
-	  rlwinm    r8,r4,23,0,8
-	  eqv       r6, r8, r6
-	  rlwinm    r7,r4,1,0,30
-	  rlwinm    r4,r6,2,30,30
-	  or        r8, r7, r4
-	  rlwinm    r4,r8,7,0,24
-	  rlwinm    r6,r8,15,0,16
-	  xor       r4, r8, r4
-	  rlwinm    r7,r8,23,0,8
-	  xor       r4, r6, r4
-	  eqv       r4, r7, r4
-	  rlwinm    r9,r4,2,30,30
-	  rlwimi    r9,r8,1,0,29
-	  rlwinm    r4,r9,7,0,24
-	  rlwinm    r6,r9,15,0,16
-	  xor       r4, r9, r4
-	  rlwinm    r7,r9,23,0,8
-	  xor       r4, r6, r4
-	  eqv       r4, r7, r4
-	  rlwinm    r8,r4,2,30,30
-	  rlwimi    r8,r9,1,0,29
-	  rlwinm    r4,r8,7,0,24
-	  rlwinm    r6,r8,15,0,16
-	  xor       r4, r8, r4
-	  rlwinm    r7,r8,23,0,8
-	  xor       r4, r6, r4
-	  eqv       r4, r7, r4
-	  rlwinm    r9,r4,2,30,30
-	  rlwimi    r9,r8,1,0,29
-	  rlwinm    r4,r9,7,0,24
-	  rlwinm    r6,r9,15,0,16
-	  xor       r4, r9, r4
-	  rlwinm    r7,r9,23,0,8
-	  xor       r4, r6, r4
-	  eqv       r4, r7, r4
-	  rlwinm    r8,r4,2,30,30
-	  rlwimi    r8,r9,1,0,29
-	  rlwinm    r4,r8,7,0,24
-	  rlwinm    r6,r8,15,0,16
-	  xor       r4, r8, r4
-	  rlwinm    r7,r8,23,0,8
-	  xor       r4, r6, r4
-	  eqv       r4, r7, r4
-	  rlwinm    r9,r4,2,30,30
-	  rlwimi    r9,r8,1,0,29
-	  rlwinm    r4,r9,7,0,24
-	  rlwinm    r6,r9,15,0,16
-	  xor       r4, r9, r4
-	  rlwinm    r7,r9,23,0,8
-	  xor       r4, r6, r4
-	  eqv       r4, r7, r4
-	  rlwinm    r8,r4,2,30,30
-	  rlwimi    r8,r9,1,0,29
-	  rlwinm    r4,r8,7,0,24
-	  rlwinm    r6,r8,15,0,16
-	  xor       r4, r8, r4
-	  rlwinm    r7,r8,23,0,8
-	  xor       r4, r6, r4
-	  eqv       r4, r7, r4
-	  rlwinm    r4,r4,2,30,30
-	  rlwimi    r4,r8,1,0,29
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0x934
-	  subfic    r6, r3, 0x21
-	  cmplwi    r3, 0x21
-	  mtctr     r6
-	  bge-      .loc_0xA78
-
-	.loc_0xA50:
-	  rlwinm    r3,r4,7,0,24
-	  rlwinm    r6,r4,15,0,16
-	  xor       r3, r4, r3
-	  rlwinm    r7,r4,23,0,8
-	  xor       r3, r6, r3
-	  eqv       r3, r7, r3
-	  rlwinm    r4,r4,1,0,30
-	  rlwinm    r3,r3,2,30,30
-	  or        r4, r4, r3
-	  bdnz+     .loc_0xA50
-
-	.loc_0xA78:
-	  rlwinm    r3,r4,7,0,24
-	  rlwinm    r6,r4,15,0,16
-	  xor       r3, r4, r3
-	  rlwinm    r7,r4,23,0,8
-	  xor       r3, r6, r3
-	  eqv       r3, r7, r3
-	  rlwinm    r3,r3,1,31,31
-	  or        r3, r4, r3
-	  stw       r3, 0x2C(r31)
-	  li        r6, 0x8
-	  li        r27, 0
-	  stw       r0, 0x0(r28)
-	  addi      r3, r28, 0
-	  li        r4, 0x8
-	  stw       r5, 0x4(r28)
-	  stw       r28, 0x0(r29)
-	  stw       r6, 0x4(r29)
-	  stw       r22, 0xC(r29)
-	  stw       r27, 0x8(r29)
-	  bl        0x15FC0
-	  addi      r3, r22, 0
-	  li        r4, 0x4
-	  bl        0x15F88
-	  addi      r3, r29, 0
-	  li        r4, 0x10
-	  bl        0x15FA8
-	  li        r0, 0xFF
-	  lis       r3, 0x804A
-	  stw       r0, 0x4(r30)
-	  addi      r3, r3, 0x7780
-	  subis     r0, r3, 0x8000
-	  stw       r0, 0xC(r30)
-	  li        r0, 0x160
-	  lis       r4, 0x800D
-	  stw       r0, 0x10(r30)
-	  lis       r3, 0x800D
-	  li        r5, 0x10
-	  stw       r27, 0x14(r30)
-	  addi      r4, r4, 0x67EC
-	  addi      r0, r3, 0x685C
-	  sth       r5, 0x24(r30)
-	  mr        r3, r30
-	  stw       r4, 0x28(r30)
-	  stw       r27, 0x2C(r30)
-	  stw       r0, 0x30(r30)
-	  stw       r27, 0x34(r30)
-	  bl        -0x2BBA4
-	  stw       r25, 0x0(r23)
-	  li        r3, 0
-	  stw       r26, 0x4(r23)
-	  stw       r24, 0x8(r23)
-
-	.loc_0xB44:
-	  lmw       r22, 0xF8(r1)
-	  lwz       r0, 0x124(r1)
-	  addi      r1, r1, 0x120
-	  mtlr      r0
-	  blr
-	*/
+	return CARD_RESULT_READY;
 }
 
 /*
@@ -1133,45 +346,27 @@ int __CARDUnlock(int slotIndex, void* p2)
  * Address:	800D67EC
  * Size:	000070
  */
-void InitCallback(DSPTask* dspTask)
+void InitCallback(void* dspTask)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  addi      r4, r4, 0x5AF0
-	  addi      r0, r4, 0x30
-	  stwu      r1, -0x18(r1)
-	  cmplw     r0, r3
-	  stw       r31, 0x14(r1)
-	  beq-      .loc_0x30
-	  addi      r0, r4, 0x140
-	  cmplw     r0, r3
-	  addi      r4, r4, 0x110
+	s32 chan;
+	CARDControl* card;
+	DSPTaskInfo* task;
+	CARDDecodeParameters* param;
 
-	.loc_0x30:
-	  lwz       r31, 0x80(r4)
-	  lis       r3, 0xFF00
-	  bl        0x44C4
+	task = dspTask;
+	for (chan = 0; chan < 2; ++chan) {
+		card = &__CARDBlock[chan];
+		if ((DSPTaskInfo*)&card->task == task) {
+			break;
+		}
+	}
+	param = (CARDDecodeParameters*)card->workArea;
 
-	.loc_0x3C:
-	  bl        0x4488
-	  cmplwi    r3, 0
-	  bne+      .loc_0x3C
-	  mr        r3, r31
-	  bl        0x44B0
+	DSPSendMailToDSP(0xff000000);
+	while (DSPCheckMailToDSP()) { }
 
-	.loc_0x50:
-	  bl        0x4474
-	  cmplwi    r3, 0
-	  bne+      .loc_0x50
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	DSPSendMailToDSP((u32)param);
+	while (DSPCheckMailToDSP()) { }
 }
 
 /*
@@ -1179,230 +374,71 @@ void InitCallback(DSPTask* dspTask)
  * Address:	800D685C
  * Size:	000324
  */
-void DoneCallback(DSPTask* dspTask)
+void DoneCallback(void* dspTask)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  addi      r4, r4, 0x5AF0
-	  addi      r0, r4, 0x30
-	  stwu      r1, -0x88(r1)
-	  cmplw     r0, r3
-	  stw       r31, 0x84(r1)
-	  li        r31, 0
-	  stw       r30, 0x80(r1)
-	  stw       r29, 0x7C(r1)
-	  addi      r29, r4, 0
-	  stw       r28, 0x78(r1)
-	  beq-      .loc_0x54
-	  addi      r0, r4, 0x140
-	  cmplw     r0, r3
-	  addi      r4, r4, 0x110
-	  addi      r29, r4, 0
-	  li        r31, 0x1
-	  beq-      .loc_0x54
-	  li        r31, 0x2
+	u8 rbuf[64];
+	u32 data;
+	s32 dummy;
+	s32 rlen;
+	u32 rshift;
 
-	.loc_0x54:
-	  lwz       r3, 0x80(r29)
-	  addi      r0, r3, 0x2F
-	  rlwinm    r3,r0,0,0,26
-	  lwz       r30, 0x20(r3)
-	  bl        -0xCF0
-	  lwz       r0, 0x2C(r29)
-	  addi      r28, r3, 0
-	  addi      r6, r28, 0
-	  xor       r0, r30, r0
-	  rlwinm    r4,r0,0,0,15
-	  addi      r3, r31, 0
-	  addi      r5, r1, 0x34
-	  li        r7, 0x1
-	  bl        -0xE58
-	  cmpwi     r3, 0
-	  bge-      .loc_0xAC
-	  mr        r3, r31
-	  bl        0xA770
-	  addi      r3, r31, 0
-	  li        r4, -0x3
-	  bl        0x20C4
-	  b         .loc_0x304
+	u8 unk;
+	u32 wk, wk1;
+	u32 Ans2;
 
-	.loc_0xAC:
-	  lwz       r4, 0x14(r29)
-	  li        r3, 0
-	  lwz       r0, 0x2C(r29)
-	  add       r4, r28, r4
-	  addi      r4, r4, 0x4
-	  rlwinm    r4,r4,3,0,28
-	  addi      r4, r4, 0x1
-	  cmplwi    r4, 0
-	  ble-      .loc_0x234
-	  cmplwi    r4, 0x8
-	  subi      r6, r4, 0x8
-	  ble-      .loc_0x1FC
-	  addi      r5, r6, 0x7
-	  rlwinm    r5,r5,29,3,31
-	  cmplwi    r6, 0
-	  mtctr     r5
-	  ble-      .loc_0x1FC
+	s32 chan;
+	CARDControl* card;
+	s32 result;
+	DSPTaskInfo* task;
+	CARDDecodeParameters* param;
 
-	.loc_0xF0:
-	  rlwinm    r5,r0,7,0,24
-	  rlwinm    r6,r0,15,0,16
-	  xor       r5, r0, r5
-	  xor       r5, r6, r5
-	  rlwinm    r7,r0,23,0,8
-	  eqv       r5, r7, r5
-	  rlwinm    r6,r0,1,0,30
-	  rlwinm    r0,r5,2,30,30
-	  or        r7, r6, r0
-	  rlwinm    r0,r7,7,0,24
-	  rlwinm    r5,r7,15,0,16
-	  xor       r0, r7, r0
-	  rlwinm    r6,r7,23,0,8
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r8,r0,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r0,r8,7,0,24
-	  rlwinm    r5,r8,15,0,16
-	  xor       r0, r8, r0
-	  rlwinm    r6,r8,23,0,8
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r7,r0,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r0,r7,7,0,24
-	  rlwinm    r5,r7,15,0,16
-	  xor       r0, r7, r0
-	  rlwinm    r6,r7,23,0,8
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r8,r0,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r0,r8,7,0,24
-	  rlwinm    r5,r8,15,0,16
-	  xor       r0, r8, r0
-	  rlwinm    r6,r8,23,0,8
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r7,r0,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r0,r7,7,0,24
-	  rlwinm    r5,r7,15,0,16
-	  xor       r0, r7, r0
-	  rlwinm    r6,r7,23,0,8
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r8,r0,2,30,30
-	  rlwimi    r8,r7,1,0,29
-	  rlwinm    r0,r8,7,0,24
-	  rlwinm    r5,r8,15,0,16
-	  xor       r0, r8, r0
-	  rlwinm    r6,r8,23,0,8
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r7,r0,2,30,30
-	  rlwimi    r7,r8,1,0,29
-	  rlwinm    r0,r7,7,0,24
-	  rlwinm    r5,r7,15,0,16
-	  xor       r0, r7, r0
-	  rlwinm    r6,r7,23,0,8
-	  xor       r0, r5, r0
-	  eqv       r0, r6, r0
-	  rlwinm    r0,r0,2,30,30
-	  rlwimi    r0,r7,1,0,29
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0xF0
+	u8* input;
+	u8* output;
+	task = dspTask;
+	for (chan = 0; chan < 2; ++chan) {
+		card = &__CARDBlock[chan];
+		if ((DSPTaskInfo*)&card->task == task) {
+			break;
+		}
+	}
 
-	.loc_0x1FC:
-	  sub       r5, r4, r3
-	  cmplw     r3, r4
-	  mtctr     r5
-	  bge-      .loc_0x234
+	param  = (CARDDecodeParameters*)card->workArea;
+	input  = (u8*)((u8*)param + sizeof(CARDDecodeParameters));
+	input  = (u8*)OSRoundUp32B(input);
+	output = input + 32;
 
-	.loc_0x20C:
-	  rlwinm    r3,r0,7,0,24
-	  rlwinm    r4,r0,15,0,16
-	  xor       r3, r0, r3
-	  rlwinm    r5,r0,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r5, r3
-	  rlwinm    r4,r0,1,0,30
-	  rlwinm    r0,r3,2,30,30
-	  or        r0, r4, r0
-	  bdnz+     .loc_0x20C
+	Ans2  = *(u32*)output;
+	dummy = DummyLen();
+	rlen  = dummy;
+	data  = ((Ans2 ^ card->scramble) & 0xffff0000);
+	if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {
+		EXIUnlock(chan);
+		__CARDMountCallback(chan, CARD_RESULT_NOCARD);
+		return;
+	}
 
-	.loc_0x234:
-	  rlwinm    r3,r0,7,0,24
-	  rlwinm    r4,r0,15,0,16
-	  xor       r3, r0, r3
-	  rlwinm    r5,r0,23,0,8
-	  xor       r3, r4, r3
-	  eqv       r3, r5, r3
-	  rlwinm    r3,r3,1,31,31
-	  or        r0, r0, r3
-	  stw       r0, 0x2C(r29)
-	  bl        -0xEE4
-	  lwz       r0, 0x2C(r29)
-	  rlwinm    r4,r30,16,0,15
-	  addi      r6, r3, 0
-	  xor       r0, r4, r0
-	  rlwinm    r4,r0,0,0,15
-	  addi      r3, r31, 0
-	  addi      r5, r1, 0x34
-	  li        r7, 0x1
-	  bl        -0x104C
-	  cmpwi     r3, 0
-	  bge-      .loc_0x2A0
-	  mr        r3, r31
-	  bl        0xA57C
-	  addi      r3, r31, 0
-	  li        r4, -0x3
-	  bl        0x1ED0
-	  b         .loc_0x304
+	rshift         = (u32)((dummy + 4 + card->latency) * 8 + 1);
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
 
-	.loc_0x2A0:
-	  addi      r3, r31, 0
-	  addi      r4, r1, 0x30
-	  bl        -0x2084
-	  addi      r28, r3, 0
-	  addi      r3, r31, 0
-	  bl        0x99A4
-	  cmpwi     r3, 0
-	  bne-      .loc_0x2D8
-	  mr        r3, r31
-	  bl        0xA544
-	  addi      r3, r31, 0
-	  li        r4, -0x3
-	  bl        0x1E98
-	  b         .loc_0x304
-
-	.loc_0x2D8:
-	  cmpwi     r28, 0
-	  bne-      .loc_0x2F8
-	  lbz       r0, 0x30(r1)
-	  rlwinm.   r0,r0,0,25,25
-	  bne-      .loc_0x2F8
-	  mr        r3, r31
-	  bl        0xA518
-	  li        r28, -0x5
-
-	.loc_0x2F8:
-	  addi      r3, r31, 0
-	  addi      r4, r28, 0
-	  bl        0x1E68
-
-	.loc_0x304:
-	  lwz       r0, 0x8C(r1)
-	  lwz       r31, 0x84(r1)
-	  lwz       r30, 0x80(r1)
-	  lwz       r29, 0x7C(r1)
-	  lwz       r28, 0x78(r1)
-	  addi      r1, r1, 0x88
-	  mtlr      r0
-	  blr
-	*/
+	dummy = DummyLen();
+	rlen  = dummy;
+	data  = (((Ans2 << 16) ^ card->scramble) & 0xffff0000);
+	if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {
+		EXIUnlock(chan);
+		__CARDMountCallback(chan, CARD_RESULT_NOCARD);
+		return;
+	}
+	result = __CARDReadStatus(chan, &unk);
+	if (!EXIProbe(chan)) {
+		EXIUnlock(chan);
+		__CARDMountCallback(chan, CARD_RESULT_NOCARD);
+		return;
+	}
+	if (result == CARD_RESULT_READY && !(unk & 0x40)) {
+		EXIUnlock(chan);
+		result = CARD_RESULT_IOERROR;
+	}
+	__CARDMountCallback(chan, result);
 }

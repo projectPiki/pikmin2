@@ -606,13 +606,13 @@ LIBS = [
     {
         "lib": "card",
         "mw_version": "1.2.5e",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
-            "Dolphin/card/CARDBios",
-            "Dolphin/card/CARDUnlock",
+            ["Dolphin/card/CARDBios", True],
+            ["Dolphin/card/CARDUnlock", True],
             "Dolphin/card/CARDRdwr",
-            "Dolphin/card/CARDBlock",
+            ["Dolphin/card/CARDBlock", True],
             "Dolphin/card/CARDDir",
             "Dolphin/card/CARDCheck",
             "Dolphin/card/CARDMount",

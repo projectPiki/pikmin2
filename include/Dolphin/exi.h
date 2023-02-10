@@ -8,30 +8,24 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-typedef unknown EXICallback(int slotIndex);
-
-typedef enum { EXIResultMinusOne = -1, EXIResultZero = 0, EXIResultOne = 1 } EXIResult;
-
 void EXIInit();
 
-EXIResult EXIImm(int slotIndex, u8* p2, int byteCount, int p4, unknown p5);
-EXIResult EXIImmEx(int slotIndex, u8* p2, int byteCount, int p4);
-EXIResult EXIDma(int slotIndex, unknown p2, unknown p3, unknown p4, unknown p5);
-EXIResult EXISync(int slotIndex);
-EXIResult EXIClearInterrupts(int slotIndex, unknown p2, unknown p3, unknown p4);
-EXICallback* EXISetExiCallback(int slotIndex, EXICallback* callback);
-EXIResult EXIProbe(int slotIndex);
-EXIResult EXIProbeEx(int slotIndex);
-EXIResult EXIAttach(int slotIndex, unknown p2);
-EXIResult EXIDetach(int slotIndex);
-EXIResult EXISelect(int slotIndex, unknown p2, unknown p3);
-EXIResult EXIDeselect(int slotIndex);
+BOOL EXIImm(s32 channel, void* buffer, s32 length, u32 type, EXICallback callback);
+BOOL EXIImmEx(s32 channel, void* buffer, s32 length, u32 type);
+BOOL EXIDma(s32 channel, void* buffer, s32 length, u32 type, EXICallback callback);
+BOOL EXISync(s32 channel);
+BOOL EXIClearInterrupts(s32 channel, BOOL clearExiBit, BOOL clearTcBit, BOOL clearExtBit);
+EXICallback EXISetExiCallback(s32 channel, EXICallback callback);
+BOOL EXIAttach(s32 channel, EXICallback callback);
+BOOL EXIDetach(s32 channel);
+BOOL EXISelect(s32 channel, u32 device, u32 frequency);
+BOOL EXIDeselect(s32 channel);
 // sic
-void EXIIntrruptHandler(unknown p1, OSContext* context);
-EXIResult EXILock(int slotIndex, unknown p2, unknown p3);
-EXIResult EXIUnlock(int slotIndex);
-uint EXIGetState(int slotIndex);
-EXIResult EXIGetID(int slotIndex, unknown p2, u8* p3);
+void EXIIntrruptHandler(__OSInterrupt interrupt, OSContext* context);
+BOOL EXILock(s32 channel, u32 device, EXICallback callback);
+BOOL EXIUnlock(s32 channel);
+u32 EXIGetState(s32 channel);
+s32 EXIGetID(s32 channel, u32 device, u32* id);
 
 #ifdef __cplusplus
 };

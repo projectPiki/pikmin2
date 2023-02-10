@@ -176,7 +176,7 @@ struct CARDDirectoryBlock {
 struct CARDFatBlock {
 	u16 checkSum;        // _00
 	u16 checkSumInv;     // _02
-	s16 checkCode;       // _04
+	u16 checkCode;       // _04
 	u16 freeBlocks;      // _06
 	u16 lastAllocBlock;  // _08
 	u16 allocMap[0xFFB]; // _0A
@@ -191,6 +191,14 @@ struct CARDMemoryCard {
 	CARDFatBlock blockAllocMap;        // _6000
 	CARDFatBlock blockAllocMapBackup;  // _8000
 };
+
+// Struct for use in CARDUnlock.
+typedef struct CARDDecodeParameters {
+	u8* inputAddr;   // _00
+	u32 inputLength; // _04
+	u32 aramAddr;    // _08
+	u8* outputAddr;  // _0C
+} CARDDecodeParameters;
 
 // Enum for 'permission' in CARDDir.
 typedef enum { FilePermPublic = 0x2, FilePermNoCopy = 0x4, FilePermNoMove = 0x8 } CARDFilePermissions;
@@ -217,7 +225,7 @@ s32 CARDCheck(s32 channel);
 s32 CARDCheckExAsync(s32 channel, s32* xferBytes, CARDCallback callback);
 
 // CARD BIOS functions.
-s32 CARDFreeBlocks(s32 channel, s32* byteNoteUsed, s32* filesNotUsed);
+s32 CARDFreeBlocks(s32 channel, s32* byteNotUsed, s32* filesNotUsed);
 
 // CARD mounting functions.
 BOOL CARDProbe(s32 channel);
@@ -269,16 +277,19 @@ void __CARDUnlockedHandler(s32 channel, OSContext* context);
 s32 __CARDEnableInterrupt(s32 channel, BOOL enable);
 s32 __CARDReadStatus(s32 channel, u8* status);
 s32 __CARDClearStatus(s32 channel);
-s32 __CARDStart(s32 channel, CARDCallback c8callback, CARDCallback doneWriteCallback);
+s32 __CARDStart(s32 channel, CARDCallback txCallback, CARDCallback exiCallback);
 s32 __CARDReadSegment(s32 channel, CARDCallback callback);
 s32 __CARDWritePage(s32 channel, CARDCallback callback);
 s32 __CARDEraseSector(s32 channel, u32 addr, CARDCallback callback);
 u16 __CARDGetFontEncode();
-void __CARDSetDiskID(u8* diskID);
+void __CARDSetDiskID(const DVDDiskID* diskID);
 s32 __CARDGetControlBlock(s32 channel, CARDControl** card);
 s32 __CARDPutControlBlock(CARDControl* card, s32 result);
 s32 __CARDSync(s32 channel);
 void __CARDCheckSum(void* data, int length, u16* checksum, u16* checksumInv);
+
+CARDDir* __CARDGetDirBlock(CARDControl* card);
+CARDFatBlock* __CARDGetFatBlock(CARDControl* card);
 
 ////////////////////////////////////////////
 
