@@ -33,8 +33,8 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10320 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/exi/EXIUart.c">exi/EXIUart.c</a> | 10329 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 11230 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/MSL_C/alloc.c">MSL_C/alloc.c</a> | 12018 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 12046 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTransform.c">gx/GXTransform.c</a> | 12379 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSAlarm.c">os/OSAlarm.c</a> | 13933 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXLight.c">gx/GXLight.c</a> | 14151 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTev.c">gx/GXTev.c</a> | 14624 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/MSL_C/strtoul.c">MSL_C/strtoul.c</a> | 15615 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/dvd/dvdfs.c">dvd/dvdfs.c</a> | 12511 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSAlarm.c">os/OSAlarm.c</a> | 13933 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXLight.c">gx/GXLight.c</a> | 14151 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTev.c">gx/GXTev.c</a> | 14624 |
 
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |

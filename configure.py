@@ -652,7 +652,7 @@ LIBS = [
         "host": False,
         "objects": [
             "Dolphin/dvd/dvdlow",
-            "Dolphin/dvd/dvdfs",
+            ["Dolphin/dvd/dvdfs", True],
             "Dolphin/dvd/dvd",
             ["Dolphin/dvd/dvdqueue", True],
             ["Dolphin/dvd/dvderror", True],

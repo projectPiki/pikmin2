@@ -1860,8 +1860,7 @@
 /* 8045D8AC 0045A7EC  4E 80 00 20 */	blr 
 .endfn __ct__Q23PSM11CreatureObjFPQ24Game8CreatureUc
 
-.global __dt__Q23PSM8CreatureFv
-__dt__Q23PSM8CreatureFv:
+.fn __dt__Q23PSM8CreatureFv, weak
 /* 8045D8B0 0045A7F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045D8B4 0045A7F4  7C 08 02 A6 */	mflr r0
 /* 8045D8B8 0045A7F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1902,9 +1901,9 @@ __dt__Q23PSM8CreatureFv:
 /* 8045D93C 0045A87C  7C 08 03 A6 */	mtlr r0
 /* 8045D940 0045A880  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045D944 0045A884  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM8CreatureFv
 
-.global startSound__Q23PSM11CreatureObjFUlUl
-startSound__Q23PSM11CreatureObjFUlUl:
+.fn startSound__Q23PSM11CreatureObjFUlUl, global
 /* 8045D948 0045A888  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045D94C 0045A88C  7C 08 02 A6 */	mflr r0
 /* 8045D950 0045A890  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1920,9 +1919,9 @@ startSound__Q23PSM11CreatureObjFUlUl:
 /* 8045D978 0045A8B8  7C 08 03 A6 */	mtlr r0
 /* 8045D97C 0045A8BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045D980 0045A8C0  4E 80 00 20 */	blr 
+.endfn startSound__Q23PSM11CreatureObjFUlUl
 
-.global startSound__Q23PSM11CreatureObjFUcUlUl
-startSound__Q23PSM11CreatureObjFUcUlUl:
+.fn startSound__Q23PSM11CreatureObjFUcUlUl, global
 /* 8045D984 0045A8C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045D988 0045A8C8  7C 08 02 A6 */	mflr r0
 /* 8045D98C 0045A8CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1958,6 +1957,7 @@ startSound__Q23PSM11CreatureObjFUcUlUl:
 /* 8045DA04 0045A944  7C 08 03 A6 */	mtlr r0
 /* 8045DA08 0045A948  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045DA0C 0045A94C  4E 80 00 20 */	blr 
+.endfn startSound__Q23PSM11CreatureObjFUcUlUl
 
 .global startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
 startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl:

@@ -156,6 +156,14 @@ def update_csv(
     except:
         print(f"Failed to write to {CSV_FILE_PATH}!")
 
+def countDigits(n):
+    if n > 0:
+        digits = int(math.log10(n))+1
+    elif n == 0:
+        digits = 1
+    else:
+        digits = int(math.log10(-n))+2 # +1 if you don't count the '-'
+    return digits
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate progress.")
@@ -288,10 +296,27 @@ if __name__ == "__main__":
 
     codeCount = math.floor(decomp_code_size / bytesPerCodeItem)
     dataCount = math.floor(decomp_data_size / bytesPerDataItem)
-
+    
+    # Math for aligning percentage prints
+    codeDigitsD = (countDigits(decomp_code_size))
+    dataDigitsD = (countDigits(decomp_data_size))
+    codeDigits = (countDigits(dol_code_size))
+    dataDigits = (countDigits(dol_data_size))
+    maxDigitsD = (max(codeDigitsD, dataDigitsD))
+    maxDigits = (max(codeDigits, dataDigits))
+    codeStrA = "\tCode sections: "
+    codeStrB = f"{decomp_code_size} / "
+    codeStrC = f"{dol_code_size} bytes in src ({codeCompletionPcnt:%})"
+    dataStrA = "\tData sections: "
+    dataStrB = f"{decomp_data_size} / "
+    dataStrC = f"{dol_data_size} bytes in src ({dataCompletionPcnt:%})"
+    
+    # Print progress
     print("Progress:")
-    print(f"\tCode sections: {decomp_code_size} / {dol_code_size}\tbytes in src ({codeCompletionPcnt:%})")
-    print(f"\tData sections: {decomp_data_size} / {dol_data_size}\tbytes in src ({dataCompletionPcnt:%})")
+    print(f"{codeStrA + ' ' * (maxDigitsD-codeDigitsD) + codeStrB + ' ' * (maxDigits-codeDigits) + codeStrC}")
+    # print(f"\tCode sections: {decomp_code_size} / {dol_code_size} bytes in src ({codeCompletionPcnt:%})")
+    print(f"{dataStrA + ' ' * (maxDigitsD-dataDigitsD) + dataStrB + ' ' * (maxDigits-dataDigits) + dataStrC}")
+    # print(f"\tData sections: {decomp_data_size} / {dol_data_size} bytes in src ({dataCompletionPcnt:%})")
 
     sentence = f"\nYou have {codeCount} out of {CODE_FRAC} {CODE_ITEM} and {dataCount} out of {DATA_FRAC} {DATA_ITEM}."
     print(sentence)
