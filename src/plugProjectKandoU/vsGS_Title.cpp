@@ -10,7 +10,7 @@
 #include "PSGame/SceneInfo.h"
 #include "PSGame/PikScene.h"
 #include "Screen/Game2DMgr.h"
-#include "Morimura/challengeResult2d.h"
+#include "Morimura/challengeSelect2d.h"
 #include "Morimura/VsSelect.h"
 #include "Controller.h"
 #include "TParticle2dMgr.h"

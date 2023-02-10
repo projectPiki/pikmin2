@@ -14,6 +14,7 @@
 #include "Morimura/Zukan.h"
 #include "PSSystem/PSSystemIF.h"
 #include "Morimura/challengeResult2d.h"
+#include "Morimura/challengeSelect2d.h"
 #include "Morimura/VsSelect.h"
 #include "Morimura/HiScore.h"
 #include "og/newScreen/KanteiDemo.h"
