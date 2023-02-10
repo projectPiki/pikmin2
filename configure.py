@@ -587,11 +587,11 @@ LIBS = [
     {
         "lib": "ar",
         "mw_version": "1.2.5e",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
-            "Dolphin/ar/ar",
-            "Dolphin/ar/arq",
+            ["Dolphin/ar/ar", True],
+            ["Dolphin/ar/arq", True],
         ],
     },
     {
