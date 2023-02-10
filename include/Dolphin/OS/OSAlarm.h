@@ -15,7 +15,7 @@ typedef struct OSAlarm OSAlarm;
 // Generic alarm handler function.
 typedef void (*OSAlarmHandler)(OSAlarm* alarm, OSContext* context);
 
-// Struct for storing alarm information.
+// Struct for storing alarm information (size 0x28).
 struct OSAlarm {
 	OSAlarmHandler handler; // _00
 	u32 tag;                // _04

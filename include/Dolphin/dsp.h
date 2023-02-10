@@ -16,7 +16,7 @@ typedef struct STRUCT_DSP_TASK DSPTaskInfo;
 // Digital signal processor callback.
 typedef void (*DSPCallback)(void* task);
 
-// Struct for digital signal processing information.
+// Struct for digital signal processing information (size 0x50).
 struct STRUCT_DSP_TASK {
 	vu32 state;            // _00, state of task.
 	vu32 priority;         // _04
