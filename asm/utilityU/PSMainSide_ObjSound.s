@@ -1255,8 +1255,7 @@
 /* 8045D030 00459F70  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM6ObjMgrFv
 
-.global exec__Q23PSM8CreatureFv
-exec__Q23PSM8CreatureFv:
+.fn exec__Q23PSM8CreatureFv, global
 /* 8045D034 00459F74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045D038 00459F78  7C 08 02 A6 */	mflr r0
 /* 8045D03C 00459F7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1280,9 +1279,9 @@ exec__Q23PSM8CreatureFv:
 /* 8045D080 00459FC0  7C 08 03 A6 */	mtlr r0
 /* 8045D084 00459FC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045D088 00459FC8  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM8CreatureFv
 
-.global judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
-judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff:
+.fn judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff, global
 /* 8045D08C 00459FCC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045D090 00459FD0  7C 08 02 A6 */	mflr r0
 /* 8045D094 00459FD4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1367,9 +1366,9 @@ judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff:
 /* 8045D1A8 0045A0E8  7C 08 03 A6 */	mtlr r0
 /* 8045D1AC 0045A0EC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8045D1B0 0045A0F0  4E 80 00 20 */	blr 
+.endfn judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
 
-.global isNear__Q23PSM8CreatureFPQ24Game8Creaturef
-isNear__Q23PSM8CreatureFPQ24Game8Creaturef:
+.fn isNear__Q23PSM8CreatureFPQ24Game8Creaturef, global
 /* 8045D1B4 0045A0F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045D1B8 0045A0F8  7C 08 02 A6 */	mflr r0
 /* 8045D1BC 0045A0FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1410,9 +1409,9 @@ isNear__Q23PSM8CreatureFPQ24Game8Creaturef:
 /* 8045D248 0045A188  7C 08 03 A6 */	mtlr r0
 /* 8045D24C 0045A18C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045D250 0045A190  4E 80 00 20 */	blr 
+.endfn isNear__Q23PSM8CreatureFPQ24Game8Creaturef
 
-.global getPlayingHandleNum__Q23PSM8CreatureFv
-getPlayingHandleNum__Q23PSM8CreatureFv:
+.fn getPlayingHandleNum__Q23PSM8CreatureFv, global
 /* 8045D254 0045A194  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045D258 0045A198  7C 08 02 A6 */	mflr r0
 /* 8045D25C 0045A19C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1444,9 +1443,9 @@ getPlayingHandleNum__Q23PSM8CreatureFv:
 /* 8045D2B8 0045A1F8  7C 08 03 A6 */	mtlr r0
 /* 8045D2BC 0045A1FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045D2C0 0045A200  4E 80 00 20 */	blr 
+.endfn getPlayingHandleNum__Q23PSM8CreatureFv
 
-.global loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
-loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg:
+.fn loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg, global
 /* 8045D2C4 0045A204  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045D2C8 0045A208  7C 08 02 A6 */	mflr r0
 /* 8045D2CC 0045A20C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1538,9 +1537,9 @@ loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg:
 /* 8045D414 0045A354  7C 08 03 A6 */	mtlr r0
 /* 8045D418 0045A358  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045D41C 0045A35C  4E 80 00 20 */	blr 
+.endfn loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
 
-.global startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
-startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg:
+.fn startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg, global
 /* 8045D420 0045A360  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8045D424 0045A364  7C 08 02 A6 */	mflr r0
 /* 8045D428 0045A368  3C A0 80 4A */	lis r5, lbl_8049CFA0@ha
@@ -1783,13 +1782,13 @@ startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg:
 /* 8045D794 0045A6D4  7C 08 03 A6 */	mtlr r0
 /* 8045D798 0045A6D8  38 21 00 50 */	addi r1, r1, 0x50
 /* 8045D79C 0045A6DC  4E 80 00 20 */	blr 
+.endfn startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
 
-.global onPlayingSe__Q23PSM8CreatureFUlP8JAISound
-onPlayingSe__Q23PSM8CreatureFUlP8JAISound:
+.fn onPlayingSe__Q23PSM8CreatureFUlP8JAISound, global
 /* 8045D7A0 0045A6E0  4E 80 00 20 */	blr 
+.endfn onPlayingSe__Q23PSM8CreatureFUlP8JAISound
 
-.global __ct__Q23PSM11CreatureObjFPQ24Game8CreatureUc
-__ct__Q23PSM11CreatureObjFPQ24Game8CreatureUc:
+.fn __ct__Q23PSM11CreatureObjFPQ24Game8CreatureUc, global
 /* 8045D7A4 0045A6E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045D7A8 0045A6E8  7C 08 02 A6 */	mflr r0
 /* 8045D7AC 0045A6EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1859,6 +1858,7 @@ __ct__Q23PSM11CreatureObjFPQ24Game8CreatureUc:
 /* 8045D8A4 0045A7E4  7C 08 03 A6 */	mtlr r0
 /* 8045D8A8 0045A7E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045D8AC 0045A7EC  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM11CreatureObjFPQ24Game8CreatureUc
 
 .global __dt__Q23PSM8CreatureFv
 __dt__Q23PSM8CreatureFv:

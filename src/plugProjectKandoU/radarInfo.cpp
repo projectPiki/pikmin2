@@ -42,8 +42,8 @@ Radar::Mgr::Mgr()
 	mPointNode1.clear();
 	mPointNode2.clear();
 
-	mObjCount  = RADAR_MAX_OBJECTS;
-	mPointList = new Point[mObjCount];
+	mNumObjects = RADAR_MAX_OBJECTS;
+	mPointList  = new Point[mNumObjects];
 	clear();
 }
 
@@ -57,7 +57,7 @@ void Radar::Mgr::clear()
 	mPointNode1.clear();
 	mPointNode2.clear();
 
-	for (int i = 0; i < mObjCount; i++) {
+	for (int i = 0; i < mNumObjects; i++) {
 		Point* pointList = &mPointList[i];
 		pointList->clearRelations();
 		pointList->mObject  = nullptr;

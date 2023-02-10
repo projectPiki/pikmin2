@@ -46,8 +46,8 @@ struct Mgr {
 	// unused/inlined
 	void draw(Graphics&);
 
-	int mObjCount; // _00
-	Obj* mObjects; // _04 - array of objects
+	int mNumObjects; // _00
+	Obj* mObjects;   // _04 - array of objects
 };
 
 } // namespace WalkSmokeEffect

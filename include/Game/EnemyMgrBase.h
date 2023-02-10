@@ -169,7 +169,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	u8 mModelType;                     // _24
 	CollPartFactory* mCollPartFactory; // _28
 	int mObjLimit;                     // _2C
-	int mObjCount;                     // _30
+	int mNumObjects;                   // _30
 	EnemyParmsBase* mParms;            // _34
 	EnemyGeneratorBase* mGenerator;    // _38
 	EnemyStone::Info mStoneInfo;       // _3C

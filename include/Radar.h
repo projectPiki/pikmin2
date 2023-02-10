@@ -78,7 +78,7 @@ struct Radar {
 		Point mPointNode1; // _00
 		Point mPointNode2; // _24
 		Point* mPointList; // _48
-		int mObjCount;     // _4C
+		int mNumObjects;   // _4C
 		int mOtakaraNum;   // _50
 		int mFuefukiCount; // _54
 		int mFuefukiTimer; // _58

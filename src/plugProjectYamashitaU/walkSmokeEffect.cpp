@@ -58,8 +58,8 @@ void Obj::update(EnemyBase* enemy)
  */
 Mgr::Mgr()
 {
-	mObjCount = 0;
-	mObjects  = nullptr;
+	mNumObjects = 0;
+	mObjects    = nullptr;
 }
 
 /*
@@ -70,8 +70,8 @@ Mgr::Mgr()
 void Mgr::alloc(int count)
 {
 	if (mObjects == nullptr) {
-		mObjCount = count;
-		mObjects  = new Obj[mObjCount];
+		mNumObjects = count;
+		mObjects    = new Obj[mNumObjects];
 
 		if (mObjects == nullptr) {
 			// failed to allocate an object array
@@ -91,7 +91,7 @@ void Mgr::alloc(int count)
  */
 void Mgr::update(EnemyBase* enemy)
 {
-	for (int i = 0; i < mObjCount; i++) {
+	for (int i = 0; i < mNumObjects; i++) {
 		mObjects[i].update(enemy);
 	}
 }

@@ -38,7 +38,7 @@ EnemyMgrBase::EnemyMgrBase(int objLimit, u8 modelType)
 	mModelType          = modelType;
 	mCollPartFactory    = nullptr;
 	mObjLimit           = objLimit;
-	mObjCount           = 0;
+	mNumObjects         = 0;
 	mParms              = nullptr;
 	mGenerator          = nullptr;
 	mStoneInfo.mLength  = 0;
@@ -82,7 +82,7 @@ void EnemyMgrBase::endMovie()
  */
 void EnemyMgrBase::alloc()
 {
-	mObjCount = 0;
+	mNumObjects = 0;
 	createObj(mObjLimit);
 
 	for (int i = 0; i < mObjLimit; i++) {
@@ -222,8 +222,8 @@ EnemyBase* EnemyMgrBase::birth(EnemyBirthArg& arg)
 	EnemyBase* enemy = getEnemyByID(arg.mTypeID);
 
 	if (enemy) {
-		int objs = mObjCount;
-		mObjCount++;
+		int objs = mNumObjects;
+		mNumObjects++;
 		enemy->birth(arg.mPosition, arg.mFaceDir);
 		enemy->mExistDuration = arg.mExistenceLength;
 		enemy->setOtakaraCode(arg.mOtakaraItemCode);
@@ -266,7 +266,7 @@ void EnemyMgrBase::kill(EnemyBase* enemy)
 			currEnemy = getEnemy(i);
 			if (currEnemy == enemy) {
 				currEnemy->disableEvent(0, EB_IsAlive);
-				mObjCount--;
+				mNumObjects--;
 				break;
 			}
 		}
@@ -295,8 +295,8 @@ void EnemyMgrBase::killAll(CreatureKillArg* arg)
 		}
 	}
 
-	if (mObjCount != 0) {
-		JUT_PANICLINE(480, "mNumObjects is not zero. [%d] \n", mObjCount);
+	if (mNumObjects != 0) {
+		JUT_PANICLINE(480, "mNumObjects is not zero. [%d] \n", mNumObjects);
 	}
 }
 
