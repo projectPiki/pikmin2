@@ -288,7 +288,7 @@ s32 __CARDPutControlBlock(CARDControl* card, s32 result);
 s32 __CARDSync(s32 channel);
 void __CARDCheckSum(void* data, int length, u16* checksum, u16* checksumInv);
 
-CARDDir* __CARDGetDirBlock(CARDControl* card);
+CARDDirectoryBlock* __CARDGetDirBlock(CARDControl* card);
 CARDFatBlock* __CARDGetFatBlock(CARDControl* card);
 
 ////////////////////////////////////////////

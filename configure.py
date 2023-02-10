@@ -611,9 +611,9 @@ LIBS = [
         "objects": [
             ["Dolphin/card/CARDBios", True],
             ["Dolphin/card/CARDUnlock", True],
-            "Dolphin/card/CARDRdwr",
+            ["Dolphin/card/CARDRdwr", True],
             ["Dolphin/card/CARDBlock", True],
-            "Dolphin/card/CARDDir",
+            ["Dolphin/card/CARDDir", True],
             "Dolphin/card/CARDCheck",
             "Dolphin/card/CARDMount",
             "Dolphin/card/CARDFormat",
@@ -622,7 +622,7 @@ LIBS = [
             "Dolphin/card/CARDRead",
             "Dolphin/card/CARDWrite",
             "Dolphin/card/CARDStat",
-            "Dolphin/card/CARDNet",
+            ["Dolphin/card/CARDNet", True],
         ],
     },
     {

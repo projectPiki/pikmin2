@@ -708,7 +708,7 @@ s32 CARDFreeBlocks(s32 channel, s32* byteNotUsed, s32* filesNotUsed)
 	CARDControl* card;
 	s32 result;
 	CARDFatBlock* fat;
-	CARDDir* dir;
+	CARDDirectoryBlock* dir;
 	CARDDir* ent;
 	u16 fileNo;
 
@@ -730,7 +730,7 @@ s32 CARDFreeBlocks(s32 channel, s32* byteNotUsed, s32* filesNotUsed)
 	if (filesNotUsed) {
 		*filesNotUsed = 0;
 		for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++) {
-			ent = &dir[fileNo];
+			ent = &dir->entries[fileNo];
 			if (ent->fileName[0] == 0xff) {
 				++*filesNotUsed;
 			}

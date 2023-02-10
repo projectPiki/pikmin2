@@ -1,9 +1,9 @@
 CARD_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/card/CARDBios.o\
 	$(BUILD_DIR)/src/Dolphin/card/CARDUnlock.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDRdwr.o\
+	$(BUILD_DIR)/src/Dolphin/card/CARDRdwr.o\
 	$(BUILD_DIR)/src/Dolphin/card/CARDBlock.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDDir.o\
+	$(BUILD_DIR)/src/Dolphin/card/CARDDir.o\
 	$(BUILD_DIR)/asm/Dolphin/card/CARDCheck.o\
 	$(BUILD_DIR)/asm/Dolphin/card/CARDMount.o\
 	$(BUILD_DIR)/asm/Dolphin/card/CARDFormat.o\
@@ -12,12 +12,15 @@ CARD_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/card/CARDRead.o\
 	$(BUILD_DIR)/asm/Dolphin/card/CARDWrite.o\
 	$(BUILD_DIR)/asm/Dolphin/card/CARDStat.o\
-	$(BUILD_DIR)/asm/Dolphin/card/CARDNet.o\
+	$(BUILD_DIR)/src/Dolphin/card/CARDNet.o\
 
 CARD_UNSCHEDULED:=\
 	$(EPILOGUE_DIR)/src/Dolphin/card/CARDBios.o\
 	$(EPILOGUE_DIR)/src/Dolphin/card/CARDUnlock.o\
+	$(EPILOGUE_DIR)/src/Dolphin/card/CARDRdwr.o\
 	$(EPILOGUE_DIR)/src/Dolphin/card/CARDBlock.o\
+	$(EPILOGUE_DIR)/src/Dolphin/card/CARDDir.o\
+	$(EPILOGUE_DIR)/src/Dolphin/card/CARDNet.o\
 
 $(CARD_FILES): CFLAGS += -common off -str noreadonly
 $(CARD_UNSCHEDULED): CFLAGS += -common off -str noreadonly
