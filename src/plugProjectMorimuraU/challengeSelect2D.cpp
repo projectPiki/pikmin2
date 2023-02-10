@@ -1,11 +1,13 @@
 #include "Morimura/challengeSelect2d.h"
 #include "Dolphin/rand.h"
+#include "Game/gameChallenge2D.h"
+#include "trig.h"
 
 namespace Morimura {
 
 static const char name[] = "challengeSelect2D";
 
-u32 TChallengeSelect::mSelected1p        = 0x01000000;
+bool TChallengeSelect::mSelected1p       = true;
 f32 TChallengeSelect::mAlphaSpeed        = 0.05f;
 s16 TChallengeSelect::mFlashAnimInterval = 300;
 f32 TChallengeSelect::mTextFlashVal      = 1.0f;
@@ -17,13 +19,12 @@ f32 TChallengeSelect::mTimerSpeed        = 0.15f;
 f32 TChallengeSelect::mMoveSpeed         = 12.0f;
 f32 TChallengeSelect::mSelectIconScale   = 1.5f;
 
-int TChallengeSelect::mRightOffset     = 0;
-int TChallengeSelect::mDownOffset      = 0;
-u8 TChallengeSelect::mFrameAnimAlpha   = 0;
-bool TChallengeSelect::mAllCourseOpen  = false;
-bool TChallengeSelect::mForceDemoStart = false;
-int TChallengeSelect::mDivePikiNum     = 0;
-Vector2f TChallengeSelect::mMetOffset;
+int TChallengeSelect::mRightOffset          = 0;
+int TChallengeSelect::mDownOffset           = 0;
+u8 TChallengeSelect::mFrameAnimAlpha        = 0;
+bool TChallengeSelect::mAllCourseOpen       = false;
+bool TChallengeSelect::mForceDemoStart      = false;
+int TChallengeSelect::mDivePikiNum          = 0;
 JKRHeap* TChallengeSelect::mDebugHeapParent = nullptr;
 JKRExpHeap* TChallengeSelect::mDebugHeap    = nullptr;
 
@@ -968,23 +969,23 @@ TChallengePlayModeScreen::TChallengePlayModeScreen(JKRArchive* arc, int anims)
 	mFuriko             = nullptr;
 	mEfxCursor1         = nullptr;
 	mEfxCursor2         = nullptr;
-	mSelection          = 0;
+	mState              = 0;
 	mDoShowNoController = false;
 	mNoControllerTimer  = 0.0f;
 	mTimer              = 0.0f;
 	mTimer2             = 0.0f;
 	mMovePos            = 800.0f;
-	mPane0              = nullptr;
+	mPaneList0[0]       = nullptr;
 	mScaleMgr[0]        = nullptr;
 	mPane3              = nullptr;
-	_98                 = 0.0f;
-	mPane1              = nullptr;
+	mAlphaTimer         = 0.0f;
+	mPaneList0[1]       = nullptr;
 	mScaleMgr[1]        = nullptr;
 	mPane4              = nullptr;
 	mScale              = 0.0f;
 	for (int i = 0; i < 3; i++) {
-		mPaneList1[i] = nullptr;
-		_A0[i]        = TAU * randFloat();
+		mPaneList1[i]   = nullptr;
+		mAngleTimers[i] = TAU * randFloat();
 	}
 	for (int i = 0; i < 4; i++) {
 		mAnimScreen[i] = nullptr;
@@ -1007,11 +1008,11 @@ void TChallengePlayModeScreen::create(char const* path, u32 flags)
 	mEfxCursor2 = new efx2d::T2DCursor(&mEfxCursorPos2);
 	mEfxCursor1 = new efx2d::T2DCursor(&mEfxCursorPos1);
 
-	mPane0 = mScreenObj->search('nu_01');
-	P2ASSERTLINE(764, mPane0);
+	mPaneList0[0] = mScreenObj->search('nu_01');
+	P2ASSERTLINE(764, mPaneList0[0]);
 
-	mPane1 = mScreenObj->search('nu_02');
-	P2ASSERTLINE(767, mPane1);
+	mPaneList0[1] = mScreenObj->search('nu_02');
+	P2ASSERTLINE(767, mPaneList0[1]);
 
 	for (int i = 0; i < 2; i++) {
 		mScaleMgr[i] = new og::Screen::ScaleMgr;
@@ -1058,595 +1059,170 @@ void TChallengePlayModeScreen::create(char const* path, u32 flags)
  */
 void TChallengePlayModeScreen::update()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r31, r3
-	lis      r4, 0x696C3030@ha
-	lwz      r3, 8(r3)
-	addi     r6, r4, 0x696C3030@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x8c(r3)
-	lis      r3, 0x69723030@ha
-	addi     r6, r3, 0x69723030@l
-	li       r5, 0
-	stfs     f0, 0x70(r31)
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x9c(r3)
-	lis      r3, 0x69723030@ha
-	addi     r6, r3, 0x69723030@l
-	li       r5, 0
-	stfs     f0, 0x74(r31)
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x8c(r3)
-	lis      r3, 0x69723031@ha
-	addi     r6, r3, 0x69723031@l
-	li       r5, 0
-	stfs     f0, 0x78(r31)
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x9c(r3)
-	lfs      f0, lbl_8051EFCC@sda21(r2)
-	stfs     f1, 0x7c(r31)
-	lfs      f2, 0x70(r31)
-	lfs      f1, 0x60(r31)
-	fsubs    f3, f2, f1
-	fabs     f1, f3
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8038DC14
-	stfs     f2, 0x60(r31)
-	lfs      f2, lbl_8051EF88@sda21(r2)
-	b        lbl_8038DC1C
+	mPane1Pos.x = mScreenObj->search('il00')->mGlobalMtx[0][3];
+	mPane1Pos.y = mScreenObj->search('ir00')->mGlobalMtx[1][3];
+	mPane2Pos.x = mScreenObj->search('ir00')->mGlobalMtx[0][3];
+	mPane2Pos.y = mScreenObj->search('ir01')->mGlobalMtx[1][3];
 
-lbl_8038DC14:
-	lfs      f0, lbl_8051EFE4@sda21(r2)
-	fmuls    f2, f3, f0
+	f32 x = mPane1Pos.x - mEfxCursorPos1.x;
+	if (FABS(x) < 2.0f) {
+		mEfxCursorPos1.x = mPane1Pos.x;
+		x                = 0.0f;
+	} else {
+		x *= 0.3f;
+	}
+	mEfxCursorPos1.x += x;
 
-lbl_8038DC1C:
-	lfs      f1, 0x60(r31)
-	lfs      f0, lbl_8051EFCC@sda21(r2)
-	fadds    f1, f1, f2
-	stfs     f1, 0x60(r31)
-	lfs      f2, 0x78(r31)
-	lfs      f1, 0x68(r31)
-	fsubs    f3, f2, f1
-	fabs     f1, f3
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8038DC54
-	stfs     f2, 0x68(r31)
-	lfs      f1, lbl_8051EF88@sda21(r2)
-	b        lbl_8038DC5C
+	f32 x2 = mPane2Pos.x - mEfxCursorPos2.x;
+	if (FABS(x2) < 2.0f) {
+		mEfxCursorPos2.x = mPane2Pos.x;
+		x2               = 0.0f;
+	} else {
+		x2 *= 0.3f;
+	}
+	mEfxCursorPos2.x += x2;
 
-lbl_8038DC54:
-	lfs      f0, lbl_8051EFE4@sda21(r2)
-	fmuls    f1, f3, f0
+	if (TChallengeSelect::mSelected1p) {
+		mAlphaTimer += 0.1f;
+		if (mAlphaTimer > 1.0f) {
+			mAlphaTimer = 1.0f;
+		}
+		mScale -= 0.1f;
+		if (mScale < 0.0f) {
+			mScale = 0.0f;
+		}
 
-lbl_8038DC5C:
-	lfs      f0, 0x68(r31)
-	fadds    f0, f0, f1
-	stfs     f0, 0x68(r31)
-	lbz      r0, mSelected1p__Q28Morimura16TChallengeSelect@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8038DD08
-	lfs      f2, 0x98(r31)
-	lfs      f1, lbl_8051EF94@sda21(r2)
-	lfs      f0, lbl_8051EFF0@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x98(r31)
-	lfs      f1, 0x98(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8038DC98
-	stfs     f0, 0x98(r31)
+		f32 y = mPane1Pos.y - mEfxCursorPos2.y;
+		if (FABS(y) < 2.0f) {
+			mEfxCursorPos2.y = mPane1Pos.y;
+			y                = 0.0f;
+		} else {
+			y *= 0.3f;
+		}
+		mEfxCursorPos2.y += y;
+		mEfxCursorPos1.y = mEfxCursorPos2.y;
+	} else {
+		if (TChallengeSelect::mConnect2p) {
+			mScale += 0.1f;
+			if (mScale > 1.0f) {
+				mScale = 1.0f;
+			}
+		} else {
+			mScale -= 0.1f;
+			if (mScale < 0.0f) {
+				mScale = 0.0f;
+			}
+		}
+		mAlphaTimer -= 0.1f;
+		if (mAlphaTimer < 0.0f) {
+			mAlphaTimer = 0.0f;
+		}
 
-lbl_8038DC98:
-	lfs      f2, 0x9c(r31)
-	lfs      f1, lbl_8051EF94@sda21(r2)
-	lfs      f0, lbl_8051EF88@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x9c(r31)
-	lfs      f1, 0x9c(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8038DCBC
-	stfs     f0, 0x9c(r31)
+		f32 y = mPane2Pos.y - mEfxCursorPos2.y;
+		if (FABS(y) < 2.0f) {
+			mEfxCursorPos2.y = mPane2Pos.y;
+			y                = 0.0f;
+		} else {
+			y *= 0.3f;
+		}
+		mEfxCursorPos2.y += y;
+		mEfxCursorPos1.y = mEfxCursorPos2.y;
+	}
 
-lbl_8038DCBC:
-	lfs      f2, 0x74(r31)
-	lfs      f1, 0x6c(r31)
-	lfs      f0, lbl_8051EFCC@sda21(r2)
-	fsubs    f3, f2, f1
-	fabs     f1, f3
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8038DCE8
-	stfs     f2, 0x6c(r31)
-	lfs      f1, lbl_8051EF88@sda21(r2)
-	b        lbl_8038DCF0
+	for (int i = 0; i < 3; i++) {
+		f32 sin = 0.0f;
+		f32 scale;
+		if (i == 0) {
+			scale = mAlphaTimer;
+		} else {
+			scale = mScale;
+		}
+		if (scale == 1.0f) {
+			mAngleTimers[i] += 0.2f;
+			if (mAngleTimers[i] > TAU) {
+				mAngleTimers[i] -= TAU;
+			}
+			sin = FABS(pikmin2_sinf(mAngleTimers[i]) * 75.0f);
+		}
+		mPaneList1[i]->setAlpha(255.0f * scale - sin);
+	}
 
-lbl_8038DCE8:
-	lfs      f0, lbl_8051EFE4@sda21(r2)
-	fmuls    f1, f3, f0
+	if (mState == 0) {
+		mFuriko->stop();
+		mMovePos = 400.0f;
+		mTimer   = 0.0f;
+		mTimer2  = 0.0f;
+	} else {
+		if (mScreenObj) {
+			mScreenObj->update();
+			for (int i = 0; i < mAnimScreenCountMax; i++) {
+				mAnimScreens[i]->update();
+			}
 
-lbl_8038DCF0:
-	lfs      f0, 0x6c(r31)
-	fadds    f0, f0, f1
-	stfs     f0, 0x6c(r31)
-	lfs      f0, 0x6c(r31)
-	stfs     f0, 0x64(r31)
-	b        lbl_8038DDCC
+			switch (mState) {
+			case 1:
+				mTimer += sys->mDeltaTime;
+				mMovePos = (1.0f - og::Screen::calcSmooth0to1(mTimer, 0.3f)) * 800.0f;
+				if (mMovePos <= 0.0f) {
+					mTimer2 += sys->mDeltaTime;
+					if (mTimer2 > 0.5f) {
+						mState = 2;
+						if (TChallengeSelect::mSelected1p) {
+							mEfxCursorPos2
+							    = Vector2f(mScreenObj->search('ir00')->mGlobalMtx[0][3], mScreenObj->search('ir00')->mGlobalMtx[1][3]);
+							mEfxCursorPos1
+							    = Vector2f(mScreenObj->search('il00')->mGlobalMtx[0][3], mScreenObj->search('il00')->mGlobalMtx[1][3]);
+						} else {
+							mEfxCursorPos2
+							    = Vector2f(mScreenObj->search('ir01')->mGlobalMtx[0][3], mScreenObj->search('ir01')->mGlobalMtx[1][3]);
+							mEfxCursorPos1
+							    = Vector2f(mScreenObj->search('il01')->mGlobalMtx[0][3], mScreenObj->search('il01')->mGlobalMtx[1][3]);
+						}
+						mEfxCursor1->create(nullptr);
+						mEfxCursor2->create(nullptr);
+					}
+				}
+				break;
+			case 0:
+				break;
+			case 3:
+				mTimer += sys->mDeltaTime;
+				mMovePos = og::Screen::calcSmooth0to1(mTimer, 0.3f) * -800.0f;
+				if (mTimer >= 0.3f) {
+					mState = 0;
+				}
+				break;
+			}
 
-lbl_8038DD08:
-	lbz      r0, mConnect2p__Q28Morimura16TChallengeSelect@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8038DD3C
-	lfs      f2, 0x9c(r31)
-	lfs      f1, lbl_8051EF94@sda21(r2)
-	lfs      f0, lbl_8051EFF0@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x9c(r31)
-	lfs      f1, 0x9c(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8038DD60
-	stfs     f0, 0x9c(r31)
-	b        lbl_8038DD60
-
-lbl_8038DD3C:
-	lfs      f2, 0x9c(r31)
-	lfs      f1, lbl_8051EF94@sda21(r2)
-	lfs      f0, lbl_8051EF88@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x9c(r31)
-	lfs      f1, 0x9c(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8038DD60
-	stfs     f0, 0x9c(r31)
-
-lbl_8038DD60:
-	lfs      f2, 0x98(r31)
-	lfs      f1, lbl_8051EF94@sda21(r2)
-	lfs      f0, lbl_8051EF88@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x98(r31)
-	lfs      f1, 0x98(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8038DD84
-	stfs     f0, 0x98(r31)
-
-lbl_8038DD84:
-	lfs      f2, 0x7c(r31)
-	lfs      f1, 0x6c(r31)
-	lfs      f0, lbl_8051EFCC@sda21(r2)
-	fsubs    f3, f2, f1
-	fabs     f1, f3
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8038DDB0
-	stfs     f2, 0x6c(r31)
-	lfs      f1, lbl_8051EF88@sda21(r2)
-	b        lbl_8038DDB8
-
-lbl_8038DDB0:
-	lfs      f0, lbl_8051EFE4@sda21(r2)
-	fmuls    f1, f3, f0
-
-lbl_8038DDB8:
-	lfs      f0, 0x6c(r31)
-	fadds    f0, f0, f1
-	stfs     f0, 0x6c(r31)
-	lfs      f0, 0x6c(r31)
-	stfs     f0, 0x64(r31)
-
-lbl_8038DDCC:
-	lfs      f31, lbl_8051EFF0@sda21(r2)
-	mr       r30, r31
-	lfs      f30, lbl_8051F034@sda21(r2)
-	li       r29, 0
-
-lbl_8038DDDC:
-	cmpwi    r29, 0
-	lfs      f0, lbl_8051EF88@sda21(r2)
-	bne      lbl_8038DDF0
-	lfs      f3, 0x98(r31)
-	b        lbl_8038DDF4
-
-lbl_8038DDF0:
-	lfs      f3, 0x9c(r31)
-
-lbl_8038DDF4:
-	fcmpu    cr0, f31, f3
-	bne      lbl_8038DE94
-	lfs      f2, 0xa0(r30)
-	lfs      f1, lbl_8051F008@sda21(r2)
-	lfs      f0, lbl_8051EFBC@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0xa0(r30)
-	lfs      f1, 0xa0(r30)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8038DE24
-	fsubs    f0, f1, f0
-	stfs     f0, 0xa0(r30)
-
-lbl_8038DE24:
-	lfs      f2, 0xa0(r30)
-	lfs      f0, lbl_8051EF88@sda21(r2)
-	lfs      f1, lbl_8051F030@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_8038DE64
-	lfs      f0, lbl_8051EFC4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_8038DE88
-
-lbl_8038DE64:
-	lfs      f0, lbl_8051EFC8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_8038DE88:
-	fmuls    f0, f1, f0
-	fabs     f0, f0
-	frsp     f0, f0
-
-lbl_8038DE94:
-	fmsubs   f0, f30, f3, f0
-	lwz      r3, 0x30(r30)
-	lwz      r12, 0(r3)
-	fctiwz   f0, f0
-	lwz      r12, 0x24(r12)
-	stfd     f0, 0x10(r1)
-	lwz      r4, 0x14(r1)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 3
-	blt      lbl_8038DDDC
-	lwz      r0, 0x80(r31)
-	cmpwi    r0, 0
-	bne      lbl_8038DEF4
-	lwz      r3, 0x54(r31)
-	bl       stop__Q32og6Screen15CallBack_FurikoFv
-	lfs      f1, lbl_8051F038@sda21(r2)
-	lfs      f0, lbl_8051EF88@sda21(r2)
-	stfs     f1, 0x94(r31)
-	stfs     f0, 0x8c(r31)
-	stfs     f0, 0x90(r31)
-	b        lbl_8038E2EC
-
-lbl_8038DEF4:
-	lwz      r3, 8(r31)
-	cmplwi   r3, 0
-	beq      lbl_8038E2EC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	li       r29, 0
-	li       r30, 0
-	b        lbl_8038DF30
-
-lbl_8038DF1C:
-	lwz      r3, 4(r31)
-	lwzx     r3, r3, r30
-	bl       update__Q32og6Screen12AnimBaseBaseFv
-	addi     r30, r30, 4
-	addi     r29, r29, 1
-
-lbl_8038DF30:
-	lwz      r0, 0x10(r31)
-	cmpw     r29, r0
-	blt      lbl_8038DF1C
-	lwz      r0, 0x80(r31)
-	cmpwi    r0, 2
-	beq      lbl_8038E1A8
-	bge      lbl_8038DF5C
-	cmpwi    r0, 0
-	beq      lbl_8038E1A8
-	bge      lbl_8038DF68
-	b        lbl_8038E1A8
-
-lbl_8038DF5C:
-	cmpwi    r0, 4
-	bge      lbl_8038E1A8
-	b        lbl_8038E160
-
-lbl_8038DF68:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x8c(r31)
-	lfs      f0, 0x54(r3)
-	lfs      f2, lbl_8051EFE4@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x8c(r31)
-	lfs      f1, 0x8c(r31)
-	bl       calcSmooth0to1__Q22og6ScreenFff
-	lfs      f0, lbl_8051EFF0@sda21(r2)
-	lfs      f2, lbl_8051F02C@sda21(r2)
-	fsubs    f1, f0, f1
-	lfs      f0, lbl_8051EF88@sda21(r2)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x94(r31)
-	lfs      f1, 0x94(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8038E1A8
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x90(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051EF9C@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x90(r31)
-	lfs      f1, 0x90(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8038E1A8
-	li       r0, 2
-	stw      r0, 0x80(r31)
-	lbz      r0, mSelected1p__Q28Morimura16TChallengeSelect@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8038E08C
-	lwz      r3, 8(r31)
-	lis      r4, 0x69723030@ha
-	addi     r6, r4, 0x69723030@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f30, 0x9c(r3)
-	lis      r4, 0x69723030@ha
-	lwz      r3, 8(r31)
-	addi     r6, r4, 0x69723030@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x8c(r3)
-	lis      r3, 0x696C3030@ha
-	addi     r6, r3, 0x696C3030@l
-	li       r5, 0
-	stfs     f0, 0x68(r31)
-	stfs     f30, 0x6c(r31)
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f30, 0x9c(r3)
-	lis      r4, 0x696C3030@ha
-	lwz      r3, 8(r31)
-	addi     r6, r4, 0x696C3030@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x8c(r3)
-	stfs     f0, 0x60(r31)
-	stfs     f30, 0x64(r31)
-	b        lbl_8038E12C
-
-lbl_8038E08C:
-	lwz      r3, 8(r31)
-	lis      r4, 0x69723031@ha
-	addi     r6, r4, 0x69723031@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f30, 0x9c(r3)
-	lis      r4, 0x69723031@ha
-	lwz      r3, 8(r31)
-	addi     r6, r4, 0x69723031@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x8c(r3)
-	lis      r3, 0x696C3031@ha
-	addi     r6, r3, 0x696C3031@l
-	li       r5, 0
-	stfs     f0, 0x68(r31)
-	stfs     f30, 0x6c(r31)
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f30, 0x9c(r3)
-	lis      r4, 0x696C3031@ha
-	lwz      r3, 8(r31)
-	addi     r6, r4, 0x696C3031@l
-	li       r5, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x8c(r3)
-	stfs     f0, 0x60(r31)
-	stfs     f30, 0x64(r31)
-
-lbl_8038E12C:
-	lwz      r3, 0x58(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x5c(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8038E1A8
-
-lbl_8038E160:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x8c(r31)
-	lfs      f0, 0x54(r3)
-	lfs      f2, lbl_8051EFE4@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x8c(r31)
-	lfs      f1, 0x8c(r31)
-	bl       calcSmooth0to1__Q22og6ScreenFff
-	lfs      f2, lbl_8051F03C@sda21(r2)
-	lfs      f0, lbl_8051EFE4@sda21(r2)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x94(r31)
-	lfs      f1, 0x8c(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8038E1A8
-	li       r0, 0
-	stw      r0, 0x80(r31)
-
-lbl_8038E1A8:
-	lbz      r0, mConnect2p__Q28Morimura16TChallengeSelect@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8038E1DC
-	lwz      r3, 0x1c(r31)
-	li       r4, 0xff
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051EFF0@sda21(r2)
-	lwz      r3, 0x4c(r31)
-	stfs     f0, 0x6c(r3)
-	b        lbl_8038E200
-
-lbl_8038E1DC:
-	lwz      r3, 0x1c(r31)
-	li       r4, 0x80
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051EF9C@sda21(r2)
-	lwz      r3, 0x4c(r31)
-	stfs     f0, 0x6c(r3)
-
-lbl_8038E200:
-	lwz      r3, 8(r31)
-	bl       animation__9J2DScreenFv
-	lbz      r0, 0x84(r31)
-	cmplwi   r0, 0
-	beq      lbl_8038E23C
-	lfs      f2, 0x88(r31)
-	lfs      f1, lbl_8051F008@sda21(r2)
-	lfs      f0, lbl_8051EFF0@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x88(r31)
-	lfs      f1, 0x88(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8038E260
-	stfs     f0, 0x88(r31)
-	b        lbl_8038E260
-
-lbl_8038E23C:
-	lfs      f2, 0x88(r31)
-	lfs      f1, lbl_8051F008@sda21(r2)
-	lfs      f0, lbl_8051EF88@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x88(r31)
-	lfs      f1, 0x88(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8038E260
-	stfs     f0, 0x88(r31)
-
-lbl_8038E260:
-	lfs      f1, lbl_8051EFF0@sda21(r2)
-	lfs      f0, 0x88(r31)
-	lwz      r3, 0x44(r31)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x6c(r3)
-	lfs      f0, 0x88(r31)
-	lwz      r3, 0x50(r31)
-	stfs     f0, 0x6c(r3)
-	lwz      r0, 0x80(r31)
-	cmpwi    r0, 2
-	blt      lbl_8038E2C8
-	li       r29, 0
-	mr       r30, r31
-
-lbl_8038E294:
-	lwz      r3, 0x3c(r30)
-	bl       calc__Q32og6Screen8ScaleMgrFv
-	lwz      r3, 0x18(r30)
-	stfs     f1, 0xcc(r3)
-	stfs     f1, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 2
-	blt      lbl_8038E294
-
-lbl_8038E2C8:
-	lfs      f3, 0x94(r31)
-	lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	lfs      f1, lbl_8051EF88@sda21(r2)
-	lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fadds    f2, f3, f2
-	lwz      r3, 8(r31)
-	fadds    f0, f1, f0
-	stfs     f2, 0x140(r3)
-	stfs     f0, 0x144(r3)
-
-lbl_8038E2EC:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+			if (TChallengeSelect::mConnect2p) {
+				mPaneList0[1]->setAlpha(255);
+				mAnimScreen[2]->_6C = 1.0f;
+			} else {
+				mPaneList0[1]->setAlpha(128);
+				mAnimScreen[2]->_6C = 0.5f;
+			}
+			mScreenObj->animation();
+			if (mDoShowNoController) {
+				mNoControllerTimer += 0.2f;
+				if (mNoControllerTimer > 1.0f) {
+					mNoControllerTimer = 1.0f;
+				}
+			} else {
+				mNoControllerTimer -= 0.2f;
+				if (mNoControllerTimer < 0.0f) {
+					mNoControllerTimer = 0.0f;
+				}
+			}
+			mAnimScreen[0]->_6C = 1.0f - mNoControllerTimer;
+			mAnimScreen[3]->_6C = mNoControllerTimer;
+			if (mState >= 2) {
+				for (int i = 0; i < 2; i++) {
+					mPaneList0[i]->updateScale(mScaleMgr[i]->calc());
+				}
+			}
+			mScreenObj->setXY(mMovePos, 0.0f);
+		}
+	}
 }
 
 /*
@@ -1654,8 +1230,82 @@ lbl_8038E2EC:
  * Address:	8038E318
  * Size:	000660
  */
-void TChallengePlayModeScreen::draw(Graphics&, J2DPerspGraph*)
+void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 {
+	if (mState) {
+		TScreenBase::draw(gfx, persp);
+		gfx.mOrthoGraph.setPort();
+
+		J2DPicture* pic = mSphereTex;
+		J2DPane* pic2   = mPane3;
+		u32 x1, y1, x2, y2;
+		y2 = pic->getHeight() * pic2->mScale.y * 1.1f;
+		x2 = pic->getWidth() * pic2->mScale.x * 1.1f;
+		y1 = (1.0f - mAlphaTimer) * pic->getHeight() * pic2->mScale.y * 1.1f + TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3];
+		x1 = TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3];
+		GXSetScissor(x1, y1, x2, y2);
+		pic  = mSphereTex;
+		pic2 = mPane3;
+		pic->draw(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3], TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3],
+		          pic->getWidth() * pic2->mScale.x * 1.1f, pic->getHeight() * pic2->mScale.y * 1.1f, false, false, false);
+		mSphereTex->calcMtx();
+
+		pic  = mSphereTex;
+		pic2 = mPane5;
+		y2   = pic->getHeight() * pic2->mScale.y * 1.1f;
+		x2   = pic->getWidth() * pic2->mScale.x * 1.1f;
+		y1   = (1.0f - mAlphaTimer) * pic->getHeight() * pic2->mScale.y * 1.1f + TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3];
+		x1   = TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3];
+		GXSetScissor(x1, y1, x2, y2);
+		pic  = mSphereTex;
+		pic2 = mPane3;
+		pic->draw(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3], TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3],
+		          pic->getWidth() * pic2->mScale.x * 1.1f, pic->getHeight() * pic2->mScale.y * 1.1f, false, false, false);
+		mSphereTex->calcMtx();
+		GXSetScissor(0, 0, 640, 480);
+
+		J2DPicture* pane = static_cast<J2DPicture*>(mScreenObj->search('P2orimaF'));
+		pane->setAlpha(mPaneList0[1]->mAlpha);
+		f32 offs               = pane->getWidth();
+		JGeometry::TVec3f vec1 = pane->getGlbVtx(1);
+		JGeometry::TVec3f vec2 = pane->getGlbVtx(0);
+		pane->draw(vec2.x + offs, vec1.y + offs, -offs, pane->getHeight(), false, false, false);
+		pane->calcMtx();
+		pane->setAlpha(0);
+
+		J2DPicture* pane2 = static_cast<J2DPicture*>(mPane4);
+		pane2->setAlpha(mPaneList0[1]->mAlpha);
+		f32 offs2              = pane2->getWidth();
+		JGeometry::TVec3f vec3 = pane2->getGlbVtx(1);
+		JGeometry::TVec3f vec4 = pane2->getGlbVtx(0);
+		pane2->draw(vec3.x + offs2, vec4.y + offs2, -offs2, pane2->getHeight(), false, false, false);
+		pane2->calcMtx();
+		pane2->setAlpha(0);
+
+		J2DPicture* pane3 = static_cast<J2DPicture*>(mPaneList1[1]);
+		pane3->setAlpha(pane3->mAlpha);
+		f32 offs3              = pane3->getWidth();
+		JGeometry::TVec3f vec5 = pane3->getGlbVtx(1);
+		JGeometry::TVec3f vec6 = pane3->getGlbVtx(0);
+		pane3->draw(vec6.x + offs3, vec5.y, -offs3, pane3->getHeight(), false, false, false);
+		pane3->calcMtx();
+
+		pic  = mSphereTex;
+		pic2 = mPane3;
+		y2   = pic->getHeight() * pic2->mScale.y * 1.1f;
+		x2   = pic->getWidth() * pic2->mScale.x * 1.1f;
+		y1   = (1.0f - mAlphaTimer) * pic->getHeight() * pic2->mScale.y * 1.1f + TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3];
+		x1   = TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3];
+		GXSetScissor(x1, y1, x2, y2);
+		pic  = mSphereTex;
+		pic2 = mPane3;
+		pic->draw(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3], TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3],
+		          pic->getWidth() * pic2->mScale.x * 1.1f, pic->getHeight() * pic2->mScale.y * 1.1f, false, false, false);
+		mSphereTex->calcMtx();
+
+		GXSetScissor(0, 0, 640, 480);
+		gfx.mPerspGraph.setPort();
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -2115,26 +1765,11 @@ void TChallengePlayModeScreen::createMetPicture(ResTIMG const*)
  * Address:	8038E978
  * Size:	00003C
  */
-void TChallengeSelectExplanationWindow::create(char const*, unsigned long)
+void TChallengeSelectExplanationWindow::create(char const* path, u32 flags)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x12A44
-	  lfs       f1, 0xCCC(r2)
-	  lfs       f0, 0xC28(r2)
-	  stfs      f1, 0x1C(r31)
-	  stfs      f0, 0x20(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	TScreenBase::create(path, flags);
+	mTransXModifier = 800.0f;
+	mTransYModifier = 0.0f;
 }
 
 /*
@@ -2152,105 +1787,70 @@ void TChallengeSelectExplanationWindow::screenScaleUp() { }
 TChallengeSelect::TChallengeSelect()
     : TTestBase("challengeSelect")
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_804940A8@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, lbl_804940A8@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28Morimura9TTestBaseFPc
-	lis      r3, __vt__Q28Morimura16TChallengeSelect@ha
-	li       r5, 0
-	addi     r3, r3, __vt__Q28Morimura16TChallengeSelect@l
-	li       r4, 1
-	stw      r3, 0(r31)
-	addi     r3, r3, 0x10
-	lfs      f1, lbl_8051EF88@sda21(r2)
-	li       r0, -1
-	stw      r3, 0x18(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051EFF0@sda21(r2)
-	stw      r5, 0x7c(r31)
-	stw      r5, 0x80(r31)
-	stw      r5, 0x84(r31)
-	stw      r5, 0x88(r31)
-	stw      r5, 0x8c(r31)
-	stw      r5, 0x90(r31)
-	stw      r5, 0x94(r31)
-	stw      r5, 0xdc(r31)
-	stw      r5, 0xe8(r31)
-	stw      r5, 0xec(r31)
-	stw      r5, 0xf0(r31)
-	stw      r5, 0xfc(r31)
-	stw      r5, 0x124(r31)
-	stb      r5, 0x128(r31)
-	stw      r5, 0x12c(r31)
-	stb      r4, 0x134(r31)
-	stb      r5, 0x135(r31)
-	stb      r5, 0x136(r31)
-	stfs     f1, 0x138(r31)
-	stfs     f0, 0x13c(r31)
-	stw      r0, 0x140(r31)
-	stb      r5, 0x144(r31)
-	stfs     f1, 0x148(r31)
-	stfs     f0, 0x14c(r31)
-	stw      r5, mRightOffset__Q28Morimura16TChallengeSelect@sda21(r13)
-	stw      r5, mDownOffset__Q28Morimura16TChallengeSelect@sda21(r13)
-	stb      r4, mSelected1p__Q28Morimura16TChallengeSelect@sda21(r13)
-	stw      r5, mDivePikiNum__Q28Morimura16TChallengeSelect@sda21(r13)
-	stw      r5, 0x9c(r31)
-	stw      r5, 0xc0(r31)
-	stw      r5, 0x108(r31)
-	stw      r5, 0xa0(r31)
-	stw      r5, 0xc4(r31)
-	stw      r5, 0x10c(r31)
-	stw      r5, 0xa4(r31)
-	stw      r5, 0xc8(r31)
-	stw      r5, 0x110(r31)
-	stw      r5, 0xa8(r31)
-	stw      r5, 0xcc(r31)
-	stw      r5, 0x114(r31)
-	stw      r5, 0xac(r31)
-	stw      r5, 0xd0(r31)
-	stw      r5, 0x118(r31)
-	stw      r5, 0xb8(r31)
-	stw      r5, 0x100(r31)
-	stw      r5, 0xe0(r31)
-	stw      r5, 0xd4(r31)
-	stw      r5, 0x11c(r31)
-	stw      r5, 0xb0(r31)
-	stw      r5, 0xbc(r31)
-	stw      r5, 0x104(r31)
-	stw      r5, 0xe4(r31)
-	stw      r5, 0xd8(r31)
-	stw      r5, 0x120(r31)
-	stw      r5, 0xb4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mStageList      = nullptr;
+	mSelectScreen   = nullptr;
+	mPlayModeScreen = nullptr;
+	mRulesScreen    = nullptr;
+	mControls       = nullptr;
+	mDisp           = nullptr;
+	mPanelList      = nullptr;
+	mFloorCounter   = nullptr;
+	mPaneSelect     = nullptr;
+	mOffsMesg       = nullptr;
+	mEfxDive        = nullptr;
+	_FC             = 0;
+	mFloorCount     = 0;
+	_128            = false;
+	mStageSel       = 0;
+	_134            = true;
+	_135            = false;
+	_136            = false;
+	_138            = 0.0f;
+	_13C            = 1.0f;
+	_140            = -1;
+	_144            = false;
+	_148            = 0.0f;
+	_14C            = 1.0f;
+
+	mRightOffset = 0;
+	mDownOffset  = 0;
+	mSelected1p  = true;
+	mDivePikiNum = 0;
+
+	for (int i = 0; i < 5; i++) {
+		mChallengePiki[i] = nullptr;
+		mPikiCounters[i]  = nullptr;
+		mPikiCounts[i]    = 0;
+	}
+
+	mHighScoreCounter1P = 0;
+	mHighScore1P        = 0;
+	mPaneTYel[0]        = nullptr;
+	mDope1Counter       = nullptr;
+	mDopeCount1         = 0;
+	_B0                 = 0;
+	mHighScoreCounter2P = 0;
+	mHighScore2P        = 0;
+	mPaneTYel[1]        = nullptr;
+	mDope2Counter       = nullptr;
+	mDopeCount2         = 0;
+	mPaneList1          = nullptr;
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000044
+ * Probably something like this
  */
-void TChallengeSelect::setDebugHeapParent(JKRHeap*)
-{
-	// UNUSED FUNCTION
-}
+void TChallengeSelect::setDebugHeapParent(JKRHeap* heap) { mDebugHeap = static_cast<JKRExpHeap*>(heap); }
 
 /*
  * --INFO--
  * Address:	8038EBE8
  * Size:	001B98
  */
-void TChallengeSelect::doCreate(JKRArchive*)
+void TChallengeSelect::doCreate(JKRArchive* arc)
 {
 	/*
 	stwu     r1, -0x7a0(r1)
@@ -6482,66 +6082,21 @@ lbl_80392570:
  * Address:	803925D0
  * Size:	0000D0
  */
-void TChallengeSelect::setStageName(int)
+void TChallengeSelect::setStageName(int id)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	lwz      r30, 0xe0(r3)
-	cmplwi   r0, 0
-	beq      lbl_80392640
-	lwz      r3, 0x7c(r29)
-	bl       getStageData__Q34Game13ChallengeGame9StageListFi
-	mr       r31, r3
-	lwz      r3, 0xec(r29)
-	lwz      r4, 0x74(r31)
-	addi     r4, r4, -1
-	bl       getMsgID__Q28Morimura13TOffsetMsgSetFi
-	stw      r4, 0x1c(r30)
-	stw      r3, 0x18(r30)
-	lwz      r4, 0x74(r31)
-	lwz      r31, 0xe4(r29)
-	lwz      r3, 0xec(r29)
-	addi     r4, r4, -1
-	bl       getMsgID__Q28Morimura13TOffsetMsgSetFi
-	stw      r4, 0x1c(r31)
-	stw      r3, 0x18(r31)
-	b        lbl_80392684
-
-lbl_80392640:
-	lwz      r3, 0x90(r29)
-	lwz      r3, 8(r3)
-	bl       __cl__Q24Game21Challenge2D_TitleInfoFi
-	mr       r31, r3
-	lwz      r3, 0xec(r29)
-	lwz      r4, 0x1c(r31)
-	addi     r4, r4, -1
-	bl       getMsgID__Q28Morimura13TOffsetMsgSetFi
-	stw      r4, 0x1c(r30)
-	stw      r3, 0x18(r30)
-	lwz      r4, 0x1c(r31)
-	lwz      r31, 0xe4(r29)
-	lwz      r3, 0xec(r29)
-	addi     r4, r4, -1
-	bl       getMsgID__Q28Morimura13TOffsetMsgSetFi
-	stw      r4, 0x1c(r31)
-	stw      r3, 0x18(r31)
-
-lbl_80392684:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	J2DPane* pane1 = mPaneTYel[0];
+	if (mIsSection) {
+		Game::ChallengeGame::StageData* data = mStageList->getStageData(id);
+		pane1->setMsgID(mOffsMesg->getMsgID(data->mStageIndex - 1));
+		pane1 = mPaneTYel[1];
+		pane1->setMsgID(mOffsMesg->getMsgID(data->mStageIndex - 1));
+	} else {
+		// using operator() properly isnt working
+		Game::Challenge2D_TitleInfo::Info* info = mDisp->mTitleInfo->operator()(id);
+		pane1->setMsgID(mOffsMesg->getMsgID(info->mStageIndex - 1));
+		pane1 = mPaneTYel[1];
+		pane1->setMsgID(mOffsMesg->getMsgID(info->mStageIndex - 1));
+	}
 }
 
 /*
@@ -6549,107 +6104,42 @@ lbl_80392684:
  * Address:	803926A0
  * Size:	00012C
  */
-void TChallengeSelect::getState(int)
+int TChallengeSelect::getState(int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	cmpwi    r31, 0x1e
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_803926E0
-	lis      r3, lbl_80493FD4@ha
-	lis      r5, lbl_80493FEC@ha
-	addi     r3, r3, lbl_80493FD4@l
-	li       r4, 0x937
-	addi     r5, r5, lbl_80493FEC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803926E0:
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80392734
-	lwz      r3, 0x98(r30)
-	slwi     r0, r31, 2
-	lwzx     r3, r3, r0
-	lbz      r0, 3(r3)
-	cmplwi   r0, 0
-	beq      lbl_8039270C
-	li       r3, 3
-	b        lbl_803927B4
-
-lbl_8039270C:
-	lbz      r0, 2(r3)
-	cmplwi   r0, 0
-	beq      lbl_80392720
-	li       r3, 2
-	b        lbl_803927B4
-
-lbl_80392720:
-	lbz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_803927B0
-	li       r3, 1
-	b        lbl_803927B4
-
-lbl_80392734:
-	lwz      r3, 0x90(r30)
-	mr       r4, r31
-	lwz      r3, 8(r3)
-	bl       __cl__Q24Game21Challenge2D_TitleInfoFi
-	lbz      r3, 0x20(r3)
-	rlwinm.  r0, r3, 0, 0x1a, 0x1a
-	beq      lbl_80392760
-	rlwinm   r0, r3, 0x1c, 0x1f, 0x1f
-	neg      r3, r0
-	addi     r3, r3, 2
-	b        lbl_803927B4
-
-lbl_80392760:
-	rlwinm.  r0, r3, 0, 0x1b, 0x1b
-	beq      lbl_80392770
-	li       r3, 1
-	b        lbl_803927B4
-
-lbl_80392770:
-	rlwinm.  r0, r3, 0, 0x1c, 0x1c
-	beq      lbl_80392780
-	li       r3, 0
-	b        lbl_803927B4
-
-lbl_80392780:
-	rlwinm.  r0, r3, 0, 0x1d, 0x1d
-	beq      lbl_80392790
-	li       r3, 3
-	b        lbl_803927B4
-
-lbl_80392790:
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	beq      lbl_803927A0
-	li       r3, 2
-	b        lbl_803927B4
-
-lbl_803927A0:
-	clrlwi.  r0, r3, 0x1f
-	beq      lbl_803927B0
-	li       r3, 1
-	b        lbl_803927B4
-
-lbl_803927B0:
-	li       r3, 0
-
-lbl_803927B4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(2359, id < 30);
+	if (mIsSection) {
+		if (mStageData[id][3]) {
+			return 3;
+		}
+		if (mStageData[id][2]) {
+			return 2;
+		}
+		if (mStageData[id][0]) {
+			return 1;
+		}
+	} else {
+		Game::Challenge2D_TitleInfo::Info* info = mDisp->mTitleInfo->operator()(id);
+		u8 flag                                 = info->mDisplayFlag.typeView;
+		if (flag & 0x20) {
+			return (int)(-(flag >> 4 & 1)) + 2; // highly questionable
+		}
+		if (flag & 0x10) {
+			return 1;
+		}
+		if (flag & 8) {
+			return 0;
+		}
+		if (flag & 4) {
+			return 3;
+		}
+		if (flag & 2) {
+			return 2;
+		}
+		if (flag & 1) {
+			return 1;
+		}
+	}
+	return 0;
 }
 
 /*
@@ -6657,8 +6147,21 @@ lbl_803927B4:
  * Address:	803927CC
  * Size:	0000A4
  */
-void TChallengeSelect::getAfterState(int)
+int TChallengeSelect::getAfterState(int id)
 {
+	P2ASSERTLINE(2409, id < 30);
+	if (mIsSection) {
+		return 3;
+	} else {
+		Game::Challenge2D_TitleInfo::Info* info = mDisp->mTitleInfo->operator()(id);
+		if (info->mDisplayFlag.typeView & 4) {
+			return 3;
+		} else if (info->mDisplayFlag.typeView & 2) {
+			return 2;
+		} else {
+			return info->mDisplayFlag.typeView & 1;
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -6719,8 +6222,26 @@ lbl_80392858:
  * Address:	80392870
  * Size:	0000E4
  */
-void TChallengeSelect::isChangeState(int)
+bool TChallengeSelect::isChangeState(int id)
 {
+	P2ASSERTLINE(2435, id < 30);
+	if (mIsSection) {
+		if (mStageData[id][1])
+			return true;
+	} else {
+		Game::Challenge2D_TitleInfo::Info* info = mDisp->mTitleInfo->operator()(id);
+		getState(id);
+		if (info->mDisplayFlag.typeView & 8) {
+			return true;
+		}
+		if (info->mDisplayFlag.typeView & 0x10) {
+			return true;
+		}
+		if (info->mDisplayFlag.typeView & 0x20) {
+			return true;
+		}
+	}
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -6957,40 +6478,14 @@ lbl_80392B04:
  * Address:	80392B20
  * Size:	000024
  */
-void TChallengeSelect::openWindow()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x88(r3)
-	bl       openWindow__Q28Morimura24TSelectExplanationWindowFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TChallengeSelect::openWindow() { mRulesScreen->openWindow(); }
 
 /*
  * --INFO--
  * Address:	80392B44
  * Size:	000024
  */
-void TChallengeSelect::closeWindow()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x88(r3)
-	bl       closeWindow__Q28Morimura24TSelectExplanationWindowFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TChallengeSelect::closeWindow() { mRulesScreen->closeWindow(); }
 
 /*
  * --INFO--

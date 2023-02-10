@@ -259,6 +259,12 @@ struct TChallengeScreen : public TScreenBase {
 
 	bool isRandAnimStart();
 
+	inline void getColor(GXColor color)
+	{
+		JUT_ASSERTLINE(88, mAnimPaneCount >= 1, nullptr);
+		static_cast<J2DAnmColor*>(mAnimPanes[1]->mAnm)->getColor(0, &color);
+	}
+
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
 	int mAnimPaneCount;                // _18

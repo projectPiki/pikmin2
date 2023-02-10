@@ -5,6 +5,7 @@
 #include "Morimura/mrUtil.h"
 #include "Morimura/Window.h"
 #include "efx2d/T2DCursor.h"
+#include "efx2d/T2DChalDive.h"
 #include "Game/ChallengeGame.h"
 
 namespace og {
@@ -59,8 +60,7 @@ struct TChallengePlayModeScreen : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
-	J2DPane* mPane0;
-	J2DPane* mPane1;                             // _1C
+	J2DPane* mPaneList0[2];                      // _18
 	J2DPicture* mSphereTex;                      // _20
 	J2DPane* mPane3;                             // _24
 	J2DPane* mPane4;                             // _28
@@ -73,17 +73,17 @@ struct TChallengePlayModeScreen : public TScreenBase {
 	efx2d::T2DCursor* mEfxCursor2;               // _5C
 	Vector2f mEfxCursorPos1;                     // _60
 	Vector2f mEfxCursorPos2;                     // _68
-	Vector2f _70;                                // _70
-	Vector2f _78;                                // _78
-	int mSelection;                              // _80
+	Vector2f mPane1Pos;                          // _70
+	Vector2f mPane2Pos;                          // _78
+	int mState;                                  // _80
 	bool mDoShowNoController;                    // _84
 	f32 mNoControllerTimer;                      // _88
 	f32 mTimer;                                  // _8C
 	f32 mTimer2;                                 // _90
 	f32 mMovePos;                                // _94
-	f32 _98;                                     // _98
+	f32 mAlphaTimer;                             // _98
 	f32 mScale;                                  // _9C
-	f32 _A0[3];                                  // _A0
+	f32 mAngleTimers[3];                         // _A0
 
 	void createMetPicture(ResTIMG const*);
 	void setState(PlayModeScreenState);
@@ -94,7 +94,14 @@ struct TChallengePlayModeScreen : public TScreenBase {
 struct TChallengeSelect : public TTestBase {
 	TChallengeSelect();
 
-	virtual ~TChallengeSelect() { }                                                                          // _08 (weak)
+	virtual ~TChallengeSelect()
+	{
+		if (mDebugHeap) {
+			mDisp->mDebugExpHeap->freeAll();
+			mDebugHeap->destroy();
+		}
+		mDebugHeap = nullptr;
+	}                                                                                                        // _08 (weak)
 	virtual void doCreate(JKRArchive*);                                                                      // _4C
 	virtual bool doUpdate();                                                                                 // _58
 	virtual void doUpdateFadeoutFinish();                                                                    // _64
@@ -103,9 +110,9 @@ struct TChallengeSelect : public TTestBase {
 
 	void setInfo(int);
 	void setStageName(int);
-	void getState(int);
-	void getAfterState(int);
-	void isChangeState(int);
+	int getState(int);
+	int getAfterState(int);
+	bool isChangeState(int);
 	void getIndexMax();
 	void openWindow();
 	void closeWindow();
@@ -120,11 +127,10 @@ struct TChallengeSelect : public TTestBase {
 	static bool mAllCourseOpen;       // false
 	static bool mForceDemoStart;      // false
 	static int mDivePikiNum;          // 0
-	static Vector2f mMetOffset;       // 0, maybe JGeometry::TVec2f?
 	static JKRHeap* mDebugHeapParent; // nullptr, may be a different JKR heap type
 	static JKRExpHeap* mDebugHeap;    // nullptr, may be a different JKR heap type
 
-	static u32 mSelected1p;        // 0x01000000, flag?
+	static bool mSelected1p;       // true
 	static f32 mAlphaSpeed;        // 0.05f
 	static s16 mFlashAnimInterval; // 300
 	static f32 mTextFlashVal;      // 1.0f
@@ -147,8 +153,53 @@ struct TChallengeSelect : public TTestBase {
 	Controller* mControls;                      // _8C
 	DispMemberChallengeSelect* mDisp;           // _90
 	TChallengePanel** mPanelList;               // _94
-	u8 mStageData;                              // _98
-	u8 _9C[0xB4];                               // _9C, TODO: fill these in from ghidra
+	u8** mStageData;                            // _98
+	TChallengePiki* mChallengePiki[5];          // _9C
+	int _B0;                                    // _B0
+	J2DPane** mPaneList1;                       // _B4
+	TScaleUpCounter* mHighScoreCounter1P;       // _B8
+	TScaleUpCounter* mHighScoreCounter2P;       // _BC
+	TScaleUpCounter* mPikiCounters[5];          // _C0
+	TScaleUpCounter* mDope1Counter;             // _D4
+	TScaleUpCounter* mDope2Counter;             // _D8
+	TScaleUpCounter* mFloorCounter;             // _DC
+	J2DPane* mPaneTYel[2];                      // _E0
+	J2DPane* mPaneSelect;                       // _E8
+	TOffsetMsgSet* mOffsMesg;                   // _EC
+	efx2d::T2DChalDive* mEfxDive;               // _F0
+	int _F4;                                    // _F4
+	int _F8;                                    // _F8
+	int _FC;                                    // _FC
+	int mHighScore1P;                           // _100
+	int mHighScore2P;                           // _104
+	int mPikiCounts[5];                         // _108
+	int mDopeCount1;                            // _11C
+	int mDopeCount2;                            // _120
+	int mFloorCount;                            // _124
+	bool _128;                                  // _128
+	int mStageSel;                              // _12C
+	int mMaxStages;                             // _130
+	u8 _134;                                    // _134
+	bool _135;                                  // _135
+	u8 _136;                                    // _136
+	f32 _138;                                   // _138
+	f32 _13C;                                   // _13C
+	int _140;                                   // _140
+	bool _144;                                  // _144
+	f32 _148;                                   // _148
+	f32 _14C;                                   // _14C
+
+	// these are set in an sinit function unlike all the other static values
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = -22.0f;
+			_04 = -22.0f;
+		}
+
+		f32 _00; // _00
+		f32 _04; // _04
+	} mMetOffset;
 };
 
 struct TChallengeSelectScene : public THIOScene {
