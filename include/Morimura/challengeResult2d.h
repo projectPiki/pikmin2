@@ -5,7 +5,6 @@
 #include "ebi/Save.h"
 #include "Game/ChallengeGame.h"
 #include "efx2d/T2DCavecomp.h"
-#include "Morimura/challenge2d.h"
 #include "Morimura/mrUtil.h"
 
 namespace Game {
@@ -13,6 +12,8 @@ struct Challenge2D_ResultInfo;
 } // namespace Game
 
 namespace Morimura {
+struct TClearTexture;
+
 struct DispMemberChallengeResult : public og::Screen::DispMemberBase {
 	DispMemberChallengeResult()
 	    : og::Screen::DispMemberBase()
@@ -93,16 +94,16 @@ struct TChallengeResultCounter {
 	void getFillRate();
 	void update();
 
-	u32* mDisplayValue;
-	u32 _04;
-	int mState; // _08
-	int _0C;
-	int _10;
-	int _14;
-	int _18;
-	int _1C;
-	int _20;
-	int* _24;
+	u32* mDisplayValue; // _00
+	u32 _04;            // _04
+	int mState;         // _08
+	int _0C;            // _0C
+	int _10;            // _10
+	int _14;            // _14
+	int _18;            // _18
+	int _1C;            // _1C
+	int _20;            // _20
+	int* _24;           // _24
 };
 
 struct TChallengeEndCount : public TDayEndCount {
@@ -138,8 +139,6 @@ struct TChallengeEndCount2p : public TChallengeEndCount {
 	// _00-_D4 = TChallengeEndCount
 };
 
-struct TClearTexture; // temp so challengeresult can use it
-
 struct TChallengeResult : public TTestBase {
 	TChallengeResult();
 	struct VectorUnit {
@@ -171,13 +170,13 @@ struct TChallengeResult : public TTestBase {
 	void fadeEffect();
 	void setDebugHeapParent(JKRHeap*);
 
-	static bool mForceDemoStart;
-	static u8 mTestStageId; // could be a u16, unsure
-	static JKRHeap* mDebugHeapParent;
-	static JKRExpHeap* mDebugHeap;
-	static ResTIMG* mLeafTexture;
-	static ResTIMG* mFlowerTexture;
-	static ResTIMG* mRedFlowerTexture;
+	static bool mForceDemoStart;       // false
+	static u8 mTestStageId;            // 0, could be a u16, unsure
+	static JKRHeap* mDebugHeapParent;  // nullptr
+	static JKRExpHeap* mDebugHeap;     // nullptr
+	static ResTIMG* mLeafTexture;      // nullptr
+	static ResTIMG* mFlowerTexture;    // nullptr
+	static ResTIMG* mRedFlowerTexture; // nullptr
 
 	static f32 mMoveSpeed;               // 12.0f
 	static f32 mAngRate;                 // 0.3f
@@ -269,15 +268,15 @@ struct TClearTexture {
 	void getPosition(Vector2f&);
 	void getEffectPosition(Vector2f&);
 
-	u8 _00;
+	u8 _00;               // _00
 	JKRArchive* mArchive; // _04
 	J2DPictureEx* mPane1; // _08
 	J2DPictureEx* mPane2; // _0C
-	int _10;
-	int _14;
-	int _18;
-	int _1C;
-	int _20;
+	int _10;              // _10
+	int _14;              // _14
+	int _18;              // _18
+	int _1C;              // _1C
+	int _20;              // _20
 };
 
 struct TChallengeResultScene : public THIOScene {

@@ -4,6 +4,7 @@
 #include "og/Screen/callbackNodes.h"
 #include "Screen/screenObj.h"
 #include "efx2d/T2DCountKira.h"
+#include "Morimura/Bases.h"
 
 struct J2DPane;
 
@@ -246,6 +247,85 @@ struct TIndPane : public CNode {
 	s16 _3C;               // _3C
 	f32 _40;               // _40
 	u8 _44;                // _44
+};
+
+struct TChallengeScreen : public TScreenBase {
+	TChallengeScreen(JKRArchive*, int);
+
+	virtual void create(const char*, u32); // _08
+	virtual void update();                 // _0C
+	virtual void createAnimPane(char*);    // _14
+	virtual void updateBckPane();          // _18
+
+	bool isRandAnimStart();
+
+	// _00     = VTBL
+	// _00-_18 = TScreenBase
+	int mAnimPaneCount;                // _18
+	og::Screen::AnimPane** mAnimPanes; // _1C
+	int mCounter;                      // _20
+	int mCounterMax;                   // _24
+	bool _28;                          // _28
+};
+
+struct TChallengePiki {
+	struct posInfo { // smh morimura why is this lower case
+		posInfo() { }
+
+		int mState; // _00
+		int _04[9]; // _04
+	};
+
+	TChallengePiki(J2DPane*, J2DPane*, J2DPane*);
+
+	void reset();
+	void jumpStart(f32);
+	void update();
+	void draw();
+	void setGoalPos(Vector2f&);
+	bool isDemoEnd();
+
+	J2DPane* mPanes[3];        // _00
+	f32 _0C;                   // _0C
+	f32 _10;                   // _10
+	JGeometry::TVec2f mVec[2]; // _14
+	posInfo mPosInfo[50];      // _24
+	int mMaxPiki;              // _72C
+	f32 _730;                  // _730
+};
+
+struct TChallengeDoping {
+	TChallengeDoping(J2DPane*, J2DPane*, J2DPane*, J2DPane*);
+
+	void setLevel(int);
+	void update();
+};
+
+struct TChallengePanel {
+	TChallengePanel(J2DPictureEx*, J2DPane*, J2DPane*);
+	void stateInitialize(JKRArchive*, int, int);
+	void changeState();
+	void addAlpha();
+	void decAlpha();
+	void alphaUpdate(f32);
+	bool canSelect();
+	void update(int, bool);
+	void startScaleUp();
+
+	int _00;                         // _00
+	J2DPictureEx* mPane1;            // _04
+	J2DPane* mPane2;                 // _08
+	J2DPane* mPane3;                 // _0C
+	og::Screen::ScaleMgr* mScaleMgr; // _10
+	f32 _14;                         // _14
+	f32 _18;                         // _18
+	int _1C;                         // _1C
+	int _20;                         // _20
+	bool _24;                        // _24
+	f32 _28;                         // _28
+	f32 _2C;                         // _2C
+	int _30;                         // _30
+	f32 _34;                         // _34
 };
 
 } // namespace Morimura

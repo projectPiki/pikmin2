@@ -5,7 +5,6 @@
 #include "Morimura/mrUtil.h"
 #include "Morimura/Window.h"
 #include "efx2d/T2DCursor.h"
-#include "Morimura/challenge2d.h"
 #include "Game/ChallengeGame.h"
 
 namespace og {
@@ -72,19 +71,19 @@ struct TChallengePlayModeScreen : public TScreenBase {
 	og::Screen::CallBack_Furiko* mFuriko;        // _54
 	efx2d::T2DCursor* mEfxCursor1;               // _58
 	efx2d::T2DCursor* mEfxCursor2;               // _5C
-	Vector2f mEfxCursorPos1;
-	Vector2f mEfxCursorPos2;
-	Vector2f _70;
-	Vector2f _78;
-	int mSelection;           // _80
-	bool mDoShowNoController; // _84
-	f32 mNoControllerTimer;   // _88
-	f32 mTimer;               // _8C
-	f32 mTimer2;              // _90
-	f32 mMovePos;             // _94
-	f32 _98;                  // _98
-	f32 mScale;               // _9C
-	f32 _A0[3];               // _A0
+	Vector2f mEfxCursorPos1;                     // _60
+	Vector2f mEfxCursorPos2;                     // _68
+	Vector2f _70;                                // _70
+	Vector2f _78;                                // _78
+	int mSelection;                              // _80
+	bool mDoShowNoController;                    // _84
+	f32 mNoControllerTimer;                      // _88
+	f32 mTimer;                                  // _8C
+	f32 mTimer2;                                 // _90
+	f32 mMovePos;                                // _94
+	f32 _98;                                     // _98
+	f32 mScale;                                  // _9C
+	f32 _A0[3];                                  // _A0
 
 	void createMetPicture(ResTIMG const*);
 	void setState(PlayModeScreenState);
@@ -115,6 +114,28 @@ struct TChallengeSelect : public TTestBase {
 	void setDebugHeapParent(JKRHeap*);
 	void jumpStart();
 
+	static int mRightOffset;          // 0
+	static int mDownOffset;           // 0
+	static u8 mFrameAnimAlpha;        // 0
+	static bool mAllCourseOpen;       // false
+	static bool mForceDemoStart;      // false
+	static int mDivePikiNum;          // 0
+	static Vector2f mMetOffset;       // 0, maybe JGeometry::TVec2f?
+	static JKRHeap* mDebugHeapParent; // nullptr, may be a different JKR heap type
+	static JKRExpHeap* mDebugHeap;    // nullptr, may be a different JKR heap type
+
+	static u32 mSelected1p;        // 0x01000000, flag?
+	static f32 mAlphaSpeed;        // 0.05f
+	static s16 mFlashAnimInterval; // 300
+	static f32 mTextFlashVal;      // 1.0f
+	static bool mConnect2p;        // true
+	static f32 mPanelMoveVal;      // 1.0f
+	static f32 mPanelMoveRate;     // 0.25f
+	static f32 mCircleY;           // 100.0f
+	static f32 mTimerSpeed;        // 0.15f
+	static f32 mMoveSpeed;         // 12.0f
+	static f32 mSelectIconScale;   // 1.5f
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_78 = TTestBase
@@ -128,8 +149,6 @@ struct TChallengeSelect : public TTestBase {
 	TChallengePanel** mPanelList;               // _94
 	u8 mStageData;                              // _98
 	u8 _9C[0xB4];                               // _9C, TODO: fill these in from ghidra
-
-	static s16 mFlashAnimInterval;
 };
 
 struct TChallengeSelectScene : public THIOScene {
@@ -147,7 +166,7 @@ struct TChallengeSelectScene : public THIOScene {
 	TConfirmEndWindow* mConfirmEndWindow; // _224
 };
 
-struct TChallengeSelectExplanationWindow : TSelectExplanationWindow {
+struct TChallengeSelectExplanationWindow : public TSelectExplanationWindow {
 	virtual void create(const char*, u32); // _08
 	virtual void screenScaleUp();          // _14
 
