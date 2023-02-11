@@ -98,22 +98,26 @@ lbl_constructor:
 	.asciz "world_map_info.blo"
 .endobj lbl_80497DBC
 .balign 4
-lbl_80497DD0:
+.obj lbl_80497DD0, local
 	.asciz "world_map_info.btk"
+.endobj lbl_80497DD0
 .balign 4
-lbl_80497DE4:
+.obj lbl_80497DE4, local
 	.asciz "world_map_info_02.btk"
+.endobj lbl_80497DE4
 .balign 4
-lbl_80497DFC:
+.obj lbl_80497DFC, local
 	.asciz "world_map_info_03.btk"
+.endobj lbl_80497DFC
 .balign 4
-lbl_80497E14:
+.obj lbl_80497E14, local
 	.4byte lbl_80497DBC
 	.4byte lbl_80497DD0
 	.4byte lbl_80497DE4
 	.4byte lbl_80497DFC
+.endobj lbl_80497E14
 .balign 8
-lbl_80497E28:
+.obj lbl_80497E28, local
 	.4byte 0x50494354
 	.4byte 0x5F303435
 	.4byte 0x0050675F
@@ -164,6 +168,9 @@ lbl_80497E28:
 	.4byte 0x635F3031
 	.4byte 0x0050335F
 	.4byte 0x635F3032
+.endobj lbl_80497E28
+.balign 8
+.obj lbl_80497EF0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -174,56 +181,43 @@ lbl_80497E28:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80497EF0
+.obj lbl_80497F18, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x776F726C
-	.4byte 0x646D6170
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x776F726C
-	.4byte 0x645F6D61
-	.4byte 0x705F6B69
-	.4byte 0x74616761
-	.4byte 0x77612E62
-	.4byte 0x6C6F0000
-	.4byte 0x776F726C
-	.4byte 0x645F6D61
-	.4byte 0x705F6B69
-	.4byte 0x74616761
-	.4byte 0x77612E62
-	.4byte 0x636B0000
-	.4byte 0x776F726C
-	.4byte 0x645F6D61
-	.4byte 0x705F6B69
-	.4byte 0x74616761
-	.4byte 0x77612E62
-	.4byte 0x706B0000
-	.4byte 0x776F726C
-	.4byte 0x645F6D61
-	.4byte 0x705F6B69
-	.4byte 0x74616761
-	.4byte 0x77612E62
-	.4byte 0x746B0000
-	.4byte 0x776F726C
-	.4byte 0x645F6D61
-	.4byte 0x705F6B69
-	.4byte 0x74616761
-	.4byte 0x77615F30
-	.4byte 0x322E6274
-	.4byte 0x6B000000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F656666
-	.4byte 0x6563742F
-	.4byte 0x65666632
-	.4byte 0x645F776F
-	.4byte 0x726C645F
-	.4byte 0x6D61702E
-	.4byte 0x6A706300
-	.4byte 0x00000000
+.endobj lbl_80497F18
+.balign 4
+.obj lbl_80497F28, local
+	.asciz "worldmap.szs"
+.endobj lbl_80497F28
+.balign 4
+.obj lbl_80497F38, local
+	.asciz "world_map_kitagawa.blo"
+.endobj lbl_80497F38
+.balign 4
+.obj lbl_80497F50, local
+	.asciz "world_map_kitagawa.bck"
+.endobj lbl_80497F50
+.balign 4
+.obj lbl_80497F68, local
+	.asciz "world_map_kitagawa.bpk"
+.endobj lbl_80497F68
+.balign 4
+.obj lbl_80497F80, local
+	.asciz "world_map_kitagawa.btk"
+.endobj lbl_80497F80
+.balign 4
+.obj lbl_80497F98, local
+	.asciz "world_map_kitagawa_02.btk"
+.endobj lbl_80497F98
+.balign 4
+.obj lbl_80497FB4, local
+	.asciz "user/Ebisawa/effect/eff2d_world_map.jpc"
+.endobj lbl_80497FB4
+.balign 8
+.obj lbl_80497FE0, local # u64 char literal array?
 	.4byte 0x00004E77
 	.4byte 0x61697430
 	.4byte 0x00004E77
@@ -232,6 +226,9 @@ lbl_80497E28:
 	.4byte 0x61697432
 	.4byte 0x00004E77
 	.4byte 0x61697433
+.endobj lbl_80497FE0
+.balign 8
+.obj lbl_80498000, local
 	.4byte 0x004E706F
 	.4byte 0x696E7430
 	.4byte 0x004E706F
@@ -240,18 +237,28 @@ lbl_80497E28:
 	.4byte 0x696E7432
 	.4byte 0x004E706F
 	.4byte 0x696E7433
+.endobj lbl_80498000
+.balign 8
+.obj lbl_80498020, local
 	.4byte 0x00545F6E
 	.4byte 0x65775F6C
 	.4byte 0x00545F6E
 	.4byte 0x65775F72
-lbl_80498030:
+.endobj lbl_80498020
+.balign 4
+.obj lbl_80498030, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_8049803C:
+.endobj lbl_80498030
+.balign 4
+.obj lbl_8049803C, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8049803C
+.balign 8
+.obj lbl_80498048, local
 	.4byte 0x00383339
 	.4byte 0x305F3031
 	.4byte 0x00383339
@@ -260,6 +267,9 @@ lbl_8049803C:
 	.4byte 0x325F3031
 	.4byte 0x00383339
 	.4byte 0x335F3031
+.endobj lbl_80498048
+.balign 8
+.obj lbl_80498068, local
 	.4byte 0x00383339
 	.4byte 0x355F3031
 	.4byte 0x00383339
@@ -268,6 +278,9 @@ lbl_8049803C:
 	.4byte 0x305F3031
 	.4byte 0x006E6F5F
 	.4byte 0x64617461
+.endobj lbl_80498068
+.balign 8
+.obj lbl_80498088, local
 	.4byte 0x00383339
 	.4byte 0x365F3031
 	.4byte 0x00383339
@@ -276,6 +289,9 @@ lbl_8049803C:
 	.4byte 0x315F3031
 	.4byte 0x00383431
 	.4byte 0x305F3031
+.endobj lbl_80498088
+.balign 8
+.obj lbl_804980A8, local
 	.4byte 0x00383339
 	.4byte 0x375F3031
 	.4byte 0x00383430
@@ -284,6 +300,9 @@ lbl_8049803C:
 	.4byte 0x335F3031
 	.4byte 0x00383431
 	.4byte 0x315F3031
+.endobj lbl_804980A8
+.balign 8
+.obj lbl_804980C8, local
 	.4byte 0x00383431
 	.4byte 0x325F3031
 	.4byte 0x00383431
@@ -292,10 +311,16 @@ lbl_8049803C:
 	.4byte 0x345F3031
 	.4byte 0x006E6F5F
 	.4byte 0x64617461
+.endobj lbl_804980C8
+.balign 4
+.obj lbl_804980E8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_804980E8
+.balign 8
+.obj lbl_804980F8, local
 	.4byte 0x0050675F
 	.4byte 0x705F3031
 	.4byte 0x0050675F
@@ -304,6 +329,9 @@ lbl_8049803C:
 	.4byte 0x635F3031
 	.4byte 0x0050675F
 	.4byte 0x635F3032
+.endobj lbl_804980F8
+.balign 8
+.obj lbl_80498118, local
 	.4byte 0x0050305F
 	.4byte 0x705F3031
 	.4byte 0x0050305F
@@ -336,6 +364,9 @@ lbl_8049803C:
 	.4byte 0x635F3031
 	.4byte 0x0050335F
 	.4byte 0x635F3032
+.endobj lbl_80498118
+.balign 8
+.obj lbl_80498198, local
 	.4byte 0x004E6361
 	.4byte 0x5F666C30
 	.4byte 0x004E6361
@@ -344,6 +375,9 @@ lbl_8049803C:
 	.4byte 0x5F666C32
 	.4byte 0x004E6361
 	.4byte 0x5F666C33
+.endobj lbl_80498198
+.balign 8
+.obj lbl_804981B8, local
 	.4byte 0x00005030
 	.4byte 0x5F737261
 	.4byte 0x0050315F
@@ -352,6 +386,9 @@ lbl_8049803C:
 	.4byte 0x73757261
 	.4byte 0x00005033
 	.4byte 0x5F737261
+.endobj lbl_804981B8
+.balign 8
+.obj lbl_804981D8, local
 	.4byte 0x00383339
 	.4byte 0x305F3031
 	.4byte 0x00383339
@@ -360,6 +397,9 @@ lbl_8049803C:
 	.4byte 0x325F3031
 	.4byte 0x00383339
 	.4byte 0x335F3031
+.endobj lbl_804981D8
+.balign 8
+.obj lbl_804981F8, local
 	.4byte 0x00383339
 	.4byte 0x355F3031
 	.4byte 0x00383339
@@ -368,6 +408,9 @@ lbl_8049803C:
 	.4byte 0x305F3031
 	.4byte 0x006E6F5F
 	.4byte 0x64617461
+.endobj lbl_804981F8
+.balign 8
+.obj lbl_80498218, local
 	.4byte 0x00383339
 	.4byte 0x365F3031
 	.4byte 0x00383339
@@ -376,6 +419,9 @@ lbl_8049803C:
 	.4byte 0x315F3031
 	.4byte 0x00383431
 	.4byte 0x305F3031
+.endobj lbl_80498218
+.balign 8
+.obj lbl_80498238, local
 	.4byte 0x00383339
 	.4byte 0x375F3031
 	.4byte 0x00383430
@@ -384,6 +430,9 @@ lbl_8049803C:
 	.4byte 0x335F3031
 	.4byte 0x00383431
 	.4byte 0x315F3031
+.endobj lbl_80498238
+.balign 8
+.obj lbl_80498258, local
 	.4byte 0x00383431
 	.4byte 0x325F3031
 	.4byte 0x00383431
@@ -392,10 +441,16 @@ lbl_8049803C:
 	.4byte 0x345F3031
 	.4byte 0x006E6F5F
 	.4byte 0x64617461
+.endobj lbl_80498258
+.balign 4
+.obj lbl_80498278, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80498278
+.balign 8
+.obj lbl_80498288, local
 	.4byte 0x0050675F
 	.4byte 0x705F3031
 	.4byte 0x0050675F
@@ -404,6 +459,9 @@ lbl_8049803C:
 	.4byte 0x635F3031
 	.4byte 0x0050675F
 	.4byte 0x635F3032
+.endobj lbl_80498288
+.balign 8
+.obj lbl_804982A8, local
 	.4byte 0x0050305F
 	.4byte 0x705F3031
 	.4byte 0x0050305F
@@ -436,7 +494,9 @@ lbl_8049803C:
 	.4byte 0x635F3031
 	.4byte 0x0050335F
 	.4byte 0x635F3032
-lbl_80498328:
+.endobj lbl_804982A8
+.balign 8
+.obj lbl_80498328, local
 	.4byte 0x00004E77
 	.4byte 0x61697430
 	.4byte 0x00004E77
@@ -445,6 +505,7 @@ lbl_80498328:
 	.4byte 0x61697432
 	.4byte 0x00004E77
 	.4byte 0x61697433
+.endobj lbl_80498328
 .balign 4
 .obj lbl_80498348, local
 	.asciz "ArgDirScale"
@@ -456,7 +517,7 @@ lbl_80498328:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804EA3A0:
+.obj lbl_804EA3A0, local
 	.4byte .L_803F3D80
 	.4byte .L_803F4084
 	.4byte .L_803F40E8
@@ -472,21 +533,21 @@ lbl_804EA3A0:
 	.4byte .L_803F503C
 	.4byte .L_803F5098
 	.4byte .L_803F4420
-.global __vt__Q35efx2d8WorldMap10T2DRocketA
-__vt__Q35efx2d8WorldMap10T2DRocketA:
+.endobj lbl_804EA3A0
+.obj __vt__Q35efx2d8WorldMap10T2DRocketA, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q35efx2d8WorldMap19TSimple_ArgDirScaleFPQ25efx2d3Arg
 	.4byte kill__Q25efx2d8TSimple1Fv
 	.4byte fade__Q25efx2d8TSimple1Fv
 	.4byte setGroup__Q25efx2d5TBaseFUc
-.global __vt__Q35efx2d8WorldMap11ArgDirScale
-__vt__Q35efx2d8WorldMap11ArgDirScale:
+.endobj __vt__Q35efx2d8WorldMap10T2DRocketA
+.obj __vt__Q35efx2d8WorldMap11ArgDirScale, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q35efx2d8WorldMap11ArgDirScaleFv
-.global __vt__Q35efx2d8WorldMap10T2DShstar1
-__vt__Q35efx2d8WorldMap10T2DShstar1:
+.endobj __vt__Q35efx2d8WorldMap11ArgDirScale
+.obj __vt__Q35efx2d8WorldMap10T2DShstar1, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
@@ -502,8 +563,8 @@ __vt__Q35efx2d8WorldMap10T2DShstar1:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d8WorldMap10T2DShstar1Fv
 	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
-.global __vt__Q35efx2d8WorldMap11T2DMapFlare
-__vt__Q35efx2d8WorldMap11T2DMapFlare:
+.endobj __vt__Q35efx2d8WorldMap10T2DShstar1
+.obj __vt__Q35efx2d8WorldMap11T2DMapFlare, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
@@ -519,8 +580,8 @@ __vt__Q35efx2d8WorldMap11T2DMapFlare:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d8WorldMap11T2DMapFlareFv
 	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
-.global __vt__Q35efx2d8WorldMap13T2DRocketGlow
-__vt__Q35efx2d8WorldMap13T2DRocketGlow:
+.endobj __vt__Q35efx2d8WorldMap11T2DMapFlare
+.obj __vt__Q35efx2d8WorldMap13T2DRocketGlow, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d12TChasePosDirFPQ25efx2d3Arg
@@ -536,8 +597,8 @@ __vt__Q35efx2d8WorldMap13T2DRocketGlow:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d8WorldMap13T2DRocketGlowFv
 	.4byte execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter
-.global __vt__Q32kh6Screen8WorldMap
-__vt__Q32kh6Screen8WorldMap:
+.endobj __vt__Q35efx2d8WorldMap13T2DRocketGlow
+.obj __vt__Q32kh6Screen8WorldMap, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32kh6Screen8WorldMapFv
@@ -549,8 +610,8 @@ __vt__Q32kh6Screen8WorldMap:
 	.4byte draw2nd__Q32kh6Screen8WorldMapFR8Graphics
 	.4byte draw3rd__Q32kh6Screen8WorldMapFR8Graphics
 	.4byte draw4th__Q32kh6Screen8WorldMapFR8Graphics
-.global __vt__Q34Game8WorldMap4Base
-__vt__Q34Game8WorldMap4Base:
+.endobj __vt__Q32kh6Screen8WorldMap
+.obj __vt__Q34Game8WorldMap4Base, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game8WorldMap4BaseFv
@@ -562,8 +623,8 @@ __vt__Q34Game8WorldMap4Base:
 	.4byte draw2nd__Q34Game8WorldMap4BaseFR8Graphics
 	.4byte draw3rd__Q34Game8WorldMap4BaseFR8Graphics
 	.4byte draw4th__Q34Game8WorldMap4BaseFR8Graphics
-.global __vt__Q32kh6Screen16khUtilColorAnmWM
-__vt__Q32kh6Screen16khUtilColorAnmWM:
+.endobj __vt__Q34Game8WorldMap4Base
+.obj __vt__Q32kh6Screen16khUtilColorAnmWM, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32kh6Screen16khUtilColorAnmWMFv
@@ -572,8 +633,8 @@ __vt__Q32kh6Screen16khUtilColorAnmWM:
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte do_update__Q32kh6Screen16khUtilColorAnmWMFv
-.global __vt__Q32kh6Screen16khUtilFadePaneWM
-__vt__Q32kh6Screen16khUtilFadePaneWM:
+.endobj __vt__Q32kh6Screen16khUtilColorAnmWM
+.obj __vt__Q32kh6Screen16khUtilFadePaneWM, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32kh6Screen16khUtilFadePaneWMFv
@@ -583,11 +644,12 @@ __vt__Q32kh6Screen16khUtilFadePaneWM:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte fadein_finish__Q32kh6Screen14khUtilFadePaneFv
 	.4byte fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv
-.global __vt__Q42kh6Screen14khUtilFadePane10khPaneNode
-__vt__Q42kh6Screen14khUtilFadePane10khPaneNode:
+.endobj __vt__Q32kh6Screen16khUtilFadePaneWM
+.obj __vt__Q42kh6Screen14khUtilFadePane10khPaneNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv
+.endobj __vt__Q42kh6Screen14khUtilFadePane10khPaneNode
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # khWorldMap.cpp
@@ -595,102 +657,142 @@ __vt__Q42kh6Screen14khUtilFadePane10khPaneNode:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FEF0:
+.obj lbl_8051FEF0, local
 	.float 1.0
-lbl_8051FEF4:
+.endobj lbl_8051FEF0
+.obj lbl_8051FEF4, local
 	.float 0.0
-lbl_8051FEF8:
+.endobj lbl_8051FEF4
+.obj lbl_8051FEF8, local
 	.float -1.0
+.endobj lbl_8051FEF8
 .balign 4
-lbl_8051FEFC:
+.obj lbl_8051FEFC, local
 	.asciz "failed"
+.endobj lbl_8051FEFC
 .balign 4
-lbl_8051FF04:
+.obj lbl_8051FF04, local
 	.float 0.1
-lbl_8051FF08:
+.endobj lbl_8051FF04
+.obj lbl_8051FF08, local
 	.float 0.7
-lbl_8051FF0C:
+.endobj lbl_8051FF08
+.obj lbl_8051FF0C, local
 	.float 0.3
-lbl_8051FF10:
+.endobj lbl_8051FF0C
+.obj lbl_8051FF10, local
 	.float 1000.0
-lbl_8051FF14:
+.endobj lbl_8051FF10
+.obj lbl_8051FF14, local
 	.float 0.5
-lbl_8051FF18:
+.endobj lbl_8051FF14
+.obj lbl_8051FF18, local
 	.float 1.5
-lbl_8051FF1C:
+.endobj lbl_8051FF18
+.obj lbl_8051FF1C, local
 	.float -0.1
-lbl_8051FF20:
+.endobj lbl_8051FF1C
+.obj lbl_8051FF20, local
 	.float 32.0
-lbl_8051FF24:
+.endobj lbl_8051FF20
+.obj lbl_8051FF24, local
 	.float 3.0
-lbl_8051FF28: # tau
+.endobj lbl_8051FF24
+.obj lbl_8051FF28, local # tau
 	.float 6.2831855
-lbl_8051FF2C:
+.endobj lbl_8051FF28
+.obj lbl_8051FF2C, local
 	.float 0.95
-lbl_8051FF30:
+.endobj lbl_8051FF2C
+.obj lbl_8051FF30, local
 	.float 0.01
-lbl_8051FF34:
+.endobj lbl_8051FF30
+.obj lbl_8051FF34, local
 	.float 57.295776
-lbl_8051FF38:
+.endobj lbl_8051FF34
+.obj lbl_8051FF38, local
 	.float 2.0
-lbl_8051FF3C:
+.endobj lbl_8051FF38
+.obj lbl_8051FF3C, local
 	.float 255.0
+.endobj lbl_8051FF3C
 .balign 8
-lbl_8051FF40:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_8051FF40, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051FF40
 .balign 8
-lbl_8051FF48:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051FF50:
+.obj lbl_8051FF48, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051FF48
+.obj lbl_8051FF50, local
 	.float 0.99
-lbl_8051FF54: # pi
+.endobj lbl_8051FF50
+.obj lbl_8051FF54, local # pi
 	.float 3.1415927
-lbl_8051FF58:
+.endobj lbl_8051FF54
+.obj lbl_8051FF58, local
 	.float 0.02
-lbl_8051FF5C:
+.endobj lbl_8051FF58
+.obj lbl_8051FF5C, local
 	.float -0.05
-lbl_8051FF60:
+.endobj lbl_8051FF5C
+.obj lbl_8051FF60, local
 	.float 0.05
-lbl_8051FF64:
+.endobj lbl_8051FF60
+.obj lbl_8051FF64, local
 	.float 0.2
-lbl_8051FF68:
+.endobj lbl_8051FF64
+.obj lbl_8051FF68, local
 	.float 12.5
-lbl_8051FF6C:
+.endobj lbl_8051FF68
+.obj lbl_8051FF6C, local
 	.float 11.5
-lbl_8051FF70:
+.endobj lbl_8051FF6C
+.obj lbl_8051FF70, local
 	.float 0.25
-lbl_8051FF74:
+.endobj lbl_8051FF70
+.obj lbl_8051FF74, local
 	.float 20.0
-lbl_8051FF78:
+.endobj lbl_8051FF74
+.obj lbl_8051FF78, local
 	.float 50.0
-lbl_8051FF7C:
+.endobj lbl_8051FF78
+.obj lbl_8051FF7C, local
 	.float 4500.0
-lbl_8051FF80:
+.endobj lbl_8051FF7C
+.obj lbl_8051FF80, local
 	.float 0.001
-lbl_8051FF84:
+.endobj lbl_8051FF80
+.obj lbl_8051FF84, local
 	.float 0.92
-lbl_8051FF88:
+.endobj lbl_8051FF84
+.obj lbl_8051FF88, local
 	.float 800.0
-lbl_8051FF8C:
+.endobj lbl_8051FF88
+.obj lbl_8051FF8C, local
 	.float 0.97
-lbl_8051FF90:
+.endobj lbl_8051FF8C
+.obj lbl_8051FF90, local
 	.float 6000.0
-lbl_8051FF94:
+.endobj lbl_8051FF90
+.obj lbl_8051FF94, local
 	.float 0.8
-lbl_8051FF98:
+.endobj lbl_8051FF94
+.obj lbl_8051FF98, local
 	.float 0.9
-lbl_8051FF9C:
+.endobj lbl_8051FF98
+.obj lbl_8051FF9C, local
 	.float 1.2
-lbl_8051FFA0:
+.endobj lbl_8051FF9C
+.obj lbl_8051FFA0, local
 	.float -0.01
-lbl_8051FFA4:
+.endobj lbl_8051FFA0
+.obj lbl_8051FFA4, local
 	.float 0.88
+.endobj lbl_8051FFA4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q32kh6Screen14khUtilFadePaneFv
-__dt__Q32kh6Screen14khUtilFadePaneFv:
+.fn __dt__Q32kh6Screen14khUtilFadePaneFv, weak
 /* 803F1B04 003EEA44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F1B08 003EEA48  7C 08 02 A6 */	mflr r0
 /* 803F1B0C 003EEA4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -733,9 +835,9 @@ __dt__Q32kh6Screen14khUtilFadePaneFv:
 /* 803F1B94 003EEAD4  7C 08 03 A6 */	mtlr r0
 /* 803F1B98 003EEAD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F1B9C 003EEADC  4E 80 00 20 */	blr 
+.endfn __dt__Q32kh6Screen14khUtilFadePaneFv
 
-.global fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv
-fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv:
+.fn fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv, global
 /* 803F1BA0 003EEAE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F1BA4 003EEAE4  7C 08 02 A6 */	mflr r0
 /* 803F1BA8 003EEAE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -760,9 +862,9 @@ fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv:
 /* 803F1BEC 003EEB2C  7C 08 03 A6 */	mtlr r0
 /* 803F1BF0 003EEB30  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F1BF4 003EEB34  4E 80 00 20 */	blr 
+.endfn fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv
 
-.global __dt__Q32kh6Screen14khUtilColorAnmFv
-__dt__Q32kh6Screen14khUtilColorAnmFv:
+.fn __dt__Q32kh6Screen14khUtilColorAnmFv, weak
 /* 803F1BF8 003EEB38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F1BFC 003EEB3C  7C 08 02 A6 */	mflr r0
 /* 803F1C00 003EEB40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -797,9 +899,9 @@ __dt__Q32kh6Screen14khUtilColorAnmFv:
 /* 803F1C6C 003EEBAC  7C 08 03 A6 */	mtlr r0
 /* 803F1C70 003EEBB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F1C74 003EEBB4  4E 80 00 20 */	blr 
+.endfn __dt__Q32kh6Screen14khUtilColorAnmFv
 
-.global do_update__Q32kh6Screen16khUtilColorAnmWMFv
-do_update__Q32kh6Screen16khUtilColorAnmWMFv:
+.fn do_update__Q32kh6Screen16khUtilColorAnmWMFv, global
 /* 803F1C78 003EEBB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803F1C7C 003EEBBC  7C 08 02 A6 */	mflr r0
 /* 803F1C80 003EEBC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -832,9 +934,9 @@ do_update__Q32kh6Screen16khUtilColorAnmWMFv:
 /* 803F1CE8 003EEC28  7C 08 03 A6 */	mtlr r0
 /* 803F1CEC 003EEC2C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803F1CF0 003EEC30  4E 80 00 20 */	blr 
+.endfn do_update__Q32kh6Screen16khUtilColorAnmWMFv
 
-.global __ct__Q32kh6Screen8WorldMapFv
-__ct__Q32kh6Screen8WorldMapFv:
+.fn __ct__Q32kh6Screen8WorldMapFv, global
 /* 803F1CF4 003EEC34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F1CF8 003EEC38  7C 08 02 A6 */	mflr r0
 /* 803F1CFC 003EEC3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -957,9 +1059,9 @@ __ct__Q32kh6Screen8WorldMapFv:
 /* 803F1ED0 003EEE10  7C 08 03 A6 */	mtlr r0
 /* 803F1ED4 003EEE14  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F1ED8 003EEE18  4E 80 00 20 */	blr 
+.endfn __ct__Q32kh6Screen8WorldMapFv
 
-.global __dt__Q34Game8WorldMap4BaseFv
-__dt__Q34Game8WorldMap4BaseFv:
+.fn __dt__Q34Game8WorldMap4BaseFv, weak
 /* 803F1EDC 003EEE1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F1EE0 003EEE20  7C 08 02 A6 */	mflr r0
 /* 803F1EE4 003EEE24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -985,9 +1087,9 @@ __dt__Q34Game8WorldMap4BaseFv:
 /* 803F1F30 003EEE70  7C 08 03 A6 */	mtlr r0
 /* 803F1F34 003EEE74  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F1F38 003EEE78  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game8WorldMap4BaseFv
 
-.global init__Q32kh6Screen8WorldMapFRQ34Game8WorldMap7InitArg
-init__Q32kh6Screen8WorldMapFRQ34Game8WorldMap7InitArg:
+.fn init__Q32kh6Screen8WorldMapFRQ34Game8WorldMap7InitArg, global
 /* 803F1F3C 003EEE7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F1F40 003EEE80  7C 08 02 A6 */	mflr r0
 /* 803F1F44 003EEE84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1040,9 +1142,9 @@ init__Q32kh6Screen8WorldMapFRQ34Game8WorldMap7InitArg:
 /* 803F1FFC 003EEF3C  7C 08 03 A6 */	mtlr r0
 /* 803F2000 003EEF40  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F2004 003EEF44  4E 80 00 20 */	blr 
+.endfn init__Q32kh6Screen8WorldMapFRQ34Game8WorldMap7InitArg
 
-.global loadResource__Q32kh6Screen8WorldMapFv
-loadResource__Q32kh6Screen8WorldMapFv:
+.fn loadResource__Q32kh6Screen8WorldMapFv, global
 /* 803F2008 003EEF48  94 21 FD A0 */	stwu r1, -0x260(r1)
 /* 803F200C 003EEF4C  7C 08 02 A6 */	mflr r0
 /* 803F2010 003EEF50  90 01 02 64 */	stw r0, 0x264(r1)
@@ -2602,9 +2704,9 @@ loadResource__Q32kh6Screen8WorldMapFv:
 /* 803F378C 003F06CC  7C 08 03 A6 */	mtlr r0
 /* 803F3790 003F06D0  38 21 02 60 */	addi r1, r1, 0x260
 /* 803F3794 003F06D4  4E 80 00 20 */	blr 
+.endfn loadResource__Q32kh6Screen8WorldMapFv
 
-.global __dt__Q42kh6Screen8WorldMap13OnyonDynamicsFv
-__dt__Q42kh6Screen8WorldMap13OnyonDynamicsFv:
+.fn __dt__Q42kh6Screen8WorldMap13OnyonDynamicsFv, weak
 /* 803F3798 003F06D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F379C 003F06DC  7C 08 02 A6 */	mflr r0
 /* 803F37A0 003F06E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2621,9 +2723,9 @@ __dt__Q42kh6Screen8WorldMap13OnyonDynamicsFv:
 /* 803F37C8 003F0708  7C 08 03 A6 */	mtlr r0
 /* 803F37CC 003F070C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F37D0 003F0710  4E 80 00 20 */	blr 
+.endfn __dt__Q42kh6Screen8WorldMap13OnyonDynamicsFv
 
-.global update__Q32kh6Screen8WorldMapFRQ34Game8WorldMap9UpdateArg
-update__Q32kh6Screen8WorldMapFRQ34Game8WorldMap9UpdateArg:
+.fn update__Q32kh6Screen8WorldMapFRQ34Game8WorldMap9UpdateArg, global
 /* 803F37D4 003F0714  94 21 FE 90 */	stwu r1, -0x170(r1)
 /* 803F37D8 003F0718  7C 08 02 A6 */	mflr r0
 /* 803F37DC 003F071C  90 01 01 74 */	stw r0, 0x174(r1)
@@ -4517,9 +4619,9 @@ update__Q32kh6Screen8WorldMapFRQ34Game8WorldMap9UpdateArg:
 /* 803F53E8 003F2328  7C 08 03 A6 */	mtlr r0
 /* 803F53EC 003F232C  38 21 01 70 */	addi r1, r1, 0x170
 /* 803F53F0 003F2330  4E 80 00 20 */	blr 
+.endfn update__Q32kh6Screen8WorldMapFRQ34Game8WorldMap9UpdateArg
 
-.global draw1st__Q32kh6Screen8WorldMapFR8Graphics
-draw1st__Q32kh6Screen8WorldMapFR8Graphics:
+.fn draw1st__Q32kh6Screen8WorldMapFR8Graphics, global
 /* 803F53F4 003F2334  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F53F8 003F2338  7C 08 02 A6 */	mflr r0
 /* 803F53FC 003F233C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4622,9 +4724,9 @@ draw1st__Q32kh6Screen8WorldMapFR8Graphics:
 /* 803F5580 003F24C0  7C 08 03 A6 */	mtlr r0
 /* 803F5584 003F24C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F5588 003F24C8  4E 80 00 20 */	blr 
+.endfn draw1st__Q32kh6Screen8WorldMapFR8Graphics
 
-.global draw2nd__Q32kh6Screen8WorldMapFR8Graphics
-draw2nd__Q32kh6Screen8WorldMapFR8Graphics:
+.fn draw2nd__Q32kh6Screen8WorldMapFR8Graphics, global
 /* 803F558C 003F24CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F5590 003F24D0  7C 08 02 A6 */	mflr r0
 /* 803F5594 003F24D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4650,9 +4752,9 @@ draw2nd__Q32kh6Screen8WorldMapFR8Graphics:
 /* 803F55E4 003F2524  7C 08 03 A6 */	mtlr r0
 /* 803F55E8 003F2528  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F55EC 003F252C  4E 80 00 20 */	blr 
+.endfn draw2nd__Q32kh6Screen8WorldMapFR8Graphics
 
-.global draw3rd__Q32kh6Screen8WorldMapFR8Graphics
-draw3rd__Q32kh6Screen8WorldMapFR8Graphics:
+.fn draw3rd__Q32kh6Screen8WorldMapFR8Graphics, global
 /* 803F55F0 003F2530  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803F55F4 003F2534  7C 08 02 A6 */	mflr r0
 /* 803F55F8 003F2538  90 01 00 54 */	stw r0, 0x54(r1)
@@ -4822,9 +4924,9 @@ draw3rd__Q32kh6Screen8WorldMapFR8Graphics:
 /* 803F5884 003F27C4  7C 08 03 A6 */	mtlr r0
 /* 803F5888 003F27C8  38 21 00 50 */	addi r1, r1, 0x50
 /* 803F588C 003F27CC  4E 80 00 20 */	blr 
+.endfn draw3rd__Q32kh6Screen8WorldMapFR8Graphics
 
-.global draw4th__Q32kh6Screen8WorldMapFR8Graphics
-draw4th__Q32kh6Screen8WorldMapFR8Graphics:
+.fn draw4th__Q32kh6Screen8WorldMapFR8Graphics, global
 /* 803F5890 003F27D0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803F5894 003F27D4  7C 08 02 A6 */	mflr r0
 /* 803F5898 003F27D8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -4894,9 +4996,9 @@ draw4th__Q32kh6Screen8WorldMapFR8Graphics:
 /* 803F5994 003F28D4  7C 08 03 A6 */	mtlr r0
 /* 803F5998 003F28D8  38 21 00 50 */	addi r1, r1, 0x50
 /* 803F599C 003F28DC  4E 80 00 20 */	blr 
+.endfn draw4th__Q32kh6Screen8WorldMapFR8Graphics
 
-.global rocketMove__Q32kh6Screen8WorldMapFP7J2DPaneb
-rocketMove__Q32kh6Screen8WorldMapFP7J2DPaneb:
+.fn rocketMove__Q32kh6Screen8WorldMapFP7J2DPaneb, global
 /* 803F59A0 003F28E0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803F59A4 003F28E4  7C 08 02 A6 */	mflr r0
 /* 803F59A8 003F28E8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -5116,9 +5218,9 @@ rocketMove__Q32kh6Screen8WorldMapFP7J2DPaneb:
 /* 803F5CC4 003F2C04  7C 08 03 A6 */	mtlr r0
 /* 803F5CC8 003F2C08  38 21 00 70 */	addi r1, r1, 0x70
 /* 803F5CCC 003F2C0C  4E 80 00 20 */	blr 
+.endfn rocketMove__Q32kh6Screen8WorldMapFP7J2DPaneb
 
-.global rocketUpdate__Q32kh6Screen8WorldMapFP7J2DPane
-rocketUpdate__Q32kh6Screen8WorldMapFP7J2DPane:
+.fn rocketUpdate__Q32kh6Screen8WorldMapFP7J2DPane, global
 /* 803F5CD0 003F2C10  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 803F5CD4 003F2C14  7C 08 02 A6 */	mflr r0
 /* 803F5CD8 003F2C18  90 01 01 04 */	stw r0, 0x104(r1)
@@ -5376,9 +5478,9 @@ rocketUpdate__Q32kh6Screen8WorldMapFP7J2DPane:
 /* 803F60C8 003F3008  7C 08 03 A6 */	mtlr r0
 /* 803F60CC 003F300C  38 21 01 00 */	addi r1, r1, 0x100
 /* 803F60D0 003F3010  4E 80 00 20 */	blr 
+.endfn rocketUpdate__Q32kh6Screen8WorldMapFP7J2DPane
 
-.global onyonMove__Q32kh6Screen8WorldMapFv
-onyonMove__Q32kh6Screen8WorldMapFv:
+.fn onyonMove__Q32kh6Screen8WorldMapFv, global
 /* 803F60D4 003F3014  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803F60D8 003F3018  7C 08 02 A6 */	mflr r0
 /* 803F60DC 003F301C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -5417,9 +5519,9 @@ onyonMove__Q32kh6Screen8WorldMapFv:
 /* 803F6158 003F3098  7C 08 03 A6 */	mtlr r0
 /* 803F615C 003F309C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803F6160 003F30A0  4E 80 00 20 */	blr 
+.endfn onyonMove__Q32kh6Screen8WorldMapFv
 
-.global onyonUpdate__Q32kh6Screen8WorldMapFv
-onyonUpdate__Q32kh6Screen8WorldMapFv:
+.fn onyonUpdate__Q32kh6Screen8WorldMapFv, global
 /* 803F6164 003F30A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803F6168 003F30A8  7C 08 02 A6 */	mflr r0
 /* 803F616C 003F30AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5448,9 +5550,9 @@ onyonUpdate__Q32kh6Screen8WorldMapFv:
 /* 803F61C0 003F3100  7C 08 03 A6 */	mtlr r0
 /* 803F61C4 003F3104  38 21 00 20 */	addi r1, r1, 0x20
 /* 803F61C8 003F3108  4E 80 00 20 */	blr 
+.endfn onyonUpdate__Q32kh6Screen8WorldMapFv
 
-.global postureControl__Q32kh6Screen8WorldMapFP7J2DPane
-postureControl__Q32kh6Screen8WorldMapFP7J2DPane:
+.fn postureControl__Q32kh6Screen8WorldMapFP7J2DPane, global
 /* 803F61CC 003F310C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803F61D0 003F3110  7C 08 02 A6 */	mflr r0
 /* 803F61D4 003F3114  90 01 00 54 */	stw r0, 0x54(r1)
@@ -5582,9 +5684,9 @@ postureControl__Q32kh6Screen8WorldMapFP7J2DPane:
 /* 803F63B4 003F32F4  7C 08 03 A6 */	mtlr r0
 /* 803F63B8 003F32F8  38 21 00 50 */	addi r1, r1, 0x50
 /* 803F63BC 003F32FC  4E 80 00 20 */	blr 
+.endfn postureControl__Q32kh6Screen8WorldMapFP7J2DPane
 
-.global changeState__Q32kh6Screen8WorldMapFv
-changeState__Q32kh6Screen8WorldMapFv:
+.fn changeState__Q32kh6Screen8WorldMapFv, global
 /* 803F63C0 003F3300  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803F63C4 003F3304  7C 08 02 A6 */	mflr r0
 /* 803F63C8 003F3308  90 01 00 54 */	stw r0, 0x54(r1)
@@ -5733,9 +5835,9 @@ changeState__Q32kh6Screen8WorldMapFv:
 /* 803F65E4 003F3524  7C 08 03 A6 */	mtlr r0
 /* 803F65E8 003F3528  38 21 00 50 */	addi r1, r1, 0x50
 /* 803F65EC 003F352C  4E 80 00 20 */	blr 
+.endfn changeState__Q32kh6Screen8WorldMapFv
 
-.global tag2num__Q32kh6Screen8WorldMapFUx
-tag2num__Q32kh6Screen8WorldMapFUx:
+.fn tag2num__Q32kh6Screen8WorldMapFUx, global
 /* 803F65F0 003F3530  3C 60 00 01 */	lis r3, 0x0000FF00@ha
 /* 803F65F4 003F3534  38 00 00 FF */	li r0, 0xff
 /* 803F65F8 003F3538  38 80 00 00 */	li r4, 0
@@ -5785,9 +5887,9 @@ tag2num__Q32kh6Screen8WorldMapFUx:
 .L_803F66A8:
 /* 803F66A8 003F35E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F66AC 003F35EC  4E 80 00 20 */	blr 
+.endfn tag2num__Q32kh6Screen8WorldMapFUx
 
-.global finish__Q32kh6Screen8WorldMapFv
-finish__Q32kh6Screen8WorldMapFv:
+.fn finish__Q32kh6Screen8WorldMapFv, global
 /* 803F66B0 003F35F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803F66B4 003F35F4  7C 08 02 A6 */	mflr r0
 /* 803F66B8 003F35F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5825,9 +5927,9 @@ finish__Q32kh6Screen8WorldMapFv:
 /* 803F6730 003F3670  7C 08 03 A6 */	mtlr r0
 /* 803F6734 003F3674  38 21 00 20 */	addi r1, r1, 0x20
 /* 803F6738 003F3678  4E 80 00 20 */	blr 
+.endfn finish__Q32kh6Screen8WorldMapFv
 
-.global newMapOpen__Q32kh6Screen8WorldMapFv
-newMapOpen__Q32kh6Screen8WorldMapFv:
+.fn newMapOpen__Q32kh6Screen8WorldMapFv, global
 /* 803F673C 003F367C  38 00 00 03 */	li r0, 3
 /* 803F6740 003F3680  38 E0 00 01 */	li r7, 1
 /* 803F6744 003F3684  38 80 00 01 */	li r4, 1
@@ -5861,9 +5963,9 @@ newMapOpen__Q32kh6Screen8WorldMapFv:
 /* 803F67AC 003F36EC  42 00 FF A0 */	bdnz .L_803F674C
 /* 803F67B0 003F36F0  38 60 00 00 */	li r3, 0
 /* 803F67B4 003F36F4  4E 80 00 20 */	blr 
+.endfn newMapOpen__Q32kh6Screen8WorldMapFv
 
-.global getTarget__Q32kh6Screen8WorldMapFv
-getTarget__Q32kh6Screen8WorldMapFv:
+.fn getTarget__Q32kh6Screen8WorldMapFv, global
 /* 803F67B8 003F36F8  80 83 00 F8 */	lwz r4, 0xf8(r3)
 /* 803F67BC 003F36FC  38 00 FF FF */	li r0, -1
 /* 803F67C0 003F3700  2C 04 00 02 */	cmpwi r4, 2
@@ -5954,9 +6056,9 @@ getTarget__Q32kh6Screen8WorldMapFv:
 .L_803F68EC:
 /* 803F68EC 003F382C  7C 03 03 78 */	mr r3, r0
 /* 803F68F0 003F3830  4E 80 00 20 */	blr 
+.endfn getTarget__Q32kh6Screen8WorldMapFv
 
-.global "getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<f>f"
-"getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<f>f":
+.fn "getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<f>f", global
 /* 803F68F4 003F3834  C0 64 00 00 */	lfs f3, 0(r4)
 /* 803F68F8 003F3838  C0 42 1B 94 */	lfs f2, lbl_8051FEF4@sda21(r2)
 /* 803F68FC 003F383C  FC 03 10 40 */	fcmpo cr0, f3, f2
@@ -6062,9 +6164,9 @@ getTarget__Q32kh6Screen8WorldMapFv:
 /* 803F6A5C 003F399C  4D 82 00 20 */	beqlr 
 /* 803F6A60 003F39A0  90 03 01 78 */	stw r0, 0x178(r3)
 /* 803F6A64 003F39A4  4E 80 00 20 */	blr 
+.endfn "getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<f>f"
 
-.global changeInfo__Q32kh6Screen8WorldMapFv
-changeInfo__Q32kh6Screen8WorldMapFv:
+.fn changeInfo__Q32kh6Screen8WorldMapFv, global
 /* 803F6A68 003F39A8  94 21 FD E0 */	stwu r1, -0x220(r1)
 /* 803F6A6C 003F39AC  7C 08 02 A6 */	mflr r0
 /* 803F6A70 003F39B0  90 01 02 24 */	stw r0, 0x224(r1)
@@ -6749,9 +6851,9 @@ changeInfo__Q32kh6Screen8WorldMapFv:
 /* 803F74A8 003F43E8  7C 08 03 A6 */	mtlr r0
 /* 803F74AC 003F43EC  38 21 02 20 */	addi r1, r1, 0x220
 /* 803F74B0 003F43F0  4E 80 00 20 */	blr 
+.endfn changeInfo__Q32kh6Screen8WorldMapFv
 
-.global effectFirstTime__Q32kh6Screen8WorldMapFv
-effectFirstTime__Q32kh6Screen8WorldMapFv:
+.fn effectFirstTime__Q32kh6Screen8WorldMapFv, global
 /* 803F74B4 003F43F4  94 21 FE 50 */	stwu r1, -0x1b0(r1)
 /* 803F74B8 003F43F8  7C 08 02 A6 */	mflr r0
 /* 803F74BC 003F43FC  90 01 01 B4 */	stw r0, 0x1b4(r1)
@@ -7107,9 +7209,9 @@ effectFirstTime__Q32kh6Screen8WorldMapFv:
 /* 803F79F8 003F4938  7C 08 03 A6 */	mtlr r0
 /* 803F79FC 003F493C  38 21 01 B0 */	addi r1, r1, 0x1b0
 /* 803F7A00 003F4940  4E 80 00 20 */	blr 
+.endfn effectFirstTime__Q32kh6Screen8WorldMapFv
 
-.global __ct__Q42kh6Screen8WorldMap13OnyonDynamicsFv
-__ct__Q42kh6Screen8WorldMap13OnyonDynamicsFv:
+.fn __ct__Q42kh6Screen8WorldMap13OnyonDynamicsFv, global
 /* 803F7A04 003F4944  38 00 00 00 */	li r0, 0
 /* 803F7A08 003F4948  C0 42 1B B0 */	lfs f2, lbl_8051FF10@sda21(r2)
 /* 803F7A0C 003F494C  B0 03 00 30 */	sth r0, 0x30(r3)
@@ -7127,9 +7229,9 @@ __ct__Q42kh6Screen8WorldMap13OnyonDynamicsFv:
 /* 803F7A3C 003F497C  D0 23 00 14 */	stfs f1, 0x14(r3)
 /* 803F7A40 003F4980  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 803F7A44 003F4984  4E 80 00 20 */	blr 
+.endfn __ct__Q42kh6Screen8WorldMap13OnyonDynamicsFv
 
-.global initPtcl__Q42kh6Screen8WorldMap13OnyonDynamicsFv
-initPtcl__Q42kh6Screen8WorldMap13OnyonDynamicsFv:
+.fn initPtcl__Q42kh6Screen8WorldMap13OnyonDynamicsFv, global
 /* 803F7A48 003F4988  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F7A4C 003F498C  7C 08 02 A6 */	mflr r0
 /* 803F7A50 003F4990  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7193,9 +7295,9 @@ initPtcl__Q42kh6Screen8WorldMap13OnyonDynamicsFv:
 /* 803F7B34 003F4A74  7C 08 03 A6 */	mtlr r0
 /* 803F7B38 003F4A78  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F7B3C 003F4A7C  4E 80 00 20 */	blr 
+.endfn initPtcl__Q42kh6Screen8WorldMap13OnyonDynamicsFv
 
-.global "move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2<f>"
-"move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2<f>":
+.fn "move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2<f>", global
 /* 803F7B40 003F4A80  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803F7B44 003F4A84  7C 08 02 A6 */	mflr r0
 /* 803F7B48 003F4A88  90 01 00 64 */	stw r0, 0x64(r1)
@@ -7492,9 +7594,9 @@ initPtcl__Q42kh6Screen8WorldMap13OnyonDynamicsFv:
 /* 803F7F8C 003F4ECC  7C 08 03 A6 */	mtlr r0
 /* 803F7F90 003F4ED0  38 21 00 60 */	addi r1, r1, 0x60
 /* 803F7F94 003F4ED4  4E 80 00 20 */	blr 
+.endfn "move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2<f>"
 
-.global update__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMap
-update__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMap:
+.fn update__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMap, global
 /* 803F7F98 003F4ED8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803F7F9C 003F4EDC  7C 08 02 A6 */	mflr r0
 /* 803F7FA0 003F4EE0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7570,9 +7672,9 @@ update__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMap:
 /* 803F80B8 003F4FF8  7C 08 03 A6 */	mtlr r0
 /* 803F80BC 003F4FFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803F80C0 003F5000  4E 80 00 20 */	blr 
+.endfn update__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMap
 
-.global kill__Q42kh6Screen8WorldMap13OnyonDynamicsFv
-kill__Q42kh6Screen8WorldMap13OnyonDynamicsFv:
+.fn kill__Q42kh6Screen8WorldMap13OnyonDynamicsFv, global
 /* 803F80C4 003F5004  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F80C8 003F5008  7C 08 02 A6 */	mflr r0
 /* 803F80CC 003F500C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7585,15 +7687,15 @@ kill__Q42kh6Screen8WorldMap13OnyonDynamicsFv:
 /* 803F80E8 003F5028  7C 08 03 A6 */	mtlr r0
 /* 803F80EC 003F502C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F80F0 003F5030  4E 80 00 20 */	blr 
+.endfn kill__Q42kh6Screen8WorldMap13OnyonDynamicsFv
 
-.global getName__Q35efx2d8WorldMap11ArgDirScaleFv
-getName__Q35efx2d8WorldMap11ArgDirScaleFv:
+.fn getName__Q35efx2d8WorldMap11ArgDirScaleFv, weak
 /* 803F80F4 003F5034  3C 60 80 4A */	lis r3, lbl_80498348@ha
 /* 803F80F8 003F5038  38 63 83 48 */	addi r3, r3, lbl_80498348@l
 /* 803F80FC 003F503C  4E 80 00 20 */	blr 
+.endfn getName__Q35efx2d8WorldMap11ArgDirScaleFv
 
-.global __dt__Q35efx2d8WorldMap10T2DShstar1Fv
-__dt__Q35efx2d8WorldMap10T2DShstar1Fv:
+.fn __dt__Q35efx2d8WorldMap10T2DShstar1Fv, weak
 /* 803F8100 003F5040  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F8104 003F5044  7C 08 02 A6 */	mflr r0
 /* 803F8108 003F5048  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7635,9 +7737,9 @@ __dt__Q35efx2d8WorldMap10T2DShstar1Fv:
 /* 803F8190 003F50D0  7C 08 03 A6 */	mtlr r0
 /* 803F8194 003F50D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F8198 003F50D8  4E 80 00 20 */	blr 
+.endfn __dt__Q35efx2d8WorldMap10T2DShstar1Fv
 
-.global __dt__Q35efx2d8WorldMap11T2DMapFlareFv
-__dt__Q35efx2d8WorldMap11T2DMapFlareFv:
+.fn __dt__Q35efx2d8WorldMap11T2DMapFlareFv, weak
 /* 803F819C 003F50DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F81A0 003F50E0  7C 08 02 A6 */	mflr r0
 /* 803F81A4 003F50E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7679,9 +7781,9 @@ __dt__Q35efx2d8WorldMap11T2DMapFlareFv:
 /* 803F822C 003F516C  7C 08 03 A6 */	mtlr r0
 /* 803F8230 003F5170  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F8234 003F5174  4E 80 00 20 */	blr 
+.endfn __dt__Q35efx2d8WorldMap11T2DMapFlareFv
 
-.global __dt__Q35efx2d8WorldMap13T2DRocketGlowFv
-__dt__Q35efx2d8WorldMap13T2DRocketGlowFv:
+.fn __dt__Q35efx2d8WorldMap13T2DRocketGlowFv, weak
 /* 803F8238 003F5178  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F823C 003F517C  7C 08 02 A6 */	mflr r0
 /* 803F8240 003F5180  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7723,9 +7825,9 @@ __dt__Q35efx2d8WorldMap13T2DRocketGlowFv:
 /* 803F82C8 003F5208  7C 08 03 A6 */	mtlr r0
 /* 803F82CC 003F520C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F82D0 003F5210  4E 80 00 20 */	blr 
+.endfn __dt__Q35efx2d8WorldMap13T2DRocketGlowFv
 
-.global __dt__Q32kh6Screen8WorldMapFv
-__dt__Q32kh6Screen8WorldMapFv:
+.fn __dt__Q32kh6Screen8WorldMapFv, weak
 /* 803F82D4 003F5214  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F82D8 003F5218  7C 08 02 A6 */	mflr r0
 /* 803F82DC 003F521C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7756,13 +7858,13 @@ __dt__Q32kh6Screen8WorldMapFv:
 /* 803F8338 003F5278  7C 08 03 A6 */	mtlr r0
 /* 803F833C 003F527C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F8340 003F5280  4E 80 00 20 */	blr 
+.endfn __dt__Q32kh6Screen8WorldMapFv
 
-.global draw__Q34Game8WorldMap4BaseFR8Graphics
-draw__Q34Game8WorldMap4BaseFR8Graphics:
+.fn draw__Q34Game8WorldMap4BaseFR8Graphics, weak
 /* 803F8344 003F5284  4E 80 00 20 */	blr 
+.endfn draw__Q34Game8WorldMap4BaseFR8Graphics
 
-.global __dt__Q32kh6Screen16khUtilColorAnmWMFv
-__dt__Q32kh6Screen16khUtilColorAnmWMFv:
+.fn __dt__Q32kh6Screen16khUtilColorAnmWMFv, weak
 /* 803F8348 003F5288  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F834C 003F528C  7C 08 02 A6 */	mflr r0
 /* 803F8350 003F5290  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7801,6 +7903,7 @@ __dt__Q32kh6Screen16khUtilColorAnmWMFv:
 /* 803F83CC 003F530C  7C 08 03 A6 */	mtlr r0
 /* 803F83D0 003F5310  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F83D4 003F5314  4E 80 00 20 */	blr 
+.endfn __dt__Q32kh6Screen16khUtilColorAnmWMFv
 
 .fn __dt__Q32kh6Screen16khUtilFadePaneWMFv, weak
 /* 803F83D8 003F5318  94 21 FF F0 */	stwu r1, -0x10(r1)

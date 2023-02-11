@@ -1,23 +1,25 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496428:
+.obj lbl_80496428, local
 	.asciz "ebi2DGraph.cpp"
+.endobj lbl_80496428
 .balign 4
-lbl_80496438:
+.obj lbl_80496438, local
 	.asciz "P2Assert"
+.endobj lbl_80496438
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global kFadeTime__Q23ebi8E2DFader
-kFadeTime__Q23ebi8E2DFader:
+.obj kFadeTime__Q23ebi8E2DFader, global
 	.float 0.5
-lbl_8051F9FC:
+.endobj kFadeTime__Q23ebi8E2DFader
+.obj lbl_8051F9FC, local
 	.float 0.5
+.endobj lbl_8051F9FC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-E2DScreen_searchAssert__3ebiFP9J2DScreenUx:
+.fn E2DScreen_searchAssert__3ebiFP9J2DScreenUx, global
 /* 803CA358 003C7298  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803CA35C 003C729C  7C 08 02 A6 */	mflr r0
 /* 803CA360 003C72A0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -54,9 +56,9 @@ E2DScreen_searchAssert__3ebiFP9J2DScreenUx:
 /* 803CA3D8 003C7318  7C 08 03 A6 */	mtlr r0
 /* 803CA3DC 003C731C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803CA3E0 003C7320  4E 80 00 20 */	blr 
+.endfn E2DScreen_searchAssert__3ebiFP9J2DScreenUx
 
-.global E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb
-E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb:
+.fn E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb, global
 /* 803CA3E4 003C7324  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803CA3E8 003C7328  7C 08 02 A6 */	mflr r0
 /* 803CA3EC 003C732C  38 A0 00 00 */	li r5, 0
@@ -188,9 +190,9 @@ E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb:
 /* 803CA5B0 003C74F0  7C 08 03 A6 */	mtlr r0
 /* 803CA5B4 003C74F4  38 21 00 30 */	addi r1, r1, 0x30
 /* 803CA5B8 003C74F8  4E 80 00 20 */	blr 
+.endfn E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb
 
-.global E2DPane_setTreeShow__3ebiFP7J2DPane
-E2DPane_setTreeShow__3ebiFP7J2DPane:
+.fn E2DPane_setTreeShow__3ebiFP7J2DPane, global
 /* 803CA5BC 003C74FC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803CA5C0 003C7500  7C 08 02 A6 */	mflr r0
 /* 803CA5C4 003C7504  90 01 00 34 */	stw r0, 0x34(r1)
@@ -309,15 +311,15 @@ E2DPane_setTreeShow__3ebiFP7J2DPane:
 /* 803CA754 003C7694  7C 08 03 A6 */	mtlr r0
 /* 803CA758 003C7698  38 21 00 30 */	addi r1, r1, 0x30
 /* 803CA75C 003C769C  4E 80 00 20 */	blr 
+.endfn E2DPane_setTreeShow__3ebiFP7J2DPane
 
-.global show__7J2DPaneFv
-show__7J2DPaneFv:
+.fn show__7J2DPaneFv, weak
 /* 803CA760 003C76A0  38 00 00 01 */	li r0, 1
 /* 803CA764 003C76A4  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 803CA768 003C76A8  4E 80 00 20 */	blr 
+.endfn show__7J2DPaneFv
 
-.global E2DPane_setTreeHide__3ebiFP7J2DPane
-E2DPane_setTreeHide__3ebiFP7J2DPane:
+.fn E2DPane_setTreeHide__3ebiFP7J2DPane, global
 /* 803CA76C 003C76AC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803CA770 003C76B0  7C 08 02 A6 */	mflr r0
 /* 803CA774 003C76B4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -436,15 +438,15 @@ E2DPane_setTreeHide__3ebiFP7J2DPane:
 /* 803CA904 003C7844  7C 08 03 A6 */	mtlr r0
 /* 803CA908 003C7848  38 21 00 30 */	addi r1, r1, 0x30
 /* 803CA90C 003C784C  4E 80 00 20 */	blr 
+.endfn E2DPane_setTreeHide__3ebiFP7J2DPane
 
-.global hide__7J2DPaneFv
-hide__7J2DPaneFv:
+.fn hide__7J2DPaneFv, weak
 /* 803CA910 003C7850  38 00 00 00 */	li r0, 0
 /* 803CA914 003C7854  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 803CA918 003C7858  4E 80 00 20 */	blr 
+.endfn hide__7J2DPaneFv
 
-.global E2DPane_setTreeCallBackMessage__3ebiFPQ29P2DScreen3MgrP7J2DPane
-E2DPane_setTreeCallBackMessage__3ebiFPQ29P2DScreen3MgrP7J2DPane:
+.fn E2DPane_setTreeCallBackMessage__3ebiFPQ29P2DScreen3MgrP7J2DPane, global
 /* 803CA91C 003C785C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803CA920 003C7860  7C 08 02 A6 */	mflr r0
 /* 803CA924 003C7864  90 01 00 44 */	stw r0, 0x44(r1)
@@ -713,9 +715,9 @@ E2DPane_setTreeCallBackMessage__3ebiFPQ29P2DScreen3MgrP7J2DPane:
 /* 803CACEC 003C7C2C  7C 08 03 A6 */	mtlr r0
 /* 803CACF0 003C7C30  38 21 00 40 */	addi r1, r1, 0x40
 /* 803CACF4 003C7C34  4E 80 00 20 */	blr 
+.endfn E2DPane_setTreeCallBackMessage__3ebiFPQ29P2DScreen3MgrP7J2DPane
 
-.global E2DPane_getGlbCenter__3ebiFP7J2DPane
-E2DPane_getGlbCenter__3ebiFP7J2DPane:
+.fn E2DPane_getGlbCenter__3ebiFP7J2DPane, global
 /* 803CACF8 003C7C38  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803CACFC 003C7C3C  7C 08 02 A6 */	mflr r0
 /* 803CAD00 003C7C40  90 01 00 44 */	stw r0, 0x44(r1)
@@ -769,3 +771,4 @@ E2DPane_getGlbCenter__3ebiFP7J2DPane:
 /* 803CADBC 003C7CFC  7C 08 03 A6 */	mtlr r0
 /* 803CADC0 003C7D00  38 21 00 40 */	addi r1, r1, 0x40
 /* 803CADC4 003C7D04  4E 80 00 20 */	blr 
+.endfn E2DPane_getGlbCenter__3ebiFP7J2DPane

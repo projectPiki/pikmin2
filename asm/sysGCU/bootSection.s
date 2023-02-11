@@ -83,7 +83,7 @@ lbl_8049B0F4:
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804ECFE8: #no idea wtf this is
+lbl_804ECFE8: # no idea wtf this is
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000003
@@ -151,7 +151,7 @@ lbl_804ED08C:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte waitLoadResource__11BootSectionFv
-	.4byte 0x00000000 #this is likely padding for alignment
+	.4byte 0x00000000 # this is likely padding for alignment
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -220,7 +220,7 @@ __vt__11BootSection:
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__23Delegate<11BootSection>Fv"
-	.skip 0xC #padding for alignment?
+	.skip 0xC # padding for alignment?
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # bootSection.cpp
@@ -262,8 +262,7 @@ lbl_805209B8:
 	.float 1.5
 .balign 8
 lbl_805209C0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_805209C8:
 	.float 10.0
 lbl_805209CC:
@@ -302,7 +301,7 @@ lbl_80520A0C:
 	.float 0.8
 lbl_80520A10:
 	.float 0.2
-lbl_80520A14: #tau
+lbl_80520A14: # tau
 	.float 6.2831855
 lbl_80520A18:
 	.float 0.1
@@ -324,8 +323,7 @@ lbl_80520A38:
 	.float 166.0
 .balign 8
 lbl_80520A40:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 lbl_80520A48:
 	.float 0.03333
 lbl_80520A4C:

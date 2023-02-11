@@ -2,80 +2,96 @@
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q34Game10PelletList3Mgr
-__vt__Q34Game10PelletList3Mgr:
+.obj __vt__Q34Game10PelletList3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game10PelletList3MgrFv
+.endobj __vt__Q34Game10PelletList3Mgr
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80483320:
+.obj lbl_80483320, local
 	.asciz "gamePelletList"
+.endobj lbl_80483320
 .balign 4
-lbl_80483330:
+.obj lbl_80483330, local
 	.asciz "gamePelletList.cpp"
+.endobj lbl_80483330
 .balign 4
-lbl_80483344:
+.obj lbl_80483344, local
 	.asciz "P2Assert"
+.endobj lbl_80483344
 .balign 4
-lbl_80483350:
+.obj lbl_80483350, local
 	.asciz "numberpellet_config.txt"
+.endobj lbl_80483350
 .balign 4
-lbl_80483368:
+.obj lbl_80483368, local
 	.asciz "carcass_config.txt"
+.endobj lbl_80483368
 .balign 4
-lbl_8048337C:
+.obj lbl_8048337C, local
 	.asciz "fruit_config.txt"
+.endobj lbl_8048337C
 .balign 4
-lbl_80483390:
+.obj lbl_80483390, local
 	.asciz "otakara_config.txt"
+.endobj lbl_80483390
 .balign 4
-lbl_804833A4:
+.obj lbl_804833A4, local
 	.asciz "item_config.txt"
+.endobj lbl_804833A4
 .balign 4
-lbl_804833B4:
+.obj lbl_804833B4, local
 	.4byte lbl_80483350
 	.4byte lbl_80483368
 	.4byte lbl_8048337C
 	.4byte lbl_80483390
 	.4byte lbl_804833A4
+.endobj lbl_804833B4
 .balign 4
-lbl_804833C8:
+.obj lbl_804833C8, local
 	.asciz "/user/Abe/Pellet/%s/pelletlist_%s.szs"
+.endobj lbl_804833C8
 .balign 4
-lbl_804833F0:
+.obj lbl_804833F0, local
 	.asciz "don't use this !\n"
+.endobj lbl_804833F0
 .balign 4
-lbl_80483404:
+.obj lbl_80483404, local
 	.asciz "/user/Kando/pelletlist.szs"
+.endobj lbl_80483404
 .balign 4
-lbl_80483420:
+.obj lbl_80483420, local
 	.asciz "no pelletlist.szs\n"
+.endobj lbl_80483420
 .balign 4
-lbl_80483434:
+.obj lbl_80483434, local
 	.asciz "no config file [%s]\n"
+.endobj lbl_80483434
 .balign 4
-lbl_8048344C:
+.obj lbl_8048344C, local
 	.asciz "dictNo:%d \n"
+.endobj lbl_8048344C
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mInstance__Q34Game10PelletList3Mgr
-mInstance__Q34Game10PelletList3Mgr:
+.obj mInstance__Q34Game10PelletList3Mgr, global
 	.skip 4
+.endobj mInstance__Q34Game10PelletList3Mgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A248:
+.obj lbl_8051A248, local
 	.asciz "jpn"
+.endobj lbl_8051A248
 .balign 4
-lbl_8051A24C:
+.obj lbl_8051A24C, local
 	.asciz "us"
+.endobj lbl_8051A24C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
-getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind:
+.fn getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind, global
 /* 80227D5C 00224C9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227D60 00224CA0  7C 08 02 A6 */	mflr r0
 /* 80227D64 00224CA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -106,9 +122,9 @@ getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind:
 /* 80227DC0 00224D00  7C 08 03 A6 */	mtlr r0
 /* 80227DC4 00224D04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227DC8 00224D08  4E 80 00 20 */	blr 
+.endfn getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
 
-.global getCount__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
-getCount__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind:
+.fn getCount__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind, global
 /* 80227DCC 00224D0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227DD0 00224D10  7C 08 02 A6 */	mflr r0
 /* 80227DD4 00224D14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -140,9 +156,9 @@ getCount__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind:
 /* 80227E34 00224D74  7C 08 03 A6 */	mtlr r0
 /* 80227E38 00224D78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227E3C 00224D7C  4E 80 00 20 */	blr 
+.endfn getCount__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
 
-.global getConfigAndKind__Q34Game10PelletList3MgrFPcRQ34Game10PelletList5cKind
-getConfigAndKind__Q34Game10PelletList3MgrFPcRQ34Game10PelletList5cKind:
+.fn getConfigAndKind__Q34Game10PelletList3MgrFPcRQ34Game10PelletList5cKind, global
 /* 80227E40 00224D80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80227E44 00224D84  7C 08 02 A6 */	mflr r0
 /* 80227E48 00224D88  90 01 00 24 */	stw r0, 0x24(r1)
@@ -196,9 +212,9 @@ getConfigAndKind__Q34Game10PelletList3MgrFPcRQ34Game10PelletList5cKind:
 /* 80227EF4 00224E34  7C 08 03 A6 */	mtlr r0
 /* 80227EF8 00224E38  38 21 00 20 */	addi r1, r1, 0x20
 /* 80227EFC 00224E3C  4E 80 00 20 */	blr 
+.endfn getConfigAndKind__Q34Game10PelletList3MgrFPcRQ34Game10PelletList5cKind
 
-.global __dt__Q34Game10PelletList3MgrFv
-__dt__Q34Game10PelletList3MgrFv:
+.fn __dt__Q34Game10PelletList3MgrFv, global
 /* 80227F00 00224E40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227F04 00224E44  7C 08 02 A6 */	mflr r0
 /* 80227F08 00224E48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -228,9 +244,9 @@ __dt__Q34Game10PelletList3MgrFv:
 /* 80227F64 00224EA4  7C 08 03 A6 */	mtlr r0
 /* 80227F68 00224EA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227F6C 00224EAC  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game10PelletList3MgrFv
 
-.global loadResource__Q34Game10PelletList3MgrFv
-loadResource__Q34Game10PelletList3MgrFv:
+.fn loadResource__Q34Game10PelletList3MgrFv, global
 /* 80227F70 00224EB0  94 21 F9 A0 */	stwu r1, -0x660(r1)
 /* 80227F74 00224EB4  7C 08 02 A6 */	mflr r0
 /* 80227F78 00224EB8  3C 80 80 51 */	lis r4, gGameConfig__4Game@ha
@@ -358,18 +374,18 @@ loadResource__Q34Game10PelletList3MgrFv:
 /* 8022813C 0022507C  7C 08 03 A6 */	mtlr r0
 /* 80228140 00225080  38 21 06 60 */	addi r1, r1, 0x660
 /* 80228144 00225084  4E 80 00 20 */	blr 
+.endfn loadResource__Q34Game10PelletList3MgrFv
 
-.global getDictionaryNum__Q34Game10PelletList3MgrFv
-getDictionaryNum__Q34Game10PelletList3MgrFv:
+.fn getDictionaryNum__Q34Game10PelletList3MgrFv, global
 /* 80228148 00225088  80 6D 95 D8 */	lwz r3, mInstance__Q34Game10PelletList3Mgr@sda21(r13)
 /* 8022814C 0022508C  80 83 00 04 */	lwz r4, 4(r3)
 /* 80228150 00225090  80 64 00 98 */	lwz r3, 0x98(r4)
 /* 80228154 00225094  80 04 00 78 */	lwz r0, 0x78(r4)
 /* 80228158 00225098  7C 60 1A 14 */	add r3, r0, r3
 /* 8022815C 0022509C  4E 80 00 20 */	blr 
+.endfn getDictionaryNum__Q34Game10PelletList3MgrFv
 
-.global getConfigFromDictionaryNo__Q34Game10PelletList3MgrFi
-getConfigFromDictionaryNo__Q34Game10PelletList3MgrFi:
+.fn getConfigFromDictionaryNo__Q34Game10PelletList3MgrFi, global
 /* 80228160 002250A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228164 002250A4  7C 08 02 A6 */	mflr r0
 /* 80228168 002250A8  38 80 00 00 */	li r4, 0
@@ -414,9 +430,9 @@ getConfigFromDictionaryNo__Q34Game10PelletList3MgrFi:
 /* 802281F8 00225138  7C 08 03 A6 */	mtlr r0
 /* 802281FC 0022513C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228200 00225140  4E 80 00 20 */	blr 
+.endfn getConfigFromDictionaryNo__Q34Game10PelletList3MgrFi
 
-.global getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi
-getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi:
+.fn getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi, global
 /* 80228204 00225144  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80228208 00225148  7C 08 02 A6 */	mflr r0
 /* 8022820C 0022514C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -460,9 +476,9 @@ getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi:
 /* 8022829C 002251DC  7C 08 03 A6 */	mtlr r0
 /* 802282A0 002251E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802282A4 002251E4  4E 80 00 20 */	blr 
+.endfn getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi
 
-.global globalInstance__Q34Game10PelletList3MgrFv
-globalInstance__Q34Game10PelletList3MgrFv:
+.fn globalInstance__Q34Game10PelletList3MgrFv, global
 /* 802282A8 002251E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802282AC 002251EC  7C 08 02 A6 */	mflr r0
 /* 802282B0 002251F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -497,3 +513,4 @@ globalInstance__Q34Game10PelletList3MgrFv:
 /* 8022831C 0022525C  7C 08 03 A6 */	mtlr r0
 /* 80228320 00225260  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228324 00225264  4E 80 00 20 */	blr 
+.endfn globalInstance__Q34Game10PelletList3MgrFv
