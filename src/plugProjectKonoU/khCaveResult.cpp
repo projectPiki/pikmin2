@@ -1545,7 +1545,7 @@ void ObjCaveResult::statusLost()
 		FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 		{
 			if (cNode->mLostNum != 0 && ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {
-				pos.y = mScrollUpDown * (f32)(i - 3 - mScrollSelIndexMax) + _100;
+				pos.y = mScrollUpDown * (i - 3 - mScrollSelIndexMax) + _100;
 				cNode->mItemMgr->init(pos, i & 1);
 				mChangeStateDelay = mScrollTargetDist;
 				return;
@@ -2115,41 +2115,8 @@ blr
  */
 void ObjCaveResult::setAlpha(int index, unsigned char alpha)
 {
-	u64 tag           = 'Nicon00';
-	volatile u64 tag2 = 'Nicon01';
-	mScreenMain->search(tag + index)->setAlpha(alpha);
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r6, lbl_80498470@ha
-slwi     r4, r4, 3
-stw      r0, 0x24(r1)
-addi     r0, r1, 8
-stw      r31, 0x1c(r1)
-mr       r31, r5
-lfdu     f1, lbl_80498470@l(r6)
-lfd      f0, 8(r6)
-add      r6, r0, r4
-stfd     f1, 8(r1)
-stfd     f0, 0x10(r1)
-lwz      r3, 0x40(r3)
-lwz      r5, 0(r6)
-lwz      r12, 0(r3)
-lwz      r6, 4(r6)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-mr       r4, r31
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	u64 tag[2] = { 'Nicon00', 'Nicon01' };
+	mScreenMain->search(tag[index])->setAlpha(alpha);
 }
 
 /*
@@ -2268,9 +2235,9 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool flag)
 			item->mRect.p1.y = y;
 			item->mRect.p2.x = 40.0f * randFloat() - 20.0f;
 			item->mRect.p2.y = 32.0f * y2 - 30.0f;
-			item->_10        = (u16)(4.0f * y1 + 2.0f);
-			item->_1A        = (u16)(10000.0f * x2 - 5000.0f);
-			item->mCounter   = (u8)(10.0f * x1 - 8.0f);
+			item->_10        = (4.0f * y1 + 2.0f);
+			item->_1A        = (10000.0f * x2 - 5000.0f);
+			item->mCounter   = (10.0f * x1 - 8.0f);
 		}
 		float xoffs[5] = { kh::Screen::ObjCaveResult::msVal._24, kh::Screen::ObjCaveResult::msVal._28, kh::Screen::ObjCaveResult::msVal._2C,
 			               kh::Screen::ObjCaveResult::msVal._30, kh::Screen::ObjCaveResult::msVal._34 };

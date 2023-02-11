@@ -1,8 +1,9 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497AA0:
+.obj lbl_80497AA0, local
 	.asciz "ebiOmakeMgr.cpp"
+.endobj lbl_80497AA0
 .balign 4
 lbl_80497AB0:
 	.asciz "FSMState_OmakeScreen"
@@ -114,13 +115,16 @@ __vt__Q33ebi5Omake15FSMStateMachine:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FEA0:
+.obj lbl_8051FEA0, local
 	.asciz "Standby"
+.endobj lbl_8051FEA0
 .balign 4
-lbl_8051FEA8:
+.obj lbl_8051FEA8, local
 	.float 3.0
-lbl_8051FEAC:
+.endobj lbl_8051FEA8
+.obj lbl_8051FEAC, local
 	.float 5.0
+.endobj lbl_8051FEAC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr
