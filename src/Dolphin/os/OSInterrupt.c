@@ -1,20 +1,49 @@
 #include "Dolphin/os.h"
+#include "Dolphin/hw_regs.h"
+
+static asm void ExternalInterruptHandler(register __OSException exception, register OSContext* context);
+
+extern void __RAS_OSDisableInterrupts_begin(void);
+extern void __RAS_OSDisableInterrupts_end(void);
+
+static __OSInterruptHandler* InterruptHandlerTable;
+
+static OSInterruptMask InterruptPrioTable[] = {
+	OS_INTERRUPTMASK_PI_ERROR,
+	OS_INTERRUPTMASK_PI_DEBUG,
+	OS_INTERRUPTMASK_MEM,
+	OS_INTERRUPTMASK_PI_RSW,
+	OS_INTERRUPTMASK_PI_VI,
+	OS_INTERRUPTMASK_PI_PE,
+	OS_INTERRUPTMASK_PI_HSP,
+	OS_INTERRUPTMASK_DSP_ARAM | OS_INTERRUPTMASK_DSP_DSP | OS_INTERRUPTMASK_AI | OS_INTERRUPTMASK_EXI | OS_INTERRUPTMASK_PI_SI
+	    | OS_INTERRUPTMASK_PI_DI,
+	OS_INTERRUPTMASK_DSP_AI,
+	OS_INTERRUPTMASK_PI_CP,
+	0xFFFFFFFF,
+};
+
+volatile OSTime __OSLastInterruptTime;
+volatile __OSInterrupt __OSLastInterrupt;
+volatile u32 __OSLastInterruptSrr0;
 
 /*
  * --INFO--
  * Address:	800EEC38
  * Size:	000014
  */
-int OSDisableInterrupts(void)
+asm BOOL OSDisableInterrupts()
 {
-	/*
-	.loc_0x0:
-	  mfmsr     r3
-	  rlwinm    r4,r3,0,17,15
-	  mtmsr     r4
-	  rlwinm    r3,r3,17,31,31
-	  blr
-	*/
+	// clang-format off
+    nofralloc
+entry    __RAS_OSDisableInterrupts_begin
+    mfmsr   r3
+    rlwinm  r4, r3, 0, 17, 15
+    mtmsr   r4
+entry    __RAS_OSDisableInterrupts_end
+    rlwinm  r3, r3, 17, 31, 31
+    blr
+	// clang-format on
 }
 
 /*
@@ -22,16 +51,17 @@ int OSDisableInterrupts(void)
  * Address:	800EEC4C
  * Size:	000014
  */
-int OSEnableInterrupts(void)
+asm BOOL OSEnableInterrupts()
 {
-	/*
-	.loc_0x0:
-	  mfmsr     r3
-	  ori       r4, r3, 0x8000
-	  mtmsr     r4
-	  rlwinm    r3,r3,17,31,31
-	  blr
-	*/
+	// clang-format off
+    nofralloc
+
+    mfmsr   r3
+    ori     r4, r3, 0x8000
+    mtmsr   r4
+    rlwinm  r3, r3, 17, 31, 31
+    blr
+	// clang-format on
 }
 
 /*
@@ -39,24 +69,23 @@ int OSEnableInterrupts(void)
  * Address:	800EEC60
  * Size:	000024
  */
-void OSRestoreInterrupts(int)
-{
-	/*
-	.loc_0x0:
-	  cmpwi     r3, 0
-	  mfmsr     r4
-	  beq-      .loc_0x14
-	  ori       r5, r4, 0x8000
-	  b         .loc_0x18
+asm BOOL OSRestoreInterrupts(register BOOL level) {
+	// clang-format off
 
-	.loc_0x14:
-	  rlwinm    r5,r4,0,17,15
+    nofralloc
 
-	.loc_0x18:
-	  mtmsr     r5
-	  rlwinm    r3,r4,17,31,31
-	  blr
-	*/
+    cmpwi   level, 0
+    mfmsr   r4
+    beq     _disable
+    ori     r5, r4, 0x8000
+    b       _restore
+_disable:
+    rlwinm  r5, r4, 0, 17, 15
+_restore:
+    mtmsr   r5
+    rlwinm  r3, r4, 17, 31, 31
+    blr
+	// clang-format on
 }
 
 /*
@@ -64,18 +93,13 @@ void OSRestoreInterrupts(int)
  * Address:	800EEC84
  * Size:	00001C
  */
-void __OSSetInterruptHandler(int, void*)
+__OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterruptHandler handler)
 {
-	/*
-	.loc_0x0:
-	  extsh     r0, r3
-	  lwz       r3, -0x7080(r13)
-	  rlwinm    r0,r0,2,0,29
-	  add       r5, r3, r0
-	  lwz       r3, 0x0(r5)
-	  stw       r4, 0x0(r5)
-	  blr
-	*/
+	__OSInterruptHandler oldHandler;
+
+	oldHandler                       = InterruptHandlerTable[interrupt];
+	InterruptHandlerTable[interrupt] = handler;
+	return oldHandler;
 }
 
 /*
@@ -83,57 +107,27 @@ void __OSSetInterruptHandler(int, void*)
  * Address:	800EECA0
  * Size:	000014
  */
-void __OSGetInterruptHandler(void)
-{
-	/*
-	.loc_0x0:
-	  extsh     r0, r3
-	  lwz       r3, -0x7080(r13)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r3, r3, r0
-	  blr
-	*/
-}
+__OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt interrupt) { return InterruptHandlerTable[interrupt]; }
 
 /*
  * --INFO--
  * Address:	800EECB4
  * Size:	000074
  */
-void __OSInterruptInit(void)
+void __OSInterruptInit()
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  lis       r31, 0x8000
-	  addi      r0, r31, 0x3040
-	  stw       r0, -0x7080(r13)
-	  li        r4, 0
-	  li        r5, 0x80
-	  lwz       r3, -0x7080(r13)
-	  bl        -0xE9C28
-	  li        r0, 0
-	  stw       r0, 0xC4(r31)
-	  lis       r3, 0xCC00
-	  addi      r4, r3, 0x3000
-	  stw       r0, 0xC8(r31)
-	  li        r0, 0xF0
-	  li        r3, -0x20
-	  stw       r0, 0x4(r4)
-	  bl        0x300
-	  lis       r3, 0x800F
-	  subi      r4, r3, 0xBAC
-	  li        r3, 0x4
-	  bl        -0x3414
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
+	InterruptHandlerTable = OSPhysicalToCached(0x3040);
+	memset(InterruptHandlerTable, 0, __OS_INTERRUPT_MAX * sizeof(__OSInterruptHandler));
+
+	__OSPriorInterruptMask = 0;
+
+	__OSCurrentInterruptMask = 0;
+
+	__PIRegs[PI_INTRPT_MASK] = 0xF0;
+
+	__OSMaskInterrupts(OS_INTERRUPTMASK_MEM | OS_INTERRUPTMASK_DSP | OS_INTERRUPTMASK_AI | OS_INTERRUPTMASK_EXI | OS_INTERRUPTMASK_PI);
+
+	__OSSetExceptionHandler(4, ExternalInterruptHandler);
 }
 
 /*
@@ -141,287 +135,167 @@ void __OSInterruptInit(void)
  * Address:	800EED28
  * Size:	0002D8
  */
-void SetInterruptMask(void)
+static u32 SetInterruptMask(OSInterruptMask mask, OSInterruptMask current)
 {
-	/*
-	.loc_0x0:
-	  cntlzw    r0, r3
-	  cmpwi     r0, 0xC
-	  bge-      .loc_0x2C
-	  cmpwi     r0, 0x8
-	  beq-      .loc_0x10C
-	  bge-      .loc_0x13C
-	  cmpwi     r0, 0x5
-	  bge-      .loc_0xB8
-	  cmpwi     r0, 0
-	  bge-      .loc_0x4C
-	  b         .loc_0x2D4
+	u32 reg;
 
-	.loc_0x2C:
-	  cmpwi     r0, 0x11
-	  bge-      .loc_0x40
-	  cmpwi     r0, 0xF
-	  bge-      .loc_0x1E0
-	  b         .loc_0x18C
+	switch (__cntlzw(mask)) {
+	case __OS_INTERRUPT_MEM_0:
+	case __OS_INTERRUPT_MEM_1:
+	case __OS_INTERRUPT_MEM_2:
+	case __OS_INTERRUPT_MEM_3:
+	case __OS_INTERRUPT_MEM_ADDRESS:
+		reg = 0;
+		if (!(current & OS_INTERRUPTMASK_MEM_0)) {
+			reg |= 0x1;
+		}
+		if (!(current & OS_INTERRUPTMASK_MEM_1)) {
+			reg |= 0x2;
+		}
+		if (!(current & OS_INTERRUPTMASK_MEM_2)) {
+			reg |= 0x4;
+		}
+		if (!(current & OS_INTERRUPTMASK_MEM_3)) {
+			reg |= 0x8;
+		}
+		if (!(current & OS_INTERRUPTMASK_MEM_ADDRESS)) {
+			reg |= 0x10;
+		}
+		__MEMRegs[MEM_INTRPT_MASK] = (u16)reg;
+		mask &= ~OS_INTERRUPTMASK_MEM;
+		break;
 
-	.loc_0x40:
-	  cmpwi     r0, 0x1B
-	  bge-      .loc_0x2D4
-	  b         .loc_0x220
+	case __OS_INTERRUPT_DSP_AI:
+	case __OS_INTERRUPT_DSP_ARAM:
+	case __OS_INTERRUPT_DSP_DSP:
+		reg = __DSPRegs[DSP_CONTROL_STATUS];
+		reg &= ~0x1F8;
+		if (!(current & OS_INTERRUPTMASK_DSP_AI)) {
+			reg |= 0x10;
+		}
+		if (!(current & OS_INTERRUPTMASK_DSP_ARAM)) {
+			reg |= 0x40;
+		}
+		if (!(current & OS_INTERRUPTMASK_DSP_DSP)) {
+			reg |= 0x100;
+		}
+		__DSPRegs[DSP_CONTROL_STATUS] = (u16)reg;
+		mask &= ~OS_INTERRUPTMASK_DSP;
+		break;
 
-	.loc_0x4C:
-	  rlwinm    r0,r4,0,0,0
-	  cmplwi    r0, 0
-	  li        r5, 0
-	  bne-      .loc_0x60
-	  ori       r5, r5, 0x1
+	case __OS_INTERRUPT_AI_AI:
+		reg = __AIRegs[AI_CONTROL];
+		reg &= ~0x2C;
+		if (!(current & OS_INTERRUPTMASK_AI_AI)) {
+			reg |= 0x4;
+		}
+		__AIRegs[AI_CONTROL] = reg;
+		mask &= ~OS_INTERRUPTMASK_AI;
+		break;
 
-	.loc_0x60:
-	  rlwinm    r0,r4,0,1,1
-	  cmplwi    r0, 0
-	  bne-      .loc_0x70
-	  ori       r5, r5, 0x2
+	case __OS_INTERRUPT_EXI_0_EXI:
+	case __OS_INTERRUPT_EXI_0_TC:
+	case __OS_INTERRUPT_EXI_0_EXT:
+		reg = __EXIRegs[EXI_CHAN_0_STAT];
+		reg &= ~0x2C0F;
+		if (!(current & OS_INTERRUPTMASK_EXI_0_EXI)) {
+			reg |= 0x1;
+		}
+		if (!(current & OS_INTERRUPTMASK_EXI_0_TC)) {
+			reg |= 0x4;
+		}
+		if (!(current & OS_INTERRUPTMASK_EXI_0_EXT)) {
+			reg |= 0x400;
+		}
+		__EXIRegs[EXI_CHAN_0_STAT] = reg;
+		mask &= ~OS_INTERRUPTMASK_EXI_0;
+		break;
 
-	.loc_0x70:
-	  rlwinm    r0,r4,0,2,2
-	  cmplwi    r0, 0
-	  bne-      .loc_0x80
-	  ori       r5, r5, 0x4
+	case __OS_INTERRUPT_EXI_1_EXI:
+	case __OS_INTERRUPT_EXI_1_TC:
+	case __OS_INTERRUPT_EXI_1_EXT:
+		reg = __EXIRegs[EXI_CHAN_1_STAT];
+		reg &= ~0xC0F;
 
-	.loc_0x80:
-	  rlwinm    r0,r4,0,3,3
-	  cmplwi    r0, 0
-	  bne-      .loc_0x90
-	  ori       r5, r5, 0x8
+		if (!(current & OS_INTERRUPTMASK_EXI_1_EXI)) {
+			reg |= 0x1;
+		}
+		if (!(current & OS_INTERRUPTMASK_EXI_1_TC)) {
+			reg |= 0x4;
+		}
+		if (!(current & OS_INTERRUPTMASK_EXI_1_EXT)) {
+			reg |= 0x400;
+		}
+		__EXIRegs[EXI_CHAN_1_STAT] = reg;
+		mask &= ~OS_INTERRUPTMASK_EXI_1;
+		break;
 
-	.loc_0x90:
-	  rlwinm    r0,r4,0,4,4
-	  cmplwi    r0, 0
-	  bne-      .loc_0xA0
-	  ori       r5, r5, 0x10
+	case __OS_INTERRUPT_EXI_2_EXI:
+	case __OS_INTERRUPT_EXI_2_TC:
+		reg = __EXIRegs[EXI_CHAN_2_STAT];
+		reg &= ~0xF;
+		if (!(current & OS_INTERRUPTMASK_EXI_2_EXI)) {
+			reg |= 0x1;
+		}
+		if (!(current & OS_INTERRUPTMASK_EXI_2_TC)) {
+			reg |= 0x4;
+		}
 
-	.loc_0xA0:
-	  lis       r4, 0xCC00
-	  rlwinm    r0,r5,0,16,31
-	  addi      r4, r4, 0x4000
-	  sth       r0, 0x1C(r4)
-	  rlwinm    r3,r3,0,5,31
-	  b         .loc_0x2D4
+		__EXIRegs[EXI_CHAN_2_STAT] = reg;
+		mask &= ~OS_INTERRUPTMASK_EXI_2;
+		break;
 
-	.loc_0xB8:
-	  lis       r5, 0xCC00
-	  addi      r5, r5, 0x5000
-	  addi      r5, r5, 0xA
-	  rlwinm    r0,r4,0,5,5
-	  lhz       r6, 0x0(r5)
-	  cmplwi    r0, 0
-	  rlwinm    r6,r6,0,29,22
-	  bne-      .loc_0xDC
-	  ori       r6, r6, 0x10
+	case __OS_INTERRUPT_PI_CP:
+	case __OS_INTERRUPT_PI_SI:
+	case __OS_INTERRUPT_PI_DI:
+	case __OS_INTERRUPT_PI_RSW:
+	case __OS_INTERRUPT_PI_ERROR:
+	case __OS_INTERRUPT_PI_VI:
+	case __OS_INTERRUPT_PI_DEBUG:
+	case __OS_INTERRUPT_PI_PE_TOKEN:
+	case __OS_INTERRUPT_PI_PE_FINISH:
+	case __OS_INTERRUPT_PI_HSP:
+		reg = 0xF0;
 
-	.loc_0xDC:
-	  rlwinm    r0,r4,0,6,6
-	  cmplwi    r0, 0
-	  bne-      .loc_0xEC
-	  ori       r6, r6, 0x40
+		if (!(current & OS_INTERRUPTMASK_PI_CP)) {
+			reg |= 0x800;
+		}
+		if (!(current & OS_INTERRUPTMASK_PI_SI)) {
+			reg |= 0x8;
+		}
+		if (!(current & OS_INTERRUPTMASK_PI_DI)) {
+			reg |= 0x4;
+		}
+		if (!(current & OS_INTERRUPTMASK_PI_RSW)) {
+			reg |= 0x2;
+		}
+		if (!(current & OS_INTERRUPTMASK_PI_ERROR)) {
+			reg |= 0x1;
+		}
+		if (!(current & OS_INTERRUPTMASK_PI_VI)) {
+			reg |= 0x100;
+		}
+		if (!(current & OS_INTERRUPTMASK_PI_DEBUG)) {
+			reg |= 0x1000;
+		}
+		if (!(current & OS_INTERRUPTMASK_PI_PE_TOKEN)) {
+			reg |= 0x200;
+		}
+		if (!(current & OS_INTERRUPTMASK_PI_PE_FINISH)) {
+			reg |= 0x400;
+		}
+		if (!(current & OS_INTERRUPTMASK_PI_HSP)) {
+			reg |= 0x2000;
+		}
+		__PIRegs[PI_INTRPT_MASK] = reg;
+		mask &= ~OS_INTERRUPTMASK_PI;
+		break;
 
-	.loc_0xEC:
-	  rlwinm    r0,r4,0,7,7
-	  cmplwi    r0, 0
-	  bne-      .loc_0xFC
-	  ori       r6, r6, 0x100
+	default:
+		break;
+	}
 
-	.loc_0xFC:
-	  rlwinm    r0,r6,0,16,31
-	  sth       r0, 0x0(r5)
-	  rlwinm    r3,r3,0,8,4
-	  b         .loc_0x2D4
-
-	.loc_0x10C:
-	  rlwinm    r0,r4,0,8,8
-	  lis       r4, 0xCC00
-	  cmplwi    r0, 0
-	  lwz       r5, 0x6C00(r4)
-	  li        r0, -0x2D
-	  and       r5, r5, r0
-	  bne-      .loc_0x12C
-	  ori       r5, r5, 0x4
-
-	.loc_0x12C:
-	  lis       r4, 0xCC00
-	  stw       r5, 0x6C00(r4)
-	  rlwinm    r3,r3,0,9,7
-	  b         .loc_0x2D4
-
-	.loc_0x13C:
-	  rlwinm    r0,r4,0,9,9
-	  lis       r5, 0xCC00
-	  cmplwi    r0, 0
-	  lwz       r5, 0x6800(r5)
-	  li        r0, -0x2C10
-	  and       r5, r5, r0
-	  bne-      .loc_0x15C
-	  ori       r5, r5, 0x1
-
-	.loc_0x15C:
-	  rlwinm    r0,r4,0,10,10
-	  cmplwi    r0, 0
-	  bne-      .loc_0x16C
-	  ori       r5, r5, 0x4
-
-	.loc_0x16C:
-	  rlwinm    r0,r4,0,11,11
-	  cmplwi    r0, 0
-	  bne-      .loc_0x17C
-	  ori       r5, r5, 0x400
-
-	.loc_0x17C:
-	  lis       r4, 0xCC00
-	  stw       r5, 0x6800(r4)
-	  rlwinm    r3,r3,0,12,8
-	  b         .loc_0x2D4
-
-	.loc_0x18C:
-	  lis       r5, 0xCC00
-	  addi      r6, r5, 0x6800
-	  addi      r6, r6, 0x14
-	  rlwinm    r0,r4,0,12,12
-	  lwz       r7, 0x0(r6)
-	  li        r5, -0xC10
-	  cmplwi    r0, 0
-	  and       r7, r7, r5
-	  bne-      .loc_0x1B4
-	  ori       r7, r7, 0x1
-
-	.loc_0x1B4:
-	  rlwinm    r0,r4,0,13,13
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1C4
-	  ori       r7, r7, 0x4
-
-	.loc_0x1C4:
-	  rlwinm    r0,r4,0,14,14
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1D4
-	  ori       r7, r7, 0x400
-
-	.loc_0x1D4:
-	  stw       r7, 0x0(r6)
-	  rlwinm    r3,r3,0,15,11
-	  b         .loc_0x2D4
-
-	.loc_0x1E0:
-	  lis       r5, 0xCC00
-	  addi      r5, r5, 0x6800
-	  addi      r5, r5, 0x28
-	  rlwinm    r0,r4,0,15,15
-	  lwz       r6, 0x0(r5)
-	  cmplwi    r0, 0
-	  rlwinm    r6,r6,0,0,27
-	  bne-      .loc_0x204
-	  ori       r6, r6, 0x1
-
-	.loc_0x204:
-	  rlwinm    r0,r4,0,16,16
-	  cmplwi    r0, 0
-	  bne-      .loc_0x214
-	  ori       r6, r6, 0x4
-
-	.loc_0x214:
-	  stw       r6, 0x0(r5)
-	  rlwinm    r3,r3,0,17,14
-	  b         .loc_0x2D4
-
-	.loc_0x220:
-	  rlwinm    r0,r4,0,17,17
-	  cmplwi    r0, 0
-	  li        r5, 0xF0
-	  bne-      .loc_0x234
-	  ori       r5, r5, 0x800
-
-	.loc_0x234:
-	  rlwinm    r0,r4,0,20,20
-	  cmplwi    r0, 0
-	  bne-      .loc_0x244
-	  ori       r5, r5, 0x8
-
-	.loc_0x244:
-	  rlwinm    r0,r4,0,21,21
-	  cmplwi    r0, 0
-	  bne-      .loc_0x254
-	  ori       r5, r5, 0x4
-
-	.loc_0x254:
-	  rlwinm    r0,r4,0,22,22
-	  cmplwi    r0, 0
-	  bne-      .loc_0x264
-	  ori       r5, r5, 0x2
-
-	.loc_0x264:
-	  rlwinm    r0,r4,0,23,23
-	  cmplwi    r0, 0
-	  bne-      .loc_0x274
-	  ori       r5, r5, 0x1
-
-	.loc_0x274:
-	  rlwinm    r0,r4,0,24,24
-	  cmplwi    r0, 0
-	  bne-      .loc_0x284
-	  ori       r5, r5, 0x100
-
-	.loc_0x284:
-	  rlwinm    r0,r4,0,25,25
-	  cmplwi    r0, 0
-	  bne-      .loc_0x294
-	  ori       r5, r5, 0x1000
-
-	.loc_0x294:
-	  rlwinm    r0,r4,0,18,18
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2A4
-	  ori       r5, r5, 0x200
-
-	.loc_0x2A4:
-	  rlwinm    r0,r4,0,19,19
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2B4
-	  ori       r5, r5, 0x400
-
-	.loc_0x2B4:
-	  rlwinm    r0,r4,0,26,26
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2C4
-	  ori       r5, r5, 0x2000
-
-	.loc_0x2C4:
-	  lis       r4, 0xCC00
-	  addi      r4, r4, 0x3000
-	  stw       r5, 0x4(r4)
-	  rlwinm    r3,r3,0,27,16
-
-	.loc_0x2D4:
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
- */
-void OSGetInterruptMask(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
- */
-void OSSetInterruptMask(void)
-{
-	// UNUSED FUNCTION
+	return mask;
 }
 
 /*
@@ -429,53 +303,24 @@ void OSSetInterruptMask(void)
  * Address:	800EF000
  * Size:	000088
  */
-void __OSMaskInterrupts(void)
+OSInterruptMask __OSMaskInterrupts(OSInterruptMask global)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r31, r3
-	  bl        -0x3E4
-	  lis       r4, 0x8000
-	  lwz       r29, 0xC4(r4)
-	  mr        r30, r3
-	  lwz       r5, 0xC8(r4)
-	  or        r0, r29, r5
-	  andc      r3, r31, r0
-	  or        r31, r31, r29
-	  stw       r31, 0xC4(r4)
-	  or        r31, r31, r5
-	  b         .loc_0x48
+	BOOL enabled;
+	OSInterruptMask prev;
+	OSInterruptMask local;
+	OSInterruptMask mask;
 
-	.loc_0x48:
-	  b         .loc_0x4C
-
-	.loc_0x4C:
-	  b         .loc_0x58
-
-	.loc_0x50:
-	  mr        r4, r31
-	  bl        -0x32C
-
-	.loc_0x58:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x50
-	  mr        r3, r30
-	  bl        -0x404
-	  mr        r3, r29
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	enabled = OSDisableInterrupts();
+	prev    = __OSPriorInterruptMask;
+	local   = __OSCurrentInterruptMask;
+	mask    = ~(prev | local) & global;
+	global |= prev;
+	__OSPriorInterruptMask = global;
+	while (mask) {
+		mask = SetInterruptMask(mask, global | local);
+	}
+	OSRestoreInterrupts(enabled);
+	return prev;
 }
 
 /*
@@ -483,53 +328,24 @@ void __OSMaskInterrupts(void)
  * Address:	800EF088
  * Size:	000088
  */
-void __OSUnmaskInterrupts(int)
+OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask global)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r31, r3
-	  bl        -0x46C
-	  lis       r4, 0x8000
-	  lwz       r29, 0xC4(r4)
-	  mr        r30, r3
-	  lwz       r5, 0xC8(r4)
-	  or        r0, r29, r5
-	  and       r3, r31, r0
-	  andc      r31, r29, r31
-	  stw       r31, 0xC4(r4)
-	  or        r31, r31, r5
-	  b         .loc_0x48
+	BOOL enabled;
+	OSInterruptMask prev;
+	OSInterruptMask local;
+	OSInterruptMask mask;
 
-	.loc_0x48:
-	  b         .loc_0x4C
-
-	.loc_0x4C:
-	  b         .loc_0x58
-
-	.loc_0x50:
-	  mr        r4, r31
-	  bl        -0x3B4
-
-	.loc_0x58:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x50
-	  mr        r3, r30
-	  bl        -0x48C
-	  mr        r3, r29
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	enabled                = OSDisableInterrupts();
+	prev                   = __OSPriorInterruptMask;
+	local                  = __OSCurrentInterruptMask;
+	mask                   = (prev | local) & global;
+	global                 = prev & ~global;
+	__OSPriorInterruptMask = global;
+	while (mask) {
+		mask = SetInterruptMask(mask, global | local);
+	}
+	OSRestoreInterrupts(enabled);
+	return prev;
 }
 
 /*
@@ -537,290 +353,125 @@ void __OSUnmaskInterrupts(int)
  * Address:	800EF110
  * Size:	000344
  */
-void __OSDispatchInterrupt(void)
+void __OSDispatchInterrupt(__OSException exception, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  stw       r30, 0x20(r1)
-	  stw       r29, 0x1C(r1)
-	  mr        r30, r4
-	  lis       r3, 0xCC00
-	  lwz       r31, 0x3000(r3)
-	  rlwinm    r31,r31,0,16,14
-	  cmplwi    r31, 0
-	  beq-      .loc_0x44
-	  addi      r3, r3, 0x3000
-	  lwz       r0, 0x4(r3)
-	  and       r0, r31, r0
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
+	u32 intsr;
+	u32 reg;
+	OSInterruptMask cause;
+	OSInterruptMask unmasked;
+	OSInterruptMask* prio;
+	__OSInterrupt interrupt;
+	__OSInterruptHandler handler;
+	intsr = __PIRegs[PI_INTRPT_SRC];
+	intsr &= ~PI_INTRPT_RSWST;
 
-	.loc_0x44:
-	  mr        r3, r30
-	  bl        -0x20CC
+	if (intsr == 0 || (intsr & __PIRegs[PI_INTRPT_MASK]) == 0) {
+		OSLoadContext(context);
+	}
 
-	.loc_0x4C:
-	  rlwinm    r0,r31,0,24,24
-	  cmplwi    r0, 0
-	  li        r0, 0
-	  beq-      .loc_0xB8
-	  lis       r3, 0xCC00
-	  addi      r3, r3, 0x4000
-	  lhz       r4, 0x1E(r3)
-	  rlwinm    r3,r4,0,31,31
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  oris      r0, r0, 0x8000
+	cause = 0;
 
-	.loc_0x78:
-	  rlwinm    r3,r4,0,30,30
-	  cmplwi    r3, 0
-	  beq-      .loc_0x88
-	  oris      r0, r0, 0x4000
+	if (intsr & PI_INTRPT_MEM) {
+		reg = __MEMRegs[MEM_INTRPT_SRC];
+		if (reg & 0x1)
+			cause |= OS_INTERRUPTMASK_MEM_0;
+		if (reg & 0x2)
+			cause |= OS_INTERRUPTMASK_MEM_1;
+		if (reg & 0x4)
+			cause |= OS_INTERRUPTMASK_MEM_2;
+		if (reg & 0x8)
+			cause |= OS_INTERRUPTMASK_MEM_3;
+		if (reg & 0x10)
+			cause |= OS_INTERRUPTMASK_MEM_ADDRESS;
+	}
 
-	.loc_0x88:
-	  rlwinm    r3,r4,0,29,29
-	  cmplwi    r3, 0
-	  beq-      .loc_0x98
-	  oris      r0, r0, 0x2000
+	if (intsr & PI_INTRPT_DSP) {
+		reg = __DSPRegs[DSP_CONTROL_STATUS];
+		if (reg & 0x8)
+			cause |= OS_INTERRUPTMASK_DSP_AI;
+		if (reg & 0x20)
+			cause |= OS_INTERRUPTMASK_DSP_ARAM;
+		if (reg & 0x80)
+			cause |= OS_INTERRUPTMASK_DSP_DSP;
+	}
 
-	.loc_0x98:
-	  rlwinm    r3,r4,0,28,28
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA8
-	  oris      r0, r0, 0x1000
+	if (intsr & PI_INTRPT_AI) {
+		reg = __AIRegs[AI_CONTROL];
+		if (reg & 0x8)
+			cause |= OS_INTERRUPTMASK_AI_AI;
+	}
 
-	.loc_0xA8:
-	  rlwinm    r3,r4,0,27,27
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB8
-	  oris      r0, r0, 0x800
+	if (intsr & PI_INTRPT_EXI) {
+		reg = __EXIRegs[EXI_CHAN_0_STAT];
+		if (reg & 0x2)
+			cause |= OS_INTERRUPTMASK_EXI_0_EXI;
+		if (reg & 0x8)
+			cause |= OS_INTERRUPTMASK_EXI_0_TC;
+		if (reg & 0x800)
+			cause |= OS_INTERRUPTMASK_EXI_0_EXT;
 
-	.loc_0xB8:
-	  rlwinm    r3,r31,0,25,25
-	  cmplwi    r3, 0
-	  beq-      .loc_0x100
-	  lis       r3, 0xCC00
-	  addi      r3, r3, 0x5000
-	  lhz       r4, 0xA(r3)
-	  rlwinm    r3,r4,0,28,28
-	  cmplwi    r3, 0
-	  beq-      .loc_0xE0
-	  oris      r0, r0, 0x400
+		reg = __EXIRegs[EXI_CHAN_1_STAT];
+		if (reg & 0x2)
+			cause |= OS_INTERRUPTMASK_EXI_1_EXI;
+		if (reg & 0x8)
+			cause |= OS_INTERRUPTMASK_EXI_1_TC;
+		if (reg & 0x800)
+			cause |= OS_INTERRUPTMASK_EXI_1_EXT;
 
-	.loc_0xE0:
-	  rlwinm    r3,r4,0,26,26
-	  cmplwi    r3, 0
-	  beq-      .loc_0xF0
-	  oris      r0, r0, 0x200
+		reg = __EXIRegs[EXI_CHAN_2_STAT];
+		if (reg & 0x2)
+			cause |= OS_INTERRUPTMASK_EXI_2_EXI;
+		if (reg & 0x8)
+			cause |= OS_INTERRUPTMASK_EXI_2_TC;
+	}
 
-	.loc_0xF0:
-	  rlwinm    r3,r4,0,24,24
-	  cmplwi    r3, 0
-	  beq-      .loc_0x100
-	  oris      r0, r0, 0x100
+	if (intsr & PI_INTRPT_HSP)
+		cause |= OS_INTERRUPTMASK_PI_HSP;
+	if (intsr & PI_INTRPT_DEBUG)
+		cause |= OS_INTERRUPTMASK_PI_DEBUG;
+	if (intsr & PI_INTRPT_PE_FINISH)
+		cause |= OS_INTERRUPTMASK_PI_PE_FINISH;
+	if (intsr & PI_INTRPT_PE_TOKEN)
+		cause |= OS_INTERRUPTMASK_PI_PE_TOKEN;
+	if (intsr & PI_INTRPT_VI)
+		cause |= OS_INTERRUPTMASK_PI_VI;
+	if (intsr & PI_INTRPT_SI)
+		cause |= OS_INTERRUPTMASK_PI_SI;
+	if (intsr & PI_INTRPT_DVD)
+		cause |= OS_INTERRUPTMASK_PI_DI;
+	if (intsr & PI_INTRPT_RSW)
+		cause |= OS_INTERRUPTMASK_PI_RSW;
+	if (intsr & PI_INTRPT_CP)
+		cause |= OS_INTERRUPTMASK_PI_CP;
+	if (intsr & PI_INTRPT_ERR)
+		cause |= OS_INTERRUPTMASK_PI_ERROR;
 
-	.loc_0x100:
-	  rlwinm    r3,r31,0,26,26
-	  cmplwi    r3, 0
-	  beq-      .loc_0x124
-	  lis       r3, 0xCC00
-	  lwz       r3, 0x6C00(r3)
-	  rlwinm    r3,r3,0,28,28
-	  cmplwi    r3, 0
-	  beq-      .loc_0x124
-	  oris      r0, r0, 0x80
+	unmasked = cause & ~(__OSPriorInterruptMask | __OSCurrentInterruptMask);
+	if (unmasked) {
+		for (prio = InterruptPrioTable;; ++prio) {
+			if (unmasked & *prio) {
+				interrupt = (__OSInterrupt)__cntlzw(unmasked & *prio);
+				break;
+			}
+		}
 
-	.loc_0x124:
-	  rlwinm    r3,r31,0,27,27
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1D0
-	  lis       r3, 0xCC00
-	  lwz       r4, 0x6800(r3)
-	  rlwinm    r3,r4,0,30,30
-	  cmplwi    r3, 0
-	  beq-      .loc_0x148
-	  oris      r0, r0, 0x40
+		handler = __OSGetInterruptHandler(interrupt);
+		if (handler) {
+			if (__OS_INTERRUPT_MEM_ADDRESS < interrupt) {
+				__OSLastInterrupt     = interrupt;
+				__OSLastInterruptTime = OSGetTime();
+				__OSLastInterruptSrr0 = context->srr0;
+			}
 
-	.loc_0x148:
-	  rlwinm    r3,r4,0,28,28
-	  cmplwi    r3, 0
-	  beq-      .loc_0x158
-	  oris      r0, r0, 0x20
+			OSDisableScheduler();
+			handler(interrupt, context);
+			OSEnableScheduler();
+			__OSReschedule();
+			OSLoadContext(context);
+		}
+	}
 
-	.loc_0x158:
-	  rlwinm    r3,r4,0,20,20
-	  cmplwi    r3, 0
-	  beq-      .loc_0x168
-	  oris      r0, r0, 0x10
-
-	.loc_0x168:
-	  lis       r3, 0xCC00
-	  addi      r3, r3, 0x6800
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r3,r4,0,30,30
-	  cmplwi    r3, 0
-	  beq-      .loc_0x184
-	  oris      r0, r0, 0x8
-
-	.loc_0x184:
-	  rlwinm    r3,r4,0,28,28
-	  cmplwi    r3, 0
-	  beq-      .loc_0x194
-	  oris      r0, r0, 0x4
-
-	.loc_0x194:
-	  rlwinm    r3,r4,0,20,20
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1A4
-	  oris      r0, r0, 0x2
-
-	.loc_0x1A4:
-	  lis       r3, 0xCC00
-	  addi      r3, r3, 0x6800
-	  lwz       r4, 0x28(r3)
-	  rlwinm    r3,r4,0,30,30
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C0
-	  oris      r0, r0, 0x1
-
-	.loc_0x1C0:
-	  rlwinm    r3,r4,0,28,28
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1D0
-	  ori       r0, r0, 0x8000
-
-	.loc_0x1D0:
-	  rlwinm    r3,r31,0,18,18
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1E0
-	  ori       r0, r0, 0x20
-
-	.loc_0x1E0:
-	  rlwinm    r3,r31,0,19,19
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1F0
-	  ori       r0, r0, 0x40
-
-	.loc_0x1F0:
-	  rlwinm    r3,r31,0,21,21
-	  cmplwi    r3, 0
-	  beq-      .loc_0x200
-	  ori       r0, r0, 0x1000
-
-	.loc_0x200:
-	  rlwinm    r3,r31,0,22,22
-	  cmplwi    r3, 0
-	  beq-      .loc_0x210
-	  ori       r0, r0, 0x2000
-
-	.loc_0x210:
-	  rlwinm    r3,r31,0,23,23
-	  cmplwi    r3, 0
-	  beq-      .loc_0x220
-	  ori       r0, r0, 0x80
-
-	.loc_0x220:
-	  rlwinm    r3,r31,0,28,28
-	  cmplwi    r3, 0
-	  beq-      .loc_0x230
-	  ori       r0, r0, 0x800
-
-	.loc_0x230:
-	  rlwinm    r3,r31,0,29,29
-	  cmplwi    r3, 0
-	  beq-      .loc_0x240
-	  ori       r0, r0, 0x400
-
-	.loc_0x240:
-	  rlwinm    r3,r31,0,30,30
-	  cmplwi    r3, 0
-	  beq-      .loc_0x250
-	  ori       r0, r0, 0x200
-
-	.loc_0x250:
-	  rlwinm    r3,r31,0,20,20
-	  cmplwi    r3, 0
-	  beq-      .loc_0x260
-	  ori       r0, r0, 0x4000
-
-	.loc_0x260:
-	  rlwinm    r3,r31,0,31,31
-	  cmplwi    r3, 0
-	  beq-      .loc_0x270
-	  ori       r0, r0, 0x100
-
-	.loc_0x270:
-	  lis       r3, 0x8000
-	  lwz       r4, 0xC4(r3)
-	  lwz       r3, 0xC8(r3)
-	  or        r3, r4, r3
-	  andc      r4, r0, r3
-	  cmplwi    r4, 0
-	  beq-      .loc_0x320
-	  lis       r3, 0x804B
-	  subi      r0, r3, 0x6240
-	  mr        r3, r0
-	  b         .loc_0x29C
-
-	.loc_0x29C:
-	  b         .loc_0x2A0
-
-	.loc_0x2A0:
-	  lwz       r0, 0x0(r3)
-	  and       r0, r4, r0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2BC
-	  cntlzw    r0, r0
-	  extsh     r29, r0
-	  b         .loc_0x2C4
-
-	.loc_0x2BC:
-	  addi      r3, r3, 0x4
-	  b         .loc_0x2A0
-
-	.loc_0x2C4:
-	  lwz       r3, -0x7080(r13)
-	  rlwinm    r0,r29,2,0,29
-	  lwzx      r31, r3, r0
-	  cmplwi    r31, 0
-	  beq-      .loc_0x320
-	  cmpwi     r29, 0x4
-	  ble-      .loc_0x2F8
-	  sth       r29, -0x7078(r13)
-	  bl        0x379C
-	  stw       r4, -0x706C(r13)
-	  stw       r3, -0x7070(r13)
-	  lwz       r0, 0x198(r30)
-	  stw       r0, -0x707C(r13)
-
-	.loc_0x2F8:
-	  bl        0x25FC
-	  mr        r3, r29
-	  mr        r4, r30
-	  mr        r12, r31
-	  mtlr      r12
-	  blrl
-	  bl        0x2624
-	  bl        0x2B3C
-	  mr        r3, r30
-	  bl        -0x23A0
-
-	.loc_0x320:
-	  mr        r3, r30
-	  bl        -0x23A8
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	OSLoadContext(context);
 }
 
 /*
@@ -828,29 +479,14 @@ void __OSDispatchInterrupt(void)
  * Address:	800EF454
  * Size:	000050
  */
-void ExternalInterruptHandler(void)
+static asm void ExternalInterruptHandler(register __OSException exception, register OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  stw       r0, 0x0(r4)
-	  stw       r1, 0x4(r4)
-	  stw       r2, 0x8(r4)
-	  stmw      r6, 0x18(r4)
-	  mfspr     r0, 0x391
-	  stw       r0, 0x1A8(r4)
-	  mfspr     r0, 0x392
-	  stw       r0, 0x1AC(r4)
-	  mfspr     r0, 0x393
-	  stw       r0, 0x1B0(r4)
-	  mfspr     r0, 0x394
-	  stw       r0, 0x1B4(r4)
-	  mfspr     r0, 0x395
-	  stw       r0, 0x1B8(r4)
-	  mfspr     r0, 0x396
-	  stw       r0, 0x1BC(r4)
-	  mfspr     r0, 0x397
-	  stw       r0, 0x1C0(r4)
-	  stwu      r1, -0x8(r1)
-	  b         -0x390
-	*/
+#pragma unused(exception)
+	// clang-format off
+	nofralloc 
+	OS_EXCEPTION_SAVE_GPRS(context)
+
+	stwu r1, -8(r1)
+	b __OSDispatchInterrupt
+	// clang-format on
 }

@@ -25,6 +25,10 @@ extern volatile __OSInterrupt __OSLastInterrupt; // one of the Interrupt Codes b
 extern volatile u32 __OSLastInterruptSrr0;       // SRR0 value at time of interrupt.
 extern volatile OSTime __OSLastInterruptTime;    // time of interrupt (from OSGetTime()).
 
+// Interrupt global addresses.
+volatile OSInterruptMask __OSPriorInterruptMask AT_ADDRESS((u32)OSPhysicalToCached(0x00C4));
+volatile OSInterruptMask __OSCurrentInterruptMask AT_ADDRESS((u32)OSPhysicalToCached(0x00C8));
+
 //////////////////////////////////
 
 ////// INTERRUPT FUNCTIONS ///////
@@ -36,7 +40,7 @@ __OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt interrupt);
 void __OSDispatchInterrupt(__OSException exception, OSContext* context);
 BOOL OSEnableInterrupts();
 BOOL OSDisableInterrupts();
-void OSRestoreInterrupts(BOOL level);
+BOOL OSRestoreInterrupts(BOOL level);
 
 // Mask functions.
 OSInterruptMask __OSMaskInterrupts(OSInterruptMask mask);

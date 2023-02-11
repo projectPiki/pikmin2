@@ -46,6 +46,31 @@ extern "C" {
 #define SRR1_DMA_BIT  0x00200000
 #define SRR1_L2DP_BIT 0x00100000
 
+#define FPSCR_FX     0x80000000 // Exception summary
+#define FPSCR_FEX    0x40000000 // Enabled exception summary
+#define FPSCR_VX     0x20000000 // Invalid operation
+#define FPSCR_OX     0x10000000 // Overflow exception
+#define FPSCR_UX     0x08000000 // Underflow exception
+#define FPSCR_ZX     0x04000000 // Zero divide exception
+#define FPSCR_XX     0x02000000 // Inexact exception
+#define FPSCR_VXSNAN 0x01000000 // SNaN
+#define FPSCR_VXISI  0x00800000 // Infinity - Infinity
+#define FPSCR_VXIDI  0x00400000 // Infinity / Infinity
+#define FPSCR_VXZDZ  0x00200000 // 0 / 0
+#define FPSCR_VXIMZ  0x00100000 // Infinity * 0
+#define FPSCR_VXVC   0x00080000 // Invalid compare
+#define FPSCR_FR     0x00040000 // Fraction rounded
+#define FPSCR_FI     0x00020000 // Fraction inexact
+#define FPSCR_VXSOFT 0x00000400 // Software request
+#define FPSCR_VXSQRT 0x00000200 // Invalid square root
+#define FPSCR_VXCVI  0x00000100 // Invalid integer convert
+#define FPSCR_VE     0x00000080 // Invalid operation exception enable
+#define FPSCR_OE     0x00000040 // Overflow exception enable
+#define FPSCR_UE     0x00000020 // Underflow exception enable
+#define FPSCR_ZE     0x00000010 // Zero divide exception enable
+#define FPSCR_XE     0x00000008 // Inexact exception enable
+#define FPSCR_NI     0x00000004 // Non-IEEE mode
+
 u32 PPCMfmsr();
 void PPCMtmsr(u32 newMSR);
 // u32 PPCOrMsr(u32 value);

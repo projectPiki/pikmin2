@@ -25,6 +25,12 @@ struct OSResetFunctionInfo {
 	OSResetFunctionInfo* prev; // _0C
 };
 
+// Queue struct for ResetFunctionInfos.
+typedef struct OSResetQueue {
+	OSResetFunctionInfo* head;
+	OSResetFunctionInfo* tail;
+} OSResetQueue;
+
 //////////////////////////////////
 
 //////// RESET FUNCTIONS /////////

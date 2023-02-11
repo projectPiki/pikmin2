@@ -5,9 +5,6 @@
 extern void __RAS_OSDisableInterrupts_begin();
 extern void __RAS_OSDisableInterrupts_end();
 
-volatile OSContext* __OSCurrentContext AT_ADDRESS((u32)OSPhysicalToCached(0xD4));
-volatile OSContext* __OSFPUContext AT_ADDRESS((u32)OSPhysicalToCached(0xD8));
-
 /*
  * --INFO--
  * Address:	800ECD50

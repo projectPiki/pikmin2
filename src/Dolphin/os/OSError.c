@@ -2,24 +2,12 @@
 #include "Dolphin/os.h"
 #include "printf.h"
 #include "Dolphin/PPCArch.h"
-
-extern volatile OSTime __OSLastInterruptTime;
-extern volatile __OSInterrupt __OSLastInterrupt;
-extern volatile u32 __OSLastInterruptSrr0;
-
-extern volatile u32 __DIRegs[];
-extern volatile u16 __DSPRegs[];
+#include "Dolphin/hw_regs.h"
 
 // All enable
 #define FPSCR_ENABLE 0xF8
 
-OSThreadQueue __OSActiveThreadQueue : (0x80000000 | 0xDC);
-
-volatile OSContext* __OSCurrentContext : (0x80000000 | OS_CURRENTCONTEXT_PADDR);
-volatile OSContext* __OSFPUContext : (0x80000000 | 0xD8);
-
 OSErrorHandler __OSErrorTable[OS_ERROR_MAX];
-
 u32 __OSFpscrEnableBits = FPSCR_ENABLE;
 
 /*
@@ -27,7 +15,7 @@ u32 __OSFpscrEnableBits = FPSCR_ENABLE;
  * Address:	800ED6EC
  * Size:	000080
  */
-__declspec(weak) void OSReport(const char* msg, ...)
+WEAKFUNC void OSReport(const char* msg, ...)
 {
 	va_list marker;
 
@@ -42,14 +30,14 @@ __declspec(weak) void OSReport(const char* msg, ...)
  * Size:	000020
  * same as OSReport but without va start/end
  */
-__declspec(weak) void OSVReport(const char* msg, va_list list) { vprintf(msg, list); }
+WEAKFUNC void OSVReport(const char* msg, va_list list) { vprintf(msg, list); }
 
 /*
  * --INFO--
  * Address:	800ED76C
  * Size:	00012C
  */
-__declspec(weak) void OSPanic(const char* file, int line, const char* msg, ...)
+WEAKFUNC void OSPanic(const char* file, int line, const char* msg, ...)
 {
 	va_list marker;
 	u32 i;
@@ -141,72 +129,61 @@ OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler)
 void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar)
 {
 	OSTime now;
-	OSErrorHandler* errorTable = __OSErrorTable;
-	now                        = OSGetTime();
+
+	now = OSGetTime();
 
 	if (!(context->srr1 & 2)) {
 		OSReport("Non-recoverable Exception %d", exception);
+
 	} else {
-		if (exception == OS_ERROR_PROGRAM && (context->srr1 & (0x80000000 >> 11)) && errorTable[OS_ERROR_MAX] != 0) {
+		if (exception == __OS_EXCEPTION_PROGRAM && (context->srr1 & (0x80000000 >> 11)) && __OSErrorTable[OS_ERROR_MAX] != 0) {
 			u32 fpscr;
 			u32 msr;
-			u32 res;
 
-			// set exception
-			exception = OS_ERROR_MAX; // probably meant to be something related to FPU
+			exception = OS_ERROR_MAX;
 
-			// Enable FPU
 			msr = PPCMfmsr();
 			PPCMtmsr(msr | 0x2000);
 
-			// Save FPU context if it isn't null
 			if (__OSFPUContext) {
 				OSSaveFPUContext((OSContext*)__OSFPUContext);
 			}
 
-			// magic hex turns something off
-			res   = PPCMffpscr();
-			fpscr = 0x6005F8FF;
-			PPCMtfpscr(res & fpscr);
+			fpscr = PPCMffpscr();
+			fpscr &= ~(FPSCR_VXVC | FPSCR_VXIMZ | FPSCR_VXZDZ | FPSCR_VXIDI | FPSCR_VXISI | FPSCR_VXSNAN | FPSCR_VXSOFT | FPSCR_VXSQRT
+			           | FPSCR_VXCVI | FPSCR_XX | FPSCR_ZX | FPSCR_UX | FPSCR_OX | FPSCR_FX | FPSCR_FI);
+			PPCMtfpscr(fpscr);
 
-			// Restore FPU
 			PPCMtmsr(msr);
 
 			if (__OSFPUContext == context) {
 				OSDisableScheduler();
-				errorTable[exception](exception, context, dsisr, dar);
-
-				// Clear FPU context so that the error handler can alter the FPU context
+				__OSErrorTable[exception](exception, context, dsisr, dar);
 				context->srr1 &= ~0x2000;
-				__OSFPUContext = NULL;
+				__OSFPUContext = nullptr;
 
-				// Turn off floating point exception
-				context->fpscr &= fpscr;
+				context->fpscr &= ~(FPSCR_VXVC | FPSCR_VXIMZ | FPSCR_VXZDZ | FPSCR_VXIDI | FPSCR_VXISI | FPSCR_VXSNAN | FPSCR_VXSOFT
+				                    | FPSCR_VXSQRT | FPSCR_VXCVI | FPSCR_XX | FPSCR_ZX | FPSCR_UX | FPSCR_OX | FPSCR_FX | FPSCR_FI);
 				OSEnableScheduler();
 				__OSReschedule();
 			} else {
-				// Clear FPU context
 				context->srr1 &= ~0x2000;
-				__OSFPUContext = NULL;
+				__OSFPUContext = nullptr;
 			}
 
 			OSLoadContext(context);
-			// NOT REACHED HERE
 		}
 
-		if (errorTable[exception]) {
+		if (__OSErrorTable[exception]) {
 			OSDisableScheduler();
-			errorTable[exception](exception, context, dsisr, dar);
+			__OSErrorTable[exception](exception, context, dsisr, dar);
 			OSEnableScheduler();
 			__OSReschedule();
 			OSLoadContext(context);
-			// NOT REACHED HERE
 		}
 
-		// ignore decrementer exception
 		if (exception == OS_ERROR_DECREMENTER) {
 			OSLoadContext(context);
-			// NOT REACHED HERE
 		}
 
 		OSReport("Unhandled Exception %d", exception);
@@ -217,38 +194,36 @@ void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsi
 	OSReport("\nDSISR = 0x%08x                   DAR  = 0x%08x\n", dsisr, dar);
 	OSReport("TB = 0x%016llx\n", now);
 
-	// Perform some explanation of most common errors
 	switch (exception) {
-	case OS_ERROR_DSI:
+	case __OS_EXCEPTION_DSI:
 		OSReport("\nInstruction at 0x%x (read from SRR0) attempted to access "
 		         "invalid address 0x%x (read from DAR)\n",
 		         context->srr0, dar);
 		break;
-	case OS_ERROR_ISI:
+	case __OS_EXCEPTION_ISI:
 		OSReport("\nAttempted to fetch instruction from invalid address 0x%x "
 		         "(read from SRR0)\n",
 		         context->srr0);
 		break;
-	case OS_ERROR_ALIGNMENT:
+	case __OS_EXCEPTION_ALIGNMENT:
 		OSReport("\nInstruction at 0x%x (read from SRR0) attempted to access "
 		         "unaligned address 0x%x (read from DAR)\n",
 		         context->srr0, dar);
 		break;
-	case OS_ERROR_PROGRAM:
+	case __OS_EXCEPTION_PROGRAM:
 		OSReport("\nProgram exception : Possible illegal instruction/operation "
 		         "at or around 0x%x (read from SRR0)\n",
 		         context->srr0, dar);
 		break;
 	case OS_ERROR_PROTECTION:
 		OSReport("\n");
-		OSReport("AI DMA Address =   0x%04x%04x\n", __DSPRegs[0x18], __DSPRegs[0x18 + 1]); // fix this code block -epoch
-		OSReport("ARAM DMA Address = 0x%04x%04x\n", __DSPRegs[0x10], __DSPRegs[0x10 + 1]);
-		OSReport("DI DMA Address =   0x%08x\n", __DIRegs[0x5]);
+		OSReport("AI DMA Address =   0x%04x%04x\n", __DSPRegs[DSP_DMA_START_HI], __DSPRegs[DSP_DMA_START_LO]);
+		OSReport("ARAM DMA Address = 0x%04x%04x\n", __DSPRegs[DSP_ARAM_DMA_MM_HI], __DSPRegs[DSP_ARAM_DMA_MM_LO]);
+		OSReport("DI DMA Address =   0x%08x\n", __DIRegs[DI_DMA_MEM_ADDR]);
 		break;
 	}
 
 	OSReport("\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n", __OSLastInterrupt, __OSLastInterruptSrr0, __OSLastInterruptTime);
 
 	PPCHalt();
-	// NOT REACHED HERE
 }

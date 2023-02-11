@@ -11,6 +11,7 @@ extern "C" {
 
 /////////// ALARM TYPES //////////
 typedef struct OSAlarm OSAlarm;
+typedef struct OSAlarmQueue OSAlarmQueue;
 
 // Generic alarm handler function.
 typedef void (*OSAlarmHandler)(OSAlarm* alarm, OSContext* context);
@@ -24,6 +25,12 @@ struct OSAlarm {
 	OSAlarm* next;          // _14
 	OSTime period;          // _18, period of periodic alarm
 	OSTime start;           // _20, start of periodic alarm
+};
+
+// Queue struct for OSAlarm.
+struct OSAlarmQueue {
+	OSAlarm* head;
+	OSAlarm* tail;
 };
 
 // Alarm functions.

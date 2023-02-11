@@ -38,6 +38,8 @@ vu32 __PIRegs[12] AT_ADDRESS(0xCC003000);
 #define PI_FIFO_END    (4) // FIFO base end
 #define PI_FIFO_PTR    (5) // FIFO current write pointer
 
+#define PI_RESETCODE (9) // reset code, used by OSReset
+
 // PI Interrupt causes.
 #define PI_INTRPT_ERR       (0x1) // GP runtime error
 #define PI_INTRPT_RSW       (0x2) // reset switch

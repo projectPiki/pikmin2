@@ -73,6 +73,12 @@ struct OSThread {
 	void* specific[2];       // _310
 };
 
+// Thread global addresses.
+volatile OSContext* __OSCurrentContext AT_ADDRESS((u32)OSPhysicalToCached(0x00D4));
+volatile OSContext* __OSFPUContext AT_ADDRESS((u32)OSPhysicalToCached(0x00D8));
+OSThreadQueue __OSActiveThreadQueue AT_ADDRESS((u32)OSPhysicalToCached(0x00DC));
+OSThread* __OSCurrentThread AT_ADDRESS((u32)OSPhysicalToCached(0x00E4));
+
 //////////////////////////////////
 
 //////// THREAD FUNCTIONS ////////

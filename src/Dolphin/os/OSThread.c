@@ -12,11 +12,6 @@ static OSContext IdleContext;
 static void DefaultSwitchThreadCallback(OSThread* from, OSThread* to);
 static OSSwitchThreadCallback SwitchThreadCallback = DefaultSwitchThreadCallback;
 
-OSThread* __OSCurrentThread AT_ADDRESS((u32)OSPhysicalToCached(0x00E4));
-OSThreadQueue __OSActiveThreadQueue AT_ADDRESS((u32)OSPhysicalToCached(0x00DC));
-volatile OSContext __OSCurrentContext AT_ADDRESS((u32)OSPhysicalToCached(0x00D4));
-volatile OSContext* __OSFPUContext AT_ADDRESS((u32)OSPhysicalToCached(0x00D8));
-
 // Fabricated helper inlines.
 // Initialise mutex queue (mutex equiv. to OSInitThreadQueue below).
 static inline void InitMutexQueue(OSMutexQueue* queue) { queue->head = queue->tail = NULL; }

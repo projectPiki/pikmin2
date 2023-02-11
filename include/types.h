@@ -88,4 +88,10 @@ typedef u32 unknown;
 #define SPRAY_TYPE_SPICY  (0)
 #define SPRAY_TYPE_BITTER (1)
 
+#ifdef __MWERKS__
+#define WEAKFUNC __declspec(weak)
+#else
+#define WEAKFUNC ;
+#endif
+
 #endif
