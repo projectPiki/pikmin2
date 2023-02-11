@@ -10,158 +10,141 @@ lbl_constructor:
 	.4byte 0x00000000
 	.4byte 0x00000000
 .endobj lbl_8049DC30
-.obj smACosPrm__Q23PSM7SeSound, global # array of 100 floats
-	.4byte 0x40490FD8
-	.4byte 0x403C3D92
-	.4byte 0x4036E62E
-	.4byte 0x4032C782
-	.4byte 0x402F49C3
-	.4byte 0x402C323C
-	.4byte 0x402962D8
-	.4byte 0x4026C9C9
-	.4byte 0x40245B68
-	.4byte 0x40220FAE
-	.4byte 0x401FE0BD
-	.4byte 0x401DCA21
-	.4byte 0x401BC871
-	.4byte 0x4019D8F5
-	.4byte 0x4017F96E
-	.4byte 0x4016280B
-	.4byte 0x40146345
-	.4byte 0x4012A9D2
-	.4byte 0x4010FA98
-	.4byte 0x400F549B
-	.4byte 0x400DB70F
-	.4byte 0x400C212D
-	.4byte 0x400A9258
-	.4byte 0x400909F6
-	.4byte 0x40078787
-	.4byte 0x40060A91
-	.4byte 0x400492A7
-	.4byte 0x40031F64
-	.4byte 0x4001B075
-	.4byte 0x4000457C
-	.4byte 0x3FFDBC6F
-	.4byte 0x3FFAF4B6
-	.4byte 0x3FF83340
-	.4byte 0x3FF5779F
-	.4byte 0x3FF2C15D
-	.4byte 0x3FF01006
-	.4byte 0x3FED633D
-	.4byte 0x3FEABA95
-	.4byte 0x3FE815B1
-	.4byte 0x3FE57447
-	.4byte 0x3FE2D5F1
-	.4byte 0x3FE03A6D
-	.4byte 0x3FDDA15E
-	.4byte 0x3FDB0A81
-	.4byte 0x3FD87582
-	.4byte 0x3FD5E226
-	.4byte 0x3FD3501A
-	.4byte 0x3FD0BF1A
-	.4byte 0x3FCE2EEC
-	.4byte 0x3FCB9F45
-	.4byte 0x3FC90FD8
-	.4byte 0x3FC68073
-	.4byte 0x3FC3F0CC
-	.4byte 0x3FC16095
-	.4byte 0x3FBECF9E
-	.4byte 0x3FBC3D92
-	.4byte 0x3FB9AA37
-	.4byte 0x3FB71538
-	.4byte 0x3FB47E5A
-	.4byte 0x3FB1E54B
-	.4byte 0x3FAF49C7
-	.4byte 0x3FACAB71
-	.4byte 0x3FAA0A07
-	.4byte 0x3FA76523
-	.4byte 0x3FA4BC7B
-	.4byte 0x3FA20FB2
-	.4byte 0x3F9F5E5B
-	.4byte 0x3F9CA811
-	.4byte 0x3F99EC70
-	.4byte 0x3F972B02
-	.4byte 0x3F946349
-	.4byte 0x3F9194B8
-	.4byte 0x3F8EBECF
-	.4byte 0x3F8BE0E7
-	.4byte 0x3F88FA6A
-	.4byte 0x3F860A96
-	.4byte 0x3F8310A1
-	.4byte 0x3F800BC4
-	.4byte 0x3F79F612
-	.4byte 0x3F73BABA
-	.4byte 0x3F6D6335
-	.4byte 0x3F66ED03
-	.4byte 0x3F605511
-	.4byte 0x3F599829
-	.4byte 0x3F52B25B
-	.4byte 0x3F4B9F45
-	.4byte 0x3F4459B8
-	.4byte 0x3F3CDB9C
-	.4byte 0x3F351D9B
-	.4byte 0x3F2D16EC
-	.4byte 0x3F24BC7B
-	.4byte 0x3F1C00B9
-	.4byte 0x3F12D1BF
-	.4byte 0x3F09184C
-	.4byte 0x3EFD67FD
-	.4byte 0x3EE6ED03
-	.4byte 0x3ECE30CB
-	.4byte 0x3EB242D0
-	.4byte 0x3E914D72
-	.4byte 0x3E4D249E
-	.4byte 0x00000000
+.obj smACosPrm__Q23PSM7SeSound, global # array of 101 floats
+	.float 3.141592
+	.float 2.941258
+	.float 2.857799
+	.float 2.793427
+	.float 2.738877
+	.float 2.690566
+	.float 2.646658
+	.float 2.606066
+	.float 2.568079
+	.float 2.532207
+	.float 2.498092
+	.float 2.465462
+	.float 2.434109
+	.float 2.403867
+	.float 2.374599
+	.float 2.346194
+	.float 2.318559
+	.float 2.291615
+	.float 2.265295
+	.float 2.239539
+	.float 2.214298
+	.float 2.189525
+	.float 2.165182
+	.float 2.141233
+	.float 2.117647
+	.float 2.094395
+	.float 2.071451
+	.float 2.048791
+	.float 2.026395
+	.float 2.004241
+	.float 1.982313
+	.float 1.960593
+	.float 1.939064
+	.float 1.917713
+	.float 1.896526
+	.float 1.875489
+	.float 1.854591
+	.float 1.833819
+	.float 1.813162
+	.float 1.792611
+	.float 1.772154
+	.float 1.751783
+	.float 1.731487
+	.float 1.711258
+	.float 1.691086
+	.float 1.670964
+	.float 1.650882
+	.float 1.630832
+	.float 1.610807
+	.float 1.590798
+	.float 1.570796
+	.float 1.550795
+	.float 1.530786
+	.float 1.51076
+	.float 1.490711
+	.float 1.470629
+	.float 1.450507
+	.float 1.430335
+	.float 1.410106
+	.float 1.38981
+	.float 1.369439
+	.float 1.348982
+	.float 1.328431
+	.float 1.307774
+	.float 1.287002
+	.float 1.266104
+	.float 1.245067
+	.float 1.223879
+	.float 1.202528
+	.float 1.181
+	.float 1.15928
+	.float 1.137351
+	.float 1.115198
+	.float 1.092801
+	.float 1.070142
+	.float 1.047198
+	.float 1.023945
+	.float 1.000359
+	.float 0.976411
+	.float 0.952068
+	.float 0.927295
+	.float 0.902054
+	.float 0.876298
+	.float 0.849978
+	.float 0.823034
+	.float 0.795399
+	.float 0.766994
+	.float 0.737726
+	.float 0.707483
+	.float 0.676131
+	.float 0.643501
+	.float 0.609386
+	.float 0.573513
+	.float 0.535527
+	.float 0.494934
+	.float 0.451027
+	.float 0.402716
+	.float 0.348166
+	.float 0.283794
+	.float 0.200335
+	.float 0.0
 .endobj smACosPrm__Q23PSM7SeSound
 .balign 4
 .obj lbl_8049DDD0, local
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F53
-	.4byte 0x6F756E64
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "PSMainSide_Sound.cpp"
 .endobj lbl_8049DDD0
 .balign 4
 .obj lbl_8049DDE8, local
 	.asciz "P2Assert"
 .endobj lbl_8049DDE8
 .balign 4
-	.4byte 0x5053436F
-	.4byte 0x6D6D6F6E
-	.4byte 0x2E680000
-	.4byte 0x50535379
-	.4byte 0x7374656D
-	.4byte 0x49462E68
-	.4byte 0x00000000
-.global lbl_8049DE10
-lbl_8049DE10:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x0A534520
-	.4byte 0x63616C6C
-	.4byte 0x65642061
-	.4byte 0x7420696E
-	.4byte 0x76616C69
-	.4byte 0x64207469
-	.4byte 0x6D6D696E
-	.4byte 0x670A2825
-	.4byte 0x30387829
-	.4byte 0x0A000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x00000000
+.obj lbl_8049DDF4, local
+	.asciz "PSCommon.h"
+.endobj lbl_8049DDF4
+.balign 4
+.obj lbl_8049DE00, local
+	.asciz "PSSystemIF.h"
+.endobj lbl_8049DE00
+.balign 4
+.obj lbl_8049DE10, local
+	.asciz "PSGame.h"
+.endobj lbl_8049DE10
+.balign 4
+.obj lbl_8049DE1C, local
+	.asciz "PSScene.h"
+.endobj lbl_8049DE1C
+.balign 4
+.obj lbl_8049DE28, local
+	.asciz "\nSE called at invalid timming\n(%08x)\n"
+.endobj lbl_8049DE28
+.balign 4
+.obj lbl_8049DE50, local
+	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8049DE50
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -236,21 +219,21 @@ lbl_8049DE10:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global cDol_0Rad__Q23PSM7SeSound
-cDol_0Rad__Q23PSM7SeSound:
+.obj cDol_0Rad__Q23PSM7SeSound, global
 	.float 1.0316
-.global cDol_HalfRad__Q23PSM7SeSound
-cDol_HalfRad__Q23PSM7SeSound:
+.endobj cDol_0Rad__Q23PSM7SeSound
+.obj cDol_HalfRad__Q23PSM7SeSound, global
 	.float 1.5708
-.global cDol_FullRad__Q23PSM7SeSound
-cDol_FullRad__Q23PSM7SeSound:
+.endobj cDol_HalfRad__Q23PSM7SeSound
+.obj cDol_FullRad__Q23PSM7SeSound, global
 	.float 2.11
-.global cPan_MaxAmp__Q23PSM7SeSound
-cPan_MaxAmp__Q23PSM7SeSound:
+.endobj cDol_FullRad__Q23PSM7SeSound
+.obj cPan_MaxAmp__Q23PSM7SeSound, global
 	.float 0.98
-.global cCenterRad__Q23PSM7SeSound
-cCenterRad__Q23PSM7SeSound:
+.endobj cPan_MaxAmp__Q23PSM7SeSound
+.obj cCenterRad__Q23PSM7SeSound, global
 	.float 1.57
+.endobj cCenterRad__Q23PSM7SeSound
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -269,25 +252,31 @@ cCenterRad__Q23PSM7SeSound:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520D90:
+.obj lbl_80520D90, local
 	.float 1.0
-lbl_80520D94:
-	.4byte 0x00000000
-lbl_80520D98:
-	.4byte 0x42480000
-lbl_80520D9C:
-	.4byte 0x41700000
+.endobj lbl_80520D90
+.obj lbl_80520D94, local
+	.float 0.0
+.endobj lbl_80520D94
+.obj lbl_80520D98, local
+	.float 50.0
+.endobj lbl_80520D98
+.obj lbl_80520D9C, local
+	.float 15.0
+.endobj lbl_80520D9C
 .balign 8
-lbl_80520DA0:
+.obj lbl_80520DA0, local
 	.8byte 0x4330000000000000
-lbl_80520DA8:
+.endobj lbl_80520DA0
+.obj lbl_80520DA8, local
 	.float 0.5
-lbl_80520DAC:
-	.4byte 0x40490E56
+.endobj lbl_80520DA8
+.obj lbl_80520DAC, local
+	.float 3.1415
+.endobj lbl_80520DAC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global makeSeSound__Q23PSM7SeSoundFv
-makeSeSound__Q23PSM7SeSoundFv:
+.fn makeSeSound__Q23PSM7SeSoundFv, global
 /* 80470F0C 0046DE4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470F10 0046DE50  7C 08 02 A6 */	mflr r0
 /* 80470F14 0046DE54  38 60 04 A4 */	li r3, 0x4a4
@@ -319,13 +308,13 @@ makeSeSound__Q23PSM7SeSoundFv:
 /* 80470F78 0046DEB8  7C 08 03 A6 */	mtlr r0
 /* 80470F7C 0046DEBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80470F80 0046DEC0  4E 80 00 20 */	blr 
+.endfn makeSeSound__Q23PSM7SeSoundFv
 
-.global onGet__Q23PSM7SeSoundFv
-onGet__Q23PSM7SeSoundFv:
+.fn onGet__Q23PSM7SeSoundFv, global
 /* 80470F84 0046DEC4  4E 80 00 20 */	blr 
+.endfn onGet__Q23PSM7SeSoundFv
 
-.global onRelease__Q23PSM7SeSoundFv
-onRelease__Q23PSM7SeSoundFv:
+.fn onRelease__Q23PSM7SeSoundFv, global
 /* 80470F88 0046DEC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470F8C 0046DECC  7C 08 02 A6 */	mflr r0
 /* 80470F90 0046DED0  3C 80 80 4A */	lis r4, lbl_8049DC30@ha
@@ -370,9 +359,9 @@ onRelease__Q23PSM7SeSoundFv:
 /* 80471020 0046DF60  7C 08 03 A6 */	mtlr r0
 /* 80471024 0046DF64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80471028 0046DF68  4E 80 00 20 */	blr 
+.endfn onRelease__Q23PSM7SeSoundFv
 
-.global initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo:
+.fn initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo, global
 /* 8047102C 0046DF6C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80471030 0046DF70  7C 08 02 A6 */	mflr r0
 /* 80471034 0046DF74  3D 40 80 4A */	lis r10, lbl_8049DC30@ha
@@ -467,9 +456,9 @@ initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo:
 /* 80471174 0046E0B4  7C 08 03 A6 */	mtlr r0
 /* 80471178 0046E0B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8047117C 0046E0BC  4E 80 00 20 */	blr 
+.endfn initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
 
-.global setDistanceVolumeCommon__Q23PSM7SeSoundFfUc
-setDistanceVolumeCommon__Q23PSM7SeSoundFfUc:
+.fn setDistanceVolumeCommon__Q23PSM7SeSoundFfUc, global
 /* 80471180 0046E0C0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80471184 0046E0C4  7C 08 02 A6 */	mflr r0
 /* 80471188 0046E0C8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -672,9 +661,9 @@ setDistanceVolumeCommon__Q23PSM7SeSoundFfUc:
 /* 8047144C 0046E38C  7C 08 03 A6 */	mtlr r0
 /* 80471450 0046E390  38 21 00 40 */	addi r1, r1, 0x40
 /* 80471454 0046E394  4E 80 00 20 */	blr 
+.endfn setDistanceVolumeCommon__Q23PSM7SeSoundFfUc
 
-.global specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
-specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo:
+.fn specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo, global
 /* 80471458 0046E398  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8047145C 0046E39C  38 00 00 01 */	li r0, 1
 /* 80471460 0046E3A0  C0 24 00 04 */	lfs f1, 4(r4)
@@ -692,9 +681,9 @@ specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo:
 /* 80471490 0046E3D0  98 83 04 99 */	stb r4, 0x499(r3)
 /* 80471494 0046E3D4  98 03 04 98 */	stb r0, 0x498(r3)
 /* 80471498 0046E3D8  4E 80 00 20 */	blr 
+.endfn specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
 
-.global calcVolumeSpecialized__Q23PSM7SeSoundFf
-calcVolumeSpecialized__Q23PSM7SeSoundFf:
+.fn calcVolumeSpecialized__Q23PSM7SeSoundFf, global
 /* 8047149C 0046E3DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804714A0 0046E3E0  7C 08 02 A6 */	mflr r0
 /* 804714A4 0046E3E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -723,9 +712,9 @@ calcVolumeSpecialized__Q23PSM7SeSoundFf:
 /* 804714FC 0046E43C  7C 08 03 A6 */	mtlr r0
 /* 80471500 0046E440  38 21 00 20 */	addi r1, r1, 0x20
 /* 80471504 0046E444  4E 80 00 20 */	blr 
+.endfn calcVolumeSpecialized__Q23PSM7SeSoundFf
 
-.global calcVolume__Q23PSM7SeSoundFfUcUc
-calcVolume__Q23PSM7SeSoundFfUcUc:
+.fn calcVolume__Q23PSM7SeSoundFfUcUc, global
 /* 80471508 0046E448  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8047150C 0046E44C  7C 08 02 A6 */	mflr r0
 /* 80471510 0046E450  90 01 00 24 */	stw r0, 0x24(r1)
@@ -762,9 +751,9 @@ calcVolume__Q23PSM7SeSoundFfUcUc:
 /* 80471588 0046E4C8  7C 08 03 A6 */	mtlr r0
 /* 8047158C 0046E4CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80471590 0046E4D0  4E 80 00 20 */	blr 
+.endfn calcVolume__Q23PSM7SeSoundFfUcUc
 
-.global setSeDistancePan__Q23PSM7SeSoundFUc
-setSeDistancePan__Q23PSM7SeSoundFUc:
+.fn setSeDistancePan__Q23PSM7SeSoundFUc, global
 /* 80471594 0046E4D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80471598 0046E4D8  7C 08 02 A6 */	mflr r0
 /* 8047159C 0046E4DC  C0 22 2A 48 */	lfs f1, lbl_80520DA8@sda21(r2)
@@ -814,9 +803,9 @@ setSeDistancePan__Q23PSM7SeSoundFUc:
 /* 80471640 0046E580  7C 08 03 A6 */	mtlr r0
 /* 80471644 0046E584  38 21 00 20 */	addi r1, r1, 0x20
 /* 80471648 0046E588  4E 80 00 20 */	blr 
+.endfn setSeDistancePan__Q23PSM7SeSoundFUc
 
-.global calcPan__Q23PSM7SeSoundFRC3Vecf
-calcPan__Q23PSM7SeSoundFRC3Vecf:
+.fn calcPan__Q23PSM7SeSoundFRC3Vecf, global
 /* 8047164C 0046E58C  C0 02 2A 34 */	lfs f0, lbl_80520D94@sda21(r2)
 /* 80471650 0046E590  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80471654 0046E594  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -874,9 +863,9 @@ calcPan__Q23PSM7SeSoundFRC3Vecf:
 .L_8047170C:
 /* 8047170C 0046E64C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80471710 0046E650  4E 80 00 20 */	blr 
+.endfn calcPan__Q23PSM7SeSoundFRC3Vecf
 
-.global setSeDistanceDolby__Q23PSM7SeSoundFUc
-setSeDistanceDolby__Q23PSM7SeSoundFUc:
+.fn setSeDistanceDolby__Q23PSM7SeSoundFUc, global
 /* 80471714 0046E654  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80471718 0046E658  7C 08 02 A6 */	mflr r0
 /* 8047171C 0046E65C  C0 22 2A 34 */	lfs f1, lbl_80520D94@sda21(r2)
@@ -913,9 +902,9 @@ setSeDistanceDolby__Q23PSM7SeSoundFUc:
 /* 80471790 0046E6D0  7C 08 03 A6 */	mtlr r0
 /* 80471794 0046E6D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80471798 0046E6D8  4E 80 00 20 */	blr 
+.endfn setSeDistanceDolby__Q23PSM7SeSoundFUc
 
-.global calcDolby__Q23PSM7SeSoundFRC3Vecf
-calcDolby__Q23PSM7SeSoundFRC3Vecf:
+.fn calcDolby__Q23PSM7SeSoundFRC3Vecf, global
 /* 8047179C 0046E6DC  C0 02 2A 34 */	lfs f0, lbl_80520D94@sda21(r2)
 /* 804717A0 0046E6E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804717A4 0046E6E4  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -994,6 +983,7 @@ calcDolby__Q23PSM7SeSoundFRC3Vecf:
 .L_804718A0:
 /* 804718A0 0046E7E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 804718A4 0046E7E4  4E 80 00 20 */	blr 
+.endfn calcDolby__Q23PSM7SeSoundFRC3Vecf
 
 .fn __sinit_PSMainSide_Sound_cpp, local
 /* 804718A8 0046E7E8  3C 80 80 51 */	lis r4, __float_nan@ha

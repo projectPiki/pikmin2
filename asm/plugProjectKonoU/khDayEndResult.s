@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80498830
 lbl_80498830:
 	.4byte 0x6B684461
 	.4byte 0x79456E64
@@ -59,7 +58,6 @@ lbl_80498830:
 	.4byte 0x6174696F
 	.4byte 0x6E2E6270
 	.4byte 0x6B000000
-.global lbl_80498900
 lbl_80498900:
 	.4byte 0x64697370
 	.4byte 0x206D656D

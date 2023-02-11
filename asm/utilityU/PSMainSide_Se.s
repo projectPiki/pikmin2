@@ -1,47 +1,37 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049DA08:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F53
-	.4byte 0x652E6370
-	.4byte 0x70000000
+.obj lbl_8049DA08, local
+	.asciz "PSMainSide_Se.cpp"
+.endobj lbl_8049DA08
 .balign 4
-lbl_8049DA1C:
+.obj lbl_8049DA1C, local
 	.asciz "P2Assert"
+.endobj lbl_8049DA1C
 .balign 4
-	.4byte 0x67616D65
-	.4byte 0x53746174
-	.4byte 0x2E680000
-.global lbl_8049DA34
-lbl_8049DA34:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-.global lbl_8049DA70
-lbl_8049DA70:
-	.4byte 0x5053436F
-	.4byte 0x6D6D6F6E
-	.4byte 0x2E680000
-	.4byte 0x00000000
+.obj lbl_8049DA28, local
+	.asciz "gameStat.h"
+.endobj lbl_8049DA28
+.balign 4
+.obj lbl_8049DA34, local
+	.asciz "PSGame.h"
+.endobj lbl_8049DA34
+.balign 4
+.obj lbl_8049DA40, local
+	.asciz "PSScene.h"
+.endobj lbl_8049DA40
+.balign 4
+.obj lbl_8049DA4C, local
+	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8049DA4C
+.balign 4
+.obj lbl_8049DA70, local
+	.asciz "PSCommon.h"
+.endobj lbl_8049DA70
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EF6F0
-lbl_804EF6F0:
+.obj lbl_804EF6F0, local
 	.4byte .L_8046D858
 	.4byte .L_8046D5B8
 	.4byte .L_8046D62C
@@ -50,8 +40,8 @@ lbl_804EF6F0:
 	.4byte .L_8046D758
 	.4byte .L_8046D79C
 	.4byte .L_8046D7F0
-.global lbl_804EF710
-lbl_804EF710:
+.endobj lbl_804EF6F0
+.obj lbl_804EF710, local
 	.4byte .L_8046E3A8
 	.4byte .L_8046E370
 	.4byte .L_8046E328
@@ -137,168 +127,170 @@ lbl_804EF710:
 	.4byte .L_8046E3A8
 	.4byte .L_8046E3A8
 	.4byte .L_8046E340
-.global __vt__Q23PSM14ClusterFactory
-__vt__Q23PSM14ClusterFactory:
+.endobj lbl_804EF710
+.obj __vt__Q23PSM14ClusterFactory, weak
 	.4byte 0
 	.4byte 0
 	.4byte constructPart__Q38PSSystem9ClusterSe7FactoryFv
 	.4byte identifyPart__Q23PSM14ClusterFactoryFUc
-.global __vt__Q23PSM14WorldMapRocket
-__vt__Q23PSM14WorldMapRocket:
+.endobj __vt__Q23PSM14ClusterFactory
+.obj __vt__Q23PSM14WorldMapRocket, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23PSM14WorldMapRocketFv
+.endobj __vt__Q23PSM14WorldMapRocket
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sTreasureLader_PitchDistance
-sTreasureLader_PitchDistance:
+.obj sTreasureLader_PitchDistance, global
 	.float 0.77
-.global sTreasureLader_Pitch
-sTreasureLader_Pitch:
+.endobj sTreasureLader_PitchDistance
+.obj sTreasureLader_Pitch, global
 	.float 1.04
-.global sTreasureLader_DistanceExp
-sTreasureLader_DistanceExp:
+.endobj sTreasureLader_Pitch
+.obj sTreasureLader_DistanceExp, global
 	.float 5.0
-.global sTreasureLader_MinimumVolume
-sTreasureLader_MinimumVolume:
+.endobj sTreasureLader_DistanceExp
+.obj sTreasureLader_MinimumVolume, global
 	.float 0.3
-.global sLaderNoiseVolumeExp
-sLaderNoiseVolumeExp:
+.endobj sTreasureLader_MinimumVolume
+.obj sLaderNoiseVolumeExp, global
 	.float 7.18
-.global sLaderNoiseFuefukiTimerCenter
-sLaderNoiseFuefukiTimerCenter:
+.endobj sLaderNoiseVolumeExp
+.obj sLaderNoiseFuefukiTimerCenter, global
 	.2byte 0x003C
-.global sLaderNoiseFuefukiTimerRandam
-sLaderNoiseFuefukiTimerRandam:
+.endobj sLaderNoiseFuefukiTimerCenter
+.obj sLaderNoiseFuefukiTimerRandam, global
 	.2byte 0x0008
-.global sLaderNoiseFuefukiSensMax
-sLaderNoiseFuefukiSensMax:
+.endobj sLaderNoiseFuefukiTimerRandam
+.obj sLaderNoiseFuefukiSensMax, global
 	.float 0.3
-.global sLaderNoiseFuefukiVolumeMin
-sLaderNoiseFuefukiVolumeMin:
+.endobj sLaderNoiseFuefukiSensMax
+.obj sLaderNoiseFuefukiVolumeMin, global
 	.float 0.25
-.global sLaderNoiseFuefukiVolumeMax
-sLaderNoiseFuefukiVolumeMax:
+.endobj sLaderNoiseFuefukiVolumeMin
+.obj sLaderNoiseFuefukiVolumeMax, global
 	.float 0.5
+.endobj sLaderNoiseFuefukiVolumeMax
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-tmpVol$3526:
+.obj tmpVol$3526, local
 	.skip 0x4
-init$3527:
+.endobj tmpVol$3526
+.obj init$3527, local
 	.skip 0x1
+.endobj init$3527
 .balign 2
-.global sLaderNoiseTimer
-sLaderNoiseTimer:
+.obj sLaderNoiseTimer, local
 	.skip 0x2
-.global sLaderNoiseWait
-sLaderNoiseWait:
+.endobj sLaderNoiseTimer
+.obj sLaderNoiseWait, local
 	.skip 0x4
-.global sLaderNoiseFuefukiSensMin
-sLaderNoiseFuefukiSensMin:
+.endobj sLaderNoiseWait
+.obj sLaderNoiseFuefukiSensMin, global
 	.skip 0x4
+.endobj sLaderNoiseFuefukiSensMin
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520CE0
-lbl_80520CE0:
-	.4byte 0x00000000
-.global lbl_80520CE4
-lbl_80520CE4:
-	.4byte 0x44180000
-.global lbl_80520CE8
-lbl_80520CE8:
-	.4byte 0x40800000
-.global lbl_80520CEC
-lbl_80520CEC:
-	.4byte 0x42C80000
-.global lbl_80520CF0
-lbl_80520CF0:
-	.4byte 0x43820000
-.global lbl_80520CF4
-lbl_80520CF4:
+.obj lbl_80520CE0, local
+	.float 0.0
+.endobj lbl_80520CE0
+.obj lbl_80520CE4, local
+	.float 608.0
+.endobj lbl_80520CE4
+.obj lbl_80520CE8, local
+	.float 4.0
+.endobj lbl_80520CE8
+.obj lbl_80520CEC, local
+	.float 100.0
+.endobj lbl_80520CEC
+.obj lbl_80520CF0, local
+	.float 260.0
+.endobj lbl_80520CF0
+.obj lbl_80520CF4, local
 	.float 1.0
-.global lbl_80520CF8
-lbl_80520CF8:
+.endobj lbl_80520CF4
+.obj lbl_80520CF8, local
 	.float 0.5
-.global lbl_80520CFC
-lbl_80520CFC:
-	.4byte 0x4000A3D7
-.global lbl_80520D00
-lbl_80520D00:
-	.4byte 0x40000000
-.global lbl_80520D04
-lbl_80520D04:
-	.4byte 0x40200000
-.global lbl_80520D08
-lbl_80520D08:
-	.4byte 0x40133333
-.global lbl_80520D0C
-lbl_80520D0C:
-	.4byte 0x3FC00000
-.global lbl_80520D10
-lbl_80520D10:
+.endobj lbl_80520CF8
+.obj lbl_80520CFC, local
+	.float 2.01
+.endobj lbl_80520CFC
+.obj lbl_80520D00, local
+	.float 2.0
+.endobj lbl_80520D00
+.obj lbl_80520D04, local
+	.float 2.5
+.endobj lbl_80520D04
+.obj lbl_80520D08, local
+	.float 2.3
+.endobj lbl_80520D08
+.obj lbl_80520D0C, local
+	.float 1.5
+.endobj lbl_80520D0C
+.obj lbl_80520D10, local
 	.float 0.3
-.global lbl_80520D14
-lbl_80520D14:
+.endobj lbl_80520D10
+.obj lbl_80520D14, local
 	.float 0.1
-.global lbl_80520D18
-lbl_80520D18:
-	.4byte 0x3F4CCCCD
-.global lbl_80520D1C
-lbl_80520D1C:
-	.4byte 0x3F666666
-.global lbl_80520D20
-lbl_80520D20:
-	.4byte 0x3F8CCCCD
-.global lbl_80520D24
-lbl_80520D24:
-	.4byte 0x3F99999A
-.global lbl_80520D28
-lbl_80520D28:
-	.4byte 0x3FA66666
-.global lbl_80520D2C
-lbl_80520D2C:
-	.4byte 0x3FB33333
-.global lbl_80520D30
-lbl_80520D30:
+.endobj lbl_80520D14
+.obj lbl_80520D18, local
+	.float 0.8
+.endobj lbl_80520D18
+.obj lbl_80520D1C, local
+	.float 0.9
+.endobj lbl_80520D1C
+.obj lbl_80520D20, local
+	.float 1.1
+.endobj lbl_80520D20
+.obj lbl_80520D24, local
+	.float 1.2
+.endobj lbl_80520D24
+.obj lbl_80520D28, local
+	.float 1.3
+.endobj lbl_80520D28
+.obj lbl_80520D2C, local
+	.float 1.4
+.endobj lbl_80520D2C
+.obj lbl_80520D30, local
 	.float 0.7
-.global lbl_80520D34
-lbl_80520D34:
-	.4byte 0x3F19999A
-.global lbl_80520D38
-lbl_80520D38:
-	.4byte 0x3FCCCCCD
-.global lbl_80520D3C
-lbl_80520D3C:
-	.4byte 0x3FD9999A
-.global lbl_80520D40
-lbl_80520D40:
-	.4byte 0x3FE66666
-.global lbl_80520D44
-lbl_80520D44:
-	.4byte 0x3ECCCCCD
-.global lbl_80520D48
-lbl_80520D48:
-	.4byte 0x40A00000
-.global lbl_80520D4C
-lbl_80520D4C:
-	.4byte 0x437A0000
-.global lbl_80520D50
-lbl_80520D50:
-	.4byte 0x42FE0000
-.global lbl_80520D54
-lbl_80520D54:
-	.4byte 0x3E4CCCCD
+.endobj lbl_80520D30
+.obj lbl_80520D34, local
+	.float 0.6
+.endobj lbl_80520D34
+.obj lbl_80520D38, local
+	.float 1.6
+.endobj lbl_80520D38
+.obj lbl_80520D3C, local
+	.float 1.7
+.endobj lbl_80520D3C
+.obj lbl_80520D40, local
+	.float 1.8
+.endobj lbl_80520D40
+.obj lbl_80520D44, local
+	.float 0.4
+.endobj lbl_80520D44
+.obj lbl_80520D48, local
+	.float 5.0
+.endobj lbl_80520D48
+.obj lbl_80520D4C, local
+	.float 250.0
+.endobj lbl_80520D4C
+.obj lbl_80520D50, local
+	.float 127.0
+.endobj lbl_80520D50
+.obj lbl_80520D54, local
+	.float 0.2
+.endobj lbl_80520D54
 .balign 8
-lbl_80520D58:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80520D58, local
+	.8byte 0x4330000080000000
+.endobj lbl_80520D58
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global partInit__Q23PSM14ClusterFactoryFUc
-partInit__Q23PSM14ClusterFactoryFUc:
+.fn partInit__Q23PSM14ClusterFactoryFUc, global
 /* 8046D144 0046A084  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046D148 0046A088  7C 08 02 A6 */	mflr r0
 /* 8046D14C 0046A08C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -448,9 +440,9 @@ partInit__Q23PSM14ClusterFactoryFUc:
 /* 8046D354 0046A294  7C 08 03 A6 */	mtlr r0
 /* 8046D358 0046A298  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046D35C 0046A29C  4E 80 00 20 */	blr 
+.endfn partInit__Q23PSM14ClusterFactoryFUc
 
-.global __ct__Q23PSM14WorldMapRocketFv
-__ct__Q23PSM14WorldMapRocketFv:
+.fn __ct__Q23PSM14WorldMapRocketFv, global
 /* 8046D360 0046A2A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046D364 0046A2A4  7C 08 02 A6 */	mflr r0
 /* 8046D368 0046A2A8  38 80 00 00 */	li r4, 0
@@ -480,9 +472,9 @@ __ct__Q23PSM14WorldMapRocketFv:
 /* 8046D3C8 0046A308  7C 08 03 A6 */	mtlr r0
 /* 8046D3CC 0046A30C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046D3D0 0046A310  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM14WorldMapRocketFv
 
-.global __dt__Q23PSM14WorldMapRocketFv
-__dt__Q23PSM14WorldMapRocketFv:
+.fn __dt__Q23PSM14WorldMapRocketFv, global
 /* 8046D3D4 0046A314  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046D3D8 0046A318  7C 08 02 A6 */	mflr r0
 /* 8046D3DC 0046A31C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -508,9 +500,9 @@ __dt__Q23PSM14WorldMapRocketFv:
 /* 8046D428 0046A368  7C 08 03 A6 */	mtlr r0
 /* 8046D42C 0046A36C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046D430 0046A370  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM14WorldMapRocketFv
 
-.global startRocketSE__Q23PSM14WorldMapRocketFff
-startRocketSE__Q23PSM14WorldMapRocketFff:
+.fn startRocketSE__Q23PSM14WorldMapRocketFff, global
 /* 8046D434 0046A374  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8046D438 0046A378  7C 08 02 A6 */	mflr r0
 /* 8046D43C 0046A37C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -819,18 +811,18 @@ startRocketSE__Q23PSM14WorldMapRocketFff:
 /* 8046D8B8 0046A7F8  7C 08 03 A6 */	mtlr r0
 /* 8046D8BC 0046A7FC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8046D8C0 0046A800  4E 80 00 20 */	blr 
+.endfn startRocketSE__Q23PSM14WorldMapRocketFff
 
-.global stateChange__Q23PSM14WorldMapRocketFQ33PSM14WorldMapRocket11rocketState
-stateChange__Q23PSM14WorldMapRocketFQ33PSM14WorldMapRocket11rocketState:
+.fn stateChange__Q23PSM14WorldMapRocketFQ33PSM14WorldMapRocket11rocketState, global
 /* 8046D8C4 0046A804  90 83 00 04 */	stw r4, 4(r3)
 /* 8046D8C8 0046A808  4E 80 00 20 */	blr 
+.endfn stateChange__Q23PSM14WorldMapRocketFQ33PSM14WorldMapRocket11rocketState
 
-.global __ct__Q23PSM11PikiHummingFv
-__ct__Q23PSM11PikiHummingFv:
+.fn __ct__Q23PSM11PikiHummingFv, global
 /* 8046D8CC 0046A80C  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM11PikiHummingFv
 
-.global __ct__Q23PSM14PikiHummingMgrFv
-__ct__Q23PSM14PikiHummingMgrFv:
+.fn __ct__Q23PSM14PikiHummingMgrFv, global
 /* 8046D8D0 0046A810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046D8D4 0046A814  7C 08 02 A6 */	mflr r0
 /* 8046D8D8 0046A818  90 01 00 14 */	stw r0, 0x14(r1)
@@ -894,9 +886,9 @@ __ct__Q23PSM14PikiHummingMgrFv:
 /* 8046D9C0 0046A900  7C 08 03 A6 */	mtlr r0
 /* 8046D9C4 0046A904  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046D9C8 0046A908  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM14PikiHummingMgrFv
 
-.global exec__Q23PSM14PikiHummingMgrFv
-exec__Q23PSM14PikiHummingMgrFv:
+.fn exec__Q23PSM14PikiHummingMgrFv, global
 /* 8046D9CC 0046A90C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8046D9D0 0046A910  7C 08 02 A6 */	mflr r0
 /* 8046D9D4 0046A914  38 80 00 00 */	li r4, 0
@@ -1330,9 +1322,9 @@ exec__Q23PSM14PikiHummingMgrFv:
 /* 8046DFE4 0046AF24  7C 08 03 A6 */	mtlr r0
 /* 8046DFE8 0046AF28  38 21 00 40 */	addi r1, r1, 0x40
 /* 8046DFEC 0046AF2C  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM14PikiHummingMgrFv
 
-.global play__Q23PSM14PikiHummingMgrFPQ23PSM4Piki
-play__Q23PSM14PikiHummingMgrFPQ23PSM4Piki:
+.fn play__Q23PSM14PikiHummingMgrFPQ23PSM4Piki, global
 /* 8046DFF0 0046AF30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046DFF4 0046AF34  7C 08 02 A6 */	mflr r0
 /* 8046DFF8 0046AF38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1384,9 +1376,9 @@ play__Q23PSM14PikiHummingMgrFPQ23PSM4Piki:
 /* 8046E0A8 0046AFE8  7C 08 03 A6 */	mtlr r0
 /* 8046E0AC 0046AFEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046E0B0 0046AFF0  4E 80 00 20 */	blr 
+.endfn play__Q23PSM14PikiHummingMgrFPQ23PSM4Piki
 
-.global PSStartSoundVec__FUlP3Vec
-PSStartSoundVec__FUlP3Vec:
+.fn PSStartSoundVec__FUlP3Vec, global
 /* 8046E0B4 0046AFF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046E0B8 0046AFF8  7C 08 02 A6 */	mflr r0
 /* 8046E0BC 0046AFFC  3C A0 80 4A */	lis r5, lbl_8049DA08@ha
@@ -1481,9 +1473,9 @@ PSStartSoundVec__FUlP3Vec:
 /* 8046E204 0046B144  7C 08 03 A6 */	mtlr r0
 /* 8046E208 0046B148  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046E20C 0046B14C  4E 80 00 20 */	blr 
+.endfn PSStartSoundVec__FUlP3Vec
 
-.global newPSCluster_SijimiChou__FPQ24Game8Creature
-newPSCluster_SijimiChou__FPQ24Game8Creature:
+.fn newPSCluster_SijimiChou__FPQ24Game8Creature, global
 /* 8046E210 0046B150  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046E214 0046B154  7C 08 02 A6 */	mflr r0
 /* 8046E218 0046B158  38 80 00 03 */	li r4, 3
@@ -1512,9 +1504,9 @@ newPSCluster_SijimiChou__FPQ24Game8Creature:
 /* 8046E270 0046B1B0  7C 08 03 A6 */	mtlr r0
 /* 8046E274 0046B1B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046E278 0046B1B8  4E 80 00 20 */	blr 
+.endfn newPSCluster_SijimiChou__FPQ24Game8Creature
 
-.global PSStartEnemyGhostSE__FPQ24Game9EnemyBasef
-PSStartEnemyGhostSE__FPQ24Game9EnemyBasef:
+.fn PSStartEnemyGhostSE__FPQ24Game9EnemyBasef, global
 /* 8046E27C 0046B1BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8046E280 0046B1C0  7C 08 02 A6 */	mflr r0
 /* 8046E284 0046B1C4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1632,9 +1624,9 @@ PSStartEnemyGhostSE__FPQ24Game9EnemyBasef:
 /* 8046E408 0046B348  7C 08 03 A6 */	mtlr r0
 /* 8046E40C 0046B34C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8046E410 0046B350  4E 80 00 20 */	blr 
+.endfn PSStartEnemyGhostSE__FPQ24Game9EnemyBasef
 
-.global PSStartEnemyFatalHitSE__FPQ24Game9EnemyBasef
-PSStartEnemyFatalHitSE__FPQ24Game9EnemyBasef:
+.fn PSStartEnemyFatalHitSE__FPQ24Game9EnemyBasef, global
 /* 8046E414 0046B354  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8046E418 0046B358  7C 08 02 A6 */	mflr r0
 /* 8046E41C 0046B35C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1806,9 +1798,9 @@ PSStartEnemyFatalHitSE__FPQ24Game9EnemyBasef:
 /* 8046E684 0046B5C4  7C 08 03 A6 */	mtlr r0
 /* 8046E688 0046B5C8  38 21 00 50 */	addi r1, r1, 0x50
 /* 8046E68C 0046B5CC  4E 80 00 20 */	blr 
+.endfn PSStartEnemyFatalHitSE__FPQ24Game9EnemyBasef
 
-.global PSStartEnemyDownSmokeSE__FPQ24Game9EnemyBasef
-PSStartEnemyDownSmokeSE__FPQ24Game9EnemyBasef:
+.fn PSStartEnemyDownSmokeSE__FPQ24Game9EnemyBasef, global
 /* 8046E690 0046B5D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046E694 0046B5D4  7C 08 02 A6 */	mflr r0
 /* 8046E698 0046B5D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1923,9 +1915,9 @@ PSStartEnemyDownSmokeSE__FPQ24Game9EnemyBasef:
 /* 8046E834 0046B774  7C 08 03 A6 */	mtlr r0
 /* 8046E838 0046B778  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046E83C 0046B77C  4E 80 00 20 */	blr 
+.endfn PSStartEnemyDownSmokeSE__FPQ24Game9EnemyBasef
 
-.global PSStartEnemyDownWatSE__FPQ24Game9EnemyBasef
-PSStartEnemyDownWatSE__FPQ24Game9EnemyBasef:
+.fn PSStartEnemyDownWatSE__FPQ24Game9EnemyBasef, global
 /* 8046E840 0046B780  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046E844 0046B784  7C 08 02 A6 */	mflr r0
 /* 8046E848 0046B788  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2064,9 +2056,9 @@ PSStartEnemyDownWatSE__FPQ24Game9EnemyBasef:
 /* 8046EA34 0046B974  7C 08 03 A6 */	mtlr r0
 /* 8046EA38 0046B978  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046EA3C 0046B97C  4E 80 00 20 */	blr 
+.endfn PSStartEnemyDownWatSE__FPQ24Game9EnemyBasef
 
-.global PSStartTreasureLaderSE__Ff
-PSStartTreasureLaderSE__Ff:
+.fn PSStartTreasureLaderSE__Ff, global
 /* 8046EA40 0046B980  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8046EA44 0046B984  7C 08 02 A6 */	mflr r0
 /* 8046EA48 0046B988  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2229,9 +2221,9 @@ PSStartTreasureLaderSE__Ff:
 /* 8046EC94 0046BBD4  7C 08 03 A6 */	mtlr r0
 /* 8046EC98 0046BBD8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8046EC9C 0046BBDC  4E 80 00 20 */	blr 
+.endfn PSStartTreasureLaderSE__Ff
 
-.global PSStartTresureLaderNoiseSE__FUcff
-PSStartTresureLaderNoiseSE__FUcff:
+.fn PSStartTresureLaderNoiseSE__FUcff, global
 /* 8046ECA0 0046BBE0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8046ECA4 0046BBE4  7C 08 02 A6 */	mflr r0
 /* 8046ECA8 0046BBE8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2525,9 +2517,9 @@ PSStartTresureLaderNoiseSE__FUcff:
 /* 8046F0E4 0046C024  7C 08 03 A6 */	mtlr r0
 /* 8046F0E8 0046C028  38 21 00 40 */	addi r1, r1, 0x40
 /* 8046F0EC 0046C02C  4E 80 00 20 */	blr 
+.endfn PSStartTresureLaderNoiseSE__FUcff
 
-.global PSMGetWorldMapRocket__Fv
-PSMGetWorldMapRocket__Fv:
+.fn PSMGetWorldMapRocket__Fv, global
 /* 8046F0F0 0046C030  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046F0F4 0046C034  7C 08 02 A6 */	mflr r0
 /* 8046F0F8 0046C038  3C 60 80 4A */	lis r3, lbl_8049DA08@ha
@@ -2577,9 +2569,9 @@ PSMGetWorldMapRocket__Fv:
 /* 8046F194 0046C0D4  7C 08 03 A6 */	mtlr r0
 /* 8046F198 0046C0D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046F19C 0046C0DC  4E 80 00 20 */	blr 
+.endfn PSMGetWorldMapRocket__Fv
 
-.global PSPlayCaveHoleSound__FPQ23PSM8Creature
-PSPlayCaveHoleSound__FPQ23PSM8Creature:
+.fn PSPlayCaveHoleSound__FPQ23PSM8Creature, global
 /* 8046F1A0 0046C0E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046F1A4 0046C0E4  7C 08 02 A6 */	mflr r0
 /* 8046F1A8 0046C0E8  38 80 30 7C */	li r4, 0x307c
@@ -2613,9 +2605,9 @@ PSPlayCaveHoleSound__FPQ23PSM8Creature:
 /* 8046F210 0046C150  7C 08 03 A6 */	mtlr r0
 /* 8046F214 0046C154  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046F218 0046C158  4E 80 00 20 */	blr 
+.endfn PSPlayCaveHoleSound__FPQ23PSM8Creature
 
-.global identifyPart__Q23PSM14ClusterFactoryFUc
-identifyPart__Q23PSM14ClusterFactoryFUc:
+.fn identifyPart__Q23PSM14ClusterFactoryFUc, weak
 /* 8046F21C 0046C15C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046F220 0046C160  7C 08 02 A6 */	mflr r0
 /* 8046F224 0046C164  54 A5 06 3E */	clrlwi r5, r5, 0x18
@@ -2628,9 +2620,9 @@ identifyPart__Q23PSM14ClusterFactoryFUc:
 /* 8046F240 0046C180  7C 08 03 A6 */	mtlr r0
 /* 8046F244 0046C184  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046F248 0046C188  4E 80 00 20 */	blr 
+.endfn identifyPart__Q23PSM14ClusterFactoryFUc
 
-.global "startSoundVecReturnHandleT<8JAISound>__8JAIBasicFPP8JAISoundUlP3VecUlUlUc"
-"startSoundVecReturnHandleT<8JAISound>__8JAIBasicFPP8JAISoundUlP3VecUlUlUc":
+.fn "startSoundVecReturnHandleT<8JAISound>__8JAIBasicFPP8JAISoundUlP3VecUlUlUc", weak
 /* 8046F24C 0046C18C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046F250 0046C190  7C 08 02 A6 */	mflr r0
 /* 8046F254 0046C194  39 40 00 00 */	li r10, 0
@@ -2661,3 +2653,4 @@ identifyPart__Q23PSM14ClusterFactoryFUc:
 /* 8046F2B0 0046C1F0  7C 08 03 A6 */	mtlr r0
 /* 8046F2B4 0046C1F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046F2B8 0046C1F8  4E 80 00 20 */	blr 
+.endfn "startSoundVecReturnHandleT<8JAISound>__8JAIBasicFPP8JAISoundUlP3VecUlUlUc"
