@@ -11,7 +11,7 @@ OS_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/os/OSInterrupt.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSLink.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSMessage.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSMemory.o\
+	$(BUILD_DIR)/src/Dolphin/os/OSMemory.o\
 	$(BUILD_DIR)/asm/Dolphin/os/OSMutex.o\
 	$(BUILD_DIR)/asm/Dolphin/os/OSReboot.o\
 	$(BUILD_DIR)/asm/Dolphin/os/OSReset.o\
@@ -29,6 +29,7 @@ OS_UNSCHEDULED:=\
 	$(EPILOGUE_DIR)/src/Dolphin/os/OSAudioSystem.o\
 	$(EPILOGUE_DIR)/src/Dolphin/os/OSCache.o\
 	$(EPILOGUE_DIR)/src/Dolphin/os/OSMessage.o\
+	$(EPILOGUE_DIR)/src/Dolphin/os/OSMemory.o\
 
 $(OS_FILES): CFLAGS += -common off -str noreadonly
 $(OS_UNSCHEDULED): CFLAGS += -common off -str noreadonly

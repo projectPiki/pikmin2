@@ -742,7 +742,7 @@ LIBS = [
             "Dolphin/os/OSInterrupt",
             ["Dolphin/os/OSLink", True],
             ["Dolphin/os/OSMessage", True],
-            "Dolphin/os/OSMemory",
+            ["Dolphin/os/OSMemory", True],
             "Dolphin/os/OSMutex",
             "Dolphin/os/OSReboot",
             "Dolphin/os/OSReset",

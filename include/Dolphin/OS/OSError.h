@@ -39,6 +39,9 @@ OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler);
 #define OS_ERROR_PROTECTION         (15)
 #define OS_ERROR_MAX                (OS_ERROR_PROTECTION + 1)
 
+// Error table.
+extern OSErrorHandler __OSErrorTable[16];
+
 //////////////////////////////////
 
 #ifdef __cplusplus

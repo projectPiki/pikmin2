@@ -54,6 +54,8 @@ vu16 __MEMRegs[64] AT_ADDRESS(0xCC004000);
 #define MEM_INTRPT_ADDR_LO (17) // address that caused interrupt
 #define MEM_INTRPT_ADDR_HI (18) // address that caused interrupt
 
+#define MEM_UNK_FLAG (20) // unknown memory flag, set in __OSInitMemoryProtection
+
 // Digital Signal Processor registers (for audio mixing).
 vu16 __DSPRegs[32] AT_ADDRESS(0xCC005000);
 
