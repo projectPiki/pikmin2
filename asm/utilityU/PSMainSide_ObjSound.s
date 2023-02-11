@@ -1959,8 +1959,7 @@
 /* 8045DA0C 0045A94C  4E 80 00 20 */	blr 
 .endfn startSound__Q23PSM11CreatureObjFUcUlUl
 
-.global startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
-startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl:
+.fn startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl, global
 /* 8045DA10 0045A950  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045DA14 0045A954  7C 08 02 A6 */	mflr r0
 /* 8045DA18 0045A958  3D 00 80 4A */	lis r8, lbl_8049CFA0@ha
@@ -2003,9 +2002,9 @@ startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl:
 /* 8045DAAC 0045A9EC  7C 08 03 A6 */	mtlr r0
 /* 8045DAB0 0045A9F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045DAB4 0045A9F4  4E 80 00 20 */	blr 
+.endfn startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
 
-.global frameEnd_onPlaySe__Q23PSM11CreatureObjFv
-frameEnd_onPlaySe__Q23PSM11CreatureObjFv:
+.fn frameEnd_onPlaySe__Q23PSM11CreatureObjFv, global
 /* 8045DAB8 0045A9F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045DABC 0045A9FC  7C 08 02 A6 */	mflr r0
 /* 8045DAC0 0045AA00  38 C3 00 64 */	addi r6, r3, 0x64
@@ -2025,9 +2024,9 @@ frameEnd_onPlaySe__Q23PSM11CreatureObjFv:
 /* 8045DAF8 0045AA38  7C 08 03 A6 */	mtlr r0
 /* 8045DAFC 0045AA3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045DB00 0045AA40  4E 80 00 20 */	blr 
+.endfn frameEnd_onPlaySe__Q23PSM11CreatureObjFv
 
-.global startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc
-startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc:
+.fn startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc, global
 /* 8045DB04 0045AA44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045DB08 0045AA48  7C 08 02 A6 */	mflr r0
 /* 8045DB0C 0045AA4C  3C E0 80 4A */	lis r7, lbl_8049CFA0@ha
@@ -2115,9 +2114,9 @@ startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc:
 /* 8045DC40 0045AB80  7C 08 03 A6 */	mtlr r0
 /* 8045DC44 0045AB84  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045DC48 0045AB88  4E 80 00 20 */	blr 
+.endfn startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc
 
-.global startSound__Q23PSM13CreatureAnimeFUlUl
-startSound__Q23PSM13CreatureAnimeFUlUl:
+.fn startSound__Q23PSM13CreatureAnimeFUlUl, global
 /* 8045DC4C 0045AB8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045DC50 0045AB90  7C 08 02 A6 */	mflr r0
 /* 8045DC54 0045AB94  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2133,9 +2132,9 @@ startSound__Q23PSM13CreatureAnimeFUlUl:
 /* 8045DC7C 0045ABBC  7C 08 03 A6 */	mtlr r0
 /* 8045DC80 0045ABC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045DC84 0045ABC4  4E 80 00 20 */	blr 
+.endfn startSound__Q23PSM13CreatureAnimeFUlUl
 
-.global startSound__Q23PSM13CreatureAnimeFUcUlUl
-startSound__Q23PSM13CreatureAnimeFUcUlUl:
+.fn startSound__Q23PSM13CreatureAnimeFUcUlUl, global
 /* 8045DC88 0045ABC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045DC8C 0045ABCC  7C 08 02 A6 */	mflr r0
 /* 8045DC90 0045ABD0  3D 00 80 4A */	lis r8, lbl_8049CFA0@ha
@@ -2180,6 +2179,7 @@ startSound__Q23PSM13CreatureAnimeFUcUlUl:
 /* 8045DD2C 0045AC6C  7C 08 03 A6 */	mtlr r0
 /* 8045DD30 0045AC70  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045DD34 0045AC74  4E 80 00 20 */	blr 
+.endfn startSound__Q23PSM13CreatureAnimeFUcUlUl
 
 .global startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
 startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl:

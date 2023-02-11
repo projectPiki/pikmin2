@@ -22,8 +22,7 @@
 	.4byte do_update__Q23ebi24E2DCallBack_WindowCursorFv
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
 .endobj __vt__Q23ebi24E2DCallBack_WindowCursor
-.global __vt__Q23ebi19E2DCallBack_AnmBase
-__vt__Q23ebi19E2DCallBack_AnmBase:
+.obj __vt__Q23ebi19E2DCallBack_AnmBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23ebi19E2DCallBack_AnmBaseFv
@@ -33,8 +32,8 @@ __vt__Q23ebi19E2DCallBack_AnmBase:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte do_update__Q23ebi19E2DCallBack_AnmBaseFv
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-.global __vt__Q23ebi22E2DCallBack_BlinkAlpha
-__vt__Q23ebi22E2DCallBack_BlinkAlpha:
+.endobj __vt__Q23ebi19E2DCallBack_AnmBase
+.obj __vt__Q23ebi22E2DCallBack_BlinkAlpha, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23ebi22E2DCallBack_BlinkAlphaFv
@@ -44,8 +43,8 @@ __vt__Q23ebi22E2DCallBack_BlinkAlpha:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte do_update__Q23ebi22E2DCallBack_BlinkAlphaFv
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-.global __vt__Q23ebi26E2DCallBack_BlinkFontColor
-__vt__Q23ebi26E2DCallBack_BlinkFontColor:
+.endobj __vt__Q23ebi22E2DCallBack_BlinkAlpha
+.obj __vt__Q23ebi26E2DCallBack_BlinkFontColor, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23ebi26E2DCallBack_BlinkFontColorFv
@@ -55,8 +54,8 @@ __vt__Q23ebi26E2DCallBack_BlinkFontColor:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte do_update__Q23ebi26E2DCallBack_BlinkFontColorFv
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-.global __vt__Q23ebi20E2DCallBack_Purupuru
-__vt__Q23ebi20E2DCallBack_Purupuru:
+.endobj __vt__Q23ebi26E2DCallBack_BlinkFontColor
+.obj __vt__Q23ebi20E2DCallBack_Purupuru, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23ebi20E2DCallBack_PurupuruFv
@@ -66,31 +65,38 @@ __vt__Q23ebi20E2DCallBack_Purupuru:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte do_update__Q23ebi20E2DCallBack_PurupuruFv
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+.endobj __vt__Q23ebi20E2DCallBack_Purupuru
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FA98:
+.obj lbl_8051FA98, local
 	.float 0.001
-lbl_8051FA9C:
+.endobj lbl_8051FA98
+.obj lbl_8051FA9C, local
 	.float 1.0
-lbl_8051FAA0:
+.endobj lbl_8051FA9C
+.obj lbl_8051FAA0, local
 	.float 0.0
+.endobj lbl_8051FAA0
 .balign 8
-lbl_8051FAA8:
+.obj lbl_8051FAA8, local
 	.4byte 0x43300000
 	.4byte 0x80000000
+.endobj lbl_8051FAA8
 .balign 8
-lbl_8051FAB0:
+.obj lbl_8051FAB0, local
 	.4byte 0x43300000
 	.4byte 0x00000000
-lbl_8051FAB8:
+.endobj lbl_8051FAB0
+.obj lbl_8051FAB8, local
 	.float 32767.0
-lbl_8051FABC:
+.endobj lbl_8051FAB8
+.obj lbl_8051FABC, local
 	.float 1.1
+.endobj lbl_8051FABC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global do_update__Q23ebi20E2DCallBack_PurupuruFv
-do_update__Q23ebi20E2DCallBack_PurupuruFv:
+.fn do_update__Q23ebi20E2DCallBack_PurupuruFv, global
 /* 803D068C 003CD5CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D0690 003CD5D0  7C 08 02 A6 */	mflr r0
 /* 803D0694 003CD5D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -116,9 +122,9 @@ do_update__Q23ebi20E2DCallBack_PurupuruFv:
 /* 803D06E0 003CD620  7C 08 03 A6 */	mtlr r0
 /* 803D06E4 003CD624  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D06E8 003CD628  4E 80 00 20 */	blr 
+.endfn do_update__Q23ebi20E2DCallBack_PurupuruFv
 
-.global do_update__Q23ebi26E2DCallBack_BlinkFontColorFv
-do_update__Q23ebi26E2DCallBack_BlinkFontColorFv:
+.fn do_update__Q23ebi26E2DCallBack_BlinkFontColorFv, global
 /* 803D06EC 003CD62C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803D06F0 003CD630  7C 08 02 A6 */	mflr r0
 /* 803D06F4 003CD634  90 01 00 94 */	stw r0, 0x94(r1)
@@ -302,9 +308,9 @@ do_update__Q23ebi26E2DCallBack_BlinkFontColorFv:
 /* 803D09AC 003CD8EC  7C 08 03 A6 */	mtlr r0
 /* 803D09B0 003CD8F0  38 21 00 90 */	addi r1, r1, 0x90
 /* 803D09B4 003CD8F4  4E 80 00 20 */	blr 
+.endfn do_update__Q23ebi26E2DCallBack_BlinkFontColorFv
 
-.global do_update__Q23ebi22E2DCallBack_BlinkAlphaFv
-do_update__Q23ebi22E2DCallBack_BlinkAlphaFv:
+.fn do_update__Q23ebi22E2DCallBack_BlinkAlphaFv, global
 /* 803D09B8 003CD8F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D09BC 003CD8FC  7C 08 02 A6 */	mflr r0
 /* 803D09C0 003CD900  7C 66 1B 78 */	mr r6, r3
@@ -379,9 +385,9 @@ do_update__Q23ebi22E2DCallBack_BlinkAlphaFv:
 /* 803D0AC4 003CDA04  7C 08 03 A6 */	mtlr r0
 /* 803D0AC8 003CDA08  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D0ACC 003CDA0C  4E 80 00 20 */	blr 
+.endfn do_update__Q23ebi22E2DCallBack_BlinkAlphaFv
 
-.global loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell
-loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell:
+.fn loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell, global
 /* 803D0AD0 003CDA10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D0AD4 003CDA14  7C 08 02 A6 */	mflr r0
 /* 803D0AD8 003CDA18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -434,9 +440,9 @@ loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell:
 /* 803D0B8C 003CDACC  7C 08 03 A6 */	mtlr r0
 /* 803D0B90 003CDAD0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D0B94 003CDAD4  4E 80 00 20 */	blr 
+.endfn loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell
 
-.global play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb:
+.fn play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb, global
 /* 803D0B98 003CDAD8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803D0B9C 003CDADC  7C 08 02 A6 */	mflr r0
 /* 803D0BA0 003CDAE0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -507,9 +513,9 @@ play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb:
 /* 803D0C98 003CDBD8  7C 08 03 A6 */	mtlr r0
 /* 803D0C9C 003CDBDC  38 21 00 30 */	addi r1, r1, 0x30
 /* 803D0CA0 003CDBE0  4E 80 00 20 */	blr 
+.endfn play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
 
-.global playBack__Q23ebi19E2DCallBack_AnmBaseFfb
-playBack__Q23ebi19E2DCallBack_AnmBaseFfb:
+.fn playBack__Q23ebi19E2DCallBack_AnmBaseFfb, global
 /* 803D0CA4 003CDBE4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803D0CA8 003CDBE8  7C 08 02 A6 */	mflr r0
 /* 803D0CAC 003CDBEC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -581,17 +587,17 @@ playBack__Q23ebi19E2DCallBack_AnmBaseFfb:
 /* 803D0DA8 003CDCE8  7C 08 03 A6 */	mtlr r0
 /* 803D0DAC 003CDCEC  38 21 00 30 */	addi r1, r1, 0x30
 /* 803D0DB0 003CDCF0  4E 80 00 20 */	blr 
+.endfn playBack__Q23ebi19E2DCallBack_AnmBaseFfb
 
-.global stop__Q23ebi19E2DCallBack_AnmBaseFv
-stop__Q23ebi19E2DCallBack_AnmBaseFv:
+.fn stop__Q23ebi19E2DCallBack_AnmBaseFv, global
 /* 803D0DB4 003CDCF4  38 80 00 00 */	li r4, 0
 /* 803D0DB8 003CDCF8  38 00 00 01 */	li r0, 1
 /* 803D0DBC 003CDCFC  98 83 00 1C */	stb r4, 0x1c(r3)
 /* 803D0DC0 003CDD00  98 03 00 38 */	stb r0, 0x38(r3)
 /* 803D0DC4 003CDD04  4E 80 00 20 */	blr 
+.endfn stop__Q23ebi19E2DCallBack_AnmBaseFv
 
-.global setStartFrame__Q23ebi19E2DCallBack_AnmBaseFv
-setStartFrame__Q23ebi19E2DCallBack_AnmBaseFv:
+.fn setStartFrame__Q23ebi19E2DCallBack_AnmBaseFv, global
 /* 803D0DC8 003CDD08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D0DCC 003CDD0C  3C 00 43 30 */	lis r0, 0x4330
 /* 803D0DD0 003CDD10  C8 22 17 48 */	lfd f1, lbl_8051FAA8@sda21(r2)
@@ -607,9 +613,9 @@ setStartFrame__Q23ebi19E2DCallBack_AnmBaseFv:
 /* 803D0DF8 003CDD38  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803D0DFC 003CDD3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0E00 003CDD40  4E 80 00 20 */	blr 
+.endfn setStartFrame__Q23ebi19E2DCallBack_AnmBaseFv
 
-.global setEndFrame__Q23ebi19E2DCallBack_AnmBaseFv
-setEndFrame__Q23ebi19E2DCallBack_AnmBaseFv:
+.fn setEndFrame__Q23ebi19E2DCallBack_AnmBaseFv, global
 /* 803D0E04 003CDD44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D0E08 003CDD48  3C 00 43 30 */	lis r0, 0x4330
 /* 803D0E0C 003CDD4C  C8 22 17 48 */	lfd f1, lbl_8051FAA8@sda21(r2)
@@ -625,9 +631,9 @@ setEndFrame__Q23ebi19E2DCallBack_AnmBaseFv:
 /* 803D0E34 003CDD74  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803D0E38 003CDD78  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0E3C 003CDD7C  4E 80 00 20 */	blr 
+.endfn setEndFrame__Q23ebi19E2DCallBack_AnmBaseFv
 
-.global setRandFrame__Q23ebi19E2DCallBack_AnmBaseFv
-setRandFrame__Q23ebi19E2DCallBack_AnmBaseFv:
+.fn setRandFrame__Q23ebi19E2DCallBack_AnmBaseFv, global
 /* 803D0E40 003CDD80  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803D0E44 003CDD84  7C 08 02 A6 */	mflr r0
 /* 803D0E48 003CDD88  90 01 00 54 */	stw r0, 0x54(r1)
@@ -676,9 +682,9 @@ setRandFrame__Q23ebi19E2DCallBack_AnmBaseFv:
 /* 803D0EF4 003CDE34  7C 08 03 A6 */	mtlr r0
 /* 803D0EF8 003CDE38  38 21 00 50 */	addi r1, r1, 0x50
 /* 803D0EFC 003CDE3C  4E 80 00 20 */	blr 
+.endfn setRandFrame__Q23ebi19E2DCallBack_AnmBaseFv
 
-.global getPlayFinRate__Q23ebi19E2DCallBack_AnmBaseFv
-getPlayFinRate__Q23ebi19E2DCallBack_AnmBaseFv:
+.fn getPlayFinRate__Q23ebi19E2DCallBack_AnmBaseFv, global
 /* 803D0F00 003CDE40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D0F04 003CDE44  3C 80 43 30 */	lis r4, 0x4330
 /* 803D0F08 003CDE48  C8 42 17 48 */	lfd f2, lbl_8051FAA8@sda21(r2)
@@ -700,9 +706,9 @@ getPlayFinRate__Q23ebi19E2DCallBack_AnmBaseFv:
 /* 803D0F48 003CDE88  EC 21 00 24 */	fdivs f1, f1, f0
 /* 803D0F4C 003CDE8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D0F50 003CDE90  4E 80 00 20 */	blr 
+.endfn getPlayFinRate__Q23ebi19E2DCallBack_AnmBaseFv
 
-.global do_update__Q23ebi19E2DCallBack_AnmBaseFv
-do_update__Q23ebi19E2DCallBack_AnmBaseFv:
+.fn do_update__Q23ebi19E2DCallBack_AnmBaseFv, global
 /* 803D0F54 003CDE94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D0F58 003CDE98  7C 08 02 A6 */	mflr r0
 /* 803D0F5C 003CDE9C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -728,14 +734,14 @@ do_update__Q23ebi19E2DCallBack_AnmBaseFv:
 /* 803D0FA4 003CDEE4  7C 08 03 A6 */	mtlr r0
 /* 803D0FA8 003CDEE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0FAC 003CDEEC  4E 80 00 20 */	blr 
+.endfn do_update__Q23ebi19E2DCallBack_AnmBaseFv
 
-.global isFinish__Q23ebi19E2DCallBack_AnmBaseFv
-isFinish__Q23ebi19E2DCallBack_AnmBaseFv:
+.fn isFinish__Q23ebi19E2DCallBack_AnmBaseFv, global
 /* 803D0FB0 003CDEF0  88 63 00 38 */	lbz r3, 0x38(r3)
 /* 803D0FB4 003CDEF4  4E 80 00 20 */	blr 
+.endfn isFinish__Q23ebi19E2DCallBack_AnmBaseFv
 
-.global do_update__Q23ebi24E2DCallBack_WindowCursorFv
-do_update__Q23ebi24E2DCallBack_WindowCursorFv:
+.fn do_update__Q23ebi24E2DCallBack_WindowCursorFv, global
 /* 803D0FB8 003CDEF8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803D0FBC 003CDEFC  7C 08 02 A6 */	mflr r0
 /* 803D0FC0 003CDF00  90 01 00 34 */	stw r0, 0x34(r1)
@@ -823,3 +829,4 @@ do_update__Q23ebi24E2DCallBack_WindowCursorFv:
 /* 803D10F8 003CE038  7C 08 03 A6 */	mtlr r0
 /* 803D10FC 003CE03C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803D1100 003CE040  4E 80 00 20 */	blr 
+.endfn do_update__Q23ebi24E2DCallBack_WindowCursorFv

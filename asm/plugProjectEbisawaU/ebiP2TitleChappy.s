@@ -5,98 +5,114 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497628:
+.obj lbl_80497628, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80497628
 .balign 4
-lbl_80497634:
+.obj lbl_80497634, local
 	.asciz "ebiP2TitleChappy"
+.endobj lbl_80497634
 .balign 4
-lbl_80497648:
+.obj lbl_80497648, local
 	.asciz "ChappyMgr"
+.endobj lbl_80497648
 .balign 4
-lbl_80497654: # Shift-JIS
+.obj lbl_80497654, local # Shift-JIS
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x00000000
+.endobj lbl_80497654
 .balign 4
-lbl_80497660: # Shift-JIS
+.obj lbl_80497660, local # Shift-JIS
 	.4byte 0x834A838A
 	.4byte 0x8393834F
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+.endobj lbl_80497660
 .balign 4
-lbl_80497670: # Shift-JIS
+.obj lbl_80497670, local # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839394BC
 	.4byte 0x8C610000
+.endobj lbl_80497670
 .balign 4
-lbl_80497680: # Shift-JIS
+.obj lbl_80497680, local # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x94BD899E
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+.endobj lbl_80497680
 .balign 4
-lbl_80497694: # Shift-JIS
+.obj lbl_80497694, local # Shift-JIS
 	.4byte 0x939682BD
 	.4byte 0x82E84F66
 	.4byte 0x66736574
 	.4byte 0x00000000
+.endobj lbl_80497694
 .balign 4
-lbl_804976A4: # Shift-JIS
+.obj lbl_804976A4, local # Shift-JIS
 	.4byte 0x939682BD
 	.4byte 0x82E894BC
 	.4byte 0x8C610000
+.endobj lbl_804976A4
 .balign 4
-lbl_804976B0: # Shift-JIS
+.obj lbl_804976B0, local # Shift-JIS
 	.4byte 0x95E08D73
 	.4byte 0x83898393
 	.4byte 0x835F8380
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.endobj lbl_804976B0
 .balign 4
-lbl_804976C4: # Shift-JIS
+.obj lbl_804976C4, local # Shift-JIS
 	.4byte 0x95E08D73
 	.4byte 0x91AC9378
 	.4byte 0x00000000
+.endobj lbl_804976C4
 .balign 4
-lbl_804976D0: # Shift-JIS
+.obj lbl_804976D0, local # Shift-JIS
 	.4byte 0x90F989F1
 	.4byte 0x90AB945C
 	.4byte 0x00000000
+.endobj lbl_804976D0
 .balign 4
-lbl_804976DC: # Shift-JIS
+.obj lbl_804976DC, local # Shift-JIS
 	.4byte 0x91D282BF
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x28956229
 	.4byte 0x00000000
+.endobj lbl_804976DC
 .balign 4
-lbl_804976F0: # Shift-JIS
+.obj lbl_804976F0, local # Shift-JIS
 	.4byte 0x91D282BF
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x28956229
 	.4byte 0x00000000
+.endobj lbl_804976F0
 .balign 4
-lbl_80497704: # Shift-JIS
+.obj lbl_80497704, local # Shift-JIS
 	.4byte 0x88DA93AE
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x28956229
 	.4byte 0x00000000
+.endobj lbl_80497704
 .balign 4
-lbl_80497718: # Shift-JIS
+.obj lbl_80497718, local # Shift-JIS
 	.4byte 0x88DA93AE
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x28956229
 	.4byte 0x00000000
+.endobj lbl_80497718
 .balign 4
-lbl_8049772C: # Shift-JIS
+.obj lbl_8049772C, local # Shift-JIS
 	.4byte 0x83528393
 	.4byte 0x8367838D
 	.4byte 0x815B8389
@@ -104,38 +120,48 @@ lbl_8049772C: # Shift-JIS
 	.4byte 0x8E9E8AD4
 	.4byte 0x28956229
 	.4byte 0x00000000
+.endobj lbl_8049772C
 .balign 4
-lbl_80497748:
+.obj lbl_80497748, local
 	.asciz "param/param_chappy.txt"
+.endobj lbl_80497748
 .balign 4
-lbl_80497760:
+.obj lbl_80497760, local
 	.asciz "chappy/move1.bck"
+.endobj lbl_80497760
 .balign 4
-lbl_80497774:
+.obj lbl_80497774, local
 	.asciz "chappy/waitact1.bck"
+.endobj lbl_80497774
 .balign 4
-lbl_80497788:
+.obj lbl_80497788, local
 	.asciz "chappy/attack.bck"
+.endobj lbl_80497788
 .balign 4
-lbl_8049779C:
+.obj lbl_8049779C, local
 	.asciz "chappy/waitact2.bck"
+.endobj lbl_8049779C
 .balign 4
-lbl_804977B0:
+.obj lbl_804977B0, local
 	.asciz "chappy/swallow_model.bmd"
+.endobj lbl_804977B0
 .balign 4
-lbl_804977CC:
+.obj lbl_804977CC, local
 	.asciz "ebiP2TitleChappy.cpp"
+.endobj lbl_804977CC
 .balign 4
-lbl_804977E4:
+.obj lbl_804977E4, local
 	.asciz "P2Assert"
+.endobj lbl_804977E4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804E9E6C:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804E9E6C, local
 	.4byte .L_803E8B88
 	.4byte .L_803E8BC8
 	.4byte .L_803E8C20
@@ -144,7 +170,8 @@ lbl_804E9E6C:
 	.4byte .L_803E8D90
 	.4byte .L_803E8DEC
 	.4byte .L_803E8BA4
-lbl_804E9E8C:
+.endobj lbl_804E9E6C
+.obj lbl_804E9E8C, local
 	.4byte .L_803E914C
 	.4byte .L_803E8F48
 	.4byte .L_803E8F70
@@ -153,101 +180,136 @@ lbl_804E9E8C:
 	.4byte .L_803E9130
 	.4byte .L_803E9140
 	.4byte .L_803E8F10
-.global __vt__Q43ebi5title6Chappy5TUnit
-__vt__Q43ebi5title6Chappy5TUnit:
+.endobj lbl_804E9E8C
+.obj __vt__Q43ebi5title6Chappy5TUnit, global
 	.4byte 0
 	.4byte 0
 	.4byte getCreatureType__Q43ebi5title6Chappy5TUnitFv
 	.4byte isCalc__Q43ebi5title6Chappy5TUnitFv
-.global __vt__Q43ebi5title6Chappy11TAnimFolder
-__vt__Q43ebi5title6Chappy11TAnimFolder:
+.endobj __vt__Q43ebi5title6Chappy5TUnit
+.obj __vt__Q43ebi5title6Chappy11TAnimFolder, weak
 	.4byte 0
 	.4byte 0
 	.4byte getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl
+.endobj __vt__Q43ebi5title6Chappy11TAnimFolder
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FD68:
+.obj lbl_8051FD68, local
 	.float 0.0
-lbl_8051FD6C:
+.endobj lbl_8051FD68
+.obj lbl_8051FD6C, local
 	.float -1.0
-lbl_8051FD70:
+.endobj lbl_8051FD6C
+.obj lbl_8051FD70, local
 	.float 1.0
+.endobj lbl_8051FD70
 .balign 4
-lbl_8051FD74:
+.obj lbl_8051FD74, local
 	.asciz "Parms"
+.endobj lbl_8051FD74
 .balign 4
-lbl_8051FD7C:
+.obj lbl_8051FD7C, local
 	.float 2.0
-lbl_8051FD80:
+.endobj lbl_8051FD7C
+.obj lbl_8051FD80, local
 	.float 10.0
-lbl_8051FD84:
+.endobj lbl_8051FD80
+.obj lbl_8051FD84, local
 	.float 100.0
-lbl_8051FD88:
+.endobj lbl_8051FD84
+.obj lbl_8051FD88, local
 	.float 500.0
-lbl_8051FD8C:
+.endobj lbl_8051FD88
+.obj lbl_8051FD8C, local
 	.float 150.0
-lbl_8051FD90:
+.endobj lbl_8051FD8C
+.obj lbl_8051FD90, local
 	.float 300.0
-lbl_8051FD94:
+.endobj lbl_8051FD90
+.obj lbl_8051FD94, local
 	.float 80.0
-lbl_8051FD98:
+.endobj lbl_8051FD94
+.obj lbl_8051FD98, local
 	.float 30.0
-lbl_8051FD9C:
+.endobj lbl_8051FD98
+.obj lbl_8051FD9C, local
 	.float 90.0
-lbl_8051FDA0:
+.endobj lbl_8051FD9C
+.obj lbl_8051FDA0, local
 	.float 8.0
-lbl_8051FDA4:
+.endobj lbl_8051FDA0
+.obj lbl_8051FDA4, local
 	.float 0.05
-lbl_8051FDA8:
+.endobj lbl_8051FDA4
+.obj lbl_8051FDA8, local
 	.float 0.3
-lbl_8051FDAC:
+.endobj lbl_8051FDA8
+.obj lbl_8051FDAC, local
 	.float 0.5
-lbl_8051FDB0:
+.endobj lbl_8051FDAC
+.obj lbl_8051FDB0, local
 	.float 1.5
-lbl_8051FDB4:
+.endobj lbl_8051FDB0
+.obj lbl_8051FDB4, local
 	.float 5.0
-lbl_8051FDB8:
+.endobj lbl_8051FDB4
+.obj lbl_8051FDB8, local
 	.float 60.0
-lbl_8051FDBC:
+.endobj lbl_8051FDB8
+.obj lbl_8051FDBC, local
 	.float 34.0
-lbl_8051FDC0:
+.endobj lbl_8051FDBC
+.obj lbl_8051FDC0, local
 	.float 19.0
-lbl_8051FDC4:
+.endobj lbl_8051FDC0
+.obj lbl_8051FDC4, local
 	.float 32767.0
-lbl_8051FDC8: # pi
+.endobj lbl_8051FDC4
+.obj lbl_8051FDC8, local # pi
 	.float 3.1415927
-lbl_8051FDCC:
+.endobj lbl_8051FDC8
+.obj lbl_8051FDCC, local
 	.float 0.0055555557
-lbl_8051FDD0:
+.endobj lbl_8051FDCC
+.obj lbl_8051FDD0, local
 	.float -325.9493
-lbl_8051FDD4:
+.endobj lbl_8051FDD0
+.obj lbl_8051FDD4, local
 	.float 325.9493
+.endobj lbl_8051FDD4
 .balign 8
-lbl_8051FDD8:
+.obj lbl_8051FDD8, local
 	.4byte 0x43300000
 	.4byte 0x80000000
-lbl_8051FDE0:
+.endobj lbl_8051FDD8
+.obj lbl_8051FDE0, local
 	.float 0.1
-lbl_8051FDE4:
+.endobj lbl_8051FDE0
+.obj lbl_8051FDE4, local
 	.float 0.7
-lbl_8051FDE8: # tau
+.endobj lbl_8051FDE4
+.obj lbl_8051FDE8, local # tau
 	.float 6.2831855
-lbl_8051FDEC: # -pi
+.endobj lbl_8051FDE8
+.obj lbl_8051FDEC, local # -pi
 	.float -3.1415927
-lbl_8051FDF0:
+.endobj lbl_8051FDEC
+.obj lbl_8051FDF0, local
 	.float 0.09817477
+.endobj lbl_8051FDF0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q43ebi5title6Chappy4TMgrFv
-__ct__Q43ebi5title6Chappy4TMgrFv:
+.fn __ct__Q43ebi5title6Chappy4TMgrFv, global
 /* 803E85D8 003E5518  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E85DC 003E551C  7C 08 02 A6 */	mflr r0
 /* 803E85E0 003E5520  3C 80 80 4F */	lis r4, __vt__5CNode@ha
@@ -334,9 +396,9 @@ __ct__Q43ebi5title6Chappy4TMgrFv:
 /* 803E871C 003E565C  7C 08 03 A6 */	mtlr r0
 /* 803E8720 003E5660  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E8724 003E5664  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Chappy4TMgrFv
 
-.global setArchive__Q43ebi5title6Chappy4TMgrFP10JKRArchive
-setArchive__Q43ebi5title6Chappy4TMgrFP10JKRArchive:
+.fn setArchive__Q43ebi5title6Chappy4TMgrFP10JKRArchive, global
 /* 803E8728 003E5668  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E872C 003E566C  7C 08 02 A6 */	mflr r0
 /* 803E8730 003E5670  3C A0 80 49 */	lis r5, lbl_80497748@ha
@@ -357,9 +419,9 @@ setArchive__Q43ebi5title6Chappy4TMgrFP10JKRArchive:
 /* 803E876C 003E56AC  7C 08 03 A6 */	mtlr r0
 /* 803E8770 003E56B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E8774 003E56B4  4E 80 00 20 */	blr 
+.endfn setArchive__Q43ebi5title6Chappy4TMgrFP10JKRArchive
 
-.global initUnit__Q43ebi5title6Chappy4TMgrFv
-initUnit__Q43ebi5title6Chappy4TMgrFv:
+.fn initUnit__Q43ebi5title6Chappy4TMgrFv, global
 /* 803E8778 003E56B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E877C 003E56BC  7C 08 02 A6 */	mflr r0
 /* 803E8780 003E56C0  7C 64 1B 78 */	mr r4, r3
@@ -370,9 +432,9 @@ initUnit__Q43ebi5title6Chappy4TMgrFv:
 /* 803E8794 003E56D4  7C 08 03 A6 */	mtlr r0
 /* 803E8798 003E56D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E879C 003E56DC  4E 80 00 20 */	blr 
+.endfn initUnit__Q43ebi5title6Chappy4TMgrFv
 
-.global __ct__Q43ebi5title6Chappy9TAnimatorFv
-__ct__Q43ebi5title6Chappy9TAnimatorFv:
+.fn __ct__Q43ebi5title6Chappy9TAnimatorFv, global
 /* 803E87A0 003E56E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E87A4 003E56E4  7C 08 02 A6 */	mflr r0
 /* 803E87A8 003E56E8  3C 80 80 4F */	lis r4, __vt__Q23ebi17E3DAnimFolderBase@ha
@@ -399,9 +461,9 @@ __ct__Q43ebi5title6Chappy9TAnimatorFv:
 /* 803E87FC 003E573C  7C 08 03 A6 */	mtlr r0
 /* 803E8800 003E5740  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E8804 003E5744  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Chappy9TAnimatorFv
 
-.global setArchive__Q43ebi5title6Chappy9TAnimatorFP10JKRArchive
-setArchive__Q43ebi5title6Chappy9TAnimatorFP10JKRArchive:
+.fn setArchive__Q43ebi5title6Chappy9TAnimatorFP10JKRArchive, global
 /* 803E8808 003E5748  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E880C 003E574C  7C 08 02 A6 */	mflr r0
 /* 803E8810 003E5750  90 01 00 24 */	stw r0, 0x24(r1)
@@ -477,14 +539,14 @@ setArchive__Q43ebi5title6Chappy9TAnimatorFP10JKRArchive:
 /* 803E8924 003E5864  7C 08 03 A6 */	mtlr r0
 /* 803E8928 003E5868  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E892C 003E586C  4E 80 00 20 */	blr 
+.endfn setArchive__Q43ebi5title6Chappy9TAnimatorFP10JKRArchive
 
-.global setController__Q43ebi5title6Chappy5TUnitFP10Controller
-setController__Q43ebi5title6Chappy5TUnitFP10Controller:
+.fn setController__Q43ebi5title6Chappy5TUnitFP10Controller, global
 /* 803E8930 003E5870  90 83 00 44 */	stw r4, 0x44(r3)
 /* 803E8934 003E5874  4E 80 00 20 */	blr 
+.endfn setController__Q43ebi5title6Chappy5TUnitFP10Controller
 
-.global init__Q43ebi5title6Chappy5TUnitFPQ43ebi5title6Chappy4TMgr
-init__Q43ebi5title6Chappy5TUnitFPQ43ebi5title6Chappy4TMgr:
+.fn init__Q43ebi5title6Chappy5TUnitFPQ43ebi5title6Chappy4TMgr, global
 /* 803E8938 003E5878  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E893C 003E587C  7C 08 02 A6 */	mflr r0
 /* 803E8940 003E5880  90 01 00 24 */	stw r0, 0x24(r1)
@@ -547,9 +609,9 @@ init__Q43ebi5title6Chappy5TUnitFPQ43ebi5title6Chappy4TMgr:
 /* 803E8A20 003E5960  7C 08 03 A6 */	mtlr r0
 /* 803E8A24 003E5964  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E8A28 003E5968  4E 80 00 20 */	blr 
+.endfn init__Q43ebi5title6Chappy5TUnitFPQ43ebi5title6Chappy4TMgr
 
-.global "startZigzagWalk__Q43ebi5title6Chappy5TUnitFR10Vector2<f>R10Vector2<f>"
-"startZigzagWalk__Q43ebi5title6Chappy5TUnitFR10Vector2<f>R10Vector2<f>":
+.fn "startZigzagWalk__Q43ebi5title6Chappy5TUnitFR10Vector2<f>R10Vector2<f>", global
 /* 803E8A2C 003E596C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E8A30 003E5970  7C 08 02 A6 */	mflr r0
 /* 803E8A34 003E5974  38 C0 FF FF */	li r6, -1
@@ -571,9 +633,9 @@ init__Q43ebi5title6Chappy5TUnitFPQ43ebi5title6Chappy4TMgr:
 /* 803E8A74 003E59B4  7C 08 03 A6 */	mtlr r0
 /* 803E8A78 003E59B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E8A7C 003E59BC  4E 80 00 20 */	blr 
+.endfn "startZigzagWalk__Q43ebi5title6Chappy5TUnitFR10Vector2<f>R10Vector2<f>"
 
-.global goHome__Q43ebi5title6Chappy5TUnitFv
-goHome__Q43ebi5title6Chappy5TUnitFv:
+.fn goHome__Q43ebi5title6Chappy5TUnitFv, global
 /* 803E8A80 003E59C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E8A84 003E59C4  7C 08 02 A6 */	mflr r0
 /* 803E8A88 003E59C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -587,9 +649,9 @@ goHome__Q43ebi5title6Chappy5TUnitFv:
 /* 803E8AA4 003E59E4  7C 08 03 A6 */	mtlr r0
 /* 803E8AA8 003E59E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E8AAC 003E59EC  4E 80 00 20 */	blr 
+.endfn goHome__Q43ebi5title6Chappy5TUnitFv
 
-.global outOfCalc__Q43ebi5title6Chappy5TUnitFv
-outOfCalc__Q43ebi5title6Chappy5TUnitFv:
+.fn outOfCalc__Q43ebi5title6Chappy5TUnitFv, global
 /* 803E8AB0 003E59F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E8AB4 003E59F4  7C 08 02 A6 */	mflr r0
 /* 803E8AB8 003E59F8  38 80 00 00 */	li r4, 0
@@ -599,25 +661,25 @@ outOfCalc__Q43ebi5title6Chappy5TUnitFv:
 /* 803E8AC8 003E5A08  7C 08 03 A6 */	mtlr r0
 /* 803E8ACC 003E5A0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E8AD0 003E5A10  4E 80 00 20 */	blr 
+.endfn outOfCalc__Q43ebi5title6Chappy5TUnitFv
 
-.global isCalc__Q43ebi5title6Chappy5TUnitFv
-isCalc__Q43ebi5title6Chappy5TUnitFv:
+.fn isCalc__Q43ebi5title6Chappy5TUnitFv, global
 /* 803E8AD4 003E5A14  80 63 00 68 */	lwz r3, 0x68(r3)
 /* 803E8AD8 003E5A18  7C 03 00 D0 */	neg r0, r3
 /* 803E8ADC 003E5A1C  7C 00 1B 78 */	or r0, r0, r3
 /* 803E8AE0 003E5A20  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 803E8AE4 003E5A24  4E 80 00 20 */	blr 
+.endfn isCalc__Q43ebi5title6Chappy5TUnitFv
 
-.global isController__Q43ebi5title6Chappy5TUnitFv
-isController__Q43ebi5title6Chappy5TUnitFv:
+.fn isController__Q43ebi5title6Chappy5TUnitFv, global
 /* 803E8AE8 003E5A28  80 03 00 68 */	lwz r0, 0x68(r3)
 /* 803E8AEC 003E5A2C  20 00 00 07 */	subfic r0, r0, 7
 /* 803E8AF0 003E5A30  7C 00 00 34 */	cntlzw r0, r0
 /* 803E8AF4 003E5A34  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 803E8AF8 003E5A38  4E 80 00 20 */	blr 
+.endfn isController__Q43ebi5title6Chappy5TUnitFv
 
-.global startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState
-startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState:
+.fn startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState, global
 /* 803E8AFC 003E5A3C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803E8B00 003E5A40  7C 08 02 A6 */	mflr r0
 /* 803E8B04 003E5A44  90 01 00 64 */	stw r0, 0x64(r1)
@@ -830,9 +892,9 @@ startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState:
 /* 803E8E08 003E5D48  7C 08 03 A6 */	mtlr r0
 /* 803E8E0C 003E5D4C  38 21 00 60 */	addi r1, r1, 0x60
 /* 803E8E10 003E5D50  4E 80 00 20 */	blr 
+.endfn startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState
 
-.global update__Q43ebi5title6Chappy5TUnitFv
-update__Q43ebi5title6Chappy5TUnitFv:
+.fn update__Q43ebi5title6Chappy5TUnitFv, global
 /* 803E8E14 003E5D54  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 803E8E18 003E5D58  7C 08 02 A6 */	mflr r0
 /* 803E8E1C 003E5D5C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1573,9 +1635,9 @@ update__Q43ebi5title6Chappy5TUnitFv:
 /* 803E986C 003E67AC  7C 08 03 A6 */	mtlr r0
 /* 803E9870 003E67B0  38 21 00 80 */	addi r1, r1, 0x80
 /* 803E9874 003E67B4  4E 80 00 20 */	blr 
+.endfn update__Q43ebi5title6Chappy5TUnitFv
 
-.global __ct__Q43ebi5title6Chappy6TParamFv
-__ct__Q43ebi5title6Chappy6TParamFv:
+.fn __ct__Q43ebi5title6Chappy6TParamFv, weak
 /* 803E9878 003E67B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E987C 003E67BC  7C 08 02 A6 */	mflr r0
 /* 803E9880 003E67C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1810,22 +1872,22 @@ __ct__Q43ebi5title6Chappy6TParamFv:
 /* 803E9C10 003E6B50  7C 08 03 A6 */	mtlr r0
 /* 803E9C14 003E6B54  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E9C18 003E6B58  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Chappy6TParamFv
 
-.global getCreatureType__Q43ebi5title6Chappy5TUnitFv
-getCreatureType__Q43ebi5title6Chappy5TUnitFv:
+.fn getCreatureType__Q43ebi5title6Chappy5TUnitFv, weak
 /* 803E9C1C 003E6B5C  38 60 00 06 */	li r3, 6
 /* 803E9C20 003E6B60  4E 80 00 20 */	blr 
+.endfn getCreatureType__Q43ebi5title6Chappy5TUnitFv
 
-.global getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl
-getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl:
+.fn getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl, weak
 /* 803E9C24 003E6B64  54 84 28 34 */	slwi r4, r4, 5
 /* 803E9C28 003E6B68  7C 60 1B 78 */	mr r0, r3
 /* 803E9C2C 003E6B6C  38 64 00 04 */	addi r3, r4, 4
 /* 803E9C30 003E6B70  7C 60 1A 14 */	add r3, r0, r3
 /* 803E9C34 003E6B74  4E 80 00 20 */	blr 
+.endfn getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl
 
-.global __sinit_ebiP2TitleChappy_cpp
-__sinit_ebiP2TitleChappy_cpp: # static initializer
+.fn __sinit_ebiP2TitleChappy_cpp, local
 /* 803E9C38 003E6B78  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803E9C3C 003E6B7C  38 00 FF FF */	li r0, -1
 /* 803E9C40 003E6B80  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1836,3 +1898,4 @@ __sinit_ebiP2TitleChappy_cpp: # static initializer
 /* 803E9C54 003E6B94  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803E9C58 003E6B98  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803E9C5C 003E6B9C  4E 80 00 20 */	blr 
+.endfn __sinit_ebiP2TitleChappy_cpp
