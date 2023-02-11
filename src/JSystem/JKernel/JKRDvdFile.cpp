@@ -187,7 +187,7 @@ long JKRDvdFile::sync()
  * Address:	8001D620
  * Size:	000030
  */
-void JKRDvdFile::doneProcess(long p1, DVDFileInfo* info)
+void JKRDvdFile::doneProcess(s32 p1, DVDFileInfo* info)
 {
 	JKRDvdFile* dvdFile = static_cast<JKRDVDFileInfo*>(info)->mFile;
 	OSSendMessage(&dvdFile->mMessageQueue2, (void*)p1, OS_MESSAGE_NOBLOCK);

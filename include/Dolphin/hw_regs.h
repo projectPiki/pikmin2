@@ -46,6 +46,18 @@ vu16 __DSPRegs[32] AT_ADDRESS(0xCC005000);
 // DVD Interface registers.
 vu32 __DIRegs[16] AT_ADDRESS(0xCC006000);
 
+// offsets for __DIRegs[i]
+#define DI_STATUS       (0)
+#define DI_COVER_STATUS (1) // cover status - 0=normal, 1=interrupt/open
+#define DI_CMD_BUF_0    (2) // command buffer 0
+#define DI_CMD_BUF_1    (3) // command buffer 1
+#define DI_CMD_BUF_2    (4) // command buffer 2
+#define DI_DMA_MEM_ADDR (5) // DMA address
+#define DI_DMA_LENGTH   (6) // transfer length address
+#define DI_CONTROL      (7)
+#define DI_MM_BUF       (8) // Main memory buffer
+#define DI_CONFIG       (9)
+
 // Serial Interface registers.
 vu32 __SIRegs[64] AT_ADDRESS(0xCC006400);
 

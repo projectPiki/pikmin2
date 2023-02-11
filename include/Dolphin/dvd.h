@@ -2,7 +2,6 @@
 #define _DOLPHIN_DVD_H
 
 #include "types.h"
-// #include "Dolphin/os.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,7 +15,8 @@ typedef struct DVDFileInfo DVDFileInfo;
 typedef void (*DVDCallback)(s32 result, DVDFileInfo* fileInfo);
 typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
 typedef void (*DVDLowCallback)(u32 intType);
-typedef void DVDDoneReadCallback(long, DVDFileInfo*);
+typedef void (*DVDDoneReadCallback)(s32, DVDFileInfo*);
+typedef void (*DVDOptionalCommandChecker)(DVDCommandBlock* block, DVDLowCallback callback);
 
 typedef struct DVDDriveInfo {
 	u16 revisionLevel; // _00
@@ -83,6 +83,27 @@ struct DVDQueue {
 	DVDQueue* mTail; // _04
 };
 
+// DVD Boot information instructions.
+// Struct 1.
+typedef struct DVDBB1 {
+	u32 appLoaderLength;  // _00
+	void* appLoaderFunc1; // _04
+	void* appLoaderFunc2; // _08
+	void* appLoaderFunc3; // _0C
+} DVDBB1;
+
+// Struct 2.
+typedef struct DVDBB2 {
+	u32 bootFilePosition; // _00
+	u32 FSTPosition;      // _04
+	u32 FSTLength;        // _08
+	u32 FSTMaxLength;     // _0C
+	void* FSTAddress;     // _10
+	u32 userPosition;     // _14
+	u32 userLength;       // _18
+	u32 reserved_1C;      // _1C
+} DVDBB2;
+
 //////////////////////////////////
 
 ///////// DVD FUNCTIONS //////////
@@ -121,6 +142,7 @@ s32 DVDConvertPathToEntrynum(char* path);
 s32 DVDGetTransferredSize(DVDFileInfo* fileInfo);
 DVDDiskID* DVDGetCurrentDiskID();
 BOOL DVDCompareDiskID(DVDDiskID* id1, DVDDiskID* id2);
+DVDLowCallback DVDLowClearCallback();
 
 BOOL DVDCheckDisk();
 

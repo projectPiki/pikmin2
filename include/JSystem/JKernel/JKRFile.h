@@ -75,7 +75,7 @@ struct JKRDvdFile : public JKRFile {
 	void initiate();
 	long sync();
 
-	static DVDDoneReadCallback doneProcess;
+	static void doneProcess(s32 result, DVDFileInfo* info);
 
 	static JSUList<JKRDvdFile> sDvdList;
 

@@ -168,6 +168,9 @@ void __OSUnlockSramEx(int);
 void OSSetWirelessID(s32 channel, u16 id);
 u16 OSGetWirelessID(s32 channel);
 
+// DVD things.
+extern OSThreadQueue __DVDThreadQueue;
+
 //////////////////////////////////
 
 #ifdef __cplusplus
