@@ -139,11 +139,11 @@ vu32 __EXIRegs[16] AT_ADDRESS(0xCC006800);
 #define EXI_CHAN_1_CONTROL  (8) // control register
 #define EXI_CHAN_1_IMM      (9) // immediate data
 // Channel 2
-#define EXI_CHAN_0_STAT     (10) // parameters/status
-#define EXI_CHAN_0_DMA_ADDR (11) // DMA start address
-#define EXI_CHAN_0_LEN      (12) // DMA transfer length
-#define EXI_CHAN_0_CONTROL  (13) // control register
-#define EXI_CHAN_0_IMM      (14) // immediate data
+#define EXI_CHAN_2_STAT     (10) // parameters/status
+#define EXI_CHAN_2_DMA_ADDR (11) // DMA start address
+#define EXI_CHAN_2_LEN      (12) // DMA transfer length
+#define EXI_CHAN_2_CONTROL  (13) // control register
+#define EXI_CHAN_2_IMM      (14) // immediate data
 
 // Audio Streaming Interface registers.
 vu32 __AIRegs[8] AT_ADDRESS(0xCC006C00);
