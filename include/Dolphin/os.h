@@ -136,6 +136,9 @@ u8 GameChoice AT_ADDRESS(OS_BASE_CACHED | 0x30E3);
 //////////////////////////////////
 
 ///////// OS RTC TYPES ///////////
+// Sram function type.
+typedef void (*SramCallback)(void);
+
 // Struct for static RAM (size 0x14).
 typedef struct OSSram {
 	u16 checkSum;      // _00
@@ -161,12 +164,35 @@ typedef struct OSSramEx {
 	u8 reserved_2A[2];      // _2A
 } OSSramEx;
 
+// Struct for controlling static RAM (for OSRtc.c).
+typedef struct SramControlBlock {
+	u8 sram[0x40];         // _00
+	u32 offset;            // _40
+	BOOL enabled;          // _44
+	BOOL locked;           // _48
+	BOOL sync;             // _4C
+	SramCallback callback; // _50
+} SramControlBlock;
+
 // SRAM functions.
 OSSram* __OSLockSram();
 OSSramEx* __OSLockSramEx();
-void __OSUnlockSramEx(int);
+BOOL __OSUnlockSramEx(BOOL commit);
 void OSSetWirelessID(s32 channel, u16 id);
 u16 OSGetWirelessID(s32 channel);
+void OSSetGbsMode(u16 mode);
+u16 OSGetGbsMode();
+
+// RTC defines.
+#define RTC_CMD_READ  0x20000000
+#define RTC_CMD_WRITE 0xA0000000
+
+#define RTC_SRAM_ADDR 0x00000100
+#define RTC_SRAM_SIZE 64
+
+#define RTC_CHAN 0
+#define RTC_DEV  1
+#define RTC_FREQ 3
 
 // extern things.
 extern OSThreadQueue __DVDThreadQueue;

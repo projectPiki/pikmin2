@@ -7,23 +7,9 @@
  */
 void OSInitMutex(OSMutex* mutex)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  mr        r31, r3
-	  bl        0x1E70
-	  li        r0, 0
-	  stw       r0, 0x8(r31)
-	  stw       r0, 0xC(r31)
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	OSInitThreadQueue(&mutex->queue);
+	mutex->thread = nullptr;
+	mutex->count  = 0;
 }
 
 /*
@@ -33,76 +19,28 @@ void OSInitMutex(OSMutex* mutex)
  */
 void OSLockMutex(OSMutex* mutex)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        -0xF50
-	  mr        r29, r3
-	  bl        0x1E34
-	  addi      r30, r3, 0
-	  li        r31, 0
+	BOOL enabled            = OSDisableInterrupts();
+	OSThread* currentThread = OSGetCurrentThread();
+	OSThread* ownerThread;
 
-	.loc_0x34:
-	  lwz       r0, 0x8(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  stw       r30, 0x8(r28)
-	  lwz       r3, 0xC(r28)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0xC(r28)
-	  lwz       r3, 0x2F8(r30)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x64
-	  stw       r28, 0x2F4(r30)
-	  b         .loc_0x68
-
-	.loc_0x64:
-	  stw       r28, 0x10(r3)
-
-	.loc_0x68:
-	  stw       r3, 0x14(r28)
-	  li        r0, 0
-	  stw       r0, 0x10(r28)
-	  stw       r28, 0x2F8(r30)
-	  b         .loc_0xB4
-
-	.loc_0x7C:
-	  cmplw     r0, r30
-	  bne-      .loc_0x94
-	  lwz       r3, 0xC(r28)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0xC(r28)
-	  b         .loc_0xB4
-
-	.loc_0x94:
-	  stw       r28, 0x2F0(r30)
-	  lwz       r3, 0x8(r28)
-	  lwz       r4, 0x2D0(r30)
-	  bl        0x20E0
-	  mr        r3, r28
-	  bl        0x2CDC
-	  stw       r31, 0x2F0(r30)
-	  b         .loc_0x34
-
-	.loc_0xB4:
-	  mr        r3, r29
-	  bl        -0xFC0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	while (TRUE) {
+		ownerThread = ((OSMutex*)mutex)->thread;
+		if (ownerThread == 0) {
+			mutex->thread = currentThread;
+			mutex->count++;
+			AddTailMutex(&currentThread->queueMutex, mutex, link);
+			break;
+		} else if (ownerThread == currentThread) {
+			mutex->count++;
+			break;
+		} else {
+			currentThread->mutex = mutex;
+			__OSPromoteThread(mutex->thread, currentThread->priority);
+			OSSleepThread(&mutex->queue);
+			currentThread->mutex = nullptr;
+		}
+	}
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -110,73 +48,21 @@ void OSLockMutex(OSMutex* mutex)
  * Address:	800EFC44
  * Size:	0000C8
  */
-BOOL OSUnlockMutex(OSMutex* mutex)
+void OSUnlockMutex(OSMutex* mutex)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x1028
-	  mr        r31, r3
-	  bl        0x1D5C
-	  lwz       r0, 0x8(r29)
-	  addi      r30, r3, 0
-	  cmplw     r0, r30
-	  bne-      .loc_0xA4
-	  lwz       r3, 0xC(r29)
-	  subic.    r0, r3, 0x1
-	  stw       r0, 0xC(r29)
-	  bne-      .loc_0xA4
-	  lwz       r3, 0x10(r29)
-	  lwz       r4, 0x14(r29)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x60
-	  stw       r4, 0x2F8(r30)
-	  b         .loc_0x64
+	BOOL enabled            = OSDisableInterrupts();
+	OSThread* currentThread = OSGetCurrentThread();
 
-	.loc_0x60:
-	  stw       r4, 0x14(r3)
+	if (mutex->thread == currentThread && --mutex->count == 0) {
+		RemoveItemMutex(&currentThread->queueMutex, mutex, link);
+		mutex->thread = nullptr;
+		if (currentThread->priority < currentThread->base) {
+			currentThread->priority = __OSGetEffectivePriority(currentThread);
+		}
 
-	.loc_0x64:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x74
-	  stw       r3, 0x2F4(r30)
-	  b         .loc_0x78
-
-	.loc_0x74:
-	  stw       r3, 0x10(r4)
-
-	.loc_0x78:
-	  li        r0, 0
-	  stw       r0, 0x8(r29)
-	  lwz       r3, 0x2D0(r30)
-	  lwz       r0, 0x2D4(r30)
-	  cmpw      r3, r0
-	  bge-      .loc_0x9C
-	  mr        r3, r30
-	  bl        0x1E14
-	  stw       r3, 0x2D0(r30)
-
-	.loc_0x9C:
-	  mr        r3, r29
-	  bl        0x2CF4
-
-	.loc_0xA4:
-	  mr        r3, r31
-	  bl        -0x108C
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+		OSWakeupThread(&mutex->queue);
+	}
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -186,45 +72,14 @@ BOOL OSUnlockMutex(OSMutex* mutex)
  */
 void __OSUnlockAllMutex(OSThread* thread)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  li        r31, 0
-	  stw       r30, 0x10(r1)
-	  addi      r30, r3, 0
-	  b         .loc_0x4C
+	OSMutex* mutex;
 
-	.loc_0x20:
-	  lwz       r5, 0x10(r4)
-	  addi      r3, r4, 0
-	  cmplwi    r5, 0
-	  bne-      .loc_0x38
-	  stw       r31, 0x2F8(r30)
-	  b         .loc_0x3C
-
-	.loc_0x38:
-	  stw       r31, 0x14(r5)
-
-	.loc_0x3C:
-	  stw       r5, 0x2F4(r30)
-	  stw       r31, 0xC(r4)
-	  stw       r31, 0x8(r4)
-	  bl        0x2C84
-
-	.loc_0x4C:
-	  lwz       r4, 0x2F4(r30)
-	  cmplwi    r4, 0
-	  bne+      .loc_0x20
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	while (thread->queueMutex.head) {
+		RemoveHeadMutex(&thread->queueMutex, mutex, link);
+		mutex->count  = 0;
+		mutex->thread = nullptr;
+		OSWakeupThread(&mutex->queue);
+	}
 }
 
 /*
@@ -234,66 +89,26 @@ void __OSUnlockAllMutex(OSThread* thread)
  */
 BOOL OSTryLockMutex(OSMutex* mutex)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x1160
-	  mr        r31, r3
-	  bl        0x1C24
-	  lwz       r0, 0x8(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x74
-	  stw       r3, 0x8(r29)
-	  lwz       r4, 0xC(r29)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0xC(r29)
-	  lwz       r4, 0x2F8(r3)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x58
-	  stw       r29, 0x2F4(r3)
-	  b         .loc_0x5C
+	BOOL enabled            = OSDisableInterrupts();
+	OSThread* currentThread = OSGetCurrentThread();
+	BOOL locked;
 
-	.loc_0x58:
-	  stw       r29, 0x10(r4)
+	if (mutex->thread == nullptr) {
+		mutex->thread = currentThread;
+		mutex->count++;
+		AddTailMutex(&currentThread->queueMutex, mutex, link);
+		locked = TRUE;
 
-	.loc_0x5C:
-	  stw       r4, 0x14(r29)
-	  li        r0, 0
-	  li        r30, 0x1
-	  stw       r0, 0x10(r29)
-	  stw       r29, 0x2F8(r3)
-	  b         .loc_0x94
+	} else if (mutex->thread == currentThread) {
+		mutex->count++;
+		locked = TRUE;
 
-	.loc_0x74:
-	  cmplw     r0, r3
-	  bne-      .loc_0x90
-	  lwz       r3, 0xC(r29)
-	  li        r30, 0x1
-	  addi      r0, r3, 0x1
-	  stw       r0, 0xC(r29)
-	  b         .loc_0x94
+	} else {
+		locked = FALSE;
+	}
 
-	.loc_0x90:
-	  li        r30, 0
-
-	.loc_0x94:
-	  mr        r3, r31
-	  bl        -0x11B4
-	  mr        r3, r30
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	OSRestoreInterrupts(enabled);
+	return locked;
 }
 
 /*
@@ -301,96 +116,38 @@ BOOL OSTryLockMutex(OSMutex* mutex)
  * Address:	800EFE38
  * Size:	000020
  */
-void OSInitCond(OSThreadQueue* threadQueue)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bl        0x1B70
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+void OSInitCond(OSCond* cond) { OSInitThreadQueue(&cond->queue); }
 
 /*
  * --INFO--
  * Address:	800EFE58
  * Size:	0000D4
  */
-u32 OSWaitCond(OSThreadQueue* threadQueue, OSMutex* mutex)
+void OSWaitCond(OSCond* cond, OSMutex* mutex)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stmw      r27, 0x14(r1)
-	  addi      r27, r3, 0
-	  addi      r28, r4, 0
-	  bl        -0x1238
-	  mr        r31, r3
-	  bl        0x1B4C
-	  lwz       r0, 0x8(r28)
-	  addi      r30, r3, 0
-	  cmplw     r0, r30
-	  bne-      .loc_0xB8
-	  lwz       r29, 0xC(r28)
-	  li        r0, 0
-	  stw       r0, 0xC(r28)
-	  lwz       r3, 0x10(r28)
-	  lwz       r4, 0x14(r28)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x58
-	  stw       r4, 0x2F8(r30)
-	  b         .loc_0x5C
+	BOOL enabled            = OSDisableInterrupts();
+	OSThread* currentThread = OSGetCurrentThread();
+	s32 count;
 
-	.loc_0x58:
-	  stw       r4, 0x14(r3)
+	if (mutex->thread == currentThread) {
+		count        = mutex->count;
+		mutex->count = 0;
+		RemoveItemMutex(&currentThread->queueMutex, mutex, link);
+		mutex->thread = nullptr;
 
-	.loc_0x5C:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x6C
-	  stw       r3, 0x2F4(r30)
-	  b         .loc_0x70
+		if (currentThread->priority < currentThread->base) {
+			currentThread->priority = __OSGetEffectivePriority(currentThread);
+		}
 
-	.loc_0x6C:
-	  stw       r3, 0x10(r4)
+		OSDisableScheduler();
+		OSWakeupThread(&mutex->queue);
+		OSEnableScheduler();
+		OSSleepThread(&cond->queue);
+		OSLockMutex(mutex);
+		mutex->count = count;
+	}
 
-	.loc_0x70:
-	  li        r0, 0
-	  stw       r0, 0x8(r28)
-	  lwz       r3, 0x2D0(r30)
-	  lwz       r0, 0x2D4(r30)
-	  cmpw      r3, r0
-	  bge-      .loc_0x94
-	  mr        r3, r30
-	  bl        0x1C08
-	  stw       r3, 0x2D0(r30)
-
-	.loc_0x94:
-	  bl        0x1B18
-	  mr        r3, r28
-	  bl        0x2AE4
-	  bl        0x1B4C
-	  mr        r3, r27
-	  bl        0x29EC
-	  mr        r3, r28
-	  bl        -0x3A0
-	  stw       r29, 0xC(r28)
-
-	.loc_0xB8:
-	  mr        r3, r31
-	  bl        -0x12B4
-	  lmw       r27, 0x14(r1)
-	  lwz       r0, 0x2C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -398,57 +155,4 @@ u32 OSWaitCond(OSThreadQueue* threadQueue, OSMutex* mutex)
  * Address:	800EFF2C
  * Size:	000020
  */
-void OSSignalCond(OSThreadQueue* threadQueue)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bl        0x2AA0
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void IsMember(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
- */
-void __OSCheckMutex(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void __OSCheckDeadLock(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void __OSCheckMutexes(void)
-{
-	// UNUSED FUNCTION
-}
+void OSSignalCond(OSCond* cond) { OSWakeupThread(&cond->queue); }

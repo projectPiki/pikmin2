@@ -52,7 +52,6 @@ void OSSetCurrentContext(OSContext* context);
 // FPU functions.
 void OSSaveFPUContext(OSContext* context);
 void OSFillFPUContext(OSContext* context);
-void OSSwitchFPUContext(OSContext* context); // unsure of arguments.
 
 // Unused/inlined in P2.
 u32 OSSwitchStack(u32 newStackPtr);

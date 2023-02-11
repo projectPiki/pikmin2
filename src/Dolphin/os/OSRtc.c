@@ -1,13 +1,40 @@
 #include "Dolphin/os.h"
 
+// forward declarations.
+static BOOL WriteSram(void* buffer, u32 offset, u32 size);
+
+static SramControlBlock Scb ATTRIBUTE_ALIGN(32);
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000118
  */
-void GetRTC(void)
+static BOOL GetRTC(u32* rtc)
 {
-	// UNUSED FUNCTION
+	BOOL err;
+	u32 cmd;
+
+	if (!EXILock(RTC_CHAN, RTC_DEV, 0)) {
+		return FALSE;
+	}
+	if (!EXISelect(RTC_CHAN, RTC_DEV, RTC_FREQ)) {
+		EXIUnlock(RTC_CHAN);
+		return FALSE;
+	}
+
+	cmd = RTC_CMD_READ;
+	err = FALSE;
+	err |= !EXIImm(RTC_CHAN, &cmd, 4, 1, nullptr);
+	err |= !EXISync(RTC_CHAN);
+	err |= !EXIImm(RTC_CHAN, &cmd, 4, 0, nullptr);
+	err |= !EXISync(RTC_CHAN);
+	err |= !EXIDeselect(RTC_CHAN);
+	EXIUnlock(RTC_CHAN);
+
+	*rtc = cmd;
+
+	return !err;
 }
 
 /*
@@ -15,9 +42,26 @@ void GetRTC(void)
  * Address:	........
  * Size:	00022C
  */
-void __OSGetRTC(void)
+static BOOL __OSGetRTC(u32* rtc)
 {
-	// UNUSED FUNCTION
+	BOOL err;
+	u32 t0;
+	u32 t1;
+	int i;
+
+	for (i = 0; i < 16; i++) {
+		err = FALSE;
+		err |= !GetRTC(&t0);
+		err |= !GetRTC(&t1);
+		if (err) {
+			break;
+		}
+		if (t0 == t1) {
+			*rtc = t0;
+			return TRUE;
+		}
+	}
+	return FALSE;
 }
 
 /*
@@ -25,9 +69,29 @@ void __OSGetRTC(void)
  * Address:	........
  * Size:	000108
  */
-void __OSSetRTC(void)
+static BOOL __OSSetRTC(u32 rtc)
 {
-	// UNUSED FUNCTION
+	BOOL err;
+	u32 cmd;
+
+	if (!EXILock(RTC_CHAN, RTC_DEV, 0)) {
+		return FALSE;
+	}
+	if (!EXISelect(RTC_CHAN, RTC_DEV, RTC_FREQ)) {
+		EXIUnlock(RTC_CHAN);
+		return FALSE;
+	}
+
+	cmd = RTC_CMD_WRITE;
+	err = FALSE;
+	err |= !EXIImm(RTC_CHAN, &cmd, 4, 1, nullptr);
+	err |= !EXISync(RTC_CHAN);
+	err |= !EXIImm(RTC_CHAN, &rtc, 4, 1, nullptr);
+	err |= !EXISync(RTC_CHAN);
+	err |= !EXIDeselect(RTC_CHAN);
+	EXIUnlock(RTC_CHAN);
+
+	return !err;
 }
 
 /*
@@ -35,9 +99,31 @@ void __OSSetRTC(void)
  * Address:	........
  * Size:	00011C
  */
-void ReadSram(void)
+static BOOL ReadSram(void* buffer)
 {
-	// UNUSED FUNCTION
+	BOOL err;
+	u32 cmd;
+
+	DCInvalidateRange(buffer, RTC_SRAM_SIZE);
+
+	if (!EXILock(RTC_CHAN, RTC_DEV, 0)) {
+		return FALSE;
+	}
+	if (!EXISelect(RTC_CHAN, RTC_DEV, RTC_FREQ)) {
+		EXIUnlock(RTC_CHAN);
+		return FALSE;
+	}
+
+	cmd = RTC_CMD_READ | RTC_SRAM_ADDR;
+	err = FALSE;
+	err |= !EXIImm(RTC_CHAN, &cmd, 4, 1, nullptr);
+	err |= !EXISync(RTC_CHAN);
+	err |= !EXIDma(RTC_CHAN, buffer, RTC_SRAM_SIZE, 0, nullptr);
+	err |= !EXISync(RTC_CHAN);
+	err |= !EXIDeselect(RTC_CHAN);
+	EXIUnlock(RTC_CHAN);
+
+	return !err;
 }
 
 /*
@@ -45,39 +131,12 @@ void ReadSram(void)
  * Address:	800F0A7C
  * Size:	000060
  */
-void WriteSramCallback(void)
+static void WriteSramCallback(s32 channel, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  addi      r31, r3, 0x66E0
-	  stw       r30, 0x10(r1)
-	  addi      r30, r31, 0x40
-	  lwz       r4, 0x40(r31)
-	  add       r3, r31, r4
-	  subfic    r5, r4, 0x40
-	  bl        .loc_0x60
-	  stw       r3, 0x4C(r31)
-	  lwz       r0, 0x4C(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x48
-	  li        r0, 0x40
-	  stw       r0, 0x0(r30)
-
-	.loc_0x48:
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-
-	.loc_0x60:
-	*/
+	Scb.sync = WriteSram(Scb.sram + Scb.offset, Scb.offset, RTC_SRAM_SIZE - Scb.offset);
+	if (Scb.sync) {
+		Scb.offset = RTC_SRAM_SIZE;
+	}
 }
 
 /*
@@ -85,87 +144,29 @@ void WriteSramCallback(void)
  * Address:	800F0ADC
  * Size:	000118
  */
-void WriteSram(void)
+static BOOL WriteSram(void* buffer, u32 offset, u32 size)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r6, 0x800F
-	  stw       r0, 0x4(r1)
-	  addi      r0, r6, 0xA7C
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  addi      r31, r4, 0
-	  li        r4, 0x1
-	  stw       r30, 0x20(r1)
-	  addi      r30, r5, 0
-	  mr        r5, r0
-	  stw       r29, 0x1C(r1)
-	  addi      r29, r3, 0
-	  li        r3, 0
-	  bl        -0xFBA4
-	  cmpwi     r3, 0
-	  bne-      .loc_0x4C
-	  li        r3, 0
-	  b         .loc_0xFC
+	BOOL err;
+	u32 cmd;
 
-	.loc_0x4C:
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0x3
-	  bl        -0x10384
-	  cmpwi     r3, 0
-	  bne-      .loc_0x74
-	  li        r3, 0
-	  bl        -0xFAE0
-	  li        r3, 0
-	  b         .loc_0xFC
+	if (!EXILock(RTC_CHAN, RTC_DEV, WriteSramCallback)) {
+		return FALSE;
+	}
+	if (!EXISelect(RTC_CHAN, RTC_DEV, RTC_FREQ)) {
+		EXIUnlock(RTC_CHAN);
+		return FALSE;
+	}
 
-	.loc_0x74:
-	  rlwinm    r31,r31,6,0,25
-	  addi      r0, r31, 0x100
-	  oris      r0, r0, 0xA000
-	  stw       r0, 0x14(r1)
-	  addi      r4, r1, 0x14
-	  li        r3, 0
-	  li        r5, 0x4
-	  li        r6, 0x1
-	  li        r7, 0
-	  bl        -0x10F2C
-	  cntlzw    r0, r3
-	  rlwinm    r31,r0,27,5,31
-	  li        r3, 0
-	  bl        -0x10B54
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  addi      r4, r29, 0
-	  addi      r5, r30, 0
-	  or        r31, r31, r0
-	  li        r3, 0
-	  li        r6, 0x1
-	  bl        -0x10D00
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r31, r31, r0
-	  li        r3, 0
-	  bl        -0x102DC
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r31, r31, r0
-	  li        r3, 0
-	  bl        -0xFB68
-	  cntlzw    r0, r31
-	  rlwinm    r3,r0,27,5,31
+	offset <<= 6;
+	cmd = RTC_CMD_WRITE | RTC_SRAM_ADDR + offset;
+	err = FALSE;
+	err |= !EXIImm(RTC_CHAN, &cmd, 4, 1, nullptr);
+	err |= !EXISync(RTC_CHAN);
+	err |= !EXIImmEx(RTC_CHAN, buffer, (s32)size, 1);
+	err |= !EXIDeselect(RTC_CHAN);
+	EXIUnlock(RTC_CHAN);
 
-	.loc_0xFC:
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	return !err;
 }
 
 /*
@@ -173,96 +174,12 @@ void WriteSram(void)
  * Address:	800F0BF4
  * Size:	00013C
  */
-void __OSInitSram(void)
+void __OSInitSram()
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  li        r4, 0x40
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  li        r31, 0
-	  stw       r30, 0x10(r1)
-	  addi      r30, r3, 0x66E0
-	  addi      r3, r30, 0
-	  stw       r31, 0x44(r30)
-	  stw       r31, 0x48(r30)
-	  bl        -0x4538
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        -0xFCC4
-	  cmpwi     r3, 0
-	  bne-      .loc_0x50
-	  b         .loc_0x110
-
-	.loc_0x50:
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0x3
-	  bl        -0x104A0
-	  cmpwi     r3, 0
-	  bne-      .loc_0x74
-	  li        r3, 0
-	  bl        -0xFBFC
-	  b         .loc_0x110
-
-	.loc_0x74:
-	  lis       r3, 0x2000
-	  addi      r0, r3, 0x100
-	  stw       r0, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  li        r3, 0
-	  li        r5, 0x4
-	  li        r6, 0x1
-	  li        r7, 0
-	  bl        -0x11040
-	  cntlzw    r0, r3
-	  rlwinm    r31,r0,27,5,31
-	  li        r3, 0
-	  bl        -0x10C68
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  addi      r4, r30, 0
-	  or        r31, r31, r0
-	  li        r3, 0
-	  li        r5, 0x40
-	  li        r6, 0
-	  li        r7, 0
-	  bl        -0x10D78
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r31, r31, r0
-	  li        r3, 0
-	  bl        -0x10CA0
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r31, r31, r0
-	  li        r3, 0
-	  bl        -0x10408
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r31, r31, r0
-	  li        r3, 0
-	  bl        -0xFC94
-	  cntlzw    r0, r31
-	  rlwinm    r31,r0,27,5,31
-
-	.loc_0x110:
-	  stw       r31, 0x4C(r30)
-	  li        r0, 0x40
-	  stw       r0, 0x40(r30)
-	  bl        0x99C
-	  bl        0xA08
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	Scb.locked = Scb.enabled = FALSE;
+	Scb.sync                 = ReadSram(Scb.sram);
+	Scb.offset               = RTC_SRAM_SIZE;
+	OSSetGbsMode(OSGetGbsMode());
 }
 
 /*
@@ -270,9 +187,20 @@ void __OSInitSram(void)
  * Address:	........
  * Size:	000068
  */
-void LockSram(void)
+static void* LockSram(u32 offset)
 {
-	// UNUSED FUNCTION
+	BOOL enabled;
+	enabled = OSDisableInterrupts();
+
+	if (Scb.locked != FALSE) {
+		OSRestoreInterrupts(enabled);
+		return nullptr;
+	}
+
+	Scb.enabled = enabled;
+	Scb.locked  = TRUE;
+
+	return Scb.sram + offset;
 }
 
 /*
@@ -280,320 +208,62 @@ void LockSram(void)
  * Address:	800F0D30
  * Size:	00005C
  */
-void __OSLockSram(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r3, 0x66E0
-	  bl        -0x2110
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x38
-	  bl        -0x20FC
-	  li        r31, 0
-	  b         .loc_0x44
-
-	.loc_0x38:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  stw       r0, 0x0(r4)
-
-	.loc_0x44:
-	  mr        r3, r31
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
-}
+OSSram* __OSLockSram() { return LockSram(0); }
 
 /*
  * --INFO--
  * Address:	800F0D8C
  * Size:	00005C
  */
-u8* __OSLockSramEx(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r3, 0x66E0
-	  bl        -0x216C
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x38
-	  bl        -0x2158
-	  li        r3, 0
-	  b         .loc_0x48
-
-	.loc_0x38:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  addi      r3, r31, 0x14
-	  stw       r0, 0x0(r4)
-
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
-}
+OSSramEx* __OSLockSramEx() { return LockSram(sizeof(OSSram)); }
 
 /*
  * --INFO--
  * Address:	800F0DE8
  * Size:	00033C
  */
-void UnlockSram(void)
+static BOOL UnlockSram(BOOL commit, u32 offset)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  cmpwi     r3, 0
-	  stw       r0, 0x4(r1)
-	  lis       r3, 0x804F
-	  stwu      r1, -0x30(r1)
-	  stmw      r27, 0x1C(r1)
-	  addi      r31, r3, 0x66E0
-	  beq-      .loc_0x314
-	  cmplwi    r4, 0
-	  bne-      .loc_0x1D4
-	  lbz       r3, 0x13(r31)
-	  rlwinm    r0,r3,0,30,31
-	  cmplwi    r0, 0x2
-	  ble-      .loc_0x40
-	  rlwinm    r0,r3,0,0,29
-	  stb       r0, 0x13(r31)
+	u16* p;
+	u16* ptr2;
 
-	.loc_0x40:
-	  li        r0, 0
-	  sth       r0, 0x2(r31)
-	  addi      r5, r31, 0x14
-	  addi      r6, r31, 0xC
-	  addi      r3, r5, 0x1
-	  sth       r0, 0x0(r31)
-	  sub       r3, r3, r6
-	  cmplw     r6, r5
-	  rlwinm    r3,r3,31,1,31
-	  bge-      .loc_0x1D4
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x1A4
+	if (commit) {
+		if (offset == 0) {
+			OSSram* sram = (OSSram*)Scb.sram;
 
-	.loc_0x74:
-	  lhz       r5, 0x0(r31)
-	  lhz       r0, 0x0(r6)
-	  add       r0, r5, r0
-	  sth       r0, 0x0(r31)
-	  lhz       r0, 0x0(r6)
-	  lhz       r5, 0x2(r31)
-	  not       r0, r0
-	  add       r0, r5, r0
-	  sth       r0, 0x2(r31)
-	  lhz       r5, 0x0(r31)
-	  lhz       r0, 0x2(r6)
-	  add       r0, r5, r0
-	  sth       r0, 0x0(r31)
-	  lhz       r0, 0x2(r6)
-	  lhz       r5, 0x2(r31)
-	  not       r0, r0
-	  add       r0, r5, r0
-	  sth       r0, 0x2(r31)
-	  lhz       r5, 0x0(r31)
-	  lhz       r0, 0x4(r6)
-	  add       r0, r5, r0
-	  sth       r0, 0x0(r31)
-	  lhz       r0, 0x4(r6)
-	  lhz       r5, 0x2(r31)
-	  not       r0, r0
-	  add       r0, r5, r0
-	  sth       r0, 0x2(r31)
-	  lhz       r5, 0x0(r31)
-	  lhz       r0, 0x6(r6)
-	  add       r0, r5, r0
-	  sth       r0, 0x0(r31)
-	  lhz       r0, 0x6(r6)
-	  lhz       r5, 0x2(r31)
-	  not       r0, r0
-	  add       r0, r5, r0
-	  sth       r0, 0x2(r31)
-	  lhz       r5, 0x0(r31)
-	  lhz       r0, 0x8(r6)
-	  add       r0, r5, r0
-	  sth       r0, 0x0(r31)
-	  lhz       r0, 0x8(r6)
-	  lhz       r5, 0x2(r31)
-	  not       r0, r0
-	  add       r0, r5, r0
-	  sth       r0, 0x2(r31)
-	  lhz       r5, 0x0(r31)
-	  lhz       r0, 0xA(r6)
-	  add       r0, r5, r0
-	  sth       r0, 0x0(r31)
-	  lhz       r0, 0xA(r6)
-	  lhz       r5, 0x2(r31)
-	  not       r0, r0
-	  add       r0, r5, r0
-	  sth       r0, 0x2(r31)
-	  lhz       r5, 0x0(r31)
-	  lhz       r0, 0xC(r6)
-	  add       r0, r5, r0
-	  sth       r0, 0x0(r31)
-	  lhz       r0, 0xC(r6)
-	  lhz       r5, 0x2(r31)
-	  not       r0, r0
-	  add       r0, r5, r0
-	  sth       r0, 0x2(r31)
-	  lhz       r5, 0x0(r31)
-	  lhz       r0, 0xE(r6)
-	  add       r0, r5, r0
-	  sth       r0, 0x0(r31)
-	  lhz       r0, 0xE(r6)
-	  addi      r6, r6, 0x10
-	  lhz       r5, 0x2(r31)
-	  not       r0, r0
-	  add       r0, r5, r0
-	  sth       r0, 0x2(r31)
-	  bdnz+     .loc_0x74
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0x1D4
+			if (2u < (sram->flags & 3)) {
+				sram->flags &= ~3;
+			}
 
-	.loc_0x1A4:
-	  mtctr     r3
+			sram->checkSum = sram->checkSumInv = 0;
+			for (p = (u16*)&sram->counterBias; p < (u16*)(Scb.sram + sizeof(OSSram)); p++) {
+				sram->checkSum += *p;
+				sram->checkSumInv += ~*p;
+			}
+		}
 
-	.loc_0x1A8:
-	  lhz       r5, 0x0(r31)
-	  lhz       r0, 0x0(r6)
-	  add       r0, r5, r0
-	  sth       r0, 0x0(r31)
-	  lhz       r0, 0x0(r6)
-	  addi      r6, r6, 0x2
-	  lhz       r5, 0x2(r31)
-	  not       r0, r0
-	  add       r0, r5, r0
-	  sth       r0, 0x2(r31)
-	  bdnz+     .loc_0x1A8
+		if (offset < Scb.offset) {
+			Scb.offset = offset;
+		}
 
-	.loc_0x1D4:
-	  addi      r30, r31, 0x40
-	  lwz       r0, 0x40(r31)
-	  cmplw     r4, r0
-	  bge-      .loc_0x1E8
-	  stw       r4, 0x0(r30)
+		// this isn't in prime?
+		if (Scb.offset <= 20) {
+			// this seems to work? esp. since we have GbsMode functions when prime doesn't
+			// wacky tho
+			OSSramEx* sramEx = (OSSramEx*)(&Scb.sram[20]);
+			if ((u32)(sramEx->gbs & 0x7C00) == 0x5000 || (u32)(sramEx->gbs & 0xC0) == 0xC0) {
+				sramEx->gbs = 0;
+			}
+		}
 
-	.loc_0x1E8:
-	  lwz       r0, 0x0(r30)
-	  cmplwi    r0, 0x14
-	  bgt-      .loc_0x21C
-	  addi      r4, r31, 0x14
-	  lhz       r3, 0x3C(r31)
-	  rlwinm    r0,r3,0,17,21
-	  cmplwi    r0, 0x5000
-	  beq-      .loc_0x214
-	  rlwinm    r0,r3,0,24,25
-	  cmplwi    r0, 0xC0
-	  bne-      .loc_0x21C
-
-	.loc_0x214:
-	  li        r0, 0
-	  sth       r0, 0x28(r4)
-
-	.loc_0x21C:
-	  lwz       r29, 0x0(r30)
-	  lis       r3, 0x800F
-	  addi      r5, r3, 0xA7C
-	  subfic    r27, r29, 0x40
-	  add       r28, r31, r29
-	  li        r3, 0
-	  li        r4, 0x1
-	  bl        -0x100B0
-	  cmpwi     r3, 0
-	  bne-      .loc_0x24C
-	  li        r0, 0
-	  b         .loc_0x2FC
-
-	.loc_0x24C:
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0x3
-	  bl        -0x10890
-	  cmpwi     r3, 0
-	  bne-      .loc_0x274
-	  li        r3, 0
-	  bl        -0xFFEC
-	  li        r0, 0
-	  b         .loc_0x2FC
-
-	.loc_0x274:
-	  rlwinm    r3,r29,6,0,25
-	  addi      r0, r3, 0x100
-	  oris      r0, r0, 0xA000
-	  stw       r0, 0x10(r1)
-	  addi      r4, r1, 0x10
-	  li        r3, 0
-	  li        r5, 0x4
-	  li        r6, 0x1
-	  li        r7, 0
-	  bl        -0x11438
-	  cntlzw    r0, r3
-	  rlwinm    r29,r0,27,5,31
-	  li        r3, 0
-	  bl        -0x11060
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  addi      r4, r28, 0
-	  addi      r5, r27, 0
-	  or        r29, r29, r0
-	  li        r3, 0
-	  li        r6, 0x1
-	  bl        -0x1120C
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r29, r29, r0
-	  li        r3, 0
-	  bl        -0x107E8
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r29, r29, r0
-	  li        r3, 0
-	  bl        -0x10074
-	  cntlzw    r0, r29
-	  rlwinm    r0,r0,27,5,31
-
-	.loc_0x2FC:
-	  stw       r0, 0x4C(r31)
-	  lwz       r0, 0x4C(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x314
-	  li        r0, 0x40
-	  stw       r0, 0x0(r30)
-
-	.loc_0x314:
-	  li        r0, 0
-	  stw       r0, 0x48(r31)
-	  lwz       r3, 0x44(r31)
-	  bl        -0x24A8
-	  lwz       r3, 0x4C(r31)
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  addi      r1, r1, 0x30
-	  mtlr      r0
-	  blr
-	*/
+		Scb.sync = WriteSram(Scb.sram + Scb.offset, Scb.offset, RTC_SRAM_SIZE - Scb.offset);
+		if (Scb.sync) {
+			Scb.offset = RTC_SRAM_SIZE;
+		}
+	}
+	Scb.locked = FALSE;
+	OSRestoreInterrupts(Scb.enabled);
+	return Scb.sync;
 }
 
 /*
@@ -601,178 +271,52 @@ void UnlockSram(void)
  * Address:	800F1124
  * Size:	000024
  */
-void __OSUnlockSram(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bl        -0x34C
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+BOOL __OSUnlockSram(BOOL commit) { return UnlockSram(commit, 0); }
 
 /*
  * --INFO--
  * Address:	800F1148
  * Size:	000024
  */
-void __OSUnlockSramEx(int p1)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  li        r4, 0x14
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bl        -0x370
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+BOOL __OSUnlockSramEx(BOOL commit) { return UnlockSram(commit, sizeof(OSSram)); }
 
 /*
  * --INFO--
  * Address:	800F116C
  * Size:	000010
  */
-void __OSSyncSram(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0x804F
-	  addi      r3, r3, 0x66E0
-	  lwz       r3, 0x4C(r3)
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
- */
-void __OSCheckSram(void)
-{
-	// UNUSED FUNCTION
-}
+BOOL __OSSyncSram() { return Scb.sync; }
 
 /*
  * --INFO--
  * Address:	800F117C
  * Size:	000124
  */
-void __OSReadROM(void)
+BOOL __OSReadROM(void* buffer, s32 length, s32 offset)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  addi      r31, r5, 0
-	  stw       r30, 0x20(r1)
-	  addi      r30, r4, 0
-	  stw       r29, 0x1C(r1)
-	  addi      r29, r3, 0
-	  bl        -0x4AB4
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        -0x10240
-	  cmpwi     r3, 0
-	  bne-      .loc_0x48
-	  li        r3, 0
-	  b         .loc_0x108
+	BOOL err;
+	u32 cmd;
 
-	.loc_0x48:
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0x3
-	  bl        -0x10A20
-	  cmpwi     r3, 0
-	  bne-      .loc_0x70
-	  li        r3, 0
-	  bl        -0x1017C
-	  li        r3, 0
-	  b         .loc_0x108
+	DCInvalidateRange(buffer, (u32)length);
 
-	.loc_0x70:
-	  rlwinm    r0,r31,6,0,25
-	  stw       r0, 0x14(r1)
-	  addi      r4, r1, 0x14
-	  li        r3, 0
-	  li        r5, 0x4
-	  li        r6, 0x1
-	  li        r7, 0
-	  bl        -0x115C0
-	  cntlzw    r0, r3
-	  rlwinm    r31,r0,27,5,31
-	  li        r3, 0
-	  bl        -0x111E8
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  addi      r4, r29, 0
-	  addi      r5, r30, 0
-	  or        r31, r31, r0
-	  li        r3, 0
-	  li        r6, 0
-	  li        r7, 0
-	  bl        -0x112F8
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r31, r31, r0
-	  li        r3, 0
-	  bl        -0x11220
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r31, r31, r0
-	  li        r3, 0
-	  bl        -0x10988
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r31, r31, r0
-	  li        r3, 0
-	  bl        -0x10214
-	  cntlzw    r0, r31
-	  rlwinm    r3,r0,27,5,31
+	if (!EXILock(RTC_CHAN, RTC_DEV, 0)) {
+		return FALSE;
+	}
+	if (!EXISelect(RTC_CHAN, RTC_DEV, RTC_FREQ)) {
+		EXIUnlock(RTC_CHAN);
+		return FALSE;
+	}
 
-	.loc_0x108:
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
-}
+	cmd = (u32)(offset << 6);
+	err = FALSE;
+	err |= !EXIImm(RTC_CHAN, &cmd, 4, 1, nullptr);
+	err |= !EXISync(RTC_CHAN);
+	err |= !EXIDma(RTC_CHAN, buffer, length, 0, nullptr);
+	err |= !EXISync(RTC_CHAN);
+	err |= !EXIDeselect(RTC_CHAN);
+	EXIUnlock(RTC_CHAN);
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void __OSReadROMCallback(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
- */
-void __OSReadROMAsync(void)
-{
-	// UNUSED FUNCTION
+	return !err;
 }
 
 /*
@@ -780,51 +324,16 @@ void __OSReadROMAsync(void)
  * Address:	800F12A0
  * Size:	000080
  */
-uint OSGetSoundMode(void)
+u32 OSGetSoundMode()
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r3, 0x66E0
-	  bl        -0x2680
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x38
-	  bl        -0x266C
-	  li        r31, 0
-	  b         .loc_0x44
+	OSSram* sram;
+	u32 mode;
+	u32 tmp; // dumbass compiler
 
-	.loc_0x38:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  stw       r0, 0x0(r4)
-
-	.loc_0x44:
-	  lbz       r0, 0x13(r31)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x58
-	  li        r31, 0x1
-	  b         .loc_0x5C
-
-	.loc_0x58:
-	  li        r31, 0
-
-	.loc_0x5C:
-	  li        r3, 0
-	  li        r4, 0
-	  bl        -0x51C
-	  mr        r3, r31
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	sram = LockSram(0);
+	mode = (sram->flags & 0x4) ? OS_SOUND_MODE_STEREO : OS_SOUND_MODE_MONO;
+	__OSUnlockSram(FALSE);
+	return mode;
 }
 
 /*
@@ -832,60 +341,23 @@ uint OSGetSoundMode(void)
  * Address:	800F1320
  * Size:	0000A4
  */
-void OSSetSoundMode(uint)
+void OSSetSoundMode(u32 mode)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r4, 0x66E0
-	  stw       r30, 0x18(r1)
-	  rlwinm    r30,r3,2,29,29
-	  bl        -0x2708
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x40
-	  bl        -0x26F4
-	  li        r31, 0
-	  b         .loc_0x4C
+	OSSram* sram;
+	u32 tmp; // dumbass compiler
 
-	.loc_0x40:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  stw       r0, 0x0(r4)
+	mode <<= 2;
+	mode &= 4;
 
-	.loc_0x4C:
-	  lbz       r3, 0x13(r31)
-	  rlwinm    r0,r3,0,29,29
-	  cmplw     r30, r0
-	  bne-      .loc_0x6C
-	  li        r3, 0
-	  li        r4, 0
-	  bl        -0x59C
-	  b         .loc_0x8C
+	sram = LockSram(0);
+	if (mode == (sram->flags & 4)) {
+		__OSUnlockSram(FALSE);
+		return;
+	}
 
-	.loc_0x6C:
-	  rlwinm    r0,r3,0,30,28
-	  stb       r0, 0x13(r31)
-	  li        r3, 0x1
-	  li        r4, 0
-	  lbz       r0, 0x13(r31)
-	  or        r0, r0, r30
-	  stb       r0, 0x13(r31)
-	  bl        -0x5C0
-
-	.loc_0x8C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	sram->flags &= ~4;
+	sram->flags |= mode;
+	__OSUnlockSram(TRUE);
 }
 
 /*
@@ -893,43 +365,16 @@ void OSSetSoundMode(uint)
  * Address:	800F13C4
  * Size:	000070
  */
-void OSGetProgressiveMode(void)
+u32 OSGetProgressiveMode()
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  addi      r31, r3, 0x66E0
-	  bl        -0x27A4
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x38
-	  bl        -0x2790
-	  li        r31, 0
-	  b         .loc_0x44
+	OSSram* sram;
+	u32 mode;
+	u32 tmp; // dumbass compiler
 
-	.loc_0x38:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  stw       r0, 0x0(r4)
-
-	.loc_0x44:
-	  lbz       r0, 0x13(r31)
-	  li        r3, 0
-	  li        r4, 0
-	  rlwinm    r31,r0,25,31,31
-	  bl        -0x630
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	sram = LockSram(0);
+	mode = (sram->flags & 0x80) >> 7;
+	__OSUnlockSram(FALSE);
+	return mode;
 }
 
 /*
@@ -937,130 +382,23 @@ void OSGetProgressiveMode(void)
  * Address:	800F1434
  * Size:	0000A4
  */
-void OSSetProgressiveMode(void)
+void OSSetProgressiveMode(u32 mode)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r4, 0x66E0
-	  stw       r30, 0x18(r1)
-	  rlwinm    r30,r3,7,24,24
-	  bl        -0x281C
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x40
-	  bl        -0x2808
-	  li        r31, 0
-	  b         .loc_0x4C
+	OSSram* sram;
+	u32 tmp; // dumbass compiler
 
-	.loc_0x40:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  stw       r0, 0x0(r4)
+	mode <<= 7;
+	mode &= 0x80;
 
-	.loc_0x4C:
-	  lbz       r3, 0x13(r31)
-	  rlwinm    r0,r3,0,24,24
-	  cmplw     r30, r0
-	  bne-      .loc_0x6C
-	  li        r3, 0
-	  li        r4, 0
-	  bl        -0x6B0
-	  b         .loc_0x8C
+	sram = LockSram(0);
+	if (mode == (sram->flags & 0x80)) {
+		__OSUnlockSram(FALSE);
+		return;
+	}
 
-	.loc_0x6C:
-	  rlwinm    r0,r3,0,25,23
-	  stb       r0, 0x13(r31)
-	  li        r3, 0x1
-	  li        r4, 0
-	  lbz       r0, 0x13(r31)
-	  or        r0, r0, r30
-	  stb       r0, 0x13(r31)
-	  bl        -0x6D4
-
-	.loc_0x8C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void OSGetVideoMode(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-void OSSetVideoMode(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void OSGetLanguage(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
- */
-void OSSetLanguage(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void __OSGetBootMode(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
- */
-void __OSSetBootMode(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-void OSGetEuRgb60Mode(void)
-{
-	// UNUSED FUNCTION
+	sram->flags &= ~0x80;
+	sram->flags |= mode;
+	__OSUnlockSram(TRUE);
 }
 
 /*
@@ -1068,60 +406,23 @@ void OSGetEuRgb60Mode(void)
  * Address:	800F14D8
  * Size:	0000A4
  */
-void OSSetEuRgb60Mode(void)
+void OSSetEuRgb60Mode(u32 on)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r4, 0x66E0
-	  stw       r30, 0x18(r1)
-	  rlwinm    r30,r3,6,25,25
-	  bl        -0x28C0
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x40
-	  bl        -0x28AC
-	  li        r31, 0
-	  b         .loc_0x4C
+	OSSram* sram;
+	u32 tmp; // dumbass compiler
 
-	.loc_0x40:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  stw       r0, 0x0(r4)
+	on <<= 6;
+	on &= 0x40;
 
-	.loc_0x4C:
-	  lbz       r3, 0x11(r31)
-	  rlwinm    r0,r3,0,25,25
-	  cmplw     r30, r0
-	  bne-      .loc_0x6C
-	  li        r3, 0
-	  li        r4, 0
-	  bl        -0x754
-	  b         .loc_0x8C
+	sram = LockSram(0);
+	if (on == (sram->ntd & 0x40)) {
+		__OSUnlockSram(FALSE);
+		return;
+	}
 
-	.loc_0x6C:
-	  rlwinm    r0,r3,0,26,24
-	  stb       r0, 0x11(r31)
-	  li        r3, 0x1
-	  li        r4, 0
-	  lbz       r0, 0x11(r31)
-	  or        r0, r0, r30
-	  stb       r0, 0x11(r31)
-	  bl        -0x778
-
-	.loc_0x8C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	sram->ntd &= ~0x40;
+	sram->ntd |= on;
+	__OSUnlockSram(TRUE);
 }
 
 /*
@@ -1129,48 +430,15 @@ void OSSetEuRgb60Mode(void)
  * Address:	800F157C
  * Size:	000084
  */
-void OSGetWirelessID(void)
+u16 OSGetWirelessID(s32 channel)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r4, 0x66E0
-	  stw       r30, 0x18(r1)
-	  addi      r30, r3, 0
-	  bl        -0x2964
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x40
-	  bl        -0x2950
-	  li        r3, 0
-	  b         .loc_0x50
+	OSSramEx* sram;
+	u16 id;
 
-	.loc_0x40:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  addi      r3, r31, 0x14
-	  stw       r0, 0x0(r4)
-
-	.loc_0x50:
-	  rlwinm    r0,r30,1,0,30
-	  add       r3, r3, r0
-	  lhz       r31, 0x1C(r3)
-	  li        r3, 0
-	  li        r4, 0x14
-	  bl        -0x7F8
-	  mr        r3, r31
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	sram = __OSLockSramEx();
+	id   = sram->wirelessPadID[channel];
+	__OSUnlockSramEx(FALSE);
+	return id;
 }
 
 /*
@@ -1178,62 +446,18 @@ void OSGetWirelessID(void)
  * Address:	800F1600
  * Size:	0000AC
  */
-void OSSetWirelessID(void)
+void OSSetWirelessID(s32 channel, u16 id)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r5, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  addi      r31, r5, 0x66E0
-	  stw       r30, 0x20(r1)
-	  addi      r30, r4, 0
-	  stw       r29, 0x1C(r1)
-	  addi      r29, r3, 0
-	  bl        -0x29F0
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x48
-	  bl        -0x29DC
-	  li        r3, 0
-	  b         .loc_0x58
+	OSSramEx* sram;
 
-	.loc_0x48:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  addi      r3, r31, 0x14
-	  stw       r0, 0x0(r4)
+	sram = __OSLockSramEx();
+	if (sram->wirelessPadID[channel] != id) {
+		sram->wirelessPadID[channel] = id;
+		__OSUnlockSramEx(TRUE);
+		return;
+	}
 
-	.loc_0x58:
-	  rlwinm    r0,r29,1,0,30
-	  add       r4, r3, r0
-	  lhzu      r3, 0x1C(r4)
-	  rlwinm    r0,r30,0,16,31
-	  cmplw     r3, r0
-	  beq-      .loc_0x84
-	  sth       r30, 0x0(r4)
-	  li        r3, 0x1
-	  li        r4, 0x14
-	  bl        -0x894
-	  b         .loc_0x90
-
-	.loc_0x84:
-	  li        r3, 0
-	  li        r4, 0x14
-	  bl        -0x8A4
-
-	.loc_0x90:
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	__OSUnlockSramEx(FALSE);
 }
 
 /*
@@ -1241,43 +465,15 @@ void OSSetWirelessID(void)
  * Address:	800F16AC
  * Size:	000070
  */
-void OSGetGbsMode(void)
+u16 OSGetGbsMode()
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  addi      r31, r3, 0x66E0
-	  bl        -0x2A8C
-	  lwz       r0, 0x48(r31)
-	  addi      r4, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x38
-	  bl        -0x2A78
-	  li        r3, 0
-	  b         .loc_0x48
+	OSSramEx* sram;
+	u16 id;
 
-	.loc_0x38:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  addi      r3, r31, 0x14
-	  stw       r0, 0x0(r4)
-
-	.loc_0x48:
-	  lhz       r31, 0x28(r3)
-	  li        r3, 0
-	  li        r4, 0x14
-	  bl        -0x918
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	sram = __OSLockSramEx();
+	id   = sram->gbs;
+	__OSUnlockSramEx(FALSE);
+	return id;
 }
 
 /*
@@ -1285,67 +481,21 @@ void OSGetGbsMode(void)
  * Address:	800F171C
  * Size:	0000B8
  */
-void OSSetGbsMode(void)
+void OSSetGbsMode(u16 mode)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  rlwinm    r4,r3,0,16,31
-	  stw       r0, 0x4(r1)
-	  rlwinm    r0,r3,0,17,21
-	  cmplwi    r0, 0x5000
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  addi      r30, r3, 0
-	  lis       r3, 0x804F
-	  addi      r31, r3, 0x66E0
-	  beq-      .loc_0x3C
-	  rlwinm    r0,r4,0,24,25
-	  cmplwi    r0, 0xC0
-	  bne-      .loc_0x40
+	OSSramEx* sram;
 
-	.loc_0x3C:
-	  li        r30, 0
+	// same odd code as in UnlockSram?
+	if ((u32)(mode & 0x7C00) == 0x5000 || (u32)(mode & 0xC0) == 0xC0) {
+		mode = 0;
+	}
 
-	.loc_0x40:
-	  bl        -0x2B24
-	  lwz       r0, 0x48(r31)
-	  addi      r5, r31, 0x48
-	  cmpwi     r0, 0
-	  beq-      .loc_0x60
-	  bl        -0x2B10
-	  li        r4, 0
-	  b         .loc_0x70
+	sram = __OSLockSramEx();
+	if (mode == sram->gbs) {
+		__OSUnlockSramEx(FALSE);
+		return;
+	}
 
-	.loc_0x60:
-	  stw       r3, 0x44(r31)
-	  li        r0, 0x1
-	  addi      r4, r31, 0x14
-	  stw       r0, 0x0(r5)
-
-	.loc_0x70:
-	  lhz       r0, 0x28(r4)
-	  rlwinm    r3,r30,0,16,31
-	  cmplw     r3, r0
-	  bne-      .loc_0x90
-	  li        r3, 0
-	  li        r4, 0x14
-	  bl        -0x9BC
-	  b         .loc_0xA0
-
-	.loc_0x90:
-	  sth       r30, 0x28(r4)
-	  li        r3, 0x1
-	  li        r4, 0x14
-	  bl        -0x9D0
-
-	.loc_0xA0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	sram->gbs = mode;
+	__OSUnlockSramEx(TRUE);
 }
