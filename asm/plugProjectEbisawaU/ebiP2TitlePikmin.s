@@ -5,21 +5,25 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497158:
+.obj lbl_80497158, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80497158
 .balign 4
-lbl_80497164:
+.obj lbl_80497164, local
 	.asciz "ebiP2TitlePikmin"
+.endobj lbl_80497164
 .balign 4
-lbl_80497178:
+.obj lbl_80497178, local
 	.asciz "TBoidParamMgr"
+.endobj lbl_80497178
 .balign 4
-lbl_80497188:
+.obj lbl_80497188, local
 	.asciz "TTitleStateParameters"
+.endobj lbl_80497188
 .balign 4
-lbl_804971A0: # Shift-JIS
+.obj lbl_804971A0, local # Shift-JIS
 	.4byte 0x8CFC82AB
 	.4byte 0x95CF82A6
 	.4byte 0x8378834E
@@ -27,14 +31,16 @@ lbl_804971A0: # Shift-JIS
 	.4byte 0x82CC91E5
 	.4byte 0x82AB82B3
 	.byte 0
+.endfn lbl_804971A0
 .balign 4
-lbl_804971BC: # Shift-JIS
+.obj lbl_804971BC, local # Shift-JIS
 	.4byte 0x8CFC82AB
 	.4byte 0x95CF82A6
 	.4byte 0x8378834E
 	.4byte 0x8367838B
 	.4byte 0x8DC591E5
 	.byte 0
+.endobj lbl_804971BC
 .balign 4
 lbl_804971D4: # Shift-JIS
 	.4byte 0x8DC591E5
@@ -282,8 +288,7 @@ lbl_8051FC90:
 	.float 1.0
 .balign 8
 lbl_8051FC98:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 lbl_8051FCA0:
 	.float -1.0
 .balign 4
@@ -312,8 +317,7 @@ lbl_8051FCD0:
 	.float 6.0
 .balign 8
 lbl_8051FCD8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051FCE0:
 	.float 32767.0
 lbl_8051FCE4:

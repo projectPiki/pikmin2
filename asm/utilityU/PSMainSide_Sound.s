@@ -165,12 +165,12 @@ lbl_8049DE10:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q23PSM7SeSound
-__vt__Q23PSM7SeSound:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q23PSM7SeSound, global
 	.4byte 0
 	.4byte 0
 	.4byte setPortData__5JAISeFUcUs
@@ -232,6 +232,7 @@ __vt__Q23PSM7SeSound:
 	.4byte setSeDistanceFir__5JAISeFUc
 	.4byte setSeDistanceDolby__Q23PSM7SeSoundFUc
 	.4byte setSePositionDopplar__5JAISeFv
+.endobj __vt__Q23PSM7SeSound
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -253,15 +254,18 @@ cCenterRad__Q23PSM7SeSound:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-panRatio$3853:
+.endobj gfNAN___Q24Game5P2JST
+.obj panRatio$3853, local
 	.skip 0x4
-.global init$3854
-init$3854:
+.endobj panRatio$3853
+.obj init$3854, local
 	.skip 0x1
+.endobj init$3854
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -275,8 +279,7 @@ lbl_80520D9C:
 	.4byte 0x41700000
 .balign 8
 lbl_80520DA0:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 lbl_80520DA8:
 	.float 0.5
 lbl_80520DAC:

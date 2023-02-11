@@ -1,20 +1,24 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A600:
+.obj lbl_8051A600, local
 	.float 1.0
-lbl_8051A604:
+.endobj lbl_8051A600
+.obj lbl_8051A604, local
 	.float 2.0
-lbl_8051A608:
+.endobj lbl_8051A604
+.obj lbl_8051A608, local
 	.float 0.5
-lbl_8051A60C:
+.endobj lbl_8051A608
+.obj lbl_8051A60C, local
 	.float 1.0E-6
-lbl_8051A610:
+.endobj lbl_8051A60C
+.obj lbl_8051A610, local
 	.float 0.0
+.endobj lbl_8051A610
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "calcLagrange__Q24Game9NsMathExpFPC10Vector3<f>fR10Vector3<f>"
-"calcLagrange__Q24Game9NsMathExpFPC10Vector3<f>fR10Vector3<f>":
+.fn "calcLagrange__Q24Game9NsMathExpFPC10Vector3<f>fR10Vector3<f>", global
 /* 8023D7B0 0023A6F0  C0 02 C2 A0 */	lfs f0, lbl_8051A600@sda21(r2)
 /* 8023D7B4 0023A6F4  C0 42 C2 A4 */	lfs f2, lbl_8051A604@sda21(r2)
 /* 8023D7B8 0023A6F8  C0 63 00 0C */	lfs f3, 0xc(r3)
@@ -57,9 +61,9 @@ lbl_8051A610:
 /* 8023D84C 0023A78C  D0 44 00 04 */	stfs f2, 4(r4)
 /* 8023D850 0023A790  D0 04 00 08 */	stfs f0, 8(r4)
 /* 8023D854 0023A794  4E 80 00 20 */	blr 
+.endfn "calcLagrange__Q24Game9NsMathExpFPC10Vector3<f>fR10Vector3<f>"
 
-.global "calcJointPos__Q24Game9NsMathExpFRC10Vector3<f>RC10Vector3<f>ffR10Vector3<f>R10Vector3<f>"
-"calcJointPos__Q24Game9NsMathExpFRC10Vector3<f>RC10Vector3<f>ffR10Vector3<f>R10Vector3<f>":
+.fn "calcJointPos__Q24Game9NsMathExpFRC10Vector3<f>RC10Vector3<f>ffR10Vector3<f>R10Vector3<f>", global
 /* 8023D858 0023A798  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8023D85C 0023A79C  DB E1 00 20 */	stfd f31, 0x20(r1)
 /* 8023D860 0023A7A0  F3 E1 00 28 */	psq_st f31, 40(r1), 0, qr0
@@ -186,3 +190,4 @@ lbl_8051A610:
 /* 8023DA24 0023A964  CB C1 00 10 */	lfd f30, 0x10(r1)
 /* 8023DA28 0023A968  38 21 00 30 */	addi r1, r1, 0x30
 /* 8023DA2C 0023A96C  4E 80 00 20 */	blr 
+.endfn "calcJointPos__Q24Game9NsMathExpFRC10Vector3<f>RC10Vector3<f>ffR10Vector3<f>R10Vector3<f>"

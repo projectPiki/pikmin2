@@ -2181,8 +2181,7 @@
 /* 8045DD34 0045AC74  4E 80 00 20 */	blr 
 .endfn startSound__Q23PSM13CreatureAnimeFUcUlUl
 
-.global startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
-startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl:
+.fn startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl, global
 /* 8045DD38 0045AC78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045DD3C 0045AC7C  7C 08 02 A6 */	mflr r0
 /* 8045DD40 0045AC80  3D 00 80 4A */	lis r8, lbl_8049CFA0@ha
@@ -2225,9 +2224,9 @@ startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl:
 /* 8045DDD4 0045AD14  7C 08 03 A6 */	mtlr r0
 /* 8045DDD8 0045AD18  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045DDDC 0045AD1C  4E 80 00 20 */	blr 
+.endfn startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
 
-.global setAnime__Q23PSM13CreatureAnimeFP17JAIAnimeSoundDataUlff
-setAnime__Q23PSM13CreatureAnimeFP17JAIAnimeSoundDataUlff:
+.fn setAnime__Q23PSM13CreatureAnimeFP17JAIAnimeSoundDataUlff, global
 /* 8045DDE0 0045AD20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045DDE4 0045AD24  7C 08 02 A6 */	mflr r0
 /* 8045DDE8 0045AD28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2246,9 +2245,9 @@ setAnime__Q23PSM13CreatureAnimeFP17JAIAnimeSoundDataUlff:
 /* 8045DE14 0045AD54  7C 08 03 A6 */	mtlr r0
 /* 8045DE18 0045AD58  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045DE1C 0045AD5C  4E 80 00 20 */	blr 
+.endfn setAnime__Q23PSM13CreatureAnimeFP17JAIAnimeSoundDataUlff
 
-.global playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
-playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc:
+.fn playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc, global
 /* 8045DE20 0045AD60  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8045DE24 0045AD64  7C 08 02 A6 */	mflr r0
 /* 8045DE28 0045AD68  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2459,9 +2458,9 @@ playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc:
 /* 8045E118 0045B058  7C 08 03 A6 */	mtlr r0
 /* 8045E11C 0045B05C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8045E120 0045B060  4E 80 00 20 */	blr 
+.endfn playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
 
-.global exec__Q23PSM13CreatureAnimeFv
-exec__Q23PSM13CreatureAnimeFv:
+.fn exec__Q23PSM13CreatureAnimeFv, global
 /* 8045E124 0045B064  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E128 0045B068  7C 08 02 A6 */	mflr r0
 /* 8045E12C 0045B06C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2510,9 +2509,9 @@ exec__Q23PSM13CreatureAnimeFv:
 /* 8045E1CC 0045B10C  7C 08 03 A6 */	mtlr r0
 /* 8045E1D0 0045B110  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E1D4 0045B114  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM13CreatureAnimeFv
 
-.global onCalcOn__Q23PSM13CreatureAnimeFv
-onCalcOn__Q23PSM13CreatureAnimeFv:
+.fn onCalcOn__Q23PSM13CreatureAnimeFv, global
 /* 8045E1D8 0045B118  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045E1DC 0045B11C  7C 08 02 A6 */	mflr r0
 /* 8045E1E0 0045B120  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2565,9 +2564,9 @@ onCalcOn__Q23PSM13CreatureAnimeFv:
 /* 8045E294 0045B1D4  7C 08 03 A6 */	mtlr r0
 /* 8045E298 0045B1D8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8045E29C 0045B1DC  4E 80 00 20 */	blr 
+.endfn onCalcOn__Q23PSM13CreatureAnimeFv
 
-.global onCalcTurnOn__Q23PSM13CreatureAnimeFv
-onCalcTurnOn__Q23PSM13CreatureAnimeFv:
+.fn onCalcTurnOn__Q23PSM13CreatureAnimeFv, global
 /* 8045E2A0 0045B1E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E2A4 0045B1E4  7C 08 02 A6 */	mflr r0
 /* 8045E2A8 0045B1E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2577,13 +2576,13 @@ onCalcTurnOn__Q23PSM13CreatureAnimeFv:
 /* 8045E2B8 0045B1F8  7C 08 03 A6 */	mtlr r0
 /* 8045E2BC 0045B1FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E2C0 0045B200  4E 80 00 20 */	blr 
+.endfn onCalcTurnOn__Q23PSM13CreatureAnimeFv
 
-.global onCalcTurnOff__Q23PSM13CreatureAnimeFv
-onCalcTurnOff__Q23PSM13CreatureAnimeFv:
+.fn onCalcTurnOff__Q23PSM13CreatureAnimeFv, global
 /* 8045E2C4 0045B204  4E 80 00 20 */	blr 
+.endfn onCalcTurnOff__Q23PSM13CreatureAnimeFv
 
-.global frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
-frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv:
+.fn frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv, global
 /* 8045E2C8 0045B208  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045E2CC 0045B20C  7C 08 02 A6 */	mflr r0
 /* 8045E2D0 0045B210  38 C3 00 64 */	addi r6, r3, 0x64
@@ -2603,9 +2602,9 @@ frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv:
 /* 8045E308 0045B248  7C 08 03 A6 */	mtlr r0
 /* 8045E30C 0045B24C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045E310 0045B250  4E 80 00 20 */	blr 
+.endfn frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
 
-.global battleOn__Q23PSM10BattleLinkFv
-battleOn__Q23PSM10BattleLinkFv:
+.fn battleOn__Q23PSM10BattleLinkFv, global
 /* 8045E314 0045B254  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E318 0045B258  7C 08 02 A6 */	mflr r0
 /* 8045E31C 0045B25C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2626,9 +2625,9 @@ battleOn__Q23PSM10BattleLinkFv:
 /* 8045E354 0045B294  7C 08 03 A6 */	mtlr r0
 /* 8045E358 0045B298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E35C 0045B29C  4E 80 00 20 */	blr 
+.endfn battleOn__Q23PSM10BattleLinkFv
 
-.global battleOff__Q23PSM10BattleLinkFv
-battleOff__Q23PSM10BattleLinkFv:
+.fn battleOff__Q23PSM10BattleLinkFv, global
 /* 8045E360 0045B2A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E364 0045B2A4  7C 08 02 A6 */	mflr r0
 /* 8045E368 0045B2A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2649,9 +2648,9 @@ battleOff__Q23PSM10BattleLinkFv:
 /* 8045E3A0 0045B2E0  7C 08 03 A6 */	mtlr r0
 /* 8045E3A4 0045B2E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E3A8 0045B2E8  4E 80 00 20 */	blr 
+.endfn battleOff__Q23PSM10BattleLinkFv
 
-.global kehaiOn__Q23PSM9KehaiLinkFv
-kehaiOn__Q23PSM9KehaiLinkFv:
+.fn kehaiOn__Q23PSM9KehaiLinkFv, global
 /* 8045E3AC 0045B2EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E3B0 0045B2F0  7C 08 02 A6 */	mflr r0
 /* 8045E3B4 0045B2F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2672,9 +2671,9 @@ kehaiOn__Q23PSM9KehaiLinkFv:
 /* 8045E3EC 0045B32C  7C 08 03 A6 */	mtlr r0
 /* 8045E3F0 0045B330  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E3F4 0045B334  4E 80 00 20 */	blr 
+.endfn kehaiOn__Q23PSM9KehaiLinkFv
 
-.global kehaiOff__Q23PSM9KehaiLinkFv
-kehaiOff__Q23PSM9KehaiLinkFv:
+.fn kehaiOff__Q23PSM9KehaiLinkFv, global
 /* 8045E3F8 0045B338  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E3FC 0045B33C  7C 08 02 A6 */	mflr r0
 /* 8045E400 0045B340  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2695,9 +2694,9 @@ kehaiOff__Q23PSM9KehaiLinkFv:
 /* 8045E438 0045B378  7C 08 03 A6 */	mtlr r0
 /* 8045E43C 0045B37C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E440 0045B380  4E 80 00 20 */	blr 
+.endfn kehaiOff__Q23PSM9KehaiLinkFv
 
-.global __ct__Q23PSM9EnemyBaseFPQ24Game9EnemyBaseUc
-__ct__Q23PSM9EnemyBaseFPQ24Game9EnemyBaseUc:
+.fn __ct__Q23PSM9EnemyBaseFPQ24Game9EnemyBaseUc, global
 /* 8045E444 0045B384  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045E448 0045B388  7C 08 02 A6 */	mflr r0
 /* 8045E44C 0045B38C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2796,9 +2795,9 @@ __ct__Q23PSM9EnemyBaseFPQ24Game9EnemyBaseUc:
 /* 8045E5B8 0045B4F8  7C 08 03 A6 */	mtlr r0
 /* 8045E5BC 0045B4FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045E5C0 0045B500  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM9EnemyBaseFPQ24Game9EnemyBaseUc
 
-.global __dt__Q23PSM13CreatureAnimeFv
-__dt__Q23PSM13CreatureAnimeFv:
+.fn __dt__Q23PSM13CreatureAnimeFv, weak
 /* 8045E5C4 0045B504  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E5C8 0045B508  7C 08 02 A6 */	mflr r0
 /* 8045E5CC 0045B50C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2857,9 +2856,9 @@ __dt__Q23PSM13CreatureAnimeFv:
 /* 8045E694 0045B5D4  7C 08 03 A6 */	mtlr r0
 /* 8045E698 0045B5D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E69C 0045B5DC  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM13CreatureAnimeFv
 
-.global startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
-startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc:
+.fn startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc, global
 /* 8045E6A0 0045B5E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045E6A4 0045B5E4  7C 08 02 A6 */	mflr r0
 /* 8045E6A8 0045B5E8  3C E0 80 4A */	lis r7, lbl_8049CFA0@ha
@@ -2959,9 +2958,9 @@ startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc:
 /* 8045E808 0045B748  7C 08 03 A6 */	mtlr r0
 /* 8045E80C 0045B74C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045E810 0045B750  4E 80 00 20 */	blr 
+.endfn startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
 
-.global startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
-startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg:
+.fn startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg, global
 /* 8045E814 0045B754  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E818 0045B758  7C 08 02 A6 */	mflr r0
 /* 8045E81C 0045B75C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2987,9 +2986,9 @@ startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg:
 /* 8045E864 0045B7A4  7C 08 03 A6 */	mtlr r0
 /* 8045E868 0045B7A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E86C 0045B7AC  4E 80 00 20 */	blr 
+.endfn startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
 
-.global onCalcTurnOn__Q23PSM9EnemyBaseFv
-onCalcTurnOn__Q23PSM9EnemyBaseFv:
+.fn onCalcTurnOn__Q23PSM9EnemyBaseFv, global
 /* 8045E870 0045B7B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E874 0045B7B4  7C 08 02 A6 */	mflr r0
 /* 8045E878 0045B7B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3007,9 +3006,9 @@ onCalcTurnOn__Q23PSM9EnemyBaseFv:
 /* 8045E8A8 0045B7E8  7C 08 03 A6 */	mtlr r0
 /* 8045E8AC 0045B7EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E8B0 0045B7F0  4E 80 00 20 */	blr 
+.endfn onCalcTurnOn__Q23PSM9EnemyBaseFv
 
-.global onCalcTurnOff__Q23PSM9EnemyBaseFv
-onCalcTurnOff__Q23PSM9EnemyBaseFv:
+.fn onCalcTurnOff__Q23PSM9EnemyBaseFv, global
 /* 8045E8B4 0045B7F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E8B8 0045B7F8  7C 08 02 A6 */	mflr r0
 /* 8045E8BC 0045B7FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3029,9 +3028,9 @@ onCalcTurnOff__Q23PSM9EnemyBaseFv:
 /* 8045E8F4 0045B834  7C 08 03 A6 */	mtlr r0
 /* 8045E8F8 0045B838  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045E8FC 0045B83C  4E 80 00 20 */	blr 
+.endfn onCalcTurnOff__Q23PSM9EnemyBaseFv
 
-.global onCalcOn__Q23PSM9EnemyBaseFv
-onCalcOn__Q23PSM9EnemyBaseFv:
+.fn onCalcOn__Q23PSM9EnemyBaseFv, global
 /* 8045E900 0045B840  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045E904 0045B844  7C 08 02 A6 */	mflr r0
 /* 8045E908 0045B848  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3094,9 +3093,9 @@ onCalcOn__Q23PSM9EnemyBaseFv:
 /* 8045E9E4 0045B924  7C 08 03 A6 */	mtlr r0
 /* 8045E9E8 0045B928  38 21 00 30 */	addi r1, r1, 0x30
 /* 8045E9EC 0045B92C  4E 80 00 20 */	blr 
+.endfn onCalcOn__Q23PSM9EnemyBaseFv
 
-.global battleOff__Q23PSM9EnemyBaseFv
-battleOff__Q23PSM9EnemyBaseFv:
+.fn battleOff__Q23PSM9EnemyBaseFv, global
 /* 8045E9F0 0045B930  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E9F4 0045B934  7C 08 02 A6 */	mflr r0
 /* 8045E9F8 0045B938  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3122,9 +3121,9 @@ battleOff__Q23PSM9EnemyBaseFv:
 /* 8045EA44 0045B984  7C 08 03 A6 */	mtlr r0
 /* 8045EA48 0045B988  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045EA4C 0045B98C  4E 80 00 20 */	blr 
+.endfn battleOff__Q23PSM9EnemyBaseFv
 
-.global updateKehai__Q23PSM9EnemyBaseFv
-updateKehai__Q23PSM9EnemyBaseFv:
+.fn updateKehai__Q23PSM9EnemyBaseFv, global
 /* 8045EA50 0045B990  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045EA54 0045B994  7C 08 02 A6 */	mflr r0
 /* 8045EA58 0045B998  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3161,9 +3160,9 @@ updateKehai__Q23PSM9EnemyBaseFv:
 /* 8045EACC 0045BA0C  7C 08 03 A6 */	mtlr r0
 /* 8045EAD0 0045BA10  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045EAD4 0045BA14  4E 80 00 20 */	blr 
+.endfn updateKehai__Q23PSM9EnemyBaseFv
 
-.global updateBattle__Q23PSM9EnemyBaseFv
-updateBattle__Q23PSM9EnemyBaseFv:
+.fn updateBattle__Q23PSM9EnemyBaseFv, global
 /* 8045EAD8 0045BA18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045EADC 0045BA1C  7C 08 02 A6 */	mflr r0
 /* 8045EAE0 0045BA20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3217,9 +3216,9 @@ updateBattle__Q23PSM9EnemyBaseFv:
 /* 8045EB94 0045BAD4  7C 08 03 A6 */	mtlr r0
 /* 8045EB98 0045BAD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045EB9C 0045BADC  4E 80 00 20 */	blr 
+.endfn updateBattle__Q23PSM9EnemyBaseFv
 
-.global calcKehai__Q23PSM9EnemyBaseFv
-calcKehai__Q23PSM9EnemyBaseFv:
+.fn calcKehai__Q23PSM9EnemyBaseFv, global
 /* 8045EBA0 0045BAE0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8045EBA4 0045BAE4  7C 08 02 A6 */	mflr r0
 /* 8045EBA8 0045BAE8  90 01 00 64 */	stw r0, 0x64(r1)
@@ -3438,9 +3437,9 @@ calcKehai__Q23PSM9EnemyBaseFv:
 /* 8045EECC 0045BE0C  7C 08 03 A6 */	mtlr r0
 /* 8045EED0 0045BE10  38 21 00 60 */	addi r1, r1, 0x60
 /* 8045EED4 0045BE14  4E 80 00 20 */	blr 
+.endfn calcKehai__Q23PSM9EnemyBaseFv
 
-.global judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff
-judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff:
+.fn judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff, global
 /* 8045EED8 0045BE18  C0 64 00 00 */	lfs f3, 0(r4)
 /* 8045EEDC 0045BE1C  C0 45 00 00 */	lfs f2, 0(r5)
 /* 8045EEE0 0045BE20  C0 02 28 F0 */	lfs f0, lbl_80520C50@sda21(r2)
@@ -3485,9 +3484,9 @@ judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff:
 .L_8045EF64:
 /* 8045EF64 0045BEA4  38 60 00 00 */	li r3, 0
 /* 8045EF68 0045BEA8  4E 80 00 20 */	blr 
+.endfn judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff
 
-.global __ct__Q23PSM18EnemyNotAggressiveFPQ24Game9EnemyBaseUc
-__ct__Q23PSM18EnemyNotAggressiveFPQ24Game9EnemyBaseUc:
+.fn __ct__Q23PSM18EnemyNotAggressiveFPQ24Game9EnemyBaseUc, global
 /* 8045EF6C 0045BEAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045EF70 0045BEB0  7C 08 02 A6 */	mflr r0
 /* 8045EF74 0045BEB4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3597,9 +3596,9 @@ __ct__Q23PSM18EnemyNotAggressiveFPQ24Game9EnemyBaseUc:
 /* 8045F10C 0045C04C  7C 08 03 A6 */	mtlr r0
 /* 8045F110 0045C050  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045F114 0045C054  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM18EnemyNotAggressiveFPQ24Game9EnemyBaseUc
 
-.global __ct__Q23PSM9TsuyukusaFPQ24Game8Creature
-__ct__Q23PSM9TsuyukusaFPQ24Game8Creature:
+.fn __ct__Q23PSM9TsuyukusaFPQ24Game8Creature, global
 /* 8045F118 0045C058  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045F11C 0045C05C  7C 08 02 A6 */	mflr r0
 /* 8045F120 0045C060  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3691,9 +3690,9 @@ __ct__Q23PSM9TsuyukusaFPQ24Game8Creature:
 /* 8045F26C 0045C1AC  7C 08 03 A6 */	mtlr r0
 /* 8045F270 0045C1B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045F274 0045C1B4  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM9TsuyukusaFPQ24Game8Creature
 
-.global noukouFrameWork__Q23PSM9TsuyukusaFb
-noukouFrameWork__Q23PSM9TsuyukusaFb:
+.fn noukouFrameWork__Q23PSM9TsuyukusaFb, global
 /* 8045F278 0045C1B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045F27C 0045C1BC  7C 08 02 A6 */	mflr r0
 /* 8045F280 0045C1C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3743,9 +3742,9 @@ noukouFrameWork__Q23PSM9TsuyukusaFb:
 /* 8045F324 0045C264  7C 08 03 A6 */	mtlr r0
 /* 8045F328 0045C268  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045F32C 0045C26C  4E 80 00 20 */	blr 
+.endfn noukouFrameWork__Q23PSM9TsuyukusaFb
 
-.global judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff
-judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff:
+.fn judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff, global
 /* 8045F330 0045C270  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045F334 0045C274  7C 08 02 A6 */	mflr r0
 /* 8045F338 0045C278  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3830,9 +3829,9 @@ judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff:
 /* 8045F44C 0045C38C  7C 08 03 A6 */	mtlr r0
 /* 8045F450 0045C390  38 21 00 30 */	addi r1, r1, 0x30
 /* 8045F454 0045C394  4E 80 00 20 */	blr 
+.endfn judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff
 
-.global onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound
-onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound:
+.fn onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound, global
 /* 8045F458 0045C398  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045F45C 0045C39C  7C 08 02 A6 */	mflr r0
 /* 8045F460 0045C3A0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3863,17 +3862,17 @@ onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound:
 /* 8045F4C0 0045C400  7C 08 03 A6 */	mtlr r0
 /* 8045F4C4 0045C404  38 21 00 30 */	addi r1, r1, 0x30
 /* 8045F4C8 0045C408  4E 80 00 20 */	blr 
+.endfn onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound
 
-.global judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff
-judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff:
+.fn judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff, global
 /* 8045F4CC 0045C40C  C0 03 00 E0 */	lfs f0, 0xe0(r3)
 /* 8045F4D0 0045C410  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 8045F4D4 0045C414  7C 00 00 26 */	mfcr r0
 /* 8045F4D8 0045C418  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8045F4DC 0045C41C  4E 80 00 20 */	blr 
+.endfn judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff
 
-.global exec__Q23PSM9EnemyBossFv
-exec__Q23PSM9EnemyBossFv:
+.fn exec__Q23PSM9EnemyBossFv, global
 /* 8045F4E0 0045C420  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045F4E4 0045C424  7C 08 02 A6 */	mflr r0
 /* 8045F4E8 0045C428  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3922,9 +3921,9 @@ exec__Q23PSM9EnemyBossFv:
 /* 8045F588 0045C4C8  7C 08 03 A6 */	mtlr r0
 /* 8045F58C 0045C4CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045F590 0045C4D0  4E 80 00 20 */	blr 
+.endfn exec__Q23PSM9EnemyBossFv
 
-.global onCalcOn__Q23PSM9EnemyBossFv
-onCalcOn__Q23PSM9EnemyBossFv:
+.fn onCalcOn__Q23PSM9EnemyBossFv, global
 /* 8045F594 0045C4D4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045F598 0045C4D8  7C 08 02 A6 */	mflr r0
 /* 8045F59C 0045C4DC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3989,9 +3988,9 @@ onCalcOn__Q23PSM9EnemyBossFv:
 /* 8045F680 0045C5C0  7C 08 03 A6 */	mtlr r0
 /* 8045F684 0045C5C4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8045F688 0045C5C8  4E 80 00 20 */	blr 
+.endfn onCalcOn__Q23PSM9EnemyBossFv
 
-.global calcDistance__Q23PSM9EnemyBossFv
-calcDistance__Q23PSM9EnemyBossFv:
+.fn calcDistance__Q23PSM9EnemyBossFv, global
 /* 8045F68C 0045C5CC  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8045F690 0045C5D0  7C 08 02 A6 */	mflr r0
 /* 8045F694 0045C5D4  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -4219,9 +4218,9 @@ calcDistance__Q23PSM9EnemyBossFv:
 /* 8045F9E4 0045C924  7C 08 03 A6 */	mtlr r0
 /* 8045F9E8 0045C928  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8045F9EC 0045C92C  4E 80 00 20 */	blr 
+.endfn calcDistance__Q23PSM9EnemyBossFv
 
-.global setAppearFlag__Q23PSM9EnemyBossFb
-setAppearFlag__Q23PSM9EnemyBossFb:
+.fn setAppearFlag__Q23PSM9EnemyBossFb, global
 /* 8045F9F0 0045C930  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045F9F4 0045C934  7C 08 02 A6 */	mflr r0
 /* 8045F9F8 0045C938  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4308,9 +4307,9 @@ setAppearFlag__Q23PSM9EnemyBossFb:
 /* 8045FB24 0045CA64  7C 08 03 A6 */	mtlr r0
 /* 8045FB28 0045CA68  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045FB2C 0045CA6C  4E 80 00 20 */	blr 
+.endfn setAppearFlag__Q23PSM9EnemyBossFb
 
-.global dyingFrameWork__Q23PSM9EnemyBossFv
-dyingFrameWork__Q23PSM9EnemyBossFv:
+.fn dyingFrameWork__Q23PSM9EnemyBossFv, global
 /* 8045FB30 0045CA70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045FB34 0045CA74  7C 08 02 A6 */	mflr r0
 /* 8045FB38 0045CA78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4336,9 +4335,9 @@ dyingFrameWork__Q23PSM9EnemyBossFv:
 /* 8045FB80 0045CAC0  7C 08 03 A6 */	mtlr r0
 /* 8045FB84 0045CAC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045FB88 0045CAC8  4E 80 00 20 */	blr 
+.endfn dyingFrameWork__Q23PSM9EnemyBossFv
 
-.global onDeathMotionTop__Q23PSM9EnemyBossFv
-onDeathMotionTop__Q23PSM9EnemyBossFv:
+.fn onDeathMotionTop__Q23PSM9EnemyBossFv, global
 /* 8045FB8C 0045CACC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045FB90 0045CAD0  7C 08 02 A6 */	mflr r0
 /* 8045FB94 0045CAD4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4498,9 +4497,9 @@ onDeathMotionTop__Q23PSM9EnemyBossFv:
 /* 8045FDB4 0045CCF4  7C 08 03 A6 */	mtlr r0
 /* 8045FDB8 0045CCF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045FDBC 0045CCFC  4E 80 00 20 */	blr 
+.endfn onDeathMotionTop__Q23PSM9EnemyBossFv
 
-.global setKilled__Q23PSM9EnemyBossFv
-setKilled__Q23PSM9EnemyBossFv:
+.fn setKilled__Q23PSM9EnemyBossFv, global
 /* 8045FDC0 0045CD00  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045FDC4 0045CD04  7C 08 02 A6 */	mflr r0
 /* 8045FDC8 0045CD08  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4598,9 +4597,9 @@ setKilled__Q23PSM9EnemyBossFv:
 /* 8045FF10 0045CE50  7C 08 03 A6 */	mtlr r0
 /* 8045FF14 0045CE54  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045FF18 0045CE58  4E 80 00 20 */	blr 
+.endfn setKilled__Q23PSM9EnemyBossFv
 
-.global isOnDisappearing__Q23PSM9EnemyBossFv
-isOnDisappearing__Q23PSM9EnemyBossFv:
+.fn isOnDisappearing__Q23PSM9EnemyBossFv, global
 /* 8045FF1C 0045CE5C  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 8045FF20 0045CE60  A0 A3 00 E4 */	lhz r5, 0xe4(r3)
 /* 8045FF24 0045CE64  38 04 FF FF */	addi r0, r4, 0x0000FFFF@l
@@ -4610,9 +4609,9 @@ isOnDisappearing__Q23PSM9EnemyBossFv:
 /* 8045FF34 0045CE74  7C 60 03 78 */	or r0, r3, r0
 /* 8045FF38 0045CE78  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8045FF3C 0045CE7C  4E 80 00 20 */	blr 
+.endfn isOnDisappearing__Q23PSM9EnemyBossFv
 
-.global updateDisappearing__Q23PSM9EnemyBossFv
-updateDisappearing__Q23PSM9EnemyBossFv:
+.fn updateDisappearing__Q23PSM9EnemyBossFv, global
 /* 8045FF40 0045CE80  A0 83 00 E4 */	lhz r4, 0xe4(r3)
 /* 8045FF44 0045CE84  28 04 FF FF */	cmplwi r4, 0xffff
 /* 8045FF48 0045CE88  4D 82 00 20 */	beqlr 
@@ -4625,9 +4624,9 @@ updateDisappearing__Q23PSM9EnemyBossFv:
 /* 8045FF64 0045CEA4  38 04 FF FF */	addi r0, r4, 0x0000FFFF@l
 /* 8045FF68 0045CEA8  B0 03 00 E4 */	sth r0, 0xe4(r3)
 /* 8045FF6C 0045CEAC  4E 80 00 20 */	blr 
+.endfn updateDisappearing__Q23PSM9EnemyBossFv
 
-.global __ct__Q23PSM12EnemyMidBossFPQ24Game9EnemyBase
-__ct__Q23PSM12EnemyMidBossFPQ24Game9EnemyBase:
+.fn __ct__Q23PSM12EnemyMidBossFPQ24Game9EnemyBase, global
 /* 8045FF70 0045CEB0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045FF74 0045CEB4  7C 08 02 A6 */	mflr r0
 /* 8045FF78 0045CEB8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4783,9 +4782,9 @@ __ct__Q23PSM12EnemyMidBossFPQ24Game9EnemyBase:
 /* 804601C4 0045D104  7C 08 03 A6 */	mtlr r0
 /* 804601C8 0045D108  38 21 00 30 */	addi r1, r1, 0x30
 /* 804601CC 0045D10C  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM12EnemyMidBossFPQ24Game9EnemyBase
 
-.global __dt__Q23PSM9EnemyBossFv
-__dt__Q23PSM9EnemyBossFv:
+.fn __dt__Q23PSM9EnemyBossFv, weak
 /* 804601D0 0045D110  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804601D4 0045D114  7C 08 02 A6 */	mflr r0
 /* 804601D8 0045D118  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4898,9 +4897,9 @@ __dt__Q23PSM9EnemyBossFv:
 /* 8046036C 0045D2AC  7C 08 03 A6 */	mtlr r0
 /* 80460370 0045D2B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460374 0045D2B4  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM9EnemyBossFv
 
-.global onCalcOn__Q23PSM12EnemyMidBossFv
-onCalcOn__Q23PSM12EnemyMidBossFv:
+.fn onCalcOn__Q23PSM12EnemyMidBossFv, global
 /* 80460378 0045D2B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046037C 0045D2BC  7C 08 02 A6 */	mflr r0
 /* 80460380 0045D2C0  3C 80 80 4A */	lis r4, lbl_8049CFA0@ha
@@ -5048,9 +5047,9 @@ onCalcOn__Q23PSM12EnemyMidBossFv:
 /* 80460588 0045D4C8  7C 08 03 A6 */	mtlr r0
 /* 8046058C 0045D4CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80460590 0045D4D0  4E 80 00 20 */	blr 
+.endfn onCalcOn__Q23PSM12EnemyMidBossFv
 
-.global jumpRequest__Q23PSM12EnemyMidBossFUs
-jumpRequest__Q23PSM12EnemyMidBossFUs:
+.fn jumpRequest__Q23PSM12EnemyMidBossFUs, global
 /* 80460594 0045D4D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80460598 0045D4D8  7C 08 02 A6 */	mflr r0
 /* 8046059C 0045D4DC  3C A0 80 4A */	lis r5, lbl_8049CFA0@ha
@@ -5116,9 +5115,9 @@ jumpRequest__Q23PSM12EnemyMidBossFUs:
 /* 80460674 0045D5B4  7C 08 03 A6 */	mtlr r0
 /* 80460678 0045D5B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046067C 0045D5BC  4E 80 00 20 */	blr 
+.endfn jumpRequest__Q23PSM12EnemyMidBossFUs
 
-.global onAppear1st__Q23PSM12EnemyMidBossFv
-onAppear1st__Q23PSM12EnemyMidBossFv:
+.fn onAppear1st__Q23PSM12EnemyMidBossFv, global
 /* 80460680 0045D5C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80460684 0045D5C4  7C 08 02 A6 */	mflr r0
 /* 80460688 0045D5C8  3C 80 80 4A */	lis r4, lbl_8049CFA0@ha
@@ -5193,9 +5192,9 @@ onAppear1st__Q23PSM12EnemyMidBossFv:
 /* 80460780 0045D6C0  7C 08 03 A6 */	mtlr r0
 /* 80460784 0045D6C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80460788 0045D6C8  4E 80 00 20 */	blr 
+.endfn onAppear1st__Q23PSM12EnemyMidBossFv
 
-.global postPikiAttack__Q23PSM12EnemyMidBossFb
-postPikiAttack__Q23PSM12EnemyMidBossFb:
+.fn postPikiAttack__Q23PSM12EnemyMidBossFb, global
 /* 8046078C 0045D6CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460790 0045D6D0  7C 08 02 A6 */	mflr r0
 /* 80460794 0045D6D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5222,9 +5221,9 @@ postPikiAttack__Q23PSM12EnemyMidBossFb:
 /* 804607E0 0045D720  7C 08 03 A6 */	mtlr r0
 /* 804607E4 0045D724  38 21 00 10 */	addi r1, r1, 0x10
 /* 804607E8 0045D728  4E 80 00 20 */	blr 
+.endfn postPikiAttack__Q23PSM12EnemyMidBossFb
 
-.global __ct__Q23PSM12EnemyBigBossFPQ24Game9EnemyBase
-__ct__Q23PSM12EnemyBigBossFPQ24Game9EnemyBase:
+.fn __ct__Q23PSM12EnemyBigBossFPQ24Game9EnemyBase, global
 /* 804607EC 0045D72C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804607F0 0045D730  7C 08 02 A6 */	mflr r0
 /* 804607F4 0045D734  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5251,9 +5250,9 @@ __ct__Q23PSM12EnemyBigBossFPQ24Game9EnemyBase:
 /* 80460848 0045D788  7C 08 03 A6 */	mtlr r0
 /* 8046084C 0045D78C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460850 0045D790  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM12EnemyBigBossFPQ24Game9EnemyBase
 
-.global __dt__Q23PSM12EnemyMidBossFv
-__dt__Q23PSM12EnemyMidBossFv:
+.fn __dt__Q23PSM12EnemyMidBossFv, weak
 /* 80460854 0045D794  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460858 0045D798  7C 08 02 A6 */	mflr r0
 /* 8046085C 0045D79C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5385,9 +5384,9 @@ __dt__Q23PSM12EnemyMidBossFv:
 /* 80460A38 0045D978  7C 08 03 A6 */	mtlr r0
 /* 80460A3C 0045D97C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460A40 0045D980  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM12EnemyMidBossFv
 
-.global __dt__Q23PSM12EnemyBigBossFv
-__dt__Q23PSM12EnemyBigBossFv:
+.fn __dt__Q23PSM12EnemyBigBossFv, global
 /* 80460A44 0045D984  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460A48 0045D988  7C 08 02 A6 */	mflr r0
 /* 80460A4C 0045D98C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5423,9 +5422,9 @@ __dt__Q23PSM12EnemyBigBossFv:
 /* 80460AC0 0045DA00  7C 08 03 A6 */	mtlr r0
 /* 80460AC4 0045DA04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460AC8 0045DA08  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM12EnemyBigBossFv
 
-.global jumpRequest__Q23PSM12EnemyBigBossFUs
-jumpRequest__Q23PSM12EnemyBigBossFUs:
+.fn jumpRequest__Q23PSM12EnemyBigBossFUs, global
 /* 80460ACC 0045DA0C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80460AD0 0045DA10  7C 08 02 A6 */	mflr r0
 /* 80460AD4 0045DA14  3C A0 80 4A */	lis r5, lbl_8049CFA0@ha
@@ -5490,9 +5489,9 @@ jumpRequest__Q23PSM12EnemyBigBossFUs:
 /* 80460BA8 0045DAE8  7C 08 03 A6 */	mtlr r0
 /* 80460BAC 0045DAEC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80460BB0 0045DAF0  4E 80 00 20 */	blr 
+.endfn jumpRequest__Q23PSM12EnemyBigBossFUs
 
-.global onDeathMotionTop__Q23PSM12EnemyBigBossFv
-onDeathMotionTop__Q23PSM12EnemyBigBossFv:
+.fn onDeathMotionTop__Q23PSM12EnemyBigBossFv, global
 /* 80460BB4 0045DAF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460BB8 0045DAF8  7C 08 02 A6 */	mflr r0
 /* 80460BBC 0045DAFC  38 80 00 0D */	li r4, 0xd
@@ -5507,9 +5506,9 @@ onDeathMotionTop__Q23PSM12EnemyBigBossFv:
 /* 80460BE0 0045DB20  7C 08 03 A6 */	mtlr r0
 /* 80460BE4 0045DB24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460BE8 0045DB28  4E 80 00 20 */	blr 
+.endfn onDeathMotionTop__Q23PSM12EnemyBigBossFv
 
-.global onAppear1st__Q23PSM12EnemyBigBossFv
-onAppear1st__Q23PSM12EnemyBigBossFv:
+.fn onAppear1st__Q23PSM12EnemyBigBossFv, global
 /* 80460BEC 0045DB2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80460BF0 0045DB30  7C 08 02 A6 */	mflr r0
 /* 80460BF4 0045DB34  3C 80 80 4A */	lis r4, lbl_8049CFA0@ha
@@ -5584,9 +5583,9 @@ onAppear1st__Q23PSM12EnemyBigBossFv:
 /* 80460CEC 0045DC2C  7C 08 03 A6 */	mtlr r0
 /* 80460CF0 0045DC30  38 21 00 20 */	addi r1, r1, 0x20
 /* 80460CF4 0045DC34  4E 80 00 20 */	blr 
+.endfn onAppear1st__Q23PSM12EnemyBigBossFv
 
-.global onPlayingSe__Q23PSM19Enemy_SpecialChappyFUlP8JAISound
-onPlayingSe__Q23PSM19Enemy_SpecialChappyFUlP8JAISound:
+.fn onPlayingSe__Q23PSM19Enemy_SpecialChappyFUlP8JAISound, global
 /* 80460CF8 0045DC38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460CFC 0045DC3C  7C 08 02 A6 */	mflr r0
 /* 80460D00 0045DC40  28 05 00 00 */	cmplwi r5, 0
@@ -5637,9 +5636,9 @@ onPlayingSe__Q23PSM19Enemy_SpecialChappyFUlP8JAISound:
 /* 80460DA8 0045DCE8  7C 08 03 A6 */	mtlr r0
 /* 80460DAC 0045DCEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460DB0 0045DCF0  4E 80 00 20 */	blr 
+.endfn onPlayingSe__Q23PSM19Enemy_SpecialChappyFUlP8JAISound
 
-.global eventStart__Q23PSM12DirectorLinkFv
-eventStart__Q23PSM12DirectorLinkFv:
+.fn eventStart__Q23PSM12DirectorLinkFv, global
 /* 80460DB4 0045DCF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460DB8 0045DCF8  7C 08 02 A6 */	mflr r0
 /* 80460DBC 0045DCFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5651,9 +5650,9 @@ eventStart__Q23PSM12DirectorLinkFv:
 /* 80460DD4 0045DD14  7C 08 03 A6 */	mtlr r0
 /* 80460DD8 0045DD18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460DDC 0045DD1C  4E 80 00 20 */	blr 
+.endfn eventStart__Q23PSM12DirectorLinkFv
 
-.global eventRestart__Q23PSM12DirectorLinkFv
-eventRestart__Q23PSM12DirectorLinkFv:
+.fn eventRestart__Q23PSM12DirectorLinkFv, global
 /* 80460DE0 0045DD20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460DE4 0045DD24  7C 08 02 A6 */	mflr r0
 /* 80460DE8 0045DD28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5674,9 +5673,9 @@ eventRestart__Q23PSM12DirectorLinkFv:
 /* 80460E20 0045DD60  7C 08 03 A6 */	mtlr r0
 /* 80460E24 0045DD64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460E28 0045DD68  4E 80 00 20 */	blr 
+.endfn eventRestart__Q23PSM12DirectorLinkFv
 
-.global eventStop__Q23PSM12DirectorLinkFv
-eventStop__Q23PSM12DirectorLinkFv:
+.fn eventStop__Q23PSM12DirectorLinkFv, global
 /* 80460E2C 0045DD6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460E30 0045DD70  7C 08 02 A6 */	mflr r0
 /* 80460E34 0045DD74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5697,9 +5696,9 @@ eventStop__Q23PSM12DirectorLinkFv:
 /* 80460E6C 0045DDAC  7C 08 03 A6 */	mtlr r0
 /* 80460E70 0045DDB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460E74 0045DDB4  4E 80 00 20 */	blr 
+.endfn eventStop__Q23PSM12DirectorLinkFv
 
-.global eventFinish__Q23PSM12DirectorLinkFv
-eventFinish__Q23PSM12DirectorLinkFv:
+.fn eventFinish__Q23PSM12DirectorLinkFv, global
 /* 80460E78 0045DDB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460E7C 0045DDBC  7C 08 02 A6 */	mflr r0
 /* 80460E80 0045DDC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5711,9 +5710,9 @@ eventFinish__Q23PSM12DirectorLinkFv:
 /* 80460E98 0045DDD8  7C 08 03 A6 */	mtlr r0
 /* 80460E9C 0045DDDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460EA0 0045DDE0  4E 80 00 20 */	blr 
+.endfn eventFinish__Q23PSM12DirectorLinkFv
 
-.global getListDirectorActor__Q23PSM9EventLinkFv
-getListDirectorActor__Q23PSM9EventLinkFv:
+.fn getListDirectorActor__Q23PSM9EventLinkFv, global
 /* 80460EA4 0045DDE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460EA8 0045DDE8  7C 08 02 A6 */	mflr r0
 /* 80460EAC 0045DDEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5729,9 +5728,9 @@ getListDirectorActor__Q23PSM9EventLinkFv:
 /* 80460ECC 0045DE0C  7C 08 03 A6 */	mtlr r0
 /* 80460ED0 0045DE10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460ED4 0045DE14  4E 80 00 20 */	blr 
+.endfn getListDirectorActor__Q23PSM9EventLinkFv
 
-.global getListDirectorActor__Q23PSM16OtakaraEventLinkFv
-getListDirectorActor__Q23PSM16OtakaraEventLinkFv:
+.fn getListDirectorActor__Q23PSM16OtakaraEventLinkFv, global
 /* 80460ED8 0045DE18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460EDC 0045DE1C  7C 08 02 A6 */	mflr r0
 /* 80460EE0 0045DE20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5747,13 +5746,13 @@ getListDirectorActor__Q23PSM16OtakaraEventLinkFv:
 /* 80460F00 0045DE40  7C 08 03 A6 */	mtlr r0
 /* 80460F04 0045DE44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80460F08 0045DE48  4E 80 00 20 */	blr 
+.endfn getListDirectorActor__Q23PSM16OtakaraEventLinkFv
 
-.global eventFinish__Q23PSM16OtakaraEventLinkFv
-eventFinish__Q23PSM16OtakaraEventLinkFv:
+.fn eventFinish__Q23PSM16OtakaraEventLinkFv, global
 /* 80460F0C 0045DE4C  4E 80 00 20 */	blr 
+.endfn eventFinish__Q23PSM16OtakaraEventLinkFv
 
-.global getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv
-getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv:
+.fn getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv, global
 /* 80460F10 0045DE50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460F14 0045DE54  7C 08 02 A6 */	mflr r0
 /* 80460F18 0045DE58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5920,9 +5919,9 @@ getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv:
 /* 80461154 0045E094  7C 08 03 A6 */	mtlr r0
 /* 80461158 0045E098  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046115C 0045E09C  4E 80 00 20 */	blr 
+.endfn getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv
 
-.global eventStart__Q23PSM25OtakaraEventLink_2PBattleFv
-eventStart__Q23PSM25OtakaraEventLink_2PBattleFv:
+.fn eventStart__Q23PSM25OtakaraEventLink_2PBattleFv, global
 /* 80461160 0045E0A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80461164 0045E0A4  7C 08 02 A6 */	mflr r0
 /* 80461168 0045E0A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6036,9 +6035,9 @@ eventStart__Q23PSM25OtakaraEventLink_2PBattleFv:
 /* 804612E8 0045E228  7C 08 03 A6 */	mtlr r0
 /* 804612EC 0045E22C  38 21 00 20 */	addi r1, r1, 0x20
 /* 804612F0 0045E230  4E 80 00 20 */	blr 
+.endfn eventStart__Q23PSM25OtakaraEventLink_2PBattleFv
 
-.global eventRestart__Q23PSM25OtakaraEventLink_2PBattleFv
-eventRestart__Q23PSM25OtakaraEventLink_2PBattleFv:
+.fn eventRestart__Q23PSM25OtakaraEventLink_2PBattleFv, global
 /* 804612F4 0045E234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804612F8 0045E238  7C 08 02 A6 */	mflr r0
 /* 804612FC 0045E23C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6050,9 +6049,9 @@ eventRestart__Q23PSM25OtakaraEventLink_2PBattleFv:
 /* 80461314 0045E254  7C 08 03 A6 */	mtlr r0
 /* 80461318 0045E258  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046131C 0045E25C  4E 80 00 20 */	blr 
+.endfn eventRestart__Q23PSM25OtakaraEventLink_2PBattleFv
 
-.global eventStop__Q23PSM25OtakaraEventLink_2PBattleFv
-eventStop__Q23PSM25OtakaraEventLink_2PBattleFv:
+.fn eventStop__Q23PSM25OtakaraEventLink_2PBattleFv, global
 /* 80461320 0045E260  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80461324 0045E264  7C 08 02 A6 */	mflr r0
 /* 80461328 0045E268  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6166,9 +6165,9 @@ eventStop__Q23PSM25OtakaraEventLink_2PBattleFv:
 /* 804614A8 0045E3E8  7C 08 03 A6 */	mtlr r0
 /* 804614AC 0045E3EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 804614B0 0045E3F0  4E 80 00 20 */	blr 
+.endfn eventStop__Q23PSM25OtakaraEventLink_2PBattleFv
 
-.global eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv
-eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv:
+.fn eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv, global
 /* 804614B4 0045E3F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804614B8 0045E3F8  7C 08 02 A6 */	mflr r0
 /* 804614BC 0045E3FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6180,9 +6179,9 @@ eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv:
 /* 804614D4 0045E414  7C 08 03 A6 */	mtlr r0
 /* 804614D8 0045E418  38 21 00 10 */	addi r1, r1, 0x10
 /* 804614DC 0045E41C  4E 80 00 20 */	blr 
+.endfn eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv
 
-.global getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv
-getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv:
+.fn getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv, global
 /* 804614E0 0045E420  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804614E4 0045E424  7C 08 02 A6 */	mflr r0
 /* 804614E8 0045E428  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6269,9 +6268,9 @@ getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv:
 /* 80461614 0045E554  7C 08 03 A6 */	mtlr r0
 /* 80461618 0045E558  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046161C 0045E55C  4E 80 00 20 */	blr 
+.endfn getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv
 
-.global __ct__Q23PSM8WorkItemFPQ24Game8BaseItem
-__ct__Q23PSM8WorkItemFPQ24Game8BaseItem:
+.fn __ct__Q23PSM8WorkItemFPQ24Game8BaseItem, global
 /* 80461620 0045E560  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80461624 0045E564  7C 08 02 A6 */	mflr r0
 /* 80461628 0045E568  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6366,9 +6365,9 @@ __ct__Q23PSM8WorkItemFPQ24Game8BaseItem:
 /* 80461784 0045E6C4  7C 08 03 A6 */	mtlr r0
 /* 80461788 0045E6C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046178C 0045E6CC  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM8WorkItemFPQ24Game8BaseItem
 
-.global eventStart__Q23PSM8WorkItemFv
-eventStart__Q23PSM8WorkItemFv:
+.fn eventStart__Q23PSM8WorkItemFv, global
 /* 80461790 0045E6D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80461794 0045E6D4  7C 08 02 A6 */	mflr r0
 /* 80461798 0045E6D8  38 63 00 70 */	addi r3, r3, 0x70
@@ -6381,9 +6380,9 @@ eventStart__Q23PSM8WorkItemFv:
 /* 804617B4 0045E6F4  7C 08 03 A6 */	mtlr r0
 /* 804617B8 0045E6F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 804617BC 0045E6FC  4E 80 00 20 */	blr 
+.endfn eventStart__Q23PSM8WorkItemFv
 
-.global eventRestart__Q23PSM8WorkItemFv
-eventRestart__Q23PSM8WorkItemFv:
+.fn eventRestart__Q23PSM8WorkItemFv, global
 /* 804617C0 0045E700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804617C4 0045E704  7C 08 02 A6 */	mflr r0
 /* 804617C8 0045E708  38 63 00 70 */	addi r3, r3, 0x70
@@ -6396,9 +6395,9 @@ eventRestart__Q23PSM8WorkItemFv:
 /* 804617E4 0045E724  7C 08 03 A6 */	mtlr r0
 /* 804617E8 0045E728  38 21 00 10 */	addi r1, r1, 0x10
 /* 804617EC 0045E72C  4E 80 00 20 */	blr 
+.endfn eventRestart__Q23PSM8WorkItemFv
 
-.global eventStop__Q23PSM8WorkItemFv
-eventStop__Q23PSM8WorkItemFv:
+.fn eventStop__Q23PSM8WorkItemFv, global
 /* 804617F0 0045E730  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804617F4 0045E734  7C 08 02 A6 */	mflr r0
 /* 804617F8 0045E738  38 63 00 70 */	addi r3, r3, 0x70
@@ -6411,9 +6410,9 @@ eventStop__Q23PSM8WorkItemFv:
 /* 80461814 0045E754  7C 08 03 A6 */	mtlr r0
 /* 80461818 0045E758  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046181C 0045E75C  4E 80 00 20 */	blr 
+.endfn eventStop__Q23PSM8WorkItemFv
 
-.global eventFinish__Q23PSM8WorkItemFv
-eventFinish__Q23PSM8WorkItemFv:
+.fn eventFinish__Q23PSM8WorkItemFv, global
 /* 80461820 0045E760  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80461824 0045E764  7C 08 02 A6 */	mflr r0
 /* 80461828 0045E768  38 63 00 70 */	addi r3, r3, 0x70
@@ -6426,9 +6425,9 @@ eventFinish__Q23PSM8WorkItemFv:
 /* 80461844 0045E784  7C 08 03 A6 */	mtlr r0
 /* 80461848 0045E788  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046184C 0045E78C  4E 80 00 20 */	blr 
+.endfn eventFinish__Q23PSM8WorkItemFv
 
-.global setGoalOnyon__Q23PSM7OtakaraFPQ24Game8Creature
-setGoalOnyon__Q23PSM7OtakaraFPQ24Game8Creature:
+.fn setGoalOnyon__Q23PSM7OtakaraFPQ24Game8Creature, global
 /* 80461850 0045E790  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80461854 0045E794  7C 08 02 A6 */	mflr r0
 /* 80461858 0045E798  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6541,9 +6540,9 @@ setGoalOnyon__Q23PSM7OtakaraFPQ24Game8Creature:
 /* 804619E4 0045E924  7C 08 03 A6 */	mtlr r0
 /* 804619E8 0045E928  38 21 00 20 */	addi r1, r1, 0x20
 /* 804619EC 0045E92C  4E 80 00 20 */	blr 
+.endfn setGoalOnyon__Q23PSM7OtakaraFPQ24Game8Creature
 
-.global otakaraEventStart__Q23PSM7OtakaraFv
-otakaraEventStart__Q23PSM7OtakaraFv:
+.fn otakaraEventStart__Q23PSM7OtakaraFv, global
 /* 804619F0 0045E930  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804619F4 0045E934  7C 08 02 A6 */	mflr r0
 /* 804619F8 0045E938  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6604,9 +6603,9 @@ otakaraEventStart__Q23PSM7OtakaraFv:
 /* 80461AC0 0045EA00  7C 08 03 A6 */	mtlr r0
 /* 80461AC4 0045EA04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80461AC8 0045EA08  4E 80 00 20 */	blr 
+.endfn otakaraEventStart__Q23PSM7OtakaraFv
 
-.global otakaraEventRestart__Q23PSM7OtakaraFv
-otakaraEventRestart__Q23PSM7OtakaraFv:
+.fn otakaraEventRestart__Q23PSM7OtakaraFv, global
 /* 80461ACC 0045EA0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80461AD0 0045EA10  7C 08 02 A6 */	mflr r0
 /* 80461AD4 0045EA14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6667,9 +6666,9 @@ otakaraEventRestart__Q23PSM7OtakaraFv:
 /* 80461B9C 0045EADC  7C 08 03 A6 */	mtlr r0
 /* 80461BA0 0045EAE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80461BA4 0045EAE4  4E 80 00 20 */	blr 
+.endfn otakaraEventRestart__Q23PSM7OtakaraFv
 
-.global otakaraEventStop__Q23PSM7OtakaraFv
-otakaraEventStop__Q23PSM7OtakaraFv:
+.fn otakaraEventStop__Q23PSM7OtakaraFv, global
 /* 80461BA8 0045EAE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80461BAC 0045EAEC  7C 08 02 A6 */	mflr r0
 /* 80461BB0 0045EAF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6730,9 +6729,9 @@ otakaraEventStop__Q23PSM7OtakaraFv:
 /* 80461C78 0045EBB8  7C 08 03 A6 */	mtlr r0
 /* 80461C7C 0045EBBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80461C80 0045EBC0  4E 80 00 20 */	blr 
+.endfn otakaraEventStop__Q23PSM7OtakaraFv
 
-.global otakaraEventFinish__Q23PSM7OtakaraFv
-otakaraEventFinish__Q23PSM7OtakaraFv:
+.fn otakaraEventFinish__Q23PSM7OtakaraFv, global
 /* 80461C84 0045EBC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80461C88 0045EBC8  7C 08 02 A6 */	mflr r0
 /* 80461C8C 0045EBCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6793,9 +6792,9 @@ otakaraEventFinish__Q23PSM7OtakaraFv:
 /* 80461D54 0045EC94  7C 08 03 A6 */	mtlr r0
 /* 80461D58 0045EC98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80461D5C 0045EC9C  4E 80 00 20 */	blr 
+.endfn otakaraEventFinish__Q23PSM7OtakaraFv
 
-.global __ct__Q23PSM13PelletOtakaraFPQ34Game13PelletOtakara6Objectb
-__ct__Q23PSM13PelletOtakaraFPQ34Game13PelletOtakara6Objectb:
+.fn __ct__Q23PSM13PelletOtakaraFPQ34Game13PelletOtakara6Objectb, global
 /* 80461D60 0045ECA0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80461D64 0045ECA4  7C 08 02 A6 */	mflr r0
 /* 80461D68 0045ECA8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -6939,9 +6938,9 @@ __ct__Q23PSM13PelletOtakaraFPQ34Game13PelletOtakara6Objectb:
 /* 80461F78 0045EEB8  7C 08 03 A6 */	mtlr r0
 /* 80461F7C 0045EEBC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80461F80 0045EEC0  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM13PelletOtakaraFPQ34Game13PelletOtakara6Objectb
 
-.global __dt__Q23PSM7OtakaraFv
-__dt__Q23PSM7OtakaraFv:
+.fn __dt__Q23PSM7OtakaraFv, weak
 /* 80461F84 0045EEC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80461F88 0045EEC8  7C 08 02 A6 */	mflr r0
 /* 80461F8C 0045EECC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7027,9 +7026,9 @@ __dt__Q23PSM7OtakaraFv:
 /* 804620C0 0045F000  7C 08 03 A6 */	mtlr r0
 /* 804620C4 0045F004  38 21 00 10 */	addi r1, r1, 0x10
 /* 804620C8 0045F008  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM7OtakaraFv
 
-.global __ct__Q23PSM10PelletItemFPQ34Game10PelletItem6Object
-__ct__Q23PSM10PelletItemFPQ34Game10PelletItem6Object:
+.fn __ct__Q23PSM10PelletItemFPQ34Game10PelletItem6Object, global
 /* 804620CC 0045F00C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804620D0 0045F010  7C 08 02 A6 */	mflr r0
 /* 804620D4 0045F014  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7150,9 +7149,9 @@ __ct__Q23PSM10PelletItemFPQ34Game10PelletItem6Object:
 /* 80462294 0045F1D4  7C 08 03 A6 */	mtlr r0
 /* 80462298 0045F1D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046229C 0045F1DC  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM10PelletItemFPQ34Game10PelletItem6Object
 
-.global __ct__Q23PSM4PikiFPQ24Game4Piki
-__ct__Q23PSM4PikiFPQ24Game4Piki:
+.fn __ct__Q23PSM4PikiFPQ24Game4Piki, global
 /* 804622A0 0045F1E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804622A4 0045F1E4  7C 08 02 A6 */	mflr r0
 /* 804622A8 0045F1E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7237,9 +7236,9 @@ __ct__Q23PSM4PikiFPQ24Game4Piki:
 /* 804623DC 0045F31C  7C 08 03 A6 */	mtlr r0
 /* 804623E0 0045F320  38 21 00 20 */	addi r1, r1, 0x20
 /* 804623E4 0045F324  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM4PikiFPQ24Game4Piki
 
-.global onCalcOn__Q23PSM4PikiFv
-onCalcOn__Q23PSM4PikiFv:
+.fn onCalcOn__Q23PSM4PikiFv, global
 /* 804623E8 0045F328  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804623EC 0045F32C  7C 08 02 A6 */	mflr r0
 /* 804623F0 0045F330  3C 80 80 4A */	lis r4, lbl_8049CFA0@ha
@@ -7348,21 +7347,21 @@ onCalcOn__Q23PSM4PikiFv:
 /* 8046255C 0045F49C  7C 08 03 A6 */	mtlr r0
 /* 80462560 0045F4A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80462564 0045F4A4  4E 80 00 20 */	blr 
+.endfn onCalcOn__Q23PSM4PikiFv
 
-.global becomeFree__Q23PSM4PikiFv
-becomeFree__Q23PSM4PikiFv:
+.fn becomeFree__Q23PSM4PikiFv, global
 /* 80462568 0045F4A8  38 00 00 00 */	li r0, 0
 /* 8046256C 0045F4AC  90 03 00 70 */	stw r0, 0x70(r3)
 /* 80462570 0045F4B0  4E 80 00 20 */	blr 
+.endfn becomeFree__Q23PSM4PikiFv
 
-.global becomeNotFree__Q23PSM4PikiFv
-becomeNotFree__Q23PSM4PikiFv:
+.fn becomeNotFree__Q23PSM4PikiFv, global
 /* 80462574 0045F4B4  38 00 FF FF */	li r0, -1
 /* 80462578 0045F4B8  90 03 00 70 */	stw r0, 0x70(r3)
 /* 8046257C 0045F4BC  4E 80 00 20 */	blr 
+.endfn becomeNotFree__Q23PSM4PikiFv
 
-.global startFreePikiSound__Q23PSM4PikiFUlUlUl
-startFreePikiSound__Q23PSM4PikiFUlUlUl:
+.fn startFreePikiSound__Q23PSM4PikiFUlUlUl, global
 /* 80462580 0045F4C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80462584 0045F4C4  7C 08 02 A6 */	mflr r0
 /* 80462588 0045F4C8  3C E0 80 4A */	lis r7, lbl_8049CFA0@ha
@@ -7452,9 +7451,9 @@ startFreePikiSound__Q23PSM4PikiFUlUlUl:
 /* 804626B8 0045F5F8  7C 08 03 A6 */	mtlr r0
 /* 804626BC 0045F5FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 804626C0 0045F600  4E 80 00 20 */	blr 
+.endfn startFreePikiSound__Q23PSM4PikiFUlUlUl
 
-.global startPikiSound__Q23PSM4PikiFPQ27JAInter6ObjectUlUl
-startPikiSound__Q23PSM4PikiFPQ27JAInter6ObjectUlUl:
+.fn startPikiSound__Q23PSM4PikiFPQ27JAInter6ObjectUlUl, global
 /* 804626C4 0045F604  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804626C8 0045F608  7C 08 02 A6 */	mflr r0
 /* 804626CC 0045F60C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7485,9 +7484,9 @@ startPikiSound__Q23PSM4PikiFPQ27JAInter6ObjectUlUl:
 /* 80462728 0045F668  7C 08 03 A6 */	mtlr r0
 /* 8046272C 0045F66C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80462730 0045F670  4E 80 00 20 */	blr 
+.endfn startPikiSound__Q23PSM4PikiFPQ27JAInter6ObjectUlUl
 
-.global startPikiSetSound__Q23PSM4PikiFPQ27JAInter6ObjectUlQ36PSGame5SeMgr7SetSeIdUl
-startPikiSetSound__Q23PSM4PikiFPQ27JAInter6ObjectUlQ36PSGame5SeMgr7SetSeIdUl:
+.fn startPikiSetSound__Q23PSM4PikiFPQ27JAInter6ObjectUlQ36PSGame5SeMgr7SetSeIdUl, global
 /* 80462734 0045F674  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80462738 0045F678  7C 08 02 A6 */	mflr r0
 /* 8046273C 0045F67C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7536,9 +7535,9 @@ startPikiSetSound__Q23PSM4PikiFPQ27JAInter6ObjectUlQ36PSGame5SeMgr7SetSeIdUl:
 /* 804627DC 0045F71C  7C 08 03 A6 */	mtlr r0
 /* 804627E0 0045F720  38 21 00 20 */	addi r1, r1, 0x20
 /* 804627E4 0045F724  4E 80 00 20 */	blr 
+.endfn startPikiSetSound__Q23PSM4PikiFPQ27JAInter6ObjectUlQ36PSGame5SeMgr7SetSeIdUl
 
-.global startFreePikiSetSound__Q23PSM4PikiFUlQ36PSGame5SeMgr7SetSeIdUlUl
-startFreePikiSetSound__Q23PSM4PikiFUlQ36PSGame5SeMgr7SetSeIdUlUl:
+.fn startFreePikiSetSound__Q23PSM4PikiFUlQ36PSGame5SeMgr7SetSeIdUlUl, global
 /* 804627E8 0045F728  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804627EC 0045F72C  7C 08 02 A6 */	mflr r0
 /* 804627F0 0045F730  3D 00 80 4A */	lis r8, lbl_8049CFA0@ha
@@ -7669,9 +7668,9 @@ startFreePikiSetSound__Q23PSM4PikiFUlQ36PSGame5SeMgr7SetSeIdUlUl:
 /* 804629B0 0045F8F0  7C 08 03 A6 */	mtlr r0
 /* 804629B4 0045F8F4  38 21 00 30 */	addi r1, r1, 0x30
 /* 804629B8 0045F8F8  4E 80 00 20 */	blr 
+.endfn startFreePikiSetSound__Q23PSM4PikiFUlQ36PSGame5SeMgr7SetSeIdUlUl
 
-.global checkHappaChappySE__Q23PSM4PikiFUl
-checkHappaChappySE__Q23PSM4PikiFUl:
+.fn checkHappaChappySE__Q23PSM4PikiFUl, global
 /* 804629BC 0045F8FC  80 63 00 2C */	lwz r3, 0x2c(r3)
 /* 804629C0 0045F900  88 03 02 B8 */	lbz r0, 0x2b8(r3)
 /* 804629C4 0045F904  2C 00 00 05 */	cmpwi r0, 5
@@ -7764,9 +7763,9 @@ checkHappaChappySE__Q23PSM4PikiFUl:
 .L_80462AB8:
 /* 80462AB8 0045F9F8  7C 83 23 78 */	mr r3, r4
 /* 80462ABC 0045F9FC  4E 80 00 20 */	blr 
+.endfn checkHappaChappySE__Q23PSM4PikiFUl
 
-.global __ct__Q23PSM4NaviFPQ24Game4Navi
-__ct__Q23PSM4NaviFPQ24Game4Navi:
+.fn __ct__Q23PSM4NaviFPQ24Game4Navi, global
 /* 80462AC0 0045FA00  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80462AC4 0045FA04  7C 08 02 A6 */	mflr r0
 /* 80462AC8 0045FA08  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7847,9 +7846,9 @@ __ct__Q23PSM4NaviFPQ24Game4Navi:
 /* 80462BEC 0045FB2C  7C 08 03 A6 */	mtlr r0
 /* 80462BF0 0045FB30  38 21 00 20 */	addi r1, r1, 0x20
 /* 80462BF4 0045FB34  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM4NaviFPQ24Game4Navi
 
-.global init__Q23PSM4NaviFUs
-init__Q23PSM4NaviFUs:
+.fn init__Q23PSM4NaviFUs, global
 /* 80462BF8 0045FB38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80462BFC 0045FB3C  7C 08 02 A6 */	mflr r0
 /* 80462C00 0045FB40  38 63 00 70 */	addi r3, r3, 0x70
@@ -7859,9 +7858,9 @@ init__Q23PSM4NaviFUs:
 /* 80462C10 0045FB50  7C 08 03 A6 */	mtlr r0
 /* 80462C14 0045FB54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80462C18 0045FB58  4E 80 00 20 */	blr 
+.endfn init__Q23PSM4NaviFUs
 
-.global setShacho__Q23PSM4NaviFv
-setShacho__Q23PSM4NaviFv:
+.fn setShacho__Q23PSM4NaviFv, global
 /* 80462C1C 0045FB5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80462C20 0045FB60  7C 08 02 A6 */	mflr r0
 /* 80462C24 0045FB64  38 80 00 89 */	li r4, 0x89
@@ -7872,9 +7871,9 @@ setShacho__Q23PSM4NaviFv:
 /* 80462C38 0045FB78  7C 08 03 A6 */	mtlr r0
 /* 80462C3C 0045FB7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80462C40 0045FB80  4E 80 00 20 */	blr 
+.endfn setShacho__Q23PSM4NaviFv
 
-.global stopWaitVoice__Q23PSM4NaviFv
-stopWaitVoice__Q23PSM4NaviFv:
+.fn stopWaitVoice__Q23PSM4NaviFv, global
 /* 80462C44 0045FB84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80462C48 0045FB88  7C 08 02 A6 */	mflr r0
 /* 80462C4C 0045FB8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7896,9 +7895,9 @@ stopWaitVoice__Q23PSM4NaviFv:
 /* 80462C88 0045FBC8  7C 08 03 A6 */	mtlr r0
 /* 80462C8C 0045FBCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80462C90 0045FBD0  4E 80 00 20 */	blr 
+.endfn stopWaitVoice__Q23PSM4NaviFv
 
-.global startSound__Q23PSM4NaviFUlUl
-startSound__Q23PSM4NaviFUlUl:
+.fn startSound__Q23PSM4NaviFUlUl, global
 /* 80462C94 0045FBD4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80462C98 0045FBD8  7C 08 02 A6 */	mflr r0
 /* 80462C9C 0045FBDC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -7971,9 +7970,9 @@ startSound__Q23PSM4NaviFUlUl:
 /* 80462D90 0045FCD0  7C 08 03 A6 */	mtlr r0
 /* 80462D94 0045FCD4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80462D98 0045FCD8  4E 80 00 20 */	blr 
+.endfn startSound__Q23PSM4NaviFUlUl
 
-.global getManType__Q23PSM4NaviFv
-getManType__Q23PSM4NaviFv:
+.fn getManType__Q23PSM4NaviFv, global
 /* 80462D9C 0045FCDC  80 03 00 88 */	lwz r0, 0x88(r3)
 /* 80462DA0 0045FCE0  28 00 00 0D */	cmplwi r0, 0xd
 /* 80462DA4 0045FCE4  40 82 00 0C */	bne .L_80462DB0
@@ -7985,9 +7984,9 @@ getManType__Q23PSM4NaviFv:
 /* 80462DB8 0045FCF8  4C 82 00 20 */	bnelr 
 /* 80462DBC 0045FCFC  38 60 00 01 */	li r3, 1
 /* 80462DC0 0045FD00  4E 80 00 20 */	blr 
+.endfn getManType__Q23PSM4NaviFv
 
-.global playShugoSE__Q23PSM4NaviFv
-playShugoSE__Q23PSM4NaviFv:
+.fn playShugoSE__Q23PSM4NaviFv, global
 /* 80462DC4 0045FD04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80462DC8 0045FD08  7C 08 02 A6 */	mflr r0
 /* 80462DCC 0045FD0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8036,9 +8035,9 @@ playShugoSE__Q23PSM4NaviFv:
 /* 80462E58 0045FD98  7C 08 03 A6 */	mtlr r0
 /* 80462E5C 0045FD9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80462E60 0045FDA0  4E 80 00 20 */	blr 
+.endfn playShugoSE__Q23PSM4NaviFv
 
-.global playKaisanSE__Q23PSM4NaviFv
-playKaisanSE__Q23PSM4NaviFv:
+.fn playKaisanSE__Q23PSM4NaviFv, global
 /* 80462E64 0045FDA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80462E68 0045FDA8  7C 08 02 A6 */	mflr r0
 /* 80462E6C 0045FDAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8087,9 +8086,9 @@ playKaisanSE__Q23PSM4NaviFv:
 /* 80462EF8 0045FE38  7C 08 03 A6 */	mtlr r0
 /* 80462EFC 0045FE3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80462F00 0045FE40  4E 80 00 20 */	blr 
+.endfn playKaisanSE__Q23PSM4NaviFv
 
-.global playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei
-playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei:
+.fn playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei, global
 /* 80462F04 0045FE44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80462F08 0045FE48  7C 08 02 A6 */	mflr r0
 /* 80462F0C 0045FE4C  54 A5 08 3C */	slwi r5, r5, 1
@@ -8173,9 +8172,9 @@ playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei:
 /* 80463028 0045FF68  7C 08 03 A6 */	mtlr r0
 /* 8046302C 0045FF6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80463030 0045FF70  4E 80 00 20 */	blr 
+.endfn playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei
 
-.global __ct__Q23PSM7ClusterFPQ24Game8CreatureRQ38PSSystem9ClusterSe7Factory
-__ct__Q23PSM7ClusterFPQ24Game8CreatureRQ38PSSystem9ClusterSe7Factory:
+.fn __ct__Q23PSM7ClusterFPQ24Game8CreatureRQ38PSSystem9ClusterSe7Factory, global
 /* 80463034 0045FF74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80463038 0045FF78  7C 08 02 A6 */	mflr r0
 /* 8046303C 0045FF7C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8265,9 +8264,9 @@ __ct__Q23PSM7ClusterFPQ24Game8CreatureRQ38PSSystem9ClusterSe7Factory:
 /* 80463180 004600C0  7C 08 03 A6 */	mtlr r0
 /* 80463184 004600C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80463188 004600C8  4E 80 00 20 */	blr 
+.endfn __ct__Q23PSM7ClusterFPQ24Game8CreatureRQ38PSSystem9ClusterSe7Factory
 
-.global startClusterSound__Q23PSM7ClusterFUc
-startClusterSound__Q23PSM7ClusterFUc:
+.fn startClusterSound__Q23PSM7ClusterFUc, global
 /* 8046318C 004600CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80463190 004600D0  7C 08 02 A6 */	mflr r0
 /* 80463194 004600D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8293,9 +8292,9 @@ startClusterSound__Q23PSM7ClusterFUc:
 /* 804631E0 00460120  7C 08 03 A6 */	mtlr r0
 /* 804631E4 00460124  38 21 00 10 */	addi r1, r1, 0x10
 /* 804631E8 00460128  4E 80 00 20 */	blr 
+.endfn startClusterSound__Q23PSM7ClusterFUc
 
-.global PSSetCurCameraNo__FUc
-PSSetCurCameraNo__FUc:
+.fn PSSetCurCameraNo__FUc, global
 /* 804631EC 0046012C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804631F0 00460130  7C 08 02 A6 */	mflr r0
 /* 804631F4 00460134  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8319,14 +8318,14 @@ PSSetCurCameraNo__FUc:
 /* 80463238 00460178  7C 08 03 A6 */	mtlr r0
 /* 8046323C 0046017C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80463240 00460180  4E 80 00 20 */	blr 
+.endfn PSSetCurCameraNo__FUc
 
-.global PSMGetNoukouDist__Fv
-PSMGetNoukouDist__Fv:
+.fn PSMGetNoukouDist__Fv, global
 /* 80463244 00460184  C0 22 2A B8 */	lfs f1, cNoukouDistance__Q23PSM11CreaturePrm@sda21(r2)
 /* 80463248 00460188  4E 80 00 20 */	blr 
+.endfn PSMGetNoukouDist__Fv
 
-.global PSSetLastBeedamaDirection__Fbb
-PSSetLastBeedamaDirection__Fbb:
+.fn PSSetLastBeedamaDirection__Fbb, global
 /* 8046324C 0046018C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80463250 00460190  7C 08 02 A6 */	mflr r0
 /* 80463254 00460194  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8359,9 +8358,9 @@ PSSetLastBeedamaDirection__Fbb:
 /* 804632B0 004601F0  7C 08 03 A6 */	mtlr r0
 /* 804632B4 004601F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 804632B8 004601F8  4E 80 00 20 */	blr 
+.endfn PSSetLastBeedamaDirection__Fbb
 
-.global __dt__Q23PSM7ClusterFv
-__dt__Q23PSM7ClusterFv:
+.fn __dt__Q23PSM7ClusterFv, weak
 /* 804632BC 004601FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804632C0 00460200  7C 08 02 A6 */	mflr r0
 /* 804632C4 00460204  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8422,36 +8421,36 @@ __dt__Q23PSM7ClusterFv:
 /* 80463398 004602D8  7C 08 03 A6 */	mtlr r0
 /* 8046339C 004602DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804633A0 004602E0  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM7ClusterFv
 
-.global getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl
-getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl:
+.fn getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl, weak
 /* 804633A4 004602E4  38 60 00 01 */	li r3, 1
 /* 804633A8 004602E8  4E 80 00 20 */	blr 
+.endfn getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl
 
-.global isDemoScene__Q23PSM9SceneBaseFv
-isDemoScene__Q23PSM9SceneBaseFv:
+.fn isDemoScene__Q23PSM9SceneBaseFv, weak
 /* 804633AC 004602EC  38 60 00 00 */	li r3, 0
 /* 804633B0 004602F0  4E 80 00 20 */	blr 
+.endfn isDemoScene__Q23PSM9SceneBaseFv
 
-.global onDisappear__Q23PSM9EnemyBossFv
-onDisappear__Q23PSM9EnemyBossFv:
+.fn onDisappear__Q23PSM9EnemyBossFv, weak
 /* 804633B4 004602F4  4E 80 00 20 */	blr 
+.endfn onDisappear__Q23PSM9EnemyBossFv
 
-.global onAppear__Q23PSM9EnemyBossFv
-onAppear__Q23PSM9EnemyBossFv:
+.fn onAppear__Q23PSM9EnemyBossFv, weak
 /* 804633B8 004602F8  4E 80 00 20 */	blr 
+.endfn onAppear__Q23PSM9EnemyBossFv
 
-.global onAppear1st__Q23PSM9EnemyBossFv
-onAppear1st__Q23PSM9EnemyBossFv:
+.fn onAppear1st__Q23PSM9EnemyBossFv, weak
 /* 804633BC 004602FC  4E 80 00 20 */	blr 
+.endfn onAppear1st__Q23PSM9EnemyBossFv
 
-.global getCastType__Q23PSM4NaviFv
-getCastType__Q23PSM4NaviFv:
+.fn getCastType__Q23PSM4NaviFv, weak
 /* 804633C0 00460300  38 60 00 0F */	li r3, 0xf
 /* 804633C4 00460304  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM4NaviFv
 
-.global __dt__Q23PSM4PikiFv
-__dt__Q23PSM4PikiFv:
+.fn __dt__Q23PSM4PikiFv, weak
 /* 804633C8 00460308  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804633CC 0046030C  7C 08 02 A6 */	mflr r0
 /* 804633D0 00460310  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8512,14 +8511,14 @@ __dt__Q23PSM4PikiFv:
 /* 804634A4 004603E4  7C 08 03 A6 */	mtlr r0
 /* 804634A8 004603E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 804634AC 004603EC  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM4PikiFv
 
-.global getCastType__Q23PSM4PikiFv
-getCastType__Q23PSM4PikiFv:
+.fn getCastType__Q23PSM4PikiFv, weak
 /* 804634B0 004603F0  38 60 00 0E */	li r3, 0xe
 /* 804634B4 004603F4  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM4PikiFv
 
-.global __dt__Q23PSM10PelletItemFv
-__dt__Q23PSM10PelletItemFv:
+.fn __dt__Q23PSM10PelletItemFv, weak
 /* 804634B8 004603F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804634BC 004603FC  7C 08 02 A6 */	mflr r0
 /* 804634C0 00460400  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8613,14 +8612,14 @@ __dt__Q23PSM10PelletItemFv:
 /* 80463614 00460554  7C 08 03 A6 */	mtlr r0
 /* 80463618 00460558  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046361C 0046055C  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM10PelletItemFv
 
-.global getCastType__Q23PSM10PelletItemFv
-getCastType__Q23PSM10PelletItemFv:
+.fn getCastType__Q23PSM10PelletItemFv, weak
 /* 80463620 00460560  38 60 00 0D */	li r3, 0xd
 /* 80463624 00460564  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM10PelletItemFv
 
-.global __dt__Q23PSM13PelletOtakaraFv
-__dt__Q23PSM13PelletOtakaraFv:
+.fn __dt__Q23PSM13PelletOtakaraFv, weak
 /* 80463628 00460568  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046362C 0046056C  7C 08 02 A6 */	mflr r0
 /* 80463630 00460570  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8714,19 +8713,19 @@ __dt__Q23PSM13PelletOtakaraFv:
 /* 80463784 004606C4  7C 08 03 A6 */	mtlr r0
 /* 80463788 004606C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046378C 004606CC  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM13PelletOtakaraFv
 
-.global getCastType__Q23PSM13PelletOtakaraFv
-getCastType__Q23PSM13PelletOtakaraFv:
+.fn getCastType__Q23PSM13PelletOtakaraFv, weak
 /* 80463790 004606D0  38 60 00 0C */	li r3, 0xc
 /* 80463794 004606D4  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM13PelletOtakaraFv
 
-.global getCastType__Q23PSM7OtakaraFv
-getCastType__Q23PSM7OtakaraFv:
+.fn getCastType__Q23PSM7OtakaraFv, weak
 /* 80463798 004606D8  38 60 00 0B */	li r3, 0xb
 /* 8046379C 004606DC  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM7OtakaraFv
 
-.global __dt__Q23PSM8WorkItemFv
-__dt__Q23PSM8WorkItemFv:
+.fn __dt__Q23PSM8WorkItemFv, weak
 /* 804637A0 004606E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804637A4 004606E4  7C 08 02 A6 */	mflr r0
 /* 804637A8 004606E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8812,19 +8811,19 @@ __dt__Q23PSM8WorkItemFv:
 /* 804638DC 0046081C  7C 08 03 A6 */	mtlr r0
 /* 804638E0 00460820  38 21 00 10 */	addi r1, r1, 0x10
 /* 804638E4 00460824  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM8WorkItemFv
 
-.global getCastType__Q23PSM8WorkItemFv
-getCastType__Q23PSM8WorkItemFv:
+.fn getCastType__Q23PSM8WorkItemFv, weak
 /* 804638E8 00460828  38 60 00 0A */	li r3, 0xa
 /* 804638EC 0046082C  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM8WorkItemFv
 
-.global is2PBattle__Q23PSM25OtakaraEventLink_2PBattleFv
-is2PBattle__Q23PSM25OtakaraEventLink_2PBattleFv:
+.fn is2PBattle__Q23PSM25OtakaraEventLink_2PBattleFv, weak
 /* 804638F0 00460830  38 60 00 01 */	li r3, 1
 /* 804638F4 00460834  4E 80 00 20 */	blr 
+.endfn is2PBattle__Q23PSM25OtakaraEventLink_2PBattleFv
 
-.global __dt__Q23PSM19Enemy_SpecialChappyFv
-__dt__Q23PSM19Enemy_SpecialChappyFv:
+.fn __dt__Q23PSM19Enemy_SpecialChappyFv, weak
 /* 804638F8 00460838  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804638FC 0046083C  7C 08 02 A6 */	mflr r0
 /* 80463900 00460840  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8942,29 +8941,29 @@ __dt__Q23PSM19Enemy_SpecialChappyFv:
 /* 80463AAC 004609EC  7C 08 03 A6 */	mtlr r0
 /* 80463AB0 004609F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80463AB4 004609F4  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM19Enemy_SpecialChappyFv
 
-.global getCastType__Q23PSM8EnemyBigFv
-getCastType__Q23PSM8EnemyBigFv:
+.fn getCastType__Q23PSM8EnemyBigFv, weak
 /* 80463AB8 004609F8  38 60 00 08 */	li r3, 8
 /* 80463ABC 004609FC  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM8EnemyBigFv
 
-.global getCastType__Q23PSM12EnemyBigBossFv
-getCastType__Q23PSM12EnemyBigBossFv:
+.fn getCastType__Q23PSM12EnemyBigBossFv, weak
 /* 80463AC0 00460A00  38 60 00 07 */	li r3, 7
 /* 80463AC4 00460A04  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM12EnemyBigBossFv
 
-.global getCastType__Q23PSM12EnemyMidBossFv
-getCastType__Q23PSM12EnemyMidBossFv:
+.fn getCastType__Q23PSM12EnemyMidBossFv, weak
 /* 80463AC8 00460A08  38 60 00 06 */	li r3, 6
 /* 80463ACC 00460A0C  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM12EnemyMidBossFv
 
-.global getCastType__Q23PSM9EnemyBossFv
-getCastType__Q23PSM9EnemyBossFv:
+.fn getCastType__Q23PSM9EnemyBossFv, weak
 /* 80463AD0 00460A10  38 60 00 04 */	li r3, 4
 /* 80463AD4 00460A14  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM9EnemyBossFv
 
-.global __dt__Q23PSM9TsuyukusaFv
-__dt__Q23PSM9TsuyukusaFv:
+.fn __dt__Q23PSM9TsuyukusaFv, weak
 /* 80463AD8 00460A18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80463ADC 00460A1C  7C 08 02 A6 */	mflr r0
 /* 80463AE0 00460A20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9032,9 +9031,9 @@ __dt__Q23PSM9TsuyukusaFv:
 /* 80463BCC 00460B0C  7C 08 03 A6 */	mtlr r0
 /* 80463BD0 00460B10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80463BD4 00460B14  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM9TsuyukusaFv
 
-.global __dt__Q23PSM18EnemyNotAggressiveFv
-__dt__Q23PSM18EnemyNotAggressiveFv:
+.fn __dt__Q23PSM18EnemyNotAggressiveFv, weak
 /* 80463BD8 00460B18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80463BDC 00460B1C  7C 08 02 A6 */	mflr r0
 /* 80463BE0 00460B20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9140,43 +9139,43 @@ __dt__Q23PSM18EnemyNotAggressiveFv:
 /* 80463D5C 00460C9C  7C 08 03 A6 */	mtlr r0
 /* 80463D60 00460CA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80463D64 00460CA4  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM18EnemyNotAggressiveFv
 
-.global getCastType__Q23PSM18EnemyNotAggressiveFv
-getCastType__Q23PSM18EnemyNotAggressiveFv:
+.fn getCastType__Q23PSM18EnemyNotAggressiveFv, weak
 /* 80463D68 00460CA8  38 60 00 09 */	li r3, 9
 /* 80463D6C 00460CAC  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM18EnemyNotAggressiveFv
 
-.global updateKehai__Q23PSM18EnemyNotAggressiveFv
-updateKehai__Q23PSM18EnemyNotAggressiveFv:
+.fn updateKehai__Q23PSM18EnemyNotAggressiveFv, weak
 /* 80463D70 00460CB0  4E 80 00 20 */	blr 
+.endfn updateKehai__Q23PSM18EnemyNotAggressiveFv
 
-.global updateBattle__Q23PSM18EnemyNotAggressiveFv
-updateBattle__Q23PSM18EnemyNotAggressiveFv:
+.fn updateBattle__Q23PSM18EnemyNotAggressiveFv, weak
 /* 80463D74 00460CB4  4E 80 00 20 */	blr 
+.endfn updateBattle__Q23PSM18EnemyNotAggressiveFv
 
-.global battleOff__Q23PSM18EnemyNotAggressiveFv
-battleOff__Q23PSM18EnemyNotAggressiveFv:
+.fn battleOff__Q23PSM18EnemyNotAggressiveFv, weak
 /* 80463D78 00460CB8  4E 80 00 20 */	blr 
+.endfn battleOff__Q23PSM18EnemyNotAggressiveFv
 
-.global battleOn__Q23PSM18EnemyNotAggressiveFv
-battleOn__Q23PSM18EnemyNotAggressiveFv:
+.fn battleOn__Q23PSM18EnemyNotAggressiveFv, weak
 /* 80463D7C 00460CBC  4E 80 00 20 */	blr 
+.endfn battleOn__Q23PSM18EnemyNotAggressiveFv
 
-.global kehaiOff__Q23PSM18EnemyNotAggressiveFv
-kehaiOff__Q23PSM18EnemyNotAggressiveFv:
+.fn kehaiOff__Q23PSM18EnemyNotAggressiveFv, weak
 /* 80463D80 00460CC0  4E 80 00 20 */	blr 
+.endfn kehaiOff__Q23PSM18EnemyNotAggressiveFv
 
-.global kehaiOn__Q23PSM18EnemyNotAggressiveFv
-kehaiOn__Q23PSM18EnemyNotAggressiveFv:
+.fn kehaiOn__Q23PSM18EnemyNotAggressiveFv, weak
 /* 80463D84 00460CC4  4E 80 00 20 */	blr 
+.endfn kehaiOn__Q23PSM18EnemyNotAggressiveFv
 
-.global getCastType__Q23PSM13CreatureAnimeFv
-getCastType__Q23PSM13CreatureAnimeFv:
+.fn getCastType__Q23PSM13CreatureAnimeFv, weak
 /* 80463D88 00460CC8  38 60 00 01 */	li r3, 1
 /* 80463D8C 00460CCC  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM13CreatureAnimeFv
 
-.global __dt__Q23PSM4NaviFv
-__dt__Q23PSM4NaviFv:
+.fn __dt__Q23PSM4NaviFv, weak
 /* 80463D90 00460CD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80463D94 00460CD4  7C 08 02 A6 */	mflr r0
 /* 80463D98 00460CD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9241,223 +9240,224 @@ __dt__Q23PSM4NaviFv:
 /* 80463E7C 00460DBC  7C 08 03 A6 */	mtlr r0
 /* 80463E80 00460DC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80463E84 00460DC4  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM4NaviFv
 
-.global "@16@__dt__Q23PSM7ObjBaseFv"
-"@16@__dt__Q23PSM7ObjBaseFv":
+.fn "@16@__dt__Q23PSM7ObjBaseFv", weak
 /* 80463E88 00460DC8  38 63 FF F0 */	addi r3, r3, -16
 /* 80463E8C 00460DCC  4B FF 8F D8 */	b __dt__Q23PSM7ObjBaseFv
+.endfn "@16@__dt__Q23PSM7ObjBaseFv"
 
-.global "@12@__dt__Q23PSM6ObjMgrFv"
-"@12@__dt__Q23PSM6ObjMgrFv":
+.fn "@12@__dt__Q23PSM6ObjMgrFv", weak
 /* 80463E90 00460DD0  38 63 FF F4 */	addi r3, r3, -12
 /* 80463E94 00460DD4  4B FF 90 9C */	b __dt__Q23PSM6ObjMgrFv
+.endfn "@12@__dt__Q23PSM6ObjMgrFv"
 
-.global "@16@__dt__Q23PSM6ObjMgrFv"
-"@16@__dt__Q23PSM6ObjMgrFv":
+.fn "@16@__dt__Q23PSM6ObjMgrFv", weak
 /* 80463E98 00460DD8  38 63 FF F0 */	addi r3, r3, -16
 /* 80463E9C 00460DDC  4B FF 90 94 */	b __dt__Q23PSM6ObjMgrFv
+.endfn "@16@__dt__Q23PSM6ObjMgrFv"
 
-.global "@16@__dt__Q23PSM8CreatureFv"
-"@16@__dt__Q23PSM8CreatureFv":
+.fn "@16@__dt__Q23PSM8CreatureFv", weak
 /* 80463EA0 00460DE0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463EA4 00460DE4  4B FF 9A 0C */	b __dt__Q23PSM8CreatureFv
+.endfn "@16@__dt__Q23PSM8CreatureFv"
 
-.global "@16@__dt__Q23PSM11CreatureObjFv"
-"@16@__dt__Q23PSM11CreatureObjFv":
+.fn "@16@__dt__Q23PSM11CreatureObjFv", weak
 /* 80463EA8 00460DE8  38 63 FF F0 */	addi r3, r3, -16
 /* 80463EAC 00460DEC  4B D0 29 F0 */	b __dt__Q23PSM11CreatureObjFv
+.endfn "@16@__dt__Q23PSM11CreatureObjFv"
 
-.global "@48@__dt__Q23PSM11CreatureObjFv"
-"@48@__dt__Q23PSM11CreatureObjFv":
+.fn "@48@__dt__Q23PSM11CreatureObjFv", weak
 /* 80463EB0 00460DF0  38 63 FF D0 */	addi r3, r3, -48
 /* 80463EB4 00460DF4  4B D0 29 E8 */	b __dt__Q23PSM11CreatureObjFv
+.endfn "@48@__dt__Q23PSM11CreatureObjFv"
 
-.global "@16@__dt__Q23PSM13CreatureAnimeFv"
-"@16@__dt__Q23PSM13CreatureAnimeFv":
+.fn "@16@__dt__Q23PSM13CreatureAnimeFv", weak
 /* 80463EB8 00460DF8  38 63 FF F0 */	addi r3, r3, -16
 /* 80463EBC 00460DFC  4B FF A7 08 */	b __dt__Q23PSM13CreatureAnimeFv
+.endfn "@16@__dt__Q23PSM13CreatureAnimeFv"
 
-.global "@48@__dt__Q23PSM13CreatureAnimeFv"
-"@48@__dt__Q23PSM13CreatureAnimeFv":
+.fn "@48@__dt__Q23PSM13CreatureAnimeFv", weak
 /* 80463EC0 00460E00  38 63 FF D0 */	addi r3, r3, -48
 /* 80463EC4 00460E04  4B FF A7 00 */	b __dt__Q23PSM13CreatureAnimeFv
+.endfn "@48@__dt__Q23PSM13CreatureAnimeFv"
 
-.global "@48@startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc"
-"@48@startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc":
+.fn "@48@startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc", weak
 /* 80463EC8 00460E08  38 63 FF D0 */	addi r3, r3, -48
 /* 80463ECC 00460E0C  4B FF 9C 38 */	b startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc
+.endfn "@48@startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc"
 
-.global "@16@__dt__Q23PSM9EnemyBaseFv"
-"@16@__dt__Q23PSM9EnemyBaseFv":
+.fn "@16@__dt__Q23PSM9EnemyBaseFv", weak
 /* 80463ED0 00460E10  38 63 FF F0 */	addi r3, r3, -16
 /* 80463ED4 00460E14  4B CA 31 FC */	b __dt__Q23PSM9EnemyBaseFv
+.endfn "@16@__dt__Q23PSM9EnemyBaseFv"
 
-.global "@48@__dt__Q23PSM9EnemyBaseFv"
-"@48@__dt__Q23PSM9EnemyBaseFv":
+.fn "@48@__dt__Q23PSM9EnemyBaseFv", weak
 /* 80463ED8 00460E18  38 63 FF D0 */	addi r3, r3, -48
 /* 80463EDC 00460E1C  4B CA 31 F4 */	b __dt__Q23PSM9EnemyBaseFv
+.endfn "@48@__dt__Q23PSM9EnemyBaseFv"
 
-.global "@16@__dt__Q23PSM18EnemyNotAggressiveFv"
-"@16@__dt__Q23PSM18EnemyNotAggressiveFv":
+.fn "@16@__dt__Q23PSM18EnemyNotAggressiveFv", weak
 /* 80463EE0 00460E20  38 63 FF F0 */	addi r3, r3, -16
 /* 80463EE4 00460E24  4B FF FC F4 */	b __dt__Q23PSM18EnemyNotAggressiveFv
+.endfn "@16@__dt__Q23PSM18EnemyNotAggressiveFv"
 
-.global "@48@__dt__Q23PSM18EnemyNotAggressiveFv"
-"@48@__dt__Q23PSM18EnemyNotAggressiveFv":
+.fn "@48@__dt__Q23PSM18EnemyNotAggressiveFv", weak
 /* 80463EE8 00460E28  38 63 FF D0 */	addi r3, r3, -48
 /* 80463EEC 00460E2C  4B FF FC EC */	b __dt__Q23PSM18EnemyNotAggressiveFv
+.endfn "@48@__dt__Q23PSM18EnemyNotAggressiveFv"
 
-.global "@184@battleOff__Q23PSM18EnemyNotAggressiveFv"
-"@184@battleOff__Q23PSM18EnemyNotAggressiveFv":
+.fn "@184@battleOff__Q23PSM18EnemyNotAggressiveFv", weak
 /* 80463EF0 00460E30  38 63 FF 48 */	addi r3, r3, -184
 /* 80463EF4 00460E34  4B FF FE 84 */	b battleOff__Q23PSM18EnemyNotAggressiveFv
+.endfn "@184@battleOff__Q23PSM18EnemyNotAggressiveFv"
 
-.global "@184@battleOn__Q23PSM18EnemyNotAggressiveFv"
-"@184@battleOn__Q23PSM18EnemyNotAggressiveFv":
+.fn "@184@battleOn__Q23PSM18EnemyNotAggressiveFv", weak
 /* 80463EF8 00460E38  38 63 FF 48 */	addi r3, r3, -184
 /* 80463EFC 00460E3C  4B FF FE 80 */	b battleOn__Q23PSM18EnemyNotAggressiveFv
+.endfn "@184@battleOn__Q23PSM18EnemyNotAggressiveFv"
 
-.global "@204@kehaiOff__Q23PSM18EnemyNotAggressiveFv"
-"@204@kehaiOff__Q23PSM18EnemyNotAggressiveFv":
+.fn "@204@kehaiOff__Q23PSM18EnemyNotAggressiveFv", weak
 /* 80463F00 00460E40  38 63 FF 34 */	addi r3, r3, -204
 /* 80463F04 00460E44  4B FF FE 7C */	b kehaiOff__Q23PSM18EnemyNotAggressiveFv
+.endfn "@204@kehaiOff__Q23PSM18EnemyNotAggressiveFv"
 
-.global "@204@kehaiOn__Q23PSM18EnemyNotAggressiveFv"
-"@204@kehaiOn__Q23PSM18EnemyNotAggressiveFv":
+.fn "@204@kehaiOn__Q23PSM18EnemyNotAggressiveFv", weak
 /* 80463F08 00460E48  38 63 FF 34 */	addi r3, r3, -204
 /* 80463F0C 00460E4C  4B FF FE 78 */	b kehaiOn__Q23PSM18EnemyNotAggressiveFv
+.endfn "@204@kehaiOn__Q23PSM18EnemyNotAggressiveFv"
 
-.global "@16@__dt__Q23PSM9TsuyukusaFv"
-"@16@__dt__Q23PSM9TsuyukusaFv":
+.fn "@16@__dt__Q23PSM9TsuyukusaFv", weak
 /* 80463F10 00460E50  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F14 00460E54  4B FF FB C4 */	b __dt__Q23PSM9TsuyukusaFv
+.endfn "@16@__dt__Q23PSM9TsuyukusaFv"
 
-.global "@48@__dt__Q23PSM9TsuyukusaFv"
-"@48@__dt__Q23PSM9TsuyukusaFv":
+.fn "@48@__dt__Q23PSM9TsuyukusaFv", weak
 /* 80463F18 00460E58  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F1C 00460E5C  4B FF FB BC */	b __dt__Q23PSM9TsuyukusaFv
+.endfn "@48@__dt__Q23PSM9TsuyukusaFv"
 
-.global "@16@__dt__Q23PSM8EnemyBigFv"
-"@16@__dt__Q23PSM8EnemyBigFv":
+.fn "@16@__dt__Q23PSM8EnemyBigFv", weak
 /* 80463F20 00460E60  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F24 00460E64  4B CA 30 48 */	b __dt__Q23PSM8EnemyBigFv
+.endfn "@16@__dt__Q23PSM8EnemyBigFv"
 
-.global "@48@__dt__Q23PSM8EnemyBigFv"
-"@48@__dt__Q23PSM8EnemyBigFv":
+.fn "@48@__dt__Q23PSM8EnemyBigFv", weak
 /* 80463F28 00460E68  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F2C 00460E6C  4B CA 30 40 */	b __dt__Q23PSM8EnemyBigFv
+.endfn "@48@__dt__Q23PSM8EnemyBigFv"
 
-.global "@16@__dt__Q23PSM9EnemyBossFv"
-"@16@__dt__Q23PSM9EnemyBossFv":
+.fn "@16@__dt__Q23PSM9EnemyBossFv", weak
 /* 80463F30 00460E70  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F34 00460E74  4B FF C2 9C */	b __dt__Q23PSM9EnemyBossFv
+.endfn "@16@__dt__Q23PSM9EnemyBossFv"
 
-.global "@48@__dt__Q23PSM9EnemyBossFv"
-"@48@__dt__Q23PSM9EnemyBossFv":
+.fn "@48@__dt__Q23PSM9EnemyBossFv", weak
 /* 80463F38 00460E78  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F3C 00460E7C  4B FF C2 94 */	b __dt__Q23PSM9EnemyBossFv
+.endfn "@48@__dt__Q23PSM9EnemyBossFv"
 
-.global "@16@__dt__Q23PSM12EnemyMidBossFv"
-"@16@__dt__Q23PSM12EnemyMidBossFv":
+.fn "@16@__dt__Q23PSM12EnemyMidBossFv", weak
 /* 80463F40 00460E80  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F44 00460E84  4B FF C9 10 */	b __dt__Q23PSM12EnemyMidBossFv
+.endfn "@16@__dt__Q23PSM12EnemyMidBossFv"
 
-.global "@48@__dt__Q23PSM12EnemyMidBossFv"
-"@48@__dt__Q23PSM12EnemyMidBossFv":
+.fn "@48@__dt__Q23PSM12EnemyMidBossFv", weak
 /* 80463F48 00460E88  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F4C 00460E8C  4B FF C9 08 */	b __dt__Q23PSM12EnemyMidBossFv
+.endfn "@48@__dt__Q23PSM12EnemyMidBossFv"
 
-.global "@16@__dt__Q23PSM12EnemyBigBossFv"
-"@16@__dt__Q23PSM12EnemyBigBossFv":
+.fn "@16@__dt__Q23PSM12EnemyBigBossFv", weak
 /* 80463F50 00460E90  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F54 00460E94  4B FF CA F0 */	b __dt__Q23PSM12EnemyBigBossFv
+.endfn "@16@__dt__Q23PSM12EnemyBigBossFv"
 
-.global "@48@__dt__Q23PSM12EnemyBigBossFv"
-"@48@__dt__Q23PSM12EnemyBigBossFv":
+.fn "@48@__dt__Q23PSM12EnemyBigBossFv", weak
 /* 80463F58 00460E98  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F5C 00460E9C  4B FF CA E8 */	b __dt__Q23PSM12EnemyBigBossFv
+.endfn "@48@__dt__Q23PSM12EnemyBigBossFv"
 
-.global "@16@__dt__Q23PSM19Enemy_SpecialChappyFv"
-"@16@__dt__Q23PSM19Enemy_SpecialChappyFv":
+.fn "@16@__dt__Q23PSM19Enemy_SpecialChappyFv", weak
 /* 80463F60 00460EA0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F64 00460EA4  4B FF F9 94 */	b __dt__Q23PSM19Enemy_SpecialChappyFv
+.endfn "@16@__dt__Q23PSM19Enemy_SpecialChappyFv"
 
-.global "@48@__dt__Q23PSM19Enemy_SpecialChappyFv"
-"@48@__dt__Q23PSM19Enemy_SpecialChappyFv":
+.fn "@48@__dt__Q23PSM19Enemy_SpecialChappyFv", weak
 /* 80463F68 00460EA8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F6C 00460EAC  4B FF F9 8C */	b __dt__Q23PSM19Enemy_SpecialChappyFv
+.endfn "@48@__dt__Q23PSM19Enemy_SpecialChappyFv"
 
-.global "@16@__dt__Q23PSM8WorkItemFv"
-"@16@__dt__Q23PSM8WorkItemFv":
+.fn "@16@__dt__Q23PSM8WorkItemFv", weak
 /* 80463F70 00460EB0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F74 00460EB4  4B FF F8 2C */	b __dt__Q23PSM8WorkItemFv
+.endfn "@16@__dt__Q23PSM8WorkItemFv"
 
-.global "@48@__dt__Q23PSM8WorkItemFv"
-"@48@__dt__Q23PSM8WorkItemFv":
+.fn "@48@__dt__Q23PSM8WorkItemFv", weak
 /* 80463F78 00460EB8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F7C 00460EBC  4B FF F8 24 */	b __dt__Q23PSM8WorkItemFv
+.endfn "@48@__dt__Q23PSM8WorkItemFv"
 
-.global "@16@__dt__Q23PSM7OtakaraFv"
-"@16@__dt__Q23PSM7OtakaraFv":
+.fn "@16@__dt__Q23PSM7OtakaraFv", weak
 /* 80463F80 00460EC0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F84 00460EC4  4B FF E0 00 */	b __dt__Q23PSM7OtakaraFv
+.endfn "@16@__dt__Q23PSM7OtakaraFv"
 
-.global "@48@__dt__Q23PSM7OtakaraFv"
-"@48@__dt__Q23PSM7OtakaraFv":
+.fn "@48@__dt__Q23PSM7OtakaraFv", weak
 /* 80463F88 00460EC8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F8C 00460ECC  4B FF DF F8 */	b __dt__Q23PSM7OtakaraFv
+.endfn "@48@__dt__Q23PSM7OtakaraFv"
 
-.global "@16@__dt__Q23PSM13PelletOtakaraFv"
-"@16@__dt__Q23PSM13PelletOtakaraFv":
+.fn "@16@__dt__Q23PSM13PelletOtakaraFv", weak
 /* 80463F90 00460ED0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F94 00460ED4  4B FF F6 94 */	b __dt__Q23PSM13PelletOtakaraFv
+.endfn "@16@__dt__Q23PSM13PelletOtakaraFv"
 
-.global "@48@__dt__Q23PSM13PelletOtakaraFv"
-"@48@__dt__Q23PSM13PelletOtakaraFv":
+.fn "@48@__dt__Q23PSM13PelletOtakaraFv", weak
 /* 80463F98 00460ED8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F9C 00460EDC  4B FF F6 8C */	b __dt__Q23PSM13PelletOtakaraFv
+.endfn "@48@__dt__Q23PSM13PelletOtakaraFv"
 
-.global "@16@__dt__Q23PSM10PelletItemFv"
-"@16@__dt__Q23PSM10PelletItemFv":
+.fn "@16@__dt__Q23PSM10PelletItemFv", weak
 /* 80463FA0 00460EE0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463FA4 00460EE4  4B FF F5 14 */	b __dt__Q23PSM10PelletItemFv
+.endfn "@16@__dt__Q23PSM10PelletItemFv"
 
-.global "@48@__dt__Q23PSM10PelletItemFv"
-"@48@__dt__Q23PSM10PelletItemFv":
+.fn "@48@__dt__Q23PSM10PelletItemFv", weak
 /* 80463FA8 00460EE8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FAC 00460EEC  4B FF F5 0C */	b __dt__Q23PSM10PelletItemFv
+.endfn "@48@__dt__Q23PSM10PelletItemFv"
 
-.global "@16@__dt__Q23PSM4PikiFv"
-"@16@__dt__Q23PSM4PikiFv":
+.fn "@16@__dt__Q23PSM4PikiFv", weak
 /* 80463FB0 00460EF0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463FB4 00460EF4  4B FF F4 14 */	b __dt__Q23PSM4PikiFv
+.endfn "@16@__dt__Q23PSM4PikiFv"
 
-.global "@48@__dt__Q23PSM4PikiFv"
-"@48@__dt__Q23PSM4PikiFv":
+.fn "@48@__dt__Q23PSM4PikiFv", weak
 /* 80463FB8 00460EF8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FBC 00460EFC  4B FF F4 0C */	b __dt__Q23PSM4PikiFv
+.endfn "@48@__dt__Q23PSM4PikiFv"
 
-.global "@16@__dt__Q23PSM4NaviFv"
-"@16@__dt__Q23PSM4NaviFv":
+.fn "@16@__dt__Q23PSM4NaviFv", weak
 /* 80463FC0 00460F00  38 63 FF F0 */	addi r3, r3, -16
 /* 80463FC4 00460F04  4B FF FD CC */	b __dt__Q23PSM4NaviFv
+.endfn "@16@__dt__Q23PSM4NaviFv"
 
-.global "@48@startSound__Q23PSM4NaviFUlUl"
-"@48@startSound__Q23PSM4NaviFUlUl":
+.fn "@48@startSound__Q23PSM4NaviFUlUl", weak
 /* 80463FC8 00460F08  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FCC 00460F0C  4B FF EC C8 */	b startSound__Q23PSM4NaviFUlUl
+.endfn "@48@startSound__Q23PSM4NaviFUlUl"
 
-.global "@48@__dt__Q23PSM4NaviFv"
-"@48@__dt__Q23PSM4NaviFv":
+.fn "@48@__dt__Q23PSM4NaviFv", weak
 /* 80463FD0 00460F10  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FD4 00460F14  4B FF FD BC */	b __dt__Q23PSM4NaviFv
+.endfn "@48@__dt__Q23PSM4NaviFv"
 
-.global "@16@__dt__Q23PSM7ClusterFv"
-"@16@__dt__Q23PSM7ClusterFv":
+.fn "@16@__dt__Q23PSM7ClusterFv", weak
 /* 80463FD8 00460F18  38 63 FF F0 */	addi r3, r3, -16
 /* 80463FDC 00460F1C  4B FF F2 E0 */	b __dt__Q23PSM7ClusterFv
+.endfn "@16@__dt__Q23PSM7ClusterFv"
 
-.global "@48@__dt__Q23PSM7ClusterFv"
-"@48@__dt__Q23PSM7ClusterFv":
+.fn "@48@__dt__Q23PSM7ClusterFv", weak
 /* 80463FE0 00460F20  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FE4 00460F24  4B FF F2 D8 */	b __dt__Q23PSM7ClusterFv
+.endfn "@48@__dt__Q23PSM7ClusterFv"
