@@ -38,7 +38,7 @@ __declspec(section ".init") extern void __start(void);
 __declspec(section ".init") extern void __init_registers(void);
 __declspec(section ".init") extern void __init_data(void);
 
-__declspec(section ".init") extern char _stack_addr[];
+__declspec(section ".init") extern u8 _stack_addr[];
 __declspec(section ".init") extern char _SDA_BASE_[];
 __declspec(section ".init") extern char _SDA2_BASE_[];
 

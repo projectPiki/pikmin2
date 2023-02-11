@@ -27,6 +27,9 @@ typedef void (*OSIdleFunction)(void* param);
 // Start function.
 typedef void* (*OSThreadStartFunction)(void*);
 
+// Thread switching function.
+typedef void (*OSSwitchThreadCallback)(OSThread* from, OSThread* to);
+
 // Queues and links for threads.
 struct OSThreadQueue {
 	OSThread* head; // _00
@@ -66,6 +69,8 @@ struct OSThread {
 	OSThreadLink linkActive; // _2FC, list of active threads
 	u8* stackBase;           // _304, stack high addr.
 	u32* stackEnd;           // _308, stack low addr (last word).
+	s32 error;               // _30C
+	void* specific[2];       // _310
 };
 
 //////////////////////////////////
@@ -109,6 +114,7 @@ long OSCheckActiveThreads();
 ///////// THREAD DEFINES /////////
 // Thread states.
 enum OS_THREAD_STATE {
+	OS_THREAD_STATE_NULL     = 0,
 	OS_THREAD_STATE_READY    = 1,
 	OS_THREAD_STATE_RUNNING  = 2,
 	OS_THREAD_STATE_WAITING  = 4,
@@ -122,6 +128,74 @@ enum OS_THREAD_STATE {
 #define OS_PRIORITY_MIN  (0) // highest prio
 #define OS_PRIORITY_MAX  (31) // lowest prio
 #define OS_PRIORITY_IDLE (OS_PRIORITY_MAX) // idle = lowest prio
+
+//////////////////////////////////
+
+///////// THREAD MACROS //////////
+// Add link to queue at tail.
+#define AddTail(queue, thread, link)    \
+	do {                                \
+		OSThread* prev;                 \
+                                        \
+		prev = (queue)->tail;           \
+		if (prev == nullptr)            \
+			(queue)->head = (thread);   \
+		else                            \
+			prev->link.next = (thread); \
+		(thread)->link.prev = prev;     \
+		(thread)->link.next = nullptr;  \
+		(queue)->tail       = (thread); \
+	} while (0)
+
+// Add link to queue in priority order.
+#define AddPrio(queue, thread, link)                                                                   \
+	do {                                                                                               \
+		OSThread *prev, *next;                                                                         \
+                                                                                                       \
+		for (next = (queue)->head; next && next->priority <= thread->priority; next = next->link.next) \
+			;                                                                                          \
+		if (next == nullptr)                                                                           \
+			AddTail(queue, thread, link);                                                              \
+		else {                                                                                         \
+			(thread)->link.next = next;                                                                \
+			prev                = next->link.prev;                                                     \
+			next->link.prev     = (thread);                                                            \
+			(thread)->link.prev = prev;                                                                \
+			if (prev == nullptr)                                                                       \
+				(queue)->head = (thread);                                                              \
+			else                                                                                       \
+				prev->link.next = (thread);                                                            \
+		}                                                                                              \
+	} while (0)
+
+// Remove link from queue.
+#define RemoveItem(queue, thread, link) \
+	do {                                \
+		OSThread *next, *prev;          \
+		next = (thread)->link.next;     \
+		prev = (thread)->link.prev;     \
+		if (next == nullptr)            \
+			(queue)->tail = prev;       \
+		else                            \
+			next->link.prev = prev;     \
+		if (prev == nullptr)            \
+			(queue)->head = next;       \
+		else                            \
+			prev->link.next = next;     \
+	} while (0)
+
+// Remove head link from queue.
+#define RemoveHead(queue, thread, link)  \
+	do {                                 \
+		OSThread* __next;                \
+		(thread) = (queue)->head;        \
+		__next   = (thread)->link.next;  \
+		if (__next == nullptr)           \
+			(queue)->tail = nullptr;     \
+		else                             \
+			__next->link.prev = nullptr; \
+		(queue)->head = __next;          \
+	} while (0)
 
 //////////////////////////////////
 

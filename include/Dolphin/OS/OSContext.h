@@ -41,7 +41,7 @@ void OSLoadContext(OSContext* context);
 void OSClearContext(OSContext* context);
 void OSInitContext(OSContext* context, u32 pc, u32 stackPtr);
 void OSDumpContext(OSContext* context);
-void OSSaveContext(OSContext* context);
+u32 OSSaveContext(OSContext* context);
 
 u32 OSGetStackPointer();
 
