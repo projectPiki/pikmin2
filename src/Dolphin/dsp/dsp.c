@@ -11,31 +11,21 @@ char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16 
  * Address:	800DACB0
  * Size:	000010
  */
-u32 DSPCheckMailToDSP() { return __DSPRegs[0] >> 0xF & 1; }
+u32 DSPCheckMailToDSP() { return __DSPRegs[DSP_MAILBOX_IN_HI] >> 0xF & 1; }
 
 /*
  * --INFO--
  * Address:	800DACC0
  * Size:	000010
  */
-u32 DSPCheckMailFromDSP() { return __DSPRegs[2] >> 0xF & 1; }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
- */
-void DSPReadCPUToDSPMbox()
-{
-	// UNUSED FUNCTION
-}
+u32 DSPCheckMailFromDSP() { return __DSPRegs[DSP_MAILBOX_OUT_HI] >> 0xF & 1; }
 
 /*
  * --INFO--
  * Address:	800DACD0
  * Size:	000018
  */
-u32 DSPReadMailFromDSP() { return (__DSPRegs[2] << 0x10) | __DSPRegs[3]; }
+u32 DSPReadMailFromDSP() { return (__DSPRegs[DSP_MAILBOX_OUT_HI] << 0x10) | __DSPRegs[DSP_MAILBOX_OUT_LO]; }
 
 /*
  * --INFO--
@@ -44,8 +34,8 @@ u32 DSPReadMailFromDSP() { return (__DSPRegs[2] << 0x10) | __DSPRegs[3]; }
  */
 void DSPSendMailToDSP(u32 mail)
 {
-	__DSPRegs[0] = mail >> 0x10;
-	__DSPRegs[1] = mail;
+	__DSPRegs[DSP_MAILBOX_IN_HI] = mail >> 0x10;
+	__DSPRegs[DSP_MAILBOX_IN_LO] = mail;
 }
 
 /*
@@ -55,8 +45,10 @@ void DSPSendMailToDSP(u32 mail)
  */
 void DSPAssertInt()
 {
-	BOOL interrupts = OSDisableInterrupts();
-	__DSPRegs[5]    = __DSPRegs[5] & 0xFF57 | 2;
+	u32 tmp;
+	BOOL interrupts               = OSDisableInterrupts();
+	tmp                           = __DSPRegs[DSP_CONTROL_STATUS];
+	__DSPRegs[DSP_CONTROL_STATUS] = (tmp & ~0xA8) | 2;
 	OSRestoreInterrupts(interrupts);
 }
 
@@ -67,6 +59,7 @@ void DSPAssertInt()
  */
 void DSPInit()
 {
+	u32 tmp;
 	BOOL old;
 	__DSP_debug_printf("DSPInit(): Build Date: %s %s\n", "Apr 17 2003", "12:34:16");
 	if (__DSP_init_flag == TRUE) {
@@ -76,82 +69,17 @@ void DSPInit()
 	old = OSDisableInterrupts();
 	__OSSetInterruptHandler(7, __DSPHandler);
 	__OSUnmaskInterrupts(0x80000000 >> 7);
-	__DSPRegs[5] &= 0xFF57 | 0x800;
-	__DSPRegs[5] &= 0xFF53;
+
+	tmp                           = __DSPRegs[DSP_CONTROL_STATUS];
+	__DSPRegs[DSP_CONTROL_STATUS] = (tmp & ~0xA8) | 0x800;
+
+	tmp                           = __DSPRegs[DSP_CONTROL_STATUS];
+	__DSPRegs[DSP_CONTROL_STATUS] = (tmp & ~0xAC);
+
 	__DSP_tmp_task   = nullptr;
 	__DSP_curr_task  = nullptr;
 	__DSP_last_task  = nullptr;
 	__DSP_first_task = nullptr;
 	__DSP_init_flag  = TRUE;
 	OSRestoreInterrupts(old);
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void DSPCheckInit()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
- */
-void DSPReset()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void DSPHalt()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void DSPUnhalt()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void DSPGetDMAStatus()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void DSPCancelTask()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void DSPAssertTask()
-{
-	// UNUSED FUNCTION
 }

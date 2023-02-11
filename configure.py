@@ -640,7 +640,7 @@ LIBS = [
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
-            "Dolphin/dsp/dsp",
+            ["Dolphin/dsp/dsp", True],
             ["Dolphin/dsp/dsp_debug", True],
             ["Dolphin/dsp/dsp_task", True],
         ],

@@ -1,9 +1,10 @@
 DSP_FILES:=\
-	$(BUILD_DIR)/asm/Dolphin/dsp/dsp.o\
+	$(BUILD_DIR)/src/Dolphin/dsp/dsp.o\
 	$(BUILD_DIR)/src/Dolphin/dsp/dsp_debug.o\
 	$(BUILD_DIR)/src/Dolphin/dsp/dsp_task.o\
 
 DSP_UNSCHEDULED:=\
+	$(EPILOGUE_DIR)/src/Dolphin/dsp/dsp.o\
 	$(EPILOGUE_DIR)/src/Dolphin/dsp/dsp_task.o\
 
 $(DSP_FILES): CFLAGS += -common off -str noreadonly
