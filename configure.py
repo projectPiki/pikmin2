@@ -341,7 +341,7 @@ LIBS = [
             "JSystem/JAudio2/JAS/JASHeapCtrl",
             ["JSystem/JAudio2/JAS/JASProbe", True],
             "JSystem/JAudio2/JAS/JASResArcLoader",
-            "JSystem/JAudio2/JAS/JASReport",
+            ["JSystem/JAudio2/JAS/JASReport", True],
             "JSystem/JAudio2/JAS/JASAiCtrl",
             ["JSystem/JAudio2/JAS/JASChannelUpdater", True],
             "JSystem/JAudio2/JAS/JASTaskThread",

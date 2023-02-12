@@ -35,7 +35,7 @@ JAUDIO2_JAS_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASHeapCtrl.o\
 	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASProbe.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASResArcLoader.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASReport.o\
+	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASReport.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASAiCtrl.o\
 	$(BUILD_DIR)/src/JSystem/JAudio2/JAS/JASChannelUpdater.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio2/JAS/JASTaskThread.o\
