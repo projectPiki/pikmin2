@@ -17,6 +17,7 @@
 #define PID_BattleDive_2 (0x03)
 #define PID_BattleDive_3 (0x04)
 
+#define PID_ChalDive    (0x05)
 #define PID_ChalDiveEnd (0x06)
 
 #define PID_Changesmoke (0x07)

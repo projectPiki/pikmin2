@@ -279,7 +279,7 @@ struct TChallengePiki {
 		posInfo() { }
 
 		int mState; // _00
-		int _04[9]; // _04
+		int _04[8]; // _04
 	};
 
 	TChallengePiki(J2DPane*, J2DPane*, J2DPane*);
@@ -291,13 +291,13 @@ struct TChallengePiki {
 	void setGoalPos(Vector2f&);
 	bool isDemoEnd();
 
-	J2DPane* mPanes[3];        // _00
-	f32 _0C;                   // _0C
-	f32 _10;                   // _10
-	JGeometry::TVec2f mVec[2]; // _14
-	posInfo mPosInfo[50];      // _24
-	int mMaxPiki;              // _72C
-	f32 _730;                  // _730
+	J2DPane* mPanes[3];   // _00
+	f32 _0C;              // _0C
+	f32 _10;              // _10
+	Vector2f mVec[2];     // _14
+	posInfo mPosInfo[50]; // _24
+	int mMaxPiki;         // _72C
+	f32 _730;             // _730
 };
 
 struct TChallengeDoping {
@@ -305,6 +305,11 @@ struct TChallengeDoping {
 
 	void setLevel(int);
 	void update();
+
+	J2DPane* mPaneBase; // _00
+	J2DPane* mPanes[3]; // _04
+	f32 _10;            // _10
+	f32 _14;            // _14
 };
 
 struct TChallengePanel {
@@ -318,19 +323,19 @@ struct TChallengePanel {
 	void update(int, bool);
 	void startScaleUp();
 
-	int _00;                         // _00
+	JKRArchive* mArchive;            // _00
 	J2DPictureEx* mPane1;            // _04
 	J2DPane* mPane2;                 // _08
 	J2DPane* mPane3;                 // _0C
 	og::Screen::ScaleMgr* mScaleMgr; // _10
 	f32 _14;                         // _14
 	f32 _18;                         // _18
-	int _1C;                         // _1C
-	int _20;                         // _20
+	int mState;                      // _1C
+	int mAfterState;                 // _20
 	bool _24;                        // _24
 	f32 _28;                         // _28
 	f32 _2C;                         // _2C
-	int _30;                         // _30
+	int mIndex;                      // _30
 	f32 _34;                         // _34
 };
 

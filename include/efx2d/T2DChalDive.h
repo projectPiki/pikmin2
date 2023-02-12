@@ -7,7 +7,12 @@
 
 namespace efx2d {
 struct T2DChalDive : public TForever {
-	virtual ~T2DChalDive(); // _34 (weak)
+	T2DChalDive()
+	    : TForever(PID_ChalDive)
+	{
+	}
+
+	virtual ~T2DChalDive() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TForever

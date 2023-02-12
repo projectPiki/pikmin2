@@ -94,6 +94,19 @@ struct TChallengePlayModeScreen : public TScreenBase {
 struct TChallengeSelect : public TTestBase {
 	TChallengeSelect();
 
+	struct DebugStageData {
+		u8 _00;           // _00
+		u8 mIsChange;     // _01
+		u8 _02;           // _02
+		u8 _03;           // _03
+		int mFloors;      // _04
+		int mSpicySpray;  // _08
+		int mBitterSpray; // _0C
+		int mPikis[5];    // _10
+		int mScore1;      // _24
+		int mScore2;      // _28
+	};
+
 	virtual ~TChallengeSelect()
 	{
 		if (mDebugHeap) {
@@ -113,7 +126,7 @@ struct TChallengeSelect : public TTestBase {
 	int getState(int);
 	int getAfterState(int);
 	bool isChangeState(int);
-	void getIndexMax();
+	int getIndexMax();
 	void openWindow();
 	void closeWindow();
 	void reset();
@@ -141,6 +154,7 @@ struct TChallengeSelect : public TTestBase {
 	static f32 mTimerSpeed;        // 0.15f
 	static f32 mMoveSpeed;         // 12.0f
 	static f32 mSelectIconScale;   // 1.5f
+	static ResTIMG* mIconTexture[4];
 
 	// _00     = VTBL1
 	// _18     = VTBL2
@@ -153,15 +167,12 @@ struct TChallengeSelect : public TTestBase {
 	Controller* mControls;                      // _8C
 	DispMemberChallengeSelect* mDisp;           // _90
 	TChallengePanel** mPanelList;               // _94
-	u8** mStageData;                            // _98
+	DebugStageData** mStageData;                // _98
 	TChallengePiki* mChallengePiki[5];          // _9C
-	int _B0;                                    // _B0
-	J2DPane** mPaneList1;                       // _B4
-	TScaleUpCounter* mHighScoreCounter1P;       // _B8
-	TScaleUpCounter* mHighScoreCounter2P;       // _BC
+	TChallengeDoping* mDoping[2];               // _B0
+	TScaleUpCounter* mHighScoreCounter[2];      // _B8
 	TScaleUpCounter* mPikiCounters[5];          // _C0
-	TScaleUpCounter* mDope1Counter;             // _D4
-	TScaleUpCounter* mDope2Counter;             // _D8
+	TScaleUpCounter* mDopeCounter[2];           // _D4
 	TScaleUpCounter* mFloorCounter;             // _DC
 	J2DPane* mPaneTYel[2];                      // _E0
 	J2DPane* mPaneSelect;                       // _E8
@@ -169,13 +180,11 @@ struct TChallengeSelect : public TTestBase {
 	efx2d::T2DChalDive* mEfxDive;               // _F0
 	int _F4;                                    // _F4
 	int _F8;                                    // _F8
-	int _FC;                                    // _FC
-	int mHighScore1P;                           // _100
-	int mHighScore2P;                           // _104
-	int mPikiCounts[5];                         // _108
-	int mDopeCount1;                            // _11C
-	int mDopeCount2;                            // _120
-	int mFloorCount;                            // _124
+	int mCurrentSelection;                      // _FC
+	u32 mHighScoreValue[2];                     // _100
+	u32 mPikiCounts[5];                         // _108
+	u32 mDopeCount[2];                          // _11C
+	u32 mFloorCount;                            // _124
 	bool _128;                                  // _128
 	int mStageSel;                              // _12C
 	int mMaxStages;                             // _130
@@ -218,6 +227,10 @@ struct TChallengeSelectScene : public THIOScene {
 };
 
 struct TChallengeSelectExplanationWindow : public TSelectExplanationWindow {
+	TChallengeSelectExplanationWindow(JKRArchive* arc, int anims)
+	    : TSelectExplanationWindow(arc, anims)
+	{
+	}
 	virtual void create(const char*, u32); // _08
 	virtual void screenScaleUp();          // _14
 
