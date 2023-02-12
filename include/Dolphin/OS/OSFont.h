@@ -48,7 +48,7 @@ BOOL OSInitFont(OSFontHeader* fontInfo);
 char* OSGetFontTexture(char* string, void** image, s32* x, s32* y, s32* width);
 
 // Low-level functions.
-u32 OSLoadFont(OSFontHeader* fontInfo, void* temp);
+u32 OSLoadFont(void* fontInfo, void* temp);
 
 // Unused/inlined in P2.
 char* OSGetFontTexel(char* string, void* image, s32 pos, s32 stride, s32* width);
@@ -56,6 +56,10 @@ char* OSGetFontTexel(char* string, void* image, s32 pos, s32 stride, s32* width)
 //////////////////////////////////
 
 ////////// FONT DEFINES //////////
+#define OS_FONT_ENCODE_NULL -1
+#define OS_FONT_ENCODE_ANSI 0
+#define OS_FONT_ENCODE_SJIS 1
+
 #define OS_FONT_SIZE_ANSI (288 + 131072) // 9 sheets
 #define OS_FONT_SIZE_SJIS (3840 + 1179648) // 1 sheet
 

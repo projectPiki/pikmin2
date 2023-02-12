@@ -130,6 +130,8 @@ extern u32 __OSFpscrEnableBits; /** TODO: find a wrapper for this. Symbol is def
 
 u8 GameChoice AT_ADDRESS(OS_BASE_CACHED | 0x30E3);
 
+volatile int __OSTVMode AT_ADDRESS(OS_BASE_CACHED | 0xCC);
+
 // u32 GameCode : 0x80000000;
 // u32 FSTLocationInRam : 0x80000038;
 

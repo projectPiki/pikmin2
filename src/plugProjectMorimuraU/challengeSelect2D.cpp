@@ -2026,7 +2026,7 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	mDopeCounter[1] = setScaleUpCounter(screen, 'Pekis_r1', &mDopeCount[1], 2, mArchive);
 	mFloorCounter   = setScaleUpCounter(screen, 'Pfloor1', &mFloorCount, 2, mArchive);
 
-	//clang-format off
+	// clang-format off
 	u64 panelTags[3][30]
 	    = { 'Pfl00', 'Pselec00', 'Pana00',
 			'Pfl01', 'Pselec01', 'Pana01',

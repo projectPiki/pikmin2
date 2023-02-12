@@ -28,6 +28,8 @@ vu16 __VIRegs[59] AT_ADDRESS(0xCC002000);
 #define VI_DISP_INT_2 (28) // display interrupt 2
 #define VI_DISP_INT_3 (30) // display interrupt 3
 
+#define VI_DTV_STAT (55)
+
 // Processor Interface registers.
 vu32 __PIRegs[12] AT_ADDRESS(0xCC003000);
 
