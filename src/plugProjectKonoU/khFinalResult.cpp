@@ -1740,12 +1740,12 @@ void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 	JUT_ASSERTLINE(726, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 
-	if (id == 7) {
-		mScreen->search('Nsetp_c')->hide();
-		mScreen->search('Nsetp_d')->show();
-	} else {
+	if (id != 7) {
 		mScreen->search('Nsetp_c')->show();
 		mScreen->search('Nsetp_d')->hide();
+	} else {
+		mScreen->search('Nsetp_c')->hide();
+		mScreen->search('Nsetp_d')->show();
 	}
 	/*
 stwu     r1, -0x160(r1)

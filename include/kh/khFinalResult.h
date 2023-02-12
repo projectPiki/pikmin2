@@ -142,10 +142,10 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 };
 
 struct SceneFinalResult : public ::Screen::SceneBase {
+	virtual const char* getResName() const { return ""; }                // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_FINAL_RESULT; }      // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }              // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_FINAL_RESULT; } // _10 (weak)
-	virtual const char* getResName() const { return ""; }                // _1C (weak)
 	virtual void doCreateObj(JKRArchive*) { }                            // _20 (weak)
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);              // _24
 
