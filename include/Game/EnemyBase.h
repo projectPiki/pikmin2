@@ -643,9 +643,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		bool result = false;
 		Vector3f sep;
-		sep.x = getPosition().x - target->getPosition().x;
-		sep.y = getPosition().y - target->getPosition().y;
-		sep.z = getPosition().z - target->getPosition().z;
+		sep.x = target->getPosition().x - getPosition().x;
+		sep.y = target->getPosition().y - getPosition().y;
+		sep.z = target->getPosition().z - getPosition().z;
 		if ((sep.x * sep.x + sep.y * sep.y + sep.z * sep.z < distRange * distRange) && FABS(angle) <= PI * (DEG2RAD * angRange)) {
 			result = true;
 		}
