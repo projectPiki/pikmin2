@@ -2,6 +2,9 @@
 #include "Game/Entities/ElecBug.h"
 #include "Game/EnemyIterator.h"
 #include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Game/generalEnemyMgr.h"
+#include "Dolphin/rand.h"
 
 /*
     Generated from dpostproc
@@ -303,7 +306,7 @@ void StateDead::init(EnemyBase* enemy, StateArg*)
  * Address:	80279270
  * Size:	000044
  */
-void ElecBug::StateDead::exec(EnemyBase* enemy)
+void StateDead::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
 		enemy->kill(nullptr);
@@ -315,14 +318,14 @@ void ElecBug::StateDead::exec(EnemyBase* enemy)
  * Address:	802792B4
  * Size:	000004
  */
-void ElecBug::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802792B8
  * Size:	00004C
  */
-void ElecBug::StateWait::init(EnemyBase* enemy, StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg*)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	bug->_2C4 = 0.0f;
@@ -336,7 +339,7 @@ void ElecBug::StateWait::init(EnemyBase* enemy, StateArg*)
  * Address:	80279304
  * Size:	0000A0
  */
-void ElecBug::StateWait::exec(EnemyBase* enemy)
+void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	if (bug->_2C4 > CG_PROPERPARMS(bug).mWaitTime) {
@@ -354,14 +357,14 @@ void ElecBug::StateWait::exec(EnemyBase* enemy)
  * Address:	802793A4
  * Size:	000004
  */
-void ElecBug::StateWait::cleanup(Game::EnemyBase*) { }
+void StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802793A8
  * Size:	00005C
  */
-void ElecBug::StateTurn::init(EnemyBase* enemy, StateArg*)
+void StateTurn::init(EnemyBase* enemy, StateArg*)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	bug->setTargetPosition();
@@ -375,26 +378,11 @@ void ElecBug::StateTurn::init(EnemyBase* enemy, StateArg*)
  * Address:	80279404
  * Size:	000200
  */
-void ElecBug::StateTurn::exec(EnemyBase* enemy)
+void StateTurn::exec(EnemyBase* enemy)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	Vector3f targetPos = bug->mTargetPosition;
-	f32 rotSpeed = CG_PARMS(bug)->mGeneral.mRotationalSpeed;
-	Vector3f bugPos = bug->getPosition();
-	f32 angle = roundAng(JMath::atanTable_.atan2_(bugPos.x - targetPos.x, bugPos.z - targetPos.z));
-
-	f32 dist = angDist(angle, bug->getFaceDir());
-	f32 movement = FABS(dist * DEG2RAD * PI * rotSpeed);
-	if (movement < 0.0f) {
-		movement = -movement;
-	}
-	f32 faceDir = roundAng(bug->getFaceDir() + movement);
-
-	bug->mFaceDir = faceDir;
-	bug->mRotation.y = bug->mFaceDir;
-	if (movement <= ((30.0f / 180.0f) * PI)) {
-		bug->finishMotion();
-	}
+	bug->turnToTarget2(targetPos, CG_PARMS(bug)->mGeneral.mRotationalSpeed, 30.0f);
 	if (bug->_2C0 > 15.0f) {
 		bug->finishMotion();
 	}
@@ -413,14 +401,14 @@ void ElecBug::StateTurn::exec(EnemyBase* enemy)
  * Address:	80279604
  * Size:	000004
  */
-void ElecBug::StateTurn::cleanup(Game::EnemyBase*) { }
+void StateTurn::cleanup(EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80279608
  * Size:	00003C
  */
-void ElecBug::StateMove::init(EnemyBase* enemy, StateArg*)
+void StateMove::init(EnemyBase* enemy, StateArg*)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	bug->enableEvent(0, EB_IsCullable);
@@ -432,99 +420,36 @@ void ElecBug::StateMove::init(EnemyBase* enemy, StateArg*)
  * Address:	80279644
  * Size:	00013C
  */
-void ElecBug::StateMove::exec(Game::EnemyBase*)
+void StateMove::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	addi     r3, r1, 8
-	lfs      f1, 0x2cc(r4)
-	lfs      f2, 0x2d0(r4)
-	lfs      f0, 0x2c8(r4)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f2, 0x1c(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x10(r1)
-	lfs      f0, 0x1c(r1)
-	lfs      f2, 8(r1)
-	fsubs    f3, f1, f0
-	lfs      f1, 0x14(r1)
-	lfs      f0, lbl_8051B49C@sda21(r2)
-	fsubs    f2, f2, f1
-	fmuls    f1, f3, f3
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_802796D8
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	lfs      f1, 0x2e4(r5)
-	lfs      f2, 0x30c(r5)
-	lfs      f3, 0x334(r5)
-	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff" b
-lbl_802796E0
+	Obj* bug = static_cast<Obj*>(enemy);
+	// how tf u setting it then?????
+	Vector3f targetPos = bug->mTargetPosition;
 
-lbl_802796D8:
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	Vector3f currentPos = bug->getPosition();
+	if (outsideRadius(25.0f, targetPos, currentPos)) {
+		EnemyParmsBase::Parms& general = CG_PARMS(bug)->mGeneral;
+		EnemyFunc::walkToTarget(bug, targetPos, 
+		general.mMoveSpeed,
+		general.mRotationalAccel,
+		general.mRotationalSpeed);
 
-lbl_802796E0:
-	lfs      f1, 0x2c0(r31)
-	lfs      f0, lbl_8051B498@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802796F8
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	}
+	else {
+		bug->finishMotion();
+	}
+	if (bug->_2C0 > 15.0f) {
+		bug->finishMotion();
+	}
+	if (bug->mCurAnim->mIsPlaying && bug->mCurAnim->mType == KEYEVENT_END) {
+		if (bug->_2C0 > 15.0f) {
+			transit(bug, ELECBUG_Charge, nullptr);
+		}
+		else {
+			transit(bug, ELECBUG_Wait, nullptr);
+		}
+	}
 
-lbl_802796F8:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80279768
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80279768
-	lfs      f1, 0x2c0(r31)
-	lfs      f0, lbl_8051B498@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80279748
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80279768
-
-lbl_80279748:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80279768:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -532,48 +457,24 @@ lbl_80279768:
  * Address:	80279780
  * Size:	000004
  */
-void ElecBug::StateMove::cleanup(Game::EnemyBase*) { }
+void StateMove::cleanup(EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80279784
  * Size:	00007C
  */
-void ElecBug::StateCharge::init(Game::EnemyBase*, Game::StateArg*)
+void StateCharge::init(EnemyBase* enemy, StateArg*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B488@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stb      r0, 0x2d4(r4)
-	stfs     f0, 0x2c4(r4)
-	bl       resetPartnerPtr__Q34Game7ElecBug3ObjFv
-	mr       r3, r31
-	bl       startChargeEffect__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051B488@sda21(r2)
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bug = static_cast<Obj*>(enemy);
+	bug->mHadLookedForPartner = false;
+	bug->_2C4 = 0.0f;
+	bug->resetPartnerPtr();
+	bug->startChargeEffect();
+	bug->enableEvent(0, EB_IsCullable);
+	bug->mTargetVelocity = Vector3f(0.0f);
+	bug->setEmotionExcitement();
+	bug->startMotion(3, nullptr);
 }
 
 /*
@@ -581,391 +482,53 @@ void ElecBug::StateCharge::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80279800
  * Size:	000554
  */
-void ElecBug::StateCharge::exec(Game::EnemyBase*)
+void StateCharge::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x160(r1)
-	mflr     r0
-	stw      r0, 0x164(r1)
-	stfd     f31, 0x150(r1)
-	psq_st   f31, 344(r1), 0, qr0
-	stfd     f30, 0x140(r1)
-	psq_st   f30, 328(r1), 0, qr0
-	stfd     f29, 0x130(r1)
-	psq_st   f29, 312(r1), 0, qr0
-	stfd     f28, 0x120(r1)
-	psq_st   f28, 296(r1), 0, qr0
-	stfd     f27, 0x110(r1)
-	psq_st   f27, 280(r1), 0, qr0
-	stmw     r27, 0xfc(r1)
-	lbz      r0, 0x2d4(r4)
-	mr       r29, r3
-	mr       r31, r4
-	cmplwi   r0, 0
-	bne      lbl_80279B64
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, lbl_8051B4A0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80279B64
-	li       r0, 1
-	addi     r3, r1, 0x44
-	stb      r0, 0x2d4(r31)
-	li       r30, 0
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f30, 0x44(r1)
-	li       r4, 0x1c
-	lfs      f31, 0x48(r1)
-	lfs      f29, 0x4c(r1)
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	bl       getEnemyMgr__Q24Game15GeneralEnemyMgrFi
-	cmplwi   r3, 0
-	beq      lbl_80279AF0
-	beq      lbl_802798A4
-	addi     r3, r3, 4
-
-lbl_802798A4:
-	li       r0, 0
-	lis      r4, "__vt__Q24Game34EnemyIterator<Q34Game7ElecBug3Obj>"@ha
-	addi     r4, r4, "__vt__Q24Game34EnemyIterator<Q34Game7ElecBug3Obj>"@l
-	stw      r0, 0x5c(r1)
-	cmplwi   r0, 0
-	stw      r4, 0x50(r1)
-	stw      r0, 0x54(r1)
-	stw      r3, 0x58(r1)
-	bne      lbl_802798E0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x54(r1)
-	b        lbl_80279968
-
-lbl_802798E0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x54(r1)
-	b        lbl_8027994C
-
-lbl_802798F8:
-	lwz      r3, 0x58(r1)
-	lwz      r4, 0x54(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x5c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80279968
-	lwz      r3, 0x58(r1)
-	lwz      r4, 0x54(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x54(r1)
-
-lbl_8027994C:
-	lwz      r12, 0x50(r1)
-	addi     r3, r1, 0x50
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802798F8
-
-lbl_80279968:
-	addi     r27, r1, 0x60
-	b        lbl_80279AD0
-
-lbl_80279970:
-	lwz      r3, 0x58(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
-	cmplw    r31, r28
-	beq      lbl_80279A14
-	bl       isBecomeChargeState__Q34Game7ElecBug3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80279A14
-	mr       r4, r28
-	addi     r3, r1, 0x38
-	lwz      r12, 0(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x3c(r1)
-	lfs      f2, 0x38(r1)
-	fsubs    f3, f31, f0
-	lfs      f1, 0x40(r1)
-	fsubs    f2, f30, f2
-	lfs      f0, lbl_8051B488@sda21(r2)
-	fsubs    f1, f29, f1
-	fmuls    f3, f3, f3
-	fmuls    f4, f1, f1
-	fmadds   f1, f2, f2, f3
-	fadds    f1, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_802799F8
-	ble      lbl_802799FC
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_802799FC
-
-lbl_802799F8:
-	fmr      f1, f0
-
-lbl_802799FC:
-	lfs      f0, lbl_8051B4A4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80279A14
-	stw      r28, 0(r27)
-	addi     r27, r27, 4
-	addi     r30, r30, 1
-
-lbl_80279A14:
-	lwz      r0, 0x5c(r1)
-	cmplwi   r0, 0
-	bne      lbl_80279A40
-	lwz      r3, 0x58(r1)
-	lwz      r4, 0x54(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x54(r1)
-	b        lbl_80279AD0
-
-lbl_80279A40:
-	lwz      r3, 0x58(r1)
-	lwz      r4, 0x54(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x54(r1)
-	b        lbl_80279AB4
-
-lbl_80279A60:
-	lwz      r3, 0x58(r1)
-	lwz      r4, 0x54(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x5c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80279AD0
-	lwz      r3, 0x58(r1)
-	lwz      r4, 0x54(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x54(r1)
-
-lbl_80279AB4:
-	lwz      r12, 0x50(r1)
-	addi     r3, r1, 0x50
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80279A60
-
-lbl_80279AD0:
-	lwz      r3, 0x58(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x54(r1)
-	cmplw    r4, r3
-	bne      lbl_80279970
-
-lbl_80279AF0:
-	cmpwi    r30, 0
-	beq      lbl_80279B64
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r5, 0x4330
-	stw      r0, 0xe4(r1)
-	xoris    r0, r30, 0x8000
-	lfd      f2, lbl_8051B4B8@sda21(r2)
-	addi     r4, r1, 0x60
-	stw      r5, 0xe0(r1)
-	mr       r3, r31
-	lfs      f0, lbl_8051B4A8@sda21(r2)
-	lfd      f1, 0xe0(r1)
-	stw      r0, 0xec(r1)
-	fsubs    f1, f1, f2
-	stw      r5, 0xe8(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0xe8(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0xf0(r1)
-	lwz      r0, 0xf4(r1)
-	slwi     r0, r0, 2
-	lwzx     r4, r4, r0
-	bl       startChargeState__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-
-lbl_80279B64:
-	lwz      r28, 0x2d8(r31)
-	cmplwi   r28, 0
-	beq      lbl_80279C9C
-	mr       r4, r31
-	addi     r3, r1, 0x2c
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r28
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r28)
-	lfs      f29, 0x2c(r1)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x34(r1)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x20(r1)
-	mr       r4, r31
-	lfs      f0, 0x28(r1)
-	addi     r3, r1, 0x14
-	fsubs    f28, f29, f1
-	lwz      r12, 0(r31)
-	fsubs    f27, f30, f0
-	lwz      r5, 0xc0(r31)
-	lwz      r12, 8(r12)
-	fadds    f28, f28, f29
-	fadds    f27, f27, f30
-	lfs      f31, 0x334(r5)
-	mtctr    r12
-	bctrl
-	lfs      f4, 0x14(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x1c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f3, 0x18(r1)
-	fsubs    f1, f28, f4
-	fsubs    f2, f27, f0
-	stfs     f4, 8(r1)
-	stfs     f3, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f30, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f30
-	bl       angDist__Fff
-	lfs      f2, lbl_8051B4AC@sda21(r2)
-	lfs      f0, lbl_8051B490@sda21(r2)
-	fmuls    f30, f1, f2
-	lfs      f1, lbl_8051B48C@sda21(r2)
-	fmuls    f0, f0, f31
-	fabs     f2, f30
-	fmuls    f1, f1, f0
-	frsp     f0, f2
-	fcmpo    cr0, f0, f1
-	ble      lbl_80279C74
-	lfs      f0, lbl_8051B488@sda21(r2)
-	fcmpo    cr0, f30, f0
-	ble      lbl_80279C70
-	fmr      f30, f1
-	b        lbl_80279C74
-
-lbl_80279C70:
-	fneg     f30, f1
-
-lbl_80279C74:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f30, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x1a8(r31)
-
-lbl_80279C9C:
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, lbl_8051B4B0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80279D04
-	lwz      r0, 0x2d8(r31)
-	cmplwi   r0, 0
-	beq      lbl_80279CDC
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80279D04
-
-lbl_80279CDC:
-	mr       r3, r31
-	bl       finishPartnerAndEffect__Q34Game7ElecBug3ObjFv
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80279D04:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	psq_l    f31, 344(r1), 0, qr0
-	lfd      f31, 0x150(r1)
-	psq_l    f30, 328(r1), 0, qr0
-	lfd      f30, 0x140(r1)
-	psq_l    f29, 312(r1), 0, qr0
-	lfd      f29, 0x130(r1)
-	psq_l    f28, 296(r1), 0, qr0
-	lfd      f28, 0x120(r1)
-	psq_l    f27, 280(r1), 0, qr0
-	lfd      f27, 0x110(r1)
-	lmw      r27, 0xfc(r1)
-	lwz      r0, 0x164(r1)
-	mtlr     r0
-	addi     r1, r1, 0x160
-	blr
-	*/
+	Obj* bug = static_cast<Obj*>(enemy);
+	Obj* seachingBugs[32];
+	u8 bugCount = 0;
+	if (!bug->mHadLookedForPartner && bug->_2C4 >= 2.0f) {
+		bug->mHadLookedForPartner = true;
+		Vector3f bugPos = bug->getPosition();
+		Mgr* mgr = static_cast<Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ElecBug));
+		if (mgr) { // sanity check moment
+			EnemyIterator<Obj> iElecBug = ((Container<Obj>*)(GenericContainer*)(mgr)); // this is correct... /shrug
+			CI_LOOP(iElecBug) {
+				Obj* otherBug = *iElecBug;
+				if (bug != otherBug && otherBug->isBecomeChargeState()) {
+					Vector3f otherPos = otherBug->getPosition();
+					if (_distanceBetween(bugPos, otherPos) < 300.0f) {
+						seachingBugs[bugCount] = otherBug;
+						bugCount++;
+					}
+				}
+			}
+		}
+		if (bugCount > 0) {
+			Obj* randBug = seachingBugs[(int)(randFloat() * bugCount)];
+			bug->startChargeState(randBug);
+			bug->disableEvent(0, EB_IsCullable);
+		}
+	}
+	Obj* partner = bug->mPartner;
+	if (partner) {
+		Vector3f partnerPos = partner->getPosition();
+		partner->turnToTarget2(
+			partnerPos,
+			0.15f,
+			CG_PARMS(bug)->mGeneral.mRotationalSpeed.mValue
+		);
+	}
+	if (bug->_2C4 >= 3.0f) {
+		if (!bug->mPartner) {
+			bug->finishPartnerAndEffect();
+			transit(bug, ELECBUG_Turn, nullptr);
+		}
+		else {
+			transit(bug, ELECBUG_Discharge, nullptr);
+		}
+	}
+	bug->_2C4 += sys->mDeltaTime;
 }
 
 /*
@@ -973,65 +536,18 @@ lbl_80279D04:
  * Address:	80279D54
  * Size:	00004C
  */
-bool EnemyIterator<Game::ElecBug::Obj>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 /*
  * --INFO--
  * Address:	80279DA0
  * Size:	000064
  */
-void ElecBug::StateCharge::cleanup(Game::EnemyBase*)
+void StateCharge::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051B4B8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_8051B4C0@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_8051B4A8@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f0, f1, f0
-	stfs     f0, 0x2c0(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Obj* bug = static_cast<Obj*>(enemy);
+	bug->setEmotionCaution();
+	bug->_2C0 = randWeightFloat(10.0f);
+	
 }
 
 /*
@@ -1039,34 +555,9 @@ void ElecBug::StateCharge::cleanup(Game::EnemyBase*)
  * Address:	80279E04
  * Size:	000060
  */
-void ElecBug::StateDischarge::init(Game::EnemyBase*, Game::StateArg*)
+void StateDischarge::init(EnemyBase* enemy, StateArg*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B488@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c4(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+
 }
 
 /*
@@ -1756,174 +1247,17 @@ void ElecBug::StateReturn::cleanup(Game::EnemyBase*) { }
  * Address:	8027A630
  * Size:	000038
  */
-Game::ElecBug::Obj* EnemyIterator<Game::ElecBug::Obj>::operator*()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 /*
  * --INFO--
  * Address:	8027A668
  * Size:	0000E4
  */
-void EnemyIterator<Game::ElecBug::Obj>::next()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8027A6A8
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8027A738
-
-lbl_8027A6A8:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8027A71C
-
-lbl_8027A6C8:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8027A738
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_8027A71C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027A6C8
-
-lbl_8027A738:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 /*
  * --INFO--
  * Address:	8027A74C
  * Size:	0000DC
  */
-void EnemyIterator<Game::ElecBug::Obj>::first()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8027A788
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8027A814
-
-lbl_8027A788:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8027A7F8
-
-lbl_8027A7A4:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8027A814
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_8027A7F8:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027A7A4
-
-lbl_8027A814:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 } // namespace ElecBug
 } // namespace Game

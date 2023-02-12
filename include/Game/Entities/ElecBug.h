@@ -49,7 +49,7 @@ struct Obj : public EnemyBase {
 
 	void setTargetPosition();
 	void resetPartnerPtr();
-	void isBecomeChargeState();
+	bool isBecomeChargeState();
 	void startChargeState(Obj*);
 	void startChildChargeState(Obj*);
 	void createEffect();
@@ -67,7 +67,7 @@ struct Obj : public EnemyBase {
 	f32 _2C0;                 // _2C0, unknown
 	f32 _2C4;                 // _2C4, timer?
 	Vector3f mTargetPosition; // _2C8
-	u8 _2D4;                  // _2D4, unknown
+	bool mHadLookedForPartner;                  // _2D4, unknown
 	Obj* mPartner;            // _2D8
 	efx::TDnkmsEffect* _2DC;  // _2DC
 	                          // _2E0 = PelletView
