@@ -140,18 +140,29 @@ void Obj::setRandTarget(bool check)
  */
 Vector3f Obj::getTargetPosition(Creature* creature)
 {
-	Vector3f creaturePos = creature->getPosition();
 	Vector3f tadpolePos  = getPosition();
+	Vector3f creaturePos = creature->getPosition();
+	Vector3f homePos     = mHomePosition;
 
-	Vector3f diff = creaturePos - tadpolePos;
-	diff.y        = 0.0f;
-	_normalise(diff);
+	Vector3f targetPos = tadpolePos - creaturePos;
+	targetPos.y        = 0.0f;
 
-	f32 moveSpeed = C_PARMS->mGeneral.mMoveSpeed.mValue;
-	diff          = Vector3f(diff.x * moveSpeed + creaturePos.x, diff.y * moveSpeed + creaturePos.y, diff.z * moveSpeed + creaturePos.z);
-	_normalise(diff);
+	_normalise(targetPos);
 
-	return diff;
+	targetPos   = targetPos * C_PARMS->mGeneral.mMoveSpeed.mValue + tadpolePos;
+	f32 terrRad = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+
+	if (sqrDistanceXZ(targetPos, homePos) > terrRad * terrRad) {
+		targetPos.x -= homePos.x;
+		targetPos.y = 0.0f;
+		targetPos.z -= homePos.z;
+
+		_normalise(targetPos);
+		targetPos *= terrRad;
+		targetPos += homePos;
+	}
+
+	return targetPos;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
