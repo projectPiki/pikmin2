@@ -5,46 +5,56 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80495A70:
+.obj lbl_80495A70, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80495A70
 .balign 4
-lbl_80495A7C:
+.obj lbl_80495A7C, local
 	.asciz "particle2dMgr"
+.endobj lbl_80495A7C
 .balign 4
-lbl_80495A8C:
+.obj lbl_80495A8C, local
 	.asciz "TParticle2dMgr"
+.endobj lbl_80495A8C
 .balign 4
-lbl_80495A9C:
+.obj lbl_80495A9C, local
 	.asciz "TParticle2dMgr::createHeap"
+.endobj lbl_80495A9C
 .balign 4
-lbl_80495AB8:
+.obj lbl_80495AB8, local
 	.asciz "particle2dMgr.cpp"
+.endobj lbl_80495AB8
 .balign 4
-lbl_80495ACC:
+.obj lbl_80495ACC, local
 	.asciz "P2Assert"
+.endobj lbl_80495ACC
 .balign 4
-lbl_80495AD8:
+.obj lbl_80495AD8, local
 	.asciz "effect heap not allocated !\n"
+.endobj lbl_80495AD8
 .balign 4
-lbl_80495AF8:
+.obj lbl_80495AF8, local
 	.asciz "TParticle2dMgr::createMgr"
+.endobj lbl_80495AF8
 .balign 4
-lbl_80495B14:
+.obj lbl_80495B14, local
 	.asciz "ParticleResource (%s) not found\n"
+.endobj lbl_80495B14
 .balign 4
-lbl_80495B38:
+.obj lbl_80495B38, local
 	.asciz "IP2_dummy"
+.endobj lbl_80495B38
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__14TParticle2dMgr
-__vt__14TParticle2dMgr:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__14TParticle2dMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14TParticle2dMgrFv
@@ -52,36 +62,41 @@ __vt__14TParticle2dMgr:
 	.4byte 0
 	.4byte 0
 	.4byte "@24@__dt__14TParticle2dMgrFv"
+.endobj __vt__14TParticle2dMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global particle2dMgr
-particle2dMgr:
+.endobj gfNAN___Q24Game5P2JST
+.obj particle2dMgr, global
 	.skip 0x4
-.global _instance__14TParticle2dMgr
-_instance__14TParticle2dMgr:
+.endobj particle2dMgr
+.obj _instance__14TParticle2dMgr, global
 	.skip 0x4
+.endobj _instance__14TParticle2dMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F6C0:
+.obj lbl_8051F6C0, local
 	.float 0.0
-lbl_8051F6C4:
+.endobj lbl_8051F6C0
+.obj lbl_8051F6C4, local
 	.float 0.5
-lbl_8051F6C8:
+.endobj lbl_8051F6C4
+.obj lbl_8051F6C8, local
 	.float -0.5
+.endobj lbl_8051F6C8
 .balign 8
-lbl_8051F6D0:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_8051F6D0, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051F6D0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__14TParticle2dMgrFv
-__dt__14TParticle2dMgrFv:
+.fn __dt__14TParticle2dMgrFv, global
 /* 803B9064 003B5FA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B9068 003B5FA8  7C 08 02 A6 */	mflr r0
 /* 803B906C 003B5FAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -116,9 +131,9 @@ __dt__14TParticle2dMgrFv:
 /* 803B90DC 003B601C  7C 08 03 A6 */	mtlr r0
 /* 803B90E0 003B6020  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B90E4 003B6024  4E 80 00 20 */	blr 
+.endfn __dt__14TParticle2dMgrFv
 
-.global globalInstance__14TParticle2dMgrFv
-globalInstance__14TParticle2dMgrFv:
+.fn globalInstance__14TParticle2dMgrFv, global
 /* 803B90E8 003B6028  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B90EC 003B602C  7C 08 02 A6 */	mflr r0
 /* 803B90F0 003B6030  90 01 00 14 */	stw r0, 0x14(r1)
@@ -128,9 +143,9 @@ globalInstance__14TParticle2dMgrFv:
 /* 803B9100 003B6040  7C 08 03 A6 */	mtlr r0
 /* 803B9104 003B6044  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B9108 003B6048  4E 80 00 20 */	blr 
+.endfn globalInstance__14TParticle2dMgrFv
 
-.global Instance__14TParticle2dMgrFv
-Instance__14TParticle2dMgrFv:
+.fn Instance__14TParticle2dMgrFv, global
 /* 803B910C 003B604C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B9110 003B6050  7C 08 02 A6 */	mflr r0
 /* 803B9114 003B6054  90 01 00 14 */	stw r0, 0x14(r1)
@@ -151,9 +166,9 @@ Instance__14TParticle2dMgrFv:
 /* 803B9148 003B6088  7C 08 03 A6 */	mtlr r0
 /* 803B914C 003B608C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B9150 003B6090  4E 80 00 20 */	blr 
+.endfn Instance__14TParticle2dMgrFv
 
-.global deleteInstance__14TParticle2dMgrFv
-deleteInstance__14TParticle2dMgrFv:
+.fn deleteInstance__14TParticle2dMgrFv, global
 /* 803B9154 003B6094  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B9158 003B6098  7C 08 02 A6 */	mflr r0
 /* 803B915C 003B609C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -176,9 +191,9 @@ deleteInstance__14TParticle2dMgrFv:
 /* 803B9198 003B60D8  7C 08 03 A6 */	mtlr r0
 /* 803B919C 003B60DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B91A0 003B60E0  4E 80 00 20 */	blr 
+.endfn deleteInstance__14TParticle2dMgrFv
 
-.global __ct__14TParticle2dMgrFv
-__ct__14TParticle2dMgrFv:
+.fn __ct__14TParticle2dMgrFv, global
 /* 803B91A4 003B60E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B91A8 003B60E8  7C 08 02 A6 */	mflr r0
 /* 803B91AC 003B60EC  3C 80 80 4F */	lis r4, __vt__5CNode@ha
@@ -213,9 +228,9 @@ __ct__14TParticle2dMgrFv:
 /* 803B9220 003B6160  7C 08 03 A6 */	mtlr r0
 /* 803B9224 003B6164  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B9228 003B6168  4E 80 00 20 */	blr 
+.endfn __ct__14TParticle2dMgrFv
 
-.global createHeap__14TParticle2dMgrFUl
-createHeap__14TParticle2dMgrFUl:
+.fn createHeap__14TParticle2dMgrFUl, global
 /* 803B922C 003B616C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B9230 003B6170  7C 08 02 A6 */	mflr r0
 /* 803B9234 003B6174  3C A0 80 49 */	lis r5, lbl_80495A70@ha
@@ -254,9 +269,9 @@ createHeap__14TParticle2dMgrFUl:
 /* 803B92B4 003B61F4  7C 08 03 A6 */	mtlr r0
 /* 803B92B8 003B61F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B92BC 003B61FC  4E 80 00 20 */	blr 
+.endfn createHeap__14TParticle2dMgrFUl
 
-.global createMgr__14TParticle2dMgrFPcUlUlUl
-createMgr__14TParticle2dMgrFPcUlUlUl:
+.fn createMgr__14TParticle2dMgrFPcUlUlUl, global
 /* 803B92C0 003B6200  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B92C4 003B6204  7C 08 02 A6 */	mflr r0
 /* 803B92C8 003B6208  90 01 00 34 */	stw r0, 0x34(r1)
@@ -346,9 +361,9 @@ createMgr__14TParticle2dMgrFPcUlUlUl:
 /* 803B9408 003B6348  7C 08 03 A6 */	mtlr r0
 /* 803B940C 003B634C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B9410 003B6350  4E 80 00 20 */	blr 
+.endfn createMgr__14TParticle2dMgrFPcUlUlUl
 
-.global setSceneEmitterAndResourceManager__14TParticle2dMgrFP17JPAEmitterManagerP18JPAResourceManager
-setSceneEmitterAndResourceManager__14TParticle2dMgrFP17JPAEmitterManagerP18JPAResourceManager:
+.fn setSceneEmitterAndResourceManager__14TParticle2dMgrFP17JPAEmitterManagerP18JPAResourceManager, global
 /* 803B9414 003B6354  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B9418 003B6358  7C 08 02 A6 */	mflr r0
 /* 803B941C 003B635C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -393,9 +408,9 @@ setSceneEmitterAndResourceManager__14TParticle2dMgrFP17JPAEmitterManagerP18JPARe
 /* 803B94B4 003B63F4  7C 08 03 A6 */	mtlr r0
 /* 803B94B8 003B63F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B94BC 003B63FC  4E 80 00 20 */	blr 
+.endfn setSceneEmitterAndResourceManager__14TParticle2dMgrFP17JPAEmitterManagerP18JPAResourceManager
 
-.global clearSceneEmitterAndResourceManager__14TParticle2dMgrFv
-clearSceneEmitterAndResourceManager__14TParticle2dMgrFv:
+.fn clearSceneEmitterAndResourceManager__14TParticle2dMgrFv, global
 /* 803B94C0 003B6400  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B94C4 003B6404  7C 08 02 A6 */	mflr r0
 /* 803B94C8 003B6408  38 80 00 01 */	li r4, 1
@@ -427,9 +442,9 @@ clearSceneEmitterAndResourceManager__14TParticle2dMgrFv:
 /* 803B952C 003B646C  7C 08 03 A6 */	mtlr r0
 /* 803B9530 003B6470  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B9534 003B6474  4E 80 00 20 */	blr 
+.endfn clearSceneEmitterAndResourceManager__14TParticle2dMgrFv
 
-.global setSceneResourceManager__14TParticle2dMgrFP18JPAResourceManager
-setSceneResourceManager__14TParticle2dMgrFP18JPAResourceManager:
+.fn setSceneResourceManager__14TParticle2dMgrFP18JPAResourceManager, global
 /* 803B9538 003B6478  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B953C 003B647C  7C 08 02 A6 */	mflr r0
 /* 803B9540 003B6480  90 01 00 14 */	stw r0, 0x14(r1)
@@ -450,9 +465,9 @@ setSceneResourceManager__14TParticle2dMgrFP18JPAResourceManager:
 /* 803B957C 003B64BC  7C 08 03 A6 */	mtlr r0
 /* 803B9580 003B64C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B9584 003B64C4  4E 80 00 20 */	blr 
+.endfn setSceneResourceManager__14TParticle2dMgrFP18JPAResourceManager
 
-.global clearSceneResourceManager__14TParticle2dMgrFv
-clearSceneResourceManager__14TParticle2dMgrFv:
+.fn clearSceneResourceManager__14TParticle2dMgrFv, global
 /* 803B9588 003B64C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B958C 003B64CC  7C 08 02 A6 */	mflr r0
 /* 803B9590 003B64D0  38 80 00 01 */	li r4, 1
@@ -463,9 +478,9 @@ clearSceneResourceManager__14TParticle2dMgrFv:
 /* 803B95A4 003B64E4  7C 08 03 A6 */	mtlr r0
 /* 803B95A8 003B64E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B95AC 003B64EC  4E 80 00 20 */	blr 
+.endfn clearSceneResourceManager__14TParticle2dMgrFv
 
-.global update__14TParticle2dMgrFv
-update__14TParticle2dMgrFv:
+.fn update__14TParticle2dMgrFv, global
 /* 803B95B0 003B64F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B95B4 003B64F4  7C 08 02 A6 */	mflr r0
 /* 803B95B8 003B64F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -475,9 +490,9 @@ update__14TParticle2dMgrFv:
 /* 803B95C8 003B6508  7C 08 03 A6 */	mtlr r0
 /* 803B95CC 003B650C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B95D0 003B6510  4E 80 00 20 */	blr 
+.endfn update__14TParticle2dMgrFv
 
-.global draw__14TParticle2dMgrFUcUs
-draw__14TParticle2dMgrFUcUs:
+.fn draw__14TParticle2dMgrFUcUs, global
 /* 803B95D4 003B6514  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 803B95D8 003B6518  7C 08 02 A6 */	mflr r0
 /* 803B95DC 003B651C  90 01 01 34 */	stw r0, 0x134(r1)
@@ -562,9 +577,9 @@ draw__14TParticle2dMgrFUcUs:
 /* 803B9710 003B6650  7C 08 03 A6 */	mtlr r0
 /* 803B9714 003B6654  38 21 01 30 */	addi r1, r1, 0x130
 /* 803B9718 003B6658  4E 80 00 20 */	blr 
+.endfn draw__14TParticle2dMgrFUcUs
 
-.global "create__14TParticle2dMgrFUsR10Vector2<f>UcUc"
-"create__14TParticle2dMgrFUsR10Vector2<f>UcUc":
+.fn "create__14TParticle2dMgrFUsR10Vector2<f>UcUc", global
 /* 803B971C 003B665C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B9720 003B6660  7C 08 02 A6 */	mflr r0
 /* 803B9724 003B6664  C0 02 13 60 */	lfs f0, lbl_8051F6C0@sda21(r2)
@@ -584,9 +599,9 @@ draw__14TParticle2dMgrFUcUs:
 /* 803B975C 003B669C  7C 08 03 A6 */	mtlr r0
 /* 803B9760 003B66A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B9764 003B66A4  4E 80 00 20 */	blr 
+.endfn "create__14TParticle2dMgrFUsR10Vector2<f>UcUc"
 
-.global kill__14TParticle2dMgrFP14JPABaseEmitter
-kill__14TParticle2dMgrFP14JPABaseEmitter:
+.fn kill__14TParticle2dMgrFP14JPABaseEmitter, global
 /* 803B9768 003B66A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B976C 003B66AC  7C 08 02 A6 */	mflr r0
 /* 803B9770 003B66B0  28 04 00 00 */	cmplwi r4, 0
@@ -599,9 +614,9 @@ kill__14TParticle2dMgrFP14JPABaseEmitter:
 /* 803B9788 003B66C8  7C 08 03 A6 */	mtlr r0
 /* 803B978C 003B66CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B9790 003B66D0  4E 80 00 20 */	blr 
+.endfn kill__14TParticle2dMgrFP14JPABaseEmitter
 
-.global fade__14TParticle2dMgrFP14JPABaseEmitter
-fade__14TParticle2dMgrFP14JPABaseEmitter:
+.fn fade__14TParticle2dMgrFP14JPABaseEmitter, global
 /* 803B9794 003B66D4  28 04 00 00 */	cmplwi r4, 0
 /* 803B9798 003B66D8  4D 82 00 20 */	beqlr 
 /* 803B979C 003B66DC  80 64 00 F4 */	lwz r3, 0xf4(r4)
@@ -610,9 +625,9 @@ fade__14TParticle2dMgrFP14JPABaseEmitter:
 /* 803B97A8 003B66E8  90 64 00 F4 */	stw r3, 0xf4(r4)
 /* 803B97AC 003B66EC  90 04 00 24 */	stw r0, 0x24(r4)
 /* 803B97B0 003B66F0  4E 80 00 20 */	blr 
+.endfn fade__14TParticle2dMgrFP14JPABaseEmitter
 
-.global killAll__14TParticle2dMgrFv
-killAll__14TParticle2dMgrFv:
+.fn killAll__14TParticle2dMgrFv, global
 /* 803B97B4 003B66F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B97B8 003B66F8  7C 08 02 A6 */	mflr r0
 /* 803B97BC 003B66FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -622,9 +637,9 @@ killAll__14TParticle2dMgrFv:
 /* 803B97CC 003B670C  7C 08 03 A6 */	mtlr r0
 /* 803B97D0 003B6710  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B97D4 003B6714  4E 80 00 20 */	blr 
+.endfn killAll__14TParticle2dMgrFv
 
-.global killGroup__14TParticle2dMgrFUc
-killGroup__14TParticle2dMgrFUc:
+.fn killGroup__14TParticle2dMgrFUc, global
 /* 803B97D8 003B6718  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B97DC 003B671C  7C 08 02 A6 */	mflr r0
 /* 803B97E0 003B6720  54 84 06 3E */	clrlwi r4, r4, 0x18
@@ -635,8 +650,9 @@ killGroup__14TParticle2dMgrFUc:
 /* 803B97F4 003B6734  7C 08 03 A6 */	mtlr r0
 /* 803B97F8 003B6738  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B97FC 003B673C  4E 80 00 20 */	blr 
+.endfn killGroup__14TParticle2dMgrFUc
 
-__sinit_particle2dMgr_cpp: # static initializer
+.fn __sinit_particle2dMgr_cpp, local
 /* 803B9800 003B6740  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803B9804 003B6744  38 00 FF FF */	li r0, -1
 /* 803B9808 003B6748  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -647,8 +663,9 @@ __sinit_particle2dMgr_cpp: # static initializer
 /* 803B981C 003B675C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803B9820 003B6760  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803B9824 003B6764  4E 80 00 20 */	blr 
+.endfn __sinit_particle2dMgr_cpp
 
-.global "@24@__dt__14TParticle2dMgrFv"
-"@24@__dt__14TParticle2dMgrFv":
+.fn "@24@__dt__14TParticle2dMgrFv", weak
 /* 803B9828 003B6768  38 63 FF E8 */	addi r3, r3, -24
 /* 803B982C 003B676C  4B FF F8 38 */	b __dt__14TParticle2dMgrFv
+.endfn "@24@__dt__14TParticle2dMgrFv"

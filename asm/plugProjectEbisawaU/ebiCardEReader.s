@@ -1,51 +1,58 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497978:
+.obj lbl_80497978, local
 	.asciz "ebiCardEReader"
+.endobj lbl_80497978
 .balign 4
-lbl_80497988:
+.obj lbl_80497988, local
 	.asciz "ebiCardEReader.cpp"
+.endobj lbl_80497988
 .balign 4
-lbl_8049799C:
+.obj lbl_8049799C, local
 	.asciz "P2Assert"
+.endobj lbl_8049799C
 .balign 4
-lbl_804979A8:
+.obj lbl_804979A8, local
 	.asciz "user/Ebisawa/card_e_reader/pp1.dwn"
+.endobj lbl_804979A8
 .balign 4
-lbl_804979CC:
+.obj lbl_804979CC, local
 	.asciz "user/Ebisawa/card_e_reader/pp2.dwn"
+.endobj lbl_804979CC
 .balign 4
-lbl_804979F0:
+.obj lbl_804979F0, local
 	.asciz "user/Ebisawa/card_e_reader/pp3.dwn"
+.endobj lbl_804979F0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q33ebi11CardEReader4TMgr
-__vt__Q33ebi11CardEReader4TMgr:
+.obj __vt__Q33ebi11CardEReader4TMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q33ebi11CardEReader4TMgrFv
+.endobj __vt__Q33ebi11CardEReader4TMgr
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-cInitialCode__Q23ebi11CardEReader: # local object
-	.ascii "PSAJ" # char literal
+.obj cInitialCode__Q23ebi11CardEReader, local # char literal
+	.ascii "PSAJ"
+.endobj cInitialCode__Q23ebi11CardEReader
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global gCardEMgr__3ebi
-gCardEMgr__3ebi:
+.obj gCardEMgr__3ebi, global
 	.skip 0x4
+.endobj gCardEMgr__3ebi
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FE58:
+.obj lbl_8051FE58, local
 	.asciz ""
+.endobj lbl_8051FE58
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global gCardEMgr_ThreadFunc__3ebiFPv
-gCardEMgr_ThreadFunc__3ebiFPv:
+.fn gCardEMgr_ThreadFunc__3ebiFPv, global
 /* 803ECB40 003E9A80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ECB44 003E9A84  7C 08 02 A6 */	mflr r0
 /* 803ECB48 003E9A88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -70,9 +77,9 @@ gCardEMgr_ThreadFunc__3ebiFPv:
 /* 803ECB90 003E9AD0  7C 08 03 A6 */	mtlr r0
 /* 803ECB94 003E9AD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ECB98 003E9AD8  4E 80 00 20 */	blr 
+.endfn gCardEMgr_ThreadFunc__3ebiFPv
 
-.global CardE_uploadToGBA__Q23ebi11CardEReaderFlPUcUl
-CardE_uploadToGBA__Q23ebi11CardEReaderFlPUcUl:
+.fn CardE_uploadToGBA__Q23ebi11CardEReaderFlPUcUl, global
 /* 803ECB9C 003E9ADC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803ECBA0 003E9AE0  7C 08 02 A6 */	mflr r0
 /* 803ECBA4 003E9AE4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -252,9 +259,9 @@ CardE_uploadToGBA__Q23ebi11CardEReaderFlPUcUl:
 /* 803ECE04 003E9D44  7C 08 03 A6 */	mtlr r0
 /* 803ECE08 003E9D48  38 21 00 30 */	addi r1, r1, 0x30
 /* 803ECE0C 003E9D4C  4E 80 00 20 */	blr 
+.endfn CardE_uploadToGBA__Q23ebi11CardEReaderFlPUcUl
 
-.global __dt__Q33ebi11CardEReader4TMgrFv
-__dt__Q33ebi11CardEReader4TMgrFv:
+.fn __dt__Q33ebi11CardEReader4TMgrFv, global
 /* 803ECE10 003E9D50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ECE14 003E9D54  7C 08 02 A6 */	mflr r0
 /* 803ECE18 003E9D58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -282,9 +289,9 @@ __dt__Q33ebi11CardEReader4TMgrFv:
 /* 803ECE6C 003E9DAC  7C 08 03 A6 */	mtlr r0
 /* 803ECE70 003E9DB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ECE74 003E9DB4  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi11CardEReader4TMgrFv
 
-.global globalInstance__Q33ebi11CardEReader4TMgrFv
-globalInstance__Q33ebi11CardEReader4TMgrFv:
+.fn globalInstance__Q33ebi11CardEReader4TMgrFv, global
 /* 803ECE78 003E9DB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ECE7C 003E9DBC  7C 08 02 A6 */	mflr r0
 /* 803ECE80 003E9DC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -314,9 +321,9 @@ globalInstance__Q33ebi11CardEReader4TMgrFv:
 /* 803ECED8 003E9E18  7C 08 03 A6 */	mtlr r0
 /* 803ECEDC 003E9E1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ECEE0 003E9E20  4E 80 00 20 */	blr 
+.endfn globalInstance__Q33ebi11CardEReader4TMgrFv
 
-.global loadResource__Q33ebi11CardEReader4TMgrFv
-loadResource__Q33ebi11CardEReader4TMgrFv:
+.fn loadResource__Q33ebi11CardEReader4TMgrFv, global
 /* 803ECEE4 003E9E24  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 803ECEE8 003E9E28  7C 08 02 A6 */	mflr r0
 /* 803ECEEC 003E9E2C  3C 80 80 49 */	lis r4, lbl_80497978@ha
@@ -393,9 +400,9 @@ loadResource__Q33ebi11CardEReader4TMgrFv:
 /* 803ECFF4 003E9F34  7C 08 03 A6 */	mtlr r0
 /* 803ECFF8 003E9F38  38 21 01 20 */	addi r1, r1, 0x120
 /* 803ECFFC 003E9F3C  4E 80 00 20 */	blr 
+.endfn loadResource__Q33ebi11CardEReader4TMgrFv
 
-.global init__Q33ebi11CardEReader4TMgrFv
-init__Q33ebi11CardEReader4TMgrFv:
+.fn init__Q33ebi11CardEReader4TMgrFv, global
 /* 803ED000 003E9F40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ED004 003E9F44  7C 08 02 A6 */	mflr r0
 /* 803ED008 003E9F48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -411,9 +418,9 @@ init__Q33ebi11CardEReader4TMgrFv:
 /* 803ED030 003E9F70  7C 08 03 A6 */	mtlr r0
 /* 803ED034 003E9F74  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ED038 003E9F78  4E 80 00 20 */	blr 
+.endfn init__Q33ebi11CardEReader4TMgrFv
 
-.global uploadToGBA__Q33ebi11CardEReader4TMgrFl
-uploadToGBA__Q33ebi11CardEReader4TMgrFl:
+.fn uploadToGBA__Q33ebi11CardEReader4TMgrFl, global
 /* 803ED03C 003E9F7C  38 A0 00 01 */	li r5, 1
 /* 803ED040 003E9F80  38 00 00 00 */	li r0, 0
 /* 803ED044 003E9F84  90 A3 00 38 */	stw r5, 0x38(r3)
@@ -421,18 +428,18 @@ uploadToGBA__Q33ebi11CardEReader4TMgrFl:
 /* 803ED04C 003E9F8C  90 03 00 44 */	stw r0, 0x44(r3)
 /* 803ED050 003E9F90  90 83 00 30 */	stw r4, 0x30(r3)
 /* 803ED054 003E9F94  4E 80 00 20 */	blr 
+.endfn uploadToGBA__Q33ebi11CardEReader4TMgrFl
 
-.global probeAGB__Q33ebi11CardEReader4TMgrFv
-probeAGB__Q33ebi11CardEReader4TMgrFv:
+.fn probeAGB__Q33ebi11CardEReader4TMgrFv, global
 /* 803ED058 003E9F98  38 80 00 00 */	li r4, 0
 /* 803ED05C 003E9F9C  38 00 00 01 */	li r0, 1
 /* 803ED060 003E9FA0  90 83 00 38 */	stw r4, 0x38(r3)
 /* 803ED064 003E9FA4  90 03 00 34 */	stw r0, 0x34(r3)
 /* 803ED068 003E9FA8  90 83 00 44 */	stw r4, 0x44(r3)
 /* 803ED06C 003E9FAC  4E 80 00 20 */	blr 
+.endfn probeAGB__Q33ebi11CardEReader4TMgrFv
 
-.global update__Q33ebi11CardEReader4TMgrFv
-update__Q33ebi11CardEReader4TMgrFv:
+.fn update__Q33ebi11CardEReader4TMgrFv, global
 /* 803ED070 003E9FB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ED074 003E9FB4  7C 08 02 A6 */	mflr r0
 /* 803ED078 003E9FB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -527,16 +534,16 @@ update__Q33ebi11CardEReader4TMgrFv:
 /* 803ED1B4 003EA0F4  7C 08 03 A6 */	mtlr r0
 /* 803ED1B8 003EA0F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ED1BC 003EA0FC  4E 80 00 20 */	blr 
+.endfn update__Q33ebi11CardEReader4TMgrFv
 
-.global isFinish__Q33ebi11CardEReader4TMgrFv
-isFinish__Q33ebi11CardEReader4TMgrFv:
+.fn isFinish__Q33ebi11CardEReader4TMgrFv, global
 /* 803ED1C0 003EA100  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 803ED1C4 003EA104  7C 00 00 34 */	cntlzw r0, r0
 /* 803ED1C8 003EA108  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 803ED1CC 003EA10C  4E 80 00 20 */	blr 
+.endfn isFinish__Q33ebi11CardEReader4TMgrFv
 
-.global threadProc__Q33ebi11CardEReader4TMgrFPv
-threadProc__Q33ebi11CardEReader4TMgrFPv:
+.fn threadProc__Q33ebi11CardEReader4TMgrFPv, global
 /* 803ED1D0 003EA110  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ED1D4 003EA114  7C 08 02 A6 */	mflr r0
 /* 803ED1D8 003EA118  90 01 00 14 */	stw r0, 0x14(r1)
@@ -569,9 +576,9 @@ threadProc__Q33ebi11CardEReader4TMgrFPv:
 /* 803ED238 003EA178  38 7F 00 48 */	addi r3, r31, 0x48
 /* 803ED23C 003EA17C  4B D0 2A 09 */	bl OSUnlockMutex
 /* 803ED240 003EA180  4B FF FF A4 */	b .L_803ED1E4
+.endfn threadProc__Q33ebi11CardEReader4TMgrFPv
 
-.global tryUploadToGBA___Q33ebi11CardEReader4TMgrFv
-tryUploadToGBA___Q33ebi11CardEReader4TMgrFv:
+.fn tryUploadToGBA___Q33ebi11CardEReader4TMgrFv, global
 /* 803ED244 003EA184  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ED248 003EA188  7C 08 02 A6 */	mflr r0
 /* 803ED24C 003EA18C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -595,10 +602,11 @@ tryUploadToGBA___Q33ebi11CardEReader4TMgrFv:
 /* 803ED28C 003EA1CC  7C 08 03 A6 */	mtlr r0
 /* 803ED290 003EA1D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ED294 003EA1D4  4E 80 00 20 */	blr 
+.endfn tryUploadToGBA___Q33ebi11CardEReader4TMgrFv
 
-.global goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr
-goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr:
+.fn goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr, global
 /* 803ED298 003EA1D8  90 83 00 3C */	stw r4, 0x3c(r3)
 /* 803ED29C 003EA1DC  38 00 00 00 */	li r0, 0
 /* 803ED2A0 003EA1E0  90 03 00 34 */	stw r0, 0x34(r3)
 /* 803ED2A4 003EA1E4  4E 80 00 20 */	blr 
+.endfn goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr

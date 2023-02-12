@@ -1,18 +1,19 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F880:
+.obj lbl_8051F880, local
 	.float -0.5
-lbl_8051F884:
+.endobj lbl_8051F880
+.obj lbl_8051F884, local
 	.float 0.5
+.endobj lbl_8051F884
 .balign 8
-lbl_8051F888:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_8051F888, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051F888
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff
-init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff:
+.fn init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff, global
 /* 803C1A3C 003BE97C  90 83 00 00 */	stw r4, 0(r3)
 /* 803C1A40 003BE980  38 00 00 00 */	li r0, 0
 /* 803C1A44 003BE984  90 A3 00 10 */	stw r5, 0x10(r3)
@@ -39,9 +40,9 @@ init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_
 /* 803C1A90 003BE9D0  80 04 00 00 */	lwz r0, 0(r4)
 /* 803C1A94 003BE9D4  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 803C1A98 003BE9D8  4E 80 00 20 */	blr 
+.endfn init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff
 
-.global update__Q23ebi24EUTPadInterface_countNumFv
-update__Q23ebi24EUTPadInterface_countNumFv:
+.fn update__Q23ebi24EUTPadInterface_countNumFv, global
 /* 803C1A9C 003BE9DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C1AA0 003BE9E0  7C 08 02 A6 */	mflr r0
 /* 803C1AA4 003BE9E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -267,9 +268,9 @@ update__Q23ebi24EUTPadInterface_countNumFv:
 /* 803C1D94 003BECD4  7C 08 03 A6 */	mtlr r0
 /* 803C1D98 003BECD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C1D9C 003BECDC  4E 80 00 20 */	blr 
+.endfn update__Q23ebi24EUTPadInterface_countNumFv
 
-.global EUTColor_complement__3ebiFRQ28JUtility6TColorRQ28JUtility6TColorffPQ28JUtility6TColor
-EUTColor_complement__3ebiFRQ28JUtility6TColorRQ28JUtility6TColorffPQ28JUtility6TColor:
+.fn EUTColor_complement__3ebiFRQ28JUtility6TColorRQ28JUtility6TColorffPQ28JUtility6TColor, global
 /* 803C1DA0 003BECE0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803C1DA4 003BECE4  3C C0 43 30 */	lis r6, 0x4330
 /* 803C1DA8 003BECE8  C8 82 15 28 */	lfd f4, lbl_8051F888@sda21(r2)
@@ -339,11 +340,12 @@ EUTColor_complement__3ebiFRQ28JUtility6TColorRQ28JUtility6TColorffPQ28JUtility6T
 /* 803C1EA8 003BEDE8  98 05 00 03 */	stb r0, 3(r5)
 /* 803C1EAC 003BEDEC  38 21 00 70 */	addi r1, r1, 0x70
 /* 803C1EB0 003BEDF0  4E 80 00 20 */	blr 
+.endfn EUTColor_complement__3ebiFRQ28JUtility6TColorRQ28JUtility6TColorffPQ28JUtility6TColor
 
-.global EUTDebug_Tag64ToName__3ebiFUxPc
-EUTDebug_Tag64ToName__3ebiFUxPc:
+.fn EUTDebug_Tag64ToName__3ebiFUxPc, global
 /* 803C1EB4 003BEDF4  4E 80 00 20 */	blr 
+.endfn EUTDebug_Tag64ToName__3ebiFUxPc
 
-.global EUTDebug_Tag32ToName__3ebiFUlPc
-EUTDebug_Tag32ToName__3ebiFUlPc:
+.fn EUTDebug_Tag32ToName__3ebiFUlPc, global
 /* 803C1EB8 003BEDF8  4E 80 00 20 */	blr 
+.endfn EUTDebug_Tag32ToName__3ebiFUlPc

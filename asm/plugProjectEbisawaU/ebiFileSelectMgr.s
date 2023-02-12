@@ -1,31 +1,39 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497010:
+.obj lbl_80497010, local
 	.asciz "ebiFileSelectMgr"
+.endobj lbl_80497010
 .balign 4
-lbl_80497024:
+.obj lbl_80497024, local
 	.asciz "EnptyUpdate" # typo lol
+.endobj lbl_80497024
 .balign 4
-lbl_80497030:
+.obj lbl_80497030, local
 	.asciz "MountCheck"
+.endobj lbl_80497030
 .balign 4
-lbl_8049703C:
+.obj lbl_8049703C, local
 	.asciz "GetPlayerHeader"
+.endobj lbl_8049703C
 .balign 4
-lbl_8049704C:
+.obj lbl_8049704C, local
 	.asciz "CardError"
+.endobj lbl_8049704C
 .balign 4
-lbl_80497058:
+.obj lbl_80497058, local
 	.asciz "ScreenFileSelect"
+.endobj lbl_80497058
 .balign 4
-lbl_8049706C:
+.obj lbl_8049706C, local
 	.asciz "ebiFileSelectMgr.cpp"
+.endobj lbl_8049706C
 .balign 4
-lbl_80497084:
+.obj lbl_80497084, local
 	.asciz "P2Assert"
+.endobj lbl_80497084
 .balign 4
-lbl_80497090: # Shift-JIS
+.obj lbl_80497090, local # Shift-JIS
 	.4byte 0x81A68381
 	.4byte 0x8382838A
 	.4byte 0x815B834A
@@ -37,8 +45,9 @@ lbl_80497090: # Shift-JIS
 	.4byte 0x50815B83
 	.4byte 0x5882C582
 	.4byte 0xB70A0000
+.endobj lbl_80497090
 .balign 4
-lbl_804970BC: # Shift-JIS
+.obj lbl_804970BC, local # Shift-JIS
 	.4byte 0x81A6838D
 	.4byte 0x815B8368
 	.4byte 0x82C58356
@@ -49,8 +58,9 @@ lbl_804970BC: # Shift-JIS
 	.4byte 0x82E882A6
 	.4byte 0x82C882A2
 	.4byte 0x0A000000
+.endobj lbl_804970BC
 .balign 4
-lbl_804970E4: # Shift-JIS
+.obj lbl_804970E4, local # Shift-JIS
 	.4byte 0x81A68140
 	.4byte 0x6D67722D
 	.4byte 0x3E6D4361
@@ -64,10 +74,11 @@ lbl_804970E4: # Shift-JIS
 	.4byte 0x82E882A6
 	.4byte 0x82C882A2
 	.4byte 0x81490A00
+.endobj lbl_804970E4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E9678:
+.obj lbl_804E9678, local
 	.4byte .L_803E177C
 	.4byte .L_803E181C
 	.4byte .L_803E1768
@@ -83,21 +94,21 @@ lbl_804E9678:
 	.4byte .L_803E1858
 	.4byte .L_803E1844
 	.4byte .L_803E1830
-.global __vt__Q33ebi10FileSelect4TMgr
-__vt__Q33ebi10FileSelect4TMgr:
+.endobj lbl_804E9678
+.obj __vt__Q33ebi10FileSelect4TMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q33ebi10FileSelect4TMgrFv
-.global "__vt__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>"
-"__vt__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>":
+.endobj __vt__Q33ebi10FileSelect4TMgr
+.obj "__vt__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 	.4byte "start__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 	.4byte "transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi10FileSelect18FSMState_CardError
-__vt__Q33ebi10FileSelect18FSMState_CardError:
+.endobj "__vt__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>"
+.obj __vt__Q33ebi10FileSelect18FSMState_CardError, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
@@ -108,8 +119,8 @@ __vt__Q33ebi10FileSelect18FSMState_CardError:
 	.4byte "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgr
-.global __vt__Q33ebi10FileSelect25FSMState_ScreenFileSelect
-__vt__Q33ebi10FileSelect25FSMState_ScreenFileSelect:
+.endobj __vt__Q33ebi10FileSelect18FSMState_CardError
+.obj __vt__Q33ebi10FileSelect25FSMState_ScreenFileSelect, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
@@ -120,8 +131,8 @@ __vt__Q33ebi10FileSelect25FSMState_ScreenFileSelect:
 	.4byte "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgr
-.global __vt__Q33ebi10FileSelect24FSMState_GetPlayerHeader
-__vt__Q33ebi10FileSelect24FSMState_GetPlayerHeader:
+.endobj __vt__Q33ebi10FileSelect25FSMState_ScreenFileSelect
+.obj __vt__Q33ebi10FileSelect24FSMState_GetPlayerHeader, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
@@ -145,8 +156,8 @@ __vt__Q33ebi10FileSelect24FSMState_GetPlayerHeader:
 	.4byte do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 	.4byte do_transitCardSerialNoError__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
 	.4byte do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-.global __vt__Q33ebi10FileSelect19FSMState_MountCheck
-__vt__Q33ebi10FileSelect19FSMState_MountCheck:
+.endobj __vt__Q33ebi10FileSelect24FSMState_GetPlayerHeader
+.obj __vt__Q33ebi10FileSelect19FSMState_MountCheck, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
@@ -170,8 +181,8 @@ __vt__Q33ebi10FileSelect19FSMState_MountCheck:
 	.4byte do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 	.4byte do_transitCardSerialNoError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 	.4byte do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-.global __vt__Q33ebi10FileSelect20FSMState_CardRequest
-__vt__Q33ebi10FileSelect20FSMState_CardRequest:
+.endobj __vt__Q33ebi10FileSelect19FSMState_MountCheck
+.obj __vt__Q33ebi10FileSelect20FSMState_CardRequest, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
@@ -195,8 +206,8 @@ __vt__Q33ebi10FileSelect20FSMState_CardRequest:
 	.4byte do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 	.4byte do_transitCardSerialNoError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 	.4byte do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-.global __vt__Q33ebi10FileSelect20FSMState_EmptyUpdate
-__vt__Q33ebi10FileSelect20FSMState_EmptyUpdate:
+.endobj __vt__Q33ebi10FileSelect20FSMState_CardRequest
+.obj __vt__Q33ebi10FileSelect20FSMState_EmptyUpdate, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
@@ -207,8 +218,8 @@ __vt__Q33ebi10FileSelect20FSMState_EmptyUpdate:
 	.4byte "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgr
-.global __vt__Q33ebi10FileSelect8FSMState
-__vt__Q33ebi10FileSelect8FSMState:
+.endobj __vt__Q33ebi10FileSelect20FSMState_EmptyUpdate
+.obj __vt__Q33ebi10FileSelect8FSMState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
@@ -219,8 +230,8 @@ __vt__Q33ebi10FileSelect8FSMState:
 	.4byte "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-.global "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"
-"__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>":
+.endobj __vt__Q33ebi10FileSelect8FSMState
+.obj "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgrPQ24Game8StateArg"
@@ -229,29 +240,30 @@ __vt__Q33ebi10FileSelect8FSMState:
 	.4byte "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 	.4byte "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 	.4byte "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi10FileSelect15FSMStateMachine
-__vt__Q33ebi10FileSelect15FSMStateMachine:
+.endobj "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"
+.obj __vt__Q33ebi10FileSelect15FSMStateMachine, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr
 	.4byte "start__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 	.4byte "transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
+.endobj __vt__Q33ebi10FileSelect15FSMStateMachine
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global msInstance__Q33ebi10FileSelect4TMgr
-msInstance__Q33ebi10FileSelect4TMgr:
+.obj msInstance__Q33ebi10FileSelect4TMgr, global
 	.skip 0x4
+.endobj msInstance__Q33ebi10FileSelect4TMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FC18:
+.obj lbl_8051FC18, local
 	.asciz "Standby"
+.endobj lbl_8051FC18
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr
-init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr:
+.fn init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr, global
 /* 803E12E0 003DE220  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E12E4 003DE224  7C 08 02 A6 */	mflr r0
 /* 803E12E8 003DE228  3C 80 80 49 */	lis r4, lbl_80497010@ha
@@ -404,9 +416,9 @@ init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr:
 /* 803E151C 003DE45C  7C 08 03 A6 */	mtlr r0
 /* 803E1520 003DE460  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1524 003DE464  4E 80 00 20 */	blr 
+.endfn init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr
 
-.global init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg:
+.fn init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg, global
 /* 803E1528 003DE468  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E152C 003DE46C  7C 08 02 A6 */	mflr r0
 /* 803E1530 003DE470  90 01 00 14 */	stw r0, 0x14(r1)
@@ -418,13 +430,13 @@ init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg:
 /* 803E1548 003DE488  7C 08 03 A6 */	mtlr r0
 /* 803E154C 003DE48C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1550 003DE490  4E 80 00 20 */	blr 
+.endfn init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 
-.global do_init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-do_init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg, weak
 /* 803E1554 003DE494  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 
-.global exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr:
+.fn exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr, global
 /* 803E1558 003DE498  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E155C 003DE49C  7C 08 02 A6 */	mflr r0
 /* 803E1560 003DE4A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -436,20 +448,20 @@ exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr:
 /* 803E1578 003DE4B8  7C 08 03 A6 */	mtlr r0
 /* 803E157C 003DE4BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1580 003DE4C0  4E 80 00 20 */	blr 
+.endfn exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
 
-.global do_exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-do_exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr:
+.fn do_exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr, weak
 /* 803E1584 003DE4C4  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
 
-.global do_init__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-do_init__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg, global
 /* 803E1588 003DE4C8  38 00 00 02 */	li r0, 2
 /* 803E158C 003DE4CC  90 03 00 10 */	stw r0, 0x10(r3)
 /* 803E1590 003DE4D0  90 03 00 14 */	stw r0, 0x14(r3)
 /* 803E1594 003DE4D4  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgr
-do_exec__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgr:
+.fn do_exec__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgr, global
 /* 803E1598 003DE4D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E159C 003DE4DC  7C 08 02 A6 */	mflr r0
 /* 803E15A0 003DE4E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -473,9 +485,9 @@ do_exec__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgr:
 /* 803E15E0 003DE520  7C 08 03 A6 */	mtlr r0
 /* 803E15E4 003DE524  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E15E8 003DE528  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgr
 
-.global "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-"transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg", weak
 /* 803E15EC 003DE52C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E15F0 003DE530  7C 08 02 A6 */	mflr r0
 /* 803E15F4 003DE534  90 01 00 14 */	stw r0, 0x14(r1)
@@ -488,15 +500,15 @@ do_exec__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgr:
 /* 803E1610 003DE550  7C 08 03 A6 */	mtlr r0
 /* 803E1614 003DE554  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1618 003DE558  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 
-.global do_init__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-do_init__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg, global
 /* 803E161C 003DE55C  38 00 00 00 */	li r0, 0
 /* 803E1620 003DE560  90 03 00 10 */	stw r0, 0x10(r3)
 /* 803E1624 003DE564  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_exec__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_exec__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E1628 003DE568  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E162C 003DE56C  7C 08 02 A6 */	mflr r0
 /* 803E1630 003DE570  3C A0 80 49 */	lis r5, lbl_80497010@ha
@@ -676,9 +688,9 @@ do_exec__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
 /* 803E1894 003DE7D4  7C 08 03 A6 */	mtlr r0
 /* 803E1898 003DE7D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E189C 003DE7DC  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardNoCard__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardNoCard__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardNoCard__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E18A0 003DE7E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E18A4 003DE7E4  7C 08 02 A6 */	mflr r0
 /* 803E18A8 003DE7E8  38 A0 00 04 */	li r5, 4
@@ -694,9 +706,9 @@ do_transitCardNoCard__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSele
 /* 803E18D0 003DE810  7C 08 03 A6 */	mtlr r0
 /* 803E18D4 003DE814  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E18D8 003DE818  4E 80 00 20 */	blr 
+.endfn do_transitCardNoCard__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardIOError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardIOError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardIOError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E18DC 003DE81C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E18E0 003DE820  7C 08 02 A6 */	mflr r0
 /* 803E18E4 003DE824  38 A0 00 04 */	li r5, 4
@@ -712,9 +724,9 @@ do_transitCardIOError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSel
 /* 803E190C 003DE84C  7C 08 03 A6 */	mtlr r0
 /* 803E1910 003DE850  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1914 003DE854  4E 80 00 20 */	blr 
+.endfn do_transitCardIOError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardWrongDevice__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardWrongDevice__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardWrongDevice__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E1918 003DE858  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E191C 003DE85C  7C 08 02 A6 */	mflr r0
 /* 803E1920 003DE860  38 A0 00 04 */	li r5, 4
@@ -730,9 +742,9 @@ do_transitCardWrongDevice__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10Fil
 /* 803E1948 003DE888  7C 08 03 A6 */	mtlr r0
 /* 803E194C 003DE88C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1950 003DE890  4E 80 00 20 */	blr 
+.endfn do_transitCardWrongDevice__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardWrongSector__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardWrongSector__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardWrongSector__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E1954 003DE894  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1958 003DE898  7C 08 02 A6 */	mflr r0
 /* 803E195C 003DE89C  38 A0 00 04 */	li r5, 4
@@ -748,9 +760,9 @@ do_transitCardWrongSector__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10Fil
 /* 803E1984 003DE8C4  7C 08 03 A6 */	mtlr r0
 /* 803E1988 003DE8C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E198C 003DE8CC  4E 80 00 20 */	blr 
+.endfn do_transitCardWrongSector__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E1990 003DE8D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1994 003DE8D4  7C 08 02 A6 */	mflr r0
 /* 803E1998 003DE8D8  38 A0 00 04 */	li r5, 4
@@ -766,9 +778,9 @@ do_transitCardBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSele
 /* 803E19C0 003DE900  7C 08 03 A6 */	mtlr r0
 /* 803E19C4 003DE904  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E19C8 003DE908  4E 80 00 20 */	blr 
+.endfn do_transitCardBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardEncoding__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardEncoding__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardEncoding__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E19CC 003DE90C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E19D0 003DE910  7C 08 02 A6 */	mflr r0
 /* 803E19D4 003DE914  38 A0 00 04 */	li r5, 4
@@ -784,9 +796,9 @@ do_transitCardEncoding__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSe
 /* 803E19FC 003DE93C  7C 08 03 A6 */	mtlr r0
 /* 803E1A00 003DE940  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1A04 003DE944  4E 80 00 20 */	blr 
+.endfn do_transitCardEncoding__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardNoFileSpace__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardNoFileSpace__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardNoFileSpace__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E1A08 003DE948  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1A0C 003DE94C  7C 08 02 A6 */	mflr r0
 /* 803E1A10 003DE950  38 A0 00 04 */	li r5, 4
@@ -802,9 +814,9 @@ do_transitCardNoFileSpace__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10Fil
 /* 803E1A38 003DE978  7C 08 03 A6 */	mtlr r0
 /* 803E1A3C 003DE97C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1A40 003DE980  4E 80 00 20 */	blr 
+.endfn do_transitCardNoFileSpace__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardNoFileEntry__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardNoFileEntry__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardNoFileEntry__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E1A44 003DE984  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1A48 003DE988  7C 08 02 A6 */	mflr r0
 /* 803E1A4C 003DE98C  38 A0 00 04 */	li r5, 4
@@ -820,9 +832,9 @@ do_transitCardNoFileEntry__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10Fil
 /* 803E1A74 003DE9B4  7C 08 03 A6 */	mtlr r0
 /* 803E1A78 003DE9B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1A7C 003DE9BC  4E 80 00 20 */	blr 
+.endfn do_transitCardNoFileEntry__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E1A80 003DE9C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1A84 003DE9C4  7C 08 02 A6 */	mflr r0
 /* 803E1A88 003DE9C8  38 A0 00 04 */	li r5, 4
@@ -838,9 +850,9 @@ do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10F
 /* 803E1AB0 003DE9F0  7C 08 03 A6 */	mtlr r0
 /* 803E1AB4 003DE9F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1AB8 003DE9F8  4E 80 00 20 */	blr 
+.endfn do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E1ABC 003DE9FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1AC0 003DEA00  7C 08 02 A6 */	mflr r0
 /* 803E1AC4 003DEA04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -852,9 +864,9 @@ do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi
 /* 803E1ADC 003DEA1C  7C 08 03 A6 */	mtlr r0
 /* 803E1AE0 003DEA20  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1AE4 003DEA24  4E 80 00 20 */	blr 
+.endfn do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardSerialNoError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-do_transitCardSerialNoError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardSerialNoError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr, global
 /* 803E1AE8 003DEA28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1AEC 003DEA2C  7C 08 02 A6 */	mflr r0
 /* 803E1AF0 003DEA30  3C 60 80 49 */	lis r3, lbl_80497010@ha
@@ -876,9 +888,9 @@ do_transitCardSerialNoError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10F
 /* 803E1B30 003DEA70  7C 08 03 A6 */	mtlr r0
 /* 803E1B34 003DEA74  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1B38 003DEA78  4E 80 00 20 */	blr 
+.endfn do_transitCardSerialNoError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
 
-.global do_cardRequest__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr
-do_cardRequest__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr:
+.fn do_cardRequest__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr, global
 /* 803E1B3C 003DEA7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1B40 003DEA80  7C 08 02 A6 */	mflr r0
 /* 803E1B44 003DEA84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -889,9 +901,9 @@ do_cardRequest__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr
 /* 803E1B58 003DEA98  7C 08 03 A6 */	mtlr r0
 /* 803E1B5C 003DEA9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1B60 003DEAA0  4E 80 00 20 */	blr 
+.endfn do_cardRequest__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardReady__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr
-do_transitCardReady__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardReady__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr, global
 /* 803E1B64 003DEAA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1B68 003DEAA8  7C 08 02 A6 */	mflr r0
 /* 803E1B6C 003DEAAC  38 A0 00 03 */	li r5, 3
@@ -905,9 +917,9 @@ do_transitCardReady__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect
 /* 803E1B8C 003DEACC  7C 08 03 A6 */	mtlr r0
 /* 803E1B90 003DEAD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1B94 003DEAD4  4E 80 00 20 */	blr 
+.endfn do_transitCardReady__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr
 
-.global do_cardRequest__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
-do_cardRequest__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr:
+.fn do_cardRequest__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr, global
 /* 803E1B98 003DEAD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1B9C 003DEADC  7C 08 02 A6 */	mflr r0
 /* 803E1BA0 003DEAE0  38 84 0F 48 */	addi r4, r4, 0xf48
@@ -919,9 +931,9 @@ do_cardRequest__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect
 /* 803E1BB8 003DEAF8  7C 08 03 A6 */	mtlr r0
 /* 803E1BBC 003DEAFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1BC0 003DEB00  4E 80 00 20 */	blr 
+.endfn do_cardRequest__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardReady__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
-do_transitCardReady__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardReady__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr, global
 /* 803E1BC4 003DEB04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1BC8 003DEB08  7C 08 02 A6 */	mflr r0
 /* 803E1BCC 003DEB0C  38 A0 00 05 */	li r5, 5
@@ -935,9 +947,9 @@ do_transitCardReady__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileS
 /* 803E1BEC 003DEB2C  7C 08 03 A6 */	mtlr r0
 /* 803E1BF0 003DEB30  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1BF4 003DEB34  4E 80 00 20 */	blr 
+.endfn do_transitCardReady__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
 
-.global do_transitCardSerialNoError__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
-do_transitCardSerialNoError__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr:
+.fn do_transitCardSerialNoError__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr, global
 /* 803E1BF8 003DEB38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1BFC 003DEB3C  7C 08 02 A6 */	mflr r0
 /* 803E1C00 003DEB40  3C 60 80 49 */	lis r3, lbl_8049706C@ha
@@ -952,9 +964,9 @@ do_transitCardSerialNoError__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33eb
 /* 803E1C24 003DEB64  7C 08 03 A6 */	mtlr r0
 /* 803E1C28 003DEB68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1C2C 003DEB6C  4E 80 00 20 */	blr 
+.endfn do_transitCardSerialNoError__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
 
-.global do_init__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-do_init__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg, global
 /* 803E1C30 003DEB70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1C34 003DEB74  7C 08 02 A6 */	mflr r0
 /* 803E1C38 003DEB78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -972,9 +984,9 @@ do_init__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgrP
 /* 803E1C68 003DEBA8  7C 08 03 A6 */	mtlr r0
 /* 803E1C6C 003DEBAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1C70 003DEBB0  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgr
-do_exec__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgr:
+.fn do_exec__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgr, global
 /* 803E1C74 003DEBB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1C78 003DEBB8  7C 08 02 A6 */	mflr r0
 /* 803E1C7C 003DEBBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1030,9 +1042,9 @@ do_exec__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgr:
 /* 803E1D2C 003DEC6C  7C 08 03 A6 */	mtlr r0
 /* 803E1D30 003DEC70  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1D34 003DEC74  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgr
 
-.global do_init__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-do_init__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg, global
 /* 803E1D38 003DEC78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1D3C 003DEC7C  7C 08 02 A6 */	mflr r0
 /* 803E1D40 003DEC80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1058,9 +1070,9 @@ do_init__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgrPQ24Game
 /* 803E1D8C 003DECCC  7C 08 03 A6 */	mtlr r0
 /* 803E1D90 003DECD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1D94 003DECD4  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgr
-do_exec__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgr:
+.fn do_exec__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgr, global
 /* 803E1D98 003DECD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1D9C 003DECDC  7C 08 02 A6 */	mflr r0
 /* 803E1DA0 003DECE0  3C 60 80 49 */	lis r3, lbl_80497010@ha
@@ -1111,9 +1123,9 @@ do_exec__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgr:
 /* 803E1E44 003DED84  7C 08 03 A6 */	mtlr r0
 /* 803E1E48 003DED88  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1E4C 003DED8C  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgr
 
-.global "start__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-"start__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg":
+.fn "start__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg", weak
 /* 803E1E50 003DED90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1E54 003DED94  7C 08 02 A6 */	mflr r0
 /* 803E1E58 003DED98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1127,9 +1139,9 @@ do_exec__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgr:
 /* 803E1E78 003DEDB8  7C 08 03 A6 */	mtlr r0
 /* 803E1E7C 003DEDBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1E80 003DEDC0  4E 80 00 20 */	blr 
+.endfn "start__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 
-.global __dt__Q33ebi2FS4TMgrFv
-__dt__Q33ebi2FS4TMgrFv:
+.fn __dt__Q33ebi2FS4TMgrFv, weak
 /* 803E1E84 003DEDC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1E88 003DEDC8  7C 08 02 A6 */	mflr r0
 /* 803E1E8C 003DEDCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1152,9 +1164,9 @@ __dt__Q33ebi2FS4TMgrFv:
 /* 803E1ECC 003DEE0C  7C 08 03 A6 */	mtlr r0
 /* 803E1ED0 003DEE10  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1ED4 003DEE14  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi2FS4TMgrFv
 
-.global __dt__Q33ebi10FileSelect4TMgrFv
-__dt__Q33ebi10FileSelect4TMgrFv:
+.fn __dt__Q33ebi10FileSelect4TMgrFv, global
 /* 803E1ED8 003DEE18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1EDC 003DEE1C  7C 08 02 A6 */	mflr r0
 /* 803E1EE0 003DEE20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1189,9 +1201,9 @@ __dt__Q33ebi10FileSelect4TMgrFv:
 /* 803E1F50 003DEE90  7C 08 03 A6 */	mtlr r0
 /* 803E1F54 003DEE94  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E1F58 003DEE98  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi10FileSelect4TMgrFv
 
-.global createInstance__Q33ebi10FileSelect4TMgrFv
-createInstance__Q33ebi10FileSelect4TMgrFv:
+.fn createInstance__Q33ebi10FileSelect4TMgrFv, global
 /* 803E1F5C 003DEE9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E1F60 003DEEA0  7C 08 02 A6 */	mflr r0
 /* 803E1F64 003DEEA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1249,9 +1261,9 @@ createInstance__Q33ebi10FileSelect4TMgrFv:
 /* 803E202C 003DEF6C  7C 08 03 A6 */	mtlr r0
 /* 803E2030 003DEF70  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E2034 003DEF74  4E 80 00 20 */	blr 
+.endfn createInstance__Q33ebi10FileSelect4TMgrFv
 
-.global onDvdErrorOccured__Q33ebi10FileSelect4TMgrFv
-onDvdErrorOccured__Q33ebi10FileSelect4TMgrFv:
+.fn onDvdErrorOccured__Q33ebi10FileSelect4TMgrFv, global
 /* 803E2038 003DEF78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E203C 003DEF7C  7C 08 02 A6 */	mflr r0
 /* 803E2040 003DEF80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1276,9 +1288,9 @@ onDvdErrorOccured__Q33ebi10FileSelect4TMgrFv:
 /* 803E2084 003DEFC4  7C 08 03 A6 */	mtlr r0
 /* 803E2088 003DEFC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E208C 003DEFCC  4E 80 00 20 */	blr 
+.endfn onDvdErrorOccured__Q33ebi10FileSelect4TMgrFv
 
-.global onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv
-onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv:
+.fn onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv, global
 /* 803E2090 003DEFD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E2094 003DEFD4  7C 08 02 A6 */	mflr r0
 /* 803E2098 003DEFD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1297,9 +1309,9 @@ onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv:
 /* 803E20C8 003DF008  7C 08 03 A6 */	mtlr r0
 /* 803E20CC 003DF00C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E20D0 003DF010  4E 80 00 20 */	blr 
+.endfn onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv
 
-.global start__Q33ebi10FileSelect4TMgrFv
-start__Q33ebi10FileSelect4TMgrFv:
+.fn start__Q33ebi10FileSelect4TMgrFv, global
 /* 803E20D4 003DF014  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E20D8 003DF018  7C 08 02 A6 */	mflr r0
 /* 803E20DC 003DF01C  7C 64 1B 78 */	mr r4, r3
@@ -1319,9 +1331,9 @@ start__Q33ebi10FileSelect4TMgrFv:
 /* 803E2114 003DF054  7C 08 03 A6 */	mtlr r0
 /* 803E2118 003DF058  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E211C 003DF05C  4E 80 00 20 */	blr 
+.endfn start__Q33ebi10FileSelect4TMgrFv
 
-.global forceQuit__Q33ebi10FileSelect4TMgrFv
-forceQuit__Q33ebi10FileSelect4TMgrFv:
+.fn forceQuit__Q33ebi10FileSelect4TMgrFv, global
 /* 803E2120 003DF060  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E2124 003DF064  7C 08 02 A6 */	mflr r0
 /* 803E2128 003DF068  38 A0 00 00 */	li r5, 0
@@ -1344,9 +1356,9 @@ forceQuit__Q33ebi10FileSelect4TMgrFv:
 /* 803E216C 003DF0AC  7C 08 03 A6 */	mtlr r0
 /* 803E2170 003DF0B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E2174 003DF0B4  4E 80 00 20 */	blr 
+.endfn forceQuit__Q33ebi10FileSelect4TMgrFv
 
-.global update__Q33ebi10FileSelect4TMgrFv
-update__Q33ebi10FileSelect4TMgrFv:
+.fn update__Q33ebi10FileSelect4TMgrFv, global
 /* 803E2178 003DF0B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E217C 003DF0BC  7C 08 02 A6 */	mflr r0
 /* 803E2180 003DF0C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1383,9 +1395,9 @@ update__Q33ebi10FileSelect4TMgrFv:
 /* 803E21F8 003DF138  7C 08 03 A6 */	mtlr r0
 /* 803E21FC 003DF13C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E2200 003DF140  4E 80 00 20 */	blr 
+.endfn update__Q33ebi10FileSelect4TMgrFv
 
-.global draw__Q33ebi10FileSelect4TMgrFv
-draw__Q33ebi10FileSelect4TMgrFv:
+.fn draw__Q33ebi10FileSelect4TMgrFv, global
 /* 803E2204 003DF144  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E2208 003DF148  7C 08 02 A6 */	mflr r0
 /* 803E220C 003DF14C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1404,13 +1416,13 @@ draw__Q33ebi10FileSelect4TMgrFv:
 /* 803E223C 003DF17C  7C 08 03 A6 */	mtlr r0
 /* 803E2240 003DF180  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E2244 003DF184  4E 80 00 20 */	blr 
+.endfn draw__Q33ebi10FileSelect4TMgrFv
 
-.global showInfo__Q33ebi10FileSelect4TMgrFv
-showInfo__Q33ebi10FileSelect4TMgrFv:
+.fn showInfo__Q33ebi10FileSelect4TMgrFv, global
 /* 803E2248 003DF188  4E 80 00 20 */	blr 
+.endfn showInfo__Q33ebi10FileSelect4TMgrFv
 
-.global isFinish__Q33ebi10FileSelect4TMgrFv
-isFinish__Q33ebi10FileSelect4TMgrFv:
+.fn isFinish__Q33ebi10FileSelect4TMgrFv, global
 /* 803E224C 003DF18C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E2250 003DF190  7C 08 02 A6 */	mflr r0
 /* 803E2254 003DF194  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1432,9 +1444,9 @@ isFinish__Q33ebi10FileSelect4TMgrFv:
 /* 803E228C 003DF1CC  7C 08 03 A6 */	mtlr r0
 /* 803E2290 003DF1D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E2294 003DF1D4  4E 80 00 20 */	blr 
+.endfn isFinish__Q33ebi10FileSelect4TMgrFv
 
-.global goEnd___Q33ebi10FileSelect4TMgrFQ43ebi10FileSelect4TMgr7enumEnd
-goEnd___Q33ebi10FileSelect4TMgrFQ43ebi10FileSelect4TMgr7enumEnd:
+.fn goEnd___Q33ebi10FileSelect4TMgrFQ43ebi10FileSelect4TMgr7enumEnd, global
 /* 803E2298 003DF1D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E229C 003DF1DC  7C 08 02 A6 */	mflr r0
 /* 803E22A0 003DF1E0  38 A0 00 00 */	li r5, 0
@@ -1458,9 +1470,9 @@ goEnd___Q33ebi10FileSelect4TMgrFQ43ebi10FileSelect4TMgr7enumEnd:
 /* 803E22E8 003DF228  7C 08 03 A6 */	mtlr r0
 /* 803E22EC 003DF22C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E22F0 003DF230  4E 80 00 20 */	blr 
+.endfn goEnd___Q33ebi10FileSelect4TMgrFQ43ebi10FileSelect4TMgr7enumEnd
 
-.global getStateID__Q33ebi10FileSelect4TMgrFv
-getStateID__Q33ebi10FileSelect4TMgrFv:
+.fn getStateID__Q33ebi10FileSelect4TMgrFv, global
 /* 803E22F4 003DF234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E22F8 003DF238  7C 08 02 A6 */	mflr r0
 /* 803E22FC 003DF23C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1484,33 +1496,33 @@ getStateID__Q33ebi10FileSelect4TMgrFv:
 /* 803E2340 003DF280  7C 08 03 A6 */	mtlr r0
 /* 803E2344 003DF284  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E2348 003DF288  4E 80 00 20 */	blr 
+.endfn getStateID__Q33ebi10FileSelect4TMgrFv
 
-.global "init__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgrPQ24Game8StateArg"
-"init__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgrPQ24Game8StateArg":
+.fn "init__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgrPQ24Game8StateArg", weak
 /* 803E234C 003DF28C  4E 80 00 20 */	blr 
+.endfn "init__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgrPQ24Game8StateArg"
 
-.global "exec__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-"exec__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr":
+.fn "exec__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr", weak
 /* 803E2350 003DF290  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 
-.global "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-"cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr":
+.fn "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr", weak
 /* 803E2354 003DF294  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 
-.global "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-"resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr":
+.fn "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr", weak
 /* 803E2358 003DF298  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 
-.global "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-"restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr":
+.fn "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr", weak
 /* 803E235C 003DF29C  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 
-.global "init__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-"init__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr":
+.fn "init__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr", weak
 /* 803E2360 003DF2A0  4E 80 00 20 */	blr 
+.endfn "init__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 
-.global "exec__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-"exec__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr":
+.fn "exec__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr", weak
 /* 803E2364 003DF2A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E2368 003DF2A8  7C 08 02 A6 */	mflr r0
 /* 803E236C 003DF2AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1526,9 +1538,9 @@ getStateID__Q33ebi10FileSelect4TMgrFv:
 /* 803E2390 003DF2D0  7C 08 03 A6 */	mtlr r0
 /* 803E2394 003DF2D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E2398 003DF2D8  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 
-.global "create__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>Fi"
-"create__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>Fi":
+.fn "create__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>Fi", weak
 /* 803E239C 003DF2DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E23A0 003DF2E0  7C 08 02 A6 */	mflr r0
 /* 803E23A4 003DF2E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1554,9 +1566,9 @@ getStateID__Q33ebi10FileSelect4TMgrFv:
 /* 803E23F4 003DF334  7C 08 03 A6 */	mtlr r0
 /* 803E23F8 003DF338  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E23FC 003DF33C  4E 80 00 20 */	blr 
+.endfn "create__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>Fi"
 
-.global "transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-"transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg", weak
 /* 803E2400 003DF340  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E2404 003DF344  7C 08 02 A6 */	mflr r0
 /* 803E2408 003DF348  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1599,9 +1611,9 @@ getStateID__Q33ebi10FileSelect4TMgrFv:
 /* 803E2490 003DF3D0  7C 08 03 A6 */	mtlr r0
 /* 803E2494 003DF3D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E2498 003DF3D8  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 
-.global "registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>"
-"registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>":
+.fn "registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>", weak
 /* 803E249C 003DF3DC  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803E24A0 003DF3E0  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 803E24A4 003DF3E4  7C 06 00 00 */	cmpw r6, r0
@@ -1638,3 +1650,4 @@ getStateID__Q33ebi10FileSelect4TMgrFv:
 /* 803E2514 003DF454  38 04 00 01 */	addi r0, r4, 1
 /* 803E2518 003DF458  90 03 00 08 */	stw r0, 8(r3)
 /* 803E251C 003DF45C  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>"

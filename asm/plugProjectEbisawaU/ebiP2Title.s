@@ -462,20 +462,24 @@ __vt__Q33ebi5title8TObjBase:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global titleMgr__Q23ebi5title
-titleMgr__Q23ebi5title:
+.endobj gfNAN___Q24Game5P2JST
+.obj titleMgr__Q23ebi5title, global
 	.skip 0x4
-.global _instance__Q33ebi5title9TTitleMgr
-_instance__Q33ebi5title9TTitleMgr:
+.endobj titleMgr__Q23ebi5title
+.obj _instance__Q33ebi5title9TTitleMgr, global
 	.skip 0x4
-boidCalcTimer$5256:
+.endobj _instance__Q33ebi5title9TTitleMgr
+.obj boidCalcTimer$5256, local
 	.skip 0x4
-init$5257:
+.endobj boidCalcTimer$5256
+.obj init$5257, local
 	.skip 0x1
+.endobj init$5257
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -614,8 +618,7 @@ lbl_8051F7F4:
 	.float 25.0
 .balign 8
 lbl_8051F7F8:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 lbl_8051F800:
 	.float 32767.0
 lbl_8051F804:
@@ -628,8 +631,7 @@ lbl_8051F810:
 	.float 325.9493
 .balign 8
 lbl_8051F818:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .balign 4
 lbl_8051F820:
 	.asciz ""

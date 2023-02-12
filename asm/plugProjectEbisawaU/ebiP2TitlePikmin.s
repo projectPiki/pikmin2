@@ -42,34 +42,38 @@ lbl_constructor:
 	.byte 0
 .endobj lbl_804971BC
 .balign 4
-lbl_804971D4: # Shift-JIS
+.obj lbl_804971D4, local # Shift-JIS
 	.4byte 0x8DC591E5
 	.4byte 0x95E082AD
 	.4byte 0x91AC9378
 	.byte 0
+.endobj lbl_804971D4
 .balign 4
-lbl_804971E4: # Shift-JIS
+.obj lbl_804971E4, local # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x8FD593CB
 	.4byte 0x89F194F0
 	.4byte 0x8C579094
 	.byte 0
+.endobj lbl_804971E4
 .balign 4
-lbl_804971F8: # Shift-JIS
+.obj lbl_804971F8, local # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x91AC9378
 	.4byte 0x8D8782ED
 	.4byte 0x82B98C57
 	.4byte 0x90940000
+.endobj lbl_804971F8
 .balign 4
-lbl_8049720C: # Shift-JIS
+.obj lbl_8049720C, local # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x92869053
 	.4byte 0x8F578D87
 	.4byte 0x8C579094
 	.4byte 0x00000000
+.endobj lbl_8049720C
 .balign 4
-lbl_80497220: # Shift-JIS
+.obj lbl_80497220, local # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x8CC291CC
 	.4byte 0x82CC8BDF
@@ -77,8 +81,9 @@ lbl_80497220: # Shift-JIS
 	.4byte 0x815B8360
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+.endobj lbl_80497220
 .balign 4
-lbl_8049723C: # Shift-JIS
+.obj lbl_8049723C, local # Shift-JIS
 	.4byte 0x8C5182CC
 	.4byte 0x92869053
 	.4byte 0x82C68CC2
@@ -87,77 +92,95 @@ lbl_8049723C: # Shift-JIS
 	.4byte 0x926E82CC
 	.4byte 0x8A848D87
 	.4byte 0x00000000
+.endobj lbl_8049723C
 .balign 4
-lbl_8049725C:
+.obj lbl_8049725C, local
 	.asciz "pikmin/title_red_piki.bmd"
+.endobj lbl_8049725C
 .balign 4
-lbl_80497278:
+.obj lbl_80497278, local
 	.asciz "ebiP2TitlePikmin.cpp"
+.endobj lbl_80497278
 .balign 4
-lbl_80497290:
+.obj lbl_80497290, local
 	.asciz "P2Assert"
+.endobj lbl_80497290
 .balign 4
-lbl_8049729C:
+.obj lbl_8049729C, local
 	.asciz "pikmin/title_yellow_piki.bmd"
+.endobj lbl_8049729C
 .balign 4
-lbl_804972BC:
+.obj lbl_804972BC, local
 	.asciz "pikmin/title_blue_piki.bmd"
+.endobj lbl_804972BC
 .balign 4
-lbl_804972D8:
+.obj lbl_804972D8, local
 	.asciz "pikmin/title_black_piki.bmd"
+.endobj lbl_804972D8
 .balign 4
-lbl_804972F4:
+.obj lbl_804972F4, local
 	.asciz "pikmin/title_white_piki.bmd"
+.endobj lbl_804972F4
 .balign 4
-lbl_80497310:
+.obj lbl_80497310, local
 	.asciz "pikmin/wait.bck"
+.endobj lbl_80497310
 .balign 4
-lbl_80497320:
+.obj lbl_80497320, local
 	.asciz "pikmin/wave.bck"
+.endobj lbl_80497320
 .balign 4
-lbl_80497330:
+.obj lbl_80497330, local
 	.asciz "PikminMgr"
+.endobj lbl_80497330
 .balign 4
-lbl_8049733C: # Shift-JIS
+.obj lbl_8049733C, local # Shift-JIS
 	.4byte 0x8A438A4F
 	.4byte 0x94C58358
 	.4byte 0x8350815B
 	.4byte 0x838B0000
+.endobj lbl_8049733C
 .balign 4
-lbl_8049734C: # Shift-JIS
+.obj lbl_8049734C, local # Shift-JIS
 	.4byte 0x93FA967B
 	.4byte 0x8CEA94C5
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x00000000
+.endobj lbl_8049734C
 .balign 4
-lbl_80497360: # Shift-JIS
+.obj lbl_80497360, local # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839394BC
 	.4byte 0x8C610000
+.endobj lbl_80497360
 .balign 4
-lbl_80497370: # Shift-JIS
+.obj lbl_80497370, local # Shift-JIS
 	.4byte 0x92E28E7E
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.endobj lbl_80497370
 .balign 4
-lbl_8049737C: # Shift-JIS
+.obj lbl_8049737C, local # Shift-JIS
 	.4byte 0x8EFB91A9
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.endobj lbl_8049737C
 .balign 4
-lbl_80497388: # Shift-JIS
+.obj lbl_80497388, local # Shift-JIS
 	.4byte 0x896582B8
 	.4byte 0x82E782B5
 	.4byte 0x58000000
+.endobj lbl_80497388
 .balign 4
-lbl_80497394: # Shift-JIS
+.obj lbl_80497394, local # Shift-JIS
 	.4byte 0x896582B8
 	.4byte 0x82E782B5
 	.4byte 0x5A000000
+.endobj lbl_80497394
 .balign 4
-lbl_804973A0: # Shift-JIS
+.obj lbl_804973A0, local # Shift-JIS
 	.4byte 0x8341836A
 	.4byte 0x83818358
 	.4byte 0x8373815B
@@ -166,38 +189,43 @@ lbl_804973A0: # Shift-JIS
 	.4byte 0x91AC9378
 	.4byte 0x94E497E1
 	.4byte 0x816A0000
+.endobj lbl_804973A0
 .balign 4
-lbl_804973C0: # Shift-JIS
+.obj lbl_804973C0, local # Shift-JIS
 	.4byte 0x8341836A
 	.4byte 0x83818358
 	.4byte 0x8373815B
 	.4byte 0x83689597
 	.4byte 0x00000000
+.endobj lbl_804973C0
 .balign 4
-lbl_804973D4: # Shift-JIS
+.obj lbl_804973D4, local # Shift-JIS
 	.4byte 0x8341836A
 	.4byte 0x83818358
 	.4byte 0x8373815B
 	.4byte 0x83685741
 	.4byte 0x49548DC5
 	.4byte 0x91E50000
+.endobj lbl_804973D4
 .balign 4
-lbl_804973EC: # Shift-JIS
+.obj lbl_804973EC, local # Shift-JIS
 	.4byte 0x8341836A
 	.4byte 0x83818358
 	.4byte 0x8373815B
 	.4byte 0x83685741
 	.4byte 0x49548DC5
 	.4byte 0x8FAC0000
+.endobj lbl_804973EC
 .balign 4
-lbl_80497404: # Shift-JIS
+.obj lbl_80497404, local # Shift-JIS
 	.4byte 0x8352834B
 	.4byte 0x836C8D44
 	.4byte 0x82AB8D44
 	.4byte 0x82AB8C57
 	.4byte 0x90940000
+.endobj lbl_80497404
 .balign 4
-lbl_80497418: # Shift-JIS
+.obj lbl_80497418, local # Shift-JIS
 	.4byte 0x83608383
 	.4byte 0x83628373
 	.4byte 0x815B82A9
@@ -205,33 +233,39 @@ lbl_80497418: # Shift-JIS
 	.4byte 0x82B082E9
 	.4byte 0x8C579094
 	.4byte 0x00000000
+.endobj lbl_80497418
 .balign 4
-lbl_80497434: # Shift-JIS
+.obj lbl_80497434, local # Shift-JIS
 	.4byte 0x92C782A2
 	.4byte 0x82A982AF
 	.4byte 0x82A082AB
 	.4byte 0x82E782DF
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+.endobj lbl_80497434
 .balign 4
-lbl_8049744C: # Shift-JIS
+.obj lbl_8049744C, local # Shift-JIS
 	.4byte 0x9597835E
 	.4byte 0x8343837D
 	.4byte 0x815B2895
 	.4byte 0x62290000
+.endobj lbl_8049744C
 .balign 4
-lbl_8049745C: # Shift-JIS
+.obj lbl_8049745C, local # Shift-JIS
 	.4byte 0x8B9797A3
 	.4byte 0x94E497E1
 	.4byte 0x91AC9378
 	.4byte 0x8C579094
 	.4byte 0x00000000
+.endobj lbl_8049745C
 .balign 4
-lbl_80497470:
+.obj lbl_80497470, local
 	.asciz "param/param_pikmin.txt"
+.endobj lbl_80497470
 .balign 4
-lbl_80497488:
+.obj lbl_80497488, local
 	.asciz "param/param_boid.txt"
+.endobj lbl_80497488
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -249,90 +283,128 @@ lbl_80497488:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-boidCalcTimer$4026:
+.endobj gfNAN___Q24Game5P2JST
+.obj boidCalcTimer$4026, local
 	.skip 0x4
-init$4027:
+.endobj boidCalcTimer$4026
+.obj init$4027, local
 	.skip 0x1
+.endobj init$4027
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FC60:
+.obj lbl_8051FC60, local
 	.float 0.0
-lbl_8051FC64:
+.endobj lbl_8051FC60
+.obj lbl_8051FC64, local
 	.float 0.2
-lbl_8051FC68:
+.endobj lbl_8051FC64
+.obj lbl_8051FC68, local
 	.float 10.0
-lbl_8051FC6C:
+.endobj lbl_8051FC68
+.obj lbl_8051FC6C, local
 	.float 0.4
-lbl_8051FC70:
+.endobj lbl_8051FC6C
+.obj lbl_8051FC70, local
 	.float 2.0
-lbl_8051FC74:
+.endobj lbl_8051FC70
+.obj lbl_8051FC74, local
 	.float 800.0
-lbl_8051FC78:
+.endobj lbl_8051FC74
+.obj lbl_8051FC78, local
 	.float 10000.0
-lbl_8051FC7C:
+.endobj lbl_8051FC78
+.obj lbl_8051FC7C, local
 	.float 4.5
-lbl_8051FC80:
+.endobj lbl_8051FC7C
+.obj lbl_8051FC80, local
 	.float 100.0
-lbl_8051FC84:
+.endobj lbl_8051FC80
+.obj lbl_8051FC84, local
 	.float 0.005
-lbl_8051FC88:
+.endobj lbl_8051FC84
+.obj lbl_8051FC88, local
 	.float 30.0
-lbl_8051FC8C:
+.endobj lbl_8051FC88
+.obj lbl_8051FC8C, local
 	.float 500.0
-lbl_8051FC90:
+.endobj lbl_8051FC8C
+.obj lbl_8051FC90, local
 	.float 1.0
+.endobj lbl_8051FC90
 .balign 8
-lbl_8051FC98:
+.obj lbl_8051FC98, local
 	.8byte 0x4330000000000000
-lbl_8051FCA0:
+.endobj lbl_8051FC98
+.obj lbl_8051FCA0, local
 	.float -1.0
+.endobj lbl_8051FCA0
 .balign 4
-lbl_8051FCA4:
+.obj lbl_8051FCA4, local
 	.asciz "Parms"
+.endobj lbl_8051FCA4
 .balign 4
-lbl_8051FCAC:
+.obj lbl_8051FCAC, local
 	.float 2.4
-lbl_8051FCB0:
+.endobj lbl_8051FCAC
+.obj lbl_8051FCB0, local
 	.float 2.6
-lbl_8051FCB4:
+.endobj lbl_8051FCB0
+.obj lbl_8051FCB4, local
 	.float 5.0
-lbl_8051FCB8:
+.endobj lbl_8051FCB4
+.obj lbl_8051FCB8, local
 	.float 20.0
-lbl_8051FCBC:
+.endobj lbl_8051FCB8
+.obj lbl_8051FCBC, local
 	.float 50.0
-lbl_8051FCC0:
+.endobj lbl_8051FCBC
+.obj lbl_8051FCC0, local
 	.float 0.5
-lbl_8051FCC4:
+.endobj lbl_8051FCC0
+.obj lbl_8051FCC4, local
 	.float -10.0
-lbl_8051FCC8:
+.endobj lbl_8051FCC4
+.obj lbl_8051FCC8, local
 	.float -5.0
-lbl_8051FCCC:
+.endobj lbl_8051FCC8
+.obj lbl_8051FCCC, local
 	.float 400.0
-lbl_8051FCD0:
+.endobj lbl_8051FCCC
+.obj lbl_8051FCD0, local
 	.float 6.0
+.endobj lbl_8051FCD0
 .balign 8
-lbl_8051FCD8:
+.obj lbl_8051FCD8, local
 	.8byte 0x4330000080000000
-lbl_8051FCE0:
+.endobj lbl_8051FCD8
+.obj lbl_8051FCE0, local
 	.float 32767.0
-lbl_8051FCE4:
+.endobj lbl_8051FCE0
+.obj lbl_8051FCE4, local
 	.float 0.8
-lbl_8051FCE8:
+.endobj lbl_8051FCE4
+.obj lbl_8051FCE8, local
 	.float 0.40000004
-lbl_8051FCEC:
+.endobj lbl_8051FCE8
+.obj lbl_8051FCEC, local
 	.float 60.0
-lbl_8051FCF0:
+.endobj lbl_8051FCEC
+.obj lbl_8051FCF0, local
 	.float 0.1
-lbl_8051FCF4:
+.endobj lbl_8051FCF0
+.obj lbl_8051FCF4, local
 	.float -2.0
+.endobj lbl_8051FCF4
 .balign 4
-lbl_8051FCF8:
+.obj lbl_8051FCF8, local
 	.asciz "shadow1"
+.endobj lbl_8051FCF8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .fn setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive, global
@@ -1015,8 +1087,7 @@ lbl_8051FCF8:
 /* 803E47C8 003E1708  4E 80 00 20 */	blr 
 .endfn "setStartPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>"
 
-.global "setDestPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>"
-"setDestPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>":
+.fn "setDestPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>", global
 /* 803E47CC 003E170C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E47D0 003E1710  38 00 00 3E */	li r0, 0x3e
 /* 803E47D4 003E1714  7C 87 23 78 */	mr r7, r4
@@ -1109,9 +1180,9 @@ lbl_8051FCF8:
 /* 803E4924 003E1864  83 A1 00 14 */	lwz r29, 0x14(r1)
 /* 803E4928 003E1868  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E492C 003E186C  4E 80 00 20 */	blr 
+.endfn "setDestPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<f>"
 
-.global forceArriveDest__Q43ebi5title6Pikmin4TMgrFv
-forceArriveDest__Q43ebi5title6Pikmin4TMgrFv:
+.fn forceArriveDest__Q43ebi5title6Pikmin4TMgrFv, global
 /* 803E4930 003E1870  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E4934 003E1874  7C 08 02 A6 */	mflr r0
 /* 803E4938 003E1878  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1162,9 +1233,9 @@ forceArriveDest__Q43ebi5title6Pikmin4TMgrFv:
 /* 803E49E4 003E1924  7C 08 03 A6 */	mtlr r0
 /* 803E49E8 003E1928  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E49EC 003E192C  4E 80 00 20 */	blr 
+.endfn forceArriveDest__Q43ebi5title6Pikmin4TMgrFv
 
-.global assemble__Q43ebi5title6Pikmin4TMgrFv
-assemble__Q43ebi5title6Pikmin4TMgrFv:
+.fn assemble__Q43ebi5title6Pikmin4TMgrFv, global
 /* 803E49F0 003E1930  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E49F4 003E1934  7C 08 02 A6 */	mflr r0
 /* 803E49F8 003E1938  C0 22 19 10 */	lfs f1, lbl_8051FC70@sda21(r2)
@@ -1200,9 +1271,9 @@ assemble__Q43ebi5title6Pikmin4TMgrFv:
 /* 803E4A6C 003E19AC  7C 08 03 A6 */	mtlr r0
 /* 803E4A70 003E19B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E4A74 003E19B4  4E 80 00 20 */	blr 
+.endfn assemble__Q43ebi5title6Pikmin4TMgrFv
 
-.global quickAssemble__Q43ebi5title6Pikmin4TMgrFv
-quickAssemble__Q43ebi5title6Pikmin4TMgrFv:
+.fn quickAssemble__Q43ebi5title6Pikmin4TMgrFv, global
 /* 803E4A78 003E19B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E4A7C 003E19BC  7C 08 02 A6 */	mflr r0
 /* 803E4A80 003E19C0  C0 22 19 30 */	lfs f1, lbl_8051FC90@sda21(r2)
@@ -1238,9 +1309,9 @@ quickAssemble__Q43ebi5title6Pikmin4TMgrFv:
 /* 803E4AF4 003E1A34  7C 08 03 A6 */	mtlr r0
 /* 803E4AF8 003E1A38  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E4AFC 003E1A3C  4E 80 00 20 */	blr 
+.endfn quickAssemble__Q43ebi5title6Pikmin4TMgrFv
 
-.global startBoid1__Q43ebi5title6Pikmin4TMgrFf
-startBoid1__Q43ebi5title6Pikmin4TMgrFf:
+.fn startBoid1__Q43ebi5title6Pikmin4TMgrFf, global
 /* 803E4B00 003E1A40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E4B04 003E1A44  7C 08 02 A6 */	mflr r0
 /* 803E4B08 003E1A48  C0 02 19 60 */	lfs f0, lbl_8051FCC0@sda21(r2)
@@ -1278,9 +1349,9 @@ startBoid1__Q43ebi5title6Pikmin4TMgrFf:
 /* 803E4B84 003E1AC4  7C 08 03 A6 */	mtlr r0
 /* 803E4B88 003E1AC8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E4B8C 003E1ACC  4E 80 00 20 */	blr 
+.endfn startBoid1__Q43ebi5title6Pikmin4TMgrFf
 
-.global startBoid2__Q43ebi5title6Pikmin4TMgrFf
-startBoid2__Q43ebi5title6Pikmin4TMgrFf:
+.fn startBoid2__Q43ebi5title6Pikmin4TMgrFf, global
 /* 803E4B90 003E1AD0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E4B94 003E1AD4  7C 08 02 A6 */	mflr r0
 /* 803E4B98 003E1AD8  C0 02 19 60 */	lfs f0, lbl_8051FCC0@sda21(r2)
@@ -1318,9 +1389,9 @@ startBoid2__Q43ebi5title6Pikmin4TMgrFf:
 /* 803E4C14 003E1B54  7C 08 03 A6 */	mtlr r0
 /* 803E4C18 003E1B58  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E4C1C 003E1B5C  4E 80 00 20 */	blr 
+.endfn startBoid2__Q43ebi5title6Pikmin4TMgrFf
 
-.global startBoid3__Q43ebi5title6Pikmin4TMgrFf
-startBoid3__Q43ebi5title6Pikmin4TMgrFf:
+.fn startBoid3__Q43ebi5title6Pikmin4TMgrFf, global
 /* 803E4C20 003E1B60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E4C24 003E1B64  7C 08 02 A6 */	mflr r0
 /* 803E4C28 003E1B68  C0 02 19 60 */	lfs f0, lbl_8051FCC0@sda21(r2)
@@ -1358,9 +1429,9 @@ startBoid3__Q43ebi5title6Pikmin4TMgrFf:
 /* 803E4CA4 003E1BE4  7C 08 03 A6 */	mtlr r0
 /* 803E4CA8 003E1BE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E4CAC 003E1BEC  4E 80 00 20 */	blr 
+.endfn startBoid3__Q43ebi5title6Pikmin4TMgrFf
 
-.global startWindBlow__Q43ebi5title6Pikmin4TMgrFRQ23ebi8EGEBox2f
-startWindBlow__Q43ebi5title6Pikmin4TMgrFRQ23ebi8EGEBox2f:
+.fn startWindBlow__Q43ebi5title6Pikmin4TMgrFRQ23ebi8EGEBox2f, global
 /* 803E4CB0 003E1BF0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803E4CB4 003E1BF4  7C 08 02 A6 */	mflr r0
 /* 803E4CB8 003E1BF8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1402,9 +1473,9 @@ startWindBlow__Q43ebi5title6Pikmin4TMgrFRQ23ebi8EGEBox2f:
 /* 803E4D40 003E1C80  7C 08 03 A6 */	mtlr r0
 /* 803E4D44 003E1C84  38 21 00 30 */	addi r1, r1, 0x30
 /* 803E4D48 003E1C88  4E 80 00 20 */	blr 
+.endfn startWindBlow__Q43ebi5title6Pikmin4TMgrFRQ23ebi8EGEBox2f
 
-.global startDemo__Q43ebi5title6Pikmin4TMgrFv
-startDemo__Q43ebi5title6Pikmin4TMgrFv:
+.fn startDemo__Q43ebi5title6Pikmin4TMgrFv, global
 /* 803E4D4C 003E1C8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E4D50 003E1C90  7C 08 02 A6 */	mflr r0
 /* 803E4D54 003E1C94  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1450,9 +1521,9 @@ startDemo__Q43ebi5title6Pikmin4TMgrFv:
 /* 803E4DEC 003E1D2C  7C 08 03 A6 */	mtlr r0
 /* 803E4DF0 003E1D30  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E4DF4 003E1D34  4E 80 00 20 */	blr 
+.endfn startDemo__Q43ebi5title6Pikmin4TMgrFv
 
-.global enemyPushOut__Q43ebi5title6Pikmin4TMgrFPQ33ebi5title8TObjBase
-enemyPushOut__Q43ebi5title6Pikmin4TMgrFPQ33ebi5title8TObjBase:
+.fn enemyPushOut__Q43ebi5title6Pikmin4TMgrFPQ33ebi5title8TObjBase, global
 /* 803E4DF8 003E1D38  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E4DFC 003E1D3C  7C 08 02 A6 */	mflr r0
 /* 803E4E00 003E1D40  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1481,9 +1552,9 @@ enemyPushOut__Q43ebi5title6Pikmin4TMgrFPQ33ebi5title8TObjBase:
 /* 803E4E58 003E1D98  7C 08 03 A6 */	mtlr r0
 /* 803E4E5C 003E1D9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E4E60 003E1DA0  4E 80 00 20 */	blr 
+.endfn enemyPushOut__Q43ebi5title6Pikmin4TMgrFPQ33ebi5title8TObjBase
 
-.global updateCalcBoid___Q43ebi5title6Pikmin4TMgrFv
-updateCalcBoid___Q43ebi5title6Pikmin4TMgrFv:
+.fn updateCalcBoid___Q43ebi5title6Pikmin4TMgrFv, global
 /* 803E4E64 003E1DA4  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 803E4E68 003E1DA8  7C 08 02 A6 */	mflr r0
 /* 803E4E6C 003E1DAC  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1741,9 +1812,9 @@ updateCalcBoid___Q43ebi5title6Pikmin4TMgrFv:
 /* 803E5210 003E2150  7C 08 03 A6 */	mtlr r0
 /* 803E5214 003E2154  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 803E5218 003E2158  4E 80 00 20 */	blr 
+.endfn updateCalcBoid___Q43ebi5title6Pikmin4TMgrFv
 
-.global isAssemble__Q43ebi5title6Pikmin4TMgrFv
-isAssemble__Q43ebi5title6Pikmin4TMgrFv:
+.fn isAssemble__Q43ebi5title6Pikmin4TMgrFv, global
 /* 803E521C 003E215C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E5220 003E2160  7C 08 02 A6 */	mflr r0
 /* 803E5224 003E2164  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1775,16 +1846,16 @@ isAssemble__Q43ebi5title6Pikmin4TMgrFv:
 /* 803E5280 003E21C0  7C 08 03 A6 */	mtlr r0
 /* 803E5284 003E21C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E5288 003E21C8  4E 80 00 20 */	blr 
+.endfn isAssemble__Q43ebi5title6Pikmin4TMgrFv
 
-.global getUnit__Q43ebi5title6Pikmin4TMgrFl
-getUnit__Q43ebi5title6Pikmin4TMgrFl:
+.fn getUnit__Q43ebi5title6Pikmin4TMgrFl, global
 /* 803E528C 003E21CC  1C 04 00 98 */	mulli r0, r4, 0x98
 /* 803E5290 003E21D0  80 63 02 AC */	lwz r3, 0x2ac(r3)
 /* 803E5294 003E21D4  7C 63 02 14 */	add r3, r3, r0
 /* 803E5298 003E21D8  4E 80 00 20 */	blr 
+.endfn getUnit__Q43ebi5title6Pikmin4TMgrFl
 
-.global init__Q43ebi5title6Pikmin5TUnitFPQ43ebi5title6Pikmin4TMgrl
-init__Q43ebi5title6Pikmin5TUnitFPQ43ebi5title6Pikmin4TMgrl:
+.fn init__Q43ebi5title6Pikmin5TUnitFPQ43ebi5title6Pikmin4TMgrl, global
 /* 803E529C 003E21DC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803E52A0 003E21E0  7C 08 02 A6 */	mflr r0
 /* 803E52A4 003E21E4  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2014,9 +2085,9 @@ init__Q43ebi5title6Pikmin5TUnitFPQ43ebi5title6Pikmin4TMgrl:
 /* 803E55F0 003E2530  7C 08 03 A6 */	mtlr r0
 /* 803E55F4 003E2534  38 21 00 50 */	addi r1, r1, 0x50
 /* 803E55F8 003E2538  4E 80 00 20 */	blr 
+.endfn init__Q43ebi5title6Pikmin5TUnitFPQ43ebi5title6Pikmin4TMgrl
 
-.global goDestination__Q43ebi5title6Pikmin5TUnitFv
-goDestination__Q43ebi5title6Pikmin5TUnitFv:
+.fn goDestination__Q43ebi5title6Pikmin5TUnitFv, global
 /* 803E55FC 003E253C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E5600 003E2540  7C 08 02 A6 */	mflr r0
 /* 803E5604 003E2544  C0 02 19 00 */	lfs f0, lbl_8051FC60@sda21(r2)
@@ -2060,9 +2131,9 @@ goDestination__Q43ebi5title6Pikmin5TUnitFv:
 /* 803E5688 003E25C8  7C 08 03 A6 */	mtlr r0
 /* 803E568C 003E25CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E5690 003E25D0  4E 80 00 20 */	blr 
+.endfn goDestination__Q43ebi5title6Pikmin5TUnitFv
 
-.global beAttacked__Q43ebi5title6Pikmin5TUnitFv
-beAttacked__Q43ebi5title6Pikmin5TUnitFv:
+.fn beAttacked__Q43ebi5title6Pikmin5TUnitFv, global
 /* 803E5694 003E25D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E5698 003E25D8  7C 08 02 A6 */	mflr r0
 /* 803E569C 003E25DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2092,23 +2163,23 @@ beAttacked__Q43ebi5title6Pikmin5TUnitFv:
 /* 803E56F4 003E2634  7C 08 03 A6 */	mtlr r0
 /* 803E56F8 003E2638  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E56FC 003E263C  4E 80 00 20 */	blr 
+.endfn beAttacked__Q43ebi5title6Pikmin5TUnitFv
 
-.global alive__Q43ebi5title6Pikmin5TUnitFv
-alive__Q43ebi5title6Pikmin5TUnitFv:
+.fn alive__Q43ebi5title6Pikmin5TUnitFv, global
 /* 803E5700 003E2640  38 00 00 00 */	li r0, 0
 /* 803E5704 003E2644  98 03 00 94 */	stb r0, 0x94(r3)
 /* 803E5708 003E2648  4E 80 00 20 */	blr 
+.endfn alive__Q43ebi5title6Pikmin5TUnitFv
 
-.global isCalc__Q43ebi5title6Pikmin5TUnitFv
-isCalc__Q43ebi5title6Pikmin5TUnitFv:
+.fn isCalc__Q43ebi5title6Pikmin5TUnitFv, global
 /* 803E570C 003E264C  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 803E5710 003E2650  7C 03 00 D0 */	neg r0, r3
 /* 803E5714 003E2654  7C 00 1B 78 */	or r0, r0, r3
 /* 803E5718 003E2658  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 803E571C 003E265C  4E 80 00 20 */	blr 
+.endfn isCalc__Q43ebi5title6Pikmin5TUnitFv
 
-.global isAssemble__Q43ebi5title6Pikmin5TUnitFv
-isAssemble__Q43ebi5title6Pikmin5TUnitFv:
+.fn isAssemble__Q43ebi5title6Pikmin5TUnitFv, global
 /* 803E5720 003E2660  80 03 00 84 */	lwz r0, 0x84(r3)
 /* 803E5724 003E2664  2C 00 00 00 */	cmpwi r0, 0
 /* 803E5728 003E2668  41 82 00 0C */	beq .L_803E5734
@@ -2120,9 +2191,9 @@ isAssemble__Q43ebi5title6Pikmin5TUnitFv:
 .L_803E573C:
 /* 803E573C 003E267C  38 60 00 00 */	li r3, 0
 /* 803E5740 003E2680  4E 80 00 20 */	blr 
+.endfn isAssemble__Q43ebi5title6Pikmin5TUnitFv
 
-.global isWalk__Q43ebi5title6Pikmin5TUnitFv
-isWalk__Q43ebi5title6Pikmin5TUnitFv:
+.fn isWalk__Q43ebi5title6Pikmin5TUnitFv, global
 /* 803E5744 003E2684  80 03 00 84 */	lwz r0, 0x84(r3)
 /* 803E5748 003E2688  2C 00 00 02 */	cmpwi r0, 2
 /* 803E574C 003E268C  41 82 00 0C */	beq .L_803E5758
@@ -2134,9 +2205,9 @@ isWalk__Q43ebi5title6Pikmin5TUnitFv:
 .L_803E5760:
 /* 803E5760 003E26A0  38 60 00 00 */	li r3, 0
 /* 803E5764 003E26A4  4E 80 00 20 */	blr 
+.endfn isWalk__Q43ebi5title6Pikmin5TUnitFv
 
-.global startState__Q43ebi5title6Pikmin5TUnitFQ53ebi5title6Pikmin5TUnit9enumState
-startState__Q43ebi5title6Pikmin5TUnitFQ53ebi5title6Pikmin5TUnit9enumState:
+.fn startState__Q43ebi5title6Pikmin5TUnitFQ53ebi5title6Pikmin5TUnit9enumState, global
 /* 803E5768 003E26A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803E576C 003E26AC  7C 08 02 A6 */	mflr r0
 /* 803E5770 003E26B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2228,9 +2299,9 @@ startState__Q43ebi5title6Pikmin5TUnitFQ53ebi5title6Pikmin5TUnit9enumState:
 /* 803E58AC 003E27EC  7C 08 03 A6 */	mtlr r0
 /* 803E58B0 003E27F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803E58B4 003E27F4  4E 80 00 20 */	blr 
+.endfn startState__Q43ebi5title6Pikmin5TUnitFQ53ebi5title6Pikmin5TUnit9enumState
 
-.global update__Q43ebi5title6Pikmin5TUnitFv
-update__Q43ebi5title6Pikmin5TUnitFv:
+.fn update__Q43ebi5title6Pikmin5TUnitFv, global
 /* 803E58B8 003E27F8  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 803E58BC 003E27FC  7C 08 02 A6 */	mflr r0
 /* 803E58C0 003E2800  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -3189,9 +3260,9 @@ update__Q43ebi5title6Pikmin5TUnitFv:
 /* 803E6680 003E35C0  7C 08 03 A6 */	mtlr r0
 /* 803E6684 003E35C4  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 803E6688 003E35C8  4E 80 00 20 */	blr 
+.endfn update__Q43ebi5title6Pikmin5TUnitFv
 
-.global "updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<f>"
-"updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<f>":
+.fn "updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<f>", global
 /* 803E668C 003E35CC  C0 A4 00 00 */	lfs f5, 0(r4)
 /* 803E6690 003E35D0  C0 04 00 04 */	lfs f0, 4(r4)
 /* 803E6694 003E35D4  EC 25 01 72 */	fmuls f1, f5, f5
@@ -3336,9 +3407,9 @@ update__Q43ebi5title6Pikmin5TUnitFv:
 /* 803E6880 003E37C0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803E6884 003E37C4  D0 23 00 08 */	stfs f1, 8(r3)
 /* 803E6888 003E37C8  4E 80 00 20 */	blr 
+.endfn "updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<f>"
 
-.global updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv
-updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv:
+.fn updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv, global
 /* 803E688C 003E37CC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803E6890 003E37D0  7C 08 02 A6 */	mflr r0
 /* 803E6894 003E37D4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3569,9 +3640,9 @@ updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv:
 /* 803E6BD0 003E3B10  7C 08 03 A6 */	mtlr r0
 /* 803E6BD4 003E3B14  38 21 00 30 */	addi r1, r1, 0x30
 /* 803E6BD8 003E3B18  4E 80 00 20 */	blr 
+.endfn updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv
 
-.global __ct__Q43ebi5title6Pikmin10TBoidParamFv
-__ct__Q43ebi5title6Pikmin10TBoidParamFv:
+.fn __ct__Q43ebi5title6Pikmin10TBoidParamFv, weak
 /* 803E6BDC 003E3B1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E6BE0 003E3B20  7C 08 02 A6 */	mflr r0
 /* 803E6BE4 003E3B24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3715,9 +3786,9 @@ __ct__Q43ebi5title6Pikmin10TBoidParamFv:
 /* 803E6E08 003E3D48  7C 08 03 A6 */	mtlr r0
 /* 803E6E0C 003E3D4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E6E10 003E3D50  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Pikmin10TBoidParamFv
 
-.global __ct__Q43ebi5title6Pikmin5TUnitFv
-__ct__Q43ebi5title6Pikmin5TUnitFv:
+.fn __ct__Q43ebi5title6Pikmin5TUnitFv, weak
 /* 803E6E14 003E3D54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E6E18 003E3D58  7C 08 02 A6 */	mflr r0
 /* 803E6E1C 003E3D5C  3C 80 80 4E */	lis r4, __vt__Q33ebi5title8TObjBase@ha
@@ -3781,9 +3852,9 @@ __ct__Q43ebi5title6Pikmin5TUnitFv:
 /* 803E6F04 003E3E44  7C 08 03 A6 */	mtlr r0
 /* 803E6F08 003E3E48  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E6F0C 003E3E4C  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Pikmin5TUnitFv
 
-.global __ct__Q43ebi5title6Pikmin6TParamFv
-__ct__Q43ebi5title6Pikmin6TParamFv:
+.fn __ct__Q43ebi5title6Pikmin6TParamFv, weak
 /* 803E6F10 003E3E50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E6F14 003E3E54  7C 08 02 A6 */	mflr r0
 /* 803E6F18 003E3E58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4047,13 +4118,14 @@ __ct__Q43ebi5title6Pikmin6TParamFv:
 /* 803E731C 003E425C  7C 08 03 A6 */	mtlr r0
 /* 803E7320 003E4260  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E7324 003E4264  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi5title6Pikmin6TParamFv
 
-.global getCreatureType__Q43ebi5title6Pikmin5TUnitFv
-getCreatureType__Q43ebi5title6Pikmin5TUnitFv:
+.fn getCreatureType__Q43ebi5title6Pikmin5TUnitFv, weak
 /* 803E7328 003E4268  38 60 00 00 */	li r3, 0
 /* 803E732C 003E426C  4E 80 00 20 */	blr 
+.endfn getCreatureType__Q43ebi5title6Pikmin5TUnitFv
 
-__sinit_ebiP2TitlePikmin_cpp: # static initializer
+.fn __sinit_ebiP2TitlePikmin_cpp, local
 /* 803E7330 003E4270  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803E7334 003E4274  38 00 FF FF */	li r0, -1
 /* 803E7338 003E4278  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -4064,3 +4136,4 @@ __sinit_ebiP2TitlePikmin_cpp: # static initializer
 /* 803E734C 003E428C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803E7350 003E4290  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803E7354 003E4294  4E 80 00 20 */	blr 
+.endfn __sinit_ebiP2TitlePikmin_cpp
