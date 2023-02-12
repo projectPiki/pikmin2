@@ -616,6 +616,42 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
+	inline void updateFaceDir(f32 angle)
+	{
+		mFaceDir    = roundAng(angle + getFaceDir());
+		mRotation.y = mFaceDir;
+	}
+
+	inline f32 turnToTargetNishi(Creature* target, f32 turnFactor, f32 maxTurnSpeed)
+	{
+		Vector3f targetPos = target->getPosition();
+		Vector3f pos       = getPosition();
+
+		f32 angleDist = angDist(_angXZ(targetPos.x, targetPos.z, pos.x, pos.z), getFaceDir());
+		f32 turnSpeed = angleDist * turnFactor;
+		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
+		if (FABS(turnSpeed) > limit) {
+			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
+		}
+
+		updateFaceDir(turnSpeed);
+
+		return angleDist;
+	}
+
+	inline bool checkDistAndAngle(Creature* target, f32 angle, f32 distRange, f32 angRange)
+	{
+		bool result = false;
+		Vector3f sep;
+		sep.x = getPosition().x - target->getPosition().x;
+		sep.y = getPosition().y - target->getPosition().y;
+		sep.z = getPosition().z - target->getPosition().z;
+		if ((sep.x * sep.x + sep.y * sep.y + sep.z * sep.z < distRange * distRange) && FABS(angle) <= PI * (DEG2RAD * angRange)) {
+			result = true;
+		}
+		return result;
+	}
+
 	inline f32 getDamageAnimFrac(f32 scale) { return (mDamageAnimTimer / scale); }
 
 	inline f32 getSqrHomeRadius() const

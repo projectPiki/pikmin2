@@ -157,55 +157,45 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 // NON-MATCHING
 void StateMove::exec(EnemyBase* enemy)
 {
-
 	Obj* baby = static_cast<Obj*>(enemy);
 	if (baby->mHealth <= 0.0f) {
 		transit(baby, BABY_Dead, nullptr);
 		return;
 	}
 
-	Creature* creature
-	    = EnemyFunc::getNearestPikminOrNavi(baby, static_cast<Parms*>(baby->mParms)->mGeneral.mViewAngle.mValue,
-	                                        static_cast<Parms*>(baby->mParms)->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+	Creature* creature = EnemyFunc::getNearestPikminOrNavi(baby, CG_PARMS(baby)->mGeneral.mViewAngle.mValue,
+	                                                       CG_PARMS(baby)->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
 
 	if (creature) {
-		Vector3f creaturePos = creature->getPosition();
-		Vector2f XZ;
-		XZ.x          = creaturePos.x;
-		XZ.y          = creaturePos.z;
-		f32 angleDist = baby->changeFaceDir(XZ);
 
-		f64 abs = fabs(angleDist);
-		if ((f32)(abs) <= (DEG2RAD * static_cast<Parms*>(baby->mParms)->mGeneral.mMinAttackRange.mValue) * PI) {
-			f32 speed    = static_cast<Parms*>(baby->mParms)->mGeneral.mMoveSpeed.mValue;
+		f32 angleDist = baby->turnToTargetNishi(creature, CG_PARMS(baby)->mGeneral.mRotationalAccel.mValue,
+		                                        CG_PARMS(baby)->mGeneral.mRotationalSpeed.mValue);
+
+		f32 limit   = PI * (DEG2RAD * *CG_PARMS(baby)->mGeneral.mMinAttackRange());
+		f32 absDist = FABS(angleDist);
+
+		if (absDist <= limit) {
+			f32 speed    = CG_PARMS(baby)->mGeneral.mMoveSpeed.mValue;
 			f32 sintheta = (f32)sin(baby->getFaceDir());
-			Vector3f vel = baby->mTargetVelocity;
+			f32 y        = baby->getTargetVelocity().y;
 			f32 costheta = (f32)cos(baby->getFaceDir());
 
-			enemy->mTargetVelocity = Vector3f(speed * sintheta, vel.y, speed * costheta);
+			baby->mTargetVelocity = Vector3f(speed * sintheta, y, speed * costheta);
 
 		} else {
-			f32 speed    = static_cast<Parms*>(baby->mParms)->mGeneral.mMoveSpeed.mValue / 4;
+			f32 speed    = CG_PARMS(baby)->mGeneral.mMoveSpeed.mValue * 0.25f;
 			f32 sintheta = (f32)sin(baby->getFaceDir());
-			Vector3f vel = baby->mTargetVelocity;
+			f32 y        = baby->getTargetVelocity().y;
 			f32 costheta = (f32)cos(baby->getFaceDir());
 
-			enemy->mTargetVelocity = Vector3f(speed * sintheta, vel.y, speed * costheta);
+			baby->mTargetVelocity = Vector3f(speed * sintheta, y, speed * costheta);
 		}
 
-		f32 attackAngle = static_cast<Parms*>(baby->mParms)->mGeneral.mMinAttackRange.mValue;
-		bool check      = false;
-		f32 range       = static_cast<Parms*>(baby->mParms)->mGeneral.mMaxAttackRange.mValue;
-
-		Vector3f sep(baby->getPosition().x - creature->getPosition().x, baby->getPosition().y - creature->getPosition().y,
-		             baby->getPosition().z - creature->getPosition().z);
-		if ((sep.x * sep.x + sep.y * sep.y + sep.z * sep.z < range * range) && FABS(angleDist) <= (DEG2RAD * attackAngle) * PI) {
-			check = true;
-		}
-
-		if (check) {
+		if (baby->checkDistAndAngle(creature, angleDist, CG_PARMS(baby)->mGeneral.mMaxAttackRange.mValue,
+		                            CG_PARMS(baby)->mGeneral.mMinAttackRange.mValue)) {
 			transit(baby, BABY_Attack, nullptr);
 		}
+
 	} else {
 		baby->moveNoTarget();
 	}
