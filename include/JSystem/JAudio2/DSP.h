@@ -12,7 +12,7 @@ void DsetMixerLevel(f32 mixerLevel);
 void DsyncFrame(u32 p1, u32 p2, u32 p3);
 
 // dsptask.c
-void DspHandShake(void* a1);
+void DspHandShake();
 void DspBoot(DSPCallback callback);
 void DSPSendCommands2(u32* p1, u32 p2, void (*p3)(u16));
 void DspInitWork();
@@ -26,7 +26,7 @@ void DSPAddPriorTask(DSPTaskInfo* task);
 void DsyncFrame2(u32 p1, u32 p2, u32 p3);
 void Dsp_Update_Request();
 BOOL Dsp_Running_Check();
-void DSP_Running_Start();
+void Dsp_Running_Start();
 
 // unused/inlined in dspproc.c:
 void DSPReleaseHalt3(u32 p1, u16 p2);
@@ -46,7 +46,6 @@ void DagbSec(u32 p1, void (*p2)(u16));
 void dummy_callback(u16 p1);
 void DsetDolbyDelay(u32 p1, u16 p2);
 
-extern u8 DSP_prior_yield;
 extern DSPTaskInfo* DSP_prior_task;
 
 #endif

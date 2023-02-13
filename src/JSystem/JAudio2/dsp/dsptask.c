@@ -3,15 +3,17 @@
 #include "JSystem/JAudio2/DSP.h"
 
 static DSPTaskInfo audio_task;
-static u8 AUDIO_YIELD_BUFFER[0x2000];
+static u16 AUDIO_YIELD_BUFFER[0x1000];
 static u8 taskwork[0x80];
+
+u16 jdsp[3728] ATTRIBUTE_ALIGN(32) = { 0x80 }; // placeholder
 
 /*
  * --INFO--
  * Address:	800AA900
  * Size:	000038
  */
-void DspHandShake__FPv(void* a1)
+void DspHandShake(void* a1)
 {
 	do {
 		;
@@ -44,15 +46,15 @@ void DspHandShake__FPv(void* a1)
  * Address:	800AA940
  * Size:	0000AC
  */
-void DspBoot__FPFPv_v(DSPCallback callback)
+void DspBoot(DSPCallback callback)
 {
 	DspInitWork();
 	audio_task.priority          = 0xF0;
-	audio_task.iram_mmem_addr    = 0x4A44E0;
-	audio_task.iram_length       = 0x1D20;
-	audio_task.iram_addr         = 0;
-	audio_task.dram_mmem_addr    = 0x4F07E0;
-	audio_task.dram_length       = 0x2000;
+	audio_task.iram_mmem_addr    = jdsp;
+	audio_task.iram_length       = sizeof(jdsp);
+	audio_task.iram_addr         = nullptr;
+	audio_task.dram_mmem_addr    = AUDIO_YIELD_BUFFER;
+	audio_task.dram_length       = sizeof(AUDIO_YIELD_BUFFER);
 	audio_task.dram_addr         = 0;
 	audio_task.dsp_init_vector   = 0;
 	audio_task.dsp_resume_vector = 0x10;
@@ -115,7 +117,7 @@ void DspBoot__FPFPv_v(DSPCallback callback)
  * Address:	800AAA00
  * Size:	0000E8
  */
-void DSPSendCommands2__FPUlUlPFUs_v(u32* p1, u32 p2, void (*p3)(u16))
+void DSPSendCommands2(u32* p1, u32 p2, void (*p3)(u16))
 {
 	/*
 	.loc_0x0:
@@ -203,7 +205,7 @@ void DSPSendCommands2__FPUlUlPFUs_v(u32* p1, u32 p2, void (*p3)(u16))
  * Address:	800AAB00
  * Size:	00002C
  */
-void DspInitWork__Fv()
+void DspInitWork()
 {
 	while (taskwork) { }
 
@@ -230,7 +232,7 @@ void DspInitWork__Fv()
  * Address:	800AAB40
  * Size:	000048
  */
-void DspStartWork__FUlPFUs_v(u32 p1, void (*p2)(u16))
+void DspStartWork(u32 p1, void (*p2)(u16))
 {
 	/*
 	.loc_0x0:
@@ -262,7 +264,7 @@ void DspStartWork__FUlPFUs_v(u32 p1, void (*p2)(u16))
  * Address:	800AABA0
  * Size:	000068
  */
-void DspFinishWork__FUs(u16 p1)
+void DspFinishWork(u16 p1)
 {
 	/*
 	.loc_0x0:

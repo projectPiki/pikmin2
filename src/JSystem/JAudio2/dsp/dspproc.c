@@ -11,7 +11,7 @@ static u16 DSP_MIXERLEVEL = 0x4000;
  * Address:	........
  * Size:	000024
  */
-void DSPSendCommands__FPUlUl(u32* p1, u32 p2)
+void DSPSendCommands(u32* p1, u32 p2)
 {
 	// UNUSED FUNCTION
 }
@@ -21,7 +21,7 @@ void DSPSendCommands__FPUlUl(u32* p1, u32 p2)
  * Address:	........
  * Size:	000038
  */
-void DSPReleaseHalt3__FUlUs(u32 p1, u16 p2)
+void DSPReleaseHalt3(u32 p1, u16 p2)
 {
 	// UNUSED FUNCTION
 }
@@ -31,7 +31,7 @@ void DSPReleaseHalt3__FUlUs(u32 p1, u16 p2)
  * Address:	800AA760
  * Size:	000048
  */
-void DSPReleaseHalt2__FUl(u32 msg)
+void DSPReleaseHalt2(u32 msg)
 {
 	u32 msgs[5];
 	msgs[0] = (msg << 16) | DSP_CreateMap2(msg);
@@ -65,7 +65,7 @@ void DSPReleaseHalt2__FUl(u32 msg)
  * Address:	........
  * Size:	000034
  */
-void DSPReleaseHalt__Fv()
+void DSPReleaseHalt()
 {
 	// UNUSED FUNCTION
 }
@@ -75,7 +75,7 @@ void DSPReleaseHalt__Fv()
  * Address:	........
  * Size:	00003C
  */
-void DSPWaitFinish__Fv()
+void DSPWaitFinish()
 {
 	// UNUSED FUNCTION
 }
@@ -85,7 +85,7 @@ void DSPWaitFinish__Fv()
  * Address:	........
  * Size:	000040
  */
-void Dswap__FUlUlUl(u32 p1, u32 p2, u32 p3)
+void Dswap(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
@@ -95,7 +95,7 @@ void Dswap__FUlUlUl(u32 p1, u32 p2, u32 p3)
  * Address:	........
  * Size:	000048
  */
-void Dmix__FUlUlUls(u32 p1, u32 p2, u32 p3, short p4)
+void Dmix(u32 p1, u32 p2, u32 p3, short p4)
 {
 	// UNUSED FUNCTION
 }
@@ -105,7 +105,7 @@ void Dmix__FUlUlUls(u32 p1, u32 p2, u32 p3, short p4)
  * Address:	........
  * Size:	000040
  */
-void Dcopy__FUlUlUl(u32 p1, u32 p2, u32 p3)
+void Dcopy(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
@@ -115,7 +115,7 @@ void Dcopy__FUlUlUl(u32 p1, u32 p2, u32 p3)
  * Address:	........
  * Size:	000044
  */
-void DloadBuffer1__FUlUl(u32 p1, u32 p2)
+void DloadBuffer1(u32 p1, u32 p2)
 {
 	// UNUSED FUNCTION
 }
@@ -125,7 +125,7 @@ void DloadBuffer1__FUlUl(u32 p1, u32 p2)
  * Address:	........
  * Size:	000040
  */
-void DloadBuffer__FUlUlUl(u32 p1, u32 p2, u32 p3)
+void DloadBuffer(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
@@ -135,7 +135,7 @@ void DloadBuffer__FUlUlUl(u32 p1, u32 p2, u32 p3)
  * Address:	........
  * Size:	000044
  */
-void DsaveBuffer__FUsUlUl(u16 p1, u32 p2, u32 p3)
+void DsaveBuffer(u16 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
@@ -145,14 +145,14 @@ void DsaveBuffer__FUsUlUl(u16 p1, u32 p2, u32 p3)
  * Address:	800AA7C0
  * Size:	00000C
  */
-void setup_callback__FUs(u16 p1) { flag = 0; }
+void setup_callback(u16 p1) { flag = 0; }
 
 /*
  * --INFO--
  * Address:	800AA7E0
  * Size:	000064
  */
-void DsetupTable__FUlUlUlUlUl(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5)
+void DsetupTable(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5)
 {
 	u32 commands[5];
 	commands[0] = p1 & 0xFFFF | 0x81000000;
@@ -161,7 +161,7 @@ void DsetupTable__FUlUlUlUlUl(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5)
 	commands[3] = p4;
 	commands[4] = p5;
 	flag        = 1;
-	DSPSendCommands2__FPUlUlPFUs_v(commands, 5, setup_callback__FUs);
+	DSPSendCommands2(commands, 5, setup_callback);
 	while (flag != 0)
 		;
 }
@@ -171,14 +171,14 @@ void DsetupTable__FUlUlUlUlUl(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5)
  * Address:	800AA860
  * Size:	000024
  */
-void DsetMixerLevel__Ff(float mixerLevel) { DSP_MIXERLEVEL = 4096.0f * mixerLevel; }
+void DsetMixerLevel(float mixerLevel) { DSP_MIXERLEVEL = 4096.0f * mixerLevel; }
 
 /*
  * --INFO--
  * Address:	800AA8A0
  * Size:	000048
  */
-void DsyncFrame__FUlUlUl(u32 p1, u32 p2, u32 p3)
+void DsyncFrame(u32 p1, u32 p2, u32 p3)
 {
 	/*
 	.loc_0x0:
@@ -208,7 +208,7 @@ void DsyncFrame__FUlUlUl(u32 p1, u32 p2, u32 p3)
  * Address:	........
  * Size:	00000C
  */
-void wait_callback__FUs(u16 p1)
+void wait_callback(u16 p1)
 {
 	// UNUSED FUNCTION
 }
@@ -218,7 +218,7 @@ void wait_callback__FUs(u16 p1)
  * Address:	........
  * Size:	00004C
  */
-void DwaitFrame__Fv()
+void DwaitFrame()
 {
 	// UNUSED FUNCTION
 }
@@ -228,7 +228,7 @@ void DwaitFrame__Fv()
  * Address:	........
  * Size:	00003C
  */
-void DiplSec__FUlPFUs_v(u32 p1, void (*p2)(u16))
+void DiplSec(u32 p1, void (*p2)(u16))
 {
 	// UNUSED FUNCTION
 }
@@ -238,7 +238,7 @@ void DiplSec__FUlPFUs_v(u32 p1, void (*p2)(u16))
  * Address:	........
  * Size:	00003C
  */
-void DagbSec__FUlPFUs_v(u32 p1, void (*p2)(u16))
+void DagbSec(u32 p1, void (*p2)(u16))
 {
 	// UNUSED FUNCTION
 }
@@ -248,7 +248,7 @@ void DagbSec__FUlPFUs_v(u32 p1, void (*p2)(u16))
  * Address:	........
  * Size:	00000C
  */
-void dummy_callback__FUs(u16 p1)
+void dummy_callback(u16 p1)
 {
 	// UNUSED FUNCTION
 }
@@ -258,7 +258,7 @@ void dummy_callback__FUs(u16 p1)
  * Address:	........
  * Size:	000054
  */
-void DsetDolbyDelay__FUlUs(u32 p1, u16 p2)
+void DsetDolbyDelay(u32 p1, u16 p2)
 {
 	// UNUSED FUNCTION
 }

@@ -1,16 +1,16 @@
 #include "JSystem/JAudio2/DSP.h"
 
-u8 DSP_prior_yield;
-int AUDIO_UPDATE_REQUEST;
+static u8 DSP_prior_yield;
+static int AUDIO_UPDATE_REQUEST;
 DSPTaskInfo* DSP_prior_task;
-u32 sync_stack[3];
+static u32 sync_stack[3];
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void DebugPrint_TaskInfo__FP15STRUCT_DSP_TASK(DSPTaskInfo* task)
+void DebugPrint_TaskInfo(DSPTaskInfo* task)
 {
 	// UNUSED FUNCTION
 }
@@ -20,7 +20,7 @@ void DebugPrint_TaskInfo__FP15STRUCT_DSP_TASK(DSPTaskInfo* task)
  * Address:	........
  * Size:	000040
  */
-void Check_Broken__FP15STRUCT_DSP_TASK(DSPTaskInfo* task)
+void Check_Broken(DSPTaskInfo* task)
 {
 	// UNUSED FUNCTION
 }
@@ -30,11 +30,14 @@ void Check_Broken__FP15STRUCT_DSP_TASK(DSPTaskInfo* task)
  * Address:	........
  * Size:	00005C
  */
-void Check_PriorBroken__Fv()
+void Check_PriorBroken()
 {
 	// UNUSED FUNCTION
 }
 
+#ifdef __cplusplus
+extern "C" {
+#endif // ifdef __cplusplus
 /*
  * --INFO--
  * Address:	800AAD00
@@ -283,13 +286,16 @@ void __DSPHandler(__OSInterrupt interrupt, OSContext* context)
 	  blr
 	*/
 }
+#ifdef __cplusplus
+}
+#endif // ifdef __cplusplus
 
 /*
  * --INFO--
  * Address:	800AB020
  * Size:	000050
  */
-void DsyncFrame2__FUlUlUl(u32 p1, u32 p2, u32 p3)
+void DsyncFrame2(u32 p1, u32 p2, u32 p3)
 {
 	if (DSP_prior_yield != TRUE) {
 		sync_stack[0]        = p1;
@@ -297,7 +303,7 @@ void DsyncFrame2__FUlUlUl(u32 p1, u32 p2, u32 p3)
 		sync_stack[2]        = p3;
 		AUDIO_UPDATE_REQUEST = TRUE;
 	} else {
-		DsyncFrame__FUlUlUl(p1, p2, p3);
+		DsyncFrame(p1, p2, p3);
 		AUDIO_UPDATE_REQUEST = FALSE;
 	}
 }
@@ -307,10 +313,10 @@ void DsyncFrame2__FUlUlUl(u32 p1, u32 p2, u32 p3)
  * Address:	800AB080
  * Size:	000040
  */
-void Dsp_Update_Request__Fv()
+void Dsp_Update_Request()
 {
 	if (AUDIO_UPDATE_REQUEST != 0) {
-		DsyncFrame2__FUlUlUl(sync_stack[0], sync_stack[1], sync_stack[2]);
+		DsyncFrame2(sync_stack[0], sync_stack[1], sync_stack[2]);
 	}
 }
 
@@ -319,11 +325,11 @@ void Dsp_Update_Request__Fv()
  * Address:	800AB0C0
  * Size:	000014
  */
-BOOL Dsp_Running_Check__Fv() { return DSP_prior_yield == TRUE; }
+BOOL Dsp_Running_Check() { return DSP_prior_yield == TRUE; }
 
 /*
  * --INFO--
  * Address:	800AB0E0
  * Size:	00000C
  */
-void Dsp_Running_Start__Fv() { DSP_prior_yield = 1; }
+void Dsp_Running_Start() { DSP_prior_yield = 1; }

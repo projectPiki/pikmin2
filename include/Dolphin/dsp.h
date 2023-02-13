@@ -75,7 +75,12 @@ void DSPAssertInt();
 void DSPSendMailToDSP(u32 mail);
 u32 DSPReadMailFromDSP();
 u32 DSPCheckMailToDSP();
+#ifndef __cplusplus
 u32 DSPCheckMailFromDSP();
+#endif // ifndef __cplusplus
+#ifdef __cplusplus
+u32 DSPCheckMailFromDSP(...);
+#endif // ifdef __cplusplus
 
 // Used/defined in JSystem.
 DSPTaskInfo* DSPAddTask(DSPTaskInfo* task);
