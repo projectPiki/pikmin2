@@ -6,7 +6,9 @@ static DSPTaskInfo audio_task;
 static u16 AUDIO_YIELD_BUFFER[0x1000];
 static u8 taskwork[0x80];
 
-u16 jdsp[3728] ATTRIBUTE_ALIGN(32) = { 0x80 }; // placeholder
+u16 jdsp[3728] ATTRIBUTE_ALIGN(32)
+    = { 0x29f, 0x12,  0,     0,    0x2ff,  0,     0x2ff, 0,      0x2ff, 0,      0x2ff, 0, 0x2ff, 0,
+	    0x29f, 0x5b8, 0x29f, 0x4e, 0x1205, 0x2bf, 0x57,  0x8100, 0x9f,  0x1000, 0x80,  0, 0x5f,  0x1b1e }; // placeholder
 
 /*
  * --INFO--
@@ -17,28 +19,10 @@ void DspHandShake(void* a1)
 {
 	do {
 		;
-	} while (DSPCheckMailFromDSP(a1));
-	DSPCheckMailFromDSP(DSPReadMailFromDSP());
+	} while (!DSPCheckMailFromDSP());
+	DSPReadMailFromDSP();
+	DSPCheckMailFromDSP();
 	Dsp_Running_Start();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  nop
-
-	.loc_0x10:
-	  bl        0x303B0
-	  cmplwi    r3, 0
-	  beq+      .loc_0x10
-	  bl        0x303B4
-	  bl        0x303A0
-	  bl        0x7BC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
