@@ -5,91 +5,106 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497880:
+.obj lbl_80497880, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_8049788C:
+.endobj lbl_80497880
+.balign 4
+.obj lbl_8049788C, local
 	.asciz "ebiMainTitleMgr"
+.endobj lbl_8049788C
 .balign 4
-lbl_8049789C:
+.obj lbl_8049789C, local
 	.asciz "TMainTitleMgr::loadResource"
+.endobj lbl_8049789C
 .balign 4
-lbl_804978B8:
+.obj lbl_804978B8, local
 	.asciz "TTitleMenu::loadResource"
+.endobj lbl_804978B8
 .balign 4
-lbl_804978D4:
+.obj lbl_804978D4, local
 	.asciz "title.szs"
+.endobj lbl_804978D4
 .balign 4
-lbl_804978E0:
+.obj lbl_804978E0, local
 	.asciz "ebiMainTitleMgr.cpp"
+.endobj lbl_804978E0
 .balign 4
-lbl_804978F4:
+.obj lbl_804978F4, local
 	.asciz "P2Assert"
+.endobj lbl_804978F4
 .balign 4
-lbl_80497900:
+.obj lbl_80497900, local
 	.asciz "ArgClose"
+.endobj lbl_80497900
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q33ebi6Screen14ArgCloseTMBack
-__vt__Q33ebi6Screen14ArgCloseTMBack:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q33ebi6Screen14ArgCloseTMBack, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q33ebi6Screen8ArgCloseFv
-.global __vt__Q33ebi6Screen8ArgClose
-__vt__Q33ebi6Screen8ArgClose:
+.endobj __vt__Q33ebi6Screen14ArgCloseTMBack
+.obj __vt__Q33ebi6Screen8ArgClose, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q33ebi6Screen8ArgCloseFv
-.global __vt__Q33ebi6Screen16ArgOpenTitleMenu
-__vt__Q33ebi6Screen16ArgOpenTitleMenu:
+.endobj __vt__Q33ebi6Screen8ArgClose
+.obj __vt__Q33ebi6Screen16ArgOpenTitleMenu, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q33ebi6Screen7ArgOpenFv
-.global __vt__Q33ebi6Screen13ArgOpenTMBack
-__vt__Q33ebi6Screen13ArgOpenTMBack:
+.endobj __vt__Q33ebi6Screen16ArgOpenTitleMenu
+.obj __vt__Q33ebi6Screen13ArgOpenTMBack, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q33ebi6Screen7ArgOpenFv
-.global __vt__Q33ebi6Screen7ArgOpen
-__vt__Q33ebi6Screen7ArgOpen:
+.endobj __vt__Q33ebi6Screen13ArgOpenTMBack
+.obj __vt__Q33ebi6Screen7ArgOpen, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q33ebi6Screen7ArgOpenFv
+.endobj __vt__Q33ebi6Screen7ArgOpen
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global kFadeOutTime__Q23ebi13TMainTitleMgr
-kFadeOutTime__Q23ebi13TMainTitleMgr:
+.obj kFadeOutTime__Q23ebi13TMainTitleMgr, global
 	.float 1.0
-lbl_8051FE14:
+.endobj kFadeOutTime__Q23ebi13TMainTitleMgr
+.obj lbl_8051FE14, local
 	.float 5.0
-lbl_8051FE18:
+.obj lbl_8051FE18, local
 	.float 0.0
-lbl_8051FE1C:
+.endobj lbl_8051FE18
+.obj lbl_8051FE1C, local
 	.float 1.0
+.endobj lbl_8051FE1C
 .balign 8
-lbl_8051FE20:
+.obj lbl_8051FE20, local
 	.8byte 0x4330000000000000
+.endobj lbl_8051FE20
 .balign 4
-lbl_8051FE28:
+.obj lbl_8051FE28, local
 	.asciz "ArgOpen"
+.endobj lbl_8051FE28
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q23ebi13TMainTitleMgrFv
-__ct__Q23ebi13TMainTitleMgrFv:
+.fn __ct__Q23ebi13TMainTitleMgrFv, global
 /* 803EA170 003E70B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803EA174 003E70B4  7C 08 02 A6 */	mflr r0
 /* 803EA178 003E70B8  3C 80 80 4F */	lis r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
@@ -327,9 +342,9 @@ __ct__Q23ebi13TMainTitleMgrFv:
 /* 803EA518 003E7458  7C 08 03 A6 */	mtlr r0
 /* 803EA51C 003E745C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803EA520 003E7460  4E 80 00 20 */	blr 
+.endfn __ct__Q23ebi13TMainTitleMgrFv
 
-.global setMode__Q23ebi13TMainTitleMgrFl
-setMode__Q23ebi13TMainTitleMgrFl:
+.fn setMode__Q23ebi13TMainTitleMgrFl, global
 /* 803EA524 003E7464  2C 04 00 02 */	cmpwi r4, 2
 /* 803EA528 003E7468  41 82 00 44 */	beq .L_803EA56C
 /* 803EA52C 003E746C  40 80 00 14 */	bge .L_803EA540
@@ -361,9 +376,9 @@ setMode__Q23ebi13TMainTitleMgrFl:
 /* 803EA580 003E74C0  38 00 00 03 */	li r0, 3
 /* 803EA584 003E74C4  90 03 0F 5C */	stw r0, 0xf5c(r3)
 /* 803EA588 003E74C8  4E 80 00 20 */	blr 
+.endfn setMode__Q23ebi13TMainTitleMgrFl
 
-.global loadResource__Q23ebi13TMainTitleMgrFv
-loadResource__Q23ebi13TMainTitleMgrFv:
+.fn loadResource__Q23ebi13TMainTitleMgrFv, global
 /* 803EA58C 003E74CC  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 803EA590 003E74D0  7C 08 02 A6 */	mflr r0
 /* 803EA594 003E74D4  3C 80 80 49 */	lis r4, lbl_80497880@ha
@@ -438,9 +453,9 @@ loadResource__Q23ebi13TMainTitleMgrFv:
 /* 803EA6A4 003E75E4  7C 08 03 A6 */	mtlr r0
 /* 803EA6A8 003E75E8  38 21 01 20 */	addi r1, r1, 0x120
 /* 803EA6AC 003E75EC  4E 80 00 20 */	blr 
+.endfn loadResource__Q23ebi13TMainTitleMgrFv
 
-.global setController__Q23ebi13TMainTitleMgrFP10Controller
-setController__Q23ebi13TMainTitleMgrFP10Controller:
+.fn setController__Q23ebi13TMainTitleMgrFP10Controller, global
 /* 803EA6B0 003E75F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EA6B4 003E75F4  7C 08 02 A6 */	mflr r0
 /* 803EA6B8 003E75F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -460,9 +475,9 @@ setController__Q23ebi13TMainTitleMgrFP10Controller:
 /* 803EA6F0 003E7630  7C 08 03 A6 */	mtlr r0
 /* 803EA6F4 003E7634  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EA6F8 003E7638  4E 80 00 20 */	blr 
+.endfn setController__Q23ebi13TMainTitleMgrFP10Controller
 
-.global start__Q23ebi13TMainTitleMgrFv
-start__Q23ebi13TMainTitleMgrFv:
+.fn start__Q23ebi13TMainTitleMgrFv, global
 /* 803EA6FC 003E763C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803EA700 003E7640  7C 08 02 A6 */	mflr r0
 /* 803EA704 003E7644  90 01 00 24 */	stw r0, 0x24(r1)
@@ -511,9 +526,9 @@ start__Q23ebi13TMainTitleMgrFv:
 /* 803EA7B0 003E76F0  7C 08 03 A6 */	mtlr r0
 /* 803EA7B4 003E76F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803EA7B8 003E76F8  4E 80 00 20 */	blr 
+.endfn start__Q23ebi13TMainTitleMgrFv
 
-.global startMenuSet__Q23ebi13TMainTitleMgrFll
-startMenuSet__Q23ebi13TMainTitleMgrFll:
+.fn startMenuSet__Q23ebi13TMainTitleMgrFll, global
 /* 803EA7BC 003E76FC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803EA7C0 003E7700  7C 08 02 A6 */	mflr r0
 /* 803EA7C4 003E7704  90 01 00 34 */	stw r0, 0x34(r1)
@@ -649,27 +664,27 @@ startMenuSet__Q23ebi13TMainTitleMgrFll:
 /* 803EA9A0 003E78E0  7C 08 03 A6 */	mtlr r0
 /* 803EA9A4 003E78E4  38 21 00 30 */	addi r1, r1, 0x30
 /* 803EA9A8 003E78E8  4E 80 00 20 */	blr 
+.endfn startMenuSet__Q23ebi13TMainTitleMgrFll
 
-.global forceQuit__Q23ebi13TMainTitleMgrFv
-forceQuit__Q23ebi13TMainTitleMgrFv:
+.fn forceQuit__Q23ebi13TMainTitleMgrFv, global
 /* 803EA9AC 003E78EC  38 00 00 00 */	li r0, 0
 /* 803EA9B0 003E78F0  90 03 16 50 */	stw r0, 0x1650(r3)
 /* 803EA9B4 003E78F4  4E 80 00 20 */	blr 
+.endfn forceQuit__Q23ebi13TMainTitleMgrFv
 
-.global isFinish__Q23ebi13TMainTitleMgrFv
-isFinish__Q23ebi13TMainTitleMgrFv:
+.fn isFinish__Q23ebi13TMainTitleMgrFv, global
 /* 803EA9B8 003E78F8  80 03 16 50 */	lwz r0, 0x1650(r3)
 /* 803EA9BC 003E78FC  7C 00 00 34 */	cntlzw r0, r0
 /* 803EA9C0 003E7900  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 803EA9C4 003E7904  4E 80 00 20 */	blr 
+.endfn isFinish__Q23ebi13TMainTitleMgrFv
 
-.global getSelectedMenu__Q23ebi13TMainTitleMgrFv
-getSelectedMenu__Q23ebi13TMainTitleMgrFv:
+.fn getSelectedMenu__Q23ebi13TMainTitleMgrFv, global
 /* 803EA9C8 003E7908  80 63 16 58 */	lwz r3, 0x1658(r3)
 /* 803EA9CC 003E790C  4E 80 00 20 */	blr 
+.endfn getSelectedMenu__Q23ebi13TMainTitleMgrFv
 
-.global update__Q23ebi13TMainTitleMgrFv
-update__Q23ebi13TMainTitleMgrFv:
+.fn update__Q23ebi13TMainTitleMgrFv, global
 /* 803EA9D0 003E7910  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803EA9D4 003E7914  7C 08 02 A6 */	mflr r0
 /* 803EA9D8 003E7918  90 01 00 34 */	stw r0, 0x34(r1)
@@ -994,9 +1009,9 @@ update__Q23ebi13TMainTitleMgrFv:
 /* 803EAE74 003E7DB4  7C 08 03 A6 */	mtlr r0
 /* 803EAE78 003E7DB8  38 21 00 30 */	addi r1, r1, 0x30
 /* 803EAE7C 003E7DBC  4E 80 00 20 */	blr 
+.endfn update__Q23ebi13TMainTitleMgrFv
 
-.global draw__Q23ebi13TMainTitleMgrFv
-draw__Q23ebi13TMainTitleMgrFv:
+.fn draw__Q23ebi13TMainTitleMgrFv, global
 /* 803EAE80 003E7DC0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803EAE84 003E7DC4  7C 08 02 A6 */	mflr r0
 /* 803EAE88 003E7DC8  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1162,9 +1177,9 @@ draw__Q23ebi13TMainTitleMgrFv:
 /* 803EB0E8 003E8028  7C 08 03 A6 */	mtlr r0
 /* 803EB0EC 003E802C  38 21 00 60 */	addi r1, r1, 0x60
 /* 803EB0F0 003E8030  4E 80 00 20 */	blr 
+.endfn draw__Q23ebi13TMainTitleMgrFv
 
-.global __ct__Q23ebi25E2DCallBack_CalcAnimationFv
-__ct__Q23ebi25E2DCallBack_CalcAnimationFv:
+.fn __ct__Q23ebi25E2DCallBack_CalcAnimationFv, weak
 /* 803EB0F4 003E8034  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EB0F8 003E8038  7C 08 02 A6 */	mflr r0
 /* 803EB0FC 003E803C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1193,21 +1208,22 @@ __ct__Q23ebi25E2DCallBack_CalcAnimationFv:
 /* 803EB158 003E8098  7C 08 03 A6 */	mtlr r0
 /* 803EB15C 003E809C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EB160 003E80A0  4E 80 00 20 */	blr 
+.endfn __ct__Q23ebi25E2DCallBack_CalcAnimationFv
 
-.global __ct__Q33ebi6Screen22TTitleMenu_Object_IconFv
-__ct__Q33ebi6Screen22TTitleMenu_Object_IconFv:
+.fn __ct__Q33ebi6Screen22TTitleMenu_Object_IconFv, weak
 /* 803EB164 003E80A4  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi6Screen22TTitleMenu_Object_IconFv
 
-.global getName__Q33ebi6Screen8ArgCloseFv
-getName__Q33ebi6Screen8ArgCloseFv:
+.fn getName__Q33ebi6Screen8ArgCloseFv, weak
 /* 803EB168 003E80A8  3C 60 80 49 */	lis r3, lbl_80497900@ha
 /* 803EB16C 003E80AC  38 63 79 00 */	addi r3, r3, lbl_80497900@l
 /* 803EB170 003E80B0  4E 80 00 20 */	blr 
+.endfn getName__Q33ebi6Screen8ArgCloseFv
 
-.global getName__Q33ebi6Screen7ArgOpenFv
-getName__Q33ebi6Screen7ArgOpenFv:
+.fn getName__Q33ebi6Screen7ArgOpenFv, weak
 /* 803EB174 003E80B4  38 62 1A C8 */	addi r3, r2, lbl_8051FE28@sda21
 /* 803EB178 003E80B8  4E 80 00 20 */	blr 
+.endfn getName__Q33ebi6Screen7ArgOpenFv
 
 .fn __sinit_ebiMainTitleMgr_cpp, local
 /* 803EB17C 003E80BC  3C 80 80 51 */	lis r4, __float_nan@ha

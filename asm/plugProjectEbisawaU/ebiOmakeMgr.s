@@ -5,44 +5,51 @@
 	.asciz "ebiOmakeMgr.cpp"
 .endobj lbl_80497AA0
 .balign 4
-lbl_80497AB0:
+.obj lbl_80497AB0, local
 	.asciz "FSMState_OmakeScreen"
+.endobj lbl_80497AB0
 .balign 4
-lbl_80497AC8:
+.obj lbl_80497AC8, local
 	.asciz "FSMState_CardEScreen"
+.endobj lbl_80497AC8
 .balign 4
-lbl_80497AE0:
+.obj lbl_80497AE0, local
 	.asciz "FSMState_SelectGame"
+.endobj lbl_80497AE0
 .balign 4
-lbl_80497AF4: # Shift-JIS
+.obj lbl_80497AF4, local # Shift-JIS
 	.4byte 0x4D6F7669
 	.4byte 0x658FF391
 	.4byte 0xD4000000
+.endobj lbl_80497AF4
 .balign 4
-lbl_80497B00:
+.obj lbl_80497B00, local
 	.asciz "TOmakeMgr::loadResource"
+.endobj lbl_80497B00
 .balign 4
-lbl_80497B18:
+.obj lbl_80497B18, local
 	.asciz "omake.szs"
+.endobj lbl_80497B18
 .balign 4
-lbl_80497B24:
+.obj lbl_80497B24, local
 	.asciz "P2Assert"
+.endobj lbl_80497B24
 .balign 4
-lbl_80497B30:
+.obj lbl_80497B30, local
 	.asciz "ArgOpenOmake"
+.endobj lbl_80497B30
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global "__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>"
-"__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>":
+.obj "__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 	.4byte "start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 	.4byte "transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi5Omake19FSMState_SelectGame
-__vt__Q33ebi5Omake19FSMState_SelectGame:
+.endobj "__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>"
+.obj __vt__Q33ebi5Omake19FSMState_SelectGame, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
@@ -53,8 +60,8 @@ __vt__Q33ebi5Omake19FSMState_SelectGame:
 	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgr
-.global __vt__Q33ebi5Omake20FSMState_CardEScreen
-__vt__Q33ebi5Omake20FSMState_CardEScreen:
+.endobj __vt__Q33ebi5Omake19FSMState_SelectGame
+.obj __vt__Q33ebi5Omake20FSMState_CardEScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
@@ -65,13 +72,13 @@ __vt__Q33ebi5Omake20FSMState_CardEScreen:
 	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgr
-.global __vt__Q33ebi6Screen12ArgOpenOmake
-__vt__Q33ebi6Screen12ArgOpenOmake:
+.endobj __vt__Q33ebi5Omake20FSMState_CardEScreen
+.obj __vt__Q33ebi6Screen12ArgOpenOmake, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q33ebi6Screen12ArgOpenOmakeFv
-.global __vt__Q33ebi5Omake20FSMState_OmakeScreen
-__vt__Q33ebi5Omake20FSMState_OmakeScreen:
+.endobj __vt__Q33ebi6Screen12ArgOpenOmake
+.obj __vt__Q33ebi5Omake20FSMState_OmakeScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
@@ -82,8 +89,8 @@ __vt__Q33ebi5Omake20FSMState_OmakeScreen:
 	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr
-.global __vt__Q33ebi5Omake8FSMState
-__vt__Q33ebi5Omake8FSMState:
+.endobj __vt__Q33ebi5Omake20FSMState_OmakeScreen
+.obj __vt__Q33ebi5Omake8FSMState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
@@ -94,8 +101,8 @@ __vt__Q33ebi5Omake8FSMState:
 	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
-.global "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"
-"__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>":
+.endobj __vt__Q33ebi5Omake8FSMState
+.obj "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgrPQ24Game8StateArg"
@@ -104,14 +111,15 @@ __vt__Q33ebi5Omake8FSMState:
 	.4byte "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 	.4byte "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi5Omake15FSMStateMachine
-__vt__Q33ebi5Omake15FSMStateMachine:
+.endobj "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"
+.obj __vt__Q33ebi5Omake15FSMStateMachine, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr
 	.4byte "start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 	.4byte "transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+.endobj __vt__Q33ebi5Omake15FSMStateMachine
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -127,8 +135,7 @@ __vt__Q33ebi5Omake15FSMStateMachine:
 .endobj lbl_8051FEAC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr
-init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr:
+.fn init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr, global
 /* 803EEBE8 003EBB28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEBEC 003EBB2C  7C 08 02 A6 */	mflr r0
 /* 803EEBF0 003EBB30  3C 80 80 49 */	lis r4, lbl_80497AA0@ha
@@ -250,9 +257,9 @@ init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr:
 /* 803EEDAC 003EBCEC  7C 08 03 A6 */	mtlr r0
 /* 803EEDB0 003EBCF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EEDB4 003EBCF4  4E 80 00 20 */	blr 
+.endfn init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr
 
-.global init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
-init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
+.fn init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg, global
 /* 803EEDB8 003EBCF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEDBC 003EBCFC  7C 08 02 A6 */	mflr r0
 /* 803EEDC0 003EBD00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -264,9 +271,9 @@ init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
 /* 803EEDD8 003EBD18  7C 08 03 A6 */	mtlr r0
 /* 803EEDDC 003EBD1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EEDE0 003EBD20  4E 80 00 20 */	blr 
+.endfn init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
 
-.global exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
-exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr:
+.fn exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr, global
 /* 803EEDE4 003EBD24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEDE8 003EBD28  7C 08 02 A6 */	mflr r0
 /* 803EEDEC 003EBD2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -278,9 +285,9 @@ exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr:
 /* 803EEE04 003EBD44  7C 08 03 A6 */	mtlr r0
 /* 803EEE08 003EBD48  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EEE0C 003EBD4C  4E 80 00 20 */	blr 
+.endfn exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
 
-.global do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg
-do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg, global
 /* 803EEE10 003EBD50  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803EEE14 003EBD54  7C 08 02 A6 */	mflr r0
 /* 803EEE18 003EBD58  90 01 00 34 */	stw r0, 0x34(r1)
@@ -339,9 +346,9 @@ do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
 /* 803EEEE0 003EBE20  7C 08 03 A6 */	mtlr r0
 /* 803EEEE4 003EBE24  38 21 00 30 */	addi r1, r1, 0x30
 /* 803EEEE8 003EBE28  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr
-do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr:
+.fn do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr, global
 /* 803EEEEC 003EBE2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEEF0 003EBE30  7C 08 02 A6 */	mflr r0
 /* 803EEEF4 003EBE34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -387,9 +394,9 @@ do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr:
 /* 803EEF88 003EBEC8  7C 08 03 A6 */	mtlr r0
 /* 803EEF8C 003EBECC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EEF90 003EBED0  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr
 
-.global do_init__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg
-do_init__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg, global
 /* 803EEF94 003EBED4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEF98 003EBED8  7C 08 02 A6 */	mflr r0
 /* 803EEF9C 003EBEDC  38 64 04 68 */	addi r3, r4, 0x468
@@ -403,9 +410,9 @@ do_init__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
 /* 803EEFBC 003EBEFC  7C 08 03 A6 */	mtlr r0
 /* 803EEFC0 003EBF00  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EEFC4 003EBF04  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgr
-do_exec__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgr:
+.fn do_exec__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgr, global
 /* 803EEFC8 003EBF08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEFCC 003EBF0C  7C 08 02 A6 */	mflr r0
 /* 803EEFD0 003EBF10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -448,9 +455,9 @@ do_exec__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgr:
 /* 803EF05C 003EBF9C  7C 08 03 A6 */	mtlr r0
 /* 803EF060 003EBFA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF064 003EBFA4  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgr
 
-.global do_init__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgrPQ24Game8StateArg
-do_init__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgrPQ24Game8StateArg, global
 /* 803EF068 003EBFA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF06C 003EBFAC  7C 08 02 A6 */	mflr r0
 /* 803EF070 003EBFB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -469,9 +476,9 @@ do_init__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
 /* 803EF0A4 003EBFE4  7C 08 03 A6 */	mtlr r0
 /* 803EF0A8 003EBFE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF0AC 003EBFEC  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgr
-do_exec__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgr:
+.fn do_exec__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgr, global
 /* 803EF0B0 003EBFF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF0B4 003EBFF4  7C 08 02 A6 */	mflr r0
 /* 803EF0B8 003EBFF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -711,9 +718,9 @@ do_exec__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgr:
 /* 803EF41C 003EC35C  7C 08 03 A6 */	mtlr r0
 /* 803EF420 003EC360  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF424 003EC364  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgr
 
-.global __ct__Q33ebi5Omake4TMgrFv
-__ct__Q33ebi5Omake4TMgrFv:
+.fn __ct__Q33ebi5Omake4TMgrFv, global
 /* 803EF428 003EC368  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF42C 003EC36C  7C 08 02 A6 */	mflr r0
 /* 803EF430 003EC370  90 01 00 14 */	stw r0, 0x14(r1)
@@ -759,9 +766,9 @@ __ct__Q33ebi5Omake4TMgrFv:
 /* 803EF4D0 003EC410  7C 08 03 A6 */	mtlr r0
 /* 803EF4D4 003EC414  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF4D8 003EC418  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi5Omake4TMgrFv
 
-.global loadResource__Q33ebi5Omake4TMgrFv
-loadResource__Q33ebi5Omake4TMgrFv:
+.fn loadResource__Q33ebi5Omake4TMgrFv, global
 /* 803EF4DC 003EC41C  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 803EF4E0 003EC420  7C 08 02 A6 */	mflr r0
 /* 803EF4E4 003EC424  3C 80 80 49 */	lis r4, lbl_80497AA0@ha
@@ -821,9 +828,9 @@ loadResource__Q33ebi5Omake4TMgrFv:
 /* 803EF5B8 003EC4F8  7C 08 03 A6 */	mtlr r0
 /* 803EF5BC 003EC4FC  38 21 01 20 */	addi r1, r1, 0x120
 /* 803EF5C0 003EC500  4E 80 00 20 */	blr 
+.endfn loadResource__Q33ebi5Omake4TMgrFv
 
-.global newCardEMgrAndTask__Q33ebi5Omake4TMgrFv
-newCardEMgrAndTask__Q33ebi5Omake4TMgrFv:
+.fn newCardEMgrAndTask__Q33ebi5Omake4TMgrFv, global
 /* 803EF5C4 003EC504  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF5C8 003EC508  7C 08 02 A6 */	mflr r0
 /* 803EF5CC 003EC50C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -844,9 +851,9 @@ newCardEMgrAndTask__Q33ebi5Omake4TMgrFv:
 /* 803EF608 003EC548  7C 08 03 A6 */	mtlr r0
 /* 803EF60C 003EC54C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF610 003EC550  4E 80 00 20 */	blr 
+.endfn newCardEMgrAndTask__Q33ebi5Omake4TMgrFv
 
-.global start__Q33ebi5Omake4TMgrFv
-start__Q33ebi5Omake4TMgrFv:
+.fn start__Q33ebi5Omake4TMgrFv, global
 /* 803EF614 003EC554  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF618 003EC558  7C 08 02 A6 */	mflr r0
 /* 803EF61C 003EC55C  7C 64 1B 78 */	mr r4, r3
@@ -862,9 +869,9 @@ start__Q33ebi5Omake4TMgrFv:
 /* 803EF644 003EC584  7C 08 03 A6 */	mtlr r0
 /* 803EF648 003EC588  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF64C 003EC58C  4E 80 00 20 */	blr 
+.endfn start__Q33ebi5Omake4TMgrFv
 
-.global goEnd___Q33ebi5Omake4TMgrFv
-goEnd___Q33ebi5Omake4TMgrFv:
+.fn goEnd___Q33ebi5Omake4TMgrFv, global
 /* 803EF650 003EC590  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF654 003EC594  7C 08 02 A6 */	mflr r0
 /* 803EF658 003EC598  7C 64 1B 78 */	mr r4, r3
@@ -880,9 +887,9 @@ goEnd___Q33ebi5Omake4TMgrFv:
 /* 803EF680 003EC5C0  7C 08 03 A6 */	mtlr r0
 /* 803EF684 003EC5C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF688 003EC5C8  4E 80 00 20 */	blr 
+.endfn goEnd___Q33ebi5Omake4TMgrFv
 
-.global isFinish__Q33ebi5Omake4TMgrFv
-isFinish__Q33ebi5Omake4TMgrFv:
+.fn isFinish__Q33ebi5Omake4TMgrFv, global
 /* 803EF68C 003EC5CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF690 003EC5D0  7C 08 02 A6 */	mflr r0
 /* 803EF694 003EC5D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -893,9 +900,9 @@ isFinish__Q33ebi5Omake4TMgrFv:
 /* 803EF6A8 003EC5E8  7C 08 03 A6 */	mtlr r0
 /* 803EF6AC 003EC5EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF6B0 003EC5F0  4E 80 00 20 */	blr 
+.endfn isFinish__Q33ebi5Omake4TMgrFv
 
-.global update__Q33ebi5Omake4TMgrFv
-update__Q33ebi5Omake4TMgrFv:
+.fn update__Q33ebi5Omake4TMgrFv, global
 /* 803EF6B4 003EC5F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF6B8 003EC5F8  7C 08 02 A6 */	mflr r0
 /* 803EF6BC 003EC5FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -953,9 +960,9 @@ update__Q33ebi5Omake4TMgrFv:
 /* 803EF788 003EC6C8  7C 08 03 A6 */	mtlr r0
 /* 803EF78C 003EC6CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF790 003EC6D0  4E 80 00 20 */	blr 
+.endfn update__Q33ebi5Omake4TMgrFv
 
-.global draw__Q33ebi5Omake4TMgrFv
-draw__Q33ebi5Omake4TMgrFv:
+.fn draw__Q33ebi5Omake4TMgrFv, global
 /* 803EF794 003EC6D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF798 003EC6D8  7C 08 02 A6 */	mflr r0
 /* 803EF79C 003EC6DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -989,9 +996,9 @@ draw__Q33ebi5Omake4TMgrFv:
 /* 803EF808 003EC748  7C 08 03 A6 */	mtlr r0
 /* 803EF80C 003EC74C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF810 003EC750  4E 80 00 20 */	blr 
+.endfn draw__Q33ebi5Omake4TMgrFv
 
-.global isMovieState__Q33ebi5Omake4TMgrFv
-isMovieState__Q33ebi5Omake4TMgrFv:
+.fn isMovieState__Q33ebi5Omake4TMgrFv, global
 /* 803EF814 003EC754  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF818 003EC758  7C 08 02 A6 */	mflr r0
 /* 803EF81C 003EC75C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1003,9 +1010,9 @@ isMovieState__Q33ebi5Omake4TMgrFv:
 /* 803EF834 003EC774  7C 08 03 A6 */	mtlr r0
 /* 803EF838 003EC778  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF83C 003EC77C  4E 80 00 20 */	blr 
+.endfn isMovieState__Q33ebi5Omake4TMgrFv
 
-.global restartFromMovieState__Q33ebi5Omake4TMgrFv
-restartFromMovieState__Q33ebi5Omake4TMgrFv:
+.fn restartFromMovieState__Q33ebi5Omake4TMgrFv, global
 /* 803EF840 003EC780  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF844 003EC784  7C 08 02 A6 */	mflr r0
 /* 803EF848 003EC788  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1028,14 +1035,14 @@ restartFromMovieState__Q33ebi5Omake4TMgrFv:
 /* 803EF888 003EC7C8  7C 08 03 A6 */	mtlr r0
 /* 803EF88C 003EC7CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF890 003EC7D0  4E 80 00 20 */	blr 
+.endfn restartFromMovieState__Q33ebi5Omake4TMgrFv
 
-.global getMovieID__Q33ebi5Omake4TMgrFv
-getMovieID__Q33ebi5Omake4TMgrFv:
+.fn getMovieID__Q33ebi5Omake4TMgrFv, global
 /* 803EF894 003EC7D4  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 803EF898 003EC7D8  4E 80 00 20 */	blr 
+.endfn getMovieID__Q33ebi5Omake4TMgrFv
 
-.global getStateID__Q33ebi5Omake4TMgrFv
-getStateID__Q33ebi5Omake4TMgrFv:
+.fn getStateID__Q33ebi5Omake4TMgrFv, global
 /* 803EF89C 003EC7DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF8A0 003EC7E0  7C 08 02 A6 */	mflr r0
 /* 803EF8A4 003EC7E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1059,17 +1066,17 @@ getStateID__Q33ebi5Omake4TMgrFv:
 /* 803EF8E8 003EC828  7C 08 03 A6 */	mtlr r0
 /* 803EF8EC 003EC82C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF8F0 003EC830  4E 80 00 20 */	blr 
+.endfn getStateID__Q33ebi5Omake4TMgrFv
 
-.global do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
-do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg, weak
 /* 803EF8F4 003EC834  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
-do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr:
+.fn do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr, weak
 /* 803EF8F8 003EC838  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
 
-.global "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
-"transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg", weak
 /* 803EF8FC 003EC83C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF900 003EC840  7C 08 02 A6 */	mflr r0
 /* 803EF904 003EC844  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1082,9 +1089,9 @@ do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr:
 /* 803EF920 003EC860  7C 08 03 A6 */	mtlr r0
 /* 803EF924 003EC864  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF928 003EC868  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 
-.global "start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
-"start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg":
+.fn "start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg", weak
 /* 803EF92C 003EC86C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF930 003EC870  7C 08 02 A6 */	mflr r0
 /* 803EF934 003EC874  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1098,9 +1105,9 @@ do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr:
 /* 803EF954 003EC894  7C 08 03 A6 */	mtlr r0
 /* 803EF958 003EC898  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF95C 003EC89C  4E 80 00 20 */	blr 
+.endfn "start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 
-.global __dt__Q33ebi6Screen10TOmakeGameFv
-__dt__Q33ebi6Screen10TOmakeGameFv:
+.fn __dt__Q33ebi6Screen10TOmakeGameFv, weak
 /* 803EF960 003EC8A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF964 003EC8A4  7C 08 02 A6 */	mflr r0
 /* 803EF968 003EC8A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1268,9 +1275,9 @@ __dt__Q33ebi6Screen10TOmakeGameFv:
 /* 803EFBCC 003ECB0C  7C 08 03 A6 */	mtlr r0
 /* 803EFBD0 003ECB10  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EFBD4 003ECB14  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi6Screen10TOmakeGameFv
 
-.global __dt__Q33ebi6Screen11TOmakeCardEFv
-__dt__Q33ebi6Screen11TOmakeCardEFv:
+.fn __dt__Q33ebi6Screen11TOmakeCardEFv, weak
 /* 803EFBD8 003ECB18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EFBDC 003ECB1C  7C 08 02 A6 */	mflr r0
 /* 803EFBE0 003ECB20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1468,9 +1475,9 @@ __dt__Q33ebi6Screen11TOmakeCardEFv:
 /* 803EFEB0 003ECDF0  7C 08 03 A6 */	mtlr r0
 /* 803EFEB4 003ECDF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EFEB8 003ECDF8  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi6Screen11TOmakeCardEFv
 
-.global __dt__Q33ebi6Screen6TOmakeFv
-__dt__Q33ebi6Screen6TOmakeFv:
+.fn __dt__Q33ebi6Screen6TOmakeFv, weak
 /* 803EFEBC 003ECDFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EFEC0 003ECE00  7C 08 02 A6 */	mflr r0
 /* 803EFEC4 003ECE04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1608,33 +1615,33 @@ __dt__Q33ebi6Screen6TOmakeFv:
 /* 803F00B8 003ECFF8  7C 08 03 A6 */	mtlr r0
 /* 803F00BC 003ECFFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F00C0 003ED000  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi6Screen6TOmakeFv
 
-.global "init__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgrPQ24Game8StateArg"
-"init__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgrPQ24Game8StateArg":
+.fn "init__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgrPQ24Game8StateArg", weak
 /* 803F00C4 003ED004  4E 80 00 20 */	blr 
+.endfn "init__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgrPQ24Game8StateArg"
 
-.global "exec__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"exec__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.fn "exec__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr", weak
 /* 803F00C8 003ED008  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 
-.global "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.fn "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr", weak
 /* 803F00CC 003ED00C  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 
-.global "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.fn "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr", weak
 /* 803F00D0 003ED010  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 
-.global "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.fn "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr", weak
 /* 803F00D4 003ED014  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 
-.global "init__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"init__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.fn "init__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr", weak
 /* 803F00D8 003ED018  4E 80 00 20 */	blr 
+.endfn "init__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 
-.global "exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.fn "exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr", weak
 /* 803F00DC 003ED01C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F00E0 003ED020  7C 08 02 A6 */	mflr r0
 /* 803F00E4 003ED024  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1650,9 +1657,9 @@ __dt__Q33ebi6Screen6TOmakeFv:
 /* 803F0108 003ED048  7C 08 03 A6 */	mtlr r0
 /* 803F010C 003ED04C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F0110 003ED050  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 
-.global "create__Q24Game31StateMachine<Q33ebi5Omake4TMgr>Fi"
-"create__Q24Game31StateMachine<Q33ebi5Omake4TMgr>Fi":
+.fn "create__Q24Game31StateMachine<Q33ebi5Omake4TMgr>Fi", weak
 /* 803F0114 003ED054  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F0118 003ED058  7C 08 02 A6 */	mflr r0
 /* 803F011C 003ED05C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1678,9 +1685,9 @@ __dt__Q33ebi6Screen6TOmakeFv:
 /* 803F016C 003ED0AC  7C 08 03 A6 */	mtlr r0
 /* 803F0170 003ED0B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F0174 003ED0B4  4E 80 00 20 */	blr 
+.endfn "create__Q24Game31StateMachine<Q33ebi5Omake4TMgr>Fi"
 
-.global "transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
-"transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg", weak
 /* 803F0178 003ED0B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803F017C 003ED0BC  7C 08 02 A6 */	mflr r0
 /* 803F0180 003ED0C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1723,9 +1730,9 @@ __dt__Q33ebi6Screen6TOmakeFv:
 /* 803F0208 003ED148  7C 08 03 A6 */	mtlr r0
 /* 803F020C 003ED14C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803F0210 003ED150  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 
-.global "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>"
-"registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>":
+.fn "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>", weak
 /* 803F0214 003ED154  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803F0218 003ED158  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 803F021C 003ED15C  7C 06 00 00 */	cmpw r6, r0
@@ -1762,9 +1769,10 @@ __dt__Q33ebi6Screen6TOmakeFv:
 /* 803F028C 003ED1CC  38 04 00 01 */	addi r0, r4, 1
 /* 803F0290 003ED1D0  90 03 00 08 */	stw r0, 8(r3)
 /* 803F0294 003ED1D4  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>"
 
-.global getName__Q33ebi6Screen12ArgOpenOmakeFv
-getName__Q33ebi6Screen12ArgOpenOmakeFv:
+.fn getName__Q33ebi6Screen12ArgOpenOmakeFv, weak
 /* 803F0298 003ED1D8  3C 60 80 49 */	lis r3, lbl_80497B30@ha
 /* 803F029C 003ED1DC  38 63 7B 30 */	addi r3, r3, lbl_80497B30@l
 /* 803F02A0 003ED1E0  4E 80 00 20 */	blr 
+.endfn getName__Q33ebi6Screen12ArgOpenOmakeFv

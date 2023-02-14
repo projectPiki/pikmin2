@@ -1,96 +1,125 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496698:
+.obj lbl_80496698, local
 	.asciz "ebiCardMgr"
+.endobj lbl_80496698
 .balign 4
-lbl_804966A4:
+.obj lbl_804966A4, local
 	.asciz "EmptyScreen"
+.endobj lbl_804966A4
 .balign 4
-lbl_804966B0:
+.obj lbl_804966B0, local
 	.asciz "W00_NoCard"
+.endobj lbl_804966B0
 .balign 4
-lbl_804966BC:
+.obj lbl_804966BC, local
 	.asciz "W01_IOError"
+.endobj lbl_804966BC
 .balign 4
-lbl_804966C8:
+.obj lbl_804966C8, local
 	.asciz "W02_WrongDevice"
+.endobj lbl_804966C8
 .balign 4
-lbl_804966D8:
+.obj lbl_804966D8, local
 	.asciz "W03_WrongSector"
+.endobj lbl_804966D8
 .balign 4
-lbl_804966E8:
+.obj lbl_804966E8, local
 	.asciz "W04_OverCapacity"
+.endobj lbl_804966E8
 .balign 4
-lbl_804966FC:
+.obj lbl_804966FC, local
 	.asciz "W05_InitCardOnIPL"
+.endobj lbl_804966FC
 .balign 4
-lbl_80496710:
+.obj lbl_80496710, local
 	.asciz "W06_CardNotUsable"
+.endobj lbl_80496710
 .balign 4
-lbl_80496724:
+.obj lbl_80496724, local
 	.asciz "W07_NoFileForSave"
+.endobj lbl_80496724
 .balign 4
-lbl_80496738:
+.obj lbl_80496738, local
 	.asciz "W08_FinishFormat"
+.endobj lbl_80496738
 .balign 4
-lbl_8049674C:
+.obj lbl_8049674C, local
 	.asciz "W09_FinishCreateNewFile"
+.endobj lbl_8049674C
 .balign 4
-lbl_80496764:
+.obj lbl_80496764, local
 	.asciz "W10_SerialNoError"
+.endobj lbl_80496764
 .balign 4
-lbl_80496778:
+.obj lbl_80496778, local
 	.asciz "WF0_FailToFormat_NoCard"
+.endobj lbl_80496778
 .balign 4
-lbl_80496790:
+.obj lbl_80496790, local
 	.asciz "WF1_FailToFormat_IOError"
+.endobj lbl_80496790
 .balign 4
-lbl_804967AC:
+.obj lbl_804967AC, local
 	.asciz "WF2_FailToCreateNewFile_NoCard"
+.endobj lbl_804967AC
 .balign 4
-lbl_804967CC:
+.obj lbl_804967CC, local
 	.asciz "WF3_FailToCreateNewFile_IOError"
+.endobj lbl_804967CC
 .balign 4
-lbl_804967EC:
+.obj lbl_804967EC, local
 	.asciz "WF4_FailToSave_NoCard"
+.endobj lbl_804967EC
 .balign 4
-lbl_80496804:
+.obj lbl_80496804, local
 	.asciz "WF5_FailToSave_IOError"
+.endobj lbl_80496804
 .balign 4
-lbl_8049681C:
+.obj lbl_8049681C, local
 	.asciz "Q00_DataBrokenAndDoYouFormat"
+.endobj lbl_8049681C
 .balign 4
-lbl_8049683C:
+.obj lbl_8049683C, local
 	.asciz "FSMState_Q01_DoYouOpenIPL"
+.endobj lbl_8049683C
 .balign 4
-lbl_80496858:
+.obj lbl_80496858, local
 	.asciz "Q02_DoYouFormat"
+.endobj lbl_80496858
 .balign 4
-lbl_80496868:
+.obj lbl_80496868, local
 	.asciz "Q03_DoYouCreateNewFile"
+.endobj lbl_80496868
 .balign 4
-lbl_80496880:
+.obj lbl_80496880, local
 	.asciz "Q04_DoYouStartGameWithoutSave"
+.endobj lbl_80496880
 .balign 4
-lbl_804968A0:
+.obj lbl_804968A0, local
 	.asciz "Q05_GameCantSave"
+.endobj lbl_804968A0
 .balign 4
-lbl_804968B4:
+.obj lbl_804968B4, local
 	.asciz "WN0_NowFormat"
+.endobj lbl_804968B4
 .balign 4
-lbl_804968C4:
+.obj lbl_804968C4, local
 	.asciz "WN1_NowCreateNewFile"
+.endobj lbl_804968C4
 .balign 4
-lbl_804968DC:
+.obj lbl_804968DC, local
 	.asciz "ebiCardMgr.cpp"
+.endobj lbl_804968DC
 .balign 4
-lbl_804968EC:
+.obj lbl_804968EC, local
 	.asciz "P2Assert"
+.endobj lbl_804968EC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E8AA0:
+.obj lbl_804E8AA0, local
 	.4byte .L_803D2000
 	.4byte .L_803D20E0
 	.4byte .L_803D1FE4
@@ -106,7 +135,8 @@ lbl_804E8AA0:
 	.4byte .L_803D2118
 	.4byte .L_803D2118
 	.4byte .L_803D20FC
-lbl_804E8ADC:
+.endobj lbl_804E8AA0
+.obj lbl_804E8ADC, local
 	.4byte .L_803D30B8
 	.4byte .L_803D30E4
 	.4byte .L_803D3110
@@ -124,16 +154,16 @@ lbl_804E8ADC:
 	.4byte .L_803D3320
 	.4byte .L_803D334C
 	.4byte .L_803D3378
-.global "__vt__Q24Game35StateMachine<Q33ebi9CardError4TMgr>"
-"__vt__Q24Game35StateMachine<Q33ebi9CardError4TMgr>":
+.endobj lbl_804E8ADC
+.obj "__vt__Q24Game35StateMachine<Q33ebi9CardError4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 	.4byte "start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 	.4byte "transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi9CardError15FSMState_NoCard
-__vt__Q33ebi9CardError15FSMState_NoCard:
+.endobj "__vt__Q24Game35StateMachine<Q33ebi9CardError4TMgr>"
+.obj __vt__Q33ebi9CardError15FSMState_NoCard, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
@@ -147,8 +177,8 @@ __vt__Q33ebi9CardError15FSMState_NoCard:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q33ebi9CardError20FSMState_CardRequest
-__vt__Q33ebi9CardError20FSMState_CardRequest:
+.endobj __vt__Q33ebi9CardError15FSMState_NoCard
+.obj __vt__Q33ebi9CardError20FSMState_CardRequest, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
@@ -172,8 +202,8 @@ __vt__Q33ebi9CardError20FSMState_CardRequest:
 	.4byte do_transitCardNoFileEntry__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 	.4byte do_transitCardFileOpenError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 	.4byte do_transitCardSerialNoError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-.global __vt__Q33ebi9CardError17FSMState_Question
-__vt__Q33ebi9CardError17FSMState_Question:
+.endobj __vt__Q33ebi9CardError20FSMState_CardRequest
+.obj __vt__Q33ebi9CardError17FSMState_Question, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
@@ -187,8 +217,8 @@ __vt__Q33ebi9CardError17FSMState_Question:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q33ebi9CardError16FSMState_Warning
-__vt__Q33ebi9CardError16FSMState_Warning:
+.endobj __vt__Q33ebi9CardError17FSMState_Question
+.obj __vt__Q33ebi9CardError16FSMState_Warning, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
@@ -201,8 +231,8 @@ __vt__Q33ebi9CardError16FSMState_Warning:
 	.4byte do_exec__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgr
 	.4byte 0
 	.4byte 0
-.global __vt__Q33ebi9CardError8FSMState
-__vt__Q33ebi9CardError8FSMState:
+.endobj __vt__Q33ebi9CardError16FSMState_Warning
+.obj __vt__Q33ebi9CardError8FSMState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
@@ -213,8 +243,8 @@ __vt__Q33ebi9CardError8FSMState:
 	.4byte "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
-.global "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"
-"__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>":
+.endobj __vt__Q33ebi9CardError8FSMState
+.obj "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgrPQ24Game8StateArg"
@@ -223,34 +253,40 @@ __vt__Q33ebi9CardError8FSMState:
 	.4byte "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 	.4byte "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 	.4byte "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi9CardError15FSMStateMachine
-__vt__Q33ebi9CardError15FSMStateMachine:
+.endobj "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"
+.obj __vt__Q33ebi9CardError15FSMStateMachine, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr
 	.4byte "start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 	.4byte "transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+.endobj __vt__Q33ebi9CardError15FSMStateMachine
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FAC0:
+.obj lbl_8051FAC0, local
 	.asciz "Standby"
+.endobj lbl_8051FAC0
 .balign 4
-lbl_8051FAC8:
+.obj lbl_8051FAC8, local
 	.float 0.0
-lbl_8051FACC:
+.endobj lbl_8051FAC8
+.obj lbl_8051FACC, local
 	.float 3.0
-lbl_8051FAD0:
+.endobj lbl_8051FACC
+.obj lbl_8051FAD0, local
 	.float 0.03333
-lbl_8051FAD4:
+.endobj lbl_8051FAD0
+.obj lbl_8051FAD4, local
 	.float 1.0
-lbl_8051FAD8:
+.endobj lbl_8051FAD4
+.obj lbl_8051FAD8, local
 	.float 5.0
+.endobj lbl_8051FAD8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr
-init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr:
+.fn init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr, global
 /* 803D1104 003CE044  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D1108 003CE048  7C 08 02 A6 */	mflr r0
 /* 803D110C 003CE04C  3C 80 80 49 */	lis r4, lbl_80496698@ha
@@ -929,9 +965,9 @@ init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr:
 /* 803D1B24 003CEA64  7C 08 03 A6 */	mtlr r0
 /* 803D1B28 003CEA68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D1B2C 003CEA6C  4E 80 00 20 */	blr 
+.endfn init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr
 
-.global init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
-init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg:
+.fn init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg, weak
 /* 803D1B30 003CEA70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D1B34 003CEA74  7C 08 02 A6 */	mflr r0
 /* 803D1B38 003CEA78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -943,13 +979,13 @@ init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg:
 /* 803D1B50 003CEA90  7C 08 03 A6 */	mtlr r0
 /* 803D1B54 003CEA94  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D1B58 003CEA98  4E 80 00 20 */	blr 
+.endfn init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
 
-.global do_init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
-do_init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg, weak
 /* 803D1B5C 003CEA9C  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
 
-.global exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
-exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr:
+.fn exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr, global
 /* 803D1B60 003CEAA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D1B64 003CEAA4  7C 08 02 A6 */	mflr r0
 /* 803D1B68 003CEAA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -961,13 +997,13 @@ exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr:
 /* 803D1B80 003CEAC0  7C 08 03 A6 */	mtlr r0
 /* 803D1B84 003CEAC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D1B88 003CEAC8  4E 80 00 20 */	blr 
+.endfn exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
 
-.global do_exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
-do_exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr:
+.fn do_exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr, weak
 /* 803D1B8C 003CEACC  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
 
-.global do_init__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgrPQ24Game8StateArg
-do_init__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgrPQ24Game8StateArg, global
 /* 803D1B90 003CEAD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D1B94 003CEAD4  7C 08 02 A6 */	mflr r0
 /* 803D1B98 003CEAD8  C0 22 17 68 */	lfs f1, lbl_8051FAC8@sda21(r2)
@@ -1001,9 +1037,9 @@ do_init__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgrPQ24Game8State
 /* 803D1C08 003CEB48  7C 08 03 A6 */	mtlr r0
 /* 803D1C0C 003CEB4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D1C10 003CEB50  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgr
-do_exec__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgr:
+.fn do_exec__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgr, global
 /* 803D1C14 003CEB54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D1C18 003CEB58  7C 08 02 A6 */	mflr r0
 /* 803D1C1C 003CEB5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1048,9 +1084,9 @@ do_exec__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgr:
 /* 803D1CAC 003CEBEC  7C 08 03 A6 */	mtlr r0
 /* 803D1CB0 003CEBF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D1CB4 003CEBF4  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgr
 
-.global do_init__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgrPQ24Game8StateArg
-do_init__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgrPQ24Game8StateArg, global
 /* 803D1CB8 003CEBF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D1CBC 003CEBFC  7C 08 02 A6 */	mflr r0
 /* 803D1CC0 003CEC00  38 A0 00 00 */	li r5, 0
@@ -1066,9 +1102,9 @@ do_init__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgrPQ24Game8Stat
 /* 803D1CE8 003CEC28  7C 08 03 A6 */	mtlr r0
 /* 803D1CEC 003CEC2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D1CF0 003CEC30  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgr
-do_exec__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgr:
+.fn do_exec__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgr, global
 /* 803D1CF4 003CEC34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D1CF8 003CEC38  7C 08 02 A6 */	mflr r0
 /* 803D1CFC 003CEC3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1110,9 +1146,9 @@ do_exec__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgr:
 /* 803D1D80 003CECC0  7C 08 03 A6 */	mtlr r0
 /* 803D1D84 003CECC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D1D88 003CECC8  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgr
 
-.global do_init__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgrPQ24Game8StateArg
-do_init__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgrPQ24Game8StateArg, global
 /* 803D1D8C 003CECCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D1D90 003CECD0  7C 08 02 A6 */	mflr r0
 /* 803D1D94 003CECD4  C0 22 17 6C */	lfs f1, lbl_8051FACC@sda21(r2)
@@ -1142,9 +1178,9 @@ do_init__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgrPQ24Game8S
 /* 803D1DF4 003CED34  7C 08 03 A6 */	mtlr r0
 /* 803D1DF8 003CED38  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D1DFC 003CED3C  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_exec__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_exec__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D1E00 003CED40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D1E04 003CED44  7C 08 02 A6 */	mflr r0
 /* 803D1E08 003CED48  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1383,9 +1419,9 @@ do_exec__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
 /* 803D2144 003CF084  7C 08 03 A6 */	mtlr r0
 /* 803D2148 003CF088  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D214C 003CF08C  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_transitCardNoCard__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardNoCard__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardNoCard__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D2150 003CF090  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D2154 003CF094  7C 08 02 A6 */	mflr r0
 /* 803D2158 003CF098  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1413,9 +1449,9 @@ do_transitCardNoCard__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4T
 /* 803D21A8 003CF0E8  7C 08 03 A6 */	mtlr r0
 /* 803D21AC 003CF0EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D21B0 003CF0F0  4E 80 00 20 */	blr 
+.endfn do_transitCardNoCard__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
-"transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg", weak
 /* 803D21B4 003CF0F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D21B8 003CF0F8  7C 08 02 A6 */	mflr r0
 /* 803D21BC 003CF0FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1428,9 +1464,9 @@ do_transitCardNoCard__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4T
 /* 803D21D8 003CF118  7C 08 03 A6 */	mtlr r0
 /* 803D21DC 003CF11C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D21E0 003CF120  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
 
-.global do_transitCardIOError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardIOError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardIOError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D21E4 003CF124  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D21E8 003CF128  7C 08 02 A6 */	mflr r0
 /* 803D21EC 003CF12C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1458,9 +1494,9 @@ do_transitCardIOError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4
 /* 803D223C 003CF17C  7C 08 03 A6 */	mtlr r0
 /* 803D2240 003CF180  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D2244 003CF184  4E 80 00 20 */	blr 
+.endfn do_transitCardIOError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_transitCardWrongDevice__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardWrongDevice__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardWrongDevice__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D2248 003CF188  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D224C 003CF18C  7C 08 02 A6 */	mflr r0
 /* 803D2250 003CF190  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1488,9 +1524,9 @@ do_transitCardWrongDevice__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardEr
 /* 803D22A0 003CF1E0  7C 08 03 A6 */	mtlr r0
 /* 803D22A4 003CF1E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D22A8 003CF1E8  4E 80 00 20 */	blr 
+.endfn do_transitCardWrongDevice__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_transitCardWrongSector__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardWrongSector__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardWrongSector__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D22AC 003CF1EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D22B0 003CF1F0  7C 08 02 A6 */	mflr r0
 /* 803D22B4 003CF1F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1518,9 +1554,9 @@ do_transitCardWrongSector__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardEr
 /* 803D2304 003CF244  7C 08 03 A6 */	mtlr r0
 /* 803D2308 003CF248  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D230C 003CF24C  4E 80 00 20 */	blr 
+.endfn do_transitCardWrongSector__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_transitCardBroken__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardBroken__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardBroken__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D2310 003CF250  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D2314 003CF254  7C 08 02 A6 */	mflr r0
 /* 803D2318 003CF258  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1548,9 +1584,9 @@ do_transitCardBroken__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4T
 /* 803D2368 003CF2A8  7C 08 03 A6 */	mtlr r0
 /* 803D236C 003CF2AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D2370 003CF2B0  4E 80 00 20 */	blr 
+.endfn do_transitCardBroken__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_transitCardEncoding__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardEncoding__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardEncoding__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D2374 003CF2B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D2378 003CF2B8  7C 08 02 A6 */	mflr r0
 /* 803D237C 003CF2BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1578,9 +1614,9 @@ do_transitCardEncoding__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError
 /* 803D23CC 003CF30C  7C 08 03 A6 */	mtlr r0
 /* 803D23D0 003CF310  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D23D4 003CF314  4E 80 00 20 */	blr 
+.endfn do_transitCardEncoding__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_transitCardNoFileSpace__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardNoFileSpace__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardNoFileSpace__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D23D8 003CF318  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D23DC 003CF31C  7C 08 02 A6 */	mflr r0
 /* 803D23E0 003CF320  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1608,9 +1644,9 @@ do_transitCardNoFileSpace__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardEr
 /* 803D2430 003CF370  7C 08 03 A6 */	mtlr r0
 /* 803D2434 003CF374  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D2438 003CF378  4E 80 00 20 */	blr 
+.endfn do_transitCardNoFileSpace__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_transitCardNoFileEntry__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardNoFileEntry__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardNoFileEntry__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D243C 003CF37C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D2440 003CF380  7C 08 02 A6 */	mflr r0
 /* 803D2444 003CF384  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1638,9 +1674,9 @@ do_transitCardNoFileEntry__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardEr
 /* 803D2494 003CF3D4  7C 08 03 A6 */	mtlr r0
 /* 803D2498 003CF3D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D249C 003CF3DC  4E 80 00 20 */	blr 
+.endfn do_transitCardNoFileEntry__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_transitCardFileOpenError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardFileOpenError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardFileOpenError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D24A0 003CF3E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D24A4 003CF3E4  7C 08 02 A6 */	mflr r0
 /* 803D24A8 003CF3E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1668,9 +1704,9 @@ do_transitCardFileOpenError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9Card
 /* 803D24F8 003CF438  7C 08 03 A6 */	mtlr r0
 /* 803D24FC 003CF43C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D2500 003CF440  4E 80 00 20 */	blr 
+.endfn do_transitCardFileOpenError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_transitCardSerialNoError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
-do_transitCardSerialNoError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr:
+.fn do_transitCardSerialNoError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr, global
 /* 803D2504 003CF444  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D2508 003CF448  7C 08 02 A6 */	mflr r0
 /* 803D250C 003CF44C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1699,9 +1735,9 @@ do_transitCardSerialNoError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9Card
 /* 803D2560 003CF4A0  7C 08 03 A6 */	mtlr r0
 /* 803D2564 003CF4A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D2568 003CF4A8  4E 80 00 20 */	blr 
+.endfn do_transitCardSerialNoError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
 
-.global do_init__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgrPQ24Game8StateArg
-do_init__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgrPQ24Game8StateArg, global
 /* 803D256C 003CF4AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D2570 003CF4B0  7C 08 02 A6 */	mflr r0
 /* 803D2574 003CF4B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1715,9 +1751,9 @@ do_init__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgrPQ24Game8StateA
 /* 803D2594 003CF4D4  7C 08 03 A6 */	mtlr r0
 /* 803D2598 003CF4D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D259C 003CF4DC  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgr
-do_exec__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgr:
+.fn do_exec__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgr, global
 /* 803D25A0 003CF4E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D25A4 003CF4E4  7C 08 02 A6 */	mflr r0
 /* 803D25A8 003CF4E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1765,9 +1801,9 @@ do_exec__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgr:
 /* 803D2644 003CF584  7C 08 03 A6 */	mtlr r0
 /* 803D2648 003CF588  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D264C 003CF58C  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgr
 
-.global __ct__Q33ebi9CardError4TMgrFv
-__ct__Q33ebi9CardError4TMgrFv:
+.fn __ct__Q33ebi9CardError4TMgrFv, global
 /* 803D2650 003CF590  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D2654 003CF594  7C 08 02 A6 */	mflr r0
 /* 803D2658 003CF598  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1805,9 +1841,9 @@ __ct__Q33ebi9CardError4TMgrFv:
 /* 803D26D8 003CF618  7C 08 03 A6 */	mtlr r0
 /* 803D26DC 003CF61C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D26E0 003CF620  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi9CardError4TMgrFv
 
-.global "start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
-"start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg":
+.fn "start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg", weak
 /* 803D26E4 003CF624  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D26E8 003CF628  7C 08 02 A6 */	mflr r0
 /* 803D26EC 003CF62C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1821,9 +1857,9 @@ __ct__Q33ebi9CardError4TMgrFv:
 /* 803D270C 003CF64C  7C 08 03 A6 */	mtlr r0
 /* 803D2710 003CF650  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D2714 003CF654  4E 80 00 20 */	blr 
+.endfn "start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
 
-.global __dt__Q33ebi6Screen11TMemoryCardFv
-__dt__Q33ebi6Screen11TMemoryCardFv:
+.fn __dt__Q33ebi6Screen11TMemoryCardFv, weak
 /* 803D2718 003CF658  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D271C 003CF65C  7C 08 02 A6 */	mflr r0
 /* 803D2720 003CF660  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2120,9 +2156,9 @@ __dt__Q33ebi6Screen11TMemoryCardFv:
 /* 803D2B6C 003CFAAC  7C 08 03 A6 */	mtlr r0
 /* 803D2B70 003CFAB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D2B74 003CFAB4  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi6Screen11TMemoryCardFv
 
-.global __ct__Q33ebi6Screen11TMemoryCardFv
-__ct__Q33ebi6Screen11TMemoryCardFv:
+.fn __ct__Q33ebi6Screen11TMemoryCardFv, weak
 /* 803D2B78 003CFAB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D2B7C 003CFABC  7C 08 02 A6 */	mflr r0
 /* 803D2B80 003CFAC0  38 80 00 00 */	li r4, 0
@@ -2429,9 +2465,9 @@ __ct__Q33ebi6Screen11TMemoryCardFv:
 /* 803D3034 003CFF74  7C 08 03 A6 */	mtlr r0
 /* 803D3038 003CFF78  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D303C 003CFF7C  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi6Screen11TMemoryCardFv
 
-.global startSeq__Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr9enumStart
-startSeq__Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr9enumStart:
+.fn startSeq__Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr9enumStart, global
 /* 803D3040 003CFF80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D3044 003CFF84  7C 08 02 A6 */	mflr r0
 /* 803D3048 003CFF88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2674,9 +2710,9 @@ startSeq__Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr9enumStart:
 /* 803D33AC 003D02EC  7C 08 03 A6 */	mtlr r0
 /* 803D33B0 003D02F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D33B4 003D02F4  4E 80 00 20 */	blr 
+.endfn startSeq__Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr9enumStart
 
-.global forceQuitSeq__Q33ebi9CardError4TMgrFv
-forceQuitSeq__Q33ebi9CardError4TMgrFv:
+.fn forceQuitSeq__Q33ebi9CardError4TMgrFv, global
 /* 803D33B8 003D02F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D33BC 003D02FC  7C 08 02 A6 */	mflr r0
 /* 803D33C0 003D0300  38 A0 00 00 */	li r5, 0
@@ -2697,9 +2733,9 @@ forceQuitSeq__Q33ebi9CardError4TMgrFv:
 /* 803D33FC 003D033C  7C 08 03 A6 */	mtlr r0
 /* 803D3400 003D0340  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D3404 003D0344  4E 80 00 20 */	blr 
+.endfn forceQuitSeq__Q33ebi9CardError4TMgrFv
 
-.global goEnd___Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr7enumEnd
-goEnd___Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr7enumEnd:
+.fn goEnd___Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr7enumEnd, global
 /* 803D3408 003D0348  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D340C 003D034C  7C 08 02 A6 */	mflr r0
 /* 803D3410 003D0350  7C 66 1B 78 */	mr r6, r3
@@ -2717,9 +2753,9 @@ goEnd___Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr7enumEnd:
 /* 803D3440 003D0380  7C 08 03 A6 */	mtlr r0
 /* 803D3444 003D0384  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D3448 003D0388  4E 80 00 20 */	blr 
+.endfn goEnd___Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr7enumEnd
 
-.global checkAndTransitNoCard___Q33ebi9CardError4TMgrFv
-checkAndTransitNoCard___Q33ebi9CardError4TMgrFv:
+.fn checkAndTransitNoCard___Q33ebi9CardError4TMgrFv, global
 /* 803D344C 003D038C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D3450 003D0390  7C 08 02 A6 */	mflr r0
 /* 803D3454 003D0394  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2781,9 +2817,9 @@ checkAndTransitNoCard___Q33ebi9CardError4TMgrFv:
 /* 803D3520 003D0460  7C 08 03 A6 */	mtlr r0
 /* 803D3524 003D0464  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D3528 003D0468  4E 80 00 20 */	blr 
+.endfn checkAndTransitNoCard___Q33ebi9CardError4TMgrFv
 
-.global update__Q33ebi9CardError4TMgrFv
-update__Q33ebi9CardError4TMgrFv:
+.fn update__Q33ebi9CardError4TMgrFv, global
 /* 803D352C 003D046C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D3530 003D0470  7C 08 02 A6 */	mflr r0
 /* 803D3534 003D0474  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2812,9 +2848,9 @@ update__Q33ebi9CardError4TMgrFv:
 /* 803D358C 003D04CC  7C 08 03 A6 */	mtlr r0
 /* 803D3590 003D04D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D3594 003D04D4  4E 80 00 20 */	blr 
+.endfn update__Q33ebi9CardError4TMgrFv
 
-.global draw__Q33ebi9CardError4TMgrFv
-draw__Q33ebi9CardError4TMgrFv:
+.fn draw__Q33ebi9CardError4TMgrFv, global
 /* 803D3598 003D04D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D359C 003D04DC  7C 08 02 A6 */	mflr r0
 /* 803D35A0 003D04E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2831,9 +2867,9 @@ draw__Q33ebi9CardError4TMgrFv:
 /* 803D35C8 003D0508  7C 08 03 A6 */	mtlr r0
 /* 803D35CC 003D050C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D35D0 003D0510  4E 80 00 20 */	blr 
+.endfn draw__Q33ebi9CardError4TMgrFv
 
-.global isGetEnd__Q33ebi9CardError4TMgrFv
-isGetEnd__Q33ebi9CardError4TMgrFv:
+.fn isGetEnd__Q33ebi9CardError4TMgrFv, global
 /* 803D35D4 003D0514  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D35D8 003D0518  7C 08 02 A6 */	mflr r0
 /* 803D35DC 003D051C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2857,9 +2893,9 @@ isGetEnd__Q33ebi9CardError4TMgrFv:
 /* 803D3618 003D0558  7C 08 03 A6 */	mtlr r0
 /* 803D361C 003D055C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D3620 003D0560  4E 80 00 20 */	blr 
+.endfn isGetEnd__Q33ebi9CardError4TMgrFv
 
-.global getStateID__Q33ebi9CardError4TMgrFv
-getStateID__Q33ebi9CardError4TMgrFv:
+.fn getStateID__Q33ebi9CardError4TMgrFv, global
 /* 803D3624 003D0564  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D3628 003D0568  7C 08 02 A6 */	mflr r0
 /* 803D362C 003D056C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2883,33 +2919,33 @@ getStateID__Q33ebi9CardError4TMgrFv:
 /* 803D3670 003D05B0  7C 08 03 A6 */	mtlr r0
 /* 803D3674 003D05B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D3678 003D05B8  4E 80 00 20 */	blr 
+.endfn getStateID__Q33ebi9CardError4TMgrFv
 
-.global "init__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgrPQ24Game8StateArg"
-"init__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgrPQ24Game8StateArg":
+.fn "init__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgrPQ24Game8StateArg", weak
 /* 803D367C 003D05BC  4E 80 00 20 */	blr 
+.endfn "init__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgrPQ24Game8StateArg"
 
-.global "exec__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
-"exec__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
+.fn "exec__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr", weak
 /* 803D3680 003D05C0  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 
-.global "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
-"cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
+.fn "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr", weak
 /* 803D3684 003D05C4  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 
-.global "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
-"resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
+.fn "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr", weak
 /* 803D3688 003D05C8  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 
-.global "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
-"restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
+.fn "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr", weak
 /* 803D368C 003D05CC  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 
-.global "init__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
-"init__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
+.fn "init__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr", weak
 /* 803D3690 003D05D0  4E 80 00 20 */	blr 
+.endfn "init__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 
-.global "exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
-"exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
+.fn "exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr", weak
 /* 803D3694 003D05D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D3698 003D05D8  7C 08 02 A6 */	mflr r0
 /* 803D369C 003D05DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2925,9 +2961,9 @@ getStateID__Q33ebi9CardError4TMgrFv:
 /* 803D36C0 003D0600  7C 08 03 A6 */	mtlr r0
 /* 803D36C4 003D0604  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D36C8 003D0608  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
 
-.global "create__Q24Game35StateMachine<Q33ebi9CardError4TMgr>Fi"
-"create__Q24Game35StateMachine<Q33ebi9CardError4TMgr>Fi":
+.fn "create__Q24Game35StateMachine<Q33ebi9CardError4TMgr>Fi", weak
 /* 803D36CC 003D060C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D36D0 003D0610  7C 08 02 A6 */	mflr r0
 /* 803D36D4 003D0614  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2953,9 +2989,9 @@ getStateID__Q33ebi9CardError4TMgrFv:
 /* 803D3724 003D0664  7C 08 03 A6 */	mtlr r0
 /* 803D3728 003D0668  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D372C 003D066C  4E 80 00 20 */	blr 
+.endfn "create__Q24Game35StateMachine<Q33ebi9CardError4TMgr>Fi"
 
-.global "transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
-"transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg", weak
 /* 803D3730 003D0670  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D3734 003D0674  7C 08 02 A6 */	mflr r0
 /* 803D3738 003D0678  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2998,9 +3034,9 @@ getStateID__Q33ebi9CardError4TMgrFv:
 /* 803D37C0 003D0700  7C 08 03 A6 */	mtlr r0
 /* 803D37C4 003D0704  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D37C8 003D0708  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
 
-.global "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
-"registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>":
+.fn "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>", weak
 /* 803D37CC 003D070C  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803D37D0 003D0710  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 803D37D4 003D0714  7C 06 00 00 */	cmpw r6, r0
@@ -3037,3 +3073,4 @@ getStateID__Q33ebi9CardError4TMgrFv:
 /* 803D3844 003D0784  38 04 00 01 */	addi r0, r4, 1
 /* 803D3848 003D0788  90 03 00 08 */	stw r0, 8(r3)
 /* 803D384C 003D078C  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"

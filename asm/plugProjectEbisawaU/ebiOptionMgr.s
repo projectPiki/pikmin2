@@ -1,43 +1,53 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804965A0:
+.obj lbl_804965A0, local
 	.asciz "ebiOptionMgr"
+.endobj lbl_804965A0
 .balign 4
-lbl_804965B0:
+.obj lbl_804965B0, local
 	.asciz "LoadOption"
+.endobj lbl_804965B0
 .balign 4
-lbl_804965BC:
+.obj lbl_804965BC, local
 	.asciz "ScreenOpen"
+.endobj lbl_804965BC
 .balign 4
-lbl_804965C8:
+.obj lbl_804965C8, local
 	.asciz "ScreenWait"
+.endobj lbl_804965C8
 .balign 4
-lbl_804965D4:
+.obj lbl_804965D4, local
 	.asciz "ScreenClose"
+.endobj lbl_804965D4
 .balign 4
-lbl_804965E0:
+.obj lbl_804965E0, local
 	.asciz "WaitCloseForNoCard"
+.endobj lbl_804965E0
 .balign 4
-lbl_804965F4:
+.obj lbl_804965F4, local
 	.asciz "WorldMapInfoWindow"
+.endobj lbl_804965F4
 .balign 4
-lbl_80496608:
+.obj lbl_80496608, local
 	.asciz "ebiOptionMgr.cpp"
+.endobj lbl_80496608
 .balign 4
-lbl_8049661C:
+.obj lbl_8049661C, local
 	.asciz "fail to memory card Request even if finish task\n"
+.endobj lbl_8049661C
 .balign 4
-lbl_80496650:
+.obj lbl_80496650, local
 	.asciz "Option::TMgr::loadResource"
+.endobj lbl_80496650
 .balign 4
-lbl_8049666C:
+.obj lbl_8049666C, local
 	.asciz "P2Assert"
+.endobj lbl_8049666C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q33ebi6Screen20TScreenBaseInterface
-__vt__Q33ebi6Screen20TScreenBaseInterface:
+.obj __vt__Q33ebi6Screen20TScreenBaseInterface, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -47,8 +57,8 @@ __vt__Q33ebi6Screen20TScreenBaseInterface:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q23ebi25E2DCallBack_CalcAnimation
-__vt__Q23ebi25E2DCallBack_CalcAnimation:
+.endobj __vt__Q33ebi6Screen20TScreenBaseInterface
+.obj __vt__Q23ebi25E2DCallBack_CalcAnimation, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23ebi25E2DCallBack_CalcAnimationFv
@@ -58,8 +68,8 @@ __vt__Q23ebi25E2DCallBack_CalcAnimation:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte do_update__Q23ebi25E2DCallBack_CalcAnimationFv
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-.global __vt__Q23ebi16E2DCallBack_Base
-__vt__Q23ebi16E2DCallBack_Base:
+.endobj __vt__Q23ebi25E2DCallBack_CalcAnimation
+.obj __vt__Q23ebi16E2DCallBack_Base, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23ebi16E2DCallBack_BaseFv
@@ -69,16 +79,16 @@ __vt__Q23ebi16E2DCallBack_Base:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte do_update__Q23ebi16E2DCallBack_BaseFv
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-.global "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>"
-"__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>":
+.endobj __vt__Q23ebi16E2DCallBack_Base
+.obj "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 	.4byte "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 	.4byte "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi6Option16FSMState_SaveMgr
-__vt__Q33ebi6Option16FSMState_SaveMgr:
+.endobj "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>"
+.obj __vt__Q33ebi6Option16FSMState_SaveMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
@@ -89,8 +99,8 @@ __vt__Q33ebi6Option16FSMState_SaveMgr:
 	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr
-.global __vt__Q33ebi6Option19FSMState_LoadOption
-__vt__Q33ebi6Option19FSMState_LoadOption:
+.endobj __vt__Q33ebi6Option16FSMState_SaveMgr
+.obj __vt__Q33ebi6Option19FSMState_LoadOption, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
@@ -101,8 +111,8 @@ __vt__Q33ebi6Option19FSMState_LoadOption:
 	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr
-.global __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow
-__vt__Q33ebi6Option27FSMState_WorldMapInfoWindow:
+.endobj __vt__Q33ebi6Option19FSMState_LoadOption
+.obj __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
@@ -113,8 +123,8 @@ __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow:
 	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr
-.global __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard
-__vt__Q33ebi6Option27FSMState_WaitCloseForNoCard:
+.endobj __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow
+.obj __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
@@ -125,8 +135,8 @@ __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard:
 	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr
-.global __vt__Q33ebi6Option20FSMState_ScreenClose
-__vt__Q33ebi6Option20FSMState_ScreenClose:
+.endobj __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard
+.obj __vt__Q33ebi6Option20FSMState_ScreenClose, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
@@ -137,8 +147,8 @@ __vt__Q33ebi6Option20FSMState_ScreenClose:
 	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr
-.global __vt__Q33ebi6Option19FSMState_ScreenWait
-__vt__Q33ebi6Option19FSMState_ScreenWait:
+.endobj __vt__Q33ebi6Option20FSMState_ScreenClose
+.obj __vt__Q33ebi6Option19FSMState_ScreenWait, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
@@ -149,8 +159,8 @@ __vt__Q33ebi6Option19FSMState_ScreenWait:
 	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr
-.global __vt__Q33ebi6Option19FSMState_ScreenOpen
-__vt__Q33ebi6Option19FSMState_ScreenOpen:
+.endobj __vt__Q33ebi6Option19FSMState_ScreenWait
+.obj __vt__Q33ebi6Option19FSMState_ScreenOpen, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
@@ -161,8 +171,8 @@ __vt__Q33ebi6Option19FSMState_ScreenOpen:
 	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr
-.global __vt__Q33ebi6Option8FSMState
-__vt__Q33ebi6Option8FSMState:
+.endobj __vt__Q33ebi6Option19FSMState_ScreenOpen
+.obj __vt__Q33ebi6Option8FSMState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
@@ -173,8 +183,8 @@ __vt__Q33ebi6Option8FSMState:
 	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-.global "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"
-"__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>":
+.endobj __vt__Q33ebi6Option8FSMState
+.obj "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgrPQ24Game8StateArg"
@@ -183,33 +193,38 @@ __vt__Q33ebi6Option8FSMState:
 	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi6Option15FSMStateMachine
-__vt__Q33ebi6Option15FSMStateMachine:
+.endobj "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"
+.obj __vt__Q33ebi6Option15FSMStateMachine, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr
 	.4byte "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 	.4byte "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+.endobj __vt__Q33ebi6Option15FSMStateMachine
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FA78:
+.obj lbl_8051FA78, local
 	.asciz "Standby"
+.endobj lbl_8051FA78
 .balign 4
-lbl_8051FA80:
+.obj lbl_8051FA80, local
 	.asciz "SaveMgr"
+.endobj lbl_8051FA80
 .balign 4
-lbl_8051FA88:
+.obj lbl_8051FA88, local
 	.float 1.0
-lbl_8051FA8C:
+.endobj lbl_8051FA88
+.obj lbl_8051FA8C, local
 	.float 0.0
-lbl_8051FA90:
+.endobj lbl_8051FA8C
+.obj lbl_8051FA90, local
 	.float 0.03333
+.endobj lbl_8051FA90
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr
-init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr:
+.fn init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr, global
 /* 803CE8F8 003CB838  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CE8FC 003CB83C  7C 08 02 A6 */	mflr r0
 /* 803CE900 003CB840  3C 80 80 49 */	lis r4, lbl_804965A0@ha
@@ -400,9 +415,9 @@ init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr:
 /* 803CEBC4 003CBB04  7C 08 03 A6 */	mtlr r0
 /* 803CEBC8 003CBB08  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CEBCC 003CBB0C  4E 80 00 20 */	blr 
+.endfn init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr
 
-.global init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg:
+.fn init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg, global
 /* 803CEBD0 003CBB10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CEBD4 003CBB14  7C 08 02 A6 */	mflr r0
 /* 803CEBD8 003CBB18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -414,13 +429,13 @@ init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg:
 /* 803CEBF0 003CBB30  7C 08 03 A6 */	mtlr r0
 /* 803CEBF4 003CBB34  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CEBF8 003CBB38  4E 80 00 20 */	blr 
+.endfn init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.global do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg, weak
 /* 803CEBFC 003CBB3C  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.global exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr:
+.fn exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr, weak
 /* 803CEC00 003CBB40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CEC04 003CBB44  7C 08 02 A6 */	mflr r0
 /* 803CEC08 003CBB48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -432,13 +447,13 @@ exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr:
 /* 803CEC20 003CBB60  7C 08 03 A6 */	mtlr r0
 /* 803CEC24 003CBB64  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CEC28 003CBB68  4E 80 00 20 */	blr 
+.endfn exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
 
-.global do_exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-do_exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr:
+.fn do_exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr, weak
 /* 803CEC2C 003CBB6C  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
 
-.global do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8StateArg
-do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8StateArg, global
 /* 803CEC30 003CBB70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CEC34 003CBB74  7C 08 02 A6 */	mflr r0
 /* 803CEC38 003CBB78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -459,9 +474,9 @@ do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8StateArg
 /* 803CEC74 003CBBB4  7C 08 03 A6 */	mtlr r0
 /* 803CEC78 003CBBB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CEC7C 003CBBBC  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr
-do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr:
+.fn do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr, global
 /* 803CEC80 003CBBC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CEC84 003CBBC4  7C 08 02 A6 */	mflr r0
 /* 803CEC88 003CBBC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -488,9 +503,9 @@ do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr:
 /* 803CECD8 003CBC18  7C 08 03 A6 */	mtlr r0
 /* 803CECDC 003CBC1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CECE0 003CBC20  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr
 
-.global "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-"transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg", weak
 /* 803CECE4 003CBC24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CECE8 003CBC28  7C 08 02 A6 */	mflr r0
 /* 803CECEC 003CBC2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -503,15 +518,15 @@ do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr:
 /* 803CED08 003CBC48  7C 08 03 A6 */	mtlr r0
 /* 803CED0C 003CBC4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CED10 003CBC50  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 
-.global do_init__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgrPQ24Game8StateArg
-do_init__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgrPQ24Game8StateArg, global
 /* 803CED14 003CBC54  38 00 00 01 */	li r0, 1
 /* 803CED18 003CBC58  98 04 00 10 */	stb r0, 0x10(r4)
 /* 803CED1C 003CBC5C  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr
-do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr:
+.fn do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr, global
 /* 803CED20 003CBC60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803CED24 003CBC64  7C 08 02 A6 */	mflr r0
 /* 803CED28 003CBC68  90 01 00 24 */	stw r0, 0x24(r1)
@@ -602,9 +617,9 @@ do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr:
 /* 803CEE58 003CBD98  7C 08 03 A6 */	mtlr r0
 /* 803CEE5C 003CBD9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803CEE60 003CBDA0  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr
 
-.global do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8StateArg
-do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8StateArg, global
 /* 803CEE64 003CBDA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CEE68 003CBDA8  7C 08 02 A6 */	mflr r0
 /* 803CEE6C 003CBDAC  7C 83 23 78 */	mr r3, r4
@@ -620,9 +635,9 @@ do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8StateAr
 /* 803CEE94 003CBDD4  7C 08 03 A6 */	mtlr r0
 /* 803CEE98 003CBDD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CEE9C 003CBDDC  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr
-do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr:
+.fn do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr, global
 /* 803CEEA0 003CBDE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CEEA4 003CBDE4  7C 08 02 A6 */	mflr r0
 /* 803CEEA8 003CBDE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -643,9 +658,9 @@ do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr:
 /* 803CEEE0 003CBE20  7C 08 03 A6 */	mtlr r0
 /* 803CEEE4 003CBE24  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CEEE8 003CBE28  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr
 
-.global do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24Game8StateArg
-do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24Game8StateArg, global
 /* 803CEEEC 003CBE2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CEEF0 003CBE30  7C 08 02 A6 */	mflr r0
 /* 803CEEF4 003CBE34  C0 22 17 28 */	lfs f1, lbl_8051FA88@sda21(r2)
@@ -663,9 +678,9 @@ do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24Game8
 /* 803CEF24 003CBE64  7C 08 03 A6 */	mtlr r0
 /* 803CEF28 003CBE68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CEF2C 003CBE6C  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr
-do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr:
+.fn do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr, global
 /* 803CEF30 003CBE70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CEF34 003CBE74  7C 08 02 A6 */	mflr r0
 /* 803CEF38 003CBE78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -701,9 +716,9 @@ do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr:
 /* 803CEFA8 003CBEE8  7C 08 03 A6 */	mtlr r0
 /* 803CEFAC 003CBEEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CEFB0 003CBEF0  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr
 
-.global do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24Game8StateArg
-do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24Game8StateArg, global
 /* 803CEFB4 003CBEF4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803CEFB8 003CBEF8  7C 08 02 A6 */	mflr r0
 /* 803CEFBC 003CBEFC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -750,9 +765,9 @@ do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24Game8
 /* 803CF060 003CBFA0  7C 08 03 A6 */	mtlr r0
 /* 803CF064 003CBFA4  38 21 00 30 */	addi r1, r1, 0x30
 /* 803CF068 003CBFA8  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr
-do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr:
+.fn do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr, global
 /* 803CF06C 003CBFAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CF070 003CBFB0  7C 08 02 A6 */	mflr r0
 /* 803CF074 003CBFB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -796,15 +811,15 @@ do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr:
 /* 803CF100 003CC040  7C 08 03 A6 */	mtlr r0
 /* 803CF104 003CC044  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CF108 003CC048  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr
 
-.global do_init__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgrPQ24Game8StateArg
-do_init__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgrPQ24Game8StateArg, global
 /* 803CF10C 003CC04C  38 00 00 00 */	li r0, 0
 /* 803CF110 003CC050  90 03 00 10 */	stw r0, 0x10(r3)
 /* 803CF114 003CC054  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr
-do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr:
+.fn do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr, global
 /* 803CF118 003CC058  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803CF11C 003CC05C  7C 08 02 A6 */	mflr r0
 /* 803CF120 003CC060  90 01 00 24 */	stw r0, 0x24(r1)
@@ -919,9 +934,9 @@ do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr:
 /* 803CF2AC 003CC1EC  7C 08 03 A6 */	mtlr r0
 /* 803CF2B0 003CC1F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803CF2B4 003CC1F4  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr
 
-.global do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateArg
-do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateArg, global
 /* 803CF2B8 003CC1F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CF2BC 003CC1FC  7C 08 02 A6 */	mflr r0
 /* 803CF2C0 003CC200  90 01 00 14 */	stw r0, 0x14(r1)
@@ -933,9 +948,9 @@ do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateArg:
 /* 803CF2D8 003CC218  7C 08 03 A6 */	mtlr r0
 /* 803CF2DC 003CC21C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CF2E0 003CC220  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr
-do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr:
+.fn do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr, global
 /* 803CF2E4 003CC224  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CF2E8 003CC228  7C 08 02 A6 */	mflr r0
 /* 803CF2EC 003CC22C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1006,9 +1021,9 @@ do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr:
 /* 803CF3D8 003CC318  7C 08 03 A6 */	mtlr r0
 /* 803CF3DC 003CC31C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CF3E0 003CC320  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr
 
-.global __ct__Q33ebi6Option4TMgrFv
-__ct__Q33ebi6Option4TMgrFv:
+.fn __ct__Q33ebi6Option4TMgrFv, global
 /* 803CF3E4 003CC324  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CF3E8 003CC328  7C 08 02 A6 */	mflr r0
 /* 803CF3EC 003CC32C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1057,9 +1072,9 @@ __ct__Q33ebi6Option4TMgrFv:
 /* 803CF498 003CC3D8  7C 08 03 A6 */	mtlr r0
 /* 803CF49C 003CC3DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CF4A0 003CC3E0  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi6Option4TMgrFv
 
-.global "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-"start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg":
+.fn "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg", weak
 /* 803CF4A4 003CC3E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CF4A8 003CC3E8  7C 08 02 A6 */	mflr r0
 /* 803CF4AC 003CC3EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1073,9 +1088,9 @@ __ct__Q33ebi6Option4TMgrFv:
 /* 803CF4CC 003CC40C  7C 08 03 A6 */	mtlr r0
 /* 803CF4D0 003CC410  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CF4D4 003CC414  4E 80 00 20 */	blr 
+.endfn "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 
-.global __dt__Q33ebi6Screen7TOptionFv
-__dt__Q33ebi6Screen7TOptionFv:
+.fn __dt__Q33ebi6Screen7TOptionFv, weak
 /* 803CF4D8 003CC418  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CF4DC 003CC41C  7C 08 02 A6 */	mflr r0
 /* 803CF4E0 003CC420  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1279,9 +1294,9 @@ __dt__Q33ebi6Screen7TOptionFv:
 /* 803CF7D8 003CC718  7C 08 03 A6 */	mtlr r0
 /* 803CF7DC 003CC71C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CF7E0 003CC720  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi6Screen7TOptionFv
 
-.global __dt__Q23ebi20E2DCallBack_PurupuruFv
-__dt__Q23ebi20E2DCallBack_PurupuruFv:
+.fn __dt__Q23ebi20E2DCallBack_PurupuruFv, weak
 /* 803CF7E4 003CC724  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CF7E8 003CC728  7C 08 02 A6 */	mflr r0
 /* 803CF7EC 003CC72C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1320,9 +1335,9 @@ __dt__Q23ebi20E2DCallBack_PurupuruFv:
 /* 803CF868 003CC7A8  7C 08 03 A6 */	mtlr r0
 /* 803CF86C 003CC7AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CF870 003CC7B0  4E 80 00 20 */	blr 
+.endfn __dt__Q23ebi20E2DCallBack_PurupuruFv
 
-.global __ct__Q33ebi6Screen7TOptionFv
-__ct__Q33ebi6Screen7TOptionFv:
+.fn __ct__Q33ebi6Screen7TOptionFv, weak
 /* 803CF874 003CC7B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803CF878 003CC7B8  7C 08 02 A6 */	mflr r0
 /* 803CF87C 003CC7BC  3C 80 80 4F */	lis r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
@@ -1594,9 +1609,9 @@ __ct__Q33ebi6Screen7TOptionFv:
 /* 803CFCA4 003CCBE4  7C 08 03 A6 */	mtlr r0
 /* 803CFCA8 003CCBE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803CFCAC 003CCBEC  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi6Screen7TOptionFv
 
-.global __dt__Q23ebi24E2DCallBack_WindowCursorFv
-__dt__Q23ebi24E2DCallBack_WindowCursorFv:
+.fn __dt__Q23ebi24E2DCallBack_WindowCursorFv, weak
 /* 803CFCB0 003CCBF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CFCB4 003CCBF4  7C 08 02 A6 */	mflr r0
 /* 803CFCB8 003CCBF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1635,9 +1650,9 @@ __dt__Q23ebi24E2DCallBack_WindowCursorFv:
 /* 803CFD34 003CCC74  7C 08 03 A6 */	mtlr r0
 /* 803CFD38 003CCC78  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CFD3C 003CCC7C  4E 80 00 20 */	blr 
+.endfn __dt__Q23ebi24E2DCallBack_WindowCursorFv
 
-.global __ct__Q23ebi20E2DCallBack_PurupuruFv
-__ct__Q23ebi20E2DCallBack_PurupuruFv:
+.fn __ct__Q23ebi20E2DCallBack_PurupuruFv, weak
 /* 803CFD40 003CCC80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CFD44 003CCC84  7C 08 02 A6 */	mflr r0
 /* 803CFD48 003CCC88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1673,9 +1688,9 @@ __ct__Q23ebi20E2DCallBack_PurupuruFv:
 /* 803CFDC0 003CCD00  7C 08 03 A6 */	mtlr r0
 /* 803CFDC4 003CCD04  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CFDC8 003CCD08  4E 80 00 20 */	blr 
+.endfn __ct__Q23ebi20E2DCallBack_PurupuruFv
 
-.global __dt__Q23ebi22E2DCallBack_BlinkAlphaFv
-__dt__Q23ebi22E2DCallBack_BlinkAlphaFv:
+.fn __dt__Q23ebi22E2DCallBack_BlinkAlphaFv, weak
 /* 803CFDCC 003CCD0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CFDD0 003CCD10  7C 08 02 A6 */	mflr r0
 /* 803CFDD4 003CCD14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1714,9 +1729,9 @@ __dt__Q23ebi22E2DCallBack_BlinkAlphaFv:
 /* 803CFE50 003CCD90  7C 08 03 A6 */	mtlr r0
 /* 803CFE54 003CCD94  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CFE58 003CCD98  4E 80 00 20 */	blr 
+.endfn __dt__Q23ebi22E2DCallBack_BlinkAlphaFv
 
-.global __dt__Q23ebi26E2DCallBack_BlinkFontColorFv
-__dt__Q23ebi26E2DCallBack_BlinkFontColorFv:
+.fn __dt__Q23ebi26E2DCallBack_BlinkFontColorFv, weak
 /* 803CFE5C 003CCD9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CFE60 003CCDA0  7C 08 02 A6 */	mflr r0
 /* 803CFE64 003CCDA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1755,18 +1770,18 @@ __dt__Q23ebi26E2DCallBack_BlinkFontColorFv:
 /* 803CFEE0 003CCE20  7C 08 03 A6 */	mtlr r0
 /* 803CFEE4 003CCE24  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CFEE8 003CCE28  4E 80 00 20 */	blr 
+.endfn __dt__Q23ebi26E2DCallBack_BlinkFontColorFv
 
-.global __ct__Q23ebi16E2DFullFontColorFv
-__ct__Q23ebi16E2DFullFontColorFv:
+.fn __ct__Q23ebi16E2DFullFontColorFv, weak
 /* 803CFEEC 003CCE2C  38 00 FF FF */	li r0, -1
 /* 803CFEF0 003CCE30  90 03 00 00 */	stw r0, 0(r3)
 /* 803CFEF4 003CCE34  90 03 00 04 */	stw r0, 4(r3)
 /* 803CFEF8 003CCE38  90 03 00 08 */	stw r0, 8(r3)
 /* 803CFEFC 003CCE3C  90 03 00 0C */	stw r0, 0xc(r3)
 /* 803CFF00 003CCE40  4E 80 00 20 */	blr 
+.endfn __ct__Q23ebi16E2DFullFontColorFv
 
-.global __dt__Q23ebi25E2DCallBack_CalcAnimationFv
-__dt__Q23ebi25E2DCallBack_CalcAnimationFv:
+.fn __dt__Q23ebi25E2DCallBack_CalcAnimationFv, weak
 /* 803CFF04 003CCE44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CFF08 003CCE48  7C 08 02 A6 */	mflr r0
 /* 803CFF0C 003CCE4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1805,9 +1820,9 @@ __dt__Q23ebi25E2DCallBack_CalcAnimationFv:
 /* 803CFF88 003CCEC8  7C 08 03 A6 */	mtlr r0
 /* 803CFF8C 003CCECC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CFF90 003CCED0  4E 80 00 20 */	blr 
+.endfn __dt__Q23ebi25E2DCallBack_CalcAnimationFv
 
-.global __dt__Q23ebi19E2DCallBack_AnmBaseFv
-__dt__Q23ebi19E2DCallBack_AnmBaseFv:
+.fn __dt__Q23ebi19E2DCallBack_AnmBaseFv, weak
 /* 803CFF94 003CCED4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CFF98 003CCED8  7C 08 02 A6 */	mflr r0
 /* 803CFF9C 003CCEDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1854,9 +1869,9 @@ __dt__Q23ebi19E2DCallBack_AnmBaseFv:
 /* 803D0034 003CCF74  7C 08 03 A6 */	mtlr r0
 /* 803D0038 003CCF78  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D003C 003CCF7C  4E 80 00 20 */	blr 
+.endfn __dt__Q23ebi19E2DCallBack_AnmBaseFv
 
-.global __dt__Q23ebi16E2DCallBack_BaseFv
-__dt__Q23ebi16E2DCallBack_BaseFv:
+.fn __dt__Q23ebi16E2DCallBack_BaseFv, weak
 /* 803D0040 003CCF80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D0044 003CCF84  7C 08 02 A6 */	mflr r0
 /* 803D0048 003CCF88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1891,9 +1906,9 @@ __dt__Q23ebi16E2DCallBack_BaseFv:
 /* 803D00B4 003CCFF4  7C 08 03 A6 */	mtlr r0
 /* 803D00B8 003CCFF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D00BC 003CCFFC  4E 80 00 20 */	blr 
+.endfn __dt__Q23ebi16E2DCallBack_BaseFv
 
-.global loadResource__Q33ebi6Option4TMgrFv
-loadResource__Q33ebi6Option4TMgrFv:
+.fn loadResource__Q33ebi6Option4TMgrFv, global
 /* 803D00C0 003CD000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D00C4 003CD004  7C 08 02 A6 */	mflr r0
 /* 803D00C8 003CD008  3C 80 80 49 */	lis r4, lbl_80496650@ha
@@ -1928,9 +1943,9 @@ loadResource__Q33ebi6Option4TMgrFv:
 /* 803D013C 003CD07C  7C 08 03 A6 */	mtlr r0
 /* 803D0140 003CD080  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0144 003CD084  4E 80 00 20 */	blr 
+.endfn loadResource__Q33ebi6Option4TMgrFv
 
-.global setController__Q33ebi6Option4TMgrFP10Controller
-setController__Q33ebi6Option4TMgrFP10Controller:
+.fn setController__Q33ebi6Option4TMgrFP10Controller, global
 /* 803D0148 003CD088  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D014C 003CD08C  7C 08 02 A6 */	mflr r0
 /* 803D0150 003CD090  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1950,9 +1965,9 @@ setController__Q33ebi6Option4TMgrFP10Controller:
 /* 803D0188 003CD0C8  7C 08 03 A6 */	mtlr r0
 /* 803D018C 003CD0CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0190 003CD0D0  4E 80 00 20 */	blr 
+.endfn setController__Q33ebi6Option4TMgrFP10Controller
 
-.global start__Q33ebi6Option4TMgrFv
-start__Q33ebi6Option4TMgrFv:
+.fn start__Q33ebi6Option4TMgrFv, global
 /* 803D0194 003CD0D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D0198 003CD0D8  7C 08 02 A6 */	mflr r0
 /* 803D019C 003CD0DC  7C 64 1B 78 */	mr r4, r3
@@ -1968,9 +1983,9 @@ start__Q33ebi6Option4TMgrFv:
 /* 803D01C4 003CD104  7C 08 03 A6 */	mtlr r0
 /* 803D01C8 003CD108  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D01CC 003CD10C  4E 80 00 20 */	blr 
+.endfn start__Q33ebi6Option4TMgrFv
 
-.global isFinish__Q33ebi6Option4TMgrFv
-isFinish__Q33ebi6Option4TMgrFv:
+.fn isFinish__Q33ebi6Option4TMgrFv, global
 /* 803D01D0 003CD110  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D01D4 003CD114  7C 08 02 A6 */	mflr r0
 /* 803D01D8 003CD118  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1981,9 +1996,9 @@ isFinish__Q33ebi6Option4TMgrFv:
 /* 803D01EC 003CD12C  7C 08 03 A6 */	mtlr r0
 /* 803D01F0 003CD130  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D01F4 003CD134  4E 80 00 20 */	blr 
+.endfn isFinish__Q33ebi6Option4TMgrFv
 
-.global goEnd___Q33ebi6Option4TMgrFv
-goEnd___Q33ebi6Option4TMgrFv:
+.fn goEnd___Q33ebi6Option4TMgrFv, global
 /* 803D01F8 003CD138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D01FC 003CD13C  7C 08 02 A6 */	mflr r0
 /* 803D0200 003CD140  38 A0 00 00 */	li r5, 0
@@ -2015,9 +2030,9 @@ goEnd___Q33ebi6Option4TMgrFv:
 /* 803D0268 003CD1A8  7C 08 03 A6 */	mtlr r0
 /* 803D026C 003CD1AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0270 003CD1B0  4E 80 00 20 */	blr 
+.endfn goEnd___Q33ebi6Option4TMgrFv
 
-.global update__Q33ebi6Option4TMgrFv
-update__Q33ebi6Option4TMgrFv:
+.fn update__Q33ebi6Option4TMgrFv, global
 /* 803D0274 003CD1B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D0278 003CD1B8  7C 08 02 A6 */	mflr r0
 /* 803D027C 003CD1BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2056,9 +2071,9 @@ update__Q33ebi6Option4TMgrFv:
 /* 803D02FC 003CD23C  7C 08 03 A6 */	mtlr r0
 /* 803D0300 003CD240  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0304 003CD244  4E 80 00 20 */	blr 
+.endfn update__Q33ebi6Option4TMgrFv
 
-.global draw__Q33ebi6Option4TMgrFv
-draw__Q33ebi6Option4TMgrFv:
+.fn draw__Q33ebi6Option4TMgrFv, global
 /* 803D0308 003CD248  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D030C 003CD24C  7C 08 02 A6 */	mflr r0
 /* 803D0310 003CD250  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2096,9 +2111,9 @@ draw__Q33ebi6Option4TMgrFv:
 /* 803D038C 003CD2CC  7C 08 03 A6 */	mtlr r0
 /* 803D0390 003CD2D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0394 003CD2D4  4E 80 00 20 */	blr 
+.endfn draw__Q33ebi6Option4TMgrFv
 
-.global getStateID__Q33ebi6Option4TMgrFv
-getStateID__Q33ebi6Option4TMgrFv:
+.fn getStateID__Q33ebi6Option4TMgrFv, global
 /* 803D0398 003CD2D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D039C 003CD2DC  7C 08 02 A6 */	mflr r0
 /* 803D03A0 003CD2E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2122,9 +2137,9 @@ getStateID__Q33ebi6Option4TMgrFv:
 /* 803D03E4 003CD324  7C 08 03 A6 */	mtlr r0
 /* 803D03E8 003CD328  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D03EC 003CD32C  4E 80 00 20 */	blr 
+.endfn getStateID__Q33ebi6Option4TMgrFv
 
-.global do_update__Q23ebi25E2DCallBack_CalcAnimationFv
-do_update__Q23ebi25E2DCallBack_CalcAnimationFv:
+.fn do_update__Q23ebi25E2DCallBack_CalcAnimationFv, weak
 /* 803D03F0 003CD330  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D03F4 003CD334  7C 08 02 A6 */	mflr r0
 /* 803D03F8 003CD338  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2146,9 +2161,9 @@ do_update__Q23ebi25E2DCallBack_CalcAnimationFv:
 /* 803D0434 003CD374  7C 08 03 A6 */	mtlr r0
 /* 803D0438 003CD378  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D043C 003CD37C  4E 80 00 20 */	blr 
+.endfn do_update__Q23ebi25E2DCallBack_CalcAnimationFv
 
-.global update__Q23ebi16E2DCallBack_BaseFv
-update__Q23ebi16E2DCallBack_BaseFv:
+.fn update__Q23ebi16E2DCallBack_BaseFv, weak
 /* 803D0440 003CD380  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D0444 003CD384  7C 08 02 A6 */	mflr r0
 /* 803D0448 003CD388  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2164,13 +2179,13 @@ update__Q23ebi16E2DCallBack_BaseFv:
 /* 803D046C 003CD3AC  7C 08 03 A6 */	mtlr r0
 /* 803D0470 003CD3B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0474 003CD3B4  4E 80 00 20 */	blr 
+.endfn update__Q23ebi16E2DCallBack_BaseFv
 
-.global do_update__Q23ebi16E2DCallBack_BaseFv
-do_update__Q23ebi16E2DCallBack_BaseFv:
+.fn do_update__Q23ebi16E2DCallBack_BaseFv, weak
 /* 803D0478 003CD3B8  4E 80 00 20 */	blr 
+.endfn do_update__Q23ebi16E2DCallBack_BaseFv
 
-.global draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext:
+.fn draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext, weak
 /* 803D047C 003CD3BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D0480 003CD3C0  7C 08 02 A6 */	mflr r0
 /* 803D0484 003CD3C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2186,37 +2201,37 @@ draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext:
 /* 803D04A8 003CD3E8  7C 08 03 A6 */	mtlr r0
 /* 803D04AC 003CD3EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D04B0 003CD3F0  4E 80 00 20 */	blr 
+.endfn draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
 
-.global do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext:
+.fn do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext, weak
 /* 803D04B4 003CD3F4  4E 80 00 20 */	blr 
+.endfn do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
 
-.global "init__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgrPQ24Game8StateArg"
-"init__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgrPQ24Game8StateArg":
+.fn "init__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgrPQ24Game8StateArg", weak
 /* 803D04B8 003CD3F8  4E 80 00 20 */	blr 
+.endfn "init__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgrPQ24Game8StateArg"
 
-.global "exec__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"exec__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.fn "exec__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr", weak
 /* 803D04BC 003CD3FC  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 
-.global "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.fn "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr", weak
 /* 803D04C0 003CD400  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 
-.global "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.fn "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr", weak
 /* 803D04C4 003CD404  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 
-.global "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.fn "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr", weak
 /* 803D04C8 003CD408  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 
-.global "init__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"init__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.fn "init__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr", weak
 /* 803D04CC 003CD40C  4E 80 00 20 */	blr 
+.endfn "init__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 
-.global "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.fn "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr", weak
 /* 803D04D0 003CD410  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D04D4 003CD414  7C 08 02 A6 */	mflr r0
 /* 803D04D8 003CD418  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2232,9 +2247,9 @@ do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext:
 /* 803D04FC 003CD43C  7C 08 03 A6 */	mtlr r0
 /* 803D0500 003CD440  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0504 003CD444  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 
-.global "create__Q24Game32StateMachine<Q33ebi6Option4TMgr>Fi"
-"create__Q24Game32StateMachine<Q33ebi6Option4TMgr>Fi":
+.fn "create__Q24Game32StateMachine<Q33ebi6Option4TMgr>Fi", weak
 /* 803D0508 003CD448  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D050C 003CD44C  7C 08 02 A6 */	mflr r0
 /* 803D0510 003CD450  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2260,9 +2275,9 @@ do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext:
 /* 803D0560 003CD4A0  7C 08 03 A6 */	mtlr r0
 /* 803D0564 003CD4A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0568 003CD4A8  4E 80 00 20 */	blr 
+.endfn "create__Q24Game32StateMachine<Q33ebi6Option4TMgr>Fi"
 
-.global "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-"transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg", weak
 /* 803D056C 003CD4AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D0570 003CD4B0  7C 08 02 A6 */	mflr r0
 /* 803D0574 003CD4B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2305,9 +2320,9 @@ do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext:
 /* 803D05FC 003CD53C  7C 08 03 A6 */	mtlr r0
 /* 803D0600 003CD540  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D0604 003CD544  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 
-.global "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>":
+.fn "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>", weak
 /* 803D0608 003CD548  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803D060C 003CD54C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 803D0610 003CD550  7C 06 00 00 */	cmpw r6, r0
@@ -2344,3 +2359,4 @@ do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext:
 /* 803D0680 003CD5C0  38 04 00 01 */	addi r0, r4, 1
 /* 803D0684 003CD5C4  90 03 00 08 */	stw r0, 8(r3)
 /* 803D0688 003CD5C8  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
