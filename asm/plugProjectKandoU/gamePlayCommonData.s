@@ -1,27 +1,24 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483A88
-lbl_80483A88:
+.obj lbl_80483A88, local
 	.asciz "gamePlayCommonData.cpp"
-	.skip 1
-.global lbl_80483AA0
-lbl_80483AA0:
+.endobj lbl_80483A88
+.balign 4
+.obj lbl_80483AA0, local
 	.asciz "P2Assert"
-	.skip 3
+.endobj lbl_80483AA0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game8Lowscore
-__vt__Q24Game8Lowscore:
+.obj __vt__Q24Game8Lowscore, weak
 	.4byte 0
 	.4byte 0
 	.4byte do_higher__Q24Game8LowscoreFii
-	.4byte 0
+.endobj __vt__Q24Game8Lowscore
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game14PlayCommonDataFv
-__ct__Q24Game14PlayCommonDataFv:
+.fn __ct__Q24Game14PlayCommonDataFv, global
 /* 8023410C 0023104C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80234110 00231050  7C 08 02 A6 */	mflr r0
 /* 80234114 00231054  90 01 00 24 */	stw r0, 0x24(r1)
@@ -88,9 +85,9 @@ __ct__Q24Game14PlayCommonDataFv:
 /* 802341FC 0023113C  7C 08 03 A6 */	mtlr r0
 /* 80234200 00231140  38 21 00 20 */	addi r1, r1, 0x20
 /* 80234204 00231144  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game14PlayCommonDataFv
 
-.global reset__Q24Game14PlayCommonDataFv
-reset__Q24Game14PlayCommonDataFv:
+.fn reset__Q24Game14PlayCommonDataFv, global
 /* 80234208 00231148  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023420C 0023114C  7C 08 02 A6 */	mflr r0
 /* 80234210 00231150  90 01 00 24 */	stw r0, 0x24(r1)
@@ -122,9 +119,9 @@ reset__Q24Game14PlayCommonDataFv:
 /* 80234274 002311B4  7C 08 03 A6 */	mtlr r0
 /* 80234278 002311B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023427C 002311BC  4E 80 00 20 */	blr 
+.endfn reset__Q24Game14PlayCommonDataFv
 
-.global reset__Q24Game21PlayChallengeGameDataFv
-reset__Q24Game21PlayChallengeGameDataFv:
+.fn reset__Q24Game21PlayChallengeGameDataFv, global
 /* 80234280 002311C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80234284 002311C4  7C 08 02 A6 */	mflr r0
 /* 80234288 002311C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -175,9 +172,9 @@ reset__Q24Game21PlayChallengeGameDataFv:
 /* 80234334 00231274  7C 08 03 A6 */	mtlr r0
 /* 80234338 00231278  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023433C 0023127C  4E 80 00 20 */	blr 
+.endfn reset__Q24Game21PlayChallengeGameDataFv
 
-.global write__Q24Game14PlayCommonDataFR6Stream
-write__Q24Game14PlayCommonDataFR6Stream:
+.fn write__Q24Game14PlayCommonDataFR6Stream, global
 /* 80234340 00231280  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80234344 00231284  7C 08 02 A6 */	mflr r0
 /* 80234348 00231288  90 01 00 24 */	stw r0, 0x24(r1)
@@ -219,9 +216,9 @@ write__Q24Game14PlayCommonDataFR6Stream:
 /* 802343D4 00231314  7C 08 03 A6 */	mtlr r0
 /* 802343D8 00231318  38 21 00 20 */	addi r1, r1, 0x20
 /* 802343DC 0023131C  4E 80 00 20 */	blr 
+.endfn write__Q24Game14PlayCommonDataFR6Stream
 
-.global read__Q24Game14PlayCommonDataFR6Stream
-read__Q24Game14PlayCommonDataFR6Stream:
+.fn read__Q24Game14PlayCommonDataFR6Stream, global
 /* 802343E0 00231320  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802343E4 00231324  7C 08 02 A6 */	mflr r0
 /* 802343E8 00231328  90 01 00 24 */	stw r0, 0x24(r1)
@@ -285,9 +282,9 @@ read__Q24Game14PlayCommonDataFR6Stream:
 /* 802344C0 00231400  7C 08 03 A6 */	mtlr r0
 /* 802344C4 00231404  38 21 00 20 */	addi r1, r1, 0x20
 /* 802344C8 00231408  4E 80 00 20 */	blr 
+.endfn read__Q24Game14PlayCommonDataFR6Stream
 
-.global getHighscore_clear__Q24Game14PlayCommonDataFi
-getHighscore_clear__Q24Game14PlayCommonDataFi:
+.fn getHighscore_clear__Q24Game14PlayCommonDataFi, global
 /* 802344CC 0023140C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802344D0 00231410  7C 08 02 A6 */	mflr r0
 /* 802344D4 00231414  90 01 00 14 */	stw r0, 0x14(r1)
@@ -320,9 +317,9 @@ getHighscore_clear__Q24Game14PlayCommonDataFi:
 /* 80234538 00231478  7C 08 03 A6 */	mtlr r0
 /* 8023453C 0023147C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234540 00231480  4E 80 00 20 */	blr 
+.endfn getHighscore_clear__Q24Game14PlayCommonDataFi
 
-.global getHighscore_complete__Q24Game14PlayCommonDataFi
-getHighscore_complete__Q24Game14PlayCommonDataFi:
+.fn getHighscore_complete__Q24Game14PlayCommonDataFi, global
 /* 80234544 00231484  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234548 00231488  7C 08 02 A6 */	mflr r0
 /* 8023454C 0023148C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -355,9 +352,9 @@ getHighscore_complete__Q24Game14PlayCommonDataFi:
 /* 802345B0 002314F0  7C 08 03 A6 */	mtlr r0
 /* 802345B4 002314F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802345B8 002314F8  4E 80 00 20 */	blr 
+.endfn getHighscore_complete__Q24Game14PlayCommonDataFi
 
-.global entryHighscores_clear__Q24Game14PlayCommonDataFiPiPi
-entryHighscores_clear__Q24Game14PlayCommonDataFiPiPi:
+.fn entryHighscores_clear__Q24Game14PlayCommonDataFiPiPi, global
 /* 802345BC 002314FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802345C0 00231500  7C 08 02 A6 */	mflr r0
 /* 802345C4 00231504  7C 88 23 78 */	mr r8, r4
@@ -372,9 +369,9 @@ entryHighscores_clear__Q24Game14PlayCommonDataFiPiPi:
 /* 802345E8 00231528  7C 08 03 A6 */	mtlr r0
 /* 802345EC 0023152C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802345F0 00231530  4E 80 00 20 */	blr 
+.endfn entryHighscores_clear__Q24Game14PlayCommonDataFiPiPi
 
-.global entryHighscores_complete__Q24Game14PlayCommonDataFiPiPi
-entryHighscores_complete__Q24Game14PlayCommonDataFiPiPi:
+.fn entryHighscores_complete__Q24Game14PlayCommonDataFiPiPi, global
 /* 802345F4 00231534  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802345F8 00231538  7C 08 02 A6 */	mflr r0
 /* 802345FC 0023153C  7C 88 23 78 */	mr r8, r4
@@ -389,9 +386,9 @@ entryHighscores_complete__Q24Game14PlayCommonDataFiPiPi:
 /* 80234620 00231560  7C 08 03 A6 */	mtlr r0
 /* 80234624 00231564  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234628 00231568  4E 80 00 20 */	blr 
+.endfn entryHighscores_complete__Q24Game14PlayCommonDataFiPiPi
 
-.global entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi
-entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi:
+.fn entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi, global
 /* 8023462C 0023156C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80234630 00231570  7C 08 02 A6 */	mflr r0
 /* 80234634 00231574  90 01 00 24 */	stw r0, 0x24(r1)
@@ -450,21 +447,21 @@ entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi:
 /* 80234700 00231640  7C 08 03 A6 */	mtlr r0
 /* 80234704 00231644  38 21 00 20 */	addi r1, r1, 0x20
 /* 80234708 00231648  4E 80 00 20 */	blr 
+.endfn entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi
 
-.global isChallengeGamePlayable__Q24Game14PlayCommonDataFv
-isChallengeGamePlayable__Q24Game14PlayCommonDataFv:
+.fn isChallengeGamePlayable__Q24Game14PlayCommonDataFv, global
 /* 8023470C 0023164C  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 80234710 00231650  54 03 07 FE */	clrlwi r3, r0, 0x1f
 /* 80234714 00231654  4E 80 00 20 */	blr 
+.endfn isChallengeGamePlayable__Q24Game14PlayCommonDataFv
 
-.global isLouieRescued__Q24Game14PlayCommonDataFv
-isLouieRescued__Q24Game14PlayCommonDataFv:
+.fn isLouieRescued__Q24Game14PlayCommonDataFv, global
 /* 80234718 00231658  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 8023471C 0023165C  54 03 F7 FE */	rlwinm r3, r0, 0x1e, 0x1f, 0x1f
 /* 80234720 00231660  4E 80 00 20 */	blr 
+.endfn isLouieRescued__Q24Game14PlayCommonDataFv
 
-.global isPerfectChallenge__Q24Game14PlayCommonDataFv
-isPerfectChallenge__Q24Game14PlayCommonDataFv:
+.fn isPerfectChallenge__Q24Game14PlayCommonDataFv, global
 /* 80234724 00231664  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234728 00231668  7C 08 02 A6 */	mflr r0
 /* 8023472C 0023166C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -505,9 +502,9 @@ isPerfectChallenge__Q24Game14PlayCommonDataFv:
 /* 802347A4 002316E4  7C 08 03 A6 */	mtlr r0
 /* 802347A8 002316E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802347AC 002316EC  4E 80 00 20 */	blr 
+.endfn isPerfectChallenge__Q24Game14PlayCommonDataFv
 
-.global enableChallengeGame__Q24Game14PlayCommonDataFv
-enableChallengeGame__Q24Game14PlayCommonDataFv:
+.fn enableChallengeGame__Q24Game14PlayCommonDataFv, global
 /* 802347B0 002316F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802347B4 002316F4  7C 08 02 A6 */	mflr r0
 /* 802347B8 002316F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -520,9 +517,9 @@ enableChallengeGame__Q24Game14PlayCommonDataFv:
 /* 802347D4 00231714  7C 08 03 A6 */	mtlr r0
 /* 802347D8 00231718  38 21 00 10 */	addi r1, r1, 0x10
 /* 802347DC 0023171C  4E 80 00 20 */	blr 
+.endfn enableChallengeGame__Q24Game14PlayCommonDataFv
 
-.global enableLouieRescue__Q24Game14PlayCommonDataFv
-enableLouieRescue__Q24Game14PlayCommonDataFv:
+.fn enableLouieRescue__Q24Game14PlayCommonDataFv, global
 /* 802347E0 00231720  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802347E4 00231724  7C 08 02 A6 */	mflr r0
 /* 802347E8 00231728  90 01 00 14 */	stw r0, 0x14(r1)
@@ -535,9 +532,9 @@ enableLouieRescue__Q24Game14PlayCommonDataFv:
 /* 80234804 00231744  7C 08 03 A6 */	mtlr r0
 /* 80234808 00231748  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023480C 0023174C  4E 80 00 20 */	blr 
+.endfn enableLouieRescue__Q24Game14PlayCommonDataFv
 
-.global challenge_is_virgin__Q24Game14PlayCommonDataFv
-challenge_is_virgin__Q24Game14PlayCommonDataFv:
+.fn challenge_is_virgin__Q24Game14PlayCommonDataFv, global
 /* 80234810 00231750  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 80234814 00231754  54 04 07 BC */	rlwinm r4, r0, 0, 0x1e, 0x1e
 /* 80234818 00231758  60 00 00 02 */	ori r0, r0, 2
@@ -545,17 +542,17 @@ challenge_is_virgin__Q24Game14PlayCommonDataFv:
 /* 80234820 00231760  98 03 00 14 */	stb r0, 0x14(r3)
 /* 80234824 00231764  54 83 D9 7E */	srwi r3, r4, 5
 /* 80234828 00231768  4E 80 00 20 */	blr 
+.endfn challenge_is_virgin__Q24Game14PlayCommonDataFv
 
-.global challenge_is_virgin_check_only__Q24Game14PlayCommonDataFv
-challenge_is_virgin_check_only__Q24Game14PlayCommonDataFv:
+.fn challenge_is_virgin_check_only__Q24Game14PlayCommonDataFv, global
 /* 8023482C 0023176C  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 80234830 00231770  54 00 07 BC */	rlwinm r0, r0, 0, 0x1e, 0x1e
 /* 80234834 00231774  7C 00 00 34 */	cntlzw r0, r0
 /* 80234838 00231778  54 03 D9 7E */	srwi r3, r0, 5
 /* 8023483C 0023177C  4E 80 00 20 */	blr 
+.endfn challenge_is_virgin_check_only__Q24Game14PlayCommonDataFv
 
-.global challenge_get_CourseState__Q24Game14PlayCommonDataFi
-challenge_get_CourseState__Q24Game14PlayCommonDataFi:
+.fn challenge_get_CourseState__Q24Game14PlayCommonDataFi, global
 /* 80234840 00231780  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234844 00231784  7C 08 02 A6 */	mflr r0
 /* 80234848 00231788  38 63 00 0C */	addi r3, r3, 0xc
@@ -565,9 +562,9 @@ challenge_get_CourseState__Q24Game14PlayCommonDataFi:
 /* 80234858 00231798  7C 08 03 A6 */	mtlr r0
 /* 8023485C 0023179C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234860 002317A0  4E 80 00 20 */	blr 
+.endfn challenge_get_CourseState__Q24Game14PlayCommonDataFi
 
-.global challenge_checkOpen__Q24Game14PlayCommonDataFi
-challenge_checkOpen__Q24Game14PlayCommonDataFi:
+.fn challenge_checkOpen__Q24Game14PlayCommonDataFi, global
 /* 80234864 002317A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234868 002317A8  7C 08 02 A6 */	mflr r0
 /* 8023486C 002317AC  38 63 00 0C */	addi r3, r3, 0xc
@@ -579,9 +576,9 @@ challenge_checkOpen__Q24Game14PlayCommonDataFi:
 /* 80234884 002317C4  7C 08 03 A6 */	mtlr r0
 /* 80234888 002317C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023488C 002317CC  4E 80 00 20 */	blr 
+.endfn challenge_checkOpen__Q24Game14PlayCommonDataFi
 
-.global challenge_checkClear__Q24Game14PlayCommonDataFi
-challenge_checkClear__Q24Game14PlayCommonDataFi:
+.fn challenge_checkClear__Q24Game14PlayCommonDataFi, global
 /* 80234890 002317D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234894 002317D4  7C 08 02 A6 */	mflr r0
 /* 80234898 002317D8  38 63 00 0C */	addi r3, r3, 0xc
@@ -593,9 +590,9 @@ challenge_checkClear__Q24Game14PlayCommonDataFi:
 /* 802348B0 002317F0  7C 08 03 A6 */	mtlr r0
 /* 802348B4 002317F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802348B8 002317F8  4E 80 00 20 */	blr 
+.endfn challenge_checkClear__Q24Game14PlayCommonDataFi
 
-.global challenge_checkKunsho__Q24Game14PlayCommonDataFi
-challenge_checkKunsho__Q24Game14PlayCommonDataFi:
+.fn challenge_checkKunsho__Q24Game14PlayCommonDataFi, global
 /* 802348BC 002317FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802348C0 00231800  7C 08 02 A6 */	mflr r0
 /* 802348C4 00231804  38 63 00 0C */	addi r3, r3, 0xc
@@ -607,9 +604,9 @@ challenge_checkKunsho__Q24Game14PlayCommonDataFi:
 /* 802348DC 0023181C  7C 08 03 A6 */	mtlr r0
 /* 802348E0 00231820  38 21 00 10 */	addi r1, r1, 0x10
 /* 802348E4 00231824  4E 80 00 20 */	blr 
+.endfn challenge_checkKunsho__Q24Game14PlayCommonDataFi
 
-.global challenge_checkJustOpen__Q24Game14PlayCommonDataFi
-challenge_checkJustOpen__Q24Game14PlayCommonDataFi:
+.fn challenge_checkJustOpen__Q24Game14PlayCommonDataFi, global
 /* 802348E8 00231828  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802348EC 0023182C  7C 08 02 A6 */	mflr r0
 /* 802348F0 00231830  38 63 00 0C */	addi r3, r3, 0xc
@@ -631,9 +628,9 @@ challenge_checkJustOpen__Q24Game14PlayCommonDataFi:
 /* 80234928 00231868  7C 08 03 A6 */	mtlr r0
 /* 8023492C 0023186C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234930 00231870  4E 80 00 20 */	blr 
+.endfn challenge_checkJustOpen__Q24Game14PlayCommonDataFi
 
-.global challenge_checkJustClear__Q24Game14PlayCommonDataFi
-challenge_checkJustClear__Q24Game14PlayCommonDataFi:
+.fn challenge_checkJustClear__Q24Game14PlayCommonDataFi, global
 /* 80234934 00231874  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234938 00231878  7C 08 02 A6 */	mflr r0
 /* 8023493C 0023187C  38 63 00 0C */	addi r3, r3, 0xc
@@ -655,9 +652,9 @@ challenge_checkJustClear__Q24Game14PlayCommonDataFi:
 /* 80234974 002318B4  7C 08 03 A6 */	mtlr r0
 /* 80234978 002318B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023497C 002318BC  4E 80 00 20 */	blr 
+.endfn challenge_checkJustClear__Q24Game14PlayCommonDataFi
 
-.global challenge_checkJustKunsho__Q24Game14PlayCommonDataFi
-challenge_checkJustKunsho__Q24Game14PlayCommonDataFi:
+.fn challenge_checkJustKunsho__Q24Game14PlayCommonDataFi, global
 /* 80234980 002318C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234984 002318C4  7C 08 02 A6 */	mflr r0
 /* 80234988 002318C8  38 63 00 0C */	addi r3, r3, 0xc
@@ -679,9 +676,9 @@ challenge_checkJustKunsho__Q24Game14PlayCommonDataFi:
 /* 802349C0 00231900  7C 08 03 A6 */	mtlr r0
 /* 802349C4 00231904  38 21 00 10 */	addi r1, r1, 0x10
 /* 802349C8 00231908  4E 80 00 20 */	blr 
+.endfn challenge_checkJustKunsho__Q24Game14PlayCommonDataFi
 
-.global challenge_openNewCourse__Q24Game14PlayCommonDataFv
-challenge_openNewCourse__Q24Game14PlayCommonDataFv:
+.fn challenge_openNewCourse__Q24Game14PlayCommonDataFv, global
 /* 802349CC 0023190C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802349D0 00231910  7C 08 02 A6 */	mflr r0
 /* 802349D4 00231914  3C 80 80 51 */	lis r4, gGameConfig__4Game@ha
@@ -724,9 +721,9 @@ challenge_openNewCourse__Q24Game14PlayCommonDataFv:
 /* 80234A54 00231994  7C 08 03 A6 */	mtlr r0
 /* 80234A58 00231998  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234A5C 0023199C  4E 80 00 20 */	blr 
+.endfn challenge_openNewCourse__Q24Game14PlayCommonDataFv
 
-.global challenge_setClear__Q24Game14PlayCommonDataFi
-challenge_setClear__Q24Game14PlayCommonDataFi:
+.fn challenge_setClear__Q24Game14PlayCommonDataFi, global
 /* 80234A60 002319A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234A64 002319A4  7C 08 02 A6 */	mflr r0
 /* 80234A68 002319A8  38 63 00 0C */	addi r3, r3, 0xc
@@ -739,9 +736,9 @@ challenge_setClear__Q24Game14PlayCommonDataFi:
 /* 80234A84 002319C4  7C 08 03 A6 */	mtlr r0
 /* 80234A88 002319C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234A8C 002319CC  4E 80 00 20 */	blr 
+.endfn challenge_setClear__Q24Game14PlayCommonDataFi
 
-.global challenge_setOpen__Q24Game14PlayCommonDataFi
-challenge_setOpen__Q24Game14PlayCommonDataFi:
+.fn challenge_setOpen__Q24Game14PlayCommonDataFi, global
 /* 80234A90 002319D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234A94 002319D4  7C 08 02 A6 */	mflr r0
 /* 80234A98 002319D8  38 63 00 0C */	addi r3, r3, 0xc
@@ -754,9 +751,9 @@ challenge_setOpen__Q24Game14PlayCommonDataFi:
 /* 80234AB4 002319F4  7C 08 03 A6 */	mtlr r0
 /* 80234AB8 002319F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234ABC 002319FC  4E 80 00 20 */	blr 
+.endfn challenge_setOpen__Q24Game14PlayCommonDataFi
 
-.global challenge_setKunsho__Q24Game14PlayCommonDataFi
-challenge_setKunsho__Q24Game14PlayCommonDataFi:
+.fn challenge_setKunsho__Q24Game14PlayCommonDataFi, global
 /* 80234AC0 00231A00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234AC4 00231A04  7C 08 02 A6 */	mflr r0
 /* 80234AC8 00231A08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -792,9 +789,9 @@ challenge_setKunsho__Q24Game14PlayCommonDataFi:
 /* 80234B34 00231A74  7C 08 03 A6 */	mtlr r0
 /* 80234B38 00231A78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234B3C 00231A7C  4E 80 00 20 */	blr 
+.endfn challenge_setKunsho__Q24Game14PlayCommonDataFi
 
-.global challenge_getHighscore__Q24Game14PlayCommonDataFii
-challenge_getHighscore__Q24Game14PlayCommonDataFii:
+.fn challenge_getHighscore__Q24Game14PlayCommonDataFii, global
 /* 80234B40 00231A80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234B44 00231A84  7C 08 02 A6 */	mflr r0
 /* 80234B48 00231A88  38 63 00 0C */	addi r3, r3, 0xc
@@ -830,9 +827,9 @@ challenge_getHighscore__Q24Game14PlayCommonDataFii:
 /* 80234BB8 00231AF8  7C 08 03 A6 */	mtlr r0
 /* 80234BBC 00231AFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234BC0 00231B00  4E 80 00 20 */	blr 
+.endfn challenge_getHighscore__Q24Game14PlayCommonDataFii
 
-.global __ct__Q24Game21PlayChallengeGameDataFv
-__ct__Q24Game21PlayChallengeGameDataFv:
+.fn __ct__Q24Game21PlayChallengeGameDataFv, global
 /* 80234BC4 00231B04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234BC8 00231B08  7C 08 02 A6 */	mflr r0
 /* 80234BCC 00231B0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -883,9 +880,9 @@ __ct__Q24Game21PlayChallengeGameDataFv:
 /* 80234C80 00231BC0  7C 08 03 A6 */	mtlr r0
 /* 80234C84 00231BC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234C88 00231BC8  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game21PlayChallengeGameDataFv
 
-.global __ct__Q34Game21PlayChallengeGameData11CourseStateFv
-__ct__Q34Game21PlayChallengeGameData11CourseStateFv:
+.fn __ct__Q34Game21PlayChallengeGameData11CourseStateFv, weak
 /* 80234C8C 00231BCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234C90 00231BD0  7C 08 02 A6 */	mflr r0
 /* 80234C94 00231BD4  38 A0 00 00 */	li r5, 0
@@ -916,9 +913,9 @@ __ct__Q34Game21PlayChallengeGameData11CourseStateFv:
 /* 80234CF8 00231C38  7C 08 03 A6 */	mtlr r0
 /* 80234CFC 00231C3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234D00 00231C40  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game21PlayChallengeGameData11CourseStateFv
 
-.global getState__Q24Game21PlayChallengeGameDataFi
-getState__Q24Game21PlayChallengeGameDataFi:
+.fn getState__Q24Game21PlayChallengeGameDataFi, global
 /* 80234D04 00231C44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80234D08 00231C48  7C 08 02 A6 */	mflr r0
 /* 80234D0C 00231C4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -963,9 +960,9 @@ getState__Q24Game21PlayChallengeGameDataFi:
 /* 80234D9C 00231CDC  7C 08 03 A6 */	mtlr r0
 /* 80234DA0 00231CE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80234DA4 00231CE4  4E 80 00 20 */	blr 
+.endfn getState__Q24Game21PlayChallengeGameDataFi
 
-.global write__Q24Game21PlayChallengeGameDataFR6Stream
-write__Q24Game21PlayChallengeGameDataFR6Stream:
+.fn write__Q24Game21PlayChallengeGameDataFR6Stream, global
 /* 80234DA8 00231CE8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80234DAC 00231CEC  7C 08 02 A6 */	mflr r0
 /* 80234DB0 00231CF0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1008,9 +1005,9 @@ write__Q24Game21PlayChallengeGameDataFR6Stream:
 /* 80234E38 00231D78  7C 08 03 A6 */	mtlr r0
 /* 80234E3C 00231D7C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80234E40 00231D80  4E 80 00 20 */	blr 
+.endfn write__Q24Game21PlayChallengeGameDataFR6Stream
 
-.global read__Q24Game21PlayChallengeGameDataFR6Stream
-read__Q24Game21PlayChallengeGameDataFR6Stream:
+.fn read__Q24Game21PlayChallengeGameDataFR6Stream, global
 /* 80234E44 00231D84  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80234E48 00231D88  7C 08 02 A6 */	mflr r0
 /* 80234E4C 00231D8C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1053,12 +1050,13 @@ read__Q24Game21PlayChallengeGameDataFR6Stream:
 /* 80234ED4 00231E14  7C 08 03 A6 */	mtlr r0
 /* 80234ED8 00231E18  38 21 00 30 */	addi r1, r1, 0x30
 /* 80234EDC 00231E1C  4E 80 00 20 */	blr 
+.endfn read__Q24Game21PlayChallengeGameDataFR6Stream
 
-.global do_higher__Q24Game8LowscoreFii
-do_higher__Q24Game8LowscoreFii:
+.fn do_higher__Q24Game8LowscoreFii, weak
 /* 80234EE0 00231E20  7C A0 22 78 */	xor r0, r5, r4
 /* 80234EE4 00231E24  7C 03 0E 70 */	srawi r3, r0, 1
 /* 80234EE8 00231E28  7C 00 28 38 */	and r0, r0, r5
 /* 80234EEC 00231E2C  7C 00 18 50 */	subf r0, r0, r3
 /* 80234EF0 00231E30  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80234EF4 00231E34  4E 80 00 20 */	blr 
+.endfn do_higher__Q24Game8LowscoreFii

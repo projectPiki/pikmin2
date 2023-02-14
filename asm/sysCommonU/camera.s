@@ -156,8 +156,7 @@ lbl_constructor:
 .endobj lbl_80520360
 .balign 8
 .obj lbl_80520368, local
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .endobj lbl_80520368
 .obj lbl_80520370, local
 	.float 3.1415927 # pi

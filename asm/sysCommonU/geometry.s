@@ -135,8 +135,7 @@
 .endobj lbl_8052032C
 .balign 8
 .obj lbl_80520330, local
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .endobj lbl_80520330
 .balign 4
 .obj lbl_80520338, local

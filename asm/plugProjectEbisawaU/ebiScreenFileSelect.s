@@ -81,7 +81,7 @@ lbl_80496D28:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E8D30:
+.obj lbl_804E8D30, local
 	.4byte .L_803D828C
 	.4byte .L_803D82B8
 	.4byte .L_803D82F4
@@ -93,11 +93,12 @@ lbl_804E8D30:
 	.4byte .L_803D8428
 	.4byte .L_803D8458
 	.4byte .L_803D8488
-.global __vt__Q25efx2d8ArgColor
-__vt__Q25efx2d8ArgColor:
+.endobj lbl_804E8D30
+.obj __vt__Q25efx2d8ArgColor, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q25efx2d8ArgColorFv
+.endobj __vt__Q25efx2d8ArgColor
 .global __vt__Q35efx2d10FileSelect11ArgFilecopy
 __vt__Q35efx2d10FileSelect11ArgFilecopy:
 	.4byte 0
@@ -233,43 +234,61 @@ __vt__Q35efx2d10FileSelect11T2DFilecopy:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FB18:
+.obj lbl_8051FB18, local
 	.float 50.0
-lbl_8051FB1C:
+.endobj lbl_8051FB18
+.obj lbl_8051FB1C, local
 	.float 0.0
-lbl_8051FB20:
+.endobj lbl_8051FB1C
+.obj lbl_8051FB20, local
 	.float 0.03333
-lbl_8051FB24:
+.endobj lbl_8051FB20
+.obj lbl_8051FB24, local
 	.float 1.0
-lbl_8051FB28:
+.endobj lbl_8051FB24
+.obj lbl_8051FB28, local
 	.float 5.0
-lbl_8051FB2C:
+.endobj lbl_8051FB28
+.obj lbl_8051FB2C, local
 	.float 60.0
-lbl_8051FB30:
+.endobj lbl_8051FB2C
+.obj lbl_8051FB30, local
 	.float 0.5
-lbl_8051FB34:
+.endobj lbl_8051FB30
+.obj lbl_8051FB34, local
 	.float 0.25
-lbl_8051FB38:
+.endobj lbl_8051FB34
+.obj lbl_8051FB38, local
 	.float 0.4
-lbl_8051FB3C:
+.endobj lbl_8051FB38
+.obj lbl_8051FB3C, local
 	.float 255.0
-lbl_8051FB40:
+.endobj lbl_8051FB3C
+.obj lbl_8051FB40, local
 	.float 1.2
+.endobj lbl_8051FB40
 .balign 8
-lbl_8051FB48:
+.obj lbl_8051FB48, local
 	.8byte 0x4330000000000000
-lbl_8051FB50:
+.endobj lbl_8051FB48
+.obj lbl_8051FB50, local
 	.float 0.2
-lbl_8051FB54:
+.endobj lbl_8051FB50
+.obj lbl_8051FB54, local
 	.float 3.3333333
-lbl_8051FB58:
+.endobj lbl_8051FB54
+.obj lbl_8051FB58, local
 	.float 30.0
-lbl_8051FB5C:
+.endobj lbl_8051FB58
+.obj lbl_8051FB5C, local
 	.float 0.6
-lbl_8051FB60:
+.endobj lbl_8051FB5C
+.obj lbl_8051FB60, local
 	.float 1023.0
-lbl_8051FB64:
+.endobj lbl_8051FB60
+.obj lbl_8051FB64, local
 	.float 190.0
+.endobj lbl_8051FB64
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl

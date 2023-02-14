@@ -41,16 +41,14 @@ lbl_80516760:
 	.double 2048.0
 .balign 8
 .obj lbl_80516768, local
-	.4byte 0x3F500000
-	.4byte 0x00000000
+	.double 9.765625E-4
 .endobj lbl_80516768
 .obj lbl_80516770, local
 	.float 0.7853982
 .endobj lbl_80516770
 .balign 8
 .obj lbl_80516778, local
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .endobj lbl_80516778
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00

@@ -289,8 +289,7 @@ lbl_constructor:
 .endobj lbl_8051FDD4
 .balign 8
 .obj lbl_8051FDD8, local
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .endobj lbl_8051FDD8
 .obj lbl_8051FDE0, local
 	.float 0.1

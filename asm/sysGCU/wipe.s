@@ -5,12 +5,12 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__10BlackFader
-__vt__10BlackFader:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__10BlackFader, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__10BlackFaderFv
@@ -21,8 +21,8 @@ __vt__10BlackFader:
 	.4byte isBlack__10BlackFaderFv
 	.4byte on_start__8WipeBaseFv
 	.4byte do_draw__10BlackFaderFf
-.global __vt__14WipeOutInFader
-__vt__14WipeOutInFader:
+.endobj __vt__10BlackFader
+.obj __vt__14WipeOutInFader, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14WipeOutInFaderFv
@@ -33,8 +33,8 @@ __vt__14WipeOutInFader:
 	.4byte isBlack__14WipeOutInFaderFv
 	.4byte on_start__14WipeOutInFaderFv
 	.4byte do_draw__14WipeOutInFaderFf
-.global __vt__12WipeOutFader
-__vt__12WipeOutFader:
+.endobj __vt__14WipeOutInFader
+.obj __vt__12WipeOutFader, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12WipeOutFaderFv
@@ -45,8 +45,8 @@ __vt__12WipeOutFader:
 	.4byte isBlack__12WipeOutFaderFv
 	.4byte on_start__12WipeOutFaderFv
 	.4byte do_draw__12WipeOutFaderFf
-.global __vt__11WipeInFader
-__vt__11WipeInFader:
+.endobj __vt__12WipeOutFader
+.obj __vt__11WipeInFader, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11WipeInFaderFv
@@ -57,8 +57,8 @@ __vt__11WipeInFader:
 	.4byte isBlack__11WipeInFaderFv
 	.4byte on_start__8WipeBaseFv
 	.4byte do_draw__11WipeInFaderFf
-.global __vt__8WipeBase
-__vt__8WipeBase:
+.endobj __vt__11WipeInFader
+.obj __vt__8WipeBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8WipeBaseFv
@@ -69,40 +69,50 @@ __vt__8WipeBase:
 	.4byte isBlack__8WipeBaseFv
 	.4byte on_start__8WipeBaseFv
 	.4byte do_draw__8WipeBaseFf
+.endobj __vt__8WipeBase
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805205E8:
+.obj lbl_805205E8, local
 	.float 0.0
-lbl_805205EC:
+.endobj lbl_805205E8
+.obj lbl_805205EC, local
 	.float 1.0
-lbl_805205F0:
+.endobj lbl_805205EC
+.obj lbl_805205F0, local
 	.float 0.5
-lbl_805205F4:
+.endobj lbl_805205F0
+.obj lbl_805205F4, local
 	.float 0.2
-lbl_805205F8:
+.endobj lbl_805205F4
+.obj lbl_805205F8, local
 	.float 0.8
-lbl_805205FC:
+.endobj lbl_805205F8
+.obj lbl_805205FC, local
 	.float 255.0
+.endobj lbl_805205FC
 .balign 8
-lbl_80520600:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80520608:
+.obj lbl_80520600, local
+	.8byte 0x4330000000000000
+.endobj lbl_80520600
+.obj lbl_80520608, local
 	.float 1.25
-lbl_8052060C:
+.endobj lbl_80520608
+.obj lbl_8052060C, local
 	.float 0.1
+.endobj lbl_8052060C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__8WipeBaseFv
-__ct__8WipeBaseFv:
+.fn __ct__8WipeBaseFv, global
 /* 8042BD0C 00428C4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042BD10 00428C50  7C 08 02 A6 */	mflr r0
 /* 8042BD14 00428C54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -126,9 +136,9 @@ __ct__8WipeBaseFv:
 /* 8042BD5C 00428C9C  7C 08 03 A6 */	mtlr r0
 /* 8042BD60 00428CA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042BD64 00428CA4  4E 80 00 20 */	blr 
+.endfn __ct__8WipeBaseFv
 
-.global start__8WipeBaseFf
-start__8WipeBaseFf:
+.fn start__8WipeBaseFf, global
 /* 8042BD68 00428CA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042BD6C 00428CAC  7C 08 02 A6 */	mflr r0
 /* 8042BD70 00428CB0  C0 02 22 88 */	lfs f0, lbl_805205E8@sda21(r2)
@@ -145,13 +155,13 @@ start__8WipeBaseFf:
 /* 8042BD9C 00428CDC  7C 08 03 A6 */	mtlr r0
 /* 8042BDA0 00428CE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042BDA4 00428CE4  4E 80 00 20 */	blr 
+.endfn start__8WipeBaseFf
 
-.global on_start__8WipeBaseFv
-on_start__8WipeBaseFv:
+.fn on_start__8WipeBaseFv, weak
 /* 8042BDA8 00428CE8  4E 80 00 20 */	blr 
+.endfn on_start__8WipeBaseFv
 
-.global update__8WipeBaseFv
-update__8WipeBaseFv:
+.fn update__8WipeBaseFv, global
 /* 8042BDAC 00428CEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042BDB0 00428CF0  7C 08 02 A6 */	mflr r0
 /* 8042BDB4 00428CF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -183,9 +193,9 @@ update__8WipeBaseFv:
 /* 8042BE18 00428D58  7C 08 03 A6 */	mtlr r0
 /* 8042BE1C 00428D5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042BE20 00428D60  4E 80 00 20 */	blr 
+.endfn update__8WipeBaseFv
 
-.global draw__8WipeBaseFv
-draw__8WipeBaseFv:
+.fn draw__8WipeBaseFv, global
 /* 8042BE24 00428D64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042BE28 00428D68  7C 08 02 A6 */	mflr r0
 /* 8042BE2C 00428D6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -211,31 +221,31 @@ draw__8WipeBaseFv:
 /* 8042BE78 00428DB8  7C 08 03 A6 */	mtlr r0
 /* 8042BE7C 00428DBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042BE80 00428DC0  4E 80 00 20 */	blr 
+.endfn draw__8WipeBaseFv
 
-.global do_draw__8WipeBaseFf
-do_draw__8WipeBaseFf:
+.fn do_draw__8WipeBaseFf, weak
 /* 8042BE84 00428DC4  4E 80 00 20 */	blr 
+.endfn do_draw__8WipeBaseFf
 
-.global isWhite__11WipeInFaderFv
-isWhite__11WipeInFaderFv:
+.fn isWhite__11WipeInFaderFv, global
 /* 8042BE88 00428DC8  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 8042BE8C 00428DCC  C0 02 22 90 */	lfs f0, lbl_805205F0@sda21(r2)
 /* 8042BE90 00428DD0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8042BE94 00428DD4  7C 00 00 26 */	mfcr r0
 /* 8042BE98 00428DD8  54 03 17 FE */	rlwinm r3, r0, 2, 0x1f, 0x1f
 /* 8042BE9C 00428DDC  4E 80 00 20 */	blr 
+.endfn isWhite__11WipeInFaderFv
 
-.global isBlack__11WipeInFaderFv
-isBlack__11WipeInFaderFv:
+.fn isBlack__11WipeInFaderFv, global
 /* 8042BEA0 00428DE0  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 8042BEA4 00428DE4  C0 02 22 90 */	lfs f0, lbl_805205F0@sda21(r2)
 /* 8042BEA8 00428DE8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8042BEAC 00428DEC  7C 00 00 26 */	mfcr r0
 /* 8042BEB0 00428DF0  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8042BEB4 00428DF4  4E 80 00 20 */	blr 
+.endfn isBlack__11WipeInFaderFv
 
-.global __ct__11WipeInFaderFv
-__ct__11WipeInFaderFv:
+.fn __ct__11WipeInFaderFv, global
 /* 8042BEB8 00428DF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042BEBC 00428DFC  7C 08 02 A6 */	mflr r0
 /* 8042BEC0 00428E00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -266,9 +276,9 @@ __ct__11WipeInFaderFv:
 /* 8042BF24 00428E64  7C 08 03 A6 */	mtlr r0
 /* 8042BF28 00428E68  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042BF2C 00428E6C  4E 80 00 20 */	blr 
+.endfn __ct__11WipeInFaderFv
 
-.global do_draw__11WipeInFaderFf
-do_draw__11WipeInFaderFf:
+.fn do_draw__11WipeInFaderFf, global
 /* 8042BF30 00428E70  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8042BF34 00428E74  7C 08 02 A6 */	mflr r0
 /* 8042BF38 00428E78  90 01 00 64 */	stw r0, 0x64(r1)
@@ -352,9 +362,9 @@ do_draw__11WipeInFaderFf:
 /* 8042C068 00428FA8  7C 08 03 A6 */	mtlr r0
 /* 8042C06C 00428FAC  38 21 00 60 */	addi r1, r1, 0x60
 /* 8042C070 00428FB0  4E 80 00 20 */	blr 
+.endfn do_draw__11WipeInFaderFf
 
-.global __ct__12WipeOutFaderFv
-__ct__12WipeOutFaderFv:
+.fn __ct__12WipeOutFaderFv, global
 /* 8042C074 00428FB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C078 00428FB8  7C 08 02 A6 */	mflr r0
 /* 8042C07C 00428FBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -385,31 +395,31 @@ __ct__12WipeOutFaderFv:
 /* 8042C0E0 00429020  7C 08 03 A6 */	mtlr r0
 /* 8042C0E4 00429024  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C0E8 00429028  4E 80 00 20 */	blr 
+.endfn __ct__12WipeOutFaderFv
 
-.global on_start__12WipeOutFaderFv
-on_start__12WipeOutFaderFv:
+.fn on_start__12WipeOutFaderFv, global
 /* 8042C0EC 0042902C  4E 80 00 20 */	blr 
+.endfn on_start__12WipeOutFaderFv
 
-.global isWhite__12WipeOutFaderFv
-isWhite__12WipeOutFaderFv:
+.fn isWhite__12WipeOutFaderFv, global
 /* 8042C0F0 00429030  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 8042C0F4 00429034  C0 02 22 90 */	lfs f0, lbl_805205F0@sda21(r2)
 /* 8042C0F8 00429038  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8042C0FC 0042903C  7C 00 00 26 */	mfcr r0
 /* 8042C100 00429040  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8042C104 00429044  4E 80 00 20 */	blr 
+.endfn isWhite__12WipeOutFaderFv
 
-.global isBlack__12WipeOutFaderFv
-isBlack__12WipeOutFaderFv:
+.fn isBlack__12WipeOutFaderFv, global
 /* 8042C108 00429048  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 8042C10C 0042904C  C0 02 22 90 */	lfs f0, lbl_805205F0@sda21(r2)
 /* 8042C110 00429050  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8042C114 00429054  7C 00 00 26 */	mfcr r0
 /* 8042C118 00429058  54 03 17 FE */	rlwinm r3, r0, 2, 0x1f, 0x1f
 /* 8042C11C 0042905C  4E 80 00 20 */	blr 
+.endfn isBlack__12WipeOutFaderFv
 
-.global do_draw__12WipeOutFaderFf
-do_draw__12WipeOutFaderFf:
+.fn do_draw__12WipeOutFaderFf, global
 /* 8042C120 00429060  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8042C124 00429064  7C 08 02 A6 */	mflr r0
 /* 8042C128 00429068  90 01 00 64 */	stw r0, 0x64(r1)
@@ -490,9 +500,9 @@ do_draw__12WipeOutFaderFf:
 /* 8042C24C 0042918C  7C 08 03 A6 */	mtlr r0
 /* 8042C250 00429190  38 21 00 60 */	addi r1, r1, 0x60
 /* 8042C254 00429194  4E 80 00 20 */	blr 
+.endfn do_draw__12WipeOutFaderFf
 
-.global on_start__14WipeOutInFaderFv
-on_start__14WipeOutInFaderFv:
+.fn on_start__14WipeOutInFaderFv, global
 /* 8042C258 00429198  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C25C 0042919C  7C 08 02 A6 */	mflr r0
 /* 8042C260 004291A0  C0 22 22 88 */	lfs f1, lbl_805205E8@sda21(r2)
@@ -513,9 +523,9 @@ on_start__14WipeOutInFaderFv:
 /* 8042C29C 004291DC  7C 08 03 A6 */	mtlr r0
 /* 8042C2A0 004291E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C2A4 004291E4  4E 80 00 20 */	blr 
+.endfn on_start__14WipeOutInFaderFv
 
-.global isWhite__14WipeOutInFaderFv
-isWhite__14WipeOutInFaderFv:
+.fn isWhite__14WipeOutInFaderFv, global
 /* 8042C2A8 004291E8  88 03 00 74 */	lbz r0, 0x74(r3)
 /* 8042C2AC 004291EC  28 00 00 00 */	cmplwi r0, 0
 /* 8042C2B0 004291F0  41 82 00 1C */	beq .L_8042C2CC
@@ -532,9 +542,9 @@ isWhite__14WipeOutInFaderFv:
 /* 8042C2D8 00429218  7C 00 00 26 */	mfcr r0
 /* 8042C2DC 0042921C  54 03 17 FE */	rlwinm r3, r0, 2, 0x1f, 0x1f
 /* 8042C2E0 00429220  4E 80 00 20 */	blr 
+.endfn isWhite__14WipeOutInFaderFv
 
-.global isBlack__14WipeOutInFaderFv
-isBlack__14WipeOutInFaderFv:
+.fn isBlack__14WipeOutInFaderFv, global
 /* 8042C2E4 00429224  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C2E8 00429228  7C 08 02 A6 */	mflr r0
 /* 8042C2EC 0042922C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -549,9 +559,9 @@ isBlack__14WipeOutInFaderFv:
 /* 8042C310 00429250  7C 08 03 A6 */	mtlr r0
 /* 8042C314 00429254  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C318 00429258  4E 80 00 20 */	blr 
+.endfn isBlack__14WipeOutInFaderFv
 
-.global do_draw__14WipeOutInFaderFf
-do_draw__14WipeOutInFaderFf:
+.fn do_draw__14WipeOutInFaderFf, global
 /* 8042C31C 0042925C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C320 00429260  7C 08 02 A6 */	mflr r0
 /* 8042C324 00429264  90 01 00 14 */	stw r0, 0x14(r1)
@@ -597,9 +607,9 @@ do_draw__14WipeOutInFaderFf:
 /* 8042C3B8 004292F8  7C 08 03 A6 */	mtlr r0
 /* 8042C3BC 004292FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C3C0 00429300  4E 80 00 20 */	blr 
+.endfn do_draw__14WipeOutInFaderFf
 
-.global __ct__10BlackFaderFv
-__ct__10BlackFaderFv:
+.fn __ct__10BlackFaderFv, global
 /* 8042C3C4 00429304  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C3C8 00429308  7C 08 02 A6 */	mflr r0
 /* 8042C3CC 0042930C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -631,21 +641,21 @@ __ct__10BlackFaderFv:
 /* 8042C434 00429374  7C 08 03 A6 */	mtlr r0
 /* 8042C438 00429378  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C43C 0042937C  4E 80 00 20 */	blr 
+.endfn __ct__10BlackFaderFv
 
-.global isWhite__10BlackFaderFv
-isWhite__10BlackFaderFv:
+.fn isWhite__10BlackFaderFv, global
 /* 8042C440 00429380  88 03 00 28 */	lbz r0, 0x28(r3)
 /* 8042C444 00429384  7C 00 00 34 */	cntlzw r0, r0
 /* 8042C448 00429388  54 03 D9 7E */	srwi r3, r0, 5
 /* 8042C44C 0042938C  4E 80 00 20 */	blr 
+.endfn isWhite__10BlackFaderFv
 
-.global isBlack__10BlackFaderFv
-isBlack__10BlackFaderFv:
+.fn isBlack__10BlackFaderFv, global
 /* 8042C450 00429390  88 63 00 28 */	lbz r3, 0x28(r3)
 /* 8042C454 00429394  4E 80 00 20 */	blr 
+.endfn isBlack__10BlackFaderFv
 
-.global do_draw__10BlackFaderFf
-do_draw__10BlackFaderFf:
+.fn do_draw__10BlackFaderFf, global
 /* 8042C458 00429398  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8042C45C 0042939C  7C 08 02 A6 */	mflr r0
 /* 8042C460 004293A0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -719,19 +729,19 @@ do_draw__10BlackFaderFf:
 /* 8042C56C 004294AC  7C 08 03 A6 */	mtlr r0
 /* 8042C570 004294B0  38 21 00 50 */	addi r1, r1, 0x50
 /* 8042C574 004294B4  4E 80 00 20 */	blr 
+.endfn do_draw__10BlackFaderFf
 
-.global isWhite__8WipeBaseFv
-isWhite__8WipeBaseFv:
+.fn isWhite__8WipeBaseFv, weak
 /* 8042C578 004294B8  38 60 00 00 */	li r3, 0
 /* 8042C57C 004294BC  4E 80 00 20 */	blr 
+.endfn isWhite__8WipeBaseFv
 
-.global isBlack__8WipeBaseFv
-isBlack__8WipeBaseFv:
+.fn isBlack__8WipeBaseFv, weak
 /* 8042C580 004294C0  38 60 00 00 */	li r3, 0
 /* 8042C584 004294C4  4E 80 00 20 */	blr 
+.endfn isBlack__8WipeBaseFv
 
-.global __dt__10BlackFaderFv
-__dt__10BlackFaderFv:
+.fn __dt__10BlackFaderFv, weak
 /* 8042C588 004294C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C58C 004294CC  7C 08 02 A6 */	mflr r0
 /* 8042C590 004294D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -762,9 +772,9 @@ __dt__10BlackFaderFv:
 /* 8042C5EC 0042952C  7C 08 03 A6 */	mtlr r0
 /* 8042C5F0 00429530  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C5F4 00429534  4E 80 00 20 */	blr 
+.endfn __dt__10BlackFaderFv
 
-.global __dt__14WipeOutInFaderFv
-__dt__14WipeOutInFaderFv:
+.fn __dt__14WipeOutInFaderFv, weak
 /* 8042C5F8 00429538  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C5FC 0042953C  7C 08 02 A6 */	mflr r0
 /* 8042C600 00429540  90 01 00 14 */	stw r0, 0x14(r1)
@@ -825,6 +835,7 @@ __dt__14WipeOutInFaderFv:
 /* 8042C6CC 0042960C  7C 08 03 A6 */	mtlr r0
 /* 8042C6D0 00429610  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C6D4 00429614  4E 80 00 20 */	blr 
+.endfn __dt__14WipeOutInFaderFv
 
 .fn __sinit_wipe_cpp, local
 /* 8042C6D8 00429618  3C 80 80 51 */	lis r4, __float_nan@ha

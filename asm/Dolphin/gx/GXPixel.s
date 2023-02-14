@@ -39,8 +39,7 @@
 .endobj lbl_805176C8
 .balign 8
 .obj lbl_805176D0, local
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .endobj lbl_805176D0
 .balign 8
 .obj lbl_805176D8, local
@@ -58,8 +57,7 @@
 .endobj lbl_805176F0
 .balign 8
 .obj lbl_805176F8, local
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 .endobj lbl_805176F8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00

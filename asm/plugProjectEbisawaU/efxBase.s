@@ -5,16 +5,17 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80495880:
+.obj lbl_80495880, local
 	.asciz "efxBase.cpp"
+.endobj lbl_80495880
 .balign 4
-lbl_8049588C:
+.obj lbl_8049588C, local
 	.asciz "P2Assert"
+.endobj lbl_8049588C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx23TChasePosPosLocalYScale
-__vt__Q23efx23TChasePosPosLocalYScale:
+.obj __vt__Q23efx23TChasePosPosLocalYScale, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -34,8 +35,8 @@ __vt__Q23efx23TChasePosPosLocalYScale:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx23TChasePosPosLocalYScaleFv
-.global __vt__Q23efx23TChasePosPosLocalZScale
-__vt__Q23efx23TChasePosPosLocalZScale:
+.endobj __vt__Q23efx23TChasePosPosLocalYScale
+.obj __vt__Q23efx23TChasePosPosLocalZScale, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -55,8 +56,8 @@ __vt__Q23efx23TChasePosPosLocalZScale:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx23TChasePosPosLocalZScaleFv
-.global __vt__Q23efx12TChasePosPos
-__vt__Q23efx12TChasePosPos:
+.endobj __vt__Q23efx23TChasePosPosLocalZScale
+.obj __vt__Q23efx12TChasePosPos, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -76,8 +77,8 @@ __vt__Q23efx12TChasePosPos:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TChasePosPosFv
-.global __vt__Q23efx10TChaseMtxT
-__vt__Q23efx10TChaseMtxT:
+.endobj __vt__Q23efx12TChasePosPos
+.obj __vt__Q23efx10TChaseMtxT, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -97,8 +98,8 @@ __vt__Q23efx10TChaseMtxT:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx10TChaseMtxTFv
-.global __vt__Q23efx9TChaseMtx
-__vt__Q23efx9TChaseMtx:
+.endobj __vt__Q23efx10TChaseMtxT
+.obj __vt__Q23efx9TChaseMtx, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -118,8 +119,8 @@ __vt__Q23efx9TChaseMtx:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx9TChaseMtxFv
-.global __vt__Q23efx13TChasePosYRot
-__vt__Q23efx13TChasePosYRot:
+.endobj __vt__Q23efx9TChaseMtx
+.obj __vt__Q23efx13TChasePosYRot, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -139,8 +140,8 @@ __vt__Q23efx13TChasePosYRot:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx13TChasePosYRotFv
-.global __vt__Q23efx9TChasePos
-__vt__Q23efx9TChasePos:
+.endobj __vt__Q23efx13TChasePosYRot
+.obj __vt__Q23efx9TChasePos, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -160,8 +161,8 @@ __vt__Q23efx9TChasePos:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx9TChasePosFv
-.global __vt__Q23efx5TSync
-__vt__Q23efx5TSync:
+.endobj __vt__Q23efx9TChasePos
+.obj __vt__Q23efx5TSync, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -181,6 +182,7 @@ __vt__Q23efx5TSync:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx5TSyncFv
+.endobj __vt__Q23efx5TSync
 .global __vt__Q23efx11TSimpleMtx4
 __vt__Q23efx11TSimpleMtx4:
 	.4byte 0
@@ -314,18 +316,21 @@ __vt__Q23efx24TCallBack_StaticClipping:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mCallBack_StaticClipping__Q23efx5TBase
-mCallBack_StaticClipping__Q23efx5TBase:
+.obj mCallBack_StaticClipping__Q23efx5TBase, global
 	.skip 0x4
+.endobj mCallBack_StaticClipping__Q23efx5TBase
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F610:
+.obj lbl_8051F610, local
 	.float 0.5
-lbl_8051F614:
+.endobj lbl_8051F610
+.obj lbl_8051F614, local
 	.float 0.0
-lbl_8051F618:
+.endobj lbl_8051F614
+.obj lbl_8051F618, local
 	.float 1.0
+.endobj lbl_8051F618
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter

@@ -127,8 +127,7 @@
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .obj lbl_80517778, local
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 .endobj lbl_80517778
 .obj lbl_80517780
 	.float 1.4142135 # sqrt (2)

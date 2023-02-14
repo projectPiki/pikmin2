@@ -1,22 +1,27 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80495988:
+.obj lbl_80495988, local
 	.asciz "efxObject.cpp"
+.endobj lbl_80495988
 .balign 4
-lbl_80495998:
+.obj lbl_80495998, local
 	.asciz "ArgScale"
+.endobj lbl_80495998
 .balign 4
-lbl_804959A4:
+.obj lbl_804959A4, local
 	.asciz "P2Assert"
+.endobj lbl_804959A4
 .balign 4
-lbl_804959B0:
+.obj lbl_804959B0, local
 	.asciz "ArgKouhai"
+.endobj lbl_804959B0
 .balign 4
-lbl_804959BC:
+.obj lbl_804959BC, local
 	.asciz "ArgPelType"
+.endobj lbl_804959BC
 .balign 4
-lbl_804959C8:
+.obj lbl_804959C8, local
 	.float 0.3
 	.float 0.25
 	.float 0.15
@@ -29,7 +34,8 @@ lbl_804959C8:
 	.float 0.1
 	.float 0.08
 	.float 0.06
-lbl_804959F8:
+.endobj lbl_804959C8
+.obj lbl_804959F8, local
 	.float 0.3
 	.float 0.25
 	.float 0.15
@@ -42,11 +48,11 @@ lbl_804959F8:
 	.float 0.1
 	.float 0.08
 	.float 0.06
+.endobj lbl_804959F8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx12ContainerAct
-__vt__Q23efx12ContainerAct:
+.obj __vt__Q23efx12ContainerAct, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx12ContainerActFPQ23efx3Arg
@@ -54,8 +60,8 @@ __vt__Q23efx12ContainerAct:
 	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-.global __vt__Q23efx9Container
-__vt__Q23efx9Container:
+.endobj __vt__Q23efx12ContainerAct
+.obj __vt__Q23efx9Container, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx9ContainerFPQ23efx3Arg
@@ -75,8 +81,8 @@ __vt__Q23efx9Container:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx9ContainerFv
-.global __vt__Q23efx14TPelkira_ver01
-__vt__Q23efx14TPelkira_ver01:
+.endobj __vt__Q23efx9Container
+.obj __vt__Q23efx14TPelkira_ver01, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx14TPelkira_ver01FPQ23efx3Arg
@@ -96,15 +102,15 @@ __vt__Q23efx14TPelkira_ver01:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx14TPelkira_ver01Fv
-.global __vt__Q23efx13TKouhaiDamage
-__vt__Q23efx13TKouhaiDamage:
+.endobj __vt__Q23efx14TPelkira_ver01
+.obj __vt__Q23efx13TKouhaiDamage, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx13TKouhaiDamageFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx8TEgateBC
-__vt__Q23efx8TEgateBC:
+.endobj __vt__Q23efx13TKouhaiDamage
+.obj __vt__Q23efx8TEgateBC, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TEgateBCFPQ23efx3Arg
@@ -112,63 +118,69 @@ __vt__Q23efx8TEgateBC:
 	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-.global __vt__Q23efx10TOtakaraAp
-__vt__Q23efx10TOtakaraAp:
+.endobj __vt__Q23efx8TEgateBC
+.obj __vt__Q23efx10TOtakaraAp, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx10TOtakaraApFPQ23efx3Arg
 	.4byte forceKill__Q23efx10TOtakaraApFv
 	.4byte fade__Q23efx10TOtakaraApFv
-.global __vt__Q23efx11TOtakaraApS
-__vt__Q23efx11TOtakaraApS:
+.endobj __vt__Q23efx10TOtakaraAp
+.obj __vt__Q23efx11TOtakaraApS, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TOtakaraApSFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx11TOtakaraApL
-__vt__Q23efx11TOtakaraApL:
+.endobj __vt__Q23efx11TOtakaraApS
+.obj __vt__Q23efx11TOtakaraApL, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TOtakaraApLFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q23efx11TTsuyuGrow0
-__vt__Q23efx11TTsuyuGrow0:
+.endobj __vt__Q23efx11TOtakaraApL
+.obj __vt__Q23efx11TTsuyuGrow0, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TTsuyuGrow0FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx12TOtakaraDive
-__vt__Q23efx12TOtakaraDive:
+.endobj __vt__Q23efx11TTsuyuGrow0
+.obj __vt__Q23efx12TOtakaraDive, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx12TOtakaraDiveFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
+.endobj __vt__Q23efx12TOtakaraDive
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F650:
+.obj lbl_8051F650, local
 	.float 35.0
+.endobj lbl_8051F650
 .balign 4
-lbl_8051F654:
+.obj lbl_8051F654, local
 	.asciz "ArgRotY"
+.endobj lbl_8051F654
 .balign 4
-lbl_8051F65C:
+.obj lbl_8051F65C, local
 	.float 0.35
-lbl_8051F660:
+.endobj lbl_8051F65C
+.obj lbl_8051F660, local
 	.float 0.6
-lbl_8051F664:
+.endobj lbl_8051F660
+.obj lbl_8051F664, local
 	.float 1.0
+.endobj lbl_8051F664
 .balign 4
-lbl_8051F668:
+.obj lbl_8051F668, local
 	.asciz "ArgType"
+.endobj lbl_8051F668
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__Q23efx12TOtakaraDiveFPQ23efx3Arg
-create__Q23efx12TOtakaraDiveFPQ23efx3Arg:
+.fn create__Q23efx12TOtakaraDiveFPQ23efx3Arg, global
 /* 803B57BC 003B26FC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B57C0 003B2700  7C 08 02 A6 */	mflr r0
 /* 803B57C4 003B2704  90 01 00 34 */	stw r0, 0x34(r1)
@@ -238,9 +250,9 @@ create__Q23efx12TOtakaraDiveFPQ23efx3Arg:
 /* 803B58B8 003B27F8  7C 08 03 A6 */	mtlr r0
 /* 803B58BC 003B27FC  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B58C0 003B2800  4E 80 00 20 */	blr 
+.endfn create__Q23efx12TOtakaraDiveFPQ23efx3Arg
 
-.global create__Q23efx11TTsuyuGrow0FPQ23efx3Arg
-create__Q23efx11TTsuyuGrow0FPQ23efx3Arg:
+.fn create__Q23efx11TTsuyuGrow0FPQ23efx3Arg, global
 /* 803B58C4 003B2804  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803B58C8 003B2808  7C 08 02 A6 */	mflr r0
 /* 803B58CC 003B280C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -310,9 +322,9 @@ create__Q23efx11TTsuyuGrow0FPQ23efx3Arg:
 /* 803B59C0 003B2900  7C 08 03 A6 */	mtlr r0
 /* 803B59C4 003B2904  38 21 00 70 */	addi r1, r1, 0x70
 /* 803B59C8 003B2908  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TTsuyuGrow0FPQ23efx3Arg
 
-.global create__Q23efx11TOtakaraApLFPQ23efx3Arg
-create__Q23efx11TOtakaraApLFPQ23efx3Arg:
+.fn create__Q23efx11TOtakaraApLFPQ23efx3Arg, global
 /* 803B59CC 003B290C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B59D0 003B2910  7C 08 02 A6 */	mflr r0
 /* 803B59D4 003B2914  90 01 00 34 */	stw r0, 0x34(r1)
@@ -380,9 +392,9 @@ create__Q23efx11TOtakaraApLFPQ23efx3Arg:
 /* 803B5AC0 003B2A00  7C 08 03 A6 */	mtlr r0
 /* 803B5AC4 003B2A04  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B5AC8 003B2A08  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TOtakaraApLFPQ23efx3Arg
 
-.global create__Q23efx11TOtakaraApSFPQ23efx3Arg
-create__Q23efx11TOtakaraApSFPQ23efx3Arg:
+.fn create__Q23efx11TOtakaraApSFPQ23efx3Arg, global
 /* 803B5ACC 003B2A0C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B5AD0 003B2A10  7C 08 02 A6 */	mflr r0
 /* 803B5AD4 003B2A14  90 01 00 34 */	stw r0, 0x34(r1)
@@ -444,9 +456,9 @@ create__Q23efx11TOtakaraApSFPQ23efx3Arg:
 /* 803B5BA8 003B2AE8  7C 08 03 A6 */	mtlr r0
 /* 803B5BAC 003B2AEC  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B5BB0 003B2AF0  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TOtakaraApSFPQ23efx3Arg
 
-.global create__Q23efx10TOtakaraApFPQ23efx3Arg
-create__Q23efx10TOtakaraApFPQ23efx3Arg:
+.fn create__Q23efx10TOtakaraApFPQ23efx3Arg, global
 /* 803B5BB4 003B2AF4  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 803B5BB8 003B2AF8  7C 08 02 A6 */	mflr r0
 /* 803B5BBC 003B2AFC  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -651,9 +663,9 @@ create__Q23efx10TOtakaraApFPQ23efx3Arg:
 /* 803B5EBC 003B2DFC  7C 08 03 A6 */	mtlr r0
 /* 803B5EC0 003B2E00  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 803B5EC4 003B2E04  4E 80 00 20 */	blr 
+.endfn create__Q23efx10TOtakaraApFPQ23efx3Arg
 
-.global create__Q23efx8TEgateBCFPQ23efx3Arg
-create__Q23efx8TEgateBCFPQ23efx3Arg:
+.fn create__Q23efx8TEgateBCFPQ23efx3Arg, global
 /* 803B5EC8 003B2E08  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803B5ECC 003B2E0C  7C 08 02 A6 */	mflr r0
 /* 803B5ED0 003B2E10  90 01 00 74 */	stw r0, 0x74(r1)
@@ -732,9 +744,9 @@ create__Q23efx8TEgateBCFPQ23efx3Arg:
 /* 803B5FE0 003B2F20  7C 08 03 A6 */	mtlr r0
 /* 803B5FE4 003B2F24  38 21 00 70 */	addi r1, r1, 0x70
 /* 803B5FE8 003B2F28  4E 80 00 20 */	blr 
+.endfn create__Q23efx8TEgateBCFPQ23efx3Arg
 
-.global create__Q23efx13TKouhaiDamageFPQ23efx3Arg
-create__Q23efx13TKouhaiDamageFPQ23efx3Arg:
+.fn create__Q23efx13TKouhaiDamageFPQ23efx3Arg, global
 /* 803B5FEC 003B2F2C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803B5FF0 003B2F30  7C 08 02 A6 */	mflr r0
 /* 803B5FF4 003B2F34  90 01 00 44 */	stw r0, 0x44(r1)
@@ -816,9 +828,9 @@ create__Q23efx13TKouhaiDamageFPQ23efx3Arg:
 /* 803B6104 003B3044  7C 08 03 A6 */	mtlr r0
 /* 803B6108 003B3048  38 21 00 40 */	addi r1, r1, 0x40
 /* 803B610C 003B304C  4E 80 00 20 */	blr 
+.endfn create__Q23efx13TKouhaiDamageFPQ23efx3Arg
 
-.global create__Q23efx14TPelkira_ver01FPQ23efx3Arg
-create__Q23efx14TPelkira_ver01FPQ23efx3Arg:
+.fn create__Q23efx14TPelkira_ver01FPQ23efx3Arg, global
 /* 803B6110 003B3050  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B6114 003B3054  7C 08 02 A6 */	mflr r0
 /* 803B6118 003B3058  90 01 00 24 */	stw r0, 0x24(r1)
@@ -884,9 +896,9 @@ create__Q23efx14TPelkira_ver01FPQ23efx3Arg:
 /* 803B61EC 003B312C  7C 08 03 A6 */	mtlr r0
 /* 803B61F0 003B3130  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B61F4 003B3134  4E 80 00 20 */	blr 
+.endfn create__Q23efx14TPelkira_ver01FPQ23efx3Arg
 
-.global create__Q23efx9ContainerFPQ23efx3Arg
-create__Q23efx9ContainerFPQ23efx3Arg:
+.fn create__Q23efx9ContainerFPQ23efx3Arg, global
 /* 803B61F8 003B3138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B61FC 003B313C  7C 08 02 A6 */	mflr r0
 /* 803B6200 003B3140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -945,9 +957,9 @@ create__Q23efx9ContainerFPQ23efx3Arg:
 /* 803B62BC 003B31FC  7C 08 03 A6 */	mtlr r0
 /* 803B62C0 003B3200  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B62C4 003B3204  4E 80 00 20 */	blr 
+.endfn create__Q23efx9ContainerFPQ23efx3Arg
 
-.global create__Q23efx12ContainerActFPQ23efx3Arg
-create__Q23efx12ContainerActFPQ23efx3Arg:
+.fn create__Q23efx12ContainerActFPQ23efx3Arg, global
 /* 803B62C8 003B3208  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B62CC 003B320C  7C 08 02 A6 */	mflr r0
 /* 803B62D0 003B3210  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1012,9 +1024,9 @@ create__Q23efx12ContainerActFPQ23efx3Arg:
 /* 803B63A4 003B32E4  7C 08 03 A6 */	mtlr r0
 /* 803B63A8 003B32E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B63AC 003B32EC  4E 80 00 20 */	blr 
+.endfn create__Q23efx12ContainerActFPQ23efx3Arg
 
-.global setRateLOD__Q23efx8WarpZoneFib
-setRateLOD__Q23efx8WarpZoneFib:
+.fn setRateLOD__Q23efx8WarpZoneFib, global
 /* 803B63B0 003B32F0  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 803B63B4 003B32F4  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 803B63B8 003B32F8  BF 61 00 6C */	stmw r27, 0x6c(r1)
@@ -1131,9 +1143,9 @@ setRateLOD__Q23efx8WarpZoneFib:
 /* 803B6554 003B3494  BB 61 00 6C */	lmw r27, 0x6c(r1)
 /* 803B6558 003B3498  38 21 00 80 */	addi r1, r1, 0x80
 /* 803B655C 003B349C  4E 80 00 20 */	blr 
+.endfn setRateLOD__Q23efx8WarpZoneFib
 
-.global __dt__Q23efx9ContainerFv
-__dt__Q23efx9ContainerFv:
+.fn __dt__Q23efx9ContainerFv, weak
 /* 803B6560 003B34A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B6564 003B34A4  7C 08 02 A6 */	mflr r0
 /* 803B6568 003B34A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1175,9 +1187,9 @@ __dt__Q23efx9ContainerFv:
 /* 803B65F0 003B3530  7C 08 03 A6 */	mtlr r0
 /* 803B65F4 003B3534  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B65F8 003B3538  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx9ContainerFv
 
-.global __dt__Q23efx14TPelkira_ver01Fv
-__dt__Q23efx14TPelkira_ver01Fv:
+.fn __dt__Q23efx14TPelkira_ver01Fv, weak
 /* 803B65FC 003B353C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B6600 003B3540  7C 08 02 A6 */	mflr r0
 /* 803B6604 003B3544  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1219,21 +1231,22 @@ __dt__Q23efx14TPelkira_ver01Fv:
 /* 803B668C 003B35CC  7C 08 03 A6 */	mtlr r0
 /* 803B6690 003B35D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B6694 003B35D4  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx14TPelkira_ver01Fv
 
-.global forceKill__Q23efx10TOtakaraApFv
-forceKill__Q23efx10TOtakaraApFv:
+.fn forceKill__Q23efx10TOtakaraApFv, weak
 /* 803B6698 003B35D8  4E 80 00 20 */	blr 
+.endfn forceKill__Q23efx10TOtakaraApFv
 
-.global fade__Q23efx10TOtakaraApFv
-fade__Q23efx10TOtakaraApFv:
+.fn fade__Q23efx10TOtakaraApFv, weak
 /* 803B669C 003B35DC  4E 80 00 20 */	blr 
+.endfn fade__Q23efx10TOtakaraApFv
 
-.global "@4@__dt__Q23efx14TPelkira_ver01Fv"
-"@4@__dt__Q23efx14TPelkira_ver01Fv":
+.fn "@4@__dt__Q23efx14TPelkira_ver01Fv", weak
 /* 803B66A0 003B35E0  38 63 FF FC */	addi r3, r3, -4
 /* 803B66A4 003B35E4  4B FF FF 58 */	b __dt__Q23efx14TPelkira_ver01Fv
+.endfn "@4@__dt__Q23efx14TPelkira_ver01Fv"
 
-.global "@4@__dt__Q23efx9ContainerFv"
-"@4@__dt__Q23efx9ContainerFv":
+.fn "@4@__dt__Q23efx9ContainerFv", weak
 /* 803B66A8 003B35E8  38 63 FF FC */	addi r3, r3, -4
 /* 803B66AC 003B35EC  4B FF FE B4 */	b __dt__Q23efx9ContainerFv
+.endfn "@4@__dt__Q23efx9ContainerFv"

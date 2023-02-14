@@ -80,13 +80,11 @@
 .endobj lbl_8051FAA0
 .balign 8
 .obj lbl_8051FAA8, local
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .endobj lbl_8051FAA8
 .balign 8
 .obj lbl_8051FAB0, local
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 .endobj lbl_8051FAB0
 .obj lbl_8051FAB8, local
 	.float 32767.0

@@ -89,8 +89,7 @@ lbl_constructor:
 .endobj lbl_8051F850
 .balign 8
 .obj lbl_8051F858, local
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 .endobj lbl_8051F858
 .balign 4
 .obj lbl_8051F860, local
@@ -106,8 +105,7 @@ lbl_constructor:
 .endobj lbl_8051F870
 .balign 8
 .obj lbl_8051F878, local
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .endobj lbl_8051F878
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00

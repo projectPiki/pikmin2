@@ -5,40 +5,48 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80495BC8:
+.obj lbl_80495BC8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80495BC8
 .balign 4
-lbl_80495BD4:
+.obj lbl_80495BD4, local
 	.asciz "particleMgr"
+.endobj lbl_80495BD4
 .balign 4
-lbl_80495BE0:
+.obj lbl_80495BE0, local
 	.asciz "ParticleMgr"
+.endobj lbl_80495BE0
 .balign 4
-lbl_80495BEC:
+.obj lbl_80495BEC, local
 	.asciz "particleMgr.cpp"
+.endobj lbl_80495BEC
 .balign 4
-lbl_80495BFC:
+.obj lbl_80495BFC, local
 	.asciz "P2Assert"
+.endobj lbl_80495BFC
 .balign 4
-lbl_80495C08:
+.obj lbl_80495C08, local
 	.asciz "effect heap not allocated !\n"
+.endobj lbl_80495C08
 .balign 4
-lbl_80495C28:
+.obj lbl_80495C28, local
 	.asciz "ParticleResource (%s) not found\n"
+.endobj lbl_80495C28
 .balign 4
-lbl_80495C4C:
+.obj lbl_80495C4C, local
 	.asciz "IP2_dummy"
+.endobj lbl_80495C4C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__11ParticleMgr
-__vt__11ParticleMgr:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__11ParticleMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11ParticleMgrFv
@@ -49,8 +57,8 @@ __vt__11ParticleMgr:
 	.4byte doSetView__11ParticleMgrFi
 	.4byte doViewCalc__11ParticleMgrFv
 	.4byte draw__11ParticleMgrFP8ViewportUc
-.global __vt__19ModelEffectDataRoot
-__vt__19ModelEffectDataRoot:
+.endobj __vt__11ParticleMgr
+.obj __vt__19ModelEffectDataRoot, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__19ModelEffectDataRootFv
@@ -58,14 +66,14 @@ __vt__19ModelEffectDataRoot:
 	.4byte loadResources__19ModelEffectDataRootFv
 	.4byte getID__19ModelEffectDataRootFv
 	.4byte onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg
-.global "__vt__26TObjectNode<11ModelEffect>"
-"__vt__26TObjectNode<11ModelEffect>":
+.endobj __vt__19ModelEffectDataRoot
+.obj "__vt__26TObjectNode<11ModelEffect>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__26TObjectNode<11ModelEffect>Fv"
 	.4byte getChildCount__5CNodeFv
-.global "__vt__28NodeObjectMgr<11ModelEffect>"
-"__vt__28NodeObjectMgr<11ModelEffect>":
+.endobj "__vt__26TObjectNode<11ModelEffect>"
+.obj "__vt__28NodeObjectMgr<11ModelEffect>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__28NodeObjectMgr<11ModelEffect>Fv"
@@ -98,8 +106,8 @@ __vt__19ModelEffectDataRoot:
 	.4byte "doSimulation__24ObjectMgr<11ModelEffect>Ff"
 	.4byte "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
 	.4byte "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
-.global "__vt__24ObjectMgr<11ModelEffect>"
-"__vt__24ObjectMgr<11ModelEffect>":
+.endobj "__vt__28NodeObjectMgr<11ModelEffect>"
+.obj "__vt__24ObjectMgr<11ModelEffect>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__24ObjectMgr<11ModelEffect>Fv"
@@ -131,8 +139,8 @@ __vt__19ModelEffectDataRoot:
 	.4byte "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
 	.4byte "doSimulation__24ObjectMgr<11ModelEffect>Ff"
 	.4byte "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
-.global "__vt__24Container<11ModelEffect>"
-"__vt__24Container<11ModelEffect>":
+.endobj "__vt__24ObjectMgr<11ModelEffect>"
+.obj "__vt__24Container<11ModelEffect>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__24Container<11ModelEffect>Fv"
@@ -144,50 +152,54 @@ __vt__19ModelEffectDataRoot:
 	.4byte 0
 	.4byte "getAt__24Container<11ModelEffect>Fi"
 	.4byte "getTo__24Container<11ModelEffect>Fv"
-.global "__vt__23Iterator<11ModelEffect>"
-"__vt__23Iterator<11ModelEffect>":
+.endobj "__vt__24Container<11ModelEffect>"
+.obj "__vt__23Iterator<11ModelEffect>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__23Iterator<11ModelEffect>Fv"
 	.4byte "next__23Iterator<11ModelEffect>Fv"
 	.4byte "isDone__23Iterator<11ModelEffect>Fv"
 	.4byte "__ml__23Iterator<11ModelEffect>Fv"
+.endobj "__vt__23Iterator<11ModelEffect>"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mClipRadiusS__11ParticleMgr
-mClipRadiusS__11ParticleMgr:
+.obj mClipRadiusS__11ParticleMgr, global
 	.float 10.0
-.global mClipRadiusM__11ParticleMgr
-mClipRadiusM__11ParticleMgr:
+.endobj mClipRadiusS__11ParticleMgr
+.obj mClipRadiusM__11ParticleMgr, global
 	.float 30.0
-.global mClipRadiusL__11ParticleMgr
-mClipRadiusL__11ParticleMgr:
+.endobj mClipRadiusM__11ParticleMgr
+.obj mClipRadiusL__11ParticleMgr, global
 	.float 100.0
+.endobj mClipRadiusL__11ParticleMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global particleMgr
-particleMgr:
+.endobj gfNAN___Q24Game5P2JST
+.obj particleMgr, global
 	.skip 0x4
-.global disableCulling__11ParticleMgr
-disableCulling__11ParticleMgr:
-	.skip 0x4
+.endobj particleMgr
+.obj disableCulling__11ParticleMgr, global
+	.skip 0x1
+.endobj disableCulling__11ParticleMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F6F0:
+.obj lbl_8051F6F0, local
 	.float 0.5
-lbl_8051F6F4:
+.endobj lbl_8051F6F0
+.obj lbl_8051F6F4, local
 	.float -0.5
+.endobj lbl_8051F6F4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global globalInstance__11ParticleMgrFv
-globalInstance__11ParticleMgrFv:
+.fn globalInstance__11ParticleMgrFv, global
 /* 803BAF70 003B7EB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BAF74 003B7EB4  7C 08 02 A6 */	mflr r0
 /* 803BAF78 003B7EB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -207,9 +219,9 @@ globalInstance__11ParticleMgrFv:
 /* 803BAFA8 003B7EE8  7C 08 03 A6 */	mtlr r0
 /* 803BAFAC 003B7EEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BAFB0 003B7EF0  4E 80 00 20 */	blr 
+.endfn globalInstance__11ParticleMgrFv
 
-.global deleteInstance__11ParticleMgrFv
-deleteInstance__11ParticleMgrFv:
+.fn deleteInstance__11ParticleMgrFv, global
 /* 803BAFB4 003B7EF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BAFB8 003B7EF8  7C 08 02 A6 */	mflr r0
 /* 803BAFBC 003B7EFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -230,9 +242,9 @@ deleteInstance__11ParticleMgrFv:
 /* 803BAFF0 003B7F30  7C 08 03 A6 */	mtlr r0
 /* 803BAFF4 003B7F34  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BAFF8 003B7F38  4E 80 00 20 */	blr 
+.endfn deleteInstance__11ParticleMgrFv
 
-.global __ct__11ParticleMgrFv
-__ct__11ParticleMgrFv:
+.fn __ct__11ParticleMgrFv, global
 /* 803BAFFC 003B7F3C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BB000 003B7F40  7C 08 02 A6 */	mflr r0
 /* 803BB004 003B7F44  90 01 00 24 */	stw r0, 0x24(r1)
@@ -302,9 +314,9 @@ __ct__11ParticleMgrFv:
 /* 803BB104 003B8044  7C 08 03 A6 */	mtlr r0
 /* 803BB108 003B8048  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BB10C 003B804C  4E 80 00 20 */	blr 
+.endfn __ct__11ParticleMgrFv
 
-.global __dt__19ModelEffectDataRootFv
-__dt__19ModelEffectDataRootFv:
+.fn __dt__19ModelEffectDataRootFv, weak
 /* 803BB110 003B8050  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB114 003B8054  7C 08 02 A6 */	mflr r0
 /* 803BB118 003B8058  90 01 00 14 */	stw r0, 0x14(r1)
@@ -335,9 +347,9 @@ __dt__19ModelEffectDataRootFv:
 /* 803BB174 003B80B4  7C 08 03 A6 */	mtlr r0
 /* 803BB178 003B80B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB17C 003B80BC  4E 80 00 20 */	blr 
+.endfn __dt__19ModelEffectDataRootFv
 
-.global "__dt__28NodeObjectMgr<11ModelEffect>Fv"
-"__dt__28NodeObjectMgr<11ModelEffect>Fv":
+.fn "__dt__28NodeObjectMgr<11ModelEffect>Fv", weak
 /* 803BB180 003B80C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB184 003B80C4  7C 08 02 A6 */	mflr r0
 /* 803BB188 003B80C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -391,9 +403,9 @@ __dt__19ModelEffectDataRootFv:
 /* 803BB23C 003B817C  7C 08 03 A6 */	mtlr r0
 /* 803BB240 003B8180  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB244 003B8184  4E 80 00 20 */	blr 
+.endfn "__dt__28NodeObjectMgr<11ModelEffect>Fv"
 
-.global "__dt__26TObjectNode<11ModelEffect>Fv"
-"__dt__26TObjectNode<11ModelEffect>Fv":
+.fn "__dt__26TObjectNode<11ModelEffect>Fv", weak
 /* 803BB248 003B8188  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB24C 003B818C  7C 08 02 A6 */	mflr r0
 /* 803BB250 003B8190  90 01 00 14 */	stw r0, 0x14(r1)
@@ -419,9 +431,9 @@ __dt__19ModelEffectDataRootFv:
 /* 803BB29C 003B81DC  7C 08 03 A6 */	mtlr r0
 /* 803BB2A0 003B81E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB2A4 003B81E4  4E 80 00 20 */	blr 
+.endfn "__dt__26TObjectNode<11ModelEffect>Fv"
 
-.global "__dt__24ObjectMgr<11ModelEffect>Fv"
-"__dt__24ObjectMgr<11ModelEffect>Fv":
+.fn "__dt__24ObjectMgr<11ModelEffect>Fv", weak
 /* 803BB2A8 003B81E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB2AC 003B81EC  7C 08 02 A6 */	mflr r0
 /* 803BB2B0 003B81F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -458,9 +470,9 @@ __dt__19ModelEffectDataRootFv:
 /* 803BB324 003B8264  7C 08 03 A6 */	mtlr r0
 /* 803BB328 003B8268  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB32C 003B826C  4E 80 00 20 */	blr 
+.endfn "__dt__24ObjectMgr<11ModelEffect>Fv"
 
-.global "__dt__24Container<11ModelEffect>Fv"
-"__dt__24Container<11ModelEffect>Fv":
+.fn "__dt__24Container<11ModelEffect>Fv", weak
 /* 803BB330 003B8270  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB334 003B8274  7C 08 02 A6 */	mflr r0
 /* 803BB338 003B8278  90 01 00 14 */	stw r0, 0x14(r1)
@@ -491,9 +503,9 @@ __dt__19ModelEffectDataRootFv:
 /* 803BB394 003B82D4  7C 08 03 A6 */	mtlr r0
 /* 803BB398 003B82D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB39C 003B82DC  4E 80 00 20 */	blr 
+.endfn "__dt__24Container<11ModelEffect>Fv"
 
-.global __dt__11ParticleMgrFv
-__dt__11ParticleMgrFv:
+.fn __dt__11ParticleMgrFv, global
 /* 803BB3A0 003B82E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB3A4 003B82E4  7C 08 02 A6 */	mflr r0
 /* 803BB3A8 003B82E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -573,9 +585,9 @@ __dt__11ParticleMgrFv:
 /* 803BB4C0 003B8400  7C 08 03 A6 */	mtlr r0
 /* 803BB4C4 003B8404  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB4C8 003B8408  4E 80 00 20 */	blr 
+.endfn __dt__11ParticleMgrFv
 
-.global createHeap__11ParticleMgrFUl
-createHeap__11ParticleMgrFUl:
+.fn createHeap__11ParticleMgrFUl, global
 /* 803BB4CC 003B840C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB4D0 003B8410  7C 08 02 A6 */	mflr r0
 /* 803BB4D4 003B8414  90 01 00 14 */	stw r0, 0x14(r1)
@@ -605,9 +617,9 @@ createHeap__11ParticleMgrFUl:
 /* 803BB530 003B8470  7C 08 03 A6 */	mtlr r0
 /* 803BB534 003B8474  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB538 003B8478  4E 80 00 20 */	blr 
+.endfn createHeap__11ParticleMgrFUl
 
-.global createMgr__11ParticleMgrFPcUlUlUl
-createMgr__11ParticleMgrFPcUlUlUl:
+.fn createMgr__11ParticleMgrFPcUlUlUl, global
 /* 803BB53C 003B847C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803BB540 003B8480  7C 08 02 A6 */	mflr r0
 /* 803BB544 003B8484  90 01 00 34 */	stw r0, 0x34(r1)
@@ -695,9 +707,9 @@ createMgr__11ParticleMgrFPcUlUlUl:
 /* 803BB67C 003B85BC  7C 08 03 A6 */	mtlr r0
 /* 803BB680 003B85C0  38 21 00 30 */	addi r1, r1, 0x30
 /* 803BB684 003B85C4  4E 80 00 20 */	blr 
+.endfn createMgr__11ParticleMgrFPcUlUlUl
 
-.global Instance_TPkEffectMgr__11ParticleMgrFv
-Instance_TPkEffectMgr__11ParticleMgrFv:
+.fn Instance_TPkEffectMgr__11ParticleMgrFv, global
 /* 803BB688 003B85C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB68C 003B85CC  7C 08 02 A6 */	mflr r0
 /* 803BB690 003B85D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -706,9 +718,9 @@ Instance_TPkEffectMgr__11ParticleMgrFv:
 /* 803BB69C 003B85DC  7C 08 03 A6 */	mtlr r0
 /* 803BB6A0 003B85E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB6A4 003B85E4  4E 80 00 20 */	blr 
+.endfn Instance_TPkEffectMgr__11ParticleMgrFv
 
-.global deleteInstance_TPkEffectMgr__11ParticleMgrFv
-deleteInstance_TPkEffectMgr__11ParticleMgrFv:
+.fn deleteInstance_TPkEffectMgr__11ParticleMgrFv, global
 /* 803BB6A8 003B85E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB6AC 003B85EC  7C 08 02 A6 */	mflr r0
 /* 803BB6B0 003B85F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -717,9 +729,9 @@ deleteInstance_TPkEffectMgr__11ParticleMgrFv:
 /* 803BB6BC 003B85FC  7C 08 03 A6 */	mtlr r0
 /* 803BB6C0 003B8600  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB6C4 003B8604  4E 80 00 20 */	blr 
+.endfn deleteInstance_TPkEffectMgr__11ParticleMgrFv
 
-.global beginEntryModelEffect__11ParticleMgrFv
-beginEntryModelEffect__11ParticleMgrFv:
+.fn beginEntryModelEffect__11ParticleMgrFv, global
 /* 803BB6C8 003B8608  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB6CC 003B860C  7C 08 02 A6 */	mflr r0
 /* 803BB6D0 003B8610  90 01 00 14 */	stw r0, 0x14(r1)
@@ -731,9 +743,9 @@ beginEntryModelEffect__11ParticleMgrFv:
 /* 803BB6E8 003B8628  7C 08 03 A6 */	mtlr r0
 /* 803BB6EC 003B862C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB6F0 003B8630  4E 80 00 20 */	blr 
+.endfn beginEntryModelEffect__11ParticleMgrFv
 
-.global endEntryModelEffect__11ParticleMgrFv
-endEntryModelEffect__11ParticleMgrFv:
+.fn endEntryModelEffect__11ParticleMgrFv, global
 /* 803BB6F4 003B8634  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB6F8 003B8638  7C 08 02 A6 */	mflr r0
 /* 803BB6FC 003B863C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -743,9 +755,9 @@ endEntryModelEffect__11ParticleMgrFv:
 /* 803BB70C 003B864C  7C 08 03 A6 */	mtlr r0
 /* 803BB710 003B8650  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB714 003B8654  4E 80 00 20 */	blr 
+.endfn endEntryModelEffect__11ParticleMgrFv
 
-.global start__11ParticleMgrFv
-start__11ParticleMgrFv:
+.fn start__11ParticleMgrFv, global
 /* 803BB718 003B8658  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB71C 003B865C  7C 08 02 A6 */	mflr r0
 /* 803BB720 003B8660  90 01 00 14 */	stw r0, 0x14(r1)
@@ -755,9 +767,9 @@ start__11ParticleMgrFv:
 /* 803BB730 003B8670  7C 08 03 A6 */	mtlr r0
 /* 803BB734 003B8674  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB738 003B8678  4E 80 00 20 */	blr 
+.endfn start__11ParticleMgrFv
 
-.global reset__11ParticleMgrFv
-reset__11ParticleMgrFv:
+.fn reset__11ParticleMgrFv, global
 /* 803BB73C 003B867C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB740 003B8680  7C 08 02 A6 */	mflr r0
 /* 803BB744 003B8684  90 01 00 14 */	stw r0, 0x14(r1)
@@ -781,9 +793,9 @@ reset__11ParticleMgrFv:
 /* 803BB788 003B86C8  7C 08 03 A6 */	mtlr r0
 /* 803BB78C 003B86CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB790 003B86D0  4E 80 00 20 */	blr 
+.endfn reset__11ParticleMgrFv
 
-.global killAll__11ParticleMgrFv
-killAll__11ParticleMgrFv:
+.fn killAll__11ParticleMgrFv, global
 /* 803BB794 003B86D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB798 003B86D8  7C 08 02 A6 */	mflr r0
 /* 803BB79C 003B86DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -793,9 +805,9 @@ killAll__11ParticleMgrFv:
 /* 803BB7AC 003B86EC  7C 08 03 A6 */	mtlr r0
 /* 803BB7B0 003B86F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB7B4 003B86F4  4E 80 00 20 */	blr 
+.endfn killAll__11ParticleMgrFv
 
-.global update__11ParticleMgrFv
-update__11ParticleMgrFv:
+.fn update__11ParticleMgrFv, global
 /* 803BB7B8 003B86F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB7BC 003B86FC  7C 08 02 A6 */	mflr r0
 /* 803BB7C0 003B8700  90 01 00 14 */	stw r0, 0x14(r1)
@@ -807,9 +819,9 @@ update__11ParticleMgrFv:
 /* 803BB7D8 003B8718  7C 08 03 A6 */	mtlr r0
 /* 803BB7DC 003B871C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB7E0 003B8720  4E 80 00 20 */	blr 
+.endfn update__11ParticleMgrFv
 
-.global setXfb__11ParticleMgrFPC7ResTIMG
-setXfb__11ParticleMgrFPC7ResTIMG:
+.fn setXfb__11ParticleMgrFPC7ResTIMG, global
 /* 803BB7E4 003B8724  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB7E8 003B8728  7C 08 02 A6 */	mflr r0
 /* 803BB7EC 003B872C  3C A0 80 49 */	lis r5, lbl_80495C4C@ha
@@ -821,9 +833,9 @@ setXfb__11ParticleMgrFPC7ResTIMG:
 /* 803BB804 003B8744  7C 08 03 A6 */	mtlr r0
 /* 803BB808 003B8748  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB80C 003B874C  4E 80 00 20 */	blr 
+.endfn setXfb__11ParticleMgrFPC7ResTIMG
 
-.global draw__11ParticleMgrFP8ViewportUc
-draw__11ParticleMgrFP8ViewportUc:
+.fn draw__11ParticleMgrFP8ViewportUc, global
 /* 803BB810 003B8750  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803BB814 003B8754  7C 08 02 A6 */	mflr r0
 /* 803BB818 003B8758  90 01 00 94 */	stw r0, 0x94(r1)
@@ -865,9 +877,9 @@ draw__11ParticleMgrFP8ViewportUc:
 /* 803BB8A8 003B87E8  7C 08 03 A6 */	mtlr r0
 /* 803BB8AC 003B87EC  38 21 00 90 */	addi r1, r1, 0x90
 /* 803BB8B0 003B87F0  4E 80 00 20 */	blr 
+.endfn draw__11ParticleMgrFP8ViewportUc
 
-.global "create__11ParticleMgrFUsR10Vector3<f>Uc"
-"create__11ParticleMgrFUsR10Vector3<f>Uc":
+.fn "create__11ParticleMgrFUsR10Vector3<f>Uc", global
 /* 803BB8B4 003B87F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BB8B8 003B87F8  7C 08 02 A6 */	mflr r0
 /* 803BB8BC 003B87FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -923,9 +935,9 @@ draw__11ParticleMgrFP8ViewportUc:
 /* 803BB970 003B88B0  7C 08 03 A6 */	mtlr r0
 /* 803BB974 003B88B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BB978 003B88B8  4E 80 00 20 */	blr 
+.endfn "create__11ParticleMgrFUsR10Vector3<f>Uc"
 
-.global "createDemo__11ParticleMgrFUsR10Vector3<f>UcUc"
-"createDemo__11ParticleMgrFUsR10Vector3<f>UcUc":
+.fn "createDemo__11ParticleMgrFUsR10Vector3<f>UcUc", global
 /* 803BB97C 003B88BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB980 003B88C0  7C 08 02 A6 */	mflr r0
 /* 803BB984 003B88C4  39 00 00 00 */	li r8, 0
@@ -949,9 +961,9 @@ draw__11ParticleMgrFP8ViewportUc:
 /* 803BB9CC 003B890C  7C 08 03 A6 */	mtlr r0
 /* 803BB9D0 003B8910  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB9D4 003B8914  4E 80 00 20 */	blr 
+.endfn "createDemo__11ParticleMgrFUsR10Vector3<f>UcUc"
 
-.global setGlobalColor__11ParticleMgrFP14JPABaseEmitter
-setGlobalColor__11ParticleMgrFP14JPABaseEmitter:
+.fn setGlobalColor__11ParticleMgrFP14JPABaseEmitter, global
 /* 803BB9D8 003B8918  28 04 00 00 */	cmplwi r4, 0
 /* 803BB9DC 003B891C  4D 82 00 20 */	beqlr 
 /* 803BB9E0 003B8920  80 A4 00 E8 */	lwz r5, 0xe8(r4)
@@ -997,9 +1009,9 @@ setGlobalColor__11ParticleMgrFP14JPABaseEmitter:
 /* 803BBA74 003B89B4  98 64 00 BD */	stb r3, 0xbd(r4)
 /* 803BBA78 003B89B8  98 04 00 BE */	stb r0, 0xbe(r4)
 /* 803BBA7C 003B89BC  4E 80 00 20 */	blr 
+.endfn setGlobalColor__11ParticleMgrFP14JPABaseEmitter
 
-.global forceKill__11ParticleMgrFP14JPABaseEmitter
-forceKill__11ParticleMgrFP14JPABaseEmitter:
+.fn forceKill__11ParticleMgrFP14JPABaseEmitter, global
 /* 803BBA80 003B89C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BBA84 003B89C4  7C 08 02 A6 */	mflr r0
 /* 803BBA88 003B89C8  28 04 00 00 */	cmplwi r4, 0
@@ -1012,9 +1024,9 @@ forceKill__11ParticleMgrFP14JPABaseEmitter:
 /* 803BBAA0 003B89E0  7C 08 03 A6 */	mtlr r0
 /* 803BBAA4 003B89E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BBAA8 003B89E8  4E 80 00 20 */	blr 
+.endfn forceKill__11ParticleMgrFP14JPABaseEmitter
 
-.global fade__11ParticleMgrFP14JPABaseEmitter
-fade__11ParticleMgrFP14JPABaseEmitter:
+.fn fade__11ParticleMgrFP14JPABaseEmitter, global
 /* 803BBAAC 003B89EC  28 04 00 00 */	cmplwi r4, 0
 /* 803BBAB0 003B89F0  4D 82 00 20 */	beqlr 
 /* 803BBAB4 003B89F4  80 64 00 F4 */	lwz r3, 0xf4(r4)
@@ -1026,9 +1038,9 @@ fade__11ParticleMgrFP14JPABaseEmitter:
 /* 803BBACC 003B8A0C  54 00 06 B0 */	rlwinm r0, r0, 0, 0x1a, 0x18
 /* 803BBAD0 003B8A10  90 04 00 F4 */	stw r0, 0xf4(r4)
 /* 803BBAD4 003B8A14  4E 80 00 20 */	blr 
+.endfn fade__11ParticleMgrFP14JPABaseEmitter
 
-.global setDemoResourceManager__11ParticleMgrFP18JPAResourceManager
-setDemoResourceManager__11ParticleMgrFP18JPAResourceManager:
+.fn setDemoResourceManager__11ParticleMgrFP18JPAResourceManager, global
 /* 803BBAD8 003B8A18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BBADC 003B8A1C  7C 08 02 A6 */	mflr r0
 /* 803BBAE0 003B8A20  38 A0 00 07 */	li r5, 7
@@ -1039,9 +1051,9 @@ setDemoResourceManager__11ParticleMgrFP18JPAResourceManager:
 /* 803BBAF4 003B8A34  7C 08 03 A6 */	mtlr r0
 /* 803BBAF8 003B8A38  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BBAFC 003B8A3C  4E 80 00 20 */	blr 
+.endfn setDemoResourceManager__11ParticleMgrFP18JPAResourceManager
 
-.global clearDemoResourceManager__11ParticleMgrFv
-clearDemoResourceManager__11ParticleMgrFv:
+.fn clearDemoResourceManager__11ParticleMgrFv, global
 /* 803BBB00 003B8A40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BBB04 003B8A44  7C 08 02 A6 */	mflr r0
 /* 803BBB08 003B8A48  38 80 00 07 */	li r4, 7
@@ -1052,9 +1064,9 @@ clearDemoResourceManager__11ParticleMgrFv:
 /* 803BBB1C 003B8A5C  7C 08 03 A6 */	mtlr r0
 /* 803BBB20 003B8A60  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BBB24 003B8A64  4E 80 00 20 */	blr 
+.endfn clearDemoResourceManager__11ParticleMgrFv
 
-.global setViewport__11ParticleMgrFR8Graphics
-setViewport__11ParticleMgrFR8Graphics:
+.fn setViewport__11ParticleMgrFR8Graphics, global
 /* 803BBB28 003B8A68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BBB2C 003B8A6C  7C 08 02 A6 */	mflr r0
 /* 803BBB30 003B8A70  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1101,9 +1113,9 @@ setViewport__11ParticleMgrFR8Graphics:
 /* 803BBBC4 003B8B04  7C 08 03 A6 */	mtlr r0
 /* 803BBBC8 003B8B08  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BBBCC 003B8B0C  4E 80 00 20 */	blr 
+.endfn setViewport__11ParticleMgrFR8Graphics
 
-.global "cullByResFlg__11ParticleMgrFR10Vector3<f>Us"
-"cullByResFlg__11ParticleMgrFR10Vector3<f>Us":
+.fn "cullByResFlg__11ParticleMgrFR10Vector3<f>Us", global
 /* 803BBBD0 003B8B10  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803BBBD4 003B8B14  7C 08 02 A6 */	mflr r0
 /* 803BBBD8 003B8B18  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1184,9 +1196,9 @@ setViewport__11ParticleMgrFR8Graphics:
 /* 803BBCD8 003B8C18  7C 08 03 A6 */	mtlr r0
 /* 803BBCDC 003B8C1C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803BBCE0 003B8C20  4E 80 00 20 */	blr 
+.endfn "cullByResFlg__11ParticleMgrFR10Vector3<f>Us"
 
-.global cullByResFlg__11ParticleMgrFP14JPABaseEmitter
-cullByResFlg__11ParticleMgrFP14JPABaseEmitter:
+.fn cullByResFlg__11ParticleMgrFP14JPABaseEmitter, global
 /* 803BBCE4 003B8C24  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803BBCE8 003B8C28  7C 08 02 A6 */	mflr r0
 /* 803BBCEC 003B8C2C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1295,54 +1307,54 @@ cullByResFlg__11ParticleMgrFP14JPABaseEmitter:
 /* 803BBE50 003B8D90  7C 08 03 A6 */	mtlr r0
 /* 803BBE54 003B8D94  38 21 00 40 */	addi r1, r1, 0x40
 /* 803BBE58 003B8D98  4E 80 00 20 */	blr 
+.endfn cullByResFlg__11ParticleMgrFP14JPABaseEmitter
 
-.global loadResources__19ModelEffectDataRootFv
-loadResources__19ModelEffectDataRootFv:
+.fn loadResources__19ModelEffectDataRootFv, weak
 /* 803BBE5C 003B8D9C  4E 80 00 20 */	blr 
+.endfn loadResources__19ModelEffectDataRootFv
 
-.global getID__19ModelEffectDataRootFv
-getID__19ModelEffectDataRootFv:
+.fn getID__19ModelEffectDataRootFv, weak
 /* 803BBE60 003B8DA0  3C 80 52 4F */	lis r4, 0x524F4F54@ha
 /* 803BBE64 003B8DA4  38 60 00 00 */	li r3, 0
 /* 803BBE68 003B8DA8  38 84 4F 54 */	addi r4, r4, 0x524F4F54@l
 /* 803BBE6C 003B8DAC  4E 80 00 20 */	blr 
+.endfn getID__19ModelEffectDataRootFv
 
-.global onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg
-onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
+.fn onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg, weak
 /* 803BBE70 003B8DB0  38 60 00 00 */	li r3, 0
 /* 803BBE74 003B8DB4  4E 80 00 20 */	blr 
+.endfn onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg
 
-.global "get__28NodeObjectMgr<11ModelEffect>FPv"
-"get__28NodeObjectMgr<11ModelEffect>FPv":
+.fn "get__28NodeObjectMgr<11ModelEffect>FPv", weak
 /* 803BBE78 003B8DB8  80 64 00 18 */	lwz r3, 0x18(r4)
 /* 803BBE7C 003B8DBC  4E 80 00 20 */	blr 
+.endfn "get__28NodeObjectMgr<11ModelEffect>FPv"
 
-.global "getNext__28NodeObjectMgr<11ModelEffect>FPv"
-"getNext__28NodeObjectMgr<11ModelEffect>FPv":
+.fn "getNext__28NodeObjectMgr<11ModelEffect>FPv", weak
 /* 803BBE80 003B8DC0  80 64 00 04 */	lwz r3, 4(r4)
 /* 803BBE84 003B8DC4  4E 80 00 20 */	blr 
+.endfn "getNext__28NodeObjectMgr<11ModelEffect>FPv"
 
-.global "getStart__28NodeObjectMgr<11ModelEffect>Fv"
-"getStart__28NodeObjectMgr<11ModelEffect>Fv":
+.fn "getStart__28NodeObjectMgr<11ModelEffect>Fv", weak
 /* 803BBE88 003B8DC8  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 803BBE8C 003B8DCC  4E 80 00 20 */	blr 
+.endfn "getStart__28NodeObjectMgr<11ModelEffect>Fv"
 
-.global "getEnd__28NodeObjectMgr<11ModelEffect>Fv"
-"getEnd__28NodeObjectMgr<11ModelEffect>Fv":
+.fn "getEnd__28NodeObjectMgr<11ModelEffect>Fv", weak
 /* 803BBE90 003B8DD0  38 60 00 00 */	li r3, 0
 /* 803BBE94 003B8DD4  4E 80 00 20 */	blr 
+.endfn "getEnd__28NodeObjectMgr<11ModelEffect>Fv"
 
-.global "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
-"resetMgr__28NodeObjectMgr<11ModelEffect>Fv":
+.fn "resetMgr__28NodeObjectMgr<11ModelEffect>Fv", weak
 /* 803BBE98 003B8DD8  38 00 00 00 */	li r0, 0
 /* 803BBE9C 003B8DDC  90 03 00 30 */	stw r0, 0x30(r3)
 /* 803BBEA0 003B8DE0  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 803BBEA4 003B8DE4  90 03 00 28 */	stw r0, 0x28(r3)
 /* 803BBEA8 003B8DE8  90 03 00 24 */	stw r0, 0x24(r3)
 /* 803BBEAC 003B8DEC  4E 80 00 20 */	blr 
+.endfn "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
 
-.global "getObject__24Container<11ModelEffect>FPv"
-"getObject__24Container<11ModelEffect>FPv":
+.fn "getObject__24Container<11ModelEffect>FPv", weak
 /* 803BBEB0 003B8DF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BBEB4 003B8DF4  7C 08 02 A6 */	mflr r0
 /* 803BBEB8 003B8DF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1354,19 +1366,19 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BBED0 003B8E10  7C 08 03 A6 */	mtlr r0
 /* 803BBED4 003B8E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BBED8 003B8E18  4E 80 00 20 */	blr 
+.endfn "getObject__24Container<11ModelEffect>FPv"
 
-.global "getAt__24Container<11ModelEffect>Fi"
-"getAt__24Container<11ModelEffect>Fi":
+.fn "getAt__24Container<11ModelEffect>Fi", weak
 /* 803BBEDC 003B8E1C  38 60 00 00 */	li r3, 0
 /* 803BBEE0 003B8E20  4E 80 00 20 */	blr 
+.endfn "getAt__24Container<11ModelEffect>Fi"
 
-.global "getTo__24Container<11ModelEffect>Fv"
-"getTo__24Container<11ModelEffect>Fv":
+.fn "getTo__24Container<11ModelEffect>Fv", weak
 /* 803BBEE4 003B8E24  38 60 00 00 */	li r3, 0
 /* 803BBEE8 003B8E28  4E 80 00 20 */	blr 
+.endfn "getTo__24Container<11ModelEffect>Fv"
 
-.global "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
-"doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics":
+.fn "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics", weak
 /* 803BBEEC 003B8E2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BBEF0 003B8E30  7C 08 02 A6 */	mflr r0
 /* 803BBEF4 003B8E34  3C A0 80 4E */	lis r5, "__vt__23Iterator<11ModelEffect>"@ha
@@ -1500,9 +1512,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BC0D4 003B9014  7C 08 03 A6 */	mtlr r0
 /* 803BC0D8 003B9018  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC0DC 003B901C  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
 
-.global "isDone__23Iterator<11ModelEffect>Fv"
-"isDone__23Iterator<11ModelEffect>Fv":
+.fn "isDone__23Iterator<11ModelEffect>Fv", weak
 /* 803BC0E0 003B9020  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BC0E4 003B9024  7C 08 02 A6 */	mflr r0
 /* 803BC0E8 003B9028  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1522,9 +1534,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BC120 003B9060  7C 08 03 A6 */	mtlr r0
 /* 803BC124 003B9064  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BC128 003B9068  4E 80 00 20 */	blr 
+.endfn "isDone__23Iterator<11ModelEffect>Fv"
 
-.global "doSimulation__24ObjectMgr<11ModelEffect>Ff"
-"doSimulation__24ObjectMgr<11ModelEffect>Ff":
+.fn "doSimulation__24ObjectMgr<11ModelEffect>Ff", weak
 /* 803BC12C 003B906C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC130 003B9070  7C 08 02 A6 */	mflr r0
 /* 803BC134 003B9074  3C 80 80 4E */	lis r4, "__vt__23Iterator<11ModelEffect>"@ha
@@ -1658,9 +1670,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BC314 003B9254  7C 08 03 A6 */	mtlr r0
 /* 803BC318 003B9258  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC31C 003B925C  4E 80 00 20 */	blr 
+.endfn "doSimulation__24ObjectMgr<11ModelEffect>Ff"
 
-.global "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
-"doViewCalc__24ObjectMgr<11ModelEffect>Fv":
+.fn "doViewCalc__24ObjectMgr<11ModelEffect>Fv", weak
 /* 803BC320 003B9260  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC324 003B9264  7C 08 02 A6 */	mflr r0
 /* 803BC328 003B9268  3C 80 80 4E */	lis r4, "__vt__23Iterator<11ModelEffect>"@ha
@@ -1790,9 +1802,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BC4F8 003B9438  7C 08 03 A6 */	mtlr r0
 /* 803BC4FC 003B943C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC500 003B9440  4E 80 00 20 */	blr 
+.endfn "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
 
-.global "doSetView__24ObjectMgr<11ModelEffect>Fi"
-"doSetView__24ObjectMgr<11ModelEffect>Fi":
+.fn "doSetView__24ObjectMgr<11ModelEffect>Fi", weak
 /* 803BC504 003B9444  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC508 003B9448  7C 08 02 A6 */	mflr r0
 /* 803BC50C 003B944C  3C A0 80 4E */	lis r5, "__vt__23Iterator<11ModelEffect>"@ha
@@ -1926,9 +1938,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BC6EC 003B962C  7C 08 03 A6 */	mtlr r0
 /* 803BC6F0 003B9630  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC6F4 003B9634  4E 80 00 20 */	blr 
+.endfn "doSetView__24ObjectMgr<11ModelEffect>Fi"
 
-.global "doEntry__24ObjectMgr<11ModelEffect>Fv"
-"doEntry__24ObjectMgr<11ModelEffect>Fv":
+.fn "doEntry__24ObjectMgr<11ModelEffect>Fv", weak
 /* 803BC6F8 003B9638  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC6FC 003B963C  7C 08 02 A6 */	mflr r0
 /* 803BC700 003B9640  3C 80 80 4E */	lis r4, "__vt__23Iterator<11ModelEffect>"@ha
@@ -2058,9 +2070,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BC8D0 003B9810  7C 08 03 A6 */	mtlr r0
 /* 803BC8D4 003B9814  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC8D8 003B9818  4E 80 00 20 */	blr 
+.endfn "doEntry__24ObjectMgr<11ModelEffect>Fv"
 
-.global "doAnimation__24ObjectMgr<11ModelEffect>Fv"
-"doAnimation__24ObjectMgr<11ModelEffect>Fv":
+.fn "doAnimation__24ObjectMgr<11ModelEffect>Fv", weak
 /* 803BC8DC 003B981C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC8E0 003B9820  7C 08 02 A6 */	mflr r0
 /* 803BC8E4 003B9824  3C 80 80 4E */	lis r4, "__vt__23Iterator<11ModelEffect>"@ha
@@ -2190,9 +2202,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BCAB4 003B99F4  7C 08 03 A6 */	mtlr r0
 /* 803BCAB8 003B99F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BCABC 003B99FC  4E 80 00 20 */	blr 
+.endfn "doAnimation__24ObjectMgr<11ModelEffect>Fv"
 
-.global "__ml__23Iterator<11ModelEffect>Fv"
-"__ml__23Iterator<11ModelEffect>Fv":
+.fn "__ml__23Iterator<11ModelEffect>Fv", weak
 /* 803BCAC0 003B9A00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BCAC4 003B9A04  7C 08 02 A6 */	mflr r0
 /* 803BCAC8 003B9A08  7C 64 1B 78 */	mr r4, r3
@@ -2207,9 +2219,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BCAEC 003B9A2C  7C 08 03 A6 */	mtlr r0
 /* 803BCAF0 003B9A30  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BCAF4 003B9A34  4E 80 00 20 */	blr 
+.endfn "__ml__23Iterator<11ModelEffect>Fv"
 
-.global "next__23Iterator<11ModelEffect>Fv"
-"next__23Iterator<11ModelEffect>Fv":
+.fn "next__23Iterator<11ModelEffect>Fv", weak
 /* 803BCAF8 003B9A38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BCAFC 003B9A3C  7C 08 02 A6 */	mflr r0
 /* 803BCB00 003B9A40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2271,9 +2283,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BCBD0 003B9B10  7C 08 03 A6 */	mtlr r0
 /* 803BCBD4 003B9B14  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BCBD8 003B9B18  4E 80 00 20 */	blr 
+.endfn "next__23Iterator<11ModelEffect>Fv"
 
-.global "first__23Iterator<11ModelEffect>Fv"
-"first__23Iterator<11ModelEffect>Fv":
+.fn "first__23Iterator<11ModelEffect>Fv", weak
 /* 803BCBDC 003B9B1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BCBE0 003B9B20  7C 08 02 A6 */	mflr r0
 /* 803BCBE4 003B9B24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2333,8 +2345,9 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BCCAC 003B9BEC  7C 08 03 A6 */	mtlr r0
 /* 803BCCB0 003B9BF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BCCB4 003B9BF4  4E 80 00 20 */	blr 
+.endfn "first__23Iterator<11ModelEffect>Fv"
 
-__sinit_particleMgr_cpp: # static initializer
+.fn __sinit_particleMgr_cpp, local
 /* 803BCCB8 003B9BF8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803BCCBC 003B9BFC  38 00 FF FF */	li r0, -1
 /* 803BCCC0 003B9C00  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2345,38 +2358,39 @@ __sinit_particleMgr_cpp: # static initializer
 /* 803BCCD4 003B9C14  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803BCCD8 003B9C18  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803BCCDC 003B9C1C  4E 80 00 20 */	blr 
+.endfn __sinit_particleMgr_cpp
 
-.global "@28@resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
-"@28@resetMgr__28NodeObjectMgr<11ModelEffect>Fv":
+.fn "@28@resetMgr__28NodeObjectMgr<11ModelEffect>Fv", weak
 /* 803BCCE0 003B9C20  38 63 FF E4 */	addi r3, r3, -28
 /* 803BCCE4 003B9C24  4B FF F1 B4 */	b "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
+.endfn "@28@resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
 
-.global "@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
-"@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics":
+.fn "@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics", weak
 /* 803BCCE8 003B9C28  38 63 FF E4 */	addi r3, r3, -28
 /* 803BCCEC 003B9C2C  4B FF F2 00 */	b "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+.endfn "@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
 
-.global "@28@doSimulation__24ObjectMgr<11ModelEffect>Ff"
-"@28@doSimulation__24ObjectMgr<11ModelEffect>Ff":
+.fn "@28@doSimulation__24ObjectMgr<11ModelEffect>Ff", weak
 /* 803BCCF0 003B9C30  38 63 FF E4 */	addi r3, r3, -28
 /* 803BCCF4 003B9C34  4B FF F4 38 */	b "doSimulation__24ObjectMgr<11ModelEffect>Ff"
+.endfn "@28@doSimulation__24ObjectMgr<11ModelEffect>Ff"
 
-.global "@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv"
-"@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv":
+.fn "@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv", weak
 /* 803BCCF8 003B9C38  38 63 FF E4 */	addi r3, r3, -28
 /* 803BCCFC 003B9C3C  4B FF F6 24 */	b "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+.endfn "@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv"
 
-.global "@28@doSetView__24ObjectMgr<11ModelEffect>Fi"
-"@28@doSetView__24ObjectMgr<11ModelEffect>Fi":
+.fn "@28@doSetView__24ObjectMgr<11ModelEffect>Fi", weak
 /* 803BCD00 003B9C40  38 63 FF E4 */	addi r3, r3, -28
 /* 803BCD04 003B9C44  4B FF F8 00 */	b "doSetView__24ObjectMgr<11ModelEffect>Fi"
+.endfn "@28@doSetView__24ObjectMgr<11ModelEffect>Fi"
 
-.global "@28@doEntry__24ObjectMgr<11ModelEffect>Fv"
-"@28@doEntry__24ObjectMgr<11ModelEffect>Fv":
+.fn "@28@doEntry__24ObjectMgr<11ModelEffect>Fv", weak
 /* 803BCD08 003B9C48  38 63 FF E4 */	addi r3, r3, -28
 /* 803BCD0C 003B9C4C  4B FF F9 EC */	b "doEntry__24ObjectMgr<11ModelEffect>Fv"
+.endfn "@28@doEntry__24ObjectMgr<11ModelEffect>Fv"
 
-.global "@28@doAnimation__24ObjectMgr<11ModelEffect>Fv"
-"@28@doAnimation__24ObjectMgr<11ModelEffect>Fv":
+.fn "@28@doAnimation__24ObjectMgr<11ModelEffect>Fv", weak
 /* 803BCD10 003B9C50  38 63 FF E4 */	addi r3, r3, -28
 /* 803BCD14 003B9C54  4B FF FB C8 */	b "doAnimation__24ObjectMgr<11ModelEffect>Fv"
+.endfn "@28@doAnimation__24ObjectMgr<11ModelEffect>Fv"
