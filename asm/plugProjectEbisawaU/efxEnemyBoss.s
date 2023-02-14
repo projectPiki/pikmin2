@@ -1,59 +1,65 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497910:
+.obj lbl_80497910, local
 	.asciz "efxEnemyBoss.cpp"
+.endobj lbl_80497910
 .balign 4
-lbl_80497924:
+.obj lbl_80497924, local
 	.asciz "P2Assert"
+.endobj lbl_80497924
 .balign 4
-lbl_80497930:
+.obj lbl_80497930, local
 	.asciz "ArgPrmColor"
+.endobj lbl_80497930
 .balign 4
-lbl_8049793C:
+.obj lbl_8049793C, local
 	.asciz "ArgPosPos"
+.endobj lbl_8049793C
 .balign 4
-lbl_80497948:
+.obj lbl_80497948, local
 	.asciz "ArgScale"
+.endobj lbl_80497948
 .balign 4
-lbl_80497954:
+.obj lbl_80497954, local
 	.asciz "ArgRotYScale"
+.endobj lbl_80497954
 .balign 4
-lbl_80497964:
+.obj lbl_80497964, local
 	.asciz "ArgKchYodare"
+.endobj lbl_80497964
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx16THdamaDeadHahen2
-__vt__Q23efx16THdamaDeadHahen2:
+.obj __vt__Q23efx16THdamaDeadHahen2, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx16THdamaDeadHahen2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx16THdamaDeadHahen1
-__vt__Q23efx16THdamaDeadHahen1:
+.endobj __vt__Q23efx16THdamaDeadHahen2
+.obj __vt__Q23efx16THdamaDeadHahen1, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx16THdamaDeadHahen1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx12THdamaShootA
-__vt__Q23efx12THdamaShootA:
+.endobj __vt__Q23efx16THdamaDeadHahen1
+.obj __vt__Q23efx12THdamaShootA, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx11THdamaHit2W
-__vt__Q23efx11THdamaHit2W:
+.endobj __vt__Q23efx12THdamaShootA
+.obj __vt__Q23efx11THdamaHit2W, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11THdamaHit2WFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q23efx11THdamaShell
-__vt__Q23efx11THdamaShell:
+.endobj __vt__Q23efx11THdamaHit2W
+.obj __vt__Q23efx11THdamaShell, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11THdamaShellFPQ23efx3Arg
@@ -73,8 +79,8 @@ __vt__Q23efx11THdamaShell:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx11THdamaShellFv
-.global __vt__Q23efx22TKchYodareBaseChaseMtx
-__vt__Q23efx22TKchYodareBaseChaseMtx:
+.endobj __vt__Q23efx11THdamaShell
+.obj __vt__Q23efx22TKchYodareBaseChaseMtx, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg
@@ -94,51 +100,51 @@ __vt__Q23efx22TKchYodareBaseChaseMtx:
 	.4byte startDemoDrawOff__Q23efx22TKchYodareBaseChaseMtxFv
 	.4byte endDemoDrawOn__Q23efx22TKchYodareBaseChaseMtxFv
 	.4byte __dt__Q23efx22TKchYodareBaseChaseMtxFv
-.global __vt__Q23efx27TParticleCallBack_KchYodare
-__vt__Q23efx27TParticleCallBack_KchYodare:
+.endobj __vt__Q23efx22TKchYodareBaseChaseMtx
+.obj __vt__Q23efx27TParticleCallBack_KchYodare, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23efx27TParticleCallBack_KchYodareFv
 	.4byte execute__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle
 	.4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
 	.4byte init__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle
-.global __vt__Q23efx13TKchDownsmoke
-__vt__Q23efx13TKchDownsmoke:
+.endobj __vt__Q23efx27TParticleCallBack_KchYodare
+.obj __vt__Q23efx13TKchDownsmoke, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx13TKchDownsmokeFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx10TKchDamage
-__vt__Q23efx10TKchDamage:
+.endobj __vt__Q23efx13TKchDownsmoke
+.obj __vt__Q23efx10TKchDamage, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx10TKchDamageFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple4Fv
 	.4byte fade__Q23efx8TSimple4Fv
-.global __vt__Q23efx9TKchApWat
-__vt__Q23efx9TKchApWat:
+.endobj __vt__Q23efx10TKchDamage
+.obj __vt__Q23efx9TKchApWat, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx9TKchApWatFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple5Fv
 	.4byte fade__Q23efx8TSimple5Fv
-.global __vt__Q23efx10TKchApSand
-__vt__Q23efx10TKchApSand:
+.endobj __vt__Q23efx9TKchApWat
+.obj __vt__Q23efx10TKchApSand, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx10TKchApSandFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q23efx13TKchFlickSand
-__vt__Q23efx13TKchFlickSand:
+.endobj __vt__Q23efx10TKchApSand
+.obj __vt__Q23efx13TKchFlickSand, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx13TKchFlickSandFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx10TOootaFire
-__vt__Q23efx10TOootaFire:
+.endobj __vt__Q23efx13TKchFlickSand
+.obj __vt__Q23efx10TOootaFire, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx10TOootaFireFPQ23efx3Arg
@@ -146,54 +152,59 @@ __vt__Q23efx10TOootaFire:
 	.4byte "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx13TOootaBombLeg
-__vt__Q23efx13TOootaBombLeg:
+.endobj __vt__Q23efx10TOootaFire
+.obj __vt__Q23efx13TOootaBombLeg, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx13TOootaBombLegFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx10TKageDead2
-__vt__Q23efx10TKageDead2:
+.endobj __vt__Q23efx13TOootaBombLeg
+.obj __vt__Q23efx10TKageDead2, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx10TKageDead2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx10TDangoTurn
-__vt__Q23efx10TDangoTurn:
+.endobj __vt__Q23efx10TKageDead2
+.obj __vt__Q23efx10TDangoTurn, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx10TDangoTurnFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx11TDangoCrash
-__vt__Q23efx11TDangoCrash:
+.endobj __vt__Q23efx10TDangoTurn
+.obj __vt__Q23efx11TDangoCrash, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TDangoCrashFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
+.endobj __vt__Q23efx11TDangoCrash
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FE38:
+.obj lbl_8051FE38, local
 	.asciz "ArgDir"
+.endobj lbl_8051FE38
 .balign 4
-lbl_8051FE40:
+.obj lbl_8051FE40, local
 	.float 0.0
-lbl_8051FE44:
+.endobj lbl_8051FE40
+.obj lbl_8051FE44, local
 	.float 1.0
+.endobj lbl_8051FE44
 .balign 4
-lbl_8051FE48:
+.obj lbl_8051FE48, local
 	.asciz "ArgRotY"
+.endobj lbl_8051FE48
 .balign 4
-lbl_8051FE50:
+.obj lbl_8051FE50, local
 	.float 100.0
+.endobj lbl_8051FE50
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__Q23efx11TDangoCrashFPQ23efx3Arg
-create__Q23efx11TDangoCrashFPQ23efx3Arg:
+.fn create__Q23efx11TDangoCrashFPQ23efx3Arg, global
 /* 803EB360 003E82A0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803EB364 003E82A4  7C 08 02 A6 */	mflr r0
 /* 803EB368 003E82A8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -307,9 +318,9 @@ create__Q23efx11TDangoCrashFPQ23efx3Arg:
 /* 803EB4FC 003E843C  7C 08 03 A6 */	mtlr r0
 /* 803EB500 003E8440  38 21 00 70 */	addi r1, r1, 0x70
 /* 803EB504 003E8444  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TDangoCrashFPQ23efx3Arg
 
-.global create__Q23efx10TDangoTurnFPQ23efx3Arg
-create__Q23efx10TDangoTurnFPQ23efx3Arg:
+.fn create__Q23efx10TDangoTurnFPQ23efx3Arg, global
 /* 803EB508 003E8448  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803EB50C 003E844C  7C 08 02 A6 */	mflr r0
 /* 803EB510 003E8450  90 01 00 74 */	stw r0, 0x74(r1)
@@ -385,9 +396,9 @@ create__Q23efx10TDangoTurnFPQ23efx3Arg:
 /* 803EB618 003E8558  7C 08 03 A6 */	mtlr r0
 /* 803EB61C 003E855C  38 21 00 70 */	addi r1, r1, 0x70
 /* 803EB620 003E8560  4E 80 00 20 */	blr 
+.endfn create__Q23efx10TDangoTurnFPQ23efx3Arg
 
-.global setGlobalPrmColor__Q23efx9TKageMoveFR6Color4
-setGlobalPrmColor__Q23efx9TKageMoveFR6Color4:
+.fn setGlobalPrmColor__Q23efx9TKageMoveFR6Color4, global
 /* 803EB624 003E8564  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803EB628 003E8568  28 06 00 00 */	cmplwi r6, 0
 /* 803EB62C 003E856C  4D 82 00 20 */	beqlr 
@@ -400,9 +411,9 @@ setGlobalPrmColor__Q23efx9TKageMoveFR6Color4:
 /* 803EB648 003E8588  88 04 00 03 */	lbz r0, 3(r4)
 /* 803EB64C 003E858C  98 06 00 BB */	stb r0, 0xbb(r6)
 /* 803EB650 003E8590  4E 80 00 20 */	blr 
+.endfn setGlobalPrmColor__Q23efx9TKageMoveFR6Color4
 
-.global setGlobalPrmColor__Q23efx8TKageRunFR6Color4
-setGlobalPrmColor__Q23efx8TKageRunFR6Color4:
+.fn setGlobalPrmColor__Q23efx8TKageRunFR6Color4, global
 /* 803EB654 003E8594  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803EB658 003E8598  28 06 00 00 */	cmplwi r6, 0
 /* 803EB65C 003E859C  4D 82 00 20 */	beqlr 
@@ -415,9 +426,9 @@ setGlobalPrmColor__Q23efx8TKageRunFR6Color4:
 /* 803EB678 003E85B8  88 04 00 03 */	lbz r0, 3(r4)
 /* 803EB67C 003E85BC  98 06 00 BB */	stb r0, 0xbb(r6)
 /* 803EB680 003E85C0  4E 80 00 20 */	blr 
+.endfn setGlobalPrmColor__Q23efx8TKageRunFR6Color4
 
-.global setGlobalPrmColor__Q23efx10TKageDead1FR6Color4
-setGlobalPrmColor__Q23efx10TKageDead1FR6Color4:
+.fn setGlobalPrmColor__Q23efx10TKageDead1FR6Color4, global
 /* 803EB684 003E85C4  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803EB688 003E85C8  28 06 00 00 */	cmplwi r6, 0
 /* 803EB68C 003E85CC  4D 82 00 20 */	beqlr 
@@ -430,9 +441,9 @@ setGlobalPrmColor__Q23efx10TKageDead1FR6Color4:
 /* 803EB6A8 003E85E8  88 04 00 03 */	lbz r0, 3(r4)
 /* 803EB6AC 003E85EC  98 06 00 BB */	stb r0, 0xbb(r6)
 /* 803EB6B0 003E85F0  4E 80 00 20 */	blr 
+.endfn setGlobalPrmColor__Q23efx10TKageDead1FR6Color4
 
-.global create__Q23efx10TKageDead2FPQ23efx3Arg
-create__Q23efx10TKageDead2FPQ23efx3Arg:
+.fn create__Q23efx10TKageDead2FPQ23efx3Arg, global
 /* 803EB6B4 003E85F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803EB6B8 003E85F8  7C 08 02 A6 */	mflr r0
 /* 803EB6BC 003E85FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -487,9 +498,9 @@ create__Q23efx10TKageDead2FPQ23efx3Arg:
 /* 803EB774 003E86B4  7C 08 03 A6 */	mtlr r0
 /* 803EB778 003E86B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803EB77C 003E86BC  4E 80 00 20 */	blr 
+.endfn create__Q23efx10TKageDead2FPQ23efx3Arg
 
-.global create__Q23efx13TOootaBombLegFPQ23efx3Arg
-create__Q23efx13TOootaBombLegFPQ23efx3Arg:
+.fn create__Q23efx13TOootaBombLegFPQ23efx3Arg, global
 /* 803EB780 003E86C0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803EB784 003E86C4  7C 08 02 A6 */	mflr r0
 /* 803EB788 003E86C8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -588,9 +599,9 @@ create__Q23efx13TOootaBombLegFPQ23efx3Arg:
 /* 803EB8E8 003E8828  7C 08 03 A6 */	mtlr r0
 /* 803EB8EC 003E882C  38 21 00 70 */	addi r1, r1, 0x70
 /* 803EB8F0 003E8830  4E 80 00 20 */	blr 
+.endfn create__Q23efx13TOootaBombLegFPQ23efx3Arg
 
-.global create__Q23efx10TOootaFireFPQ23efx3Arg
-create__Q23efx10TOootaFireFPQ23efx3Arg:
+.fn create__Q23efx10TOootaFireFPQ23efx3Arg, global
 /* 803EB8F4 003E8834  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803EB8F8 003E8838  7C 08 02 A6 */	mflr r0
 /* 803EB8FC 003E883C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -679,9 +690,9 @@ create__Q23efx10TOootaFireFPQ23efx3Arg:
 /* 803EBA38 003E8978  7C 08 03 A6 */	mtlr r0
 /* 803EBA3C 003E897C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803EBA40 003E8980  4E 80 00 20 */	blr 
+.endfn create__Q23efx10TOootaFireFPQ23efx3Arg
 
-.global create__Q23efx13TKchFlickSandFPQ23efx3Arg
-create__Q23efx13TKchFlickSandFPQ23efx3Arg:
+.fn create__Q23efx13TKchFlickSandFPQ23efx3Arg, global
 /* 803EBA44 003E8984  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803EBA48 003E8988  7C 08 02 A6 */	mflr r0
 /* 803EBA4C 003E898C  90 01 00 94 */	stw r0, 0x94(r1)
@@ -771,9 +782,9 @@ create__Q23efx13TKchFlickSandFPQ23efx3Arg:
 /* 803EBB8C 003E8ACC  7C 08 03 A6 */	mtlr r0
 /* 803EBB90 003E8AD0  38 21 00 90 */	addi r1, r1, 0x90
 /* 803EBB94 003E8AD4  4E 80 00 20 */	blr 
+.endfn create__Q23efx13TKchFlickSandFPQ23efx3Arg
 
-.global create__Q23efx10TKchApSandFPQ23efx3Arg
-create__Q23efx10TKchApSandFPQ23efx3Arg:
+.fn create__Q23efx10TKchApSandFPQ23efx3Arg, global
 /* 803EBB98 003E8AD8  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803EBB9C 003E8ADC  7C 08 02 A6 */	mflr r0
 /* 803EBBA0 003E8AE0  90 01 00 94 */	stw r0, 0x94(r1)
@@ -863,9 +874,9 @@ create__Q23efx10TKchApSandFPQ23efx3Arg:
 /* 803EBCE0 003E8C20  7C 08 03 A6 */	mtlr r0
 /* 803EBCE4 003E8C24  38 21 00 90 */	addi r1, r1, 0x90
 /* 803EBCE8 003E8C28  4E 80 00 20 */	blr 
+.endfn create__Q23efx10TKchApSandFPQ23efx3Arg
 
-.global create__Q23efx9TKchApWatFPQ23efx3Arg
-create__Q23efx9TKchApWatFPQ23efx3Arg:
+.fn create__Q23efx9TKchApWatFPQ23efx3Arg, global
 /* 803EBCEC 003E8C2C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803EBCF0 003E8C30  7C 08 02 A6 */	mflr r0
 /* 803EBCF4 003E8C34  90 01 00 94 */	stw r0, 0x94(r1)
@@ -955,9 +966,9 @@ create__Q23efx9TKchApWatFPQ23efx3Arg:
 /* 803EBE34 003E8D74  7C 08 03 A6 */	mtlr r0
 /* 803EBE38 003E8D78  38 21 00 90 */	addi r1, r1, 0x90
 /* 803EBE3C 003E8D7C  4E 80 00 20 */	blr 
+.endfn create__Q23efx9TKchApWatFPQ23efx3Arg
 
-.global setGlobalScale__Q23efx12TKchDiveSandFf
-setGlobalScale__Q23efx12TKchDiveSandFf:
+.fn setGlobalScale__Q23efx12TKchDiveSandFf, global
 /* 803EBE40 003E8D80  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 803EBE44 003E8D84  28 04 00 00 */	cmplwi r4, 0
 /* 803EBE48 003E8D88  41 82 00 0C */	beq .L_803EBE54
@@ -976,9 +987,9 @@ setGlobalScale__Q23efx12TKchDiveSandFf:
 /* 803EBE74 003E8DB4  D0 24 00 B0 */	stfs f1, 0xb0(r4)
 /* 803EBE78 003E8DB8  D0 24 00 B4 */	stfs f1, 0xb4(r4)
 /* 803EBE7C 003E8DBC  4E 80 00 20 */	blr 
+.endfn setGlobalScale__Q23efx12TKchDiveSandFf
 
-.global setGlobalScale__Q23efx11TKchDiveWatFf
-setGlobalScale__Q23efx11TKchDiveWatFf:
+.fn setGlobalScale__Q23efx11TKchDiveWatFf, global
 /* 803EBE80 003E8DC0  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 803EBE84 003E8DC4  28 04 00 00 */	cmplwi r4, 0
 /* 803EBE88 003E8DC8  41 82 00 0C */	beq .L_803EBE94
@@ -997,9 +1008,9 @@ setGlobalScale__Q23efx11TKchDiveWatFf:
 /* 803EBEB4 003E8DF4  D0 24 00 B0 */	stfs f1, 0xb0(r4)
 /* 803EBEB8 003E8DF8  D0 24 00 B4 */	stfs f1, 0xb4(r4)
 /* 803EBEBC 003E8DFC  4E 80 00 20 */	blr 
+.endfn setGlobalScale__Q23efx11TKchDiveWatFf
 
-.global setGlobalScale__Q23efx9TKchCryABFf
-setGlobalScale__Q23efx9TKchCryABFf:
+.fn setGlobalScale__Q23efx9TKchCryABFf, global
 /* 803EBEC0 003E8E00  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 803EBEC4 003E8E04  28 04 00 00 */	cmplwi r4, 0
 /* 803EBEC8 003E8E08  41 82 00 0C */	beq .L_803EBED4
@@ -1012,18 +1023,18 @@ setGlobalScale__Q23efx9TKchCryABFf:
 /* 803EBEE0 003E8E20  D0 24 00 B0 */	stfs f1, 0xb0(r4)
 /* 803EBEE4 003E8E24  D0 24 00 B4 */	stfs f1, 0xb4(r4)
 /* 803EBEE8 003E8E28  4E 80 00 20 */	blr 
+.endfn setGlobalScale__Q23efx9TKchCryABFf
 
-.global setGlobalScale__Q23efx10TKchCryIndFf
-setGlobalScale__Q23efx10TKchCryIndFf:
+.fn setGlobalScale__Q23efx10TKchCryIndFf, global
 /* 803EBEEC 003E8E2C  80 63 00 08 */	lwz r3, 8(r3)
 /* 803EBEF0 003E8E30  28 03 00 00 */	cmplwi r3, 0
 /* 803EBEF4 003E8E34  4D 82 00 20 */	beqlr 
 /* 803EBEF8 003E8E38  D0 23 00 B0 */	stfs f1, 0xb0(r3)
 /* 803EBEFC 003E8E3C  D0 23 00 B4 */	stfs f1, 0xb4(r3)
 /* 803EBF00 003E8E40  4E 80 00 20 */	blr 
+.endfn setGlobalScale__Q23efx10TKchCryIndFf
 
-.global create__Q23efx10TKchDamageFPQ23efx3Arg
-create__Q23efx10TKchDamageFPQ23efx3Arg:
+.fn create__Q23efx10TKchDamageFPQ23efx3Arg, global
 /* 803EBF04 003E8E44  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803EBF08 003E8E48  7C 08 02 A6 */	mflr r0
 /* 803EBF0C 003E8E4C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1097,18 +1108,18 @@ create__Q23efx10TKchDamageFPQ23efx3Arg:
 /* 803EC010 003E8F50  7C 08 03 A6 */	mtlr r0
 /* 803EC014 003E8F54  38 21 00 30 */	addi r1, r1, 0x30
 /* 803EC018 003E8F58  4E 80 00 20 */	blr 
+.endfn create__Q23efx10TKchDamageFPQ23efx3Arg
 
-.global setGlobalScale__Q23efx13TKchSmokeHanaFf
-setGlobalScale__Q23efx13TKchSmokeHanaFf:
+.fn setGlobalScale__Q23efx13TKchSmokeHanaFf, global
 /* 803EC01C 003E8F5C  80 63 00 08 */	lwz r3, 8(r3)
 /* 803EC020 003E8F60  28 03 00 00 */	cmplwi r3, 0
 /* 803EC024 003E8F64  4D 82 00 20 */	beqlr 
 /* 803EC028 003E8F68  D0 23 00 B0 */	stfs f1, 0xb0(r3)
 /* 803EC02C 003E8F6C  D0 23 00 B4 */	stfs f1, 0xb4(r3)
 /* 803EC030 003E8F70  4E 80 00 20 */	blr 
+.endfn setGlobalScale__Q23efx13TKchSmokeHanaFf
 
-.global create__Q23efx13TKchDownsmokeFPQ23efx3Arg
-create__Q23efx13TKchDownsmokeFPQ23efx3Arg:
+.fn create__Q23efx13TKchDownsmokeFPQ23efx3Arg, global
 /* 803EC034 003E8F74  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803EC038 003E8F78  7C 08 02 A6 */	mflr r0
 /* 803EC03C 003E8F7C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1164,9 +1175,9 @@ create__Q23efx13TKchDownsmokeFPQ23efx3Arg:
 /* 803EC0F8 003E9038  7C 08 03 A6 */	mtlr r0
 /* 803EC0FC 003E903C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803EC100 003E9040  4E 80 00 20 */	blr 
+.endfn create__Q23efx13TKchDownsmokeFPQ23efx3Arg
 
-.global setGlobalScale__Q23efx12TKchDeadHanaFf
-setGlobalScale__Q23efx12TKchDeadHanaFf:
+.fn setGlobalScale__Q23efx12TKchDeadHanaFf, global
 /* 803EC104 003E9044  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 803EC108 003E9048  28 04 00 00 */	cmplwi r4, 0
 /* 803EC10C 003E904C  41 82 00 0C */	beq .L_803EC118
@@ -1179,13 +1190,13 @@ setGlobalScale__Q23efx12TKchDeadHanaFf:
 /* 803EC124 003E9064  D0 24 00 B0 */	stfs f1, 0xb0(r4)
 /* 803EC128 003E9068  D0 24 00 B4 */	stfs f1, 0xb4(r4)
 /* 803EC12C 003E906C  4E 80 00 20 */	blr 
+.endfn setGlobalScale__Q23efx12TKchDeadHanaFf
 
-.global init__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle
-init__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle:
+.fn init__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle, global
 /* 803EC130 003E9070  4E 80 00 20 */	blr 
+.endfn init__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle
 
-.global execute__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle
-execute__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle:
+.fn execute__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle, global
 /* 803EC134 003E9074  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803EC138 003E9078  7C 08 02 A6 */	mflr r0
 /* 803EC13C 003E907C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1285,9 +1296,9 @@ execute__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle
 /* 803EC2A4 003E91E4  7C 08 03 A6 */	mtlr r0
 /* 803EC2A8 003E91E8  38 21 00 50 */	addi r1, r1, 0x50
 /* 803EC2AC 003E91EC  4E 80 00 20 */	blr 
+.endfn execute__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle
 
-.global create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg
-create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg:
+.fn create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg, global
 /* 803EC2B0 003E91F0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803EC2B4 003E91F4  7C 08 02 A6 */	mflr r0
 /* 803EC2B8 003E91F8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1357,18 +1368,18 @@ create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg:
 /* 803EC3AC 003E92EC  7C 08 03 A6 */	mtlr r0
 /* 803EC3B0 003E92F0  38 21 00 30 */	addi r1, r1, 0x30
 /* 803EC3B4 003E92F4  4E 80 00 20 */	blr 
+.endfn create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg
 
-.global setGlobalScale__Q23efx22TKchYodareBaseChaseMtxFf
-setGlobalScale__Q23efx22TKchYodareBaseChaseMtxFf:
+.fn setGlobalScale__Q23efx22TKchYodareBaseChaseMtxFf, global
 /* 803EC3B8 003E92F8  80 63 00 08 */	lwz r3, 8(r3)
 /* 803EC3BC 003E92FC  28 03 00 00 */	cmplwi r3, 0
 /* 803EC3C0 003E9300  4D 82 00 20 */	beqlr 
 /* 803EC3C4 003E9304  D0 23 00 B0 */	stfs f1, 0xb0(r3)
 /* 803EC3C8 003E9308  D0 23 00 B4 */	stfs f1, 0xb4(r3)
 /* 803EC3CC 003E930C  4E 80 00 20 */	blr 
+.endfn setGlobalScale__Q23efx22TKchYodareBaseChaseMtxFf
 
-.global "setPosNrm__Q23efx11THdamaSightFR10Vector3<f>R10Vector3<f>"
-"setPosNrm__Q23efx11THdamaSightFR10Vector3<f>R10Vector3<f>":
+.fn "setPosNrm__Q23efx11THdamaSightFR10Vector3<f>R10Vector3<f>", global
 /* 803EC3D0 003E9310  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803EC3D4 003E9314  7C 08 02 A6 */	mflr r0
 /* 803EC3D8 003E9318  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1439,9 +1450,9 @@ setGlobalScale__Q23efx22TKchYodareBaseChaseMtxFf:
 /* 803EC4CC 003E940C  7C 08 03 A6 */	mtlr r0
 /* 803EC4D0 003E9410  38 21 00 40 */	addi r1, r1, 0x40
 /* 803EC4D4 003E9414  4E 80 00 20 */	blr 
+.endfn "setPosNrm__Q23efx11THdamaSightFR10Vector3<f>R10Vector3<f>"
 
-.global create__Q23efx11THdamaShellFPQ23efx3Arg
-create__Q23efx11THdamaShellFPQ23efx3Arg:
+.fn create__Q23efx11THdamaShellFPQ23efx3Arg, global
 /* 803EC4D8 003E9418  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803EC4DC 003E941C  7C 08 02 A6 */	mflr r0
 /* 803EC4E0 003E9420  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1497,9 +1508,9 @@ create__Q23efx11THdamaShellFPQ23efx3Arg:
 /* 803EC59C 003E94DC  7C 08 03 A6 */	mtlr r0
 /* 803EC5A0 003E94E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803EC5A4 003E94E4  4E 80 00 20 */	blr 
+.endfn create__Q23efx11THdamaShellFPQ23efx3Arg
 
-.global create__Q23efx11THdamaHit2WFPQ23efx3Arg
-create__Q23efx11THdamaHit2WFPQ23efx3Arg:
+.fn create__Q23efx11THdamaHit2WFPQ23efx3Arg, global
 /* 803EC5A8 003E94E8  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803EC5AC 003E94EC  7C 08 02 A6 */	mflr r0
 /* 803EC5B0 003E94F0  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1615,9 +1626,9 @@ create__Q23efx11THdamaHit2WFPQ23efx3Arg:
 /* 803EC758 003E9698  7C 08 03 A6 */	mtlr r0
 /* 803EC75C 003E969C  38 21 00 90 */	addi r1, r1, 0x90
 /* 803EC760 003E96A0  4E 80 00 20 */	blr 
+.endfn create__Q23efx11THdamaHit2WFPQ23efx3Arg
 
-.global create__Q23efx16THdamaDeadHahen1FPQ23efx3Arg
-create__Q23efx16THdamaDeadHahen1FPQ23efx3Arg:
+.fn create__Q23efx16THdamaDeadHahen1FPQ23efx3Arg, global
 /* 803EC764 003E96A4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803EC768 003E96A8  7C 08 02 A6 */	mflr r0
 /* 803EC76C 003E96AC  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1716,9 +1727,9 @@ create__Q23efx16THdamaDeadHahen1FPQ23efx3Arg:
 /* 803EC8CC 003E980C  7C 08 03 A6 */	mtlr r0
 /* 803EC8D0 003E9810  38 21 00 70 */	addi r1, r1, 0x70
 /* 803EC8D4 003E9814  4E 80 00 20 */	blr 
+.endfn create__Q23efx16THdamaDeadHahen1FPQ23efx3Arg
 
-.global create__Q23efx16THdamaDeadHahen2FPQ23efx3Arg
-create__Q23efx16THdamaDeadHahen2FPQ23efx3Arg:
+.fn create__Q23efx16THdamaDeadHahen2FPQ23efx3Arg, global
 /* 803EC8D8 003E9818  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803EC8DC 003E981C  7C 08 02 A6 */	mflr r0
 /* 803EC8E0 003E9820  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1824,27 +1835,27 @@ create__Q23efx16THdamaDeadHahen2FPQ23efx3Arg:
 /* 803ECA58 003E9998  7C 08 03 A6 */	mtlr r0
 /* 803ECA5C 003E999C  38 21 00 70 */	addi r1, r1, 0x70
 /* 803ECA60 003E99A0  4E 80 00 20 */	blr 
+.endfn create__Q23efx16THdamaDeadHahen2FPQ23efx3Arg
 
-.global setGlobalScale__Q23efx10TOdamaFur1Ff
-setGlobalScale__Q23efx10TOdamaFur1Ff:
+.fn setGlobalScale__Q23efx10TOdamaFur1Ff, global
 /* 803ECA64 003E99A4  80 63 00 08 */	lwz r3, 8(r3)
 /* 803ECA68 003E99A8  28 03 00 00 */	cmplwi r3, 0
 /* 803ECA6C 003E99AC  4D 82 00 20 */	beqlr 
 /* 803ECA70 003E99B0  D0 23 00 B0 */	stfs f1, 0xb0(r3)
 /* 803ECA74 003E99B4  D0 23 00 B4 */	stfs f1, 0xb4(r3)
 /* 803ECA78 003E99B8  4E 80 00 20 */	blr 
+.endfn setGlobalScale__Q23efx10TOdamaFur1Ff
 
-.global setGlobalScale__Q23efx10TOdamaFur2Ff
-setGlobalScale__Q23efx10TOdamaFur2Ff:
+.fn setGlobalScale__Q23efx10TOdamaFur2Ff, global
 /* 803ECA7C 003E99BC  80 63 00 08 */	lwz r3, 8(r3)
 /* 803ECA80 003E99C0  28 03 00 00 */	cmplwi r3, 0
 /* 803ECA84 003E99C4  4D 82 00 20 */	beqlr 
 /* 803ECA88 003E99C8  D0 23 00 B0 */	stfs f1, 0xb0(r3)
 /* 803ECA8C 003E99CC  D0 23 00 B4 */	stfs f1, 0xb4(r3)
 /* 803ECA90 003E99D0  4E 80 00 20 */	blr 
+.endfn setGlobalScale__Q23efx10TOdamaFur2Ff
 
-.global __dt__Q23efx11THdamaShellFv
-__dt__Q23efx11THdamaShellFv:
+.fn __dt__Q23efx11THdamaShellFv, weak
 /* 803ECA94 003E99D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ECA98 003E99D8  7C 08 02 A6 */	mflr r0
 /* 803ECA9C 003E99DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1886,13 +1897,14 @@ __dt__Q23efx11THdamaShellFv:
 /* 803ECB24 003E9A64  7C 08 03 A6 */	mtlr r0
 /* 803ECB28 003E9A68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ECB2C 003E9A6C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx11THdamaShellFv
 
-.global "@4@__dt__Q23efx22TKchYodareBaseChaseMtxFv"
-"@4@__dt__Q23efx22TKchYodareBaseChaseMtxFv":
+.fn "@4@__dt__Q23efx22TKchYodareBaseChaseMtxFv", weak
 /* 803ECB30 003E9A70  38 63 FF FC */	addi r3, r3, -4
 /* 803ECB34 003E9A74  4B F7 0E B4 */	b __dt__Q23efx22TKchYodareBaseChaseMtxFv
+.endfn "@4@__dt__Q23efx22TKchYodareBaseChaseMtxFv"
 
-.global "@4@__dt__Q23efx11THdamaShellFv"
-"@4@__dt__Q23efx11THdamaShellFv":
+.fn "@4@__dt__Q23efx11THdamaShellFv", weak
 /* 803ECB38 003E9A78  38 63 FF FC */	addi r3, r3, -4
 /* 803ECB3C 003E9A7C  4B FF FF 58 */	b __dt__Q23efx11THdamaShellFv
+.endfn "@4@__dt__Q23efx11THdamaShellFv"

@@ -1,31 +1,37 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497B40:
+.obj lbl_80497B40, local
 	.asciz "ebiScreenOmakeCardE"
+.endobj lbl_80497B40
 .balign 4
-lbl_80497B54:
+.obj lbl_80497B54, local
 	.asciz "Screen_newScreen_of_TOmakeCardE"
+.endobj lbl_80497B54
 .balign 4
-lbl_80497B74:
+.obj lbl_80497B74, local
 	.asciz "omake_tunagu.blo"
+.endobj lbl_80497B74
 .balign 4
-lbl_80497B88:
+.obj lbl_80497B88, local
 	.asciz "Screen_setCallBackMessage_of_TOmakeCardE"
+.endobj lbl_80497B88
 .balign 4
-lbl_80497BB4:
+.obj lbl_80497BB4, local
 	.asciz "omake_tunagu.bck"
+.endobj lbl_80497BB4
 .balign 4
-lbl_80497BC8:
+.obj lbl_80497BC8, local
 	.asciz "omake_tunagu.bpk"
+.endobj lbl_80497BC8
 .balign 4
-lbl_80497BDC:
+.obj lbl_80497BDC, local
 	.asciz "TOmakeCardE"
+.endobj lbl_80497BDC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q33ebi6Screen11TOmakeCardE
-__vt__Q33ebi6Screen11TOmakeCardE:
+.obj __vt__Q33ebi6Screen11TOmakeCardE, global
 	.4byte 0
 	.4byte 0
 	.4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
@@ -45,25 +51,31 @@ __vt__Q33ebi6Screen11TOmakeCardE:
 	.4byte doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv
 	.4byte doDraw__Q33ebi6Screen11TOmakeCardEFv
 	.4byte getName__Q33ebi6Screen11TOmakeCardEFv
+.endobj __vt__Q33ebi6Screen11TOmakeCardE
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FEB0:
+.obj lbl_8051FEB0, local
 	.float 42.0
-lbl_8051FEB4:
+.endobj lbl_8051FEB0
+.obj lbl_8051FEB4, local
 	.float 30.0
-lbl_8051FEB8:
+.endobj lbl_8051FEB4
+.obj lbl_8051FEB8, local
 	.float 60.0
-lbl_8051FEBC:
+.endobj lbl_8051FEB8
+.obj lbl_8051FEBC, local
 	.float 2550.0
-lbl_8051FEC0:
+.endobj lbl_8051FEBC
+.obj lbl_8051FEC0, local
 	.float 0.0
-lbl_8051FEC4:
+.endobj lbl_8051FEC0
+.obj lbl_8051FEC4, local
 	.float 1.0
+.endobj lbl_8051FEC4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q33ebi6Screen11TOmakeCardEFv
-__ct__Q33ebi6Screen11TOmakeCardEFv:
+.fn __ct__Q33ebi6Screen11TOmakeCardEFv, global
 /* 803F02A4 003ED1E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F02A8 003ED1E8  7C 08 02 A6 */	mflr r0
 /* 803F02AC 003ED1EC  3C 80 80 4F */	lis r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
@@ -237,9 +249,9 @@ __ct__Q33ebi6Screen11TOmakeCardEFv:
 /* 803F054C 003ED48C  7C 08 03 A6 */	mtlr r0
 /* 803F0550 003ED490  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F0554 003ED494  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi6Screen11TOmakeCardEFv
 
-.global doSetArchive__Q33ebi6Screen11TOmakeCardEFP10JKRArchive
-doSetArchive__Q33ebi6Screen11TOmakeCardEFP10JKRArchive:
+.fn doSetArchive__Q33ebi6Screen11TOmakeCardEFP10JKRArchive, global
 /* 803F0558 003ED498  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803F055C 003ED49C  7C 08 02 A6 */	mflr r0
 /* 803F0560 003ED4A0  3C A0 80 49 */	lis r5, lbl_80497B40@ha
@@ -408,9 +420,9 @@ doSetArchive__Q33ebi6Screen11TOmakeCardEFP10JKRArchive:
 /* 803F07DC 003ED71C  7C 08 03 A6 */	mtlr r0
 /* 803F07E0 003ED720  38 21 00 20 */	addi r1, r1, 0x20
 /* 803F07E4 003ED724  4E 80 00 20 */	blr 
+.endfn doSetArchive__Q33ebi6Screen11TOmakeCardEFP10JKRArchive
 
-.global doOpenScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen7ArgOpen
-doOpenScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen7ArgOpen:
+.fn doOpenScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen7ArgOpen, global
 /* 803F07E8 003ED728  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F07EC 003ED72C  7C 08 02 A6 */	mflr r0
 /* 803F07F0 003ED730  C0 22 1B 58 */	lfs f1, lbl_8051FEB8@sda21(r2)
@@ -458,9 +470,9 @@ doOpenScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen7ArgOpen:
 /* 803F0898 003ED7D8  7C 08 03 A6 */	mtlr r0
 /* 803F089C 003ED7DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F08A0 003ED7E0  4E 80 00 20 */	blr 
+.endfn doOpenScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen7ArgOpen
 
-.global doCloseScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen8ArgClose
-doCloseScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen8ArgClose:
+.fn doCloseScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen8ArgClose, global
 /* 803F08A4 003ED7E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F08A8 003ED7E8  7C 08 02 A6 */	mflr r0
 /* 803F08AC 003ED7EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -481,9 +493,9 @@ doCloseScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen8ArgClose:
 /* 803F08E8 003ED828  7C 08 03 A6 */	mtlr r0
 /* 803F08EC 003ED82C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F08F0 003ED830  4E 80 00 20 */	blr 
+.endfn doCloseScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen8ArgClose
 
-.global doInitWaitState__Q33ebi6Screen11TOmakeCardEFv
-doInitWaitState__Q33ebi6Screen11TOmakeCardEFv:
+.fn doInitWaitState__Q33ebi6Screen11TOmakeCardEFv, global
 /* 803F08F4 003ED834  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F08F8 003ED838  7C 08 02 A6 */	mflr r0
 /* 803F08FC 003ED83C  C0 22 1B 58 */	lfs f1, lbl_8051FEB8@sda21(r2)
@@ -499,9 +511,9 @@ doInitWaitState__Q33ebi6Screen11TOmakeCardEFv:
 /* 803F0924 003ED864  7C 08 03 A6 */	mtlr r0
 /* 803F0928 003ED868  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F092C 003ED86C  4E 80 00 20 */	blr 
+.endfn doInitWaitState__Q33ebi6Screen11TOmakeCardEFv
 
-.global doUpdateStateOpen__Q33ebi6Screen11TOmakeCardEFv
-doUpdateStateOpen__Q33ebi6Screen11TOmakeCardEFv:
+.fn doUpdateStateOpen__Q33ebi6Screen11TOmakeCardEFv, global
 /* 803F0930 003ED870  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F0934 003ED874  7C 08 02 A6 */	mflr r0
 /* 803F0938 003ED878  90 01 00 14 */	stw r0, 0x14(r1)
@@ -523,9 +535,9 @@ doUpdateStateOpen__Q33ebi6Screen11TOmakeCardEFv:
 /* 803F0978 003ED8B8  7C 08 03 A6 */	mtlr r0
 /* 803F097C 003ED8BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F0980 003ED8C0  4E 80 00 20 */	blr 
+.endfn doUpdateStateOpen__Q33ebi6Screen11TOmakeCardEFv
 
-.global doUpdateStateWait__Q33ebi6Screen11TOmakeCardEFv
-doUpdateStateWait__Q33ebi6Screen11TOmakeCardEFv:
+.fn doUpdateStateWait__Q33ebi6Screen11TOmakeCardEFv, global
 /* 803F0984 003ED8C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803F0988 003ED8C8  7C 08 02 A6 */	mflr r0
 /* 803F098C 003ED8CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -710,9 +722,9 @@ doUpdateStateWait__Q33ebi6Screen11TOmakeCardEFv:
 /* 803F0C14 003EDB54  7C 08 03 A6 */	mtlr r0
 /* 803F0C18 003EDB58  38 21 00 20 */	addi r1, r1, 0x20
 /* 803F0C1C 003EDB5C  4E 80 00 20 */	blr 
+.endfn doUpdateStateWait__Q33ebi6Screen11TOmakeCardEFv
 
-.global doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv
-doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv:
+.fn doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv, global
 /* 803F0C20 003EDB60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F0C24 003EDB64  7C 08 02 A6 */	mflr r0
 /* 803F0C28 003EDB68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -734,9 +746,9 @@ doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv:
 /* 803F0C68 003EDBA8  7C 08 03 A6 */	mtlr r0
 /* 803F0C6C 003EDBAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F0C70 003EDBB0  4E 80 00 20 */	blr 
+.endfn doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv
 
-.global doDraw__Q33ebi6Screen11TOmakeCardEFv
-doDraw__Q33ebi6Screen11TOmakeCardEFv:
+.fn doDraw__Q33ebi6Screen11TOmakeCardEFv, global
 /* 803F0C74 003EDBB4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803F0C78 003EDBB8  7C 08 02 A6 */	mflr r0
 /* 803F0C7C 003EDBBC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -766,9 +778,10 @@ doDraw__Q33ebi6Screen11TOmakeCardEFv:
 /* 803F0CDC 003EDC1C  7C 08 03 A6 */	mtlr r0
 /* 803F0CE0 003EDC20  38 21 00 20 */	addi r1, r1, 0x20
 /* 803F0CE4 003EDC24  4E 80 00 20 */	blr 
+.endfn doDraw__Q33ebi6Screen11TOmakeCardEFv
 
-.global getName__Q33ebi6Screen11TOmakeCardEFv
-getName__Q33ebi6Screen11TOmakeCardEFv:
+.fn getName__Q33ebi6Screen11TOmakeCardEFv, weak
 /* 803F0CE8 003EDC28  3C 60 80 49 */	lis r3, lbl_80497BDC@ha
 /* 803F0CEC 003EDC2C  38 63 7B DC */	addi r3, r3, lbl_80497BDC@l
 /* 803F0CF0 003EDC30  4E 80 00 20 */	blr 
+.endfn getName__Q33ebi6Screen11TOmakeCardEFv

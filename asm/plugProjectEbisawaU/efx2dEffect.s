@@ -1,26 +1,33 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80495B68:
+.obj lbl_80495B68, local
 	.asciz "efx2dEffect"
+.endobj lbl_80495B68
 .balign 4
-lbl_80495B74:
+.obj lbl_80495B74, local
 	.asciz "ArgScale"
+.endobj lbl_80495B74
 .balign 4
-lbl_80495B80:
+.obj lbl_80495B80, local
 	.asciz "efx2dEffect.cpp"
+.endobj lbl_80495B80
 .balign 4
-lbl_80495B90:
+.obj lbl_80495B90, local
 	.asciz "P2Assert"
+.endobj lbl_80495B90
 .balign 4
-lbl_80495B9C:
+.obj lbl_80495B9C, local
 	.asciz "ArgScaleColorColor"
+.endobj lbl_80495B9C
 .balign 4
-lbl_80495BB0:
+.obj lbl_80495BB0, local
 	.asciz "ArgColor"
+.endobj lbl_80495BB0
 .balign 4
-lbl_80495BBC:
+.obj lbl_80495BBC, local
 	.asciz "ArgFilecopy"
+.endobj lbl_80495BBC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -174,14 +181,18 @@ __vt__Q25efx2d9T2DCursor:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F6E0:
+.obj lbl_8051F6E0, local
 	.float 0.016949153
-lbl_8051F6E4:
+.endobj lbl_8051F6E0
+.obj lbl_8051F6E4, local
 	.float 0.0
-lbl_8051F6E8:
+.endobj lbl_8051F6E4
+.obj lbl_8051F6E8, local
 	.float 200.0
-lbl_8051F6EC:
+.endobj lbl_8051F6E8
+.obj lbl_8051F6EC, local
 	.float 1.0
+.endobj lbl_8051F6EC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q25efx2d9T2DCursorFPQ25efx2d3Arg

@@ -1,34 +1,41 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496D38:
+.obj lbl_80496D38, local
 	.asciz "ebiScreenTitleMenu"
+.endobj lbl_80496D38
 .balign 4
-lbl_80496D4C:
+.obj lbl_80496D4C, local
 	.asciz "TTitleMenu::setArchive"
+.endobj lbl_80496D4C
 .balign 4
-lbl_80496D64:
+.obj lbl_80496D64, local
 	.asciz "title_menu_6.blo"
+.endobj lbl_80496D64
 .balign 4
-lbl_80496D78:
+.obj lbl_80496D78, local
 	.asciz "ebiScreenTitleMenu.cpp"
+.endobj lbl_80496D78
 .balign 4
-lbl_80496D90:
+.obj lbl_80496D90, local
 	.asciz "P2Assert"
+.endobj lbl_80496D90
 .balign 4
-lbl_80496D9C:
+.obj lbl_80496D9C, local
 	.asciz "title_menu_5.bck"
+.endobj lbl_80496D9C
 .balign 4
-lbl_80496DB0:
+.obj lbl_80496DB0, local
 	.asciz "title_menu_6.bck"
+.endobj lbl_80496DB0
 .balign 4
-lbl_80496DC4:
+.obj lbl_80496DC4, local
 	.asciz "TTitleMenu"
+.endobj lbl_80496DC4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q33ebi6Screen10TTitleMenu
-__vt__Q33ebi6Screen10TTitleMenu:
+.obj __vt__Q33ebi6Screen10TTitleMenu, global
 	.4byte 0
 	.4byte 0
 	.4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
@@ -48,39 +55,48 @@ __vt__Q33ebi6Screen10TTitleMenu:
 	.4byte doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv
 	.4byte doDraw__Q33ebi6Screen10TTitleMenuFv
 	.4byte getName__Q33ebi6Screen10TTitleMenuFv
+.endobj __vt__Q33ebi6Screen10TTitleMenu
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FB68:
+.obj lbl_8051FB68, local
 	.float 0.66
-lbl_8051FB6C:
+.endobj lbl_8051FB68
+.obj lbl_8051FB6C, local
 	.float 0.15
-lbl_8051FB70:
+.endobj lbl_8051FB6C
+.obj lbl_8051FB70, local
 	.float 60.0
-lbl_8051FB74:
+.endobj lbl_8051FB70
+.obj lbl_8051FB74, local
 	.float 30.0
-lbl_8051FB78:
+.endobj lbl_8051FB74
+.obj lbl_8051FB78, local
 	.float 0.2
-lbl_8051FB7C:
+.endobj lbl_8051FB78
+.obj lbl_8051FB7C, local
 	.float 1.0
-lbl_8051FB80:
+.endobj lbl_8051FB7C
+.obj lbl_8051FB80, local
 	.float 32767.0
+.endobj lbl_8051FB80
 .balign 8
-lbl_8051FB88:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051FB90:
+.obj lbl_8051FB88, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051FB88
+.obj lbl_8051FB90, local
 	.float 0.0
-lbl_8051FB94:
+.endobj lbl_8051FB90
+.obj lbl_8051FB94, local
 	.float 255.0
+.endobj lbl_8051FB94
 .balign 8
-lbl_8051FB98:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_8051FB98, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051FB98
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global doSetArchive__Q33ebi6Screen10TTitleMenuFP10JKRArchive
-doSetArchive__Q33ebi6Screen10TTitleMenuFP10JKRArchive:
+.fn doSetArchive__Q33ebi6Screen10TTitleMenuFP10JKRArchive, global
 /* 803D9CE0 003D6C20  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803D9CE4 003D6C24  7C 08 02 A6 */	mflr r0
 /* 803D9CE8 003D6C28  3C A0 80 49 */	lis r5, lbl_80496D38@ha
@@ -678,9 +694,9 @@ doSetArchive__Q33ebi6Screen10TTitleMenuFP10JKRArchive:
 /* 803DA5FC 003D753C  7C 08 03 A6 */	mtlr r0
 /* 803DA600 003D7540  38 21 00 60 */	addi r1, r1, 0x60
 /* 803DA604 003D7544  4E 80 00 20 */	blr 
+.endfn doSetArchive__Q33ebi6Screen10TTitleMenuFP10JKRArchive
 
-.global doOpenScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen
-doOpenScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen:
+.fn doOpenScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen, global
 /* 803DA608 003D7548  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DA60C 003D754C  7C 08 02 A6 */	mflr r0
 /* 803DA610 003D7550  90 01 00 24 */	stw r0, 0x24(r1)
@@ -827,9 +843,9 @@ doOpenScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen:
 /* 803DA818 003D7758  7C 08 03 A6 */	mtlr r0
 /* 803DA81C 003D775C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DA820 003D7760  4E 80 00 20 */	blr 
+.endfn doOpenScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen
 
-.global doInitWaitState__Q33ebi6Screen10TTitleMenuFv
-doInitWaitState__Q33ebi6Screen10TTitleMenuFv:
+.fn doInitWaitState__Q33ebi6Screen10TTitleMenuFv, global
 /* 803DA824 003D7764  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DA828 003D7768  7C 08 02 A6 */	mflr r0
 /* 803DA82C 003D776C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -949,9 +965,9 @@ doInitWaitState__Q33ebi6Screen10TTitleMenuFv:
 /* 803DA9DC 003D791C  7C 08 03 A6 */	mtlr r0
 /* 803DA9E0 003D7920  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DA9E4 003D7924  4E 80 00 20 */	blr 
+.endfn doInitWaitState__Q33ebi6Screen10TTitleMenuFv
 
-.global doCloseScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen8ArgClose
-doCloseScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen8ArgClose:
+.fn doCloseScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen8ArgClose, global
 /* 803DA9E8 003D7928  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DA9EC 003D792C  7C 08 02 A6 */	mflr r0
 /* 803DA9F0 003D7930  90 01 00 14 */	stw r0, 0x14(r1)
@@ -982,9 +998,9 @@ doCloseScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen8ArgClose:
 /* 803DAA4C 003D798C  7C 08 03 A6 */	mtlr r0
 /* 803DAA50 003D7990  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DAA54 003D7994  4E 80 00 20 */	blr 
+.endfn doCloseScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen8ArgClose
 
-.global doUpdateStateOpen__Q33ebi6Screen10TTitleMenuFv
-doUpdateStateOpen__Q33ebi6Screen10TTitleMenuFv:
+.fn doUpdateStateOpen__Q33ebi6Screen10TTitleMenuFv, global
 /* 803DAA58 003D7998  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DAA5C 003D799C  7C 08 02 A6 */	mflr r0
 /* 803DAA60 003D79A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1021,9 +1037,9 @@ doUpdateStateOpen__Q33ebi6Screen10TTitleMenuFv:
 /* 803DAAD0 003D7A10  7C 08 03 A6 */	mtlr r0
 /* 803DAAD4 003D7A14  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DAAD8 003D7A18  4E 80 00 20 */	blr 
+.endfn doUpdateStateOpen__Q33ebi6Screen10TTitleMenuFv
 
-.global doUpdateStateWait__Q33ebi6Screen10TTitleMenuFv
-doUpdateStateWait__Q33ebi6Screen10TTitleMenuFv:
+.fn doUpdateStateWait__Q33ebi6Screen10TTitleMenuFv, global
 /* 803DAADC 003D7A1C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DAAE0 003D7A20  7C 08 02 A6 */	mflr r0
 /* 803DAAE4 003D7A24  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1329,9 +1345,9 @@ doUpdateStateWait__Q33ebi6Screen10TTitleMenuFv:
 /* 803DAF40 003D7E80  7C 08 03 A6 */	mtlr r0
 /* 803DAF44 003D7E84  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DAF48 003D7E88  4E 80 00 20 */	blr 
+.endfn doUpdateStateWait__Q33ebi6Screen10TTitleMenuFv
 
-.global doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv
-doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv:
+.fn doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv, global
 /* 803DAF4C 003D7E8C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803DAF50 003D7E90  7C 08 02 A6 */	mflr r0
 /* 803DAF54 003D7E94  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1390,9 +1406,9 @@ doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv:
 /* 803DB014 003D7F54  7C 08 03 A6 */	mtlr r0
 /* 803DB018 003D7F58  38 21 00 30 */	addi r1, r1, 0x30
 /* 803DB01C 003D7F5C  4E 80 00 20 */	blr 
+.endfn doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv
 
-.global doDraw__Q33ebi6Screen10TTitleMenuFv
-doDraw__Q33ebi6Screen10TTitleMenuFv:
+.fn doDraw__Q33ebi6Screen10TTitleMenuFv, global
 /* 803DB020 003D7F60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DB024 003D7F64  7C 08 02 A6 */	mflr r0
 /* 803DB028 003D7F68  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1422,14 +1438,14 @@ doDraw__Q33ebi6Screen10TTitleMenuFv:
 /* 803DB088 003D7FC8  7C 08 03 A6 */	mtlr r0
 /* 803DB08C 003D7FCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DB090 003D7FD0  4E 80 00 20 */	blr 
+.endfn doDraw__Q33ebi6Screen10TTitleMenuFv
 
-.global setController__Q33ebi6Screen10TTitleMenuFP10Controller
-setController__Q33ebi6Screen10TTitleMenuFP10Controller:
+.fn setController__Q33ebi6Screen10TTitleMenuFP10Controller, global
 /* 803DB094 003D7FD4  90 83 00 0C */	stw r4, 0xc(r3)
 /* 803DB098 003D7FD8  4E 80 00 20 */	blr 
+.endfn setController__Q33ebi6Screen10TTitleMenuFP10Controller
 
-.global openMenuSet__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen
-openMenuSet__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen:
+.fn openMenuSet__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen, global
 /* 803DB09C 003D7FDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DB0A0 003D7FE0  7C 08 02 A6 */	mflr r0
 /* 803DB0A4 003D7FE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1456,19 +1472,19 @@ openMenuSet__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen:
 /* 803DB0F0 003D8030  7C 08 03 A6 */	mtlr r0
 /* 803DB0F4 003D8034  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DB0F8 003D8038  4E 80 00 20 */	blr 
+.endfn openMenuSet__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen
 
-.global isDecide__Q33ebi6Screen10TTitleMenuFv
-isDecide__Q33ebi6Screen10TTitleMenuFv:
+.fn isDecide__Q33ebi6Screen10TTitleMenuFv, global
 /* 803DB0FC 003D803C  88 63 00 40 */	lbz r3, 0x40(r3)
 /* 803DB100 003D8040  4E 80 00 20 */	blr 
+.endfn isDecide__Q33ebi6Screen10TTitleMenuFv
 
-.global isCancel__Q33ebi6Screen10TTitleMenuFv
-isCancel__Q33ebi6Screen10TTitleMenuFv:
+.fn isCancel__Q33ebi6Screen10TTitleMenuFv, global
 /* 803DB104 003D8044  88 63 00 41 */	lbz r3, 0x41(r3)
 /* 803DB108 003D8048  4E 80 00 20 */	blr 
+.endfn isCancel__Q33ebi6Screen10TTitleMenuFv
 
-.global showPika___Q33ebi6Screen10TTitleMenuFl
-showPika___Q33ebi6Screen10TTitleMenuFl:
+.fn showPika___Q33ebi6Screen10TTitleMenuFl, global
 /* 803DB10C 003D804C  1C 04 01 90 */	mulli r0, r4, 0x190
 /* 803DB110 003D8050  54 84 10 3A */	slwi r4, r4, 2
 /* 803DB114 003D8054  39 00 00 00 */	li r8, 0
@@ -1486,9 +1502,9 @@ showPika___Q33ebi6Screen10TTitleMenuFl:
 /* 803DB13C 003D807C  7C 08 00 00 */	cmpw r8, r0
 /* 803DB140 003D8080  41 80 FF E8 */	blt .L_803DB128
 /* 803DB144 003D8084  4E 80 00 20 */	blr 
+.endfn showPika___Q33ebi6Screen10TTitleMenuFl
 
-.global hidePika___Q33ebi6Screen10TTitleMenuFl
-hidePika___Q33ebi6Screen10TTitleMenuFl:
+.fn hidePika___Q33ebi6Screen10TTitleMenuFl, global
 /* 803DB148 003D8088  1C 04 01 90 */	mulli r0, r4, 0x190
 /* 803DB14C 003D808C  54 84 10 3A */	slwi r4, r4, 2
 /* 803DB150 003D8090  39 00 00 00 */	li r8, 0
@@ -1506,9 +1522,10 @@ hidePika___Q33ebi6Screen10TTitleMenuFl:
 /* 803DB178 003D80B8  7C 08 00 00 */	cmpw r8, r0
 /* 803DB17C 003D80BC  41 80 FF E8 */	blt .L_803DB164
 /* 803DB180 003D80C0  4E 80 00 20 */	blr 
+.endfn hidePika___Q33ebi6Screen10TTitleMenuFl
 
-.global getName__Q33ebi6Screen10TTitleMenuFv
-getName__Q33ebi6Screen10TTitleMenuFv:
+.fn getName__Q33ebi6Screen10TTitleMenuFv, weak
 /* 803DB184 003D80C4  3C 60 80 49 */	lis r3, lbl_80496DC4@ha
 /* 803DB188 003D80C8  38 63 6D C4 */	addi r3, r3, lbl_80496DC4@l
 /* 803DB18C 003D80CC  4E 80 00 20 */	blr 
+.endfn getName__Q33ebi6Screen10TTitleMenuFv

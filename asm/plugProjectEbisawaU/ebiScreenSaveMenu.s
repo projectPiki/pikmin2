@@ -1,25 +1,31 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496E70:
+.obj lbl_80496E70, local
 	.asciz "ebiScreenSaveMenu"
+.endobj lbl_80496E70
 .balign 4
-lbl_80496E84:
+.obj lbl_80496E84, local
 	.asciz "info_window.blo"
+.endobj lbl_80496E84
 .balign 4
-lbl_80496E94:
+.obj lbl_80496E94, local
 	.asciz "TScreenSaveMenu::loadResource"
+.endobj lbl_80496E94
 .balign 4
-lbl_80496EB4:
+.obj lbl_80496EB4, local
 	.asciz "info_window.szs"
+.endobj lbl_80496EB4
 .balign 4
-lbl_80496EC4:
+.obj lbl_80496EC4, local
 	.asciz "ebiScreenSaveMenu.cpp"
+.endobj lbl_80496EC4
 .balign 4
-lbl_80496EDC:
+.obj lbl_80496EDC, local
 	.asciz "P2Assert"
+.endobj lbl_80496EDC
 .balign 4
-lbl_80496EE8: # Shift-JIS
+.obj lbl_80496EE8, local # Shift-JIS
 	.4byte 0x82A082E8
 	.4byte 0x82A682C8
 	.4byte 0x82A28149
@@ -29,14 +35,15 @@ lbl_80496EE8: # Shift-JIS
 	.4byte 0x82BD82CD
 	.4byte 0x82A082C1
 	.4byte 0x81490A00
+.endobj lbl_80496EE8
 .balign 4
-lbl_80496F0C:
+.obj lbl_80496F0C, local
 	.asciz "TSaveMenu"
+.endobj lbl_80496F0C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q33ebi6Screen9TSaveMenu
-__vt__Q33ebi6Screen9TSaveMenu:
+.obj __vt__Q33ebi6Screen9TSaveMenu, global
 	.4byte 0
 	.4byte 0
 	.4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
@@ -56,35 +63,44 @@ __vt__Q33ebi6Screen9TSaveMenu:
 	.4byte doUpdateStateClose__Q33ebi6Screen9TSaveMenuFv
 	.4byte doDraw__Q33ebi6Screen9TSaveMenuFv
 	.4byte getName__Q33ebi6Screen9TSaveMenuFv
+.endobj __vt__Q33ebi6Screen9TSaveMenu
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FBC8:
+.obj lbl_8051FBC8, local
 	.float 0.0
-lbl_8051FBCC:
+.endobj lbl_8051FBC8
+.obj lbl_8051FBCC, local
 	.float 800.0
-lbl_8051FBD0:
+.endobj lbl_8051FBCC
+.obj lbl_8051FBD0, local
 	.float 1.0
-lbl_8051FBD4:
+.endobj lbl_8051FBD0
+.obj lbl_8051FBD4, local
 	.float 0.3
-lbl_8051FBD8:
+.endobj lbl_8051FBD4
+.obj lbl_8051FBD8, local
 	.float -800.0
+.endobj lbl_8051FBD8
 .balign 8
-lbl_8051FBE0:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051FBE8:
+.obj lbl_8051FBE0, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051FBE0
+.obj lbl_8051FBE8, local
 	.float 0.6
-lbl_8051FBEC:
+.endobj lbl_8051FBE8
+.obj lbl_8051FBEC, local
 	.float 0.8
-lbl_8051FBF0:
+.endobj lbl_8051FBEC
+.obj lbl_8051FBF0, local
 	.float 0.5
-lbl_8051FBF4:
+.endobj lbl_8051FBF0
+.obj lbl_8051FBF4, local
 	.float -0.5
+.endobj lbl_8051FBF4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global doSetArchive__Q33ebi6Screen9TSaveMenuFP10JKRArchive
-doSetArchive__Q33ebi6Screen9TSaveMenuFP10JKRArchive:
+.fn doSetArchive__Q33ebi6Screen9TSaveMenuFP10JKRArchive, global
 /* 803DD0A8 003D9FE8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DD0AC 003D9FEC  7C 08 02 A6 */	mflr r0
 /* 803DD0B0 003D9FF0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -299,9 +315,9 @@ doSetArchive__Q33ebi6Screen9TSaveMenuFP10JKRArchive:
 /* 803DD3EC 003DA32C  7C 08 03 A6 */	mtlr r0
 /* 803DD3F0 003DA330  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DD3F4 003DA334  4E 80 00 20 */	blr 
+.endfn doSetArchive__Q33ebi6Screen9TSaveMenuFP10JKRArchive
 
-.global doOpenScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen7ArgOpen
-doOpenScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen7ArgOpen:
+.fn doOpenScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen7ArgOpen, global
 /* 803DD3F8 003DA338  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DD3FC 003DA33C  7C 08 02 A6 */	mflr r0
 /* 803DD400 003DA340  C0 22 16 98 */	lfs f1, kFadeTime__Q23ebi8E2DFader@sda21(r2)
@@ -333,9 +349,9 @@ doOpenScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen7ArgOpen:
 /* 803DD468 003DA3A8  7C 08 03 A6 */	mtlr r0
 /* 803DD46C 003DA3AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DD470 003DA3B0  4E 80 00 20 */	blr 
+.endfn doOpenScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen7ArgOpen
 
-.global doCloseScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen8ArgClose
-doCloseScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen8ArgClose:
+.fn doCloseScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen8ArgClose, global
 /* 803DD474 003DA3B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DD478 003DA3B8  7C 08 02 A6 */	mflr r0
 /* 803DD47C 003DA3BC  C0 02 18 68 */	lfs f0, lbl_8051FBC8@sda21(r2)
@@ -361,9 +377,9 @@ doCloseScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen8ArgClose:
 /* 803DD4CC 003DA40C  7C 08 03 A6 */	mtlr r0
 /* 803DD4D0 003DA410  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DD4D4 003DA414  4E 80 00 20 */	blr 
+.endfn doCloseScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen8ArgClose
 
-.global doKillScreen__Q33ebi6Screen9TSaveMenuFv
-doKillScreen__Q33ebi6Screen9TSaveMenuFv:
+.fn doKillScreen__Q33ebi6Screen9TSaveMenuFv, global
 /* 803DD4D8 003DA418  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DD4DC 003DA41C  7C 08 02 A6 */	mflr r0
 /* 803DD4E0 003DA420  38 80 00 00 */	li r4, 0
@@ -398,9 +414,9 @@ doKillScreen__Q33ebi6Screen9TSaveMenuFv:
 /* 803DD550 003DA490  7C 08 03 A6 */	mtlr r0
 /* 803DD554 003DA494  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DD558 003DA498  4E 80 00 20 */	blr 
+.endfn doKillScreen__Q33ebi6Screen9TSaveMenuFv
 
-.global doUpdateStateOpen__Q33ebi6Screen9TSaveMenuFv
-doUpdateStateOpen__Q33ebi6Screen9TSaveMenuFv:
+.fn doUpdateStateOpen__Q33ebi6Screen9TSaveMenuFv, global
 /* 803DD55C 003DA49C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DD560 003DA4A0  7C 08 02 A6 */	mflr r0
 /* 803DD564 003DA4A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -457,9 +473,9 @@ doUpdateStateOpen__Q33ebi6Screen9TSaveMenuFv:
 /* 803DD62C 003DA56C  7C 08 03 A6 */	mtlr r0
 /* 803DD630 003DA570  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DD634 003DA574  4E 80 00 20 */	blr 
+.endfn doUpdateStateOpen__Q33ebi6Screen9TSaveMenuFv
 
-.global doUpdateStateWait__Q33ebi6Screen9TSaveMenuFv
-doUpdateStateWait__Q33ebi6Screen9TSaveMenuFv:
+.fn doUpdateStateWait__Q33ebi6Screen9TSaveMenuFv, global
 /* 803DD638 003DA578  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DD63C 003DA57C  7C 08 02 A6 */	mflr r0
 /* 803DD640 003DA580  90 01 00 14 */	stw r0, 0x14(r1)
@@ -490,9 +506,9 @@ doUpdateStateWait__Q33ebi6Screen9TSaveMenuFv:
 /* 803DD6A0 003DA5E0  7C 08 03 A6 */	mtlr r0
 /* 803DD6A4 003DA5E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DD6A8 003DA5E8  4E 80 00 20 */	blr 
+.endfn doUpdateStateWait__Q33ebi6Screen9TSaveMenuFv
 
-.global doUpdateStateClose__Q33ebi6Screen9TSaveMenuFv
-doUpdateStateClose__Q33ebi6Screen9TSaveMenuFv:
+.fn doUpdateStateClose__Q33ebi6Screen9TSaveMenuFv, global
 /* 803DD6AC 003DA5EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DD6B0 003DA5F0  7C 08 02 A6 */	mflr r0
 /* 803DD6B4 003DA5F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -547,9 +563,9 @@ doUpdateStateClose__Q33ebi6Screen9TSaveMenuFv:
 /* 803DD774 003DA6B4  7C 08 03 A6 */	mtlr r0
 /* 803DD778 003DA6B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DD77C 003DA6BC  4E 80 00 20 */	blr 
+.endfn doUpdateStateClose__Q33ebi6Screen9TSaveMenuFv
 
-.global doDraw__Q33ebi6Screen9TSaveMenuFv
-doDraw__Q33ebi6Screen9TSaveMenuFv:
+.fn doDraw__Q33ebi6Screen9TSaveMenuFv, global
 /* 803DD780 003DA6C0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803DD784 003DA6C4  7C 08 02 A6 */	mflr r0
 /* 803DD788 003DA6C8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -699,9 +715,9 @@ doDraw__Q33ebi6Screen9TSaveMenuFv:
 /* 803DD9A8 003DA8E8  7C 08 03 A6 */	mtlr r0
 /* 803DD9AC 003DA8EC  38 21 00 70 */	addi r1, r1, 0x70
 /* 803DD9B0 003DA8F0  4E 80 00 20 */	blr 
+.endfn doDraw__Q33ebi6Screen9TSaveMenuFv
 
-.global loadResource__Q33ebi6Screen9TSaveMenuFv
-loadResource__Q33ebi6Screen9TSaveMenuFv:
+.fn loadResource__Q33ebi6Screen9TSaveMenuFv, global
 /* 803DD9B4 003DA8F4  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 803DD9B8 003DA8F8  7C 08 02 A6 */	mflr r0
 /* 803DD9BC 003DA8FC  3C 80 80 49 */	lis r4, lbl_80496E70@ha
@@ -747,9 +763,9 @@ loadResource__Q33ebi6Screen9TSaveMenuFv:
 /* 803DDA58 003DA998  7C 08 03 A6 */	mtlr r0
 /* 803DDA5C 003DA99C  38 21 01 20 */	addi r1, r1, 0x120
 /* 803DDA60 003DA9A0  4E 80 00 20 */	blr 
+.endfn loadResource__Q33ebi6Screen9TSaveMenuFv
 
-.global openMsg__Q33ebi6Screen9TSaveMenuFl
-openMsg__Q33ebi6Screen9TSaveMenuFl:
+.fn openMsg__Q33ebi6Screen9TSaveMenuFl, global
 /* 803DDA64 003DA9A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DDA68 003DA9A8  7C 08 02 A6 */	mflr r0
 /* 803DDA6C 003DA9AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -791,9 +807,9 @@ openMsg__Q33ebi6Screen9TSaveMenuFl:
 /* 803DDAEC 003DAA2C  7C 08 03 A6 */	mtlr r0
 /* 803DDAF0 003DAA30  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DDAF4 003DAA34  4E 80 00 20 */	blr 
+.endfn openMsg__Q33ebi6Screen9TSaveMenuFl
 
-.global closeMsg__Q33ebi6Screen9TSaveMenuFv
-closeMsg__Q33ebi6Screen9TSaveMenuFv:
+.fn closeMsg__Q33ebi6Screen9TSaveMenuFv, global
 /* 803DDAF8 003DAA38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DDAFC 003DAA3C  7C 08 02 A6 */	mflr r0
 /* 803DDB00 003DAA40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -811,9 +827,9 @@ closeMsg__Q33ebi6Screen9TSaveMenuFv:
 /* 803DDB28 003DAA68  7C 08 03 A6 */	mtlr r0
 /* 803DDB2C 003DAA6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DDB30 003DAA70  4E 80 00 20 */	blr 
+.endfn closeMsg__Q33ebi6Screen9TSaveMenuFv
 
-.global noMsg__Q33ebi6Screen9TSaveMenuFv
-noMsg__Q33ebi6Screen9TSaveMenuFv:
+.fn noMsg__Q33ebi6Screen9TSaveMenuFv, global
 /* 803DDB34 003DAA74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DDB38 003DAA78  7C 08 02 A6 */	mflr r0
 /* 803DDB3C 003DAA7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -836,16 +852,16 @@ noMsg__Q33ebi6Screen9TSaveMenuFv:
 /* 803DDB7C 003DAABC  7C 08 03 A6 */	mtlr r0
 /* 803DDB80 003DAAC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DDB84 003DAAC4  4E 80 00 20 */	blr 
+.endfn noMsg__Q33ebi6Screen9TSaveMenuFv
 
-.global isFinishMsg__Q33ebi6Screen9TSaveMenuFv
-isFinishMsg__Q33ebi6Screen9TSaveMenuFv:
+.fn isFinishMsg__Q33ebi6Screen9TSaveMenuFv, global
 /* 803DDB88 003DAAC8  80 03 00 28 */	lwz r0, 0x28(r3)
 /* 803DDB8C 003DAACC  7C 00 00 34 */	cntlzw r0, r0
 /* 803DDB90 003DAAD0  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 803DDB94 003DAAD4  4E 80 00 20 */	blr 
+.endfn isFinishMsg__Q33ebi6Screen9TSaveMenuFv
 
-.global startMsgState___Q33ebi6Screen9TSaveMenuFQ43ebi6Screen9TSaveMenu12enumMsgState
-startMsgState___Q33ebi6Screen9TSaveMenuFQ43ebi6Screen9TSaveMenu12enumMsgState:
+.fn startMsgState___Q33ebi6Screen9TSaveMenuFQ43ebi6Screen9TSaveMenu12enumMsgState, global
 /* 803DDB98 003DAAD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DDB9C 003DAADC  7C 08 02 A6 */	mflr r0
 /* 803DDBA0 003DAAE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1096,9 +1112,9 @@ startMsgState___Q33ebi6Screen9TSaveMenuFQ43ebi6Screen9TSaveMenu12enumMsgState:
 /* 803DDF40 003DAE80  7C 08 03 A6 */	mtlr r0
 /* 803DDF44 003DAE84  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DDF48 003DAE88  4E 80 00 20 */	blr 
+.endfn startMsgState___Q33ebi6Screen9TSaveMenuFQ43ebi6Screen9TSaveMenu12enumMsgState
 
-.global updateMsg___Q33ebi6Screen9TSaveMenuFv
-updateMsg___Q33ebi6Screen9TSaveMenuFv:
+.fn updateMsg___Q33ebi6Screen9TSaveMenuFv, global
 /* 803DDF4C 003DAE8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DDF50 003DAE90  7C 08 02 A6 */	mflr r0
 /* 803DDF54 003DAE94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1345,9 +1361,10 @@ updateMsg___Q33ebi6Screen9TSaveMenuFv:
 /* 803DE2A8 003DB1E8  7C 08 03 A6 */	mtlr r0
 /* 803DE2AC 003DB1EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DE2B0 003DB1F0  4E 80 00 20 */	blr 
+.endfn updateMsg___Q33ebi6Screen9TSaveMenuFv
 
-.global getName__Q33ebi6Screen9TSaveMenuFv
-getName__Q33ebi6Screen9TSaveMenuFv:
+.fn getName__Q33ebi6Screen9TSaveMenuFv, weak
 /* 803DE2B4 003DB1F4  3C 60 80 49 */	lis r3, lbl_80496F0C@ha
 /* 803DE2B8 003DB1F8  38 63 6F 0C */	addi r3, r3, lbl_80496F0C@l
 /* 803DE2BC 003DB1FC  4E 80 00 20 */	blr 
+.endfn getName__Q33ebi6Screen9TSaveMenuFv

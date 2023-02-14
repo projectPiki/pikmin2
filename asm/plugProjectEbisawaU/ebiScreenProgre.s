@@ -1,57 +1,69 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496520:
+.obj lbl_80496520, local
 	.asciz "ebiScreenProgre"
+.endobj lbl_80496520
 .balign 4
-lbl_80496530:
+.obj lbl_80496530, local
 	.asciz "TScreenProgre::loadResource"
+.endobj lbl_80496530
 .balign 4
-lbl_8049654C:
+.obj lbl_8049654C, local
 	.asciz "progre.szs"
+.endobj lbl_8049654C
 .balign 4
-lbl_80496558:
+.obj lbl_80496558, local
 	.asciz "ebiScreenProgre.cpp"
+.endobj lbl_80496558
 .balign 4
-lbl_8049656C:
+.obj lbl_8049656C, local
 	.asciz "P2Assert"
+.endobj lbl_8049656C
 .balign 4
-lbl_80496578:
+.obj lbl_80496578, local
 	.asciz "TScreenProgre::setArchive"
+.endobj lbl_80496578
 .balign 4
-lbl_80496594:
+.obj lbl_80496594
 	.asciz "progre.blo"
+.endobj lbl_80496594
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23ebi13TScreenProgre
-__vt__Q23ebi13TScreenProgre:
+.obj __vt__Q23ebi13TScreenProgre, global
 	.4byte 0
 	.4byte 0
 	.4byte setArchive__Q23ebi13TScreenProgreFP10JKRArchive
+.endobj __vt__Q23ebi13TScreenProgre
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FA58:
+.obj lbl_8051FA58, local
 	.float 3.3333333
-lbl_8051FA5C:
+.endobj lbl_8051FA58
+.obj lbl_8051FA5C, local
 	.float 0.0
-lbl_8051FA60:
+.endobj lbl_8051FA5C
+.obj lbl_8051FA60, local
 	.float 1.0
-lbl_8051FA64:
+.endobj lbl_8051FA60
+.obj lbl_8051FA64, local
 	.float 255.0
-lbl_8051FA68:
+.endobj lbl_8051FA64
+.obj lbl_8051FA68, local
 	.float 0.5
-lbl_8051FA6C:
+.endobj lbl_8051FA68
+.obj lbl_8051FA6C, local
 	.float -0.5
+.endobj lbl_8051FA6C
 .balign 8
-lbl_8051FA70:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_8051FA70, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051FA70
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global loadResource__Q23ebi13TScreenProgreFv
-loadResource__Q23ebi13TScreenProgreFv:
+.fn loadResource__Q23ebi13TScreenProgreFv, global
 /* 803CD6D8 003CA618  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 803CD6DC 003CA61C  7C 08 02 A6 */	mflr r0
 /* 803CD6E0 003CA620  3C 80 80 49 */	lis r4, lbl_80496520@ha
@@ -97,9 +109,9 @@ loadResource__Q23ebi13TScreenProgreFv:
 /* 803CD77C 003CA6BC  7C 08 03 A6 */	mtlr r0
 /* 803CD780 003CA6C0  38 21 01 20 */	addi r1, r1, 0x120
 /* 803CD784 003CA6C4  4E 80 00 20 */	blr 
+.endfn loadResource__Q23ebi13TScreenProgreFv
 
-.global setArchive__Q23ebi13TScreenProgreFP10JKRArchive
-setArchive__Q23ebi13TScreenProgreFP10JKRArchive:
+.fn setArchive__Q23ebi13TScreenProgreFP10JKRArchive, global
 /* 803CD788 003CA6C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CD78C 003CA6CC  7C 08 02 A6 */	mflr r0
 /* 803CD790 003CA6D0  3C A0 80 49 */	lis r5, lbl_80496578@ha
@@ -299,9 +311,9 @@ setArchive__Q23ebi13TScreenProgreFP10JKRArchive:
 /* 803CDA94 003CA9D4  7C 08 03 A6 */	mtlr r0
 /* 803CDA98 003CA9D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CDA9C 003CA9DC  4E 80 00 20 */	blr 
+.endfn setArchive__Q23ebi13TScreenProgreFP10JKRArchive
 
-.global startScreen__Q23ebi13TScreenProgreFlUl
-startScreen__Q23ebi13TScreenProgreFlUl:
+.fn startScreen__Q23ebi13TScreenProgreFlUl, global
 /* 803CDAA0 003CA9E0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803CDAA4 003CA9E4  7C 08 02 A6 */	mflr r0
 /* 803CDAA8 003CA9E8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -560,9 +572,9 @@ startScreen__Q23ebi13TScreenProgreFlUl:
 /* 803CDE78 003CADB8  7C 08 03 A6 */	mtlr r0
 /* 803CDE7C 003CADBC  38 21 00 50 */	addi r1, r1, 0x50
 /* 803CDE80 003CADC0  4E 80 00 20 */	blr 
+.endfn startScreen__Q23ebi13TScreenProgreFlUl
 
-.global fadeout__Q23ebi13TScreenProgreFUl
-fadeout__Q23ebi13TScreenProgreFUl:
+.fn fadeout__Q23ebi13TScreenProgreFUl, global
 /* 803CDE84 003CADC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CDE88 003CADC8  7C 08 02 A6 */	mflr r0
 /* 803CDE8C 003CADCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -587,9 +599,9 @@ fadeout__Q23ebi13TScreenProgreFUl:
 /* 803CDECC 003CAE0C  7C 08 03 A6 */	mtlr r0
 /* 803CDED0 003CAE10  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CDED4 003CAE14  4E 80 00 20 */	blr 
+.endfn fadeout__Q23ebi13TScreenProgreFUl
 
-.global isFinish__Q23ebi13TScreenProgreFv
-isFinish__Q23ebi13TScreenProgreFv:
+.fn isFinish__Q23ebi13TScreenProgreFv, global
 /* 803CDED8 003CAE18  80 03 00 1C */	lwz r0, 0x1c(r3)
 /* 803CDEDC 003CAE1C  2C 00 00 03 */	cmpwi r0, 3
 /* 803CDEE0 003CAE20  40 82 00 18 */	bne .L_803CDEF8
@@ -601,9 +613,9 @@ isFinish__Q23ebi13TScreenProgreFv:
 .L_803CDEF8:
 /* 803CDEF8 003CAE38  38 60 00 00 */	li r3, 0
 /* 803CDEFC 003CAE3C  4E 80 00 20 */	blr 
+.endfn isFinish__Q23ebi13TScreenProgreFv
 
-.global startState__Q23ebi13TScreenProgreFQ33ebi13TScreenProgre9enumStateUl
-startState__Q23ebi13TScreenProgreFQ33ebi13TScreenProgre9enumStateUl:
+.fn startState__Q23ebi13TScreenProgreFQ33ebi13TScreenProgre9enumStateUl, global
 /* 803CDF00 003CAE40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CDF04 003CAE44  7C 08 02 A6 */	mflr r0
 /* 803CDF08 003CAE48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -657,9 +669,9 @@ startState__Q23ebi13TScreenProgreFQ33ebi13TScreenProgre9enumStateUl:
 /* 803CDFB4 003CAEF4  7C 08 03 A6 */	mtlr r0
 /* 803CDFB8 003CAEF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CDFBC 003CAEFC  4E 80 00 20 */	blr 
+.endfn startState__Q23ebi13TScreenProgreFQ33ebi13TScreenProgre9enumStateUl
 
-.global update__Q23ebi13TScreenProgreFv
-update__Q23ebi13TScreenProgreFv:
+.fn update__Q23ebi13TScreenProgreFv, global
 /* 803CDFC0 003CAF00  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803CDFC4 003CAF04  7C 08 02 A6 */	mflr r0
 /* 803CDFC8 003CAF08  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1040,9 +1052,9 @@ update__Q23ebi13TScreenProgreFv:
 /* 803CE508 003CB448  7C 08 03 A6 */	mtlr r0
 /* 803CE50C 003CB44C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803CE510 003CB450  4E 80 00 20 */	blr 
+.endfn update__Q23ebi13TScreenProgreFv
 
-.global draw__Q23ebi13TScreenProgreFv
-draw__Q23ebi13TScreenProgreFv:
+.fn draw__Q23ebi13TScreenProgreFv, global
 /* 803CE514 003CB454  94 21 FD 50 */	stwu r1, -0x2b0(r1)
 /* 803CE518 003CB458  7C 08 02 A6 */	mflr r0
 /* 803CE51C 003CB45C  90 01 02 B4 */	stw r0, 0x2b4(r1)
@@ -1100,9 +1112,9 @@ draw__Q23ebi13TScreenProgreFv:
 /* 803CE5E4 003CB524  7C 08 03 A6 */	mtlr r0
 /* 803CE5E8 003CB528  38 21 02 B0 */	addi r1, r1, 0x2b0
 /* 803CE5EC 003CB52C  4E 80 00 20 */	blr 
+.endfn draw__Q23ebi13TScreenProgreFv
 
-.global setDecide__Q23ebi13TScreenProgreFv
-setDecide__Q23ebi13TScreenProgreFv:
+.fn setDecide__Q23ebi13TScreenProgreFv, global
 /* 803CE5F0 003CB530  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803CE5F4 003CB534  7C 08 02 A6 */	mflr r0
 /* 803CE5F8 003CB538  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1301,3 +1313,4 @@ setDecide__Q23ebi13TScreenProgreFv:
 /* 803CE8EC 003CB82C  7C 08 03 A6 */	mtlr r0
 /* 803CE8F0 003CB830  38 21 00 70 */	addi r1, r1, 0x70
 /* 803CE8F4 003CB834  4E 80 00 20 */	blr 
+.endfn setDecide__Q23ebi13TScreenProgreFv

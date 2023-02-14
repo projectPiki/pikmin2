@@ -1,45 +1,57 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496270:
+.obj lbl_80496270, local
 	.asciz "ebiScreenMemoryCard"
+.endobj lbl_80496270
 .balign 4
-lbl_80496284:
+.obj lbl_80496284, local
 	.asciz "TScreenMemoryCard::loadResource"
+.endobj lbl_80496284
 .balign 4
-lbl_804962A4:
+.obj lbl_804962A4, local
 	.asciz "memory_card.szs"
+.endobj lbl_804962A4
 .balign 4
-lbl_804962B4:
+.obj lbl_804962B4, local
 	.asciz "ebiScreenMemoryCard.cpp"
+.endobj lbl_804962B4
 .balign 4
-lbl_804962CC:
+.obj lbl_804962CC, local
 	.asciz "P2Assert"
+.endobj lbl_804962CC
 .balign 4
-lbl_804962D8:
+.obj lbl_804962D8, local
 	.asciz "TScreenMemoryCard::setArchive"
+.endobj lbl_804962D8
 .balign 4
-lbl_804962F8:
+.obj lbl_804962F8, local
 	.asciz "memory_card.blo"
+.endobj lbl_804962F8
 .balign 4
-lbl_80496308:
+.obj lbl_80496308, local
 	.asciz "memory_card.bck"
+.endobj lbl_80496308
 .balign 4
-lbl_80496318:
+.obj lbl_80496318, local
 	.asciz "memory_card_pattern1.bck"
+.endobj lbl_80496318
 .balign 4
-lbl_80496334:
+.obj lbl_80496334, local
 	.asciz "memory_card_pattern2.bck"
+.endobj lbl_80496334
 .balign 4
-lbl_80496350:
+.obj lbl_80496350, local
 	.asciz "memory_card_yes.bck"
+.endobj lbl_80496350
 .balign 4
-lbl_80496364:
+.obj lbl_80496364, local
 	.asciz "memory_card_no.bck"
+.endobj lbl_80496364
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E7A08:
+.obj lbl_804E7A08, local
 	.4byte .L_803C2980
 	.4byte .L_803C299C
 	.4byte .L_803C29FC
@@ -84,38 +96,46 @@ lbl_804E7A08:
 	.4byte .L_803C39A8
 	.4byte .L_803C3A00
 	.4byte .L_803C3A8C
-.global __vt__Q33ebi6Screen17TResourceObserver
-__vt__Q33ebi6Screen17TResourceObserver:
+.endobj lbl_804E7A08
+.obj __vt__Q33ebi6Screen17TResourceObserver, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q33ebi6Screen17TResourceObserverFv
+.endobj __vt__Q33ebi6Screen17TResourceObserver
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F8A8:
+.obj lbl_8051F8A8, local
 	.float 60.0
-lbl_8051F8AC:
+.endobj lbl_8051F8A8
+.obj lbl_8051F8AC, local
 	.float 1.0
-lbl_8051F8B0:
+.endobj lbl_8051F8AC
+.obj lbl_8051F8B0, local
 	.float 0.0
-lbl_8051F8B4:
+.endobj lbl_8051F8B0
+.obj lbl_8051F8B4, local
 	.float 3.3333333
-lbl_8051F8B8:
+.endobj lbl_8051F8B4
+.obj lbl_8051F8B8, local
 	.float 0.5
-lbl_8051F8BC:
+.endobj lbl_8051F8B8
+.obj lbl_8051F8BC, local
 	.float -0.5
-lbl_8051F8C0:
+.endobj lbl_8051F8BC
+.obj lbl_8051F8C0, local
 	.float 0.7
-lbl_8051F8C4:
+.endobj lbl_8051F8C0
+.obj lbl_8051F8C4, local
 	.float 255.0
+.endobj lbl_8051F8C4
 .balign 8
-lbl_8051F8C8:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_8051F8C8, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051F8C8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q33ebi6Screen17TResourceObserverFv
-__dt__Q33ebi6Screen17TResourceObserverFv:
+.fn __dt__Q33ebi6Screen17TResourceObserverFv, global
 /* 803C2244 003BF184  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C2248 003BF188  7C 08 02 A6 */	mflr r0
 /* 803C224C 003BF18C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -144,9 +164,9 @@ __dt__Q33ebi6Screen17TResourceObserverFv:
 /* 803C22A4 003BF1E4  7C 08 03 A6 */	mtlr r0
 /* 803C22A8 003BF1E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C22AC 003BF1EC  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi6Screen17TResourceObserverFv
 
-.global loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap
-loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap:
+.fn loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap, global
 /* 803C22B0 003BF1F0  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 803C22B4 003BF1F4  7C 08 02 A6 */	mflr r0
 /* 803C22B8 003BF1F8  3C A0 80 49 */	lis r5, lbl_80496270@ha
@@ -203,9 +223,9 @@ loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap:
 /* 803C237C 003BF2BC  7C 08 03 A6 */	mtlr r0
 /* 803C2380 003BF2C0  38 21 01 20 */	addi r1, r1, 0x120
 /* 803C2384 003BF2C4  4E 80 00 20 */	blr 
+.endfn loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap
 
-.global setArchive__Q33ebi6Screen11TMemoryCardFP10JKRArchive
-setArchive__Q33ebi6Screen11TMemoryCardFP10JKRArchive:
+.fn setArchive__Q33ebi6Screen11TMemoryCardFP10JKRArchive, global
 /* 803C2388 003BF2C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C238C 003BF2CC  7C 08 02 A6 */	mflr r0
 /* 803C2390 003BF2D0  3C A0 80 49 */	lis r5, lbl_80496270@ha
@@ -438,9 +458,9 @@ setArchive__Q33ebi6Screen11TMemoryCardFP10JKRArchive:
 /* 803C2718 003BF658  7C 08 03 A6 */	mtlr r0
 /* 803C271C 003BF65C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C2720 003BF660  4E 80 00 20 */	blr 
+.endfn setArchive__Q33ebi6Screen11TMemoryCardFP10JKRArchive
 
-.global set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox
-set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox:
+.fn set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox, weak
 /* 803C2724 003BF664  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803C2728 003BF668  7C 08 02 A6 */	mflr r0
 /* 803C272C 003BF66C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -552,18 +572,18 @@ set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox:
 /* 803C28D4 003BF814  7C 08 03 A6 */	mtlr r0
 /* 803C28D8 003BF818  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C28DC 003BF81C  4E 80 00 20 */	blr 
+.endfn set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox
 
-.global destroyResource__Q33ebi6Screen11TMemoryCardFv
-destroyResource__Q33ebi6Screen11TMemoryCardFv:
+.fn destroyResource__Q33ebi6Screen11TMemoryCardFv, global
 /* 803C28E0 003BF820  38 00 00 00 */	li r0, 0
 /* 803C28E4 003BF824  90 03 00 20 */	stw r0, 0x20(r3)
 /* 803C28E8 003BF828  90 03 00 24 */	stw r0, 0x24(r3)
 /* 803C28EC 003BF82C  90 03 00 28 */	stw r0, 0x28(r3)
 /* 803C28F0 003BF830  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 803C28F4 003BF834  4E 80 00 20 */	blr 
+.endfn destroyResource__Q33ebi6Screen11TMemoryCardFv
 
-.global open__Q33ebi6Screen11TMemoryCardFl
-open__Q33ebi6Screen11TMemoryCardFl:
+.fn open__Q33ebi6Screen11TMemoryCardFl, global
 /* 803C28F8 003BF838  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C28FC 003BF83C  7C 08 02 A6 */	mflr r0
 /* 803C2900 003BF840  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1765,9 +1785,9 @@ open__Q33ebi6Screen11TMemoryCardFl:
 /* 803C3AF4 003C0A34  7C 08 03 A6 */	mtlr r0
 /* 803C3AF8 003C0A38  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C3AFC 003C0A3C  4E 80 00 20 */	blr 
+.endfn open__Q33ebi6Screen11TMemoryCardFl
 
-.global close__Q33ebi6Screen11TMemoryCardFv
-close__Q33ebi6Screen11TMemoryCardFv:
+.fn close__Q33ebi6Screen11TMemoryCardFv, global
 /* 803C3B00 003C0A40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C3B04 003C0A44  7C 08 02 A6 */	mflr r0
 /* 803C3B08 003C0A48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1781,9 +1801,9 @@ close__Q33ebi6Screen11TMemoryCardFv:
 /* 803C3B24 003C0A64  7C 08 03 A6 */	mtlr r0
 /* 803C3B28 003C0A68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C3B2C 003C0A6C  4E 80 00 20 */	blr 
+.endfn close__Q33ebi6Screen11TMemoryCardFv
 
-.global killScreen__Q33ebi6Screen11TMemoryCardFv
-killScreen__Q33ebi6Screen11TMemoryCardFv:
+.fn killScreen__Q33ebi6Screen11TMemoryCardFv, global
 /* 803C3B30 003C0A70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C3B34 003C0A74  7C 08 02 A6 */	mflr r0
 /* 803C3B38 003C0A78  38 80 00 00 */	li r4, 0
@@ -1793,9 +1813,9 @@ killScreen__Q33ebi6Screen11TMemoryCardFv:
 /* 803C3B48 003C0A88  7C 08 03 A6 */	mtlr r0
 /* 803C3B4C 003C0A8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C3B50 003C0A90  4E 80 00 20 */	blr 
+.endfn killScreen__Q33ebi6Screen11TMemoryCardFv
 
-.global setSelect___Q33ebi6Screen11TMemoryCardFb
-setSelect___Q33ebi6Screen11TMemoryCardFb:
+.fn setSelect___Q33ebi6Screen11TMemoryCardFb, global
 /* 803C3B54 003C0A94  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803C3B58 003C0A98  7C 08 02 A6 */	mflr r0
 /* 803C3B5C 003C0A9C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2007,9 +2027,9 @@ setSelect___Q33ebi6Screen11TMemoryCardFb:
 /* 803C3E7C 003C0DBC  7C 08 03 A6 */	mtlr r0
 /* 803C3E80 003C0DC0  38 21 00 70 */	addi r1, r1, 0x70
 /* 803C3E84 003C0DC4  4E 80 00 20 */	blr 
+.endfn setSelect___Q33ebi6Screen11TMemoryCardFb
 
-.global update__Q23ebi12TYesNoCursorFv
-update__Q23ebi12TYesNoCursorFv:
+.fn update__Q23ebi12TYesNoCursorFv, weak
 /* 803C3E88 003C0DC8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803C3E8C 003C0DCC  7C 08 02 A6 */	mflr r0
 /* 803C3E90 003C0DD0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2087,9 +2107,9 @@ update__Q23ebi12TYesNoCursorFv:
 /* 803C3FA4 003C0EE4  7C 08 03 A6 */	mtlr r0
 /* 803C3FA8 003C0EE8  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C3FAC 003C0EEC  4E 80 00 20 */	blr 
+.endfn update__Q23ebi12TYesNoCursorFv
 
-.global isFinish__Q33ebi6Screen11TMemoryCardFv
-isFinish__Q33ebi6Screen11TMemoryCardFv:
+.fn isFinish__Q33ebi6Screen11TMemoryCardFv, global
 /* 803C3FB0 003C0EF0  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 803C3FB4 003C0EF4  28 00 00 00 */	cmplwi r0, 0
 /* 803C3FB8 003C0EF8  40 82 00 18 */	bne .L_803C3FD0
@@ -2101,9 +2121,9 @@ isFinish__Q33ebi6Screen11TMemoryCardFv:
 .L_803C3FD0:
 /* 803C3FD0 003C0F10  38 60 00 00 */	li r3, 0
 /* 803C3FD4 003C0F14  4E 80 00 20 */	blr 
+.endfn isFinish__Q33ebi6Screen11TMemoryCardFv
 
-.global startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState:
+.fn startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState, global
 /* 803C3FD8 003C0F18  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803C3FDC 003C0F1C  7C 08 02 A6 */	mflr r0
 /* 803C3FE0 003C0F20  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2429,9 +2449,9 @@ startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState:
 /* 803C44B8 003C13F8  7C 08 03 A6 */	mtlr r0
 /* 803C44BC 003C13FC  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C44C0 003C1400  4E 80 00 20 */	blr 
+.endfn startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 
-.global update__Q33ebi6Screen11TMemoryCardFv
-update__Q33ebi6Screen11TMemoryCardFv:
+.fn update__Q33ebi6Screen11TMemoryCardFv, global
 /* 803C44C4 003C1404  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 803C44C8 003C1408  7C 08 02 A6 */	mflr r0
 /* 803C44CC 003C140C  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -3028,9 +3048,9 @@ update__Q33ebi6Screen11TMemoryCardFv:
 /* 803C4D80 003C1CC0  7C 08 03 A6 */	mtlr r0
 /* 803C4D84 003C1CC4  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 803C4D88 003C1CC8  4E 80 00 20 */	blr 
+.endfn update__Q33ebi6Screen11TMemoryCardFv
 
-.global draw__Q33ebi6Screen11TMemoryCardFv
-draw__Q33ebi6Screen11TMemoryCardFv:
+.fn draw__Q33ebi6Screen11TMemoryCardFv, global
 /* 803C4D8C 003C1CCC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C4D90 003C1CD0  7C 08 02 A6 */	mflr r0
 /* 803C4D94 003C1CD4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3064,3 +3084,4 @@ draw__Q33ebi6Screen11TMemoryCardFv:
 /* 803C4E00 003C1D40  7C 08 03 A6 */	mtlr r0
 /* 803C4E04 003C1D44  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C4E08 003C1D48  4E 80 00 20 */	blr 
+.endfn draw__Q33ebi6Screen11TMemoryCardFv

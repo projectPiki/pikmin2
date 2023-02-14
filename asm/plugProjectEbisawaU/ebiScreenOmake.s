@@ -1,30 +1,37 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80497A18:
+.obj lbl_80497A18, local
 	.asciz "ebiScreenOmake"
+.endobj lbl_80497A18
 .balign 4
-lbl_80497A28:
+.obj lbl_80497A28, local
 	.asciz "Screen_newScreen_of_TOmake"
+.endobj lbl_80497A28
 .balign 4
-lbl_80497A44:
+.obj lbl_80497A44, local
 	.asciz "omake.blo"
+.endobj lbl_80497A44
 .balign 4
-lbl_80497A50:
+.obj lbl_80497A50, local
 	.asciz "Screen_setCallBackMessage_of_TOmake"
+.endobj lbl_80497A50
 .balign 4
-lbl_80497A74:
+.obj lbl_80497A74, local
 	.asciz "omake.bck"
+.endobj lbl_80497A74
 .balign 4
-lbl_80497A80:
+.obj lbl_80497A80, local
 	.asciz "ebiScreenOmake.cpp"
+.endobj lbl_80497A80
 .balign 4
-lbl_80497A94:
+.obj lbl_80497A94, local
 	.asciz "P2Assert"
+.endobj lbl_80497A94
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804EA198:
+.obj lbl_804EA198, local
 	.4byte .L_803EE28C
 	.4byte .L_803EE674
 	.4byte .L_803EE520
@@ -32,8 +39,8 @@ lbl_804EA198:
 	.4byte .L_803EE674
 	.4byte .L_803EE648
 	.4byte .L_803EE660
-.global __vt__Q33ebi6Screen6TOmake
-__vt__Q33ebi6Screen6TOmake:
+.endobj lbl_804EA198
+.obj __vt__Q33ebi6Screen6TOmake, global
 	.4byte 0
 	.4byte 0
 	.4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
@@ -53,42 +60,54 @@ __vt__Q33ebi6Screen6TOmake:
 	.4byte doUpdateStateClose__Q33ebi6Screen6TOmakeFv
 	.4byte doDraw__Q33ebi6Screen6TOmakeFv
 	.4byte getName__Q33ebi6Screen6TOmakeFv
+.endobj __vt__Q33ebi6Screen6TOmake
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FE60:
+.obj lbl_8051FE60, local
 	.float 1.0
-lbl_8051FE64:
+.endobj lbl_8051FE60
+.obj lbl_8051FE64, local
 	.float 0.0
-lbl_8051FE68:
+.endobj lbl_8051FE64
+.obj lbl_8051FE68, local
 	.float 0.03333
-lbl_8051FE6C:
+.endobj lbl_8051FE68
+.obj lbl_8051FE6C, local
 	.float 60.0
-lbl_8051FE70:
+.endobj lbl_8051FE6C
+.obj lbl_8051FE70, local
 	.float 0.1
-lbl_8051FE74:
+.endobj lbl_8051FE70
+.obj lbl_8051FE74, local
 	.float 3.3333333
-lbl_8051FE78:
+.endobj lbl_8051FE74
+.obj lbl_8051FE78, local
 	.float 30.0
-lbl_8051FE7C:
+.endobj lbl_8051FE78
+.obj lbl_8051FE7C, local
 	.float 0.6
-lbl_8051FE80:
+.endobj lbl_8051FE7C
+.obj lbl_8051FE80, local
 	.float 255.0
+.endobj lbl_8051FE80
 .balign 8
-lbl_8051FE88:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051FE90:
+.obj lbl_8051FE88, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051FE88
+.obj lbl_8051FE90, local
 	.float 0.66
-lbl_8051FE94:
+.endobj lbl_8051FE90
+.obj lbl_8051FE94, local
 	.float 0.15
+.endobj lbl_8051FE94
 .balign 4
-lbl_8051FE98:
+.obj lbl_8051FE98, local
 	.asciz "TOmake"
+.endobj lbl_8051FE98
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q33ebi6Screen6TOmakeFv
-__ct__Q33ebi6Screen6TOmakeFv:
+.fn __ct__Q33ebi6Screen6TOmakeFv, global
 /* 803ED2A8 003EA1E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803ED2AC 003EA1EC  7C 08 02 A6 */	mflr r0
 /* 803ED2B0 003EA1F0  3C 80 80 4F */	lis r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
@@ -246,9 +265,9 @@ __ct__Q33ebi6Screen6TOmakeFv:
 /* 803ED510 003EA450  7C 08 03 A6 */	mtlr r0
 /* 803ED514 003EA454  38 21 00 20 */	addi r1, r1, 0x20
 /* 803ED518 003EA458  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi6Screen6TOmakeFv
 
-.global doSetArchive__Q33ebi6Screen6TOmakeFP10JKRArchive
-doSetArchive__Q33ebi6Screen6TOmakeFP10JKRArchive:
+.fn doSetArchive__Q33ebi6Screen6TOmakeFP10JKRArchive, global
 /* 803ED51C 003EA45C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803ED520 003EA460  7C 08 02 A6 */	mflr r0
 /* 803ED524 003EA464  3C A0 80 49 */	lis r5, lbl_80497A18@ha
@@ -632,9 +651,9 @@ doSetArchive__Q33ebi6Screen6TOmakeFP10JKRArchive:
 /* 803EDB00 003EAA40  7C 08 03 A6 */	mtlr r0
 /* 803EDB04 003EAA44  38 21 00 60 */	addi r1, r1, 0x60
 /* 803EDB08 003EAA48  4E 80 00 20 */	blr 
+.endfn doSetArchive__Q33ebi6Screen6TOmakeFP10JKRArchive
 
-.global doOpenScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen7ArgOpen
-doOpenScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen7ArgOpen:
+.fn doOpenScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen7ArgOpen, global
 /* 803EDB0C 003EAA4C  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 803EDB10 003EAA50  7C 08 02 A6 */	mflr r0
 /* 803EDB14 003EAA54  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -1023,9 +1042,9 @@ doOpenScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen7ArgOpen:
 /* 803EE0F0 003EB030  7C 08 03 A6 */	mtlr r0
 /* 803EE0F4 003EB034  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 803EE0F8 003EB038  4E 80 00 20 */	blr 
+.endfn doOpenScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen7ArgOpen
 
-.global doCloseScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen8ArgClose
-doCloseScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen8ArgClose:
+.fn doCloseScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen8ArgClose, global
 /* 803EE0FC 003EB03C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EE100 003EB040  7C 08 02 A6 */	mflr r0
 /* 803EE104 003EB044  C0 22 16 98 */	lfs f1, kFadeTime__Q23ebi8E2DFader@sda21(r2)
@@ -1045,9 +1064,9 @@ doCloseScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen8ArgClose:
 /* 803EE13C 003EB07C  7C 08 03 A6 */	mtlr r0
 /* 803EE140 003EB080  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EE144 003EB084  4E 80 00 20 */	blr 
+.endfn doCloseScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen8ArgClose
 
-.global doInitWaitState__Q33ebi6Screen6TOmakeFv
-doInitWaitState__Q33ebi6Screen6TOmakeFv:
+.fn doInitWaitState__Q33ebi6Screen6TOmakeFv, global
 /* 803EE148 003EB088  80 83 00 3C */	lwz r4, 0x3c(r3)
 /* 803EE14C 003EB08C  38 A0 00 01 */	li r5, 1
 /* 803EE150 003EB090  C0 42 1B 14 */	lfs f2, lbl_8051FE74@sda21(r2)
@@ -1066,9 +1085,9 @@ doInitWaitState__Q33ebi6Screen6TOmakeFv:
 /* 803EE184 003EB0C4  98 06 00 49 */	stb r0, 0x49(r6)
 /* 803EE188 003EB0C8  90 03 00 0C */	stw r0, 0xc(r3)
 /* 803EE18C 003EB0CC  4E 80 00 20 */	blr 
+.endfn doInitWaitState__Q33ebi6Screen6TOmakeFv
 
-.global doUpdateStateOpen__Q33ebi6Screen6TOmakeFv
-doUpdateStateOpen__Q33ebi6Screen6TOmakeFv:
+.fn doUpdateStateOpen__Q33ebi6Screen6TOmakeFv, global
 /* 803EE190 003EB0D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EE194 003EB0D4  7C 08 02 A6 */	mflr r0
 /* 803EE198 003EB0D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1105,9 +1124,9 @@ doUpdateStateOpen__Q33ebi6Screen6TOmakeFv:
 /* 803EE208 003EB148  7C 08 03 A6 */	mtlr r0
 /* 803EE20C 003EB14C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EE210 003EB150  4E 80 00 20 */	blr 
+.endfn doUpdateStateOpen__Q33ebi6Screen6TOmakeFv
 
-.global doUpdateStateWait__Q33ebi6Screen6TOmakeFv
-doUpdateStateWait__Q33ebi6Screen6TOmakeFv:
+.fn doUpdateStateWait__Q33ebi6Screen6TOmakeFv, global
 /* 803EE214 003EB154  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803EE218 003EB158  7C 08 02 A6 */	mflr r0
 /* 803EE21C 003EB15C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1416,9 +1435,9 @@ doUpdateStateWait__Q33ebi6Screen6TOmakeFv:
 /* 803EE68C 003EB5CC  7C 08 03 A6 */	mtlr r0
 /* 803EE690 003EB5D0  38 21 00 50 */	addi r1, r1, 0x50
 /* 803EE694 003EB5D4  4E 80 00 20 */	blr 
+.endfn doUpdateStateWait__Q33ebi6Screen6TOmakeFv
 
-.global doUpdateStateClose__Q33ebi6Screen6TOmakeFv
-doUpdateStateClose__Q33ebi6Screen6TOmakeFv:
+.fn doUpdateStateClose__Q33ebi6Screen6TOmakeFv, global
 /* 803EE698 003EB5D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EE69C 003EB5DC  7C 08 02 A6 */	mflr r0
 /* 803EE6A0 003EB5E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1451,9 +1470,9 @@ doUpdateStateClose__Q33ebi6Screen6TOmakeFv:
 /* 803EE700 003EB640  7C 08 03 A6 */	mtlr r0
 /* 803EE704 003EB644  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EE708 003EB648  4E 80 00 20 */	blr 
+.endfn doUpdateStateClose__Q33ebi6Screen6TOmakeFv
 
-.global doDraw__Q33ebi6Screen6TOmakeFv
-doDraw__Q33ebi6Screen6TOmakeFv:
+.fn doDraw__Q33ebi6Screen6TOmakeFv, global
 /* 803EE70C 003EB64C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803EE710 003EB650  7C 08 02 A6 */	mflr r0
 /* 803EE714 003EB654  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1607,9 +1626,9 @@ doDraw__Q33ebi6Screen6TOmakeFv:
 /* 803EE944 003EB884  7C 08 03 A6 */	mtlr r0
 /* 803EE948 003EB888  38 21 00 60 */	addi r1, r1, 0x60
 /* 803EE94C 003EB88C  4E 80 00 20 */	blr 
+.endfn doDraw__Q33ebi6Screen6TOmakeFv
 
-.global setController__Q33ebi6Screen6TOmakeFP10Controller
-setController__Q33ebi6Screen6TOmakeFP10Controller:
+.fn setController__Q33ebi6Screen6TOmakeFP10Controller, global
 /* 803EE950 003EB890  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EE954 003EB894  7C 08 02 A6 */	mflr r0
 /* 803EE958 003EB898  7C 65 1B 78 */	mr r5, r3
@@ -1627,9 +1646,9 @@ setController__Q33ebi6Screen6TOmakeFP10Controller:
 /* 803EE988 003EB8C8  7C 08 03 A6 */	mtlr r0
 /* 803EE98C 003EB8CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EE990 003EB8D0  4E 80 00 20 */	blr 
+.endfn setController__Q33ebi6Screen6TOmakeFP10Controller
 
-.global showPanes___Q33ebi6Screen6TOmakeFv
-showPanes___Q33ebi6Screen6TOmakeFv:
+.fn showPanes___Q33ebi6Screen6TOmakeFv, global
 /* 803EE994 003EB8D4  80 83 00 5C */	lwz r4, 0x5c(r3)
 /* 803EE998 003EB8D8  38 A0 00 01 */	li r5, 1
 /* 803EE99C 003EB8DC  38 00 00 00 */	li r0, 0
@@ -1655,9 +1674,9 @@ showPanes___Q33ebi6Screen6TOmakeFv:
 /* 803EE9EC 003EB92C  80 63 00 A4 */	lwz r3, 0xa4(r3)
 /* 803EE9F0 003EB930  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 803EE9F4 003EB934  4E 80 00 20 */	blr 
+.endfn showPanes___Q33ebi6Screen6TOmakeFv
 
-.global hidePanes___Q33ebi6Screen6TOmakeFv
-hidePanes___Q33ebi6Screen6TOmakeFv:
+.fn hidePanes___Q33ebi6Screen6TOmakeFv, global
 /* 803EE9F8 003EB938  80 83 00 5C */	lwz r4, 0x5c(r3)
 /* 803EE9FC 003EB93C  38 00 00 00 */	li r0, 0
 /* 803EEA00 003EB940  98 04 00 B0 */	stb r0, 0xb0(r4)
@@ -1668,9 +1687,9 @@ hidePanes___Q33ebi6Screen6TOmakeFv:
 /* 803EEA14 003EB954  80 63 00 68 */	lwz r3, 0x68(r3)
 /* 803EEA18 003EB958  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 803EEA1C 003EB95C  4E 80 00 20 */	blr 
+.endfn hidePanes___Q33ebi6Screen6TOmakeFv
 
-.global openFromMovie___Q33ebi6Screen6TOmakeFv
-openFromMovie___Q33ebi6Screen6TOmakeFv:
+.fn openFromMovie___Q33ebi6Screen6TOmakeFv, global
 /* 803EEA20 003EB960  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEA24 003EB964  7C 08 02 A6 */	mflr r0
 /* 803EEA28 003EB968  C0 22 16 98 */	lfs f1, kFadeTime__Q23ebi8E2DFader@sda21(r2)
@@ -1692,9 +1711,9 @@ openFromMovie___Q33ebi6Screen6TOmakeFv:
 /* 803EEA68 003EB9A8  7C 08 03 A6 */	mtlr r0
 /* 803EEA6C 003EB9AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EEA70 003EB9B0  4E 80 00 20 */	blr 
+.endfn openFromMovie___Q33ebi6Screen6TOmakeFv
 
-.global openFromCardE___Q33ebi6Screen6TOmakeFv
-openFromCardE___Q33ebi6Screen6TOmakeFv:
+.fn openFromCardE___Q33ebi6Screen6TOmakeFv, global
 /* 803EEA74 003EB9B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEA78 003EB9B8  7C 08 02 A6 */	mflr r0
 /* 803EEA7C 003EB9BC  38 E0 00 01 */	li r7, 1
@@ -1739,9 +1758,9 @@ openFromCardE___Q33ebi6Screen6TOmakeFv:
 /* 803EEB18 003EBA58  7C 08 03 A6 */	mtlr r0
 /* 803EEB1C 003EBA5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EEB20 003EBA60  4E 80 00 20 */	blr 
+.endfn openFromCardE___Q33ebi6Screen6TOmakeFv
 
-.global __ct__Q23ebi26E2DCallBack_BlinkFontColorFv
-__ct__Q23ebi26E2DCallBack_BlinkFontColorFv:
+.fn __ct__Q23ebi26E2DCallBack_BlinkFontColorFv, weak
 /* 803EEB24 003EBA64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEB28 003EBA68  7C 08 02 A6 */	mflr r0
 /* 803EEB2C 003EBA6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1789,8 +1808,9 @@ __ct__Q23ebi26E2DCallBack_BlinkFontColorFv:
 /* 803EEBD4 003EBB14  7C 08 03 A6 */	mtlr r0
 /* 803EEBD8 003EBB18  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EEBDC 003EBB1C  4E 80 00 20 */	blr 
+.endfn __ct__Q23ebi26E2DCallBack_BlinkFontColorFv
 
-.global getName__Q33ebi6Screen6TOmakeFv
-getName__Q33ebi6Screen6TOmakeFv: # weak function
+.fn getName__Q33ebi6Screen6TOmakeFv, weak
 /* 803EEBE0 003EBB20  38 62 1B 38 */	addi r3, r2, lbl_8051FE98@sda21
 /* 803EEBE4 003EBB24  4E 80 00 20 */	blr 
+.endfn getName__Q33ebi6Screen6TOmakeFv

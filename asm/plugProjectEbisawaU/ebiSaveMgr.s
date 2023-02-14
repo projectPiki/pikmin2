@@ -1,47 +1,58 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496DD0:
+.obj lbl_80496DD0, local
 	.asciz "ebiSaveMgr"
+.endobj lbl_80496DD0
 .balign 4
-lbl_80496DDC:
+.obj lbl_80496DDC, local
 	.asciz "DoYouSave"
+.endobj lbl_80496DDC
 .balign 4
-lbl_80496DE8:
+.obj lbl_80496DE8, local
 	.asciz "DoYouContinue"
+.endobj lbl_80496DE8
 .balign 4
-lbl_80496DF8:
+.obj lbl_80496DF8, local
 	.asciz "MountCheck"
+.endobj lbl_80496DF8
 .balign 4
-lbl_80496E04:
+.obj lbl_80496E04, local
 	.asciz "GetPlayerHeader"
+.endobj lbl_80496E04
 .balign 4
-lbl_80496E14:
+.obj lbl_80496E14, local
 	.asciz "CheckBeforeSave"
+.endobj lbl_80496E14
 .balign 4
-lbl_80496E24:
+.obj lbl_80496E24, local
 	.asciz "AfterSave"
+.endobj lbl_80496E24
 .balign 4
-lbl_80496E30:
+.obj lbl_80496E30, local
 	.asciz "CardError"
+.endobj lbl_80496E30
 .balign 4
-lbl_80496E3C:
+.obj lbl_80496E3C, local
 	.asciz "ebiSaveMgr.cpp"
+.endobj lbl_80496E3C
 .balign 4
-lbl_80496E4C:
+.obj lbl_80496E4C, local
 	.asciz "P2Assert"
+.endobj lbl_80496E4C
 .balign 4
-lbl_80496E58: # Shift-JIS
+.obj lbl_80496E58, local # Shift-JIS
 	.4byte 0x917A92E8
 	.4byte 0x8A4F82C5
 	.4byte 0x82B78142
 	.4byte 0x82A082E8
 	.4byte 0x82A682CB
 	.4byte 0x815B0000
+.endobj lbl_80496E58
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E8F80:
+.obj lbl_804E8F80, local
 	.4byte .L_803DB994
 	.4byte .L_803DBA34
 	.4byte .L_803DB980
@@ -57,21 +68,21 @@ lbl_804E8F80:
 	.4byte .L_803DBA70
 	.4byte .L_803DBA5C
 	.4byte .L_803DBA48
-.global "__vt__Q24Game30StateMachine<Q33ebi4Save4TMgr>"
-"__vt__Q24Game30StateMachine<Q33ebi4Save4TMgr>":
+.endobj lbl_804E8F80
+.obj "__vt__Q24Game30StateMachine<Q33ebi4Save4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 	.4byte "start__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 	.4byte "transit__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi4Save4TMgr
-__vt__Q33ebi4Save4TMgr:
+.endobj "__vt__Q24Game30StateMachine<Q33ebi4Save4TMgr>"
+.obj __vt__Q33ebi4Save4TMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q33ebi4Save4TMgrFv
-.global __vt__Q33ebi4Save18FSMState_CardError
-__vt__Q33ebi4Save18FSMState_CardError:
+.endobj __vt__Q33ebi4Save4TMgr
+.obj __vt__Q33ebi4Save18FSMState_CardError, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -82,8 +93,8 @@ __vt__Q33ebi4Save18FSMState_CardError:
 	.4byte "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgr
-.global __vt__Q33ebi4Save18FSMState_AfterSave
-__vt__Q33ebi4Save18FSMState_AfterSave:
+.endobj __vt__Q33ebi4Save18FSMState_CardError
+.obj __vt__Q33ebi4Save18FSMState_AfterSave, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -94,8 +105,8 @@ __vt__Q33ebi4Save18FSMState_AfterSave:
 	.4byte "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgr
-.global __vt__Q33ebi4Save16FSMState_NowSave
-__vt__Q33ebi4Save16FSMState_NowSave:
+.endobj __vt__Q33ebi4Save18FSMState_AfterSave
+.obj __vt__Q33ebi4Save16FSMState_NowSave, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -106,8 +117,8 @@ __vt__Q33ebi4Save16FSMState_NowSave:
 	.4byte "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgr
-.global __vt__Q33ebi4Save24FSMState_CheckBeforeSave
-__vt__Q33ebi4Save24FSMState_CheckBeforeSave:
+.endobj __vt__Q33ebi4Save16FSMState_NowSave
+.obj __vt__Q33ebi4Save24FSMState_CheckBeforeSave, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -131,8 +142,8 @@ __vt__Q33ebi4Save24FSMState_CheckBeforeSave:
 	.4byte do_transitCardFileOpenError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 	.4byte do_transitCardSerialNoError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 	.4byte do_transitCardPlayerDataBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-.global __vt__Q33ebi4Save24FSMState_GetPlayerHeader
-__vt__Q33ebi4Save24FSMState_GetPlayerHeader:
+.endobj __vt__Q33ebi4Save24FSMState_CheckBeforeSave
+.obj __vt__Q33ebi4Save24FSMState_GetPlayerHeader, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -156,8 +167,8 @@ __vt__Q33ebi4Save24FSMState_GetPlayerHeader:
 	.4byte do_transitCardFileOpenError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 	.4byte do_transitCardSerialNoError__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr
 	.4byte do_transitCardPlayerDataBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-.global __vt__Q33ebi4Save19FSMState_MountCheck
-__vt__Q33ebi4Save19FSMState_MountCheck:
+.endobj __vt__Q33ebi4Save24FSMState_GetPlayerHeader
+.obj __vt__Q33ebi4Save19FSMState_MountCheck, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -181,8 +192,8 @@ __vt__Q33ebi4Save19FSMState_MountCheck:
 	.4byte do_transitCardFileOpenError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 	.4byte do_transitCardSerialNoError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 	.4byte do_transitCardPlayerDataBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-.global __vt__Q33ebi4Save20FSMState_CardRequest
-__vt__Q33ebi4Save20FSMState_CardRequest:
+.endobj __vt__Q33ebi4Save19FSMState_MountCheck
+.obj __vt__Q33ebi4Save20FSMState_CardRequest, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -206,8 +217,8 @@ __vt__Q33ebi4Save20FSMState_CardRequest:
 	.4byte do_transitCardFileOpenError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 	.4byte do_transitCardSerialNoError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 	.4byte do_transitCardPlayerDataBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-.global __vt__Q33ebi4Save22FSMState_DoYouContinue
-__vt__Q33ebi4Save22FSMState_DoYouContinue:
+.endobj __vt__Q33ebi4Save20FSMState_CardRequest
+.obj __vt__Q33ebi4Save22FSMState_DoYouContinue, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -218,8 +229,8 @@ __vt__Q33ebi4Save22FSMState_DoYouContinue:
 	.4byte "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgr
-.global __vt__Q33ebi4Save18FSMState_DoYouSave
-__vt__Q33ebi4Save18FSMState_DoYouSave:
+.endobj __vt__Q33ebi4Save22FSMState_DoYouContinue
+.obj __vt__Q33ebi4Save18FSMState_DoYouSave, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -230,8 +241,8 @@ __vt__Q33ebi4Save18FSMState_DoYouSave:
 	.4byte "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgr
-.global __vt__Q33ebi4Save8FSMState
-__vt__Q33ebi4Save8FSMState:
+.endobj __vt__Q33ebi4Save18FSMState_DoYouSave
+.obj __vt__Q33ebi4Save8FSMState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
@@ -242,8 +253,8 @@ __vt__Q33ebi4Save8FSMState:
 	.4byte "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 	.4byte do_init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
 	.4byte do_exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr
-.global "__vt__Q24Game26FSMState<Q33ebi4Save4TMgr>"
-"__vt__Q24Game26FSMState<Q33ebi4Save4TMgr>":
+.endobj __vt__Q33ebi4Save8FSMState
+.obj "__vt__Q24Game26FSMState<Q33ebi4Save4TMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgrPQ24Game8StateArg"
@@ -252,45 +263,51 @@ __vt__Q33ebi4Save8FSMState:
 	.4byte "resume__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 	.4byte "restart__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 	.4byte "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
-.global __vt__Q33ebi4Save15FSMStateMachine
-__vt__Q33ebi4Save15FSMStateMachine:
+.endobj "__vt__Q24Game26FSMState<Q33ebi4Save4TMgr>"
+.obj __vt__Q33ebi4Save15FSMStateMachine, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q33ebi4Save15FSMStateMachineFPQ33ebi4Save4TMgr
 	.4byte "start__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 	.4byte "transit__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
+.endobj __vt__Q33ebi4Save15FSMStateMachine
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global msInstance__Q33ebi4Save4TMgr
-msInstance__Q33ebi4Save4TMgr:
+.obj msInstance__Q33ebi4Save4TMgr, global
 	.skip 0x4
+.endobj msInstance__Q33ebi4Save4TMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051FBA0:
+.obj lbl_8051FBA0, local
 	.asciz "Standby"
+.endobj lbl_8051FBA0
 .balign 4
-lbl_8051FBA8:
+.obj lbl_8051FBA8, local
 	.asciz "NowSave"
+.endobj lbl_8051FBA8
 .balign 4
-lbl_8051FBB0:
+.obj lbl_8051FBB0, local
 	.float 1.0
-lbl_8051FBB4:
+.endobj lbl_8051FBB0
+.obj lbl_8051FBB4, local
 	.float 0.5
+.endobj lbl_8051FBB4
 .balign 8
-lbl_8051FBB8:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051FBC0:
+.obj lbl_8051FBB8, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051FBB8
+.obj lbl_8051FBC0, local
 	.float 5.0
-lbl_8051FBC4:
+.endobj lbl_8051FBC0
+.obj lbl_8051FBC4, local
 	.float 0.0
+.endobj lbl_8051FBC4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q33ebi4Save15FSMStateMachineFPQ33ebi4Save4TMgr
-init__Q33ebi4Save15FSMStateMachineFPQ33ebi4Save4TMgr:
+.fn init__Q33ebi4Save15FSMStateMachineFPQ33ebi4Save4TMgr, global
 /* 803DB190 003D80D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DB194 003D80D4  7C 08 02 A6 */	mflr r0
 /* 803DB198 003D80D8  3C 80 80 49 */	lis r4, lbl_80496DD0@ha
@@ -511,9 +528,9 @@ init__Q33ebi4Save15FSMStateMachineFPQ33ebi4Save4TMgr:
 /* 803DB4D0 003D8410  7C 08 03 A6 */	mtlr r0
 /* 803DB4D4 003D8414  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DB4D8 003D8418  4E 80 00 20 */	blr 
+.endfn init__Q33ebi4Save15FSMStateMachineFPQ33ebi4Save4TMgr
 
-.global init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
-init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg:
+.fn init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg, global
 /* 803DB4DC 003D841C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DB4E0 003D8420  7C 08 02 A6 */	mflr r0
 /* 803DB4E4 003D8424  90 01 00 14 */	stw r0, 0x14(r1)
@@ -525,13 +542,13 @@ init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg:
 /* 803DB4FC 003D843C  7C 08 03 A6 */	mtlr r0
 /* 803DB500 003D8440  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DB504 003D8444  4E 80 00 20 */	blr 
+.endfn init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
 
-.global do_init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
-do_init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg, weak
 /* 803DB508 003D8448  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgrPQ24Game8StateArg
 
-.global exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr
-exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr:
+.fn exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr, global
 /* 803DB50C 003D844C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DB510 003D8450  7C 08 02 A6 */	mflr r0
 /* 803DB514 003D8454  90 01 00 14 */	stw r0, 0x14(r1)
@@ -543,13 +560,13 @@ exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr:
 /* 803DB52C 003D846C  7C 08 03 A6 */	mtlr r0
 /* 803DB530 003D8470  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DB534 003D8474  4E 80 00 20 */	blr 
+.endfn exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr
 
-.global do_exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr
-do_exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr:
+.fn do_exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr, weak
 /* 803DB538 003D8478  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi4Save8FSMStateFPQ33ebi4Save4TMgr
 
-.global do_init__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg
-do_init__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg, global
 /* 803DB53C 003D847C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DB540 003D8480  7C 08 02 A6 */	mflr r0
 /* 803DB544 003D8484  90 01 00 14 */	stw r0, 0x14(r1)
@@ -569,9 +586,9 @@ do_init__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg:
 /* 803DB57C 003D84BC  7C 08 03 A6 */	mtlr r0
 /* 803DB580 003D84C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DB584 003D84C4  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgr
-do_exec__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgr:
+.fn do_exec__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgr, global
 /* 803DB588 003D84C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DB58C 003D84CC  7C 08 02 A6 */	mflr r0
 /* 803DB590 003D84D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -659,9 +676,9 @@ do_exec__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgr:
 /* 803DB6C0 003D8600  7C 08 03 A6 */	mtlr r0
 /* 803DB6C4 003D8604  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DB6C8 003D8608  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgr
 
-.global "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
-"transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg", weak
 /* 803DB6CC 003D860C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DB6D0 003D8610  7C 08 02 A6 */	mflr r0
 /* 803DB6D4 003D8614  90 01 00 14 */	stw r0, 0x14(r1)
@@ -674,9 +691,9 @@ do_exec__Q33ebi4Save18FSMState_DoYouSaveFPQ33ebi4Save4TMgr:
 /* 803DB6F0 003D8630  7C 08 03 A6 */	mtlr r0
 /* 803DB6F4 003D8634  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DB6F8 003D8638  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 
-.global do_init__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgrPQ24Game8StateArg
-do_init__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgrPQ24Game8StateArg, global
 /* 803DB6FC 003D863C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DB700 003D8640  7C 08 02 A6 */	mflr r0
 /* 803DB704 003D8644  38 64 00 18 */	addi r3, r4, 0x18
@@ -687,9 +704,9 @@ do_init__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgrPQ24Game8StateArg:
 /* 803DB718 003D8658  7C 08 03 A6 */	mtlr r0
 /* 803DB71C 003D865C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DB720 003D8660  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgr
-do_exec__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgr:
+.fn do_exec__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgr, global
 /* 803DB724 003D8664  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DB728 003D8668  7C 08 02 A6 */	mflr r0
 /* 803DB72C 003D866C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -764,15 +781,15 @@ do_exec__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgr:
 /* 803DB82C 003D876C  7C 08 03 A6 */	mtlr r0
 /* 803DB830 003D8770  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DB834 003D8774  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi4Save22FSMState_DoYouContinueFPQ33ebi4Save4TMgr
 
-.global do_init__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgrPQ24Game8StateArg
-do_init__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgrPQ24Game8StateArg, global
 /* 803DB838 003D8778  38 00 00 00 */	li r0, 0
 /* 803DB83C 003D877C  90 03 00 14 */	stw r0, 0x14(r3)
 /* 803DB840 003D8780  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_exec__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_exec__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DB844 003D8784  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DB848 003D8788  7C 08 02 A6 */	mflr r0
 /* 803DB84C 003D878C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -947,9 +964,9 @@ do_exec__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
 /* 803DBA9C 003D89DC  7C 08 03 A6 */	mtlr r0
 /* 803DBAA0 003D89E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DBAA4 003D89E4  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardNoCard__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardNoCard__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardNoCard__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBAA8 003D89E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBAAC 003D89EC  7C 08 02 A6 */	mflr r0
 /* 803DBAB0 003D89F0  38 A0 00 08 */	li r5, 8
@@ -965,9 +982,9 @@ do_transitCardNoCard__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
 /* 803DBAD8 003D8A18  7C 08 03 A6 */	mtlr r0
 /* 803DBADC 003D8A1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBAE0 003D8A20  4E 80 00 20 */	blr 
+.endfn do_transitCardNoCard__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardIOError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardIOError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardIOError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBAE4 003D8A24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBAE8 003D8A28  7C 08 02 A6 */	mflr r0
 /* 803DBAEC 003D8A2C  38 A0 00 08 */	li r5, 8
@@ -983,9 +1000,9 @@ do_transitCardIOError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
 /* 803DBB14 003D8A54  7C 08 03 A6 */	mtlr r0
 /* 803DBB18 003D8A58  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBB1C 003D8A5C  4E 80 00 20 */	blr 
+.endfn do_transitCardIOError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardWrongDevice__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardWrongDevice__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardWrongDevice__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBB20 003D8A60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBB24 003D8A64  7C 08 02 A6 */	mflr r0
 /* 803DBB28 003D8A68  38 A0 00 08 */	li r5, 8
@@ -1001,9 +1018,9 @@ do_transitCardWrongDevice__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
 /* 803DBB50 003D8A90  7C 08 03 A6 */	mtlr r0
 /* 803DBB54 003D8A94  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBB58 003D8A98  4E 80 00 20 */	blr 
+.endfn do_transitCardWrongDevice__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardWrongSector__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardWrongSector__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardWrongSector__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBB5C 003D8A9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBB60 003D8AA0  7C 08 02 A6 */	mflr r0
 /* 803DBB64 003D8AA4  38 A0 00 08 */	li r5, 8
@@ -1019,9 +1036,9 @@ do_transitCardWrongSector__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
 /* 803DBB8C 003D8ACC  7C 08 03 A6 */	mtlr r0
 /* 803DBB90 003D8AD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBB94 003D8AD4  4E 80 00 20 */	blr 
+.endfn do_transitCardWrongSector__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBB98 003D8AD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBB9C 003D8ADC  7C 08 02 A6 */	mflr r0
 /* 803DBBA0 003D8AE0  38 A0 00 08 */	li r5, 8
@@ -1037,9 +1054,9 @@ do_transitCardBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
 /* 803DBBC8 003D8B08  7C 08 03 A6 */	mtlr r0
 /* 803DBBCC 003D8B0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBBD0 003D8B10  4E 80 00 20 */	blr 
+.endfn do_transitCardBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardEncoding__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardEncoding__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardEncoding__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBBD4 003D8B14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBBD8 003D8B18  7C 08 02 A6 */	mflr r0
 /* 803DBBDC 003D8B1C  38 A0 00 08 */	li r5, 8
@@ -1055,9 +1072,9 @@ do_transitCardEncoding__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
 /* 803DBC04 003D8B44  7C 08 03 A6 */	mtlr r0
 /* 803DBC08 003D8B48  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBC0C 003D8B4C  4E 80 00 20 */	blr 
+.endfn do_transitCardEncoding__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardNoFileSpace__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardNoFileSpace__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardNoFileSpace__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBC10 003D8B50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBC14 003D8B54  7C 08 02 A6 */	mflr r0
 /* 803DBC18 003D8B58  38 A0 00 08 */	li r5, 8
@@ -1073,9 +1090,9 @@ do_transitCardNoFileSpace__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
 /* 803DBC40 003D8B80  7C 08 03 A6 */	mtlr r0
 /* 803DBC44 003D8B84  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBC48 003D8B88  4E 80 00 20 */	blr 
+.endfn do_transitCardNoFileSpace__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardNoFileEntry__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardNoFileEntry__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardNoFileEntry__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBC4C 003D8B8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBC50 003D8B90  7C 08 02 A6 */	mflr r0
 /* 803DBC54 003D8B94  38 A0 00 08 */	li r5, 8
@@ -1091,9 +1108,9 @@ do_transitCardNoFileEntry__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
 /* 803DBC7C 003D8BBC  7C 08 03 A6 */	mtlr r0
 /* 803DBC80 003D8BC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBC84 003D8BC4  4E 80 00 20 */	blr 
+.endfn do_transitCardNoFileEntry__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardFileOpenError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardFileOpenError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardFileOpenError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBC88 003D8BC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBC8C 003D8BCC  7C 08 02 A6 */	mflr r0
 /* 803DBC90 003D8BD0  38 A0 00 08 */	li r5, 8
@@ -1109,9 +1126,9 @@ do_transitCardFileOpenError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 /* 803DBCB8 003D8BF8  7C 08 03 A6 */	mtlr r0
 /* 803DBCBC 003D8BFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBCC0 003D8C00  4E 80 00 20 */	blr 
+.endfn do_transitCardFileOpenError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardSerialNoError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardSerialNoError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardSerialNoError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBCC4 003D8C04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBCC8 003D8C08  7C 08 02 A6 */	mflr r0
 /* 803DBCCC 003D8C0C  38 A0 00 08 */	li r5, 8
@@ -1127,9 +1144,9 @@ do_transitCardSerialNoError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 /* 803DBCF4 003D8C34  7C 08 03 A6 */	mtlr r0
 /* 803DBCF8 003D8C38  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBCFC 003D8C3C  4E 80 00 20 */	blr 
+.endfn do_transitCardSerialNoError__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_transitCardPlayerDataBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
-do_transitCardPlayerDataBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr:
+.fn do_transitCardPlayerDataBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr, global
 /* 803DBD00 003D8C40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBD04 003D8C44  7C 08 02 A6 */	mflr r0
 /* 803DBD08 003D8C48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1141,9 +1158,9 @@ do_transitCardPlayerDataBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4T
 /* 803DBD20 003D8C60  7C 08 03 A6 */	mtlr r0
 /* 803DBD24 003D8C64  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBD28 003D8C68  4E 80 00 20 */	blr 
+.endfn do_transitCardPlayerDataBroken__Q33ebi4Save20FSMState_CardRequestFPQ33ebi4Save4TMgr
 
-.global do_cardRequest__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr
-do_cardRequest__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr:
+.fn do_cardRequest__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr, global
 /* 803DBD2C 003D8C6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBD30 003D8C70  7C 08 02 A6 */	mflr r0
 /* 803DBD34 003D8C74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1154,9 +1171,9 @@ do_cardRequest__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr:
 /* 803DBD48 003D8C88  7C 08 03 A6 */	mtlr r0
 /* 803DBD4C 003D8C8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBD50 003D8C90  4E 80 00 20 */	blr 
+.endfn do_cardRequest__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr
 
-.global do_transitCardReady__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr
-do_transitCardReady__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr:
+.fn do_transitCardReady__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr, global
 /* 803DBD54 003D8C94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBD58 003D8C98  7C 08 02 A6 */	mflr r0
 /* 803DBD5C 003D8C9C  38 A0 00 04 */	li r5, 4
@@ -1170,9 +1187,9 @@ do_transitCardReady__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr:
 /* 803DBD7C 003D8CBC  7C 08 03 A6 */	mtlr r0
 /* 803DBD80 003D8CC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBD84 003D8CC4  4E 80 00 20 */	blr 
+.endfn do_transitCardReady__Q33ebi4Save19FSMState_MountCheckFPQ33ebi4Save4TMgr
 
-.global do_cardRequest__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr
-do_cardRequest__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr:
+.fn do_cardRequest__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr, global
 /* 803DBD88 003D8CC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBD8C 003D8CCC  7C 08 02 A6 */	mflr r0
 /* 803DBD90 003D8CD0  38 84 03 D4 */	addi r4, r4, 0x3d4
@@ -1184,9 +1201,9 @@ do_cardRequest__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr:
 /* 803DBDA8 003D8CE8  7C 08 03 A6 */	mtlr r0
 /* 803DBDAC 003D8CEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBDB0 003D8CF0  4E 80 00 20 */	blr 
+.endfn do_cardRequest__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr
 
-.global do_transitCardReady__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr
-do_transitCardReady__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr:
+.fn do_transitCardReady__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr, global
 /* 803DBDB4 003D8CF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DBDB8 003D8CF8  7C 08 02 A6 */	mflr r0
 /* 803DBDBC 003D8CFC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1254,9 +1271,9 @@ do_transitCardReady__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr:
 /* 803DBEA0 003D8DE0  7C 08 03 A6 */	mtlr r0
 /* 803DBEA4 003D8DE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DBEA8 003D8DE8  4E 80 00 20 */	blr 
+.endfn do_transitCardReady__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr
 
-.global do_transitCardSerialNoError__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr
-do_transitCardSerialNoError__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr:
+.fn do_transitCardSerialNoError__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr, global
 /* 803DBEAC 003D8DEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBEB0 003D8DF0  7C 08 02 A6 */	mflr r0
 /* 803DBEB4 003D8DF4  3C 60 80 49 */	lis r3, lbl_80496E3C@ha
@@ -1271,9 +1288,9 @@ do_transitCardSerialNoError__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4
 /* 803DBED8 003D8E18  7C 08 03 A6 */	mtlr r0
 /* 803DBEDC 003D8E1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBEE0 003D8E20  4E 80 00 20 */	blr 
+.endfn do_transitCardSerialNoError__Q33ebi4Save24FSMState_GetPlayerHeaderFPQ33ebi4Save4TMgr
 
-.global do_cardRequest__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr
-do_cardRequest__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr:
+.fn do_cardRequest__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr, global
 /* 803DBEE4 003D8E24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBEE8 003D8E28  7C 08 02 A6 */	mflr r0
 /* 803DBEEC 003D8E2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1284,9 +1301,9 @@ do_cardRequest__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr:
 /* 803DBF00 003D8E40  7C 08 03 A6 */	mtlr r0
 /* 803DBF04 003D8E44  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBF08 003D8E48  4E 80 00 20 */	blr 
+.endfn do_cardRequest__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr
 
-.global do_transitCardReady__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr
-do_transitCardReady__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr:
+.fn do_transitCardReady__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr, global
 /* 803DBF0C 003D8E4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DBF10 003D8E50  7C 08 02 A6 */	mflr r0
 /* 803DBF14 003D8E54  38 A0 00 06 */	li r5, 6
@@ -1302,9 +1319,9 @@ do_transitCardReady__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr:
 /* 803DBF3C 003D8E7C  7C 08 03 A6 */	mtlr r0
 /* 803DBF40 003D8E80  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DBF44 003D8E84  4E 80 00 20 */	blr 
+.endfn do_transitCardReady__Q33ebi4Save24FSMState_CheckBeforeSaveFPQ33ebi4Save4TMgr
 
-.global do_init__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg
-do_init__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg, global
 /* 803DBF48 003D8E88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DBF4C 003D8E8C  7C 08 02 A6 */	mflr r0
 /* 803DBF50 003D8E90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1360,9 +1377,9 @@ do_init__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg:
 /* 803DC00C 003D8F4C  7C 08 03 A6 */	mtlr r0
 /* 803DC010 003D8F50  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DC014 003D8F54  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgr
-do_exec__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgr:
+.fn do_exec__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgr, global
 /* 803DC018 003D8F58  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803DC01C 003D8F5C  7C 08 02 A6 */	mflr r0
 /* 803DC020 003D8F60  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1658,9 +1675,9 @@ do_exec__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgr:
 /* 803DC430 003D9370  7C 08 03 A6 */	mtlr r0
 /* 803DC434 003D9374  38 21 00 30 */	addi r1, r1, 0x30
 /* 803DC438 003D9378  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi4Save16FSMState_NowSaveFPQ33ebi4Save4TMgr
 
-.global do_init__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg
-do_init__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg, global
 /* 803DC43C 003D937C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DC440 003D9380  7C 08 02 A6 */	mflr r0
 /* 803DC444 003D9384  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1681,9 +1698,9 @@ do_init__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg:
 /* 803DC480 003D93C0  7C 08 03 A6 */	mtlr r0
 /* 803DC484 003D93C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DC488 003D93C8  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgr
-do_exec__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgr:
+.fn do_exec__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgr, global
 /* 803DC48C 003D93CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DC490 003D93D0  7C 08 02 A6 */	mflr r0
 /* 803DC494 003D93D4  C8 62 18 58 */	lfd f3, lbl_8051FBB8@sda21(r2)
@@ -1742,9 +1759,9 @@ do_exec__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgr:
 /* 803DC558 003D9498  7C 08 03 A6 */	mtlr r0
 /* 803DC55C 003D949C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DC560 003D94A0  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi4Save18FSMState_AfterSaveFPQ33ebi4Save4TMgr
 
-.global do_init__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgrPQ24Game8StateArg
-do_init__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgrPQ24Game8StateArg:
+.fn do_init__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgrPQ24Game8StateArg, global
 /* 803DC564 003D94A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DC568 003D94A8  7C 08 02 A6 */	mflr r0
 /* 803DC56C 003D94AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1772,9 +1789,9 @@ do_init__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgrPQ24Game8StateArg:
 /* 803DC5C0 003D9500  7C 08 03 A6 */	mtlr r0
 /* 803DC5C4 003D9504  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DC5C8 003D9508  4E 80 00 20 */	blr 
+.endfn do_init__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgrPQ24Game8StateArg
 
-.global do_exec__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgr
-do_exec__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgr:
+.fn do_exec__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgr, global
 /* 803DC5CC 003D950C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DC5D0 003D9510  7C 08 02 A6 */	mflr r0
 /* 803DC5D4 003D9514  3C A0 80 49 */	lis r5, lbl_80496DD0@ha
@@ -1845,9 +1862,9 @@ do_exec__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgr:
 /* 803DC6C4 003D9604  7C 08 03 A6 */	mtlr r0
 /* 803DC6C8 003D9608  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DC6CC 003D960C  4E 80 00 20 */	blr 
+.endfn do_exec__Q33ebi4Save18FSMState_CardErrorFPQ33ebi4Save4TMgr
 
-.global __dt__Q33ebi4Save4TMgrFv
-__dt__Q33ebi4Save4TMgrFv:
+.fn __dt__Q33ebi4Save4TMgrFv, global
 /* 803DC6D0 003D9610  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DC6D4 003D9614  7C 08 02 A6 */	mflr r0
 /* 803DC6D8 003D9618  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1934,9 +1951,9 @@ __dt__Q33ebi4Save4TMgrFv:
 /* 803DC810 003D9750  7C 08 03 A6 */	mtlr r0
 /* 803DC814 003D9754  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DC818 003D9758  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi4Save4TMgrFv
 
-.global __dt__Q33ebi9CardError4TMgrFv
-__dt__Q33ebi9CardError4TMgrFv:
+.fn __dt__Q33ebi9CardError4TMgrFv, weak
 /* 803DC81C 003D975C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DC820 003D9760  7C 08 02 A6 */	mflr r0
 /* 803DC824 003D9764  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1959,9 +1976,9 @@ __dt__Q33ebi9CardError4TMgrFv:
 /* 803DC864 003D97A4  7C 08 03 A6 */	mtlr r0
 /* 803DC868 003D97A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DC86C 003D97AC  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi9CardError4TMgrFv
 
-.global createInstance__Q33ebi4Save4TMgrFv
-createInstance__Q33ebi4Save4TMgrFv:
+.fn createInstance__Q33ebi4Save4TMgrFv, global
 /* 803DC870 003D97B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DC874 003D97B4  7C 08 02 A6 */	mflr r0
 /* 803DC878 003D97B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1982,9 +1999,9 @@ createInstance__Q33ebi4Save4TMgrFv:
 /* 803DC8AC 003D97EC  7C 08 03 A6 */	mtlr r0
 /* 803DC8B0 003D97F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DC8B4 003D97F4  4E 80 00 20 */	blr 
+.endfn createInstance__Q33ebi4Save4TMgrFv
 
-.global onDvdErrorOccured__Q33ebi4Save4TMgrFv
-onDvdErrorOccured__Q33ebi4Save4TMgrFv:
+.fn onDvdErrorOccured__Q33ebi4Save4TMgrFv, global
 /* 803DC8B8 003D97F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DC8BC 003D97FC  7C 08 02 A6 */	mflr r0
 /* 803DC8C0 003D9800  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2009,9 +2026,9 @@ onDvdErrorOccured__Q33ebi4Save4TMgrFv:
 /* 803DC904 003D9844  7C 08 03 A6 */	mtlr r0
 /* 803DC908 003D9848  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DC90C 003D984C  4E 80 00 20 */	blr 
+.endfn onDvdErrorOccured__Q33ebi4Save4TMgrFv
 
-.global onDvdErrorRecovered__Q33ebi4Save4TMgrFv
-onDvdErrorRecovered__Q33ebi4Save4TMgrFv:
+.fn onDvdErrorRecovered__Q33ebi4Save4TMgrFv, global
 /* 803DC910 003D9850  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DC914 003D9854  7C 08 02 A6 */	mflr r0
 /* 803DC918 003D9858  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2030,9 +2047,9 @@ onDvdErrorRecovered__Q33ebi4Save4TMgrFv:
 /* 803DC948 003D9888  7C 08 03 A6 */	mtlr r0
 /* 803DC94C 003D988C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DC950 003D9890  4E 80 00 20 */	blr 
+.endfn onDvdErrorRecovered__Q33ebi4Save4TMgrFv
 
-.global __ct__Q33ebi4Save4TMgrFv
-__ct__Q33ebi4Save4TMgrFv:
+.fn __ct__Q33ebi4Save4TMgrFv, global
 /* 803DC954 003D9894  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DC958 003D9898  7C 08 02 A6 */	mflr r0
 /* 803DC95C 003D989C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2086,9 +2103,9 @@ __ct__Q33ebi4Save4TMgrFv:
 /* 803DCA1C 003D995C  7C 08 03 A6 */	mtlr r0
 /* 803DCA20 003D9960  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCA24 003D9964  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi4Save4TMgrFv
 
-.global "start__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
-"start__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg":
+.fn "start__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg", weak
 /* 803DCA28 003D9968  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCA2C 003D996C  7C 08 02 A6 */	mflr r0
 /* 803DCA30 003D9970  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2102,9 +2119,9 @@ __ct__Q33ebi4Save4TMgrFv:
 /* 803DCA50 003D9990  7C 08 03 A6 */	mtlr r0
 /* 803DCA54 003D9994  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCA58 003D9998  4E 80 00 20 */	blr 
+.endfn "start__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 
-.global __ct__Q33ebi6Screen9TSaveMenuFv
-__ct__Q33ebi6Screen9TSaveMenuFv:
+.fn __ct__Q33ebi6Screen9TSaveMenuFv, weak
 /* 803DCA5C 003D999C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DCA60 003D99A0  3C 80 80 4F */	lis r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
 /* 803DCA64 003D99A4  38 04 87 E8 */	addi r0, r4, __vt__Q33ebi6Screen20TScreenBaseInterface@l
@@ -2209,9 +2226,9 @@ __ct__Q33ebi6Screen9TSaveMenuFv:
 /* 803DCBF0 003D9B30  83 A1 00 14 */	lwz r29, 0x14(r1)
 /* 803DCBF4 003D9B34  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DCBF8 003D9B38  4E 80 00 20 */	blr 
+.endfn __ct__Q33ebi6Screen9TSaveMenuFv
 
-.global start__Q33ebi4Save4TMgrFv
-start__Q33ebi4Save4TMgrFv:
+.fn start__Q33ebi4Save4TMgrFv, global
 /* 803DCBFC 003D9B3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCC00 003D9B40  7C 08 02 A6 */	mflr r0
 /* 803DCC04 003D9B44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2246,9 +2263,9 @@ start__Q33ebi4Save4TMgrFv:
 /* 803DCC70 003D9BB0  7C 08 03 A6 */	mtlr r0
 /* 803DCC74 003D9BB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCC78 003D9BB8  4E 80 00 20 */	blr 
+.endfn start__Q33ebi4Save4TMgrFv
 
-.global forceQuit__Q33ebi4Save4TMgrFv
-forceQuit__Q33ebi4Save4TMgrFv:
+.fn forceQuit__Q33ebi4Save4TMgrFv, global
 /* 803DCC7C 003D9BBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCC80 003D9BC0  7C 08 02 A6 */	mflr r0
 /* 803DCC84 003D9BC4  38 A0 00 00 */	li r5, 0
@@ -2274,9 +2291,9 @@ forceQuit__Q33ebi4Save4TMgrFv:
 /* 803DCCD4 003D9C14  7C 08 03 A6 */	mtlr r0
 /* 803DCCD8 003D9C18  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCCDC 003D9C1C  4E 80 00 20 */	blr 
+.endfn forceQuit__Q33ebi4Save4TMgrFv
 
-.global isFinish__Q33ebi4Save4TMgrFv
-isFinish__Q33ebi4Save4TMgrFv:
+.fn isFinish__Q33ebi4Save4TMgrFv, global
 /* 803DCCE0 003D9C20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCCE4 003D9C24  7C 08 02 A6 */	mflr r0
 /* 803DCCE8 003D9C28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2298,9 +2315,9 @@ isFinish__Q33ebi4Save4TMgrFv:
 /* 803DCD20 003D9C60  7C 08 03 A6 */	mtlr r0
 /* 803DCD24 003D9C64  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCD28 003D9C68  4E 80 00 20 */	blr 
+.endfn isFinish__Q33ebi4Save4TMgrFv
 
-.global goEnd___Q33ebi4Save4TMgrFQ43ebi4Save4TMgr7enumEnd
-goEnd___Q33ebi4Save4TMgrFQ43ebi4Save4TMgr7enumEnd:
+.fn goEnd___Q33ebi4Save4TMgrFQ43ebi4Save4TMgr7enumEnd, global
 /* 803DCD2C 003D9C6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCD30 003D9C70  7C 08 02 A6 */	mflr r0
 /* 803DCD34 003D9C74  38 A0 00 00 */	li r5, 0
@@ -2327,9 +2344,9 @@ goEnd___Q33ebi4Save4TMgrFQ43ebi4Save4TMgr7enumEnd:
 /* 803DCD88 003D9CC8  7C 08 03 A6 */	mtlr r0
 /* 803DCD8C 003D9CCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCD90 003D9CD0  4E 80 00 20 */	blr 
+.endfn goEnd___Q33ebi4Save4TMgrFQ43ebi4Save4TMgr7enumEnd
 
-.global update__Q33ebi4Save4TMgrFv
-update__Q33ebi4Save4TMgrFv:
+.fn update__Q33ebi4Save4TMgrFv, global
 /* 803DCD94 003D9CD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCD98 003D9CD8  7C 08 02 A6 */	mflr r0
 /* 803DCD9C 003D9CDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2369,9 +2386,9 @@ update__Q33ebi4Save4TMgrFv:
 /* 803DCE20 003D9D60  7C 08 03 A6 */	mtlr r0
 /* 803DCE24 003D9D64  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCE28 003D9D68  4E 80 00 20 */	blr 
+.endfn update__Q33ebi4Save4TMgrFv
 
-.global draw__Q33ebi4Save4TMgrFv
-draw__Q33ebi4Save4TMgrFv:
+.fn draw__Q33ebi4Save4TMgrFv, global
 /* 803DCE2C 003D9D6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCE30 003D9D70  7C 08 02 A6 */	mflr r0
 /* 803DCE34 003D9D74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2393,9 +2410,9 @@ draw__Q33ebi4Save4TMgrFv:
 /* 803DCE70 003D9DB0  7C 08 03 A6 */	mtlr r0
 /* 803DCE74 003D9DB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCE78 003D9DB8  4E 80 00 20 */	blr 
+.endfn draw__Q33ebi4Save4TMgrFv
 
-.global getStateID__Q33ebi4Save4TMgrFv
-getStateID__Q33ebi4Save4TMgrFv:
+.fn getStateID__Q33ebi4Save4TMgrFv, global
 /* 803DCE7C 003D9DBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCE80 003D9DC0  7C 08 02 A6 */	mflr r0
 /* 803DCE84 003D9DC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2419,33 +2436,33 @@ getStateID__Q33ebi4Save4TMgrFv:
 /* 803DCEC8 003D9E08  7C 08 03 A6 */	mtlr r0
 /* 803DCECC 003D9E0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCED0 003D9E10  4E 80 00 20 */	blr 
+.endfn getStateID__Q33ebi4Save4TMgrFv
 
-.global "init__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgrPQ24Game8StateArg"
-"init__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgrPQ24Game8StateArg":
+.fn "init__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgrPQ24Game8StateArg", weak
 /* 803DCED4 003D9E14  4E 80 00 20 */	blr 
+.endfn "init__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgrPQ24Game8StateArg"
 
-.global "exec__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
-"exec__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr":
+.fn "exec__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr", weak
 /* 803DCED8 003D9E18  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 
-.global "cleanup__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
-"cleanup__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr":
+.fn "cleanup__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr", weak
 /* 803DCEDC 003D9E1C  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 
-.global "resume__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
-"resume__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr":
+.fn "resume__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr", weak
 /* 803DCEE0 003D9E20  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 
-.global "restart__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
-"restart__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr":
+.fn "restart__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr", weak
 /* 803DCEE4 003D9E24  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game26FSMState<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 
-.global "init__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
-"init__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr":
+.fn "init__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr", weak
 /* 803DCEE8 003D9E28  4E 80 00 20 */	blr 
+.endfn "init__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 
-.global "exec__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
-"exec__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr":
+.fn "exec__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr", weak
 /* 803DCEEC 003D9E2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCEF0 003D9E30  7C 08 02 A6 */	mflr r0
 /* 803DCEF4 003D9E34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2461,9 +2478,9 @@ getStateID__Q33ebi4Save4TMgrFv:
 /* 803DCF18 003D9E58  7C 08 03 A6 */	mtlr r0
 /* 803DCF1C 003D9E5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCF20 003D9E60  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 
-.global "create__Q24Game30StateMachine<Q33ebi4Save4TMgr>Fi"
-"create__Q24Game30StateMachine<Q33ebi4Save4TMgr>Fi":
+.fn "create__Q24Game30StateMachine<Q33ebi4Save4TMgr>Fi", weak
 /* 803DCF24 003D9E64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803DCF28 003D9E68  7C 08 02 A6 */	mflr r0
 /* 803DCF2C 003D9E6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2489,9 +2506,9 @@ getStateID__Q33ebi4Save4TMgrFv:
 /* 803DCF7C 003D9EBC  7C 08 03 A6 */	mtlr r0
 /* 803DCF80 003D9EC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DCF84 003D9EC4  4E 80 00 20 */	blr 
+.endfn "create__Q24Game30StateMachine<Q33ebi4Save4TMgr>Fi"
 
-.global "transit__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
-"transit__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg":
+.fn "transit__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg", weak
 /* 803DCF88 003D9EC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DCF8C 003D9ECC  7C 08 02 A6 */	mflr r0
 /* 803DCF90 003D9ED0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2534,9 +2551,9 @@ getStateID__Q33ebi4Save4TMgrFv:
 /* 803DD018 003D9F58  7C 08 03 A6 */	mtlr r0
 /* 803DD01C 003D9F5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803DD020 003D9F60  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 
-.global "registerState__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ24Game26FSMState<Q33ebi4Save4TMgr>"
-"registerState__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ24Game26FSMState<Q33ebi4Save4TMgr>":
+.fn "registerState__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ24Game26FSMState<Q33ebi4Save4TMgr>", weak
 /* 803DD024 003D9F64  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803DD028 003D9F68  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 803DD02C 003D9F6C  7C 06 00 00 */	cmpw r6, r0
@@ -2573,3 +2590,4 @@ getStateID__Q33ebi4Save4TMgrFv:
 /* 803DD09C 003D9FDC  38 04 00 01 */	addi r0, r4, 1
 /* 803DD0A0 003D9FE0  90 03 00 08 */	stw r0, 8(r3)
 /* 803DD0A4 003D9FE4  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ24Game26FSMState<Q33ebi4Save4TMgr>"
