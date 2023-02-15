@@ -210,7 +210,12 @@ struct PlayData : public CNode {
 	 * @size{0xC}
 	 */
 	struct CaveOtakara {
-		CaveOtakara();
+		CaveOtakara()
+		: mCaveCount(0)
+		, mOtakaraCountsOld(nullptr)
+		, _08(nullptr)
+		{
+		}
 
 		void write(Stream&);
 		void read(Stream&);
@@ -347,7 +352,8 @@ struct PlayData : public CNode {
 	bool _18;                               // _18
 	u8 mLoadType;                           // _19
 	u32 _1C;                                // _1C
-	u8 mDeadNaviID[2];                      // _20
+	u8 mDeadNaviID;                         // _20
+	u8 _21[3];                              // _21
 	f32 mNaviLifeMax[2];                    // _24
 	u8 mHasContainerFlags;                  // _2C
 	u8 mHasBootContainerFlags;              // _2D
@@ -366,8 +372,7 @@ struct PlayData : public CNode {
 	int mTreasureCount;                     // _BC
 	int mSprayCount[2];                     // _C0
 	int mBerryCount[2];                     // _C8
-	int mOsTimeHi;                          // _D0
-	int mOsTimeLo;                          // _D4
+	u64 mOsTime;                            // _D0
 	u8* mBitfieldPerCourse;                 // _D8
 
 	// Current collected overworld treasure counts, per course.

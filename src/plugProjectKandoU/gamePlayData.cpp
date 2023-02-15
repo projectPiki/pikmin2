@@ -600,7 +600,7 @@ void PlayData::construct()
  */
 PlayData::PlayData()
     : mDeadNaviID()
-    , mStoryFlags(0)
+    , mStoryFlags()
 {
 	mDebtProgressFlags[0] = 0;
 	mDebtProgressFlags[1] = 0;
@@ -1289,19 +1289,19 @@ lbl_801E69DC:
  * Address:	801E6A0C
  * Size:	000014
  */
-PlayData::CaveOtakara::CaveOtakara()
+/*PlayData::CaveOtakara::CaveOtakara()
     : mCaveCount(0)
     , mOtakaraCountsOld(nullptr)
     , _08(nullptr)
 {
 }
-
+*/
 /*
  * --INFO--
  * Address:	801E6A20
  * Size:	000038
  */
-PlayData::LimitGen::LimitGen() { }
+//PlayData::LimitGen::LimitGen() { }
 
 /*
  * --INFO--
@@ -1319,11 +1319,9 @@ void PlayData::reset()
 {
 	mNaviLifeMax[1]       = 0.0f;
 	mNaviLifeMax[0]       = 0.0f;
-	mDeadNaviID[0]        = 0;
-	//mDeadNaviID[0]        = 0;
+	mDeadNaviID           = 0;
 	u64 osTime            = OSGetTime();
-	mOsTimeLo             = (u32)osTime;
-	mOsTimeHi             = (u32)(osTime >> 0x20);
+	mOsTime               = osTime;
 	_18                   = false;
 	mLoadType             = 0;
 	mStoryFlags           = 0;
@@ -1700,55 +1698,18 @@ void PlayData::setDevelopSetting(bool p1, bool p2)
  */
 int PlayData::calcPlayMinutes()
 {
-	u64 time = OSGetTime();
-	//OSTicksToCalendarTime((long long)(mOsTimeHi << 32 | mOsTimeLo));
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stw      r31, 0x8c(r1)
-	stw      r30, 0x88(r1)
-	stw      r29, 0x84(r1)
-	mr       r29, r3
-	bl       OSGetTime
-	mr       r30, r4
-	mr       r31, r3
-	addi     r5, r1, 0x58
-	bl       OSTicksToCalendarTime
-	lwz      r3, 0xd0(r29)
-	addi     r5, r1, 0x30
-	lwz      r4, 0xd4(r29)
-	bl       OSTicksToCalendarTime
-	lwz      r3, 0xd4(r29)
-	addi     r5, r1, 8
-	lwz      r0, 0xd0(r29)
-	subfc    r30, r3, r30
-	subfe    r31, r0, r31
-	mr       r4, r30
-	mr       r3, r31
-	bl       OSTicksToCalendarTime
-	lis      r4, 0x800000F8@ha
-	mr       r3, r31
-	lwz      r0, 0x800000F8@l(r4)
-	mr       r4, r30
-	li       r5, 0
-	srwi     r6, r0, 2
-	bl       __div2i
-	lis      r3, 0x88888889@ha
-	addi     r0, r3, 0x88888889@l
-	mulhw    r0, r0, r4
-	add      r0, r0, r4
-	srawi    r0, r0, 5
-	srwi     r3, r0, 0x1f
-	add      r3, r0, r3
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	lwz      r29, 0x84(r1)
-	lwz      r0, 0x94(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	OSCalendarTime calendar1;
+	OSCalendarTime calendar2;
+	OSCalendarTime calendar3;
+
+	OSTime time = OSGetTime(); // mistake?
+	OSTicksToCalendarTime(time , &calendar1);
+	OSTicksToCalendarTime(mOsTime, &calendar2);
+
+	OSTime diff = time - mOsTime;
+	OSTicksToCalendarTime(diff, &calendar3);
+
+	return (int)(diff / OS_TIMER_CLOCK) / 60;
 }
 
 /*
@@ -2217,13 +2178,13 @@ bool PlayData::isPelletEverGot(Pellet*) { }
 bool PlayData::isPelletEverGot(unsigned char type, unsigned char id)
 {
 	if (type == PELTYPE_UPGRADE) {
-		bool check = (id < mZukanStat->mCarcass.mNumKinds);
-		P2ASSERTLINE(330, check);
+		//bool check = (id < mZukanStat->mCarcass.mNumKinds);
+		//P2ASSERTLINE(330, check);
 		u8* kinds = mZukanStat->mItem(id);
 		return (*kinds != 0);
 	} else if (type == PELTYPE_TREASURE) {
-		bool check = (id < mZukanStat->mCarcass.mNumKinds);
-		P2ASSERTLINE(330, check);
+		//bool check = (id < mZukanStat->mCarcass.mNumKinds);
+		//P2ASSERTLINE(330, check);
 		u8* kinds = mZukanStat->mOtakara(id);
 		return (*kinds != 0);
 	} else {
@@ -2326,7 +2287,7 @@ bool PlayData::isPelletZukanVisible(int id)
 		int index = config->mParams.mIndex;
 
 		bool check = (index >= 0 && index < mZukanStat->mOtakara.mNumKinds);
-		P2ASSERTLINE(330, check);
+		//P2ASSERTLINE(330, check);
 
 		u8* kinds = mZukanStat->mOtakara(index);
 		return (*kinds & 2);
@@ -2337,7 +2298,7 @@ bool PlayData::isPelletZukanVisible(int id)
 			int index = config->mParams.mIndex;
 
 			bool check = (index >= 0 && index < mZukanStat->mItem.mNumKinds);
-			P2ASSERTLINE(330, check);
+			//P2ASSERTLINE(330, check);
 
 			u8* kinds = mZukanStat->mItem(index);
 			return (*kinds & 2);
@@ -2449,7 +2410,7 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 		int index = config->mParams.mIndex;
 
 		bool check = (index >= 0 && index < mZukanStat->mOtakara.mNumKinds);
-		P2ASSERTLINE(330, check);
+		//P2ASSERTLINE(330, check);
 
 		u8* kinds = mZukanStat->mOtakara(index);
 		return (*kinds & 2 && !(*kinds & 4));
@@ -2460,7 +2421,7 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 			int index = config->mParams.mIndex;
 
 			bool check = (index >= 0 && index < mZukanStat->mItem.mNumKinds);
-			P2ASSERTLINE(330, check);
+			//P2ASSERTLINE(330, check);
 
 			u8* kinds = mZukanStat->mItem(index);
 			return (*kinds & 2 && !(*kinds & 4));
@@ -4692,7 +4653,13 @@ CaveSaveData::CaveSaveData()
     , mCavePikis()
     , _30()
 {
-	clear();
+	mCavePikis.clear();
+	mTime      = 0.0f;
+	mIsInCave  = false;
+	mCourseIdx = -1;
+	mCurrentCaveID.setID('none');
+	mIsWaterwraithAlive = 1;
+	mWaterwraithTimer   = 0.0f;
 }
 
 /*
@@ -4709,34 +4676,6 @@ void CaveSaveData::clear()
 	mCurrentCaveID.setID('none');
 	mIsWaterwraithAlive = 1;
 	mWaterwraithTimer   = 0.0f;
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	addi     r3, r31, 0x14
-// 	bl       clear__Q24Game13PikiContainerFv
-// 	lfs      f0, lbl_805199D0@sda21(r2)
-// 	lis      r4, 0x6E6F6E65@ha
-// 	li       r5, 0
-// 	li       r0, -1
-// 	stfs     f0, 0x1c(r31)
-// 	addi     r3, r31, 8
-// 	addi     r4, r4, 0x6E6F6E65@l
-// 	stb      r5, 0(r31)
-// 	stw      r0, 4(r31)
-// 	bl       setID__4ID32FUl
-// 	li       r0, 1
-// 	lfs      f0, lbl_805199D0@sda21(r2)
-// 	stb      r0, 0x20(r31)
-// 	stfs     f0, 0x24(r31)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
 }
 
 /*
@@ -4746,20 +4685,20 @@ void CaveSaveData::clear()
  */
 bool PlayData::doneWorldMapEffect()
 {
+	s32 courseCount = stageList->mCourseCount;
 	mPokoCountOld = mPokoCount;
-
-	for (int i = 0; i < stageList->mCourseCount; i++) {
-		mGroundOtakaraCollectedOld[i] = 0;
+	for (int i = 0; i < courseCount; i++) {
+		mGroundOtakaraCollectedOld[i] = mGroundOtakaraCollected[i];
 	}
-
-	for (int i = 0; i < stageList->mCourseCount; i++) {
-		CaveOtakara* data    = mCaveOtakaraOld;
-		CaveOtakara* datanew = mCaveOtakara;
-		if (data->mCaveCount > 0) {
-			for (int j = 0; j < data->mCaveCount; j++) {
-				data->mOtakaraCountsOld[j] = datanew->mOtakaraCountsOld[j];
-				data->_08[j]               = datanew->mOtakaraCountsOld[j];
-			}
+	
+	for (int i = 0; i < courseCount; i++) {
+		CaveOtakara* datanew = (CaveOtakara*)mCaveOtakara->mCaveCount + i;
+		CaveOtakara* data    = (CaveOtakara*)mCaveOtakaraOld->mCaveCount + i;
+		data->mCaveCount = datanew->mCaveCount;
+		//s8 caveCount = data->mCaveCount;
+		for (int j = 0; j < datanew->mCaveCount; j++) {
+			data->mOtakaraCountsOld[j] = datanew->mOtakaraCountsOld[j];
+			data->_08[j]               = datanew->_08[j];
 		}
 	}
 	/*
