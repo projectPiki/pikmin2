@@ -28,11 +28,10 @@ This repository builds the following DOLs:
 ### Instructions
 
 * WINDOWS ONLY STEP:
-	- Launch msys2 (provided by devkitPro) and run the following commands: 
+	- Launch msys2 (provided by devkitPro) and run the following command: 
 	
 	```
 	pacman -S msys2-keyring
-	pacman -S git python
 	```
 
 1. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
