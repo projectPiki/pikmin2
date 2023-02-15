@@ -152,7 +152,7 @@ lbl_802342D0:
 void PlayCommonData::write(Stream& output)
 {
 	output.writeInt(2);
-	output.writeByte(_00);
+	output.writeBytes(&_00, 1);
 	for (int i = 0; i < 0x10; i++) {
 		_04[i]->write(output);
 		_08[i]->write(output);
@@ -210,77 +210,25 @@ lbl_80234384:
  * Address:	802343E0
  * Size:	0000EC
  */
-void PlayCommonData::read(Stream&)
+void PlayCommonData::read(Stream& stream)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl       readInt__6StreamFv
-	mr       r31, r3
-	mr       r3, r29
-	bl       readByte__6StreamFv
-	cmplwi   r31, 2
-	stb      r3, 0(r28)
-	blt      lbl_80234460
-	li       r30, 0
-	li       r31, 0
-
-lbl_8023442C:
-	lwz      r3, 4(r28)
-	mr       r4, r29
-	lwzx     r3, r3, r31
-	bl       read__Q24Game9HighscoreFR6Stream
-	lwz      r3, 8(r28)
-	mr       r4, r29
-	lwzx     r3, r3, r31
-	bl       read__Q24Game9HighscoreFR6Stream
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0x10
-	blt      lbl_8023442C
-	b        lbl_802344A0
-
-lbl_80234460:
-	cmplwi   r31, 1
-	bgt      lbl_802344A0
-	li       r30, 0
-	li       r31, 0
-
-lbl_80234470:
-	lwz      r3, 4(r28)
-	mr       r4, r29
-	lwzx     r3, r3, r31
-	bl       read__Q24Game9HighscoreFR6Stream
-	lwz      r3, 8(r28)
-	mr       r4, r29
-	lwzx     r3, r3, r31
-	bl       read__Q24Game9HighscoreFR6Stream
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0xf
-	blt      lbl_80234470
-
-lbl_802344A0:
-	mr       r4, r29
-	addi     r3, r28, 0xc
-	bl       read__Q24Game21PlayChallengeGameDataFR6Stream
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	u32 fileInt = stream.readInt();
+	u8 fileByte = stream.readByte();
+	_00 = fileByte;
+	if (fileInt >= 2) {
+		for (int i = 0; i < 0x10; i++) {
+			_04[i]->read(stream);
+			_08[i]->read(stream);
+		}
+	} else {
+		if (fileInt <= 1) {
+			for (int i = 0; i < 0xf; i++) {
+				_04[i]->read(stream);
+				_08[i]->read(stream);
+			}
+		}
+	}
+	mChallengeData.read(stream);
 }
 
 /*
@@ -343,7 +291,7 @@ void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int ne
 	totals[0] = newTotal;
 	scores[0] = highscores[0]->entryScore(newTotal);
 	for (int i = 0; i < 8; i++) {
-		totals[i + 1] = DeathMgr::get_total((DeathMgr::CauseOfDeath)i);
+		totals[i + 1] = DeathMgr::get_total((DeathCounter::CauseOfDeath)i);
 		scores[i + 1] = highscores[i + 1]->entryScore(totals[i + 1]);
 	}
 	for (int i = 0; i < 6; i++) {
@@ -351,7 +299,7 @@ void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int ne
 		scores[i + 9] = highscores[i + 9]->entryScore(totals[i + 9]);
 	}
 	CommonSaveData::Mgr* playCommonData = sys->getPlayCommonData();
-	int timeTotal                       = playData->calcPlayMinutes() + playCommonData->_1C;
+	int timeTotal                       = playData->calcPlayMinutes() + playCommonData->mTime;
 	totals[0xF]                         = timeTotal;
 	scores[0xF]                         = highscores[0xF]->entryScore(timeTotal);
 	/*
@@ -439,6 +387,16 @@ bool PlayCommonData::isLouieRescued() { return mChallengeData.mFlags & PlayChall
  */
 bool PlayCommonData::isPerfectChallenge()
 {
+	if ((_00 & 4) == 0) {
+		for (int i = 0; i < mChallengeData.mCourseCount; i++) {
+			u16* state = (u16*) mChallengeData.getState(i);
+			if ((*state & 4) == 0) {
+				return false;
+			}
+		}
+		_00 |= 4;
+		return true;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -589,36 +547,11 @@ bool PlayCommonData::challenge_checkJustOpen(int index)
 {
 	PlayChallengeGameData::CourseState* state = challenge_get_CourseState(index);
 	u16 flags                                 = state->mFlags.typeView;
-	if (flags & PlayChallengeGameData::CourseState::CSF_IsOpen) {
-		state->mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_WasOpen;
-		return (flags & PlayChallengeGameData::CourseState::CSF_WasOpen) == 0;
+	if (IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_IsOpen)) {
+		SET_FLAG(state->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_WasOpen);
+		return !(IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_WasOpen));
 	}
 	return false;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r4, 0(r3)
-	clrlwi.  r0, r4, 0x1f
-	beq      lbl_80234920
-	rlwinm   r0, r4, 0, 0x1c, 0x1c
-	ori      r4, r4, 8
-	cntlzw   r0, r0
-	sth      r4, 0(r3)
-	srwi     r3, r0, 5
-	b        lbl_80234924
-
-lbl_80234920:
-	li       r3, 0
-
-lbl_80234924:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -626,33 +559,15 @@ lbl_80234924:
  * Address:	80234934
  * Size:	00004C
  */
-bool PlayCommonData::challenge_checkJustClear(int)
+bool PlayCommonData::challenge_checkJustClear(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r4, 0(r3)
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	beq      lbl_8023496C
-	rlwinm   r0, r4, 0, 0x1b, 0x1b
-	ori      r4, r4, 0x10
-	cntlzw   r0, r0
-	sth      r4, 0(r3)
-	srwi     r3, r0, 5
-	b        lbl_80234970
-
-lbl_8023496C:
-	li       r3, 0
-
-lbl_80234970:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PlayChallengeGameData::CourseState* state = challenge_get_CourseState(index);
+	u16 flags                                 = state->mFlags.typeView;
+	if (IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_IsClear)) {
+		SET_FLAG(state->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_WasClear);
+		return !(IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_WasClear));
+	}
+	return false;
 }
 
 /*
@@ -660,33 +575,15 @@ lbl_80234970:
  * Address:	80234980
  * Size:	00004C
  */
-bool PlayCommonData::challenge_checkJustKunsho(int)
+bool PlayCommonData::challenge_checkJustKunsho(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r4, 0(r3)
-	rlwinm.  r0, r4, 0, 0x1d, 0x1d
-	beq      lbl_802349B8
-	rlwinm   r0, r4, 0, 0x1a, 0x1a
-	ori      r4, r4, 0x20
-	cntlzw   r0, r0
-	sth      r4, 0(r3)
-	srwi     r3, r0, 5
-	b        lbl_802349BC
-
-lbl_802349B8:
-	li       r3, 0
-
-lbl_802349BC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PlayChallengeGameData::CourseState* state = challenge_get_CourseState(index);
+	u16 flags                                 = state->mFlags.typeView;
+	if (IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_IsKunsho)) {
+		SET_FLAG(state->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_WasKunsho);
+		return !(IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_WasKunsho));
+	}
+	return false;
 }
 
 /*
@@ -716,7 +613,7 @@ int PlayCommonData::challenge_openNewCourse()
  */
 void PlayCommonData::challenge_setClear(int index)
 {
-	mChallengeData.getState(index)->mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsClear;
+	SET_FLAG(mChallengeData.getState(index)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsClear);
 }
 
 /*
@@ -726,7 +623,7 @@ void PlayCommonData::challenge_setClear(int index)
  */
 void PlayCommonData::challenge_setOpen(int index)
 {
-	mChallengeData.getState(index)->mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	SET_FLAG(mChallengeData.getState(index)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsOpen);
 }
 
 /*
@@ -734,8 +631,18 @@ void PlayCommonData::challenge_setOpen(int index)
  * Address:	80234AC0
  * Size:	000080
  */
-void PlayCommonData::challenge_setKunsho(int)
+void PlayCommonData::challenge_setKunsho(int index)
 {
+	u32 idx = 0;
+	SET_FLAG(challenge_get_CourseState(index)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsKunsho);
+	while (true) {
+		if (!(IS_FLAG(challenge_get_CourseState(index)->mFlags.typeView, 
+			PlayChallengeGameData::CourseState::CSF_IsKunsho))) break;
+		if (mChallengeData.mCourseCount >= idx) {
+			_00 |= 4;
+			return;
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

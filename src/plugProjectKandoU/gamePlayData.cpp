@@ -466,7 +466,7 @@ void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 bool PlayData::isCompletePelletTrigger()
 {
 	// has payed debt, has not seen all treasures ending before, has all treasures
-	if (isStoryFlag(STORY_DebtPaid) && !isStoryFlag(STORY_AllTreasuresCollected) && _B0->completeAll()) {
+	if (isStoryFlag(STORY_DebtPaid) && !isStoryFlag(STORY_AllTreasuresCollected) && mZukanStat->completeAll()) {
 		return true;
 	}
 
@@ -599,7 +599,7 @@ void PlayData::construct()
  * Size:	000854
  */
 PlayData::PlayData()
-    : _20(0)
+    : mDeadNaviID()
     , mStoryFlags(0)
 {
 	mDebtProgressFlags[0] = 0;
@@ -645,7 +645,7 @@ PlayData::PlayData()
 	int items     = PelletList::Mgr::getCount(PelletList::ITEM);
 	int carcasses = PelletList::Mgr::getCount(PelletList::CARCASS);
 
-	_B0             = new PelletFirstMemory(treasures, items, carcasses);
+	mZukanStat             = new PelletFirstMemory(treasures, items, carcasses);
 	mMainCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	mCaveCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	mDemoFlags.create(57, nullptr);
@@ -1319,12 +1319,13 @@ void PlayData::reset()
 {
 	mNaviLifeMax[1]       = 0.0f;
 	mNaviLifeMax[0]       = 0.0f;
-	_20                   = 0;
+	mDeadNaviID[0]        = 0;
+	//mDeadNaviID[0]        = 0;
 	u64 osTime            = OSGetTime();
 	mOsTimeLo             = (u32)osTime;
 	mOsTimeHi             = (u32)(osTime >> 0x20);
 	_18                   = false;
-	_19                   = 0;
+	mLoadType             = 0;
 	mStoryFlags           = 0;
 	mDebtProgressFlags[0] = 0;
 	mDebtProgressFlags[1] = 0;
@@ -1337,20 +1338,21 @@ void PlayData::reset()
 	mPokoCount     = 0;
 	mCavePokoCount = 0;
 	mPokoCountOld  = 0;
-	_C0[0]         = 0;
+	mSprayCount[0] = 0;
 	mBerryCount[0] = 0;
-	_C0[1]         = 0;
+	mSprayCount[1] = 0;
 	mBerryCount[1] = 0;
 	mPikiContainer.clear();
 	initCourses(false);
 	initLimitGens();
 	initCaveOtakaras();
+	int courseCount = stageList->mCourseCount;
 	mMainCropMemory->clear();
 	mCaveCropMemory->clear();
-	_B0->clear();
-	_BC = 0;
-	for (int i = 0; i < stageList->mCourseCount; i++) {
-		mGroundOtakaraCollected[i]    = 0;
+	mZukanStat->clear();
+	mTreasureCount = 0;
+	for (int i = 0; i < courseCount; i++) {
+		mGroundOtakaraCollected[i] = 0;
 		mGroundOtakaraCollectedOld[i] = 0;
 	}
 	resetContainerFlag();
@@ -1699,7 +1701,7 @@ void PlayData::setDevelopSetting(bool p1, bool p2)
 int PlayData::calcPlayMinutes()
 {
 	u64 time = OSGetTime();
-	// OSTicksToCalendarTime(time);
+	//OSTicksToCalendarTime((long long)(mOsTimeHi << 32 | mOsTimeLo));
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1952,7 +1954,7 @@ void PlayData::debugSetContainerFlagOn()
 	mMeetPikminFlags |= 0x04;
 	mMeetPikminFlags |= 0x10;
 	mMeetPikminFlags |= 0x08;
-	_19 = 1;
+	mLoadType = 1;
 }
 
 /*
@@ -2074,7 +2076,7 @@ void PlayData::getCurrentCave(ID32& outCaveID, int& outCaveFloor)
  */
 bool PlayData::firstCarryPellet(Game::Pellet* pellet)
 {
-	return _B0->firstCarryPellet(pellet);
+	return mZukanStat->firstCarryPellet(pellet);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2096,14 +2098,14 @@ bool PlayData::firstCarryPellet(Game::Pellet* pellet)
  * Address:	801E7594
  * Size:	000030
  */
-void PlayData::obtainPellet(BasePelletMgr* mgr, int p2) { _B0->obtainPellet(mgr, p2); }
+void PlayData::obtainPellet(BasePelletMgr* mgr, int p2) { mZukanStat->obtainPellet(mgr, p2); }
 
 /*
  * --INFO--
  * Address:	801E75C4
  * Size:	000030
  */
-void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2) { _B0->losePellet(mgr, p2); }
+void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2) { mZukanStat->losePellet(mgr, p2); }
 
 /*
  * --INFO--
@@ -2150,7 +2152,7 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 	}
 
 	if (mgr) {
-		_B0->obtainPellet(mgr, pellet->getConfigIndex());
+		mZukanStat->obtainPellet(mgr, pellet->getConfigIndex());
 	}
 	mPokoCount += pellet->mConfig->mParams.mMoney.mData;
 }
@@ -2215,14 +2217,14 @@ bool PlayData::isPelletEverGot(Pellet*) { }
 bool PlayData::isPelletEverGot(unsigned char type, unsigned char id)
 {
 	if (type == PELTYPE_UPGRADE) {
-		bool check = (id < _B0->mCarcass.mNumKinds);
+		bool check = (id < mZukanStat->mCarcass.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* kinds = _B0->mItem(id);
+		u8* kinds = mZukanStat->mItem(id);
 		return (*kinds != 0);
 	} else if (type == PELTYPE_TREASURE) {
-		bool check = (id < _B0->mCarcass.mNumKinds);
+		bool check = (id < mZukanStat->mCarcass.mNumKinds);
 		P2ASSERTLINE(330, check);
-		u8* kinds = _B0->mOtakara(id);
+		u8* kinds = mZukanStat->mOtakara(id);
 		return (*kinds != 0);
 	} else {
 		JUT_PANICLINE(1406, "otakara or item !\n");
@@ -2323,10 +2325,10 @@ bool PlayData::isPelletZukanVisible(int id)
 	if (config) {
 		int index = config->mParams.mIndex;
 
-		bool check = (index >= 0 && index < _B0->mOtakara.mNumKinds);
+		bool check = (index >= 0 && index < mZukanStat->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->mOtakara(index);
+		u8* kinds = mZukanStat->mOtakara(index);
 		return (*kinds & 2);
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
@@ -2334,10 +2336,10 @@ bool PlayData::isPelletZukanVisible(int id)
 		if (config) {
 			int index = config->mParams.mIndex;
 
-			bool check = (index >= 0 && index < _B0->mItem.mNumKinds);
+			bool check = (index >= 0 && index < mZukanStat->mItem.mNumKinds);
 			P2ASSERTLINE(330, check);
 
-			u8* kinds = _B0->mItem(index);
+			u8* kinds = mZukanStat->mItem(index);
 			return (*kinds & 2);
 		}
 	}
@@ -2446,10 +2448,10 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 	if (config) {
 		int index = config->mParams.mIndex;
 
-		bool check = (index >= 0 && index < _B0->mOtakara.mNumKinds);
+		bool check = (index >= 0 && index < mZukanStat->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->mOtakara(index);
+		u8* kinds = mZukanStat->mOtakara(index);
 		return (*kinds & 2 && !(*kinds & 4));
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
@@ -2457,10 +2459,10 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 		if (config) {
 			int index = config->mParams.mIndex;
 
-			bool check = (index >= 0 && index < _B0->mItem.mNumKinds);
+			bool check = (index >= 0 && index < mZukanStat->mItem.mNumKinds);
 			P2ASSERTLINE(330, check);
 
-			u8* kinds = _B0->mItem(index);
+			u8* kinds = mZukanStat->mItem(index);
 			return (*kinds & 2 && !(*kinds & 4));
 		}
 	}
@@ -2568,20 +2570,20 @@ lbl_801E7EE4:
  */
 bool PlayData::hasPelletZukanWhatsNew()
 {
-	for (int i = 0; i < _B0->mOtakara.mNumKinds; i++) {
-		bool check = (i >= 0 && i < _B0->mOtakara.mNumKinds);
+	for (int i = 0; i < mZukanStat->mOtakara.mNumKinds; i++) {
+		bool check = (i >= 0 && i < mZukanStat->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->mOtakara(i);
+		u8* kinds = mZukanStat->mOtakara(i);
 		if (!(*kinds & 4))
 			return true;
 	}
 
-	for (int i = 0; i < _B0->mItem.mNumKinds; i++) {
-		bool check = (i >= 0 && i < _B0->mItem.mNumKinds);
+	for (int i = 0; i < mZukanStat->mItem.mNumKinds; i++) {
+		bool check = (i >= 0 && i < mZukanStat->mItem.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->mItem(i);
+		u8* kinds = mZukanStat->mItem(i);
 		if (!(*kinds & 4))
 			return true;
 	}
@@ -2739,22 +2741,22 @@ lbl_801E809C:
  */
 void PlayData::setPelletZukanOutOfDateAll()
 {
-	for (int i = 0; i < _B0->mItem.mNumKinds; i++) {
-		bool check = (i >= 0 && i < _B0->mOtakara.mNumKinds);
+	for (int i = 0; i < mZukanStat->mItem.mNumKinds; i++) {
+		bool check = (i >= 0 && i < mZukanStat->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
-		if (_B0->mOtakara.mKinds[i]) {
-			check = (i >= 0 && i < _B0->mOtakara.mNumKinds);
+		if (mZukanStat->mOtakara.mKinds[i]) {
+			check = (i >= 0 && i < mZukanStat->mOtakara.mNumKinds);
 			P2ASSERTLINE(330, check);
-			_B0->mOtakara.mKinds[i] |= 4;
+			mZukanStat->mOtakara.mKinds[i] |= 4;
 		}
 	}
-	for (int i = 0; i < _B0->mItem.mNumKinds; i++) {
-		bool check = (i >= 0 && i < _B0->mItem.mNumKinds);
+	for (int i = 0; i < mZukanStat->mItem.mNumKinds; i++) {
+		bool check = (i >= 0 && i < mZukanStat->mItem.mNumKinds);
 		P2ASSERTLINE(330, check);
-		if (_B0->mItem.mKinds[i]) {
-			check = (i >= 0 && i < _B0->mOtakara.mNumKinds);
+		if (mZukanStat->mItem.mKinds[i]) {
+			check = (i >= 0 && i < mZukanStat->mOtakara.mNumKinds);
 			P2ASSERTLINE(330, check);
-			_B0->mItem.mKinds[i] |= 4;
+			mZukanStat->mItem.mKinds[i] |= 4;
 		}
 	}
 	/*
@@ -2954,7 +2956,7 @@ int PlayData::getDopeCount(int sprayIndex)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1572, isValidIndex);
-	return _C0[sprayIndex];
+	return mSprayCount[sprayIndex];
 }
 
 /*
@@ -2969,7 +2971,7 @@ void PlayData::setDopeCount(int sprayIndex, int sprayCount)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1578, isValidIndex);
-	_C0[sprayIndex] = sprayCount;
+	mSprayCount[sprayIndex] = sprayCount;
 }
 
 /*
@@ -2984,7 +2986,7 @@ void PlayData::incDopeCount(int sprayIndex)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1584, isValidIndex);
-	_C0[sprayIndex]++;
+	mSprayCount[sprayIndex]++;
 }
 
 /*
@@ -2999,7 +3001,7 @@ bool PlayData::hasDope(int sprayIndex)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1590, isValidIndex);
-	return (0 < _C0[sprayIndex]);
+	return (0 < mSprayCount[sprayIndex]);
 }
 
 /*
@@ -3033,7 +3035,7 @@ bool PlayData::addDopeFruit(int sprayIndex)
 	mBerryCount[sprayIndex]++;
 	if (mBerryCount[sprayIndex] >= _aiConstants->mDopeCount.mData) {
 		mBerryCount[sprayIndex] = 0;
-		_C0[sprayIndex]++;
+		mSprayCount[sprayIndex]++;
 		return true;
 	} else {
 		return false;
@@ -3053,7 +3055,7 @@ void PlayData::useDope(int sprayIndex)
 	}
 	P2ASSERTLINE(1614, isValidIndex);
 	if (hasDope(sprayIndex)) {
-		_C0[sprayIndex]--;
+		mSprayCount[sprayIndex]--;
 	}
 }
 
@@ -4698,15 +4700,15 @@ CaveSaveData::CaveSaveData()
  * Address:	801E97C4
  * Size:	000068
  */
-// void CaveSaveData::clear()
-// {
-// 	_14.clear();
-// 	mTime = 0.0f;
-// 	mIsInCave = false;
-// 	mCurrentCourse = -1;
-// 	mCurrentCaveID.setID('none');
-// 	mIsWaterwraithAlive = 1;
-// 	mWaterwraithTimer = 0.0f;
+void CaveSaveData::clear()
+{
+	mCavePikis.clear();
+	mTime      = 0.0f;
+	mIsInCave  = false;
+	mCourseIdx = -1;
+	mCurrentCaveID.setID('none');
+	mIsWaterwraithAlive = 1;
+	mWaterwraithTimer   = 0.0f;
 // 	/*
 // 	stwu     r1, -0x10(r1)
 // 	mflr     r0
@@ -4735,7 +4737,7 @@ CaveSaveData::CaveSaveData()
 // 	addi     r1, r1, 0x10
 // 	blr
 // 	*/
-// }
+}
 
 /*
  * --INFO--

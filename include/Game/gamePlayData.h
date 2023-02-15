@@ -82,17 +82,8 @@ enum DemoFlags {
 
 struct CaveSaveData {
 	CaveSaveData();
-
-	void clear()
-	{
-		mCavePikis.clear();
-		mTime      = 0.0f;
-		mIsInCave  = false;
-		mCourseIdx = -1;
-		mCurrentCaveID.setID('none');
-		mIsWaterwraithAlive = 1;
-		mWaterwraithTimer   = 0.0f;
-	}
+	
+	void clear();
 
 	void write(Stream&);
 	void read(Stream&, u32);
@@ -369,11 +360,11 @@ struct PlayData : public CNode {
 	CaveSaveData mCaveSaveData;             // _4C
 	kh::Screen::MailSaveData mMailSaveData; // _84
 	PikiContainer mPikiContainer;           // _A8
-	PelletFirstMemory* _B0;                 // _B0
+	PelletFirstMemory* mZukanStat;          // _B0
 	PelletCropMemory* mMainCropMemory;      // _B4
 	PelletCropMemory* mCaveCropMemory;      // _B8
-	int _BC;                                // _BC
-	int _C0[2];                             // _C0
+	int mTreasureCount;                     // _BC
+	int mSprayCount[2];                     // _C0
 	int mBerryCount[2];                     // _C8
 	int mOsTimeHi;                          // _D0
 	int mOsTimeLo;                          // _D4
