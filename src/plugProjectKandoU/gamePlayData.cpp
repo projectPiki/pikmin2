@@ -2129,7 +2129,7 @@ void PlayData::confirmCaveCropMemory() { }
  * Address:	........
  * Size:	000150
  */
-bool PlayData::isPelletEverGot(Pellet*) { }
+//bool PlayData::isPelletEverGot(Pellet*) { }
 
 /*
  * --INFO--
@@ -2139,10 +2139,12 @@ bool PlayData::isPelletEverGot(Pellet*) { }
 bool PlayData::isPelletEverGot(u8 type, u8 id)
 {
 	if (type == PELTYPE_UPGRADE) {
-		return *mZukanStat->mItem(id);
+        int itemID = *mZukanStat->mItem(id);
+        return itemID > 0;
 	}
 	if (type == PELTYPE_TREASURE) { // how tf do i make andc happen?
-		return *mZukanStat->mOtakara(id);
+		int treasureID = *mZukanStat->mOtakara(id);
+		return treasureID > 0;
 	}
 	JUT_PANICLINE(1406, "otakara or item !\n");
 	/*
@@ -4517,22 +4519,22 @@ void PlayData::setPikminCounts_Today()
 	BirthMgr::account_today_adjust();
 	BirthMgr::account_today();
 
-	GameStat::PikiCounter cont1 = GameStat::zikatuPikis;
-	GameStat::PikiCounter cont2 = GameStat::mePikis;
+	GameStat::PikiCounter* cont1 = &GameStat::zikatuPikis;
+	GameStat::PikiCounter* cont2 = &GameStat::alivePikis;
 
 	for (int i = 0; i < 6; i++) {
 		if (i == 5) {
 			int pikiheads = generatorCache->getTotalMePikmins();
-			int pikis     = cont2;
-			pikis -= cont1;
+			int pikis     = GameStat::alivePikis(2);
+			pikis -= GameStat::zikatuPikis(2);
 			if (pikis < 0)
 				pikis = 0;
 			int pikis3      = mPikiContainer.getTotalSum();
 			mPikminToday[i] = pikis + pikiheads + pikis3;
 		} else {
 			int pikiheads = generatorCache->getColorMePikmins(i);
-			int pikis     = cont2.mPikiCounts[i];
-			pikis -= cont1.mPikiCounts[i];
+			int pikis     = *cont2->mPikiCounts;
+			pikis -= *cont1->mPikiCounts;
 			if (pikis < 0)
 				pikis = 0;
 			int pikis3      = mPikiContainer.getColorSum(i);
