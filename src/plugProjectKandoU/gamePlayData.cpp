@@ -4816,7 +4816,7 @@ int PlayData::getOtakaraNum_Course_CaveID_Old(int courseIndex, ID32& caveID)
 		}
 		return -1;
 	} else {
-		JUT_PANICLINE(1727, "course index error:%d (getOtakaraNum_*)\n", courseIndex);
+		JUT_PANICLINE(2057, "course index error:%d (getOtakaraNum_*)\n", courseIndex);
 	}
 	return -1;
 	/*
