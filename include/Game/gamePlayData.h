@@ -178,7 +178,6 @@ struct PelletCropMemory {
 	// Unused/inlined:
 	void obtainPellet(Pellet*);
 	int calcNumKinds();
-	void copyAll(PelletCropMemory* original);
 
 	// _00	= VTBL
 	KindCounter mOtakara; // _04
@@ -233,6 +232,16 @@ struct PlayData : public CNode {
 						mOtakaraCountsOld[j] = 0;
 						_08[j]               = 0;
 					}
+				}
+			}
+		}
+
+		inline void clear()
+		{
+			if (mCaveCount > 0) {
+				for (int j = 0; j < mCaveCount; j++) {
+					mOtakaraCountsOld[j] = 0;
+					_08[j]               = 0;
 				}
 			}
 		}
@@ -349,6 +358,8 @@ struct PlayData : public CNode {
 	bool closeCourse(int);
 
 	inline bool isStoryFlag(StoryFlags flag) { return mStoryFlags & flag; }
+
+	inline PelletFirstMemory* getZukanStat() { return mZukanStat; }
 
 	bool _18;                               // _18
 	u8 mLoadType;                           // _19

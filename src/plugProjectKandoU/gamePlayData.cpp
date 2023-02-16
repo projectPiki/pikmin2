@@ -2058,32 +2058,22 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 {
 	PelletCropMemory* mem = mMainCropMemory;
 	if (pellet->getKind() == PELTYPE_TREASURE) {
-		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->mOtakara.mNumKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = mem->mOtakara.mKinds;
-		data[id]++;
+		int id = pellet->getConfigIndex();
+		(*mem->mOtakara(id))++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->mOtakara.mNumKinds);
-		P2ASSERTLINE(330, check);
+		(*mem->mOtakara(id));
+
 	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
-		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->mItem.mNumKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = mem->mItem.mKinds;
-		data[id]++;
+		int id = pellet->getConfigIndex();
+		(*mem->mItem(id))++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->mItem.mNumKinds);
-		P2ASSERTLINE(330, check);
-	} else if (pellet->getKind() == 1) {
-		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->mCarcass.mNumKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = mem->mCarcass.mKinds;
-		data[id]++;
+		(*mem->mItem(id));
+
+	} else if (pellet->getKind() == PELTYPE_CARCASS) {
+		int id = pellet->getConfigIndex();
+		(*mem->mCarcass(id))++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->mCarcass.mNumKinds);
-		P2ASSERTLINE(330, check);
+		(*mem->mCarcass(id));
 	}
 
 	BasePelletMgr* mgr = 0;
@@ -2108,32 +2098,22 @@ void PlayData::obtainPellet_Cave(Game::Pellet* pellet)
 {
 	PelletCropMemory* mem = mCaveCropMemory;
 	if (pellet->getKind() == PELTYPE_TREASURE) {
-		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->mOtakara.mNumKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = mem->mOtakara.mKinds;
-		data[id]++;
+		int id = pellet->getConfigIndex();
+		(*mem->mOtakara(id))++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->mOtakara.mNumKinds);
-		P2ASSERTLINE(330, check);
+		(*mem->mOtakara(id));
+
 	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
-		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->mItem.mNumKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = mem->mItem.mKinds;
-		data[id]++;
+		int id = pellet->getConfigIndex();
+		(*mem->mItem(id))++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->mItem.mNumKinds);
-		P2ASSERTLINE(330, check);
-	} else if (pellet->getKind() == 1) {
-		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < mem->mCarcass.mNumKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = mem->mCarcass.mKinds;
-		data[id]++;
+		(*mem->mItem(id));
+
+	} else if (pellet->getKind() == PELTYPE_CARCASS) {
+		int id = pellet->getConfigIndex();
+		(*mem->mCarcass(id))++;
 		pellet->getConfigName();
-		check = (id >= 0 && id < mem->mCarcass.mNumKinds);
-		P2ASSERTLINE(330, check);
+		(*mem->mCarcass(id));
 	}
 }
 
@@ -2259,106 +2239,20 @@ bool PlayData::isPelletZukanVisible(int id)
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
 		int index = config->mParams.mIndex;
-		return IS_FLAG(*mZukanStat->mOtakara(index), 2);
+		if (IS_FLAG(*mZukanStat->mOtakara(index), 2)) {
+			return true;
+		}
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
 			int index = config->mParams.mIndex;
-			return IS_FLAG(*mZukanStat->mItem(index), 2);
+			if (IS_FLAG(*mZukanStat->mItem(index), 2)) {
+				return true;
+			}
 		}
 	}
 	return false;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	bl       getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
-	mr       r4, r30
-	bl       getPelletConfig_ByDictionaryNo__Q24Game16PelletConfigListFi
-	cmplwi   r3, 0
-	beq      lbl_801E7D30
-	lha      r30, 0x258(r3)
-	li       r3, 0
-	lwz      r31, 0xb0(r31)
-	cmpwi    r30, 0
-	blt      lbl_801E7CF4
-	lhz      r0, 4(r31)
-	cmpw     r30, r0
-	bge      lbl_801E7CF4
-	li       r3, 1
-
-lbl_801E7CF4:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7D18
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7D18:
-	lwz      r3, 8(r31)
-	lbzx     r0, r3, r30
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_801E7DA8
-	li       r3, 1
-	b        lbl_801E7DAC
-
-lbl_801E7D30:
-	li       r3, 4
-	bl       getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
-	mr       r4, r30
-	bl       getPelletConfig_ByDictionaryNo__Q24Game16PelletConfigListFi
-	cmplwi   r3, 0
-	beq      lbl_801E7DA8
-	lha      r30, 0x258(r3)
-	li       r3, 0
-	lwz      r31, 0xb0(r31)
-	cmpwi    r30, 0
-	blt      lbl_801E7D6C
-	lhz      r0, 0xc(r31)
-	cmpw     r30, r0
-	bge      lbl_801E7D6C
-	li       r3, 1
-
-lbl_801E7D6C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7D90
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7D90:
-	lwz      r3, 0x10(r31)
-	lbzx     r0, r3, r30
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_801E7DA8
-	li       r3, 1
-	b        lbl_801E7DAC
-
-lbl_801E7DA8:
-	li       r3, 0
-
-lbl_801E7DAC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2372,119 +2266,22 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
 		int index = config->mParams.mIndex;
-
-		bool check = (index >= 0 && index < mZukanStat->mOtakara.mNumKinds);
-		// P2ASSERTLINE(330, check);
-
-		u8 kinds = *mZukanStat->mOtakara(index);
-		return (kinds & 2 && !(kinds & 4));
+		u8 kinds  = *mZukanStat->mOtakara(index);
+		if (kinds & 2 && !(kinds & 4)) {
+			return true;
+		}
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
-			int index  = config->mParams.mIndex;
-			bool check = (index >= 0 && index < mZukanStat->mItem.mNumKinds);
-			// P2ASSERTLINE(330, check);
-
-			u8 kinds = *mZukanStat->mItem(index);
-			return (kinds & 2 && !(kinds & 4));
+			int index = config->mParams.mIndex;
+			u8 kinds  = *mZukanStat->mItem(index);
+			if (kinds & 2 && !(kinds & 4)) {
+				return true;
+			}
 		}
 	}
 	return false;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	bl       getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
-	mr       r4, r30
-	bl       getPelletConfig_ByDictionaryNo__Q24Game16PelletConfigListFi
-	cmplwi   r3, 0
-	beq      lbl_801E7E60
-	lha      r30, 0x258(r3)
-	li       r3, 0
-	lwz      r31, 0xb0(r31)
-	cmpwi    r30, 0
-	blt      lbl_801E7E1C
-	lhz      r0, 4(r31)
-	cmpw     r30, r0
-	bge      lbl_801E7E1C
-	li       r3, 1
-
-lbl_801E7E1C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7E40
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7E40:
-	lwz      r3, 8(r31)
-	lbzx     r3, r3, r30
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	beq      lbl_801E7EE0
-	rlwinm.  r0, r3, 0, 0x1d, 0x1d
-	bne      lbl_801E7EE0
-	li       r3, 1
-	b        lbl_801E7EE4
-
-lbl_801E7E60:
-	li       r3, 4
-	bl       getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
-	mr       r4, r30
-	bl       getPelletConfig_ByDictionaryNo__Q24Game16PelletConfigListFi
-	cmplwi   r3, 0
-	beq      lbl_801E7EE0
-	lha      r30, 0x258(r3)
-	li       r3, 0
-	lwz      r31, 0xb0(r31)
-	cmpwi    r30, 0
-	blt      lbl_801E7E9C
-	lhz      r0, 0xc(r31)
-	cmpw     r30, r0
-	bge      lbl_801E7E9C
-	li       r3, 1
-
-lbl_801E7E9C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7EC0
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7EC0:
-	lwz      r3, 0x10(r31)
-	lbzx     r3, r3, r30
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	beq      lbl_801E7EE0
-	rlwinm.  r0, r3, 0, 0x1d, 0x1d
-	bne      lbl_801E7EE0
-	li       r3, 1
-	b        lbl_801E7EE4
-
-lbl_801E7EE0:
-	li       r3, 0
-
-lbl_801E7EE4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2494,165 +2291,21 @@ lbl_801E7EE4:
  */
 bool PlayData::hasPelletZukanWhatsNew()
 {
-	for (int i = 0; i < mZukanStat->mOtakara.mNumKinds; i++) {
-		bool check = (i >= 0 && i < mZukanStat->mOtakara.mNumKinds);
-		P2ASSERTLINE(330, check);
-
-		if (!(IS_FLAG(*mZukanStat->mOtakara(i), 4)))
+	PelletFirstMemory* zukanStat = getZukanStat();
+	for (int i = 0; i < zukanStat->mOtakara.mNumKinds; i++) {
+		u8 kinds = *zukanStat->mOtakara(i);
+		if (kinds && !(IS_FLAG(*zukanStat->mOtakara(i), 4)))
 			return true;
 	}
 
-	for (int i = 0; i < mZukanStat->mItem.mNumKinds; i++) {
-		bool check = (i >= 0 && i < mZukanStat->mItem.mNumKinds);
-		P2ASSERTLINE(330, check);
+	PelletFirstMemory* zukanStat2 = getZukanStat();
+	for (int i = 0; i < zukanStat2->mItem.mNumKinds; i++) {
 
-		if (!(IS_FLAG(*mZukanStat->mItem(i), 4)))
+		u8 kinds = *zukanStat2->mItem(i);
+		if (kinds && !(IS_FLAG(*zukanStat2->mItem(i), 4)))
 			return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r31, 0xb0(r3)
-	b        lbl_801E7FCC
-
-lbl_801E7F24:
-	cmpwi    r30, 0
-	li       r0, 0
-	blt      lbl_801E7F3C
-	cmpw     r30, r3
-	bge      lbl_801E7F3C
-	li       r0, 1
-
-lbl_801E7F3C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801E7F60
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7F60:
-	lwz      r3, 8(r31)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	beq      lbl_801E7FC8
-	cmpwi    r30, 0
-	li       r3, 0
-	blt      lbl_801E7F8C
-	lhz      r0, 4(r31)
-	cmpw     r30, r0
-	bge      lbl_801E7F8C
-	li       r3, 1
-
-lbl_801E7F8C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7FB0
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7FB0:
-	lwz      r3, 8(r31)
-	lbzx     r0, r3, r30
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	bne      lbl_801E7FC8
-	li       r3, 1
-	b        lbl_801E809C
-
-lbl_801E7FC8:
-	addi     r30, r30, 1
-
-lbl_801E7FCC:
-	lhz      r3, 4(r31)
-	cmpw     r30, r3
-	blt      lbl_801E7F24
-	lwz      r31, 0xb0(r29)
-	li       r30, 0
-	b        lbl_801E808C
-
-lbl_801E7FE4:
-	cmpwi    r30, 0
-	li       r0, 0
-	blt      lbl_801E7FFC
-	cmpw     r30, r3
-	bge      lbl_801E7FFC
-	li       r0, 1
-
-lbl_801E7FFC:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801E8020
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E8020:
-	lwz      r3, 0x10(r31)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	beq      lbl_801E8088
-	cmpwi    r30, 0
-	li       r3, 0
-	blt      lbl_801E804C
-	lhz      r0, 0xc(r31)
-	cmpw     r30, r0
-	bge      lbl_801E804C
-	li       r3, 1
-
-lbl_801E804C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E8070
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E8070:
-	lwz      r3, 0x10(r31)
-	lbzx     r0, r3, r30
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	bne      lbl_801E8088
-	li       r3, 1
-	b        lbl_801E809C
-
-lbl_801E8088:
-	addi     r30, r30, 1
-
-lbl_801E808C:
-	lhz      r3, 0xc(r31)
-	cmpw     r30, r3
-	blt      lbl_801E7FE4
-	li       r3, 0
-
-lbl_801E809C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -2663,160 +2316,21 @@ lbl_801E809C:
  */
 void PlayData::setPelletZukanOutOfDateAll()
 {
-	for (int i = 0; i < mZukanStat->mItem.mNumKinds; i++) {
-		bool check = (i >= 0 && i < mZukanStat->mOtakara.mNumKinds);
-		P2ASSERTLINE(330, check);
-		if (mZukanStat->mOtakara.mKinds[i]) {
-			check = (i >= 0 && i < mZukanStat->mOtakara.mNumKinds);
-			P2ASSERTLINE(330, check);
-			mZukanStat->mOtakara.mKinds[i] |= 4;
+	PelletFirstMemory* zukanStat = getZukanStat();
+	for (int i = 0; i < zukanStat->mOtakara.mNumKinds; i++) {
+		u8 kinds = *zukanStat->mOtakara(i);
+		if (kinds) {
+			SET_FLAG(*zukanStat->mOtakara(i), 4);
 		}
 	}
-	for (int i = 0; i < mZukanStat->mItem.mNumKinds; i++) {
-		bool check = (i >= 0 && i < mZukanStat->mItem.mNumKinds);
-		P2ASSERTLINE(330, check);
-		if (mZukanStat->mItem.mKinds[i]) {
-			check = (i >= 0 && i < mZukanStat->mOtakara.mNumKinds);
-			P2ASSERTLINE(330, check);
-			mZukanStat->mItem.mKinds[i] |= 4;
+
+	PelletFirstMemory* zukanStat2 = getZukanStat();
+	for (int i = 0; i < zukanStat2->mItem.mNumKinds; i++) {
+		u8 kinds = *zukanStat2->mItem(i);
+		if (kinds) {
+			SET_FLAG(*zukanStat2->mItem(i), 4);
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r31, 0xb0(r3)
-	b        lbl_801E8180
-
-lbl_801E80E0:
-	cmpwi    r30, 0
-	li       r0, 0
-	blt      lbl_801E80F8
-	cmpw     r30, r3
-	bge      lbl_801E80F8
-	li       r0, 1
-
-lbl_801E80F8:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801E811C
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E811C:
-	lwz      r3, 8(r31)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	beq      lbl_801E817C
-	cmpwi    r30, 0
-	li       r3, 0
-	blt      lbl_801E8148
-	lhz      r0, 4(r31)
-	cmpw     r30, r0
-	bge      lbl_801E8148
-	li       r3, 1
-
-lbl_801E8148:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E816C
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E816C:
-	lwz      r3, 8(r31)
-	lbzx     r0, r3, r30
-	ori      r0, r0, 4
-	stbx     r0, r3, r30
-
-lbl_801E817C:
-	addi     r30, r30, 1
-
-lbl_801E8180:
-	lhz      r3, 4(r31)
-	cmpw     r30, r3
-	blt      lbl_801E80E0
-	lwz      r31, 0xb0(r29)
-	li       r30, 0
-	b        lbl_801E8238
-
-lbl_801E8198:
-	cmpwi    r30, 0
-	li       r0, 0
-	blt      lbl_801E81B0
-	cmpw     r30, r3
-	bge      lbl_801E81B0
-	li       r0, 1
-
-lbl_801E81B0:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801E81D4
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E81D4:
-	lwz      r3, 0x10(r31)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	beq      lbl_801E8234
-	cmpwi    r30, 0
-	li       r3, 0
-	blt      lbl_801E8200
-	lhz      r0, 0xc(r31)
-	cmpw     r30, r0
-	bge      lbl_801E8200
-	li       r3, 1
-
-lbl_801E8200:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E8224
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E8224:
-	lwz      r3, 0x10(r31)
-	lbzx     r0, r3, r30
-	ori      r0, r0, 4
-	stbx     r0, r3, r30
-
-lbl_801E8234:
-	addi     r30, r30, 1
-
-lbl_801E8238:
-	lhz      r3, 0xc(r31)
-	cmpw     r30, r3
-	blt      lbl_801E8198
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -2990,11 +2504,11 @@ bool PlayData::isCaveFirstTime(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* ota = mCaveOtakara;
+		CaveOtakara* ota = &mCaveOtakara[courseIndex];
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
-			if (id >= 0 && id < ota[courseIndex].mCaveCount) {
-				return ota[courseIndex]._08[id] == 0;
+			if (id >= 0 && id < ota->mCaveCount) {
+				return ota->_08[id] == 0;
 			}
 			return false;
 		}
@@ -3003,69 +2517,6 @@ bool PlayData::isCaveFirstTime(int courseIndex, ID32& caveID)
 	caveIDCopy.setID(caveID.getID());
 	JUT_PANICLINE(1645, "no cave info : course(%d):[%s]\n", courseIndex, caveID.getStr());
 	return false;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	lwz      r3, stageList__4Game@sda21(r13)
-	bl       getCourseInfo__Q24Game6StagesFi
-	cmplwi   r3, 0
-	beq      lbl_801E884C
-	mulli    r0, r29, 0xc
-	lwz      r5, 0xe0(r31)
-	mr       r4, r30
-	add      r31, r5, r0
-	bl       getCaveIndex_FromID__Q24Game10CourseInfoFR4ID32
-	cmpwi    r3, -1
-	beq      lbl_801E884C
-	cmpwi    r3, 0
-	blt      lbl_801E8844
-	lbz      r0, 0(r31)
-	cmpw     r3, r0
-	bge      lbl_801E8844
-	lwz      r4, 8(r31)
-	slwi     r0, r3, 2
-	lwzx     r0, r4, r0
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	b        lbl_801E8888
-
-lbl_801E8844:
-	li       r3, 0
-	b        lbl_801E8888
-
-lbl_801E884C:
-	addi     r3, r1, 8
-	bl       __ct__4ID32Fv
-	lwz      r4, 8(r30)
-	addi     r3, r1, 8
-	bl       setID__4ID32FUl
-	lis      r3, lbl_80480E4C@ha
-	lis      r4, lbl_80480EB0@ha
-	addi     r5, r4, lbl_80480EB0@l
-	mr       r6, r29
-	addi     r3, r3, lbl_80480E4C@l
-	mr       r7, r30
-	li       r4, 0x66d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 0
-
-lbl_801E8888:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -3084,73 +2535,18 @@ void PlayData::setCaveVisit(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* ota = mCaveOtakara;
+		CaveOtakara* ota = &mCaveOtakara[courseIndex];
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
-			if (ota[courseIndex]._08[id] == 0) {
-				ota[courseIndex]._08[id] = 1;
+			if (ota->_08[id] == 0) {
+				ota->_08[id] = 1;
 				return;
 			}
-			ota[courseIndex]._08[id] = 2;
+			ota->_08[id] = 2;
 			return;
 		}
 	}
 	JUT_PANICLINE(1680, "no cave info : course(%d):[%s]\n", courseIndex, caveID.getStr());
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r3, stageList__4Game@sda21(r13)
-	bl       getCourseInfo__Q24Game6StagesFi
-	cmplwi   r3, 0
-	beq      lbl_801E8920
-	mulli    r0, r29, 0xc
-	lwz      r5, 0xe0(r31)
-	mr       r4, r30
-	add      r31, r5, r0
-	bl       getCaveIndex_FromID__Q24Game10CourseInfoFR4ID32
-	cmpwi    r3, -1
-	beq      lbl_801E8920
-	lwz      r4, 8(r31)
-	slwi     r3, r3, 2
-	lwzx     r0, r4, r3
-	cmpwi    r0, 0
-	bne      lbl_801E8914
-	li       r0, 1
-	stwx     r0, r4, r3
-	b        lbl_801E8944
-
-lbl_801E8914:
-	li       r0, 2
-	stwx     r0, r4, r3
-	b        lbl_801E8944
-
-lbl_801E8920:
-	lis      r3, lbl_80480E4C@ha
-	lis      r4, lbl_80480EB0@ha
-	addi     r5, r4, lbl_80480EB0@l
-	mr       r6, r29
-	addi     r3, r3, lbl_80480E4C@l
-	mr       r7, r30
-	li       r4, 0x690
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E8944:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -3162,69 +2558,22 @@ void PlayData::incCaveOtakara(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* ota = mCaveOtakara;
+		CaveOtakara* ota = &mCaveOtakara[courseIndex];
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
-			if (id >= 0 && id < ota[courseIndex].mCaveCount) {
-				ota[courseIndex].mOtakaraCountsOld[id]++;
+			bool check;
+			if (id >= 0 && id < ota->mCaveCount) {
+				ota->mOtakaraCountsOld[id]++;
+				check = true;
+			} else {
+				check = false;
+			}
+
+			if (check) {
 				info->getOtakaraNum(id);
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, stageList__4Game@sda21(r13)
-	bl       getCourseInfo__Q24Game6StagesFi
-	or.      r31, r3, r3
-	beq      lbl_801E89F8
-	mulli    r0, r29, 0xc
-	lwz      r5, 0xe0(r28)
-	mr       r4, r30
-	add      r30, r5, r0
-	bl       getCaveIndex_FromID__Q24Game10CourseInfoFR4ID32
-	mr       r4, r3
-	cmpwi    r4, -1
-	beq      lbl_801E89F8
-	cmpwi    r4, 0
-	blt      lbl_801E89E4
-	lbz      r0, 0(r30)
-	cmpw     r4, r0
-	bge      lbl_801E89E4
-	lwz      r5, 4(r30)
-	li       r6, 1
-	lbzx     r3, r5, r4
-	addi     r0, r3, 1
-	stbx     r0, r5, r4
-	b        lbl_801E89E8
-
-lbl_801E89E4:
-	li       r6, 0
-
-lbl_801E89E8:
-	clrlwi.  r0, r6, 0x18
-	beq      lbl_801E89F8
-	mr       r3, r31
-	bl       getOtakaraNum__Q24Game10CourseInfoFi
-
-lbl_801E89F8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -3236,11 +2585,11 @@ int PlayData::getOtakaraNum_Course_CaveID(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = stageList->getCourseInfo(courseIndex);
 	if (info) {
-		CaveOtakara* ota = mCaveOtakara;
+		CaveOtakara* ota = &mCaveOtakara[courseIndex];
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
-			if (id >= 0 && id < ota[courseIndex].mCaveCount) {
-				return ota[courseIndex].mOtakaraCountsOld[id];
+			if (id >= 0 && id < ota->mCaveCount) {
+				return ota->mOtakaraCountsOld[id];
 			}
 		}
 		return -1;
@@ -3319,30 +2668,6 @@ int PlayData::getOtakaraMax_Course_CaveID(int courseIndex, ID32& caveID)
 	} else {
 		return -1;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	lwz      r3, stageList__4Game@sda21(r13)
-	bl       getCourseInfo__Q24Game6StagesFi
-	cmplwi   r3, 0
-	beq      lbl_801E8B00
-	mr       r4, r31
-	bl       getOtakaraNum__Q24Game10CourseInfoFR4ID32
-	b        lbl_801E8B04
-
-lbl_801E8B00:
-	li       r3, -1
-
-lbl_801E8B04:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3352,25 +2677,27 @@ lbl_801E8B04:
  */
 void PlayData::initCaveOtakaras()
 {
-	int max = stageList->mCourseCount;
+	u16 max = stageList->getCourseCount();
+	;
 	for (int i = 0; i < max; i++) {
-		CaveOtakara* data = mCaveOtakara;
-		if (data->mCaveCount > 0) {
-			for (int j = 0; j < data->mCaveCount; j++) {
-				data->mOtakaraCountsOld[j] = 0;
-				data->_08[j]               = 0;
-			}
-		}
+		mCaveOtakara[i].clear();
+		// CaveOtakara* data = mCaveOtakara;
+		// if (data->mCaveCount > 0) {
+		// 	for (int j = 0; j < data->mCaveCount; j++) {
+		// 		data->mOtakaraCountsOld[j] = 0;
+		// 		data->_08[j]               = 0;
+		// 	}
+		// }
 	}
 
 	for (int i = 0; i < max; i++) {
-		CaveOtakara* data = mCaveOtakaraOld;
-		if (data->mCaveCount > 0) {
-			for (int j = 0; j < data->mCaveCount; j++) {
-				data->mOtakaraCountsOld[j] = 0;
-				data->_08[j]               = 0;
-			}
-		}
+		mCaveOtakaraOld[i].clear();
+		// if (data->mCaveCount > 0) {
+		// 	for (int j = 0; j < data->mCaveCount; j++) {
+		// 		data->mOtakaraCountsOld[j] = 0;
+		// 		data->_08[j]               = 0;
+		// 	}
+		// }
 	}
 	/*
 	lwz      r4, stageList__4Game@sda21(r13)
@@ -3454,7 +2781,7 @@ lbl_801E8BE0:
  */
 void PlayData::read_CaveOtakara(Stream& ram)
 {
-	int max = stageList->mCourseCount;
+	u16 max = stageList->getCourseCount();
 	for (int i = 0; i < max; i++) {
 		mCaveOtakara[i].read(ram);
 	}
