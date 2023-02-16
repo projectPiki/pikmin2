@@ -2992,16 +2992,16 @@ bool PlayData::isCaveFirstTime(int courseIndex, ID32& caveID)
 	if (info) {
 		CaveOtakara* ota = mCaveOtakara;
 		int id           = info->getCaveIndex_FromID(caveID);
-		if (id == -1) {
+		if (id != -1) {
+			if (id >= 0 && id < ota[courseIndex].mCaveCount) {
+				return ota[courseIndex]._08[id] == 0;
+			}
 			return false;
-		}
-		if (id >= 0 && id < ota[id].mCaveCount) {
-			return ota[id]._08 != 0;
 		}
 	}
 	ID32 caveIDCopy;
 	caveIDCopy.setID(caveID.getID());
-	JUT_PANICLINE(1645, "no cave info : course(%d):[%s]\n", courseIndex, caveID);
+	JUT_PANICLINE(1645, "no cave info : course(%d):[%s]\n", courseIndex, caveID.getStr());
 	return false;
 	/*
 	stwu     r1, -0x30(r1)
@@ -3095,7 +3095,7 @@ void PlayData::setCaveVisit(int courseIndex, ID32& caveID)
 			return;
 		}
 	}
-	JUT_PANICLINE(1645, "no cave info : course(%d):[%s]\n", courseIndex, caveID);
+	JUT_PANICLINE(1645, "no cave info : course(%d):[%s]\n", courseIndex, caveID.getStr());
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
