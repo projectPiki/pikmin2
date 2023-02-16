@@ -1286,25 +1286,6 @@ lbl_801E69DC:
 
 /*
  * --INFO--
- * Address:	801E6A0C
- * Size:	000014
- */
-/*PlayData::CaveOtakara::CaveOtakara()
-    : mCaveCount(0)
-    , mOtakaraCountsOld(nullptr)
-    , _08(nullptr)
-{
-}
-*/
-/*
- * --INFO--
- * Address:	801E6A20
- * Size:	000038
- */
-// PlayData::LimitGen::LimitGen() { }
-
-/*
- * --INFO--
  * Address:	801E6A58
  * Size:	000068
  */
@@ -2175,22 +2156,15 @@ bool PlayData::isPelletEverGot(Pellet*) { }
  * Address:	801E7B98
  * Size:	000104
  */
-bool PlayData::isPelletEverGot(unsigned char type, unsigned char id)
+bool PlayData::isPelletEverGot(u8 type, u8 id)
 {
 	if (type == PELTYPE_UPGRADE) {
-		// bool check = (id < mZukanStat->mCarcass.mNumKinds);
-		// P2ASSERTLINE(330, check);
-		u8* kinds = mZukanStat->mItem(id);
-		return (*kinds != 0);
-	} else if (type == PELTYPE_TREASURE) {
-		// bool check = (id < mZukanStat->mCarcass.mNumKinds);
-		// P2ASSERTLINE(330, check);
-		u8* kinds = mZukanStat->mOtakara(id);
-		return (*kinds != 0);
-	} else {
-		JUT_PANICLINE(1406, "otakara or item !\n");
+		return *mZukanStat->mItem(id);
 	}
-	return false;
+	if (type == PELTYPE_TREASURE) { // how tf do i make andc happen?
+		return *mZukanStat->mOtakara(id);
+	}
+	JUT_PANICLINE(1406, "otakara or item !\n");
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2285,23 +2259,13 @@ bool PlayData::isPelletZukanVisible(int id)
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
 		int index = config->mParams.mIndex;
-
-		bool check = (index >= 0 && index < mZukanStat->mOtakara.mNumKinds);
-		// P2ASSERTLINE(330, check);
-
-		u8* kinds = mZukanStat->mOtakara(index);
-		return (*kinds & 2);
+		return IS_FLAG(*mZukanStat->mOtakara(index), 2);
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
 			int index = config->mParams.mIndex;
-
-			bool check = (index >= 0 && index < mZukanStat->mItem.mNumKinds);
-			// P2ASSERTLINE(330, check);
-
-			u8* kinds = mZukanStat->mItem(index);
-			return (*kinds & 2);
+			return IS_FLAG(*mZukanStat->mItem(index), 2);
 		}
 	}
 	return false;
@@ -2412,19 +2376,18 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 		bool check = (index >= 0 && index < mZukanStat->mOtakara.mNumKinds);
 		// P2ASSERTLINE(330, check);
 
-		u8* kinds = mZukanStat->mOtakara(index);
-		return (*kinds & 2 && !(*kinds & 4));
+		u8 kinds = *mZukanStat->mOtakara(index);
+		return (kinds & 2 && !(kinds & 4));
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
-			int index = config->mParams.mIndex;
-
+			int index  = config->mParams.mIndex;
 			bool check = (index >= 0 && index < mZukanStat->mItem.mNumKinds);
 			// P2ASSERTLINE(330, check);
 
-			u8* kinds = mZukanStat->mItem(index);
-			return (*kinds & 2 && !(*kinds & 4));
+			u8 kinds = *mZukanStat->mItem(index);
+			return (kinds & 2 && !(kinds & 4));
 		}
 	}
 	return false;
@@ -2535,8 +2498,7 @@ bool PlayData::hasPelletZukanWhatsNew()
 		bool check = (i >= 0 && i < mZukanStat->mOtakara.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = mZukanStat->mOtakara(i);
-		if (!(*kinds & 4))
+		if (!(IS_FLAG(*mZukanStat->mOtakara(i), 4)))
 			return true;
 	}
 
@@ -2544,8 +2506,7 @@ bool PlayData::hasPelletZukanWhatsNew()
 		bool check = (i >= 0 && i < mZukanStat->mItem.mNumKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = mZukanStat->mItem(i);
-		if (!(*kinds & 4))
+		if (!(IS_FLAG(*mZukanStat->mItem(i), 4)))
 			return true;
 	}
 	return false;
@@ -4214,7 +4175,7 @@ void PlayData::initLimitGens()
 {
 	u16 courseCount = stageList->mCourseCount;
 	for (int i = 0; i < courseCount; i++) {
-		LimitGen* limitGen = &mLimitGen[i];
+		LimitGen* limitGen = &mLimitGen[i]; // probably some inline with this as the parameter
 		limitGen->mNonLoops.reset();
 		limitGen->mLoops.reset();
 	}
@@ -4544,7 +4505,7 @@ bool PlayData::courseFirstTime(int index)
 	if (0 <= index && index < stageList->mCourseCount) {
 		isValidIndex = true;
 	}
-	P2ASSERTLINE(1936, isValidIndex);
+	P2ASSERTLINE(1955, isValidIndex);
 
 	isValidIndex = false;
 	if (0 <= index && index < stageList->mCourseCount) {

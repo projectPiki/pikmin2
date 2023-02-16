@@ -178,6 +178,7 @@ struct PelletCropMemory {
 	// Unused/inlined:
 	void obtainPellet(Pellet*);
 	int calcNumKinds();
+	void copyAll(PelletCropMemory* original);
 
 	// _00	= VTBL
 	KindCounter mOtakara; // _04
@@ -248,7 +249,7 @@ struct PlayData : public CNode {
 	};
 
 	struct LimitGen {
-		LimitGen();
+		LimitGen() { }
 
 		void write(Stream&);
 		void read(Stream&);
