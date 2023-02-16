@@ -8,7 +8,7 @@ namespace Game {
 struct Highscore {
 	Highscore();
 
-	virtual bool do_higher(int, int); // _08 (weak)
+	virtual bool do_higher(int a, int b) { return a > b; } // _08 (weak)
 
 	void allocate(int);
 	int getScore(int);

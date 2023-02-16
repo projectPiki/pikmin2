@@ -96,13 +96,6 @@ bool Highscore::higher(int a, int b)
 
 /*
  * --INFO--
- * Address:	80233F98
- * Size:	000018
- */
-bool Highscore::do_higher(int a, int b) { return a > b; }
-
-/*
- * --INFO--
  * Address:	80233FB0
  * Size:	0000B8
  */
