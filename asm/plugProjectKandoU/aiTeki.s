@@ -1,16 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80482138:
+.obj lbl_80482138, local
 	.asciz "aiTeki.cpp"
+.endobj lbl_80482138
 .balign 4
-lbl_80482144:
+.obj lbl_80482144, local
 	.asciz "P2Assert"
+.endobj lbl_80482144
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q26PikiAI7ActTeki
-__vt__Q26PikiAI7ActTeki:
+.obj __vt__Q26PikiAI7ActTeki, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI7ActTekiFPQ26PikiAI9ActionArg
@@ -30,42 +31,54 @@ __vt__Q26PikiAI7ActTeki:
 	.4byte 0
 	.4byte 0
 	.4byte "@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent"
+.endobj __vt__Q26PikiAI7ActTeki
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519F68:
+.obj lbl_80519F68, local
 	.asciz "Teki"
+.endobj lbl_80519F68
 .balign 4
-lbl_80519F70:
+.obj lbl_80519F70, local
 	.float 0.0
-lbl_80519F74:
+.endobj lbl_80519F70
+.obj lbl_80519F74, local
 	.float 12800.0
-lbl_80519F78:
+.endobj lbl_80519F74
+.obj lbl_80519F78, local
 	.float 100.0
-lbl_80519F7C:
+.endobj lbl_80519F78
+.obj lbl_80519F7C, local
 	.float 1.0
-lbl_80519F80:
+.endobj lbl_80519F7C
+.obj lbl_80519F80, local
 	.float 32768.0
-lbl_80519F84:
+.endobj lbl_80519F80
+.obj lbl_80519F84, local
 	.float 0.5
+.endobj lbl_80519F84
 .balign 8
-lbl_80519F88:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80519F90:
+.obj lbl_80519F88, local
+	.8byte 0x4330000080000000
+.endobj lbl_80519F88
+.obj lbl_80519F90, local
 	.float 50.0
-lbl_80519F94:
+.endobj lbl_80519F90
+.obj lbl_80519F94, local
 	.float 10.0
-lbl_80519F98:
+.endobj lbl_80519F94
+.obj lbl_80519F98, local
 	.float 0.3
-lbl_80519F9C:
+.endobj lbl_80519F98
+.obj lbl_80519F9C, local
 	.float 0.1
-lbl_80519FA0:
+.endobj lbl_80519F9C
+.obj lbl_80519FA0, local
 	.float -0.1
+.endobj lbl_80519FA0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q26PikiAI7ActTekiFPQ24Game4Piki
-__ct__Q26PikiAI7ActTekiFPQ24Game4Piki:
+.fn __ct__Q26PikiAI7ActTekiFPQ24Game4Piki, global
 /* 8021295C 0020F89C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80212960 0020F8A0  7C 08 02 A6 */	mflr r0
 /* 80212964 0020F8A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -103,9 +116,9 @@ __ct__Q26PikiAI7ActTekiFPQ24Game4Piki:
 /* 802129E0 0020F920  7C 08 03 A6 */	mtlr r0
 /* 802129E4 0020F924  38 21 00 10 */	addi r1, r1, 0x10
 /* 802129E8 0020F928  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI7ActTekiFPQ24Game4Piki
 
-.global init__Q26PikiAI7ActTekiFPQ26PikiAI9ActionArg
-init__Q26PikiAI7ActTekiFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI7ActTekiFPQ26PikiAI9ActionArg, global
 /* 802129EC 0020F92C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802129F0 0020F930  7C 08 02 A6 */	mflr r0
 /* 802129F4 0020F934  90 01 00 14 */	stw r0, 0x14(r1)
@@ -175,9 +188,9 @@ init__Q26PikiAI7ActTekiFPQ26PikiAI9ActionArg:
 /* 80212AEC 0020FA2C  7C 08 03 A6 */	mtlr r0
 /* 80212AF0 0020FA30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80212AF4 0020FA34  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI7ActTekiFPQ26PikiAI9ActionArg
 
-.global exec__Q26PikiAI7ActTekiFv
-exec__Q26PikiAI7ActTekiFv:
+.fn exec__Q26PikiAI7ActTekiFv, global
 /* 80212AF8 0020FA38  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80212AFC 0020FA3C  7C 08 02 A6 */	mflr r0
 /* 80212B00 0020FA40  90 01 00 24 */	stw r0, 0x24(r1)
@@ -278,9 +291,9 @@ exec__Q26PikiAI7ActTekiFv:
 /* 80212C64 0020FBA4  7C 08 03 A6 */	mtlr r0
 /* 80212C68 0020FBA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80212C6C 0020FBAC  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI7ActTekiFv
 
-.global emotion_success__Q26PikiAI7ActTekiFv
-emotion_success__Q26PikiAI7ActTekiFv:
+.fn emotion_success__Q26PikiAI7ActTekiFv, global
 /* 80212C70 0020FBB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80212C74 0020FBB4  7C 08 02 A6 */	mflr r0
 /* 80212C78 0020FBB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -302,9 +315,9 @@ emotion_success__Q26PikiAI7ActTekiFv:
 /* 80212CB4 0020FBF4  7C 08 03 A6 */	mtlr r0
 /* 80212CB8 0020FBF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80212CBC 0020FBFC  4E 80 00 20 */	blr 
+.endfn emotion_success__Q26PikiAI7ActTekiFv
 
-.global makeTarget__Q26PikiAI7ActTekiFv
-makeTarget__Q26PikiAI7ActTekiFv:
+.fn makeTarget__Q26PikiAI7ActTekiFv, global
 /* 80212CC0 0020FC00  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 80212CC4 0020FC04  7C 08 02 A6 */	mflr r0
 /* 80212CC8 0020FC08  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -519,9 +532,9 @@ makeTarget__Q26PikiAI7ActTekiFv:
 /* 80212FC8 0020FF08  7C 08 03 A6 */	mtlr r0
 /* 80212FCC 0020FF0C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80212FD0 0020FF10  4E 80 00 20 */	blr 
+.endfn makeTarget__Q26PikiAI7ActTekiFv
 
-.global test_0__Q26PikiAI7ActTekiFv
-test_0__Q26PikiAI7ActTekiFv:
+.fn test_0__Q26PikiAI7ActTekiFv, global
 /* 80212FD4 0020FF14  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80212FD8 0020FF18  7C 08 02 A6 */	mflr r0
 /* 80212FDC 0020FF1C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -747,9 +760,9 @@ test_0__Q26PikiAI7ActTekiFv:
 /* 8021330C 0021024C  7C 08 03 A6 */	mtlr r0
 /* 80213310 00210250  38 21 00 80 */	addi r1, r1, 0x80
 /* 80213314 00210254  4E 80 00 20 */	blr 
+.endfn test_0__Q26PikiAI7ActTekiFv
 
-.global doDirectDraw__Q26PikiAI7ActTekiFR8Graphics
-doDirectDraw__Q26PikiAI7ActTekiFR8Graphics:
+.fn doDirectDraw__Q26PikiAI7ActTekiFR8Graphics, global
 /* 80213318 00210258  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021331C 0021025C  7C 08 02 A6 */	mflr r0
 /* 80213320 00210260  7C 67 1B 78 */	mr r7, r3
@@ -773,9 +786,9 @@ doDirectDraw__Q26PikiAI7ActTekiFR8Graphics:
 /* 80213364 002102A4  7C 08 03 A6 */	mtlr r0
 /* 80213368 002102A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021336C 002102AC  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q26PikiAI7ActTekiFR8Graphics
 
-.global setTimer__Q26PikiAI7ActTekiFv
-setTimer__Q26PikiAI7ActTekiFv:
+.fn setTimer__Q26PikiAI7ActTekiFv, global
 /* 80213370 002102B0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80213374 002102B4  7C 08 02 A6 */	mflr r0
 /* 80213378 002102B8  90 01 00 64 */	stw r0, 0x64(r1)
@@ -856,13 +869,13 @@ setTimer__Q26PikiAI7ActTekiFv:
 /* 80213494 002103D4  7C 08 03 A6 */	mtlr r0
 /* 80213498 002103D8  38 21 00 60 */	addi r1, r1, 0x60
 /* 8021349C 002103DC  4E 80 00 20 */	blr 
+.endfn setTimer__Q26PikiAI7ActTekiFv
 
-.global cleanup__Q26PikiAI7ActTekiFv
-cleanup__Q26PikiAI7ActTekiFv:
+.fn cleanup__Q26PikiAI7ActTekiFv, global
 /* 802134A0 002103E0  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI7ActTekiFv
 
-.global collisionCallback__Q26PikiAI7ActTekiFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q26PikiAI7ActTekiFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q26PikiAI7ActTekiFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 802134A4 002103E4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802134A8 002103E8  7C 08 02 A6 */	mflr r0
 /* 802134AC 002103EC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -923,20 +936,21 @@ collisionCallback__Q26PikiAI7ActTekiFPQ24Game4PikiRQ24Game9CollEvent:
 /* 80213580 002104C0  7C 08 03 A6 */	mtlr r0
 /* 80213584 002104C4  38 21 00 60 */	addi r1, r1, 0x60
 /* 80213588 002104C8  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q26PikiAI7ActTekiFPQ24Game4PikiRQ24Game9CollEvent
 
-.global onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent
-onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent, global
 /* 8021358C 002104CC  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent
 
-.global getNextAIType__Q26PikiAI7ActTekiFv
-getNextAIType__Q26PikiAI7ActTekiFv: # weak function
+.fn getNextAIType__Q26PikiAI7ActTekiFv, weak
 /* 80213590 002104D0  38 60 00 01 */	li r3, 1
 /* 80213594 002104D4  4E 80 00 20 */	blr 
+.endfn getNextAIType__Q26PikiAI7ActTekiFv
 
-.global "@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent"
-"@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent": # weak function (thunk?)
+.fn "@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent", weak
 /* 80213598 002104D8  39 60 00 04 */	li r11, 4
 /* 8021359C 002104DC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802135A0 002104E0  7C 63 5A 14 */	add r3, r3, r11
 /* 802135A4 002104E4  38 63 FF B8 */	addi r3, r3, -72
 /* 802135A8 002104E8  4B FF FF E4 */	b onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent
+.endfn "@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent"

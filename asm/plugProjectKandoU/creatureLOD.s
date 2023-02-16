@@ -5,77 +5,96 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804807C8:
+.obj lbl_804807C8, local
 	.asciz "creatureLOD.cpp"
+.endobj lbl_804807C8
 .balign 4
-lbl_804807D8:
+.obj lbl_804807D8, local
 	.asciz "P2Assert"
+.endobj lbl_804807D8
 .balign 4
-lbl_804807E4:
+.obj lbl_804807E4, local
 	.4byte lbl_80519758
 	.4byte lbl_80519760
 	.4byte lbl_80519764
+.endobj lbl_804807E4
 .balign 4
-lbl_804807F0:
+.obj lbl_804807F0, local
 	.asciz "[%s%s %s %s]"
+.endobj lbl_804807F0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
+.endobj govNAN___Q24Game5P2JST
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global drawInfo__Q24Game5AILOD
-drawInfo__Q24Game5AILOD:
+.endobj gfNAN___Q24Game5P2JST
+.obj drawInfo__Q24Game5AILOD, global
 	.skip 0x1
+.endobj drawInfo__Q24Game5AILOD
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519750:
+.obj lbl_80519750, local
 	.float 0.07
-lbl_80519754:
+.endobj lbl_80519750
+.balign 4
+.obj lbl_80519754, local
 	.float 0.02
+.endobj lbl_80519754
 .balign 4
-lbl_80519758:
+.obj lbl_80519758, local
 	.asciz "near"
+.endobj lbl_80519758
 .balign 4
-lbl_80519760:
+.obj lbl_80519760, local
 	.asciz "mid"
+.endobj lbl_80519760
 .balign 4
-lbl_80519764:
+.obj lbl_80519764, local
 	.asciz "far"
+.endobj lbl_80519764
 .balign 4
-lbl_80519768:
+.obj lbl_80519768, local
 	.float 1.0
+.endobj lbl_80519768
 .balign 4
-lbl_8051976C:
+.obj lbl_8051976C, local
 	.asciz "p"
+.endobj lbl_8051976C
 .balign 4
-lbl_80519770:
+.obj lbl_80519770, local
 	.asciz "_"
+.endobj lbl_80519770
 .balign 4
-lbl_80519774:
+.obj lbl_80519774, local
 	.asciz "v"
+.endobj lbl_80519774
 .balign 4
-lbl_80519778:
+.obj lbl_80519778, local
 	.asciz "x"
+.endobj lbl_80519778
 .balign 4
-lbl_8051977C:
+.obj lbl_8051977C, local
 	.float 15.0
+.endobj lbl_8051977C
 .balign 4
-lbl_80519780:
+.obj lbl_80519780, local
 	.asciz "<%f>"
+.endobj lbl_80519780
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game9AILODParmFv
-__ct__Q24Game9AILODParmFv:
+.fn __ct__Q24Game9AILODParmFv, global
 /* 801D7808 001D4748  C0 22 B3 F0 */	lfs f1, lbl_80519750@sda21(r2)
 /* 801D780C 001D474C  38 00 00 00 */	li r0, 0
 /* 801D7810 001D4750  C0 02 B3 F4 */	lfs f0, lbl_80519754@sda21(r2)
@@ -83,18 +102,18 @@ __ct__Q24Game9AILODParmFv:
 /* 801D7818 001D4758  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801D781C 001D475C  98 03 00 08 */	stb r0, 8(r3)
 /* 801D7820 001D4760  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game9AILODParmFv
 
-.global __ct__Q24Game5AILODFv
-__ct__Q24Game5AILODFv:
+.fn __ct__Q24Game5AILODFv, global
 /* 801D7824 001D4764  38 80 00 00 */	li r4, 0
 /* 801D7828 001D4768  38 00 00 10 */	li r0, 0x10
 /* 801D782C 001D476C  98 83 00 00 */	stb r4, 0(r3)
 /* 801D7830 001D4770  98 83 00 01 */	stb r4, 1(r3)
 /* 801D7834 001D4774  98 03 00 00 */	stb r0, 0(r3)
 /* 801D7838 001D4778  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game5AILODFv
 
-.global updateLOD__Q24Game8CreatureFRQ24Game9AILODParm
-updateLOD__Q24Game8CreatureFRQ24Game9AILODParm:
+.fn updateLOD__Q24Game8CreatureFRQ24Game9AILODParm, global
 /* 801D783C 001D477C  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 801D7840 001D4780  7C 08 02 A6 */	mflr r0
 /* 801D7844 001D4784  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -354,9 +373,9 @@ updateLOD__Q24Game8CreatureFRQ24Game9AILODParm:
 /* 801D7BD8 001D4B18  7C 08 03 A6 */	mtlr r0
 /* 801D7BDC 001D4B1C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 801D7BE0 001D4B20  4E 80 00 20 */	blr 
+.endfn updateLOD__Q24Game8CreatureFRQ24Game9AILODParm
 
-.global "drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3<f>"
-"drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3<f>":
+.fn "drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3<f>", global
 /* 801D7BE4 001D4B24  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 801D7BE8 001D4B28  7C 08 02 A6 */	mflr r0
 /* 801D7BEC 001D4B2C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -516,8 +535,9 @@ updateLOD__Q24Game8CreatureFRQ24Game9AILODParm:
 /* 801D7E30 001D4D70  7C 08 03 A6 */	mtlr r0
 /* 801D7E34 001D4D74  38 21 00 60 */	addi r1, r1, 0x60
 /* 801D7E38 001D4D78  4E 80 00 20 */	blr 
+.endfn "drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3<f>"
 
-__sinit_creatureLOD_cpp: # static initializer
+.fn __sinit_creatureLOD_cpp, local
 /* 801D7E3C 001D4D7C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801D7E40 001D4D80  38 00 FF FF */	li r0, -1
 /* 801D7E44 001D4D84  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -528,3 +548,4 @@ __sinit_creatureLOD_cpp: # static initializer
 /* 801D7E58 001D4D98  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801D7E5C 001D4D9C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801D7E60 001D4DA0  4E 80 00 20 */	blr 
+.endfn __sinit_creatureLOD_cpp

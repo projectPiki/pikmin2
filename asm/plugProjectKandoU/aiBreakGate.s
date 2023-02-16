@@ -1,42 +1,50 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80480460:
+.obj lbl_80480460, local
 	.asciz "actBreakWall"
+.endobj lbl_80480460
 .balign 4
-lbl_80480470:
+.obj lbl_80480470, local
 	.asciz "BreakGate"
+.endobj lbl_80480470
 .balign 4
-lbl_8048047C:
+.obj lbl_8048047C, local
 	.asciz "ActBreakGateArg"
+.endobj lbl_8048047C
 .balign 4
-lbl_8048048C:
+.obj lbl_8048048C, local
 	.asciz "aiBreakGate.cpp"
+.endobj lbl_8048048C
 .balign 4
-lbl_8048049C:
+.obj lbl_8048049C, local
 	.asciz "P2Assert"
+.endobj lbl_8048049C
 .balign 4
-lbl_804804A8:
+.obj lbl_804804A8, local
 	.asciz "ActionArg"
+.endobj lbl_804804A8
 .balign 4
-lbl_804804B4:
+.obj lbl_804804B4, local
 	.asciz "StickAttackActionArg"
+.endobj lbl_804804B4
 .balign 4
-lbl_804804CC:
+.obj lbl_804804CC, local
 	.asciz "GotoPosActionArg"
+.endobj lbl_804804CC
 .balign 4
-lbl_804804E0:
+.obj lbl_804804E0, local
 	.asciz "FollowVectorFieldActionArg"
+.endobj lbl_804804E0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q26PikiAI26FollowVectorFieldActionArg
-__vt__Q26PikiAI26FollowVectorFieldActionArg:
+.obj __vt__Q26PikiAI26FollowVectorFieldActionArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI26FollowVectorFieldActionArgFv
-.global __vt__Q26PikiAI12ActBreakGate
-__vt__Q26PikiAI12ActBreakGate:
+.endobj __vt__Q26PikiAI26FollowVectorFieldActionArg
+.obj __vt__Q26PikiAI12ActBreakGate, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI12ActBreakGateFPQ26PikiAI9ActionArg
@@ -56,15 +64,16 @@ __vt__Q26PikiAI12ActBreakGate:
 	.4byte 0
 	.4byte 0
 	.4byte "@52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent"
+.endobj __vt__Q26PikiAI12ActBreakGate
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519630:
+.obj lbl_80519630, local
 	.float 0.7
+.endobj lbl_80519630
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki
-__ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki:
+.fn __ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki, global
 /* 801D04E8 001CD428  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D04EC 001CD42C  7C 08 02 A6 */	mflr r0
 /* 801D04F0 001CD430  90 01 00 14 */	stw r0, 0x14(r1)
@@ -131,9 +140,9 @@ __ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki:
 /* 801D05D4 001CD514  7C 08 03 A6 */	mtlr r0
 /* 801D05D8 001CD518  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D05DC 001CD51C  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki
 
-.global init__Q26PikiAI12ActBreakGateFPQ26PikiAI9ActionArg
-init__Q26PikiAI12ActBreakGateFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI12ActBreakGateFPQ26PikiAI9ActionArg, global
 /* 801D05E0 001CD520  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D05E4 001CD524  7C 08 02 A6 */	mflr r0
 /* 801D05E8 001CD528  90 01 00 24 */	stw r0, 0x24(r1)
@@ -186,9 +195,9 @@ init__Q26PikiAI12ActBreakGateFPQ26PikiAI9ActionArg:
 /* 801D069C 001CD5DC  7C 08 03 A6 */	mtlr r0
 /* 801D06A0 001CD5E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D06A4 001CD5E4  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI12ActBreakGateFPQ26PikiAI9ActionArg
 
-.global initFollow__Q26PikiAI12ActBreakGateFv
-initFollow__Q26PikiAI12ActBreakGateFv:
+.fn initFollow__Q26PikiAI12ActBreakGateFv, global
 /* 801D06A8 001CD5E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D06AC 001CD5EC  7C 08 02 A6 */	mflr r0
 /* 801D06B0 001CD5F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -215,9 +224,9 @@ initFollow__Q26PikiAI12ActBreakGateFv:
 /* 801D0704 001CD644  7C 08 03 A6 */	mtlr r0
 /* 801D0708 001CD648  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D070C 001CD64C  4E 80 00 20 */	blr 
+.endfn initFollow__Q26PikiAI12ActBreakGateFv
 
-.global exec__Q26PikiAI12ActBreakGateFv
-exec__Q26PikiAI12ActBreakGateFv:
+.fn exec__Q26PikiAI12ActBreakGateFv, global
 /* 801D0710 001CD650  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 801D0714 001CD654  7C 08 02 A6 */	mflr r0
 /* 801D0718 001CD658  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -535,9 +544,9 @@ exec__Q26PikiAI12ActBreakGateFv:
 /* 801D0B9C 001CDADC  7C 08 03 A6 */	mtlr r0
 /* 801D0BA0 001CDAE0  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 801D0BA4 001CDAE4  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI12ActBreakGateFv
 
-.global cleanup__Q26PikiAI12ActBreakGateFv
-cleanup__Q26PikiAI12ActBreakGateFv:
+.fn cleanup__Q26PikiAI12ActBreakGateFv, global
 /* 801D0BA8 001CDAE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D0BAC 001CDAEC  7C 08 02 A6 */	mflr r0
 /* 801D0BB0 001CDAF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -563,9 +572,9 @@ cleanup__Q26PikiAI12ActBreakGateFv:
 /* 801D0BF8 001CDB38  7C 08 03 A6 */	mtlr r0
 /* 801D0BFC 001CDB3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D0C00 001CDB40  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI12ActBreakGateFv
 
-.global emotion_success__Q26PikiAI12ActBreakGateFv
-emotion_success__Q26PikiAI12ActBreakGateFv:
+.fn emotion_success__Q26PikiAI12ActBreakGateFv, global
 /* 801D0C04 001CDB44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D0C08 001CDB48  7C 08 02 A6 */	mflr r0
 /* 801D0C0C 001CDB4C  38 A0 00 13 */	li r5, 0x13
@@ -583,9 +592,9 @@ emotion_success__Q26PikiAI12ActBreakGateFv:
 /* 801D0C3C 001CDB7C  7C 08 03 A6 */	mtlr r0
 /* 801D0C40 001CDB80  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D0C44 001CDB84  4E 80 00 20 */	blr 
+.endfn emotion_success__Q26PikiAI12ActBreakGateFv
 
-.global platCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9PlatEvent
-platCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9PlatEvent:
+.fn platCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9PlatEvent, global
 /* 801D0C48 001CDB88  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801D0C4C 001CDB8C  7C 08 02 A6 */	mflr r0
 /* 801D0C50 001CDB90  C0 02 B2 D0 */	lfs f0, lbl_80519630@sda21(r2)
@@ -674,29 +683,30 @@ platCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9PlatEvent:
 /* 801D0D80 001CDCC0  7C 08 03 A6 */	mtlr r0
 /* 801D0D84 001CDCC4  38 21 00 40 */	addi r1, r1, 0x40
 /* 801D0D88 001CDCC8  4E 80 00 20 */	blr 
+.endfn platCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9PlatEvent
 
-.global collisionCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 801D0D8C 001CDCCC  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9CollEvent
 
-.global bounceCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiPQ23Sys8Triangle, global
 /* 801D0D90 001CDCD0  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiPQ23Sys8Triangle
 
-.global onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent
-onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent, global
 /* 801D0D94 001CDCD4  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent
 
-.global getName__Q26PikiAI26FollowVectorFieldActionArgFv
-getName__Q26PikiAI26FollowVectorFieldActionArgFv:
+.fn getName__Q26PikiAI26FollowVectorFieldActionArgFv, weak
 /* 801D0D98 001CDCD8  3C 60 80 48 */	lis r3, lbl_804804E0@ha
 /* 801D0D9C 001CDCDC  38 63 04 E0 */	addi r3, r3, lbl_804804E0@l
 /* 801D0DA0 001CDCE0  4E 80 00 20 */	blr 
+.endfn getName__Q26PikiAI26FollowVectorFieldActionArgFv
 
-.global "@52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent"
-"@52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent":
+.fn "@52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent", weak
 /* 801D0DA4 001CDCE4  39 60 00 04 */	li r11, 4
 /* 801D0DA8 001CDCE8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801D0DAC 001CDCEC  7C 63 5A 14 */	add r3, r3, r11
 /* 801D0DB0 001CDCF0  38 63 FF CC */	addi r3, r3, -52
 /* 801D0DB4 001CDCF4  4B FF FF E0 */	b onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent
+.endfn "@52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent"

@@ -1,33 +1,38 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80483CD0:
+.obj lbl_80483CD0, local
 	.asciz "actRescue"
+.endobj lbl_80483CD0
 .balign 4
-lbl_80483CDC:
+.obj lbl_80483CDC, local
 	.asciz "aiRescue.cpp"
+.endobj lbl_80483CDC
 .balign 4
-lbl_80483CEC:
+.obj lbl_80483CEC, local
 	.asciz "P2Assert"
+.endobj lbl_80483CEC
 .balign 4
-lbl_80483CF8:
+.obj lbl_80483CF8, local
 	.asciz "rhandjnt"
+.endobj lbl_80483CF8
 .balign 4
-lbl_80483D04:
+.obj lbl_80483D04, local
 	.asciz "ApproachPosActionArg"
+.endobj lbl_80483D04
 .balign 4
-lbl_80483D1C:
+.obj lbl_80483D1C, local
 	.asciz "ActionArg"
+.endobj lbl_80483D1C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__10WPFindCond
-__vt__10WPFindCond:
+.obj __vt__10WPFindCond, weak
 	.4byte 0
 	.4byte 0
 	.4byte satisfy__10WPFindCondFPQ24Game8WayPoint
-.global __vt__Q26PikiAI9ActRescue
-__vt__Q26PikiAI9ActRescue:
+.endobj __vt__10WPFindCond
+.obj __vt__Q26PikiAI9ActRescue, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI9ActRescueFPQ26PikiAI9ActionArg
@@ -47,36 +52,47 @@ __vt__Q26PikiAI9ActRescue:
 	.4byte 0
 	.4byte 0
 	.4byte "@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent"
+.endobj __vt__Q26PikiAI9ActRescue
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A4F0:
+.obj lbl_8051A4F0, local
 	.asciz "Rescue"
+.endobj lbl_8051A4F0
 .balign 4
-lbl_8051A4F8:
+.obj lbl_8051A4F8, local
 	.float 10.0
-lbl_8051A4FC:
+.endobj lbl_8051A4F8
+.obj lbl_8051A4FC, local
 	.float -1.0
-lbl_8051A500:
+.endobj lbl_8051A4FC
+.obj lbl_8051A500, local
 	.float 250.0
-lbl_8051A504:
+.endobj lbl_8051A500
+.obj lbl_8051A504, local
 	.float 3.0
-lbl_8051A508:
+.endobj lbl_8051A504
+.obj lbl_8051A508, local
 	.float 0.0
-lbl_8051A50C:
+.endobj lbl_8051A508
+.obj lbl_8051A50C, local
 	.float 0.5
-lbl_8051A510:
+.endobj lbl_8051A50C
+.obj lbl_8051A510, local
 	.float 50.0
-lbl_8051A514:
+.endobj lbl_8051A510
+.obj lbl_8051A514, local
 	.float 2.0
-lbl_8051A518:
+.endobj lbl_8051A514
+.obj lbl_8051A518, local
 	.float 325.9493
-lbl_8051A51C:
+.endobj lbl_8051A518
+.obj lbl_8051A51C, local
 	.float -325.9493
+.endobj lbl_8051A51C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q26PikiAI9ActRescueFPQ24Game4Piki
-__ct__Q26PikiAI9ActRescueFPQ24Game4Piki:
+.fn __ct__Q26PikiAI9ActRescueFPQ24Game4Piki, global
 /* 80238EB0 00235DF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238EB4 00235DF4  7C 08 02 A6 */	mflr r0
 /* 80238EB8 00235DF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -125,9 +141,9 @@ __ct__Q26PikiAI9ActRescueFPQ24Game4Piki:
 /* 80238F5C 00235E9C  7C 08 03 A6 */	mtlr r0
 /* 80238F60 00235EA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238F64 00235EA4  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI9ActRescueFPQ24Game4Piki
 
-.global init__Q26PikiAI9ActRescueFPQ26PikiAI9ActionArg
-init__Q26PikiAI9ActRescueFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI9ActRescueFPQ26PikiAI9ActionArg, global
 /* 80238F68 00235EA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80238F6C 00235EAC  7C 08 02 A6 */	mflr r0
 /* 80238F70 00235EB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -180,9 +196,9 @@ init__Q26PikiAI9ActRescueFPQ26PikiAI9ActionArg:
 /* 80239020 00235F60  7C 08 03 A6 */	mtlr r0
 /* 80239024 00235F64  38 21 00 20 */	addi r1, r1, 0x20
 /* 80239028 00235F68  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI9ActRescueFPQ26PikiAI9ActionArg
 
-.global exec__Q26PikiAI9ActRescueFv
-exec__Q26PikiAI9ActRescueFv:
+.fn exec__Q26PikiAI9ActRescueFv, global
 /* 8023902C 00235F6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80239030 00235F70  7C 08 02 A6 */	mflr r0
 /* 80239034 00235F74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -213,9 +229,9 @@ exec__Q26PikiAI9ActRescueFv:
 /* 80239080 00235FC0  7C 08 03 A6 */	mtlr r0
 /* 80239084 00235FC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80239088 00235FC8  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI9ActRescueFv
 
-.global initApproach__Q26PikiAI9ActRescueFv
-initApproach__Q26PikiAI9ActRescueFv:
+.fn initApproach__Q26PikiAI9ActRescueFv, global
 /* 8023908C 00235FCC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80239090 00235FD0  7C 08 02 A6 */	mflr r0
 /* 80239094 00235FD4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -259,9 +275,9 @@ initApproach__Q26PikiAI9ActRescueFv:
 /* 8023912C 0023606C  7C 08 03 A6 */	mtlr r0
 /* 80239130 00236070  38 21 00 40 */	addi r1, r1, 0x40
 /* 80239134 00236074  4E 80 00 20 */	blr 
+.endfn initApproach__Q26PikiAI9ActRescueFv
 
-.global execApproach__Q26PikiAI9ActRescueFv
-execApproach__Q26PikiAI9ActRescueFv:
+.fn execApproach__Q26PikiAI9ActRescueFv, global
 /* 80239138 00236078  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023913C 0023607C  7C 08 02 A6 */	mflr r0
 /* 80239140 00236080  90 01 00 24 */	stw r0, 0x24(r1)
@@ -349,9 +365,9 @@ execApproach__Q26PikiAI9ActRescueFv:
 /* 80239268 002361A8  7C 08 03 A6 */	mtlr r0
 /* 8023926C 002361AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80239270 002361B0  4E 80 00 20 */	blr 
+.endfn execApproach__Q26PikiAI9ActRescueFv
 
-.global initGo__Q26PikiAI9ActRescueFv
-initGo__Q26PikiAI9ActRescueFv:
+.fn initGo__Q26PikiAI9ActRescueFv, global
 /* 80239274 002361B4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80239278 002361B8  7C 08 02 A6 */	mflr r0
 /* 8023927C 002361BC  3C 80 80 4C */	lis r4, __vt__10WPFindCond@ha
@@ -437,9 +453,9 @@ initGo__Q26PikiAI9ActRescueFv:
 /* 802393B8 002362F8  7C 08 03 A6 */	mtlr r0
 /* 802393BC 002362FC  38 21 00 60 */	addi r1, r1, 0x60
 /* 802393C0 00236300  4E 80 00 20 */	blr 
+.endfn initGo__Q26PikiAI9ActRescueFv
 
-.global execGo__Q26PikiAI9ActRescueFv
-execGo__Q26PikiAI9ActRescueFv:
+.fn execGo__Q26PikiAI9ActRescueFv, global
 /* 802393C4 00236304  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802393C8 00236308  7C 08 02 A6 */	mflr r0
 /* 802393CC 0023630C  3C 80 80 48 */	lis r4, lbl_80483CD0@ha
@@ -563,9 +579,9 @@ execGo__Q26PikiAI9ActRescueFv:
 /* 80239578 002364B8  7C 08 03 A6 */	mtlr r0
 /* 8023957C 002364BC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80239580 002364C0  4E 80 00 20 */	blr 
+.endfn execGo__Q26PikiAI9ActRescueFv
 
-.global initThrow__Q26PikiAI9ActRescueFv
-initThrow__Q26PikiAI9ActRescueFv:
+.fn initThrow__Q26PikiAI9ActRescueFv, global
 /* 80239584 002364C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80239588 002364C8  7C 08 02 A6 */	mflr r0
 /* 8023958C 002364CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -592,9 +608,9 @@ initThrow__Q26PikiAI9ActRescueFv:
 /* 802395DC 0023651C  7C 08 03 A6 */	mtlr r0
 /* 802395E0 00236520  38 21 00 10 */	addi r1, r1, 0x10
 /* 802395E4 00236524  4E 80 00 20 */	blr 
+.endfn initThrow__Q26PikiAI9ActRescueFv
 
-.global execThrow__Q26PikiAI9ActRescueFv
-execThrow__Q26PikiAI9ActRescueFv:
+.fn execThrow__Q26PikiAI9ActRescueFv, global
 /* 802395E8 00236528  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802395EC 0023652C  7C 08 02 A6 */	mflr r0
 /* 802395F0 00236530  90 01 00 84 */	stw r0, 0x84(r1)
@@ -763,9 +779,9 @@ execThrow__Q26PikiAI9ActRescueFv:
 /* 80239854 00236794  7C 08 03 A6 */	mtlr r0
 /* 80239858 00236798  38 21 00 80 */	addi r1, r1, 0x80
 /* 8023985C 0023679C  4E 80 00 20 */	blr 
+.endfn execThrow__Q26PikiAI9ActRescueFv
 
-.global onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent
-onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent, global
 /* 80239860 002367A0  80 04 00 1C */	lwz r0, 0x1c(r4)
 /* 80239864 002367A4  28 00 00 02 */	cmplwi r0, 2
 /* 80239868 002367A8  40 82 00 14 */	bne .L_8023987C
@@ -778,25 +794,25 @@ onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent:
 /* 80239880 002367C0  60 00 00 02 */	ori r0, r0, 2
 /* 80239884 002367C4  98 03 00 14 */	stb r0, 0x14(r3)
 /* 80239888 002367C8  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent
 
-.global emotion_success__Q26PikiAI9ActRescueFv
-emotion_success__Q26PikiAI9ActRescueFv:
+.fn emotion_success__Q26PikiAI9ActRescueFv, global
 /* 8023988C 002367CC  4E 80 00 20 */	blr 
+.endfn emotion_success__Q26PikiAI9ActRescueFv
 
-.global doDirectDraw__Q26PikiAI9ActRescueFR8Graphics
-doDirectDraw__Q26PikiAI9ActRescueFR8Graphics:
+.fn doDirectDraw__Q26PikiAI9ActRescueFR8Graphics, global
 /* 80239890 002367D0  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q26PikiAI9ActRescueFR8Graphics
 
-.global cleanup__Q26PikiAI9ActRescueFv
-cleanup__Q26PikiAI9ActRescueFv:
+.fn cleanup__Q26PikiAI9ActRescueFv, global
 /* 80239894 002367D4  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI9ActRescueFv
 
-.global collisionCallback__Q26PikiAI9ActRescueFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q26PikiAI9ActRescueFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q26PikiAI9ActRescueFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 80239898 002367D8  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q26PikiAI9ActRescueFPQ24Game4PikiRQ24Game9CollEvent
 
-.global satisfy__10WPFindCondFPQ24Game8WayPoint
-satisfy__10WPFindCondFPQ24Game8WayPoint:
+.fn satisfy__10WPFindCondFPQ24Game8WayPoint, weak
 /* 8023989C 002367DC  88 84 00 34 */	lbz r4, 0x34(r4)
 /* 802398A0 002367E0  38 60 00 00 */	li r3, 0
 /* 802398A4 002367E4  54 80 07 BD */	rlwinm. r0, r4, 0, 0x1e, 0x1e
@@ -805,16 +821,17 @@ satisfy__10WPFindCondFPQ24Game8WayPoint:
 /* 802398B0 002367F0  4C 82 00 20 */	bnelr 
 /* 802398B4 002367F4  38 60 00 01 */	li r3, 1
 /* 802398B8 002367F8  4E 80 00 20 */	blr 
+.endfn satisfy__10WPFindCondFPQ24Game8WayPoint
 
-.global getNextAIType__Q26PikiAI9ActRescueFv
-getNextAIType__Q26PikiAI9ActRescueFv:
+.fn getNextAIType__Q26PikiAI9ActRescueFv, weak
 /* 802398BC 002367FC  38 60 00 01 */	li r3, 1
 /* 802398C0 00236800  4E 80 00 20 */	blr 
+.endfn getNextAIType__Q26PikiAI9ActRescueFv
 
-.global "@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent"
-"@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent":
+.fn "@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent", weak
 /* 802398C4 00236804  39 60 00 04 */	li r11, 4
 /* 802398C8 00236808  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802398CC 0023680C  7C 63 5A 14 */	add r3, r3, r11
 /* 802398D0 00236810  38 63 FF D8 */	addi r3, r3, -40
 /* 802398D4 00236814  4B FF FF 8C */	b onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent
+.endfn "@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent"

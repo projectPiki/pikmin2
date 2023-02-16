@@ -2,13 +2,10 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_804827B8:
-	.4byte 0x506C6179
-	.4byte 0x44617461
-	.4byte 0x4D656D43
-	.4byte 0x61726400
-	.4byte 0x2A205665
-	.4byte 0x7273696F
-	.4byte 0x6E202A00
+	.asciz "PlayDataMemCard"
+.balign 4
+	.asciz "* Version *"
+.balign 4
 	.4byte 0x2A2082A8
 	.4byte 0x95F38CC2
 	.4byte 0x9094202A
@@ -31,25 +28,12 @@ lbl_804827B8:
 	.4byte 0x87839383
 	.4byte 0x74838983
 	.4byte 0x4F202A00
-	.4byte 0x23206861
-	.4byte 0x7320636F
-	.4byte 0x6E746169
-	.4byte 0x6E657220
-	.4byte 0x666C6167
-	.4byte 0x0D0A0000
-	.4byte 0x23206861
-	.4byte 0x7320626F
-	.4byte 0x6F742063
-	.4byte 0x6F6E7461
-	.4byte 0x696E6572
-	.4byte 0x20666C61
-	.4byte 0x670D0A00
-	.4byte 0x23206D65
-	.4byte 0x65742070
-	.4byte 0x696B6D69
-	.4byte 0x6E20666C
-	.4byte 0x61670D0A
-	.4byte 0x00000000
+	.asciz "# has container flag\r\n"
+.balign 4
+	.asciz "# has boot container flag\r\n"
+.balign 4
+	.asciz "# meet pikmin flag\r\n"
+.balign 4
 	.4byte 0x2A2093FA
 	.4byte 0x82C982BF
 	.4byte 0x202A0000
@@ -132,23 +116,19 @@ lbl_804827B8:
 	.4byte 0x5890940D
 	.4byte 0x0A000000
 lbl_804829BC:
-	.4byte 0x67616D65
-	.4byte 0x506C6179
-	.4byte 0x44617461
-	.4byte 0x4D656D43
-	.4byte 0x6172642E
-	.4byte 0x63707000
+	.asciz "gamePlayDataMemCard.cpp"
+.balign 4
+lbl_804829D4:
 	.asciz "P2Assert"
 .balign 4
 	.4byte 0x2A2093B4
 	.4byte 0x8C419242
 	.4byte 0x90AC8FEE
 	.4byte 0x95F1202A
-	.4byte 0x00000000
-	.4byte 0x2A204C69
-	.4byte 0x6D697447
-	.4byte 0x656E202A
-	.4byte 0x00000000
+	.byte 0
+.balign 4
+	.asciz "* LimitGen *"
+.balign 4
 	.4byte 0x2A2082A8
 	.4byte 0x8BE02F93
 	.4byte 0xB48C4182

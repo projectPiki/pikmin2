@@ -5,19 +5,15 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048EFE0:
-	.4byte 0x6F674F62
-	.4byte 0x6A436F6E
-	.4byte 0x74656E61
-	.4byte 0x2E637070
-	.4byte 0x00000000
-	.4byte 0x55464F4D
-	.4byte 0x454E5520
-	.4byte 0x2D2D3E20
-	.4byte 0x434F4E54
-	.4byte 0x454E4120
-	.4byte 0x45525221
-	.4byte 0x0A000000
+.obj lbl_8048EFE0, local
+	.asciz "ogObjContena.cpp"
+.endobj lbl_8048EFE0
+.balign 4
+.obj lbl_8048EFF4, local
+	.asciz "UFOMENU --> CONTENA ERR!\n"
+.endobj lbl_8048EFF4
+.balign 4
+.obj lbl_8048F010, local # Shift-JIS
 	.4byte 0x45525221
 	.4byte 0x20696E20
 	.4byte 0x4F626A43
@@ -26,77 +22,74 @@ lbl_8048EFE0:
 	.4byte 0x72656174
 	.4byte 0x658EB894
 	.4byte 0x7381490A
-	.4byte 0x00000000
-	.4byte 0x636F6E74
-	.4byte 0x656E615F
-	.4byte 0x622E626C
-	.4byte 0x6F000000
-	.4byte 0x636F6E74
-	.4byte 0x656E615F
-	.4byte 0x722E626C
-	.4byte 0x6F000000
-	.4byte 0x636F6E74
-	.4byte 0x656E615F
-	.4byte 0x792E626C
-	.4byte 0x6F000000
-	.4byte 0x636F6E74
-	.4byte 0x656E615F
-	.4byte 0x626C2E62
-	.4byte 0x6C6F0000
-	.4byte 0x636F6E74
-	.4byte 0x656E615F
-	.4byte 0x772E626C
-	.4byte 0x6F000000
-	.4byte 0x45525221
-	.4byte 0x20756E6B
-	.4byte 0x6E776F6E
-	.4byte 0x20636F6E
-	.4byte 0x74656E61
-	.4byte 0x20747970
-	.4byte 0x65210A00
-	.4byte 0x63757073
-	.4byte 0x756C652E
-	.4byte 0x626C6F00
-	.4byte 0x73706F74
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x44617461
-	.4byte 0x436F6E74
-	.4byte 0x656E6120
-	.4byte 0x6973206E
-	.4byte 0x6F742066
-	.4byte 0x6F756E64
-	.4byte 0x210A0000
-	.4byte 0x436F6E74
-	.4byte 0x656E6120
-	.4byte 0x54797065
-	.4byte 0x20657272
-	.4byte 0x6F72210A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8048F010
+.balign 4
+.obj lbl_8048F034, local
+	.asciz "contena_b.blo"
+.endobj lbl_8048F034
+.balign 4
+.obj lbl_8048F044, local
+	.asciz "contena_r.blo"
+.endobj lbl_8048F044
+.balign 4
+.obj lbl_8048F054, local
+	.asciz "contena_y.blo"
+.endobj lbl_8048F054
+.balign 4
+.obj lbl_8048F064, local
+	.asciz "contena_bl.blo"
+.endobj lbl_8048F064
+.balign 4
+.obj lbl_8048F074, local
+	.asciz "contena_w.blo"
+.endobj lbl_8048F074
+.balign 4
+.obj lbl_8048F084, local
+	.asciz "ERR! unknwon contena type!\n"
+.endobj lbl_8048F084
+.balign 4
+.obj lbl_8048F0A0, local
+	.asciz "cupsule.blo"
+.endobj lbl_8048F0A0
+.balign 4
+.obj lbl_8048F0AC, local
+	.asciz "spot.blo"
+.endobj lbl_8048F0AC
+.balign 4
+.obj lbl_8048F0B8, local
+	.asciz "DataContena is not found!\n"
+.endobj lbl_8048F0B8
+.balign 4
+.obj lbl_8048F0D4, local
+	.asciz "Contena Type error!\n"
+.endobj lbl_8048F0D4
+.balign 4
+.obj lbl_8048F0EC, local # Shift-JIS
 	.4byte 0x82BE82DF
 	.4byte 0x82C582B7
-	.4byte 0x0A000000
-	.4byte 0x53544152
-	.4byte 0x54204552
-	.4byte 0x52212028
-	.4byte 0x4261636B
-	.4byte 0x75705363
-	.4byte 0x656E6529
-	.4byte 0x00000000
-	.4byte 0x73657442
-	.4byte 0x61636B75
-	.4byte 0x70536365
-	.4byte 0x6E652045
-	.4byte 0x52522100
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+	.2byte 0x0A00
+.endobj lbl_8048F0EC
+.balign 4
+.obj lbl_8048F0F8, local
+	.asciz "START ERR! (BackupScene)"
+.endobj lbl_8048F0F8
+.balign 4
+.obj lbl_8048F114, local
+	.asciz "setBackupScene ERR!"
+.endobj lbl_8048F114
+.balign 4
+.obj lbl_8048F128, local
+	.asciz "screenObj.h"
+.endobj lbl_8048F128
+.balign 4
+.obj lbl_8048F134, local
 	.asciz "P2Assert"
+.endobj lbl_8048F134
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q32og9newScreen10ObjContena
-__vt__Q32og9newScreen10ObjContena:
+.obj __vt__Q32og9newScreen10ObjContena, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32og9newScreen10ObjContenaFv
@@ -127,6 +120,7 @@ __vt__Q32og9newScreen10ObjContena:
 	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+.endobj __vt__Q32og9newScreen10ObjContena
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # ogObjContena.cpp
@@ -143,74 +137,105 @@ __vt__Q32og9newScreen10ObjContena:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051DC88:
-	.4byte 0x44480000
-lbl_8051DC8C:
-	.4byte 0x00000000
-lbl_8051DC90:
+.obj lbl_8051DC88, local
+	.float 800.0
+.endobj lbl_8051DC88
+.obj lbl_8051DC8C, local
+	.float 0.0
+.endobj lbl_8051DC8C
+.obj lbl_8051DC90, local
 	.float 0.5
-lbl_8051DC94:
+.endobj lbl_8051DC90
+.obj lbl_8051DC94, local
 	.float 1.0
-lbl_8051DC98:
+.endobj lbl_8051DC94
+.obj lbl_8051DC98, local
 	.float 0.3
-lbl_8051DC9C:
+.endobj lbl_8051DC98
+.obj lbl_8051DC9C, local
 	.float 0.1
-lbl_8051DCA0:
-	.4byte 0x41F00000
-lbl_8051DCA4:
-	.4byte 0x3F4CCCCD
-lbl_8051DCA8:
+.endobj lbl_8051DC9C
+.obj lbl_8051DCA0, local
+	.float 30.0
+.endobj lbl_8051DCA0
+.obj lbl_8051DCA4, local
+	.float 0.8
+.endobj lbl_8051DCA4
+.obj lbl_8051DCA8, local
 	.float 0.05
-lbl_8051DCAC:
-	.4byte 0x420C0000
-lbl_8051DCB0:
-	.4byte 0x40C90FDB
-lbl_8051DCB4:
-	.4byte 0xC3A2F983
-lbl_8051DCB8:
-	.4byte 0x43A2F983
-lbl_8051DCBC:
-	.4byte 0x3ECCCCCD
-lbl_8051DCC0:
-	.4byte 0xBECCCCCD
-lbl_8051DCC4:
-	.4byte 0x42C80000
-lbl_8051DCC8:
-	.4byte 0xC2C80000
-lbl_8051DCCC:
-	.4byte 0x40000000
-lbl_8051DCD0:
-	.4byte 0x437F0000
-lbl_8051DCD4:
-	.4byte 0xC4480000
-lbl_8051DCD8:
-	.4byte 0x41A00000
-lbl_8051DCDC:
+.endobj lbl_8051DCA8
+.obj lbl_8051DCAC, local
+	.float 35.0
+.endobj lbl_8051DCAC
+.obj lbl_8051DCB0, local # tau
+	.float 6.2831855
+.endobj lbl_8051DCB0
+.obj lbl_8051DCB4, local
+	.float -325.9493
+.endobj lbl_8051DCB4
+.obj lbl_8051DCB8, local
+	.float 325.9493
+.endobj lbl_8051DCB8
+.obj lbl_8051DCBC, local
+	.float 0.4
+.endobj lbl_8051DCBC
+.obj lbl_8051DCC0, local
+	.float -0.4
+.endobj lbl_8051DCC0
+.obj lbl_8051DCC4, local
+	.float 100.0
+.endobj lbl_8051DCC4
+.obj lbl_8051DCC8, local
+	.float -100.0
+.endobj lbl_8051DCC8
+.obj lbl_8051DCCC, local
+	.float 2.0
+.endobj lbl_8051DCCC
+.obj lbl_8051DCD0, local
+	.float 255.0
+.endobj lbl_8051DCD0
+.obj lbl_8051DCD4, local
+	.float -800.0
+.endobj lbl_8051DCD4
+.obj lbl_8051DCD8, local
+	.float 20.0
+.endobj lbl_8051DCD8
+.obj lbl_8051DCDC, local
 	.float 0.06
-lbl_8051DCE0:
-	.4byte 0x3F99999A
-lbl_8051DCE4:
-	.4byte 0x3F19999A
-lbl_8051DCE8:
-	.4byte 0x43660000
-lbl_8051DCEC:
-	.4byte 0x42660000
-lbl_8051DCF0:
-	.4byte 0x3EDC28F6
-lbl_8051DCF4:
-	.4byte 0x3E4CCCCD
-lbl_8051DCF8:
-	.4byte 0x3FE66666
-lbl_8051DCFC:
-	.4byte 0xBF800000
-lbl_8051DD00:
-	.4byte 0x3F0CCCCD
-lbl_8051DD04:
-	.4byte 0x3D88CE70
+.endobj lbl_8051DCDC
+.obj lbl_8051DCE0, local
+	.float 1.2
+.endobj lbl_8051DCE0
+.obj lbl_8051DCE4, local
+	.float 0.6
+.endobj lbl_8051DCE4
+.obj lbl_8051DCE8, local
+	.float 230.0
+.endobj lbl_8051DCE8
+.obj lbl_8051DCEC, local
+	.float 57.5
+.endobj lbl_8051DCEC
+.obj lbl_8051DCF0, local
+	.float 0.43
+.endobj lbl_8051DCF0
+.obj lbl_8051DCF4, local
+	.float 0.2
+.endobj lbl_8051DCF4
+.obj lbl_8051DCF8, local
+	.float 1.8
+.endobj lbl_8051DCF8
+.obj lbl_8051DCFC, local
+	.float -1.0
+.endobj lbl_8051DCFC
+.obj lbl_8051DD00, local
+	.float 0.55
+.endobj lbl_8051DD00
+.obj lbl_8051DD04, local
+	.float 0.0668
+.endobj lbl_8051DD04
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q32og9newScreen10ObjContenaFPCc
-__ct__Q32og9newScreen10ObjContenaFPCc:
+.fn __ct__Q32og9newScreen10ObjContenaFPCc, global
 /* 8031FF44 0031CE84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8031FF48 0031CE88  7C 08 02 A6 */	mflr r0
 /* 8031FF4C 0031CE8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -323,9 +348,9 @@ __ct__Q32og9newScreen10ObjContenaFPCc:
 /* 803200F8 0031D038  7C 08 03 A6 */	mtlr r0
 /* 803200FC 0031D03C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80320100 0031D040  4E 80 00 20 */	blr 
+.endfn __ct__Q32og9newScreen10ObjContenaFPCc
 
-.global __dt__Q32og9newScreen10ObjContenaFv
-__dt__Q32og9newScreen10ObjContenaFv:
+.fn __dt__Q32og9newScreen10ObjContenaFv, global
 /* 80320104 0031D044  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80320108 0031D048  7C 08 02 A6 */	mflr r0
 /* 8032010C 0031D04C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -371,9 +396,9 @@ __dt__Q32og9newScreen10ObjContenaFv:
 /* 803201A4 0031D0E4  7C 08 03 A6 */	mtlr r0
 /* 803201A8 0031D0E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803201AC 0031D0EC  4E 80 00 20 */	blr 
+.endfn __dt__Q32og9newScreen10ObjContenaFv
 
-.global doCreate__Q32og9newScreen10ObjContenaFP10JKRArchive
-doCreate__Q32og9newScreen10ObjContenaFP10JKRArchive:
+.fn doCreate__Q32og9newScreen10ObjContenaFP10JKRArchive, global
 /* 803201B0 0031D0F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803201B4 0031D0F4  7C 08 02 A6 */	mflr r0
 /* 803201B8 0031D0F8  3C A0 80 49 */	lis r5, lbl_8048EFE0@ha
@@ -1000,9 +1025,9 @@ doCreate__Q32og9newScreen10ObjContenaFP10JKRArchive:
 /* 80320AD8 0031DA18  7C 08 03 A6 */	mtlr r0
 /* 80320ADC 0031DA1C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80320AE0 0031DA20  4E 80 00 20 */	blr 
+.endfn doCreate__Q32og9newScreen10ObjContenaFP10JKRArchive
 
-.global putinPiki__Q32og9newScreen10ObjContenaFb
-putinPiki__Q32og9newScreen10ObjContenaFb:
+.fn putinPiki__Q32og9newScreen10ObjContenaFb, global
 /* 80320AE4 0031DA24  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80320AE8 0031DA28  7C 08 02 A6 */	mflr r0
 /* 80320AEC 0031DA2C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1173,9 +1198,9 @@ putinPiki__Q32og9newScreen10ObjContenaFb:
 /* 80320D5C 0031DC9C  7C 08 03 A6 */	mtlr r0
 /* 80320D60 0031DCA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80320D64 0031DCA4  4E 80 00 20 */	blr 
+.endfn putinPiki__Q32og9newScreen10ObjContenaFb
 
-.global takeoutPiki__Q32og9newScreen10ObjContenaFb
-takeoutPiki__Q32og9newScreen10ObjContenaFb:
+.fn takeoutPiki__Q32og9newScreen10ObjContenaFb, global
 /* 80320D68 0031DCA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80320D6C 0031DCAC  7C 08 02 A6 */	mflr r0
 /* 80320D70 0031DCB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1388,9 +1413,9 @@ takeoutPiki__Q32og9newScreen10ObjContenaFb:
 /* 8032107C 0031DFBC  7C 08 03 A6 */	mtlr r0
 /* 80321080 0031DFC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80321084 0031DFC4  4E 80 00 20 */	blr 
+.endfn takeoutPiki__Q32og9newScreen10ObjContenaFb
 
-.global moveContena__Q32og9newScreen10ObjContenaFv
-moveContena__Q32og9newScreen10ObjContenaFv:
+.fn moveContena__Q32og9newScreen10ObjContenaFv, global
 /* 80321088 0031DFC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032108C 0031DFCC  7C 08 02 A6 */	mflr r0
 /* 80321090 0031DFD0  3C 80 80 49 */	lis r4, lbl_8048EFE0@ha
@@ -1621,9 +1646,9 @@ moveContena__Q32og9newScreen10ObjContenaFv:
 /* 803213B8 0031E2F8  7C 08 03 A6 */	mtlr r0
 /* 803213BC 0031E2FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803213C0 0031E300  4E 80 00 20 */	blr 
+.endfn moveContena__Q32og9newScreen10ObjContenaFv
 
-.global commonUpdate__Q32og9newScreen10ObjContenaFv
-commonUpdate__Q32og9newScreen10ObjContenaFv:
+.fn commonUpdate__Q32og9newScreen10ObjContenaFv, global
 /* 803213C4 0031E304  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803213C8 0031E308  7C 08 02 A6 */	mflr r0
 /* 803213CC 0031E30C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2028,9 +2053,9 @@ commonUpdate__Q32og9newScreen10ObjContenaFv:
 /* 803219B4 0031E8F4  7C 08 03 A6 */	mtlr r0
 /* 803219B8 0031E8F8  38 21 00 60 */	addi r1, r1, 0x60
 /* 803219BC 0031E8FC  4E 80 00 20 */	blr 
+.endfn commonUpdate__Q32og9newScreen10ObjContenaFv
 
-.global doUpdate__Q32og9newScreen10ObjContenaFv
-doUpdate__Q32og9newScreen10ObjContenaFv:
+.fn doUpdate__Q32og9newScreen10ObjContenaFv, global
 /* 803219C0 0031E900  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803219C4 0031E904  7C 08 02 A6 */	mflr r0
 /* 803219C8 0031E908  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2047,9 +2072,9 @@ doUpdate__Q32og9newScreen10ObjContenaFv:
 /* 803219F4 0031E934  7C 08 03 A6 */	mtlr r0
 /* 803219F8 0031E938  38 21 00 10 */	addi r1, r1, 0x10
 /* 803219FC 0031E93C  4E 80 00 20 */	blr 
+.endfn doUpdate__Q32og9newScreen10ObjContenaFv
 
-.global doDraw__Q32og9newScreen10ObjContenaFR8Graphics
-doDraw__Q32og9newScreen10ObjContenaFR8Graphics:
+.fn doDraw__Q32og9newScreen10ObjContenaFR8Graphics, global
 /* 80321A00 0031E940  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80321A04 0031E944  7C 08 02 A6 */	mflr r0
 /* 80321A08 0031E948  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2144,9 +2169,9 @@ doDraw__Q32og9newScreen10ObjContenaFR8Graphics:
 /* 80321B68 0031EAA8  7C 08 03 A6 */	mtlr r0
 /* 80321B6C 0031EAAC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80321B70 0031EAB0  4E 80 00 20 */	blr 
+.endfn doDraw__Q32og9newScreen10ObjContenaFR8Graphics
 
-.global doStart__Q32og9newScreen10ObjContenaFPCQ26Screen13StartSceneArg
-doStart__Q32og9newScreen10ObjContenaFPCQ26Screen13StartSceneArg:
+.fn doStart__Q32og9newScreen10ObjContenaFPCQ26Screen13StartSceneArg, global
 /* 80321B74 0031EAB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80321B78 0031EAB8  7C 08 02 A6 */	mflr r0
 /* 80321B7C 0031EABC  C0 22 F9 2C */	lfs f1, lbl_8051DC8C@sda21(r2)
@@ -2164,28 +2189,28 @@ doStart__Q32og9newScreen10ObjContenaFPCQ26Screen13StartSceneArg:
 /* 80321BAC 0031EAEC  7C 08 03 A6 */	mtlr r0
 /* 80321BB0 0031EAF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80321BB4 0031EAF4  4E 80 00 20 */	blr 
+.endfn doStart__Q32og9newScreen10ObjContenaFPCQ26Screen13StartSceneArg
 
-.global doEnd__Q32og9newScreen10ObjContenaFPCQ26Screen11EndSceneArg
-doEnd__Q32og9newScreen10ObjContenaFPCQ26Screen11EndSceneArg:
+.fn doEnd__Q32og9newScreen10ObjContenaFPCQ26Screen11EndSceneArg, global
 /* 80321BB8 0031EAF8  38 60 00 01 */	li r3, 1
 /* 80321BBC 0031EAFC  4E 80 00 20 */	blr 
+.endfn doEnd__Q32og9newScreen10ObjContenaFPCQ26Screen11EndSceneArg
 
-.global doUpdateFadeinFinish__Q32og9newScreen10ObjContenaFv
-doUpdateFadeinFinish__Q32og9newScreen10ObjContenaFv:
+.fn doUpdateFadeinFinish__Q32og9newScreen10ObjContenaFv, global
 /* 80321BC0 0031EB00  4E 80 00 20 */	blr 
+.endfn doUpdateFadeinFinish__Q32og9newScreen10ObjContenaFv
 
-.global doUpdateFinish__Q32og9newScreen10ObjContenaFv
-doUpdateFinish__Q32og9newScreen10ObjContenaFv:
+.fn doUpdateFinish__Q32og9newScreen10ObjContenaFv, global
 /* 80321BC4 0031EB04  C0 02 F9 2C */	lfs f0, lbl_8051DC8C@sda21(r2)
 /* 80321BC8 0031EB08  D0 03 01 10 */	stfs f0, 0x110(r3)
 /* 80321BCC 0031EB0C  4E 80 00 20 */	blr 
+.endfn doUpdateFinish__Q32og9newScreen10ObjContenaFv
 
-.global doUpdateFadeoutFinish__Q32og9newScreen10ObjContenaFv
-doUpdateFadeoutFinish__Q32og9newScreen10ObjContenaFv:
+.fn doUpdateFadeoutFinish__Q32og9newScreen10ObjContenaFv, global
 /* 80321BD0 0031EB10  4E 80 00 20 */	blr 
+.endfn doUpdateFadeoutFinish__Q32og9newScreen10ObjContenaFv
 
-.global doUpdateFadein__Q32og9newScreen10ObjContenaFv
-doUpdateFadein__Q32og9newScreen10ObjContenaFv:
+.fn doUpdateFadein__Q32og9newScreen10ObjContenaFv, global
 /* 80321BD4 0031EB14  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80321BD8 0031EB18  7C 08 02 A6 */	mflr r0
 /* 80321BDC 0031EB1C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2229,9 +2254,9 @@ doUpdateFadein__Q32og9newScreen10ObjContenaFv:
 /* 80321C70 0031EBB0  7C 08 03 A6 */	mtlr r0
 /* 80321C74 0031EBB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80321C78 0031EBB8  4E 80 00 20 */	blr 
+.endfn doUpdateFadein__Q32og9newScreen10ObjContenaFv
 
-.global doUpdateFadeout__Q32og9newScreen10ObjContenaFv
-doUpdateFadeout__Q32og9newScreen10ObjContenaFv:
+.fn doUpdateFadeout__Q32og9newScreen10ObjContenaFv, global
 /* 80321C7C 0031EBBC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80321C80 0031EBC0  7C 08 02 A6 */	mflr r0
 /* 80321C84 0031EBC4  C0 42 F9 34 */	lfs f2, lbl_8051DC94@sda21(r2)
@@ -2355,8 +2380,9 @@ doUpdateFadeout__Q32og9newScreen10ObjContenaFv:
 /* 80321E4C 0031ED8C  7C 08 03 A6 */	mtlr r0
 /* 80321E50 0031ED90  38 21 00 30 */	addi r1, r1, 0x30
 /* 80321E54 0031ED94  4E 80 00 20 */	blr 
+.endfn doUpdateFadeout__Q32og9newScreen10ObjContenaFv
 
-__sinit_ogObjContena_cpp: # static initializer
+.fn __sinit_ogObjContena_cpp, local
 /* 80321E58 0031ED98  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80321E5C 0031ED9C  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 80321E60 0031EDA0  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0
@@ -2399,8 +2425,9 @@ __sinit_ogObjContena_cpp: # static initializer
 /* 80321EF4 0031EE34  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 80321EF8 0031EE38  38 21 00 20 */	addi r1, r1, 0x20
 /* 80321EFC 0031EE3C  4E 80 00 20 */	blr 
+.endfn __sinit_ogObjContena_cpp
 
-.global "@24@__dt__Q32og9newScreen10ObjContenaFv"
-"@24@__dt__Q32og9newScreen10ObjContenaFv":
+.fn "@24@__dt__Q32og9newScreen10ObjContenaFv", weak
 /* 80321F00 0031EE40  38 63 FF E8 */	addi r3, r3, -24
 /* 80321F04 0031EE44  4B FF E2 00 */	b __dt__Q32og9newScreen10ObjContenaFv
+.endfn "@24@__dt__Q32og9newScreen10ObjContenaFv"
