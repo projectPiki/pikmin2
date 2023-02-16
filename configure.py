@@ -993,7 +993,7 @@ LIBS = [
             ["plugProjectKandoU/gameIconTexture", True],
             ["plugProjectKandoU/gameTekiStat", True],
             ["plugProjectKandoU/gameHighscore", True],
-            "plugProjectKandoU/gamePlayCommonData",
+            ["plugProjectKandoU/gamePlayCommonData", True],
             ["plugProjectKandoU/pelletCarry", True],
             ["plugProjectKandoU/gameChallenge2D", True],
             ["plugProjectKandoU/vsTekiMgr", True],

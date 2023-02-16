@@ -33,8 +33,28 @@ struct PlayChallengeGameData {
 		{
 			mHighscores[0].allocate(3);
 			mHighscores[1].allocate(3);
-			mFlags.byteView[0] = 0;
-			mFlags.byteView[1] = 0;
+			mFlags.clear();
+		}
+
+		inline void clear()
+		{
+			mHighscores[0].clear();
+			mHighscores[1].clear();
+			mFlags.clear();
+		}
+
+		inline void write(Stream& stream)
+		{
+			mFlags.writeBytes(stream);
+			mHighscores[0].write(stream);
+			mHighscores[1].write(stream);
+		}
+
+		inline void read(Stream& stream)
+		{
+			mFlags.readBytes(stream);
+			mHighscores[0].read(stream);
+			mHighscores[1].read(stream);
 		}
 
 		BitFlag<u16> mFlags;      // _00

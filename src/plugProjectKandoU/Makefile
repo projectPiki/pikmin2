@@ -119,7 +119,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameIconTexture.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameTekiStat.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameHighscore.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayCommonData.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gamePlayCommonData.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletCarry.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameChallenge2D.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsTekiMgr.o\

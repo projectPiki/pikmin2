@@ -54,69 +54,11 @@ void PlayChallengeGameData::reset()
 {
 	mFlags = PCGDF_Unset;
 	for (int i = 0; i < mCourseCount; i++) {
-		CourseState* course = &mCourses[i];
-		mCourses[i].mHighscores[0].clear(); // probably some form of unrolled loop or inline
-		course->mHighscores[1].clear();     // resetHighScores??
-		course->mFlags.byteView[0] = 0;
-		course->mFlags.byteView[1] = 0;
+		mCourses[i].clear();
 	}
 	for (int i = 0; i < 5; i++) {
 		mCourses[i].mFlags.typeView |= CourseState::CSF_IsOpen;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	li       r30, 0
-	mr       r31, r3
-	li       r27, 0
-	mr       r28, r30
-	stb      r30, 8(r3)
-	b        lbl_802342D0
-
-lbl_802342A8:
-	lwz      r0, 4(r31)
-	add      r29, r0, r28
-	addi     r3, r29, 4
-	bl       clear__Q24Game9HighscoreFv
-	addi     r3, r29, 0x10
-	bl       clear__Q24Game9HighscoreFv
-	stb      r30, 0(r29)
-	addi     r28, r28, 0x1c
-	addi     r27, r27, 1
-	stb      r30, 1(r29)
-
-lbl_802342D0:
-	lwz      r0, 0(r31)
-	cmpw     r27, r0
-	blt      lbl_802342A8
-	lwz      r3, 4(r31)
-	lhz      r0, 0(r3)
-	ori      r0, r0, 1
-	sth      r0, 0(r3)
-	lwz      r3, 4(r31)
-	lhz      r0, 0x1c(r3)
-	ori      r0, r0, 1
-	sth      r0, 0x1c(r3)
-	lwz      r3, 4(r31)
-	lhz      r0, 0x38(r3)
-	ori      r0, r0, 1
-	sth      r0, 0x38(r3)
-	lwz      r3, 4(r31)
-	lhz      r0, 0x54(r3)
-	ori      r0, r0, 1
-	sth      r0, 0x54(r3)
-	lwz      r3, 4(r31)
-	lhz      r0, 0x70(r3)
-	ori      r0, r0, 1
-	sth      r0, 0x70(r3)
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -220,82 +162,28 @@ void PlayCommonData::entryHighscores_complete(int newTotal, int* totals, int* sc
  */
 void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int newTotal, int* totals, int* scores)
 {
-	totals[0] = newTotal;
-	scores[0] = highscores[0]->entryScore(newTotal);
+	Highscore* startHighScore = highscores[0];
+	totals[0]                 = newTotal;
+	scores[0]                 = startHighScore->entryScore(newTotal);
 	for (int i = 0; i < 8; i++) {
-		totals[i + 1] = DeathMgr::get_total((DeathCounter::CauseOfDeath)i);
-		scores[i + 1] = highscores[i + 1]->entryScore(totals[i + 1]);
+		int j                    = i + 1;
+		Highscore* currHighScore = highscores[j];
+		totals[j]                = DeathMgr::get_total(i);
+		scores[j]                = currHighScore->entryScore(totals[j]);
 	}
 	for (int i = 0; i < 6; i++) {
-		totals[i + 9] = BirthMgr::get_total(i);
-		scores[i + 9] = highscores[i + 9]->entryScore(totals[i + 9]);
+		int j                    = i + 9;
+		Highscore* currHighScore = highscores[j];
+		totals[j]                = BirthMgr::get_total(i);
+		scores[j]                = currHighScore->entryScore(totals[j]);
 	}
-	CommonSaveData::Mgr* playCommonData = sys->getPlayCommonData();
-	int timeTotal                       = playData->calcPlayMinutes() + playCommonData->mTime;
-	totals[0xF]                         = timeTotal;
-	scores[0xF]                         = highscores[0xF]->entryScore(timeTotal);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r26, r4
-	mr       r27, r6
-	mr       r28, r7
-	lwz      r3, 0(r4)
-	mr       r4, r5
-	stw      r5, 0(r6)
-	bl       entryScore__Q24Game9HighscoreFi
-	stw      r3, 0(r28)
-	li       r30, 0
 
-lbl_80234660:
-	addi     r0, r30, 1
-	mr       r3, r30
-	slwi     r31, r0, 2
-	lwzx     r29, r26, r31
-	bl       get_total__Q24Game8DeathMgrFi
-	stwx     r3, r27, r31
-	mr       r3, r29
-	lwzx     r4, r27, r31
-	bl       entryScore__Q24Game9HighscoreFi
-	addi     r30, r30, 1
-	stwx     r3, r28, r31
-	cmpwi    r30, 8
-	blt      lbl_80234660
-	li       r29, 0
-
-lbl_80234698:
-	addi     r0, r29, 9
-	mr       r3, r29
-	slwi     r31, r0, 2
-	lwzx     r30, r26, r31
-	bl       get_total__Q24Game8BirthMgrFi
-	stwx     r3, r27, r31
-	mr       r3, r30
-	lwzx     r4, r27, r31
-	bl       entryScore__Q24Game9HighscoreFi
-	addi     r29, r29, 1
-	stwx     r3, r28, r31
-	cmpwi    r29, 6
-	blt      lbl_80234698
-	lwz      r3, sys@sda21(r13)
-	lwz      r29, 0x3c(r26)
-	lwz      r31, 0x60(r3)
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       calcPlayMinutes__Q24Game8PlayDataFv
-	lwz      r0, 0x1c(r31)
-	add      r4, r3, r0
-	mr       r3, r29
-	stw      r4, 0x3c(r27)
-	bl       entryScore__Q24Game9HighscoreFi
-	stw      r3, 0x3c(r28)
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Highscore* finalHighScore           = highscores[15];
+	CommonSaveData::Mgr* playCommonData = sys->getCommonDataMgr();
+	int timeTotal                       = playData->calcPlayMinutes();
+	timeTotal += playCommonData->mTime;
+	totals[15] = timeTotal;
+	scores[15] = finalHighScore->entryScore(timeTotal);
 }
 
 /*
@@ -522,50 +410,10 @@ void PlayCommonData::challenge_setKunsho(int index)
 	SET_FLAG(challenge_get_CourseState(index)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsKunsho);
 	for (int idx = 0; idx < mChallengeData.mCourseCount; idx++) {
 		if (!(IS_FLAG(challenge_get_CourseState(idx)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsKunsho))) {
-			break;
+			return;
 		}
 	}
 	_00 |= 4;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r30, 0xc
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r0, 0(r3)
-	li       r31, 0
-	ori      r0, r0, 4
-	sth      r0, 0(r3)
-	b        lbl_80234B10
-
-lbl_80234AF4:
-	mr       r4, r31
-	addi     r3, r30, 0xc
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r0, 0(r3)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_80234B28
-	addi     r31, r31, 1
-
-lbl_80234B10:
-	lwz      r0, 0xc(r30)
-	cmpw     r31, r0
-	blt      lbl_80234AF4
-	lbz      r0, 0(r30)
-	ori      r0, r0, 4
-	stb      r0, 0(r30)
-
-lbl_80234B28:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -627,60 +475,8 @@ void PlayChallengeGameData::write(Stream& output)
 {
 	output.writeByte(mFlags);
 	for (int i = 0; i < mCourseCount; i++) {
-		CourseState* state = &mCourses[i];
-		for (u32 j = 0; j < 2; j++) {
-			output.writeByte(state->mFlags.byteView[j]);
-		}
-		state->mHighscores[0].write(output);
-		state->mHighscores[1].write(output);
+		mCourses[i].write(output);
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r4
-	mr       r25, r3
-	lbz      r4, 8(r3)
-	mr       r3, r26
-	bl       writeByte__6StreamFUc
-	li       r27, 0
-	li       r28, 0
-	b        lbl_80234E24
-
-lbl_80234DD8:
-	lwz      r0, 4(r25)
-	li       r29, 0
-	add      r30, r0, r28
-	mr       r31, r30
-
-lbl_80234DE8:
-	lbz      r4, 0(r31)
-	mr       r3, r26
-	bl       writeByte__6StreamFUc
-	addi     r29, r29, 1
-	addi     r31, r31, 1
-	cmplwi   r29, 2
-	blt      lbl_80234DE8
-	mr       r4, r26
-	addi     r3, r30, 4
-	bl       write__Q24Game9HighscoreFR6Stream
-	mr       r4, r26
-	addi     r3, r30, 0x10
-	bl       write__Q24Game9HighscoreFR6Stream
-	addi     r28, r28, 0x1c
-	addi     r27, r27, 1
-
-lbl_80234E24:
-	lwz      r0, 0(r25)
-	cmpw     r27, r0
-	blt      lbl_80234DD8
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -693,60 +489,8 @@ void PlayChallengeGameData::read(Stream& input)
 {
 	mFlags = input.readByte();
 	for (int i = 0; i < mCourseCount; i++) {
-		CourseState* state = &mCourses[i];
-		for (u32 j = 0; j < 2; j++) {
-			state->mFlags.byteView[j] = input.readByte();
-		}
-		state->mHighscores[0].read(input);
-		state->mHighscores[1].read(input);
+		mCourses[i].read(input);
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r4
-	mr       r25, r3
-	mr       r3, r26
-	bl       readByte__6StreamFv
-	stb      r3, 8(r25)
-	li       r27, 0
-	li       r28, 0
-	b        lbl_80234EC0
-
-lbl_80234E74:
-	lwz      r0, 4(r25)
-	li       r29, 0
-	add      r30, r0, r28
-	mr       r31, r30
-
-lbl_80234E84:
-	mr       r3, r26
-	bl       readByte__6StreamFv
-	addi     r29, r29, 1
-	stb      r3, 0(r31)
-	cmplwi   r29, 2
-	addi     r31, r31, 1
-	blt      lbl_80234E84
-	mr       r4, r26
-	addi     r3, r30, 4
-	bl       read__Q24Game9HighscoreFR6Stream
-	mr       r4, r26
-	addi     r3, r30, 0x10
-	bl       read__Q24Game9HighscoreFR6Stream
-	addi     r28, r28, 0x1c
-	addi     r27, r27, 1
-
-lbl_80234EC0:
-	lwz      r0, 0(r25)
-	cmpw     r27, r0
-	blt      lbl_80234E74
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 } // namespace Game

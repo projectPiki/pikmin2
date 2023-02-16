@@ -27,6 +27,13 @@ struct BitFlag {
 		}
 	}
 
+	inline void writeBytes(Stream& stream)
+	{
+		for (int i = 0; i < sizeof(T); i++) {
+			stream.writeByte(byteView[i]);
+		}
+	}
+
 	union {
 		u8 byteView[sizeof(T)];
 		T typeView;

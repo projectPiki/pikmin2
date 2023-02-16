@@ -140,6 +140,10 @@ struct System : public OSMutex {
 	void resetOff();
 	void forceFinishSection();
 
+	// idk why this exists alongside getPlayCommonData() but that one's global.
+	// this one needs to be weak/inlined.
+	inline Game::CommonSaveData::Mgr* getCommonDataMgr() { return mPlayData; }
+
 	static ERenderMode mRenderMode;
 	static GXVerifyArg sVerifyArg;
 
