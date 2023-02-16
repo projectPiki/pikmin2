@@ -248,10 +248,12 @@ __vt__Q23efx7TPkMoeA:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -298,8 +300,7 @@ lbl_80518460:
 	.float 0.2
 .balign 8
 lbl_80518468:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_80518470:
 	.float 1.2
 lbl_80518474:

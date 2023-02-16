@@ -1,27 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F578
-lbl_8048F578:
-	.4byte 0x6F67436F
-	.4byte 0x756E7465
-	.4byte 0x72536C6F
-	.4byte 0x742E6370
-	.4byte 0x70000000
-.global lbl_8048F58C
-lbl_8048F58C:
-	.4byte 0x736C6F74
-	.4byte 0x5F757020
-	.4byte 0x6F766572
-	.4byte 0x666C6F77
-	.4byte 0x20212028
-	.4byte 0x6B3D2564
-	.4byte 0x290A0000
+.obj lbl_8048F578, local
+	.asciz "ogCounterSlot.cpp"
+.endobj lbl_8048F578
+.balign 4
+.obj lbl_8048F58C, local
+	.asciz "slot_up overflow ! (k=%d)\n"
+.endobj lbl_8048F58C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q32og6Screen20CallBack_CounterSlot
-__vt__Q32og6Screen20CallBack_CounterSlot:
+.obj __vt__Q32og6Screen20CallBack_CounterSlot, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32og6Screen20CallBack_CounterSlotFv
@@ -34,53 +24,51 @@ __vt__Q32og6Screen20CallBack_CounterSlot:
 	.4byte hide__Q32og6Screen18CallBack_CounterRVFv
 	.4byte setValue__Q32og6Screen20CallBack_CounterSlotFbb
 	.4byte setValue__Q32og6Screen20CallBack_CounterSlotFv
+.endobj __vt__Q32og6Screen20CallBack_CounterSlot
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051DEC8
-lbl_8051DEC8:
-	.4byte 0x00000000
-.global lbl_8051DECC
-lbl_8051DECC:
+.obj lbl_8051DEC8, local
+	.float 0.0
+.endobj lbl_8051DEC8
+.obj lbl_8051DECC, local
 	.float 0.1
-.global lbl_8051DED0
-lbl_8051DED0:
-	.4byte 0x40000000
-.global lbl_8051DED4
-lbl_8051DED4:
-	.4byte 0x420C0000
-.global lbl_8051DED8
-lbl_8051DED8:
+.endobj lbl_8051DECC
+.obj lbl_8051DED0, local
+	.float 2.0
+.endobj lbl_8051DED0
+.obj lbl_8051DED4, local
+	.float 35.0
+.endobj lbl_8051DED4
+.obj lbl_8051DED8, local
 	.float 0.3
-	.4byte 0x00000000
-.global lbl_8051DEE0
-lbl_8051DEE0:
-	.4byte 0x40240000
-	.4byte 0x00000000
-.global lbl_8051DEE8
-lbl_8051DEE8:
-	.4byte 0x47000000
-.global lbl_8051DEEC
-lbl_8051DEEC:
-	.4byte 0x41100000
-.global lbl_8051DEF0
-lbl_8051DEF0:
-	.4byte 0x3CCCCCCD
-.global lbl_8051DEF4
-lbl_8051DEF4:
+.endobj lbl_8051DED8
+.balign 8
+.obj lbl_8051DEE0, local
+	.double 10.0
+.endobj lbl_8051DEE0
+.obj lbl_8051DEE8, local
+	.float 32768.0
+.endobj lbl_8051DEE8
+.obj lbl_8051DEEC, local
+	.float 9.0
+.endobj lbl_8051DEEC
+.obj lbl_8051DEF0, local
+	.float 0.025
+.endobj lbl_8051DEF0
+.obj lbl_8051DEF4, local
 	.float 0.5
-.global lbl_8051DEF8
-lbl_8051DEF8:
+.endobj lbl_8051DEF4
+.obj lbl_8051DEF8, local
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_8051DF00
-lbl_8051DF00:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.endobj lbl_8051DEF8
+.balign 8
+.obj lbl_8051DF00, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051DF00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb
-init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb:
+.fn init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb, global
 /* 8032A754 00327694  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032A758 00327698  7C 08 02 A6 */	mflr r0
 /* 8032A75C 0032769C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -93,16 +81,16 @@ init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb:
 /* 8032A778 003276B8  7C 08 03 A6 */	mtlr r0
 /* 8032A77C 003276BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032A780 003276C0  4E 80 00 20 */	blr 
+.endfn init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb
 
-.global setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
-setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff:
+.fn setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff, global
 /* 8032A784 003276C4  D0 23 00 BC */	stfs f1, 0xbc(r3)
 /* 8032A788 003276C8  D0 43 00 C0 */	stfs f2, 0xc0(r3)
 /* 8032A78C 003276CC  D0 63 00 C4 */	stfs f3, 0xc4(r3)
 /* 8032A790 003276D0  4E 80 00 20 */	blr 
+.endfn setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
 
-.global update__Q32og6Screen20CallBack_CounterSlotFv
-update__Q32og6Screen20CallBack_CounterSlotFv:
+.fn update__Q32og6Screen20CallBack_CounterSlotFv, global
 /* 8032A794 003276D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032A798 003276D8  7C 08 02 A6 */	mflr r0
 /* 8032A79C 003276DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -272,9 +260,9 @@ update__Q32og6Screen20CallBack_CounterSlotFv:
 /* 8032A9F8 00327938  7C 08 03 A6 */	mtlr r0
 /* 8032A9FC 0032793C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032AA00 00327940  4E 80 00 20 */	blr 
+.endfn update__Q32og6Screen20CallBack_CounterSlotFv
 
-.global slot_up__Q32og6Screen20CallBack_CounterSlotFi
-slot_up__Q32og6Screen20CallBack_CounterSlotFi:
+.fn slot_up__Q32og6Screen20CallBack_CounterSlotFi, global
 /* 8032AA04 00327944  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032AA08 00327948  7C 08 02 A6 */	mflr r0
 /* 8032AA0C 0032794C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -314,9 +302,9 @@ slot_up__Q32og6Screen20CallBack_CounterSlotFi:
 /* 8032AA8C 003279CC  7C 08 03 A6 */	mtlr r0
 /* 8032AA90 003279D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032AA94 003279D4  4E 80 00 20 */	blr 
+.endfn slot_up__Q32og6Screen20CallBack_CounterSlotFi
 
-.global startSlot__Q32og6Screen20CallBack_CounterSlotFf
-startSlot__Q32og6Screen20CallBack_CounterSlotFf:
+.fn startSlot__Q32og6Screen20CallBack_CounterSlotFf, global
 /* 8032AA98 003279D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032AA9C 003279DC  7C 08 02 A6 */	mflr r0
 /* 8032AAA0 003279E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -367,9 +355,9 @@ startSlot__Q32og6Screen20CallBack_CounterSlotFf:
 /* 8032AB4C 00327A8C  7C 08 03 A6 */	mtlr r0
 /* 8032AB50 00327A90  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032AB54 00327A94  4E 80 00 20 */	blr 
+.endfn startSlot__Q32og6Screen20CallBack_CounterSlotFf
 
-.global setValue__Q32og6Screen20CallBack_CounterSlotFbb
-setValue__Q32og6Screen20CallBack_CounterSlotFbb:
+.fn setValue__Q32og6Screen20CallBack_CounterSlotFbb, global
 /* 8032AB58 00327A98  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 8032AB5C 00327A9C  7C 08 02 A6 */	mflr r0
 /* 8032AB60 00327AA0  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -732,9 +720,9 @@ setValue__Q32og6Screen20CallBack_CounterSlotFbb:
 /* 8032B0A0 00327FE0  7C 08 03 A6 */	mtlr r0
 /* 8032B0A4 00327FE4  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 8032B0A8 00327FE8  4E 80 00 20 */	blr 
+.endfn setValue__Q32og6Screen20CallBack_CounterSlotFbb
 
-.global setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive:
+.fn setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive, global
 /* 8032B0AC 00327FEC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8032B0B0 00327FF0  7C 08 02 A6 */	mflr r0
 /* 8032B0B4 00327FF4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -855,9 +843,9 @@ setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive:
 /* 8032B270 003281B0  7C 08 03 A6 */	mtlr r0
 /* 8032B274 003281B4  38 21 00 60 */	addi r1, r1, 0x60
 /* 8032B278 003281B8  4E 80 00 20 */	blr 
+.endfn setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
 
-.global __dt__Q32og6Screen20CallBack_CounterSlotFv
-__dt__Q32og6Screen20CallBack_CounterSlotFv:
+.fn __dt__Q32og6Screen20CallBack_CounterSlotFv, weak
 /* 8032B27C 003281BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032B280 003281C0  7C 08 02 A6 */	mflr r0
 /* 8032B284 003281C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -896,9 +884,9 @@ __dt__Q32og6Screen20CallBack_CounterSlotFv:
 /* 8032B300 00328240  7C 08 03 A6 */	mtlr r0
 /* 8032B304 00328244  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032B308 00328248  4E 80 00 20 */	blr 
+.endfn __dt__Q32og6Screen20CallBack_CounterSlotFv
 
-.global setValue__Q32og6Screen20CallBack_CounterSlotFv
-setValue__Q32og6Screen20CallBack_CounterSlotFv:
+.fn setValue__Q32og6Screen20CallBack_CounterSlotFv, weak
 /* 8032B30C 0032824C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032B310 00328250  7C 08 02 A6 */	mflr r0
 /* 8032B314 00328254  38 80 00 00 */	li r4, 0
@@ -912,3 +900,4 @@ setValue__Q32og6Screen20CallBack_CounterSlotFv:
 /* 8032B334 00328274  7C 08 03 A6 */	mtlr r0
 /* 8032B338 00328278  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032B33C 0032827C  4E 80 00 20 */	blr 
+.endfn setValue__Q32og6Screen20CallBack_CounterSlotFv

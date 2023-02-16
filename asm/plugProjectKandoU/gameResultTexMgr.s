@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804831C8
 lbl_804831C8:
 	.4byte 0x72657375
 	.4byte 0x6C745465
@@ -16,7 +15,6 @@ lbl_804831C8:
 	.4byte 0x732F6172
 	.4byte 0x632E737A
 	.4byte 0x73000000
-.global lbl_804831FC
 lbl_804831FC:
 	.4byte 0x67616D65
 	.4byte 0x52657375
@@ -50,11 +48,9 @@ lbl_804831FC:
 	.4byte 0x65787475
 	.4byte 0x72652E62
 	.4byte 0x74690000
-.global lbl_8048327C
 lbl_8048327C:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80483288
+.balign 4
 lbl_80483288:
 	.4byte 0x696C6C65
 	.4byte 0x67616C20
@@ -62,7 +58,6 @@ lbl_80483288:
 	.4byte 0x78202564
 	.4byte 0x0A000000
 	.4byte 0x00000000
-.global lbl_804832A0
 lbl_804832A0:
 	.4byte 0x00303130
 	.4byte 0x315F3030
@@ -70,7 +65,6 @@ lbl_804832A0:
 	.4byte 0x305F3030
 	.4byte 0x00303230
 	.4byte 0x305F3030
-.global lbl_804832B8
 lbl_804832B8:
 	.4byte 0x444E6F64
 	.4byte 0x65206164
@@ -112,24 +106,18 @@ __vt__Q34Game12ResultTexMgr3Mgr:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game12ResultTexMgr3MgrFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A230
 lbl_8051A230:
 	.4byte 0x6A706E00
-.global lbl_8051A234
 lbl_8051A234:
 	.4byte 0x75730000
-.global lbl_8051A238
 lbl_8051A238:
 	.4byte 0x70616C00
-.global lbl_8051A23C
 lbl_8051A23C:
 	.4byte 0x444E6F64
 	.4byte 0x65000000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12ResultTexMgr3MgrFv

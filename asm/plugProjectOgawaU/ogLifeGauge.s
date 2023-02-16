@@ -5,16 +5,17 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048DFB8:
+.obj lbl_8048DFB8, local
 	.asciz "ogLifeGauge.cpp"
+.endobj lbl_8048DFB8
 .balign 4
-lbl_8048DFC8:
+.obj lbl_8048DFC8, local
 	.asciz "ERR! : NULL Pane !!!\n"
+.endobj lbl_8048DFC8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q32og6Screen13NaviLifeGauge
-__vt__Q32og6Screen13NaviLifeGauge:
+.obj __vt__Q32og6Screen13NaviLifeGauge, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32og6Screen13NaviLifeGaugeFv
@@ -55,8 +56,8 @@ __vt__Q32og6Screen13NaviLifeGauge:
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
 	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
-.global __vt__Q32og6Screen18CallBack_LifeGauge
-__vt__Q32og6Screen18CallBack_LifeGauge:
+.endobj __vt__Q32og6Screen13NaviLifeGauge
+.obj __vt__Q32og6Screen18CallBack_LifeGauge, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32og6Screen18CallBack_LifeGaugeFv
@@ -64,8 +65,8 @@ __vt__Q32og6Screen18CallBack_LifeGauge:
 	.4byte update__Q32og6Screen18CallBack_LifeGaugeFv
 	.4byte draw__Q32og6Screen18CallBack_LifeGaugeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
-.global __vt__Q29P2DScreen12CallBackNode
-__vt__Q29P2DScreen12CallBackNode:
+.endobj __vt__Q32og6Screen18CallBack_LifeGauge
+.obj __vt__Q29P2DScreen12CallBackNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29P2DScreen12CallBackNodeFv
@@ -73,6 +74,7 @@ __vt__Q29P2DScreen12CallBackNode:
 	.4byte update__Q29P2DScreen12CallBackNodeFv
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
+.endobj __vt__Q29P2DScreen12CallBackNode
 
 #.section .bss  # 0x804EFC20 - 0x8051467C
 # ogLifeGauge.cpp
@@ -81,40 +83,54 @@ __vt__Q29P2DScreen12CallBackNode:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051D5B0:
+.obj lbl_8051D5B0, local
 	.float 1.0
-lbl_8051D5B4:
+.endobj lbl_8051D5B0
+.obj lbl_8051D5B4, local
 	.float 17.0
-lbl_8051D5B8:
+.endobj lbl_8051D5B4
+.obj lbl_8051D5B8, local
 	.float 0.0
-lbl_8051D5BC:
+.endobj lbl_8051D5B8
+.obj lbl_8051D5BC, local
 	.float 128.0
-lbl_8051D5C0: # pi
+.endobj lbl_8051D5BC
+.obj lbl_8051D5C0, local # pi
 	.float 3.1415927
-lbl_8051D5C4:
+.endobj lbl_8051D5C0
+.obj lbl_8051D5C4, local
 	.float 0.5
-lbl_8051D5C8:
+.endobj lbl_8051D5C4
+.obj lbl_8051D5C8, local
 	.float 0.4
-lbl_8051D5CC:
+.endobj lbl_8051D5C8
+.obj lbl_8051D5CC, local
 	.float 30.0
-lbl_8051D5D0:
+.endobj lbl_8051D5CC
+.obj lbl_8051D5D0, local
 	.float 0.6
-lbl_8051D5D4:
+.endobj lbl_8051D5D0
+.obj lbl_8051D5D4, local
 	.float 50.0
-lbl_8051D5D8:
+.endobj lbl_8051D5D4
+.obj lbl_8051D5D8, local
 	.float -325.9493
-lbl_8051D5DC:
+.endobj lbl_8051D5D8
+.obj lbl_8051D5DC, local
 	.float 325.9493
-lbl_8051D5E0:
+.endobj lbl_8051D5DC
+.obj lbl_8051D5E0, local
 	.float 0.7
-lbl_8051D5E4:
+.endobj lbl_8051D5E0
+.obj lbl_8051D5E4, local
 	.float 255.0
-lbl_8051D5E8:
+.endobj lbl_8051D5E4
+.obj lbl_8051D5E8, local
 	.float 0.3
+.endobj lbl_8051D5E8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q32og6Screen18CallBack_LifeGaugeFv
-__ct__Q32og6Screen18CallBack_LifeGaugeFv:
+.fn __ct__Q32og6Screen18CallBack_LifeGaugeFv, global
 /* 80306038 00302F78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030603C 00302F7C  7C 08 02 A6 */	mflr r0
 /* 80306040 00302F80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -204,6 +220,7 @@ __ct__Q32og6Screen18CallBack_LifeGaugeFv:
 /* 80306184 003030C4  7C 08 03 A6 */	mtlr r0
 /* 80306188 003030C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030618C 003030CC  4E 80 00 20 */	blr 
+.endfn __ct__Q32og6Screen18CallBack_LifeGaugeFv
 
 .fn __dt__Q29P2DScreen12CallBackNodeFv, weak
 /* 80306190 003030D0  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -422,8 +439,7 @@ __ct__Q32og6Screen18CallBack_LifeGaugeFv:
 /* 803064C0 00303400  4E 80 00 20 */	blr 
 .endfn init__Q32og6Screen18CallBack_LifeGaugeFPQ29P2DScreen3MgrPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
 
-.global setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
-setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType:
+.fn setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType, global
 /* 803064C4 00303404  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803064C8 00303408  7C 08 02 A6 */	mflr r0
 /* 803064CC 0030340C  2C 04 00 02 */	cmpwi r4, 2
@@ -696,9 +712,9 @@ setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge13Life
 /* 803068EC 0030382C  7C 08 03 A6 */	mtlr r0
 /* 803068F0 00303830  38 21 00 90 */	addi r1, r1, 0x90
 /* 803068F4 00303834  4E 80 00 20 */	blr 
+.endfn setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
 
-.global setOffset__Q32og6Screen18CallBack_LifeGaugeFff
-setOffset__Q32og6Screen18CallBack_LifeGaugeFff:
+.fn setOffset__Q32og6Screen18CallBack_LifeGaugeFff, global
 /* 803068F8 00303838  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803068FC 0030383C  7C 08 02 A6 */	mflr r0
 /* 80306900 00303840  90 01 00 14 */	stw r0, 0x14(r1)
@@ -731,9 +747,9 @@ setOffset__Q32og6Screen18CallBack_LifeGaugeFff:
 /* 80306964 003038A4  7C 08 03 A6 */	mtlr r0
 /* 80306968 003038A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030696C 003038AC  4E 80 00 20 */	blr 
+.endfn setOffset__Q32og6Screen18CallBack_LifeGaugeFff
 
-.global moveIcon__Q32og6Screen18CallBack_LifeGaugeFv
-moveIcon__Q32og6Screen18CallBack_LifeGaugeFv:
+.fn moveIcon__Q32og6Screen18CallBack_LifeGaugeFv, global
 /* 80306970 003038B0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80306974 003038B4  7C 08 02 A6 */	mflr r0
 /* 80306978 003038B8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -940,9 +956,9 @@ moveIcon__Q32og6Screen18CallBack_LifeGaugeFv:
 /* 80306C7C 00303BBC  7C 08 03 A6 */	mtlr r0
 /* 80306C80 00303BC0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80306C84 00303BC4  4E 80 00 20 */	blr 
+.endfn moveIcon__Q32og6Screen18CallBack_LifeGaugeFv
 
-.global update__Q32og6Screen18CallBack_LifeGaugeFv
-update__Q32og6Screen18CallBack_LifeGaugeFv:
+.fn update__Q32og6Screen18CallBack_LifeGaugeFv, global
 /* 80306C88 00303BC8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80306C8C 00303BCC  7C 08 02 A6 */	mflr r0
 /* 80306C90 00303BD0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1103,9 +1119,9 @@ update__Q32og6Screen18CallBack_LifeGaugeFv:
 /* 80306EE8 00303E28  7C 08 03 A6 */	mtlr r0
 /* 80306EEC 00303E2C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80306EF0 00303E30  4E 80 00 20 */	blr 
+.endfn update__Q32og6Screen18CallBack_LifeGaugeFv
 
-.global draw__Q32og6Screen18CallBack_LifeGaugeFR8GraphicsR14J2DGrafContext
-draw__Q32og6Screen18CallBack_LifeGaugeFR8GraphicsR14J2DGrafContext:
+.fn draw__Q32og6Screen18CallBack_LifeGaugeFR8GraphicsR14J2DGrafContext, global
 /* 80306EF4 00303E34  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80306EF8 00303E38  7C 08 02 A6 */	mflr r0
 /* 80306EFC 00303E3C  C0 02 F2 58 */	lfs f0, lbl_8051D5B8@sda21(r2)
@@ -1152,9 +1168,9 @@ draw__Q32og6Screen18CallBack_LifeGaugeFR8GraphicsR14J2DGrafContext:
 /* 80306F9C 00303EDC  7C 08 03 A6 */	mtlr r0
 /* 80306FA0 00303EE0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80306FA4 00303EE4  4E 80 00 20 */	blr 
+.endfn draw__Q32og6Screen18CallBack_LifeGaugeFR8GraphicsR14J2DGrafContext
 
-.global setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
-setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType:
+.fn setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType, global
 /* 80306FA8 00303EE8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80306FAC 00303EEC  7C 08 02 A6 */	mflr r0
 /* 80306FB0 00303EF0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1228,9 +1244,9 @@ setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen18Cal
 /* 803070B4 00303FF4  7C 08 03 A6 */	mtlr r0
 /* 803070B8 00303FF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803070BC 00303FFC  4E 80 00 20 */	blr 
+.endfn setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
 
-.global setType__Q32og6Screen13NaviLifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
-setType__Q32og6Screen13NaviLifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType:
+.fn setType__Q32og6Screen13NaviLifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType, global
 /* 803070C0 00304000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803070C4 00304004  7C 08 02 A6 */	mflr r0
 /* 803070C8 00304008  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1243,9 +1259,9 @@ setType__Q32og6Screen13NaviLifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGauge
 /* 803070E0 00304020  7C 08 03 A6 */	mtlr r0
 /* 803070E4 00304024  38 21 00 10 */	addi r1, r1, 0x10
 /* 803070E8 00304028  4E 80 00 20 */	blr 
+.endfn setType__Q32og6Screen13NaviLifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
 
-.global update__Q32og6Screen13NaviLifeGaugeFv
-update__Q32og6Screen13NaviLifeGaugeFv:
+.fn update__Q32og6Screen13NaviLifeGaugeFv, global
 /* 803070EC 0030402C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803070F0 00304030  7C 08 02 A6 */	mflr r0
 /* 803070F4 00304034  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1271,6 +1287,7 @@ update__Q32og6Screen13NaviLifeGaugeFv:
 /* 8030713C 0030407C  7C 08 03 A6 */	mtlr r0
 /* 80307140 00304080  38 21 00 10 */	addi r1, r1, 0x10
 /* 80307144 00304084  4E 80 00 20 */	blr 
+.endfn update__Q32og6Screen13NaviLifeGaugeFv
 
 .fn __dt__Q32og6Screen13NaviLifeGaugeFv, weak
 /* 80307148 00304088  94 21 FF F0 */	stwu r1, -0x10(r1)

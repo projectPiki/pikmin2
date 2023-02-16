@@ -1,22 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F550
-lbl_8048F550:
-	.4byte 0x6F674675
-	.4byte 0x72696B6F
-	.4byte 0x2E637070
-	.4byte 0x00000000
-	.4byte 0x4E554C4C
-	.4byte 0x2070616E
-	.4byte 0x652E0A00
+.obj lbl_8048F550, local
+	.asciz "ogFuriko.cpp"
+.endobj lbl_8048F550
+.balign 4
+.obj lbl_8048F560, local
+	.asciz "NULL pane.\n"
+.endobj lbl_8048F560
+.balign 4
+.obj lbl_8048F56C, local
 	.asciz "P2Assert"
-	.skip 3
+.endobj lbl_8048F56C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q32og6Screen15CallBack_Furiko
-__vt__Q32og6Screen15CallBack_Furiko:
+.obj __vt__Q32og6Screen15CallBack_Furiko, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32og6Screen15CallBack_FurikoFv
@@ -24,38 +23,37 @@ __vt__Q32og6Screen15CallBack_Furiko:
 	.4byte update__Q32og6Screen15CallBack_FurikoFv
 	.4byte draw__Q32og6Screen15CallBack_FurikoFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
-	.4byte 0
+.endobj __vt__Q32og6Screen15CallBack_Furiko
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051DEA8
-lbl_8051DEA8:
-	.4byte 0x00000000
-.global lbl_8051DEAC
-lbl_8051DEAC:
-	.4byte 0x43660000
-.global lbl_8051DEB0
-lbl_8051DEB0:
-	.4byte 0x42660000
-.global lbl_8051DEB4
-lbl_8051DEB4:
-	.4byte 0x3EDC28F6
-.global lbl_8051DEB8
-lbl_8051DEB8:
-	.4byte 0x3D088889
-.global lbl_8051DEBC
-lbl_8051DEBC:
-	.4byte 0x42B40000
-.global lbl_8051DEC0
-lbl_8051DEC0:
-	.4byte 0x42652EE0
-.global lbl_8051DEC4
-lbl_8051DEC4:
+.obj lbl_8051DEA8, local
+	.float 0.0
+.endobj lbl_8051DEA8
+.obj lbl_8051DEAC, local
+	.float 230.0
+.endobj lbl_8051DEAC
+.obj lbl_8051DEB0, local
+	.float 57.5
+.endobj lbl_8051DEB0
+.obj lbl_8051DEB4, local
+	.float 0.43
+.endobj lbl_8051DEB4
+.obj lbl_8051DEB8, local
+	.float 0.033333335
+.endobj lbl_8051DEB8
+.obj lbl_8051DEBC, local
+	.float 90.0
+.endobj lbl_8051DEBC
+.obj lbl_8051DEC0, local
+	.float 57.295776
+.endobj lbl_8051DEC0
+.obj lbl_8051DEC4, local
 	.float 0.5
+.endobj lbl_8051DEC4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global stop__Q32og6Screen15CallBack_FurikoFv
-stop__Q32og6Screen15CallBack_FurikoFv:
+.fn stop__Q32og6Screen15CallBack_FurikoFv, global
 /* 80329F18 00326E58  38 80 00 00 */	li r4, 0
 /* 80329F1C 00326E5C  38 00 00 01 */	li r0, 1
 /* 80329F20 00326E60  98 83 00 20 */	stb r4, 0x20(r3)
@@ -72,16 +70,16 @@ stop__Q32og6Screen15CallBack_FurikoFv:
 /* 80329F4C 00326E8C  D0 43 00 40 */	stfs f2, 0x40(r3)
 /* 80329F50 00326E90  D0 43 00 44 */	stfs f2, 0x44(r3)
 /* 80329F54 00326E94  4E 80 00 20 */	blr 
+.endfn stop__Q32og6Screen15CallBack_FurikoFv
 
-.global setParam__Q32og6Screen15CallBack_FurikoFfff
-setParam__Q32og6Screen15CallBack_FurikoFfff:
+.fn setParam__Q32og6Screen15CallBack_FurikoFfff, global
 /* 80329F58 00326E98  D0 23 00 2C */	stfs f1, 0x2c(r3)
 /* 80329F5C 00326E9C  D0 43 00 34 */	stfs f2, 0x34(r3)
 /* 80329F60 00326EA0  D0 63 00 30 */	stfs f3, 0x30(r3)
 /* 80329F64 00326EA4  4E 80 00 20 */	blr 
+.endfn setParam__Q32og6Screen15CallBack_FurikoFfff
 
-.global update__Q32og6Screen15CallBack_FurikoFv
-update__Q32og6Screen15CallBack_FurikoFv:
+.fn update__Q32og6Screen15CallBack_FurikoFv, global
 /* 80329F68 00326EA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80329F6C 00326EAC  7C 08 02 A6 */	mflr r0
 /* 80329F70 00326EB0  C0 02 FB 58 */	lfs f0, lbl_8051DEB8@sda21(r2)
@@ -176,9 +174,9 @@ update__Q32og6Screen15CallBack_FurikoFv:
 /* 8032A0C4 00327004  7C 08 03 A6 */	mtlr r0
 /* 8032A0C8 00327008  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032A0CC 0032700C  4E 80 00 20 */	blr 
+.endfn update__Q32og6Screen15CallBack_FurikoFv
 
-.global draw__Q32og6Screen15CallBack_FurikoFR8GraphicsR14J2DGrafContext
-draw__Q32og6Screen15CallBack_FurikoFR8GraphicsR14J2DGrafContext:
+.fn draw__Q32og6Screen15CallBack_FurikoFR8GraphicsR14J2DGrafContext, global
 /* 8032A0D0 00327010  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8032A0D4 00327014  7C 08 02 A6 */	mflr r0
 /* 8032A0D8 00327018  90 01 00 44 */	stw r0, 0x44(r1)
@@ -295,9 +293,9 @@ draw__Q32og6Screen15CallBack_FurikoFR8GraphicsR14J2DGrafContext:
 /* 8032A264 003271A4  7C 08 03 A6 */	mtlr r0
 /* 8032A268 003271A8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8032A26C 003271AC  4E 80 00 20 */	blr 
+.endfn draw__Q32og6Screen15CallBack_FurikoFR8GraphicsR14J2DGrafContext
 
-.global setCallBack_Furiko__Q22og6ScreenFPQ29P2DScreen3MgrUx
-setCallBack_Furiko__Q22og6ScreenFPQ29P2DScreen3MgrUx:
+.fn setCallBack_Furiko__Q22og6ScreenFPQ29P2DScreen3MgrUx, global
 /* 8032A270 003271B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032A274 003271B4  7C 08 02 A6 */	mflr r0
 /* 8032A278 003271B8  3C 80 80 49 */	lis r4, lbl_8048F550@ha
@@ -419,9 +417,9 @@ setCallBack_Furiko__Q22og6ScreenFPQ29P2DScreen3MgrUx:
 /* 8032A434 00327374  7C 08 03 A6 */	mtlr r0
 /* 8032A438 00327378  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032A43C 0032737C  4E 80 00 20 */	blr 
+.endfn setCallBack_Furiko__Q22og6ScreenFPQ29P2DScreen3MgrUx
 
-.global setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr
-setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr:
+.fn setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr, global
 /* 8032A440 00327380  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8032A444 00327384  7C 08 02 A6 */	mflr r0
 /* 8032A448 00327388  3C E0 80 49 */	lis r7, lbl_8048F550@ha
@@ -585,9 +583,9 @@ setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr:
 /* 8032A6A4 003275E4  7C 08 03 A6 */	mtlr r0
 /* 8032A6A8 003275E8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8032A6AC 003275EC  4E 80 00 20 */	blr 
+.endfn setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr
 
-.global getFurikoPtr__Q22og6ScreenFPQ29P2DScreen3MgrUx
-getFurikoPtr__Q22og6ScreenFPQ29P2DScreen3MgrUx:
+.fn getFurikoPtr__Q22og6ScreenFPQ29P2DScreen3MgrUx, global
 /* 8032A6B0 003275F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032A6B4 003275F4  7C 08 02 A6 */	mflr r0
 /* 8032A6B8 003275F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -597,9 +595,9 @@ getFurikoPtr__Q22og6ScreenFPQ29P2DScreen3MgrUx:
 /* 8032A6C8 00327608  7C 08 03 A6 */	mtlr r0
 /* 8032A6CC 0032760C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032A6D0 00327610  4E 80 00 20 */	blr 
+.endfn getFurikoPtr__Q22og6ScreenFPQ29P2DScreen3MgrUx
 
-.global __dt__Q32og6Screen15CallBack_FurikoFv
-__dt__Q32og6Screen15CallBack_FurikoFv:
+.fn __dt__Q32og6Screen15CallBack_FurikoFv, weak
 /* 8032A6D4 00327614  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032A6D8 00327618  7C 08 02 A6 */	mflr r0
 /* 8032A6DC 0032761C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -634,3 +632,4 @@ __dt__Q32og6Screen15CallBack_FurikoFv:
 /* 8032A748 00327688  7C 08 03 A6 */	mtlr r0
 /* 8032A74C 0032768C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032A750 00327690  4E 80 00 20 */	blr 
+.endfn __dt__Q32og6Screen15CallBack_FurikoFv

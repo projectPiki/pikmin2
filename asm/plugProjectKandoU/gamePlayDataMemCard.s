@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804827B8
 lbl_804827B8:
 	.4byte 0x506C6179
 	.4byte 0x44617461
@@ -132,7 +131,6 @@ lbl_804827B8:
 	.4byte 0x52815B83
 	.4byte 0x5890940D
 	.4byte 0x0A000000
-.global lbl_804829BC
 lbl_804829BC:
 	.4byte 0x67616D65
 	.4byte 0x506C6179
@@ -141,7 +139,7 @@ lbl_804829BC:
 	.4byte 0x6172642E
 	.4byte 0x63707000
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x2A2093B4
 	.4byte 0x8C419242
 	.4byte 0x90AC8FEE
@@ -202,7 +200,6 @@ lbl_804829BC:
 	.4byte 0x6F724361
 	.4byte 0x63686520
 	.4byte 0x2A000000
-.global lbl_80482AD0
 lbl_80482AD0:
 	.4byte 0x53617665
 	.4byte 0x44617461
@@ -216,7 +213,6 @@ lbl_80482AD0:
 	.4byte 0x6E756D3D
 	.4byte 0x2564290A
 	.4byte 0x00000000
-.global lbl_80482B00
 lbl_80482B00:
 	.4byte 0x6E6F6E6C
 	.4byte 0x6F6F7073
@@ -227,7 +223,6 @@ lbl_80482B00:
 	.4byte 0x0923205B
 	.4byte 0x25645D0D
 	.4byte 0x0A000000
-.global lbl_80482B24
 lbl_80482B24:
 	.4byte 0x72656164
 	.4byte 0x20636F75
@@ -255,21 +250,22 @@ lbl_80482B24:
 	.4byte 0x7373436F
 	.4byte 0x756E7465
 	.4byte 0x720D0A00
-.global lbl_80482B8C
 lbl_80482B8C:
 	.asciz "\t# itemFlag\r\n"
-	.skip 2
+.balign 4
 	.asciz "# formationPikmin\r\n"
+.balign 4
 	.asciz "\t# time\r\n"
-	.skip 2
+.balign 4
 	.asciz "\t# curr course\r\n"
-	.skip 3
+.balign 4
 	.asciz "\t# curr cave\r\n"
-	.skip 1
+.balign 4
 	.asciz "\t# blackman alive\r\n"
+.balign 4
 	.asciz "\t# blackman timer\r\n"
+.balign 4
 	.asciz "\t# active player id\r\n"
-	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -297,18 +293,14 @@ sMaxPlayDataSize__Q24Game8PlayData:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A078
 lbl_8051A078:
 	.4byte 0x0D0A0000
-.global lbl_8051A07C
 lbl_8051A07C:
 	.4byte 0x09232025
 	.4byte 0x730D0A00
-.global lbl_8051A084
 lbl_8051A084:
 	.4byte 0x6C6F6F70
 	.4byte 0x73000000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global write__Q24Game8PlayDataFR6Stream

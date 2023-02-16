@@ -1,26 +1,24 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D680
-lbl_8051D680:
-	.4byte 0x00000000
-.global lbl_8051D684
-lbl_8051D684:
+.obj lbl_8051D680, local
+	.float 0.0
+.endobj lbl_8051D680
+.obj lbl_8051D684, local
 	.float 1.0
-.global lbl_8051D688
-lbl_8051D688:
-	.4byte 0x3E4CCCCD
-.global lbl_8051D68C
-lbl_8051D68C:
-	.4byte 0x42480000
-.global lbl_8051D690
-lbl_8051D690:
+.endobj lbl_8051D684
+.obj lbl_8051D688, local
+	.float 0.2
+.endobj lbl_8051D688
+.obj lbl_8051D68C, local
+	.float 50.0
+.endobj lbl_8051D68C
+.obj lbl_8051D690, local
 	.float 0.5
-	.4byte 0x00000000
+.endobj lbl_8051D690
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q32og6Screen7MenuMgrFv
-__ct__Q32og6Screen7MenuMgrFv:
+.fn __ct__Q32og6Screen7MenuMgrFv, global
 /* 80309E28 00306D68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80309E2C 00306D6C  7C 08 02 A6 */	mflr r0
 /* 80309E30 00306D70  C0 22 F3 20 */	lfs f1, lbl_8051D680@sda21(r2)
@@ -145,9 +143,9 @@ __ct__Q32og6Screen7MenuMgrFv:
 /* 8030A004 00306F44  7C 08 03 A6 */	mtlr r0
 /* 8030A008 00306F48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030A00C 00306F4C  4E 80 00 20 */	blr 
+.endfn __ct__Q32og6Screen7MenuMgrFv
 
-.global __dt__Q25efx2d9TChasePosFv
-__dt__Q25efx2d9TChasePosFv:
+.fn __dt__Q25efx2d9TChasePosFv, weak
 /* 8030A010 00306F50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030A014 00306F54  7C 08 02 A6 */	mflr r0
 /* 8030A018 00306F58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -183,9 +181,9 @@ __dt__Q25efx2d9TChasePosFv:
 /* 8030A088 00306FC8  7C 08 03 A6 */	mtlr r0
 /* 8030A08C 00306FCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030A090 00306FD0  4E 80 00 20 */	blr 
+.endfn __dt__Q25efx2d9TChasePosFv
 
-.global __dt__Q25efx2d8TForeverFv
-__dt__Q25efx2d8TForeverFv:
+.fn __dt__Q25efx2d8TForeverFv, weak
 /* 8030A094 00306FD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030A098 00306FD8  7C 08 02 A6 */	mflr r0
 /* 8030A09C 00306FDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -214,9 +212,9 @@ __dt__Q25efx2d8TForeverFv:
 /* 8030A0F4 00307034  7C 08 03 A6 */	mtlr r0
 /* 8030A0F8 00307038  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030A0FC 0030703C  4E 80 00 20 */	blr 
+.endfn __dt__Q25efx2d8TForeverFv
 
-.global startCursor__Q32og6Screen7MenuMgrFf
-startCursor__Q32og6Screen7MenuMgrFf:
+.fn startCursor__Q32og6Screen7MenuMgrFf, global
 /* 8030A100 00307040  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030A104 00307044  7C 08 02 A6 */	mflr r0
 /* 8030A108 00307048  C0 02 F3 20 */	lfs f0, lbl_8051D680@sda21(r2)
@@ -257,9 +255,9 @@ startCursor__Q32og6Screen7MenuMgrFf:
 /* 8030A188 003070C8  7C 08 03 A6 */	mtlr r0
 /* 8030A18C 003070CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030A190 003070D0  4E 80 00 20 */	blr 
+.endfn startCursor__Q32og6Screen7MenuMgrFf
 
-.global killCursor__Q32og6Screen7MenuMgrFv
-killCursor__Q32og6Screen7MenuMgrFv:
+.fn killCursor__Q32og6Screen7MenuMgrFv, global
 /* 8030A194 003070D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030A198 003070D8  7C 08 02 A6 */	mflr r0
 /* 8030A19C 003070DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -290,9 +288,9 @@ killCursor__Q32og6Screen7MenuMgrFv:
 /* 8030A1F8 00307138  7C 08 03 A6 */	mtlr r0
 /* 8030A1FC 0030713C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030A200 00307140  4E 80 00 20 */	blr 
+.endfn killCursor__Q32og6Screen7MenuMgrFv
 
-.global init2taku__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx
-init2taku__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx:
+.fn init2taku__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx, global
 /* 8030A204 00307144  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8030A208 00307148  7C 08 02 A6 */	mflr r0
 /* 8030A20C 0030714C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -428,9 +426,9 @@ init2taku__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx:
 /* 8030A414 00307354  7C 08 03 A6 */	mtlr r0
 /* 8030A418 00307358  38 21 00 50 */	addi r1, r1, 0x50
 /* 8030A41C 0030735C  4E 80 00 20 */	blr 
+.endfn init2taku__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx
 
-.global init2takuTitle__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx
-init2takuTitle__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx:
+.fn init2takuTitle__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx, global
 /* 8030A420 00307360  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8030A424 00307364  7C 08 02 A6 */	mflr r0
 /* 8030A428 00307368  90 01 00 54 */	stw r0, 0x54(r1)
@@ -566,9 +564,9 @@ init2takuTitle__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx:
 /* 8030A630 00307570  7C 08 03 A6 */	mtlr r0
 /* 8030A634 00307574  38 21 00 50 */	addi r1, r1, 0x50
 /* 8030A638 00307578  4E 80 00 20 */	blr 
+.endfn init2takuTitle__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx
 
-.global init__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUxUxUx
-init__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUxUxUx:
+.fn init__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUxUxUx, global
 /* 8030A63C 0030757C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8030A640 00307580  7C 08 02 A6 */	mflr r0
 /* 8030A644 00307584  90 01 00 64 */	stw r0, 0x64(r1)
@@ -867,9 +865,9 @@ init__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUxUxUx:
 /* 8030AAC4 00307A04  7C 08 03 A6 */	mtlr r0
 /* 8030AAC8 00307A08  38 21 00 60 */	addi r1, r1, 0x60
 /* 8030AACC 00307A0C  4E 80 00 20 */	blr 
+.endfn init__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUxUxUx
 
-.global selectSub__Q32og6Screen7MenuMgrFUs
-selectSub__Q32og6Screen7MenuMgrFUs:
+.fn selectSub__Q32og6Screen7MenuMgrFUs, global
 /* 8030AAD0 00307A10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030AAD4 00307A14  7C 08 02 A6 */	mflr r0
 /* 8030AAD8 00307A18  54 85 04 3E */	clrlwi r5, r4, 0x10
@@ -908,9 +906,9 @@ selectSub__Q32og6Screen7MenuMgrFUs:
 /* 8030AB54 00307A94  7C 08 03 A6 */	mtlr r0
 /* 8030AB58 00307A98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030AB5C 00307A9C  4E 80 00 20 */	blr 
+.endfn selectSub__Q32og6Screen7MenuMgrFUs
 
-.global select__Q32og6Screen7MenuMgrFUs
-select__Q32og6Screen7MenuMgrFUs:
+.fn select__Q32og6Screen7MenuMgrFUs, global
 /* 8030AB60 00307AA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030AB64 00307AA4  7C 08 02 A6 */	mflr r0
 /* 8030AB68 00307AA8  54 85 04 3E */	clrlwi r5, r4, 0x10
@@ -951,17 +949,17 @@ select__Q32og6Screen7MenuMgrFUs:
 /* 8030ABEC 00307B2C  7C 08 03 A6 */	mtlr r0
 /* 8030ABF0 00307B30  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030ABF4 00307B34  4E 80 00 20 */	blr 
+.endfn select__Q32og6Screen7MenuMgrFUs
 
-.global initSelNum__Q32og6Screen7MenuMgrFUs
-initSelNum__Q32og6Screen7MenuMgrFUs:
+.fn initSelNum__Q32og6Screen7MenuMgrFUs, global
 /* 8030ABF8 00307B38  B0 83 00 70 */	sth r4, 0x70(r3)
 /* 8030ABFC 00307B3C  C0 02 F3 20 */	lfs f0, lbl_8051D680@sda21(r2)
 /* 8030AC00 00307B40  B0 83 00 0A */	sth r4, 0xa(r3)
 /* 8030AC04 00307B44  D0 03 00 6C */	stfs f0, 0x6c(r3)
 /* 8030AC08 00307B48  4E 80 00 20 */	blr 
+.endfn initSelNum__Q32og6Screen7MenuMgrFUs
 
-.global update__Q32og6Screen7MenuMgrFv
-update__Q32og6Screen7MenuMgrFv:
+.fn update__Q32og6Screen7MenuMgrFv, global
 /* 8030AC0C 00307B4C  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 8030AC10 00307B50  7C 08 02 A6 */	mflr r0
 /* 8030AC14 00307B54  90 01 01 44 */	stw r0, 0x144(r1)
@@ -1327,9 +1325,9 @@ update__Q32og6Screen7MenuMgrFv:
 /* 8030B180 003080C0  7C 08 03 A6 */	mtlr r0
 /* 8030B184 003080C4  38 21 01 40 */	addi r1, r1, 0x140
 /* 8030B188 003080C8  4E 80 00 20 */	blr 
+.endfn update__Q32og6Screen7MenuMgrFv
 
-.global draw__Q32og6Screen7MenuMgrFP14J2DGrafContext
-draw__Q32og6Screen7MenuMgrFP14J2DGrafContext:
+.fn draw__Q32og6Screen7MenuMgrFP14J2DGrafContext, global
 /* 8030B18C 003080CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030B190 003080D0  7C 08 02 A6 */	mflr r0
 /* 8030B194 003080D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1394,9 +1392,9 @@ draw__Q32og6Screen7MenuMgrFP14J2DGrafContext:
 /* 8030B26C 003081AC  7C 08 03 A6 */	mtlr r0
 /* 8030B270 003081B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030B274 003081B4  4E 80 00 20 */	blr 
+.endfn draw__Q32og6Screen7MenuMgrFP14J2DGrafContext
 
-.global MenuOnOff__Q32og6Screen7MenuMgrFv
-MenuOnOff__Q32og6Screen7MenuMgrFv:
+.fn MenuOnOff__Q32og6Screen7MenuMgrFv, global
 /* 8030B278 003081B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030B27C 003081BC  7C 08 02 A6 */	mflr r0
 /* 8030B280 003081C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1465,3 +1463,4 @@ MenuOnOff__Q32og6Screen7MenuMgrFv:
 /* 8030B364 003082A4  7C 08 03 A6 */	mtlr r0
 /* 8030B368 003082A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030B36C 003082AC  4E 80 00 20 */	blr 
+.endfn MenuOnOff__Q32og6Screen7MenuMgrFv

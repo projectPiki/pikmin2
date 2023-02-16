@@ -5,8 +5,7 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q32og6Screen18CallBack_CounterRV
-__vt__Q32og6Screen18CallBack_CounterRV:
+.obj __vt__Q32og6Screen18CallBack_CounterRV, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32og6Screen18CallBack_CounterRVFv
@@ -19,6 +18,7 @@ __vt__Q32og6Screen18CallBack_CounterRV:
 	.4byte hide__Q32og6Screen18CallBack_CounterRVFv
 	.4byte setValue__Q32og6Screen18CallBack_CounterRVFbb
 	.4byte setValue__Q32og6Screen18CallBack_CounterRVFv
+.endobj __vt__Q32og6Screen18CallBack_CounterRV
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # ogLifeGauge.cpp
@@ -29,33 +29,41 @@ __vt__Q32og6Screen18CallBack_CounterRV:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051D6A0:
+.obj lbl_8051D6A0, local
 	.float 0.0
-lbl_8051D6A4:
+.endobj lbl_8051D6A0
+.obj lbl_8051D6A4, local
 	.float 0.025
+.endobj lbl_8051D6A4
 .balign 8
-lbl_8051D6A8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051D6B0:
+.obj lbl_8051D6A8, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051D6A8
+.obj lbl_8051D6B0, local
 	.float 1.0
+.endobj lbl_8051D6B0
 .balign 8
-lbl_8051D6B8:
+.obj lbl_8051D6B8, local
 	.double 10.0
-lbl_8051D6C0:
+.endobj lbl_8051D6B8
+.obj lbl_8051D6C0, local
 	.float 32768.0
-lbl_8051D6C4:
+.endobj lbl_8051D6C0
+.obj lbl_8051D6C4, local
 	.float 9.0
-lbl_8051D6C8:
+.endobj lbl_8051D6C4
+.obj lbl_8051D6C8, local
 	.float 0.5
-lbl_8051D6CC:
+.endobj lbl_8051D6C8
+.obj lbl_8051D6CC, local
 	.float 30.0
-lbl_8051D6D0:
+.endobj lbl_8051D6CC
+.obj lbl_8051D6D0, local
 	.float 0.8
+.endobj lbl_8051D6D0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q32og6Screen18CallBack_CounterRVFPPcUsUsP10JKRArchive
-__ct__Q32og6Screen18CallBack_CounterRVFPPcUsUsP10JKRArchive:
+.fn __ct__Q32og6Screen18CallBack_CounterRVFPPcUsUsP10JKRArchive, global
 /* 8030B524 00308464  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030B528 00308468  7C 08 02 A6 */	mflr r0
 /* 8030B52C 0030846C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -182,9 +190,9 @@ __ct__Q32og6Screen18CallBack_CounterRVFPPcUsUsP10JKRArchive:
 /* 8030B6F8 00308638  7C 08 03 A6 */	mtlr r0
 /* 8030B6FC 0030863C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030B700 00308640  4E 80 00 20 */	blr 
+.endfn __ct__Q32og6Screen18CallBack_CounterRVFPPcUsUsP10JKRArchive
 
-.global show__Q32og6Screen18CallBack_CounterRVFv
-show__Q32og6Screen18CallBack_CounterRVFv:
+.fn show__Q32og6Screen18CallBack_CounterRVFv, global
 /* 8030B704 00308644  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030B708 00308648  7C 08 02 A6 */	mflr r0
 /* 8030B70C 0030864C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -202,9 +210,9 @@ show__Q32og6Screen18CallBack_CounterRVFv:
 /* 8030B738 00308678  7C 08 03 A6 */	mtlr r0
 /* 8030B73C 0030867C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030B740 00308680  4E 80 00 20 */	blr 
+.endfn show__Q32og6Screen18CallBack_CounterRVFv
 
-.global setValue__Q32og6Screen18CallBack_CounterRVFv
-setValue__Q32og6Screen18CallBack_CounterRVFv:
+.fn setValue__Q32og6Screen18CallBack_CounterRVFv, weak
 /* 8030B744 00308684  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030B748 00308688  7C 08 02 A6 */	mflr r0
 /* 8030B74C 0030868C  38 80 00 00 */	li r4, 0
@@ -218,9 +226,9 @@ setValue__Q32og6Screen18CallBack_CounterRVFv:
 /* 8030B76C 003086AC  7C 08 03 A6 */	mtlr r0
 /* 8030B770 003086B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030B774 003086B4  4E 80 00 20 */	blr 
+.endfn setValue__Q32og6Screen18CallBack_CounterRVFv
 
-.global hide__Q32og6Screen18CallBack_CounterRVFv
-hide__Q32og6Screen18CallBack_CounterRVFv:
+.fn hide__Q32og6Screen18CallBack_CounterRVFv, global
 /* 8030B778 003086B8  38 00 00 01 */	li r0, 1
 /* 8030B77C 003086BC  38 C0 00 00 */	li r6, 0
 /* 8030B780 003086C0  98 03 00 87 */	stb r0, 0x87(r3)
@@ -242,38 +250,38 @@ hide__Q32og6Screen18CallBack_CounterRVFv:
 /* 8030B7B4 003086F4  7C 07 00 00 */	cmpw r7, r0
 /* 8030B7B8 003086F8  41 80 FF D8 */	blt .L_8030B790
 /* 8030B7BC 003086FC  4E 80 00 20 */	blr 
+.endfn hide__Q32og6Screen18CallBack_CounterRVFv
 
-.global getMotherPane__Q32og6Screen18CallBack_CounterRVFv
-getMotherPane__Q32og6Screen18CallBack_CounterRVFv:
+.fn getMotherPane__Q32og6Screen18CallBack_CounterRVFv, global
 /* 8030B7C0 00308700  88 03 00 88 */	lbz r0, 0x88(r3)
 /* 8030B7C4 00308704  80 63 00 78 */	lwz r3, 0x78(r3)
 /* 8030B7C8 00308708  28 00 00 00 */	cmplwi r0, 0
 /* 8030B7CC 0030870C  4C 82 00 20 */	bnelr 
 /* 8030B7D0 00308710  38 60 00 00 */	li r3, 0
 /* 8030B7D4 00308714  4E 80 00 20 */	blr 
+.endfn getMotherPane__Q32og6Screen18CallBack_CounterRVFv
 
-.global setPuyoAnim__Q32og6Screen18CallBack_CounterRVFb
-setPuyoAnim__Q32og6Screen18CallBack_CounterRVFb:
+.fn setPuyoAnim__Q32og6Screen18CallBack_CounterRVFb, global
 /* 8030B7D8 00308718  98 83 00 84 */	stb r4, 0x84(r3)
 /* 8030B7DC 0030871C  4E 80 00 20 */	blr 
+.endfn setPuyoAnim__Q32og6Screen18CallBack_CounterRVFb
 
-.global setPuyoAnimZero__Q32og6Screen18CallBack_CounterRVFb
-setPuyoAnimZero__Q32og6Screen18CallBack_CounterRVFb:
+.fn setPuyoAnimZero__Q32og6Screen18CallBack_CounterRVFb, global
 /* 8030B7E0 00308720  98 83 00 85 */	stb r4, 0x85(r3)
 /* 8030B7E4 00308724  4E 80 00 20 */	blr 
+.endfn setPuyoAnimZero__Q32og6Screen18CallBack_CounterRVFb
 
-.global setBlind__Q32og6Screen18CallBack_CounterRVFb
-setBlind__Q32og6Screen18CallBack_CounterRVFb:
+.fn setBlind__Q32og6Screen18CallBack_CounterRVFb, global
 /* 8030B7E8 00308728  98 83 00 86 */	stb r4, 0x86(r3)
 /* 8030B7EC 0030872C  4E 80 00 20 */	blr 
+.endfn setBlind__Q32og6Screen18CallBack_CounterRVFb
 
-.global setZeroAlpha__Q32og6Screen18CallBack_CounterRVFUc
-setZeroAlpha__Q32og6Screen18CallBack_CounterRVFUc:
+.fn setZeroAlpha__Q32og6Screen18CallBack_CounterRVFUc, global
 /* 8030B7F0 00308730  98 83 00 90 */	stb r4, 0x90(r3)
 /* 8030B7F4 00308734  4E 80 00 20 */	blr 
+.endfn setZeroAlpha__Q32og6Screen18CallBack_CounterRVFUc
 
-.global startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-startPuyoUp__Q32og6Screen18CallBack_CounterRVFf:
+.fn startPuyoUp__Q32og6Screen18CallBack_CounterRVFf, global
 /* 8030B7F8 00308738  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8030B7FC 0030873C  7C 08 02 A6 */	mflr r0
 /* 8030B800 00308740  90 01 00 64 */	stw r0, 0x64(r1)
@@ -334,14 +342,14 @@ startPuyoUp__Q32og6Screen18CallBack_CounterRVFf:
 /* 8030B8D0 00308810  7C 08 03 A6 */	mtlr r0
 /* 8030B8D4 00308814  38 21 00 60 */	addi r1, r1, 0x60
 /* 8030B8D8 00308818  4E 80 00 20 */	blr 
+.endfn startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
 
-.global setCenteringMode__Q32og6Screen18CallBack_CounterRVFQ42og6Screen18CallBack_CounterRV17EnumCenteringMode
-setCenteringMode__Q32og6Screen18CallBack_CounterRVFQ42og6Screen18CallBack_CounterRV17EnumCenteringMode:
+.fn setCenteringMode__Q32og6Screen18CallBack_CounterRVFQ42og6Screen18CallBack_CounterRV17EnumCenteringMode, global
 /* 8030B8DC 0030881C  90 83 00 8C */	stw r4, 0x8c(r3)
 /* 8030B8E0 00308820  4E 80 00 20 */	blr 
+.endfn setCenteringMode__Q32og6Screen18CallBack_CounterRVFQ42og6Screen18CallBack_CounterRV17EnumCenteringMode
 
-.global init__Q32og6Screen18CallBack_CounterRVFP9J2DScreenUxUxUxPUlb
-init__Q32og6Screen18CallBack_CounterRVFP9J2DScreenUxUxUxPUlb:
+.fn init__Q32og6Screen18CallBack_CounterRVFP9J2DScreenUxUxUxPUlb, global
 /* 8030B8E4 00308824  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8030B8E8 00308828  7C 08 02 A6 */	mflr r0
 /* 8030B8EC 0030882C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -669,9 +677,9 @@ init__Q32og6Screen18CallBack_CounterRVFP9J2DScreenUxUxUxPUlb:
 /* 8030BDA8 00308CE8  7C 08 03 A6 */	mtlr r0
 /* 8030BDAC 00308CEC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8030BDB0 00308CF0  4E 80 00 20 */	blr 
+.endfn init__Q32og6Screen18CallBack_CounterRVFP9J2DScreenUxUxUxPUlb
 
-.global setKetaSub__Q32og6Screen18CallBack_CounterRVFibb
-setKetaSub__Q32og6Screen18CallBack_CounterRVFibb:
+.fn setKetaSub__Q32og6Screen18CallBack_CounterRVFibb, global
 /* 8030BDB4 00308CF4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8030BDB8 00308CF8  7C 08 02 A6 */	mflr r0
 /* 8030BDBC 00308CFC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -818,9 +826,9 @@ setKetaSub__Q32og6Screen18CallBack_CounterRVFibb:
 /* 8030BFC8 00308F08  7C 08 03 A6 */	mtlr r0
 /* 8030BFCC 00308F0C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8030BFD0 00308F10  4E 80 00 20 */	blr 
+.endfn setKetaSub__Q32og6Screen18CallBack_CounterRVFibb
 
-.global setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb
-setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb:
+.fn setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb, global
 /* 8030BFD4 00308F14  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030BFD8 00308F18  7C 08 02 A6 */	mflr r0
 /* 8030BFDC 00308F1C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -867,9 +875,9 @@ setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb:
 /* 8030C078 00308FB8  7C 08 03 A6 */	mtlr r0
 /* 8030C07C 00308FBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030C080 00308FC0  4E 80 00 20 */	blr 
+.endfn setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb
 
-.global setValue__Q32og6Screen18CallBack_CounterRVFbb
-setValue__Q32og6Screen18CallBack_CounterRVFbb:
+.fn setValue__Q32og6Screen18CallBack_CounterRVFbb, global
 /* 8030C084 00308FC4  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8030C088 00308FC8  7C 08 02 A6 */	mflr r0
 /* 8030C08C 00308FCC  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1138,9 +1146,9 @@ setValue__Q32og6Screen18CallBack_CounterRVFbb:
 /* 8030C470 003093B0  7C 08 03 A6 */	mtlr r0
 /* 8030C474 003093B4  38 21 00 80 */	addi r1, r1, 0x80
 /* 8030C478 003093B8  4E 80 00 20 */	blr 
+.endfn setValue__Q32og6Screen18CallBack_CounterRVFbb
 
-.global update__Q32og6Screen18CallBack_CounterRVFv
-update__Q32og6Screen18CallBack_CounterRVFv:
+.fn update__Q32og6Screen18CallBack_CounterRVFv, global
 /* 8030C47C 003093BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030C480 003093C0  7C 08 02 A6 */	mflr r0
 /* 8030C484 003093C4  38 80 00 00 */	li r4, 0
@@ -1189,13 +1197,13 @@ update__Q32og6Screen18CallBack_CounterRVFv:
 /* 8030C520 00309460  7C 08 03 A6 */	mtlr r0
 /* 8030C524 00309464  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030C528 00309468  4E 80 00 20 */	blr 
+.endfn update__Q32og6Screen18CallBack_CounterRVFv
 
-.global draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext
-draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext:
+.fn draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext, global
 /* 8030C52C 0030946C  4E 80 00 20 */	blr 
+.endfn draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext
 
-.global setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsUsbP10JKRArchive
-setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsUsbP10JKRArchive:
+.fn setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsUsbP10JKRArchive, global
 /* 8030C530 00309470  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8030C534 00309474  7C 08 02 A6 */	mflr r0
 /* 8030C538 00309478  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1251,9 +1259,9 @@ setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsUsbP10JKRArchive
 /* 8030C5FC 0030953C  7C 08 03 A6 */	mtlr r0
 /* 8030C600 00309540  38 21 00 50 */	addi r1, r1, 0x50
 /* 8030C604 00309544  4E 80 00 20 */	blr 
+.endfn setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsUsbP10JKRArchive
 
-.global setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive:
+.fn setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive, global
 /* 8030C608 00309548  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8030C60C 0030954C  7C 08 02 A6 */	mflr r0
 /* 8030C610 00309550  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1353,9 +1361,9 @@ setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive:
 /* 8030C778 003096B8  7C 08 03 A6 */	mtlr r0
 /* 8030C77C 003096BC  38 21 00 60 */	addi r1, r1, 0x60
 /* 8030C780 003096C0  4E 80 00 20 */	blr 
+.endfn setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
 
-.global setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUlUsbbP10JKRArchive
-setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUlUsbbP10JKRArchive:
+.fn setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUlUsbbP10JKRArchive, global
 /* 8030C784 003096C4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8030C788 003096C8  7C 08 02 A6 */	mflr r0
 /* 8030C78C 003096CC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1460,9 +1468,9 @@ setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUlUsbbP10JKRArchive:
 /* 8030C904 00309844  7C 08 03 A6 */	mtlr r0
 /* 8030C908 00309848  38 21 00 60 */	addi r1, r1, 0x60
 /* 8030C90C 0030984C  4E 80 00 20 */	blr 
+.endfn setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUlUsbbP10JKRArchive
 
-.global __dt__Q32og6Screen18CallBack_CounterRVFv
-__dt__Q32og6Screen18CallBack_CounterRVFv:
+.fn __dt__Q32og6Screen18CallBack_CounterRVFv, weak
 /* 8030C910 00309850  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030C914 00309854  7C 08 02 A6 */	mflr r0
 /* 8030C918 00309858  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1497,9 +1505,9 @@ __dt__Q32og6Screen18CallBack_CounterRVFv:
 /* 8030C984 003098C4  7C 08 03 A6 */	mtlr r0
 /* 8030C988 003098C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030C98C 003098CC  4E 80 00 20 */	blr 
+.endfn __dt__Q32og6Screen18CallBack_CounterRVFv
 
-.global __sinit_ogCounterRV_cpp
-__sinit_ogCounterRV_cpp: # static initializer
+.fn __sinit_ogCounterRV_cpp, local
 /* 8030C990 003098D0  C0 42 F3 68 */	lfs f2, lbl_8051D6C8@sda21(r2)
 /* 8030C994 003098D4  3C 60 80 51 */	lis r3, msVal__Q32og6Screen18CallBack_CounterRV@ha
 /* 8030C998 003098D8  C0 22 F3 6C */	lfs f1, lbl_8051D6CC@sda21(r2)
@@ -1508,3 +1516,4 @@ __sinit_ogCounterRV_cpp: # static initializer
 /* 8030C9A4 003098E4  D0 23 00 04 */	stfs f1, 4(r3)
 /* 8030C9A8 003098E8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8030C9AC 003098EC  4E 80 00 20 */	blr 
+.endfn __sinit_ogCounterRV_cpp

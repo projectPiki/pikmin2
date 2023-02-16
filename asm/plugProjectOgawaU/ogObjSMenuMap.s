@@ -96,11 +96,11 @@ lbl_8048E278:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804D8398:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.balign 8
 .global map_icon_tag__Q22og9newScreen
 map_icon_tag__Q22og9newScreen:
 	.4byte 0x6F6E6979
@@ -210,16 +210,14 @@ __vt__Q32og9newScreen11ObjSMenuMap:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515E48:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_80515E4C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
-.global nv_frame$4824
 nv_frame$4824:
 	.skip 0x4
-.global init$4825
 init$4825:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -3908,9 +3906,9 @@ __sinit_ogObjSMenuMap_cpp:
 /* 80312AE8 0030FA28  38 A0 00 00 */	li r5, 0
 /* 80312AEC 0030FA2C  91 69 00 4C */	stw r11, 0x4c(r9)
 /* 80312AF0 0030FA30  38 C0 00 DC */	li r6, 0xdc
-/* 80312AF4 0030FA34  3C 60 80 4E */	lis r3, lbl_804D8398@ha
+/* 80312AF4 0030FA34  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 80312AF8 0030FA38  C1 42 F4 A4 */	lfs f10, lbl_8051D804@sda21(r2)
-/* 80312AFC 0030FA3C  39 43 83 98 */	addi r10, r3, lbl_804D8398@l
+/* 80312AFC 0030FA3C  39 43 83 98 */	addi r10, r3, govNAN___Q24Game5P2JST@l
 /* 80312B00 0030FA40  91 69 00 48 */	stw r11, 0x48(r9)
 /* 80312B04 0030FA44  C1 22 F4 7C */	lfs f9, lbl_8051D7DC@sda21(r2)
 /* 80312B08 0030FA48  38 E0 00 D2 */	li r7, 0xd2
@@ -3925,8 +3923,8 @@ __sinit_ogObjSMenuMap_cpp:
 /* 80312B2C 0030FA6C  C0 42 F4 BC */	lfs f2, lbl_8051D81C@sda21(r2)
 /* 80312B30 0030FA70  C0 22 F3 E4 */	lfs f1, lbl_8051D744@sda21(r2)
 /* 80312B34 0030FA74  C0 02 F4 C0 */	lfs f0, lbl_8051D820@sda21(r2)
-/* 80312B38 0030FA78  91 6D 97 C8 */	stw r11, lbl_80515E48@sda21(r13)
-/* 80312B3C 0030FA7C  D1 6D 97 CC */	stfs f11, lbl_80515E4C@sda21(r13)
+/* 80312B38 0030FA78  91 6D 97 C8 */	stw r11, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80312B3C 0030FA7C  D1 6D 97 CC */	stfs f11, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80312B40 0030FA80  D1 6A 00 00 */	stfs f11, 0(r10)
 /* 80312B44 0030FA84  D1 6A 00 04 */	stfs f11, 4(r10)
 /* 80312B48 0030FA88  D1 6A 00 08 */	stfs f11, 8(r10)

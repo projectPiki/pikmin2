@@ -1,32 +1,31 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q32og9newScreen13TitleMsgClash
-__vt__Q32og9newScreen13TitleMsgClash:
+.obj __vt__Q32og9newScreen13TitleMsgClash, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q32og9newScreen13TitleMsgClashFv
 	.4byte update__Q32og9newScreen13TitleMsgClashFv
 	.4byte start__Q32og9newScreen8TitleMsgFv
 	.4byte end__Q32og9newScreen13TitleMsgClashFv
-.global __vt__Q25efx2d11T2DCvnameVs
-__vt__Q25efx2d11T2DCvnameVs:
+.endobj __vt__Q32og9newScreen13TitleMsgClash
+.obj __vt__Q25efx2d11T2DCvnameVs, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
 	.4byte kill__Q25efx2d9TForeverNFv
 	.4byte fade__Q25efx2d9TForeverNFv
 	.4byte setGroup__Q25efx2d9TForeverNFUc
-.global __vt__Q25efx2d9TForever2
-__vt__Q25efx2d9TForever2:
+.endobj __vt__Q25efx2d11T2DCvnameVs
+.obj __vt__Q25efx2d9TForever2, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
 	.4byte kill__Q25efx2d9TForeverNFv
 	.4byte fade__Q25efx2d9TForeverNFv
 	.4byte setGroup__Q25efx2d9TForeverNFUc
-.global __vt__Q32og9newScreen12TitleMsgWave
-__vt__Q32og9newScreen12TitleMsgWave:
+.endobj __vt__Q25efx2d9TForever2
+.obj __vt__Q32og9newScreen12TitleMsgWave, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q32og9newScreen12TitleMsgWaveFv
@@ -34,8 +33,8 @@ __vt__Q32og9newScreen12TitleMsgWave:
 	.4byte start__Q32og9newScreen12TitleMsgWaveFv
 	.4byte end__Q32og9newScreen12TitleMsgWaveFv
 	.4byte setParam__Q32og9newScreen12TitleMsgWaveFffff
-.global __vt__Q25efx2d13T2DCvnameChal
-__vt__Q25efx2d13T2DCvnameChal:
+.endobj __vt__Q32og9newScreen12TitleMsgWave
+.obj __vt__Q25efx2d13T2DCvnameChal, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
@@ -50,40 +49,40 @@ __vt__Q25efx2d13T2DCvnameChal:
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q25efx2d13T2DCvnameChalFv
-.global __vt__Q32og9newScreen12TitleMsgDrop
-__vt__Q32og9newScreen12TitleMsgDrop:
+.endobj __vt__Q25efx2d13T2DCvnameChal
+.obj __vt__Q32og9newScreen12TitleMsgDrop, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q32og9newScreen12TitleMsgDropFv
 	.4byte update__Q32og9newScreen12TitleMsgDropFv
 	.4byte start__Q32og9newScreen8TitleMsgFv
 	.4byte end__Q32og9newScreen12TitleMsgDropFv
-.global __vt__Q25efx2d13T2DCvnameCave
-__vt__Q25efx2d13T2DCvnameCave:
+.endobj __vt__Q32og9newScreen12TitleMsgDrop
+.obj __vt__Q25efx2d13T2DCvnameCave, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
 	.4byte kill__Q25efx2d9TForeverNFv
 	.4byte fade__Q25efx2d9TForeverNFv
 	.4byte setGroup__Q25efx2d9TForeverNFUc
-.global __vt__Q25efx2d9TForever3
-__vt__Q25efx2d9TForever3:
+.endobj __vt__Q25efx2d13T2DCvnameCave
+.obj __vt__Q25efx2d9TForever3, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
 	.4byte kill__Q25efx2d9TForeverNFv
 	.4byte fade__Q25efx2d9TForeverNFv
 	.4byte setGroup__Q25efx2d9TForeverNFUc
-.global __vt__Q32og9newScreen8TitleMsg
-__vt__Q32og9newScreen8TitleMsg:
+.endobj __vt__Q25efx2d9TForever3
+.obj __vt__Q32og9newScreen8TitleMsg, weak
 	.4byte 0
 	.4byte 0
 	.4byte init__Q32og9newScreen8TitleMsgFv
 	.4byte update__Q32og9newScreen8TitleMsgFv
 	.4byte start__Q32og9newScreen8TitleMsgFv
 	.4byte end__Q32og9newScreen8TitleMsgFv
-.global __vt__Q32og9newScreen20TitleMessageAnalyzer
-__vt__Q32og9newScreen20TitleMessageAnalyzer:
+.endobj __vt__Q32og9newScreen8TitleMsg
+.obj __vt__Q32og9newScreen20TitleMessageAnalyzer, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32og9newScreen20TitleMessageAnalyzerFv
@@ -110,75 +109,99 @@ __vt__Q32og9newScreen20TitleMessageAnalyzer:
 	.4byte tagColorEX__Q25P2JME8AnalyzerFUsPCvUl
 	.4byte tagControl__Q25P2JME8AnalyzerFUsPCvUl
 	.4byte tagPosition__Q25P2JME8AnalyzerFUsPCvUl
+.endobj __vt__Q32og9newScreen20TitleMessageAnalyzer
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-sFrame$4053: # local object
+.obj sFrame$4053, local
 	.skip 0x4
-init$4054: # local object
+.endobj sFrame$4053
+.obj init$4054, local
 	.skip 0x1
+.endobj init$4054
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E008:
+.obj lbl_8051E008, local
 	.float 0.0
-lbl_8051E00C:
+.endobj lbl_8051E008
+.obj lbl_8051E00C, local
 	.float 1.0
-lbl_8051E010:
+.endobj lbl_8051E00C
+.obj lbl_8051E010, local
 	.float -10.0
-lbl_8051E014:
+.endobj lbl_8051E010
+.obj lbl_8051E014, local
 	.float 0.5
-lbl_8051E018:
+.endobj lbl_8051E014
+.obj lbl_8051E018, local
 	.float 3.0
-lbl_8051E01C:
+.endobj lbl_8051E018
+.obj lbl_8051E01C, local
 	.float 100.0
-lbl_8051E020:
+.endobj lbl_8051E01C
+.obj lbl_8051E020, local
 	.float 32768.0
-lbl_8051E024:
+.endobj lbl_8051E020
+.obj lbl_8051E024, local
 	.float 5.0
-lbl_8051E028:
+.endobj lbl_8051E024
+.obj lbl_8051E028, local
 	.float 200.0
+.endobj lbl_8051E028
 .balign 8
-lbl_8051E030:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_8051E030, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051E030
 .balign 8
-lbl_8051E038:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051E040:
+.obj lbl_8051E038, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051E038
+.obj lbl_8051E040, local
 	.float -0.3
-lbl_8051E044:
+.endobj lbl_8051E040
+.obj lbl_8051E044, local
 	.float 0.12
-lbl_8051E048:
+.endobj lbl_8051E044
+.obj lbl_8051E048, local
 	.float 7.0
-lbl_8051E04C:
+.endobj lbl_8051E048
+.obj lbl_8051E04C, local
 	.float 1.5
-lbl_8051E050:
+.endobj lbl_8051E04C
+.obj lbl_8051E050, local
 	.float 0.07
-lbl_8051E054:
+.endobj lbl_8051E050
+.obj lbl_8051E054, local
 	.float 0.2
-lbl_8051E058: # tau
+.endobj lbl_8051E054
+.obj lbl_8051E058, local # tau
 	.float 6.2831855
-lbl_8051E05C:
+.endobj lbl_8051E058
+.obj lbl_8051E05C, local
 	.float 0.125
-lbl_8051E060:
+.endobj lbl_8051E05C
+.obj lbl_8051E060, local
 	.float 0.25
-lbl_8051E064:
+.endobj lbl_8051E060
+.obj lbl_8051E064, local
 	.float 0.1
-lbl_8051E068:
+.endobj lbl_8051E064
+.obj lbl_8051E068, local
 	.float 50.0
-lbl_8051E06C:
+.endobj lbl_8051E068
+.obj lbl_8051E06C, local
 	.float 0.4
+.endobj lbl_8051E06C
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 .balign 8
-lbl_80520EB8:
+.obj lbl_80520EB8, local
 	.skip 0x3
+.endobj lbl_80520EB8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q25P2JME8AnalyzerFv
-__dt__Q25P2JME8AnalyzerFv:
+.fn __dt__Q25P2JME8AnalyzerFv, weak
 /* 8032EA58 0032B998  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032EA5C 0032B99C  7C 08 02 A6 */	mflr r0
 /* 8032EA60 0032B9A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -209,9 +232,9 @@ __dt__Q25P2JME8AnalyzerFv:
 /* 8032EABC 0032B9FC  7C 08 03 A6 */	mtlr r0
 /* 8032EAC0 0032BA00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032EAC4 0032BA04  4E 80 00 20 */	blr 
+.endfn __dt__Q25P2JME8AnalyzerFv
 
-.global do_character__Q32og9newScreen20TitleMessageAnalyzerFi
-do_character__Q32og9newScreen20TitleMessageAnalyzerFi:
+.fn do_character__Q32og9newScreen20TitleMessageAnalyzerFi, global
 /* 8032EAC8 0032BA08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032EACC 0032BA0C  2C 04 00 00 */	cmpwi r4, 0
 /* 8032EAD0 0032BA10  54 86 06 3E */	clrlwi r6, r4, 0x18
@@ -363,9 +386,9 @@ do_character__Q32og9newScreen20TitleMessageAnalyzerFi:
 .L_8032ECE8:
 /* 8032ECE8 0032BC28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032ECEC 0032BC2C  4E 80 00 20 */	blr 
+.endfn do_character__Q32og9newScreen20TitleMessageAnalyzerFi
 
-.global __ct__Q32og9newScreen8TitleMsgFP9J2DScreenP7J2DPanePc
-__ct__Q32og9newScreen8TitleMsgFP9J2DScreenP7J2DPanePc:
+.fn __ct__Q32og9newScreen8TitleMsgFP9J2DScreenP7J2DPanePc, global
 /* 8032ECF0 0032BC30  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8032ECF4 0032BC34  7C 08 02 A6 */	mflr r0
 /* 8032ECF8 0032BC38  3C E0 80 4E */	lis r7, __vt__Q32og9newScreen8TitleMsg@ha
@@ -536,9 +559,9 @@ __ct__Q32og9newScreen8TitleMsgFP9J2DScreenP7J2DPanePc:
 /* 8032EF70 0032BEB0  7C 08 03 A6 */	mtlr r0
 /* 8032EF74 0032BEB4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8032EF78 0032BEB8  4E 80 00 20 */	blr 
+.endfn __ct__Q32og9newScreen8TitleMsgFP9J2DScreenP7J2DPanePc
 
-.global __dt__Q32og9newScreen20TitleMessageAnalyzerFv
-__dt__Q32og9newScreen20TitleMessageAnalyzerFv:
+.fn __dt__Q32og9newScreen20TitleMessageAnalyzerFv, weak
 /* 8032EF7C 0032BEBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032EF80 0032BEC0  7C 08 02 A6 */	mflr r0
 /* 8032EF84 0032BEC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -573,9 +596,9 @@ __dt__Q32og9newScreen20TitleMessageAnalyzerFv:
 /* 8032EFF0 0032BF30  7C 08 03 A6 */	mtlr r0
 /* 8032EFF4 0032BF34  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032EFF8 0032BF38  4E 80 00 20 */	blr 
+.endfn __dt__Q32og9newScreen20TitleMessageAnalyzerFv
 
-.global setFontPane__Q32og9newScreen8TitleMsgFP12J2DPictureExi
-setFontPane__Q32og9newScreen8TitleMsgFP12J2DPictureExi:
+.fn setFontPane__Q32og9newScreen8TitleMsgFP12J2DPictureExi, global
 /* 8032EFFC 0032BF3C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8032F000 0032BF40  7C 08 02 A6 */	mflr r0
 /* 8032F004 0032BF44  3C C0 74 30 */	lis r6, 0x74303030@ha
@@ -661,10 +684,10 @@ setFontPane__Q32og9newScreen8TitleMsgFP12J2DPictureExi:
 /* 8032F144 0032C084  7C 08 03 A6 */	mtlr r0
 /* 8032F148 0032C088  38 21 00 30 */	addi r1, r1, 0x30
 /* 8032F14C 0032C08C  4E 80 00 20 */	blr 
+.endfn setFontPane__Q32og9newScreen8TitleMsgFP12J2DPictureExi
 
 .if version == 1
-.global setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering
-setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering:
+.fn setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering, global
 /* 8032F150 0032C090  94 21 FF A0 */	stwu r1, -0xa0(r1)
 /* 8032F154 0032C094  7C 08 02 A6 */	mflr r0
 /* 8032F158 0032C098  90 01 00 64 */	stw r0, 0xa4(r1)
@@ -784,10 +807,10 @@ setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering:
 /* 8032F2A8 0032C1E8  7C 08 03 A6 */	mtlr r0
 /* 8032F2AC 0032C1EC  38 21 00 60 */	addi r1, r1, 0xa0
 /* 8032F2B0 0032C1F0  4E 80 00 20 */	blr 
+.endfn setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering
 
 .else
-.global setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering
-setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering:
+.fn setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering, global
 /* 8032F150 0032C090  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8032F154 0032C094  7C 08 02 A6 */	mflr r0
 /* 8032F158 0032C098  90 01 00 64 */	stw r0, 0x64(r1)
@@ -886,10 +909,10 @@ setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering:
 /* 8032F2A8 0032C1E8  7C 08 03 A6 */	mtlr r0
 /* 8032F2AC 0032C1EC  38 21 00 60 */	addi r1, r1, 0x60
 /* 8032F2B0 0032C1F0  4E 80 00 20 */	blr 
+.endfn setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering
 .endif
 
-.global setColor__Q32og9newScreen8TitleMsgFRQ28JUtility6TColorRQ28JUtility6TColor
-setColor__Q32og9newScreen8TitleMsgFRQ28JUtility6TColorRQ28JUtility6TColor:
+.fn setColor__Q32og9newScreen8TitleMsgFRQ28JUtility6TColorRQ28JUtility6TColor, global
 /* 8032F2B4 0032C1F4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8032F2B8 0032C1F8  7C 08 02 A6 */	mflr r0
 /* 8032F2BC 0032C1FC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -944,9 +967,9 @@ setColor__Q32og9newScreen8TitleMsgFRQ28JUtility6TColorRQ28JUtility6TColor:
 /* 8032F378 0032C2B8  7C 08 03 A6 */	mtlr r0
 /* 8032F37C 0032C2BC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8032F380 0032C2C0  4E 80 00 20 */	blr 
+.endfn setColor__Q32og9newScreen8TitleMsgFRQ28JUtility6TColorRQ28JUtility6TColor
 
-.global __ct__Q32og9newScreen12TitleMsgDropFP9J2DScreenP7J2DPanePc
-__ct__Q32og9newScreen12TitleMsgDropFP9J2DScreenP7J2DPanePc:
+.fn __ct__Q32og9newScreen12TitleMsgDropFP9J2DScreenP7J2DPanePc, global
 /* 8032F384 0032C2C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032F388 0032C2C8  7C 08 02 A6 */	mflr r0
 /* 8032F38C 0032C2CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1010,9 +1033,9 @@ __ct__Q32og9newScreen12TitleMsgDropFP9J2DScreenP7J2DPanePc:
 /* 8032F468 0032C3A8  7C 08 03 A6 */	mtlr r0
 /* 8032F46C 0032C3AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032F470 0032C3B0  4E 80 00 20 */	blr 
+.endfn __ct__Q32og9newScreen12TitleMsgDropFP9J2DScreenP7J2DPanePc
 
-.global __dt__Q42og9newScreen12TitleMsgDrop6MotionFv
-__dt__Q42og9newScreen12TitleMsgDrop6MotionFv:
+.fn __dt__Q42og9newScreen12TitleMsgDrop6MotionFv, weak
 /* 8032F474 0032C3B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032F478 0032C3B8  7C 08 02 A6 */	mflr r0
 /* 8032F47C 0032C3BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1029,9 +1052,9 @@ __dt__Q42og9newScreen12TitleMsgDrop6MotionFv:
 /* 8032F4A4 0032C3E4  7C 08 03 A6 */	mtlr r0
 /* 8032F4A8 0032C3E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032F4AC 0032C3EC  4E 80 00 20 */	blr 
+.endfn __dt__Q42og9newScreen12TitleMsgDrop6MotionFv
 
-.global __ct__Q42og9newScreen12TitleMsgDrop6MotionFv
-__ct__Q42og9newScreen12TitleMsgDrop6MotionFv:
+.fn __ct__Q42og9newScreen12TitleMsgDrop6MotionFv, weak
 /* 8032F4B0 0032C3F0  C0 22 FC BC */	lfs f1, lbl_8051E01C@sda21(r2)
 /* 8032F4B4 0032C3F4  C0 02 FC A8 */	lfs f0, lbl_8051E008@sda21(r2)
 /* 8032F4B8 0032C3F8  D0 23 00 00 */	stfs f1, 0(r3)
@@ -1039,9 +1062,9 @@ __ct__Q42og9newScreen12TitleMsgDrop6MotionFv:
 /* 8032F4C0 0032C400  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 8032F4C4 0032C404  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 8032F4C8 0032C408  4E 80 00 20 */	blr 
+.endfn __ct__Q42og9newScreen12TitleMsgDrop6MotionFv
 
-.global init__Q32og9newScreen12TitleMsgDropFv
-init__Q32og9newScreen12TitleMsgDropFv:
+.fn init__Q32og9newScreen12TitleMsgDropFv, global
 /* 8032F4CC 0032C40C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8032F4D0 0032C410  7C 08 02 A6 */	mflr r0
 /* 8032F4D4 0032C414  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1118,9 +1141,9 @@ init__Q32og9newScreen12TitleMsgDropFv:
 /* 8032F5E8 0032C528  7C 08 03 A6 */	mtlr r0
 /* 8032F5EC 0032C52C  38 21 00 90 */	addi r1, r1, 0x90
 /* 8032F5F0 0032C530  4E 80 00 20 */	blr 
+.endfn init__Q32og9newScreen12TitleMsgDropFv
 
-.global update__Q32og9newScreen12TitleMsgDropFv
-update__Q32og9newScreen12TitleMsgDropFv:
+.fn update__Q32og9newScreen12TitleMsgDropFv, global
 /* 8032F5F4 0032C534  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8032F5F8 0032C538  7C 08 02 A6 */	mflr r0
 /* 8032F5FC 0032C53C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1266,9 +1289,9 @@ update__Q32og9newScreen12TitleMsgDropFv:
 /* 8032F818 0032C758  7C 08 03 A6 */	mtlr r0
 /* 8032F81C 0032C75C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8032F820 0032C760  4E 80 00 20 */	blr 
+.endfn update__Q32og9newScreen12TitleMsgDropFv
 
-.global end__Q32og9newScreen12TitleMsgDropFv
-end__Q32og9newScreen12TitleMsgDropFv:
+.fn end__Q32og9newScreen12TitleMsgDropFv, global
 /* 8032F824 0032C764  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032F828 0032C768  7C 08 02 A6 */	mflr r0
 /* 8032F82C 0032C76C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1298,9 +1321,9 @@ end__Q32og9newScreen12TitleMsgDropFv:
 /* 8032F884 0032C7C4  7C 08 03 A6 */	mtlr r0
 /* 8032F888 0032C7C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032F88C 0032C7CC  4E 80 00 20 */	blr 
+.endfn end__Q32og9newScreen12TitleMsgDropFv
 
-.global __ct__Q32og9newScreen12TitleMsgWaveFP9J2DScreenP7J2DPanePc
-__ct__Q32og9newScreen12TitleMsgWaveFP9J2DScreenP7J2DPanePc:
+.fn __ct__Q32og9newScreen12TitleMsgWaveFP9J2DScreenP7J2DPanePc, global
 /* 8032F890 0032C7D0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8032F894 0032C7D4  7C 08 02 A6 */	mflr r0
 /* 8032F898 0032C7D8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1407,13 +1430,13 @@ __ct__Q32og9newScreen12TitleMsgWaveFP9J2DScreenP7J2DPanePc:
 /* 8032FA10 0032C950  7C 08 03 A6 */	mtlr r0
 /* 8032FA14 0032C954  38 21 00 30 */	addi r1, r1, 0x30
 /* 8032FA18 0032C958  4E 80 00 20 */	blr 
+.endfn __ct__Q32og9newScreen12TitleMsgWaveFP9J2DScreenP7J2DPanePc
 
-.global init__Q32og9newScreen12TitleMsgWaveFv
-init__Q32og9newScreen12TitleMsgWaveFv:
+.fn init__Q32og9newScreen12TitleMsgWaveFv, global
 /* 8032FA1C 0032C95C  4E 80 00 20 */	blr 
+.endfn init__Q32og9newScreen12TitleMsgWaveFv
 
-.global start__Q32og9newScreen12TitleMsgWaveFv
-start__Q32og9newScreen12TitleMsgWaveFv:
+.fn start__Q32og9newScreen12TitleMsgWaveFv, global
 /* 8032FA20 0032C960  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8032FA24 0032C964  7C 08 02 A6 */	mflr r0
 /* 8032FA28 0032C968  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1460,9 +1483,9 @@ start__Q32og9newScreen12TitleMsgWaveFv:
 /* 8032FAC4 0032CA04  7C 08 03 A6 */	mtlr r0
 /* 8032FAC8 0032CA08  38 21 00 30 */	addi r1, r1, 0x30
 /* 8032FACC 0032CA0C  4E 80 00 20 */	blr 
+.endfn start__Q32og9newScreen12TitleMsgWaveFv
 
-.global update__Q32og9newScreen12TitleMsgWaveFv
-update__Q32og9newScreen12TitleMsgWaveFv:
+.fn update__Q32og9newScreen12TitleMsgWaveFv, global
 /* 8032FAD0 0032CA10  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8032FAD4 0032CA14  7C 08 02 A6 */	mflr r0
 /* 8032FAD8 0032CA18  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -1653,9 +1676,9 @@ update__Q32og9newScreen12TitleMsgWaveFv:
 /* 8032FDA4 0032CCE4  7C 08 03 A6 */	mtlr r0
 /* 8032FDA8 0032CCE8  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 8032FDAC 0032CCEC  4E 80 00 20 */	blr 
+.endfn update__Q32og9newScreen12TitleMsgWaveFv
 
-.global end__Q32og9newScreen12TitleMsgWaveFv
-end__Q32og9newScreen12TitleMsgWaveFv:
+.fn end__Q32og9newScreen12TitleMsgWaveFv, global
 /* 8032FDB0 0032CCF0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032FDB4 0032CCF4  7C 08 02 A6 */	mflr r0
 /* 8032FDB8 0032CCF8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1685,17 +1708,17 @@ end__Q32og9newScreen12TitleMsgWaveFv:
 /* 8032FE10 0032CD50  7C 08 03 A6 */	mtlr r0
 /* 8032FE14 0032CD54  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032FE18 0032CD58  4E 80 00 20 */	blr 
+.endfn end__Q32og9newScreen12TitleMsgWaveFv
 
-.global setParam__Q32og9newScreen12TitleMsgWaveFffff
-setParam__Q32og9newScreen12TitleMsgWaveFffff:
+.fn setParam__Q32og9newScreen12TitleMsgWaveFffff, global
 /* 8032FE1C 0032CD5C  D0 23 09 E8 */	stfs f1, 0x9e8(r3)
 /* 8032FE20 0032CD60  D0 43 09 EC */	stfs f2, 0x9ec(r3)
 /* 8032FE24 0032CD64  D0 63 09 F0 */	stfs f3, 0x9f0(r3)
 /* 8032FE28 0032CD68  D0 83 09 F4 */	stfs f4, 0x9f4(r3)
 /* 8032FE2C 0032CD6C  4E 80 00 20 */	blr 
+.endfn setParam__Q32og9newScreen12TitleMsgWaveFffff
 
-.global __ct__Q32og9newScreen13TitleMsgClashFP9J2DScreenP7J2DPanePc
-__ct__Q32og9newScreen13TitleMsgClashFP9J2DScreenP7J2DPanePc:
+.fn __ct__Q32og9newScreen13TitleMsgClashFP9J2DScreenP7J2DPanePc, global
 /* 8032FE30 0032CD70  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8032FE34 0032CD74  7C 08 02 A6 */	mflr r0
 /* 8032FE38 0032CD78  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1761,17 +1784,17 @@ __ct__Q32og9newScreen13TitleMsgClashFP9J2DScreenP7J2DPanePc:
 /* 8032FF1C 0032CE5C  7C 08 03 A6 */	mtlr r0
 /* 8032FF20 0032CE60  38 21 00 30 */	addi r1, r1, 0x30
 /* 8032FF24 0032CE64  4E 80 00 20 */	blr 
+.endfn __ct__Q32og9newScreen13TitleMsgClashFP9J2DScreenP7J2DPanePc
 
-.global init__Q32og9newScreen13TitleMsgClashFv
-init__Q32og9newScreen13TitleMsgClashFv:
+.fn init__Q32og9newScreen13TitleMsgClashFv, global
 /* 8032FF28 0032CE68  C0 22 FC A8 */	lfs f1, lbl_8051E008@sda21(r2)
 /* 8032FF2C 0032CE6C  C0 02 FD 08 */	lfs f0, lbl_8051E068@sda21(r2)
 /* 8032FF30 0032CE70  D0 23 07 E4 */	stfs f1, 0x7e4(r3)
 /* 8032FF34 0032CE74  D0 03 07 E8 */	stfs f0, 0x7e8(r3)
 /* 8032FF38 0032CE78  4E 80 00 20 */	blr 
+.endfn init__Q32og9newScreen13TitleMsgClashFv
 
-.global update__Q32og9newScreen13TitleMsgClashFv
-update__Q32og9newScreen13TitleMsgClashFv:
+.fn update__Q32og9newScreen13TitleMsgClashFv, global
 /* 8032FF3C 0032CE7C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8032FF40 0032CE80  7C 08 02 A6 */	mflr r0
 /* 8032FF44 0032CE84  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1909,9 +1932,9 @@ update__Q32og9newScreen13TitleMsgClashFv:
 /* 80330144 0032D084  7C 08 03 A6 */	mtlr r0
 /* 80330148 0032D088  38 21 00 80 */	addi r1, r1, 0x80
 /* 8033014C 0032D08C  4E 80 00 20 */	blr 
+.endfn update__Q32og9newScreen13TitleMsgClashFv
 
-.global end__Q32og9newScreen13TitleMsgClashFv
-end__Q32og9newScreen13TitleMsgClashFv:
+.fn end__Q32og9newScreen13TitleMsgClashFv, global
 /* 80330150 0032D090  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80330154 0032D094  7C 08 02 A6 */	mflr r0
 /* 80330158 0032D098  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1941,13 +1964,13 @@ end__Q32og9newScreen13TitleMsgClashFv:
 /* 803301B0 0032D0F0  7C 08 03 A6 */	mtlr r0
 /* 803301B4 0032D0F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803301B8 0032D0F8  4E 80 00 20 */	blr 
+.endfn end__Q32og9newScreen13TitleMsgClashFv
 
-.global start__Q32og9newScreen8TitleMsgFv
-start__Q32og9newScreen8TitleMsgFv:
+.fn start__Q32og9newScreen8TitleMsgFv, weak
 /* 803301BC 0032D0FC  4E 80 00 20 */	blr 
+.endfn start__Q32og9newScreen8TitleMsgFv
 
-.global __dt__Q25efx2d13T2DCvnameChalFv
-__dt__Q25efx2d13T2DCvnameChalFv:
+.fn __dt__Q25efx2d13T2DCvnameChalFv, weak
 /* 803301C0 0032D100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803301C4 0032D104  7C 08 02 A6 */	mflr r0
 /* 803301C8 0032D108  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1983,48 +2006,49 @@ __dt__Q25efx2d13T2DCvnameChalFv:
 /* 80330238 0032D178  7C 08 03 A6 */	mtlr r0
 /* 8033023C 0032D17C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80330240 0032D180  4E 80 00 20 */	blr 
+.endfn __dt__Q25efx2d13T2DCvnameChalFv
 
-.global tagColor__Q25P2JME8AnalyzerFPCvUl
-tagColor__Q25P2JME8AnalyzerFPCvUl:
+.fn tagColor__Q25P2JME8AnalyzerFPCvUl, weak
 /* 80330244 0032D184  38 60 00 01 */	li r3, 1
 /* 80330248 0032D188  4E 80 00 20 */	blr 
+.endfn tagColor__Q25P2JME8AnalyzerFPCvUl
 
-.global tagSize__Q25P2JME8AnalyzerFPCvUl
-tagSize__Q25P2JME8AnalyzerFPCvUl:
+.fn tagSize__Q25P2JME8AnalyzerFPCvUl, weak
 /* 8033024C 0032D18C  38 60 00 01 */	li r3, 1
 /* 80330250 0032D190  4E 80 00 20 */	blr 
+.endfn tagSize__Q25P2JME8AnalyzerFPCvUl
 
-.global tagRuby__Q25P2JME8AnalyzerFPCvUl
-tagRuby__Q25P2JME8AnalyzerFPCvUl:
+.fn tagRuby__Q25P2JME8AnalyzerFPCvUl, weak
 /* 80330254 0032D194  38 60 00 01 */	li r3, 1
 /* 80330258 0032D198  4E 80 00 20 */	blr 
+.endfn tagRuby__Q25P2JME8AnalyzerFPCvUl
 
-.global tagFont__Q25P2JME8AnalyzerFPCvUl
-tagFont__Q25P2JME8AnalyzerFPCvUl:
+.fn tagFont__Q25P2JME8AnalyzerFPCvUl, weak
 /* 8033025C 0032D19C  38 60 00 01 */	li r3, 1
 /* 80330260 0032D1A0  4E 80 00 20 */	blr 
+.endfn tagFont__Q25P2JME8AnalyzerFPCvUl
 
-.global tagImage__Q25P2JME8AnalyzerFUsPCvUl
-tagImage__Q25P2JME8AnalyzerFUsPCvUl:
+.fn tagImage__Q25P2JME8AnalyzerFUsPCvUl, weak
 /* 80330264 0032D1A4  38 60 00 01 */	li r3, 1
 /* 80330268 0032D1A8  4E 80 00 20 */	blr 
+.endfn tagImage__Q25P2JME8AnalyzerFUsPCvUl
 
-.global tagColorEX__Q25P2JME8AnalyzerFUsPCvUl
-tagColorEX__Q25P2JME8AnalyzerFUsPCvUl:
+.fn tagColorEX__Q25P2JME8AnalyzerFUsPCvUl, weak
 /* 8033026C 0032D1AC  38 60 00 01 */	li r3, 1
 /* 80330270 0032D1B0  4E 80 00 20 */	blr 
+.endfn tagColorEX__Q25P2JME8AnalyzerFUsPCvUl
 
-.global tagControl__Q25P2JME8AnalyzerFUsPCvUl
-tagControl__Q25P2JME8AnalyzerFUsPCvUl:
+.fn tagControl__Q25P2JME8AnalyzerFUsPCvUl, weak
 /* 80330274 0032D1B4  38 60 00 01 */	li r3, 1
 /* 80330278 0032D1B8  4E 80 00 20 */	blr 
+.endfn tagControl__Q25P2JME8AnalyzerFUsPCvUl
 
-.global tagPosition__Q25P2JME8AnalyzerFUsPCvUl
-tagPosition__Q25P2JME8AnalyzerFUsPCvUl:
+.fn tagPosition__Q25P2JME8AnalyzerFUsPCvUl, weak
 /* 8033027C 0032D1BC  38 60 00 01 */	li r3, 1
 /* 80330280 0032D1C0  4E 80 00 20 */	blr 
+.endfn tagPosition__Q25P2JME8AnalyzerFUsPCvUl
 
-.global "@8@__dt__Q25efx2d13T2DCvnameChalFv"
-"@8@__dt__Q25efx2d13T2DCvnameChalFv":
+.fn "@8@__dt__Q25efx2d13T2DCvnameChalFv", weak
 /* 80330284 0032D1C4  38 63 FF F8 */	addi r3, r3, -8
 /* 80330288 0032D1C8  4B FF FF 38 */	b __dt__Q25efx2d13T2DCvnameChalFv
+.endfn "@8@__dt__Q25efx2d13T2DCvnameChalFv"

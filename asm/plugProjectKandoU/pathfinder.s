@@ -1,52 +1,58 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047F400
-lbl_8047F400:
+.obj lbl_8047F400, local
 	.asciz "pathfinder"
-	.skip 1
-.global lbl_8047F40C
-lbl_8047F40C:
+.endobj lbl_8047F400
+.balign 4
+.obj lbl_8047F40C, local
 	.asciz "pathfinder.cpp"
-	.skip 1
+.endobj lbl_8047F40C
+.balign 4
+.obj lbl_8047F41C, local
 	.asciz "Oh! no!\n"
-	.skip 3
+.endobj lbl_8047F41C
+.balign 4
+.obj lbl_8047F428, local
 	.asciz "no context is available (clients=%d)!\n"
-	.skip 1
+.endobj lbl_8047F428
+.balign 4
+.obj lbl_8047F450, local
 	.asciz "context state is %d\n"
-	.skip 3
+.endobj lbl_8047F450
+.balign 4
+.obj lbl_8047F468, local
 	.asciz "no such handle %d\n"
-	.skip 1
-.global lbl_8047F47C
-lbl_8047F47C:
+.endobj lbl_8047F468
+.balign 4
+.obj lbl_8047F47C, local
 	.asciz " no handle ! %d\n"
-	.skip 3
+.endobj lbl_8047F47C
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global testPathfinder__4Game
-testPathfinder__4Game:
+.obj testPathfinder__4Game, global
 	.skip 0x4
-.global routeMgr__Q24Game15PathfindContext
-routeMgr__Q24Game15PathfindContext:
+.endobj testPathfinder__4Game
+.obj routeMgr__Q24Game15PathfindContext, global
 	.skip 0x4
+.endobj routeMgr__Q24Game15PathfindContext
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519178
-lbl_80519178:
+.obj lbl_80519178, local
 	.asciz "path"
-	.skip 3
-.global lbl_80519180
-lbl_80519180:
+.endobj lbl_80519178
+.balign 4
+.obj lbl_80519180, local
 	.float 1280000.0
-.global lbl_80519184
-lbl_80519184:
+.endobj lbl_80519180
+.obj lbl_80519184, local
 	.float 0.0
+.endobj lbl_80519184
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game10PathfinderFv
-__ct__Q24Game10PathfinderFv:
+.fn __ct__Q24Game10PathfinderFv, global
 /* 801A35EC 001A052C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A35F0 001A0530  7C 08 02 A6 */	mflr r0
 /* 801A35F4 001A0534  90 01 00 14 */	stw r0, 0x14(r1)
@@ -72,9 +78,9 @@ __ct__Q24Game10PathfinderFv:
 /* 801A3640 001A0580  7C 08 03 A6 */	mtlr r0
 /* 801A3644 001A0584  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A3648 001A0588  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game10PathfinderFv
 
-.global create__Q24Game10PathfinderFiPQ24Game8RouteMgr
-create__Q24Game10PathfinderFiPQ24Game8RouteMgr:
+.fn create__Q24Game10PathfinderFiPQ24Game8RouteMgr, global
 /* 801A364C 001A058C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A3650 001A0590  7C 08 02 A6 */	mflr r0
 /* 801A3654 001A0594  3C C0 80 48 */	lis r6, lbl_8047F400@ha
@@ -126,9 +132,9 @@ create__Q24Game10PathfinderFiPQ24Game8RouteMgr:
 /* 801A3704 001A0644  7C 08 03 A6 */	mtlr r0
 /* 801A3708 001A0648  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A370C 001A064C  4E 80 00 20 */	blr 
+.endfn create__Q24Game10PathfinderFiPQ24Game8RouteMgr
 
-.global __ct__Q24Game12AStarContextFv
-__ct__Q24Game12AStarContextFv:
+.fn __ct__Q24Game12AStarContextFv, weak
 /* 801A3710 001A0650  38 80 00 00 */	li r4, 0
 /* 801A3714 001A0654  38 00 FF FF */	li r0, -1
 /* 801A3718 001A0658  98 83 00 04 */	stb r4, 4(r3)
@@ -137,9 +143,9 @@ __ct__Q24Game12AStarContextFv:
 /* 801A3724 001A0664  90 8D 93 84 */	stw r4, routeMgr__Q24Game15PathfindContext@sda21(r13)
 /* 801A3728 001A0668  90 83 00 60 */	stw r4, 0x60(r3)
 /* 801A372C 001A066C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12AStarContextFv
 
-.global update__Q24Game10PathfinderFv
-update__Q24Game10PathfinderFv:
+.fn update__Q24Game10PathfinderFv, global
 /* 801A3730 001A0670  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A3734 001A0674  7C 08 02 A6 */	mflr r0
 /* 801A3738 001A0678  38 82 AE 18 */	addi r4, r2, lbl_80519178@sda21
@@ -222,9 +228,9 @@ update__Q24Game10PathfinderFv:
 /* 801A3848 001A0788  7C 08 03 A6 */	mtlr r0
 /* 801A384C 001A078C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A3850 001A0790  4E 80 00 20 */	blr 
+.endfn update__Q24Game10PathfinderFv
 
-.global start__Q24Game10PathfinderFRQ24Game15PathfindRequest
-start__Q24Game10PathfinderFRQ24Game15PathfindRequest:
+.fn start__Q24Game10PathfinderFRQ24Game15PathfindRequest, global
 /* 801A3854 001A0794  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A3858 001A0798  7C 08 02 A6 */	mflr r0
 /* 801A385C 001A079C  3C A0 80 48 */	lis r5, lbl_8047F400@ha
@@ -316,9 +322,9 @@ start__Q24Game10PathfinderFRQ24Game15PathfindRequest:
 /* 801A3994 001A08D4  7C 08 03 A6 */	mtlr r0
 /* 801A3998 001A08D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A399C 001A08DC  4E 80 00 20 */	blr 
+.endfn start__Q24Game10PathfinderFRQ24Game15PathfindRequest
 
-.global makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode
-makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode:
+.fn makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode, global
 /* 801A39A0 001A08E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A39A4 001A08E4  7C 08 02 A6 */	mflr r0
 /* 801A39A8 001A08E8  3C C0 80 48 */	lis r6, lbl_8047F400@ha
@@ -375,9 +381,9 @@ makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode:
 /* 801A3A54 001A0994  7C 08 03 A6 */	mtlr r0
 /* 801A3A58 001A0998  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A3A5C 001A099C  4E 80 00 20 */	blr 
+.endfn makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode
 
-.global release__Q24Game10PathfinderFUl
-release__Q24Game10PathfinderFUl:
+.fn release__Q24Game10PathfinderFUl, global
 /* 801A3A60 001A09A0  80 03 00 08 */	lwz r0, 8(r3)
 /* 801A3A64 001A09A4  38 A0 00 00 */	li r5, 0
 /* 801A3A68 001A09A8  7C A6 2B 78 */	mr r6, r5
@@ -410,9 +416,9 @@ release__Q24Game10PathfinderFUl:
 /* 801A3AC4 001A0A04  90 86 00 60 */	stw r4, 0x60(r6)
 /* 801A3AC8 001A0A08  98 06 00 54 */	stb r0, 0x54(r6)
 /* 801A3ACC 001A0A0C  4E 80 00 20 */	blr 
+.endfn release__Q24Game10PathfinderFUl
 
-.global check__Q24Game10PathfinderFUl
-check__Q24Game10PathfinderFUl:
+.fn check__Q24Game10PathfinderFUl, global
 /* 801A3AD0 001A0A10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A3AD4 001A0A14  7C 08 02 A6 */	mflr r0
 /* 801A3AD8 001A0A18  38 A0 00 00 */	li r5, 0
@@ -457,9 +463,9 @@ check__Q24Game10PathfinderFUl:
 /* 801A3B5C 001A0A9C  7C 08 03 A6 */	mtlr r0
 /* 801A3B60 001A0AA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A3B64 001A0AA4  4E 80 00 20 */	blr 
+.endfn check__Q24Game10PathfinderFUl
 
-.global init__Q24Game12AStarContextFPQ24Game8RouteMgri
-init__Q24Game12AStarContextFPQ24Game8RouteMgri:
+.fn init__Q24Game12AStarContextFPQ24Game8RouteMgri, global
 /* 801A3B68 001A0AA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A3B6C 001A0AAC  7C 08 02 A6 */	mflr r0
 /* 801A3B70 001A0AB0  28 04 00 00 */	cmplwi r4, 0
@@ -493,20 +499,20 @@ init__Q24Game12AStarContextFPQ24Game8RouteMgri:
 /* 801A3BD4 001A0B14  7C 08 03 A6 */	mtlr r0
 /* 801A3BD8 001A0B18  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A3BDC 001A0B1C  4E 80 00 20 */	blr 
+.endfn init__Q24Game12AStarContextFPQ24Game8RouteMgri
 
-.global __ct__Q24Game15AStarPathfinderFv
-__ct__Q24Game15AStarPathfinderFv:
+.fn __ct__Q24Game15AStarPathfinderFv, global
 /* 801A3BE0 001A0B20  38 00 00 00 */	li r0, 0
 /* 801A3BE4 001A0B24  90 03 00 00 */	stw r0, 0(r3)
 /* 801A3BE8 001A0B28  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15AStarPathfinderFv
 
-.global setContext__Q24Game15AStarPathfinderFPQ24Game12AStarContext
-setContext__Q24Game15AStarPathfinderFPQ24Game12AStarContext:
+.fn setContext__Q24Game15AStarPathfinderFPQ24Game12AStarContext, global
 /* 801A3BEC 001A0B2C  90 83 00 00 */	stw r4, 0(r3)
 /* 801A3BF0 001A0B30  4E 80 00 20 */	blr 
+.endfn setContext__Q24Game15AStarPathfinderFPQ24Game12AStarContext
 
-.global initsearch__Q24Game15AStarPathfinderFPQ24Game12AStarContext
-initsearch__Q24Game15AStarPathfinderFPQ24Game12AStarContext:
+.fn initsearch__Q24Game15AStarPathfinderFPQ24Game12AStarContext, global
 /* 801A3BF4 001A0B34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A3BF8 001A0B38  7C 08 02 A6 */	mflr r0
 /* 801A3BFC 001A0B3C  38 C0 00 00 */	li r6, 0
@@ -611,9 +617,9 @@ initsearch__Q24Game15AStarPathfinderFPQ24Game12AStarContext:
 /* 801A3D64 001A0CA4  7C 08 03 A6 */	mtlr r0
 /* 801A3D68 001A0CA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A3D6C 001A0CAC  4E 80 00 20 */	blr 
+.endfn initsearch__Q24Game15AStarPathfinderFPQ24Game12AStarContext
 
-.global search__Q24Game15AStarPathfinderFPQ24Game12AStarContextiPPQ24Game8PathNode
-search__Q24Game15AStarPathfinderFPQ24Game12AStarContextiPPQ24Game8PathNode:
+.fn search__Q24Game15AStarPathfinderFPQ24Game12AStarContextiPPQ24Game8PathNode, global
 /* 801A3D70 001A0CB0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801A3D74 001A0CB4  7C 08 02 A6 */	mflr r0
 /* 801A3D78 001A0CB8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -965,9 +971,9 @@ search__Q24Game15AStarPathfinderFPQ24Game12AStarContextiPPQ24Game8PathNode:
 /* 801A421C 001A115C  7C 08 03 A6 */	mtlr r0
 /* 801A4220 001A1160  38 21 00 40 */	addi r1, r1, 0x40
 /* 801A4224 001A1164  4E 80 00 20 */	blr 
+.endfn search__Q24Game15AStarPathfinderFPQ24Game12AStarContextiPPQ24Game8PathNode
 
-.global estimate__Q24Game15AStarPathfinderFss
-estimate__Q24Game15AStarPathfinderFss:
+.fn estimate__Q24Game15AStarPathfinderFss, global
 /* 801A4228 001A1168  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A422C 001A116C  7C 08 02 A6 */	mflr r0
 /* 801A4230 001A1170  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1015,9 +1021,9 @@ estimate__Q24Game15AStarPathfinderFss:
 /* 801A42D0 001A1210  7C 08 03 A6 */	mtlr r0
 /* 801A42D4 001A1214  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A42D8 001A1218  4E 80 00 20 */	blr 
+.endfn estimate__Q24Game15AStarPathfinderFss
 
-.global makepath__Q24Game12AStarContextFPQ24Game8PathNodePPQ24Game8PathNode
-makepath__Q24Game12AStarContextFPQ24Game8PathNodePPQ24Game8PathNode:
+.fn makepath__Q24Game12AStarContextFPQ24Game8PathNodePPQ24Game8PathNode, global
 /* 801A42DC 001A121C  80 C4 00 08 */	lwz r6, 8(r4)
 /* 801A42E0 001A1220  38 60 00 01 */	li r3, 1
 /* 801A42E4 001A1224  48 00 00 14 */	b .L_801A42F8
@@ -1033,3 +1039,4 @@ makepath__Q24Game12AStarContextFPQ24Game8PathNodePPQ24Game8PathNode:
 /* 801A4304 001A1244  4D 82 00 20 */	beqlr 
 /* 801A4308 001A1248  90 85 00 00 */	stw r4, 0(r5)
 /* 801A430C 001A124C  4E 80 00 20 */	blr 
+.endfn makepath__Q24Game12AStarContextFPQ24Game8PathNodePPQ24Game8PathNode

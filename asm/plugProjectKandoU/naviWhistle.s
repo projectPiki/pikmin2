@@ -1,46 +1,45 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805188E0
-lbl_805188E0:
-	.4byte 0x41200000
-.global lbl_805188E4
-lbl_805188E4:
-	.4byte 0x00000000
-.global lbl_805188E8
-lbl_805188E8:
+.obj lbl_805188E0, local
+	.float 10.0
+.endobj lbl_805188E0
+.obj lbl_805188E4, local
+	.float 0.0
+.endobj lbl_805188E4
+.obj lbl_805188E8, local
 	.float 0.5
-.global lbl_805188EC
-lbl_805188EC:
-	.4byte 0x43A2F983
-.global lbl_805188F0
-lbl_805188F0:
-	.4byte 0xC3A2F983
-.global lbl_805188F4
-lbl_805188F4:
-	.4byte 0x47FA0000
-.global lbl_805188F8
-lbl_805188F8:
-	.4byte 0xC7FA0000
-.global lbl_805188FC
-lbl_805188FC:
+.endobj lbl_805188E8
+.obj lbl_805188EC, local
+	.float 325.9493
+.endobj lbl_805188EC
+.obj lbl_805188F0, local
+	.float -325.9493
+.endobj lbl_805188F0
+.obj lbl_805188F4, local
+	.float 128000.0
+.endobj lbl_805188F4
+.obj lbl_805188F8, local
+	.float -128000.0
+.endobj lbl_805188F8
+.obj lbl_805188FC, local
 	.float 1.0
-.global lbl_80518900
-lbl_80518900:
-	.4byte 0x437F0000
-.global lbl_80518904
-lbl_80518904:
-	.4byte 0xC32F0000
-.global lbl_80518908
-lbl_80518908:
-	.4byte 0x42F00000
-.global lbl_8051890C
-lbl_8051890C:
-	.4byte 0xC2DC0000
+.endobj lbl_805188FC
+.obj lbl_80518900, local
+	.float 255.0
+.endobj lbl_80518900
+.obj lbl_80518904, local
+	.float -175.0
+.endobj lbl_80518904
+.obj lbl_80518908, local
+	.float 120.0
+.endobj lbl_80518908
+.obj lbl_8051890C, local
+	.float -110.0
+.endobj lbl_8051890C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game11NaviWhistleFPQ24Game4Navi
-__ct__Q24Game11NaviWhistleFPQ24Game4Navi:
+.fn __ct__Q24Game11NaviWhistleFPQ24Game4Navi, global
 /* 80165088 00161FC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016508C 00161FCC  7C 08 02 A6 */	mflr r0
 /* 80165090 00161FD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -54,9 +53,9 @@ __ct__Q24Game11NaviWhistleFPQ24Game4Navi:
 /* 801650B0 00161FF0  7C 08 03 A6 */	mtlr r0
 /* 801650B4 00161FF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801650B8 00161FF8  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11NaviWhistleFPQ24Game4Navi
 
-.global init__Q24Game11NaviWhistleFv
-init__Q24Game11NaviWhistleFv:
+.fn init__Q24Game11NaviWhistleFv, global
 /* 801650BC 00161FFC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801650C0 00162000  7C 08 02 A6 */	mflr r0
 /* 801650C4 00162004  38 A0 00 00 */	li r5, 0
@@ -134,9 +133,9 @@ init__Q24Game11NaviWhistleFv:
 /* 801651D8 00162118  7C 08 03 A6 */	mtlr r0
 /* 801651DC 0016211C  38 21 00 30 */	addi r1, r1, 0x30
 /* 801651E0 00162120  4E 80 00 20 */	blr 
+.endfn init__Q24Game11NaviWhistleFv
 
-.global updatePosition__Q24Game11NaviWhistleFv
-updatePosition__Q24Game11NaviWhistleFv:
+.fn updatePosition__Q24Game11NaviWhistleFv, global
 /* 801651E4 00162124  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 801651E8 00162128  7C 08 02 A6 */	mflr r0
 /* 801651EC 0016212C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -239,9 +238,9 @@ updatePosition__Q24Game11NaviWhistleFv:
 /* 80165368 001622A8  7C 08 03 A6 */	mtlr r0
 /* 8016536C 001622AC  38 21 00 60 */	addi r1, r1, 0x60
 /* 80165370 001622B0  4E 80 00 20 */	blr 
+.endfn updatePosition__Q24Game11NaviWhistleFv
 
-.global start__Q24Game11NaviWhistleFv
-start__Q24Game11NaviWhistleFv:
+.fn start__Q24Game11NaviWhistleFv, global
 /* 80165374 001622B4  38 00 00 00 */	li r0, 0
 /* 80165378 001622B8  98 03 00 30 */	stb r0, 0x30(r3)
 /* 8016537C 001622BC  A0 03 00 28 */	lhz r0, 0x28(r3)
@@ -275,9 +274,9 @@ start__Q24Game11NaviWhistleFv:
 /* 801653E0 00162320  C0 04 03 40 */	lfs f0, 0x340(r4)
 /* 801653E4 00162324  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 801653E8 00162328  4E 80 00 20 */	blr 
+.endfn start__Q24Game11NaviWhistleFv
 
-.global stop__Q24Game11NaviWhistleFv
-stop__Q24Game11NaviWhistleFv:
+.fn stop__Q24Game11NaviWhistleFv, global
 /* 801653EC 0016232C  A0 03 00 28 */	lhz r0, 0x28(r3)
 /* 801653F0 00162330  2C 00 00 01 */	cmpwi r0, 1
 /* 801653F4 00162334  41 82 00 10 */	beq .L_80165404
@@ -292,16 +291,16 @@ stop__Q24Game11NaviWhistleFv:
 /* 80165414 00162354  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 80165418 00162358  98 03 00 30 */	stb r0, 0x30(r3)
 /* 8016541C 0016235C  4E 80 00 20 */	blr 
+.endfn stop__Q24Game11NaviWhistleFv
 
-.global timeout__Q24Game11NaviWhistleFv
-timeout__Q24Game11NaviWhistleFv:
+.fn timeout__Q24Game11NaviWhistleFv, global
 /* 80165420 00162360  A0 03 00 28 */	lhz r0, 0x28(r3)
 /* 80165424 00162364  7C 00 00 34 */	cntlzw r0, r0
 /* 80165428 00162368  54 03 D9 7E */	srwi r3, r0, 5
 /* 8016542C 0016236C  4E 80 00 20 */	blr 
+.endfn timeout__Q24Game11NaviWhistleFv
 
-.global setFaceDir__Q24Game11NaviWhistleFf
-setFaceDir__Q24Game11NaviWhistleFf:
+.fn setFaceDir__Q24Game11NaviWhistleFf, global
 /* 80165430 00162370  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80165434 00162374  C0 63 00 00 */	lfs f3, 0(r3)
 /* 80165438 00162378  C0 43 00 04 */	lfs f2, 4(r3)
@@ -368,9 +367,9 @@ setFaceDir__Q24Game11NaviWhistleFf:
 /* 80165518 00162458  D0 43 00 08 */	stfs f2, 8(r3)
 /* 8016551C 0016245C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80165520 00162460  4E 80 00 20 */	blr 
+.endfn setFaceDir__Q24Game11NaviWhistleFf
 
-.global updateWhistle__Q24Game11NaviWhistleFv
-updateWhistle__Q24Game11NaviWhistleFv:
+.fn updateWhistle__Q24Game11NaviWhistleFv, global
 /* 80165524 00162464  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80165528 00162468  7C 08 02 A6 */	mflr r0
 /* 8016552C 0016246C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -504,9 +503,9 @@ updateWhistle__Q24Game11NaviWhistleFv:
 /* 8016570C 0016264C  7C 08 03 A6 */	mtlr r0
 /* 80165710 00162650  38 21 00 30 */	addi r1, r1, 0x30
 /* 80165714 00162654  4E 80 00 20 */	blr 
+.endfn updateWhistle__Q24Game11NaviWhistleFv
 
-.global "update__Q24Game11NaviWhistleFR10Vector3<f>b"
-"update__Q24Game11NaviWhistleFR10Vector3<f>b":
+.fn "update__Q24Game11NaviWhistleFR10Vector3<f>b", global
 /* 80165718 00162658  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016571C 0016265C  7C 08 02 A6 */	mflr r0
 /* 80165720 00162660  90 01 00 24 */	stw r0, 0x24(r1)
@@ -634,3 +633,4 @@ updateWhistle__Q24Game11NaviWhistleFv:
 /* 801658E0 00162820  7C 08 03 A6 */	mtlr r0
 /* 801658E4 00162824  38 21 00 20 */	addi r1, r1, 0x20
 /* 801658E8 00162828  4E 80 00 20 */	blr 
+.endfn "update__Q24Game11NaviWhistleFR10Vector3<f>b"

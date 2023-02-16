@@ -5,40 +5,46 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047E2A0:
+.obj lbl_8047E2A0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047E2A0
 .balign 4
-lbl_8047E2AC:
+.obj lbl_8047E2AC, local
 	.asciz "baseHIOSection"
+.endobj lbl_8047E2AC
 .balign 4
-lbl_8047E2BC:
+.obj lbl_8047E2BC, local
 	.asciz "BaseHIOSection"
+.endobj lbl_8047E2BC
 .balign 4
-lbl_8047E2CC:
+.obj lbl_8047E2CC, local
 	.asciz "baseHIOSection.cpp"
+.endobj lbl_8047E2CC
 .balign 4
-lbl_8047E2E0:
+.obj lbl_8047E2E0, local
 	.asciz "fragmentation occurred : after sound\n"
+.endobj lbl_8047E2E0
 .balign 4
-lbl_8047E308:
+.obj lbl_8047E308, local
 	.asciz "P2Assert"
+.endobj lbl_8047E308
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q24Game11HIORootNode
-__vt__Q24Game11HIORootNode:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q24Game11HIORootNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game11HIORootNodeFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q24Game14BaseHIOSection
-__vt__Q24Game14BaseHIOSection:
+.endobj __vt__Q24Game11HIORootNode
+.obj __vt__Q24Game14BaseHIOSection, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game14BaseHIOSectionFv
@@ -59,23 +65,26 @@ __vt__Q24Game14BaseHIOSection:
 	.4byte isFinishable__7SectionFv
 	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
 	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
+.endobj __vt__Q24Game14BaseHIOSection
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805188D8:
+.obj lbl_805188D8, local
 	.asciz "system"
+.endobj lbl_805188D8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
-.global __ct__Q24Game14BaseHIOSectionFP7JKRHeap
-__ct__Q24Game14BaseHIOSectionFP7JKRHeap:
+.fn __ct__Q24Game14BaseHIOSectionFP7JKRHeap, global
 /* 80164BF0 00161B30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80164BF4 00161B34  7C 08 02 A6 */	mflr r0
 /* 80164BF8 00161B38  7C 85 23 78 */	mr r5, r4
@@ -126,9 +135,9 @@ __ct__Q24Game14BaseHIOSectionFP7JKRHeap:
 /* 80164CA4 00161BE4  7C 08 03 A6 */	mtlr r0
 /* 80164CA8 00161BE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80164CAC 00161BEC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game14BaseHIOSectionFP7JKRHeap
 .else
-.global __ct__Q24Game14BaseHIOSectionFP7JKRHeap
-__ct__Q24Game14BaseHIOSectionFP7JKRHeap:
+.fn __ct__Q24Game14BaseHIOSectionFP7JKRHeap, global
 /* 80164BF0 00161B30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80164BF4 00161B34  7C 08 02 A6 */	mflr r0
 /* 80164BF8 00161B38  7C 85 23 78 */	mr r5, r4
@@ -179,11 +188,11 @@ __ct__Q24Game14BaseHIOSectionFP7JKRHeap:
 /* 80164CA4 00161BE4  7C 08 03 A6 */	mtlr r0
 /* 80164CA8 00161BE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80164CAC 00161BEC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game14BaseHIOSectionFP7JKRHeap
 .endif
 
 .if version == 1
-.global __dt__Q24Game14BaseHIOSectionFv
-__dt__Q24Game14BaseHIOSectionFv:
+.fn __dt__Q24Game14BaseHIOSectionFv, global
 /* 80164CB0 00161BF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164CB4 00161BF4  7C 08 02 A6 */	mflr r0
 /* 80164CB8 00161BF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -236,9 +245,9 @@ __dt__Q24Game14BaseHIOSectionFv:
 /* 80164D68 00161CA8  7C 08 03 A6 */	mtlr r0
 /* 80164D6C 00161CAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80164D70 00161CB0  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game14BaseHIOSectionFv
 .else
-.global __dt__Q24Game14BaseHIOSectionFv
-__dt__Q24Game14BaseHIOSectionFv:
+.fn __dt__Q24Game14BaseHIOSectionFv, global
 /* 80164CB0 00161BF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164CB4 00161BF4  7C 08 02 A6 */	mflr r0
 /* 80164CB8 00161BF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -291,10 +300,10 @@ __dt__Q24Game14BaseHIOSectionFv:
 /* 80164D68 00161CA8  7C 08 03 A6 */	mtlr r0
 /* 80164D6C 00161CAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80164D70 00161CB0  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game14BaseHIOSectionFv
 .endif
 
-.global __dt__Q24Game11HIORootNodeFv
-__dt__Q24Game11HIORootNodeFv: # weak function
+.fn __dt__Q24Game11HIORootNodeFv, weak
 /* 80164D74 00161CB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164D78 00161CB8  7C 08 02 A6 */	mflr r0
 /* 80164D7C 00161CBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -320,9 +329,9 @@ __dt__Q24Game11HIORootNodeFv: # weak function
 /* 80164DC8 00161D08  7C 08 03 A6 */	mtlr r0
 /* 80164DCC 00161D0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80164DD0 00161D10  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game11HIORootNodeFv
 
-.global setDisplay__Q24Game14BaseHIOSectionFP10JFWDisplayi
-setDisplay__Q24Game14BaseHIOSectionFP10JFWDisplayi:
+.fn setDisplay__Q24Game14BaseHIOSectionFP10JFWDisplayi, global
 /* 80164DD4 00161D14  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80164DD8 00161D18  7C 08 02 A6 */	mflr r0
 /* 80164DDC 00161D1C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -410,10 +419,10 @@ setDisplay__Q24Game14BaseHIOSectionFP10JFWDisplayi:
 /* 80164F18 00161E58  7C 08 03 A6 */	mtlr r0
 /* 80164F1C 00161E5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80164F20 00161E60  4E 80 00 20 */	blr 
+.endfn setDisplay__Q24Game14BaseHIOSectionFP10JFWDisplayi
 
 .if version == 1
-.global initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
-initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode:
+.fn initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode, global
 /* 80164F24 00161E64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164F28 00161E68  7C 08 02 A6 */	mflr r0
 /* 80164F2C 00161E6C  28 04 00 00 */	cmplwi r4, 0
@@ -450,9 +459,9 @@ initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode:
 /* 80164F98 00161ED8  7C 08 03 A6 */	mtlr r0
 /* 80164F9C 00161EDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80164FA0 00161EE0  4E 80 00 20 */	blr 
+.endfn initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
 .else
-.global initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
-initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode:
+.fn initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode, global
 /* 80164F24 00161E64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164F28 00161E68  7C 08 02 A6 */	mflr r0
 /* 80164F2C 00161E6C  28 04 00 00 */	cmplwi r4, 0
@@ -489,20 +498,20 @@ initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode:
 /* 80164F98 00161ED8  7C 08 03 A6 */	mtlr r0
 /* 80164F9C 00161EDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80164FA0 00161EE0  4E 80 00 20 */	blr 
+.endfn initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
 .endif
 
-.global createScreenRootNode__Q24Game14BaseHIOSectionFv
-createScreenRootNode__Q24Game14BaseHIOSectionFv:
+.fn createScreenRootNode__Q24Game14BaseHIOSectionFv, global
 /* 80164FA4 00161EE4  4E 80 00 20 */	blr 
+.endfn createScreenRootNode__Q24Game14BaseHIOSectionFv
 
-.global doUpdate__Q24Game14BaseHIOSectionFv
-doUpdate__Q24Game14BaseHIOSectionFv:
+.fn doUpdate__Q24Game14BaseHIOSectionFv, global
 /* 80164FA8 00161EE8  38 60 00 01 */	li r3, 1
 /* 80164FAC 00161EEC  4E 80 00 20 */	blr 
+.endfn doUpdate__Q24Game14BaseHIOSectionFv
 
 .if version == 1
-.global addGenNode__Q24Game14BaseHIOSectionFP5CNode
-addGenNode__Q24Game14BaseHIOSectionFP5CNode:
+.fn addGenNode__Q24Game14BaseHIOSectionFP5CNode, global
 /* 80164FB0 00161EF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164FB4 00161EF4  7C 08 02 A6 */	mflr r0
 /* 80164FB8 00161EF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -512,9 +521,9 @@ addGenNode__Q24Game14BaseHIOSectionFP5CNode:
 /* 80164FC8 00161F08  7C 08 03 A6 */	mtlr r0
 /* 80164FCC 00161F0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80164FD0 00161F10  4E 80 00 20 */	blr 
+.endfn addGenNode__Q24Game14BaseHIOSectionFP5CNode
 .else
-.global addGenNode__Q24Game14BaseHIOSectionFP5CNode
-addGenNode__Q24Game14BaseHIOSectionFP5CNode:
+.fn addGenNode__Q24Game14BaseHIOSectionFP5CNode, global
 /* 80164FB0 00161EF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164FB4 00161EF4  7C 08 02 A6 */	mflr r0
 /* 80164FB8 00161EF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -524,14 +533,14 @@ addGenNode__Q24Game14BaseHIOSectionFP5CNode:
 /* 80164FC8 00161F08  7C 08 03 A6 */	mtlr r0
 /* 80164FCC 00161F0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80164FD0 00161F10  4E 80 00 20 */	blr 
+.endfn addGenNode__Q24Game14BaseHIOSectionFP5CNode
 .endif
 
-.global refreshHIO__Q24Game14BaseHIOSectionFv
-refreshHIO__Q24Game14BaseHIOSectionFv:
+.fn refreshHIO__Q24Game14BaseHIOSectionFv, global
 /* 80164FD4 00161F14  4E 80 00 20 */	blr 
+.endfn refreshHIO__Q24Game14BaseHIOSectionFv
 
-.global __ct__Q24Game11HIORootNodeFP7Section
-__ct__Q24Game11HIORootNodeFP7Section:
+.fn __ct__Q24Game11HIORootNodeFP7Section, global
 /* 80164FD8 00161F18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164FDC 00161F1C  7C 08 02 A6 */	mflr r0
 /* 80164FE0 00161F20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -553,9 +562,9 @@ __ct__Q24Game11HIORootNodeFP7Section:
 /* 80165020 00161F60  7C 08 03 A6 */	mtlr r0
 /* 80165024 00161F64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80165028 00161F68  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11HIORootNodeFP7Section
 
-.global drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
-drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode: # weak function
+.fn drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode, weak
 /* 8016502C 00161F6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80165030 00161F70  7C 08 02 A6 */	mflr r0
 /* 80165034 00161F74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -567,13 +576,14 @@ drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode: # weak function
 /* 8016504C 00161F8C  7C 08 03 A6 */	mtlr r0
 /* 80165050 00161F90  38 21 00 10 */	addi r1, r1, 0x10
 /* 80165054 00161F94  4E 80 00 20 */	blr 
+.endfn drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
 
-.global forceFinish__7SectionFv
-forceFinish__7SectionFv: # weak function
+.fn forceFinish__7SectionFv, weak
 /* 80165058 00161F98  38 60 00 00 */	li r3, 0
 /* 8016505C 00161F9C  4E 80 00 20 */	blr 
+.endfn forceFinish__7SectionFv
 
-__sinit_baseHIOSection_cpp: # static initializer
+.fn __sinit_baseHIOSection_cpp, local
 /* 80165060 00161FA0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80165064 00161FA4  38 00 FF FF */	li r0, -1
 /* 80165068 00161FA8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -584,3 +594,4 @@ __sinit_baseHIOSection_cpp: # static initializer
 /* 8016507C 00161FBC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80165080 00161FC0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80165084 00161FC4  4E 80 00 20 */	blr 
+.endfn __sinit_baseHIOSection_cpp

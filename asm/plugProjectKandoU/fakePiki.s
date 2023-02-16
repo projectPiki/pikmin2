@@ -262,8 +262,7 @@ lbl_80518324:
 	.float 32768.0
 .balign 8
 lbl_80518328:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .balign 4
 lbl_80518330:
 	.asciz "doa1"

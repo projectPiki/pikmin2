@@ -1,16 +1,16 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D738
-lbl_8051D738:
-	.4byte 0x00000000
-.global lbl_8051D73C
-lbl_8051D73C:
+.obj lbl_8051D738, local
+	.float 0.0
+.endobj lbl_8051D738
+.balign 4
+.obj lbl_8051D73C, local
 	.float 0.5
+.endobj lbl_8051D73C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global CopyPicture__Q22og6ScreenFP12J2DPictureExUx
-CopyPicture__Q22og6ScreenFP12J2DPictureExUx:
+.fn CopyPicture__Q22og6ScreenFP12J2DPictureExUx, global
 /* 8030E958 0030B898  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8030E95C 0030B89C  7C 08 02 A6 */	mflr r0
 /* 8030E960 0030B8A0  38 80 00 00 */	li r4, 0
@@ -203,9 +203,9 @@ CopyPicture__Q22og6ScreenFP12J2DPictureExUx:
 /* 8030EC44 0030BB84  7C 08 03 A6 */	mtlr r0
 /* 8030EC48 0030BB88  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8030EC4C 0030BB8C  4E 80 00 20 */	blr 
+.endfn CopyPicture__Q22og6ScreenFP12J2DPictureExUx
 
-.global CopyPictureToPane__Q22og6ScreenFP12J2DPictureExP7J2DPaneffUx
-CopyPictureToPane__Q22og6ScreenFP12J2DPictureExP7J2DPaneffUx:
+.fn CopyPictureToPane__Q22og6ScreenFP12J2DPictureExP7J2DPaneffUx, global
 /* 8030EC50 0030BB90  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 8030EC54 0030BB94  7C 08 02 A6 */	mflr r0
 /* 8030EC58 0030BB98  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -414,3 +414,4 @@ CopyPictureToPane__Q22og6ScreenFP12J2DPictureExP7J2DPaneffUx:
 /* 8030EF7C 0030BEBC  7C 08 03 A6 */	mtlr r0
 /* 8030EF80 0030BEC0  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 8030EF84 0030BEC4  4E 80 00 20 */	blr 
+.endfn CopyPictureToPane__Q22og6ScreenFP12J2DPictureExP7J2DPaneffUx

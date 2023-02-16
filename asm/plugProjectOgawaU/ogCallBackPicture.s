@@ -1,34 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048F6B0:
-	.4byte 0x7467615F
-	.4byte 0x33645F61
-	.4byte 0x6E696D5F
-	.4byte 0x6F746168
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-lbl_8048F6C8:
-	.4byte 0x7467615F
-	.4byte 0x33645F61
-	.4byte 0x6E696D5F
-	.4byte 0x6F746168
-	.4byte 0x2E627470
-	.4byte 0x00000000
-lbl_8048F6E0:
-	.4byte 0x7467615F
-	.4byte 0x33645F61
-	.4byte 0x6E696D5F
-	.4byte 0x6F746168
-	.4byte 0x5F33322E
-	.4byte 0x626C6F00
-lbl_8048F6F8:
-	.4byte 0x7467615F
-	.4byte 0x33645F61
-	.4byte 0x6E696D5F
-	.4byte 0x6F746168
-	.4byte 0x5F33322E
-	.4byte 0x62747000
+.obj lbl_8048F6B0, local
+	.asciz "tga_3d_anim_otah.blo"
+.endobj lbl_8048F6B0
+.balign 4
+.obj lbl_8048F6C8, local
+	.asciz "tga_3d_anim_otah.btp"
+.endobj lbl_8048F6C8
+.balign 4
+.obj lbl_8048F6E0, local
+	.asciz "tga_3d_anim_otah_32.blo"
+.endobj lbl_8048F6E0
+.balign 4
+.obj lbl_8048F6F8, local
+	.asciz "tga_3d_anim_otah_32.btp"
+.endobj lbl_8048F6F8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -44,20 +31,24 @@ lbl_8048F6F8:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051DF60:
-	.4byte 0x00000000
-lbl_8051DF64:
+.obj lbl_8051DF60, local
+	.float 0.0
+.endobj lbl_8051DF60
+.obj lbl_8051DF64, local
 	.float 0.25
-lbl_8051DF68:
-	.4byte 0x41A80000
-lbl_8051DF6C:
-	.4byte 0x42200000
-lbl_8051DF70:
-	.4byte 0x41A00000
+.endobj lbl_8051DF64
+.obj lbl_8051DF68, local
+	.float 21.0
+.endobj lbl_8051DF68
+.obj lbl_8051DF6C, local
+	.float 40.0
+.endobj lbl_8051DF6C
+.obj lbl_8051DF70, local
+	.float 20.0
+.endobj lbl_8051DF70
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global update__Q32og6Screen16CallBack_PictureFv
-update__Q32og6Screen16CallBack_PictureFv:
+.fn update__Q32og6Screen16CallBack_PictureFv, global
 /* 8032CE18 00329D58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032CE1C 00329D5C  7C 08 02 A6 */	mflr r0
 /* 8032CE20 00329D60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -84,9 +75,9 @@ update__Q32og6Screen16CallBack_PictureFv:
 /* 8032CE6C 00329DAC  7C 08 03 A6 */	mtlr r0
 /* 8032CE70 00329DB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032CE74 00329DB4  4E 80 00 20 */	blr 
+.endfn update__Q32og6Screen16CallBack_PictureFv
 
-.global draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext
-draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext:
+.fn draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext, global
 /* 8032CE78 00329DB8  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 8032CE7C 00329DBC  7C 08 02 A6 */	mflr r0
 /* 8032CE80 00329DC0  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -263,9 +254,9 @@ draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext:
 /* 8032D128 0032A068  7C 08 03 A6 */	mtlr r0
 /* 8032D12C 0032A06C  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 8032D130 0032A070  4E 80 00 20 */	blr 
+.endfn draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext
 
-.global setCallBack_3DStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
-setCallBack_3DStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx:
+.fn setCallBack_3DStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx, global
 /* 8032D134 0032A074  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032D138 0032A078  7C 08 02 A6 */	mflr r0
 /* 8032D13C 0032A07C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -340,9 +331,9 @@ setCallBack_3DStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx:
 /* 8032D244 0032A184  7C 08 03 A6 */	mtlr r0
 /* 8032D248 0032A188  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032D24C 0032A18C  4E 80 00 20 */	blr 
+.endfn setCallBack_3DStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
 
-.global setCallBack_3DStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
-setCallBack_3DStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx:
+.fn setCallBack_3DStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx, global
 /* 8032D250 0032A190  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032D254 0032A194  7C 08 02 A6 */	mflr r0
 /* 8032D258 0032A198  90 01 00 24 */	stw r0, 0x24(r1)
@@ -417,16 +408,16 @@ setCallBack_3DStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx:
 /* 8032D360 0032A2A0  7C 08 03 A6 */	mtlr r0
 /* 8032D364 0032A2A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032D368 0032A2A8  4E 80 00 20 */	blr 
+.endfn setCallBack_3DStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
 
-.global __ct__Q32og6Screen12StickAnimMgrFPQ32og6Screen16CallBack_Picture
-__ct__Q32og6Screen12StickAnimMgrFPQ32og6Screen16CallBack_Picture:
+.fn __ct__Q32og6Screen12StickAnimMgrFPQ32og6Screen16CallBack_Picture, global
 /* 8032D36C 0032A2AC  90 83 00 00 */	stw r4, 0(r3)
 /* 8032D370 0032A2B0  38 00 00 00 */	li r0, 0
 /* 8032D374 0032A2B4  90 03 00 04 */	stw r0, 4(r3)
 /* 8032D378 0032A2B8  4E 80 00 20 */	blr 
+.endfn __ct__Q32og6Screen12StickAnimMgrFPQ32og6Screen16CallBack_Picture
 
-.global stickUp__Q32og6Screen12StickAnimMgrFv
-stickUp__Q32og6Screen12StickAnimMgrFv:
+.fn stickUp__Q32og6Screen12StickAnimMgrFv, global
 /* 8032D37C 0032A2BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032D380 0032A2C0  7C 08 02 A6 */	mflr r0
 /* 8032D384 0032A2C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -486,9 +477,9 @@ stickUp__Q32og6Screen12StickAnimMgrFv:
 /* 8032D444 0032A384  7C 08 03 A6 */	mtlr r0
 /* 8032D448 0032A388  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032D44C 0032A38C  4E 80 00 20 */	blr 
+.endfn stickUp__Q32og6Screen12StickAnimMgrFv
 
-.global stickDown__Q32og6Screen12StickAnimMgrFv
-stickDown__Q32og6Screen12StickAnimMgrFv:
+.fn stickDown__Q32og6Screen12StickAnimMgrFv, global
 /* 8032D450 0032A390  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032D454 0032A394  7C 08 02 A6 */	mflr r0
 /* 8032D458 0032A398  90 01 00 14 */	stw r0, 0x14(r1)
@@ -554,9 +545,9 @@ stickDown__Q32og6Screen12StickAnimMgrFv:
 /* 8032D52C 0032A46C  7C 08 03 A6 */	mtlr r0
 /* 8032D530 0032A470  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032D534 0032A474  4E 80 00 20 */	blr 
+.endfn stickDown__Q32og6Screen12StickAnimMgrFv
 
-.global stickUpDown__Q32og6Screen12StickAnimMgrFv
-stickUpDown__Q32og6Screen12StickAnimMgrFv:
+.fn stickUpDown__Q32og6Screen12StickAnimMgrFv, global
 /* 8032D538 0032A478  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032D53C 0032A47C  7C 08 02 A6 */	mflr r0
 /* 8032D540 0032A480  90 01 00 14 */	stw r0, 0x14(r1)
@@ -609,9 +600,9 @@ stickUpDown__Q32og6Screen12StickAnimMgrFv:
 /* 8032D5E8 0032A528  7C 08 03 A6 */	mtlr r0
 /* 8032D5EC 0032A52C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032D5F0 0032A530  4E 80 00 20 */	blr 
+.endfn stickUpDown__Q32og6Screen12StickAnimMgrFv
 
-.global __dt__Q32og6Screen16CallBack_PictureFv
-__dt__Q32og6Screen16CallBack_PictureFv:
+.fn __dt__Q32og6Screen16CallBack_PictureFv, weak
 /* 8032D5F4 0032A534  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032D5F8 0032A538  7C 08 02 A6 */	mflr r0
 /* 8032D5FC 0032A53C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -650,3 +641,4 @@ __dt__Q32og6Screen16CallBack_PictureFv:
 /* 8032D678 0032A5B8  7C 08 03 A6 */	mtlr r0
 /* 8032D67C 0032A5BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032D680 0032A5C0  4E 80 00 20 */	blr 
+.endfn __dt__Q32og6Screen16CallBack_PictureFv

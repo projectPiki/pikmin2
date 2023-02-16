@@ -5,17 +5,18 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048E700:
+.obj lbl_8048E700, local
 	.asciz "ogObjCourseName.cpp"
+.endobj lbl_8048E700
 .balign 8
-lbl_8048E718:
+.obj lbl_8048E718, local
 	.ascii "nuki_tex"
 	.ascii "efect_00"
 	.ascii "efect_01"
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.8byte 0
+.endobj lbl_8048E718
 # the above are an array of four ID64 elements
-lbl_8048E738: # Shift-JIS
+.obj lbl_8048E738, local # Shift-JIS
 	.4byte 0x45525221
 	.4byte 0x20696E20
 	.4byte 0x4F626A43
@@ -25,17 +26,19 @@ lbl_8048E738: # Shift-JIS
 	.4byte 0x65617465
 	.4byte 0x8EB89473
 	.4byte 0x81490A00
+.endobj lbl_8048E738
 .balign 4
-lbl_8048E75C:
+.obj lbl_8048E75C, local
 	.asciz "screenObj.h"
+.endobj lbl_8048E75C
 .balign 4
-lbl_8048E768:
+.obj lbl_8048E768, local
 	.asciz "P2Assert"
+.endobj lbl_8048E768
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q32og9newScreen13ObjCourseName
-__vt__Q32og9newScreen13ObjCourseName:
+.obj __vt__Q32og9newScreen13ObjCourseName, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32og9newScreen13ObjCourseNameFv
@@ -66,6 +69,7 @@ __vt__Q32og9newScreen13ObjCourseName:
 	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+.endobj __vt__Q32og9newScreen13ObjCourseName
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # ogObjCourseName.cpp
@@ -73,26 +77,31 @@ __vt__Q32og9newScreen13ObjCourseName:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051D8D0:
+.obj lbl_8051D8D0, local
 	.float 0.0
-lbl_8051D8D4:
+.endobj lbl_8051D8D0
+.obj lbl_8051D8D4, local
 	.float 1.0
-lbl_8051D8D8:
+.endobj lbl_8051D8D4
+.obj lbl_8051D8D8, local
 	.float 255.0
+.endobj lbl_8051D8D8
 .balign 8
-lbl_8051D8E0:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051D8E8:
+.obj lbl_8051D8E0, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051D8E0
+.obj lbl_8051D8E8, local
 	.float 0.3
-lbl_8051D8EC:
+.endobj lbl_8051D8E8
+.obj lbl_8051D8EC, local
 	.float 0.2
-lbl_8051D8F0:
+.endobj lbl_8051D8EC
+.obj lbl_8051D8F0, local
 	.float 3.0
+.endobj lbl_8051D8F0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q32og9newScreen13ObjCourseNameFPCc
-__ct__Q32og9newScreen13ObjCourseNameFPCc:
+.fn __ct__Q32og9newScreen13ObjCourseNameFPCc, global
 /* 8031741C 0031435C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80317420 00314360  7C 08 02 A6 */	mflr r0
 /* 80317424 00314364  90 01 00 14 */	stw r0, 0x14(r1)
@@ -135,9 +144,9 @@ __ct__Q32og9newScreen13ObjCourseNameFPCc:
 /* 803174B8 003143F8  7C 08 03 A6 */	mtlr r0
 /* 803174BC 003143FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803174C0 00314400  4E 80 00 20 */	blr 
+.endfn __ct__Q32og9newScreen13ObjCourseNameFPCc
 
-.global __dt__Q32og9newScreen13ObjCourseNameFv
-__dt__Q32og9newScreen13ObjCourseNameFv:
+.fn __dt__Q32og9newScreen13ObjCourseNameFv, global
 /* 803174C4 00314404  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803174C8 00314408  7C 08 02 A6 */	mflr r0
 /* 803174CC 0031440C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -183,9 +192,9 @@ __dt__Q32og9newScreen13ObjCourseNameFv:
 /* 80317564 003144A4  7C 08 03 A6 */	mtlr r0
 /* 80317568 003144A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8031756C 003144AC  4E 80 00 20 */	blr 
+.endfn __dt__Q32og9newScreen13ObjCourseNameFv
 
-.global doCreate__Q32og9newScreen13ObjCourseNameFP10JKRArchive
-doCreate__Q32og9newScreen13ObjCourseNameFP10JKRArchive:
+.fn doCreate__Q32og9newScreen13ObjCourseNameFP10JKRArchive, global
 /* 80317570 003144B0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80317574 003144B4  7C 08 02 A6 */	mflr r0
 /* 80317578 003144B8  3C A0 80 49 */	lis r5, lbl_8048E700@ha
@@ -403,9 +412,9 @@ doCreate__Q32og9newScreen13ObjCourseNameFP10JKRArchive:
 /* 80317898 003147D8  7C 08 03 A6 */	mtlr r0
 /* 8031789C 003147DC  38 21 00 50 */	addi r1, r1, 0x50
 /* 803178A0 003147E0  4E 80 00 20 */	blr 
+.endfn doCreate__Q32og9newScreen13ObjCourseNameFP10JKRArchive
 
-.global doUpdate__Q32og9newScreen13ObjCourseNameFv
-doUpdate__Q32og9newScreen13ObjCourseNameFv:
+.fn doUpdate__Q32og9newScreen13ObjCourseNameFv, global
 /* 803178A4 003147E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803178A8 003147E8  7C 08 02 A6 */	mflr r0
 /* 803178AC 003147EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -469,9 +478,9 @@ doUpdate__Q32og9newScreen13ObjCourseNameFv:
 /* 80317988 003148C8  7C 08 03 A6 */	mtlr r0
 /* 8031798C 003148CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80317990 003148D0  4E 80 00 20 */	blr 
+.endfn doUpdate__Q32og9newScreen13ObjCourseNameFv
 
-.global doDraw__Q32og9newScreen13ObjCourseNameFR8Graphics
-doDraw__Q32og9newScreen13ObjCourseNameFR8Graphics:
+.fn doDraw__Q32og9newScreen13ObjCourseNameFR8Graphics, global
 /* 80317994 003148D4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80317998 003148D8  7C 08 02 A6 */	mflr r0
 /* 8031799C 003148DC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -564,38 +573,38 @@ doDraw__Q32og9newScreen13ObjCourseNameFR8Graphics:
 /* 80317AF8 00314A38  7C 08 03 A6 */	mtlr r0
 /* 80317AFC 00314A3C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80317B00 00314A40  4E 80 00 20 */	blr 
+.endfn doDraw__Q32og9newScreen13ObjCourseNameFR8Graphics
 
-.global doStart__Q32og9newScreen13ObjCourseNameFPCQ26Screen13StartSceneArg
-doStart__Q32og9newScreen13ObjCourseNameFPCQ26Screen13StartSceneArg:
+.fn doStart__Q32og9newScreen13ObjCourseNameFPCQ26Screen13StartSceneArg, global
 /* 80317B04 00314A44  C0 02 F5 70 */	lfs f0, lbl_8051D8D0@sda21(r2)
 /* 80317B08 00314A48  D0 03 00 44 */	stfs f0, 0x44(r3)
 /* 80317B0C 00314A4C  D0 03 00 48 */	stfs f0, 0x48(r3)
 /* 80317B10 00314A50  38 60 00 01 */	li r3, 1
 /* 80317B14 00314A54  4E 80 00 20 */	blr 
+.endfn doStart__Q32og9newScreen13ObjCourseNameFPCQ26Screen13StartSceneArg
 
-.global doEnd__Q32og9newScreen13ObjCourseNameFPCQ26Screen11EndSceneArg
-doEnd__Q32og9newScreen13ObjCourseNameFPCQ26Screen11EndSceneArg:
+.fn doEnd__Q32og9newScreen13ObjCourseNameFPCQ26Screen11EndSceneArg, global
 /* 80317B18 00314A58  C0 02 F5 70 */	lfs f0, lbl_8051D8D0@sda21(r2)
 /* 80317B1C 00314A5C  D0 03 00 44 */	stfs f0, 0x44(r3)
 /* 80317B20 00314A60  38 60 00 01 */	li r3, 1
 /* 80317B24 00314A64  4E 80 00 20 */	blr 
+.endfn doEnd__Q32og9newScreen13ObjCourseNameFPCQ26Screen11EndSceneArg
 
-.global doUpdateFadeinFinish__Q32og9newScreen13ObjCourseNameFv
-doUpdateFadeinFinish__Q32og9newScreen13ObjCourseNameFv:
+.fn doUpdateFadeinFinish__Q32og9newScreen13ObjCourseNameFv, global
 /* 80317B28 00314A68  4E 80 00 20 */	blr 
+.endfn doUpdateFadeinFinish__Q32og9newScreen13ObjCourseNameFv
 
-.global doUpdateFinish__Q32og9newScreen13ObjCourseNameFv
-doUpdateFinish__Q32og9newScreen13ObjCourseNameFv:
+.fn doUpdateFinish__Q32og9newScreen13ObjCourseNameFv, global
 /* 80317B2C 00314A6C  C0 02 F5 70 */	lfs f0, lbl_8051D8D0@sda21(r2)
 /* 80317B30 00314A70  D0 03 00 44 */	stfs f0, 0x44(r3)
 /* 80317B34 00314A74  4E 80 00 20 */	blr 
+.endfn doUpdateFinish__Q32og9newScreen13ObjCourseNameFv
 
-.global doUpdateFadeoutFinish__Q32og9newScreen13ObjCourseNameFv
-doUpdateFadeoutFinish__Q32og9newScreen13ObjCourseNameFv:
+.fn doUpdateFadeoutFinish__Q32og9newScreen13ObjCourseNameFv, global
 /* 80317B38 00314A78  4E 80 00 20 */	blr 
+.endfn doUpdateFadeoutFinish__Q32og9newScreen13ObjCourseNameFv
 
-.global doUpdateFadein__Q32og9newScreen13ObjCourseNameFv
-doUpdateFadein__Q32og9newScreen13ObjCourseNameFv:
+.fn doUpdateFadein__Q32og9newScreen13ObjCourseNameFv, global
 /* 80317B3C 00314A7C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80317B40 00314A80  7C 08 02 A6 */	mflr r0
 /* 80317B44 00314A84  90 01 00 24 */	stw r0, 0x24(r1)
@@ -672,9 +681,9 @@ doUpdateFadein__Q32og9newScreen13ObjCourseNameFv:
 /* 80317C50 00314B90  7C 08 03 A6 */	mtlr r0
 /* 80317C54 00314B94  38 21 00 20 */	addi r1, r1, 0x20
 /* 80317C58 00314B98  4E 80 00 20 */	blr 
+.endfn doUpdateFadein__Q32og9newScreen13ObjCourseNameFv
 
-.global doUpdateFadeout__Q32og9newScreen13ObjCourseNameFv
-doUpdateFadeout__Q32og9newScreen13ObjCourseNameFv:
+.fn doUpdateFadeout__Q32og9newScreen13ObjCourseNameFv, global
 /* 80317C5C 00314B9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80317C60 00314BA0  7C 08 02 A6 */	mflr r0
 /* 80317C64 00314BA4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -756,9 +765,9 @@ doUpdateFadeout__Q32og9newScreen13ObjCourseNameFv:
 /* 80317D84 00314CC4  7C 08 03 A6 */	mtlr r0
 /* 80317D88 00314CC8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80317D8C 00314CCC  4E 80 00 20 */	blr 
+.endfn doUpdateFadeout__Q32og9newScreen13ObjCourseNameFv
 
-.global drawBG__Q32og9newScreen13ObjCourseNameFR8Graphics
-drawBG__Q32og9newScreen13ObjCourseNameFR8Graphics:
+.fn drawBG__Q32og9newScreen13ObjCourseNameFR8Graphics, global
 /* 80317D90 00314CD0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80317D94 00314CD4  7C 08 02 A6 */	mflr r0
 /* 80317D98 00314CD8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -852,9 +861,9 @@ drawBG__Q32og9newScreen13ObjCourseNameFR8Graphics:
 /* 80317EEC 00314E2C  7C 08 03 A6 */	mtlr r0
 /* 80317EF0 00314E30  38 21 00 50 */	addi r1, r1, 0x50
 /* 80317EF4 00314E34  4E 80 00 20 */	blr 
+.endfn drawBG__Q32og9newScreen13ObjCourseNameFR8Graphics
 
-.global __sinit_ogObjCourseName_cpp
-__sinit_ogObjCourseName_cpp: # static initializer
+.fn __sinit_ogObjCourseName_cpp, local
 /* 80317EF8 00314E38  C0 62 F5 88 */	lfs f3, lbl_8051D8E8@sda21(r2)
 /* 80317EFC 00314E3C  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen13ObjCourseName@ha
 /* 80317F00 00314E40  C0 42 F5 74 */	lfs f2, lbl_8051D8D4@sda21(r2)
@@ -865,8 +874,9 @@ __sinit_ogObjCourseName_cpp: # static initializer
 /* 80317F14 00314E54  D0 23 00 08 */	stfs f1, 8(r3)
 /* 80317F18 00314E58  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80317F1C 00314E5C  4E 80 00 20 */	blr 
+.endfn __sinit_ogObjCourseName_cpp
 
-.global "@24@__dt__Q32og9newScreen13ObjCourseNameFv"
-"@24@__dt__Q32og9newScreen13ObjCourseNameFv":
+.fn "@24@__dt__Q32og9newScreen13ObjCourseNameFv", weak
 /* 80317F20 00314E60  38 63 FF E8 */	addi r3, r3, -24
 /* 80317F24 00314E64  4B FF F5 A0 */	b __dt__Q32og9newScreen13ObjCourseNameFv
+.endfn "@24@__dt__Q32og9newScreen13ObjCourseNameFv"
