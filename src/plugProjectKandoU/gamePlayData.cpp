@@ -3095,7 +3095,7 @@ void PlayData::setCaveVisit(int courseIndex, ID32& caveID)
 			return;
 		}
 	}
-	JUT_PANICLINE(1645, "no cave info : course(%d):[%s]\n", courseIndex, caveID.getStr());
+	JUT_PANICLINE(1680, "no cave info : course(%d):[%s]\n", courseIndex, caveID.getStr());
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3497,10 +3497,12 @@ lbl_801E8C30:
  */
 void PlayData::write_CaveOtakara(Stream& ram)
 {
+	ram.textBeginGroup("–“´ŒAî•ñ–");
 	int max = stageList->mCourseCount;
 	for (int i = 0; i < max; i++) {
 		mCaveOtakara[i].write(ram);
 	}
+	ram.textEndGroup();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
