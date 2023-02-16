@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F6B0
 lbl_8048F6B0:
 	.4byte 0x7467615F
 	.4byte 0x33645F61
@@ -9,7 +8,6 @@ lbl_8048F6B0:
 	.4byte 0x6F746168
 	.4byte 0x2E626C6F
 	.4byte 0x00000000
-.global lbl_8048F6C8
 lbl_8048F6C8:
 	.4byte 0x7467615F
 	.4byte 0x33645F61
@@ -17,7 +15,6 @@ lbl_8048F6C8:
 	.4byte 0x6F746168
 	.4byte 0x2E627470
 	.4byte 0x00000000
-.global lbl_8048F6E0
 lbl_8048F6E0:
 	.4byte 0x7467615F
 	.4byte 0x33645F61
@@ -25,7 +22,6 @@ lbl_8048F6E0:
 	.4byte 0x6F746168
 	.4byte 0x5F33322E
 	.4byte 0x626C6F00
-.global lbl_8048F6F8
 lbl_8048F6F8:
 	.4byte 0x7467615F
 	.4byte 0x33645F61
@@ -36,8 +32,7 @@ lbl_8048F6F8:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q32og6Screen16CallBack_Picture
-__vt__Q32og6Screen16CallBack_Picture:
+.obj __vt__Q32og6Screen16CallBack_Picture, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q32og6Screen16CallBack_PictureFv
@@ -45,26 +40,20 @@ __vt__Q32og6Screen16CallBack_Picture:
 	.4byte update__Q32og6Screen16CallBack_PictureFv
 	.4byte draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
-	.4byte 0
+.endobj __vt__Q32og6Screen16CallBack_Picture
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051DF60
 lbl_8051DF60:
 	.4byte 0x00000000
-.global lbl_8051DF64
 lbl_8051DF64:
 	.float 0.25
-.global lbl_8051DF68
 lbl_8051DF68:
 	.4byte 0x41A80000
-.global lbl_8051DF6C
 lbl_8051DF6C:
 	.4byte 0x42200000
-.global lbl_8051DF70
 lbl_8051DF70:
 	.4byte 0x41A00000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q32og6Screen16CallBack_PictureFv

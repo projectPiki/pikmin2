@@ -183,71 +183,70 @@ lbl_constructor:
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx5TSyncFv
 .endobj __vt__Q23efx5TSync
-.global __vt__Q23efx11TSimpleMtx4
-__vt__Q23efx11TSimpleMtx4:
+.obj __vt__Q23efx11TSimpleMtx4, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx4FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple4Fv
 	.4byte fade__Q23efx8TSimple4Fv
-.global __vt__Q23efx11TSimpleMtx3
-__vt__Q23efx11TSimpleMtx3:
+.endobj __vt__Q23efx11TSimpleMtx4
+.obj __vt__Q23efx11TSimpleMtx3, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx3FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q23efx11TSimpleMtx2
-__vt__Q23efx11TSimpleMtx2:
+.endobj __vt__Q23efx11TSimpleMtx3
+.obj __vt__Q23efx11TSimpleMtx2, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx11TSimpleMtx1
-__vt__Q23efx11TSimpleMtx1:
+.endobj __vt__Q23efx11TSimpleMtx2
+.obj __vt__Q23efx11TSimpleMtx1, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx8TSimple5
-__vt__Q23efx8TSimple5:
+.endobj __vt__Q23efx11TSimpleMtx1
+.obj __vt__Q23efx8TSimple5, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple5FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple5Fv
 	.4byte fade__Q23efx8TSimple5Fv
-.global __vt__Q23efx8TSimple4
-__vt__Q23efx8TSimple4:
+.endobj __vt__Q23efx8TSimple5
+.obj __vt__Q23efx8TSimple4, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple4FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple4Fv
 	.4byte fade__Q23efx8TSimple4Fv
-.global __vt__Q23efx8TSimple3
-__vt__Q23efx8TSimple3:
+.endobj __vt__Q23efx8TSimple4
+.obj __vt__Q23efx8TSimple3, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q23efx8TSimple2
-__vt__Q23efx8TSimple2:
+.endobj __vt__Q23efx8TSimple3
+.obj __vt__Q23efx8TSimple2, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx8TSimple1
-__vt__Q23efx8TSimple1:
+.endobj __vt__Q23efx8TSimple2
+.obj __vt__Q23efx8TSimple1, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx17TOneEmitterSimple
-__vt__Q23efx17TOneEmitterSimple:
+.endobj __vt__Q23efx8TSimple1
+.obj __vt__Q23efx17TOneEmitterSimple, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg
@@ -264,8 +263,8 @@ __vt__Q23efx17TOneEmitterSimple:
 	.4byte startDemoDrawOff__Q23efx17TOneEmitterSimpleFv
 	.4byte endDemoDrawOn__Q23efx17TOneEmitterSimpleFv
 	.4byte __dt__Q23efx17TOneEmitterSimpleFv
-.global __vt__Q23efx19TOneEmitterChasePos
-__vt__Q23efx19TOneEmitterChasePos:
+.endobj __vt__Q23efx17TOneEmitterSimple
+.obj __vt__Q23efx19TOneEmitterChasePos, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg
@@ -282,8 +281,8 @@ __vt__Q23efx19TOneEmitterChasePos:
 	.4byte startDemoDrawOff__Q23efx19TOneEmitterChasePosFv
 	.4byte endDemoDrawOn__Q23efx19TOneEmitterChasePosFv
 	.4byte __dt__Q23efx19TOneEmitterChasePosFv
-.global __vt__Q23efx11TOneEmitter
-__vt__Q23efx11TOneEmitter:
+.endobj __vt__Q23efx19TOneEmitterChasePos
+.obj __vt__Q23efx11TOneEmitter, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TOneEmitterFPQ23efx3Arg
@@ -300,8 +299,8 @@ __vt__Q23efx11TOneEmitter:
 	.4byte startDemoDrawOff__Q23efx11TOneEmitterFv
 	.4byte endDemoDrawOn__Q23efx11TOneEmitterFv
 	.4byte __dt__Q23efx11TOneEmitterFv
-.global __vt__Q23efx24TCallBack_StaticClipping
-__vt__Q23efx24TCallBack_StaticClipping:
+.endobj __vt__Q23efx11TOneEmitter
+.obj __vt__Q23efx24TCallBack_StaticClipping, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23efx24TCallBack_StaticClippingFv
@@ -309,6 +308,7 @@ __vt__Q23efx24TCallBack_StaticClipping:
 	.4byte executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+.endobj __vt__Q23efx24TCallBack_StaticClipping
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -333,8 +333,7 @@ __vt__Q23efx24TCallBack_StaticClipping:
 .endobj lbl_8051F618
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter
-executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter:
+.fn executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter, global
 /* 803AE8B0 003AB7F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AE8B4 003AB7F4  7C 08 02 A6 */	mflr r0
 /* 803AE8B8 003AB7F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -350,9 +349,9 @@ executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter:
 /* 803AE8E0 003AB820  7C 08 03 A6 */	mtlr r0
 /* 803AE8E4 003AB824  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AE8E8 003AB828  4E 80 00 20 */	blr 
+.endfn executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter
 
-.global add__Q23efx11TOneEmitterFPQ23efx7Context
-add__Q23efx11TOneEmitterFPQ23efx7Context:
+.fn add__Q23efx11TOneEmitterFPQ23efx7Context, global
 /* 803AE8EC 003AB82C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AE8F0 003AB830  7C 08 02 A6 */	mflr r0
 /* 803AE8F4 003AB834  90 01 00 14 */	stw r0, 0x14(r1)
@@ -371,9 +370,9 @@ add__Q23efx11TOneEmitterFPQ23efx7Context:
 /* 803AE928 003AB868  7C 08 03 A6 */	mtlr r0
 /* 803AE92C 003AB86C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AE930 003AB870  4E 80 00 20 */	blr 
+.endfn add__Q23efx11TOneEmitterFPQ23efx7Context
 
-.global executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter
-executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter:
+.fn executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter, global
 /* 803AE934 003AB874  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803AE938 003AB878  7C 08 02 A6 */	mflr r0
 /* 803AE93C 003AB87C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -428,9 +427,9 @@ executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter:
 /* 803AE9E8 003AB928  7C 08 03 A6 */	mtlr r0
 /* 803AE9EC 003AB92C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803AE9F0 003AB930  4E 80 00 20 */	blr 
+.endfn executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter
 
-.global create__Q23efx11TOneEmitterFPQ23efx3Arg
-create__Q23efx11TOneEmitterFPQ23efx3Arg:
+.fn create__Q23efx11TOneEmitterFPQ23efx3Arg, global
 /* 803AE9F4 003AB934  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AE9F8 003AB938  7C 08 02 A6 */	mflr r0
 /* 803AE9FC 003AB93C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -477,9 +476,9 @@ create__Q23efx11TOneEmitterFPQ23efx3Arg:
 /* 803AEA90 003AB9D0  7C 08 03 A6 */	mtlr r0
 /* 803AEA94 003AB9D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AEA98 003AB9D8  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TOneEmitterFPQ23efx3Arg
 
-.global fade__Q23efx11TOneEmitterFv
-fade__Q23efx11TOneEmitterFv:
+.fn fade__Q23efx11TOneEmitterFv, global
 /* 803AEA9C 003AB9DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AEAA0 003AB9E0  7C 08 02 A6 */	mflr r0
 /* 803AEAA4 003AB9E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -503,9 +502,9 @@ fade__Q23efx11TOneEmitterFv:
 /* 803AEAE8 003ABA28  7C 08 03 A6 */	mtlr r0
 /* 803AEAEC 003ABA2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AEAF0 003ABA30  4E 80 00 20 */	blr 
+.endfn fade__Q23efx11TOneEmitterFv
 
-.global forceKill__Q23efx11TOneEmitterFv
-forceKill__Q23efx11TOneEmitterFv:
+.fn forceKill__Q23efx11TOneEmitterFv, global
 /* 803AEAF4 003ABA34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AEAF8 003ABA38  7C 08 02 A6 */	mflr r0
 /* 803AEAFC 003ABA3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -529,9 +528,9 @@ forceKill__Q23efx11TOneEmitterFv:
 /* 803AEB40 003ABA80  7C 08 03 A6 */	mtlr r0
 /* 803AEB44 003ABA84  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AEB48 003ABA88  4E 80 00 20 */	blr 
+.endfn forceKill__Q23efx11TOneEmitterFv
 
-.global add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos:
+.fn add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos, global
 /* 803AEB4C 003ABA8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AEB50 003ABA90  7C 08 02 A6 */	mflr r0
 /* 803AEB54 003ABA94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -550,9 +549,9 @@ add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos:
 /* 803AEB88 003ABAC8  7C 08 03 A6 */	mtlr r0
 /* 803AEB8C 003ABACC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AEB90 003ABAD0  4E 80 00 20 */	blr 
+.endfn add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 
-.global del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos:
+.fn del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos, global
 /* 803AEB94 003ABAD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AEB98 003ABAD8  7C 08 02 A6 */	mflr r0
 /* 803AEB9C 003ABADC  7C 83 23 78 */	mr r3, r4
@@ -562,9 +561,9 @@ del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos:
 /* 803AEBAC 003ABAEC  7C 08 03 A6 */	mtlr r0
 /* 803AEBB0 003ABAF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AEBB4 003ABAF4  4E 80 00 20 */	blr 
+.endfn del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 
-.global create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg
-create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg:
+.fn create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg, global
 /* 803AEBB8 003ABAF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AEBBC 003ABAFC  7C 08 02 A6 */	mflr r0
 /* 803AEBC0 003ABB00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -611,9 +610,9 @@ create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg:
 /* 803AEC54 003ABB94  7C 08 03 A6 */	mtlr r0
 /* 803AEC58 003ABB98  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AEC5C 003ABB9C  4E 80 00 20 */	blr 
+.endfn create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg
 
-.global executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter
-executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter:
+.fn executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter, global
 /* 803AEC60 003ABBA0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AEC64 003ABBA4  7C 08 02 A6 */	mflr r0
 /* 803AEC68 003ABBA8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -663,9 +662,9 @@ executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter:
 /* 803AED00 003ABC40  7C 08 03 A6 */	mtlr r0
 /* 803AED04 003ABC44  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AED08 003ABC48  4E 80 00 20 */	blr 
+.endfn executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter
 
-.global fade__Q23efx19TOneEmitterChasePosFv
-fade__Q23efx19TOneEmitterChasePosFv:
+.fn fade__Q23efx19TOneEmitterChasePosFv, global
 /* 803AED0C 003ABC4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AED10 003ABC50  7C 08 02 A6 */	mflr r0
 /* 803AED14 003ABC54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -689,9 +688,9 @@ fade__Q23efx19TOneEmitterChasePosFv:
 /* 803AED58 003ABC98  7C 08 03 A6 */	mtlr r0
 /* 803AED5C 003ABC9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AED60 003ABCA0  4E 80 00 20 */	blr 
+.endfn fade__Q23efx19TOneEmitterChasePosFv
 
-.global forceKill__Q23efx19TOneEmitterChasePosFv
-forceKill__Q23efx19TOneEmitterChasePosFv:
+.fn forceKill__Q23efx19TOneEmitterChasePosFv, global
 /* 803AED64 003ABCA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AED68 003ABCA8  7C 08 02 A6 */	mflr r0
 /* 803AED6C 003ABCAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -715,9 +714,9 @@ forceKill__Q23efx19TOneEmitterChasePosFv:
 /* 803AEDB0 003ABCF0  7C 08 03 A6 */	mtlr r0
 /* 803AEDB4 003ABCF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AEDB8 003ABCF8  4E 80 00 20 */	blr 
+.endfn forceKill__Q23efx19TOneEmitterChasePosFv
 
-.global create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg
-create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg:
+.fn create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg, global
 /* 803AEDBC 003ABCFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AEDC0 003ABD00  7C 08 02 A6 */	mflr r0
 /* 803AEDC4 003ABD04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -769,9 +768,9 @@ create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg:
 /* 803AEE6C 003ABDAC  7C 08 03 A6 */	mtlr r0
 /* 803AEE70 003ABDB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AEE74 003ABDB4  4E 80 00 20 */	blr 
+.endfn create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg
 
-.global executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter
-executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter:
+.fn executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter, global
 /* 803AEE78 003ABDB8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803AEE7C 003ABDBC  7C 08 02 A6 */	mflr r0
 /* 803AEE80 003ABDC0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -846,9 +845,9 @@ executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter:
 /* 803AEF78 003ABEB8  7C 08 03 A6 */	mtlr r0
 /* 803AEF7C 003ABEBC  38 21 00 40 */	addi r1, r1, 0x40
 /* 803AEF80 003ABEC0  4E 80 00 20 */	blr 
+.endfn executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter
 
-.global create__Q23efx8TSimple1FPQ23efx3Arg
-create__Q23efx8TSimple1FPQ23efx3Arg:
+.fn create__Q23efx8TSimple1FPQ23efx3Arg, global
 /* 803AEF84 003ABEC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AEF88 003ABEC8  7C 08 02 A6 */	mflr r0
 /* 803AEF8C 003ABECC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -889,9 +888,9 @@ create__Q23efx8TSimple1FPQ23efx3Arg:
 /* 803AF008 003ABF48  7C 08 03 A6 */	mtlr r0
 /* 803AF00C 003ABF4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AF010 003ABF50  4E 80 00 20 */	blr 
+.endfn create__Q23efx8TSimple1FPQ23efx3Arg
 
-.global create__Q23efx8TSimple2FPQ23efx3Arg
-create__Q23efx8TSimple2FPQ23efx3Arg:
+.fn create__Q23efx8TSimple2FPQ23efx3Arg, global
 /* 803AF014 003ABF54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AF018 003ABF58  7C 08 02 A6 */	mflr r0
 /* 803AF01C 003ABF5C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -939,9 +938,9 @@ create__Q23efx8TSimple2FPQ23efx3Arg:
 /* 803AF0B0 003ABFF0  7C 08 03 A6 */	mtlr r0
 /* 803AF0B4 003ABFF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AF0B8 003ABFF8  4E 80 00 20 */	blr 
+.endfn create__Q23efx8TSimple2FPQ23efx3Arg
 
-.global create__Q23efx8TSimple3FPQ23efx3Arg
-create__Q23efx8TSimple3FPQ23efx3Arg:
+.fn create__Q23efx8TSimple3FPQ23efx3Arg, global
 /* 803AF0BC 003ABFFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AF0C0 003AC000  7C 08 02 A6 */	mflr r0
 /* 803AF0C4 003AC004  90 01 00 24 */	stw r0, 0x24(r1)
@@ -989,9 +988,9 @@ create__Q23efx8TSimple3FPQ23efx3Arg:
 /* 803AF158 003AC098  7C 08 03 A6 */	mtlr r0
 /* 803AF15C 003AC09C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AF160 003AC0A0  4E 80 00 20 */	blr 
+.endfn create__Q23efx8TSimple3FPQ23efx3Arg
 
-.global create__Q23efx8TSimple4FPQ23efx3Arg
-create__Q23efx8TSimple4FPQ23efx3Arg:
+.fn create__Q23efx8TSimple4FPQ23efx3Arg, global
 /* 803AF164 003AC0A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AF168 003AC0A8  7C 08 02 A6 */	mflr r0
 /* 803AF16C 003AC0AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1039,9 +1038,9 @@ create__Q23efx8TSimple4FPQ23efx3Arg:
 /* 803AF200 003AC140  7C 08 03 A6 */	mtlr r0
 /* 803AF204 003AC144  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AF208 003AC148  4E 80 00 20 */	blr 
+.endfn create__Q23efx8TSimple4FPQ23efx3Arg
 
-.global create__Q23efx8TSimple5FPQ23efx3Arg
-create__Q23efx8TSimple5FPQ23efx3Arg:
+.fn create__Q23efx8TSimple5FPQ23efx3Arg, global
 /* 803AF20C 003AC14C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AF210 003AC150  7C 08 02 A6 */	mflr r0
 /* 803AF214 003AC154  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1089,9 +1088,9 @@ create__Q23efx8TSimple5FPQ23efx3Arg:
 /* 803AF2A8 003AC1E8  7C 08 03 A6 */	mtlr r0
 /* 803AF2AC 003AC1EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AF2B0 003AC1F0  4E 80 00 20 */	blr 
+.endfn create__Q23efx8TSimple5FPQ23efx3Arg
 
-.global create__Q23efx11TSimpleMtx1FPQ23efx3Arg
-create__Q23efx11TSimpleMtx1FPQ23efx3Arg:
+.fn create__Q23efx11TSimpleMtx1FPQ23efx3Arg, global
 /* 803AF2B4 003AC1F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AF2B8 003AC1F8  7C 08 02 A6 */	mflr r0
 /* 803AF2BC 003AC1FC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
@@ -1155,9 +1154,9 @@ create__Q23efx11TSimpleMtx1FPQ23efx3Arg:
 /* 803AF38C 003AC2CC  7C 08 03 A6 */	mtlr r0
 /* 803AF390 003AC2D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AF394 003AC2D4  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TSimpleMtx1FPQ23efx3Arg
 
-.global create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-create__Q23efx11TSimpleMtx2FPQ23efx3Arg:
+.fn create__Q23efx11TSimpleMtx2FPQ23efx3Arg, global
 /* 803AF398 003AC2D8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803AF39C 003AC2DC  7C 08 02 A6 */	mflr r0
 /* 803AF3A0 003AC2E0  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
@@ -1237,9 +1236,9 @@ create__Q23efx11TSimpleMtx2FPQ23efx3Arg:
 /* 803AF4A8 003AC3E8  7C 08 03 A6 */	mtlr r0
 /* 803AF4AC 003AC3EC  38 21 00 30 */	addi r1, r1, 0x30
 /* 803AF4B0 003AC3F0  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 
-.global create__Q23efx11TSimpleMtx3FPQ23efx3Arg
-create__Q23efx11TSimpleMtx3FPQ23efx3Arg:
+.fn create__Q23efx11TSimpleMtx3FPQ23efx3Arg, global
 /* 803AF4B4 003AC3F4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803AF4B8 003AC3F8  7C 08 02 A6 */	mflr r0
 /* 803AF4BC 003AC3FC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
@@ -1319,9 +1318,9 @@ create__Q23efx11TSimpleMtx3FPQ23efx3Arg:
 /* 803AF5C4 003AC504  7C 08 03 A6 */	mtlr r0
 /* 803AF5C8 003AC508  38 21 00 30 */	addi r1, r1, 0x30
 /* 803AF5CC 003AC50C  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TSimpleMtx3FPQ23efx3Arg
 
-.global create__Q23efx11TSimpleMtx4FPQ23efx3Arg
-create__Q23efx11TSimpleMtx4FPQ23efx3Arg:
+.fn create__Q23efx11TSimpleMtx4FPQ23efx3Arg, global
 /* 803AF5D0 003AC510  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803AF5D4 003AC514  7C 08 02 A6 */	mflr r0
 /* 803AF5D8 003AC518  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
@@ -1401,9 +1400,9 @@ create__Q23efx11TSimpleMtx4FPQ23efx3Arg:
 /* 803AF6E0 003AC620  7C 08 03 A6 */	mtlr r0
 /* 803AF6E4 003AC624  38 21 00 30 */	addi r1, r1, 0x30
 /* 803AF6E8 003AC628  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TSimpleMtx4FPQ23efx3Arg
 
-.global create__Q23efx5TSyncFPQ23efx3Arg
-create__Q23efx5TSyncFPQ23efx3Arg:
+.fn create__Q23efx5TSyncFPQ23efx3Arg, global
 /* 803AF6EC 003AC62C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AF6F0 003AC630  7C 08 02 A6 */	mflr r0
 /* 803AF6F4 003AC634  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1466,9 +1465,9 @@ create__Q23efx5TSyncFPQ23efx3Arg:
 /* 803AF7BC 003AC6FC  7C 08 03 A6 */	mtlr r0
 /* 803AF7C0 003AC700  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AF7C4 003AC704  4E 80 00 20 */	blr 
+.endfn create__Q23efx5TSyncFPQ23efx3Arg
 
-.global execute__Q23efx5TSyncFP14JPABaseEmitter
-execute__Q23efx5TSyncFP14JPABaseEmitter:
+.fn execute__Q23efx5TSyncFP14JPABaseEmitter, global
 /* 803AF7C8 003AC708  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AF7CC 003AC70C  7C 08 02 A6 */	mflr r0
 /* 803AF7D0 003AC710  38 C0 00 00 */	li r6, 0
@@ -1499,9 +1498,9 @@ execute__Q23efx5TSyncFP14JPABaseEmitter:
 /* 803AF828 003AC768  7C 08 03 A6 */	mtlr r0
 /* 803AF82C 003AC76C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AF830 003AC770  4E 80 00 20 */	blr 
+.endfn execute__Q23efx5TSyncFP14JPABaseEmitter
 
-.global executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-executeAfter__Q23efx5TSyncFP14JPABaseEmitter:
+.fn executeAfter__Q23efx5TSyncFP14JPABaseEmitter, global
 /* 803AF834 003AC774  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AF838 003AC778  7C 08 02 A6 */	mflr r0
 /* 803AF83C 003AC77C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1540,9 +1539,9 @@ executeAfter__Q23efx5TSyncFP14JPABaseEmitter:
 /* 803AF8B8 003AC7F8  7C 08 03 A6 */	mtlr r0
 /* 803AF8BC 003AC7FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AF8C0 003AC800  4E 80 00 20 */	blr 
+.endfn executeAfter__Q23efx5TSyncFP14JPABaseEmitter
 
-.global forceKill__Q23efx5TSyncFv
-forceKill__Q23efx5TSyncFv:
+.fn forceKill__Q23efx5TSyncFv, global
 /* 803AF8C4 003AC804  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AF8C8 003AC808  7C 08 02 A6 */	mflr r0
 /* 803AF8CC 003AC80C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1558,9 +1557,9 @@ forceKill__Q23efx5TSyncFv:
 /* 803AF8F4 003AC834  7C 08 03 A6 */	mtlr r0
 /* 803AF8F8 003AC838  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AF8FC 003AC83C  4E 80 00 20 */	blr 
+.endfn forceKill__Q23efx5TSyncFv
 
-.global fade__Q23efx5TSyncFv
-fade__Q23efx5TSyncFv:
+.fn fade__Q23efx5TSyncFv, global
 /* 803AF900 003AC840  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AF904 003AC844  7C 08 02 A6 */	mflr r0
 /* 803AF908 003AC848  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1591,9 +1590,9 @@ fade__Q23efx5TSyncFv:
 /* 803AF964 003AC8A4  7C 08 03 A6 */	mtlr r0
 /* 803AF968 003AC8A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AF96C 003AC8AC  4E 80 00 20 */	blr 
+.endfn fade__Q23efx5TSyncFv
 
-.global doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter:
+.fn doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter, global
 /* 803AF970 003AC8B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AF974 003AC8B4  7C 08 02 A6 */	mflr r0
 /* 803AF978 003AC8B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1625,9 +1624,9 @@ doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter:
 /* 803AF9DC 003AC91C  7C 08 03 A6 */	mtlr r0
 /* 803AF9E0 003AC920  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AF9E4 003AC924  4E 80 00 20 */	blr 
+.endfn doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
 
-.global doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter
-doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter:
+.fn doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter, global
 /* 803AF9E8 003AC928  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803AF9EC 003AC92C  7C 08 02 A6 */	mflr r0
 /* 803AF9F0 003AC930  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1684,9 +1683,9 @@ doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter:
 /* 803AFAB4 003AC9F4  7C 08 03 A6 */	mtlr r0
 /* 803AFAB8 003AC9F8  38 21 00 40 */	addi r1, r1, 0x40
 /* 803AFABC 003AC9FC  4E 80 00 20 */	blr 
+.endfn doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter
 
-.global doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter:
+.fn doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter, global
 /* 803AFAC0 003ACA00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AFAC4 003ACA04  7C 08 02 A6 */	mflr r0
 /* 803AFAC8 003ACA08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1715,9 +1714,9 @@ doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter:
 /* 803AFB20 003ACA60  7C 08 03 A6 */	mtlr r0
 /* 803AFB24 003ACA64  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AFB28 003ACA68  4E 80 00 20 */	blr 
+.endfn doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
 
-.global doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter
-doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter:
+.fn doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter, global
 /* 803AFB2C 003ACA6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AFB30 003ACA70  7C 08 02 A6 */	mflr r0
 /* 803AFB34 003ACA74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1749,9 +1748,9 @@ doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter:
 /* 803AFB98 003ACAD8  7C 08 03 A6 */	mtlr r0
 /* 803AFB9C 003ACADC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AFBA0 003ACAE0  4E 80 00 20 */	blr 
+.endfn doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter
 
-.global doExecuteEmitterOperation__Q23efx12TChasePosPosFP14JPABaseEmitter
-doExecuteEmitterOperation__Q23efx12TChasePosPosFP14JPABaseEmitter:
+.fn doExecuteEmitterOperation__Q23efx12TChasePosPosFP14JPABaseEmitter, global
 /* 803AFBA4 003ACAE4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803AFBA8 003ACAE8  7C 08 02 A6 */	mflr r0
 /* 803AFBAC 003ACAEC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1809,9 +1808,9 @@ doExecuteEmitterOperation__Q23efx12TChasePosPosFP14JPABaseEmitter:
 /* 803AFC74 003ACBB4  7C 08 03 A6 */	mtlr r0
 /* 803AFC78 003ACBB8  38 21 00 60 */	addi r1, r1, 0x60
 /* 803AFC7C 003ACBBC  4E 80 00 20 */	blr 
+.endfn doExecuteEmitterOperation__Q23efx12TChasePosPosFP14JPABaseEmitter
 
-.global "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>"
-"makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>":
+.fn "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>", weak
 /* 803AFC80 003ACBC0  C0 04 00 04 */	lfs f0, 4(r4)
 /* 803AFC84 003ACBC4  C0 45 00 04 */	lfs f2, 4(r5)
 /* 803AFC88 003ACBC8  C0 84 00 08 */	lfs f4, 8(r4)
@@ -1877,9 +1876,9 @@ doExecuteEmitterOperation__Q23efx12TChasePosPosFP14JPABaseEmitter:
 /* 803AFD6C 003ACCAC  D0 43 00 28 */	stfs f2, 0x28(r3)
 /* 803AFD70 003ACCB0  D0 E3 00 2C */	stfs f7, 0x2c(r3)
 /* 803AFD74 003ACCB4  4E 80 00 20 */	blr 
+.endfn "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>"
 
-.global doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter
-doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter:
+.fn doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter, global
 /* 803AFD78 003ACCB8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803AFD7C 003ACCBC  7C 08 02 A6 */	mflr r0
 /* 803AFD80 003ACCC0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1967,9 +1966,9 @@ doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter:
 /* 803AFEB8 003ACDF8  7C 08 03 A6 */	mtlr r0
 /* 803AFEBC 003ACDFC  38 21 00 70 */	addi r1, r1, 0x70
 /* 803AFEC0 003ACE00  4E 80 00 20 */	blr 
+.endfn doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter
 
-.global doExecuteEmitterOperation__Q23efx23TChasePosPosLocalYScaleFP14JPABaseEmitter
-doExecuteEmitterOperation__Q23efx23TChasePosPosLocalYScaleFP14JPABaseEmitter:
+.fn doExecuteEmitterOperation__Q23efx23TChasePosPosLocalYScaleFP14JPABaseEmitter, global
 /* 803AFEC4 003ACE04  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803AFEC8 003ACE08  7C 08 02 A6 */	mflr r0
 /* 803AFECC 003ACE0C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2057,9 +2056,9 @@ doExecuteEmitterOperation__Q23efx23TChasePosPosLocalYScaleFP14JPABaseEmitter:
 /* 803B0004 003ACF44  7C 08 03 A6 */	mtlr r0
 /* 803B0008 003ACF48  38 21 00 70 */	addi r1, r1, 0x70
 /* 803B000C 003ACF4C  4E 80 00 20 */	blr 
+.endfn doExecuteEmitterOperation__Q23efx23TChasePosPosLocalYScaleFP14JPABaseEmitter
 
-.global __ct__Q23efx9TForever2FUsUs
-__ct__Q23efx9TForever2FUsUs:
+.fn __ct__Q23efx9TForever2FUsUs, global
 /* 803B0010 003ACF50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0014 003ACF54  7C 08 02 A6 */	mflr r0
 /* 803B0018 003ACF58  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -2098,9 +2097,9 @@ __ct__Q23efx9TForever2FUsUs:
 /* 803B009C 003ACFDC  7C 08 03 A6 */	mtlr r0
 /* 803B00A0 003ACFE0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B00A4 003ACFE4  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx9TForever2FUsUs
 
-.global __ct__Q23efx8TForeverFv
-__ct__Q23efx8TForeverFv:
+.fn __ct__Q23efx8TForeverFv, weak
 /* 803B00A8 003ACFE8  3C 80 80 4B */	lis r4, __vt__Q23efx5TBase@ha
 /* 803B00AC 003ACFEC  3C A0 80 4E */	lis r5, __vt__Q23efx5TSync@ha
 /* 803B00B0 003ACFF0  38 04 A7 F8 */	addi r0, r4, __vt__Q23efx5TBase@l
@@ -2123,9 +2122,9 @@ __ct__Q23efx8TForeverFv:
 /* 803B00F4 003AD034  90 83 00 00 */	stw r4, 0(r3)
 /* 803B00F8 003AD038  90 03 00 04 */	stw r0, 4(r3)
 /* 803B00FC 003AD03C  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx8TForeverFv
 
-.global __ct__Q23efx9TForever3FUsUsUs
-__ct__Q23efx9TForever3FUsUsUs:
+.fn __ct__Q23efx9TForever3FUsUsUs, global
 /* 803B0100 003AD040  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0104 003AD044  7C 08 02 A6 */	mflr r0
 /* 803B0108 003AD048  3C E0 80 4B */	lis r7, __vt__Q23efx5TBase@ha
@@ -2168,9 +2167,9 @@ __ct__Q23efx9TForever3FUsUsUs:
 /* 803B019C 003AD0DC  7C 08 03 A6 */	mtlr r0
 /* 803B01A0 003AD0E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B01A4 003AD0E4  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx9TForever3FUsUsUs
 
-.global __ct__Q23efx9TForever4FUsUsUsUs
-__ct__Q23efx9TForever4FUsUsUsUs:
+.fn __ct__Q23efx9TForever4FUsUsUsUs, global
 /* 803B01A8 003AD0E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B01AC 003AD0EC  7C 08 02 A6 */	mflr r0
 /* 803B01B0 003AD0F0  3D 00 80 4B */	lis r8, __vt__Q23efx5TBase@ha
@@ -2209,9 +2208,9 @@ __ct__Q23efx9TForever4FUsUsUsUs:
 /* 803B0234 003AD174  7C 08 03 A6 */	mtlr r0
 /* 803B0238 003AD178  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B023C 003AD17C  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx9TForever4FUsUsUsUs
 
-.global "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
-"__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs":
+.fn "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs", global
 /* 803B0240 003AD180  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0244 003AD184  7C 08 02 A6 */	mflr r0
 /* 803B0248 003AD188  3C E0 80 4B */	lis r7, __vt__Q23efx5TBase@ha
@@ -2255,9 +2254,9 @@ __ct__Q23efx9TForever4FUsUsUsUs:
 /* 803B02E0 003AD220  7C 08 03 A6 */	mtlr r0
 /* 803B02E4 003AD224  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B02E8 003AD228  4E 80 00 20 */	blr 
+.endfn "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
 
-.global __ct__Q23efx9TChasePosFv
-__ct__Q23efx9TChasePosFv:
+.fn __ct__Q23efx9TChasePosFv, weak
 /* 803B02EC 003AD22C  3C 80 80 4B */	lis r4, __vt__Q23efx5TBase@ha
 /* 803B02F0 003AD230  3C A0 80 4E */	lis r5, __vt__Q23efx5TSync@ha
 /* 803B02F4 003AD234  38 04 A7 F8 */	addi r0, r4, __vt__Q23efx5TBase@l
@@ -2280,15 +2279,15 @@ __ct__Q23efx9TChasePosFv:
 /* 803B0338 003AD278  90 83 00 00 */	stw r4, 0(r3)
 /* 803B033C 003AD27C  90 03 00 04 */	stw r0, 4(r3)
 /* 803B0340 003AD280  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx9TChasePosFv
 
-.global "setPosptr__Q23efx10TChasePos2FP10Vector3<f>"
-"setPosptr__Q23efx10TChasePos2FP10Vector3<f>":
+.fn "setPosptr__Q23efx10TChasePos2FP10Vector3<f>", global
 /* 803B0344 003AD284  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B0348 003AD288  90 83 00 28 */	stw r4, 0x28(r3)
 /* 803B034C 003AD28C  4E 80 00 20 */	blr 
+.endfn "setPosptr__Q23efx10TChasePos2FP10Vector3<f>"
 
-.global "__ct__Q23efx10TChasePos3FP10Vector3<f>UsUsUs"
-"__ct__Q23efx10TChasePos3FP10Vector3<f>UsUsUs":
+.fn "__ct__Q23efx10TChasePos3FP10Vector3<f>UsUsUs", global
 /* 803B0350 003AD290  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0354 003AD294  7C 08 02 A6 */	mflr r0
 /* 803B0358 003AD298  3D 00 80 4B */	lis r8, __vt__Q23efx5TBase@ha
@@ -2329,9 +2328,9 @@ __ct__Q23efx9TChasePosFv:
 /* 803B03E4 003AD324  7C 08 03 A6 */	mtlr r0
 /* 803B03E8 003AD328  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B03EC 003AD32C  4E 80 00 20 */	blr 
+.endfn "__ct__Q23efx10TChasePos3FP10Vector3<f>UsUsUs"
 
-.global "__ct__Q23efx10TChasePos4FP10Vector3<f>UsUsUsUs"
-"__ct__Q23efx10TChasePos4FP10Vector3<f>UsUsUsUs":
+.fn "__ct__Q23efx10TChasePos4FP10Vector3<f>UsUsUsUs", global
 /* 803B03F0 003AD330  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B03F4 003AD334  7C 08 02 A6 */	mflr r0
 /* 803B03F8 003AD338  3D 20 80 4B */	lis r9, __vt__Q23efx5TBase@ha
@@ -2375,9 +2374,9 @@ __ct__Q23efx9TChasePosFv:
 /* 803B0490 003AD3D0  7C 08 03 A6 */	mtlr r0
 /* 803B0494 003AD3D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B0498 003AD3D8  4E 80 00 20 */	blr 
+.endfn "__ct__Q23efx10TChasePos4FP10Vector3<f>UsUsUsUs"
 
-.global __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-__ct__Q23efx10TChaseMtx2FPA4_fUsUs:
+.fn __ct__Q23efx10TChaseMtx2FPA4_fUsUs, global
 /* 803B049C 003AD3DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B04A0 003AD3E0  7C 08 02 A6 */	mflr r0
 /* 803B04A4 003AD3E4  3C E0 80 4B */	lis r7, __vt__Q23efx5TBase@ha
@@ -2421,9 +2420,9 @@ __ct__Q23efx10TChaseMtx2FPA4_fUsUs:
 /* 803B053C 003AD47C  7C 08 03 A6 */	mtlr r0
 /* 803B0540 003AD480  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B0544 003AD484  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx10TChaseMtx2FPA4_fUsUs
 
-.global __ct__Q23efx9TChaseMtxFv
-__ct__Q23efx9TChaseMtxFv:
+.fn __ct__Q23efx9TChaseMtxFv, weak
 /* 803B0548 003AD488  3C 80 80 4B */	lis r4, __vt__Q23efx5TBase@ha
 /* 803B054C 003AD48C  3C A0 80 4E */	lis r5, __vt__Q23efx5TSync@ha
 /* 803B0550 003AD490  38 04 A7 F8 */	addi r0, r4, __vt__Q23efx5TBase@l
@@ -2446,15 +2445,15 @@ __ct__Q23efx9TChaseMtxFv:
 /* 803B0594 003AD4D4  90 83 00 00 */	stw r4, 0(r3)
 /* 803B0598 003AD4D8  90 03 00 04 */	stw r0, 4(r3)
 /* 803B059C 003AD4DC  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx9TChaseMtxFv
 
-.global setMtxptr__Q23efx10TChaseMtx2FPA4_f
-setMtxptr__Q23efx10TChaseMtx2FPA4_f:
+.fn setMtxptr__Q23efx10TChaseMtx2FPA4_f, global
 /* 803B05A0 003AD4E0  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B05A4 003AD4E4  90 83 00 28 */	stw r4, 0x28(r3)
 /* 803B05A8 003AD4E8  4E 80 00 20 */	blr 
+.endfn setMtxptr__Q23efx10TChaseMtx2FPA4_f
 
-.global __ct__Q23efx10TChaseMtx3FPA4_fUsUsUs
-__ct__Q23efx10TChaseMtx3FPA4_fUsUsUs:
+.fn __ct__Q23efx10TChaseMtx3FPA4_fUsUsUs, global
 /* 803B05AC 003AD4EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B05B0 003AD4F0  7C 08 02 A6 */	mflr r0
 /* 803B05B4 003AD4F4  3D 00 80 4B */	lis r8, __vt__Q23efx5TBase@ha
@@ -2495,16 +2494,16 @@ __ct__Q23efx10TChaseMtx3FPA4_fUsUsUs:
 /* 803B0640 003AD580  7C 08 03 A6 */	mtlr r0
 /* 803B0644 003AD584  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B0648 003AD588  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx10TChaseMtx3FPA4_fUsUsUs
 
-.global setMtxptr__Q23efx10TChaseMtx3FPA4_f
-setMtxptr__Q23efx10TChaseMtx3FPA4_f:
+.fn setMtxptr__Q23efx10TChaseMtx3FPA4_f, global
 /* 803B064C 003AD58C  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B0650 003AD590  90 83 00 28 */	stw r4, 0x28(r3)
 /* 803B0654 003AD594  90 83 00 3C */	stw r4, 0x3c(r3)
 /* 803B0658 003AD598  4E 80 00 20 */	blr 
+.endfn setMtxptr__Q23efx10TChaseMtx3FPA4_f
 
-.global __ct__Q23efx10TChaseMtx4FPA4_fUsUsUsUs
-__ct__Q23efx10TChaseMtx4FPA4_fUsUsUsUs:
+.fn __ct__Q23efx10TChaseMtx4FPA4_fUsUsUsUs, global
 /* 803B065C 003AD59C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0660 003AD5A0  7C 08 02 A6 */	mflr r0
 /* 803B0664 003AD5A4  3D 20 80 4B */	lis r9, __vt__Q23efx5TBase@ha
@@ -2548,17 +2547,17 @@ __ct__Q23efx10TChaseMtx4FPA4_fUsUsUsUs:
 /* 803B06FC 003AD63C  7C 08 03 A6 */	mtlr r0
 /* 803B0700 003AD640  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B0704 003AD644  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx10TChaseMtx4FPA4_fUsUsUsUs
 
-.global setMtxptr__Q23efx10TChaseMtx4FPA4_f
-setMtxptr__Q23efx10TChaseMtx4FPA4_f:
+.fn setMtxptr__Q23efx10TChaseMtx4FPA4_f, global
 /* 803B0708 003AD648  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B070C 003AD64C  90 83 00 28 */	stw r4, 0x28(r3)
 /* 803B0710 003AD650  90 83 00 3C */	stw r4, 0x3c(r3)
 /* 803B0714 003AD654  90 83 00 50 */	stw r4, 0x50(r3)
 /* 803B0718 003AD658  4E 80 00 20 */	blr 
+.endfn setMtxptr__Q23efx10TChaseMtx4FPA4_f
 
-.global __ct__Q23efx10TChaseMtx6FPA4_fUsUsUsUsUsUs
-__ct__Q23efx10TChaseMtx6FPA4_fUsUsUsUsUsUs:
+.fn __ct__Q23efx10TChaseMtx6FPA4_fUsUsUsUsUsUs, global
 /* 803B071C 003AD65C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B0720 003AD660  7C 08 02 A6 */	mflr r0
 /* 803B0724 003AD664  3D 60 80 4B */	lis r11, __vt__Q23efx5TBase@ha
@@ -2608,9 +2607,9 @@ __ct__Q23efx10TChaseMtx6FPA4_fUsUsUsUsUsUs:
 /* 803B07D4 003AD714  7C 08 03 A6 */	mtlr r0
 /* 803B07D8 003AD718  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B07DC 003AD71C  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx10TChaseMtx6FPA4_fUsUsUsUsUsUs
 
-.global setMtxptr__Q23efx10TChaseMtx6FPA4_f
-setMtxptr__Q23efx10TChaseMtx6FPA4_f:
+.fn setMtxptr__Q23efx10TChaseMtx6FPA4_f, global
 /* 803B07E0 003AD720  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B07E4 003AD724  90 83 00 28 */	stw r4, 0x28(r3)
 /* 803B07E8 003AD728  90 83 00 3C */	stw r4, 0x3c(r3)
@@ -2618,9 +2617,9 @@ setMtxptr__Q23efx10TChaseMtx6FPA4_f:
 /* 803B07F0 003AD730  90 83 00 64 */	stw r4, 0x64(r3)
 /* 803B07F4 003AD734  90 83 00 78 */	stw r4, 0x78(r3)
 /* 803B07F8 003AD738  4E 80 00 20 */	blr 
+.endfn setMtxptr__Q23efx10TChaseMtx6FPA4_f
 
-.global __ct__Q23efx11TChaseMtxT2FPA4_fUsUs
-__ct__Q23efx11TChaseMtxT2FPA4_fUsUs:
+.fn __ct__Q23efx11TChaseMtxT2FPA4_fUsUs, global
 /* 803B07FC 003AD73C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0800 003AD740  7C 08 02 A6 */	mflr r0
 /* 803B0804 003AD744  3C E0 80 4B */	lis r7, __vt__Q23efx5TBase@ha
@@ -2664,9 +2663,9 @@ __ct__Q23efx11TChaseMtxT2FPA4_fUsUs:
 /* 803B089C 003AD7DC  7C 08 03 A6 */	mtlr r0
 /* 803B08A0 003AD7E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B08A4 003AD7E4  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx11TChaseMtxT2FPA4_fUsUs
 
-.global __ct__Q23efx10TChaseMtxTFv
-__ct__Q23efx10TChaseMtxTFv:
+.fn __ct__Q23efx10TChaseMtxTFv, weak
 /* 803B08A8 003AD7E8  3C 80 80 4B */	lis r4, __vt__Q23efx5TBase@ha
 /* 803B08AC 003AD7EC  3C A0 80 4E */	lis r5, __vt__Q23efx5TSync@ha
 /* 803B08B0 003AD7F0  38 04 A7 F8 */	addi r0, r4, __vt__Q23efx5TBase@l
@@ -2689,15 +2688,15 @@ __ct__Q23efx10TChaseMtxTFv:
 /* 803B08F4 003AD834  90 83 00 00 */	stw r4, 0(r3)
 /* 803B08F8 003AD838  90 03 00 04 */	stw r0, 4(r3)
 /* 803B08FC 003AD83C  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx10TChaseMtxTFv
 
-.global setMtxptr__Q23efx11TChaseMtxT2FPA4_f
-setMtxptr__Q23efx11TChaseMtxT2FPA4_f:
+.fn setMtxptr__Q23efx11TChaseMtxT2FPA4_f, global
 /* 803B0900 003AD840  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B0904 003AD844  90 83 00 28 */	stw r4, 0x28(r3)
 /* 803B0908 003AD848  4E 80 00 20 */	blr 
+.endfn setMtxptr__Q23efx11TChaseMtxT2FPA4_f
 
-.global __ct__Q23efx11TChaseMtxT4FPA4_fUsUsUsUs
-__ct__Q23efx11TChaseMtxT4FPA4_fUsUsUsUs:
+.fn __ct__Q23efx11TChaseMtxT4FPA4_fUsUsUsUs, global
 /* 803B090C 003AD84C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0910 003AD850  7C 08 02 A6 */	mflr r0
 /* 803B0914 003AD854  3D 20 80 4B */	lis r9, __vt__Q23efx5TBase@ha
@@ -2741,17 +2740,17 @@ __ct__Q23efx11TChaseMtxT4FPA4_fUsUsUsUs:
 /* 803B09AC 003AD8EC  7C 08 03 A6 */	mtlr r0
 /* 803B09B0 003AD8F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B09B4 003AD8F4  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx11TChaseMtxT4FPA4_fUsUsUsUs
 
-.global setMtxptr__Q23efx11TChaseMtxT4FPA4_f
-setMtxptr__Q23efx11TChaseMtxT4FPA4_f:
+.fn setMtxptr__Q23efx11TChaseMtxT4FPA4_f, global
 /* 803B09B8 003AD8F8  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B09BC 003AD8FC  90 83 00 28 */	stw r4, 0x28(r3)
 /* 803B09C0 003AD900  90 83 00 3C */	stw r4, 0x3c(r3)
 /* 803B09C4 003AD904  90 83 00 50 */	stw r4, 0x50(r3)
 /* 803B09C8 003AD908  4E 80 00 20 */	blr 
+.endfn setMtxptr__Q23efx11TChaseMtxT4FPA4_f
 
-.global "__ct__Q23efx14TChasePosYRot2FP10Vector3<f>PfUsUs"
-"__ct__Q23efx14TChasePosYRot2FP10Vector3<f>PfUsUs":
+.fn "__ct__Q23efx14TChasePosYRot2FP10Vector3<f>PfUsUs", global
 /* 803B09CC 003AD90C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B09D0 003AD910  7C 08 02 A6 */	mflr r0
 /* 803B09D4 003AD914  3D 00 80 4B */	lis r8, __vt__Q23efx5TBase@ha
@@ -2792,9 +2791,9 @@ setMtxptr__Q23efx11TChaseMtxT4FPA4_f:
 /* 803B0A60 003AD9A0  7C 08 03 A6 */	mtlr r0
 /* 803B0A64 003AD9A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B0A68 003AD9A8  4E 80 00 20 */	blr 
+.endfn "__ct__Q23efx14TChasePosYRot2FP10Vector3<f>PfUsUs"
 
-.global __ct__Q23efx13TChasePosYRotFv
-__ct__Q23efx13TChasePosYRotFv:
+.fn __ct__Q23efx13TChasePosYRotFv, weak
 /* 803B0A6C 003AD9AC  3C 80 80 4B */	lis r4, __vt__Q23efx5TBase@ha
 /* 803B0A70 003AD9B0  3C A0 80 4E */	lis r5, __vt__Q23efx5TSync@ha
 /* 803B0A74 003AD9B4  38 04 A7 F8 */	addi r0, r4, __vt__Q23efx5TBase@l
@@ -2817,9 +2816,9 @@ __ct__Q23efx13TChasePosYRotFv:
 /* 803B0AB8 003AD9F8  90 83 00 00 */	stw r4, 0(r3)
 /* 803B0ABC 003AD9FC  90 03 00 04 */	stw r0, 4(r3)
 /* 803B0AC0 003ADA00  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx13TChasePosYRotFv
 
-.global "__ct__Q23efx14TChasePosYRot3FP10Vector3<f>PfUsUsUs"
-"__ct__Q23efx14TChasePosYRot3FP10Vector3<f>PfUsUsUs":
+.fn "__ct__Q23efx14TChasePosYRot3FP10Vector3<f>PfUsUsUs", global
 /* 803B0AC4 003ADA04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0AC8 003ADA08  7C 08 02 A6 */	mflr r0
 /* 803B0ACC 003ADA0C  3D 20 80 4B */	lis r9, __vt__Q23efx5TBase@ha
@@ -2864,9 +2863,9 @@ __ct__Q23efx13TChasePosYRotFv:
 /* 803B0B68 003ADAA8  7C 08 03 A6 */	mtlr r0
 /* 803B0B6C 003ADAAC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B0B70 003ADAB0  4E 80 00 20 */	blr 
+.endfn "__ct__Q23efx14TChasePosYRot3FP10Vector3<f>PfUsUsUs"
 
-.global __ct__Q23efx23TChasePosPosLocalYScaleFv
-__ct__Q23efx23TChasePosPosLocalYScaleFv:
+.fn __ct__Q23efx23TChasePosPosLocalYScaleFv, weak
 /* 803B0B74 003ADAB4  3C 80 80 4B */	lis r4, __vt__Q23efx5TBase@ha
 /* 803B0B78 003ADAB8  3C A0 80 4E */	lis r5, __vt__Q23efx5TSync@ha
 /* 803B0B7C 003ADABC  38 04 A7 F8 */	addi r0, r4, __vt__Q23efx5TBase@l
@@ -2889,9 +2888,9 @@ __ct__Q23efx23TChasePosPosLocalYScaleFv:
 /* 803B0BC0 003ADB00  90 83 00 00 */	stw r4, 0(r3)
 /* 803B0BC4 003ADB04  90 03 00 04 */	stw r0, 4(r3)
 /* 803B0BC8 003ADB08  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx23TChasePosPosLocalYScaleFv
 
-.global "__ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>fUsUsUs"
-"__ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>fUsUsUs":
+.fn "__ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>fUsUsUs", global
 /* 803B0BCC 003ADB0C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B0BD0 003ADB10  7C 08 02 A6 */	mflr r0
 /* 803B0BD4 003ADB14  3D 20 80 4B */	lis r9, __vt__Q23efx5TBase@ha
@@ -2942,9 +2941,9 @@ __ct__Q23efx23TChasePosPosLocalYScaleFv:
 /* 803B0C88 003ADBC8  7C 08 03 A6 */	mtlr r0
 /* 803B0C8C 003ADBCC  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B0C90 003ADBD0  4E 80 00 20 */	blr 
+.endfn "__ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>fUsUsUs"
 
-.global "setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>"
-"setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>":
+.fn "setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>", global
 /* 803B0C94 003ADBD4  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B0C98 003ADBD8  90 A3 00 18 */	stw r5, 0x18(r3)
 /* 803B0C9C 003ADBDC  90 83 00 30 */	stw r4, 0x30(r3)
@@ -2952,9 +2951,9 @@ __ct__Q23efx23TChasePosPosLocalYScaleFv:
 /* 803B0CA4 003ADBE4  90 83 00 4C */	stw r4, 0x4c(r3)
 /* 803B0CA8 003ADBE8  90 A3 00 50 */	stw r5, 0x50(r3)
 /* 803B0CAC 003ADBEC  4E 80 00 20 */	blr 
+.endfn "setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>"
 
-.global __ct__Q23efx23TChasePosPosLocalZScaleFv
-__ct__Q23efx23TChasePosPosLocalZScaleFv:
+.fn __ct__Q23efx23TChasePosPosLocalZScaleFv, weak
 /* 803B0CB0 003ADBF0  3C 80 80 4B */	lis r4, __vt__Q23efx5TBase@ha
 /* 803B0CB4 003ADBF4  3C A0 80 4E */	lis r5, __vt__Q23efx5TSync@ha
 /* 803B0CB8 003ADBF8  38 04 A7 F8 */	addi r0, r4, __vt__Q23efx5TBase@l
@@ -2977,9 +2976,9 @@ __ct__Q23efx23TChasePosPosLocalZScaleFv:
 /* 803B0CFC 003ADC3C  90 83 00 00 */	stw r4, 0(r3)
 /* 803B0D00 003ADC40  90 03 00 04 */	stw r0, 4(r3)
 /* 803B0D04 003ADC44  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx23TChasePosPosLocalZScaleFv
 
-.global "__ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>fUsUsUs"
-"__ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>fUsUsUs":
+.fn "__ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>fUsUsUs", global
 /* 803B0D08 003ADC48  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B0D0C 003ADC4C  7C 08 02 A6 */	mflr r0
 /* 803B0D10 003ADC50  3D 20 80 4B */	lis r9, __vt__Q23efx5TBase@ha
@@ -3030,9 +3029,9 @@ __ct__Q23efx23TChasePosPosLocalZScaleFv:
 /* 803B0DC4 003ADD04  7C 08 03 A6 */	mtlr r0
 /* 803B0DC8 003ADD08  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B0DCC 003ADD0C  4E 80 00 20 */	blr 
+.endfn "__ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>fUsUsUs"
 
-.global "setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>"
-"setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>":
+.fn "setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>", global
 /* 803B0DD0 003ADD10  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B0DD4 003ADD14  90 A3 00 18 */	stw r5, 0x18(r3)
 /* 803B0DD8 003ADD18  90 83 00 30 */	stw r4, 0x30(r3)
@@ -3040,9 +3039,9 @@ __ct__Q23efx23TChasePosPosLocalZScaleFv:
 /* 803B0DE0 003ADD20  90 83 00 4C */	stw r4, 0x4c(r3)
 /* 803B0DE4 003ADD24  90 A3 00 50 */	stw r5, 0x50(r3)
 /* 803B0DE8 003ADD28  4E 80 00 20 */	blr 
+.endfn "setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>"
 
-.global __dt__Q23efx19TOneEmitterChasePosFv
-__dt__Q23efx19TOneEmitterChasePosFv:
+.fn __dt__Q23efx19TOneEmitterChasePosFv, weak
 /* 803B0DEC 003ADD2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B0DF0 003ADD30  7C 08 02 A6 */	mflr r0
 /* 803B0DF4 003ADD34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3080,9 +3079,9 @@ __dt__Q23efx19TOneEmitterChasePosFv:
 /* 803B0E6C 003ADDAC  7C 08 03 A6 */	mtlr r0
 /* 803B0E70 003ADDB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B0E74 003ADDB4  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx19TOneEmitterChasePosFv
 
-.global startDemoDrawOff__Q23efx19TOneEmitterChasePosFv
-startDemoDrawOff__Q23efx19TOneEmitterChasePosFv:
+.fn startDemoDrawOff__Q23efx19TOneEmitterChasePosFv, weak
 /* 803B0E78 003ADDB8  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 803B0E7C 003ADDBC  28 03 00 00 */	cmplwi r3, 0
 /* 803B0E80 003ADDC0  4D 82 00 20 */	beqlr 
@@ -3090,9 +3089,9 @@ startDemoDrawOff__Q23efx19TOneEmitterChasePosFv:
 /* 803B0E88 003ADDC8  60 00 00 04 */	ori r0, r0, 4
 /* 803B0E8C 003ADDCC  90 03 00 F4 */	stw r0, 0xf4(r3)
 /* 803B0E90 003ADDD0  4E 80 00 20 */	blr 
+.endfn startDemoDrawOff__Q23efx19TOneEmitterChasePosFv
 
-.global endDemoDrawOn__Q23efx19TOneEmitterChasePosFv
-endDemoDrawOn__Q23efx19TOneEmitterChasePosFv:
+.fn endDemoDrawOn__Q23efx19TOneEmitterChasePosFv, weak
 /* 803B0E94 003ADDD4  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 803B0E98 003ADDD8  28 03 00 00 */	cmplwi r3, 0
 /* 803B0E9C 003ADDDC  4D 82 00 20 */	beqlr 
@@ -3100,9 +3099,9 @@ endDemoDrawOn__Q23efx19TOneEmitterChasePosFv:
 /* 803B0EA4 003ADDE4  54 00 07 B8 */	rlwinm r0, r0, 0, 0x1e, 0x1c
 /* 803B0EA8 003ADDE8  90 03 00 F4 */	stw r0, 0xf4(r3)
 /* 803B0EAC 003ADDEC  4E 80 00 20 */	blr 
+.endfn endDemoDrawOn__Q23efx19TOneEmitterChasePosFv
 
-.global __dt__Q23efx24TCallBack_StaticClippingFv
-__dt__Q23efx24TCallBack_StaticClippingFv:
+.fn __dt__Q23efx24TCallBack_StaticClippingFv, weak
 /* 803B0EB0 003ADDF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B0EB4 003ADDF4  7C 08 02 A6 */	mflr r0
 /* 803B0EB8 003ADDF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3128,9 +3127,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B0F04 003ADE44  7C 08 03 A6 */	mtlr r0
 /* 803B0F08 003ADE48  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B0F0C 003ADE4C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx24TCallBack_StaticClippingFv
 
-.global "create__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>FPQ23efx3Arg"
-"create__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>FPQ23efx3Arg":
+.fn "create__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>FPQ23efx3Arg", weak
 /* 803B0F10 003ADE50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0F14 003ADE54  7C 08 02 A6 */	mflr r0
 /* 803B0F18 003ADE58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3165,9 +3164,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B0F80 003ADEC0  7C 08 03 A6 */	mtlr r0
 /* 803B0F84 003ADEC4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B0F88 003ADEC8  4E 80 00 20 */	blr 
+.endfn "create__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>FPQ23efx3Arg"
 
-.global "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-"fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv":
+.fn "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv", weak
 /* 803B0F8C 003ADECC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B0F90 003ADED0  7C 08 02 A6 */	mflr r0
 /* 803B0F94 003ADED4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3191,9 +3190,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B0FD8 003ADF18  7C 08 03 A6 */	mtlr r0
 /* 803B0FDC 003ADF1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B0FE0 003ADF20  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 
-.global "forceKill__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-"forceKill__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv":
+.fn "forceKill__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv", weak
 /* 803B0FE4 003ADF24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B0FE8 003ADF28  7C 08 02 A6 */	mflr r0
 /* 803B0FEC 003ADF2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3217,9 +3216,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1030 003ADF70  7C 08 03 A6 */	mtlr r0
 /* 803B1034 003ADF74  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1038 003ADF78  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 
-.global "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-"startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv":
+.fn "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv", weak
 /* 803B103C 003ADF7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1040 003ADF80  7C 08 02 A6 */	mflr r0
 /* 803B1044 003ADF84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3243,9 +3242,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1088 003ADFC8  7C 08 03 A6 */	mtlr r0
 /* 803B108C 003ADFCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1090 003ADFD0  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 
-.global "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-"endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv":
+.fn "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv", weak
 /* 803B1094 003ADFD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1098 003ADFD8  7C 08 02 A6 */	mflr r0
 /* 803B109C 003ADFDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3269,9 +3268,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B10E0 003AE020  7C 08 03 A6 */	mtlr r0
 /* 803B10E4 003AE024  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B10E8 003AE028  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 
-.global "create__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>FPQ23efx3Arg"
-"create__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>FPQ23efx3Arg":
+.fn "create__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>FPQ23efx3Arg", weak
 /* 803B10EC 003AE02C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B10F0 003AE030  7C 08 02 A6 */	mflr r0
 /* 803B10F4 003AE034  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3306,9 +3305,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B115C 003AE09C  7C 08 03 A6 */	mtlr r0
 /* 803B1160 003AE0A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B1164 003AE0A4  4E 80 00 20 */	blr 
+.endfn "create__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>FPQ23efx3Arg"
 
-.global "fade__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv"
-"fade__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv":
+.fn "fade__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv", weak
 /* 803B1168 003AE0A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B116C 003AE0AC  7C 08 02 A6 */	mflr r0
 /* 803B1170 003AE0B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3332,9 +3331,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B11B4 003AE0F4  7C 08 03 A6 */	mtlr r0
 /* 803B11B8 003AE0F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B11BC 003AE0FC  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv"
 
-.global "forceKill__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv"
-"forceKill__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv":
+.fn "forceKill__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv", weak
 /* 803B11C0 003AE100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B11C4 003AE104  7C 08 02 A6 */	mflr r0
 /* 803B11C8 003AE108  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3358,9 +3357,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B120C 003AE14C  7C 08 03 A6 */	mtlr r0
 /* 803B1210 003AE150  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1214 003AE154  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv"
 
-.global "startDemoDrawOff__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv"
-"startDemoDrawOff__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv":
+.fn "startDemoDrawOff__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv", weak
 /* 803B1218 003AE158  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B121C 003AE15C  7C 08 02 A6 */	mflr r0
 /* 803B1220 003AE160  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3384,9 +3383,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1264 003AE1A4  7C 08 03 A6 */	mtlr r0
 /* 803B1268 003AE1A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B126C 003AE1AC  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv"
 
-.global "endDemoDrawOn__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv"
-"endDemoDrawOn__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv":
+.fn "endDemoDrawOn__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv", weak
 /* 803B1270 003AE1B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1274 003AE1B4  7C 08 02 A6 */	mflr r0
 /* 803B1278 003AE1B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3410,9 +3409,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B12BC 003AE1FC  7C 08 03 A6 */	mtlr r0
 /* 803B12C0 003AE200  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B12C4 003AE204  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx31TSyncGroup4<Q23efx10TChaseMtxT>Fv"
 
-.global "create__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>FPQ23efx3Arg"
-"create__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>FPQ23efx3Arg":
+.fn "create__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>FPQ23efx3Arg", weak
 /* 803B12C8 003AE208  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B12CC 003AE20C  7C 08 02 A6 */	mflr r0
 /* 803B12D0 003AE210  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3447,9 +3446,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1338 003AE278  7C 08 03 A6 */	mtlr r0
 /* 803B133C 003AE27C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B1340 003AE280  4E 80 00 20 */	blr 
+.endfn "create__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>FPQ23efx3Arg"
 
-.global "fade__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
-"fade__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv":
+.fn "fade__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv", weak
 /* 803B1344 003AE284  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1348 003AE288  7C 08 02 A6 */	mflr r0
 /* 803B134C 003AE28C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3473,9 +3472,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1390 003AE2D0  7C 08 03 A6 */	mtlr r0
 /* 803B1394 003AE2D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1398 003AE2D8  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
 
-.global "forceKill__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
-"forceKill__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv":
+.fn "forceKill__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv", weak
 /* 803B139C 003AE2DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B13A0 003AE2E0  7C 08 02 A6 */	mflr r0
 /* 803B13A4 003AE2E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3499,9 +3498,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B13E8 003AE328  7C 08 03 A6 */	mtlr r0
 /* 803B13EC 003AE32C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B13F0 003AE330  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
 
-.global "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
-"startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv":
+.fn "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv", weak
 /* 803B13F4 003AE334  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B13F8 003AE338  7C 08 02 A6 */	mflr r0
 /* 803B13FC 003AE33C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3525,9 +3524,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1440 003AE380  7C 08 03 A6 */	mtlr r0
 /* 803B1444 003AE384  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1448 003AE388  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
 
-.global "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
-"endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv":
+.fn "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv", weak
 /* 803B144C 003AE38C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1450 003AE390  7C 08 02 A6 */	mflr r0
 /* 803B1454 003AE394  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3551,9 +3550,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1498 003AE3D8  7C 08 03 A6 */	mtlr r0
 /* 803B149C 003AE3DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B14A0 003AE3E0  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
 
-.global "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg"
-"create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg":
+.fn "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg", weak
 /* 803B14A4 003AE3E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B14A8 003AE3E8  7C 08 02 A6 */	mflr r0
 /* 803B14AC 003AE3EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3588,9 +3587,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1514 003AE454  7C 08 03 A6 */	mtlr r0
 /* 803B1518 003AE458  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B151C 003AE45C  4E 80 00 20 */	blr 
+.endfn "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg"
 
-.global "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
-"fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv":
+.fn "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv", weak
 /* 803B1520 003AE460  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1524 003AE464  7C 08 02 A6 */	mflr r0
 /* 803B1528 003AE468  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3614,9 +3613,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B156C 003AE4AC  7C 08 03 A6 */	mtlr r0
 /* 803B1570 003AE4B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1574 003AE4B4  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 
-.global "forceKill__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
-"forceKill__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv":
+.fn "forceKill__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv", weak
 /* 803B1578 003AE4B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B157C 003AE4BC  7C 08 02 A6 */	mflr r0
 /* 803B1580 003AE4C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3640,9 +3639,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B15C4 003AE504  7C 08 03 A6 */	mtlr r0
 /* 803B15C8 003AE508  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B15CC 003AE50C  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 
-.global "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
-"startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv":
+.fn "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv", weak
 /* 803B15D0 003AE510  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B15D4 003AE514  7C 08 02 A6 */	mflr r0
 /* 803B15D8 003AE518  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3666,9 +3665,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B161C 003AE55C  7C 08 03 A6 */	mtlr r0
 /* 803B1620 003AE560  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1624 003AE564  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 
-.global "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
-"endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv":
+.fn "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv", weak
 /* 803B1628 003AE568  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B162C 003AE56C  7C 08 02 A6 */	mflr r0
 /* 803B1630 003AE570  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3692,9 +3691,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1674 003AE5B4  7C 08 03 A6 */	mtlr r0
 /* 803B1678 003AE5B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B167C 003AE5BC  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 
-.global "create__Q23efx28TSyncGroup4<Q23efx8TForever>FPQ23efx3Arg"
-"create__Q23efx28TSyncGroup4<Q23efx8TForever>FPQ23efx3Arg":
+.fn "create__Q23efx28TSyncGroup4<Q23efx8TForever>FPQ23efx3Arg", weak
 /* 803B1680 003AE5C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B1684 003AE5C4  7C 08 02 A6 */	mflr r0
 /* 803B1688 003AE5C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3729,9 +3728,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B16F0 003AE630  7C 08 03 A6 */	mtlr r0
 /* 803B16F4 003AE634  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B16F8 003AE638  4E 80 00 20 */	blr 
+.endfn "create__Q23efx28TSyncGroup4<Q23efx8TForever>FPQ23efx3Arg"
 
-.global "fade__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
-"fade__Q23efx28TSyncGroup4<Q23efx8TForever>Fv":
+.fn "fade__Q23efx28TSyncGroup4<Q23efx8TForever>Fv", weak
 /* 803B16FC 003AE63C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1700 003AE640  7C 08 02 A6 */	mflr r0
 /* 803B1704 003AE644  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3755,9 +3754,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1748 003AE688  7C 08 03 A6 */	mtlr r0
 /* 803B174C 003AE68C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1750 003AE690  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
 
-.global "forceKill__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
-"forceKill__Q23efx28TSyncGroup4<Q23efx8TForever>Fv":
+.fn "forceKill__Q23efx28TSyncGroup4<Q23efx8TForever>Fv", weak
 /* 803B1754 003AE694  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1758 003AE698  7C 08 02 A6 */	mflr r0
 /* 803B175C 003AE69C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3781,9 +3780,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B17A0 003AE6E0  7C 08 03 A6 */	mtlr r0
 /* 803B17A4 003AE6E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B17A8 003AE6E8  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
 
-.global "startDemoDrawOff__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
-"startDemoDrawOff__Q23efx28TSyncGroup4<Q23efx8TForever>Fv":
+.fn "startDemoDrawOff__Q23efx28TSyncGroup4<Q23efx8TForever>Fv", weak
 /* 803B17AC 003AE6EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B17B0 003AE6F0  7C 08 02 A6 */	mflr r0
 /* 803B17B4 003AE6F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3807,9 +3806,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B17F8 003AE738  7C 08 03 A6 */	mtlr r0
 /* 803B17FC 003AE73C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1800 003AE740  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
 
-.global "endDemoDrawOn__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
-"endDemoDrawOn__Q23efx28TSyncGroup4<Q23efx8TForever>Fv":
+.fn "endDemoDrawOn__Q23efx28TSyncGroup4<Q23efx8TForever>Fv", weak
 /* 803B1804 003AE744  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1808 003AE748  7C 08 02 A6 */	mflr r0
 /* 803B180C 003AE74C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3833,9 +3832,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1850 003AE790  7C 08 03 A6 */	mtlr r0
 /* 803B1854 003AE794  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1858 003AE798  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
 
-.global "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg"
-"create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg":
+.fn "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg", weak
 /* 803B185C 003AE79C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B1860 003AE7A0  7C 08 02 A6 */	mflr r0
 /* 803B1864 003AE7A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3870,9 +3869,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B18CC 003AE80C  7C 08 03 A6 */	mtlr r0
 /* 803B18D0 003AE810  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B18D4 003AE814  4E 80 00 20 */	blr 
+.endfn "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg"
 
-.global "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
-"fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv":
+.fn "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv", weak
 /* 803B18D8 003AE818  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B18DC 003AE81C  7C 08 02 A6 */	mflr r0
 /* 803B18E0 003AE820  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3896,9 +3895,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1924 003AE864  7C 08 03 A6 */	mtlr r0
 /* 803B1928 003AE868  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B192C 003AE86C  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 
-.global "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
-"forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv":
+.fn "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv", weak
 /* 803B1930 003AE870  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1934 003AE874  7C 08 02 A6 */	mflr r0
 /* 803B1938 003AE878  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3922,9 +3921,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B197C 003AE8BC  7C 08 03 A6 */	mtlr r0
 /* 803B1980 003AE8C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1984 003AE8C4  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 
-.global "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
-"startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv":
+.fn "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv", weak
 /* 803B1988 003AE8C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B198C 003AE8CC  7C 08 02 A6 */	mflr r0
 /* 803B1990 003AE8D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3948,9 +3947,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B19D4 003AE914  7C 08 03 A6 */	mtlr r0
 /* 803B19D8 003AE918  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B19DC 003AE91C  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 
-.global "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
-"endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv":
+.fn "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv", weak
 /* 803B19E0 003AE920  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B19E4 003AE924  7C 08 02 A6 */	mflr r0
 /* 803B19E8 003AE928  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3974,9 +3973,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1A2C 003AE96C  7C 08 03 A6 */	mtlr r0
 /* 803B1A30 003AE970  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1A34 003AE974  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 
-.global "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>FPQ23efx3Arg"
-"create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>FPQ23efx3Arg":
+.fn "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>FPQ23efx3Arg", weak
 /* 803B1A38 003AE978  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B1A3C 003AE97C  7C 08 02 A6 */	mflr r0
 /* 803B1A40 003AE980  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4011,9 +4010,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1AA8 003AE9E8  7C 08 03 A6 */	mtlr r0
 /* 803B1AAC 003AE9EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B1AB0 003AE9F0  4E 80 00 20 */	blr 
+.endfn "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>FPQ23efx3Arg"
 
-.global "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
-"fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv":
+.fn "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv", weak
 /* 803B1AB4 003AE9F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1AB8 003AE9F8  7C 08 02 A6 */	mflr r0
 /* 803B1ABC 003AE9FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4037,9 +4036,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1B00 003AEA40  7C 08 03 A6 */	mtlr r0
 /* 803B1B04 003AEA44  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1B08 003AEA48  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
 
-.global "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
-"forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv":
+.fn "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv", weak
 /* 803B1B0C 003AEA4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1B10 003AEA50  7C 08 02 A6 */	mflr r0
 /* 803B1B14 003AEA54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4063,9 +4062,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1B58 003AEA98  7C 08 03 A6 */	mtlr r0
 /* 803B1B5C 003AEA9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1B60 003AEAA0  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
 
-.global "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
-"startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv":
+.fn "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv", weak
 /* 803B1B64 003AEAA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1B68 003AEAA8  7C 08 02 A6 */	mflr r0
 /* 803B1B6C 003AEAAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4089,9 +4088,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1BB0 003AEAF0  7C 08 03 A6 */	mtlr r0
 /* 803B1BB4 003AEAF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1BB8 003AEAF8  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
 
-.global "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
-"endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv":
+.fn "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv", weak
 /* 803B1BBC 003AEAFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1BC0 003AEB00  7C 08 02 A6 */	mflr r0
 /* 803B1BC4 003AEB04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4115,9 +4114,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1C08 003AEB48  7C 08 03 A6 */	mtlr r0
 /* 803B1C0C 003AEB4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1C10 003AEB50  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
 
-.global "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
-"create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg":
+.fn "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg", weak
 /* 803B1C14 003AEB54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B1C18 003AEB58  7C 08 02 A6 */	mflr r0
 /* 803B1C1C 003AEB5C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4152,9 +4151,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1C84 003AEBC4  7C 08 03 A6 */	mtlr r0
 /* 803B1C88 003AEBC8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B1C8C 003AEBCC  4E 80 00 20 */	blr 
+.endfn "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
 
-.global "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-"fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv":
+.fn "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv", weak
 /* 803B1C90 003AEBD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1C94 003AEBD4  7C 08 02 A6 */	mflr r0
 /* 803B1C98 003AEBD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4178,9 +4177,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1CDC 003AEC1C  7C 08 03 A6 */	mtlr r0
 /* 803B1CE0 003AEC20  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1CE4 003AEC24  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 
-.global "forceKill__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-"forceKill__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv":
+.fn "forceKill__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv", weak
 /* 803B1CE8 003AEC28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1CEC 003AEC2C  7C 08 02 A6 */	mflr r0
 /* 803B1CF0 003AEC30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4204,9 +4203,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1D34 003AEC74  7C 08 03 A6 */	mtlr r0
 /* 803B1D38 003AEC78  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1D3C 003AEC7C  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 
-.global "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-"startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv":
+.fn "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv", weak
 /* 803B1D40 003AEC80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1D44 003AEC84  7C 08 02 A6 */	mflr r0
 /* 803B1D48 003AEC88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4230,9 +4229,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1D8C 003AECCC  7C 08 03 A6 */	mtlr r0
 /* 803B1D90 003AECD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1D94 003AECD4  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 
-.global "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-"endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv":
+.fn "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv", weak
 /* 803B1D98 003AECD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1D9C 003AECDC  7C 08 02 A6 */	mflr r0
 /* 803B1DA0 003AECE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4256,9 +4255,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1DE4 003AED24  7C 08 03 A6 */	mtlr r0
 /* 803B1DE8 003AED28  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1DEC 003AED2C  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 
-.global "create__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>FPQ23efx3Arg"
-"create__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>FPQ23efx3Arg":
+.fn "create__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>FPQ23efx3Arg", weak
 /* 803B1DF0 003AED30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B1DF4 003AED34  7C 08 02 A6 */	mflr r0
 /* 803B1DF8 003AED38  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4293,9 +4292,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1E60 003AEDA0  7C 08 03 A6 */	mtlr r0
 /* 803B1E64 003AEDA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B1E68 003AEDA8  4E 80 00 20 */	blr 
+.endfn "create__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>FPQ23efx3Arg"
 
-.global "fade__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
-"fade__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv":
+.fn "fade__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv", weak
 /* 803B1E6C 003AEDAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1E70 003AEDB0  7C 08 02 A6 */	mflr r0
 /* 803B1E74 003AEDB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4319,9 +4318,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1EB8 003AEDF8  7C 08 03 A6 */	mtlr r0
 /* 803B1EBC 003AEDFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1EC0 003AEE00  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
 
-.global "forceKill__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
-"forceKill__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv":
+.fn "forceKill__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv", weak
 /* 803B1EC4 003AEE04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1EC8 003AEE08  7C 08 02 A6 */	mflr r0
 /* 803B1ECC 003AEE0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4345,9 +4344,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1F10 003AEE50  7C 08 03 A6 */	mtlr r0
 /* 803B1F14 003AEE54  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1F18 003AEE58  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
 
-.global "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
-"startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv":
+.fn "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv", weak
 /* 803B1F1C 003AEE5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1F20 003AEE60  7C 08 02 A6 */	mflr r0
 /* 803B1F24 003AEE64  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4371,9 +4370,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1F68 003AEEA8  7C 08 03 A6 */	mtlr r0
 /* 803B1F6C 003AEEAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1F70 003AEEB0  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
 
-.global "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
-"endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv":
+.fn "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv", weak
 /* 803B1F74 003AEEB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B1F78 003AEEB8  7C 08 02 A6 */	mflr r0
 /* 803B1F7C 003AEEBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4397,9 +4396,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B1FC0 003AEF00  7C 08 03 A6 */	mtlr r0
 /* 803B1FC4 003AEF04  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B1FC8 003AEF08  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
 
-.global "create__Q23efx29TSyncGroup3<Q23efx9TChasePos>FPQ23efx3Arg"
-"create__Q23efx29TSyncGroup3<Q23efx9TChasePos>FPQ23efx3Arg":
+.fn "create__Q23efx29TSyncGroup3<Q23efx9TChasePos>FPQ23efx3Arg", weak
 /* 803B1FCC 003AEF0C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B1FD0 003AEF10  7C 08 02 A6 */	mflr r0
 /* 803B1FD4 003AEF14  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4434,9 +4433,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B203C 003AEF7C  7C 08 03 A6 */	mtlr r0
 /* 803B2040 003AEF80  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B2044 003AEF84  4E 80 00 20 */	blr 
+.endfn "create__Q23efx29TSyncGroup3<Q23efx9TChasePos>FPQ23efx3Arg"
 
-.global "fade__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
-"fade__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv":
+.fn "fade__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv", weak
 /* 803B2048 003AEF88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B204C 003AEF8C  7C 08 02 A6 */	mflr r0
 /* 803B2050 003AEF90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4460,9 +4459,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2094 003AEFD4  7C 08 03 A6 */	mtlr r0
 /* 803B2098 003AEFD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B209C 003AEFDC  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 
-.global "forceKill__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
-"forceKill__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv":
+.fn "forceKill__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv", weak
 /* 803B20A0 003AEFE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B20A4 003AEFE4  7C 08 02 A6 */	mflr r0
 /* 803B20A8 003AEFE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4486,9 +4485,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B20EC 003AF02C  7C 08 03 A6 */	mtlr r0
 /* 803B20F0 003AF030  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B20F4 003AF034  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 
-.global "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
-"startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv":
+.fn "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv", weak
 /* 803B20F8 003AF038  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B20FC 003AF03C  7C 08 02 A6 */	mflr r0
 /* 803B2100 003AF040  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4512,9 +4511,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2144 003AF084  7C 08 03 A6 */	mtlr r0
 /* 803B2148 003AF088  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B214C 003AF08C  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 
-.global "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
-"endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv":
+.fn "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv", weak
 /* 803B2150 003AF090  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2154 003AF094  7C 08 02 A6 */	mflr r0
 /* 803B2158 003AF098  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4538,9 +4537,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B219C 003AF0DC  7C 08 03 A6 */	mtlr r0
 /* 803B21A0 003AF0E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B21A4 003AF0E4  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 
-.global "create__Q23efx28TSyncGroup3<Q23efx8TForever>FPQ23efx3Arg"
-"create__Q23efx28TSyncGroup3<Q23efx8TForever>FPQ23efx3Arg":
+.fn "create__Q23efx28TSyncGroup3<Q23efx8TForever>FPQ23efx3Arg", weak
 /* 803B21A8 003AF0E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B21AC 003AF0EC  7C 08 02 A6 */	mflr r0
 /* 803B21B0 003AF0F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4575,9 +4574,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2218 003AF158  7C 08 03 A6 */	mtlr r0
 /* 803B221C 003AF15C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B2220 003AF160  4E 80 00 20 */	blr 
+.endfn "create__Q23efx28TSyncGroup3<Q23efx8TForever>FPQ23efx3Arg"
 
-.global "fade__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-"fade__Q23efx28TSyncGroup3<Q23efx8TForever>Fv":
+.fn "fade__Q23efx28TSyncGroup3<Q23efx8TForever>Fv", weak
 /* 803B2224 003AF164  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2228 003AF168  7C 08 02 A6 */	mflr r0
 /* 803B222C 003AF16C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4601,9 +4600,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2270 003AF1B0  7C 08 03 A6 */	mtlr r0
 /* 803B2274 003AF1B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2278 003AF1B8  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 
-.global "forceKill__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-"forceKill__Q23efx28TSyncGroup3<Q23efx8TForever>Fv":
+.fn "forceKill__Q23efx28TSyncGroup3<Q23efx8TForever>Fv", weak
 /* 803B227C 003AF1BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2280 003AF1C0  7C 08 02 A6 */	mflr r0
 /* 803B2284 003AF1C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4627,9 +4626,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B22C8 003AF208  7C 08 03 A6 */	mtlr r0
 /* 803B22CC 003AF20C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B22D0 003AF210  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 
-.global "startDemoDrawOff__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-"startDemoDrawOff__Q23efx28TSyncGroup3<Q23efx8TForever>Fv":
+.fn "startDemoDrawOff__Q23efx28TSyncGroup3<Q23efx8TForever>Fv", weak
 /* 803B22D4 003AF214  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B22D8 003AF218  7C 08 02 A6 */	mflr r0
 /* 803B22DC 003AF21C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4653,9 +4652,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2320 003AF260  7C 08 03 A6 */	mtlr r0
 /* 803B2324 003AF264  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2328 003AF268  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 
-.global "endDemoDrawOn__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-"endDemoDrawOn__Q23efx28TSyncGroup3<Q23efx8TForever>Fv":
+.fn "endDemoDrawOn__Q23efx28TSyncGroup3<Q23efx8TForever>Fv", weak
 /* 803B232C 003AF26C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2330 003AF270  7C 08 02 A6 */	mflr r0
 /* 803B2334 003AF274  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4679,9 +4678,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2378 003AF2B8  7C 08 03 A6 */	mtlr r0
 /* 803B237C 003AF2BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2380 003AF2C0  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 
-.global "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
-"create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg":
+.fn "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg", weak
 /* 803B2384 003AF2C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B2388 003AF2C8  7C 08 02 A6 */	mflr r0
 /* 803B238C 003AF2CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4716,9 +4715,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B23F4 003AF334  7C 08 03 A6 */	mtlr r0
 /* 803B23F8 003AF338  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B23FC 003AF33C  4E 80 00 20 */	blr 
+.endfn "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
 
-.global "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-"fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv":
+.fn "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv", weak
 /* 803B2400 003AF340  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2404 003AF344  7C 08 02 A6 */	mflr r0
 /* 803B2408 003AF348  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4742,9 +4741,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B244C 003AF38C  7C 08 03 A6 */	mtlr r0
 /* 803B2450 003AF390  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2454 003AF394  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 
-.global "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-"forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv":
+.fn "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv", weak
 /* 803B2458 003AF398  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B245C 003AF39C  7C 08 02 A6 */	mflr r0
 /* 803B2460 003AF3A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4768,9 +4767,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B24A4 003AF3E4  7C 08 03 A6 */	mtlr r0
 /* 803B24A8 003AF3E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B24AC 003AF3EC  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 
-.global "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-"startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv":
+.fn "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv", weak
 /* 803B24B0 003AF3F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B24B4 003AF3F4  7C 08 02 A6 */	mflr r0
 /* 803B24B8 003AF3F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4794,9 +4793,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B24FC 003AF43C  7C 08 03 A6 */	mtlr r0
 /* 803B2500 003AF440  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2504 003AF444  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 
-.global "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-"endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv":
+.fn "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv", weak
 /* 803B2508 003AF448  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B250C 003AF44C  7C 08 02 A6 */	mflr r0
 /* 803B2510 003AF450  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4820,9 +4819,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2554 003AF494  7C 08 03 A6 */	mtlr r0
 /* 803B2558 003AF498  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B255C 003AF49C  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 
-.global "create__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>FPQ23efx3Arg"
-"create__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>FPQ23efx3Arg":
+.fn "create__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>FPQ23efx3Arg", weak
 /* 803B2560 003AF4A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B2564 003AF4A4  7C 08 02 A6 */	mflr r0
 /* 803B2568 003AF4A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4857,9 +4856,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B25D0 003AF510  7C 08 03 A6 */	mtlr r0
 /* 803B25D4 003AF514  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B25D8 003AF518  4E 80 00 20 */	blr 
+.endfn "create__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>FPQ23efx3Arg"
 
-.global "fade__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
-"fade__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv":
+.fn "fade__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv", weak
 /* 803B25DC 003AF51C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B25E0 003AF520  7C 08 02 A6 */	mflr r0
 /* 803B25E4 003AF524  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4883,9 +4882,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2628 003AF568  7C 08 03 A6 */	mtlr r0
 /* 803B262C 003AF56C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2630 003AF570  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 
-.global "forceKill__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
-"forceKill__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv":
+.fn "forceKill__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv", weak
 /* 803B2634 003AF574  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2638 003AF578  7C 08 02 A6 */	mflr r0
 /* 803B263C 003AF57C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4909,9 +4908,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2680 003AF5C0  7C 08 03 A6 */	mtlr r0
 /* 803B2684 003AF5C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2688 003AF5C8  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 
-.global "startDemoDrawOff__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
-"startDemoDrawOff__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv":
+.fn "startDemoDrawOff__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv", weak
 /* 803B268C 003AF5CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2690 003AF5D0  7C 08 02 A6 */	mflr r0
 /* 803B2694 003AF5D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4935,9 +4934,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B26D8 003AF618  7C 08 03 A6 */	mtlr r0
 /* 803B26DC 003AF61C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B26E0 003AF620  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 
-.global "endDemoDrawOn__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
-"endDemoDrawOn__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv":
+.fn "endDemoDrawOn__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv", weak
 /* 803B26E4 003AF624  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B26E8 003AF628  7C 08 02 A6 */	mflr r0
 /* 803B26EC 003AF62C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4961,9 +4960,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2730 003AF670  7C 08 03 A6 */	mtlr r0
 /* 803B2734 003AF674  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2738 003AF678  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 
-.global "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
-"create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg":
+.fn "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg", weak
 /* 803B273C 003AF67C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B2740 003AF680  7C 08 02 A6 */	mflr r0
 /* 803B2744 003AF684  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4998,9 +4997,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B27AC 003AF6EC  7C 08 03 A6 */	mtlr r0
 /* 803B27B0 003AF6F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B27B4 003AF6F4  4E 80 00 20 */	blr 
+.endfn "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
 
-.global "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-"fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv":
+.fn "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv", weak
 /* 803B27B8 003AF6F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B27BC 003AF6FC  7C 08 02 A6 */	mflr r0
 /* 803B27C0 003AF700  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5024,9 +5023,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2804 003AF744  7C 08 03 A6 */	mtlr r0
 /* 803B2808 003AF748  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B280C 003AF74C  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 
-.global "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-"forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv":
+.fn "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv", weak
 /* 803B2810 003AF750  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2814 003AF754  7C 08 02 A6 */	mflr r0
 /* 803B2818 003AF758  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5050,9 +5049,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B285C 003AF79C  7C 08 03 A6 */	mtlr r0
 /* 803B2860 003AF7A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2864 003AF7A4  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 
-.global "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-"startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv":
+.fn "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv", weak
 /* 803B2868 003AF7A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B286C 003AF7AC  7C 08 02 A6 */	mflr r0
 /* 803B2870 003AF7B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5076,9 +5075,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B28B4 003AF7F4  7C 08 03 A6 */	mtlr r0
 /* 803B28B8 003AF7F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B28BC 003AF7FC  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 
-.global "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-"endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv":
+.fn "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv", weak
 /* 803B28C0 003AF800  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B28C4 003AF804  7C 08 02 A6 */	mflr r0
 /* 803B28C8 003AF808  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5102,9 +5101,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B290C 003AF84C  7C 08 03 A6 */	mtlr r0
 /* 803B2910 003AF850  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2914 003AF854  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 
-.global "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
-"create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg":
+.fn "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg", weak
 /* 803B2918 003AF858  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B291C 003AF85C  7C 08 02 A6 */	mflr r0
 /* 803B2920 003AF860  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5139,9 +5138,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2988 003AF8C8  7C 08 03 A6 */	mtlr r0
 /* 803B298C 003AF8CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B2990 003AF8D0  4E 80 00 20 */	blr 
+.endfn "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
 
-.global "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-"fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv":
+.fn "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv", weak
 /* 803B2994 003AF8D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2998 003AF8D8  7C 08 02 A6 */	mflr r0
 /* 803B299C 003AF8DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5165,9 +5164,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B29E0 003AF920  7C 08 03 A6 */	mtlr r0
 /* 803B29E4 003AF924  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B29E8 003AF928  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
 
-.global "forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-"forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv":
+.fn "forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv", weak
 /* 803B29EC 003AF92C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B29F0 003AF930  7C 08 02 A6 */	mflr r0
 /* 803B29F4 003AF934  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5191,9 +5190,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2A38 003AF978  7C 08 03 A6 */	mtlr r0
 /* 803B2A3C 003AF97C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2A40 003AF980  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
 
-.global "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-"startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv":
+.fn "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv", weak
 /* 803B2A44 003AF984  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2A48 003AF988  7C 08 02 A6 */	mflr r0
 /* 803B2A4C 003AF98C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5217,9 +5216,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2A90 003AF9D0  7C 08 03 A6 */	mtlr r0
 /* 803B2A94 003AF9D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2A98 003AF9D8  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
 
-.global "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-"endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv":
+.fn "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv", weak
 /* 803B2A9C 003AF9DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2AA0 003AF9E0  7C 08 02 A6 */	mflr r0
 /* 803B2AA4 003AF9E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5243,9 +5242,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2AE8 003AFA28  7C 08 03 A6 */	mtlr r0
 /* 803B2AEC 003AFA2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2AF0 003AFA30  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
 
-.global "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
-"create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg":
+.fn "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg", weak
 /* 803B2AF4 003AFA34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B2AF8 003AFA38  7C 08 02 A6 */	mflr r0
 /* 803B2AFC 003AFA3C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5280,9 +5279,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2B64 003AFAA4  7C 08 03 A6 */	mtlr r0
 /* 803B2B68 003AFAA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B2B6C 003AFAAC  4E 80 00 20 */	blr 
+.endfn "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
 
-.global "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-"fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv":
+.fn "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv", weak
 /* 803B2B70 003AFAB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2B74 003AFAB4  7C 08 02 A6 */	mflr r0
 /* 803B2B78 003AFAB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5306,9 +5305,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2BBC 003AFAFC  7C 08 03 A6 */	mtlr r0
 /* 803B2BC0 003AFB00  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2BC4 003AFB04  4E 80 00 20 */	blr 
+.endfn "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 
-.global "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-"forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv":
+.fn "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv", weak
 /* 803B2BC8 003AFB08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2BCC 003AFB0C  7C 08 02 A6 */	mflr r0
 /* 803B2BD0 003AFB10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5332,9 +5331,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2C14 003AFB54  7C 08 03 A6 */	mtlr r0
 /* 803B2C18 003AFB58  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2C1C 003AFB5C  4E 80 00 20 */	blr 
+.endfn "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 
-.global "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-"startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv":
+.fn "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv", weak
 /* 803B2C20 003AFB60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2C24 003AFB64  7C 08 02 A6 */	mflr r0
 /* 803B2C28 003AFB68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5358,9 +5357,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2C6C 003AFBAC  7C 08 03 A6 */	mtlr r0
 /* 803B2C70 003AFBB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2C74 003AFBB4  4E 80 00 20 */	blr 
+.endfn "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 
-.global "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-"endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv":
+.fn "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv", weak
 /* 803B2C78 003AFBB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2C7C 003AFBBC  7C 08 02 A6 */	mflr r0
 /* 803B2C80 003AFBC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5384,8 +5383,9 @@ __dt__Q23efx24TCallBack_StaticClippingFv:
 /* 803B2CC4 003AFC04  7C 08 03 A6 */	mtlr r0
 /* 803B2CC8 003AFC08  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2CCC 003AFC0C  4E 80 00 20 */	blr 
+.endfn "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 
-__sinit_efxBase_cpp: # static initializer
+.fn __sinit_efxBase_cpp, local
 /* 803B2CD0 003AFC10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2CD4 003AFC14  7C 08 02 A6 */	mflr r0
 /* 803B2CD8 003AFC18  3C 80 80 4A */	lis r4, __vt__18JPAEmitterCallBack@ha
@@ -5405,68 +5405,69 @@ __sinit_efxBase_cpp: # static initializer
 /* 803B2D10 003AFC50  7C 08 03 A6 */	mtlr r0
 /* 803B2D14 003AFC54  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2D18 003AFC58  4E 80 00 20 */	blr 
+.endfn __sinit_efxBase_cpp
 
-.global "@4@executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter"
-"@4@executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter":
+.fn "@4@executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter", weak
 /* 803B2D1C 003AFC5C  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D20 003AFC60  4B FF BC 14 */	b executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter
+.endfn "@4@executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter"
 
-.global "@4@__dt__Q23efx11TOneEmitterFv"
-"@4@__dt__Q23efx11TOneEmitterFv":
+.fn "@4@__dt__Q23efx11TOneEmitterFv", weak
 /* 803B2D24 003AFC64  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D28 003AFC68  4B D8 CF AC */	b __dt__Q23efx11TOneEmitterFv
+.endfn "@4@__dt__Q23efx11TOneEmitterFv"
 
-.global "@4@executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter"
-"@4@executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter":
+.fn "@4@executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter", weak
 /* 803B2D2C 003AFC6C  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D30 003AFC70  4B FF BF 30 */	b executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter
+.endfn "@4@executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter"
 
-.global "@4@__dt__Q23efx19TOneEmitterChasePosFv"
-"@4@__dt__Q23efx19TOneEmitterChasePosFv":
+.fn "@4@__dt__Q23efx19TOneEmitterChasePosFv", weak
 /* 803B2D34 003AFC74  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D38 003AFC78  4B FF E0 B4 */	b __dt__Q23efx19TOneEmitterChasePosFv
+.endfn "@4@__dt__Q23efx19TOneEmitterChasePosFv"
 
-.global "@4@__dt__Q23efx17TOneEmitterSimpleFv"
-"@4@__dt__Q23efx17TOneEmitterSimpleFv":
+.fn "@4@__dt__Q23efx17TOneEmitterSimpleFv", weak
 /* 803B2D3C 003AFC7C  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D40 003AFC80  4B EC 9F D0 */	b __dt__Q23efx17TOneEmitterSimpleFv
+.endfn "@4@__dt__Q23efx17TOneEmitterSimpleFv"
 
-.global "@4@__dt__Q23efx5TSyncFv"
-"@4@__dt__Q23efx5TSyncFv":
+.fn "@4@__dt__Q23efx5TSyncFv", weak
 /* 803B2D44 003AFC84  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D48 003AFC88  4B D4 E5 50 */	b __dt__Q23efx5TSyncFv
+.endfn "@4@__dt__Q23efx5TSyncFv"
 
-.global "@4@__dt__Q23efx9TChasePosFv"
-"@4@__dt__Q23efx9TChasePosFv":
+.fn "@4@__dt__Q23efx9TChasePosFv", weak
 /* 803B2D4C 003AFC8C  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D50 003AFC90  4B D4 E4 C4 */	b __dt__Q23efx9TChasePosFv
+.endfn "@4@__dt__Q23efx9TChasePosFv"
 
-.global "@4@__dt__Q23efx13TChasePosYRotFv"
-"@4@__dt__Q23efx13TChasePosYRotFv":
+.fn "@4@__dt__Q23efx13TChasePosYRotFv", weak
 /* 803B2D54 003AFC94  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D58 003AFC98  4B DC 2E EC */	b __dt__Q23efx13TChasePosYRotFv
+.endfn "@4@__dt__Q23efx13TChasePosYRotFv"
 
-.global "@4@__dt__Q23efx9TChaseMtxFv"
-"@4@__dt__Q23efx9TChaseMtxFv":
+.fn "@4@__dt__Q23efx9TChaseMtxFv", weak
 /* 803B2D5C 003AFC9C  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D60 003AFCA0  4B D7 89 3C */	b __dt__Q23efx9TChaseMtxFv
+.endfn "@4@__dt__Q23efx9TChaseMtxFv"
 
-.global "@4@__dt__Q23efx10TChaseMtxTFv"
-"@4@__dt__Q23efx10TChaseMtxTFv":
+.fn "@4@__dt__Q23efx10TChaseMtxTFv", weak
 /* 803B2D64 003AFCA4  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D68 003AFCA8  4B D8 CE 98 */	b __dt__Q23efx10TChaseMtxTFv
+.endfn "@4@__dt__Q23efx10TChaseMtxTFv"
 
-.global "@4@__dt__Q23efx12TChasePosPosFv"
-"@4@__dt__Q23efx12TChasePosPosFv":
+.fn "@4@__dt__Q23efx12TChasePosPosFv", weak
 /* 803B2D6C 003AFCAC  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D70 003AFCB0  4B EF 47 78 */	b __dt__Q23efx12TChasePosPosFv
+.endfn "@4@__dt__Q23efx12TChasePosPosFv"
 
-.global "@4@__dt__Q23efx23TChasePosPosLocalZScaleFv"
-"@4@__dt__Q23efx23TChasePosPosLocalZScaleFv":
+.fn "@4@__dt__Q23efx23TChasePosPosLocalZScaleFv", weak
 /* 803B2D74 003AFCB4  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D78 003AFCB8  4B F4 17 34 */	b __dt__Q23efx23TChasePosPosLocalZScaleFv
+.endfn "@4@__dt__Q23efx23TChasePosPosLocalZScaleFv"
 
-.global "@4@__dt__Q23efx23TChasePosPosLocalYScaleFv"
-"@4@__dt__Q23efx23TChasePosPosLocalYScaleFv":
+.fn "@4@__dt__Q23efx23TChasePosPosLocalYScaleFv", weak
 /* 803B2D7C 003AFCBC  38 63 FF FC */	addi r3, r3, -4
 /* 803B2D80 003AFCC0  4B F2 D2 D4 */	b __dt__Q23efx23TChasePosPosLocalYScaleFv
+.endfn "@4@__dt__Q23efx23TChasePosPosLocalYScaleFv"

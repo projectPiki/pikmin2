@@ -1,21 +1,25 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496378:
+.obj lbl_80496378, local
 	.asciz "efxTPkEffectMgr.cpp"
+.endobj lbl_80496378
 .balign 4
-lbl_8049638C:
+.obj lbl_8049638C, local
 	.asciz "unknown color"
+.endobj lbl_8049638C
 .balign 4
-lbl_8049639C:
+.obj lbl_8049639C, local
 	.asciz "P2Assert"
+.endobj lbl_8049639C
 .balign 4
-lbl_804963A8:
+.obj lbl_804963A8, local
 	.asciz "illegal kourin color %d\n"
+.endobj lbl_804963A8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E7AC8:
+.obj lbl_804E7AC8, local
 	.4byte .L_803C715C
 	.4byte .L_803C70CC
 	.4byte .L_803C70E0
@@ -24,7 +28,8 @@ lbl_804E7AC8:
 	.4byte .L_803C711C
 	.4byte .L_803C7130
 	.4byte .L_803C7130
-lbl_804E7AE8:
+.endobj lbl_804E7AC8
+.obj lbl_804E7AE8, local
 	.4byte .L_803C7224
 	.4byte .L_803C71B0
 	.4byte .L_803C71C4
@@ -33,13 +38,13 @@ lbl_804E7AE8:
 	.4byte .L_803C7200
 	.4byte .L_803C7214
 	.4byte .L_803C7214
-.global __vt__Q23efx12TPkEffectMgr
-__vt__Q23efx12TPkEffectMgr:
+.endobj lbl_804E7AE8
+.obj __vt__Q23efx12TPkEffectMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23efx12TPkEffectMgrFv
-.global __vt__Q23efx19TPkOneEmitterSimple
-__vt__Q23efx19TPkOneEmitterSimple:
+.endobj __vt__Q23efx12TPkEffectMgr
+.obj __vt__Q23efx19TPkOneEmitterSimple, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg
@@ -54,19 +59,19 @@ __vt__Q23efx19TPkOneEmitterSimple:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter
 	.4byte __dt__Q23efx19TPkOneEmitterSimpleFv
+.endobj __vt__Q23efx19TPkOneEmitterSimple
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global pkEffectMgr
-pkEffectMgr:
+.obj pkEffectMgr, global
 	.skip 0x4
-.global _instance__Q23efx12TPkEffectMgr
-_instance__Q23efx12TPkEffectMgr:
+.endobj pkEffectMgr
+.obj _instance__Q23efx12TPkEffectMgr, global
 	.skip 0x4
+.endobj _instance__Q23efx12TPkEffectMgr
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg
-create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg:
+.fn create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg, global
 /* 803C4E0C 003C1D4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C4E10 003C1D50  7C 08 02 A6 */	mflr r0
 /* 803C4E14 003C1D54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -116,9 +121,9 @@ create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg:
 /* 803C4EB4 003C1DF4  7C 08 03 A6 */	mtlr r0
 /* 803C4EB8 003C1DF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C4EBC 003C1DFC  4E 80 00 20 */	blr 
+.endfn create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg
 
-.global executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter
-executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter:
+.fn executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter, global
 /* 803C4EC0 003C1E00  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803C4EC4 003C1E04  7C 08 02 A6 */	mflr r0
 /* 803C4EC8 003C1E08  90 01 00 44 */	stw r0, 0x44(r1)
@@ -178,9 +183,9 @@ executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter:
 /* 803C4F88 003C1EC8  7C 08 03 A6 */	mtlr r0
 /* 803C4F8C 003C1ECC  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C4F90 003C1ED0  4E 80 00 20 */	blr 
+.endfn executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter
 
-.global globalInstance__Q23efx12TPkEffectMgrFv
-globalInstance__Q23efx12TPkEffectMgrFv:
+.fn globalInstance__Q23efx12TPkEffectMgrFv, global
 /* 803C4F94 003C1ED4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C4F98 003C1ED8  7C 08 02 A6 */	mflr r0
 /* 803C4F9C 003C1EDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -190,9 +195,9 @@ globalInstance__Q23efx12TPkEffectMgrFv:
 /* 803C4FAC 003C1EEC  7C 08 03 A6 */	mtlr r0
 /* 803C4FB0 003C1EF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C4FB4 003C1EF4  4E 80 00 20 */	blr 
+.endfn globalInstance__Q23efx12TPkEffectMgrFv
 
-.global deleteInstance__Q23efx12TPkEffectMgrFv
-deleteInstance__Q23efx12TPkEffectMgrFv:
+.fn deleteInstance__Q23efx12TPkEffectMgrFv, global
 /* 803C4FB8 003C1EF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C4FBC 003C1EFC  7C 08 02 A6 */	mflr r0
 /* 803C4FC0 003C1F00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -215,9 +220,9 @@ deleteInstance__Q23efx12TPkEffectMgrFv:
 /* 803C4FFC 003C1F3C  7C 08 03 A6 */	mtlr r0
 /* 803C5000 003C1F40  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C5004 003C1F44  4E 80 00 20 */	blr 
+.endfn deleteInstance__Q23efx12TPkEffectMgrFv
 
-.global Instance__Q23efx12TPkEffectMgrFv
-Instance__Q23efx12TPkEffectMgrFv:
+.fn Instance__Q23efx12TPkEffectMgrFv, global
 /* 803C5008 003C1F48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C500C 003C1F4C  7C 08 02 A6 */	mflr r0
 /* 803C5010 003C1F50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -238,9 +243,9 @@ Instance__Q23efx12TPkEffectMgrFv:
 /* 803C5044 003C1F84  7C 08 03 A6 */	mtlr r0
 /* 803C5048 003C1F88  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C504C 003C1F8C  4E 80 00 20 */	blr 
+.endfn Instance__Q23efx12TPkEffectMgrFv
 
-.global __ct__Q23efx12TPkEffectMgrFv
-__ct__Q23efx12TPkEffectMgrFv:
+.fn __ct__Q23efx12TPkEffectMgrFv, global
 /* 803C5050 003C1F90  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C5054 003C1F94  7C 08 02 A6 */	mflr r0
 /* 803C5058 003C1F98  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1548,9 +1553,9 @@ __ct__Q23efx12TPkEffectMgrFv:
 /* 803C6400 003C3340  7C 08 03 A6 */	mtlr r0
 /* 803C6404 003C3344  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C6408 003C3348  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx12TPkEffectMgrFv
 
-.global __dt__Q23efx11TOEContextSFv
-__dt__Q23efx11TOEContextSFv:
+.fn __dt__Q23efx11TOEContextSFv, weak
 /* 803C640C 003C334C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6410 003C3350  7C 08 02 A6 */	mflr r0
 /* 803C6414 003C3354  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1575,9 +1580,9 @@ __dt__Q23efx11TOEContextSFv:
 /* 803C6458 003C3398  7C 08 03 A6 */	mtlr r0
 /* 803C645C 003C339C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6460 003C33A0  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx11TOEContextSFv
 
-.global __ct__Q23efx11TOEContextSFv
-__ct__Q23efx11TOEContextSFv:
+.fn __ct__Q23efx11TOEContextSFv, weak
 /* 803C6464 003C33A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6468 003C33A8  7C 08 02 A6 */	mflr r0
 /* 803C646C 003C33AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1591,9 +1596,9 @@ __ct__Q23efx11TOEContextSFv:
 /* 803C648C 003C33CC  7C 08 03 A6 */	mtlr r0
 /* 803C6490 003C33D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6494 003C33D4  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx11TOEContextSFv
 
-.global __dt__Q23efx12TPkEffectMgrFv
-__dt__Q23efx12TPkEffectMgrFv:
+.fn __dt__Q23efx12TPkEffectMgrFv, global
 /* 803C6498 003C33D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C649C 003C33DC  7C 08 02 A6 */	mflr r0
 /* 803C64A0 003C33E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1665,9 +1670,9 @@ __dt__Q23efx12TPkEffectMgrFv:
 /* 803C6594 003C34D4  7C 08 03 A6 */	mtlr r0
 /* 803C6598 003C34D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C659C 003C34DC  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TPkEffectMgrFv
 
-.global __dt__Q23efx19TPkOneEmitterSimpleFv
-__dt__Q23efx19TPkOneEmitterSimpleFv:
+.fn __dt__Q23efx19TPkOneEmitterSimpleFv, weak
 /* 803C65A0 003C34E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C65A4 003C34E4  7C 08 02 A6 */	mflr r0
 /* 803C65A8 003C34E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1702,9 +1707,9 @@ __dt__Q23efx19TPkOneEmitterSimpleFv:
 /* 803C6614 003C3554  7C 08 03 A6 */	mtlr r0
 /* 803C6618 003C3558  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C661C 003C355C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx19TPkOneEmitterSimpleFv
 
-.global startMgr__Q23efx12TPkEffectMgrFv
-startMgr__Q23efx12TPkEffectMgrFv:
+.fn startMgr__Q23efx12TPkEffectMgrFv, global
 /* 803C6620 003C3560  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C6624 003C3564  7C 08 02 A6 */	mflr r0
 /* 803C6628 003C3568  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1745,9 +1750,9 @@ startMgr__Q23efx12TPkEffectMgrFv:
 /* 803C66AC 003C35EC  7C 08 03 A6 */	mtlr r0
 /* 803C66B0 003C35F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C66B4 003C35F4  4E 80 00 20 */	blr 
+.endfn startMgr__Q23efx12TPkEffectMgrFv
 
-.global exitMgr__Q23efx12TPkEffectMgrFv
-exitMgr__Q23efx12TPkEffectMgrFv:
+.fn exitMgr__Q23efx12TPkEffectMgrFv, global
 /* 803C66B8 003C35F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C66BC 003C35FC  7C 08 02 A6 */	mflr r0
 /* 803C66C0 003C3600  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1786,9 +1791,9 @@ exitMgr__Q23efx12TPkEffectMgrFv:
 /* 803C673C 003C367C  7C 08 03 A6 */	mtlr r0
 /* 803C6740 003C3680  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C6744 003C3684  4E 80 00 20 */	blr 
+.endfn exitMgr__Q23efx12TPkEffectMgrFv
 
-.global forceKill__Q23efx19TPkOneEmitterSimpleFv
-forceKill__Q23efx19TPkOneEmitterSimpleFv:
+.fn forceKill__Q23efx19TPkOneEmitterSimpleFv, weak
 /* 803C6748 003C3688  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C674C 003C368C  7C 08 02 A6 */	mflr r0
 /* 803C6750 003C3690  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1807,15 +1812,15 @@ forceKill__Q23efx19TPkOneEmitterSimpleFv:
 /* 803C6780 003C36C0  7C 08 03 A6 */	mtlr r0
 /* 803C6784 003C36C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6788 003C36C8  4E 80 00 20 */	blr 
+.endfn forceKill__Q23efx19TPkOneEmitterSimpleFv
 
-.global resetContextS__Q23efx12TPkEffectMgrFv
-resetContextS__Q23efx12TPkEffectMgrFv:
+.fn resetContextS__Q23efx12TPkEffectMgrFv, global
 /* 803C678C 003C36CC  38 00 00 00 */	li r0, 0
 /* 803C6790 003C36D0  90 03 06 40 */	stw r0, 0x640(r3)
 /* 803C6794 003C36D4  4E 80 00 20 */	blr 
+.endfn resetContextS__Q23efx12TPkEffectMgrFv
 
-.global "createS_Dead__Q23efx12TPkEffectMgrFR10Vector3<f>l"
-"createS_Dead__Q23efx12TPkEffectMgrFR10Vector3<f>l":
+.fn "createS_Dead__Q23efx12TPkEffectMgrFR10Vector3<f>l", global
 /* 803C6798 003C36D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C679C 003C36DC  7C 08 02 A6 */	mflr r0
 /* 803C67A0 003C36E0  2C 05 00 03 */	cmpwi r5, 3
@@ -1959,9 +1964,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C69A8 003C38E8  7C 08 03 A6 */	mtlr r0
 /* 803C69AC 003C38EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C69B0 003C38F0  4E 80 00 20 */	blr 
+.endfn "createS_Dead__Q23efx12TPkEffectMgrFR10Vector3<f>l"
 
-.global "createS_Chinka__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_Chinka__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_Chinka__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C69B4 003C38F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C69B8 003C38F8  7C 08 02 A6 */	mflr r0
 /* 803C69BC 003C38FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2014,9 +2019,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6A70 003C39B0  7C 08 03 A6 */	mtlr r0
 /* 803C6A74 003C39B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6A78 003C39B8  4E 80 00 20 */	blr 
+.endfn "createS_Chinka__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_Gedoku__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_Gedoku__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_Gedoku__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6A7C 003C39BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6A80 003C39C0  7C 08 02 A6 */	mflr r0
 /* 803C6A84 003C39C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2069,9 +2074,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6B38 003C3A78  7C 08 03 A6 */	mtlr r0
 /* 803C6B3C 003C3A7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6B40 003C3A80  4E 80 00 20 */	blr 
+.endfn "createS_Gedoku__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_WaterOff__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_WaterOff__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_WaterOff__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6B44 003C3A84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6B48 003C3A88  7C 08 02 A6 */	mflr r0
 /* 803C6B4C 003C3A8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2124,9 +2129,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6C00 003C3B40  7C 08 03 A6 */	mtlr r0
 /* 803C6C04 003C3B44  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6C08 003C3B48  4E 80 00 20 */	blr 
+.endfn "createS_WaterOff__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_Dive__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_Dive__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_Dive__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6C0C 003C3B4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6C10 003C3B50  7C 08 02 A6 */	mflr r0
 /* 803C6C14 003C3B54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2179,9 +2184,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6CC8 003C3C08  7C 08 03 A6 */	mtlr r0
 /* 803C6CCC 003C3C0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6CD0 003C3C10  4E 80 00 20 */	blr 
+.endfn "createS_Dive__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_Chiru__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_Chiru__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_Chiru__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6CD4 003C3C14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6CD8 003C3C18  7C 08 02 A6 */	mflr r0
 /* 803C6CDC 003C3C1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2212,9 +2217,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6D3C 003C3C7C  7C 08 03 A6 */	mtlr r0
 /* 803C6D40 003C3C80  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6D44 003C3C84  4E 80 00 20 */	blr 
+.endfn "createS_Chiru__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_Inattack__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_Inattack__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_Inattack__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6D48 003C3C88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6D4C 003C3C8C  7C 08 02 A6 */	mflr r0
 /* 803C6D50 003C3C90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2245,9 +2250,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6DB0 003C3CF0  7C 08 03 A6 */	mtlr r0
 /* 803C6DB4 003C3CF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6DB8 003C3CF8  4E 80 00 20 */	blr 
+.endfn "createS_Inattack__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_Walksmoke__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_Walksmoke__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_Walksmoke__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6DBC 003C3CFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6DC0 003C3D00  7C 08 02 A6 */	mflr r0
 /* 803C6DC4 003C3D04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2278,9 +2283,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6E24 003C3D64  7C 08 03 A6 */	mtlr r0
 /* 803C6E28 003C3D68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6E2C 003C3D6C  4E 80 00 20 */	blr 
+.endfn "createS_Walksmoke__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_Dig__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_Dig__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_Dig__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6E30 003C3D70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6E34 003C3D74  7C 08 02 A6 */	mflr r0
 /* 803C6E38 003C3D78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2311,9 +2316,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6E98 003C3DD8  7C 08 03 A6 */	mtlr r0
 /* 803C6E9C 003C3DDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6EA0 003C3DE0  4E 80 00 20 */	blr 
+.endfn "createS_Dig__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_ChiruRed__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_ChiruRed__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_ChiruRed__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6EA4 003C3DE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6EA8 003C3DE8  7C 08 02 A6 */	mflr r0
 /* 803C6EAC 003C3DEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2344,9 +2349,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6F0C 003C3E4C  7C 08 03 A6 */	mtlr r0
 /* 803C6F10 003C3E50  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6F14 003C3E54  4E 80 00 20 */	blr 
+.endfn "createS_ChiruRed__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_Gate3Attack__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_Gate3Attack__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_Gate3Attack__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6F18 003C3E58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6F1C 003C3E5C  7C 08 02 A6 */	mflr r0
 /* 803C6F20 003C3E60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2377,9 +2382,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C6F80 003C3EC0  7C 08 03 A6 */	mtlr r0
 /* 803C6F84 003C3EC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C6F88 003C3EC8  4E 80 00 20 */	blr 
+.endfn "createS_Gate3Attack__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "createS_Walkwater__Q23efx12TPkEffectMgrFR10Vector3<f>"
-"createS_Walkwater__Q23efx12TPkEffectMgrFR10Vector3<f>":
+.fn "createS_Walkwater__Q23efx12TPkEffectMgrFR10Vector3<f>", global
 /* 803C6F8C 003C3ECC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C6F90 003C3ED0  7C 08 02 A6 */	mflr r0
 /* 803C6F94 003C3ED4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2432,9 +2437,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C7048 003C3F88  7C 08 03 A6 */	mtlr r0
 /* 803C704C 003C3F8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7050 003C3F90  4E 80 00 20 */	blr 
+.endfn "createS_Walkwater__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-.global "create__Q23efx9ToeKourinFP10Vector3<f>l"
-"create__Q23efx9ToeKourinFP10Vector3<f>l":
+.fn "create__Q23efx9ToeKourinFP10Vector3<f>l", global
 /* 803C7054 003C3F94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803C7058 003C3F98  7C 08 02 A6 */	mflr r0
 /* 803C705C 003C3F9C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2518,9 +2523,9 @@ resetContextS__Q23efx12TPkEffectMgrFv:
 /* 803C7170 003C40B0  7C 08 03 A6 */	mtlr r0
 /* 803C7174 003C40B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C7178 003C40B8  4E 80 00 20 */	blr 
+.endfn "create__Q23efx9ToeKourinFP10Vector3<f>l"
 
-.global kill__Q23efx9ToeKourinFv
-kill__Q23efx9ToeKourinFv:
+.fn kill__Q23efx9ToeKourinFv, global
 /* 803C717C 003C40BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C7180 003C40C0  7C 08 02 A6 */	mflr r0
 /* 803C7184 003C40C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2574,9 +2579,9 @@ kill__Q23efx9ToeKourinFv:
 /* 803C7228 003C4168  7C 08 03 A6 */	mtlr r0
 /* 803C722C 003C416C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7230 003C4170  4E 80 00 20 */	blr 
+.endfn kill__Q23efx9ToeKourinFv
 
-.global "create__Q23efx9ToeDopingFP10Vector3<f>"
-"create__Q23efx9ToeDopingFP10Vector3<f>":
+.fn "create__Q23efx9ToeDopingFP10Vector3<f>", global
 /* 803C7234 003C4174  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C7238 003C4178  7C 08 02 A6 */	mflr r0
 /* 803C723C 003C417C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2604,9 +2609,9 @@ kill__Q23efx9ToeKourinFv:
 /* 803C7290 003C41D0  7C 08 03 A6 */	mtlr r0
 /* 803C7294 003C41D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7298 003C41D8  4E 80 00 20 */	blr 
+.endfn "create__Q23efx9ToeDopingFP10Vector3<f>"
 
-.global kill__Q23efx9ToeDopingFv
-kill__Q23efx9ToeDopingFv:
+.fn kill__Q23efx9ToeDopingFv, global
 /* 803C729C 003C41DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C72A0 003C41E0  7C 08 02 A6 */	mflr r0
 /* 803C72A4 003C41E4  7C 64 1B 78 */	mr r4, r3
@@ -2618,9 +2623,9 @@ kill__Q23efx9ToeDopingFv:
 /* 803C72BC 003C41FC  7C 08 03 A6 */	mtlr r0
 /* 803C72C0 003C4200  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C72C4 003C4204  4E 80 00 20 */	blr 
+.endfn kill__Q23efx9ToeDopingFv
 
-.global "create__Q23efx11ToeNagekiraFP10Vector3<f>"
-"create__Q23efx11ToeNagekiraFP10Vector3<f>":
+.fn "create__Q23efx11ToeNagekiraFP10Vector3<f>", global
 /* 803C72C8 003C4208  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C72CC 003C420C  7C 08 02 A6 */	mflr r0
 /* 803C72D0 003C4210  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2648,9 +2653,9 @@ kill__Q23efx9ToeDopingFv:
 /* 803C7324 003C4264  7C 08 03 A6 */	mtlr r0
 /* 803C7328 003C4268  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C732C 003C426C  4E 80 00 20 */	blr 
+.endfn "create__Q23efx11ToeNagekiraFP10Vector3<f>"
 
-.global kill__Q23efx11ToeNagekiraFv
-kill__Q23efx11ToeNagekiraFv:
+.fn kill__Q23efx11ToeNagekiraFv, global
 /* 803C7330 003C4270  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C7334 003C4274  7C 08 02 A6 */	mflr r0
 /* 803C7338 003C4278  7C 64 1B 78 */	mr r4, r3
@@ -2662,9 +2667,9 @@ kill__Q23efx11ToeNagekiraFv:
 /* 803C7350 003C4290  7C 08 03 A6 */	mtlr r0
 /* 803C7354 003C4294  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7358 003C4298  4E 80 00 20 */	blr 
+.endfn kill__Q23efx11ToeNagekiraFv
 
-.global "create__Q23efx8ToeMoeBCFP10Vector3<f>"
-"create__Q23efx8ToeMoeBCFP10Vector3<f>":
+.fn "create__Q23efx8ToeMoeBCFP10Vector3<f>", global
 /* 803C735C 003C429C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C7360 003C42A0  7C 08 02 A6 */	mflr r0
 /* 803C7364 003C42A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2697,9 +2702,9 @@ kill__Q23efx11ToeNagekiraFv:
 /* 803C73CC 003C430C  7C 08 03 A6 */	mtlr r0
 /* 803C73D0 003C4310  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C73D4 003C4314  4E 80 00 20 */	blr 
+.endfn "create__Q23efx8ToeMoeBCFP10Vector3<f>"
 
-.global kill__Q23efx8ToeMoeBCFv
-kill__Q23efx8ToeMoeBCFv:
+.fn kill__Q23efx8ToeMoeBCFv, global
 /* 803C73D8 003C4318  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C73DC 003C431C  7C 08 02 A6 */	mflr r0
 /* 803C73E0 003C4320  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2718,9 +2723,9 @@ kill__Q23efx8ToeMoeBCFv:
 /* 803C7414 003C4354  7C 08 03 A6 */	mtlr r0
 /* 803C7418 003C4358  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C741C 003C435C  4E 80 00 20 */	blr 
+.endfn kill__Q23efx8ToeMoeBCFv
 
-.global "create__Q23efx10ToeChudokuFP10Vector3<f>"
-"create__Q23efx10ToeChudokuFP10Vector3<f>":
+.fn "create__Q23efx10ToeChudokuFP10Vector3<f>", global
 /* 803C7420 003C4360  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C7424 003C4364  7C 08 02 A6 */	mflr r0
 /* 803C7428 003C4368  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2748,9 +2753,9 @@ kill__Q23efx8ToeMoeBCFv:
 /* 803C747C 003C43BC  7C 08 03 A6 */	mtlr r0
 /* 803C7480 003C43C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7484 003C43C4  4E 80 00 20 */	blr 
+.endfn "create__Q23efx10ToeChudokuFP10Vector3<f>"
 
-.global kill__Q23efx10ToeChudokuFv
-kill__Q23efx10ToeChudokuFv:
+.fn kill__Q23efx10ToeChudokuFv, global
 /* 803C7488 003C43C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C748C 003C43CC  7C 08 02 A6 */	mflr r0
 /* 803C7490 003C43D0  7C 64 1B 78 */	mr r4, r3
@@ -2762,9 +2767,9 @@ kill__Q23efx10ToeChudokuFv:
 /* 803C74A8 003C43E8  7C 08 03 A6 */	mtlr r0
 /* 803C74AC 003C43EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C74B0 003C43F0  4E 80 00 20 */	blr 
+.endfn kill__Q23efx10ToeChudokuFv
 
-.global "create__Q23efx8ToeWaterFP10Vector3<f>"
-"create__Q23efx8ToeWaterFP10Vector3<f>":
+.fn "create__Q23efx8ToeWaterFP10Vector3<f>", global
 /* 803C74B4 003C43F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C74B8 003C43F8  7C 08 02 A6 */	mflr r0
 /* 803C74BC 003C43FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2797,9 +2802,9 @@ kill__Q23efx10ToeChudokuFv:
 /* 803C7524 003C4464  7C 08 03 A6 */	mtlr r0
 /* 803C7528 003C4468  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C752C 003C446C  4E 80 00 20 */	blr 
+.endfn "create__Q23efx8ToeWaterFP10Vector3<f>"
 
-.global kill__Q23efx8ToeWaterFv
-kill__Q23efx8ToeWaterFv:
+.fn kill__Q23efx8ToeWaterFv, global
 /* 803C7530 003C4470  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C7534 003C4474  7C 08 02 A6 */	mflr r0
 /* 803C7538 003C4478  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2818,9 +2823,9 @@ kill__Q23efx8ToeWaterFv:
 /* 803C756C 003C44AC  7C 08 03 A6 */	mtlr r0
 /* 803C7570 003C44B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7574 003C44B4  4E 80 00 20 */	blr 
+.endfn kill__Q23efx8ToeWaterFv
 
-.global "create__Q23efx9ToeHamonAFP10Vector3<f>"
-"create__Q23efx9ToeHamonAFP10Vector3<f>":
+.fn "create__Q23efx9ToeHamonAFP10Vector3<f>", global
 /* 803C7578 003C44B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C757C 003C44BC  7C 08 02 A6 */	mflr r0
 /* 803C7580 003C44C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2852,9 +2857,9 @@ kill__Q23efx8ToeWaterFv:
 /* 803C75E0 003C4520  7C 08 03 A6 */	mtlr r0
 /* 803C75E4 003C4524  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C75E8 003C4528  4E 80 00 20 */	blr 
+.endfn "create__Q23efx9ToeHamonAFP10Vector3<f>"
 
-.global kill__Q23efx9ToeHamonAFv
-kill__Q23efx9ToeHamonAFv:
+.fn kill__Q23efx9ToeHamonAFv, global
 /* 803C75EC 003C452C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C75F0 003C4530  7C 08 02 A6 */	mflr r0
 /* 803C75F4 003C4534  7C 64 1B 78 */	mr r4, r3
@@ -2866,9 +2871,9 @@ kill__Q23efx9ToeHamonAFv:
 /* 803C760C 003C454C  7C 08 03 A6 */	mtlr r0
 /* 803C7610 003C4550  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7614 003C4554  4E 80 00 20 */	blr 
+.endfn kill__Q23efx9ToeHamonAFv
 
-.global "create__Q23efx9ToeHamonBFP10Vector3<f>"
-"create__Q23efx9ToeHamonBFP10Vector3<f>":
+.fn "create__Q23efx9ToeHamonBFP10Vector3<f>", global
 /* 803C7618 003C4558  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C761C 003C455C  7C 08 02 A6 */	mflr r0
 /* 803C7620 003C4560  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2900,9 +2905,9 @@ kill__Q23efx9ToeHamonAFv:
 /* 803C7680 003C45C0  7C 08 03 A6 */	mtlr r0
 /* 803C7684 003C45C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7688 003C45C8  4E 80 00 20 */	blr 
+.endfn "create__Q23efx9ToeHamonBFP10Vector3<f>"
 
-.global kill__Q23efx9ToeHamonBFv
-kill__Q23efx9ToeHamonBFv:
+.fn kill__Q23efx9ToeHamonBFv, global
 /* 803C768C 003C45CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C7690 003C45D0  7C 08 02 A6 */	mflr r0
 /* 803C7694 003C45D4  7C 64 1B 78 */	mr r4, r3
@@ -2914,9 +2919,9 @@ kill__Q23efx9ToeHamonBFv:
 /* 803C76AC 003C45EC  7C 08 03 A6 */	mtlr r0
 /* 803C76B0 003C45F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C76B4 003C45F4  4E 80 00 20 */	blr 
+.endfn kill__Q23efx9ToeHamonBFv
 
-.global "create__Q23efx11ToeMoeSmokeFP10Vector3<f>"
-"create__Q23efx11ToeMoeSmokeFP10Vector3<f>":
+.fn "create__Q23efx11ToeMoeSmokeFP10Vector3<f>", global
 /* 803C76B8 003C45F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C76BC 003C45FC  7C 08 02 A6 */	mflr r0
 /* 803C76C0 003C4600  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2944,9 +2949,9 @@ kill__Q23efx9ToeHamonBFv:
 /* 803C7714 003C4654  7C 08 03 A6 */	mtlr r0
 /* 803C7718 003C4658  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C771C 003C465C  4E 80 00 20 */	blr 
+.endfn "create__Q23efx11ToeMoeSmokeFP10Vector3<f>"
 
-.global kill__Q23efx11ToeMoeSmokeFv
-kill__Q23efx11ToeMoeSmokeFv:
+.fn kill__Q23efx11ToeMoeSmokeFv, global
 /* 803C7720 003C4660  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C7724 003C4664  7C 08 02 A6 */	mflr r0
 /* 803C7728 003C4668  7C 64 1B 78 */	mr r4, r3
@@ -2958,9 +2963,9 @@ kill__Q23efx11ToeMoeSmokeFv:
 /* 803C7740 003C4680  7C 08 03 A6 */	mtlr r0
 /* 803C7744 003C4684  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7748 003C4688  4E 80 00 20 */	blr 
+.endfn kill__Q23efx11ToeMoeSmokeFv
 
-.global "create__Q23efx11ToeTanekiraFP10Vector3<f>"
-"create__Q23efx11ToeTanekiraFP10Vector3<f>":
+.fn "create__Q23efx11ToeTanekiraFP10Vector3<f>", global
 /* 803C774C 003C468C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C7750 003C4690  7C 08 02 A6 */	mflr r0
 /* 803C7754 003C4694  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2988,9 +2993,9 @@ kill__Q23efx11ToeMoeSmokeFv:
 /* 803C77A8 003C46E8  7C 08 03 A6 */	mtlr r0
 /* 803C77AC 003C46EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C77B0 003C46F0  4E 80 00 20 */	blr 
+.endfn "create__Q23efx11ToeTanekiraFP10Vector3<f>"
 
-.global kill__Q23efx11ToeTanekiraFv
-kill__Q23efx11ToeTanekiraFv:
+.fn kill__Q23efx11ToeTanekiraFv, global
 /* 803C77B4 003C46F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C77B8 003C46F8  7C 08 02 A6 */	mflr r0
 /* 803C77BC 003C46FC  7C 64 1B 78 */	mr r4, r3
@@ -3002,9 +3007,9 @@ kill__Q23efx11ToeTanekiraFv:
 /* 803C77D4 003C4714  7C 08 03 A6 */	mtlr r0
 /* 803C77D8 003C4718  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C77DC 003C471C  4E 80 00 20 */	blr 
+.endfn kill__Q23efx11ToeTanekiraFv
 
-.global fade__Q23efx19TPkOneEmitterSimpleFv
-fade__Q23efx19TPkOneEmitterSimpleFv:
+.fn fade__Q23efx19TPkOneEmitterSimpleFv, weak
 /* 803C77E0 003C4720  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803C77E4 003C4724  7C 08 02 A6 */	mflr r0
 /* 803C77E8 003C4728  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3023,13 +3028,14 @@ fade__Q23efx19TPkOneEmitterSimpleFv:
 /* 803C7818 003C4758  7C 08 03 A6 */	mtlr r0
 /* 803C781C 003C475C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C7820 003C4760  4E 80 00 20 */	blr 
+.endfn fade__Q23efx19TPkOneEmitterSimpleFv
 
-.global "@4@executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter"
-"@4@executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter":
+.fn "@4@executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter", weak
 /* 803C7824 003C4764  38 63 FF FC */	addi r3, r3, -4
 /* 803C7828 003C4768  4B FF D6 98 */	b executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter
+.endfn "@4@executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter"
 
-.global "@4@__dt__Q23efx19TPkOneEmitterSimpleFv"
-"@4@__dt__Q23efx19TPkOneEmitterSimpleFv":
+.fn "@4@__dt__Q23efx19TPkOneEmitterSimpleFv", weak
 /* 803C782C 003C476C  38 63 FF FC */	addi r3, r3, -4
 /* 803C7830 003C4770  4B FF ED 70 */	b __dt__Q23efx19TPkOneEmitterSimpleFv
+.endfn "@4@__dt__Q23efx19TPkOneEmitterSimpleFv"

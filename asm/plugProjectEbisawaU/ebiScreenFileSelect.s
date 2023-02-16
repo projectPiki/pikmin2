@@ -1,83 +1,109 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80496AE8:
+.obj lbl_80496AE8, local
 	.asciz "ebiScreenFileSelect"
+.endobj lbl_80496AE8
 .balign 4
-lbl_80496AFC:
+.obj lbl_80496AFC, local
 	.asciz "TScreenDataWindow::setArchive--set__blo"
+.endobj lbl_80496AFC
 .balign 4
-lbl_80496B24:
+.obj lbl_80496B24, local
 	.asciz "file_select_dw_new.blo"
+.endobj lbl_80496B24
 .balign 4
-lbl_80496B3C:
+.obj lbl_80496B3C, local
 	.asciz "TScreen_FS_scene_open::setArchive--callback_message"
+.endobj lbl_80496B3C
 .balign 4
-lbl_80496B70:
+.obj lbl_80496B70, local
 	.asciz "ebiScreenFileSelect.cpp"
+.endobj lbl_80496B70
 .balign 4
-lbl_80496B88:
+.obj lbl_80496B88, local
 	.asciz "P2Assert"
+.endobj lbl_80496B88
 .balign 4
-lbl_80496B94:
+.obj lbl_80496B94, local
 	.asciz "file_select_dw_data.blo"
+.endobj lbl_80496B94
 .balign 4
-lbl_80496BAC:
+.obj lbl_80496BAC, local
 	.asciz "TScreenFileSelect::loadResource"
+.endobj lbl_80496BAC
 .balign 4
-lbl_80496BCC:
+.obj lbl_80496BCC, local
 	.asciz "file_select.szs"
+.endobj lbl_80496BCC
 .balign 4
-lbl_80496BDC:
+.obj lbl_80496BDC, local
 	.asciz "TScreenFileSelect::setArchive"
+.endobj lbl_80496BDC
 .balign 4
-lbl_80496BFC:
+.obj lbl_80496BFC, local
 	.asciz "TScreenFileSelect::setArchive--set__blo"
+.endobj lbl_80496BFC
 .balign 4
-lbl_80496C24:
+.obj lbl_80496C24, local
 	.asciz "file_select.blo"
+.endobj lbl_80496C24
 .balign 4
-lbl_80496C34:
+.obj lbl_80496C34, local
 	.asciz "file_select.bck"
+.endobj lbl_80496C34
 .balign 4
-lbl_80496C44:
+.obj lbl_80496C44, local
 	.asciz "file_select.bpk"
+.endobj lbl_80496C44
 .balign 4
-lbl_80496C54:
+.obj lbl_80496C54, local
 	.asciz "file_select_03.btk"
+.endobj lbl_80496C54
 .balign 4
-lbl_80496C68:
+.obj lbl_80496C68, local
 	.asciz "file_select_02.btk"
+.endobj lbl_80496C68
 .balign 4
-lbl_80496C7C:
+.obj lbl_80496C7C, local
 	.asciz "file_select.btk"
+.endobj lbl_80496C7C
 .balign 4
-lbl_80496C8C:
+.obj lbl_80496C8C, local
 	.asciz "file_select_04.btk"
+.endobj lbl_80496C8C
 .balign 4
-lbl_80496CA0:
+.obj lbl_80496CA0, local
 	.asciz "file_select.brk"
+.endobj lbl_80496CA0
 .balign 4
-lbl_80496CB0:
+.obj lbl_80496CB0, local
 	.asciz "user/Ebisawa/effect/eff2d_file_select.jpc"
+.endobj lbl_80496CB0
 .balign 4
-lbl_80496CDC:
+.obj lbl_80496CDC, local
 	.asciz "break_new_icon.bti"
+.endobj lbl_80496CDC
 .balign 4
-lbl_80496CF0:
+.obj lbl_80496CF0, local
 	.asciz "new_icon.bti"
+.endobj lbl_80496CF0
 .balign 4
-lbl_80496D00:
+.obj lbl_80496D00, local
 	.asciz "dicon_icon.bti"
+.endobj lbl_80496D00
 .balign 4
-lbl_80496D10:
+.obj lbl_80496D10, local
 	.asciz "ArgColor"
+.endobj lbl_80496D10
 .balign 4
-lbl_80496D1C:
+.obj lbl_80496D1C, local
 	.asciz "ArgFilecopy"
+.endobj lbl_80496D1C
 .balign 4
-lbl_80496D28:
+.obj lbl_80496D28, local
 	.asciz "TFileSelect"
+.endobj lbl_80496D28
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -99,21 +125,20 @@ lbl_80496D28:
 	.4byte 0
 	.4byte getName__Q25efx2d8ArgColorFv
 .endobj __vt__Q25efx2d8ArgColor
-.global __vt__Q35efx2d10FileSelect11ArgFilecopy
-__vt__Q35efx2d10FileSelect11ArgFilecopy:
+.obj __vt__Q35efx2d10FileSelect11ArgFilecopy, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q35efx2d10FileSelect11ArgFilecopyFv
-.global __vt__Q35efx2d10FileSelect13T2DFiledecide
-__vt__Q35efx2d10FileSelect13T2DFiledecide:
+.endobj __vt__Q35efx2d10FileSelect11ArgFilecopy
+.obj __vt__Q35efx2d10FileSelect13T2DFiledecide, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d8TSimple2FPQ25efx2d3Arg
 	.4byte kill__Q25efx2d8TSimple2Fv
 	.4byte fade__Q25efx2d8TSimple2Fv
 	.4byte setGroup__Q25efx2d5TBaseFUc
-.global __vt__Q43ebi6Screen10FileSelect11TMainScreen
-__vt__Q43ebi6Screen10FileSelect11TMainScreen:
+.endobj __vt__Q35efx2d10FileSelect13T2DFiledecide
+.obj __vt__Q43ebi6Screen10FileSelect11TMainScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
@@ -133,8 +158,8 @@ __vt__Q43ebi6Screen10FileSelect11TMainScreen:
 	.4byte doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv
 	.4byte doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv
 	.4byte getName__Q43ebi6Screen10FileSelect11TMainScreenFv
-.global __vt__Q35efx2d10FileSelect11T2DFileselM
-__vt__Q35efx2d10FileSelect11T2DFileselM:
+.endobj __vt__Q43ebi6Screen10FileSelect11TMainScreen
+.obj __vt__Q35efx2d10FileSelect11T2DFileselM, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
@@ -150,8 +175,8 @@ __vt__Q35efx2d10FileSelect11T2DFileselM:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d10FileSelect11T2DFileselMFv
 	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
-.global __vt__Q35efx2d10FileSelect10T2DFilesel
-__vt__Q35efx2d10FileSelect10T2DFilesel:
+.endobj __vt__Q35efx2d10FileSelect11T2DFileselM
+.obj __vt__Q35efx2d10FileSelect10T2DFilesel, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
@@ -167,8 +192,8 @@ __vt__Q35efx2d10FileSelect10T2DFilesel:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d10FileSelect10T2DFileselFv
 	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
-.global __vt__Q35efx2d10FileSelect16T2DFiledeletingM
-__vt__Q35efx2d10FileSelect16T2DFiledeletingM:
+.endobj __vt__Q35efx2d10FileSelect10T2DFilesel
+.obj __vt__Q35efx2d10FileSelect16T2DFiledeletingM, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
@@ -183,8 +208,8 @@ __vt__Q35efx2d10FileSelect16T2DFiledeletingM:
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv
-.global __vt__Q35efx2d10FileSelect15T2DFiledeleting
-__vt__Q35efx2d10FileSelect15T2DFiledeleting:
+.endobj __vt__Q35efx2d10FileSelect16T2DFiledeletingM
+.obj __vt__Q35efx2d10FileSelect15T2DFiledeleting, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
@@ -199,8 +224,8 @@ __vt__Q35efx2d10FileSelect15T2DFiledeleting:
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d10FileSelect15T2DFiledeletingFv
-.global __vt__Q35efx2d10FileSelect12T2DFilecopyM
-__vt__Q35efx2d10FileSelect12T2DFilecopyM:
+.endobj __vt__Q35efx2d10FileSelect15T2DFiledeleting
+.obj __vt__Q35efx2d10FileSelect12T2DFilecopyM, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg
@@ -215,8 +240,8 @@ __vt__Q35efx2d10FileSelect12T2DFilecopyM:
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d10FileSelect12T2DFilecopyMFv
-.global __vt__Q35efx2d10FileSelect11T2DFilecopy
-__vt__Q35efx2d10FileSelect11T2DFilecopy:
+.endobj __vt__Q35efx2d10FileSelect12T2DFilecopyM
+.obj __vt__Q35efx2d10FileSelect11T2DFilecopy, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg
@@ -231,6 +256,7 @@ __vt__Q35efx2d10FileSelect11T2DFilecopy:
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d10FileSelect11T2DFilecopyFv
+.endobj __vt__Q35efx2d10FileSelect11T2DFilecopy
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -291,8 +317,7 @@ __vt__Q35efx2d10FileSelect11T2DFilecopy:
 .endobj lbl_8051FB64
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl
-setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl:
+.fn setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl, global
 /* 803D4244 003D1184  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803D4248 003D1188  7C 08 02 A6 */	mflr r0
 /* 803D424C 003D118C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -448,9 +473,9 @@ setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl:
 /* 803D448C 003D13CC  7C 08 03 A6 */	mtlr r0
 /* 803D4490 003D13D0  38 21 00 50 */	addi r1, r1, 0x50
 /* 803D4494 003D13D4  4E 80 00 20 */	blr 
+.endfn setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl
 
-.global __ct__Q43ebi6Screen10FileSelect11TMainScreenFv
-__ct__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn __ct__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D4498 003D13D8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803D449C 003D13DC  7C 08 02 A6 */	mflr r0
 /* 803D44A0 003D13E0  3C 80 80 4F */	lis r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
@@ -1395,9 +1420,9 @@ __ct__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D533C 003D227C  7C 08 03 A6 */	mtlr r0
 /* 803D5340 003D2280  38 21 00 50 */	addi r1, r1, 0x50
 /* 803D5344 003D2284  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global loadResource__Q43ebi6Screen10FileSelect11TMainScreenFv
-loadResource__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn loadResource__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D5348 003D2288  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 803D534C 003D228C  7C 08 02 A6 */	mflr r0
 /* 803D5350 003D2290  3C 80 80 49 */	lis r4, lbl_80496AE8@ha
@@ -1443,9 +1468,9 @@ loadResource__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D53EC 003D232C  7C 08 03 A6 */	mtlr r0
 /* 803D53F0 003D2330  38 21 01 20 */	addi r1, r1, 0x120
 /* 803D53F4 003D2334  4E 80 00 20 */	blr 
+.endfn loadResource__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive
-doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive:
+.fn doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive, global
 /* 803D53F8 003D2338  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803D53FC 003D233C  7C 08 02 A6 */	mflr r0
 /* 803D5400 003D2340  3C A0 80 49 */	lis r5, lbl_80496AE8@ha
@@ -2666,9 +2691,9 @@ doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive:
 /* 803D66D0 003D3610  7C 08 03 A6 */	mtlr r0
 /* 803D66D4 003D3614  38 21 00 60 */	addi r1, r1, 0x60
 /* 803D66D8 003D3618  4E 80 00 20 */	blr 
+.endfn doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive
 
-.global doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv
-doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D66DC 003D361C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D66E0 003D3620  7C 08 02 A6 */	mflr r0
 /* 803D66E4 003D3624  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2734,9 +2759,9 @@ doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D67D0 003D3710  7C 08 03 A6 */	mtlr r0
 /* 803D67D4 003D3714  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D67D8 003D3718  4E 80 00 20 */	blr 
+.endfn doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen
-doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen:
+.fn doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen, global
 /* 803D67DC 003D371C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D67E0 003D3720  7C 08 02 A6 */	mflr r0
 /* 803D67E4 003D3724  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2901,9 +2926,9 @@ doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen:
 /* 803D6A54 003D3994  7C 08 03 A6 */	mtlr r0
 /* 803D6A58 003D3998  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D6A5C 003D399C  4E 80 00 20 */	blr 
+.endfn doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen
 
-.global doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv
-doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D6A60 003D39A0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803D6A64 003D39A4  7C 08 02 A6 */	mflr r0
 /* 803D6A68 003D39A8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3014,9 +3039,9 @@ doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D6C04 003D3B44  7C 08 03 A6 */	mtlr r0
 /* 803D6C08 003D3B48  38 21 00 50 */	addi r1, r1, 0x50
 /* 803D6C0C 003D3B4C  4E 80 00 20 */	blr 
+.endfn doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClose
-doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClose:
+.fn doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClose, global
 /* 803D6C10 003D3B50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D6C14 003D3B54  7C 08 02 A6 */	mflr r0
 /* 803D6C18 003D3B58  C0 22 16 98 */	lfs f1, kFadeTime__Q23ebi8E2DFader@sda21(r2)
@@ -3056,9 +3081,9 @@ doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClose:
 /* 803D6C9C 003D3BDC  7C 08 03 A6 */	mtlr r0
 /* 803D6CA0 003D3BE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D6CA4 003D3BE4  4E 80 00 20 */	blr 
+.endfn doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClose
 
-.global doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv
-doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D6CA8 003D3BE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D6CAC 003D3BEC  7C 08 02 A6 */	mflr r0
 /* 803D6CB0 003D3BF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3096,9 +3121,9 @@ doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D6D24 003D3C64  7C 08 03 A6 */	mtlr r0
 /* 803D6D28 003D3C68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D6D2C 003D3C6C  4E 80 00 20 */	blr 
+.endfn doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv
-doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D6D30 003D3C70  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803D6D34 003D3C74  7C 08 02 A6 */	mflr r0
 /* 803D6D38 003D3C78  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3310,9 +3335,9 @@ doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D7040 003D3F80  7C 08 03 A6 */	mtlr r0
 /* 803D7044 003D3F84  38 21 00 70 */	addi r1, r1, 0x70
 /* 803D7048 003D3F88  4E 80 00 20 */	blr 
+.endfn doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv
-doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D704C 003D3F8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D7050 003D3F90  7C 08 02 A6 */	mflr r0
 /* 803D7054 003D3F94  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3368,9 +3393,9 @@ doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D710C 003D404C  7C 08 03 A6 */	mtlr r0
 /* 803D7110 003D4050  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D7114 003D4054  4E 80 00 20 */	blr 
+.endfn doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv
-doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D7118 003D4058  94 21 FA 60 */	stwu r1, -0x5a0(r1)
 /* 803D711C 003D405C  7C 08 02 A6 */	mflr r0
 /* 803D7120 003D4060  90 01 05 A4 */	stw r0, 0x5a4(r1)
@@ -3604,9 +3629,9 @@ doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D7480 003D43C0  7C 08 03 A6 */	mtlr r0
 /* 803D7484 003D43C4  38 21 05 A0 */	addi r1, r1, 0x5a0
 /* 803D7488 003D43C8  4E 80 00 20 */	blr 
+.endfn doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
-inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D748C 003D43CC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803D7490 003D43D0  7C 08 02 A6 */	mflr r0
 /* 803D7494 003D43D4  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3721,9 +3746,9 @@ inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D7630 003D4570  7C 08 03 A6 */	mtlr r0
 /* 803D7634 003D4574  38 21 00 50 */	addi r1, r1, 0x50
 /* 803D7638 003D4578  4E 80 00 20 */	blr 
+.endfn inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global outDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
-outDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn outDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D763C 003D457C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D7640 003D4580  7C 08 02 A6 */	mflr r0
 /* 803D7644 003D4584  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3767,9 +3792,9 @@ outDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D76D4 003D4614  7C 08 03 A6 */	mtlr r0
 /* 803D76D8 003D4618  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D76DC 003D461C  4E 80 00 20 */	blr 
+.endfn outDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global decideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
-decideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn decideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D76E0 003D4620  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D76E4 003D4624  7C 08 02 A6 */	mflr r0
 /* 803D76E8 003D4628  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3813,9 +3838,9 @@ decideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D7778 003D46B8  7C 08 03 A6 */	mtlr r0
 /* 803D777C 003D46BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D7780 003D46C0  4E 80 00 20 */	blr 
+.endfn decideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global createFiledecide__Q43ebi6Screen10FileSelect11TMainScreenFl
-createFiledecide__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn createFiledecide__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D7784 003D46C4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803D7788 003D46C8  7C 08 02 A6 */	mflr r0
 /* 803D778C 003D46CC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3890,9 +3915,9 @@ createFiledecide__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D789C 003D47DC  7C 08 03 A6 */	mtlr r0
 /* 803D78A0 003D47E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 803D78A4 003D47E4  4E 80 00 20 */	blr 
+.endfn createFiledecide__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global isFinishOutDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
-isFinishOutDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn isFinishOutDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D78A8 003D47E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D78AC 003D47EC  7C 08 02 A6 */	mflr r0
 /* 803D78B0 003D47F0  1C 84 00 3C */	mulli r4, r4, 0x3c
@@ -3905,9 +3930,9 @@ isFinishOutDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D78CC 003D480C  7C 08 03 A6 */	mtlr r0
 /* 803D78D0 003D4810  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D78D4 003D4814  4E 80 00 20 */	blr 
+.endfn isFinishOutDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global isFinishDecideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
-isFinishDecideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn isFinishDecideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D78D8 003D4818  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D78DC 003D481C  7C 08 02 A6 */	mflr r0
 /* 803D78E0 003D4820  1C 84 00 3C */	mulli r4, r4, 0x3c
@@ -3920,9 +3945,9 @@ isFinishDecideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D78FC 003D483C  7C 08 03 A6 */	mtlr r0
 /* 803D7900 003D4840  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D7904 003D4844  4E 80 00 20 */	blr 
+.endfn isFinishDecideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global createCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFl
-createCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn createCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D7908 003D4848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D790C 003D484C  7C 08 02 A6 */	mflr r0
 /* 803D7910 003D4850  2C 04 00 01 */	cmpwi r4, 1
@@ -3989,9 +4014,9 @@ createCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D79F0 003D4930  7C 08 03 A6 */	mtlr r0
 /* 803D79F4 003D4934  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D79F8 003D4938  4E 80 00 20 */	blr 
+.endfn createCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
-fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D79FC 003D493C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D7A00 003D4940  7C 08 02 A6 */	mflr r0
 /* 803D7A04 003D4944  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4012,23 +4037,23 @@ fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D7A40 003D4980  7C 08 03 A6 */	mtlr r0
 /* 803D7A44 003D4984  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D7A48 003D4988  4E 80 00 20 */	blr 
+.endfn fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global moveLeftCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
-moveLeftCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn moveLeftCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D7A4C 003D498C  38 00 00 01 */	li r0, 1
 /* 803D7A50 003D4990  98 03 0A 18 */	stb r0, 0xa18(r3)
 /* 803D7A54 003D4994  98 03 0A 50 */	stb r0, 0xa50(r3)
 /* 803D7A58 003D4998  4E 80 00 20 */	blr 
+.endfn moveLeftCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global moveRightCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
-moveRightCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn moveRightCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D7A5C 003D499C  38 00 00 00 */	li r0, 0
 /* 803D7A60 003D49A0  98 03 0A 18 */	stb r0, 0xa18(r3)
 /* 803D7A64 003D49A4  98 03 0A 50 */	stb r0, 0xa50(r3)
 /* 803D7A68 003D49A8  4E 80 00 20 */	blr 
+.endfn moveRightCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global createFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFll
-createFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFll:
+.fn createFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFll, global
 /* 803D7A6C 003D49AC  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 803D7A70 003D49B0  7C 08 02 A6 */	mflr r0
 /* 803D7A74 003D49B4  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -4149,9 +4174,9 @@ createFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFll:
 /* 803D7C40 003D4B80  7C 08 03 A6 */	mtlr r0
 /* 803D7C44 003D4B84  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 803D7C48 003D4B88  4E 80 00 20 */	blr 
+.endfn createFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFll
 
-.global fadeFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFv
-fadeFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn fadeFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D7C4C 003D4B8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D7C50 003D4B90  7C 08 02 A6 */	mflr r0
 /* 803D7C54 003D4B94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4174,9 +4199,9 @@ fadeFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D7C98 003D4BD8  7C 08 03 A6 */	mtlr r0
 /* 803D7C9C 003D4BDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D7CA0 003D4BE0  4E 80 00 20 */	blr 
+.endfn fadeFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global createFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFl
-createFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn createFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D7CA4 003D4BE4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803D7CA8 003D4BE8  7C 08 02 A6 */	mflr r0
 /* 803D7CAC 003D4BEC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -4247,9 +4272,9 @@ createFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D7DB0 003D4CF0  7C 08 03 A6 */	mtlr r0
 /* 803D7DB4 003D4CF4  38 21 00 60 */	addi r1, r1, 0x60
 /* 803D7DB8 003D4CF8  4E 80 00 20 */	blr 
+.endfn createFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global fadeFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFv
-fadeFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn fadeFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D7DBC 003D4CFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D7DC0 003D4D00  7C 08 02 A6 */	mflr r0
 /* 803D7DC4 003D4D04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4272,9 +4297,9 @@ fadeFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D7E08 003D4D48  7C 08 03 A6 */	mtlr r0
 /* 803D7E0C 003D4D4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D7E10 003D4D50  4E 80 00 20 */	blr 
+.endfn fadeFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl
-openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D7E14 003D4D54  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803D7E18 003D4D58  7C 08 02 A6 */	mflr r0
 /* 803D7E1C 003D4D5C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4483,9 +4508,9 @@ openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D8120 003D5060  7C 08 03 A6 */	mtlr r0
 /* 803D8124 003D5064  38 21 00 30 */	addi r1, r1, 0x30
 /* 803D8128 003D5068  4E 80 00 20 */	blr 
+.endfn openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
-closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D812C 003D506C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D8130 003D5070  7C 08 02 A6 */	mflr r0
 /* 803D8134 003D5074  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4514,9 +4539,9 @@ closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D818C 003D50CC  7C 08 03 A6 */	mtlr r0
 /* 803D8190 003D50D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D8194 003D50D4  4E 80 00 20 */	blr 
+.endfn closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global decideDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
-decideDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn decideDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D8198 003D50D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D819C 003D50DC  7C 08 02 A6 */	mflr r0
 /* 803D81A0 003D50E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4545,9 +4570,9 @@ decideDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D81F8 003D5138  7C 08 03 A6 */	mtlr r0
 /* 803D81FC 003D513C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D8200 003D5140  4E 80 00 20 */	blr 
+.endfn decideDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global isFinishCloseDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
-isFinishCloseDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn isFinishCloseDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D8204 003D5144  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D8208 003D5148  7C 08 02 A6 */	mflr r0
 /* 803D820C 003D514C  38 63 08 24 */	addi r3, r3, 0x824
@@ -4557,9 +4582,9 @@ isFinishCloseDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D821C 003D515C  7C 08 03 A6 */	mtlr r0
 /* 803D8220 003D5160  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D8224 003D5164  4E 80 00 20 */	blr 
+.endfn isFinishCloseDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
-openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D8228 003D5168  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D822C 003D516C  7C 08 02 A6 */	mflr r0
 /* 803D8230 003D5170  C0 22 17 F0 */	lfs f1, lbl_8051FB50@sda21(r2)
@@ -4740,9 +4765,9 @@ openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D84BC 003D53FC  7C 08 03 A6 */	mtlr r0
 /* 803D84C0 003D5400  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D84C4 003D5404  4E 80 00 20 */	blr 
+.endfn openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
-closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D84C8 003D5408  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D84CC 003D540C  7C 08 02 A6 */	mflr r0
 /* 803D84D0 003D5410  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4768,9 +4793,9 @@ closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D851C 003D545C  7C 08 03 A6 */	mtlr r0
 /* 803D8520 003D5460  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D8524 003D5464  4E 80 00 20 */	blr 
+.endfn closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
-isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D8528 003D5468  80 03 0A FC */	lwz r0, 0xafc(r3)
 /* 803D852C 003D546C  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 803D8530 003D5470  40 82 00 18 */	bne .L_803D8548
@@ -4782,9 +4807,9 @@ isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv:
 .L_803D8548:
 /* 803D8548 003D5488  38 60 00 00 */	li r3, 0
 /* 803D854C 003D548C  4E 80 00 20 */	blr 
+.endfn isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb
-setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb:
+.fn setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb, global
 /* 803D8550 003D5490  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D8554 003D5494  7C 08 02 A6 */	mflr r0
 /* 803D8558 003D5498  7C 66 1B 78 */	mr r6, r3
@@ -4836,9 +4861,9 @@ setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb:
 /* 803D8608 003D5548  7C 08 03 A6 */	mtlr r0
 /* 803D860C 003D554C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D8610 003D5550  4E 80 00 20 */	blr 
+.endfn setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb
 
-.global updateMsg___Q43ebi6Screen10FileSelect11TMainScreenFv
-updateMsg___Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn updateMsg___Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D8614 003D5554  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803D8618 003D5558  7C 08 02 A6 */	mflr r0
 /* 803D861C 003D555C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4927,9 +4952,9 @@ updateMsg___Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D874C 003D568C  7C 08 03 A6 */	mtlr r0
 /* 803D8750 003D5690  38 21 00 30 */	addi r1, r1, 0x30
 /* 803D8754 003D5694  4E 80 00 20 */	blr 
+.endfn updateMsg___Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx:
+.fn setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx, global
 /* 803D8758 003D5698  80 83 00 98 */	lwz r4, 0x98(r3)
 /* 803D875C 003D569C  91 04 00 1C */	stw r8, 0x1c(r4)
 /* 803D8760 003D56A0  90 E4 00 18 */	stw r7, 0x18(r4)
@@ -4949,9 +4974,9 @@ setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx:
 /* 803D8798 003D56D8  90 C3 00 1C */	stw r6, 0x1c(r3)
 /* 803D879C 003D56DC  90 A3 00 18 */	stw r5, 0x18(r3)
 /* 803D87A0 003D56E0  4E 80 00 20 */	blr 
+.endfn setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
 
-.global inCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv
-inCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn inCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D87A4 003D56E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D87A8 003D56E8  7C 08 02 A6 */	mflr r0
 /* 803D87AC 003D56EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4988,9 +5013,9 @@ inCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D8824 003D5764  7C 08 03 A6 */	mtlr r0
 /* 803D8828 003D5768  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D882C 003D576C  4E 80 00 20 */	blr 
+.endfn inCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv
-outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D8830 003D5770  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D8834 003D5774  7C 08 02 A6 */	mflr r0
 /* 803D8838 003D5778  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5027,9 +5052,9 @@ outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D88B0 003D57F0  7C 08 03 A6 */	mtlr r0
 /* 803D88B4 003D57F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D88B8 003D57F8  4E 80 00 20 */	blr 
+.endfn outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv
-inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D88BC 003D57FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D88C0 003D5800  7C 08 02 A6 */	mflr r0
 /* 803D88C4 003D5804  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5066,9 +5091,9 @@ inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D893C 003D587C  7C 08 03 A6 */	mtlr r0
 /* 803D8940 003D5880  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D8944 003D5884  4E 80 00 20 */	blr 
+.endfn inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global outYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv
-outYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn outYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D8948 003D5888  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D894C 003D588C  7C 08 02 A6 */	mflr r0
 /* 803D8950 003D5890  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5105,9 +5130,9 @@ outYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D89C8 003D5908  7C 08 03 A6 */	mtlr r0
 /* 803D89CC 003D590C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D89D0 003D5910  4E 80 00 20 */	blr 
+.endfn outYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global setDataBallCopyResult__Q43ebi6Screen10FileSelect11TMainScreenFll
-setDataBallCopyResult__Q43ebi6Screen10FileSelect11TMainScreenFll:
+.fn setDataBallCopyResult__Q43ebi6Screen10FileSelect11TMainScreenFll, global
 /* 803D89D4 003D5914  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803D89D8 003D5918  7C 08 02 A6 */	mflr r0
 /* 803D89DC 003D591C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -5220,9 +5245,9 @@ setDataBallCopyResult__Q43ebi6Screen10FileSelect11TMainScreenFll:
 /* 803D8B88 003D5AC8  7C 08 03 A6 */	mtlr r0
 /* 803D8B8C 003D5ACC  38 21 00 50 */	addi r1, r1, 0x50
 /* 803D8B90 003D5AD0  4E 80 00 20 */	blr 
+.endfn setDataBallCopyResult__Q43ebi6Screen10FileSelect11TMainScreenFll
 
-.global setDataBallNew__Q43ebi6Screen10FileSelect11TMainScreenFl
-setDataBallNew__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn setDataBallNew__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D8B94 003D5AD4  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 803D8B98 003D5AD8  7C 08 02 A6 */	mflr r0
 /* 803D8B9C 003D5ADC  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -5371,9 +5396,9 @@ setDataBallNew__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D8DD8 003D5D18  7C 08 03 A6 */	mtlr r0
 /* 803D8DDC 003D5D1C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 803D8DE0 003D5D20  4E 80 00 20 */	blr 
+.endfn setDataBallNew__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global setDataBallBroken__Q43ebi6Screen10FileSelect11TMainScreenFl
-setDataBallBroken__Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn setDataBallBroken__Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D8DE4 003D5D24  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D8DE8 003D5D28  7C 08 02 A6 */	mflr r0
 /* 803D8DEC 003D5D2C  38 A0 00 00 */	li r5, 0
@@ -5412,9 +5437,9 @@ setDataBallBroken__Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D8E70 003D5DB0  7C 08 03 A6 */	mtlr r0
 /* 803D8E74 003D5DB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D8E78 003D5DB8  4E 80 00 20 */	blr 
+.endfn setDataBallBroken__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv
-initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv, global
 /* 803D8E7C 003D5DBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D8E80 003D5DC0  7C 08 02 A6 */	mflr r0
 /* 803D8E84 003D5DC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5435,9 +5460,9 @@ initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D8EBC 003D5DFC  7C 08 03 A6 */	mtlr r0
 /* 803D8EC0 003D5E00  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D8EC4 003D5E04  4E 80 00 20 */	blr 
+.endfn initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global setColorTimgDataBall___Q43ebi6Screen10FileSelect11TMainScreenFl
-setColorTimgDataBall___Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn setColorTimgDataBall___Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D8EC8 003D5E08  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 803D8ECC 003D5E0C  7C 08 02 A6 */	mflr r0
 /* 803D8ED0 003D5E10  90 01 00 84 */	stw r0, 0x84(r1)
@@ -5791,9 +5816,9 @@ setColorTimgDataBall___Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D940C 003D634C  7C 08 03 A6 */	mtlr r0
 /* 803D9410 003D6350  38 21 00 80 */	addi r1, r1, 0x80
 /* 803D9414 003D6354  4E 80 00 20 */	blr 
+.endfn setColorTimgDataBall___Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl:
+.fn getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl, global
 /* 803D9418 003D6358  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D941C 003D635C  7C 08 02 A6 */	mflr r0
 /* 803D9420 003D6360  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5849,9 +5874,9 @@ getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl:
 /* 803D94D8 003D6418  7C 08 03 A6 */	mtlr r0
 /* 803D94DC 003D641C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D94E0 003D6420  4E 80 00 20 */	blr 
+.endfn getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
 
-.global calcDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFUlUlUlUlUl
-calcDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFUlUlUlUlUl:
+.fn calcDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFUlUlUlUlUl, global
 /* 803D94E4 003D6424  7C 06 3A 14 */	add r0, r6, r7
 /* 803D94E8 003D6428  28 06 00 01 */	cmplwi r6, 1
 /* 803D94EC 003D642C  7C 00 42 14 */	add r0, r0, r8
@@ -5973,9 +5998,9 @@ calcDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFUlUlUlUlUl:
 /* 803D9698 003D65D8  90 03 00 00 */	stw r0, 0(r3)
 /* 803D969C 003D65DC  38 21 00 70 */	addi r1, r1, 0x70
 /* 803D96A0 003D65E0  4E 80 00 20 */	blr 
+.endfn calcDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFUlUlUlUlUl
 
-.global setIconColorAlpha___Q43ebi6Screen10FileSelect11TMainScreenFUc
-setIconColorAlpha___Q43ebi6Screen10FileSelect11TMainScreenFUc:
+.fn setIconColorAlpha___Q43ebi6Screen10FileSelect11TMainScreenFUc, global
 /* 803D96A4 003D65E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D96A8 003D65E8  7C 08 02 A6 */	mflr r0
 /* 803D96AC 003D65EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6009,9 +6034,9 @@ setIconColorAlpha___Q43ebi6Screen10FileSelect11TMainScreenFUc:
 /* 803D9718 003D6658  7C 08 03 A6 */	mtlr r0
 /* 803D971C 003D665C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D9720 003D6660  4E 80 00 20 */	blr 
+.endfn setIconColorAlpha___Q43ebi6Screen10FileSelect11TMainScreenFUc
 
-.global __ct__Q43ebi6Screen10FileSelect9TFileDataFv
-__ct__Q43ebi6Screen10FileSelect9TFileDataFv:
+.fn __ct__Q43ebi6Screen10FileSelect9TFileDataFv, weak
 /* 803D9724 003D6664  38 E0 00 00 */	li r7, 0
 /* 803D9728 003D6668  3C 80 00 01 */	lis r4, 0x00012FD1@ha
 /* 803D972C 003D666C  98 E3 00 01 */	stb r7, 1(r3)
@@ -6034,15 +6059,15 @@ __ct__Q43ebi6Screen10FileSelect9TFileDataFv:
 /* 803D9770 003D66B0  90 03 00 30 */	stw r0, 0x30(r3)
 /* 803D9774 003D66B4  98 E3 00 00 */	stb r7, 0(r3)
 /* 803D9778 003D66B8  4E 80 00 20 */	blr 
+.endfn __ct__Q43ebi6Screen10FileSelect9TFileDataFv
 
-.global getName__Q43ebi6Screen10FileSelect11TMainScreenFv
-getName__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.fn getName__Q43ebi6Screen10FileSelect11TMainScreenFv, weak
 /* 803D977C 003D66BC  3C 60 80 49 */	lis r3, lbl_80496D28@ha
 /* 803D9780 003D66C0  38 63 6D 28 */	addi r3, r3, lbl_80496D28@l
 /* 803D9784 003D66C4  4E 80 00 20 */	blr 
+.endfn getName__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-.global __dt__Q35efx2d10FileSelect11T2DFileselMFv
-__dt__Q35efx2d10FileSelect11T2DFileselMFv:
+.fn __dt__Q35efx2d10FileSelect11T2DFileselMFv, weak
 /* 803D9788 003D66C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D978C 003D66CC  7C 08 02 A6 */	mflr r0
 /* 803D9790 003D66D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6084,9 +6109,9 @@ __dt__Q35efx2d10FileSelect11T2DFileselMFv:
 /* 803D9818 003D6758  7C 08 03 A6 */	mtlr r0
 /* 803D981C 003D675C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D9820 003D6760  4E 80 00 20 */	blr 
+.endfn __dt__Q35efx2d10FileSelect11T2DFileselMFv
 
-.global __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv
-__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv:
+.fn __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv, weak
 /* 803D9824 003D6764  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D9828 003D6768  7C 08 02 A6 */	mflr r0
 /* 803D982C 003D676C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6122,9 +6147,9 @@ __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv:
 /* 803D989C 003D67DC  7C 08 03 A6 */	mtlr r0
 /* 803D98A0 003D67E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D98A4 003D67E4  4E 80 00 20 */	blr 
+.endfn __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv
 
-.global __dt__Q35efx2d10FileSelect15T2DFiledeletingFv
-__dt__Q35efx2d10FileSelect15T2DFiledeletingFv:
+.fn __dt__Q35efx2d10FileSelect15T2DFiledeletingFv, weak
 /* 803D98A8 003D67E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D98AC 003D67EC  7C 08 02 A6 */	mflr r0
 /* 803D98B0 003D67F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6160,9 +6185,9 @@ __dt__Q35efx2d10FileSelect15T2DFiledeletingFv:
 /* 803D9920 003D6860  7C 08 03 A6 */	mtlr r0
 /* 803D9924 003D6864  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D9928 003D6868  4E 80 00 20 */	blr 
+.endfn __dt__Q35efx2d10FileSelect15T2DFiledeletingFv
 
-.global __dt__Q35efx2d10FileSelect12T2DFilecopyMFv
-__dt__Q35efx2d10FileSelect12T2DFilecopyMFv:
+.fn __dt__Q35efx2d10FileSelect12T2DFilecopyMFv, weak
 /* 803D992C 003D686C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D9930 003D6870  7C 08 02 A6 */	mflr r0
 /* 803D9934 003D6874  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6204,9 +6229,9 @@ __dt__Q35efx2d10FileSelect12T2DFilecopyMFv:
 /* 803D99BC 003D68FC  7C 08 03 A6 */	mtlr r0
 /* 803D99C0 003D6900  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D99C4 003D6904  4E 80 00 20 */	blr 
+.endfn __dt__Q35efx2d10FileSelect12T2DFilecopyMFv
 
-.global __dt__Q35efx2d10FileSelect11T2DFilecopyFv
-__dt__Q35efx2d10FileSelect11T2DFilecopyFv:
+.fn __dt__Q35efx2d10FileSelect11T2DFilecopyFv, weak
 /* 803D99C8 003D6908  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D99CC 003D690C  7C 08 02 A6 */	mflr r0
 /* 803D99D0 003D6910  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6248,9 +6273,9 @@ __dt__Q35efx2d10FileSelect11T2DFilecopyFv:
 /* 803D9A58 003D6998  7C 08 03 A6 */	mtlr r0
 /* 803D9A5C 003D699C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D9A60 003D69A0  4E 80 00 20 */	blr 
+.endfn __dt__Q35efx2d10FileSelect11T2DFilecopyFv
 
-.global __ct__Q23ebi19E2DCallBack_AnmBaseFv
-__ct__Q23ebi19E2DCallBack_AnmBaseFv:
+.fn __ct__Q23ebi19E2DCallBack_AnmBaseFv, weak
 /* 803D9A64 003D69A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D9A68 003D69A8  7C 08 02 A6 */	mflr r0
 /* 803D9A6C 003D69AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6288,9 +6313,9 @@ __ct__Q23ebi19E2DCallBack_AnmBaseFv:
 /* 803D9AEC 003D6A2C  7C 08 03 A6 */	mtlr r0
 /* 803D9AF0 003D6A30  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D9AF4 003D6A34  4E 80 00 20 */	blr 
+.endfn __ct__Q23ebi19E2DCallBack_AnmBaseFv
 
-.global set__Q23ebi26E2DCallBack_BlinkFontColorFRQ23ebi16E2DFullFontColorRQ23ebi16E2DFullFontColor
-set__Q23ebi26E2DCallBack_BlinkFontColorFRQ23ebi16E2DFullFontColorRQ23ebi16E2DFullFontColor:
+.fn set__Q23ebi26E2DCallBack_BlinkFontColorFRQ23ebi16E2DFullFontColorRQ23ebi16E2DFullFontColor, weak
 /* 803D9AF8 003D6A38  88 04 00 00 */	lbz r0, 0(r4)
 /* 803D9AFC 003D6A3C  98 03 00 20 */	stb r0, 0x20(r3)
 /* 803D9B00 003D6A40  88 04 00 01 */	lbz r0, 1(r4)
@@ -6356,21 +6381,21 @@ set__Q23ebi26E2DCallBack_BlinkFontColorFRQ23ebi16E2DFullFontColorRQ23ebi16E2DFul
 /* 803D9BF0 003D6B30  88 05 00 0F */	lbz r0, 0xf(r5)
 /* 803D9BF4 003D6B34  98 03 00 3F */	stb r0, 0x3f(r3)
 /* 803D9BF8 003D6B38  4E 80 00 20 */	blr 
+.endfn set__Q23ebi26E2DCallBack_BlinkFontColorFRQ23ebi16E2DFullFontColorRQ23ebi16E2DFullFontColor
 
-.global getName__Q25efx2d8ArgColorFv
-getName__Q25efx2d8ArgColorFv:
+.fn getName__Q25efx2d8ArgColorFv, weak
 /* 803D9BFC 003D6B3C  3C 60 80 49 */	lis r3, lbl_80496D10@ha
 /* 803D9C00 003D6B40  38 63 6D 10 */	addi r3, r3, lbl_80496D10@l
 /* 803D9C04 003D6B44  4E 80 00 20 */	blr 
+.endfn getName__Q25efx2d8ArgColorFv
 
-.global getName__Q35efx2d10FileSelect11ArgFilecopyFv
-getName__Q35efx2d10FileSelect11ArgFilecopyFv:
+.fn getName__Q35efx2d10FileSelect11ArgFilecopyFv, weak
 /* 803D9C08 003D6B48  3C 60 80 49 */	lis r3, lbl_80496D1C@ha
 /* 803D9C0C 003D6B4C  38 63 6D 1C */	addi r3, r3, lbl_80496D1C@l
 /* 803D9C10 003D6B50  4E 80 00 20 */	blr 
+.endfn getName__Q35efx2d10FileSelect11ArgFilecopyFv
 
-.global __dt__Q35efx2d10FileSelect10T2DFileselFv
-__dt__Q35efx2d10FileSelect10T2DFileselFv:
+.fn __dt__Q35efx2d10FileSelect10T2DFileselFv, weak
 /* 803D9C14 003D6B54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D9C18 003D6B58  7C 08 02 A6 */	mflr r0
 /* 803D9C1C 003D6B5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6412,33 +6437,34 @@ __dt__Q35efx2d10FileSelect10T2DFileselFv:
 /* 803D9CA4 003D6BE4  7C 08 03 A6 */	mtlr r0
 /* 803D9CA8 003D6BE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D9CAC 003D6BEC  4E 80 00 20 */	blr 
+.endfn __dt__Q35efx2d10FileSelect10T2DFileselFv
 
-.global "@8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv"
-"@8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv":
+.fn "@8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv", weak
 /* 803D9CB0 003D6BF0  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CB4 003D6BF4  4B FF FD 14 */	b __dt__Q35efx2d10FileSelect11T2DFilecopyFv
+.endfn "@8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv"
 
-.global "@8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv"
-"@8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv":
+.fn "@8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv", weak
 /* 803D9CB8 003D6BF8  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CBC 003D6BFC  4B FF FC 70 */	b __dt__Q35efx2d10FileSelect12T2DFilecopyMFv
+.endfn "@8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv"
 
-.global "@8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv"
-"@8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv":
+.fn "@8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv", weak
 /* 803D9CC0 003D6C00  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CC4 003D6C04  4B FF FB E4 */	b __dt__Q35efx2d10FileSelect15T2DFiledeletingFv
+.endfn "@8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv"
 
-.global "@8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv"
-"@8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv":
+.fn "@8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv", weak
 /* 803D9CC8 003D6C08  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CCC 003D6C0C  4B FF FB 58 */	b __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv
+.endfn "@8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv"
 
-.global "@8@__dt__Q35efx2d10FileSelect10T2DFileselFv"
-"@8@__dt__Q35efx2d10FileSelect10T2DFileselFv":
+.fn "@8@__dt__Q35efx2d10FileSelect10T2DFileselFv", weak
 /* 803D9CD0 003D6C10  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CD4 003D6C14  4B FF FF 40 */	b __dt__Q35efx2d10FileSelect10T2DFileselFv
+.endfn "@8@__dt__Q35efx2d10FileSelect10T2DFileselFv"
 
-.global "@8@__dt__Q35efx2d10FileSelect11T2DFileselMFv"
-"@8@__dt__Q35efx2d10FileSelect11T2DFileselMFv":
+.fn "@8@__dt__Q35efx2d10FileSelect11T2DFileselMFv", weak
 /* 803D9CD8 003D6C18  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CDC 003D6C1C  4B FF FA AC */	b __dt__Q35efx2d10FileSelect11T2DFileselMFv
+.endfn "@8@__dt__Q35efx2d10FileSelect11T2DFileselMFv"

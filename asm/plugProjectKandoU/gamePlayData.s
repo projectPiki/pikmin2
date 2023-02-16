@@ -1,55 +1,68 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80480E40:
+.obj lbl_80480E40, local
 	.asciz "PlayData"
+.endobj lbl_80480E40
 .balign 4
-lbl_80480E4C:
+.obj lbl_80480E4C, local
 	.asciz "gamePlayData.cpp"
+.endobj lbl_80480E4C
 .balign 4
-lbl_80480E60:
+.obj lbl_80480E60, local
 	.asciz "P2Assert"
+.endobj lbl_80480E60
 .balign 4
-lbl_80480E6C:
+.obj lbl_80480E6C, local
 	.asciz "playData"
+.endobj lbl_80480E6C
 .balign 4
-lbl_80480E78:
+.obj lbl_80480E78, local
 	.asciz "generatorCache"
+.endobj lbl_80480E78
 .balign 4
-lbl_80480E88:
+.obj lbl_80480E88, local
 	.asciz "otakara or item !"
+.endobj lbl_80480E88
 .balign 4
-lbl_80480E9C:
+.obj lbl_80480E9C, local
 	.asciz "no tekiname for %d\n"
+.endobj lbl_80480E9C
 .balign 4
-lbl_80480EB0:
+.obj lbl_80480EB0, local
 	.asciz "no cave info : course(%d):[%s]\n"
+.endobj lbl_80480EB0
 .balign 4
-lbl_80480ED0:
+.obj lbl_80480ED0, local
 	.asciz "course index error:%d (getOtakaraNum_*)\n"
+.endobj lbl_80480ED0
 .balign 4
-lbl_80480EFC: # Shift-JIS
+.obj lbl_80480EFC, local # Shift-JIS
 	.4byte 0x819693B4
 	.4byte 0x8C418FEE
 	.4byte 0x95F18196
 	.byte 0x00
+.endobj lbl_80480EFC
 .balign 4
-lbl_80480F0C: # Shift-JIS
+.obj lbl_80480F0C, local # Shift-JIS
 	.4byte 0x23206361
 	.4byte 0x76659094
 	.4byte 0x0D0A0000
+.endobj lbl_80480F0C
 .balign 4
-lbl_80480F18: # Shift-JIS
+.obj lbl_80480F18, local # Shift-JIS
 	.4byte 0x23208CC2
 	.4byte 0x90940D0A
 	.byte 0x00
+.endobj lbl_80480F18
 .balign 4
-lbl_80480F24: # Shift-JIS
+.obj lbl_80480F24, local # Shift-JIS
 	.4byte 0x23208FF3
 	.4byte 0x91D40D0A
 	.byte 0x00
+.endobj lbl_80480F24
 .balign 4
-lbl_80480F30: # Shift-JIS
+.obj lbl_80480F30, local # Shift-JIS
 	.4byte 0x835A815B
 	.4byte 0x837582B5
 	.4byte 0x82BD82C6
@@ -60,9 +73,9 @@ lbl_80480F30: # Shift-JIS
 	.4byte 0x82A282DC
 	.4byte 0x82B982F1
 	.2byte 0x0A00
+.endobj lbl_80480F30
 .balign 4
-.global "repay_levs__26@unnamed@gamePlayData_cpp@"
-"repay_levs__26@unnamed@gamePlayData_cpp@":
+.obj "repay_levs__26@unnamed@gamePlayData_cpp@", local
 	.float 10.0
 	.float 20.0
 	.float 30.0
@@ -73,24 +86,25 @@ lbl_80480F30: # Shift-JIS
 	.float 80.0
 	.float 90.0
 	.float 100.0
+.endobj "repay_levs__26@unnamed@gamePlayData_cpp@"
 .balign 4
-lbl_80480F80: # Shift-JIS
+.obj lbl_80480F80, local # Shift-JIS
 	.4byte 0x819693B4
 	.4byte 0x8C418FEE
 	.4byte 0x95F1284F
 	.4byte 0x6C642981
 	.2byte 0x9600
+.endobj lbl_80480F80
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game8PlayData
-__vt__Q24Game8PlayData:
+.obj __vt__Q24Game8PlayData, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game8PlayDataFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q24Game17PelletFirstMemory
-__vt__Q24Game17PelletFirstMemory:
+.endobj __vt__Q24Game8PlayData
+.obj __vt__Q24Game17PelletFirstMemory, global
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game16PelletCropMemoryFR6Stream
@@ -98,34 +112,36 @@ __vt__Q24Game17PelletFirstMemory:
 	.4byte firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet
 	.4byte obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
 	.4byte losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
+.endobj __vt__Q24Game17PelletFirstMemory
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global playData__4Game
-playData__4Game:
+.obj playData__4Game, global
 	.skip 0x4
+.endobj playData__4Game
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805199D0:
+.obj lbl_805199D0, local
 	.float 0.0
-lbl_805199D4:
+.endobj lbl_805199D0
+.obj lbl_805199D4, local
 	.float 100.0
+.endobj lbl_805199D4
 .balign 8
-lbl_805199D8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_805199D8, local
+	.8byte 0x4330000080000000
+.endobj lbl_805199D8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game11KindCounterFv
-__ct__Q24Game11KindCounterFv:
+.fn __ct__Q24Game11KindCounterFv, global
 /* 801E5354 001E2294  38 00 00 00 */	li r0, 0
 /* 801E5358 001E2298  B0 03 00 00 */	sth r0, 0(r3)
 /* 801E535C 001E229C  90 03 00 04 */	stw r0, 4(r3)
 /* 801E5360 001E22A0  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11KindCounterFv
 
-.global alloc__Q24Game11KindCounterFi
-alloc__Q24Game11KindCounterFi:
+.fn alloc__Q24Game11KindCounterFi, global
 /* 801E5364 001E22A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E5368 001E22A8  7C 08 02 A6 */	mflr r0
 /* 801E536C 001E22AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -156,9 +172,9 @@ alloc__Q24Game11KindCounterFi:
 /* 801E53CC 001E230C  7C 08 03 A6 */	mtlr r0
 /* 801E53D0 001E2310  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E53D4 001E2314  4E 80 00 20 */	blr 
+.endfn alloc__Q24Game11KindCounterFi
 
-.global clear__Q24Game11KindCounterFv
-clear__Q24Game11KindCounterFv:
+.fn clear__Q24Game11KindCounterFv, global
 /* 801E53D8 001E2318  38 C0 00 00 */	li r6, 0
 /* 801E53DC 001E231C  38 A0 00 00 */	li r5, 0
 /* 801E53E0 001E2320  48 00 00 10 */	b .L_801E53F0
@@ -171,9 +187,9 @@ clear__Q24Game11KindCounterFv:
 /* 801E53F4 001E2334  7C 06 00 00 */	cmpw r6, r0
 /* 801E53F8 001E2338  41 80 FF EC */	blt .L_801E53E4
 /* 801E53FC 001E233C  4E 80 00 20 */	blr 
+.endfn clear__Q24Game11KindCounterFv
 
-.global __cl__Q24Game11KindCounterFi
-__cl__Q24Game11KindCounterFi:
+.fn __cl__Q24Game11KindCounterFi, global
 /* 801E5400 001E2340  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E5404 001E2344  7C 08 02 A6 */	mflr r0
 /* 801E5408 001E2348  90 01 00 14 */	stw r0, 0x14(r1)
@@ -206,9 +222,9 @@ __cl__Q24Game11KindCounterFi:
 /* 801E546C 001E23AC  7C 08 03 A6 */	mtlr r0
 /* 801E5470 001E23B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E5474 001E23B4  4E 80 00 20 */	blr 
+.endfn __cl__Q24Game11KindCounterFi
 
-.global createClone__Q24Game16PelletCropMemoryFv
-createClone__Q24Game16PelletCropMemoryFv:
+.fn createClone__Q24Game16PelletCropMemoryFv, global
 /* 801E5478 001E23B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E547C 001E23BC  7C 08 02 A6 */	mflr r0
 /* 801E5480 001E23C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -388,9 +404,9 @@ createClone__Q24Game16PelletCropMemoryFv:
 /* 801E56EC 001E262C  7C 08 03 A6 */	mtlr r0
 /* 801E56F0 001E2630  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E56F4 001E2634  4E 80 00 20 */	blr 
+.endfn createClone__Q24Game16PelletCropMemoryFv
 
-.global addTo__Q24Game16PelletCropMemoryFPQ24Game16PelletCropMemory
-addTo__Q24Game16PelletCropMemoryFPQ24Game16PelletCropMemory:
+.fn addTo__Q24Game16PelletCropMemoryFPQ24Game16PelletCropMemory, global
 /* 801E56F8 001E2638  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E56FC 001E263C  7C 08 02 A6 */	mflr r0
 /* 801E5700 001E2640  90 01 00 14 */	stw r0, 0x14(r1)
@@ -482,9 +498,9 @@ addTo__Q24Game16PelletCropMemoryFPQ24Game16PelletCropMemory:
 /* 801E5834 001E2774  7C 08 03 A6 */	mtlr r0
 /* 801E5838 001E2778  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E583C 001E277C  4E 80 00 20 */	blr 
+.endfn addTo__Q24Game16PelletCropMemoryFPQ24Game16PelletCropMemory
 
-.global clear__Q24Game16PelletCropMemoryFv
-clear__Q24Game16PelletCropMemoryFv:
+.fn clear__Q24Game16PelletCropMemoryFv, global
 /* 801E5840 001E2780  38 C0 00 00 */	li r6, 0
 /* 801E5844 001E2784  7C C5 33 78 */	mr r5, r6
 /* 801E5848 001E2788  48 00 00 10 */	b .L_801E5858
@@ -519,9 +535,9 @@ clear__Q24Game16PelletCropMemoryFv:
 /* 801E58A4 001E27E4  7C 06 00 00 */	cmpw r6, r0
 /* 801E58A8 001E27E8  41 80 FF EC */	blt .L_801E5894
 /* 801E58AC 001E27EC  4E 80 00 20 */	blr 
+.endfn clear__Q24Game16PelletCropMemoryFv
 
-.global calcEarnKinds__Q24Game16PelletCropMemoryFv
-calcEarnKinds__Q24Game16PelletCropMemoryFv:
+.fn calcEarnKinds__Q24Game16PelletCropMemoryFv, global
 /* 801E58B0 001E27F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E58B4 001E27F4  7C 08 02 A6 */	mflr r0
 /* 801E58B8 001E27F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -540,9 +556,9 @@ calcEarnKinds__Q24Game16PelletCropMemoryFv:
 /* 801E58EC 001E282C  7C 08 03 A6 */	mtlr r0
 /* 801E58F0 001E2830  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E58F4 001E2834  4E 80 00 20 */	blr 
+.endfn calcEarnKinds__Q24Game16PelletCropMemoryFv
 
-.global firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet
-firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet:
+.fn firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet, global
 /* 801E58F8 001E2838  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E58FC 001E283C  7C 08 02 A6 */	mflr r0
 /* 801E5900 001E2840  90 01 00 24 */	stw r0, 0x24(r1)
@@ -737,9 +753,9 @@ firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet:
 /* 801E5BB4 001E2AF4  7C 08 03 A6 */	mtlr r0
 /* 801E5BB8 001E2AF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E5BBC 001E2AFC  4E 80 00 20 */	blr 
+.endfn firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet
 
-.global obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
-obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri:
+.fn obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri, global
 /* 801E5BC0 001E2B00  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E5BC4 001E2B04  7C 08 02 A6 */	mflr r0
 /* 801E5BC8 001E2B08  90 01 00 24 */	stw r0, 0x24(r1)
@@ -832,9 +848,9 @@ obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri:
 /* 801E5D08 001E2C48  7C 08 03 A6 */	mtlr r0
 /* 801E5D0C 001E2C4C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E5D10 001E2C50  4E 80 00 20 */	blr 
+.endfn obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
 
-.global losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
-losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri:
+.fn losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri, global
 /* 801E5D14 001E2C54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E5D18 001E2C58  7C 08 02 A6 */	mflr r0
 /* 801E5D1C 001E2C5C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -927,9 +943,9 @@ losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri:
 /* 801E5E5C 001E2D9C  7C 08 03 A6 */	mtlr r0
 /* 801E5E60 001E2DA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E5E64 001E2DA4  4E 80 00 20 */	blr 
+.endfn losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
 
-.global isCompletePelletTrigger__Q24Game8PlayDataFv
-isCompletePelletTrigger__Q24Game8PlayDataFv:
+.fn isCompletePelletTrigger__Q24Game8PlayDataFv, global
 /* 801E5E68 001E2DA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E5E6C 001E2DAC  7C 08 02 A6 */	mflr r0
 /* 801E5E70 001E2DB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -951,9 +967,9 @@ isCompletePelletTrigger__Q24Game8PlayDataFv:
 /* 801E5EA8 001E2DE8  7C 08 03 A6 */	mtlr r0
 /* 801E5EAC 001E2DEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E5EB0 001E2DF0  4E 80 00 20 */	blr 
+.endfn isCompletePelletTrigger__Q24Game8PlayDataFv
 
-.global completeAll__Q24Game16PelletCropMemoryFv
-completeAll__Q24Game16PelletCropMemoryFv:
+.fn completeAll__Q24Game16PelletCropMemoryFv, global
 /* 801E5EB4 001E2DF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E5EB8 001E2DF8  7C 08 02 A6 */	mflr r0
 /* 801E5EBC 001E2DFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -978,9 +994,9 @@ completeAll__Q24Game16PelletCropMemoryFv:
 /* 801E5F00 001E2E40  7C 08 03 A6 */	mtlr r0
 /* 801E5F04 001E2E44  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E5F08 001E2E48  4E 80 00 20 */	blr 
+.endfn completeAll__Q24Game16PelletCropMemoryFv
 
-.global completeAll__Q24Game11KindCounterFv
-completeAll__Q24Game11KindCounterFv:
+.fn completeAll__Q24Game11KindCounterFv, global
 /* 801E5F0C 001E2E4C  A0 03 00 00 */	lhz r0, 0(r3)
 /* 801E5F10 001E2E50  38 A0 00 00 */	li r5, 0
 /* 801E5F14 001E2E54  7C 09 03 A6 */	mtctr r0
@@ -999,9 +1015,9 @@ completeAll__Q24Game11KindCounterFv:
 .L_801E5F40:
 /* 801E5F40 001E2E80  38 60 00 01 */	li r3, 1
 /* 801E5F44 001E2E84  4E 80 00 20 */	blr 
+.endfn completeAll__Q24Game11KindCounterFv
 
-.global getEarnKinds__Q24Game11KindCounterFv
-getEarnKinds__Q24Game11KindCounterFv:
+.fn getEarnKinds__Q24Game11KindCounterFv, global
 /* 801E5F48 001E2E88  A0 03 00 00 */	lhz r0, 0(r3)
 /* 801E5F4C 001E2E8C  38 A0 00 00 */	li r5, 0
 /* 801E5F50 001E2E90  38 C0 00 00 */	li r6, 0
@@ -1020,9 +1036,9 @@ getEarnKinds__Q24Game11KindCounterFv:
 .L_801E5F7C:
 /* 801E5F7C 001E2EBC  7C A3 2B 78 */	mr r3, r5
 /* 801E5F80 001E2EC0  4E 80 00 20 */	blr 
+.endfn getEarnKinds__Q24Game11KindCounterFv
 
-.global __ct__Q24Game10OlimarDataFv
-__ct__Q24Game10OlimarDataFv:
+.fn __ct__Q24Game10OlimarDataFv, global
 /* 801E5F84 001E2EC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E5F88 001E2EC8  7C 08 02 A6 */	mflr r0
 /* 801E5F8C 001E2ECC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1038,16 +1054,16 @@ __ct__Q24Game10OlimarDataFv:
 /* 801E5FB4 001E2EF4  7C 08 03 A6 */	mtlr r0
 /* 801E5FB8 001E2EF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E5FBC 001E2EFC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game10OlimarDataFv
 
-.global clear__Q24Game10OlimarDataFv
-clear__Q24Game10OlimarDataFv:
+.fn clear__Q24Game10OlimarDataFv, global
 /* 801E5FC0 001E2F00  38 00 00 00 */	li r0, 0
 /* 801E5FC4 001E2F04  98 03 00 00 */	stb r0, 0(r3)
 /* 801E5FC8 001E2F08  98 03 00 01 */	stb r0, 1(r3)
 /* 801E5FCC 001E2F0C  4E 80 00 20 */	blr 
+.endfn clear__Q24Game10OlimarDataFv
 
-.global hasItem__Q24Game10OlimarDataFi
-hasItem__Q24Game10OlimarDataFi:
+.fn hasItem__Q24Game10OlimarDataFi, global
 /* 801E5FD0 001E2F10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E5FD4 001E2F14  7C 08 02 A6 */	mflr r0
 /* 801E5FD8 001E2F18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1088,9 +1104,9 @@ hasItem__Q24Game10OlimarDataFi:
 /* 801E605C 001E2F9C  7C 08 03 A6 */	mtlr r0
 /* 801E6060 001E2FA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E6064 001E2FA4  4E 80 00 20 */	blr 
+.endfn hasItem__Q24Game10OlimarDataFi
 
-.global getItem__Q24Game10OlimarDataFi
-getItem__Q24Game10OlimarDataFi:
+.fn getItem__Q24Game10OlimarDataFi, global
 /* 801E6068 001E2FA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E606C 001E2FAC  7C 08 02 A6 */	mflr r0
 /* 801E6070 001E2FB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1148,9 +1164,9 @@ getItem__Q24Game10OlimarDataFi:
 /* 801E6128 001E3068  7C 08 03 A6 */	mtlr r0
 /* 801E612C 001E306C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E6130 001E3070  4E 80 00 20 */	blr 
+.endfn getItem__Q24Game10OlimarDataFi
 
-.global construct__Q24Game8PlayDataFv
-construct__Q24Game8PlayDataFv:
+.fn construct__Q24Game8PlayDataFv, global
 /* 801E6134 001E3074  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E6138 001E3078  7C 08 02 A6 */	mflr r0
 /* 801E613C 001E307C  3C 60 80 48 */	lis r3, lbl_80480E40@ha
@@ -1186,9 +1202,9 @@ construct__Q24Game8PlayDataFv:
 /* 801E61AC 001E30EC  7C 08 03 A6 */	mtlr r0
 /* 801E61B0 001E30F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E61B4 001E30F4  4E 80 00 20 */	blr 
+.endfn construct__Q24Game8PlayDataFv
 
-.global __ct__Q24Game8PlayDataFv
-__ct__Q24Game8PlayDataFv:
+.fn __ct__Q24Game8PlayDataFv, global
 /* 801E61B8 001E30F8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E61BC 001E30FC  7C 08 02 A6 */	mflr r0
 /* 801E61C0 001E3100  3C 80 80 48 */	lis r4, lbl_80480E40@ha
@@ -1767,17 +1783,17 @@ __ct__Q24Game8PlayDataFv:
 /* 801E6A00 001E3940  7C 08 03 A6 */	mtlr r0
 /* 801E6A04 001E3944  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E6A08 001E3948  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game8PlayDataFv
 
-.global __ct__Q34Game8PlayData11CaveOtakaraFv
-__ct__Q34Game8PlayData11CaveOtakaraFv:
+.fn __ct__Q34Game8PlayData11CaveOtakaraFv, weak
 /* 801E6A0C 001E394C  38 00 00 00 */	li r0, 0
 /* 801E6A10 001E3950  98 03 00 00 */	stb r0, 0(r3)
 /* 801E6A14 001E3954  90 03 00 04 */	stw r0, 4(r3)
 /* 801E6A18 001E3958  90 03 00 08 */	stw r0, 8(r3)
 /* 801E6A1C 001E395C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game8PlayData11CaveOtakaraFv
 
-.global __ct__Q34Game8PlayData8LimitGenFv
-__ct__Q34Game8PlayData8LimitGenFv:
+.fn __ct__Q34Game8PlayData8LimitGenFv, weak
 /* 801E6A20 001E3960  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E6A24 001E3964  7C 08 02 A6 */	mflr r0
 /* 801E6A28 001E3968  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1792,9 +1808,9 @@ __ct__Q34Game8PlayData8LimitGenFv:
 /* 801E6A4C 001E398C  7C 08 03 A6 */	mtlr r0
 /* 801E6A50 001E3990  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E6A54 001E3994  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game8PlayData8LimitGenFv
 
-.global __dt__Q24Game8PlayDataFv
-__dt__Q24Game8PlayDataFv:
+.fn __dt__Q24Game8PlayDataFv, global
 /* 801E6A58 001E3998  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E6A5C 001E399C  7C 08 02 A6 */	mflr r0
 /* 801E6A60 001E39A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1822,9 +1838,9 @@ __dt__Q24Game8PlayDataFv:
 /* 801E6AB4 001E39F4  7C 08 03 A6 */	mtlr r0
 /* 801E6AB8 001E39F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E6ABC 001E39FC  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game8PlayDataFv
 
-.global reset__Q24Game8PlayDataFv
-reset__Q24Game8PlayDataFv:
+.fn reset__Q24Game8PlayDataFv, global
 /* 801E6AC0 001E3A00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E6AC4 001E3A04  7C 08 02 A6 */	mflr r0
 /* 801E6AC8 001E3A08  C0 02 B6 70 */	lfs f0, lbl_805199D0@sda21(r2)
@@ -2094,9 +2110,9 @@ reset__Q24Game8PlayDataFv:
 /* 801E6E84 001E3DC4  7C 08 03 A6 */	mtlr r0
 /* 801E6E88 001E3DC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E6E8C 001E3DCC  4E 80 00 20 */	blr 
+.endfn reset__Q24Game8PlayDataFv
 
-.global setDevelopSetting__Q24Game8PlayDataFbb
-setDevelopSetting__Q24Game8PlayDataFbb:
+.fn setDevelopSetting__Q24Game8PlayDataFbb, global
 /* 801E6E90 001E3DD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E6E94 001E3DD4  7C 08 02 A6 */	mflr r0
 /* 801E6E98 001E3DD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2148,9 +2164,9 @@ setDevelopSetting__Q24Game8PlayDataFbb:
 /* 801E6F4C 001E3E8C  7C 08 03 A6 */	mtlr r0
 /* 801E6F50 001E3E90  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E6F54 001E3E94  4E 80 00 20 */	blr 
+.endfn setDevelopSetting__Q24Game8PlayDataFbb
 
-.global calcPlayMinutes__Q24Game8PlayDataFv
-calcPlayMinutes__Q24Game8PlayDataFv:
+.fn calcPlayMinutes__Q24Game8PlayDataFv, global
 /* 801E6F58 001E3E98  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 801E6F5C 001E3E9C  7C 08 02 A6 */	mflr r0
 /* 801E6F60 001E3EA0  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2196,17 +2212,17 @@ calcPlayMinutes__Q24Game8PlayDataFv:
 /* 801E7000 001E3F40  7C 08 03 A6 */	mtlr r0
 /* 801E7004 001E3F44  38 21 00 90 */	addi r1, r1, 0x90
 /* 801E7008 001E3F48  4E 80 00 20 */	blr 
+.endfn calcPlayMinutes__Q24Game8PlayDataFv
 
-.global resetContainerFlag__Q24Game8PlayDataFv
-resetContainerFlag__Q24Game8PlayDataFv:
+.fn resetContainerFlag__Q24Game8PlayDataFv, global
 /* 801E700C 001E3F4C  38 00 00 00 */	li r0, 0
 /* 801E7010 001E3F50  98 03 00 2E */	stb r0, 0x2e(r3)
 /* 801E7014 001E3F54  98 03 00 2D */	stb r0, 0x2d(r3)
 /* 801E7018 001E3F58  98 03 00 2C */	stb r0, 0x2c(r3)
 /* 801E701C 001E3F5C  4E 80 00 20 */	blr 
+.endfn resetContainerFlag__Q24Game8PlayDataFv
 
-.global hasContainer__Q24Game8PlayDataFi
-hasContainer__Q24Game8PlayDataFi:
+.fn hasContainer__Q24Game8PlayDataFi, global
 /* 801E7020 001E3F60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7024 001E3F64  7C 08 02 A6 */	mflr r0
 /* 801E7028 001E3F68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2243,9 +2259,9 @@ hasContainer__Q24Game8PlayDataFi:
 /* 801E709C 001E3FDC  7C 08 03 A6 */	mtlr r0
 /* 801E70A0 001E3FE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E70A4 001E3FE4  4E 80 00 20 */	blr 
+.endfn hasContainer__Q24Game8PlayDataFi
 
-.global hasMetPikmin__Q24Game8PlayDataFi
-hasMetPikmin__Q24Game8PlayDataFi:
+.fn hasMetPikmin__Q24Game8PlayDataFi, global
 /* 801E70A8 001E3FE8  2C 04 00 05 */	cmpwi r4, 5
 /* 801E70AC 001E3FEC  40 82 00 0C */	bne .L_801E70B8
 /* 801E70B0 001E3FF0  38 60 00 01 */	li r3, 1
@@ -2259,9 +2275,9 @@ hasMetPikmin__Q24Game8PlayDataFi:
 /* 801E70CC 001E400C  7C 00 1B 78 */	or r0, r0, r3
 /* 801E70D0 001E4010  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 801E70D4 001E4014  4E 80 00 20 */	blr 
+.endfn hasMetPikmin__Q24Game8PlayDataFi
 
-.global hasBootContainer__Q24Game8PlayDataFi
-hasBootContainer__Q24Game8PlayDataFi:
+.fn hasBootContainer__Q24Game8PlayDataFi, global
 /* 801E70D8 001E4018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E70DC 001E401C  7C 08 02 A6 */	mflr r0
 /* 801E70E0 001E4020  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2308,9 +2324,9 @@ hasBootContainer__Q24Game8PlayDataFi:
 /* 801E7170 001E40B0  7C 08 03 A6 */	mtlr r0
 /* 801E7174 001E40B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7178 001E40B8  4E 80 00 20 */	blr 
+.endfn hasBootContainer__Q24Game8PlayDataFi
 
-.global setContainer__Q24Game8PlayDataFi
-setContainer__Q24Game8PlayDataFi:
+.fn setContainer__Q24Game8PlayDataFi, global
 /* 801E717C 001E40BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7180 001E40C0  7C 08 02 A6 */	mflr r0
 /* 801E7184 001E40C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2345,9 +2361,9 @@ setContainer__Q24Game8PlayDataFi:
 /* 801E71F0 001E4130  7C 08 03 A6 */	mtlr r0
 /* 801E71F4 001E4134  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E71F8 001E4138  4E 80 00 20 */	blr 
+.endfn setContainer__Q24Game8PlayDataFi
 
-.global setMeetPikmin__Q24Game8PlayDataFi
-setMeetPikmin__Q24Game8PlayDataFi:
+.fn setMeetPikmin__Q24Game8PlayDataFi, global
 /* 801E71FC 001E413C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7200 001E4140  7C 08 02 A6 */	mflr r0
 /* 801E7204 001E4144  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2382,9 +2398,9 @@ setMeetPikmin__Q24Game8PlayDataFi:
 /* 801E7270 001E41B0  7C 08 03 A6 */	mtlr r0
 /* 801E7274 001E41B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7278 001E41B8  4E 80 00 20 */	blr 
+.endfn setMeetPikmin__Q24Game8PlayDataFi
 
-.global setBootContainer__Q24Game8PlayDataFi
-setBootContainer__Q24Game8PlayDataFi:
+.fn setBootContainer__Q24Game8PlayDataFi, global
 /* 801E727C 001E41BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7280 001E41C0  7C 08 02 A6 */	mflr r0
 /* 801E7284 001E41C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2419,9 +2435,9 @@ setBootContainer__Q24Game8PlayDataFi:
 /* 801E72F0 001E4230  7C 08 03 A6 */	mtlr r0
 /* 801E72F4 001E4234  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E72F8 001E4238  4E 80 00 20 */	blr 
+.endfn setBootContainer__Q24Game8PlayDataFi
 
-.global debugSetContainerFlagOn__Q24Game8PlayDataFv
-debugSetContainerFlagOn__Q24Game8PlayDataFv:
+.fn debugSetContainerFlagOn__Q24Game8PlayDataFv, global
 /* 801E72FC 001E423C  88 83 00 2C */	lbz r4, 0x2c(r3)
 /* 801E7300 001E4240  38 00 00 01 */	li r0, 1
 /* 801E7304 001E4244  60 84 00 01 */	ori r4, r4, 1
@@ -2464,9 +2480,9 @@ debugSetContainerFlagOn__Q24Game8PlayDataFv:
 /* 801E7398 001E42D8  98 83 00 2E */	stb r4, 0x2e(r3)
 /* 801E739C 001E42DC  98 03 00 19 */	stb r0, 0x19(r3)
 /* 801E73A0 001E42E0  4E 80 00 20 */	blr 
+.endfn debugSetContainerFlagOn__Q24Game8PlayDataFv
 
-.global setDemoFlag__Q24Game8PlayDataFi
-setDemoFlag__Q24Game8PlayDataFi:
+.fn setDemoFlag__Q24Game8PlayDataFi, global
 /* 801E73A4 001E42E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E73A8 001E42E8  7C 08 02 A6 */	mflr r0
 /* 801E73AC 001E42EC  54 84 04 3E */	clrlwi r4, r4, 0x10
@@ -2482,9 +2498,9 @@ setDemoFlag__Q24Game8PlayDataFi:
 /* 801E73D4 001E4314  7C 08 03 A6 */	mtlr r0
 /* 801E73D8 001E4318  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E73DC 001E431C  4E 80 00 20 */	blr 
+.endfn setDemoFlag__Q24Game8PlayDataFi
 
-.global isDemoFlag__Q24Game8PlayDataFi
-isDemoFlag__Q24Game8PlayDataFi:
+.fn isDemoFlag__Q24Game8PlayDataFi, global
 /* 801E73E0 001E4320  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E73E4 001E4324  7C 08 02 A6 */	mflr r0
 /* 801E73E8 001E4328  38 63 00 30 */	addi r3, r3, 0x30
@@ -2495,9 +2511,9 @@ isDemoFlag__Q24Game8PlayDataFi:
 /* 801E73FC 001E433C  7C 08 03 A6 */	mtlr r0
 /* 801E7400 001E4340  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7404 001E4344  4E 80 00 20 */	blr 
+.endfn isDemoFlag__Q24Game8PlayDataFi
 
-.global setFindItemDemoFlag__Q24Game8PlayDataFi
-setFindItemDemoFlag__Q24Game8PlayDataFi:
+.fn setFindItemDemoFlag__Q24Game8PlayDataFi, global
 /* 801E7408 001E4348  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E740C 001E434C  7C 08 02 A6 */	mflr r0
 /* 801E7410 001E4350  54 84 04 3E */	clrlwi r4, r4, 0x10
@@ -2513,9 +2529,9 @@ setFindItemDemoFlag__Q24Game8PlayDataFi:
 /* 801E7438 001E4378  7C 08 03 A6 */	mtlr r0
 /* 801E743C 001E437C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7440 001E4380  4E 80 00 20 */	blr 
+.endfn setFindItemDemoFlag__Q24Game8PlayDataFi
 
-.global isFindItemDemoFlag__Q24Game8PlayDataFi
-isFindItemDemoFlag__Q24Game8PlayDataFi:
+.fn isFindItemDemoFlag__Q24Game8PlayDataFi, global
 /* 801E7444 001E4384  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7448 001E4388  7C 08 02 A6 */	mflr r0
 /* 801E744C 001E438C  38 63 00 38 */	addi r3, r3, 0x38
@@ -2526,20 +2542,20 @@ isFindItemDemoFlag__Q24Game8PlayDataFi:
 /* 801E7460 001E43A0  7C 08 03 A6 */	mtlr r0
 /* 801E7464 001E43A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7468 001E43A8  4E 80 00 20 */	blr 
+.endfn isFindItemDemoFlag__Q24Game8PlayDataFi
 
-.global setCurrentCourse__Q24Game8PlayDataFi
-setCurrentCourse__Q24Game8PlayDataFi:
+.fn setCurrentCourse__Q24Game8PlayDataFi, global
 /* 801E746C 001E43AC  90 83 00 50 */	stw r4, 0x50(r3)
 /* 801E7470 001E43B0  4E 80 00 20 */	blr 
+.endfn setCurrentCourse__Q24Game8PlayDataFi
 
-.global clearCurrentCave__Q24Game8PlayDataFv
-clearCurrentCave__Q24Game8PlayDataFv:
+.fn clearCurrentCave__Q24Game8PlayDataFv, global
 /* 801E7474 001E43B4  38 00 00 00 */	li r0, 0
 /* 801E7478 001E43B8  98 03 00 4C */	stb r0, 0x4c(r3)
 /* 801E747C 001E43BC  4E 80 00 20 */	blr 
+.endfn clearCurrentCave__Q24Game8PlayDataFv
 
-.global setCurrentCave__Q24Game8PlayDataFR4ID32i
-setCurrentCave__Q24Game8PlayDataFR4ID32i:
+.fn setCurrentCave__Q24Game8PlayDataFR4ID32i, global
 /* 801E7480 001E43C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7484 001E43C4  7C 08 02 A6 */	mflr r0
 /* 801E7488 001E43C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2559,21 +2575,21 @@ setCurrentCave__Q24Game8PlayDataFR4ID32i:
 /* 801E74C0 001E4400  7C 08 03 A6 */	mtlr r0
 /* 801E74C4 001E4404  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E74C8 001E4408  4E 80 00 20 */	blr 
+.endfn setCurrentCave__Q24Game8PlayDataFR4ID32i
 
-.global setCurrentCaveFloor__Q24Game8PlayDataFi
-setCurrentCaveFloor__Q24Game8PlayDataFi:
+.fn setCurrentCaveFloor__Q24Game8PlayDataFi, global
 /* 801E74CC 001E440C  90 83 00 74 */	stw r4, 0x74(r3)
 /* 801E74D0 001E4410  38 00 00 01 */	li r0, 1
 /* 801E74D4 001E4414  98 03 00 4C */	stb r0, 0x4c(r3)
 /* 801E74D8 001E4418  4E 80 00 20 */	blr 
+.endfn setCurrentCaveFloor__Q24Game8PlayDataFi
 
-.global getCurrentCourseIndex__Q24Game8PlayDataFv
-getCurrentCourseIndex__Q24Game8PlayDataFv:
+.fn getCurrentCourseIndex__Q24Game8PlayDataFv, global
 /* 801E74DC 001E441C  80 63 00 50 */	lwz r3, 0x50(r3)
 /* 801E74E0 001E4420  4E 80 00 20 */	blr 
+.endfn getCurrentCourseIndex__Q24Game8PlayDataFv
 
-.global getCurrentCourse__Q24Game8PlayDataFv
-getCurrentCourse__Q24Game8PlayDataFv:
+.fn getCurrentCourse__Q24Game8PlayDataFv, global
 /* 801E74E4 001E4424  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E74E8 001E4428  7C 08 02 A6 */	mflr r0
 /* 801E74EC 001E442C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2590,9 +2606,9 @@ getCurrentCourse__Q24Game8PlayDataFv:
 /* 801E7510 001E4450  7C 08 03 A6 */	mtlr r0
 /* 801E7514 001E4454  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7518 001E4458  4E 80 00 20 */	blr 
+.endfn getCurrentCourse__Q24Game8PlayDataFv
 
-.global getCurrentCave__Q24Game8PlayDataFR4ID32Ri
-getCurrentCave__Q24Game8PlayDataFR4ID32Ri:
+.fn getCurrentCave__Q24Game8PlayDataFR4ID32Ri, global
 /* 801E751C 001E445C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7520 001E4460  7C 08 02 A6 */	mflr r0
 /* 801E7524 001E4464  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2611,9 +2627,9 @@ getCurrentCave__Q24Game8PlayDataFR4ID32Ri:
 /* 801E7558 001E4498  7C 08 03 A6 */	mtlr r0
 /* 801E755C 001E449C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7560 001E44A0  4E 80 00 20 */	blr 
+.endfn getCurrentCave__Q24Game8PlayDataFR4ID32Ri
 
-.global firstCarryPellet__Q24Game8PlayDataFPQ24Game6Pellet
-firstCarryPellet__Q24Game8PlayDataFPQ24Game6Pellet:
+.fn firstCarryPellet__Q24Game8PlayDataFPQ24Game6Pellet, global
 /* 801E7564 001E44A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7568 001E44A8  7C 08 02 A6 */	mflr r0
 /* 801E756C 001E44AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2626,9 +2642,9 @@ firstCarryPellet__Q24Game8PlayDataFPQ24Game6Pellet:
 /* 801E7588 001E44C8  7C 08 03 A6 */	mtlr r0
 /* 801E758C 001E44CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7590 001E44D0  4E 80 00 20 */	blr 
+.endfn firstCarryPellet__Q24Game8PlayDataFPQ24Game6Pellet
 
-.global obtainPellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri
-obtainPellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri:
+.fn obtainPellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri, global
 /* 801E7594 001E44D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7598 001E44D8  7C 08 02 A6 */	mflr r0
 /* 801E759C 001E44DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2641,9 +2657,9 @@ obtainPellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri:
 /* 801E75B8 001E44F8  7C 08 03 A6 */	mtlr r0
 /* 801E75BC 001E44FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E75C0 001E4500  4E 80 00 20 */	blr 
+.endfn obtainPellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri
 
-.global losePellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri
-losePellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri:
+.fn losePellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri, global
 /* 801E75C4 001E4504  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E75C8 001E4508  7C 08 02 A6 */	mflr r0
 /* 801E75CC 001E450C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2656,9 +2672,9 @@ losePellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri:
 /* 801E75E8 001E4528  7C 08 03 A6 */	mtlr r0
 /* 801E75EC 001E452C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E75F0 001E4530  4E 80 00 20 */	blr 
+.endfn losePellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri
 
-.global obtainPellet_Main__Q24Game8PlayDataFPQ24Game6Pellet
-obtainPellet_Main__Q24Game8PlayDataFPQ24Game6Pellet:
+.fn obtainPellet_Main__Q24Game8PlayDataFPQ24Game6Pellet, global
 /* 801E75F4 001E4534  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E75F8 001E4538  7C 08 02 A6 */	mflr r0
 /* 801E75FC 001E453C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2874,9 +2890,9 @@ obtainPellet_Main__Q24Game8PlayDataFPQ24Game6Pellet:
 /* 801E7908 001E4848  7C 08 03 A6 */	mtlr r0
 /* 801E790C 001E484C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E7910 001E4850  4E 80 00 20 */	blr 
+.endfn obtainPellet_Main__Q24Game8PlayDataFPQ24Game6Pellet
 
-.global obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet
-obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet:
+.fn obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet, global
 /* 801E7914 001E4854  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E7918 001E4858  7C 08 02 A6 */	mflr r0
 /* 801E791C 001E485C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3050,9 +3066,9 @@ obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet:
 /* 801E7B8C 001E4ACC  7C 08 03 A6 */	mtlr r0
 /* 801E7B90 001E4AD0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E7B94 001E4AD4  4E 80 00 20 */	blr 
+.endfn obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet
 
-.global isPelletEverGot__Q24Game8PlayDataFUcUc
-isPelletEverGot__Q24Game8PlayDataFUcUc:
+.fn isPelletEverGot__Q24Game8PlayDataFUcUc, global
 /* 801E7B98 001E4AD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7B9C 001E4ADC  7C 08 02 A6 */	mflr r0
 /* 801E7BA0 001E4AE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3125,9 +3141,9 @@ isPelletEverGot__Q24Game8PlayDataFUcUc:
 /* 801E7C90 001E4BD0  7C 08 03 A6 */	mtlr r0
 /* 801E7C94 001E4BD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7C98 001E4BD8  4E 80 00 20 */	blr 
+.endfn isPelletEverGot__Q24Game8PlayDataFUcUc
 
-.global isPelletZukanVisible__Q24Game8PlayDataFi
-isPelletZukanVisible__Q24Game8PlayDataFi:
+.fn isPelletZukanVisible__Q24Game8PlayDataFi, global
 /* 801E7C9C 001E4BDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7CA0 001E4BE0  7C 08 02 A6 */	mflr r0
 /* 801E7CA4 001E4BE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3209,9 +3225,9 @@ isPelletZukanVisible__Q24Game8PlayDataFi:
 /* 801E7DB8 001E4CF8  7C 08 03 A6 */	mtlr r0
 /* 801E7DBC 001E4CFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7DC0 001E4D00  4E 80 00 20 */	blr 
+.endfn isPelletZukanVisible__Q24Game8PlayDataFi
 
-.global isPelletZukanWhatsNew__Q24Game8PlayDataFi
-isPelletZukanWhatsNew__Q24Game8PlayDataFi:
+.fn isPelletZukanWhatsNew__Q24Game8PlayDataFi, global
 /* 801E7DC4 001E4D04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E7DC8 001E4D08  7C 08 02 A6 */	mflr r0
 /* 801E7DCC 001E4D0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3297,9 +3313,9 @@ isPelletZukanWhatsNew__Q24Game8PlayDataFi:
 /* 801E7EF0 001E4E30  7C 08 03 A6 */	mtlr r0
 /* 801E7EF4 001E4E34  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E7EF8 001E4E38  4E 80 00 20 */	blr 
+.endfn isPelletZukanWhatsNew__Q24Game8PlayDataFi
 
-.global hasPelletZukanWhatsNew__Q24Game8PlayDataFv
-hasPelletZukanWhatsNew__Q24Game8PlayDataFv:
+.fn hasPelletZukanWhatsNew__Q24Game8PlayDataFv, global
 /* 801E7EFC 001E4E3C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E7F00 001E4E40  7C 08 02 A6 */	mflr r0
 /* 801E7F04 001E4E44  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3426,9 +3442,9 @@ hasPelletZukanWhatsNew__Q24Game8PlayDataFv:
 /* 801E80AC 001E4FEC  7C 08 03 A6 */	mtlr r0
 /* 801E80B0 001E4FF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E80B4 001E4FF4  4E 80 00 20 */	blr 
+.endfn hasPelletZukanWhatsNew__Q24Game8PlayDataFv
 
-.global setPelletZukanOutOfDateAll__Q24Game8PlayDataFv
-setPelletZukanOutOfDateAll__Q24Game8PlayDataFv:
+.fn setPelletZukanOutOfDateAll__Q24Game8PlayDataFv, global
 /* 801E80B8 001E4FF8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E80BC 001E4FFC  7C 08 02 A6 */	mflr r0
 /* 801E80C0 001E5000  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3549,9 +3565,9 @@ setPelletZukanOutOfDateAll__Q24Game8PlayDataFv:
 /* 801E8254 001E5194  7C 08 03 A6 */	mtlr r0
 /* 801E8258 001E5198  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E825C 001E519C  4E 80 00 20 */	blr 
+.endfn setPelletZukanOutOfDateAll__Q24Game8PlayDataFv
 
-.global getGroundOtakaraNum__Q24Game8PlayDataFi
-getGroundOtakaraNum__Q24Game8PlayDataFi:
+.fn getGroundOtakaraNum__Q24Game8PlayDataFi, global
 /* 801E8260 001E51A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E8264 001E51A4  7C 08 02 A6 */	mflr r0
 /* 801E8268 001E51A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3585,9 +3601,9 @@ getGroundOtakaraNum__Q24Game8PlayDataFi:
 /* 801E82D0 001E5210  7C 08 03 A6 */	mtlr r0
 /* 801E82D4 001E5214  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E82D8 001E5218  4E 80 00 20 */	blr 
+.endfn getGroundOtakaraNum__Q24Game8PlayDataFi
 
-.global getGroundOtakaraMax__Q24Game8PlayDataFi
-getGroundOtakaraMax__Q24Game8PlayDataFi:
+.fn getGroundOtakaraMax__Q24Game8PlayDataFi, global
 /* 801E82DC 001E521C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E82E0 001E5220  7C 08 02 A6 */	mflr r0
 /* 801E82E4 001E5224  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3620,9 +3636,9 @@ getGroundOtakaraMax__Q24Game8PlayDataFi:
 /* 801E8348 001E5288  7C 08 03 A6 */	mtlr r0
 /* 801E834C 001E528C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E8350 001E5290  4E 80 00 20 */	blr 
+.endfn getGroundOtakaraMax__Q24Game8PlayDataFi
 
-.global incGroundOtakara__Q24Game8PlayDataFi
-incGroundOtakara__Q24Game8PlayDataFi:
+.fn incGroundOtakara__Q24Game8PlayDataFi, global
 /* 801E8354 001E5294  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E8358 001E5298  7C 08 02 A6 */	mflr r0
 /* 801E835C 001E529C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3658,9 +3674,9 @@ incGroundOtakara__Q24Game8PlayDataFi:
 /* 801E83CC 001E530C  7C 08 03 A6 */	mtlr r0
 /* 801E83D0 001E5310  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E83D4 001E5314  4E 80 00 20 */	blr 
+.endfn incGroundOtakara__Q24Game8PlayDataFi
 
-.global getDopeCount__Q24Game8PlayDataFi
-getDopeCount__Q24Game8PlayDataFi:
+.fn getDopeCount__Q24Game8PlayDataFi, global
 /* 801E83D8 001E5318  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E83DC 001E531C  7C 08 02 A6 */	mflr r0
 /* 801E83E0 001E5320  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3693,9 +3709,9 @@ getDopeCount__Q24Game8PlayDataFi:
 /* 801E8444 001E5384  7C 08 03 A6 */	mtlr r0
 /* 801E8448 001E5388  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E844C 001E538C  4E 80 00 20 */	blr 
+.endfn getDopeCount__Q24Game8PlayDataFi
 
-.global setDopeCount__Q24Game8PlayDataFii
-setDopeCount__Q24Game8PlayDataFii:
+.fn setDopeCount__Q24Game8PlayDataFii, global
 /* 801E8450 001E5390  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8454 001E5394  7C 08 02 A6 */	mflr r0
 /* 801E8458 001E5398  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3731,9 +3747,9 @@ setDopeCount__Q24Game8PlayDataFii:
 /* 801E84C8 001E5408  7C 08 03 A6 */	mtlr r0
 /* 801E84CC 001E540C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E84D0 001E5410  4E 80 00 20 */	blr 
+.endfn setDopeCount__Q24Game8PlayDataFii
 
-.global incDopeCount__Q24Game8PlayDataFi
-incDopeCount__Q24Game8PlayDataFi:
+.fn incDopeCount__Q24Game8PlayDataFi, global
 /* 801E84D4 001E5414  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E84D8 001E5418  7C 08 02 A6 */	mflr r0
 /* 801E84DC 001E541C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3768,9 +3784,9 @@ incDopeCount__Q24Game8PlayDataFi:
 /* 801E8548 001E5488  7C 08 03 A6 */	mtlr r0
 /* 801E854C 001E548C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E8550 001E5490  4E 80 00 20 */	blr 
+.endfn incDopeCount__Q24Game8PlayDataFi
 
-.global hasDope__Q24Game8PlayDataFi
-hasDope__Q24Game8PlayDataFi:
+.fn hasDope__Q24Game8PlayDataFi, global
 /* 801E8554 001E5494  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E8558 001E5498  7C 08 02 A6 */	mflr r0
 /* 801E855C 001E549C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3806,9 +3822,9 @@ hasDope__Q24Game8PlayDataFi:
 /* 801E85CC 001E550C  7C 08 03 A6 */	mtlr r0
 /* 801E85D0 001E5510  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E85D4 001E5514  4E 80 00 20 */	blr 
+.endfn hasDope__Q24Game8PlayDataFi
 
-.global getDopeFruitCount__Q24Game8PlayDataFi
-getDopeFruitCount__Q24Game8PlayDataFi:
+.fn getDopeFruitCount__Q24Game8PlayDataFi, global
 /* 801E85D8 001E5518  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E85DC 001E551C  7C 08 02 A6 */	mflr r0
 /* 801E85E0 001E5520  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3841,9 +3857,9 @@ getDopeFruitCount__Q24Game8PlayDataFi:
 /* 801E8644 001E5584  7C 08 03 A6 */	mtlr r0
 /* 801E8648 001E5588  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E864C 001E558C  4E 80 00 20 */	blr 
+.endfn getDopeFruitCount__Q24Game8PlayDataFi
 
-.global addDopeFruit__Q24Game8PlayDataFi
-addDopeFruit__Q24Game8PlayDataFi:
+.fn addDopeFruit__Q24Game8PlayDataFi, global
 /* 801E8650 001E5590  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E8654 001E5594  7C 08 02 A6 */	mflr r0
 /* 801E8658 001E5598  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3893,9 +3909,9 @@ addDopeFruit__Q24Game8PlayDataFi:
 /* 801E86F8 001E5638  7C 08 03 A6 */	mtlr r0
 /* 801E86FC 001E563C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E8700 001E5640  4E 80 00 20 */	blr 
+.endfn addDopeFruit__Q24Game8PlayDataFi
 
-.global useDope__Q24Game8PlayDataFi
-useDope__Q24Game8PlayDataFi:
+.fn useDope__Q24Game8PlayDataFi, global
 /* 801E8704 001E5644  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E8708 001E5648  7C 08 02 A6 */	mflr r0
 /* 801E870C 001E564C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3950,9 +3966,9 @@ useDope__Q24Game8PlayDataFi:
 /* 801E87BC 001E56FC  7C 08 03 A6 */	mtlr r0
 /* 801E87C0 001E5700  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E87C4 001E5704  4E 80 00 20 */	blr 
+.endfn useDope__Q24Game8PlayDataFi
 
-.global isCaveFirstTime__Q24Game8PlayDataFiR4ID32
-isCaveFirstTime__Q24Game8PlayDataFiR4ID32:
+.fn isCaveFirstTime__Q24Game8PlayDataFiR4ID32, global
 /* 801E87C8 001E5708  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E87CC 001E570C  7C 08 02 A6 */	mflr r0
 /* 801E87D0 001E5710  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4011,9 +4027,9 @@ isCaveFirstTime__Q24Game8PlayDataFiR4ID32:
 /* 801E8898 001E57D8  7C 08 03 A6 */	mtlr r0
 /* 801E889C 001E57DC  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E88A0 001E57E0  4E 80 00 20 */	blr 
+.endfn isCaveFirstTime__Q24Game8PlayDataFiR4ID32
 
-.global setCaveVisit__Q24Game8PlayDataFiR4ID32
-setCaveVisit__Q24Game8PlayDataFiR4ID32:
+.fn setCaveVisit__Q24Game8PlayDataFiR4ID32, global
 /* 801E88A4 001E57E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E88A8 001E57E8  7C 08 02 A6 */	mflr r0
 /* 801E88AC 001E57EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4064,9 +4080,9 @@ setCaveVisit__Q24Game8PlayDataFiR4ID32:
 /* 801E8954 001E5894  7C 08 03 A6 */	mtlr r0
 /* 801E8958 001E5898  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E895C 001E589C  4E 80 00 20 */	blr 
+.endfn setCaveVisit__Q24Game8PlayDataFiR4ID32
 
-.global incCaveOtakara__Q24Game8PlayDataFiR4ID32
-incCaveOtakara__Q24Game8PlayDataFiR4ID32:
+.fn incCaveOtakara__Q24Game8PlayDataFiR4ID32, global
 /* 801E8960 001E58A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8964 001E58A4  7C 08 02 A6 */	mflr r0
 /* 801E8968 001E58A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4116,9 +4132,9 @@ incCaveOtakara__Q24Game8PlayDataFiR4ID32:
 /* 801E8A0C 001E594C  7C 08 03 A6 */	mtlr r0
 /* 801E8A10 001E5950  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E8A14 001E5954  4E 80 00 20 */	blr 
+.endfn incCaveOtakara__Q24Game8PlayDataFiR4ID32
 
-.global getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32
-getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32:
+.fn getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32, global
 /* 801E8A18 001E5958  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8A1C 001E595C  7C 08 02 A6 */	mflr r0
 /* 801E8A20 001E5960  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4169,9 +4185,9 @@ getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32:
 /* 801E8AC4 001E5A04  7C 08 03 A6 */	mtlr r0
 /* 801E8AC8 001E5A08  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E8ACC 001E5A0C  4E 80 00 20 */	blr 
+.endfn getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32
 
-.global getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32
-getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32:
+.fn getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32, global
 /* 801E8AD0 001E5A10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E8AD4 001E5A14  7C 08 02 A6 */	mflr r0
 /* 801E8AD8 001E5A18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4192,9 +4208,9 @@ getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32:
 /* 801E8B0C 001E5A4C  7C 08 03 A6 */	mtlr r0
 /* 801E8B10 001E5A50  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E8B14 001E5A54  4E 80 00 20 */	blr 
+.endfn getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32
 
-.global initCaveOtakaras__Q24Game8PlayDataFv
-initCaveOtakaras__Q24Game8PlayDataFv:
+.fn initCaveOtakaras__Q24Game8PlayDataFv, global
 /* 801E8B18 001E5A58  80 8D 93 C8 */	lwz r4, stageList__4Game@sda21(r13)
 /* 801E8B1C 001E5A5C  39 40 00 00 */	li r10, 0
 /* 801E8B20 001E5A60  7D 46 53 78 */	mr r6, r10
@@ -4257,9 +4273,9 @@ initCaveOtakaras__Q24Game8PlayDataFv:
 /* 801E8BE0 001E5B20  39 29 00 0C */	addi r9, r9, 0xc
 /* 801E8BE4 001E5B24  42 00 FF B8 */	bdnz .L_801E8B9C
 /* 801E8BE8 001E5B28  4E 80 00 20 */	blr 
+.endfn initCaveOtakaras__Q24Game8PlayDataFv
 
-.global read_CaveOtakara__Q24Game8PlayDataFR6Stream
-read_CaveOtakara__Q24Game8PlayDataFR6Stream:
+.fn read_CaveOtakara__Q24Game8PlayDataFR6Stream, global
 /* 801E8BEC 001E5B2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8BF0 001E5B30  7C 08 02 A6 */	mflr r0
 /* 801E8BF4 001E5B34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4286,9 +4302,9 @@ read_CaveOtakara__Q24Game8PlayDataFR6Stream:
 /* 801E8C40 001E5B80  7C 08 03 A6 */	mtlr r0
 /* 801E8C44 001E5B84  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E8C48 001E5B88  4E 80 00 20 */	blr 
+.endfn read_CaveOtakara__Q24Game8PlayDataFR6Stream
 
-.global write_CaveOtakara__Q24Game8PlayDataFR6Stream
-write_CaveOtakara__Q24Game8PlayDataFR6Stream:
+.fn write_CaveOtakara__Q24Game8PlayDataFR6Stream, global
 /* 801E8C4C 001E5B8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8C50 001E5B90  7C 08 02 A6 */	mflr r0
 /* 801E8C54 001E5B94  3C A0 80 48 */	lis r5, lbl_80480EFC@ha
@@ -4321,9 +4337,9 @@ write_CaveOtakara__Q24Game8PlayDataFR6Stream:
 /* 801E8CB8 001E5BF8  7C 08 03 A6 */	mtlr r0
 /* 801E8CBC 001E5BFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E8CC0 001E5C00  4E 80 00 20 */	blr 
+.endfn write_CaveOtakara__Q24Game8PlayDataFR6Stream
 
-.global write__Q34Game8PlayData11CaveOtakaraFR6Stream
-write__Q34Game8PlayData11CaveOtakaraFR6Stream:
+.fn write__Q34Game8PlayData11CaveOtakaraFR6Stream, global
 /* 801E8CC4 001E5C04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8CC8 001E5C08  7C 08 02 A6 */	mflr r0
 /* 801E8CCC 001E5C0C  3C A0 80 48 */	lis r5, lbl_80480E40@ha
@@ -4380,9 +4396,9 @@ write__Q34Game8PlayData11CaveOtakaraFR6Stream:
 /* 801E8D90 001E5CD0  7C 08 03 A6 */	mtlr r0
 /* 801E8D94 001E5CD4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E8D98 001E5CD8  4E 80 00 20 */	blr 
+.endfn write__Q34Game8PlayData11CaveOtakaraFR6Stream
 
-.global read__Q34Game8PlayData11CaveOtakaraFR6Stream
-read__Q34Game8PlayData11CaveOtakaraFR6Stream:
+.fn read__Q34Game8PlayData11CaveOtakaraFR6Stream, global
 /* 801E8D9C 001E5CDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8DA0 001E5CE0  7C 08 02 A6 */	mflr r0
 /* 801E8DA4 001E5CE4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4434,9 +4450,9 @@ read__Q34Game8PlayData11CaveOtakaraFR6Stream:
 /* 801E8E50 001E5D90  7C 08 03 A6 */	mtlr r0
 /* 801E8E54 001E5D94  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E8E58 001E5D98  4E 80 00 20 */	blr 
+.endfn read__Q34Game8PlayData11CaveOtakaraFR6Stream
 
-.global getRepayLevel__Q24Game8PlayDataFv
-getRepayLevel__Q24Game8PlayDataFv:
+.fn getRepayLevel__Q24Game8PlayDataFv, global
 /* 801E8E5C 001E5D9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8E60 001E5DA0  3C A0 43 30 */	lis r5, 0x4330
 /* 801E8E64 001E5DA4  C8 62 B6 78 */	lfd f3, lbl_805199D8@sda21(r2)
@@ -4521,9 +4537,9 @@ getRepayLevel__Q24Game8PlayDataFv:
 .L_801E8F78:
 /* 801E8F78 001E5EB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E8F7C 001E5EBC  4E 80 00 20 */	blr 
+.endfn getRepayLevel__Q24Game8PlayDataFv
 
-.global getRepayLevelPercent__Q24Game8PlayDataFi
-getRepayLevelPercent__Q24Game8PlayDataFi:
+.fn getRepayLevelPercent__Q24Game8PlayDataFi, global
 /* 801E8F80 001E5EC0  2C 04 00 00 */	cmpwi r4, 0
 /* 801E8F84 001E5EC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E8F88 001E5EC8  41 80 00 18 */	blt .L_801E8FA0
@@ -4543,9 +4559,9 @@ getRepayLevelPercent__Q24Game8PlayDataFi:
 .L_801E8FBC:
 /* 801E8FBC 001E5EFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E8FC0 001E5F00  4E 80 00 20 */	blr 
+.endfn getRepayLevelPercent__Q24Game8PlayDataFi
 
-.global checkRepayLevelFirstClear__Q24Game8PlayDataFv
-checkRepayLevelFirstClear__Q24Game8PlayDataFv:
+.fn checkRepayLevelFirstClear__Q24Game8PlayDataFv, global
 /* 801E8FC4 001E5F04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8FC8 001E5F08  3C C0 43 30 */	lis r6, 0x4330
 /* 801E8FCC 001E5F0C  C8 62 B6 78 */	lfd f3, lbl_805199D8@sda21(r2)
@@ -4647,9 +4663,9 @@ checkRepayLevelFirstClear__Q24Game8PlayDataFv:
 .L_801E911C:
 /* 801E911C 001E605C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E9120 001E6060  4E 80 00 20 */	blr 
+.endfn checkRepayLevelFirstClear__Q24Game8PlayDataFv
 
-.global experienceRepayLevelFirstClear__Q24Game8PlayDataFv
-experienceRepayLevelFirstClear__Q24Game8PlayDataFv:
+.fn experienceRepayLevelFirstClear__Q24Game8PlayDataFv, global
 /* 801E9124 001E6064  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E9128 001E6068  3C C0 43 30 */	lis r6, 0x4330
 /* 801E912C 001E606C  C8 62 B6 78 */	lfd f3, lbl_805199D8@sda21(r2)
@@ -4757,9 +4773,9 @@ experienceRepayLevelFirstClear__Q24Game8PlayDataFv:
 .L_801E9290:
 /* 801E9290 001E61D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E9294 001E61D4  4E 80 00 20 */	blr 
+.endfn experienceRepayLevelFirstClear__Q24Game8PlayDataFv
 
-.global initLimitGens__Q24Game8PlayDataFv
-initLimitGens__Q24Game8PlayDataFv:
+.fn initLimitGens__Q24Game8PlayDataFv, global
 /* 801E9298 001E61D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E929C 001E61DC  7C 08 02 A6 */	mflr r0
 /* 801E92A0 001E61E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4787,9 +4803,9 @@ initLimitGens__Q24Game8PlayDataFv:
 /* 801E92F0 001E6230  7C 08 03 A6 */	mtlr r0
 /* 801E92F4 001E6234  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E92F8 001E6238  4E 80 00 20 */	blr 
+.endfn initLimitGens__Q24Game8PlayDataFv
 
-.global initCourses__Q24Game8PlayDataFb
-initCourses__Q24Game8PlayDataFb:
+.fn initCourses__Q24Game8PlayDataFb, global
 /* 801E92FC 001E623C  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 801E9300 001E6240  41 82 00 30 */	beq .L_801E9330
 /* 801E9304 001E6244  38 C0 00 00 */	li r6, 0
@@ -4822,9 +4838,9 @@ initCourses__Q24Game8PlayDataFb:
 /* 801E935C 001E629C  38 00 00 03 */	li r0, 3
 /* 801E9360 001E62A0  98 03 00 00 */	stb r0, 0(r3)
 /* 801E9364 001E62A4  4E 80 00 20 */	blr 
+.endfn initCourses__Q24Game8PlayDataFb
 
-.global openCourse__Q24Game8PlayDataFi
-openCourse__Q24Game8PlayDataFi:
+.fn openCourse__Q24Game8PlayDataFi, global
 /* 801E9368 001E62A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E936C 001E62AC  7C 08 02 A6 */	mflr r0
 /* 801E9370 001E62B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4865,9 +4881,9 @@ openCourse__Q24Game8PlayDataFi:
 /* 801E93F0 001E6330  7C 08 03 A6 */	mtlr r0
 /* 801E93F4 001E6334  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E93F8 001E6338  4E 80 00 20 */	blr 
+.endfn openCourse__Q24Game8PlayDataFi
 
-.global visitCourse__Q24Game8PlayDataFi
-visitCourse__Q24Game8PlayDataFi:
+.fn visitCourse__Q24Game8PlayDataFi, global
 /* 801E93FC 001E633C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E9400 001E6340  7C 08 02 A6 */	mflr r0
 /* 801E9404 001E6344  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4903,9 +4919,9 @@ visitCourse__Q24Game8PlayDataFi:
 /* 801E9474 001E63B4  7C 08 03 A6 */	mtlr r0
 /* 801E9478 001E63B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E947C 001E63BC  4E 80 00 20 */	blr 
+.endfn visitCourse__Q24Game8PlayDataFi
 
-.global courseOpen__Q24Game8PlayDataFi
-courseOpen__Q24Game8PlayDataFi:
+.fn courseOpen__Q24Game8PlayDataFi, global
 /* 801E9480 001E63C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E9484 001E63C4  7C 08 02 A6 */	mflr r0
 /* 801E9488 001E63C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4940,9 +4956,9 @@ courseOpen__Q24Game8PlayDataFi:
 /* 801E94F4 001E6434  7C 08 03 A6 */	mtlr r0
 /* 801E94F8 001E6438  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E94FC 001E643C  4E 80 00 20 */	blr 
+.endfn courseOpen__Q24Game8PlayDataFi
 
-.global courseJustOpen__Q24Game8PlayDataFi
-courseJustOpen__Q24Game8PlayDataFi:
+.fn courseJustOpen__Q24Game8PlayDataFi, global
 /* 801E9500 001E6440  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E9504 001E6444  7C 08 02 A6 */	mflr r0
 /* 801E9508 001E6448  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5006,9 +5022,9 @@ courseJustOpen__Q24Game8PlayDataFi:
 /* 801E95D8 001E6518  7C 08 03 A6 */	mtlr r0
 /* 801E95DC 001E651C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E95E0 001E6520  4E 80 00 20 */	blr 
+.endfn courseJustOpen__Q24Game8PlayDataFi
 
-.global courseFirstTime__Q24Game8PlayDataFi
-courseFirstTime__Q24Game8PlayDataFi:
+.fn courseFirstTime__Q24Game8PlayDataFi, global
 /* 801E95E4 001E6524  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E95E8 001E6528  7C 08 02 A6 */	mflr r0
 /* 801E95EC 001E652C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5070,9 +5086,9 @@ courseFirstTime__Q24Game8PlayDataFi:
 /* 801E96B4 001E65F4  7C 08 03 A6 */	mtlr r0
 /* 801E96B8 001E65F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E96BC 001E65FC  4E 80 00 20 */	blr 
+.endfn courseFirstTime__Q24Game8PlayDataFi
 
-.global courseVisited__Q24Game8PlayDataFi
-courseVisited__Q24Game8PlayDataFi:
+.fn courseVisited__Q24Game8PlayDataFi, global
 /* 801E96C0 001E6600  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E96C4 001E6604  7C 08 02 A6 */	mflr r0
 /* 801E96C8 001E6608  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5107,9 +5123,9 @@ courseVisited__Q24Game8PlayDataFi:
 /* 801E9734 001E6674  7C 08 03 A6 */	mtlr r0
 /* 801E9738 001E6678  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E973C 001E667C  4E 80 00 20 */	blr 
+.endfn courseVisited__Q24Game8PlayDataFi
 
-.global __ct__Q24Game12CaveSaveDataFv
-__ct__Q24Game12CaveSaveDataFv:
+.fn __ct__Q24Game12CaveSaveDataFv, global
 /* 801E9740 001E6680  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E9744 001E6684  7C 08 02 A6 */	mflr r0
 /* 801E9748 001E6688  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5143,9 +5159,9 @@ __ct__Q24Game12CaveSaveDataFv:
 /* 801E97B8 001E66F8  7C 08 03 A6 */	mtlr r0
 /* 801E97BC 001E66FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E97C0 001E6700  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12CaveSaveDataFv
 
-.global clear__Q24Game12CaveSaveDataFv
-clear__Q24Game12CaveSaveDataFv:
+.fn clear__Q24Game12CaveSaveDataFv, global
 /* 801E97C4 001E6704  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E97C8 001E6708  7C 08 02 A6 */	mflr r0
 /* 801E97CC 001E670C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5172,9 +5188,9 @@ clear__Q24Game12CaveSaveDataFv:
 /* 801E9820 001E6760  7C 08 03 A6 */	mtlr r0
 /* 801E9824 001E6764  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E9828 001E6768  4E 80 00 20 */	blr 
+.endfn clear__Q24Game12CaveSaveDataFv
 
-.global doneWorldMapEffect__Q24Game8PlayDataFv
-doneWorldMapEffect__Q24Game8PlayDataFv:
+.fn doneWorldMapEffect__Q24Game8PlayDataFv, global
 /* 801E982C 001E676C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E9830 001E6770  38 A0 00 00 */	li r5, 0
 /* 801E9834 001E6774  93 E1 00 0C */	stw r31, 0xc(r1)
@@ -5284,9 +5300,9 @@ doneWorldMapEffect__Q24Game8PlayDataFv:
 /* 801E99B4 001E68F4  83 C1 00 08 */	lwz r30, 8(r1)
 /* 801E99B8 001E68F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E99BC 001E68FC  4E 80 00 20 */	blr 
+.endfn doneWorldMapEffect__Q24Game8PlayDataFv
 
-.global getGroundOtakaraNum_Old__Q24Game8PlayDataFi
-getGroundOtakaraNum_Old__Q24Game8PlayDataFi:
+.fn getGroundOtakaraNum_Old__Q24Game8PlayDataFi, global
 /* 801E99C0 001E6900  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E99C4 001E6904  7C 08 02 A6 */	mflr r0
 /* 801E99C8 001E6908  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5320,9 +5336,9 @@ getGroundOtakaraNum_Old__Q24Game8PlayDataFi:
 /* 801E9A30 001E6970  7C 08 03 A6 */	mtlr r0
 /* 801E9A34 001E6974  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E9A38 001E6978  4E 80 00 20 */	blr 
+.endfn getGroundOtakaraNum_Old__Q24Game8PlayDataFi
 
-.global getOtakaraNum_Course_CaveID_Old__Q24Game8PlayDataFiR4ID32
-getOtakaraNum_Course_CaveID_Old__Q24Game8PlayDataFiR4ID32:
+.fn getOtakaraNum_Course_CaveID_Old__Q24Game8PlayDataFiR4ID32, global
 /* 801E9A3C 001E697C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E9A40 001E6980  7C 08 02 A6 */	mflr r0
 /* 801E9A44 001E6984  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5373,14 +5389,14 @@ getOtakaraNum_Course_CaveID_Old__Q24Game8PlayDataFiR4ID32:
 /* 801E9AE8 001E6A28  7C 08 03 A6 */	mtlr r0
 /* 801E9AEC 001E6A2C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E9AF0 001E6A30  4E 80 00 20 */	blr 
+.endfn getOtakaraNum_Course_CaveID_Old__Q24Game8PlayDataFiR4ID32
 
-.global getMoney_Old__Q24Game8PlayDataFv
-getMoney_Old__Q24Game8PlayDataFv:
+.fn getMoney_Old__Q24Game8PlayDataFv, global
 /* 801E9AF4 001E6A34  80 63 00 FC */	lwz r3, 0xfc(r3)
 /* 801E9AF8 001E6A38  4E 80 00 20 */	blr 
+.endfn getMoney_Old__Q24Game8PlayDataFv
 
-.global isCaveFirstTime_Old__Q24Game8PlayDataFiR4ID32
-isCaveFirstTime_Old__Q24Game8PlayDataFiR4ID32:
+.fn isCaveFirstTime_Old__Q24Game8PlayDataFiR4ID32, global
 /* 801E9AFC 001E6A3C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E9B00 001E6A40  7C 08 02 A6 */	mflr r0
 /* 801E9B04 001E6A44  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5425,9 +5441,9 @@ isCaveFirstTime_Old__Q24Game8PlayDataFiR4ID32:
 /* 801E9B94 001E6AD4  7C 08 03 A6 */	mtlr r0
 /* 801E9B98 001E6AD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E9B9C 001E6ADC  4E 80 00 20 */	blr 
+.endfn isCaveFirstTime_Old__Q24Game8PlayDataFiR4ID32
 
-.global read_CaveOtakara_Old__Q24Game8PlayDataFR6Stream
-read_CaveOtakara_Old__Q24Game8PlayDataFR6Stream:
+.fn read_CaveOtakara_Old__Q24Game8PlayDataFR6Stream, global
 /* 801E9BA0 001E6AE0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E9BA4 001E6AE4  7C 08 02 A6 */	mflr r0
 /* 801E9BA8 001E6AE8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -5486,9 +5502,9 @@ read_CaveOtakara_Old__Q24Game8PlayDataFR6Stream:
 /* 801E9C68 001E6BA8  7C 08 03 A6 */	mtlr r0
 /* 801E9C6C 001E6BAC  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E9C70 001E6BB0  4E 80 00 20 */	blr 
+.endfn read_CaveOtakara_Old__Q24Game8PlayDataFR6Stream
 
-.global write_CaveOtakara_Old__Q24Game8PlayDataFR6Stream
-write_CaveOtakara_Old__Q24Game8PlayDataFR6Stream:
+.fn write_CaveOtakara_Old__Q24Game8PlayDataFR6Stream, global
 /* 801E9C74 001E6BB4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E9C78 001E6BB8  7C 08 02 A6 */	mflr r0
 /* 801E9C7C 001E6BBC  3C A0 80 48 */	lis r5, lbl_80480E40@ha
@@ -5563,9 +5579,9 @@ write_CaveOtakara_Old__Q24Game8PlayDataFR6Stream:
 /* 801E9D80 001E6CC0  7C 08 03 A6 */	mtlr r0
 /* 801E9D84 001E6CC4  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E9D88 001E6CC8  4E 80 00 20 */	blr 
+.endfn write_CaveOtakara_Old__Q24Game8PlayDataFR6Stream
 
-.global getPikminCount_Today__Q24Game8PlayDataFi
-getPikminCount_Today__Q24Game8PlayDataFi:
+.fn getPikminCount_Today__Q24Game8PlayDataFi, global
 /* 801E9D8C 001E6CCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E9D90 001E6CD0  7C 08 02 A6 */	mflr r0
 /* 801E9D94 001E6CD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5598,9 +5614,9 @@ getPikminCount_Today__Q24Game8PlayDataFi:
 /* 801E9DF8 001E6D38  7C 08 03 A6 */	mtlr r0
 /* 801E9DFC 001E6D3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E9E00 001E6D40  4E 80 00 20 */	blr 
+.endfn getPikminCount_Today__Q24Game8PlayDataFi
 
-.global getPikminCount_Yesterday__Q24Game8PlayDataFi
-getPikminCount_Yesterday__Q24Game8PlayDataFi:
+.fn getPikminCount_Yesterday__Q24Game8PlayDataFi, global
 /* 801E9E04 001E6D44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E9E08 001E6D48  7C 08 02 A6 */	mflr r0
 /* 801E9E0C 001E6D4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5633,9 +5649,9 @@ getPikminCount_Yesterday__Q24Game8PlayDataFi:
 /* 801E9E70 001E6DB0  7C 08 03 A6 */	mtlr r0
 /* 801E9E74 001E6DB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E9E78 001E6DB8  4E 80 00 20 */	blr 
+.endfn getPikminCount_Yesterday__Q24Game8PlayDataFi
 
-.global setPikminCounts_Today__Q24Game8PlayDataFv
-setPikminCounts_Today__Q24Game8PlayDataFv:
+.fn setPikminCounts_Today__Q24Game8PlayDataFv, global
 /* 801E9E7C 001E6DBC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E9E80 001E6DC0  7C 08 02 A6 */	mflr r0
 /* 801E9E84 001E6DC4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -5707,9 +5723,9 @@ setPikminCounts_Today__Q24Game8PlayDataFv:
 /* 801E9F78 001E6EB8  7C 08 03 A6 */	mtlr r0
 /* 801E9F7C 001E6EBC  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E9F80 001E6EC0  4E 80 00 20 */	blr 
+.endfn setPikminCounts_Today__Q24Game8PlayDataFv
 
-.global setPikminCounts_Yesterday__Q24Game8PlayDataFv
-setPikminCounts_Yesterday__Q24Game8PlayDataFv:
+.fn setPikminCounts_Yesterday__Q24Game8PlayDataFv, global
 /* 801E9F84 001E6EC4  80 03 01 18 */	lwz r0, 0x118(r3)
 /* 801E9F88 001E6EC8  90 03 01 00 */	stw r0, 0x100(r3)
 /* 801E9F8C 001E6ECC  80 03 01 1C */	lwz r0, 0x11c(r3)
@@ -5723,3 +5739,4 @@ setPikminCounts_Yesterday__Q24Game8PlayDataFv:
 /* 801E9FAC 001E6EEC  80 03 01 2C */	lwz r0, 0x12c(r3)
 /* 801E9FB0 001E6EF0  90 03 01 14 */	stw r0, 0x114(r3)
 /* 801E9FB4 001E6EF4  4E 80 00 20 */	blr 
+.endfn setPikminCounts_Yesterday__Q24Game8PlayDataFv

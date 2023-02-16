@@ -1,67 +1,71 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80495A28:
+.obj lbl_80495A28, local
 	.asciz "efxPikmin.cpp"
+.endobj lbl_80495A28
 .balign 4
-lbl_80495A38:
+.obj lbl_80495A38, local
 	.asciz "P2Assert"
+.endobj lbl_80495A38
 .balign 4
-lbl_80495A44:
+.obj lbl_80495A44, local
 	.asciz "ArgDopingSmoke"
+.endobj lbl_80495A44
 .balign 4
-lbl_80495A54:
+.obj lbl_80495A54, local
 	.asciz "ArgCursor"
+.endobj lbl_80495A54
 .balign 4
-lbl_80495A60:
+.obj lbl_80495A60, local
 	.asciz "ArgScale"
+.endobj lbl_80495A60
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx12TStoneAttack
-__vt__Q23efx12TStoneAttack:
+.obj __vt__Q23efx12TStoneAttack, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx13TBridgeAttack
-__vt__Q23efx13TBridgeAttack:
+.endobj __vt__Q23efx12TStoneAttack
+.obj __vt__Q23efx13TBridgeAttack, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx12TGate2Attack
-__vt__Q23efx12TGate2Attack:
+.endobj __vt__Q23efx13TBridgeAttack
+.obj __vt__Q23efx12TGate2Attack, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx10TPkInstick
-__vt__Q23efx10TPkInstick:
+.endobj __vt__Q23efx12TGate2Attack
+.obj __vt__Q23efx10TPkInstick, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx12TGate1Attack
-__vt__Q23efx12TGate1Attack:
+.endobj __vt__Q23efx10TPkInstick
+.obj __vt__Q23efx12TGate1Attack, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx12TPkBlackDrop
-__vt__Q23efx12TPkBlackDrop:
+.endobj __vt__Q23efx12TGate1Attack
+.obj __vt__Q23efx12TPkBlackDrop, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q23efx15TFueactBiriBase
-__vt__Q23efx15TFueactBiriBase:
+.endobj __vt__Q23efx12TPkBlackDrop
+.obj __vt__Q23efx15TFueactBiriBase, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -81,8 +85,8 @@ __vt__Q23efx15TFueactBiriBase:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx15TFueactBiriBaseFv
-.global __vt__Q23efx13TFueactCircle
-__vt__Q23efx13TFueactCircle:
+.endobj __vt__Q23efx15TFueactBiriBase
+.obj __vt__Q23efx13TFueactCircle, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx13TFueactCircleFPQ23efx3Arg
@@ -104,15 +108,15 @@ __vt__Q23efx13TFueactCircle:
 	.4byte execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
 	.4byte executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
 	.4byte __dt__Q23efx13TFueactCircleFv
-.global __vt__Q23efx7TCursor
-__vt__Q23efx7TCursor:
+.endobj __vt__Q23efx13TFueactCircle
+.obj __vt__Q23efx7TCursor, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx7TCursorFPQ23efx3Arg
 	.4byte forceKill__Q23efx7TCursorFv
 	.4byte fade__Q23efx7TCursorFv
-.global __vt__Q23efx14TOrimaLightAct
-__vt__Q23efx14TOrimaLightAct:
+.endobj __vt__Q23efx7TCursor
+.obj __vt__Q23efx14TOrimaLightAct, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx14TOrimaLightActFPQ23efx3Arg
@@ -120,8 +124,8 @@ __vt__Q23efx14TOrimaLightAct:
 	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx11TOrimaLight
-__vt__Q23efx11TOrimaLight:
+.endobj __vt__Q23efx14TOrimaLightAct
+.obj __vt__Q23efx11TOrimaLight, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TOrimaLightFPQ23efx3Arg
@@ -129,15 +133,15 @@ __vt__Q23efx11TOrimaLight:
 	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx12TDopingSmoke
-__vt__Q23efx12TDopingSmoke:
+.endobj __vt__Q23efx11TOrimaLight
+.obj __vt__Q23efx12TDopingSmoke, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx12TDopingSmokeFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx11TPkNageBlur
-__vt__Q23efx11TPkNageBlur:
+.endobj __vt__Q23efx12TDopingSmoke
+.obj __vt__Q23efx11TPkNageBlur, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TPkNageBlurFPQ23efx3Arg
@@ -157,48 +161,64 @@ __vt__Q23efx11TPkNageBlur:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx11TPkNageBlurFv
+.endobj __vt__Q23efx11TPkNageBlur
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F670:
+.obj lbl_8051F670, local
 	.float 0.0
+.endobj lbl_8051F670
 .balign 4
-lbl_8051F674:
+.obj lbl_8051F674, local
 	.asciz "ArgType"
+.endobj lbl_8051F674
 .balign 4
-lbl_8051F67C:
+.obj lbl_8051F67C, local
 	.float 1.0
-lbl_8051F680: # tau
+.endobj lbl_8051F67C
+.obj lbl_8051F680, local # tau
 	.float 6.2831855
-lbl_8051F684: # pi
+.endobj lbl_8051F680
+.obj lbl_8051F684, local # pi
 	.float 3.1415927
-lbl_8051F688:
+.endobj lbl_8051F684
+.obj lbl_8051F688, local
 	.float 2.0
-lbl_8051F68C:
+.endobj lbl_8051F688
+.obj lbl_8051F68C, local
 	.float 325.9493
-lbl_8051F690:
+.endobj lbl_8051F68C
+.obj lbl_8051F690, local
 	.float -325.9493
+.endobj lbl_8051F690
 .balign 8
-lbl_8051F698:
+.obj lbl_8051F698, local
 	.8byte 0x4330000080000000
-lbl_8051F6A0:
+.endobj lbl_8051F698
+.obj lbl_8051F6A0, local
 	.float 32.0
-lbl_8051F6A4:
+.endobj lbl_8051F6A0
+.obj lbl_8051F6A4, local
 	.float 0.5
-lbl_8051F6A8:
+.endobj lbl_8051F6A4
+.obj lbl_8051F6A8, local
 	.float 3.0
-lbl_8051F6AC:
+.endobj lbl_8051F6A8
+.obj lbl_8051F6AC, local
 	.float 175.0
-lbl_8051F6B0:
+.endobj lbl_8051F6AC
+.obj lbl_8051F6B0, local
 	.float 100.0
-lbl_8051F6B4:
+.endobj lbl_8051F6B0
+.obj lbl_8051F6B4, local
 	.float 12.0
-lbl_8051F6B8:
+.endobj lbl_8051F6B4
+.obj lbl_8051F6B8, local
 	.float 22.0
+.endobj lbl_8051F6B8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__Q23efx11TPkNageBlurFPQ23efx3Arg
-create__Q23efx11TPkNageBlurFPQ23efx3Arg:
+.fn create__Q23efx11TPkNageBlurFPQ23efx3Arg, global
 /* 803B66B0 003B35F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B66B4 003B35F4  7C 08 02 A6 */	mflr r0
 /* 803B66B8 003B35F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -267,9 +287,9 @@ create__Q23efx11TPkNageBlurFPQ23efx3Arg:
 /* 803B6794 003B36D4  7C 08 03 A6 */	mtlr r0
 /* 803B6798 003B36D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B679C 003B36DC  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TPkNageBlurFPQ23efx3Arg
 
-.global create__Q23efx12TDopingSmokeFPQ23efx3Arg
-create__Q23efx12TDopingSmokeFPQ23efx3Arg:
+.fn create__Q23efx12TDopingSmokeFPQ23efx3Arg, global
 /* 803B67A0 003B36E0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B67A4 003B36E4  7C 08 02 A6 */	mflr r0
 /* 803B67A8 003B36E8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -402,9 +422,9 @@ create__Q23efx12TDopingSmokeFPQ23efx3Arg:
 /* 803B6974 003B38B4  7C 08 03 A6 */	mtlr r0
 /* 803B6978 003B38B8  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B697C 003B38BC  4E 80 00 20 */	blr 
+.endfn create__Q23efx12TDopingSmokeFPQ23efx3Arg
 
-.global create__Q23efx11TOrimaLightFPQ23efx3Arg
-create__Q23efx11TOrimaLightFPQ23efx3Arg:
+.fn create__Q23efx11TOrimaLightFPQ23efx3Arg, global
 /* 803B6980 003B38C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B6984 003B38C4  7C 08 02 A6 */	mflr r0
 /* 803B6988 003B38C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -432,9 +452,9 @@ create__Q23efx11TOrimaLightFPQ23efx3Arg:
 /* 803B69D4 003B3914  7C 08 03 A6 */	mtlr r0
 /* 803B69D8 003B3918  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B69DC 003B391C  4E 80 00 20 */	blr 
+.endfn create__Q23efx11TOrimaLightFPQ23efx3Arg
 
-.global create__Q23efx14TOrimaLightActFPQ23efx3Arg
-create__Q23efx14TOrimaLightActFPQ23efx3Arg:
+.fn create__Q23efx14TOrimaLightActFPQ23efx3Arg, global
 /* 803B69E0 003B3920  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B69E4 003B3924  7C 08 02 A6 */	mflr r0
 /* 803B69E8 003B3928  90 01 00 14 */	stw r0, 0x14(r1)
@@ -462,9 +482,9 @@ create__Q23efx14TOrimaLightActFPQ23efx3Arg:
 /* 803B6A34 003B3974  7C 08 03 A6 */	mtlr r0
 /* 803B6A38 003B3978  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B6A3C 003B397C  4E 80 00 20 */	blr 
+.endfn create__Q23efx14TOrimaLightActFPQ23efx3Arg
 
-.global init__Q23efx7TCursorFll
-init__Q23efx7TCursorFll:
+.fn init__Q23efx7TCursorFll, global
 /* 803B6A40 003B3980  2C 05 00 00 */	cmpwi r5, 0
 /* 803B6A44 003B3984  40 81 00 0C */	ble .L_803B6A50
 /* 803B6A48 003B3988  2C 05 00 10 */	cmpwi r5, 0x10
@@ -502,9 +522,9 @@ init__Q23efx7TCursorFll:
 /* 803B6AAC 003B39EC  38 00 00 6A */	li r0, 0x6a
 /* 803B6AB0 003B39F0  B0 03 00 10 */	sth r0, 0x10(r3)
 /* 803B6AB4 003B39F4  4E 80 00 20 */	blr 
+.endfn init__Q23efx7TCursorFll
 
-.global create__Q23efx7TCursorFPQ23efx3Arg
-create__Q23efx7TCursorFPQ23efx3Arg:
+.fn create__Q23efx7TCursorFPQ23efx3Arg, global
 /* 803B6AB8 003B39F8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803B6ABC 003B39FC  7C 08 02 A6 */	mflr r0
 /* 803B6AC0 003B3A00  90 01 00 44 */	stw r0, 0x44(r1)
@@ -595,9 +615,9 @@ create__Q23efx7TCursorFPQ23efx3Arg:
 /* 803B6C00 003B3B40  7C 08 03 A6 */	mtlr r0
 /* 803B6C04 003B3B44  38 21 00 40 */	addi r1, r1, 0x40
 /* 803B6C08 003B3B48  4E 80 00 20 */	blr 
+.endfn create__Q23efx7TCursorFPQ23efx3Arg
 
-.global update__Q23efx7TCursorFPQ23efx3Arg
-update__Q23efx7TCursorFPQ23efx3Arg:
+.fn update__Q23efx7TCursorFPQ23efx3Arg, global
 /* 803B6C0C 003B3B4C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803B6C10 003B3B50  7C 08 02 A6 */	mflr r0
 /* 803B6C14 003B3B54  90 01 00 44 */	stw r0, 0x44(r1)
@@ -666,9 +686,9 @@ update__Q23efx7TCursorFPQ23efx3Arg:
 /* 803B6D00 003B3C40  7C 08 03 A6 */	mtlr r0
 /* 803B6D04 003B3C44  38 21 00 40 */	addi r1, r1, 0x40
 /* 803B6D08 003B3C48  4E 80 00 20 */	blr 
+.endfn update__Q23efx7TCursorFPQ23efx3Arg
 
-.global "calcPos___Q23efx7TCursorFP10Vector3<f>fl"
-"calcPos___Q23efx7TCursorFP10Vector3<f>fl":
+.fn "calcPos___Q23efx7TCursorFP10Vector3<f>fl", global
 /* 803B6D0C 003B3C4C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803B6D10 003B3C50  7C 08 02 A6 */	mflr r0
 /* 803B6D14 003B3C54  3C C0 43 30 */	lis r6, 0x4330
@@ -756,9 +776,9 @@ update__Q23efx7TCursorFPQ23efx3Arg:
 /* 803B6E48 003B3D88  7C 08 03 A6 */	mtlr r0
 /* 803B6E4C 003B3D8C  38 21 00 40 */	addi r1, r1, 0x40
 /* 803B6E50 003B3D90  4E 80 00 20 */	blr 
+.endfn "calcPos___Q23efx7TCursorFP10Vector3<f>fl"
 
-.global create__Q23efx13TFueactCircleFPQ23efx3Arg
-create__Q23efx13TFueactCircleFPQ23efx3Arg:
+.fn create__Q23efx13TFueactCircleFPQ23efx3Arg, global
 /* 803B6E54 003B3D94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B6E58 003B3D98  7C 08 02 A6 */	mflr r0
 /* 803B6E5C 003B3D9C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -807,9 +827,9 @@ create__Q23efx13TFueactCircleFPQ23efx3Arg:
 /* 803B6EF4 003B3E34  7C 08 03 A6 */	mtlr r0
 /* 803B6EF8 003B3E38  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B6EFC 003B3E3C  4E 80 00 20 */	blr 
+.endfn create__Q23efx13TFueactCircleFPQ23efx3Arg
 
-.global execute__Q23efx13TFueactCircleFP14JPABaseEmitter
-execute__Q23efx13TFueactCircleFP14JPABaseEmitter:
+.fn execute__Q23efx13TFueactCircleFP14JPABaseEmitter, global
 /* 803B6F00 003B3E40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B6F04 003B3E44  7C 08 02 A6 */	mflr r0
 /* 803B6F08 003B3E48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -888,9 +908,9 @@ execute__Q23efx13TFueactCircleFP14JPABaseEmitter:
 /* 803B7018 003B3F58  7C 08 03 A6 */	mtlr r0
 /* 803B701C 003B3F5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7020 003B3F60  4E 80 00 20 */	blr 
+.endfn execute__Q23efx13TFueactCircleFP14JPABaseEmitter
 
-.global execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
-execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle:
+.fn execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle, global
 /* 803B7024 003B3F64  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803B7028 003B3F68  7C 08 02 A6 */	mflr r0
 /* 803B702C 003B3F6C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1079,9 +1099,9 @@ execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle:
 /* 803B72E4 003B4224  7C 08 03 A6 */	mtlr r0
 /* 803B72E8 003B4228  38 21 00 60 */	addi r1, r1, 0x60
 /* 803B72EC 003B422C  4E 80 00 20 */	blr 
+.endfn execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
 
-.global doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter
-doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
+.fn doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter, global
 /* 803B72F0 003B4230  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803B72F4 003B4234  7C 08 02 A6 */	mflr r0
 /* 803B72F8 003B4238  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1207,9 +1227,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B74B8 003B43F8  7C 08 03 A6 */	mtlr r0
 /* 803B74BC 003B43FC  38 21 00 50 */	addi r1, r1, 0x50
 /* 803B74C0 003B4400  4E 80 00 20 */	blr 
+.endfn doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter
 
-.global "createSimpleDead__3efxFR10Vector3<f>l"
-"createSimpleDead__3efxFR10Vector3<f>l":
+.fn "createSimpleDead__3efxFR10Vector3<f>l", global
 /* 803B74C4 003B4404  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803B74C8 003B4408  7C 08 02 A6 */	mflr r0
 /* 803B74CC 003B440C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1281,9 +1301,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B75C4 003B4504  7C 08 03 A6 */	mtlr r0
 /* 803B75C8 003B4508  38 21 00 40 */	addi r1, r1, 0x40
 /* 803B75CC 003B450C  4E 80 00 20 */	blr 
+.endfn "createSimpleDead__3efxFR10Vector3<f>l"
 
-.global "createSimpleChinka__3efxFR10Vector3<f>"
-"createSimpleChinka__3efxFR10Vector3<f>":
+.fn "createSimpleChinka__3efxFR10Vector3<f>", global
 /* 803B75D0 003B4510  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B75D4 003B4514  7C 08 02 A6 */	mflr r0
 /* 803B75D8 003B4518  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1308,9 +1328,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7620 003B4560  7C 08 03 A6 */	mtlr r0
 /* 803B7624 003B4564  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7628 003B4568  4E 80 00 20 */	blr 
+.endfn "createSimpleChinka__3efxFR10Vector3<f>"
 
-.global "createSimpleGedoku__3efxFR10Vector3<f>"
-"createSimpleGedoku__3efxFR10Vector3<f>":
+.fn "createSimpleGedoku__3efxFR10Vector3<f>", global
 /* 803B762C 003B456C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7630 003B4570  7C 08 02 A6 */	mflr r0
 /* 803B7634 003B4574  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1335,9 +1355,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B767C 003B45BC  7C 08 03 A6 */	mtlr r0
 /* 803B7680 003B45C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7684 003B45C4  4E 80 00 20 */	blr 
+.endfn "createSimpleGedoku__3efxFR10Vector3<f>"
 
-.global "createSimpleBlackDrop__3efxFR10Vector3<f>"
-"createSimpleBlackDrop__3efxFR10Vector3<f>":
+.fn "createSimpleBlackDrop__3efxFR10Vector3<f>", global
 /* 803B7688 003B45C8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B768C 003B45CC  7C 08 02 A6 */	mflr r0
 /* 803B7690 003B45D0  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1376,9 +1396,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7714 003B4654  7C 08 03 A6 */	mtlr r0
 /* 803B7718 003B4658  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B771C 003B465C  4E 80 00 20 */	blr 
+.endfn "createSimpleBlackDrop__3efxFR10Vector3<f>"
 
-.global "createSimpleGate1Attack__3efxFR10Vector3<f>"
-"createSimpleGate1Attack__3efxFR10Vector3<f>":
+.fn "createSimpleGate1Attack__3efxFR10Vector3<f>", global
 /* 803B7720 003B4660  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7724 003B4664  7C 08 02 A6 */	mflr r0
 /* 803B7728 003B4668  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1414,9 +1434,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B77A0 003B46E0  7C 08 03 A6 */	mtlr r0
 /* 803B77A4 003B46E4  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B77A8 003B46E8  4E 80 00 20 */	blr 
+.endfn "createSimpleGate1Attack__3efxFR10Vector3<f>"
 
-.global "createSimplePkAp__3efxFR10Vector3<f>"
-"createSimplePkAp__3efxFR10Vector3<f>":
+.fn "createSimplePkAp__3efxFR10Vector3<f>", global
 /* 803B77AC 003B46EC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B77B0 003B46F0  7C 08 02 A6 */	mflr r0
 /* 803B77B4 003B46F4  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1452,9 +1472,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B782C 003B476C  7C 08 03 A6 */	mtlr r0
 /* 803B7830 003B4770  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7834 003B4774  4E 80 00 20 */	blr 
+.endfn "createSimplePkAp__3efxFR10Vector3<f>"
 
-.global "createSimpleWaterOff__3efxFR10Vector3<f>"
-"createSimpleWaterOff__3efxFR10Vector3<f>":
+.fn "createSimpleWaterOff__3efxFR10Vector3<f>", global
 /* 803B7838 003B4778  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B783C 003B477C  7C 08 02 A6 */	mflr r0
 /* 803B7840 003B4780  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1479,9 +1499,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7888 003B47C8  7C 08 03 A6 */	mtlr r0
 /* 803B788C 003B47CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7890 003B47D0  4E 80 00 20 */	blr 
+.endfn "createSimpleWaterOff__3efxFR10Vector3<f>"
 
-.global "createSimpleDive__3efxFR10Vector3<f>"
-"createSimpleDive__3efxFR10Vector3<f>":
+.fn "createSimpleDive__3efxFR10Vector3<f>", global
 /* 803B7894 003B47D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7898 003B47D8  7C 08 02 A6 */	mflr r0
 /* 803B789C 003B47DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1506,9 +1526,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B78E4 003B4824  7C 08 03 A6 */	mtlr r0
 /* 803B78E8 003B4828  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B78EC 003B482C  4E 80 00 20 */	blr 
+.endfn "createSimpleDive__3efxFR10Vector3<f>"
 
-.global "createSimpleChiru__3efxFR10Vector3<f>l"
-"createSimpleChiru__3efxFR10Vector3<f>l":
+.fn "createSimpleChiru__3efxFR10Vector3<f>l", global
 /* 803B78F0 003B4830  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B78F4 003B4834  7C 08 02 A6 */	mflr r0
 /* 803B78F8 003B4838  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1552,9 +1572,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B797C 003B48BC  7C 08 03 A6 */	mtlr r0
 /* 803B7980 003B48C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7984 003B48C4  4E 80 00 20 */	blr 
+.endfn "createSimpleChiru__3efxFR10Vector3<f>l"
 
-.global "createSimpleInattack__3efxFR10Vector3<f>"
-"createSimpleInattack__3efxFR10Vector3<f>":
+.fn "createSimpleInattack__3efxFR10Vector3<f>", global
 /* 803B7988 003B48C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B798C 003B48CC  7C 08 02 A6 */	mflr r0
 /* 803B7990 003B48D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1579,9 +1599,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B79D8 003B4918  7C 08 03 A6 */	mtlr r0
 /* 803B79DC 003B491C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B79E0 003B4920  4E 80 00 20 */	blr 
+.endfn "createSimpleInattack__3efxFR10Vector3<f>"
 
-.global "createSimpleInstick__3efxFR10Vector3<f>"
-"createSimpleInstick__3efxFR10Vector3<f>":
+.fn "createSimpleInstick__3efxFR10Vector3<f>", global
 /* 803B79E4 003B4924  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B79E8 003B4928  7C 08 02 A6 */	mflr r0
 /* 803B79EC 003B492C  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1614,9 +1634,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7A58 003B4998  7C 08 03 A6 */	mtlr r0
 /* 803B7A5C 003B499C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7A60 003B49A0  4E 80 00 20 */	blr 
+.endfn "createSimpleInstick__3efxFR10Vector3<f>"
 
-.global "createSimpleGate2Attack__3efxFR10Vector3<f>"
-"createSimpleGate2Attack__3efxFR10Vector3<f>":
+.fn "createSimpleGate2Attack__3efxFR10Vector3<f>", global
 /* 803B7A64 003B49A4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7A68 003B49A8  7C 08 02 A6 */	mflr r0
 /* 803B7A6C 003B49AC  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1652,9 +1672,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7AE4 003B4A24  7C 08 03 A6 */	mtlr r0
 /* 803B7AE8 003B4A28  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7AEC 003B4A2C  4E 80 00 20 */	blr 
+.endfn "createSimpleGate2Attack__3efxFR10Vector3<f>"
 
-.global "createSimpleBridgeAttack__3efxFR10Vector3<f>"
-"createSimpleBridgeAttack__3efxFR10Vector3<f>":
+.fn "createSimpleBridgeAttack__3efxFR10Vector3<f>", global
 /* 803B7AF0 003B4A30  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7AF4 003B4A34  7C 08 02 A6 */	mflr r0
 /* 803B7AF8 003B4A38  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1687,9 +1707,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7B64 003B4AA4  7C 08 03 A6 */	mtlr r0
 /* 803B7B68 003B4AA8  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7B6C 003B4AAC  4E 80 00 20 */	blr 
+.endfn "createSimpleBridgeAttack__3efxFR10Vector3<f>"
 
-.global "createSimpleWalksmoke__3efxFR10Vector3<f>"
-"createSimpleWalksmoke__3efxFR10Vector3<f>":
+.fn "createSimpleWalksmoke__3efxFR10Vector3<f>", global
 /* 803B7B70 003B4AB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7B74 003B4AB4  7C 08 02 A6 */	mflr r0
 /* 803B7B78 003B4AB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1714,9 +1734,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7BC0 003B4B00  7C 08 03 A6 */	mtlr r0
 /* 803B7BC4 003B4B04  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7BC8 003B4B08  4E 80 00 20 */	blr 
+.endfn "createSimpleWalksmoke__3efxFR10Vector3<f>"
 
-.global "createSimpleGlow2__3efxFR10Vector3<f>"
-"createSimpleGlow2__3efxFR10Vector3<f>":
+.fn "createSimpleGlow2__3efxFR10Vector3<f>", global
 /* 803B7BCC 003B4B0C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7BD0 003B4B10  7C 08 02 A6 */	mflr r0
 /* 803B7BD4 003B4B14  3C A0 80 4C */	lis r5, __vt__Q23efx8TPkGlow2@ha
@@ -1752,9 +1772,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7C4C 003B4B8C  7C 08 03 A6 */	mtlr r0
 /* 803B7C50 003B4B90  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7C54 003B4B94  4E 80 00 20 */	blr 
+.endfn "createSimpleGlow2__3efxFR10Vector3<f>"
 
-.global "createSimpleStoneAttack__3efxFR10Vector3<f>"
-"createSimpleStoneAttack__3efxFR10Vector3<f>":
+.fn "createSimpleStoneAttack__3efxFR10Vector3<f>", global
 /* 803B7C58 003B4B98  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7C5C 003B4B9C  7C 08 02 A6 */	mflr r0
 /* 803B7C60 003B4BA0  3C A0 80 4B */	lis r5, __vt__Q23efx5TBase@ha
@@ -1787,9 +1807,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7CCC 003B4C0C  7C 08 03 A6 */	mtlr r0
 /* 803B7CD0 003B4C10  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7CD4 003B4C14  4E 80 00 20 */	blr 
+.endfn "createSimpleStoneAttack__3efxFR10Vector3<f>"
 
-.global "createSimpleDig__3efxFR10Vector3<f>"
-"createSimpleDig__3efxFR10Vector3<f>":
+.fn "createSimpleDig__3efxFR10Vector3<f>", global
 /* 803B7CD8 003B4C18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7CDC 003B4C1C  7C 08 02 A6 */	mflr r0
 /* 803B7CE0 003B4C20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1814,9 +1834,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7D28 003B4C68  7C 08 03 A6 */	mtlr r0
 /* 803B7D2C 003B4C6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7D30 003B4C70  4E 80 00 20 */	blr 
+.endfn "createSimpleDig__3efxFR10Vector3<f>"
 
-.global "createSimpleGate3Attack__3efxFR10Vector3<f>"
-"createSimpleGate3Attack__3efxFR10Vector3<f>":
+.fn "createSimpleGate3Attack__3efxFR10Vector3<f>", global
 /* 803B7D34 003B4C74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7D38 003B4C78  7C 08 02 A6 */	mflr r0
 /* 803B7D3C 003B4C7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1841,9 +1861,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7D84 003B4CC4  7C 08 03 A6 */	mtlr r0
 /* 803B7D88 003B4CC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7D8C 003B4CCC  4E 80 00 20 */	blr 
+.endfn "createSimpleGate3Attack__3efxFR10Vector3<f>"
 
-.global "createSimpleWalkwater__3efxFR10Vector3<f>"
-"createSimpleWalkwater__3efxFR10Vector3<f>":
+.fn "createSimpleWalkwater__3efxFR10Vector3<f>", global
 /* 803B7D90 003B4CD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7D94 003B4CD4  7C 08 02 A6 */	mflr r0
 /* 803B7D98 003B4CD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1868,9 +1888,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7DE0 003B4D20  7C 08 03 A6 */	mtlr r0
 /* 803B7DE4 003B4D24  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7DE8 003B4D28  4E 80 00 20 */	blr 
+.endfn "createSimpleWalkwater__3efxFR10Vector3<f>"
 
-.global "init__Q23efx11TNaviEffectFP10Vector3<f>PA4_fP10Vector3<f>Q33efx11TNaviEffect12enumNaviType"
-"init__Q23efx11TNaviEffectFP10Vector3<f>PA4_fP10Vector3<f>Q33efx11TNaviEffect12enumNaviType":
+.fn "init__Q23efx11TNaviEffectFP10Vector3<f>PA4_fP10Vector3<f>Q33efx11TNaviEffect12enumNaviType", global
 /* 803B7DEC 003B4D2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7DF0 003B4D30  7C 08 02 A6 */	mflr r0
 /* 803B7DF4 003B4D34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1885,9 +1905,9 @@ doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter:
 /* 803B7E18 003B4D58  7C 08 03 A6 */	mtlr r0
 /* 803B7E1C 003B4D5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7E20 003B4D60  4E 80 00 20 */	blr 
+.endfn "init__Q23efx11TNaviEffectFP10Vector3<f>PA4_fP10Vector3<f>Q33efx11TNaviEffect12enumNaviType"
 
-.global setNaviType__Q23efx11TNaviEffectFQ33efx11TNaviEffect12enumNaviType
-setNaviType__Q23efx11TNaviEffectFQ33efx11TNaviEffect12enumNaviType:
+.fn setNaviType__Q23efx11TNaviEffectFQ33efx11TNaviEffect12enumNaviType, global
 /* 803B7E24 003B4D64  2C 04 00 02 */	cmpwi r4, 2
 /* 803B7E28 003B4D68  41 82 00 7C */	beq .L_803B7EA4
 /* 803B7E2C 003B4D6C  40 80 00 14 */	bge .L_803B7E40
@@ -1947,9 +1967,9 @@ setNaviType__Q23efx11TNaviEffectFQ33efx11TNaviEffect12enumNaviType:
 /* 803B7EF0 003B4E30  90 03 03 68 */	stw r0, 0x368(r3)
 /* 803B7EF4 003B4E34  90 03 03 98 */	stw r0, 0x398(r3)
 /* 803B7EF8 003B4E38  4E 80 00 20 */	blr 
+.endfn setNaviType__Q23efx11TNaviEffectFQ33efx11TNaviEffect12enumNaviType
 
-.global update__Q23efx11TNaviEffectFv
-update__Q23efx11TNaviEffectFv:
+.fn update__Q23efx11TNaviEffectFv, global
 /* 803B7EFC 003B4E3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7F00 003B4E40  7C 08 02 A6 */	mflr r0
 /* 803B7F04 003B4E44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1958,9 +1978,9 @@ update__Q23efx11TNaviEffectFv:
 /* 803B7F10 003B4E50  7C 08 03 A6 */	mtlr r0
 /* 803B7F14 003B4E54  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7F18 003B4E58  4E 80 00 20 */	blr 
+.endfn update__Q23efx11TNaviEffectFv
 
-.global updateHamon___Q23efx11TNaviEffectFv
-updateHamon___Q23efx11TNaviEffectFv:
+.fn updateHamon___Q23efx11TNaviEffectFv, global
 /* 803B7F1C 003B4E5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B7F20 003B4E60  7C 08 02 A6 */	mflr r0
 /* 803B7F24 003B4E64  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2020,9 +2040,9 @@ updateHamon___Q23efx11TNaviEffectFv:
 /* 803B7FE8 003B4F28  7C 08 03 A6 */	mtlr r0
 /* 803B7FEC 003B4F2C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B7FF0 003B4F30  4E 80 00 20 */	blr 
+.endfn updateHamon___Q23efx11TNaviEffectFv
 
-.global "createHamonA___Q23efx11TNaviEffectFP10Vector3<f>"
-"createHamonA___Q23efx11TNaviEffectFP10Vector3<f>":
+.fn "createHamonA___Q23efx11TNaviEffectFP10Vector3<f>", global
 /* 803B7FF4 003B4F34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7FF8 003B4F38  7C 08 02 A6 */	mflr r0
 /* 803B7FFC 003B4F3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2048,9 +2068,9 @@ updateHamon___Q23efx11TNaviEffectFv:
 /* 803B8048 003B4F88  7C 08 03 A6 */	mtlr r0
 /* 803B804C 003B4F8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8050 003B4F90  4E 80 00 20 */	blr 
+.endfn "createHamonA___Q23efx11TNaviEffectFP10Vector3<f>"
 
-.global killHamonA___Q23efx11TNaviEffectFv
-killHamonA___Q23efx11TNaviEffectFv:
+.fn killHamonA___Q23efx11TNaviEffectFv, global
 /* 803B8054 003B4F94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8058 003B4F98  7C 08 02 A6 */	mflr r0
 /* 803B805C 003B4F9C  38 63 00 28 */	addi r3, r3, 0x28
@@ -2060,9 +2080,9 @@ killHamonA___Q23efx11TNaviEffectFv:
 /* 803B806C 003B4FAC  7C 08 03 A6 */	mtlr r0
 /* 803B8070 003B4FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8074 003B4FB4  4E 80 00 20 */	blr 
+.endfn killHamonA___Q23efx11TNaviEffectFv
 
-.global "createHamonB___Q23efx11TNaviEffectFP10Vector3<f>"
-"createHamonB___Q23efx11TNaviEffectFP10Vector3<f>":
+.fn "createHamonB___Q23efx11TNaviEffectFP10Vector3<f>", global
 /* 803B8078 003B4FB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B807C 003B4FBC  7C 08 02 A6 */	mflr r0
 /* 803B8080 003B4FC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2088,9 +2108,9 @@ killHamonA___Q23efx11TNaviEffectFv:
 /* 803B80CC 003B500C  7C 08 03 A6 */	mtlr r0
 /* 803B80D0 003B5010  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B80D4 003B5014  4E 80 00 20 */	blr 
+.endfn "createHamonB___Q23efx11TNaviEffectFP10Vector3<f>"
 
-.global killHamonB___Q23efx11TNaviEffectFv
-killHamonB___Q23efx11TNaviEffectFv:
+.fn killHamonB___Q23efx11TNaviEffectFv, global
 /* 803B80D8 003B5018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B80DC 003B501C  7C 08 02 A6 */	mflr r0
 /* 803B80E0 003B5020  38 63 00 44 */	addi r3, r3, 0x44
@@ -2100,9 +2120,9 @@ killHamonB___Q23efx11TNaviEffectFv:
 /* 803B80F0 003B5030  7C 08 03 A6 */	mtlr r0
 /* 803B80F4 003B5034  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B80F8 003B5038  4E 80 00 20 */	blr 
+.endfn killHamonB___Q23efx11TNaviEffectFv
 
-.global createLight___Q23efx11TNaviEffectFPA4_f
-createLight___Q23efx11TNaviEffectFPA4_f:
+.fn createLight___Q23efx11TNaviEffectFPA4_f, global
 /* 803B80FC 003B503C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8100 003B5040  7C 08 02 A6 */	mflr r0
 /* 803B8104 003B5044  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2134,9 +2154,9 @@ createLight___Q23efx11TNaviEffectFPA4_f:
 /* 803B8168 003B50A8  7C 08 03 A6 */	mtlr r0
 /* 803B816C 003B50AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8170 003B50B0  4E 80 00 20 */	blr 
+.endfn createLight___Q23efx11TNaviEffectFPA4_f
 
-.global killLight___Q23efx11TNaviEffectFv
-killLight___Q23efx11TNaviEffectFv:
+.fn killLight___Q23efx11TNaviEffectFv, global
 /* 803B8174 003B50B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8178 003B50B8  7C 08 02 A6 */	mflr r0
 /* 803B817C 003B50BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2148,9 +2168,9 @@ killLight___Q23efx11TNaviEffectFv:
 /* 803B8194 003B50D4  7C 08 03 A6 */	mtlr r0
 /* 803B8198 003B50D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B819C 003B50DC  4E 80 00 20 */	blr 
+.endfn killLight___Q23efx11TNaviEffectFv
 
-.global createLightAct___Q23efx11TNaviEffectFPA4_f
-createLightAct___Q23efx11TNaviEffectFPA4_f:
+.fn createLightAct___Q23efx11TNaviEffectFPA4_f, global
 /* 803B81A0 003B50E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B81A4 003B50E4  7C 08 02 A6 */	mflr r0
 /* 803B81A8 003B50E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2182,9 +2202,9 @@ createLightAct___Q23efx11TNaviEffectFPA4_f:
 /* 803B820C 003B514C  7C 08 03 A6 */	mtlr r0
 /* 803B8210 003B5150  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8214 003B5154  4E 80 00 20 */	blr 
+.endfn createLightAct___Q23efx11TNaviEffectFPA4_f
 
-.global killLightAct___Q23efx11TNaviEffectFv
-killLightAct___Q23efx11TNaviEffectFv:
+.fn killLightAct___Q23efx11TNaviEffectFv, global
 /* 803B8218 003B5158  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B821C 003B515C  7C 08 02 A6 */	mflr r0
 /* 803B8220 003B5160  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2196,9 +2216,9 @@ killLightAct___Q23efx11TNaviEffectFv:
 /* 803B8238 003B5178  7C 08 03 A6 */	mtlr r0
 /* 803B823C 003B517C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8240 003B5180  4E 80 00 20 */	blr 
+.endfn killLightAct___Q23efx11TNaviEffectFv
 
-.global "createCursor___Q23efx11TNaviEffectF10Vector3<f>f"
-"createCursor___Q23efx11TNaviEffectF10Vector3<f>f":
+.fn "createCursor___Q23efx11TNaviEffectF10Vector3<f>f", global
 /* 803B8244 003B5184  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B8248 003B5188  7C 08 02 A6 */	mflr r0
 /* 803B824C 003B518C  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
@@ -2224,9 +2244,9 @@ killLightAct___Q23efx11TNaviEffectFv:
 /* 803B829C 003B51DC  7C 08 03 A6 */	mtlr r0
 /* 803B82A0 003B51E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B82A4 003B51E4  4E 80 00 20 */	blr 
+.endfn "createCursor___Q23efx11TNaviEffectF10Vector3<f>f"
 
-.global killCursor___Q23efx11TNaviEffectFv
-killCursor___Q23efx11TNaviEffectFv:
+.fn killCursor___Q23efx11TNaviEffectFv, global
 /* 803B82A8 003B51E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B82AC 003B51EC  7C 08 02 A6 */	mflr r0
 /* 803B82B0 003B51F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2238,9 +2258,9 @@ killCursor___Q23efx11TNaviEffectFv:
 /* 803B82C8 003B5208  7C 08 03 A6 */	mtlr r0
 /* 803B82CC 003B520C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B82D0 003B5210  4E 80 00 20 */	blr 
+.endfn killCursor___Q23efx11TNaviEffectFv
 
-.global "updateCursor___Q23efx11TNaviEffectF10Vector3<f>f"
-"updateCursor___Q23efx11TNaviEffectF10Vector3<f>f":
+.fn "updateCursor___Q23efx11TNaviEffectF10Vector3<f>f", global
 /* 803B82D4 003B5214  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 803B82D8 003B5218  7C 08 02 A6 */	mflr r0
 /* 803B82DC 003B521C  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -2411,9 +2431,9 @@ killCursor___Q23efx11TNaviEffectFv:
 /* 803B854C 003B548C  7C 08 03 A6 */	mtlr r0
 /* 803B8550 003B5490  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 803B8554 003B5494  4E 80 00 20 */	blr 
+.endfn "updateCursor___Q23efx11TNaviEffectF10Vector3<f>f"
 
-.global "createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3<f>"
-"createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3<f>":
+.fn "createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3<f>", global
 /* 803B8558 003B5498  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B855C 003B549C  7C 08 02 A6 */	mflr r0
 /* 803B8560 003B54A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2461,9 +2481,9 @@ killCursor___Q23efx11TNaviEffectFv:
 /* 803B8600 003B5540  7C 08 03 A6 */	mtlr r0
 /* 803B8604 003B5544  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B8608 003B5548  4E 80 00 20 */	blr 
+.endfn "createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3<f>"
 
-.global killFueact___Q23efx11TNaviEffectFv
-killFueact___Q23efx11TNaviEffectFv:
+.fn killFueact___Q23efx11TNaviEffectFv, global
 /* 803B860C 003B554C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8610 003B5550  7C 08 02 A6 */	mflr r0
 /* 803B8614 003B5554  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2475,9 +2495,9 @@ killFueact___Q23efx11TNaviEffectFv:
 /* 803B862C 003B556C  7C 08 03 A6 */	mtlr r0
 /* 803B8630 003B5570  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8634 003B5574  4E 80 00 20 */	blr 
+.endfn killFueact___Q23efx11TNaviEffectFv
 
-.global createOrimadamage___Q23efx11TNaviEffectFPA4_f
-createOrimadamage___Q23efx11TNaviEffectFPA4_f:
+.fn createOrimadamage___Q23efx11TNaviEffectFPA4_f, global
 /* 803B8638 003B5578  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B863C 003B557C  7C 08 02 A6 */	mflr r0
 /* 803B8640 003B5580  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2509,9 +2529,9 @@ createOrimadamage___Q23efx11TNaviEffectFPA4_f:
 /* 803B86A4 003B55E4  7C 08 03 A6 */	mtlr r0
 /* 803B86A8 003B55E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B86AC 003B55EC  4E 80 00 20 */	blr 
+.endfn createOrimadamage___Q23efx11TNaviEffectFPA4_f
 
-.global init__Q23efx9TPkEffectFv
-init__Q23efx9TPkEffectFv:
+.fn init__Q23efx9TPkEffectFv, global
 /* 803B86B0 003B55F0  38 80 FF FF */	li r4, -1
 /* 803B86B4 003B55F4  38 00 00 00 */	li r0, 0
 /* 803B86B8 003B55F8  90 83 00 08 */	stw r4, 8(r3)
@@ -2527,9 +2547,9 @@ init__Q23efx9TPkEffectFv:
 /* 803B86E0 003B5620  98 03 00 02 */	stb r0, 2(r3)
 /* 803B86E4 003B5624  98 03 00 03 */	stb r0, 3(r3)
 /* 803B86E8 003B5628  4E 80 00 20 */	blr 
+.endfn init__Q23efx9TPkEffectFv
 
-.global update__Q23efx9TPkEffectFv
-update__Q23efx9TPkEffectFv:
+.fn update__Q23efx9TPkEffectFv, global
 /* 803B86EC 003B562C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B86F0 003B5630  7C 08 02 A6 */	mflr r0
 /* 803B86F4 003B5634  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2543,9 +2563,9 @@ update__Q23efx9TPkEffectFv:
 /* 803B8714 003B5654  7C 08 03 A6 */	mtlr r0
 /* 803B8718 003B5658  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B871C 003B565C  4E 80 00 20 */	blr 
+.endfn update__Q23efx9TPkEffectFv
 
-.global updateMoeSmoke___Q23efx9TPkEffectFv
-updateMoeSmoke___Q23efx9TPkEffectFv:
+.fn updateMoeSmoke___Q23efx9TPkEffectFv, global
 /* 803B8720 003B5660  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8724 003B5664  7C 08 02 A6 */	mflr r0
 /* 803B8728 003B5668  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2562,9 +2582,9 @@ updateMoeSmoke___Q23efx9TPkEffectFv:
 /* 803B874C 003B568C  7C 08 03 A6 */	mtlr r0
 /* 803B8750 003B5690  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8754 003B5694  4E 80 00 20 */	blr 
+.endfn updateMoeSmoke___Q23efx9TPkEffectFv
 
-.global updateHamon___Q23efx9TPkEffectFv
-updateHamon___Q23efx9TPkEffectFv:
+.fn updateHamon___Q23efx9TPkEffectFv, global
 /* 803B8758 003B5698  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B875C 003B569C  7C 08 02 A6 */	mflr r0
 /* 803B8760 003B56A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2622,9 +2642,9 @@ updateHamon___Q23efx9TPkEffectFv:
 /* 803B881C 003B575C  7C 08 03 A6 */	mtlr r0
 /* 803B8820 003B5760  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B8824 003B5764  4E 80 00 20 */	blr 
+.endfn updateHamon___Q23efx9TPkEffectFv
 
-.global "createKourin___Q23efx9TPkEffectFP10Vector3<f>"
-"createKourin___Q23efx9TPkEffectFP10Vector3<f>":
+.fn "createKourin___Q23efx9TPkEffectFP10Vector3<f>", global
 /* 803B8828 003B5768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B882C 003B576C  7C 08 02 A6 */	mflr r0
 /* 803B8830 003B5770  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2651,9 +2671,9 @@ updateHamon___Q23efx9TPkEffectFv:
 /* 803B8880 003B57C0  7C 08 03 A6 */	mtlr r0
 /* 803B8884 003B57C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8888 003B57C8  4E 80 00 20 */	blr 
+.endfn "createKourin___Q23efx9TPkEffectFP10Vector3<f>"
 
-.global killKourin___Q23efx9TPkEffectFv
-killKourin___Q23efx9TPkEffectFv:
+.fn killKourin___Q23efx9TPkEffectFv, global
 /* 803B888C 003B57CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8890 003B57D0  7C 08 02 A6 */	mflr r0
 /* 803B8894 003B57D4  38 63 00 70 */	addi r3, r3, 0x70
@@ -2663,9 +2683,9 @@ killKourin___Q23efx9TPkEffectFv:
 /* 803B88A4 003B57E4  7C 08 03 A6 */	mtlr r0
 /* 803B88A8 003B57E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B88AC 003B57EC  4E 80 00 20 */	blr 
+.endfn killKourin___Q23efx9TPkEffectFv
 
-.global "createDoping___Q23efx9TPkEffectFP10Vector3<f>"
-"createDoping___Q23efx9TPkEffectFP10Vector3<f>":
+.fn "createDoping___Q23efx9TPkEffectFP10Vector3<f>", global
 /* 803B88B0 003B57F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B88B4 003B57F4  7C 08 02 A6 */	mflr r0
 /* 803B88B8 003B57F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2691,9 +2711,9 @@ killKourin___Q23efx9TPkEffectFv:
 /* 803B8904 003B5844  7C 08 03 A6 */	mtlr r0
 /* 803B8908 003B5848  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B890C 003B584C  4E 80 00 20 */	blr 
+.endfn "createDoping___Q23efx9TPkEffectFP10Vector3<f>"
 
-.global killDoping___Q23efx9TPkEffectFv
-killDoping___Q23efx9TPkEffectFv:
+.fn killDoping___Q23efx9TPkEffectFv, global
 /* 803B8910 003B5850  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8914 003B5854  7C 08 02 A6 */	mflr r0
 /* 803B8918 003B5858  38 63 00 90 */	addi r3, r3, 0x90
@@ -2703,9 +2723,9 @@ killDoping___Q23efx9TPkEffectFv:
 /* 803B8928 003B5868  7C 08 03 A6 */	mtlr r0
 /* 803B892C 003B586C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8930 003B5870  4E 80 00 20 */	blr 
+.endfn killDoping___Q23efx9TPkEffectFv
 
-.global "createNage___Q23efx9TPkEffectFP10Vector3<f>PA4_f"
-"createNage___Q23efx9TPkEffectFP10Vector3<f>PA4_f":
+.fn "createNage___Q23efx9TPkEffectFP10Vector3<f>PA4_f", global
 /* 803B8934 003B5874  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B8938 003B5878  7C 08 02 A6 */	mflr r0
 /* 803B893C 003B587C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2770,9 +2790,9 @@ killDoping___Q23efx9TPkEffectFv:
 /* 803B8A20 003B5960  7C 08 03 A6 */	mtlr r0
 /* 803B8A24 003B5964  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B8A28 003B5968  4E 80 00 20 */	blr 
+.endfn "createNage___Q23efx9TPkEffectFP10Vector3<f>PA4_f"
 
-.global killNage___Q23efx9TPkEffectFv
-killNage___Q23efx9TPkEffectFv:
+.fn killNage___Q23efx9TPkEffectFv, global
 /* 803B8A2C 003B596C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8A30 003B5970  7C 08 02 A6 */	mflr r0
 /* 803B8A34 003B5974  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2790,9 +2810,9 @@ killNage___Q23efx9TPkEffectFv:
 /* 803B8A64 003B59A4  7C 08 03 A6 */	mtlr r0
 /* 803B8A68 003B59A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8A6C 003B59AC  4E 80 00 20 */	blr 
+.endfn killNage___Q23efx9TPkEffectFv
 
-.global "createMoe___Q23efx9TPkEffectFP10Vector3<f>"
-"createMoe___Q23efx9TPkEffectFP10Vector3<f>":
+.fn "createMoe___Q23efx9TPkEffectFP10Vector3<f>", global
 /* 803B8A70 003B59B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8A74 003B59B4  7C 08 02 A6 */	mflr r0
 /* 803B8A78 003B59B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2825,9 +2845,9 @@ killNage___Q23efx9TPkEffectFv:
 /* 803B8AE0 003B5A20  7C 08 03 A6 */	mtlr r0
 /* 803B8AE4 003B5A24  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8AE8 003B5A28  4E 80 00 20 */	blr 
+.endfn "createMoe___Q23efx9TPkEffectFP10Vector3<f>"
 
-.global killMoe___Q23efx9TPkEffectFv
-killMoe___Q23efx9TPkEffectFv:
+.fn killMoe___Q23efx9TPkEffectFv, global
 /* 803B8AEC 003B5A2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8AF0 003B5A30  7C 08 02 A6 */	mflr r0
 /* 803B8AF4 003B5A34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2845,9 +2865,9 @@ killMoe___Q23efx9TPkEffectFv:
 /* 803B8B24 003B5A64  7C 08 03 A6 */	mtlr r0
 /* 803B8B28 003B5A68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8B2C 003B5A6C  4E 80 00 20 */	blr 
+.endfn killMoe___Q23efx9TPkEffectFv
 
-.global "createChudoku___Q23efx9TPkEffectFP10Vector3<f>"
-"createChudoku___Q23efx9TPkEffectFP10Vector3<f>":
+.fn "createChudoku___Q23efx9TPkEffectFP10Vector3<f>", global
 /* 803B8B30 003B5A70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8B34 003B5A74  7C 08 02 A6 */	mflr r0
 /* 803B8B38 003B5A78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2873,9 +2893,9 @@ killMoe___Q23efx9TPkEffectFv:
 /* 803B8B84 003B5AC4  7C 08 03 A6 */	mtlr r0
 /* 803B8B88 003B5AC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8B8C 003B5ACC  4E 80 00 20 */	blr 
+.endfn "createChudoku___Q23efx9TPkEffectFP10Vector3<f>"
 
-.global killChudoku___Q23efx9TPkEffectFv
-killChudoku___Q23efx9TPkEffectFv:
+.fn killChudoku___Q23efx9TPkEffectFv, global
 /* 803B8B90 003B5AD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8B94 003B5AD4  7C 08 02 A6 */	mflr r0
 /* 803B8B98 003B5AD8  38 63 01 00 */	addi r3, r3, 0x100
@@ -2885,9 +2905,9 @@ killChudoku___Q23efx9TPkEffectFv:
 /* 803B8BA8 003B5AE8  7C 08 03 A6 */	mtlr r0
 /* 803B8BAC 003B5AEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8BB0 003B5AF0  4E 80 00 20 */	blr 
+.endfn killChudoku___Q23efx9TPkEffectFv
 
-.global "createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>"
-"createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>":
+.fn "createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>", global
 /* 803B8BB4 003B5AF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8BB8 003B5AF8  7C 08 02 A6 */	mflr r0
 /* 803B8BBC 003B5AFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2913,9 +2933,9 @@ killChudoku___Q23efx9TPkEffectFv:
 /* 803B8C08 003B5B48  7C 08 03 A6 */	mtlr r0
 /* 803B8C0C 003B5B4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8C10 003B5B50  4E 80 00 20 */	blr 
+.endfn "createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>"
 
-.global killMoeSmoke___Q23efx9TPkEffectFv
-killMoeSmoke___Q23efx9TPkEffectFv:
+.fn killMoeSmoke___Q23efx9TPkEffectFv, global
 /* 803B8C14 003B5B54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8C18 003B5B58  7C 08 02 A6 */	mflr r0
 /* 803B8C1C 003B5B5C  38 63 01 8C */	addi r3, r3, 0x18c
@@ -2925,9 +2945,9 @@ killMoeSmoke___Q23efx9TPkEffectFv:
 /* 803B8C2C 003B5B6C  7C 08 03 A6 */	mtlr r0
 /* 803B8C30 003B5B70  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8C34 003B5B74  4E 80 00 20 */	blr 
+.endfn killMoeSmoke___Q23efx9TPkEffectFv
 
-.global "createBlackDown___Q23efx9TPkEffectFP10Vector3<f>"
-"createBlackDown___Q23efx9TPkEffectFP10Vector3<f>":
+.fn "createBlackDown___Q23efx9TPkEffectFP10Vector3<f>", global
 /* 803B8C38 003B5B78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8C3C 003B5B7C  7C 08 02 A6 */	mflr r0
 /* 803B8C40 003B5B80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2957,9 +2977,9 @@ killMoeSmoke___Q23efx9TPkEffectFv:
 /* 803B8C9C 003B5BDC  7C 08 03 A6 */	mtlr r0
 /* 803B8CA0 003B5BE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8CA4 003B5BE4  4E 80 00 20 */	blr 
+.endfn "createBlackDown___Q23efx9TPkEffectFP10Vector3<f>"
 
-.global killBlackDown___Q23efx9TPkEffectFv
-killBlackDown___Q23efx9TPkEffectFv:
+.fn killBlackDown___Q23efx9TPkEffectFv, global
 /* 803B8CA8 003B5BE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8CAC 003B5BEC  7C 08 02 A6 */	mflr r0
 /* 803B8CB0 003B5BF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2971,9 +2991,9 @@ killBlackDown___Q23efx9TPkEffectFv:
 /* 803B8CC8 003B5C08  7C 08 03 A6 */	mtlr r0
 /* 803B8CCC 003B5C0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8CD0 003B5C10  4E 80 00 20 */	blr 
+.endfn killBlackDown___Q23efx9TPkEffectFv
 
-.global "createWater___Q23efx9TPkEffectFP10Vector3<f>"
-"createWater___Q23efx9TPkEffectFP10Vector3<f>":
+.fn "createWater___Q23efx9TPkEffectFP10Vector3<f>" global
 /* 803B8CD4 003B5C14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8CD8 003B5C18  7C 08 02 A6 */	mflr r0
 /* 803B8CDC 003B5C1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2999,9 +3019,9 @@ killBlackDown___Q23efx9TPkEffectFv:
 /* 803B8D28 003B5C68  7C 08 03 A6 */	mtlr r0
 /* 803B8D2C 003B5C6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8D30 003B5C70  4E 80 00 20 */	blr 
+.endfn "createWater___Q23efx9TPkEffectFP10Vector3<f>"
 
-.global killWater___Q23efx9TPkEffectFv
-killWater___Q23efx9TPkEffectFv:
+.fn killWater___Q23efx9TPkEffectFv, global
 /* 803B8D34 003B5C74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8D38 003B5C78  7C 08 02 A6 */	mflr r0
 /* 803B8D3C 003B5C7C  38 63 01 1C */	addi r3, r3, 0x11c
@@ -3011,9 +3031,9 @@ killWater___Q23efx9TPkEffectFv:
 /* 803B8D4C 003B5C8C  7C 08 03 A6 */	mtlr r0
 /* 803B8D50 003B5C90  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8D54 003B5C94  4E 80 00 20 */	blr 
+.endfn killWater___Q23efx9TPkEffectFv
 
-.global "createHamonA___Q23efx9TPkEffectFP10Vector3<f>"
-"createHamonA___Q23efx9TPkEffectFP10Vector3<f>":
+.fn "createHamonA___Q23efx9TPkEffectFP10Vector3<f>", global
 /* 803B8D58 003B5C98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8D5C 003B5C9C  7C 08 02 A6 */	mflr r0
 /* 803B8D60 003B5CA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3039,9 +3059,9 @@ killWater___Q23efx9TPkEffectFv:
 /* 803B8DAC 003B5CEC  7C 08 03 A6 */	mtlr r0
 /* 803B8DB0 003B5CF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8DB4 003B5CF4  4E 80 00 20 */	blr 
+.endfn "createHamonA___Q23efx9TPkEffectFP10Vector3<f>"
 
-.global killHamonA___Q23efx9TPkEffectFv
-killHamonA___Q23efx9TPkEffectFv:
+.fn killHamonA___Q23efx9TPkEffectFv, global
 /* 803B8DB8 003B5CF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8DBC 003B5CFC  7C 08 02 A6 */	mflr r0
 /* 803B8DC0 003B5D00  38 63 01 54 */	addi r3, r3, 0x154
@@ -3051,9 +3071,9 @@ killHamonA___Q23efx9TPkEffectFv:
 /* 803B8DD0 003B5D10  7C 08 03 A6 */	mtlr r0
 /* 803B8DD4 003B5D14  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8DD8 003B5D18  4E 80 00 20 */	blr 
+.endfn killHamonA___Q23efx9TPkEffectFv
 
-.global "createHamonB___Q23efx9TPkEffectFP10Vector3<f>"
-"createHamonB___Q23efx9TPkEffectFP10Vector3<f>":
+.fn "createHamonB___Q23efx9TPkEffectFP10Vector3<f>", global
 /* 803B8DDC 003B5D1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8DE0 003B5D20  7C 08 02 A6 */	mflr r0
 /* 803B8DE4 003B5D24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3079,9 +3099,9 @@ killHamonA___Q23efx9TPkEffectFv:
 /* 803B8E30 003B5D70  7C 08 03 A6 */	mtlr r0
 /* 803B8E34 003B5D74  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8E38 003B5D78  4E 80 00 20 */	blr 
+.endfn "createHamonB___Q23efx9TPkEffectFP10Vector3<f>"
 
-.global killHamonB___Q23efx9TPkEffectFv
-killHamonB___Q23efx9TPkEffectFv:
+.fn killHamonB___Q23efx9TPkEffectFv, global
 /* 803B8E3C 003B5D7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8E40 003B5D80  7C 08 02 A6 */	mflr r0
 /* 803B8E44 003B5D84  38 63 01 70 */	addi r3, r3, 0x170
@@ -3091,9 +3111,9 @@ killHamonB___Q23efx9TPkEffectFv:
 /* 803B8E54 003B5D94  7C 08 03 A6 */	mtlr r0
 /* 803B8E58 003B5D98  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8E5C 003B5D9C  4E 80 00 20 */	blr 
+.endfn killHamonB___Q23efx9TPkEffectFv
 
-.global init__Q23efx13TPkEffectTaneFv
-init__Q23efx13TPkEffectTaneFv:
+.fn init__Q23efx13TPkEffectTaneFv, global
 /* 803B8E60 003B5DA0  38 80 FF FF */	li r4, -1
 /* 803B8E64 003B5DA4  38 00 00 00 */	li r0, 0
 /* 803B8E68 003B5DA8  90 83 00 00 */	stw r4, 0(r3)
@@ -3102,9 +3122,9 @@ init__Q23efx13TPkEffectTaneFv:
 /* 803B8E74 003B5DB4  90 03 00 08 */	stw r0, 8(r3)
 /* 803B8E78 003B5DB8  90 03 00 10 */	stw r0, 0x10(r3)
 /* 803B8E7C 003B5DBC  4E 80 00 20 */	blr 
+.endfn init__Q23efx13TPkEffectTaneFv
 
-.global "createTanekira___Q23efx13TPkEffectTaneFP10Vector3<f>"
-"createTanekira___Q23efx13TPkEffectTaneFP10Vector3<f>":
+.fn "createTanekira___Q23efx13TPkEffectTaneFP10Vector3<f>", global
 /* 803B8E80 003B5DC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8E84 003B5DC4  7C 08 02 A6 */	mflr r0
 /* 803B8E88 003B5DC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3130,9 +3150,9 @@ init__Q23efx13TPkEffectTaneFv:
 /* 803B8ED4 003B5E14  7C 08 03 A6 */	mtlr r0
 /* 803B8ED8 003B5E18  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8EDC 003B5E1C  4E 80 00 20 */	blr 
+.endfn "createTanekira___Q23efx13TPkEffectTaneFP10Vector3<f>"
 
-.global killTanekira___Q23efx13TPkEffectTaneFv
-killTanekira___Q23efx13TPkEffectTaneFv:
+.fn killTanekira___Q23efx13TPkEffectTaneFv, global
 /* 803B8EE0 003B5E20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8EE4 003B5E24  7C 08 02 A6 */	mflr r0
 /* 803B8EE8 003B5E28  38 63 00 28 */	addi r3, r3, 0x28
@@ -3142,9 +3162,9 @@ killTanekira___Q23efx13TPkEffectTaneFv:
 /* 803B8EF8 003B5E38  7C 08 03 A6 */	mtlr r0
 /* 803B8EFC 003B5E3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8F00 003B5E40  4E 80 00 20 */	blr 
+.endfn killTanekira___Q23efx13TPkEffectTaneFv
 
-.global "createKourin___Q23efx13TPkEffectTaneFP10Vector3<f>"
-"createKourin___Q23efx13TPkEffectTaneFP10Vector3<f>":
+.fn "createKourin___Q23efx13TPkEffectTaneFP10Vector3<f>", global
 /* 803B8F04 003B5E44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8F08 003B5E48  7C 08 02 A6 */	mflr r0
 /* 803B8F0C 003B5E4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3171,9 +3191,9 @@ killTanekira___Q23efx13TPkEffectTaneFv:
 /* 803B8F5C 003B5E9C  7C 08 03 A6 */	mtlr r0
 /* 803B8F60 003B5EA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8F64 003B5EA4  4E 80 00 20 */	blr 
+.endfn "createKourin___Q23efx13TPkEffectTaneFP10Vector3<f>"
 
-.global killKourin___Q23efx13TPkEffectTaneFv
-killKourin___Q23efx13TPkEffectTaneFv:
+.fn killKourin___Q23efx13TPkEffectTaneFv, global
 /* 803B8F68 003B5EA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8F6C 003B5EAC  7C 08 02 A6 */	mflr r0
 /* 803B8F70 003B5EB0  38 63 00 44 */	addi r3, r3, 0x44
@@ -3183,9 +3203,9 @@ killKourin___Q23efx13TPkEffectTaneFv:
 /* 803B8F80 003B5EC0  7C 08 03 A6 */	mtlr r0
 /* 803B8F84 003B5EC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8F88 003B5EC8  4E 80 00 20 */	blr 
+.endfn killKourin___Q23efx13TPkEffectTaneFv
 
-.global "createGlow1___Q23efx13TPkEffectTaneFP10Vector3<f>"
-"createGlow1___Q23efx13TPkEffectTaneFP10Vector3<f>":
+.fn "createGlow1___Q23efx13TPkEffectTaneFP10Vector3<f>", global
 /* 803B8F8C 003B5ECC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8F90 003B5ED0  7C 08 02 A6 */	mflr r0
 /* 803B8F94 003B5ED4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3215,13 +3235,13 @@ killKourin___Q23efx13TPkEffectTaneFv:
 /* 803B8FF0 003B5F30  7C 08 03 A6 */	mtlr r0
 /* 803B8FF4 003B5F34  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8FF8 003B5F38  4E 80 00 20 */	blr 
+.endfn "createGlow1___Q23efx13TPkEffectTaneFP10Vector3<f>"
 
-.global executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
-executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter:
+.fn executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter, weak
 /* 803B8FFC 003B5F3C  4E 80 00 20 */	blr 
+.endfn executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
 
-.global forceKill__Q23efx7TCursorFv
-forceKill__Q23efx7TCursorFv:
+.fn forceKill__Q23efx7TCursorFv, weak
 /* 803B9000 003B5F40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B9004 003B5F44  7C 08 02 A6 */	mflr r0
 /* 803B9008 003B5F48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3233,38 +3253,39 @@ forceKill__Q23efx7TCursorFv:
 /* 803B9020 003B5F60  7C 08 03 A6 */	mtlr r0
 /* 803B9024 003B5F64  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B9028 003B5F68  4E 80 00 20 */	blr 
+.endfn forceKill__Q23efx7TCursorFv
 
-.global "@4@__dt__Q23efx11TPkNageBlurFv"
-"@4@__dt__Q23efx11TPkNageBlurFv":
+.fn "@4@__dt__Q23efx11TPkNageBlurFv", weak
 /* 803B902C 003B5F6C  38 63 FF FC */	addi r3, r3, -4
 /* 803B9030 003B5F70  4B D8 EC 44 */	b __dt__Q23efx11TPkNageBlurFv
+.endfn "@4@__dt__Q23efx11TPkNageBlurFv"
 
-.global "@4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter"
-"@4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter":
+.fn "@4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter", weak
 /* 803B9034 003B5F74  38 63 FF FC */	addi r3, r3, -4
 /* 803B9038 003B5F78  4B FF FF C4 */	b executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
+.endfn "@4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter"
 
-.global "@4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter"
-"@4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter":
+.fn "@4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter", weak
 /* 803B903C 003B5F7C  38 63 FF FC */	addi r3, r3, -4
 /* 803B9040 003B5F80  4B FF DE C0 */	b execute__Q23efx13TFueactCircleFP14JPABaseEmitter
+.endfn "@4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter"
 
-.global "@4@__dt__Q23efx13TFueactCircleFv"
-"@4@__dt__Q23efx13TFueactCircleFv":
+.fn "@4@__dt__Q23efx13TFueactCircleFv", weak
 /* 803B9044 003B5F84  38 63 FF FC */	addi r3, r3, -4
 /* 803B9048 003B5F88  4B D8 6F 34 */	b __dt__Q23efx13TFueactCircleFv
+.endfn "@4@__dt__Q23efx13TFueactCircleFv"
 
-.global "@8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle"
-"@8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle":
+.fn "@8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle"
 /* 803B904C 003B5F8C  38 63 FF F8 */	addi r3, r3, -8
 /* 803B9050 003B5F90  4B FF DF D4 */	b execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
+.endfn "@8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle"
 
-.global "@8@__dt__Q23efx13TFueactCircleFv"
-"@8@__dt__Q23efx13TFueactCircleFv":
+.fn "@8@__dt__Q23efx13TFueactCircleFv", weak
 /* 803B9054 003B5F94  38 63 FF F8 */	addi r3, r3, -8
 /* 803B9058 003B5F98  4B D8 6F 24 */	b __dt__Q23efx13TFueactCircleFv
+.endfn "@8@__dt__Q23efx13TFueactCircleFv"
 
-.global "@4@__dt__Q23efx15TFueactBiriBaseFv"
-"@4@__dt__Q23efx15TFueactBiriBaseFv":
+.fn "@4@__dt__Q23efx15TFueactBiriBaseFv", weak
 /* 803B905C 003B5F9C  38 63 FF FC */	addi r3, r3, -4
 /* 803B9060 003B5FA0  4B D8 6E 98 */	b __dt__Q23efx15TFueactBiriBaseFv
+.endfn "@4@__dt__Q23efx15TFueactBiriBaseFv"
