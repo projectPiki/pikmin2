@@ -23,32 +23,6 @@ struct DemoInitiator {
 	void numberSet(const char*, const char*, u8);
 	void setDefault(const char*, u8, u32);
 
-	// these likely correspond to inlined functions above
-	inline void assertInitialized(char* buffer, u32* AST_ID)
-	{
-		mAST_ID = AST_ID;
-
-		mSongChosen = false;
-		P2ASSERTLINE(41, isInitialized());
-
-		*mAST_ID = -1;
-		strcpy(buffer, "");
-		*mByte = -1;
-	}
-
-	inline bool isInitialized() { return mByte && mName; }
-
-	inline void SetSongIfNotSet(u32 id, const char* comp)
-	{
-		if (!mSongChosen) {
-			if (strcmp(mName, comp) == 0) {
-				mSongChosen = true;
-				*mAST_ID    = id;
-				*mByte      = -1;
-			}
-		}
-	}
-
 	u8* mByte;         // _00
 	const char* mName; // _04
 	bool mSongChosen;  // _08
