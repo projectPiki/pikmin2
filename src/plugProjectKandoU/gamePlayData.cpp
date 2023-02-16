@@ -5298,11 +5298,8 @@ lbl_801E9F58:
  */
 void PlayData::setPikminCounts_Yesterday()
 {
-	mPikminYesterday[0] = mPikminToday[0];
-	mPikminYesterday[1] = mPikminToday[1];
-	mPikminYesterday[2] = mPikminToday[2];
-	mPikminYesterday[3] = mPikminToday[3];
-	mPikminYesterday[4] = mPikminToday[4];
-	mPikminYesterday[5] = mPikminToday[5];
+	for (int i = 0; i < 6; i++) {
+		mPikminYesterday[i] = mPikminToday[i];
+	}
 }
 } // namespace Game
