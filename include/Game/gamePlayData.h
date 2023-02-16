@@ -82,7 +82,7 @@ enum DemoFlags {
 
 struct CaveSaveData {
 	CaveSaveData();
-	
+
 	void clear();
 
 	void write(Stream&);
@@ -211,9 +211,9 @@ struct PlayData : public CNode {
 	 */
 	struct CaveOtakara {
 		CaveOtakara()
-		: mCaveCount(0)
-		, mOtakaraCountsOld(nullptr)
-		, _08(nullptr)
+		    : mCaveCount(0)
+		    , mOtakaraCountsOld(nullptr)
+		    , _08(nullptr)
 		{
 		}
 

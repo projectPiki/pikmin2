@@ -7,28 +7,6 @@
 #include "System.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483A88
-    lbl_80483A88:
-        .asciz "gamePlayCommonData.cpp"
-        .skip 1
-    .global lbl_80483AA0
-    lbl_80483AA0:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game8Lowscore
-    __vt__Q24Game8Lowscore:
-        .4byte 0
-        .4byte 0
-        .4byte do_higher__Q24Game8LowscoreFii
-        .4byte 0
-*/
-
 namespace Game {
 
 /*
@@ -77,16 +55,14 @@ void PlayChallengeGameData::reset()
 	mFlags = PCGDF_Unset;
 	for (int i = 0; i < mCourseCount; i++) {
 		CourseState* course = &mCourses[i];
-		course->mHighscores[0].clear();
-		course->mHighscores[1].clear();
+		mCourses[i].mHighscores[0].clear(); // probably some form of unrolled loop or inline
+		course->mHighscores[1].clear();     // resetHighScores??
 		course->mFlags.byteView[0] = 0;
 		course->mFlags.byteView[1] = 0;
 	}
-	mCourses[0].mFlags.typeView |= CourseState::CSF_IsOpen;
-	mCourses[1].mFlags.typeView |= CourseState::CSF_IsOpen;
-	mCourses[2].mFlags.typeView |= CourseState::CSF_IsOpen;
-	mCourses[3].mFlags.typeView |= CourseState::CSF_IsOpen;
-	mCourses[4].mFlags.typeView |= CourseState::CSF_IsOpen;
+	for (int i = 0; i < 5; i++) {
+		mCourses[i].mFlags.typeView |= CourseState::CSF_IsOpen;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -158,50 +134,6 @@ void PlayCommonData::write(Stream& output)
 		_08[i]->write(output);
 	}
 	mChallengeData.write(output);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	li       r4, 2
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl       writeInt__6StreamFi
-	mr       r3, r29
-	lbz      r4, 0(r28)
-	bl       writeByte__6StreamFUc
-	li       r30, 0
-	li       r31, 0
-
-lbl_80234384:
-	lwz      r3, 4(r28)
-	mr       r4, r29
-	lwzx     r3, r3, r31
-	bl       write__Q24Game9HighscoreFR6Stream
-	lwz      r3, 8(r28)
-	mr       r4, r29
-	lwzx     r3, r3, r31
-	bl       write__Q24Game9HighscoreFR6Stream
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0x10
-	blt      lbl_80234384
-	mr       r4, r29
-	addi     r3, r28, 0xc
-	bl       write__Q24Game21PlayChallengeGameDataFR6Stream
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -214,7 +146,7 @@ void PlayCommonData::read(Stream& stream)
 {
 	u32 fileInt = stream.readInt();
 	u8 fileByte = stream.readByte();
-	_00 = fileByte;
+	_00         = fileByte;
 	if (fileInt >= 2) {
 		for (int i = 0; i < 0x10; i++) {
 			_04[i]->read(stream);
@@ -387,63 +319,17 @@ bool PlayCommonData::isLouieRescued() { return mChallengeData.mFlags & PlayChall
  */
 bool PlayCommonData::isPerfectChallenge()
 {
-	if ((_00 & 4) == 0) {
-		for (int i = 0; i < mChallengeData.mCourseCount; i++) {
-			u16* state = (u16*) mChallengeData.getState(i);
-			if ((*state & 4) == 0) {
-				return false;
-			}
-		}
-		_00 |= 4;
+	if ((_00 & 4)) {
 		return true;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0(r3)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_80234750
-	li       r3, 1
-	b        lbl_80234798
-
-lbl_80234750:
-	li       r31, 0
-	b        lbl_8023477C
-
-lbl_80234758:
-	mr       r4, r31
-	addi     r3, r30, 0xc
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r0, 0(r3)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	bne      lbl_80234778
-	li       r3, 0
-	b        lbl_80234798
-
-lbl_80234778:
-	addi     r31, r31, 1
-
-lbl_8023477C:
-	lwz      r0, 0xc(r30)
-	cmpw     r31, r0
-	blt      lbl_80234758
-	lbz      r0, 0(r30)
-	li       r3, 1
-	ori      r0, r0, 4
-	stb      r0, 0(r30)
-
-lbl_80234798:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (int i = 0; i < mChallengeData.mCourseCount; i++) {
+		u16* state = (u16*)mChallengeData.getState(i);
+		if ((*state & 4) == 0) {
+			return false;
+		}
+	}
+	_00 |= 4;
+	return true;
 }
 
 /*
@@ -633,16 +519,13 @@ void PlayCommonData::challenge_setOpen(int index)
  */
 void PlayCommonData::challenge_setKunsho(int index)
 {
-	u32 idx = 0;
 	SET_FLAG(challenge_get_CourseState(index)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsKunsho);
-	while (true) {
-		if (!(IS_FLAG(challenge_get_CourseState(index)->mFlags.typeView, 
-			PlayChallengeGameData::CourseState::CSF_IsKunsho))) break;
-		if (mChallengeData.mCourseCount >= idx) {
-			_00 |= 4;
-			return;
+	for (int idx = 0; idx < mChallengeData.mCourseCount; idx++) {
+		if (!(IS_FLAG(challenge_get_CourseState(idx)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsKunsho))) {
+			break;
 		}
 	}
+	_00 |= 4;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -712,28 +595,10 @@ PlayChallengeGameData::PlayChallengeGameData()
 {
 	mCourseCount = CHALLENGE_COURSE_COUNT;
 	mCourses     = new CourseState[mCourseCount];
-	mCourses[0].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
-	mCourses[1].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
-	mCourses[2].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
-	mCourses[3].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
-	mCourses[4].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	for (int i = 0; i < 5; i++) {
+		mCourses[i].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	}
 	mFlags = PlayChallengeGameData::PCGDF_Unset;
-}
-
-/*
- * __ct__Q34Game21PlayChallengeGameData11CourseStateFv
- * --INFO--
- * Address:	80234C8C
- * Size:	000078
- */
-PlayChallengeGameData::CourseState::CourseState()
-    : mFlags()
-    , mHighscores()
-{
-	mHighscores[0].allocate(3);
-	mHighscores[1].allocate(3);
-	mFlags.byteView[0] = 0;
-	mFlags.byteView[1] = 0;
 }
 
 /*
@@ -763,7 +628,7 @@ void PlayChallengeGameData::write(Stream& output)
 	output.writeByte(mFlags);
 	for (int i = 0; i < mCourseCount; i++) {
 		CourseState* state = &mCourses[i];
-		for (int j = 0; j < 2; j++) {
+		for (u32 j = 0; j < 2; j++) {
 			output.writeByte(state->mFlags.byteView[j]);
 		}
 		state->mHighscores[0].write(output);
@@ -829,7 +694,7 @@ void PlayChallengeGameData::read(Stream& input)
 	mFlags = input.readByte();
 	for (int i = 0; i < mCourseCount; i++) {
 		CourseState* state = &mCourses[i];
-		for (int j = 0; j < 2; j++) {
+		for (u32 j = 0; j < 2; j++) {
 			state->mFlags.byteView[j] = input.readByte();
 		}
 		state->mHighscores[0].read(input);
@@ -884,10 +749,4 @@ lbl_80234EC0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80234EE0
- * Size:	000018
- */
-bool Lowscore::do_higher(int a, int b) { return a < b; }
 } // namespace Game

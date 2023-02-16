@@ -27,7 +27,15 @@ struct PlayChallengeGameData {
 			CSF_WasKunsho = 0x20,
 		};
 
-		CourseState();
+		CourseState()
+		    : mFlags()
+		    , mHighscores()
+		{
+			mHighscores[0].allocate(3);
+			mHighscores[1].allocate(3);
+			mFlags.byteView[0] = 0;
+			mFlags.byteView[1] = 0;
+		}
 
 		BitFlag<u16> mFlags;      // _00
 		Highscore mHighscores[2]; // _04

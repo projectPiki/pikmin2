@@ -25,7 +25,7 @@ struct Highscore {
 };
 
 struct Lowscore : public Highscore {
-	virtual bool do_higher(int, int); // _08 (weak)
+	virtual bool do_higher(int a, int b) { return a < b; } // _08 (weak)
 };
 } // namespace Game
 

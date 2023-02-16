@@ -645,7 +645,7 @@ PlayData::PlayData()
 	int items     = PelletList::Mgr::getCount(PelletList::ITEM);
 	int carcasses = PelletList::Mgr::getCount(PelletList::CARCASS);
 
-	mZukanStat             = new PelletFirstMemory(treasures, items, carcasses);
+	mZukanStat      = new PelletFirstMemory(treasures, items, carcasses);
 	mMainCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	mCaveCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	mDemoFlags.create(57, nullptr);
@@ -1301,7 +1301,7 @@ lbl_801E69DC:
  * Address:	801E6A20
  * Size:	000038
  */
-//PlayData::LimitGen::LimitGen() { }
+// PlayData::LimitGen::LimitGen() { }
 
 /*
  * --INFO--
@@ -1350,7 +1350,7 @@ void PlayData::reset()
 	mZukanStat->clear();
 	mTreasureCount = 0;
 	for (int i = 0; i < courseCount; i++) {
-		mGroundOtakaraCollected[i] = 0;
+		mGroundOtakaraCollected[i]    = 0;
 		mGroundOtakaraCollectedOld[i] = 0;
 	}
 	resetContainerFlag();
@@ -1703,7 +1703,7 @@ int PlayData::calcPlayMinutes()
 	OSCalendarTime calendar3;
 
 	OSTime time = OSGetTime(); // mistake?
-	OSTicksToCalendarTime(time , &calendar1);
+	OSTicksToCalendarTime(time, &calendar1);
 	OSTicksToCalendarTime(mOsTime, &calendar2);
 
 	OSTime diff = time - mOsTime;
@@ -2178,13 +2178,13 @@ bool PlayData::isPelletEverGot(Pellet*) { }
 bool PlayData::isPelletEverGot(unsigned char type, unsigned char id)
 {
 	if (type == PELTYPE_UPGRADE) {
-		//bool check = (id < mZukanStat->mCarcass.mNumKinds);
-		//P2ASSERTLINE(330, check);
+		// bool check = (id < mZukanStat->mCarcass.mNumKinds);
+		// P2ASSERTLINE(330, check);
 		u8* kinds = mZukanStat->mItem(id);
 		return (*kinds != 0);
 	} else if (type == PELTYPE_TREASURE) {
-		//bool check = (id < mZukanStat->mCarcass.mNumKinds);
-		//P2ASSERTLINE(330, check);
+		// bool check = (id < mZukanStat->mCarcass.mNumKinds);
+		// P2ASSERTLINE(330, check);
 		u8* kinds = mZukanStat->mOtakara(id);
 		return (*kinds != 0);
 	} else {
@@ -2287,7 +2287,7 @@ bool PlayData::isPelletZukanVisible(int id)
 		int index = config->mParams.mIndex;
 
 		bool check = (index >= 0 && index < mZukanStat->mOtakara.mNumKinds);
-		//P2ASSERTLINE(330, check);
+		// P2ASSERTLINE(330, check);
 
 		u8* kinds = mZukanStat->mOtakara(index);
 		return (*kinds & 2);
@@ -2298,7 +2298,7 @@ bool PlayData::isPelletZukanVisible(int id)
 			int index = config->mParams.mIndex;
 
 			bool check = (index >= 0 && index < mZukanStat->mItem.mNumKinds);
-			//P2ASSERTLINE(330, check);
+			// P2ASSERTLINE(330, check);
 
 			u8* kinds = mZukanStat->mItem(index);
 			return (*kinds & 2);
@@ -2410,7 +2410,7 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 		int index = config->mParams.mIndex;
 
 		bool check = (index >= 0 && index < mZukanStat->mOtakara.mNumKinds);
-		//P2ASSERTLINE(330, check);
+		// P2ASSERTLINE(330, check);
 
 		u8* kinds = mZukanStat->mOtakara(index);
 		return (*kinds & 2 && !(*kinds & 4));
@@ -2421,7 +2421,7 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 			int index = config->mParams.mIndex;
 
 			bool check = (index >= 0 && index < mZukanStat->mItem.mNumKinds);
-			//P2ASSERTLINE(330, check);
+			// P2ASSERTLINE(330, check);
 
 			u8* kinds = mZukanStat->mItem(index);
 			return (*kinds & 2 && !(*kinds & 4));
@@ -4686,16 +4686,16 @@ void CaveSaveData::clear()
 bool PlayData::doneWorldMapEffect()
 {
 	s32 courseCount = stageList->mCourseCount;
-	mPokoCountOld = mPokoCount;
+	mPokoCountOld   = mPokoCount;
 	for (int i = 0; i < courseCount; i++) {
 		mGroundOtakaraCollectedOld[i] = mGroundOtakaraCollected[i];
 	}
-	
+
 	for (int i = 0; i < courseCount; i++) {
 		CaveOtakara* datanew = (CaveOtakara*)mCaveOtakara->mCaveCount + i;
 		CaveOtakara* data    = (CaveOtakara*)mCaveOtakaraOld->mCaveCount + i;
-		data->mCaveCount = datanew->mCaveCount;
-		//s8 caveCount = data->mCaveCount;
+		data->mCaveCount     = datanew->mCaveCount;
+		// s8 caveCount = data->mCaveCount;
 		for (int j = 0; j < datanew->mCaveCount; j++) {
 			data->mOtakaraCountsOld[j] = datanew->mOtakaraCountsOld[j];
 			data->_08[j]               = datanew->_08[j];
