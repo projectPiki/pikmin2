@@ -294,7 +294,7 @@ struct SoundInfo {
 	f32 pitch; // _08
 	union volume_t {
 		unsigned long v1;
-		unsigned char v2[4];
+		unsigned char v2;
 	} volume; // _0C
 };
 

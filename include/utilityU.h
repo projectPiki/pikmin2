@@ -21,7 +21,7 @@
 // 	f32 sCamFov = 0.25f;
 // }
 
-void PSChangeBgm_ChallengeGame();
+void* PSChangeBgm_ChallengeGame();
 void PSCancelToPauseOffMainBgm();
 PSM::ActorDirector_Battle* PSMGetBattleD();
 PSSystem::DirectorBase* PSMGetBattleDirector(u8);
@@ -29,7 +29,7 @@ PSM::ActorDirector_TrackOn* PSMGetBeedamaForLugieD();
 PSM::ActorDirector_TrackOn* PSMGetBeedamaForOrimerD();
 PSM::DamageDirector* PSMGetDamageD();
 PSM::ActorDirector_Scaled* PSMGetEventD();
-PSM::SceneBase* PSMGetGameSceneA();
+PSM::Scene_Game* PSMGetGameSceneA();
 PSM::ActorDirector_Scaled* PSMGetGroundD();
 PSM::ActorDirector_TrackOn* PSMGetIchouForLugieD();
 PSM::ActorDirector_TrackOn* PSMGetIchouForOrimerD();

@@ -24,7 +24,7 @@ struct SceneBase : public PSGame::PikScene {
 
 	virtual ~SceneBase();                       // _0C (weak)
 	virtual void getCamDistVol(u8) = 0;         // _28
-	virtual void getEnvSe();                    // _2C (weak)
+	virtual PSSystem::EnvSeBase* getEnvSe();    // _2C (weak)
 	virtual void getSceneFx();                  // _30
 	virtual bool isDemoScene();                 // _34 (weak)
 	virtual void getSeSceneGate(ObjBase*, u32); // _38 (weak)
@@ -127,7 +127,7 @@ struct Scene_Game : public Scene_Objects {
 	virtual void startMainSeq();              // _1C
 	virtual void stopMainSeq(u32);            // _20
 	virtual void stopAllSound(u32);           // _24
-	virtual void getEnvSe();                  // _2C
+	virtual PSSystem::EnvSeBase* getEnvSe();  // _2C
 	virtual bool isDemoScene();               // _34 (weak)
 	virtual bool isGameScene();               // _40 (weak)
 	virtual void pauseOn_2D(u8, u8);          // _44
@@ -207,7 +207,6 @@ struct Scene_Cave : public Scene_Game {
 
 	// _00      = VTBL
 	// _00-_5C  = Scene_Game
-	u8 _5C[0x4];        // _5C, unknown
 	f32 mSceneFx;       // _60
 	int mPollutUpTimer; // _64
 };
