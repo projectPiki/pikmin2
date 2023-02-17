@@ -504,14 +504,14 @@ void CallBack_LifeGauge::moveIcon()
 	_34 = pikmin2_sinf(_30) * 50.0f;
 	_38 = pikmin2_cosf(_30) * 30.0f;
 
-	f32 temp = (pikmin2_cosf(_30) + 1.0f) / 2.0f;
-	temp     = ((1.0f - temp) * 0.7f + temp);
-	temp     = temp * mScaleMgr->calc();
+	f32 scale = (pikmin2_cosf(_30) + 1.0f) / 2.0f;
+	scale     = ((1.0f - scale) * 0.7f + scale);
+	scale     = scale * mScaleMgr->calc();
 
 	mNa_i->move(mNa_i_d4 - _34, mNa_i_d8 - 30.0f + _38);
-	mLi_i->move(temp * (mLi_i_d4 - mNa_i_d4) + (mNa_i_d4 - _34), (mLi_i_d8 - 30.0f) + _38);
-	mNa_i->updateScale(temp);
-	mLi_i->updateScale(temp);
+	mLi_i->move(scale * (mLi_i_d4 - mNa_i_d4) + (mNa_i_d4 - _34), (mLi_i_d8 - 30.0f) + _38);
+	mNa_i->updateScale(scale);
+	mLi_i->updateScale(scale);
 }
 
 /*
@@ -529,29 +529,30 @@ void CallBack_LifeGauge::update()
 			mPin1->show();
 			mPin2->show();
 			mLowLifeSoundTimer += _58 * sys->mDeltaTime;
-			if (mLowLifeSoundTimer > 1.0f) {
+			if (mLowLifeSoundTimer >= 1.0f) {
 				mLowLifeSoundTimer = 0.0f;
 				if (mNaviLifeRatio > 0.0f && mIsActiveNavi) {
 					ogSound->setLifeDanger();
 				}
 			}
-			f32 timer     = mLowLifeSoundTimer;
-			J2DPane* pane = mPin1;
-			f32 scale     = mLowLifeSoundTimer * 0.5f + 1.0f;
-			pane->rotate((pane->mBounds.f.x - pane->mBounds.i.x) * 0.5f, (pane->mBounds.f.y - pane->mBounds.i.y) * 0.5f, J2DROTATE_Y, 0.0f);
-			pane->updateScale(scale);
-			pane->setAlpha(-(timer * 255.0f - 255.0f));
+			// inline perhaps?
+			f32 timer = mLowLifeSoundTimer;
+			f32 scale = mLowLifeSoundTimer / 2.f + 1.0f;
+			mPin1->rotate((mPin1->mBounds.f.x - mPin1->mBounds.i.x) / 2.f, (mPin1->mBounds.f.y - mPin1->mBounds.i.y) / 2.f, J2DROTATE_Z,
+			              0.0f);
+			mPin1->updateScale(scale);
+			mPin1->setAlpha(-(timer * 255.0f - 255.0f));
 
-			scale = -(_58 * 0.3f - timer);
-			if (scale > 0.0f)
-				scale += 1.0f;
+			f32 timerScale = -(_58 * 0.3f - mLowLifeSoundTimer);
+			if (timerScale < 0.0f)
+				timerScale += 1.0f;
 
-			pane  = mPin2;
-			scale = timer * 0.5f + 1.0f;
-			pane->rotate((pane->mBounds.f.x - pane->mBounds.i.x) * 0.5f, (pane->mBounds.f.y - pane->mBounds.i.y) * 0.5f, J2DROTATE_Y, 0.0f);
-			pane->updateScale(scale);
-			mPin2->setAlpha(-(scale * 255.0f - 255.0f));
-			if (mNaviLifeRatio > 0.0f) {
+			scale = timerScale / 2.f + 1.0f;
+			mPin2->rotate((mPin2->mBounds.f.x - mPin2->mBounds.i.x) / 2.f, (mPin2->mBounds.f.y - mPin2->mBounds.i.y) / 2.f, J2DROTATE_Z,
+			              0.0f);
+			mPin2->updateScale(scale);
+			mPin2->setAlpha(-(timerScale * 255.0f - 255.0f));
+			if (mNaviLifeRatio <= 0.0f) {
 				mNa_i->hide();
 				mLi_i->hide();
 			} else {

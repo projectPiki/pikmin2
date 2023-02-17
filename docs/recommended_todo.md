@@ -171,7 +171,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCallBackPicture.cpp">ogCallBackPicture.cpp</a> | 9482 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogFuriko.cpp">ogFuriko.cpp</a> | 10948 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjCourseName.cpp">ogObjCourseName.cpp</a> | 11177 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 12777 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15259 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogLifeGauge.cpp">ogLifeGauge.cpp</a> | 20725 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15259 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogLifeGauge.cpp">ogLifeGauge.cpp</a> | 20772 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
