@@ -134,13 +134,13 @@ JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetEr
 			becomeCurrentHeap();
 		}
 	}
-	_68 = shouldSetErrorHandlerMaybe;
-	if ((_68 == true) && (JKRHeap::mErrorHandler == nullptr)) {
+	mErrorFlag = shouldSetErrorHandlerMaybe;
+	if ((mErrorFlag == true) && (JKRHeap::mErrorHandler == nullptr)) {
 		JKRHeap::mErrorHandler = JKRDefaultMemoryErrorRoutine;
 	}
 	mFillFlag      = JKRHeap::sDefaultFillFlag;
 	mFillCheckFlag = JKRHeap::sDefaultFillCheckFlag;
-	_69            = 0;
+	mInitFlag      = 0;
 }
 
 /*
