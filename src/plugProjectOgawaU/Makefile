@@ -4,7 +4,7 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogPikminCounter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogAnime.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounter.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogLifeGauge.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogLifeGauge.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSunMeter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCatchPiki.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogContenaCounter.o\

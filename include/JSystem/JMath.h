@@ -32,6 +32,7 @@ struct TAtanTable<1024, f32> {
 	}
 	f32 atan2_(f32, f32) const;
 	f32 atan_(f32) const;
+	f32 atan2Radian(f32 y, f32 x) const { return atan2_(y, x); }
 	f32 mTable[1024];
 };
 
@@ -96,6 +97,9 @@ struct TSinCosTable {
 		return mTable[(int)(((x < 0.0f) ? -x : x) * radsToLUT()) & 0x7FF].second;
 		// return (x < 0.0f) ? mTable[(int)-(x * 325.9493f) % 2048].second : mTable[(int)(x * 325.9493f) % 2048].second;
 	}
+
+	f32 sinShort(s16 v) const { return mTable[static_cast<u16>(v) >> 5].first; }
+	f32 cosShort(s16 v) const { return mTable[static_cast<u16>(v) >> 5].second; }
 
 	/**
 	 * elements are pairs of {sine, cosine}
@@ -185,6 +189,16 @@ void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, f32);
 void JMAVECLerp(const Vec*, const Vec*, Vec*, f32);
 void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
 void JMAMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
+
+inline f32 JMAAbs(f32 input) { return __fabs(input); }
+
+inline f32 JMAAtan2Radian(f32 y, f32 x) { return JMath::atanTable_.atan2Radian(y, x); };
+
+inline f32 JMASCosShort(s16 v) { return JMath::sincosTable_.cosShort(v); }
+inline f32 JMASinShort(s16 v) { return JMath::sincosTable_.sinShort(v); }
+
+inline f32 JMASCos(s16 v) { return JMASCosShort(v); }
+inline f32 JMASSin(s16 v) { return JMASinShort(v); }
 
 inline f32 JMAHermiteInterpolation(register f32 p1, register f32 p2, register f32 p3, register f32 p4, register f32 p5, register f32 p6,
                                    register f32 p7)

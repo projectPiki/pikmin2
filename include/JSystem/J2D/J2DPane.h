@@ -435,27 +435,17 @@ struct J2DScreen : public J2DPane {
 	JUtility::TColor mColor;   // _114
 };
 
-// /** @fabricated */
-// struct J2DColorBox {
-// 	inline J2DColorBox& operator=(const J2DColorBox& other)
-// 	{
-// 		_00 = other._00;
-// 		_04 = other._04;
-// 		_08 = other._08;
-// 		_0C = other._0C;
-// 		return *this;
-// 	}
-// 	JUtility::TColor _00;
-// 	JUtility::TColor _04;
-// 	JUtility::TColor _08;
-// 	JUtility::TColor _0C;
-// };
-
-/** @fabricated */
-typedef JUtility::TColor J2DColorBox[4];
-
 // Size: 0x168
 struct J2DPicture : public J2DPane {
+	struct TCornerColor {
+		TCornerColor() { }
+
+		JUtility::TColor mColor0; // _00
+		JUtility::TColor mColor1; // _00
+		JUtility::TColor mColor2; // _00
+		JUtility::TColor mColor3; // _00
+	};
+
 	J2DPicture();
 	J2DPicture(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive);
 	J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* materials);
@@ -545,58 +535,15 @@ struct J2DPicture : public J2DPane {
 	u8 getTlutID(const ResTIMG*, unsigned char);
 	void operator=(const J2DPicture&);
 
-	inline JUtility::TColor getColor(int i) { return mCornerColors[i]; }
-
-	inline void setColor(JUtility::TColor color, int i) { mCornerColors[i] = color; }
-
-	inline J2DColorBox& setColorBox(u32 color)
+	inline void setCornerColor(TCornerColor colors)
 	{
-		for (int i = 0; i < 4; i++) {
-			mCornerColors[i].set(JUtility::TColor(color));
-		}
-		return mCornerColors;
+		mCornerColors.mColor0.set(colors.mColor0);
+		mCornerColors.mColor1.set(colors.mColor1);
+		mCornerColors.mColor2.set(colors.mColor2);
+		mCornerColors.mColor3.set(colors.mColor3);
 	}
 
-	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
-	// {
-	// 	mCornerColors[0] = a;
-	// 	mCornerColors[1] = b;
-	// 	mCornerColors[2] = c;
-	// 	mCornerColors[3] = d;
-	// 	// return mCornerColors;
-	// }
-	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
-	// {
-	// 	setColor(a, 0);
-	// 	setColor(b, 1);
-	// 	setColor(c, 2);
-	// 	setColor(d, 3);
-	// 	// return mCornerColors;
-	// }
-	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
-	// {
-	// 	setColor(JUtility::TColor(a), 0);
-	// 	setColor(JUtility::TColor(b), 1);
-	// 	setColor(JUtility::TColor(c), 2);
-	// 	setColor(JUtility::TColor(d), 3);
-	// 	// return mCornerColors;
-	// }
-	inline void setCornerColor(JUtility::TColor a, JUtility::TColor b, JUtility::TColor c, JUtility::TColor d)
-	{
-		mCornerColors[0] = a;
-		mCornerColors[1] = b;
-		mCornerColors[2] = c;
-		mCornerColors[3] = d;
-		// return mCornerColors;
-	}
-	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
-	// {
-	// 	mCornerColors[0].set(JUtility::TColor(a));
-	// 	mCornerColors[1].set(JUtility::TColor(b));
-	// 	mCornerColors[2].set(JUtility::TColor(c));
-	// 	mCornerColors[3].set(JUtility::TColor(d));
-	// 	// return mCornerColors;
-	// }
+	inline void getCornerColor(TCornerColor& colors) { colors = mCornerColors; }
 
 	// _000      = VTBL
 	// _000-_100 = J2DPane
@@ -610,7 +557,7 @@ struct J2DPicture : public J2DPane {
 	JUTPalette* mPalette;          // _144
 	JUtility::TColor mWhite;       // _148
 	JUtility::TColor mBlack;       // _14C
-	J2DColorBox mCornerColors;     // _150
+	TCornerColor mCornerColors;    // _150
 	u32 _160;                      // _160, TColor?
 	u32 _164;                      // _164, TColor?
 };
