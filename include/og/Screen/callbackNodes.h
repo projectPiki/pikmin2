@@ -4,8 +4,10 @@
 #include "types.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "og/Screen/ScaleMgr.h"
+#include "og/Screen/AngleMgr.h"
 #include "P2DScreen.h"
 #include "SoundID.h"
+#include "trig.h"
 
 struct LifeGauge;
 
@@ -20,7 +22,6 @@ struct TRenderingProcessor;
 
 namespace og {
 namespace Screen {
-struct AngleMgr;
 struct AnimGroup;
 struct AnimScreen;
 struct DataNavi;
@@ -305,8 +306,8 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 			_0C = 0.4f;
 		}
 
-		u32 _00; // _00, unknown
-		u32 _04; // _04, unknown
+		f32 _00; // _00, unknown
+		f32 _04; // _04, unknown
 		f32 _08; // _08
 		f32 _0C; // _0C
 	} msVal;

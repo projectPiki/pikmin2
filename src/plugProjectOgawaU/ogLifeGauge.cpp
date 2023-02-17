@@ -1,6 +1,5 @@
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/NaviLifeGauge.h"
-#include "og/Screen/AngleMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "og/newScreen/ogUtil.h"
 #include "LifeGaugeMgr.h"
@@ -482,254 +481,37 @@ void CallBack_LifeGauge::moveIcon()
 	}
 
 	u8 cNavi = mIsActiveNavi;
-	if (cNavi == mIsActiveNaviOld) {
-		if (cNavi && mCanNaviChange) {
-			mMoveTimer -= sys->mDeltaTime;
-			if (mMoveTimer < 0.0f) {
-				mCanNaviChange = false;
-				ogSound->setNaviChange(mLifeGaugeType);
-				mScaleMgr->up(0.4f, 30.0f, 0.6f, 0.0f);
-			}
+	if (cNavi != mIsActiveNaviOld) {
+		if (cNavi) {
+			mAngleMgr->init(_30, msVal._08, msVal._0C);
+			mAngleMgr->chase(0.0f, msVal._04);
+			mCanNaviChange = true;
+			mMoveTimer     = msVal._00;
+		} else {
+			mAngleMgr->init(_30, msVal._08, msVal._0C);
+			mAngleMgr->chase(PI, msVal._04);
 		}
-	} else if (!cNavi) {
-		mAngleMgr->init(_30, msVal._08, msVal._0C);
-		mAngleMgr->chase(PI, msVal._04);
-	} else {
-		mAngleMgr->init(_30, msVal._08, msVal._0C);
-		mAngleMgr->chase(0.0f, msVal._04);
-		mCanNaviChange = true;
-		mMoveTimer     = msVal._00;
+	} else if (cNavi && mCanNaviChange) {
+		mMoveTimer -= sys->mDeltaTime;
+		if (mMoveTimer < 0.0f) {
+			mCanNaviChange = false;
+			ogSound->setNaviChange(mLifeGaugeType);
+			mScaleMgr->up(0.4f, 30.0f, 0.6f, 0.0f);
+		}
 	}
+
 	_30 = mAngleMgr->calc();
-	_34 = sinf(_30) * 50.0f;
+	_34 = pikmin2_sinf(_30) * 50.0f;
 	_38 = pikmin2_cosf(_30) * 30.0f;
 
-	f32 temp  = pikmin2_sinf(_30);
-	f32 mod   = (1.0f - temp) * 0.7f + temp;
-	f32 scale = mScaleMgr->calc();
-	scale     = mod * scale;
+	f32 temp = (pikmin2_cosf(_30) + 1.0f) / 2.0f;
+	temp     = ((1.0f - temp) * 0.7f + temp);
+	temp     = temp * mScaleMgr->calc();
 
-	mNa_i->move(mNa_i_d4 - _34, mNa_i_d8 - 30.0f);
-	mLi_i->move(scale * (mLi_i_d4 - mNa_i_d4) + (mNa_i_d4 - _34), (mLi_i_d8 - 30.0f) + _38);
-	mNa_i->updateScale(scale);
-	mLi_i->updateScale(scale);
-
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-stw      r0, 0x44(r1)
-stfd     f31, 0x30(r1)
-psq_st   f31, 56(r1), 0, qr0
-stw      r31, 0x2c(r1)
-mr       r31, r3
-lbz      r0, 0x50(r3)
-stb      r0, 0x51(r3)
-lwz      r3, 0x1c(r3)
-cmplwi   r3, 0
-beq      lbl_803069A8
-lbz      r0, 0x14(r3)
-stb      r0, 0x50(r31)
-
-lbl_803069A8:
-lbz      r3, 0x50(r31)
-lbz      r0, 0x51(r31)
-cmplw    r3, r0
-beq      lbl_80306A44
-cmplwi   r3, 0
-beq      lbl_80306A0C
-lis      r4, msVal__Q32og6Screen18CallBack_LifeGauge@ha
-lwz      r3, 0x88(r31)
-addi     r4, r4, msVal__Q32og6Screen18CallBack_LifeGauge@l
-lfs      f1, 0x30(r31)
-lfs      f2, 8(r4)
-lfs      f3, 0xc(r4)
-bl       init__Q32og6Screen8AngleMgrFfff
-lis      r4, msVal__Q32og6Screen18CallBack_LifeGauge@ha
-lwz      r3, 0x88(r31)
-addi     r4, r4, msVal__Q32og6Screen18CallBack_LifeGauge@l
-lfs      f1, lbl_8051D5B8@sda21(r2)
-lfs      f2, 4(r4)
-bl       chase__Q32og6Screen8AngleMgrFff
-li       r0, 1
-lis      r3, msVal__Q32og6Screen18CallBack_LifeGauge@ha
-stb      r0, 0x94(r31)
-lfs      f0, msVal__Q32og6Screen18CallBack_LifeGauge@l(r3)
-stfs     f0, 0x98(r31)
-b        lbl_80306AA8
-
-lbl_80306A0C:
-lis      r4, msVal__Q32og6Screen18CallBack_LifeGauge@ha
-lwz      r3, 0x88(r31)
-addi     r4, r4, msVal__Q32og6Screen18CallBack_LifeGauge@l
-lfs      f1, 0x30(r31)
-lfs      f2, 8(r4)
-lfs      f3, 0xc(r4)
-bl       init__Q32og6Screen8AngleMgrFfff
-lis      r4, msVal__Q32og6Screen18CallBack_LifeGauge@ha
-lwz      r3, 0x88(r31)
-addi     r4, r4, msVal__Q32og6Screen18CallBack_LifeGauge@l
-lfs      f1, lbl_8051D5C0@sda21(r2)
-lfs      f2, 4(r4)
-bl       chase__Q32og6Screen8AngleMgrFff
-b        lbl_80306AA8
-
-lbl_80306A44:
-cmplwi   r3, 0
-beq      lbl_80306AA8
-lbz      r0, 0x94(r31)
-cmplwi   r0, 0
-beq      lbl_80306AA8
-lwz      r3, sys@sda21(r13)
-lfs      f2, 0x98(r31)
-lfs      f1, 0x54(r3)
-lfs      f0, lbl_8051D5B8@sda21(r2)
-fsubs    f1, f2, f1
-stfs     f1, 0x98(r31)
-lfs      f1, 0x98(r31)
-fcmpo    cr0, f1, f0
-bge      lbl_80306AA8
-li       r0, 0
-stb      r0, 0x94(r31)
-lwz      r3, ogSound__2og@sda21(r13)
-lwz      r4, 0x90(r31)
-bl       setNaviChange__Q22og5SoundFi
-lwz      r3, 0x8c(r31)
-lfs      f1, lbl_8051D5C8@sda21(r2)
-lfs      f2, lbl_8051D5CC@sda21(r2)
-lfs      f3, lbl_8051D5D0@sda21(r2)
-lfs      f4, lbl_8051D5B8@sda21(r2)
-bl       up__Q32og6Screen8ScaleMgrFffff
-
-lbl_80306AA8:
-lwz      r3, 0x88(r31)
-bl       calc__Q32og6Screen8AngleMgrFv
-stfs     f1, 0x30(r31)
-lfs      f0, lbl_8051D5B8@sda21(r2)
-lfs      f2, 0x30(r31)
-lfs      f1, lbl_8051D5D4@sda21(r2)
-fcmpo    cr0, f2, f0
-bge      lbl_80306AF4
-lfs      f0, lbl_8051D5D8@sda21(r2)
-lis      r3, sincosTable___5JMath@ha
-addi     r3, r3, sincosTable___5JMath@l
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r0, 0xc(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f0, r3, r0
-fneg     f0, f0
-b        lbl_80306B18
-
-lbl_80306AF4:
-lfs      f0, lbl_8051D5DC@sda21(r2)
-lis      r3, sincosTable___5JMath@ha
-addi     r3, r3, sincosTable___5JMath@l
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 0x10(r1)
-lwz      r0, 0x14(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f0, r3, r0
-
-lbl_80306B18:
-fmuls    f1, f1, f0
-lfs      f0, lbl_8051D5B8@sda21(r2)
-stfs     f1, 0x34(r31)
-lfs      f2, 0x30(r31)
-fcmpo    cr0, f2, f0
-bge      lbl_80306B34
-fneg     f2, f2
-
-lbl_80306B34:
-lfs      f0, lbl_8051D5DC@sda21(r2)
-lis      r3, sincosTable___5JMath@ha
-addi     r3, r3, sincosTable___5JMath@l
-lfs      f1, lbl_8051D5CC@sda21(r2)
-fmuls    f2, f2, f0
-addi     r4, r3, 4
-lfs      f0, lbl_8051D5B8@sda21(r2)
-fctiwz   f2, f2
-stfd     f2, 0x18(r1)
-lwz      r0, 0x1c(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f2, r4, r0
-fmuls    f1, f1, f2
-stfs     f1, 0x38(r31)
-lfs      f1, 0x30(r31)
-fcmpo    cr0, f1, f0
-bge      lbl_80306B7C
-fneg     f1, f1
-
-lbl_80306B7C:
-lfs      f0, lbl_8051D5DC@sda21(r2)
-lfs      f3, lbl_8051D5B0@sda21(r2)
-fmuls    f2, f1, f0
-lfs      f0, lbl_8051D5C4@sda21(r2)
-lfs      f1, lbl_8051D5E0@sda21(r2)
-lwz      r3, 0x8c(r31)
-fctiwz   f2, f2
-stfd     f2, 0x20(r1)
-lwz      r0, 0x24(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f2, r4, r0
-fadds    f2, f3, f2
-fmuls    f2, f2, f0
-fsubs    f0, f3, f2
-fmadds   f31, f1, f0, f2
-bl       calc__Q32og6Screen8ScaleMgrFv
-lwz      r3, 0x68(r31)
-fmuls    f31, f31, f1
-lfs      f1, 0x40(r31)
-lfs      f0, lbl_8051D5CC@sda21(r2)
-lwz      r12, 0(r3)
-fsubs    f1, f1, f0
-lfs      f0, 0x38(r31)
-lfs      f4, 0x3c(r31)
-lfs      f3, 0x34(r31)
-lwz      r12, 0x10(r12)
-fadds    f2, f1, f0
-fsubs    f1, f4, f3
-mtctr    r12
-bctrl
-lwz      r3, 0x6c(r31)
-lfs      f2, 0x3c(r31)
-lfs      f1, 0x44(r31)
-lfs      f0, 0x34(r31)
-lwz      r12, 0(r3)
-fsubs    f4, f1, f2
-fsubs    f3, f2, f0
-lfs      f2, 0x48(r31)
-lfs      f1, lbl_8051D5CC@sda21(r2)
-lfs      f0, 0x38(r31)
-fsubs    f2, f2, f1
-lwz      r12, 0x10(r12)
-fmadds   f1, f31, f4, f3
-fadds    f2, f2, f0
-mtctr    r12
-bctrl
-lwz      r3, 0x68(r31)
-stfs     f31, 0xcc(r3)
-stfs     f31, 0xd0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x6c(r31)
-stfs     f31, 0xcc(r3)
-stfs     f31, 0xd0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-psq_l    f31, 56(r1), 0, qr0
-lwz      r0, 0x44(r1)
-lfd      f31, 0x30(r1)
-lwz      r31, 0x2c(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	mNa_i->move(mNa_i_d4 - _34, mNa_i_d8 - 30.0f + _38);
+	mLi_i->move(temp * (mLi_i_d4 - mNa_i_d4) + (mNa_i_d4 - _34), (mLi_i_d8 - 30.0f) + _38);
+	mNa_i->updateScale(temp);
+	mLi_i->updateScale(temp);
 }
 
 /*
