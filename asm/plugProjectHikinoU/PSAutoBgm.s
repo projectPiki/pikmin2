@@ -1,13 +1,15 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048FE60:
+.obj lbl_8048FE60, local
 	.asciz "PSAutoBgm.cpp"
+.endobj lbl_8048FE60
 .balign 4
-lbl_8048FE70:
+.obj lbl_8048FE70, local
 	.asciz "P2Assert"
+.endobj lbl_8048FE70
 .balign 4
-lbl_8048FE7C: # Shift-JIS
+.obj lbl_8048FE7C, local # Shift-JIS
 	.4byte 0x8386836A
 	.4byte 0x835D8393
 	.4byte 0x837D8358
@@ -29,18 +31,20 @@ lbl_8048FE7C: # Shift-JIS
 	.4byte 0x977682AA
 	.4byte 0x82A082E8
 	.4byte 0x82DC82B7
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8048FE7C
 .balign 4
-lbl_8048FED4:
+.obj lbl_8048FED4, local
 	.asciz "PSAutoBgm.h"
+.endobj lbl_8048FED4
 .balign 4
-lbl_8048FEE0:
+.obj lbl_8048FEE0, local
 	.asciz "not find(%s)"
+.endobj lbl_8048FEE0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q29PSAutoBgm7AutoBgm
-__vt__Q29PSAutoBgm7AutoBgm:
+.obj __vt__Q29PSAutoBgm7AutoBgm, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29PSAutoBgm7AutoBgmFv
@@ -60,8 +64,8 @@ __vt__Q29PSAutoBgm7AutoBgm:
 	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
 	.4byte newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv
 	.4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
-.global __vt__Q29PSAutoBgm19AutoBgmSeqTrackRoot
-__vt__Q29PSAutoBgm19AutoBgmSeqTrackRoot:
+.endobj __vt__Q29PSAutoBgm7AutoBgm
+.obj __vt__Q29PSAutoBgm19AutoBgmSeqTrackRoot, weak
 	.4byte 0
 	.4byte 0
 	.4byte update__Q28PSSystem12SeqTrackRootFv
@@ -69,13 +73,13 @@ __vt__Q29PSAutoBgm19AutoBgmSeqTrackRoot:
 	.4byte onStopSeq__Q28PSSystem12SeqTrackRootFv
 	.4byte beatUpdate__Q29PSAutoBgm19AutoBgmSeqTrackRootFv
 	.4byte onBeatTop__Q28PSSystem12SeqTrackRootFv
-.global __vt__Q29PSAutoBgm10MeloArrMgr
-__vt__Q29PSAutoBgm10MeloArrMgr:
+.endobj __vt__Q29PSAutoBgm19AutoBgmSeqTrackRoot
+.obj __vt__Q29PSAutoBgm10MeloArrMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29PSAutoBgm10MeloArrMgrFv
-.global __vt__Q29PSAutoBgm12ConductorMgr
-__vt__Q29PSAutoBgm12ConductorMgr:
+.endobj __vt__Q29PSAutoBgm10MeloArrMgr
+.obj __vt__Q29PSAutoBgm12ConductorMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29PSAutoBgm12ConductorMgrFv
@@ -92,8 +96,8 @@ __vt__Q29PSAutoBgm12ConductorMgr:
 	.4byte 0
 	.4byte "@600@28@__dt__Q29PSAutoBgm12ConductorMgrFv"
 	.4byte "@600@28@init__Q210JADUtility11DataMgrNodeFv"
-.global "__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>"
-"__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>":
+.endobj __vt__Q29PSAutoBgm12ConductorMgr
+.obj "__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
@@ -109,29 +113,29 @@ __vt__Q29PSAutoBgm12ConductorMgr:
 	.4byte 0
 	.4byte "@600@28@__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
 	.4byte "@600@28@init__Q210JADUtility11DataMgrNodeFv"
-.global __vt__Q29PSAutoBgm8OffCycle
-__vt__Q29PSAutoBgm8OffCycle:
+.endobj "__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>"
+.obj __vt__Q29PSAutoBgm8OffCycle, weak
 	.4byte 0
 	.4byte 0
 	.4byte play__Q29PSAutoBgm9CycleBaseFP8JASTrack
 	.4byte getCycleType__Q29PSAutoBgm9CycleBaseFv
 	.4byte avoidCheck__Q29PSAutoBgm9CycleBaseFv
-.global __vt__Q29PSAutoBgm7OnCycle
-__vt__Q29PSAutoBgm7OnCycle:
+.endobj __vt__Q29PSAutoBgm8OffCycle
+.obj __vt__Q29PSAutoBgm7OnCycle, global
 	.4byte 0
 	.4byte 0
 	.4byte play__Q29PSAutoBgm7OnCycleFP8JASTrack
 	.4byte getCycleType__Q29PSAutoBgm7OnCycleFv
 	.4byte avoidCheck__Q29PSAutoBgm7OnCycleFv
-.global __vt__Q29PSAutoBgm9CycleBase
-__vt__Q29PSAutoBgm9CycleBase:
+.endobj __vt__Q29PSAutoBgm7OnCycle
+.obj __vt__Q29PSAutoBgm9CycleBase, global
 	.4byte 0
 	.4byte 0
 	.4byte play__Q29PSAutoBgm9CycleBaseFP8JASTrack
 	.4byte getCycleType__Q29PSAutoBgm9CycleBaseFv
 	.4byte avoidCheck__Q29PSAutoBgm9CycleBaseFv
-.global __vt__Q29PSAutoBgm6Module
-__vt__Q29PSAutoBgm6Module:
+.endobj __vt__Q29PSAutoBgm9CycleBase
+.obj __vt__Q29PSAutoBgm6Module, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29PSAutoBgm6ModuleFv
@@ -141,8 +145,8 @@ __vt__Q29PSAutoBgm6Module:
 	.4byte afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
 	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
 	.4byte afterGetFromFree__Q29PSAutoBgm6ModuleFv
-.global __vt__Q29PSAutoBgm5Track
-__vt__Q29PSAutoBgm5Track:
+.endobj __vt__Q29PSAutoBgm6Module
+.obj __vt__Q29PSAutoBgm5Track, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29PSAutoBgm5TrackFv
@@ -153,8 +157,8 @@ __vt__Q29PSAutoBgm5Track:
 	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
 	.4byte afterGetFromFree__Q29PSAutoBgm5TrackFv
 	.4byte "getPrmObjHeap__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
-.global "__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>"
-"__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>":
+.endobj __vt__Q29PSAutoBgm5Track
+.obj "__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
@@ -165,36 +169,36 @@ __vt__Q29PSAutoBgm5Track:
 	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
 	.4byte afterGetFromFree__Q210JADUtility10PrmSetBaseFv
 	.4byte "getPrmObjHeap__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
-.global __vt__Q210JADUtility10StrEditBox
-__vt__Q210JADUtility10StrEditBox:
+.endobj "__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>"
+.obj __vt__Q210JADUtility10StrEditBox, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q210JADUtility10StrEditBoxFv
 	.4byte save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream
 	.4byte load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream
-.global "__vt__Q210JADUtility12PrmSlider<s>"
-"__vt__Q210JADUtility12PrmSlider<s>":
+.endobj __vt__Q210JADUtility10StrEditBox
+.obj "__vt__Q210JADUtility12PrmSlider<s>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility12PrmSlider<s>Fv"
 	.4byte "save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream"
-.global "__vt__Q210JADUtility9PrmHio<s>"
-"__vt__Q210JADUtility9PrmHio<s>":
+.endobj "__vt__Q210JADUtility12PrmSlider<s>"
+.obj "__vt__Q210JADUtility9PrmHio<s>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility9PrmHio<s>Fv"
 	.4byte "save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream"
-.global "__vt__Q210JADUtility6Prm<s>"
-"__vt__Q210JADUtility6Prm<s>":
+.endobj "__vt__Q210JADUtility9PrmHio<s>"
+.obj "__vt__Q210JADUtility6Prm<s>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility6Prm<s>Fv"
 	.4byte "save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream"
-.global __vt__Q29PSAutoBgm9Conductor
-__vt__Q29PSAutoBgm9Conductor:
+.endobj "__vt__Q210JADUtility6Prm<s>"
+.obj __vt__Q29PSAutoBgm9Conductor, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29PSAutoBgm9ConductorFv
@@ -205,8 +209,8 @@ __vt__Q29PSAutoBgm9Conductor:
 	.4byte getEraseLink__Q29PSAutoBgm9ConductorFv
 	.4byte afterGetFromFree__Q210JADUtility10PrmSetBaseFv
 	.4byte "getPrmObjHeap__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
-.global "__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>"
-"__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>":
+.endobj __vt__Q29PSAutoBgm9Conductor
+.obj "__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
@@ -217,63 +221,67 @@ __vt__Q29PSAutoBgm9Conductor:
 	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
 	.4byte afterGetFromFree__Q210JADUtility10PrmSetBaseFv
 	.4byte "getPrmObjHeap__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
-.global "__vt__Q210JADUtility18PrmRadioButton<Uc>"
-"__vt__Q210JADUtility18PrmRadioButton<Uc>":
+.endobj "__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>"
+.obj "__vt__Q210JADUtility18PrmRadioButton<Uc>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility18PrmRadioButton<Uc>Fv"
 	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
-.global "__vt__Q210JADUtility13PrmSlider<Uc>"
-"__vt__Q210JADUtility13PrmSlider<Uc>":
+.endobj "__vt__Q210JADUtility18PrmRadioButton<Uc>"
+.obj "__vt__Q210JADUtility13PrmSlider<Uc>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility13PrmSlider<Uc>Fv"
 	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
-.global "__vt__Q210JADUtility10PrmHio<Uc>"
-"__vt__Q210JADUtility10PrmHio<Uc>":
+.endobj "__vt__Q210JADUtility13PrmSlider<Uc>"
+.obj "__vt__Q210JADUtility10PrmHio<Uc>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility10PrmHio<Uc>Fv"
 	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
-.global "__vt__Q210JADUtility7Prm<Uc>"
-"__vt__Q210JADUtility7Prm<Uc>":
+.endobj "__vt__Q210JADUtility10PrmHio<Uc>"
+.obj "__vt__Q210JADUtility7Prm<Uc>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q210JADUtility7Prm<Uc>Fv"
 	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
+.endobj "__vt__Q210JADUtility7Prm<Uc>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sHeap__Q29PSAutoBgm12ConductorMgr
-sHeap__Q29PSAutoBgm12ConductorMgr:
+.obj sHeap__Q29PSAutoBgm12ConductorMgr, global
 	.skip 0x4
-.global sInstance__Q29PSAutoBgm15ConductorArcMgr
-sInstance__Q29PSAutoBgm15ConductorArcMgr:
+.endobj sHeap__Q29PSAutoBgm12ConductorMgr
+.obj sInstance__Q29PSAutoBgm15ConductorArcMgr, global
 	.skip 0x4
+.endobj sInstance__Q29PSAutoBgm15ConductorArcMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E160:
+.obj lbl_8051E160, local
 	.asciz "\0"
+.endobj lbl_8051E160
 .balign 4
-lbl_8051E164:
+.obj lbl_8051E164, local
 	.float 127.0
-lbl_8051E168:
+.endobj lbl_8051E164
+.obj lbl_8051E168, local
 	.float 0.0
-lbl_8051E16C:
+.endobj lbl_8051E168
+.obj lbl_8051E16C, local
 	.float 1.0
+.endobj lbl_8051E16C
 .balign 8
-lbl_8051E170:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_8051E170, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051E170
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "__dt__Q210JADUtility18PrmRadioButton<Uc>Fv"
-"__dt__Q210JADUtility18PrmRadioButton<Uc>Fv":
+.fn "__dt__Q210JADUtility18PrmRadioButton<Uc>Fv", weak
 /* 80338DB4 00335CF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338DB8 00335CF8  7C 08 02 A6 */	mflr r0
 /* 80338DBC 00335CFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -319,9 +327,9 @@ lbl_8051E170:
 /* 80338E50 00335D90  7C 08 03 A6 */	mtlr r0
 /* 80338E54 00335D94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338E58 00335D98  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility18PrmRadioButton<Uc>Fv"
 
-.global "__dt__Q210JADUtility13PrmSlider<Uc>Fv"
-"__dt__Q210JADUtility13PrmSlider<Uc>Fv":
+.fn "__dt__Q210JADUtility13PrmSlider<Uc>Fv", weak
 /* 80338E5C 00335D9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338E60 00335DA0  7C 08 02 A6 */	mflr r0
 /* 80338E64 00335DA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -367,9 +375,9 @@ lbl_8051E170:
 /* 80338EF8 00335E38  7C 08 03 A6 */	mtlr r0
 /* 80338EFC 00335E3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338F00 00335E40  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility13PrmSlider<Uc>Fv"
 
-.global "__dt__Q210JADUtility10PrmHio<Uc>Fv"
-"__dt__Q210JADUtility10PrmHio<Uc>Fv":
+.fn "__dt__Q210JADUtility10PrmHio<Uc>Fv", weak
 /* 80338F04 00335E44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338F08 00335E48  7C 08 02 A6 */	mflr r0
 /* 80338F0C 00335E4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -411,9 +419,9 @@ lbl_8051E170:
 /* 80338F90 00335ED0  7C 08 03 A6 */	mtlr r0
 /* 80338F94 00335ED4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338F98 00335ED8  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility10PrmHio<Uc>Fv"
 
-.global "__dt__Q210JADUtility7Prm<Uc>Fv"
-"__dt__Q210JADUtility7Prm<Uc>Fv":
+.fn "__dt__Q210JADUtility7Prm<Uc>Fv", weak
 /* 80338F9C 00335EDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338FA0 00335EE0  7C 08 02 A6 */	mflr r0
 /* 80338FA4 00335EE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -451,9 +459,9 @@ lbl_8051E170:
 /* 80339018 00335F58  7C 08 03 A6 */	mtlr r0
 /* 8033901C 00335F5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80339020 00335F60  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility7Prm<Uc>Fv"
 
-.global __dt__Q29PSAutoBgm9ConductorFv
-__dt__Q29PSAutoBgm9ConductorFv:
+.fn __dt__Q29PSAutoBgm9ConductorFv, global
 /* 80339024 00335F64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80339028 00335F68  7C 08 02 A6 */	mflr r0
 /* 8033902C 00335F6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -637,9 +645,9 @@ __dt__Q29PSAutoBgm9ConductorFv:
 /* 803392A8 003361E8  7C 08 03 A6 */	mtlr r0
 /* 803392AC 003361EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803392B0 003361F0  4E 80 00 20 */	blr 
+.endfn __dt__Q29PSAutoBgm9ConductorFv
 
-.global removeCallback__Q29PSAutoBgm9ConductorFUcPv
-removeCallback__Q29PSAutoBgm9ConductorFUcPv:
+.fn removeCallback__Q29PSAutoBgm9ConductorFUcPv, global
 /* 803392B4 003361F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803392B8 003361F8  7C 08 02 A6 */	mflr r0
 /* 803392BC 003361FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -653,9 +661,9 @@ removeCallback__Q29PSAutoBgm9ConductorFUcPv:
 /* 803392DC 0033621C  7C 08 03 A6 */	mtlr r0
 /* 803392E0 00336220  38 21 00 10 */	addi r1, r1, 0x10
 /* 803392E4 00336224  4E 80 00 20 */	blr 
+.endfn removeCallback__Q29PSAutoBgm9ConductorFUcPv
 
-.global seqCpuSync_AutoBgm__Q29PSAutoBgm9ConductorFP8JASTrackUsUlP8JASTrack
-seqCpuSync_AutoBgm__Q29PSAutoBgm9ConductorFP8JASTrackUsUlP8JASTrack:
+.fn seqCpuSync_AutoBgm__Q29PSAutoBgm9ConductorFP8JASTrackUsUlP8JASTrack, global
 /* 803392E8 00336228  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803392EC 0033622C  7C 08 02 A6 */	mflr r0
 /* 803392F0 00336230  90 01 00 24 */	stw r0, 0x24(r1)
@@ -734,9 +742,9 @@ seqCpuSync_AutoBgm__Q29PSAutoBgm9ConductorFP8JASTrackUsUlP8JASTrack:
 /* 803393F8 00336338  7C 08 03 A6 */	mtlr r0
 /* 803393FC 0033633C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80339400 00336340  4E 80 00 20 */	blr 
+.endfn seqCpuSync_AutoBgm__Q29PSAutoBgm9ConductorFP8JASTrackUsUlP8JASTrack
 
-.global createTables__Q29PSAutoBgm9ConductorFP8JASTrack
-createTables__Q29PSAutoBgm9ConductorFP8JASTrack:
+.fn createTables__Q29PSAutoBgm9ConductorFP8JASTrack, global
 /* 80339404 00336344  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80339408 00336348  7C 08 02 A6 */	mflr r0
 /* 8033940C 0033634C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -800,9 +808,9 @@ createTables__Q29PSAutoBgm9ConductorFP8JASTrack:
 /* 803394EC 0033642C  7C 08 03 A6 */	mtlr r0
 /* 803394F0 00336430  38 21 00 20 */	addi r1, r1, 0x20
 /* 803394F4 00336434  4E 80 00 20 */	blr 
+.endfn createTables__Q29PSAutoBgm9ConductorFP8JASTrack
 
-.global __ct__Q29PSAutoBgm5TrackFv
-__ct__Q29PSAutoBgm5TrackFv:
+.fn __ct__Q29PSAutoBgm5TrackFv, global
 /* 803394F8 00336438  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803394FC 0033643C  7C 08 02 A6 */	mflr r0
 /* 80339500 00336440  90 01 00 24 */	stw r0, 0x24(r1)
@@ -972,9 +980,9 @@ __ct__Q29PSAutoBgm5TrackFv:
 /* 80339790 003366D0  7C 08 03 A6 */	mtlr r0
 /* 80339794 003366D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80339798 003366D8  4E 80 00 20 */	blr 
+.endfn __ct__Q29PSAutoBgm5TrackFv
 
-.global afterGetFromFree__Q29PSAutoBgm5TrackFv
-afterGetFromFree__Q29PSAutoBgm5TrackFv:
+.fn afterGetFromFree__Q29PSAutoBgm5TrackFv, global
 /* 8033979C 003366DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803397A0 003366E0  7C 08 02 A6 */	mflr r0
 /* 803397A4 003366E4  38 82 FE 00 */	addi r4, r2, lbl_8051E160@sda21
@@ -990,9 +998,9 @@ afterGetFromFree__Q29PSAutoBgm5TrackFv:
 /* 803397CC 0033670C  7C 08 03 A6 */	mtlr r0
 /* 803397D0 00336710  38 21 00 10 */	addi r1, r1, 0x10
 /* 803397D4 00336714  4E 80 00 20 */	blr 
+.endfn afterGetFromFree__Q29PSAutoBgm5TrackFv
 
-.global __dt__Q29PSAutoBgm5TrackFv
-__dt__Q29PSAutoBgm5TrackFv:
+.fn __dt__Q29PSAutoBgm5TrackFv, global
 /* 803397D8 00336718  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803397DC 0033671C  7C 08 02 A6 */	mflr r0
 /* 803397E0 00336720  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1264,9 +1272,9 @@ __dt__Q29PSAutoBgm5TrackFv:
 /* 80339BA8 00336AE8  7C 08 03 A6 */	mtlr r0
 /* 80339BAC 00336AEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80339BB0 00336AF0  4E 80 00 20 */	blr 
+.endfn __dt__Q29PSAutoBgm5TrackFv
 
-.global removeCallback__Q29PSAutoBgm5TrackFUcPv
-removeCallback__Q29PSAutoBgm5TrackFUcPv:
+.fn removeCallback__Q29PSAutoBgm5TrackFUcPv, global
 /* 80339BB4 00336AF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80339BB8 00336AF8  7C 08 02 A6 */	mflr r0
 /* 80339BBC 00336AFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1282,9 +1290,9 @@ removeCallback__Q29PSAutoBgm5TrackFUcPv:
 /* 80339BE4 00336B24  7C 08 03 A6 */	mtlr r0
 /* 80339BE8 00336B28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80339BEC 00336B2C  4E 80 00 20 */	blr 
+.endfn removeCallback__Q29PSAutoBgm5TrackFUcPv
 
-.global seqCpuSync_AutoBgm_Track__Q29PSAutoBgm5TrackFP8JASTrackUsUlP8JASTrack
-seqCpuSync_AutoBgm_Track__Q29PSAutoBgm5TrackFP8JASTrackUsUlP8JASTrack:
+.fn seqCpuSync_AutoBgm_Track__Q29PSAutoBgm5TrackFP8JASTrackUsUlP8JASTrack, global
 /* 80339BF0 00336B30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80339BF4 00336B34  7C 08 02 A6 */	mflr r0
 /* 80339BF8 00336B38  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1407,9 +1415,9 @@ seqCpuSync_AutoBgm_Track__Q29PSAutoBgm5TrackFP8JASTrackUsUlP8JASTrack:
 /* 80339D9C 00336CDC  7C 08 03 A6 */	mtlr r0
 /* 80339DA0 00336CE0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80339DA4 00336CE4  4E 80 00 20 */	blr 
+.endfn seqCpuSync_AutoBgm_Track__Q29PSAutoBgm5TrackFP8JASTrackUsUlP8JASTrack
 
-.global incCurModule__Q29PSAutoBgm5TrackFv
-incCurModule__Q29PSAutoBgm5TrackFv:
+.fn incCurModule__Q29PSAutoBgm5TrackFv, global
 /* 80339DA8 00336CE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80339DAC 00336CEC  7C 08 02 A6 */	mflr r0
 /* 80339DB0 00336CF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1436,9 +1444,9 @@ incCurModule__Q29PSAutoBgm5TrackFv:
 /* 80339DFC 00336D3C  7C 08 03 A6 */	mtlr r0
 /* 80339E00 00336D40  38 21 00 10 */	addi r1, r1, 0x10
 /* 80339E04 00336D44  4E 80 00 20 */	blr 
+.endfn incCurModule__Q29PSAutoBgm5TrackFv
 
-.global afterGetFromFree__Q29PSAutoBgm6ModuleFv
-afterGetFromFree__Q29PSAutoBgm6ModuleFv:
+.fn afterGetFromFree__Q29PSAutoBgm6ModuleFv, global
 /* 80339E08 00336D48  38 A0 00 40 */	li r5, 0x40
 /* 80339E0C 00336D4C  38 80 00 00 */	li r4, 0
 /* 80339E10 00336D50  B0 A3 00 C0 */	sth r5, 0xc0(r3)
@@ -1460,9 +1468,9 @@ afterGetFromFree__Q29PSAutoBgm6ModuleFv:
 /* 80339E50 00336D90  98 83 02 A0 */	stb r4, 0x2a0(r3)
 /* 80339E54 00336D94  98 83 02 C0 */	stb r4, 0x2c0(r3)
 /* 80339E58 00336D98  4E 80 00 20 */	blr 
+.endfn afterGetFromFree__Q29PSAutoBgm6ModuleFv
 
-.global __ct__Q29PSAutoBgm6ModuleFv
-__ct__Q29PSAutoBgm6ModuleFv:
+.fn __ct__Q29PSAutoBgm6ModuleFv, global
 /* 80339E5C 00336D9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80339E60 00336DA0  7C 08 02 A6 */	mflr r0
 /* 80339E64 00336DA4  38 80 00 01 */	li r4, 1
@@ -1806,9 +1814,9 @@ __ct__Q29PSAutoBgm6ModuleFv:
 /* 8033A3A4 003372E4  7C 08 03 A6 */	mtlr r0
 /* 8033A3A8 003372E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033A3AC 003372EC  4E 80 00 20 */	blr 
+.endfn __ct__Q29PSAutoBgm6ModuleFv
 
-.global __dt__Q29PSAutoBgm6ModuleFv
-__dt__Q29PSAutoBgm6ModuleFv:
+.fn __dt__Q29PSAutoBgm6ModuleFv, global
 /* 8033A3B0 003372F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033A3B4 003372F4  7C 08 02 A6 */	mflr r0
 /* 8033A3B8 003372F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2305,9 +2313,9 @@ __dt__Q29PSAutoBgm6ModuleFv:
 /* 8033AAD0 00337A10  7C 08 03 A6 */	mtlr r0
 /* 8033AAD4 00337A14  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033AAD8 00337A18  4E 80 00 20 */	blr 
+.endfn __dt__Q29PSAutoBgm6ModuleFv
 
-.global removeCallback__Q29PSAutoBgm6ModuleFUcPv
-removeCallback__Q29PSAutoBgm6ModuleFUcPv:
+.fn removeCallback__Q29PSAutoBgm6ModuleFUcPv, global
 /* 8033AADC 00337A1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033AAE0 00337A20  7C 08 02 A6 */	mflr r0
 /* 8033AAE4 00337A24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2325,9 +2333,9 @@ removeCallback__Q29PSAutoBgm6ModuleFUcPv:
 /* 8033AB14 00337A54  7C 08 03 A6 */	mtlr r0
 /* 8033AB18 00337A58  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033AB1C 00337A5C  4E 80 00 20 */	blr 
+.endfn removeCallback__Q29PSAutoBgm6ModuleFUcPv
 
-.global seqCpuSync_AutoBgm_Module__Q29PSAutoBgm6ModuleFP8JASTrackUsUlP8JASTrack
-seqCpuSync_AutoBgm_Module__Q29PSAutoBgm6ModuleFP8JASTrackUsUlP8JASTrack:
+.fn seqCpuSync_AutoBgm_Module__Q29PSAutoBgm6ModuleFP8JASTrackUsUlP8JASTrack, global
 /* 8033AB20 00337A60  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8033AB24 00337A64  7C 08 02 A6 */	mflr r0
 /* 8033AB28 00337A68  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2474,9 +2482,9 @@ seqCpuSync_AutoBgm_Module__Q29PSAutoBgm6ModuleFP8JASTrackUsUlP8JASTrack:
 /* 8033AD2C 00337C6C  7C 08 03 A6 */	mtlr r0
 /* 8033AD30 00337C70  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033AD34 00337C74  4E 80 00 20 */	blr 
+.endfn seqCpuSync_AutoBgm_Module__Q29PSAutoBgm6ModuleFP8JASTrackUsUlP8JASTrack
 
-.global setTableAddress__Q29PSAutoBgm6ModuleFP8JASTrack
-setTableAddress__Q29PSAutoBgm6ModuleFP8JASTrack:
+.fn setTableAddress__Q29PSAutoBgm6ModuleFP8JASTrack, global
 /* 8033AD38 00337C78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033AD3C 00337C7C  7C 08 02 A6 */	mflr r0
 /* 8033AD40 00337C80  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2594,9 +2602,9 @@ setTableAddress__Q29PSAutoBgm6ModuleFP8JASTrack:
 /* 8033AEE8 00337E28  7C 08 03 A6 */	mtlr r0
 /* 8033AEEC 00337E2C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033AEF0 00337E30  4E 80 00 20 */	blr 
+.endfn setTableAddress__Q29PSAutoBgm6ModuleFP8JASTrack
 
-.global cycleLoop__Q29PSAutoBgm6ModuleFP8JASTrack
-cycleLoop__Q29PSAutoBgm6ModuleFP8JASTrack:
+.fn cycleLoop__Q29PSAutoBgm6ModuleFP8JASTrack, global
 /* 8033AEF4 00337E34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033AEF8 00337E38  7C 08 02 A6 */	mflr r0
 /* 8033AEFC 00337E3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2691,16 +2699,16 @@ cycleLoop__Q29PSAutoBgm6ModuleFP8JASTrack:
 /* 8033B03C 00337F7C  7C 08 03 A6 */	mtlr r0
 /* 8033B040 00337F80  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033B044 00337F84  4E 80 00 20 */	blr 
+.endfn cycleLoop__Q29PSAutoBgm6ModuleFP8JASTrack
 
-.global cycleTop__Q29PSAutoBgm9CycleBaseFP8JASTrack
-cycleTop__Q29PSAutoBgm9CycleBaseFP8JASTrack:
+.fn cycleTop__Q29PSAutoBgm9CycleBaseFP8JASTrack, global
 /* 8033B048 00337F88  38 00 00 00 */	li r0, 0
 /* 8033B04C 00337F8C  98 03 00 3C */	stb r0, 0x3c(r3)
 /* 8033B050 00337F90  38 60 00 00 */	li r3, 0
 /* 8033B054 00337F94  4E 80 00 20 */	blr 
+.endfn cycleTop__Q29PSAutoBgm9CycleBaseFP8JASTrack
 
-.global play__Q29PSAutoBgm9CycleBaseFP8JASTrack
-play__Q29PSAutoBgm9CycleBaseFP8JASTrack:
+.fn play__Q29PSAutoBgm9CycleBaseFP8JASTrack, global
 /* 8033B058 00337F98  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8033B05C 00337F9C  7C 08 02 A6 */	mflr r0
 /* 8033B060 00337FA0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2819,9 +2827,9 @@ play__Q29PSAutoBgm9CycleBaseFP8JASTrack:
 /* 8033B208 00338148  7C 08 03 A6 */	mtlr r0
 /* 8033B20C 0033814C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033B210 00338150  4E 80 00 20 */	blr 
+.endfn play__Q29PSAutoBgm9CycleBaseFP8JASTrack
 
-.global checkCloser__Q29PSAutoBgm9CycleBaseFP8JASTrack
-checkCloser__Q29PSAutoBgm9CycleBaseFP8JASTrack:
+.fn checkCloser__Q29PSAutoBgm9CycleBaseFP8JASTrack, global
 /* 8033B214 00338154  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033B218 00338158  7C 08 02 A6 */	mflr r0
 /* 8033B21C 0033815C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2855,9 +2863,9 @@ checkCloser__Q29PSAutoBgm9CycleBaseFP8JASTrack:
 /* 8033B280 003381C0  7C 08 03 A6 */	mtlr r0
 /* 8033B284 003381C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033B288 003381C8  4E 80 00 20 */	blr 
+.endfn checkCloser__Q29PSAutoBgm9CycleBaseFP8JASTrack
 
-.global __ct__Q29PSAutoBgm7OnCycleFPQ29PSAutoBgm6Module
-__ct__Q29PSAutoBgm7OnCycleFPQ29PSAutoBgm6Module:
+.fn __ct__Q29PSAutoBgm7OnCycleFPQ29PSAutoBgm6Module, global
 /* 8033B28C 003381CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033B290 003381D0  7C 08 02 A6 */	mflr r0
 /* 8033B294 003381D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2958,9 +2966,9 @@ __ct__Q29PSAutoBgm7OnCycleFPQ29PSAutoBgm6Module:
 /* 8033B404 00338344  7C 08 03 A6 */	mtlr r0
 /* 8033B408 00338348  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033B40C 0033834C  4E 80 00 20 */	blr 
+.endfn __ct__Q29PSAutoBgm7OnCycleFPQ29PSAutoBgm6Module
 
-.global "__dt__Q29PSAutoBgm11PrmLink<Us>Fv"
-"__dt__Q29PSAutoBgm11PrmLink<Us>Fv":
+.fn "__dt__Q29PSAutoBgm11PrmLink<Us>Fv", weak
 /* 8033B410 00338350  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033B414 00338354  7C 08 02 A6 */	mflr r0
 /* 8033B418 00338358  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2985,9 +2993,9 @@ __ct__Q29PSAutoBgm7OnCycleFPQ29PSAutoBgm6Module:
 /* 8033B45C 0033839C  7C 08 03 A6 */	mtlr r0
 /* 8033B460 003383A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033B464 003383A4  4E 80 00 20 */	blr 
+.endfn "__dt__Q29PSAutoBgm11PrmLink<Us>Fv"
 
-.global play__Q29PSAutoBgm7OnCycleFP8JASTrack
-play__Q29PSAutoBgm7OnCycleFP8JASTrack:
+.fn play__Q29PSAutoBgm7OnCycleFP8JASTrack, global
 /* 8033B468 003383A8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8033B46C 003383AC  7C 08 02 A6 */	mflr r0
 /* 8033B470 003383B0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3220,9 +3228,9 @@ play__Q29PSAutoBgm7OnCycleFP8JASTrack:
 /* 8033B7BC 003386FC  7C 08 03 A6 */	mtlr r0
 /* 8033B7C0 00338700  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033B7C4 00338704  4E 80 00 20 */	blr 
+.endfn play__Q29PSAutoBgm7OnCycleFP8JASTrack
 
-.global setTip__Q29PSAutoBgm7OnCycleFP8JASTrack
-setTip__Q29PSAutoBgm7OnCycleFP8JASTrack:
+.fn setTip__Q29PSAutoBgm7OnCycleFP8JASTrack, global
 /* 8033B7C8 00338708  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8033B7CC 0033870C  7C 08 02 A6 */	mflr r0
 /* 8033B7D0 00338710  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3389,9 +3397,9 @@ setTip__Q29PSAutoBgm7OnCycleFP8JASTrack:
 /* 8033BA30 00338970  7C 08 03 A6 */	mtlr r0
 /* 8033BA34 00338974  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033BA38 00338978  4E 80 00 20 */	blr 
+.endfn setTip__Q29PSAutoBgm7OnCycleFP8JASTrack
 
-.global historiesAreSameAll__Q29PSAutoBgm7OnCycleFv
-historiesAreSameAll__Q29PSAutoBgm7OnCycleFv:
+.fn historiesAreSameAll__Q29PSAutoBgm7OnCycleFv, global
 /* 8033BA3C 0033897C  80 83 00 58 */	lwz r4, 0x58(r3)
 /* 8033BA40 00338980  A0 03 00 60 */	lhz r0, 0x60(r3)
 /* 8033BA44 00338984  7C 04 00 40 */	cmplw r4, r0
@@ -3419,9 +3427,9 @@ historiesAreSameAll__Q29PSAutoBgm7OnCycleFv:
 /* 8033BA8C 003389CC  28 05 00 00 */	cmplwi r5, 0
 /* 8033BA90 003389D0  40 82 FF DC */	bne .L_8033BA6C
 /* 8033BA94 003389D4  4E 80 00 20 */	blr 
+.endfn historiesAreSameAll__Q29PSAutoBgm7OnCycleFv
 
-.global avoidCheck__Q29PSAutoBgm7OnCycleFv
-avoidCheck__Q29PSAutoBgm7OnCycleFv:
+.fn avoidCheck__Q29PSAutoBgm7OnCycleFv, global
 /* 8033BA98 003389D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033BA9C 003389DC  7C 08 02 A6 */	mflr r0
 /* 8033BAA0 003389E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3472,9 +3480,9 @@ avoidCheck__Q29PSAutoBgm7OnCycleFv:
 /* 8033BB48 00338A88  7C 08 03 A6 */	mtlr r0
 /* 8033BB4C 00338A8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033BB50 00338A90  4E 80 00 20 */	blr 
+.endfn avoidCheck__Q29PSAutoBgm7OnCycleFv
 
-.global __ct__Q29PSAutoBgm8OffCycleFPQ29PSAutoBgm6Module
-__ct__Q29PSAutoBgm8OffCycleFPQ29PSAutoBgm6Module:
+.fn __ct__Q29PSAutoBgm8OffCycleFPQ29PSAutoBgm6Module, global
 /* 8033BB54 00338A94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033BB58 00338A98  7C 08 02 A6 */	mflr r0
 /* 8033BB5C 00338A9C  3C A0 80 4E */	lis r5, __vt__Q29PSAutoBgm9CycleBase@ha
@@ -3519,9 +3527,9 @@ __ct__Q29PSAutoBgm8OffCycleFPQ29PSAutoBgm6Module:
 /* 8033BBF8 00338B38  7C 08 03 A6 */	mtlr r0
 /* 8033BBFC 00338B3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033BC00 00338B40  4E 80 00 20 */	blr 
+.endfn __ct__Q29PSAutoBgm8OffCycleFPQ29PSAutoBgm6Module
 
-.global __ct__Q29PSAutoBgm7AutoBgmFPCcPCcRCQ27JAInter9SoundInfoQ210JADUtility10AccessModePQ28PSSystem15DirectorMgrBase
-__ct__Q29PSAutoBgm7AutoBgmFPCcPCcRCQ27JAInter9SoundInfoQ210JADUtility10AccessModePQ28PSSystem15DirectorMgrBase:
+.fn __ct__Q29PSAutoBgm7AutoBgmFPCcPCcRCQ27JAInter9SoundInfoQ210JADUtility10AccessModePQ28PSSystem15DirectorMgrBase, global
 /* 8033BC04 00338B44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033BC08 00338B48  7C 08 02 A6 */	mflr r0
 /* 8033BC0C 00338B4C  3C E0 80 49 */	lis r7, lbl_8048FE60@ha
@@ -3611,9 +3619,9 @@ __ct__Q29PSAutoBgm7AutoBgmFPCcPCcRCQ27JAInter9SoundInfoQ210JADUtility10AccessMod
 /* 8033BD54 00338C94  7C 08 03 A6 */	mtlr r0
 /* 8033BD58 00338C98  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033BD5C 00338C9C  4E 80 00 20 */	blr 
+.endfn __ct__Q29PSAutoBgm7AutoBgmFPCcPCcRCQ27JAInter9SoundInfoQ210JADUtility10AccessModePQ28PSSystem15DirectorMgrBase
 
-.global __dt__Q29PSAutoBgm10MeloArrMgrFv
-__dt__Q29PSAutoBgm10MeloArrMgrFv:
+.fn __dt__Q29PSAutoBgm10MeloArrMgrFv, weak
 /* 8033BD60 00338CA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033BD64 00338CA4  7C 08 02 A6 */	mflr r0
 /* 8033BD68 00338CA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3646,9 +3654,9 @@ __dt__Q29PSAutoBgm10MeloArrMgrFv:
 /* 8033BDCC 00338D0C  7C 08 03 A6 */	mtlr r0
 /* 8033BDD0 00338D10  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033BDD4 00338D14  4E 80 00 20 */	blr 
+.endfn __dt__Q29PSAutoBgm10MeloArrMgrFv
 
-.global __dt__Q29PSAutoBgm12ConductorMgrFv
-__dt__Q29PSAutoBgm12ConductorMgrFv:
+.fn __dt__Q29PSAutoBgm12ConductorMgrFv, weak
 /* 8033BDD8 00338D18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033BDDC 00338D1C  7C 08 02 A6 */	mflr r0
 /* 8033BDE0 00338D20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3739,9 +3747,9 @@ __dt__Q29PSAutoBgm12ConductorMgrFv:
 /* 8033BF20 00338E60  7C 08 03 A6 */	mtlr r0
 /* 8033BF24 00338E64  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033BF28 00338E68  4E 80 00 20 */	blr 
+.endfn __dt__Q29PSAutoBgm12ConductorMgrFv
 
-.global "__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
-"__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv":
+.fn "__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv", weak
 /* 8033BF2C 00338E6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033BF30 00338E70  7C 08 02 A6 */	mflr r0
 /* 8033BF34 00338E74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3822,9 +3830,9 @@ __dt__Q29PSAutoBgm12ConductorMgrFv:
 /* 8033C04C 00338F8C  7C 08 03 A6 */	mtlr r0
 /* 8033C050 00338F90  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033C054 00338F94  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
 
-.global startSeq__Q29PSAutoBgm7AutoBgmFv
-startSeq__Q29PSAutoBgm7AutoBgmFv:
+.fn startSeq__Q29PSAutoBgm7AutoBgmFv, global
 /* 8033C058 00338F98  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8033C05C 00338F9C  7C 08 02 A6 */	mflr r0
 /* 8033C060 00338FA0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3915,9 +3923,9 @@ startSeq__Q29PSAutoBgm7AutoBgmFv:
 /* 8033C19C 003390DC  7C 08 03 A6 */	mtlr r0
 /* 8033C1A0 003390E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 8033C1A4 003390E4  4E 80 00 20 */	blr 
+.endfn startSeq__Q29PSAutoBgm7AutoBgmFv
 
-.global scene1st__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker
-scene1st__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker:
+.fn scene1st__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker, global
 /* 8033C1A8 003390E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C1AC 003390EC  7C 08 02 A6 */	mflr r0
 /* 8033C1B0 003390F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3935,9 +3943,9 @@ scene1st__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker:
 /* 8033C1E0 00339120  7C 08 03 A6 */	mtlr r0
 /* 8033C1E4 00339124  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033C1E8 00339128  4E 80 00 20 */	blr 
+.endfn scene1st__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker
 
-.global loadConductor__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker
-loadConductor__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker:
+.fn loadConductor__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker, global
 /* 8033C1EC 0033912C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033C1F0 00339130  7C 08 02 A6 */	mflr r0
 /* 8033C1F4 00339134  3C A0 80 49 */	lis r5, lbl_8048FE60@ha
@@ -4042,9 +4050,9 @@ loadConductor__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker:
 /* 8033C360 003392A0  7C 08 03 A6 */	mtlr r0
 /* 8033C364 003392A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033C368 003392A8  4E 80 00 20 */	blr 
+.endfn loadConductor__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker
 
-.global loadedCallback__Q29PSAutoBgm7AutoBgmFUlUl
-loadedCallback__Q29PSAutoBgm7AutoBgmFUlUl:
+.fn loadedCallback__Q29PSAutoBgm7AutoBgmFUlUl, global
 /* 8033C36C 003392AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C370 003392B0  7C 08 02 A6 */	mflr r0
 /* 8033C374 003392B4  7C 65 1B 78 */	mr r5, r3
@@ -4075,9 +4083,9 @@ loadedCallback__Q29PSAutoBgm7AutoBgmFUlUl:
 /* 8033C3D4 00339314  7C 08 03 A6 */	mtlr r0
 /* 8033C3D8 00339318  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033C3DC 0033931C  4E 80 00 20 */	blr 
+.endfn loadedCallback__Q29PSAutoBgm7AutoBgmFUlUl
 
-.global pauseOn__Q29PSAutoBgm7AutoBgmFQ38PSSystem7SeqBase9PauseMode
-pauseOn__Q29PSAutoBgm7AutoBgmFQ38PSSystem7SeqBase9PauseMode:
+.fn pauseOn__Q29PSAutoBgm7AutoBgmFQ38PSSystem7SeqBase9PauseMode, global
 /* 8033C3E0 00339320  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033C3E4 00339324  7C 08 02 A6 */	mflr r0
 /* 8033C3E8 00339328  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4180,9 +4188,9 @@ pauseOn__Q29PSAutoBgm7AutoBgmFQ38PSSystem7SeqBase9PauseMode:
 /* 8033C53C 0033947C  7C 08 03 A6 */	mtlr r0
 /* 8033C540 00339480  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033C544 00339484  4E 80 00 20 */	blr 
+.endfn pauseOn__Q29PSAutoBgm7AutoBgmFQ38PSSystem7SeqBase9PauseMode
 
-.global pauseOff__Q29PSAutoBgm7AutoBgmFv
-pauseOff__Q29PSAutoBgm7AutoBgmFv:
+.fn pauseOff__Q29PSAutoBgm7AutoBgmFv, global
 /* 8033C548 00339488  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C54C 0033948C  7C 08 02 A6 */	mflr r0
 /* 8033C550 00339490  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4191,9 +4199,9 @@ pauseOff__Q29PSAutoBgm7AutoBgmFv:
 /* 8033C55C 0033949C  7C 08 03 A6 */	mtlr r0
 /* 8033C560 003394A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033C564 003394A4  4E 80 00 20 */	blr 
+.endfn pauseOff__Q29PSAutoBgm7AutoBgmFv
 
-.global "__dt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
-"__dt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv":
+.fn "__dt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv", weak
 /* 8033C568 003394A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C56C 003394AC  7C 08 02 A6 */	mflr r0
 /* 8033C570 003394B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4308,9 +4316,9 @@ pauseOff__Q29PSAutoBgm7AutoBgmFv:
 /* 8033C6EC 0033962C  7C 08 03 A6 */	mtlr r0
 /* 8033C6F0 00339630  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033C6F4 00339634  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
 
-.global __dt__Q210JADUtility10StrEditBoxFv
-__dt__Q210JADUtility10StrEditBoxFv:
+.fn __dt__Q210JADUtility10StrEditBoxFv, weak
 /* 8033C6F8 00339638  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C6FC 0033963C  7C 08 02 A6 */	mflr r0
 /* 8033C700 00339640  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4363,9 +4371,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033C7B0 003396F0  7C 08 03 A6 */	mtlr r0
 /* 8033C7B4 003396F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033C7B8 003396F8  4E 80 00 20 */	blr 
+.endfn __dt__Q210JADUtility10StrEditBoxFv
 
-.global "__dt__Q210JADUtility12PrmSlider<s>Fv"
-"__dt__Q210JADUtility12PrmSlider<s>Fv":
+.fn "__dt__Q210JADUtility12PrmSlider<s>Fv", weak
 /* 8033C7BC 003396FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C7C0 00339700  7C 08 02 A6 */	mflr r0
 /* 8033C7C4 00339704  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4411,9 +4419,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033C858 00339798  7C 08 03 A6 */	mtlr r0
 /* 8033C85C 0033979C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033C860 003397A0  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility12PrmSlider<s>Fv"
 
-.global "__dt__Q210JADUtility9PrmHio<s>Fv"
-"__dt__Q210JADUtility9PrmHio<s>Fv":
+.fn "__dt__Q210JADUtility9PrmHio<s>Fv", weak
 /* 8033C864 003397A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C868 003397A8  7C 08 02 A6 */	mflr r0
 /* 8033C86C 003397AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4455,9 +4463,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033C8F0 00339830  7C 08 03 A6 */	mtlr r0
 /* 8033C8F4 00339834  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033C8F8 00339838  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility9PrmHio<s>Fv"
 
-.global "__dt__Q210JADUtility6Prm<s>Fv"
-"__dt__Q210JADUtility6Prm<s>Fv":
+.fn "__dt__Q210JADUtility6Prm<s>Fv", weak
 /* 8033C8FC 0033983C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C900 00339840  7C 08 02 A6 */	mflr r0
 /* 8033C904 00339844  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4495,9 +4503,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033C978 003398B8  7C 08 03 A6 */	mtlr r0
 /* 8033C97C 003398BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033C980 003398C0  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility6Prm<s>Fv"
 
-.global "__dt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
-"__dt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv":
+.fn "__dt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv", weak
 /* 8033C984 003398C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C988 003398C8  7C 08 02 A6 */	mflr r0
 /* 8033C98C 003398CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4612,29 +4620,29 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033CB08 00339A48  7C 08 03 A6 */	mtlr r0
 /* 8033CB0C 00339A4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033CB10 00339A50  4E 80 00 20 */	blr 
+.endfn "__dt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
 
-.global "getChildNum__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
-"getChildNum__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv":
+.fn "getChildNum__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv", weak
 /* 8033CB14 00339A54  88 63 00 94 */	lbz r3, 0x94(r3)
 /* 8033CB18 00339A58  4E 80 00 20 */	blr 
+.endfn "getChildNum__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
 
-.global "getPrmObjHeap__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
-"getPrmObjHeap__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv":
+.fn "getPrmObjHeap__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv", weak
 /* 8033CB1C 00339A5C  38 60 00 00 */	li r3, 0
 /* 8033CB20 00339A60  4E 80 00 20 */	blr 
+.endfn "getPrmObjHeap__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
 
-.global "getChildNum__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
-"getChildNum__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv":
+.fn "getChildNum__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv", weak
 /* 8033CB24 00339A64  88 63 00 94 */	lbz r3, 0x94(r3)
 /* 8033CB28 00339A68  4E 80 00 20 */	blr 
+.endfn "getChildNum__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
 
-.global "getPrmObjHeap__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
-"getPrmObjHeap__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv":
+.fn "getPrmObjHeap__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv", weak
 /* 8033CB2C 00339A6C  38 60 00 00 */	li r3, 0
 /* 8033CB30 00339A70  4E 80 00 20 */	blr 
+.endfn "getPrmObjHeap__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
 
-.global "save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream"
-"save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream":
+.fn "save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream", weak
 /* 8033CB34 00339A74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033CB38 00339A78  7C 08 02 A6 */	mflr r0
 /* 8033CB3C 00339A7C  38 A0 00 02 */	li r5, 2
@@ -4673,9 +4681,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033CBB8 00339AF8  7C 08 03 A6 */	mtlr r0
 /* 8033CBBC 00339AFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033CBC0 00339B00  4E 80 00 20 */	blr 
+.endfn "save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream"
 
-.global "load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream"
-"load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream":
+.fn "load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream", weak
 /* 8033CBC4 00339B04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033CBC8 00339B08  7C 08 02 A6 */	mflr r0
 /* 8033CBCC 00339B0C  38 A0 00 02 */	li r5, 2
@@ -4702,9 +4710,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033CC1C 00339B5C  7C 08 03 A6 */	mtlr r0
 /* 8033CC20 00339B60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033CC24 00339B64  4E 80 00 20 */	blr 
+.endfn "load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream"
 
-.global "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
-"save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream":
+.fn "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream", weak
 /* 8033CC28 00339B68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033CC2C 00339B6C  7C 08 02 A6 */	mflr r0
 /* 8033CC30 00339B70  38 A0 00 01 */	li r5, 1
@@ -4743,9 +4751,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033CCAC 00339BEC  7C 08 03 A6 */	mtlr r0
 /* 8033CCB0 00339BF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033CCB4 00339BF4  4E 80 00 20 */	blr 
+.endfn "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
 
-.global "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
-"load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream":
+.fn "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream", weak
 /* 8033CCB8 00339BF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033CCBC 00339BFC  7C 08 02 A6 */	mflr r0
 /* 8033CCC0 00339C00  38 A0 00 01 */	li r5, 1
@@ -4772,9 +4780,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033CD10 00339C50  7C 08 03 A6 */	mtlr r0
 /* 8033CD14 00339C54  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033CD18 00339C58  4E 80 00 20 */	blr 
+.endfn "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
 
-.global "getChild__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FUc"
-"getChild__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FUc":
+.fn "getChild__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FUc", weak
 /* 8033CD1C 00339C5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033CD20 00339C60  7C 08 02 A6 */	mflr r0
 /* 8033CD24 00339C64  38 63 00 2C */	addi r3, r3, 0x2c
@@ -4792,9 +4800,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033CD4C 00339C8C  7C 08 03 A6 */	mtlr r0
 /* 8033CD50 00339C90  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033CD54 00339C94  4E 80 00 20 */	blr 
+.endfn "getChild__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FUc"
 
-.global "load__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FR20JSUMemoryInputStream"
-"load__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FR20JSUMemoryInputStream":
+.fn "load__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FR20JSUMemoryInputStream", weak
 /* 8033CD58 00339C98  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033CD5C 00339C9C  7C 08 02 A6 */	mflr r0
 /* 8033CD60 00339CA0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4869,9 +4877,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033CE60 00339DA0  7C 08 03 A6 */	mtlr r0
 /* 8033CE64 00339DA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033CE68 00339DA8  4E 80 00 20 */	blr 
+.endfn "load__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FR20JSUMemoryInputStream"
 
-.global "__ct__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
-"__ct__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv":
+.fn "__ct__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv", weak
 /* 8033CE6C 00339DAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033CE70 00339DB0  7C 08 02 A6 */	mflr r0
 /* 8033CE74 00339DB4  38 80 00 01 */	li r4, 1
@@ -4908,9 +4916,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033CEF0 00339E30  7C 08 03 A6 */	mtlr r0
 /* 8033CEF4 00339E34  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033CEF8 00339E38  4E 80 00 20 */	blr 
+.endfn "__ct__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
 
-.global "getChild__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FUc"
-"getChild__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FUc":
+.fn "getChild__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FUc", weak
 /* 8033CEFC 00339E3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033CF00 00339E40  7C 08 02 A6 */	mflr r0
 /* 8033CF04 00339E44  38 63 00 2C */	addi r3, r3, 0x2c
@@ -4928,9 +4936,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033CF2C 00339E6C  7C 08 03 A6 */	mtlr r0
 /* 8033CF30 00339E70  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033CF34 00339E74  4E 80 00 20 */	blr 
+.endfn "getChild__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FUc"
 
-.global "load__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FR20JSUMemoryInputStream"
-"load__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FR20JSUMemoryInputStream":
+.fn "load__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FR20JSUMemoryInputStream", weak
 /* 8033CF38 00339E78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033CF3C 00339E7C  7C 08 02 A6 */	mflr r0
 /* 8033CF40 00339E80  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5005,9 +5013,9 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033D040 00339F80  7C 08 03 A6 */	mtlr r0
 /* 8033D044 00339F84  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033D048 00339F88  4E 80 00 20 */	blr 
+.endfn "load__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FR20JSUMemoryInputStream"
 
-.global "__ct__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
-"__ct__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv":
+.fn "__ct__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv", weak
 /* 8033D04C 00339F8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033D050 00339F90  7C 08 02 A6 */	mflr r0
 /* 8033D054 00339F94  38 80 00 01 */	li r4, 1
@@ -5044,19 +5052,19 @@ __dt__Q210JADUtility10StrEditBoxFv:
 /* 8033D0D0 0033A010  7C 08 03 A6 */	mtlr r0
 /* 8033D0D4 0033A014  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033D0D8 0033A018  4E 80 00 20 */	blr 
+.endfn "__ct__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
 
-.global avoidCheck__Q29PSAutoBgm9CycleBaseFv
-avoidCheck__Q29PSAutoBgm9CycleBaseFv:
+.fn avoidCheck__Q29PSAutoBgm9CycleBaseFv, weak
 /* 8033D0DC 0033A01C  38 60 00 00 */	li r3, 0
 /* 8033D0E0 0033A020  4E 80 00 20 */	blr 
+.endfn avoidCheck__Q29PSAutoBgm9CycleBaseFv
 
-.global getCycleType__Q29PSAutoBgm9CycleBaseFv
-getCycleType__Q29PSAutoBgm9CycleBaseFv:
+.fn getCycleType__Q29PSAutoBgm9CycleBaseFv, weak
 /* 8033D0E4 0033A024  38 60 00 01 */	li r3, 1
 /* 8033D0E8 0033A028  4E 80 00 20 */	blr 
+.endfn getCycleType__Q29PSAutoBgm9CycleBaseFv
 
-.global "__ct__Q29PSAutoBgm11PrmLink<Us>Fv"
-"__ct__Q29PSAutoBgm11PrmLink<Us>Fv":
+.fn "__ct__Q29PSAutoBgm11PrmLink<Us>Fv", weak
 /* 8033D0EC 0033A02C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033D0F0 0033A030  7C 08 02 A6 */	mflr r0
 /* 8033D0F4 0033A034  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5070,9 +5078,9 @@ getCycleType__Q29PSAutoBgm9CycleBaseFv:
 /* 8033D114 0033A054  7C 08 03 A6 */	mtlr r0
 /* 8033D118 0033A058  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033D11C 0033A05C  4E 80 00 20 */	blr 
+.endfn "__ct__Q29PSAutoBgm11PrmLink<Us>Fv"
 
-.global __dt__Q29PSAutoBgm7AutoBgmFv
-__dt__Q29PSAutoBgm7AutoBgmFv:
+.fn __dt__Q29PSAutoBgm7AutoBgmFv, weak
 /* 8033D120 0033A060  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033D124 0033A064  7C 08 02 A6 */	mflr r0
 /* 8033D128 0033A068  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5194,14 +5202,14 @@ __dt__Q29PSAutoBgm7AutoBgmFv:
 /* 8033D2D8 0033A218  7C 08 03 A6 */	mtlr r0
 /* 8033D2DC 0033A21C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033D2E0 0033A220  4E 80 00 20 */	blr 
+.endfn __dt__Q29PSAutoBgm7AutoBgmFv
 
-.global getCastType__Q29PSAutoBgm7AutoBgmFv
-getCastType__Q29PSAutoBgm7AutoBgmFv:
+.fn getCastType__Q29PSAutoBgm7AutoBgmFv, weak
 /* 8033D2E4 0033A224  38 60 00 03 */	li r3, 3
 /* 8033D2E8 0033A228  4E 80 00 20 */	blr 
+.endfn getCastType__Q29PSAutoBgm7AutoBgmFv
 
-.global newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv
-newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv:
+.fn newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv, weak
 /* 8033D2EC 0033A22C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033D2F0 0033A230  7C 08 02 A6 */	mflr r0
 /* 8033D2F4 0033A234  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5238,9 +5246,9 @@ newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv:
 /* 8033D368 0033A2A8  7C 08 03 A6 */	mtlr r0
 /* 8033D36C 0033A2AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033D370 0033A2B0  4E 80 00 20 */	blr 
+.endfn newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv
 
-.global beatUpdate__Q29PSAutoBgm19AutoBgmSeqTrackRootFv
-beatUpdate__Q29PSAutoBgm19AutoBgmSeqTrackRootFv:
+.fn beatUpdate__Q29PSAutoBgm19AutoBgmSeqTrackRootFv, weak
 /* 8033D374 0033A2B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033D378 0033A2B8  7C 08 02 A6 */	mflr r0
 /* 8033D37C 0033A2BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5299,38 +5307,38 @@ beatUpdate__Q29PSAutoBgm19AutoBgmSeqTrackRootFv:
 /* 8033D438 0033A378  7C 08 03 A6 */	mtlr r0
 /* 8033D43C 0033A37C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033D440 0033A380  4E 80 00 20 */	blr 
+.endfn beatUpdate__Q29PSAutoBgm19AutoBgmSeqTrackRootFv
 
-.global getSaveTempHeap__Q29PSAutoBgm12ConductorMgrFv
-getSaveTempHeap__Q29PSAutoBgm12ConductorMgrFv:
+.fn getSaveTempHeap__Q29PSAutoBgm12ConductorMgrFv, weak
 /* 8033D444 0033A384  80 6D 98 68 */	lwz r3, sHeap__Q29PSAutoBgm12ConductorMgr@sda21(r13)
 /* 8033D448 0033A388  4E 80 00 20 */	blr 
+.endfn getSaveTempHeap__Q29PSAutoBgm12ConductorMgrFv
 
-.global getObjHeap__Q29PSAutoBgm12ConductorMgrFv
-getObjHeap__Q29PSAutoBgm12ConductorMgrFv:
+.fn getObjHeap__Q29PSAutoBgm12ConductorMgrFv, weak
 /* 8033D44C 0033A38C  80 6D 98 68 */	lwz r3, sHeap__Q29PSAutoBgm12ConductorMgr@sda21(r13)
 /* 8033D450 0033A390  4E 80 00 20 */	blr 
+.endfn getObjHeap__Q29PSAutoBgm12ConductorMgrFv
 
-.global getDataHeap__Q29PSAutoBgm12ConductorMgrFv
-getDataHeap__Q29PSAutoBgm12ConductorMgrFv:
+.fn getDataHeap__Q29PSAutoBgm12ConductorMgrFv, weak
 /* 8033D454 0033A394  80 6D 98 68 */	lwz r3, sHeap__Q29PSAutoBgm12ConductorMgr@sda21(r13)
 /* 8033D458 0033A398  4E 80 00 20 */	blr 
+.endfn getDataHeap__Q29PSAutoBgm12ConductorMgrFv
 
-.global getCycleType__Q29PSAutoBgm7OnCycleFv
-getCycleType__Q29PSAutoBgm7OnCycleFv:
+.fn getCycleType__Q29PSAutoBgm7OnCycleFv, weak
 /* 8033D45C 0033A39C  38 60 00 00 */	li r3, 0
 /* 8033D460 0033A3A0  4E 80 00 20 */	blr 
+.endfn getCycleType__Q29PSAutoBgm7OnCycleFv
 
-.global getEraseLink__Q29PSAutoBgm9ConductorFv
-getEraseLink__Q29PSAutoBgm9ConductorFv:
+.fn getEraseLink__Q29PSAutoBgm9ConductorFv, weak
 /* 8033D464 0033A3A4  38 63 00 98 */	addi r3, r3, 0x98
 /* 8033D468 0033A3A8  4E 80 00 20 */	blr 
+.endfn getEraseLink__Q29PSAutoBgm9ConductorFv
 
-.global onBeatTop__Q28PSSystem12SeqTrackRootFv
-onBeatTop__Q28PSSystem12SeqTrackRootFv:
+.fn onBeatTop__Q28PSSystem12SeqTrackRootFv, weak
 /* 8033D46C 0033A3AC  4E 80 00 20 */	blr 
+.endfn onBeatTop__Q28PSSystem12SeqTrackRootFv
 
-.global "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
-"initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv":
+.fn "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv", weak
 /* 8033D470 0033A3B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033D474 0033A3B4  7C 08 02 A6 */	mflr r0
 /* 8033D478 0033A3B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5439,9 +5447,9 @@ onBeatTop__Q28PSSystem12SeqTrackRootFv:
 /* 8033D608 0033A548  7C 08 03 A6 */	mtlr r0
 /* 8033D60C 0033A54C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033D610 0033A550  4E 80 00 20 */	blr 
+.endfn "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
 
-.global "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>FPvl"
-"initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>FPvl":
+.fn "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>FPvl", weak
 /* 8033D614 0033A554  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8033D618 0033A558  7C 08 02 A6 */	mflr r0
 /* 8033D61C 0033A55C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -5502,27 +5510,28 @@ onBeatTop__Q28PSSystem12SeqTrackRootFv:
 /* 8033D6F0 0033A630  7C 08 03 A6 */	mtlr r0
 /* 8033D6F4 0033A634  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033D6F8 0033A638  4E 80 00 20 */	blr 
+.endfn "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>FPvl"
 
-.global "@600@28@__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
-"@600@28@__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv":
+.fn "@600@28@__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv", weak
 /* 8033D6FC 0033A63C  39 60 00 1C */	li r11, 0x1c
 /* 8033D700 0033A640  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8033D704 0033A644  7C 63 5A 14 */	add r3, r3, r11
 /* 8033D708 0033A648  38 63 FD A8 */	addi r3, r3, -600
 /* 8033D70C 0033A64C  4B FF E8 20 */	b "__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
+.endfn "@600@28@__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
 
-.global "@600@28@init__Q210JADUtility11DataMgrNodeFv"
-"@600@28@init__Q210JADUtility11DataMgrNodeFv":
+.fn "@600@28@init__Q210JADUtility11DataMgrNodeFv", weak
 /* 8033D710 0033A650  39 60 00 1C */	li r11, 0x1c
 /* 8033D714 0033A654  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8033D718 0033A658  7C 63 5A 14 */	add r3, r3, r11
 /* 8033D71C 0033A65C  38 63 FD A8 */	addi r3, r3, -600
 /* 8033D720 0033A660  4B D7 DA 78 */	b init__Q210JADUtility11DataMgrNodeFv
+.endfn "@600@28@init__Q210JADUtility11DataMgrNodeFv"
 
-.global "@600@28@__dt__Q29PSAutoBgm12ConductorMgrFv"
-"@600@28@__dt__Q29PSAutoBgm12ConductorMgrFv":
+.fn "@600@28@__dt__Q29PSAutoBgm12ConductorMgrFv", weak
 /* 8033D724 0033A664  39 60 00 1C */	li r11, 0x1c
 /* 8033D728 0033A668  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8033D72C 0033A66C  7C 63 5A 14 */	add r3, r3, r11
 /* 8033D730 0033A670  38 63 FD A8 */	addi r3, r3, -600
 /* 8033D734 0033A674  4B FF E6 A4 */	b __dt__Q29PSAutoBgm12ConductorMgrFv
+.endfn "@600@28@__dt__Q29PSAutoBgm12ConductorMgrFv"

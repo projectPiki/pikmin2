@@ -1,45 +1,54 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048F848:
+.obj lbl_8048F848, local
 	.asciz "PSSeq.cpp"
+.endobj lbl_8048F848
 .balign 4
-lbl_8048F854:
+.obj lbl_8048F854, local
 	.asciz "P2Assert"
+.endobj lbl_8048F854
 .balign 4
-lbl_8048F860:
+.obj lbl_8048F860, local
 	.asciz "endoffile"
+.endobj lbl_8048F860
 .balign 4
-lbl_8048F86C:
+.obj lbl_8048F86C, local
 	.asciz "seq list\nnot find\n(%s)\n"
+.endobj lbl_8048F86C
 .balign 4
-lbl_8048F884:
+.obj lbl_8048F884, local
 	.asciz "stream list\nnot find\n(id=%d)\n"
+.endobj lbl_8048F884
 .balign 4
-lbl_8048F8A4:
+.obj lbl_8048F8A4, local
 	.asciz "SeqBase::loadSeqAsync() fault loading sequence"
+.endobj lbl_8048F8A4
 .balign 4
-lbl_8048F8D4:
+.obj lbl_8048F8D4, local
 	.asciz "not find(%s)"
+.endobj lbl_8048F8D4
 .balign 4
-lbl_8048F8E4:
+.obj lbl_8048F8E4, local
 	.asciz "seq not played"
+.endobj lbl_8048F8E4
 .balign 4
-lbl_8048F8F4:
+.obj lbl_8048F8F4, local
 	.asciz "PSSystemIF.h"
+.endobj lbl_8048F8F4
 .balign 4
-lbl_8048F904:
+.obj lbl_8048F904, local
 	.asciz "PSDirector.h"
+.endobj lbl_8048F904
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q28PSSystem6SeqMgr
-__vt__Q28PSSystem6SeqMgr:
+.obj __vt__Q28PSSystem6SeqMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem6SeqMgrFv
-.global __vt__Q28PSSystem10JumpBgmSeq
-__vt__Q28PSSystem10JumpBgmSeq:
+.endobj __vt__Q28PSSystem6SeqMgr
+.obj __vt__Q28PSSystem10JumpBgmSeq, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem10JumpBgmSeqFv
@@ -65,38 +74,38 @@ __vt__Q28PSSystem10JumpBgmSeq:
 	.4byte requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs
 	.4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
 	.4byte onJump__Q28PSSystem10JumpBgmSeqFUs
-.global __vt__Q28PSSystem20TriangleTableModTask
-__vt__Q28PSSystem20TriangleTableModTask:
+.endobj __vt__Q28PSSystem10JumpBgmSeq
+.obj __vt__Q28PSSystem20TriangleTableModTask, weak
 	.4byte 0
 	.4byte 0
 	.4byte task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack
 	.4byte getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc
 	.4byte getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv
 	.4byte 0
-.global __vt__Q28PSSystem14PitchResetTask
-__vt__Q28PSSystem14PitchResetTask:
+.endobj __vt__Q28PSSystem20TriangleTableModTask
+.obj __vt__Q28PSSystem14PitchResetTask, weak
 	.4byte 0
 	.4byte 0
 	.4byte task__Q28PSSystem14PitchResetTaskFR8JASTrack
-.global __vt__Q28PSSystem12FlagWaitTask
-__vt__Q28PSSystem12FlagWaitTask:
+.endobj __vt__Q28PSSystem14PitchResetTask
+.obj __vt__Q28PSSystem12FlagWaitTask, weak
 	.4byte 0
 	.4byte 0
 	.4byte task__Q28PSSystem12FlagWaitTaskFR8JASTrack
-.global __vt__Q28PSSystem8TaskBase
-__vt__Q28PSSystem8TaskBase:
+.endobj __vt__Q28PSSystem12FlagWaitTask
+.obj __vt__Q28PSSystem8TaskBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28PSSystem12BankRandTask
-__vt__Q28PSSystem12BankRandTask:
+.endobj __vt__Q28PSSystem8TaskBase
+.obj __vt__Q28PSSystem12BankRandTask, weak
 	.4byte 0
 	.4byte 0
 	.4byte task__Q28PSSystem16ModParamWithFadeFR8JASTrack
 	.4byte getPreParam__Q28PSSystem12BankRandTaskFR8JASTrack
 	.4byte timeTask__Q28PSSystem12BankRandTaskFR8JASTrackf
-.global __vt__Q28PSSystem20SeqTrackRoot_JumpBgm
-__vt__Q28PSSystem20SeqTrackRoot_JumpBgm:
+.endobj __vt__Q28PSSystem12BankRandTask
+.obj __vt__Q28PSSystem20SeqTrackRoot_JumpBgm, global
 	.4byte 0
 	.4byte 0
 	.4byte update__Q28PSSystem12SeqTrackRootFv
@@ -104,8 +113,8 @@ __vt__Q28PSSystem20SeqTrackRoot_JumpBgm:
 	.4byte onStopSeq__Q28PSSystem12SeqTrackRootFv
 	.4byte beatUpdate__Q28PSSystem12SeqTrackRootFv
 	.4byte onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv
-.global __vt__Q28PSSystem11DirectedBgm
-__vt__Q28PSSystem11DirectedBgm:
+.endobj __vt__Q28PSSystem20SeqTrackRoot_JumpBgm
+.obj __vt__Q28PSSystem11DirectedBgm, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem11DirectedBgmFv
@@ -125,8 +134,8 @@ __vt__Q28PSSystem11DirectedBgm:
 	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
 	.4byte newSeqTrackRoot__Q28PSSystem11DirectedBgmFv
 	.4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
-.global __vt__Q28PSSystem5SeSeq
-__vt__Q28PSSystem5SeSeq:
+.endobj __vt__Q28PSSystem11DirectedBgm
+.obj __vt__Q28PSSystem5SeSeq, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem5SeSeqFv
@@ -144,8 +153,8 @@ __vt__Q28PSSystem5SeSeq:
 	.4byte seqLoadAfter__Q28PSSystem5SeSeqFv
 	.4byte getHandleP__Q28PSSystem5SeSeqFv
 	.4byte setConfigVolume__Q28PSSystem5SeSeqFv
-.global __vt__Q28PSSystem9StreamBgm
-__vt__Q28PSSystem9StreamBgm:
+.endobj __vt__Q28PSSystem5SeSeq
+.obj __vt__Q28PSSystem9StreamBgm, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem9StreamBgmFv
@@ -163,8 +172,8 @@ __vt__Q28PSSystem9StreamBgm:
 	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
 	.4byte getHandleP__Q28PSSystem9StreamBgmFv
 	.4byte setConfigVolume__Q28PSSystem9StreamBgmFv
-.global __vt__Q28PSSystem6BgmSeq
-__vt__Q28PSSystem6BgmSeq:
+.endobj __vt__Q28PSSystem9StreamBgm
+.obj __vt__Q28PSSystem6BgmSeq, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem6BgmSeqFv
@@ -182,8 +191,8 @@ __vt__Q28PSSystem6BgmSeq:
 	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
 	.4byte getHandleP__Q28PSSystem6BgmSeqFv
 	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
-.global __vt__Q28PSSystem7SeqBase
-__vt__Q28PSSystem7SeqBase:
+.endobj __vt__Q28PSSystem6BgmSeq
+.obj __vt__Q28PSSystem7SeqBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem7SeqBaseFv
@@ -201,29 +210,29 @@ __vt__Q28PSSystem7SeqBase:
 	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
 	.4byte 0
 	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
-.global __vt__Q28PSSystem10Reservator
-__vt__Q28PSSystem10Reservator:
+.endobj __vt__Q28PSSystem7SeqBase
+.obj __vt__Q28PSSystem10Reservator, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28PSSystem21SeqPauseOffReservator
-__vt__Q28PSSystem21SeqPauseOffReservator:
+.endobj __vt__Q28PSSystem10Reservator
+.obj __vt__Q28PSSystem21SeqPauseOffReservator, global
 	.4byte 0
 	.4byte 0
 	.4byte reservatorTask__Q28PSSystem21SeqPauseOffReservatorFv
-.global __vt__Q28PSSystem17SeqPlayReservator
-__vt__Q28PSSystem17SeqPlayReservator:
+.endobj __vt__Q28PSSystem21SeqPauseOffReservator
+.obj __vt__Q28PSSystem17SeqPlayReservator, global
 	.4byte 0
 	.4byte 0
 	.4byte reservatorTask__Q28PSSystem17SeqPlayReservatorFv
-.global __vt__Q28PSSystem7SeqHeap
-__vt__Q28PSSystem7SeqHeap:
+.endobj __vt__Q28PSSystem17SeqPlayReservator
+.obj __vt__Q28PSSystem7SeqHeap, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem7SeqHeapFv
 	.4byte loadSeqAsync__Q28PSSystem7SeqHeapFPQ28PSSystem11TaskChecker
-.global __vt__Q28PSSystem11StreamSound
-__vt__Q28PSSystem11StreamSound:
+.endobj __vt__Q28PSSystem7SeqHeap
+.obj __vt__Q28PSSystem11StreamSound, global
 	.4byte 0
 	.4byte 0
 	.4byte setPortData__9JAIStreamFUcUs
@@ -282,8 +291,8 @@ __vt__Q28PSSystem11StreamSound:
 	.4byte stop__Q28PSSystem12SeqSoundBaseFUl
 	.4byte "@472@stopInner__Q28PSSystem11StreamSoundFUl"
 	.4byte stopInner__Q28PSSystem11StreamSoundFUl
-.global __vt__Q28PSSystem8SeqSound
-__vt__Q28PSSystem8SeqSound:
+.endobj __vt__Q28PSSystem11StreamSound
+.obj __vt__Q28PSSystem8SeqSound, global
 	.4byte 0
 	.4byte 0
 	.4byte setPortData__11JAISequenceFUcUs
@@ -342,14 +351,14 @@ __vt__Q28PSSystem8SeqSound:
 	.4byte stop__Q28PSSystem12SeqSoundBaseFUl
 	.4byte "@1696@stopInner__Q28PSSystem8SeqSoundFUl"
 	.4byte stopInner__Q28PSSystem8SeqSoundFUl
-.global __vt__Q28PSSystem12SeqSoundBase
-__vt__Q28PSSystem12SeqSoundBase:
+.endobj __vt__Q28PSSystem8SeqSound
+.obj __vt__Q28PSSystem12SeqSoundBase, global
 	.4byte 0
 	.4byte 0
 	.4byte stop__Q28PSSystem12SeqSoundBaseFUl
 	.4byte 0
-.global __vt__Q28PSSystem14StreamDataList
-__vt__Q28PSSystem14StreamDataList:
+.endobj __vt__Q28PSSystem12SeqSoundBase
+.obj __vt__Q28PSSystem14StreamDataList, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem14StreamDataListFv
@@ -357,13 +366,13 @@ __vt__Q28PSSystem14StreamDataList:
 	.4byte 0
 	.4byte 0
 	.4byte "@28@__dt__Q28PSSystem14StreamDataListFv"
-.global "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"
-"__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>":
+.endobj __vt__Q28PSSystem14StreamDataList
+.obj "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>Fv"
-.global __vt__Q28PSSystem11SeqDataList
-__vt__Q28PSSystem11SeqDataList:
+.endobj "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"
+.obj __vt__Q28PSSystem11SeqDataList, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem11SeqDataListFv
@@ -371,39 +380,46 @@ __vt__Q28PSSystem11SeqDataList:
 	.4byte 0
 	.4byte 0
 	.4byte "@28@__dt__Q28PSSystem11SeqDataListFv"
-.global "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"
-"__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>":
+.endobj __vt__Q28PSSystem11SeqDataList
+.obj "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv"
+.endobj "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-oldID$2940:
+.obj oldID$2940, local
 	.skip 0x4
-init$2941:
+.endobj oldID$2940
+.obj init$2941, local
 	.skip 0x1
+.endobj init$2941
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E0A0:
+.obj lbl_8051E0A0, local
 	.float 0.0
-lbl_8051E0A4:
+.endobj lbl_8051E0A0
+.obj lbl_8051E0A4, local
 	.float 127.0
-lbl_8051E0A8:
+.endobj lbl_8051E0A4
+.obj lbl_8051E0A8, local
 	.float 1.0
+.endobj lbl_8051E0A8
 .balign 8
-lbl_8051E0B0:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051E0B8:
+.obj lbl_8051E0B0, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051E0B0
+.obj lbl_8051E0B8, local
 	.float 0.8
-lbl_8051E0BC:
+.endobj lbl_8051E0B8
+.obj lbl_8051E0BC, local
 	.float 0.5
+.endobj lbl_8051E0BC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28PSSystem11SeqDataListFv
-__ct__Q28PSSystem11SeqDataListFv:
+.fn __ct__Q28PSSystem11SeqDataListFv, global
 /* 80330D20 0032DC60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80330D24 0032DC64  7C 08 02 A6 */	mflr r0
 /* 80330D28 0032DC68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -429,9 +445,9 @@ __ct__Q28PSSystem11SeqDataListFv:
 /* 80330D74 0032DCB4  7C 08 03 A6 */	mtlr r0
 /* 80330D78 0032DCB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80330D7C 0032DCBC  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem11SeqDataListFv
 
-.global __dt__Q28PSSystem11SeqDataListFv
-__dt__Q28PSSystem11SeqDataListFv:
+.fn __dt__Q28PSSystem11SeqDataListFv, global
 /* 80330D80 0032DCC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80330D84 0032DCC4  7C 08 02 A6 */	mflr r0
 /* 80330D88 0032DCC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -468,9 +484,9 @@ __dt__Q28PSSystem11SeqDataListFv:
 /* 80330DFC 0032DD3C  7C 08 03 A6 */	mtlr r0
 /* 80330E00 0032DD40  38 21 00 10 */	addi r1, r1, 0x10
 /* 80330E04 0032DD44  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem11SeqDataListFv
 
-.global getSeqVolume__Q28PSSystem11SeqDataListFPCc
-getSeqVolume__Q28PSSystem11SeqDataListFPCc:
+.fn getSeqVolume__Q28PSSystem11SeqDataListFPCc, global
 /* 80330E08 0032DD48  94 21 FB A0 */	stwu r1, -0x460(r1)
 /* 80330E0C 0032DD4C  7C 08 02 A6 */	mflr r0
 /* 80330E10 0032DD50  90 01 04 64 */	stw r0, 0x464(r1)
@@ -543,9 +559,9 @@ getSeqVolume__Q28PSSystem11SeqDataListFPCc:
 /* 80330F04 0032DE44  7C 08 03 A6 */	mtlr r0
 /* 80330F08 0032DE48  38 21 04 60 */	addi r1, r1, 0x460
 /* 80330F0C 0032DE4C  4E 80 00 20 */	blr 
+.endfn getSeqVolume__Q28PSSystem11SeqDataListFPCc
 
-.global __ct__Q28PSSystem14StreamDataListFv
-__ct__Q28PSSystem14StreamDataListFv:
+.fn __ct__Q28PSSystem14StreamDataListFv, global
 /* 80330F10 0032DE50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80330F14 0032DE54  7C 08 02 A6 */	mflr r0
 /* 80330F18 0032DE58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -571,9 +587,9 @@ __ct__Q28PSSystem14StreamDataListFv:
 /* 80330F64 0032DEA4  7C 08 03 A6 */	mtlr r0
 /* 80330F68 0032DEA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80330F6C 0032DEAC  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem14StreamDataListFv
 
-.global __dt__Q28PSSystem14StreamDataListFv
-__dt__Q28PSSystem14StreamDataListFv:
+.fn __dt__Q28PSSystem14StreamDataListFv, global
 /* 80330F70 0032DEB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80330F74 0032DEB4  7C 08 02 A6 */	mflr r0
 /* 80330F78 0032DEB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -610,9 +626,9 @@ __dt__Q28PSSystem14StreamDataListFv:
 /* 80330FEC 0032DF2C  7C 08 03 A6 */	mtlr r0
 /* 80330FF0 0032DF30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80330FF4 0032DF34  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem14StreamDataListFv
 
-.global getStreamVolume__Q28PSSystem14StreamDataListFUl
-getStreamVolume__Q28PSSystem14StreamDataListFUl:
+.fn getStreamVolume__Q28PSSystem14StreamDataListFUl, global
 /* 80330FF8 0032DF38  94 21 FB A0 */	stwu r1, -0x460(r1)
 /* 80330FFC 0032DF3C  7C 08 02 A6 */	mflr r0
 /* 80331000 0032DF40  90 01 04 64 */	stw r0, 0x464(r1)
@@ -687,9 +703,9 @@ getStreamVolume__Q28PSSystem14StreamDataListFUl:
 /* 803310FC 0032E03C  7C 08 03 A6 */	mtlr r0
 /* 80331100 0032E040  38 21 04 60 */	addi r1, r1, 0x460
 /* 80331104 0032E044  4E 80 00 20 */	blr 
+.endfn getStreamVolume__Q28PSSystem14StreamDataListFUl
 
-.global stop__Q28PSSystem12SeqSoundBaseFUl
-stop__Q28PSSystem12SeqSoundBaseFUl:
+.fn stop__Q28PSSystem12SeqSoundBaseFUl, global
 /* 80331108 0032E048  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033110C 0032E04C  7C 08 02 A6 */	mflr r0
 /* 80331110 0032E050  90 01 00 24 */	stw r0, 0x24(r1)
@@ -728,9 +744,9 @@ stop__Q28PSSystem12SeqSoundBaseFUl:
 /* 80331190 0032E0D0  7C 08 03 A6 */	mtlr r0
 /* 80331194 0032E0D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80331198 0032E0D8  4E 80 00 20 */	blr 
+.endfn stop__Q28PSSystem12SeqSoundBaseFUl
 
-.global stopInner__Q28PSSystem8SeqSoundFUl
-stopInner__Q28PSSystem8SeqSoundFUl:
+.fn stopInner__Q28PSSystem8SeqSoundFUl, global
 /* 8033119C 0032E0DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803311A0 0032E0E0  7C 08 02 A6 */	mflr r0
 /* 803311A4 0032E0E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -739,9 +755,9 @@ stopInner__Q28PSSystem8SeqSoundFUl:
 /* 803311B0 0032E0F0  7C 08 03 A6 */	mtlr r0
 /* 803311B4 0032E0F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803311B8 0032E0F8  4E 80 00 20 */	blr 
+.endfn stopInner__Q28PSSystem8SeqSoundFUl
 
-.global stopInner__Q28PSSystem11StreamSoundFUl
-stopInner__Q28PSSystem11StreamSoundFUl:
+.fn stopInner__Q28PSSystem11StreamSoundFUl, global
 /* 803311BC 0032E0FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803311C0 0032E100  7C 08 02 A6 */	mflr r0
 /* 803311C4 0032E104  90 01 00 14 */	stw r0, 0x14(r1)
@@ -750,9 +766,9 @@ stopInner__Q28PSSystem11StreamSoundFUl:
 /* 803311D0 0032E110  7C 08 03 A6 */	mtlr r0
 /* 803311D4 0032E114  38 21 00 10 */	addi r1, r1, 0x10
 /* 803311D8 0032E118  4E 80 00 20 */	blr 
+.endfn stopInner__Q28PSSystem11StreamSoundFUl
 
-.global __dt__Q28PSSystem7SeqHeapFv
-__dt__Q28PSSystem7SeqHeapFv:
+.fn __dt__Q28PSSystem7SeqHeapFv, global
 /* 803311DC 0032E11C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803311E0 0032E120  7C 08 02 A6 */	mflr r0
 /* 803311E4 0032E124  90 01 00 14 */	stw r0, 0x14(r1)
@@ -778,9 +794,9 @@ __dt__Q28PSSystem7SeqHeapFv:
 /* 80331230 0032E170  7C 08 03 A6 */	mtlr r0
 /* 80331234 0032E174  38 21 00 10 */	addi r1, r1, 0x10
 /* 80331238 0032E178  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem7SeqHeapFv
 
-.global requestCallback__Q28PSSystem7SeqHeapFUlUsP11JAISequence
-requestCallback__Q28PSSystem7SeqHeapFUlUsP11JAISequence:
+.fn requestCallback__Q28PSSystem7SeqHeapFUlUsP11JAISequence, global
 /* 8033123C 0032E17C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80331240 0032E180  7C 08 02 A6 */	mflr r0
 /* 80331244 0032E184  90 01 00 24 */	stw r0, 0x24(r1)
@@ -923,9 +939,9 @@ requestCallback__Q28PSSystem7SeqHeapFUlUsP11JAISequence:
 /* 80331430 0032E370  7C 08 03 A6 */	mtlr r0
 /* 80331434 0032E374  38 21 00 20 */	addi r1, r1, 0x20
 /* 80331438 0032E378  4E 80 00 20 */	blr 
+.endfn requestCallback__Q28PSSystem7SeqHeapFUlUsP11JAISequence
 
-.global loadSeqAsync__Q28PSSystem7SeqHeapFPQ28PSSystem11TaskChecker
-loadSeqAsync__Q28PSSystem7SeqHeapFPQ28PSSystem11TaskChecker:
+.fn loadSeqAsync__Q28PSSystem7SeqHeapFPQ28PSSystem11TaskChecker, global
 /* 8033143C 0032E37C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80331440 0032E380  7C 08 02 A6 */	mflr r0
 /* 80331444 0032E384  90 01 00 24 */	stw r0, 0x24(r1)
@@ -982,9 +998,9 @@ loadSeqAsync__Q28PSSystem7SeqHeapFPQ28PSSystem11TaskChecker:
 /* 80331504 0032E444  7C 08 03 A6 */	mtlr r0
 /* 80331508 0032E448  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033150C 0032E44C  4E 80 00 20 */	blr 
+.endfn loadSeqAsync__Q28PSSystem7SeqHeapFPQ28PSSystem11TaskChecker
 
-.global loadedCallback__Q28PSSystem7SeqHeapFUlUl
-loadedCallback__Q28PSSystem7SeqHeapFUlUl:
+.fn loadedCallback__Q28PSSystem7SeqHeapFUlUl, global
 /* 80331510 0032E450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80331514 0032E454  7C 08 02 A6 */	mflr r0
 /* 80331518 0032E458  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1025,9 +1041,9 @@ loadedCallback__Q28PSSystem7SeqHeapFUlUl:
 /* 8033159C 0032E4DC  7C 08 03 A6 */	mtlr r0
 /* 803315A0 0032E4E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803315A4 0032E4E4  4E 80 00 20 */	blr 
+.endfn loadedCallback__Q28PSSystem7SeqHeapFUlUl
 
-.global reservatorTask__Q28PSSystem17SeqPlayReservatorFv
-reservatorTask__Q28PSSystem17SeqPlayReservatorFv:
+.fn reservatorTask__Q28PSSystem17SeqPlayReservatorFv, global
 /* 803315A8 0032E4E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803315AC 0032E4EC  7C 08 02 A6 */	mflr r0
 /* 803315B0 0032E4F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1040,9 +1056,9 @@ reservatorTask__Q28PSSystem17SeqPlayReservatorFv:
 /* 803315CC 0032E50C  7C 08 03 A6 */	mtlr r0
 /* 803315D0 0032E510  38 21 00 10 */	addi r1, r1, 0x10
 /* 803315D4 0032E514  4E 80 00 20 */	blr 
+.endfn reservatorTask__Q28PSSystem17SeqPlayReservatorFv
 
-.global reservatorTask__Q28PSSystem21SeqPauseOffReservatorFv
-reservatorTask__Q28PSSystem21SeqPauseOffReservatorFv:
+.fn reservatorTask__Q28PSSystem21SeqPauseOffReservatorFv, global
 /* 803315D8 0032E518  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803315DC 0032E51C  7C 08 02 A6 */	mflr r0
 /* 803315E0 0032E520  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1055,9 +1071,9 @@ reservatorTask__Q28PSSystem21SeqPauseOffReservatorFv:
 /* 803315FC 0032E53C  7C 08 03 A6 */	mtlr r0
 /* 80331600 0032E540  38 21 00 10 */	addi r1, r1, 0x10
 /* 80331604 0032E544  4E 80 00 20 */	blr 
+.endfn reservatorTask__Q28PSSystem21SeqPauseOffReservatorFv
 
-.global __ct__Q28PSSystem7SeqBaseFPCcRCQ27JAInter9SoundInfo
-__ct__Q28PSSystem7SeqBaseFPCcRCQ27JAInter9SoundInfo:
+.fn __ct__Q28PSSystem7SeqBaseFPCcRCQ27JAInter9SoundInfo, global
 /* 80331608 0032E548  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033160C 0032E54C  7C 08 02 A6 */	mflr r0
 /* 80331610 0032E550  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1123,9 +1139,9 @@ __ct__Q28PSSystem7SeqBaseFPCcRCQ27JAInter9SoundInfo:
 /* 803316FC 0032E63C  7C 08 03 A6 */	mtlr r0
 /* 80331700 0032E640  38 21 00 20 */	addi r1, r1, 0x20
 /* 80331704 0032E644  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem7SeqBaseFPCcRCQ27JAInter9SoundInfo
 
-.global init__Q28PSSystem7SeqBaseFv
-init__Q28PSSystem7SeqBaseFv:
+.fn init__Q28PSSystem7SeqBaseFv, global
 /* 80331708 0032E648  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033170C 0032E64C  7C 08 02 A6 */	mflr r0
 /* 80331710 0032E650  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1208,9 +1224,9 @@ init__Q28PSSystem7SeqBaseFv:
 /* 80331830 0032E770  7C 08 03 A6 */	mtlr r0
 /* 80331834 0032E774  38 21 00 20 */	addi r1, r1, 0x20
 /* 80331838 0032E778  4E 80 00 20 */	blr 
+.endfn init__Q28PSSystem7SeqBaseFv
 
-.global __dt__Q28PSSystem7SeqBaseFv
-__dt__Q28PSSystem7SeqBaseFv:
+.fn __dt__Q28PSSystem7SeqBaseFv, global
 /* 8033183C 0032E77C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80331840 0032E780  7C 08 02 A6 */	mflr r0
 /* 80331844 0032E784  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1252,9 +1268,9 @@ __dt__Q28PSSystem7SeqBaseFv:
 /* 803318C8 0032E808  7C 08 03 A6 */	mtlr r0
 /* 803318CC 0032E80C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803318D0 0032E810  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem7SeqBaseFv
 
-.global isPlaying__Q28PSSystem7SeqBaseFv
-isPlaying__Q28PSSystem7SeqBaseFv:
+.fn isPlaying__Q28PSSystem7SeqBaseFv, global
 /* 803318D4 0032E814  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 803318D8 0032E818  28 03 00 00 */	cmplwi r3, 0
 /* 803318DC 0032E81C  41 82 00 2C */	beq .L_80331908
@@ -1273,9 +1289,9 @@ isPlaying__Q28PSSystem7SeqBaseFv:
 .L_80331908:
 /* 80331908 0032E848  38 60 00 00 */	li r3, 0
 /* 8033190C 0032E84C  4E 80 00 20 */	blr 
+.endfn isPlaying__Q28PSSystem7SeqBaseFv
 
-.global getFileEntry__Q28PSSystem7SeqBaseFv
-getFileEntry__Q28PSSystem7SeqBaseFv:
+.fn getFileEntry__Q28PSSystem7SeqBaseFv, global
 /* 80331910 0032E850  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80331914 0032E854  7C 08 02 A6 */	mflr r0
 /* 80331918 0032E858  3C 80 80 49 */	lis r4, lbl_8048F848@ha
@@ -1314,9 +1330,9 @@ getFileEntry__Q28PSSystem7SeqBaseFv:
 /* 80331994 0032E8D4  7C 08 03 A6 */	mtlr r0
 /* 80331998 0032E8D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033199C 0032E8DC  4E 80 00 20 */	blr 
+.endfn getFileEntry__Q28PSSystem7SeqBaseFv
 
-.global pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
-pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode:
+.fn pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode, global
 /* 803319A0 0032E8E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803319A4 0032E8E4  7C 08 02 A6 */	mflr r0
 /* 803319A8 0032E8E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1449,9 +1465,9 @@ pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode:
 /* 80331B68 0032EAA8  7C 08 03 A6 */	mtlr r0
 /* 80331B6C 0032EAAC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80331B70 0032EAB0  4E 80 00 20 */	blr 
+.endfn pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
 
-.global pauseOff__Q28PSSystem7SeqBaseFv
-pauseOff__Q28PSSystem7SeqBaseFv:
+.fn pauseOff__Q28PSSystem7SeqBaseFv, global
 /* 80331B74 0032EAB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80331B78 0032EAB8  7C 08 02 A6 */	mflr r0
 /* 80331B7C 0032EABC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1536,9 +1552,9 @@ pauseOff__Q28PSSystem7SeqBaseFv:
 /* 80331CA4 0032EBE4  7C 08 03 A6 */	mtlr r0
 /* 80331CA8 0032EBE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80331CAC 0032EBEC  4E 80 00 20 */	blr 
+.endfn pauseOff__Q28PSSystem7SeqBaseFv
 
-.global exec__Q28PSSystem7SeqBaseFv
-exec__Q28PSSystem7SeqBaseFv:
+.fn exec__Q28PSSystem7SeqBaseFv, global
 /* 80331CB0 0032EBF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80331CB4 0032EBF4  7C 08 02 A6 */	mflr r0
 /* 80331CB8 0032EBF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1596,13 +1612,13 @@ exec__Q28PSSystem7SeqBaseFv:
 /* 80331D78 0032ECB8  7C 08 03 A6 */	mtlr r0
 /* 80331D7C 0032ECBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80331D80 0032ECC0  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem7SeqBaseFv
 
-.global onPlayingFrame__Q28PSSystem7SeqBaseFv
-onPlayingFrame__Q28PSSystem7SeqBaseFv:
+.fn onPlayingFrame__Q28PSSystem7SeqBaseFv, global
 /* 80331D84 0032ECC4  4E 80 00 20 */	blr 
+.endfn onPlayingFrame__Q28PSSystem7SeqBaseFv
 
-.global startSeq__Q28PSSystem7SeqBaseFv
-startSeq__Q28PSSystem7SeqBaseFv:
+.fn startSeq__Q28PSSystem7SeqBaseFv, global
 /* 80331D88 0032ECC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80331D8C 0032ECCC  7C 08 02 A6 */	mflr r0
 /* 80331D90 0032ECD0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1692,9 +1708,9 @@ startSeq__Q28PSSystem7SeqBaseFv:
 /* 80331ED0 0032EE10  7C 08 03 A6 */	mtlr r0
 /* 80331ED4 0032EE14  38 21 00 20 */	addi r1, r1, 0x20
 /* 80331ED8 0032EE18  4E 80 00 20 */	blr 
+.endfn startSeq__Q28PSSystem7SeqBaseFv
 
-.global setConfigVolume__Q28PSSystem7SeqBaseFv
-setConfigVolume__Q28PSSystem7SeqBaseFv:
+.fn setConfigVolume__Q28PSSystem7SeqBaseFv, global
 /* 80331EDC 0032EE1C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80331EE0 0032EE20  7C 08 02 A6 */	mflr r0
 /* 80331EE4 0032EE24  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1748,9 +1764,9 @@ setConfigVolume__Q28PSSystem7SeqBaseFv:
 /* 80331FA0 0032EEE0  7C 08 03 A6 */	mtlr r0
 /* 80331FA4 0032EEE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80331FA8 0032EEE8  4E 80 00 20 */	blr 
+.endfn setConfigVolume__Q28PSSystem7SeqBaseFv
 
-.global scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
-scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker:
+.fn scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker, global
 /* 80331FAC 0032EEEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80331FB0 0032EEF0  7C 08 02 A6 */	mflr r0
 /* 80331FB4 0032EEF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1766,9 +1782,9 @@ scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker:
 /* 80331FD8 0032EF18  7C 08 03 A6 */	mtlr r0
 /* 80331FDC 0032EF1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80331FE0 0032EF20  4E 80 00 20 */	blr 
+.endfn scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
 
-.global stopSeq__Q28PSSystem7SeqBaseFUl
-stopSeq__Q28PSSystem7SeqBaseFUl:
+.fn stopSeq__Q28PSSystem7SeqBaseFUl, global
 /* 80331FE4 0032EF24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80331FE8 0032EF28  7C 08 02 A6 */	mflr r0
 /* 80331FEC 0032EF2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1794,9 +1810,9 @@ stopSeq__Q28PSSystem7SeqBaseFUl:
 /* 80332038 0032EF78  7C 08 03 A6 */	mtlr r0
 /* 8033203C 0032EF7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80332040 0032EF80  4E 80 00 20 */	blr 
+.endfn stopSeq__Q28PSSystem7SeqBaseFUl
 
-.global __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo
-__ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo:
+.fn __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo, global
 /* 80332044 0032EF84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80332048 0032EF88  7C 08 02 A6 */	mflr r0
 /* 8033204C 0032EF8C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1867,9 +1883,9 @@ __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo:
 /* 8033214C 0032F08C  7C 08 03 A6 */	mtlr r0
 /* 80332150 0032F090  38 21 00 20 */	addi r1, r1, 0x20
 /* 80332154 0032F094  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo
 
-.global __dt__Q28PSSystem6BgmSeqFv
-__dt__Q28PSSystem6BgmSeqFv:
+.fn __dt__Q28PSSystem6BgmSeqFv, global
 /* 80332158 0032F098  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033215C 0032F09C  7C 08 02 A6 */	mflr r0
 /* 80332160 0032F0A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1921,9 +1937,9 @@ __dt__Q28PSSystem6BgmSeqFv:
 /* 8033220C 0032F14C  7C 08 03 A6 */	mtlr r0
 /* 80332210 0032F150  38 21 00 10 */	addi r1, r1, 0x10
 /* 80332214 0032F154  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem6BgmSeqFv
 
-.global __ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo
-__ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo:
+.fn __ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo, global
 /* 80332218 0032F158  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033221C 0032F15C  7C 08 02 A6 */	mflr r0
 /* 80332220 0032F160  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1988,13 +2004,13 @@ __ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo:
 /* 8033230C 0032F24C  7C 08 03 A6 */	mtlr r0
 /* 80332310 0032F250  38 21 00 20 */	addi r1, r1, 0x20
 /* 80332314 0032F254  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo
 
-.global init__Q28PSSystem9StreamBgmFv
-init__Q28PSSystem9StreamBgmFv:
+.fn init__Q28PSSystem9StreamBgmFv, global
 /* 80332318 0032F258  4E 80 00 20 */	blr 
+.endfn init__Q28PSSystem9StreamBgmFv
 
-.global __dt__Q28PSSystem9StreamBgmFv
-__dt__Q28PSSystem9StreamBgmFv:
+.fn __dt__Q28PSSystem9StreamBgmFv, global
 /* 8033231C 0032F25C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80332320 0032F260  7C 08 02 A6 */	mflr r0
 /* 80332324 0032F264  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2057,14 +2073,14 @@ __dt__Q28PSSystem9StreamBgmFv:
 /* 803323FC 0032F33C  7C 08 03 A6 */	mtlr r0
 /* 80332400 0032F340  38 21 00 10 */	addi r1, r1, 0x10
 /* 80332404 0032F344  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem9StreamBgmFv
 
-.global setId__Q28PSSystem9StreamBgmFUl
-setId__Q28PSSystem9StreamBgmFUl:
+.fn setId__Q28PSSystem9StreamBgmFUl, global
 /* 80332408 0032F348  90 83 00 70 */	stw r4, 0x70(r3)
 /* 8033240C 0032F34C  4E 80 00 20 */	blr 
+.endfn setId__Q28PSSystem9StreamBgmFUl
 
-.global startSeq__Q28PSSystem9StreamBgmFv
-startSeq__Q28PSSystem9StreamBgmFv:
+.fn startSeq__Q28PSSystem9StreamBgmFv, global
 /* 80332410 0032F350  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80332414 0032F354  7C 08 02 A6 */	mflr r0
 /* 80332418 0032F358  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2157,9 +2173,9 @@ startSeq__Q28PSSystem9StreamBgmFv:
 /* 80332560 0032F4A0  7C 08 03 A6 */	mtlr r0
 /* 80332564 0032F4A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80332568 0032F4A8  4E 80 00 20 */	blr 
+.endfn startSeq__Q28PSSystem9StreamBgmFv
 
-.global setConfigVolume__Q28PSSystem9StreamBgmFv
-setConfigVolume__Q28PSSystem9StreamBgmFv:
+.fn setConfigVolume__Q28PSSystem9StreamBgmFv, global
 /* 8033256C 0032F4AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80332570 0032F4B0  7C 08 02 A6 */	mflr r0
 /* 80332574 0032F4B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2213,17 +2229,17 @@ setConfigVolume__Q28PSSystem9StreamBgmFv:
 /* 80332630 0032F570  7C 08 03 A6 */	mtlr r0
 /* 80332634 0032F574  38 21 00 20 */	addi r1, r1, 0x20
 /* 80332638 0032F578  4E 80 00 20 */	blr 
+.endfn setConfigVolume__Q28PSSystem9StreamBgmFv
 
-.global isPlaying__Q28PSSystem9StreamBgmFv
-isPlaying__Q28PSSystem9StreamBgmFv:
+.fn isPlaying__Q28PSSystem9StreamBgmFv, global
 /* 8033263C 0032F57C  80 63 00 6C */	lwz r3, 0x6c(r3)
 /* 80332640 0032F580  7C 03 00 D0 */	neg r0, r3
 /* 80332644 0032F584  7C 00 1B 78 */	or r0, r0, r3
 /* 80332648 0032F588  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8033264C 0032F58C  4E 80 00 20 */	blr 
+.endfn isPlaying__Q28PSSystem9StreamBgmFv
 
-.global __dt__Q28PSSystem5SeSeqFv
-__dt__Q28PSSystem5SeSeqFv:
+.fn __dt__Q28PSSystem5SeSeqFv, global
 /* 80332650 0032F590  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80332654 0032F594  7C 08 02 A6 */	mflr r0
 /* 80332658 0032F598  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2275,9 +2291,9 @@ __dt__Q28PSSystem5SeSeqFv:
 /* 80332704 0032F644  7C 08 03 A6 */	mtlr r0
 /* 80332708 0032F648  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033270C 0032F64C  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem5SeSeqFv
 
-.global seqLoadAfter__Q28PSSystem5SeSeqFv
-seqLoadAfter__Q28PSSystem5SeSeqFv:
+.fn seqLoadAfter__Q28PSSystem5SeSeqFv, global
 /* 80332710 0032F650  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80332714 0032F654  7C 08 02 A6 */	mflr r0
 /* 80332718 0032F658  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2289,9 +2305,9 @@ seqLoadAfter__Q28PSSystem5SeSeqFv:
 /* 80332730 0032F670  7C 08 03 A6 */	mtlr r0
 /* 80332734 0032F674  38 21 00 10 */	addi r1, r1, 0x10
 /* 80332738 0032F678  4E 80 00 20 */	blr 
+.endfn seqLoadAfter__Q28PSSystem5SeSeqFv
 
-.global setConfigVolume__Q28PSSystem5SeSeqFv
-setConfigVolume__Q28PSSystem5SeSeqFv:
+.fn setConfigVolume__Q28PSSystem5SeSeqFv, global
 /* 8033273C 0032F67C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80332740 0032F680  7C 08 02 A6 */	mflr r0
 /* 80332744 0032F684  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2345,9 +2361,9 @@ setConfigVolume__Q28PSSystem5SeSeqFv:
 /* 80332800 0032F740  7C 08 03 A6 */	mtlr r0
 /* 80332804 0032F744  38 21 00 20 */	addi r1, r1, 0x20
 /* 80332808 0032F748  4E 80 00 20 */	blr 
+.endfn setConfigVolume__Q28PSSystem5SeSeqFv
 
-.global stopSeq__Q28PSSystem5SeSeqFUl
-stopSeq__Q28PSSystem5SeSeqFUl:
+.fn stopSeq__Q28PSSystem5SeSeqFUl, global
 /* 8033280C 0032F74C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80332810 0032F750  7C 08 02 A6 */	mflr r0
 /* 80332814 0032F754  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2392,9 +2408,9 @@ stopSeq__Q28PSSystem5SeSeqFUl:
 /* 803328A4 0032F7E4  7C 08 03 A6 */	mtlr r0
 /* 803328A8 0032F7E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803328AC 0032F7EC  4E 80 00 20 */	blr 
+.endfn stopSeq__Q28PSSystem5SeSeqFUl
 
-.global __ct__Q28PSSystem11DirectedBgmFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase
-__ct__Q28PSSystem11DirectedBgmFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase:
+.fn __ct__Q28PSSystem11DirectedBgmFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase, global
 /* 803328B0 0032F7F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803328B4 0032F7F4  7C 08 02 A6 */	mflr r0
 /* 803328B8 0032F7F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2474,9 +2490,9 @@ __ct__Q28PSSystem11DirectedBgmFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMg
 /* 803329DC 0032F91C  7C 08 03 A6 */	mtlr r0
 /* 803329E0 0032F920  38 21 00 20 */	addi r1, r1, 0x20
 /* 803329E4 0032F924  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem11DirectedBgmFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase
 
-.global initRootTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrack
-initRootTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrack:
+.fn initRootTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrack, global
 /* 803329E8 0032F928  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803329EC 0032F92C  7C 08 02 A6 */	mflr r0
 /* 803329F0 0032F930  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2528,9 +2544,9 @@ initRootTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrack:
 /* 80332A9C 0032F9DC  7C 08 03 A6 */	mtlr r0
 /* 80332AA0 0032F9E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80332AA4 0032F9E4  4E 80 00 20 */	blr 
+.endfn initRootTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrack
 
-.global initChildTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrackUc
-initChildTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrackUc:
+.fn initChildTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrackUc, global
 /* 80332AA8 0032F9E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80332AAC 0032F9EC  7C 08 02 A6 */	mflr r0
 /* 80332AB0 0032F9F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2587,9 +2603,9 @@ initChildTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrackUc:
 /* 80332B70 0032FAB0  7C 08 03 A6 */	mtlr r0
 /* 80332B74 0032FAB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80332B78 0032FAB8  4E 80 00 20 */	blr 
+.endfn initChildTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrackUc
 
-.global getDirectorP__Q28PSSystem11DirectedBgmFUc
-getDirectorP__Q28PSSystem11DirectedBgmFUc:
+.fn getDirectorP__Q28PSSystem11DirectedBgmFUc, global
 /* 80332B7C 0032FABC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80332B80 0032FAC0  7C 08 02 A6 */	mflr r0
 /* 80332B84 0032FAC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2630,9 +2646,9 @@ getDirectorP__Q28PSSystem11DirectedBgmFUc:
 /* 80332C08 0032FB48  7C 08 03 A6 */	mtlr r0
 /* 80332C0C 0032FB4C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80332C10 0032FB50  4E 80 00 20 */	blr 
+.endfn getDirectorP__Q28PSSystem11DirectedBgmFUc
 
-.global newSeqTrackRoot__Q28PSSystem11DirectedBgmFv
-newSeqTrackRoot__Q28PSSystem11DirectedBgmFv:
+.fn newSeqTrackRoot__Q28PSSystem11DirectedBgmFv, global
 /* 80332C14 0032FB54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80332C18 0032FB58  7C 08 02 A6 */	mflr r0
 /* 80332C1C 0032FB5C  38 60 02 C4 */	li r3, 0x2c4
@@ -2660,9 +2676,9 @@ newSeqTrackRoot__Q28PSSystem11DirectedBgmFv:
 /* 80332C6C 0032FBAC  7C 08 03 A6 */	mtlr r0
 /* 80332C70 0032FBB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80332C74 0032FBB4  4E 80 00 20 */	blr 
+.endfn newSeqTrackRoot__Q28PSSystem11DirectedBgmFv
 
-.global newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
-newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot:
+.fn newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot, global
 /* 80332C78 0032FBB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80332C7C 0032FBBC  7C 08 02 A6 */	mflr r0
 /* 80332C80 0032FBC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2694,9 +2710,9 @@ newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot:
 /* 80332CE0 0032FC20  7C 08 03 A6 */	mtlr r0
 /* 80332CE4 0032FC24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80332CE8 0032FC28  4E 80 00 20 */	blr 
+.endfn newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
 
-.global init__Q28PSSystem11DirectedBgmFv
-init__Q28PSSystem11DirectedBgmFv:
+.fn init__Q28PSSystem11DirectedBgmFv, global
 /* 80332CEC 0032FC2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80332CF0 0032FC30  7C 08 02 A6 */	mflr r0
 /* 80332CF4 0032FC34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2831,9 +2847,9 @@ init__Q28PSSystem11DirectedBgmFv:
 /* 80332ED0 0032FE10  7C 08 03 A6 */	mtlr r0
 /* 80332ED4 0032FE14  38 21 00 20 */	addi r1, r1, 0x20
 /* 80332ED8 0032FE18  4E 80 00 20 */	blr 
+.endfn init__Q28PSSystem11DirectedBgmFv
 
-.global startSeq__Q28PSSystem11DirectedBgmFv
-startSeq__Q28PSSystem11DirectedBgmFv:
+.fn startSeq__Q28PSSystem11DirectedBgmFv, global
 /* 80332EDC 0032FE1C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80332EE0 0032FE20  7C 08 02 A6 */	mflr r0
 /* 80332EE4 0032FE24  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2923,9 +2939,9 @@ startSeq__Q28PSSystem11DirectedBgmFv:
 /* 80333024 0032FF64  7C 08 03 A6 */	mtlr r0
 /* 80333028 0032FF68  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033302C 0032FF6C  4E 80 00 20 */	blr 
+.endfn startSeq__Q28PSSystem11DirectedBgmFv
 
-.global stopSeq__Q28PSSystem11DirectedBgmFUl
-stopSeq__Q28PSSystem11DirectedBgmFUl:
+.fn stopSeq__Q28PSSystem11DirectedBgmFUl, global
 /* 80333030 0032FF70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80333034 0032FF74  7C 08 02 A6 */	mflr r0
 /* 80333038 0032FF78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2990,9 +3006,9 @@ stopSeq__Q28PSSystem11DirectedBgmFUl:
 /* 80333114 00330054  7C 08 03 A6 */	mtlr r0
 /* 80333118 00330058  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033311C 0033005C  4E 80 00 20 */	blr 
+.endfn stopSeq__Q28PSSystem11DirectedBgmFUl
 
-.global onPlayingFrame__Q28PSSystem11DirectedBgmFv
-onPlayingFrame__Q28PSSystem11DirectedBgmFv:
+.fn onPlayingFrame__Q28PSSystem11DirectedBgmFv, global
 /* 80333120 00330060  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333124 00330064  7C 08 02 A6 */	mflr r0
 /* 80333128 00330068  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3005,9 +3021,9 @@ onPlayingFrame__Q28PSSystem11DirectedBgmFv:
 /* 80333140 00330080  7C 08 03 A6 */	mtlr r0
 /* 80333144 00330084  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333148 00330088  4E 80 00 20 */	blr 
+.endfn onPlayingFrame__Q28PSSystem11DirectedBgmFv
 
-.global onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv
-onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv:
+.fn onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv, global
 /* 8033314C 0033008C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333150 00330090  7C 08 02 A6 */	mflr r0
 /* 80333154 00330094  7C 64 1B 78 */	mr r4, r3
@@ -3019,9 +3035,9 @@ onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv:
 /* 8033316C 003300AC  7C 08 03 A6 */	mtlr r0
 /* 80333170 003300B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333174 003300B4  4E 80 00 20 */	blr 
+.endfn onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv
 
-.global onBeatTop__Q28PSSystem11JumpBgmPortFRQ28PSSystem7BeatMgr
-onBeatTop__Q28PSSystem11JumpBgmPortFRQ28PSSystem7BeatMgr:
+.fn onBeatTop__Q28PSSystem11JumpBgmPortFRQ28PSSystem7BeatMgr, global
 /* 80333178 003300B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033317C 003300BC  7C 08 02 A6 */	mflr r0
 /* 80333180 003300C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3070,9 +3086,9 @@ onBeatTop__Q28PSSystem11JumpBgmPortFRQ28PSSystem7BeatMgr:
 /* 80333224 00330164  7C 08 03 A6 */	mtlr r0
 /* 80333228 00330168  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033322C 0033016C  4E 80 00 20 */	blr 
+.endfn onBeatTop__Q28PSSystem11JumpBgmPortFRQ28PSSystem7BeatMgr
 
-.global __ct__Q28PSSystem10JumpBgmSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase
-__ct__Q28PSSystem10JumpBgmSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase:
+.fn __ct__Q28PSSystem10JumpBgmSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase, global
 /* 80333230 00330170  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80333234 00330174  7C 08 02 A6 */	mflr r0
 /* 80333238 00330178  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3174,9 +3190,9 @@ __ct__Q28PSSystem10JumpBgmSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgr
 /* 803333B4 003302F4  7C 08 03 A6 */	mtlr r0
 /* 803333B8 003302F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803333BC 003302FC  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem10JumpBgmSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase
 
-.global newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
-newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv:
+.fn newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv, global
 /* 803333C0 00330300  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803333C4 00330304  7C 08 02 A6 */	mflr r0
 /* 803333C8 00330308  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3211,9 +3227,9 @@ newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv:
 /* 80333434 00330374  7C 08 03 A6 */	mtlr r0
 /* 80333438 00330378  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033343C 0033037C  4E 80 00 20 */	blr 
+.endfn newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
 
-.global startSeq__Q28PSSystem10JumpBgmSeqFv
-startSeq__Q28PSSystem10JumpBgmSeqFv:
+.fn startSeq__Q28PSSystem10JumpBgmSeqFv, global
 /* 80333440 00330380  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80333444 00330384  7C 08 02 A6 */	mflr r0
 /* 80333448 00330388  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3310,9 +3326,9 @@ startSeq__Q28PSSystem10JumpBgmSeqFv:
 /* 803335A4 003304E4  7C 08 03 A6 */	mtlr r0
 /* 803335A8 003304E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803335AC 003304EC  4E 80 00 20 */	blr 
+.endfn startSeq__Q28PSSystem10JumpBgmSeqFv
 
-.global startSeq__Q28PSSystem10JumpBgmSeqFUs
-startSeq__Q28PSSystem10JumpBgmSeqFUs:
+.fn startSeq__Q28PSSystem10JumpBgmSeqFUs, global
 /* 803335B0 003304F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803335B4 003304F4  7C 08 02 A6 */	mflr r0
 /* 803335B8 003304F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3411,9 +3427,9 @@ startSeq__Q28PSSystem10JumpBgmSeqFUs:
 /* 8033371C 0033065C  7C 08 03 A6 */	mtlr r0
 /* 80333720 00330660  38 21 00 20 */	addi r1, r1, 0x20
 /* 80333724 00330664  4E 80 00 20 */	blr 
+.endfn startSeq__Q28PSSystem10JumpBgmSeqFUs
 
-.global requestJumpBgmQuickly__Q28PSSystem10JumpBgmSeqFUs
-requestJumpBgmQuickly__Q28PSSystem10JumpBgmSeqFUs:
+.fn requestJumpBgmQuickly__Q28PSSystem10JumpBgmSeqFUs, global
 /* 80333728 00330668  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033372C 0033066C  7C 08 02 A6 */	mflr r0
 /* 80333730 00330670  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3439,9 +3455,9 @@ requestJumpBgmQuickly__Q28PSSystem10JumpBgmSeqFUs:
 /* 8033377C 003306BC  7C 08 03 A6 */	mtlr r0
 /* 80333780 003306C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80333784 003306C4  4E 80 00 20 */	blr 
+.endfn requestJumpBgmQuickly__Q28PSSystem10JumpBgmSeqFUs
 
-.global requestJumpBgmOnBeat__Q28PSSystem10JumpBgmSeqFUs
-requestJumpBgmOnBeat__Q28PSSystem10JumpBgmSeqFUs:
+.fn requestJumpBgmOnBeat__Q28PSSystem10JumpBgmSeqFUs, global
 /* 80333788 003306C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033378C 003306CC  7C 08 02 A6 */	mflr r0
 /* 80333790 003306D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3467,9 +3483,9 @@ requestJumpBgmOnBeat__Q28PSSystem10JumpBgmSeqFUs:
 /* 803337DC 0033071C  7C 08 03 A6 */	mtlr r0
 /* 803337E0 00330720  38 21 00 20 */	addi r1, r1, 0x20
 /* 803337E4 00330724  4E 80 00 20 */	blr 
+.endfn requestJumpBgmOnBeat__Q28PSSystem10JumpBgmSeqFUs
 
-.global requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs
-requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs:
+.fn requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs, global
 /* 803337E8 00330728  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803337EC 0033072C  7C 08 02 A6 */	mflr r0
 /* 803337F0 00330730  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3492,9 +3508,9 @@ requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs:
 /* 80333830 00330770  7C 08 03 A6 */	mtlr r0
 /* 80333834 00330774  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333838 00330778  4E 80 00 20 */	blr 
+.endfn requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs
 
-.global onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
-onPlayingFrame__Q28PSSystem10JumpBgmSeqFv:
+.fn onPlayingFrame__Q28PSSystem10JumpBgmSeqFv, global
 /* 8033383C 0033077C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333840 00330780  7C 08 02 A6 */	mflr r0
 /* 80333844 00330784  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3516,9 +3532,9 @@ onPlayingFrame__Q28PSSystem10JumpBgmSeqFv:
 /* 8033387C 003307BC  7C 08 03 A6 */	mtlr r0
 /* 80333880 003307C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333884 003307C4  4E 80 00 20 */	blr 
+.endfn onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
 
-.global outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
-outputJumpRequest__Q28PSSystem10JumpBgmSeqFv:
+.fn outputJumpRequest__Q28PSSystem10JumpBgmSeqFv, global
 /* 80333888 003307C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033388C 003307CC  7C 08 02 A6 */	mflr r0
 /* 80333890 003307D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3572,9 +3588,9 @@ outputJumpRequest__Q28PSSystem10JumpBgmSeqFv:
 /* 80333944 00330884  7C 08 03 A6 */	mtlr r0
 /* 80333948 00330888  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033394C 0033088C  4E 80 00 20 */	blr 
+.endfn outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
 
-.global getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
-getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv:
+.fn getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv, global
 /* 80333950 00330890  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333954 00330894  7C 08 02 A6 */	mflr r0
 /* 80333958 00330898  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3591,17 +3607,17 @@ getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv:
 /* 80333984 003308C4  7C 08 03 A6 */	mtlr r0
 /* 80333988 003308C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033398C 003308CC  4E 80 00 20 */	blr 
+.endfn getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
 
-.global setAvoidJumpTimer_Checked__Q28PSSystem10JumpBgmSeqFUl
-setAvoidJumpTimer_Checked__Q28PSSystem10JumpBgmSeqFUl:
+.fn setAvoidJumpTimer_Checked__Q28PSSystem10JumpBgmSeqFUl, global
 /* 80333990 003308D0  80 03 01 2C */	lwz r0, 0x12c(r3)
 /* 80333994 003308D4  28 00 00 00 */	cmplwi r0, 0
 /* 80333998 003308D8  4C 82 00 20 */	bnelr 
 /* 8033399C 003308DC  90 83 01 2C */	stw r4, 0x12c(r3)
 /* 803339A0 003308E0  4E 80 00 20 */	blr 
+.endfn setAvoidJumpTimer_Checked__Q28PSSystem10JumpBgmSeqFUl
 
-.global isPlaying__Q28PSSystem6SeqMgrFv
-isPlaying__Q28PSSystem6SeqMgrFv:
+.fn isPlaying__Q28PSSystem6SeqMgrFv, global
 /* 803339A4 003308E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803339A8 003308E8  7C 08 02 A6 */	mflr r0
 /* 803339AC 003308EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3630,9 +3646,9 @@ isPlaying__Q28PSSystem6SeqMgrFv:
 /* 803339F8 00330938  7C 08 03 A6 */	mtlr r0
 /* 803339FC 0033093C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333A00 00330940  4E 80 00 20 */	blr 
+.endfn isPlaying__Q28PSSystem6SeqMgrFv
 
-.global __dt__Q28PSSystem6SeqMgrFv
-__dt__Q28PSSystem6SeqMgrFv:
+.fn __dt__Q28PSSystem6SeqMgrFv, global
 /* 80333A04 00330944  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80333A08 00330948  7C 08 02 A6 */	mflr r0
 /* 80333A0C 0033094C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3688,9 +3704,9 @@ __dt__Q28PSSystem6SeqMgrFv:
 /* 80333AC0 00330A00  7C 08 03 A6 */	mtlr r0
 /* 80333AC4 00330A04  38 21 00 20 */	addi r1, r1, 0x20
 /* 80333AC8 00330A08  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem6SeqMgrFv
 
-.global pauseOnAllSeq__Q28PSSystem6SeqMgrFQ38PSSystem7SeqBase9PauseMode
-pauseOnAllSeq__Q28PSSystem6SeqMgrFQ38PSSystem7SeqBase9PauseMode:
+.fn pauseOnAllSeq__Q28PSSystem6SeqMgrFQ38PSSystem7SeqBase9PauseMode, global
 /* 80333ACC 00330A0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333AD0 00330A10  7C 08 02 A6 */	mflr r0
 /* 80333AD4 00330A14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3716,9 +3732,9 @@ pauseOnAllSeq__Q28PSSystem6SeqMgrFQ38PSSystem7SeqBase9PauseMode:
 /* 80333B1C 00330A5C  7C 08 03 A6 */	mtlr r0
 /* 80333B20 00330A60  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333B24 00330A64  4E 80 00 20 */	blr 
+.endfn pauseOnAllSeq__Q28PSSystem6SeqMgrFQ38PSSystem7SeqBase9PauseMode
 
-.global pauseOffAllSeq__Q28PSSystem6SeqMgrFv
-pauseOffAllSeq__Q28PSSystem6SeqMgrFv:
+.fn pauseOffAllSeq__Q28PSSystem6SeqMgrFv, global
 /* 80333B28 00330A68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333B2C 00330A6C  7C 08 02 A6 */	mflr r0
 /* 80333B30 00330A70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3740,9 +3756,9 @@ pauseOffAllSeq__Q28PSSystem6SeqMgrFv:
 /* 80333B68 00330AA8  7C 08 03 A6 */	mtlr r0
 /* 80333B6C 00330AAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333B70 00330AB0  4E 80 00 20 */	blr 
+.endfn pauseOffAllSeq__Q28PSSystem6SeqMgrFv
 
-.global reservePauseOffAllSeq__Q28PSSystem6SeqMgrFv
-reservePauseOffAllSeq__Q28PSSystem6SeqMgrFv:
+.fn reservePauseOffAllSeq__Q28PSSystem6SeqMgrFv, global
 /* 80333B74 00330AB4  80 83 00 00 */	lwz r4, 0(r3)
 /* 80333B78 00330AB8  38 00 00 01 */	li r0, 1
 /* 80333B7C 00330ABC  48 00 00 10 */	b .L_80333B8C
@@ -3754,9 +3770,9 @@ reservePauseOffAllSeq__Q28PSSystem6SeqMgrFv:
 /* 80333B8C 00330ACC  28 04 00 00 */	cmplwi r4, 0
 /* 80333B90 00330AD0  40 82 FF F0 */	bne .L_80333B80
 /* 80333B94 00330AD4  4E 80 00 20 */	blr 
+.endfn reservePauseOffAllSeq__Q28PSSystem6SeqMgrFv
 
-.global cancelPauseOffAllSeq__Q28PSSystem6SeqMgrFv
-cancelPauseOffAllSeq__Q28PSSystem6SeqMgrFv:
+.fn cancelPauseOffAllSeq__Q28PSSystem6SeqMgrFv, global
 /* 80333B98 00330AD8  80 83 00 00 */	lwz r4, 0(r3)
 /* 80333B9C 00330ADC  38 00 00 00 */	li r0, 0
 /* 80333BA0 00330AE0  48 00 00 10 */	b .L_80333BB0
@@ -3768,9 +3784,9 @@ cancelPauseOffAllSeq__Q28PSSystem6SeqMgrFv:
 /* 80333BB0 00330AF0  28 04 00 00 */	cmplwi r4, 0
 /* 80333BB4 00330AF4  40 82 FF F0 */	bne .L_80333BA4
 /* 80333BB8 00330AF8  4E 80 00 20 */	blr 
+.endfn cancelPauseOffAllSeq__Q28PSSystem6SeqMgrFv
 
-.global exec__Q28PSSystem6SeqMgrFv
-exec__Q28PSSystem6SeqMgrFv:
+.fn exec__Q28PSSystem6SeqMgrFv, global
 /* 80333BBC 00330AFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333BC0 00330B00  7C 08 02 A6 */	mflr r0
 /* 80333BC4 00330B04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3806,9 +3822,9 @@ exec__Q28PSSystem6SeqMgrFv:
 /* 80333C30 00330B70  7C 08 03 A6 */	mtlr r0
 /* 80333C34 00330B74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333C38 00330B78  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem6SeqMgrFv
 
-.global stopAllSound__Q28PSSystem6SeqMgrFUl
-stopAllSound__Q28PSSystem6SeqMgrFUl:
+.fn stopAllSound__Q28PSSystem6SeqMgrFUl, global
 /* 80333C3C 00330B7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333C40 00330B80  7C 08 02 A6 */	mflr r0
 /* 80333C44 00330B84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3834,9 +3850,9 @@ stopAllSound__Q28PSSystem6SeqMgrFUl:
 /* 80333C8C 00330BCC  7C 08 03 A6 */	mtlr r0
 /* 80333C90 00330BD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333C94 00330BD4  4E 80 00 20 */	blr 
+.endfn stopAllSound__Q28PSSystem6SeqMgrFUl
 
-.global scene1st__Q28PSSystem6SeqMgrFPQ28PSSystem11TaskChecker
-scene1st__Q28PSSystem6SeqMgrFPQ28PSSystem11TaskChecker:
+.fn scene1st__Q28PSSystem6SeqMgrFPQ28PSSystem11TaskChecker, global
 /* 80333C98 00330BD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333C9C 00330BDC  7C 08 02 A6 */	mflr r0
 /* 80333CA0 00330BE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3862,9 +3878,9 @@ scene1st__Q28PSSystem6SeqMgrFPQ28PSSystem11TaskChecker:
 /* 80333CE8 00330C28  7C 08 03 A6 */	mtlr r0
 /* 80333CEC 00330C2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333CF0 00330C30  4E 80 00 20 */	blr 
+.endfn scene1st__Q28PSSystem6SeqMgrFPQ28PSSystem11TaskChecker
 
-.global findSeq__Q28PSSystem6SeqMgrFP8JASTrack
-findSeq__Q28PSSystem6SeqMgrFP8JASTrack:
+.fn findSeq__Q28PSSystem6SeqMgrFP8JASTrack, global
 /* 80333CF4 00330C34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333CF8 00330C38  7C 08 02 A6 */	mflr r0
 /* 80333CFC 00330C3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3931,9 +3947,9 @@ findSeq__Q28PSSystem6SeqMgrFP8JASTrack:
 /* 80333DD0 00330D10  7C 08 03 A6 */	mtlr r0
 /* 80333DD4 00330D14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333DD8 00330D18  4E 80 00 20 */	blr 
+.endfn findSeq__Q28PSSystem6SeqMgrFP8JASTrack
 
-.global getPlayingSeq__Q28PSSystem6SeqMgrFP8JASTrack
-getPlayingSeq__Q28PSSystem6SeqMgrFP8JASTrack:
+.fn getPlayingSeq__Q28PSSystem6SeqMgrFP8JASTrack, global
 /* 80333DDC 00330D1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333DE0 00330D20  7C 08 02 A6 */	mflr r0
 /* 80333DE4 00330D24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3970,9 +3986,9 @@ getPlayingSeq__Q28PSSystem6SeqMgrFP8JASTrack:
 /* 80333E50 00330D90  7C 08 03 A6 */	mtlr r0
 /* 80333E54 00330D94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333E58 00330D98  4E 80 00 20 */	blr 
+.endfn getPlayingSeq__Q28PSSystem6SeqMgrFP8JASTrack
 
-.global getFirstSeq__Q28PSSystem6SeqMgrFv
-getFirstSeq__Q28PSSystem6SeqMgrFv:
+.fn getFirstSeq__Q28PSSystem6SeqMgrFv, global
 /* 80333E5C 00330D9C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80333E60 00330DA0  28 03 00 00 */	cmplwi r3, 0
 /* 80333E64 00330DA4  41 82 00 0C */	beq .L_80333E70
@@ -3981,9 +3997,9 @@ getFirstSeq__Q28PSSystem6SeqMgrFv:
 .L_80333E70:
 /* 80333E70 00330DB0  38 60 00 00 */	li r3, 0
 /* 80333E74 00330DB4  4E 80 00 20 */	blr 
+.endfn getFirstSeq__Q28PSSystem6SeqMgrFv
 
-.global getFirstSeqA__Q28PSSystem6SeqMgrFv
-getFirstSeqA__Q28PSSystem6SeqMgrFv:
+.fn getFirstSeqA__Q28PSSystem6SeqMgrFv, global
 /* 80333E78 00330DB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333E7C 00330DBC  7C 08 02 A6 */	mflr r0
 /* 80333E80 00330DC0  38 80 00 00 */	li r4, 0
@@ -3993,9 +4009,9 @@ getFirstSeqA__Q28PSSystem6SeqMgrFv:
 /* 80333E90 00330DD0  7C 08 03 A6 */	mtlr r0
 /* 80333E94 00330DD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333E98 00330DD8  4E 80 00 20 */	blr 
+.endfn getFirstSeqA__Q28PSSystem6SeqMgrFv
 
-.global getSeq__Q28PSSystem6SeqMgrFUl
-getSeq__Q28PSSystem6SeqMgrFUl:
+.fn getSeq__Q28PSSystem6SeqMgrFUl, global
 /* 80333E9C 00330DDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333EA0 00330DE0  7C 08 02 A6 */	mflr r0
 /* 80333EA4 00330DE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4011,9 +4027,9 @@ getSeq__Q28PSSystem6SeqMgrFUl:
 /* 80333EC4 00330E04  7C 08 03 A6 */	mtlr r0
 /* 80333EC8 00330E08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333ECC 00330E0C  4E 80 00 20 */	blr 
+.endfn getSeq__Q28PSSystem6SeqMgrFUl
 
-.global __dt__Q28PSSystem10JumpBgmSeqFv
-__dt__Q28PSSystem10JumpBgmSeqFv:
+.fn __dt__Q28PSSystem10JumpBgmSeqFv, weak
 /* 80333ED0 00330E10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333ED4 00330E14  7C 08 02 A6 */	mflr r0
 /* 80333ED8 00330E18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4073,9 +4089,9 @@ __dt__Q28PSSystem10JumpBgmSeqFv:
 /* 80333FA4 00330EE4  7C 08 03 A6 */	mtlr r0
 /* 80333FA8 00330EE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333FAC 00330EEC  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem10JumpBgmSeqFv
 
-.global "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv"
-"__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv":
+.fn "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv", weak
 /* 80333FB0 00330EF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333FB4 00330EF4  7C 08 02 A6 */	mflr r0
 /* 80333FB8 00330EF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4097,9 +4113,9 @@ __dt__Q28PSSystem10JumpBgmSeqFv:
 /* 80333FF4 00330F34  7C 08 03 A6 */	mtlr r0
 /* 80333FF8 00330F38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333FFC 00330F3C  4E 80 00 20 */	blr 
+.endfn "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv"
 
-.global "__dt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>Fv"
-"__dt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>Fv":
+.fn "__dt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>Fv", weak
 /* 80334000 00330F40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80334004 00330F44  7C 08 02 A6 */	mflr r0
 /* 80334008 00330F48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4121,38 +4137,38 @@ __dt__Q28PSSystem10JumpBgmSeqFv:
 /* 80334044 00330F84  7C 08 03 A6 */	mtlr r0
 /* 80334048 00330F88  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033404C 00330F8C  4E 80 00 20 */	blr 
+.endfn "__dt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>Fv"
 
-.global "@28@__dt__Q28PSSystem11SeqDataListFv"
-"@28@__dt__Q28PSSystem11SeqDataListFv":
+.fn "@28@__dt__Q28PSSystem11SeqDataListFv", weak
 /* 80334050 00330F90  38 63 FF E4 */	addi r3, r3, -28
 /* 80334054 00330F94  4B FF CD 2C */	b __dt__Q28PSSystem11SeqDataListFv
+.endfn "@28@__dt__Q28PSSystem11SeqDataListFv"
 
-.global "@28@__dt__Q28PSSystem14StreamDataListFv"
-"@28@__dt__Q28PSSystem14StreamDataListFv":
+.fn "@28@__dt__Q28PSSystem14StreamDataListFv", weak
 /* 80334058 00330F98  38 63 FF E4 */	addi r3, r3, -28
 /* 8033405C 00330F9C  4B FF CF 14 */	b __dt__Q28PSSystem14StreamDataListFv
+.endfn "@28@__dt__Q28PSSystem14StreamDataListFv"
 
-.global "@1696@stopInner__Q28PSSystem8SeqSoundFUl"
-"@1696@stopInner__Q28PSSystem8SeqSoundFUl":
+.fn "@1696@stopInner__Q28PSSystem8SeqSoundFUl", weak
 /* 80334060 00330FA0  38 63 F9 60 */	addi r3, r3, -1696
 /* 80334064 00330FA4  4B FF D1 38 */	b stopInner__Q28PSSystem8SeqSoundFUl
+.endfn "@1696@stopInner__Q28PSSystem8SeqSoundFUl"
 
-.global "@472@stopInner__Q28PSSystem11StreamSoundFUl"
-"@472@stopInner__Q28PSSystem11StreamSoundFUl":
+.fn "@472@stopInner__Q28PSSystem11StreamSoundFUl", weak
 /* 80334068 00330FA8  38 63 FE 28 */	addi r3, r3, -472
 /* 8033406C 00330FAC  4B FF D1 50 */	b stopInner__Q28PSSystem11StreamSoundFUl
+.endfn "@472@stopInner__Q28PSSystem11StreamSoundFUl"
 
-.global seqLoadAfter__Q28PSSystem7SeqBaseFv
-seqLoadAfter__Q28PSSystem7SeqBaseFv:
+.fn seqLoadAfter__Q28PSSystem7SeqBaseFv, weak
 /* 80334070 00330FB0  4E 80 00 20 */	blr 
+.endfn seqLoadAfter__Q28PSSystem7SeqBaseFv
 
-.global getHandleP__Q28PSSystem6BgmSeqFv
-getHandleP__Q28PSSystem6BgmSeqFv:
+.fn getHandleP__Q28PSSystem6BgmSeqFv, weak
 /* 80334074 00330FB4  38 63 00 68 */	addi r3, r3, 0x68
 /* 80334078 00330FB8  4E 80 00 20 */	blr 
+.endfn getHandleP__Q28PSSystem6BgmSeqFv
 
-.global __dt__Q28PSSystem11DirectedBgmFv
-__dt__Q28PSSystem11DirectedBgmFv:
+.fn __dt__Q28PSSystem11DirectedBgmFv, weak
 /* 8033407C 00330FBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80334080 00330FC0  7C 08 02 A6 */	mflr r0
 /* 80334084 00330FC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4208,78 +4224,78 @@ __dt__Q28PSSystem11DirectedBgmFv:
 /* 80334140 00331080  7C 08 03 A6 */	mtlr r0
 /* 80334144 00331084  38 21 00 10 */	addi r1, r1, 0x10
 /* 80334148 00331088  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem11DirectedBgmFv
 
-.global onJump__Q28PSSystem10JumpBgmSeqFUs
-onJump__Q28PSSystem10JumpBgmSeqFUs:
+.fn onJump__Q28PSSystem10JumpBgmSeqFUs, weak
 /* 8033414C 0033108C  4E 80 00 20 */	blr 
+.endfn onJump__Q28PSSystem10JumpBgmSeqFUs
 
-.global getCastType__Q28PSSystem10JumpBgmSeqFv
-getCastType__Q28PSSystem10JumpBgmSeqFv: # weak function
+.fn getCastType__Q28PSSystem10JumpBgmSeqFv, weak
 /* 80334150 00331090  38 60 00 04 */	li r3, 4
 /* 80334154 00331094  4E 80 00 20 */	blr 
+.endfn getCastType__Q28PSSystem10JumpBgmSeqFv
 
-.global getSeqType__Q28PSSystem6BgmSeqFv
-getSeqType__Q28PSSystem6BgmSeqFv: # weak function
+.fn getSeqType__Q28PSSystem6BgmSeqFv, weak
 /* 80334158 00331098  3C 60 80 00 */	lis r3, 0x8000
 /* 8033415C 0033109C  4E 80 00 20 */	blr 
+.endfn getSeqType__Q28PSSystem6BgmSeqFv
 
-.global getCastType__Q28PSSystem11DirectedBgmFv
-getCastType__Q28PSSystem11DirectedBgmFv: # weak function
+.fn getCastType__Q28PSSystem11DirectedBgmFv, weak
 /* 80334160 003310A0  38 60 00 02 */	li r3, 2
 /* 80334164 003310A4  4E 80 00 20 */	blr 
+.endfn getCastType__Q28PSSystem11DirectedBgmFv
 
-.global getSeqType__Q28PSSystem5SeSeqFv
-getSeqType__Q28PSSystem5SeSeqFv:
+.fn getSeqType__Q28PSSystem5SeSeqFv, weak
 /* 80334168 003310A8  3C 60 80 00 */	lis r3, 0x80000800@ha
 /* 8033416C 003310AC  38 63 08 00 */	addi r3, r3, 0x80000800@l
 /* 80334170 003310B0  4E 80 00 20 */	blr 
+.endfn getSeqType__Q28PSSystem5SeSeqFv
 
-.global getCastType__Q28PSSystem5SeSeqFv
-getCastType__Q28PSSystem5SeSeqFv:
+.fn getCastType__Q28PSSystem5SeSeqFv, weak
 /* 80334174 003310B4  38 60 00 05 */	li r3, 5
 /* 80334178 003310B8  4E 80 00 20 */	blr 
+.endfn getCastType__Q28PSSystem5SeSeqFv
 
-.global getHandleP__Q28PSSystem5SeSeqFv
-getHandleP__Q28PSSystem5SeSeqFv:
+.fn getHandleP__Q28PSSystem5SeSeqFv, weak
 /* 8033417C 003310BC  38 6D 8B E0 */	addi r3, r13, seHandle__Q27JAInter5SeMgr@sda21
 /* 80334180 003310C0  4E 80 00 20 */	blr 
+.endfn getHandleP__Q28PSSystem5SeSeqFv
 
-.global getHandleP__Q28PSSystem9StreamBgmFv
-getHandleP__Q28PSSystem9StreamBgmFv:
+.fn getHandleP__Q28PSSystem9StreamBgmFv, weak
 /* 80334184 003310C4  38 63 00 6C */	addi r3, r3, 0x6c
 /* 80334188 003310C8  4E 80 00 20 */	blr 
+.endfn getHandleP__Q28PSSystem9StreamBgmFv
 
-.global scene1st__Q28PSSystem9StreamBgmFPQ28PSSystem11TaskChecker
-scene1st__Q28PSSystem9StreamBgmFPQ28PSSystem11TaskChecker:
+.fn scene1st__Q28PSSystem9StreamBgmFPQ28PSSystem11TaskChecker, weak
 /* 8033418C 003310CC  4E 80 00 20 */	blr 
+.endfn scene1st__Q28PSSystem9StreamBgmFPQ28PSSystem11TaskChecker
 
-.global getSeqType__Q28PSSystem9StreamBgmFv
-getSeqType__Q28PSSystem9StreamBgmFv:
+.fn getSeqType__Q28PSSystem9StreamBgmFv, weak
 /* 80334190 003310D0  38 60 00 00 */	li r3, 0
 /* 80334194 003310D4  4E 80 00 20 */	blr 
+.endfn getSeqType__Q28PSSystem9StreamBgmFv
 
-.global getCastType__Q28PSSystem9StreamBgmFv
-getCastType__Q28PSSystem9StreamBgmFv:
+.fn getCastType__Q28PSSystem9StreamBgmFv, weak
 /* 80334198 003310D8  38 60 00 01 */	li r3, 1
 /* 8033419C 003310DC  4E 80 00 20 */	blr 
+.endfn getCastType__Q28PSSystem9StreamBgmFv
 
-.global getCastType__Q28PSSystem6BgmSeqFv
-getCastType__Q28PSSystem6BgmSeqFv:
+.fn getCastType__Q28PSSystem6BgmSeqFv, weak
 /* 803341A0 003310E0  38 60 00 00 */	li r3, 0
 /* 803341A4 003310E4  4E 80 00 20 */	blr 
+.endfn getCastType__Q28PSSystem6BgmSeqFv
 
-.global read__Q28PSSystem14StreamDataListFR6Stream
-read__Q28PSSystem14StreamDataListFR6Stream:
+.fn read__Q28PSSystem14StreamDataListFR6Stream, weak
 /* 803341A8 003310E8  38 60 00 00 */	li r3, 0
 /* 803341AC 003310EC  4E 80 00 20 */	blr 
+.endfn read__Q28PSSystem14StreamDataListFR6Stream
 
-.global read__Q28PSSystem11SeqDataListFR6Stream
-read__Q28PSSystem11SeqDataListFR6Stream:
+.fn read__Q28PSSystem11SeqDataListFR6Stream, weak
 /* 803341B0 003310F0  38 60 00 00 */	li r3, 0
 /* 803341B4 003310F4  4E 80 00 20 */	blr 
+.endfn read__Q28PSSystem11SeqDataListFR6Stream
 
-.global getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc
-getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc:
+.fn getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc, weak
 /* 803341B8 003310F8  3C A0 80 49 */	lis r5, sTable__Q28PSSystem20TriangleTableModTask@ha
 /* 803341BC 003310FC  54 80 15 BA */	rlwinm r0, r4, 2, 0x16, 0x1d
 /* 803341C0 00331100  38 85 FF 50 */	addi r4, r5, sTable__Q28PSSystem20TriangleTableModTask@l
@@ -4287,14 +4303,14 @@ getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc:
 /* 803341C8 00331108  7C 04 04 2E */	lfsx f0, r4, r0
 /* 803341CC 0033110C  EC 21 00 32 */	fmuls f1, f1, f0
 /* 803341D0 00331110  4E 80 00 20 */	blr 
+.endfn getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc
 
-.global getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv
-getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv:
+.fn getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv, weak
 /* 803341D4 00331114  38 60 00 28 */	li r3, 0x28
 /* 803341D8 00331118  4E 80 00 20 */	blr 
+.endfn getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv
 
-.global task__Q28PSSystem14PitchResetTaskFR8JASTrack
-task__Q28PSSystem14PitchResetTaskFR8JASTrack:
+.fn task__Q28PSSystem14PitchResetTaskFR8JASTrack, weak
 /* 803341DC 0033111C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803341E0 00331120  7C 08 02 A6 */	mflr r0
 /* 803341E4 00331124  7C 83 23 78 */	mr r3, r4
@@ -4308,26 +4324,26 @@ task__Q28PSSystem14PitchResetTaskFR8JASTrack:
 /* 80334204 00331144  7C 08 03 A6 */	mtlr r0
 /* 80334208 00331148  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033420C 0033114C  4E 80 00 20 */	blr 
+.endfn task__Q28PSSystem14PitchResetTaskFR8JASTrack
 
-.global task__Q28PSSystem12FlagWaitTaskFR8JASTrack
-task__Q28PSSystem12FlagWaitTaskFR8JASTrack:
+.fn task__Q28PSSystem12FlagWaitTaskFR8JASTrack, weak
 /* 80334210 00331150  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80334214 00331154  4E 80 00 20 */	blr 
+.endfn task__Q28PSSystem12FlagWaitTaskFR8JASTrack
 
-.global timeTask__Q28PSSystem12BankRandTaskFR8JASTrackf
-timeTask__Q28PSSystem12BankRandTaskFR8JASTrackf:
+.fn timeTask__Q28PSSystem12BankRandTaskFR8JASTrackf, weak
 /* 80334218 00331158  80 6D 98 78 */	lwz r3, sInstance__Q28PSSystem11BankRandPrm@sda21(r13)
 /* 8033421C 0033115C  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 80334220 00331160  4E 80 00 20 */	blr 
+.endfn timeTask__Q28PSSystem12BankRandTaskFR8JASTrackf
 
-.global getPreParam__Q28PSSystem12BankRandTaskFR8JASTrack
-getPreParam__Q28PSSystem12BankRandTaskFR8JASTrack:
+.fn getPreParam__Q28PSSystem12BankRandTaskFR8JASTrack, weak
 /* 80334224 00331164  80 6D 98 78 */	lwz r3, sInstance__Q28PSSystem11BankRandPrm@sda21(r13)
 /* 80334228 00331168  C0 23 00 0C */	lfs f1, 0xc(r3)
 /* 8033422C 0033116C  4E 80 00 20 */	blr 
+.endfn getPreParam__Q28PSSystem12BankRandTaskFR8JASTrack
 
-.global update__Q28PSSystem12SeqTrackRootFv
-update__Q28PSSystem12SeqTrackRootFv:
+.fn update__Q28PSSystem12SeqTrackRootFv, weak
 /* 80334230 00331170  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80334234 00331174  7C 08 02 A6 */	mflr r0
 /* 80334238 00331178  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4342,3 +4358,4 @@ update__Q28PSSystem12SeqTrackRootFv:
 /* 8033425C 0033119C  7C 08 03 A6 */	mtlr r0
 /* 80334260 003311A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80334264 003311A4  4E 80 00 20 */	blr 
+.endfn update__Q28PSSystem12SeqTrackRootFv

@@ -1,121 +1,156 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048F918:
+.obj lbl_8048F918, local
 	.asciz "PSGame.cpp"
+.endobj lbl_8048F918
 .balign 4
-lbl_8048F924:
+.obj lbl_8048F924, local
 	.asciz "P2Assert"
+.endobj lbl_8048F924
 .balign 4
-lbl_8048F930:
+.obj lbl_8048F930, local
 	.asciz "endoffile"
+.endobj lbl_8048F930
 .balign 4
-lbl_8048F93C:
+.obj lbl_8048F93C, local
 	.asciz "cavesoil"
+.endobj lbl_8048F93C
 .balign 4
-lbl_8048F948:
+.obj lbl_8048F948, local
 	.asciz "cavesoil.bms"
+.endobj lbl_8048F948
 .balign 4
-lbl_8048F958:
+.obj lbl_8048F958, local
 	.asciz "cavesoil_"
+.endobj lbl_8048F958
 .balign 4
-lbl_8048F964:
+.obj lbl_8048F964, local
 	.asciz "cavemetal"
+.endobj lbl_8048F964
 .balign 4
-lbl_8048F970:
+.obj lbl_8048F970, local
 	.asciz "cavemetal.bms"
+.endobj lbl_8048F970
 .balign 4
-lbl_8048F980:
+.obj lbl_8048F980, local
 	.asciz "cavemetal_"
+.endobj lbl_8048F980
 .balign 4
-lbl_8048F98C:
+.obj lbl_8048F98C, local
 	.asciz "caveconc"
+.endobj lbl_8048F98C
 .balign 4
-lbl_8048F998:
+.obj lbl_8048F998, local
 	.asciz "caveconc.bms"
+.endobj lbl_8048F998
 .balign 4
-lbl_8048F9A8:
+.obj lbl_8048F9A8, local
 	.asciz "caveconc_"
+.endobj lbl_8048F9A8
 .balign 4
-lbl_8048F9B4:
+.obj lbl_8048F9B4, local
 	.asciz "cavetile"
+.endobj lbl_8048F9B4
 .balign 4
-lbl_8048F9C0:
+.obj lbl_8048F9C0, local
 	.asciz "cavetile.bms"
+.endobj lbl_8048F9C0
 .balign 4
-lbl_8048F9D0:
+.obj lbl_8048F9D0, local
 	.asciz "caveglass"
+.endobj lbl_8048F9D0
 .balign 4
-lbl_8048F9DC:
+.obj lbl_8048F9DC, local
 	.asciz "caveglass.bms"
+.endobj lbl_8048F9DC
 .balign 4
-lbl_8048F9EC:
+.obj lbl_8048F9EC, local
 	.asciz "cavetsumiki"
+.endobj lbl_8048F9EC
 .balign 4
-lbl_8048F9F8:
+.obj lbl_8048F9F8, local
 	.asciz "cavetsumiki.bms"
+.endobj lbl_8048F9F8
 .balign 4
-lbl_8048FA08:
+.obj lbl_8048FA08, local
 	.asciz "caverelax"
+.endobj lbl_8048FA08
 .balign 4
-lbl_8048FA14:
+.obj lbl_8048FA14, local
 	.asciz "caverelax.bms"
+.endobj lbl_8048FA14
 .balign 4
-lbl_8048FA24:
+.obj lbl_8048FA24, local
 	.asciz "/SeqTest/"
+.endobj lbl_8048FA24
 .balign 4
-lbl_8048FA30: # SetupArg
+.obj lbl_8048FA30, local # SetupArg
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x000000E7
 	.4byte seqCpuSync__6PSGameFP8JASTrackUs
 	.4byte 0x00000000
 	.4byte lbl_8048FA24 # end of struct
-lbl_8048FA48:
+.endobj lbl_8048FA30
+.balign 4
+.obj lbl_8048FA48, local
 	.asciz "PSAutoBgm.h"
+.endobj lbl_8048FA48
 .balign 4
-lbl_8048FA54:
+.obj lbl_8048FA54, local
 	.asciz "/AudioRes/Conductor.arc"
+.endobj lbl_8048FA54
 .balign 4
-lbl_8048FA6C:
+.obj lbl_8048FA6C, local
 	.asciz "PSSystemIF.h"
+.endobj lbl_8048FA6C
 .balign 4
-lbl_8048FA7C:
+.obj lbl_8048FA7C, local
 	.asciz "/AudioRes/Key.arc"
+.endobj lbl_8048FA7C
 .balign 4
-lbl_8048FA90:
+.obj lbl_8048FA90, local
 	.asciz "PSCommon.h"
+.endobj lbl_8048FA90
 .balign 4
-lbl_8048FA9C:
+.obj lbl_8048FA9C, local
 	.asciz "PSGame.aaf"
+.endobj lbl_8048FA9C
 .balign 4
-lbl_8048FAA8:
+.obj lbl_8048FAA8, local
 	.asciz "PSGame.h"
+.endobj lbl_8048FAA8
 .balign 4
-lbl_8048FAB4: # Shift-JIS
+.obj lbl_8048FAB4, local # Shift-JIS
 	.4byte 0x666C6167
 	.4byte 0x82CD3020
 	.4byte 0x6F723182
 	.4byte 0xC582B700
+.endobj lbl_8048FAB4
 .balign 4
-lbl_8048FAC4:
+.obj lbl_8048FAC4, local
 	.asciz "m_boss.bms"
+.endobj lbl_8048FAC4
 .balign 4
-lbl_8048FAD0:
+.obj lbl_8048FAD0, local
 	.asciz "l_boss.bms"
+.endobj lbl_8048FAD0
 .balign 4
-lbl_8048FADC: # SoundInfo
+.obj lbl_8048FADC, local # SoundInfo
 	.4byte 0x00001F00
 	.4byte 0xFF000000
 	.4byte 0x3F800000
 	.4byte 0x7F000000
-lbl_8048FAEC: # SoundInfo
+.endobj lbl_8048FADC
+.obj lbl_8048FAEC, local # SoundInfo
 	.4byte 0x00000000
 	.4byte 0x7F010000
 	.4byte 0x3F800000
 	.4byte 0x32000000
+.endobj lbl_8048FAEC
 .balign 4
-lbl_8048FAFC: # Shift-JIS
+.obj lbl_8048FAFC, local # Shift-JIS
 	.4byte 0x328F6482
 	.4byte 0xC9834F83
 	.4byte 0x8D815B83
@@ -126,23 +161,28 @@ lbl_8048FAFC: # Shift-JIS
 	.4byte 0xB582E682
 	.4byte 0xA482C682
 	.4byte 0xB582BD00
+.endobj lbl_8048FAFC
 .balign 4
-lbl_8048FB24:
+.obj lbl_8048FB24, local
 	.asciz "/user/Totaka/StreamList.txt"
+.endobj lbl_8048FB24
 .balign 4
-lbl_8048FB40:
+.obj lbl_8048FB40, local
 	.asciz "/user/Totaka/BgmList.txt"
+.endobj lbl_8048FB40
 .balign 4
-lbl_8048FB5C: # Shift-JIS
+.obj lbl_8048FB5C, local # Shift-JIS
 	.4byte 0x7363656E
 	.4byte 0x65206E6F
 	.4byte 0x82AA9573
 	.4byte 0x90B30000
+.endobj lbl_8048FB5C
 .balign 4
-lbl_8048FB6C:
+.obj lbl_8048FB6C, local
 	.asciz "PSScene.h"
+.endobj lbl_8048FB6C
 .balign 4
-lbl_8048FB78: # Shift-JIS
+.obj lbl_8048FB78, local # Shift-JIS
 	.4byte 0x914F89F1
 	.4byte 0x82CC6D43
 	.4byte 0x75727265
@@ -151,118 +191,152 @@ lbl_8048FB78: # Shift-JIS
 	.4byte 0xCC8CE38F
 	.4byte 0x88979D82
 	.4byte 0xAA957390
-	.4byte 0xB3000000
+	.2byte 0xB300
+.endobj lbl_8048FB78
 .balign 4
-lbl_8048FB9C: # SoundInfo
+.obj lbl_8048FB9C, local # SoundInfo
 	.4byte 0x00000000
 	.4byte 0x7F020000
 	.4byte 0x3F800000
 	.4byte 0x28000000
-lbl_8048FBAC: # SoundInfo
+.endobj lbl_8048FB9C
+.obj lbl_8048FBAC, local # SoundInfo
 	.4byte 0x00000000
 	.4byte 0x7F010000
 	.4byte 0x3F800000
 	.4byte 0x32000000
+.endobj lbl_8048FBAC
 .balign 4
-lbl_8048FBBC:
+.obj lbl_8048FBBC, local
 	.asciz "hiscore.bms"
+.endobj lbl_8048FBBC
 .balign 4
-lbl_8048FBC8:
+.obj lbl_8048FBC8, local
 	.asciz "n_tutorial_1stday.bms"
+.endobj lbl_8048FBC8
 .balign 4
-lbl_8048FBE0:
+.obj lbl_8048FBE0, local
 	.asciz "cavekeyget.cnd"
+.endobj lbl_8048FBE0
 .balign 4
-lbl_8048FBF0:
+.obj lbl_8048FBF0, local
 	.asciz "cavekeyget.bms"
+.endobj lbl_8048FBF0
 .balign 4
-lbl_8048FC00:
+.obj lbl_8048FC00, local
 	.asciz "kuro_post.bms"
+.endobj lbl_8048FC00
 .balign 4
-lbl_8048FC10: # SoundInfo
+.obj lbl_8048FC10, local # SoundInfo
 	.4byte 0x00001F00
 	.4byte 0x7FFF0000
 	.4byte 0x3F800000
 	.4byte 0x32000000
+.endobj lbl_8048FC10
 .balign 4
-lbl_8048FC20:
+.obj lbl_8048FC20, local
 	.asciz "/user/Totaka/ChallengeBgmList.txt"
+.endobj lbl_8048FC20
 .balign 4
-lbl_8048FC44:
+.obj lbl_8048FC44, local
 	.asciz "battle_t.bms"
+.endobj lbl_8048FC44
 .balign 4
-lbl_8048FC54:
+.obj lbl_8048FC54, local
 	.asciz "caveconc_00_0.cnd"
+.endobj lbl_8048FC54
 .balign 4
-lbl_8048FC68:
+.obj lbl_8048FC68, local
 	.asciz "caverelax.cnd"
+.endobj lbl_8048FC68
 .balign 4
-lbl_8048FC78:
+.obj lbl_8048FC78, local
 	.asciz "kuro_pre.bms"
+.endobj lbl_8048FC78
 .balign 4
-lbl_8048FC88:
+.obj lbl_8048FC88, local
 	.asciz "/user/Totaka/BgmList_Tutorial.txt"
+.endobj lbl_8048FC88
 .balign 4
-lbl_8048FCAC:
+.obj lbl_8048FCAC, local
 	.asciz "/user/Totaka/BgmList_Forest.txt"
+.endobj lbl_8048FCAC
 .balign 4
-lbl_8048FCCC:
+.obj lbl_8048FCCC, local
 	.asciz "/user/Totaka/BgmList_Yakushima.txt"
+.endobj lbl_8048FCCC
 .balign 4
-lbl_8048FCF0:
+.obj lbl_8048FCF0, local
 	.asciz "/user/Totaka/BgmList_Last.txt"
+.endobj lbl_8048FCF0
 .balign 4
-lbl_8048FD10:
+.obj lbl_8048FD10, local
 	.asciz "/user/Totaka/BgmList_BgmTest.txt"
+.endobj lbl_8048FD10
 .balign 4
-lbl_8048FD34:
+.obj lbl_8048FD34, local
 	.asciz "caveID==%d\n"
+.endobj lbl_8048FD34
 .balign 4
-lbl_8048FD40: # These are used near 80336D58
+.obj lbl_8048FD40, local # These are used near 0x80336D58
 	.asciz "n_tutorial.bms"
+.endobj lbl_8048FD40
 .balign 4
-lbl_8048FD50:
+.obj lbl_8048FD50, local
 	.asciz "forest.bms"
+.endobj lbl_8048FD50
 .balign 4
-lbl_8048FD5C:
+.obj lbl_8048FD5C, local
 	.asciz "yakushima.bms"
+.endobj lbl_8048FD5C
 .balign 4
-lbl_8048FD6C:
+.obj lbl_8048FD6C, local
 	.asciz "last.bms"
+.endobj lbl_8048FD6C
 .balign 4
-lbl_8048FD78:
+.obj lbl_8048FD78, local
 	.asciz "worldmap.bms"
+.endobj lbl_8048FD78
 .balign 4
-lbl_8048FD88:
+.obj lbl_8048FD88, local
 	.asciz "worldmap_intro.bms"
+.endobj lbl_8048FD88
 .balign 4
-lbl_8048FD9C:
+.obj lbl_8048FD9C, local
 	.asciz "c_menu.bms"
+.endobj lbl_8048FD9C
 .balign 4
-lbl_8048FDA8:
+.obj lbl_8048FDA8, local
 	.asciz "book.bms"
+.endobj lbl_8048FDA8
 .balign 4
-lbl_8048FDB4:
+.obj lbl_8048FDB4, local
 	.asciz "comp_result.bms"
+.endobj lbl_8048FDB4
 .balign 4
-lbl_8048FDC4:
+.obj lbl_8048FDC4, local
 	.asciz "f_result.bms"
+.endobj lbl_8048FDC4
 .balign 4
-lbl_8048FDD4:
+.obj lbl_8048FDD4, local
 	.asciz "%s_%02d_0.cnd"
+.endobj lbl_8048FDD4
 .balign 4
-lbl_8048FDE4:
+.obj lbl_8048FDE4, local
 	.asciz "\nnot find Seq\n"
+.endobj lbl_8048FDE4
 .balign 4
-lbl_8048FDF4:
+.obj lbl_8048FDF4, local
 	.asciz "%s_%02d_%1d.cnd"
+.endobj lbl_8048FDF4
 .balign 4
-lbl_8048FE04:
+.obj lbl_8048FE04, local
 	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8048FE04
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804DA920:
+.obj lbl_804DA920, local
 	.4byte .L_80337278
 	.4byte .L_80336D5C
 	.4byte .L_80336D88
@@ -284,7 +358,8 @@ lbl_804DA920:
 	.4byte .L_80337278
 	.4byte .L_8033722C
 	.4byte .L_80336D5C
-lbl_804DA974:
+.endobj lbl_804DA920
+.obj lbl_804DA974, local
 	.4byte .L_80336AB8
 	.4byte .L_80336A94
 	.4byte .L_80336A9C
@@ -306,8 +381,8 @@ lbl_804DA974:
 	.4byte .L_80336AB8
 	.4byte .L_80336AB8
 	.4byte .L_80336A94
-.global __vt__Q26PSGame11PikSceneMgr
-__vt__Q26PSGame11PikSceneMgr:
+.endobj lbl_804DA974
+.obj __vt__Q26PSGame11PikSceneMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem8SceneMgrFv
@@ -318,8 +393,8 @@ __vt__Q26PSGame11PikSceneMgr:
 	.4byte 0
 	.4byte curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv
 	.4byte 0
-.global __vt__Q26PSGame8PikScene
-__vt__Q26PSGame8PikScene:
+.endobj __vt__Q26PSGame11PikSceneMgr
+.obj __vt__Q26PSGame8PikScene, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q28PSSystem5SceneFv
@@ -330,43 +405,43 @@ __vt__Q26PSGame8PikScene:
 	.4byte startMainSeq__Q28PSSystem5SceneFv
 	.4byte stopMainSeq__Q28PSSystem5SceneFUl
 	.4byte stopAllSound__Q28PSSystem5SceneFUl
-.global __vt__Q26PSGame9SceneInfo
-__vt__Q26PSGame9SceneInfo:
+.endobj __vt__Q26PSGame8PikScene
+.obj __vt__Q26PSGame9SceneInfo, weak
 	.4byte 0
 	.4byte 0
 	.4byte isCaveFloor__Q26PSGame9SceneInfoFv
-.global "__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"
-"__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>":
+.endobj __vt__Q26PSGame9SceneInfo
+.obj "__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>Fv"
-.global __vt__Q29PSAutoBgm15ConductorArcMgr
-__vt__Q29PSAutoBgm15ConductorArcMgr:
+.endobj "__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"
+.obj __vt__Q29PSAutoBgm15ConductorArcMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29PSAutoBgm15ConductorArcMgrFv
-.global __vt__Q26PSGame10SysFactory
-__vt__Q26PSGame10SysFactory:
+.endobj __vt__Q29PSAutoBgm15ConductorArcMgr
+.obj __vt__Q26PSGame10SysFactory, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q26PSGame9CameraMgr
-__vt__Q26PSGame9CameraMgr:
+.endobj __vt__Q26PSGame10SysFactory
+.obj __vt__Q26PSGame9CameraMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q26PSGame9CameraMgrFv
-.global __vt__Q36PSGame10SoundTable11CategoryMgr
-__vt__Q36PSGame10SoundTable11CategoryMgr:
+.endobj __vt__Q26PSGame9CameraMgr
+.obj __vt__Q36PSGame10SoundTable11CategoryMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q36PSGame10SoundTable11CategoryMgrFv
-.global "__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"
-"__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>":
+.endobj __vt__Q36PSGame10SoundTable11CategoryMgr
+.obj "__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv"
-.global __vt__Q26PSGame13ConductorList
-__vt__Q26PSGame13ConductorList:
+.endobj "__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"
+.obj __vt__Q26PSGame13ConductorList, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q26PSGame13ConductorListFv
@@ -374,11 +449,12 @@ __vt__Q26PSGame13ConductorList:
 	.4byte 0
 	.4byte 0
 	.4byte "@28@__dt__Q26PSGame13ConductorListFv"
-.global "__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"
-"__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>":
+.endobj __vt__Q26PSGame13ConductorList
+.obj "__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv"
+.endobj "__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # PSGame.cpp
@@ -386,90 +462,120 @@ __vt__Q26PSGame13ConductorList:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sToolMode__Q26PSGame13ConductorList
-sToolMode__Q26PSGame13ConductorList:
+.obj sToolMode__Q26PSGame13ConductorList, global
 	.skip 0x1
+.endobj sToolMode__Q26PSGame13ConductorList
 .balign 4
-.global "sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"
-"sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>": # weak object
+.obj "sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>", weak
 	.skip 0x4
+.endobj "sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E0C0:
+.obj lbl_8051E0C0, local
 	.asciz "00"
+.endobj lbl_8051E0C0
 .balign 4
-lbl_8051E0C4:
+.obj lbl_8051E0C4, local
 	.asciz "05"
+.endobj lbl_8051E0C4
 .balign 4
-lbl_8051E0C8:
+.obj lbl_8051E0C8, local
 	.asciz "new"
+.endobj lbl_8051E0C8
 .balign 4
-lbl_8051E0CC:
+.obj lbl_8051E0CC, local
 	.asciz ".bms"
+.endobj lbl_8051E0CC
 .balign 4
-lbl_8051E0D4:
+.obj lbl_8051E0D4, local
 	.float 1.0
-lbl_8051E0D8:
+.endobj lbl_8051E0D4
+.obj lbl_8051E0D8, local
 	.float 0.0
-lbl_8051E0DC:
+.endobj lbl_8051E0D8
+.obj lbl_8051E0DC, local
 	.float 700.0
-lbl_8051E0E0:
+.endobj lbl_8051E0DC
+.obj lbl_8051E0E0, local
 	.float 0.18
-lbl_8051E0E4:
+.endobj lbl_8051E0E0
+.obj lbl_8051E0E4, local
 	.float 2600.0
-lbl_8051E0E8:
+.endobj lbl_8051E0E4
+.obj lbl_8051E0E8, local
 	.float 200.0
-lbl_8051E0EC:
+.endobj lbl_8051E0E8
+.obj lbl_8051E0EC, local
 	.float 684.0
-lbl_8051E0F0:
+.endobj lbl_8051E0EC
+.obj lbl_8051E0F0, local
 	.float 0.197
-lbl_8051E0F4:
+.endobj lbl_8051E0F0
+.obj lbl_8051E0F4, local
 	.float 4012.5
-lbl_8051E0F8:
+.endobj lbl_8051E0F4
+.obj lbl_8051E0F8, local
 	.float 2.0
-lbl_8051E0FC:
+.endobj lbl_8051E0F8
+.obj lbl_8051E0FC, local
 	.float 0.5
-lbl_8051E100:
+.endobj lbl_8051E0FC
+.obj lbl_8051E100, local
 	.float 0.25
-.global sDefaultVol__Q26PSGame9CameraMgr
-sDefaultVol__Q26PSGame9CameraMgr:
+.endobj lbl_8051E100
+.balign 4
+.obj sDefaultVol__Q26PSGame9CameraMgr, global
 	.float 0.8
-lbl_8051E108:
+.endobj sDefaultVol__Q26PSGame9CameraMgr
+.balign 4
+.obj lbl_8051E108, local
 	.float 61.66
-lbl_8051E10C:
+.endobj lbl_8051E108
+.obj lbl_8051E10C, local
 	.float 131.25
-lbl_8051E110:
+.endobj lbl_8051E10C
+.obj lbl_8051E110, local
 	.float 215.04
-lbl_8051E114:
+.endobj lbl_8051E110
+.obj lbl_8051E114, local
 	.float 330.18
-lbl_8051E118:
+.endobj lbl_8051E114
+.obj lbl_8051E118, local
 	.float 0.8
-lbl_8051E11C:
+.endobj lbl_8051E118
+.obj lbl_8051E11C, local
 	.float 0.71
-lbl_8051E120:
+.endobj lbl_8051E11C
+.obj lbl_8051E120, local
 	.float 0.62
-lbl_8051E124:
+.endobj lbl_8051E120
+.obj lbl_8051E124, local
 	.float 0.45
+.endobj lbl_8051E124
 .balign 4
-lbl_8051E128:
+.obj lbl_8051E128, local
 	.asciz "Seq.arc"
+.endobj lbl_8051E128
 .balign 4
-lbl_8051E130:
+.obj lbl_8051E130, local
 	.float 120.0
+.endobj lbl_8051E130
 .balign 4
-lbl_8051E134:
+.obj lbl_8051E134, local
 	.asciz "se.bms"
+.endobj lbl_8051E134
 .balign 4
-lbl_8051E13C:
+.obj lbl_8051E13C, local
 	.asciz "PSSeq.h"
+.endobj lbl_8051E13C
 .balign 4
-lbl_8051E144:
+.obj lbl_8051E144, local
 	.asciz "PSSe.h"
+.endobj lbl_8051E144
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getCaveNoFromID__Q26PSGame13CaveFloorInfoFv
-getCaveNoFromID__Q26PSGame13CaveFloorInfoFv:
+.fn getCaveNoFromID__Q26PSGame13CaveFloorInfoFv, global
 /* 80334268 003311A8  80 83 00 44 */	lwz r4, 0x44(r3)
 /* 8033426C 003311AC  3C 04 8B 9B */	subis r0, r4, 0x7465
 /* 80334270 003311B0  28 00 73 74 */	cmplwi r0, 0x7374
@@ -481,9 +587,9 @@ getCaveNoFromID__Q26PSGame13CaveFloorInfoFv:
 /* 80334284 003311C4  38 03 FF CF */	addi r0, r3, -49
 /* 80334288 003311C8  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8033428C 003311CC  4E 80 00 20 */	blr 
+.endfn getCaveNoFromID__Q26PSGame13CaveFloorInfoFv
 
-.global __dt__Q26PSGame13ConductorListFv
-__dt__Q26PSGame13ConductorListFv:
+.fn __dt__Q26PSGame13ConductorListFv, global
 /* 80334290 003311D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80334294 003311D4  7C 08 02 A6 */	mflr r0
 /* 80334298 003311D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -542,9 +648,9 @@ __dt__Q26PSGame13ConductorListFv:
 /* 80334358 00331298  7C 08 03 A6 */	mtlr r0
 /* 8033435C 0033129C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80334360 003312A0  4E 80 00 20 */	blr 
+.endfn __dt__Q26PSGame13ConductorListFv
 
-.global read__Q26PSGame13ConductorListFR6Stream
-read__Q26PSGame13ConductorListFR6Stream:
+.fn read__Q26PSGame13ConductorListFR6Stream, global
 /* 80334364 003312A4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80334368 003312A8  7C 08 02 A6 */	mflr r0
 /* 8033436C 003312AC  3C A0 80 49 */	lis r5, lbl_8048F918@ha
@@ -662,17 +768,17 @@ read__Q26PSGame13ConductorListFR6Stream:
 /* 80334504 00331444  7C 08 03 A6 */	mtlr r0
 /* 80334508 00331448  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033450C 0033144C  4E 80 00 20 */	blr 
+.endfn read__Q26PSGame13ConductorListFR6Stream
 
-.global __ct__Q36PSGame13ConductorList8CaveInfoFv
-__ct__Q36PSGame13ConductorList8CaveInfoFv:
+.fn __ct__Q36PSGame13ConductorList8CaveInfoFv, weak
 /* 80334510 00331450  38 80 00 FF */	li r4, 0xff
 /* 80334514 00331454  38 00 00 00 */	li r0, 0
 /* 80334518 00331458  98 83 00 00 */	stb r4, 0(r3)
 /* 8033451C 0033145C  90 03 00 04 */	stw r0, 4(r3)
 /* 80334520 00331460  4E 80 00 20 */	blr 
+.endfn __ct__Q36PSGame13ConductorList8CaveInfoFv
 
-.global getSeqAndWaveFromConductor__Q26PSGame13ConductorListFPCcPUcPPc
-getSeqAndWaveFromConductor__Q26PSGame13ConductorListFPCcPUcPPc:
+.fn getSeqAndWaveFromConductor__Q26PSGame13ConductorListFPCcPUcPPc, global
 /* 80334524 00331464  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80334528 00331468  7C 08 02 A6 */	mflr r0
 /* 8033452C 0033146C  3C 60 80 49 */	lis r3, lbl_8048F918@ha
@@ -939,9 +1045,9 @@ getSeqAndWaveFromConductor__Q26PSGame13ConductorListFPCcPUcPPc:
 /* 803348EC 0033182C  7C 08 03 A6 */	mtlr r0
 /* 803348F0 00331830  38 21 00 20 */	addi r1, r1, 0x20
 /* 803348F4 00331834  4E 80 00 20 */	blr 
+.endfn getSeqAndWaveFromConductor__Q26PSGame13ConductorListFPCcPUcPPc
 
-.global __ct__Q36PSGame10SoundTable11CategoryMgrFv
-__ct__Q36PSGame10SoundTable11CategoryMgrFv:
+.fn __ct__Q36PSGame10SoundTable11CategoryMgrFv, global
 /* 803348F8 00331838  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803348FC 0033183C  7C 08 02 A6 */	mflr r0
 /* 80334900 00331840  3C A0 80 4E */	lis r5, "__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@ha
@@ -1002,9 +1108,9 @@ __ct__Q36PSGame10SoundTable11CategoryMgrFv:
 /* 803349CC 0033190C  7C 08 03 A6 */	mtlr r0
 /* 803349D0 00331910  38 21 00 10 */	addi r1, r1, 0x10
 /* 803349D4 00331914  4E 80 00 20 */	blr 
+.endfn __ct__Q36PSGame10SoundTable11CategoryMgrFv
 
-.global initiate__Q36PSGame10SoundTable11CategoryMgrFUc
-initiate__Q36PSGame10SoundTable11CategoryMgrFUc:
+.fn initiate__Q36PSGame10SoundTable11CategoryMgrFUc, global
 /* 803349D8 00331918  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803349DC 0033191C  7C 08 02 A6 */	mflr r0
 /* 803349E0 00331920  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1108,18 +1214,18 @@ initiate__Q36PSGame10SoundTable11CategoryMgrFUc:
 /* 80334B40 00331A80  7C 08 03 A6 */	mtlr r0
 /* 80334B44 00331A84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80334B48 00331A88  4E 80 00 20 */	blr 
+.endfn initiate__Q36PSGame10SoundTable11CategoryMgrFUc
 
-.global set__Q36PSGame10SoundTable11SePerspInfoFfffff
-set__Q36PSGame10SoundTable11SePerspInfoFfffff:
+.fn set__Q36PSGame10SoundTable11SePerspInfoFfffff, global
 /* 80334B4C 00331A8C  D0 23 00 00 */	stfs f1, 0(r3)
 /* 80334B50 00331A90  D0 43 00 04 */	stfs f2, 4(r3)
 /* 80334B54 00331A94  D0 63 00 08 */	stfs f3, 8(r3)
 /* 80334B58 00331A98  D0 83 00 0C */	stfs f4, 0xc(r3)
 /* 80334B5C 00331A9C  D0 A3 00 10 */	stfs f5, 0x10(r3)
 /* 80334B60 00331AA0  4E 80 00 20 */	blr 
+.endfn set__Q36PSGame10SoundTable11SePerspInfoFfffff
 
-.global getDistVol__Q36PSGame10SoundTable11SePerspInfoFfUc
-getDistVol__Q36PSGame10SoundTable11SePerspInfoFfUc:
+.fn getDistVol__Q36PSGame10SoundTable11SePerspInfoFfUc, global
 /* 80334B64 00331AA4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80334B68 00331AA8  7C 08 02 A6 */	mflr r0
 /* 80334B6C 00331AAC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1222,9 +1328,9 @@ getDistVol__Q36PSGame10SoundTable11SePerspInfoFfUc:
 /* 80334CBC 00331BFC  7C 08 03 A6 */	mtlr r0
 /* 80334CC0 00331C00  38 21 00 30 */	addi r1, r1, 0x30
 /* 80334CC4 00331C04  4E 80 00 20 */	blr 
+.endfn getDistVol__Q36PSGame10SoundTable11SePerspInfoFfUc
 
-.global __ct__Q26PSGame9CameraMgrFv
-__ct__Q26PSGame9CameraMgrFv:
+.fn __ct__Q26PSGame9CameraMgrFv, global
 /* 80334CC8 00331C08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80334CCC 00331C0C  7C 08 02 A6 */	mflr r0
 /* 80334CD0 00331C10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1267,9 +1373,9 @@ __ct__Q26PSGame9CameraMgrFv:
 /* 80334D64 00331CA4  7C 08 03 A6 */	mtlr r0
 /* 80334D68 00331CA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80334D6C 00331CAC  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame9CameraMgrFv
 
-.global __dt__Q26PSGame9CameraMgrFv
-__dt__Q26PSGame9CameraMgrFv:
+.fn __dt__Q26PSGame9CameraMgrFv, global
 /* 80334D70 00331CB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80334D74 00331CB4  7C 08 02 A6 */	mflr r0
 /* 80334D78 00331CB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1295,9 +1401,9 @@ __dt__Q26PSGame9CameraMgrFv:
 /* 80334DC4 00331D04  7C 08 03 A6 */	mtlr r0
 /* 80334DC8 00331D08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80334DCC 00331D0C  4E 80 00 20 */	blr 
+.endfn __dt__Q26PSGame9CameraMgrFv
 
-.global getBgmCamVol__Q26PSGame9CameraMgrFUc
-getBgmCamVol__Q26PSGame9CameraMgrFUc:
+.fn getBgmCamVol__Q26PSGame9CameraMgrFUc, global
 /* 80334DD0 00331D10  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 80334DD4 00331D14  7C 83 02 14 */	add r4, r3, r0
 /* 80334DD8 00331D18  88 04 00 4C */	lbz r0, 0x4c(r4)
@@ -1308,9 +1414,9 @@ getBgmCamVol__Q26PSGame9CameraMgrFUc:
 .L_80334DEC:
 /* 80334DEC 00331D2C  C0 22 FD 74 */	lfs f1, lbl_8051E0D4@sda21(r2)
 /* 80334DF0 00331D30  4E 80 00 20 */	blr 
+.endfn getBgmCamVol__Q26PSGame9CameraMgrFUc
 
-.global update__Q26PSGame9CameraMgrFUcf
-update__Q26PSGame9CameraMgrFUcf:
+.fn update__Q26PSGame9CameraMgrFUcf, global
 /* 80334DF4 00331D34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80334DF8 00331D38  7C 08 02 A6 */	mflr r0
 /* 80334DFC 00331D3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1330,16 +1436,16 @@ update__Q26PSGame9CameraMgrFUcf:
 /* 80334E34 00331D74  7C 08 03 A6 */	mtlr r0
 /* 80334E38 00331D78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80334E3C 00331D7C  4E 80 00 20 */	blr 
+.endfn update__Q26PSGame9CameraMgrFUcf
 
-.global getCurrentCamDistVol__Q26PSGame9CameraMgrFUc
-getCurrentCamDistVol__Q26PSGame9CameraMgrFUc:
+.fn getCurrentCamDistVol__Q26PSGame9CameraMgrFUc, global
 /* 80334E40 00331D80  54 80 15 BA */	rlwinm r0, r4, 2, 0x16, 0x1d
 /* 80334E44 00331D84  7C 63 02 14 */	add r3, r3, r0
 /* 80334E48 00331D88  C0 23 00 3C */	lfs f1, 0x3c(r3)
 /* 80334E4C 00331D8C  4E 80 00 20 */	blr 
+.endfn getCurrentCamDistVol__Q26PSGame9CameraMgrFUc
 
-.global getVol_DistBetweenCamAndLookat__Q26PSGame9CameraMgrFf
-getVol_DistBetweenCamAndLookat__Q26PSGame9CameraMgrFf:
+.fn getVol_DistBetweenCamAndLookat__Q26PSGame9CameraMgrFf, global
 /* 80334E50 00331D90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80334E54 00331D94  7C 08 02 A6 */	mflr r0
 /* 80334E58 00331D98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1377,9 +1483,9 @@ getVol_DistBetweenCamAndLookat__Q26PSGame9CameraMgrFf:
 /* 80334ECC 00331E0C  7C 08 03 A6 */	mtlr r0
 /* 80334ED0 00331E10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80334ED4 00331E14  4E 80 00 20 */	blr 
+.endfn getVol_DistBetweenCamAndLookat__Q26PSGame9CameraMgrFf
 
-.global __ct__Q26PSGame10SysFactoryFv
-__ct__Q26PSGame10SysFactoryFv:
+.fn __ct__Q26PSGame10SysFactoryFv, global
 /* 80334ED8 00331E18  3C A0 80 4E */	lis r5, __vt__Q26PSGame10SysFactory@ha
 /* 80334EDC 00331E1C  3C 80 00 15 */	lis r4, 0x00151800@ha
 /* 80334EE0 00331E20  38 05 AA 3C */	addi r0, r5, __vt__Q26PSGame10SysFactory@l
@@ -1393,9 +1499,9 @@ __ct__Q26PSGame10SysFactoryFv:
 /* 80334F00 00331E40  90 03 00 14 */	stw r0, 0x14(r3)
 /* 80334F04 00331E44  90 A3 00 18 */	stw r5, 0x18(r3)
 /* 80334F08 00331E48  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame10SysFactoryFv
 
-.global newSoundSystem__Q26PSGame10SysFactoryFv
-newSoundSystem__Q26PSGame10SysFactoryFv:
+.fn newSoundSystem__Q26PSGame10SysFactoryFv, global
 /* 80334F0C 00331E4C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80334F10 00331E50  7C 08 02 A6 */	mflr r0
 /* 80334F14 00331E54  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1674,9 +1780,9 @@ newSoundSystem__Q26PSGame10SysFactoryFv:
 /* 80335304 00332244  7C 08 03 A6 */	mtlr r0
 /* 80335308 00332248  38 21 00 40 */	addi r1, r1, 0x40
 /* 8033530C 0033224C  4E 80 00 20 */	blr 
+.endfn newSoundSystem__Q26PSGame10SysFactoryFv
 
-.global preInitJAI__Q26PSGame10SysFactoryFv
-preInitJAI__Q26PSGame10SysFactoryFv:
+.fn preInitJAI__Q26PSGame10SysFactoryFv, global
 /* 80335310 00332250  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80335314 00332254  7C 08 02 A6 */	mflr r0
 /* 80335318 00332258  3C 60 80 49 */	lis r3, lbl_8048FA9C@ha
@@ -1709,9 +1815,9 @@ preInitJAI__Q26PSGame10SysFactoryFv:
 /* 80335384 003322C4  7C 08 03 A6 */	mtlr r0
 /* 80335388 003322C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033538C 003322CC  4E 80 00 20 */	blr 
+.endfn preInitJAI__Q26PSGame10SysFactoryFv
 
-.global postInitJAI__Q26PSGame10SysFactoryFv
-postInitJAI__Q26PSGame10SysFactoryFv:
+.fn postInitJAI__Q26PSGame10SysFactoryFv, global
 /* 80335390 003322D0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80335394 003322D4  7C 08 02 A6 */	mflr r0
 /* 80335398 003322D8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1790,9 +1896,9 @@ postInitJAI__Q26PSGame10SysFactoryFv:
 /* 803354A4 003323E4  7C 08 03 A6 */	mtlr r0
 /* 803354A8 003323E8  38 21 00 30 */	addi r1, r1, 0x30
 /* 803354AC 003323EC  4E 80 00 20 */	blr 
+.endfn postInitJAI__Q26PSGame10SysFactoryFv
 
-.global __ct__Q26PSGame9SceneInfoFv
-__ct__Q26PSGame9SceneInfoFv:
+.fn __ct__Q26PSGame9SceneInfoFv, global
 /* 803354B0 003323F0  3C 80 80 4E */	lis r4, __vt__Q26PSGame9SceneInfo@ha
 /* 803354B4 003323F4  38 00 00 00 */	li r0, 0
 /* 803354B8 003323F8  38 84 AA 18 */	addi r4, r4, __vt__Q26PSGame9SceneInfo@l
@@ -1807,9 +1913,9 @@ __ct__Q26PSGame9SceneInfoFv:
 /* 803354DC 0033241C  90 03 00 14 */	stw r0, 0x14(r3)
 /* 803354E0 00332420  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 803354E4 00332424  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame9SceneInfoFv
 
-.global setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo12FlagBitShift
-setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo12FlagBitShift:
+.fn setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo12FlagBitShift, global
 /* 803354E8 00332428  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803354EC 0033242C  7C 08 02 A6 */	mflr r0
 /* 803354F0 00332430  2C 04 00 00 */	cmpwi r4, 0
@@ -1843,16 +1949,16 @@ setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo
 /* 80335554 00332494  7C 08 03 A6 */	mtlr r0
 /* 80335558 00332498  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033555C 0033249C  4E 80 00 20 */	blr 
+.endfn setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo12FlagBitShift
 
-.global getFlag__Q26PSGame9SceneInfoCFQ36PSGame9SceneInfo12FlagBitShift
-getFlag__Q26PSGame9SceneInfoCFQ36PSGame9SceneInfo12FlagBitShift:
+.fn getFlag__Q26PSGame9SceneInfoCFQ36PSGame9SceneInfo12FlagBitShift, global
 /* 80335560 003324A0  A0 03 00 04 */	lhz r0, 4(r3)
 /* 80335564 003324A4  7C 00 26 30 */	sraw r0, r0, r4
 /* 80335568 003324A8  54 03 07 FE */	clrlwi r3, r0, 0x1f
 /* 8033556C 003324AC  4E 80 00 20 */	blr 
+.endfn getFlag__Q26PSGame9SceneInfoCFQ36PSGame9SceneInfo12FlagBitShift
 
-.global setStageCamera__Q26PSGame9SceneInfoCFv
-setStageCamera__Q26PSGame9SceneInfoCFv:
+.fn setStageCamera__Q26PSGame9SceneInfoCFv, global
 /* 80335570 003324B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80335574 003324B4  7C 08 02 A6 */	mflr r0
 /* 80335578 003324B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1884,9 +1990,9 @@ setStageCamera__Q26PSGame9SceneInfoCFv:
 /* 803355D8 00332518  7C 08 03 A6 */	mtlr r0
 /* 803355DC 0033251C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803355E0 00332520  4E 80 00 20 */	blr 
+.endfn setStageCamera__Q26PSGame9SceneInfoCFv
 
-.global __ct__Q26PSGame8PikSceneFUc
-__ct__Q26PSGame8PikSceneFUc:
+.fn __ct__Q26PSGame8PikSceneFUc, global
 /* 803355E4 00332524  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803355E8 00332528  7C 08 02 A6 */	mflr r0
 /* 803355EC 0033252C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1902,9 +2008,9 @@ __ct__Q26PSGame8PikSceneFUc:
 /* 80335614 00332554  7C 08 03 A6 */	mtlr r0
 /* 80335618 00332558  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033561C 0033255C  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame8PikSceneFUc
 
-.global __dt__Q26PSGame8PikSceneFv
-__dt__Q26PSGame8PikSceneFv:
+.fn __dt__Q26PSGame8PikSceneFv, global
 /* 80335620 00332560  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80335624 00332564  7C 08 02 A6 */	mflr r0
 /* 80335628 00332568  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1930,9 +2036,9 @@ __dt__Q26PSGame8PikSceneFv:
 /* 80335674 003325B4  7C 08 03 A6 */	mtlr r0
 /* 80335678 003325B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033567C 003325BC  4E 80 00 20 */	blr 
+.endfn __dt__Q26PSGame8PikSceneFv
 
-.global getMiddleBossBgm__Q26PSGame8PikSceneFv
-getMiddleBossBgm__Q26PSGame8PikSceneFv:
+.fn getMiddleBossBgm__Q26PSGame8PikSceneFv, global
 /* 80335680 003325C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80335684 003325C4  7C 08 02 A6 */	mflr r0
 /* 80335688 003325C8  38 80 00 01 */	li r4, 1
@@ -1979,9 +2085,9 @@ getMiddleBossBgm__Q26PSGame8PikSceneFv:
 /* 8033571C 0033265C  7C 08 03 A6 */	mtlr r0
 /* 80335720 00332660  38 21 00 10 */	addi r1, r1, 0x10
 /* 80335724 00332664  4E 80 00 20 */	blr 
+.endfn getMiddleBossBgm__Q26PSGame8PikSceneFv
 
-.global newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv
-newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv:
+.fn newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv, global
 /* 80335728 00332668  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8033572C 0033266C  7C 08 02 A6 */	mflr r0
 /* 80335730 00332670  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2222,9 +2328,9 @@ newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv:
 /* 80335A94 003329D4  7C 08 03 A6 */	mtlr r0
 /* 80335A98 003329D8  38 21 00 70 */	addi r1, r1, 0x70
 /* 80335A9C 003329DC  4E 80 00 20 */	blr 
+.endfn newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv
 
-.global newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo
-newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo:
+.fn newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo, global
 /* 80335AA0 003329E0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80335AA4 003329E4  7C 08 02 A6 */	mflr r0
 /* 80335AA8 003329E8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2547,9 +2653,9 @@ newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo:
 /* 80335F40 00332E80  7C 08 03 A6 */	mtlr r0
 /* 80335F44 00332E84  38 21 00 30 */	addi r1, r1, 0x30
 /* 80335F48 00332E88  4E 80 00 20 */	blr 
+.endfn newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo
 
-.global newBgmSeq__Q26PSGame11PikSceneMgrFPCcRQ27JAInter9SoundInfo
-newBgmSeq__Q26PSGame11PikSceneMgrFPCcRQ27JAInter9SoundInfo:
+.fn newBgmSeq__Q26PSGame11PikSceneMgrFPCcRQ27JAInter9SoundInfo, global
 /* 80335F4C 00332E8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80335F50 00332E90  7C 08 02 A6 */	mflr r0
 /* 80335F54 00332E94  38 60 00 6C */	li r3, 0x6c
@@ -2590,9 +2696,9 @@ newBgmSeq__Q26PSGame11PikSceneMgrFPCcRQ27JAInter9SoundInfo:
 /* 80335FD8 00332F18  7C 08 03 A6 */	mtlr r0
 /* 80335FDC 00332F1C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80335FE0 00332F20  4E 80 00 20 */	blr 
+.endfn newBgmSeq__Q26PSGame11PikSceneMgrFPCcRQ27JAInter9SoundInfo
 
-.global newStreamBgm__Q26PSGame11PikSceneMgrFUlRQ27JAInter9SoundInfo
-newStreamBgm__Q26PSGame11PikSceneMgrFUlRQ27JAInter9SoundInfo:
+.fn newStreamBgm__Q26PSGame11PikSceneMgrFUlRQ27JAInter9SoundInfo, global
 /* 80335FE4 00332F24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80335FE8 00332F28  7C 08 02 A6 */	mflr r0
 /* 80335FEC 00332F2C  38 60 00 74 */	li r3, 0x74
@@ -2629,9 +2735,9 @@ newStreamBgm__Q26PSGame11PikSceneMgrFUlRQ27JAInter9SoundInfo:
 /* 80336060 00332FA0  7C 08 03 A6 */	mtlr r0
 /* 80336064 00332FA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80336068 00332FA8  4E 80 00 20 */	blr 
+.endfn newStreamBgm__Q26PSGame11PikSceneMgrFUlRQ27JAInter9SoundInfo
 
-.global initBossBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc
-initBossBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc:
+.fn initBossBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc, global
 /* 8033606C 00332FAC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80336070 00332FB0  7C 08 02 A6 */	mflr r0
 /* 80336074 00332FB4  3C 80 80 49 */	lis r4, lbl_8048F918@ha
@@ -2722,9 +2828,9 @@ initBossBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc:
 /* 803361B0 003330F0  7C 08 03 A6 */	mtlr r0
 /* 803361B4 003330F4  38 21 00 30 */	addi r1, r1, 0x30
 /* 803361B8 003330F8  4E 80 00 20 */	blr 
+.endfn initBossBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc
 
-.global initAdditionalBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPQ28PSSystem5Scene
-initAdditionalBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPQ28PSSystem5Scene:
+.fn initAdditionalBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPQ28PSSystem5Scene, global
 /* 803361BC 003330FC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803361C0 00333100  7C 08 02 A6 */	mflr r0
 /* 803361C4 00333104  3C C0 80 49 */	lis r6, lbl_8048F918@ha
@@ -3005,9 +3111,9 @@ initAdditionalBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPQ28PSSystem5Scene
 /* 803365B0 003334F0  7C 08 03 A6 */	mtlr r0
 /* 803365B4 003334F4  38 21 00 30 */	addi r1, r1, 0x30
 /* 803365B8 003334F8  4E 80 00 20 */	blr 
+.endfn initAdditionalBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPQ28PSSystem5Scene
 
-.global initMainBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc
-initMainBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc:
+.fn initMainBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc, global
 /* 803365BC 003334FC  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803365C0 00333500  7C 08 02 A6 */	mflr r0
 /* 803365C4 00333504  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3944,9 +4050,9 @@ initMainBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc:
 /* 803372D4 00334214  7C 08 03 A6 */	mtlr r0
 /* 803372D8 00334218  38 21 00 70 */	addi r1, r1, 0x70
 /* 803372DC 0033421C  4E 80 00 20 */	blr 
+.endfn initMainBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc
 
-.global seqCpuSync__6PSGameFP8JASTrackUs
-seqCpuSync__6PSGameFP8JASTrackUs:
+.fn seqCpuSync__6PSGameFP8JASTrackUs, global
 /* 803372E0 00334220  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803372E4 00334224  7C 08 02 A6 */	mflr r0
 /* 803372E8 00334228  3C A0 80 49 */	lis r5, lbl_8048F918@ha
@@ -4625,9 +4731,9 @@ seqCpuSync__6PSGameFP8JASTrackUs:
 /* 80337C20 00334B60  7C 08 03 A6 */	mtlr r0
 /* 80337C24 00334B64  38 21 00 30 */	addi r1, r1, 0x30
 /* 80337C28 00334B68  4E 80 00 20 */	blr 
+.endfn seqCpuSync__6PSGameFP8JASTrackUs
 
-.global PSPlayerChangeToOrimer__Fv
-PSPlayerChangeToOrimer__Fv:
+.fn PSPlayerChangeToOrimer__Fv, global
 /* 80337C2C 00334B6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80337C30 00334B70  7C 08 02 A6 */	mflr r0
 /* 80337C34 00334B74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4662,9 +4768,9 @@ PSPlayerChangeToOrimer__Fv:
 /* 80337C9C 00334BDC  7C 08 03 A6 */	mtlr r0
 /* 80337CA0 00334BE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80337CA4 00334BE4  4E 80 00 20 */	blr 
+.endfn PSPlayerChangeToOrimer__Fv
 
-.global PSGetDirectedMainBgm__Fv
-PSGetDirectedMainBgm__Fv:
+.fn PSGetDirectedMainBgm__Fv, global
 /* 80337CA8 00334BE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80337CAC 00334BEC  7C 08 02 A6 */	mflr r0
 /* 80337CB0 00334BF0  3C 60 80 49 */	lis r3, lbl_8048F918@ha
@@ -4745,9 +4851,9 @@ PSGetDirectedMainBgm__Fv:
 /* 80337DC0 00334D00  7C 08 03 A6 */	mtlr r0
 /* 80337DC4 00334D04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80337DC8 00334D08  4E 80 00 20 */	blr 
+.endfn PSGetDirectedMainBgm__Fv
 
-.global PSPlayerChangeToLugie__Fv
-PSPlayerChangeToLugie__Fv:
+.fn PSPlayerChangeToLugie__Fv, global
 /* 80337DCC 00334D0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80337DD0 00334D10  7C 08 02 A6 */	mflr r0
 /* 80337DD4 00334D14  3C 60 80 49 */	lis r3, lbl_8048F918@ha
@@ -4849,9 +4955,9 @@ PSPlayerChangeToLugie__Fv:
 /* 80337F30 00334E70  7C 08 03 A6 */	mtlr r0
 /* 80337F34 00334E74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80337F38 00334E78  4E 80 00 20 */	blr 
+.endfn PSPlayerChangeToLugie__Fv
 
-.global PSGetDirectedMainBgmA__Fv
-PSGetDirectedMainBgmA__Fv:
+.fn PSGetDirectedMainBgmA__Fv, global
 /* 80337F3C 00334E7C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80337F40 00334E80  7C 08 02 A6 */	mflr r0
 /* 80337F44 00334E84  3C 60 80 49 */	lis r3, lbl_8048F918@ha
@@ -4953,9 +5059,9 @@ PSGetDirectedMainBgmA__Fv:
 /* 803380A0 00334FE0  7C 08 03 A6 */	mtlr r0
 /* 803380A4 00334FE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803380A8 00334FE8  4E 80 00 20 */	blr 
+.endfn PSGetDirectedMainBgmA__Fv
 
-.global "__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv"
-"__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv":
+.fn "__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv", weak
 /* 803380AC 00334FEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803380B0 00334FF0  7C 08 02 A6 */	mflr r0
 /* 803380B4 00334FF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4977,9 +5083,9 @@ PSGetDirectedMainBgmA__Fv:
 /* 803380F0 00335030  7C 08 03 A6 */	mtlr r0
 /* 803380F4 00335034  38 21 00 10 */	addi r1, r1, 0x10
 /* 803380F8 00335038  4E 80 00 20 */	blr 
+.endfn "__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv"
 
-.global "__dt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv"
-"__dt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv":
+.fn "__dt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv", weak
 /* 803380FC 0033503C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338100 00335040  7C 08 02 A6 */	mflr r0
 /* 80338104 00335044  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5001,9 +5107,9 @@ PSGetDirectedMainBgmA__Fv:
 /* 80338140 00335080  7C 08 03 A6 */	mtlr r0
 /* 80338144 00335084  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338148 00335088  4E 80 00 20 */	blr 
+.endfn "__dt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv"
 
-.global "newInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv"
-"newInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv":
+.fn "newInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv", weak
 /* 8033814C 0033508C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338150 00335090  7C 08 02 A6 */	mflr r0
 /* 80338154 00335094  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5046,24 +5152,24 @@ PSGetDirectedMainBgmA__Fv:
 /* 803381D8 00335118  7C 08 03 A6 */	mtlr r0
 /* 803381DC 0033511C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803381E0 00335120  4E 80 00 20 */	blr 
+.endfn "newInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv"
 
-.global "@28@__dt__Q26PSGame13ConductorListFv"
-"@28@__dt__Q26PSGame13ConductorListFv":
+.fn "@28@__dt__Q26PSGame13ConductorListFv", weak
 /* 803381E4 00335124  38 63 FF E4 */	addi r3, r3, -28
 /* 803381E8 00335128  4B FF C0 A8 */	b __dt__Q26PSGame13ConductorListFv
+.endfn "@28@__dt__Q26PSGame13ConductorListFv"
 
-.global isCaveFloor__Q26PSGame9SceneInfoFv
-isCaveFloor__Q26PSGame9SceneInfoFv:
+.fn isCaveFloor__Q26PSGame9SceneInfoFv, weak
 /* 803381EC 0033512C  38 60 00 00 */	li r3, 0
 /* 803381F0 00335130  4E 80 00 20 */	blr 
+.endfn isCaveFloor__Q26PSGame9SceneInfoFv
 
-.global curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv
-curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv:
+.fn curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv, weak
 /* 803381F4 00335134  38 60 00 00 */	li r3, 0
 /* 803381F8 00335138  4E 80 00 20 */	blr 
+.endfn curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv
 
-.global exec__Q28PSSystem8SceneMgrFv
-exec__Q28PSSystem8SceneMgrFv:
+.fn exec__Q28PSSystem8SceneMgrFv, weak
 /* 803381FC 0033513C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338200 00335140  7C 08 02 A6 */	mflr r0
 /* 80338204 00335144  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5079,13 +5185,13 @@ exec__Q28PSSystem8SceneMgrFv:
 /* 80338228 00335168  7C 08 03 A6 */	mtlr r0
 /* 8033822C 0033516C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338230 00335170  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem8SceneMgrFv
 
-.global init__Q28PSSystem5SceneFv
-init__Q28PSSystem5SceneFv:
+.fn init__Q28PSSystem5SceneFv, weak
 /* 80338234 00335174  4E 80 00 20 */	blr 
+.endfn init__Q28PSSystem5SceneFv
 
-.global __dt__Q29PSAutoBgm15ConductorArcMgrFv
-__dt__Q29PSAutoBgm15ConductorArcMgrFv:
+.fn __dt__Q29PSAutoBgm15ConductorArcMgrFv, weak
 /* 80338238 00335178  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033823C 0033517C  7C 08 02 A6 */	mflr r0
 /* 80338240 00335180  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5107,9 +5213,9 @@ __dt__Q29PSAutoBgm15ConductorArcMgrFv:
 /* 8033827C 003351BC  7C 08 03 A6 */	mtlr r0
 /* 80338280 003351C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338284 003351C4  4E 80 00 20 */	blr 
+.endfn __dt__Q29PSAutoBgm15ConductorArcMgrFv
 
-.global __dt__Q36PSGame10SoundTable11CategoryMgrFv
-__dt__Q36PSGame10SoundTable11CategoryMgrFv:
+.fn __dt__Q36PSGame10SoundTable11CategoryMgrFv, weak
 /* 80338288 003351C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033828C 003351CC  7C 08 02 A6 */	mflr r0
 /* 80338290 003351D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5137,9 +5243,9 @@ __dt__Q36PSGame10SoundTable11CategoryMgrFv:
 /* 803382E0 00335220  7C 08 03 A6 */	mtlr r0
 /* 803382E4 00335224  38 21 00 10 */	addi r1, r1, 0x10
 /* 803382E8 00335228  4E 80 00 20 */	blr 
+.endfn __dt__Q36PSGame10SoundTable11CategoryMgrFv
 
-.global "__dt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>Fv"
-"__dt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>Fv":
+.fn "__dt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>Fv", weak
 /* 803382EC 0033522C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803382F0 00335230  7C 08 02 A6 */	mflr r0
 /* 803382F4 00335234  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5173,3 +5279,4 @@ __dt__Q36PSGame10SoundTable11CategoryMgrFv:
 /* 80338360 003352A0  7C 08 03 A6 */	mtlr r0
 /* 80338364 003352A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338368 003352A8  4E 80 00 20 */	blr 
+.endfn "__dt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>Fv"

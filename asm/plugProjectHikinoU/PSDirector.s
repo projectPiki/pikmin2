@@ -1,48 +1,52 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80490180:
+.obj lbl_80490180, local
 	.asciz "PSDirector.cpp"
+.endobj lbl_80490180
 .balign 4
-lbl_80490190:
+.obj lbl_80490190, local
 	.asciz "P2Assert"
+.endobj lbl_80490190
 .balign 4
-lbl_8049019C:
+.obj lbl_8049019C, local
 	.asciz "\nNot Called From Main Thread\n"
+.endobj lbl_8049019C
 .balign 4
-lbl_804901BC: # Shift-JIS
+.obj lbl_804901BC, local # Shift-JIS
 	.4byte 0x83668342
 	.4byte 0x838C834E
 	.4byte 0x835E815B
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
+.endobj lbl_804901BC
 .balign 4
-lbl_804901D4:
+.obj lbl_804901D4, local
 	.asciz "PSDirector.h"
+.endobj lbl_804901D4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q28PSSystem17DirectorCopyActor
-__vt__Q28PSSystem17DirectorCopyActor:
+.obj __vt__Q28PSSystem17DirectorCopyActor, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase
 	.4byte onUpdateFromMasterD__Q28PSSystem17DirectorCopyActorFv
 	.4byte onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv
-.global __vt__Q28PSSystem17DirectorActorBase
-__vt__Q28PSSystem17DirectorActorBase:
+.endobj __vt__Q28PSSystem17DirectorCopyActor
+.obj __vt__Q28PSSystem17DirectorActorBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28PSSystem15DirectorMgrBase
-__vt__Q28PSSystem15DirectorMgrBase:
+.endobj __vt__Q28PSSystem17DirectorActorBase
+.obj __vt__Q28PSSystem15DirectorMgrBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem15DirectorMgrBaseFv
 	.4byte 0
-.global __vt__Q28PSSystem16SwitcherDirector
-__vt__Q28PSSystem16SwitcherDirector:
+.endobj __vt__Q28PSSystem15DirectorMgrBase
+.obj __vt__Q28PSSystem16SwitcherDirector, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem16SwitcherDirectorFv
@@ -57,8 +61,8 @@ __vt__Q28PSSystem16SwitcherDirector:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q28PSSystem15OneShotDirector
-__vt__Q28PSSystem15OneShotDirector:
+.endobj __vt__Q28PSSystem16SwitcherDirector
+.obj __vt__Q28PSSystem15OneShotDirector, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem15OneShotDirectorFv
@@ -73,8 +77,8 @@ __vt__Q28PSSystem15OneShotDirector:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
-.global __vt__Q28PSSystem12DirectorBase
-__vt__Q28PSSystem12DirectorBase:
+.endobj __vt__Q28PSSystem15OneShotDirector
+.obj __vt__Q28PSSystem12DirectorBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem12DirectorBaseFv
@@ -89,21 +93,22 @@ __vt__Q28PSSystem12DirectorBase:
 	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.endobj __vt__Q28PSSystem12DirectorBase
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sToolMode__Q28PSSystem12DirectorBase
-sToolMode__Q28PSSystem12DirectorBase:
+.obj sToolMode__Q28PSSystem12DirectorBase, global
 	.skip 0x1
+.endobj sToolMode__Q28PSSystem12DirectorBase
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E1F0:
+.obj lbl_8051E1F0, local
 	.asciz "PSSeq.h"
+.endobj lbl_8051E1F0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28PSSystem12DirectorBaseFiPCc
-__ct__Q28PSSystem12DirectorBaseFiPCc:
+.fn __ct__Q28PSSystem12DirectorBaseFiPCc, global
 /* 80342EB4 0033FDF4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80342EB8 0033FDF8  7C 08 02 A6 */	mflr r0
 /* 80342EBC 0033FDFC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -245,16 +250,16 @@ __ct__Q28PSSystem12DirectorBaseFiPCc:
 /* 803430BC 0033FFFC  7C 08 03 A6 */	mtlr r0
 /* 803430C0 00340000  38 21 00 30 */	addi r1, r1, 0x30
 /* 803430C4 00340004  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem12DirectorBaseFiPCc
 
-.global isUnderDirection__Q28PSSystem12DirectorBaseFv
-isUnderDirection__Q28PSSystem12DirectorBaseFv:
+.fn isUnderDirection__Q28PSSystem12DirectorBaseFv, global
 /* 803430C8 00340008  80 03 00 08 */	lwz r0, 8(r3)
 /* 803430CC 0034000C  7C 00 00 34 */	cntlzw r0, r0
 /* 803430D0 00340010  54 03 D9 7E */	srwi r3, r0, 5
 /* 803430D4 00340014  4E 80 00 20 */	blr 
+.endfn isUnderDirection__Q28PSSystem12DirectorBaseFv
 
-.global setTrack__Q28PSSystem12DirectorBaseFUcPQ28PSSystem12SeqTrackBase
-setTrack__Q28PSSystem12DirectorBaseFUcPQ28PSSystem12SeqTrackBase:
+.fn setTrack__Q28PSSystem12DirectorBaseFUcPQ28PSSystem12SeqTrackBase, global
 /* 803430D8 00340018  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803430DC 0034001C  7C 08 02 A6 */	mflr r0
 /* 803430E0 00340020  90 01 00 24 */	stw r0, 0x24(r1)
@@ -298,9 +303,9 @@ setTrack__Q28PSSystem12DirectorBaseFUcPQ28PSSystem12SeqTrackBase:
 /* 80343170 003400B0  7C 08 03 A6 */	mtlr r0
 /* 80343174 003400B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80343178 003400B8  4E 80 00 20 */	blr 
+.endfn setTrack__Q28PSSystem12DirectorBaseFUcPQ28PSSystem12SeqTrackBase
 
-.global exec__Q28PSSystem12DirectorBaseFv
-exec__Q28PSSystem12DirectorBaseFv:
+.fn exec__Q28PSSystem12DirectorBaseFv, global
 /* 8034317C 003400BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343180 003400C0  7C 08 02 A6 */	mflr r0
 /* 80343184 003400C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -392,9 +397,9 @@ exec__Q28PSSystem12DirectorBaseFv:
 /* 803432BC 003401FC  7C 08 03 A6 */	mtlr r0
 /* 803432C0 00340200  38 21 00 10 */	addi r1, r1, 0x10
 /* 803432C4 00340204  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem12DirectorBaseFv
 
-.global directOn__Q28PSSystem12DirectorBaseFv
-directOn__Q28PSSystem12DirectorBaseFv:
+.fn directOn__Q28PSSystem12DirectorBaseFv, global
 /* 803432C8 00340208  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803432CC 0034020C  7C 08 02 A6 */	mflr r0
 /* 803432D0 00340210  90 01 00 14 */	stw r0, 0x14(r1)
@@ -426,9 +431,9 @@ directOn__Q28PSSystem12DirectorBaseFv:
 /* 80343330 00340270  7C 08 03 A6 */	mtlr r0
 /* 80343334 00340274  38 21 00 10 */	addi r1, r1, 0x10
 /* 80343338 00340278  4E 80 00 20 */	blr 
+.endfn directOn__Q28PSSystem12DirectorBaseFv
 
-.global directOnInner__Q28PSSystem12DirectorBaseFv
-directOnInner__Q28PSSystem12DirectorBaseFv:
+.fn directOnInner__Q28PSSystem12DirectorBaseFv, global
 /* 8034333C 0034027C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343340 00340280  7C 08 02 A6 */	mflr r0
 /* 80343344 00340284  90 01 00 14 */	stw r0, 0x14(r1)
@@ -477,9 +482,9 @@ directOnInner__Q28PSSystem12DirectorBaseFv:
 /* 803433E0 00340320  7C 08 03 A6 */	mtlr r0
 /* 803433E4 00340324  38 21 00 10 */	addi r1, r1, 0x10
 /* 803433E8 00340328  4E 80 00 20 */	blr 
+.endfn directOnInner__Q28PSSystem12DirectorBaseFv
 
-.global directOff__Q28PSSystem12DirectorBaseFv
-directOff__Q28PSSystem12DirectorBaseFv:
+.fn directOff__Q28PSSystem12DirectorBaseFv, global
 /* 803433EC 0034032C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803433F0 00340330  7C 08 02 A6 */	mflr r0
 /* 803433F4 00340334  90 01 00 14 */	stw r0, 0x14(r1)
@@ -515,9 +520,9 @@ directOff__Q28PSSystem12DirectorBaseFv:
 /* 80343460 003403A0  7C 08 03 A6 */	mtlr r0
 /* 80343464 003403A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80343468 003403A8  4E 80 00 20 */	blr 
+.endfn directOff__Q28PSSystem12DirectorBaseFv
 
-.global directOffInner__Q28PSSystem12DirectorBaseFv
-directOffInner__Q28PSSystem12DirectorBaseFv:
+.fn directOffInner__Q28PSSystem12DirectorBaseFv, global
 /* 8034346C 003403AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343470 003403B0  7C 08 02 A6 */	mflr r0
 /* 80343474 003403B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -566,13 +571,13 @@ directOffInner__Q28PSSystem12DirectorBaseFv:
 /* 80343510 00340450  7C 08 03 A6 */	mtlr r0
 /* 80343514 00340454  38 21 00 10 */	addi r1, r1, 0x10
 /* 80343518 00340458  4E 80 00 20 */	blr 
+.endfn directOffInner__Q28PSSystem12DirectorBaseFv
 
-.global doUpdateRequest__Q28PSSystem12DirectorBaseFv
-doUpdateRequest__Q28PSSystem12DirectorBaseFv:
+.fn doUpdateRequest__Q28PSSystem12DirectorBaseFv, global
 /* 8034351C 0034045C  4E 80 00 20 */	blr 
+.endfn doUpdateRequest__Q28PSSystem12DirectorBaseFv
 
-.global powerOn__Q28PSSystem12DirectorBaseFv
-powerOn__Q28PSSystem12DirectorBaseFv:
+.fn powerOn__Q28PSSystem12DirectorBaseFv, global
 /* 80343520 00340460  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343524 00340464  7C 08 02 A6 */	mflr r0
 /* 80343528 00340468  90 01 00 14 */	stw r0, 0x14(r1)
@@ -589,9 +594,9 @@ powerOn__Q28PSSystem12DirectorBaseFv:
 /* 80343554 00340494  7C 08 03 A6 */	mtlr r0
 /* 80343558 00340498  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034355C 0034049C  4E 80 00 20 */	blr 
+.endfn powerOn__Q28PSSystem12DirectorBaseFv
 
-.global exec__Q28PSSystem15OneShotDirectorFv
-exec__Q28PSSystem15OneShotDirectorFv:
+.fn exec__Q28PSSystem15OneShotDirectorFv, global
 /* 80343560 003404A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343564 003404A4  7C 08 02 A6 */	mflr r0
 /* 80343568 003404A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -684,9 +689,9 @@ exec__Q28PSSystem15OneShotDirectorFv:
 /* 803436A4 003405E4  7C 08 03 A6 */	mtlr r0
 /* 803436A8 003405E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803436AC 003405EC  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem15OneShotDirectorFv
 
-.global doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
-doUpdateRequest__Q28PSSystem16SwitcherDirectorFv:
+.fn doUpdateRequest__Q28PSSystem16SwitcherDirectorFv, global
 /* 803436B0 003405F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803436B4 003405F4  7C 08 02 A6 */	mflr r0
 /* 803436B8 003405F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -801,9 +806,9 @@ doUpdateRequest__Q28PSSystem16SwitcherDirectorFv:
 /* 8034383C 0034077C  7C 08 03 A6 */	mtlr r0
 /* 80343840 00340780  38 21 00 10 */	addi r1, r1, 0x10
 /* 80343844 00340784  4E 80 00 20 */	blr 
+.endfn doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
 
-.global __ct__Q28PSSystem15DirectorMgrBaseFUc
-__ct__Q28PSSystem15DirectorMgrBaseFUc:
+.fn __ct__Q28PSSystem15DirectorMgrBaseFUc, global
 /* 80343848 00340788  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8034384C 0034078C  7C 08 02 A6 */	mflr r0
 /* 80343850 00340790  3C A0 80 49 */	lis r5, lbl_80490180@ha
@@ -839,9 +844,9 @@ __ct__Q28PSSystem15DirectorMgrBaseFUc:
 /* 803438C4 00340804  7C 08 03 A6 */	mtlr r0
 /* 803438C8 00340808  38 21 00 20 */	addi r1, r1, 0x20
 /* 803438CC 0034080C  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem15DirectorMgrBaseFUc
 
-.global initAndAdaptToBgm__Q28PSSystem15DirectorMgrBaseFRQ28PSSystem11DirectedBgm
-initAndAdaptToBgm__Q28PSSystem15DirectorMgrBaseFRQ28PSSystem11DirectedBgm:
+.fn initAndAdaptToBgm__Q28PSSystem15DirectorMgrBaseFRQ28PSSystem11DirectedBgm, global
 /* 803438D0 00340810  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803438D4 00340814  7C 08 02 A6 */	mflr r0
 /* 803438D8 00340818  90 01 00 34 */	stw r0, 0x34(r1)
@@ -924,9 +929,9 @@ initAndAdaptToBgm__Q28PSSystem15DirectorMgrBaseFRQ28PSSystem11DirectedBgm:
 /* 803439F0 00340930  7C 08 03 A6 */	mtlr r0
 /* 803439F4 00340934  38 21 00 30 */	addi r1, r1, 0x30
 /* 803439F8 00340938  4E 80 00 20 */	blr 
+.endfn initAndAdaptToBgm__Q28PSSystem15DirectorMgrBaseFRQ28PSSystem11DirectedBgm
 
-.global playInit__Q28PSSystem15DirectorMgrBaseFP8JASTrack
-playInit__Q28PSSystem15DirectorMgrBaseFP8JASTrack:
+.fn playInit__Q28PSSystem15DirectorMgrBaseFP8JASTrack, global
 /* 803439FC 0034093C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80343A00 00340940  7C 08 02 A6 */	mflr r0
 /* 80343A04 00340944  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1026,9 +1031,9 @@ playInit__Q28PSSystem15DirectorMgrBaseFP8JASTrack:
 /* 80343B54 00340A94  7C 08 03 A6 */	mtlr r0
 /* 80343B58 00340A98  38 21 00 30 */	addi r1, r1, 0x30
 /* 80343B5C 00340A9C  4E 80 00 20 */	blr 
+.endfn playInit__Q28PSSystem15DirectorMgrBaseFP8JASTrack
 
-.global exec__Q28PSSystem15DirectorMgrBaseFv
-exec__Q28PSSystem15DirectorMgrBaseFv:
+.fn exec__Q28PSSystem15DirectorMgrBaseFv, global
 /* 80343B60 00340AA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343B64 00340AA4  7C 08 02 A6 */	mflr r0
 /* 80343B68 00340AA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1057,9 +1062,9 @@ exec__Q28PSSystem15DirectorMgrBaseFv:
 /* 80343BBC 00340AFC  7C 08 03 A6 */	mtlr r0
 /* 80343BC0 00340B00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80343BC4 00340B04  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem15DirectorMgrBaseFv
 
-.global off__Q28PSSystem15DirectorMgrBaseFPQ28PSSystem11DirectedBgm
-off__Q28PSSystem15DirectorMgrBaseFPQ28PSSystem11DirectedBgm:
+.fn off__Q28PSSystem15DirectorMgrBaseFPQ28PSSystem11DirectedBgm, global
 /* 80343BC8 00340B08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80343BCC 00340B0C  7C 08 02 A6 */	mflr r0
 /* 80343BD0 00340B10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1186,9 +1191,9 @@ off__Q28PSSystem15DirectorMgrBaseFPQ28PSSystem11DirectedBgm:
 /* 80343D78 00340CB8  7C 08 03 A6 */	mtlr r0
 /* 80343D7C 00340CBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80343D80 00340CC0  4E 80 00 20 */	blr 
+.endfn off__Q28PSSystem15DirectorMgrBaseFPQ28PSSystem11DirectedBgm
 
-.global __ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem12DirectorBase
-__ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem12DirectorBase:
+.fn __ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem12DirectorBase, global
 /* 80343D84 00340CC4  3C E0 80 4E */	lis r7, __vt__Q28PSSystem17DirectorActorBase@ha
 /* 80343D88 00340CC8  3C C0 80 4E */	lis r6, __vt__Q28PSSystem17DirectorCopyActor@ha
 /* 80343D8C 00340CCC  38 07 AF B4 */	addi r0, r7, __vt__Q28PSSystem17DirectorActorBase@l
@@ -1198,9 +1203,9 @@ __ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem12Dir
 /* 80343D9C 00340CDC  90 83 00 04 */	stw r4, 4(r3)
 /* 80343DA0 00340CE0  90 A3 00 08 */	stw r5, 8(r3)
 /* 80343DA4 00340CE4  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem12DirectorBase
 
-.global exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase
-exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase:
+.fn exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase, global
 /* 80343DA8 00340CE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343DAC 00340CEC  7C 08 02 A6 */	mflr r0
 /* 80343DB0 00340CF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1278,37 +1283,37 @@ exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase:
 /* 80343EBC 00340DFC  7C 08 03 A6 */	mtlr r0
 /* 80343EC0 00340E00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80343EC4 00340E04  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase
 
-.global underDirection__Q28PSSystem12DirectorBaseFv
-underDirection__Q28PSSystem12DirectorBaseFv:
+.fn underDirection__Q28PSSystem12DirectorBaseFv, weak
 /* 80343EC8 00340E08  4E 80 00 20 */	blr 
+.endfn underDirection__Q28PSSystem12DirectorBaseFv
 
-.global execInner__Q28PSSystem12DirectorBaseFv
-execInner__Q28PSSystem12DirectorBaseFv:
+.fn execInner__Q28PSSystem12DirectorBaseFv, weak
 /* 80343ECC 00340E0C  4E 80 00 20 */	blr 
+.endfn execInner__Q28PSSystem12DirectorBaseFv
 
-.global onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
-onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack:
+.fn onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack, weak
 /* 80343ED0 00340E10  4E 80 00 20 */	blr 
+.endfn onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
 
-.global onDirectOn__Q28PSSystem12DirectorBaseFv
-onDirectOn__Q28PSSystem12DirectorBaseFv:
+.fn onDirectOn__Q28PSSystem12DirectorBaseFv, weak
 /* 80343ED4 00340E14  4E 80 00 20 */	blr 
+.endfn onDirectOn__Q28PSSystem12DirectorBaseFv
 
-.global onDirectOff__Q28PSSystem12DirectorBaseFv
-onDirectOff__Q28PSSystem12DirectorBaseFv:
+.fn onDirectOff__Q28PSSystem12DirectorBaseFv, weak
 /* 80343ED8 00340E18  4E 80 00 20 */	blr 
+.endfn onDirectOff__Q28PSSystem12DirectorBaseFv
 
-.global onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv
-onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv:
+.fn onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv, weak
 /* 80343EDC 00340E1C  4E 80 00 20 */	blr 
+.endfn onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv
 
-.global onUpdateFromMasterD__Q28PSSystem17DirectorCopyActorFv
-onUpdateFromMasterD__Q28PSSystem17DirectorCopyActorFv:
+.fn onUpdateFromMasterD__Q28PSSystem17DirectorCopyActorFv, weak
 /* 80343EE0 00340E20  4E 80 00 20 */	blr 
+.endfn onUpdateFromMasterD__Q28PSSystem17DirectorCopyActorFv
 
-.global __dt__Q28PSSystem15DirectorMgrBaseFv
-__dt__Q28PSSystem15DirectorMgrBaseFv:
+.fn __dt__Q28PSSystem15DirectorMgrBaseFv, weak
 /* 80343EE4 00340E24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343EE8 00340E28  7C 08 02 A6 */	mflr r0
 /* 80343EEC 00340E2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1334,9 +1339,9 @@ __dt__Q28PSSystem15DirectorMgrBaseFv:
 /* 80343F38 00340E78  7C 08 03 A6 */	mtlr r0
 /* 80343F3C 00340E7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80343F40 00340E80  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem15DirectorMgrBaseFv
 
-.global __dt__Q28PSSystem16SwitcherDirectorFv
-__dt__Q28PSSystem16SwitcherDirectorFv:
+.fn __dt__Q28PSSystem16SwitcherDirectorFv, weak
 /* 80343F44 00340E84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343F48 00340E88  7C 08 02 A6 */	mflr r0
 /* 80343F4C 00340E8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1367,9 +1372,9 @@ __dt__Q28PSSystem16SwitcherDirectorFv:
 /* 80343FA8 00340EE8  7C 08 03 A6 */	mtlr r0
 /* 80343FAC 00340EEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80343FB0 00340EF0  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem16SwitcherDirectorFv
 
-.global __dt__Q28PSSystem15OneShotDirectorFv
-__dt__Q28PSSystem15OneShotDirectorFv:
+.fn __dt__Q28PSSystem15OneShotDirectorFv, weak
 /* 80343FB4 00340EF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80343FB8 00340EF8  7C 08 02 A6 */	mflr r0
 /* 80343FBC 00340EFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1400,13 +1405,13 @@ __dt__Q28PSSystem15OneShotDirectorFv:
 /* 80344018 00340F58  7C 08 03 A6 */	mtlr r0
 /* 8034401C 00340F5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80344020 00340F60  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem15OneShotDirectorFv
 
-.global directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase
-directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase:
+.fn directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase, weak
 /* 80344024 00340F64  4E 80 00 20 */	blr 
+.endfn directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase
 
-.global __dt__Q28PSSystem12DirectorBaseFv
-__dt__Q28PSSystem12DirectorBaseFv:
+.fn __dt__Q28PSSystem12DirectorBaseFv, weak
 /* 80344028 00340F68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034402C 00340F6C  7C 08 02 A6 */	mflr r0
 /* 80344030 00340F70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1432,3 +1437,4 @@ __dt__Q28PSSystem12DirectorBaseFv:
 /* 8034407C 00340FBC  7C 08 03 A6 */	mtlr r0
 /* 80344080 00340FC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80344084 00340FC4  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem12DirectorBaseFv

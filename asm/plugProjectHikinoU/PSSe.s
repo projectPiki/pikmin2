@@ -1,34 +1,38 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80490038: # Shift-JIS
+.obj lbl_80490038, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x53458AD4
 	.4byte 0x88F882AB
 	.4byte 0x90DD92E8
 	.4byte 0x00000000
+.endobj lbl_80490038
 .balign 4
-lbl_8049004C: # Shift-JIS
+.obj lbl_8049004C, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x95A8895E
 	.4byte 0x82D189B9
 	.4byte 0x00000000
+.endobj lbl_8049004C
 .balign 4
-lbl_8049005C: # Shift-JIS
+.obj lbl_8049005C, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x8E648E96
 	.4byte 0x924082AB
 	.4byte 0x89B90000
+.endobj lbl_8049005C
 .balign 4
-lbl_8049006C: # Shift-JIS
+.obj lbl_8049006C, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x93DB82DD
 	.4byte 0x8D9E82DC
 	.4byte 0x82EA82E0
 	.4byte 0x82AA82AB
 	.4byte 0x90BA0000
+.endobj lbl_8049006C
 .balign 4
-lbl_80490084: # Shift-JIS
+.obj lbl_80490084, local # Shift-JIS
 	.4byte 0x83608383
 	.4byte 0x838C8393
 	.4byte 0x83578382
@@ -37,134 +41,148 @@ lbl_80490084: # Shift-JIS
 	.4byte 0x83628376
 	.4byte 0x89E696CA
 	.4byte 0x97700000
+.endobj lbl_80490084
 .balign 4
-lbl_804900A4: # Shift-JIS
+.obj lbl_804900A4, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x92859085
 	.4byte 0x89B99770
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804900A4
 .balign 4
-lbl_804900B4: # Shift-JIS
+.obj lbl_804900B4, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x8370836A
 	.4byte 0x8362834E
 	.4byte 0x83898393
 	.4byte 0x97700000
+.endobj lbl_804900B4
 .balign 4
-lbl_804900C8:
+.obj lbl_804900C8, local
 	.asciz "PSSe.cpp"
+.endobj lbl_804900C8
 .balign 4
-lbl_804900D4:
+.obj lbl_804900D4, local
 	.asciz "P2Assert"
+.endobj lbl_804900D4
 .balign 4
-lbl_804900E0:
+.obj lbl_804900E0, local
 	.asciz "PSCommon.h"
+.endobj lbl_804900E0
 .balign 4
-lbl_804900EC: # Shift-JIS
+.obj lbl_804900EC, local # Shift-JIS
 	.4byte 0x838A8393
 	.4byte 0x834E82AA
 	.4byte 0x82A082E8
 	.4byte 0x82DC82B9
 	.4byte 0x82F10000
+.endobj lbl_804900EC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q26PSGame25Builder_EvnSe_Perspective
-__vt__Q26PSGame25Builder_EvnSe_Perspective:
+.obj __vt__Q26PSGame25Builder_EvnSe_Perspective, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv
 	.4byte onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase
 	.4byte newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec
-.global __vt__Q26PSGame13EnvSe_AutoPan
-__vt__Q26PSGame13EnvSe_AutoPan:
+.endobj __vt__Q26PSGame25Builder_EvnSe_Perspective
+.obj __vt__Q26PSGame13EnvSe_AutoPan, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem9EnvSeBaseFv
 	.4byte play__Q28PSSystem9EnvSeBaseFv
 	.4byte getCastType__Q28PSSystem9EnvSeBaseFv
 	.4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
-.global __vt__Q26PSGame17EnvSe_Perspective
-__vt__Q26PSGame17EnvSe_Perspective:
+.endobj __vt__Q26PSGame13EnvSe_AutoPan
+.obj __vt__Q26PSGame17EnvSe_Perspective, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem9EnvSeBaseFv
 	.4byte play__Q26PSGame17EnvSe_PerspectiveFv
 	.4byte getCastType__Q28PSSystem9EnvSeBaseFv
 	.4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
-.global __vt__Q26PSGame9EnvSe_Pan
-__vt__Q26PSGame9EnvSe_Pan:
+.endobj __vt__Q26PSGame17EnvSe_Perspective
+.obj __vt__Q26PSGame9EnvSe_Pan, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem9EnvSeBaseFv
 	.4byte play__Q28PSSystem9EnvSeBaseFv
 	.4byte getCastType__Q28PSSystem9EnvSeBaseFv
 	.4byte setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound
-.global __vt__Q26PSGame5Rappa
-__vt__Q26PSGame5Rappa:
+.endobj __vt__Q26PSGame9EnvSe_Pan
+.obj __vt__Q26PSGame5Rappa, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q26PSGame5RappaFv
-.global __vt__Q26PSGame5SeMgr
-__vt__Q26PSGame5SeMgr:
+.endobj __vt__Q26PSGame5Rappa
+.obj __vt__Q26PSGame5SeMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q26PSGame5SeMgrFv
-.global "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"
-"__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>":
+.endobj __vt__Q26PSGame5SeMgr
+.obj "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv"
+.endobj "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global cRatio__Q26PSGame5Rappa
-cRatio__Q26PSGame5Rappa:
+.obj cRatio__Q26PSGame5Rappa, global
 	.float 15.0
-.global cBaseWaitTime__Q26PSGame5Rappa
-cBaseWaitTime__Q26PSGame5Rappa:
+.endobj cRatio__Q26PSGame5Rappa
+.obj cBaseWaitTime__Q26PSGame5Rappa, global
 	.2byte 0x0003
+.endobj cBaseWaitTime__Q26PSGame5Rappa
 .balign 4
-.global sRappa__Q26PSGame5Rappa
-sRappa__Q26PSGame5Rappa:
+.obj sRappa__Q26PSGame5Rappa, global
 	.4byte 0x00000000 # two Rappa null pointers.
 	.4byte 0x00000000 # why isn't this sbss?
-.global cNotUsingMasterIdRatio__Q26PSGame6RandId
-cNotUsingMasterIdRatio__Q26PSGame6RandId:
+.endobj sRappa__Q26PSGame5Rappa
+.obj cNotUsingMasterIdRatio__Q26PSGame6RandId, global
 	.float -1.0
+.endobj cNotUsingMasterIdRatio__Q26PSGame6RandId
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E188: # Shift-JIS
+.obj lbl_8051E188, local # Shift-JIS
 	.4byte 0x934794C4
 	.4byte 0x97700000
+.endobj lbl_8051E188
 .balign 4
-lbl_8051E190:
+.obj lbl_8051E190, local
 	.float 1.0
-lbl_8051E194:
+.endobj lbl_8051E190
+.obj lbl_8051E194, local
 	.float 0.5
-lbl_8051E198:
+.endobj lbl_8051E194
+.obj lbl_8051E198, local
 	.float 0.0
-lbl_8051E19C:
+.endobj lbl_8051E198
+.obj lbl_8051E19C, local
 	.float 0.1
-lbl_8051E1A0:
+.endobj lbl_8051E19C
+.obj lbl_8051E1A0, local
 	.float -1.0
+.endobj lbl_8051E1A0
 .balign 8
-lbl_8051E1A8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_8051E1A8, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051E1A8
 .balign 8
-lbl_8051E1B0:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051E1B8:
+.obj lbl_8051E1B0, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051E1B0
+.obj lbl_8051E1B8, local
 	.float 2.0
-lbl_8051E1BC:
+.endobj lbl_8051E1B8
+.obj lbl_8051E1BC, local
 	.float 1000.0
+.endobj lbl_8051E1BC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q26PSGame5SeMgrFv
-__ct__Q26PSGame5SeMgrFv:
+.fn __ct__Q26PSGame5SeMgrFv, global
 /* 8033F158 0033C098  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033F15C 0033C09C  7C 08 02 A6 */	mflr r0
 /* 8033F160 0033C0A0  3C 80 80 4E */	lis r4, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@ha
@@ -308,9 +326,9 @@ __ct__Q26PSGame5SeMgrFv:
 /* 8033F35C 0033C29C  7C 08 03 A6 */	mtlr r0
 /* 8033F360 0033C2A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033F364 0033C2A4  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame5SeMgrFv
 
-.global playMessageVoice__Q26PSGame5SeMgrFUlb
-playMessageVoice__Q26PSGame5SeMgrFUlb:
+.fn playMessageVoice__Q26PSGame5SeMgrFUlb, global
 /* 8033F368 0033C2A8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8033F36C 0033C2AC  7C 08 02 A6 */	mflr r0
 /* 8033F370 0033C2B0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -393,9 +411,9 @@ playMessageVoice__Q26PSGame5SeMgrFUlb:
 /* 8033F47C 0033C3BC  7C 08 03 A6 */	mtlr r0
 /* 8033F480 0033C3C0  38 21 00 40 */	addi r1, r1, 0x40
 /* 8033F484 0033C3C4  4E 80 00 20 */	blr 
+.endfn playMessageVoice__Q26PSGame5SeMgrFUlb
 
-.global stopMessageVoice__Q26PSGame5SeMgrFv
-stopMessageVoice__Q26PSGame5SeMgrFv:
+.fn stopMessageVoice__Q26PSGame5SeMgrFv, global
 /* 8033F488 0033C3C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033F48C 0033C3CC  7C 08 02 A6 */	mflr r0
 /* 8033F490 0033C3D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -412,9 +430,9 @@ stopMessageVoice__Q26PSGame5SeMgrFv:
 /* 8033F4B8 0033C3F8  7C 08 03 A6 */	mtlr r0
 /* 8033F4BC 0033C3FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033F4C0 0033C400  4E 80 00 20 */	blr 
+.endfn stopMessageVoice__Q26PSGame5SeMgrFv
 
-.global __ct__Q26PSGame5RappaFv
-__ct__Q26PSGame5RappaFv:
+.fn __ct__Q26PSGame5RappaFv, global
 /* 8033F4C4 0033C404  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033F4C8 0033C408  7C 08 02 A6 */	mflr r0
 /* 8033F4CC 0033C40C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -435,9 +453,9 @@ __ct__Q26PSGame5RappaFv:
 /* 8033F508 0033C448  7C 08 03 A6 */	mtlr r0
 /* 8033F50C 0033C44C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033F510 0033C450  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame5RappaFv
 
-.global init__Q26PSGame5RappaFUs
-init__Q26PSGame5RappaFUs:
+.fn init__Q26PSGame5RappaFUs, global
 /* 8033F514 0033C454  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033F518 0033C458  7C 08 02 A6 */	mflr r0
 /* 8033F51C 0033C45C  38 A0 00 01 */	li r5, 1
@@ -480,14 +498,14 @@ init__Q26PSGame5RappaFUs:
 /* 8033F5A8 0033C4E8  7C 08 03 A6 */	mtlr r0
 /* 8033F5AC 0033C4EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033F5B0 0033C4F0  4E 80 00 20 */	blr 
+.endfn init__Q26PSGame5RappaFUs
 
-.global setId__Q26PSGame5RappaFUl
-setId__Q26PSGame5RappaFUl:
+.fn setId__Q26PSGame5RappaFUl, global
 /* 8033F5B4 0033C4F4  90 83 00 18 */	stw r4, 0x18(r3)
 /* 8033F5B8 0033C4F8  4E 80 00 20 */	blr 
+.endfn setId__Q26PSGame5RappaFUl
 
-.global __dt__Q26PSGame5RappaFv
-__dt__Q26PSGame5RappaFv:
+.fn __dt__Q26PSGame5RappaFv, global
 /* 8033F5BC 0033C4FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033F5C0 0033C500  7C 08 02 A6 */	mflr r0
 /* 8033F5C4 0033C504  90 01 00 14 */	stw r0, 0x14(r1)
@@ -530,9 +548,9 @@ __dt__Q26PSGame5RappaFv:
 /* 8033F648 0033C588  7C 08 03 A6 */	mtlr r0
 /* 8033F64C 0033C58C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033F650 0033C590  4E 80 00 20 */	blr 
+.endfn __dt__Q26PSGame5RappaFv
 
-.global playRappa__Q26PSGame5RappaFbffPQ27JAInter6Object
-playRappa__Q26PSGame5RappaFbffPQ27JAInter6Object:
+.fn playRappa__Q26PSGame5RappaFbffPQ27JAInter6Object, global
 /* 8033F654 0033C594  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8033F658 0033C598  7C 08 02 A6 */	mflr r0
 /* 8033F65C 0033C59C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -637,9 +655,9 @@ playRappa__Q26PSGame5RappaFbffPQ27JAInter6Object:
 /* 8033F7B8 0033C6F8  7C 08 03 A6 */	mtlr r0
 /* 8033F7BC 0033C6FC  38 21 00 40 */	addi r1, r1, 0x40
 /* 8033F7C0 0033C700  4E 80 00 20 */	blr 
+.endfn playRappa__Q26PSGame5RappaFbffPQ27JAInter6Object
 
-.global syncCpu_WaitChk__Q26PSGame5RappaFP8JASTrack
-syncCpu_WaitChk__Q26PSGame5RappaFP8JASTrack:
+.fn syncCpu_WaitChk__Q26PSGame5RappaFP8JASTrack, global
 /* 8033F7C4 0033C704  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033F7C8 0033C708  7C 08 02 A6 */	mflr r0
 /* 8033F7CC 0033C70C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -655,14 +673,14 @@ syncCpu_WaitChk__Q26PSGame5RappaFP8JASTrack:
 /* 8033F7F4 0033C734  7C 08 03 A6 */	mtlr r0
 /* 8033F7F8 0033C738  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033F7FC 0033C73C  4E 80 00 20 */	blr 
+.endfn syncCpu_WaitChk__Q26PSGame5RappaFP8JASTrack
 
-.global syncCpu_TblNo__Q26PSGame5RappaFP8JASTrack
-syncCpu_TblNo__Q26PSGame5RappaFP8JASTrack:
+.fn syncCpu_TblNo__Q26PSGame5RappaFP8JASTrack, global
 /* 8033F800 0033C740  A0 63 00 1E */	lhz r3, 0x1e(r3)
 /* 8033F804 0033C744  4E 80 00 20 */	blr 
+.endfn syncCpu_TblNo__Q26PSGame5RappaFP8JASTrack
 
-.global __ct__Q26PSGame5SetSeFPCcss
-__ct__Q26PSGame5SetSeFPCcss:
+.fn __ct__Q26PSGame5SetSeFPCcss, global
 /* 8033F808 0033C748  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033F80C 0033C74C  7C 08 02 A6 */	mflr r0
 /* 8033F810 0033C750  38 80 00 00 */	li r4, 0
@@ -694,9 +712,9 @@ __ct__Q26PSGame5SetSeFPCcss:
 /* 8033F874 0033C7B4  7C 08 03 A6 */	mtlr r0
 /* 8033F878 0033C7B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033F87C 0033C7BC  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame5SetSeFPCcss
 
-.global exec__Q26PSGame5SetSeFv
-exec__Q26PSGame5SetSeFv:
+.fn exec__Q26PSGame5SetSeFv, global
 /* 8033F880 0033C7C0  A0 83 00 00 */	lhz r4, 0(r3)
 /* 8033F884 0033C7C4  A8 03 00 06 */	lha r0, 6(r3)
 /* 8033F888 0033C7C8  7C 04 00 00 */	cmpw r4, r0
@@ -712,9 +730,9 @@ exec__Q26PSGame5SetSeFv:
 /* 8033F8AC 0033C7EC  38 04 00 01 */	addi r0, r4, 1
 /* 8033F8B0 0033C7F0  B0 03 00 00 */	sth r0, 0(r3)
 /* 8033F8B4 0033C7F4  4E 80 00 20 */	blr 
+.endfn exec__Q26PSGame5SetSeFv
 
-.global startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl
-startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl:
+.fn startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl, global
 /* 8033F8B8 0033C7F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033F8BC 0033C7FC  7C 08 02 A6 */	mflr r0
 /* 8033F8C0 0033C800  90 01 00 24 */	stw r0, 0x24(r1)
@@ -764,9 +782,9 @@ startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl:
 /* 8033F964 0033C8A4  7C 08 03 A6 */	mtlr r0
 /* 8033F968 0033C8A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033F96C 0033C8AC  4E 80 00 20 */	blr 
+.endfn startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl
 
-.global playSystemSe__Q26PSGame5SetSeFUlUl
-playSystemSe__Q26PSGame5SetSeFUlUl:
+.fn playSystemSe__Q26PSGame5SetSeFUlUl, global
 /* 8033F970 0033C8B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033F974 0033C8B4  7C 08 02 A6 */	mflr r0
 /* 8033F978 0033C8B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -809,9 +827,9 @@ playSystemSe__Q26PSGame5SetSeFUlUl:
 /* 8033FA04 0033C944  7C 08 03 A6 */	mtlr r0
 /* 8033FA08 0033C948  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033FA0C 0033C94C  4E 80 00 20 */	blr 
+.endfn playSystemSe__Q26PSGame5SetSeFUlUl
 
-.global startCounter__Q26PSGame5SetSeFUl
-startCounter__Q26PSGame5SetSeFUl:
+.fn startCounter__Q26PSGame5SetSeFUl, global
 /* 8033FA10 0033C950  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8033FA14 0033C954  7C 08 02 A6 */	mflr r0
 /* 8033FA18 0033C958  90 01 00 34 */	stw r0, 0x34(r1)
@@ -845,15 +863,15 @@ startCounter__Q26PSGame5SetSeFUl:
 /* 8033FA88 0033C9C8  7C 08 03 A6 */	mtlr r0
 /* 8033FA8C 0033C9CC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033FA90 0033C9D0  4E 80 00 20 */	blr 
+.endfn startCounter__Q26PSGame5SetSeFUl
 
-.global __ct__Q26PSGame6RandIdFv
-__ct__Q26PSGame6RandIdFv:
+.fn __ct__Q26PSGame6RandIdFv, global
 /* 8033FA94 0033C9D4  C0 0D 85 48 */	lfs f0, cNotUsingMasterIdRatio__Q26PSGame6RandId@sda21(r13)
 /* 8033FA98 0033C9D8  D0 03 00 00 */	stfs f0, 0x43300000@l(r3)
 /* 8033FA9C 0033C9DC  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame6RandIdFv
 
-.global startSound__Q26PSGame6RandIdFPQ27JAInter6ObjectUlUlUl
-startSound__Q26PSGame6RandIdFPQ27JAInter6ObjectUlUlUl:
+.fn startSound__Q26PSGame6RandIdFPQ27JAInter6ObjectUlUlUl, global
 /* 8033FAA0 0033C9E0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8033FAA4 0033C9E4  7C 08 02 A6 */	mflr r0
 /* 8033FAA8 0033C9E8  C0 02 FE 40 */	lfs f0, lbl_8051E1A0@sda21(r2)
@@ -987,9 +1005,9 @@ startSound__Q26PSGame6RandIdFPQ27JAInter6ObjectUlUlUl:
 /* 8033FC7C 0033CBBC  7C 08 03 A6 */	mtlr r0
 /* 8033FC80 0033CBC0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033FC84 0033CBC4  4E 80 00 20 */	blr 
+.endfn startSound__Q26PSGame6RandIdFPQ27JAInter6ObjectUlUlUl
 
-.global playSystemSe__Q26PSGame6RandIdFUlPP8JAISoundUlUl
-playSystemSe__Q26PSGame6RandIdFUlPP8JAISoundUlUl:
+.fn playSystemSe__Q26PSGame6RandIdFUlPP8JAISoundUlUl, global
 /* 8033FC88 0033CBC8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8033FC8C 0033CBCC  7C 08 02 A6 */	mflr r0
 /* 8033FC90 0033CBD0  C0 02 FE 40 */	lfs f0, lbl_8051E1A0@sda21(r2)
@@ -1110,9 +1128,9 @@ playSystemSe__Q26PSGame6RandIdFUlPP8JAISoundUlUl:
 /* 8033FE34 0033CD74  7C 08 03 A6 */	mtlr r0
 /* 8033FE38 0033CD78  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033FE3C 0033CD7C  4E 80 00 20 */	blr 
+.endfn playSystemSe__Q26PSGame6RandIdFUlPP8JAISoundUlUl
 
-.global setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound
-setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound:
+.fn setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound, global
 /* 8033FE40 0033CD80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033FE44 0033CD84  7C 08 02 A6 */	mflr r0
 /* 8033FE48 0033CD88  38 A0 00 00 */	li r5, 0
@@ -1142,9 +1160,9 @@ setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound:
 /* 8033FEA8 0033CDE8  7C 08 03 A6 */	mtlr r0
 /* 8033FEAC 0033CDEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033FEB0 0033CDF0  4E 80 00 20 */	blr 
+.endfn setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound
 
-.global __ct__Q26PSGame17EnvSe_PerspectiveFUlf3Vec
-__ct__Q26PSGame17EnvSe_PerspectiveFUlf3Vec:
+.fn __ct__Q26PSGame17EnvSe_PerspectiveFUlf3Vec, global
 /* 8033FEB4 0033CDF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033FEB8 0033CDF8  7C 08 02 A6 */	mflr r0
 /* 8033FEBC 0033CDFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1169,9 +1187,9 @@ __ct__Q26PSGame17EnvSe_PerspectiveFUlf3Vec:
 /* 8033FF08 0033CE48  7C 08 03 A6 */	mtlr r0
 /* 8033FF0C 0033CE4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033FF10 0033CE50  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame17EnvSe_PerspectiveFUlf3Vec
 
-.global play__Q26PSGame17EnvSe_PerspectiveFv
-play__Q26PSGame17EnvSe_PerspectiveFv:
+.fn play__Q26PSGame17EnvSe_PerspectiveFv, global
 /* 8033FF14 0033CE54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033FF18 0033CE58  7C 08 02 A6 */	mflr r0
 /* 8033FF1C 0033CE5C  38 E0 00 00 */	li r7, 0
@@ -1191,9 +1209,9 @@ play__Q26PSGame17EnvSe_PerspectiveFv:
 /* 8033FF54 0033CE94  7C 08 03 A6 */	mtlr r0
 /* 8033FF58 0033CE98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033FF5C 0033CE9C  4E 80 00 20 */	blr 
+.endfn play__Q26PSGame17EnvSe_PerspectiveFv
 
-.global __ct__Q26PSGame13EnvSe_AutoPanFUlfffff
-__ct__Q26PSGame13EnvSe_AutoPanFUlfffff:
+.fn __ct__Q26PSGame13EnvSe_AutoPanFUlfffff, global
 /* 8033FF60 0033CEA0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8033FF64 0033CEA4  7C 08 02 A6 */	mflr r0
 /* 8033FF68 0033CEA8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1228,15 +1246,15 @@ __ct__Q26PSGame13EnvSe_AutoPanFUlfffff:
 /* 8033FFDC 0033CF1C  7C 08 03 A6 */	mtlr r0
 /* 8033FFE0 0033CF20  38 21 00 30 */	addi r1, r1, 0x30
 /* 8033FFE4 0033CF24  4E 80 00 20 */	blr 
+.endfn __ct__Q26PSGame13EnvSe_AutoPanFUlfffff
 
-.global setDirection__Q26PSGame13EnvSe_AutoPanFbb
-setDirection__Q26PSGame13EnvSe_AutoPanFbb:
+.fn setDirection__Q26PSGame13EnvSe_AutoPanFbb, global
 /* 8033FFE8 0033CF28  98 83 00 4C */	stb r4, 0x4c(r3)
 /* 8033FFEC 0033CF2C  98 A3 00 4D */	stb r5, 0x4d(r3)
 /* 8033FFF0 0033CF30  4E 80 00 20 */	blr 
+.endfn setDirection__Q26PSGame13EnvSe_AutoPanFbb
 
-.global setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
-setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound:
+.fn setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound, global
 /* 8033FFF4 0033CF34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033FFF8 0033CF38  7C 08 02 A6 */	mflr r0
 /* 8033FFFC 0033CF3C  38 A0 00 00 */	li r5, 0
@@ -1312,9 +1330,9 @@ setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound:
 /* 80340104 0033D044  7C 08 03 A6 */	mtlr r0
 /* 80340108 0033D048  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034010C 0033D04C  4E 80 00 20 */	blr 
+.endfn setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
 
-.global "__ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3<f>"
-"__ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3<f>":
+.fn "__ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3<f>", global
 /* 80340110 0033D050  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80340114 0033D054  7C 08 02 A6 */	mflr r0
 /* 80340118 0033D058  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1463,9 +1481,9 @@ setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound:
 /* 80340320 0033D260  7C 08 03 A6 */	mtlr r0
 /* 80340324 0033D264  38 21 00 30 */	addi r1, r1, 0x30
 /* 80340328 0033D268  4E 80 00 20 */	blr 
+.endfn "__ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3<f>"
 
-.global build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr
-build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr:
+.fn build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr, global
 /* 8034032C 0033D26C  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80340330 0033D270  7C 08 02 A6 */	mflr r0
 /* 80340334 0033D274  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -1658,9 +1676,9 @@ build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr:
 /* 803405F0 0033D530  7C 08 03 A6 */	mtlr r0
 /* 803405F4 0033D534  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 803405F8 0033D538  4E 80 00 20 */	blr 
+.endfn build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr
 
-.global newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec
-newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec:
+.fn newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec, global
 /* 803405FC 0033D53C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80340600 0033D540  7C 08 02 A6 */	mflr r0
 /* 80340604 0033D544  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1705,9 +1723,9 @@ newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec:
 /* 8034069C 0033D5DC  7C 08 03 A6 */	mtlr r0
 /* 803406A0 0033D5E0  38 21 00 40 */	addi r1, r1, 0x40
 /* 803406A4 0033D5E4  4E 80 00 20 */	blr 
+.endfn newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec
 
-.global __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv
-__dt__Q26PSGame25Builder_EvnSe_PerspectiveFv:
+.fn __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv, global
 /* 803406A8 0033D5E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803406AC 0033D5EC  7C 08 02 A6 */	mflr r0
 /* 803406B0 0033D5F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1763,9 +1781,9 @@ __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv:
 /* 80340764 0033D6A4  7C 08 03 A6 */	mtlr r0
 /* 80340768 0033D6A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8034076C 0033D6AC  4E 80 00 20 */	blr 
+.endfn __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv
 
-.global "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv"
-"__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv":
+.fn "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv", weak
 /* 80340770 0033D6B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80340774 0033D6B4  7C 08 02 A6 */	mflr r0
 /* 80340778 0033D6B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1787,23 +1805,23 @@ __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv:
 /* 803407B4 0033D6F4  7C 08 03 A6 */	mtlr r0
 /* 803407B8 0033D6F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803407BC 0033D6FC  4E 80 00 20 */	blr 
+.endfn "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv"
 
-.global onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase
-onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase:
+.fn onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase, weak
 /* 803407C0 0033D700  4E 80 00 20 */	blr 
+.endfn onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase
 
-.global getCastType__Q28PSSystem9EnvSeBaseFv
-getCastType__Q28PSSystem9EnvSeBaseFv:
+.fn getCastType__Q28PSSystem9EnvSeBaseFv, weak
 /* 803407C4 0033D704  3C 60 62 61 */	lis r3, 0x62617365@ha
 /* 803407C8 0033D708  38 63 73 65 */	addi r3, r3, 0x62617365@l
 /* 803407CC 0033D70C  4E 80 00 20 */	blr 
+.endfn getCastType__Q28PSSystem9EnvSeBaseFv
 
-.global setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
-setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound:
+.fn setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound, weak
 /* 803407D0 0033D710  4E 80 00 20 */	blr 
+.endfn setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
 
-.global __dt__Q26PSGame5SeMgrFv
-__dt__Q26PSGame5SeMgrFv:
+.fn __dt__Q26PSGame5SeMgrFv, weak
 /* 803407D4 0033D714  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803407D8 0033D718  7C 08 02 A6 */	mflr r0
 /* 803407DC 0033D71C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1831,3 +1849,4 @@ __dt__Q26PSGame5SeMgrFv:
 /* 8034082C 0033D76C  7C 08 03 A6 */	mtlr r0
 /* 80340830 0033D770  38 21 00 10 */	addi r1, r1, 0x10
 /* 80340834 0033D774  4E 80 00 20 */	blr 
+.endfn __dt__Q26PSGame5SeMgrFv

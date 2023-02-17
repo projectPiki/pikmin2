@@ -1,37 +1,39 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048FEF0:
+.obj lbl_8048FEF0, local
 	.asciz "PSBnkMgr.cpp"
+.endobj lbl_8048FEF0
 .balign 4
-lbl_8048FF00:
+.obj lbl_8048FF00, local
 	.asciz "P2Assert"
+.endobj lbl_8048FF00
 .balign 4
-lbl_8048FF0C:
+.obj lbl_8048FF0C, local
 	.asciz "/AudioRes/Banks"
+.endobj lbl_8048FF0C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q38PSSystem9WaveScene8WaveArea
-__vt__Q38PSSystem9WaveScene8WaveArea:
+.obj __vt__Q38PSSystem9WaveScene8WaveArea, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q38PSSystem9WaveScene8WaveAreaFv
-.global __vt__Q28PSSystem7BankMgr
-__vt__Q28PSSystem7BankMgr:
+.endobj __vt__Q38PSSystem9WaveScene8WaveArea
+.obj __vt__Q28PSSystem7BankMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem7BankMgrFv
+.endobj __vt__Q28PSSystem7BankMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sBankMgr__Q28PSSystem7BankMgr
-sBankMgr__Q28PSSystem7BankMgr:
+.obj sBankMgr__Q28PSSystem7BankMgr, global
 	.skip 0x4
+.endobj sBankMgr__Q28PSSystem7BankMgr
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global createInstance__Q28PSSystem7BankMgrFv
-createInstance__Q28PSSystem7BankMgrFv:
+.fn createInstance__Q28PSSystem7BankMgrFv, global
 /* 8033D738 0033A678  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033D73C 0033A67C  7C 08 02 A6 */	mflr r0
 /* 8033D740 0033A680  90 01 00 14 */	stw r0, 0x14(r1)
@@ -59,9 +61,9 @@ createInstance__Q28PSSystem7BankMgrFv:
 /* 8033D790 0033A6D0  7C 08 03 A6 */	mtlr r0
 /* 8033D794 0033A6D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033D798 0033A6D8  4E 80 00 20 */	blr 
+.endfn createInstance__Q28PSSystem7BankMgrFv
 
-.global __ct__Q28PSSystem7BankMgrFv
-__ct__Q28PSSystem7BankMgrFv:
+.fn __ct__Q28PSSystem7BankMgrFv, global
 /* 8033D79C 0033A6DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033D7A0 0033A6E0  7C 08 02 A6 */	mflr r0
 /* 8033D7A4 0033A6E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -84,9 +86,9 @@ __ct__Q28PSSystem7BankMgrFv:
 /* 8033D7E8 0033A728  7C 08 03 A6 */	mtlr r0
 /* 8033D7EC 0033A72C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033D7F0 0033A730  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem7BankMgrFv
 
-.global preInit__Q28PSSystem7BankMgrFv
-preInit__Q28PSSystem7BankMgrFv:
+.fn preInit__Q28PSSystem7BankMgrFv, global
 /* 8033D7F4 0033A734  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033D7F8 0033A738  7C 08 02 A6 */	mflr r0
 /* 8033D7FC 0033A73C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -125,9 +127,9 @@ preInit__Q28PSSystem7BankMgrFv:
 /* 8033D87C 0033A7BC  7C 08 03 A6 */	mtlr r0
 /* 8033D880 0033A7C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033D884 0033A7C4  4E 80 00 20 */	blr 
+.endfn preInit__Q28PSSystem7BankMgrFv
 
-.global init__Q28PSSystem7BankMgrFv
-init__Q28PSSystem7BankMgrFv:
+.fn init__Q28PSSystem7BankMgrFv, global
 /* 8033D888 0033A7C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033D88C 0033A7CC  7C 08 02 A6 */	mflr r0
 /* 8033D890 0033A7D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -235,9 +237,9 @@ init__Q28PSSystem7BankMgrFv:
 /* 8033D9F4 0033A934  7C 08 03 A6 */	mtlr r0
 /* 8033D9F8 0033A938  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033D9FC 0033A93C  4E 80 00 20 */	blr 
+.endfn init__Q28PSSystem7BankMgrFv
 
-.global load__Q28PSSystem9WaveSceneFUsUsQ38PSSystem9WaveScene7AreaArgPQ28PSSystem11TaskChecker
-load__Q28PSSystem9WaveSceneFUsUsQ38PSSystem9WaveScene7AreaArgPQ28PSSystem11TaskChecker:
+.fn load__Q28PSSystem9WaveSceneFUsUsQ38PSSystem9WaveScene7AreaArgPQ28PSSystem11TaskChecker, global
 /* 8033DA00 0033A940  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033DA04 0033A944  7C 08 02 A6 */	mflr r0
 /* 8033DA08 0033A948  90 01 00 24 */	stw r0, 0x24(r1)
@@ -269,9 +271,9 @@ load__Q28PSSystem9WaveSceneFUsUsQ38PSSystem9WaveScene7AreaArgPQ28PSSystem11TaskC
 /* 8033DA6C 0033A9AC  7C 08 03 A6 */	mtlr r0
 /* 8033DA70 0033A9B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033DA74 0033A9B4  4E 80 00 20 */	blr 
+.endfn load__Q28PSSystem9WaveSceneFUsUsQ38PSSystem9WaveScene7AreaArgPQ28PSSystem11TaskChecker
 
-.global __ct__Q38PSSystem9WaveScene8WaveAreaFv
-__ct__Q38PSSystem9WaveScene8WaveAreaFv:
+.fn __ct__Q38PSSystem9WaveScene8WaveAreaFv, global
 /* 8033DA78 0033A9B8  3C 80 80 4E */	lis r4, __vt__Q38PSSystem9WaveScene8WaveArea@ha
 /* 8033DA7C 0033A9BC  38 00 00 00 */	li r0, 0
 /* 8033DA80 0033A9C0  38 84 AD 68 */	addi r4, r4, __vt__Q38PSSystem9WaveScene8WaveArea@l
@@ -282,9 +284,9 @@ __ct__Q38PSSystem9WaveScene8WaveAreaFv:
 /* 8033DA94 0033A9D4  98 03 00 0C */	stb r0, 0xc(r3)
 /* 8033DA98 0033A9D8  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8033DA9C 0033A9DC  4E 80 00 20 */	blr 
+.endfn __ct__Q38PSSystem9WaveScene8WaveAreaFv
 
-.global loadWave__Q38PSSystem9WaveScene8WaveAreaFUsUsPQ28PSSystem11TaskChecker
-loadWave__Q38PSSystem9WaveScene8WaveAreaFUsUsPQ28PSSystem11TaskChecker:
+.fn loadWave__Q38PSSystem9WaveScene8WaveAreaFUsUsPQ28PSSystem11TaskChecker, global
 /* 8033DAA0 0033A9E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033DAA4 0033A9E4  7C 08 02 A6 */	mflr r0
 /* 8033DAA8 0033A9E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -360,9 +362,9 @@ loadWave__Q38PSSystem9WaveScene8WaveAreaFUsUsPQ28PSSystem11TaskChecker:
 /* 8033DBA8 0033AAE8  7C 08 03 A6 */	mtlr r0
 /* 8033DBAC 0033AAEC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033DBB0 0033AAF0  4E 80 00 20 */	blr 
+.endfn loadWave__Q38PSSystem9WaveScene8WaveAreaFUsUsPQ28PSSystem11TaskChecker
 
-.global deleteWave__Q38PSSystem9WaveScene8WaveAreaFv
-deleteWave__Q38PSSystem9WaveScene8WaveAreaFv:
+.fn deleteWave__Q38PSSystem9WaveScene8WaveAreaFv, global
 /* 8033DBB4 0033AAF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033DBB8 0033AAF8  7C 08 02 A6 */	mflr r0
 /* 8033DBBC 0033AAFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -412,9 +414,9 @@ deleteWave__Q38PSSystem9WaveScene8WaveAreaFv:
 /* 8033DC58 0033AB98  7C 08 03 A6 */	mtlr r0
 /* 8033DC5C 0033AB9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033DC60 0033ABA0  4E 80 00 20 */	blr 
+.endfn deleteWave__Q38PSSystem9WaveScene8WaveAreaFv
 
-.global waveLoadCallback__Q38PSSystem9WaveScene8WaveAreaFUl
-waveLoadCallback__Q38PSSystem9WaveScene8WaveAreaFUl:
+.fn waveLoadCallback__Q38PSSystem9WaveScene8WaveAreaFUl, global
 /* 8033DC64 0033ABA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033DC68 0033ABA8  7C 08 02 A6 */	mflr r0
 /* 8033DC6C 0033ABAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -447,9 +449,9 @@ waveLoadCallback__Q38PSSystem9WaveScene8WaveAreaFUl:
 /* 8033DCD4 0033AC14  7C 08 03 A6 */	mtlr r0
 /* 8033DCD8 0033AC18  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033DCDC 0033AC1C  4E 80 00 20 */	blr 
+.endfn waveLoadCallback__Q38PSSystem9WaveScene8WaveAreaFUl
 
-.global __dt__Q28PSSystem7BankMgrFv
-__dt__Q28PSSystem7BankMgrFv:
+.fn __dt__Q28PSSystem7BankMgrFv, weak
 /* 8033DCE0 0033AC20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033DCE4 0033AC24  7C 08 02 A6 */	mflr r0
 /* 8033DCE8 0033AC28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -489,17 +491,17 @@ __dt__Q28PSSystem7BankMgrFv:
 /* 8033DD64 0033ACA4  7C 08 03 A6 */	mtlr r0
 /* 8033DD68 0033ACA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033DD6C 0033ACAC  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem7BankMgrFv
 
-.global secondLoadS__Q28PSSystem7BankMgrFv
-secondLoadS__Q28PSSystem7BankMgrFv:
+.fn secondLoadS__Q28PSSystem7BankMgrFv, weak
 /* 8033DD70 0033ACB0  4E 80 00 20 */	blr 
+.endfn secondLoadS__Q28PSSystem7BankMgrFv
 
-.global firstLoadS__Q28PSSystem7BankMgrFv
-firstLoadS__Q28PSSystem7BankMgrFv:
+.fn firstLoadS__Q28PSSystem7BankMgrFv, weak
 /* 8033DD74 0033ACB4  4E 80 00 20 */	blr 
+.endfn firstLoadS__Q28PSSystem7BankMgrFv
 
-.global initS__Q28PSSystem7BankMgrFv
-initS__Q28PSSystem7BankMgrFv:
+.fn initS__Q28PSSystem7BankMgrFv, weak
 /* 8033DD78 0033ACB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033DD7C 0033ACBC  7C 08 02 A6 */	mflr r0
 /* 8033DD80 0033ACC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -509,9 +511,9 @@ initS__Q28PSSystem7BankMgrFv:
 /* 8033DD90 0033ACD0  7C 08 03 A6 */	mtlr r0
 /* 8033DD94 0033ACD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033DD98 0033ACD8  4E 80 00 20 */	blr 
+.endfn initS__Q28PSSystem7BankMgrFv
 
-.global setWsDataS__Q28PSSystem7BankMgrFPUl
-setWsDataS__Q28PSSystem7BankMgrFPUl:
+.fn setWsDataS__Q28PSSystem7BankMgrFPUl, weak
 /* 8033DD9C 0033ACDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033DDA0 0033ACE0  7C 08 02 A6 */	mflr r0
 /* 8033DDA4 0033ACE4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -636,9 +638,9 @@ setWsDataS__Q28PSSystem7BankMgrFPUl:
 /* 8033DF58 0033AE98  7C 08 03 A6 */	mtlr r0
 /* 8033DF5C 0033AE9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033DF60 0033AEA0  4E 80 00 20 */	blr 
+.endfn setWsDataS__Q28PSSystem7BankMgrFPUl
 
-.global setBankDataS__Q28PSSystem7BankMgrFPUl
-setBankDataS__Q28PSSystem7BankMgrFPUl:
+.fn setBankDataS__Q28PSSystem7BankMgrFPUl, weak
 /* 8033DF64 0033AEA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033DF68 0033AEA8  7C 08 02 A6 */	mflr r0
 /* 8033DF6C 0033AEAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -763,9 +765,9 @@ setBankDataS__Q28PSSystem7BankMgrFPUl:
 /* 8033E120 0033B060  7C 08 03 A6 */	mtlr r0
 /* 8033E124 0033B064  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033E128 0033B068  4E 80 00 20 */	blr 
+.endfn setBankDataS__Q28PSSystem7BankMgrFPUl
 
-.global __dt__Q38PSSystem9WaveScene8WaveAreaFv
-__dt__Q38PSSystem9WaveScene8WaveAreaFv:
+.fn __dt__Q38PSSystem9WaveScene8WaveAreaFv, weak
 /* 8033E12C 0033B06C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E130 0033B070  7C 08 02 A6 */	mflr r0
 /* 8033E134 0033B074  90 01 00 14 */	stw r0, 0x14(r1)
@@ -822,3 +824,4 @@ __dt__Q38PSSystem9WaveScene8WaveAreaFv:
 /* 8033E1EC 0033B12C  7C 08 03 A6 */	mtlr r0
 /* 8033E1F0 0033B130  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033E1F4 0033B134  4E 80 00 20 */	blr 
+.endfn __dt__Q38PSSystem9WaveScene8WaveAreaFv

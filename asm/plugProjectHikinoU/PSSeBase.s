@@ -1,57 +1,62 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80490100:
+.obj lbl_80490100, local
 	.asciz "PSSeBase.cpp"
+.endobj lbl_80490100
 .balign 4
-lbl_80490110:
+.obj lbl_80490110, local
 	.asciz "P2Assert"
+.endobj lbl_80490110
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q38PSSystem9ClusterSe7Factory
-__vt__Q38PSSystem9ClusterSe7Factory:
+.obj __vt__Q38PSSystem9ClusterSe7Factory, global
 	.4byte 0
 	.4byte 0
 	.4byte constructPart__Q38PSSystem9ClusterSe7FactoryFv
 	.4byte 0
-.global __vt__Q38PSSystem9ClusterSe4Part
-__vt__Q38PSSystem9ClusterSe4Part:
+.endobj __vt__Q38PSSystem9ClusterSe7Factory
+.obj __vt__Q38PSSystem9ClusterSe4Part, global
 	.4byte 0
 	.4byte 0
 	.4byte callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object
-.global __vt__Q28PSSystem24EnvSe_PauseOffReservator
-__vt__Q28PSSystem24EnvSe_PauseOffReservator:
+.endobj __vt__Q38PSSystem9ClusterSe4Part
+.obj __vt__Q28PSSystem24EnvSe_PauseOffReservator, global
 	.4byte 0
 	.4byte 0
 	.4byte reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv
-.global __vt__Q28PSSystem9EnvSeBase
-__vt__Q28PSSystem9EnvSeBase:
+.endobj __vt__Q28PSSystem24EnvSe_PauseOffReservator
+.obj __vt__Q28PSSystem9EnvSeBase, global
 	.4byte 0
 	.4byte 0
 	.4byte exec__Q28PSSystem9EnvSeBaseFv
 	.4byte play__Q28PSSystem9EnvSeBaseFv
 	.4byte getCastType__Q28PSSystem9EnvSeBaseFv
 	.4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
+.endobj __vt__Q28PSSystem9EnvSeBase
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E1C0:
+.obj lbl_8051E1C0, local
 	.float 0.0
-lbl_8051E1C4:
+.endobj lbl_8051E1C0
+.obj lbl_8051E1C4, local
 	.float 0.3
-lbl_8051E1C8:
+.endobj lbl_8051E1C4
+.obj lbl_8051E1C8, local
 	.float 0.4
-lbl_8051E1CC:
+.endobj lbl_8051E1C8
+.obj lbl_8051E1CC, local
 	.float 1.0
+.endobj lbl_8051E1CC
 .balign 8
-lbl_8051E1D0:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_8051E1D0, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051E1D0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28PSSystem9EnvSeBaseFUlf
-__ct__Q28PSSystem9EnvSeBaseFUlf:
+.fn __ct__Q28PSSystem9EnvSeBaseFUlf, global
 /* 80340838 0033D778  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8034083C 0033D77C  7C 08 02 A6 */	mflr r0
 /* 80340840 0033D780  90 01 00 24 */	stw r0, 0x24(r1)
@@ -93,9 +98,9 @@ __ct__Q28PSSystem9EnvSeBaseFUlf:
 /* 803408D0 0033D810  7C 08 03 A6 */	mtlr r0
 /* 803408D4 0033D814  38 21 00 20 */	addi r1, r1, 0x20
 /* 803408D8 0033D818  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem9EnvSeBaseFUlf
 
-.global exec__Q28PSSystem9EnvSeBaseFv
-exec__Q28PSSystem9EnvSeBaseFv:
+.fn exec__Q28PSSystem9EnvSeBaseFv, global
 /* 803408DC 0033D81C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803408E0 0033D820  7C 08 02 A6 */	mflr r0
 /* 803408E4 0033D824  90 01 00 14 */	stw r0, 0x14(r1)
@@ -325,9 +330,9 @@ exec__Q28PSSystem9EnvSeBaseFv:
 /* 80340C2C 0033DB6C  7C 08 03 A6 */	mtlr r0
 /* 80340C30 0033DB70  38 21 00 10 */	addi r1, r1, 0x10
 /* 80340C34 0033DB74  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem9EnvSeBaseFv
 
-.global play__Q28PSSystem9EnvSeBaseFv
-play__Q28PSSystem9EnvSeBaseFv:
+.fn play__Q28PSSystem9EnvSeBaseFv, global
 /* 80340C38 0033DB78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80340C3C 0033DB7C  7C 08 02 A6 */	mflr r0
 /* 80340C40 0033DB80  38 C0 00 3C */	li r6, 0x3c
@@ -344,9 +349,9 @@ play__Q28PSSystem9EnvSeBaseFv:
 /* 80340C6C 0033DBAC  7C 08 03 A6 */	mtlr r0
 /* 80340C70 0033DBB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80340C74 0033DBB4  4E 80 00 20 */	blr 
+.endfn play__Q28PSSystem9EnvSeBaseFv
 
-.global setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc
-setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc:
+.fn setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc, global
 /* 80340C78 0033DBB8  80 C3 00 00 */	lwz r6, 0(r3)
 /* 80340C7C 0033DBBC  38 00 00 00 */	li r0, 0
 /* 80340C80 0033DBC0  48 00 00 20 */	b .L_80340CA0
@@ -363,9 +368,9 @@ setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc:
 /* 80340CA0 0033DBE0  28 06 00 00 */	cmplwi r6, 0
 /* 80340CA4 0033DBE4  40 82 FF E0 */	bne .L_80340C84
 /* 80340CA8 0033DBE8  4E 80 00 20 */	blr 
+.endfn setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc
 
-.global on__Q28PSSystem8EnvSeMgrFv
-on__Q28PSSystem8EnvSeMgrFv:
+.fn on__Q28PSSystem8EnvSeMgrFv, global
 /* 80340CAC 0033DBEC  80 83 00 00 */	lwz r4, 0(r3)
 /* 80340CB0 0033DBF0  38 00 00 01 */	li r0, 1
 /* 80340CB4 0033DBF4  48 00 00 10 */	b .L_80340CC4
@@ -377,9 +382,9 @@ on__Q28PSSystem8EnvSeMgrFv:
 /* 80340CC4 0033DC04  28 04 00 00 */	cmplwi r4, 0
 /* 80340CC8 0033DC08  40 82 FF F0 */	bne .L_80340CB8
 /* 80340CCC 0033DC0C  4E 80 00 20 */	blr 
+.endfn on__Q28PSSystem8EnvSeMgrFv
 
-.global on__Q28PSSystem8EnvSeMgrFUlb
-on__Q28PSSystem8EnvSeMgrFUlb:
+.fn on__Q28PSSystem8EnvSeMgrFUlb, global
 /* 80340CD0 0033DC10  80 E3 00 00 */	lwz r7, 0(r3)
 /* 80340CD4 0033DC14  54 A5 06 3E */	clrlwi r5, r5, 0x18
 /* 80340CD8 0033DC18  38 00 00 01 */	li r0, 1
@@ -405,9 +410,9 @@ on__Q28PSSystem8EnvSeMgrFUlb:
 /* 80340D14 0033DC54  28 07 00 00 */	cmplwi r7, 0
 /* 80340D18 0033DC58  40 82 FF C8 */	bne .L_80340CE0
 /* 80340D1C 0033DC5C  4E 80 00 20 */	blr 
+.endfn on__Q28PSSystem8EnvSeMgrFUlb
 
-.global off__Q28PSSystem8EnvSeMgrFv
-off__Q28PSSystem8EnvSeMgrFv:
+.fn off__Q28PSSystem8EnvSeMgrFv, global
 /* 80340D20 0033DC60  80 83 00 00 */	lwz r4, 0(r3)
 /* 80340D24 0033DC64  38 00 00 00 */	li r0, 0
 /* 80340D28 0033DC68  48 00 00 10 */	b .L_80340D38
@@ -419,9 +424,9 @@ off__Q28PSSystem8EnvSeMgrFv:
 /* 80340D38 0033DC78  28 04 00 00 */	cmplwi r4, 0
 /* 80340D3C 0033DC7C  40 82 FF F0 */	bne .L_80340D2C
 /* 80340D40 0033DC80  4E 80 00 20 */	blr 
+.endfn off__Q28PSSystem8EnvSeMgrFv
 
-.global off__Q28PSSystem8EnvSeMgrFUlb
-off__Q28PSSystem8EnvSeMgrFUlb:
+.fn off__Q28PSSystem8EnvSeMgrFUlb, global
 /* 80340D44 0033DC84  80 E3 00 00 */	lwz r7, 0(r3)
 /* 80340D48 0033DC88  54 A5 06 3E */	clrlwi r5, r5, 0x18
 /* 80340D4C 0033DC8C  38 00 00 00 */	li r0, 0
@@ -447,15 +452,15 @@ off__Q28PSSystem8EnvSeMgrFUlb:
 /* 80340D88 0033DCC8  28 07 00 00 */	cmplwi r7, 0
 /* 80340D8C 0033DCCC  40 82 FF C8 */	bne .L_80340D54
 /* 80340D90 0033DCD0  4E 80 00 20 */	blr 
+.endfn off__Q28PSSystem8EnvSeMgrFUlb
 
-.global reservePauseOff__Q28PSSystem8EnvSeMgrFv
-reservePauseOff__Q28PSSystem8EnvSeMgrFv:
+.fn reservePauseOff__Q28PSSystem8EnvSeMgrFv, global
 /* 80340D94 0033DCD4  38 00 00 1F */	li r0, 0x1f
 /* 80340D98 0033DCD8  B0 03 00 10 */	sth r0, 0x10(r3)
 /* 80340D9C 0033DCDC  4E 80 00 20 */	blr 
+.endfn reservePauseOff__Q28PSSystem8EnvSeMgrFv
 
-.global setVolumeRequest__Q28PSSystem8EnvSeMgrFfUlUc
-setVolumeRequest__Q28PSSystem8EnvSeMgrFfUlUc:
+.fn setVolumeRequest__Q28PSSystem8EnvSeMgrFfUlUc, global
 /* 80340DA0 0033DCE0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80340DA4 0033DCE4  80 E3 00 00 */	lwz r7, 0(r3)
 /* 80340DA8 0033DCE8  38 60 00 00 */	li r3, 0
@@ -487,9 +492,9 @@ setVolumeRequest__Q28PSSystem8EnvSeMgrFfUlUc:
 /* 80340E04 0033DD44  40 82 FF AC */	bne .L_80340DB0
 /* 80340E08 0033DD48  38 21 00 30 */	addi r1, r1, 0x30
 /* 80340E0C 0033DD4C  4E 80 00 20 */	blr 
+.endfn setVolumeRequest__Q28PSSystem8EnvSeMgrFfUlUc
 
-.global exec__Q28PSSystem8EnvSeMgrFv
-exec__Q28PSSystem8EnvSeMgrFv:
+.fn exec__Q28PSSystem8EnvSeMgrFv, global
 /* 80340E10 0033DD50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80340E14 0033DD54  7C 08 02 A6 */	mflr r0
 /* 80340E18 0033DD58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -525,9 +530,9 @@ exec__Q28PSSystem8EnvSeMgrFv:
 /* 80340E84 0033DDC4  7C 08 03 A6 */	mtlr r0
 /* 80340E88 0033DDC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80340E8C 0033DDCC  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem8EnvSeMgrFv
 
-.global reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv
-reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv:
+.fn reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv, global
 /* 80340E90 0033DDD0  80 83 00 08 */	lwz r4, 8(r3)
 /* 80340E94 0033DDD4  38 60 00 00 */	li r3, 0
 /* 80340E98 0033DDD8  80 84 00 00 */	lwz r4, 0(r4)
@@ -545,9 +550,9 @@ reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv:
 /* 80340EBC 0033DDFC  28 04 00 00 */	cmplwi r4, 0
 /* 80340EC0 0033DE00  40 82 FF E0 */	bne .L_80340EA0
 /* 80340EC4 0033DE04  4E 80 00 20 */	blr 
+.endfn reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv
 
-.global __ct__Q38PSSystem9ClusterSe11PartInitArgFv
-__ct__Q38PSSystem9ClusterSe11PartInitArgFv:
+.fn __ct__Q38PSSystem9ClusterSe11PartInitArgFv, global
 /* 80340EC8 0033DE08  38 80 00 FF */	li r4, 0xff
 /* 80340ECC 0033DE0C  38 00 FF FF */	li r0, -1
 /* 80340ED0 0033DE10  98 83 00 00 */	stb r4, 0(r3)
@@ -556,9 +561,9 @@ __ct__Q38PSSystem9ClusterSe11PartInitArgFv:
 /* 80340EDC 0033DE1C  98 83 00 03 */	stb r4, 3(r3)
 /* 80340EE0 0033DE20  90 03 00 04 */	stw r0, 4(r3)
 /* 80340EE4 0033DE24  4E 80 00 20 */	blr 
+.endfn __ct__Q38PSSystem9ClusterSe11PartInitArgFv
 
-.global __ct__Q38PSSystem9ClusterSe4PartFv
-__ct__Q38PSSystem9ClusterSe4PartFv:
+.fn __ct__Q38PSSystem9ClusterSe4PartFv, global
 /* 80340EE8 0033DE28  3C A0 80 4E */	lis r5, __vt__Q38PSSystem9ClusterSe4Part@ha
 /* 80340EEC 0033DE2C  38 80 00 FF */	li r4, 0xff
 /* 80340EF0 0033DE30  38 A5 AE D0 */	addi r5, r5, __vt__Q38PSSystem9ClusterSe4Part@l
@@ -570,9 +575,9 @@ __ct__Q38PSSystem9ClusterSe4PartFv:
 /* 80340F08 0033DE48  98 83 00 07 */	stb r4, 7(r3)
 /* 80340F0C 0033DE4C  90 03 00 08 */	stw r0, 8(r3)
 /* 80340F10 0033DE50  4E 80 00 20 */	blr 
+.endfn __ct__Q38PSSystem9ClusterSe4PartFv
 
-.global callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object
-callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object:
+.fn callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object, global
 /* 80340F14 0033DE54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80340F18 0033DE58  7C 08 02 A6 */	mflr r0
 /* 80340F1C 0033DE5C  7C 65 1B 78 */	mr r5, r3
@@ -589,8 +594,7 @@ callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object:
 /* 80340F48 0033DE88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80340F4C 0033DE8C  4E 80 00 20 */	blr 
 
-.global __ct__Q38PSSystem9ClusterSe7FactoryFUc
-__ct__Q38PSSystem9ClusterSe7FactoryFUc:
+.fn __ct__Q38PSSystem9ClusterSe7FactoryFUc, global
 /* 80340F50 0033DE90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80340F54 0033DE94  7C 08 02 A6 */	mflr r0
 /* 80340F58 0033DE98  3C A0 80 4E */	lis r5, __vt__Q38PSSystem9ClusterSe7Factory@ha
@@ -616,9 +620,9 @@ __ct__Q38PSSystem9ClusterSe7FactoryFUc:
 /* 80340FA4 0033DEE4  7C 08 03 A6 */	mtlr r0
 /* 80340FA8 0033DEE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80340FAC 0033DEEC  4E 80 00 20 */	blr 
+.endfn __ct__Q38PSSystem9ClusterSe7FactoryFUc
 
-.global constructPart__Q38PSSystem9ClusterSe7FactoryFv
-constructPart__Q38PSSystem9ClusterSe7FactoryFv:
+.fn constructPart__Q38PSSystem9ClusterSe7FactoryFv, global
 /* 80340FB0 0033DEF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80340FB4 0033DEF4  7C 08 02 A6 */	mflr r0
 /* 80340FB8 0033DEF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -649,9 +653,9 @@ constructPart__Q38PSSystem9ClusterSe7FactoryFv:
 /* 80341018 0033DF58  7C 08 03 A6 */	mtlr r0
 /* 8034101C 0033DF5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80341020 0033DF60  4E 80 00 20 */	blr 
+.endfn constructPart__Q38PSSystem9ClusterSe7FactoryFv
 
-.global constructParts__Q38PSSystem9ClusterSe3MgrFRQ38PSSystem9ClusterSe7Factory
-constructParts__Q38PSSystem9ClusterSe3MgrFRQ38PSSystem9ClusterSe7Factory:
+.fn constructParts__Q38PSSystem9ClusterSe3MgrFRQ38PSSystem9ClusterSe7Factory, global
 /* 80341024 0033DF64  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80341028 0033DF68  7C 08 02 A6 */	mflr r0
 /* 8034102C 0033DF6C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -838,9 +842,9 @@ constructParts__Q38PSSystem9ClusterSe3MgrFRQ38PSSystem9ClusterSe7Factory:
 /* 803412CC 0033E20C  7C 08 03 A6 */	mtlr r0
 /* 803412D0 0033E210  38 21 00 30 */	addi r1, r1, 0x30
 /* 803412D4 0033E214  4E 80 00 20 */	blr 
+.endfn constructParts__Q38PSSystem9ClusterSe3MgrFRQ38PSSystem9ClusterSe7Factory
 
-.global play__Q38PSSystem9ClusterSe3MgrFUcPQ27JAInter6Object
-play__Q38PSSystem9ClusterSe3MgrFUcPQ27JAInter6Object:
+.fn play__Q38PSSystem9ClusterSe3MgrFUcPQ27JAInter6Object, global
 /* 803412D8 0033E218  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803412DC 0033E21C  7C 08 02 A6 */	mflr r0
 /* 803412E0 0033E220  90 01 00 44 */	stw r0, 0x44(r1)
@@ -952,3 +956,4 @@ play__Q38PSSystem9ClusterSe3MgrFUcPQ27JAInter6Object:
 /* 80341470 0033E3B0  7C 08 03 A6 */	mtlr r0
 /* 80341474 0033E3B4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80341478 0033E3B8  4E 80 00 20 */	blr 
+.endfn play__Q38PSSystem9ClusterSe3MgrFUcPQ27JAInter6Object

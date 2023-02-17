@@ -1,22 +1,25 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80490120:
+.obj lbl_80490120, local
 	.asciz "PSScene.cpp"
+.endobj lbl_80490120
 .balign 4
-lbl_8049012C:
+.obj lbl_8049012C, local
 	.asciz "P2Assert"
+.endobj lbl_8049012C
 .balign 4
-lbl_80490138:
+.obj lbl_80490138, local
 	.asciz "PSScene.h"
+.endobj lbl_80490138
 .balign 4
-lbl_80490144:
+.obj lbl_80490144, local
 	.asciz "PSSystemIF.h"
+.endobj lbl_80490144
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q28PSSystem5Scene
-__vt__Q28PSSystem5Scene:
+.obj __vt__Q28PSSystem5Scene, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q28PSSystem5SceneFv
@@ -27,26 +30,26 @@ __vt__Q28PSSystem5Scene:
 	.4byte startMainSeq__Q28PSSystem5SceneFv
 	.4byte stopMainSeq__Q28PSSystem5SceneFUl
 	.4byte stopAllSound__Q28PSSystem5SceneFUl
-.global __vt__Q28PSSystem10WaveLoader
-__vt__Q28PSSystem10WaveLoader:
+.endobj __vt__Q28PSSystem5Scene
+.obj __vt__Q28PSSystem10WaveLoader, global
 	.4byte 0
 	.4byte 0
 	.4byte loadWave__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskCheckerQ38PSSystem9WaveScene7AreaArg
-.global __vt__Q28PSSystem9WaveScene
-__vt__Q28PSSystem9WaveScene:
+.endobj __vt__Q28PSSystem10WaveLoader
+.obj __vt__Q28PSSystem9WaveScene, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem9WaveSceneFv
+.endobj __vt__Q28PSSystem9WaveScene
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global spSceneMgr__8PSSystem
-spSceneMgr__8PSSystem:
+.obj spSceneMgr__8PSSystem, global
 	.skip 0x4
+.endobj spSceneMgr__8PSSystem
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q28PSSystem9WaveSceneFv
-__dt__Q28PSSystem9WaveSceneFv:
+.fn __dt__Q28PSSystem9WaveSceneFv, weak
 /* 8034147C 0033E3BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80341480 0033E3C0  7C 08 02 A6 */	mflr r0
 /* 80341484 0033E3C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -79,9 +82,9 @@ __dt__Q28PSSystem9WaveSceneFv:
 /* 803414EC 0033E42C  7C 08 03 A6 */	mtlr r0
 /* 803414F0 0033E430  38 21 00 10 */	addi r1, r1, 0x10
 /* 803414F4 0033E434  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem9WaveSceneFv
 
-.global loadWave__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskCheckerQ38PSSystem9WaveScene7AreaArg
-loadWave__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskCheckerQ38PSSystem9WaveScene7AreaArg:
+.fn loadWave__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskCheckerQ38PSSystem9WaveScene7AreaArg, global
 /* 803414F8 0033E438  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803414FC 0033E43C  7C 08 02 A6 */	mflr r0
 /* 80341500 0033E440  7C A6 2B 78 */	mr r6, r5
@@ -99,9 +102,9 @@ loadWave__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskCheckerQ38PSSystem9WaveScene
 /* 8034152C 0033E46C  7C 08 03 A6 */	mtlr r0
 /* 80341530 0033E470  38 21 00 10 */	addi r1, r1, 0x10
 /* 80341534 0033E474  4E 80 00 20 */	blr 
+.endfn loadWave__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskCheckerQ38PSSystem9WaveScene7AreaArg
 
-.global __ct__Q28PSSystem5SceneFUc
-__ct__Q28PSSystem5SceneFUc:
+.fn __ct__Q28PSSystem5SceneFUc, global
 /* 80341538 0033E478  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8034153C 0033E47C  7C 08 02 A6 */	mflr r0
 /* 80341540 0033E480  3C A0 80 4E */	lis r5, __vt__Q28PSSystem5Scene@ha
@@ -174,9 +177,9 @@ __ct__Q28PSSystem5SceneFUc:
 /* 80341644 0033E584  7C 08 03 A6 */	mtlr r0
 /* 80341648 0033E588  38 21 00 20 */	addi r1, r1, 0x20
 /* 8034164C 0033E58C  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem5SceneFUc
 
-.global __dt__Q28PSSystem5SceneFv
-__dt__Q28PSSystem5SceneFv:
+.fn __dt__Q28PSSystem5SceneFv, global
 /* 80341650 0033E590  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80341654 0033E594  7C 08 02 A6 */	mflr r0
 /* 80341658 0033E598  90 01 00 24 */	stw r0, 0x24(r1)
@@ -229,9 +232,9 @@ __dt__Q28PSSystem5SceneFv:
 /* 80341708 0033E648  7C 08 03 A6 */	mtlr r0
 /* 8034170C 0033E64C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80341710 0033E650  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem5SceneFv
 
-.global adaptChildScene__Q28PSSystem5SceneFPQ28PSSystem5Scene
-adaptChildScene__Q28PSSystem5SceneFPQ28PSSystem5Scene:
+.fn adaptChildScene__Q28PSSystem5SceneFPQ28PSSystem5Scene, global
 /* 80341714 0033E654  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80341718 0033E658  7C 08 02 A6 */	mflr r0
 /* 8034171C 0033E65C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -282,9 +285,9 @@ adaptChildScene__Q28PSSystem5SceneFPQ28PSSystem5Scene:
 /* 803417C4 0033E704  7C 08 03 A6 */	mtlr r0
 /* 803417C8 0033E708  38 21 00 10 */	addi r1, r1, 0x10
 /* 803417CC 0033E70C  4E 80 00 20 */	blr 
+.endfn adaptChildScene__Q28PSSystem5SceneFPQ28PSSystem5Scene
 
-.global adaptTo__Q28PSSystem5SceneFPPQ28PSSystem5Scene
-adaptTo__Q28PSSystem5SceneFPPQ28PSSystem5Scene:
+.fn adaptTo__Q28PSSystem5SceneFPPQ28PSSystem5Scene, global
 /* 803417D0 0033E710  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803417D4 0033E714  7C 08 02 A6 */	mflr r0
 /* 803417D8 0033E718  90 01 00 14 */	stw r0, 0x14(r1)
@@ -314,9 +317,9 @@ adaptTo__Q28PSSystem5SceneFPPQ28PSSystem5Scene:
 /* 80341834 0033E774  7C 08 03 A6 */	mtlr r0
 /* 80341838 0033E778  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034183C 0033E77C  4E 80 00 20 */	blr 
+.endfn adaptTo__Q28PSSystem5SceneFPPQ28PSSystem5Scene
 
-.global detach__Q28PSSystem5SceneFv
-detach__Q28PSSystem5SceneFv:
+.fn detach__Q28PSSystem5SceneFv, global
 /* 80341840 0033E780  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80341844 0033E784  7C 08 02 A6 */	mflr r0
 /* 80341848 0033E788  90 01 00 14 */	stw r0, 0x14(r1)
@@ -340,9 +343,9 @@ detach__Q28PSSystem5SceneFv:
 /* 8034188C 0033E7CC  7C 08 03 A6 */	mtlr r0
 /* 80341890 0033E7D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80341894 0033E7D4  4E 80 00 20 */	blr 
+.endfn detach__Q28PSSystem5SceneFv
 
-.global appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
-appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase:
+.fn appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase, global
 /* 80341898 0033E7D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034189C 0033E7DC  7C 08 02 A6 */	mflr r0
 /* 803418A0 0033E7E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -368,9 +371,9 @@ appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase:
 /* 803418EC 0033E82C  7C 08 03 A6 */	mtlr r0
 /* 803418F0 0033E830  38 21 00 10 */	addi r1, r1, 0x10
 /* 803418F4 0033E834  4E 80 00 20 */	blr 
+.endfn appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
 
-.global startMainSeq__Q28PSSystem5SceneFv
-startMainSeq__Q28PSSystem5SceneFv:
+.fn startMainSeq__Q28PSSystem5SceneFv, global
 /* 803418F8 0033E838  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803418FC 0033E83C  7C 08 02 A6 */	mflr r0
 /* 80341900 0033E840  90 01 00 14 */	stw r0, 0x14(r1)
@@ -387,9 +390,9 @@ startMainSeq__Q28PSSystem5SceneFv:
 /* 80341928 0033E868  7C 08 03 A6 */	mtlr r0
 /* 8034192C 0033E86C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80341930 0033E870  4E 80 00 20 */	blr 
+.endfn startMainSeq__Q28PSSystem5SceneFv
 
-.global stopMainSeq__Q28PSSystem5SceneFUl
-stopMainSeq__Q28PSSystem5SceneFUl:
+.fn stopMainSeq__Q28PSSystem5SceneFUl, global
 /* 80341934 0033E874  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80341938 0033E878  7C 08 02 A6 */	mflr r0
 /* 8034193C 0033E87C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -406,9 +409,9 @@ stopMainSeq__Q28PSSystem5SceneFUl:
 /* 80341964 0033E8A4  7C 08 03 A6 */	mtlr r0
 /* 80341968 0033E8A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034196C 0033E8AC  4E 80 00 20 */	blr 
+.endfn stopMainSeq__Q28PSSystem5SceneFUl
 
-.global stopAllSound__Q28PSSystem5SceneFUl
-stopAllSound__Q28PSSystem5SceneFUl:
+.fn stopAllSound__Q28PSSystem5SceneFUl, global
 /* 80341970 0033E8B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80341974 0033E8B4  7C 08 02 A6 */	mflr r0
 /* 80341978 0033E8B8  38 63 00 10 */	addi r3, r3, 0x10
@@ -418,9 +421,9 @@ stopAllSound__Q28PSSystem5SceneFUl:
 /* 80341988 0033E8C8  7C 08 03 A6 */	mtlr r0
 /* 8034198C 0033E8CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80341990 0033E8D0  4E 80 00 20 */	blr 
+.endfn stopAllSound__Q28PSSystem5SceneFUl
 
-.global scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
-scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker:
+.fn scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker, global
 /* 80341994 0033E8D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80341998 0033E8D8  7C 08 02 A6 */	mflr r0
 /* 8034199C 0033E8DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -456,9 +459,9 @@ scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker:
 /* 80341A10 0033E950  7C 08 03 A6 */	mtlr r0
 /* 80341A14 0033E954  38 21 00 20 */	addi r1, r1, 0x20
 /* 80341A18 0033E958  4E 80 00 20 */	blr 
+.endfn scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
 
-.global scene1stLoadSync__Q28PSSystem5SceneFv
-scene1stLoadSync__Q28PSSystem5SceneFv:
+.fn scene1stLoadSync__Q28PSSystem5SceneFv, global
 /* 80341A1C 0033E95C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80341A20 0033E960  7C 08 02 A6 */	mflr r0
 /* 80341A24 0033E964  90 01 00 34 */	stw r0, 0x34(r1)
@@ -483,9 +486,9 @@ scene1stLoadSync__Q28PSSystem5SceneFv:
 /* 80341A6C 0033E9AC  7C 08 03 A6 */	mtlr r0
 /* 80341A70 0033E9B0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80341A74 0033E9B4  4E 80 00 20 */	blr 
+.endfn scene1stLoadSync__Q28PSSystem5SceneFv
 
-.global exec__Q28PSSystem5SceneFv
-exec__Q28PSSystem5SceneFv:
+.fn exec__Q28PSSystem5SceneFv, global
 /* 80341A78 0033E9B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80341A7C 0033E9BC  7C 08 02 A6 */	mflr r0
 /* 80341A80 0033E9C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -506,9 +509,9 @@ exec__Q28PSSystem5SceneFv:
 /* 80341AB8 0033E9F8  7C 08 03 A6 */	mtlr r0
 /* 80341ABC 0033E9FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80341AC0 0033EA00  4E 80 00 20 */	blr 
+.endfn exec__Q28PSSystem5SceneFv
 
-.global refreshCurEndScene__Q28PSSystem8SceneMgrFv
-refreshCurEndScene__Q28PSSystem8SceneMgrFv:
+.fn refreshCurEndScene__Q28PSSystem8SceneMgrFv, global
 /* 80341AC4 0033EA04  80 83 00 04 */	lwz r4, 4(r3)
 /* 80341AC8 0033EA08  28 04 00 00 */	cmplwi r4, 0
 /* 80341ACC 0033EA0C  40 82 00 18 */	bne .L_80341AE4
@@ -524,9 +527,9 @@ refreshCurEndScene__Q28PSSystem8SceneMgrFv:
 /* 80341AEC 0033EA2C  40 82 FF F4 */	bne .L_80341AE0
 /* 80341AF0 0033EA30  90 83 00 08 */	stw r4, 8(r3)
 /* 80341AF4 0033EA34  4E 80 00 20 */	blr 
+.endfn refreshCurEndScene__Q28PSSystem8SceneMgrFv
 
-.global findSeq__Q28PSSystem8SceneMgrFP8JASTrack
-findSeq__Q28PSSystem8SceneMgrFP8JASTrack:
+.fn findSeq__Q28PSSystem8SceneMgrFP8JASTrack, global
 /* 80341AF8 0033EA38  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80341AFC 0033EA3C  7C 08 02 A6 */	mflr r0
 /* 80341B00 0033EA40  90 01 00 24 */	stw r0, 0x24(r1)
@@ -620,9 +623,9 @@ findSeq__Q28PSSystem8SceneMgrFP8JASTrack:
 /* 80341C40 0033EB80  7C 08 03 A6 */	mtlr r0
 /* 80341C44 0033EB84  38 21 00 20 */	addi r1, r1, 0x20
 /* 80341C48 0033EB88  4E 80 00 20 */	blr 
+.endfn findSeq__Q28PSSystem8SceneMgrFP8JASTrack
 
-.global getPlayingSeq__Q28PSSystem8SceneMgrFP8JASTrack
-getPlayingSeq__Q28PSSystem8SceneMgrFP8JASTrack:
+.fn getPlayingSeq__Q28PSSystem8SceneMgrFP8JASTrack, global
 /* 80341C4C 0033EB8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80341C50 0033EB90  7C 08 02 A6 */	mflr r0
 /* 80341C54 0033EB94  90 01 00 24 */	stw r0, 0x24(r1)
@@ -716,9 +719,9 @@ getPlayingSeq__Q28PSSystem8SceneMgrFP8JASTrack:
 /* 80341D94 0033ECD4  7C 08 03 A6 */	mtlr r0
 /* 80341D98 0033ECD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80341D9C 0033ECDC  4E 80 00 20 */	blr 
+.endfn getPlayingSeq__Q28PSSystem8SceneMgrFP8JASTrack
 
-.global deleteScene__Q28PSSystem8SceneMgrFPQ28PSSystem5Scene
-deleteScene__Q28PSSystem8SceneMgrFPQ28PSSystem5Scene:
+.fn deleteScene__Q28PSSystem8SceneMgrFPQ28PSSystem5Scene, global
 /* 80341DA0 0033ECE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80341DA4 0033ECE4  7C 08 02 A6 */	mflr r0
 /* 80341DA8 0033ECE8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1028,9 +1031,9 @@ deleteScene__Q28PSSystem8SceneMgrFPQ28PSSystem5Scene:
 /* 803421D4 0033F114  7C 08 03 A6 */	mtlr r0
 /* 803421D8 0033F118  38 21 00 20 */	addi r1, r1, 0x20
 /* 803421DC 0033F11C  4E 80 00 20 */	blr 
+.endfn deleteScene__Q28PSSystem8SceneMgrFPQ28PSSystem5Scene
 
-.global deleteCurrentScene__Q28PSSystem8SceneMgrFv
-deleteCurrentScene__Q28PSSystem8SceneMgrFv:
+.fn deleteCurrentScene__Q28PSSystem8SceneMgrFv, global
 /* 803421E0 0033F120  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803421E4 0033F124  7C 08 02 A6 */	mflr r0
 /* 803421E8 0033F128  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1059,19 +1062,19 @@ deleteCurrentScene__Q28PSSystem8SceneMgrFv:
 /* 8034223C 0033F17C  7C 08 03 A6 */	mtlr r0
 /* 80342240 0033F180  38 21 00 10 */	addi r1, r1, 0x10
 /* 80342244 0033F184  4E 80 00 20 */	blr 
+.endfn deleteCurrentScene__Q28PSSystem8SceneMgrFv
 
-.global getSeqMgr__Q28PSSystem5SceneFv
-getSeqMgr__Q28PSSystem5SceneFv:
+.fn getSeqMgr__Q28PSSystem5SceneFv, weak
 /* 80342248 0033F188  38 63 00 10 */	addi r3, r3, 0x10
 /* 8034224C 0033F18C  4E 80 00 20 */	blr 
+.endfn getSeqMgr__Q28PSSystem5SceneFv
 
-.global getChildScene__Q28PSSystem5SceneFv
-getChildScene__Q28PSSystem5SceneFv:
+.fn getChildScene__Q28PSSystem5SceneFv, weak
 /* 80342250 0033F190  80 63 00 04 */	lwz r3, 4(r3)
 /* 80342254 0033F194  4E 80 00 20 */	blr 
+.endfn getChildScene__Q28PSSystem5SceneFv
 
-.global PSGetSystemIFA__Fv
-PSGetSystemIFA__Fv:
+.fn PSGetSystemIFA__Fv, weak
 /* 80342258 0033F198  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034225C 0033F19C  7C 08 02 A6 */	mflr r0
 /* 80342260 0033F1A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1091,8 +1094,9 @@ PSGetSystemIFA__Fv:
 /* 80342294 0033F1D4  7C 08 03 A6 */	mtlr r0
 /* 80342298 0033F1D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034229C 0033F1DC  4E 80 00 20 */	blr 
+.endfn PSGetSystemIFA__Fv
 
-.global PSGetSystemIF__Fv
-PSGetSystemIF__Fv:
+.fn PSGetSystemIF__Fv, weak
 /* 803422A0 0033F1E0  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803422A4 0033F1E4  4E 80 00 20 */	blr 
+.endfn PSGetSystemIF__Fv

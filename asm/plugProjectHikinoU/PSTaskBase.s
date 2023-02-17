@@ -1,18 +1,20 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048FF20:
+.obj lbl_8048FF20, local
 	.asciz "PSTaskBase.cpp"
+.endobj lbl_8048FF20
 .balign 4
-lbl_8048FF30:
+.obj lbl_8048FF30, local
 	.asciz "P2Assert"
+.endobj lbl_8048FF30
 .balign 4
-lbl_8048FF3C:
+.obj lbl_8048FF3C, local
 	.asciz "PSTaskBase.h"
+.endobj lbl_8048FF3C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28PSSystem8TaskBaseFv
-__ct__Q28PSSystem8TaskBaseFv:
+.fn __ct__Q28PSSystem8TaskBaseFv, global
 /* 8033E1F8 0033B138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E1FC 0033B13C  7C 08 02 A6 */	mflr r0
 /* 8033E200 0033B140  3C 80 80 4E */	lis r4, __vt__Q28PSSystem8TaskBase@ha
@@ -34,9 +36,9 @@ __ct__Q28PSSystem8TaskBaseFv:
 /* 8033E240 0033B180  7C 08 03 A6 */	mtlr r0
 /* 8033E244 0033B184  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033E248 0033B188  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem8TaskBaseFv
 
-.global append__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase
-append__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase:
+.fn append__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase, global
 /* 8033E24C 0033B18C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E250 0033B190  7C 08 02 A6 */	mflr r0
 /* 8033E254 0033B194  38 84 00 04 */	addi r4, r4, 4
@@ -46,9 +48,9 @@ append__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase:
 /* 8033E264 0033B1A4  7C 08 03 A6 */	mtlr r0
 /* 8033E268 0033B1A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033E26C 0033B1AC  4E 80 00 20 */	blr 
+.endfn append__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase
 
-.global isUnderTask_byDirector__Q28PSSystem12TaskEntryMgrFPQ28PSSystem12DirectorBase
-isUnderTask_byDirector__Q28PSSystem12TaskEntryMgrFPQ28PSSystem12DirectorBase:
+.fn isUnderTask_byDirector__Q28PSSystem12TaskEntryMgrFPQ28PSSystem12DirectorBase, global
 /* 8033E270 0033B1B0  80 A3 00 00 */	lwz r5, 0(r3)
 /* 8033E274 0033B1B4  48 00 00 20 */	b .L_8033E294
 .L_8033E278:
@@ -65,9 +67,9 @@ isUnderTask_byDirector__Q28PSSystem12TaskEntryMgrFPQ28PSSystem12DirectorBase:
 /* 8033E298 0033B1D8  40 82 FF E0 */	bne .L_8033E278
 /* 8033E29C 0033B1DC  38 60 00 00 */	li r3, 0
 /* 8033E2A0 0033B1E0  4E 80 00 20 */	blr 
+.endfn isUnderTask_byDirector__Q28PSSystem12TaskEntryMgrFPQ28PSSystem12DirectorBase
 
-.global update__Q28PSSystem12TaskEntryMgrFv
-update__Q28PSSystem12TaskEntryMgrFv:
+.fn update__Q28PSSystem12TaskEntryMgrFv, global
 /* 8033E2A4 0033B1E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033E2A8 0033B1E8  7C 08 02 A6 */	mflr r0
 /* 8033E2AC 0033B1EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -161,9 +163,9 @@ update__Q28PSSystem12TaskEntryMgrFv:
 /* 8033E3E8 0033B328  7C 08 03 A6 */	mtlr r0
 /* 8033E3EC 0033B32C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033E3F0 0033B330  4E 80 00 20 */	blr 
+.endfn update__Q28PSSystem12TaskEntryMgrFv
 
-.global appendEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntryPQ28PSSystem12DirectorBase
-appendEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntryPQ28PSSystem12DirectorBase:
+.fn appendEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntryPQ28PSSystem12DirectorBase, global
 /* 8033E3F4 0033B334  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033E3F8 0033B338  7C 08 02 A6 */	mflr r0
 /* 8033E3FC 0033B33C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -207,9 +209,9 @@ appendEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntryPQ28PSSystem12Direc
 /* 8033E488 0033B3C8  7C 08 03 A6 */	mtlr r0
 /* 8033E48C 0033B3CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033E490 0033B3D0  4E 80 00 20 */	blr 
+.endfn appendEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntryPQ28PSSystem12DirectorBase
 
-.global removeEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntry
-removeEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntry:
+.fn removeEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntry, global
 /* 8033E494 0033B3D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E498 0033B3D8  7C 08 02 A6 */	mflr r0
 /* 8033E49C 0033B3DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -242,9 +244,9 @@ removeEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntry:
 /* 8033E4FC 0033B43C  7C 08 03 A6 */	mtlr r0
 /* 8033E500 0033B440  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033E504 0033B444  4E 80 00 20 */	blr 
+.endfn removeEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntry
 
-.global removeAllEntry__Q28PSSystem12TaskEntryMgrFv
-removeAllEntry__Q28PSSystem12TaskEntryMgrFv:
+.fn removeAllEntry__Q28PSSystem12TaskEntryMgrFv, global
 /* 8033E508 0033B448  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033E50C 0033B44C  7C 08 02 A6 */	mflr r0
 /* 8033E510 0033B450  90 01 00 24 */	stw r0, 0x24(r1)
@@ -289,9 +291,9 @@ removeAllEntry__Q28PSSystem12TaskEntryMgrFv:
 /* 8033E5A0 0033B4E0  7C 08 03 A6 */	mtlr r0
 /* 8033E5A4 0033B4E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033E5A8 0033B4E8  4E 80 00 20 */	blr 
+.endfn removeAllEntry__Q28PSSystem12TaskEntryMgrFv
 
-.global "remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
-"remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>": # weak function
+.fn "remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>", weak
 /* 8033E5AC 0033B4EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E5B0 0033B4F0  7C 08 02 A6 */	mflr r0
 /* 8033E5B4 0033B4F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -314,9 +316,9 @@ removeAllEntry__Q28PSSystem12TaskEntryMgrFv:
 /* 8033E5F8 0033B538  7C 08 03 A6 */	mtlr r0
 /* 8033E5FC 0033B53C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033E600 0033B540  4E 80 00 20 */	blr 
+.endfn "remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
 
-.global "append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>"
-"append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>": # weak function
+.fn "append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>", weak
 /* 8033E604 0033B544  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E608 0033B548  7C 08 02 A6 */	mflr r0
 /* 8033E60C 0033B54C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -339,9 +341,9 @@ removeAllEntry__Q28PSSystem12TaskEntryMgrFv:
 /* 8033E650 0033B590  7C 08 03 A6 */	mtlr r0
 /* 8033E654 0033B594  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033E658 0033B598  4E 80 00 20 */	blr 
+.endfn "append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>"
 
-.global "append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
-"append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>": # weak function
+.fn "append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>", weak
 /* 8033E65C 0033B59C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E660 0033B5A0  7C 08 02 A6 */	mflr r0
 /* 8033E664 0033B5A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -364,3 +366,4 @@ removeAllEntry__Q28PSSystem12TaskEntryMgrFv:
 /* 8033E6A8 0033B5E8  7C 08 03 A6 */	mtlr r0
 /* 8033E6AC 0033B5EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033E6B0 0033B5F0  4E 80 00 20 */	blr 
+.endfn "append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"

@@ -5,28 +5,31 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048FE28:
+.obj lbl_8048FE28, local
 	.asciz "PSSystemIF.cpp"
+.endobj lbl_8048FE28
 .balign 4
-lbl_8048FE38:
+.obj lbl_8048FE38, local
 	.asciz "P2Assert"
+.endobj lbl_8048FE38
 .balign 4
-lbl_8048FE44:
+.obj lbl_8048FE44, local
 	.asciz "PSGame.h"
+.endobj lbl_8048FE44
 .balign 4
-lbl_8048FE50:
+.obj lbl_8048FE50, local
 	.asciz "PSScene.h"
+.endobj lbl_8048FE50
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q28PSSystem12TextDataBase
-__vt__Q28PSSystem12TextDataBase:
+.obj __vt__Q28PSSystem12TextDataBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28PSSystem12TextDataBaseFv
 	.4byte 0
-.global __vt__Q28PSSystem5SysIF
-__vt__Q28PSSystem5SysIF:
+.endobj __vt__Q28PSSystem12TextDataBase
+.obj __vt__Q28PSSystem5SysIF, weak
 	.4byte 0
 	.4byte 0
 	.4byte makeSequence__Q28PSSystem5SysIFFv
@@ -38,37 +41,40 @@ __vt__Q28PSSystem5SysIF:
 	.4byte setSeExtParameter__8JAIBasicFP8JAISound
 	.4byte setRegisterTrackCallback__8JAIBasicFv
 	.4byte initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg
+.endobj __vt__Q28PSSystem5SysIF
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sDistanceParameterMoveTime__8PSSystem
-sDistanceParameterMoveTime__8PSSystem:
+.obj sDistanceParameterMoveTime__8PSSystem, global
 	.byte 0x05
+.endobj sDistanceParameterMoveTime__8PSSystem
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global spSysIF__8PSSystem
-spSysIF__8PSSystem:
+.obj spSysIF__8PSSystem, global
 	.skip 0x4
-.global oRandom__8PSSystem
-oRandom__8PSSystem:
+.endobj spSysIF__8PSSystem
+.obj oRandom__8PSSystem, global
 	.skip 0x4
-.global sMakeJAISeCallback__Q28PSSystem5SysIF
-sMakeJAISeCallback__Q28PSSystem5SysIF:
+.endobj oRandom__8PSSystem
+.obj sMakeJAISeCallback__Q28PSSystem5SysIF, global
 	.skip 0x4
+.endobj sMakeJAISeCallback__Q28PSSystem5SysIF
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E150:
+.obj lbl_8051E150, local
 	.float 1.0
-lbl_8051E154:
+.endobj lbl_8051E150
+.obj lbl_8051E154, local
 	.float 0.9
-lbl_8051E158:
+.endobj lbl_8051E154
+.obj lbl_8051E158, local
 	.float 3.9
+.endobj lbl_8051E158
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getObject__8PSSystemFP8JASTrackUc
-getObject__8PSSystemFP8JASTrackUc:
+.fn getObject__8PSSystemFP8JASTrackUc, global
 /* 8033836C 003352AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338370 003352B0  7C 08 02 A6 */	mflr r0
 /* 80338374 003352B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -89,9 +95,9 @@ getObject__8PSSystemFP8JASTrackUc:
 /* 803383B0 003352F0  7C 08 03 A6 */	mtlr r0
 /* 803383B4 003352F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803383B8 003352F8  4E 80 00 20 */	blr 
+.endfn getObject__8PSSystemFP8JASTrackUc
 
-.global setObject__8PSSystemFP8JASTrackPvUc
-setObject__8PSSystemFP8JASTrackPvUc:
+.fn setObject__8PSSystemFP8JASTrackPvUc, global
 /* 803383BC 003352FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803383C0 00335300  7C 08 02 A6 */	mflr r0
 /* 803383C4 00335304  90 01 00 24 */	stw r0, 0x24(r1)
@@ -116,9 +122,9 @@ setObject__8PSSystemFP8JASTrackPvUc:
 /* 80338410 00335350  7C 08 03 A6 */	mtlr r0
 /* 80338414 00335354  38 21 00 20 */	addi r1, r1, 0x20
 /* 80338418 00335358  4E 80 00 20 */	blr 
+.endfn setObject__8PSSystemFP8JASTrackPvUc
 
-.global __ct__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg
-__ct__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg:
+.fn __ct__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg, global
 /* 8033841C 0033535C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338420 00335360  7C 08 02 A6 */	mflr r0
 /* 80338424 00335364  90 01 00 14 */	stw r0, 0x14(r1)
@@ -198,9 +204,9 @@ __ct__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg:
 /* 80338544 00335484  7C 08 03 A6 */	mtlr r0
 /* 80338548 00335488  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033854C 0033548C  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg
 
-.global stopSoundSystem__Q28PSSystem5SysIFFv
-stopSoundSystem__Q28PSSystem5SysIFFv:
+.fn stopSoundSystem__Q28PSSystem5SysIFFv, global
 /* 80338550 00335490  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338554 00335494  7C 08 02 A6 */	mflr r0
 /* 80338558 00335498  3C 60 80 49 */	lis r3, lbl_8048FE28@ha
@@ -262,9 +268,9 @@ stopSoundSystem__Q28PSSystem5SysIFFv:
 /* 80338624 00335564  7C 08 03 A6 */	mtlr r0
 /* 80338628 00335568  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033862C 0033556C  4E 80 00 20 */	blr 
+.endfn stopSoundSystem__Q28PSSystem5SysIFFv
 
-.global playSystemSe__Q28PSSystem5SysIFFUlUl
-playSystemSe__Q28PSSystem5SysIFFUlUl:
+.fn playSystemSe__Q28PSSystem5SysIFFUlUl, global
 /* 80338630 00335570  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338634 00335574  7C 08 02 A6 */	mflr r0
 /* 80338638 00335578  7C A7 2B 78 */	mr r7, r5
@@ -281,9 +287,9 @@ playSystemSe__Q28PSSystem5SysIFFUlUl:
 /* 80338664 003355A4  7C 08 03 A6 */	mtlr r0
 /* 80338668 003355A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033866C 003355AC  4E 80 00 20 */	blr 
+.endfn playSystemSe__Q28PSSystem5SysIFFUlUl
 
-.global playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl
-playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl:
+.fn playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl, global
 /* 80338670 003355B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338674 003355B4  7C 08 02 A6 */	mflr r0
 /* 80338678 003355B8  7C C7 33 78 */	mr r7, r6
@@ -295,9 +301,9 @@ playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl:
 /* 80338690 003355D0  7C 08 03 A6 */	mtlr r0
 /* 80338694 003355D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338698 003355D8  4E 80 00 20 */	blr 
+.endfn playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl
 
-.global initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg
-initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg:
+.fn initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg, global
 /* 8033869C 003355DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803386A0 003355E0  7C 08 02 A6 */	mflr r0
 /* 803386A4 003355E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -330,9 +336,9 @@ initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg:
 /* 80338708 00335648  7C 08 03 A6 */	mtlr r0
 /* 8033870C 0033564C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338710 00335650  4E 80 00 20 */	blr 
+.endfn initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg
 
-.global makeSe__Q28PSSystem5SysIFFv
-makeSe__Q28PSSystem5SysIFFv:
+.fn makeSe__Q28PSSystem5SysIFFv, global
 /* 80338714 00335654  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338718 00335658  7C 08 02 A6 */	mflr r0
 /* 8033871C 0033565C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -349,9 +355,9 @@ makeSe__Q28PSSystem5SysIFFv:
 /* 80338740 00335680  7C 08 03 A6 */	mtlr r0
 /* 80338744 00335684  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338748 00335688  4E 80 00 20 */	blr 
+.endfn makeSe__Q28PSSystem5SysIFFv
 
-.global mainLoop__Q28PSSystem5SysIFFv
-mainLoop__Q28PSSystem5SysIFFv:
+.fn mainLoop__Q28PSSystem5SysIFFv, global
 /* 8033874C 0033568C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338750 00335690  7C 08 02 A6 */	mflr r0
 /* 80338754 00335694  90 01 00 24 */	stw r0, 0x24(r1)
@@ -412,9 +418,9 @@ mainLoop__Q28PSSystem5SysIFFv:
 /* 8033881C 0033575C  7C 08 03 A6 */	mtlr r0
 /* 80338820 00335760  38 21 00 20 */	addi r1, r1, 0x20
 /* 80338824 00335764  4E 80 00 20 */	blr 
+.endfn mainLoop__Q28PSSystem5SysIFFv
 
-.global setConfigVol_Se__Q28PSSystem5SysIFFf
-setConfigVol_Se__Q28PSSystem5SysIFFf:
+.fn setConfigVol_Se__Q28PSSystem5SysIFFf, global
 /* 80338828 00335768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033882C 0033576C  7C 08 02 A6 */	mflr r0
 /* 80338830 00335770  90 01 00 14 */	stw r0, 0x14(r1)
@@ -451,9 +457,9 @@ setConfigVol_Se__Q28PSSystem5SysIFFf:
 /* 803388A8 003357E8  7C 08 03 A6 */	mtlr r0
 /* 803388AC 003357EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803388B0 003357F0  4E 80 00 20 */	blr 
+.endfn setConfigVol_Se__Q28PSSystem5SysIFFf
 
-.global setConfigVol_Bgm__Q28PSSystem5SysIFFf
-setConfigVol_Bgm__Q28PSSystem5SysIFFf:
+.fn setConfigVol_Bgm__Q28PSSystem5SysIFFf, global
 /* 803388B4 003357F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803388B8 003357F8  7C 08 02 A6 */	mflr r0
 /* 803388BC 003357FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -509,13 +515,13 @@ setConfigVol_Bgm__Q28PSSystem5SysIFFf:
 /* 80338970 003358B0  7C 08 03 A6 */	mtlr r0
 /* 80338974 003358B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80338978 003358B8  4E 80 00 20 */	blr 
+.endfn setConfigVol_Bgm__Q28PSSystem5SysIFFf
 
-.global __ct__Q28PSSystem5FxMgrFv
-__ct__Q28PSSystem5FxMgrFv:
+.fn __ct__Q28PSSystem5FxMgrFv, global
 /* 8033897C 003358BC  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem5FxMgrFv
 
-.global __ct__Q28PSSystem12TextDataBaseFv
-__ct__Q28PSSystem12TextDataBaseFv:
+.fn __ct__Q28PSSystem12TextDataBaseFv, global
 /* 80338980 003358C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338984 003358C4  7C 08 02 A6 */	mflr r0
 /* 80338988 003358C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -533,9 +539,9 @@ __ct__Q28PSSystem12TextDataBaseFv:
 /* 803389B8 003358F8  7C 08 03 A6 */	mtlr r0
 /* 803389BC 003358FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803389C0 00335900  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem12TextDataBaseFv
 
-.global __dt__Q28PSSystem12TextDataBaseFv
-__dt__Q28PSSystem12TextDataBaseFv:
+.fn __dt__Q28PSSystem12TextDataBaseFv, global
 /* 803389C4 00335904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803389C8 00335908  7C 08 02 A6 */	mflr r0
 /* 803389CC 0033590C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -565,9 +571,9 @@ __dt__Q28PSSystem12TextDataBaseFv:
 /* 80338A28 00335968  7C 08 03 A6 */	mtlr r0
 /* 80338A2C 0033596C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338A30 00335970  4E 80 00 20 */	blr 
+.endfn __dt__Q28PSSystem12TextDataBaseFv
 
-.global load__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection
-load__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection:
+.fn load__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection, global
 /* 80338A34 00335974  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 80338A38 00335978  7C 08 02 A6 */	mflr r0
 /* 80338A3C 0033597C  90 01 04 34 */	stw r0, 0x434(r1)
@@ -602,9 +608,9 @@ load__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection:
 /* 80338AA4 003359E4  7C 08 03 A6 */	mtlr r0
 /* 80338AA8 003359E8  38 21 04 30 */	addi r1, r1, 0x430
 /* 80338AAC 003359EC  4E 80 00 20 */	blr 
+.endfn load__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection
 
-.global onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection
-onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection: # weak function
+.fn onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection, global
 /* 80338AB0 003359F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338AB4 003359F4  7C 08 02 A6 */	mflr r0
 /* 80338AB8 003359F8  7C A8 2B 78 */	mr r8, r5
@@ -631,15 +637,15 @@ onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection: # weak
 /* 80338B0C 00335A4C  7C 08 03 A6 */	mtlr r0
 /* 80338B10 00335A50  38 21 00 20 */	addi r1, r1, 0x20
 /* 80338B14 00335A54  4E 80 00 20 */	blr 
+.endfn onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection
 
-.global start1stSeq__Q28PSSystem5SysIFFv
-start1stSeq__Q28PSSystem5SysIFFv: # weak function
+.fn start1stSeq__Q28PSSystem5SysIFFv, weak
 /* 80338B18 00335A58  38 00 00 00 */	li r0, 0
 /* 80338B1C 00335A5C  90 0D 8B E0 */	stw r0, seHandle__Q27JAInter5SeMgr@sda21(r13)
 /* 80338B20 00335A60  4E 80 00 20 */	blr 
+.endfn start1stSeq__Q28PSSystem5SysIFFv
 
-.global makeSequence__Q28PSSystem5SysIFFv
-makeSequence__Q28PSSystem5SysIFFv: # weak function
+.fn makeSequence__Q28PSSystem5SysIFFv, weak
 /* 80338B24 00335A64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338B28 00335A68  7C 08 02 A6 */	mflr r0
 /* 80338B2C 00335A6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -672,9 +678,9 @@ makeSequence__Q28PSSystem5SysIFFv: # weak function
 /* 80338B88 00335AC8  7C 08 03 A6 */	mtlr r0
 /* 80338B8C 00335ACC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338B90 00335AD0  4E 80 00 20 */	blr 
+.endfn makeSequence__Q28PSSystem5SysIFFv
 
-.global __ct__Q28PSSystem8SeqSoundFv
-__ct__Q28PSSystem8SeqSoundFv: # weak function
+.fn __ct__Q28PSSystem8SeqSoundFv, weak
 /* 80338B94 00335AD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338B98 00335AD8  7C 08 02 A6 */	mflr r0
 /* 80338B9C 00335ADC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -697,9 +703,9 @@ __ct__Q28PSSystem8SeqSoundFv: # weak function
 /* 80338BE0 00335B20  7C 08 03 A6 */	mtlr r0
 /* 80338BE4 00335B24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338BE8 00335B28  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem8SeqSoundFv
 
-.global makeStream__Q28PSSystem5SysIFFv
-makeStream__Q28PSSystem5SysIFFv: # weak function
+.fn makeStream__Q28PSSystem5SysIFFv, weak
 /* 80338BEC 00335B2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338BF0 00335B30  7C 08 02 A6 */	mflr r0
 /* 80338BF4 00335B34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -732,9 +738,9 @@ makeStream__Q28PSSystem5SysIFFv: # weak function
 /* 80338C50 00335B90  7C 08 03 A6 */	mtlr r0
 /* 80338C54 00335B94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338C58 00335B98  4E 80 00 20 */	blr 
+.endfn makeStream__Q28PSSystem5SysIFFv
 
-.global __ct__Q28PSSystem11StreamSoundFv
-__ct__Q28PSSystem11StreamSoundFv: # weak function
+.fn __ct__Q28PSSystem11StreamSoundFv, weak
 /* 80338C5C 00335B9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338C60 00335BA0  7C 08 02 A6 */	mflr r0
 /* 80338C64 00335BA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -757,9 +763,9 @@ __ct__Q28PSSystem11StreamSoundFv: # weak function
 /* 80338CA8 00335BE8  7C 08 03 A6 */	mtlr r0
 /* 80338CAC 00335BEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338CB0 00335BF0  4E 80 00 20 */	blr 
+.endfn __ct__Q28PSSystem11StreamSoundFv
 
-.global "startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc"
-"startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc": # weak function
+.fn "startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc", weak
 /* 80338CB4 00335BF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338CB8 00335BF8  7C 08 02 A6 */	mflr r0
 /* 80338CBC 00335BFC  39 20 00 00 */	li r9, 0
@@ -790,9 +796,9 @@ __ct__Q28PSSystem11StreamSoundFv: # weak function
 /* 80338D18 00335C58  7C 08 03 A6 */	mtlr r0
 /* 80338D1C 00335C5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80338D20 00335C60  4E 80 00 20 */	blr 
+.endfn "startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc"
 
-.global "startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc"
-"startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc": # weak function
+.fn "startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc", weak
 /* 80338D24 00335C64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338D28 00335C68  7C 08 02 A6 */	mflr r0
 /* 80338D2C 00335C6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -820,8 +826,9 @@ __ct__Q28PSSystem11StreamSoundFv: # weak function
 /* 80338D80 00335CC0  7C 08 03 A6 */	mtlr r0
 /* 80338D84 00335CC4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80338D88 00335CC8  4E 80 00 20 */	blr 
+.endfn "startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc"
 
-__sinit_PSSystemIF_cpp: # static initializer
+.fn __sinit_PSSystemIF_cpp, local
 /* 80338D8C 00335CCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338D90 00335CD0  7C 08 02 A6 */	mflr r0
 /* 80338D94 00335CD4  38 6D 98 5C */	addi r3, r13, oRandom__8PSSystem@sda21
@@ -832,3 +839,4 @@ __sinit_PSSystemIF_cpp: # static initializer
 /* 80338DA8 00335CE8  7C 08 03 A6 */	mtlr r0
 /* 80338DAC 00335CEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338DB0 00335CF0  4E 80 00 20 */	blr 
+.endfn __sinit_PSSystemIF_cpp
