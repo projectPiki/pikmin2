@@ -23,7 +23,7 @@ lbl_constructor:
 .section .bss  # 0x804EFC20 - 0x8051467C
 # ogLifeGauge.cpp
 # temporarily moved to ogCounterRV.s for the sake of alignment
-.comm msVal__Q32og6Screen18CallBack_LifeGauge, 0x10, 4
+# .comm msVal__Q32og6Screen18CallBack_LifeGauge, 0x10, 4
 # ogCounterRV.cpp
 .comm msVal__Q32og6Screen18CallBack_CounterRV, 0xC, 4
 

@@ -1264,7 +1264,7 @@ LIBS = [
             ["plugProjectOgawaU/ogPikminCounter", True],
             ["plugProjectOgawaU/ogAnime", True],
             ["plugProjectOgawaU/ogCounter", True],
-            "plugProjectOgawaU/ogLifeGauge",
+            ["plugProjectOgawaU/ogLifeGauge", True],
             ["plugProjectOgawaU/ogSunMeter", True],
             ["plugProjectOgawaU/ogCatchPiki", True],
             ["plugProjectOgawaU/ogContenaCounter", True],
