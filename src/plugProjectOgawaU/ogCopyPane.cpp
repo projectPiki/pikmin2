@@ -11,22 +11,18 @@ namespace Screen {
  */
 J2DPictureEx* CopyPicture(J2DPictureEx* pic, u64 tag)
 {
-	JUTTexture* tex        = pic->getTexture(0);
-	const ResTIMG* timg    = tex->_20;
+	ResTIMG* timg          = pic->getTIMG(0);
 	JUtility::TColor white = pic->getWhite();
 	JUtility::TColor black = pic->getBlack();
-	u8 alpha               = pic->mAlpha;
+	u8 alpha               = pic->getAlpha();
 
 	JGeometry::TVec2f offset;
 	offset.x = pic->mBounds.getWidth();
 	offset.y = pic->mBounds.getHeight();
 
 	JGeometry::TBox2f box(0.0f, 0.0f, offset);
-	JUtility::TColor cols[4];
-	cols[0] = pic->mCornerColors[0];
-	cols[1] = pic->mCornerColors[1];
-	cols[2] = pic->mCornerColors[2];
-	cols[3] = pic->mCornerColors[3];
+	J2DPicture::TCornerColor cols;
+	pic->getCornerColor(cols);
 
 	J2DPictureEx* copy = new J2DPictureEx(tag, box, timg, 0x1100000);
 
@@ -36,20 +32,15 @@ J2DPictureEx* CopyPicture(J2DPictureEx* pic, u64 tag)
 		copy->setWhite(white);
 		copy->setBlack(black);
 
-		// this is absolutely some J2DPicture inline that I haven't worked out yet
-		// it also crops up in ogLifeGauge
-		copy->setColor(cols[0], 0);
-		copy->setColor(cols[1], 1);
-		copy->setColor(cols[2], 2);
-		copy->setColor(cols[3], 3);
+		copy->setCornerColor(cols);
 
 		copy->setAlpha(alpha);
 
 		JGeometry::TVec2<s16> pos[4];
-		pos[0] = pic->_112[0];
-		pos[1] = pic->_112[1];
-		pos[2] = pic->_112[2];
-		pos[3] = pic->_112[3];
+
+		for (int i = 0; i < 4; i++) {
+			pos[i] = pic->_112[i];
+		}
 
 		copy->setTexCoord(pos);
 	}
@@ -260,29 +251,22 @@ blr
  */
 J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, float x, float y, u64 tag)
 {
-	JUTTexture* tex        = pic->getTexture(0);
-	const ResTIMG* timg    = tex->_20;
+	ResTIMG* timg          = pic->getTIMG(0);
 	JUtility::TColor white = pic->getWhite();
 	JUtility::TColor black = pic->getBlack();
-	u8 alpha               = pic->mAlpha;
+	u8 alpha               = pic->getAlpha();
 
 	JGeometry::TVec2f offset;
 	offset.x = pic->mBounds.getWidth();
 	offset.y = pic->mBounds.getHeight();
-	f32 x0   = -(offset.x / 2 - x);
-	f32 y0   = -(offset.y / 2 - y);
+	JGeometry::TVec2f origin;
+	origin.x = x - offset.x / 2;
+	origin.y = y - offset.y / 2;
 
-	// f32 xoffs2 = -(xoffs * 0.5f - x);
+	JGeometry::TBox2f box(origin.x, origin.y, offset);
 
-	// f32 yoffs2 = -(xoffs * 0.5f - y);
-	JGeometry::TBox2f box(x0, y0, offset);
-	// JGeometry::TBox2f box(xoffs, xoffs + xoffs2, yoffs, yoffs + yoffs2);
-
-	JUtility::TColor cols[4];
-	cols[0] = pic->mCornerColors[0];
-	cols[1] = pic->mCornerColors[1];
-	cols[2] = pic->mCornerColors[2];
-	cols[3] = pic->mCornerColors[3];
+	J2DPicture::TCornerColor cols;
+	pic->getCornerColor(cols);
 
 	J2DPictureEx* copy = new J2DPictureEx(tag, box, timg, 0x1100000);
 
@@ -293,11 +277,7 @@ J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, float x, float
 		copy->setWhite(white);
 		copy->setBlack(black);
 
-		// same inline as previous function probably
-		copy->setColor(cols[0], 0);
-		copy->setColor(cols[1], 1);
-		copy->setColor(cols[2], 2);
-		copy->setColor(cols[3], 3);
+		copy->setCornerColor(cols);
 
 		copy->setAlpha(alpha);
 

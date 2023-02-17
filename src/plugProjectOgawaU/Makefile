@@ -72,7 +72,7 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogTotalPokoScreen.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallengeBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallengeBase.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackPicture.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackPicture.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogDrawAfter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogOtakaraSensor.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\

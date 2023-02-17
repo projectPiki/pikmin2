@@ -74,4 +74,6 @@ struct JUTTexture : public GXTexObj {
 	ResTIMG* _3C;    // _3C
 };
 
+inline ResTIMG* J2DPicture::getTIMG(u8 i) { return getTexture(i)->_20; }
+
 #endif

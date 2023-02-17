@@ -545,6 +545,8 @@ struct J2DPicture : public J2DPane {
 
 	inline void getCornerColor(TCornerColor& colors) { colors = mCornerColors; }
 
+	inline ResTIMG* getTIMG(u8 i); // defined in JUTTexture.h to avoid include loops
+
 	// _000      = VTBL
 	// _000-_100 = J2DPane
 	JUTTexture* mTextures[4];      // _100

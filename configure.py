@@ -1332,7 +1332,7 @@ LIBS = [
             ["plugProjectOgawaU/ogTotalPokoScreen", True],
             ["plugProjectOgawaU/ogObjChallengeBase", True],
             ["plugProjectOgawaU/ogSceneChallengeBase", True],
-            "plugProjectOgawaU/ogCallBackPicture",
+            ["plugProjectOgawaU/ogCallBackPicture", True],
             ["plugProjectOgawaU/ogDrawAfter", True],
             ["plugProjectOgawaU/ogOtakaraSensor", True],
             "plugProjectOgawaU/ogTitleMsg",
