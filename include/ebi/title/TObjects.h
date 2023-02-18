@@ -53,6 +53,7 @@ struct TBlackPlane : public TObjBase {
 	void getCameraPos();
 
 	// _00 = VTBL
+	u8 placeholder[158]; // _04 // placeholder for size so titlechappy can match
 };
 
 struct TMapBase : public TObjBase {

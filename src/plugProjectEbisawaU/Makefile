@@ -35,7 +35,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleCoordMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitlePikmin.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleKogane.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleChappy.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleChappy.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenTMBack.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiMainTitleMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleFog.o\

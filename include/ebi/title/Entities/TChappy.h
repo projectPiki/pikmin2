@@ -19,7 +19,23 @@ namespace Chappy {
 struct TUnit;
 
 struct TParam : public TParamBase {
-	TParam();
+	TParam()
+	    : mScale(this, 'b000', "スケール", 2.0f, 0.0f, 10.0f)
+	    , mCullRadius(this, 'b001', "カリング半径", 100.0f, 0.0f, 500.0f)
+	    , mCollRadius(this, 'b002', "コリジョン半径", 150.0f, 0.0f, 500.0f)
+	    , mPikiReactRadius(this, 'b003', "ピクミン反応半径", 300.0f, 0.0f, 500.0f)
+	    , mHitOffset(this, 'ch20', "当たりOffset", 80.0f, 0.0f, 500.0f)
+	    , mHitRadius(this, 'ch21', "当たり半径", 100.0f, 0.0f, 500.0f)
+	    , mWalkAngleRand(this, 'ch00', "歩行ランダム角度", 30.0f, 0.0f, 90.0f)
+	    , mWalkSpeed(this, 'ch01', "歩行速度", 8.0f, 0.0f, 100.0f)
+	    , mTurnSpeed(this, 'ch23', "旋回性能x5C", 0.05f, 0.0f, 1.0f) // x5C literal required for match
+	    , mMinWaitTime(this, 'ch10', "待ち時間最小(秒)", 0.3f, 0.0f, 10.0f)
+	    , mMaxWaitTime(this, 'ch11', "待ち時間最大(秒)", 1.0f, 0.0f, 10.0f)
+	    , mMinWalkTime(this, 'ch12', "移動時間最小(秒)", 0.5f, 0.0f, 10.0f)
+	    , mMaxWalkTime(this, 'ch13', "移動時間最大(秒)", 1.5f, 0.0f, 10.0f)
+	    , mControlledTime(this, 'ch22', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f)
+	{
+	}
 
 	// _00-_0C = TParamBase
 	Parm<f32> mScale;           // _0C
@@ -39,7 +55,7 @@ struct TParam : public TParamBase {
 };
 
 struct TAnimFolder : public E3DAnimFolderBase {
-	virtual E3DAnimRes* getAnimRes(long); // _08 (weak)
+	virtual E3DAnimRes* getAnimRes(long id) { return &mAnims[id]; } // _08 (weak)
 
 	void load(J3DModelData*, JKRArchive*);
 	E3DAnimRes* getAnimRes(int);

@@ -1473,7 +1473,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebiP2TitleCoordMgr", True],
             "plugProjectEbisawaU/ebiP2TitlePikmin",
             ["plugProjectEbisawaU/ebiP2TitleKogane", True],
-            "plugProjectEbisawaU/ebiP2TitleChappy",
+            ["plugProjectEbisawaU/ebiP2TitleChappy", True],
             ["plugProjectEbisawaU/ebiScreenTMBack", True],
             "plugProjectEbisawaU/ebiMainTitleMgr",
             ["plugProjectEbisawaU/ebiP2TitleFog", True],

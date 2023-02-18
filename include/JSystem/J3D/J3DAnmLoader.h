@@ -21,6 +21,7 @@ struct J3DAnmLoaderDataBase {
 };
 
 J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32, J3DAnmTransform*);
+J3DMtxCalc* J3DUNewMtxCalcAnm(unsigned long, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, int);
 
 struct J3DAnmLoader {
 	virtual J3DAnmBase* load(const void*)              = 0; // _08

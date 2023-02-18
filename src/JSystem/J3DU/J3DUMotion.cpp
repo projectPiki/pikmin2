@@ -165,7 +165,7 @@
  * Address:	80015DF0
  * Size:	000590
  */
-void J3DUNewMtxCalcAnm(unsigned long, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DMtxCalcFlag)
+J3DMtxCalc* J3DUNewMtxCalcAnm(unsigned long, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DMtxCalcFlag)
 {
 	/*
 	.loc_0x0:
