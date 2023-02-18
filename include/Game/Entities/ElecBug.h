@@ -49,7 +49,7 @@ struct Obj : public EnemyBase {
 
 	void setTargetPosition();
 	void resetPartnerPtr();
-	void isBecomeChargeState();
+	bool isBecomeChargeState();
 	void startChargeState(Obj*);
 	void startChildChargeState(Obj*);
 	void createEffect();
@@ -63,14 +63,14 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                // _2BC
-	u8 _2C0[0x4];             // _2C0, unknown
-	f32 _2C4;                 // _2C4, timer?
-	Vector3f mTargetPosition; // _2C8
-	u8 _2D4;                  // _2D4, unknown
-	Obj* mPartner;            // _2D8
-	efx::TDnkmsEffect* _2DC;  // _2DC
-	                          // _2E0 = PelletView
+	FSM* mFsm;                 // _2BC
+	f32 _2C0;                  // _2C0, unknown
+	f32 _2C4;                  // _2C4, timer?
+	Vector3f mTargetPosition;  // _2C8
+	bool mHadLookedForPartner; // _2D4, unknown
+	Obj* mPartner;             // _2D8
+	efx::TDnkmsEffect* _2DC;   // _2DC
+	                           // _2E0 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -129,6 +129,20 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator mAnimator; // _10
 };
 
+enum StateID {
+	ELECBUG_Dead           = 0,
+	ELECBUG_Wait           = 1,
+	ELECBUG_Turn           = 2,
+	ELECBUG_Move           = 3,
+	ELECBUG_Charge         = 4,
+	ELECBUG_Discharge      = 5,
+	ELECBUG_ChildCharge    = 6,
+	ELECBUG_ChildDischarge = 7,
+	ELECBUG_Reverse        = 8,
+	ELECBUG_Return         = 9,
+	ELECBUG_Count,
+};
+
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 struct FSM : public EnemyStateMachine {
@@ -139,11 +153,20 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateCharge : public State {
+	inline StateCharge()
+	    : State(ELECBUG_Charge, "charge")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -153,6 +176,10 @@ struct StateCharge : public State {
 };
 
 struct StateChildCharge : public State {
+	inline StateChildCharge()
+	    : State(ELECBUG_ChildCharge, "childcharge")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -162,6 +189,10 @@ struct StateChildCharge : public State {
 };
 
 struct StateChildDischarge : public State {
+	inline StateChildDischarge()
+	    : State(ELECBUG_ChildDischarge, "childdischarge")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -171,6 +202,10 @@ struct StateChildDischarge : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(ELECBUG_Dead, "dead")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -180,6 +215,10 @@ struct StateDead : public State {
 };
 
 struct StateDischarge : public State {
+	inline StateDischarge()
+	    : State(ELECBUG_Discharge, "discharge")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -189,6 +228,10 @@ struct StateDischarge : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(ELECBUG_Move, "move")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -198,6 +241,10 @@ struct StateMove : public State {
 };
 
 struct StateReturn : public State {
+	inline StateReturn()
+	    : State(ELECBUG_Return, "return")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -207,6 +254,10 @@ struct StateReturn : public State {
 };
 
 struct StateReverse : public State {
+	inline StateReverse()
+	    : State(ELECBUG_Reverse, "reverse")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -216,6 +267,10 @@ struct StateReverse : public State {
 };
 
 struct StateTurn : public State {
+	inline StateTurn()
+	    : State(ELECBUG_Turn, "turn")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -225,6 +280,10 @@ struct StateTurn : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(ELECBUG_Wait, "wait")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
