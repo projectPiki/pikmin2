@@ -19,6 +19,21 @@
  */
 void _Print(char* name, ...) { OSReport("PlayData"); }
 
+namespace {
+	float repay_levs[10] = {
+		10.0f,
+		20.0f,
+		30.0f,
+		40.0f,
+		50.0f,
+		60.0f,
+		70.0f,
+		80.0f,
+		90.0f,
+		100.0f,
+	};
+} // Nameless Namespace
+
 namespace Game {
 
 PlayData* playData;
@@ -2949,27 +2964,31 @@ lbl_801E8E30:
 int PlayData::getRepayLevel()
 {
 	f32 prog = (mPokoCount / _aiConstants->mDebt.mData) * 100.0f;
-	if (prog < 10.0f)
+	for (int i = 0; i < 10; i++) {
+		if (repay_levs[i] > prog)
+			return i-1;
+	}
+	/*if (repay_levs[0] > prog)
 		return -1;
-	if (prog < 20.0f)
+	if (repay_levs[1] > prog)
 		return 0;
-	if (prog < 30.0f)
+	if (repay_levs[2] > prog)
 		return 1;
-	if (prog < 40.0f)
+	if (repay_levs[3] > prog)
 		return 2;
-	if (prog < 50.0f)
+	if (repay_levs[4] > prog)
 		return 3;
-	if (prog < 60.0f)
+	if (repay_levs[5] > prog)
 		return 4;
-	if (prog < 70.0f)
+	if (repay_levs[6] > prog)
 		return 5;
-	if (prog < 80.0f)
+	if (repay_levs[7] > prog)
 		return 6;
-	if (prog < 90.0f)
+	if (repay_levs[8] > prog)
 		return 7;
-	if (prog < 100.0f)
+	if (repay_levs[9] > prog)
 		return 8;
-	return 9;
+	return 9;*/
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -3077,34 +3096,11 @@ lbl_801E8F78:
  */
 float PlayData::getRepayLevelPercent(int state)
 {
-	if (state < 0) {
-		return (float)state;
+	if (state >= 0) {
+		return repay_levs[state];
 	} else {
-		return; // TODO: local unnamed struct array of percent floats
+		return (float)state;
 	}
-	/*
-	cmpwi    r4, 0
-	stwu     r1, -0x10(r1)
-	blt      lbl_801E8FA0
-	lis      r3, "repay_levs__26@unnamed@gamePlayData_cpp@"@ha
-	slwi     r0, r4, 2
-	addi     r3, r3, "repay_levs__26@unnamed@gamePlayData_cpp@"@l
-	lfsx     f1, r3, r0
-	b        lbl_801E8FBC
-
-lbl_801E8FA0:
-	xoris    r3, r4, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f1, lbl_805199D8@sda21(r2)
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f1
-
-lbl_801E8FBC:
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3116,7 +3112,11 @@ bool PlayData::checkRepayLevelFirstClear()
 {
 	int id;
 	f32 prog = (mPokoCount / _aiConstants->mDebt.mData) * 100.0f;
-	if (prog < 10.0f)
+	for (int i = 0; i < 10; i++) {
+		if (repay_levs[i] > prog)
+			id = i-1;
+	}
+/*	if (prog < 10.0f)
 		id = -1;
 	else if (prog < 20.0f)
 		id = 0;
@@ -3137,7 +3137,7 @@ bool PlayData::checkRepayLevelFirstClear()
 	else if (prog < 100.0f)
 		id = 8;
 	else
-		id = 9;
+		id = 9;*/
 
 	return (mDebtProgressFlags[id] != 0); // this is actually bitwise stuff
 	                                      /*
@@ -3267,7 +3267,11 @@ void PlayData::experienceRepayLevelFirstClear()
 {
 	int id;
 	f32 prog = (mPokoCount / _aiConstants->mDebt.mData) * 100.0f;
-	if (prog < 10.0f)
+	for (int i = 0; i < 10; i++) {
+		if (repay_levs[i] > prog)
+			id = i-1;
+	}
+	/*if (prog < 10.0f)
 		id = -1;
 	else if (prog < 20.0f)
 		id = 0;
@@ -3288,7 +3292,7 @@ void PlayData::experienceRepayLevelFirstClear()
 	else if (prog < 100.0f)
 		id = 8;
 	else
-		id = 9;
+		id = 9;*/
 
 	mDebtProgressFlags[id] |= 2; // this is actually bitwise stuff
 	                             /*
