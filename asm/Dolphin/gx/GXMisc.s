@@ -518,6 +518,7 @@
 /* 800E569C 000E25DC  50 03 1F 38 */	rlwimi r3, r0, 3, 0x1c, 0x1c
 /* 800E56A0 000E25E0  B0 64 00 02 */	sth r3, 2(r4)
 /* 800E56A4 000E25E4  4E 80 00 20 */	blr 
+.endfn GXPokeColorUpdate
 
 .fn GXPokeDstAlpha, global
 /* 800E56A8 000E25E8  54 80 06 3E */	clrlwi r0, r4, 0x18
