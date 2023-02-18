@@ -11,7 +11,7 @@ struct Node : CNode {
 	inline Node();
 	virtual ~Node() { } // _08
 
-	inline int dvdToAram(char const*, bool);
+	inline u32 dvdToAram(char const*, bool);
 	void* aramToMainRam(unsigned char*, unsigned long, unsigned long, JKRExpandSwitch, unsigned long, JKRHeap*,
 	                    JKRDvdRipper::EAllocDirection, int, unsigned long*);
 	inline void dump();
@@ -30,7 +30,7 @@ struct Mgr {
 	u32 dvdToAram(char const*, bool);
 	Node* search(char const* name);
 
-	Node mNode; // _00
+	CNode mNode; // _00
 };
 }; // namespace ARAM
 extern ARAM::Mgr* gAramMgr;

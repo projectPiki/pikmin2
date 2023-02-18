@@ -155,7 +155,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibState.cpp">UjibState.cpp</a> | 22560 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QueenState.cpp">QueenState.cpp</a> | 22616 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiState.cpp">TobiState.cpp</a> | 24992 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/OtakaraBase.cpp">OtakaraBase.cpp</a> | 28193 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapMgr.cpp">RandMapMgr.cpp</a> | 28801 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TankState.cpp">TankState.cpp</a> | 29299 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/IKSystemBase.cpp">IKSystemBase.cpp</a> | 30077 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugState.cpp">ElecBugState.cpp</a> | 31440 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/IKSystemBase.cpp">IKSystemBase.cpp</a> | 30077 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugState.cpp">ElecBugState.cpp</a> | 31532 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureShadow.cpp">BigTreasureShadow.cpp</a> | 32354 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandItemUnit.cpp">RandItemUnit.cpp</a> | 35033 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaChappy.cpp">KumaChappy.cpp</a> | 35434 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeWholeState.cpp">SnakeWholeState.cpp</a> | 35487 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/IKSystemMgr.cpp">IKSystemMgr.cpp</a> | 35787 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MapNode.cpp">MapNode.cpp</a> | 36351 |
@@ -194,7 +194,7 @@
 ### <section id="sysGCU">sysGCU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 5241 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6620 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 4954 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 5241 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 7138 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPAudioDecode.c">THPAudioDecode.c</a> | 7342 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerPauseAndDraw.cpp">moviePlayerPauseAndDraw.cpp</a> | 8587 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenScene.cpp">screenScene.cpp</a> | 9300 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPVideoDecode.c">THPVideoDecode.c</a> | 10029 |
