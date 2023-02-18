@@ -5,43 +5,52 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80490280:
+.obj lbl_80490280, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80490280
 .balign 4
-lbl_8049028C:
+.obj lbl_8049028C, local
 	.asciz "hurryUp2D"
+.endobj lbl_8049028C
 .balign 4
-lbl_80490298:
+.obj lbl_80490298, local
 	.asciz "HurryUp2D"
+.endobj lbl_80490298
 .balign 4
-lbl_804902A4:
+.obj lbl_804902A4, local
 	.asciz "sund.blo"
+.endobj lbl_804902A4
 .balign 4
-lbl_804902B0:
+.obj lbl_804902B0, local
 	.asciz "hurryUp2D.cpp"
+.endobj lbl_804902B0
 .balign 4
-lbl_804902C0:
+.obj lbl_804902C0, local
 	.asciz "P2Assert"
+.endobj lbl_804902C0
 .balign 4
-lbl_804902CC:
+.obj lbl_804902CC, local
 	.asciz "sunh_w.bti"
+.endobj lbl_804902CC
 .balign 4
-lbl_804902D8:
+.obj lbl_804902D8, local
 	.asciz "g09_first_sunset"
+.endobj lbl_804902D8
 .balign 4
-lbl_804902EC:
+.obj lbl_804902EC, local
 	.asciz "screenObj.h"
+.endobj lbl_804902EC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q28Morimura10THurryUp2D
-__vt__Q28Morimura10THurryUp2D:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q28Morimura10THurryUp2D, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura10THurryUp2DFv
@@ -73,8 +82,8 @@ __vt__Q28Morimura10THurryUp2D:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte getDispMemberBase__Q28Morimura10THurryUp2DFv
-.global __vt__Q28Morimura15THuWhitePaneSet
-__vt__Q28Morimura15THuWhitePaneSet:
+.endobj __vt__Q28Morimura10THurryUp2D
+.obj __vt__Q28Morimura15THuWhitePaneSet, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura15THuWhitePaneSetFv
@@ -158,95 +167,120 @@ __vt__Q28Morimura15THuWhitePaneSet:
 	.4byte drawFullSet__12J2DPictureExFffffPA3_A4_f
 	.4byte drawTexCoord__12J2DPictureExFffffssssssssPA3_A4_f
 	.4byte getUsableTlut__12J2DPictureExFUc
+.endobj __vt__Q28Morimura15THuWhitePaneSet
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mInitPosX__Q28Morimura10THurryUp2D
-mInitPosX__Q28Morimura10THurryUp2D:
+.obj mInitPosX__Q28Morimura10THurryUp2D, global
 	.float 900.0
-.global mMoveSp__Q28Morimura10THurryUp2D
-mMoveSp__Q28Morimura10THurryUp2D:
+.endobj mInitPosX__Q28Morimura10THurryUp2D
+.obj mMoveSp__Q28Morimura10THurryUp2D, global
 	.float 12.0
-.global mScaleSp1__Q28Morimura10THurryUp2D
-mScaleSp1__Q28Morimura10THurryUp2D:
+.endobj mMoveSp__Q28Morimura10THurryUp2D
+.obj mScaleSp1__Q28Morimura10THurryUp2D, global
 	.float 0.01
-.global mScaleSp2__Q28Morimura10THurryUp2D
-mScaleSp2__Q28Morimura10THurryUp2D:
+.endobj mScaleSp1__Q28Morimura10THurryUp2D
+.obj mScaleSp2__Q28Morimura10THurryUp2D, global
 	.float 0.1
-.global mScaleRate__Q28Morimura10THurryUp2D
-mScaleRate__Q28Morimura10THurryUp2D:
+.endobj mScaleSp2__Q28Morimura10THurryUp2D
+.obj mScaleRate__Q28Morimura10THurryUp2D, global
 	.float 1.02
-.global mColorUpSp__Q28Morimura10THurryUp2D
-mColorUpSp__Q28Morimura10THurryUp2D:
+.endobj mScaleRate__Q28Morimura10THurryUp2D
+.obj mColorUpSp__Q28Morimura10THurryUp2D, global
 	.float 1.0
+.endobj mColorUpSp__Q28Morimura10THurryUp2D
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E258:
+.obj lbl_8051E258, local
 	.float 0.0
-lbl_8051E25C:
+.endobj lbl_8051E258
+.obj lbl_8051E25C, local
 	.float 255.0
-lbl_8051E260:
+.endobj lbl_8051E25C
+.obj lbl_8051E260, local
 	.float 0.5
+.endobj lbl_8051E260
 .balign 8
-lbl_8051E268:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051E270:
+.obj lbl_8051E268, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051E268
+.obj lbl_8051E270, local
 	.float 1.0
-lbl_8051E274:
+.endobj lbl_8051E270
+.obj lbl_8051E274, local
 	.float 0.8
-lbl_8051E278:
+.endobj lbl_8051E274
+.obj lbl_8051E278, local
 	.float 1.0E-5
-lbl_8051E27C:
+.endobj lbl_8051E278
+.obj lbl_8051E27C, local
 	.float 0.803
-lbl_8051E280:
+.endobj lbl_8051E27C
+.obj lbl_8051E280, local
 	.float 10.0
-lbl_8051E284: # RGBA?
+.endobj lbl_8051E280
+.obj lbl_8051E284, local # RGBA?
 	.4byte 0xFFFFFF00
-lbl_8051E288:
+.endobj lbl_8051E284
+.obj lbl_8051E288, local
 	.float 56.0
-lbl_8051E28C: # tau
+.endobj lbl_8051E288
+.obj lbl_8051E28C, local # tau
 	.float 6.2831855
-lbl_8051E290:
+.endobj lbl_8051E28C
+.obj lbl_8051E290, local
 	.float 360.0
-lbl_8051E294:
+.endobj lbl_8051E290
+.obj lbl_8051E294, local
 	.float 80.0
-lbl_8051E298:
+.endobj lbl_8051E294
+.obj lbl_8051E298, local
 	.float -325.9493
-lbl_8051E29C:
+.endobj lbl_8051E298
+.obj lbl_8051E29C, local
 	.float 325.9493
-lbl_8051E2A0:
+.endobj lbl_8051E29C
+.obj lbl_8051E2A0, local
 	.float -1.0
+.endobj lbl_8051E2A0
 .balign 8
-lbl_8051E2A8:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051E2B0:
+.obj lbl_8051E2A8, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051E2A8
+.obj lbl_8051E2B0, local
 	.float 4.3E-5
-lbl_8051E2B4:
+.endobj lbl_8051E2B0
+.obj lbl_8051E2B4, local
 	.float 1.0E-4
-lbl_8051E2B8:
+.endobj lbl_8051E2B4
+.obj lbl_8051E2B8, local
 	.float 0.9
-lbl_8051E2BC:
+.endobj lbl_8051E2B8
+.obj lbl_8051E2BC, local
 	.float 1.05
-lbl_8051E2C0:
+.endobj lbl_8051E2BC
+.obj lbl_8051E2C0, local
 	.float 2.0
-lbl_8051E2C4:
+.endobj lbl_8051E2C0
+.obj lbl_8051E2C4, local
 	.float 60.0
-lbl_8051E2C8:
+.endobj lbl_8051E2C4
+.obj lbl_8051E2C8, local
 	.float 120.0
+.endobj lbl_8051E2C8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f
-drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f:
+.fn drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f, global
 /* 80346178 003430B8  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8034617C 003430BC  7C 08 02 A6 */	mflr r0
 /* 80346180 003430C0  90 01 00 94 */	stw r0, 0x94(r1)
@@ -384,9 +418,9 @@ drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f:
 /* 80346390 003432D0  7C 08 03 A6 */	mtlr r0
 /* 80346394 003432D4  38 21 00 90 */	addi r1, r1, 0x90
 /* 80346398 003432D8  4E 80 00 20 */	blr 
+.endfn drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f
 
-.global gxSet__Q28Morimura15THuWhitePaneSetFv
-gxSet__Q28Morimura15THuWhitePaneSetFv:
+.fn gxSet__Q28Morimura15THuWhitePaneSetFv, global
 /* 8034639C 003432DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803463A0 003432E0  7C 08 02 A6 */	mflr r0
 /* 803463A4 003432E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -424,9 +458,9 @@ gxSet__Q28Morimura15THuWhitePaneSetFv:
 /* 80346424 00343364  7C 08 03 A6 */	mtlr r0
 /* 80346428 00343368  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034642C 0034336C  4E 80 00 20 */	blr 
+.endfn gxSet__Q28Morimura15THuWhitePaneSetFv
 
-.global __ct__Q28Morimura10THurryUp2DFv
-__ct__Q28Morimura10THurryUp2DFv:
+.fn __ct__Q28Morimura10THurryUp2DFv, global
 /* 80346430 00343370  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80346434 00343374  7C 08 02 A6 */	mflr r0
 /* 80346438 00343378  3C 80 80 49 */	lis r4, lbl_80490298@ha
@@ -471,9 +505,9 @@ __ct__Q28Morimura10THurryUp2DFv:
 /* 803464D4 00343414  7C 08 03 A6 */	mtlr r0
 /* 803464D8 00343418  38 21 00 10 */	addi r1, r1, 0x10
 /* 803464DC 0034341C  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura10THurryUp2DFv
 
-.global __ct__Q38Morimura10THurryUp2D11TStateParamFv
-__ct__Q38Morimura10THurryUp2D11TStateParamFv:
+.fn __ct__Q38Morimura10THurryUp2D11TStateParamFv, weak
 /* 803464E0 00343420  38 80 00 00 */	li r4, 0
 /* 803464E4 00343424  38 00 00 FF */	li r0, 0xff
 /* 803464E8 00343428  98 83 00 00 */	stb r4, 0(r3)
@@ -483,9 +517,9 @@ __ct__Q38Morimura10THurryUp2D11TStateParamFv:
 /* 803464F8 00343438  D0 23 00 04 */	stfs f1, 4(r3)
 /* 803464FC 0034343C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80346500 00343440  4E 80 00 20 */	blr 
+.endfn __ct__Q38Morimura10THurryUp2D11TStateParamFv
 
-.global doCreate__Q28Morimura10THurryUp2DFP10JKRArchive
-doCreate__Q28Morimura10THurryUp2DFP10JKRArchive:
+.fn doCreate__Q28Morimura10THurryUp2DFP10JKRArchive, global
 /* 80346504 00343444  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80346508 00343448  7C 08 02 A6 */	mflr r0
 /* 8034650C 0034344C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -726,9 +760,9 @@ doCreate__Q28Morimura10THurryUp2DFP10JKRArchive:
 /* 80346888 003437C8  7C 08 03 A6 */	mtlr r0
 /* 8034688C 003437CC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80346890 003437D0  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura10THurryUp2DFP10JKRArchive
 
-.global doUpdate__Q28Morimura10THurryUp2DFv
-doUpdate__Q28Morimura10THurryUp2DFv:
+.fn doUpdate__Q28Morimura10THurryUp2DFv, global
 /* 80346894 003437D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80346898 003437D8  7C 08 02 A6 */	mflr r0
 /* 8034689C 003437DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -840,9 +874,9 @@ doUpdate__Q28Morimura10THurryUp2DFv:
 /* 80346A14 00343954  7C 08 03 A6 */	mtlr r0
 /* 80346A18 00343958  38 21 00 10 */	addi r1, r1, 0x10
 /* 80346A1C 0034395C  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura10THurryUp2DFv
 
-.global doDraw__Q28Morimura10THurryUp2DFR8Graphics
-doDraw__Q28Morimura10THurryUp2DFR8Graphics:
+.fn doDraw__Q28Morimura10THurryUp2DFR8Graphics, global
 /* 80346A20 00343960  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80346A24 00343964  7C 08 02 A6 */	mflr r0
 /* 80346A28 00343968  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1112,9 +1146,9 @@ doDraw__Q28Morimura10THurryUp2DFR8Graphics:
 /* 80346E20 00343D60  7C 08 03 A6 */	mtlr r0
 /* 80346E24 00343D64  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80346E28 00343D68  4E 80 00 20 */	blr 
+.endfn doDraw__Q28Morimura10THurryUp2DFR8Graphics
 
-.global doStart__Q28Morimura10THurryUp2DFPCQ26Screen13StartSceneArg
-doStart__Q28Morimura10THurryUp2DFPCQ26Screen13StartSceneArg:
+.fn doStart__Q28Morimura10THurryUp2DFPCQ26Screen13StartSceneArg, global
 /* 80346E2C 00343D6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80346E30 00343D70  7C 08 02 A6 */	mflr r0
 /* 80346E34 00343D74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1138,9 +1172,9 @@ doStart__Q28Morimura10THurryUp2DFPCQ26Screen13StartSceneArg:
 /* 80346E7C 00343DBC  7C 08 03 A6 */	mtlr r0
 /* 80346E80 00343DC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80346E84 00343DC4  4E 80 00 20 */	blr 
+.endfn doStart__Q28Morimura10THurryUp2DFPCQ26Screen13StartSceneArg
 
-.global init__Q28Morimura10THurryUp2DFv
-init__Q28Morimura10THurryUp2DFv:
+.fn init__Q28Morimura10THurryUp2DFv, global
 /* 80346E88 00343DC8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80346E8C 00343DCC  7C 08 02 A6 */	mflr r0
 /* 80346E90 00343DD0  38 80 00 00 */	li r4, 0
@@ -1449,9 +1483,9 @@ init__Q28Morimura10THurryUp2DFv:
 /* 8034733C 0034427C  7C 08 03 A6 */	mtlr r0
 /* 80347340 00344280  38 21 00 30 */	addi r1, r1, 0x30
 /* 80347344 00344284  4E 80 00 20 */	blr 
+.endfn init__Q28Morimura10THurryUp2DFv
 
-.global move__Q28Morimura10THurryUp2DFv
-move__Q28Morimura10THurryUp2DFv:
+.fn move__Q28Morimura10THurryUp2DFv, global
 /* 80347348 00344288  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8034734C 0034428C  7C 08 02 A6 */	mflr r0
 /* 80347350 00344290  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1638,9 +1672,9 @@ move__Q28Morimura10THurryUp2DFv:
 /* 80347608 00344548  7C 08 03 A6 */	mtlr r0
 /* 8034760C 0034454C  38 21 00 50 */	addi r1, r1, 0x50
 /* 80347610 00344550  4E 80 00 20 */	blr 
+.endfn move__Q28Morimura10THurryUp2DFv
 
-.global scaleUp1__Q28Morimura10THurryUp2DFv
-scaleUp1__Q28Morimura10THurryUp2DFv:
+.fn scaleUp1__Q28Morimura10THurryUp2DFv, global
 /* 80347614 00344554  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80347618 00344558  7C 08 02 A6 */	mflr r0
 /* 8034761C 0034455C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1734,9 +1768,9 @@ scaleUp1__Q28Morimura10THurryUp2DFv:
 /* 80347770 003446B0  7C 08 03 A6 */	mtlr r0
 /* 80347774 003446B4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80347778 003446B8  4E 80 00 20 */	blr 
+.endfn scaleUp1__Q28Morimura10THurryUp2DFv
 
-.global colorUp__Q28Morimura10THurryUp2DFv
-colorUp__Q28Morimura10THurryUp2DFv:
+.fn colorUp__Q28Morimura10THurryUp2DFv, global
 /* 8034777C 003446BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80347780 003446C0  7C 08 02 A6 */	mflr r0
 /* 80347784 003446C4  3C A0 43 30 */	lis r5, 0x4330
@@ -1847,9 +1881,9 @@ colorUp__Q28Morimura10THurryUp2DFv:
 /* 80347920 00344860  7C 08 03 A6 */	mtlr r0
 /* 80347924 00344864  38 21 00 30 */	addi r1, r1, 0x30
 /* 80347928 00344868  4E 80 00 20 */	blr 
+.endfn colorUp__Q28Morimura10THurryUp2DFv
 
-.global scaleUp2__Q28Morimura10THurryUp2DFv
-scaleUp2__Q28Morimura10THurryUp2DFv:
+.fn scaleUp2__Q28Morimura10THurryUp2DFv, global
 /* 8034792C 0034486C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80347930 00344870  7C 08 02 A6 */	mflr r0
 /* 80347934 00344874  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1997,9 +2031,9 @@ scaleUp2__Q28Morimura10THurryUp2DFv:
 /* 80347B60 00344AA0  7C 08 03 A6 */	mtlr r0
 /* 80347B64 00344AA4  38 21 00 70 */	addi r1, r1, 0x70
 /* 80347B68 00344AA8  4E 80 00 20 */	blr 
+.endfn scaleUp2__Q28Morimura10THurryUp2DFv
 
-.global changeState__Q28Morimura10THurryUp2DFif
-changeState__Q28Morimura10THurryUp2DFif:
+.fn changeState__Q28Morimura10THurryUp2DFif, global
 /* 80347B6C 00344AAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80347B70 00344AB0  7C 08 02 A6 */	mflr r0
 /* 80347B74 00344AB4  C8 82 FF 48 */	lfd f4, lbl_8051E2A8@sda21(r2)
@@ -2155,6 +2189,7 @@ changeState__Q28Morimura10THurryUp2DFif:
 /* 80347DB4 00344CF4  7C 08 03 A6 */	mtlr r0
 /* 80347DB8 00344CF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80347DBC 00344CFC  4E 80 00 20 */	blr 
+.endfn changeState__Q28Morimura10THurryUp2DFif
 
 .fn getDispMemberBase__Q28Morimura10THurryUp2DFv, weak
 /* 80347DC0 00344D00  94 21 FF F0 */	stwu r1, -0x10(r1)

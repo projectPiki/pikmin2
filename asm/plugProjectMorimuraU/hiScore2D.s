@@ -5,71 +5,57 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804932E0
-lbl_804932E0:
+.obj lbl_804932E0, local
 	.asciz "hiScore2D"
+.endobj lbl_804932E0
 .balign 4
-.global lbl_804932EC
-lbl_804932EC:
+.obj lbl_804932EC, local
 	.asciz "timg/hi_score_00.bti"
+.endobj lbl_804932EC
 .balign 4
-.global lbl_80493304
-lbl_80493304:
+.obj lbl_80493304, local
 	.asciz "timg/hi_score_01.bti"
+.endobj lbl_80493304
 .balign 4
-.global lbl_8049331C
 lbl_8049331C:
 	.asciz "timg/hi_score_02.bti"
 .balign 4
-.global lbl_80493334
 lbl_80493334:
 	.asciz "timg/hi_score_03.bti"
 .balign 4
-.global lbl_8049334C
 lbl_8049334C:
 	.asciz "timg/hi_score_04.bti"
 .balign 4
-.global lbl_80493364
 lbl_80493364:
 	.asciz "timg/hi_score_05.bti"
 .balign 4
-.global lbl_8049337C
 lbl_8049337C:
 	.asciz "timg/hi_score_06.bti"
 .balign 4
-.global lbl_80493394
 lbl_80493394:
 	.asciz "timg/hi_score_07.bti"
 .balign 4
-.global lbl_804933AC
 lbl_804933AC:
 	.asciz "timg/hi_score_08.bti"
 .balign 4
-.global lbl_804933C4
 lbl_804933C4:
 	.asciz "timg/hi_score_09.bti"
 .balign 4
-.global lbl_804933DC
 lbl_804933DC:
 	.asciz "timg/hi_score_10.bti"
 .balign 4
-.global lbl_804933F4
 lbl_804933F4:
 	.asciz "timg/hi_score_11.bti"
 .balign 4
-.global lbl_8049340C
 lbl_8049340C:
 	.asciz "timg/hi_score_12.bti"
 .balign 4
-.global lbl_80493424
 lbl_80493424:
 	.asciz "timg/hi_score_13.bti"
 .balign 4
-.global lbl_8049343C
 lbl_8049343C:
 	.asciz "timg/hi_score_14.bti"
 .balign 4
-.global lbl_80493454
 lbl_80493454:
 	.asciz "timg/hi_score_15.bti"
 .balign 4
@@ -170,13 +156,11 @@ lbl_80493454:
 	.4byte 0x326E6432
 	.4byte 0x00506F74
 	.4byte 0x33726432
-.global lbl_804935F0
 lbl_804935F0:
 	.4byte 0x68695363
 	.4byte 0x6F726532
 	.4byte 0x442E6370
 	.4byte 0x70000000
-.global lbl_80493600
 lbl_80493600:
 	.asciz "P2Assert"
 .balign 4
@@ -209,7 +193,6 @@ lbl_80493600:
 	.4byte 0x636F7265
 	.4byte 0x5F30302E
 	.4byte 0x62746900
-.global lbl_80493680
 lbl_80493680:
 	.4byte 0x7265735F
 	.4byte 0x68697363
@@ -414,125 +397,86 @@ mLoopDrum__Q28Morimura8THiScore:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051EC18
 lbl_8051EC18:
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_8051EC20
 lbl_8051EC20:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051EC28
 lbl_8051EC28:
 	.4byte 0x43B40000
-.global lbl_8051EC2C
 lbl_8051EC2C:
 	.4byte 0x40C90FDB
-.global lbl_8051EC30
 lbl_8051EC30:
 	.4byte 0x40A00000
-.global lbl_8051EC34
 lbl_8051EC34:
 	.4byte 0x44200000
-.global lbl_8051EC38
 lbl_8051EC38:
 	.4byte 0x43F00000
-.global lbl_8051EC3C
 lbl_8051EC3C:
 	.4byte 0x68697363
 	.4byte 0x6F726500
-.global lbl_8051EC44
 lbl_8051EC44:
 	.float 1.0
-.global lbl_8051EC48
 lbl_8051EC48:
 	.float 0.05
-.global lbl_8051EC4C
 lbl_8051EC4C:
 	.4byte 0x3CA3D70A
-.global lbl_8051EC50
 lbl_8051EC50:
 	.float 0.25
-.global lbl_8051EC54
 lbl_8051EC54:
 	.4byte 0x41000000
-.global lbl_8051EC58
 lbl_8051EC58:
 	.4byte 0x3F99999A
-.global lbl_8051EC5C
 lbl_8051EC5C:
 	.4byte 0x3F7D70A4
-.global lbl_8051EC60
 lbl_8051EC60:
 	.4byte 0x3F8CCCCD
-.global lbl_8051EC64
 lbl_8051EC64:
 	.4byte 0x40000000
-.global lbl_8051EC68
 lbl_8051EC68:
 	.4byte 0xBF800000
-.global lbl_8051EC6C
 lbl_8051EC6C:
 	.float 0.1
-.global lbl_8051EC70
 lbl_8051EC70:
 	.4byte 0x41A00000
-.global lbl_8051EC74
 lbl_8051EC74:
 	.float 0.5
-.global lbl_8051EC78
 lbl_8051EC78:
 	.4byte 0x3E4CCCCD
-.global lbl_8051EC7C
 lbl_8051EC7C:
 	.4byte 0x437F0000
-.global lbl_8051EC80
 lbl_8051EC80:
 	.float 0.04
-.global lbl_8051EC84
 lbl_8051EC84:
 	.4byte 0x3F400000
-.global lbl_8051EC88
 lbl_8051EC88:
 	.4byte 0x3F59999A
-.global lbl_8051EC8C
 lbl_8051EC8C:
 	.4byte 0xC3A2F983
-.global lbl_8051EC90
 lbl_8051EC90:
 	.4byte 0x43A2F983
-.global lbl_8051EC94
 lbl_8051EC94:
 	.4byte 0xC1A00000
-.global lbl_8051EC98
 lbl_8051EC98:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051ECA0
 lbl_8051ECA0:
 	.4byte 0x41200000
-.global lbl_8051ECA4
 lbl_8051ECA4:
 	.4byte 0x47000000
-.global lbl_8051ECA8
 lbl_8051ECA8:
 	.4byte 0x42C80000
-.global lbl_8051ECAC
 lbl_8051ECAC:
 	.4byte 0x42DC0000
-.global lbl_8051ECB0
 lbl_8051ECB0:
 	.4byte 0x447A0000
-.global lbl_8051ECB4
 lbl_8051ECB4:
 	.4byte 0x44898000
-.global lbl_8051ECB8
 lbl_8051ECB8:
 	.4byte 0x47C35000
-.global lbl_8051ECBC
 lbl_8051ECBC:
 	.4byte 0x3F666666
-.global lbl_8051ECC0
 lbl_8051ECC0:
 	.4byte 0x3FC00000
 	.4byte 0x00000000
