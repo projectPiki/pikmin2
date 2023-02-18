@@ -356,20 +356,20 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 	output.textBeginGroup("* 返済度フラグ *");
 	for (u32 i = 0; i < 2; i++) {
-		output.writeByte(_F0[i]);
+		output.writeByte(mDebtProgressFlags[i]);
 	}
 	// int i = 0;
 	// do {
-	// 	output.writeByte(_F0[i]);
+	// 	output.writeByte(mDebtProgressFlags[i]);
 	// 	i++;
 	// } while (i < 2);
 	output.textEndGroup();
 	output.textBeginGroup("* クリアフラグ *");
-	output.writeByte(_2F);
+	output.writeBytes(&mStoryFlags, 1);
 	output.textEndGroup();
 	output.textBeginGroup("* セーブフラグ/オニョンフラグ *");
 	output.textWriteTab(output.mTabCount);
-	output.writeByte(_19);
+	output.writeByte(mLoadType);
 	output.textWriteText("\r\n");
 	output.textWriteTab(output.mTabCount);
 	output.writeByte(mHasContainerFlags);
@@ -413,13 +413,13 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 	output.textBeginGroup("* ド�?�ピング�?報/Doping *");
 	char acStack300[272];
-	for (u32 i = 0; i < 2; i++) {
+	for (int i = 0; i < 2; i++) {
 		output.textWriteTab(output.mTabCount);
 		output.writeInt(_C0[i]);
 		sprintf(acStack300, "\t# dope[%d]\r\n", i);
 		output.textWriteText(acStack300);
 	}
-	for (u32 i = 0; i < 2; i++) {
+	for (int i = 0; i < 2; i++) {
 		output.textWriteTab(output.mTabCount);
 		output.writeInt(mBerryCount[i]);
 		sprintf(acStack300, "\t# dope-実[%d]\r\n", i);
@@ -475,7 +475,7 @@ void PlayData::write(Stream& output)
 			output.textEndGroup();
 			output.textBeginGroup("* オリマ�?�死亡フラグ *");
 			output.textWriteTab(output.mTabCount);
-			output.writeByte(_20);
+			output.writeBytes(&mDeadNaviID[0], 1);
 			output.textWriteText("\r\n");
 			output.textWriteTab(output.mTabCount);
 			output.writeFloat(mNaviLifeMax[0]);
@@ -1051,11 +1051,11 @@ void PlayData::read(Stream& input)
 	}
 	if ('j001' <= version.getID()) {
 		for (s32 i = 0; i < 2; i++) {
-			_F0[i] = input.readByte();
+			mDebtProgressFlags[i] = input.readByte();
 		}
 	}
-	_2F                    = input.readByte();
-	_19                    = input.readByte();
+	mStoryFlags            = input.readByte();
+	mLoadType              = input.readByte();
 	mHasContainerFlags     = input.readByte();
 	mHasBootContainerFlags = input.readByte();
 	if ('j007' <= version.getID()) {
@@ -1077,12 +1077,12 @@ void PlayData::read(Stream& input)
 	for (int i = 0; i < 2; i++) {
 		mBerryCount[i] = input.readInt();
 	}
-	// u32 courseNum = stageList->mCourseCount;
-	// u32 cardNum = input.readInt();
+	int courseNum = stageList->mCourseCount;
+	int cardNum   = input.readInt();
 	// JUT_ASSERTLINE(633, courseNum == cardNum, "SaveData ERROR : CourseNum=%d
 	// (card num=%d)\n", courseNum, cardNum); for (int i = 0; i < courseNum;
 	// i++) {
-	JUT_ASSERTLINE(633, input.readInt() == stageList->mCourseCount, "SaveData ERROR : CourseNum=%d (card num=%d)\n", courseNum, cardNum);
+	JUT_ASSERTLINE(633, cardNum == courseNum, "SaveData ERROR : CourseNum=%d (card num=%d)\n", courseNum, cardNum);
 	for (int i = 0; i < stageList->mCourseCount; i++) {
 		mBitfieldPerCourse[i] = input.readByte();
 		if ('j005' <= (long)version.getID()) {
@@ -1097,7 +1097,7 @@ void PlayData::read(Stream& input)
 	mCavePokoCount = input.readInt();
 	BirthMgr::read(input);
 	DeathMgr::read(input);
-	_20 = input.readByte();
+	mDeadNaviID[0] = input.readByte();
 	if ('j006' <= version.getID()) {
 		mNaviLifeMax[0] = input.readFloat();
 		mNaviLifeMax[1] = input.readFloat();
@@ -1111,11 +1111,11 @@ void PlayData::read(Stream& input)
 		mPokoCountOld = input.readInt();
 		read_CaveOtakara_Old(input);
 	}
-	for (u32 i = 0; i < 6; i++) {
+	for (int i = 0; i < 6; i++) {
 		mPikminYesterday[i] = input.readInt();
 		mPikminToday[i]     = input.readInt();
 	}
-	int dataSize = (input.mPosition - startPosition) + (generatorCache->mHeapSize - generatorCache->mFreeSize);
+	int dataSize = (generatorCache->mHeapSize - generatorCache->mFreeSize) + (input.mPosition - startPosition);
 	generatorCache->read(input);
 	if (PlayData::sMaxPlayDataSize < dataSize) {
 		PlayData::sMaxPlayDataSize = dataSize;
@@ -1496,13 +1496,13 @@ void PelletCropMemory::write(Stream& output)
 {
 	output.textWriteTab(output.mTabCount);
 	output.textWriteText("# mOtakaraCounter\r\n");
-	_04.write(output);
+	mOtakara.write(output);
 	output.textWriteTab(output.mTabCount);
 	output.textWriteText("# mItemCounter\r\n");
-	_0C.write(output);
+	mItem.write(output);
 	output.textWriteTab(output.mTabCount);
 	output.textWriteText("# mCarcassCounter\r\n");
-	_14.write(output);
+	mCarcass.write(output);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1657,9 +1657,9 @@ lbl_8021DDC8:
  */
 void PelletCropMemory::read(Stream& input)
 {
-	_04.read(input);
-	_0C.read(input);
-	_14.read(input);
+	mOtakara.read(input);
+	mItem.read(input);
+	mCarcass.read(input);
 }
 
 /*
@@ -1729,7 +1729,7 @@ void CaveSaveData::write(Stream& output)
  * Address:	8021E1BC
  * Size:	0000D0
  */
-void CaveSaveData::read(Stream&, unsigned long)
+void CaveSaveData::read(Stream& input, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
