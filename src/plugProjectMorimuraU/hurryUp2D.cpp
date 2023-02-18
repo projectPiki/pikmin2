@@ -109,19 +109,6 @@ THurryUp2D::THurryUp2D()
 
 /*
  * --INFO--
- * Address:	803464E0
- * Size:	000024
- */
-THurryUp2D::TStateParam::TStateParam()
-{
-	mAlpha1    = 0;
-	mAlpha2    = 255;
-	mScale     = 0.0f;
-	mGoalScale = 1.0f;
-}
-
-/*
- * --INFO--
  * Address:	80346504
  * Size:	000390
  */

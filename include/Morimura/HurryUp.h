@@ -14,7 +14,13 @@ struct THurryUp2D : public TTestBase {
 	 * @size{0xC}
 	 */
 	struct TStateParam {
-		TStateParam();
+		TStateParam()
+		{
+			mAlpha1    = 0;
+			mAlpha2    = 255;
+			mScale     = 0.0f;
+			mGoalScale = 1.0f;
+		}
 
 		u8 mAlpha1;     // _00
 		u8 mAlpha2;     // _01
