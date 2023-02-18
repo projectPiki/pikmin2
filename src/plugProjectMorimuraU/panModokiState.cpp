@@ -962,7 +962,28 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 {
 	if (enemy->mHealth <= 0.0f) {
 		transit(enemy, PANMODOKI_Dead, nullptr);
-		return;
+
+	} else {
+		Vector3f enemyPos = enemy->getPosition();
+		Vector3f diff     = enemy->mHomePosition - enemyPos;
+		if (FABS(diff.x) < 2.0f && FABS(diff.z) < 2.0f) {
+			Vector3f homePos = enemy->mHomePosition;
+			enemy->onSetPosition(homePos);
+			if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_1) {
+				transit(enemy, PANMODOKI_Hide, nullptr);
+			}
+
+		} else {
+			enemy->turnToTargetMori(_10, CG_PARMS(enemy)->mGeneral.mRotationalAccel.mValue,
+			                        CG_PARMS(enemy)->mGeneral.mRotationalSpeed.mValue);
+			diff.x *= 0.05f;
+			diff.y *= 0.05f;
+			diff.z *= 0.05f;
+			enemy->forceMovePosition(diff);
+		}
+		if ((enemy->mCurAnim->mIsPlaying != FALSE) && (enemy->mCurAnim->mType == KEYEVENT_END)) {
+			transit(enemy, PANMODOKI_Hide, nullptr);
+		}
 	}
 	/*
 	stwu     r1, -0x90(r1)

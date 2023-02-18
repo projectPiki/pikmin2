@@ -639,6 +639,24 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
+	inline void forceMovePosition(Vector3f offset) { mPosition += offset; }
+
+	inline f32 turnToTargetMori(Vector3f& targetPos, f32 turnFactor, f32 maxTurnSpeed)
+	{
+		Vector3f pos = getPosition();
+
+		f32 angleDist = angDist(angXZ(targetPos.x, targetPos.z, pos), getFaceDir());
+		f32 turnSpeed = angleDist * turnFactor;
+		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
+		if (FABS(turnSpeed) > limit) {
+			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
+		}
+
+		updateFaceDir(turnSpeed);
+
+		return angleDist;
+	}
+
 	inline bool checkDistAndAngle(Creature* target, f32 angle, f32 distRange, f32 angRange)
 	{
 		bool result = false;
