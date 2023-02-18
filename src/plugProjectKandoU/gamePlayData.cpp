@@ -20,19 +20,10 @@
 void _Print(char* name, ...) { OSReport("PlayData"); }
 
 namespace {
-	float repay_levs[10] = {
-		10.0f,
-		20.0f,
-		30.0f,
-		40.0f,
-		50.0f,
-		60.0f,
-		70.0f,
-		80.0f,
-		90.0f,
-		100.0f,
-	};
-} // Nameless Namespace
+float repay_levs[10] = {
+	10.0f, 20.0f, 30.0f, 40.0f, 50.0f, 60.0f, 70.0f, 80.0f, 90.0f, 100.0f,
+};
+} // namespace
 
 namespace Game {
 
@@ -2144,7 +2135,7 @@ void PlayData::confirmCaveCropMemory() { }
  * Address:	........
  * Size:	000150
  */
-//bool PlayData::isPelletEverGot(Pellet*) { }
+// bool PlayData::isPelletEverGot(Pellet*) { }
 
 /*
  * --INFO--
@@ -2154,8 +2145,8 @@ void PlayData::confirmCaveCropMemory() { }
 bool PlayData::isPelletEverGot(u8 type, u8 id)
 {
 	if (type == PELTYPE_UPGRADE) {
-        int itemID = *mZukanStat->mItem(id);
-        return itemID > 0;
+		int itemID = *mZukanStat->mItem(id);
+		return itemID > 0;
 	}
 	if (type == PELTYPE_TREASURE) { // how tf do i make andc happen?
 		int treasureID = *mZukanStat->mOtakara(id);
@@ -2966,28 +2957,28 @@ int PlayData::getRepayLevel()
 	f32 prog = (mPokoCount / _aiConstants->mDebt.mData) * 100.0f;
 	for (int i = 0; i < 10; i++) {
 		if (repay_levs[i] > prog)
-			return i-1;
+			return i - 1;
 	}
 	/*if (repay_levs[0] > prog)
-		return -1;
+	    return -1;
 	if (repay_levs[1] > prog)
-		return 0;
+	    return 0;
 	if (repay_levs[2] > prog)
-		return 1;
+	    return 1;
 	if (repay_levs[3] > prog)
-		return 2;
+	    return 2;
 	if (repay_levs[4] > prog)
-		return 3;
+	    return 3;
 	if (repay_levs[5] > prog)
-		return 4;
+	    return 4;
 	if (repay_levs[6] > prog)
-		return 5;
+	    return 5;
 	if (repay_levs[7] > prog)
-		return 6;
+	    return 6;
 	if (repay_levs[8] > prog)
-		return 7;
+	    return 7;
 	if (repay_levs[9] > prog)
-		return 8;
+	    return 8;
 	return 9;*/
 
 	/*
@@ -3114,30 +3105,30 @@ bool PlayData::checkRepayLevelFirstClear()
 	f32 prog = (mPokoCount / _aiConstants->mDebt.mData) * 100.0f;
 	for (int i = 0; i < 10; i++) {
 		if (repay_levs[i] > prog)
-			id = i-1;
+			id = i - 1;
 	}
-/*	if (prog < 10.0f)
-		id = -1;
-	else if (prog < 20.0f)
-		id = 0;
-	else if (prog < 30.0f)
-		id = 1;
-	else if (prog < 40.0f)
-		id = 2;
-	else if (prog < 50.0f)
-		id = 3;
-	else if (prog < 60.0f)
-		id = 4;
-	else if (prog < 70.0f)
-		id = 5;
-	else if (prog < 80.0f)
-		id = 6;
-	else if (prog < 90.0f)
-		id = 7;
-	else if (prog < 100.0f)
-		id = 8;
-	else
-		id = 9;*/
+	/*	if (prog < 10.0f)
+	        id = -1;
+	    else if (prog < 20.0f)
+	        id = 0;
+	    else if (prog < 30.0f)
+	        id = 1;
+	    else if (prog < 40.0f)
+	        id = 2;
+	    else if (prog < 50.0f)
+	        id = 3;
+	    else if (prog < 60.0f)
+	        id = 4;
+	    else if (prog < 70.0f)
+	        id = 5;
+	    else if (prog < 80.0f)
+	        id = 6;
+	    else if (prog < 90.0f)
+	        id = 7;
+	    else if (prog < 100.0f)
+	        id = 8;
+	    else
+	        id = 9;*/
 
 	return (mDebtProgressFlags[id] != 0); // this is actually bitwise stuff
 	                                      /*
@@ -3269,30 +3260,30 @@ void PlayData::experienceRepayLevelFirstClear()
 	f32 prog = (mPokoCount / _aiConstants->mDebt.mData) * 100.0f;
 	for (int i = 0; i < 10; i++) {
 		if (repay_levs[i] > prog)
-			id = i-1;
+			id = i - 1;
 	}
 	/*if (prog < 10.0f)
-		id = -1;
+	    id = -1;
 	else if (prog < 20.0f)
-		id = 0;
+	    id = 0;
 	else if (prog < 30.0f)
-		id = 1;
+	    id = 1;
 	else if (prog < 40.0f)
-		id = 2;
+	    id = 2;
 	else if (prog < 50.0f)
-		id = 3;
+	    id = 3;
 	else if (prog < 60.0f)
-		id = 4;
+	    id = 4;
 	else if (prog < 70.0f)
-		id = 5;
+	    id = 5;
 	else if (prog < 80.0f)
-		id = 6;
+	    id = 6;
 	else if (prog < 90.0f)
-		id = 7;
+	    id = 7;
 	else if (prog < 100.0f)
-		id = 8;
+	    id = 8;
 	else
-		id = 9;*/
+	    id = 9;*/
 
 	mDebtProgressFlags[id] |= 2; // this is actually bitwise stuff
 	                             /*
@@ -4449,7 +4440,7 @@ void PlayData::setPikminCounts_Today()
 		if (i == 5) {
 			int pikiheads = generatorCache->getTotalMePikmins();
 			int pikis     = GameStat::alivePikis;
-			int pikidiff = pikis - GameStat::zikatuPikis;
+			int pikidiff  = pikis - GameStat::zikatuPikis;
 			if (pikidiff < 0)
 				pikidiff = 0;
 			int pikis3      = mPikiContainer.getTotalSum();
@@ -4464,7 +4455,6 @@ void PlayData::setPikminCounts_Today()
 		}
 		cont1 = (GameStat::PikiCounter*)cont1->mPikiCounts;
 		cont2 = (GameStat::PikiCounter*)cont2->mPikiCounts;
-
 	}
 
 	/*
