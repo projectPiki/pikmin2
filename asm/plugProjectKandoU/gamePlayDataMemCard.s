@@ -1,25 +1,38 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804827B8:
+.obj lbl_804827B8, local
 	.asciz "PlayDataMemCard"
+.endobj lbl_804827B8
 .balign 4
+.obj lbl_804827C8, local
 	.asciz "* Version *"
+.endobj lbl_804827C8
 .balign 4
+.obj lbl_804827D4, local # Shift-JIS
 	.4byte 0x2A2082A8
 	.4byte 0x95F38CC2
 	.4byte 0x9094202A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804827D4
+.balign 4
+.obj lbl_804827E4, local # Shift-JIS
 	.4byte 0x2A2095D4
 	.4byte 0x8DCF9378
 	.4byte 0x83748389
 	.4byte 0x834F202A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804827E4
+.balign 4
+.obj lbl_804827F8, local # Shift-JIS
 	.4byte 0x2A20834E
 	.4byte 0x838A8341
 	.4byte 0x83748389
 	.4byte 0x834F202A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804827F8
+.balign 4
+.obj lbl_8048280C, local # Shift-JIS
 	.4byte 0x2A20835A
 	.4byte 0x815B8375
 	.4byte 0x83748389
@@ -28,15 +41,27 @@ lbl_804827B8:
 	.4byte 0x87839383
 	.4byte 0x74838983
 	.4byte 0x4F202A00
+.endobj lbl_8048280C
+.balign 4
+.obj lbl_8048282C, local
 	.asciz "# has container flag\r\n"
+.endobj lbl_8048282C
 .balign 4
+.obj lbl_80482844, local
 	.asciz "# has boot container flag\r\n"
+.endobj lbl_80482844
 .balign 4
+.obj lbl_80482860, local
 	.asciz "# meet pikmin flag\r\n"
+.endobj lbl_80482860
 .balign 4
+.obj lbl_80482878, local # Shift-JIS
 	.4byte 0x2A2093FA
 	.4byte 0x82C982BF
 	.4byte 0x202A0000
+.endobj lbl_80482878
+.balign 4
+.obj lbl_80482884, local # Shift-JIS
 	.4byte 0x2A208349
 	.4byte 0x838A837D
 	.4byte 0x815B9195
@@ -44,20 +69,29 @@ lbl_804827B8:
 	.4byte 0x2F4F6C69
 	.4byte 0x6D617244
 	.4byte 0x61746120
-	.4byte 0x2A000000
+	.2byte 0x2A00
+.endobj lbl_80482884
+.balign 4
+.obj lbl_804828A4, local # Shift-JIS
 	.4byte 0x2A2093B4
 	.4byte 0x8C418FF3
 	.4byte 0x8BB52F43
 	.4byte 0x61766553
 	.4byte 0x61766544
 	.4byte 0x61746120
-	.4byte 0x2A000000
+	.2byte 0x2A00
+.endobj lbl_804828A4
+.balign 4
+.obj lbl_804828C0, local # Shift-JIS
 	.4byte 0x2A208381
 	.4byte 0x815B838B
 	.4byte 0x2F4D6169
 	.4byte 0x6C536176
 	.4byte 0x65446174
 	.4byte 0x61202A00
+.endobj lbl_804828C0
+.balign 4
+.obj lbl_804828D8, local # Shift-JIS
 	.4byte 0x2A208352
 	.4byte 0x83938365
 	.4byte 0x83692F43
@@ -65,14 +99,20 @@ lbl_804827B8:
 	.4byte 0x696E6572
 	.4byte 0x50696B6D
 	.4byte 0x696E202A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804828D8
+.balign 4
+.obj lbl_804828F8, local # Shift-JIS
 	.4byte 0x2A208379
 	.4byte 0x838C8362
 	.4byte 0x83672F50
 	.4byte 0x656C6C65
 	.4byte 0x744D656D
 	.4byte 0x6F727920
-	.4byte 0x2A000000
+	.2byte 0x2A00
+.endobj lbl_804828F8
+.balign 4
+.obj lbl_80482914, local # Shift-JIS
 	.4byte 0x2A208379
 	.4byte 0x838C8362
 	.4byte 0x83672F82
@@ -82,6 +122,9 @@ lbl_804827B8:
 	.4byte 0xE082CC28
 	.4byte 0x4D61696E
 	.4byte 0x29202A00
+.endobj lbl_80482914
+.balign 4
+.obj lbl_80482938, local # Shift-JIS
 	.4byte 0x2A208379
 	.4byte 0x838C8362
 	.4byte 0x83672F92
@@ -91,44 +134,65 @@ lbl_804827B8:
 	.4byte 0xE082CC28
 	.4byte 0x43617665
 	.4byte 0x29202A00
+.endobj lbl_80482938
+.balign 4
+.obj lbl_8048295C, local # Shift-JIS
 	.4byte 0x2A208368
 	.4byte 0x815B8373
 	.4byte 0x8393834F
 	.4byte 0x8FEE95F1
 	.4byte 0x2F446F70
 	.4byte 0x696E6720
-	.4byte 0x2A000000
-	.4byte 0x09232064
-	.4byte 0x6F70655B
-	.4byte 0x25645D0D
-	.4byte 0x0A000000
+	.2byte 0x2A00
+.endobj lbl_8048295C
+.balign 4
+.obj lbl_80482978, local
+	.asciz "\t# dope[%d]\r\n"
+.endobj lbl_80482978
+.balign 4
+.obj lbl_80482988, local # Shift-JIS
 	.4byte 0x09232064
 	.4byte 0x6F70652D
 	.4byte 0x8EC05B25
 	.4byte 0x645D0D0A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80482988
+.balign 4
+.obj lbl_8048299C, local # Shift-JIS
 	.4byte 0x2A208352
 	.4byte 0x815B8358
 	.4byte 0x8FEE95F1
 	.4byte 0x202A0000
+.endobj lbl_8048299C
+.balign 4
+.obj lbl_804829AC, local # Shift-JIS
 	.4byte 0x09232083
 	.4byte 0x52815B83
 	.4byte 0x5890940D
-	.4byte 0x0A000000
-lbl_804829BC:
+	.2byte 0x0A00
+.endobj lbl_804829AC
+.balign 4
+.obj lbl_804829BC, local
 	.asciz "gamePlayDataMemCard.cpp"
+.endobj lbl_804829BC
 .balign 4
-lbl_804829D4:
+.obj lbl_804829D4, local
 	.asciz "P2Assert"
+.endobj lbl_804829D4
 .balign 4
+.obj lbl_804829E0, local # Shift-JIS
 	.4byte 0x2A2093B4
 	.4byte 0x8C419242
 	.4byte 0x90AC8FEE
 	.4byte 0x95F1202A
 	.byte 0
+.endobj lbl_804829E0
 .balign 4
+.obj lbl_804829F4, local
 	.asciz "* LimitGen *"
+.endobj lbl_804829F4
 .balign 4
+.obj lbl_80482A04, local # Shift-JIS
 	.4byte 0x2A2082A8
 	.4byte 0x8BE02F93
 	.4byte 0xB48C4182
@@ -138,18 +202,30 @@ lbl_804829D4:
 	.4byte 0x9E934982
 	.4byte 0xC882A88B
 	.4byte 0xE0202A00
+.endobj lbl_80482A04
+.balign 4
+.obj lbl_80482A28, local # Shift-JIS
 	.4byte 0x2A208F6F
 	.4byte 0x90B69094
 	.4byte 0x202A0000
+.endobj lbl_80482A28
+.balign 4
+.obj lbl_80482A34, local # Shift-JIS
 	.4byte 0x2A208E80
 	.4byte 0x96539094
 	.4byte 0x202A0000
+.endobj lbl_80482A34
+.balign 4
+.obj lbl_80482A40, local # Shift-JIS
 	.4byte 0x2A208349
 	.4byte 0x838A837D
 	.4byte 0x815B8E80
 	.4byte 0x96538374
 	.4byte 0x8389834F
 	.4byte 0x202A0000
+.endobj lbl_80482A40
+.balign 4
+.obj lbl_80482A58, local # Shift-JIS
 	.4byte 0x2A208366
 	.4byte 0x83828374
 	.4byte 0x8389834F
@@ -158,17 +234,26 @@ lbl_804829D4:
 	.4byte 0xA9836683
 	.4byte 0x82837483
 	.4byte 0x89834F20
-	.4byte 0x2A000000
+	.2byte 0x2A00
+.endobj lbl_80482A58
+.balign 4
+.obj lbl_80482A7C, local # Shift-JIS
 	.4byte 0x2A20576F
 	.4byte 0x726C644D
 	.4byte 0x61702089
 	.4byte 0x898F6F97
 	.4byte 0x70202A00
+.endobj lbl_80482A7C
+.balign 4
+.obj lbl_80482A90, local # Shift-JIS
 	.4byte 0x2A204461
 	.4byte 0x79456E64
 	.4byte 0x52657375
 	.4byte 0x6C749770
 	.4byte 0x202A0000
+.endobj lbl_80482A90
+.balign 4
+.obj lbl_80482AA4, local # Shift-JIS
 	.4byte 0x2A208357
 	.4byte 0x8346836C
 	.4byte 0x838C815B
@@ -179,112 +264,113 @@ lbl_804829D4:
 	.4byte 0x65726174
 	.4byte 0x6F724361
 	.4byte 0x63686520
-	.4byte 0x2A000000
-lbl_80482AD0:
-	.4byte 0x53617665
-	.4byte 0x44617461
-	.4byte 0x20455252
-	.4byte 0x4F52203A
-	.4byte 0x20436F75
-	.4byte 0x7273654E
-	.4byte 0x756D3D25
-	.4byte 0x64202863
-	.4byte 0x61726420
-	.4byte 0x6E756D3D
-	.4byte 0x2564290A
-	.4byte 0x00000000
-lbl_80482B00:
-	.4byte 0x6E6F6E6C
-	.4byte 0x6F6F7073
-	.4byte 0x00000000
-	.4byte 0x4B696E64
-	.4byte 0x436F756E
-	.4byte 0x74657200
-	.4byte 0x0923205B
-	.4byte 0x25645D0D
-	.4byte 0x0A000000
-lbl_80482B24:
-	.4byte 0x72656164
-	.4byte 0x20636F75
-	.4byte 0x6E742025
-	.4byte 0x64203A20
-	.4byte 0x6D4E756D
-	.4byte 0x4B696E64
-	.4byte 0x73202564
-	.4byte 0x203A206D
-	.4byte 0x69736D61
-	.4byte 0x74636820
-	.4byte 0x210A0000
-	.4byte 0x23206D4F
-	.4byte 0x74616B61
-	.4byte 0x7261436F
-	.4byte 0x756E7465
-	.4byte 0x720D0A00
-	.4byte 0x23206D49
-	.4byte 0x74656D43
-	.4byte 0x6F756E74
-	.4byte 0x65720D0A
-	.4byte 0x00000000
-	.4byte 0x23206D43
-	.4byte 0x61726361
-	.4byte 0x7373436F
-	.4byte 0x756E7465
-	.4byte 0x720D0A00
-lbl_80482B8C:
+	.2byte 0x2A00
+.endobj lbl_80482AA4
+.balign 4
+.obj lbl_80482AD0, local
+	.asciz "SaveData ERROR : CourseNum=%d (card num=%d)\n"
+.endobj lbl_80482AD0
+.balign 4
+.obj lbl_80482B00, local
+	.asciz "nonloops"
+.endobj lbl_80482B00
+.balign 4
+.obj lbl_80482B0C, local
+	.asciz "KindCounter"
+.endobj lbl_80482B0C
+.balign 4
+.obj lbl_80482B18, local
+	.asciz "\t# [%d]\r\n"
+.endobj lbl_80482B18
+.balign 4
+.obj lbl_80482B24, local
+	.asciz "read count %d : mNumKinds %d : mismatch !\n"
+.endobj lbl_80482B24
+.balign 4
+.obj lbl_80482B50, local
+	.asciz "# mOtakaraCounter\r\n"
+.endobj lbl_80482B50
+.balign 4
+.obj lbl_80482B64, local
+	.asciz "# mItemCounter\r\n"
+.endobj lbl_80482B64
+.balign 4
+.obj lbl_80482B78, local
+	.asciz "# mCarcassCounter\r\n"
+.endobj lbl_80482B78
+.balign 4
+.obj lbl_80482B8C, local
 	.asciz "\t# itemFlag\r\n"
+.endobj lbl_80482B8C
 .balign 4
+.obj lbl_80482B9C, local
 	.asciz "# formationPikmin\r\n"
+.endobj lbl_80482B9C
 .balign 4
+.obj lbl_80482BB0, local
 	.asciz "\t# time\r\n"
+.endobj lbl_80482BB0
 .balign 4
+.obj lbl_80482BBC, local
 	.asciz "\t# curr course\r\n"
+.endobj lbl_80482BBC
 .balign 4
+.obj lbl_80482BD0, local
 	.asciz "\t# curr cave\r\n"
+.endobj lbl_80482BD0
 .balign 4
+.obj lbl_80482BE0, local
 	.asciz "\t# blackman alive\r\n"
+.endobj lbl_80482BE0
 .balign 4
+.obj lbl_80482BF4, local
 	.asciz "\t# blackman timer\r\n"
+.endobj lbl_80482BF4
 .balign 4
+.obj lbl_80482C08, local
 	.asciz "\t# active player id\r\n"
+.endobj lbl_80482C08
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game16PelletCropMemory
-__vt__Q24Game16PelletCropMemory:
+.obj __vt__Q24Game16PelletCropMemory, global
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game16PelletCropMemoryFR6Stream
 	.4byte write__Q24Game16PelletCropMemoryFR6Stream
+.endobj __vt__Q24Game16PelletCropMemory
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mVersion__Q24Game8PlayData
-mVersion__Q24Game8PlayData:
+.obj mVersion__Q24Game8PlayData, global
 	.ascii "j009"
+.endobj mVersion__Q24Game8PlayData
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sCurrPlayDataSize__Q24Game8PlayData
-sCurrPlayDataSize__Q24Game8PlayData:
+.obj sCurrPlayDataSize__Q24Game8PlayData, global
 	.skip 0x4
-.global sMaxPlayDataSize__Q24Game8PlayData
-sMaxPlayDataSize__Q24Game8PlayData:
+.endobj sCurrPlayDataSize__Q24Game8PlayData
+.obj sMaxPlayDataSize__Q24Game8PlayData, global
 	.skip 0x4
+.endobj sMaxPlayDataSize__Q24Game8PlayData
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A078:
-	.4byte 0x0D0A0000
-lbl_8051A07C:
-	.4byte 0x09232025
-	.4byte 0x730D0A00
-lbl_8051A084:
-	.4byte 0x6C6F6F70
-	.4byte 0x73000000
+.obj lbl_8051A078, local
+	.asciz "\r\n"
+.endobj lbl_8051A078
+.balign 4
+.obj lbl_8051A07C, local
+	.asciz "\t# %s\r\n"
+.endobj lbl_8051A07C
+.balign 4
+.obj lbl_8051A084, local
+	.asciz "loops"
+.endobj lbl_8051A084
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global write__Q24Game8PlayDataFR6Stream
-write__Q24Game8PlayDataFR6Stream:
+.fn write__Q24Game8PlayDataFR6Stream, global
 /* 8021CFF4 00219F34  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 8021CFF8 00219F38  7C 08 02 A6 */	mflr r0
 /* 8021CFFC 00219F3C  90 01 01 44 */	stw r0, 0x144(r1)
@@ -761,9 +847,9 @@ write__Q24Game8PlayDataFR6Stream:
 /* 8021D728 0021A668  7C 08 03 A6 */	mtlr r0
 /* 8021D72C 0021A66C  38 21 01 40 */	addi r1, r1, 0x140
 /* 8021D730 0021A670  4E 80 00 20 */	blr 
+.endfn write__Q24Game8PlayDataFR6Stream
 
-.global read__Q24Game8PlayDataFR6Stream
-read__Q24Game8PlayDataFR6Stream:
+.fn read__Q24Game8PlayDataFR6Stream, global
 /* 8021D734 0021A674  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8021D738 0021A678  7C 08 02 A6 */	mflr r0
 /* 8021D73C 0021A67C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1041,9 +1127,9 @@ read__Q24Game8PlayDataFR6Stream:
 /* 8021DB2C 0021AA6C  7C 08 03 A6 */	mtlr r0
 /* 8021DB30 0021AA70  38 21 00 40 */	addi r1, r1, 0x40
 /* 8021DB34 0021AA74  4E 80 00 20 */	blr 
+.endfn read__Q24Game8PlayDataFR6Stream
 
-.global read__Q34Game8PlayData8LimitGenFR6Stream
-read__Q34Game8PlayData8LimitGenFR6Stream:
+.fn read__Q34Game8PlayData8LimitGenFR6Stream, global
 /* 8021DB38 0021AA78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021DB3C 0021AA7C  7C 08 02 A6 */	mflr r0
 /* 8021DB40 0021AA80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1061,9 +1147,9 @@ read__Q34Game8PlayData8LimitGenFR6Stream:
 /* 8021DB70 0021AAB0  7C 08 03 A6 */	mtlr r0
 /* 8021DB74 0021AAB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021DB78 0021AAB8  4E 80 00 20 */	blr 
+.endfn read__Q34Game8PlayData8LimitGenFR6Stream
 
-.global write__Q34Game8PlayData8LimitGenFR6Stream
-write__Q34Game8PlayData8LimitGenFR6Stream:
+.fn write__Q34Game8PlayData8LimitGenFR6Stream, global
 /* 8021DB7C 0021AABC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021DB80 0021AAC0  7C 08 02 A6 */	mflr r0
 /* 8021DB84 0021AAC4  3C A0 80 48 */	lis r5, lbl_80482B00@ha
@@ -1094,9 +1180,9 @@ write__Q34Game8PlayData8LimitGenFR6Stream:
 /* 8021DBE8 0021AB28  7C 08 03 A6 */	mtlr r0
 /* 8021DBEC 0021AB2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021DBF0 0021AB30  4E 80 00 20 */	blr 
+.endfn write__Q34Game8PlayData8LimitGenFR6Stream
 
-.global write__Q24Game16PelletCropMemoryFR6Stream
-write__Q24Game16PelletCropMemoryFR6Stream:
+.fn write__Q24Game16PelletCropMemoryFR6Stream, global
 /* 8021DBF4 0021AB34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021DBF8 0021AB38  7C 08 02 A6 */	mflr r0
 /* 8021DBFC 0021AB3C  3C A0 80 48 */	lis r5, lbl_804827B8@ha
@@ -1233,9 +1319,9 @@ write__Q24Game16PelletCropMemoryFR6Stream:
 /* 8021DDF0 0021AD30  7C 08 03 A6 */	mtlr r0
 /* 8021DDF4 0021AD34  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021DDF8 0021AD38  4E 80 00 20 */	blr 
+.endfn write__Q24Game16PelletCropMemoryFR6Stream
 
-.global read__Q24Game16PelletCropMemoryFR6Stream
-read__Q24Game16PelletCropMemoryFR6Stream:
+.fn read__Q24Game16PelletCropMemoryFR6Stream, global
 /* 8021DDFC 0021AD3C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021DE00 0021AD40  7C 08 02 A6 */	mflr r0
 /* 8021DE04 0021AD44  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1329,9 +1415,9 @@ read__Q24Game16PelletCropMemoryFR6Stream:
 /* 8021DF40 0021AE80  7C 08 03 A6 */	mtlr r0
 /* 8021DF44 0021AE84  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021DF48 0021AE88  4E 80 00 20 */	blr 
+.endfn read__Q24Game16PelletCropMemoryFR6Stream
 
-.global write__Q24Game10OlimarDataFR6Stream
-write__Q24Game10OlimarDataFR6Stream:
+.fn write__Q24Game10OlimarDataFR6Stream, global
 /* 8021DF4C 0021AE8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021DF50 0021AE90  7C 08 02 A6 */	mflr r0
 /* 8021DF54 0021AE94  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1364,9 +1450,9 @@ write__Q24Game10OlimarDataFR6Stream:
 /* 8021DFBC 0021AEFC  7C 08 03 A6 */	mtlr r0
 /* 8021DFC0 0021AF00  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021DFC4 0021AF04  4E 80 00 20 */	blr 
+.endfn write__Q24Game10OlimarDataFR6Stream
 
-.global read__Q24Game10OlimarDataFR6Stream
-read__Q24Game10OlimarDataFR6Stream:
+.fn read__Q24Game10OlimarDataFR6Stream, global
 /* 8021DFC8 0021AF08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021DFCC 0021AF0C  7C 08 02 A6 */	mflr r0
 /* 8021DFD0 0021AF10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1391,9 +1477,9 @@ read__Q24Game10OlimarDataFR6Stream:
 /* 8021E018 0021AF58  7C 08 03 A6 */	mtlr r0
 /* 8021E01C 0021AF5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021E020 0021AF60  4E 80 00 20 */	blr 
+.endfn read__Q24Game10OlimarDataFR6Stream
 
-.global write__Q24Game12CaveSaveDataFR6Stream
-write__Q24Game12CaveSaveDataFR6Stream:
+.fn write__Q24Game12CaveSaveDataFR6Stream, global
 /* 8021E024 0021AF64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021E028 0021AF68  7C 08 02 A6 */	mflr r0
 /* 8021E02C 0021AF6C  3C A0 80 48 */	lis r5, lbl_804827B8@ha
@@ -1496,9 +1582,9 @@ write__Q24Game12CaveSaveDataFR6Stream:
 /* 8021E1B0 0021B0F0  7C 08 03 A6 */	mtlr r0
 /* 8021E1B4 0021B0F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021E1B8 0021B0F8  4E 80 00 20 */	blr 
+.endfn write__Q24Game12CaveSaveDataFR6Stream
 
-.global read__Q24Game12CaveSaveDataFR6StreamUl
-read__Q24Game12CaveSaveDataFR6StreamUl:
+.fn read__Q24Game12CaveSaveDataFR6StreamUl, global
 /* 8021E1BC 0021B0FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021E1C0 0021B100  7C 08 02 A6 */	mflr r0
 /* 8021E1C4 0021B104  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1552,3 +1638,4 @@ read__Q24Game12CaveSaveDataFR6StreamUl:
 /* 8021E280 0021B1C0  7C 08 03 A6 */	mtlr r0
 /* 8021E284 0021B1C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021E288 0021B1C8  4E 80 00 20 */	blr 
+.endfn read__Q24Game12CaveSaveDataFR6StreamUl

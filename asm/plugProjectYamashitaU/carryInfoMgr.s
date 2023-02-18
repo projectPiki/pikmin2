@@ -5,25 +5,30 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047B268:
+.obj lbl_8047B268, local
 	.asciz "carryInfoMgr.cpp"
+.endobj lbl_8047B268
 .balign 4
-lbl_8047B27C:
+.obj lbl_8047B27C, local
 	.asciz "Illegal useType %d\n"
+.endobj lbl_8047B27C
 .balign 4
-lbl_8047B290:
+.obj lbl_8047B290, local
 	.asciz "/user/Yamashita/arc/gameTex.szs"
+.endobj lbl_8047B290
 .balign 4
-lbl_8047B2B0:
+.obj lbl_8047B2B0, local
 	.asciz "item_0_9.bti"
+.endobj lbl_8047B2B0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-"sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@": # local object
+.endobj govNAN___Q24Game5P2JST
+.obj "sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@", local
 	.4byte 0x1E1EFFFF
 	.4byte 0xFF0000FF
 	.4byte 0xEAEA00FF
@@ -31,7 +36,8 @@ govNAN___Q24Game5P2JST:
 	.4byte 0xFFFFFFFF
 	.4byte 0x669999FF
 	.4byte 0x66D3D3FF
-"sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@": # local object
+.endobj "sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@"
+.obj "sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@", local
 	.4byte 0x1E1EFFFF
 	.4byte 0xFF0000FF
 	.4byte 0xEAEA00FF
@@ -39,8 +45,8 @@ govNAN___Q24Game5P2JST:
 	.4byte 0xFFFFFFFF
 	.4byte 0x669999FF
 	.4byte 0x70D8D8FF
-.global __vt__12CarryInfoMgr
-__vt__12CarryInfoMgr:
+.endobj "sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@"
+.obj __vt__12CarryInfoMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12CarryInfoMgrFv
@@ -49,16 +55,16 @@ __vt__12CarryInfoMgr:
 	.4byte draw__12CarryInfoMgrFR8Graphics
 	.4byte regist__12CarryInfoMgrFP14CarryInfoOwner
 	.4byte scratch__12CarryInfoMgrFP14CarryInfoOwner
-.global __vt__11InfoMgrBase
-__vt__11InfoMgrBase:
+.endobj __vt__12CarryInfoMgr
+.obj __vt__11InfoMgrBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11InfoMgrBaseFv
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"
-"__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>":
+.endobj __vt__11InfoMgrBase
+.obj "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
@@ -66,8 +72,8 @@ __vt__11InfoMgrBase:
 	.4byte "update__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
 	.4byte "draw__46InfoListBase<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
 	.4byte 0
-.global "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"
-"__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>":
+.endobj "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"
+.obj "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
@@ -76,13 +82,13 @@ __vt__11InfoMgrBase:
 	.4byte "draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
 	.4byte "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
 	.4byte "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
-.global __vt__14CarryInfoOwner
-__vt__14CarryInfoOwner:
+.endobj "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"
+.obj __vt__14CarryInfoOwner, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__13PokoInfoOwner
-__vt__13PokoInfoOwner:
+.endobj __vt__14CarryInfoOwner
+.obj __vt__13PokoInfoOwner, global
 	.4byte 0
 	.4byte 0
 	.4byte getCarryInfoParam__13PokoInfoOwnerFR14CarryInfoParam
@@ -91,8 +97,8 @@ __vt__13PokoInfoOwner:
 	.4byte "@4@__dt__13PokoInfoOwnerFv"
 	.4byte getChildCount__5CNodeFv
 	.4byte __dt__13PokoInfoOwnerFv
-.global __vt__13CarryInfoList
-__vt__13CarryInfoList:
+.endobj __vt__13PokoInfoOwner
+.obj __vt__13CarryInfoList, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13CarryInfoListFv
@@ -100,99 +106,131 @@ __vt__13CarryInfoList:
 	.4byte update__13CarryInfoListFv
 	.4byte draw__13CarryInfoListFR8Graphics
 	.4byte isFinish__13CarryInfoListFv
+.endobj __vt__13CarryInfoList
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global carryInfoMgr
-carryInfoMgr:
+.endobj gfNAN___Q24Game5P2JST
+.obj carryInfoMgr, global
 	.skip 0x4
+.endobj carryInfoMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80517B60:
+.obj lbl_80517B60, local
 	.float 0.0
-lbl_80517B64:
+.endobj lbl_80517B60
+.obj lbl_80517B64, local
 	.float 0.04
-lbl_80517B68:
+.endobj lbl_80517B64
+.obj lbl_80517B68, local
 	.float 0.88
-lbl_80517B6C:
+.endobj lbl_80517B68
+.obj lbl_80517B6C, local
 	.float 1.0
-lbl_80517B70:
+.endobj lbl_80517B6C
+.obj lbl_80517B70, local
 	.float 255.0
-lbl_80517B74:
+.endobj lbl_80517B70
+.obj lbl_80517B74, local
 	.float 0.5
-lbl_80517B78:
+.endobj lbl_80517B74
+.obj lbl_80517B78, local
 	.float 0.9
-lbl_80517B7C:
+.endobj lbl_80517B78
+.obj lbl_80517B7C, local
 	.float 0.75
-lbl_80517B80:
+.endobj lbl_80517B7C
+.obj lbl_80517B80, local
 	.float 1.1
-lbl_80517B84:
+.endobj lbl_80517B80
+.obj lbl_80517B84, local
 	.float 7.7000003
-lbl_80517B88:
+.endobj lbl_80517B84
+.obj lbl_80517B88, local
 	.float -10.150001
-lbl_80517B8C:
+.endobj lbl_80517B88
+.obj lbl_80517B8C, local
 	.float 10.150001
-lbl_80517B90:
+.endobj lbl_80517B8C
+.obj lbl_80517B90, local
 	.float -7.7000003
-lbl_80517B94: # tau
+.endobj lbl_80517B90
+.obj lbl_80517B94, local # tau
 	.float 6.2831855
-lbl_80517B98:
+.endobj lbl_80517B94
+.obj lbl_80517B98, local
 	.float 0.03125
-lbl_80517B9C:
+.endobj lbl_80517B98
+.obj lbl_80517B9C, local
 	.float -325.9493
-lbl_80517BA0:
+.endobj lbl_80517B9C
+.obj lbl_80517BA0, local
 	.float 325.9493
-lbl_80517BA4:
+.endobj lbl_80517BA0
+.obj lbl_80517BA4, local
 	.float 155.0
-lbl_80517BA8:
+.endobj lbl_80517BA4
+.obj lbl_80517BA8, local
 	.float 59.0
-lbl_80517BAC:
+.endobj lbl_80517BA8
+.obj lbl_80517BAC, local
 	.float 7.0
-lbl_80517BB0:
+.endobj lbl_80517BAC
+.obj lbl_80517BB0, local
 	.float 3.0
+.endobj lbl_80517BB0
 .balign 8
-lbl_80517BB8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80517BB8, local
+	.8byte 0x4330000080000000
+.endobj lbl_80517BB8
 .balign 8
-lbl_80517BC0:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80517BC8:
+.obj lbl_80517BC0, local
+	.8byte 0x4330000000000000
+.endobj lbl_80517BC0
+.obj lbl_80517BC8, local
 	.float 5.6
-lbl_80517BCC:
+.endobj lbl_80517BC8
+.obj lbl_80517BCC, local
 	.float 2.0
-lbl_80517BD0:
+.endobj lbl_80517BCC
+.obj lbl_80517BD0, local
 	.float 12.599999
-lbl_80517BD4:
+.endobj lbl_80517BD0
+.obj lbl_80517BD4, local
 	.float 6.0
-lbl_80517BD8:
+.endobj lbl_80517BD4
+.obj lbl_80517BD8, local
 	.float 0.083333336
-lbl_80517BDC:
+.endobj lbl_80517BD8
+.obj lbl_80517BDC, local
 	.float 25.0
-lbl_80517BE0:
+.endobj lbl_80517BDC
+.obj lbl_80517BE0, local
 	.float 1.5
+.endobj lbl_80517BE0
 .balign 4
-lbl_80517BE4:
+.obj lbl_80517BE4, local
 	.asciz ""
+.endobj lbl_80517BE4
 .balign 4
-lbl_80517BE8:
+.obj lbl_80517BE8, local
 	.float 50.0
+.endobj lbl_80517BE8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global disappear__9CarryInfoFv
-disappear__9CarryInfoFv:
+.fn disappear__9CarryInfoFv, global
 /* 8011AFD0 00117F10  38 00 00 01 */	li r0, 1
 /* 8011AFD4 00117F14  98 03 00 0C */	stb r0, 0xc(r3)
 /* 8011AFD8 00117F18  4E 80 00 20 */	blr 
+.endfn disappear__9CarryInfoFv
 
-.global update__9CarryInfoFRC14CarryInfoParam
-update__9CarryInfoFRC14CarryInfoParam:
+.fn update__9CarryInfoFRC14CarryInfoParam, global
 /* 8011AFDC 00117F1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011AFE0 00117F20  88 A3 00 0C */	lbz r5, 0xc(r3)
 /* 8011AFE4 00117F24  28 05 00 02 */	cmplwi r5, 2
@@ -364,9 +402,9 @@ update__9CarryInfoFRC14CarryInfoParam:
 .L_8011B238:
 /* 8011B238 00118178  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011B23C 0011817C  4E 80 00 20 */	blr 
+.endfn update__9CarryInfoFRC14CarryInfoParam
 
-.global draw__9CarryInfoFR8GraphicsR14CarryInfoParam
-draw__9CarryInfoFR8GraphicsR14CarryInfoParam:
+.fn draw__9CarryInfoFR8GraphicsR14CarryInfoParam, global
 /* 8011B240 00118180  94 21 FE B0 */	stwu r1, -0x150(r1)
 /* 8011B244 00118184  7C 08 02 A6 */	mflr r0
 /* 8011B248 00118188  90 01 01 54 */	stw r0, 0x154(r1)
@@ -674,9 +712,9 @@ draw__9CarryInfoFR8GraphicsR14CarryInfoParam:
 /* 8011B6E0 00118620  7C 08 03 A6 */	mtlr r0
 /* 8011B6E4 00118624  38 21 01 50 */	addi r1, r1, 0x150
 /* 8011B6E8 00118628  4E 80 00 20 */	blr 
+.endfn draw__9CarryInfoFR8GraphicsR14CarryInfoParam
 
-.global drawNumber__9CarryInfoFR8GraphicsffiR6Color4f
-drawNumber__9CarryInfoFR8GraphicsffiR6Color4f:
+.fn drawNumber__9CarryInfoFR8GraphicsffiR6Color4f, global
 /* 8011B6EC 0011862C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8011B6F0 00118630  7C 08 02 A6 */	mflr r0
 /* 8011B6F4 00118634  90 01 00 74 */	stw r0, 0x74(r1)
@@ -883,9 +921,9 @@ drawNumber__9CarryInfoFR8GraphicsffiR6Color4f:
 /* 8011BA08 00118948  7C 08 03 A6 */	mtlr r0
 /* 8011BA0C 0011894C  38 21 00 70 */	addi r1, r1, 0x70
 /* 8011BA10 00118950  4E 80 00 20 */	blr 
+.endfn drawNumber__9CarryInfoFR8GraphicsffiR6Color4f
 
-.global drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f:
+.fn drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f, global
 /* 8011BA14 00118954  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8011BA18 00118958  7C 08 02 A6 */	mflr r0
 /* 8011BA1C 0011895C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -995,13 +1033,13 @@ drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f:
 /* 8011BBBC 00118AFC  7C 08 03 A6 */	mtlr r0
 /* 8011BBC0 00118B00  38 21 00 80 */	addi r1, r1, 0x80
 /* 8011BBC4 00118B04  4E 80 00 20 */	blr 
+.endfn drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
 
-.global init__13CarryInfoListFv
-init__13CarryInfoListFv:
+.fn init__13CarryInfoListFv, global
 /* 8011BBC8 00118B08  4E 80 00 20 */	blr 
+.endfn init__13CarryInfoListFv
 
-.global update__13CarryInfoListFv
-update__13CarryInfoListFv:
+.fn update__13CarryInfoListFv, global
 /* 8011BBCC 00118B0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011BBD0 00118B10  7C 08 02 A6 */	mflr r0
 /* 8011BBD4 00118B14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1021,9 +1059,9 @@ update__13CarryInfoListFv:
 /* 8011BC0C 00118B4C  7C 08 03 A6 */	mtlr r0
 /* 8011BC10 00118B50  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011BC14 00118B54  4E 80 00 20 */	blr 
+.endfn update__13CarryInfoListFv
 
-.global draw__13CarryInfoListFR8Graphics
-draw__13CarryInfoListFR8Graphics:
+.fn draw__13CarryInfoListFR8Graphics, global
 /* 8011BC18 00118B58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011BC1C 00118B5C  7C 08 02 A6 */	mflr r0
 /* 8011BC20 00118B60  7C 65 1B 78 */	mr r5, r3
@@ -1035,9 +1073,9 @@ draw__13CarryInfoListFR8Graphics:
 /* 8011BC38 00118B78  7C 08 03 A6 */	mtlr r0
 /* 8011BC3C 00118B7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011BC40 00118B80  4E 80 00 20 */	blr 
+.endfn draw__13CarryInfoListFR8Graphics
 
-.global getCarryInfoParam__13PokoInfoOwnerFR14CarryInfoParam
-getCarryInfoParam__13PokoInfoOwnerFR14CarryInfoParam:
+.fn getCarryInfoParam__13PokoInfoOwnerFR14CarryInfoParam, global
 /* 8011BC44 00118B84  38 00 00 01 */	li r0, 1
 /* 8011BC48 00118B88  C0 02 98 7C */	lfs f0, lbl_80517BDC@sda21(r2)
 /* 8011BC4C 00118B8C  90 04 00 00 */	stw r0, 0(r4)
@@ -1053,17 +1091,17 @@ getCarryInfoParam__13PokoInfoOwnerFR14CarryInfoParam:
 /* 8011BC74 00118BB4  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 8011BC78 00118BB8  90 04 00 20 */	stw r0, 0x20(r4)
 /* 8011BC7C 00118BBC  4E 80 00 20 */	blr 
+.endfn getCarryInfoParam__13PokoInfoOwnerFR14CarryInfoParam
 
-.global isFinish__13CarryInfoListFv
-isFinish__13CarryInfoListFv:
+.fn isFinish__13CarryInfoListFv, weak
 /* 8011BC80 00118BC0  88 03 00 54 */	lbz r0, 0x54(r3)
 /* 8011BC84 00118BC4  20 00 00 02 */	subfic r0, r0, 2
 /* 8011BC88 00118BC8  7C 00 00 34 */	cntlzw r0, r0
 /* 8011BC8C 00118BCC  54 03 D9 7E */	srwi r3, r0, 5
 /* 8011BC90 00118BD0  4E 80 00 20 */	blr 
+.endfn isFinish__13CarryInfoListFv
 
-.global __ct__12CarryInfoMgrFi
-__ct__12CarryInfoMgrFi:
+.fn __ct__12CarryInfoMgrFi, global
 /* 8011BC94 00118BD4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011BC98 00118BD8  7C 08 02 A6 */	mflr r0
 /* 8011BC9C 00118BDC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1119,9 +1157,9 @@ __ct__12CarryInfoMgrFi:
 /* 8011BD5C 00118C9C  7C 08 03 A6 */	mtlr r0
 /* 8011BD60 00118CA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011BD64 00118CA4  4E 80 00 20 */	blr 
+.endfn __ct__12CarryInfoMgrFi
 
-.global __dt__13PokoInfoOwnerFv
-__dt__13PokoInfoOwnerFv:
+.fn __dt__13PokoInfoOwnerFv, weak
 /* 8011BD68 00118CA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011BD6C 00118CAC  7C 08 02 A6 */	mflr r0
 /* 8011BD70 00118CB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1150,9 +1188,9 @@ __dt__13PokoInfoOwnerFv:
 /* 8011BDC8 00118D08  7C 08 03 A6 */	mtlr r0
 /* 8011BDCC 00118D0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011BDD0 00118D10  4E 80 00 20 */	blr 
+.endfn __dt__13PokoInfoOwnerFv
 
-.global __ct__13PokoInfoOwnerFv
-__ct__13PokoInfoOwnerFv:
+.fn __ct__13PokoInfoOwnerFv, weak
 /* 8011BDD4 00118D14  3C 80 80 4B */	lis r4, __vt__14CarryInfoOwner@ha
 /* 8011BDD8 00118D18  3C A0 80 4B */	lis r5, __vt__13PokoInfoOwner@ha
 /* 8011BDDC 00118D1C  38 04 C3 D8 */	addi r0, r4, __vt__14CarryInfoOwner@l
@@ -1183,9 +1221,9 @@ __ct__13PokoInfoOwnerFv:
 /* 8011BE40 00118D80  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 8011BE44 00118D84  90 E3 00 30 */	stw r7, 0x30(r3)
 /* 8011BE48 00118D88  4E 80 00 20 */	blr 
+.endfn __ct__13PokoInfoOwnerFv
 
-.global "__dt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
-"__dt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv":
+.fn "__dt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv", weak
 /* 8011BE4C 00118D8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011BE50 00118D90  7C 08 02 A6 */	mflr r0
 /* 8011BE54 00118D94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1273,9 +1311,9 @@ __ct__13PokoInfoOwnerFv:
 /* 8011BF7C 00118EBC  7C 08 03 A6 */	mtlr r0
 /* 8011BF80 00118EC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011BF84 00118EC4  4E 80 00 20 */	blr 
+.endfn "__dt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
 
-.global __dt__12CarryInfoMgrFv
-__dt__12CarryInfoMgrFv:
+.fn __dt__12CarryInfoMgrFv, global
 /* 8011BF88 00118EC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011BF8C 00118ECC  7C 08 02 A6 */	mflr r0
 /* 8011BF90 00118ED0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1376,9 +1414,9 @@ __dt__12CarryInfoMgrFv:
 /* 8011C0EC 0011902C  7C 08 03 A6 */	mtlr r0
 /* 8011C0F0 00119030  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C0F4 00119034  4E 80 00 20 */	blr 
+.endfn __dt__12CarryInfoMgrFv
 
-.global "appearPoko__12CarryInfoMgrFRC10Vector3<f>i"
-"appearPoko__12CarryInfoMgrFRC10Vector3<f>i":
+.fn "appearPoko__12CarryInfoMgrFRC10Vector3<f>i", global
 /* 8011C0F8 00119038  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011C0FC 0011903C  7C 08 02 A6 */	mflr r0
 /* 8011C100 00119040  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1430,9 +1468,9 @@ __dt__12CarryInfoMgrFv:
 /* 8011C1AC 001190EC  7C 08 03 A6 */	mtlr r0
 /* 8011C1B0 001190F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011C1B4 001190F4  4E 80 00 20 */	blr 
+.endfn "appearPoko__12CarryInfoMgrFRC10Vector3<f>i"
 
-.global regist__12CarryInfoMgrFP14CarryInfoOwner
-regist__12CarryInfoMgrFP14CarryInfoOwner:
+.fn regist__12CarryInfoMgrFP14CarryInfoOwner, weak
 /* 8011C1B8 001190F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C1BC 001190FC  7C 08 02 A6 */	mflr r0
 /* 8011C1C0 00119100  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1441,9 +1479,9 @@ regist__12CarryInfoMgrFP14CarryInfoOwner:
 /* 8011C1CC 0011910C  7C 08 03 A6 */	mtlr r0
 /* 8011C1D0 00119110  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C1D4 00119114  4E 80 00 20 */	blr 
+.endfn regist__12CarryInfoMgrFP14CarryInfoOwner
 
-.global appear__12CarryInfoMgrFP14CarryInfoOwner
-appear__12CarryInfoMgrFP14CarryInfoOwner:
+.fn appear__12CarryInfoMgrFP14CarryInfoOwner, global
 /* 8011C1D8 00119118  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C1DC 0011911C  7C 08 02 A6 */	mflr r0
 /* 8011C1E0 00119120  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1461,9 +1499,9 @@ appear__12CarryInfoMgrFP14CarryInfoOwner:
 /* 8011C20C 0011914C  7C 08 03 A6 */	mtlr r0
 /* 8011C210 00119150  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C214 00119154  4E 80 00 20 */	blr 
+.endfn appear__12CarryInfoMgrFP14CarryInfoOwner
 
-.global loadResource__12CarryInfoMgrFv
-loadResource__12CarryInfoMgrFv:
+.fn loadResource__12CarryInfoMgrFv, global
 /* 8011C218 00119158  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011C21C 0011915C  7C 08 02 A6 */	mflr r0
 /* 8011C220 00119160  3C 80 80 48 */	lis r4, lbl_8047B290@ha
@@ -1503,9 +1541,9 @@ loadResource__12CarryInfoMgrFv:
 /* 8011C2A4 001191E4  7C 08 03 A6 */	mtlr r0
 /* 8011C2A8 001191E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011C2AC 001191EC  4E 80 00 20 */	blr 
+.endfn loadResource__12CarryInfoMgrFv
 
-.global draw__12CarryInfoMgrFR8Graphics
-draw__12CarryInfoMgrFR8Graphics:
+.fn draw__12CarryInfoMgrFR8Graphics, global
 /* 8011C2B0 001191F0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8011C2B4 001191F4  7C 08 02 A6 */	mflr r0
 /* 8011C2B8 001191F8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1610,9 +1648,9 @@ draw__12CarryInfoMgrFR8Graphics:
 /* 8011C43C 0011937C  7C 08 03 A6 */	mtlr r0
 /* 8011C440 00119380  38 21 00 40 */	addi r1, r1, 0x40
 /* 8011C444 00119384  4E 80 00 20 */	blr 
+.endfn draw__12CarryInfoMgrFR8Graphics
 
-.global update__12CarryInfoMgrFv
-update__12CarryInfoMgrFv:
+.fn update__12CarryInfoMgrFv, global
 /* 8011C448 00119388  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C44C 0011938C  7C 08 02 A6 */	mflr r0
 /* 8011C450 00119390  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1626,9 +1664,9 @@ update__12CarryInfoMgrFv:
 /* 8011C470 001193B0  7C 08 03 A6 */	mtlr r0
 /* 8011C474 001193B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C478 001193B8  4E 80 00 20 */	blr 
+.endfn update__12CarryInfoMgrFv
 
-.global updatePokoInfoOwners__12CarryInfoMgrFv
-updatePokoInfoOwners__12CarryInfoMgrFv:
+.fn updatePokoInfoOwners__12CarryInfoMgrFv, global
 /* 8011C47C 001193BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011C480 001193C0  7C 08 02 A6 */	mflr r0
 /* 8011C484 001193C4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1704,9 +1742,9 @@ updatePokoInfoOwners__12CarryInfoMgrFv:
 /* 8011C578 001194B8  7C 08 03 A6 */	mtlr r0
 /* 8011C57C 001194BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011C580 001194C0  4E 80 00 20 */	blr 
+.endfn updatePokoInfoOwners__12CarryInfoMgrFv
 
-.global scratch__12CarryInfoMgrFP14CarryInfoOwner
-scratch__12CarryInfoMgrFP14CarryInfoOwner:
+.fn scratch__12CarryInfoMgrFP14CarryInfoOwner, weak
 /* 8011C584 001194C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C588 001194C8  7C 08 02 A6 */	mflr r0
 /* 8011C58C 001194CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1715,9 +1753,9 @@ scratch__12CarryInfoMgrFP14CarryInfoOwner:
 /* 8011C598 001194D8  7C 08 03 A6 */	mtlr r0
 /* 8011C59C 001194DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C5A0 001194E0  4E 80 00 20 */	blr 
+.endfn scratch__12CarryInfoMgrFP14CarryInfoOwner
 
-.global __dt__11InfoMgrBaseFv
-__dt__11InfoMgrBaseFv:
+.fn __dt__11InfoMgrBaseFv, weak
 /* 8011C5A4 001194E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C5A8 001194E8  7C 08 02 A6 */	mflr r0
 /* 8011C5AC 001194EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1737,13 +1775,13 @@ __dt__11InfoMgrBaseFv:
 /* 8011C5E0 00119520  7C 08 03 A6 */	mtlr r0
 /* 8011C5E4 00119524  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C5E8 00119528  4E 80 00 20 */	blr 
+.endfn __dt__11InfoMgrBaseFv
 
-.global "init__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
-"init__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv":
+.fn "init__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv", weak
 /* 8011C5EC 0011952C  4E 80 00 20 */	blr 
+.endfn "init__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
 
-.global "__dt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
-"__dt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv":
+.fn "__dt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv", weak
 /* 8011C5F0 00119530  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C5F4 00119534  7C 08 02 A6 */	mflr r0
 /* 8011C5F8 00119538  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1785,9 +1823,9 @@ __dt__11InfoMgrBaseFv:
 /* 8011C67C 001195BC  7C 08 03 A6 */	mtlr r0
 /* 8011C680 001195C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C684 001195C4  4E 80 00 20 */	blr 
+.endfn "__dt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
 
-.global __dt__13CarryInfoListFv
-__dt__13CarryInfoListFv:
+.fn __dt__13CarryInfoListFv, weak
 /* 8011C688 001195C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C68C 001195CC  7C 08 02 A6 */	mflr r0
 /* 8011C690 001195D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1834,9 +1872,9 @@ __dt__13CarryInfoListFv:
 /* 8011C724 00119664  7C 08 03 A6 */	mtlr r0
 /* 8011C728 00119668  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C72C 0011966C  4E 80 00 20 */	blr 
+.endfn __dt__13CarryInfoListFv
 
-.global "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
-"scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner":
+.fn "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner", weak
 /* 8011C730 00119670  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C734 00119674  7C 08 02 A6 */	mflr r0
 /* 8011C738 00119678  7C 85 23 78 */	mr r5, r4
@@ -1855,9 +1893,9 @@ __dt__13CarryInfoListFv:
 /* 8011C768 001196A8  7C 08 03 A6 */	mtlr r0
 /* 8011C76C 001196AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C770 001196B0  4E 80 00 20 */	blr 
+.endfn "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
 
-.global "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
-"update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv":
+.fn "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv", weak
 /* 8011C774 001196B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011C778 001196B8  7C 08 02 A6 */	mflr r0
 /* 8011C77C 001196BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1896,9 +1934,9 @@ __dt__13CarryInfoListFv:
 /* 8011C7F4 00119734  7C 08 03 A6 */	mtlr r0
 /* 8011C7F8 00119738  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011C7FC 0011973C  4E 80 00 20 */	blr 
+.endfn "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
 
-.global "draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
-"draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics":
+.fn "draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics", weak
 /* 8011C800 00119740  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C804 00119744  7C 08 02 A6 */	mflr r0
 /* 8011C808 00119748  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1928,9 +1966,9 @@ __dt__13CarryInfoListFv:
 /* 8011C85C 0011979C  7C 08 03 A6 */	mtlr r0
 /* 8011C860 001197A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C864 001197A4  4E 80 00 20 */	blr 
+.endfn "draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
 
-.global "search__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoListP14CarryInfoOwner"
-"search__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoListP14CarryInfoOwner":
+.fn "search__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoListP14CarryInfoOwner", weak
 /* 8011C868 001197A8  48 00 00 1C */	b .L_8011C884
 .L_8011C86C:
 /* 8011C86C 001197AC  80 04 00 20 */	lwz r0, 0x20(r4)
@@ -1945,17 +1983,17 @@ __dt__13CarryInfoListFv:
 /* 8011C888 001197C8  40 82 FF E4 */	bne .L_8011C86C
 /* 8011C88C 001197CC  38 60 00 00 */	li r3, 0
 /* 8011C890 001197D0  4E 80 00 20 */	blr 
+.endfn "search__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoListP14CarryInfoOwner"
 
-.global "update__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
-"update__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv":
+.fn "update__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv", weak
 /* 8011C894 001197D4  4E 80 00 20 */	blr 
+.endfn "update__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
 
-.global "draw__46InfoListBase<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
-"draw__46InfoListBase<14CarryInfoOwner,13CarryInfoList>FR8Graphics":
+.fn "draw__46InfoListBase<14CarryInfoOwner,13CarryInfoList>FR8Graphics", weak
 /* 8011C898 001197D8  4E 80 00 20 */	blr 
+.endfn "draw__46InfoListBase<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
 
-.global "addInactiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList"
-"addInactiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList":
+.fn "addInactiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList", weak
 /* 8011C89C 001197DC  38 00 00 00 */	li r0, 0
 /* 8011C8A0 001197E0  90 04 00 20 */	stw r0, 0x20(r4)
 /* 8011C8A4 001197E4  80 A4 00 18 */	lwz r5, 0x18(r4)
@@ -1984,9 +2022,9 @@ __dt__13CarryInfoListFv:
 .L_8011C8F8:
 /* 8011C8F8 00119838  90 83 00 78 */	stw r4, 0x78(r3)
 /* 8011C8FC 0011983C  4E 80 00 20 */	blr 
+.endfn "addInactiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList"
 
-.global "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
-"regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner":
+.fn "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner", weak
 /* 8011C900 00119840  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C904 00119844  7C 08 02 A6 */	mflr r0
 /* 8011C908 00119848  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2022,9 +2060,9 @@ __dt__13CarryInfoListFv:
 /* 8011C968 001198A8  7C 08 03 A6 */	mtlr r0
 /* 8011C96C 001198AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C970 001198B0  4E 80 00 20 */	blr 
+.endfn "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
 
-.global "__ct__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fi"
-"__ct__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fi":
+.fn "__ct__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fi", weak
 /* 8011C974 001198B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011C978 001198B8  7C 08 02 A6 */	mflr r0
 /* 8011C97C 001198BC  3C A0 80 4B */	lis r5, __vt__11InfoMgrBase@ha
@@ -2215,9 +2253,9 @@ __dt__13CarryInfoListFv:
 /* 8011CC48 00119B88  7C 08 03 A6 */	mtlr r0
 /* 8011CC4C 00119B8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011CC50 00119B90  4E 80 00 20 */	blr 
+.endfn "__ct__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fi"
 
-.global "addActiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList"
-"addActiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList":
+.fn "addActiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList", weak
 /* 8011CC54 00119B94  80 A4 00 18 */	lwz r5, 0x18(r4)
 /* 8011CC58 00119B98  28 05 00 00 */	cmplwi r5, 0
 /* 8011CC5C 00119B9C  41 82 00 0C */	beq .L_8011CC68
@@ -2244,8 +2282,9 @@ __dt__13CarryInfoListFv:
 .L_8011CCA8:
 /* 8011CCA8 00119BE8  90 83 00 20 */	stw r4, 0x20(r3)
 /* 8011CCAC 00119BEC  4E 80 00 20 */	blr 
+.endfn "addActiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList"
 
-__sinit_carryInfoMgr_cpp: # static initializer
+.fn __sinit_carryInfoMgr_cpp, local
 /* 8011CCB0 00119BF0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8011CCB4 00119BF4  38 00 FF FF */	li r0, -1
 /* 8011CCB8 00119BF8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2256,8 +2295,9 @@ __sinit_carryInfoMgr_cpp: # static initializer
 /* 8011CCCC 00119C0C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8011CCD0 00119C10  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8011CCD4 00119C14  4E 80 00 20 */	blr 
+.endfn __sinit_carryInfoMgr_cpp
 
-.global "@4@__dt__13PokoInfoOwnerFv"
-"@4@__dt__13PokoInfoOwnerFv":
+.fn "@4@__dt__13PokoInfoOwnerFv", weak
 /* 8011CCD8 00119C18  38 63 FF FC */	addi r3, r3, -4
 /* 8011CCDC 00119C1C  4B FF F0 8C */	b __dt__13PokoInfoOwnerFv
+.endfn "@4@__dt__13PokoInfoOwnerFv"

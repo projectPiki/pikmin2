@@ -5,90 +5,79 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047B238
-lbl_8047B238:
-	.4byte 0x2F757365
-	.4byte 0x722F5961
-	.4byte 0x6D617368
-	.4byte 0x6974612F
-	.4byte 0x6172632F
-	.4byte 0x67616D65
-	.4byte 0x5465782E
-	.4byte 0x737A7300
-.global lbl_8047B258
-lbl_8047B258:
-	.4byte 0x6C696665
-	.4byte 0x47617567
-	.4byte 0x652E6274
-	.4byte 0x69000000
+.obj lbl_8047B238, local
+	.asciz "/user/Yamashita/arc/gameTex.szs"
+.endobj lbl_8047B238
+.balign 4
+.obj lbl_8047B258, local
+	.asciz "lifeGauge.bti"
+.endobj lbl_8047B258
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804AC308
-lbl_804AC308:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__13LifeGaugeList
-__vt__13LifeGaugeList:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__13LifeGaugeList, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13LifeGaugeListFv
+.endobj __vt__13LifeGaugeList
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515880
-lbl_80515880:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515884
-lbl_80515884:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lifeGaugeMgr
-lifeGaugeMgr:
-	.skip 0x8
+.endobj gfNAN___Q24Game5P2JST
+.obj lifeGaugeMgr, global
+	.skip 0x4
+.endobj lifeGaugeMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517B28
-lbl_80517B28:
-	.4byte 0x00000000
-.global lbl_80517B2C
-lbl_80517B2C:
+.obj lbl_80517B28, local
+	.float 0.0
+.endobj lbl_80517B28
+.obj lbl_80517B2C, local
 	.float 0.5
-.global lbl_80517B30
-lbl_80517B30:
-	.4byte 0x43160000
-.global lbl_80517B34
-lbl_80517B34:
-	.4byte 0x3ECCCCCD
-.global lbl_80517B38
-lbl_80517B38:
+.endobj lbl_80517B2C
+.obj lbl_80517B30, local
+	.float 150.0
+.endobj lbl_80517B30
+.obj lbl_80517B34, local
+	.float 0.4
+.endobj lbl_80517B34
+.obj lbl_80517B38, local
 	.float 1.0
-.global lbl_80517B3C
-lbl_80517B3C:
-	.4byte 0x3E4CCCCD
-.global lbl_80517B40
-lbl_80517B40:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global lbl_80517B48
-lbl_80517B48:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_80517B50
-lbl_80517B50:
-	.4byte 0xBFC90FDB
-.global lbl_80517B54
-lbl_80517B54:
-	.4byte 0x40C90FDB
-.global lbl_80517B58
-lbl_80517B58:
-	.4byte 0x3FA00000
-	.4byte 0x00000000
+.endobj lbl_80517B38
+.obj lbl_80517B3C, local
+	.float 0.2
+.endobj lbl_80517B3C
+.balign 8
+.obj lbl_80517B40, local
+	.8byte 0x4330000000000000
+.endobj lbl_80517B40
+.balign 8
+.obj lbl_80517B48, local
+	.8byte 0x4330000080000000
+.endobj lbl_80517B48
+.obj lbl_80517B50, local # -pi/2
+	.float -1.5707964
+.endobj lbl_80517B50
+.obj lbl_80517B54, local # tau
+	.float 6.2831855
+.endobj lbl_80517B54
+.obj lbl_80517B58, local
+	.float 1.25
+.endobj lbl_80517B58
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__9LifeGaugeFv
-__ct__9LifeGaugeFv:
+.fn __ct__9LifeGaugeFv, global
 /* 80119BFC 00116B3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80119C00 00116B40  7C 08 02 A6 */	mflr r0
 /* 80119C04 00116B44  38 80 00 20 */	li r4, 0x20
@@ -102,17 +91,17 @@ __ct__9LifeGaugeFv:
 /* 80119C24 00116B64  7C 08 03 A6 */	mtlr r0
 /* 80119C28 00116B68  38 21 00 10 */	addi r1, r1, 0x10
 /* 80119C2C 00116B6C  4E 80 00 20 */	blr 
+.endfn __ct__9LifeGaugeFv
 
-.global init__9LifeGaugeFUc
-init__9LifeGaugeFUc:
+.fn init__9LifeGaugeFUc, global
 /* 80119C30 00116B70  C0 02 97 C8 */	lfs f0, lbl_80517B28@sda21(r2)
 /* 80119C34 00116B74  D0 03 00 00 */	stfs f0, 0(r3)
 /* 80119C38 00116B78  98 83 00 09 */	stb r4, 9(r3)
 /* 80119C3C 00116B7C  98 83 00 08 */	stb r4, 8(r3)
 /* 80119C40 00116B80  4E 80 00 20 */	blr 
+.endfn init__9LifeGaugeFUc
 
-.global update__9LifeGaugeFf
-update__9LifeGaugeFf:
+.fn update__9LifeGaugeFf, global
 /* 80119C44 00116B84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80119C48 00116B88  3C 00 43 30 */	lis r0, 0x4330
 /* 80119C4C 00116B8C  C8 62 97 E0 */	lfd f3, lbl_80517B40@sda21(r2)
@@ -237,9 +226,9 @@ update__9LifeGaugeFf:
 .L_80119E08:
 /* 80119E08 00116D48  38 21 00 20 */	addi r1, r1, 0x20
 /* 80119E0C 00116D4C  4E 80 00 20 */	blr 
+.endfn update__9LifeGaugeFf
 
-.global draw__9LifeGaugeFfff
-draw__9LifeGaugeFfff:
+.fn draw__9LifeGaugeFfff, global
 /* 80119E10 00116D50  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80119E14 00116D54  7C 08 02 A6 */	mflr r0
 /* 80119E18 00116D58  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -353,9 +342,9 @@ draw__9LifeGaugeFfff:
 /* 80119FC0 00116F00  7C 08 03 A6 */	mtlr r0
 /* 80119FC4 00116F04  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80119FC8 00116F08  4E 80 00 20 */	blr 
+.endfn draw__9LifeGaugeFfff
 
-.global initLifeGaugeDraw__9LifeGaugeFv
-initLifeGaugeDraw__9LifeGaugeFv:
+.fn initLifeGaugeDraw__9LifeGaugeFv, global
 /* 80119FCC 00116F0C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80119FD0 00116F10  7C 08 02 A6 */	mflr r0
 /* 80119FD4 00116F14  38 60 00 00 */	li r3, 0
@@ -424,9 +413,9 @@ initLifeGaugeDraw__9LifeGaugeFv:
 /* 8011A0D0 00117010  7C 08 03 A6 */	mtlr r0
 /* 8011A0D4 00117014  38 21 00 40 */	addi r1, r1, 0x40
 /* 8011A0D8 00117018  4E 80 00 20 */	blr 
+.endfn initLifeGaugeDraw__9LifeGaugeFv
 
-.global "drawOneTri__9LifeGaugeFP10Vector3<f>R6Color4"
-"drawOneTri__9LifeGaugeFP10Vector3<f>R6Color4":
+.fn "drawOneTri__9LifeGaugeFP10Vector3<f>R6Color4", global
 /* 8011A0DC 0011701C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011A0E0 00117020  7C 08 02 A6 */	mflr r0
 /* 8011A0E4 00117024  38 60 00 A0 */	li r3, 0xa0
@@ -487,9 +476,9 @@ initLifeGaugeDraw__9LifeGaugeFv:
 /* 8011A1C0 00117100  7C 08 03 A6 */	mtlr r0
 /* 8011A1C4 00117104  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011A1C8 00117108  4E 80 00 20 */	blr 
+.endfn "drawOneTri__9LifeGaugeFP10Vector3<f>R6Color4"
 
-.global draw__13LifeGaugeListFR8Graphics
-draw__13LifeGaugeListFR8Graphics:
+.fn draw__13LifeGaugeListFR8Graphics, global
 /* 8011A1CC 0011710C  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 8011A1D0 00117110  7C 08 02 A6 */	mflr r0
 /* 8011A1D4 00117114  90 01 01 84 */	stw r0, 0x184(r1)
@@ -878,9 +867,9 @@ draw__13LifeGaugeListFR8Graphics:
 /* 8011A7C4 00117704  7C 08 03 A6 */	mtlr r0
 /* 8011A7C8 00117708  38 21 01 80 */	addi r1, r1, 0x180
 /* 8011A7CC 0011770C  4E 80 00 20 */	blr 
+.endfn draw__13LifeGaugeListFR8Graphics
 
-.global __ct__12LifeGaugeMgrFv
-__ct__12LifeGaugeMgrFv:
+.fn __ct__12LifeGaugeMgrFv, global
 /* 8011A7D0 00117710  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011A7D4 00117714  7C 08 02 A6 */	mflr r0
 /* 8011A7D8 00117718  90 01 00 24 */	stw r0, 0x24(r1)
@@ -936,9 +925,9 @@ __ct__12LifeGaugeMgrFv:
 /* 8011A8A0 001177E0  7C 08 03 A6 */	mtlr r0
 /* 8011A8A4 001177E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011A8A8 001177E8  4E 80 00 20 */	blr 
+.endfn __ct__12LifeGaugeMgrFv
 
-.global __dt__13LifeGaugeListFv
-__dt__13LifeGaugeListFv:
+.fn __dt__13LifeGaugeListFv, weak
 /* 8011A8AC 001177EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011A8B0 001177F0  7C 08 02 A6 */	mflr r0
 /* 8011A8B4 001177F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -980,9 +969,9 @@ __dt__13LifeGaugeListFv:
 /* 8011A938 00117878  7C 08 03 A6 */	mtlr r0
 /* 8011A93C 0011787C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011A940 00117880  4E 80 00 20 */	blr 
+.endfn __dt__13LifeGaugeListFv
 
-.global createLifeGauge__12LifeGaugeMgrFPQ24Game8Creature
-createLifeGauge__12LifeGaugeMgrFPQ24Game8Creature:
+.fn createLifeGauge__12LifeGaugeMgrFPQ24Game8Creature, global
 /* 8011A944 00117884  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011A948 00117888  7C 08 02 A6 */	mflr r0
 /* 8011A94C 0011788C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1080,9 +1069,9 @@ createLifeGauge__12LifeGaugeMgrFPQ24Game8Creature:
 /* 8011AA88 001179C8  7C 08 03 A6 */	mtlr r0
 /* 8011AA8C 001179CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011AA90 001179D0  4E 80 00 20 */	blr 
+.endfn createLifeGauge__12LifeGaugeMgrFPQ24Game8Creature
 
-.global activeLifeGauge__12LifeGaugeMgrFPQ24Game8Creaturef
-activeLifeGauge__12LifeGaugeMgrFPQ24Game8Creaturef:
+.fn activeLifeGauge__12LifeGaugeMgrFPQ24Game8Creaturef, global
 /* 8011AA94 001179D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011AA98 001179D8  80 A3 00 64 */	lwz r5, 0x64(r3)
 /* 8011AA9C 001179DC  48 00 00 18 */	b .L_8011AAB4
@@ -1150,9 +1139,9 @@ activeLifeGauge__12LifeGaugeMgrFPQ24Game8Creaturef:
 .L_8011AB70:
 /* 8011AB70 00117AB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011AB74 00117AB4  4E 80 00 20 */	blr 
+.endfn activeLifeGauge__12LifeGaugeMgrFPQ24Game8Creaturef
 
-.global inactiveLifeGauge__12LifeGaugeMgrFPQ24Game8Creature
-inactiveLifeGauge__12LifeGaugeMgrFPQ24Game8Creature:
+.fn inactiveLifeGauge__12LifeGaugeMgrFPQ24Game8Creature, global
 /* 8011AB78 00117AB8  80 A3 00 1C */	lwz r5, 0x1c(r3)
 /* 8011AB7C 00117ABC  48 00 00 18 */	b .L_8011AB94
 .L_8011AB80:
@@ -1202,9 +1191,9 @@ inactiveLifeGauge__12LifeGaugeMgrFPQ24Game8Creature:
 .L_8011AC18:
 /* 8011AC18 00117B58  90 A3 00 64 */	stw r5, 0x64(r3)
 /* 8011AC1C 00117B5C  4E 80 00 20 */	blr 
+.endfn inactiveLifeGauge__12LifeGaugeMgrFPQ24Game8Creature
 
-.global update__12LifeGaugeMgrFv
-update__12LifeGaugeMgrFv:
+.fn update__12LifeGaugeMgrFv, global
 /* 8011AC20 00117B60  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8011AC24 00117B64  7C 08 02 A6 */	mflr r0
 /* 8011AC28 00117B68  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1375,9 +1364,9 @@ update__12LifeGaugeMgrFv:
 /* 8011AE84 00117DC4  7C 08 03 A6 */	mtlr r0
 /* 8011AE88 00117DC8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8011AE8C 00117DCC  4E 80 00 20 */	blr 
+.endfn update__12LifeGaugeMgrFv
 
-.global draw__12LifeGaugeMgrFR8Graphics
-draw__12LifeGaugeMgrFR8Graphics:
+.fn draw__12LifeGaugeMgrFR8Graphics, global
 /* 8011AE90 00117DD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011AE94 00117DD4  7C 08 02 A6 */	mflr r0
 /* 8011AE98 00117DD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1414,9 +1403,9 @@ draw__12LifeGaugeMgrFR8Graphics:
 /* 8011AF04 00117E44  7C 08 03 A6 */	mtlr r0
 /* 8011AF08 00117E48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011AF0C 00117E4C  4E 80 00 20 */	blr 
+.endfn draw__12LifeGaugeMgrFR8Graphics
 
-.global loadResource__12LifeGaugeMgrFv
-loadResource__12LifeGaugeMgrFv:
+.fn loadResource__12LifeGaugeMgrFv, global
 /* 8011AF10 00117E50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011AF14 00117E54  7C 08 02 A6 */	mflr r0
 /* 8011AF18 00117E58  3C 80 80 48 */	lis r4, lbl_8047B238@ha
@@ -1456,16 +1445,17 @@ loadResource__12LifeGaugeMgrFv:
 /* 8011AF9C 00117EDC  7C 08 03 A6 */	mtlr r0
 /* 8011AFA0 00117EE0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011AFA4 00117EE4  4E 80 00 20 */	blr 
+.endfn loadResource__12LifeGaugeMgrFv
 
-.global __sinit_lifeGaugeMgr_cpp
-__sinit_lifeGaugeMgr_cpp:
+.fn __sinit_lifeGaugeMgr_cpp, local
 /* 8011AFA8 00117EE8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8011AFAC 00117EEC  38 00 FF FF */	li r0, -1
 /* 8011AFB0 00117EF0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8011AFB4 00117EF4  3C 60 80 4B */	lis r3, lbl_804AC308@ha
-/* 8011AFB8 00117EF8  90 0D 92 00 */	stw r0, lbl_80515880@sda21(r13)
-/* 8011AFBC 00117EFC  D4 03 C3 08 */	stfsu f0, lbl_804AC308@l(r3)
-/* 8011AFC0 00117F00  D0 0D 92 04 */	stfs f0, lbl_80515884@sda21(r13)
+/* 8011AFB4 00117EF4  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8011AFB8 00117EF8  90 0D 92 00 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8011AFBC 00117EFC  D4 03 C3 08 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8011AFC0 00117F00  D0 0D 92 04 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8011AFC4 00117F04  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8011AFC8 00117F08  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8011AFCC 00117F0C  4E 80 00 20 */	blr 
+.endfn __sinit_lifeGaugeMgr_cpp

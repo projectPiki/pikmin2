@@ -1,127 +1,97 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804831C8:
-	.4byte 0x72657375
-	.4byte 0x6C745465
-	.4byte 0x784D6772
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D61
-	.4byte 0x746F6261
-	.4byte 0x2F726573
-	.4byte 0x756C7474
-	.4byte 0x65782F25
-	.4byte 0x732F6172
-	.4byte 0x632E737A
-	.4byte 0x73000000
-lbl_804831FC:
-	.4byte 0x67616D65
-	.4byte 0x52657375
-	.4byte 0x6C745465
-	.4byte 0x784D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
-	.4byte 0x6661696C
-	.4byte 0x65642074
-	.4byte 0x6F206F70
-	.4byte 0x656E2072
-	.4byte 0x6573756C
-	.4byte 0x74746578
-	.4byte 0x2F617263
-	.4byte 0x2E737A73
-	.4byte 0x0A25730A
-	.4byte 0x00000000
-	.4byte 0x74656B69
-	.4byte 0x5F636172
-	.4byte 0x63617373
-	.4byte 0x2F746578
-	.4byte 0x74757265
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x61686972
-	.4byte 0x752F7465
-	.4byte 0x78747572
-	.4byte 0x652E6274
-	.4byte 0x69000000
-	.4byte 0x25732F74
-	.4byte 0x65787475
-	.4byte 0x72652E62
-	.4byte 0x74690000
-lbl_8048327C:
-	.asciz "P2Assert"
+.obj lbl_804831C8, local
+	.asciz "resultTexMgr"
+.endobj lbl_804831C8
 .balign 4
-lbl_80483288:
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x696E6465
-	.4byte 0x78202564
-	.4byte 0x0A000000
-	.4byte 0x00000000
-lbl_804832A0:
+.obj lbl_804831D8, local
+	.asciz "/user/Matoba/resulttex/%s/arc.szs"
+.endobj lbl_804831D8
+.balign 4
+.obj lbl_804831FC, local
+	.asciz "gameResultTexMgr.cpp"
+.endobj lbl_804831FC
+.balign 4
+.obj lbl_80483214, local
+	.asciz "failed to open resulttex/arc.szs\n%s\n"
+.endobj lbl_80483214
+.balign 4
+.obj lbl_8048323C, local
+	.asciz "teki_carcass/texture.bti"
+.endobj lbl_8048323C
+.balign 4
+.obj lbl_80483258, local
+	.asciz "ahiru/texture.bti"
+.endobj lbl_80483258
+.balign 4
+.obj lbl_8048326C, local
+	.asciz "%s/texture.bti"
+.endobj lbl_8048326C
+.balign 4
+.obj lbl_8048327C, local
+	.asciz "P2Assert"
+.endobj lbl_8048327C
+.balign 4
+.obj lbl_80483288, local
+	.asciz "illegal index %d\n"
+.endobj lbl_80483288
+.balign 8
+.obj lbl_804832A0, local # treasure message id start
 	.4byte 0x00303130
 	.4byte 0x315F3030
 	.4byte 0x00303131
 	.4byte 0x305F3030
 	.4byte 0x00303230
 	.4byte 0x305F3030
-lbl_804832B8:
-	.4byte 0x444E6F64
-	.4byte 0x65206164
-	.4byte 0x64206572
-	.4byte 0x7220636F
-	.4byte 0x756E7420
-	.4byte 0x25640A00
-	.4byte 0x444E6F64
-	.4byte 0x6520636F
-	.4byte 0x6E636174
-	.4byte 0x204C6F6F
-	.4byte 0x70204572
-	.4byte 0x72210A00
-	.4byte 0x63616E6E
-	.4byte 0x6F742072
-	.4byte 0x65747269
-	.4byte 0x65766520
-	.4byte 0x25642D74
-	.4byte 0x68206368
-	.4byte 0x696C6420
-	.4byte 0x28726561
-	.4byte 0x6C206368
-	.4byte 0x696C6420
-	.4byte 0x636F756E
-	.4byte 0x74203D20
-	.4byte 0x25642921
-	.4byte 0x0A000000
+.endobj lbl_804832A0
+.balign 4
+.obj lbl_804832B8, local
+	.asciz "DNode add err count %d\n"
+.endobj lbl_804832B8
+.balign 4
+.obj lbl_804832D0, local
+	.asciz "DNode concat Loop Err!\n"
+.endobj lbl_804832D0
+.balign 4
+.obj lbl_804832E8, local
+	.asciz "cannot retrieve %d-th child (real child count = %d)!\n"
+.endobj lbl_804832E8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game5DNode
-__vt__Q24Game5DNode:
+.obj __vt__Q24Game5DNode, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game5DNodeFv
 	.4byte getChildCount__Q24Game5DNodeFv
-.global __vt__Q34Game12ResultTexMgr3Mgr
-__vt__Q34Game12ResultTexMgr3Mgr:
+.endobj __vt__Q24Game5DNode
+.obj __vt__Q34Game12ResultTexMgr3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game12ResultTexMgr3MgrFv
+.endobj __vt__Q34Game12ResultTexMgr3Mgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A230:
-	.4byte 0x6A706E00
-lbl_8051A234:
-	.4byte 0x75730000
-lbl_8051A238:
-	.4byte 0x70616C00
-lbl_8051A23C:
-	.4byte 0x444E6F64
-	.4byte 0x65000000
+.obj lbl_8051A230, local
+	.asciz "jpn"
+.endobj lbl_8051A230
+.balign 4
+.obj lbl_8051A234, local
+	.asciz "us"
+.endobj lbl_8051A234
+.balign 4
+.obj lbl_8051A238, local
+	.asciz "pal"
+.endobj lbl_8051A238
+.balign 4
+.obj lbl_8051A23C, local
+	.asciz "DNode"
+.endobj lbl_8051A23C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game12ResultTexMgr3MgrFv
-__ct__Q34Game12ResultTexMgr3MgrFv:
+.fn __ct__Q34Game12ResultTexMgr3MgrFv, global
 /* 80227418 00224358  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022741C 0022435C  7C 08 02 A6 */	mflr r0
 /* 80227420 00224360  90 01 00 14 */	stw r0, 0x14(r1)
@@ -142,9 +112,9 @@ __ct__Q34Game12ResultTexMgr3MgrFv:
 /* 8022745C 0022439C  7C 08 03 A6 */	mtlr r0
 /* 80227460 002243A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227464 002243A4  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game12ResultTexMgr3MgrFv
 
-.global __dt__Q34Game12ResultTexMgr3MgrFv
-__dt__Q34Game12ResultTexMgr3MgrFv:
+.fn __dt__Q34Game12ResultTexMgr3MgrFv, global
 /* 80227468 002243A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022746C 002243AC  7C 08 02 A6 */	mflr r0
 /* 80227470 002243B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -170,9 +140,9 @@ __dt__Q34Game12ResultTexMgr3MgrFv:
 /* 802274BC 002243FC  7C 08 03 A6 */	mtlr r0
 /* 802274C0 00224400  38 21 00 10 */	addi r1, r1, 0x10
 /* 802274C4 00224404  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game12ResultTexMgr3MgrFv
 
-.global create__Q34Game12ResultTexMgr3MgrFRQ34Game12ResultTexMgr3Arg
-create__Q34Game12ResultTexMgr3MgrFRQ34Game12ResultTexMgr3Arg:
+.fn create__Q34Game12ResultTexMgr3MgrFRQ34Game12ResultTexMgr3Arg, global
 /* 802274C8 00224408  94 21 FB A0 */	stwu r1, -0x460(r1)
 /* 802274CC 0022440C  7C 08 02 A6 */	mflr r0
 /* 802274D0 00224410  90 01 04 64 */	stw r0, 0x464(r1)
@@ -400,9 +370,9 @@ create__Q34Game12ResultTexMgr3MgrFRQ34Game12ResultTexMgr3Arg:
 /* 802277FC 0022473C  7C 08 03 A6 */	mtlr r0
 /* 80227800 00224740  38 21 04 60 */	addi r1, r1, 0x460
 /* 80227804 00224744  4E 80 00 20 */	blr 
+.endfn create__Q34Game12ResultTexMgr3MgrFRQ34Game12ResultTexMgr3Arg
 
-.global getOtakaraItemTexture__Q34Game12ResultTexMgr3MgrFi
-getOtakaraItemTexture__Q34Game12ResultTexMgr3MgrFi:
+.fn getOtakaraItemTexture__Q34Game12ResultTexMgr3MgrFi, global
 /* 80227808 00224748  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022780C 0022474C  7C 08 02 A6 */	mflr r0
 /* 80227810 00224750  90 01 00 14 */	stw r0, 0x14(r1)
@@ -453,9 +423,9 @@ getOtakaraItemTexture__Q34Game12ResultTexMgr3MgrFi:
 /* 802278B4 002247F4  7C 08 03 A6 */	mtlr r0
 /* 802278B8 002247F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802278BC 002247FC  4E 80 00 20 */	blr 
+.endfn getOtakaraItemTexture__Q34Game12ResultTexMgr3MgrFi
 
-.global getOtakaraTexture__Q34Game12ResultTexMgr3MgrFi
-getOtakaraTexture__Q34Game12ResultTexMgr3MgrFi:
+.fn getOtakaraTexture__Q34Game12ResultTexMgr3MgrFi, global
 /* 802278C0 00224800  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802278C4 00224804  7C 08 02 A6 */	mflr r0
 /* 802278C8 00224808  38 63 00 28 */	addi r3, r3, 0x28
@@ -465,9 +435,9 @@ getOtakaraTexture__Q34Game12ResultTexMgr3MgrFi:
 /* 802278D8 00224818  7C 08 03 A6 */	mtlr r0
 /* 802278DC 0022481C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802278E0 00224820  4E 80 00 20 */	blr 
+.endfn getOtakaraTexture__Q34Game12ResultTexMgr3MgrFi
 
-.global getItemTexture__Q34Game12ResultTexMgr3MgrFi
-getItemTexture__Q34Game12ResultTexMgr3MgrFi:
+.fn getItemTexture__Q34Game12ResultTexMgr3MgrFi, global
 /* 802278E4 00224824  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802278E8 00224828  7C 08 02 A6 */	mflr r0
 /* 802278EC 0022482C  38 63 00 30 */	addi r3, r3, 0x30
@@ -477,9 +447,9 @@ getItemTexture__Q34Game12ResultTexMgr3MgrFi:
 /* 802278FC 0022483C  7C 08 03 A6 */	mtlr r0
 /* 80227900 00224840  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227904 00224844  4E 80 00 20 */	blr 
+.endfn getItemTexture__Q34Game12ResultTexMgr3MgrFi
 
-.global getCarcassTexture__Q34Game12ResultTexMgr3MgrFv
-getCarcassTexture__Q34Game12ResultTexMgr3MgrFv:
+.fn getCarcassTexture__Q34Game12ResultTexMgr3MgrFv, global
 /* 80227908 00224848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022790C 0022484C  7C 08 02 A6 */	mflr r0
 /* 80227910 00224850  38 80 00 00 */	li r4, 0
@@ -490,9 +460,9 @@ getCarcassTexture__Q34Game12ResultTexMgr3MgrFv:
 /* 80227924 00224864  7C 08 03 A6 */	mtlr r0
 /* 80227928 00224868  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022792C 0022486C  4E 80 00 20 */	blr 
+.endfn getCarcassTexture__Q34Game12ResultTexMgr3MgrFv
 
-.global alloc__Q44Game12ResultTexMgr3Mgr8TexturesFi
-alloc__Q44Game12ResultTexMgr3Mgr8TexturesFi:
+.fn alloc__Q44Game12ResultTexMgr3Mgr8TexturesFi, global
 /* 80227930 00224870  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227934 00224874  7C 08 02 A6 */	mflr r0
 /* 80227938 00224878  90 01 00 14 */	stw r0, 0x14(r1)
@@ -518,9 +488,9 @@ alloc__Q44Game12ResultTexMgr3Mgr8TexturesFi:
 /* 80227988 002248C8  7C 08 03 A6 */	mtlr r0
 /* 8022798C 002248CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227990 002248D0  4E 80 00 20 */	blr 
+.endfn alloc__Q44Game12ResultTexMgr3Mgr8TexturesFi
 
-.global getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi
-getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi:
+.fn getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi, global
 /* 80227994 002248D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227998 002248D8  7C 08 02 A6 */	mflr r0
 /* 8022799C 002248DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -552,9 +522,9 @@ getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi:
 /* 802279FC 0022493C  7C 08 03 A6 */	mtlr r0
 /* 80227A00 00224940  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227A04 00224944  4E 80 00 20 */	blr 
+.endfn getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi
 
-.global __ct__Q34Game6Result5TNodeFv
-__ct__Q34Game6Result5TNodeFv:
+.fn __ct__Q34Game6Result5TNodeFv, global
 /* 80227A08 00224948  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227A0C 0022494C  7C 08 02 A6 */	mflr r0
 /* 80227A10 00224950  90 01 00 14 */	stw r0, 0x14(r1)
@@ -578,9 +548,9 @@ __ct__Q34Game6Result5TNodeFv:
 /* 80227A58 00224998  7C 08 03 A6 */	mtlr r0
 /* 80227A5C 0022499C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227A60 002249A0  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game6Result5TNodeFv
 
-.global setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii
-setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii:
+.fn setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii, global
 /* 80227A64 002249A4  90 C3 00 44 */	stw r6, 0x44(r3)
 /* 80227A68 002249A8  90 A3 00 40 */	stw r5, 0x40(r3)
 /* 80227A6C 002249AC  90 E3 00 2C */	stw r7, 0x2c(r3)
@@ -588,9 +558,9 @@ setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii:
 /* 80227A74 002249B4  91 23 00 38 */	stw r9, 0x38(r3)
 /* 80227A78 002249B8  91 43 00 3C */	stw r10, 0x3c(r3)
 /* 80227A7C 002249BC  4E 80 00 20 */	blr 
+.endfn setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii
 
-.global setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiiii
-setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiiii:
+.fn setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiiii, global
 /* 80227A80 002249C0  90 C3 00 44 */	stw r6, 0x44(r3)
 /* 80227A84 002249C4  80 01 00 08 */	lwz r0, 8(r1)
 /* 80227A88 002249C8  90 A3 00 40 */	stw r5, 0x40(r3)
@@ -600,9 +570,9 @@ setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiiii:
 /* 80227A98 002249D8  91 43 00 3C */	stw r10, 0x3c(r3)
 /* 80227A9C 002249DC  90 03 00 34 */	stw r0, 0x34(r3)
 /* 80227AA0 002249E0  4E 80 00 20 */	blr 
+.endfn setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiiii
 
-.global convertByMorimun__Q34Game6Result5TNodeFi
-convertByMorimun__Q34Game6Result5TNodeFi:
+.fn convertByMorimun__Q34Game6Result5TNodeFi, global
 /* 80227AA4 002249E4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80227AA8 002249E8  7C 08 02 A6 */	mflr r0
 /* 80227AAC 002249EC  3C C0 30 5F */	lis r6, 0x305F3030@ha
@@ -633,9 +603,9 @@ convertByMorimun__Q34Game6Result5TNodeFi:
 /* 80227B10 00224A50  7C 08 03 A6 */	mtlr r0
 /* 80227B14 00224A54  38 21 00 70 */	addi r1, r1, 0x70
 /* 80227B18 00224A58  4E 80 00 20 */	blr 
+.endfn convertByMorimun__Q34Game6Result5TNodeFi
 
-.global __ct__Q24Game5DNodeFv
-__ct__Q24Game5DNodeFv:
+.fn __ct__Q24Game5DNodeFv, global
 /* 80227B1C 00224A5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227B20 00224A60  7C 08 02 A6 */	mflr r0
 /* 80227B24 00224A64  90 01 00 14 */	stw r0, 0x14(r1)
@@ -659,9 +629,9 @@ __ct__Q24Game5DNodeFv:
 /* 80227B6C 00224AAC  7C 08 03 A6 */	mtlr r0
 /* 80227B70 00224AB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227B74 00224AB4  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game5DNodeFv
 
-.global add__Q24Game5DNodeFPQ24Game5DNode
-add__Q24Game5DNodeFPQ24Game5DNode:
+.fn add__Q24Game5DNodeFPQ24Game5DNode, global
 /* 80227B78 00224AB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80227B7C 00224ABC  7C 08 02 A6 */	mflr r0
 /* 80227B80 00224AC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -714,9 +684,9 @@ add__Q24Game5DNodeFPQ24Game5DNode:
 /* 80227C1C 00224B5C  7C 08 03 A6 */	mtlr r0
 /* 80227C20 00224B60  38 21 00 20 */	addi r1, r1, 0x20
 /* 80227C24 00224B64  4E 80 00 20 */	blr 
+.endfn add__Q24Game5DNodeFPQ24Game5DNode
 
-.global __dt__Q24Game5DNodeFv
-__dt__Q24Game5DNodeFv:
+.fn __dt__Q24Game5DNodeFv, global
 /* 80227C28 00224B68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227C2C 00224B6C  7C 08 02 A6 */	mflr r0
 /* 80227C30 00224B70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -744,9 +714,9 @@ __dt__Q24Game5DNodeFv:
 /* 80227C84 00224BC4  7C 08 03 A6 */	mtlr r0
 /* 80227C88 00224BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80227C8C 00224BCC  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game5DNodeFv
 
-.global del__Q24Game5DNodeFv
-del__Q24Game5DNodeFv:
+.fn del__Q24Game5DNodeFv, global
 /* 80227C90 00224BD0  80 83 00 20 */	lwz r4, 0x20(r3)
 /* 80227C94 00224BD4  28 04 00 00 */	cmplwi r4, 0
 /* 80227C98 00224BD8  4D 82 00 20 */	beqlr 
@@ -791,9 +761,9 @@ del__Q24Game5DNodeFv:
 /* 80227D1C 00224C5C  28 05 00 00 */	cmplwi r5, 0
 /* 80227D20 00224C60  40 82 FF 88 */	bne .L_80227CA8
 /* 80227D24 00224C64  4E 80 00 20 */	blr 
+.endfn del__Q24Game5DNodeFv
 
-.global getChildCount__Q24Game5DNodeFv
-getChildCount__Q24Game5DNodeFv:
+.fn getChildCount__Q24Game5DNodeFv, global
 /* 80227D28 00224C68  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 80227D2C 00224C6C  28 00 00 00 */	cmplwi r0, 0
 /* 80227D30 00224C70  41 82 00 24 */	beq .L_80227D54
@@ -810,3 +780,4 @@ getChildCount__Q24Game5DNodeFv:
 .L_80227D54:
 /* 80227D54 00224C94  38 60 00 00 */	li r3, 0
 /* 80227D58 00224C98  4E 80 00 20 */	blr 
+.endfn getChildCount__Q24Game5DNodeFv

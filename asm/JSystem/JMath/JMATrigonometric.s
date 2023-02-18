@@ -37,8 +37,9 @@ lbl_constructor:
 	.double 6.2831854820251465
 .endobj lbl_80516758
 .balign 8
-lbl_80516760:
+.obj lbl_80516760, local
 	.double 2048.0
+.endobj lbl_80516760
 .balign 8
 .obj lbl_80516768, local
 	.double 9.765625E-4

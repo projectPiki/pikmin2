@@ -5,55 +5,68 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047C880:
+.obj lbl_8047C880, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047C880
 .balign 4
-lbl_8047C88C:
+.obj lbl_8047C88C, local
 	.asciz "TPkEffect"
+.endobj lbl_8047C88C
 .balign 4
-lbl_8047C898:
+.obj lbl_8047C898, local
 	.asciz "happajnt3"
+.endobj lbl_8047C898
 .balign 4
-lbl_8047C8A4:
+.obj lbl_8047C8A4, local
 	.asciz "happajnt1"
+.endobj lbl_8047C8A4
 .balign 4
-lbl_8047C8B0:
+.obj lbl_8047C8B0, local
 	.asciz "piki.cpp"
+.endobj lbl_8047C8B0
 .balign 4
-lbl_8047C8BC:
+.obj lbl_8047C8BC, local
 	.asciz "happajnt3 not found!\n"
+.endobj lbl_8047C8BC
 .balign 4
-lbl_8047C8D4:
+.obj lbl_8047C8D4, local
 	.asciz "happajnt1 not found!\n"
+.endobj lbl_8047C8D4
 .balign 4
-lbl_8047C8EC:
+.obj lbl_8047C8EC, local
 	.asciz "piki onInit"
+.endobj lbl_8047C8EC
 .balign 4
-lbl_8047C8F8:
+.obj lbl_8047C8F8, local
 	.asciz "** PIKI ONINIT**"
+.endobj lbl_8047C8F8
 .balign 4
-lbl_8047C90C:
+.obj lbl_8047C90C, local
 	.asciz "P2Assert"
+.endobj lbl_8047C90C
 .balign 4
-lbl_8047C918:
+.obj lbl_8047C918, local
 	.asciz "g1A_red_doping"
+.endobj lbl_8047C918
 .balign 4
-lbl_8047C928:
+.obj lbl_8047C928, local
 	.asciz "CreatureActionArg"
+.endobj lbl_8047C928
 .balign 4
-lbl_8047C93C:
+.obj lbl_8047C93C, local
 	.asciz "ActionArg"
+.endobj lbl_8047C93C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q24Game4Piki
-__vt__Q24Game4Piki:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q24Game4Piki, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8FakePikiFv
@@ -190,8 +203,8 @@ __vt__Q24Game4Piki:
 	.4byte do_updateLookCreature__Q24Game4PikiFv
 	.4byte onSetPosition__Q24Game4PikiFv
 	.4byte isWalking__Q24Game4PikiFv
-.global __vt__Q23efx12TPkBlackDown
-__vt__Q23efx12TPkBlackDown:
+.endobj __vt__Q24Game4Piki
+.obj __vt__Q23efx12TPkBlackDown, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -211,8 +224,8 @@ __vt__Q23efx12TPkBlackDown:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TPkBlackDownFv
-.global __vt__Q23efx7TPkMoeA
-__vt__Q23efx7TPkMoeA:
+.endobj __vt__Q23efx12TPkBlackDown
+.obj __vt__Q23efx7TPkMoeA, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -232,14 +245,15 @@ __vt__Q23efx7TPkMoeA:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx7TPkMoeAFv
-.global "__vt__Q24Game26StateMachine<Q24Game4Piki>"
-"__vt__Q24Game26StateMachine<Q24Game4Piki>":
+.endobj __vt__Q23efx7TPkMoeA
+.obj "__vt__Q24Game26StateMachine<Q24Game4Piki>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
 	.4byte "start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
 	.4byte "exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
 	.4byte "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
+.endobj "__vt__Q24Game26StateMachine<Q24Game4Piki>"
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # piki.cpp
@@ -257,71 +271,96 @@ __vt__Q23efx7TPkMoeA:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518410:
+.obj lbl_80518410, local
 	.float 4.0
+.endobj lbl_80518410
 .balign 4
-lbl_80518414:
+.obj lbl_80518414, local
 	.asciz "PSPiki"
+.endobj lbl_80518414
 .balign 4
-lbl_8051841C:
+.obj lbl_8051841C, local
 	.float 0.0
-lbl_80518420:
+.endobj lbl_8051841C
+.obj lbl_80518420, local
 	.float 20.0
-lbl_80518424: # used for Piki LOD Sphere Radius
+.endobj lbl_80518420
+.obj lbl_80518424, local # used for Piki LOD Sphere Radius
 	.float 15.0
+.endobj lbl_80518424
 .balign 4
-lbl_80518428:
+.obj lbl_80518428, local
 	.asciz "pu-1"
+.endobj lbl_80518428
 .balign 4
-lbl_80518430:
+.obj lbl_80518430, local
 	.asciz "pu-4"
+.endobj lbl_80518430
 .balign 4
-lbl_80518438:
+.obj lbl_80518438, local
 	.float 0.1
-lbl_8051843C:
+.endobj lbl_80518438
+.obj lbl_8051843C, local
 	.float 100.0
-lbl_80518440:
+.endobj lbl_8051843C
+.obj lbl_80518440, local
 	.float 1.0
-lbl_80518444:
+.endobj lbl_80518440
+.obj lbl_80518444, local
 	.float 128000.0
-lbl_80518448:
+.endobj lbl_80518444
+.obj lbl_80518448, local
 	.float -128000.0
-lbl_8051844C:
+.endobj lbl_80518448
+.obj lbl_8051844C, local
 	.float 0.5
-lbl_80518450:
+.endobj lbl_8051844C
+.obj lbl_80518450, local
 	.float 10.0
-lbl_80518454:
+.endobj lbl_80518450
+.obj lbl_80518454, local
 	.float 2.0
-lbl_80518458:
+.endobj lbl_80518454
+.obj lbl_80518458, local
 	.float 5.0
-lbl_8051845C:
+.endobj lbl_80518458
+.obj lbl_8051845C, local
 	.float 32768.0
-lbl_80518460:
+.endobj lbl_8051845C
+.obj lbl_80518460, local
 	.float 0.2
+.endobj lbl_80518460
 .balign 8
-lbl_80518468:
+.obj lbl_80518468, local
 	.8byte 0x4330000080000000
-lbl_80518470:
+.endobj lbl_80518468
+.obj lbl_80518470, local
 	.float 1.2
-lbl_80518474:
+.endobj lbl_80518470
+.obj lbl_80518474, local
 	.float 0.8
-lbl_80518478:
+.endobj lbl_80518474
+.obj lbl_80518478, local
 	.float 7.0
+.endobj lbl_80518478
 .balign 4
-lbl_8051847C:
+.obj lbl_8051847C, local
 	.asciz "headjnt"
+.endobj lbl_8051847C
 .balign 4
-lbl_80518484:
+.obj lbl_80518484, local
 	.float 200.0
-lbl_80518488:
+.endobj lbl_80518484
+.obj lbl_80518488, local
 	.float 3.0
+.endobj lbl_80518488
 .balign 4
-lbl_8051848C:
+.obj lbl_8051848C, local
 	.asciz "pikmin"
+.endobj lbl_8051848C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game4PikiFv
-__ct__Q24Game4PikiFv:
+.fn __ct__Q24Game4PikiFv, global
 /* 801476DC 0014461C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801476E0 00144620  7C 08 02 A6 */	mflr r0
 /* 801476E4 00144624  90 01 00 14 */	stw r0, 0x14(r1)
@@ -432,9 +471,9 @@ __ct__Q24Game4PikiFv:
 /* 80147874 001447B4  7C 08 03 A6 */	mtlr r0
 /* 80147878 001447B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014787C 001447BC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game4PikiFv
 
-.global __ct__Q23efx9TPkEffectFv
-__ct__Q23efx9TPkEffectFv:
+.fn __ct__Q23efx9TPkEffectFv, weak
 /* 80147880 001447C0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80147884 001447C4  7C 08 02 A6 */	mflr r0
 /* 80147888 001447C8  39 20 FF FF */	li r9, -1
@@ -610,9 +649,9 @@ __ct__Q23efx9TPkEffectFv:
 /* 80147B30 00144A70  7C 08 03 A6 */	mtlr r0
 /* 80147B34 00144A74  38 21 00 40 */	addi r1, r1, 0x40
 /* 80147B38 00144A78  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx9TPkEffectFv
 
-.global __dt__Q23efx12TPkBlackDownFv
-__dt__Q23efx12TPkBlackDownFv:
+.fn __dt__Q23efx12TPkBlackDownFv, weak
 /* 80147B3C 00144A7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147B40 00144A80  7C 08 02 A6 */	mflr r0
 /* 80147B44 00144A84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -654,9 +693,9 @@ __dt__Q23efx12TPkBlackDownFv:
 /* 80147BCC 00144B0C  7C 08 03 A6 */	mtlr r0
 /* 80147BD0 00144B10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147BD4 00144B14  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TPkBlackDownFv
 
-.global __dt__Q23efx7TPkMoeAFv
-__dt__Q23efx7TPkMoeAFv:
+.fn __dt__Q23efx7TPkMoeAFv, weak
 /* 80147BD8 00144B18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147BDC 00144B1C  7C 08 02 A6 */	mflr r0
 /* 80147BE0 00144B20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -698,9 +737,9 @@ __dt__Q23efx7TPkMoeAFv:
 /* 80147C68 00144BA8  7C 08 03 A6 */	mtlr r0
 /* 80147C6C 00144BAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147C70 00144BB0  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx7TPkMoeAFv
 
-.global __dt__Q23efx11TPkNageBlurFv
-__dt__Q23efx11TPkNageBlurFv:
+.fn __dt__Q23efx11TPkNageBlurFv, weak
 /* 80147C74 00144BB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147C78 00144BB8  7C 08 02 A6 */	mflr r0
 /* 80147C7C 00144BBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -742,9 +781,9 @@ __dt__Q23efx11TPkNageBlurFv:
 /* 80147D04 00144C44  7C 08 03 A6 */	mtlr r0
 /* 80147D08 00144C48  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147D0C 00144C4C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx11TPkNageBlurFv
 
-.global isWalking__Q24Game4PikiFv
-isWalking__Q24Game4PikiFv:
+.fn isWalking__Q24Game4PikiFv, global
 /* 80147D10 00144C50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147D14 00144C54  7C 08 02 A6 */	mflr r0
 /* 80147D18 00144C58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -794,9 +833,9 @@ isWalking__Q24Game4PikiFv:
 /* 80147DB8 00144CF8  7C 08 03 A6 */	mtlr r0
 /* 80147DBC 00144CFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147DC0 00144D00  4E 80 00 20 */	blr 
+.endfn isWalking__Q24Game4PikiFv
 
-.global getFormationSlotID__Q24Game4PikiFv
-getFormationSlotID__Q24Game4PikiFv:
+.fn getFormationSlotID__Q24Game4PikiFv, global
 /* 80147DC4 00144D04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147DC8 00144D08  7C 08 02 A6 */	mflr r0
 /* 80147DCC 00144D0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -819,9 +858,9 @@ getFormationSlotID__Q24Game4PikiFv:
 /* 80147E08 00144D48  7C 08 03 A6 */	mtlr r0
 /* 80147E0C 00144D4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147E10 00144D50  4E 80 00 20 */	blr 
+.endfn getFormationSlotID__Q24Game4PikiFv
 
-.global getCurrAction__Q24Game4PikiFv
-getCurrAction__Q24Game4PikiFv:
+.fn getCurrAction__Q24Game4PikiFv, global
 /* 80147E14 00144D54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147E18 00144D58  7C 08 02 A6 */	mflr r0
 /* 80147E1C 00144D5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -831,22 +870,22 @@ getCurrAction__Q24Game4PikiFv:
 /* 80147E2C 00144D6C  7C 08 03 A6 */	mtlr r0
 /* 80147E30 00144D70  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147E34 00144D74  4E 80 00 20 */	blr 
+.endfn getCurrAction__Q24Game4PikiFv
 
-.global clearCurrAction__Q24Game4PikiFv
-clearCurrAction__Q24Game4PikiFv:
+.fn clearCurrAction__Q24Game4PikiFv, global
 /* 80147E38 00144D78  80 63 02 94 */	lwz r3, 0x294(r3)
 /* 80147E3C 00144D7C  38 00 FF FF */	li r0, -1
 /* 80147E40 00144D80  90 03 00 08 */	stw r0, 8(r3)
 /* 80147E44 00144D84  4E 80 00 20 */	blr 
+.endfn clearCurrAction__Q24Game4PikiFv
 
-.global getCurrActionID__Q24Game4PikiFv
-getCurrActionID__Q24Game4PikiFv:
+.fn getCurrActionID__Q24Game4PikiFv, global
 /* 80147E48 00144D88  80 63 02 94 */	lwz r3, 0x294(r3)
 /* 80147E4C 00144D8C  80 63 00 08 */	lwz r3, 8(r3)
 /* 80147E50 00144D90  4E 80 00 20 */	blr 
+.endfn getCurrActionID__Q24Game4PikiFv
 
-.global onInit__Q24Game4PikiFPQ24Game15CreatureInitArg
-onInit__Q24Game4PikiFPQ24Game15CreatureInitArg:
+.fn onInit__Q24Game4PikiFPQ24Game15CreatureInitArg, global
 /* 80147E54 00144D94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80147E58 00144D98  7C 08 02 A6 */	mflr r0
 /* 80147E5C 00144D9C  3C A0 80 48 */	lis r5, lbl_8047C880@ha
@@ -1014,9 +1053,9 @@ onInit__Q24Game4PikiFPQ24Game15CreatureInitArg:
 /* 801480C8 00145008  7C 08 03 A6 */	mtlr r0
 /* 801480CC 0014500C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801480D0 00145010  4E 80 00 20 */	blr 
+.endfn onInit__Q24Game4PikiFPQ24Game15CreatureInitArg
 
-.global "start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-"start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg":
+.fn "start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg", weak
 /* 801480D4 00145014  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801480D8 00145018  7C 08 02 A6 */	mflr r0
 /* 801480DC 0014501C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1030,9 +1069,9 @@ onInit__Q24Game4PikiFPQ24Game15CreatureInitArg:
 /* 801480FC 0014503C  7C 08 03 A6 */	mtlr r0
 /* 80148100 00145040  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148104 00145044  4E 80 00 20 */	blr 
+.endfn "start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
 
-.global onKill__Q24Game4PikiFPQ24Game15CreatureKillArg
-onKill__Q24Game4PikiFPQ24Game15CreatureKillArg:
+.fn onKill__Q24Game4PikiFPQ24Game15CreatureKillArg, global
 /* 80148108 00145048  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014810C 0014504C  7C 08 02 A6 */	mflr r0
 /* 80148110 00145050  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1270,13 +1309,13 @@ onKill__Q24Game4PikiFPQ24Game15CreatureKillArg:
 /* 80148488 001453C8  7C 08 03 A6 */	mtlr r0
 /* 8014848C 001453CC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80148490 001453D0  4E 80 00 20 */	blr 
+.endfn onKill__Q24Game4PikiFPQ24Game15CreatureKillArg
 
-.global cleanup__Q26PikiAI6ActionFv
-cleanup__Q26PikiAI6ActionFv:
+.fn cleanup__Q26PikiAI6ActionFv, weak
 /* 80148494 001453D4  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI6ActionFv
 
-.global onSetPosition__Q24Game4PikiFv
-onSetPosition__Q24Game4PikiFv:
+.fn onSetPosition__Q24Game4PikiFv, global
 /* 80148498 001453D8  C0 03 02 0C */	lfs f0, 0x20c(r3)
 /* 8014849C 001453DC  D0 03 02 18 */	stfs f0, 0x218(r3)
 /* 801484A0 001453E0  C0 03 02 10 */	lfs f0, 0x210(r3)
@@ -1284,9 +1323,9 @@ onSetPosition__Q24Game4PikiFv:
 /* 801484A8 001453E8  C0 03 02 14 */	lfs f0, 0x214(r3)
 /* 801484AC 001453EC  D0 03 02 20 */	stfs f0, 0x220(r3)
 /* 801484B0 001453F0  4E 80 00 20 */	blr 
+.endfn onSetPosition__Q24Game4PikiFv
 
-.global getLODSphere__Q24Game4PikiFRQ23Sys6Sphere
-getLODSphere__Q24Game4PikiFRQ23Sys6Sphere:
+.fn getLODSphere__Q24Game4PikiFRQ23Sys6Sphere, global
 /* 801484B4 001453F4  C0 23 02 0C */	lfs f1, 0x20c(r3)
 /* 801484B8 001453F8  C0 02 A0 C4 */	lfs f0, lbl_80518424@sda21(r2)
 /* 801484BC 001453FC  D0 24 00 00 */	stfs f1, 0(r4)
@@ -1296,9 +1335,9 @@ getLODSphere__Q24Game4PikiFRQ23Sys6Sphere:
 /* 801484CC 0014540C  D0 24 00 08 */	stfs f1, 8(r4)
 /* 801484D0 00145410  D0 04 00 0C */	stfs f0, 0xc(r4)
 /* 801484D4 00145414  4E 80 00 20 */	blr 
+.endfn getLODSphere__Q24Game4PikiFRQ23Sys6Sphere
 
-.global update__Q24Game4PikiFv
-update__Q24Game4PikiFv:
+.fn update__Q24Game4PikiFv, global
 /* 801484D8 00145418  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801484DC 0014541C  7C 08 02 A6 */	mflr r0
 /* 801484E0 00145420  38 82 A0 C8 */	addi r4, r2, lbl_80518428@sda21
@@ -1434,14 +1473,14 @@ update__Q24Game4PikiFv:
 /* 801486DC 0014561C  7C 08 03 A6 */	mtlr r0
 /* 801486E0 00145620  38 21 00 10 */	addi r1, r1, 0x10
 /* 801486E4 00145624  4E 80 00 20 */	blr 
+.endfn update__Q24Game4PikiFv
 
-.global dead__Q24Game9PikiStateFv
-dead__Q24Game9PikiStateFv:
+.fn dead__Q24Game9PikiStateFv, weak
 /* 801486E8 00145628  38 60 00 00 */	li r3, 0
 /* 801486EC 0014562C  4E 80 00 20 */	blr 
+.endfn dead__Q24Game9PikiStateFv
 
-.global isAlive__Q24Game4PikiFv
-isAlive__Q24Game4PikiFv:
+.fn isAlive__Q24Game4PikiFv, global
 /* 801486F0 00145630  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801486F4 00145634  7C 08 02 A6 */	mflr r0
 /* 801486F8 00145638  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1466,13 +1505,13 @@ isAlive__Q24Game4PikiFv:
 /* 8014873C 0014567C  7C 08 03 A6 */	mtlr r0
 /* 80148740 00145680  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148744 00145684  4E 80 00 20 */	blr 
+.endfn isAlive__Q24Game4PikiFv
 
-.global on_movie_begin__Q24Game4PikiFb
-on_movie_begin__Q24Game4PikiFb:
+.fn on_movie_begin__Q24Game4PikiFb, global
 /* 80148748 00145688  4E 80 00 20 */	blr 
+.endfn on_movie_begin__Q24Game4PikiFb
 
-.global on_movie_end__Q24Game4PikiFb
-on_movie_end__Q24Game4PikiFb:
+.fn on_movie_end__Q24Game4PikiFb, global
 /* 8014874C 0014568C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80148750 00145690  7C 08 02 A6 */	mflr r0
 /* 80148754 00145694  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1499,18 +1538,18 @@ on_movie_end__Q24Game4PikiFb:
 /* 801487A4 001456E4  7C 08 03 A6 */	mtlr r0
 /* 801487A8 001456E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801487AC 001456EC  4E 80 00 20 */	blr 
+.endfn on_movie_end__Q24Game4PikiFb
 
-.global getCreatureID__Q24Game4PikiFv
-getCreatureID__Q24Game4PikiFv:
+.fn getCreatureID__Q24Game4PikiFv, weak
 /* 801487B0 001456F0  80 63 02 C0 */	lwz r3, 0x2c0(r3)
 /* 801487B4 001456F4  4E 80 00 20 */	blr 
+.endfn getCreatureID__Q24Game4PikiFv
 
-.global movieUserCommand__Q24Game4PikiFUlPQ24Game11MoviePlayer
-movieUserCommand__Q24Game4PikiFUlPQ24Game11MoviePlayer:
+.fn movieUserCommand__Q24Game4PikiFUlPQ24Game11MoviePlayer, global
 /* 801487B8 001456F8  4E 80 00 20 */	blr 
+.endfn movieUserCommand__Q24Game4PikiFUlPQ24Game11MoviePlayer
 
-.global movieStartAnimation__Q24Game4PikiFUl
-movieStartAnimation__Q24Game4PikiFUl:
+.fn movieStartAnimation__Q24Game4PikiFUl, global
 /* 801487BC 001456FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801487C0 00145700  7C 08 02 A6 */	mflr r0
 /* 801487C4 00145704  7C 85 23 78 */	mr r5, r4
@@ -1525,9 +1564,9 @@ movieStartAnimation__Q24Game4PikiFUl:
 /* 801487E8 00145728  7C 08 03 A6 */	mtlr r0
 /* 801487EC 0014572C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801487F0 00145730  4E 80 00 20 */	blr 
+.endfn movieStartAnimation__Q24Game4PikiFUl
 
-.global movieStartDemoAnimation__Q24Game4PikiFPQ28SysShape8AnimInfo
-movieStartDemoAnimation__Q24Game4PikiFPQ28SysShape8AnimInfo:
+.fn movieStartDemoAnimation__Q24Game4PikiFPQ28SysShape8AnimInfo, global
 /* 801487F4 00145734  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801487F8 00145738  7C 08 02 A6 */	mflr r0
 /* 801487FC 0014573C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1546,9 +1585,9 @@ movieStartDemoAnimation__Q24Game4PikiFPQ28SysShape8AnimInfo:
 /* 80148830 00145770  7C 08 03 A6 */	mtlr r0
 /* 80148834 00145774  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148838 00145778  4E 80 00 20 */	blr 
+.endfn movieStartDemoAnimation__Q24Game4PikiFPQ28SysShape8AnimInfo
 
-.global "movieSetTranslation__Q24Game4PikiFR10Vector3<f>f"
-"movieSetTranslation__Q24Game4PikiFR10Vector3<f>f":
+.fn "movieSetTranslation__Q24Game4PikiFR10Vector3<f>f", global
 /* 8014883C 0014577C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80148840 00145780  7C 08 02 A6 */	mflr r0
 /* 80148844 00145784  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1583,14 +1622,14 @@ movieStartDemoAnimation__Q24Game4PikiFPQ28SysShape8AnimInfo:
 /* 801488B8 001457F8  7C 08 03 A6 */	mtlr r0
 /* 801488BC 001457FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801488C0 00145800  4E 80 00 20 */	blr 
+.endfn "movieSetTranslation__Q24Game4PikiFR10Vector3<f>f"
 
-.global "movieGotoPosition__Q24Game4PikiFR10Vector3<f>"
-"movieGotoPosition__Q24Game4PikiFR10Vector3<f>":
+.fn "movieGotoPosition__Q24Game4PikiFR10Vector3<f>", global
 /* 801488C4 00145804  38 60 00 00 */	li r3, 0
 /* 801488C8 00145808  4E 80 00 20 */	blr 
+.endfn "movieGotoPosition__Q24Game4PikiFR10Vector3<f>"
 
-.global startSound__Q24Game4PikiFUlb
-startSound__Q24Game4PikiFUlb:
+.fn startSound__Q24Game4PikiFUlb, global
 /* 801488CC 0014580C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801488D0 00145810  7C 08 02 A6 */	mflr r0
 /* 801488D4 00145814  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1609,9 +1648,9 @@ startSound__Q24Game4PikiFUlb:
 /* 80148900 00145840  7C 08 03 A6 */	mtlr r0
 /* 80148904 00145844  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148908 00145848  4E 80 00 20 */	blr 
+.endfn startSound__Q24Game4PikiFUlb
 
-.global startSound__Q24Game4PikiFUlQ36PSGame5SeMgr7SetSeId
-startSound__Q24Game4PikiFUlQ36PSGame5SeMgr7SetSeId:
+.fn startSound__Q24Game4PikiFUlQ36PSGame5SeMgr7SetSeId, global
 /* 8014890C 0014584C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80148910 00145850  7C 08 02 A6 */	mflr r0
 /* 80148914 00145854  2C 05 00 08 */	cmpwi r5, 8
@@ -1632,9 +1671,9 @@ startSound__Q24Game4PikiFUlQ36PSGame5SeMgr7SetSeId:
 /* 80148948 00145888  7C 08 03 A6 */	mtlr r0
 /* 8014894C 0014588C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148950 00145890  4E 80 00 20 */	blr 
+.endfn startSound__Q24Game4PikiFUlQ36PSGame5SeMgr7SetSeId
 
-.global startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-startSound__Q24Game4PikiFPQ24Game8CreatureUlb:
+.fn startSound__Q24Game4PikiFPQ24Game8CreatureUlb, global
 /* 80148954 00145894  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80148958 00145898  7C 08 02 A6 */	mflr r0
 /* 8014895C 0014589C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1665,9 +1704,9 @@ startSound__Q24Game4PikiFPQ24Game8CreatureUlb:
 /* 801489B8 001458F8  7C 08 03 A6 */	mtlr r0
 /* 801489BC 001458FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801489C0 00145900  4E 80 00 20 */	blr 
+.endfn startSound__Q24Game4PikiFPQ24Game8CreatureUlb
 
-.global startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId:
+.fn startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId, global
 /* 801489C4 00145904  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801489C8 00145908  7C 08 02 A6 */	mflr r0
 /* 801489CC 0014590C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1721,22 +1760,22 @@ startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId:
 /* 80148A84 001459C4  7C 08 03 A6 */	mtlr r0
 /* 80148A88 001459C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80148A8C 001459CC  4E 80 00 20 */	blr 
+.endfn startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
 
-.global getJAIObject__Q24Game4PikiFv
-getJAIObject__Q24Game4PikiFv:
+.fn getJAIObject__Q24Game4PikiFv, global
 /* 80148A90 001459D0  80 63 02 50 */	lwz r3, 0x250(r3)
 /* 80148A94 001459D4  28 03 00 00 */	cmplwi r3, 0
 /* 80148A98 001459D8  4D 82 00 20 */	beqlr 
 /* 80148A9C 001459DC  38 63 00 30 */	addi r3, r3, 0x30
 /* 80148AA0 001459E0  4E 80 00 20 */	blr 
+.endfn getJAIObject__Q24Game4PikiFv
 
-.global getPSCreature__Q24Game4PikiFv
-getPSCreature__Q24Game4PikiFv:
+.fn getPSCreature__Q24Game4PikiFv, global
 /* 80148AA4 001459E4  80 63 02 50 */	lwz r3, 0x250(r3)
 /* 80148AA8 001459E8  4E 80 00 20 */	blr 
+.endfn getPSCreature__Q24Game4PikiFv
 
-.global canVsBattle__Q24Game4PikiFv
-canVsBattle__Q24Game4PikiFv:
+.fn canVsBattle__Q24Game4PikiFv, global
 /* 80148AAC 001459EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80148AB0 001459F0  7C 08 02 A6 */	mflr r0
 /* 80148AB4 001459F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1749,14 +1788,14 @@ canVsBattle__Q24Game4PikiFv:
 /* 80148AD0 00145A10  7C 08 03 A6 */	mtlr r0
 /* 80148AD4 00145A14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148AD8 00145A18  4E 80 00 20 */	blr 
+.endfn canVsBattle__Q24Game4PikiFv
 
-.global battleOK__Q24Game9PikiStateFv
-battleOK__Q24Game9PikiStateFv:
+.fn battleOK__Q24Game9PikiStateFv, weak
 /* 80148ADC 00145A1C  38 60 00 00 */	li r3, 0
 /* 80148AE0 00145A20  4E 80 00 20 */	blr 
+.endfn battleOK__Q24Game9PikiStateFv
 
-.global getVsBattlePiki__Q24Game4PikiFv
-getVsBattlePiki__Q24Game4PikiFv:
+.fn getVsBattlePiki__Q24Game4PikiFv, global
 /* 80148AE4 00145A24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80148AE8 00145A28  7C 08 02 A6 */	mflr r0
 /* 80148AEC 00145A2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1774,9 +1813,9 @@ getVsBattlePiki__Q24Game4PikiFv:
 /* 80148B14 00145A54  7C 08 03 A6 */	mtlr r0
 /* 80148B18 00145A58  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148B1C 00145A5C  4E 80 00 20 */	blr 
+.endfn getVsBattlePiki__Q24Game4PikiFv
 
-.global attachRadar__Q24Game4PikiFb
-attachRadar__Q24Game4PikiFb:
+.fn attachRadar__Q24Game4PikiFb, global
 /* 80148B20 00145A60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80148B24 00145A64  7C 08 02 A6 */	mflr r0
 /* 80148B28 00145A68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1829,9 +1868,9 @@ attachRadar__Q24Game4PikiFb:
 /* 80148BC4 00145B04  7C 08 03 A6 */	mtlr r0
 /* 80148BC8 00145B08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148BCC 00145B0C  4E 80 00 20 */	blr 
+.endfn attachRadar__Q24Game4PikiFb
 
-.global inWaterCallback__Q24Game4PikiFPQ24Game8WaterBox
-inWaterCallback__Q24Game4PikiFPQ24Game8WaterBox:
+.fn inWaterCallback__Q24Game4PikiFPQ24Game8WaterBox, global
 /* 80148BD0 00145B10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80148BD4 00145B14  7C 08 02 A6 */	mflr r0
 /* 80148BD8 00145B18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1917,9 +1956,9 @@ inWaterCallback__Q24Game4PikiFPQ24Game8WaterBox:
 /* 80148D0C 00145C4C  7C 08 03 A6 */	mtlr r0
 /* 80148D10 00145C50  38 21 00 20 */	addi r1, r1, 0x20
 /* 80148D14 00145C54  4E 80 00 20 */	blr 
+.endfn inWaterCallback__Q24Game4PikiFPQ24Game8WaterBox
 
-.global outWaterCallback__Q24Game4PikiFv
-outWaterCallback__Q24Game4PikiFv:
+.fn outWaterCallback__Q24Game4PikiFv, global
 /* 80148D18 00145C58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80148D1C 00145C5C  7C 08 02 A6 */	mflr r0
 /* 80148D20 00145C60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1947,13 +1986,13 @@ outWaterCallback__Q24Game4PikiFv:
 /* 80148D74 00145CB4  7C 08 03 A6 */	mtlr r0
 /* 80148D78 00145CB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148D7C 00145CBC  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q24Game4PikiFv
 
-.global outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki:
+.fn outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki, weak
 /* 80148D80 00145CC0  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
 
-.global might_bury__Q24Game4PikiFv
-might_bury__Q24Game4PikiFv:
+.fn might_bury__Q24Game4PikiFv, global
 /* 80148D84 00145CC4  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80148D88 00145CC8  7C 08 02 A6 */	mflr r0
 /* 80148D8C 00145CCC  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -2047,17 +2086,17 @@ might_bury__Q24Game4PikiFv:
 /* 80148ECC 00145E0C  7C 08 03 A6 */	mtlr r0
 /* 80148ED0 00145E10  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80148ED4 00145E14  4E 80 00 20 */	blr 
+.endfn might_bury__Q24Game4PikiFv
 
-.global surviveDayEnd__Q24Game4PikiFv
-surviveDayEnd__Q24Game4PikiFv:
+.fn surviveDayEnd__Q24Game4PikiFv, global
 /* 80148ED8 00145E18  80 63 02 94 */	lwz r3, 0x294(r3)
 /* 80148EDC 00145E1C  80 03 00 08 */	lwz r0, 8(r3)
 /* 80148EE0 00145E20  7C 00 00 34 */	cntlzw r0, r0
 /* 80148EE4 00145E24  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80148EE8 00145E28  4E 80 00 20 */	blr 
+.endfn surviveDayEnd__Q24Game4PikiFv
 
-.global onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent, global
 /* 80148EEC 00145E2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80148EF0 00145E30  7C 08 02 A6 */	mflr r0
 /* 80148EF4 00145E34  7C 66 1B 78 */	mr r6, r3
@@ -2076,13 +2115,13 @@ onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent:
 /* 80148F24 00145E64  7C 08 03 A6 */	mtlr r0
 /* 80148F28 00145E68  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148F2C 00145E6C  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent
 
-.global onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, weak
 /* 80148F30 00145E70  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global getStateID__Q24Game4PikiFv
-getStateID__Q24Game4PikiFv:
+.fn getStateID__Q24Game4PikiFv, global
 /* 80148F34 00145E74  80 63 02 90 */	lwz r3, 0x290(r3)
 /* 80148F38 00145E78  28 03 00 00 */	cmplwi r3, 0
 /* 80148F3C 00145E7C  41 82 00 0C */	beq .L_80148F48
@@ -2091,9 +2130,9 @@ getStateID__Q24Game4PikiFv:
 .L_80148F48:
 /* 80148F48 00145E88  38 60 FF FF */	li r3, -1
 /* 80148F4C 00145E8C  4E 80 00 20 */	blr 
+.endfn getStateID__Q24Game4PikiFv
 
-.global getSpeed__Q24Game4PikiFf
-getSpeed__Q24Game4PikiFf:
+.fn getSpeed__Q24Game4PikiFf, global
 /* 80148F50 00145E90  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80148F54 00145E94  7C 08 02 A6 */	mflr r0
 /* 80148F58 00145E98  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2149,9 +2188,9 @@ getSpeed__Q24Game4PikiFf:
 /* 8014900C 00145F4C  7C 08 03 A6 */	mtlr r0
 /* 80149010 00145F50  38 21 00 20 */	addi r1, r1, 0x20
 /* 80149014 00145F54  4E 80 00 20 */	blr 
+.endfn getSpeed__Q24Game4PikiFf
 
-.global "setSpeed__Q24Game4PikiFfR10Vector3<f>"
-"setSpeed__Q24Game4PikiFfR10Vector3<f>":
+.fn "setSpeed__Q24Game4PikiFfR10Vector3<f>", global
 /* 80149018 00145F58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014901C 00145F5C  7C 08 02 A6 */	mflr r0
 /* 80149020 00145F60  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2276,9 +2315,9 @@ getSpeed__Q24Game4PikiFf:
 /* 801491CC 0014610C  7C 08 03 A6 */	mtlr r0
 /* 801491D0 00146110  38 21 00 20 */	addi r1, r1, 0x20
 /* 801491D4 00146114  4E 80 00 20 */	blr 
+.endfn "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 
-.global "setSpeed__Q24Game4PikiFfR10Vector3<f>f"
-"setSpeed__Q24Game4PikiFfR10Vector3<f>f":
+.fn "setSpeed__Q24Game4PikiFfR10Vector3<f>f", global
 /* 801491D8 00146118  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801491DC 0014611C  7C 08 02 A6 */	mflr r0
 /* 801491E0 00146120  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2426,9 +2465,9 @@ getSpeed__Q24Game4PikiFf:
 /* 801493D8 00146318  7C 08 03 A6 */	mtlr r0
 /* 801493DC 0014631C  38 21 00 30 */	addi r1, r1, 0x30
 /* 801493E0 00146320  4E 80 00 20 */	blr 
+.endfn "setSpeed__Q24Game4PikiFfR10Vector3<f>f"
 
-.global isPikmin__Q24Game4PikiFv
-isPikmin__Q24Game4PikiFv:
+.fn isPikmin__Q24Game4PikiFv, global
 /* 801493E4 00146324  88 0D 84 6D */	lbz r0, sTekiChappyFlag__Q24Game12BaseHIOParms@sda21(r13)
 /* 801493E8 00146328  28 00 00 00 */	cmplwi r0, 0
 /* 801493EC 0014632C  41 82 00 18 */	beq .L_80149404
@@ -2447,9 +2486,9 @@ isPikmin__Q24Game4PikiFv:
 .L_8014941C:
 /* 8014941C 0014635C  38 60 00 01 */	li r3, 1
 /* 80149420 00146360  4E 80 00 20 */	blr 
+.endfn isPikmin__Q24Game4PikiFv
 
-.global isThrowable__Q24Game4PikiFv
-isThrowable__Q24Game4PikiFv:
+.fn isThrowable__Q24Game4PikiFv, global
 /* 80149424 00146364  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149428 00146368  7C 08 02 A6 */	mflr r0
 /* 8014942C 0014636C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2471,14 +2510,14 @@ isThrowable__Q24Game4PikiFv:
 /* 80149464 001463A4  7C 08 03 A6 */	mtlr r0
 /* 80149468 001463A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014946C 001463AC  4E 80 00 20 */	blr 
+.endfn isThrowable__Q24Game4PikiFv
 
-.global throwable__Q24Game9PikiStateFv
-throwable__Q24Game9PikiStateFv:
+.fn throwable__Q24Game9PikiStateFv, weak
 /* 80149470 001463B0  38 60 00 00 */	li r3, 0
 /* 80149474 001463B4  4E 80 00 20 */	blr 
+.endfn throwable__Q24Game9PikiStateFv
 
-.global getDownfloorMass__Q24Game4PikiFv
-getDownfloorMass__Q24Game4PikiFv:
+.fn getDownfloorMass__Q24Game4PikiFv, global
 /* 80149478 001463B8  80 83 02 90 */	lwz r4, 0x290(r3)
 /* 8014947C 001463BC  28 04 00 00 */	cmplwi r4, 0
 /* 80149480 001463C0  41 82 00 0C */	beq .L_8014948C
@@ -2498,31 +2537,31 @@ getDownfloorMass__Q24Game4PikiFv:
 /* 801494AC 001463EC  4C 82 00 20 */	bnelr 
 /* 801494B0 001463F0  38 60 00 0A */	li r3, 0xa
 /* 801494B4 001463F4  4E 80 00 20 */	blr 
+.endfn getDownfloorMass__Q24Game4PikiFv
 
-.global gasInvicible__Q24Game4PikiFv
-gasInvicible__Q24Game4PikiFv:
+.fn gasInvicible__Q24Game4PikiFv, global
 /* 801494B8 001463F8  88 63 02 A6 */	lbz r3, 0x2a6(r3)
 /* 801494BC 001463FC  7C 03 00 D0 */	neg r0, r3
 /* 801494C0 00146400  7C 00 1B 78 */	or r0, r0, r3
 /* 801494C4 00146404  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 801494C8 00146408  4E 80 00 20 */	blr 
+.endfn gasInvicible__Q24Game4PikiFv
 
-.global setGasInvincible__Q24Game4PikiFUc
-setGasInvincible__Q24Game4PikiFUc:
+.fn setGasInvincible__Q24Game4PikiFUc, global
 /* 801494CC 0014640C  98 83 02 A6 */	stb r4, 0x2a6(r3)
 /* 801494D0 00146410  4E 80 00 20 */	blr 
+.endfn setGasInvincible__Q24Game4PikiFUc
 
-.global updateGasInvincible__Q24Game4PikiFv
-updateGasInvincible__Q24Game4PikiFv:
+.fn updateGasInvincible__Q24Game4PikiFv, global
 /* 801494D4 00146414  88 83 02 A6 */	lbz r4, 0x2a6(r3)
 /* 801494D8 00146418  28 04 00 00 */	cmplwi r4, 0
 /* 801494DC 0014641C  4D 82 00 20 */	beqlr 
 /* 801494E0 00146420  38 04 FF FF */	addi r0, r4, -1
 /* 801494E4 00146424  98 03 02 A6 */	stb r0, 0x2a6(r3)
 /* 801494E8 00146428  4E 80 00 20 */	blr 
+.endfn updateGasInvincible__Q24Game4PikiFv
 
-.global getAttackDamage__Q24Game4PikiFv
-getAttackDamage__Q24Game4PikiFv:
+.fn getAttackDamage__Q24Game4PikiFv, global
 /* 801494EC 0014642C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801494F0 00146430  7C 08 02 A6 */	mflr r0
 /* 801494F4 00146434  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2595,9 +2634,9 @@ getAttackDamage__Q24Game4PikiFv:
 /* 801495D8 00146518  7C 08 03 A6 */	mtlr r0
 /* 801495DC 0014651C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801495E0 00146520  4E 80 00 20 */	blr 
+.endfn getAttackDamage__Q24Game4PikiFv
 
-.global getThrowHeight__Q24Game4PikiFv
-getThrowHeight__Q24Game4PikiFv:
+.fn getThrowHeight__Q24Game4PikiFv, global
 /* 801495E4 00146524  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801495E8 00146528  7C 08 02 A6 */	mflr r0
 /* 801495EC 0014652C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2654,9 +2693,9 @@ getThrowHeight__Q24Game4PikiFv:
 /* 80149698 001465D8  7C 08 03 A6 */	mtlr r0
 /* 8014969C 001465DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801496A0 001465E0  4E 80 00 20 */	blr 
+.endfn getThrowHeight__Q24Game4PikiFv
 
-.global getPelletCarryPower__Q24Game4PikiFv
-getPelletCarryPower__Q24Game4PikiFv:
+.fn getPelletCarryPower__Q24Game4PikiFv, global
 /* 801496A4 001465E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801496A8 001465E8  7C 08 02 A6 */	mflr r0
 /* 801496AC 001465EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2713,13 +2752,13 @@ getPelletCarryPower__Q24Game4PikiFv:
 /* 8014975C 0014669C  7C 08 03 A6 */	mtlr r0
 /* 80149760 001466A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80149764 001466A4  4E 80 00 20 */	blr 
+.endfn getPelletCarryPower__Q24Game4PikiFv
 
-.global onStickStartSelf__Q24Game4PikiFPQ24Game8Creature
-onStickStartSelf__Q24Game4PikiFPQ24Game8Creature:
+.fn onStickStartSelf__Q24Game4PikiFPQ24Game8Creature, global
 /* 80149768 001466A8  4E 80 00 20 */	blr 
+.endfn onStickStartSelf__Q24Game4PikiFPQ24Game8Creature
 
-.global onStickEndSelf__Q24Game4PikiFPQ24Game8Creature
-onStickEndSelf__Q24Game4PikiFPQ24Game8Creature:
+.fn onStickEndSelf__Q24Game4PikiFPQ24Game8Creature, global
 /* 8014976C 001466AC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80149770 001466B0  7C 08 02 A6 */	mflr r0
 /* 80149774 001466B4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2779,9 +2818,9 @@ onStickEndSelf__Q24Game4PikiFPQ24Game8Creature:
 /* 80149848 00146788  7C 08 03 A6 */	mtlr r0
 /* 8014984C 0014678C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80149850 00146790  4E 80 00 20 */	blr 
+.endfn onStickEndSelf__Q24Game4PikiFPQ24Game8Creature
 
-.global stimulate__Q24Game4PikiFRQ24Game11Interaction
-stimulate__Q24Game4PikiFRQ24Game11Interaction:
+.fn stimulate__Q24Game4PikiFRQ24Game11Interaction, global
 /* 80149854 00146794  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149858 00146798  7C 08 02 A6 */	mflr r0
 /* 8014985C 0014679C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2819,9 +2858,9 @@ stimulate__Q24Game4PikiFRQ24Game11Interaction:
 /* 801498D0 00146810  7C 08 03 A6 */	mtlr r0
 /* 801498D4 00146814  38 21 00 10 */	addi r1, r1, 0x10
 /* 801498D8 00146818  4E 80 00 20 */	blr 
+.endfn stimulate__Q24Game4PikiFRQ24Game11Interaction
 
-.global bounceCallback__Q24Game4PikiFPQ23Sys8Triangle
-bounceCallback__Q24Game4PikiFPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game4PikiFPQ23Sys8Triangle, global
 /* 801498DC 0014681C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801498E0 00146820  7C 08 02 A6 */	mflr r0
 /* 801498E4 00146824  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2865,22 +2904,22 @@ bounceCallback__Q24Game4PikiFPQ23Sys8Triangle:
 /* 80149974 001468B4  7C 08 03 A6 */	mtlr r0
 /* 80149978 001468B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014997C 001468BC  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game4PikiFPQ23Sys8Triangle
 
-.global bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle, weak
 /* 80149980 001468C0  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
 
-.global aiActive__Q24Game9PikiStateFv
-aiActive__Q24Game9PikiStateFv:
+.fn aiActive__Q24Game9PikiStateFv, weak
 /* 80149984 001468C4  38 60 00 00 */	li r3, 0
 /* 80149988 001468C8  4E 80 00 20 */	blr 
+.endfn aiActive__Q24Game9PikiStateFv
 
-.global bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle, weak
 /* 8014998C 001468CC  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
 
-.global "wallCallback__Q24Game4PikiFR10Vector3<f>"
-"wallCallback__Q24Game4PikiFR10Vector3<f>":
+.fn "wallCallback__Q24Game4PikiFR10Vector3<f>", global
 /* 80149990 001468D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149994 001468D4  7C 08 02 A6 */	mflr r0
 /* 80149998 001468D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2923,17 +2962,17 @@ bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 80149A24 00146964  7C 08 03 A6 */	mtlr r0
 /* 80149A28 00146968  38 21 00 10 */	addi r1, r1, 0x10
 /* 80149A2C 0014696C  4E 80 00 20 */	blr 
+.endfn "wallCallback__Q24Game4PikiFR10Vector3<f>"
 
-.global "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
-"wallCallback__Q26PikiAI6ActionFR10Vector3<f>":
+.fn "wallCallback__Q26PikiAI6ActionFR10Vector3<f>", weak
 /* 80149A30 00146970  4E 80 00 20 */	blr 
+.endfn "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 
-.global "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-"wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>":
+.fn "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>", weak
 /* 80149A34 00146974  4E 80 00 20 */	blr 
+.endfn "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
 
-.global collisionCallback__Q24Game4PikiFRQ24Game9CollEvent
-collisionCallback__Q24Game4PikiFRQ24Game9CollEvent:
+.fn collisionCallback__Q24Game4PikiFRQ24Game9CollEvent, global
 /* 80149A38 00146978  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149A3C 0014697C  7C 08 02 A6 */	mflr r0
 /* 80149A40 00146980  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2979,17 +3018,17 @@ collisionCallback__Q24Game4PikiFRQ24Game9CollEvent:
 /* 80149AD8 00146A18  7C 08 03 A6 */	mtlr r0
 /* 80149ADC 00146A1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80149AE0 00146A20  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q24Game4PikiFRQ24Game9CollEvent
 
-.global collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent, weak
 /* 80149AE4 00146A24  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
 
-.global collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent, weak
 /* 80149AE8 00146A28  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent
 
-.global platCallback__Q24Game4PikiFRQ24Game9PlatEvent
-platCallback__Q24Game4PikiFRQ24Game9PlatEvent:
+.fn platCallback__Q24Game4PikiFRQ24Game9PlatEvent, global
 /* 80149AEC 00146A2C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80149AF0 00146A30  7C 08 02 A6 */	mflr r0
 /* 80149AF4 00146A34  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3087,17 +3126,17 @@ platCallback__Q24Game4PikiFRQ24Game9PlatEvent:
 /* 80149C58 00146B98  7C 08 03 A6 */	mtlr r0
 /* 80149C5C 00146B9C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80149C60 00146BA0  4E 80 00 20 */	blr 
+.endfn platCallback__Q24Game4PikiFRQ24Game9PlatEvent
 
-.global platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
-platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent:
+.fn platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent, weak
 /* 80149C64 00146BA4  4E 80 00 20 */	blr 
+.endfn platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
 
-.global platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent
-platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent:
+.fn platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent, weak
 /* 80149C68 00146BA8  4E 80 00 20 */	blr 
+.endfn platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent
 
-.global ignoreAtari__Q24Game4PikiFPQ24Game8Creature
-ignoreAtari__Q24Game4PikiFPQ24Game8Creature:
+.fn ignoreAtari__Q24Game4PikiFPQ24Game8Creature, global
 /* 80149C6C 00146BAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149C70 00146BB0  7C 08 02 A6 */	mflr r0
 /* 80149C74 00146BB4  7C 66 1B 78 */	mr r6, r3
@@ -3119,14 +3158,14 @@ ignoreAtari__Q24Game4PikiFPQ24Game8Creature:
 /* 80149CB0 00146BF0  7C 08 03 A6 */	mtlr r0
 /* 80149CB4 00146BF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80149CB8 00146BF8  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q24Game4PikiFPQ24Game8Creature
 
-.global ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature:
+.fn ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature, weak
 /* 80149CBC 00146BFC  38 60 00 00 */	li r3, 0
 /* 80149CC0 00146C00  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
 
-.global setFreeLightEffect__Q24Game4PikiFb
-setFreeLightEffect__Q24Game4PikiFb:
+.fn setFreeLightEffect__Q24Game4PikiFb, global
 /* 80149CC4 00146C04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149CC8 00146C08  7C 08 02 A6 */	mflr r0
 /* 80149CCC 00146C0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3153,9 +3192,9 @@ setFreeLightEffect__Q24Game4PikiFb:
 /* 80149D18 00146C58  7C 08 03 A6 */	mtlr r0
 /* 80149D1C 00146C5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80149D20 00146C60  4E 80 00 20 */	blr 
+.endfn setFreeLightEffect__Q24Game4PikiFb
 
-.global setDopeEffect__Q24Game4PikiFb
-setDopeEffect__Q24Game4PikiFb:
+.fn setDopeEffect__Q24Game4PikiFb, global
 /* 80149D24 00146C64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149D28 00146C68  7C 08 02 A6 */	mflr r0
 /* 80149D2C 00146C6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3191,9 +3230,9 @@ setDopeEffect__Q24Game4PikiFb:
 /* 80149D9C 00146CDC  7C 08 03 A6 */	mtlr r0
 /* 80149DA0 00146CE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80149DA4 00146CE4  4E 80 00 20 */	blr 
+.endfn setDopeEffect__Q24Game4PikiFb
 
-.global clearDope__Q24Game4PikiFv
-clearDope__Q24Game4PikiFv:
+.fn clearDope__Q24Game4PikiFv, global
 /* 80149DA8 00146CE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149DAC 00146CEC  7C 08 02 A6 */	mflr r0
 /* 80149DB0 00146CF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3230,17 +3269,17 @@ clearDope__Q24Game4PikiFv:
 /* 80149E24 00146D64  7C 08 03 A6 */	mtlr r0
 /* 80149E28 00146D68  38 21 00 10 */	addi r1, r1, 0x10
 /* 80149E2C 00146D6C  4E 80 00 20 */	blr 
+.endfn clearDope__Q24Game4PikiFv
 
-.global extendDopeTime__Q24Game4PikiFv
-extendDopeTime__Q24Game4PikiFv:
+.fn extendDopeTime__Q24Game4PikiFv, global
 /* 80149E30 00146D70  80 8D 92 F4 */	lwz r4, pikiMgr__4Game@sda21(r13)
 /* 80149E34 00146D74  80 84 00 6C */	lwz r4, 0x6c(r4)
 /* 80149E38 00146D78  C0 04 11 50 */	lfs f0, 0x1150(r4)
 /* 80149E3C 00146D7C  D0 03 02 88 */	stfs f0, 0x288(r3)
 /* 80149E40 00146D80  4E 80 00 20 */	blr 
+.endfn extendDopeTime__Q24Game4PikiFv
 
-.global startDope__Q24Game4PikiFi
-startDope__Q24Game4PikiFi:
+.fn startDope__Q24Game4PikiFi, global
 /* 80149E44 00146D84  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80149E48 00146D88  7C 08 02 A6 */	mflr r0
 /* 80149E4C 00146D8C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3348,18 +3387,18 @@ startDope__Q24Game4PikiFi:
 /* 80149FD4 00146F14  7C 08 03 A6 */	mtlr r0
 /* 80149FD8 00146F18  38 21 00 50 */	addi r1, r1, 0x50
 /* 80149FDC 00146F1C  4E 80 00 20 */	blr 
+.endfn startDope__Q24Game4PikiFi
 
-.global doped__Q24Game4PikiFv
-doped__Q24Game4PikiFv:
+.fn doped__Q24Game4PikiFv, global
 /* 80149FE0 00146F20  A8 83 02 84 */	lha r4, 0x284(r3)
 /* 80149FE4 00146F24  20 64 FF FF */	subfic r3, r4, -1
 /* 80149FE8 00146F28  38 04 00 01 */	addi r0, r4, 1
 /* 80149FEC 00146F2C  7C 60 03 78 */	or r0, r3, r0
 /* 80149FF0 00146F30  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80149FF4 00146F34  4E 80 00 20 */	blr 
+.endfn doped__Q24Game4PikiFv
 
-.global initColor__Q24Game4PikiFv
-initColor__Q24Game4PikiFv:
+.fn initColor__Q24Game4PikiFv, global
 /* 80149FF8 00146F38  C0 02 A0 E0 */	lfs f0, lbl_80518440@sda21(r2)
 /* 80149FFC 00146F3C  3C 80 80 51 */	lis r4, pikiColors__Q24Game4Piki@ha
 /* 8014A000 00146F40  38 04 22 8C */	addi r0, r4, pikiColors__Q24Game4Piki@l
@@ -3376,9 +3415,9 @@ initColor__Q24Game4PikiFv:
 /* 8014A02C 00146F6C  88 04 00 03 */	lbz r0, 3(r4)
 /* 8014A030 00146F70  98 03 02 AA */	stb r0, 0x2aa(r3)
 /* 8014A034 00146F74  4E 80 00 20 */	blr 
+.endfn initColor__Q24Game4PikiFv
 
-.global setPastel__Q24Game4PikiFb
-setPastel__Q24Game4PikiFb:
+.fn setPastel__Q24Game4PikiFb, global
 /* 8014A038 00146F78  C0 02 A0 BC */	lfs f0, lbl_8051841C@sda21(r2)
 /* 8014A03C 00146F7C  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 8014A040 00146F80  3C 80 80 51 */	lis r4, pikiColors__Q24Game4Piki@ha
@@ -3447,9 +3486,9 @@ setPastel__Q24Game4PikiFb:
 /* 8014A12C 0014706C  88 03 02 AA */	lbz r0, 0x2aa(r3)
 /* 8014A130 00147070  98 03 02 AE */	stb r0, 0x2ae(r3)
 /* 8014A134 00147074  4E 80 00 20 */	blr 
+.endfn setPastel__Q24Game4PikiFb
 
-.global getShadowParam__Q24Game4PikiFRQ24Game11ShadowParam
-getShadowParam__Q24Game4PikiFRQ24Game11ShadowParam:
+.fn getShadowParam__Q24Game4PikiFRQ24Game11ShadowParam, global
 /* 8014A138 00147078  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014A13C 0014707C  7C 08 02 A6 */	mflr r0
 /* 8014A140 00147080  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3506,9 +3545,9 @@ getShadowParam__Q24Game4PikiFRQ24Game11ShadowParam:
 /* 8014A1FC 0014713C  7C 08 03 A6 */	mtlr r0
 /* 8014A200 00147140  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014A204 00147144  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q24Game4PikiFRQ24Game11ShadowParam
 
-.global isMyPikmin__Q24Game4PikiFPQ24Game8Creature
-isMyPikmin__Q24Game4PikiFPQ24Game8Creature:
+.fn isMyPikmin__Q24Game4PikiFPQ24Game8Creature, global
 /* 8014A208 00147148  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014A20C 0014714C  7C 08 02 A6 */	mflr r0
 /* 8014A210 00147150  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3544,18 +3583,18 @@ isMyPikmin__Q24Game4PikiFPQ24Game8Creature:
 /* 8014A27C 001471BC  7C 08 03 A6 */	mtlr r0
 /* 8014A280 001471C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014A284 001471C4  4E 80 00 20 */	blr 
+.endfn isMyPikmin__Q24Game4PikiFPQ24Game8Creature
 
-.global isTekiFollowAI__Q24Game4PikiFv
-isTekiFollowAI__Q24Game4PikiFv:
+.fn isTekiFollowAI__Q24Game4PikiFv, global
 /* 8014A288 001471C8  80 63 02 94 */	lwz r3, 0x294(r3)
 /* 8014A28C 001471CC  80 03 00 08 */	lwz r0, 8(r3)
 /* 8014A290 001471D0  20 00 00 0B */	subfic r0, r0, 0xb
 /* 8014A294 001471D4  7C 00 00 34 */	cntlzw r0, r0
 /* 8014A298 001471D8  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8014A29C 001471DC  4E 80 00 20 */	blr 
+.endfn isTekiFollowAI__Q24Game4PikiFv
 
-.global doColorChange__Q24Game4PikiFv
-doColorChange__Q24Game4PikiFv:
+.fn doColorChange__Q24Game4PikiFv, global
 /* 8014A2A0 001471E0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014A2A4 001471E4  7C 08 02 A6 */	mflr r0
 /* 8014A2A8 001471E8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3617,9 +3656,9 @@ doColorChange__Q24Game4PikiFv:
 /* 8014A380 001472C0  7C 08 03 A6 */	mtlr r0
 /* 8014A384 001472C4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014A388 001472C8  4E 80 00 20 */	blr 
+.endfn doColorChange__Q24Game4PikiFv
 
-.global doDebugDL__Q24Game4PikiFv
-doDebugDL__Q24Game4PikiFv:
+.fn doDebugDL__Q24Game4PikiFv, global
 /* 8014A38C 001472CC  80 63 01 74 */	lwz r3, 0x174(r3)
 /* 8014A390 001472D0  38 A0 00 00 */	li r5, 0
 /* 8014A394 001472D4  80 63 00 08 */	lwz r3, 8(r3)
@@ -3633,9 +3672,9 @@ doDebugDL__Q24Game4PikiFv:
 /* 8014A3AC 001472EC  7C 03 00 40 */	cmplw r3, r0
 /* 8014A3B0 001472F0  41 80 FF F0 */	blt .L_8014A3A0
 /* 8014A3B4 001472F4  4E 80 00 20 */	blr 
+.endfn doDebugDL__Q24Game4PikiFv
 
-.global startMotion__Q24Game4PikiFiiPQ28SysShape14MotionListenerPQ28SysShape14MotionListener
-startMotion__Q24Game4PikiFiiPQ28SysShape14MotionListenerPQ28SysShape14MotionListener:
+.fn startMotion__Q24Game4PikiFiiPQ28SysShape14MotionListenerPQ28SysShape14MotionListener, global
 /* 8014A3B8 001472F8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014A3BC 001472FC  7C 08 02 A6 */	mflr r0
 /* 8014A3C0 00147300  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3703,9 +3742,9 @@ startMotion__Q24Game4PikiFiiPQ28SysShape14MotionListenerPQ28SysShape14MotionList
 /* 8014A4A4 001473E4  7C 08 03 A6 */	mtlr r0
 /* 8014A4A8 001473E8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014A4AC 001473EC  4E 80 00 20 */	blr 
+.endfn startMotion__Q24Game4PikiFiiPQ28SysShape14MotionListenerPQ28SysShape14MotionListener
 
-.global doAnimation__Q24Game4PikiFv
-doAnimation__Q24Game4PikiFv:
+.fn doAnimation__Q24Game4PikiFv, global
 /* 8014A4B0 001473F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014A4B4 001473F4  7C 08 02 A6 */	mflr r0
 /* 8014A4B8 001473F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3765,13 +3804,13 @@ doAnimation__Q24Game4PikiFv:
 /* 8014A588 001474C8  7C 08 03 A6 */	mtlr r0
 /* 8014A58C 001474CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014A590 001474D0  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game4PikiFv
 
-.global doDirectDraw__Q24Game4PikiFR8Graphics
-doDirectDraw__Q24Game4PikiFR8Graphics:
+.fn doDirectDraw__Q24Game4PikiFR8Graphics, global
 /* 8014A594 001474D4  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game4PikiFR8Graphics
 
-.global getBaseScale__Q24Game4PikiFv
-getBaseScale__Q24Game4PikiFv:
+.fn getBaseScale__Q24Game4PikiFv, global
 /* 8014A598 001474D8  88 03 02 B8 */	lbz r0, 0x2b8(r3)
 /* 8014A59C 001474DC  C0 22 A0 E0 */	lfs f1, lbl_80518440@sda21(r2)
 /* 8014A5A0 001474E0  28 00 00 03 */	cmplwi r0, 3
@@ -3783,9 +3822,9 @@ getBaseScale__Q24Game4PikiFv:
 /* 8014A5B4 001474F4  4C 82 00 20 */	bnelr 
 /* 8014A5B8 001474F8  C0 22 A1 14 */	lfs f1, lbl_80518474@sda21(r2)
 /* 8014A5BC 001474FC  4E 80 00 20 */	blr 
+.endfn getBaseScale__Q24Game4PikiFv
 
-.global changeShape__Q24Game4PikiFi
-changeShape__Q24Game4PikiFi:
+.fn changeShape__Q24Game4PikiFi, global
 /* 8014A5C0 00147500  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014A5C4 00147504  7C 08 02 A6 */	mflr r0
 /* 8014A5C8 00147508  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3900,14 +3939,14 @@ changeShape__Q24Game4PikiFi:
 /* 8014A764 001476A4  7C 08 03 A6 */	mtlr r0
 /* 8014A768 001476A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014A76C 001476AC  4E 80 00 20 */	blr 
+.endfn changeShape__Q24Game4PikiFi
 
-.global changeHappa__Q24Game4PikiFi
-changeHappa__Q24Game4PikiFi:
+.fn changeHappa__Q24Game4PikiFi, global
 /* 8014A770 001476B0  98 83 02 B9 */	stb r4, 0x2b9(r3)
 /* 8014A774 001476B4  4E 80 00 20 */	blr 
+.endfn changeHappa__Q24Game4PikiFi
 
-.global do_updateLookCreature__Q24Game4PikiFv
-do_updateLookCreature__Q24Game4PikiFv:
+.fn do_updateLookCreature__Q24Game4PikiFv, global
 /* 8014A778 001476B8  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8014A77C 001476BC  7C 08 02 A6 */	mflr r0
 /* 8014A780 001476C0  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -4135,28 +4174,28 @@ do_updateLookCreature__Q24Game4PikiFv:
 /* 8014AAB0 001479F0  7C 08 03 A6 */	mtlr r0
 /* 8014AAB4 001479F4  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8014AAB8 001479F8  4E 80 00 20 */	blr 
+.endfn do_updateLookCreature__Q24Game4PikiFv
 
-.global setTekiKillID__Q24Game4PikiFi
-setTekiKillID__Q24Game4PikiFi:
+.fn setTekiKillID__Q24Game4PikiFi, global
 /* 8014AABC 001479FC  2C 04 00 62 */	cmpwi r4, 0x62
 /* 8014AAC0 00147A00  40 82 00 08 */	bne .L_8014AAC8
 /* 8014AAC4 00147A04  38 80 00 63 */	li r4, 0x63
 .L_8014AAC8:
 /* 8014AAC8 00147A08  B0 83 02 A4 */	sth r4, 0x2a4(r3)
 /* 8014AACC 00147A0C  4E 80 00 20 */	blr 
+.endfn setTekiKillID__Q24Game4PikiFi
 
-.global deferPikiCollision__Q24Game4PikiFv
-deferPikiCollision__Q24Game4PikiFv:
+.fn deferPikiCollision__Q24Game4PikiFv, weak
 /* 8014AAD0 00147A10  38 60 00 01 */	li r3, 1
 /* 8014AAD4 00147A14  4E 80 00 20 */	blr 
+.endfn deferPikiCollision__Q24Game4PikiFv
 
-.global getCreatureName__Q24Game4PikiFv
-getCreatureName__Q24Game4PikiFv:
+.fn getCreatureName__Q24Game4PikiFv, weak
 /* 8014AAD8 00147A18  38 62 A1 2C */	addi r3, r2, lbl_8051848C@sda21
 /* 8014AADC 00147A1C  4E 80 00 20 */	blr 
+.endfn getCreatureName__Q24Game4PikiFv
 
-.global "kill__27MonoObjectMgr<Q24Game4Piki>FPQ24Game4Piki"
-"kill__27MonoObjectMgr<Q24Game4Piki>FPQ24Game4Piki":
+.fn "kill__27MonoObjectMgr<Q24Game4Piki>FPQ24Game4Piki", weak
 /* 8014AAE0 00147A20  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 8014AAE4 00147A24  38 C0 00 00 */	li r6, 0
 /* 8014AAE8 00147A28  38 A0 00 00 */	li r5, 0
@@ -4180,13 +4219,13 @@ getCreatureName__Q24Game4PikiFv:
 /* 8014AB28 00147A68  38 C6 00 01 */	addi r6, r6, 1
 /* 8014AB2C 00147A6C  42 00 FF CC */	bdnz .L_8014AAF8
 /* 8014AB30 00147A70  4E 80 00 20 */	blr 
+.endfn "kill__27MonoObjectMgr<Q24Game4Piki>FPQ24Game4Piki"
 
-.global "init__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
-"init__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki":
+.fn "init__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki", weak
 /* 8014AB34 00147A74  4E 80 00 20 */	blr 
+.endfn "init__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
 
-.global "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-"transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg":
+.fn "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg", weak
 /* 8014AB38 00147A78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014AB3C 00147A7C  7C 08 02 A6 */	mflr r0
 /* 8014AB40 00147A80  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4229,17 +4268,17 @@ getCreatureName__Q24Game4PikiFv:
 /* 8014ABC8 00147B08  7C 08 03 A6 */	mtlr r0
 /* 8014ABCC 00147B0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014ABD0 00147B10  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
 
-.global "init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg"
-"init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg":
+.fn "init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg", weak
 /* 8014ABD4 00147B14  4E 80 00 20 */	blr 
+.endfn "init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg"
 
-.global "cleanup__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-"cleanup__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
+.fn "cleanup__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki", weak
 /* 8014ABD8 00147B18  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
 
-.global "exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
-"exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki":
+.fn "exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki", weak
 /* 8014ABDC 00147B1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014ABE0 00147B20  7C 08 02 A6 */	mflr r0
 /* 8014ABE4 00147B24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4255,10 +4294,11 @@ getCreatureName__Q24Game4PikiFv:
 /* 8014AC08 00147B48  7C 08 03 A6 */	mtlr r0
 /* 8014AC0C 00147B4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014AC10 00147B50  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
 
-.global "exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-"exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
+.fn "exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki", weak
 /* 8014AC14 00147B54  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
 
 .fn __sinit_piki_cpp, local
 /* 8014AC18 00147B58  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -4355,17 +4395,17 @@ getCreatureName__Q24Game4PikiFv:
 /* 8014AD84 00147CC4  4E 80 00 20 */	blr 
 .endfn __sinit_piki_cpp
 
-.global "@4@__dt__Q23efx7TPkMoeAFv"
-"@4@__dt__Q23efx7TPkMoeAFv":
+.fn "@4@__dt__Q23efx7TPkMoeAFv", weak
 /* 8014AD88 00147CC8  38 63 FF FC */	addi r3, r3, -4
 /* 8014AD8C 00147CCC  4B FF CE 4C */	b __dt__Q23efx7TPkMoeAFv
+.endfn "@4@__dt__Q23efx7TPkMoeAFv"
 
-.global "@4@__dt__Q23efx12TPkBlackDownFv"
-"@4@__dt__Q23efx12TPkBlackDownFv":
+.fn "@4@__dt__Q23efx12TPkBlackDownFv", weak
 /* 8014AD90 00147CD0  38 63 FF FC */	addi r3, r3, -4
 /* 8014AD94 00147CD4  4B FF CD A8 */	b __dt__Q23efx12TPkBlackDownFv
+.endfn "@4@__dt__Q23efx12TPkBlackDownFv"
 
-.global "@376@onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent", weak
 /* 8014AD98 00147CD8  38 63 FE 88 */	addi r3, r3, -376
 /* 8014AD9C 00147CDC  4B FF E1 50 */	b onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent
+.endfn "@376@onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent"

@@ -5,116 +5,136 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047B2C0:
+.obj lbl_8047B2C0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_8047B2CC:
-	.4byte 0x67616D65
-	.4byte 0x4C696768
-	.4byte 0x744D6772
-	.4byte 0x00000000
-lbl_8047B2DC:
-	.4byte 0x436F6C6F
-	.4byte 0x72506172
-	.4byte 0x6D730000
-lbl_8047B2E8:
+.endobj lbl_8047B2C0
+.balign 4
+.obj lbl_8047B2CC, local
+	.asciz "gameLightMgr"
+.endobj lbl_8047B2CC
+.balign 4
+.obj lbl_8047B2DC, local
+	.asciz "ColorParms"
+.endobj lbl_8047B2DC
+.balign 4
+.obj lbl_8047B2E8, local # Shift-JIS
 	.4byte 0x8341838B
 	.4byte 0x83748340
-	.4byte 0x00000000
-	.4byte 0x47616D65
-	.4byte 0x466F6750
-	.4byte 0x61726D73
-	.4byte 0x00000000
-	.4byte 0x4D6F7665
-	.4byte 0x5061726D
-	.4byte 0x73000000
+	.byte 0
+.endobj lbl_8047B2E8
+.balign 4
+.obj lbl_8047B2F4, local
+	.asciz "GameFogParms"
+.endobj lbl_8047B2F4
+.balign 4
+.obj lbl_8047B304, local
+	.asciz "MoveParms"
+.endobj lbl_8047B304
+.balign 4
+.obj lbl_8047B310, local # Shift-JIS
 	.4byte 0x8CF58CB9
 	.4byte 0x82DC82C5
 	.4byte 0x82CC8B97
 	.4byte 0x97A30000
+.endobj lbl_8047B310
+.balign 4
+.obj lbl_8047B320, local # Shift-JIS
 	.4byte 0x93FA82CC
 	.4byte 0x8F6F8A70
 	.4byte 0x93780000
+.endobj lbl_8047B320
+.balign 4
+.obj lbl_8047B32C, local # Shift-JIS
 	.4byte 0x93FA82CC
 	.4byte 0x93FC8A70
 	.4byte 0x93780000
-	.4byte 0x53706F74
-	.4byte 0x5061726D
-	.4byte 0x73000000
+.endobj lbl_8047B32C
+.balign 4
+.obj lbl_8047B338, local
+	.asciz "SpotParms"
+.endobj lbl_8047B338
+.balign 4
+.obj lbl_8047B344, local # Shift-JIS
 	.4byte 0x834A8362
 	.4byte 0x83678349
 	.4byte 0x83740000
+.endobj lbl_8047B344
+.balign 4
+.obj lbl_8047B350, local # Shift-JIS
 	.4byte 0x91BE977A
 	.4byte 0x835E8343
 	.4byte 0x837690DD
 	.4byte 0x92E80000
+.endobj lbl_8047B350
+.balign 4
+.obj lbl_8047B360, local # Shift-JIS
 	.4byte 0x89F99286
 	.4byte 0x93649394
 	.4byte 0x8341838A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047B360
+.balign 4
+.obj lbl_8047B370, local # Shift-JIS
 	.4byte 0x89F99286
 	.4byte 0x93649394
 	.4byte 0x83698356
-	.4byte 0x00000000
-lbl_8047B380:
-	.4byte 0x67616D65
-	.4byte 0x4C696768
-	.4byte 0x744D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
-lbl_8047B394:
-	.4byte 0x556E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x76657273
-	.4byte 0x696F6E20
-	.4byte 0x5B253038
-	.4byte 0x785D0000
+	.byte 0
+.endobj lbl_8047B370
+.balign 4
+.obj lbl_8047B380, local
+	.asciz "gameLightMgr.cpp"
+.endobj lbl_8047B380
+.balign 4
+.obj lbl_8047B394, local
+	.asciz "Unknown version [%08x]"
+.endobj lbl_8047B394
+.balign 4
+.obj lbl_8047B3AC, local # Shift-JIS
 	.4byte 0x83818343
 	.4byte 0x83938389
 	.4byte 0x83438367
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047B3AC
+.balign 4
+.obj lbl_8047B3BC, local # Shift-JIS
 	.4byte 0x83548375
 	.4byte 0x83898343
 	.4byte 0x83670000
+.endobj lbl_8047B3BC
+.balign 4
+.obj lbl_8047B3C8, local # Shift-JIS
 	.4byte 0x83588379
 	.4byte 0x834C8385
 	.4byte 0x83892D83
 	.4byte 0x89834383
-	.4byte 0x67000000
-	.4byte 0x2F757365
-	.4byte 0x722F5961
-	.4byte 0x6D617368
-	.4byte 0x6974612F
-	.4byte 0x74657374
-	.4byte 0x5265736F
-	.4byte 0x75726365
-	.4byte 0x2F6C6967
-	.4byte 0x68742F6C
-	.4byte 0x69676874
-	.4byte 0x2E696E69
-	.4byte 0x00000000
-lbl_8047B40C:
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x76702D69
-	.4byte 0x64202825
-	.4byte 0x64290A00
+	.2byte 0x6700
+.endobj lbl_8047B3C8
+.balign 4
+.obj lbl_8047B3DC, local
+	.asciz "/user/Yamashita/testResource/light/light.ini"
+.endobj lbl_8047B3DC
+.balign 4
+.obj lbl_8047B40C, local
+	.asciz "illegal vp-id (%d)\n"
+.endobj lbl_8047B40C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-"GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@": # local object
+.endobj govNAN___Q24Game5P2JST
+.obj "GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@", local
 	.4byte lbl_80517C00
 	.4byte lbl_80517C04
 	.4byte lbl_80517C08
 	.4byte lbl_80517C0C
 	.4byte lbl_80517C10
-.global __vt__Q24Game12GameLightMgr
-__vt__Q24Game12GameLightMgr:
+.endobj "GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@"
+.obj __vt__Q24Game12GameLightMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game12GameLightMgrFv
@@ -123,191 +143,255 @@ __vt__Q24Game12GameLightMgr:
 	.4byte set__Q24Game12GameLightMgrFR8Graphics
 	.4byte set__8LightMgrFR7Matrixf
 	.4byte drawDebugInfo__8LightMgrFR8Graphics
-.global __vt__15AmbientLightObj
-__vt__15AmbientLightObj:
+.endobj __vt__Q24Game12GameLightMgr
+.obj __vt__15AmbientLightObj, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__15AmbientLightObjFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q24Game18GameLightEventNode
-__vt__Q24Game18GameLightEventNode:
+.endobj __vt__15AmbientLightObj
+.obj __vt__Q24Game18GameLightEventNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game18GameLightEventNodeFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q24Game19GameLightMgrSetting
-__vt__Q24Game19GameLightMgrSetting:
+.endobj __vt__Q24Game18GameLightEventNode
+.obj __vt__Q24Game19GameLightMgrSetting, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game19GameLightMgrSettingFv
 	.4byte getChildCount__5CNodeFv
 	.4byte read__Q24Game19GameLightMgrSettingFR6Stream
-.global __vt__Q24Game20GameSpotLightSetting
-__vt__Q24Game20GameSpotLightSetting:
+.endobj __vt__Q24Game19GameLightMgrSetting
+.obj __vt__Q24Game20GameSpotLightSetting, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game20GameSpotLightSettingFR6Stream
-.global __vt__Q24Game20GameLightSpotSetting
-__vt__Q24Game20GameLightSpotSetting:
+.endobj __vt__Q24Game20GameSpotLightSetting
+.obj __vt__Q24Game20GameLightSpotSetting, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game20GameLightSpotSettingFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q24Game19GameLightSunSetting
-__vt__Q24Game19GameLightSunSetting:
+.endobj __vt__Q24Game20GameLightSpotSetting
+.obj __vt__Q24Game19GameLightSunSetting, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game19GameLightSunSettingFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q24Game14GameFogSetting
-__vt__Q24Game14GameFogSetting:
+.endobj __vt__Q24Game19GameLightSunSetting
+.obj __vt__Q24Game14GameFogSetting, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game14GameFogSettingFR6Stream
-.global __vt__Q24Game17GameShadowSetting
-__vt__Q24Game17GameShadowSetting:
+.endobj __vt__Q24Game14GameFogSetting
+.obj __vt__Q24Game17GameShadowSetting, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game17GameShadowSettingFR6Stream
-.global __vt__Q24Game23GameLightAmbientSetting
-__vt__Q24Game23GameLightAmbientSetting:
+.endobj __vt__Q24Game17GameShadowSetting
+.obj __vt__Q24Game23GameLightAmbientSetting, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game20GameLightSettingBaseFR6Stream
-.global __vt__Q24Game20GameSpecLightSetting
-__vt__Q24Game20GameSpecLightSetting:
+.endobj __vt__Q24Game23GameLightAmbientSetting
+.obj __vt__Q24Game20GameSpecLightSetting, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game20GameLightSettingBaseFR6Stream
-.global __vt__Q24Game23GameDiffuseLightSetting
-__vt__Q24Game23GameDiffuseLightSetting:
+.endobj __vt__Q24Game20GameSpecLightSetting
+.obj __vt__Q24Game23GameDiffuseLightSetting, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game20GameLightSettingBaseFR6Stream
-.global __vt__Q24Game20GameLightSettingBase
-__vt__Q24Game20GameLightSettingBase:
+.endobj __vt__Q24Game23GameDiffuseLightSetting
+.obj __vt__Q24Game20GameLightSettingBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game20GameLightSettingBaseFR6Stream
-.global __vt__Q24Game20GameLightTimeSetting
-__vt__Q24Game20GameLightTimeSetting:
+.endobj __vt__Q24Game20GameLightSettingBase
+.obj __vt__Q24Game20GameLightTimeSetting, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game20GameLightTimeSettingFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q24Game20GameLightTimeSetting
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80517BF0:
+.obj lbl_80517BF0, local
 	.float 0.5
-lbl_80517BF4:
-	.4byte 0x00000000
+.endobj lbl_80517BF0
+.obj lbl_80517BF4, local
+	.float 0.0
+.endobj lbl_80517BF4
 .balign 8
-lbl_80517BF8:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80517C00:
+.obj lbl_80517BF8, local
+	.8byte 0x4330000000000000
+.endobj lbl_80517BF8
+.balign 4
+.obj lbl_80517C00, local # Shift-JIS
 	.4byte 0x96E90000
-lbl_80517C04:
+.endobj lbl_80517C00
+.balign 4
+.obj lbl_80517C04, local # Shift-JIS
 	.4byte 0x92A90000
-lbl_80517C08:
+.endobj lbl_80517C04
+.balign 4
+.obj lbl_80517C08, local # Shift-JIS
 	.4byte 0x928B0000
-lbl_80517C0C:
+.endobj lbl_80517C08
+.balign 4
+.obj lbl_80517C0C, local # Shift-JIS
 	.4byte 0x975B0000
-lbl_80517C10:
+.endobj lbl_80517C0C
+.balign 4
+.obj lbl_80517C10, local # Shift-JIS
 	.4byte 0x83668382
 	.4byte 0x92860000
-lbl_80517C18:
-	.4byte 0x00000000
-lbl_80517C1C:
+.endobj lbl_80517C10
+.balign 4
+.obj lbl_80517C18, local
+	.asciz ""
+.endobj lbl_80517C18
+.balign 4
+.obj lbl_80517C1C, local # Shift-JIS
 	.4byte 0x90D40000
-lbl_80517C20:
+.endobj lbl_80517C1C
+.balign 4
+.obj lbl_80517C20, local # Shift-JIS
 	.4byte 0x97CE0000
-lbl_80517C24:
+.endobj lbl_80517C20
+.balign 4
+.obj lbl_80517C24, local # Shift-JIS
 	.4byte 0x90C20000
-lbl_80517C28:
+.endobj lbl_80517C24
+.balign 4
+.obj lbl_80517C28, local # Shift-JIS
 	.4byte 0x8A4A8E6E
 	.4byte 0x7A926C00
-lbl_80517C30:
-	.4byte 0x447A0000
-lbl_80517C34:
-	.4byte 0x466A6000
-lbl_80517C38:
+.endobj lbl_80517C28
+.balign 4
+.obj lbl_80517C30, local
+	.float 1000.0
+.endobj lbl_80517C30
+.balign 4
+.obj lbl_80517C34, local
+	.float 15000.0
+.endobj lbl_80517C34
+.balign 4
+.obj lbl_80517C38, local # Shift-JIS
 	.4byte 0x8F4997B9
 	.4byte 0x7A926C00
-lbl_80517C40:
-	.4byte 0x469C4000
-lbl_80517C44:
-	.4byte 0x46EA6000
-lbl_80517C48:
-	.4byte 0x41A00000
-lbl_80517C4C:
-	.4byte 0x43B40000
-lbl_80517C50:
-	.4byte 0x43200000
-lbl_80517C54:
-	.4byte 0x42700000
-lbl_80517C58:
-	.4byte 0x42B40000
-lbl_80517C5C:
+.endobj lbl_80517C38
+.balign 4
+.obj lbl_80517C40, local
+	.float 20000.0
+.endobj lbl_80517C40
+.obj lbl_80517C44, local
+	.float 30000.0
+.endobj lbl_80517C44
+.obj lbl_80517C48, local
+	.float 20.0
+.endobj lbl_80517C48
+.obj lbl_80517C4C, local
+	.float 360.0
+.endobj lbl_80517C4C
+.obj lbl_80517C50, local
+	.float 160.0
+.endobj lbl_80517C50
+.obj lbl_80517C54, local
+	.float 60.0
+.endobj lbl_80517C54
+.obj lbl_80517C58, local
+	.float 90.0
+.endobj lbl_80517C58
+.balign 4
+.obj lbl_80517C5C, local # Shift-JIS
 	.4byte 0x90DD92E8
-	.4byte 0x00000000
-lbl_80517C64:
+	.byte 0
+.endobj lbl_80517C5C
+.balign 4
+.obj lbl_80517C64, local
 	.float 1.0
-lbl_80517C68:
-	.4byte 0x40800000
-lbl_80517C6C:
-	.4byte 0x3F666666
-lbl_80517C70:
+.endobj lbl_80517C64
+.obj lbl_80517C68, local
+	.float 4.0
+.endobj lbl_80517C68
+.obj lbl_80517C6C, local
+	.float 0.9
+.endobj lbl_80517C6C
+.obj lbl_80517C70, local
 	.float 0.1
-lbl_80517C74:
-	.4byte 0x40C90FDB
-lbl_80517C78:
+.endobj lbl_80517C70
+.obj lbl_80517C74, local # tau
+	.float 6.2831855
+.endobj lbl_80517C74
+.obj lbl_80517C78, local
 	.float 0.25
-lbl_80517C7C:
+.endobj lbl_80517C78
+.obj lbl_80517C7C, local
 	.float -1.0
-lbl_80517C80:
-	.4byte 0x40490FDB
-lbl_80517C84:
-	.4byte 0x437F0000
-lbl_80517C88:
-	.4byte 0x42200000
-lbl_80517C8C:
-	.4byte 0x6E6F5F6E
-	.4byte 0x616D6500
-lbl_80517C94:
-	.4byte 0x3FC00000
-lbl_80517C98:
-	.4byte 0x40000000
-lbl_80517C9C:
-	.4byte 0x44800000
-lbl_80517CA0:
-	.4byte 0x43FA0000
-lbl_80517CA4:
-	.4byte 0x41500000
-lbl_80517CA8:
-	.4byte 0x40400000
-lbl_80517CAC:
-	.4byte 0x3FA00000
-lbl_80517CB0:
-	.4byte 0x3C23D70A
-lbl_80517CB4:
-	.4byte 0x43340000
-lbl_80517CB8:
-	.4byte 0x3BB60B61
-lbl_80517CBC:
-	.4byte 0x3F5F66F3
+.endobj lbl_80517C7C
+.obj lbl_80517C80, local # pi
+	.float 3.1415927
+.endobj lbl_80517C80
+.obj lbl_80517C84, local
+	.float 255.0
+.endobj lbl_80517C84
+.obj lbl_80517C88, local
+	.float 40.0
+.endobj lbl_80517C88
+.balign 4
+.obj lbl_80517C8C, local
+	.asciz "no_name"
+.endobj lbl_80517C8C
+.balign 4
+.obj lbl_80517C94, local
+	.float 1.5
+.endobj lbl_80517C94
+.obj lbl_80517C98, local
+	.float 2.0
+.endobj lbl_80517C98
+.obj lbl_80517C9C, local
+	.float 1024.0
+.endobj lbl_80517C9C
+.obj lbl_80517CA0, local
+	.float 500.0
+.endobj lbl_80517CA0
+.obj lbl_80517CA4, local
+	.float 13.0
+.endobj lbl_80517CA4
+.obj lbl_80517CA8, local
+	.float 3.0
+.endobj lbl_80517CA8
+.obj lbl_80517CAC, local
+	.float 1.25
+.endobj lbl_80517CAC
+.obj lbl_80517CB0, local
+	.float 0.01
+.endobj lbl_80517CB0
+.obj lbl_80517CB4, local
+	.float 180.0
+.endobj lbl_80517CB4
+.obj lbl_80517CB8, local
+	.float 0.0055555557
+.endobj lbl_80517CB8
+.obj lbl_80517CB8, local
+	.float 0.87266463
+.endobj lbl_80517CB8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game20GameLightTimeSettingFv
-__ct__Q24Game20GameLightTimeSettingFv:
+.fn __ct__Q24Game20GameLightTimeSettingFv, global
 /* 8011CCE0 00119C20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011CCE4 00119C24  7C 08 02 A6 */	mflr r0
 /* 8011CCE8 00119C28  3C E0 80 4B */	lis r7, __vt__Q24Game20GameLightTimeSetting@ha
@@ -713,9 +797,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D328 0011A268  7C 08 03 A6 */	mtlr r0
 /* 8011D32C 0011A26C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011D330 0011A270  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game20GameLightTimeSettingFv
 
-.global __ct__Q24Game14GameFogSettingFv
-__ct__Q24Game14GameFogSettingFv:
+.fn __ct__Q24Game14GameFogSettingFv, weak
 /* 8011D334 0011A274  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011D338 0011A278  7C 08 02 A6 */	mflr r0
 /* 8011D33C 0011A27C  3C A0 75 38 */	lis r5, 0x75383030@ha
@@ -833,9 +917,9 @@ __ct__Q24Game14GameFogSettingFv:
 /* 8011D4FC 0011A43C  7C 08 03 A6 */	mtlr r0
 /* 8011D500 0011A440  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011D504 0011A444  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game14GameFogSettingFv
 
-.global read__Q24Game17GameShadowSettingFR6Stream
-read__Q24Game17GameShadowSettingFR6Stream:
+.fn read__Q24Game17GameShadowSettingFR6Stream, weak
 /* 8011D508 0011A448  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011D50C 0011A44C  7C 08 02 A6 */	mflr r0
 /* 8011D510 0011A450  90 01 00 14 */	stw r0, 0x14(r1)
@@ -844,9 +928,9 @@ read__Q24Game17GameShadowSettingFR6Stream:
 /* 8011D51C 0011A45C  7C 08 03 A6 */	mtlr r0
 /* 8011D520 0011A460  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011D524 0011A464  4E 80 00 20 */	blr 
+.endfn read__Q24Game17GameShadowSettingFR6Stream
 
-.global read__Q24Game14GameFogSettingFR6Stream
-read__Q24Game14GameFogSettingFR6Stream:
+.fn read__Q24Game14GameFogSettingFR6Stream, weak
 /* 8011D528 0011A468  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011D52C 0011A46C  7C 08 02 A6 */	mflr r0
 /* 8011D530 0011A470  90 01 00 14 */	stw r0, 0x14(r1)
@@ -864,9 +948,9 @@ read__Q24Game14GameFogSettingFR6Stream:
 /* 8011D560 0011A4A0  7C 08 03 A6 */	mtlr r0
 /* 8011D564 0011A4A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011D568 0011A4A8  4E 80 00 20 */	blr 
+.endfn read__Q24Game14GameFogSettingFR6Stream
 
-.global read__Q24Game20GameLightSettingBaseFR6Stream
-read__Q24Game20GameLightSettingBaseFR6Stream:
+.fn read__Q24Game20GameLightSettingBaseFR6Stream, weak
 /* 8011D56C 0011A4AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011D570 0011A4B0  7C 08 02 A6 */	mflr r0
 /* 8011D574 0011A4B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -875,9 +959,9 @@ read__Q24Game20GameLightSettingBaseFR6Stream:
 /* 8011D580 0011A4C0  7C 08 03 A6 */	mtlr r0
 /* 8011D584 0011A4C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011D588 0011A4C8  4E 80 00 20 */	blr 
+.endfn read__Q24Game20GameLightSettingBaseFR6Stream
 
-.global __dt__Q24Game20GameLightTimeSettingFv
-__dt__Q24Game20GameLightTimeSettingFv:
+.fn __dt__Q24Game20GameLightTimeSettingFv, weak
 /* 8011D58C 0011A4CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011D590 0011A4D0  7C 08 02 A6 */	mflr r0
 /* 8011D594 0011A4D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -903,9 +987,9 @@ __dt__Q24Game20GameLightTimeSettingFv:
 /* 8011D5E0 0011A520  7C 08 03 A6 */	mtlr r0
 /* 8011D5E4 0011A524  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011D5E8 0011A528  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game20GameLightTimeSettingFv
 
-.global __ct__Q24Game20GameLightSpotSettingFPc
-__ct__Q24Game20GameLightSpotSettingFPc:
+.fn __ct__Q24Game20GameLightSpotSettingFPc, global
 /* 8011D5EC 0011A52C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011D5F0 0011A530  7C 08 02 A6 */	mflr r0
 /* 8011D5F4 0011A534  3C A0 80 4F */	lis r5, __vt__5CNode@ha
@@ -1368,9 +1452,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DD18 0011AC58  7C 08 03 A6 */	mtlr r0
 /* 8011DD1C 0011AC5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011DD20 0011AC60  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game20GameLightSpotSettingFPc
 
-.global read__Q24Game20GameSpotLightSettingFR6Stream
-read__Q24Game20GameSpotLightSettingFR6Stream:
+.fn read__Q24Game20GameSpotLightSettingFR6Stream, weak
 /* 8011DD24 0011AC64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011DD28 0011AC68  7C 08 02 A6 */	mflr r0
 /* 8011DD2C 0011AC6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1388,9 +1472,9 @@ read__Q24Game20GameSpotLightSettingFR6Stream:
 /* 8011DD5C 0011AC9C  7C 08 03 A6 */	mtlr r0
 /* 8011DD60 0011ACA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011DD64 0011ACA4  4E 80 00 20 */	blr 
+.endfn read__Q24Game20GameSpotLightSettingFR6Stream
 
-.global __ct__Q24Game19GameLightMgrSettingFv
-__ct__Q24Game19GameLightMgrSettingFv:
+.fn __ct__Q24Game19GameLightMgrSettingFv, global
 /* 8011DD68 0011ACA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011DD6C 0011ACAC  7C 08 02 A6 */	mflr r0
 /* 8011DD70 0011ACB0  3C C0 80 4B */	lis r6, __vt__Q24Game19GameLightMgrSetting@ha
@@ -1512,9 +1596,9 @@ __ct__Q24Game19GameLightMgrSettingFv:
 /* 8011DF3C 0011AE7C  7C 08 03 A6 */	mtlr r0
 /* 8011DF40 0011AE80  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011DF44 0011AE84  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game19GameLightMgrSettingFv
 
-.global __dt__Q24Game20GameLightSpotSettingFv
-__dt__Q24Game20GameLightSpotSettingFv:
+.fn __dt__Q24Game20GameLightSpotSettingFv, weak
 /* 8011DF48 0011AE88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011DF4C 0011AE8C  7C 08 02 A6 */	mflr r0
 /* 8011DF50 0011AE90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1540,9 +1624,9 @@ __dt__Q24Game20GameLightSpotSettingFv:
 /* 8011DF9C 0011AEDC  7C 08 03 A6 */	mtlr r0
 /* 8011DFA0 0011AEE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011DFA4 0011AEE4  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game20GameLightSpotSettingFv
 
-.global __dt__Q24Game19GameLightSunSettingFv
-__dt__Q24Game19GameLightSunSettingFv:
+.fn __dt__Q24Game19GameLightSunSettingFv, weak
 /* 8011DFA8 0011AEE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011DFAC 0011AEEC  7C 08 02 A6 */	mflr r0
 /* 8011DFB0 0011AEF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1575,9 +1659,9 @@ __dt__Q24Game19GameLightSunSettingFv:
 /* 8011E018 0011AF58  7C 08 03 A6 */	mtlr r0
 /* 8011E01C 0011AF5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011E020 0011AF60  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game19GameLightSunSettingFv
 
-.global updateNode__Q24Game19GameLightMgrSettingFv
-updateNode__Q24Game19GameLightMgrSettingFv:
+.fn updateNode__Q24Game19GameLightMgrSettingFv, global
 /* 8011E024 0011AF64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011E028 0011AF68  7C 08 02 A6 */	mflr r0
 /* 8011E02C 0011AF6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1609,9 +1693,9 @@ updateNode__Q24Game19GameLightMgrSettingFv:
 /* 8011E08C 0011AFCC  7C 08 03 A6 */	mtlr r0
 /* 8011E090 0011AFD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011E094 0011AFD4  4E 80 00 20 */	blr 
+.endfn updateNode__Q24Game19GameLightMgrSettingFv
 
-.global read__Q24Game19GameLightMgrSettingFR6Stream
-read__Q24Game19GameLightMgrSettingFR6Stream:
+.fn read__Q24Game19GameLightMgrSettingFR6Stream, global
 /* 8011E098 0011AFD8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8011E09C 0011AFDC  7C 08 02 A6 */	mflr r0
 /* 8011E0A0 0011AFE0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1806,9 +1890,9 @@ read__Q24Game19GameLightMgrSettingFR6Stream:
 /* 8011E37C 0011B2BC  7C 08 03 A6 */	mtlr r0
 /* 8011E380 0011B2C0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8011E384 0011B2C4  4E 80 00 20 */	blr 
+.endfn read__Q24Game19GameLightMgrSettingFR6Stream
 
-.global readOldVersion__Q24Game19GameLightMgrSettingF4ID32R6Stream
-readOldVersion__Q24Game19GameLightMgrSettingF4ID32R6Stream:
+.fn readOldVersion__Q24Game19GameLightMgrSettingF4ID32R6Stream, global
 /* 8011E388 0011B2C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011E38C 0011B2CC  7C 08 02 A6 */	mflr r0
 /* 8011E390 0011B2D0  3C E0 30 30 */	lis r7, 0x30303030@ha
@@ -1934,9 +2018,9 @@ readOldVersion__Q24Game19GameLightMgrSettingF4ID32R6Stream:
 /* 8011E55C 0011B49C  7C 08 03 A6 */	mtlr r0
 /* 8011E560 0011B4A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011E564 0011B4A4  4E 80 00 20 */	blr 
+.endfn readOldVersion__Q24Game19GameLightMgrSettingF4ID32R6Stream
 
-.global update__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgr
-update__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgr:
+.fn update__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgr, global
 /* 8011E568 0011B4A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011E56C 0011B4AC  7C 08 02 A6 */	mflr r0
 /* 8011E570 0011B4B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2074,9 +2158,9 @@ update__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgr:
 /* 8011E750 0011B690  7C 08 03 A6 */	mtlr r0
 /* 8011E754 0011B694  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011E758 0011B698  4E 80 00 20 */	blr 
+.endfn update__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgr
 
-.global updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb
-updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb:
+.fn updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb, global
 /* 8011E75C 0011B69C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8011E760 0011B6A0  7C 08 02 A6 */	mflr r0
 /* 8011E764 0011B6A4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2309,9 +2393,9 @@ updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb:
 /* 8011EACC 0011BA0C  7C 08 03 A6 */	mtlr r0
 /* 8011EAD0 0011BA10  38 21 00 30 */	addi r1, r1, 0x30
 /* 8011EAD4 0011BA14  4E 80 00 20 */	blr 
+.endfn updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb
 
-.global calcColor__Q24Game18GameLightEventNodeFP6Color4
-calcColor__Q24Game18GameLightEventNodeFP6Color4:
+.fn calcColor__Q24Game18GameLightEventNodeFP6Color4, global
 /* 8011EAD8 0011BA18  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8011EADC 0011BA1C  88 03 00 18 */	lbz r0, 0x18(r3)
 /* 8011EAE0 0011BA20  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
@@ -2633,9 +2717,9 @@ calcColor__Q24Game18GameLightEventNodeFP6Color4:
 /* 8011EF30 0011BE70  98 04 00 03 */	stb r0, 3(r4)
 /* 8011EF34 0011BE74  38 21 00 90 */	addi r1, r1, 0x90
 /* 8011EF38 0011BE78  4E 80 00 20 */	blr 
+.endfn calcColor__Q24Game18GameLightEventNodeFP6Color4
 
-.global __ct__Q24Game12GameLightMgrFPc
-__ct__Q24Game12GameLightMgrFPc:
+.fn __ct__Q24Game12GameLightMgrFPc, global
 /* 8011EF3C 0011BE7C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8011EF40 0011BE80  7C 08 02 A6 */	mflr r0
 /* 8011EF44 0011BE84  3C A0 80 48 */	lis r5, lbl_8047B2C0@ha
@@ -2838,9 +2922,9 @@ __ct__Q24Game12GameLightMgrFPc:
 /* 8011F240 0011C180  7C 08 03 A6 */	mtlr r0
 /* 8011F244 0011C184  38 21 00 30 */	addi r1, r1, 0x30
 /* 8011F248 0011C188  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12GameLightMgrFPc
 
-.global __dt__Q24Game18GameLightEventNodeFv
-__dt__Q24Game18GameLightEventNodeFv:
+.fn __dt__Q24Game18GameLightEventNodeFv, weak
 /* 8011F24C 0011C18C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011F250 0011C190  7C 08 02 A6 */	mflr r0
 /* 8011F254 0011C194  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2866,9 +2950,9 @@ __dt__Q24Game18GameLightEventNodeFv:
 /* 8011F2A0 0011C1E0  7C 08 03 A6 */	mtlr r0
 /* 8011F2A4 0011C1E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011F2A8 0011C1E8  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game18GameLightEventNodeFv
 
-.global __ct__Q24Game18GameLightEventNodeFv
-__ct__Q24Game18GameLightEventNodeFv:
+.fn __ct__Q24Game18GameLightEventNodeFv, weak
 /* 8011F2AC 0011C1EC  3C A0 80 4F */	lis r5, __vt__5CNode@ha
 /* 8011F2B0 0011C1F0  38 C0 00 00 */	li r6, 0
 /* 8011F2B4 0011C1F4  38 05 B5 28 */	addi r0, r5, __vt__5CNode@l
@@ -2908,13 +2992,13 @@ __ct__Q24Game18GameLightEventNodeFv:
 /* 8011F33C 0011C27C  90 C3 00 38 */	stw r6, 0x38(r3)
 /* 8011F340 0011C280  D0 03 00 3C */	stfs f0, 0x3c(r3)
 /* 8011F344 0011C284  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game18GameLightEventNodeFv
 
-.global "__ct__10Vector3<f>Fv"
-"__ct__10Vector3<f>Fv":
+.fn "__ct__10Vector3<f>Fv", weak
 /* 8011F348 0011C288  4E 80 00 20 */	blr 
+.endfn "__ct__10Vector3<f>Fv"
 
-.global __dt__Q24Game19GameLightMgrSettingFv
-__dt__Q24Game19GameLightMgrSettingFv:
+.fn __dt__Q24Game19GameLightMgrSettingFv, weak
 /* 8011F34C 0011C28C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011F350 0011C290  7C 08 02 A6 */	mflr r0
 /* 8011F354 0011C294  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2974,9 +3058,9 @@ __dt__Q24Game19GameLightMgrSettingFv:
 /* 8011F41C 0011C35C  7C 08 03 A6 */	mtlr r0
 /* 8011F420 0011C360  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011F424 0011C364  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game19GameLightMgrSettingFv
 
-.global __dt__8LightMgrFv
-__dt__8LightMgrFv:
+.fn __dt__8LightMgrFv, weak
 /* 8011F428 0011C368  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011F42C 0011C36C  7C 08 02 A6 */	mflr r0
 /* 8011F430 0011C370  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3015,9 +3099,9 @@ __dt__8LightMgrFv:
 /* 8011F4AC 0011C3EC  7C 08 03 A6 */	mtlr r0
 /* 8011F4B0 0011C3F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011F4B4 0011C3F4  4E 80 00 20 */	blr 
+.endfn __dt__8LightMgrFv
 
-.global start__Q24Game12GameLightMgrFv
-start__Q24Game12GameLightMgrFv:
+.fn start__Q24Game12GameLightMgrFv, global
 /* 8011F4B8 0011C3F8  38 00 00 00 */	li r0, 0
 /* 8011F4BC 0011C3FC  C0 02 98 94 */	lfs f0, lbl_80517BF4@sda21(r2)
 /* 8011F4C0 0011C400  98 03 23 4C */	stb r0, 0x234c(r3)
@@ -3029,9 +3113,9 @@ start__Q24Game12GameLightMgrFv:
 /* 8011F4D8 0011C418  D0 03 23 50 */	stfs f0, 0x2350(r3)
 /* 8011F4DC 0011C41C  D0 03 23 54 */	stfs f0, 0x2354(r3)
 /* 8011F4E0 0011C420  4E 80 00 20 */	blr 
+.endfn start__Q24Game12GameLightMgrFv
 
-.global createEventLight__Q24Game12GameLightMgrFRQ24Game17GameLightEventArg
-createEventLight__Q24Game12GameLightMgrFRQ24Game17GameLightEventArg:
+.fn createEventLight__Q24Game12GameLightMgrFRQ24Game17GameLightEventArg, global
 /* 8011F4E4 0011C424  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011F4E8 0011C428  7C 08 02 A6 */	mflr r0
 /* 8011F4EC 0011C42C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3080,9 +3164,9 @@ createEventLight__Q24Game12GameLightMgrFRQ24Game17GameLightEventArg:
 /* 8011F594 0011C4D4  7C 08 03 A6 */	mtlr r0
 /* 8011F598 0011C4D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011F59C 0011C4DC  4E 80 00 20 */	blr 
+.endfn createEventLight__Q24Game12GameLightMgrFRQ24Game17GameLightEventArg
 
-.global loadParm__Q24Game12GameLightMgrFR6Stream
-loadParm__Q24Game12GameLightMgrFR6Stream:
+.fn loadParm__Q24Game12GameLightMgrFR6Stream, global
 /* 8011F5A0 0011C4E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011F5A4 0011C4E4  7C 08 02 A6 */	mflr r0
 /* 8011F5A8 0011C4E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3102,9 +3186,9 @@ loadParm__Q24Game12GameLightMgrFR6Stream:
 /* 8011F5DC 0011C51C  7C 08 03 A6 */	mtlr r0
 /* 8011F5E0 0011C520  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011F5E4 0011C524  4E 80 00 20 */	blr 
+.endfn loadParm__Q24Game12GameLightMgrFR6Stream
 
-.global calcSetting__Q24Game12GameLightMgrFPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSetting
-calcSetting__Q24Game12GameLightMgrFPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSetting:
+.fn calcSetting__Q24Game12GameLightMgrFPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSetting, global
 /* 8011F5E8 0011C528  94 21 FC E0 */	stwu r1, -0x320(r1)
 /* 8011F5EC 0011C52C  7C 08 02 A6 */	mflr r0
 /* 8011F5F0 0011C530  C0 C2 98 90 */	lfs f6, lbl_80517BF0@sda21(r2)
@@ -4925,9 +5009,9 @@ calcSetting__Q24Game12GameLightMgrFPQ24Game20GameLightTimeSettingPQ24Game20GameL
 /* 801210C4 0011E004  7C 08 03 A6 */	mtlr r0
 /* 801210C8 0011E008  38 21 03 20 */	addi r1, r1, 0x320
 /* 801210CC 0011E00C  4E 80 00 20 */	blr 
+.endfn calcSetting__Q24Game12GameLightMgrFPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSetting
 
-.global updateSunType__Q24Game12GameLightMgrFv
-updateSunType__Q24Game12GameLightMgrFv:
+.fn updateSunType__Q24Game12GameLightMgrFv, global
 /* 801210D0 0011E010  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801210D4 0011E014  7C 08 02 A6 */	mflr r0
 /* 801210D8 0011E018  90 01 00 44 */	stw r0, 0x44(r1)
@@ -5061,9 +5145,9 @@ updateSunType__Q24Game12GameLightMgrFv:
 /* 801212B4 0011E1F4  7C 08 03 A6 */	mtlr r0
 /* 801212B8 0011E1F8  38 21 00 40 */	addi r1, r1, 0x40
 /* 801212BC 0011E1FC  4E 80 00 20 */	blr 
+.endfn updateSunType__Q24Game12GameLightMgrFv
 
-.global updateSpotType__Q24Game12GameLightMgrFv
-updateSpotType__Q24Game12GameLightMgrFv:
+.fn updateSpotType__Q24Game12GameLightMgrFv, global
 /* 801212C0 0011E200  94 21 FD 60 */	stwu r1, -0x2a0(r1)
 /* 801212C4 0011E204  7C 08 02 A6 */	mflr r0
 /* 801212C8 0011E208  38 80 00 04 */	li r4, 4
@@ -5874,9 +5958,9 @@ updateSpotType__Q24Game12GameLightMgrFv:
 /* 80121EB4 0011EDF4  7C 08 03 A6 */	mtlr r0
 /* 80121EB8 0011EDF8  38 21 02 A0 */	addi r1, r1, 0x2a0
 /* 80121EBC 0011EDFC  4E 80 00 20 */	blr 
+.endfn updateSpotType__Q24Game12GameLightMgrFv
 
-.global update__Q24Game12GameLightMgrFv
-update__Q24Game12GameLightMgrFv:
+.fn update__Q24Game12GameLightMgrFv, global
 /* 80121EC0 0011EE00  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80121EC4 0011EE04  7C 08 02 A6 */	mflr r0
 /* 80121EC8 0011EE08  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5919,9 +6003,9 @@ update__Q24Game12GameLightMgrFv:
 /* 80121F48 0011EE88  7C 08 03 A6 */	mtlr r0
 /* 80121F4C 0011EE8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80121F50 0011EE90  4E 80 00 20 */	blr 
+.endfn update__Q24Game12GameLightMgrFv
 
-.global set__Q24Game12GameLightMgrFR8Graphics
-set__Q24Game12GameLightMgrFR8Graphics:
+.fn set__Q24Game12GameLightMgrFR8Graphics, global
 /* 80121F54 0011EE94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80121F58 0011EE98  7C 08 02 A6 */	mflr r0
 /* 80121F5C 0011EE9C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5943,9 +6027,9 @@ set__Q24Game12GameLightMgrFR8Graphics:
 /* 80121F9C 0011EEDC  7C 08 03 A6 */	mtlr r0
 /* 80121FA0 0011EEE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80121FA4 0011EEE4  4E 80 00 20 */	blr 
+.endfn set__Q24Game12GameLightMgrFR8Graphics
 
-.global updatePosition__Q24Game12GameLightMgrFP8Viewport
-updatePosition__Q24Game12GameLightMgrFP8Viewport:
+.fn updatePosition__Q24Game12GameLightMgrFP8Viewport, global
 /* 80121FA8 0011EEE8  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80121FAC 0011EEEC  7C 08 02 A6 */	mflr r0
 /* 80121FB0 0011EEF0  90 01 00 84 */	stw r0, 0x84(r1)
@@ -6127,9 +6211,9 @@ updatePosition__Q24Game12GameLightMgrFP8Viewport:
 /* 8012225C 0011F19C  7C 08 03 A6 */	mtlr r0
 /* 80122260 0011F1A0  38 21 00 80 */	addi r1, r1, 0x80
 /* 80122264 0011F1A4  4E 80 00 20 */	blr 
+.endfn updatePosition__Q24Game12GameLightMgrFP8Viewport
 
-.global __dt__Q24Game12GameLightMgrFv
-__dt__Q24Game12GameLightMgrFv: # weak function
+.fn __dt__Q24Game12GameLightMgrFv, weak
 /* 80122268 0011F1A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8012226C 0011F1AC  7C 08 02 A6 */	mflr r0
 /* 80122270 0011F1B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6222,9 +6306,9 @@ __dt__Q24Game12GameLightMgrFv: # weak function
 /* 801223B0 0011F2F0  7C 08 03 A6 */	mtlr r0
 /* 801223B4 0011F2F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801223B8 0011F2F8  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game12GameLightMgrFv
 
-.global __dt__15AmbientLightObjFv
-__dt__15AmbientLightObjFv: # weak function
+.fn __dt__15AmbientLightObjFv, weak
 /* 801223BC 0011F2FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801223C0 0011F300  7C 08 02 A6 */	mflr r0
 /* 801223C4 0011F304  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6250,14 +6334,15 @@ __dt__15AmbientLightObjFv: # weak function
 /* 80122410 0011F350  7C 08 03 A6 */	mtlr r0
 /* 80122414 0011F354  38 21 00 10 */	addi r1, r1, 0x10
 /* 80122418 0011F358  4E 80 00 20 */	blr 
+.endfn __dt__15AmbientLightObjFv
 
-.global "complement<f>__4GameFfff"
-"complement<f>__4GameFfff": # weak function
+.fn "complement<f>__4GameFfff", weak
 /* 8012241C 0011F35C  EC 02 08 28 */	fsubs f0, f2, f1
 /* 80122420 0011F360  EC 23 08 3A */	fmadds f1, f3, f0, f1
 /* 80122424 0011F364  4E 80 00 20 */	blr 
+.endfn "complement<f>__4GameFfff"
 
-__sinit_gameLightMgr_cpp: # static initializer
+.fn __sinit_gameLightMgr_cpp, local
 /* 80122428 0011F368  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8012242C 0011F36C  38 00 FF FF */	li r0, -1
 /* 80122430 0011F370  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -6268,3 +6353,4 @@ __sinit_gameLightMgr_cpp: # static initializer
 /* 80122444 0011F384  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80122448 0011F388  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8012244C 0011F38C  4E 80 00 20 */	blr 
+.endfn __sinit_gameLightMgr_cpp

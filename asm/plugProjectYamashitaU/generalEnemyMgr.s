@@ -1,37 +1,60 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047AA70:
+.obj lbl_8047AA70, local
 	.asciz "enemyBase"
-	.skip 2
+.endobj lbl_8047AA70
+.balign 4
+.obj lbl_8047AA7C, local # Shift-JIS
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x8383836D
 	.4byte 0x815B8368
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047AA7C
+.balign 4
+.obj lbl_8047AA90, local
 	.asciz "GeneralEnemyMgr"
+.endobj lbl_8047AA90
+.balign 4
+.obj lbl_8047AAA0, local # Shift-JIS
 	.4byte 0x9347837D
 	.4byte 0x836C815B
 	.4byte 0x83578383
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047AAA0
+.balign 4
+.obj lbl_8047AAB0, local
 	.asciz "enemyHeap"
-	.skip 2
-lbl_8047AABC:
+.endobj lbl_8047AAB0
+.balign 4
+.obj lbl_8047AABC, local
 	.asciz "generalEnemyMgr.cpp"
-lbl_8047AAD0:
+.endobj lbl_8047AABC
+.balign 4
+.obj lbl_8047AAD0, local
 	.asciz "P2Assert"
-	.skip 3
+.endobj lbl_8047AAD0
+.balign 4
+.obj lbl_8047AADC, local
 	.asciz "/enemy/parm/enemyParms.szs"
-	.skip 1
+.endobj lbl_8047AADC
+.balign 4
+.obj lbl_8047AAF8, local
 	.asciz "allocateEnemys"
-	.skip 1
+.endobj lbl_8047AAF8
+.balign 4
+.obj lbl_8047AB08, local
 	.asciz "EnemyKillArg"
-	.skip 3
+.endobj lbl_8047AB08
+.balign 4
+.obj lbl_8047AB18, local
 	.asciz "CreatureKillArg"
+.endobj lbl_8047AB18
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804AB390:
+.obj lbl_804AB390, local
 	.4byte .L_8010BDB8
 	.4byte .L_8010BDE0
 	.4byte .L_8010BE58
@@ -133,8 +156,8 @@ lbl_804AB390:
 	.4byte .L_8010CBE8
 	.4byte .L_8010CBC0
 	.4byte .L_8010C9BC
-.global __vt__Q24Game15GeneralEnemyMgr
-__vt__Q24Game15GeneralEnemyMgr:
+.endobj lbl_804AB390
+.obj __vt__Q24Game15GeneralEnemyMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q24Game15GeneralEnemyMgrFv
@@ -154,8 +177,8 @@ __vt__Q24Game15GeneralEnemyMgr:
 	.4byte "@4@__dt__Q24Game15GeneralEnemyMgrFv"
 	.4byte getChildCount__5CNodeFv
 	.4byte __dt__Q24Game15GeneralEnemyMgrFv
-.global __vt__Q24Game12EnemyMgrNode
-__vt__Q24Game12EnemyMgrNode:
+.endobj __vt__Q24Game15GeneralEnemyMgr
+.obj __vt__Q24Game12EnemyMgrNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game12EnemyMgrNodeFv
@@ -188,8 +211,8 @@ __vt__Q24Game12EnemyMgrNode:
 	.4byte startMovie__Q24Game12EnemyMgrNodeFv
 	.4byte endMovie__Q24Game12EnemyMgrNodeFv
 	.4byte getMatrixLoadType__Q24Game12EnemyMgrNodeFv
-.global __vt__16GenericObjectMgr
-__vt__16GenericObjectMgr:
+.endobj __vt__Q24Game12EnemyMgrNode
+.obj __vt__16GenericObjectMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -204,47 +227,58 @@ __vt__16GenericObjectMgr:
 	.4byte pausable__16GenericObjectMgrFv
 	.4byte frozenable__16GenericObjectMgrFv
 	.4byte getMatrixLoadType__16GenericObjectMgrFv
+.endobj __vt__16GenericObjectMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global generalEnemyMgr__4Game
-generalEnemyMgr__4Game:
+.obj generalEnemyMgr__4Game, global
 	.skip 0x4
-.global mCullCount__Q24Game15GeneralEnemyMgr
-mCullCount__Q24Game15GeneralEnemyMgr:
+.endobj generalEnemyMgr__4Game
+.obj mCullCount__Q24Game15GeneralEnemyMgr, global
 	.skip 0x4
-.global mTotalCount__Q24Game15GeneralEnemyMgr
-mTotalCount__Q24Game15GeneralEnemyMgr:
+.endobj mCullCount__Q24Game15GeneralEnemyMgr
+.obj mTotalCount__Q24Game15GeneralEnemyMgr, global
 	.skip 0x4
+.endobj mTotalCount__Q24Game15GeneralEnemyMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805179A0:
-	.4byte 0x646F6154
-	.4byte 0x454B4900
-lbl_805179A8:
-	.4byte 0x47000000
-lbl_805179AC:
-	.4byte 0x40C90FDB
-lbl_805179B0:
-	.4byte 0x00000000
-lbl_805179B4:
-	.4byte 0x43A2F983
-lbl_805179B8:
-	.4byte 0xC3A2F983
-lbl_805179BC:
-	.4byte 0x40400000
-lbl_805179C0:
+.obj lbl_805179A0, local
+	.asciz "doaTEKI"
+.endobj lbl_805179A0
+.balign 4
+.obj lbl_805179A8, local
+	.float 32768.0
+.endobj lbl_805179A8
+.balign 4
+.obj lbl_805179AC, local # tau
+	.float 6.2831855
+.endobj lbl_805179AC
+.obj lbl_805179B0, local
+	.float 0.0
+.endobj lbl_805179B0
+.obj lbl_805179B4, local
+	.float 325.9493
+.endobj lbl_805179B4
+.obj lbl_805179B8, local
+	.float -325.9493
+.endobj lbl_805179B8
+.obj lbl_805179BC, local
+	.float 3.0
+.endobj lbl_805179BC
+.obj lbl_805179C0, local
 	.float 0.5
-lbl_805179C4:
-	.4byte 0x40E00000
-lbl_805179C8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.endobj lbl_805179C0
+.obj lbl_805179C4, local
+	.float 7.0
+.endobj lbl_805179C4
+.balign 8
+.obj lbl_805179C8, local
+	.8byte 0x4330000080000000
+.endobj lbl_805179C8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii
-createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii:
+.fn createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii, global
 /* 8010BD3C 00108C7C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8010BD40 00108C80  7C 08 02 A6 */	mflr r0
 /* 8010BD44 00108C84  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1437,9 +1471,9 @@ createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii:
 /* 8010CCDC 00109C1C  7C 08 03 A6 */	mtlr r0
 /* 8010CCE0 00109C20  38 21 00 20 */	addi r1, r1, 0x20
 /* 8010CCE4 00109C24  4E 80 00 20 */	blr 
+.endfn createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii
 
-.global __ct__Q24Game15GeneralEnemyMgrFv
-__ct__Q24Game15GeneralEnemyMgrFv:
+.fn __ct__Q24Game15GeneralEnemyMgrFv, global
 /* 8010CCE8 00109C28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010CCEC 00109C2C  7C 08 02 A6 */	mflr r0
 /* 8010CCF0 00109C30  3C 80 80 4B */	lis r4, __vt__16GenericObjectMgr@ha
@@ -1556,9 +1590,9 @@ __ct__Q24Game15GeneralEnemyMgrFv:
 /* 8010CE98 00109DD8  7C 08 03 A6 */	mtlr r0
 /* 8010CE9C 00109DDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010CEA0 00109DE0  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15GeneralEnemyMgrFv
 
-.global __dt__Q24Game12EnemyMgrNodeFv
-__dt__Q24Game12EnemyMgrNodeFv:
+.fn __dt__Q24Game12EnemyMgrNodeFv, weak
 /* 8010CEA4 00109DE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010CEA8 00109DE8  7C 08 02 A6 */	mflr r0
 /* 8010CEAC 00109DEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1586,9 +1620,9 @@ __dt__Q24Game12EnemyMgrNodeFv:
 /* 8010CF00 00109E40  7C 08 03 A6 */	mtlr r0
 /* 8010CF04 00109E44  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010CF08 00109E48  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game12EnemyMgrNodeFv
 
-.global killAll__Q24Game15GeneralEnemyMgrFv
-killAll__Q24Game15GeneralEnemyMgrFv:
+.fn killAll__Q24Game15GeneralEnemyMgrFv, global
 /* 8010CF0C 00109E4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8010CF10 00109E50  7C 08 02 A6 */	mflr r0
 /* 8010CF14 00109E54  3C 80 80 4B */	lis r4, __vt__Q24Game15CreatureKillArg@ha
@@ -1621,9 +1655,9 @@ killAll__Q24Game15GeneralEnemyMgrFv:
 /* 8010CF78 00109EB8  7C 08 03 A6 */	mtlr r0
 /* 8010CF7C 00109EBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8010CF80 00109EC0  4E 80 00 20 */	blr 
+.endfn killAll__Q24Game15GeneralEnemyMgrFv
 
-.global killAll__Q24Game12EnemyMgrNodeFPQ24Game15CreatureKillArg
-killAll__Q24Game12EnemyMgrNodeFPQ24Game15CreatureKillArg:
+.fn killAll__Q24Game12EnemyMgrNodeFPQ24Game15CreatureKillArg, weak
 /* 8010CF84 00109EC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010CF88 00109EC8  7C 08 02 A6 */	mflr r0
 /* 8010CF8C 00109ECC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1636,9 +1670,9 @@ killAll__Q24Game12EnemyMgrNodeFPQ24Game15CreatureKillArg:
 /* 8010CFA8 00109EE8  7C 08 03 A6 */	mtlr r0
 /* 8010CFAC 00109EEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010CFB0 00109EF0  4E 80 00 20 */	blr 
+.endfn killAll__Q24Game12EnemyMgrNodeFPQ24Game15CreatureKillArg
 
-.global setupSoundViewerAndBas__Q24Game15GeneralEnemyMgrFv
-setupSoundViewerAndBas__Q24Game15GeneralEnemyMgrFv:
+.fn setupSoundViewerAndBas__Q24Game15GeneralEnemyMgrFv, global
 /* 8010CFB4 00109EF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010CFB8 00109EF8  7C 08 02 A6 */	mflr r0
 /* 8010CFBC 00109EFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1660,9 +1694,9 @@ setupSoundViewerAndBas__Q24Game15GeneralEnemyMgrFv:
 /* 8010CFF4 00109F34  7C 08 03 A6 */	mtlr r0
 /* 8010CFF8 00109F38  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010CFFC 00109F3C  4E 80 00 20 */	blr 
+.endfn setupSoundViewerAndBas__Q24Game15GeneralEnemyMgrFv
 
-.global setupSoundViewerAndBas__Q24Game12EnemyMgrNodeFv
-setupSoundViewerAndBas__Q24Game12EnemyMgrNodeFv:
+.fn setupSoundViewerAndBas__Q24Game12EnemyMgrNodeFv, weak
 /* 8010D000 00109F40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D004 00109F44  7C 08 02 A6 */	mflr r0
 /* 8010D008 00109F48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1675,9 +1709,9 @@ setupSoundViewerAndBas__Q24Game12EnemyMgrNodeFv:
 /* 8010D024 00109F64  7C 08 03 A6 */	mtlr r0
 /* 8010D028 00109F68  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D02C 00109F6C  4E 80 00 20 */	blr 
+.endfn setupSoundViewerAndBas__Q24Game12EnemyMgrNodeFv
 
-.global doAnimation__Q24Game15GeneralEnemyMgrFv
-doAnimation__Q24Game15GeneralEnemyMgrFv:
+.fn doAnimation__Q24Game15GeneralEnemyMgrFv, global
 /* 8010D030 00109F70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D034 00109F74  7C 08 02 A6 */	mflr r0
 /* 8010D038 00109F78  38 82 96 40 */	addi r4, r2, lbl_805179A0@sda21
@@ -1716,9 +1750,9 @@ doAnimation__Q24Game15GeneralEnemyMgrFv:
 /* 8010D0B0 00109FF0  7C 08 03 A6 */	mtlr r0
 /* 8010D0B4 00109FF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D0B8 00109FF8  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game15GeneralEnemyMgrFv
 
-.global doAnimation__Q24Game12EnemyMgrNodeFv
-doAnimation__Q24Game12EnemyMgrNodeFv:
+.fn doAnimation__Q24Game12EnemyMgrNodeFv, weak
 /* 8010D0BC 00109FFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D0C0 0010A000  7C 08 02 A6 */	mflr r0
 /* 8010D0C4 0010A004  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1731,9 +1765,9 @@ doAnimation__Q24Game12EnemyMgrNodeFv:
 /* 8010D0E0 0010A020  7C 08 03 A6 */	mtlr r0
 /* 8010D0E4 0010A024  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D0E8 0010A028  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game12EnemyMgrNodeFv
 
-.global doEntry__Q24Game15GeneralEnemyMgrFv
-doEntry__Q24Game15GeneralEnemyMgrFv:
+.fn doEntry__Q24Game15GeneralEnemyMgrFv, global
 /* 8010D0EC 0010A02C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D0F0 0010A030  7C 08 02 A6 */	mflr r0
 /* 8010D0F4 0010A034  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1759,9 +1793,9 @@ doEntry__Q24Game15GeneralEnemyMgrFv:
 /* 8010D138 0010A078  7C 08 03 A6 */	mtlr r0
 /* 8010D13C 0010A07C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D140 0010A080  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game15GeneralEnemyMgrFv
 
-.global doEntry__Q24Game12EnemyMgrNodeFv
-doEntry__Q24Game12EnemyMgrNodeFv:
+.fn doEntry__Q24Game12EnemyMgrNodeFv, weak
 /* 8010D144 0010A084  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D148 0010A088  7C 08 02 A6 */	mflr r0
 /* 8010D14C 0010A08C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1774,9 +1808,9 @@ doEntry__Q24Game12EnemyMgrNodeFv:
 /* 8010D168 0010A0A8  7C 08 03 A6 */	mtlr r0
 /* 8010D16C 0010A0AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D170 0010A0B0  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game12EnemyMgrNodeFv
 
-.global doSetView__Q24Game15GeneralEnemyMgrFi
-doSetView__Q24Game15GeneralEnemyMgrFi:
+.fn doSetView__Q24Game15GeneralEnemyMgrFi, global
 /* 8010D174 0010A0B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D178 0010A0B8  7C 08 02 A6 */	mflr r0
 /* 8010D17C 0010A0BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1806,9 +1840,9 @@ doSetView__Q24Game15GeneralEnemyMgrFi:
 /* 8010D1D0 0010A110  7C 08 03 A6 */	mtlr r0
 /* 8010D1D4 0010A114  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D1D8 0010A118  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game15GeneralEnemyMgrFi
 
-.global doSetView__Q24Game12EnemyMgrNodeFi
-doSetView__Q24Game12EnemyMgrNodeFi:
+.fn doSetView__Q24Game12EnemyMgrNodeFi, weak
 /* 8010D1DC 0010A11C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D1E0 0010A120  7C 08 02 A6 */	mflr r0
 /* 8010D1E4 0010A124  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1821,9 +1855,9 @@ doSetView__Q24Game12EnemyMgrNodeFi:
 /* 8010D200 0010A140  7C 08 03 A6 */	mtlr r0
 /* 8010D204 0010A144  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D208 0010A148  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game12EnemyMgrNodeFi
 
-.global doViewCalc__Q24Game15GeneralEnemyMgrFv
-doViewCalc__Q24Game15GeneralEnemyMgrFv:
+.fn doViewCalc__Q24Game15GeneralEnemyMgrFv, global
 /* 8010D20C 0010A14C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D210 0010A150  7C 08 02 A6 */	mflr r0
 /* 8010D214 0010A154  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1849,9 +1883,9 @@ doViewCalc__Q24Game15GeneralEnemyMgrFv:
 /* 8010D258 0010A198  7C 08 03 A6 */	mtlr r0
 /* 8010D25C 0010A19C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D260 0010A1A0  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game15GeneralEnemyMgrFv
 
-.global doViewCalc__Q24Game12EnemyMgrNodeFv
-doViewCalc__Q24Game12EnemyMgrNodeFv:
+.fn doViewCalc__Q24Game12EnemyMgrNodeFv, weak
 /* 8010D264 0010A1A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D268 0010A1A8  7C 08 02 A6 */	mflr r0
 /* 8010D26C 0010A1AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1864,9 +1898,9 @@ doViewCalc__Q24Game12EnemyMgrNodeFv:
 /* 8010D288 0010A1C8  7C 08 03 A6 */	mtlr r0
 /* 8010D28C 0010A1CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D290 0010A1D0  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game12EnemyMgrNodeFv
 
-.global doSimulation__Q24Game15GeneralEnemyMgrFf
-doSimulation__Q24Game15GeneralEnemyMgrFf:
+.fn doSimulation__Q24Game15GeneralEnemyMgrFf, global
 /* 8010D294 0010A1D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8010D298 0010A1D8  7C 08 02 A6 */	mflr r0
 /* 8010D29C 0010A1DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1896,9 +1930,9 @@ doSimulation__Q24Game15GeneralEnemyMgrFf:
 /* 8010D2F0 0010A230  7C 08 03 A6 */	mtlr r0
 /* 8010D2F4 0010A234  38 21 00 20 */	addi r1, r1, 0x20
 /* 8010D2F8 0010A238  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game15GeneralEnemyMgrFf
 
-.global doSimulation__Q24Game12EnemyMgrNodeFf
-doSimulation__Q24Game12EnemyMgrNodeFf:
+.fn doSimulation__Q24Game12EnemyMgrNodeFf, weak
 /* 8010D2FC 0010A23C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D300 0010A240  7C 08 02 A6 */	mflr r0
 /* 8010D304 0010A244  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1911,9 +1945,9 @@ doSimulation__Q24Game12EnemyMgrNodeFf:
 /* 8010D320 0010A260  7C 08 03 A6 */	mtlr r0
 /* 8010D324 0010A264  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D328 0010A268  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game12EnemyMgrNodeFf
 
-.global doDirectDraw__Q24Game15GeneralEnemyMgrFR8Graphics
-doDirectDraw__Q24Game15GeneralEnemyMgrFR8Graphics:
+.fn doDirectDraw__Q24Game15GeneralEnemyMgrFR8Graphics, global
 /* 8010D32C 0010A26C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D330 0010A270  7C 08 02 A6 */	mflr r0
 /* 8010D334 0010A274  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1943,9 +1977,9 @@ doDirectDraw__Q24Game15GeneralEnemyMgrFR8Graphics:
 /* 8010D388 0010A2C8  7C 08 03 A6 */	mtlr r0
 /* 8010D38C 0010A2CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D390 0010A2D0  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game15GeneralEnemyMgrFR8Graphics
 
-.global doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics
-doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics:
+.fn doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics, weak
 /* 8010D394 0010A2D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D398 0010A2D8  7C 08 02 A6 */	mflr r0
 /* 8010D39C 0010A2DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1958,9 +1992,9 @@ doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics:
 /* 8010D3B8 0010A2F8  7C 08 03 A6 */	mtlr r0
 /* 8010D3BC 0010A2FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D3C0 0010A300  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics
 
-.global doSimpleDraw__Q24Game15GeneralEnemyMgrFP8Viewport
-doSimpleDraw__Q24Game15GeneralEnemyMgrFP8Viewport:
+.fn doSimpleDraw__Q24Game15GeneralEnemyMgrFP8Viewport, global
 /* 8010D3C4 0010A304  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8010D3C8 0010A308  7C 08 02 A6 */	mflr r0
 /* 8010D3CC 0010A30C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1996,9 +2030,9 @@ doSimpleDraw__Q24Game15GeneralEnemyMgrFP8Viewport:
 /* 8010D438 0010A378  7C 08 03 A6 */	mtlr r0
 /* 8010D43C 0010A37C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8010D440 0010A380  4E 80 00 20 */	blr 
+.endfn doSimpleDraw__Q24Game15GeneralEnemyMgrFP8Viewport
 
-.global doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport
-doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport:
+.fn doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport, weak
 /* 8010D444 0010A384  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D448 0010A388  7C 08 02 A6 */	mflr r0
 /* 8010D44C 0010A38C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2011,9 +2045,9 @@ doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport:
 /* 8010D468 0010A3A8  7C 08 03 A6 */	mtlr r0
 /* 8010D46C 0010A3AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D470 0010A3B0  4E 80 00 20 */	blr 
+.endfn doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport
 
-.global getJ3DModelData__Q24Game15GeneralEnemyMgrFi
-getJ3DModelData__Q24Game15GeneralEnemyMgrFi:
+.fn getJ3DModelData__Q24Game15GeneralEnemyMgrFi, global
 /* 8010D474 0010A3B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D478 0010A3B8  7C 08 02 A6 */	mflr r0
 /* 8010D47C 0010A3BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2034,9 +2068,9 @@ getJ3DModelData__Q24Game15GeneralEnemyMgrFi:
 /* 8010D4B4 0010A3F4  7C 08 03 A6 */	mtlr r0
 /* 8010D4B8 0010A3F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D4BC 0010A3FC  4E 80 00 20 */	blr 
+.endfn getJ3DModelData__Q24Game15GeneralEnemyMgrFi
 
-.global birth__Q24Game15GeneralEnemyMgrFiRQ24Game13EnemyBirthArg
-birth__Q24Game15GeneralEnemyMgrFiRQ24Game13EnemyBirthArg:
+.fn birth__Q24Game15GeneralEnemyMgrFiRQ24Game13EnemyBirthArg, global
 /* 8010D4C0 0010A400  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8010D4C4 0010A404  7C 08 02 A6 */	mflr r0
 /* 8010D4C8 0010A408  3C C0 80 4B */	lis r6, gEnemyInfo__4Game@ha
@@ -2089,9 +2123,9 @@ birth__Q24Game15GeneralEnemyMgrFiRQ24Game13EnemyBirthArg:
 /* 8010D570 0010A4B0  7C 08 03 A6 */	mtlr r0
 /* 8010D574 0010A4B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8010D578 0010A4B8  4E 80 00 20 */	blr 
+.endfn birth__Q24Game15GeneralEnemyMgrFiRQ24Game13EnemyBirthArg
 
-.global getEnemyName__Q24Game15GeneralEnemyMgrFii
-getEnemyName__Q24Game15GeneralEnemyMgrFii:
+.fn getEnemyName__Q24Game15GeneralEnemyMgrFii, global
 /* 8010D57C 0010A4BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D580 0010A4C0  7C 08 02 A6 */	mflr r0
 /* 8010D584 0010A4C4  7C 83 23 78 */	mr r3, r4
@@ -2102,9 +2136,9 @@ getEnemyName__Q24Game15GeneralEnemyMgrFii:
 /* 8010D598 0010A4D8  7C 08 03 A6 */	mtlr r0
 /* 8010D59C 0010A4DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D5A0 0010A4E0  4E 80 00 20 */	blr 
+.endfn getEnemyName__Q24Game15GeneralEnemyMgrFii
 
-.global getEnemyID__Q24Game15GeneralEnemyMgrFPci
-getEnemyID__Q24Game15GeneralEnemyMgrFPci:
+.fn getEnemyID__Q24Game15GeneralEnemyMgrFPci, global
 /* 8010D5A4 0010A4E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010D5A8 0010A4E8  7C 08 02 A6 */	mflr r0
 /* 8010D5AC 0010A4EC  7C 83 23 78 */	mr r3, r4
@@ -2115,9 +2149,9 @@ getEnemyID__Q24Game15GeneralEnemyMgrFPci:
 /* 8010D5C0 0010A500  7C 08 03 A6 */	mtlr r0
 /* 8010D5C4 0010A504  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010D5C8 0010A508  4E 80 00 20 */	blr 
+.endfn getEnemyID__Q24Game15GeneralEnemyMgrFPci
 
-.global getIEnemyMgrBase__Q24Game15GeneralEnemyMgrFi
-getIEnemyMgrBase__Q24Game15GeneralEnemyMgrFi:
+.fn getIEnemyMgrBase__Q24Game15GeneralEnemyMgrFi, global
 /* 8010D5CC 0010A50C  80 A3 00 30 */	lwz r5, 0x30(r3)
 /* 8010D5D0 0010A510  38 60 00 00 */	li r3, 0
 /* 8010D5D4 0010A514  48 00 00 18 */	b .L_8010D5EC
@@ -2132,9 +2166,9 @@ getIEnemyMgrBase__Q24Game15GeneralEnemyMgrFi:
 /* 8010D5EC 0010A52C  28 05 00 00 */	cmplwi r5, 0
 /* 8010D5F0 0010A530  40 82 FF E8 */	bne .L_8010D5D8
 /* 8010D5F4 0010A534  4E 80 00 20 */	blr 
+.endfn getIEnemyMgrBase__Q24Game15GeneralEnemyMgrFi
 
-.global allocateEnemys__Q24Game15GeneralEnemyMgrFUci
-allocateEnemys__Q24Game15GeneralEnemyMgrFUci:
+.fn allocateEnemys__Q24Game15GeneralEnemyMgrFUci, global
 /* 8010D5F8 0010A538  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8010D5FC 0010A53C  7C 08 02 A6 */	mflr r0
 /* 8010D600 0010A540  2C 05 00 00 */	cmpwi r5, 0
@@ -2280,9 +2314,9 @@ allocateEnemys__Q24Game15GeneralEnemyMgrFUci:
 /* 8010D808 0010A748  7C 08 03 A6 */	mtlr r0
 /* 8010D80C 0010A74C  38 21 00 60 */	addi r1, r1, 0x60
 /* 8010D810 0010A750  4E 80 00 20 */	blr 
+.endfn allocateEnemys__Q24Game15GeneralEnemyMgrFUci
 
-.global resetEnemyNum__Q24Game15GeneralEnemyMgrFv
-resetEnemyNum__Q24Game15GeneralEnemyMgrFv:
+.fn resetEnemyNum__Q24Game15GeneralEnemyMgrFv, global
 /* 8010D814 0010A754  80 03 00 48 */	lwz r0, 0x48(r3)
 /* 8010D818 0010A758  28 00 00 00 */	cmplwi r0, 0
 /* 8010D81C 0010A75C  4D 82 00 20 */	beqlr 
@@ -2301,9 +2335,9 @@ resetEnemyNum__Q24Game15GeneralEnemyMgrFv:
 /* 8010D848 0010A788  7C 06 00 00 */	cmpw r6, r0
 /* 8010D84C 0010A78C  41 80 FF E4 */	blt .L_8010D830
 /* 8010D850 0010A790  4E 80 00 20 */	blr 
+.endfn resetEnemyNum__Q24Game15GeneralEnemyMgrFv
 
-.global addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy
-addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy:
+.fn addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy, global
 /* 8010D854 0010A794  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8010D858 0010A798  7C 08 02 A6 */	mflr r0
 /* 8010D85C 0010A79C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2455,9 +2489,9 @@ addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy:
 /* 8010DA74 0010A9B4  7C 08 03 A6 */	mtlr r0
 /* 8010DA78 0010A9B8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8010DA7C 0010A9BC  4E 80 00 20 */	blr 
+.endfn addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy
 
-.global getEnemyNum__Q24Game15GeneralEnemyMgrFib
-getEnemyNum__Q24Game15GeneralEnemyMgrFib:
+.fn getEnemyNum__Q24Game15GeneralEnemyMgrFib, global
 /* 8010DA80 0010A9C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010DA84 0010A9C4  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 8010DA88 0010A9C8  38 E0 00 00 */	li r7, 0
@@ -2566,9 +2600,9 @@ getEnemyNum__Q24Game15GeneralEnemyMgrFib:
 /* 8010DBE4 0010AB24  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8010DBE8 0010AB28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010DBEC 0010AB2C  4E 80 00 20 */	blr 
+.endfn getEnemyNum__Q24Game15GeneralEnemyMgrFib
 
-.global useHeap__Q24Game15GeneralEnemyMgrFv
-useHeap__Q24Game15GeneralEnemyMgrFv:
+.fn useHeap__Q24Game15GeneralEnemyMgrFv, global
 /* 8010DBF0 0010AB30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8010DBF4 0010AB34  7C 08 02 A6 */	mflr r0
 /* 8010DBF8 0010AB38  3C 80 80 4B */	lis r4, __vt__Q24Game15CreatureKillArg@ha
@@ -2617,9 +2651,9 @@ useHeap__Q24Game15GeneralEnemyMgrFv:
 /* 8010DC98 0010ABD8  7C 08 03 A6 */	mtlr r0
 /* 8010DC9C 0010ABDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8010DCA0 0010ABE0  4E 80 00 20 */	blr 
+.endfn useHeap__Q24Game15GeneralEnemyMgrFv
 
-.global getEnemyMgr__Q24Game15GeneralEnemyMgrFi
-getEnemyMgr__Q24Game15GeneralEnemyMgrFi:
+.fn getEnemyMgr__Q24Game15GeneralEnemyMgrFi, global
 /* 8010DCA4 0010ABE4  80 A3 00 30 */	lwz r5, 0x30(r3)
 /* 8010DCA8 0010ABE8  38 60 00 00 */	li r3, 0
 /* 8010DCAC 0010ABEC  48 00 00 18 */	b .L_8010DCC4
@@ -2637,9 +2671,9 @@ getEnemyMgr__Q24Game15GeneralEnemyMgrFi:
 /* 8010DCD0 0010AC10  4C 82 00 20 */	bnelr 
 /* 8010DCD4 0010AC14  38 60 00 00 */	li r3, 0
 /* 8010DCD8 0010AC18  4E 80 00 20 */	blr 
+.endfn getEnemyMgr__Q24Game15GeneralEnemyMgrFi
 
-.global setMovieDraw__Q24Game15GeneralEnemyMgrFb
-setMovieDraw__Q24Game15GeneralEnemyMgrFb:
+.fn setMovieDraw__Q24Game15GeneralEnemyMgrFb, global
 /* 8010DCDC 0010AC1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010DCE0 0010AC20  7C 08 02 A6 */	mflr r0
 /* 8010DCE4 0010AC24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2684,9 +2718,9 @@ setMovieDraw__Q24Game15GeneralEnemyMgrFb:
 /* 8010DD68 0010ACA8  7C 08 03 A6 */	mtlr r0
 /* 8010DD6C 0010ACAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010DD70 0010ACB0  4E 80 00 20 */	blr 
+.endfn setMovieDraw__Q24Game15GeneralEnemyMgrFb
 
-.global endMovie__Q24Game12EnemyMgrNodeFv
-endMovie__Q24Game12EnemyMgrNodeFv:
+.fn endMovie__Q24Game12EnemyMgrNodeFv, weak
 /* 8010DD74 0010ACB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010DD78 0010ACB8  7C 08 02 A6 */	mflr r0
 /* 8010DD7C 0010ACBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2699,9 +2733,9 @@ endMovie__Q24Game12EnemyMgrNodeFv:
 /* 8010DD98 0010ACD8  7C 08 03 A6 */	mtlr r0
 /* 8010DD9C 0010ACDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010DDA0 0010ACE0  4E 80 00 20 */	blr 
+.endfn endMovie__Q24Game12EnemyMgrNodeFv
 
-.global startMovie__Q24Game12EnemyMgrNodeFv
-startMovie__Q24Game12EnemyMgrNodeFv:
+.fn startMovie__Q24Game12EnemyMgrNodeFv, weak
 /* 8010DDA4 0010ACE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010DDA8 0010ACE8  7C 08 02 A6 */	mflr r0
 /* 8010DDAC 0010ACEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2714,9 +2748,9 @@ startMovie__Q24Game12EnemyMgrNodeFv:
 /* 8010DDC8 0010AD08  7C 08 03 A6 */	mtlr r0
 /* 8010DDCC 0010AD0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010DDD0 0010AD10  4E 80 00 20 */	blr 
+.endfn startMovie__Q24Game12EnemyMgrNodeFv
 
-.global prepareDayendEnemies__Q24Game15GeneralEnemyMgrFv
-prepareDayendEnemies__Q24Game15GeneralEnemyMgrFv:
+.fn prepareDayendEnemies__Q24Game15GeneralEnemyMgrFv, global
 /* 8010DDD4 0010AD14  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8010DDD8 0010AD18  7C 08 02 A6 */	mflr r0
 /* 8010DDDC 0010AD1C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2796,9 +2830,9 @@ prepareDayendEnemies__Q24Game15GeneralEnemyMgrFv:
 /* 8010DEE4 0010AE24  7C 08 03 A6 */	mtlr r0
 /* 8010DEE8 0010AE28  38 21 00 30 */	addi r1, r1, 0x30
 /* 8010DEEC 0010AE2C  4E 80 00 20 */	blr 
+.endfn prepareDayendEnemies__Q24Game15GeneralEnemyMgrFv
 
-.global "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-"next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv":
+.fn "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv", weak
 /* 8010DEF0 0010AE30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010DEF4 0010AE34  7C 08 02 A6 */	mflr r0
 /* 8010DEF8 0010AE38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2872,9 +2906,9 @@ prepareDayendEnemies__Q24Game15GeneralEnemyMgrFv:
 /* 8010DFF4 0010AF34  7C 08 03 A6 */	mtlr r0
 /* 8010DFF8 0010AF38  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010DFFC 0010AF3C  4E 80 00 20 */	blr 
+.endfn "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
 
-.global "setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-"setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv":
+.fn "setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv", weak
 /* 8010E000 0010AF40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010E004 0010AF44  7C 08 02 A6 */	mflr r0
 /* 8010E008 0010AF48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3188,9 +3222,9 @@ prepareDayendEnemies__Q24Game15GeneralEnemyMgrFv:
 /* 8010E484 0010B3C4  7C 08 03 A6 */	mtlr r0
 /* 8010E488 0010B3C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010E48C 0010B3CC  4E 80 00 20 */	blr 
+.endfn "setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
 
-.global "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-"first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv":
+.fn "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv", weak
 /* 8010E490 0010B3D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010E494 0010B3D4  7C 08 02 A6 */	mflr r0
 /* 8010E498 0010B3D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3202,9 +3236,9 @@ prepareDayendEnemies__Q24Game15GeneralEnemyMgrFv:
 /* 8010E4B0 0010B3F0  7C 08 03 A6 */	mtlr r0
 /* 8010E4B4 0010B3F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010E4B8 0010B3F8  4E 80 00 20 */	blr 
+.endfn "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
 
-.global createDayendEnemies__Q24Game15GeneralEnemyMgrFRQ23Sys6Sphere
-createDayendEnemies__Q24Game15GeneralEnemyMgrFRQ23Sys6Sphere:
+.fn createDayendEnemies__Q24Game15GeneralEnemyMgrFRQ23Sys6Sphere, global
 /* 8010E4BC 0010B3FC  94 21 FE 90 */	stwu r1, -0x170(r1)
 /* 8010E4C0 0010B400  7C 08 02 A6 */	mflr r0
 /* 8010E4C4 0010B404  90 01 01 74 */	stw r0, 0x174(r1)
@@ -4073,9 +4107,9 @@ createDayendEnemies__Q24Game15GeneralEnemyMgrFRQ23Sys6Sphere:
 /* 8010F134 0010C074  7C 08 03 A6 */	mtlr r0
 /* 8010F138 0010C078  38 21 01 70 */	addi r1, r1, 0x170
 /* 8010F13C 0010C07C  4E 80 00 20 */	blr 
+.endfn createDayendEnemies__Q24Game15GeneralEnemyMgrFRQ23Sys6Sphere
 
-.global setDebugParm__Q24Game12EnemyMgrNodeFUl
-setDebugParm__Q24Game12EnemyMgrNodeFUl:
+.fn setDebugParm__Q24Game12EnemyMgrNodeFUl, weak
 /* 8010F140 0010C080  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010F144 0010C084  7C 08 02 A6 */	mflr r0
 /* 8010F148 0010C088  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4088,9 +4122,9 @@ setDebugParm__Q24Game12EnemyMgrNodeFUl:
 /* 8010F164 0010C0A4  7C 08 03 A6 */	mtlr r0
 /* 8010F168 0010C0A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010F16C 0010C0AC  4E 80 00 20 */	blr 
+.endfn setDebugParm__Q24Game12EnemyMgrNodeFUl
 
-.global resetDebugParm__Q24Game12EnemyMgrNodeFUl
-resetDebugParm__Q24Game12EnemyMgrNodeFUl:
+.fn resetDebugParm__Q24Game12EnemyMgrNodeFUl, weak
 /* 8010F170 0010C0B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010F174 0010C0B4  7C 08 02 A6 */	mflr r0
 /* 8010F178 0010C0B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4103,9 +4137,9 @@ resetDebugParm__Q24Game12EnemyMgrNodeFUl:
 /* 8010F194 0010C0D4  7C 08 03 A6 */	mtlr r0
 /* 8010F198 0010C0D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010F19C 0010C0DC  4E 80 00 20 */	blr 
+.endfn resetDebugParm__Q24Game12EnemyMgrNodeFUl
 
-.global __dt__Q24Game15GeneralEnemyMgrFv
-__dt__Q24Game15GeneralEnemyMgrFv:
+.fn __dt__Q24Game15GeneralEnemyMgrFv, weak
 /* 8010F1A0 0010C0E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010F1A4 0010C0E4  7C 08 02 A6 */	mflr r0
 /* 8010F1A8 0010C0E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4154,57 +4188,58 @@ __dt__Q24Game15GeneralEnemyMgrFv:
 /* 8010F248 0010C188  7C 08 03 A6 */	mtlr r0
 /* 8010F24C 0010C18C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010F250 0010C190  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game15GeneralEnemyMgrFv
 
-.global getMatrixLoadType__Q24Game12EnemyMgrNodeFv
-getMatrixLoadType__Q24Game12EnemyMgrNodeFv:
+.fn getMatrixLoadType__Q24Game12EnemyMgrNodeFv, weak
 /* 8010F254 0010C194  38 60 00 01 */	li r3, 1
 /* 8010F258 0010C198  4E 80 00 20 */	blr 
+.endfn getMatrixLoadType__Q24Game12EnemyMgrNodeFv
 
-.global doEntry__16GenericObjectMgrFv
-doEntry__16GenericObjectMgrFv:
+.fn doEntry__16GenericObjectMgrFv, weak
 /* 8010F25C 0010C19C  4E 80 00 20 */	blr 
+.endfn doEntry__16GenericObjectMgrFv
 
-.global "@24@getMatrixLoadType__Q24Game12EnemyMgrNodeFv"
-"@24@getMatrixLoadType__Q24Game12EnemyMgrNodeFv":
+.fn "@24@getMatrixLoadType__Q24Game12EnemyMgrNodeFv", weak
 /* 8010F260 0010C1A0  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F264 0010C1A4  4B FF FF F0 */	b getMatrixLoadType__Q24Game12EnemyMgrNodeFv
+.endfn "@24@getMatrixLoadType__Q24Game12EnemyMgrNodeFv"
 
-.global "@24@doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport"
-"@24@doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport":
+.fn "@24@doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport", weak
 /* 8010F268 0010C1A8  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F26C 0010C1AC  4B FF E1 D8 */	b doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport
+.endfn "@24@doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport"
 
-.global "@24@doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics"
-"@24@doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics":
+.fn "@24@doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics", weak
 /* 8010F270 0010C1B0  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F274 0010C1B4  4B FF E1 20 */	b doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics
+.endfn "@24@doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics"
 
-.global "@24@doSimulation__Q24Game12EnemyMgrNodeFf"
-"@24@doSimulation__Q24Game12EnemyMgrNodeFf":
+.fn "@24@doSimulation__Q24Game12EnemyMgrNodeFf", weak
 /* 8010F278 0010C1B8  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F27C 0010C1BC  4B FF E0 80 */	b doSimulation__Q24Game12EnemyMgrNodeFf
+.endfn "@24@doSimulation__Q24Game12EnemyMgrNodeFf"
 
-.global "@24@doViewCalc__Q24Game12EnemyMgrNodeFv"
-"@24@doViewCalc__Q24Game12EnemyMgrNodeFv":
+.fn "@24@doViewCalc__Q24Game12EnemyMgrNodeFv", weak
 /* 8010F280 0010C1C0  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F284 0010C1C4  4B FF DF E0 */	b doViewCalc__Q24Game12EnemyMgrNodeFv
+.endfn "@24@doViewCalc__Q24Game12EnemyMgrNodeFv"
 
-.global "@24@doSetView__Q24Game12EnemyMgrNodeFi"
-"@24@doSetView__Q24Game12EnemyMgrNodeFi":
+.fn "@24@doSetView__Q24Game12EnemyMgrNodeFi", weak
 /* 8010F288 0010C1C8  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F28C 0010C1CC  4B FF DF 50 */	b doSetView__Q24Game12EnemyMgrNodeFi
+.endfn "@24@doSetView__Q24Game12EnemyMgrNodeFi"
 
-.global "@24@doEntry__Q24Game12EnemyMgrNodeFv"
-"@24@doEntry__Q24Game12EnemyMgrNodeFv":
+.fn "@24@doEntry__Q24Game12EnemyMgrNodeFv", weak
 /* 8010F290 0010C1D0  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F294 0010C1D4  4B FF DE B0 */	b doEntry__Q24Game12EnemyMgrNodeFv
+.endfn "@24@doEntry__Q24Game12EnemyMgrNodeFv"
 
-.global "@24@doAnimation__Q24Game12EnemyMgrNodeFv"
-"@24@doAnimation__Q24Game12EnemyMgrNodeFv":
+.fn "@24@doAnimation__Q24Game12EnemyMgrNodeFv", weak
 /* 8010F298 0010C1D8  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F29C 0010C1DC  4B FF DE 20 */	b doAnimation__Q24Game12EnemyMgrNodeFv
+.endfn "@24@doAnimation__Q24Game12EnemyMgrNodeFv"
 
-.global "@4@__dt__Q24Game15GeneralEnemyMgrFv"
-"@4@__dt__Q24Game15GeneralEnemyMgrFv":
+.fn "@4@__dt__Q24Game15GeneralEnemyMgrFv", weak
 /* 8010F2A0 0010C1E0  38 63 FF FC */	addi r3, r3, -4
 /* 8010F2A4 0010C1E4  4B FF FE FC */	b __dt__Q24Game15GeneralEnemyMgrFv
+.endfn "@4@__dt__Q24Game15GeneralEnemyMgrFv"
