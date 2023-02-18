@@ -8,71 +8,71 @@ lbl_constructor:
 .global lbl_804932E0
 lbl_804932E0:
 	.asciz "hiScore2D"
-	.skip 2
+.balign 4
 .global lbl_804932EC
 lbl_804932EC:
 	.asciz "timg/hi_score_00.bti"
-	.skip 3
+.balign 4
 .global lbl_80493304
 lbl_80493304:
 	.asciz "timg/hi_score_01.bti"
-	.skip 3
+.balign 4
 .global lbl_8049331C
 lbl_8049331C:
 	.asciz "timg/hi_score_02.bti"
-	.skip 3
+.balign 4
 .global lbl_80493334
 lbl_80493334:
 	.asciz "timg/hi_score_03.bti"
-	.skip 3
+.balign 4
 .global lbl_8049334C
 lbl_8049334C:
 	.asciz "timg/hi_score_04.bti"
-	.skip 3
+.balign 4
 .global lbl_80493364
 lbl_80493364:
 	.asciz "timg/hi_score_05.bti"
-	.skip 3
+.balign 4
 .global lbl_8049337C
 lbl_8049337C:
 	.asciz "timg/hi_score_06.bti"
-	.skip 3
+.balign 4
 .global lbl_80493394
 lbl_80493394:
 	.asciz "timg/hi_score_07.bti"
-	.skip 3
+.balign 4
 .global lbl_804933AC
 lbl_804933AC:
 	.asciz "timg/hi_score_08.bti"
-	.skip 3
+.balign 4
 .global lbl_804933C4
 lbl_804933C4:
 	.asciz "timg/hi_score_09.bti"
-	.skip 3
+.balign 4
 .global lbl_804933DC
 lbl_804933DC:
 	.asciz "timg/hi_score_10.bti"
-	.skip 3
+.balign 4
 .global lbl_804933F4
 lbl_804933F4:
 	.asciz "timg/hi_score_11.bti"
-	.skip 3
+.balign 4
 .global lbl_8049340C
 lbl_8049340C:
 	.asciz "timg/hi_score_12.bti"
-	.skip 3
+.balign 4
 .global lbl_80493424
 lbl_80493424:
 	.asciz "timg/hi_score_13.bti"
-	.skip 3
+.balign 4
 .global lbl_8049343C
 lbl_8049343C:
 	.asciz "timg/hi_score_14.bti"
-	.skip 3
+.balign 4
 .global lbl_80493454
 lbl_80493454:
 	.asciz "timg/hi_score_15.bti"
-	.skip 3
+.balign 4
 	.4byte lbl_804932EC
 	.4byte lbl_80493304
 	.4byte lbl_8049331C
@@ -179,7 +179,7 @@ lbl_804935F0:
 .global lbl_80493600
 lbl_80493600:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x68695F73
 	.4byte 0x636F7265
 	.4byte 0x5F6D6169

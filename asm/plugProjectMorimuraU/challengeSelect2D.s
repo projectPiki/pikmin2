@@ -23,7 +23,7 @@ lbl_80493FD4:
 .global lbl_80493FEC
 lbl_80493FEC:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 .global lbl_80493FF8
 lbl_80493FF8:
 	.4byte 0x5053436F
@@ -82,19 +82,19 @@ lbl_804940A8:
 .global lbl_804940C8
 lbl_804940C8:
 	.asciz "timg/flower_seed.bti"
-	.skip 3
+.balign 4
 .global lbl_804940E0
 lbl_804940E0:
 	.asciz "timg/leaf_icon.bti"
-	.skip 1
+.balign 4
 .global lbl_804940F4
 lbl_804940F4:
 	.asciz "timg/flower_icon.bti"
-	.skip 3
+.balign 4
 .global lbl_8049410C
 lbl_8049410C:
 	.asciz "timg/flower_p_icon.bti"
-	.skip 1
+.balign 4
 	.4byte lbl_804940C8
 	.4byte lbl_804940E0
 	.4byte lbl_804940F4

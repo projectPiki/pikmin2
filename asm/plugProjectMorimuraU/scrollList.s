@@ -1,11 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80495210:
+.obj lbl_80495210, local
 	.asciz "scrollList.cpp"
+.endobj lbl_80495210
 .balign 4
-lbl_80495220:
+.obj lbl_80495220, local
 	.asciz "P2Assert"
+.endobj lbl_80495220
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

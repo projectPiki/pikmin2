@@ -18,20 +18,22 @@ lbl_80493B00:
 .global lbl_80493B10
 lbl_80493B10:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x63635F6D
 	.4byte 0x6174315F
 	.4byte 0x76000000
 .global lbl_80493B28
 lbl_80493B28:
 	.asciz "PSMainSide_ObjSound.h"
-	.skip 2
+.balign 4
 	.asciz "eyes_joint1"
+.balign 4
 	.asciz "weak_joint2"
+.balign 4
 	.asciz "ef_eye_r"
-	.skip 3
+.balign 4
 	.asciz "ef_eye_l"
-	.skip 3
+.balign 4
 .global lbl_80493B70
 lbl_80493B70:
 	.asciz "bero_joint1"
@@ -68,8 +70,8 @@ lbl_80493BD0:
 .global lbl_80493BEC
 lbl_80493BEC:
 	.asciz "kuti_joint1"
+.balign 4
 	.asciz "ArgScale"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

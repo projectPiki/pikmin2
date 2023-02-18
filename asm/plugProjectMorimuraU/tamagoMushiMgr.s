@@ -228,7 +228,6 @@ lbl_804924C4:
 .global lbl_804924D8
 lbl_804924D8:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

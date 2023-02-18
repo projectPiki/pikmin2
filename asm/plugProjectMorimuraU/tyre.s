@@ -303,8 +303,7 @@ lbl_8051F5D0:
 	.float 900.0
 .balign 8
 lbl_8051F5D8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051F5E0:
 	.float 2.0
 lbl_8051F5E4:

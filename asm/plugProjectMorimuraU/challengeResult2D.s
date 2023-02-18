@@ -67,7 +67,7 @@ lbl_80494780:
 lbl_80494818:
 	.asciz "challenge_modo_result_demo.bck"
 .balign 8
-lbl_80494838: # array of three char[8]
+lbl_80494838: # array of three char[8] (possibly u64)
 	.ascii "Tribon00"
 	.ascii "Tribon01"
 	.ascii "Tribon02"
@@ -388,8 +388,7 @@ lbl_8051F0C8:
 	.float 0.8
 .balign 8
 lbl_8051F0D0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .balign 8
 lbl_8051F0D8:
 	.double 10.0
@@ -399,8 +398,7 @@ lbl_8051F0E4:
 	.float 9.0
 .balign 8
 lbl_8051F0E8:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 lbl_8051F0F0:
 	.float 225.0
 lbl_8051F0F4:

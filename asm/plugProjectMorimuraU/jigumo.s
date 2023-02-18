@@ -9,7 +9,7 @@ lbl_80491D98:
 .global lbl_80491DA4
 lbl_80491DA4:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x626F6479
 	.4byte 0x5F6A6F69
 	.4byte 0x6E743100

@@ -406,7 +406,6 @@ __vt__Q34Game8BlackMan3Obj:
 	.4byte "@940@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@940@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
