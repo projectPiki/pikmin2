@@ -1046,7 +1046,8 @@ void THurryUp2D::scaleUp2()
 {
 	f32 goal = mParams[mState].mGoalScale;
 	if (mPaneSunL->mScale.x < goal) {
-		f32 scale = mTimer * mScaleSp2 * 60.0f * sys->mDeltaTime + mParams[mState].mScale;
+		f32 factor = mTimer * mScaleSp1 * 60.0f;
+		f32 scale  = factor * sys->mDeltaTime + mParams[mState].mScale;
 		if (scale > goal) {
 			scale = goal;
 		}
