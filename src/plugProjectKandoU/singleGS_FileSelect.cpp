@@ -10,115 +10,8 @@
 #include "TParticle2dMgr.h"
 #include "Game/GameSystem.h"
 
-static const char name[] = "SingleGS_Game";
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_singleGS_FileSelect_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80482748
-    lbl_80482748:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x53696E67
-        .4byte 0x6C654753
-        .4byte 0x5F47616D
-        .4byte 0x65000000
-    .global lbl_80482764
-    lbl_80482764:
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-    .global lbl_80482770
-    lbl_80482770:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x50535363
-        .4byte 0x656E652E
-        .4byte 0x68000000
-        .4byte 0x73696E67
-        .4byte 0x6C654753
-        .4byte 0x5F46696C
-        .4byte 0x6553656C
-        .4byte 0x6563742E
-        .4byte 0x63707000
-        .4byte 0x756E6B6E
-        .4byte 0x6F776E20
-        .4byte 0x73617665
-        .4byte 0x466C6167
-        .4byte 0x20282564
-        .4byte 0x290A0000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C07E0
-    lbl_804C07E0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804C07EC
-    lbl_804C07EC:
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte dvdload__Q34Game10SingleGame9FileStateFv
-    .global "__vt__39Delegate<Q34Game10SingleGame9FileState>"
-    "__vt__39Delegate<Q34Game10SingleGame9FileState>":
-        .4byte 0
-        .4byte 0
-        .4byte "invoke__39Delegate<Q34Game10SingleGame9FileState>Fv"
-    .global __vt__Q34Game10SingleGame9FileState
-    __vt__Q34Game10SingleGame9FileState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-        .4byte exec__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection
-        .4byte
-   cleanup__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionR8Graphics
-        .4byte
-   onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-        .4byte
-   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-        .4byte
-   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-        .4byte
-   on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
-        .4byte
-   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl .4byte
-   0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515C20
-    lbl_80515C20:
-        .skip 0x4
-    .global lbl_80515C24
-    lbl_80515C24:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A070
-    lbl_8051A070:
-        .float 1.0
-    .global lbl_8051A074
-    lbl_8051A074:
-        .4byte 0x40800000
-*/
+static const u32 unused[3] = { 0, 0, 0 };
+static const char name[]   = "SingleGS_Game";
 
 namespace Game {
 namespace SingleGame {
@@ -151,7 +44,7 @@ void FileState::init(SingleGameSection* section, StateArg* arg)
 	section->refreshHIO();
 	Screen::gGame2DMgr->mScreenMgr->reset();
 	sys->setFrameRate(1);
-	playData->mDeadNaviID[0] = 0;
+	playData->mDeadNaviID = 0;
 }
 
 /*
@@ -196,121 +89,6 @@ void FileState::dvdload()
 	tmgr2->mMgrFS.setController(input);
 	tmgr2->mCardErrorMgr.mController = input;
 	playData->reset();
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	lis      r4, lbl_80482748@ha
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	stw      r30, 0x48(r1)
-	addi     r30, r4, lbl_80482748@l
-	stw      r29, 0x44(r1)
-	bl       __ct__Q26PSGame9SceneInfoFv
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	li       r4, 0xa
-	li       r3, 0
-	stb      r4, 0xe(r1)
-	cmplwi   r0, 0
-	stb      r3, 0xf(r1)
-	bne      lbl_8021C8B8
-	addi     r3, r30, 0x1c
-	addi     r5, r30, 0x28
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8021C8B8:
-	lwz      r3, spSceneMgr__8PSSystem@sda21(r13)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8021C8F0
-	addi     r3, r30, 0x1c
-	addi     r5, r30, 0x28
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8021C8F0:
-	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	bne      lbl_8021C914
-	addi     r3, r30, 0x34
-	addi     r5, r30, 0x28
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8021C914:
-	lwz      r3, 4(r29)
-	lwz      r3, 4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8021C94C
-	addi     r3, r30, 0x1c
-	addi     r5, r30, 0x28
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8021C94C:
-	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	bne      lbl_8021C970
-	addi     r3, r30, 0x34
-	addi     r5, r30, 0x28
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8021C970:
-	lwz      r3, 4(r29)
-	lwz      r3, 4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	bl       createInstance__Q33ebi10FileSelect4TMgrFv
-	stw      r3, 0x2c(r31)
-	lwz      r30, 0x2c(r31)
-	addi     r3, r30, 0x18
-	bl       loadResource__Q43ebi6Screen10FileSelect11TMainScreenFv
-	lwz      r29, sCurrentHeap__7JKRHeap@sda21(r13)
-	addi     r3, r30, 0xc78
-	mr       r4, r29
-	bl       loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap
-	lwz      r3, sys@sda21(r13)
-	mr       r4, r29
-	lwz      r3, 0x5c(r3)
-	bl       loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap
-	lwz      r29, 0x14(r31)
-	lwz      r30, 0x2c(r31)
-	mr       r4, r29
-	addi     r3, r30, 0x18
-	bl       setController__Q33ebi2FS4TMgrFP10Controller
-	stw      r29, 0xc7c(r30)
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       reset__Q24Game8PlayDataFv
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -384,7 +162,7 @@ void FileState::startGame(SingleGameSection* game)
 		P2ASSERTLINE(469, game->mCurrentCourseInfo);
 
 		u8 flag = 1;
-		if (playData->mDeadNaviID[0] & 1 && playData->mDeadNaviID[0] & 2) {
+		if (playData->mDeadNaviID & 1 && playData->mDeadNaviID & 2) {
 			flag = 2;
 		}
 		LoadArg arg(1, flag, 1, 0);
@@ -394,8 +172,8 @@ void FileState::startGame(SingleGameSection* game)
 	case 3: // loading into a cave
 	{
 		ID32 id;
-		CourseInfo* info = playData->getCurrentCourse();
 		int floor;
+		CourseInfo* info = playData->getCurrentCourse();
 		playData->getCurrentCave(id, floor);
 		game->mCurrentCourseInfo = info;
 		game->mCurrentFloor      = floor;

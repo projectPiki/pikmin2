@@ -575,8 +575,7 @@ lbl_8051E738: # tau
 	.float 6.2831855
 .balign 8
 lbl_8051E740:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051E748:
 	.float 0.8
 lbl_8051E74C: # pi

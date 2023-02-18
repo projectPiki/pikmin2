@@ -124,7 +124,7 @@ void StateBomb::exec(EnemyBase* enemy)
 			enemy->setEmotionCaution();
 			Vector3f effectPos;
 			enemy->getCommonEffectPos(effectPos);
-			EnemyTypeID::EEnemyTypeID id = static_cast<Obj*>(enemy)->getEnemyTypeID();
+			EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 			efx::ArgEnemyType fxArg(effectPos, id, 1.0f);
 			efx::TBombrock bombEffect;
 			efx::TBombrockABCD* abcdPtr = &bombEffect.mEfxBombABCD;

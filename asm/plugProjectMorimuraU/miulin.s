@@ -1,26 +1,20 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80491A18
 lbl_80491A18:
-	.4byte 0x6A6E745F
-	.4byte 0x6B6F7368
-	.4byte 0x69000000
-	.4byte 0x6D69756C
-	.4byte 0x696E2E63
-	.4byte 0x70700000
+	.asciz "jnt_koshi"
+.balign 4
+lbl_80491A24:
+	.asciz "miulin.cpp"
+.balign 4
+lbl_80491A30:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80491A3C
+.balign 4
 lbl_80491A3C:
-	.4byte 0x6A6E745F
-	.4byte 0x666F6F74
-	.4byte 0x52000000
-.global lbl_80491A48
+	.asciz "jnt_footR"
+.balign 4
 lbl_80491A48:
-	.4byte 0x6A6E745F
-	.4byte 0x666F6F74
-	.4byte 0x4C000000
+	.asciz "jnt_footL"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -239,72 +233,50 @@ __vt__Q34Game6Miulin3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E810
 lbl_8051E810:
 	.4byte 0x42A00000
-.global lbl_8051E814
 lbl_8051E814:
 	.4byte 0x40000000
-.global lbl_8051E818
 lbl_8051E818:
 	.4byte 0x00000000
-.global lbl_8051E81C
 lbl_8051E81C:
 	.float 1.0
-.global lbl_8051E820
 lbl_8051E820:
 	.4byte 0x41A00000
-.global lbl_8051E824
 lbl_8051E824:
 	.4byte 0x41C80000
-.global lbl_8051E828
 lbl_8051E828:
 	.4byte 0x40A00000
-.global lbl_8051E82C
 lbl_8051E82C:
 	.4byte 0x40490FDB
-.global lbl_8051E830
 lbl_8051E830:
 	.4byte 0x3BB60B61
-.global lbl_8051E834
 lbl_8051E834:
 	.4byte 0x41200000
-.global lbl_8051E838
 lbl_8051E838:
 	.float 0.7
-.global lbl_8051E83C
 lbl_8051E83C:
 	.4byte 0x43340000
-.global lbl_8051E840
 lbl_8051E840:
 	.4byte 0x44610000
-.global lbl_8051E844
 lbl_8051E844:
 	.4byte 0x47000000
-.global lbl_8051E848
 lbl_8051E848:
 	.4byte 0xC3A2F983
-.global lbl_8051E84C
 lbl_8051E84C:
 	.4byte 0x43A2F983
-.global lbl_8051E850
 lbl_8051E850:
 	.4byte 0x40C90FDB
 	.4byte 0x00000000
-.global lbl_8051E858
 lbl_8051E858:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051E860
 lbl_8051E860:
 	.float 0.1
-.global lbl_8051E864
 lbl_8051E864:
 	.4byte 0x3F666666
-.global lbl_8051E868
 lbl_8051E868:
 	.4byte 0x3F4CCCCD
-.global lbl_8051E86C
 lbl_8051E86C:
 	.4byte 0x3F59999A
 

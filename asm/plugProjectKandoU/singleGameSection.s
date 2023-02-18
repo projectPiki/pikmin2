@@ -5,16 +5,19 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047CD98:
+.obj lbl_8047CD98, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047CD98
 .balign 4
-lbl_8047CDA4:
+.obj lbl_8047CDA4, local
 	.asciz "SingleGameSection"
+.endobj lbl_8047CDA4
 .balign 4
-lbl_8047CDB8:
+.obj lbl_8047CDB8, local
 	.asciz "PSGame.h"
+.endobj lbl_8047CDB8
 .balign 4
 lbl_8047CDC4:
 	.asciz "P2Assert"
@@ -453,7 +456,7 @@ lbl_805185E8:
 	.float 15.0
 lbl_805185EC:
 	.float 40.0
-lbl_805185F0:
+lbl_805185F0: # tau
 	.float 6.2831855
 lbl_805185F4:
 	.float 770.0
@@ -471,8 +474,7 @@ lbl_8051860C:
 	.float 150.0
 .balign 8
 lbl_80518610:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_80518618:
 	.float 900.0
 lbl_8051861C:

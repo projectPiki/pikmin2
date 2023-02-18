@@ -5,13 +5,12 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E2908
-lbl_804E2908:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q34Game6Jigumo10StateSMiss
-__vt__Q34Game6Jigumo10StateSMiss:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game6Jigumo10StateSMiss, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo10StateSMissFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -21,8 +20,8 @@ __vt__Q34Game6Jigumo10StateSMiss:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo12StateSAttack
-__vt__Q34Game6Jigumo12StateSAttack:
+.endobj __vt__Q34Game6Jigumo10StateSMiss
+.obj __vt__Q34Game6Jigumo12StateSAttack, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -32,8 +31,8 @@ __vt__Q34Game6Jigumo12StateSAttack:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo11StateSearch
-__vt__Q34Game6Jigumo11StateSearch:
+.endobj __vt__Q34Game6Jigumo12StateSAttack
+.obj __vt__Q34Game6Jigumo11StateSearch, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo11StateSearchFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -43,8 +42,8 @@ __vt__Q34Game6Jigumo11StateSearch:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo8StateEat
-__vt__Q34Game6Jigumo8StateEat:
+.endobj __vt__Q34Game6Jigumo11StateSearch
+.obj __vt__Q34Game6Jigumo8StateEat, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -54,8 +53,8 @@ __vt__Q34Game6Jigumo8StateEat:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo10StateFlick
-__vt__Q34Game6Jigumo10StateFlick:
+.endobj __vt__Q34Game6Jigumo8StateEat
+.obj __vt__Q34Game6Jigumo10StateFlick, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -65,8 +64,8 @@ __vt__Q34Game6Jigumo10StateFlick:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo10StateCarry
-__vt__Q34Game6Jigumo10StateCarry:
+.endobj __vt__Q34Game6Jigumo10StateFlick
+.obj __vt__Q34Game6Jigumo10StateCarry, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -76,8 +75,8 @@ __vt__Q34Game6Jigumo10StateCarry:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo11StateReturn
-__vt__Q34Game6Jigumo11StateReturn:
+.endobj __vt__Q34Game6Jigumo10StateCarry
+.obj __vt__Q34Game6Jigumo11StateReturn, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -87,8 +86,8 @@ __vt__Q34Game6Jigumo11StateReturn:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo9StateMiss
-__vt__Q34Game6Jigumo9StateMiss:
+.endobj __vt__Q34Game6Jigumo11StateReturn
+.obj __vt__Q34Game6Jigumo9StateMiss, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo9StateMissFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -98,13 +97,13 @@ __vt__Q34Game6Jigumo9StateMiss:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo24ConditionHeightCheckPiki
-__vt__Q34Game6Jigumo24ConditionHeightCheckPiki:
+.endobj __vt__Q34Game6Jigumo9StateMiss
+.obj __vt__Q34Game6Jigumo24ConditionHeightCheckPiki, weak
 	.4byte 0
 	.4byte 0
 	.4byte satisfy__Q34Game6Jigumo24ConditionHeightCheckPikiFPQ24Game4Piki
-.global __vt__Q34Game6Jigumo11StateAttack
-__vt__Q34Game6Jigumo11StateAttack:
+.endobj __vt__Q34Game6Jigumo24ConditionHeightCheckPiki
+.obj __vt__Q34Game6Jigumo11StateAttack, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -114,8 +113,8 @@ __vt__Q34Game6Jigumo11StateAttack:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo9StateDead
-__vt__Q34Game6Jigumo9StateDead:
+.endobj __vt__Q34Game6Jigumo11StateAttack
+.obj __vt__Q34Game6Jigumo9StateDead, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -125,8 +124,8 @@ __vt__Q34Game6Jigumo9StateDead:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo9StateHide
-__vt__Q34Game6Jigumo9StateHide:
+.endobj __vt__Q34Game6Jigumo9StateDead
+.obj __vt__Q34Game6Jigumo9StateHide, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo9StateHideFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -136,8 +135,8 @@ __vt__Q34Game6Jigumo9StateHide:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo11StateAppear
-__vt__Q34Game6Jigumo11StateAppear:
+.endobj __vt__Q34Game6Jigumo9StateHide
+.obj __vt__Q34Game6Jigumo11StateAppear, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -147,8 +146,8 @@ __vt__Q34Game6Jigumo11StateAppear:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo9StateWait
-__vt__Q34Game6Jigumo9StateWait:
+.endobj __vt__Q34Game6Jigumo11StateAppear
+.obj __vt__Q34Game6Jigumo9StateWait, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -158,8 +157,8 @@ __vt__Q34Game6Jigumo9StateWait:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo5State
-__vt__Q34Game6Jigumo5State:
+.endobj __vt__Q34Game6Jigumo9StateWait
+.obj __vt__Q34Game6Jigumo5State, weak
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -169,8 +168,8 @@ __vt__Q34Game6Jigumo5State:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game6Jigumo3FSM
-__vt__Q34Game6Jigumo3FSM:
+.endobj __vt__Q34Game6Jigumo5State
+.obj __vt__Q34Game6Jigumo3FSM, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game6Jigumo3FSMFPQ24Game9EnemyBase
@@ -180,123 +179,93 @@ __vt__Q34Game6Jigumo3FSM:
 	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+.endobj __vt__Q34Game6Jigumo3FSM
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515F58
-lbl_80515F58:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515F5C
-lbl_80515F5C:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E870
 lbl_8051E870:
-	.4byte 0x77616974
-	.4byte 0x00000000
-.global lbl_8051E878
+	.asciz "wait"
+.balign 4
 lbl_8051E878:
-	.4byte 0x61707065
-	.4byte 0x61720000
-.global lbl_8051E880
+	.asciz "appear"
+.balign 4
 lbl_8051E880:
-	.4byte 0x00000000
-.global lbl_8051E884
+	.float 0.0
 lbl_8051E884:
 	.float 1.0
-.global lbl_8051E888
 lbl_8051E888:
-	.4byte 0x40A00000
-.global lbl_8051E88C
+	.float 5.0
 lbl_8051E88C:
-	.4byte 0x43B40000
-.global lbl_8051E890
+	.float 360.0
 lbl_8051E890:
-	.4byte 0x40C90FDB
-.global lbl_8051E894
+	.float 6.2831855
 lbl_8051E894:
-	.4byte 0x3F07AE14
-.global lbl_8051E898
+	.float 0.53
+.balign 4
 lbl_8051E898:
-	.4byte 0x68696465
-	.4byte 0x00000000
-.global lbl_8051E8A0
+	.asciz "hide"
+.balign 4
 lbl_8051E8A0:
 	.4byte 0xC47A0000
-.global lbl_8051E8A4
 lbl_8051E8A4:
 	.float 0.05
-.global lbl_8051E8A8
 lbl_8051E8A8:
 	.4byte 0x40490FDB
-.global lbl_8051E8AC
 lbl_8051E8AC:
 	.4byte 0x64656164
 	.4byte 0x00000000
-.global lbl_8051E8B4
 lbl_8051E8B4:
 	.4byte 0x61747461
 	.4byte 0x636B0000
-.global lbl_8051E8BC
 lbl_8051E8BC:
 	.4byte 0x3BB60B61
-.global lbl_8051E8C0
 lbl_8051E8C0:
 	.4byte 0x41C80000
-.global lbl_8051E8C4
 lbl_8051E8C4:
 	.4byte 0x41200000
-.global lbl_8051E8C8
 lbl_8051E8C8:
 	.4byte 0x42C80000
-.global lbl_8051E8CC
 lbl_8051E8CC:
 	.4byte 0x6D697373
 	.4byte 0x00000000
-.global lbl_8051E8D4
 lbl_8051E8D4:
 	.4byte 0x72657475
 	.4byte 0x726E0000
-.global lbl_8051E8DC
 lbl_8051E8DC:
 	.4byte 0x41A00000
-.global lbl_8051E8E0
 lbl_8051E8E0:
 	.4byte 0x63617272
 	.4byte 0x79000000
-.global lbl_8051E8E8
 lbl_8051E8E8:
 	.4byte 0x3F8CCCCD
-.global lbl_8051E8EC
 lbl_8051E8EC:
 	.4byte 0x666C6963
 	.4byte 0x6B000000
-.global lbl_8051E8F4
 lbl_8051E8F4:
 	.4byte 0x65617400
-.global lbl_8051E8F8
 lbl_8051E8F8:
 	.float 0.1
-.global lbl_8051E8FC
 lbl_8051E8FC:
 	.4byte 0x43960000
-.global lbl_8051E900
 lbl_8051E900:
 	.4byte 0x73656172
 	.4byte 0x63680000
-.global lbl_8051E908
 lbl_8051E908:
 	.4byte 0x3C23D70A
-.global lbl_8051E90C
 lbl_8051E90C:
 	.4byte 0x73617474
 	.4byte 0x61636B00
-.global lbl_8051E914
 lbl_8051E914:
 	.4byte 0x42480000
-.global lbl_8051E918
 lbl_8051E918:
 	.4byte 0x736D6973
 	.4byte 0x73000000
@@ -3119,10 +3088,10 @@ satisfy__Q34Game6Jigumo24ConditionHeightCheckPikiFPQ24Game4Piki:
 /* 80368830 00365770  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80368834 00365774  38 00 FF FF */	li r0, -1
 /* 80368838 00365778  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8036883C 0036577C  3C 60 80 4E */	lis r3, lbl_804E2908@ha
-/* 80368840 00365780  90 0D 98 D8 */	stw r0, lbl_80515F58@sda21(r13)
-/* 80368844 00365784  D4 03 29 08 */	stfsu f0, lbl_804E2908@l(r3)
-/* 80368848 00365788  D0 0D 98 DC */	stfs f0, lbl_80515F5C@sda21(r13)
+/* 8036883C 0036577C  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80368840 00365780  90 0D 98 D8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80368844 00365784  D4 03 29 08 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80368848 00365788  D0 0D 98 DC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8036884C 0036578C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80368850 00365790  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80368854 00365794  4E 80 00 20 */	blr 

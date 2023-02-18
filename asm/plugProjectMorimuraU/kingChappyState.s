@@ -248,8 +248,7 @@ lbl_8051E5BC:
 	.asciz "damage"
 .balign 8
 lbl_8051E5C8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .balign 4
 lbl_8051E5D0:
 	.asciz "turn"

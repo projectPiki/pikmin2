@@ -1,24 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804924E8
 lbl_804924E8:
-	.4byte 0x74616D61
-	.4byte 0x676F4D75
-	.4byte 0x73686900
-.global lbl_804924F4
+	.asciz "tamagoMushi"
+.balign 4
 lbl_804924F4:
-	.4byte 0x74616D61
-	.4byte 0x676F4D75
-	.4byte 0x7368692E
-	.4byte 0x63707000
-.global lbl_80492504
+	.asciz "tamagoMushi.cpp"
+.balign 4
 lbl_80492504:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x6B6F7368
-	.4byte 0x696A6E74
-	.4byte 0x00000000
+.balign 4
+lbl_80492510:
+	.asciz "koshijnt"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -237,83 +230,57 @@ __vt__Q34Game11TamagoMushi3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051EAB0
 lbl_8051EAB0:
 	.4byte 0x47000000
-.global lbl_8051EAB4
 lbl_8051EAB4:
 	.4byte 0x3F4CCCCD
-.global lbl_8051EAB8
 lbl_8051EAB8:
 	.4byte 0x3E4CCCCD
-.global lbl_8051EABC
 lbl_8051EABC:
 	.float 0.7
-.global lbl_8051EAC0
 lbl_8051EAC0:
 	.float 0.3
-.global lbl_8051EAC4
 lbl_8051EAC4:
 	.4byte 0x00000000
-.global lbl_8051EAC8
 lbl_8051EAC8:
 	.4byte 0x43A2F983
-.global lbl_8051EACC
 lbl_8051EACC:
 	.4byte 0xC3A2F983
-.global lbl_8051EAD0
 lbl_8051EAD0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051EAD8
 lbl_8051EAD8:
 	.4byte 0x41200000
-.global lbl_8051EADC
 lbl_8051EADC:
 	.4byte 0x40000000
-.global lbl_8051EAE0
 lbl_8051EAE0:
 	.float 1.0
-.global lbl_8051EAE4
 lbl_8051EAE4:
 	.4byte 0x41700000
-.global lbl_8051EAE8
 lbl_8051EAE8:
 	.4byte 0x41400000
-.global lbl_8051EAEC
 lbl_8051EAEC:
 	.4byte 0x42480000
-.global lbl_8051EAF0
 lbl_8051EAF0:
 	.4byte 0x43480000
-.global lbl_8051EAF4
 lbl_8051EAF4:
 	.4byte 0x3F666666
-.global lbl_8051EAF8
 lbl_8051EAF8:
 	.4byte 0x43B40000
-.global lbl_8051EAFC
 lbl_8051EAFC:
 	.4byte 0x40490FDB
-.global lbl_8051EB00
 lbl_8051EB00:
 	.4byte 0x3BB60B61
-.global lbl_8051EB04
 lbl_8051EB04:
 	.float 0.1
-.global lbl_8051EB08
 lbl_8051EB08:
 	.float 0.5
-.global lbl_8051EB0C
 lbl_8051EB0C:
 	.4byte 0x40C90FDB
-.global lbl_8051EB10
 lbl_8051EB10:
 	.4byte 0x43340000
-.global lbl_8051EB14
 lbl_8051EB14:
 	.4byte 0x3F733333
-.global lbl_8051EB18
 lbl_8051EB18:
 	.4byte 0x3EB33333
 	.4byte 0x00000000

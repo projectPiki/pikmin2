@@ -1,40 +1,49 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804901E8:
+.obj lbl_804901E8, local
 	.asciz "dayEndCount"
+.endobj lbl_804901E8
 .balign 4
-lbl_804901F4:
+.obj lbl_804901F4, local
 	.asciz "DayEndCount"
+.endobj lbl_804901F4
 .balign 4
-lbl_80490200:
+.obj lbl_80490200, local
 	.asciz "count.blo"
+.endobj lbl_80490200
 .balign 4
-lbl_8049020C:
+.obj lbl_8049020C, local
 	.asciz "dayEndCount.cpp"
+.endobj lbl_8049020C
 .balign 4
-lbl_8049021C:
+.obj lbl_8049021C, local
 	.asciz "P2Assert"
+.endobj lbl_8049021C
 .balign 4
-lbl_80490228:
+.obj lbl_80490228, local
 	.asciz "challengeEndCount"
+.endobj lbl_80490228
 .balign 4
-lbl_8049023C:
+.obj lbl_8049023C, local
 	.asciz "challengeEndCount1p"
+.endobj lbl_8049023C
 .balign 4
-lbl_80490250:
+.obj lbl_80490250, local
 	.asciz "challengeEndCount2p"
+.endobj lbl_80490250
 .balign 4
-lbl_80490264:
+.obj lbl_80490264, local
 	.asciz "res_ground.szs"
+.endobj lbl_80490264
 .balign 4
-lbl_80490274:
+.obj lbl_80490274, local
 	.asciz "screenObj.h"
+.endobj lbl_80490274
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global deTagName__8Morimura
-deTagName__8Morimura:
+.obj deTagName__8Morimura, global
 	.ascii "cd00"
 	.ascii "cd01"
 	.ascii "cd02"
@@ -46,8 +55,8 @@ deTagName__8Morimura:
 	.ascii "cd08"
 	.ascii "cd09"
 	.ascii "cd10"
-.global __vt__Q28Morimura15TCountDownScene
-__vt__Q28Morimura15TCountDownScene:
+.endobj deTagName__8Morimura
+.obj __vt__Q28Morimura15TCountDownScene, global
 	.4byte 0
 	.4byte 0
 	.4byte getSceneType__Q28Morimura15TCountDownSceneFv
@@ -68,8 +77,8 @@ __vt__Q28Morimura15TCountDownScene:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
-.global __vt__Q28Morimura20TChallengeEndCount2p
-__vt__Q28Morimura20TChallengeEndCount2p:
+.endobj __vt__Q28Morimura15TCountDownScene
+.obj __vt__Q28Morimura20TChallengeEndCount2p, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura20TChallengeEndCount2pFv
@@ -101,8 +110,8 @@ __vt__Q28Morimura20TChallengeEndCount2p:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
-.global __vt__Q28Morimura20TChallengeEndCount1p
-__vt__Q28Morimura20TChallengeEndCount1p:
+.endobj __vt__Q28Morimura20TChallengeEndCount2p
+.obj __vt__Q28Morimura20TChallengeEndCount1p, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura20TChallengeEndCount1pFv
@@ -134,8 +143,8 @@ __vt__Q28Morimura20TChallengeEndCount1p:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
-.global __vt__Q28Morimura18TChallengeEndCount
-__vt__Q28Morimura18TChallengeEndCount:
+.endobj __vt__Q28Morimura20TChallengeEndCount1p
+.obj __vt__Q28Morimura18TChallengeEndCount, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura18TChallengeEndCountFv
@@ -167,8 +176,8 @@ __vt__Q28Morimura18TChallengeEndCount:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
-.global __vt__Q28Morimura12TDayEndCount
-__vt__Q28Morimura12TDayEndCount:
+.endobj __vt__Q28Morimura18TChallengeEndCount
+.obj __vt__Q28Morimura12TDayEndCount, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura12TDayEndCountFv
@@ -200,65 +209,71 @@ __vt__Q28Morimura12TDayEndCount:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
+.endobj __vt__Q28Morimura12TDayEndCount
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mWaitTime__Q28Morimura12TDayEndCount
-mWaitTime__Q28Morimura12TDayEndCount:
+.obj mWaitTime__Q28Morimura12TDayEndCount, global
 	.float 0.4
-.global mAlphaMax__Q28Morimura12TDayEndCount
-mAlphaMax__Q28Morimura12TDayEndCount:
+.endobj mWaitTime__Q28Morimura12TDayEndCount
+.obj mAlphaMax__Q28Morimura12TDayEndCount, global
 	.byte 0xC8
-.global mWaitAlpha__Q28Morimura12TDayEndCount
-mWaitAlpha__Q28Morimura12TDayEndCount:
+.endobj mAlphaMax__Q28Morimura12TDayEndCount
+.obj mWaitAlpha__Q28Morimura12TDayEndCount, global
 	.byte 0x64
+.endobj mWaitAlpha__Q28Morimura12TDayEndCount
 .balign 4
-.global mWaitScale__Q28Morimura12TDayEndCount
-mWaitScale__Q28Morimura12TDayEndCount:
+.obj mWaitScale__Q28Morimura12TDayEndCount, global
 	.float 0.2
-.global mStopScale__Q28Morimura12TDayEndCount
-mStopScale__Q28Morimura12TDayEndCount:
+.endobj mWaitScale__Q28Morimura12TDayEndCount
+.obj mStopScale__Q28Morimura12TDayEndCount, global
 	.float 1.0
-.global mScaleMax__Q28Morimura12TDayEndCount
-mScaleMax__Q28Morimura12TDayEndCount:
+.endobj mStopScale__Q28Morimura12TDayEndCount
+.obj mScaleMax__Q28Morimura12TDayEndCount, global
 	.float 2.0
-.global m2pScale__Q28Morimura12TDayEndCount
-m2pScale__Q28Morimura12TDayEndCount:
+.endobj mScaleMax__Q28Morimura12TDayEndCount
+.obj m2pScale__Q28Morimura12TDayEndCount, global
 	.float 0.75
-.global m2pOffsetY__Q28Morimura12TDayEndCount
-m2pOffsetY__Q28Morimura12TDayEndCount:
+.endobj m2pScale__Q28Morimura12TDayEndCount
+.obj m2pOffsetY__Q28Morimura12TDayEndCount, global
 	.float 170.0
-.global mColor__Q28Morimura12TDayEndCount
-mColor__Q28Morimura12TDayEndCount:
+.endobj m2pOffsetY__Q28Morimura12TDayEndCount
+.obj mColor__Q28Morimura12TDayEndCount, global
 	.4byte 0x00FF00FF
-.global mNumberColor__Q28Morimura12TDayEndCount
-mNumberColor__Q28Morimura12TDayEndCount:
+.endobj mColor__Q28Morimura12TDayEndCount
+.obj mNumberColor__Q28Morimura12TDayEndCount, global
 	.4byte 0xFF6400FF
+.endobj mNumberColor__Q28Morimura12TDayEndCount
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mColorTest__Q28Morimura12TDayEndCount
-mColorTest__Q28Morimura12TDayEndCount:
+.obj mColorTest__Q28Morimura12TDayEndCount, global
 	.skip 0x1
-.global mTestChangeColor__Q28Morimura12TDayEndCount
-mTestChangeColor__Q28Morimura12TDayEndCount:
+.endobj mColorTest__Q28Morimura12TDayEndCount
+.obj mTestChangeColor__Q28Morimura12TDayEndCount, global
 	.skip 0x1
-.global mCountDownType__Q28Morimura12TDayEndCount
-mCountDownType__Q28Morimura12TDayEndCount:
+.endobj mTestChangeColor__Q28Morimura12TDayEndCount
+.obj mCountDownType__Q28Morimura12TDayEndCount, global
 	.skip 0x1
+.endobj mCountDownType__Q28Morimura12TDayEndCount
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E1F8:
+.obj lbl_8051E1F8, local
 	.float 1.0
-lbl_8051E1FC:
+.endobj lbl_8051E1F8
+.obj lbl_8051E1FC, local
 	.float 0.0
-lbl_8051E200:
+.endobj lbl_8051E1FC
+.obj lbl_8051E200, local
 	.float 0.9
-lbl_8051E204:
+.endobj lbl_8051E200
+.obj lbl_8051E204, local
 	.float 25.0
-lbl_8051E208:
+.endobj lbl_8051E204
+.obj lbl_8051E208, local
 	.float 1.0E-4
+.endobj lbl_8051E208
 lbl_8051E20C:
 	.float 0.01
 lbl_8051E210:
@@ -283,12 +298,10 @@ lbl_8051E234:
 	.float 5.0
 .balign 8
 lbl_8051E238:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .balign 8
 lbl_8051E240:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 lbl_8051E248: # tau
 	.float 6.2831855
 lbl_8051E24C:

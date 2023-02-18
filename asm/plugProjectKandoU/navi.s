@@ -5,15 +5,17 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047C788:
+.obj lbl_8047C788, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047C788
 .balign 4
-lbl_8047C794:
+.obj lbl_8047C794, local
 	.asciz "navi.cpp"
+.endobj lbl_8047C794
 .balign 4
-lbl_8047C7A0: # Shift-JIS
+.obj lbl_8047C7A0, local # Shift-JIS
 	.4byte 0x83558393
 	.4byte 0x815B815B
 	.4byte 0x81698145
@@ -21,6 +23,7 @@ lbl_8047C7A0: # Shift-JIS
 	.4byte 0x816A817C
 	.4byte 0x817C836C
 	.4byte 0x83930A00
+.endobj lbl_8047C7A0
 .balign 4
 lbl_8047C7BC:
 	.asciz "happajnt3"
@@ -54,10 +57,10 @@ lbl_8047C86C:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804B04E0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804B04EC:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
@@ -400,16 +403,18 @@ __vt__Q23efx7TFueact:
 	.4byte "start__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
 	.4byte "exec__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
 	.4byte "transit__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 4
-numSearch:
+.endobj gfNAN___Q24Game5P2JST
+.obj numSearch, local
 	.skip 4
+.endobj numSearch
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -473,7 +478,7 @@ lbl_805183B8:
 	.float 8.5
 lbl_805183BC:
 	.float 0.2
-lbl_805183C0:
+lbl_805183C0: # pi
 	.float 3.1415927
 lbl_805183C4:
 	.float 0.0055555557
@@ -481,8 +486,7 @@ lbl_805183C8:
 	.float 0.7853982
 .balign 8
 lbl_805183D0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_805183D8:
 	.float 20.0
 lbl_805183DC:
@@ -9583,9 +9587,9 @@ forceKill__Q23efx13TFueactCircleFv:
 /* 80147660 001445A0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80147664 001445A4  38 00 FF FF */	li r0, -1
 /* 80147668 001445A8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8014766C 001445AC  3C 60 80 4B */	lis r3, lbl_804B04E0@ha
+/* 8014766C 001445AC  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 80147670 001445B0  90 0D 92 90 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
-/* 80147674 001445B4  D4 03 04 E0 */	stfsu f0, lbl_804B04E0@l(r3)
+/* 80147674 001445B4  D4 03 04 E0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
 /* 80147678 001445B8  D0 0D 92 94 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8014767C 001445BC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80147680 001445C0  D0 03 00 08 */	stfs f0, 8(r3)

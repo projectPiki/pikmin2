@@ -258,8 +258,7 @@ lbl_8051EEF8:
 	.float 32768.0
 .balign 8
 lbl_8051EF00:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051EF08:
 	.float 0.0
 lbl_8051EF0C: # tau

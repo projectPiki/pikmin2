@@ -208,9 +208,9 @@ __vt__8Platform:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mDebug__8CollTree
-mDebug__8CollTree:
+.obj mDebug__8CollTree, global
 	.skip 1
+.endobj mDebug__8CollTree
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -224,8 +224,7 @@ lbl_80518214:
 	.float 128000.0
 .balign 8
 lbl_80518218:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_80518220:
 	.float 0.001
 lbl_80518224:

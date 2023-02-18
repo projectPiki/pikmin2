@@ -1,13 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80492170
 lbl_80492170:
 	.4byte 0x74616D61
 	.4byte 0x676F4D75
 	.4byte 0x7368694D
 	.4byte 0x67720000
-.global lbl_80492180
 lbl_80492180:
 	.4byte 0x835E837D
 	.4byte 0x83538380
@@ -305,7 +303,6 @@ __vt__16J3DUMtxCacheBase:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__16J3DUMtxCacheBaseFv
-	.4byte 0
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40

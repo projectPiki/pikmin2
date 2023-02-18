@@ -30,10 +30,10 @@ lbl_8049586C:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E63C8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q23efx10TKageRecov
 __vt__Q23efx10TKageRecov:
 	.4byte 0
@@ -2920,9 +2920,9 @@ __sinit_tyre_cpp:
 /* 803AE808 003AB748  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803AE80C 003AB74C  38 00 FF FF */	li r0, -1
 /* 803AE810 003AB750  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803AE814 003AB754  3C 60 80 4E */	lis r3, lbl_804E63C8@ha
+/* 803AE814 003AB754  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 803AE818 003AB758  90 0D 99 E8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
-/* 803AE81C 003AB75C  D4 03 63 C8 */	stfsu f0, lbl_804E63C8@l(r3)
+/* 803AE81C 003AB75C  D4 03 63 C8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
 /* 803AE820 003AB760  D0 0D 99 EC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803AE824 003AB764  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803AE828 003AB768  D0 03 00 08 */	stfs f0, 8(r3)

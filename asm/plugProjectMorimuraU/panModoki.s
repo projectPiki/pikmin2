@@ -517,8 +517,7 @@ lbl_8051E4F8:
 	.float 32768.0
 .balign 8
 lbl_8051E500:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051E508:
 	.float 60.0
 lbl_8051E50C:
