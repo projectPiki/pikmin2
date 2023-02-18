@@ -386,9 +386,9 @@ lbl_constructor:
 .obj lbl_80517CB8, local
 	.float 0.0055555557
 .endobj lbl_80517CB8
-.obj lbl_80517CB8, local
+.obj lbl_80517CBC, local
 	.float 0.87266463
-.endobj lbl_80517CB8
+.endobj lbl_80517CBC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .fn __ct__Q24Game20GameLightTimeSettingFv, global
