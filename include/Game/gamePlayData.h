@@ -80,6 +80,15 @@ enum DemoFlags {
 	DEMO_UNK_56                  = 56, // cave screen?
 };
 
+// What to load into after file select, i.e. where did we last save?
+enum SaveFlags {
+	STORYSAVE_NewFile   = 0, // no save data
+	STORYSAVE_WorldMap  = 1, // save at end of day
+	STORYSAVE_Overworld = 2, // save after exiting cave
+	STORYSAVE_Cave      = 3, // save during cave
+	STORYSAVE_DebtPaid  = 4, // save after debt paid sequence
+};
+
 struct CaveSaveData {
 	CaveSaveData();
 
@@ -362,7 +371,7 @@ struct PlayData : public CNode {
 	inline PelletFirstMemory* getZukanStat() { return mZukanStat; }
 
 	bool _18;                               // _18
-	u8 mLoadType;                           // _19
+	u8 mLoadType;                           // _19, see SaveFlags enum
 	u32 _1C;                                // _1C
 	u8 mDeadNaviID;                         // _20
 	u8 _21[3];                              // _21

@@ -205,11 +205,7 @@ void SingleGame::SelectState::exec(SingleGameSection* game)
 					game->mDisplayWiper = game->mWipeInFader;
 					game->mWipeInFader->start(4.0f);
 					game->mCurrentCourseInfo = info;
-					LoadStateArg larg;
-					larg._00 = 0;
-					larg._01 = 1;
-					larg._02 = 0;
-					larg._04 = 0;
+					LoadArg larg(0, false, true, false);
 					transit(game, SGS_Load, &larg);
 				}
 				break;
