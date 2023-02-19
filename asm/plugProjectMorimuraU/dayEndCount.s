@@ -274,46 +274,62 @@
 .obj lbl_8051E208, local
 	.float 1.0E-4
 .endobj lbl_8051E208
-lbl_8051E20C:
+.obj lbl_8051E20C, local
 	.float 0.01
-lbl_8051E210:
+.endobj lbl_8051E20C
+.obj lbl_8051E210, local
 	.float 10.0
-lbl_8051E214:
+.endobj lbl_8051E210
+.obj lbl_8051E214, local
 	.float 1.1
-lbl_8051E218:
+.endobj lbl_8051E214
+.obj lbl_8051E218, local
 	.float 11.0
-lbl_8051E21C:
+.endobj lbl_8051E218
+.obj lbl_8051E21C, local
 	.float 0.5
-lbl_8051E220:
+.endobj lbl_8051E21C
+.obj lbl_8051E220, local
 	.float 100.0
-lbl_8051E224:
+.endobj lbl_8051E220
+.obj lbl_8051E224, local
 	.float 255.0
-lbl_8051E228: # 4 pi
+.endobj lbl_8051E224
+.obj lbl_8051E228, local # 4 pi
 	.float 12.566371
-lbl_8051E22C:
+.endobj lbl_8051E228
+.obj lbl_8051E22C, local
 	.float -325.9493
-lbl_8051E230:
+.endobj lbl_8051E22C
+.obj lbl_8051E230, local
 	.float 325.9493
-lbl_8051E234:
+.endobj lbl_8051E230
+.obj lbl_8051E234, local
 	.float 5.0
+.endobj lbl_8051E234
 .balign 8
-lbl_8051E238:
+.obj lbl_8051E238, local
 	.8byte 0x4330000080000000
+.endobj lbl_8051E238
 .balign 8
-lbl_8051E240:
+.obj lbl_8051E240, local
 	.8byte 0x4330000000000000
-lbl_8051E248: # tau
+.endobj lbl_8051E240
+.obj lbl_8051E248, local # tau
 	.float 6.2831855
-lbl_8051E24C:
+.endobj lbl_8051E248
+.obj lbl_8051E24C, local
 	.float 36.0
-lbl_8051E250:
+.endobj lbl_8051E24C
+.obj lbl_8051E250, local
 	.float 360.0
-lbl_8051E254:
+.endobj lbl_8051E250
+.obj lbl_8051E254, local
 	.float 80.0
+.endobj lbl_8051E254
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28Morimura12TDayEndCountFv
-__ct__Q28Morimura12TDayEndCountFv:
+.fn __ct__Q28Morimura12TDayEndCountFv, global
 /* 80344088 00340FC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034408C 00340FCC  7C 08 02 A6 */	mflr r0
 /* 80344090 00340FD0  3C 80 80 49 */	lis r4, lbl_804901F4@ha
@@ -370,9 +386,9 @@ __ct__Q28Morimura12TDayEndCountFv:
 /* 8034415C 0034109C  7C 08 03 A6 */	mtlr r0
 /* 80344160 003410A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80344164 003410A4  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura12TDayEndCountFv
 
-.global __dt__Q28Morimura9TTestBaseFv
-__dt__Q28Morimura9TTestBaseFv:
+.fn __dt__Q28Morimura9TTestBaseFv, weak
 /* 80344168 003410A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034416C 003410AC  7C 08 02 A6 */	mflr r0
 /* 80344170 003410B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -418,9 +434,9 @@ __dt__Q28Morimura9TTestBaseFv:
 /* 80344208 00341148  7C 08 03 A6 */	mtlr r0
 /* 8034420C 0034114C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80344210 00341150  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura9TTestBaseFv
 
-.global doCreate__Q28Morimura12TDayEndCountFP10JKRArchive
-doCreate__Q28Morimura12TDayEndCountFP10JKRArchive:
+.fn doCreate__Q28Morimura12TDayEndCountFP10JKRArchive, global
 /* 80344214 00341154  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80344218 00341158  7C 08 02 A6 */	mflr r0
 /* 8034421C 0034115C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -620,9 +636,9 @@ doCreate__Q28Morimura12TDayEndCountFP10JKRArchive:
 /* 803444F4 00341434  7C 08 03 A6 */	mtlr r0
 /* 803444F8 00341438  38 21 00 20 */	addi r1, r1, 0x20
 /* 803444FC 0034143C  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura12TDayEndCountFP10JKRArchive
 
-.global doUpdate__Q28Morimura12TDayEndCountFv
-doUpdate__Q28Morimura12TDayEndCountFv:
+.fn doUpdate__Q28Morimura12TDayEndCountFv, global
 /* 80344500 00341440  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 80344504 00341444  7C 08 02 A6 */	mflr r0
 /* 80344508 00341448  90 01 01 24 */	stw r0, 0x124(r1)
@@ -1332,9 +1348,9 @@ doUpdate__Q28Morimura12TDayEndCountFv:
 /* 80344F7C 00341EBC  7C 08 03 A6 */	mtlr r0
 /* 80344F80 00341EC0  38 21 01 20 */	addi r1, r1, 0x120
 /* 80344F84 00341EC4  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura12TDayEndCountFv
 
-.global doDraw__Q28Morimura12TDayEndCountFR8Graphics
-doDraw__Q28Morimura12TDayEndCountFR8Graphics:
+.fn doDraw__Q28Morimura12TDayEndCountFR8Graphics, global
 /* 80344F88 00341EC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80344F8C 00341ECC  7C 08 02 A6 */	mflr r0
 /* 80344F90 00341ED0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1366,9 +1382,9 @@ doDraw__Q28Morimura12TDayEndCountFR8Graphics:
 /* 80344FF4 00341F34  7C 08 03 A6 */	mtlr r0
 /* 80344FF8 00341F38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80344FFC 00341F3C  4E 80 00 20 */	blr 
+.endfn doDraw__Q28Morimura12TDayEndCountFR8Graphics
 
-.global reset__Q28Morimura12TDayEndCountFv
-reset__Q28Morimura12TDayEndCountFv:
+.fn reset__Q28Morimura12TDayEndCountFv, global
 /* 80345000 00341F40  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80345004 00341F44  7C 08 02 A6 */	mflr r0
 /* 80345008 00341F48  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1640,9 +1656,9 @@ reset__Q28Morimura12TDayEndCountFv:
 /* 80345408 00342348  7C 08 03 A6 */	mtlr r0
 /* 8034540C 0034234C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80345410 00342350  4E 80 00 20 */	blr 
+.endfn reset__Q28Morimura12TDayEndCountFv
 
-.global __ct__Q28Morimura18TChallengeEndCountFv
-__ct__Q28Morimura18TChallengeEndCountFv:
+.fn __ct__Q28Morimura18TChallengeEndCountFv, global
 /* 80345414 00342354  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80345418 00342358  7C 08 02 A6 */	mflr r0
 /* 8034541C 0034235C  3C 80 80 49 */	lis r4, lbl_804901F4@ha
@@ -1708,9 +1724,9 @@ __ct__Q28Morimura18TChallengeEndCountFv:
 /* 8034550C 0034244C  7C 08 03 A6 */	mtlr r0
 /* 80345510 00342450  38 21 00 10 */	addi r1, r1, 0x10
 /* 80345514 00342454  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura18TChallengeEndCountFv
 
-.global __dt__Q28Morimura12TDayEndCountFv
-__dt__Q28Morimura12TDayEndCountFv:
+.fn __dt__Q28Morimura12TDayEndCountFv, weak
 /* 80345518 00342458  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034551C 0034245C  7C 08 02 A6 */	mflr r0
 /* 80345520 00342460  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1762,9 +1778,9 @@ __dt__Q28Morimura12TDayEndCountFv:
 /* 803455D0 00342510  7C 08 03 A6 */	mtlr r0
 /* 803455D4 00342514  38 21 00 10 */	addi r1, r1, 0x10
 /* 803455D8 00342518  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura12TDayEndCountFv
 
-.global doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive
-doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive:
+.fn doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive, global
 /* 803455DC 0034251C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803455E0 00342520  7C 08 02 A6 */	mflr r0
 /* 803455E4 00342524  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1781,9 +1797,9 @@ doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive:
 /* 80345610 00342550  7C 08 03 A6 */	mtlr r0
 /* 80345614 00342554  38 21 00 10 */	addi r1, r1, 0x10
 /* 80345618 00342558  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive
 
-.global __ct__Q28Morimura20TChallengeEndCount1pFv
-__ct__Q28Morimura20TChallengeEndCount1pFv:
+.fn __ct__Q28Morimura20TChallengeEndCount1pFv, global
 /* 8034561C 0034255C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80345620 00342560  7C 08 02 A6 */	mflr r0
 /* 80345624 00342564  3C 80 80 49 */	lis r4, lbl_804901E8@ha
@@ -1863,9 +1879,9 @@ __ct__Q28Morimura20TChallengeEndCount1pFv:
 /* 8034574C 0034268C  7C 08 03 A6 */	mtlr r0
 /* 80345750 00342690  38 21 00 10 */	addi r1, r1, 0x10
 /* 80345754 00342694  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura20TChallengeEndCount1pFv
 
-.global __dt__Q28Morimura18TChallengeEndCountFv
-__dt__Q28Morimura18TChallengeEndCountFv:
+.fn __dt__Q28Morimura18TChallengeEndCountFv, weak
 /* 80345758 00342698  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034575C 0034269C  7C 08 02 A6 */	mflr r0
 /* 80345760 003426A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1923,9 +1939,9 @@ __dt__Q28Morimura18TChallengeEndCountFv:
 /* 80345828 00342768  7C 08 03 A6 */	mtlr r0
 /* 8034582C 0034276C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80345830 00342770  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura18TChallengeEndCountFv
 
-.global doUpdate__Q28Morimura20TChallengeEndCount1pFv
-doUpdate__Q28Morimura20TChallengeEndCount1pFv:
+.fn doUpdate__Q28Morimura20TChallengeEndCount1pFv, global
 /* 80345834 00342774  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80345838 00342778  7C 08 02 A6 */	mflr r0
 /* 8034583C 0034277C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1939,9 +1955,9 @@ doUpdate__Q28Morimura20TChallengeEndCount1pFv:
 /* 8034585C 0034279C  7C 08 03 A6 */	mtlr r0
 /* 80345860 003427A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80345864 003427A4  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura20TChallengeEndCount1pFv
 
-.global __ct__Q28Morimura20TChallengeEndCount2pFv
-__ct__Q28Morimura20TChallengeEndCount2pFv:
+.fn __ct__Q28Morimura20TChallengeEndCount2pFv, global
 /* 80345868 003427A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034586C 003427AC  7C 08 02 A6 */	mflr r0
 /* 80345870 003427B0  3C 80 80 49 */	lis r4, lbl_804901E8@ha
@@ -2021,9 +2037,9 @@ __ct__Q28Morimura20TChallengeEndCount2pFv:
 /* 80345998 003428D8  7C 08 03 A6 */	mtlr r0
 /* 8034599C 003428DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803459A0 003428E0  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura20TChallengeEndCount2pFv
 
-.global doUpdate__Q28Morimura20TChallengeEndCount2pFv
-doUpdate__Q28Morimura20TChallengeEndCount2pFv:
+.fn doUpdate__Q28Morimura20TChallengeEndCount2pFv, global
 /* 803459A4 003428E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803459A8 003428E8  7C 08 02 A6 */	mflr r0
 /* 803459AC 003428EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2036,9 +2052,9 @@ doUpdate__Q28Morimura20TChallengeEndCount2pFv:
 /* 803459C8 00342908  7C 08 03 A6 */	mtlr r0
 /* 803459CC 0034290C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803459D0 00342910  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura20TChallengeEndCount2pFv
 
-.global doCreateObj__Q28Morimura15TCountDownSceneFP10JKRArchive
-doCreateObj__Q28Morimura15TCountDownSceneFP10JKRArchive:
+.fn doCreateObj__Q28Morimura15TCountDownSceneFP10JKRArchive, global
 /* 803459D4 00342914  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803459D8 00342918  7C 08 02 A6 */	mflr r0
 /* 803459DC 0034291C  3C A0 80 49 */	lis r5, lbl_804901E8@ha
@@ -2339,9 +2355,9 @@ doCreateObj__Q28Morimura15TCountDownSceneFP10JKRArchive:
 /* 80345E54 00342D94  7C 08 03 A6 */	mtlr r0
 /* 80345E58 00342D98  38 21 00 20 */	addi r1, r1, 0x20
 /* 80345E5C 00342D9C  4E 80 00 20 */	blr 
+.endfn doCreateObj__Q28Morimura15TCountDownSceneFP10JKRArchive
 
-.global doStart__Q28Morimura15TCountDownSceneFPQ26Screen13StartSceneArg
-doStart__Q28Morimura15TCountDownSceneFPQ26Screen13StartSceneArg:
+.fn doStart__Q28Morimura15TCountDownSceneFPQ26Screen13StartSceneArg, global
 /* 80345E60 00342DA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80345E64 00342DA4  7C 08 02 A6 */	mflr r0
 /* 80345E68 00342DA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2368,34 +2384,34 @@ doStart__Q28Morimura15TCountDownSceneFPQ26Screen13StartSceneArg:
 /* 80345EB8 00342DF8  7C 08 03 A6 */	mtlr r0
 /* 80345EBC 00342DFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80345EC0 00342E00  4E 80 00 20 */	blr 
+.endfn doStart__Q28Morimura15TCountDownSceneFPQ26Screen13StartSceneArg
 
-.global getResName__Q28Morimura15TCountDownSceneCFv
-getResName__Q28Morimura15TCountDownSceneCFv:
+.fn getResName__Q28Morimura15TCountDownSceneCFv, weak
 /* 80345EC4 00342E04  3C 60 80 49 */	lis r3, lbl_80490264@ha
 /* 80345EC8 00342E08  38 63 02 64 */	addi r3, r3, lbl_80490264@l
 /* 80345ECC 00342E0C  4E 80 00 20 */	blr 
+.endfn getResName__Q28Morimura15TCountDownSceneCFv
 
-.global getSceneType__Q28Morimura15TCountDownSceneFv
-getSceneType__Q28Morimura15TCountDownSceneFv:
+.fn getSceneType__Q28Morimura15TCountDownSceneFv, weak
 /* 80345ED0 00342E10  38 60 27 2D */	li r3, 0x272d
 /* 80345ED4 00342E14  4E 80 00 20 */	blr 
+.endfn getSceneType__Q28Morimura15TCountDownSceneFv
 
-.global getOwnerID__Q28Morimura15TCountDownSceneFv
-getOwnerID__Q28Morimura15TCountDownSceneFv:
+.fn getOwnerID__Q28Morimura15TCountDownSceneFv, weak
 /* 80345ED8 00342E18  3C 60 4D 52 */	lis r3, 0x4D524D52@ha
 /* 80345EDC 00342E1C  38 63 4D 52 */	addi r3, r3, 0x4D524D52@l
 /* 80345EE0 00342E20  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q28Morimura15TCountDownSceneFv
 
-.global getMemberID__Q28Morimura15TCountDownSceneFv
-getMemberID__Q28Morimura15TCountDownSceneFv:
+.fn getMemberID__Q28Morimura15TCountDownSceneFv, weak
 /* 80345EE4 00342E24  3C 80 4E 44 */	lis r4, 0x4E444344@ha
 /* 80345EE8 00342E28  3C 60 44 41 */	lis r3, 0x44415945@ha
 /* 80345EEC 00342E2C  38 84 43 44 */	addi r4, r4, 0x4E444344@l
 /* 80345EF0 00342E30  38 63 59 45 */	addi r3, r3, 0x44415945@l
 /* 80345EF4 00342E34  4E 80 00 20 */	blr 
+.endfn getMemberID__Q28Morimura15TCountDownSceneFv
 
-.global doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
-doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg:
+.fn doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg, weak
 /* 80345EF8 00342E38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80345EFC 00342E3C  7C 08 02 A6 */	mflr r0
 /* 80345F00 00342E40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2410,9 +2426,9 @@ doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg:
 /* 80345F24 00342E64  7C 08 03 A6 */	mtlr r0
 /* 80345F28 00342E68  38 21 00 10 */	addi r1, r1, 0x10
 /* 80345F2C 00342E6C  4E 80 00 20 */	blr 
+.endfn doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
 
-.global getDispMemberBase__Q28Morimura12TDayEndCountFv
-getDispMemberBase__Q28Morimura12TDayEndCountFv:
+.fn getDispMemberBase__Q28Morimura12TDayEndCountFv, weak
 /* 80345F30 00342E70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80345F34 00342E74  7C 08 02 A6 */	mflr r0
 /* 80345F38 00342E78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2428,15 +2444,15 @@ getDispMemberBase__Q28Morimura12TDayEndCountFv:
 /* 80345F58 00342E98  7C 08 03 A6 */	mtlr r0
 /* 80345F5C 00342E9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80345F60 00342EA0  4E 80 00 20 */	blr 
+.endfn getDispMemberBase__Q28Morimura12TDayEndCountFv
 
-.global doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
-doUpdateFadeinFinish__Q28Morimura9TTestBaseFv:
+.fn doUpdateFadeinFinish__Q28Morimura9TTestBaseFv, weak
 /* 80345F64 00342EA4  38 00 00 01 */	li r0, 1
 /* 80345F68 00342EA8  98 03 00 45 */	stb r0, 0x45(r3)
 /* 80345F6C 00342EAC  4E 80 00 20 */	blr 
+.endfn doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
 
-.global __dt__Q28Morimura20TChallengeEndCount2pFv
-__dt__Q28Morimura20TChallengeEndCount2pFv:
+.fn __dt__Q28Morimura20TChallengeEndCount2pFv, weak
 /* 80345F70 00342EB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80345F74 00342EB4  7C 08 02 A6 */	mflr r0
 /* 80345F78 00342EB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2500,9 +2516,9 @@ __dt__Q28Morimura20TChallengeEndCount2pFv:
 /* 80346058 00342F98  7C 08 03 A6 */	mtlr r0
 /* 8034605C 00342F9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80346060 00342FA0  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura20TChallengeEndCount2pFv
 
-.global __dt__Q28Morimura20TChallengeEndCount1pFv
-__dt__Q28Morimura20TChallengeEndCount1pFv:
+.fn __dt__Q28Morimura20TChallengeEndCount1pFv, weak
 /* 80346064 00342FA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80346068 00342FA8  7C 08 02 A6 */	mflr r0
 /* 8034606C 00342FAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2566,23 +2582,24 @@ __dt__Q28Morimura20TChallengeEndCount1pFv:
 /* 8034614C 0034308C  7C 08 03 A6 */	mtlr r0
 /* 80346150 00343090  38 21 00 10 */	addi r1, r1, 0x10
 /* 80346154 00343094  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura20TChallengeEndCount1pFv
 
-.global "@24@__dt__Q28Morimura12TDayEndCountFv"
-"@24@__dt__Q28Morimura12TDayEndCountFv":
+.fn "@24@__dt__Q28Morimura12TDayEndCountFv", weak
 /* 80346158 00343098  38 63 FF E8 */	addi r3, r3, -24
 /* 8034615C 0034309C  4B FF F3 BC */	b __dt__Q28Morimura12TDayEndCountFv
+.endfn "@24@__dt__Q28Morimura12TDayEndCountFv"
 
-.global "@24@__dt__Q28Morimura18TChallengeEndCountFv"
-"@24@__dt__Q28Morimura18TChallengeEndCountFv":
+.fn "@24@__dt__Q28Morimura18TChallengeEndCountFv", weak
 /* 80346160 003430A0  38 63 FF E8 */	addi r3, r3, -24
 /* 80346164 003430A4  4B FF F5 F4 */	b __dt__Q28Morimura18TChallengeEndCountFv
+.endfn "@24@__dt__Q28Morimura18TChallengeEndCountFv"
 
-.global "@24@__dt__Q28Morimura20TChallengeEndCount1pFv"
-"@24@__dt__Q28Morimura20TChallengeEndCount1pFv":
+.fn "@24@__dt__Q28Morimura20TChallengeEndCount1pFv", weak
 /* 80346168 003430A8  38 63 FF E8 */	addi r3, r3, -24
 /* 8034616C 003430AC  4B FF FE F8 */	b __dt__Q28Morimura20TChallengeEndCount1pFv
+.endfn "@24@__dt__Q28Morimura20TChallengeEndCount1pFv"
 
-.global "@24@__dt__Q28Morimura20TChallengeEndCount2pFv"
-"@24@__dt__Q28Morimura20TChallengeEndCount2pFv":
+.fn "@24@__dt__Q28Morimura20TChallengeEndCount2pFv", weak
 /* 80346170 003430B0  38 63 FF E8 */	addi r3, r3, -24
 /* 80346174 003430B4  4B FF FD FC */	b __dt__Q28Morimura20TChallengeEndCount2pFv
+.endfn "@24@__dt__Q28Morimura20TChallengeEndCount2pFv"

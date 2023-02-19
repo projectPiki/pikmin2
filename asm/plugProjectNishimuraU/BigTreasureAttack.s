@@ -1,17 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048D1F0:
+.obj lbl_8048D1F0, local
 	.asciz "otakara_elec_eff"
+.endobj lbl_8048D1F0
 .balign 4
-lbl_8048D204:
+.obj lbl_8048D204, local
 	.asciz "otakara_fire_eff"
+.endobj lbl_8048D204
 .balign 4
-lbl_8048D218:
+.obj lbl_8048D218, local
 	.asciz "otakara_gas_eff"
+.endobj lbl_8048D218
 .balign 4
-lbl_8048D228:
+.obj lbl_8048D228, local
 	.asciz "otakara_water_eff"
+.endobj lbl_8048D228
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -257,8 +261,7 @@ lbl_8051D22C:
 	.float -1000.0
 .balign 8
 lbl_8051D230:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051D238:
 	.float 325.9493
 lbl_8051D23C:
@@ -309,7 +312,7 @@ lbl_8051D294:
 	.float 0.55
 lbl_8051D298: # tau
 	.float 6.2831855
-lbl_8051D29C: #four individual bytes, loaded as one word?
+lbl_8051D29C: # four individual bytes, loaded as one word?
 	.4byte 0x01010101
 lbl_8051D2A0:
 	.float 500.0

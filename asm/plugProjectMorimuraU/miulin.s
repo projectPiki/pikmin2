@@ -1,32 +1,36 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80491A18:
+.obj lbl_80491A18, local
 	.asciz "jnt_koshi"
+.endobj lbl_80491A18
 .balign 4
-lbl_80491A24:
+.obj lbl_80491A24, local
 	.asciz "miulin.cpp"
+.endobj lbl_80491A24
 .balign 4
-lbl_80491A30:
+.obj lbl_80491A30, local
 	.asciz "P2Assert"
+.endobj lbl_80491A30
 .balign 4
-lbl_80491A3C:
+.obj lbl_80491A3C, local
 	.asciz "jnt_footR"
+.endobj lbl_80491A3C
 .balign 4
-lbl_80491A48:
+.obj lbl_80491A48, local
 	.asciz "jnt_footL"
+.endobj lbl_80491A48
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx10TMiuAttack
-__vt__Q23efx10TMiuAttack:
+.obj __vt__Q23efx10TMiuAttack, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q34Game6Miulin3Obj
-__vt__Q34Game6Miulin3Obj:
+.endobj __vt__Q23efx10TMiuAttack
+.obj __vt__Q34Game6Miulin3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -230,6 +234,7 @@ __vt__Q34Game6Miulin3Obj:
 	.4byte "@760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game6Miulin3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

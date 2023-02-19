@@ -11,8 +11,7 @@
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q28Morimura11TScrollList
-__vt__Q28Morimura11TScrollList:
+.obj __vt__Q28Morimura11TScrollList, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura11TScrollListFv
@@ -56,108 +55,105 @@ __vt__Q28Morimura11TScrollList:
 	.4byte changeTextTevBlock__Q28Morimura11TScrollListFi
 	.4byte updateIndex__Q28Morimura11TScrollListFb
 	.4byte setPaneCharacter__Q28Morimura11TScrollListFi
-.global __vt__Q28Morimura11TListScreen
-__vt__Q28Morimura11TListScreen:
+.endobj __vt__Q28Morimura11TScrollList
+.obj __vt__Q28Morimura11TListScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura11TListScreenFPCcUl
 	.4byte update__Q28Morimura11TScreenBaseFv
 	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
+.endobj __vt__Q28Morimura11TListScreen
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mWideWindow__Q28Morimura11TScrollList
-mWideWindow__Q28Morimura11TScrollList:
+.obj mWideWindow__Q28Morimura11TScrollList, global
 	.byte 0x01
-	.byte 0x00
-	.byte 0x00
-	.byte 0x00
+.endobj mWideWindow__Q28Morimura11TScrollList
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mRightOffset__Q28Morimura11TScrollList
-mRightOffset__Q28Morimura11TScrollList:
+.obj mRightOffset__Q28Morimura11TScrollList, global
 	.skip 0x4
-.global mForceResetParm__Q28Morimura11TScrollList
-mForceResetParm__Q28Morimura11TScrollList:
-	.skip 0x4
+.endobj mRightOffset__Q28Morimura11TScrollList
+.obj mForceResetParm__Q28Morimura11TScrollList, global
+	.skip 0x1
+.endobj mForceResetParm__Q28Morimura11TScrollList
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F2F8
-lbl_8051F2F8:
-	.4byte 0x00000000
-.global lbl_8051F2FC
-lbl_8051F2FC:
-	.4byte 0x41000000
-.global lbl_8051F300
-lbl_8051F300:
-	.4byte 0x3F666666
-.global lbl_8051F304
-lbl_8051F304:
-	.4byte 0x3F8CCCCD
-.global lbl_8051F308
-lbl_8051F308:
-	.4byte 0x3FC00000
-.global lbl_8051F30C
-lbl_8051F30C:
-	.4byte 0x40000000
-.global lbl_8051F310
-lbl_8051F310:
+.obj lbl_8051F2F8, local
+	.float 0.0
+.endobj lbl_8051F2F8
+.obj lbl_8051F2FC, local
+	.float 8.0
+.endobj lbl_8051F2FC
+.obj lbl_8051F300, local
+	.float 0.9
+.endobj lbl_8051F300
+.obj lbl_8051F304, local
+	.float 1.1
+.endobj lbl_8051F304
+.obj lbl_8051F308, local
+	.float 1.5
+.endobj lbl_8051F308
+.obj lbl_8051F30C, local
+	.float 2.0
+.endobj lbl_8051F30C
+.obj lbl_8051F310, local
 	.float 1.0
-.global lbl_8051F314
-lbl_8051F314:
-	.4byte 0xBF800000
-.global lbl_8051F318
-lbl_8051F318:
+.endobj lbl_8051F310
+.obj lbl_8051F314, local
+	.float -1.0
+.endobj lbl_8051F314
+.obj lbl_8051F318, local
 	.float 0.7
-.global lbl_8051F31C
-lbl_8051F31C:
-	.4byte 0xC1A00000
-.global lbl_8051F320
-lbl_8051F320:
-	.4byte 0x41A00000
-.global lbl_8051F324
-lbl_8051F324:
-	.4byte 0x3C23D70A
-.global lbl_8051F328
-lbl_8051F328:
-	.4byte 0x41580000
-.global lbl_8051F32C
-lbl_8051F32C:
-	.4byte 0x40400000
-.global lbl_8051F330
-lbl_8051F330:
-	.4byte 0x3F2AAAAB
-.global lbl_8051F334
-lbl_8051F334:
-	.4byte 0xC1F40000
-.global lbl_8051F338
-lbl_8051F338:
-	.4byte 0xC1E00000
-.global lbl_8051F33C
-lbl_8051F33C:
-	.4byte 0x3E4CCCCD
-.global lbl_8051F340
-lbl_8051F340:
-	.4byte 0x41F00000
-.global lbl_8051F344
-lbl_8051F344:
-	.4byte 0x3F19999A
-.global lbl_8051F348
-lbl_8051F348:
-	.4byte 0x3FF40000
-	.4byte 0x00000000
-.global lbl_8051F350
-lbl_8051F350:
+.endobj lbl_8051F318
+.obj lbl_8051F31C, local
+	.float -20.0
+.endobj lbl_8051F31C
+.obj lbl_8051F320, local
+	.float 20.0
+.endobj lbl_8051F320
+.obj lbl_8051F324, local
+	.float 0.01
+.endobj lbl_8051F324
+.obj lbl_8051F328, local
+	.float 13.5
+.endobj lbl_8051F328
+.obj lbl_8051F32C, local
+	.float 3.0
+.endobj lbl_8051F32C
+.obj lbl_8051F330, local
+	.float 0.6666667
+.endobj lbl_8051F330
+.obj lbl_8051F334, local
+	.float -30.5
+.endobj lbl_8051F334
+.obj lbl_8051F338, local
+	.float -28.0
+.endobj lbl_8051F338
+.obj lbl_8051F33C, local
+	.float 0.2
+.endobj lbl_8051F33C
+.obj lbl_8051F340, local
+	.float 30.0
+.endobj lbl_8051F340
+.obj lbl_8051F344, local
+	.float 0.6
+.endobj lbl_8051F344
+.balign 8
+.obj lbl_8051F348, local
+	.double 1.25
+.endobj lbl_8051F348
+.obj lbl_8051F350, local
 	.float 0.5
-.global lbl_8051F354
-lbl_8051F354:
-	.4byte 0xBF000000
+.endobj lbl_8051F350
+.obj lbl_8051F354, local
+	.float -0.5
+.endobj lbl_8051F354
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28Morimura11TIndexGroupFv
-__ct__Q28Morimura11TIndexGroupFv:
+.fn __ct__Q28Morimura11TIndexGroupFv, global
 /* 803A2154 0039F094  C0 A2 0F 98 */	lfs f5, lbl_8051F2F8@sda21(r2)
 /* 803A2158 0039F098  38 00 00 00 */	li r0, 0
 /* 803A215C 0039F09C  C0 82 0F 9C */	lfs f4, lbl_8051F2FC@sda21(r2)
@@ -177,9 +173,9 @@ __ct__Q28Morimura11TIndexGroupFv:
 /* 803A2194 0039F0D4  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 803A2198 0039F0D8  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 803A219C 0039F0DC  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura11TIndexGroupFv
 
-.global upIndex__Q28Morimura11TIndexGroupFv
-upIndex__Q28Morimura11TIndexGroupFv:
+.fn upIndex__Q28Morimura11TIndexGroupFv, global
 /* 803A21A0 0039F0E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A21A4 0039F0E4  7C 08 02 A6 */	mflr r0
 /* 803A21A8 0039F0E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -209,9 +205,9 @@ upIndex__Q28Morimura11TIndexGroupFv:
 /* 803A2200 0039F140  7C 08 03 A6 */	mtlr r0
 /* 803A2204 0039F144  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A2208 0039F148  4E 80 00 20 */	blr 
+.endfn upIndex__Q28Morimura11TIndexGroupFv
 
-.global downIndex__Q28Morimura11TIndexGroupFv
-downIndex__Q28Morimura11TIndexGroupFv:
+.fn downIndex__Q28Morimura11TIndexGroupFv, global
 /* 803A220C 0039F14C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A2210 0039F150  7C 08 02 A6 */	mflr r0
 /* 803A2214 0039F154  90 01 00 14 */	stw r0, 0x14(r1)
@@ -241,9 +237,9 @@ downIndex__Q28Morimura11TIndexGroupFv:
 /* 803A226C 0039F1AC  7C 08 03 A6 */	mtlr r0
 /* 803A2270 0039F1B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A2274 0039F1B4  4E 80 00 20 */	blr 
+.endfn downIndex__Q28Morimura11TIndexGroupFv
 
-.global rollSpUp__Q28Morimura11TIndexGroupFv
-rollSpUp__Q28Morimura11TIndexGroupFv:
+.fn rollSpUp__Q28Morimura11TIndexGroupFv, global
 /* 803A2278 0039F1B8  C0 23 00 1C */	lfs f1, 0x1c(r3)
 /* 803A227C 0039F1BC  38 00 00 01 */	li r0, 1
 /* 803A2280 0039F1C0  C0 03 00 08 */	lfs f0, 8(r3)
@@ -256,9 +252,9 @@ rollSpUp__Q28Morimura11TIndexGroupFv:
 /* 803A229C 0039F1DC  4C 81 00 20 */	blelr 
 /* 803A22A0 0039F1E0  D0 23 00 1C */	stfs f1, 0x1c(r3)
 /* 803A22A4 0039F1E4  4E 80 00 20 */	blr 
+.endfn rollSpUp__Q28Morimura11TIndexGroupFv
 
-.global update__Q28Morimura10TIndexPaneFv
-update__Q28Morimura10TIndexPaneFv:
+.fn update__Q28Morimura10TIndexPaneFv, global
 /* 803A22A8 0039F1E8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803A22AC 0039F1EC  7C 08 02 A6 */	mflr r0
 /* 803A22B0 0039F1F0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -302,9 +298,9 @@ update__Q28Morimura10TIndexPaneFv:
 /* 803A2338 0039F278  7C 08 03 A6 */	mtlr r0
 /* 803A233C 0039F27C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803A2340 0039F280  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura10TIndexPaneFv
 
-.global createIconInfo__Q28Morimura10TIndexPaneFii
-createIconInfo__Q28Morimura10TIndexPaneFii:
+.fn createIconInfo__Q28Morimura10TIndexPaneFii, global
 /* 803A2344 0039F284  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A2348 0039F288  7C 08 02 A6 */	mflr r0
 /* 803A234C 0039F28C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -345,9 +341,9 @@ createIconInfo__Q28Morimura10TIndexPaneFii:
 /* 803A23CC 0039F30C  7C 08 03 A6 */	mtlr r0
 /* 803A23D0 0039F310  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A23D4 0039F314  4E 80 00 20 */	blr 
+.endfn createIconInfo__Q28Morimura10TIndexPaneFii
 
-.global setIndex__Q28Morimura10TIndexPaneFi
-setIndex__Q28Morimura10TIndexPaneFi:
+.fn setIndex__Q28Morimura10TIndexPaneFi, global
 /* 803A23D8 0039F318  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A23DC 0039F31C  7C 08 02 A6 */	mflr r0
 /* 803A23E0 0039F320  90 01 00 24 */	stw r0, 0x24(r1)
@@ -483,9 +479,9 @@ setIndex__Q28Morimura10TIndexPaneFi:
 /* 803A25B0 0039F4F0  7C 08 03 A6 */	mtlr r0
 /* 803A25B4 0039F4F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A25B8 0039F4F8  4E 80 00 20 */	blr 
+.endfn setIndex__Q28Morimura10TIndexPaneFi
 
-.global getIndex__Q28Morimura10TIndexPaneFv
-getIndex__Q28Morimura10TIndexPaneFv:
+.fn getIndex__Q28Morimura10TIndexPaneFv, global
 /* 803A25BC 0039F4FC  80 83 00 20 */	lwz r4, 0x20(r3)
 /* 803A25C0 0039F500  28 04 00 00 */	cmplwi r4, 0
 /* 803A25C4 0039F504  41 82 00 48 */	beq .L_803A260C
@@ -510,14 +506,14 @@ getIndex__Q28Morimura10TIndexPaneFv:
 .L_803A260C:
 /* 803A260C 0039F54C  80 63 00 00 */	lwz r3, 0(r3)
 /* 803A2610 0039F550  4E 80 00 20 */	blr 
+.endfn getIndex__Q28Morimura10TIndexPaneFv
 
-.global getListIndex__Q28Morimura10TIndexPaneFv
-getListIndex__Q28Morimura10TIndexPaneFv:
+.fn getListIndex__Q28Morimura10TIndexPaneFv, global
 /* 803A2614 0039F554  80 63 00 00 */	lwz r3, 0(r3)
 /* 803A2618 0039F558  4E 80 00 20 */	blr 
+.endfn getListIndex__Q28Morimura10TIndexPaneFv
 
-.global doIconOffsetY__Q28Morimura10TIndexPaneFv
-doIconOffsetY__Q28Morimura10TIndexPaneFv:
+.fn doIconOffsetY__Q28Morimura10TIndexPaneFv, global
 /* 803A261C 0039F55C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A2620 0039F560  7C 08 02 A6 */	mflr r0
 /* 803A2624 0039F564  90 01 00 14 */	stw r0, 0x14(r1)
@@ -581,9 +577,9 @@ doIconOffsetY__Q28Morimura10TIndexPaneFv:
 /* 803A2704 0039F644  7C 08 03 A6 */	mtlr r0
 /* 803A2708 0039F648  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A270C 0039F64C  4E 80 00 20 */	blr 
+.endfn doIconOffsetY__Q28Morimura10TIndexPaneFv
 
-.global __ct__Q28Morimura9TIconInfoFv
-__ct__Q28Morimura9TIconInfoFv:
+.fn __ct__Q28Morimura9TIconInfoFv, global
 /* 803A2710 0039F650  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A2714 0039F654  7C 08 02 A6 */	mflr r0
 /* 803A2718 0039F658  90 01 00 14 */	stw r0, 0x14(r1)
@@ -611,9 +607,9 @@ __ct__Q28Morimura9TIconInfoFv:
 /* 803A276C 0039F6AC  7C 08 03 A6 */	mtlr r0
 /* 803A2770 0039F6B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A2774 0039F6B4  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura9TIconInfoFv
 
-.global init__Q28Morimura9TIconInfoFPQ28Morimura15TScaleUpCounterP7J2DPaneP7J2DPane
-init__Q28Morimura9TIconInfoFPQ28Morimura15TScaleUpCounterP7J2DPaneP7J2DPane:
+.fn init__Q28Morimura9TIconInfoFPQ28Morimura15TScaleUpCounterP7J2DPaneP7J2DPane, global
 /* 803A2778 0039F6B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A277C 0039F6BC  7C 08 02 A6 */	mflr r0
 /* 803A2780 0039F6C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -669,9 +665,9 @@ init__Q28Morimura9TIconInfoFPQ28Morimura15TScaleUpCounterP7J2DPaneP7J2DPane:
 /* 803A283C 0039F77C  7C 08 03 A6 */	mtlr r0
 /* 803A2840 0039F780  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A2844 0039F784  4E 80 00 20 */	blr 
+.endfn init__Q28Morimura9TIconInfoFPQ28Morimura15TScaleUpCounterP7J2DPaneP7J2DPane
 
-.global update__Q28Morimura9TIconInfoFf
-update__Q28Morimura9TIconInfoFf:
+.fn update__Q28Morimura9TIconInfoFf, global
 /* 803A2848 0039F788  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A284C 0039F78C  7C 08 02 A6 */	mflr r0
 /* 803A2850 0039F790  90 01 00 24 */	stw r0, 0x24(r1)
@@ -777,9 +773,9 @@ update__Q28Morimura9TIconInfoFf:
 /* 803A29D4 0039F914  7C 08 03 A6 */	mtlr r0
 /* 803A29D8 0039F918  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A29DC 0039F91C  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura9TIconInfoFf
 
-.global setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG
-setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG:
+.fn setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG, global
 /* 803A29E0 0039F920  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A29E4 0039F924  7C 08 02 A6 */	mflr r0
 /* 803A29E8 0039F928  2C 04 00 00 */	cmpwi r4, 0
@@ -904,9 +900,9 @@ setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG:
 /* 803A2B88 0039FAC8  7C 08 03 A6 */	mtlr r0
 /* 803A2B8C 0039FACC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A2B90 0039FAD0  4E 80 00 20 */	blr 
+.endfn setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG
 
-.global startScaleUp__Q28Morimura9TIconInfoFf
-startScaleUp__Q28Morimura9TIconInfoFf:
+.fn startScaleUp__Q28Morimura9TIconInfoFf, global
 /* 803A2B94 0039FAD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A2B98 0039FAD8  7C 08 02 A6 */	mflr r0
 /* 803A2B9C 0039FADC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -924,9 +920,9 @@ startScaleUp__Q28Morimura9TIconInfoFf:
 /* 803A2BC8 0039FB08  7C 08 03 A6 */	mtlr r0
 /* 803A2BCC 0039FB0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A2BD0 0039FB10  4E 80 00 20 */	blr 
+.endfn startScaleUp__Q28Morimura9TIconInfoFf
 
-.global create__Q28Morimura11TListScreenFPCcUl
-create__Q28Morimura11TListScreenFPCcUl:
+.fn create__Q28Morimura11TListScreenFPCcUl, global
 /* 803A2BD4 0039FB14  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A2BD8 0039FB18  7C 08 02 A6 */	mflr r0
 /* 803A2BDC 0039FB1C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -986,9 +982,9 @@ create__Q28Morimura11TListScreenFPCcUl:
 /* 803A2CAC 0039FBEC  7C 08 03 A6 */	mtlr r0
 /* 803A2CB0 0039FBF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A2CB4 0039FBF4  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura11TListScreenFPCcUl
 
-.global __ct__Q28Morimura11TScrollListFPc
-__ct__Q28Morimura11TScrollListFPc:
+.fn __ct__Q28Morimura11TScrollListFPc, global
 /* 803A2CB8 0039FBF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A2CBC 0039FBFC  7C 08 02 A6 */	mflr r0
 /* 803A2CC0 0039FC00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1025,9 +1021,9 @@ __ct__Q28Morimura11TScrollListFPc:
 /* 803A2D3C 0039FC7C  7C 08 03 A6 */	mtlr r0
 /* 803A2D40 0039FC80  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A2D44 0039FC84  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura11TScrollListFPc
 
-.global updateIndex__Q28Morimura11TScrollListFb
-updateIndex__Q28Morimura11TScrollListFb:
+.fn updateIndex__Q28Morimura11TScrollListFb, global
 /* 803A2D48 0039FC88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A2D4C 0039FC8C  7C 08 02 A6 */	mflr r0
 /* 803A2D50 0039FC90  38 C0 00 00 */	li r6, 0
@@ -1312,9 +1308,9 @@ updateIndex__Q28Morimura11TScrollListFb:
 /* 803A3164 003A00A4  7C 08 03 A6 */	mtlr r0
 /* 803A3168 003A00A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A316C 003A00AC  4E 80 00 20 */	blr 
+.endfn updateIndex__Q28Morimura11TScrollListFb
 
-.global getUpdateIndex__Q28Morimura11TScrollListFRib
-getUpdateIndex__Q28Morimura11TScrollListFRib:
+.fn getUpdateIndex__Q28Morimura11TScrollListFRib, global
 /* 803A3170 003A00B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A3174 003A00B4  7C 08 02 A6 */	mflr r0
 /* 803A3178 003A00B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1374,9 +1370,9 @@ getUpdateIndex__Q28Morimura11TScrollListFRib:
 /* 803A3240 003A0180  7C 08 03 A6 */	mtlr r0
 /* 803A3244 003A0184  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A3248 003A0188  4E 80 00 20 */	blr 
+.endfn getUpdateIndex__Q28Morimura11TScrollListFRib
 
-.global updateList__Q28Morimura11TScrollListFv
-updateList__Q28Morimura11TScrollListFv:
+.fn updateList__Q28Morimura11TScrollListFv, global
 /* 803A324C 003A018C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803A3250 003A0190  7C 08 02 A6 */	mflr r0
 /* 803A3254 003A0194  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1628,9 +1624,9 @@ updateList__Q28Morimura11TScrollListFv:
 /* 803A35D0 003A0510  7C 08 03 A6 */	mtlr r0
 /* 803A35D4 003A0514  38 21 00 30 */	addi r1, r1, 0x30
 /* 803A35D8 003A0518  4E 80 00 20 */	blr 
+.endfn updateList__Q28Morimura11TScrollListFv
 
-.global changeIndex__Q28Morimura11TScrollListFv
-changeIndex__Q28Morimura11TScrollListFv:
+.fn changeIndex__Q28Morimura11TScrollListFv, global
 /* 803A35DC 003A051C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A35E0 003A0520  7C 08 02 A6 */	mflr r0
 /* 803A35E4 003A0524  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1655,8 +1651,9 @@ changeIndex__Q28Morimura11TScrollListFv:
 /* 803A3630 003A0570  7C 08 03 A6 */	mtlr r0
 /* 803A3634 003A0574  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A3638 003A0578  4E 80 00 20 */	blr 
+.endfn changeIndex__Q28Morimura11TScrollListFv
 
-.global "@24@__dt__Q28Morimura11TScrollListFv"
-"@24@__dt__Q28Morimura11TScrollListFv":
+.fn "@24@__dt__Q28Morimura11TScrollListFv", weak
 /* 803A363C 003A057C  38 63 FF E8 */	addi r3, r3, -24
 /* 803A3640 003A0580  4B FC D7 CC */	b __dt__Q28Morimura11TScrollListFv
+.endfn "@24@__dt__Q28Morimura11TScrollListFv"

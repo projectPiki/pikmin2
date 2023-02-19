@@ -5,20 +5,22 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80490EF8:
+.obj lbl_80490EF8, local
 	.asciz "panModoki.cpp"
+.endobj lbl_80490EF8
 .balign 4
-lbl_80490F08:
+.obj lbl_80490F08, local
 	.asciz "P2Assert"
+.endobj lbl_80490F08
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q34Game11OoPanModoki3Obj
-__vt__Q34Game11OoPanModoki3Obj:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game11OoPanModoki3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -227,13 +229,13 @@ __vt__Q34Game11OoPanModoki3Obj:
 	.4byte "@968@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@968@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-.global __vt__Q24Game13PelletKillArg
-__vt__Q24Game13PelletKillArg:
+.endobj __vt__Q34Game11OoPanModoki3Obj
+.obj __vt__Q24Game13PelletKillArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q24Game15CreatureKillArgFv
-.global __vt__Q34Game13PanModokiBase3Obj
-__vt__Q34Game13PanModokiBase3Obj:
+.endobj __vt__Q24Game13PelletKillArg
+.obj __vt__Q34Game13PanModokiBase3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -442,8 +444,8 @@ __vt__Q34Game13PanModokiBase3Obj:
 	.4byte "@968@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@968@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-.global __vt__Q24Game18InteractSuckFinish
-__vt__Q24Game18InteractSuckFinish:
+.endobj __vt__Q34Game13PanModokiBase3Obj
+.obj __vt__Q24Game18InteractSuckFinish, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -453,13 +455,16 @@ __vt__Q24Game18InteractSuckFinish:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.endobj __vt__Q24Game18InteractSuckFinish
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

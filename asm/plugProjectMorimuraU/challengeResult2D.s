@@ -1,10 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80494720:
+.obj lbl_80494720, local
 	.asciz "challengeResult2D"
+.endobj lbl_80494720
 .balign 4
-cRandArray__8Morimura:
+.obj cRandArray__8Morimura, local
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
@@ -23,8 +24,9 @@ cRandArray__8Morimura:
 	.4byte 0x00000002
 	.4byte 0x00000000
 	.4byte 0x00000001
+.endobj cRandArray__8Morimura
 .balign 8
-lbl_80494780:
+.obj lbl_80494780, local
 	.4byte 0x00004E68
 	.4byte 0x6C5F3030
 	.4byte 0x00004E68
@@ -63,35 +65,44 @@ lbl_80494780:
 	.4byte 0x6E303037
 	.4byte 0x506D7365
 	.4byte 0x6E303039
+.endobj lbl_80494780
 .balign 4
-lbl_80494818:
+.obj lbl_80494818, local
 	.asciz "challenge_modo_result_demo.bck"
+.endobj lbl_80494818
 .balign 8
-lbl_80494838: # array of three char[8] (possibly u64)
+.obj lbl_80494838, local # array of three char[8] (possibly u64)
 	.ascii "Tribon00"
 	.ascii "Tribon01"
 	.ascii "Tribon02"
+.endobj lbl_80494838
 .balign 4
-lbl_80494850:
+.obj lbl_80494850, local
 	.asciz "challengeResult2D.cpp"
+.endobj lbl_80494850
 .balign 4
-lbl_80494868:
+.obj lbl_80494868, local
 	.asciz "P2Assert"
+.endobj lbl_80494868
 .balign 4
-lbl_80494874:
+.obj lbl_80494874, local
 	.asciz "no stick pane\n"
+.endobj lbl_80494874
 .balign 4
-lbl_80494884:
+.obj lbl_80494884, local
 	.asciz "challengeResult"
+.endobj lbl_80494884
 .balign 8
-lbl_80494898:
+.obj lbl_80494898, local # u64 literals
 	.4byte 0x00343930
 	.4byte 0x315F3030
 	.4byte 0x00343931
 	.4byte 0x305F3030
+.endobj lbl_80494898
 .balign 4
-lbl_804948A8:
+.obj lbl_804948A8, local
 	.asciz "set DebugHeapParent. mail to morimun.\n"
+.endobj lbl_804948A8
 .balign 4
 lbl_804948D0:
 	.asciz "/user/Matoba/challenge/stages.txt"

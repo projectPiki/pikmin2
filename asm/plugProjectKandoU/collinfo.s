@@ -1,34 +1,41 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047C5A0:
+.obj lbl_8047C5A0, local
 	.asciz "collinfo.cpp"
+.endobj lbl_8047C5A0
 .balign 4
-lbl_8047C5B0:
+.obj lbl_8047C5B0, local
 	.asciz "platform %s not found !\n"
+.endobj lbl_8047C5B0
 .balign 4
-lbl_8047C5CC:
+.obj lbl_8047C5CC, local
 	.asciz "P2Assert"
+.endobj lbl_8047C5CC
 .balign 4
-lbl_8047C5D8:
+.obj lbl_8047C5D8, local
 	.asciz "collpart birth failed : single sphere\n"
+.endobj lbl_8047C5D8
 .balign 4
-lbl_8047C600:
+.obj lbl_8047C600, local
 	.asciz "num=%d : random=%d\n"
+.endobj lbl_8047C600
 .balign 4
-lbl_8047C614:
+.obj lbl_8047C614, local
 	.asciz "collpart birth failed !\n"
+.endobj lbl_8047C614
 .balign 4
-lbl_8047C630:
+.obj lbl_8047C630, local
 	.asciz "CollPart"
+.endobj lbl_8047C630
 .balign 4
-lbl_8047C63C:
+.obj lbl_8047C63C, local
 	.asciz "# %d/%d\r\n"
+.endobj lbl_8047C63C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__11AgeCollPart
-__vt__11AgeCollPart:
+.obj __vt__11AgeCollPart, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11AgeCollPartFv
@@ -42,8 +49,8 @@ __vt__11AgeCollPart:
 	.4byte doViewCalc__8CollPartFv
 	.4byte doSimulation__8CollPartFf
 	.4byte doDirectDraw__8CollPartFR8Graphics
-.global __vt__15CollPartFactory
-__vt__15CollPartFactory:
+.endobj __vt__11AgeCollPart
+.obj __vt__15CollPartFactory, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__15CollPartFactoryFv
@@ -57,8 +64,8 @@ __vt__15CollPartFactory:
 	.4byte doViewCalc__8CollPartFv
 	.4byte doSimulation__8CollPartFf
 	.4byte doDirectDraw__8CollPartFR8Graphics
-.global __vt__13MouthCollPart
-__vt__13MouthCollPart:
+.endobj __vt__15CollPartFactory
+.obj __vt__13MouthCollPart, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13MouthCollPartFv
@@ -72,8 +79,8 @@ __vt__13MouthCollPart:
 	.4byte doViewCalc__8CollPartFv
 	.4byte doSimulation__8CollPartFf
 	.4byte doDirectDraw__8CollPartFR8Graphics
-.global __vt__8CollPart
-__vt__8CollPart:
+.endobj __vt__13MouthCollPart
+.obj __vt__8CollPart, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8CollPartFv
@@ -87,14 +94,14 @@ __vt__8CollPart:
 	.4byte doViewCalc__8CollPartFv
 	.4byte doSimulation__8CollPartFf
 	.4byte doDirectDraw__8CollPartFR8Graphics
-.global __vt__Q23Sys3OBB
-__vt__Q23Sys3OBB:
+.endobj __vt__8CollPart
+.obj __vt__Q23Sys3OBB, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23Sys3OBBFv
 	.4byte getChildCount__5CNodeFv
-.global "__vt__12Container<i>"
-"__vt__12Container<i>":
+.endobj __vt__Q23Sys3OBB
+.obj "__vt__12Container<i>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__12Container<i>Fv"
@@ -106,8 +113,8 @@ __vt__Q23Sys3OBB:
 	.4byte 0
 	.4byte "getAt__12Container<i>Fi"
 	.4byte "getTo__12Container<i>Fv"
-.global "__vt__17ArrayContainer<i>"
-"__vt__17ArrayContainer<i>":
+.endobj "__vt__12Container<i>"
+.obj "__vt__17ArrayContainer<i>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__17ArrayContainer<i>Fv"
@@ -126,8 +133,8 @@ __vt__Q23Sys3OBB:
 	.4byte "alloc__17ArrayContainer<i>Fi"
 	.4byte "addOne__17ArrayContainer<i>FRi"
 	.4byte "setArray__17ArrayContainer<i>FPii"
-.global __vt__Q23Sys9IndexList
-__vt__Q23Sys9IndexList:
+.endobj "__vt__17ArrayContainer<i>"
+.obj __vt__Q23Sys9IndexList, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23Sys9IndexListFv
@@ -146,8 +153,8 @@ __vt__Q23Sys9IndexList:
 	.4byte "alloc__17ArrayContainer<i>Fi"
 	.4byte "addOne__17ArrayContainer<i>FRi"
 	.4byte "setArray__17ArrayContainer<i>FPii"
-.global __vt__Q23Sys12TriIndexList
-__vt__Q23Sys12TriIndexList:
+.endobj __vt__Q23Sys9IndexList
+.obj __vt__Q23Sys12TriIndexList, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23Sys12TriIndexListFv
@@ -166,8 +173,8 @@ __vt__Q23Sys12TriIndexList:
 	.4byte "alloc__17ArrayContainer<i>Fi"
 	.4byte "addOne__17ArrayContainer<i>FRi"
 	.4byte "setArray__17ArrayContainer<i>FPii"
-.global "__vt__28ArrayContainer<10Vector3<f>>"
-"__vt__28ArrayContainer<10Vector3<f>>":
+.endobj __vt__Q23Sys12TriIndexList
+.obj "__vt__28ArrayContainer<10Vector3<f>>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__28ArrayContainer<10Vector3<f>>Fv"
@@ -186,8 +193,8 @@ __vt__Q23Sys12TriIndexList:
 	.4byte "alloc__28ArrayContainer<10Vector3<f>>Fi"
 	.4byte "addOne__28ArrayContainer<10Vector3<f>>FR10Vector3<f>"
 	.4byte "setArray__28ArrayContainer<10Vector3<f>>FP10Vector3<f>i"
-.global "__vt__23Container<10Vector3<f>>"
-"__vt__23Container<10Vector3<f>>":
+.endobj "__vt__28ArrayContainer<10Vector3<f>>"
+.obj "__vt__23Container<10Vector3<f>>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__23Container<10Vector3<f>>Fv"
@@ -199,12 +206,13 @@ __vt__Q23Sys12TriIndexList:
 	.4byte 0
 	.4byte "getAt__23Container<10Vector3<f>>Fi"
 	.4byte "getTo__23Container<10Vector3<f>>Fv"
-.global __vt__8Platform
-__vt__8Platform:
+.endobj "__vt__23Container<10Vector3<f>>"
+.obj __vt__8Platform, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8PlatformFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__8Platform
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -214,32 +222,41 @@ __vt__8Platform:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518208:
+.obj lbl_80518208, local
 	.float 32768.0
-lbl_8051820C:
+.endobj lbl_80518208
+.obj lbl_8051820C, local
 	.float -32768.0
-lbl_80518210:
+.endobj lbl_8051820C
+.obj lbl_80518210, local
 	.float 0.0
-lbl_80518214:
+.endobj lbl_80518210
+.obj lbl_80518214, local
 	.float 128000.0
+.endobj lbl_80518214
 .balign 8
-lbl_80518218:
+.obj lbl_80518218, local
 	.8byte 0x4330000080000000
-lbl_80518220:
+.endobj lbl_80518218
+.obj lbl_80518220, local
 	.float 0.001
-lbl_80518224:
+.endobj lbl_80518220
+.obj lbl_80518224, local
 	.float 1.0
-lbl_80518228:
+.endobj lbl_80518224
+.obj lbl_80518228, local
 	.float 0.3
-lbl_8051822C:
+.endobj lbl_80518228
+.obj lbl_8051822C, local
 	.float 0.1
+.endobj lbl_8051822C
 .balign 4
-lbl_80518230:
+.obj lbl_80518230, local
 	.asciz "\r\n"
+.endobj lbl_80518230
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__8PlatformFv
-__ct__8PlatformFv:
+.fn __ct__8PlatformFv, global
 /* 801336A8 001305E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801336AC 001305EC  7C 08 02 A6 */	mflr r0
 /* 801336B0 001305F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -257,14 +274,14 @@ __ct__8PlatformFv:
 /* 801336E0 00130620  7C 08 03 A6 */	mtlr r0
 /* 801336E4 00130624  38 21 00 10 */	addi r1, r1, 0x10
 /* 801336E8 00130628  4E 80 00 20 */	blr 
+.endfn __ct__8PlatformFv
 
-.global getTriDivider__8PlatformFv
-getTriDivider__8PlatformFv:
+.fn getTriDivider__8PlatformFv, global
 /* 801336EC 0013062C  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 801336F0 00130630  4E 80 00 20 */	blr 
+.endfn getTriDivider__8PlatformFv
 
-.global setMapCodeAll__8PlatformFRQ27MapCode4Code
-setMapCodeAll__8PlatformFRQ27MapCode4Code:
+.fn setMapCodeAll__8PlatformFRQ27MapCode4Code, global
 /* 801336F4 00130634  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 801336F8 00130638  39 00 00 00 */	li r8, 0
 /* 801336FC 0013063C  38 C0 00 00 */	li r6, 0
@@ -282,9 +299,9 @@ setMapCodeAll__8PlatformFRQ27MapCode4Code:
 /* 80133724 00130664  7C 08 00 00 */	cmpw r8, r0
 /* 80133728 00130668  41 80 FF E0 */	blt .L_80133708
 /* 8013372C 0013066C  4E 80 00 20 */	blr 
+.endfn setMapCodeAll__8PlatformFRQ27MapCode4Code
 
-.global clone__8PlatformFR7Matrixf
-clone__8PlatformFR7Matrixf:
+.fn clone__8PlatformFR7Matrixf, global
 /* 80133730 00130670  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80133734 00130674  7C 08 02 A6 */	mflr r0
 /* 80133738 00130678  90 01 00 24 */	stw r0, 0x24(r1)
@@ -319,9 +336,9 @@ clone__8PlatformFR7Matrixf:
 /* 801337A8 001306E8  7C 08 03 A6 */	mtlr r0
 /* 801337AC 001306EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801337B0 001306F0  4E 80 00 20 */	blr 
+.endfn clone__8PlatformFR7Matrixf
 
-.global load__8PlatformFP13JKRFileLoaderPc
-load__8PlatformFP13JKRFileLoaderPc:
+.fn load__8PlatformFP13JKRFileLoaderPc, global
 /* 801337B4 001306F4  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 801337B8 001306F8  7C 08 02 A6 */	mflr r0
 /* 801337BC 001306FC  90 01 04 34 */	stw r0, 0x434(r1)
@@ -368,14 +385,15 @@ load__8PlatformFP13JKRFileLoaderPc:
 /* 80133854 00130794  7C 08 03 A6 */	mtlr r0
 /* 80133858 00130798  38 21 04 30 */	addi r1, r1, 0x430
 /* 8013385C 0013079C  4E 80 00 20 */	blr 
+.endfn load__8PlatformFP13JKRFileLoaderPc
 
-.global __ct__12PlatAttacherFv
-__ct__12PlatAttacherFv:
+.fn __ct__12PlatAttacherFv, global
 /* 80133860 001307A0  38 00 00 00 */	li r0, 0
 /* 80133864 001307A4  90 03 00 00 */	stw r0, 0(r3)
 /* 80133868 001307A8  90 03 00 04 */	stw r0, 4(r3)
 /* 8013386C 001307AC  90 03 00 08 */	stw r0, 8(r3)
 /* 80133870 001307B0  4E 80 00 20 */	blr 
+.endfn __ct__12PlatAttacherFv
 
 .global setMapCodeAll__12PlatAttacherFRQ27MapCode4Code
 setMapCodeAll__12PlatAttacherFRQ27MapCode4Code:

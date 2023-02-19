@@ -1,159 +1,213 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048C968:
+.obj lbl_8048C968, local
 	.asciz "246-BigTreasureShadow"
+.endobj lbl_8048C968
 .balign 4
-lbl_8048C980:
+.obj lbl_8048C980, local
 	.asciz "rhand1jnt"
+.endobj lbl_8048C980
 .balign 4
-lbl_8048C98C:
+.obj lbl_8048C98C, local
 	.asciz "rhand2jnt"
+.endobj lbl_8048C98C
 .balign 4
-lbl_8048C998:
+.obj lbl_8048C998, local
 	.asciz "rhand3jnt"
+.endobj lbl_8048C998
 .balign 4
-lbl_8048C9A4:
+.obj lbl_8048C9A4, local
 	.asciz "lhand1jnt"
+.endobj lbl_8048C9A4
 .balign 4
-lbl_8048C9B0:
+.obj lbl_8048C9B0, local
 	.asciz "lhand2jnt"
+.endobj lbl_8048C9B0
 .balign 4
-lbl_8048C9BC:
+.obj lbl_8048C9BC, local
 	.asciz "lhand3jnt"
+.endobj lbl_8048C9BC
 .balign 4
-lbl_8048C9C8:
+.obj lbl_8048C9C8, local
 	.asciz "rfoot1jnt"
+.endobj lbl_8048C9C8
 .balign 4
-lbl_8048C9D4:
+.obj lbl_8048C9D4, local
 	.asciz "rfoot2jnt"
+.endobj lbl_8048C9D4
 .balign 4
-lbl_8048C9E0:
+.obj lbl_8048C9E0, local
 	.asciz "rfoot3jnt"
+.endobj lbl_8048C9E0
 .balign 4
-lbl_8048C9EC:
+.obj lbl_8048C9EC, local
 	.asciz "lfoot1jnt"
+.endobj lbl_8048C9EC
 .balign 4
-lbl_8048C9F8:
+.obj lbl_8048C9F8, local
 	.asciz "lfoot2jnt"
+.endobj lbl_8048C9F8
 .balign 4
-lbl_8048CA04:
+.obj lbl_8048CA04, local
 	.asciz "lfoot3jnt"
+.endobj lbl_8048CA04
 .balign 4
-lbl_8048CA10:
+.obj lbl_8048CA10, local
 	.asciz "otakara_elec"
+.endobj lbl_8048CA10
 .balign 4
-lbl_8048CA20:
+.obj lbl_8048CA20, local
 	.asciz "otakara_fire"
+.endobj lbl_8048CA20
 .balign 4
-lbl_8048CA30:
+.obj lbl_8048CA30, local
 	.asciz "otakara_gas"
+.endobj lbl_8048CA30
 .balign 4
-lbl_8048CA3C:
+.obj lbl_8048CA3C, local
 	.asciz "otakara_water"
+.endobj lbl_8048CA3C
 .balign 4
-lbl_8048CA4C:
+.obj lbl_8048CA4C, local
 	.asciz "lantenna1"
+.endobj lbl_8048CA4C
 .balign 4
-lbl_8048CA58:
+.obj lbl_8048CA58, local
 	.asciz "lantenna2"
+.endobj lbl_8048CA58
 .balign 4
-lbl_8048CA64:
+.obj lbl_8048CA64, local
 	.asciz "rantenna1"
+.endobj lbl_8048CA64
 .balign 4
-lbl_8048CA70:
+.obj lbl_8048CA70, local
 	.asciz "rantenna2"
+.endobj lbl_8048CA70
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game17TubeShadowPosNode
-__vt__Q24Game17TubeShadowPosNode:
+.obj __vt__Q24Game17TubeShadowPosNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game17TubeShadowPosNodeFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q24Game17TubeShadowPosNode
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051CB88:
+.obj lbl_8051CB88, local
 	.asciz "kosi"
+.endobj lbl_8051CB88
 .balign 4
-lbl_8051CB90:
+.obj lbl_8051CB90, local
 	.asciz "larm1"
+.endobj lbl_8051CB90
 .balign 4
-lbl_8051CB98:
+.obj lbl_8051CB98, local
 	.asciz "larm2"
+.endobj lbl_8051CB98
 .balign 4
-lbl_8051CBA0:
+.obj lbl_8051CBA0, local
 	.asciz "larm3"
+.endobj lbl_8051CBA0
 .balign 4
-lbl_8051CBA8:
+.obj lbl_8051CBA8, local
 	.asciz "rarm1"
+.endobj lbl_8051CBA8
 .balign 4
-lbl_8051CBB0:
+.obj lbl_8051CBB0, local
 	.asciz "rarm2"
+.endobj lbl_8051CBB0
 .balign 4
-lbl_8051CBB8:
+.obj lbl_8051CBB8, local
 	.asciz "rarm3"
+.endobj lbl_8051CBB8
 .balign 4
-lbl_8051CBC0:
+.obj lbl_8051CBC0, local
 	.float 0.5
-lbl_8051CBC4:
+.endobj lbl_8051CBC0
+.obj lbl_8051CBC4, local
 	.float 3.0
-lbl_8051CBC8:
+.endobj lbl_8051CBC4
+.obj lbl_8051CBC8, local
 	.float 0.0
-lbl_8051CBCC:
+.endobj lbl_8051CBC8
+.obj lbl_8051CBCC, local
 	.float 1.0
-lbl_8051CBD0:
+.endobj lbl_8051CBCC
+.obj lbl_8051CBD0, local
 	.float -20.0
-lbl_8051CBD4:
+.endobj lbl_8051CBD0
+.obj lbl_8051CBD4, local
 	.float 5.0
-lbl_8051CBD8:
+.endobj lbl_8051CBD4
+.obj lbl_8051CBD8, local
 	.float 2.5
-lbl_8051CBDC:
+.endobj lbl_8051CBD8
+.obj lbl_8051CBDC, local
 	.float 325.9493
-lbl_8051CBE0:
+.endobj lbl_8051CBDC
+.obj lbl_8051CBE0, local
 	.float -325.9493
-lbl_8051CBE4:
+.endobj lbl_8051CBE0
+.obj lbl_8051CBE4, local
 	.float 20.0
-lbl_8051CBE8:
+.endobj lbl_8051CBE4
+.obj lbl_8051CBE8, local
 	.float -75.0
-lbl_8051CBEC:
+.endobj lbl_8051CBE8
+.obj lbl_8051CBEC, local
 	.float -10.0
-lbl_8051CBF0:
+.endobj lbl_8051CBEC
+.obj lbl_8051CBF0, local
 	.float 27.0
-lbl_8051CBF4:
+.endobj lbl_8051CBF0
+.obj lbl_8051CBF4, local
 	.float 92.5
-lbl_8051CBF8:
+.endobj lbl_8051CBF4
+.obj lbl_8051CBF8, local
 	.float -62.5
-lbl_8051CBFC:
+.endobj lbl_8051CBF8
+.obj lbl_8051CBFC, local
 	.float 95.0
-lbl_8051CC00:
+.endobj lbl_8051CBFC
+.obj lbl_8051CC00, local
 	.float 30.0
-lbl_8051CC04:
+.endobj lbl_8051CC00
+.obj lbl_8051CC04, local
 	.float -35.0
-lbl_8051CC08:
+.endobj lbl_8051CC04
+.obj lbl_8051CC08, local
 	.float 4.0
-lbl_8051CC0C:
+.endobj lbl_8051CC08
+.obj lbl_8051CC0C, local
 	.float 50.0
-lbl_8051CC10:
+.endobj lbl_8051CC0C
+.obj lbl_8051CC10, local
 	.float -7.5
-lbl_8051CC14:
+.endobj lbl_8051CC10
+.obj lbl_8051CC14, local
 	.float 2.0
-lbl_8051CC18:
+.endobj lbl_8051CC14
+.obj lbl_8051CC18, local
 	.float 35.0
-lbl_8051CC1C:
+.endobj lbl_8051CC18
+.obj lbl_8051CC1C, local
 	.float 55.0
-lbl_8051CC20:
+.endobj lbl_8051CC1C
+.obj lbl_8051CC20, local
 	.float 37.5
-lbl_8051CC24:
+.endobj lbl_8051CC20
+.obj lbl_8051CC24, local
 	.float -30.0
-lbl_8051CC28:
+.endobj lbl_8051CC24
+.obj lbl_8051CC28, local
 	.float 40.0
+.endobj lbl_8051CC28
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj
-__ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj:
+.fn __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj, global
 /* 802DA5C8 002D7508  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802DA5CC 002D750C  7C 08 02 A6 */	mflr r0
 /* 802DA5D0 002D7510  90 01 00 34 */	stw r0, 0x34(r1)
@@ -438,9 +492,9 @@ __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj:
 /* 802DA9D4 002D7914  7C 08 03 A6 */	mtlr r0
 /* 802DA9D8 002D7918  38 21 00 30 */	addi r1, r1, 0x30
 /* 802DA9DC 002D791C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj
 
-.global init__Q34Game11BigTreasure20BigTreasureShadowMgrFv
-init__Q34Game11BigTreasure20BigTreasureShadowMgrFv:
+.fn init__Q34Game11BigTreasure20BigTreasureShadowMgrFv, global
 /* 802DA9E0 002D7920  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DA9E4 002D7924  7C 08 02 A6 */	mflr r0
 /* 802DA9E8 002D7928  3C 80 80 49 */	lis r4, lbl_8048C968@ha
@@ -614,23 +668,23 @@ init__Q34Game11BigTreasure20BigTreasureShadowMgrFv:
 /* 802DAC88 002D7BC8  7C 08 03 A6 */	mtlr r0
 /* 802DAC8C 002D7BCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DAC90 002D7BD0  4E 80 00 20 */	blr 
+.endfn init__Q34Game11BigTreasure20BigTreasureShadowMgrFv
 
-.global "setKosiJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFP10Vector3<f>"
-"setKosiJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFP10Vector3<f>":
+.fn "setKosiJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFP10Vector3<f>", global
 /* 802DAC94 002D7BD4  90 83 00 40 */	stw r4, 0x40(r3)
 /* 802DAC98 002D7BD8  4E 80 00 20 */	blr 
+.endfn "setKosiJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFP10Vector3<f>"
 
-.global "setJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFiiP10Vector3<f>"
-"setJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFiiP10Vector3<f>":
+.fn "setJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFiiP10Vector3<f>", global
 /* 802DAC9C 002D7BDC  54 84 20 36 */	slwi r4, r4, 4
 /* 802DACA0 002D7BE0  54 A0 10 3A */	slwi r0, r5, 2
 /* 802DACA4 002D7BE4  7C 63 22 14 */	add r3, r3, r4
 /* 802DACA8 002D7BE8  7C 63 02 14 */	add r3, r3, r0
 /* 802DACAC 002D7BEC  90 C3 00 44 */	stw r6, 0x44(r3)
 /* 802DACB0 002D7BF0  4E 80 00 20 */	blr 
+.endfn "setJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFiiP10Vector3<f>"
 
-.global update__Q34Game11BigTreasure20BigTreasureShadowMgrFv
-update__Q34Game11BigTreasure20BigTreasureShadowMgrFv:
+.fn update__Q34Game11BigTreasure20BigTreasureShadowMgrFv, global
 /* 802DACB4 002D7BF4  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 802DACB8 002D7BF8  7C 08 02 A6 */	mflr r0
 /* 802DACBC 002D7BFC  90 01 01 44 */	stw r0, 0x144(r1)
@@ -966,9 +1020,9 @@ update__Q34Game11BigTreasure20BigTreasureShadowMgrFv:
 /* 802DB1B8 002D80F8  7C 08 03 A6 */	mtlr r0
 /* 802DB1BC 002D80FC  38 21 01 40 */	addi r1, r1, 0x140
 /* 802DB1C0 002D8100  4E 80 00 20 */	blr 
+.endfn update__Q34Game11BigTreasure20BigTreasureShadowMgrFv
 
-.global updateTreasureShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm
-updateTreasureShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm:
+.fn updateTreasureShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm, global
 /* 802DB1C4 002D8104  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802DB1C8 002D8108  7C 08 02 A6 */	mflr r0
 /* 802DB1CC 002D810C  C0 62 E8 A0 */	lfs f3, lbl_8051CC00@sda21(r2)
@@ -1034,9 +1088,9 @@ updateTreasureShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15Joint
 /* 802DB2AC 002D81EC  7C 08 03 A6 */	mtlr r0
 /* 802DB2B0 002D81F0  38 21 00 30 */	addi r1, r1, 0x30
 /* 802DB2B4 002D81F4  4E 80 00 20 */	blr 
+.endfn updateTreasureShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm
 
-.global updateHandShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm
-updateHandShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm:
+.fn updateHandShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm, global
 /* 802DB2B8 002D81F8  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 802DB2BC 002D81FC  7C 08 02 A6 */	mflr r0
 /* 802DB2C0 002D8200  90 01 01 44 */	stw r0, 0x144(r1)
@@ -1248,9 +1302,9 @@ updateHandShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShad
 /* 802DB5F4 002D8534  7C 08 03 A6 */	mtlr r0
 /* 802DB5F8 002D8538  38 21 01 40 */	addi r1, r1, 0x140
 /* 802DB5FC 002D853C  4E 80 00 20 */	blr 
+.endfn updateHandShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm
 
-.global updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm
-updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm:
+.fn updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm, global
 /* 802DB600 002D8540  94 21 FE 40 */	stwu r1, -0x1c0(r1)
 /* 802DB604 002D8544  7C 08 02 A6 */	mflr r0
 /* 802DB608 002D8548  90 01 01 C4 */	stw r0, 0x1c4(r1)
@@ -1589,9 +1643,9 @@ updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointS
 /* 802DBB38 002D8A78  7C 08 03 A6 */	mtlr r0
 /* 802DBB3C 002D8A7C  38 21 01 C0 */	addi r1, r1, 0x1c0
 /* 802DBB40 002D8A80  4E 80 00 20 */	blr 
+.endfn updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm
 
-.global __dt__Q24Game17TubeShadowPosNodeFv
-__dt__Q24Game17TubeShadowPosNodeFv:
+.fn __dt__Q24Game17TubeShadowPosNodeFv, weak
 /* 802DBB44 002D8A84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DBB48 002D8A88  7C 08 02 A6 */	mflr r0
 /* 802DBB4C 002D8A8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1622,3 +1676,4 @@ __dt__Q24Game17TubeShadowPosNodeFv:
 /* 802DBBA8 002D8AE8  7C 08 03 A6 */	mtlr r0
 /* 802DBBAC 002D8AEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DBBB0 002D8AF0  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game17TubeShadowPosNodeFv

@@ -1,34 +1,34 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80487418:
+.obj lbl_80487418, local
 	.asciz "yoroimushi"
+.endobj lbl_80487418
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx9TYoroiEat
-__vt__Q23efx9TYoroiEat:
+.obj __vt__Q23efx9TYoroiEat, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx8TYoroiHd
-__vt__Q23efx8TYoroiHd:
+.endobj __vt__Q23efx9TYoroiEat
+.obj __vt__Q23efx8TYoroiHd, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx8TYoroiAp
-__vt__Q23efx8TYoroiAp:
+.endobj __vt__Q23efx8TYoroiHd
+.obj __vt__Q23efx8TYoroiAp, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx12TYoroiAttack
-__vt__Q23efx12TYoroiAttack:
+.endobj __vt__Q23efx8TYoroiAp
+.obj __vt__Q23efx12TYoroiAttack, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -48,15 +48,15 @@ __vt__Q23efx12TYoroiAttack:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TYoroiAttackFv
-.global __vt__Q23efx15TYoroiAttackhit
-__vt__Q23efx15TYoroiAttackhit:
+.endobj __vt__Q23efx12TYoroiAttack
+.obj __vt__Q23efx15TYoroiAttackhit, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q34Game5Armor3Obj
-__vt__Q34Game5Armor3Obj:
+.endobj __vt__Q23efx15TYoroiAttackhit
+.obj __vt__Q34Game5Armor3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -260,57 +260,76 @@ __vt__Q34Game5Armor3Obj:
 	.4byte "@740@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@740@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game5Armor3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051B540:
+.obj lbl_8051B540, local
 	.float 0.0
-lbl_8051B544:
+.endobj lbl_8051B540
+.obj lbl_8051B544, local
 	.float 50.0
-lbl_8051B548:
+.endobj lbl_8051B544
+.obj lbl_8051B548, local
 	.float 2.5
-lbl_8051B54C:
+.endobj lbl_8051B548
+.obj lbl_8051B54C, local
 	.float 25.0
-lbl_8051B550:
+.endobj lbl_8051B54C
+.obj lbl_8051B550, local
 	.float 1.0
-lbl_8051B554:
+.endobj lbl_8051B550
+.obj lbl_8051B554, local
 	.float -1000.0
+.endobj lbl_8051B554
 .balign 4
-lbl_8051B558:
+.obj lbl_8051B558, local
 	.asciz "kamujnt"
+.endobj lbl_8051B558
 .balign 4
-lbl_8051B560:
+.obj lbl_8051B560, local
 	.float 32768.0
-lbl_8051B564:
+.endobj lbl_8051B560
+.obj lbl_8051B564, local
 	.float 0.5
+.endobj lbl_8051B564
 .balign 8
-lbl_8051B568:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051B570:
+.obj lbl_8051B568, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051B568
+.obj lbl_8051B570, local
 	.float 5.0
-lbl_8051B574:
+.endobj lbl_8051B570
+.obj lbl_8051B574, local
 	.float -50.0
-lbl_8051B578:
+.endobj lbl_8051B574
+.obj lbl_8051B578, local
 	.float 250.0
-lbl_8051B57C:
+.endobj lbl_8051B578
+.obj lbl_8051B57C, local
 	.float 0.75
-lbl_8051B580: # pi
+.endobj lbl_8051B57C
+.obj lbl_8051B580, local # pi
 	.float 3.1415927
-lbl_8051B584:
+.endobj lbl_8051B580
+.obj lbl_8051B584, local
 	.float 0.0055555557
-lbl_8051B588:
+.endobj lbl_8051B584
+.obj lbl_8051B588, local
 	.float 0.7
-lbl_8051B58C:
+.endobj lbl_8051B588
+.obj lbl_8051B58C, local
 	.float -25.0
-lbl_8051B590:
+.endobj lbl_8051B58C
+.obj lbl_8051B590, local
 	.float 750.0
-lbl_8051B594:
+.endobj lbl_8051B590
+.obj lbl_8051B594, local
 	.float 0.9
+.endobj lbl_8051B594
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game5Armor3ObjFv
-__ct__Q34Game5Armor3ObjFv:
+.fn __ct__Q34Game5Armor3ObjFv, global
 /* 8027D69C 0027A5DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027D6A0 0027A5E0  7C 08 02 A6 */	mflr r0
 /* 8027D6A4 0027A5E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -394,13 +413,13 @@ __ct__Q34Game5Armor3ObjFv:
 /* 8027D7D0 0027A710  7C 08 03 A6 */	mtlr r0
 /* 8027D7D4 0027A714  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027D7D8 0027A718  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game5Armor3ObjFv
 
-.global setInitialSetting__Q34Game5Armor3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game5Armor3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game5Armor3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 8027D7DC 0027A71C  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game5Armor3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game5Armor3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game5Armor3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game5Armor3ObjFPQ24Game15CreatureInitArg, global
 /* 8027D7E0 0027A720  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027D7E4 0027A724  7C 08 02 A6 */	mflr r0
 /* 8027D7E8 0027A728  90 01 00 14 */	stw r0, 0x14(r1)
@@ -439,9 +458,9 @@ onInit__Q34Game5Armor3ObjFPQ24Game15CreatureInitArg:
 /* 8027D86C 0027A7AC  7C 08 03 A6 */	mtlr r0
 /* 8027D870 0027A7B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027D874 0027A7B4  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game5Armor3ObjFPQ24Game15CreatureInitArg
 
-.global doUpdate__Q34Game5Armor3ObjFv
-doUpdate__Q34Game5Armor3ObjFv:
+.fn doUpdate__Q34Game5Armor3ObjFv, global
 /* 8027D878 0027A7B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027D87C 0027A7BC  7C 08 02 A6 */	mflr r0
 /* 8027D880 0027A7C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -460,13 +479,13 @@ doUpdate__Q34Game5Armor3ObjFv:
 /* 8027D8B4 0027A7F4  7C 08 03 A6 */	mtlr r0
 /* 8027D8B8 0027A7F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027D8BC 0027A7FC  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game5Armor3ObjFv
 
-.global doDirectDraw__Q34Game5Armor3ObjFR8Graphics
-doDirectDraw__Q34Game5Armor3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game5Armor3ObjFR8Graphics, global
 /* 8027D8C0 0027A800  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game5Armor3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game5Armor3ObjFR8Graphics
-doDebugDraw__Q34Game5Armor3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game5Armor3ObjFR8Graphics, global
 /* 8027D8C4 0027A804  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027D8C8 0027A808  7C 08 02 A6 */	mflr r0
 /* 8027D8CC 0027A80C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -475,9 +494,9 @@ doDebugDraw__Q34Game5Armor3ObjFR8Graphics:
 /* 8027D8D8 0027A818  7C 08 03 A6 */	mtlr r0
 /* 8027D8DC 0027A81C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027D8E0 0027A820  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game5Armor3ObjFR8Graphics
 
-.global setFSM__Q34Game5Armor3ObjFPQ34Game5Armor3FSM
-setFSM__Q34Game5Armor3ObjFPQ34Game5Armor3FSM:
+.fn setFSM__Q34Game5Armor3ObjFPQ34Game5Armor3FSM, global
 /* 8027D8E4 0027A824  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027D8E8 0027A828  7C 08 02 A6 */	mflr r0
 /* 8027D8EC 0027A82C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -497,9 +516,9 @@ setFSM__Q34Game5Armor3ObjFPQ34Game5Armor3FSM:
 /* 8027D924 0027A864  7C 08 03 A6 */	mtlr r0
 /* 8027D928 0027A868  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027D92C 0027A86C  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game5Armor3ObjFPQ34Game5Armor3FSM
 
-.global getShadowParam__Q34Game5Armor3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game5Armor3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game5Armor3ObjFRQ24Game11ShadowParam, global
 /* 8027D930 0027A870  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027D934 0027A874  7C 08 02 A6 */	mflr r0
 /* 8027D938 0027A878  90 01 00 24 */	stw r0, 0x24(r1)
@@ -564,9 +583,9 @@ getShadowParam__Q34Game5Armor3ObjFRQ24Game11ShadowParam:
 /* 8027DA10 0027A950  7C 08 03 A6 */	mtlr r0
 /* 8027DA14 0027A954  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027DA18 0027A958  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game5Armor3ObjFRQ24Game11ShadowParam
 
-.global damageCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart
-damageCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart:
+.fn damageCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 8027DA1C 0027A95C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027DA20 0027A960  7C 08 02 A6 */	mflr r0
 /* 8027DA24 0027A964  90 01 00 24 */	stw r0, 0x24(r1)
@@ -607,9 +626,9 @@ damageCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8027DAA4 0027A9E4  7C 08 03 A6 */	mtlr r0
 /* 8027DAA8 0027A9E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027DAAC 0027A9EC  4E 80 00 20 */	blr 
+.endfn damageCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart
 
-.global hipdropCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart
-hipdropCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart:
+.fn hipdropCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 8027DAB0 0027A9F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027DAB4 0027A9F4  7C 08 02 A6 */	mflr r0
 /* 8027DAB8 0027A9F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -637,9 +656,9 @@ hipdropCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8027DB0C 0027AA4C  7C 08 03 A6 */	mtlr r0
 /* 8027DB10 0027AA50  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027DB14 0027AA54  4E 80 00 20 */	blr 
+.endfn hipdropCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart
 
-.global doStartStoneState__Q34Game5Armor3ObjFv
-doStartStoneState__Q34Game5Armor3ObjFv:
+.fn doStartStoneState__Q34Game5Armor3ObjFv, global
 /* 8027DB18 0027AA58  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8027DB1C 0027AA5C  7C 08 02 A6 */	mflr r0
 /* 8027DB20 0027AA60  90 01 00 54 */	stw r0, 0x54(r1)
@@ -801,9 +820,9 @@ doStartStoneState__Q34Game5Armor3ObjFv:
 /* 8027DD6C 0027ACAC  7C 08 03 A6 */	mtlr r0
 /* 8027DD70 0027ACB0  38 21 00 50 */	addi r1, r1, 0x50
 /* 8027DD74 0027ACB4  4E 80 00 20 */	blr 
+.endfn doStartStoneState__Q34Game5Armor3ObjFv
 
-.global doFinishStoneState__Q34Game5Armor3ObjFv
-doFinishStoneState__Q34Game5Armor3ObjFv:
+.fn doFinishStoneState__Q34Game5Armor3ObjFv, global
 /* 8027DD78 0027ACB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027DD7C 0027ACBC  7C 08 02 A6 */	mflr r0
 /* 8027DD80 0027ACC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -817,9 +836,9 @@ doFinishStoneState__Q34Game5Armor3ObjFv:
 /* 8027DDA0 0027ACE0  7C 08 03 A6 */	mtlr r0
 /* 8027DDA4 0027ACE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027DDA8 0027ACE8  4E 80 00 20 */	blr 
+.endfn doFinishStoneState__Q34Game5Armor3ObjFv
 
-.global startCarcassMotion__Q34Game5Armor3ObjFv
-startCarcassMotion__Q34Game5Armor3ObjFv:
+.fn startCarcassMotion__Q34Game5Armor3ObjFv, global
 /* 8027DDAC 0027ACEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027DDB0 0027ACF0  7C 08 02 A6 */	mflr r0
 /* 8027DDB4 0027ACF4  38 80 00 09 */	li r4, 9
@@ -830,9 +849,9 @@ startCarcassMotion__Q34Game5Armor3ObjFv:
 /* 8027DDC8 0027AD08  7C 08 03 A6 */	mtlr r0
 /* 8027DDCC 0027AD0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027DDD0 0027AD10  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game5Armor3ObjFv
 
-.global doStartMovie__Q34Game5Armor3ObjFv
-doStartMovie__Q34Game5Armor3ObjFv:
+.fn doStartMovie__Q34Game5Armor3ObjFv, global
 /* 8027DDD4 0027AD14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027DDD8 0027AD18  7C 08 02 A6 */	mflr r0
 /* 8027DDDC 0027AD1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -841,9 +860,9 @@ doStartMovie__Q34Game5Armor3ObjFv:
 /* 8027DDE8 0027AD28  7C 08 03 A6 */	mtlr r0
 /* 8027DDEC 0027AD2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027DDF0 0027AD30  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game5Armor3ObjFv
 
-.global doEndMovie__Q34Game5Armor3ObjFv
-doEndMovie__Q34Game5Armor3ObjFv:
+.fn doEndMovie__Q34Game5Armor3ObjFv, global
 /* 8027DDF4 0027AD34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027DDF8 0027AD38  7C 08 02 A6 */	mflr r0
 /* 8027DDFC 0027AD3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -852,9 +871,9 @@ doEndMovie__Q34Game5Armor3ObjFv:
 /* 8027DE08 0027AD48  7C 08 03 A6 */	mtlr r0
 /* 8027DE0C 0027AD4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027DE10 0027AD50  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game5Armor3ObjFv
 
-.global initMouthSlots__Q34Game5Armor3ObjFv
-initMouthSlots__Q34Game5Armor3ObjFv:
+.fn initMouthSlots__Q34Game5Armor3ObjFv, global
 /* 8027DE14 0027AD54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027DE18 0027AD58  7C 08 02 A6 */	mflr r0
 /* 8027DE1C 0027AD5C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -892,9 +911,9 @@ initMouthSlots__Q34Game5Armor3ObjFv:
 /* 8027DE94 0027ADD4  7C 08 03 A6 */	mtlr r0
 /* 8027DE98 0027ADD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027DE9C 0027ADDC  4E 80 00 20 */	blr 
+.endfn initMouthSlots__Q34Game5Armor3ObjFv
 
-.global lifeIncrement__Q34Game5Armor3ObjFv
-lifeIncrement__Q34Game5Armor3ObjFv:
+.fn lifeIncrement__Q34Game5Armor3ObjFv, global
 /* 8027DEA0 0027ADE0  C0 22 D1 E0 */	lfs f1, lbl_8051B540@sda21(r2)
 /* 8027DEA4 0027ADE4  D0 23 02 08 */	stfs f1, 0x208(r3)
 /* 8027DEA8 0027ADE8  80 03 01 E0 */	lwz r0, 0x1e0(r3)
@@ -907,9 +926,9 @@ lifeIncrement__Q34Game5Armor3ObjFv:
 /* 8027DEC4 0027AE04  C0 02 D1 F0 */	lfs f0, lbl_8051B550@sda21(r2)
 /* 8027DEC8 0027AE08  D0 03 02 00 */	stfs f0, 0x200(r3)
 /* 8027DECC 0027AE0C  4E 80 00 20 */	blr 
+.endfn lifeIncrement__Q34Game5Armor3ObjFv
 
-.global attackPikmin__Q34Game5Armor3ObjFv
-attackPikmin__Q34Game5Armor3ObjFv:
+.fn attackPikmin__Q34Game5Armor3ObjFv, global
 /* 8027DED0 0027AE10  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8027DED4 0027AE14  7C 08 02 A6 */	mflr r0
 /* 8027DED8 0027AE18  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1175,9 +1194,9 @@ attackPikmin__Q34Game5Armor3ObjFv:
 /* 8027E2B0 0027B1F0  7C 08 03 A6 */	mtlr r0
 /* 8027E2B4 0027B1F4  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8027E2B8 0027B1F8  4E 80 00 20 */	blr 
+.endfn attackPikmin__Q34Game5Armor3ObjFv
 
-.global getSlotPikiNum__Q34Game5Armor3ObjFv
-getSlotPikiNum__Q34Game5Armor3ObjFv:
+.fn getSlotPikiNum__Q34Game5Armor3ObjFv, global
 /* 8027E2BC 0027B1FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027E2C0 0027B200  7C 08 02 A6 */	mflr r0
 /* 8027E2C4 0027B204  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1216,14 +1235,14 @@ getSlotPikiNum__Q34Game5Armor3ObjFv:
 /* 8027E33C 0027B27C  7C 08 03 A6 */	mtlr r0
 /* 8027E340 0027B280  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027E344 0027B284  4E 80 00 20 */	blr 
+.endfn getSlotPikiNum__Q34Game5Armor3ObjFv
 
-.global getMouthSlots__Q34Game5Armor3ObjFv
-getMouthSlots__Q34Game5Armor3ObjFv:
+.fn getMouthSlots__Q34Game5Armor3ObjFv, weak
 /* 8027E348 0027B288  38 63 02 CC */	addi r3, r3, 0x2cc
 /* 8027E34C 0027B28C  4E 80 00 20 */	blr 
+.endfn getMouthSlots__Q34Game5Armor3ObjFv
 
-.global killSlotPiki__Q34Game5Armor3ObjFv
-killSlotPiki__Q34Game5Armor3ObjFv:
+.fn killSlotPiki__Q34Game5Armor3ObjFv, global
 /* 8027E350 0027B290  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027E354 0027B294  7C 08 02 A6 */	mflr r0
 /* 8027E358 0027B298  38 80 00 00 */	li r4, 0
@@ -1235,9 +1254,9 @@ killSlotPiki__Q34Game5Armor3ObjFv:
 /* 8027E370 0027B2B0  7C 08 03 A6 */	mtlr r0
 /* 8027E374 0027B2B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027E378 0027B2B8  4E 80 00 20 */	blr 
+.endfn killSlotPiki__Q34Game5Armor3ObjFv
 
-.global resetBridgeSearch__Q34Game5Armor3ObjFv
-resetBridgeSearch__Q34Game5Armor3ObjFv:
+.fn resetBridgeSearch__Q34Game5Armor3ObjFv, global
 /* 8027E37C 0027B2BC  38 80 00 01 */	li r4, 1
 /* 8027E380 0027B2C0  38 00 00 00 */	li r0, 0
 /* 8027E384 0027B2C4  98 83 02 C0 */	stb r4, 0x2c0(r3)
@@ -1246,9 +1265,9 @@ resetBridgeSearch__Q34Game5Armor3ObjFv:
 /* 8027E390 0027B2D0  D0 03 02 DC */	stfs f0, 0x2dc(r3)
 /* 8027E394 0027B2D4  D0 03 02 E0 */	stfs f0, 0x2e0(r3)
 /* 8027E398 0027B2D8  4E 80 00 20 */	blr 
+.endfn resetBridgeSearch__Q34Game5Armor3ObjFv
 
-.global setBridgeSearch__Q34Game5Armor3ObjFv
-setBridgeSearch__Q34Game5Armor3ObjFv:
+.fn setBridgeSearch__Q34Game5Armor3ObjFv, global
 /* 8027E39C 0027B2DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027E3A0 0027B2E0  7C 08 02 A6 */	mflr r0
 /* 8027E3A4 0027B2E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1268,9 +1287,9 @@ setBridgeSearch__Q34Game5Armor3ObjFv:
 /* 8027E3D8 0027B318  7C 08 03 A6 */	mtlr r0
 /* 8027E3DC 0027B31C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027E3E0 0027B320  4E 80 00 20 */	blr 
+.endfn setBridgeSearch__Q34Game5Armor3ObjFv
 
-.global setNearestBridge__Q34Game5Armor3ObjFv
-setNearestBridge__Q34Game5Armor3ObjFv:
+.fn setNearestBridge__Q34Game5Armor3ObjFv, global
 /* 8027E3E4 0027B324  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8027E3E8 0027B328  7C 08 02 A6 */	mflr r0
 /* 8027E3EC 0027B32C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1459,13 +1478,13 @@ setNearestBridge__Q34Game5Armor3ObjFv:
 /* 8027E698 0027B5D8  7C 08 03 A6 */	mtlr r0
 /* 8027E69C 0027B5DC  38 21 00 50 */	addi r1, r1, 0x50
 /* 8027E6A0 0027B5E0  4E 80 00 20 */	blr 
+.endfn setNearestBridge__Q34Game5Armor3ObjFv
 
-.global setCullingCheck__Q34Game5Armor3ObjFv
-setCullingCheck__Q34Game5Armor3ObjFv:
+.fn setCullingCheck__Q34Game5Armor3ObjFv, global
 /* 8027E6A4 0027B5E4  4E 80 00 20 */	blr 
+.endfn setCullingCheck__Q34Game5Armor3ObjFv
 
-.global checkBreakOrMove__Q34Game5Armor3ObjFv
-checkBreakOrMove__Q34Game5Armor3ObjFv:
+.fn checkBreakOrMove__Q34Game5Armor3ObjFv, global
 /* 8027E6A8 0027B5E8  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8027E6AC 0027B5EC  7C 08 02 A6 */	mflr r0
 /* 8027E6B0 0027B5F0  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1584,9 +1603,9 @@ checkBreakOrMove__Q34Game5Armor3ObjFv:
 /* 8027E850 0027B790  7C 08 03 A6 */	mtlr r0
 /* 8027E854 0027B794  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8027E858 0027B798  4E 80 00 20 */	blr 
+.endfn checkBreakOrMove__Q34Game5Armor3ObjFv
 
-.global isBreakBridge__Q34Game5Armor3ObjFv
-isBreakBridge__Q34Game5Armor3ObjFv:
+.fn isBreakBridge__Q34Game5Armor3ObjFv, global
 /* 8027E85C 0027B79C  80 63 02 D8 */	lwz r3, 0x2d8(r3)
 /* 8027E860 0027B7A0  28 03 00 00 */	cmplwi r3, 0
 /* 8027E864 0027B7A4  41 82 00 18 */	beq .L_8027E87C
@@ -1598,9 +1617,9 @@ isBreakBridge__Q34Game5Armor3ObjFv:
 .L_8027E87C:
 /* 8027E87C 0027B7BC  38 60 00 00 */	li r3, 0
 /* 8027E880 0027B7C0  4E 80 00 20 */	blr 
+.endfn isBreakBridge__Q34Game5Armor3ObjFv
 
-.global moveBridgeSide__Q34Game5Armor3ObjFv
-moveBridgeSide__Q34Game5Armor3ObjFv:
+.fn moveBridgeSide__Q34Game5Armor3ObjFv, global
 /* 8027E884 0027B7C4  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8027E888 0027B7C8  7C 08 02 A6 */	mflr r0
 /* 8027E88C 0027B7CC  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1775,9 +1794,9 @@ moveBridgeSide__Q34Game5Armor3ObjFv:
 /* 8027EB20 0027BA60  7C 08 03 A6 */	mtlr r0
 /* 8027EB24 0027BA64  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8027EB28 0027BA68  4E 80 00 20 */	blr 
+.endfn moveBridgeSide__Q34Game5Armor3ObjFv
 
-.global moveBridgeCentre__Q34Game5Armor3ObjFv
-moveBridgeCentre__Q34Game5Armor3ObjFv:
+.fn moveBridgeCentre__Q34Game5Armor3ObjFv, global
 /* 8027EB2C 0027BA6C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8027EB30 0027BA70  7C 08 02 A6 */	mflr r0
 /* 8027EB34 0027BA74  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1944,9 +1963,9 @@ moveBridgeCentre__Q34Game5Armor3ObjFv:
 /* 8027EDA8 0027BCE8  7C 08 03 A6 */	mtlr r0
 /* 8027EDAC 0027BCEC  38 21 00 90 */	addi r1, r1, 0x90
 /* 8027EDB0 0027BCF0  4E 80 00 20 */	blr 
+.endfn moveBridgeCentre__Q34Game5Armor3ObjFv
 
-.global moveBridgeTop__Q34Game5Armor3ObjFv
-moveBridgeTop__Q34Game5Armor3ObjFv:
+.fn moveBridgeTop__Q34Game5Armor3ObjFv, global
 /* 8027EDB4 0027BCF4  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8027EDB8 0027BCF8  7C 08 02 A6 */	mflr r0
 /* 8027EDBC 0027BCFC  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -2153,9 +2172,9 @@ moveBridgeTop__Q34Game5Armor3ObjFv:
 /* 8027F0C4 0027C004  7C 08 03 A6 */	mtlr r0
 /* 8027F0C8 0027C008  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8027F0CC 0027C00C  4E 80 00 20 */	blr 
+.endfn moveBridgeTop__Q34Game5Armor3ObjFv
 
-.global breakTargetBridge__Q34Game5Armor3ObjFv
-breakTargetBridge__Q34Game5Armor3ObjFv:
+.fn breakTargetBridge__Q34Game5Armor3ObjFv, global
 /* 8027F0D0 0027C010  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027F0D4 0027C014  7C 08 02 A6 */	mflr r0
 /* 8027F0D8 0027C018  3C 80 80 4B */	lis r4, __vt__Q24Game11Interaction@ha
@@ -2179,9 +2198,9 @@ breakTargetBridge__Q34Game5Armor3ObjFv:
 /* 8027F120 0027C060  7C 08 03 A6 */	mtlr r0
 /* 8027F124 0027C064  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027F128 0027C068  4E 80 00 20 */	blr 
+.endfn breakTargetBridge__Q34Game5Armor3ObjFv
 
-.global createEffect__Q34Game5Armor3ObjFv
-createEffect__Q34Game5Armor3ObjFv:
+.fn createEffect__Q34Game5Armor3ObjFv, global
 /* 8027F12C 0027C06C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027F130 0027C070  7C 08 02 A6 */	mflr r0
 /* 8027F134 0027C074  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2227,9 +2246,9 @@ createEffect__Q34Game5Armor3ObjFv:
 /* 8027F1D0 0027C110  7C 08 03 A6 */	mtlr r0
 /* 8027F1D4 0027C114  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027F1D8 0027C118  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game5Armor3ObjFv
 
-.global setupEffect__Q34Game5Armor3ObjFv
-setupEffect__Q34Game5Armor3ObjFv:
+.fn setupEffect__Q34Game5Armor3ObjFv, global
 /* 8027F1DC 0027C11C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027F1E0 0027C120  7C 08 02 A6 */	mflr r0
 /* 8027F1E4 0027C124  38 82 D1 F8 */	addi r4, r2, lbl_8051B558@sda21
@@ -2246,9 +2265,9 @@ setupEffect__Q34Game5Armor3ObjFv:
 /* 8027F210 0027C150  7C 08 03 A6 */	mtlr r0
 /* 8027F214 0027C154  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027F218 0027C158  4E 80 00 20 */	blr 
+.endfn setupEffect__Q34Game5Armor3ObjFv
 
-.global createAttackEffect__Q34Game5Armor3ObjFv
-createAttackEffect__Q34Game5Armor3ObjFv:
+.fn createAttackEffect__Q34Game5Armor3ObjFv, global
 /* 8027F21C 0027C15C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027F220 0027C160  7C 08 02 A6 */	mflr r0
 /* 8027F224 0027C164  38 80 00 00 */	li r4, 0
@@ -2262,9 +2281,9 @@ createAttackEffect__Q34Game5Armor3ObjFv:
 /* 8027F244 0027C184  7C 08 03 A6 */	mtlr r0
 /* 8027F248 0027C188  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027F24C 0027C18C  4E 80 00 20 */	blr 
+.endfn createAttackEffect__Q34Game5Armor3ObjFv
 
-.global createAppearEffect__Q34Game5Armor3ObjFv
-createAppearEffect__Q34Game5Armor3ObjFv:
+.fn createAppearEffect__Q34Game5Armor3ObjFv, global
 /* 8027F250 0027C190  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027F254 0027C194  7C 08 02 A6 */	mflr r0
 /* 8027F258 0027C198  3C 80 80 48 */	lis r4, lbl_80487418@ha
@@ -2300,9 +2319,9 @@ createAppearEffect__Q34Game5Armor3ObjFv:
 /* 8027F2D0 0027C210  7C 08 03 A6 */	mtlr r0
 /* 8027F2D4 0027C214  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027F2D8 0027C218  4E 80 00 20 */	blr 
+.endfn createAppearEffect__Q34Game5Armor3ObjFv
 
-.global createDisAppearEffect__Q34Game5Armor3ObjFv
-createDisAppearEffect__Q34Game5Armor3ObjFv:
+.fn createDisAppearEffect__Q34Game5Armor3ObjFv, global
 /* 8027F2DC 0027C21C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027F2E0 0027C220  7C 08 02 A6 */	mflr r0
 /* 8027F2E4 0027C224  3C 80 80 48 */	lis r4, lbl_80487418@ha
@@ -2338,9 +2357,9 @@ createDisAppearEffect__Q34Game5Armor3ObjFv:
 /* 8027F35C 0027C29C  7C 08 03 A6 */	mtlr r0
 /* 8027F360 0027C2A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027F364 0027C2A4  4E 80 00 20 */	blr 
+.endfn createDisAppearEffect__Q34Game5Armor3ObjFv
 
-.global createBridgeEffect__Q34Game5Armor3ObjFv
-createBridgeEffect__Q34Game5Armor3ObjFv:
+.fn createBridgeEffect__Q34Game5Armor3ObjFv, global
 /* 8027F368 0027C2A8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8027F36C 0027C2AC  7C 08 02 A6 */	mflr r0
 /* 8027F370 0027C2B0  38 82 D1 F8 */	addi r4, r2, lbl_8051B558@sda21
@@ -2377,9 +2396,9 @@ createBridgeEffect__Q34Game5Armor3ObjFv:
 /* 8027F3EC 0027C32C  7C 08 03 A6 */	mtlr r0
 /* 8027F3F0 0027C330  38 21 00 30 */	addi r1, r1, 0x30
 /* 8027F3F4 0027C334  4E 80 00 20 */	blr 
+.endfn createBridgeEffect__Q34Game5Armor3ObjFv
 
-.global effectDrawOn__Q34Game5Armor3ObjFv
-effectDrawOn__Q34Game5Armor3ObjFv:
+.fn effectDrawOn__Q34Game5Armor3ObjFv, global
 /* 8027F3F8 0027C338  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027F3FC 0027C33C  7C 08 02 A6 */	mflr r0
 /* 8027F400 0027C340  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2392,9 +2411,9 @@ effectDrawOn__Q34Game5Armor3ObjFv:
 /* 8027F41C 0027C35C  7C 08 03 A6 */	mtlr r0
 /* 8027F420 0027C360  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027F424 0027C364  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game5Armor3ObjFv
 
-.global effectDrawOff__Q34Game5Armor3ObjFv
-effectDrawOff__Q34Game5Armor3ObjFv:
+.fn effectDrawOff__Q34Game5Armor3ObjFv, global
 /* 8027F428 0027C368  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027F42C 0027C36C  7C 08 02 A6 */	mflr r0
 /* 8027F430 0027C370  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2407,9 +2426,9 @@ effectDrawOff__Q34Game5Armor3ObjFv:
 /* 8027F44C 0027C38C  7C 08 03 A6 */	mtlr r0
 /* 8027F450 0027C390  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027F454 0027C394  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game5Armor3ObjFv
 
-.global __dt__Q23efx12TYoroiAttackFv
-__dt__Q23efx12TYoroiAttackFv:
+.fn __dt__Q23efx12TYoroiAttackFv, weak
 /* 8027F458 0027C398  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027F45C 0027C39C  7C 08 02 A6 */	mflr r0
 /* 8027F460 0027C3A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2451,18 +2470,19 @@ __dt__Q23efx12TYoroiAttackFv:
 /* 8027F4E8 0027C428  7C 08 03 A6 */	mtlr r0
 /* 8027F4EC 0027C42C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027F4F0 0027C430  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TYoroiAttackFv
 
-.global getDownSmokeScale__Q34Game5Armor3ObjFv
-getDownSmokeScale__Q34Game5Armor3ObjFv:
+.fn getDownSmokeScale__Q34Game5Armor3ObjFv, weak
 /* 8027F4F4 0027C434  C0 22 D2 34 */	lfs f1, lbl_8051B594@sda21(r2)
 /* 8027F4F8 0027C438  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game5Armor3ObjFv
 
-.global getEnemyTypeID__Q34Game5Armor3ObjFv
-getEnemyTypeID__Q34Game5Armor3ObjFv:
+.fn getEnemyTypeID__Q34Game5Armor3ObjFv, weak
 /* 8027F4FC 0027C43C  38 60 00 0F */	li r3, 0xf
 /* 8027F500 0027C440  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game5Armor3ObjFv
 
-.global "@4@__dt__Q23efx12TYoroiAttackFv"
-"@4@__dt__Q23efx12TYoroiAttackFv":
+.fn "@4@__dt__Q23efx12TYoroiAttackFv", weak
 /* 8027F504 0027C444  38 63 FF FC */	addi r3, r3, -4
 /* 8027F508 0027C448  4B FF FF 50 */	b __dt__Q23efx12TYoroiAttackFv
+.endfn "@4@__dt__Q23efx12TYoroiAttackFv"

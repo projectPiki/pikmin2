@@ -5,34 +5,37 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80493F80:
+.obj lbl_80493F80, local
 	.asciz "shijimiChou"
+.endobj lbl_80493F80
 .balign 4
-lbl_80493F8C:
+.obj lbl_80493F8C, local
 	.asciz "mat_shijimi_hane_v"
+.endobj lbl_80493F8C
 .balign 4
-lbl_80493FA0:
+.obj lbl_80493FA0, local
 	.asciz "shijimiChou.cpp"
+.endobj lbl_80493FA0
 .balign 4
-lbl_80493FB0:
+.obj lbl_80493FB0, local
 	.asciz "P2Assert"
+.endobj lbl_80493FB0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx8TChouHit
-__vt__Q23efx8TChouHit:
+.obj __vt__Q23efx8TChouHit, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx7ArgChou
-__vt__Q23efx7ArgChou:
+.endobj __vt__Q23efx8TChouHit
+.obj __vt__Q23efx7ArgChou, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q23efx7ArgChouFv
-.global __vt__Q34Game11ShijimiChou3Obj
-__vt__Q34Game11ShijimiChou3Obj:
+.endobj __vt__Q23efx7ArgChou
+.obj __vt__Q34Game11ShijimiChou3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -236,21 +239,28 @@ __vt__Q34Game11ShijimiChou3Obj:
 	.4byte "@828@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@828@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game11ShijimiChou3Obj
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-mMatColorY0__Q24Game11ShijimiChou:
+.obj mMatColorY0__Q24Game11ShijimiChou, local
 	.skip 0x8
-mMatColorR0__Q24Game11ShijimiChou:
+.endobj mMatColorY0__Q24Game11ShijimiChou
+.obj mMatColorR0__Q24Game11ShijimiChou, local
 	.skip 0x8
-mMatColorB0__Q24Game11ShijimiChou:
+.endobj mMatColorR0__Q24Game11ShijimiChou
+.obj mMatColorB0__Q24Game11ShijimiChou, local
 	.skip 0x8
-mMatKColorY__Q24Game11ShijimiChou:
+.endobj mMatColorB0__Q24Game11ShijimiChou
+.obj mMatKColorY__Q24Game11ShijimiChou, local
 	.skip 0x4
-mMatKColorR__Q24Game11ShijimiChou:
+.endobj mMatKColorY__Q24Game11ShijimiChou
+.obj mMatKColorR__Q24Game11ShijimiChou, local
 	.skip 0x4
-mMatKColorB__Q24Game11ShijimiChou:
+.endobj mMatKColorR__Q24Game11ShijimiChou
+.obj mMatKColorB__Q24Game11ShijimiChou, local
 	.skip 0x4
+.endobj mMatKColorB__Q24Game11ShijimiChou
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

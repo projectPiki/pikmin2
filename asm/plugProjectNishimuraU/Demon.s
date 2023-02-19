@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q34Game5Demon3Obj
-__vt__Q34Game5Demon3Obj:
+.obj __vt__Q34Game5Demon3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -210,23 +209,28 @@ __vt__Q34Game5Demon3Obj:
 	.4byte "@732@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@732@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game5Demon3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051B930:
+.obj lbl_8051B930, local
 	.float 3.0
-lbl_8051B934: # pi
+.endobj lbl_8051B930
+.obj lbl_8051B934, local # pi
 	.float 3.1415927
-lbl_8051B938:
+.endobj lbl_8051B934
+.obj lbl_8051B938, local
 	.float 0.0055555557
-lbl_8051B93C:
+.endobj lbl_8051B938
+.obj lbl_8051B93C, local
 	.float 0.0
-lbl_8051B940:
+.endobj lbl_8051B93C
+.obj lbl_8051B940, local
 	.float 1.0
+.endobj lbl_8051B940
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game5Demon3ObjFv
-__ct__Q34Game5Demon3ObjFv:
+.fn __ct__Q34Game5Demon3ObjFv, global
 /* 8028E394 0028B2D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028E398 0028B2D8  7C 08 02 A6 */	mflr r0
 /* 8028E39C 0028B2DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -264,9 +268,9 @@ __ct__Q34Game5Demon3ObjFv:
 /* 8028E418 0028B358  7C 08 03 A6 */	mtlr r0
 /* 8028E41C 0028B35C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028E420 0028B360  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game5Demon3ObjFv
 
-.global getAttackableTarget__Q34Game5Demon3ObjFv
-getAttackableTarget__Q34Game5Demon3ObjFv:
+.fn getAttackableTarget__Q34Game5Demon3ObjFv, global
 /* 8028E424 0028B364  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8028E428 0028B368  7C 08 02 A6 */	mflr r0
 /* 8028E42C 0028B36C  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -530,9 +534,9 @@ getAttackableTarget__Q34Game5Demon3ObjFv:
 /* 8028E808 0028B748  7C 08 03 A6 */	mtlr r0
 /* 8028E80C 0028B74C  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8028E810 0028B750  4E 80 00 20 */	blr 
+.endfn getAttackableTarget__Q34Game5Demon3ObjFv
 
-.global catchTarget__Q34Game5Demon3ObjFv
-catchTarget__Q34Game5Demon3ObjFv:
+.fn catchTarget__Q34Game5Demon3ObjFv, global
 /* 8028E814 0028B754  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8028E818 0028B758  7C 08 02 A6 */	mflr r0
 /* 8028E81C 0028B75C  38 80 00 00 */	li r4, 0
@@ -754,18 +758,19 @@ catchTarget__Q34Game5Demon3ObjFv:
 /* 8028EB44 0028BA84  7C 08 03 A6 */	mtlr r0
 /* 8028EB48 0028BA88  38 21 00 60 */	addi r1, r1, 0x60
 /* 8028EB4C 0028BA8C  4E 80 00 20 */	blr 
+.endfn catchTarget__Q34Game5Demon3ObjFv
 
-.global getEnemyTypeID__Q34Game5Demon3ObjFv
-getEnemyTypeID__Q34Game5Demon3ObjFv:
+.fn getEnemyTypeID__Q34Game5Demon3ObjFv, weak
 /* 8028EB50 0028BA90  38 60 00 20 */	li r3, 0x20
 /* 8028EB54 0028BA94  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game5Demon3ObjFv
 
-.global getStickPikminNum__Q34Game5Demon3ObjFv
-getStickPikminNum__Q34Game5Demon3ObjFv:
+.fn getStickPikminNum__Q34Game5Demon3ObjFv, weak
 /* 8028EB58 0028BA98  80 63 01 F4 */	lwz r3, 0x1f4(r3)
 /* 8028EB5C 0028BA9C  4E 80 00 20 */	blr 
+.endfn getStickPikminNum__Q34Game5Demon3ObjFv
 
-.global resetAttackableTimer__Q34Game5Demon3ObjFf
-resetAttackableTimer__Q34Game5Demon3ObjFf:
+.fn resetAttackableTimer__Q34Game5Demon3ObjFf, weak
 /* 8028EB60 0028BAA0  D0 23 02 D8 */	stfs f1, 0x2d8(r3)
 /* 8028EB64 0028BAA4  4E 80 00 20 */	blr 
+.endfn resetAttackableTimer__Q34Game5Demon3ObjFf

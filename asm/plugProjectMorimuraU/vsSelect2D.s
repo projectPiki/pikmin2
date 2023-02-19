@@ -5,59 +5,45 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80494B18
 lbl_80494B18:
 	.asciz "vsSelect2D"
 .balign 4
-.global lbl_80494B24
 lbl_80494B24:
 	.asciz "vsSelect2D.cpp"
 .balign 4
-.global lbl_80494B34
 lbl_80494B34:
 	.asciz "P2Assert"
 .balign 4
-.global lbl_80494B40
 lbl_80494B40:
 	.asciz "vsSelect"
 .balign 4
-.global lbl_80494B4C
 lbl_80494B4C:
 	.asciz "timg/otegaru.bti"
 .balign 4
-.global lbl_80494B60
 lbl_80494B60:
 	.asciz "timg/ujyaujya.bti"
 .balign 4
-.global lbl_80494B74
 lbl_80494B74:
 	.asciz "timg/hirobiro.bti"
 .balign 4
-.global lbl_80494B88
 lbl_80494B88:
 	.asciz "timg/karakuchi.bti"
 .balign 4
-.global lbl_80494B9C
 lbl_80494B9C:
 	.asciz "timg/semai.bti"
 .balign 4
-.global lbl_80494BAC
 lbl_80494BAC:
 	.asciz "timg/hiyahiya.bti"
 .balign 4
-.global lbl_80494BC0
 lbl_80494BC0:
 	.asciz "timg/nobinobi.bti"
 .balign 4
-.global lbl_80494BD4
 lbl_80494BD4:
 	.asciz "timg/kakukaku.bti"
 .balign 4
-.global lbl_80494BE8
 lbl_80494BE8:
 	.asciz "timg/meiro.bti"
 .balign 4
-.global lbl_80494BF8
 lbl_80494BF8:
 	.asciz "timg/tile.bti"
 .balign 4
@@ -71,23 +57,18 @@ lbl_80494BF8:
 	.4byte lbl_80494BD4
 	.4byte lbl_80494BE8
 	.4byte lbl_80494BF8
-.global lbl_80494C30
 lbl_80494C30:
 	.asciz "timg/orima001.bti"
 .balign 4
-.global lbl_80494C44
 lbl_80494C44:
 	.asciz "timg/orima002.bti"
 .balign 4
-.global lbl_80494C58
 lbl_80494C58:
 	.asciz "timg/orima003.bti"
 .balign 4
-.global lbl_80494C6C
 lbl_80494C6C:
 	.asciz "timg/orima004.bti"
 .balign 4
-.global lbl_80494C80
 lbl_80494C80:
 	.asciz "timg/orima005.bti"
 .balign 4
@@ -96,23 +77,18 @@ lbl_80494C80:
 	.4byte lbl_80494C58
 	.4byte lbl_80494C6C
 	.4byte lbl_80494C80
-.global lbl_80494CA8
 lbl_80494CA8:
 	.asciz "timg/lui001.bti"
 .balign 4
-.global lbl_80494CB8
 lbl_80494CB8:
 	.asciz "timg/lui002.bti"
 .balign 4
-.global lbl_80494CC8
 lbl_80494CC8:
 	.asciz "timg/lui003.bti"
 .balign 4
-.global lbl_80494CD8
 lbl_80494CD8:
 	.asciz "timg/lui004.bti"
 .balign 4
-.global lbl_80494CE8
 lbl_80494CE8:
 	.asciz "timg/lui005.bti"
 .balign 4
@@ -409,7 +385,6 @@ lbl_80494D10:
 	.4byte 0x646F775F
 	.4byte 0x31322E62
 	.4byte 0x746B0000
-.global lbl_80495184
 lbl_80495184:
 	.4byte 0x6E617669
 	.4byte 0x5F6C2E62
@@ -428,12 +403,10 @@ lbl_80495184:
 	.4byte 0x206E6F74
 	.4byte 0x2066696E
 	.4byte 0x640A0000
-.global lbl_804951C8
 lbl_804951C8:
 	.4byte 0x656E6457
 	.4byte 0x696E646F
 	.4byte 0x77000000
-.global lbl_804951D4
 lbl_804951D4:
 	.4byte 0x7265735F
 	.4byte 0x76735365
@@ -778,102 +751,70 @@ mCanCancel__Q28Morimura9TVsSelect:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F170
 lbl_8051F170:
 	.4byte 0x00000000
-.global lbl_8051F174
 lbl_8051F174:
 	.4byte 0x44200000
-.global lbl_8051F178
 lbl_8051F178:
 	.4byte 0x43F00000
-.global lbl_8051F17C
 lbl_8051F17C:
 	.4byte 0xBF800000
-.global lbl_8051F180
 lbl_8051F180:
 	.float 1.0
-.global lbl_8051F184
 lbl_8051F184:
 	.4byte 0x3C8EFA35
-.global lbl_8051F188
 lbl_8051F188:
 	.float 0.5
-.global lbl_8051F18C
 lbl_8051F18C:
 	.4byte 0xC4480000
-.global lbl_8051F190
 lbl_8051F190:
 	.4byte 0x41A00000
 	.4byte 0x00000000
-.global lbl_8051F198
 lbl_8051F198:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051F1A0
 lbl_8051F1A0:
 	.4byte 0x40A00000
-.global lbl_8051F1A4
 lbl_8051F1A4:
 	.4byte 0x3EA0D97C
-.global lbl_8051F1A8
 lbl_8051F1A8:
 	.4byte 0x40490FDB
-.global lbl_8051F1AC
 lbl_8051F1AC:
 	.4byte 0xC1A00000
-.global lbl_8051F1B0
 lbl_8051F1B0:
 	.4byte 0xC3A2F983
-.global lbl_8051F1B4
 lbl_8051F1B4:
 	.4byte 0x43A2F983
-.global lbl_8051F1B8
 lbl_8051F1B8:
 	.4byte 0x42480000
-.global lbl_8051F1BC
 lbl_8051F1BC:
 	.4byte 0x41400000
-.global lbl_8051F1C0
 lbl_8051F1C0:
 	.4byte 0xC2C80000
-.global lbl_8051F1C4
 lbl_8051F1C4:
 	.4byte 0x47000000
-.global lbl_8051F1C8
 lbl_8051F1C8:
 	.4byte 0x40C90FDB
-.global lbl_8051F1CC
 lbl_8051F1CC:
 	.float 0.05
-.global lbl_8051F1D0
 lbl_8051F1D0:
 	.4byte 0x3ECCCCCD
-.global lbl_8051F1D4
 lbl_8051F1D4:
 	.4byte 0x43B40000
-.global lbl_8051F1D8
 lbl_8051F1D8:
 	.float 0.1
-.global lbl_8051F1DC
 lbl_8051F1DC:
 	.4byte 0xC3700000
-.global lbl_8051F1E0
 lbl_8051F1E0:
 	.4byte 0xC3A00000
-.global lbl_8051F1E4
 lbl_8051F1E4:
 	.4byte 0x3FA00000
-.global lbl_8051F1E8
 lbl_8051F1E8:
 	.4byte 0xC1F00000
-.global lbl_8051F1EC
 lbl_8051F1EC:
 	.4byte 0x40000000
-.global lbl_8051F1F0
 lbl_8051F1F0:
 	.4byte 0x41800000
-.global lbl_8051F1F4
 lbl_8051F1F4:
 	.4byte 0x41F00000
 .global lbl_8051F1F8

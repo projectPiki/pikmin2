@@ -5,26 +5,30 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804910F0:
+.obj lbl_804910F0, local
 	.asciz "PSMainSide_ObjSound.h"
+.endobj lbl_804910F0
 .balign 4
-lbl_80491108:
+.obj lbl_80491108, local
 	.asciz "P2Assert"
+.endobj lbl_80491108
 .balign 4
-lbl_80491114:
+.obj lbl_80491114, local
 	.asciz "hidewait"
+.endobj lbl_80491114
 .balign 4
-lbl_80491120:
+.obj lbl_80491120, local
 	.asciz "ArgRotYScale"
+.endobj lbl_80491120
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q34Game10KingChappy12StateSwallow
-__vt__Q34Game10KingChappy12StateSwallow:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game10KingChappy12StateSwallow, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10KingChappy12StateSwallowFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -34,6 +38,7 @@ __vt__Q34Game10KingChappy12StateSwallow:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.endobj __vt__Q34Game10KingChappy12StateSwallow
 .global __vt__Q34Game10KingChappy12StateCaution
 __vt__Q34Game10KingChappy12StateCaution:
 	.4byte 0
@@ -196,10 +201,12 @@ __vt__Q34Game10KingChappy3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

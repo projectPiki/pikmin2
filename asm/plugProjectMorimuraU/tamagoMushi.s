@@ -1,29 +1,32 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804924E8:
+.obj lbl_804924E8, local
 	.asciz "tamagoMushi"
+.endobj lbl_804924E8
 .balign 4
-lbl_804924F4:
+.obj lbl_804924F4, local
 	.asciz "tamagoMushi.cpp"
+.endobj lbl_804924F4
 .balign 4
-lbl_80492504:
+.obj lbl_80492504, local
 	.asciz "P2Assert"
+.endobj lbl_80492504
 .balign 4
-lbl_80492510:
+.obj lbl_80492510, local
 	.asciz "koshijnt"
+.endobj lbl_80492510
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx9TTamagoAp
-__vt__Q23efx9TTamagoAp:
+.obj __vt__Q23efx9TTamagoAp, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q34Game11TamagoMushi3Obj
-__vt__Q34Game11TamagoMushi3Obj:
+.endobj __vt__Q23efx9TTamagoAp
+.obj __vt__Q34Game11TamagoMushi3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -227,6 +230,7 @@ __vt__Q34Game11TamagoMushi3Obj:
 	.4byte "@780@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@780@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game11TamagoMushi3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

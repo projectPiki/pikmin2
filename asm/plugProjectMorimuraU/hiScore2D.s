@@ -375,7 +375,8 @@ mPictureOffsetY__Q28Morimura8THiScore:
 	.float -8.0
 .global mChangeAlpha__Q28Morimura8THiScore
 mChangeAlpha__Q28Morimura8THiScore:
-	.4byte 0x01000000
+	.byte 1
+.balign 4
 .global mListOffsetY__Q28Morimura8THiScore
 mListOffsetY__Q28Morimura8THiScore:
 	.float 25.0
@@ -385,15 +386,15 @@ mClearListHeightRate__Q28Morimura8THiScore:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mForceClear__Q28Morimura8THiScore
-mForceClear__Q28Morimura8THiScore:
+.obj mForceClear__Q28Morimura8THiScore, global
 	.skip 0x1
-.global mForceClear2__Q28Morimura8THiScore
-mForceClear2__Q28Morimura8THiScore:
+.endobj mForceClear__Q28Morimura8THiScore
+.obj mForceClear2__Q28Morimura8THiScore, global
 	.skip 0x1
-.global mLoopDrum__Q28Morimura8THiScore
-mLoopDrum__Q28Morimura8THiScore:
-	.skip 0x6
+.endobj mForceClear2__Q28Morimura8THiScore
+.obj mLoopDrum__Q28Morimura8THiScore, global
+	.skip 0x1
+.endobj mLoopDrum__Q28Morimura8THiScore
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

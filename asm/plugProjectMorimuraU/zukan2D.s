@@ -24,7 +24,7 @@ lbl_80492550:
 lbl_8049255C:
 	.asciz "mrUtil.h"
 .balign 8
-lbl_80492568: # table of 10 Tmenu00-Tmenu09 char[8] (7 and 6 are swapped)
+lbl_80492568: # table of 10 Tmenu00-Tmenu09 char[8] (7 and 6 are swapped) (possibly u64)
 	.4byte 0x00546D65
 	.4byte 0x6E753030
 	.4byte 0x00546D65
@@ -46,7 +46,7 @@ lbl_80492568: # table of 10 Tmenu00-Tmenu09 char[8] (7 and 6 are swapped)
 	.4byte 0x00546D65
 	.4byte 0x6E753039
 .balign 8
-lbl_804925B8: # table of 120 ID64 (char[8]) elements
+lbl_804925B8: # table of 120 u64 (char[8]?) elements
 	.ascii "Pn00_0_1"
 	.ascii "Pn00_1_1"
 	.ascii "Pn00_2_1"
@@ -1575,8 +1575,7 @@ lbl_8051EB78:
 	.float 0.05
 .balign 8
 lbl_8051EB80:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051EB88:
 	.4byte 0x42F00000
 	.4byte 0x00000000
