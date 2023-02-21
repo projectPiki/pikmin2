@@ -133,8 +133,7 @@ lbl_8052068C:
 	.asciz "bg"
 .balign 8
 lbl_80520690:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST11ObjectActorFPCcPQ24Game11MoviePlayer

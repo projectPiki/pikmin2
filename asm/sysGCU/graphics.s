@@ -51,16 +51,14 @@ lbl_805204BC:
 	.float 0.5
 .balign 8
 lbl_805204C0:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 lbl_805204C8:
 	.float 1.0
 lbl_805204CC:
 	.float -1.0
 .balign 8
 lbl_805204D0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_805204D8:
 	.float 0.3926991
 lbl_805204DC:
@@ -68,7 +66,7 @@ lbl_805204DC:
 lbl_805204E0:
 	.float -325.9493
 lbl_805204E4:
-	.float 3.1415927 #pi
+	.float 3.1415927 # pi
 lbl_805204E8:
 	.float -0.999
 lbl_805204EC:
@@ -76,7 +74,7 @@ lbl_805204EC:
 lbl_805204F0:
 	.float 1.0E-7
 lbl_805204F4:
-	.float 6.2831855 #tau
+	.float 6.2831855 # tau
 lbl_805204F8:
 	.float -1024.0
 lbl_805204FC:

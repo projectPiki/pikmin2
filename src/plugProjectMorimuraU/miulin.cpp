@@ -1,4 +1,6 @@
 #include "types.h"
+#include "Game/Entities/Miulin.h"
+#include "Game/generalEnemyMgr.h"
 
 /*
     Generated from dpostproc
@@ -310,35 +312,25 @@
 */
 
 namespace Game {
+namespace Miulin {
 
 /*
  * --INFO--
  * Address:	80364454
  * Size:	000020
  */
-void Miulin::Obj::setParameters()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       setParameters__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Game
+void Obj::setParameters() { EnemyBase::setParameters(); }
 
 /*
  * --INFO--
  * Address:	80364474
  * Size:	0000B0
  */
-void birth__Q34Game6Miulin3ObjFR10Vector3f f()
+void Obj::birth(Vector3f& position, f32 faceDirection)
 {
+	EnemyBase::birth(position, faceDirection);
+	generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ShijimiChou);
+	EnemyBirthArg arg;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -390,14 +382,12 @@ lbl_80364500:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	80364524
  * Size:	0000B4
  */
-void Miulin::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -455,7 +445,7 @@ lbl_80364578:
  * Address:	803645D8
  * Size:	000140
  */
-Miulin::Obj::Obj()
+Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -549,40 +539,10 @@ lbl_803646E8:
 
 /*
  * --INFO--
- * Address:	80364718
- * Size:	00004C
- */
-void Miulin::Obj::setFSM(Game::Miulin::FSM*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2f4(r3)
-	mr       r4, r31
-	lwz      r3, 0x2f4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	80364764
  * Size:	000080
  */
-void Miulin::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -627,33 +587,21 @@ lbl_803647D0:
  * Address:	803647E4
  * Size:	000004
  */
-void Miulin::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	803647E8
  * Size:	000020
  */
-void Miulin::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	80364808
  * Size:	000088
  */
-void Miulin::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -698,7 +646,7 @@ void Miulin::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	80364890
  * Size:	000040
  */
-void Miulin::Obj::doSimulation(float)
+void Obj::doSimulation(float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -727,7 +675,7 @@ lbl_803648BC:
  * Address:	803648D0
  * Size:	00002C
  */
-void Miulin::Obj::wallCallback(Game::MoveInfo const&)
+void Obj::wallCallback(Game::MoveInfo const&)
 {
 	/*
 	li       r4, 0x78
@@ -749,20 +697,9 @@ void Miulin::Obj::wallCallback(Game::MoveInfo const&)
  * Address:	803648FC
  * Size:	000028
  */
-void Miulin::Obj::startCarcassMotion()
+void Obj::startCarcassMotion()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 6
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	startMotion(6, nullptr); // probably needs enum/define
 }
 
 /*
@@ -770,7 +707,7 @@ void Miulin::Obj::startCarcassMotion()
  * Address:	80364924
  * Size:	00006C
  */
-void Miulin::Obj::initWalkSmokeEffect()
+void Obj::initWalkSmokeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -808,7 +745,7 @@ void Miulin::Obj::initWalkSmokeEffect()
  * Address:	80364990
  * Size:	000008
  */
-void Miulin::Obj::getWalkSmokeEffectMgr()
+Game::WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	addi     r3, r3, 0x2ec
@@ -821,7 +758,7 @@ void Miulin::Obj::getWalkSmokeEffectMgr()
  * Address:	80364998
  * Size:	000534
  */
-void Miulin::Obj::isAttackStart()
+bool Obj::isAttackStart()
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -1191,7 +1128,7 @@ lbl_80364E80:
  * Address:	80364ECC
  * Size:	0004A4
  */
-void Miulin::Obj::isFindTarget()
+bool Obj::isFindTarget()
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -1528,7 +1465,7 @@ lbl_8036532C:
  * Address:	80365370
  * Size:	00003C
  */
-void Miulin::Obj::isOutOfTerritory()
+bool Obj::isOutOfTerritory()
 {
 	/*
 	lfs      f1, 0x1a0(r3)
@@ -1554,7 +1491,7 @@ void Miulin::Obj::isOutOfTerritory()
  * Address:	803653AC
  * Size:	000088
  */
-void Miulin::Obj::isProhibitedSearch()
+bool Obj::isProhibitedSearch()
 {
 	/*
 	lwz      r0, 0x2d0(r3)
@@ -1605,7 +1542,7 @@ lbl_8036542C:
  * Address:	80365434
  * Size:	0000AC
  */
-void Miulin::Obj::isStartWalk()
+bool Obj::isStartWalk()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1666,21 +1603,11 @@ lbl_803654CC:
  * Address:	803654E0
  * Size:	00002C
  */
-void Miulin::Obj::setReturnState()
+void Obj::setReturnState()
 {
-	/*
-	li       r4, 0
-	li       r0, 1
-	stw      r4, 0x230(r3)
-	stb      r0, 0x2e4(r3)
-	lfs      f0, 0x198(r3)
-	stfs     f0, 0x2bc(r3)
-	lfs      f0, 0x19c(r3)
-	stfs     f0, 0x2c0(r3)
-	lfs      f0, 0x1a0(r3)
-	stfs     f0, 0x2c4(r3)
-	blr
-	*/
+	mTargetCreature = nullptr;
+	_2E4            = true;
+	mGoalPosition   = mHomePosition;
 }
 
 /*
@@ -1688,7 +1615,7 @@ void Miulin::Obj::setReturnState()
  * Address:	8036550C
  * Size:	000270
  */
-void Miulin::Obj::walkFunc()
+void Obj::walkFunc()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1863,7 +1790,7 @@ lbl_80365748:
  * Address:	8036577C
  * Size:	00017C
  */
-void Miulin::Obj::turnFunc(float)
+f32 Obj::turnFunc(f32)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -1975,7 +1902,7 @@ lbl_80365894:
  * Address:	803658F8
  * Size:	000050
  */
-void Miulin::Obj::isReachToGoal(float)
+bool Obj::isReachToGoal(f32)
 {
 	/*
 	lbz      r0, 0x2e4(r3)
@@ -2010,7 +1937,7 @@ lbl_80365940:
  * Address:	80365948
  * Size:	00015C
  */
-void Miulin::Obj::setNextGoal()
+void Obj::setNextGoal()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2118,7 +2045,7 @@ lbl_80365A88:
  * Address:	80365AA4
  * Size:	0002E0
  */
-void Miulin::Obj::nextTargetTurnCheck()
+bool Obj::nextTargetTurnCheck()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2333,7 +2260,7 @@ lbl_80365D4C:
  * Address:	80365D84
  * Size:	0000D0
  */
-void Miulin::Obj::isNowCaution()
+bool Obj::isNowCaution()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2410,30 +2337,14 @@ lbl_80365E38:
  * Address:	80365E54
  * Size:	000028
  */
-void Miulin::Obj::landEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051E864@sda21(r2)
-	addi     r4, r3, 0x18c
-	stw      r0, 0x14(r1)
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Game
+void Obj::landEffect() { EnemyBase::createBounceEffect(mPosition, 0.9f); }
 
 /*
  * --INFO--
  * Address:	80365E7C
  * Size:	000144
  */
-void attackEffect__Q34Game6Miulin3ObjFR10Vector3f()
+void Obj::attackEffect(Vector3f&)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2521,62 +2432,5 @@ lbl_80365F90:
 	blr
 	*/
 }
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	80365FC0
- * Size:	000004
- */
-void Miulin::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	80365FC4
- * Size:	000004
- */
-void applyImpulse__Q34Game6Miulin3ObjFR10Vector3f R10Vector3f() { }
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	80365FC8
- * Size:	000008
- */
-u32 Miulin::Obj::getEnemyTypeID() { return 0x36; }
-
-/*
- * --INFO--
- * Address:	80365FD0
- * Size:	000008
- */
-void Miulin::Obj::getDownSmokeScale()
-{
-	/*
-	lfs      f1, lbl_8051E86C@sda21(r2)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80365FD8
- * Size:	00001C
- */
-void Miulin::Obj::getGoalPos()
-{
-	/*
-	lfs      f0, 0x2bc(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 0x2c0(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0x2c4(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+} // namespace Miulin
 } // namespace Game

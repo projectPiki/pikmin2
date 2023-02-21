@@ -135,25 +135,30 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void doSimulation(f32);                         // _4C
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual void applyImpulse(Vector3f&, Vector3f&);        // _18C (weak)
-	virtual Vector3f getGoalPos();                          // _198 (weak)
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                     // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
-	virtual void doUpdate();                                // _1CC
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual void setParameters();                           // _228
-	virtual void initWalkSmokeEffect();                     // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();  // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual void startCarcassMotion();                      // _2C4
-	virtual void wallCallback(const MoveInfo&);             // _2E8
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void setFSM(FSM*);                              // _2F8 (weak)
+	virtual void onInit(CreatureInitArg* settings);                                            // _30
+	virtual void doSimulation(f32);                                                            // _4C
+	virtual void doDirectDraw(Graphics& gfx);                                                  // _50
+	virtual void getShadowParam(ShadowParam& settings);                                        // _134
+	virtual void applyImpulse(Vector3f&, Vector3f&) { }                                        // _18C (weak)
+	virtual Vector3f getGoalPos() { return mGoalPosition; }                                    // _198 (weak)
+	virtual ~Obj() { }                                                                         // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                                        // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*) { }                                 // _1C4 (weak)
+	virtual void doUpdate();                                                                   // _1CC
+	virtual void doDebugDraw(Graphics&);                                                       // _1EC
+	virtual void setParameters();                                                              // _228
+	virtual void initWalkSmokeEffect();                                                        // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                                     // _234
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Miulin; } // _258 (weak)
+	virtual void startCarcassMotion();                                                         // _2C4
+	virtual void wallCallback(const MoveInfo&);                                                // _2E8
+	virtual f32 getDownSmokeScale() { return 0.85f; }                                          // _2EC (weak)
+	virtual void setFSM(FSM* fsm)
+	{
+		mFsm = fsm;
+		mFsm->init(this);
+		mCurrentLifecycleState = nullptr;
+	} // _2F8 (weak)
 	//////////////// VTABLE END
 
 	bool isAttackStart();
@@ -179,7 +184,7 @@ struct Obj : public EnemyBase {
 	u32 _2D0;                           // _2D0
 	Vector3f _2D4;                      // _2D4
 	int _2E0;                           // _2E0
-	u8 _2E4;                            // _2E4
+	bool _2E4;                          // _2E4
 	f32 _2E8;                           // _2E8, timer?
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2EC
 	FSM* mFsm;                          // _2F4
