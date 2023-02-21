@@ -1,6 +1,7 @@
 #include "types.h"
 #include "Game/Entities/Miulin.h"
 #include "Game/generalEnemyMgr.h"
+#include "Game/Entities/ShijimiChou.h"
 
 /*
     Generated from dpostproc
@@ -329,57 +330,15 @@ void Obj::setParameters() { EnemyBase::setParameters(); }
 void Obj::birth(Vector3f& position, f32 faceDirection)
 {
 	EnemyBase::birth(position, faceDirection);
-	generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ShijimiChou);
-	EnemyBirthArg arg;
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	fmr      f31, f1
-	mr       r29, r3
-	mr       r30, r4
-	bl       "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	li       r4, 0x4d
-	bl       getEnemyMgr__Q24Game15GeneralEnemyMgrFi
-	or.      r31, r3, r3
-	beq      lbl_80364500
-	addi     r3, r1, 8
-	bl       __ct__Q24Game13EnemyBirthArgFv
-	lfs      f1, 0(r30)
-	mr       r3, r31
-	lfs      f0, lbl_8051E810@sda21(r2)
-	mr       r5, r29
-	stfs     f1, 8(r1)
-	addi     r4, r1, 8
-	li       r6, 5
-	li       r7, 1
-	lfs      f1, 4(r30)
-	stfs     f1, 0xc(r1)
-	fadds    f0, f1, f0
-	lfs      f1, 8(r30)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f31, 0x14(r1)
-	bl
-createGroupByEnemy__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArgPQ24Game9EnemyBaseib
+	ShijimiChou::Mgr* specMgr = static_cast<ShijimiChou::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ShijimiChou));
+	if (specMgr) {
+		EnemyBirthArg arg;
+		arg.mPosition = position;
+		arg.mPosition.y += 80.0f;
+		arg.mFaceDir = faceDirection;
 
-lbl_80364500:
-	psq_l    f31, 88(r1), 0, qr0
-	lwz      r0, 0x64(r1)
-	lfd      f31, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+		specMgr->createGroupByEnemy(arg, this, 5, true);
+	}
 }
 
 /*
@@ -387,57 +346,16 @@ lbl_80364500:
  * Address:	80364524
  * Size:	0000B4
  */
-void Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* initArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_80491A18@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r5, lbl_80491A18@l
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r3, 0x174(r30)
-	addi     r4, r31, 0
-	bl       getJoint__Q28SysShape5ModelFPc
-	stw      r3, 0x2cc(r30)
-	lwz      r0, 0x2cc(r30)
-	cmplwi   r0, 0
-	bne      lbl_80364578
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x18
-	li       r4, 0x4a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80364578:
-	li       r0, 0
-	mr       r4, r30
-	stw      r0, 0x2d0(r30)
-	li       r5, 0
-	li       r6, 0
-	lfs      f0, 0x198(r30)
-	stfs     f0, 0x2d4(r30)
-	lfs      f0, 0x19c(r30)
-	stfs     f0, 0x2d8(r30)
-	lfs      f0, 0x1a0(r30)
-	stfs     f0, 0x2dc(r30)
-	stw      r0, 0x2e0(r30)
-	stb      r0, 0x2e4(r30)
-	lwz      r3, 0x2f4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::onInit(initArg);
+	mKoshiJoint = mModel->getJoint("jnt_koshi");
+	P2ASSERTLINE(74, mKoshiJoint);
+	_2D0 = 0;
+	_2D4 = mHomePosition;
+	_2E0 = 0;
+	_2E4 = false;
+	mFsm->start(this, MIULIN_Wait, nullptr);
 }
 
 /*
@@ -447,94 +365,9 @@ lbl_80364578:
  */
 Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_80364618
-	addi     r0, r31, 0x2f8
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2f8(r31)
-	stw      r0, 0x2fc(r31)
-	stw      r0, 0x300(r31)
-
-lbl_80364618:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game6Miulin3Obj@ha
-	addi     r0, r31, 0x2f8
-	addi     r5, r3, __vt__Q34Game6Miulin3Obj@l
-	addi     r3, r31, 0x2ec
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x2fc
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       __ct__Q34Game15WalkSmokeEffect3MgrFv
-	li       r0, 0
-	li       r3, 0x2c
-	stw      r0, 0x2f4(r31)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803646B4
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game6Miulin14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game6Miulin14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_803646B4:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803646E8
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game6Miulin3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game6Miulin3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_803646E8:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFsm      = nullptr;
+	mAnimator = new ProperAnimator;
+	setFSM(new FSM);
 }
 
 /*
@@ -544,42 +377,12 @@ lbl_803646E8:
  */
 void Obj::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	lwz      r3, 0x2f4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2e8(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2e8(r31)
-	lwz      r3, 0x230(r31)
-	cmplwi   r3, 0
-	beq      lbl_803647D0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803647D0
-	li       r0, 0
-	stw      r0, 0x230(r31)
+	mFsm->exec(this);
+	_2E8 += sys->mDeltaTime;
 
-lbl_803647D0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mTargetCreature && !mTargetCreature->isAlive()) {
+		mTargetCreature = nullptr;
+	}
 }
 
 /*
@@ -601,44 +404,13 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  * Address:	80364808
  * Size:	000088
  */
-void Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam& param)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x2cc(r3)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f0, 0xc(r3)
-	lfs      f5, lbl_8051E814@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f3, lbl_8051E818@sda21(r2)
-	lfs      f0, 0x1c(r3)
-	lfs      f2, lbl_8051E81C@sda21(r2)
-	stfs     f0, 4(r31)
-	lfs      f1, lbl_8051E820@sda21(r2)
-	lfs      f4, 0x2c(r3)
-	lfs      f0, lbl_8051E824@sda21(r2)
-	stfs     f4, 8(r31)
-	lfs      f4, 0x190(r30)
-	fadds    f4, f5, f4
-	stfs     f4, 4(r31)
-	stfs     f3, 0xc(r31)
-	stfs     f2, 0x10(r31)
-	stfs     f3, 0x14(r31)
-	stfs     f1, 0x18(r31)
-	stfs     f0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mKoshiJoint->getWorldMatrix()->getBasis(3, param.mPosition);
+	param.mPosition.y               = mPosition.y + 2.0f;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mRadius   = 20.0f;
+	param.mSize                     = 25.0f;
 }
 
 /*
@@ -646,28 +418,14 @@ void Obj::getShadowParam(Game::ShadowParam&)
  * Address:	80364890
  * Size:	000040
  */
-void Obj::doSimulation(float)
+void Obj::doSimulation(f32 simSpeed)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x2d0(r3)
-	addi     r0, r4, -1
-	stw      r0, 0x2d0(r3)
-	lwz      r0, 0x2d0(r3)
-	cmpwi    r0, 0
-	bge      lbl_803648BC
-	li       r0, 0
-	stw      r0, 0x2d0(r3)
+	_2D0--;
+	if (_2D0 < 0) {
+		_2D0 = 0;
+	}
 
-lbl_803648BC:
-	bl       doSimulation__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doSimulation(simSpeed);
 }
 
 /*
@@ -675,21 +433,11 @@ lbl_803648BC:
  * Address:	803648D0
  * Size:	00002C
  */
-void Obj::wallCallback(Game::MoveInfo const&)
+void Obj::wallCallback(MoveInfo const& moveInfo)
 {
-	/*
-	li       r4, 0x78
-	li       r0, 0
-	stw      r4, 0x2d0(r3)
-	stw      r0, 0x230(r3)
-	lfs      f0, 0x198(r3)
-	stfs     f0, 0x2bc(r3)
-	lfs      f0, 0x19c(r3)
-	stfs     f0, 0x2c0(r3)
-	lfs      f0, 0x1a0(r3)
-	stfs     f0, 0x2c4(r3)
-	blr
-	*/
+	_2D0            = 120;
+	mTargetCreature = nullptr;
+	mGoalPosition   = mHomePosition;
 }
 
 /*
@@ -709,35 +457,9 @@ void Obj::startCarcassMotion()
  */
 void Obj::initWalkSmokeEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 2
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x2ec
-	bl       alloc__Q34Game15WalkSmokeEffect3MgrFi
-	lis      r3, lbl_80491A3C@ha
-	lwz      r5, 0x174(r31)
-	addi     r6, r3, lbl_80491A3C@l
-	lfs      f1, lbl_8051E828@sda21(r2)
-	addi     r3, r31, 0x2ec
-	li       r4, 0
-	bl       setup__Q34Game15WalkSmokeEffect3MgrFiPQ28SysShape5ModelPcf
-	lis      r3, lbl_80491A48@ha
-	lwz      r5, 0x174(r31)
-	addi     r6, r3, lbl_80491A48@l
-	lfs      f1, lbl_8051E828@sda21(r2)
-	addi     r3, r31, 0x2ec
-	li       r4, 1
-	bl       setup__Q34Game15WalkSmokeEffect3MgrFiPQ28SysShape5ModelPcf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mWalkSmokeMgr.alloc(2);
+	mWalkSmokeMgr.setup(0, mModel, "jnt_footR", 5.0f);
+	mWalkSmokeMgr.setup(1, mModel, "jnt_footL", 5.0f);
 }
 
 /*
@@ -745,13 +467,7 @@ void Obj::initWalkSmokeEffect()
  * Address:	80364990
  * Size:	000008
  */
-Game::WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
-{
-	/*
-	addi     r3, r3, 0x2ec
-	blr
-	*/
-}
+Game::WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
 /*
  * --INFO--
@@ -1465,26 +1181,7 @@ lbl_8036532C:
  * Address:	80365370
  * Size:	00003C
  */
-bool Obj::isOutOfTerritory()
-{
-	/*
-	lfs      f1, 0x1a0(r3)
-	lfs      f0, 0x194(r3)
-	lwz      r4, 0xc0(r3)
-	fsubs    f2, f1, f0
-	lfs      f1, 0x198(r3)
-	lfs      f0, 0x18c(r3)
-	lfs      f4, 0x35c(r4)
-	fsubs    f3, f1, f0
-	fmuls    f1, f2, f2
-	fmuls    f0, f4, f4
-	fmadds   f1, f3, f3, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	rlwinm   r3, r0, 2, 0x1f, 0x1f
-	blr
-	*/
-}
+bool Obj::isOutOfTerritory() { return sqrDistanceXZ(mHomePosition, mPosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius.mValue); }
 
 /*
  * --INFO--

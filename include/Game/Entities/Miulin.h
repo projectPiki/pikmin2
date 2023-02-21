@@ -181,7 +181,7 @@ struct Obj : public EnemyBase {
 	Vector3f mGoalPosition;             // _2BC
 	StateID mNextState;                 // _2C8
 	SysShape::Joint* mKoshiJoint;       // _2CC
-	u32 _2D0;                           // _2D0
+	int _2D0;                           // _2D0
 	Vector3f _2D4;                      // _2D4
 	int _2E0;                           // _2E0
 	bool _2E4;                          // _2E4
