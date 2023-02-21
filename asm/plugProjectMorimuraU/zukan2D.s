@@ -5,12 +5,15 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80492520:
+.obj lbl_80492520, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_8049252C:
+.endobj lbl_80492520
+.balign 4
+.obj lbl_8049252C, local
 	.asciz "zukan2D.cpp"
+.endobj lbl_8049252C
 .balign 4
 lbl_80492538:
 	.asciz "P2Assert"
@@ -1080,7 +1083,6 @@ eIDInfo__8Morimura:
 	.4byte 0x0000005E
 	.4byte 0x0000004D
 	.4byte 0x00000063
-.global lbl_804E3C20
 lbl_804E3C20:
 	.4byte .L_80376438
 	.4byte .L_803764C8

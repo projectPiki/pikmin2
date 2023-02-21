@@ -5,51 +5,58 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80495820:
+.obj lbl_80495820, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80495820
 .balign 4
-lbl_8049582C:
+.obj lbl_8049582C, local
 	.asciz "tyre.cpp"
+.endobj lbl_8049582C
 .balign 4
-lbl_80495838:
+.obj lbl_80495838, local
 	.asciz "P2Assert"
+.endobj lbl_80495838
 .balign 4
-lbl_80495844:
+.obj lbl_80495844, local
 	.asciz "tyrefront"
+.endobj lbl_80495844
 .balign 4
-lbl_80495850:
+.obj lbl_80495850, local
 	.asciz "tyreback"
+.endobj lbl_80495850
 .balign 4
-lbl_8049585C:
+.obj lbl_8049585C, local
 	.asciz "ArgRotYScale"
+.endobj lbl_8049585C
 .balign 4
-lbl_8049586C:
+.obj lbl_8049586C, local
 	.asciz "ArgEnemyType"
+.endobj lbl_8049586C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q23efx10TKageRecov
-__vt__Q23efx10TKageRecov:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q23efx10TKageRecov, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx13TKageTyredead
-__vt__Q23efx13TKageTyredead:
+.endobj __vt__Q23efx10TKageRecov
+.obj __vt__Q23efx13TKageTyredead, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q23efx14TKageTyresmoke
-__vt__Q23efx14TKageTyresmoke:
+.endobj __vt__Q23efx13TKageTyredead
+.obj __vt__Q23efx14TKageTyresmoke, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -69,8 +76,8 @@ __vt__Q23efx14TKageTyresmoke:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx14TKageTyresmokeFv
-.global __vt__Q34Game4Tyre3Obj
-__vt__Q34Game4Tyre3Obj:
+.endobj __vt__Q23efx14TKageTyresmoke
+.obj __vt__Q34Game4Tyre3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -274,63 +281,83 @@ __vt__Q34Game4Tyre3Obj:
 	.4byte "@836@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@836@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game4Tyre3Obj
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global curT__Q24Game4Tyre
-curT__Q24Game4Tyre:
+.endobj gfNAN___Q24Game5P2JST
+.obj curT__Q24Game4Tyre, global
 	.skip 0x4
+.endobj curT__Q24Game4Tyre
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F5B8:
+.obj lbl_8051F5B8, local
 	.float 0.0
-lbl_8051F5BC:
+.endobj lbl_8051F5B8
+.obj lbl_8051F5BC, local
 	.float 0.01
-lbl_8051F5C0:
+.endobj lbl_8051F5BC
+.obj lbl_8051F5C0, local
 	.float 0.5
-lbl_8051F5C4:
+.endobj lbl_8051F5C0
+.obj lbl_8051F5C4, local
 	.float 1.0
-lbl_8051F5C8:
+.endobj lbl_8051F5C4
+.obj lbl_8051F5C8, local
 	.float -1000.0
-lbl_8051F5CC:
+.endobj lbl_8051F5C8
+.obj lbl_8051F5CC, local
 	.float 10000.0
-lbl_8051F5D0:
+.endobj lbl_8051F5CC
+.obj lbl_8051F5D0, local
 	.float 900.0
+.endobj lbl_8051F5D0
 .balign 8
-lbl_8051F5D8:
+.obj lbl_8051F5D8, local
 	.8byte 0x4330000080000000
-lbl_8051F5E0:
+.endobj lbl_8051F5D8
+.obj lbl_8051F5E0, local
 	.float 2.0
-lbl_8051F5E4:
+.endobj lbl_8051F5E0
+.obj lbl_8051F5E4, local
 	.float 20.0
-lbl_8051F5E8:
+.endobj lbl_8051F5E4
+.obj lbl_8051F5E8, local
 	.float 10.0
+.endobj lbl_8051F5E8
 .balign 4
-lbl_8051F5EC:
+.obj lbl_8051F5EC, local
 	.asciz "tyreFL"
+.endobj lbl_8051F5EC
 .balign 4
-lbl_8051F5F4:
+.obj lbl_8051F5F4, local
 	.asciz "TyreFR"
+.endobj lbl_8051F5F4
 .balign 4
-lbl_8051F5FC:
+.obj lbl_8051F5FC, local
 	.float 100.0
-lbl_8051F600:
+.endobj lbl_8051F5FC
+.obj lbl_8051F600, local
 	.float 5.0
-lbl_8051F604:
+.endobj lbl_8051F600
+.obj lbl_8051F604, local
 	.float 50.0
-lbl_8051F608:
+.endobj lbl_8051F604
+.obj lbl_8051F608, local
 	.float 80.0
-lbl_8051F60C:
+.endobj lbl_8051F608
+.obj lbl_8051F60C, local
 	.float 0.8
+.endobj lbl_8051F60C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global frontTyreCallBack__Q24Game4TyreFP8J3DJointi
-frontTyreCallBack__Q24Game4TyreFP8J3DJointi:
+.fn frontTyreCallBack__Q24Game4TyreFP8J3DJointi, local
 /* 803AC2F0 003A9230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AC2F4 003A9234  7C 08 02 A6 */	mflr r0
 /* 803AC2F8 003A9238  2C 04 00 00 */	cmpwi r4, 0
@@ -346,9 +373,9 @@ frontTyreCallBack__Q24Game4TyreFP8J3DJointi:
 /* 803AC31C 003A925C  7C 08 03 A6 */	mtlr r0
 /* 803AC320 003A9260  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AC324 003A9264  4E 80 00 20 */	blr 
+.endfn frontTyreCallBack__Q24Game4TyreFP8J3DJointi
 
-.global rearTyreCallBack__Q24Game4TyreFP8J3DJointi
-rearTyreCallBack__Q24Game4TyreFP8J3DJointi:
+.fn rearTyreCallBack__Q24Game4TyreFP8J3DJointi, local
 /* 803AC328 003A9268  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AC32C 003A926C  7C 08 02 A6 */	mflr r0
 /* 803AC330 003A9270  2C 04 00 00 */	cmpwi r4, 0
@@ -364,9 +391,9 @@ rearTyreCallBack__Q24Game4TyreFP8J3DJointi:
 /* 803AC354 003A9294  7C 08 03 A6 */	mtlr r0
 /* 803AC358 003A9298  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AC35C 003A929C  4E 80 00 20 */	blr 
+.endfn rearTyreCallBack__Q24Game4TyreFP8J3DJointi
 
-.global setParameters__Q34Game4Tyre3ObjFv
-setParameters__Q34Game4Tyre3ObjFv:
+.fn setParameters__Q34Game4Tyre3ObjFv, global
 /* 803AC360 003A92A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AC364 003A92A4  7C 08 02 A6 */	mflr r0
 /* 803AC368 003A92A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -375,9 +402,9 @@ setParameters__Q34Game4Tyre3ObjFv:
 /* 803AC374 003A92B4  7C 08 03 A6 */	mtlr r0
 /* 803AC378 003A92B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AC37C 003A92BC  4E 80 00 20 */	blr 
+.endfn setParameters__Q34Game4Tyre3ObjFv
 
-.global "birth__Q34Game4Tyre3ObjFR10Vector3<f>f"
-"birth__Q34Game4Tyre3ObjFR10Vector3<f>f":
+.fn "birth__Q34Game4Tyre3ObjFR10Vector3<f>f", global
 /* 803AC380 003A92C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AC384 003A92C4  7C 08 02 A6 */	mflr r0
 /* 803AC388 003A92C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -386,9 +413,9 @@ setParameters__Q34Game4Tyre3ObjFv:
 /* 803AC394 003A92D4  7C 08 03 A6 */	mtlr r0
 /* 803AC398 003A92D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AC39C 003A92DC  4E 80 00 20 */	blr 
+.endfn "birth__Q34Game4Tyre3ObjFR10Vector3<f>f"
 
-.global onInit__Q34Game4Tyre3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game4Tyre3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game4Tyre3ObjFPQ24Game15CreatureInitArg, global
 /* 803AC3A0 003A92E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AC3A4 003A92E4  7C 08 02 A6 */	mflr r0
 /* 803AC3A8 003A92E8  3C A0 80 49 */	lis r5, lbl_80495820@ha
@@ -489,9 +516,9 @@ onInit__Q34Game4Tyre3ObjFPQ24Game15CreatureInitArg:
 /* 803AC520 003A9460  7C 08 03 A6 */	mtlr r0
 /* 803AC524 003A9464  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AC528 003A9468  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game4Tyre3ObjFPQ24Game15CreatureInitArg
 
-.global __ct__Q34Game4Tyre3ObjFv
-__ct__Q34Game4Tyre3ObjFv:
+.fn __ct__Q34Game4Tyre3ObjFv, global
 /* 803AC52C 003A946C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AC530 003A9470  7C 08 02 A6 */	mflr r0
 /* 803AC534 003A9474  90 01 00 24 */	stw r0, 0x24(r1)
@@ -739,9 +766,9 @@ __ct__Q34Game4Tyre3ObjFv:
 /* 803AC8E0 003A9820  7C 08 03 A6 */	mtlr r0
 /* 803AC8E4 003A9824  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AC8E8 003A9828  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Tyre3ObjFv
 
-.global setFSM__Q34Game4Tyre3ObjFPQ34Game4Tyre3FSM
-setFSM__Q34Game4Tyre3ObjFPQ34Game4Tyre3FSM:
+.fn setFSM__Q34Game4Tyre3ObjFPQ34Game4Tyre3FSM, weak
 /* 803AC8EC 003A982C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AC8F0 003A9830  7C 08 02 A6 */	mflr r0
 /* 803AC8F4 003A9834  90 01 00 14 */	stw r0, 0x14(r1)
@@ -761,9 +788,9 @@ setFSM__Q34Game4Tyre3ObjFPQ34Game4Tyre3FSM:
 /* 803AC92C 003A986C  7C 08 03 A6 */	mtlr r0
 /* 803AC930 003A9870  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AC934 003A9874  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game4Tyre3ObjFPQ34Game4Tyre3FSM
 
-.global doUpdate__Q34Game4Tyre3ObjFv
-doUpdate__Q34Game4Tyre3ObjFv:
+.fn doUpdate__Q34Game4Tyre3ObjFv, global
 /* 803AC938 003A9878  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AC93C 003A987C  7C 08 02 A6 */	mflr r0
 /* 803AC940 003A9880  90 01 00 14 */	stw r0, 0x14(r1)
@@ -783,9 +810,9 @@ doUpdate__Q34Game4Tyre3ObjFv:
 /* 803AC978 003A98B8  7C 08 03 A6 */	mtlr r0
 /* 803AC97C 003A98BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AC980 003A98C0  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game4Tyre3ObjFv
 
-.global doAnimationCullingOff__Q34Game4Tyre3ObjFv
-doAnimationCullingOff__Q34Game4Tyre3ObjFv:
+.fn doAnimationCullingOff__Q34Game4Tyre3ObjFv, global
 /* 803AC984 003A98C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AC988 003A98C8  7C 08 02 A6 */	mflr r0
 /* 803AC98C 003A98CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -836,13 +863,13 @@ doAnimationCullingOff__Q34Game4Tyre3ObjFv:
 /* 803ACA30 003A9970  7C 08 03 A6 */	mtlr r0
 /* 803ACA34 003A9974  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ACA38 003A9978  4E 80 00 20 */	blr 
+.endfn doAnimationCullingOff__Q34Game4Tyre3ObjFv
 
-.global doDirectDraw__Q34Game4Tyre3ObjFR8Graphics
-doDirectDraw__Q34Game4Tyre3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game4Tyre3ObjFR8Graphics, global
 /* 803ACA3C 003A997C  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game4Tyre3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game4Tyre3ObjFR8Graphics
-doDebugDraw__Q34Game4Tyre3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game4Tyre3ObjFR8Graphics, global
 /* 803ACA40 003A9980  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ACA44 003A9984  7C 08 02 A6 */	mflr r0
 /* 803ACA48 003A9988  90 01 00 14 */	stw r0, 0x14(r1)
@@ -851,9 +878,9 @@ doDebugDraw__Q34Game4Tyre3ObjFR8Graphics:
 /* 803ACA54 003A9994  7C 08 03 A6 */	mtlr r0
 /* 803ACA58 003A9998  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ACA5C 003A999C  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game4Tyre3ObjFR8Graphics
 
-.global doSimulation__Q34Game4Tyre3ObjFf
-doSimulation__Q34Game4Tyre3ObjFf:
+.fn doSimulation__Q34Game4Tyre3ObjFf, global
 /* 803ACA60 003A99A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ACA64 003A99A4  7C 08 02 A6 */	mflr r0
 /* 803ACA68 003A99A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -862,9 +889,9 @@ doSimulation__Q34Game4Tyre3ObjFf:
 /* 803ACA74 003A99B4  7C 08 03 A6 */	mtlr r0
 /* 803ACA78 003A99B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ACA7C 003A99BC  4E 80 00 20 */	blr 
+.endfn doSimulation__Q34Game4Tyre3ObjFf
 
-.global doGetLifeGaugeParam__Q34Game4Tyre3ObjFRQ24Game14LifeGaugeParam
-doGetLifeGaugeParam__Q34Game4Tyre3ObjFRQ24Game14LifeGaugeParam:
+.fn doGetLifeGaugeParam__Q34Game4Tyre3ObjFRQ24Game14LifeGaugeParam, global
 /* 803ACA80 003A99C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ACA84 003A99C4  7C 08 02 A6 */	mflr r0
 /* 803ACA88 003A99C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -897,9 +924,9 @@ doGetLifeGaugeParam__Q34Game4Tyre3ObjFRQ24Game14LifeGaugeParam:
 /* 803ACAF4 003A9A34  7C 08 03 A6 */	mtlr r0
 /* 803ACAF8 003A9A38  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ACAFC 003A9A3C  4E 80 00 20 */	blr 
+.endfn doGetLifeGaugeParam__Q34Game4Tyre3ObjFRQ24Game14LifeGaugeParam
 
-.global doStartStoneState__Q34Game4Tyre3ObjFv
-doStartStoneState__Q34Game4Tyre3ObjFv:
+.fn doStartStoneState__Q34Game4Tyre3ObjFv, global
 /* 803ACB00 003A9A40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ACB04 003A9A44  7C 08 02 A6 */	mflr r0
 /* 803ACB08 003A9A48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -975,9 +1002,9 @@ doStartStoneState__Q34Game4Tyre3ObjFv:
 /* 803ACC20 003A9B60  7C 08 03 A6 */	mtlr r0
 /* 803ACC24 003A9B64  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ACC28 003A9B68  4E 80 00 20 */	blr 
+.endfn doStartStoneState__Q34Game4Tyre3ObjFv
 
-.global doFinishStoneState__Q34Game4Tyre3ObjFv
-doFinishStoneState__Q34Game4Tyre3ObjFv:
+.fn doFinishStoneState__Q34Game4Tyre3ObjFv, global
 /* 803ACC2C 003A9B6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ACC30 003A9B70  7C 08 02 A6 */	mflr r0
 /* 803ACC34 003A9B74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1052,9 +1079,9 @@ doFinishStoneState__Q34Game4Tyre3ObjFv:
 /* 803ACD44 003A9C84  7C 08 03 A6 */	mtlr r0
 /* 803ACD48 003A9C88  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ACD4C 003A9C8C  4E 80 00 20 */	blr 
+.endfn doFinishStoneState__Q34Game4Tyre3ObjFv
 
-.global collisionCallback__Q34Game4Tyre3ObjFRQ24Game9CollEvent
-collisionCallback__Q34Game4Tyre3ObjFRQ24Game9CollEvent:
+.fn collisionCallback__Q34Game4Tyre3ObjFRQ24Game9CollEvent, global
 /* 803ACD50 003A9C90  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 803ACD54 003A9C94  7C 08 02 A6 */	mflr r0
 /* 803ACD58 003A9C98  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -1405,9 +1432,9 @@ collisionCallback__Q34Game4Tyre3ObjFRQ24Game9CollEvent:
 /* 803AD27C 003AA1BC  7C 08 03 A6 */	mtlr r0
 /* 803AD280 003AA1C0  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 803AD284 003AA1C4  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q34Game4Tyre3ObjFRQ24Game9CollEvent
 
-.global damageCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart
-damageCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart:
+.fn damageCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 803AD288 003AA1C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AD28C 003AA1CC  7C 08 02 A6 */	mflr r0
 /* 803AD290 003AA1D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1453,9 +1480,9 @@ damageCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart:
 /* 803AD31C 003AA25C  7C 08 03 A6 */	mtlr r0
 /* 803AD320 003AA260  38 21 00 20 */	addi r1, r1, 0x20
 /* 803AD324 003AA264  4E 80 00 20 */	blr 
+.endfn damageCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart
 
-.global hipdropCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart
-hipdropCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart:
+.fn hipdropCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 803AD328 003AA268  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AD32C 003AA26C  7C 08 02 A6 */	mflr r0
 /* 803AD330 003AA270  28 04 00 00 */	cmplwi r4, 0
@@ -1472,9 +1499,9 @@ hipdropCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart:
 /* 803AD358 003AA298  7C 08 03 A6 */	mtlr r0
 /* 803AD35C 003AA29C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AD360 003AA2A0  4E 80 00 20 */	blr 
+.endfn hipdropCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart
 
-.global earthquakeCallBack__Q34Game4Tyre3ObjFPQ24Game8Creaturef
-earthquakeCallBack__Q34Game4Tyre3ObjFPQ24Game8Creaturef:
+.fn earthquakeCallBack__Q34Game4Tyre3ObjFPQ24Game8Creaturef, global
 /* 803AD364 003AA2A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AD368 003AA2A8  7C 08 02 A6 */	mflr r0
 /* 803AD36C 003AA2AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1498,9 +1525,9 @@ earthquakeCallBack__Q34Game4Tyre3ObjFPQ24Game8Creaturef:
 /* 803AD3B0 003AA2F0  7C 08 03 A6 */	mtlr r0
 /* 803AD3B4 003AA2F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AD3B8 003AA2F8  4E 80 00 20 */	blr 
+.endfn earthquakeCallBack__Q34Game4Tyre3ObjFPQ24Game8Creaturef
 
-.global inWaterCallback__Q34Game4Tyre3ObjFPQ24Game8WaterBox
-inWaterCallback__Q34Game4Tyre3ObjFPQ24Game8WaterBox:
+.fn inWaterCallback__Q34Game4Tyre3ObjFPQ24Game8WaterBox, global
 /* 803AD3BC 003AA2FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AD3C0 003AA300  7C 08 02 A6 */	mflr r0
 /* 803AD3C4 003AA304  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1514,9 +1541,9 @@ inWaterCallback__Q34Game4Tyre3ObjFPQ24Game8WaterBox:
 /* 803AD3E4 003AA324  7C 08 03 A6 */	mtlr r0
 /* 803AD3E8 003AA328  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AD3EC 003AA32C  4E 80 00 20 */	blr 
+.endfn inWaterCallback__Q34Game4Tyre3ObjFPQ24Game8WaterBox
 
-.global outWaterCallback__Q34Game4Tyre3ObjFv
-outWaterCallback__Q34Game4Tyre3ObjFv:
+.fn outWaterCallback__Q34Game4Tyre3ObjFv, global
 /* 803AD3F0 003AA330  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AD3F4 003AA334  7C 08 02 A6 */	mflr r0
 /* 803AD3F8 003AA338  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1535,9 +1562,9 @@ outWaterCallback__Q34Game4Tyre3ObjFv:
 /* 803AD428 003AA368  7C 08 03 A6 */	mtlr r0
 /* 803AD42C 003AA36C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AD430 003AA370  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q34Game4Tyre3ObjFv
 
-.global getShadowParam__Q34Game4Tyre3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game4Tyre3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game4Tyre3ObjFRQ24Game11ShadowParam, global
 /* 803AD434 003AA374  C0 03 01 8C */	lfs f0, 0x18c(r3)
 /* 803AD438 003AA378  C0 A2 12 80 */	lfs f5, lbl_8051F5E0@sda21(r2)
 /* 803AD43C 003AA37C  D0 04 00 00 */	stfs f0, 0(r4)
@@ -1558,9 +1585,9 @@ getShadowParam__Q34Game4Tyre3ObjFRQ24Game11ShadowParam:
 /* 803AD478 003AA3B8  D0 24 00 18 */	stfs f1, 0x18(r4)
 /* 803AD47C 003AA3BC  D0 04 00 1C */	stfs f0, 0x1c(r4)
 /* 803AD480 003AA3C0  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game4Tyre3ObjFRQ24Game11ShadowParam
 
-.global needShadow__Q34Game4Tyre3ObjFv
-needShadow__Q34Game4Tyre3ObjFv:
+.fn needShadow__Q34Game4Tyre3ObjFv, global
 /* 803AD484 003AA3C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AD488 003AA3C8  7C 08 02 A6 */	mflr r0
 /* 803AD48C 003AA3CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1582,9 +1609,9 @@ needShadow__Q34Game4Tyre3ObjFv:
 /* 803AD4C4 003AA404  7C 08 03 A6 */	mtlr r0
 /* 803AD4C8 003AA408  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AD4CC 003AA40C  4E 80 00 20 */	blr 
+.endfn needShadow__Q34Game4Tyre3ObjFv
 
-.global isFreeze__Q34Game4Tyre3ObjFv
-isFreeze__Q34Game4Tyre3ObjFv:
+.fn isFreeze__Q34Game4Tyre3ObjFv, global
 /* 803AD4D0 003AA410  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AD4D4 003AA414  7C 08 02 A6 */	mflr r0
 /* 803AD4D8 003AA418  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1608,9 +1635,9 @@ isFreeze__Q34Game4Tyre3ObjFv:
 /* 803AD514 003AA454  7C 08 03 A6 */	mtlr r0
 /* 803AD518 003AA458  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AD51C 003AA45C  4E 80 00 20 */	blr 
+.endfn isFreeze__Q34Game4Tyre3ObjFv
 
-.global frontRollMtxCalc__Q34Game4Tyre3ObjFv
-frontRollMtxCalc__Q34Game4Tyre3ObjFv:
+.fn frontRollMtxCalc__Q34Game4Tyre3ObjFv, global
 /* 803AD520 003AA460  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803AD524 003AA464  7C 08 02 A6 */	mflr r0
 /* 803AD528 003AA468  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1784,9 +1811,9 @@ frontRollMtxCalc__Q34Game4Tyre3ObjFv:
 /* 803AD7AC 003AA6EC  7C 08 03 A6 */	mtlr r0
 /* 803AD7B0 003AA6F0  38 21 00 90 */	addi r1, r1, 0x90
 /* 803AD7B4 003AA6F4  4E 80 00 20 */	blr 
+.endfn frontRollMtxCalc__Q34Game4Tyre3ObjFv
 
-.global rearRollMtxCalc__Q34Game4Tyre3ObjFv
-rearRollMtxCalc__Q34Game4Tyre3ObjFv:
+.fn rearRollMtxCalc__Q34Game4Tyre3ObjFv, global
 /* 803AD7B8 003AA6F8  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 803AD7BC 003AA6FC  7C 08 02 A6 */	mflr r0
 /* 803AD7C0 003AA700  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -2024,14 +2051,14 @@ rearRollMtxCalc__Q34Game4Tyre3ObjFv:
 /* 803ADB38 003AAA78  7C 08 03 A6 */	mtlr r0
 /* 803ADB3C 003AAA7C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 803ADB40 003AAA80  4E 80 00 20 */	blr 
+.endfn rearRollMtxCalc__Q34Game4Tyre3ObjFv
 
-.global getEnemyTypeID__Q34Game4Tyre3ObjFv
-getEnemyTypeID__Q34Game4Tyre3ObjFv:
+.fn getEnemyTypeID__Q34Game4Tyre3ObjFv, weak
 /* 803ADB44 003AAA84  38 60 00 62 */	li r3, 0x62
 /* 803ADB48 003AAA88  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game4Tyre3ObjFv
 
-.global moveStart__Q34Game4Tyre3ObjFv
-moveStart__Q34Game4Tyre3ObjFv:
+.fn moveStart__Q34Game4Tyre3ObjFv, global
 /* 803ADB4C 003AAA8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ADB50 003AAA90  7C 08 02 A6 */	mflr r0
 /* 803ADB54 003AAA94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2070,9 +2097,9 @@ moveStart__Q34Game4Tyre3ObjFv:
 /* 803ADBC8 003AAB08  7C 08 03 A6 */	mtlr r0
 /* 803ADBCC 003AAB0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ADBD0 003AAB10  4E 80 00 20 */	blr 
+.endfn moveStart__Q34Game4Tyre3ObjFv
 
-.global collisionStOn__Q34Game4Tyre3ObjFv
-collisionStOn__Q34Game4Tyre3ObjFv:
+.fn collisionStOn__Q34Game4Tyre3ObjFv, global
 /* 803ADBD4 003AAB14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ADBD8 003AAB18  7C 08 02 A6 */	mflr r0
 /* 803ADBDC 003AAB1C  3C 80 74 79 */	lis r4, 0x74797231@ha
@@ -2131,9 +2158,9 @@ collisionStOn__Q34Game4Tyre3ObjFv:
 /* 803ADCB0 003AABF0  7C 08 03 A6 */	mtlr r0
 /* 803ADCB4 003AABF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ADCB8 003AABF8  4E 80 00 20 */	blr 
+.endfn collisionStOn__Q34Game4Tyre3ObjFv
 
-.global collisionStOff__Q34Game4Tyre3ObjFv
-collisionStOff__Q34Game4Tyre3ObjFv:
+.fn collisionStOff__Q34Game4Tyre3ObjFv, global
 /* 803ADCBC 003AABFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ADCC0 003AAC00  7C 08 02 A6 */	mflr r0
 /* 803ADCC4 003AAC04  3C 80 74 79 */	lis r4, 0x74797231@ha
@@ -2200,9 +2227,9 @@ collisionStOff__Q34Game4Tyre3ObjFv:
 /* 803ADDB8 003AACF8  7C 08 03 A6 */	mtlr r0
 /* 803ADDBC 003AACFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803ADDC0 003AAD00  4E 80 00 20 */	blr 
+.endfn collisionStOff__Q34Game4Tyre3ObjFv
 
-.global flick__Q34Game4Tyre3ObjFv
-flick__Q34Game4Tyre3ObjFv:
+.fn flick__Q34Game4Tyre3ObjFv, global
 /* 803ADDC4 003AAD04  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 803ADDC8 003AAD08  7C 08 02 A6 */	mflr r0
 /* 803ADDCC 003AAD0C  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -2593,9 +2620,9 @@ flick__Q34Game4Tyre3ObjFv:
 /* 803AE384 003AB2C4  7C 08 03 A6 */	mtlr r0
 /* 803AE388 003AB2C8  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 803AE38C 003AB2CC  4E 80 00 20 */	blr 
+.endfn flick__Q34Game4Tyre3ObjFv
 
-.global deadEffect__Q34Game4Tyre3ObjFv
-deadEffect__Q34Game4Tyre3ObjFv:
+.fn deadEffect__Q34Game4Tyre3ObjFv, global
 /* 803AE390 003AB2D0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803AE394 003AB2D4  7C 08 02 A6 */	mflr r0
 /* 803AE398 003AB2D8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2660,9 +2687,9 @@ deadEffect__Q34Game4Tyre3ObjFv:
 /* 803AE484 003AB3C4  7C 08 03 A6 */	mtlr r0
 /* 803AE488 003AB3C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 803AE48C 003AB3CC  4E 80 00 20 */	blr 
+.endfn deadEffect__Q34Game4Tyre3ObjFv
 
-.global createSmokeEffect__Q34Game4Tyre3ObjFv
-createSmokeEffect__Q34Game4Tyre3ObjFv:
+.fn createSmokeEffect__Q34Game4Tyre3ObjFv, global
 /* 803AE490 003AB3D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AE494 003AB3D4  7C 08 02 A6 */	mflr r0
 /* 803AE498 003AB3D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2689,9 +2716,9 @@ createSmokeEffect__Q34Game4Tyre3ObjFv:
 /* 803AE4E8 003AB428  7C 08 03 A6 */	mtlr r0
 /* 803AE4EC 003AB42C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AE4F0 003AB430  4E 80 00 20 */	blr 
+.endfn createSmokeEffect__Q34Game4Tyre3ObjFv
 
-.global fadeSmokeEffect__Q34Game4Tyre3ObjFv
-fadeSmokeEffect__Q34Game4Tyre3ObjFv:
+.fn fadeSmokeEffect__Q34Game4Tyre3ObjFv, global
 /* 803AE4F4 003AB434  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AE4F8 003AB438  7C 08 02 A6 */	mflr r0
 /* 803AE4FC 003AB43C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2712,9 +2739,9 @@ fadeSmokeEffect__Q34Game4Tyre3ObjFv:
 /* 803AE538 003AB478  7C 08 03 A6 */	mtlr r0
 /* 803AE53C 003AB47C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AE540 003AB480  4E 80 00 20 */	blr 
+.endfn fadeSmokeEffect__Q34Game4Tyre3ObjFv
 
-.global "landEffect__Q34Game4Tyre3ObjFR10Vector3<f>"
-"landEffect__Q34Game4Tyre3ObjFR10Vector3<f>":
+.fn "landEffect__Q34Game4Tyre3ObjFR10Vector3<f>", global
 /* 803AE544 003AB484  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803AE548 003AB488  7C 08 02 A6 */	mflr r0
 /* 803AE54C 003AB48C  38 A0 00 00 */	li r5, 0
@@ -2842,9 +2869,9 @@ fadeSmokeEffect__Q34Game4Tyre3ObjFv:
 /* 803AE720 003AB660  7C 08 03 A6 */	mtlr r0
 /* 803AE724 003AB664  38 21 00 90 */	addi r1, r1, 0x90
 /* 803AE728 003AB668  4E 80 00 20 */	blr 
+.endfn "landEffect__Q34Game4Tyre3ObjFR10Vector3<f>"
 
-.global scaleUpShadow__Q34Game4Tyre3ObjFv
-scaleUpShadow__Q34Game4Tyre3ObjFv:
+.fn scaleUpShadow__Q34Game4Tyre3ObjFv, global
 /* 803AE72C 003AB66C  80 8D 9A EC */	lwz r4, sys@sda21(r13)
 /* 803AE730 003AB670  C0 43 03 08 */	lfs f2, 0x308(r3)
 /* 803AE734 003AB674  C0 24 00 54 */	lfs f1, 0x54(r4)
@@ -2856,9 +2883,9 @@ scaleUpShadow__Q34Game4Tyre3ObjFv:
 /* 803AE74C 003AB68C  4C 81 00 20 */	blelr 
 /* 803AE750 003AB690  D0 03 03 08 */	stfs f0, 0x308(r3)
 /* 803AE754 003AB694  4E 80 00 20 */	blr 
+.endfn scaleUpShadow__Q34Game4Tyre3ObjFv
 
-.global __dt__Q23efx14TKageTyresmokeFv
-__dt__Q23efx14TKageTyresmokeFv:
+.fn __dt__Q23efx14TKageTyresmokeFv, weak
 /* 803AE758 003AB698  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803AE75C 003AB69C  7C 08 02 A6 */	mflr r0
 /* 803AE760 003AB6A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2900,23 +2927,23 @@ __dt__Q23efx14TKageTyresmokeFv:
 /* 803AE7E8 003AB728  7C 08 03 A6 */	mtlr r0
 /* 803AE7EC 003AB72C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AE7F0 003AB730  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx14TKageTyresmokeFv
 
-.global setInitialSetting__Q34Game4Tyre3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game4Tyre3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game4Tyre3ObjFPQ24Game21EnemyInitialParamBase, weak
 /* 803AE7F4 003AB734  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game4Tyre3ObjFPQ24Game21EnemyInitialParamBase
 
-.global isUnderground__Q34Game4Tyre3ObjFv
-isUnderground__Q34Game4Tyre3ObjFv:
+.fn isUnderground__Q34Game4Tyre3ObjFv, weak
 /* 803AE7F8 003AB738  88 63 02 D1 */	lbz r3, 0x2d1(r3)
 /* 803AE7FC 003AB73C  4E 80 00 20 */	blr 
+.endfn isUnderground__Q34Game4Tyre3ObjFv
 
-.global "bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3<f>f"
-"bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3<f>f":
+.fn "bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3<f>f", weak
 /* 803AE800 003AB740  38 60 00 00 */	li r3, 0
 /* 803AE804 003AB744  4E 80 00 20 */	blr 
+.endfn "bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3<f>f"
 
-.global __sinit_tyre_cpp
-__sinit_tyre_cpp:
+.fn __sinit_tyre_cpp, local
 /* 803AE808 003AB748  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803AE80C 003AB74C  38 00 FF FF */	li r0, -1
 /* 803AE810 003AB750  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2927,49 +2954,57 @@ __sinit_tyre_cpp:
 /* 803AE824 003AB764  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803AE828 003AB768  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803AE82C 003AB76C  4E 80 00 20 */	blr 
+.endfn __sinit_tyre_cpp
 
-"@836@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
+.fn "@836@12@viewOnPelletKilled__Q24Game9EnemyBaseFv", weak
 /* 803AE830 003AB770  39 60 00 0C */	li r11, 0xc
 /* 803AE834 003AB774  7D 63 58 2E */	lwzx r11, r3, r11
 /* 803AE838 003AB778  7C 63 5A 14 */	add r3, r3, r11
 /* 803AE83C 003AB77C  38 63 FC BC */	addi r3, r3, -836
 /* 803AE840 003AB780  4B D5 80 DC */	b viewOnPelletKilled__Q24Game9EnemyBaseFv
+.endfn "@836@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 
-"@836@12@viewStartCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@836@12@viewStartCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 803AE844 003AB784  39 60 00 0C */	li r11, 0xc
 /* 803AE848 003AB788  7D 63 58 2E */	lwzx r11, r3, r11
 /* 803AE84C 003AB78C  7C 63 5A 14 */	add r3, r3, r11
 /* 803AE850 003AB790  38 63 FC BC */	addi r3, r3, -836
 /* 803AE854 003AB794  4B D5 7E 54 */	b viewStartCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@836@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 
-"@836@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@836@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 803AE858 003AB798  39 60 00 0C */	li r11, 0xc
 /* 803AE85C 003AB79C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 803AE860 003AB7A0  7C 63 5A 14 */	add r3, r3, r11
 /* 803AE864 003AB7A4  38 63 FC BC */	addi r3, r3, -836
 /* 803AE868 003AB7A8  4B D5 7E 60 */	b viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@836@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
 
-"@836@12@view_finish_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@836@12@view_finish_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 803AE86C 003AB7AC  39 60 00 0C */	li r11, 0xc
 /* 803AE870 003AB7B0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 803AE874 003AB7B4  7C 63 5A 14 */	add r3, r3, r11
 /* 803AE878 003AB7B8  38 63 FC BC */	addi r3, r3, -836
 /* 803AE87C 003AB7BC  4B D5 81 FC */	b view_finish_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@836@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
 
-"@836@12@view_start_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@836@12@view_start_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 803AE880 003AB7C0  39 60 00 0C */	li r11, 0xc
 /* 803AE884 003AB7C4  7D 63 58 2E */	lwzx r11, r3, r11
 /* 803AE888 003AB7C8  7C 63 5A 14 */	add r3, r3, r11
 /* 803AE88C 003AB7CC  38 63 FC BC */	addi r3, r3, -836
 /* 803AE890 003AB7D0  4B D5 81 BC */	b view_start_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@836@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
 
-"@836@12@viewGetShape__Q24Game9EnemyBaseFv":
+.fn "@836@12@viewGetShape__Q24Game9EnemyBaseFv", weak
 /* 803AE894 003AB7D4  39 60 00 0C */	li r11, 0xc
 /* 803AE898 003AB7D8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 803AE89C 003AB7DC  7C 63 5A 14 */	add r3, r3, r11
 /* 803AE8A0 003AB7E0  38 63 FC BC */	addi r3, r3, -836
 /* 803AE8A4 003AB7E4  4B D5 7D FC */	b viewGetShape__Q24Game9EnemyBaseFv
+.endfn "@836@12@viewGetShape__Q24Game9EnemyBaseFv"
 
-"@4@__dt__Q23efx14TKageTyresmokeFv":
+.fn "@4@__dt__Q23efx14TKageTyresmokeFv", weak
 /* 803AE8A8 003AB7E8  38 63 FF FC */	addi r3, r3, -4
 /* 803AE8AC 003AB7EC  4B FF FE AC */	b __dt__Q23efx14TKageTyresmokeFv
+.endfn "@4@__dt__Q23efx14TKageTyresmokeFv"

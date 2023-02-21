@@ -468,99 +468,138 @@ lbl_constructor:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051E490:
+.obj lbl_8051E490, local
 	.float 0.0
+.endobj lbl_8051E490
 .balign 4
-lbl_8051E494:
+.obj lbl_8051E494, local
 	.asciz "body"
+.endobj lbl_8051E494
 .balign 4
-lbl_8051E49C:
+.obj lbl_8051E49C, local
 	.asciz "kamu"
+.endobj lbl_8051E49C
 .balign 4
-lbl_8051E4A4:
+.obj lbl_8051E4A4, local
 	.float 20.0
-lbl_8051E4A8:
+.endobj lbl_8051E4A4
+.obj lbl_8051E4A8, local
 	.float 15.0
-lbl_8051E4AC:
+.endobj lbl_8051E4A8
+.obj lbl_8051E4AC, local
 	.float 5.0
-lbl_8051E4B0:
+.endobj lbl_8051E4AC
+.obj lbl_8051E4B0, local
 	.float 0.6
-lbl_8051E4B4:
+.endobj lbl_8051E4B0
+.obj lbl_8051E4B4, local
 	.float 1.0
-lbl_8051E4B8:
+.endobj lbl_8051E4B4
+.obj lbl_8051E4B8, local
 	.float 0.1
-lbl_8051E4BC:
+.endobj lbl_8051E4B8
+.obj lbl_8051E4BC, local
 	.float 0.2
-lbl_8051E4C0: # half-pi
+.endobj lbl_8051E4BC
+.obj lbl_8051E4C0, local # half-pi
 	.float 1.5707964
-lbl_8051E4C4: # pi
+.endobj lbl_8051E4C0
+.obj lbl_8051E4C4, local # pi
 	.float 3.1415927
-lbl_8051E4C8:
+.endobj lbl_8051E4C4
+.obj lbl_8051E4C8, local
 	.float 325.9493
-lbl_8051E4CC:
+.endobj lbl_8051E4C8
+.obj lbl_8051E4CC, local
 	.float -325.9493
-lbl_8051E4D0:
+.endobj lbl_8051E4CC
+.obj lbl_8051E4D0, local
 	.float 0.5
-lbl_8051E4D4:
+.endobj lbl_8051E4D0
+.obj lbl_8051E4D4, local
 	.float 2.0
-lbl_8051E4D8:
+.endobj lbl_8051E4D4
+.obj lbl_8051E4D8, local
 	.float 50.0
-lbl_8051E4DC:
+.endobj lbl_8051E4D8
+.obj lbl_8051E4DC, local
 	.float 30.0
-lbl_8051E4E0:
+.endobj lbl_8051E4DC
+.obj lbl_8051E4E0, local
 	.float -1000.0
+.endobj lbl_8051E4E0
 .balign 4
-lbl_8051E4E4:
+.obj lbl_8051E4E4, local
 	.asciz "asiL"
+.endobj lbl_8051E4E4
 .balign 4
-lbl_8051E4EC:
+.obj lbl_8051E4EC, local
 	.asciz "asiR"
+.endobj lbl_8051E4EC
 .balign 4
-lbl_8051E4F4:
+.obj lbl_8051E4F4, local
 	.float 100.0
-lbl_8051E4F8:
+.endobj lbl_8051E4F4
+.obj lbl_8051E4F8, local
 	.float 32768.0
+.endobj lbl_8051E4F8
 .balign 8
-lbl_8051E500:
+.obj lbl_8051E500, local
 	.8byte 0x4330000080000000
-lbl_8051E508:
+.endobj lbl_8051E500
+.obj lbl_8051E508, local
 	.float 60.0
-lbl_8051E50C:
+.endobj lbl_8051E508
+.obj lbl_8051E50C, local
 	.float 75.0
-lbl_8051E510:
+.endobj lbl_8051E50C
+.obj lbl_8051E510, local
 	.float -1.0
-lbl_8051E514:
+.endobj lbl_8051E510
+.obj lbl_8051E514, local
 	.float 150.0
-lbl_8051E518:
+.endobj lbl_8051E514
+.obj lbl_8051E518, local
 	.float 10.0
-lbl_8051E51C:
+.endobj lbl_8051E518
+.obj lbl_8051E51C, local
 	.float -0.1
-lbl_8051E520:
+.endobj lbl_8051E51C
+.obj lbl_8051E520, local
 	.float 0.9
-lbl_8051E524:
+.endobj lbl_8051E520
+.obj lbl_8051E524, local
 	.float 0.0055555557
+.endobj lbl_8051E524
 .balign 4
-lbl_8051E528:
+.obj lbl_8051E528, local
 	.asciz "orima"
+.endobj lbl_8051E528
 .balign 4
-lbl_8051E530: # tau
+.obj lbl_8051E530, local # tau
 	.float 6.2831855
-lbl_8051E534:
+.endobj lbl_8051E530
+.obj lbl_8051E534, local
 	.float 10000.0
-lbl_8051E538:
+.endobj lbl_8051E534
+.obj lbl_8051E538, local
 	.float 0.15
-lbl_8051E53C:
+.endobj lbl_8051E538
+.obj lbl_8051E53C, local
 	.float 0.99
-lbl_8051E540:
+.endobj lbl_8051E53C
+.obj lbl_8051E540, local
 	.float 40.0
-lbl_8051E544:
+.endobj lbl_8051E540
+.obj lbl_8051E544, local
 	.float 12.0
-lbl_8051E548:
+.endobj lbl_8051E544
+.obj lbl_8051E548, local
 	.float 1.6
+.endobj lbl_8051E548
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global actEnemy__Q24Game18InteractSuckFinishFPQ24Game9EnemyBase
-actEnemy__Q24Game18InteractSuckFinishFPQ24Game9EnemyBase:
+.fn actEnemy__Q24Game18InteractSuckFinishFPQ24Game9EnemyBase, global
 /* 8034F5E0 0034C520  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034F5E4 0034C524  7C 08 02 A6 */	mflr r0
 /* 8034F5E8 0034C528  90 01 00 14 */	stw r0, 0x14(r1)
@@ -593,9 +632,9 @@ actEnemy__Q24Game18InteractSuckFinishFPQ24Game9EnemyBase:
 /* 8034F644 0034C584  7C 08 03 A6 */	mtlr r0
 /* 8034F648 0034C588  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034F64C 0034C58C  4E 80 00 20 */	blr 
+.endfn actEnemy__Q24Game18InteractSuckFinishFPQ24Game9EnemyBase
 
-.global setParameters__Q34Game13PanModokiBase3ObjFv
-setParameters__Q34Game13PanModokiBase3ObjFv:
+.fn setParameters__Q34Game13PanModokiBase3ObjFv, global
 /* 8034F650 0034C590  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034F654 0034C594  7C 08 02 A6 */	mflr r0
 /* 8034F658 0034C598  90 01 00 14 */	stw r0, 0x14(r1)
@@ -623,9 +662,9 @@ setParameters__Q34Game13PanModokiBase3ObjFv:
 /* 8034F6AC 0034C5EC  7C 08 03 A6 */	mtlr r0
 /* 8034F6B0 0034C5F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034F6B4 0034C5F4  4E 80 00 20 */	blr 
+.endfn setParameters__Q34Game13PanModokiBase3ObjFv
 
-.global "birth__Q34Game13PanModokiBase3ObjFR10Vector3<f>f"
-"birth__Q34Game13PanModokiBase3ObjFR10Vector3<f>f":
+.fn "birth__Q34Game13PanModokiBase3ObjFR10Vector3<f>f", global
 /* 8034F6B8 0034C5F8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8034F6BC 0034C5FC  7C 08 02 A6 */	mflr r0
 /* 8034F6C0 0034C600  90 01 00 54 */	stw r0, 0x54(r1)
@@ -700,9 +739,9 @@ setParameters__Q34Game13PanModokiBase3ObjFv:
 /* 8034F7CC 0034C70C  7C 08 03 A6 */	mtlr r0
 /* 8034F7D0 0034C710  38 21 00 50 */	addi r1, r1, 0x50
 /* 8034F7D4 0034C714  4E 80 00 20 */	blr 
+.endfn "birth__Q34Game13PanModokiBase3ObjFR10Vector3<f>f"
 
-.global onInit__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureInitArg, global
 /* 8034F7D8 0034C718  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034F7DC 0034C71C  7C 08 02 A6 */	mflr r0
 /* 8034F7E0 0034C720  90 01 00 14 */	stw r0, 0x14(r1)
@@ -825,9 +864,9 @@ onInit__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureInitArg:
 /* 8034F9A8 0034C8E8  7C 08 03 A6 */	mtlr r0
 /* 8034F9AC 0034C8EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034F9B0 0034C8F0  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureInitArg
 
-.global __ct__Q34Game13PanModokiBase3ObjFv
-__ct__Q34Game13PanModokiBase3ObjFv:
+.fn __ct__Q34Game13PanModokiBase3ObjFv, global
 /* 8034F9B4 0034C8F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034F9B8 0034C8F8  7C 08 02 A6 */	mflr r0
 /* 8034F9BC 0034C8FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1001,9 +1040,9 @@ __ct__Q34Game13PanModokiBase3ObjFv:
 /* 8034FC48 0034CB88  7C 08 03 A6 */	mtlr r0
 /* 8034FC4C 0034CB8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034FC50 0034CB90  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game13PanModokiBase3ObjFv
 
-.global doUpdate__Q34Game13PanModokiBase3ObjFv
-doUpdate__Q34Game13PanModokiBase3ObjFv:
+.fn doUpdate__Q34Game13PanModokiBase3ObjFv, global
 /* 8034FC54 0034CB94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034FC58 0034CB98  7C 08 02 A6 */	mflr r0
 /* 8034FC5C 0034CB9C  7C 64 1B 78 */	mr r4, r3
@@ -1017,9 +1056,9 @@ doUpdate__Q34Game13PanModokiBase3ObjFv:
 /* 8034FC7C 0034CBBC  7C 08 03 A6 */	mtlr r0
 /* 8034FC80 0034CBC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034FC84 0034CBC4  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game13PanModokiBase3ObjFv
 
-.global doAnimation__Q34Game13PanModokiBase3ObjFv
-doAnimation__Q34Game13PanModokiBase3ObjFv:
+.fn doAnimation__Q34Game13PanModokiBase3ObjFv, global
 /* 8034FC88 0034CBC8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8034FC8C 0034CBCC  7C 08 02 A6 */	mflr r0
 /* 8034FC90 0034CBD0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1068,9 +1107,9 @@ doAnimation__Q34Game13PanModokiBase3ObjFv:
 /* 8034FD30 0034CC70  7C 08 03 A6 */	mtlr r0
 /* 8034FD34 0034CC74  38 21 00 50 */	addi r1, r1, 0x50
 /* 8034FD38 0034CC78  4E 80 00 20 */	blr 
+.endfn doAnimation__Q34Game13PanModokiBase3ObjFv
 
-.global doAnimationStick__Q34Game13PanModokiBase3ObjFv
-doAnimationStick__Q34Game13PanModokiBase3ObjFv:
+.fn doAnimationStick__Q34Game13PanModokiBase3ObjFv, global
 /* 8034FD3C 0034CC7C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8034FD40 0034CC80  7C 08 02 A6 */	mflr r0
 /* 8034FD44 0034CC84  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1283,9 +1322,9 @@ doAnimationStick__Q34Game13PanModokiBase3ObjFv:
 /* 80350048 0034CF88  7C 08 03 A6 */	mtlr r0
 /* 8035004C 0034CF8C  38 21 00 50 */	addi r1, r1, 0x50
 /* 80350050 0034CF90  4E 80 00 20 */	blr 
+.endfn doAnimationStick__Q34Game13PanModokiBase3ObjFv
 
-.global updateCaptureMatrix__Q34Game13PanModokiBase3ObjFv
-updateCaptureMatrix__Q34Game13PanModokiBase3ObjFv:
+.fn updateCaptureMatrix__Q34Game13PanModokiBase3ObjFv, global
 /* 80350054 0034CF94  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80350058 0034CF98  7C 08 02 A6 */	mflr r0
 /* 8035005C 0034CF9C  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -1449,13 +1488,13 @@ updateCaptureMatrix__Q34Game13PanModokiBase3ObjFv:
 /* 803502C4 0034D204  7C 08 03 A6 */	mtlr r0
 /* 803502C8 0034D208  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 803502CC 0034D20C  4E 80 00 20 */	blr 
+.endfn updateCaptureMatrix__Q34Game13PanModokiBase3ObjFv
 
-.global doDirectDraw__Q34Game13PanModokiBase3ObjFR8Graphics
-doDirectDraw__Q34Game13PanModokiBase3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game13PanModokiBase3ObjFR8Graphics, global
 /* 803502D0 0034D210  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game13PanModokiBase3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game13PanModokiBase3ObjFR8Graphics
-doDebugDraw__Q34Game13PanModokiBase3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game13PanModokiBase3ObjFR8Graphics, global
 /* 803502D4 0034D214  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803502D8 0034D218  7C 08 02 A6 */	mflr r0
 /* 803502DC 0034D21C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1464,9 +1503,9 @@ doDebugDraw__Q34Game13PanModokiBase3ObjFR8Graphics:
 /* 803502E8 0034D228  7C 08 03 A6 */	mtlr r0
 /* 803502EC 0034D22C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803502F0 0034D230  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game13PanModokiBase3ObjFR8Graphics
 
-.global damageCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart
-damageCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart:
+.fn damageCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 803502F4 0034D234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803502F8 0034D238  7C 08 02 A6 */	mflr r0
 /* 803502FC 0034D23C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1480,9 +1519,9 @@ damageCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart:
 /* 80350318 0034D258  7C 08 03 A6 */	mtlr r0
 /* 8035031C 0034D25C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350320 0034D260  4E 80 00 20 */	blr 
+.endfn damageCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart
 
-.global pressCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart
-pressCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart:
+.fn pressCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 80350324 0034D264  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350328 0034D268  7C 08 02 A6 */	mflr r0
 /* 8035032C 0034D26C  C0 02 01 30 */	lfs f0, lbl_8051E490@sda21(r2)
@@ -1606,9 +1645,9 @@ pressCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart:
 /* 803504D4 0034D414  7C 08 03 A6 */	mtlr r0
 /* 803504D8 0034D418  38 21 00 10 */	addi r1, r1, 0x10
 /* 803504DC 0034D41C  4E 80 00 20 */	blr 
+.endfn pressCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart
 
-.global hipdropCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart
-hipdropCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart:
+.fn hipdropCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 803504E0 0034D420  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803504E4 0034D424  7C 08 02 A6 */	mflr r0
 /* 803504E8 0034D428  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1620,9 +1659,9 @@ hipdropCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart:
 /* 80350500 0034D440  7C 08 03 A6 */	mtlr r0
 /* 80350504 0034D444  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350508 0034D448  4E 80 00 20 */	blr 
+.endfn hipdropCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart
 
-.global collisionCallback__Q34Game13PanModokiBase3ObjFRQ24Game9CollEvent
-collisionCallback__Q34Game13PanModokiBase3ObjFRQ24Game9CollEvent:
+.fn collisionCallback__Q34Game13PanModokiBase3ObjFRQ24Game9CollEvent, global
 /* 8035050C 0034D44C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350510 0034D450  7C 08 02 A6 */	mflr r0
 /* 80350514 0034D454  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1668,9 +1707,9 @@ collisionCallback__Q34Game13PanModokiBase3ObjFRQ24Game9CollEvent:
 /* 803505AC 0034D4EC  7C 08 03 A6 */	mtlr r0
 /* 803505B0 0034D4F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803505B4 0034D4F4  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q34Game13PanModokiBase3ObjFRQ24Game9CollEvent
 
-.global outWaterCallback__Q34Game13PanModokiBase3ObjFv
-outWaterCallback__Q34Game13PanModokiBase3ObjFv:
+.fn outWaterCallback__Q34Game13PanModokiBase3ObjFv, global
 /* 803505B8 0034D4F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803505BC 0034D4FC  7C 08 02 A6 */	mflr r0
 /* 803505C0 0034D500  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1689,9 +1728,9 @@ outWaterCallback__Q34Game13PanModokiBase3ObjFv:
 /* 803505F0 0034D530  7C 08 03 A6 */	mtlr r0
 /* 803505F4 0034D534  38 21 00 10 */	addi r1, r1, 0x10
 /* 803505F8 0034D538  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q34Game13PanModokiBase3ObjFv
 
-.global inWaterCallback__Q34Game13PanModokiBase3ObjFPQ24Game8WaterBox
-inWaterCallback__Q34Game13PanModokiBase3ObjFPQ24Game8WaterBox:
+.fn inWaterCallback__Q34Game13PanModokiBase3ObjFPQ24Game8WaterBox, global
 /* 803505FC 0034D53C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350600 0034D540  7C 08 02 A6 */	mflr r0
 /* 80350604 0034D544  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1705,9 +1744,9 @@ inWaterCallback__Q34Game13PanModokiBase3ObjFPQ24Game8WaterBox:
 /* 80350624 0034D564  7C 08 03 A6 */	mtlr r0
 /* 80350628 0034D568  38 21 00 10 */	addi r1, r1, 0x10
 /* 8035062C 0034D56C  4E 80 00 20 */	blr 
+.endfn inWaterCallback__Q34Game13PanModokiBase3ObjFPQ24Game8WaterBox
 
-.global bounceCallback__Q34Game13PanModokiBase3ObjFPQ23Sys8Triangle
-bounceCallback__Q34Game13PanModokiBase3ObjFPQ23Sys8Triangle:
+.fn bounceCallback__Q34Game13PanModokiBase3ObjFPQ23Sys8Triangle, global
 /* 80350630 0034D570  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350634 0034D574  7C 08 02 A6 */	mflr r0
 /* 80350638 0034D578  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1730,9 +1769,9 @@ bounceCallback__Q34Game13PanModokiBase3ObjFPQ23Sys8Triangle:
 /* 80350678 0034D5B8  7C 08 03 A6 */	mtlr r0
 /* 8035067C 0034D5BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350680 0034D5C0  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q34Game13PanModokiBase3ObjFPQ23Sys8Triangle
 
-.global damageRumble__Q34Game13PanModokiBase3ObjFv
-damageRumble__Q34Game13PanModokiBase3ObjFv:
+.fn damageRumble__Q34Game13PanModokiBase3ObjFv, global
 /* 80350684 0034D5C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350688 0034D5C8  7C 08 02 A6 */	mflr r0
 /* 8035068C 0034D5CC  38 80 00 03 */	li r4, 3
@@ -1753,9 +1792,9 @@ damageRumble__Q34Game13PanModokiBase3ObjFv:
 /* 803506C8 0034D608  7C 08 03 A6 */	mtlr r0
 /* 803506CC 0034D60C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803506D0 0034D610  4E 80 00 20 */	blr 
+.endfn damageRumble__Q34Game13PanModokiBase3ObjFv
 
-.global doSimulation__Q34Game13PanModokiBase3ObjFf
-doSimulation__Q34Game13PanModokiBase3ObjFf:
+.fn doSimulation__Q34Game13PanModokiBase3ObjFf, global
 /* 803506D4 0034D614  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803506D8 0034D618  7C 08 02 A6 */	mflr r0
 /* 803506DC 0034D61C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1901,9 +1940,9 @@ doSimulation__Q34Game13PanModokiBase3ObjFf:
 /* 803508E4 0034D824  7C 08 03 A6 */	mtlr r0
 /* 803508E8 0034D828  38 21 00 50 */	addi r1, r1, 0x50
 /* 803508EC 0034D82C  4E 80 00 20 */	blr 
+.endfn doSimulation__Q34Game13PanModokiBase3ObjFf
 
-.global getShadowParam__Q34Game13PanModokiBase3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game13PanModokiBase3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game13PanModokiBase3ObjFRQ24Game11ShadowParam, global
 /* 803508F0 0034D830  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803508F4 0034D834  7C 08 02 A6 */	mflr r0
 /* 803508F8 0034D838  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1938,9 +1977,9 @@ getShadowParam__Q34Game13PanModokiBase3ObjFRQ24Game11ShadowParam:
 /* 8035096C 0034D8AC  7C 08 03 A6 */	mtlr r0
 /* 80350970 0034D8B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350974 0034D8B4  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game13PanModokiBase3ObjFRQ24Game11ShadowParam
 
-.global needShadow__Q34Game13PanModokiBase3ObjFv
-needShadow__Q34Game13PanModokiBase3ObjFv:
+.fn needShadow__Q34Game13PanModokiBase3ObjFv, global
 /* 80350978 0034D8B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8035097C 0034D8BC  7C 08 02 A6 */	mflr r0
 /* 80350980 0034D8C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1965,9 +2004,9 @@ needShadow__Q34Game13PanModokiBase3ObjFv:
 /* 803509C4 0034D904  7C 08 03 A6 */	mtlr r0
 /* 803509C8 0034D908  38 21 00 10 */	addi r1, r1, 0x10
 /* 803509CC 0034D90C  4E 80 00 20 */	blr 
+.endfn needShadow__Q34Game13PanModokiBase3ObjFv
 
-.global startCarcassMotion__Q34Game13PanModokiBase3ObjFv
-startCarcassMotion__Q34Game13PanModokiBase3ObjFv:
+.fn startCarcassMotion__Q34Game13PanModokiBase3ObjFv, global
 /* 803509D0 0034D910  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803509D4 0034D914  7C 08 02 A6 */	mflr r0
 /* 803509D8 0034D918  38 80 00 07 */	li r4, 7
@@ -1978,9 +2017,9 @@ startCarcassMotion__Q34Game13PanModokiBase3ObjFv:
 /* 803509EC 0034D92C  7C 08 03 A6 */	mtlr r0
 /* 803509F0 0034D930  38 21 00 10 */	addi r1, r1, 0x10
 /* 803509F4 0034D934  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game13PanModokiBase3ObjFv
 
-.global initMouthSlots__Q34Game13PanModokiBase3ObjFv
-initMouthSlots__Q34Game13PanModokiBase3ObjFv:
+.fn initMouthSlots__Q34Game13PanModokiBase3ObjFv, global
 /* 803509F8 0034D938  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803509FC 0034D93C  7C 08 02 A6 */	mflr r0
 /* 80350A00 0034D940  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2018,9 +2057,9 @@ initMouthSlots__Q34Game13PanModokiBase3ObjFv:
 /* 80350A78 0034D9B8  7C 08 03 A6 */	mtlr r0
 /* 80350A7C 0034D9BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80350A80 0034D9C0  4E 80 00 20 */	blr 
+.endfn initMouthSlots__Q34Game13PanModokiBase3ObjFv
 
-.global onKill__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureKillArg, global
 /* 80350A84 0034D9C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350A88 0034D9C8  7C 08 02 A6 */	mflr r0
 /* 80350A8C 0034D9CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2038,9 +2077,9 @@ onKill__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureKillArg:
 /* 80350ABC 0034D9FC  7C 08 03 A6 */	mtlr r0
 /* 80350AC0 0034DA00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350AC4 0034DA04  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureKillArg
 
-.global doStartMovie__Q34Game13PanModokiBase3ObjFv
-doStartMovie__Q34Game13PanModokiBase3ObjFv:
+.fn doStartMovie__Q34Game13PanModokiBase3ObjFv, global
 /* 80350AC8 0034DA08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350ACC 0034DA0C  7C 08 02 A6 */	mflr r0
 /* 80350AD0 0034DA10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2061,9 +2100,9 @@ doStartMovie__Q34Game13PanModokiBase3ObjFv:
 /* 80350B0C 0034DA4C  7C 08 03 A6 */	mtlr r0
 /* 80350B10 0034DA50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350B14 0034DA54  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game13PanModokiBase3ObjFv
 
-.global doEndMovie__Q34Game13PanModokiBase3ObjFv
-doEndMovie__Q34Game13PanModokiBase3ObjFv:
+.fn doEndMovie__Q34Game13PanModokiBase3ObjFv, global
 /* 80350B18 0034DA58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350B1C 0034DA5C  7C 08 02 A6 */	mflr r0
 /* 80350B20 0034DA60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2084,9 +2123,9 @@ doEndMovie__Q34Game13PanModokiBase3ObjFv:
 /* 80350B5C 0034DA9C  7C 08 03 A6 */	mtlr r0
 /* 80350B60 0034DAA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350B64 0034DAA4  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game13PanModokiBase3ObjFv
 
-.global doStartStoneState__Q34Game13PanModokiBase3ObjFv
-doStartStoneState__Q34Game13PanModokiBase3ObjFv:
+.fn doStartStoneState__Q34Game13PanModokiBase3ObjFv, global
 /* 80350B68 0034DAA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350B6C 0034DAAC  7C 08 02 A6 */	mflr r0
 /* 80350B70 0034DAB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2108,9 +2147,9 @@ doStartStoneState__Q34Game13PanModokiBase3ObjFv:
 /* 80350BB0 0034DAF0  7C 08 03 A6 */	mtlr r0
 /* 80350BB4 0034DAF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350BB8 0034DAF8  4E 80 00 20 */	blr 
+.endfn doStartStoneState__Q34Game13PanModokiBase3ObjFv
 
-.global doFinishStoneState__Q34Game13PanModokiBase3ObjFv
-doFinishStoneState__Q34Game13PanModokiBase3ObjFv:
+.fn doFinishStoneState__Q34Game13PanModokiBase3ObjFv, global
 /* 80350BBC 0034DAFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350BC0 0034DB00  7C 08 02 A6 */	mflr r0
 /* 80350BC4 0034DB04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2156,9 +2195,9 @@ doFinishStoneState__Q34Game13PanModokiBase3ObjFv:
 /* 80350C5C 0034DB9C  7C 08 03 A6 */	mtlr r0
 /* 80350C60 0034DBA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350C64 0034DBA4  4E 80 00 20 */	blr 
+.endfn doFinishStoneState__Q34Game13PanModokiBase3ObjFv
 
-.global initWalkSmokeEffect__Q34Game13PanModokiBase3ObjFv
-initWalkSmokeEffect__Q34Game13PanModokiBase3ObjFv:
+.fn initWalkSmokeEffect__Q34Game13PanModokiBase3ObjFv, global
 /* 80350C68 0034DBA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80350C6C 0034DBAC  7C 08 02 A6 */	mflr r0
 /* 80350C70 0034DBB0  38 80 00 02 */	li r4, 2
@@ -2184,14 +2223,14 @@ initWalkSmokeEffect__Q34Game13PanModokiBase3ObjFv:
 /* 80350CC0 0034DC00  7C 08 03 A6 */	mtlr r0
 /* 80350CC4 0034DC04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80350CC8 0034DC08  4E 80 00 20 */	blr 
+.endfn initWalkSmokeEffect__Q34Game13PanModokiBase3ObjFv
 
-.global getWalkSmokeEffectMgr__Q34Game13PanModokiBase3ObjFv
-getWalkSmokeEffectMgr__Q34Game13PanModokiBase3ObjFv:
+.fn getWalkSmokeEffectMgr__Q34Game13PanModokiBase3ObjFv, global
 /* 80350CCC 0034DC0C  38 63 02 F4 */	addi r3, r3, 0x2f4
 /* 80350CD0 0034DC10  4E 80 00 20 */	blr 
+.endfn getWalkSmokeEffectMgr__Q34Game13PanModokiBase3ObjFv
 
-.global findNextRoutePoint__Q34Game13PanModokiBase3ObjFb
-findNextRoutePoint__Q34Game13PanModokiBase3ObjFb:
+.fn findNextRoutePoint__Q34Game13PanModokiBase3ObjFb, global
 /* 80350CD4 0034DC14  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80350CD8 0034DC18  7C 08 02 A6 */	mflr r0
 /* 80350CDC 0034DC1C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -2512,9 +2551,9 @@ findNextRoutePoint__Q34Game13PanModokiBase3ObjFb:
 /* 8035117C 0034E0BC  7C 08 03 A6 */	mtlr r0
 /* 80351180 0034E0C0  38 21 00 80 */	addi r1, r1, 0x80
 /* 80351184 0034E0C4  4E 80 00 20 */	blr 
+.endfn findNextRoutePoint__Q34Game13PanModokiBase3ObjFb
 
-.global isCarryToGoal__Q34Game13PanModokiBase3ObjFv
-isCarryToGoal__Q34Game13PanModokiBase3ObjFv:
+.fn isCarryToGoal__Q34Game13PanModokiBase3ObjFv, global
 /* 80351188 0034E0C8  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8035118C 0034E0CC  7C 08 02 A6 */	mflr r0
 /* 80351190 0034E0D0  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2686,9 +2725,9 @@ isCarryToGoal__Q34Game13PanModokiBase3ObjFv:
 /* 803513F0 0034E330  7C 08 03 A6 */	mtlr r0
 /* 803513F4 0034E334  38 21 00 90 */	addi r1, r1, 0x90
 /* 803513F8 0034E338  4E 80 00 20 */	blr 
+.endfn isCarryToGoal__Q34Game13PanModokiBase3ObjFv
 
-.global walkFunc__Q34Game13PanModokiBase3ObjFv
-walkFunc__Q34Game13PanModokiBase3ObjFv:
+.fn walkFunc__Q34Game13PanModokiBase3ObjFv, global
 /* 803513FC 0034E33C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80351400 0034E340  7C 08 02 A6 */	mflr r0
 /* 80351404 0034E344  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2883,9 +2922,9 @@ walkFunc__Q34Game13PanModokiBase3ObjFv:
 /* 803516BC 0034E5FC  7C 08 03 A6 */	mtlr r0
 /* 803516C0 0034E600  38 21 00 60 */	addi r1, r1, 0x60
 /* 803516C4 0034E604  4E 80 00 20 */	blr 
+.endfn walkFunc__Q34Game13PanModokiBase3ObjFv
 
-.global isReachToGoal__Q34Game13PanModokiBase3ObjFf
-isReachToGoal__Q34Game13PanModokiBase3ObjFf:
+.fn isReachToGoal__Q34Game13PanModokiBase3ObjFf, global
 /* 803516C8 0034E608  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803516CC 0034E60C  7C 08 02 A6 */	mflr r0
 /* 803516D0 0034E610  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2990,9 +3029,9 @@ isReachToGoal__Q34Game13PanModokiBase3ObjFf:
 /* 80351840 0034E780  7C 08 03 A6 */	mtlr r0
 /* 80351844 0034E784  38 21 00 50 */	addi r1, r1, 0x50
 /* 80351848 0034E788  4E 80 00 20 */	blr 
+.endfn isReachToGoal__Q34Game13PanModokiBase3ObjFf
 
-.global canBack__Q34Game13PanModokiBase3ObjFv
-canBack__Q34Game13PanModokiBase3ObjFv:
+.fn canBack__Q34Game13PanModokiBase3ObjFv, global
 /* 8035184C 0034E78C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80351850 0034E790  7C 08 02 A6 */	mflr r0
 /* 80351854 0034E794  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3024,9 +3063,9 @@ canBack__Q34Game13PanModokiBase3ObjFv:
 /* 803518B4 0034E7F4  7C 08 03 A6 */	mtlr r0
 /* 803518B8 0034E7F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803518BC 0034E7FC  4E 80 00 20 */	blr 
+.endfn canBack__Q34Game13PanModokiBase3ObjFv
 
-.global findNearestPellet__Q34Game13PanModokiBase3ObjFv
-findNearestPellet__Q34Game13PanModokiBase3ObjFv:
+.fn findNearestPellet__Q34Game13PanModokiBase3ObjFv, global
 /* 803518C0 0034E800  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 803518C4 0034E804  7C 08 02 A6 */	mflr r0
 /* 803518C8 0034E808  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -3243,9 +3282,9 @@ findNearestPellet__Q34Game13PanModokiBase3ObjFv:
 /* 80351BF8 0034EB38  7C 08 03 A6 */	mtlr r0
 /* 80351BFC 0034EB3C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80351C00 0034EB40  4E 80 00 20 */	blr 
+.endfn findNearestPellet__Q34Game13PanModokiBase3ObjFv
 
-.global getCarryTarget__Q34Game13PanModokiBase3ObjFv
-getCarryTarget__Q34Game13PanModokiBase3ObjFv:
+.fn getCarryTarget__Q34Game13PanModokiBase3ObjFv, global
 /* 80351C04 0034EB44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80351C08 0034EB48  7C 08 02 A6 */	mflr r0
 /* 80351C0C 0034EB4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3275,9 +3314,9 @@ getCarryTarget__Q34Game13PanModokiBase3ObjFv:
 /* 80351C60 0034EBA0  7C 08 03 A6 */	mtlr r0
 /* 80351C64 0034EBA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80351C68 0034EBA8  4E 80 00 20 */	blr 
+.endfn getCarryTarget__Q34Game13PanModokiBase3ObjFv
 
-.global releaseCarryTarget__Q34Game13PanModokiBase3ObjFv
-releaseCarryTarget__Q34Game13PanModokiBase3ObjFv:
+.fn releaseCarryTarget__Q34Game13PanModokiBase3ObjFv, global
 /* 80351C6C 0034EBAC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80351C70 0034EBB0  7C 08 02 A6 */	mflr r0
 /* 80351C74 0034EBB4  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3408,9 +3447,9 @@ releaseCarryTarget__Q34Game13PanModokiBase3ObjFv:
 /* 80351E44 0034ED84  7C 08 03 A6 */	mtlr r0
 /* 80351E48 0034ED88  38 21 00 50 */	addi r1, r1, 0x50
 /* 80351E4C 0034ED8C  4E 80 00 20 */	blr 
+.endfn releaseCarryTarget__Q34Game13PanModokiBase3ObjFv
 
-.global checkNearHomeGraphIndex__Q34Game13PanModokiBase3ObjFv
-checkNearHomeGraphIndex__Q34Game13PanModokiBase3ObjFv:
+.fn checkNearHomeGraphIndex__Q34Game13PanModokiBase3ObjFv, global
 /* 80351E50 0034ED90  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80351E54 0034ED94  7C 08 02 A6 */	mflr r0
 /* 80351E58 0034ED98  90 01 00 84 */	stw r0, 0x84(r1)
@@ -3578,9 +3617,9 @@ checkNearHomeGraphIndex__Q34Game13PanModokiBase3ObjFv:
 /* 803520C8 0034F008  7C 08 03 A6 */	mtlr r0
 /* 803520CC 0034F00C  38 21 00 80 */	addi r1, r1, 0x80
 /* 803520D0 0034F010  4E 80 00 20 */	blr 
+.endfn checkNearHomeGraphIndex__Q34Game13PanModokiBase3ObjFv
 
-.global carryTarget__Q34Game13PanModokiBase3ObjFf
-carryTarget__Q34Game13PanModokiBase3ObjFf:
+.fn carryTarget__Q34Game13PanModokiBase3ObjFf, global
 /* 803520D4 0034F014  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 803520D8 0034F018  7C 08 02 A6 */	mflr r0
 /* 803520DC 0034F01C  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -3927,9 +3966,9 @@ carryTarget__Q34Game13PanModokiBase3ObjFf:
 /* 803525E0 0034F520  7C 08 03 A6 */	mtlr r0
 /* 803525E4 0034F524  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 803525E8 0034F528  4E 80 00 20 */	blr 
+.endfn carryTarget__Q34Game13PanModokiBase3ObjFf
 
-.global changeCarryDir__Q34Game13PanModokiBase3ObjFb
-changeCarryDir__Q34Game13PanModokiBase3ObjFb:
+.fn changeCarryDir__Q34Game13PanModokiBase3ObjFb, global
 /* 803525EC 0034F52C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803525F0 0034F530  7C 08 02 A6 */	mflr r0
 /* 803525F4 0034F534  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3952,9 +3991,9 @@ changeCarryDir__Q34Game13PanModokiBase3ObjFb:
 /* 80352630 0034F570  7C 08 03 A6 */	mtlr r0
 /* 80352634 0034F574  38 21 00 10 */	addi r1, r1, 0x10
 /* 80352638 0034F578  4E 80 00 20 */	blr 
+.endfn changeCarryDir__Q34Game13PanModokiBase3ObjFb
 
-.global setCarryDir__Q34Game13PanModokiBase3ObjFb
-setCarryDir__Q34Game13PanModokiBase3ObjFb:
+.fn setCarryDir__Q34Game13PanModokiBase3ObjFb, global
 /* 8035263C 0034F57C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80352640 0034F580  7C 08 02 A6 */	mflr r0
 /* 80352644 0034F584  90 01 00 94 */	stw r0, 0x94(r1)
@@ -4071,9 +4110,9 @@ setCarryDir__Q34Game13PanModokiBase3ObjFb:
 /* 803527E4 0034F724  7C 08 03 A6 */	mtlr r0
 /* 803527E8 0034F728  38 21 00 90 */	addi r1, r1, 0x90
 /* 803527EC 0034F72C  4E 80 00 20 */	blr 
+.endfn setCarryDir__Q34Game13PanModokiBase3ObjFb
 
-.global endCarry__Q34Game13PanModokiBase3ObjFv
-endCarry__Q34Game13PanModokiBase3ObjFv:
+.fn endCarry__Q34Game13PanModokiBase3ObjFv, global
 /* 803527F0 0034F730  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803527F4 0034F734  7C 08 02 A6 */	mflr r0
 /* 803527F8 0034F738  90 01 00 64 */	stw r0, 0x64(r1)
@@ -4315,9 +4354,9 @@ endCarry__Q34Game13PanModokiBase3ObjFv:
 /* 80352B68 0034FAA8  7C 08 03 A6 */	mtlr r0
 /* 80352B6C 0034FAAC  38 21 00 60 */	addi r1, r1, 0x60
 /* 80352B70 0034FAB0  4E 80 00 20 */	blr 
+.endfn endCarry__Q34Game13PanModokiBase3ObjFv
 
-.global checkSucked__Q34Game13PanModokiBase3ObjFv
-checkSucked__Q34Game13PanModokiBase3ObjFv:
+.fn checkSucked__Q34Game13PanModokiBase3ObjFv, global
 /* 80352B74 0034FAB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80352B78 0034FAB8  7C 08 02 A6 */	mflr r0
 /* 80352B7C 0034FABC  C0 02 01 30 */	lfs f0, lbl_8051E490@sda21(r2)
@@ -4362,9 +4401,9 @@ checkSucked__Q34Game13PanModokiBase3ObjFv:
 /* 80352C08 0034FB48  7C 08 03 A6 */	mtlr r0
 /* 80352C0C 0034FB4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80352C10 0034FB50  4E 80 00 20 */	blr 
+.endfn checkSucked__Q34Game13PanModokiBase3ObjFv
 
-.global suckFinish__Q34Game13PanModokiBase3ObjFv
-suckFinish__Q34Game13PanModokiBase3ObjFv:
+.fn suckFinish__Q34Game13PanModokiBase3ObjFv, global
 /* 80352C14 0034FB54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80352C18 0034FB58  7C 08 02 A6 */	mflr r0
 /* 80352C1C 0034FB5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4416,9 +4455,9 @@ suckFinish__Q34Game13PanModokiBase3ObjFv:
 /* 80352CC4 0034FC04  7C 08 03 A6 */	mtlr r0
 /* 80352CC8 0034FC08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80352CCC 0034FC0C  4E 80 00 20 */	blr 
+.endfn suckFinish__Q34Game13PanModokiBase3ObjFv
 
-.global isEndPathFinder__Q34Game13PanModokiBase3ObjFv
-isEndPathFinder__Q34Game13PanModokiBase3ObjFv:
+.fn isEndPathFinder__Q34Game13PanModokiBase3ObjFv, global
 /* 80352CD0 0034FC10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80352CD4 0034FC14  7C 08 02 A6 */	mflr r0
 /* 80352CD8 0034FC18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4499,9 +4538,9 @@ isEndPathFinder__Q34Game13PanModokiBase3ObjFv:
 /* 80352DDC 0034FD1C  7C 08 03 A6 */	mtlr r0
 /* 80352DE0 0034FD20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80352DE4 0034FD24  4E 80 00 20 */	blr 
+.endfn isEndPathFinder__Q34Game13PanModokiBase3ObjFv
 
-.global setPathFinder__Q34Game13PanModokiBase3ObjFb
-setPathFinder__Q34Game13PanModokiBase3ObjFb:
+.fn setPathFinder__Q34Game13PanModokiBase3ObjFb, global
 /* 80352DE8 0034FD28  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80352DEC 0034FD2C  7C 08 02 A6 */	mflr r0
 /* 80352DF0 0034FD30  90 01 00 74 */	stw r0, 0x74(r1)
@@ -4685,9 +4724,9 @@ setPathFinder__Q34Game13PanModokiBase3ObjFb:
 /* 80353098 0034FFD8  7C 08 03 A6 */	mtlr r0
 /* 8035309C 0034FFDC  38 21 00 70 */	addi r1, r1, 0x70
 /* 803530A0 0034FFE0  4E 80 00 20 */	blr 
+.endfn setPathFinder__Q34Game13PanModokiBase3ObjFb
 
-.global releasePathFinder__Q34Game13PanModokiBase3ObjFv
-releasePathFinder__Q34Game13PanModokiBase3ObjFv:
+.fn releasePathFinder__Q34Game13PanModokiBase3ObjFv, global
 /* 803530A4 0034FFE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803530A8 0034FFE8  7C 08 02 A6 */	mflr r0
 /* 803530AC 0034FFEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4706,9 +4745,9 @@ releasePathFinder__Q34Game13PanModokiBase3ObjFv:
 /* 803530DC 0035001C  7C 08 03 A6 */	mtlr r0
 /* 803530E0 00350020  38 21 00 10 */	addi r1, r1, 0x10
 /* 803530E4 00350024  4E 80 00 20 */	blr 
+.endfn releasePathFinder__Q34Game13PanModokiBase3ObjFv
 
-.global killNest__Q34Game13PanModokiBase3ObjFv
-killNest__Q34Game13PanModokiBase3ObjFv:
+.fn killNest__Q34Game13PanModokiBase3ObjFv, global
 /* 803530E8 00350028  80 83 03 78 */	lwz r4, 0x378(r3)
 /* 803530EC 0035002C  28 04 00 00 */	cmplwi r4, 0
 /* 803530F0 00350030  41 82 00 0C */	beq .L_803530FC
@@ -4718,9 +4757,9 @@ killNest__Q34Game13PanModokiBase3ObjFv:
 /* 803530FC 0035003C  38 00 00 00 */	li r0, 0
 /* 80353100 00350040  90 03 03 78 */	stw r0, 0x378(r3)
 /* 80353104 00350044  4E 80 00 20 */	blr 
+.endfn killNest__Q34Game13PanModokiBase3ObjFv
 
-.global isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet
-isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet:
+.fn isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet, global
 /* 80353108 00350048  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8035310C 0035004C  7C 08 02 A6 */	mflr r0
 /* 80353110 00350050  90 01 00 54 */	stw r0, 0x54(r1)
@@ -4937,9 +4976,9 @@ isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet:
 /* 80353420 00350360  7C 08 03 A6 */	mtlr r0
 /* 80353424 00350364  38 21 00 50 */	addi r1, r1, 0x50
 /* 80353428 00350368  4E 80 00 20 */	blr 
+.endfn isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet
 
-.global "calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<f>"
-"calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<f>":
+.fn "calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<f>", global
 /* 8035342C 0035036C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80353430 00350370  7C 08 02 A6 */	mflr r0
 /* 80353434 00350374  90 01 00 84 */	stw r0, 0x84(r1)
@@ -5042,9 +5081,9 @@ isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet:
 /* 8035359C 003504DC  7C 08 03 A6 */	mtlr r0
 /* 803535A0 003504E0  38 21 00 80 */	addi r1, r1, 0x80
 /* 803535A4 003504E4  4E 80 00 20 */	blr 
+.endfn "calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<f>"
 
-.global boundEffect__Q34Game13PanModokiBase3ObjFv
-boundEffect__Q34Game13PanModokiBase3ObjFv:
+.fn boundEffect__Q34Game13PanModokiBase3ObjFv, global
 /* 803535A8 003504E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803535AC 003504EC  7C 08 02 A6 */	mflr r0
 /* 803535B0 003504F0  38 83 01 8C */	addi r4, r3, 0x18c
@@ -5055,9 +5094,9 @@ boundEffect__Q34Game13PanModokiBase3ObjFv:
 /* 803535C4 00350504  7C 08 03 A6 */	mtlr r0
 /* 803535C8 00350508  38 21 00 10 */	addi r1, r1, 0x10
 /* 803535CC 0035050C  4E 80 00 20 */	blr 
+.endfn boundEffect__Q34Game13PanModokiBase3ObjFv
 
-.global createAppearEffect__Q34Game13PanModokiBase3ObjFv
-createAppearEffect__Q34Game13PanModokiBase3ObjFv:
+.fn createAppearEffect__Q34Game13PanModokiBase3ObjFv, global
 /* 803535D0 00350510  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803535D4 00350514  7C 08 02 A6 */	mflr r0
 /* 803535D8 00350518  90 01 00 44 */	stw r0, 0x44(r1)
@@ -5118,9 +5157,9 @@ createAppearEffect__Q34Game13PanModokiBase3ObjFv:
 /* 803536AC 003505EC  7C 08 03 A6 */	mtlr r0
 /* 803536B0 003505F0  38 21 00 40 */	addi r1, r1, 0x40
 /* 803536B4 003505F4  4E 80 00 20 */	blr 
+.endfn createAppearEffect__Q34Game13PanModokiBase3ObjFv
 
-.global createHideEffect__Q34Game13PanModokiBase3ObjFv
-createHideEffect__Q34Game13PanModokiBase3ObjFv:
+.fn createHideEffect__Q34Game13PanModokiBase3ObjFv, global
 /* 803536B8 003505F8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803536BC 003505FC  7C 08 02 A6 */	mflr r0
 /* 803536C0 00350600  90 01 00 54 */	stw r0, 0x54(r1)
@@ -5179,9 +5218,9 @@ createHideEffect__Q34Game13PanModokiBase3ObjFv:
 /* 8035378C 003506CC  7C 08 03 A6 */	mtlr r0
 /* 80353790 003506D0  38 21 00 50 */	addi r1, r1, 0x50
 /* 80353794 003506D4  4E 80 00 20 */	blr 
+.endfn createHideEffect__Q34Game13PanModokiBase3ObjFv
 
-.global fadeHideEffect__Q34Game13PanModokiBase3ObjFv
-fadeHideEffect__Q34Game13PanModokiBase3ObjFv:
+.fn fadeHideEffect__Q34Game13PanModokiBase3ObjFv, global
 /* 80353798 003506D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8035379C 003506DC  7C 08 02 A6 */	mflr r0
 /* 803537A0 003506E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5194,9 +5233,9 @@ fadeHideEffect__Q34Game13PanModokiBase3ObjFv:
 /* 803537BC 003506FC  7C 08 03 A6 */	mtlr r0
 /* 803537C0 00350700  38 21 00 10 */	addi r1, r1, 0x10
 /* 803537C4 00350704  4E 80 00 20 */	blr 
+.endfn fadeHideEffect__Q34Game13PanModokiBase3ObjFv
 
-.global createPulledSmokeEffect__Q34Game13PanModokiBase3ObjFv
-createPulledSmokeEffect__Q34Game13PanModokiBase3ObjFv:
+.fn createPulledSmokeEffect__Q34Game13PanModokiBase3ObjFv, global
 /* 803537C8 00350708  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803537CC 0035070C  7C 08 02 A6 */	mflr r0
 /* 803537D0 00350710  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
@@ -5230,9 +5269,9 @@ createPulledSmokeEffect__Q34Game13PanModokiBase3ObjFv:
 /* 80353840 00350780  7C 08 03 A6 */	mtlr r0
 /* 80353844 00350784  38 21 00 30 */	addi r1, r1, 0x30
 /* 80353848 00350788  4E 80 00 20 */	blr 
+.endfn createPulledSmokeEffect__Q34Game13PanModokiBase3ObjFv
 
-.global fadePulledSmokeEffect__Q34Game13PanModokiBase3ObjFv
-fadePulledSmokeEffect__Q34Game13PanModokiBase3ObjFv:
+.fn fadePulledSmokeEffect__Q34Game13PanModokiBase3ObjFv, global
 /* 8035384C 0035078C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80353850 00350790  7C 08 02 A6 */	mflr r0
 /* 80353854 00350794  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5245,9 +5284,9 @@ fadePulledSmokeEffect__Q34Game13PanModokiBase3ObjFv:
 /* 80353870 003507B0  7C 08 03 A6 */	mtlr r0
 /* 80353874 003507B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80353878 003507B8  4E 80 00 20 */	blr 
+.endfn fadePulledSmokeEffect__Q34Game13PanModokiBase3ObjFv
 
-.global throwUpEatItem__Q34Game13PanModokiBase3ObjFv
-throwUpEatItem__Q34Game13PanModokiBase3ObjFv:
+.fn throwUpEatItem__Q34Game13PanModokiBase3ObjFv, global
 /* 8035387C 003507BC  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80353880 003507C0  7C 08 02 A6 */	mflr r0
 /* 80353884 003507C4  90 01 00 94 */	stw r0, 0x94(r1)
@@ -5435,9 +5474,9 @@ throwUpEatItem__Q34Game13PanModokiBase3ObjFv:
 /* 80353B3C 00350A7C  7C 08 03 A6 */	mtlr r0
 /* 80353B40 00350A80  38 21 00 90 */	addi r1, r1, 0x90
 /* 80353B44 00350A84  4E 80 00 20 */	blr 
+.endfn throwUpEatItem__Q34Game13PanModokiBase3ObjFv
 
-.global __ct__Q34Game11OoPanModoki3ObjFv
-__ct__Q34Game11OoPanModoki3ObjFv:
+.fn __ct__Q34Game11OoPanModoki3ObjFv, global
 /* 80353B48 00350A88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80353B4C 00350A8C  7C 08 02 A6 */	mflr r0
 /* 80353B50 00350A90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5485,9 +5524,9 @@ __ct__Q34Game11OoPanModoki3ObjFv:
 /* 80353BF4 00350B34  7C 08 03 A6 */	mtlr r0
 /* 80353BF8 00350B38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80353BFC 00350B3C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game11OoPanModoki3ObjFv
 
-.global appearRumble__Q34Game11OoPanModoki3ObjFv
-appearRumble__Q34Game11OoPanModoki3ObjFv:
+.fn appearRumble__Q34Game11OoPanModoki3ObjFv, global
 /* 80353C00 00350B40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80353C04 00350B44  7C 08 02 A6 */	mflr r0
 /* 80353C08 00350B48  7C 64 1B 78 */	mr r4, r3
@@ -5501,9 +5540,9 @@ appearRumble__Q34Game11OoPanModoki3ObjFv:
 /* 80353C28 00350B68  7C 08 03 A6 */	mtlr r0
 /* 80353C2C 00350B6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80353C30 00350B70  4E 80 00 20 */	blr 
+.endfn appearRumble__Q34Game11OoPanModoki3ObjFv
 
-.global hideRumble__Q34Game11OoPanModoki3ObjFv
-hideRumble__Q34Game11OoPanModoki3ObjFv:
+.fn hideRumble__Q34Game11OoPanModoki3ObjFv, global
 /* 80353C34 00350B74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80353C38 00350B78  7C 08 02 A6 */	mflr r0
 /* 80353C3C 00350B7C  7C 64 1B 78 */	mr r4, r3
@@ -5517,9 +5556,9 @@ hideRumble__Q34Game11OoPanModoki3ObjFv:
 /* 80353C5C 00350B9C  7C 08 03 A6 */	mtlr r0
 /* 80353C60 00350BA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80353C64 00350BA4  4E 80 00 20 */	blr 
+.endfn hideRumble__Q34Game11OoPanModoki3ObjFv
 
-.global pressCallBack__Q34Game11OoPanModoki3ObjFPQ24Game8CreaturefP8CollPart
-pressCallBack__Q34Game11OoPanModoki3ObjFPQ24Game8CreaturefP8CollPart:
+.fn pressCallBack__Q34Game11OoPanModoki3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 80353C68 00350BA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80353C6C 00350BAC  7C 08 02 A6 */	mflr r0
 /* 80353C70 00350BB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5559,27 +5598,28 @@ pressCallBack__Q34Game11OoPanModoki3ObjFPQ24Game8CreaturefP8CollPart:
 /* 80353CF0 00350C30  7C 08 03 A6 */	mtlr r0
 /* 80353CF4 00350C34  38 21 00 20 */	addi r1, r1, 0x20
 /* 80353CF8 00350C38  4E 80 00 20 */	blr 
+.endfn pressCallBack__Q34Game11OoPanModoki3ObjFPQ24Game8CreaturefP8CollPart
 
-.global canTarget__Q34Game11OoPanModoki3ObjFii
-canTarget__Q34Game11OoPanModoki3ObjFii:
+.fn canTarget__Q34Game11OoPanModoki3ObjFii, weak
 /* 80353CFC 00350C3C  7C 86 FE 70 */	srawi r6, r4, 0x1f
 /* 80353D00 00350C40  54 A3 0F FE */	srwi r3, r5, 0x1f
 /* 80353D04 00350C44  7C 05 20 10 */	subfc r0, r5, r4
 /* 80353D08 00350C48  7C 06 19 14 */	adde r0, r6, r3
 /* 80353D0C 00350C4C  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 80353D10 00350C50  4E 80 00 20 */	blr 
+.endfn canTarget__Q34Game11OoPanModoki3ObjFii
 
-.global getDownSmokeScale__Q34Game11OoPanModoki3ObjFv
-getDownSmokeScale__Q34Game11OoPanModoki3ObjFv:
+.fn getDownSmokeScale__Q34Game11OoPanModoki3ObjFv, weak
 /* 80353D14 00350C54  C0 22 01 54 */	lfs f1, lbl_8051E4B4@sda21(r2)
 /* 80353D18 00350C58  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game11OoPanModoki3ObjFv
 
-.global getEnemyTypeID__Q34Game11OoPanModoki3ObjFv
-getEnemyTypeID__Q34Game11OoPanModoki3ObjFv:
+.fn getEnemyTypeID__Q34Game11OoPanModoki3ObjFv, weak
 /* 80353D1C 00350C5C  38 60 00 28 */	li r3, 0x28
 /* 80353D20 00350C60  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game11OoPanModoki3ObjFv
 
-__sinit_panModoki_cpp: # static initializer
+.fn __sinit_panModoki_cpp, local
 /* 80353D24 00350C64  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80353D28 00350C68  38 00 FF FF */	li r0, -1
 /* 80353D2C 00350C6C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -5590,3 +5630,4 @@ __sinit_panModoki_cpp: # static initializer
 /* 80353D40 00350C80  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80353D44 00350C84  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80353D48 00350C88  4E 80 00 20 */	blr 
+.endfn __sinit_panModoki_cpp

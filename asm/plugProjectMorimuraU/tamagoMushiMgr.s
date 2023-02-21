@@ -1,84 +1,117 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80492170:
-	.4byte 0x74616D61
-	.4byte 0x676F4D75
-	.4byte 0x7368694D
-	.4byte 0x67720000
-lbl_80492180:
+.obj lbl_80492170, local
+	.asciz "tamagoMushiMgr"
+.endobj lbl_80492170
+.balign 4
+.obj lbl_80492180, local # Shift-JIS
 	.4byte 0x835E837D
 	.4byte 0x83538380
 	.4byte 0x8356837D
 	.4byte 0x836C815B
 	.4byte 0x83578383
-	.4byte 0x00000000
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+	.byte 0
+.endobj lbl_80492180
+.balign 4
+.obj lbl_80492198, local
+	.asciz "EnemyParmsBase"
+.endobj lbl_80492198
+.balign 4
+.obj lbl_804921A8, local # Shift-JIS
 	.4byte 0x90B691B6
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.endobj lbl_804921A8
+.balign 4
+.obj lbl_804921B4, local # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
+.endobj lbl_804921B4
+.balign 4
+.obj lbl_804921C0, local # Shift-JIS
 	.4byte 0x96A8838C
 	.4byte 0x815B8367
 	.4byte 0x00000000
+.endobj lbl_804921C0
+.balign 4
+.obj lbl_804921CC, local # Shift-JIS
 	.4byte 0x95E082AB
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x00000000
+.endobj lbl_804921CC
+.balign 4
+.obj lbl_804921DC, local # Shift-JIS
 	.4byte 0x95E082AB
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x00000000
+.endobj lbl_804921DC
+.balign 4
+.obj lbl_804921EC, local # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x00000000
+.endobj lbl_804921EC
+.balign 4
+.obj lbl_804921FC, local # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x00000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x3A3A5072
-	.4byte 0x6F706572
-	.4byte 0x74790000
-	.4byte 0x66726963
-	.4byte 0x74696F6E
-	.4byte 0x286E6F74
-	.4byte 0x20757365
-	.4byte 0x64290000
-	.4byte 0x77616C6C
-	.4byte 0x5265666C
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x66616365
-	.4byte 0x44697241
-	.4byte 0x646A7573
-	.4byte 0x74000000
-	.4byte 0x626F756E
-	.4byte 0x63654661
-	.4byte 0x63746F72
-	.4byte 0x00000000
+.endobj lbl_804921FC
+.balign 4
+.obj lbl_8049220C, local
+	.asciz "Creature::Property"
+.endobj lbl_8049220C
+.balign 4
+.obj lbl_80492220, local
+	.asciz "friction(not used)"
+.endobj lbl_80492220
+.balign 4
+.obj lbl_80492234, local
+	.asciz "wallReflection"
+.endobj lbl_80492234
+.balign 4
+.obj lbl_80492244, local
+	.asciz "faceDirAdjust"
+.endobj lbl_80492244
+.balign 4
+.obj lbl_80492254, local
+	.asciz "bounceFactor"
+.endobj lbl_80492254
+.balign 4
+.obj lbl_80492264, local # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x837482CC
 	.4byte 0x8D8282B3
 	.4byte 0x00000000
+.endobj lbl_80492264
+.balign 4
+.obj lbl_80492274, local # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x837489F1
 	.4byte 0x959C97A6
 	.4byte 0x00000000
+.endobj lbl_80492274
+.balign 4
+.obj lbl_80492284, local # Shift-JIS
 	.4byte 0x8C7889FA
 	.4byte 0x83898343
 	.4byte 0x83740000
+.endobj lbl_80492284
+.balign 4
+.obj lbl_80492290, local # Shift-JIS
 	.4byte 0x837D8362
 	.4byte 0x837682C6
 	.4byte 0x82CC9396
 	.4byte 0x82E80000
+.endobj lbl_80492290
+.balign 4
+.obj lbl_804922A0, local # Shift-JIS
 	.4byte 0x837D8362
 	.4byte 0x837682C6
 	.4byte 0x82CC82A0
@@ -87,148 +120,247 @@ lbl_80492180:
 	.4byte 0x83538393
 	.4byte 0x82CC9149
 	.4byte 0x92E80000
+.endobj lbl_804922A0
+.balign 4
+.obj lbl_804922C0, local # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x82C682CC
 	.4byte 0x82A082BD
 	.4byte 0x82E80000
+.endobj lbl_804922C0
+.balign 4
+.obj lbl_804922D4, local # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x585A0000
+.endobj lbl_804922D4
+.balign 4
+.obj lbl_804922E8, local # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x59000000
+.endobj lbl_804922E8
+.balign 4
+.obj lbl_804922FC, local # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x8374838C
 	.4byte 0x815B8380
 	.4byte 0x00000000
+.endobj lbl_804922FC
+.balign 4
+.obj lbl_80492310, local # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x91AC9378
 	.4byte 0x97A60000
+.endobj lbl_80492310
+.balign 4
+.obj lbl_8049231C, local # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x8DC591E5
 	.4byte 0x91AC9378
 	.4byte 0x00000000
+.endobj lbl_8049231C
+.balign 4
+.obj lbl_8049232C, local # Shift-JIS
 	.4byte 0x8365838A
 	.4byte 0x8367838A
 	.4byte 0x815B0000
+.endobj lbl_8049232C
+.balign 4
+.obj lbl_80492338, local # Shift-JIS
 	.4byte 0x837A815B
 	.4byte 0x838094CD
 	.4byte 0x88CD0000
+.endobj lbl_80492338
+.balign 4
+.obj lbl_80492344, local # Shift-JIS
 	.4byte 0x83768389
 	.4byte 0x83438378
 	.4byte 0x815B8367
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.endobj lbl_80492344
+.balign 4
+.obj lbl_80492358, local # Shift-JIS
 	.4byte 0x8E8B8A45
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.endobj lbl_80492358
+.balign 4
+.obj lbl_80492364, local # Shift-JIS
 	.4byte 0x8E8B8A45
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.endobj lbl_80492364
+.balign 4
+.obj lbl_80492370, local # Shift-JIS
 	.4byte 0x92548DF5
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.endobj lbl_80492370
+.balign 4
+.obj lbl_8049237C, local # Shift-JIS
 	.4byte 0x92548DF5
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.endobj lbl_8049237C
+.balign 4
+.obj lbl_80492388, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x97CD0000
+.endobj lbl_80492388
+.balign 4
+.obj lbl_80492394, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x00000000
+.endobj lbl_80492394
+.balign 4
+.obj lbl_804923A8, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
+.endobj lbl_804923A8
+.balign 4
+.obj lbl_804923B8, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x97A60000
+.endobj lbl_804923B8
+.balign 4
+.obj lbl_804923C4, local # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x89C2945C
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
+.endobj lbl_804923C4
+.balign 4
+.obj lbl_804923D4, local # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x89C2945C
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.endobj lbl_804923D4
+.balign 4
+.obj lbl_804923E4, local # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x83718362
 	.4byte 0x836794CD
 	.4byte 0x88CD0000
+.endobj lbl_804923E4
+.balign 4
+.obj lbl_804923F4, local # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x83718362
 	.4byte 0x83678A70
 	.4byte 0x93780000
+.endobj lbl_804923F4
+.balign 4
+.obj lbl_80492404, local # Shift-JIS
 	.4byte 0x8C7889FA
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.endobj lbl_80492404
+.balign 4
+.obj lbl_80492410, local # Shift-JIS
 	.4byte 0x90CE89BB
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.endobj lbl_80492410
+.balign 4
+.obj lbl_8049241C, local # Shift-JIS
 	.4byte 0x83718362
 	.4byte 0x83768368
 	.4byte 0x838D8362
 	.4byte 0x8376835F
 	.4byte 0x8381815B
 	.4byte 0x83570000
+.endobj lbl_8049241C
+.balign 4
+.obj lbl_80492434, local # Shift-JIS
 	.4byte 0x926E906B
 	.4byte 0x8B4390E2
 	.4byte 0x8A6D97A7
 	.4byte 0x00000000
+.endobj lbl_80492434
+.balign 4
+.obj lbl_80492444, local # Shift-JIS
 	.4byte 0x926E906B
 	.4byte 0x8B4390E2
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.endobj lbl_80492444
+.balign 4
+.obj lbl_80492454, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82600000
+.endobj lbl_80492454
+.balign 4
+.obj lbl_80492464, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x92A39574
 	.4byte 0x82500000
+.endobj lbl_80492464
+.balign 4
+.obj lbl_80492474, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82610000
+.endobj lbl_80492474
+.balign 4
+.obj lbl_80492484, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x92A39574
 	.4byte 0x82510000
+.endobj lbl_80492484
+.balign 4
+.obj lbl_80492494, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82620000
+.endobj lbl_80492494
+.balign 4
+.obj lbl_804924A4, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x92A39574
 	.4byte 0x82520000
+.endobj lbl_804924A4
+.balign 4
+.obj lbl_804924B4, local # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82630000
-lbl_804924C4:
-	.4byte 0x74616D61
-	.4byte 0x676F4D75
-	.4byte 0x7368694D
-	.4byte 0x67722E63
-	.4byte 0x70700000
-lbl_804924D8:
+.endobj lbl_804924B4
+.balign 4
+.obj lbl_804924C4, local
+	.asciz "tamagoMushiMgr.cpp"
+.endobj lbl_804924C4
+.balign 4
+.obj lbl_804924D8, local
 	.asciz "P2Assert"
+.endobj lbl_804924D8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q34Game11TamagoMushi3Mgr
-__vt__Q34Game11TamagoMushi3Mgr:
+.obj __vt__Q34Game11TamagoMushi3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q24Game12EnemyMgrBaseFv
@@ -285,77 +417,100 @@ __vt__Q34Game11TamagoMushi3Mgr:
 	.4byte doLoadBmd__Q24Game12EnemyMgrBaseFPv
 	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
-.global __vt__Q34Game11TamagoMushi5Parms
-__vt__Q34Game11TamagoMushi5Parms:
+.endobj __vt__Q34Game11TamagoMushi3Mgr
+.obj __vt__Q34Game11TamagoMushi5Parms, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q34Game11TamagoMushi5ParmsFR6Stream
-.global "__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>"
-"__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>":
+.endobj __vt__Q34Game11TamagoMushi5Parms
+.obj "__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>Fv"
 	.4byte "fetch__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>CFP8J3DModel"
-.global __vt__16J3DUMtxCacheBase
-__vt__16J3DUMtxCacheBase:
+.endobj "__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>"
+.obj __vt__16J3DUMtxCacheBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__16J3DUMtxCacheBaseFv
 	.4byte 0
+.endobj __vt__16J3DUMtxCacheBase
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051EA50:
-	.4byte 0x43960000
-lbl_8051EA54:
-	.4byte 0x00000000
-lbl_8051EA58:
-	.4byte 0x44FA0000
-lbl_8051EA5C:
-	.4byte 0x42A00000
-lbl_8051EA60:
-	.4byte 0x43480000
-lbl_8051EA64:
+.obj lbl_8051EA50, local
+	.float 300.0
+.endobj lbl_8051EA50
+.obj lbl_8051EA54, local
+	.float 0.0
+.endobj lbl_8051EA54
+.obj lbl_8051EA58, local
+	.float 2000.0
+.endobj lbl_8051EA58
+.obj lbl_8051EA5C, local
+	.float 80.0
+.endobj lbl_8051EA5C
+.obj lbl_8051EA60, local
+	.float 200.0
+.endobj lbl_8051EA60
+.obj lbl_8051EA64, local
 	.float 1.0
-lbl_8051EA68:
-	.4byte 0x42200000
-lbl_8051EA6C:
+.endobj lbl_8051EA64
+.obj lbl_8051EA68, local
+	.float 40.0
+.endobj lbl_8051EA68
+.obj lbl_8051EA6C, local
 	.float 0.3
-lbl_8051EA70:
-	.4byte 0x41200000
-lbl_8051EA74:
-	.4byte 0x3E4CCCCD
-lbl_8051EA78:
-	.4byte 0x42480000
-lbl_8051EA7C:
-	.4byte 0x41F00000
-lbl_8051EA80:
-	.4byte 0x43160000
-lbl_8051EA84:
+.endobj lbl_8051EA6C
+.obj lbl_8051EA70, local
+	.float 10.0
+.endobj lbl_8051EA70
+.obj lbl_8051EA74, local
+	.float 0.2
+.endobj lbl_8051EA74
+.obj lbl_8051EA78, local
+	.float 50.0
+.endobj lbl_8051EA78
+.obj lbl_8051EA7C, local
+	.float 30.0
+.endobj lbl_8051EA7C
+.obj lbl_8051EA80, local
+	.float 150.0
+.endobj lbl_8051EA80
+.obj lbl_8051EA84, local
 	.float 0.5
-lbl_8051EA88:
-	.4byte 0x42340000
-lbl_8051EA8C:
-	.4byte 0xC1200000
-lbl_8051EA90:
-	.4byte 0x47000000
-lbl_8051EA94:
-	.4byte 0x3F4CCCCD
-lbl_8051EA98:
-	.4byte 0x40C90FDB
-lbl_8051EA9C:
-	.4byte 0xC3A2F983
-lbl_8051EAA0:
-	.4byte 0x43A2F983
-lbl_8051EAA4:
-	.4byte 0xBF800000
+.endobj lbl_8051EA84
+.obj lbl_8051EA88, local
+	.float 45.0
+.endobj lbl_8051EA88
+.obj lbl_8051EA8C, local
+	.float -10.0
+.endobj lbl_8051EA8C
+.obj lbl_8051EA90, local
+	.float 32768.0
+.endobj lbl_8051EA90
+.obj lbl_8051EA94, local
+	.float 0.8
+.endobj lbl_8051EA94
+.obj lbl_8051EA98, local # tau
+	.float 6.2831855
+.endobj lbl_8051EA98
+.obj lbl_8051EA9C, local
+	.float -325.9493
+.endobj lbl_8051EA9C
+.obj lbl_8051EAA0, local
+	.float 325.9493
+.endobj lbl_8051EAA0
+.obj lbl_8051EAA4, local
+	.float -1.0
+.endobj lbl_8051EAA4
 .balign 8
-lbl_8051EAA8:
+.obj lbl_8051EAA8, local
 	.8byte 0x4330000080000000
+.endobj lbl_8051EAA8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game11TamagoMushi3MgrFiUc
-__ct__Q34Game11TamagoMushi3MgrFiUc:
+.fn __ct__Q34Game11TamagoMushi3MgrFiUc, global
 /* 8036D988 0036A8C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036D98C 0036A8CC  7C 08 02 A6 */	mflr r0
 /* 8036D990 0036A8D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -376,9 +531,9 @@ __ct__Q34Game11TamagoMushi3MgrFiUc:
 /* 8036D9CC 0036A90C  7C 08 03 A6 */	mtlr r0
 /* 8036D9D0 0036A910  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036D9D4 0036A914  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game11TamagoMushi3MgrFiUc
 
-.global doAlloc__Q34Game11TamagoMushi3MgrFv
-doAlloc__Q34Game11TamagoMushi3MgrFv:
+.fn doAlloc__Q34Game11TamagoMushi3MgrFv, global
 /* 8036D9D8 0036A918  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8036D9DC 0036A91C  7C 08 02 A6 */	mflr r0
 /* 8036D9E0 0036A920  90 01 00 24 */	stw r0, 0x24(r1)
@@ -450,9 +605,9 @@ doAlloc__Q34Game11TamagoMushi3MgrFv:
 /* 8036DACC 0036AA0C  7C 08 03 A6 */	mtlr r0
 /* 8036DAD0 0036AA10  38 21 00 20 */	addi r1, r1, 0x20
 /* 8036DAD4 0036AA14  4E 80 00 20 */	blr 
+.endfn doAlloc__Q34Game11TamagoMushi3MgrFv
 
-.global __dt__16J3DUMtxCacheBaseFv
-__dt__16J3DUMtxCacheBaseFv:
+.fn __dt__16J3DUMtxCacheBaseFv, weak
 /* 8036DAD8 0036AA18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036DADC 0036AA1C  7C 08 02 A6 */	mflr r0
 /* 8036DAE0 0036AA20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -472,16 +627,16 @@ __dt__16J3DUMtxCacheBaseFv:
 /* 8036DB14 0036AA54  7C 08 03 A6 */	mtlr r0
 /* 8036DB18 0036AA58  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036DB1C 0036AA5C  4E 80 00 20 */	blr 
+.endfn __dt__16J3DUMtxCacheBaseFv
 
-.global getEnemy__Q34Game11TamagoMushi3MgrFi
-getEnemy__Q34Game11TamagoMushi3MgrFi:
+.fn getEnemy__Q34Game11TamagoMushi3MgrFi, weak
 /* 8036DB20 0036AA60  1C 04 03 1C */	mulli r0, r4, 0x31c
 /* 8036DB24 0036AA64  80 63 00 48 */	lwz r3, 0x48(r3)
 /* 8036DB28 0036AA68  7C 63 02 14 */	add r3, r3, r0
 /* 8036DB2C 0036AA6C  4E 80 00 20 */	blr 
+.endfn getEnemy__Q34Game11TamagoMushi3MgrFi
 
-.global __ct__Q34Game11TamagoMushi5ParmsFv
-__ct__Q34Game11TamagoMushi5ParmsFv:
+.fn __ct__Q34Game11TamagoMushi5ParmsFv, weak
 /* 8036DB30 0036AA70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036DB34 0036AA74  7C 08 02 A6 */	mflr r0
 /* 8036DB38 0036AA78  3C 80 80 49 */	lis r4, lbl_80492170@ha
@@ -634,9 +789,9 @@ __ct__Q34Game11TamagoMushi5ParmsFv:
 /* 8036DD84 0036ACC4  7C 08 03 A6 */	mtlr r0
 /* 8036DD88 0036ACC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036DD8C 0036ACCC  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game11TamagoMushi5ParmsFv
 
-.global birth__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArg
-birth__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArg:
+.fn birth__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArg, global
 /* 8036DD90 0036ACD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036DD94 0036ACD4  7C 08 02 A6 */	mflr r0
 /* 8036DD98 0036ACD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -656,9 +811,9 @@ birth__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArg:
 /* 8036DDCC 0036AD0C  7C 08 03 A6 */	mtlr r0
 /* 8036DDD0 0036AD10  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036DDD4 0036AD14  4E 80 00 20 */	blr 
+.endfn birth__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArg
 
-.global fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf
-fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf:
+.fn fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf, global
 /* 8036DDD8 0036AD18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036DDDC 0036AD1C  7C 08 02 A6 */	mflr r0
 /* 8036DDE0 0036AD20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -682,9 +837,9 @@ fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf:
 /* 8036DE24 0036AD64  7C 08 03 A6 */	mtlr r0
 /* 8036DE28 0036AD68  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036DE2C 0036AD6C  4E 80 00 20 */	blr 
+.endfn fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf
 
-.global "createGroup__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>"
-"createGroup__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>":
+.fn "createGroup__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>", global
 /* 8036DE30 0036AD70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8036DE34 0036AD74  7C 08 02 A6 */	mflr r0
 /* 8036DE38 0036AD78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -753,9 +908,9 @@ fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf:
 /* 8036DF1C 0036AE5C  7C 08 03 A6 */	mtlr r0
 /* 8036DF20 0036AE60  38 21 00 20 */	addi r1, r1, 0x20
 /* 8036DF24 0036AE64  4E 80 00 20 */	blr 
+.endfn "createGroup__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>"
 
-.global "createGroupByBigFoot__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>f"
-"createGroupByBigFoot__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>f":
+.fn "createGroupByBigFoot__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>f", global
 /* 8036DF28 0036AE68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8036DF2C 0036AE6C  7C 08 02 A6 */	mflr r0
 /* 8036DF30 0036AE70  90 01 00 24 */	stw r0, 0x24(r1)
@@ -802,9 +957,9 @@ fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf:
 /* 8036DFCC 0036AF0C  7C 08 03 A6 */	mtlr r0
 /* 8036DFD0 0036AF10  38 21 00 20 */	addi r1, r1, 0x20
 /* 8036DFD4 0036AF14  4E 80 00 20 */	blr 
+.endfn "createGroupByBigFoot__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>f"
 
-.global createGroup__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objib
-createGroup__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objib:
+.fn createGroup__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objib, global
 /* 8036DFD8 0036AF18  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 8036DFDC 0036AF1C  7C 08 02 A6 */	mflr r0
 /* 8036DFE0 0036AF20  90 01 01 44 */	stw r0, 0x144(r1)
@@ -1053,9 +1208,9 @@ createGroup__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objib:
 /* 8036E378 0036B2B8  7C 08 03 A6 */	mtlr r0
 /* 8036E37C 0036B2BC  38 21 01 40 */	addi r1, r1, 0x140
 /* 8036E380 0036B2C0  4E 80 00 20 */	blr 
+.endfn createGroup__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objib
 
-.global createGroupByBigFoot__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objibf
-createGroupByBigFoot__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objibf:
+.fn createGroupByBigFoot__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objibf, global
 /* 8036E384 0036B2C4  94 21 FE 60 */	stwu r1, -0x1a0(r1)
 /* 8036E388 0036B2C8  7C 08 02 A6 */	mflr r0
 /* 8036E38C 0036B2CC  90 01 01 A4 */	stw r0, 0x1a4(r1)
@@ -1355,9 +1510,9 @@ createGroupByBigFoot__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objibf:
 /* 8036E7FC 0036B73C  7C 08 03 A6 */	mtlr r0
 /* 8036E800 0036B740  38 21 01 A0 */	addi r1, r1, 0x1a0
 /* 8036E804 0036B744  4E 80 00 20 */	blr 
+.endfn createGroupByBigFoot__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objibf
 
-.global __dt__Q34Game11TamagoMushi3MgrFv
-__dt__Q34Game11TamagoMushi3MgrFv:
+.fn __dt__Q34Game11TamagoMushi3MgrFv, weak
 /* 8036E808 0036B748  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036E80C 0036B74C  7C 08 02 A6 */	mflr r0
 /* 8036E810 0036B750  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1404,14 +1559,14 @@ __dt__Q34Game11TamagoMushi3MgrFv:
 /* 8036E8AC 0036B7EC  7C 08 03 A6 */	mtlr r0
 /* 8036E8B0 0036B7F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036E8B4 0036B7F4  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game11TamagoMushi3MgrFv
 
-.global getEnemyTypeID__Q34Game11TamagoMushi3MgrFv
-getEnemyTypeID__Q34Game11TamagoMushi3MgrFv:
+.fn getEnemyTypeID__Q34Game11TamagoMushi3MgrFv, weak
 /* 8036E8B8 0036B7F8  38 60 00 44 */	li r3, 0x44
 /* 8036E8BC 0036B7FC  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game11TamagoMushi3MgrFv
 
-.global createObj__Q34Game11TamagoMushi3MgrFi
-createObj__Q34Game11TamagoMushi3MgrFi:
+.fn createObj__Q34Game11TamagoMushi3MgrFi, weak
 /* 8036E8C0 0036B800  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036E8C4 0036B804  7C 08 02 A6 */	mflr r0
 /* 8036E8C8 0036B808  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1436,9 +1591,9 @@ createObj__Q34Game11TamagoMushi3MgrFi:
 /* 8036E914 0036B854  7C 08 03 A6 */	mtlr r0
 /* 8036E918 0036B858  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036E91C 0036B85C  4E 80 00 20 */	blr 
+.endfn createObj__Q34Game11TamagoMushi3MgrFi
 
-.global __dt__Q34Game11TamagoMushi3ObjFv
-__dt__Q34Game11TamagoMushi3ObjFv:
+.fn __dt__Q34Game11TamagoMushi3ObjFv, weak
 /* 8036E920 0036B860  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036E924 0036B864  7C 08 02 A6 */	mflr r0
 /* 8036E928 0036B868  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1488,9 +1643,9 @@ __dt__Q34Game11TamagoMushi3ObjFv:
 /* 8036E9D0 0036B910  7C 08 03 A6 */	mtlr r0
 /* 8036E9D4 0036B914  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036E9D8 0036B918  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game11TamagoMushi3ObjFv
 
-.global read__Q34Game11TamagoMushi5ParmsFR6Stream
-read__Q34Game11TamagoMushi5ParmsFR6Stream:
+.fn read__Q34Game11TamagoMushi5ParmsFR6Stream, weak
 /* 8036E9DC 0036B91C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036E9E0 0036B920  7C 08 02 A6 */	mflr r0
 /* 8036E9E4 0036B924  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1511,9 +1666,9 @@ read__Q34Game11TamagoMushi5ParmsFR6Stream:
 /* 8036EA20 0036B960  7C 08 03 A6 */	mtlr r0
 /* 8036EA24 0036B964  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036EA28 0036B968  4E 80 00 20 */	blr 
+.endfn read__Q34Game11TamagoMushi5ParmsFR6Stream
 
-.global "fetch__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>CFP8J3DModel"
-"fetch__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>CFP8J3DModel":
+.fn "fetch__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>CFP8J3DModel", weak
 /* 8036EA2C 0036B96C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8036EA30 0036B970  7C 08 02 A6 */	mflr r0
 /* 8036EA34 0036B974  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1575,9 +1730,9 @@ read__Q34Game11TamagoMushi5ParmsFR6Stream:
 /* 8036EAFC 0036BA3C  7C 08 03 A6 */	mtlr r0
 /* 8036EB00 0036BA40  38 21 00 20 */	addi r1, r1, 0x20
 /* 8036EB04 0036BA44  4E 80 00 20 */	blr 
+.endfn "fetch__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>CFP8J3DModel"
 
-.global "__dt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>Fv"
-"__dt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>Fv":
+.fn "__dt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>Fv", weak
 /* 8036EB08 0036BA48  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8036EB0C 0036BA4C  7C 08 02 A6 */	mflr r0
 /* 8036EB10 0036BA50  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1619,8 +1774,9 @@ read__Q34Game11TamagoMushi5ParmsFR6Stream:
 /* 8036EB94 0036BAD4  7C 08 03 A6 */	mtlr r0
 /* 8036EB98 0036BAD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8036EB9C 0036BADC  4E 80 00 20 */	blr 
+.endfn "__dt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>Fv"
 
-.global "@4@__dt__Q34Game11TamagoMushi3MgrFv"
-"@4@__dt__Q34Game11TamagoMushi3MgrFv":
+.fn "@4@__dt__Q34Game11TamagoMushi3MgrFv", weak
 /* 8036EBA0 0036BAE0  38 63 FF FC */	addi r3, r3, -4
 /* 8036EBA4 0036BAE4  4B FF FC 64 */	b __dt__Q34Game11TamagoMushi3MgrFv
+.endfn "@4@__dt__Q34Game11TamagoMushi3MgrFv"

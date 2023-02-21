@@ -25,35 +25,45 @@ lbl_constructor:
 	.4byte 0x83930A00
 .endobj lbl_8047C7A0
 .balign 4
-lbl_8047C7BC:
+.obj lbl_8047C7BC, local
 	.asciz "happajnt3"
+.endobj lbl_8047C7BC
 .balign 4
-lbl_8047C7C8:
+.obj lbl_8047C7C8, local
 	.asciz "no target!! HOLEIN\n"
+.endobj lbl_8047C7C8
 .balign 4
-lbl_8047C7DC:
+.obj lbl_8047C7DC, local
 	.asciz "no target!! FOUNTAINON\n"
+.endobj lbl_8047C7DC
 .balign 4
-lbl_8047C7F4:
+.obj lbl_8047C7F4, local
 	.asciz "P2Assert"
+.endobj lbl_8047C7F4
 .balign 4
-lbl_8047C800:
+.obj lbl_8047C800, local
 	.asciz "timeout %d,%d:%d\n%d,%d-%d,%d\n"
+.endobj lbl_8047C800
 .balign 4
-lbl_8047C820:
+.obj lbl_8047C820, local
 	.asciz "infloop %d,%d:%d\n%d,%d-%d,%d\n"
+.endobj lbl_8047C820
 .balign 4
-lbl_8047C840:
+.obj lbl_8047C840, local
 	.asciz "ActFreeArg"
+.endobj lbl_8047C840
 .balign 4
-lbl_8047C84C:
+.obj lbl_8047C84C, local
 	.asciz "CreatureActionArg"
+.endobj lbl_8047C84C
 .balign 4
-lbl_8047C860:
+.obj lbl_8047C860, local
 	.asciz "ActionArg"
+.endobj lbl_8047C860
 .balign 4
-lbl_8047C86C:
+.obj lbl_8047C86C, local
 	.asciz "NaviDamageArg"
+.endobj lbl_8047C86C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

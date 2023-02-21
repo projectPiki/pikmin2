@@ -5,11 +5,13 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80494B18:
+.obj lbl_80494B18, local
 	.asciz "vsSelect2D"
+.endobj lbl_80494B18
 .balign 4
-lbl_80494B24:
+.obj lbl_80494B24, local
 	.asciz "vsSelect2D.cpp"
+.endobj lbl_80494B24
 .balign 4
 lbl_80494B34:
 	.asciz "P2Assert"
@@ -47,6 +49,7 @@ lbl_80494BE8:
 lbl_80494BF8:
 	.asciz "timg/tile.bti"
 .balign 4
+lbl_80494C08:
 	.4byte lbl_80494B4C
 	.4byte lbl_80494B60
 	.4byte lbl_80494B74
@@ -57,6 +60,7 @@ lbl_80494BF8:
 	.4byte lbl_80494BD4
 	.4byte lbl_80494BE8
 	.4byte lbl_80494BF8
+.balign 4
 lbl_80494C30:
 	.asciz "timg/orima001.bti"
 .balign 4
@@ -72,11 +76,13 @@ lbl_80494C6C:
 lbl_80494C80:
 	.asciz "timg/orima005.bti"
 .balign 4
+lbl_80494C94:
 	.4byte lbl_80494C30
 	.4byte lbl_80494C44
 	.4byte lbl_80494C58
 	.4byte lbl_80494C6C
 	.4byte lbl_80494C80
+.balign 4
 lbl_80494CA8:
 	.asciz "timg/lui001.bti"
 .balign 4
@@ -419,7 +425,6 @@ lbl_804951D4:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E5328
 lbl_804E5328:
 	.4byte 0x00000001
 	.4byte 0x00000002
@@ -489,8 +494,7 @@ slotIDInfo__8Morimura:
 	.4byte 0x0000000B
 	.4byte 0x00323034
 	.4byte 0x335F3030
-.global __vt__Q28Morimura14TVsSelectScene
-__vt__Q28Morimura14TVsSelectScene:
+.obj __vt__Q28Morimura14TVsSelectScene, global
 	.4byte 0
 	.4byte 0
 	.4byte getSceneType__Q28Morimura14TVsSelectSceneFv
@@ -511,19 +515,20 @@ __vt__Q28Morimura14TVsSelectScene:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.endobj __vt__Q28Morimura14TVsSelectScene
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura19TVsSelectListScreen
-__vt__Q28Morimura19TVsSelectListScreen:
+.obj __vt__Q28Morimura19TVsSelectListScreen, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura19TVsSelectListScreenFPCcUl
 	.4byte update__Q28Morimura19TVsSelectListScreenFv
 	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
+.endobj __vt__Q28Morimura19TVsSelectListScreen
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -549,8 +554,7 @@ __vt__Q28Morimura19TVsSelectListScreen:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura9TVsSelect
-__vt__Q28Morimura9TVsSelect:
+.obj __vt__Q28Morimura9TVsSelect, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura9TVsSelectFv
@@ -594,6 +598,7 @@ __vt__Q28Morimura9TVsSelect:
 	.4byte changeTextTevBlock__Q28Morimura11TScrollListFi
 	.4byte updateIndex__Q28Morimura11TScrollListFb
 	.4byte setPaneCharacter__Q28Morimura11TScrollListFi
+.endobj __vt__Q28Morimura9TVsSelect
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -611,8 +616,7 @@ __vt__Q28Morimura9TVsSelect:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura17TVsSelectCBWinNum
-__vt__Q28Morimura17TVsSelectCBWinNum:
+.obj __vt__Q28Morimura17TVsSelectCBWinNum, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura17TVsSelectCBWinNumFv
@@ -625,6 +629,7 @@ __vt__Q28Morimura17TVsSelectCBWinNum:
 	.4byte hide__Q32og6Screen19CallBack_CounterDayFv
 	.4byte setValue__Q28Morimura17TVsSelectCBWinNumFbb
 	.4byte setValue__Q32og6Screen19CallBack_CounterDayFv
+.endobj __vt__Q28Morimura17TVsSelectCBWinNum
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -639,21 +644,21 @@ __vt__Q28Morimura17TVsSelectCBWinNum:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura15TVsSelectScreen
-__vt__Q28Morimura15TVsSelectScreen:
+.obj __vt__Q28Morimura15TVsSelectScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura15TVsSelectScreenFPCcUl
 	.4byte update__Q28Morimura11TScreenBaseFv
 	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
-.global __vt__Q25efx2d13T2DBattleDive
-__vt__Q25efx2d13T2DBattleDive:
+.endobj __vt__Q28Morimura15TVsSelectScreen
+.obj __vt__Q25efx2d13T2DBattleDive, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d8TSimple3FPQ25efx2d3Arg
 	.4byte kill__Q25efx2d8TSimple3Fv
 	.4byte fade__Q25efx2d8TSimple3Fv
 	.4byte setGroup__Q25efx2d5TBaseFUc
+.endobj __vt__Q25efx2d13T2DBattleDive
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -669,21 +674,21 @@ __vt__Q25efx2d13T2DBattleDive:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura26TVsSelectExplanationWindow
-__vt__Q28Morimura26TVsSelectExplanationWindow:
+.obj __vt__Q28Morimura26TVsSelectExplanationWindow, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura26TVsSelectExplanationWindowFPCcUl
 	.4byte update__Q28Morimura24TSelectExplanationWindowFv
 	.4byte draw__Q28Morimura24TSelectExplanationWindowFR8GraphicsP13J2DPerspGraph
 	.4byte screenScaleUp__Q28Morimura26TVsSelectExplanationWindowFv
-.global __vt__Q28Morimura16TVsSelectIndPane
-__vt__Q28Morimura16TVsSelectIndPane:
+.endobj __vt__Q28Morimura26TVsSelectExplanationWindow
+.obj __vt__Q28Morimura16TVsSelectIndPane, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura16TVsSelectIndPaneFv
 	.4byte getChildCount__5CNodeFv
 	.4byte draw__Q28Morimura16TVsSelectIndPaneFv
+.endobj __vt__Q28Morimura16TVsSelectIndPane
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # vsSelect2D.cpp
@@ -817,145 +822,99 @@ lbl_8051F1F0:
 	.4byte 0x41800000
 lbl_8051F1F4:
 	.4byte 0x41F00000
-.global lbl_8051F1F8
 lbl_8051F1F8:
 	.4byte 0x3F4CCCCD
-.global lbl_8051F1FC
 lbl_8051F1FC:
 	.float 0.25
-.global lbl_8051F200
 lbl_8051F200:
 	.4byte 0x42700000
-.global lbl_8051F204
 lbl_8051F204:
 	.4byte 0x42E60000
-.global lbl_8051F208
 lbl_8051F208:
 	.4byte 0x432A0000
-.global lbl_8051F20C
 lbl_8051F20C:
 	.4byte 0x43EB0000
-.global lbl_8051F210
 lbl_8051F210:
 	.4byte 0x43D20000
-.global lbl_8051F214
 lbl_8051F214:
 	.4byte 0xC1700000
-.global lbl_8051F218
 lbl_8051F218:
 	.4byte 0x3F7D70A4
-.global lbl_8051F21C
 lbl_8051F21C:
 	.4byte 0x3FC00000
-.global lbl_8051F220
 lbl_8051F220:
 	.4byte 0x40200000
 	.4byte 0x00000000
-.global lbl_8051F228
 lbl_8051F228:
 	.4byte 0x00343737
 	.4byte 0x315F3030
-.global lbl_8051F230
 lbl_8051F230:
 	.4byte 0x42C60000
-.global lbl_8051F234
 lbl_8051F234:
 	.float 0.7
-.global lbl_8051F238
 lbl_8051F238:
 	.float 0.3
-.global lbl_8051F23C
 lbl_8051F23C:
 	.4byte 0x43A80000
-.global lbl_8051F240
 lbl_8051F240:
 	.4byte 0x43700000
-.global lbl_8051F244
 lbl_8051F244:
 	.4byte 0x43C80000
-.global lbl_8051F248
 lbl_8051F248:
 	.4byte 0x420C0000
-.global lbl_8051F24C
 lbl_8051F24C:
 	.4byte 0x42C80000
-.global lbl_8051F250
 lbl_8051F250:
 	.4byte 0x43730000
-.global lbl_8051F254
 lbl_8051F254:
 	.4byte 0x42200000
-.global lbl_8051F258
 lbl_8051F258:
 	.4byte 0x43A20000
-.global lbl_8051F25C
 lbl_8051F25C:
 	.4byte 0x3F8CCCCD
-.global lbl_8051F260
 lbl_8051F260:
 	.4byte 0xC0400000
-.global lbl_8051F264
 lbl_8051F264:
 	.4byte 0x44160000
-.global lbl_8051F268
 lbl_8051F268:
 	.4byte 0x3FC90FDB
-.global lbl_8051F26C
 lbl_8051F26C:
 	.4byte 0xC4160000
-.global lbl_8051F270
 lbl_8051F270:
 	.4byte 0x437F0000
-.global lbl_8051F274
 lbl_8051F274:
 	.4byte 0x3E4CCCCD
-.global lbl_8051F278
 lbl_8051F278:
 	.4byte 0x3F666666
-.global lbl_8051F27C
 lbl_8051F27C:
 	.4byte 0x43C10000
-.global lbl_8051F280
 lbl_8051F280:
 	.4byte 0x43910000
-.global lbl_8051F284
 lbl_8051F284:
 	.4byte 0x41C80000
-.global lbl_8051F288
 lbl_8051F288:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051F290
 lbl_8051F290:
 	.4byte 0x41200000
-.global lbl_8051F294
 lbl_8051F294:
 	.4byte 0x43A00000
-.global lbl_8051F298
 lbl_8051F298:
 	.4byte 0x481C4000
-.global lbl_8051F29C
 lbl_8051F29C:
 	.4byte 0x40800000
-.global lbl_8051F2A0
 lbl_8051F2A0:
 	.4byte 0x40400000
-.global lbl_8051F2A4
 lbl_8051F2A4:
 	.4byte 0x41700000
-.global lbl_8051F2A8
 lbl_8051F2A8:
 	.4byte 0xC2480000
-.global lbl_8051F2AC
 lbl_8051F2AC:
 	.4byte 0x43340000
-.global lbl_8051F2B0
 lbl_8051F2B0:
 	.4byte 0x41480000
-.global lbl_8051F2B4
 lbl_8051F2B4:
 	.4byte 0xBF000000
-.global lbl_8051F2B8
 lbl_8051F2B8:
 	.4byte 0x41000000
 
@@ -9100,8 +9059,7 @@ __dt__Q28Morimura17TVsSelectCBWinNumFv:
 /* 803A0F68 0039DEA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A0F6C 0039DEAC  4E 80 00 20 */	blr 
 
-.global __dt__Q28Morimura16TVsSelectIndPaneFv
-__dt__Q28Morimura16TVsSelectIndPaneFv:
+.fn __dt__Q28Morimura16TVsSelectIndPaneFv, weak
 /* 803A0F70 0039DEB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A0F74 0039DEB4  7C 08 02 A6 */	mflr r0
 /* 803A0F78 0039DEB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9132,9 +9090,9 @@ __dt__Q28Morimura16TVsSelectIndPaneFv:
 /* 803A0FD4 0039DF14  7C 08 03 A6 */	mtlr r0
 /* 803A0FD8 0039DF18  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A0FDC 0039DF1C  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura16TVsSelectIndPaneFv
 
-.global __sinit_vsSelect2D_cpp
-__sinit_vsSelect2D_cpp:
+.fn __sinit_vsSelect2D_cpp, local
 /* 803A0FE0 0039DF20  C0 82 0F 58 */	lfs f4, lbl_8051F2B8@sda21(r2)
 /* 803A0FE4 0039DF24  3C 60 80 51 */	lis r3, mScrollParm__Q28Morimura9TVsSelect@ha
 /* 803A0FE8 0039DF28  C0 C2 0F 50 */	lfs f6, lbl_8051F2B0@sda21(r2)
@@ -9152,8 +9110,9 @@ __sinit_vsSelect2D_cpp:
 /* 803A1018 0039DF58  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 803A101C 0039DF5C  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 803A1020 0039DF60  4E 80 00 20 */	blr 
+.endfn __sinit_vsSelect2D_cpp
 
-.global "@24@__dt__Q28Morimura9TVsSelectFv"
-"@24@__dt__Q28Morimura9TVsSelectFv":
+.fn "@24@__dt__Q28Morimura9TVsSelectFv", weak
 /* 803A1024 0039DF64  38 63 FF E8 */	addi r3, r3, -24
 /* 803A1028 0039DF68  4B FF 9B 38 */	b __dt__Q28Morimura9TVsSelectFv
+.endfn "@24@__dt__Q28Morimura9TVsSelectFv"

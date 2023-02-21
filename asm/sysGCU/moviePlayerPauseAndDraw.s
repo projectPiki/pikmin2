@@ -5,21 +5,24 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
+.endobj govNAN___Q24Game5P2JST
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.balign 4
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global setPauseAndDraw__Q24Game11MoviePlayerFPQ24Game11MovieConfig
-setPauseAndDraw__Q24Game11MoviePlayerFPQ24Game11MovieConfig:
+.fn setPauseAndDraw__Q24Game11MoviePlayerFPQ24Game11MovieConfig, global
 /* 80436ED0 00433E10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436ED4 00433E14  7C 08 02 A6 */	mflr r0
 /* 80436ED8 00433E18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -49,9 +52,9 @@ setPauseAndDraw__Q24Game11MoviePlayerFPQ24Game11MovieConfig:
 /* 80436F34 00433E74  7C 08 03 A6 */	mtlr r0
 /* 80436F38 00433E78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436F3C 00433E7C  4E 80 00 20 */	blr 
+.endfn setPauseAndDraw__Q24Game11MoviePlayerFPQ24Game11MovieConfig
 
-.global clearPauseAndDraw__Q24Game11MoviePlayerFv
-clearPauseAndDraw__Q24Game11MoviePlayerFv:
+.fn clearPauseAndDraw__Q24Game11MoviePlayerFv, global
 /* 80436F40 00433E80  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80436F44 00433E84  7C 08 02 A6 */	mflr r0
 /* 80436F48 00433E88  38 80 00 01 */	li r4, 1
@@ -372,8 +375,9 @@ clearPauseAndDraw__Q24Game11MoviePlayerFv:
 /* 804373CC 0043430C  7C 08 03 A6 */	mtlr r0
 /* 804373D0 00434310  38 21 00 50 */	addi r1, r1, 0x50
 /* 804373D4 00434314  4E 80 00 20 */	blr 
+.endfn clearPauseAndDraw__Q24Game11MoviePlayerFv
 
-__sinit_moviePlayerPauseAndDraw_cpp: # static initializer
+.fn __sinit_moviePlayerPauseAndDraw_cpp, local
 /* 804373D8 00434318  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 804373DC 0043431C  38 00 FF FF */	li r0, -1
 /* 804373E0 00434320  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -384,3 +388,4 @@ __sinit_moviePlayerPauseAndDraw_cpp: # static initializer
 /* 804373F4 00434334  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804373F8 00434338  D0 03 00 08 */	stfs f0, 8(r3)
 /* 804373FC 0043433C  4E 80 00 20 */	blr 
+.endfn __sinit_moviePlayerPauseAndDraw_cpp

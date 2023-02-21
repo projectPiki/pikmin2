@@ -5,20 +5,23 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049AC20:
+.obj lbl_8049AC20, local
 	.asciz "modelEffect.cpp"
+.endobj lbl_8049AC20
 .balign 4
-lbl_8049AC30:
+.obj lbl_8049AC30, local
 	.asciz "P2Assert"
+.endobj lbl_8049AC30
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__11ModelEffect
-__vt__11ModelEffect:
+.endobj govNAN___Q24Game5P2JST
+.balign 4
+.obj __vt__11ModelEffect, global
 	.4byte 0
 	.4byte 0
 	.4byte constructor__11ModelEffectFv
@@ -32,17 +35,20 @@ __vt__11ModelEffect:
 	.4byte getLODCylinder__11ModelEffectFRQ23Sys8Cylinder
 	.4byte doSimulation__11ModelEffectFf
 	.4byte doDirectDraw__11ModelEffectFR8Graphics
+.endobj __vt__11ModelEffect
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.balign 4
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global entry__15ModelEffectDataFv
-entry__15ModelEffectDataFv:
+.fn entry__15ModelEffectDataFv, global
 /* 8043D49C 0043A3DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043D4A0 0043A3E0  7C 08 02 A6 */	mflr r0
 /* 8043D4A4 0043A3E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -71,9 +77,9 @@ entry__15ModelEffectDataFv:
 /* 8043D4FC 0043A43C  7C 08 03 A6 */	mtlr r0
 /* 8043D500 0043A440  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043D504 0043A444  4E 80 00 20 */	blr 
+.endfn entry__15ModelEffectDataFv
 
-.global allocModelData__15ModelEffectDataFi
-allocModelData__15ModelEffectDataFi:
+.fn allocModelData__15ModelEffectDataFi, global
 /* 8043D508 0043A448  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043D50C 0043A44C  7C 08 02 A6 */	mflr r0
 /* 8043D510 0043A450  90 01 00 14 */	stw r0, 0x14(r1)
@@ -145,9 +151,9 @@ allocModelData__15ModelEffectDataFi:
 /* 8043D608 0043A548  7C 08 03 A6 */	mtlr r0
 /* 8043D60C 0043A54C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043D610 0043A550  4E 80 00 20 */	blr 
+.endfn allocModelData__15ModelEffectDataFi
 
-.global entryModelEffect__11ParticleMgrFP15ModelEffectData
-entryModelEffect__11ParticleMgrFP15ModelEffectData:
+.fn entryModelEffect__11ParticleMgrFP15ModelEffectData, global
 /* 8043D614 0043A554  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043D618 0043A558  7C 08 02 A6 */	mflr r0
 /* 8043D61C 0043A55C  38 63 00 60 */	addi r3, r3, 0x60
@@ -157,9 +163,9 @@ entryModelEffect__11ParticleMgrFP15ModelEffectData:
 /* 8043D62C 0043A56C  7C 08 03 A6 */	mtlr r0
 /* 8043D630 0043A570  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043D634 0043A574  4E 80 00 20 */	blr 
+.endfn entryModelEffect__11ParticleMgrFP15ModelEffectData
 
-.global createModelEffect__11ParticleMgrFP20ModelEffectCreateArg
-createModelEffect__11ParticleMgrFP20ModelEffectCreateArg:
+.fn createModelEffect__11ParticleMgrFP20ModelEffectCreateArg, global
 /* 8043D638 0043A578  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043D63C 0043A57C  7C 08 02 A6 */	mflr r0
 /* 8043D640 0043A580  90 01 00 24 */	stw r0, 0x24(r1)
@@ -239,9 +245,9 @@ createModelEffect__11ParticleMgrFP20ModelEffectCreateArg:
 /* 8043D748 0043A688  7C 08 03 A6 */	mtlr r0
 /* 8043D74C 0043A68C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043D750 0043A690  4E 80 00 20 */	blr 
+.endfn createModelEffect__11ParticleMgrFP20ModelEffectCreateArg
 
-.global doAnimation__11ModelEffectFv
-doAnimation__11ModelEffectFv:
+.fn doAnimation__11ModelEffectFv, global
 /* 8043D754 0043A694  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8043D758 0043A698  7C 08 02 A6 */	mflr r0
 /* 8043D75C 0043A69C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -359,18 +365,18 @@ doAnimation__11ModelEffectFv:
 /* 8043D8F0 0043A830  7C 08 03 A6 */	mtlr r0
 /* 8043D8F4 0043A834  38 21 00 50 */	addi r1, r1, 0x50
 /* 8043D8F8 0043A838  4E 80 00 20 */	blr 
+.endfn doAnimation__11ModelEffectFv
 
-.global getLODCylinder__11ModelEffectFRQ23Sys8Cylinder
-getLODCylinder__11ModelEffectFRQ23Sys8Cylinder:
+.fn getLODCylinder__11ModelEffectFRQ23Sys8Cylinder, weak
 /* 8043D8FC 0043A83C  4E 80 00 20 */	blr 
+.endfn getLODCylinder__11ModelEffectFRQ23Sys8Cylinder
 
-.global useCylinderLOD__11ModelEffectFv
-useCylinderLOD__11ModelEffectFv:
+.fn useCylinderLOD__11ModelEffectFv, weak
 /* 8043D900 0043A840  38 60 00 00 */	li r3, 0
 /* 8043D904 0043A844  4E 80 00 20 */	blr 
+.endfn useCylinderLOD__11ModelEffectFv
 
-.global doEntry__11ModelEffectFv
-doEntry__11ModelEffectFv:
+.fn doEntry__11ModelEffectFv global
 /* 8043D908 0043A848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043D90C 0043A84C  7C 08 02 A6 */	mflr r0
 /* 8043D910 0043A850  90 01 00 14 */	stw r0, 0x14(r1)
@@ -412,13 +418,13 @@ doEntry__11ModelEffectFv:
 /* 8043D994 0043A8D4  7C 08 03 A6 */	mtlr r0
 /* 8043D998 0043A8D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043D99C 0043A8DC  4E 80 00 20 */	blr 
+.endfn doEntry__11ModelEffectFv
 
-.global changeMaterial__11ModelEffectFv
-changeMaterial__11ModelEffectFv:
+.fn changeMaterial__11ModelEffectFv, weak
 /* 8043D9A0 0043A8E0  4E 80 00 20 */	blr 
+.endfn changeMaterial__11ModelEffectFv
 
-.global doSetView__11ModelEffectFi
-doSetView__11ModelEffectFi:
+.fn doSetView__11ModelEffectFi, global
 /* 8043D9A4 0043A8E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043D9A8 0043A8E8  7C 08 02 A6 */	mflr r0
 /* 8043D9AC 0043A8EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -451,9 +457,9 @@ doSetView__11ModelEffectFi:
 /* 8043DA10 0043A950  7C 08 03 A6 */	mtlr r0
 /* 8043DA14 0043A954  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043DA18 0043A958  4E 80 00 20 */	blr 
+.endfn doSetView__11ModelEffectFi
 
-.global doViewCalc__11ModelEffectFv
-doViewCalc__11ModelEffectFv:
+.fn doViewCalc__11ModelEffectFv, global
 /* 8043DA1C 0043A95C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043DA20 0043A960  7C 08 02 A6 */	mflr r0
 /* 8043DA24 0043A964  90 01 00 14 */	stw r0, 0x14(r1)
@@ -463,9 +469,9 @@ doViewCalc__11ModelEffectFv:
 /* 8043DA34 0043A974  7C 08 03 A6 */	mtlr r0
 /* 8043DA38 0043A978  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043DA3C 0043A97C  4E 80 00 20 */	blr 
+.endfn doViewCalc__11ModelEffectFv
 
-.global doAnimation__11ParticleMgrFv
-doAnimation__11ParticleMgrFv:
+.fn doAnimation__11ParticleMgrFv, global
 /* 8043DA40 0043A980  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043DA44 0043A984  7C 08 02 A6 */	mflr r0
 /* 8043DA48 0043A988  90 01 00 14 */	stw r0, 0x14(r1)
@@ -477,9 +483,9 @@ doAnimation__11ParticleMgrFv:
 /* 8043DA60 0043A9A0  7C 08 03 A6 */	mtlr r0
 /* 8043DA64 0043A9A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043DA68 0043A9A8  4E 80 00 20 */	blr 
+.endfn doAnimation__11ParticleMgrFv
 
-.global doEntry__11ParticleMgrFv
-doEntry__11ParticleMgrFv:
+.fn doEntry__11ParticleMgrFv, global
 /* 8043DA6C 0043A9AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043DA70 0043A9B0  7C 08 02 A6 */	mflr r0
 /* 8043DA74 0043A9B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -491,9 +497,9 @@ doEntry__11ParticleMgrFv:
 /* 8043DA8C 0043A9CC  7C 08 03 A6 */	mtlr r0
 /* 8043DA90 0043A9D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043DA94 0043A9D4  4E 80 00 20 */	blr 
+.endfn doEntry__11ParticleMgrFv
 
-.global doSetView__11ParticleMgrFi
-doSetView__11ParticleMgrFi:
+.fn doSetView__11ParticleMgrFi, global
 /* 8043DA98 0043A9D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043DA9C 0043A9DC  7C 08 02 A6 */	mflr r0
 /* 8043DAA0 0043A9E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -505,9 +511,9 @@ doSetView__11ParticleMgrFi:
 /* 8043DAB8 0043A9F8  7C 08 03 A6 */	mtlr r0
 /* 8043DABC 0043A9FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043DAC0 0043AA00  4E 80 00 20 */	blr 
+.endfn doSetView__11ParticleMgrFi
 
-.global doViewCalc__11ParticleMgrFv
-doViewCalc__11ParticleMgrFv:
+.fn doViewCalc__11ParticleMgrFv, global
 /* 8043DAC4 0043AA04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043DAC8 0043AA08  7C 08 02 A6 */	mflr r0
 /* 8043DACC 0043AA0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -519,8 +525,9 @@ doViewCalc__11ParticleMgrFv:
 /* 8043DAE4 0043AA24  7C 08 03 A6 */	mtlr r0
 /* 8043DAE8 0043AA28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043DAEC 0043AA2C  4E 80 00 20 */	blr 
+.endfn doViewCalc__11ParticleMgrFv
 
-__sinit_modelEffect_cpp: # static initializer
+.fn __sinit_modelEffect_cpp, local
 /* 8043DAF0 0043AA30  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8043DAF4 0043AA34  38 00 FF FF */	li r0, -1
 /* 8043DAF8 0043AA38  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -531,3 +538,4 @@ __sinit_modelEffect_cpp: # static initializer
 /* 8043DB0C 0043AA4C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8043DB10 0043AA50  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8043DB14 0043AA54  4E 80 00 20 */	blr 
+.endfn __sinit_modelEffect_cpp

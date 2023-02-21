@@ -5,33 +5,23 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80493FC0
-lbl_80493FC0:
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x6553656C
-	.4byte 0x65637432
-	.4byte 0x44000000
-.global lbl_80493FD4
-lbl_80493FD4:
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x6553656C
-	.4byte 0x65637432
-	.4byte 0x442E6370
-	.4byte 0x70000000
-.global lbl_80493FEC
-lbl_80493FEC:
-	.asciz "P2Assert"
+.obj lbl_80493FC0, local
+	.asciz "challengeSelect2D"
+.endobj lbl_80493FC0
 .balign 4
-.global lbl_80493FF8
-lbl_80493FF8:
-	.4byte 0x5053436F
-	.4byte 0x6D6D6F6E
-	.4byte 0x2E680000
-	.4byte 0x00000000
-.global lbl_80494008
-lbl_80494008:
+.obj lbl_80493FD4, local
+	.asciz "challengeSelect2D.cpp"
+.endobj lbl_80493FD4
+.balign 4
+.obj lbl_80493FEC, local
+	.asciz "P2Assert"
+.endobj lbl_80493FEC
+.balign 4
+.obj lbl_80493FF8, local
+	.asciz "PSCommon.h"
+.endobj lbl_80493FF8
+.balign 8
+.obj lbl_80494008, local
 	.4byte 0x00004E68
 	.4byte 0x6C5F3030
 	.4byte 0x00004E68
@@ -64,6 +54,9 @@ lbl_80494008:
 	.4byte 0x6C5F3134
 	.4byte 0x4E554C4C
 	.4byte 0x5F303031
+.endobj lbl_80494008
+.balign 8
+.obj lbl_80494088, local
 	.4byte 0x00000000
 	.4byte 0x685F3030
 	.4byte 0x00000000
@@ -72,34 +65,43 @@ lbl_80494008:
 	.4byte 0x685F3032
 	.4byte 0x00000000
 	.4byte 0x685F3033
-.global lbl_804940A8
-lbl_804940A8:
+.endobj lbl_80494088
+.balign 4
+.obj lbl_804940A8, local
 	.asciz "challengeSelect"
+.endobj lbl_804940A8
+.balign 8
+.obj lbl_804940B8, local
 	.4byte 0x00343930
 	.4byte 0x315F3030
 	.4byte 0x00343931
 	.4byte 0x305F3030
-.global lbl_804940C8
-lbl_804940C8:
+.endobj lbl_804940B8
+.balign 4
+.obj lbl_804940C8, local
 	.asciz "timg/flower_seed.bti"
+.endobj lbl_804940C8
 .balign 4
-.global lbl_804940E0
-lbl_804940E0:
+.obj lbl_804940E0, local
 	.asciz "timg/leaf_icon.bti"
+.endobj lbl_804940E0
 .balign 4
-.global lbl_804940F4
-lbl_804940F4:
+.obj lbl_804940F4, local
 	.asciz "timg/flower_icon.bti"
+.endobj lbl_804940F4
 .balign 4
-.global lbl_8049410C
-lbl_8049410C:
+.obj lbl_8049410C, local
 	.asciz "timg/flower_p_icon.bti"
+.endobj lbl_8049410C
 .balign 4
+.obj lbl_80494124, local
 	.4byte lbl_804940C8
 	.4byte lbl_804940E0
 	.4byte lbl_804940F4
 	.4byte lbl_8049410C
-	.4byte 0x00000000
+.endobj lbl_80494124
+.balign 8
+.obj lbl_80494138, local
 	.4byte 0x00000000
 	.4byte 0x50727031
 	.4byte 0x00000000
@@ -110,6 +112,9 @@ lbl_8049410C:
 	.4byte 0x50777031
 	.4byte 0x00000050
 	.4byte 0x626C7031
+.endobj lbl_80494138
+.balign 8
+.obj lbl_80494160, local
 	.4byte 0x00000050
 	.4byte 0x666C3030
 	.4byte 0x5073656C
@@ -290,211 +295,138 @@ lbl_8049410C:
 	.4byte 0x65633239
 	.4byte 0x00005061
 	.4byte 0x6E613235
-	.4byte 0x73657420
-	.4byte 0x44656275
-	.4byte 0x67486561
-	.4byte 0x70506172
-	.4byte 0x656E742E
-	.4byte 0x206D6169
-	.4byte 0x6C20746F
-	.4byte 0x206D6F72
-	.4byte 0x696D756E
-	.4byte 0x2E0A0000
-	.4byte 0x2F757365
-	.4byte 0x722F4D61
-	.4byte 0x746F6261
-	.4byte 0x2F636861
-	.4byte 0x6C6C656E
-	.4byte 0x67652F73
-	.4byte 0x74616765
-	.4byte 0x732E7478
-	.4byte 0x74000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F31
-	.4byte 0x705F3270
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F7275
-	.4byte 0x6C655F77
-	.4byte 0x696E646F
-	.4byte 0x772E626C
-	.4byte 0x6F000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F7275
-	.4byte 0x6C655F77
-	.4byte 0x696E646F
-	.4byte 0x772E6274
-	.4byte 0x6B000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F7275
-	.4byte 0x6C655F77
-	.4byte 0x696E646F
-	.4byte 0x775F3032
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F7275
-	.4byte 0x6C655F77
-	.4byte 0x696E646F
-	.4byte 0x775F3033
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F7275
-	.4byte 0x6C655F77
-	.4byte 0x696E646F
-	.4byte 0x775F3034
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F7275
-	.4byte 0x6C655F77
-	.4byte 0x696E646F
-	.4byte 0x775F3035
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x2E62706B
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x5F30322E
-	.4byte 0x62746B00
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x5F30332E
-	.4byte 0x62746B00
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x5F30342E
-	.4byte 0x62746B00
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x5F30352E
-	.4byte 0x62746B00
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x5F30362E
-	.4byte 0x62746B00
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x5F30372E
-	.4byte 0x62746B00
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x656D6F64
-	.4byte 0x6F5F7365
-	.4byte 0x6C656374
-	.4byte 0x5F30382E
-	.4byte 0x62746B00
-	.4byte 0x74696D67
-	.4byte 0x2F737068
-	.4byte 0x6572652E
-	.4byte 0x62746900
-.global lbl_80494694
-lbl_80494694:
-	.4byte 0x6D725574
-	.4byte 0x696C2E68
-	.4byte 0x00000000
-	.4byte 0x68697363
-	.4byte 0x6F726531
-	.4byte 0x70203D20
-	.4byte 0x25640A00
-	.4byte 0x68697363
-	.4byte 0x6F726532
-	.4byte 0x70203D20
-	.4byte 0x25640A00
-	.4byte 0x70696B69
-	.4byte 0x28256429
-	.4byte 0x203D2025
-	.4byte 0x640A0000
-	.4byte 0x646F7069
-	.4byte 0x6E672825
-	.4byte 0x6429203D
-	.4byte 0x2025640A
-	.4byte 0x00000000
-	.4byte 0x666C6F6F
-	.4byte 0x72203D20
-	.4byte 0x25640A00
-.global lbl_804946F0
-lbl_804946F0:
-	.4byte 0x656E6457
-	.4byte 0x696E646F
-	.4byte 0x77000000
-.global lbl_804946FC
-lbl_804946FC:
-	.4byte 0x7265735F
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x6553656C
-	.4byte 0x6563742E
-	.4byte 0x737A7300
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+.endobj lbl_80494160
+.balign 4
+.obj lbl_80494430, local
+	.asciz "set DebugHeapParent. mail to morimun.\n"
+.endobj lbl_80494430
+.balign 4
+.obj lbl_80494458, local
+	.asciz "/user/Matoba/challenge/stages.txt"
+.endobj lbl_80494458
+.balign 4
+.obj lbl_8049447C, local
+	.asciz "challenge_modo_1p_2p.blo"
+.endobj lbl_8049447C
+.balign 4
+.obj lbl_80494498, local
+	.asciz "challenge_rule_window.blo"
+.endobj lbl_80494498
+.balign 4
+.obj lbl_804944B4, local
+	.asciz "challenge_rule_window.btk"
+.endobj lbl_804944B4
+.balign 4
+.obj lbl_804944D0, local
+	.asciz "challenge_rule_window_02.btk"
+.endobj lbl_804944D0
+.balign 4
+.obj lbl_804944F0, local
+	.asciz "challenge_rule_window_03.btk"
+.endobj lbl_804944F0
+.balign 4
+.obj lbl_80494510, local
+	.asciz "challenge_rule_window_04.btk"
+.endobj lbl_80494510
+.balign 4
+.obj lbl_80494530, local
+	.asciz "challenge_rule_window_05.btk"
+.endobj lbl_80494530
+.balign 4
+.obj lbl_80494550, local
+	.asciz "challengemodo_select.blo"
+.endobj lbl_80494550
+.balign 4
+.obj lbl_8049456C, local
+	.asciz "challengemodo_select.bck"
+.endobj lbl_8049456C
+.balign 4
+.obj lbl_80494588, local
+	.asciz "challengemodo_select.bpk"
+.endobj lbl_80494588
+.balign 4
+.obj lbl_804945A4, local
+	.asciz "challengemodo_select.btk"
+.endobj lbl_804945A4
+.balign 4
+.obj lbl_804945C0, local
+	.asciz "challengemodo_select_02.btk"
+.endobj lbl_804945C0
+.balign 4
+.obj lbl_804945DC, local
+	.asciz "challengemodo_select_03.btk"
+.endobj lbl_804945DC
+.balign 4
+.obj lbl_804945F8, local
+	.asciz "challengemodo_select_04.btk"
+.endobj lbl_804945F8
+.balign 4
+.obj lbl_80494614, local
+	.asciz "challengemodo_select_05.btk"
+.endobj lbl_80494614
+.balign 4
+.obj lbl_80494630, local
+	.asciz "challengemodo_select_06.btk"
+.endobj lbl_80494630
+.balign 4
+.obj lbl_8049464C, local
+	.asciz "challengemodo_select_07.btk"
+.endobj lbl_8049464C
+.balign 4
+.obj lbl_80494668, local
+	.asciz "challengemodo_select_08.btk"
+.endobj lbl_80494668
+.balign 4
+.obj lbl_80494684, local
+	.asciz "timg/sphere.bti"
+.endobj lbl_80494684
+.balign 4
+.obj lbl_80494694, local
+	.asciz "mrUtil.h"
+.endobj lbl_80494694
+.balign 4
+.obj lbl_804946A0, local
+	.asciz "hiscore1p = %d\n"
+.endobj lbl_804946A0
+.balign 4
+.obj lbl_804946B0, local
+	.asciz "hiscore2p = %d\n"
+.endobj lbl_804946B0
+.balign 4
+.obj lbl_804946C0, local
+	.asciz "piki(%d) = %d\n"
+.endobj lbl_804946C0
+.balign 4
+.obj lbl_804946D0, local
+	.asciz "doping(%d) = %d\n"
+.endobj lbl_804946D0
+.balign 4
+.obj lbl_804946E4, local
+	.asciz "floor = %d\n"
+.endobj lbl_804946E4
+.balign 4
+.obj lbl_804946F0, local
+	.asciz "endWindow"
+.endobj lbl_804946F0
+.balign 4
+.obj lbl_804946FC, local
+	.asciz "res_challengeSelect.szs"
+.endobj lbl_804946FC
+.balign 4
+.obj lbl_80494714, local
+	.asciz "screenObj.h"
+.endobj lbl_80494714
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global mIconTexture__Q28Morimura16TChallengeSelect
-mIconTexture__Q28Morimura16TChallengeSelect:
+.obj mIconTexture__Q28Morimura16TChallengeSelect, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global __vt__Q28Morimura21TChallengeSelectScene
-__vt__Q28Morimura21TChallengeSelectScene:
+.endobj mIconTexture__Q28Morimura16TChallengeSelect
+.balign 4
+.obj __vt__Q28Morimura21TChallengeSelectScene, global
 	.4byte 0
 	.4byte 0
 	.4byte getSceneType__Q28Morimura21TChallengeSelectSceneFv
@@ -515,16 +447,16 @@ __vt__Q28Morimura21TChallengeSelectScene:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
-.global __vt__Q25efx2d14T2DChalDiveEnd
-__vt__Q25efx2d14T2DChalDiveEnd:
+.endobj __vt__Q28Morimura21TChallengeSelectScene
+.obj __vt__Q25efx2d14T2DChalDiveEnd, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d8TSimple1FPQ25efx2d3Arg
 	.4byte kill__Q25efx2d8TSimple1Fv
 	.4byte fade__Q25efx2d8TSimple1Fv
 	.4byte setGroup__Q25efx2d5TBaseFUc
-.global __vt__Q25efx2d11T2DChalDive
-__vt__Q25efx2d11T2DChalDive:
+.endobj __vt__Q25efx2d14T2DChalDiveEnd
+.obj __vt__Q25efx2d11T2DChalDive, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
@@ -539,8 +471,8 @@ __vt__Q25efx2d11T2DChalDive:
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q25efx2d11T2DChalDiveFv
-.global __vt__Q28Morimura16TChallengeSelect
-__vt__Q28Morimura16TChallengeSelect:
+.endobj __vt__Q25efx2d11T2DChalDive
+.obj __vt__Q28Morimura16TChallengeSelect, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura16TChallengeSelectFv
@@ -572,23 +504,23 @@ __vt__Q28Morimura16TChallengeSelect:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte getDispMemberBase__Q28Morimura16TChallengeSelectFv
-.global __vt__Q28Morimura33TChallengeSelectExplanationWindow
-__vt__Q28Morimura33TChallengeSelectExplanationWindow:
+.endobj __vt__Q28Morimura16TChallengeSelect
+.obj __vt__Q28Morimura33TChallengeSelectExplanationWindow, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura33TChallengeSelectExplanationWindowFPCcUl
 	.4byte update__Q28Morimura24TSelectExplanationWindowFv
 	.4byte draw__Q28Morimura24TSelectExplanationWindowFR8GraphicsP13J2DPerspGraph
 	.4byte screenScaleUp__Q28Morimura33TChallengeSelectExplanationWindowFv
-.global __vt__Q28Morimura24TChallengePlayModeScreen
-__vt__Q28Morimura24TChallengePlayModeScreen:
+.endobj __vt__Q28Morimura33TChallengeSelectExplanationWindow
+.obj __vt__Q28Morimura24TChallengePlayModeScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura24TChallengePlayModeScreenFPCcUl
 	.4byte update__Q28Morimura24TChallengePlayModeScreenFv
 	.4byte draw__Q28Morimura24TChallengePlayModeScreenFR8GraphicsP13J2DPerspGraph
-.global __vt__Q28Morimura16TChallengeScreen
-__vt__Q28Morimura16TChallengeScreen:
+.endobj __vt__Q28Morimura24TChallengePlayModeScreen
+.obj __vt__Q28Morimura16TChallengeScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura16TChallengeScreenFPCcUl
@@ -596,264 +528,260 @@ __vt__Q28Morimura16TChallengeScreen:
 	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
 	.4byte createAnimPane__Q28Morimura16TChallengeScreenFPc
 	.4byte updateBckPane__Q28Morimura16TChallengeScreenFv
-	.4byte 0
+.endobj __vt__Q28Morimura16TChallengeScreen
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mSelected1p__Q28Morimura16TChallengeSelect
-mSelected1p__Q28Morimura16TChallengeSelect:
-	.4byte 0x01000000
-.global mAlphaSpeed__Q28Morimura16TChallengeSelect
-mAlphaSpeed__Q28Morimura16TChallengeSelect:
-	.float 0.05
-.global mFlashAnimInterval__Q28Morimura16TChallengeSelect
-mFlashAnimInterval__Q28Morimura16TChallengeSelect:
-	.2byte 0x012C
-	.2byte 0x0000
-.global mTextFlashVal__Q28Morimura16TChallengeSelect
-mTextFlashVal__Q28Morimura16TChallengeSelect:
-	.float 1.0
-.global mConnect2p__Q28Morimura16TChallengeSelect
-mConnect2p__Q28Morimura16TChallengeSelect:
+.obj mSelected1p__Q28Morimura16TChallengeSelect, global
 	.byte 0x01
-	.byte 0x00
-	.byte 0x00
-	.byte 0x00
-.global mPanelMoveVal__Q28Morimura16TChallengeSelect
-mPanelMoveVal__Q28Morimura16TChallengeSelect:
+.endobj mSelected1p__Q28Morimura16TChallengeSelect
+.balign 4
+.obj mAlphaSpeed__Q28Morimura16TChallengeSelect, global
+	.float 0.05
+.endobj mAlphaSpeed__Q28Morimura16TChallengeSelect
+.obj mFlashAnimInterval__Q28Morimura16TChallengeSelect, global
+	.2byte 0x012C
+.endobj mFlashAnimInterval__Q28Morimura16TChallengeSelect
+.balign 4
+.obj mTextFlashVal__Q28Morimura16TChallengeSelect, global
 	.float 1.0
-.global mPanelMoveRate__Q28Morimura16TChallengeSelect
-mPanelMoveRate__Q28Morimura16TChallengeSelect:
+.endobj mTextFlashVal__Q28Morimura16TChallengeSelect
+.obj mConnect2p__Q28Morimura16TChallengeSelect, global
+	.byte 0x01
+.endobj mConnect2p__Q28Morimura16TChallengeSelect
+.balign 4
+.obj mPanelMoveVal__Q28Morimura16TChallengeSelect, global
+	.float 1.0
+.endobj mPanelMoveVal__Q28Morimura16TChallengeSelect
+.obj mPanelMoveRate__Q28Morimura16TChallengeSelect, global
 	.float 0.25
-.global mCircleY__Q28Morimura16TChallengeSelect
-mCircleY__Q28Morimura16TChallengeSelect:
+.endobj mPanelMoveRate__Q28Morimura16TChallengeSelect
+.obj mCircleY__Q28Morimura16TChallengeSelect, global
 	.float 100.0
-.global mTimerSpeed__Q28Morimura16TChallengeSelect
-mTimerSpeed__Q28Morimura16TChallengeSelect:
+.endobj mCircleY__Q28Morimura16TChallengeSelect
+.obj mTimerSpeed__Q28Morimura16TChallengeSelect, global
 	.float 0.15
-.global mMoveSpeed__Q28Morimura16TChallengeSelect
-mMoveSpeed__Q28Morimura16TChallengeSelect:
+.endobj mTimerSpeed__Q28Morimura16TChallengeSelect
+.obj mMoveSpeed__Q28Morimura16TChallengeSelect, global
 	.float 12.0
-.global mSelectIconScale__Q28Morimura16TChallengeSelect
-mSelectIconScale__Q28Morimura16TChallengeSelect:
+.endobj mMoveSpeed__Q28Morimura16TChallengeSelect
+.obj mSelectIconScale__Q28Morimura16TChallengeSelect, global
 	.float 1.5
+.endobj mSelectIconScale__Q28Morimura16TChallengeSelect
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mRightOffset__Q28Morimura16TChallengeSelect
-mRightOffset__Q28Morimura16TChallengeSelect:
+.obj mRightOffset__Q28Morimura16TChallengeSelect, global
 	.skip 0x4
-.global mDownOffset__Q28Morimura16TChallengeSelect
-mDownOffset__Q28Morimura16TChallengeSelect:
+.endobj mRightOffset__Q28Morimura16TChallengeSelect
+.obj mDownOffset__Q28Morimura16TChallengeSelect, global
 	.skip 0x4
-.global mFrameAnimAlpha__Q28Morimura16TChallengeSelect
-mFrameAnimAlpha__Q28Morimura16TChallengeSelect:
+.endobj mDownOffset__Q28Morimura16TChallengeSelect
+.obj mFrameAnimAlpha__Q28Morimura16TChallengeSelect, global
 	.skip 0x1
-.global mAllCourseOpen__Q28Morimura16TChallengeSelect
-mAllCourseOpen__Q28Morimura16TChallengeSelect:
+.endobj mFrameAnimAlpha__Q28Morimura16TChallengeSelect
+.obj mAllCourseOpen__Q28Morimura16TChallengeSelect, global
 	.skip 0x1
-.global mForceDemoStart__Q28Morimura16TChallengeSelect
-mForceDemoStart__Q28Morimura16TChallengeSelect:
-	.skip 0x2
-.global mDivePikiNum__Q28Morimura16TChallengeSelect
-mDivePikiNum__Q28Morimura16TChallengeSelect:
+.endobj mAllCourseOpen__Q28Morimura16TChallengeSelect
+.obj mForceDemoStart__Q28Morimura16TChallengeSelect, global
+	.skip 0x1
+.endobj mForceDemoStart__Q28Morimura16TChallengeSelect
+.balign 4
+.obj mDivePikiNum__Q28Morimura16TChallengeSelect, global
 	.skip 0x4
-.global mMetOffset__Q28Morimura16TChallengeSelect
-mMetOffset__Q28Morimura16TChallengeSelect:
+.endobj mDivePikiNum__Q28Morimura16TChallengeSelect
+.obj mMetOffset__Q28Morimura16TChallengeSelect, global
 	.skip 0x8
-.global mDebugHeapParent__Q28Morimura16TChallengeSelect
-mDebugHeapParent__Q28Morimura16TChallengeSelect:
+.endobj mMetOffset__Q28Morimura16TChallengeSelect
+.obj mDebugHeapParent__Q28Morimura16TChallengeSelect, global
 	.skip 0x4
-.global mDebugHeap__Q28Morimura16TChallengeSelect
-mDebugHeap__Q28Morimura16TChallengeSelect:
+.endobj mDebugHeapParent__Q28Morimura16TChallengeSelect
+.obj mDebugHeap__Q28Morimura16TChallengeSelect, global
 	.skip 0x4
+.endobj mDebugHeap__Q28Morimura16TChallengeSelect
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051EF88
-lbl_8051EF88:
-	.4byte 0x00000000
-.global lbl_8051EF8C
-lbl_8051EF8C:
-	.4byte 0xC3FA0000
-.global lbl_8051EF90
-lbl_8051EF90:
-	.4byte 0x47000000
-.global lbl_8051EF94
-lbl_8051EF94:
+.obj lbl_8051EF88, local
+	.float 0.0
+.endobj lbl_8051EF88
+.obj lbl_8051EF8C, local
+	.float -500.0
+.endobj lbl_8051EF8C
+.obj lbl_8051EF90, local
+	.float 32768.0
+.endobj lbl_8051EF90
+.obj lbl_8051EF94, local
 	.float 0.1
-.global lbl_8051EF98
-lbl_8051EF98:
-	.4byte 0x41F00000
-.global lbl_8051EF9C
-lbl_8051EF9C:
+.endobj lbl_8051EF94
+.obj lbl_8051EF98, local
+	.float 30.0
+.endobj lbl_8051EF98
+.obj lbl_8051EF9C, local
 	.float 0.5
-.global lbl_8051EFA0
-lbl_8051EFA0:
-	.4byte 0xBF800000
-.global lbl_8051EFA4
-lbl_8051EFA4:
-	.4byte 0x41700000
-.global lbl_8051EFA8
-lbl_8051EFA8:
-	.4byte 0x41200000
-	.4byte 0x00000000
-.global lbl_8051EFB0
-lbl_8051EFB0:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_8051EFB8
-lbl_8051EFB8:
+.endobj lbl_8051EF9C
+.obj lbl_8051EFA0, local
+	.float -1.0
+.endobj lbl_8051EFA0
+.obj lbl_8051EFA4, local
+	.float 15.0
+.endobj lbl_8051EFA4
+.obj lbl_8051EFA8, local
+	.float 10.0
+.endobj lbl_8051EFA8
+.balign 8
+.obj lbl_8051EFB0, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051EFB0
+.obj lbl_8051EFB8, local
 	.float 0.7
-.global lbl_8051EFBC
-lbl_8051EFBC:
-	.4byte 0x40C90FDB
-.global lbl_8051EFC0
-lbl_8051EFC0:
-	.4byte 0x3FC90FDB
-.global lbl_8051EFC4
-lbl_8051EFC4:
-	.4byte 0xC3A2F983
-.global lbl_8051EFC8
-lbl_8051EFC8:
-	.4byte 0x43A2F983
-.global lbl_8051EFCC
-lbl_8051EFCC:
-	.4byte 0x40000000
-.global lbl_8051EFD0
-lbl_8051EFD0:
-	.4byte 0x40490FDB
-.global lbl_8051EFD4
-lbl_8051EFD4:
-	.4byte 0xC1000000
-.global lbl_8051EFD8
-lbl_8051EFD8:
-	.4byte 0x41000000
-.global lbl_8051EFDC
-lbl_8051EFDC:
-	.4byte 0x428C0000
-.global lbl_8051EFE0
-lbl_8051EFE0:
-	.4byte 0x42200000
-.global lbl_8051EFE4
-lbl_8051EFE4:
+.endobj lbl_8051EFB8
+.obj lbl_8051EFBC, local # tau
+	.float 6.2831855
+.endobj lbl_8051EFBC
+.obj lbl_8051EFC0, local # pi/2
+	.float 1.5707964
+.endobj lbl_8051EFC0
+.obj lbl_8051EFC4, local
+	.float -325.9493
+.endobj lbl_8051EFC4
+.obj lbl_8051EFC8, local
+	.float 325.9493
+.endobj lbl_8051EFC8
+.obj lbl_8051EFCC, local
+	.float 2.0
+.endobj lbl_8051EFCC
+.obj lbl_8051EFD0, local # pi
+	.float 3.1415927
+.endobj lbl_8051EFD0
+.obj lbl_8051EFD4, local
+	.float -8.0
+.endobj lbl_8051EFD4
+.obj lbl_8051EFD8, local
+	.float 8.0
+.endobj lbl_8051EFD8
+.obj lbl_8051EFDC, local
+	.float 70.0
+.endobj lbl_8051EFDC
+.obj lbl_8051EFE0, local
+	.float 40.0
+.endobj lbl_8051EFE0
+.obj lbl_8051EFE4, local
 	.float 0.3
-.global lbl_8051EFE8
-lbl_8051EFE8:
-	.4byte 0xC2C80000
-.global lbl_8051EFEC
-lbl_8051EFEC:
-	.4byte 0x40400000
-.global lbl_8051EFF0
-lbl_8051EFF0:
+.endobj lbl_8051EFE4
+.obj lbl_8051EFE8, local
+	.float -100.0
+.endobj lbl_8051EFE8
+.obj lbl_8051EFEC, local
+	.float 3.0
+.endobj lbl_8051EFEC
+.obj lbl_8051EFF0, local
 	.float 1.0
-.global lbl_8051EFF4
-lbl_8051EFF4:
+.endobj lbl_8051EFF0
+.obj lbl_8051EFF4, local
 	.float 0.05
-.global lbl_8051EFF8
-lbl_8051EFF8:
-	.4byte 0x3F733333
-	.4byte 0x00000000
-.global lbl_8051F000
-lbl_8051F000:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global lbl_8051F008
-lbl_8051F008:
-	.4byte 0x3E4CCCCD
-.global lbl_8051F00C
-lbl_8051F00C:
-	.4byte 0x3F666666
-.global lbl_8051F010
-lbl_8051F010:
-	.4byte 0x3F19999A
-.global lbl_8051F014
-lbl_8051F014:
-	.4byte 0x43A00000
-.global lbl_8051F018
-lbl_8051F018:
-	.4byte 0x440C0000
-.global lbl_8051F01C
-lbl_8051F01C:
-	.4byte 0x42C80000
-.global lbl_8051F020
-lbl_8051F020:
-	.4byte 0x44200000
-.global lbl_8051F024
-lbl_8051F024:
-	.4byte 0x43F00000
-.global lbl_8051F028
-lbl_8051F028:
-	.4byte 0x42000000
-.global lbl_8051F02C
-lbl_8051F02C:
-	.4byte 0x44480000
-.global lbl_8051F030
-lbl_8051F030:
-	.4byte 0x42960000
-.global lbl_8051F034
-lbl_8051F034:
-	.4byte 0x437F0000
-.global lbl_8051F038
-lbl_8051F038:
-	.4byte 0x43C80000
-.global lbl_8051F03C
-lbl_8051F03C:
-	.4byte 0xC4480000
-.global lbl_8051F040
-lbl_8051F040:
-	.4byte 0x3F8CCCCD
-.global lbl_8051F044
-lbl_8051F044:
+.endobj lbl_8051EFF4
+.obj lbl_8051EFF8, local
+	.float 0.95
+.endobj lbl_8051EFF8
+.balign 8
+.obj lbl_8051F000, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051F000
+.obj lbl_8051F008, local
+	.float 0.2
+.endobj lbl_8051F008
+.obj lbl_8051F00C, local
+	.float 0.9
+.endobj lbl_8051F00C
+.obj lbl_8051F010, local
+	.float 0.6
+.endobj lbl_8051F010
+.obj lbl_8051F014, local
+	.float 320.0
+.endobj lbl_8051F014
+.obj lbl_8051F018, local
+	.float 560.0
+.endobj lbl_8051F018
+.obj lbl_8051F01C, local
+	.float 100.0
+.endobj lbl_8051F01C
+.obj lbl_8051F020, local
+	.float 640.0
+.endobj lbl_8051F020
+.obj lbl_8051F024, local
+	.float 480.0
+.endobj lbl_8051F024
+.obj lbl_8051F028, local
+	.float 32.0
+.endobj lbl_8051F028
+.obj lbl_8051F02C, local
+	.float 800.0
+.endobj lbl_8051F02C
+.obj lbl_8051F030, local
+	.float 75.0
+.endobj lbl_8051F030
+.obj lbl_8051F034, local
+	.float 255.0
+.endobj lbl_8051F034
+.obj lbl_8051F038, local
+	.float 400.0
+.endobj lbl_8051F038
+.obj lbl_8051F03C, local
+	.float -800.0
+.endobj lbl_8051F03C
+.obj lbl_8051F040, local
+	.float 1.1
+.endobj lbl_8051F040
+.obj lbl_8051F044, local
 	.float 0.25
-.global lbl_8051F048
-lbl_8051F048:
-	.4byte 0x41A00000
-.global lbl_8051F04C
-lbl_8051F04C:
-	.4byte 0x3ECCCCCD
-.global lbl_8051F050
-lbl_8051F050:
+.endobj lbl_8051F044
+.obj lbl_8051F048, local
+	.float 20.0
+.endobj lbl_8051F048
+.obj lbl_8051F04C, local
+	.float 0.4
+.endobj lbl_8051F04C
+.obj lbl_8051F050, local
 	.float 0.15
-.global lbl_8051F054
-lbl_8051F054:
-	.4byte 0x47C35000
-.global lbl_8051F058
-lbl_8051F058:
-	.4byte 0x3F266666
-.global lbl_8051F05C
-lbl_8051F05C:
-	.4byte 0x3FA66666
-.global lbl_8051F060
-lbl_8051F060:
-	.4byte 0xBFA66666
-.global lbl_8051F064
-lbl_8051F064:
-	.4byte 0x3FA00000
-.global lbl_8051F068
-lbl_8051F068:
-	.4byte 0xBFA00000
-.global lbl_8051F06C
-lbl_8051F06C:
-	.4byte 0x40A00000
-.global lbl_8051F070
-lbl_8051F070:
-	.4byte 0x42B40000
-.global lbl_8051F074
-lbl_8051F074:
-	.4byte 0xBF000000
-.global lbl_8051F078
-lbl_8051F078:
-	.4byte 0xC1B00000
-	.4byte 0x00000000
+.endobj lbl_8051F050
+.obj lbl_8051F054, local
+	.float 100000.0
+.endobj lbl_8051F054
+.obj lbl_8051F058, local
+	.float 0.65
+.endobj lbl_8051F058
+.obj lbl_8051F05C, local
+	.float 1.3
+.endobj lbl_8051F05C
+.obj lbl_8051F060, local
+	.float -1.3
+.endobj lbl_8051F060
+.obj lbl_8051F064, local
+	.float 1.25
+.endobj lbl_8051F064
+.obj lbl_8051F068, local
+	.float -1.25
+.endobj lbl_8051F068
+.obj lbl_8051F06C, local
+	.float 5.0
+.endobj lbl_8051F06C
+.obj lbl_8051F070, local
+	.float 90.0
+.endobj lbl_8051F070
+.obj lbl_8051F074, local
+	.float -0.5
+.endobj lbl_8051F074
+.obj lbl_8051F078, local
+	.float -22.0
+.endobj lbl_8051F078
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q38Morimura14TChallengePiki7posInfoFv
-__ct__Q38Morimura14TChallengePiki7posInfoFv:
+.fn __ct__Q38Morimura14TChallengePiki7posInfoFv, weak
 /* 8038C488 003893C8  4E 80 00 20 */	blr 
+.endfn __ct__Q38Morimura14TChallengePiki7posInfoFv
 
-.global update__Q28Morimura14TChallengePikiFv
-update__Q28Morimura14TChallengePikiFv:
+.fn update__Q28Morimura14TChallengePikiFv, global
 /* 8038C48C 003893CC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8038C490 003893D0  7C 08 02 A6 */	mflr r0
 /* 8038C494 003893D4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1165,9 +1093,9 @@ update__Q28Morimura14TChallengePikiFv:
 /* 8038C8EC 0038982C  7C 08 03 A6 */	mtlr r0
 /* 8038C8F0 00389830  38 21 00 40 */	addi r1, r1, 0x40
 /* 8038C8F4 00389834  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura14TChallengePikiFv
 
-.global update__Q28Morimura15TChallengePanelFib
-update__Q28Morimura15TChallengePanelFib:
+.fn update__Q28Morimura15TChallengePanelFib, global
 /* 8038C8F8 00389838  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8038C8FC 0038983C  7C 08 02 A6 */	mflr r0
 /* 8038C900 00389840  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1424,9 +1352,9 @@ update__Q28Morimura15TChallengePanelFib:
 /* 8038CCBC 00389BFC  7C 08 03 A6 */	mtlr r0
 /* 8038CCC0 00389C00  38 21 00 30 */	addi r1, r1, 0x30
 /* 8038CCC4 00389C04  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura15TChallengePanelFib
 
-.global __ct__Q28Morimura16TChallengeScreenFP10JKRArchivei
-__ct__Q28Morimura16TChallengeScreenFP10JKRArchivei:
+.fn __ct__Q28Morimura16TChallengeScreenFP10JKRArchivei, global
 /* 8038CCC8 00389C08  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8038CCCC 00389C0C  7C 08 02 A6 */	mflr r0
 /* 8038CCD0 00389C10  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1467,9 +1395,9 @@ __ct__Q28Morimura16TChallengeScreenFP10JKRArchivei:
 /* 8038CD5C 00389C9C  7C 08 03 A6 */	mtlr r0
 /* 8038CD60 00389CA0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8038CD64 00389CA4  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura16TChallengeScreenFP10JKRArchivei
 
-.global create__Q28Morimura16TChallengeScreenFPCcUl
-create__Q28Morimura16TChallengeScreenFPCcUl:
+.fn create__Q28Morimura16TChallengeScreenFPCcUl, global
 /* 8038CD68 00389CA8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8038CD6C 00389CAC  7C 08 02 A6 */	mflr r0
 /* 8038CD70 00389CB0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1720,9 +1648,9 @@ create__Q28Morimura16TChallengeScreenFPCcUl:
 /* 8038D11C 0038A05C  7C 08 03 A6 */	mtlr r0
 /* 8038D120 0038A060  38 21 00 40 */	addi r1, r1, 0x40
 /* 8038D124 0038A064  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura16TChallengeScreenFPCcUl
 
-.global createAnimPane__Q28Morimura16TChallengeScreenFPc
-createAnimPane__Q28Morimura16TChallengeScreenFPc:
+.fn createAnimPane__Q28Morimura16TChallengeScreenFPc, global
 /* 8038D128 0038A068  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8038D12C 0038A06C  7C 08 02 A6 */	mflr r0
 /* 8038D130 0038A070  3C A0 80 49 */	lis r5, lbl_80494008@ha
@@ -1781,9 +1709,9 @@ createAnimPane__Q28Morimura16TChallengeScreenFPc:
 /* 8038D1F4 0038A134  7C 08 03 A6 */	mtlr r0
 /* 8038D1F8 0038A138  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8038D1FC 0038A13C  4E 80 00 20 */	blr 
+.endfn createAnimPane__Q28Morimura16TChallengeScreenFPc
 
-.global update__Q28Morimura16TChallengeScreenFv
-update__Q28Morimura16TChallengeScreenFv:
+.fn update__Q28Morimura16TChallengeScreenFv, global
 /* 8038D200 0038A140  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8038D204 0038A144  7C 08 02 A6 */	mflr r0
 /* 8038D208 0038A148  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1891,9 +1819,9 @@ update__Q28Morimura16TChallengeScreenFv:
 /* 8038D380 0038A2C0  7C 08 03 A6 */	mtlr r0
 /* 8038D384 0038A2C4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8038D388 0038A2C8  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura16TChallengeScreenFv
 
-.global updateBckPane__Q28Morimura16TChallengeScreenFv
-updateBckPane__Q28Morimura16TChallengeScreenFv:
+.fn updateBckPane__Q28Morimura16TChallengeScreenFv, global
 /* 8038D38C 0038A2CC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8038D390 0038A2D0  7C 08 02 A6 */	mflr r0
 /* 8038D394 0038A2D4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1942,9 +1870,9 @@ updateBckPane__Q28Morimura16TChallengeScreenFv:
 /* 8038D430 0038A370  7C 08 03 A6 */	mtlr r0
 /* 8038D434 0038A374  38 21 00 30 */	addi r1, r1, 0x30
 /* 8038D438 0038A378  4E 80 00 20 */	blr 
+.endfn updateBckPane__Q28Morimura16TChallengeScreenFv
 
-.global isRandAnimStart__Q28Morimura16TChallengeScreenFv
-isRandAnimStart__Q28Morimura16TChallengeScreenFv:
+.fn isRandAnimStart__Q28Morimura16TChallengeScreenFv, global
 /* 8038D43C 0038A37C  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8038D440 0038A380  C0 22 0C 6C */	lfs f1, lbl_8051EFCC@sda21(r2)
 /* 8038D444 0038A384  80 63 00 00 */	lwz r3, 0(r3)
@@ -1953,9 +1881,9 @@ isRandAnimStart__Q28Morimura16TChallengeScreenFv:
 /* 8038D450 0038A390  7C 00 00 26 */	mfcr r0
 /* 8038D454 0038A394  54 03 1F FE */	rlwinm r3, r0, 3, 0x1f, 0x1f
 /* 8038D458 0038A398  4E 80 00 20 */	blr 
+.endfn isRandAnimStart__Q28Morimura16TChallengeScreenFv
 
-.global __ct__Q28Morimura24TChallengePlayModeScreenFP10JKRArchivei
-__ct__Q28Morimura24TChallengePlayModeScreenFP10JKRArchivei:
+.fn __ct__Q28Morimura24TChallengePlayModeScreenFP10JKRArchivei, global
 /* 8038D45C 0038A39C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8038D460 0038A3A0  7C 08 02 A6 */	mflr r0
 /* 8038D464 0038A3A4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2031,9 +1959,9 @@ __ct__Q28Morimura24TChallengePlayModeScreenFP10JKRArchivei:
 /* 8038D578 0038A4B8  7C 08 03 A6 */	mtlr r0
 /* 8038D57C 0038A4BC  38 21 00 60 */	addi r1, r1, 0x60
 /* 8038D580 0038A4C0  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura24TChallengePlayModeScreenFP10JKRArchivei
 
-.global create__Q28Morimura24TChallengePlayModeScreenFPCcUl
-create__Q28Morimura24TChallengePlayModeScreenFPCcUl:
+.fn create__Q28Morimura24TChallengePlayModeScreenFPCcUl, global
 /* 8038D584 0038A4C4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8038D588 0038A4C8  7C 08 02 A6 */	mflr r0
 /* 8038D58C 0038A4CC  3C C0 80 49 */	lis r6, lbl_80493FC0@ha
@@ -2410,9 +2338,9 @@ create__Q28Morimura24TChallengePlayModeScreenFPCcUl:
 /* 8038DB10 0038AA50  7C 08 03 A6 */	mtlr r0
 /* 8038DB14 0038AA54  38 21 00 40 */	addi r1, r1, 0x40
 /* 8038DB18 0038AA58  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura24TChallengePlayModeScreenFPCcUl
 
-.global update__Q28Morimura24TChallengePlayModeScreenFv
-update__Q28Morimura24TChallengePlayModeScreenFv:
+.fn update__Q28Morimura24TChallengePlayModeScreenFv, global
 /* 8038DB1C 0038AA5C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8038DB20 0038AA60  7C 08 02 A6 */	mflr r0
 /* 8038DB24 0038AA64  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2962,9 +2890,9 @@ update__Q28Morimura24TChallengePlayModeScreenFv:
 /* 8038E30C 0038B24C  7C 08 03 A6 */	mtlr r0
 /* 8038E310 0038B250  38 21 00 50 */	addi r1, r1, 0x50
 /* 8038E314 0038B254  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura24TChallengePlayModeScreenFv
 
-.global draw__Q28Morimura24TChallengePlayModeScreenFR8GraphicsP13J2DPerspGraph
-draw__Q28Morimura24TChallengePlayModeScreenFR8GraphicsP13J2DPerspGraph:
+.fn draw__Q28Morimura24TChallengePlayModeScreenFR8GraphicsP13J2DPerspGraph, global
 /* 8038E318 0038B258  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8038E31C 0038B25C  7C 08 02 A6 */	mflr r0
 /* 8038E320 0038B260  90 01 00 84 */	stw r0, 0x84(r1)
@@ -3374,9 +3302,9 @@ draw__Q28Morimura24TChallengePlayModeScreenFR8GraphicsP13J2DPerspGraph:
 /* 8038E96C 0038B8AC  7C 08 03 A6 */	mtlr r0
 /* 8038E970 0038B8B0  38 21 00 80 */	addi r1, r1, 0x80
 /* 8038E974 0038B8B4  4E 80 00 20 */	blr 
+.endfn draw__Q28Morimura24TChallengePlayModeScreenFR8GraphicsP13J2DPerspGraph
 
-.global create__Q28Morimura33TChallengeSelectExplanationWindowFPCcUl
-create__Q28Morimura33TChallengeSelectExplanationWindowFPCcUl:
+.fn create__Q28Morimura33TChallengeSelectExplanationWindowFPCcUl, global
 /* 8038E978 0038B8B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8038E97C 0038B8BC  7C 08 02 A6 */	mflr r0
 /* 8038E980 0038B8C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3392,13 +3320,13 @@ create__Q28Morimura33TChallengeSelectExplanationWindowFPCcUl:
 /* 8038E9A8 0038B8E8  7C 08 03 A6 */	mtlr r0
 /* 8038E9AC 0038B8EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8038E9B0 0038B8F0  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura33TChallengeSelectExplanationWindowFPCcUl
 
-.global screenScaleUp__Q28Morimura33TChallengeSelectExplanationWindowFv
-screenScaleUp__Q28Morimura33TChallengeSelectExplanationWindowFv:
+.fn screenScaleUp__Q28Morimura33TChallengeSelectExplanationWindowFv, global
 /* 8038E9B4 0038B8F4  4E 80 00 20 */	blr 
+.endfn screenScaleUp__Q28Morimura33TChallengeSelectExplanationWindowFv
 
-.global __ct__Q28Morimura16TChallengeSelectFv
-__ct__Q28Morimura16TChallengeSelectFv:
+.fn __ct__Q28Morimura16TChallengeSelectFv, global
 /* 8038E9B8 0038B8F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8038E9BC 0038B8FC  7C 08 02 A6 */	mflr r0
 /* 8038E9C0 0038B900  3C 80 80 49 */	lis r4, lbl_804940A8@ha
@@ -3478,9 +3406,9 @@ __ct__Q28Morimura16TChallengeSelectFv:
 /* 8038EAE8 0038BA28  7C 08 03 A6 */	mtlr r0
 /* 8038EAEC 0038BA2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8038EAF0 0038BA30  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura16TChallengeSelectFv
 
-.global __dt__Q28Morimura16TChallengeSelectFv
-__dt__Q28Morimura16TChallengeSelectFv:
+.fn __dt__Q28Morimura16TChallengeSelectFv, global
 /* 8038EAF4 0038BA34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8038EAF8 0038BA38  7C 08 02 A6 */	mflr r0
 /* 8038EAFC 0038BA3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3545,10 +3473,10 @@ __dt__Q28Morimura16TChallengeSelectFv:
 /* 8038EBDC 0038BB1C  7C 08 03 A6 */	mtlr r0
 /* 8038EBE0 0038BB20  38 21 00 10 */	addi r1, r1, 0x10
 /* 8038EBE4 0038BB24  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura16TChallengeSelectFv
 
 .if version == 1
-.global doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive
-doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive:
+.fn doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive, global
 /* 8038EC1C 0038BB5C  94 21 F8 60 */	stwu r1, -0x7a0(r1)
 /* 8038EC20 0038BB60  7C 08 02 A6 */	mflr r0
 /* 8038EC24 0038BB64  90 01 07 A4 */	stw r0, 0x7a4(r1)
@@ -5400,10 +5328,10 @@ doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive:
 /* 803907C4 0038D704  7C 08 03 A6 */	mtlr r0
 /* 803907C8 0038D708  38 21 07 A0 */	addi r1, r1, 0x7a0
 /* 803907CC 0038D70C  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive
 
 .else
-.global doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive
-doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive:
+.fn doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive, global
 /* 8038EBE8 0038BB28  94 21 F8 60 */	stwu r1, -0x7a0(r1)
 /* 8038EBEC 0038BB2C  7C 08 02 A6 */	mflr r0
 /* 8038EBF0 0038BB30  90 01 07 A4 */	stw r0, 0x7a4(r1)
@@ -7245,11 +7173,11 @@ doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive:
 /* 80390774 0038D6B4  7C 08 03 A6 */	mtlr r0
 /* 80390778 0038D6B8  38 21 07 A0 */	addi r1, r1, 0x7a0
 /* 8039077C 0038D6BC  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive
 .endif
 
 .if version == 1
-.global doUpdate__Q28Morimura16TChallengeSelectFv
-doUpdate__Q28Morimura16TChallengeSelectFv:
+.fn doUpdate__Q28Morimura16TChallengeSelectFv, global
 /* 803907D0 0038D710  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 803907D4 0038D714  7C 08 02 A6 */	mflr r0
 /* 803907D8 0038D718  90 01 01 04 */	stw r0, 0x104(r1)
@@ -8710,9 +8638,9 @@ doUpdate__Q28Morimura16TChallengeSelectFv:
 /* 80391CA4 0038EBE4  7C 08 03 A6 */	mtlr r0
 /* 80391CA8 0038EBE8  38 21 01 00 */	addi r1, r1, 0x100
 /* 80391CAC 0038EBEC  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura16TChallengeSelectFv
 .else
-.global doUpdate__Q28Morimura16TChallengeSelectFv
-doUpdate__Q28Morimura16TChallengeSelectFv:
+.fn doUpdate__Q28Morimura16TChallengeSelectFv, global
 /* 80390780 0038D6C0  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 80390784 0038D6C4  7C 08 02 A6 */	mflr r0
 /* 80390788 0038D6C8  90 01 01 04 */	stw r0, 0x104(r1)
@@ -10167,10 +10095,10 @@ doUpdate__Q28Morimura16TChallengeSelectFv:
 /* 80391C40 0038EB80  7C 08 03 A6 */	mtlr r0
 /* 80391C44 0038EB84  38 21 01 00 */	addi r1, r1, 0x100
 /* 80391C48 0038EB88  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura16TChallengeSelectFv
 .endif
 
-.global doDraw__Q28Morimura16TChallengeSelectFR8Graphics
-doDraw__Q28Morimura16TChallengeSelectFR8Graphics:
+.fn doDraw__Q28Morimura16TChallengeSelectFR8Graphics, global
 /* 80391C4C 0038EB8C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80391C50 0038EB90  7C 08 02 A6 */	mflr r0
 /* 80391C54 0038EB94  90 01 00 94 */	stw r0, 0x94(r1)
@@ -10510,10 +10438,10 @@ doDraw__Q28Morimura16TChallengeSelectFR8Graphics:
 /* 80392154 0038F094  7C 08 03 A6 */	mtlr r0
 /* 80392158 0038F098  38 21 00 90 */	addi r1, r1, 0x90
 /* 8039215C 0038F09C  4E 80 00 20 */	blr 
+.endfn doDraw__Q28Morimura16TChallengeSelectFR8Graphics
 
 .if version == 1
-.global doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv
-doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv:
+.fn doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv, global
 /* 80392160 0038F0A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80392164 0038F0A4  7C 08 02 A6 */	mflr r0
 /* 80392168 0038F0A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10547,9 +10475,9 @@ doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv:
 /* 803921CC 0038F10C  7C 08 03 A6 */	mtlr r0
 /* 803921D0 0038F110  38 21 00 10 */	addi r1, r1, 0x10
 /* 803921D4 0038F114  4E 80 00 20 */	blr 
+.endfn doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv
 .else
-.global doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv
-doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv:
+.fn doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv, global
 /* 80392160 0038F0A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80392164 0038F0A4  7C 08 02 A6 */	mflr r0
 /* 80392168 0038F0A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10583,11 +10511,11 @@ doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv:
 /* 803921CC 0038F10C  7C 08 03 A6 */	mtlr r0
 /* 803921D0 0038F110  38 21 00 10 */	addi r1, r1, 0x10
 /* 803921D4 0038F114  4E 80 00 20 */	blr 
+.endfn doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv
 .endif
 
 .if version == 1
-.global setInfo__Q28Morimura16TChallengeSelectFi
-setInfo__Q28Morimura16TChallengeSelectFi:
+.fn setInfo__Q28Morimura16TChallengeSelectFi, global
 /* 803921D8 0038F118  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803921DC 0038F11C  7C 08 02 A6 */	mflr r0
 /* 803921E0 0038F120  90 01 00 54 */	stw r0, 0x54(r1)
@@ -10861,9 +10789,9 @@ setInfo__Q28Morimura16TChallengeSelectFi:
 /* 803925C4 0038F504  7C 08 03 A6 */	mtlr r0
 /* 803925C8 0038F508  38 21 00 50 */	addi r1, r1, 0x50
 /* 803925CC 0038F50C  4E 80 00 20 */	blr 
+.endfn setInfo__Q28Morimura16TChallengeSelectFi
 .else
-.global setInfo__Q28Morimura16TChallengeSelectFi
-setInfo__Q28Morimura16TChallengeSelectFi:
+.fn setInfo__Q28Morimura16TChallengeSelectFi, global
 /* 803921D8 0038F118  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803921DC 0038F11C  7C 08 02 A6 */	mflr r0
 /* 803921E0 0038F120  90 01 00 54 */	stw r0, 0x54(r1)
@@ -11137,10 +11065,10 @@ setInfo__Q28Morimura16TChallengeSelectFi:
 /* 803925C4 0038F504  7C 08 03 A6 */	mtlr r0
 /* 803925C8 0038F508  38 21 00 50 */	addi r1, r1, 0x50
 /* 803925CC 0038F50C  4E 80 00 20 */	blr 
+.endfn setInfo__Q28Morimura16TChallengeSelectFi
 .endif
 
-.global setStageName__Q28Morimura16TChallengeSelectFi
-setStageName__Q28Morimura16TChallengeSelectFi:
+.fn setStageName__Q28Morimura16TChallengeSelectFi, global
 /* 803925D0 0038F510  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803925D4 0038F514  7C 08 02 A6 */	mflr r0
 /* 803925D8 0038F518  90 01 00 24 */	stw r0, 0x24(r1)
@@ -11195,10 +11123,10 @@ setStageName__Q28Morimura16TChallengeSelectFi:
 /* 80392694 0038F5D4  7C 08 03 A6 */	mtlr r0
 /* 80392698 0038F5D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8039269C 0038F5DC  4E 80 00 20 */	blr 
+.endfn setStageName__Q28Morimura16TChallengeSelectFi
 
 .if version == 1
-.global getState__Q28Morimura16TChallengeSelectFi
-getState__Q28Morimura16TChallengeSelectFi:
+.fn getState__Q28Morimura16TChallengeSelectFi, global
 /* 803926A0 0038F5E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803926A4 0038F5E4  7C 08 02 A6 */	mflr r0
 /* 803926A8 0038F5E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11285,9 +11213,9 @@ getState__Q28Morimura16TChallengeSelectFi:
 /* 803927C0 0038F700  7C 08 03 A6 */	mtlr r0
 /* 803927C4 0038F704  38 21 00 10 */	addi r1, r1, 0x10
 /* 803927C8 0038F708  4E 80 00 20 */	blr 
+.endfn getState__Q28Morimura16TChallengeSelectFi
 .else
-.global getState__Q28Morimura16TChallengeSelectFi
-getState__Q28Morimura16TChallengeSelectFi:
+.fn getState__Q28Morimura16TChallengeSelectFi, global
 /* 803926A0 0038F5E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803926A4 0038F5E4  7C 08 02 A6 */	mflr r0
 /* 803926A8 0038F5E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11374,11 +11302,11 @@ getState__Q28Morimura16TChallengeSelectFi:
 /* 803927C0 0038F700  7C 08 03 A6 */	mtlr r0
 /* 803927C4 0038F704  38 21 00 10 */	addi r1, r1, 0x10
 /* 803927C8 0038F708  4E 80 00 20 */	blr 
+.endfn getState__Q28Morimura16TChallengeSelectFi
 .endif
 
 .if version == 1
-.global getAfterState__Q28Morimura16TChallengeSelectFi
-getAfterState__Q28Morimura16TChallengeSelectFi:
+.fn getAfterState__Q28Morimura16TChallengeSelectFi, global
 /* 803927CC 0038F70C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803927D0 0038F710  7C 08 02 A6 */	mflr r0
 /* 803927D4 0038F714  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11425,9 +11353,9 @@ getAfterState__Q28Morimura16TChallengeSelectFi:
 /* 80392864 0038F7A4  7C 08 03 A6 */	mtlr r0
 /* 80392868 0038F7A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039286C 0038F7AC  4E 80 00 20 */	blr 
+.endfn getAfterState__Q28Morimura16TChallengeSelectFi
 .else
-.global getAfterState__Q28Morimura16TChallengeSelectFi
-getAfterState__Q28Morimura16TChallengeSelectFi:
+.fn getAfterState__Q28Morimura16TChallengeSelectFi, global
 /* 803927CC 0038F70C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803927D0 0038F710  7C 08 02 A6 */	mflr r0
 /* 803927D4 0038F714  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11474,11 +11402,11 @@ getAfterState__Q28Morimura16TChallengeSelectFi:
 /* 80392864 0038F7A4  7C 08 03 A6 */	mtlr r0
 /* 80392868 0038F7A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039286C 0038F7AC  4E 80 00 20 */	blr 
+.endfn getAfterState__Q28Morimura16TChallengeSelectFi
 .endif
 
 .if version == 1
-.global isChangeState__Q28Morimura16TChallengeSelectFi
-isChangeState__Q28Morimura16TChallengeSelectFi:
+.fn isChangeState__Q28Morimura16TChallengeSelectFi, global
 /* 80392870 0038F7B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80392874 0038F7B4  7C 08 02 A6 */	mflr r0
 /* 80392878 0038F7B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -11542,9 +11470,9 @@ isChangeState__Q28Morimura16TChallengeSelectFi:
 /* 80392948 0038F888  7C 08 03 A6 */	mtlr r0
 /* 8039294C 0038F88C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80392950 0038F890  4E 80 00 20 */	blr 
+.endfn isChangeState__Q28Morimura16TChallengeSelectFi
 .else
-.global isChangeState__Q28Morimura16TChallengeSelectFi
-isChangeState__Q28Morimura16TChallengeSelectFi:
+.fn isChangeState__Q28Morimura16TChallengeSelectFi, global
 /* 80392870 0038F7B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80392874 0038F7B4  7C 08 02 A6 */	mflr r0
 /* 80392878 0038F7B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -11608,10 +11536,10 @@ isChangeState__Q28Morimura16TChallengeSelectFi:
 /* 80392948 0038F888  7C 08 03 A6 */	mtlr r0
 /* 8039294C 0038F88C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80392950 0038F890  4E 80 00 20 */	blr 
+.endfn isChangeState__Q28Morimura16TChallengeSelectFi
 .endif
 
-.global getIndexMax__Q28Morimura16TChallengeSelectFv
-getIndexMax__Q28Morimura16TChallengeSelectFv:
+.fn getIndexMax__Q28Morimura16TChallengeSelectFv, global
 /* 80392954 0038F894  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80392958 0038F898  7C 08 02 A6 */	mflr r0
 /* 8039295C 0038F89C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -11743,9 +11671,9 @@ getIndexMax__Q28Morimura16TChallengeSelectFv:
 /* 80392B14 0038FA54  7C 08 03 A6 */	mtlr r0
 /* 80392B18 0038FA58  38 21 00 20 */	addi r1, r1, 0x20
 /* 80392B1C 0038FA5C  4E 80 00 20 */	blr 
+.endfn getIndexMax__Q28Morimura16TChallengeSelectFv
 
-.global openWindow__Q28Morimura16TChallengeSelectFv
-openWindow__Q28Morimura16TChallengeSelectFv:
+.fn openWindow__Q28Morimura16TChallengeSelectFv, global
 /* 80392B20 0038FA60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80392B24 0038FA64  7C 08 02 A6 */	mflr r0
 /* 80392B28 0038FA68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11755,9 +11683,9 @@ openWindow__Q28Morimura16TChallengeSelectFv:
 /* 80392B38 0038FA78  7C 08 03 A6 */	mtlr r0
 /* 80392B3C 0038FA7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80392B40 0038FA80  4E 80 00 20 */	blr 
+.endfn openWindow__Q28Morimura16TChallengeSelectFv
 
-.global closeWindow__Q28Morimura16TChallengeSelectFv
-closeWindow__Q28Morimura16TChallengeSelectFv:
+.fn closeWindow__Q28Morimura16TChallengeSelectFv, global
 /* 80392B44 0038FA84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80392B48 0038FA88  7C 08 02 A6 */	mflr r0
 /* 80392B4C 0038FA8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11767,9 +11695,9 @@ closeWindow__Q28Morimura16TChallengeSelectFv:
 /* 80392B5C 0038FA9C  7C 08 03 A6 */	mtlr r0
 /* 80392B60 0038FAA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80392B64 0038FAA4  4E 80 00 20 */	blr 
+.endfn closeWindow__Q28Morimura16TChallengeSelectFv
 
-.global reset__Q28Morimura16TChallengeSelectFv
-reset__Q28Morimura16TChallengeSelectFv:
+.fn reset__Q28Morimura16TChallengeSelectFv, global
 /* 80392B68 0038FAA8  38 00 00 00 */	li r0, 0
 /* 80392B6C 0038FAAC  C0 02 0C 28 */	lfs f0, lbl_8051EF88@sda21(r2)
 /* 80392B70 0038FAB0  98 03 01 35 */	stb r0, 0x135(r3)
@@ -11853,9 +11781,9 @@ reset__Q28Morimura16TChallengeSelectFv:
 /* 80392C9C 0038FBDC  90 0D 99 84 */	stw r0, mDivePikiNum__Q28Morimura16TChallengeSelect@sda21(r13)
 /* 80392CA0 0038FBE0  98 03 01 44 */	stb r0, 0x144(r3)
 /* 80392CA4 0038FBE4  4E 80 00 20 */	blr 
+.endfn reset__Q28Morimura16TChallengeSelectFv
 
-.global demoStart__Q28Morimura16TChallengeSelectFv
-demoStart__Q28Morimura16TChallengeSelectFv:
+.fn demoStart__Q28Morimura16TChallengeSelectFv, global
 /* 80392CA8 0038FBE8  94 21 FE 60 */	stwu r1, -0x1a0(r1)
 /* 80392CAC 0038FBEC  7C 08 02 A6 */	mflr r0
 /* 80392CB0 0038FBF0  90 01 01 A4 */	stw r0, 0x1a4(r1)
@@ -12166,9 +12094,9 @@ demoStart__Q28Morimura16TChallengeSelectFv:
 /* 8039315C 0039009C  7C 08 03 A6 */	mtlr r0
 /* 80393160 003900A0  38 21 01 A0 */	addi r1, r1, 0x1a0
 /* 80393164 003900A4  4E 80 00 20 */	blr 
+.endfn demoStart__Q28Morimura16TChallengeSelectFv
 
-.global doCreateObj__Q28Morimura21TChallengeSelectSceneFP10JKRArchive
-doCreateObj__Q28Morimura21TChallengeSelectSceneFP10JKRArchive:
+.fn doCreateObj__Q28Morimura21TChallengeSelectSceneFP10JKRArchive, global
 /* 80393168 003900A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8039316C 003900AC  7C 08 02 A6 */	mflr r0
 /* 80393170 003900B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12210,9 +12138,9 @@ doCreateObj__Q28Morimura21TChallengeSelectSceneFP10JKRArchive:
 /* 803931F8 00390138  7C 08 03 A6 */	mtlr r0
 /* 803931FC 0039013C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80393200 00390140  4E 80 00 20 */	blr 
+.endfn doCreateObj__Q28Morimura21TChallengeSelectSceneFP10JKRArchive
 
-.global doStart__Q28Morimura21TChallengeSelectSceneFPQ26Screen13StartSceneArg
-doStart__Q28Morimura21TChallengeSelectSceneFPQ26Screen13StartSceneArg:
+.fn doStart__Q28Morimura21TChallengeSelectSceneFPQ26Screen13StartSceneArg, global
 /* 80393204 00390144  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80393208 00390148  7C 08 02 A6 */	mflr r0
 /* 8039320C 0039014C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12226,34 +12154,34 @@ doStart__Q28Morimura21TChallengeSelectSceneFPQ26Screen13StartSceneArg:
 /* 8039322C 0039016C  7C 08 03 A6 */	mtlr r0
 /* 80393230 00390170  38 21 00 10 */	addi r1, r1, 0x10
 /* 80393234 00390174  4E 80 00 20 */	blr 
+.endfn doStart__Q28Morimura21TChallengeSelectSceneFPQ26Screen13StartSceneArg
 
-.global getResName__Q28Morimura21TChallengeSelectSceneCFv
-getResName__Q28Morimura21TChallengeSelectSceneCFv:
+.fn getResName__Q28Morimura21TChallengeSelectSceneCFv, weak
 /* 80393238 00390178  3C 60 80 49 */	lis r3, lbl_804946FC@ha
 /* 8039323C 0039017C  38 63 46 FC */	addi r3, r3, lbl_804946FC@l
 /* 80393240 00390180  4E 80 00 20 */	blr 
+.endfn getResName__Q28Morimura21TChallengeSelectSceneCFv
 
-.global getSceneType__Q28Morimura21TChallengeSelectSceneFv
-getSceneType__Q28Morimura21TChallengeSelectSceneFv:
+.fn getSceneType__Q28Morimura21TChallengeSelectSceneFv, weak
 /* 80393244 00390184  38 60 27 37 */	li r3, 0x2737
 /* 80393248 00390188  4E 80 00 20 */	blr 
+.endfn getSceneType__Q28Morimura21TChallengeSelectSceneFv
 
-.global getOwnerID__Q28Morimura21TChallengeSelectSceneFv
-getOwnerID__Q28Morimura21TChallengeSelectSceneFv:
+.fn getOwnerID__Q28Morimura21TChallengeSelectSceneFv, weak
 /* 8039324C 0039018C  3C 60 4D 52 */	lis r3, 0x4D524D52@ha
 /* 80393250 00390190  38 63 4D 52 */	addi r3, r3, 0x4D524D52@l
 /* 80393254 00390194  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q28Morimura21TChallengeSelectSceneFv
 
-.global getMemberID__Q28Morimura21TChallengeSelectSceneFv
-getMemberID__Q28Morimura21TChallengeSelectSceneFv:
+.fn getMemberID__Q28Morimura21TChallengeSelectSceneFv, weak
 /* 80393258 00390198  3C 80 4C 45 */	lis r4, 0x4C454354@ha
 /* 8039325C 0039019C  3C 60 43 48 */	lis r3, 0x43485345@ha
 /* 80393260 003901A0  38 84 43 54 */	addi r4, r4, 0x4C454354@l
 /* 80393264 003901A4  38 63 53 45 */	addi r3, r3, 0x43485345@l
 /* 80393268 003901A8  4E 80 00 20 */	blr 
+.endfn getMemberID__Q28Morimura21TChallengeSelectSceneFv
 
-.global __dt__Q25efx2d11T2DChalDiveFv
-__dt__Q25efx2d11T2DChalDiveFv:
+.fn __dt__Q25efx2d11T2DChalDiveFv, weak
 /* 8039326C 003901AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80393270 003901B0  7C 08 02 A6 */	mflr r0
 /* 80393274 003901B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12289,9 +12217,9 @@ __dt__Q25efx2d11T2DChalDiveFv:
 /* 803932E4 00390224  7C 08 03 A6 */	mtlr r0
 /* 803932E8 00390228  38 21 00 10 */	addi r1, r1, 0x10
 /* 803932EC 0039022C  4E 80 00 20 */	blr 
+.endfn __dt__Q25efx2d11T2DChalDiveFv
 
-.global getDispMemberBase__Q28Morimura16TChallengeSelectFv
-getDispMemberBase__Q28Morimura16TChallengeSelectFv:
+.fn getDispMemberBase__Q28Morimura16TChallengeSelectFv, weak
 /* 803932F0 00390230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803932F4 00390234  7C 08 02 A6 */	mflr r0
 /* 803932F8 00390238  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12307,21 +12235,22 @@ getDispMemberBase__Q28Morimura16TChallengeSelectFv:
 /* 80393318 00390258  7C 08 03 A6 */	mtlr r0
 /* 8039331C 0039025C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80393320 00390260  4E 80 00 20 */	blr 
+.endfn getDispMemberBase__Q28Morimura16TChallengeSelectFv
 
-.global __sinit_challengeSelect2D_cpp
-__sinit_challengeSelect2D_cpp:
+.fn __sinit_challengeSelect2D_cpp, local
 /* 80393324 00390264  C0 02 0D 18 */	lfs f0, lbl_8051F078@sda21(r2)
 /* 80393328 00390268  38 6D 99 88 */	addi r3, r13, mMetOffset__Q28Morimura16TChallengeSelect@sda21
 /* 8039332C 0039026C  D0 0D 99 88 */	stfs f0, mMetOffset__Q28Morimura16TChallengeSelect@sda21(r13)
 /* 80393330 00390270  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80393334 00390274  4E 80 00 20 */	blr 
+.endfn __sinit_challengeSelect2D_cpp
 
-.global "@24@__dt__Q28Morimura16TChallengeSelectFv"
-"@24@__dt__Q28Morimura16TChallengeSelectFv":
+.fn "@24@__dt__Q28Morimura16TChallengeSelectFv", weak
 /* 80393338 00390278  38 63 FF E8 */	addi r3, r3, -24
 /* 8039333C 0039027C  4B FF B7 B8 */	b __dt__Q28Morimura16TChallengeSelectFv
+.endfn "@24@__dt__Q28Morimura16TChallengeSelectFv"
 
-.global "@8@__dt__Q25efx2d11T2DChalDiveFv"
-"@8@__dt__Q25efx2d11T2DChalDiveFv":
+.fn "@8@__dt__Q25efx2d11T2DChalDiveFv", weak
 /* 80393340 00390280  38 63 FF F8 */	addi r3, r3, -8
 /* 80393344 00390284  4B FF FF 28 */	b __dt__Q25efx2d11T2DChalDiveFv
+.endfn "@8@__dt__Q25efx2d11T2DChalDiveFv"

@@ -17,48 +17,63 @@ lbl_constructor:
 	.asciz "timg/hi_score_01.bti"
 .endobj lbl_80493304
 .balign 4
-lbl_8049331C:
+.obj lbl_8049331C, local
 	.asciz "timg/hi_score_02.bti"
+.endobj lbl_8049331C
 .balign 4
-lbl_80493334:
+.obj lbl_80493334, local
 	.asciz "timg/hi_score_03.bti"
+.endobj lbl_80493334
 .balign 4
-lbl_8049334C:
+.obj lbl_8049334C, local
 	.asciz "timg/hi_score_04.bti"
+.endobj lbl_8049334C
 .balign 4
-lbl_80493364:
+.obj lbl_80493364, local
 	.asciz "timg/hi_score_05.bti"
+.endobj lbl_80493364
 .balign 4
-lbl_8049337C:
+.obj lbl_8049337C, local
 	.asciz "timg/hi_score_06.bti"
+.endobj lbl_8049337C
 .balign 4
-lbl_80493394:
+.obj lbl_80493394, local
 	.asciz "timg/hi_score_07.bti"
+.endobj lbl_80493394
 .balign 4
-lbl_804933AC:
+.obj lbl_804933AC, local
 	.asciz "timg/hi_score_08.bti"
+.endobj lbl_804933AC
 .balign 4
-lbl_804933C4:
+.obj lbl_804933C4, local
 	.asciz "timg/hi_score_09.bti"
+.endobj lbl_804933C4
 .balign 4
-lbl_804933DC:
+.obj lbl_804933DC, local
 	.asciz "timg/hi_score_10.bti"
+.endobj lbl_804933DC
 .balign 4
-lbl_804933F4:
+.obj lbl_804933F4, local
 	.asciz "timg/hi_score_11.bti"
+.endobj lbl_804933F4
 .balign 4
-lbl_8049340C:
+.obj lbl_8049340C, local
 	.asciz "timg/hi_score_12.bti"
+.endobj lbl_8049340C
 .balign 4
-lbl_80493424:
+.obj lbl_80493424, local
 	.asciz "timg/hi_score_13.bti"
+.endobj lbl_80493424
 .balign 4
-lbl_8049343C:
+.obj lbl_8049343C, local
 	.asciz "timg/hi_score_14.bti"
+.endobj lbl_8049343C
 .balign 4
-lbl_80493454:
+.obj lbl_80493454, local
 	.asciz "timg/hi_score_15.bti"
+.endobj lbl_80493454
 .balign 4
+.obj lbl_8049346C, local
 	.4byte lbl_804932EC
 	.4byte lbl_80493304
 	.4byte lbl_8049331C
@@ -75,7 +90,9 @@ lbl_80493454:
 	.4byte lbl_80493424
 	.4byte lbl_8049343C
 	.4byte lbl_80493454
-	.skip 4
+.endobj lbl_8049346C
+.balign 8
+.obj lbl_804934B0, local
 	.4byte 0x004E6D65
 	.4byte 0x6E753030
 	.4byte 0x004E6D65
@@ -86,6 +103,9 @@ lbl_80493454:
 	.4byte 0x6E753033
 	.4byte 0x004E6D65
 	.4byte 0x6E753034
+.endobj lbl_804934B0
+.balign 8
+.obj lbl_804934D8, local
 	.4byte 0x00546D65
 	.4byte 0x6E753030
 	.4byte 0x00546D65
@@ -96,6 +116,9 @@ lbl_80493454:
 	.4byte 0x6E753033
 	.4byte 0x00546D65
 	.4byte 0x6E753034
+.endobj lbl_804934D8
+.balign 8
+.obj lbl_80493500, local
 	.4byte 0x00506865
 	.4byte 0x31737431
 	.4byte 0x00506865
@@ -108,6 +131,9 @@ lbl_80493454:
 	.4byte 0x326E6431
 	.4byte 0x00506F74
 	.4byte 0x33726431
+.endobj lbl_80493500
+.balign 8
+.obj lbl_80493530, local
 	.4byte 0x00506865
 	.4byte 0x31737434
 	.4byte 0x00506865
@@ -120,6 +146,9 @@ lbl_80493454:
 	.4byte 0x326E6434
 	.4byte 0x00506F74
 	.4byte 0x33726434
+.endobj lbl_80493530
+.balign 8
+.obj lbl_80493560, local
 	.4byte 0x00506865
 	.4byte 0x31737435
 	.4byte 0x00506865
@@ -132,6 +161,9 @@ lbl_80493454:
 	.4byte 0x326E6435
 	.4byte 0x00506F74
 	.4byte 0x33726435
+.endobj lbl_80493560
+.balign 8
+.obj lbl_80493590, local
 	.4byte 0x00506865
 	.4byte 0x31737431
 	.4byte 0x00506865
@@ -144,6 +176,9 @@ lbl_80493454:
 	.4byte 0x326E6431
 	.4byte 0x00506F74
 	.4byte 0x33726431
+.endobj lbl_80493590
+.balign 8
+.obj lbl_804935C0, local
 	.4byte 0x00506865
 	.4byte 0x31737432
 	.4byte 0x00506865
@@ -156,56 +191,51 @@ lbl_80493454:
 	.4byte 0x326E6432
 	.4byte 0x00506F74
 	.4byte 0x33726432
-lbl_804935F0:
-	.4byte 0x68695363
-	.4byte 0x6F726532
-	.4byte 0x442E6370
-	.4byte 0x70000000
-lbl_80493600:
-	.asciz "P2Assert"
+.endobj lbl_804935C0
 .balign 4
-	.4byte 0x68695F73
-	.4byte 0x636F7265
-	.4byte 0x5F6D6169
-	.4byte 0x6E2E626C
-	.4byte 0x6F000000
-	.4byte 0x68695F73
-	.4byte 0x636F7265
-	.4byte 0x5F6D6169
-	.4byte 0x6E2E6263
-	.4byte 0x6B000000
-	.4byte 0x68695F73
-	.4byte 0x636F7265
-	.4byte 0x5F6D6169
-	.4byte 0x6E2E6270
-	.4byte 0x6B000000
-	.4byte 0x68695F73
-	.4byte 0x636F7265
-	.4byte 0x5F6C6973
-	.4byte 0x742E626C
-	.4byte 0x6F000000
-	.4byte 0x61737365
-	.4byte 0x7274696E
-	.4byte 0x64657820
-	.4byte 0x3D202564
-	.4byte 0x200A0000
-	.4byte 0x68695F73
-	.4byte 0x636F7265
-	.4byte 0x5F30302E
-	.4byte 0x62746900
-lbl_80493680:
-	.4byte 0x7265735F
-	.4byte 0x68697363
-	.4byte 0x6F72652E
-	.4byte 0x737A7300
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+.obj lbl_804935F0, local
+	.asciz "hiScore2D.cpp"
+.endobj lbl_804935F0
+.balign 4
+.obj lbl_80493600, local
+	.asciz "P2Assert"
+.endobj lbl_80493600
+.balign 4
+.obj lbl_8049360C, local
+	.asciz "hi_score_main.blo"
+.endobj lbl_8049360C
+.balign 4
+.obj lbl_80493620, local
+	.asciz "hi_score_main.bck"
+.endobj lbl_80493620
+.balign 4
+.obj lbl_80493634, local
+	.asciz "hi_score_main.bpk"
+.endobj lbl_80493634
+.balign 4
+.obj lbl_80493648, local
+	.asciz "hi_score_list.blo"
+.endobj lbl_80493648
+.balign 4
+.obj lbl_8049365C, local
+	.asciz "assertindex = %d \n"
+.endobj lbl_8049365C
+.balign 4
+.obj lbl_80493670, local
+	.asciz "hi_score_00.bti"
+.endobj lbl_80493670
+.balign 4
+.obj lbl_80493680, local
+	.asciz "res_hiscore.szs"
+.endobj lbl_80493680
+.balign 4
+.obj lbl_80493690, local
+	.asciz "screenObj.h"
+.endobj lbl_80493690
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global mPicTexture__Q28Morimura8THiScore
-mPicTexture__Q28Morimura8THiScore:
+.obj mPicTexture__Q28Morimura8THiScore, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -222,8 +252,9 @@ mPicTexture__Q28Morimura8THiScore:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global mNameID__Q28Morimura8THiScore
-mNameID__Q28Morimura8THiScore:
+.endobj mPicTexture__Q28Morimura8THiScore
+.balign 8
+.obj mNameID__Q28Morimura8THiScore, global
 	.4byte 0x00383530
 	.4byte 0x325F3030
 	.4byte 0x00383530
@@ -256,8 +287,9 @@ mNameID__Q28Morimura8THiScore:
 	.4byte 0x365F3030
 	.4byte 0x00383531
 	.4byte 0x375F3030
-.global mHiscoreDataOrder__Q28Morimura8THiScore
-mHiscoreDataOrder__Q28Morimura8THiScore:
+.endobj mNameID__Q28Morimura8THiScore
+.balign 4
+.obj mHiscoreDataOrder__Q28Morimura8THiScore, global
 	.4byte 0x00000000
 	.4byte 0x00000008
 	.4byte 0x00000001
@@ -274,8 +306,9 @@ mHiscoreDataOrder__Q28Morimura8THiScore:
 	.4byte 0x0000000D
 	.4byte 0x0000000C
 	.4byte 0x0000000F
-.global __vt__Q28Morimura13THiScoreScene
-__vt__Q28Morimura13THiScoreScene:
+.endobj mHiscoreDataOrder__Q28Morimura8THiScore
+.balign 4
+.obj __vt__Q28Morimura13THiScoreScene, global
 	.4byte 0
 	.4byte 0
 	.4byte getSceneType__Q28Morimura13THiScoreSceneFv
@@ -296,16 +329,16 @@ __vt__Q28Morimura13THiScoreScene:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
-.global __vt__Q28Morimura19DispMemberHighScore
-__vt__Q28Morimura19DispMemberHighScore:
+.endobj __vt__Q28Morimura13THiScoreScene
+.obj __vt__Q28Morimura19DispMemberHighScore, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q28Morimura19DispMemberHighScoreFv
 	.4byte getOwnerID__Q28Morimura19DispMemberHighScoreFv
 	.4byte getMemberID__Q28Morimura19DispMemberHighScoreFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q28Morimura8THiScore
-__vt__Q28Morimura8THiScore:
+.endobj __vt__Q28Morimura19DispMemberHighScore
+.obj __vt__Q28Morimura8THiScore, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura8THiScoreFv
@@ -349,20 +382,21 @@ __vt__Q28Morimura8THiScore:
 	.4byte changeTextTevBlock__Q28Morimura8THiScoreFi
 	.4byte updateIndex__Q28Morimura11TScrollListFb
 	.4byte setPaneCharacter__Q28Morimura8THiScoreFi
-.global __vt__Q28Morimura18THiScoreListScreen
-__vt__Q28Morimura18THiScoreListScreen:
+.endobj __vt__Q28Morimura8THiScore
+.obj __vt__Q28Morimura18THiScoreListScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura18THiScoreListScreenFPCcUl
 	.4byte update__Q28Morimura18THiScoreListScreenFv
 	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
-.global __vt__Q28Morimura15THiScoreIndPane
-__vt__Q28Morimura15THiScoreIndPane:
+.endobj __vt__Q28Morimura18THiScoreListScreen
+.obj __vt__Q28Morimura15THiScoreIndPane, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura15THiScoreIndPaneFv
 	.4byte getChildCount__5CNodeFv
 	.4byte draw__Q28Morimura15THiScoreIndPaneFv
+.endobj __vt__Q28Morimura15THiScoreIndPane
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # hiScore2D.cpp
@@ -370,19 +404,19 @@ __vt__Q28Morimura15THiScoreIndPane:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mPictureOffsetY__Q28Morimura8THiScore
-mPictureOffsetY__Q28Morimura8THiScore:
+.obj mPictureOffsetY__Q28Morimura8THiScore, global
 	.float -8.0
-.global mChangeAlpha__Q28Morimura8THiScore
-mChangeAlpha__Q28Morimura8THiScore:
+.endobj mPictureOffsetY__Q28Morimura8THiScore
+.obj mChangeAlpha__Q28Morimura8THiScore, global
 	.byte 1
+.endobj mChangeAlpha__Q28Morimura8THiScore
 .balign 4
-.global mListOffsetY__Q28Morimura8THiScore
-mListOffsetY__Q28Morimura8THiScore:
+.obj mListOffsetY__Q28Morimura8THiScore, global
 	.float 25.0
-.global mClearListHeightRate__Q28Morimura8THiScore
-mClearListHeightRate__Q28Morimura8THiScore:
+.endobj mListOffsetY__Q28Morimura8THiScore
+.obj mClearListHeightRate__Q28Morimura8THiScore, global
 	.float 1.55
+.endobj mClearListHeightRate__Q28Morimura8THiScore
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -398,93 +432,130 @@ mClearListHeightRate__Q28Morimura8THiScore:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051EC18:
-	.4byte 0x00000000
-	.4byte 0x00000000
-lbl_8051EC20:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051EC28:
-	.4byte 0x43B40000
-lbl_8051EC2C:
-	.4byte 0x40C90FDB
-lbl_8051EC30:
-	.4byte 0x40A00000
-lbl_8051EC34:
-	.4byte 0x44200000
-lbl_8051EC38:
-	.4byte 0x43F00000
-lbl_8051EC3C:
-	.4byte 0x68697363
-	.4byte 0x6F726500
-lbl_8051EC44:
+.obj lbl_8051EC18, local
+	.float 0.0
+.endobj lbl_8051EC18
+.balign 8
+.obj lbl_8051EC20, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051EC20
+.obj lbl_8051EC28, local
+	.float 360.0
+.endobj lbl_8051EC28
+.obj lbl_8051EC2C, local # tau
+	.float 6.2831855
+.endobj lbl_8051EC2C
+.obj lbl_8051EC30, local
+	.float 5.0
+.endobj lbl_8051EC30
+.obj lbl_8051EC34, local
+	.float 640.0
+.endobj lbl_8051EC34
+.obj lbl_8051EC38, local
+	.float 480.0
+.endobj lbl_8051EC38
+.balign 4
+.obj lbl_8051EC3C, local
+	.asciz "hiscore"
+.endobj lbl_8051EC3C
+.balign 4
+.obj lbl_8051EC44, local
 	.float 1.0
-lbl_8051EC48:
+.endobj lbl_8051EC44
+.obj lbl_8051EC48, local
 	.float 0.05
-lbl_8051EC4C:
-	.4byte 0x3CA3D70A
-lbl_8051EC50:
+.endobj lbl_8051EC48
+.obj lbl_8051EC4C, local
+	.float 0.02
+.endobj lbl_8051EC4C
+.obj lbl_8051EC50, local
 	.float 0.25
-lbl_8051EC54:
-	.4byte 0x41000000
-lbl_8051EC58:
-	.4byte 0x3F99999A
-lbl_8051EC5C:
-	.4byte 0x3F7D70A4
-lbl_8051EC60:
-	.4byte 0x3F8CCCCD
-lbl_8051EC64:
-	.4byte 0x40000000
-lbl_8051EC68:
-	.4byte 0xBF800000
-lbl_8051EC6C:
+.endobj lbl_8051EC50
+.obj lbl_8051EC54, local
+	.float 8.0
+.endobj lbl_8051EC54
+.obj lbl_8051EC58, local
+	.float 1.2
+.endobj lbl_8051EC58
+.obj lbl_8051EC5C, local
+	.float 0.99
+.endobj lbl_8051EC5C
+.obj lbl_8051EC60, local
+	.float 1.1
+.endobj lbl_8051EC60
+.obj lbl_8051EC64, local
+	.float 2.0
+.endobj lbl_8051EC64
+.obj lbl_8051EC68, local
+	.float -1.0
+.endobj lbl_8051EC68
+.obj lbl_8051EC6C, local
 	.float 0.1
-lbl_8051EC70:
-	.4byte 0x41A00000
-lbl_8051EC74:
+.endobj lbl_8051EC6C
+.obj lbl_8051EC70, local
+	.float 20.0
+.endobj lbl_8051EC70
+.obj lbl_8051EC74, local
 	.float 0.5
-lbl_8051EC78:
-	.4byte 0x3E4CCCCD
-lbl_8051EC7C:
-	.4byte 0x437F0000
-lbl_8051EC80:
+.endobj lbl_8051EC74
+.obj lbl_8051EC78, local
+	.float 0.2
+.endobj lbl_8051EC78
+.obj lbl_8051EC7C, local
+	.float 255.0
+.endobj lbl_8051EC7C
+.obj lbl_8051EC80, local
 	.float 0.04
-lbl_8051EC84:
-	.4byte 0x3F400000
-lbl_8051EC88:
-	.4byte 0x3F59999A
-lbl_8051EC8C:
-	.4byte 0xC3A2F983
-lbl_8051EC90:
-	.4byte 0x43A2F983
-lbl_8051EC94:
-	.4byte 0xC1A00000
-lbl_8051EC98:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051ECA0:
-	.4byte 0x41200000
-lbl_8051ECA4:
-	.4byte 0x47000000
-lbl_8051ECA8:
-	.4byte 0x42C80000
-lbl_8051ECAC:
-	.4byte 0x42DC0000
-lbl_8051ECB0:
-	.4byte 0x447A0000
-lbl_8051ECB4:
-	.4byte 0x44898000
-lbl_8051ECB8:
-	.4byte 0x47C35000
-lbl_8051ECBC:
-	.4byte 0x3F666666
-lbl_8051ECC0:
-	.4byte 0x3FC00000
-	.4byte 0x00000000
+.endobj lbl_8051EC80
+.obj lbl_8051EC84, local
+	.float 0.75
+.endobj lbl_8051EC84
+.obj lbl_8051EC88, local
+	.float 0.85
+.endobj lbl_8051EC88
+.obj lbl_8051EC8C, local
+	.float -325.9493
+.endobj lbl_8051EC8C
+.obj lbl_8051EC90, local
+	.float 325.9493
+.endobj lbl_8051EC90
+.obj lbl_8051EC94, local
+	.float -20.0
+.endobj lbl_8051EC94
+.balign 8
+.obj lbl_8051EC98, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051EC98
+.obj lbl_8051ECA0, local
+	.float 10.0
+.endobj lbl_8051ECA0
+.obj lbl_8051ECA4, local
+	.float 32768.0
+.endobj lbl_8051ECA4
+.obj lbl_8051ECA8, local
+	.float 100.0
+.endobj lbl_8051ECA8
+.obj lbl_8051ECAC, local
+	.float 110.0
+.endobj lbl_8051ECAC
+.obj lbl_8051ECB0, local
+	.float 1000.0
+.endobj lbl_8051ECB0
+.obj lbl_8051ECB4, local
+	.float 1100.0
+.endobj lbl_8051ECB4
+.obj lbl_8051ECB8, local
+	.float 100000.0
+.endobj lbl_8051ECB8
+.obj lbl_8051ECBC, local
+	.float 0.9
+.endobj lbl_8051ECBC
+.obj lbl_8051ECC0, local
+	.float 1.5
+.endobj lbl_8051ECC0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global draw__Q28Morimura15THiScoreIndPaneFv
-draw__Q28Morimura15THiScoreIndPaneFv:
+.fn draw__Q28Morimura15THiScoreIndPaneFv, global
 /* 8037C9AC 003798EC  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8037C9B0 003798F0  7C 08 02 A6 */	mflr r0
 /* 8037C9B4 003798F4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -618,9 +689,9 @@ draw__Q28Morimura15THiScoreIndPaneFv:
 /* 8037CBB4 00379AF4  7C 08 03 A6 */	mtlr r0
 /* 8037CBB8 00379AF8  38 21 00 70 */	addi r1, r1, 0x70
 /* 8037CBBC 00379AFC  4E 80 00 20 */	blr 
+.endfn draw__Q28Morimura15THiScoreIndPaneFv
 
-.global create__Q28Morimura18THiScoreListScreenFPCcUl
-create__Q28Morimura18THiScoreListScreenFPCcUl:
+.fn create__Q28Morimura18THiScoreListScreenFPCcUl, global
 /* 8037CBC0 00379B00  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8037CBC4 00379B04  7C 08 02 A6 */	mflr r0
 /* 8037CBC8 00379B08  90 01 00 54 */	stw r0, 0x54(r1)
@@ -829,9 +900,9 @@ create__Q28Morimura18THiScoreListScreenFPCcUl:
 /* 8037CEE0 00379E20  7C 08 03 A6 */	mtlr r0
 /* 8037CEE4 00379E24  38 21 00 50 */	addi r1, r1, 0x50
 /* 8037CEE8 00379E28  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura18THiScoreListScreenFPCcUl
 
-.global __ct__Q28Morimura8THiScoreFv
-__ct__Q28Morimura8THiScoreFv:
+.fn __ct__Q28Morimura8THiScoreFv, global
 /* 8037CEEC 00379E2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037CEF0 00379E30  7C 08 02 A6 */	mflr r0
 /* 8037CEF4 00379E34  38 82 08 DC */	addi r4, r2, lbl_8051EC3C@sda21
@@ -947,13 +1018,13 @@ __ct__Q28Morimura8THiScoreFv:
 /* 8037D0AC 00379FEC  7C 08 03 A6 */	mtlr r0
 /* 8037D0B0 00379FF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037D0B4 00379FF4  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura8THiScoreFv
 
-.global "__ct__10Vector2<f>Fv"
-"__ct__10Vector2<f>Fv":
+.fn "__ct__10Vector2<f>Fv", weak
 /* 8037D0B8 00379FF8  4E 80 00 20 */	blr 
+.endfn "__ct__10Vector2<f>Fv"
 
-.global doCreate__Q28Morimura8THiScoreFP10JKRArchive
-doCreate__Q28Morimura8THiScoreFP10JKRArchive:
+.fn doCreate__Q28Morimura8THiScoreFP10JKRArchive, global
 /* 8037D0BC 00379FFC  94 21 FD 40 */	stwu r1, -0x2c0(r1)
 /* 8037D0C0 0037A000  7C 08 02 A6 */	mflr r0
 /* 8037D0C4 0037A004  90 01 02 C4 */	stw r0, 0x2c4(r1)
@@ -2050,9 +2121,9 @@ doCreate__Q28Morimura8THiScoreFP10JKRArchive:
 /* 8037E10C 0037B04C  7C 08 03 A6 */	mtlr r0
 /* 8037E110 0037B050  38 21 02 C0 */	addi r1, r1, 0x2c0
 /* 8037E114 0037B054  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura8THiScoreFP10JKRArchive
 
-.global __dt__Q28Morimura8TIndPaneFv
-__dt__Q28Morimura8TIndPaneFv:
+.fn __dt__Q28Morimura8TIndPaneFv, weak
 /* 8037E118 0037B058  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037E11C 0037B05C  7C 08 02 A6 */	mflr r0
 /* 8037E120 0037B060  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2078,9 +2149,9 @@ __dt__Q28Morimura8TIndPaneFv:
 /* 8037E16C 0037B0AC  7C 08 03 A6 */	mtlr r0
 /* 8037E170 0037B0B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037E174 0037B0B4  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura8TIndPaneFv
 
-.global getNameID__Q28Morimura8THiScoreFi
-getNameID__Q28Morimura8THiScoreFi:
+.fn getNameID__Q28Morimura8THiScoreFi, weak
 /* 8037E178 0037B0B8  3C 60 80 4E */	lis r3, mNameID__Q28Morimura8THiScore@ha
 /* 8037E17C 0037B0BC  54 84 18 38 */	slwi r4, r4, 3
 /* 8037E180 0037B0C0  38 03 41 80 */	addi r0, r3, mNameID__Q28Morimura8THiScore@l
@@ -2088,9 +2159,9 @@ getNameID__Q28Morimura8THiScoreFi:
 /* 8037E188 0037B0C8  80 64 00 00 */	lwz r3, 0(r4)
 /* 8037E18C 0037B0CC  80 84 00 04 */	lwz r4, 4(r4)
 /* 8037E190 0037B0D0  4E 80 00 20 */	blr 
+.endfn getNameID__Q28Morimura8THiScoreFi
 
-.global doUpdate__Q28Morimura8THiScoreFv
-doUpdate__Q28Morimura8THiScoreFv:
+.fn doUpdate__Q28Morimura8THiScoreFv, global
 /* 8037E194 0037B0D4  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8037E198 0037B0D8  7C 08 02 A6 */	mflr r0
 /* 8037E19C 0037B0DC  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2777,9 +2848,9 @@ doUpdate__Q28Morimura8THiScoreFv:
 /* 8037EB78 0037BAB8  7C 08 03 A6 */	mtlr r0
 /* 8037EB7C 0037BABC  38 21 00 90 */	addi r1, r1, 0x90
 /* 8037EB80 0037BAC0  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura8THiScoreFv
 
-.global update__Q28Morimura18THiScoreListScreenFv
-update__Q28Morimura18THiScoreListScreenFv:
+.fn update__Q28Morimura18THiScoreListScreenFv, weak
 /* 8037EB84 0037BAC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037EB88 0037BAC8  7C 08 02 A6 */	mflr r0
 /* 8037EB8C 0037BACC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2792,9 +2863,9 @@ update__Q28Morimura18THiScoreListScreenFv:
 /* 8037EBA8 0037BAE8  7C 08 03 A6 */	mtlr r0
 /* 8037EBAC 0037BAEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037EBB0 0037BAF0  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura18THiScoreListScreenFv
 
-.global doDraw__Q28Morimura8THiScoreFR8Graphics
-doDraw__Q28Morimura8THiScoreFR8Graphics:
+.fn doDraw__Q28Morimura8THiScoreFR8Graphics, global
 /* 8037EBB4 0037BAF4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8037EBB8 0037BAF8  7C 08 02 A6 */	mflr r0
 /* 8037EBBC 0037BAFC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2902,9 +2973,9 @@ doDraw__Q28Morimura8THiScoreFR8Graphics:
 /* 8037ED50 0037BC90  7C 08 03 A6 */	mtlr r0
 /* 8037ED54 0037BC94  38 21 00 50 */	addi r1, r1, 0x50
 /* 8037ED58 0037BC98  4E 80 00 20 */	blr 
+.endfn doDraw__Q28Morimura8THiScoreFR8Graphics
 
-.global paneInit__Q28Morimura8THiScoreFv
-paneInit__Q28Morimura8THiScoreFv:
+.fn paneInit__Q28Morimura8THiScoreFv, global
 /* 8037ED5C 0037BC9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037ED60 0037BCA0  7C 08 02 A6 */	mflr r0
 /* 8037ED64 0037BCA4  3C 80 80 4E */	lis r4, mPicTexture__Q28Morimura8THiScore@ha
@@ -3123,9 +3194,9 @@ paneInit__Q28Morimura8THiScoreFv:
 /* 8037F0A8 0037BFE8  7C 08 03 A6 */	mtlr r0
 /* 8037F0AC 0037BFEC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037F0B0 0037BFF0  4E 80 00 20 */	blr 
+.endfn paneInit__Q28Morimura8THiScoreFv
 
-.global doUpdateFadeinFinish__Q28Morimura8THiScoreFv
-doUpdateFadeinFinish__Q28Morimura8THiScoreFv:
+.fn doUpdateFadeinFinish__Q28Morimura8THiScoreFv, global
 /* 8037F0B4 0037BFF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037F0B8 0037BFF8  7C 08 02 A6 */	mflr r0
 /* 8037F0BC 0037BFFC  7C 64 1B 78 */	mr r4, r3
@@ -3150,9 +3221,9 @@ doUpdateFadeinFinish__Q28Morimura8THiScoreFv:
 /* 8037F104 0037C044  7C 08 03 A6 */	mtlr r0
 /* 8037F108 0037C048  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037F10C 0037C04C  4E 80 00 20 */	blr 
+.endfn doUpdateFadeinFinish__Q28Morimura8THiScoreFv
 
-.global doUpdateFadeoutFinish__Q28Morimura8THiScoreFv
-doUpdateFadeoutFinish__Q28Morimura8THiScoreFv:
+.fn doUpdateFadeoutFinish__Q28Morimura8THiScoreFv, global
 /* 8037F110 0037C050  88 0D 98 A0 */	lbz r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
 /* 8037F114 0037C054  28 00 00 00 */	cmplwi r0, 0
 /* 8037F118 0037C058  4C 82 00 20 */	bnelr 
@@ -3160,9 +3231,9 @@ doUpdateFadeoutFinish__Q28Morimura8THiScoreFv:
 /* 8037F120 0037C060  38 00 00 01 */	li r0, 1
 /* 8037F124 0037C064  98 03 00 0C */	stb r0, 0xc(r3)
 /* 8037F128 0037C068  4E 80 00 20 */	blr 
+.endfn doUpdateFadeoutFinish__Q28Morimura8THiScoreFv
 
-.global changePaneInfo__Q28Morimura8THiScoreFv
-changePaneInfo__Q28Morimura8THiScoreFv:
+.fn changePaneInfo__Q28Morimura8THiScoreFv, global
 /* 8037F12C 0037C06C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8037F130 0037C070  7C 08 02 A6 */	mflr r0
 /* 8037F134 0037C074  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3558,9 +3629,9 @@ changePaneInfo__Q28Morimura8THiScoreFv:
 /* 8037F6E4 0037C624  7C 08 03 A6 */	mtlr r0
 /* 8037F6E8 0037C628  38 21 00 40 */	addi r1, r1, 0x40
 /* 8037F6EC 0037C62C  4E 80 00 20 */	blr 
+.endfn changePaneInfo__Q28Morimura8THiScoreFv
 
-.global setPaneCharacter__Q28Morimura8THiScoreFi
-setPaneCharacter__Q28Morimura8THiScoreFi:
+.fn setPaneCharacter__Q28Morimura8THiScoreFi, global
 /* 8037F6F0 0037C630  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037F6F4 0037C634  7C 08 02 A6 */	mflr r0
 /* 8037F6F8 0037C638  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3636,9 +3707,9 @@ setPaneCharacter__Q28Morimura8THiScoreFi:
 /* 8037F808 0037C748  7C 08 03 A6 */	mtlr r0
 /* 8037F80C 0037C74C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037F810 0037C750  4E 80 00 20 */	blr 
+.endfn setPaneCharacter__Q28Morimura8THiScoreFi
 
-.global getRecord__Q28Morimura8THiScoreFii
-getRecord__Q28Morimura8THiScoreFii:
+.fn getRecord__Q28Morimura8THiScoreFii, global
 /* 8037F814 0037C754  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037F818 0037C758  7C 08 02 A6 */	mflr r0
 /* 8037F81C 0037C75C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3939,9 +4010,9 @@ getRecord__Q28Morimura8THiScoreFii:
 /* 8037FC54 0037CB94  7C 08 03 A6 */	mtlr r0
 /* 8037FC58 0037CB98  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037FC5C 0037CB9C  4E 80 00 20 */	blr 
+.endfn getRecord__Q28Morimura8THiScoreFii
 
-.global changeTextTevBlock__Q28Morimura8THiScoreFi
-changeTextTevBlock__Q28Morimura8THiScoreFi:
+.fn changeTextTevBlock__Q28Morimura8THiScoreFi, global
 /* 8037FC60 0037CBA0  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 8037FC64 0037CBA4  7C 08 02 A6 */	mflr r0
 /* 8037FC68 0037CBA8  90 01 01 04 */	stw r0, 0x104(r1)
@@ -4218,9 +4289,9 @@ changeTextTevBlock__Q28Morimura8THiScoreFi:
 /* 80380090 0037CFD0  7C 08 03 A6 */	mtlr r0
 /* 80380094 0037CFD4  38 21 01 00 */	addi r1, r1, 0x100
 /* 80380098 0037CFD8  4E 80 00 20 */	blr 
+.endfn changeTextTevBlock__Q28Morimura8THiScoreFi
 
-.global copyTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock
-copyTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock:
+.fn copyTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock, global
 /* 8038009C 0037CFDC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803800A0 0037CFE0  7C 08 02 A6 */	mflr r0
 /* 803800A4 0037CFE4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -4358,9 +4429,9 @@ copyTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock:
 /* 803802AC 0037D1EC  7C 08 03 A6 */	mtlr r0
 /* 803802B0 0037D1F0  38 21 00 40 */	addi r1, r1, 0x40
 /* 803802B4 0037D1F4  4E 80 00 20 */	blr 
+.endfn copyTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock
 
-.global changeTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock
-changeTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock:
+.fn changeTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock, global
 /* 803802B8 0037D1F8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803802BC 0037D1FC  7C 08 02 A6 */	mflr r0
 /* 803802C0 0037D200  90 01 00 44 */	stw r0, 0x44(r1)
@@ -4498,9 +4569,9 @@ changeTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock:
 /* 803804C8 0037D408  7C 08 03 A6 */	mtlr r0
 /* 803804CC 0037D40C  38 21 00 40 */	addi r1, r1, 0x40
 /* 803804D0 0037D410  4E 80 00 20 */	blr 
+.endfn changeTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock
 
-.global copyColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock
-copyColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock:
+.fn copyColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock, global
 /* 803804D4 0037D414  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803804D8 0037D418  7C A6 2B 78 */	mr r6, r5
 /* 803804DC 0037D41C  7C A7 2B 78 */	mr r7, r5
@@ -4535,9 +4606,9 @@ copyColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock:
 /* 80380548 0037D488  41 80 FF B4 */	blt .L_803804FC
 /* 8038054C 0037D48C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80380550 0037D490  4E 80 00 20 */	blr 
+.endfn copyColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock
 
-.global changeColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock
-changeColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock:
+.fn changeColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock, global
 /* 80380554 0037D494  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80380558 0037D498  7C 86 23 78 */	mr r6, r4
 /* 8038055C 0037D49C  7C 87 23 78 */	mr r7, r4
@@ -4572,9 +4643,9 @@ changeColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock:
 /* 803805C8 0037D508  41 80 FF B4 */	blt .L_8038057C
 /* 803805CC 0037D50C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803805D0 0037D510  4E 80 00 20 */	blr 
+.endfn changeColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock
 
-.global updateLayout__Q28Morimura8THiScoreFv
-updateLayout__Q28Morimura8THiScoreFv:
+.fn updateLayout__Q28Morimura8THiScoreFv, global
 /* 803805D4 0037D514  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803805D8 0037D518  7C 08 02 A6 */	mflr r0
 /* 803805DC 0037D51C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -4674,9 +4745,9 @@ updateLayout__Q28Morimura8THiScoreFv:
 /* 80380748 0037D688  7C 08 03 A6 */	mtlr r0
 /* 8038074C 0037D68C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80380750 0037D690  4E 80 00 20 */	blr 
+.endfn updateLayout__Q28Morimura8THiScoreFv
 
-.global __ct__Q28Morimura13THiScoreSceneFv
-__ct__Q28Morimura13THiScoreSceneFv:
+.fn __ct__Q28Morimura13THiScoreSceneFv, global
 /* 80380754 0037D694  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80380758 0037D698  7C 08 02 A6 */	mflr r0
 /* 8038075C 0037D69C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4697,15 +4768,15 @@ __ct__Q28Morimura13THiScoreSceneFv:
 /* 80380798 0037D6D8  7C 08 03 A6 */	mtlr r0
 /* 8038079C 0037D6DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803807A0 0037D6E0  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura13THiScoreSceneFv
 
-.global getResName__Q28Morimura13THiScoreSceneCFv
-getResName__Q28Morimura13THiScoreSceneCFv:
+.fn getResName__Q28Morimura13THiScoreSceneCFv, global
 /* 803807A4 0037D6E4  3C 60 80 49 */	lis r3, lbl_80493680@ha
 /* 803807A8 0037D6E8  38 63 36 80 */	addi r3, r3, lbl_80493680@l
 /* 803807AC 0037D6EC  4E 80 00 20 */	blr 
+.endfn getResName__Q28Morimura13THiScoreSceneCFv
 
-.global doCreateObj__Q28Morimura13THiScoreSceneFP10JKRArchive
-doCreateObj__Q28Morimura13THiScoreSceneFP10JKRArchive:
+.fn doCreateObj__Q28Morimura13THiScoreSceneFP10JKRArchive, weak
 /* 803807B0 0037D6F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803807B4 0037D6F4  7C 08 02 A6 */	mflr r0
 /* 803807B8 0037D6F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4733,45 +4804,45 @@ doCreateObj__Q28Morimura13THiScoreSceneFP10JKRArchive:
 /* 8038080C 0037D74C  7C 08 03 A6 */	mtlr r0
 /* 80380810 0037D750  38 21 00 20 */	addi r1, r1, 0x20
 /* 80380814 0037D754  4E 80 00 20 */	blr 
+.endfn doCreateObj__Q28Morimura13THiScoreSceneFP10JKRArchive
 
-.global getSceneType__Q28Morimura13THiScoreSceneFv
-getSceneType__Q28Morimura13THiScoreSceneFv:
+.fn getSceneType__Q28Morimura13THiScoreSceneFv, weak
 /* 80380818 0037D758  38 60 27 36 */	li r3, 0x2736
 /* 8038081C 0037D75C  4E 80 00 20 */	blr 
+.endfn getSceneType__Q28Morimura13THiScoreSceneFv
 
-.global getOwnerID__Q28Morimura13THiScoreSceneFv
-getOwnerID__Q28Morimura13THiScoreSceneFv:
+.fn getOwnerID__Q28Morimura13THiScoreSceneFv, weak
 /* 80380820 0037D760  3C 60 4D 52 */	lis r3, 0x4D524D52@ha
 /* 80380824 0037D764  38 63 4D 52 */	addi r3, r3, 0x4D524D52@l
 /* 80380828 0037D768  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q28Morimura13THiScoreSceneFv
 
-.global getMemberID__Q28Morimura13THiScoreSceneFv
-getMemberID__Q28Morimura13THiScoreSceneFv:
+.fn getMemberID__Q28Morimura13THiScoreSceneFv, weak
 /* 8038082C 0037D76C  3C 80 48 49 */	lis r4, 0x48495343@ha
 /* 80380830 0037D770  38 60 00 00 */	li r3, 0
 /* 80380834 0037D774  38 84 53 43 */	addi r4, r4, 0x48495343@l
 /* 80380838 0037D778  4E 80 00 20 */	blr 
+.endfn getMemberID__Q28Morimura13THiScoreSceneFv
 
-.global getSize__Q28Morimura19DispMemberHighScoreFv
-getSize__Q28Morimura19DispMemberHighScoreFv:
+.fn getSize__Q28Morimura19DispMemberHighScoreFv, weak
 /* 8038083C 0037D77C  38 60 00 10 */	li r3, 0x10
 /* 80380840 0037D780  4E 80 00 20 */	blr 
+.endfn getSize__Q28Morimura19DispMemberHighScoreFv
 
-.global getOwnerID__Q28Morimura19DispMemberHighScoreFv
-getOwnerID__Q28Morimura19DispMemberHighScoreFv:
+.fn getOwnerID__Q28Morimura19DispMemberHighScoreFv, weak
 /* 80380844 0037D784  3C 60 4D 52 */	lis r3, 0x4D524D52@ha
 /* 80380848 0037D788  38 63 4D 52 */	addi r3, r3, 0x4D524D52@l
 /* 8038084C 0037D78C  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q28Morimura19DispMemberHighScoreFv
 
-.global getMemberID__Q28Morimura19DispMemberHighScoreFv
-getMemberID__Q28Morimura19DispMemberHighScoreFv:
+.fn getMemberID__Q28Morimura19DispMemberHighScoreFv, weak
 /* 80380850 0037D790  3C 80 48 49 */	lis r4, 0x48495343@ha
 /* 80380854 0037D794  38 60 00 00 */	li r3, 0
 /* 80380858 0037D798  38 84 53 43 */	addi r4, r4, 0x48495343@l
 /* 8038085C 0037D79C  4E 80 00 20 */	blr 
+.endfn getMemberID__Q28Morimura19DispMemberHighScoreFv
 
-.global getDispMemberBase__Q28Morimura8THiScoreFv
-getDispMemberBase__Q28Morimura8THiScoreFv:
+.fn getDispMemberBase__Q28Morimura8THiScoreFv, weak
 /* 80380860 0037D7A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80380864 0037D7A4  7C 08 02 A6 */	mflr r0
 /* 80380868 0037D7A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4787,26 +4858,26 @@ getDispMemberBase__Q28Morimura8THiScoreFv:
 /* 80380888 0037D7C8  7C 08 03 A6 */	mtlr r0
 /* 8038088C 0037D7CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80380890 0037D7D0  4E 80 00 20 */	blr 
+.endfn getDispMemberBase__Q28Morimura8THiScoreFv
 
-.global getIdMax__Q28Morimura8THiScoreFv
-getIdMax__Q28Morimura8THiScoreFv:
+.fn getIdMax__Q28Morimura8THiScoreFv, weak
 /* 80380894 0037D7D4  38 60 00 10 */	li r3, 0x10
 /* 80380898 0037D7D8  4E 80 00 20 */	blr 
+.endfn getIdMax__Q28Morimura8THiScoreFv
 
-.global setShortenIndex__Q28Morimura11TScrollListFiib
-setShortenIndex__Q28Morimura11TScrollListFiib:
+.fn setShortenIndex__Q28Morimura11TScrollListFiib, weak
 /* 8038089C 0037D7DC  4E 80 00 20 */	blr 
+.endfn setShortenIndex__Q28Morimura11TScrollListFiib
 
-.global doUpdateIn__Q28Morimura11TScrollListFv
-doUpdateIn__Q28Morimura11TScrollListFv:
+.fn doUpdateIn__Q28Morimura11TScrollListFv, weak
 /* 803808A0 0037D7E0  4E 80 00 20 */	blr 
+.endfn doUpdateIn__Q28Morimura11TScrollListFv
 
-.global doUpdateOut__Q28Morimura11TScrollListFv
-doUpdateOut__Q28Morimura11TScrollListFv:
+.fn doUpdateOut__Q28Morimura11TScrollListFv, weak
 /* 803808A4 0037D7E4  4E 80 00 20 */	blr 
+.endfn doUpdateOut__Q28Morimura11TScrollListFv
 
-.global __dt__Q28Morimura8THiScoreFv
-__dt__Q28Morimura8THiScoreFv:
+.fn __dt__Q28Morimura8THiScoreFv, weak
 /* 803808A8 0037D7E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803808AC 0037D7EC  7C 08 02 A6 */	mflr r0
 /* 803808B0 0037D7F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4864,9 +4935,9 @@ __dt__Q28Morimura8THiScoreFv:
 /* 80380978 0037D8B8  7C 08 03 A6 */	mtlr r0
 /* 8038097C 0037D8BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80380980 0037D8C0  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura8THiScoreFv
 
-.global __dt__Q28Morimura15THiScoreIndPaneFv
-__dt__Q28Morimura15THiScoreIndPaneFv:
+.fn __dt__Q28Morimura15THiScoreIndPaneFv, weak
 /* 80380984 0037D8C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80380988 0037D8C8  7C 08 02 A6 */	mflr r0
 /* 8038098C 0037D8CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4897,9 +4968,9 @@ __dt__Q28Morimura15THiScoreIndPaneFv:
 /* 803809E8 0037D928  7C 08 03 A6 */	mtlr r0
 /* 803809EC 0037D92C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803809F0 0037D930  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura15THiScoreIndPaneFv
 
-.global __sinit_hiScore2D_cpp
-__sinit_hiScore2D_cpp:
+.fn __sinit_hiScore2D_cpp, local
 /* 803809F4 0037D934  C0 82 08 F4 */	lfs f4, lbl_8051EC54@sda21(r2)
 /* 803809F8 0037D938  3C 60 80 51 */	lis r3, mScrollParm__Q28Morimura8THiScore@ha
 /* 803809FC 0037D93C  C0 62 09 5C */	lfs f3, lbl_8051ECBC@sda21(r2)
@@ -4912,8 +4983,9 @@ __sinit_hiScore2D_cpp:
 /* 80380A18 0037D958  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 80380A1C 0037D95C  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 80380A20 0037D960  4E 80 00 20 */	blr 
+.endfn __sinit_hiScore2D_cpp
 
-.global "@24@__dt__Q28Morimura8THiScoreFv"
-"@24@__dt__Q28Morimura8THiScoreFv":
+.fn "@24@__dt__Q28Morimura8THiScoreFv", weak
 /* 80380A24 0037D964  38 63 FF E8 */	addi r3, r3, -24
 /* 80380A28 0037D968  4B FF FE 80 */	b __dt__Q28Morimura8THiScoreFv
+.endfn "@24@__dt__Q28Morimura8THiScoreFv"

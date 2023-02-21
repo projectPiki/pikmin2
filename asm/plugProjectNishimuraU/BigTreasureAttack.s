@@ -19,15 +19,14 @@
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx12TOootaWbShot
-__vt__Q23efx12TOootaWbShot:
+.obj __vt__Q23efx12TOootaWbShot, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global "__vt__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>"
-"__vt__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>":
+.endobj __vt__Q23efx12TOootaWbShot
+.obj "__vt__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>FPQ23efx3Arg"
@@ -35,8 +34,8 @@ __vt__Q23efx12TOootaWbShot:
 	.4byte "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx10TChaseMtx6
-__vt__Q23efx10TChaseMtx6:
+.endobj "__vt__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>"
+.obj __vt__Q23efx10TChaseMtx6, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>FPQ23efx3Arg"
@@ -44,8 +43,8 @@ __vt__Q23efx10TChaseMtx6:
 	.4byte "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx17TOootaElecAttack2
-__vt__Q23efx17TOootaElecAttack2:
+.endobj __vt__Q23efx10TChaseMtx6
+.obj __vt__Q23efx17TOootaElecAttack2, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
@@ -53,8 +52,8 @@ __vt__Q23efx17TOootaElecAttack2:
 	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-.global __vt__Q23efx17TOootaElecAttack1
-__vt__Q23efx17TOootaElecAttack1:
+.endobj __vt__Q23efx17TOootaElecAttack2
+.obj __vt__Q23efx17TOootaElecAttack1, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -74,8 +73,8 @@ __vt__Q23efx17TOootaElecAttack1:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx17TOootaElecAttack1Fv
-.global __vt__Q23efx13TOootaElecLeg
-__vt__Q23efx13TOootaElecLeg:
+.endobj __vt__Q23efx17TOootaElecAttack1
+.obj __vt__Q23efx13TOootaElecLeg, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -95,8 +94,8 @@ __vt__Q23efx13TOootaElecLeg:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx13TOootaElecLegFv
-.global __vt__Q23efx9TOootaGas
-__vt__Q23efx9TOootaGas:
+.endobj __vt__Q23efx13TOootaElecLeg
+.obj __vt__Q23efx9TOootaGas, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
@@ -104,15 +103,15 @@ __vt__Q23efx9TOootaGas:
 	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx11TOootaPdead
-__vt__Q23efx11TOootaPdead:
+.endobj __vt__Q23efx9TOootaGas
+.obj __vt__Q23efx11TOootaPdead, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global "__vt__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>"
-"__vt__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>":
+.endobj __vt__Q23efx11TOootaPdead
+.obj "__vt__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg"
@@ -120,8 +119,8 @@ __vt__Q23efx11TOootaPdead:
 	.4byte "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 	.4byte "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 	.4byte "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
-.global __vt__Q23efx24TChasePosPosLocalZScale3
-__vt__Q23efx24TChasePosPosLocalZScale3:
+.endobj "__vt__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>"
+.obj __vt__Q23efx24TChasePosPosLocalZScale3, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg"
@@ -129,8 +128,8 @@ __vt__Q23efx24TChasePosPosLocalZScale3:
 	.4byte "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 	.4byte "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 	.4byte "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
-.global __vt__Q23efx13TOootaPhouden
-__vt__Q23efx13TOootaPhouden:
+.endobj __vt__Q23efx24TChasePosPosLocalZScale3
+.obj __vt__Q23efx13TOootaPhouden, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
@@ -138,8 +137,8 @@ __vt__Q23efx13TOootaPhouden:
 	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-.global __vt__Q23efx15TOootaElecparts
-__vt__Q23efx15TOootaElecparts:
+.endobj __vt__Q23efx13TOootaPhouden
+.obj __vt__Q23efx15TOootaElecparts, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -159,8 +158,8 @@ __vt__Q23efx15TOootaElecparts:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx15TOootaElecpartsFv
-.global __vt__Q23efx10TOootaElec
-__vt__Q23efx10TOootaElec:
+.endobj __vt__Q23efx15TOootaElecparts
+.obj __vt__Q23efx10TOootaElec, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg"
@@ -168,21 +167,21 @@ __vt__Q23efx10TOootaElec:
 	.4byte "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 	.4byte "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
 	.4byte "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
-.global __vt__Q34Game11BigTreasure21BigTreasureElecAttack
-__vt__Q34Game11BigTreasure21BigTreasureElecAttack:
+.endobj __vt__Q23efx10TOootaElec
+.obj __vt__Q34Game11BigTreasure21BigTreasureElecAttack, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game11BigTreasure21BigTreasureElecAttackFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q23efx11TOootaWbHit
-__vt__Q23efx11TOootaWbHit:
+.endobj __vt__Q34Game11BigTreasure21BigTreasureElecAttack
+.obj __vt__Q23efx11TOootaWbHit, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple4FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple4Fv
 	.4byte fade__Q23efx8TSimple4Fv
-.global "__vt__Q23efx29TSyncGroup4<Q23efx9TChasePos>"
-"__vt__Q23efx29TSyncGroup4<Q23efx9TChasePos>":
+.endobj __vt__Q23efx11TOootaWbHit
+.obj "__vt__Q23efx29TSyncGroup4<Q23efx9TChasePos>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg"
@@ -190,8 +189,8 @@ __vt__Q23efx11TOootaWbHit:
 	.4byte "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
-.global __vt__Q23efx10TChasePos4
-__vt__Q23efx10TChasePos4:
+.endobj "__vt__Q23efx29TSyncGroup4<Q23efx9TChasePos>"
+.obj __vt__Q23efx10TChasePos4, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg"
@@ -199,8 +198,8 @@ __vt__Q23efx10TChasePos4:
 	.4byte "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
-.global __vt__Q23efx11TOootaWbomb
-__vt__Q23efx11TOootaWbomb:
+.endobj __vt__Q23efx10TChasePos4
+.obj __vt__Q23efx11TOootaWbomb, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg"
@@ -208,132 +207,179 @@ __vt__Q23efx11TOootaWbomb:
 	.4byte "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
-.global __vt__Q34Game11BigTreasure22BigTreasureWaterAttack
-__vt__Q34Game11BigTreasure22BigTreasureWaterAttack:
+.endobj __vt__Q23efx11TOootaWbomb
+.obj __vt__Q34Game11BigTreasure22BigTreasureWaterAttack, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game11BigTreasure22BigTreasureWaterAttackFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q34Game11BigTreasure20BigTreasureGasAttack
-__vt__Q34Game11BigTreasure20BigTreasureGasAttack:
+.endobj __vt__Q34Game11BigTreasure22BigTreasureWaterAttack
+.obj __vt__Q34Game11BigTreasure20BigTreasureGasAttack, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game11BigTreasure20BigTreasureGasAttackFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q34Game11BigTreasure21BigTreasureFireAttack
-__vt__Q34Game11BigTreasure21BigTreasureFireAttack:
+.endobj __vt__Q34Game11BigTreasure20BigTreasureGasAttack
+.obj __vt__Q34Game11BigTreasure21BigTreasureFireAttack, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game11BigTreasure21BigTreasureFireAttackFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q34Game11BigTreasure16AttackShadowNode
-__vt__Q34Game11BigTreasure16AttackShadowNode:
+.endobj __vt__Q34Game11BigTreasure21BigTreasureFireAttack
+.obj __vt__Q34Game11BigTreasure16AttackShadowNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game11BigTreasure16AttackShadowNodeFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q34Game11BigTreasure16AttackShadowNode
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051D200:
+.obj lbl_8051D200, local
 	.float 0.0
-lbl_8051D204:
+.endobj lbl_8051D200
+.obj lbl_8051D204, local
 	.float 15.0
-lbl_8051D208:
+.endobj lbl_8051D204
+.obj lbl_8051D208, local
 	.float 2.5
-lbl_8051D20C:
+.endobj lbl_8051D208
+.obj lbl_8051D20C, local
 	.float -25.0
-lbl_8051D210:
+.endobj lbl_8051D20C
+.obj lbl_8051D210, local
 	.float 1.0
-lbl_8051D214:
+.endobj lbl_8051D210
+.obj lbl_8051D214, local
 	.float 3.0
-lbl_8051D218:
+.endobj lbl_8051D214
+.obj lbl_8051D218, local
 	.float 200.0
-lbl_8051D21C:
+.endobj lbl_8051D218
+.obj lbl_8051D21C, local
 	.float 40.0
-lbl_8051D220:
+.endobj lbl_8051D21C
+.obj lbl_8051D220, local
 	.float 25.0
-lbl_8051D224:
+.endobj lbl_8051D220
+.obj lbl_8051D224, local
 	.float 32768.0
-lbl_8051D228:
+.endobj lbl_8051D224
+.obj lbl_8051D228, local
 	.float 0.33
-lbl_8051D22C:
+.endobj lbl_8051D228
+.obj lbl_8051D22C, local
 	.float -1000.0
+.endobj lbl_8051D22C
 .balign 8
-lbl_8051D230:
+.obj lbl_8051D230, local
 	.8byte 0x4330000080000000
-lbl_8051D238:
+.endobj lbl_8051D230
+.obj lbl_8051D238, local
 	.float 325.9493
-lbl_8051D23C:
+.endobj lbl_8051D238
+.obj lbl_8051D23C, local
 	.float -325.9493
-lbl_8051D240:
+.endobj lbl_8051D23C
+.obj lbl_8051D240, local
 	.float -15.0
-lbl_8051D244:
+.endobj lbl_8051D240
+.obj lbl_8051D244, local
 	.float 0.27
-lbl_8051D248:
+.endobj lbl_8051D244
+.obj lbl_8051D248, local
 	.float 10.0
-lbl_8051D24C:
+.endobj lbl_8051D248
+.obj lbl_8051D24C, local
 	.float 0.5
-lbl_8051D250:
+.endobj lbl_8051D24C
+.obj lbl_8051D250, local
 	.float 480.0
-lbl_8051D254:
+.endobj lbl_8051D250
+.obj lbl_8051D254, local
 	.float 30.0
-lbl_8051D258:
+.endobj lbl_8051D254
+.obj lbl_8051D258, local
 	.float 0.67
-lbl_8051D25C:
+.endobj lbl_8051D258
+.obj lbl_8051D25C, local
 	.float 20.0
-lbl_8051D260:
+.endobj lbl_8051D25C
+.obj lbl_8051D260, local
 	.float 300.0
-lbl_8051D264:
+.endobj lbl_8051D260
+.obj lbl_8051D264, local
 	.float 0.6
-lbl_8051D268:
+.endobj lbl_8051D264
+.obj lbl_8051D268, local
 	.float 150.0
-lbl_8051D26C:
+.endobj lbl_8051D268
+.obj lbl_8051D26C, local
 	.float 0.75
-lbl_8051D270:
+.endobj lbl_8051D26C
+.obj lbl_8051D270, local
 	.float 0.65
-lbl_8051D274:
+.endobj lbl_8051D270
+.obj lbl_8051D274, local
 	.float 100.0
-lbl_8051D278:
+.endobj lbl_8051D274
+.obj lbl_8051D278, local
 	.float 220.0
-lbl_8051D27C:
+.endobj lbl_8051D278
+.obj lbl_8051D27C, local
 	.float 170.0
-lbl_8051D280:
+.endobj lbl_8051D27C
+.obj lbl_8051D280, local
 	.float 2.7
-lbl_8051D284:
+.endobj lbl_8051D280
+.obj lbl_8051D284, local
 	.float 0.1
-lbl_8051D288:
+.endobj lbl_8051D284
+.obj lbl_8051D288, local
 	.float 0.02
-lbl_8051D28C:
+.endobj lbl_8051D288
+.obj lbl_8051D28C, local
 	.float 0.25
-lbl_8051D290:
+.endobj lbl_8051D28C
+.obj lbl_8051D290, local
 	.float 50.0
-lbl_8051D294:
+.endobj lbl_8051D290
+.obj lbl_8051D294, local
 	.float 0.55
-lbl_8051D298: # tau
+.endobj lbl_8051D294
+.obj lbl_8051D298, local # tau
 	.float 6.2831855
-lbl_8051D29C: # four individual bytes, loaded as one word?
+.endobj lbl_8051D298
+.obj lbl_8051D29C, local # four individual bytes, loaded as one word?
 	.4byte 0x01010101
-lbl_8051D2A0:
+.endobj lbl_8051D29C
+.obj lbl_8051D2A0, local
 	.float 500.0
-lbl_8051D2A4:
+.endobj lbl_8051D2A0
+.obj lbl_8051D2A4, local
 	.float 2.0
-lbl_8051D2A8:
+.endobj lbl_8051D2A4
+.obj lbl_8051D2A8, local
 	.float 350.0
-lbl_8051D2AC:
+.endobj lbl_8051D2A8
+.obj lbl_8051D2AC, local
 	.float 180.0
-lbl_8051D2B0:
+.endobj lbl_8051D2AC
+.obj lbl_8051D2B0, local
 	.float 1280.0
-lbl_8051D2B4:
+.endobj lbl_8051D2B0
+.obj lbl_8051D2B4, local
 	.float 0.2
-lbl_8051D2B8:
+.endobj lbl_8051D2B4
+.obj lbl_8051D2B8, local
 	.float 12.5
-lbl_8051D2BC:
+.endobj lbl_8051D2B8
+.obj lbl_8051D2BC, local
 	.float 7.5
+.endobj lbl_8051D2BC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv
-makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv:
+.fn makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv, global
 /* 802F39A8 002F08E8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802F39AC 002F08EC  7C 08 02 A6 */	mflr r0
 /* 802F39B0 002F08F0  C0 22 EE A0 */	lfs f1, lbl_8051D200@sda21(r2)
@@ -400,9 +446,9 @@ makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv:
 /* 802F3AA4 002F09E4  7C 08 03 A6 */	mtlr r0
 /* 802F3AA8 002F09E8  38 21 00 40 */	addi r1, r1, 0x40
 /* 802F3AAC 002F09EC  4E 80 00 20 */	blr 
+.endfn makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv
 
-.global update__Q34Game11BigTreasure21BigTreasureFireAttackFv
-update__Q34Game11BigTreasure21BigTreasureFireAttackFv:
+.fn update__Q34Game11BigTreasure21BigTreasureFireAttackFv, global
 /* 802F3AB0 002F09F0  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 802F3AB4 002F09F4  7C 08 02 A6 */	mflr r0
 /* 802F3AB8 002F09F8  90 01 01 24 */	stw r0, 0x124(r1)
@@ -632,9 +678,9 @@ update__Q34Game11BigTreasure21BigTreasureFireAttackFv:
 /* 802F3E18 002F0D58  7C 08 03 A6 */	mtlr r0
 /* 802F3E1C 002F0D5C  38 21 01 20 */	addi r1, r1, 0x120
 /* 802F3E20 002F0D60  4E 80 00 20 */	blr 
+.endfn update__Q34Game11BigTreasure21BigTreasureFireAttackFv
 
-.global update__Q34Game11BigTreasure20BigTreasureGasAttackFv
-update__Q34Game11BigTreasure20BigTreasureGasAttackFv:
+.fn update__Q34Game11BigTreasure20BigTreasureGasAttackFv, global
 /* 802F3E24 002F0D64  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 802F3E28 002F0D68  7C 08 02 A6 */	mflr r0
 /* 802F3E2C 002F0D6C  90 01 01 14 */	stw r0, 0x114(r1)
@@ -861,9 +907,9 @@ update__Q34Game11BigTreasure20BigTreasureGasAttackFv:
 /* 802F417C 002F10BC  7C 08 03 A6 */	mtlr r0
 /* 802F4180 002F10C0  38 21 01 10 */	addi r1, r1, 0x110
 /* 802F4184 002F10C4  4E 80 00 20 */	blr 
+.endfn update__Q34Game11BigTreasure20BigTreasureGasAttackFv
 
-.global update__Q34Game11BigTreasure22BigTreasureWaterAttackFv
-update__Q34Game11BigTreasure22BigTreasureWaterAttackFv:
+.fn update__Q34Game11BigTreasure22BigTreasureWaterAttackFv, global
 /* 802F4188 002F10C8  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 802F418C 002F10CC  7C 08 02 A6 */	mflr r0
 /* 802F4190 002F10D0  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -1071,9 +1117,9 @@ update__Q34Game11BigTreasure22BigTreasureWaterAttackFv:
 /* 802F44A0 002F13E0  7C 08 03 A6 */	mtlr r0
 /* 802F44A4 002F13E4  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 802F44A8 002F13E8  4E 80 00 20 */	blr 
+.endfn update__Q34Game11BigTreasure22BigTreasureWaterAttackFv
 
-.global __dt__Q23efx23TChasePosPosLocalZScaleFv
-__dt__Q23efx23TChasePosPosLocalZScaleFv:
+.fn __dt__Q23efx23TChasePosPosLocalZScaleFv, weak
 /* 802F44AC 002F13EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F44B0 002F13F0  7C 08 02 A6 */	mflr r0
 /* 802F44B4 002F13F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1109,9 +1155,9 @@ __dt__Q23efx23TChasePosPosLocalZScaleFv:
 /* 802F4524 002F1464  7C 08 03 A6 */	mtlr r0
 /* 802F4528 002F1468  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F452C 002F146C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx23TChasePosPosLocalZScaleFv
 
-.global update__Q34Game11BigTreasure21BigTreasureElecAttackFv
-update__Q34Game11BigTreasure21BigTreasureElecAttackFv:
+.fn update__Q34Game11BigTreasure21BigTreasureElecAttackFv, global
 /* 802F4530 002F1470  94 21 FD D0 */	stwu r1, -0x230(r1)
 /* 802F4534 002F1474  7C 08 02 A6 */	mflr r0
 /* 802F4538 002F1478  90 01 02 34 */	stw r0, 0x234(r1)
@@ -1603,9 +1649,9 @@ update__Q34Game11BigTreasure21BigTreasureElecAttackFv:
 /* 802F4C5C 002F1B9C  7C 08 03 A6 */	mtlr r0
 /* 802F4C60 002F1BA0  38 21 02 30 */	addi r1, r1, 0x230
 /* 802F4C64 002F1BA4  4E 80 00 20 */	blr 
+.endfn update__Q34Game11BigTreasure21BigTreasureElecAttackFv
 
-.global __ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj
-__ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj:
+.fn __ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj, global
 /* 802F4C68 002F1BA8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802F4C6C 002F1BAC  7C 08 02 A6 */	mflr r0
 /* 802F4C70 002F1BB0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2130,9 +2176,9 @@ __ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj:
 /* 802F5410 002F2350  7C 08 03 A6 */	mtlr r0
 /* 802F5414 002F2354  38 21 00 40 */	addi r1, r1, 0x40
 /* 802F5418 002F2358  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj
 
-.global init__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-init__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn init__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F541C 002F235C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F5420 002F2360  7C 08 02 A6 */	mflr r0
 /* 802F5424 002F2364  C0 02 EE A0 */	lfs f0, lbl_8051D200@sda21(r2)
@@ -2257,9 +2303,9 @@ init__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F55D8 002F2518  7C 08 03 A6 */	mtlr r0
 /* 802F55DC 002F251C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F55E0 002F2520  4E 80 00 20 */	blr 
+.endfn init__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global update__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-update__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn update__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F55E4 002F2524  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F55E8 002F2528  7C 08 02 A6 */	mflr r0
 /* 802F55EC 002F252C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2321,9 +2367,9 @@ update__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F56C0 002F2600  7C 08 03 A6 */	mtlr r0
 /* 802F56C4 002F2604  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F56C8 002F2608  4E 80 00 20 */	blr 
+.endfn update__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global startFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-startFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn startFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F56CC 002F260C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F56D0 002F2610  7C 08 02 A6 */	mflr r0
 /* 802F56D4 002F2614  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2404,9 +2450,9 @@ startFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F57F0 002F2730  7C 08 03 A6 */	mtlr r0
 /* 802F57F4 002F2734  38 21 00 30 */	addi r1, r1, 0x30
 /* 802F57F8 002F2738  4E 80 00 20 */	blr 
+.endfn startFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global startNewFireList__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-startNewFireList__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn startNewFireList__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F57FC 002F273C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F5800 002F2740  7C 08 02 A6 */	mflr r0
 /* 802F5804 002F2744  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2447,9 +2493,9 @@ startNewFireList__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F588C 002F27CC  7C 08 03 A6 */	mtlr r0
 /* 802F5890 002F27D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F5894 002F27D4  4E 80 00 20 */	blr 
+.endfn startNewFireList__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global updateFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-updateFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn updateFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F5898 002F27D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F589C 002F27DC  7C 08 02 A6 */	mflr r0
 /* 802F58A0 002F27E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2556,9 +2602,9 @@ updateFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F5A18 002F2958  7C 08 03 A6 */	mtlr r0
 /* 802F5A1C 002F295C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F5A20 002F2960  4E 80 00 20 */	blr 
+.endfn updateFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global updateFireEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-updateFireEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn updateFireEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F5A24 002F2964  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F5A28 002F2968  7C 08 02 A6 */	mflr r0
 /* 802F5A2C 002F296C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2587,9 +2633,9 @@ updateFireEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F5A88 002F29C8  7C 08 03 A6 */	mtlr r0
 /* 802F5A8C 002F29CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F5A90 002F29D0  4E 80 00 20 */	blr 
+.endfn updateFireEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global updateFireSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureFireAttacki
-updateFireSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureFireAttacki:
+.fn updateFireSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureFireAttacki, global
 /* 802F5A94 002F29D4  1C 05 00 0C */	mulli r0, r5, 0xc
 /* 802F5A98 002F29D8  80 A3 01 1C */	lwz r5, 0x11c(r3)
 /* 802F5A9C 002F29DC  C0 64 00 20 */	lfs f3, 0x20(r4)
@@ -2630,9 +2676,9 @@ updateFireSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTr
 /* 802F5B28 002F2A68  EC 01 00 28 */	fsubs f0, f1, f0
 /* 802F5B2C 002F2A6C  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 802F5B30 002F2A70  4E 80 00 20 */	blr 
+.endfn updateFireSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureFireAttacki
 
-.global startGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-startGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn startGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F5B34 002F2A74  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802F5B38 002F2A78  7C 08 02 A6 */	mflr r0
 /* 802F5B3C 002F2A7C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2823,9 +2869,9 @@ startGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F5DEC 002F2D2C  7C 08 03 A6 */	mtlr r0
 /* 802F5DF0 002F2D30  38 21 00 60 */	addi r1, r1, 0x60
 /* 802F5DF4 002F2D34  4E 80 00 20 */	blr 
+.endfn startGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global startNewGasList__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-startNewGasList__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn startNewGasList__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F5DF8 002F2D38  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F5DFC 002F2D3C  7C 08 02 A6 */	mflr r0
 /* 802F5E00 002F2D40  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2915,9 +2961,9 @@ startNewGasList__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F5F38 002F2E78  7C 08 03 A6 */	mtlr r0
 /* 802F5F3C 002F2E7C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802F5F40 002F2E80  4E 80 00 20 */	blr 
+.endfn startNewGasList__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global updateGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-updateGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn updateGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F5F44 002F2E84  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802F5F48 002F2E88  7C 08 02 A6 */	mflr r0
 /* 802F5F4C 002F2E8C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3147,9 +3193,9 @@ updateGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F627C 002F31BC  7C 08 03 A6 */	mtlr r0
 /* 802F6280 002F31C0  38 21 00 40 */	addi r1, r1, 0x40
 /* 802F6284 002F31C4  4E 80 00 20 */	blr 
+.endfn updateGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F6288 002F31C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F628C 002F31CC  7C 08 02 A6 */	mflr r0
 /* 802F6290 002F31D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3172,9 +3218,9 @@ updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F62D4 002F3214  7C 08 03 A6 */	mtlr r0
 /* 802F62D8 002F3218  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F62DC 002F321C  4E 80 00 20 */	blr 
+.endfn updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global updateGasSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure20BigTreasureGasAttacki
-updateGasSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure20BigTreasureGasAttacki:
+.fn updateGasSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure20BigTreasureGasAttacki, global
 /* 802F62E0 002F3220  1C 05 00 0C */	mulli r0, r5, 0xc
 /* 802F62E4 002F3224  80 A3 01 1C */	lwz r5, 0x11c(r3)
 /* 802F62E8 002F3228  C0 64 00 20 */	lfs f3, 0x20(r4)
@@ -3215,9 +3261,9 @@ updateGasSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTre
 /* 802F6374 002F32B4  EC 01 00 28 */	fsubs f0, f1, f0
 /* 802F6378 002F32B8  D0 03 00 74 */	stfs f0, 0x74(r3)
 /* 802F637C 002F32BC  4E 80 00 20 */	blr 
+.endfn updateGasSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure20BigTreasureGasAttacki
 
-.global startWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-startWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn startWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F6380 002F32C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F6384 002F32C4  7C 08 02 A6 */	mflr r0
 /* 802F6388 002F32C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3289,9 +3335,9 @@ startWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F6480 002F33C0  7C 08 03 A6 */	mtlr r0
 /* 802F6484 002F33C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F6488 002F33C8  4E 80 00 20 */	blr 
+.endfn startWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global startNewWaterList__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-startNewWaterList__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn startNewWaterList__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F648C 002F33CC  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 802F6490 002F33D0  7C 08 02 A6 */	mflr r0
 /* 802F6494 002F33D4  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -3591,9 +3637,9 @@ startNewWaterList__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F68FC 002F383C  7C 08 03 A6 */	mtlr r0
 /* 802F6900 002F3840  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 802F6904 002F3844  4E 80 00 20 */	blr 
+.endfn startNewWaterList__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global updateWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-updateWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn updateWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F6908 002F3848  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802F690C 002F384C  7C 08 02 A6 */	mflr r0
 /* 802F6910 002F3850  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3687,9 +3733,9 @@ updateWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F6A60 002F39A0  7C 08 03 A6 */	mtlr r0
 /* 802F6A64 002F39A4  38 21 00 50 */	addi r1, r1, 0x50
 /* 802F6A68 002F39A8  4E 80 00 20 */	blr 
+.endfn updateWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global updateWaterEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-updateWaterEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn updateWaterEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F6A6C 002F39AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F6A70 002F39B0  7C 08 02 A6 */	mflr r0
 /* 802F6A74 002F39B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3712,9 +3758,9 @@ updateWaterEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F6AB8 002F39F8  7C 08 03 A6 */	mtlr r0
 /* 802F6ABC 002F39FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F6AC0 002F3A00  4E 80 00 20 */	blr 
+.endfn updateWaterEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global getWaterTargetCreature__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-getWaterTargetCreature__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn getWaterTargetCreature__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F6AC4 002F3A04  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 802F6AC8 002F3A08  7C 08 02 A6 */	mflr r0
 /* 802F6ACC 002F3A0C  38 80 00 00 */	li r4, 0
@@ -3909,9 +3955,9 @@ getWaterTargetCreature__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F6D90 002F3CD0  7C 08 03 A6 */	mtlr r0
 /* 802F6D94 002F3CD4  38 21 04 40 */	addi r1, r1, 0x440
 /* 802F6D98 002F3CD8  4E 80 00 20 */	blr 
+.endfn getWaterTargetCreature__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global setElecAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-setElecAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn setElecAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F6D9C 002F3CDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F6DA0 002F3CE0  7C 08 02 A6 */	mflr r0
 /* 802F6DA4 002F3CE4  38 80 00 00 */	li r4, 0
@@ -4179,9 +4225,9 @@ setElecAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F718C 002F40CC  7C 08 03 A6 */	mtlr r0
 /* 802F7190 002F40D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F7194 002F40D4  4E 80 00 20 */	blr 
+.endfn setElecAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global startElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-startElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn startElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F7198 002F40D8  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 802F719C 002F40DC  7C 08 02 A6 */	mflr r0
 /* 802F71A0 002F40E0  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -4487,9 +4533,9 @@ startElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F7620 002F4560  7C 08 03 A6 */	mtlr r0
 /* 802F7624 002F4564  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 802F7628 002F4568  4E 80 00 20 */	blr 
+.endfn startElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global updateElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-updateElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn updateElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F762C 002F456C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F7630 002F4570  7C 08 02 A6 */	mflr r0
 /* 802F7634 002F4574  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4665,9 +4711,9 @@ updateElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F78A8 002F47E8  7C 08 03 A6 */	mtlr r0
 /* 802F78AC 002F47EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F78B0 002F47F0  4E 80 00 20 */	blr 
+.endfn updateElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global finishAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-finishAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn finishAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F78B4 002F47F4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802F78B8 002F47F8  7C 08 02 A6 */	mflr r0
 /* 802F78BC 002F47FC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -4795,9 +4841,9 @@ finishAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F7A8C 002F49CC  7C 08 03 A6 */	mtlr r0
 /* 802F7A90 002F49D0  38 21 00 40 */	addi r1, r1, 0x40
 /* 802F7A94 002F49D4  4E 80 00 20 */	blr 
+.endfn finishAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack
-addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack:
+.fn addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack, global
 /* 802F7A98 002F49D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7A9C 002F49DC  7C 08 02 A6 */	mflr r0
 /* 802F7AA0 002F49E0  39 00 00 00 */	li r8, 0
@@ -4833,9 +4879,9 @@ addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasur
 /* 802F7B0C 002F4A4C  7C 08 03 A6 */	mtlr r0
 /* 802F7B10 002F4A50  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F7B14 002F4A54  4E 80 00 20 */	blr 
+.endfn addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack
 
-.global addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack
-addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack:
+.fn addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack, global
 /* 802F7B18 002F4A58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7B1C 002F4A5C  7C 08 02 A6 */	mflr r0
 /* 802F7B20 002F4A60  39 00 00 00 */	li r8, 0
@@ -4871,9 +4917,9 @@ addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasur
 /* 802F7B8C 002F4ACC  7C 08 03 A6 */	mtlr r0
 /* 802F7B90 002F4AD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F7B94 002F4AD4  4E 80 00 20 */	blr 
+.endfn addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack
 
-.global delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack
-delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack:
+.fn delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack, global
 /* 802F7B98 002F4AD8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F7B9C 002F4ADC  7C 08 02 A6 */	mflr r0
 /* 802F7BA0 002F4AE0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4903,9 +4949,9 @@ delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasur
 /* 802F7BF8 002F4B38  7C 08 03 A6 */	mtlr r0
 /* 802F7BFC 002F4B3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F7C00 002F4B40  4E 80 00 20 */	blr 
+.endfn delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack
 
-.global delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack
-delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack:
+.fn delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack, global
 /* 802F7C04 002F4B44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F7C08 002F4B48  7C 08 02 A6 */	mflr r0
 /* 802F7C0C 002F4B4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4935,9 +4981,9 @@ delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasur
 /* 802F7C64 002F4BA4  7C 08 03 A6 */	mtlr r0
 /* 802F7C68 002F4BA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F7C6C 002F4BAC  4E 80 00 20 */	blr 
+.endfn delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack
 
-.global updateAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-updateAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+.fn updateAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFv, global
 /* 802F7C70 002F4BB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7C74 002F4BB4  7C 08 02 A6 */	mflr r0
 /* 802F7C78 002F4BB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4957,9 +5003,9 @@ updateAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F7CA8 002F4BE8  7C 08 03 A6 */	mtlr r0
 /* 802F7CAC 002F4BEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F7CB0 002F4BF0  4E 80 00 20 */	blr 
+.endfn updateAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 
-.global __dt__Q23efx17TOootaElecAttack1Fv
-__dt__Q23efx17TOootaElecAttack1Fv:
+.fn __dt__Q23efx17TOootaElecAttack1Fv, weak
 /* 802F7CB4 002F4BF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7CB8 002F4BF8  7C 08 02 A6 */	mflr r0
 /* 802F7CBC 002F4BFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5001,9 +5047,9 @@ __dt__Q23efx17TOootaElecAttack1Fv:
 /* 802F7D44 002F4C84  7C 08 03 A6 */	mtlr r0
 /* 802F7D48 002F4C88  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F7D4C 002F4C8C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx17TOootaElecAttack1Fv
 
-.global __dt__Q23efx13TOootaElecLegFv
-__dt__Q23efx13TOootaElecLegFv:
+.fn __dt__Q23efx13TOootaElecLegFv, weak
 /* 802F7D50 002F4C90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7D54 002F4C94  7C 08 02 A6 */	mflr r0
 /* 802F7D58 002F4C98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5045,9 +5091,9 @@ __dt__Q23efx13TOootaElecLegFv:
 /* 802F7DE0 002F4D20  7C 08 03 A6 */	mtlr r0
 /* 802F7DE4 002F4D24  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F7DE8 002F4D28  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx13TOootaElecLegFv
 
-.global __dt__Q23efx15TOootaElecpartsFv
-__dt__Q23efx15TOootaElecpartsFv:
+.fn __dt__Q23efx15TOootaElecpartsFv, weak
 /* 802F7DEC 002F4D2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7DF0 002F4D30  7C 08 02 A6 */	mflr r0
 /* 802F7DF4 002F4D34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5089,9 +5135,9 @@ __dt__Q23efx15TOootaElecpartsFv:
 /* 802F7E7C 002F4DBC  7C 08 03 A6 */	mtlr r0
 /* 802F7E80 002F4DC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F7E84 002F4DC4  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx15TOootaElecpartsFv
 
-.global __dt__Q34Game11BigTreasure21BigTreasureElecAttackFv
-__dt__Q34Game11BigTreasure21BigTreasureElecAttackFv:
+.fn __dt__Q34Game11BigTreasure21BigTreasureElecAttackFv, weak
 /* 802F7E88 002F4DC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7E8C 002F4DCC  7C 08 02 A6 */	mflr r0
 /* 802F7E90 002F4DD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5117,9 +5163,9 @@ __dt__Q34Game11BigTreasure21BigTreasureElecAttackFv:
 /* 802F7EDC 002F4E1C  7C 08 03 A6 */	mtlr r0
 /* 802F7EE0 002F4E20  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F7EE4 002F4E24  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game11BigTreasure21BigTreasureElecAttackFv
 
-.global __dt__Q34Game11BigTreasure22BigTreasureWaterAttackFv
-__dt__Q34Game11BigTreasure22BigTreasureWaterAttackFv:
+.fn __dt__Q34Game11BigTreasure22BigTreasureWaterAttackFv, weak
 /* 802F7EE8 002F4E28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7EEC 002F4E2C  7C 08 02 A6 */	mflr r0
 /* 802F7EF0 002F4E30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5145,9 +5191,9 @@ __dt__Q34Game11BigTreasure22BigTreasureWaterAttackFv:
 /* 802F7F3C 002F4E7C  7C 08 03 A6 */	mtlr r0
 /* 802F7F40 002F4E80  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F7F44 002F4E84  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game11BigTreasure22BigTreasureWaterAttackFv
 
-.global __dt__Q34Game11BigTreasure20BigTreasureGasAttackFv
-__dt__Q34Game11BigTreasure20BigTreasureGasAttackFv:
+.fn __dt__Q34Game11BigTreasure20BigTreasureGasAttackFv, weak
 /* 802F7F48 002F4E88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7F4C 002F4E8C  7C 08 02 A6 */	mflr r0
 /* 802F7F50 002F4E90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5173,9 +5219,9 @@ __dt__Q34Game11BigTreasure20BigTreasureGasAttackFv:
 /* 802F7F9C 002F4EDC  7C 08 03 A6 */	mtlr r0
 /* 802F7FA0 002F4EE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F7FA4 002F4EE4  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game11BigTreasure20BigTreasureGasAttackFv
 
-.global __dt__Q34Game11BigTreasure21BigTreasureFireAttackFv
-__dt__Q34Game11BigTreasure21BigTreasureFireAttackFv:
+.fn __dt__Q34Game11BigTreasure21BigTreasureFireAttackFv, weak
 /* 802F7FA8 002F4EE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F7FAC 002F4EEC  7C 08 02 A6 */	mflr r0
 /* 802F7FB0 002F4EF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5201,9 +5247,9 @@ __dt__Q34Game11BigTreasure21BigTreasureFireAttackFv:
 /* 802F7FFC 002F4F3C  7C 08 03 A6 */	mtlr r0
 /* 802F8000 002F4F40  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F8004 002F4F44  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game11BigTreasure21BigTreasureFireAttackFv
 
-.global __dt__Q34Game11BigTreasure16AttackShadowNodeFv
-__dt__Q34Game11BigTreasure16AttackShadowNodeFv:
+.fn __dt__Q34Game11BigTreasure16AttackShadowNodeFv, weak
 /* 802F8008 002F4F48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F800C 002F4F4C  7C 08 02 A6 */	mflr r0
 /* 802F8010 002F4F50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5234,18 +5280,19 @@ __dt__Q34Game11BigTreasure16AttackShadowNodeFv:
 /* 802F806C 002F4FAC  7C 08 03 A6 */	mtlr r0
 /* 802F8070 002F4FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F8074 002F4FB4  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game11BigTreasure16AttackShadowNodeFv
 
-.global "@4@__dt__Q23efx15TOootaElecpartsFv"
-"@4@__dt__Q23efx15TOootaElecpartsFv":
+.fn "@4@__dt__Q23efx15TOootaElecpartsFv", weak
 /* 802F8078 002F4FB8  38 63 FF FC */	addi r3, r3, -4
 /* 802F807C 002F4FBC  4B FF FD 70 */	b __dt__Q23efx15TOootaElecpartsFv
+.endfn "@4@__dt__Q23efx15TOootaElecpartsFv"
 
-.global "@4@__dt__Q23efx13TOootaElecLegFv"
-"@4@__dt__Q23efx13TOootaElecLegFv":
+.fn "@4@__dt__Q23efx13TOootaElecLegFv", weak
 /* 802F8080 002F4FC0  38 63 FF FC */	addi r3, r3, -4
 /* 802F8084 002F4FC4  4B FF FC CC */	b __dt__Q23efx13TOootaElecLegFv
+.endfn "@4@__dt__Q23efx13TOootaElecLegFv"
 
-.global "@4@__dt__Q23efx17TOootaElecAttack1Fv"
-"@4@__dt__Q23efx17TOootaElecAttack1Fv":
+.fn "@4@__dt__Q23efx17TOootaElecAttack1Fv", weak
 /* 802F8088 002F4FC8  38 63 FF FC */	addi r3, r3, -4
 /* 802F808C 002F4FCC  4B FF FC 28 */	b __dt__Q23efx17TOootaElecAttack1Fv
+.endfn "@4@__dt__Q23efx17TOootaElecAttack1Fv"

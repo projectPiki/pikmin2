@@ -234,64 +234,88 @@
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051EAB0:
-	.4byte 0x47000000
-lbl_8051EAB4:
-	.4byte 0x3F4CCCCD
-lbl_8051EAB8:
-	.4byte 0x3E4CCCCD
-lbl_8051EABC:
+.obj lbl_8051EAB0, local
+	.float 32768.0
+.endobj lbl_8051EAB0
+.obj lbl_8051EAB4, local
+	.float 0.8
+.endobj lbl_8051EAB4
+.obj lbl_8051EAB8, local
+	.float 0.2
+.endobj lbl_8051EAB8
+.obj lbl_8051EABC, local
 	.float 0.7
-lbl_8051EAC0:
+.endobj lbl_8051EABC
+.obj lbl_8051EAC0, local
 	.float 0.3
-lbl_8051EAC4:
-	.4byte 0x00000000
-lbl_8051EAC8:
-	.4byte 0x43A2F983
-lbl_8051EACC:
-	.4byte 0xC3A2F983
-lbl_8051EAD0:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051EAD8:
-	.4byte 0x41200000
-lbl_8051EADC:
-	.4byte 0x40000000
-lbl_8051EAE0:
+.endobj lbl_8051EAC0
+.obj lbl_8051EAC4, local
+	.float 0.0
+.endobj lbl_8051EAC4
+.obj lbl_8051EAC8, local
+	.float 325.9493
+.endobj lbl_8051EAC8
+.obj lbl_8051EACC, local
+	.float -325.9493
+.endobj lbl_8051EACC
+.balign 8
+.obj lbl_8051EAD0, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051EAD0
+.obj lbl_8051EAD8, local
+	.float 10.0
+.endobj lbl_8051EAD8
+.obj lbl_8051EADC, local
+	.float 2.0
+.endobj lbl_8051EADC
+.obj lbl_8051EAE0, local
 	.float 1.0
-lbl_8051EAE4:
-	.4byte 0x41700000
-lbl_8051EAE8:
-	.4byte 0x41400000
-lbl_8051EAEC:
-	.4byte 0x42480000
-lbl_8051EAF0:
-	.4byte 0x43480000
-lbl_8051EAF4:
-	.4byte 0x3F666666
-lbl_8051EAF8:
-	.4byte 0x43B40000
-lbl_8051EAFC:
-	.4byte 0x40490FDB
-lbl_8051EB00:
-	.4byte 0x3BB60B61
-lbl_8051EB04:
+.endobj lbl_8051EAE0
+.obj lbl_8051EAE4, local
+	.float 15.0
+.endobj lbl_8051EAE4
+.obj lbl_8051EAE8, local
+	.float 12.0
+.endobj lbl_8051EAE8
+.obj lbl_8051EAEC, local
+	.float 50.0
+.endobj lbl_8051EAEC
+.obj lbl_8051EAF0, local
+	.float 200.0
+.endobj lbl_8051EAF0
+.obj lbl_8051EAF4, local
+	.float 0.9
+.endobj lbl_8051EAF4
+.obj lbl_8051EAF8, local
+	.float 360.0
+.endobj lbl_8051EAF8
+.obj lbl_8051EAFC, local # pi
+	.float 3.1415927
+.endobj lbl_8051EAFC
+.obj lbl_8051EB00, local
+	.float 0.0055555557
+.endobj lbl_8051EB00
+.obj lbl_8051EB04, local
 	.float 0.1
-lbl_8051EB08:
+.endobj lbl_8051EB04
+.obj lbl_8051EB08, local
 	.float 0.5
-lbl_8051EB0C:
-	.4byte 0x40C90FDB
-lbl_8051EB10:
-	.4byte 0x43340000
-lbl_8051EB14:
-	.4byte 0x3F733333
-lbl_8051EB18:
-	.4byte 0x3EB33333
-	.4byte 0x00000000
+.endobj lbl_8051EB08
+.obj lbl_8051EB0C, local # tau
+	.float 6.2831855
+.endobj lbl_8051EB0C
+.obj lbl_8051EB10, local
+	.float 180.0
+.endobj lbl_8051EB10
+.obj lbl_8051EB14, local
+	.float 0.95
+.endobj lbl_8051EB14
+.obj lbl_8051EB18, local
+	.float 0.35
+.endobj lbl_8051EB18
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global setParameters__Q34Game11TamagoMushi3ObjFv
-setParameters__Q34Game11TamagoMushi3ObjFv:
+.fn setParameters__Q34Game11TamagoMushi3ObjFv, global
 /* 8036EBA8 0036BAE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036EBAC 0036BAEC  7C 08 02 A6 */	mflr r0
 /* 8036EBB0 0036BAF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -300,9 +324,9 @@ setParameters__Q34Game11TamagoMushi3ObjFv:
 /* 8036EBBC 0036BAFC  7C 08 03 A6 */	mtlr r0
 /* 8036EBC0 0036BB00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036EBC4 0036BB04  4E 80 00 20 */	blr 
+.endfn setParameters__Q34Game11TamagoMushi3ObjFv
 
-.global "birth__Q34Game11TamagoMushi3ObjFR10Vector3<f>f"
-"birth__Q34Game11TamagoMushi3ObjFR10Vector3<f>f":
+.fn "birth__Q34Game11TamagoMushi3ObjFR10Vector3<f>f", global
 /* 8036EBC8 0036BB08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036EBCC 0036BB0C  7C 08 02 A6 */	mflr r0
 /* 8036EBD0 0036BB10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -311,9 +335,9 @@ setParameters__Q34Game11TamagoMushi3ObjFv:
 /* 8036EBDC 0036BB1C  7C 08 03 A6 */	mtlr r0
 /* 8036EBE0 0036BB20  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036EBE4 0036BB24  4E 80 00 20 */	blr 
+.endfn "birth__Q34Game11TamagoMushi3ObjFR10Vector3<f>f"
 
-.global onInit__Q34Game11TamagoMushi3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game11TamagoMushi3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game11TamagoMushi3ObjFPQ24Game15CreatureInitArg, global
 /* 8036EBE8 0036BB28  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8036EBEC 0036BB2C  7C 08 02 A6 */	mflr r0
 /* 8036EBF0 0036BB30  3C A0 80 49 */	lis r5, lbl_804924E8@ha
@@ -500,9 +524,9 @@ onInit__Q34Game11TamagoMushi3ObjFPQ24Game15CreatureInitArg:
 /* 8036EEAC 0036BDEC  7C 08 03 A6 */	mtlr r0
 /* 8036EEB0 0036BDF0  38 21 00 50 */	addi r1, r1, 0x50
 /* 8036EEB4 0036BDF4  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game11TamagoMushi3ObjFPQ24Game15CreatureInitArg
 
-.global __ct__Q34Game11TamagoMushi3ObjFv
-__ct__Q34Game11TamagoMushi3ObjFv:
+.fn __ct__Q34Game11TamagoMushi3ObjFv, global
 /* 8036EEB8 0036BDF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036EEBC 0036BDFC  7C 08 02 A6 */	mflr r0
 /* 8036EEC0 0036BE00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -585,9 +609,9 @@ __ct__Q34Game11TamagoMushi3ObjFv:
 /* 8036EFE8 0036BF28  7C 08 03 A6 */	mtlr r0
 /* 8036EFEC 0036BF2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036EFF0 0036BF30  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game11TamagoMushi3ObjFv
 
-.global setFSM__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3FSM
-setFSM__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3FSM:
+.fn setFSM__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3FSM, weak
 /* 8036EFF4 0036BF34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036EFF8 0036BF38  7C 08 02 A6 */	mflr r0
 /* 8036EFFC 0036BF3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -607,9 +631,9 @@ setFSM__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3FSM:
 /* 8036F034 0036BF74  7C 08 03 A6 */	mtlr r0
 /* 8036F038 0036BF78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036F03C 0036BF7C  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3FSM
 
-.global doUpdate__Q34Game11TamagoMushi3ObjFv
-doUpdate__Q34Game11TamagoMushi3ObjFv:
+.fn doUpdate__Q34Game11TamagoMushi3ObjFv, global
 /* 8036F040 0036BF80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036F044 0036BF84  7C 08 02 A6 */	mflr r0
 /* 8036F048 0036BF88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -652,9 +676,9 @@ doUpdate__Q34Game11TamagoMushi3ObjFv:
 /* 8036F0D4 0036C014  7C 08 03 A6 */	mtlr r0
 /* 8036F0D8 0036C018  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036F0DC 0036C01C  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game11TamagoMushi3ObjFv
 
-.global doAnimationCullingOff__Q34Game11TamagoMushi3ObjFv
-doAnimationCullingOff__Q34Game11TamagoMushi3ObjFv:
+.fn doAnimationCullingOff__Q34Game11TamagoMushi3ObjFv, global
 /* 8036F0E0 0036C020  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8036F0E4 0036C024  7C 08 02 A6 */	mflr r0
 /* 8036F0E8 0036C028  90 01 00 54 */	stw r0, 0x54(r1)
@@ -745,13 +769,13 @@ doAnimationCullingOff__Q34Game11TamagoMushi3ObjFv:
 /* 8036F22C 0036C16C  7C 08 03 A6 */	mtlr r0
 /* 8036F230 0036C170  38 21 00 50 */	addi r1, r1, 0x50
 /* 8036F234 0036C174  4E 80 00 20 */	blr 
+.endfn doAnimationCullingOff__Q34Game11TamagoMushi3ObjFv
 
-.global doDirectDraw__Q34Game11TamagoMushi3ObjFR8Graphics
-doDirectDraw__Q34Game11TamagoMushi3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game11TamagoMushi3ObjFR8Graphics, global
 /* 8036F238 0036C178  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game11TamagoMushi3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game11TamagoMushi3ObjFR8Graphics
-doDebugDraw__Q34Game11TamagoMushi3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game11TamagoMushi3ObjFR8Graphics, global
 /* 8036F23C 0036C17C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036F240 0036C180  7C 08 02 A6 */	mflr r0
 /* 8036F244 0036C184  90 01 00 14 */	stw r0, 0x14(r1)
@@ -760,9 +784,9 @@ doDebugDraw__Q34Game11TamagoMushi3ObjFR8Graphics:
 /* 8036F250 0036C190  7C 08 03 A6 */	mtlr r0
 /* 8036F254 0036C194  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036F258 0036C198  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game11TamagoMushi3ObjFR8Graphics
 
-.global pressCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart
-pressCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart:
+.fn pressCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 8036F25C 0036C19C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036F260 0036C1A0  7C 08 02 A6 */	mflr r0
 /* 8036F264 0036C1A4  28 04 00 00 */	cmplwi r4, 0
@@ -822,9 +846,9 @@ pressCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8036F32C 0036C26C  7C 08 03 A6 */	mtlr r0
 /* 8036F330 0036C270  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036F334 0036C274  4E 80 00 20 */	blr 
+.endfn pressCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart
 
-.global "bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3<f>f"
-"bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3<f>f":
+.fn "bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3<f>f", global
 /* 8036F338 0036C278  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8036F33C 0036C27C  7C 08 02 A6 */	mflr r0
 /* 8036F340 0036C280  90 01 00 34 */	stw r0, 0x34(r1)
@@ -874,9 +898,9 @@ pressCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8036F3E8 0036C328  7C 08 03 A6 */	mtlr r0
 /* 8036F3EC 0036C32C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8036F3F0 0036C330  4E 80 00 20 */	blr 
+.endfn "bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3<f>f"
 
-.global damageCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart
-damageCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart:
+.fn damageCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 8036F3F4 0036C334  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8036F3F8 0036C338  7C 08 02 A6 */	mflr r0
 /* 8036F3FC 0036C33C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -958,9 +982,9 @@ damageCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8036F51C 0036C45C  7C 08 03 A6 */	mtlr r0
 /* 8036F520 0036C460  38 21 00 30 */	addi r1, r1, 0x30
 /* 8036F524 0036C464  4E 80 00 20 */	blr 
+.endfn damageCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart
 
-.global collisionCallback__Q34Game11TamagoMushi3ObjFRQ24Game9CollEvent
-collisionCallback__Q34Game11TamagoMushi3ObjFRQ24Game9CollEvent:
+.fn collisionCallback__Q34Game11TamagoMushi3ObjFRQ24Game9CollEvent, global
 /* 8036F528 0036C468  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8036F52C 0036C46C  7C 08 02 A6 */	mflr r0
 /* 8036F530 0036C470  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1024,9 +1048,9 @@ collisionCallback__Q34Game11TamagoMushi3ObjFRQ24Game9CollEvent:
 /* 8036F614 0036C554  7C 08 03 A6 */	mtlr r0
 /* 8036F618 0036C558  38 21 00 30 */	addi r1, r1, 0x30
 /* 8036F61C 0036C55C  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q34Game11TamagoMushi3ObjFRQ24Game9CollEvent
 
-.global bounceCallback__Q34Game11TamagoMushi3ObjFPQ23Sys8Triangle
-bounceCallback__Q34Game11TamagoMushi3ObjFPQ23Sys8Triangle:
+.fn bounceCallback__Q34Game11TamagoMushi3ObjFPQ23Sys8Triangle, global
 /* 8036F620 0036C560  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8036F624 0036C564  7C 08 02 A6 */	mflr r0
 /* 8036F628 0036C568  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1125,9 +1149,9 @@ bounceCallback__Q34Game11TamagoMushi3ObjFPQ23Sys8Triangle:
 /* 8036F78C 0036C6CC  7C 08 03 A6 */	mtlr r0
 /* 8036F790 0036C6D0  38 21 00 40 */	addi r1, r1, 0x40
 /* 8036F794 0036C6D4  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q34Game11TamagoMushi3ObjFPQ23Sys8Triangle
 
-.global hipdropCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart
-hipdropCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart:
+.fn hipdropCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 8036F798 0036C6D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036F79C 0036C6DC  7C 08 02 A6 */	mflr r0
 /* 8036F7A0 0036C6E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1139,9 +1163,9 @@ hipdropCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8036F7B8 0036C6F8  7C 08 03 A6 */	mtlr r0
 /* 8036F7BC 0036C6FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036F7C0 0036C700  4E 80 00 20 */	blr 
+.endfn hipdropCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart
 
-.global earthquakeCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8Creaturef
-earthquakeCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8Creaturef:
+.fn earthquakeCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8Creaturef, global
 /* 8036F7C4 0036C704  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036F7C8 0036C708  7C 08 02 A6 */	mflr r0
 /* 8036F7CC 0036C70C  38 A0 00 00 */	li r5, 0
@@ -1154,9 +1178,9 @@ earthquakeCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8Creaturef:
 /* 8036F7E8 0036C728  7C 08 03 A6 */	mtlr r0
 /* 8036F7EC 0036C72C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036F7F0 0036C730  4E 80 00 20 */	blr 
+.endfn earthquakeCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8Creaturef
 
-.global getShadowParam__Q34Game11TamagoMushi3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game11TamagoMushi3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game11TamagoMushi3ObjFRQ24Game11ShadowParam, global
 /* 8036F7F4 0036C734  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036F7F8 0036C738  7C 08 02 A6 */	mflr r0
 /* 8036F7FC 0036C73C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1201,9 +1225,9 @@ getShadowParam__Q34Game11TamagoMushi3ObjFRQ24Game11ShadowParam:
 /* 8036F890 0036C7D0  7C 08 03 A6 */	mtlr r0
 /* 8036F894 0036C7D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036F898 0036C7D8  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game11TamagoMushi3ObjFRQ24Game11ShadowParam
 
-.global needShadow__Q34Game11TamagoMushi3ObjFv
-needShadow__Q34Game11TamagoMushi3ObjFv:
+.fn needShadow__Q34Game11TamagoMushi3ObjFv, global
 /* 8036F89C 0036C7DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036F8A0 0036C7E0  7C 08 02 A6 */	mflr r0
 /* 8036F8A4 0036C7E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1216,9 +1240,9 @@ needShadow__Q34Game11TamagoMushi3ObjFv:
 /* 8036F8C0 0036C800  7C 08 03 A6 */	mtlr r0
 /* 8036F8C4 0036C804  38 21 00 10 */	addi r1, r1, 0x10
 /* 8036F8C8 0036C808  4E 80 00 20 */	blr 
+.endfn needShadow__Q34Game11TamagoMushi3ObjFv
 
-.global genItem__Q34Game11TamagoMushi3ObjFv
-genItem__Q34Game11TamagoMushi3ObjFv:
+.fn genItem__Q34Game11TamagoMushi3ObjFv, global
 /* 8036F8CC 0036C80C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8036F8D0 0036C810  7C 08 02 A6 */	mflr r0
 /* 8036F8D4 0036C814  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1356,9 +1380,9 @@ genItem__Q34Game11TamagoMushi3ObjFv:
 /* 8036FAC8 0036CA08  7C 08 03 A6 */	mtlr r0
 /* 8036FACC 0036CA0C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8036FAD0 0036CA10  4E 80 00 20 */	blr 
+.endfn genItem__Q34Game11TamagoMushi3ObjFv
 
-.global walkFunc__Q34Game11TamagoMushi3ObjFv
-walkFunc__Q34Game11TamagoMushi3ObjFv:
+.fn walkFunc__Q34Game11TamagoMushi3ObjFv, global
 /* 8036FAD4 0036CA14  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8036FAD8 0036CA18  7C 08 02 A6 */	mflr r0
 /* 8036FADC 0036CA1C  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1565,9 +1589,9 @@ walkFunc__Q34Game11TamagoMushi3ObjFv:
 /* 8036FDD8 0036CD18  7C 08 03 A6 */	mtlr r0
 /* 8036FDDC 0036CD1C  38 21 00 90 */	addi r1, r1, 0x90
 /* 8036FDE0 0036CD20  4E 80 00 20 */	blr 
+.endfn walkFunc__Q34Game11TamagoMushi3ObjFv
 
-.global setGoalRandom__Q34Game11TamagoMushi3ObjFv
-setGoalRandom__Q34Game11TamagoMushi3ObjFv:
+.fn setGoalRandom__Q34Game11TamagoMushi3ObjFv, global
 /* 8036FDE4 0036CD24  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8036FDE8 0036CD28  7C 08 02 A6 */	mflr r0
 /* 8036FDEC 0036CD2C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1661,9 +1685,9 @@ setGoalRandom__Q34Game11TamagoMushi3ObjFv:
 /* 8036FF40 0036CE80  7C 08 03 A6 */	mtlr r0
 /* 8036FF44 0036CE84  38 21 00 50 */	addi r1, r1, 0x50
 /* 8036FF48 0036CE88  4E 80 00 20 */	blr 
+.endfn setGoalRandom__Q34Game11TamagoMushi3ObjFv
 
-.global "setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3<f>"
-"setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3<f>":
+.fn "setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3<f>", global
 /* 8036FF4C 0036CE8C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8036FF50 0036CE90  7C 08 02 A6 */	mflr r0
 /* 8036FF54 0036CE94  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1710,9 +1734,9 @@ setGoalRandom__Q34Game11TamagoMushi3ObjFv:
 /* 8036FFF8 0036CF38  7C 08 03 A6 */	mtlr r0
 /* 8036FFFC 0036CF3C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80370000 0036CF40  4E 80 00 20 */	blr 
+.endfn "setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3<f>"
 
-.global turnFunc__Q34Game11TamagoMushi3ObjFv
-turnFunc__Q34Game11TamagoMushi3ObjFv:
+.fn turnFunc__Q34Game11TamagoMushi3ObjFv, global
 /* 80370004 0036CF44  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80370008 0036CF48  7C 08 02 A6 */	mflr r0
 /* 8037000C 0036CF4C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1804,9 +1828,9 @@ turnFunc__Q34Game11TamagoMushi3ObjFv:
 /* 80370154 0036D094  7C 08 03 A6 */	mtlr r0
 /* 80370158 0036D098  38 21 00 50 */	addi r1, r1, 0x50
 /* 8037015C 0036D09C  4E 80 00 20 */	blr 
+.endfn turnFunc__Q34Game11TamagoMushi3ObjFv
 
-.global isReachToGoal__Q34Game11TamagoMushi3ObjFf
-isReachToGoal__Q34Game11TamagoMushi3ObjFf:
+.fn isReachToGoal__Q34Game11TamagoMushi3ObjFf, global
 /* 80370160 0036D0A0  EC 01 00 72 */	fmuls f0, f1, f1
 /* 80370164 0036D0A4  C0 43 01 94 */	lfs f2, 0x194(r3)
 /* 80370168 0036D0A8  C0 23 02 E8 */	lfs f1, 0x2e8(r3)
@@ -1820,9 +1844,9 @@ isReachToGoal__Q34Game11TamagoMushi3ObjFf:
 /* 80370188 0036D0C8  7C 00 00 26 */	mfcr r0
 /* 8037018C 0036D0CC  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80370190 0036D0D0  4E 80 00 20 */	blr 
+.endfn isReachToGoal__Q34Game11TamagoMushi3ObjFf
 
-.global resetWalkParm__Q34Game11TamagoMushi3ObjFv
-resetWalkParm__Q34Game11TamagoMushi3ObjFv:
+.fn resetWalkParm__Q34Game11TamagoMushi3ObjFv, global
 /* 80370194 0036D0D4  C0 02 07 64 */	lfs f0, lbl_8051EAC4@sda21(r2)
 /* 80370198 0036D0D8  38 00 00 00 */	li r0, 0
 /* 8037019C 0036D0DC  D0 03 02 D0 */	stfs f0, 0x2d0(r3)
@@ -1834,9 +1858,9 @@ resetWalkParm__Q34Game11TamagoMushi3ObjFv:
 /* 803701B4 0036D0F4  C0 03 01 FC */	lfs f0, 0x1fc(r3)
 /* 803701B8 0036D0F8  D0 03 02 EC */	stfs f0, 0x2ec(r3)
 /* 803701BC 0036D0FC  4E 80 00 20 */	blr 
+.endfn resetWalkParm__Q34Game11TamagoMushi3ObjFv
 
-.global startCarcassMotion__Q34Game11TamagoMushi3ObjFv
-startCarcassMotion__Q34Game11TamagoMushi3ObjFv:
+.fn startCarcassMotion__Q34Game11TamagoMushi3ObjFv, global
 /* 803701C0 0036D100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803701C4 0036D104  7C 08 02 A6 */	mflr r0
 /* 803701C8 0036D108  38 80 00 05 */	li r4, 5
@@ -1847,9 +1871,9 @@ startCarcassMotion__Q34Game11TamagoMushi3ObjFv:
 /* 803701DC 0036D11C  7C 08 03 A6 */	mtlr r0
 /* 803701E0 0036D120  38 21 00 10 */	addi r1, r1, 0x10
 /* 803701E4 0036D124  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game11TamagoMushi3ObjFv
 
-.global setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj
-setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj:
+.fn setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj, global
 /* 803701E8 0036D128  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803701EC 0036D12C  7C 08 02 A6 */	mflr r0
 /* 803701F0 0036D130  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1874,9 +1898,9 @@ setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj:
 /* 80370234 0036D174  7C 08 03 A6 */	mtlr r0
 /* 80370238 0036D178  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037023C 0036D17C  4E 80 00 20 */	blr 
+.endfn setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj
 
-.global setTypeBall__Q34Game11TamagoMushi3ObjFv
-setTypeBall__Q34Game11TamagoMushi3ObjFv:
+.fn setTypeBall__Q34Game11TamagoMushi3ObjFv, global
 /* 80370240 0036D180  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80370244 0036D184  7C 08 02 A6 */	mflr r0
 /* 80370248 0036D188  38 A0 00 05 */	li r5, 5
@@ -1898,9 +1922,9 @@ setTypeBall__Q34Game11TamagoMushi3ObjFv:
 /* 80370288 0036D1C8  7C 08 03 A6 */	mtlr r0
 /* 8037028C 0036D1CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80370290 0036D1D0  4E 80 00 20 */	blr 
+.endfn setTypeBall__Q34Game11TamagoMushi3ObjFv
 
-.global appearPanic__Q34Game11TamagoMushi3ObjFv
-appearPanic__Q34Game11TamagoMushi3ObjFv:
+.fn appearPanic__Q34Game11TamagoMushi3ObjFv, global
 /* 80370294 0036D1D4  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80370298 0036D1D8  7C 08 02 A6 */	mflr r0
 /* 8037029C 0036D1DC  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2122,9 +2146,9 @@ appearPanic__Q34Game11TamagoMushi3ObjFv:
 /* 803705CC 0036D50C  7C 08 03 A6 */	mtlr r0
 /* 803705D0 0036D510  38 21 00 90 */	addi r1, r1, 0x90
 /* 803705D4 0036D514  4E 80 00 20 */	blr 
+.endfn appearPanic__Q34Game11TamagoMushi3ObjFv
 
-.global isFound__Q34Game11TamagoMushi3ObjFv
-isFound__Q34Game11TamagoMushi3ObjFv:
+.fn isFound__Q34Game11TamagoMushi3ObjFv, global
 /* 803705D8 0036D518  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803705DC 0036D51C  7C 08 02 A6 */	mflr r0
 /* 803705E0 0036D520  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2388,22 +2412,22 @@ isFound__Q34Game11TamagoMushi3ObjFv:
 /* 80370988 0036D8C8  7C 08 03 A6 */	mtlr r0
 /* 8037098C 0036D8CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80370990 0036D8D0  4E 80 00 20 */	blr 
+.endfn isFound__Q34Game11TamagoMushi3ObjFv
 
-.global "__cl__7Parm<f>Fv"
-"__cl__7Parm<f>Fv":
+.fn "__cl__7Parm<f>Fv", weak
 /* 80370994 0036D8D4  38 63 00 18 */	addi r3, r3, 0x18
 /* 80370998 0036D8D8  4E 80 00 20 */	blr 
+.endfn "__cl__7Parm<f>Fv"
 
-.global isZukanMode__Q24Game10GameSystemFv
-isZukanMode__Q24Game10GameSystemFv:
+.fn isZukanMode__Q24Game10GameSystemFv, weak
 /* 8037099C 0036D8DC  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 803709A0 0036D8E0  20 00 00 04 */	subfic r0, r0, 4
 /* 803709A4 0036D8E4  7C 00 00 34 */	cntlzw r0, r0
 /* 803709A8 0036D8E8  54 03 D9 7E */	srwi r3, r0, 5
 /* 803709AC 0036D8EC  4E 80 00 20 */	blr 
+.endfn isZukanMode__Q24Game10GameSystemFv
 
-.global createFellow__Q34Game11TamagoMushi3ObjFv
-createFellow__Q34Game11TamagoMushi3ObjFv:
+.fn createFellow__Q34Game11TamagoMushi3ObjFv, global
 /* 803709B0 0036D8F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803709B4 0036D8F4  7C 08 02 A6 */	mflr r0
 /* 803709B8 0036D8F8  7C 64 1B 78 */	mr r4, r3
@@ -2423,9 +2447,9 @@ createFellow__Q34Game11TamagoMushi3ObjFv:
 /* 803709E8 0036D928  7C 08 03 A6 */	mtlr r0
 /* 803709EC 0036D92C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803709F0 0036D930  4E 80 00 20 */	blr 
+.endfn createFellow__Q34Game11TamagoMushi3ObjFv
 
-.global ballMove__Q34Game11TamagoMushi3ObjFv
-ballMove__Q34Game11TamagoMushi3ObjFv:
+.fn ballMove__Q34Game11TamagoMushi3ObjFv, global
 /* 803709F4 0036D934  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803709F8 0036D938  7C 08 02 A6 */	mflr r0
 /* 803709FC 0036D93C  C0 42 07 7C */	lfs f2, lbl_8051EADC@sda21(r2)
@@ -2466,9 +2490,9 @@ ballMove__Q34Game11TamagoMushi3ObjFv:
 /* 80370A84 0036D9C4  7C 08 03 A6 */	mtlr r0
 /* 80370A88 0036D9C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80370A8C 0036D9CC  4E 80 00 20 */	blr 
+.endfn ballMove__Q34Game11TamagoMushi3ObjFv
 
-.global createHideEffect__Q34Game11TamagoMushi3ObjFv
-createHideEffect__Q34Game11TamagoMushi3ObjFv:
+.fn createHideEffect__Q34Game11TamagoMushi3ObjFv, global
 /* 80370A90 0036D9D0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80370A94 0036D9D4  7C 08 02 A6 */	mflr r0
 /* 80370A98 0036D9D8  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
@@ -2511,9 +2535,9 @@ createHideEffect__Q34Game11TamagoMushi3ObjFv:
 /* 80370B2C 0036DA6C  7C 08 03 A6 */	mtlr r0
 /* 80370B30 0036DA70  38 21 00 30 */	addi r1, r1, 0x30
 /* 80370B34 0036DA74  4E 80 00 20 */	blr 
+.endfn createHideEffect__Q34Game11TamagoMushi3ObjFv
 
-.global createAppearEffect__Q34Game11TamagoMushi3ObjFv
-createAppearEffect__Q34Game11TamagoMushi3ObjFv:
+.fn createAppearEffect__Q34Game11TamagoMushi3ObjFv, global
 /* 80370B38 0036DA78  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80370B3C 0036DA7C  7C 08 02 A6 */	mflr r0
 /* 80370B40 0036DA80  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
@@ -2556,25 +2580,26 @@ createAppearEffect__Q34Game11TamagoMushi3ObjFv:
 /* 80370BD4 0036DB14  7C 08 03 A6 */	mtlr r0
 /* 80370BD8 0036DB18  38 21 00 30 */	addi r1, r1, 0x30
 /* 80370BDC 0036DB1C  4E 80 00 20 */	blr 
+.endfn createAppearEffect__Q34Game11TamagoMushi3ObjFv
 
-.global setInitialSetting__Q34Game11TamagoMushi3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game11TamagoMushi3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game11TamagoMushi3ObjFPQ24Game21EnemyInitialParamBase, weak
 /* 80370BE0 0036DB20  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game11TamagoMushi3ObjFPQ24Game21EnemyInitialParamBase
 
-.global isLivingThing__Q34Game11TamagoMushi3ObjFv
-isLivingThing__Q34Game11TamagoMushi3ObjFv:
+.fn isLivingThing__Q34Game11TamagoMushi3ObjFv, weak
 /* 80370BE4 0036DB24  80 63 00 C0 */	lwz r3, 0xc0(r3)
 /* 80370BE8 0036DB28  88 03 09 22 */	lbz r0, 0x922(r3)
 /* 80370BEC 0036DB2C  7C 00 00 34 */	cntlzw r0, r0
 /* 80370BF0 0036DB30  54 03 D9 7E */	srwi r3, r0, 5
 /* 80370BF4 0036DB34  4E 80 00 20 */	blr 
+.endfn isLivingThing__Q34Game11TamagoMushi3ObjFv
 
-.global getDownSmokeScale__Q34Game11TamagoMushi3ObjFv
-getDownSmokeScale__Q34Game11TamagoMushi3ObjFv:
+.fn getDownSmokeScale__Q34Game11TamagoMushi3ObjFv, weak
 /* 80370BF8 0036DB38  C0 22 07 B8 */	lfs f1, lbl_8051EB18@sda21(r2)
 /* 80370BFC 0036DB3C  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game11TamagoMushi3ObjFv
 
-.global getEnemyTypeID__Q34Game11TamagoMushi3ObjFv
-getEnemyTypeID__Q34Game11TamagoMushi3ObjFv:
+.fn getEnemyTypeID__Q34Game11TamagoMushi3ObjFv, weak
 /* 80370C00 0036DB40  38 60 00 44 */	li r3, 0x44
 /* 80370C04 0036DB44  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game11TamagoMushi3ObjFv
