@@ -52,6 +52,7 @@ struct FSM : public StateMachine<SingleGameSection> {
 	virtual void init(SingleGameSection*);                    // _08
 	virtual void transit(SingleGameSection*, int, StateArg*); // _14
 
+	void draw(Game::SingleGameSection*, Graphics&); // UNUSED
 	State* getState(int);
 
 	// _00     = VTBL

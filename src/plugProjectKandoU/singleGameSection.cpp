@@ -1,4 +1,5 @@
 #include "Dolphin/string.h"
+#include "PSM/Scene.h"
 #include "Game/BaseGameSection.h"
 #include "Game/GameSystem.h"
 #include "Game/Piki.h"
@@ -791,19 +792,6 @@ lbl_80152264:
 	*/
 }
 
-} // namespace Game
-
-namespace PSM {
-
-/*
- * --INFO--
- * Address:	8015227C
- * Size:	000008
- */
-bool SceneBase::isGameScene() { return false; }
-} // namespace PSM
-
-namespace Game {
 /*
  * --INFO--
  * Address:	80152284
@@ -1031,13 +1019,6 @@ void SingleGame::FSM::draw(Game::SingleGameSection*, Graphics&)
 
 /*
  * --INFO--
- * Address:	80152524
- * Size:	000004
- */
-void SingleGame::State::draw(Game::SingleGameSection*, Graphics&) { }
-
-/*
- * --INFO--
  * Address:	80152528
  * Size:	000020
  */
@@ -1061,7 +1042,7 @@ void SingleGame::FSM::transit(Game::SingleGameSection*, int, Game::StateArg*)
  * Address:	80152548
  * Size:	000040
  */
-void SingleGame::FSM::getState(int)
+SingleGame::State* SingleGame::FSM::getState(int)
 {
 	/*
 	cmpwi    r4, 0
@@ -1096,7 +1077,7 @@ lbl_80152580:
  * Address:	80152588
  * Size:	000200
  */
-void SingleGame::State::accountEarnings(Game::SingleGameSection*, Game::PelletCropMemory*, bool)
+SingleGame::State* SingleGame::State::accountEarnings(Game::SingleGameSection*, Game::PelletCropMemory*, bool)
 {
 	/*
 	.loc_0x0:
