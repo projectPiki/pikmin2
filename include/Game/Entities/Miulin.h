@@ -185,7 +185,7 @@ struct Obj : public EnemyBase {
 	Vector3f _2D4;                      // _2D4
 	int _2E0;                           // _2E0
 	bool _2E4;                          // _2E4
-	f32 _2E8;                           // _2E8, timer?
+	f32 mAlertTimer;                    // _2E8
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2EC
 	FSM* mFsm;                          // _2F4
 	                                    // _2F8 = PelletView

@@ -50,7 +50,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->setEmotionCaution();
 	enemy->hardConstraintOn();
-	static_cast<Obj*>(enemy)->_2E4 = 0;
+	static_cast<Obj*>(enemy)->_2E4 = false;
 	enemy->disableEvent(0, EB_LifegaugeVisible);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 }

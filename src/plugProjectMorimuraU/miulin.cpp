@@ -2,315 +2,11 @@
 #include "Game/Entities/Miulin.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/Entities/ShijimiChou.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80491A18
-    lbl_80491A18:
-        .4byte 0x6A6E745F
-        .4byte 0x6B6F7368
-        .4byte 0x69000000
-        .4byte 0x6D69756C
-        .4byte 0x696E2E63
-        .4byte 0x70700000
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80491A3C
-    lbl_80491A3C:
-        .4byte 0x6A6E745F
-        .4byte 0x666F6F74
-        .4byte 0x52000000
-    .global lbl_80491A48
-    lbl_80491A48:
-        .4byte 0x6A6E745F
-        .4byte 0x666F6F74
-        .4byte 0x4C000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23efx10TMiuAttack
-    __vt__Q23efx10TMiuAttack:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q34Game6Miulin3Obj
-    __vt__Q34Game6Miulin3Obj:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game9EnemyBaseFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game9EnemyBaseFv
-        .4byte onInit__Q34Game6Miulin3ObjFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game9EnemyBaseFv
-        .4byte doEntry__Q24Game9EnemyBaseFv
-        .4byte doSetView__Q24Game9EnemyBaseFi
-        .4byte doViewCalc__Q24Game9EnemyBaseFv
-        .4byte doSimulation__Q34Game6Miulin3ObjFf
-        .4byte doDirectDraw__Q34Game6Miulin3ObjFR8Graphics
-        .4byte getBodyRadius__Q24Game9EnemyBaseFv
-        .4byte getCellRadius__Q24Game9EnemyBaseFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game9EnemyBaseFv
-        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getVelocity__Q24Game9EnemyBaseFv
-        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
-        .4byte isTeki__Q24Game9EnemyBaseFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game9EnemyBaseFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game9EnemyBaseFv
-        .4byte inWater__Q24Game9EnemyBaseFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game9EnemyBaseFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
-        .4byte collisionCallback__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game9EnemyBaseFv
-        .4byte getPSCreature__Q24Game9EnemyBaseFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
-        .4byte sound_culling__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8CreatureFUl
-        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
-        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q34Game6Miulin3ObjFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game9EnemyBaseFv
-        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q34Game6Miulin3ObjFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q34Game6Miulin3ObjFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game9EnemyBaseFv
-        .4byte getCreatureID__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
-        .4byte __dt__Q34Game6Miulin3ObjFv
-        .4byte "birth__Q34Game6Miulin3ObjFR10Vector3<f>f"
-        .4byte
-   setInitialSetting__Q34Game6Miulin3ObjFPQ24Game21EnemyInitialParamBase .4byte
-   update__Q24Game9EnemyBaseFv .4byte doUpdate__Q34Game6Miulin3ObjFv .4byte
-   doUpdateCommon__Q24Game9EnemyBaseFv .4byte
-   doUpdateCarcass__Q24Game9EnemyBaseFv .4byte
-   doAnimationUpdateAnimator__Q24Game9EnemyBaseFv .4byte
-   doAnimationCullingOff__Q24Game9EnemyBaseFv .4byte
-   doAnimationCullingOn__Q24Game9EnemyBaseFv .4byte
-   doAnimationStick__Q24Game9EnemyBaseFv .4byte
-   doSimulationCarcass__Q24Game9EnemyBaseFf .4byte
-   doDebugDraw__Q34Game6Miulin3ObjFR8Graphics .4byte
-   doSimpleDraw__Q24Game9EnemyBaseFP8Viewport .4byte
-   doSimulationGround__Q24Game9EnemyBaseFf .4byte
-   doSimulationFlying__Q24Game9EnemyBaseFf .4byte
-   doSimulationStick__Q24Game9EnemyBaseFf .4byte
-   changeMaterial__Q24Game9EnemyBaseFv .4byte
-   "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>" .4byte
-   getFitEffectPos__Q24Game9EnemyBaseFv .4byte viewGetShape__Q24Game9EnemyBaseFv
-        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
-        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
-        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
-        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
-        .4byte setParameters__Q34Game6Miulin3ObjFv
-        .4byte initMouthSlots__Q24Game9EnemyBaseFv
-        .4byte initWalkSmokeEffect__Q34Game6Miulin3ObjFv
-        .4byte getWalkSmokeEffectMgr__Q34Game6Miulin3ObjFv
-        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
-        .4byte injure__Q24Game9EnemyBaseFv
-        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
-        .4byte updateEfxHamon__Q24Game9EnemyBaseFv
-        .4byte createEfxHamon__Q24Game9EnemyBaseFv
-        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
-        .4byte getEnemyTypeID__Q34Game6Miulin3ObjFv
-        .4byte getMouthSlots__Q24Game9EnemyBaseFv
-        .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte throwupItem__Q24Game9EnemyBaseFv
-        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
-        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-        .4byte pressCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-        .4byte
-   flyCollisionCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   hipdropCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
-   earthquakeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f" .4byte
-   eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doStartStoneState__Q24Game9EnemyBaseFv .4byte
-   doFinishStoneState__Q24Game9EnemyBaseFv .4byte
-   getDamageCoeStoneState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeState__Q24Game9EnemyBaseFf .4byte
-   doFinishEarthquakeState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   doFinishEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   lifeRecover__Q24Game9EnemyBaseFv .4byte
-   startCarcassMotion__Q34Game6Miulin3ObjFv .4byte
-   setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg .4byte
-   getCarcassArgHeight__Q24Game9EnemyBaseFv .4byte
-   doBecomeCarcass__Q24Game9EnemyBaseFv .4byte
-   startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   wallCallback__Q34Game6Miulin3ObjFRCQ24Game8MoveInfo .4byte
-   getDownSmokeScale__Q34Game6Miulin3ObjFv .4byte
-   doStartMovie__Q24Game9EnemyBaseFv .4byte doEndMovie__Q24Game9EnemyBaseFv
-        .4byte setFSM__Q34Game6Miulin3ObjFPQ34Game6Miulin3FSM
-        .4byte 0
-        .4byte 0
-        .4byte viewGetBaseScale__Q24Game10PelletViewFv
-        .4byte "@760@12@viewGetShape__Q24Game9EnemyBaseFv"
-        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
-        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
-        .4byte "@760@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@760@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@760@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051E810
-    lbl_8051E810:
-        .4byte 0x42A00000
-    .global lbl_8051E814
-    lbl_8051E814:
-        .4byte 0x40000000
-    .global lbl_8051E818
-    lbl_8051E818:
-        .4byte 0x00000000
-    .global lbl_8051E81C
-    lbl_8051E81C:
-        .float 1.0
-    .global lbl_8051E820
-    lbl_8051E820:
-        .4byte 0x41A00000
-    .global lbl_8051E824
-    lbl_8051E824:
-        .4byte 0x41C80000
-    .global lbl_8051E828
-    lbl_8051E828:
-        .4byte 0x40A00000
-    .global lbl_8051E82C
-    lbl_8051E82C:
-        .4byte 0x40490FDB
-    .global lbl_8051E830
-    lbl_8051E830:
-        .4byte 0x3BB60B61
-    .global lbl_8051E834
-    lbl_8051E834:
-        .4byte 0x41200000
-    .global lbl_8051E838
-    lbl_8051E838:
-        .float 0.7
-    .global lbl_8051E83C
-    lbl_8051E83C:
-        .4byte 0x43340000
-    .global lbl_8051E840
-    lbl_8051E840:
-        .4byte 0x44610000
-    .global lbl_8051E844
-    lbl_8051E844:
-        .4byte 0x47000000
-    .global lbl_8051E848
-    lbl_8051E848:
-        .4byte 0xC3A2F983
-    .global lbl_8051E84C
-    lbl_8051E84C:
-        .4byte 0x43A2F983
-    .global lbl_8051E850
-    lbl_8051E850:
-        .4byte 0x40C90FDB
-        .4byte 0x00000000
-    .global lbl_8051E858
-    lbl_8051E858:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051E860
-    lbl_8051E860:
-        .float 0.1
-    .global lbl_8051E864
-    lbl_8051E864:
-        .4byte 0x3F666666
-    .global lbl_8051E868
-    lbl_8051E868:
-        .4byte 0x3F4CCCCD
-    .global lbl_8051E86C
-    lbl_8051E86C:
-        .4byte 0x3F59999A
-*/
+#include "Game/PikiMgr.h"
+#include "Game/EnemyFunc.h"
+#include "Game/Navi.h"
+#include "efx/TMiuAttack.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
 namespace Miulin {
@@ -378,7 +74,7 @@ Obj::Obj()
 void Obj::doUpdate()
 {
 	mFsm->exec(this);
-	_2E8 += sys->mDeltaTime;
+	mAlertTimer += sys->mDeltaTime;
 
 	if (mTargetCreature && !mTargetCreature->isAlive()) {
 		mTargetCreature = nullptr;
@@ -476,6 +172,55 @@ Game::WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr
  */
 bool Obj::isAttackStart()
 {
+	f32 atkRadius    = SQUARE(C_PARMS->mGeneral.mAttackRadius.mValue);
+	f32 minAtkRange  = SQUARE(C_PROPERPARMS.mFp08.mValue);
+	f32 contAtkAngle = PI * (DEG2RAD * (C_PROPERPARMS.mFp03.mValue));
+
+	if (mTargetCreature) {
+		Vector3f targetPos = mTargetCreature->getPosition();
+		Vector3f pos       = getPosition();
+
+		f32 angleDist = angDist(angXZ(targetPos.x, targetPos.z, pos), getFaceDir());
+		if (FABS(angleDist) <= contAtkAngle) {
+			Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
+			Vector3f targetPos = Vector3f(mTargetCreature->getPosition().x, 0.0f, mTargetCreature->getPosition().z);
+
+			f32 sqrDist = sqrDistanceXZ(targetPos, pos);
+			if (sqrDist < minAtkRange + atkRadius && sqrDist > minAtkRange - atkRadius) {
+				return true;
+			}
+		}
+	}
+
+	Iterator<Piki> iter(pikiMgr);
+
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		bool check = false;
+		if (piki->isPikmin() && piki->isAlive() && !piki->isStickToMouth()) {
+			check = true;
+		}
+
+		if (check) {
+			Vector3f pikiPos = piki->getPosition();
+			Vector3f pos     = getPosition();
+
+			f32 angleDist = angDist(angXZ(pikiPos.x, pikiPos.z, pos), getFaceDir());
+			if (FABS(angleDist) <= contAtkAngle) {
+				Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
+				Vector3f targetPos = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
+
+				f32 sqrDist = sqrDistanceXZ(targetPos, pos);
+				if (sqrDist < minAtkRange + atkRadius && sqrDist > minAtkRange - atkRadius) {
+					mTargetCreature = piki;
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -846,6 +591,59 @@ lbl_80364E80:
  */
 bool Obj::isFindTarget()
 {
+	f32 searchAngle = PI * (DEG2RAD * C_PARMS->mGeneral.mSearchAngle.mValue);
+	mTargetCreature = nullptr;
+
+	if (isNowCaution()) {
+		searchAngle = PI;
+	} else if (isProhibitedSearch()) {
+		return false;
+	}
+
+	f32 searchDist = C_PARMS->mGeneral.mSearchDistance.mValue;
+	searchDist *= searchDist;
+
+	mTargetCreature = EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mSearchAngle.mValue, C_PARMS->mGeneral.mSearchDistance.mValue,
+	                                            &searchDist, nullptr);
+
+	Iterator<Piki> iter(pikiMgr);
+
+	f32 minDist = 10.0f;
+	minDist *= minDist;
+
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		bool check = false;
+		if (piki->isPikmin() && piki->isAlive() && !piki->isStickToMouth()) {
+			check = true;
+		}
+
+		if (check && !piki->isStickTo()) {
+			Vector3f pikiPos = piki->getPosition();
+			Vector3f pos     = getPosition();
+
+			f32 angleDist = angDist(angXZ(pikiPos.x, pikiPos.z, pos), getFaceDir());
+			if (FABS(angleDist) <= searchAngle) {
+				Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
+				Vector3f targetPos = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
+
+				f32 sqrDist = sqrDistanceXZ(targetPos, pos);
+				if (sqrDist < searchDist && sqrDist > minDist) {
+					mTargetCreature = piki;
+					searchDist      = sqrDist;
+				}
+			}
+		}
+	}
+
+	if (mTargetCreature) {
+		mGoalPosition = mTargetCreature->getPosition();
+		_2E4          = true;
+		return true;
+	}
+
+	return false;
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -1190,48 +988,25 @@ bool Obj::isOutOfTerritory() { return sqrDistanceXZ(mHomePosition, mPosition) > 
  */
 bool Obj::isProhibitedSearch()
 {
-	/*
-	lwz      r0, 0x2d0(r3)
-	cmpwi    r0, 0
-	ble      lbl_803653C0
-	li       r3, 1
-	blr
+	if (_2D0 > 0) {
+		return true;
+	}
 
-lbl_803653C0:
-	lbz      r0, 0x2e4(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036542C
-	lwz      r4, 0xc0(r3)
-	lfs      f2, lbl_8051E838@sda21(r2)
-	lfs      f3, 0x35c(r4)
-	lfs      f1, 0x20c(r3)
-	lfs      f0, lbl_8051E818@sda21(r2)
-	fmuls    f3, f3, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_803653F8
-	stfs     f0, 0x20c(r3)
-	li       r3, 0
-	blr
+	if (_2E4) {
+		f32 radius = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+		radius *= 0.7f;
 
-lbl_803653F8:
-	lfs      f2, 0x1a0(r3)
-	fmuls    f0, f3, f3
-	lfs      f1, 0x194(r3)
-	lfs      f3, 0x198(r3)
-	fsubs    f2, f2, f1
-	lfs      f1, 0x18c(r3)
-	fsubs    f3, f3, f1
-	fmuls    f1, f2, f2
-	fmadds   f1, f3, f3, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8036542C
-	li       r3, 1
-	blr
+		if (mToFlick > 0.0f) {
+			mToFlick = 0.0f;
+			return false;
+		}
 
-lbl_8036542C:
-	li       r3, 0
-	blr
-	*/
+		if (sqrDistanceXZ(mHomePosition, mPosition) > SQUARE(radius)) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 /*
@@ -1241,58 +1016,21 @@ lbl_8036542C:
  */
 bool Obj::isStartWalk()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_8051E818@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lfs      f1, 0x20c(r3)
-	lwz      r3, 0xc0(r3)
-	fcmpo    cr0, f1, f0
-	lfs      f1, 0x424(r3)
-	ble      lbl_80365468
-	lfs      f1, lbl_8051E83C@sda21(r2)
-	stfs     f0, 0x20c(r31)
+	f32 viewAngle = C_PARMS->mGeneral.mViewAngle.mValue;
+	if (mToFlick > 0.0f) {
+		viewAngle = 180.0f;
+		mToFlick  = 0.0f;
+	}
 
-lbl_80365468:
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	li       r4, 0
-	li       r6, 0
-	lfs      f2, 0x44c(r5)
-	li       r5, 0
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	stw      r3, 0x230(r31)
-	lwz      r4, 0x230(r31)
-	cmplwi   r4, 0
-	beq      lbl_803654C8
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	li       r3, 1
-	stfs     f0, 0x2bc(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x2c4(r31)
-	b        lbl_803654CC
+	mTargetCreature
+	    = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, C_PARMS->mGeneral.mSearchDistance.mValue, nullptr, nullptr, nullptr);
 
-lbl_803654C8:
-	li       r3, 0
+	if (mTargetCreature) {
+		mGoalPosition = mTargetCreature->getPosition();
+		return true;
+	}
 
-lbl_803654CC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1314,6 +1052,47 @@ void Obj::setReturnState()
  */
 void Obj::walkFunc()
 {
+	getMotionFrame();
+
+	f32 dashSpeedMultiplier = 1.0f;
+	f32 dashAnimScale       = 1.0f;
+
+	if (mTargetCreature) {
+		Vector3f targetPos = mTargetCreature->getPosition();
+		Vector3f pos       = getPosition();
+
+		f32 angleDist = angDist(angXZ(targetPos.x, targetPos.z, pos), getFaceDir());
+
+		if (FABS(angleDist) < PI * (DEG2RAD * C_PROPERPARMS.mFp07.mValue)) {
+			dashSpeedMultiplier = C_PROPERPARMS.mFp04.mValue;
+			dashAnimScale       = C_PROPERPARMS.mFp05.mValue;
+			setEmotionExcitement();
+		}
+	} else {
+		setEmotionCaution();
+	}
+
+	f32 dashSpeed = dashSpeedMultiplier * C_PARMS->mGeneral.mMoveSpeed.mValue;
+
+	f32 x = (f32)sin(getFaceDir());
+	f32 y = getTargetVelocity().y;
+	f32 z = (f32)cos(getFaceDir());
+
+	mTargetVelocity = Vector3f(dashSpeed * x, y, dashSpeed * z);
+	setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * dashAnimScale);
+
+	_2E0++;
+
+	if (_2E0 > 120) {
+		if (sqrDistanceXZ(mPosition, _2D4) < 900.0f) {
+			_2D0            = 120;
+			mTargetCreature = nullptr;
+			mGoalPosition   = mHomePosition;
+		}
+
+		_2D4 = mPosition;
+		_2E0 = 0;
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1487,8 +1266,32 @@ lbl_80365748:
  * Address:	8036577C
  * Size:	00017C
  */
-f32 Obj::turnFunc(f32)
+f32 Obj::turnFunc(f32 factor)
 {
+	Vector3f targetPos = mGoalPosition;
+
+	if (mTargetCreature) {
+		targetPos = mTargetCreature->getPosition();
+	}
+
+	f32 turnSpeed  = factor * C_PARMS->mGeneral.mRotationalSpeed.mValue;
+	f32 turnFactor = factor * C_PARMS->mGeneral.mRotationalAccel.mValue;
+
+	Vector3f pos = getPosition();
+
+	f32 angleDist = angDist(_angXZ(targetPos.x, targetPos.z, pos.x, pos.z), getFaceDir());
+
+	f32 turnDist  = angleDist * turnFactor;
+	f32 turnLimit = PI * (DEG2RAD * turnSpeed);
+
+	if (FABS(turnDist) > turnLimit) {
+		turnDist = (turnDist > 0.0f) ? turnLimit : -turnLimit;
+	}
+
+	mFaceDir    = roundAng(turnDist + getFaceDir());
+	mRotation.y = mFaceDir;
+
+	return FABS(angleDist);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1599,34 +1402,17 @@ lbl_80365894:
  * Address:	803658F8
  * Size:	000050
  */
-bool Obj::isReachToGoal(f32)
+bool Obj::isReachToGoal(f32 radius)
 {
-	/*
-	lbz      r0, 0x2e4(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036590C
-	lwz      r4, 0xc0(r3)
-	lfs      f1, 0x384(r4)
+	if (_2E4) {
+		radius = C_PARMS->mGeneral.mHomeRadius.mValue;
+	}
 
-lbl_8036590C:
-	lfs      f2, 0x194(r3)
-	fmuls    f0, f1, f1
-	lfs      f1, 0x2c4(r3)
-	lfs      f3, 0x18c(r3)
-	fsubs    f2, f2, f1
-	lfs      f1, 0x2bc(r3)
-	fsubs    f3, f3, f1
-	fmuls    f1, f2, f2
-	fmadds   f1, f3, f3, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80365940
-	li       r3, 1
-	blr
+	if (sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(radius)) {
+		return true;
+	}
 
-lbl_80365940:
-	li       r3, 0
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1636,6 +1422,20 @@ lbl_80365940:
  */
 void Obj::setNextGoal()
 {
+	if (_2E4) {
+		mGoalPosition = mHomePosition;
+		return;
+	}
+
+	f32 radius    = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+	mGoalPosition = mHomePosition;
+
+	// this TAU needs to load in after the consts in the sin/cos functions ._.
+	// some vector-generating inline maybe? who knows.
+	f32 angle = TAU * randFloat();
+
+	mGoalPosition.x += radius * pikmin2_sinf(angle);
+	mGoalPosition.z += radius * pikmin2_cosf(angle);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1744,6 +1544,16 @@ lbl_80365A88:
  */
 bool Obj::nextTargetTurnCheck()
 {
+	if (!isFindTarget()) {
+		setNextGoal();
+	}
+
+	// SHOULD match when turnFunc matches, but turnFunc might need tweaking to make sure this matches.
+	if (turnFunc(0.1f) < PI * (DEG2RAD * *C_PROPERPARMS.mFp06())) {
+		return false;
+	}
+
+	return true;
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1959,74 +1769,26 @@ lbl_80365D4C:
  */
 bool Obj::isNowCaution()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r4, 0
-	lwz      r5, 0xc0(r3)
-	lfs      f31, 0x3ac(r5)
-	fmr      f1, f31
-	bl
-"isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80365DC4
-	li       r3, 1
-	b        lbl_80365DE8
+	bool doBecomeAlert;
+	f32 privateRad = C_PARMS->mGeneral.mPrivateRadius.mValue;
+	if (EnemyFunc::isThereOlimar(this, privateRad, nullptr)) {
+		doBecomeAlert = true;
+	} else if (EnemyFunc::isTherePikmin(this, privateRad, nullptr)) {
+		doBecomeAlert = true;
+	} else {
+		doBecomeAlert = false;
+	}
 
-lbl_80365DC4:
-	fmr      f1, f31
-	mr       r3, r31
-	li       r4, 0
-	bl
-"isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80365DE4
-	li       r3, 1
-	b        lbl_80365DE8
+	if (!doBecomeAlert) {
+		doBecomeAlert = mHealth < C_PARMS->mGeneral.mLifeBeforeAlert.mValue;
+	}
 
-lbl_80365DE4:
-	li       r3, 0
+	if (doBecomeAlert) {
+		mAlertTimer = 0.0f;
+		return true;
+	}
 
-lbl_80365DE8:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80365E08
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x200(r31)
-	lfs      f0, 0x17c(r3)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-
-lbl_80365E08:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80365E20
-	lfs      f0, lbl_8051E818@sda21(r2)
-	li       r3, 1
-	stfs     f0, 0x2e8(r31)
-	b        lbl_80365E38
-
-lbl_80365E20:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2e8(r31)
-	lfs      f0, 0x62c(r3)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-
-lbl_80365E38:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return mAlertTimer < C_PARMS->mGeneral.mAlertDuration.mValue;
 }
 
 /*
@@ -2041,93 +1803,24 @@ void Obj::landEffect() { EnemyBase::createBounceEffect(mPosition, 0.9f); }
  * Address:	80365E7C
  * Size:	000144
  */
-void Obj::attackEffect(Vector3f&)
+void Obj::attackEffect(Vector3f& effectPos)
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stfd     f29, 0x70(r1)
-	psq_st   f29, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	mr       r30, r3
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfs      f31, 0x18c(r30)
-	addi     r0, r3, "zero__10Vector3<f>"@l
-	lfs      f30, 0x190(r30)
-	mr       r31, r4
-	lfs      f29, 0x194(r30)
-	mr       r4, r0
-	lfs      f1, 0x1fc(r30)
-	addi     r3, r1, 0x34
-	lfs      f0, lbl_8051E818@sda21(r2)
-	addi     r5, r1, 0x28
-	stfs     f1, 0x2c(r1)
-	stfs     f0, 0x28(r1)
-	stfs     f0, 0x30(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-	mr       r4, r31
-	mr       r5, r31
-	addi     r3, r1, 0x34
-	bl       PSMTXMultVec
-	lfs      f2, 0(r31)
-	lis      r3, __vt__Q23efx5TBase@ha
-	lfs      f1, 4(r31)
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lfs      f0, 8(r31)
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	fadds    f31, f31, f2
-	addi     r5, r3, __vt__Q23efx8TSimple2@l
-	stw      r0, 0x18(r1)
-	fadds    f30, f30, f1
-	li       r6, 0
-	fadds    f29, f29, f0
-	lis      r4, __vt__Q23efx10TMiuAttack@ha
-	lis      r3, __vt__Q23efx3Arg@ha
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	li       r8, 0x1f7
-	li       r7, 0x1f8
-	stw      r5, 0x18(r1)
-	addi     r5, r4, __vt__Q23efx10TMiuAttack@l
-	addi     r3, r1, 0x18
-	sth      r8, 0x1c(r1)
-	addi     r4, r1, 8
-	sth      r7, 0x1e(r1)
-	stw      r6, 0x20(r1)
-	stw      r6, 0x24(r1)
-	stw      r5, 0x18(r1)
-	stw      r0, 8(r1)
-	stfs     f31, 0xc(r1)
-	stfs     f30, 0x10(r1)
-	stfs     f29, 0x14(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	lwz      r0, 0x280(r30)
-	cmplwi   r0, 0
-	beq      lbl_80365F90
-	lfs      f1, lbl_8051E868@sda21(r2)
-	mr       r3, r30
-	addi     r4, r30, 0x18c
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
+	Matrixf mat;
+	Vector3f pos = mPosition;
+	Vector3f rotation(0.0f, mFaceDir, 0.0f);
+	mat.makeTR(Vector3f::zero, rotation);
+	PSMTXMultVec(mat.mMatrix.mtxView, (Vec*)&effectPos, (Vec*)&effectPos);
 
-lbl_80365F90:
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	psq_l    f29, 120(r1), 0, qr0
-	lfd      f29, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r0, 0xa4(r1)
-	lwz      r30, 0x68(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+	pos += effectPos;
+
+	efx::TMiuAttack fxAttack;
+	efx::Arg fxArg(pos);
+
+	fxAttack.create(&fxArg);
+
+	if (mWaterBox) {
+		createBounceEffect(mPosition, 0.8f);
+	}
 }
 } // namespace Miulin
 } // namespace Game
