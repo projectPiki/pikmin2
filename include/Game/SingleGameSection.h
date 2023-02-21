@@ -86,27 +86,26 @@ struct SingleGameSection : public BaseGameSection {
 	struct Game::ItemBigFountain::Item* mFountain; // _18C
 	u32 _190;                                      // _190
 	bool _194;                                     // _194
-	// known to be at least 22 in length. Probably 32.
-	// My guess there is that the spare 3 bytes is unintentional wiggle-room from this not being 4-byte aligned.
-	char mCaveFilename[0x20];                // _195
-	DvdThreadCommand mDvdThread;             // _1B8
-	Delegate<Game::SingleGameSection>* _224; // _224
-	u8 _228;                                 // _228
-	Game::CourseInfo* mCurrentCourseInfo;    // _22C
-	ID32 mCaveID;                            // _230
-	bool mInCave;                            // _23C
-	u8 _23D;
-	bool mNeedTreasureCalc;
-	Delegate<Game::SingleGameSection>* _240;
-	efx::TChasePos* _244;
-	int mCurrentFloor;           // _248
-	Game::SingleGame::FSM* mFsm; // _24C
-	Game::SingleGame::GameState* mCurrentState;
-	KindCounter _254;
-	KindCounter _25C;
-	KindCounter mOtakaraCounter;
-	KindCounter mItemCounter;
-	u8 _274;
+	char mCaveFilename[0x20];                      // _195
+	u8 _1B5;                                       // _1B5, unknown
+	DvdThreadCommand mDvdThread;                   // _1B8
+	Delegate<Game::SingleGameSection>* _224;       // _224
+	u8 _228;                                       // _228
+	Game::CourseInfo* mCurrentCourseInfo;          // _22C
+	ID32 mCaveID;                                  // _230
+	bool mInCave;                                  // _23C
+	u8 _23D;                                       // _23D
+	bool mNeedTreasureCalc;                        // _23E
+	Delegate<Game::SingleGameSection>* _240;       // _240
+	efx::TChasePos* _244;                          // _244
+	int mCurrentFloor;                             // _248
+	Game::SingleGame::FSM* mFsm;                   // _24C
+	Game::SingleGame::GameState* mCurrentState;    // 250
+	KindCounter _254;                              // _254
+	KindCounter _25C;                              // _25C
+	KindCounter mOtakaraCounter;                   // _264
+	KindCounter mItemCounter;                      // _26C
+	u8 _274;                                       // _274
 };
 } // namespace Game
 

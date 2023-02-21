@@ -23,10 +23,10 @@ struct DispMemberBase {
 	{
 	}
 
-	virtual u32 getSize()     = 0;    // _08
-	virtual u32 getOwnerID()  = 0;    // _0C
-	virtual u64 getMemberID() = 0;    // _10
-	virtual void doSetSubMemberAll(); // _14 (weak)
+	virtual u32 getSize()     = 0;       // _08
+	virtual u32 getOwnerID()  = 0;       // _0C
+	virtual u64 getMemberID() = 0;       // _10
+	virtual void doSetSubMemberAll() { } // _14 (weak)
 
 	bool isID(u32, u64);
 	void getMemberName(char*);
