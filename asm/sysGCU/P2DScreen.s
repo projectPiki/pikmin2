@@ -1,16 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049A6C0:
+.obj lbl_8049A6C0, local
 	.asciz "P2DScreen.cpp"
+.endobj lbl_8049A6C0
 .balign 4
-lbl_8049A6D0:
+.obj lbl_8049A6D0, local
 	.asciz "P2Assert"
+.endobj lbl_8049A6D0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q29P2DScreen10Mgr_tuning
-__vt__Q29P2DScreen10Mgr_tuning:
+.obj __vt__Q29P2DScreen10Mgr_tuning, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29P2DScreen10Mgr_tuningFv
@@ -51,8 +52,8 @@ __vt__Q29P2DScreen10Mgr_tuning:
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
 	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
-.global __vt__Q29P2DScreen3Mgr
-__vt__Q29P2DScreen3Mgr:
+.endobj __vt__Q29P2DScreen10Mgr_tuning
+.obj __vt__Q29P2DScreen3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29P2DScreen3MgrFv
@@ -93,36 +94,41 @@ __vt__Q29P2DScreen3Mgr:
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
 	.4byte draw__Q29P2DScreen3MgrFR8GraphicsR14J2DGrafContext
+.endobj __vt__Q29P2DScreen3Mgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520790:
+.obj lbl_80520790, local
 	.float 0.0
-.global mstTuningScaleX__Q29P2DScreen10Mgr_tuning
-mstTuningScaleX__Q29P2DScreen10Mgr_tuning:
+.endobj lbl_80520790
+.obj mstTuningScaleX__Q29P2DScreen10Mgr_tuning, global
 	.float 0.95
-.global mstTuningScaleY__Q29P2DScreen10Mgr_tuning
-mstTuningScaleY__Q29P2DScreen10Mgr_tuning:
+.endobj mstTuningScaleX__Q29P2DScreen10Mgr_tuning
+.obj mstTuningScaleY__Q29P2DScreen10Mgr_tuning, global
 	.float 0.95
-.global mstTuningTransX__Q29P2DScreen10Mgr_tuning
-mstTuningTransX__Q29P2DScreen10Mgr_tuning:
+.endobj mstTuningScaleY__Q29P2DScreen10Mgr_tuning
+.obj mstTuningTransX__Q29P2DScreen10Mgr_tuning, global
 	.float -15.2
-.global mstTuningTransY__Q29P2DScreen10Mgr_tuning
-mstTuningTransY__Q29P2DScreen10Mgr_tuning:
+.endobj mstTuningTransX__Q29P2DScreen10Mgr_tuning
+.obj mstTuningTransY__Q29P2DScreen10Mgr_tuning, global
 	.float -15.2
-lbl_805207A4:
+.endobj mstTuningTransY__Q29P2DScreen10Mgr_tuning
+.obj lbl_805207A4, local
 	.float 0.95
-lbl_805207A8:
+.endobj lbl_805207A4
+.obj lbl_805207A8, local
 	.float -15.2
-lbl_805207AC:
+.endobj lbl_805207A8
+.obj lbl_805207AC, local
 	.float 0.5
+.endobj lbl_805207AC
 .balign 8
-lbl_805207B0:
+.obj lbl_805207B0, local
 	.8byte 0x4330000000000000
+.endobj lbl_805207B0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q29P2DScreen3MgrFv
-__ct__Q29P2DScreen3MgrFv:
+.fn __ct__Q29P2DScreen3MgrFv, global
 /* 80434AC0 00431A00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80434AC4 00431A04  7C 08 02 A6 */	mflr r0
 /* 80434AC8 00431A08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -148,9 +154,9 @@ __ct__Q29P2DScreen3MgrFv:
 /* 80434B18 00431A58  7C 08 03 A6 */	mtlr r0
 /* 80434B1C 00431A5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80434B20 00431A60  4E 80 00 20 */	blr 
+.endfn __ct__Q29P2DScreen3MgrFv
 
-.global addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node:
+.fn addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node, global
 /* 80434B24 00431A64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80434B28 00431A68  7C 08 02 A6 */	mflr r0
 /* 80434B2C 00431A6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -239,9 +245,9 @@ addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node:
 /* 80434C50 00431B90  7C 08 03 A6 */	mtlr r0
 /* 80434C54 00431B94  38 21 00 20 */	addi r1, r1, 0x20
 /* 80434C58 00431B98  4E 80 00 20 */	blr 
+.endfn addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
 
-.global addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node:
+.fn addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node, global
 /* 80434C5C 00431B9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80434C60 00431BA0  7C 08 02 A6 */	mflr r0
 /* 80434C64 00431BA4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -276,9 +282,9 @@ addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node:
 /* 80434CD4 00431C14  7C 08 03 A6 */	mtlr r0
 /* 80434CD8 00431C18  38 21 00 20 */	addi r1, r1, 0x20
 /* 80434CDC 00431C1C  4E 80 00 20 */	blr 
+.endfn addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
 
-.global update__Q29P2DScreen3MgrFv
-update__Q29P2DScreen3MgrFv:
+.fn update__Q29P2DScreen3MgrFv, global
 /* 80434CE0 00431C20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80434CE4 00431C24  7C 08 02 A6 */	mflr r0
 /* 80434CE8 00431C28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -300,9 +306,9 @@ update__Q29P2DScreen3MgrFv:
 /* 80434D20 00431C60  7C 08 03 A6 */	mtlr r0
 /* 80434D24 00431C64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80434D28 00431C68  4E 80 00 20 */	blr 
+.endfn update__Q29P2DScreen3MgrFv
 
-.global draw__Q29P2DScreen3MgrFR8GraphicsR14J2DGrafContext
-draw__Q29P2DScreen3MgrFR8GraphicsR14J2DGrafContext:
+.fn draw__Q29P2DScreen3MgrFR8GraphicsR14J2DGrafContext, global
 /* 80434D2C 00431C6C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80434D30 00431C70  7C 08 02 A6 */	mflr r0
 /* 80434D34 00431C74  C0 22 24 30 */	lfs f1, lbl_80520790@sda21(r2)
@@ -337,9 +343,9 @@ draw__Q29P2DScreen3MgrFR8GraphicsR14J2DGrafContext:
 /* 80434DA0 00431CE0  7C 08 03 A6 */	mtlr r0
 /* 80434DA4 00431CE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80434DA8 00431CE8  4E 80 00 20 */	blr 
+.endfn draw__Q29P2DScreen3MgrFR8GraphicsR14J2DGrafContext
 
-.global __ct__Q29P2DScreen10Mgr_tuningFv
-__ct__Q29P2DScreen10Mgr_tuningFv:
+.fn __ct__Q29P2DScreen10Mgr_tuningFv, global
 /* 80434DAC 00431CEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80434DB0 00431CF0  7C 08 02 A6 */	mflr r0
 /* 80434DB4 00431CF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -374,9 +380,9 @@ __ct__Q29P2DScreen10Mgr_tuningFv:
 /* 80434E28 00431D68  7C 08 03 A6 */	mtlr r0
 /* 80434E2C 00431D6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80434E30 00431D70  4E 80 00 20 */	blr 
+.endfn __ct__Q29P2DScreen10Mgr_tuningFv
 
-.global draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
-draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext:
+.fn draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext, global
 /* 80434E34 00431D74  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80434E38 00431D78  7C 08 02 A6 */	mflr r0
 /* 80434E3C 00431D7C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -453,3 +459,4 @@ draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext:
 /* 80434F50 00431E90  7C 08 03 A6 */	mtlr r0
 /* 80434F54 00431E94  38 21 00 30 */	addi r1, r1, 0x30
 /* 80434F58 00431E98  4E 80 00 20 */	blr 
+.endfn draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext

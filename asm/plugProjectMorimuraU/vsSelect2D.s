@@ -13,43 +13,55 @@ lbl_constructor:
 	.asciz "vsSelect2D.cpp"
 .endobj lbl_80494B24
 .balign 4
-lbl_80494B34:
+.obj lbl_80494B34, local
 	.asciz "P2Assert"
+.endobj lbl_80494B34
 .balign 4
-lbl_80494B40:
+.obj lbl_80494B40, local
 	.asciz "vsSelect"
+.endobj lbl_80494B40
 .balign 4
-lbl_80494B4C:
+.obj lbl_80494B4C, local
 	.asciz "timg/otegaru.bti"
+.endobj lbl_80494B4C
 .balign 4
-lbl_80494B60:
+.obj lbl_80494B60, local
 	.asciz "timg/ujyaujya.bti"
+.endobj lbl_80494B60
 .balign 4
-lbl_80494B74:
+.obj lbl_80494B74, local
 	.asciz "timg/hirobiro.bti"
+.endobj lbl_80494B74
 .balign 4
-lbl_80494B88:
+.obj lbl_80494B88, local
 	.asciz "timg/karakuchi.bti"
+.endobj lbl_80494B88
 .balign 4
-lbl_80494B9C:
+.obj lbl_80494B9C, local
 	.asciz "timg/semai.bti"
+.endobj lbl_80494B9C
 .balign 4
-lbl_80494BAC:
+.obj lbl_80494BAC, local
 	.asciz "timg/hiyahiya.bti"
+.endobj lbl_80494BAC
 .balign 4
-lbl_80494BC0:
+.obj lbl_80494BC0, local
 	.asciz "timg/nobinobi.bti"
+.endobj lbl_80494BC0
 .balign 4
-lbl_80494BD4:
+.obj lbl_80494BD4, local
 	.asciz "timg/kakukaku.bti"
+.endobj lbl_80494BD4
 .balign 4
-lbl_80494BE8:
+.obj lbl_80494BE8, local
 	.asciz "timg/meiro.bti"
+.endobj lbl_80494BE8
 .balign 4
-lbl_80494BF8:
+.obj lbl_80494BF8, local
 	.asciz "timg/tile.bti"
+.endobj lbl_80494BF8
 .balign 4
-lbl_80494C08:
+.obj lbl_80494C08, local
 	.4byte lbl_80494B4C
 	.4byte lbl_80494B60
 	.4byte lbl_80494B74
@@ -60,6 +72,7 @@ lbl_80494C08:
 	.4byte lbl_80494BD4
 	.4byte lbl_80494BE8
 	.4byte lbl_80494BF8
+.endobj lbl_80494C08
 .balign 4
 lbl_80494C30:
 	.asciz "timg/orima001.bti"

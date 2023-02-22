@@ -5,23 +5,26 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049A858:
+.obj lbl_8049A858, local
 	.asciz "JSTObjectSpecialActor.cpp"
+.endobj lbl_8049A858
 .balign 4
-lbl_8049A874:
+.obj lbl_8049A874, local
 	.asciz "comand %d not implemented !\n"
+.endobj lbl_8049A874
 .balign 4
-lbl_8049A894:
+.obj lbl_8049A894, local
 	.asciz "too many commands !\n"
+.endobj lbl_8049A894
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q34Game5P2JST18ObjectSpecialActor
-__vt__Q34Game5P2JST18ObjectSpecialActor:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game5P2JST18ObjectSpecialActor, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game5P2JST18ObjectSpecialActorFv
@@ -73,24 +76,28 @@ __vt__Q34Game5P2JST18ObjectSpecialActor:
 	.4byte setAnim__Q34Game5P2JST11ObjectActorFv
 	.4byte mountArchive__Q34Game5P2JST11ObjectActorFv
 	.4byte parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv
+.endobj __vt__Q34Game5P2JST18ObjectSpecialActor
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520860:
+.obj lbl_80520860, local
 	.float 0.0
-lbl_80520864:
+.endobj lbl_80520860
+.obj lbl_80520864, local
 	.float 1.0
+.endobj lbl_80520864
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game5P2JST18ObjectSpecialActorFPCcPQ24Game11MoviePlayer
-__ct__Q34Game5P2JST18ObjectSpecialActorFPCcPQ24Game11MoviePlayer:
+.fn __ct__Q34Game5P2JST18ObjectSpecialActorFPCcPQ24Game11MoviePlayer, global
 /* 80437400 00434340  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80437404 00434344  7C 08 02 A6 */	mflr r0
 /* 80437408 00434348  90 01 00 14 */	stw r0, 0x14(r1)
@@ -113,9 +120,9 @@ __ct__Q34Game5P2JST18ObjectSpecialActorFPCcPQ24Game11MoviePlayer:
 /* 8043744C 0043438C  7C 08 03 A6 */	mtlr r0
 /* 80437450 00434390  38 21 00 10 */	addi r1, r1, 0x10
 /* 80437454 00434394  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game5P2JST18ObjectSpecialActorFPCcPQ24Game11MoviePlayer
 
-.global reset__Q34Game5P2JST18ObjectSpecialActorFv
-reset__Q34Game5P2JST18ObjectSpecialActorFv:
+.fn reset__Q34Game5P2JST18ObjectSpecialActorFv, global
 /* 80437458 00434398  38 80 00 00 */	li r4, 0
 /* 8043745C 0043439C  38 00 FF FF */	li r0, -1
 /* 80437460 004343A0  90 83 00 70 */	stw r4, 0x70(r3)
@@ -139,13 +146,13 @@ reset__Q34Game5P2JST18ObjectSpecialActorFv:
 /* 804374A8 004343E8  98 83 00 B4 */	stb r4, 0xb4(r3)
 /* 804374AC 004343EC  D0 03 00 B8 */	stfs f0, 0xb8(r3)
 /* 804374B0 004343F0  4E 80 00 20 */	blr 
+.endfn reset__Q34Game5P2JST18ObjectSpecialActorFv
 
-.global stop__Q34Game5P2JST18ObjectSpecialActorFv
-stop__Q34Game5P2JST18ObjectSpecialActorFv:
+.fn stop__Q34Game5P2JST18ObjectSpecialActorFv, global
 /* 804374B4 004343F4  4E 80 00 20 */	blr 
+.endfn stop__Q34Game5P2JST18ObjectSpecialActorFv
 
-.global update__Q34Game5P2JST18ObjectSpecialActorFv
-update__Q34Game5P2JST18ObjectSpecialActorFv:
+.fn update__Q34Game5P2JST18ObjectSpecialActorFv, global
 /* 804374B8 004343F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804374BC 004343FC  7C 08 02 A6 */	mflr r0
 /* 804374C0 00434400  C0 22 25 00 */	lfs f1, lbl_80520860@sda21(r2)
@@ -310,9 +317,9 @@ update__Q34Game5P2JST18ObjectSpecialActorFv:
 /* 80437700 00434640  7C 08 03 A6 */	mtlr r0
 /* 80437704 00434644  38 21 00 20 */	addi r1, r1, 0x20
 /* 80437708 00434648  4E 80 00 20 */	blr 
+.endfn update__Q34Game5P2JST18ObjectSpecialActorFv
 
-.global JSGSetAnimation__Q34Game5P2JST18ObjectSpecialActorFUl
-JSGSetAnimation__Q34Game5P2JST18ObjectSpecialActorFUl:
+.fn JSGSetAnimation__Q34Game5P2JST18ObjectSpecialActorFUl, global
 /* 8043770C 0043464C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80437710 00434650  7C 08 02 A6 */	mflr r0
 /* 80437714 00434654  90 01 00 14 */	stw r0, 0x14(r1)
@@ -347,13 +354,13 @@ JSGSetAnimation__Q34Game5P2JST18ObjectSpecialActorFUl:
 /* 80437784 004346C4  7C 08 03 A6 */	mtlr r0
 /* 80437788 004346C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043778C 004346CC  4E 80 00 20 */	blr 
+.endfn JSGSetAnimation__Q34Game5P2JST18ObjectSpecialActorFUl
 
-.global parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv
-parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv:
+.fn parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv, global
 /* 80437790 004346D0  4E 80 00 20 */	blr 
+.endfn parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv
 
-.global __dt__Q34Game5P2JST18ObjectSpecialActorFv
-__dt__Q34Game5P2JST18ObjectSpecialActorFv:
+.fn __dt__Q34Game5P2JST18ObjectSpecialActorFv, weak
 /* 80437794 004346D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80437798 004346D8  7C 08 02 A6 */	mflr r0
 /* 8043779C 004346DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -381,8 +388,9 @@ __dt__Q34Game5P2JST18ObjectSpecialActorFv:
 /* 804377F0 00434730  7C 08 03 A6 */	mtlr r0
 /* 804377F4 00434734  38 21 00 10 */	addi r1, r1, 0x10
 /* 804377F8 00434738  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game5P2JST18ObjectSpecialActorFv
 
-__sinit_JSTObjectSpecialActor_cpp: # static initializer
+.fn __sinit_JSTObjectSpecialActor_cpp, local
 /* 804377FC 0043473C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80437800 00434740  38 00 FF FF */	li r0, -1
 /* 80437804 00434744  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -393,23 +401,24 @@ __sinit_JSTObjectSpecialActor_cpp: # static initializer
 /* 80437818 00434758  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8043781C 0043475C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80437820 00434760  4E 80 00 20 */	blr 
+.endfn __sinit_JSTObjectSpecialActor_cpp
 
-.global "@4@parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv"
-"@4@parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv":
+.fn "@4@parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv", weak
 /* 80437824 00434764  38 63 FF FC */	addi r3, r3, -4
 /* 80437828 00434768  4B FF FF 68 */	b parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv
+.endfn "@4@parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv"
 
-.global "@4@stop__Q34Game5P2JST18ObjectSpecialActorFv"
-"@4@stop__Q34Game5P2JST18ObjectSpecialActorFv":
+.fn "@4@stop__Q34Game5P2JST18ObjectSpecialActorFv", weak
 /* 8043782C 0043476C  38 63 FF FC */	addi r3, r3, -4
 /* 80437830 00434770  4B FF FC 84 */	b stop__Q34Game5P2JST18ObjectSpecialActorFv
+.endfn "@4@stop__Q34Game5P2JST18ObjectSpecialActorFv"
 
-.global "@4@update__Q34Game5P2JST18ObjectSpecialActorFv"
-"@4@update__Q34Game5P2JST18ObjectSpecialActorFv":
+.fn "@4@update__Q34Game5P2JST18ObjectSpecialActorFv", weak
 /* 80437834 00434774  38 63 FF FC */	addi r3, r3, -4
 /* 80437838 00434778  4B FF FC 80 */	b update__Q34Game5P2JST18ObjectSpecialActorFv
+.endfn "@4@update__Q34Game5P2JST18ObjectSpecialActorFv"
 
-.global "@4@reset__Q34Game5P2JST18ObjectSpecialActorFv"
-"@4@reset__Q34Game5P2JST18ObjectSpecialActorFv":
+.fn "@4@reset__Q34Game5P2JST18ObjectSpecialActorFv", weak
 /* 8043783C 0043477C  38 63 FF FC */	addi r3, r3, -4
 /* 80437840 00434780  4B FF FC 18 */	b reset__Q34Game5P2JST18ObjectSpecialActorFv
+.endfn "@4@reset__Q34Game5P2JST18ObjectSpecialActorFv"

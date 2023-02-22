@@ -1,16 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049B880:
+.obj lbl_8049B880, local
 	.asciz "messageObj.h"
+.endobj lbl_8049B880
 .balign 4
-lbl_8049B890:
+.obj lbl_8049B890, local
 	.asciz "P2Assert"
+.endobj lbl_8049B890
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q35P2JME7Caption8TControl
-__vt__Q35P2JME7Caption8TControl:
+.obj __vt__Q35P2JME7Caption8TControl, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME7Caption8TControlFv
@@ -29,8 +30,8 @@ __vt__Q35P2JME7Caption8TControl:
 	.4byte createResourceContainer__Q25P2JME8TControlFv
 	.4byte createSequenceProcessor__Q35P2JME7Caption8TControlFv
 	.4byte createRenderingProcessor__Q35P2JME7Caption8TControlFv
-.global __vt__Q35P2JME7Caption18TSequenceProcessor
-__vt__Q35P2JME7Caption18TSequenceProcessor:
+.endobj __vt__Q35P2JME7Caption8TControl
+.obj __vt__Q35P2JME7Caption18TSequenceProcessor, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME7Caption18TSequenceProcessorFv
@@ -61,8 +62,8 @@ __vt__Q35P2JME7Caption18TSequenceProcessor:
 	.4byte doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv
 	.4byte doFastForwardSE__Q35P2JME6Window18TSequenceProcessorFv
 	.4byte reset__Q25P2JME18TSequenceProcessorFv
-.global __vt__Q35P2JME7Caption19TRenderingProcessor
-__vt__Q35P2JME7Caption19TRenderingProcessor:
+.endobj __vt__Q35P2JME7Caption18TSequenceProcessor
+.obj __vt__Q35P2JME7Caption19TRenderingProcessor, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME7Caption19TRenderingProcessorFv
@@ -99,45 +100,57 @@ __vt__Q35P2JME7Caption19TRenderingProcessor:
 	.4byte doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf
 	.4byte "makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>"
 	.4byte doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
+.endobj __vt__Q35P2JME7Caption19TRenderingProcessor
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520B30:
+.obj lbl_80520B30, local
 	.float 1.0
-lbl_80520B34:
+.endobj lbl_80520B30
+.obj lbl_80520B34, local
 	.float 0.26666668
-lbl_80520B38:
+.endobj lbl_80520B34
+.obj lbl_80520B38, local
 	.float 255.0
-lbl_80520B3C:
+.endobj lbl_80520B38
+.obj lbl_80520B3C, local
 	.float 0.0
-lbl_80520B40:
+.endobj lbl_80520B3C
+.obj lbl_80520B40, local
 	.float 10.0
-lbl_80520B44:
+.endobj lbl_80520B40
+.obj lbl_80520B44, local
 	.float 5.0
-lbl_80520B48:
+.endobj lbl_80520B44
+.obj lbl_80520B48, local
 	.float 0.5
-lbl_80520B4C:
+.endobj lbl_80520B48
+.obj lbl_80520B4C, local
 	.float 3.0
-lbl_80520B50:
+.endobj lbl_80520B4C
+.obj lbl_80520B50, local
 	.float 200.0
+.endobj lbl_80520B50
 .balign 8
-lbl_80520B58:
+.obj lbl_80520B58, local
 	.8byte 0x4330000000000000
+.endobj lbl_80520B58
 .balign 8
-lbl_80520B60:
+.obj lbl_80520B60, local
 	.8byte 0x4330000080000000
-lbl_80520B68:
+.endobj lbl_80520B60
+.obj lbl_80520B68, local
 	.float 290.0
+.endobj lbl_80520B68
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
-doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo:
+.fn doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo, global
 /* 80450FC0 0044DF00  C0 02 27 D4 */	lfs f0, lbl_80520B34@sda21(r2)
 /* 80450FC4 0044DF04  D0 04 00 20 */	stfs f0, 0x20(r4)
 /* 80450FC8 0044DF08  4E 80 00 20 */	blr 
+.endfn doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
 
-.global doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf
-doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf:
+.fn doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf, global
 /* 80450FCC 0044DF0C  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80450FD0 0044DF10  7C 08 02 A6 */	mflr r0
 /* 80450FD4 0044DF14  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -269,9 +282,9 @@ doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf:
 /* 804511AC 0044E0EC  7C 08 03 A6 */	mtlr r0
 /* 804511B0 0044E0F0  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 804511B4 0044E0F4  4E 80 00 20 */	blr 
+.endfn doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf
 
-.global __ct__Q35P2JME7Caption8TControlFv
-__ct__Q35P2JME7Caption8TControlFv:
+.fn __ct__Q35P2JME7Caption8TControlFv, global
 /* 804511B8 0044E0F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804511BC 0044E0FC  7C 08 02 A6 */	mflr r0
 /* 804511C0 0044E100  90 01 00 14 */	stw r0, 0x14(r1)
@@ -293,9 +306,9 @@ __ct__Q35P2JME7Caption8TControlFv:
 /* 80451200 0044E140  7C 08 03 A6 */	mtlr r0
 /* 80451204 0044E144  38 21 00 10 */	addi r1, r1, 0x10
 /* 80451208 0044E148  4E 80 00 20 */	blr 
+.endfn __ct__Q35P2JME7Caption8TControlFv
 
-.global onInit__Q35P2JME7Caption8TControlFv
-onInit__Q35P2JME7Caption8TControlFv:
+.fn onInit__Q35P2JME7Caption8TControlFv, global
 /* 8045120C 0044E14C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80451210 0044E150  7C 08 02 A6 */	mflr r0
 /* 80451214 0044E154  90 01 00 24 */	stw r0, 0x24(r1)
@@ -355,9 +368,9 @@ onInit__Q35P2JME7Caption8TControlFv:
 /* 804512E8 0044E228  7C 08 03 A6 */	mtlr r0
 /* 804512EC 0044E22C  38 21 00 20 */	addi r1, r1, 0x20
 /* 804512F0 0044E230  4E 80 00 20 */	blr 
+.endfn onInit__Q35P2JME7Caption8TControlFv
 
-.global reset__Q35P2JME7Caption8TControlFv
-reset__Q35P2JME7Caption8TControlFv:
+.fn reset__Q35P2JME7Caption8TControlFv, global
 /* 804512F4 0044E234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804512F8 0044E238  7C 08 02 A6 */	mflr r0
 /* 804512FC 0044E23C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -371,9 +384,9 @@ reset__Q35P2JME7Caption8TControlFv:
 /* 8045131C 0044E25C  7C 08 03 A6 */	mtlr r0
 /* 80451320 0044E260  38 21 00 10 */	addi r1, r1, 0x10
 /* 80451324 0044E264  4E 80 00 20 */	blr 
+.endfn reset__Q35P2JME7Caption8TControlFv
 
-.global updateSetFrame__Q35P2JME7Caption8TControlFl
-updateSetFrame__Q35P2JME7Caption8TControlFl:
+.fn updateSetFrame__Q35P2JME7Caption8TControlFl, global
 /* 80451328 0044E268  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045132C 0044E26C  7C 08 02 A6 */	mflr r0
 /* 80451330 0044E270  90 01 00 24 */	stw r0, 0x24(r1)
@@ -453,9 +466,9 @@ updateSetFrame__Q35P2JME7Caption8TControlFl:
 /* 80451444 0044E384  7C 08 03 A6 */	mtlr r0
 /* 80451448 0044E388  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045144C 0044E38C  4E 80 00 20 */	blr 
+.endfn updateSetFrame__Q35P2JME7Caption8TControlFl
 
-.global draw__Q35P2JME7Caption8TControlFR8Graphics
-draw__Q35P2JME7Caption8TControlFR8Graphics:
+.fn draw__Q35P2JME7Caption8TControlFR8Graphics, global
 /* 80451450 0044E390  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80451454 0044E394  7C 08 02 A6 */	mflr r0
 /* 80451458 0044E398  90 01 00 54 */	stw r0, 0x54(r1)
@@ -490,9 +503,9 @@ draw__Q35P2JME7Caption8TControlFR8Graphics:
 /* 804514C8 0044E408  7C 08 03 A6 */	mtlr r0
 /* 804514CC 0044E40C  38 21 00 50 */	addi r1, r1, 0x50
 /* 804514D0 0044E410  4E 80 00 20 */	blr 
+.endfn draw__Q35P2JME7Caption8TControlFR8Graphics
 
-.global start__Q35P2JME7Caption8TControlFPcll
-start__Q35P2JME7Caption8TControlFPcll:
+.fn start__Q35P2JME7Caption8TControlFPcll, global
 /* 804514D4 0044E414  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804514D8 0044E418  7C 08 02 A6 */	mflr r0
 /* 804514DC 0044E41C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -515,9 +528,9 @@ start__Q35P2JME7Caption8TControlFPcll:
 /* 80451520 0044E460  7C 08 03 A6 */	mtlr r0
 /* 80451524 0044E464  38 21 00 20 */	addi r1, r1, 0x20
 /* 80451528 0044E468  4E 80 00 20 */	blr 
+.endfn start__Q35P2JME7Caption8TControlFPcll
 
-.global createSequenceProcessor__Q35P2JME7Caption8TControlFv
-createSequenceProcessor__Q35P2JME7Caption8TControlFv:
+.fn createSequenceProcessor__Q35P2JME7Caption8TControlFv, weak
 /* 8045152C 0044E46C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80451530 0044E470  7C 08 02 A6 */	mflr r0
 /* 80451534 0044E474  90 01 00 14 */	stw r0, 0x14(r1)
@@ -554,9 +567,9 @@ createSequenceProcessor__Q35P2JME7Caption8TControlFv:
 /* 804515A8 0044E4E8  7C 08 03 A6 */	mtlr r0
 /* 804515AC 0044E4EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804515B0 0044E4F0  4E 80 00 20 */	blr 
+.endfn createSequenceProcessor__Q35P2JME7Caption8TControlFv
 
-.global createRenderingProcessor__Q35P2JME7Caption8TControlFv
-createRenderingProcessor__Q35P2JME7Caption8TControlFv:
+.fn createRenderingProcessor__Q35P2JME7Caption8TControlFv, weak
 /* 804515B4 0044E4F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804515B8 0044E4F8  7C 08 02 A6 */	mflr r0
 /* 804515BC 0044E4FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -594,9 +607,9 @@ createRenderingProcessor__Q35P2JME7Caption8TControlFv:
 /* 80451634 0044E574  7C 08 03 A6 */	mtlr r0
 /* 80451638 0044E578  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045163C 0044E57C  4E 80 00 20 */	blr 
+.endfn createRenderingProcessor__Q35P2JME7Caption8TControlFv
 
-.global __dt__Q35P2JME7Caption18TSequenceProcessorFv
-__dt__Q35P2JME7Caption18TSequenceProcessorFv:
+.fn __dt__Q35P2JME7Caption18TSequenceProcessorFv, weak
 /* 80451640 0044E580  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80451644 0044E584  7C 08 02 A6 */	mflr r0
 /* 80451648 0044E588  90 01 00 14 */	stw r0, 0x14(r1)
@@ -631,30 +644,30 @@ __dt__Q35P2JME7Caption18TSequenceProcessorFv:
 /* 804516B4 0044E5F4  7C 08 03 A6 */	mtlr r0
 /* 804516B8 0044E5F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 804516BC 0044E5FC  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME7Caption18TSequenceProcessorFv
 
-.global do_isReady__Q35P2JME7Caption18TSequenceProcessorFv
-do_isReady__Q35P2JME7Caption18TSequenceProcessorFv: # weak function
+.fn do_isReady__Q35P2JME7Caption18TSequenceProcessorFv, weak
 /* 804516C0 0044E600  38 60 00 01 */	li r3, 1
 /* 804516C4 0044E604  4E 80 00 20 */	blr 
+.endfn do_isReady__Q35P2JME7Caption18TSequenceProcessorFv
 
-.global doResetAbtnWaitSE__Q35P2JME7Caption18TSequenceProcessorFv
-doResetAbtnWaitSE__Q35P2JME7Caption18TSequenceProcessorFv:
+.fn doResetAbtnWaitSE__Q35P2JME7Caption18TSequenceProcessorFv, weak
 /* 804516C8 0044E608  4E 80 00 20 */	blr 
+.endfn doResetAbtnWaitSE__Q35P2JME7Caption18TSequenceProcessorFv
 
-.global doCharacterSE__Q35P2JME7Caption18TSequenceProcessorFi
-doCharacterSE__Q35P2JME7Caption18TSequenceProcessorFi:
+.fn doCharacterSE__Q35P2JME7Caption18TSequenceProcessorFi, weak
 /* 804516CC 0044E60C  4E 80 00 20 */	blr 
+.endfn doCharacterSE__Q35P2JME7Caption18TSequenceProcessorFi
 
-.global doCharacterSEStart__Q35P2JME7Caption18TSequenceProcessorFv
-doCharacterSEStart__Q35P2JME7Caption18TSequenceProcessorFv:
+.fn doCharacterSEStart__Q35P2JME7Caption18TSequenceProcessorFv, weak
 /* 804516D0 0044E610  4E 80 00 20 */	blr 
+.endfn doCharacterSEStart__Q35P2JME7Caption18TSequenceProcessorFv
 
-.global doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv
-doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv:
+.fn doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv, weak
 /* 804516D4 0044E614  4E 80 00 20 */	blr 
+.endfn doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv
 
-.global __dt__Q35P2JME7Caption19TRenderingProcessorFv
-__dt__Q35P2JME7Caption19TRenderingProcessorFv: # weak function
+.fn __dt__Q35P2JME7Caption19TRenderingProcessorFv, weak
 /* 804516D8 0044E618  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804516DC 0044E61C  7C 08 02 A6 */	mflr r0
 /* 804516E0 0044E620  90 01 00 14 */	stw r0, 0x14(r1)
@@ -704,3 +717,4 @@ __dt__Q35P2JME7Caption19TRenderingProcessorFv: # weak function
 /* 80451784 0044E6C4  7C 08 03 A6 */	mtlr r0
 /* 80451788 0044E6C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045178C 0044E6CC  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME7Caption19TRenderingProcessorFv

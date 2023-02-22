@@ -38,7 +38,7 @@ lbl_8049AF9C: # these strings are unnamed in the dol.
 	.4byte TitlePiki_White
 	.4byte TitlePiki_Violet
 .balign 4
-lbl_8049AFB0: #Shift-JIS
+lbl_8049AFB0: # Shift-JIS
 	.4byte 0x8375815B
 	.4byte 0x8367835A
 	.4byte 0x834E8356

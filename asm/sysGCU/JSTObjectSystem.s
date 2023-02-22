@@ -5,20 +5,22 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049A300:
+.obj lbl_8049A300, local
 	.asciz "JSTObjectSystem.cpp"
+.endobj lbl_8049A300
 .balign 4
-lbl_8049A314:
+.obj lbl_8049A314, local
 	.asciz "JSGFindObject---- %d not found\n"
+.endobj lbl_8049A314
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q34Game5P2JST12ObjectSystem
-__vt__Q34Game5P2JST12ObjectSystem:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game5P2JST12ObjectSystem, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game5P2JST12ObjectSystemFv
@@ -51,20 +53,23 @@ __vt__Q34Game5P2JST12ObjectSystem:
 	.4byte entry__Q34Game5P2JST12ObjectSystemFv
 	.4byte start__Q34Game5P2JST12ObjectSystemFv
 	.4byte stop__Q34Game5P2JST12ObjectSystemFv
+.endobj __vt__Q34Game5P2JST12ObjectSystem
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_805161F8:
+.obj lbl_805161F8, local
 	.skip 0x1
+.endobj lbl_805161F8
 .balign 4
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer
-__ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer:
+.fn __ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer, global
 /* 80430954 0042D894  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80430958 0042D898  7C 08 02 A6 */	mflr r0
 /* 8043095C 0042D89C  3C C0 80 4A */	lis r6, __vt__Q26JStage7TObject@ha
@@ -105,9 +110,9 @@ __ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer:
 /* 804309E8 0042D928  7C 08 03 A6 */	mtlr r0
 /* 804309EC 0042D92C  38 21 00 20 */	addi r1, r1, 0x20
 /* 804309F0 0042D930  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer
 
-.global __dt__Q34Game5P2JST12ObjectSystemFv
-__dt__Q34Game5P2JST12ObjectSystemFv:
+.fn __dt__Q34Game5P2JST12ObjectSystemFv, global
 /* 804309F4 0042D934  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804309F8 0042D938  7C 08 02 A6 */	mflr r0
 /* 804309FC 0042D93C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -143,9 +148,9 @@ __dt__Q34Game5P2JST12ObjectSystemFv:
 /* 80430A6C 0042D9AC  7C 08 03 A6 */	mtlr r0
 /* 80430A70 0042D9B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80430A74 0042D9B4  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game5P2JST12ObjectSystemFv
 
-.global destroyObjectAll__Q34Game5P2JST12ObjectSystemFv
-destroyObjectAll__Q34Game5P2JST12ObjectSystemFv:
+.fn destroyObjectAll__Q34Game5P2JST12ObjectSystemFv, global
 /* 80430A78 0042D9B8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80430A7C 0042D9BC  7C 08 02 A6 */	mflr r0
 /* 80430A80 0042D9C0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -191,9 +196,9 @@ destroyObjectAll__Q34Game5P2JST12ObjectSystemFv:
 /* 80430B14 0042DA54  7C 08 03 A6 */	mtlr r0
 /* 80430B18 0042DA58  38 21 00 30 */	addi r1, r1, 0x30
 /* 80430B1C 0042DA5C  4E 80 00 20 */	blr 
+.endfn destroyObjectAll__Q34Game5P2JST12ObjectSystemFv
 
-.global reset__Q34Game5P2JST12ObjectSystemFv
-reset__Q34Game5P2JST12ObjectSystemFv:
+.fn reset__Q34Game5P2JST12ObjectSystemFv, global
 /* 80430B20 0042DA60  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80430B24 0042DA64  7C 08 02 A6 */	mflr r0
 /* 80430B28 0042DA68  90 01 00 34 */	stw r0, 0x34(r1)
@@ -262,9 +267,9 @@ reset__Q34Game5P2JST12ObjectSystemFv:
 /* 80430C08 0042DB48  7C 08 03 A6 */	mtlr r0
 /* 80430C0C 0042DB4C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80430C10 0042DB50  4E 80 00 20 */	blr 
+.endfn reset__Q34Game5P2JST12ObjectSystemFv
 
-.global entry__Q34Game5P2JST12ObjectSystemFv
-entry__Q34Game5P2JST12ObjectSystemFv:
+.fn entry__Q34Game5P2JST12ObjectSystemFv, global
 /* 80430C14 0042DB54  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80430C18 0042DB58  7C 08 02 A6 */	mflr r0
 /* 80430C1C 0042DB5C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -312,9 +317,9 @@ entry__Q34Game5P2JST12ObjectSystemFv:
 /* 80430CB4 0042DBF4  7C 08 03 A6 */	mtlr r0
 /* 80430CB8 0042DBF8  38 21 00 30 */	addi r1, r1, 0x30
 /* 80430CBC 0042DBFC  4E 80 00 20 */	blr 
+.endfn entry__Q34Game5P2JST12ObjectSystemFv
 
-.global update__Q34Game5P2JST12ObjectSystemFv
-update__Q34Game5P2JST12ObjectSystemFv:
+.fn update__Q34Game5P2JST12ObjectSystemFv, global
 /* 80430CC0 0042DC00  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80430CC4 0042DC04  7C 08 02 A6 */	mflr r0
 /* 80430CC8 0042DC08  90 01 00 34 */	stw r0, 0x34(r1)
@@ -373,9 +378,9 @@ update__Q34Game5P2JST12ObjectSystemFv:
 /* 80430D88 0042DCC8  7C 08 03 A6 */	mtlr r0
 /* 80430D8C 0042DCCC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80430D90 0042DCD0  4E 80 00 20 */	blr 
+.endfn update__Q34Game5P2JST12ObjectSystemFv
 
-.global start__Q34Game5P2JST12ObjectSystemFv
-start__Q34Game5P2JST12ObjectSystemFv:
+.fn start__Q34Game5P2JST12ObjectSystemFv, global
 /* 80430D94 0042DCD4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80430D98 0042DCD8  7C 08 02 A6 */	mflr r0
 /* 80430D9C 0042DCDC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -434,9 +439,9 @@ start__Q34Game5P2JST12ObjectSystemFv:
 /* 80430E5C 0042DD9C  7C 08 03 A6 */	mtlr r0
 /* 80430E60 0042DDA0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80430E64 0042DDA4  4E 80 00 20 */	blr 
+.endfn start__Q34Game5P2JST12ObjectSystemFv
 
-.global stop__Q34Game5P2JST12ObjectSystemFv
-stop__Q34Game5P2JST12ObjectSystemFv:
+.fn stop__Q34Game5P2JST12ObjectSystemFv, global
 /* 80430E68 0042DDA8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80430E6C 0042DDAC  7C 08 02 A6 */	mflr r0
 /* 80430E70 0042DDB0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -495,9 +500,9 @@ stop__Q34Game5P2JST12ObjectSystemFv:
 /* 80430F30 0042DE70  7C 08 03 A6 */	mtlr r0
 /* 80430F34 0042DE74  38 21 00 30 */	addi r1, r1, 0x30
 /* 80430F38 0042DE78  4E 80 00 20 */	blr 
+.endfn stop__Q34Game5P2JST12ObjectSystemFv
 
-.global findObject__Q34Game5P2JST12ObjectSystemCFPCcQ26JStage8TEObject
-findObject__Q34Game5P2JST12ObjectSystemCFPCcQ26JStage8TEObject:
+.fn findObject__Q34Game5P2JST12ObjectSystemCFPCcQ26JStage8TEObject, global
 /* 80430F3C 0042DE7C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80430F40 0042DE80  7C 08 02 A6 */	mflr r0
 /* 80430F44 0042DE84  90 01 00 64 */	stw r0, 0x64(r1)
@@ -568,9 +573,9 @@ findObject__Q34Game5P2JST12ObjectSystemCFPCcQ26JStage8TEObject:
 /* 8043102C 0042DF6C  7C 08 03 A6 */	mtlr r0
 /* 80431030 0042DF70  38 21 00 60 */	addi r1, r1, 0x60
 /* 80431034 0042DF74  4E 80 00 20 */	blr 
+.endfn findObject__Q34Game5P2JST12ObjectSystemCFPCcQ26JStage8TEObject
 
-.global JSGFindObject__Q34Game5P2JST12ObjectSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject
-JSGFindObject__Q34Game5P2JST12ObjectSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject:
+.fn JSGFindObject__Q34Game5P2JST12ObjectSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject, global
 /* 80431038 0042DF78  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 8043103C 0042DF7C  7C 08 02 A6 */	mflr r0
 /* 80431040 0042DF80  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -793,30 +798,31 @@ JSGFindObject__Q34Game5P2JST12ObjectSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEOb
 /* 8043133C 0042E27C  7C 08 03 A6 */	mtlr r0
 /* 80431340 0042E280  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80431344 0042E284  4E 80 00 20 */	blr 
+.endfn JSGFindObject__Q34Game5P2JST12ObjectSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject
 
-.global JSGGetName__Q34Game5P2JST12ObjectSystemCFv
-JSGGetName__Q34Game5P2JST12ObjectSystemCFv:
+.fn JSGGetName__Q34Game5P2JST12ObjectSystemCFv, global
 /* 80431348 0042E288  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8043134C 0042E28C  4E 80 00 20 */	blr 
+.endfn JSGGetName__Q34Game5P2JST12ObjectSystemCFv
 
-.global JSGSetFlag__Q34Game5P2JST12ObjectSystemFUl
-JSGSetFlag__Q34Game5P2JST12ObjectSystemFUl:
+.fn JSGSetFlag__Q34Game5P2JST12ObjectSystemFUl, global
 /* 80431350 0042E290  90 83 00 10 */	stw r4, 0x10(r3)
 /* 80431354 0042E294  4E 80 00 20 */	blr 
+.endfn JSGSetFlag__Q34Game5P2JST12ObjectSystemFUl
 
-.global JSGGetFlag__Q34Game5P2JST12ObjectSystemCFv
-JSGGetFlag__Q34Game5P2JST12ObjectSystemCFv:
+.fn JSGGetFlag__Q34Game5P2JST12ObjectSystemCFv, global
 /* 80431358 0042E298  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8043135C 0042E29C  4E 80 00 20 */	blr 
+.endfn JSGGetFlag__Q34Game5P2JST12ObjectSystemCFv
 
-.global JSGSetData__Q34Game5P2JST12ObjectSystemFUlPCvUl
-JSGSetData__Q34Game5P2JST12ObjectSystemFUlPCvUl:
+.fn JSGSetData__Q34Game5P2JST12ObjectSystemFUlPCvUl, global
 /* 80431360 0042E2A0  90 83 00 14 */	stw r4, 0x14(r3)
 /* 80431364 0042E2A4  90 A3 00 18 */	stw r5, 0x18(r3)
 /* 80431368 0042E2A8  90 C3 00 1C */	stw r6, 0x1c(r3)
 /* 8043136C 0042E2AC  4E 80 00 20 */	blr 
+.endfn JSGSetData__Q34Game5P2JST12ObjectSystemFUlPCvUl
 
-__sinit_JSTObjectSystem_cpp: # static initializer
+.fn __sinit_JSTObjectSystem_cpp, local
 /* 80431370 0042E2B0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80431374 0042E2B4  38 00 FF FF */	li r0, -1
 /* 80431378 0042E2B8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -827,23 +833,24 @@ __sinit_JSTObjectSystem_cpp: # static initializer
 /* 8043138C 0042E2CC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80431390 0042E2D0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80431394 0042E2D4  4E 80 00 20 */	blr 
+.endfn __sinit_JSTObjectSystem_cpp
 
-.global "@4@stop__Q34Game5P2JST12ObjectSystemFv"
-"@4@stop__Q34Game5P2JST12ObjectSystemFv":
+.fn "@4@stop__Q34Game5P2JST12ObjectSystemFv", weak
 /* 80431398 0042E2D8  38 63 FF FC */	addi r3, r3, -4
 /* 8043139C 0042E2DC  4B FF FA CC */	b stop__Q34Game5P2JST12ObjectSystemFv
+.endfn "@4@stop__Q34Game5P2JST12ObjectSystemFv"
 
-.global "@4@start__Q34Game5P2JST12ObjectSystemFv"
-"@4@start__Q34Game5P2JST12ObjectSystemFv":
+.fn "@4@start__Q34Game5P2JST12ObjectSystemFv", weak
 /* 804313A0 0042E2E0  38 63 FF FC */	addi r3, r3, -4
 /* 804313A4 0042E2E4  4B FF F9 F0 */	b start__Q34Game5P2JST12ObjectSystemFv
+.endfn "@4@start__Q34Game5P2JST12ObjectSystemFv"
 
-.global "@4@update__Q34Game5P2JST12ObjectSystemFv"
-"@4@update__Q34Game5P2JST12ObjectSystemFv":
+.fn "@4@update__Q34Game5P2JST12ObjectSystemFv", weak
 /* 804313A8 0042E2E8  38 63 FF FC */	addi r3, r3, -4
 /* 804313AC 0042E2EC  4B FF F9 14 */	b update__Q34Game5P2JST12ObjectSystemFv
+.endfn "@4@update__Q34Game5P2JST12ObjectSystemFv"
 
-.global "@4@reset__Q34Game5P2JST12ObjectSystemFv"
-"@4@reset__Q34Game5P2JST12ObjectSystemFv":
+.fn "@4@reset__Q34Game5P2JST12ObjectSystemFv", weak
 /* 804313B0 0042E2F0  38 63 FF FC */	addi r3, r3, -4
 /* 804313B4 0042E2F4  4B FF F7 6C */	b reset__Q34Game5P2JST12ObjectSystemFv
+.endfn "@4@reset__Q34Game5P2JST12ObjectSystemFv"

@@ -1,25 +1,29 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049B368:
+.obj lbl_8049B368, local
 	.asciz "loadResource.cpp"
+.endobj lbl_8049B368
 .balign 4
-lbl_8049B37C:
+.obj lbl_8049B37C, local
 	.asciz "AramRoot"
+.endobj lbl_8049B37C
 .balign 4
-lbl_8049B388:
+.obj lbl_8049B388, local
 	.asciz "P2Assert"
+.endobj lbl_8049B388
 .balign 4
-lbl_8049B394:
+.obj lbl_8049B394, local
 	.asciz "mount arc failure"
+.endobj lbl_8049B394
 .balign 4
-lbl_8049B3A8:
+.obj lbl_8049B3A8, local
 	.asciz "Unknown flag:%d \n"
+.endobj lbl_8049B3A8
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q212LoadResource4Node
-__vt__Q212LoadResource4Node:
+.obj __vt__Q212LoadResource4Node, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q212LoadResource4NodeFv
@@ -27,21 +31,22 @@ __vt__Q212LoadResource4Node:
 	.4byte 0
 	.4byte 0
 	.4byte "@24@__dt__Q212LoadResource4NodeFv"
+.endobj __vt__Q212LoadResource4Node
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520AA8:
+.obj lbl_80520AA8, local
 	.asciz "DvdRoot"
+.endobj lbl_80520AA8
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global gLoadResourceMgr
-gLoadResourceMgr:
+.obj gLoadResourceMgr, global
 	.skip 0x4
+.endobj gLoadResourceMgr
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q212LoadResource4NodeFv
-__dt__Q212LoadResource4NodeFv:
+.fn __dt__Q212LoadResource4NodeFv, global
 /* 8044C520 00449460  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044C524 00449464  7C 08 02 A6 */	mflr r0
 /* 8044C528 00449468  90 01 00 14 */	stw r0, 0x14(r1)
@@ -92,9 +97,9 @@ __dt__Q212LoadResource4NodeFv:
 /* 8044C5CC 0044950C  7C 08 03 A6 */	mtlr r0
 /* 8044C5D0 00449510  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044C5D4 00449514  4E 80 00 20 */	blr 
+.endfn __dt__Q212LoadResource4NodeFv
 
-.global __ct__Q212LoadResource3ArgFPCc
-__ct__Q212LoadResource3ArgFPCc:
+.fn __ct__Q212LoadResource3ArgFPCc, global
 /* 8044C5D8 00449518  90 83 00 00 */	stw r4, 0(r3)
 /* 8044C5DC 0044951C  38 A0 00 00 */	li r5, 0
 /* 8044C5E0 00449520  38 80 00 01 */	li r4, 1
@@ -112,9 +117,9 @@ __ct__Q212LoadResource3ArgFPCc:
 /* 8044C610 00449550  98 83 00 2C */	stb r4, 0x2c(r3)
 /* 8044C614 00449554  98 83 00 2D */	stb r4, 0x2d(r3)
 /* 8044C618 00449558  4E 80 00 20 */	blr 
+.endfn __ct__Q212LoadResource3ArgFPCc
 
-.global __ct__Q212LoadResource11ArgAramOnlyFPCc
-__ct__Q212LoadResource11ArgAramOnlyFPCc:
+.fn __ct__Q212LoadResource11ArgAramOnlyFPCc, global
 /* 8044C61C 0044955C  90 83 00 00 */	stw r4, 0(r3)
 /* 8044C620 00449560  38 A0 00 00 */	li r5, 0
 /* 8044C624 00449564  38 80 00 01 */	li r4, 1
@@ -133,9 +138,9 @@ __ct__Q212LoadResource11ArgAramOnlyFPCc:
 /* 8044C658 00449598  98 83 00 2D */	stb r4, 0x2d(r3)
 /* 8044C65C 0044959C  98 A3 00 2D */	stb r5, 0x2d(r3)
 /* 8044C660 004495A0  4E 80 00 20 */	blr 
+.endfn __ct__Q212LoadResource11ArgAramOnlyFPCc
 
-.global init__Q212LoadResource3MgrFv
-init__Q212LoadResource3MgrFv:
+.fn init__Q212LoadResource3MgrFv, global
 /* 8044C664 004495A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044C668 004495A8  7C 08 02 A6 */	mflr r0
 /* 8044C66C 004495AC  3C 80 80 4A */	lis r4, lbl_8049B368@ha
@@ -182,9 +187,9 @@ init__Q212LoadResource3MgrFv:
 /* 8044C708 00449648  7C 08 03 A6 */	mtlr r0
 /* 8044C70C 0044964C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044C710 00449650  4E 80 00 20 */	blr 
+.endfn init__Q212LoadResource3MgrFv
 
-.global mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg:
+.fn mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg, global
 /* 8044C714 00449654  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044C718 00449658  7C 08 02 A6 */	mflr r0
 /* 8044C71C 0044965C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -222,9 +227,9 @@ mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg:
 /* 8044C794 004496D4  7C 08 03 A6 */	mtlr r0
 /* 8044C798 004496D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044C79C 004496DC  4E 80 00 20 */	blr 
+.endfn mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
 
-.global load__Q212LoadResource3MgrFRQ212LoadResource3Arg
-load__Q212LoadResource3MgrFRQ212LoadResource3Arg:
+.fn load__Q212LoadResource3MgrFRQ212LoadResource3Arg, global
 /* 8044C7A0 004496E0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8044C7A4 004496E4  7C 08 02 A6 */	mflr r0
 /* 8044C7A8 004496E8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -448,8 +453,9 @@ load__Q212LoadResource3MgrFRQ212LoadResource3Arg:
 /* 8044CAB8 004499F8  7C 08 03 A6 */	mtlr r0
 /* 8044CABC 004499FC  38 21 00 40 */	addi r1, r1, 0x40
 /* 8044CAC0 00449A00  4E 80 00 20 */	blr 
+.endfn load__Q212LoadResource3MgrFRQ212LoadResource3Arg
 
-.global "@24@__dt__Q212LoadResource4NodeFv"
-"@24@__dt__Q212LoadResource4NodeFv":
+.fn "@24@__dt__Q212LoadResource4NodeFv", weak
 /* 8044CAC4 00449A04  38 63 FF E8 */	addi r3, r3, -24
 /* 8044CAC8 00449A08  4B FF FA 58 */	b __dt__Q212LoadResource4NodeFv
+.endfn "@24@__dt__Q212LoadResource4NodeFv"

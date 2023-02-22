@@ -5,21 +5,22 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80499EF8: # Shift-JIS
+.obj lbl_80499EF8, local # Shift-JIS
 	.4byte 0x83418393
 	.4byte 0x83728347
 	.4byte 0x83938367
 	.4byte 0x83898343
 	.4byte 0x83670000
+.endobj lbl_80499EF8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__8LightMgr
-__vt__8LightMgr:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__8LightMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8LightMgrFv
@@ -28,8 +29,8 @@ __vt__8LightMgr:
 	.4byte set__8LightMgrFR8Graphics
 	.4byte set__8LightMgrFR7Matrixf
 	.4byte drawDebugInfo__8LightMgrFR8Graphics
-.global __vt__8LightObj
-__vt__8LightObj:
+.endobj __vt__8LightMgr
+.obj __vt__8LightObj, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8LightObjFv
@@ -39,48 +40,61 @@ __vt__8LightObj:
 	.4byte drawPos__8LightObjFR8Graphics
 	.4byte drawPos__8LightObjFR8GraphicsR7Matrixf
 	.4byte drawPos__8LightObjFR8GraphicsR6Camera
+.endobj __vt__8LightObj
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805205A8:
+.obj lbl_805205A8, local
 	.float 0.0
-lbl_805205AC:
+.endobj lbl_805205A8
+.obj lbl_805205AC, local
 	.float 1000.0
-lbl_805205B0:
+.endobj lbl_805205AC
+.obj lbl_805205B0, local
 	.float -1.0
-lbl_805205B4:
+.endobj lbl_805205B0
+.obj lbl_805205B4, local
 	.float 1.0
-lbl_805205B8:
+.endobj lbl_805205B4
+.obj lbl_805205B8, local
 	.float 60.0
-lbl_805205BC:
+.endobj lbl_805205B8
+.obj lbl_805205BC, local
 	.float 16.0
-lbl_805205C0:
+.endobj lbl_805205BC
+.obj lbl_805205C0, local
 	.float 30.0
-lbl_805205C4:
+.endobj lbl_805205C0
+.obj lbl_805205C4, local
 	.float 255.0
-lbl_805205C8:
+.endobj lbl_805205C4
+.obj lbl_805205C8, local
 	.float 0.5
+.endobj lbl_805205C8
 .balign 8
-lbl_805205D0:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_805205D8:
+.obj lbl_805205D0, local
+	.8byte 0x4330000000000000
+.endobj lbl_805205D0
+.obj lbl_805205D8, local
 	.float 10.0
+.endobj lbl_805205D8
 .balign 4
-lbl_805205DC: # Shift-JIS
+.obj lbl_805205DC, local # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83670000
+.endobj lbl_805205DC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__8LightObjFPc10_GXLightID14ELightTypeFlagQ28JUtility6TColor
-__ct__8LightObjFPc10_GXLightID14ELightTypeFlagQ28JUtility6TColor:
+.fn __ct__8LightObjFPc10_GXLightID14ELightTypeFlagQ28JUtility6TColor, global
 /* 8042B46C 004283AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042B470 004283B0  7C 08 02 A6 */	mflr r0
 /* 8042B474 004283B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -130,9 +144,9 @@ __ct__8LightObjFPc10_GXLightID14ELightTypeFlagQ28JUtility6TColor:
 /* 8042B524 00428464  7C 08 03 A6 */	mtlr r0
 /* 8042B528 00428468  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042B52C 0042846C  4E 80 00 20 */	blr 
+.endfn __ct__8LightObjFPc10_GXLightID14ELightTypeFlagQ28JUtility6TColor
 
-.global set__8LightObjFR7Matrixf
-set__8LightObjFR7Matrixf:
+.fn set__8LightObjFR7Matrixf, global
 /* 8042B530 00428470  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 8042B534 00428474  7C 08 02 A6 */	mflr r0
 /* 8042B538 00428478  38 A0 FF FF */	li r5, -1
@@ -325,9 +339,9 @@ set__8LightObjFR7Matrixf:
 /* 8042B800 00428740  7C 08 03 A6 */	mtlr r0
 /* 8042B804 00428744  38 21 01 40 */	addi r1, r1, 0x140
 /* 8042B808 00428748  4E 80 00 20 */	blr 
+.endfn set__8LightObjFR7Matrixf
 
-.global drawPos__8LightObjFR8Graphics
-drawPos__8LightObjFR8Graphics:
+.fn drawPos__8LightObjFR8Graphics, global
 /* 8042B80C 0042874C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042B810 00428750  7C 08 02 A6 */	mflr r0
 /* 8042B814 00428754  90 01 00 14 */	stw r0, 0x14(r1)
@@ -351,9 +365,9 @@ drawPos__8LightObjFR8Graphics:
 /* 8042B85C 0042879C  7C 08 03 A6 */	mtlr r0
 /* 8042B860 004287A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042B864 004287A4  4E 80 00 20 */	blr 
+.endfn drawPos__8LightObjFR8Graphics
 
-.global drawPos__8LightObjFR8GraphicsR6Camera
-drawPos__8LightObjFR8GraphicsR6Camera:
+.fn drawPos__8LightObjFR8GraphicsR6Camera, global
 /* 8042B868 004287A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042B86C 004287AC  7C 08 02 A6 */	mflr r0
 /* 8042B870 004287B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -385,9 +399,9 @@ drawPos__8LightObjFR8GraphicsR6Camera:
 /* 8042B8D8 00428818  7C 08 03 A6 */	mtlr r0
 /* 8042B8DC 0042881C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042B8E0 00428820  4E 80 00 20 */	blr 
+.endfn drawPos__8LightObjFR8GraphicsR6Camera
 
-.global drawPos__8LightObjFR8GraphicsR7Matrixf
-drawPos__8LightObjFR8GraphicsR7Matrixf:
+.fn drawPos__8LightObjFR8GraphicsR7Matrixf, global
 /* 8042B8E4 00428824  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8042B8E8 00428828  7C 08 02 A6 */	mflr r0
 /* 8042B8EC 0042882C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -498,9 +512,9 @@ drawPos__8LightObjFR8GraphicsR7Matrixf:
 /* 8042BA80 004289C0  7C 08 03 A6 */	mtlr r0
 /* 8042BA84 004289C4  38 21 00 50 */	addi r1, r1, 0x50
 /* 8042BA88 004289C8  4E 80 00 20 */	blr 
+.endfn drawPos__8LightObjFR8GraphicsR7Matrixf
 
-.global __ct__8LightMgrFPc
-__ct__8LightMgrFPc:
+.fn __ct__8LightMgrFPc, global
 /* 8042BA8C 004289CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042BA90 004289D0  7C 08 02 A6 */	mflr r0
 /* 8042BA94 004289D4  3C A0 80 4F */	lis r5, __vt__5CNode@ha
@@ -555,9 +569,9 @@ __ct__8LightMgrFPc:
 /* 8042BB58 00428A98  7C 08 03 A6 */	mtlr r0
 /* 8042BB5C 00428A9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042BB60 00428AA0  4E 80 00 20 */	blr 
+.endfn __ct__8LightMgrFPc
 
-.global registLightObj__8LightMgrFP8LightObj
-registLightObj__8LightMgrFP8LightObj:
+.fn registLightObj__8LightMgrFP8LightObj, global
 /* 8042BB64 00428AA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042BB68 00428AA8  7C 08 02 A6 */	mflr r0
 /* 8042BB6C 00428AAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -573,9 +587,9 @@ registLightObj__8LightMgrFP8LightObj:
 /* 8042BB94 00428AD4  7C 08 03 A6 */	mtlr r0
 /* 8042BB98 00428AD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042BB9C 00428ADC  4E 80 00 20 */	blr 
+.endfn registLightObj__8LightMgrFP8LightObj
 
-.global set__8LightMgrFR8Graphics
-set__8LightMgrFR8Graphics:
+.fn set__8LightMgrFR8Graphics, global
 /* 8042BBA0 00428AE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042BBA4 00428AE4  7C 08 02 A6 */	mflr r0
 /* 8042BBA8 00428AE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -596,9 +610,9 @@ set__8LightMgrFR8Graphics:
 /* 8042BBE4 00428B24  7C 08 03 A6 */	mtlr r0
 /* 8042BBE8 00428B28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042BBEC 00428B2C  4E 80 00 20 */	blr 
+.endfn set__8LightMgrFR8Graphics
 
-.global set__8LightMgrFR7Matrixf
-set__8LightMgrFR7Matrixf:
+.fn set__8LightMgrFR7Matrixf, global
 /* 8042BBF0 00428B30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042BBF4 00428B34  7C 08 02 A6 */	mflr r0
 /* 8042BBF8 00428B38  90 01 00 24 */	stw r0, 0x24(r1)
@@ -638,9 +652,9 @@ set__8LightMgrFR7Matrixf:
 /* 8042BC78 00428BB8  7C 08 03 A6 */	mtlr r0
 /* 8042BC7C 00428BBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042BC80 00428BC0  4E 80 00 20 */	blr 
+.endfn set__8LightMgrFR7Matrixf
 
-.global drawDebugInfo__8LightMgrFR8Graphics
-drawDebugInfo__8LightMgrFR8Graphics:
+.fn drawDebugInfo__8LightMgrFR8Graphics, global
 /* 8042BC84 00428BC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042BC88 00428BC8  7C 08 02 A6 */	mflr r0
 /* 8042BC8C 00428BCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -666,12 +680,13 @@ drawDebugInfo__8LightMgrFR8Graphics:
 /* 8042BCD4 00428C14  7C 08 03 A6 */	mtlr r0
 /* 8042BCD8 00428C18  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042BCDC 00428C1C  4E 80 00 20 */	blr 
+.endfn drawDebugInfo__8LightMgrFR8Graphics
 
-.global update__8LightMgrFv
-update__8LightMgrFv:
+.fn update__8LightMgrFv, weak
 /* 8042BCE0 00428C20  4E 80 00 20 */	blr 
+.endfn update__8LightMgrFv
 
-__sinit_light_cpp: # static initializer
+.fn __sinit_light_cpp, local
 /* 8042BCE4 00428C24  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8042BCE8 00428C28  38 00 FF FF */	li r0, -1
 /* 8042BCEC 00428C2C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -682,3 +697,4 @@ __sinit_light_cpp: # static initializer
 /* 8042BD00 00428C40  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8042BD04 00428C44  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8042BD08 00428C48  4E 80 00 20 */	blr 
+.endfn __sinit_light_cpp

@@ -111,29 +111,38 @@ __vt__Q34Game5P2JST10ObjectBase:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520678:
+.obj lbl_80520678, local
 	.float 1.0
-lbl_8052067C:
+.endobj lbl_80520678
+.obj lbl_8052067C, local
 	.float 0.0
-lbl_80520680:
+.endobj lbl_8052067C
+.obj lbl_80520680, local
 	.float 0.017453292
-lbl_80520684: # pi
+.endobj lbl_80520680
+.obj lbl_80520684, local # pi
 	.float 3.1415927
-lbl_80520688:
+.endobj lbl_80520684
+.obj lbl_80520688, local
 	.float 0.0055555557
+.endobj lbl_80520688
 .balign 4
-lbl_8052068C:
+.obj lbl_8052068C, local
 	.asciz "bg"
+.endobj lbl_8052068C
 .balign 8
-lbl_80520690:
+.obj lbl_80520690, local
 	.8byte 0x4330000080000000
+.endobj lbl_80520690
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST11ObjectActorFPCcPQ24Game11MoviePlayer
@@ -1121,27 +1130,27 @@ parseUserData___Q34Game5P2JST10ObjectBaseFUlPCv:
 /* 8042F6B8 0042C5F8  4E 80 00 20 */	blr
 .endfn __sinit_JSTObjectActor_cpp 
 
-.global "@4@parseUserData___Q34Game5P2JST11ObjectActorFUlPCv"
-"@4@parseUserData___Q34Game5P2JST11ObjectActorFUlPCv":
+.fn "@4@parseUserData___Q34Game5P2JST11ObjectActorFUlPCv", weak
 /* 8042F6BC 0042C5FC  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6C0 0042C600  4B FF FB 44 */	b parseUserData___Q34Game5P2JST11ObjectActorFUlPCv
+.endfn "@4@parseUserData___Q34Game5P2JST11ObjectActorFUlPCv"
 
-.global "@4@stop__Q34Game5P2JST11ObjectActorFv"
-"@4@stop__Q34Game5P2JST11ObjectActorFv":
+.fn "@4@stop__Q34Game5P2JST11ObjectActorFv", weak
 /* 8042F6C4 0042C604  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6C8 0042C608  4B FF FF C0 */	b stop__Q34Game5P2JST11ObjectActorFv
+.endfn "@4@stop__Q34Game5P2JST11ObjectActorFv"
 
-.global "@4@start__Q34Game5P2JST11ObjectActorFv"
-"@4@start__Q34Game5P2JST11ObjectActorFv":
+.fn "@4@start__Q34Game5P2JST11ObjectActorFv", weak
 /* 8042F6CC 0042C60C  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6D0 0042C610  4B FF FF BC */	b start__Q34Game5P2JST11ObjectActorFv
+.endfn "@4@start__Q34Game5P2JST11ObjectActorFv"
 
-.global "@4@update__Q34Game5P2JST11ObjectActorFv"
-"@4@update__Q34Game5P2JST11ObjectActorFv":
+.fn "@4@update__Q34Game5P2JST11ObjectActorFv", weak
 /* 8042F6D4 0042C614  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6D8 0042C618  4B FF F4 30 */	b update__Q34Game5P2JST11ObjectActorFv
+.endfn "@4@update__Q34Game5P2JST11ObjectActorFv"
 
-.global "@4@reset__Q34Game5P2JST11ObjectActorFv"
-"@4@reset__Q34Game5P2JST11ObjectActorFv":
+.fn "@4@reset__Q34Game5P2JST11ObjectActorFv", weak
 /* 8042F6DC 0042C61C  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6E0 0042C620  4B FF F3 B8 */	b reset__Q34Game5P2JST11ObjectActorFv
+.endfn "@4@reset__Q34Game5P2JST11ObjectActorFv"

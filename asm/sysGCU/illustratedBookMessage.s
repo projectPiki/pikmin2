@@ -1,19 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049BAA0:
+.obj lbl_8049BAA0, local
 	.asciz "illustratedBookMessage.cpp"
+.endobj lbl_8049BAA0
 .balign 4
-lbl_8049BABC:
+.obj lbl_8049BABC, local
 	.asciz "P2Assert"
+.endobj lbl_8049BABC
 .balign 4
-lbl_8049BAC8:
+.obj lbl_8049BAC8, local
 	.asciz "messageObj.h"
+.endobj lbl_8049BAC8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q35P2JME15IllustratedBook8TControl
-__vt__Q35P2JME15IllustratedBook8TControl:
+.obj __vt__Q35P2JME15IllustratedBook8TControl, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME15IllustratedBook8TControlFv
@@ -32,8 +34,8 @@ __vt__Q35P2JME15IllustratedBook8TControl:
 	.4byte createResourceContainer__Q25P2JME8TControlFv
 	.4byte createSequenceProcessor__Q35P2JME15IllustratedBook8TControlFv
 	.4byte createRenderingProcessor__Q35P2JME15IllustratedBook8TControlFv
-.global __vt__Q35P2JME15IllustratedBook19TRenderingProcessor
-__vt__Q35P2JME15IllustratedBook19TRenderingProcessor:
+.endobj __vt__Q35P2JME15IllustratedBook8TControl
+.obj __vt__Q35P2JME15IllustratedBook19TRenderingProcessor, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME15IllustratedBook19TRenderingProcessorFv
@@ -70,8 +72,8 @@ __vt__Q35P2JME15IllustratedBook19TRenderingProcessor:
 	.4byte doDrawCommon__Q35P2JME6Window19TRenderingProcessorFffP7MatrixfP7Matrixf
 	.4byte "makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>"
 	.4byte doGetDrawInfo__Q35P2JME6Window19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
-.global __vt__Q35P2JME15IllustratedBook18TSequenceProcessor
-__vt__Q35P2JME15IllustratedBook18TSequenceProcessor:
+.endobj __vt__Q35P2JME15IllustratedBook19TRenderingProcessor
+.obj __vt__Q35P2JME15IllustratedBook18TSequenceProcessor, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME15IllustratedBook18TSequenceProcessorFv
@@ -102,8 +104,8 @@ __vt__Q35P2JME15IllustratedBook18TSequenceProcessor:
 	.4byte doCharacterSEEnd__Q25P2JME18TSequenceProcessorFv
 	.4byte doFastForwardSE__Q25P2JME18TSequenceProcessorFv
 	.4byte reset__Q25P2JME18TSequenceProcessorFv
-.global __vt__Q25P2JME13TSeqProcNoSeq
-__vt__Q25P2JME13TSeqProcNoSeq:
+.endobj __vt__Q35P2JME15IllustratedBook18TSequenceProcessor
+.obj __vt__Q25P2JME13TSeqProcNoSeq, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q25P2JME13TSeqProcNoSeqFv
@@ -134,27 +136,32 @@ __vt__Q25P2JME13TSeqProcNoSeq:
 	.4byte doCharacterSEEnd__Q25P2JME18TSequenceProcessorFv
 	.4byte doFastForwardSE__Q25P2JME18TSequenceProcessorFv
 	.4byte reset__Q25P2JME18TSequenceProcessorFv
+.endobj __vt__Q25P2JME13TSeqProcNoSeq
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520BC0:
+.obj lbl_80520BC0, local
 	.float 1.0
-lbl_80520BC4:
+.endobj lbl_80520BC0
+.obj lbl_80520BC4, local
 	.float 0.0
-lbl_80520BC8:
+.endobj lbl_80520BC4
+.obj lbl_80520BC8, local
 	.float 3.5
-lbl_80520BCC:
+.endobj lbl_80520BC8
+.obj lbl_80520BCC, local
 	.float 0.08
-lbl_80520BD0:
+.endobj lbl_80520BCC
+.obj lbl_80520BD0, local
 	.float 60.0
+.endobj lbl_80520BD0
 .balign 8
-lbl_80520BD8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80520BD8, local
+	.8byte 0x4330000080000000
+.endobj lbl_80520BD8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q25P2JME13TSeqProcNoSeqFv
-__dt__Q25P2JME13TSeqProcNoSeqFv:
+.fn __dt__Q25P2JME13TSeqProcNoSeqFv, weak
 /* 80454F88 00451EC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80454F8C 00451ECC  7C 08 02 A6 */	mflr r0
 /* 80454F90 00451ED0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -185,9 +192,9 @@ __dt__Q25P2JME13TSeqProcNoSeqFv:
 /* 80454FEC 00451F2C  7C 08 03 A6 */	mtlr r0
 /* 80454FF0 00451F30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80454FF4 00451F34  4E 80 00 20 */	blr 
+.endfn __dt__Q25P2JME13TSeqProcNoSeqFv
 
-.global "makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>"
-"makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>":
+.fn "makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>", global
 /* 80454FF8 00451F38  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80454FFC 00451F3C  7C 08 02 A6 */	mflr r0
 /* 80455000 00451F40  7C 83 23 78 */	mr r3, r4
@@ -207,9 +214,9 @@ __dt__Q25P2JME13TSeqProcNoSeqFv:
 /* 80455038 00451F78  7C 08 03 A6 */	mtlr r0
 /* 8045503C 00451F7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80455040 00451F80  4E 80 00 20 */	blr 
+.endfn "makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>"
 
-.global __ct__Q35P2JME15IllustratedBook8TControlFv
-__ct__Q35P2JME15IllustratedBook8TControlFv:
+.fn __ct__Q35P2JME15IllustratedBook8TControlFv, global
 /* 80455044 00451F84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80455048 00451F88  7C 08 02 A6 */	mflr r0
 /* 8045504C 00451F8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -234,9 +241,9 @@ __ct__Q35P2JME15IllustratedBook8TControlFv:
 /* 80455098 00451FD8  7C 08 03 A6 */	mtlr r0
 /* 8045509C 00451FDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804550A0 00451FE0  4E 80 00 20 */	blr 
+.endfn __ct__Q35P2JME15IllustratedBook8TControlFv
 
-.global onInit__Q35P2JME15IllustratedBook8TControlFv
-onInit__Q35P2JME15IllustratedBook8TControlFv:
+.fn onInit__Q35P2JME15IllustratedBook8TControlFv, global
 /* 804550A4 00451FE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804550A8 00451FE8  7C 08 02 A6 */	mflr r0
 /* 804550AC 00451FEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -252,9 +259,9 @@ onInit__Q35P2JME15IllustratedBook8TControlFv:
 /* 804550D4 00452014  7C 08 03 A6 */	mtlr r0
 /* 804550D8 00452018  38 21 00 10 */	addi r1, r1, 0x10
 /* 804550DC 0045201C  4E 80 00 20 */	blr 
+.endfn onInit__Q35P2JME15IllustratedBook8TControlFv
 
-.global reset__Q35P2JME15IllustratedBook8TControlFv
-reset__Q35P2JME15IllustratedBook8TControlFv:
+.fn reset__Q35P2JME15IllustratedBook8TControlFv, global
 /* 804550E0 00452020  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804550E4 00452024  7C 08 02 A6 */	mflr r0
 /* 804550E8 00452028  90 01 00 14 */	stw r0, 0x14(r1)
@@ -270,9 +277,9 @@ reset__Q35P2JME15IllustratedBook8TControlFv:
 /* 80455110 00452050  7C 08 03 A6 */	mtlr r0
 /* 80455114 00452054  38 21 00 10 */	addi r1, r1, 0x10
 /* 80455118 00452058  4E 80 00 20 */	blr 
+.endfn reset__Q35P2JME15IllustratedBook8TControlFv
 
-.global getScrollPosition__Q35P2JME15IllustratedBook8TControlFv
-getScrollPosition__Q35P2JME15IllustratedBook8TControlFv:
+.fn getScrollPosition__Q35P2JME15IllustratedBook8TControlFv, global
 /* 8045511C 0045205C  C0 23 00 68 */	lfs f1, 0x68(r3)
 /* 80455120 00452060  C0 02 28 64 */	lfs f0, lbl_80520BC4@sda21(r2)
 /* 80455124 00452064  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -284,9 +291,9 @@ getScrollPosition__Q35P2JME15IllustratedBook8TControlFv:
 /* 80455138 00452078  C0 03 00 5C */	lfs f0, 0x5c(r3)
 /* 8045513C 0045207C  EC 20 08 24 */	fdivs f1, f0, f1
 /* 80455140 00452080  4E 80 00 20 */	blr 
+.endfn getScrollPosition__Q35P2JME15IllustratedBook8TControlFv
 
-.global scroll__Q35P2JME15IllustratedBook8TControlFf
-scroll__Q35P2JME15IllustratedBook8TControlFf:
+.fn scroll__Q35P2JME15IllustratedBook8TControlFf, global
 /* 80455144 00452084  C0 02 28 64 */	lfs f0, lbl_80520BC4@sda21(r2)
 /* 80455148 00452088  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8045514C 0045208C  FC 00 08 00 */	fcmpu cr0, f0, f1
@@ -355,9 +362,9 @@ scroll__Q35P2JME15IllustratedBook8TControlFf:
 .L_80455230:
 /* 80455230 00452170  38 21 00 20 */	addi r1, r1, 0x20
 /* 80455234 00452174  4E 80 00 20 */	blr 
+.endfn scroll__Q35P2JME15IllustratedBook8TControlFf
 
-.global update__Q35P2JME15IllustratedBook8TControlFP10ControllerP10Controller
-update__Q35P2JME15IllustratedBook8TControlFP10ControllerP10Controller:
+.fn update__Q35P2JME15IllustratedBook8TControlFP10ControllerP10Controller, global
 /* 80455238 00452178  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045523C 0045217C  7C 08 02 A6 */	mflr r0
 /* 80455240 00452180  90 01 00 34 */	stw r0, 0x34(r1)
@@ -410,9 +417,9 @@ update__Q35P2JME15IllustratedBook8TControlFP10ControllerP10Controller:
 /* 804552FC 0045223C  7C 08 03 A6 */	mtlr r0
 /* 80455300 00452240  38 21 00 30 */	addi r1, r1, 0x30
 /* 80455304 00452244  4E 80 00 20 */	blr 
+.endfn update__Q35P2JME15IllustratedBook8TControlFP10ControllerP10Controller
 
-.global setTextBoxInfo__Q35P2JME15IllustratedBook8TControlFP10J2DTextBox
-setTextBoxInfo__Q35P2JME15IllustratedBook8TControlFP10J2DTextBox:
+.fn setTextBoxInfo__Q35P2JME15IllustratedBook8TControlFP10J2DTextBox, global
 /* 80455308 00452248  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045530C 0045224C  7C 08 02 A6 */	mflr r0
 /* 80455310 00452250  90 01 00 14 */	stw r0, 0x14(r1)
@@ -446,9 +453,9 @@ setTextBoxInfo__Q35P2JME15IllustratedBook8TControlFP10J2DTextBox:
 /* 8045537C 004522BC  7C 08 03 A6 */	mtlr r0
 /* 80455380 004522C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80455384 004522C4  4E 80 00 20 */	blr 
+.endfn setTextBoxInfo__Q35P2JME15IllustratedBook8TControlFP10J2DTextBox
 
-.global draw__Q35P2JME15IllustratedBook8TControlFPA4_fPA4_f
-draw__Q35P2JME15IllustratedBook8TControlFPA4_fPA4_f:
+.fn draw__Q35P2JME15IllustratedBook8TControlFPA4_fPA4_f, global
 /* 80455388 004522C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045538C 004522CC  7C 08 02 A6 */	mflr r0
 /* 80455390 004522D0  28 04 00 00 */	cmplwi r4, 0
@@ -481,9 +488,9 @@ draw__Q35P2JME15IllustratedBook8TControlFPA4_fPA4_f:
 /* 804553F4 00452334  7C 08 03 A6 */	mtlr r0
 /* 804553F8 00452338  38 21 00 10 */	addi r1, r1, 0x10
 /* 804553FC 0045233C  4E 80 00 20 */	blr 
+.endfn draw__Q35P2JME15IllustratedBook8TControlFPA4_fPA4_f
 
-.global __dt__Q35P2JME15IllustratedBook8TControlFv
-__dt__Q35P2JME15IllustratedBook8TControlFv:
+.fn __dt__Q35P2JME15IllustratedBook8TControlFv, weak
 /* 80455400 00452340  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80455404 00452344  7C 08 02 A6 */	mflr r0
 /* 80455408 00452348  90 01 00 14 */	stw r0, 0x14(r1)
@@ -518,9 +525,9 @@ __dt__Q35P2JME15IllustratedBook8TControlFv:
 /* 80455474 004523B4  7C 08 03 A6 */	mtlr r0
 /* 80455478 004523B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045547C 004523BC  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME15IllustratedBook8TControlFv
 
-.global draw__Q35P2JME15IllustratedBook8TControlFR8Graphics
-draw__Q35P2JME15IllustratedBook8TControlFR8Graphics:
+.fn draw__Q35P2JME15IllustratedBook8TControlFR8Graphics, weak
 /* 80455480 004523C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80455484 004523C4  7C 08 02 A6 */	mflr r0
 /* 80455488 004523C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -529,9 +536,9 @@ draw__Q35P2JME15IllustratedBook8TControlFR8Graphics:
 /* 80455494 004523D4  7C 08 03 A6 */	mtlr r0
 /* 80455498 004523D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045549C 004523DC  4E 80 00 20 */	blr 
+.endfn draw__Q35P2JME15IllustratedBook8TControlFR8Graphics
 
-.global createRenderingProcessor__Q35P2JME15IllustratedBook8TControlFv
-createRenderingProcessor__Q35P2JME15IllustratedBook8TControlFv:
+.fn createRenderingProcessor__Q35P2JME15IllustratedBook8TControlFv, weak
 /* 804554A0 004523E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804554A4 004523E4  7C 08 02 A6 */	mflr r0
 /* 804554A8 004523E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -567,9 +574,9 @@ createRenderingProcessor__Q35P2JME15IllustratedBook8TControlFv:
 /* 80455518 00452458  7C 08 03 A6 */	mtlr r0
 /* 8045551C 0045245C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80455520 00452460  4E 80 00 20 */	blr 
+.endfn createRenderingProcessor__Q35P2JME15IllustratedBook8TControlFv
 
-.global createSequenceProcessor__Q35P2JME15IllustratedBook8TControlFv
-createSequenceProcessor__Q35P2JME15IllustratedBook8TControlFv:
+.fn createSequenceProcessor__Q35P2JME15IllustratedBook8TControlFv, weak
 /* 80455524 00452464  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80455528 00452468  7C 08 02 A6 */	mflr r0
 /* 8045552C 0045246C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -609,9 +616,9 @@ createSequenceProcessor__Q35P2JME15IllustratedBook8TControlFv:
 /* 804555AC 004524EC  7C 08 03 A6 */	mtlr r0
 /* 804555B0 004524F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 804555B4 004524F4  4E 80 00 20 */	blr 
+.endfn createSequenceProcessor__Q35P2JME15IllustratedBook8TControlFv
 
-.global __dt__Q35P2JME15IllustratedBook19TRenderingProcessorFv
-__dt__Q35P2JME15IllustratedBook19TRenderingProcessorFv:
+.fn __dt__Q35P2JME15IllustratedBook19TRenderingProcessorFv, weak
 /* 804555B8 004524F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804555BC 004524FC  7C 08 02 A6 */	mflr r0
 /* 804555C0 00452500  90 01 00 14 */	stw r0, 0x14(r1)
@@ -661,14 +668,14 @@ __dt__Q35P2JME15IllustratedBook19TRenderingProcessorFv:
 /* 80455664 004525A4  7C 08 03 A6 */	mtlr r0
 /* 80455668 004525A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045566C 004525AC  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME15IllustratedBook19TRenderingProcessorFv
 
-.global doTagControlAbtnWait__Q35P2JME15IllustratedBook19TRenderingProcessorFv
-doTagControlAbtnWait__Q35P2JME15IllustratedBook19TRenderingProcessorFv:
+.fn doTagControlAbtnWait__Q35P2JME15IllustratedBook19TRenderingProcessorFv, weak
 /* 80455670 004525B0  38 60 00 01 */	li r3, 1
 /* 80455674 004525B4  4E 80 00 20 */	blr 
+.endfn doTagControlAbtnWait__Q35P2JME15IllustratedBook19TRenderingProcessorFv
 
-.global __dt__Q35P2JME15IllustratedBook18TSequenceProcessorFv
-__dt__Q35P2JME15IllustratedBook18TSequenceProcessorFv:
+.fn __dt__Q35P2JME15IllustratedBook18TSequenceProcessorFv, weak
 /* 80455678 004525B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045567C 004525BC  7C 08 02 A6 */	mflr r0
 /* 80455680 004525C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -703,8 +710,9 @@ __dt__Q35P2JME15IllustratedBook18TSequenceProcessorFv:
 /* 804556EC 0045262C  7C 08 03 A6 */	mtlr r0
 /* 804556F0 00452630  38 21 00 10 */	addi r1, r1, 0x10
 /* 804556F4 00452634  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME15IllustratedBook18TSequenceProcessorFv
 
-.global do_isReady__Q25P2JME13TSeqProcNoSeqFv
-do_isReady__Q25P2JME13TSeqProcNoSeqFv:
+.fn do_isReady__Q25P2JME13TSeqProcNoSeqFv, weak
 /* 804556F8 00452638  38 60 00 01 */	li r3, 1
 /* 804556FC 0045263C  4E 80 00 20 */	blr 
+.endfn do_isReady__Q25P2JME13TSeqProcNoSeqFv

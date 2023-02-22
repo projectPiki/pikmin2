@@ -1,29 +1,31 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80499C18:
+.obj lbl_80499C18, local
 	.asciz "dvdThread.cpp"
+.endobj lbl_80499C18
 .balign 4
-lbl_80499C28:
+.obj lbl_80499C28, local
 	.asciz "P2Assert"
+.endobj lbl_80499C28
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__9DvdThread
-__vt__9DvdThread:
+.obj __vt__9DvdThread, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__9DvdThreadFv
 	.4byte run__9DvdThreadFv
+.endobj __vt__9DvdThread
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805204B0:
+.obj lbl_805204B0, local
 	.asciz "arc"
+.endobj lbl_805204B0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__16DvdThreadCommandFv
-__ct__16DvdThreadCommandFv:
+.fn __ct__16DvdThreadCommandFv, global
 /* 80424818 00421758  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042481C 0042175C  7C 08 02 A6 */	mflr r0
 /* 80424820 00421760  90 01 00 14 */	stw r0, 0x14(r1)
@@ -56,9 +58,9 @@ __ct__16DvdThreadCommandFv:
 /* 8042488C 004217CC  7C 08 03 A6 */	mtlr r0
 /* 80424890 004217D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424894 004217D4  4E 80 00 20 */	blr 
+.endfn __ct__16DvdThreadCommandFv
 
-.global loadUseCallBack__16DvdThreadCommandFP9IDelegate
-loadUseCallBack__16DvdThreadCommandFP9IDelegate:
+.fn loadUseCallBack__16DvdThreadCommandFP9IDelegate, global
 /* 80424898 004217D8  90 83 00 00 */	stw r4, 0(r3)
 /* 8042489C 004217DC  38 80 00 02 */	li r4, 2
 /* 804248A0 004217E0  38 00 00 00 */	li r0, 0
@@ -67,9 +69,9 @@ loadUseCallBack__16DvdThreadCommandFP9IDelegate:
 /* 804248AC 004217EC  90 03 00 0C */	stw r0, 0xc(r3)
 /* 804248B0 004217F0  90 03 00 18 */	stw r0, 0x18(r3)
 /* 804248B4 004217F4  4E 80 00 20 */	blr 
+.endfn loadUseCallBack__16DvdThreadCommandFP9IDelegate
 
-.global __ct__9DvdThreadFUlii
-__ct__9DvdThreadFUlii:
+.fn __ct__9DvdThreadFUlii, global
 /* 804248B8 004217F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804248BC 004217FC  7C 08 02 A6 */	mflr r0
 /* 804248C0 00421800  90 01 00 14 */	stw r0, 0x14(r1)
@@ -89,9 +91,9 @@ __ct__9DvdThreadFUlii:
 /* 804248F8 00421838  7C 08 03 A6 */	mtlr r0
 /* 804248FC 0042183C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424900 00421840  4E 80 00 20 */	blr 
+.endfn __ct__9DvdThreadFUlii
 
-.global run__9DvdThreadFv
-run__9DvdThreadFv:
+.fn run__9DvdThreadFv, global
 /* 80424904 00421844  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80424908 00421848  7C 08 02 A6 */	mflr r0
 /* 8042490C 0042184C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -206,9 +208,9 @@ run__9DvdThreadFv:
 /* 80424A8C 004219CC  38 7F 00 1C */	addi r3, r31, 0x1c
 /* 80424A90 004219D0  4B CC B1 B5 */	bl OSUnlockMutex
 /* 80424A94 004219D4  4B FF FE 90 */	b .L_80424924
+.endfn run__9DvdThreadFv
 
-.global loadArchive__9DvdThreadFP16DvdThreadCommand
-loadArchive__9DvdThreadFP16DvdThreadCommand:
+.fn loadArchive__9DvdThreadFP16DvdThreadCommand, global
 /* 80424A98 004219D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80424A9C 004219DC  7C 08 02 A6 */	mflr r0
 /* 80424AA0 004219E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -250,9 +252,9 @@ loadArchive__9DvdThreadFP16DvdThreadCommand:
 /* 80424B28 00421A68  7C 08 03 A6 */	mtlr r0
 /* 80424B2C 00421A6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80424B30 00421A70  4E 80 00 20 */	blr 
+.endfn loadArchive__9DvdThreadFP16DvdThreadCommand
 
-.global loadFile__9DvdThreadFP16DvdThreadCommand
-loadFile__9DvdThreadFP16DvdThreadCommand:
+.fn loadFile__9DvdThreadFP16DvdThreadCommand, global
 /* 80424B34 00421A74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80424B38 00421A78  7C 08 02 A6 */	mflr r0
 /* 80424B3C 00421A7C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -323,9 +325,9 @@ loadFile__9DvdThreadFP16DvdThreadCommand:
 /* 80424C30 00421B70  7C 08 03 A6 */	mtlr r0
 /* 80424C34 00421B74  38 21 00 20 */	addi r1, r1, 0x20
 /* 80424C38 00421B78  4E 80 00 20 */	blr 
+.endfn loadFile__9DvdThreadFP16DvdThreadCommand
 
-.global sendCommand__9DvdThreadFP16DvdThreadCommand
-sendCommand__9DvdThreadFP16DvdThreadCommand:
+.fn sendCommand__9DvdThreadFP16DvdThreadCommand, global
 /* 80424C3C 00421B7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80424C40 00421B80  7C 08 02 A6 */	mflr r0
 /* 80424C44 00421B84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -351,9 +353,9 @@ sendCommand__9DvdThreadFP16DvdThreadCommand:
 /* 80424C90 00421BD0  7C 08 03 A6 */	mtlr r0
 /* 80424C94 00421BD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424C98 00421BD8  4E 80 00 20 */	blr 
+.endfn sendCommand__9DvdThreadFP16DvdThreadCommand
 
-.global sync__9DvdThreadFP16DvdThreadCommandQ29DvdThread14ESyncBlockFlag
-sync__9DvdThreadFP16DvdThreadCommandQ29DvdThread14ESyncBlockFlag:
+.fn sync__9DvdThreadFP16DvdThreadCommandQ29DvdThread14ESyncBlockFlag, global
 /* 80424C9C 00421BDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80424CA0 00421BE0  7C 08 02 A6 */	mflr r0
 /* 80424CA4 00421BE4  2C 05 00 00 */	cmpwi r5, 0
@@ -402,9 +404,9 @@ sync__9DvdThreadFP16DvdThreadCommandQ29DvdThread14ESyncBlockFlag:
 /* 80424D40 00421C80  7C 08 03 A6 */	mtlr r0
 /* 80424D44 00421C84  38 21 00 20 */	addi r1, r1, 0x20
 /* 80424D48 00421C88  4E 80 00 20 */	blr 
+.endfn sync__9DvdThreadFP16DvdThreadCommandQ29DvdThread14ESyncBlockFlag
 
-.global syncAll__9DvdThreadFQ29DvdThread14ESyncBlockFlag
-syncAll__9DvdThreadFQ29DvdThread14ESyncBlockFlag:
+.fn syncAll__9DvdThreadFQ29DvdThread14ESyncBlockFlag, global
 /* 80424D4C 00421C8C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80424D50 00421C90  7C 08 02 A6 */	mflr r0
 /* 80424D54 00421C94  90 01 00 34 */	stw r0, 0x34(r1)
@@ -463,3 +465,4 @@ syncAll__9DvdThreadFQ29DvdThread14ESyncBlockFlag:
 /* 80424E0C 00421D4C  7C 08 03 A6 */	mtlr r0
 /* 80424E10 00421D50  38 21 00 30 */	addi r1, r1, 0x30
 /* 80424E14 00421D54  4E 80 00 20 */	blr 
+.endfn syncAll__9DvdThreadFQ29DvdThread14ESyncBlockFlag

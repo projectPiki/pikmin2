@@ -15,17 +15,21 @@ lbl_constructor:
 	.asciz "zukan2D.cpp"
 .endobj lbl_8049252C
 .balign 4
-lbl_80492538:
+.obj lbl_80492538, local
 	.asciz "P2Assert"
+.endobj lbl_80492538
 .balign 4
-lbl_80492544:
+.obj lbl_80492544, local
 	.asciz "newicon.blo"
+.endobj lbl_80492544
 .balign 4
-lbl_80492550:
+.obj lbl_80492550, local
 	.asciz "l_btn.bti"
+.endobj lbl_80492550
 .balign 4
-lbl_8049255C:
+.obj lbl_8049255C, local
 	.asciz "mrUtil.h"
+.endobj lbl_8049255C
 .balign 8
 lbl_80492568: # table of 10 Tmenu00-Tmenu09 char[8] (7 and 6 are swapped) (possibly u64)
 	.4byte 0x00546D65
@@ -888,12 +892,12 @@ lbl_804932CC:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global mCategoryArray__Q28Morimura10TItemZukan
-mCategoryArray__Q28Morimura10TItemZukan: # treasure id of final category member
+.endobj govNAN___Q24Game5P2JST
+.obj mCategoryArray__Q28Morimura10TItemZukan, global # treasure id of final category member
 	.4byte 7	# Succulent Series
 	.4byte 16	# Nature's Candy Series
 	.4byte 22	# Xenoflora Series
@@ -919,6 +923,7 @@ mCategoryArray__Q28Morimura10TItemZukan: # treasure id of final category member
 	.4byte 183	# Odd Logo Series
 	.4byte 196	# Explorer's Friend Series
 	.4byte 201	# Titan Dweevil Series
+.endobj mCategoryArray__Q28Morimura10TItemZukan
 .global eIDInfo__8Morimura
 eIDInfo__8Morimura:
 	.4byte 0x00000000

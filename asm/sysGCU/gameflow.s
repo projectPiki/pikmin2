@@ -6,100 +6,131 @@ lbl_constructor:
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 # Epoch note: none of these strings are named. 
-str_RootMenu:
+.obj str_RootMenu, local
 	.asciz "Root Menu"
+.endobj str_RootMenu
 .balign 4
-str_objedit:
+.obj str_objedit, local
 	.asciz "Object Editor"
+.endobj str_objedit
 .balign 4
-str_sgame:
+.obj str_sgame, local
 	.asciz "Single Game"
+.endobj str_sgame
 .balign 4
-str_cgame:
+.obj str_cgame, local
 	.asciz "Challenge Game"
+.endobj str_cgame
 .balign 4
-str_test_challenge:
+.obj str_test_challenge, local
 	.asciz "Test Challenge"
+.endobj str_test_challenge
 .balign 4
-str_test_teki:
+.obj str_test_teki, local
 	.asciz "Teki Test"
+.endobj str_test_teki
 .balign 4
-str_animEdit:
+.obj str_animEdit, local
 	.asciz "Anim Editor"
+.endobj str_animEdit
 .balign 4
-str_mapEdit:
+.obj str_mapEdit, local
 	.asciz "Map Parts Editor"
+.endobj str_mapEdit
 .balign 4
-str_texview:
+.obj str_texview, local
 	.asciz "Tex Viewer"
+.endobj str_texview
 .balign 4
-str_ogtest:
+.obj str_ogtest, local
 	.asciz "Ogawa Screen Test"
+.endobj str_ogtest
 .balign 4
-str_yamashita:
+.obj str_yamashita, local
 	.asciz "Yamashita"
+.endobj str_yamashita
 .balign 4
-str_nishimura:
+.obj str_nishimura, local
 	.asciz "Nishimura"
+.endobj str_nishimura
 .balign 4
-str_nishimura2:
+.obj str_nishimura2, local
 	.asciz "Nishimura2"
+.endobj str_nishimura2
 .balign 4
-str_morimura:
+.obj str_morimura, local
 	.asciz "Morimura"
+.endobj str_morimura
 .balign 4
-str_2D_Debug:
+.obj str_2D_Debug, local
 	.asciz "2D Debug"
+.endobj str_2D_Debug
 .balign 4
-str_caveEditor:
+.obj str_caveEditor, local
 	.asciz "Cave Editor"
+.endobj str_caveEditor
 .balign 4
-str_cameraEditor:
+.obj str_cameraEditor, local
 	.asciz "JStudio CameraEditor"
+.endobj str_cameraEditor
 .balign 4
-str_movieTest:
+.obj str_movieTest, local
 	.asciz "Movie Test"
+.endobj str_movieTest
 .balign 4
-str_kandoTest:
+.obj str_kandoTest, local
 	.asciz "JStudio Kando Test"
+.endobj str_kandoTest
 .balign 4
-str_pelletTest:
+.obj str_pelletTest, local
 	.asciz "Pellet Test"
+.endobj str_pelletTest
 .balign 4
-str_mainTitle:
+.obj str_mainTitle, local
 	.asciz "Main Title"
+.endobj str_mainTitle
 .balign 4
-str_msgPreviewer:
+.obj str_msgPreviewer, local
 	.asciz "Message Previewer"
+.endobj str_msgPreviewer
 .balign 4
-str_ebiMainTitle:
+.obj str_ebiMainTitle, local
 	.asciz "Ebi Main Title"
+.endobj str_ebiMainTitle
 .balign 4
-str_E3_Thanks:
+.obj str_E3_Thanks, local
 	.asciz "E3 Thanks Section"
+.endobj str_E3_Thanks
 .balign 4
-str_ebimunEff:
+.obj str_ebimunEff, local
 	.asciz "Ebimun Effect"
+.endobj str_ebimunEff
 .balign 4
-str_2D_Debug2:
+.obj str_2D_Debug2, local
 	.asciz "2D Debug2"
+.endobj str_2D_Debug2
 .balign 4
-lbl_80499BC8:
+.obj lbl_80499BC8, local
 	.asciz "gameflow.cpp"
+.endobj lbl_80499BC8
 .balign 4
-lbl_80499BD8:
+.obj lbl_80499BD8, local
 	.asciz "Unknown SectionFlag. %d \n"
+.endobj lbl_80499BD8
 .balign 4
-lbl_80499BF4:
+.obj lbl_80499BF4, local
 	.asciz "P2Assert"
+.endobj lbl_80499BF4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-"sSectionInfo__22@unnamed@gameflow_cpp@":
+.endobj govNAN___Q24Game5P2JST
+.balign 4
+.obj "sSectionInfo__22@unnamed@gameflow_cpp@", local
 	.4byte str_RootMenu
 	.4byte 0x00000000
 	.4byte str_objedit
@@ -170,64 +201,77 @@ govNAN___Q24Game5P2JST:
 	.4byte 0x21000000
 	.4byte str_exp_s
 	.4byte 0x22000000
-.global __vt__8GameFlow
-__vt__8GameFlow:
+.endobj "sSectionInfo__22@unnamed@gameflow_cpp@"
+.balign 4
+.obj __vt__8GameFlow, global
 	.4byte 0
 	.4byte 0
 	.4byte run__8GameFlowFv
 	.4byte getCurrentSection__8GameFlowFv
-.global __vt__11ISectionMgr
-__vt__11ISectionMgr:
+.endobj __vt__8GameFlow
+.balign 4
+.obj __vt__11ISectionMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte getCurrentSection__11ISectionMgrFv
+.endobj __vt__11ISectionMgr
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mActiveSectionFlag__8GameFlow
-mActiveSectionFlag__8GameFlow:
+.obj mActiveSectionFlag__8GameFlow, global
 	.4byte 21
+.endobj mActiveSectionFlag__8GameFlow
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-str_Ogawa:
+.obj str_Ogawa, local
 	.asciz "Ogawa"
+.endobj str_Ogawa
 .balign 4
-str_Hikino:
+.obj str_Hikino, local
 	.asciz "Hikino"
+.endobj str_Hikino
 .balign 4
-str_Fujino:
+.obj str_Fujino, local
 	.asciz "Fujino"
+.endobj str_Fujino
 .balign 4
-str_Ebisawa:
+.obj str_Ebisawa, local
 	.asciz "Ebisawa"
+.endobj str_Ebisawa
 .balign 4
-str_boot:
+.obj str_boot, local
 	.asciz "Boot"
+.endobj str_boot
 .balign 4
-str_demo:
+.obj str_demo, local
 	.asciz "Demo"
+.endobj str_demo
 .balign 4
-str_vsgame:
+.obj str_vsgame, local
 	.asciz "VS Game"
+.endobj str_vsgame
 .balign 4
-str_exp_c:
+.obj str_exp_c, local
 	.asciz "EXP_C"
+.endobj str_exp_c
 .balign 4
-str_exp_s:
+.obj str_exp_s, local
 	.asciz "EXP_S"
+.endobj str_exp_s
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__8GameFlowFv
-__ct__8GameFlowFv:
+.fn __ct__8GameFlowFv, global
 /* 804241A4 004210E4  3C 80 80 4F */	lis r4, __vt__11ISectionMgr@ha
 /* 804241A8 004210E8  3C A0 80 4F */	lis r5, __vt__8GameFlow@ha
 /* 804241AC 004210EC  38 04 BD 24 */	addi r0, r4, __vt__11ISectionMgr@l
@@ -239,9 +283,9 @@ __ct__8GameFlowFv:
 /* 804241C4 00421104  90 8D 86 78 */	stw r4, mActiveSectionFlag__8GameFlow@sda21(r13)
 /* 804241C8 00421108  90 03 00 04 */	stw r0, 4(r3)
 /* 804241CC 0042110C  4E 80 00 20 */	blr 
+.endfn __ct__8GameFlowFv
 
-.global run__8GameFlowFv
-run__8GameFlowFv:
+.fn run__8GameFlowFv, global
 /* 804241D0 00421110  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 804241D4 00421114  7C 08 02 A6 */	mflr r0
 /* 804241D8 00421118  90 01 00 44 */	stw r0, 0x44(r1)
@@ -298,10 +342,10 @@ run__8GameFlowFv:
 /* 804242A0 004211E0  38 80 FF FF */	li r4, -1
 /* 804242A4 004211E4  4B BF FE 59 */	bl __dt__Q27JKRHeap6TStateFv
 /* 804242A8 004211E8  4B FF FF 44 */	b .L_804241EC
+.endfn run__8GameFlowFv
 
 .if version == 1
-.global setSection__8GameFlowFv
-setSection__8GameFlowFv:
+.fn setSection__8GameFlowFv, global
 /* 804242AC 004211EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804242B0 004211F0  7C 08 02 A6 */	mflr r0
 /* 804242B4 004211F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -356,9 +400,9 @@ setSection__8GameFlowFv:
 /* 80424360 004212A0  7C 08 03 A6 */	mtlr r0
 /* 80424364 004212A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424368 004212A8  4E 80 00 20 */	blr 
+.endfn setSection__8GameFlowFv
 .else
-.global setSection__8GameFlowFv
-setSection__8GameFlowFv:
+.fn setSection__8GameFlowFv, global
 /* 804242AC 004211EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804242B0 004211F0  7C 08 02 A6 */	mflr r0
 /* 804242B4 004211F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -413,10 +457,10 @@ setSection__8GameFlowFv:
 /* 80424360 004212A0  7C 08 03 A6 */	mtlr r0
 /* 80424364 004212A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424368 004212A8  4E 80 00 20 */	blr 
+.endfn setSection__8GameFlowFv
 .endif
 
-.global getSectionInfo__8GameFlowFi
-getSectionInfo__8GameFlowFi:
+.fn getSectionInfo__8GameFlowFi, global
 /* 8042436C 004212AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80424370 004212B0  7C 08 02 A6 */	mflr r0
 /* 80424374 004212B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -466,10 +510,10 @@ getSectionInfo__8GameFlowFi:
 /* 80424410 00421350  7C 08 03 A6 */	mtlr r0
 /* 80424414 00421354  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424418 00421358  4E 80 00 20 */	blr 
+.endfn getSectionInfo__8GameFlowFi
 
 .if version == 1
-.global createSection__8GameFlowFP7JKRHeap
-createSection__8GameFlowFP7JKRHeap:
+.fn createSection__8GameFlowFP7JKRHeap, global
 /* 8042441C 0042135C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80424420 00421360  7C 08 02 A6 */	mflr r0
 /* 80424424 00421364  90 01 00 14 */	stw r0, 0x14(r1)
@@ -565,9 +609,9 @@ createSection__8GameFlowFP7JKRHeap:
 /* 80424558 00421498  7C 08 03 A6 */	mtlr r0
 /* 8042455C 0042149C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424560 004214A0  4E 80 00 20 */	blr 
+.endfn createSection__8GameFlowFP7JKRHeap
 .else
-.global createSection__8GameFlowFP7JKRHeap
-createSection__8GameFlowFP7JKRHeap:
+.fn createSection__8GameFlowFP7JKRHeap, global
 /* 8042441C 0042135C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80424420 00421360  7C 08 02 A6 */	mflr r0
 /* 80424424 00421364  90 01 00 14 */	stw r0, 0x14(r1)
@@ -663,10 +707,10 @@ createSection__8GameFlowFP7JKRHeap:
 /* 80424558 00421498  7C 08 03 A6 */	mtlr r0
 /* 8042455C 0042149C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424560 004214A0  4E 80 00 20 */	blr 
+.endfn createSection__8GameFlowFP7JKRHeap
 .endif
 
-.global getCurrentSection__8GameFlowFv
-getCurrentSection__8GameFlowFv:
+.fn getCurrentSection__8GameFlowFv, weak
 /* 80424564 004214A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80424568 004214A8  7C 08 02 A6 */	mflr r0
 /* 8042456C 004214AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -685,6 +729,7 @@ getCurrentSection__8GameFlowFv:
 /* 80424598 004214D8  7C 08 03 A6 */	mtlr r0
 /* 8042459C 004214DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804245A0 004214E0  4E 80 00 20 */	blr 
+.endfn getCurrentSection__8GameFlowFv
 
 .fn __sinit_gameflow_cpp, local
 /* 804245A4 004214E4  3C 80 80 51 */	lis r4, __float_nan@ha

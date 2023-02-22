@@ -3416,8 +3416,7 @@ initPerspPrintf__8GraphicsFP8Viewport:
 /* 80427E98 00424DD8  38 21 02 70 */	addi r1, r1, 0x270
 /* 80427E9C 00424DDC  4E 80 00 20 */	blr 
 
-.global initGX__8GraphicsFv
-initGX__8GraphicsFv:
+.fn initGX__8GraphicsFv, global
 /* 80427EA0 00424DE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80427EA4 00424DE4  7C 08 02 A6 */	mflr r0
 /* 80427EA8 00424DE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3442,13 +3441,13 @@ initGX__8GraphicsFv:
 /* 80427EF4 00424E34  7C 08 03 A6 */	mtlr r0
 /* 80427EF8 00424E38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80427EFC 00424E3C  4E 80 00 20 */	blr 
+.endfn initGX__8GraphicsFv
 
-.global dirtyInitGX__8GraphicsFv
-dirtyInitGX__8GraphicsFv:
+.fn dirtyInitGX__8GraphicsFv, global
 /* 80427F00 00424E40  4E 80 00 20 */	blr 
+.endfn dirtyInitGX__8GraphicsFv
 
-.global clearInitGX__8GraphicsFv
-clearInitGX__8GraphicsFv:
+.fn clearInitGX__8GraphicsFv, global
 /* 80427F04 00424E44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80427F08 00424E48  7C 08 02 A6 */	mflr r0
 /* 80427F0C 00424E4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3473,10 +3472,11 @@ clearInitGX__8GraphicsFv:
 /* 80427F58 00424E98  7C 08 03 A6 */	mtlr r0
 /* 80427F5C 00424E9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80427F60 00424EA0  4E 80 00 20 */	blr 
+.endfn clearInitGX__8GraphicsFv
 
-.global split4__8SplitterFff # weak function
-split4__8SplitterFff:
+.fn split4__8SplitterFff, weak
 /* 80427F64 00424EA4  4E 80 00 20 */	blr 
+.endfn split4__8SplitterFff
 
 .fn __sinit_graphics_cpp, local
 /* 80427F68 00424EA8  3C 80 80 51 */	lis r4, __float_nan@ha

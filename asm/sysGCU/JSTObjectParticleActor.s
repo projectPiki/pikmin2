@@ -5,23 +5,26 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049BA78:
+.obj lbl_8049BA78, local
 	.asciz "tutorial"
+.endobj lbl_8049BA78
 .balign 4
-lbl_8049BA84:
+.obj lbl_8049BA84, local
 	.asciz "yakushima"
+.endobj lbl_8049BA84
 .balign 4
-lbl_8049BA90:
+.obj lbl_8049BA90, local
 	.asciz "string:%u,%s\n"
+.endobj lbl_8049BA90
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q34Game5P2JST19ObjectParticleActor
-__vt__Q34Game5P2JST19ObjectParticleActor:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game5P2JST19ObjectParticleActor, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game5P2JST19ObjectParticleActorFv
@@ -81,34 +84,41 @@ __vt__Q34Game5P2JST19ObjectParticleActor:
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
+.endobj __vt__Q34Game5P2JST19ObjectParticleActor
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520B98:
+.obj lbl_80520B98, local
 	.asciz "forest"
+.endobj lbl_80520B98
 .balign 4
-lbl_80520BA0:
+.obj lbl_80520BA0, local
 	.asciz "last"
+.endobj lbl_80520BA0
 .balign 4
-lbl_80520BA8:
+.obj lbl_80520BA8, local
 	.float 0.0
+.endobj lbl_80520BA8
 .balign 4
-lbl_80520BAC:
+.obj lbl_80520BAC, local
 	.asciz "kill"
+.endobj lbl_80520BAC
 .balign 4
-lbl_80520BB4:
+.obj lbl_80520BB4, local
 	.asciz "@ground"
+.endobj lbl_80520BB4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game5P2JST19ObjectParticleActorFPCcPQ24Game11MoviePlayerPQ24Game8Creature
-__ct__Q34Game5P2JST19ObjectParticleActorFPCcPQ24Game11MoviePlayerPQ24Game8Creature:
+.fn __ct__Q34Game5P2JST19ObjectParticleActorFPCcPQ24Game11MoviePlayerPQ24Game8Creature, global
 /* 804544D4 00451414  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804544D8 00451418  7C 08 02 A6 */	mflr r0
 /* 804544DC 0045141C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -206,9 +216,9 @@ __ct__Q34Game5P2JST19ObjectParticleActorFPCcPQ24Game11MoviePlayerPQ24Game8Creatu
 /* 80454630 00451570  7C 08 03 A6 */	mtlr r0
 /* 80454634 00451574  38 21 00 20 */	addi r1, r1, 0x20
 /* 80454638 00451578  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game5P2JST19ObjectParticleActorFPCcPQ24Game11MoviePlayerPQ24Game8Creature
 
-.global reset__Q34Game5P2JST19ObjectParticleActorFv
-reset__Q34Game5P2JST19ObjectParticleActorFv:
+.fn reset__Q34Game5P2JST19ObjectParticleActorFv, global
 /* 8045463C 0045157C  38 80 00 00 */	li r4, 0
 /* 80454640 00451580  38 00 FF FF */	li r0, -1
 /* 80454644 00451584  90 83 00 7C */	stw r4, 0x7c(r3)
@@ -219,9 +229,9 @@ reset__Q34Game5P2JST19ObjectParticleActorFv:
 /* 80454658 00451598  D0 03 00 C0 */	stfs f0, 0xc0(r3)
 /* 8045465C 0045159C  D0 03 00 C4 */	stfs f0, 0xc4(r3)
 /* 80454660 004515A0  4E 80 00 20 */	blr 
+.endfn reset__Q34Game5P2JST19ObjectParticleActorFv
 
-.global stop__Q34Game5P2JST19ObjectParticleActorFv
-stop__Q34Game5P2JST19ObjectParticleActorFv:
+.fn stop__Q34Game5P2JST19ObjectParticleActorFv, global
 /* 80454664 004515A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80454668 004515A8  7C 08 02 A6 */	mflr r0
 /* 8045466C 004515AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -230,9 +240,9 @@ stop__Q34Game5P2JST19ObjectParticleActorFv:
 /* 80454678 004515B8  7C 08 03 A6 */	mtlr r0
 /* 8045467C 004515BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80454680 004515C0  4E 80 00 20 */	blr 
+.endfn stop__Q34Game5P2JST19ObjectParticleActorFv
 
-.global update__Q34Game5P2JST19ObjectParticleActorFv
-update__Q34Game5P2JST19ObjectParticleActorFv:
+.fn update__Q34Game5P2JST19ObjectParticleActorFv, global
 /* 80454684 004515C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80454688 004515C8  7C 08 02 A6 */	mflr r0
 /* 8045468C 004515CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -285,9 +295,9 @@ update__Q34Game5P2JST19ObjectParticleActorFv:
 /* 80454738 00451678  7C 08 03 A6 */	mtlr r0
 /* 8045473C 0045167C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80454740 00451680  4E 80 00 20 */	blr 
+.endfn update__Q34Game5P2JST19ObjectParticleActorFv
 
-.global JSGSetShape__Q34Game5P2JST19ObjectParticleActorFUl
-JSGSetShape__Q34Game5P2JST19ObjectParticleActorFUl:
+.fn JSGSetShape__Q34Game5P2JST19ObjectParticleActorFUl, global
 /* 80454744 00451684  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80454748 00451688  7C 08 02 A6 */	mflr r0
 /* 8045474C 0045168C  54 85 04 3E */	clrlwi r5, r4, 0x10
@@ -303,9 +313,9 @@ JSGSetShape__Q34Game5P2JST19ObjectParticleActorFUl:
 /* 80454774 004516B4  7C 08 03 A6 */	mtlr r0
 /* 80454778 004516B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045477C 004516BC  4E 80 00 20 */	blr 
+.endfn JSGSetShape__Q34Game5P2JST19ObjectParticleActorFUl
 
-.global parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv
-parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv:
+.fn parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv, global
 /* 80454780 004516C0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80454784 004516C4  7C 08 02 A6 */	mflr r0
 /* 80454788 004516C8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -409,9 +419,9 @@ parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv:
 /* 804548EC 0045182C  7C 08 03 A6 */	mtlr r0
 /* 804548F0 00451830  38 21 00 30 */	addi r1, r1, 0x30
 /* 804548F4 00451834  4E 80 00 20 */	blr 
+.endfn parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv
 
-.global JSGSetTranslation__Q34Game5P2JST19ObjectParticleActorFRC3Vec
-JSGSetTranslation__Q34Game5P2JST19ObjectParticleActorFRC3Vec:
+.fn JSGSetTranslation__Q34Game5P2JST19ObjectParticleActorFRC3Vec, global
 /* 804548F8 00451838  C0 04 00 00 */	lfs f0, 0(r4)
 /* 804548FC 0045183C  C0 24 00 04 */	lfs f1, 4(r4)
 /* 80454900 00451840  D0 03 00 BC */	stfs f0, 0xbc(r3)
@@ -419,9 +429,9 @@ JSGSetTranslation__Q34Game5P2JST19ObjectParticleActorFRC3Vec:
 /* 80454908 00451848  D0 23 00 C0 */	stfs f1, 0xc0(r3)
 /* 8045490C 0045184C  D0 03 00 C4 */	stfs f0, 0xc4(r3)
 /* 80454910 00451850  4E 80 00 20 */	blr 
+.endfn JSGSetTranslation__Q34Game5P2JST19ObjectParticleActorFRC3Vec
 
-.global JSGGetTranslation__Q34Game5P2JST19ObjectParticleActorCFP3Vec
-JSGGetTranslation__Q34Game5P2JST19ObjectParticleActorCFP3Vec:
+.fn JSGGetTranslation__Q34Game5P2JST19ObjectParticleActorCFP3Vec, global
 /* 80454914 00451854  C0 03 00 BC */	lfs f0, 0xbc(r3)
 /* 80454918 00451858  C0 23 00 C0 */	lfs f1, 0xc0(r3)
 /* 8045491C 0045185C  D0 04 00 00 */	stfs f0, 0(r4)
@@ -429,9 +439,9 @@ JSGGetTranslation__Q34Game5P2JST19ObjectParticleActorCFP3Vec:
 /* 80454924 00451864  D0 24 00 04 */	stfs f1, 4(r4)
 /* 80454928 00451868  D0 04 00 08 */	stfs f0, 8(r4)
 /* 8045492C 0045186C  4E 80 00 20 */	blr 
+.endfn JSGGetTranslation__Q34Game5P2JST19ObjectParticleActorCFP3Vec
 
-.global emit__Q34Game5P2JST19ObjectParticleActorFv
-emit__Q34Game5P2JST19ObjectParticleActorFv:
+.fn emit__Q34Game5P2JST19ObjectParticleActorFv, global
 /* 80454930 00451870  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80454934 00451874  7C 08 02 A6 */	mflr r0
 /* 80454938 00451878  90 01 00 44 */	stw r0, 0x44(r1)
@@ -562,9 +572,9 @@ emit__Q34Game5P2JST19ObjectParticleActorFv:
 /* 80454B14 00451A54  7C 08 03 A6 */	mtlr r0
 /* 80454B18 00451A58  38 21 00 40 */	addi r1, r1, 0x40
 /* 80454B1C 00451A5C  4E 80 00 20 */	blr 
+.endfn emit__Q34Game5P2JST19ObjectParticleActorFv
 
-.global executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
-executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter:
+.fn executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter, global
 /* 80454B20 00451A60  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80454B24 00451A64  7C 08 02 A6 */	mflr r0
 /* 80454B28 00451A68  90 01 00 34 */	stw r0, 0x34(r1)
@@ -630,9 +640,9 @@ executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter:
 /* 80454C08 00451B48  7C 08 03 A6 */	mtlr r0
 /* 80454C0C 00451B4C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80454C10 00451B50  4E 80 00 20 */	blr 
+.endfn executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
 
-.global killEmitter__Q34Game5P2JST19ObjectParticleActorFv
-killEmitter__Q34Game5P2JST19ObjectParticleActorFv:
+.fn killEmitter__Q34Game5P2JST19ObjectParticleActorFv, global
 /* 80454C14 00451B54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80454C18 00451B58  7C 08 02 A6 */	mflr r0
 /* 80454C1C 00451B5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -651,9 +661,9 @@ killEmitter__Q34Game5P2JST19ObjectParticleActorFv:
 /* 80454C4C 00451B8C  7C 08 03 A6 */	mtlr r0
 /* 80454C50 00451B90  38 21 00 10 */	addi r1, r1, 0x10
 /* 80454C54 00451B94  4E 80 00 20 */	blr 
+.endfn killEmitter__Q34Game5P2JST19ObjectParticleActorFv
 
-.global __dt__Q34Game5P2JST19ObjectParticleActorFv
-__dt__Q34Game5P2JST19ObjectParticleActorFv:
+.fn __dt__Q34Game5P2JST19ObjectParticleActorFv, weak
 /* 80454C58 00451B98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80454C5C 00451B9C  7C 08 02 A6 */	mflr r0
 /* 80454C60 00451BA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -687,8 +697,9 @@ __dt__Q34Game5P2JST19ObjectParticleActorFv:
 /* 80454CCC 00451C0C  7C 08 03 A6 */	mtlr r0
 /* 80454CD0 00451C10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80454CD4 00451C14  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game5P2JST19ObjectParticleActorFv
 
-__sinit_JSTObjectParticleActor_cpp: # static initializer
+.fn __sinit_JSTObjectParticleActor_cpp, local
 /* 80454CD8 00451C18  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80454CDC 00451C1C  38 00 FF FF */	li r0, -1
 /* 80454CE0 00451C20  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -699,33 +710,34 @@ __sinit_JSTObjectParticleActor_cpp: # static initializer
 /* 80454CF4 00451C34  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80454CF8 00451C38  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80454CFC 00451C3C  4E 80 00 20 */	blr 
+.endfn __sinit_JSTObjectParticleActor_cpp
 
-.global "@4@parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv"
-"@4@parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv":
+.fn "@4@parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv", weak
 /* 80454D00 00451C40  38 63 FF FC */	addi r3, r3, -4
 /* 80454D04 00451C44  4B FF FA 7C */	b parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv
+.endfn "@4@parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv"
 
-.global "@4@stop__Q34Game5P2JST19ObjectParticleActorFv"
-"@4@stop__Q34Game5P2JST19ObjectParticleActorFv":
+.fn "@4@stop__Q34Game5P2JST19ObjectParticleActorFv", weak
 /* 80454D08 00451C48  38 63 FF FC */	addi r3, r3, -4
 /* 80454D0C 00451C4C  4B FF F9 58 */	b stop__Q34Game5P2JST19ObjectParticleActorFv
+.endfn "@4@stop__Q34Game5P2JST19ObjectParticleActorFv"
 
-.global "@4@update__Q34Game5P2JST19ObjectParticleActorFv"
-"@4@update__Q34Game5P2JST19ObjectParticleActorFv":
+.fn "@4@update__Q34Game5P2JST19ObjectParticleActorFv", weak
 /* 80454D10 00451C50  38 63 FF FC */	addi r3, r3, -4
 /* 80454D14 00451C54  4B FF F9 70 */	b update__Q34Game5P2JST19ObjectParticleActorFv
+.endfn "@4@update__Q34Game5P2JST19ObjectParticleActorFv"
 
-.global "@4@reset__Q34Game5P2JST19ObjectParticleActorFv"
-"@4@reset__Q34Game5P2JST19ObjectParticleActorFv":
+.fn "@4@reset__Q34Game5P2JST19ObjectParticleActorFv", weak
 /* 80454D18 00451C58  38 63 FF FC */	addi r3, r3, -4
 /* 80454D1C 00451C5C  4B FF F9 20 */	b reset__Q34Game5P2JST19ObjectParticleActorFv
+.endfn "@4@reset__Q34Game5P2JST19ObjectParticleActorFv"
 
-.global "@112@executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter"
-"@112@executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter":
+.fn "@112@executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter", weak
 /* 80454D20 00451C60  38 63 FF 90 */	addi r3, r3, -112
 /* 80454D24 00451C64  4B FF FD FC */	b executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
+.endfn "@112@executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter"
 
-.global "@112@__dt__Q34Game5P2JST19ObjectParticleActorFv"
-"@112@__dt__Q34Game5P2JST19ObjectParticleActorFv":
+.fn "@112@__dt__Q34Game5P2JST19ObjectParticleActorFv", weak
 /* 80454D28 00451C68  38 63 FF 90 */	addi r3, r3, -112
 /* 80454D2C 00451C6C  4B FF FF 2C */	b __dt__Q34Game5P2JST19ObjectParticleActorFv
+.endfn "@112@__dt__Q34Game5P2JST19ObjectParticleActorFv"
