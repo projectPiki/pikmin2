@@ -1,5 +1,6 @@
 #include "Game/Entities/ChappyBase.h"
 #include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
 
 namespace Game {
 namespace ChappyBase {
@@ -39,9 +40,44 @@ StateCautionBase::StateCautionBase(int stateID)
  * Address:	........
  * Size:	000194
  */
-void StateCautionBase::cautionProc(EnemyBase*)
+void StateCautionBase::cautionProc(EnemyBase* enemy)
 {
-	// STRIPPED
+	bool doAlert;
+	switch (enemy->getEnemyTypeID()) {
+	case EnemyTypeID::EnemyID_BlueChappy: {
+		f32 wakeRadius = CG_PROPERPARMS(OBJ(enemy)).mBulborbWakeRadius.mValue;
+		doAlert        = EnemyFunc::isPikminOrNaviInRange(enemy, wakeRadius);
+
+		if (!doAlert) {
+			doAlert = enemy->mHealth < CG_PARMS(enemy)->mGeneral.mLifeBeforeAlert.mValue;
+		}
+		break;
+	}
+
+	default: {
+		f32 wakeRadius = CG_PARMS(enemy)->mGeneral.mPrivateRadius.mValue;
+		doAlert        = EnemyFunc::isPikminOrNaviInRange(enemy, wakeRadius);
+
+		if (!doAlert) {
+			doAlert = enemy->mHealth < CG_PARMS(enemy)->mGeneral.mLifeBeforeAlert.mValue;
+		}
+		break;
+	}
+	}
+
+	if (doAlert) {
+		OBJ(enemy)->_2CC = 0.0f;
+	}
+
+	if (OBJ(enemy)->_2CC < CG_PARMS(enemy)->mGeneral.mAlertDuration.mValue) {
+		OBJ(enemy)->_2CC += sys->mDeltaTime;
+		OBJ(enemy)->_2DC = 180.0f;
+		OBJ(enemy)->_2E0 = 180.0f;
+
+	} else {
+		OBJ(enemy)->_2DC = CG_PARMS(enemy)->mGeneral.mViewAngle.mValue;
+		OBJ(enemy)->_2E0 = CG_PARMS(enemy)->mGeneral.mSearchAngle.mValue;
+	}
 }
 
 /*
@@ -108,10 +144,13 @@ void StateSleep::exec(EnemyBase* enemy)
 			// WTF?
 			if (enemy->mCurAnim->mType == KEYEVENT_NULL) {
 				OBJ(enemy)->startSleepEffect();
-			} else if (enemy->mCurAnim->mType == 3) {
+
+			} else if (enemy->mCurAnim->mType == KEYEVENT_3) {
 				OBJ(enemy)->finishSleepEffect();
-			} else if (enemy->mCurAnim->mType == 4) {
+
+			} else if (enemy->mCurAnim->mType == KEYEVENT_4) {
 				OBJ(enemy)->createSmokeEffect();
+
 			} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
 				transit(enemy, mNextState, nullptr);
 			}
@@ -214,10 +253,7 @@ StateTurnBase::StateTurnBase(int stateID)
  * Address:	........
  * Size:	0001E0
  */
-void StateTurnBase::turnToTarget(EnemyBase* enemy, Vector3f& position)
-{
-	// STRIPPED
-}
+void StateTurnBase::turnToTarget(EnemyBase* enemy, Vector3f& targetPos) { }
 
 /*
  * --INFO--
@@ -249,6 +285,56 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
+	cautionProc(enemy);
+
+	if (!enemy->isFinishMotion()) {
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->_2E0, CG_PARMS(enemy)->mGeneral.mSearchDistance.mValue,
+		                                                     nullptr, nullptr, nullptr);
+		if (target) {
+			enemy->mTargetCreature = target;
+
+			Vector3f targetPos = enemy->mTargetCreature->getPosition();
+
+			f32 turnSpeed  = CG_PARMS(enemy)->mGeneral.mRotationalSpeed.mValue;
+			f32 turnFactor = CG_PARMS(enemy)->mGeneral.mRotationalAccel.mValue;
+
+			Vector3f pos = enemy->getPosition();
+
+			f32 angleDist = angDist(_angXZ(targetPos.x, targetPos.z, pos.x, pos.z), enemy->getFaceDir());
+
+			bool check     = false;
+			f32 radius     = CG_PARMS(enemy)->mGeneral.mMaxAttackRange.mValue;
+			f32 angleLimit = CG_PARMS(enemy)->mGeneral.mMinAttackRange.mValue;
+
+			f32 x = enemy->mTargetCreature->getPosition().x - enemy->getPosition().x;
+			f32 y = enemy->mTargetCreature->getPosition().y - enemy->getPosition().y;
+			f32 z = enemy->mTargetCreature->getPosition().z - enemy->getPosition().z;
+
+			f32 sqrDist = SQUARE(x) + SQUARE(y) + SQUARE(z);
+			if (sqrDist < SQUARE(radius) && FABS(angleDist) <= PI * (DEG2RAD * angleLimit)) {
+				check = true;
+			}
+
+			if (check) {
+				enemy->finishMotion();
+				OBJ(enemy)->setAnimationSpeed(60.0f);
+				_10 = CHAPPY_Attack;
+
+			} else {
+				Vector3f pos2       = Vector3f(enemy->mPosition.x, 0.0f, enemy->mPosition.z);
+				Vector3f targetPos2 = Vector3f(enemy->mTargetCreature->getPosition().x, 0.0f, enemy->mTargetCreature->getPosition().z);
+			}
+		}
+		if (EnemyFunc::isStartFlick(enemy, true)) {
+			transit(enemy, CHAPPY_Flick, nullptr);
+		}
+	} else if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, _10, nullptr);
+	}
+
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, CHAPPY_Dead, nullptr);
+	}
 	/*
 	stwu     r1, -0x190(r1)
 	mflr     r0
@@ -860,6 +946,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
+	cautionProc(enemy);
 	/*
 	stwu     r1, -0x170(r1)
 	mflr     r0
@@ -1476,6 +1563,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
+	cautionProc(enemy);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1999,6 +2087,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
+	cautionProc(enemy);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2317,6 +2406,7 @@ lbl_801189D8:
  */
 void StateTurnToHome::exec(EnemyBase* enemy)
 {
+	cautionProc(enemy);
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -2836,6 +2926,7 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotio
  */
 void StateGoHome::exec(EnemyBase* enemy)
 {
+	cautionProc(enemy);
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0

@@ -47,6 +47,17 @@ int getStickPikminColorNum(Creature*, int);
 
 void walkToTarget(EnemyBase*, Creature*, f32, f32, f32);
 void walkToTarget(EnemyBase*, Vector3f&, f32, f32, f32);
+
+inline bool isPikminOrNaviInRange(EnemyBase* enemy, f32 range)
+{
+	if (isThereOlimar(enemy, range, nullptr)) {
+		return true;
+	} else if (isTherePikmin(enemy, range, nullptr)) {
+		return true;
+	}
+
+	return false;
+}
 } // namespace EnemyFunc
 } // namespace Game
 
