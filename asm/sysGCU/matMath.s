@@ -1,22 +1,27 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520510:
+.obj lbl_80520510, local
 	.float 1.0
-lbl_80520514:
+.endobj lbl_80520510
+.obj lbl_80520514, local
 	.float 0.0
-lbl_80520518:
+.endobj lbl_80520514
+.obj lbl_80520518, local
 	.float 325.9493
-lbl_8052051C:
+.endobj lbl_80520518
+.obj lbl_8052051C, local
 	.float -325.9493
-lbl_80520520:
+.endobj lbl_8052051C
+.obj lbl_80520520, local # pi/2
 	.float 1.5707964
-lbl_80520524:
+.endobj lbl_80520520
+.obj lbl_80520524, local
 	.float 2.0
+.endobj lbl_80520524
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
-"makeNaturalPosture__7MatrixfFR10Vector3<f>f":
+.fn "makeNaturalPosture__7MatrixfFR10Vector3<f>f", global
 /* 80427F90 00424ED0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80427F94 00424ED4  C0 44 00 08 */	lfs f2, 8(r4)
 /* 80427F98 00424ED8  C0 04 00 00 */	lfs f0, 0(r4)
@@ -244,13 +249,13 @@ lbl_80520524:
 /* 804282C8 00425208  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 804282CC 0042520C  38 21 00 20 */	addi r1, r1, 0x20
 /* 804282D0 00425210  4E 80 00 20 */	blr 
+.endfn "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
 
-.global print__7MatrixfFPc
-print__7MatrixfFPc:
+.fn print__7MatrixfFPc, global
 /* 804282D4 00425214  4E 80 00 20 */	blr 
+.endfn print__7MatrixfFPc
 
-.global "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-"makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>":
+.fn "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>", global
 /* 804282D8 00425218  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 804282DC 0042521C  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 804282E0 00425220  F3 E1 00 58 */	psq_st f31, 88(r1), 0, qr0
@@ -422,9 +427,9 @@ print__7MatrixfFPc:
 /* 80428554 00425494  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 80428558 00425498  38 21 00 60 */	addi r1, r1, 0x60
 /* 8042855C 0042549C  4E 80 00 20 */	blr 
+.endfn "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 
-.global "makeST__7MatrixfFR10Vector3<f>R10Vector3<f>"
-"makeST__7MatrixfFR10Vector3<f>R10Vector3<f>":
+.fn "makeST__7MatrixfFR10Vector3<f>R10Vector3<f>", global
 /* 80428560 004254A0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80428564 004254A4  C0 22 21 B4 */	lfs f1, lbl_80520514@sda21(r2)
 /* 80428568 004254A8  D0 03 00 00 */	stfs f0, 0(r3)
@@ -445,9 +450,9 @@ print__7MatrixfFPc:
 /* 804285A4 004254E4  C0 05 00 08 */	lfs f0, 8(r5)
 /* 804285A8 004254E8  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 804285AC 004254EC  4E 80 00 20 */	blr 
+.endfn "makeST__7MatrixfFR10Vector3<f>R10Vector3<f>"
 
-.global "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-"makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>":
+.fn "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>", global
 /* 804285B0 004254F0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 804285B4 004254F4  DB E1 00 60 */	stfd f31, 0x60(r1)
 /* 804285B8 004254F8  F3 E1 00 68 */	psq_st f31, 104(r1), 0, qr0
@@ -621,9 +626,9 @@ print__7MatrixfFPc:
 /* 80428834 00425774  CB C1 00 50 */	lfd f30, 0x50(r1)
 /* 80428838 00425778  38 21 00 70 */	addi r1, r1, 0x70
 /* 8042883C 0042577C  4E 80 00 20 */	blr 
+.endfn "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 
-.global "makeT__7MatrixfFR10Vector3<f>"
-"makeT__7MatrixfFR10Vector3<f>":
+.fn "makeT__7MatrixfFR10Vector3<f>", global
 /* 80428840 00425780  C0 22 21 B0 */	lfs f1, lbl_80520510@sda21(r2)
 /* 80428844 00425784  C0 02 21 B4 */	lfs f0, lbl_80520514@sda21(r2)
 /* 80428848 00425788  D0 23 00 00 */	stfs f1, 0(r3)
@@ -642,9 +647,9 @@ print__7MatrixfFPc:
 /* 8042887C 004257BC  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80428880 004257C0  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 80428884 004257C4  4E 80 00 20 */	blr 
+.endfn "makeT__7MatrixfFR10Vector3<f>"
 
-.global "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-"makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>":
+.fn "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>", global
 /* 80428888 004257C8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8042888C 004257CC  C0 02 21 B4 */	lfs f0, lbl_80520514@sda21(r2)
 /* 80428890 004257D0  C0 85 00 00 */	lfs f4, 0(r5)
@@ -794,9 +799,9 @@ print__7MatrixfFPc:
 /* 80428AAC 004259EC  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 80428AB0 004259F0  38 21 00 50 */	addi r1, r1, 0x50
 /* 80428AB4 004259F4  4E 80 00 20 */	blr 
+.endfn "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 
-.global "makeTQ__7MatrixfFR10Vector3<f>R4Quat"
-"makeTQ__7MatrixfFR10Vector3<f>R4Quat":
+.fn "makeTQ__7MatrixfFR10Vector3<f>R4Quat", global
 /* 80428AB8 004259F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80428ABC 004259FC  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 80428AC0 00425A00  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0
@@ -849,9 +854,9 @@ print__7MatrixfFPc:
 /* 80428B7C 00425ABC  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 80428B80 00425AC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80428B84 00425AC4  4E 80 00 20 */	blr 
+.endfn "makeTQ__7MatrixfFR10Vector3<f>R4Quat"
 
-.global makeQ__7MatrixfFR4Quat
-makeQ__7MatrixfFR4Quat:
+.fn makeQ__7MatrixfFR4Quat, global
 /* 80428B88 00425AC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80428B8C 00425ACC  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 80428B90 00425AD0  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0
@@ -902,3 +907,4 @@ makeQ__7MatrixfFR4Quat:
 /* 80428C44 00425B84  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 80428C48 00425B88  38 21 00 20 */	addi r1, r1, 0x20
 /* 80428C4C 00425B8C  4E 80 00 20 */	blr 
+.endfn makeQ__7MatrixfFR4Quat
