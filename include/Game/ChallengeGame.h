@@ -26,7 +26,7 @@ struct StageData : public CNode {
 	int mFloorCounts;             // _6C
 	s32 _70;                      // _70
 	int mStageIndex;              // _74
-	f32* mFloorTimerExtentions;   // _78
+	f32* mFloorTimerExtensions;   // _78
 };
 
 struct StageList : public CNode {

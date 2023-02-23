@@ -23,7 +23,7 @@ StageData::StageData()
 	mFloorCounts          = 1;
 	_70                   = 0;
 	mStageIndex           = 0;
-	mFloorTimerExtentions = nullptr;
+	mFloorTimerExtensions = nullptr;
 }
 
 /*
@@ -54,14 +54,14 @@ void StageData::read(Stream& stream)
 		mStageIndex = stream.readInt();
 	}
 	if (version >= 4) {
-		mFloorTimerExtentions = new f32[mFloorCounts];
+		mFloorTimerExtensions = new f32[mFloorCounts];
 		for (int i = 0; i < mFloorCounts; i++) {
-			mFloorTimerExtentions[i] = stream.readFloat();
+			mFloorTimerExtensions[i] = stream.readFloat();
 		}
 	} else {
-		mFloorTimerExtentions = new f32[mFloorCounts];
+		mFloorTimerExtensions = new f32[mFloorCounts];
 		for (int i = 0; i < mFloorCounts; i++) {
-			mFloorTimerExtentions[i] = 100.0f;
+			mFloorTimerExtensions[i] = 100.0f;
 		}
 	}
 }

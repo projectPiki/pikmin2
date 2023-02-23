@@ -70,7 +70,7 @@ void GameState::init(VsGameSection* section, StateArg* stateArg)
 
 	if (gameSystem->isChallengeMode()) {
 		mTimer            = section->mTimeLimit;
-		mFloorExtendTimer = section->mChallengeStageData->mFloorTimerExtentions[section->getCurrFloor()];
+		mFloorExtendTimer = section->mChallengeStageData->mFloorTimerExtensions[section->getCurrFloor()];
 		mDisplayTime      = mTimer / 4;
 		section->mTimeLimit += mFloorExtendTimer;
 	}
