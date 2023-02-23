@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct MemoryCardMgrCommand {
-	virtual void getClassSize(); // _08 (weak)
+	virtual u32 getClassSize(); // _08 (weak)
 };
 
 // not sure about this one
@@ -16,7 +16,9 @@ struct MemoryCardMgrCommandBase {
 };
 
 struct MemoryCardMgr {
-	struct ECardSlot;
+	enum ECardSlot {
+		CARDSLOT_Unk0 = 0,
+	};
 
 	MemoryCardMgr();
 
@@ -24,7 +26,7 @@ struct MemoryCardMgr {
 	virtual void update();                                 // _0C
 	virtual void doInit();                                 // _10 (weak)
 	virtual void doCardProc(void*, MemoryCardMgrCommand*); // _14 (weak)
-	virtual void getHeaderSize();                          // _18 (weak)
+	virtual u32 getHeaderSize();                           // _18 (weak)
 	virtual void doMakeHeader(unsigned char*);             // _1C
 	virtual void doSetCardStat(CARDStat*);                 // _20
 	virtual void doCheckCardStat(CARDStat*);               // _24

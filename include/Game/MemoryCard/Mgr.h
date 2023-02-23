@@ -22,7 +22,7 @@ struct Mgr : public MemoryCardMgr {
 	virtual ~Mgr();                                        // _08 (weak)
 	virtual void update();                                 // _0C
 	virtual void doCardProc(void*, MemoryCardMgrCommand*); // _14
-	virtual void getHeaderSize();                          // _18 (weak)
+	virtual u32 getHeaderSize();                           // _18 (weak)
 	virtual void doMakeHeader(unsigned char*);             // _1C
 	virtual void doSetCardStat(CARDStat*);                 // _20
 	virtual void doCheckCardStat(CARDStat*);               // _24
@@ -74,17 +74,17 @@ struct Mgr : public MemoryCardMgr {
 	void writeGameOption(Stream&);
 	void readGameOption(Stream&);
 	void checkSerialNo(bool);
-	void commandSavePlayer(char, bool);
-	void commandSavePlayerNoCheckSerialNo(char, bool);
-	void getPlayerInfo(char, PlayerInfoHeader*, bool*);
-	void getIndexPlayerInfo(char, PlayerInfoHeader*, bool*);
-	void commandLoadPlayer(char);
+	void commandSavePlayer(s8, bool);
+	void commandSavePlayerNoCheckSerialNo(s8, bool);
+	void getPlayerInfo(s8, PlayerInfoHeader*, bool*);
+	void getIndexPlayerInfo(s8, PlayerInfoHeader*, bool*);
+	void commandLoadPlayer(s8);
 	void loadPlayerForNoCard(s8);
-	void loadPlayerProc(char, unsigned char*);
-	void commandDeletePlayer(char);
-	void savePlayerProc(char, unsigned char*, bool);
+	void loadPlayerProc(s8, unsigned char*);
+	void commandDeletePlayer(s8);
+	void savePlayerProc(s8, unsigned char*, bool);
 	void commandCheckSerialNo();
-	void commandCopyPlayer(char, char);
+	void commandCopyPlayer(s8, s8);
 	void writePlayer(Stream&);
 	void readPlayer(Stream&);
 	void checkOptionInfo(OptionInfo*);
@@ -95,10 +95,10 @@ struct Mgr : public MemoryCardMgr {
 	void testCheckSumPlayerInfo(PlayerInfo*);
 	void writeInvalidGameOption();
 	void writeInvalidPlayerInfoAll();
-	void writeInvalidPlayerInfo(int, char);
-	void checkPlayerNoPlayerInfo(int, char, PlayerInfoHeader*);
-	void getIndexInvalidPlayerInfo(int*, char*, char, unsigned long, bool);
-	void modifyPlayerInfo(char, bool*);
+	void writeInvalidPlayerInfo(int, s8);
+	void checkPlayerNoPlayerInfo(int, s8, PlayerInfoHeader*);
+	void getIndexInvalidPlayerInfo(int*, s8*, s8, unsigned long, bool);
+	void modifyPlayerInfo(s8, bool*);
 	void verifyCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot);
 	bool resetError();
 
@@ -106,20 +106,15 @@ struct Mgr : public MemoryCardMgr {
 };
 
 struct MgrCommandCopyPlayer : public MemoryCardMgrCommand {
-	virtual void getClassSize(); // _08 (weak)
+	virtual u32 getClassSize(); // _08 (weak)
 };
 
 struct MgrCommandPlayerNo : public MemoryCardMgrCommand {
-	virtual void getClassSize(); // _08 (weak)
+	virtual u32 getClassSize(); // _08 (weak)
 };
 
 struct MgrCommandGetPlayerHeader : public MemoryCardMgrCommand {
-	virtual void getClassSize(); // _08 (weak)
-};
-
-struct Resource {
-	virtual ~Resource();    // _08
-	virtual void _0C() = 0; // _0C - might be fake?
+	virtual u32 getClassSize(); // _08 (weak)
 };
 
 } // namespace MemoryCard
