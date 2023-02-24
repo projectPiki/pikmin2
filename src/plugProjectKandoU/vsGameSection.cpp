@@ -329,7 +329,7 @@ void VsGameSection::onSetSoundScene()
 	}
 
 	floorInfo.mAlphaType = static_cast<RoomMapMgr*>(mapMgr)->mFloorInfo->mParms.mFloorAlphaType.mValue;
-	floorInfo.mBetaType  = 0;
+	floorInfo.mBetaType  = 0; // hardcoded mBetaType to 0; ignores floorinfo f012 setting
 
 	if (!gameSystem->isMultiplayerMode()) {
 		floorInfo.setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk0, PSGame::SceneInfo::SFBS_1);

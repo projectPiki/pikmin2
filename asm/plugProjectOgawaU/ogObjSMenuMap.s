@@ -36,12 +36,9 @@ lbl_constructor:
 .endobj lbl_8048E228
 .balign 8
 .obj lbl_8048E238, local # u64 literals
-	.4byte 0x006F7269
-	.4byte 0x6D615F6C
-	.4byte 0x00006C75
-	.4byte 0x6A695F6C
-	.4byte 0x74616B61
-	.4byte 0x72615F6C
+	.8byte 0x006F72696D615F6C
+	.8byte 0x00006C756A695F6C
+	.8byte 0x74616B6172615F6C
 .endobj lbl_8048E238
 .balign 4
 .obj lbl_8048E250, local
@@ -89,50 +86,28 @@ lbl_constructor:
 .endobj govNAN___Q24Game5P2JST
 .balign 8
 .obj map_icon_tag__Q22og9newScreen, global
-	.4byte 0x6F6E6979
-	.4byte 0x6F6E5F72
-	.4byte 0x6F6E6979
-	.4byte 0x6F6E5F62
-	.4byte 0x6F6E6979
-	.4byte 0x6F6E5F79
-	.4byte 0x00007069
-	.4byte 0x6B695F72
-	.4byte 0x0070696B
-	.4byte 0x695F5F62
-	.4byte 0x00007069
-	.4byte 0x6B695F79
-	.4byte 0x0070696B
-	.4byte 0x695F626C
-	.4byte 0x00007069
-	.4byte 0x6B695F77
-	.4byte 0x0070696B
-	.4byte 0x695F6672
-	.4byte 0x0070696B
-	.4byte 0x695F6D65
-	.4byte 0x006B616E
-	.4byte 0x6B657475
-	.4byte 0x00000000
-	.4byte 0x63617665
-	.4byte 0x00000000
-	.4byte 0x00706F74
-	.4byte 0x006C756A
-	.4byte 0x695F6273
-	.4byte 0x6F72696D
-	.4byte 0x615F6273
-	.4byte 0x00000000
-	.4byte 0x0075666F
-	.4byte 0x74616B61
-	.4byte 0x725F6273
-	.4byte 0x74616B61
-	.4byte 0x725F6273
-	.4byte 0x74616B61
-	.4byte 0x725F6273
-	.4byte 0x00000000
-	.4byte 0x63617665
-	.4byte 0x0000636F
-	.4byte 0x6D705F63
-	.4byte 0x00000000
-	.4byte 0x63617665
+	.8byte 0x6F6E69796F6E5F72
+	.8byte 0x6F6E69796F6E5F62
+	.8byte 0x6F6E69796F6E5F79
+	.8byte 0x000070696B695F72
+	.8byte 0x0070696B695F5F62
+	.8byte 0x000070696B695F79
+	.8byte 0x0070696B695F626C
+	.8byte 0x000070696B695F77
+	.8byte 0x0070696B695F6672
+	.8byte 0x0070696B695F6D65
+	.8byte 0x006B616E6B657475
+	.8byte 0x0000000063617665
+	.8byte 0x0000000000706F74
+	.8byte 0x006C756A695F6273
+	.8byte 0x6F72696D615F6273
+	.8byte 0x000000000075666F
+	.8byte 0x74616B61725F6273
+	.8byte 0x74616B61725F6273
+	.8byte 0x74616B61725F6273
+	.8byte 0x0000000063617665
+	.8byte 0x0000636F6D705F63
+	.8byte 0x0000000063617665
 .endobj map_icon_tag__Q22og9newScreen
 .obj __vt__Q26Screen11SetSceneArg, weak
 	.4byte 0

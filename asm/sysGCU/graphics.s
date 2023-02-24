@@ -5,30 +5,33 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80499C38:
+.obj lbl_80499C38, local
 	.asciz "initPrimDraw"
+.endobj lbl_80499C38
 .balign 4
-lbl_80499C48:
+.obj lbl_80499C48, local
 	.asciz "draw axis"
+.endobj lbl_80499C48
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__17HorizonalSplitter
-__vt__17HorizonalSplitter:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__17HorizonalSplitter, global
 	.4byte 0
 	.4byte 0
 	.4byte split2__17HorizonalSplitterFf
 	.4byte split4__8SplitterFff
-.global __vt__8Splitter
-__vt__8Splitter:
+.endobj __vt__17HorizonalSplitter
+.obj __vt__8Splitter, weak
 	.4byte 0
 	.4byte 0
 	.4byte split2__8SplitterFf
 	.4byte split4__8SplitterFff
+.endobj __vt__8Splitter
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

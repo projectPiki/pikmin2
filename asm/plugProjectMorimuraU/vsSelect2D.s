@@ -74,391 +74,313 @@ lbl_constructor:
 	.4byte lbl_80494BF8
 .endobj lbl_80494C08
 .balign 4
-lbl_80494C30:
+.obj lbl_80494C30, local
 	.asciz "timg/orima001.bti"
+.endobj lbl_80494C30
 .balign 4
-lbl_80494C44:
+.obj lbl_80494C44, local
 	.asciz "timg/orima002.bti"
+.endobj lbl_80494C44
 .balign 4
-lbl_80494C58:
+.obj lbl_80494C58, local
 	.asciz "timg/orima003.bti"
+.endobj lbl_80494C58
 .balign 4
-lbl_80494C6C:
+.obj lbl_80494C6C, local
 	.asciz "timg/orima004.bti"
+.endobj lbl_80494C6C
 .balign 4
-lbl_80494C80:
+.obj lbl_80494C80, local
 	.asciz "timg/orima005.bti"
+.endobj lbl_80494C80
 .balign 4
-lbl_80494C94:
+.obj lbl_80494C94, local
 	.4byte lbl_80494C30
 	.4byte lbl_80494C44
 	.4byte lbl_80494C58
 	.4byte lbl_80494C6C
 	.4byte lbl_80494C80
+.endobj lbl_80494C94
 .balign 4
-lbl_80494CA8:
+.obj lbl_80494CA8, local
 	.asciz "timg/lui001.bti"
+.endobj lbl_80494CA8
 .balign 4
-lbl_80494CB8:
+.obj lbl_80494CB8, local
 	.asciz "timg/lui002.bti"
+.endobj lbl_80494CB8
 .balign 4
-lbl_80494CC8:
+.obj lbl_80494CC8, local
 	.asciz "timg/lui003.bti"
+.endobj lbl_80494CC8
 .balign 4
-lbl_80494CD8:
+.obj lbl_80494CD8, local
 	.asciz "timg/lui004.bti"
+.endobj lbl_80494CD8
 .balign 4
-lbl_80494CE8:
+.obj lbl_80494CE8, local
 	.asciz "timg/lui005.bti"
+.endobj lbl_80494CE8
 .balign 4
-lbl_80494CF8:
+.obj lbl_80494CF8, local
 	.4byte lbl_80494CA8
 	.4byte lbl_80494CB8
 	.4byte lbl_80494CC8
 	.4byte lbl_80494CD8
 	.4byte lbl_80494CE8
+.endobj lbl_80494CF8
 .balign 8
-lbl_80494D10:
-	.4byte 0x50306963
-	.4byte 0x6F6E3030
-	.4byte 0x50306963
-	.4byte 0x6F6E3031
-	.4byte 0x50306963
-	.4byte 0x6F6E3032
-	.4byte 0x50306963
-	.4byte 0x6F6E3033
-	.4byte 0x50306963
-	.4byte 0x6F6E3034
-	.4byte 0x50306963
-	.4byte 0x6F6E3035
-	.4byte 0x50316963
-	.4byte 0x6F6E3030
-	.4byte 0x50316963
-	.4byte 0x6F6E3031
-	.4byte 0x50316963
-	.4byte 0x6F6E3032
-	.4byte 0x50316963
-	.4byte 0x6F6E3033
-	.4byte 0x50316963
-	.4byte 0x6F6E3034
-	.4byte 0x50316963
-	.4byte 0x6F6E3035
-	.4byte 0x0054626D
-	.4byte 0x656E7533
-	.4byte 0x0054626D
-	.4byte 0x656E7534
-	.4byte 0x0054626D
-	.4byte 0x656E7535
-	.4byte 0x00004E72
-	.4byte 0x705F3030
-	.4byte 0x00004E72
-	.4byte 0x705F3031
-	.4byte 0x00004E72
-	.4byte 0x705F3032
-	.4byte 0x00004E72
-	.4byte 0x705F3033
-	.4byte 0x00004E72
-	.4byte 0x705F3034
-	.4byte 0x00004E72
-	.4byte 0x705F3035
-	.4byte 0x00004E72
-	.4byte 0x705F3036
-	.4byte 0x00004E72
-	.4byte 0x705F3037
-	.4byte 0x00004E72
-	.4byte 0x705F3038
-	.4byte 0x00004E72
-	.4byte 0x705F3039
-	.4byte 0x00004E62
-	.4byte 0x705F3030
-	.4byte 0x00004E62
-	.4byte 0x705F3031
-	.4byte 0x00004E62
-	.4byte 0x705F3032
-	.4byte 0x00004E62
-	.4byte 0x705F3033
-	.4byte 0x00004E62
-	.4byte 0x705F3034
-	.4byte 0x00004E62
-	.4byte 0x705F3035
-	.4byte 0x00004E62
-	.4byte 0x705F3036
-	.4byte 0x00004E62
-	.4byte 0x705F3037
-	.4byte 0x00004E62
-	.4byte 0x705F3038
-	.4byte 0x00004E62
-	.4byte 0x705F3039
-	.4byte 0x00546D65
-	.4byte 0x6E753030
-	.4byte 0x00546D65
-	.4byte 0x6E753031
-	.4byte 0x00546D65
-	.4byte 0x6E753032
-	.4byte 0x00546D65
-	.4byte 0x6E753033
-	.4byte 0x00546D65
-	.4byte 0x6E753034
-	.4byte 0x73657420
-	.4byte 0x44656275
-	.4byte 0x67486561
-	.4byte 0x70506172
-	.4byte 0x656E742E
-	.4byte 0x206D6169
-	.4byte 0x6C20746F
-	.4byte 0x206D6F72
-	.4byte 0x696D756E
-	.4byte 0x2E0A0000
-	.4byte 0x7265645F
-	.4byte 0x706F642E
-	.4byte 0x626C6F00
-	.4byte 0x7265645F
-	.4byte 0x706F642E
-	.4byte 0x62636B00
-	.4byte 0x7265645F
-	.4byte 0x706F642E
-	.4byte 0x62747000
-	.4byte 0x626C7565
-	.4byte 0x5F706F64
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x626C7565
-	.4byte 0x5F706F64
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x626C7565
-	.4byte 0x5F706F64
-	.4byte 0x2E627470
-	.4byte 0x00000000
-	.4byte 0x76735365
-	.4byte 0x6C656374
-	.4byte 0x54657874
-	.4byte 0x75726500
-	.4byte 0x7265735F
-	.4byte 0x76735365
-	.4byte 0x6C656374
-	.4byte 0x54657874
-	.4byte 0x7572652E
-	.4byte 0x737A7300
-	.4byte 0x6172634E
-	.4byte 0x616D6520
-	.4byte 0x3D202573
-	.4byte 0x0A000000
-	.4byte 0x74696D67
-	.4byte 0x2F6C6F6F
-	.4byte 0x7A795F69
-	.4byte 0x636F6E2E
-	.4byte 0x62746900
-	.4byte 0x76735F73
-	.4byte 0x6C6F745F
-	.4byte 0x74657874
-	.4byte 0x7572652E
-	.4byte 0x626C6F00
-	.4byte 0x6F746567
-	.4byte 0x6172752E
-	.4byte 0x62746900
-	.4byte 0x414B5F6B
-	.4byte 0x61676572
-	.4byte 0x6F755252
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6D61
-	.4byte 0x696E2E62
-	.4byte 0x6C6F0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6D61
-	.4byte 0x696E2E62
-	.4byte 0x746B0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6D61
-	.4byte 0x696E5F30
-	.4byte 0x322E6274
-	.4byte 0x6B000000
-	.4byte 0x62746E6D
-	.4byte 0x73675B25
-	.4byte 0x645D2069
-	.4byte 0x7320756E
-	.4byte 0x6B6E6F77
-	.4byte 0x6E000000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6C69
-	.4byte 0x73742E62
-	.4byte 0x6C6F0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6267
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6267
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6669
-	.4byte 0x72652E62
-	.4byte 0x6C6F0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6669
-	.4byte 0x72652E62
-	.4byte 0x746B0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6669
-	.4byte 0x72655F30
-	.4byte 0x322E6274
-	.4byte 0x6B000000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F772E
-	.4byte 0x626C6F00
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F772E
-	.4byte 0x62746B00
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30322E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30332E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30342E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30352E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30362E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30372E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30382E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30392E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x31302E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x31312E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x31322E62
-	.4byte 0x746B0000
-lbl_80495184:
-	.4byte 0x6E617669
-	.4byte 0x5F6C2E62
-	.4byte 0x74690000
-	.4byte 0x636F7572
-	.4byte 0x73656E61
-	.4byte 0x6D655B25
-	.4byte 0x645D206E
-	.4byte 0x6F742066
-	.4byte 0x696E640A
-	.4byte 0x00000000
-	.4byte 0x70696374
-	.4byte 0x75726566
-	.4byte 0x72616D65
-	.4byte 0x5B25645D
-	.4byte 0x206E6F74
-	.4byte 0x2066696E
-	.4byte 0x640A0000
-lbl_804951C8:
-	.4byte 0x656E6457
-	.4byte 0x696E646F
-	.4byte 0x77000000
-lbl_804951D4:
-	.4byte 0x7265735F
-	.4byte 0x76735365
-	.4byte 0x6C656374
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+.obj lbl_80494D10, local
+	.8byte 0x503069636F6E3030
+	.8byte 0x503069636F6E3031
+	.8byte 0x503069636F6E3032
+	.8byte 0x503069636F6E3033
+	.8byte 0x503069636F6E3034
+	.8byte 0x503069636F6E3035
+	.8byte 0x503169636F6E3030
+	.8byte 0x503169636F6E3031
+	.8byte 0x503169636F6E3032
+	.8byte 0x503169636F6E3033
+	.8byte 0x503169636F6E3034
+	.8byte 0x503169636F6E3035
+.endobj lbl_80494D10
+.balign 8
+.obj lbl_80494D70, local
+	.8byte 0x0054626D656E7533
+	.8byte 0x0054626D656E7534
+	.8byte 0x0054626D656E7535
+.endobj lbl_80494D70
+.balign 8
+.obj lbl_80494D88, local
+	.8byte 0x00004E72705F3030
+	.8byte 0x00004E72705F3031
+	.8byte 0x00004E72705F3032
+	.8byte 0x00004E72705F3033
+	.8byte 0x00004E72705F3034
+	.8byte 0x00004E72705F3035
+	.8byte 0x00004E72705F3036
+	.8byte 0x00004E72705F3037
+	.8byte 0x00004E72705F3038
+	.8byte 0x00004E72705F3039
+.endobj lbl_80494D88
+.balign 8
+.obj lbl_80494DD8, local
+	.8byte 0x00004E62705F3030
+	.8byte 0x00004E62705F3031
+	.8byte 0x00004E62705F3032
+	.8byte 0x00004E62705F3033
+	.8byte 0x00004E62705F3034
+	.8byte 0x00004E62705F3035
+	.8byte 0x00004E62705F3036
+	.8byte 0x00004E62705F3037
+	.8byte 0x00004E62705F3038
+	.8byte 0x00004E62705F3039
+.endobj lbl_80494DD8
+.balign 8
+.obj lbl_80494E28, local
+	.8byte 0x00546D656E753030
+	.8byte 0x00546D656E753031
+	.8byte 0x00546D656E753032
+	.8byte 0x00546D656E753033
+	.8byte 0x00546D656E753034
+.endobj lbl_80494E28
+.balign 4
+.obj lbl_80494E50, local
+	.asciz "set DebugHeapParent. mail to morimun.\n"
+.endobj lbl_80494E50
+.balign 4
+.obj lbl_80494E78, local
+	.asciz "red_pod.blo"
+.endobj lbl_80494E78
+.balign 4
+.obj lbl_80494E84, local
+	.asciz "red_pod.bck"
+.endobj lbl_80494E84
+.balign 4
+.obj lbl_80494E90, local
+	.asciz "red_pod.btp"
+.endobj lbl_80494E90
+.balign 4
+.obj lbl_80494E9C, local
+	.asciz "blue_pod.blo"
+.endobj lbl_80494E9C
+.balign 4
+.obj lbl_80494EAC, local
+	.asciz "blue_pod.bck"
+.endobj lbl_80494EAC
+.balign 4
+.obj lbl_80494EBC, local
+	.asciz "blue_pod.btp"
+.endobj lbl_80494EBC
+.balign 4
+.obj lbl_80494ECC, local
+	.asciz "vsSelectTexture"
+.endobj lbl_80494ECC
+.balign 4
+.obj lbl_80494EDC, local
+	.asciz "res_vsSelectTexture.szs"
+.endobj lbl_80494EDC
+.balign 4
+.obj lbl_80494EF4, local
+	.asciz "arcName = %s\n"
+.endobj lbl_80494EF4
+.balign 4
+.obj lbl_80494F04, local
+	.asciz "timg/loozy_icon.bti"
+.endobj lbl_80494F04
+.balign 4
+.obj lbl_80494F18, local
+	.asciz "vs_slot_texture.blo"
+.endobj lbl_80494F18
+.balign 4
+.obj lbl_80494F2C, local
+	.asciz "otegaru.bti"
+.endobj lbl_80494F2C
+.balign 4
+.obj lbl_80494F38, local
+	.asciz "AK_kagerouRR.bti"
+.endobj lbl_80494F38
+.balign 4
+.obj lbl_80494F4C, local
+	.asciz "vs_select_main.blo"
+.endobj lbl_80494F4C
+.balign 4
+.obj lbl_80494F60, local
+	.asciz "vs_select_main.btk"
+.endobj lbl_80494F60
+.balign 4
+.obj lbl_80494F74, local
+	.asciz "vs_select_main_02.btk"
+.endobj lbl_80494F74
+.balign 4
+.obj lbl_80494F8C, local
+	.asciz "btnmsg[%d] is unknown"
+.endobj lbl_80494F8C
+.balign 4
+.obj lbl_80494FA4, local
+	.asciz "vs_select_list.blo"
+.endobj lbl_80494FA4
+.balign 4
+.obj lbl_80494FB8, local
+	.asciz "vs_select_bg.blo"
+.endobj lbl_80494FB8
+.balign 4
+.obj lbl_80494FCC, local
+	.asciz "vs_select_bg.btk"
+.endobj lbl_80494FCC
+.balign 4
+.obj lbl_80494FE0, local
+	.asciz "vs_select_fire.blo"
+.endobj lbl_80494FE0
+.balign 4
+.obj lbl_80494FF4, local
+	.asciz "vs_select_fire.btk"
+.endobj lbl_80494FF4
+.balign 4
+.obj lbl_80495008, local
+	.asciz "vs_select_fire_02.btk"
+.endobj lbl_80495008
+.balign 4
+.obj lbl_80495020, local
+	.asciz "vs_main_rule_window.blo"
+.endobj lbl_80495020
+.balign 4
+.obj lbl_80495038, local
+	.asciz "vs_main_rule_window.btk"
+.endobj lbl_80495038
+.balign 4
+.obj lbl_80495050, local
+	.asciz "vs_main_rule_window_02.btk"
+.endobj lbl_80495050
+.balign 4
+.obj lbl_8049506C, local
+	.asciz "vs_main_rule_window_03.btk"
+.endobj lbl_8049506C
+.balign 4
+.obj lbl_80495088, local
+	.asciz "vs_main_rule_window_04.btk"
+.endobj lbl_80495088
+.balign 4
+.obj lbl_804950A4, local
+	.asciz "vs_main_rule_window_05.btk"
+.endobj lbl_804950A4
+.balign 4
+.obj lbl_804950C0, local
+	.asciz "vs_main_rule_window_06.btk"
+.endobj lbl_804950C0
+.balign 4
+.obj lbl_804950DC, local
+	.asciz "vs_main_rule_window_07.btk"
+.endobj lbl_804950DC
+.balign 4
+.obj lbl_804950F8, local
+	.asciz "vs_main_rule_window_08.btk"
+.endobj lbl_804950F8
+.balign 4
+.obj lbl_80495114, local
+	.asciz "vs_main_rule_window_09.btk"
+.endobj lbl_80495114
+.balign 4
+.obj lbl_80495130, local
+	.asciz "vs_main_rule_window_10.btk"
+.endobj lbl_80495130
+.balign 4
+.obj lbl_8049514C, local
+	.asciz "vs_main_rule_window_11.btk"
+.endobj lbl_8049514C
+.balign 4
+.obj lbl_80495168, local
+	.asciz "vs_main_rule_window_12.btk"
+.endobj lbl_80495168
+.balign 4
+.obj lbl_80495184, local
+	.asciz "navi_l.bti"
+.endobj lbl_80495184
+.balign 4
+.obj lbl_80495190, local
+	.asciz "coursename[%d] not find\n"
+.endobj lbl_80495190
+.balign 4
+.obj lbl_804951AC, local
+	.asciz "pictureframe[%d] not find\n"
+.endobj lbl_804951AC
+.balign 4
+.obj lbl_804951C8, local
+	.asciz "endWindow"
+.endobj lbl_804951C8
+.balign 4
+.obj lbl_804951D4, local
+	.asciz "res_vsSelect.szs"
+.endobj lbl_804951D4
+.balign 4
+.obj lbl_804951E8, local
+	.asciz "screenObj.h"
+.endobj lbl_804951E8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E5328:
+.obj lbl_804E5328, local # not in the map
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000003
 	.4byte 0x00000000
-.global mOrimaTexture__Q28Morimura9TVsSelect
-mOrimaTexture__Q28Morimura9TVsSelect:
+.endobj lbl_804E5328
+.obj mOrimaTexture__Q28Morimura9TVsSelect, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global mLouieTexture__Q28Morimura9TVsSelect
-mLouieTexture__Q28Morimura9TVsSelect:
+.endobj mOrimaTexture__Q28Morimura9TVsSelect
+.obj mLouieTexture__Q28Morimura9TVsSelect, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global slotIDInfo__8Morimura
-slotIDInfo__8Morimura:
+.endobj mLouieTexture__Q28Morimura9TVsSelect
+.balign 8
+.obj slotIDInfo__8Morimura, local
 	.4byte 0x00000006
 	.4byte 0x00000000
 	.4byte 0x00323034
@@ -507,6 +429,8 @@ slotIDInfo__8Morimura:
 	.4byte 0x0000000B
 	.4byte 0x00323034
 	.4byte 0x335F3030
+.endobj slotIDInfo__8Morimura
+.balign 4
 .obj __vt__Q28Morimura14TVsSelectScene, global
 	.4byte 0
 	.4byte 0
@@ -709,138 +633,152 @@ slotIDInfo__8Morimura:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mAngRate__Q28Morimura9TVsSelect
-mAngRate__Q28Morimura9TVsSelect:
+.obj mAngRate__Q28Morimura9TVsSelect, global
 	.float 0.2
-.global mMoveSpeed__Q28Morimura9TVsSelect
-mMoveSpeed__Q28Morimura9TVsSelect:
+.endobj mAngRate__Q28Morimura9TVsSelect
+.obj mMoveSpeed__Q28Morimura9TVsSelect, global
 	.float 25.0
-.global mIndVal__Q28Morimura9TVsSelect
-mIndVal__Q28Morimura9TVsSelect:
+.endobj mMoveSpeed__Q28Morimura9TVsSelect
+.obj mIndVal__Q28Morimura9TVsSelect, global
 	.float 0.05
-.global mIndShuki__Q28Morimura9TVsSelect
-mIndShuki__Q28Morimura9TVsSelect:
+.endobj mIndVal__Q28Morimura9TVsSelect
+.obj mIndShuki__Q28Morimura9TVsSelect, global
 	.float 0.3
-.global mZoomFrameMax__Q28Morimura9TVsSelect
-mZoomFrameMax__Q28Morimura9TVsSelect:
+.endobj mIndShuki__Q28Morimura9TVsSelect
+.obj mZoomFrameMax__Q28Morimura9TVsSelect, global
 	.float 25.0
-.global mTestVal__Q28Morimura9TVsSelect
-mTestVal__Q28Morimura9TVsSelect:
+.endobj mZoomFrameMax__Q28Morimura9TVsSelect
+.obj mTestVal__Q28Morimura9TVsSelect, global
 	.float 10.0
-.global mAngUp__Q28Morimura9TVsSelect
-mAngUp__Q28Morimura9TVsSelect:
+.endobj mTestVal__Q28Morimura9TVsSelect
+.obj mAngUp__Q28Morimura9TVsSelect, global
 	.float 0.03
-.global mWindowScale__Q28Morimura9TVsSelect
-mWindowScale__Q28Morimura9TVsSelect:
+.endobj mAngUp__Q28Morimura9TVsSelect
+.obj mWindowScale__Q28Morimura9TVsSelect, global
 	.float 1.0
-.global mDemoScaleMax__Q28Morimura9TVsSelect
-mDemoScaleMax__Q28Morimura9TVsSelect:
+.endobj mWindowScale__Q28Morimura9TVsSelect
+.obj mDemoScaleMax__Q28Morimura9TVsSelect, global
 	.float 2.2
-.global mDemoScale__Q28Morimura9TVsSelect
-mDemoScale__Q28Morimura9TVsSelect:
+.endobj mDemoScaleMax__Q28Morimura9TVsSelect
+.obj mDemoScale__Q28Morimura9TVsSelect, global
 	.float 1.0
-.global mDemoOffsetMax__Q28Morimura9TVsSelect
-mDemoOffsetMax__Q28Morimura9TVsSelect:
+.endobj mDemoScale__Q28Morimura9TVsSelect
+.obj mDemoOffsetMax__Q28Morimura9TVsSelect, global
 	.float 290.0
-.global mFireAlphaRate__Q28Morimura9TVsSelect
-mFireAlphaRate__Q28Morimura9TVsSelect:
+.endobj mDemoOffsetMax__Q28Morimura9TVsSelect
+.obj mFireAlphaRate__Q28Morimura9TVsSelect, global
 	.float 0.5
+.endobj mFireAlphaRate__Q28Morimura9TVsSelect
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mDebugHeapParent__Q28Morimura9TVsSelect
-mDebugHeapParent__Q28Morimura9TVsSelect:
+.obj mDebugHeapParent__Q28Morimura9TVsSelect, global
 	.skip 0x4
-.global mDebugHeap__Q28Morimura9TVsSelect
-mDebugHeap__Q28Morimura9TVsSelect:
+.endobj mDebugHeapParent__Q28Morimura9TVsSelect
+.obj mDebugHeap__Q28Morimura9TVsSelect, global
 	.skip 0x4
-.global mPikiOffset__Q28Morimura7TVsPiki
-mPikiOffset__Q28Morimura7TVsPiki:
+.endobj mDebugHeap__Q28Morimura9TVsSelect
+.obj mPikiOffset__Q28Morimura7TVsPiki, global
 	.skip 0x8
-.global mForceDemoStart__Q28Morimura9TVsSelect
-mForceDemoStart__Q28Morimura9TVsSelect:
+.endobj mPikiOffset__Q28Morimura7TVsPiki
+.obj mForceDemoStart__Q28Morimura9TVsSelect, global
 	.skip 0x1
-.global mLoopDrum__Q28Morimura9TVsSelect
-mLoopDrum__Q28Morimura9TVsSelect:
+.endobj mForceDemoStart__Q28Morimura9TVsSelect
+.obj mLoopDrum__Q28Morimura9TVsSelect, global
 	.skip 0x1
-.global mCanCancel__Q28Morimura9TVsSelect
-mCanCancel__Q28Morimura9TVsSelect:
+.endobj mLoopDrum__Q28Morimura9TVsSelect
+.obj mCanCancel__Q28Morimura9TVsSelect, global
 	.skip 0x1
+.endobj mCanCancel__Q28Morimura9TVsSelect
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051F170:
-	.4byte 0x00000000
-lbl_8051F174:
-	.4byte 0x44200000
-lbl_8051F178:
-	.4byte 0x43F00000
-lbl_8051F17C:
-	.4byte 0xBF800000
-lbl_8051F180:
+.obj lbl_8051F170, local
+	.float 0.0
+.endobj lbl_8051F170
+.obj lbl_8051F174, local
+	.float 640.0
+.endobj lbl_8051F174
+.obj lbl_8051F178, local
+	.float 480.0
+.endobj lbl_8051F178
+.obj lbl_8051F17C, local
+	.float -1.0
+.endobj lbl_8051F17C
+.obj lbl_8051F180, local
 	.float 1.0
-lbl_8051F184:
-	.4byte 0x3C8EFA35
-lbl_8051F188:
+.endobj lbl_8051F180
+.obj lbl_8051F184, local
+	.float 0.017453292
+.endobj lbl_8051F184
+.obj lbl_8051F188, local
 	.float 0.5
-lbl_8051F18C:
-	.4byte 0xC4480000
-lbl_8051F190:
-	.4byte 0x41A00000
-	.4byte 0x00000000
-lbl_8051F198:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051F1A0:
-	.4byte 0x40A00000
-lbl_8051F1A4:
-	.4byte 0x3EA0D97C
-lbl_8051F1A8:
-	.4byte 0x40490FDB
-lbl_8051F1AC:
-	.4byte 0xC1A00000
-lbl_8051F1B0:
-	.4byte 0xC3A2F983
+.endobj lbl_8051F188
+.obj lbl_8051F18C, local
+	.float -800.0
+.endobj lbl_8051F18C
+.obj lbl_8051F190, local
+	.float 20.0
+.endobj lbl_8051F190
+.balign 8
+.obj lbl_8051F198, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051F198
+.obj lbl_8051F1A0, local
+	.float 5.0
+.endobj lbl_8051F1A0
+.obj lbl_8051F1A4, local # pi/10
+	.float 0.31415927
+.endobj lbl_8051F1A4
+.obj lbl_8051F1A8, local # pi
+	.float 3.1415927
+.endobj lbl_8051F1A8
+.obj lbl_8051F1AC, local
+	.float -20.0
+.endobj lbl_8051F1AC
+.obj lbl_8051F1B0, local
+	.float -325.9493
+.endobj lbl_8051F1B0
 lbl_8051F1B4:
-	.4byte 0x43A2F983
+	.float 325.9493
 lbl_8051F1B8:
-	.4byte 0x42480000
+	.float 50.0
 lbl_8051F1BC:
-	.4byte 0x41400000
+	.float 12.0
 lbl_8051F1C0:
-	.4byte 0xC2C80000
+	.float -100.0
 lbl_8051F1C4:
-	.4byte 0x47000000
-lbl_8051F1C8:
-	.4byte 0x40C90FDB
+	.float 32768.0
+lbl_8051F1C8: # tau
+	.float 6.2831855
 lbl_8051F1CC:
 	.float 0.05
 lbl_8051F1D0:
-	.4byte 0x3ECCCCCD
+	.float 0.4
 lbl_8051F1D4:
-	.4byte 0x43B40000
+	.float 360.0
 lbl_8051F1D8:
 	.float 0.1
 lbl_8051F1DC:
-	.4byte 0xC3700000
+	.float -240.0
 lbl_8051F1E0:
-	.4byte 0xC3A00000
+	.float -320.0
 lbl_8051F1E4:
-	.4byte 0x3FA00000
+	.float 1.25
 lbl_8051F1E8:
-	.4byte 0xC1F00000
+	.float -30.0
 lbl_8051F1EC:
-	.4byte 0x40000000
+	.float 2.0
 lbl_8051F1F0:
-	.4byte 0x41800000
+	.float 16.0
 lbl_8051F1F4:
-	.4byte 0x41F00000
+	.float 30.0
 lbl_8051F1F8:
-	.4byte 0x3F4CCCCD
+	.float 0.8
 lbl_8051F1FC:
 	.float 0.25
 lbl_8051F200:
-	.4byte 0x42700000
+	.float 60.0
 lbl_8051F204:
 	.4byte 0x42E60000
 lbl_8051F208:
@@ -857,10 +795,9 @@ lbl_8051F21C:
 	.4byte 0x3FC00000
 lbl_8051F220:
 	.4byte 0x40200000
-	.4byte 0x00000000
-lbl_8051F228:
-	.4byte 0x00343737
-	.4byte 0x315F3030
+.balign 8
+lbl_8051F228: # u64 literal
+	.8byte 0x00343737315F3030
 lbl_8051F230:
 	.4byte 0x42C60000
 lbl_8051F234:
@@ -905,9 +842,9 @@ lbl_8051F280:
 	.4byte 0x43910000
 lbl_8051F284:
 	.4byte 0x41C80000
+.balign 8
 lbl_8051F288:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 lbl_8051F290:
 	.4byte 0x41200000
 lbl_8051F294:

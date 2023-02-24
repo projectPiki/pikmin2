@@ -50,17 +50,13 @@ lbl_constructor:
 .endobj lbl_80498900
 .balign 8
 .obj lbl_80498910, local
-	.4byte 0x69506963
-	.4byte 0x6F6E3030
-	.4byte 0x69506963
-	.4byte 0x6F6E3031
+	.8byte 0x695069636F6E3030
+	.8byte 0x695069636F6E3031
 .endobj lbl_80498910
 .balign 8
 .obj lbl_80498920, local
-	.4byte 0x50696E61
-	.4byte 0x6D653030
-	.4byte 0x50696E61
-	.4byte 0x6D653031
+	.8byte 0x50696E616D653030
+	.8byte 0x50696E616D653031
 .endobj lbl_80498920
 .balign 4
 .obj lbl_80498930, local
@@ -206,14 +202,10 @@ lbl_constructor:
 .endobj lbl_80498BB8
 .balign 8
 .obj lbl_80498BC8, local
-	.4byte 0x6E756B69
-	.4byte 0x5F746578
-	.4byte 0x65666563
-	.4byte 0x745F3030
-	.4byte 0x65666563
-	.4byte 0x745F3031
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.8byte 0x6E756B695F746578
+	.8byte 0x65666563745F3030
+	.8byte 0x65666563745F3031
+	.8byte 0x0000000000000000
 .endobj lbl_80498BC8
 .balign 4
 .obj lbl_80498BE8, local
@@ -259,18 +251,12 @@ lbl_constructor:
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
 .obj arrow__Q22kh6Screen, local
-	.4byte 0x004E7961
-	.4byte 0x6A693031
-	.4byte 0x004E7961
-	.4byte 0x6A693032
-	.4byte 0x004E7961
-	.4byte 0x6A693033
-	.4byte 0x004E7961
-	.4byte 0x6A693034
-	.4byte 0x004E7961
-	.4byte 0x6A693035
-	.4byte 0x004E7961
-	.4byte 0x6A693036
+	.8byte 0x004E79616A693031
+	.8byte 0x004E79616A693032
+	.8byte 0x004E79616A693033
+	.8byte 0x004E79616A693034
+	.8byte 0x004E79616A693035
+	.8byte 0x004E79616A693036
 .endobj arrow__Q22kh6Screen
 .obj lbl_804EADA8, local
 	.4byte .L_80408AB8

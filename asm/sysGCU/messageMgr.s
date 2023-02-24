@@ -5,19 +5,23 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049A8D0:
+.obj lbl_8049A8D0, local
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj lbl_8049A8D0
 .balign 4
-lbl_8049A8DC:
+.obj lbl_8049A8DC, local
 	.asciz "/message/font_foreign.szs"
+.endobj lbl_8049A8DC
 .balign 4
-lbl_8049A8F8:
+.obj lbl_8049A8F8, local
 	.asciz "/message/font_jpn.szs"
+.endobj lbl_8049A8F8
 .balign 4
-lbl_8049A910:
+.obj lbl_8049A910, local
 	.asciz "/message/mesRes_eng.szs"
+.endobj lbl_8049A910
 .balign 4
 lbl_8049A928:
 	.asciz "/message/mesRes_fra.szs"
@@ -154,15 +158,16 @@ lbl_8049AB7C: # Shift-JIS
 	.4byte 0x8389815B
 	.4byte 0x82CC8370
 	.4byte 0x815B8358
-	.4byte 0x00000000
+	.byte 0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-sFontResName__5P2JME:
+.endobj govNAN___Q24Game5P2JST
+.obj sFontResName__5P2JME, local
 	.4byte lbl_8049A8DC
 	.4byte lbl_8049A8DC
 	.4byte lbl_8049A8DC
@@ -170,7 +175,8 @@ sFontResName__5P2JME:
 	.4byte lbl_8049A8DC
 	.4byte lbl_8049A8F8
 	.4byte lbl_8049A8DC
-sMesResName__5P2JME:
+.endobj sFontResName__5P2JME
+.obj sMesResName__5P2JME, local
 	.4byte lbl_8049A910
 	.4byte lbl_8049A928
 	.4byte lbl_8049A940
@@ -178,7 +184,8 @@ sMesResName__5P2JME:
 	.4byte lbl_8049A970
 	.4byte lbl_8049A988
 	.4byte lbl_8049A9A0
-cBtnTexName__5P2JME:
+.endobj sMesResName__5P2JME
+.obj cBtnTexName__5P2JME, local
 	.4byte lbl_8049A9B8
 	.4byte lbl_8049A9C4
 	.4byte lbl_8049A9D0
@@ -190,32 +197,38 @@ cBtnTexName__5P2JME:
 	.4byte lbl_8049AA18
 	.4byte lbl_8049AA24
 	.4byte lbl_8049AA30
-.global __vt__Q25P2JME3Mgr
-__vt__Q25P2JME3Mgr:
+.endobj cBtnTexName__5P2JME
+.obj __vt__Q25P2JME3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q25P2JME3MgrFv
+.endobj __vt__Q25P2JME3Mgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global gP2JMEMgr
-gP2JMEMgr:
+.endobj gfNAN___Q24Game5P2JST
+.obj gP2JMEMgr, global
 	.skip 0x4
+.endobj gP2JMEMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520890:
+.obj lbl_80520890, local
 	.asciz "tex res"
+.endobj lbl_80520890
 .balign 4
-lbl_80520898:
+.obj lbl_80520898, local
 	.asciz "resFont"
+.endobj lbl_80520898
 .balign 4
-lbl_805208A0:
+.obj lbl_805208A0, local
 	.asciz "bmg"
+.endobj lbl_805208A0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q25P2JME3MgrFP10JKRExpHeap

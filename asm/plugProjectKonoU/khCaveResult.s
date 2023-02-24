@@ -57,11 +57,9 @@ lbl_constructor:
 	.ascii "Piname00"
 	.ascii "Piname01"
 .endobj lbl_80498460
-.obj lbl_80498470, local # char literals
-	.4byte 0x004E6963
-	.4byte 0x6F6E3030
-	.4byte 0x004E6963
-	.4byte 0x6F6E3031
+.obj lbl_80498470, local # u64 literals
+	.8byte 0x004E69636F6E3030
+	.8byte 0x004E69636F6E3031
 .endobj lbl_80498470
 .obj lbl_80498480, local
 	.4byte 0x00000000

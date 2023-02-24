@@ -75,30 +75,18 @@ lbl_constructor:
 .endobj EquipItemList__Q24Game5Equip
 .balign 8
 .obj ItemMsgID_List__Q22og9newScreen, global # u64 literals
-	.4byte 0x00363132
-	.4byte 0x325F3030
-	.4byte 0x00363131
-	.4byte 0x395F3030
-	.4byte 0x00363132
-	.4byte 0x365F3030
-	.4byte 0x00363131
-	.4byte 0x365F3030
-	.4byte 0x00363131
-	.4byte 0x375F3030
-	.4byte 0x00363132
-	.4byte 0x395F3030
-	.4byte 0x00363132
-	.4byte 0x305F3030
-	.4byte 0x00363131
-	.4byte 0x385F3030
-	.4byte 0x00363132
-	.4byte 0x315F3030
-	.4byte 0x00363132
-	.4byte 0x375F3030
-	.4byte 0x00363132
-	.4byte 0x385F3030
-	.4byte 0x00363132
-	.4byte 0x335F3030
+	.8byte 0x00363132325F3030
+	.8byte 0x00363131395F3030
+	.8byte 0x00363132365F3030
+	.8byte 0x00363131365F3030
+	.8byte 0x00363131375F3030
+	.8byte 0x00363132395F3030
+	.8byte 0x00363132305F3030
+	.8byte 0x00363131385F3030
+	.8byte 0x00363132315F3030
+	.8byte 0x00363132375F3030
+	.8byte 0x00363132385F3030
+	.8byte 0x00363132335F3030
 .endobj ItemMsgID_List__Q22og9newScreen
 .obj __vt__Q32og9newScreen12ObjSMenuItem, global
 	.4byte 0

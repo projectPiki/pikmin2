@@ -9,12 +9,12 @@
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-AudioDecodeThreadCreated:
+.obj AudioDecodeThreadCreated, local
 	.skip 0x4
+.endobj AudioDecodeThreadCreated
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global CreateAudioDecodeThread
-CreateAudioDecodeThread:
+.fn CreateAudioDecodeThread, global
 /* 8044D2C4 0044A204  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D2C8 0044A208  7C 08 02 A6 */	mflr r0
 /* 8044D2CC 0044A20C  28 04 00 00 */	cmplwi r4, 0
@@ -71,9 +71,9 @@ CreateAudioDecodeThread:
 /* 8044D38C 0044A2CC  7C 08 03 A6 */	mtlr r0
 /* 8044D390 0044A2D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044D394 0044A2D4  4E 80 00 20 */	blr 
+.endfn CreateAudioDecodeThread
 
-.global AudioDecodeThreadStart
-AudioDecodeThreadStart:
+.fn AudioDecodeThreadStart, global
 /* 8044D398 0044A2D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D39C 0044A2DC  7C 08 02 A6 */	mflr r0
 /* 8044D3A0 0044A2E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -88,9 +88,9 @@ AudioDecodeThreadStart:
 /* 8044D3C0 0044A300  7C 08 03 A6 */	mtlr r0
 /* 8044D3C4 0044A304  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044D3C8 0044A308  4E 80 00 20 */	blr 
+.endfn AudioDecodeThreadStart
 
-.global AudioDecodeThreadCancel
-AudioDecodeThreadCancel:
+.fn AudioDecodeThreadCancel, global
 /* 8044D3CC 0044A30C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D3D0 0044A310  7C 08 02 A6 */	mflr r0
 /* 8044D3D4 0044A314  90 01 00 14 */	stw r0, 0x14(r1)
@@ -107,8 +107,9 @@ AudioDecodeThreadCancel:
 /* 8044D3FC 0044A33C  7C 08 03 A6 */	mtlr r0
 /* 8044D400 0044A340  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044D404 0044A344  4E 80 00 20 */	blr 
+.endfn AudioDecodeThreadCancel
 
-AudioDecoder__FPv:
+.fn AudioDecoder__FPv, local
 /* 8044D408 0044A348  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D40C 0044A34C  7C 08 02 A6 */	mflr r0
 /* 8044D410 0044A350  90 01 00 14 */	stw r0, 0x14(r1)
@@ -120,8 +121,9 @@ AudioDecoder__FPv:
 /* 8044D424 0044A364  7F E3 FB 78 */	mr r3, r31
 /* 8044D428 0044A368  48 00 24 5D */	bl PushReadedBuffer2
 /* 8044D42C 0044A36C  4B FF FF EC */	b .L_8044D418
+.endfn AudioDecoder__FPv
 
-AudioDecoderForOnMemory__FPv:
+.fn AudioDecoderForOnMemory__FPv, local
 /* 8044D430 0044A370  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044D434 0044A374  7C 08 02 A6 */	mflr r0
 /* 8044D438 0044A378  3C 80 80 51 */	lis r4, ActivePlayer@ha
@@ -168,8 +170,9 @@ AudioDecoderForOnMemory__FPv:
 .L_8044D4D0:
 /* 8044D4D0 0044A410  3B FF 00 01 */	addi r31, r31, 1
 /* 8044D4D4 0044A414  4B FF FF 88 */	b .L_8044D45C
+.endfn AudioDecoderForOnMemory__FPv
 
-AudioDecode__FP13THPReadBuffer:
+.fn AudioDecode__FP13THPReadBuffer, local
 /* 8044D4D8 0044A418  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044D4DC 0044A41C  7C 08 02 A6 */	mflr r0
 /* 8044D4E0 0044A420  3C 80 80 51 */	lis r4, ActivePlayer@ha
@@ -227,9 +230,9 @@ AudioDecode__FP13THPReadBuffer:
 /* 8044D5A0 0044A4E0  7C 08 03 A6 */	mtlr r0
 /* 8044D5A4 0044A4E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044D5A8 0044A4E8  4E 80 00 20 */	blr 
+.endfn AudioDecode__FP13THPReadBuffer
 
-.global PopFreeAudioBuffer
-PopFreeAudioBuffer:
+.fn PopFreeAudioBuffer, global
 /* 8044D5AC 0044A4EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D5B0 0044A4F0  7C 08 02 A6 */	mflr r0
 /* 8044D5B4 0044A4F4  3C 60 80 50 */	lis r3, FreeAudioBufferQueue@ha
@@ -243,9 +246,9 @@ PopFreeAudioBuffer:
 /* 8044D5D4 0044A514  7C 08 03 A6 */	mtlr r0
 /* 8044D5D8 0044A518  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044D5DC 0044A51C  4E 80 00 20 */	blr 
+.endfn PopFreeAudioBuffer
 
-.global PushFreeAudioBuffer
-PushFreeAudioBuffer:
+.fn PushFreeAudioBuffer, global
 /* 8044D5E0 0044A520  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D5E4 0044A524  7C 08 02 A6 */	mflr r0
 /* 8044D5E8 0044A528  3C A0 80 50 */	lis r5, FreeAudioBufferQueue@ha
@@ -258,9 +261,9 @@ PushFreeAudioBuffer:
 /* 8044D604 0044A544  7C 08 03 A6 */	mtlr r0
 /* 8044D608 0044A548  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044D60C 0044A54C  4E 80 00 20 */	blr 
+.endfn PushFreeAudioBuffer
 
-.global PopDecodedAudioBuffer
-PopDecodedAudioBuffer:
+.fn PopDecodedAudioBuffer, global
 /* 8044D610 0044A550  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D614 0044A554  7C 08 02 A6 */	mflr r0
 /* 8044D618 0044A558  3C 80 80 50 */	lis r4, DecodedAudioBufferQueue@ha
@@ -280,9 +283,9 @@ PopDecodedAudioBuffer:
 /* 8044D648 0044A588  7C 08 03 A6 */	mtlr r0
 /* 8044D64C 0044A58C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044D650 0044A590  4E 80 00 20 */	blr 
+.endfn PopDecodedAudioBuffer
 
-.global PushDecodedAudioBuffer
-PushDecodedAudioBuffer:
+.fn PushDecodedAudioBuffer, global
 /* 8044D654 0044A594  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D658 0044A598  7C 08 02 A6 */	mflr r0
 /* 8044D65C 0044A59C  3C A0 80 50 */	lis r5, DecodedAudioBufferQueue@ha
@@ -295,3 +298,4 @@ PushDecodedAudioBuffer:
 /* 8044D678 0044A5B8  7C 08 03 A6 */	mtlr r0
 /* 8044D67C 0044A5BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044D680 0044A5C0  4E 80 00 20 */	blr 
+.endfn PushDecodedAudioBuffer

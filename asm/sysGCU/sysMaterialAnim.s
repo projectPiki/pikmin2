@@ -1,71 +1,73 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049A6A0:
+.obj lbl_8049A6A0, local
 	.asciz "sysMaterialAnim.cpp"
+.endobj lbl_8049A6A0
 .balign 4
-lbl_8049A6B4:
+.obj lbl_8049A6B4, local
 	.asciz "P2Assert"
+.endobj lbl_8049A6B4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23Sys17MatRepeatAnimator
-__vt__Q23Sys17MatRepeatAnimator:
+.obj __vt__Q23Sys17MatRepeatAnimator, global
 	.4byte 0
 	.4byte 0
 	.4byte start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
 	.4byte onStart__Q23Sys17MatRepeatAnimatorFv
 	.4byte do_animate__Q23Sys17MatRepeatAnimatorFf
-.global __vt__Q23Sys15MatLoopAnimator
-__vt__Q23Sys15MatLoopAnimator:
+.endobj __vt__Q23Sys17MatRepeatAnimator
+.obj __vt__Q23Sys15MatLoopAnimator, global
 	.4byte 0
 	.4byte 0
 	.4byte start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
 	.4byte onStart__Q23Sys15MatBaseAnimatorFv
 	.4byte do_animate__Q23Sys15MatLoopAnimatorFf
-.global __vt__Q23Sys15MatBaseAnimator
-__vt__Q23Sys15MatBaseAnimator:
+.endobj __vt__Q23Sys15MatLoopAnimator
+.obj __vt__Q23Sys15MatBaseAnimator, global
 	.4byte 0
 	.4byte 0
 	.4byte start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
 	.4byte onStart__Q23Sys15MatBaseAnimatorFv
 	.4byte do_animate__Q23Sys15MatBaseAnimatorFf
-.global __vt__Q23Sys18MatTevRegAnimation
-__vt__Q23Sys18MatTevRegAnimation:
+.endobj __vt__Q23Sys15MatBaseAnimator
+.obj __vt__Q23Sys18MatTevRegAnimation, global
 	.4byte 0
 	.4byte 0
 	.4byte onAttachResource__Q23Sys18MatTevRegAnimationFPv
 	.4byte getAnmBase__Q23Sys18MatTevRegAnimationFv
 	.4byte set__Q23Sys18MatTevRegAnimationFv
 	.4byte remove__Q23Sys18MatTevRegAnimationFv
-.global __vt__Q23Sys15MatTexAnimation
-__vt__Q23Sys15MatTexAnimation:
+.endobj __vt__Q23Sys18MatTevRegAnimation
+.obj __vt__Q23Sys15MatTexAnimation, global
 	.4byte 0
 	.4byte 0
 	.4byte onAttachResource__Q23Sys15MatTexAnimationFPv
 	.4byte getAnmBase__Q23Sys15MatTexAnimationFv
 	.4byte set__Q23Sys15MatTexAnimationFv
 	.4byte remove__Q23Sys15MatTexAnimationFv
-.global __vt__Q23Sys16MatBaseAnimation
-__vt__Q23Sys16MatBaseAnimation:
+.endobj __vt__Q23Sys15MatTexAnimation
+.obj __vt__Q23Sys16MatBaseAnimation, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj __vt__Q23Sys16MatBaseAnimation
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520780:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80520788:
+.obj lbl_80520780, local
+	.8byte 0x4330000080000000
+.endobj lbl_80520780
+.obj lbl_80520788, local
 	.float 0.0
+.endobj lbl_80520788
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData:
+.fn attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData, global
 /* 80434020 00430F60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80434024 00430F64  7C 08 02 A6 */	mflr r0
 /* 80434028 00430F68  90 01 00 24 */	stw r0, 0x24(r1)
@@ -100,9 +102,9 @@ attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData:
 /* 80434098 00430FD8  7C 08 03 A6 */	mtlr r0
 /* 8043409C 00430FDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 804340A0 00430FE0  4E 80 00 20 */	blr 
+.endfn attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
 
-.global getFrameMax__Q23Sys16MatBaseAnimationFv
-getFrameMax__Q23Sys16MatBaseAnimationFv:
+.fn getFrameMax__Q23Sys16MatBaseAnimationFv, global
 /* 804340A4 00430FE4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804340A8 00430FE8  7C 08 02 A6 */	mflr r0
 /* 804340AC 00430FEC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -140,9 +142,9 @@ getFrameMax__Q23Sys16MatBaseAnimationFv:
 /* 80434128 00431068  7C 08 03 A6 */	mtlr r0
 /* 8043412C 0043106C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80434130 00431070  4E 80 00 20 */	blr 
+.endfn getFrameMax__Q23Sys16MatBaseAnimationFv
 
-.global __ct__Q23Sys15MatTexAnimationFv
-__ct__Q23Sys15MatTexAnimationFv:
+.fn __ct__Q23Sys15MatTexAnimationFv, global
 /* 80434134 00431074  3C A0 80 4F */	lis r5, __vt__Q23Sys16MatBaseAnimation@ha
 /* 80434138 00431078  3C 80 80 4F */	lis r4, __vt__Q23Sys15MatTexAnimation@ha
 /* 8043413C 0043107C  38 05 C4 E4 */	addi r0, r5, __vt__Q23Sys16MatBaseAnimation@l
@@ -154,9 +156,9 @@ __ct__Q23Sys15MatTexAnimationFv:
 /* 80434154 00431094  90 A3 00 08 */	stw r5, 8(r3)
 /* 80434158 00431098  90 A3 00 0C */	stw r5, 0xc(r3)
 /* 8043415C 0043109C  4E 80 00 20 */	blr 
+.endfn __ct__Q23Sys15MatTexAnimationFv
 
-.global onAttachResource__Q23Sys15MatTexAnimationFPv
-onAttachResource__Q23Sys15MatTexAnimationFPv:
+.fn onAttachResource__Q23Sys15MatTexAnimationFPv, global
 /* 80434160 004310A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80434164 004310A4  7C 08 02 A6 */	mflr r0
 /* 80434168 004310A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -192,9 +194,9 @@ onAttachResource__Q23Sys15MatTexAnimationFPv:
 /* 804341DC 0043111C  7C 08 03 A6 */	mtlr r0
 /* 804341E0 00431120  38 21 00 10 */	addi r1, r1, 0x10
 /* 804341E4 00431124  4E 80 00 20 */	blr 
+.endfn onAttachResource__Q23Sys15MatTexAnimationFPv
 
-.global set__Q23Sys15MatTexAnimationFv
-set__Q23Sys15MatTexAnimationFv:
+.fn set__Q23Sys15MatTexAnimationFv, global
 /* 804341E8 00431128  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804341EC 0043112C  7C 08 02 A6 */	mflr r0
 /* 804341F0 00431130  90 01 00 14 */	stw r0, 0x14(r1)
@@ -206,9 +208,9 @@ set__Q23Sys15MatTexAnimationFv:
 /* 80434208 00431148  7C 08 03 A6 */	mtlr r0
 /* 8043420C 0043114C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80434210 00431150  4E 80 00 20 */	blr 
+.endfn set__Q23Sys15MatTexAnimationFv
 
-.global remove__Q23Sys15MatTexAnimationFv
-remove__Q23Sys15MatTexAnimationFv:
+.fn remove__Q23Sys15MatTexAnimationFv, global
 /* 80434214 00431154  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80434218 00431158  7C 08 02 A6 */	mflr r0
 /* 8043421C 0043115C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -220,9 +222,9 @@ remove__Q23Sys15MatTexAnimationFv:
 /* 80434234 00431174  7C 08 03 A6 */	mtlr r0
 /* 80434238 00431178  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043423C 0043117C  4E 80 00 20 */	blr 
+.endfn remove__Q23Sys15MatTexAnimationFv
 
-.global __ct__Q23Sys18MatTevRegAnimationFv
-__ct__Q23Sys18MatTevRegAnimationFv:
+.fn __ct__Q23Sys18MatTevRegAnimationFv, global
 /* 80434240 00431180  3C A0 80 4F */	lis r5, __vt__Q23Sys16MatBaseAnimation@ha
 /* 80434244 00431184  3C 80 80 4F */	lis r4, __vt__Q23Sys18MatTevRegAnimation@ha
 /* 80434248 00431188  38 05 C4 E4 */	addi r0, r5, __vt__Q23Sys16MatBaseAnimation@l
@@ -235,9 +237,9 @@ __ct__Q23Sys18MatTevRegAnimationFv:
 /* 80434264 004311A4  90 A3 00 0C */	stw r5, 0xc(r3)
 /* 80434268 004311A8  90 A3 00 10 */	stw r5, 0x10(r3)
 /* 8043426C 004311AC  4E 80 00 20 */	blr 
+.endfn __ct__Q23Sys18MatTevRegAnimationFv
 
-.global onAttachResource__Q23Sys18MatTevRegAnimationFPv
-onAttachResource__Q23Sys18MatTevRegAnimationFPv:
+.fn onAttachResource__Q23Sys18MatTevRegAnimationFPv, global
 /* 80434270 004311B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80434274 004311B4  7C 08 02 A6 */	mflr r0
 /* 80434278 004311B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -274,9 +276,9 @@ onAttachResource__Q23Sys18MatTevRegAnimationFPv:
 /* 804342F0 00431230  7C 08 03 A6 */	mtlr r0
 /* 804342F4 00431234  38 21 00 10 */	addi r1, r1, 0x10
 /* 804342F8 00431238  4E 80 00 20 */	blr 
+.endfn onAttachResource__Q23Sys18MatTevRegAnimationFPv
 
-.global set__Q23Sys18MatTevRegAnimationFv
-set__Q23Sys18MatTevRegAnimationFv:
+.fn set__Q23Sys18MatTevRegAnimationFv, global
 /* 804342FC 0043123C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80434300 00431240  7C 08 02 A6 */	mflr r0
 /* 80434304 00431244  90 01 00 14 */	stw r0, 0x14(r1)
@@ -288,9 +290,9 @@ set__Q23Sys18MatTevRegAnimationFv:
 /* 8043431C 0043125C  7C 08 03 A6 */	mtlr r0
 /* 80434320 00431260  38 21 00 10 */	addi r1, r1, 0x10
 /* 80434324 00431264  4E 80 00 20 */	blr 
+.endfn set__Q23Sys18MatTevRegAnimationFv
 
-.global remove__Q23Sys18MatTevRegAnimationFv
-remove__Q23Sys18MatTevRegAnimationFv:
+.fn remove__Q23Sys18MatTevRegAnimationFv, global
 /* 80434328 00431268  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043432C 0043126C  7C 08 02 A6 */	mflr r0
 /* 80434330 00431270  90 01 00 14 */	stw r0, 0x14(r1)
@@ -302,18 +304,18 @@ remove__Q23Sys18MatTevRegAnimationFv:
 /* 80434348 00431288  7C 08 03 A6 */	mtlr r0
 /* 8043434C 0043128C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80434350 00431290  4E 80 00 20 */	blr 
+.endfn remove__Q23Sys18MatTevRegAnimationFv
 
-.global __ct__Q23Sys15MatBaseAnimatorFv
-__ct__Q23Sys15MatBaseAnimatorFv:
+.fn __ct__Q23Sys15MatBaseAnimatorFv, global
 /* 80434354 00431294  3C 80 80 4F */	lis r4, __vt__Q23Sys15MatBaseAnimator@ha
 /* 80434358 00431298  38 00 00 00 */	li r0, 0
 /* 8043435C 0043129C  38 84 C4 A0 */	addi r4, r4, __vt__Q23Sys15MatBaseAnimator@l
 /* 80434360 004312A0  90 83 00 00 */	stw r4, 0(r3)
 /* 80434364 004312A4  90 03 00 04 */	stw r0, 4(r3)
 /* 80434368 004312A8  4E 80 00 20 */	blr 
+.endfn __ct__Q23Sys15MatBaseAnimatorFv
 
-.global start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
-start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation:
+.fn start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation, global
 /* 8043436C 004312AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80434370 004312B0  7C 08 02 A6 */	mflr r0
 /* 80434374 004312B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -343,9 +345,9 @@ start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation:
 /* 804343D0 00431310  7C 08 03 A6 */	mtlr r0
 /* 804343D4 00431314  38 21 00 10 */	addi r1, r1, 0x10
 /* 804343D8 00431318  4E 80 00 20 */	blr 
+.endfn start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
 
-.global setCurrentFrame__Q23Sys15MatBaseAnimatorFf
-setCurrentFrame__Q23Sys15MatBaseAnimatorFf:
+.fn setCurrentFrame__Q23Sys15MatBaseAnimatorFf, global
 /* 804343DC 0043131C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804343E0 00431320  7C 08 02 A6 */	mflr r0
 /* 804343E4 00431324  90 01 00 34 */	stw r0, 0x34(r1)
@@ -443,9 +445,9 @@ setCurrentFrame__Q23Sys15MatBaseAnimatorFf:
 /* 80434540 00431480  7C 08 03 A6 */	mtlr r0
 /* 80434544 00431484  38 21 00 30 */	addi r1, r1, 0x30
 /* 80434548 00431488  4E 80 00 20 */	blr 
+.endfn setCurrentFrame__Q23Sys15MatBaseAnimatorFf
 
-.global animate__Q23Sys15MatBaseAnimatorFf
-animate__Q23Sys15MatBaseAnimatorFf:
+.fn animate__Q23Sys15MatBaseAnimatorFf, global
 /* 8043454C 0043148C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80434550 00431490  7C 08 02 A6 */	mflr r0
 /* 80434554 00431494  90 01 00 24 */	stw r0, 0x24(r1)
@@ -477,13 +479,13 @@ animate__Q23Sys15MatBaseAnimatorFf:
 /* 804345B8 004314F8  7C 08 03 A6 */	mtlr r0
 /* 804345BC 004314FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 804345C0 00431500  4E 80 00 20 */	blr 
+.endfn animate__Q23Sys15MatBaseAnimatorFf
 
-.global do_animate__Q23Sys15MatBaseAnimatorFf
-do_animate__Q23Sys15MatBaseAnimatorFf:
+.fn do_animate__Q23Sys15MatBaseAnimatorFf, weak
 /* 804345C4 00431504  4E 80 00 20 */	blr 
+.endfn do_animate__Q23Sys15MatBaseAnimatorFf
 
-.global do_animate__Q23Sys15MatLoopAnimatorFf
-do_animate__Q23Sys15MatLoopAnimatorFf:
+.fn do_animate__Q23Sys15MatLoopAnimatorFf, global
 /* 804345C8 00431508  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804345CC 0043150C  7C 08 02 A6 */	mflr r0
 /* 804345D0 00431510  90 01 00 34 */	stw r0, 0x34(r1)
@@ -599,15 +601,15 @@ do_animate__Q23Sys15MatLoopAnimatorFf:
 /* 8043476C 004316AC  7C 08 03 A6 */	mtlr r0
 /* 80434770 004316B0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80434774 004316B4  4E 80 00 20 */	blr 
+.endfn do_animate__Q23Sys15MatLoopAnimatorFf
 
-.global onStart__Q23Sys17MatRepeatAnimatorFv
-onStart__Q23Sys17MatRepeatAnimatorFv:
+.fn onStart__Q23Sys17MatRepeatAnimatorFv, global
 /* 80434778 004316B8  38 00 00 01 */	li r0, 1
 /* 8043477C 004316BC  98 03 00 0C */	stb r0, 0xc(r3)
 /* 80434780 004316C0  4E 80 00 20 */	blr 
+.endfn onStart__Q23Sys17MatRepeatAnimatorFv
 
-.global do_animate__Q23Sys17MatRepeatAnimatorFf
-do_animate__Q23Sys17MatRepeatAnimatorFf:
+.fn do_animate__Q23Sys17MatRepeatAnimatorFf, global
 /* 80434784 004316C4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80434788 004316C8  7C 08 02 A6 */	mflr r0
 /* 8043478C 004316CC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -824,17 +826,18 @@ do_animate__Q23Sys17MatRepeatAnimatorFf:
 /* 80434AA0 004319E0  7C 08 03 A6 */	mtlr r0
 /* 80434AA4 004319E4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80434AA8 004319E8  4E 80 00 20 */	blr 
+.endfn do_animate__Q23Sys17MatRepeatAnimatorFf
 
-.global onStart__Q23Sys15MatBaseAnimatorFv
-onStart__Q23Sys15MatBaseAnimatorFv:
+.fn onStart__Q23Sys15MatBaseAnimatorFv, weak
 /* 80434AAC 004319EC  4E 80 00 20 */	blr 
+.endfn onStart__Q23Sys15MatBaseAnimatorFv
 
-.global getAnmBase__Q23Sys18MatTevRegAnimationFv
-getAnmBase__Q23Sys18MatTevRegAnimationFv:
+.fn getAnmBase__Q23Sys18MatTevRegAnimationFv, weak
 /* 80434AB0 004319F0  80 63 00 08 */	lwz r3, 8(r3)
 /* 80434AB4 004319F4  4E 80 00 20 */	blr 
+.endfn getAnmBase__Q23Sys18MatTevRegAnimationFv
 
-.global getAnmBase__Q23Sys15MatTexAnimationFv
-getAnmBase__Q23Sys15MatTexAnimationFv:
+.fn getAnmBase__Q23Sys15MatTexAnimationFv, weak
 /* 80434AB8 004319F8  80 63 00 08 */	lwz r3, 8(r3)
 /* 80434ABC 004319FC  4E 80 00 20 */	blr 
+.endfn getAnmBase__Q23Sys15MatTexAnimationFv
