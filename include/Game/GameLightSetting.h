@@ -75,7 +75,11 @@ struct GameFogSetting {
 		Parm<f32> mEndZ;   // _E4, f001
 	};
 
-	GameFogSetting();
+	GameFogSetting()
+	    : mSettings()
+	    , mFogParms()
+	{
+	}
 
 	Settings mSettings;     // _00
 	GameFogParms mFogParms; // _B0

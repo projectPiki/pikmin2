@@ -49,9 +49,9 @@ struct GameLightEventNode : public CNode {
 		_3C = 500.0f;
 	}
 
-	virtual ~GameLightEventNode() { } // _08 (weak)
+	// virtual ~GameLightEventNode() { } // _08 (weak)
 
-	void update(GameLightMgr*);
+	bool update(GameLightMgr*);
 	void updateCommon(GameLightMgr*, bool);
 	void calcColor(Color4*);
 
@@ -87,7 +87,9 @@ struct GameLightSpotSetting : public CNode {
 
 	GameLightSpotSetting(char* name);
 
-	virtual ~GameLightSpotSetting() { } // _08 (weak)
+	// virtual ~GameLightSpotSetting() { } // _08 (weak)
+
+	void read(Stream& stream);
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -103,7 +105,10 @@ struct GameLightSpotSetting : public CNode {
 struct GameLightTimeSetting : public CNode {
 	GameLightTimeSetting();
 
-	virtual ~GameLightTimeSetting() { } // _08 (weak)
+	// virtual ~GameLightTimeSetting() { } // _08 (weak)
+
+	// unused/inlined but required
+	void read(Stream& stream);
 
 	GameDiffuseLightSetting mDiffuseLight1; // _18
 	GameDiffuseLightSetting mDiffuseLight2; // _CC
@@ -128,16 +133,12 @@ struct GameLightSunSetting : public CNode {
 		Parm<f32> mSunsetAngle;  // _74, f002
 	};
 
-	inline GameLightSunSetting(char** labels)
-	    : CNode("ëæózÉ^ÉCÉvê›íË")
-	{
-		for (int i = 0; i < 5; i++) {
-			mLightTimes[i].mName = labels[i];
-			add(&mLightTimes[i]);
-		}
-	}
+	GameLightSunSetting(char* labels);
 
-	virtual ~GameLightSunSetting() { } // _08 (weak)
+	// virtual ~GameLightSunSetting() { } // _08 (weak)
+
+	// unused/inlined but required
+	void read(Stream& stream);
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -148,15 +149,15 @@ struct GameLightSunSetting : public CNode {
 struct GameLightMgrSetting : public CNode {
 	GameLightMgrSetting();
 
-	virtual ~GameLightMgrSetting() { } // _08 (weak)
-	virtual void read(Stream&);        // _10
+	// virtual ~GameLightMgrSetting() { } // _08 (weak)
+	virtual void read(Stream&); // _10
 
 	void updateNode();
 	void readOldVersion(ID32, Stream&);
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	bool mIsCave;                           // _18
+	u8 mIsCave;                             // _18
 	GameLightSunSetting mSunLight;          // _1C
 	GameLightSpotSetting mStellarSpotLight; // _182C
 	GameLightSpotSetting mRegularSpotLight; // _1D84
@@ -165,7 +166,7 @@ struct GameLightMgrSetting : public CNode {
 struct GameLightMgr : public LightMgr {
 	GameLightMgr(char* name);
 
-	virtual ~GameLightMgr() { }  // _08 (weak)
+	// virtual ~GameLightMgr() { }  // _08 (weak)
 	virtual void update();       // _10
 	virtual void set(Graphics&); // _14
 
@@ -175,6 +176,7 @@ struct GameLightMgr : public LightMgr {
 	void calcSetting(GameLightTimeSetting*, GameLightTimeSetting*, GameLightTimeSetting*);
 	void updateSunType();
 	void updateSpotType();
+	void updateEventLight();
 	void updatePosition(Viewport*);
 
 	// _00      = VTBL

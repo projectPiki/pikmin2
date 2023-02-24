@@ -1,11 +1,15 @@
 #include "Game/GameLight.h"
 #include "Game/shadowMgr.h"
+#include "Game/CameraMgr.h"
+#include "Viewport.h"
 #include "nans.h"
 
 namespace Game {
 
-static const int unusedGameLightArray[] = { 0, 0, 0 };
+template <class T>
+T complement(T, T, T);
 
+static const int unusedGameLightArray[] = { 0, 0, 0 };
 static const char unusedGameLightName[] = "gameLightMgr";
 
 /*
@@ -19,7 +23,7 @@ void calcLightColor(Color4* lightColor, Color4& color1, Color4& color2, f32 p1)
 }
 
 namespace {
-char* GameLightMgrSettingLabel[5] = {
+const char* GameLightMgrSettingLabel[5] = {
 	"夜",     // 'night'
 	"朝",     // 'morning'
 	"昼",     // 'noon'
@@ -38,14 +42,47 @@ GameLightTimeSetting::GameLightTimeSetting()
 {
 }
 
-// /*
-//  * --INFO--
-//  * Address:	8011D334
-//  * Size:	0001D4
-//  */
-// GameFogSetting::GameFogSetting()
-// {
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000C0
+ */
+void GameLightTimeSetting::read(Stream& stream)
+{
+	mDiffuseLight1.read(stream);
+	mDiffuseLight2.read(stream);
+	mSpecLight.read(stream);
+	mAmbientLight.read(stream);
+	mFog.read(stream);
+	mShadow.read(stream);
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0001A8
+ */
+GameLightSunSetting::GameLightSunSetting(char* name)
+    : CNode(name)
+{
+	for (int i = 0; i < 5; i++) {
+		mLightTimes[i].mName = GameLightMgrSettingLabel[i];
+		add(&mLightTimes[i]);
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E8
+ */
+void GameLightSunSetting::read(Stream& stream)
+{
+	mMoveParms.read(stream);
+	for (int i = 0; i < 5; i++) {
+		mLightTimes[i].read(stream);
+	}
+}
 
 /*
  * --INFO--
@@ -59,13 +96,29 @@ GameLightSpotSetting::GameLightSpotSetting(char* name)
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0000CC
+ */
+void GameLightSpotSetting::read(Stream& stream)
+{
+	mMoveParms.read(stream);
+	mSpotLight1.read(stream);
+	mSpotLight2.read(stream);
+	mSpecLight.read(stream);
+	mAmbientLight.read(stream);
+	mFog.read(stream);
+	mShadow.read(stream);
+}
+
+/*
+ * --INFO--
  * Address:	8011DD68
  * Size:	0001E0
  */
 GameLightMgrSetting::GameLightMgrSetting()
     : CNode("設定") // 'setting'
     , mIsCave(false)
-    , mSunLight(GameLightMgrSettingLabel)
+    , mSunLight("太陽タイプ設定")
     , mStellarSpotLight("懐中電灯アリ") // 'yes flashlight'
     , mRegularSpotLight("懐中電灯ナシ") // 'no flashlight'
 {
@@ -98,208 +151,23 @@ void GameLightMgrSetting::updateNode()
  */
 void GameLightMgrSetting::read(Stream& stream)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	addi     r3, r1, 0x14
-	bl       __ct__4ID32Fv
-	mr       r4, r29
-	addi     r3, r1, 0x14
-	bl       read__4ID32FR6Stream
-	lis      r4, 0x30303031@ha
-	addi     r3, r1, 0x14
-	addi     r4, r4, 0x30303031@l
-	bl       __ne__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8011E114
-	lwz      r7, 0x14(r1)
-	mr       r3, r28
-	lwz      r6, 0x18(r1)
-	mr       r5, r29
-	lwz      r0, 0x1c(r1)
-	addi     r4, r1, 8
-	stw      r7, 8(r1)
-	stw      r6, 0xc(r1)
-	stw      r0, 0x10(r1)
-	bl       readOldVersion__Q24Game19GameLightMgrSettingF4ID32R6Stream
-	b        lbl_8011E31C
+	ID32 version;
+	version.read(stream);
 
-lbl_8011E114:
-	mr       r3, r29
-	bl       readByte__6StreamFv
-	stb      r3, 0x18(r28)
-	lbz      r0, 0x18(r28)
-	cmplwi   r0, 0
-	bne      lbl_8011E1E4
-	mr       r4, r29
-	addi     r3, r28, 0x34
-	bl       read__10ParametersFR6Stream
-	li       r31, 0
-	addi     r30, r28, 0x1c
+	if (version != '0001') {
+		readOldVersion(version, stream);
 
-lbl_8011E140:
-	addi     r3, r30, 0xb8
-	mr       r4, r29
-	lwz      r12, 0x168(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x16c
-	mr       r4, r29
-	lwz      r12, 0x21c(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x220
-	mr       r4, r29
-	lwz      r12, 0x2d0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x2d4
-	mr       r4, r29
-	lwz      r12, 0x384(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x388
-	mr       r4, r29
-	lwz      r12, 0x498(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x49c
-	mr       r4, r29
-	lwz      r12, 0x54c(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-	addi     r30, r30, 0x4b0
-	cmpwi    r31, 5
-	blt      lbl_8011E140
-	b        lbl_8011E31C
+	} else {
+		mIsCave = stream.readByte();
+		if (!mIsCave) {
+			mSunLight.read(stream);
+		} else {
+			mStellarSpotLight.read(stream);
+			mRegularSpotLight.read(stream);
+		}
+	}
 
-lbl_8011E1E4:
-	mr       r4, r29
-	addi     r3, r28, 0x1844
-	bl       read__10ParametersFR6Stream
-	addi     r3, r28, 0x187c
-	mr       r4, r29
-	lwz      r12, 0x192c(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x1968
-	mr       r4, r29
-	lwz      r12, 0x1a18(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x1a54
-	mr       r4, r29
-	lwz      r12, 0x1b04(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x1b08
-	mr       r4, r29
-	lwz      r12, 0x1bb8(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x1bbc
-	mr       r4, r29
-	lwz      r12, 0x1ccc(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x1cd0
-	mr       r4, r29
-	lwz      r12, 0x1d80(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r29
-	addi     r3, r28, 0x1d9c
-	bl       read__10ParametersFR6Stream
-	addi     r3, r28, 0x1dd4
-	mr       r4, r29
-	lwz      r12, 0x1e84(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x1ec0
-	mr       r4, r29
-	lwz      r12, 0x1f70(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x1fac
-	mr       r4, r29
-	lwz      r12, 0x205c(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x2060
-	mr       r4, r29
-	lwz      r12, 0x2110(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x2114
-	mr       r4, r29
-	lwz      r12, 0x2224(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r28, 0x2228
-	mr       r4, r29
-	lwz      r12, 0x22d8(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8011E31C:
-	addi     r3, r28, 0x1c
-	bl       del__5CNodeFv
-	addi     r3, r28, 0x182c
-	bl       del__5CNodeFv
-	addi     r3, r28, 0x1d84
-	bl       del__5CNodeFv
-	lbz      r0, 0x18(r28)
-	cmplwi   r0, 0
-	bne      lbl_8011E350
-	mr       r3, r28
-	addi     r4, r28, 0x1c
-	bl       add__5CNodeFP5CNode
-	b        lbl_8011E368
-
-lbl_8011E350:
-	mr       r3, r28
-	addi     r4, r28, 0x182c
-	bl       add__5CNodeFP5CNode
-	mr       r3, r28
-	addi     r4, r28, 0x1d84
-	bl       add__5CNodeFP5CNode
-
-lbl_8011E368:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	updateNode();
 }
 
 /*
@@ -307,140 +175,21 @@ lbl_8011E368:
  * Address:	8011E388
  * Size:	0001E0
  */
-void GameLightMgrSetting::readOldVersion(ID32, Stream&)
+void GameLightMgrSetting::readOldVersion(ID32 id, Stream& stream)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r7, 0x30303030@ha
-	lwz      r6, 8(r4)
-	stw      r0, 0x24(r1)
-	addi     r0, r7, 0x30303030@l
-	cmpw     r6, r0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	beq      lbl_8011E3C0
-	b        lbl_8011E530
+	switch (id.getID()) {
+	case '0000':
+		mIsCave = stream.readByte();
+		if (!mIsCave) {
+			mSunLight.read(stream);
+		} else {
+			mStellarSpotLight.read(stream);
+		}
+		break;
 
-lbl_8011E3C0:
-	mr       r3, r29
-	bl       readByte__6StreamFv
-	stb      r3, 0x18(r30)
-	lbz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	bne      lbl_8011E490
-	mr       r4, r29
-	addi     r3, r30, 0x34
-	bl       read__10ParametersFR6Stream
-	li       r31, 0
-	addi     r30, r30, 0x1c
-
-lbl_8011E3EC:
-	addi     r3, r30, 0xb8
-	mr       r4, r29
-	lwz      r12, 0x168(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x16c
-	mr       r4, r29
-	lwz      r12, 0x21c(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x220
-	mr       r4, r29
-	lwz      r12, 0x2d0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x2d4
-	mr       r4, r29
-	lwz      r12, 0x384(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x388
-	mr       r4, r29
-	lwz      r12, 0x498(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x49c
-	mr       r4, r29
-	lwz      r12, 0x54c(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-	addi     r30, r30, 0x4b0
-	cmpwi    r31, 5
-	blt      lbl_8011E3EC
-	b        lbl_8011E54C
-
-lbl_8011E490:
-	mr       r4, r29
-	addi     r3, r30, 0x1844
-	bl       read__10ParametersFR6Stream
-	addi     r3, r30, 0x187c
-	mr       r4, r29
-	lwz      r12, 0x192c(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x1968
-	mr       r4, r29
-	lwz      r12, 0x1a18(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x1a54
-	mr       r4, r29
-	lwz      r12, 0x1b04(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x1b08
-	mr       r4, r29
-	lwz      r12, 0x1bb8(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x1bbc
-	mr       r4, r29
-	lwz      r12, 0x1ccc(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x1cd0
-	mr       r4, r29
-	lwz      r12, 0x1d80(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8011E54C
-
-lbl_8011E530:
-	lis      r3, lbl_8047B380@ha
-	lis      r4, lbl_8047B394@ha
-	addi     r5, r4, lbl_8047B394@l
-	addi     r3, r3, lbl_8047B380@l
-	li       r4, 0x1ab
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8011E54C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	default:
+		JUT_PANICLINE(427, "Unknown version [%08x]", id.getID());
+	}
 }
 
 /*
@@ -448,159 +197,64 @@ lbl_8011E54C:
  * Address:	8011E568
  * Size:	0001F4
  */
-void GameLightEventNode::update(Game::GameLightMgr*)
+bool GameLightEventNode::update(GameLightMgr* lightMgr)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x4c(r3)
-	cmpwi    r0, 2
-	beq      lbl_8011E624
-	bge      lbl_8011E5A8
-	cmpwi    r0, 1
-	bge      lbl_8011E5B4
-	b        lbl_8011E73C
+	bool result = false;
 
-lbl_8011E5A8:
-	cmpwi    r0, 4
-	bge      lbl_8011E73C
-	b        lbl_8011E6C4
+	switch (_4C) {
+	case 1:
+		_40 += sys->mDeltaTime;
+		if (_40 > _28) {
+			_40 = _28;
+			_44 = 1.0f;
+		} else {
+			_44 = _40 / _28;
+		}
 
-lbl_8011E5B4:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x40(r29)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x40(r29)
-	lfs      f1, 0x40(r29)
-	lfs      f0, 0x28(r29)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8011E5E8
-	stfs     f0, 0x40(r29)
-	lfs      f0, lbl_80517C64@sda21(r2)
-	stfs     f0, 0x44(r29)
-	b        lbl_8011E5F0
+		if (_44 == 1.0f) {
+			_40 = 0.0f;
+			_4C = 2;
+		}
 
-lbl_8011E5E8:
-	fdivs    f0, f1, f0
-	stfs     f0, 0x44(r29)
+		updateCommon(lightMgr, true);
+		break;
 
-lbl_8011E5F0:
-	lfs      f1, lbl_80517C64@sda21(r2)
-	lfs      f0, 0x44(r29)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8011E610
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	li       r0, 2
-	stfs     f0, 0x40(r29)
-	stw      r0, 0x4c(r29)
+	case 2:
+		_40 += sys->mDeltaTime;
+		if (_40 > 4.0f) {
+			_40 = 0.0f;
+		}
 
-lbl_8011E610:
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 1
-	bl       updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb
-	b        lbl_8011E73C
+		_44 = 0.9f + 0.1f * pikmin2_cosf(TAU * _40 / 4);
 
-lbl_8011E624:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x40(r29)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_80517C68@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x40(r29)
-	lfs      f1, 0x40(r29)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8011E650
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	stfs     f0, 0x40(r29)
+		if (_18 & 1) {
+			updateCommon(lightMgr, true);
+			_48 = _44;
+			_40 = 0.0f;
+			_4C = 3;
+		} else {
+			updateCommon(lightMgr, true);
+		}
+		break;
 
-lbl_8011E650:
-	lfs      f2, lbl_80517C74@sda21(r2)
-	lfs      f1, 0x40(r29)
-	lfs      f0, lbl_80517C78@sda21(r2)
-	fmuls    f1, f2, f1
-	fmuls    f1, f1, f0
-	bl       pikmin2_cosf__Ff
-	lfs      f2, lbl_80517C70@sda21(r2)
-	lfs      f0, lbl_80517C6C@sda21(r2)
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x44(r29)
-	lbz      r0, 0x18(r29)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8011E6B0
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 1
-	bl       updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb
-	lfs      f1, 0x44(r29)
-	li       r0, 3
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	stfs     f1, 0x48(r29)
-	stfs     f0, 0x40(r29)
-	stw      r0, 0x4c(r29)
-	b        lbl_8011E73C
+	case 3:
+		_40 += sys->mDeltaTime;
+		if (_40 > _2C) {
+			_40 = _2C;
+			_44 = 0.0f;
+		} else {
+			_44 = _48 * (1.0f - (_40 / _2C));
+		}
 
-lbl_8011E6B0:
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 1
-	bl       updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb
-	b        lbl_8011E73C
+		updateCommon(lightMgr, false);
+		if (_44 == 0.0f) {
+			_4C    = 0;
+			result = true;
+		}
+		break;
+	}
 
-lbl_8011E6C4:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x40(r29)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x40(r29)
-	lfs      f1, 0x40(r29)
-	lfs      f0, 0x2c(r29)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8011E6F8
-	stfs     f0, 0x40(r29)
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	stfs     f0, 0x44(r29)
-	b        lbl_8011E710
-
-lbl_8011E6F8:
-	fdivs    f0, f1, f0
-	lfs      f1, lbl_80517C64@sda21(r2)
-	lfs      f2, 0x48(r29)
-	fsubs    f0, f1, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 0x44(r29)
-
-lbl_8011E710:
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 0
-	bl       updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb
-	lfs      f1, lbl_80517BF4@sda21(r2)
-	lfs      f0, 0x44(r29)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8011E73C
-	li       r0, 0
-	li       r31, 1
-	stw      r0, 0x4c(r29)
-
-lbl_8011E73C:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return result;
 }
 
 /*
@@ -608,7 +262,7 @@ lbl_8011E73C:
  * Address:	8011E75C
  * Size:	00037C
  */
-void GameLightEventNode::updateCommon(Game::GameLightMgr*, bool)
+void GameLightEventNode::updateCommon(GameLightMgr* lightMgr, bool)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4289,11 +3943,38 @@ lbl_80121E40:
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00007C
+ */
+void GameLightMgr::updateEventLight()
+{
+	GameLightEventNode* eventNode = static_cast<GameLightEventNode*>(_235C.mChild);
+	while (eventNode) {
+		GameLightEventNode* nextNode = static_cast<GameLightEventNode*>(eventNode->mNext);
+		eventNode->update(this);
+
+		if (!eventNode->_4C) {
+			eventNode->del();
+			_2374.add(eventNode);
+		}
+		eventNode = nextNode;
+	}
+}
+
+/*
+ * --INFO--
  * Address:	80121EC0
  * Size:	000094
  */
 void GameLightMgr::update()
 {
+	if (!mSettings.mIsCave) {
+		updateSunType();
+	} else {
+		updateSpotType();
+	}
+
+	updateEventLight();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -4350,31 +4031,11 @@ lbl_80121F30:
  * Address:	80121F54
  * Size:	000054
  */
-void GameLightMgr::set(Graphics&)
+void GameLightMgr::set(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r4, 0x25c(r4)
-	bl       updatePosition__Q24Game12GameLightMgrFP8Viewport
-	mr       r3, r30
-	mr       r4, r31
-	bl       set__8LightMgrFR8Graphics
-	lwz      r3, 0x2344(r30)
-	mr       r4, r31
-	bl       set__6FogMgrFR8Graphics
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	updatePosition(gfx.mCurrentViewport);
+	LightMgr::set(gfx);
+	mFogMgr->set(gfx);
 }
 
 /*
@@ -4382,8 +4043,27 @@ void GameLightMgr::set(Graphics&)
  * Address:	80121FA8
  * Size:	0002C0
  */
-void GameLightMgr::updatePosition(Viewport*)
+void GameLightMgr::updatePosition(Viewport* viewport)
 {
+	if (!mSettings.mIsCave) {
+		mMainLight->mSpotFn = GX_SP_OFF;
+		mSubLight->mSpotFn  = GX_SP_OFF;
+
+	} else {
+		mMainLight->mSpotFn      = GX_SP_COS2;
+		mMainLight->mCutoffAngle = complement<f32>(mSettings.mRegularSpotLight.mSpotLight1.mSpotParms.mCutOff.mValue,
+		                                           mSettings.mStellarSpotLight.mSpotLight1.mSpotParms.mCutOff.mValue, _2354);
+		mSubLight->mSpotFn       = GX_SP_COS2;
+		mSubLight->mCutoffAngle  = complement<f32>(mSettings.mRegularSpotLight.mSpotLight2.mSpotParms.mCutOff.mValue,
+                                                  mSettings.mStellarSpotLight.mSpotLight2.mSpotParms.mCutOff.mValue, _2354);
+
+		int viewportID = viewport->mVpId;
+		if (viewportID < 0 || viewportID > 1) {
+			JUT_PANICLINE(1287, "illegal vp-id (%d)\n", viewportID);
+		}
+
+		_238C[0] = mCamera->getLookAtPosition();
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -4574,18 +4254,15 @@ lbl_8012223C:
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	8012241C
-//  * Size:	00000C
-//  */
-// void complement<float>(float, float, float)
-// {
-// 	/*
-// 	fsubs    f0, f2, f1
-// 	fmadds   f1, f3, f0, f1
-// 	blr
-// 	*/
-// }
+/*
+ * --INFO--
+ * Address:	8012241C
+ * Size:	00000C
+ */
+template <class T>
+T complement(T p1, T p2, T p3)
+{
+	return p3 * (p2 - p1) + p1;
+}
 
 } // namespace Game

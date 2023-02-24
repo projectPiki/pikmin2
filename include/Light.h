@@ -57,7 +57,7 @@ struct LightMgr : public CNode {
 	LightMgr(char*);
 	void registLightObj(LightObj*);
 
-	virtual ~LightMgr() { }                // _08 (weak)
+	// virtual ~LightMgr() { }                // _08 (weak)
 	virtual void update();                 // _10 (weak)
 	virtual void set(Graphics&);           // _14
 	virtual void set(Matrixf&);            // _18
