@@ -47,6 +47,7 @@ lbl_8049B9B0: # Shift-JIS
 	.4byte 0x91AB82E8
 	.4byte 0x82DC82B9
 	.4byte 0x82F10A00
+.balign 4
 lbl_8049B9D8:
 	.asciz "Mismatch arg. current scene:%d arg:%d\n"
 .balign 4
@@ -65,12 +66,12 @@ lbl_8049BA38:
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q26Screen3Mgr
-__vt__Q26Screen3Mgr:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q26Screen3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q26Screen3MgrFv
@@ -83,33 +84,37 @@ __vt__Q26Screen3Mgr:
 	.4byte doGetSceneBase__Q26Screen3MgrFl
 	.4byte drawBG__Q26Screen3MgrFR8Graphics
 	.4byte drawWipe__Q26Screen3MgrFR8Graphics
-.global __vt__Q26Screen10MgrCommand
-__vt__Q26Screen10MgrCommand:
+.endobj __vt__Q26Screen3Mgr
+.obj __vt__Q26Screen10MgrCommand, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q26Screen10MgrCommandFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q26Screen13SceneInfoList
-__vt__Q26Screen13SceneInfoList:
+.endobj __vt__Q26Screen10MgrCommand
+.obj __vt__Q26Screen13SceneInfoList, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q26Screen13SceneInfoListFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q26Screen13SceneInfoList
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global sScreenMgr__Q26Screen3Mgr
-sScreenMgr__Q26Screen3Mgr:
+.endobj gfNAN___Q24Game5P2JST
+.obj sScreenMgr__Q26Screen3Mgr, global
 	.skip 0x4
+.endobj sScreenMgr__Q26Screen3Mgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520B80:
+.obj lbl_80520B80, local
 	.asciz ""
+.endobj lbl_80520B80
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26Screen13SceneInfoListFv

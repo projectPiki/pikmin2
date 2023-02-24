@@ -226,32 +226,39 @@ sVerifyArg__6System:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-sStrSystem_Abort:
+.obj sStrSystem_Abort, local
 	.asciz "abort\n"
+.endobj sStrSystem_Abort
 .balign 4
-lbl_80520408:
+.obj lbl_80520408, local
 	.float 0.016666668
-lbl_8052040C:
+.endobj lbl_80520408
+.obj lbl_8052040C, local
 	.float 1.0
-lbl_80520410:
+.endobj lbl_8052040C
+.obj lbl_80520410, local
 	.float 0.5
+.endobj lbl_80520410
 .balign 4
-lbl_80520414:
+.obj lbl_80520414, local
 	.asciz "ARAMMgr"
+.endobj lbl_80520414
 .balign 8
-lbl_80520420:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80520420, local
+	.8byte 0x4330000000000000
+.endobj lbl_80520420
 .balign 4
-lbl_80520428:
+.obj lbl_80520428, local
 	.asciz "sound"
+.endobj lbl_80520428
 .balign 4
-lbl_80520430:
+.obj lbl_80520430, local
 	.float 60.0
+.endobj lbl_80520430
 .balign 8
-lbl_80520438:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80520438, local
+	.8byte 0x4330000080000000
+.endobj lbl_80520438
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 Pikmin2DefaultMemoryErrorRoutine__FPvUli: #local function
@@ -296,7 +303,7 @@ Pikmin2DefaultMemoryErrorRoutine__FPvUli: #local function
 /* 80421F5C 0041EE9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80421F60 0041EEA0  4E 80 00 20 */	blr 
 
-kando_panic_f__FbPCciPCce: #local function
+kando_panic_f__FbPCciPCce: # local function
 /* 80421F64 0041EEA4  94 21 FB A0 */	stwu r1, -0x460(r1)
 /* 80421F68 0041EEA8  7C 08 02 A6 */	mflr r0
 /* 80421F6C 0041EEAC  90 01 04 64 */	stw r0, 0x464(r1)
@@ -401,7 +408,7 @@ kando_panic_f__FbPCciPCce: #local function
 /* 804220E4 0041F024  38 21 04 60 */	addi r1, r1, 0x460
 /* 804220E8 0041F028  4E 80 00 20 */	blr 
 
-preUserCallback__FUsP9OSContextUlUl: #local function
+preUserCallback__FUsP9OSContextUlUl: # local function
 /* 804220EC 0041F02C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 804220F0 0041F030  7C 08 02 A6 */	mflr r0
 /* 804220F4 0041F034  3C 80 80 4A */	lis r4, lbl_804997C8@ha
@@ -1953,7 +1960,7 @@ setFrameRate__6SystemFi:
 /* 804235C8 00420508  4E 80 00 20 */	blr 
 
 .global getCurrentSection__11ISectionMgrFv
-getCurrentSection__11ISectionMgrFv: #weak function
+getCurrentSection__11ISectionMgrFv: # weak function
 /* 804235CC 0042050C  38 60 00 00 */	li r3, 0
 /* 804235D0 00420510  4E 80 00 20 */	blr 
 
@@ -2017,7 +2024,7 @@ dvdLoadSyncAllNoBlock__6SystemFv:
 /* 8042368C 004205CC  4E 80 00 20 */	blr 
 
 .global __dt__9AppThreadFv
-__dt__9AppThreadFv: #weak function
+__dt__9AppThreadFv: # weak function
 /* 80423690 004205D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423694 004205D4  7C 08 02 A6 */	mflr r0
 /* 80423698 004205D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2045,7 +2052,7 @@ __dt__9AppThreadFv: #weak function
 /* 804236EC 0042062C  4E 80 00 20 */	blr 
 
 .global newSceneMgr__Q23PSM7FactoryFv
-newSceneMgr__Q23PSM7FactoryFv: #weak function
+newSceneMgr__Q23PSM7FactoryFv: # weak function
 /* 804236F0 00420630  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804236F4 00420634  7C 08 02 A6 */	mflr r0
 /* 804236F8 00420638  38 60 00 14 */	li r3, 0x14
@@ -2063,7 +2070,7 @@ newSceneMgr__Q23PSM7FactoryFv: #weak function
 /* 80423724 00420664  4E 80 00 20 */	blr 
 
 .global "invoke__17Delegate<6System>Fv"
-"invoke__17Delegate<6System>Fv": #weak function
+"invoke__17Delegate<6System>Fv": # weak function
 /* 80423728 00420668  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042372C 0042066C  7C 08 02 A6 */	mflr r0
 /* 80423730 00420670  7C 64 1B 78 */	mr r4, r3

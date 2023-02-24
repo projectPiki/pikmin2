@@ -23,23 +23,29 @@ lbl_constructor:
 	.asciz "/message/mesRes_eng.szs"
 .endobj lbl_8049A910
 .balign 4
-lbl_8049A928:
+.obj lbl_8049A928, local
 	.asciz "/message/mesRes_fra.szs"
+.endobj lbl_8049A928
 .balign 4
-lbl_8049A940:
+.obj lbl_8049A940, local
 	.asciz "/message/mesRes_ger.szs"
+.endobj lbl_8049A940
 .balign 4
-lbl_8049A958:
+.obj lbl_8049A958, local
 	.asciz "/message/mesRes_hol.szs"
+.endobj lbl_8049A958
 .balign 4
-lbl_8049A970:
+.obj lbl_8049A970, local
 	.asciz "/message/mesRes_ita.szs"
+.endobj lbl_8049A970
 .balign 4
-lbl_8049A988:
+.obj lbl_8049A988, local
 	.asciz "/message/mesRes_jpn.szs"
+.endobj lbl_8049A988
 .balign 4
-lbl_8049A9A0:
+.obj lbl_8049A9A0, local
 	.asciz "/message/mesRes_spa.szs"
+.endobj lbl_8049A9A0
 .balign 4
 lbl_8049A9B8:
 	.asciz "a_btn.bti"

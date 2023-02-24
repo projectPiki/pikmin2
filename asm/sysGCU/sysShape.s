@@ -66,30 +66,36 @@ __vt__Q28SysShape8Animator:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 4
-.global verbose__Q28SysShape8Animator
-verbose__Q28SysShape8Animator:
+.endobj gfNAN___Q24Game5P2JST
+.obj verbose__Q28SysShape8Animator, global
 	.skip 1
+.endobj verbose__Q28SysShape8Animator
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520528:
+.obj lbl_80520528, local
 	.float 0.0
+.endobj lbl_80520528
 .balign 4
-lbl_8052052C:
+.obj lbl_8052052C, local
 	.asciz "OKOK\n"
+.endobj lbl_8052052C
 .balign 4
-lbl_80520534:
+.obj lbl_80520534, local
 	.float 1.0
+.endobj lbl_80520534
 .balign 8
-lbl_80520538:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80520540:
+.obj lbl_80520538, local
+	.8byte 0x4330000080000000
+.endobj lbl_80520538
+.obj lbl_80520540, local
 	.float 128000.0
+.endobj lbl_80520540
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clearAnimatorAll__Q28SysShape5ModelFv

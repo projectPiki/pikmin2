@@ -5,7 +5,7 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804999F0: #unused? three zero floats?
+lbl_804999F0: # unused? three zero floats?
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -72,32 +72,41 @@ sPlayTime:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520440:
+.obj lbl_80520440, local
 	.float 0.5
+.endobj lbl_80520440
 .if version == 1
-lbl_80520444:
+.obj lbl_80520444, local
 	.float 0.0
-lbl_80520448:
+.endobj lbl_80520444
+.obj lbl_80520448, local
 	.float 0.016666668
+.endobj lbl_80520448
 .else
-lbl_80520444:
+.obj lbl_80520444, local
 	.float 0.016666668
-lbl_80520448:
+.endobj lbl_80520444
+.obj lbl_80520448, local
 	.float 0.0
+.endobj lbl_80520448
 .endif
 .balign 4
-lbl_8052044C:
+.obj lbl_8052044C, local
 	.asciz "draw"
+.endobj lbl_8052044C
 .balign 4
-lbl_80520454:
+.obj lbl_80520454, local
 	.asciz "update"
+.endobj lbl_80520454
 .balign 4
 .if version == 1
-lbl_8052045C:
+.obj lbl_8052045C, local
 	.float 180.0
+.endobj lbl_8052045C
 .else
-lbl_8052045C: #unused?
+.obj lbl_8052045C, local # unused?
 	.float 0.0
+.endobj lbl_8052045C
 .endif
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00

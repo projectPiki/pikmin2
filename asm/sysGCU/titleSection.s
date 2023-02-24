@@ -204,30 +204,38 @@ __vt__Q25Title7Section:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520A80:
+.obj lbl_80520A80, local
 	.float 0.0
+.endobj lbl_80520A80
 .balign 4
-lbl_80520A84:
+.obj lbl_80520A84, local
 	.asciz "NO NAME"
+.endobj lbl_80520A84
 .balign 8
-lbl_80520A90:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80520A98:
+.obj lbl_80520A90, local
+	.8byte 0x4330000080000000
+.endobj lbl_80520A90
+.obj lbl_80520A98, local
 	.float 0.5
-lbl_80520A9C:
+.endobj lbl_80520A98
+.obj lbl_80520A9C, local
 	.float 43.0
-lbl_80520AA0:
+.endobj lbl_80520A9C
+.obj lbl_80520AA0, local
 	.float 32768.0
-lbl_80520AA4:
+.endobj lbl_80520AA0
+.obj lbl_80520AA4, local
 	.float 12.0
+.endobj lbl_80520AA4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1

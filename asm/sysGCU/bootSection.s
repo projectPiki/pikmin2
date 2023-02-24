@@ -5,98 +5,123 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049AF08:
+.obj lbl_8049AF08, local
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj lbl_8049AF08
 .balign 4
-lbl_8049AF14:
+.obj lbl_8049AF14, local
 	.asciz "bootSection.cpp"
+.endobj lbl_8049AF14
 .balign 4
-lbl_8049AF24:
+.obj lbl_8049AF24, local
 	.asciz "P2Assert"
+.endobj lbl_8049AF24
 .balign 4
-TitlePiki_Red:
+.obj TitlePiki_Red, local
 	.asciz "title_red_5a3.bti"
+.endobj TitlePiki_Red
 .balign 4
-TitlePiki_Yellow:
+.obj TitlePiki_Yellow, local
 	.asciz "title_yellow_5a3.bti"
+.endobj TitlePiki_Yellow
 .balign 4
-TitlePiki_Blue:
+.obj TitlePiki_Blue, local
 	.asciz "title_blue_5a3.bti"
+.endobj TitlePiki_Blue
 .balign 4
-TitlePiki_White:
+.obj TitlePiki_White, local
 	.asciz "title_white_5a3.bti"
+.endobj TitlePiki_White
 .balign 4
-TitlePiki_Violet:
+.obj TitlePiki_Violet, local
 	.asciz "title_violet_5a3.bti"
+.endobj TitlePiki_Violet
 .balign 4
-lbl_8049AF9C: # these strings are unnamed in the dol.
+.obj lbl_8049AF9C, local # these strings are unnamed in the dol.
 	.4byte TitlePiki_Red
 	.4byte TitlePiki_Yellow
 	.4byte TitlePiki_Blue
 	.4byte TitlePiki_White
 	.4byte TitlePiki_Violet
+.endobj lbl_8049AF9C
 .balign 4
-lbl_8049AFB0: # Shift-JIS
+.obj lbl_8049AFB0, local # Shift-JIS
 	.4byte 0x8375815B
 	.4byte 0x8367835A
 	.4byte 0x834E8356
 	.4byte 0x83878393
 	.byte 0x00
+.endobj lbl_8049AFB0
 .balign 4
-lbl_8049AFC4:
+.obj lbl_8049AFC4, local
 	.asciz "/user/yamashita/arc/boot_us.szs"
+.endobj lbl_8049AFC4
 .balign 4
-lbl_8049AFE4:
+.obj lbl_8049AFE4, local
 	.asciz "/data/timg/nintendo_376x104.bti"
+.endobj lbl_8049AFE4
 .balign 4
-lbl_8049B004:
+.obj lbl_8049B004, local
 	.asciz "/data/timg/dolby_mark.bti"
+.endobj lbl_8049B004
 .balign 4
-lbl_8049B020:
+.obj lbl_8049B020, local
 	.asciz "/data/timg/warning.bti"
+.endobj lbl_8049B020
 .balign 4
-lbl_8049B038:
+.obj lbl_8049B038, local
 	.asciz "/data/timg/warning_pstart.bti"
+.endobj lbl_8049B038
 .balign 4
-lbl_8049B058:
+.obj lbl_8049B058, local
 	.asciz "og::Screen::Manager2D::create"
+.endobj lbl_8049B058
 .balign 4
-lbl_8049B078:
+.obj lbl_8049B078, local
 	.asciz "ebiScreen"
+.endobj lbl_8049B078
 .balign 4
-lbl_8049B084:
+.obj lbl_8049B084, local
 	.asciz "TParticle2dMgr"
+.endobj lbl_8049B084
 .balign 4
-lbl_8049B094:
+.obj lbl_8049B094, local
 	.asciz "user/Ebisawa/effect/eff2d_game2d.jpc"
+.endobj lbl_8049B094
 .balign 4
-lbl_8049B0BC:
+.obj lbl_8049B0BC, local
 	.asciz "ebi::TScreenProgre"
+.endobj lbl_8049B0BC
 .balign 4
-lbl_8049B0D0:
+.obj lbl_8049B0D0, local
 	.asciz "ebi::TScreenProgre::loadResource"
+.endobj lbl_8049B0D0
 .balign 4
-lbl_8049B0F4:
+.obj lbl_8049B0F4, local
 	.asciz "PSGame.h"
+.endobj lbl_8049B0F4
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804ECFE8: # no idea wtf this is
+.obj lbl_804ECFE8, local # no idea wtf this is
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000003
 	.4byte 0x00000000
-govNAN___Q24Game5P2JST:
+.endobj lbl_804ECFE8
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804ED004:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804ED004, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadResident__11BootSectionFv
-lbl_804ED010:
+.endobj lbl_804ED004
+.obj lbl_804ED010, local
 	.4byte .L_80448834
 	.4byte .L_80448834
 	.4byte .L_80448834
@@ -108,8 +133,9 @@ lbl_804ED010:
 	.4byte .L_8044890C
 	.4byte .L_8044896C
 	.4byte .L_8044896C
+.endobj lbl_804ED010
 .if version == 1
-lbl_804ED03C:
+.obj lbl_804ED03C, local
 	.4byte .L_80449068
 	.4byte .L_80449074
 	.4byte .L_80449360
@@ -121,8 +147,9 @@ lbl_804ED03C:
 	.4byte .L_804490A4
 	.4byte .L_804493B8
 	.4byte .L_80449448
+.endobj lbl_804ED03C
 .else
-lbl_804ED03C:
+.obj lbl_804ED03C, local
 	.4byte .L_8044907C
 	.4byte .L_80449088
 	.4byte .L_80449374
@@ -134,23 +161,28 @@ lbl_804ED03C:
 	.4byte .L_804490B8
 	.4byte .L_8044959C
 	.4byte .L_8044962C
+.endobj lbl_804ED03C
 .endif
-lbl_804ED068:
+.obj lbl_804ED068, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte load2DResource__11BootSectionFv
-lbl_804ED074:
+.endobj lbl_804ED068
+.obj lbl_804ED074, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadBootResource__11BootSectionFv
-lbl_804ED080:
+.endobj lbl_804ED074
+.obj lbl_804ED080, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte waitLoadResource__11BootSectionFv
-lbl_804ED08C:
+.endobj lbl_804ED080
+.obj lbl_804ED08C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte waitLoadResource__11BootSectionFv
+.endobj lbl_804ED08C
 	.4byte 0x00000000 # this is likely padding for alignment
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -193,8 +225,7 @@ lbl_804ED08C:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global __vt__11BootSection
-__vt__11BootSection:
+.obj __vt__11BootSection, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11BootSectionFv
@@ -215,11 +246,12 @@ __vt__11BootSection:
 	.4byte isFinishable__7SectionFv
 	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
 	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
-.global "__vt__23Delegate<11BootSection>"
-"__vt__23Delegate<11BootSection>":
+.endobj __vt__11BootSection
+.obj "__vt__23Delegate<11BootSection>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__23Delegate<11BootSection>Fv"
+.endobj "__vt__23Delegate<11BootSection>"
 	.skip 0xC # padding for alignment?
 
 .section .bss  # 0x804EFC20 - 0x8051467C
@@ -228,136 +260,189 @@ __vt__11BootSection:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sTinyPikminNum__13TinyPikminMgr
-sTinyPikminNum__13TinyPikminMgr:
+.obj sTinyPikminNum__13TinyPikminMgr, global
 	.4byte 10
+.endobj sTinyPikminNum__13TinyPikminMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global sBootSection
-sBootSection:
+.endobj gfNAN___Q24Game5P2JST
+.obj sBootSection, global
 	.skip 0x4
-sTinyPikminMgr:
+.endobj sBootSection
+.obj sTinyPikminMgr, local
 	.skip 0x4
+.endobj sTinyPikminMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805209A0:
+.obj lbl_805209A0, local
 	.float 0.0
-lbl_805209A4:
+.endobj lbl_805209A0
+.obj lbl_805209A4, local
 	.float 1.0
-lbl_805209A8:
+.endobj lbl_805209A4
+.obj lbl_805209A8, local
 	.float 70.0
-lbl_805209AC:
+.endobj lbl_805209A8
+.obj lbl_805209AC, local
 	.float 32768.0
-lbl_805209B0:
+.endobj lbl_805209AC
+.obj lbl_805209B0, local
 	.float 2.0
-lbl_805209B4:
+.endobj lbl_805209B0
+.obj lbl_805209B4, local
 	.float -200.0
-lbl_805209B8:
+.endobj lbl_805209B4
+.obj lbl_805209B8, local
 	.float 1.5
+.endobj lbl_805209B8
 .balign 8
-lbl_805209C0:
+.obj lbl_805209C0, local
 	.8byte 0x4330000080000000
-lbl_805209C8:
+.endobj lbl_805209C0
+.obj lbl_805209C8, local
 	.float 10.0
-lbl_805209CC:
+.endobj lbl_805209C8
+.obj lbl_805209CC, local
 	.float 20.0
-lbl_805209D0:
+.endobj lbl_805209CC
+.obj lbl_805209D0, local
 	.float 4.0
-lbl_805209D4:
+.endobj lbl_805209D0
+.obj lbl_805209D4, local
 	.float 5.0
-lbl_805209D8:
+.endobj lbl_805209D4
+.obj lbl_805209D8, local
 	.float 8.5
-lbl_805209DC:
+.endobj lbl_805209D8
+.obj lbl_805209DC, local
 	.float 7.0
-lbl_805209E0:
+.endobj lbl_805209DC
+.obj lbl_805209E0, local
 	.float 0.55
-lbl_805209E4:
+.endobj lbl_805209E0
+.obj lbl_805209E4, local
 	.float 300.0
-lbl_805209E8:
+.endobj lbl_805209E4
+.obj lbl_805209E8, local
 	.float -1.0
-lbl_805209EC:
+.endobj lbl_805209E8
+.obj lbl_805209EC, local
 	.float 15.0
-lbl_805209F0:
+.endobj lbl_805209EC
+.obj lbl_805209F0, local
 	.float -4.0
-lbl_805209F4:
+.endobj lbl_805209F0
+.obj lbl_805209F4, local
 	.float 0.9
-lbl_805209F8:
+.endobj lbl_805209F4
+.obj lbl_805209F8, local
 	.float 0.5
-lbl_805209FC:
+.endobj lbl_805209F8
+.obj lbl_805209FC, local
 	.float 0.98
-lbl_80520A00:
+.endobj lbl_805209FC
+.obj lbl_80520A00, local
 	.float 0.75
-lbl_80520A04:
+.endobj lbl_80520A00
+.obj lbl_80520A04, local
 	.float 360.0
-lbl_80520A08:
+.endobj lbl_80520A04
+.obj lbl_80520A08, local
 	.float 448.0
-lbl_80520A0C:
+.endobj lbl_80520A08
+.obj lbl_80520A0C, local
 	.float 0.8
-lbl_80520A10:
+.endobj lbl_80520A0C
+.obj lbl_80520A10, local
 	.float 0.2
-lbl_80520A14: # tau
+.endobj lbl_80520A10
+.obj lbl_80520A14, local # tau
 	.float 6.2831855
-lbl_80520A18:
+.endobj lbl_80520A14
+.obj lbl_80520A18, local
 	.float 0.1
-lbl_80520A1C:
+.endobj lbl_80520A18
+.obj lbl_80520A1C, local
 	.float -325.9493
-lbl_80520A20:
+.endobj lbl_80520A1C
+.obj lbl_80520A20, local
 	.float 325.9493
-lbl_80520A24:
+.endobj lbl_80520A20
+.obj lbl_80520A24, local
 	.float 0.08
+.endobj lbl_80520A24
 .balign 4
-lbl_80520A28:
+.obj lbl_80520A28, local
 	.asciz "timg/%s"
+.endobj lbl_80520A28
 .balign 4
-lbl_80520A30:
+.obj lbl_80520A30, local
 	.float 274.0
-lbl_80520A34:
+.endobj lbl_80520A30
+.obj lbl_80520A34, local
 	.float 175.0
-lbl_80520A38:
+.endobj lbl_80520A34
+.obj lbl_80520A38, local
 	.float 166.0
+.endobj lbl_80520A38
 .balign 8
-lbl_80520A40:
+.obj lbl_80520A40, local
 	.8byte 0x4330000000000000
-lbl_80520A48:
+.endobj lbl_80520A40
+.obj lbl_80520A48, local
 	.float 0.03333
-lbl_80520A4C:
+.endobj lbl_80520A48
+.obj lbl_80520A4C, local
 	.float 117.0
-lbl_80520A50:
+.endobj lbl_80520A4C
+.obj lbl_80520A50, local
 	.float 154.0
-lbl_80520A54:
+.endobj lbl_80520A50
+.obj lbl_80520A54, local
 	.float 376.0
-lbl_80520A58:
+.endobj lbl_80520A54
+.obj lbl_80520A58, local
 	.float 104.0
-lbl_80520A5C:
+.endobj lbl_80520A58
+.obj lbl_80520A5C, local
 	.float 0.94
-lbl_80520A60:
+.endobj lbl_80520A5C
+.obj lbl_80520A60, local
 	.float 189.0
-lbl_80520A64:
+.endobj lbl_80520A60
+.obj lbl_80520A64, local
 	.float 150.0
-lbl_80520A68:
+.endobj lbl_80520A64
+.obj lbl_80520A68, local
 	.float 232.0
-lbl_80520A6C:
+.endobj lbl_80520A68
+.obj lbl_80520A6C, local
 	.float 112.0
+.endobj lbl_80520A6C
 .if version == 2
-lbl_80520A70:
+.obj lbl_80520A70, local
 	.float 608.0
-lbl_80520A74:
+.endobj lbl_80520A70
+.obj lbl_80520A74, local
 	.float 127.5
-lbl_80520A78:
+.endobj lbl_80520A74
+.obj lbl_80520A78, local
 	.float 48.0
-zz_80520A7C:
+.endobj lbl_80520A78
+.obj zz_80520A7C, local
 	.float 60.0
+.endobj zz_80520A7C
 .endif
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__10TinyPikminFv
-__ct__10TinyPikminFv:
+.fn __ct__10TinyPikminFv, global
 /* 804473BC 004442FC  38 00 00 00 */	li r0, 0
 /* 804473C0 00444300  C0 22 26 40 */	lfs f1, lbl_805209A0@sda21(r2)
 /* 804473C4 00444304  90 03 00 00 */	stw r0, 0(r3)
@@ -370,10 +455,10 @@ __ct__10TinyPikminFv:
 /* 804473E0 00444320  D0 23 00 20 */	stfs f1, 0x20(r3)
 /* 804473E4 00444324  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 804473E8 00444328  4E 80 00 20 */	blr 
+.endfn __ct__10TinyPikminFv
 
 .if version == 1
-.global update__10TinyPikminFv
-update__10TinyPikminFv:
+.fn update__10TinyPikminFv, global
 /* 804473EC 0044432C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804473F0 00444330  7C 08 02 A6 */	mflr r0
 /* 804473F4 00444334  90 01 00 34 */	stw r0, 0x34(r1)
@@ -701,9 +786,9 @@ update__10TinyPikminFv:
 /* 80447898 004447D8  7C 08 03 A6 */	mtlr r0
 /* 8044789C 004447DC  38 21 00 30 */	addi r1, r1, 0x30
 /* 804478A0 004447E0  4E 80 00 20 */	blr 
+.endfn update__10TinyPikminFv
 .else
-.global update__10TinyPikminFv
-update__10TinyPikminFv:
+.fn update__10TinyPikminFv, global
 /* 804473EC 0044432C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804473F0 00444330  7C 08 02 A6 */	mflr r0
 /* 804473F4 00444334  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1031,10 +1116,10 @@ update__10TinyPikminFv:
 /* 80447898 004447D8  7C 08 03 A6 */	mtlr r0
 /* 8044789C 004447DC  38 21 00 30 */	addi r1, r1, 0x30
 /* 804478A0 004447E0  4E 80 00 20 */	blr 
+.endfn update__10TinyPikminFv
 .endif
 
-.global init__13TinyPikminMgrFv
-init__13TinyPikminMgrFv:
+.fn init__13TinyPikminMgrFv, global
 /* 804478A4 004447E4  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 804478A8 004447E8  7C 08 02 A6 */	mflr r0
 /* 804478AC 004447EC  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -1358,10 +1443,10 @@ init__13TinyPikminMgrFv:
 /* 80447D60 00444CA0  7C 08 03 A6 */	mtlr r0
 /* 80447D64 00444CA4  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80447D68 00444CA8  4E 80 00 20 */	blr 
+.endfn init__13TinyPikminMgrFv
 
 .if version == 1
-.global __ct__11BootSectionFP7JKRHeap
-__ct__11BootSectionFP7JKRHeap:
+.fn __ct__11BootSectionFP7JKRHeap, global
 /* 80447D6C 00444CAC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80447D70 00444CB0  7C 08 02 A6 */	mflr r0
 /* 80447D74 00444CB4  3C A0 80 4A */	lis r5, lbl_8049AF08@ha
@@ -1583,9 +1668,9 @@ __ct__11BootSectionFP7JKRHeap:
 /* 804480A8 00444FE8  7C 08 03 A6 */	mtlr r0
 /* 804480AC 00444FEC  38 21 00 40 */	addi r1, r1, 0x40
 /* 804480B0 00444FF0  4E 80 00 20 */	blr 
+.endfn __ct__11BootSectionFP7JKRHeap
 .else
-.global __ct__11BootSectionFP7JKRHeap
-__ct__11BootSectionFP7JKRHeap:
+.fn __ct__11BootSectionFP7JKRHeap, global
 /* 80447D6C 00444CAC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80447D70 00444CB0  7C 08 02 A6 */	mflr r0
 /* 80447D74 00444CB4  3C A0 80 4A */	lis r5, lbl_8049AF08@ha
@@ -1807,11 +1892,11 @@ __ct__11BootSectionFP7JKRHeap:
 /* 804480A8 00444FE8  7C 08 03 A6 */	mtlr r0
 /* 804480AC 00444FEC  38 21 00 40 */	addi r1, r1, 0x40
 /* 804480B0 00444FF0  4E 80 00 20 */	blr 
+.endfn __ct__11BootSectionFP7JKRHeap
 .endif
 
 .if version == 1
-.global __dt__11BootSectionFv
-__dt__11BootSectionFv:
+.fn __dt__11BootSectionFv, global
 /* 804480B4 00444FF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804480B8 00444FF8  7C 08 02 A6 */	mflr r0
 /* 804480BC 00444FFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1847,9 +1932,9 @@ __dt__11BootSectionFv:
 /* 8044812C 0044506C  7C 08 03 A6 */	mtlr r0
 /* 80448130 00445070  38 21 00 10 */	addi r1, r1, 0x10
 /* 80448134 00445074  4E 80 00 20 */	blr 
+.endfn __dt__11BootSectionFv
 .else
-.global __dt__11BootSectionFv
-__dt__11BootSectionFv:
+.fn __dt__11BootSectionFv, global
 /* 804480B4 00444FF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804480B8 00444FF8  7C 08 02 A6 */	mflr r0
 /* 804480BC 00444FFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1885,15 +1970,15 @@ __dt__11BootSectionFv:
 /* 8044812C 0044506C  7C 08 03 A6 */	mtlr r0
 /* 80448130 00445070  38 21 00 10 */	addi r1, r1, 0x10
 /* 80448134 00445074  4E 80 00 20 */	blr 
+.endfn __dt__11BootSectionFv
 .endif
 
-.global init__11BootSectionFv
-init__11BootSectionFv:
+.fn init__11BootSectionFv, global
 /* 80448138 00445078  4E 80 00 20 */	blr 
+.endfn init__11BootSectionFv
 
 .if version == 1
-.global loadBootResource__11BootSectionFv
-loadBootResource__11BootSectionFv:
+.fn loadBootResource__11BootSectionFv, global
 /* 8044813C 0044507C  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 80448140 00445080  7C 08 02 A6 */	mflr r0
 /* 80448144 00445084  3C 80 80 4A */	lis r4, lbl_8049AF08@ha
@@ -2081,9 +2166,9 @@ loadBootResource__11BootSectionFv:
 /* 804483E8 00445328  7C 08 03 A6 */	mtlr r0
 /* 804483EC 0044532C  38 21 01 40 */	addi r1, r1, 0x140
 /* 804483F0 00445330  4E 80 00 20 */	blr 
+.endfn loadBootResource__11BootSectionFv
 .else
-.global loadBootResource__11BootSectionFv
-loadBootResource__11BootSectionFv:
+.fn loadBootResource__11BootSectionFv, global
 /* 8044813C 0044507C  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 80448140 00445080  7C 08 02 A6 */	mflr r0
 /* 80448144 00445084  3C 80 80 4A */	lis r4, lbl_8049AF08@ha
@@ -2271,11 +2356,11 @@ loadBootResource__11BootSectionFv:
 /* 804483E8 00445328  7C 08 03 A6 */	mtlr r0
 /* 804483EC 0044532C  38 21 01 40 */	addi r1, r1, 0x140
 /* 804483F0 00445330  4E 80 00 20 */	blr 
+.endfn loadBootResource__11BootSectionFv
 .endif
 
 .if version == 1
-.global load2DResource__11BootSectionFv
-load2DResource__11BootSectionFv:
+.fn load2DResource__11BootSectionFv, global
 /* 804483F4 00445334  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804483F8 00445338  7C 08 02 A6 */	mflr r0
 /* 804483FC 0044533C  3C 80 80 4A */	lis r4, lbl_8049AF08@ha
@@ -2351,9 +2436,9 @@ load2DResource__11BootSectionFv:
 /* 80448510 00445450  7C 08 03 A6 */	mtlr r0
 /* 80448514 00445454  38 21 00 10 */	addi r1, r1, 0x10
 /* 80448518 00445458  4E 80 00 20 */	blr 
+.endfn load2DResource__11BootSectionFv
 .else
-.global load2DResource__11BootSectionFv
-load2DResource__11BootSectionFv:
+.fn load2DResource__11BootSectionFv, global
 /* 804483F4 00445334  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804483F8 00445338  7C 08 02 A6 */	mflr r0
 /* 804483FC 0044533C  3C 80 80 4A */	lis r4, lbl_8049AF08@ha
@@ -2429,10 +2514,10 @@ load2DResource__11BootSectionFv:
 /* 80448510 00445450  7C 08 03 A6 */	mtlr r0
 /* 80448514 00445454  38 21 00 10 */	addi r1, r1, 0x10
 /* 80448518 00445458  4E 80 00 20 */	blr 
+.endfn load2DResource__11BootSectionFv
 .endif
 
-.global __ct__Q23ebi13TScreenProgreFv
-__ct__Q23ebi13TScreenProgreFv:
+.fn __ct__Q23ebi13TScreenProgreFv, weak
 /* 8044851C 0044545C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80448520 00445460  7C 08 02 A6 */	mflr r0
 /* 80448524 00445464  3C 80 80 4F */	lis r4, __vt__Q23ebi13TScreenProgre@ha
@@ -2598,9 +2683,9 @@ __ct__Q23ebi13TScreenProgreFv:
 /* 804487A4 004456E4  7C 08 03 A6 */	mtlr r0
 /* 804487A8 004456E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 804487AC 004456EC  4E 80 00 20 */	blr 
+.endfn __ct__Q23ebi13TScreenProgreFv
 
-.global loadResident__11BootSectionFv
-loadResident__11BootSectionFv:
+.fn loadResident__11BootSectionFv, global
 /* 804487B0 004456F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804487B4 004456F4  7C 08 02 A6 */	mflr r0
 /* 804487B8 004456F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2618,10 +2703,10 @@ loadResident__11BootSectionFv:
 /* 804487E8 00445728  7C 08 03 A6 */	mtlr r0
 /* 804487EC 0044572C  38 21 00 10 */	addi r1, r1, 0x10
 /* 804487F0 00445730  4E 80 00 20 */	blr 
+.endfn loadResident__11BootSectionFv
 
 .if version == 1
-.global doDraw__11BootSectionFR8Graphics
-doDraw__11BootSectionFR8Graphics:
+.fn doDraw__11BootSectionFR8Graphics, global
 /* 804487F4 00445734  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804487F8 00445738  7C 08 02 A6 */	mflr r0
 /* 804487FC 0044573C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2732,9 +2817,9 @@ doDraw__11BootSectionFR8Graphics:
 /* 80448984 004458C4  7C 08 03 A6 */	mtlr r0
 /* 80448988 004458C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044898C 004458CC  4E 80 00 20 */	blr 
+.endfn doDraw__11BootSectionFR8Graphics
 .else
-.global doDraw__11BootSectionFR8Graphics
-doDraw__11BootSectionFR8Graphics:
+.fn doDraw__11BootSectionFR8Graphics, global
 /* 804487F4 00445734  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804487F8 00445738  7C 08 02 A6 */	mflr r0
 /* 804487FC 0044573C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2845,10 +2930,10 @@ doDraw__11BootSectionFR8Graphics:
 /* 80448984 004458C4  7C 08 03 A6 */	mtlr r0
 /* 80448988 004458C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044898C 004458CC  4E 80 00 20 */	blr 
+.endfn doDraw__11BootSectionFR8Graphics
 .endif
 
-.global drawProgressive__11BootSectionFR8Graphics
-drawProgressive__11BootSectionFR8Graphics:
+.fn drawProgressive__11BootSectionFR8Graphics, global
 /* 80448990 004458D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80448994 004458D4  7C 08 02 A6 */	mflr r0
 /* 80448998 004458D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2857,9 +2942,9 @@ drawProgressive__11BootSectionFR8Graphics:
 /* 804489A4 004458E4  7C 08 03 A6 */	mtlr r0
 /* 804489A8 004458E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 804489AC 004458EC  4E 80 00 20 */	blr 
+.endfn drawProgressive__11BootSectionFR8Graphics
 
-.global drawSetProgressive__11BootSectionFR8Graphics
-drawSetProgressive__11BootSectionFR8Graphics:
+.fn drawSetProgressive__11BootSectionFR8Graphics, global
 /* 804489B0 004458F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804489B4 004458F4  7C 08 02 A6 */	mflr r0
 /* 804489B8 004458F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2868,9 +2953,9 @@ drawSetProgressive__11BootSectionFR8Graphics:
 /* 804489C4 00445904  7C 08 03 A6 */	mtlr r0
 /* 804489C8 00445908  38 21 00 10 */	addi r1, r1, 0x10
 /* 804489CC 0044590C  4E 80 00 20 */	blr 
+.endfn drawSetProgressive__11BootSectionFR8Graphics
 
-.global drawSetInterlace__11BootSectionFR8Graphics
-drawSetInterlace__11BootSectionFR8Graphics:
+.fn drawSetInterlace__11BootSectionFR8Graphics, global
 /* 804489D0 00445910  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804489D4 00445914  7C 08 02 A6 */	mflr r0
 /* 804489D8 00445918  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2879,10 +2964,10 @@ drawSetInterlace__11BootSectionFR8Graphics:
 /* 804489E4 00445924  7C 08 03 A6 */	mtlr r0
 /* 804489E8 00445928  38 21 00 10 */	addi r1, r1, 0x10
 /* 804489EC 0044592C  4E 80 00 20 */	blr 
+.endfn drawSetInterlace__11BootSectionFR8Graphics
 
 .if version == 1
-.global drawNintendoLogo__11BootSectionFR8Graphics
-drawNintendoLogo__11BootSectionFR8Graphics:
+.fn drawNintendoLogo__11BootSectionFR8Graphics, global
 /* 804489F0 00445930  94 21 FE 20 */	stwu r1, -0x1e0(r1)
 /* 804489F4 00445934  7C 08 02 A6 */	mflr r0
 /* 804489F8 00445938  90 01 01 E4 */	stw r0, 0x1e4(r1)
@@ -3144,9 +3229,9 @@ drawNintendoLogo__11BootSectionFR8Graphics:
 /* 80448DC4 00445D04  7C 08 03 A6 */	mtlr r0
 /* 80448DC8 00445D08  38 21 01 E0 */	addi r1, r1, 0x1e0
 /* 80448DCC 00445D0C  4E 80 00 20 */	blr 
+.endfn drawNintendoLogo__11BootSectionFR8Graphics
 .else
-.global drawNintendoLogo__11BootSectionFR8Graphics
-drawNintendoLogo__11BootSectionFR8Graphics:
+.fn drawNintendoLogo__11BootSectionFR8Graphics, global
 /* 804489F0 00445930  94 21 FE 20 */	stwu r1, -0x1e0(r1)
 /* 804489F4 00445934  7C 08 02 A6 */	mflr r0
 /* 804489F8 00445938  90 01 01 E4 */	stw r0, 0x1e4(r1)
@@ -3408,11 +3493,11 @@ drawNintendoLogo__11BootSectionFR8Graphics:
 /* 80448DC4 00445D04  7C 08 03 A6 */	mtlr r0
 /* 80448DC8 00445D08  38 21 01 E0 */	addi r1, r1, 0x1e0
 /* 80448DCC 00445D0C  4E 80 00 20 */	blr 
+.endfn drawNintendoLogo__11BootSectionFR8Graphics
 .endif
 
 .if version == 1
-.global drawDolbyLogo__11BootSectionFR8Graphics
-drawDolbyLogo__11BootSectionFR8Graphics:
+.fn drawDolbyLogo__11BootSectionFR8Graphics, global
 /* 80448DD0 00445D10  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 80448DD4 00445D14  7C 08 02 A6 */	mflr r0
 /* 80448DD8 00445D18  90 01 01 84 */	stw r0, 0x184(r1)
@@ -3458,9 +3543,9 @@ drawDolbyLogo__11BootSectionFR8Graphics:
 /* 80448E78 00445DB8  7C 08 03 A6 */	mtlr r0
 /* 80448E7C 00445DBC  38 21 01 80 */	addi r1, r1, 0x180
 /* 80448E80 00445DC0  4E 80 00 20 */	blr 
+.endfn drawDolbyLogo__11BootSectionFR8Graphics
 .else
-.global drawDolbyLogo__11BootSectionFR8Graphics
-drawDolbyLogo__11BootSectionFR8Graphics:
+.fn drawDolbyLogo__11BootSectionFR8Graphics, global
 /* 80448DD0 00445D10  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 80448DD4 00445D14  7C 08 02 A6 */	mflr r0
 /* 80448DD8 00445D18  90 01 01 84 */	stw r0, 0x184(r1)
@@ -3506,11 +3591,11 @@ drawDolbyLogo__11BootSectionFR8Graphics:
 /* 80448E78 00445DB8  7C 08 03 A6 */	mtlr r0
 /* 80448E7C 00445DBC  38 21 01 80 */	addi r1, r1, 0x180
 /* 80448E80 00445DC0  4E 80 00 20 */	blr 
+.endfn drawDolbyLogo__11BootSectionFR8Graphics
 .endif
 
 .if version == 2
-.global drawEpilepsy__11BootSectionFR8Graphics
-drawEpilepsy__11BootSectionFR8Graphics:
+.fn drawEpilepsy__11BootSectionFR8Graphics, global
 /* 80448E84 00445DC4  94 21 FD 00 */	stwu r1, -0x300(r1)
 /* 80448E88 00445DC8  7C 08 02 A6 */	mflr r0
 /* 80448E8C 00445DCC  90 01 03 04 */	stw r0, 0x304(r1)
@@ -3613,11 +3698,11 @@ drawEpilepsy__11BootSectionFR8Graphics:
 /* 80449000 00445F40  7C 08 03 A6 */	mtlr r0
 /* 80449004 00445F44  38 21 03 00 */	addi r1, r1, 0x300
 /* 80449008 00445F48  4E 80 00 20 */	blr 
+.endfn drawEpilepsy__11BootSectionFR8Graphics
 .endif
 
 .if version == 1
-.global doUpdate__11BootSectionFv
-doUpdate__11BootSectionFv:
+.fn doUpdate__11BootSectionFv, global
 /* 80448FF4 00445F34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80448FF8 00445F38  7C 08 02 A6 */	mflr r0
 /* 80448FFC 00445F3C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3963,9 +4048,9 @@ doUpdate__11BootSectionFv:
 /* 804494BC 004463FC  7C 08 03 A6 */	mtlr r0
 /* 804494C0 00446400  38 21 00 20 */	addi r1, r1, 0x20
 /* 804494C4 00446404  4E 80 00 20 */	blr 
+.endfn doUpdate__11BootSectionFv
 .else
-.global doUpdate__11BootSectionFv
-doUpdate__11BootSectionFv:
+.fn doUpdate__11BootSectionFv, global
 /* 8044900C 00445F4C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80449010 00445F50  7C 08 02 A6 */	mflr r0
 /* 80449014 00445F54  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4434,11 +4519,11 @@ doUpdate__11BootSectionFv:
 /* 80449694 004465D4  7C 08 03 A6 */	mtlr r0
 /* 80449698 004465D8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8044969C 004465DC  4E 80 00 20 */	blr 
+.endfn doUpdate__11BootSectionFv
 .endif
 
 .if version == 1
-.global updateLoadResourceFirst__11BootSectionFv
-updateLoadResourceFirst__11BootSectionFv:
+.fn updateLoadResourceFirst__11BootSectionFv, global
 /* 804494C8 00446408  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804494CC 0044640C  7C 08 02 A6 */	mflr r0
 /* 804494D0 00446410  3C A0 80 4A */	lis r5, lbl_8049AF08@ha
@@ -4518,9 +4603,9 @@ updateLoadResourceFirst__11BootSectionFv:
 /* 804495E0 00446520  7C 08 03 A6 */	mtlr r0
 /* 804495E4 00446524  38 21 00 20 */	addi r1, r1, 0x20
 /* 804495E8 00446528  4E 80 00 20 */	blr 
+.endfn updateLoadResourceFirst__11BootSectionFv
 .else
-.global updateLoadResourceFirst__11BootSectionFv
-updateLoadResourceFirst__11BootSectionFv:
+.fn updateLoadResourceFirst__11BootSectionFv, global
 /* 804496A0 004465E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804496A4 004465E4  7C 08 02 A6 */	mflr r0
 /* 804496A8 004465E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4563,10 +4648,10 @@ updateLoadResourceFirst__11BootSectionFv:
 /* 80449730 00446670  7C 08 03 A6 */	mtlr r0
 /* 80449734 00446674  38 21 00 10 */	addi r1, r1, 0x10
 /* 80449738 00446678  4E 80 00 20 */	blr 
+.endfn updateLoadResourceFirst__11BootSectionFv
 .endif
 
-.global updateLoadMemoryCard__11BootSectionFv
-updateLoadMemoryCard__11BootSectionFv:
+.fn updateLoadMemoryCard__11BootSectionFv, global
 /* 8044973C 0044667C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449740 00446680  7C 08 02 A6 */	mflr r0
 /* 80449744 00446684  3C A0 80 4A */	lis r5, lbl_8049AF08@ha
@@ -4651,10 +4736,10 @@ updateLoadMemoryCard__11BootSectionFv:
 /* 8044986C 004467AC  7C 08 03 A6 */	mtlr r0
 /* 80449870 004467B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80449874 004467B4  4E 80 00 20 */	blr 
+.endfn updateLoadMemoryCard__11BootSectionFv
 
 .if version == 1
-.global updateNintendoLogo__11BootSectionFv
-updateNintendoLogo__11BootSectionFv:
+.fn updateNintendoLogo__11BootSectionFv, global
 /* 80449878 004467B8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044987C 004467BC  7C 08 02 A6 */	mflr r0
 /* 80449880 004467C0  3C 80 80 51 */	lis r4, gGameConfig__4Game@ha
@@ -4831,9 +4916,9 @@ updateNintendoLogo__11BootSectionFv:
 /* 80449AF4 00446A34  7C 08 03 A6 */	mtlr r0
 /* 80449AF8 00446A38  38 21 00 30 */	addi r1, r1, 0x30
 /* 80449AFC 00446A3C  4E 80 00 20 */	blr 
+.endfn updateNintendoLogo__11BootSectionFv
 .else
-.global updateNintendoLogo__11BootSectionFv
-updateNintendoLogo__11BootSectionFv:
+.fn updateNintendoLogo__11BootSectionFv, global
 /* 80449878 004467B8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044987C 004467BC  7C 08 02 A6 */	mflr r0
 /* 80449880 004467C0  3C 80 80 51 */	lis r4, gGameConfig__4Game@ha
@@ -5010,11 +5095,11 @@ updateNintendoLogo__11BootSectionFv:
 /* 80449AF4 00446A34  7C 08 03 A6 */	mtlr r0
 /* 80449AF8 00446A38  38 21 00 30 */	addi r1, r1, 0x30
 /* 80449AFC 00446A3C  4E 80 00 20 */	blr 
+.endfn updateNintendoLogo__11BootSectionFv
 .endif
 
 .if version == 1
-.global updateProgressive__11BootSectionFv
-updateProgressive__11BootSectionFv:
+.fn updateProgressive__11BootSectionFv, global
 /* 80449B00 00446A40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449B04 00446A44  7C 08 02 A6 */	mflr r0
 /* 80449B08 00446A48  C0 22 26 68 */	lfs f1, lbl_805209C8@sda21(r2)
@@ -5122,9 +5207,9 @@ updateProgressive__11BootSectionFv:
 /* 80449C74 00446BB4  7C 08 03 A6 */	mtlr r0
 /* 80449C78 00446BB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80449C7C 00446BBC  4E 80 00 20 */	blr 
+.endfn updateProgressive__11BootSectionFv
 .else
-.global updateProgressive__11BootSectionFv
-updateProgressive__11BootSectionFv:
+.fn updateProgressive__11BootSectionFv, global
 /* 80449B00 00446A40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449B04 00446A44  7C 08 02 A6 */	mflr r0
 /* 80449B08 00446A48  C0 22 26 68 */	lfs f1, lbl_805209C8@sda21(r2)
@@ -5232,11 +5317,11 @@ updateProgressive__11BootSectionFv:
 /* 80449C74 00446BB4  7C 08 03 A6 */	mtlr r0
 /* 80449C78 00446BB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80449C7C 00446BBC  4E 80 00 20 */	blr 
+.endfn updateProgressive__11BootSectionFv
 .endif
 
 .if version == 1
-.global updateWaitProgressive__11BootSectionFv
-updateWaitProgressive__11BootSectionFv:
+.fn updateWaitProgressive__11BootSectionFv, global
 /* 80449C80 00446BC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80449C84 00446BC4  7C 08 02 A6 */	mflr r0
 /* 80449C88 00446BC8  C0 22 26 44 */	lfs f1, lbl_805209A4@sda21(r2)
@@ -5263,9 +5348,9 @@ updateWaitProgressive__11BootSectionFv:
 /* 80449CD8 00446C18  7C 08 03 A6 */	mtlr r0
 /* 80449CDC 00446C1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80449CE0 00446C20  4E 80 00 20 */	blr 
+.endfn updateWaitProgressive__11BootSectionFv
 .else
-.global updateWaitProgressive__11BootSectionFv
-updateWaitProgressive__11BootSectionFv:
+.fn updateWaitProgressive__11BootSectionFv, global
 /* 80449C80 00446BC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80449C84 00446BC4  7C 08 02 A6 */	mflr r0
 /* 80449C88 00446BC8  C0 22 26 44 */	lfs f1, lbl_805209A4@sda21(r2)
@@ -5292,11 +5377,11 @@ updateWaitProgressive__11BootSectionFv:
 /* 80449CD8 00446C18  7C 08 03 A6 */	mtlr r0
 /* 80449CDC 00446C1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80449CE0 00446C20  4E 80 00 20 */	blr 
+.endfn updateWaitProgressive__11BootSectionFv
 .endif
 
 .if version == 1
-.global run__11BootSectionFv
-run__11BootSectionFv:
+.fn run__11BootSectionFv, global
 /* 80449CE4 00446C24  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80449CE8 00446C28  7C 08 02 A6 */	mflr r0
 /* 80449CEC 00446C2C  3C 80 80 4F */	lis r4, lbl_804ECFE8@ha
@@ -5370,9 +5455,9 @@ run__11BootSectionFv:
 /* 80449DF8 00446D38  7C 08 03 A6 */	mtlr r0
 /* 80449DFC 00446D3C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80449E00 00446D40  4E 80 00 20 */	blr 
+.endfn run__11BootSectionFv
 .else
-.global run__11BootSectionFv
-run__11BootSectionFv:
+.fn run__11BootSectionFv, global
 /* 80449CE4 00446C24  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80449CE8 00446C28  7C 08 02 A6 */	mflr r0
 /* 80449CEC 00446C2C  3C 80 80 4F */	lis r4, lbl_804ECFE8@ha
@@ -5446,10 +5531,10 @@ run__11BootSectionFv:
 /* 80449DF8 00446D38  7C 08 03 A6 */	mtlr r0
 /* 80449DFC 00446D3C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80449E00 00446D40  4E 80 00 20 */	blr 
+.endfn run__11BootSectionFv
 .endif
 
-.global runWait__11BootSectionFM11BootSectionFPCvPv_b
-runWait__11BootSectionFM11BootSectionFPCvPv_b:
+.fn runWait__11BootSectionFM11BootSectionFPCvPv_b, global
 /* 80449E04 00446D44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449E08 00446D48  7C 08 02 A6 */	mflr r0
 /* 80449E0C 00446D4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5491,9 +5576,9 @@ runWait__11BootSectionFM11BootSectionFPCvPv_b:
 /* 80449E94 00446DD4  7C 08 03 A6 */	mtlr r0
 /* 80449E98 00446DD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80449E9C 00446DDC  4E 80 00 20 */	blr 
+.endfn runWait__11BootSectionFM11BootSectionFPCvPv_b
 
-.global waitLoadResource__11BootSectionFv
-waitLoadResource__11BootSectionFv:
+.fn waitLoadResource__11BootSectionFv, global
 /* 80449EA0 00446DE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80449EA4 00446DE4  7C 08 02 A6 */	mflr r0
 /* 80449EA8 00446DE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5506,10 +5591,10 @@ waitLoadResource__11BootSectionFv:
 /* 80449EC4 00446E04  7C 08 03 A6 */	mtlr r0
 /* 80449EC8 00446E08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80449ECC 00446E0C  4E 80 00 20 */	blr 
+.endfn waitLoadResource__11BootSectionFv
 
 .if version == 1
-.global setMode__11BootSectionFi
-setMode__11BootSectionFi:
+.fn setMode__11BootSectionFi, global
 /* 80449ED0 00446E10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449ED4 00446E14  7C 08 02 A6 */	mflr r0
 /* 80449ED8 00446E18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5545,9 +5630,9 @@ setMode__11BootSectionFi:
 /* 80449F48 00446E88  7C 08 03 A6 */	mtlr r0
 /* 80449F4C 00446E8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80449F50 00446E90  4E 80 00 20 */	blr 
+.endfn setMode__11BootSectionFi
 .else
-.global setMode__11BootSectionFi
-setMode__11BootSectionFi:
+.fn setMode__11BootSectionFi, global
 /* 80449ED0 00446E10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449ED4 00446E14  7C 08 02 A6 */	mflr r0
 /* 80449ED8 00446E18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5583,11 +5668,11 @@ setMode__11BootSectionFi:
 /* 80449F48 00446E88  7C 08 03 A6 */	mtlr r0
 /* 80449F4C 00446E8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80449F50 00446E90  4E 80 00 20 */	blr 
+.endfn setMode__11BootSectionFi
 .endif
 
 .if version == 1
-.global setModeEpilepsy__11BootSectionFv
-setModeEpilepsy__11BootSectionFv:
+.fn setModeEpilepsy__11BootSectionFv, global
 /* 80449F54 00446E94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449F58 00446E98  7C 08 02 A6 */	mflr r0
 /* 80449F5C 00446E9C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5624,9 +5709,9 @@ setModeEpilepsy__11BootSectionFv:
 /* 80449FD0 00446F10  7C 08 03 A6 */	mtlr r0
 /* 80449FD4 00446F14  38 21 00 20 */	addi r1, r1, 0x20
 /* 80449FD8 00446F18  4E 80 00 20 */	blr 
+.endfn setModeEpilepsy__11BootSectionFv
 .else
-.global setModeEpilepsy__11BootSectionFv
-setModeEpilepsy__11BootSectionFv:
+.fn setModeEpilepsy__11BootSectionFv, global
 /* 80449F54 00446E94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449F58 00446E98  7C 08 02 A6 */	mflr r0
 /* 80449F5C 00446E9C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5663,15 +5748,15 @@ setModeEpilepsy__11BootSectionFv:
 /* 80449FD0 00446F10  7C 08 03 A6 */	mtlr r0
 /* 80449FD4 00446F14  38 21 00 20 */	addi r1, r1, 0x20
 /* 80449FD8 00446F18  4E 80 00 20 */	blr 
+.endfn setModeEpilepsy__11BootSectionFv
 .endif
 
-.global forceReset__11BootSectionFv
-forceReset__11BootSectionFv: # weak function
+.fn forceReset__11BootSectionFv, weak
 /* 80449FDC 00446F1C  38 60 00 00 */	li r3, 0
 /* 80449FE0 00446F20  4E 80 00 20 */	blr 
+.endfn forceReset__11BootSectionFv
 
-.global "invoke__23Delegate<11BootSection>Fv"
-"invoke__23Delegate<11BootSection>Fv": #weak function
+.fn "invoke__23Delegate<11BootSection>Fv", weak
 /* 80449FE4 00446F24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80449FE8 00446F28  7C 08 02 A6 */	mflr r0
 /* 80449FEC 00446F2C  7C 64 1B 78 */	mr r4, r3
@@ -5684,8 +5769,9 @@ forceReset__11BootSectionFv: # weak function
 /* 8044A008 00446F48  7C 08 03 A6 */	mtlr r0
 /* 8044A00C 00446F4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044A010 00446F50  4E 80 00 20 */	blr 
+.endfn "invoke__23Delegate<11BootSection>Fv"
 
-__sinit_bootSection_cpp: # static initializer
+.fn __sinit_bootSection_cpp, local
 /* 8044A014 00446F54  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8044A018 00446F58  38 00 FF FF */	li r0, -1
 /* 8044A01C 00446F5C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -5696,3 +5782,4 @@ __sinit_bootSection_cpp: # static initializer
 /* 8044A030 00446F70  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8044A034 00446F74  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8044A038 00446F78  4E 80 00 20 */	blr 
+.endfn __sinit_bootSection_cpp

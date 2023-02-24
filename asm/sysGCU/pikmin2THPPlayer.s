@@ -267,15 +267,17 @@ __vt__Q24Game9THPPlayer:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520B10:
+.obj lbl_80520B10, local
 	.asciz ""
+.endobj lbl_80520B10
 .balign 4
-lbl_80520B14:
+.obj lbl_80520B14, local
 	.float 127.0
+.endobj lbl_80520B14
 .balign 8
-lbl_80520B18:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80520B18, local
+	.8byte 0x4330000000000000
+.endobj lbl_80520B18
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game9THPPlayerFv

@@ -5,23 +5,24 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049AC90:
+.obj lbl_8049AC90, local
 	.asciz "sysShapeModel.cpp"
+.endobj lbl_8049AC90
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q28SysShape5Joint
-__vt__Q28SysShape5Joint:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q28SysShape5Joint, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28SysShape5JointFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q28SysShape5Model
-__vt__Q28SysShape5Model:
+.endobj __vt__Q28SysShape5Joint
+.obj __vt__Q28SysShape5Model, global
 	.4byte 0
 	.4byte 0
 	.4byte getMatrix__Q28SysShape5ModelFi
@@ -34,12 +35,13 @@ __vt__Q28SysShape5Model:
 	.4byte showPackets__Q28SysShape5ModelFv
 	.4byte jointVisible__Q28SysShape5ModelFbi
 	.4byte jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint
+.endobj __vt__Q28SysShape5Model
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global viewCalcMode__Q28SysShape5Model
-viewCalcMode__Q28SysShape5Model:
+.obj viewCalcMode__Q28SysShape5Model, global
 	.byte 0x01
+.endobj viewCalcMode__Q28SysShape5Model
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -53,17 +55,22 @@ cullCount__Q28SysShape5Model:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520908:
+.obj lbl_80520908, local
 	.asciz "manda\n"
+.endobj lbl_80520908
 .balign 4
-lbl_80520910:
+.obj lbl_80520910, local
 	.float 0.0
-lbl_80520914:
+.endobj lbl_80520910
+.obj lbl_80520914, local
 	.float 0.5
-lbl_80520918:
+.endobj lbl_80520914
+.obj lbl_80520918, local
 	.float 32768.0
-lbl_8052091C:
+.endobj lbl_80520918
+.obj lbl_8052091C, local
 	.float -32768.0
+.endobj lbl_8052091C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28SysShape5ModelFP12J3DModelDataUlUl

@@ -35,63 +35,83 @@ lbl_constructor:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 4
-.global gScissorOffset
-gScissorOffset:
+.endobj gfNAN___Q24Game5P2JST
+.obj gScissorOffset, global
 	.skip 4
-.global lastTokenName__8Graphics
-lastTokenName__8Graphics:
+.endobj gScissorOffset
+.obj lastTokenName__8Graphics, global
 	.skip 4
+.endobj lastTokenName__8Graphics
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805204B8:
+.obj lbl_805204B8, local
 	.float 0.0
-lbl_805204BC:
+.endobj lbl_805204B8
+.obj lbl_805204BC, local
 	.float 0.5
+.endobj lbl_805204BC
 .balign 8
-lbl_805204C0:
+.obj lbl_805204C0, local
 	.8byte 0x4330000000000000
-lbl_805204C8:
+.endobj lbl_805204C0
+.obj lbl_805204C8, local
 	.float 1.0
-lbl_805204CC:
+.endobj lbl_805204C8
+.obj lbl_805204CC, local
 	.float -1.0
+.endobj lbl_805204CC
 .balign 8
-lbl_805204D0:
+.obj lbl_805204D0, local
 	.8byte 0x4330000080000000
-lbl_805204D8:
+.endobj lbl_805204D0
+.obj lbl_805204D8, local
 	.float 0.3926991
-lbl_805204DC:
+.endobj lbl_805204D8
+.obj lbl_805204DC, local
 	.float 325.9493
-lbl_805204E0:
+.endobj lbl_805204DC
+.obj lbl_805204E0, local
 	.float -325.9493
-lbl_805204E4:
-	.float 3.1415927 # pi
-lbl_805204E8:
+.endobj lbl_805204E0
+.obj lbl_805204E4, local # pi
+	.float 3.1415927
+.endobj lbl_805204E4
+.obj lbl_805204E8, local
 	.float -0.999
-lbl_805204EC:
+.endobj lbl_805204E8
+.obj lbl_805204EC, local
 	.float 0.0055555557
-lbl_805204F0:
+.endobj lbl_805204EC
+.obj lbl_805204F0, local
 	.float 1.0E-7
-lbl_805204F4:
-	.float 6.2831855 # tau
-lbl_805204F8:
+.endobj lbl_805204F0
+.obj lbl_805204F4, local # tau
+	.float 6.2831855
+.endobj lbl_805204F4
+.obj lbl_805204F8, local
 	.float -1024.0
-lbl_805204FC:
+.endobj lbl_805204F8
+.obj lbl_805204FC, local
 	.float 1024.0
-lbl_80520500:
+.endobj lbl_805204FC
+.obj lbl_80520500, local
 	.float 30.0
-lbl_80520504:
+.endobj lbl_80520500
+.obj lbl_80520504, local
 	.float 10.0
-lbl_80520508:
+.endobj lbl_80520504
+.obj lbl_80520508, local
 	.float 10000.0
+.endobj lbl_80520508
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__17HorizonalSplitterFP8Graphics
-__ct__17HorizonalSplitterFP8Graphics:
+.fn __ct__17HorizonalSplitterFP8Graphics, global
 /* 80424E90 00421DD0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80424E94 00421DD4  7C 08 02 A6 */	mflr r0
 /* 80424E98 00421DD8  3C C0 80 4F */	lis r6, __vt__8Splitter@ha
@@ -178,9 +198,9 @@ __ct__17HorizonalSplitterFP8Graphics:
 /* 80424FD4 00421F14  7C 08 03 A6 */	mtlr r0
 /* 80424FD8 00421F18  38 21 00 50 */	addi r1, r1, 0x50
 /* 80424FDC 00421F1C  4E 80 00 20 */	blr 
+.endfn __ct__17HorizonalSplitterFP8Graphics
 
-.global split2__17HorizonalSplitterFf
-split2__17HorizonalSplitterFf:
+.fn split2__17HorizonalSplitterFf, global
 /* 80424FE0 00421F20  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80424FE4 00421F24  7C 08 02 A6 */	mflr r0
 /* 80424FE8 00421F28  90 01 00 34 */	stw r0, 0x34(r1)
@@ -228,9 +248,9 @@ split2__17HorizonalSplitterFf:
 /* 80425090 00421FD0  7C 08 03 A6 */	mtlr r0
 /* 80425094 00421FD4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80425098 00421FD8  4E 80 00 20 */	blr 
+.endfn split2__17HorizonalSplitterFf
 
-.global __ct__8ViewportFv
-__ct__8ViewportFv:
+.fn __ct__8ViewportFv, global
 /* 8042509C 00421FDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804250A0 00421FE0  7C 08 02 A6 */	mflr r0
 /* 804250A4 00421FE4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -279,9 +299,9 @@ __ct__8ViewportFv:
 /* 80425150 00422090  7C 08 03 A6 */	mtlr r0
 /* 80425154 00422094  38 21 00 20 */	addi r1, r1, 0x20
 /* 80425158 00422098  4E 80 00 20 */	blr 
+.endfn __ct__8ViewportFv
 
-.global getMatrix__8ViewportFb
-getMatrix__8ViewportFb:
+.fn getMatrix__8ViewportFb, global
 /* 8042515C 0042209C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80425160 004220A0  7C 08 02 A6 */	mflr r0
 /* 80425164 004220A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -301,9 +321,9 @@ getMatrix__8ViewportFb:
 /* 80425194 004220D4  7C 08 03 A6 */	mtlr r0
 /* 80425198 004220D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042519C 004220DC  4E 80 00 20 */	blr 
+.endfn getMatrix__8ViewportFb
 
-.global setProjection__8ViewportFv
-setProjection__8ViewportFv:
+.fn setProjection__8ViewportFv, global
 /* 804251A0 004220E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804251A4 004220E4  7C 08 02 A6 */	mflr r0
 /* 804251A8 004220E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -316,9 +336,9 @@ setProjection__8ViewportFv:
 /* 804251C0 00422100  7C 08 03 A6 */	mtlr r0
 /* 804251C4 00422104  38 21 00 10 */	addi r1, r1, 0x10
 /* 804251C8 00422108  4E 80 00 20 */	blr 
+.endfn setProjection__8ViewportFv
 
-.global getNumActiveViewports__8GraphicsFv
-getNumActiveViewports__8GraphicsFv:
+.fn getNumActiveViewports__8GraphicsFv, global
 /* 804251CC 0042210C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804251D0 00422110  7C 08 02 A6 */	mflr r0
 /* 804251D4 00422114  90 01 00 24 */	stw r0, 0x24(r1)
@@ -351,9 +371,9 @@ getNumActiveViewports__8GraphicsFv:
 /* 80425234 00422174  7C 08 03 A6 */	mtlr r0
 /* 80425238 00422178  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042523C 0042217C  4E 80 00 20 */	blr 
+.endfn getNumActiveViewports__8GraphicsFv
 
-.global viewable__8ViewportFv
-viewable__8ViewportFv:
+.fn viewable__8ViewportFv, global
 /* 80425240 00422180  88 03 00 3C */	lbz r0, 0x3c(r3)
 /* 80425244 00422184  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80425248 00422188  41 82 00 0C */	beq .L_80425254
@@ -377,9 +397,9 @@ viewable__8ViewportFv:
 .L_80425288:
 /* 80425288 004221C8  38 60 00 01 */	li r3, 1
 /* 8042528C 004221CC  4E 80 00 20 */	blr 
+.endfn viewable__8ViewportFv
 
-.global updateCameraAspect__8ViewportFv
-updateCameraAspect__8ViewportFv:
+.fn updateCameraAspect__8ViewportFv, global
 /* 80425290 004221D0  80 83 00 44 */	lwz r4, 0x44(r3)
 /* 80425294 004221D4  28 04 00 00 */	cmplwi r4, 0
 /* 80425298 004221D8  4D 82 00 20 */	beqlr 
@@ -402,9 +422,9 @@ updateCameraAspect__8ViewportFv:
 .L_804252D4:
 /* 804252D4 00422214  D0 04 00 2C */	stfs f0, 0x2c(r4)
 /* 804252D8 00422218  4E 80 00 20 */	blr 
+.endfn updateCameraAspect__8ViewportFv
 
-.global refresh__8ViewportFv
-refresh__8ViewportFv:
+.fn refresh__8ViewportFv, global
 /* 804252DC 0042221C  C0 83 00 1C */	lfs f4, 0x1c(r3)
 /* 804252E0 00422220  C0 03 00 48 */	lfs f0, 0x48(r3)
 /* 804252E4 00422224  C0 E3 00 20 */	lfs f7, 0x20(r3)
@@ -449,9 +469,9 @@ refresh__8ViewportFv:
 .L_80425378:
 /* 80425378 004222B8  D0 04 00 2C */	stfs f0, 0x2c(r4)
 /* 8042537C 004222BC  4E 80 00 20 */	blr 
+.endfn refresh__8ViewportFv
 
-.global "setRect__8ViewportFR7Rect<f>"
-"setRect__8ViewportFR7Rect<f>":
+.fn "setRect__8ViewportFR7Rect<f>", global
 /* 80425380 004222C0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80425384 004222C4  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 80425388 004222C8  C0 04 00 04 */	lfs f0, 4(r4)
@@ -504,9 +524,9 @@ refresh__8ViewportFv:
 .L_8042543C:
 /* 8042543C 0042237C  D0 04 00 2C */	stfs f0, 0x2c(r4)
 /* 80425440 00422380  4E 80 00 20 */	blr 
+.endfn "setRect__8ViewportFR7Rect<f>"
 
-.global setViewport__8ViewportFv
-setViewport__8ViewportFv:
+.fn setViewport__8ViewportFv, global
 /* 80425444 00422384  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80425448 00422388  7C 08 02 A6 */	mflr r0
 /* 8042544C 0042238C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -560,9 +580,9 @@ setViewport__8ViewportFv:
 /* 8042550C 0042244C  7C 08 03 A6 */	mtlr r0
 /* 80425510 00422450  38 21 00 40 */	addi r1, r1, 0x40
 /* 80425514 00422454  4E 80 00 20 */	blr 
+.endfn setViewport__8ViewportFv
 
-.global setJ3DViewMtx__8ViewportFb
-setJ3DViewMtx__8ViewportFb:
+.fn setJ3DViewMtx__8ViewportFb, global
 /* 80425518 00422458  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042551C 0042245C  7C 08 02 A6 */	mflr r0
 /* 80425520 00422460  90 01 00 14 */	stw r0, 0x14(r1)
@@ -585,9 +605,9 @@ setJ3DViewMtx__8ViewportFb:
 /* 8042555C 0042249C  7C 08 03 A6 */	mtlr r0
 /* 80425560 004224A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80425564 004224A4  4E 80 00 20 */	blr 
+.endfn setJ3DViewMtx__8ViewportFb
 
-.global allocateViewports__8GraphicsFi
-allocateViewports__8GraphicsFi:
+.fn allocateViewports__8GraphicsFi, global
 /* 80425568 004224A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042556C 004224AC  7C 08 02 A6 */	mflr r0
 /* 80425570 004224B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -605,17 +625,17 @@ allocateViewports__8GraphicsFi:
 /* 804255A0 004224E0  7C 08 03 A6 */	mtlr r0
 /* 804255A4 004224E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 804255A8 004224E8  4E 80 00 20 */	blr 
+.endfn allocateViewports__8GraphicsFi
 
-.global deleteViewports__8GraphicsFv
-deleteViewports__8GraphicsFv:
+.fn deleteViewports__8GraphicsFv, global
 /* 804255AC 004224EC  38 00 00 00 */	li r0, 0
 /* 804255B0 004224F0  90 03 02 60 */	stw r0, 0x260(r3)
 /* 804255B4 004224F4  90 03 02 64 */	stw r0, 0x264(r3)
 /* 804255B8 004224F8  90 03 02 68 */	stw r0, 0x268(r3)
 /* 804255BC 004224FC  4E 80 00 20 */	blr 
+.endfn deleteViewports__8GraphicsFv
 
-.global addViewport__8GraphicsFP8Viewport
-addViewport__8GraphicsFP8Viewport:
+.fn addViewport__8GraphicsFP8Viewport, global
 /* 804255C0 00422500  80 03 02 60 */	lwz r0, 0x260(r3)
 /* 804255C4 00422504  80 A3 02 64 */	lwz r5, 0x264(r3)
 /* 804255C8 00422508  7C 00 28 00 */	cmpw r0, r5
@@ -628,16 +648,16 @@ addViewport__8GraphicsFP8Viewport:
 /* 804255E4 00422524  90 A3 02 64 */	stw r5, 0x264(r3)
 /* 804255E8 00422528  7C 87 01 2E */	stwx r4, r7, r0
 /* 804255EC 0042252C  4E 80 00 20 */	blr 
+.endfn addViewport__8GraphicsFP8Viewport
 
-.global getViewport__8GraphicsFi
-getViewport__8GraphicsFi:
+.fn getViewport__8GraphicsFi, global
 /* 804255F0 00422530  80 63 02 68 */	lwz r3, 0x268(r3)
 /* 804255F4 00422534  54 80 10 3A */	slwi r0, r4, 2
 /* 804255F8 00422538  7C 63 00 2E */	lwzx r3, r3, r0
 /* 804255FC 0042253C  4E 80 00 20 */	blr 
+.endfn getViewport__8GraphicsFi
 
-.global "mapViewport__8GraphicsFP22IDelegate1<P8Viewport>"
-"mapViewport__8GraphicsFP22IDelegate1<P8Viewport>":
+.fn "mapViewport__8GraphicsFP22IDelegate1<P8Viewport>", global
 /* 80425600 00422540  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80425604 00422544  7C 08 02 A6 */	mflr r0
 /* 80425608 00422548  90 01 00 24 */	stw r0, 0x24(r1)
@@ -701,9 +721,9 @@ getViewport__8GraphicsFi:
 /* 804256D4 00422614  7C 08 03 A6 */	mtlr r0
 /* 804256D8 00422618  38 21 00 20 */	addi r1, r1, 0x20
 /* 804256DC 0042261C  4E 80 00 20 */	blr 
+.endfn "mapViewport__8GraphicsFP22IDelegate1<P8Viewport>"
 
-.global graphicsTokenCallback__FUs
-graphicsTokenCallback__FUs:
+.fn graphicsTokenCallback__FUs, local
 /* 804256E0 00422620  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804256E4 00422624  7C 08 02 A6 */	mflr r0
 /* 804256E8 00422628  7C 64 1B 78 */	mr r4, r3
@@ -716,9 +736,9 @@ graphicsTokenCallback__FUs:
 /* 80425704 00422644  7C 08 03 A6 */	mtlr r0
 /* 80425708 00422648  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042570C 0042264C  4E 80 00 20 */	blr 
+.endfn graphicsTokenCallback__FUs
 
-.global setToken__8GraphicsFPc
-setToken__8GraphicsFPc:
+.fn setToken__8GraphicsFPc, global
 /* 80425710 00422650  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80425714 00422654  7C 08 02 A6 */	mflr r0
 /* 80425718 00422658  90 01 00 14 */	stw r0, 0x14(r1)
@@ -751,16 +771,16 @@ setToken__8GraphicsFPc:
 /* 8042577C 004226BC  7C 08 03 A6 */	mtlr r0
 /* 80425780 004226C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80425784 004226C4  4E 80 00 20 */	blr 
+.endfn setToken__8GraphicsFPc
 
-.global getTokenName__8GraphicsFUs
-getTokenName__8GraphicsFUs:
+.fn getTokenName__8GraphicsFUs, global
 /* 80425788 004226C8  54 80 13 BA */	rlwinm r0, r4, 2, 0xe, 0x1d
 /* 8042578C 004226CC  7C 63 02 14 */	add r3, r3, r0
 /* 80425790 004226D0  80 63 00 04 */	lwz r3, 4(r3)
 /* 80425794 004226D4  4E 80 00 20 */	blr 
+.endfn getTokenName__8GraphicsFUs
 
-.global findTokenIndex__8GraphicsFPc
-findTokenIndex__8GraphicsFPc:
+.fn findTokenIndex__8GraphicsFPc, global
 /* 80425798 004226D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042579C 004226DC  7C 08 02 A6 */	mflr r0
 /* 804257A0 004226E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -798,9 +818,9 @@ findTokenIndex__8GraphicsFPc:
 /* 80425810 00422750  7C 08 03 A6 */	mtlr r0
 /* 80425814 00422754  38 21 00 20 */	addi r1, r1, 0x20
 /* 80425818 00422758  4E 80 00 20 */	blr 
+.endfn findTokenIndex__8GraphicsFPc
 
-.global initPrimDraw__8GraphicsFP7Matrixf
-initPrimDraw__8GraphicsFP7Matrixf:
+.fn initPrimDraw__8GraphicsFP7Matrixf, global
 /* 8042581C 0042275C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80425820 00422760  7C 08 02 A6 */	mflr r0
 /* 80425824 00422764  90 01 00 24 */	stw r0, 0x24(r1)
@@ -923,9 +943,9 @@ initPrimDraw__8GraphicsFP7Matrixf:
 /* 804259DC 0042291C  7C 08 03 A6 */	mtlr r0
 /* 804259E0 00422920  38 21 00 20 */	addi r1, r1, 0x20
 /* 804259E4 00422924  4E 80 00 20 */	blr 
+.endfn initPrimDraw__8GraphicsFP7Matrixf
 
-.global "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
-"drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>":
+.fn "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>", global
 /* 804259E8 00422928  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804259EC 0042292C  7C 08 02 A6 */	mflr r0
 /* 804259F0 00422930  90 01 00 24 */	stw r0, 0x24(r1)
@@ -975,9 +995,9 @@ initPrimDraw__8GraphicsFP7Matrixf:
 /* 80425AA0 004229E0  7C 08 03 A6 */	mtlr r0
 /* 80425AA4 004229E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80425AA8 004229E8  4E 80 00 20 */	blr 
+.endfn "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
 
-.global "drawSphere__8GraphicsFR10Vector3<f>f"
-"drawSphere__8GraphicsFR10Vector3<f>f":
+.fn "drawSphere__8GraphicsFR10Vector3<f>f", global
 /* 80425AAC 004229EC  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 80425AB0 004229F0  7C 08 02 A6 */	mflr r0
 /* 80425AB4 004229F4  90 01 01 D4 */	stw r0, 0x1d4(r1)
@@ -1352,9 +1372,9 @@ initPrimDraw__8GraphicsFP7Matrixf:
 /* 80426038 00422F78  7C 08 03 A6 */	mtlr r0
 /* 8042603C 00422F7C  38 21 01 D0 */	addi r1, r1, 0x1d0
 /* 80426040 00422F80  4E 80 00 20 */	blr 
+.endfn "drawSphere__8GraphicsFR10Vector3<f>f"
 
-.global drawSphere__8GraphicsFfP7Matrixf
-drawSphere__8GraphicsFfP7Matrixf:
+.fn drawSphere__8GraphicsFfP7Matrixf, global
 /* 80426044 00422F84  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 80426048 00422F88  7C 08 02 A6 */	mflr r0
 /* 8042604C 00422F8C  90 01 01 D4 */	stw r0, 0x1d4(r1)
@@ -1741,9 +1761,9 @@ drawSphere__8GraphicsFfP7Matrixf:
 /* 80426600 00423540  7C 08 03 A6 */	mtlr r0
 /* 80426604 00423544  38 21 01 D0 */	addi r1, r1, 0x1d0
 /* 80426608 00423548  4E 80 00 20 */	blr 
+.endfn drawSphere__8GraphicsFfP7Matrixf
 
-.global drawAxis__8GraphicsFfP7Matrixf
-drawAxis__8GraphicsFfP7Matrixf:
+.fn drawAxis__8GraphicsFfP7Matrixf, global
 /* 8042660C 0042354C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80426610 00423550  7C 08 02 A6 */	mflr r0
 /* 80426614 00423554  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1926,9 +1946,9 @@ drawAxis__8GraphicsFfP7Matrixf:
 /* 804268B8 004237F8  7C 08 03 A6 */	mtlr r0
 /* 804268BC 004237FC  38 21 00 60 */	addi r1, r1, 0x60
 /* 804268C0 00423800  4E 80 00 20 */	blr 
+.endfn drawAxis__8GraphicsFfP7Matrixf
 
-.global "clearZBuffer__8GraphicsFR7Rect<f>"
-"clearZBuffer__8GraphicsFR7Rect<f>":
+.fn "clearZBuffer__8GraphicsFR7Rect<f>", global
 /* 804268C4 00423804  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804268C8 00423808  7C 08 02 A6 */	mflr r0
 /* 804268CC 0042380C  C0 22 21 88 */	lfs f1, lbl_805204E8@sda21(r2)
@@ -1938,9 +1958,9 @@ drawAxis__8GraphicsFfP7Matrixf:
 /* 804268DC 0042381C  7C 08 03 A6 */	mtlr r0
 /* 804268E0 00423820  38 21 00 10 */	addi r1, r1, 0x10
 /* 804268E4 00423824  4E 80 00 20 */	blr 
+.endfn "clearZBuffer__8GraphicsFR7Rect<f>"
 
-.global "fillZBuffer__8GraphicsFR7Rect<f>f"
-"fillZBuffer__8GraphicsFR7Rect<f>f":
+.fn "fillZBuffer__8GraphicsFR7Rect<f>f", global
 /* 804268E8 00423828  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 804268EC 0042382C  7C 08 02 A6 */	mflr r0
 /* 804268F0 00423830  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -2191,9 +2211,9 @@ drawAxis__8GraphicsFfP7Matrixf:
 /* 80426CAC 00423BEC  7C 08 03 A6 */	mtlr r0
 /* 80426CB0 00423BF0  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80426CB4 00423BF4  4E 80 00 20 */	blr 
+.endfn "fillZBuffer__8GraphicsFR7Rect<f>f"
 
-.global "drawCone__8GraphicsFR10Vector3<f>R10Vector3<f>fi"
-"drawCone__8GraphicsFR10Vector3<f>R10Vector3<f>fi":
+.fn "drawCone__8GraphicsFR10Vector3<f>R10Vector3<f>fi", global
 /* 80426CB8 00423BF8  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 80426CBC 00423BFC  7C 08 02 A6 */	mflr r0
 /* 80426CC0 00423C00  90 01 01 94 */	stw r0, 0x194(r1)
@@ -2670,9 +2690,9 @@ drawAxis__8GraphicsFfP7Matrixf:
 /* 804273B8 004242F8  7C 08 03 A6 */	mtlr r0
 /* 804273BC 004242FC  38 21 01 90 */	addi r1, r1, 0x190
 /* 804273C0 00424300  4E 80 00 20 */	blr 
+.endfn "drawCone__8GraphicsFR10Vector3<f>R10Vector3<f>fi"
 
-.global __ct__8GraphicsFv
-__ct__8GraphicsFv:
+.fn __ct__8GraphicsFv, global
 /* 804273C4 00424304  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804273C8 00424308  7C 08 02 A6 */	mflr r0
 /* 804273CC 0042430C  3C 80 80 4E */	lis r4, __vt__8Graphics@ha
@@ -2714,9 +2734,9 @@ __ct__8GraphicsFv:
 /* 8042745C 0042439C  7C 08 03 A6 */	mtlr r0
 /* 80427460 004243A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80427464 004243A4  4E 80 00 20 */	blr 
+.endfn __ct__8GraphicsFv
 
-.global setupJ2DOrthoGraphDefault__8GraphicsFv
-setupJ2DOrthoGraphDefault__8GraphicsFv:
+.fn setupJ2DOrthoGraphDefault__8GraphicsFv, global
 /* 80427468 004243A8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8042746C 004243AC  7C 08 02 A6 */	mflr r0
 /* 80427470 004243B0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2808,9 +2828,9 @@ setupJ2DOrthoGraphDefault__8GraphicsFv:
 /* 804275C8 00424508  7C 08 03 A6 */	mtlr r0
 /* 804275CC 0042450C  38 21 00 70 */	addi r1, r1, 0x70
 /* 804275D0 00424510  4E 80 00 20 */	blr 
+.endfn setupJ2DOrthoGraphDefault__8GraphicsFv
 
-.global setupJ2DPerspGraphDefault__8GraphicsFv
-setupJ2DPerspGraphDefault__8GraphicsFv:
+.fn setupJ2DPerspGraphDefault__8GraphicsFv, global
 /* 804275D4 00424514  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 804275D8 00424518  7C 08 02 A6 */	mflr r0
 /* 804275DC 0042451C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2882,9 +2902,9 @@ setupJ2DPerspGraphDefault__8GraphicsFv:
 /* 804276E4 00424624  7C 08 03 A6 */	mtlr r0
 /* 804276E8 00424628  38 21 00 50 */	addi r1, r1, 0x50
 /* 804276EC 0042462C  4E 80 00 20 */	blr 
+.endfn setupJ2DPerspGraphDefault__8GraphicsFv
 
-.global clearVtxDesc__8GraphicsFv
-clearVtxDesc__8GraphicsFv:
+.fn clearVtxDesc__8GraphicsFv, global
 /* 804276F0 00424630  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804276F4 00424634  7C 08 02 A6 */	mflr r0
 /* 804276F8 00424638  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2893,9 +2913,9 @@ clearVtxDesc__8GraphicsFv:
 /* 80427704 00424644  7C 08 03 A6 */	mtlr r0
 /* 80427708 00424648  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042770C 0042464C  4E 80 00 20 */	blr 
+.endfn clearVtxDesc__8GraphicsFv
 
-.global setVtxDesc__8GraphicsF7_GXAttr11_GXAttrType
-setVtxDesc__8GraphicsF7_GXAttr11_GXAttrType:
+.fn setVtxDesc__8GraphicsF7_GXAttr11_GXAttrType, global
 /* 80427710 00424650  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80427714 00424654  7C 08 02 A6 */	mflr r0
 /* 80427718 00424658  7C 83 23 78 */	mr r3, r4
@@ -2906,9 +2926,9 @@ setVtxDesc__8GraphicsF7_GXAttr11_GXAttrType:
 /* 8042772C 0042466C  7C 08 03 A6 */	mtlr r0
 /* 80427730 00424670  38 21 00 10 */	addi r1, r1, 0x10
 /* 80427734 00424674  4E 80 00 20 */	blr 
+.endfn setVtxDesc__8GraphicsF7_GXAttr11_GXAttrType
 
-.global setVtxAttrFmt__8GraphicsF9_GXVtxFmt7_GXAttr10_GXCompCnt11_GXCompTypeUc
-setVtxAttrFmt__8GraphicsF9_GXVtxFmt7_GXAttr10_GXCompCnt11_GXCompTypeUc:
+.fn setVtxAttrFmt__8GraphicsF9_GXVtxFmt7_GXAttr10_GXCompCnt11_GXCompTypeUc, global
 /* 80427738 00424678  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042773C 0042467C  7C 08 02 A6 */	mflr r0
 /* 80427740 00424680  7C 83 23 78 */	mr r3, r4
@@ -2922,9 +2942,9 @@ setVtxAttrFmt__8GraphicsF9_GXVtxFmt7_GXAttr10_GXCompCnt11_GXCompTypeUc:
 /* 80427760 004246A0  7C 08 03 A6 */	mtlr r0
 /* 80427764 004246A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80427768 004246A8  4E 80 00 20 */	blr 
+.endfn setVtxAttrFmt__8GraphicsF9_GXVtxFmt7_GXAttr10_GXCompCnt11_GXCompTypeUc
 
-.global disableLight__8GraphicsFv
-disableLight__8GraphicsFv:
+.fn disableLight__8GraphicsFv, global
 /* 8042776C 004246AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80427770 004246B0  7C 08 02 A6 */	mflr r0
 /* 80427774 004246B4  38 60 00 04 */	li r3, 4
@@ -2940,9 +2960,9 @@ disableLight__8GraphicsFv:
 /* 8042779C 004246DC  7C 08 03 A6 */	mtlr r0
 /* 804277A0 004246E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 804277A4 004246E4  4E 80 00 20 */	blr 
+.endfn disableLight__8GraphicsFv
 
-.global setTextureGX__8GraphicsFv
-setTextureGX__8GraphicsFv:
+.fn setTextureGX__8GraphicsFv, global
 /* 804277A8 004246E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804277AC 004246EC  7C 08 02 A6 */	mflr r0
 /* 804277B0 004246F0  38 60 00 04 */	li r3, 4
@@ -3007,9 +3027,9 @@ setTextureGX__8GraphicsFv:
 /* 8042789C 004247DC  7C 08 03 A6 */	mtlr r0
 /* 804278A0 004247E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 804278A4 004247E4  4E 80 00 20 */	blr 
+.endfn setTextureGX__8GraphicsFv
 
-.global initPerspPrintf__8GraphicsFP8Viewport
-initPerspPrintf__8GraphicsFP8Viewport:
+.fn initPerspPrintf__8GraphicsFP8Viewport, global
 /* 804278A8 004247E8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 804278AC 004247EC  7C 08 02 A6 */	mflr r0
 /* 804278B0 004247F0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3161,9 +3181,9 @@ initPerspPrintf__8GraphicsFP8Viewport:
 /* 80427AD0 00424A10  7C 08 03 A6 */	mtlr r0
 /* 80427AD4 00424A14  38 21 00 50 */	addi r1, r1, 0x50
 /* 80427AD8 00424A18  4E 80 00 20 */	blr 
+.endfn initPerspPrintf__8GraphicsFP8Viewport
 
-.global "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
-"perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce":
+.fn "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce", global
 /* 80427ADC 00424A1C  94 21 FD 90 */	stwu r1, -0x270(r1)
 /* 80427AE0 00424A20  7C 08 02 A6 */	mflr r0
 /* 80427AE4 00424A24  90 01 02 74 */	stw r0, 0x274(r1)
@@ -3418,6 +3438,7 @@ initPerspPrintf__8GraphicsFP8Viewport:
 /* 80427E94 00424DD4  7C 08 03 A6 */	mtlr r0
 /* 80427E98 00424DD8  38 21 02 70 */	addi r1, r1, 0x270
 /* 80427E9C 00424DDC  4E 80 00 20 */	blr 
+.endfn "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
 
 .fn initGX__8GraphicsFv, global
 /* 80427EA0 00424DE0  94 21 FF F0 */	stwu r1, -0x10(r1)

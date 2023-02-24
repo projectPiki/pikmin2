@@ -1,102 +1,172 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049B470:
+.obj lbl_8049B470, local
 	.asciz "THPPlayer.c"
+.endobj lbl_8049B470
 .balign 4
-lbl_8049B47C:
+.obj lbl_8049B47C, local
 	.asciz "CreateVideoDecodeThread failure.\n"
+.endobj lbl_8049B47C
 .balign 4
-lbl_8049B4A0:
+.obj lbl_8049B4A0, local
 	.asciz "CreateAudioDecodeThread failure.\n"
+.endobj lbl_8049B4A0
 .balign 4
-lbl_8049B4C4:
+.obj lbl_8049B4C4, local
 	.asciz "CreateReadThread failure.\n"
+.endobj lbl_8049B4C4
 .balign 4
-lbl_8049B4E0: # Shift-JIS
+.obj lbl_8049B4E0, local # Shift-JIS
 	.4byte 0x54485050
 	.4byte 0x6C617965
 	.4byte 0x72507265
 	.4byte 0x70617265
 	.4byte 0x28298F49
 	.4byte 0x97B90A00
+.endobj lbl_8049B4E0
 .balign 4
-lbl_8049B4F8: # Shift-JIS
+.obj lbl_8049B4F8, local # Shift-JIS
 	.4byte 0x8349815B
 	.4byte 0x83668342
 	.4byte 0x83498AD6
 	.4byte 0x8C5782F0
 	.4byte 0x8F898AFA
 	.4byte 0x89BB0A00
+.endobj lbl_8049B4F8
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global VolumeTable
-VolumeTable:
-	.4byte 0x00000002
-	.4byte 0x00080012
-	.4byte 0x00200032
-	.4byte 0x00490063
-	.4byte 0x008200A4
-	.4byte 0x00CB00F5
-	.4byte 0x01240157
-	.4byte 0x018E01C9
-	.4byte 0x0208024B
-	.4byte 0x029202DD
-	.4byte 0x032C037F
-	.4byte 0x03D70432
-	.4byte 0x049204F5
-	.4byte 0x055D05C9
-	.4byte 0x063806AC
-	.4byte 0x072407A0
-	.4byte 0x082008A4
-	.4byte 0x092C09B8
-	.4byte 0x0A480ADD
-	.4byte 0x0B750C12
-	.4byte 0x0CB20D57
-	.4byte 0x0DFF0EAC
-	.4byte 0x0F5D1012
-	.4byte 0x10CA1187
-	.4byte 0x1248130D
-	.4byte 0x13D714A4
-	.4byte 0x1575164A
-	.4byte 0x17241801
-	.4byte 0x18E319C8
-	.4byte 0x1AB21BA0
-	.4byte 0x1C911D87
-	.4byte 0x1E811F7F
-	.4byte 0x20812187
-	.4byte 0x2291239F
-	.4byte 0x24B225C8
-	.4byte 0x26E22801
-	.4byte 0x29232A4A
-	.4byte 0x2B752CA3
-	.4byte 0x2DD62F0D
-	.4byte 0x30483187
-	.4byte 0x32CA3411
-	.4byte 0x355C36AB
-	.4byte 0x37FF3956
-	.4byte 0x3AB13C11
-	.4byte 0x3D743EDC
-	.4byte 0x404841B7
-	.4byte 0x432B44A3
-	.4byte 0x461F479F
-	.4byte 0x49234AAB
-	.4byte 0x4C374DC7
-	.4byte 0x4F5C50F4
-	.4byte 0x52905431
-	.4byte 0x55D6577E
-	.4byte 0x592B5ADC
-	.4byte 0x5C905E49
-	.4byte 0x600661C7
-	.4byte 0x638C6555
-	.4byte 0x672268F4
-	.4byte 0x6AC96CA2
-	.4byte 0x6E807061
-	.4byte 0x72477430
-	.4byte 0x761E7810
-	.4byte 0x7A067C00
-	.4byte 0x7DFE8000
+.obj VolumeTable, local
+	.2byte 0x0000
+	.2byte 0x0002
+	.2byte 0x0008
+	.2byte 0x0012
+	.2byte 0x0020
+	.2byte 0x0032
+	.2byte 0x0049
+	.2byte 0x0063
+	.2byte 0x0082
+	.2byte 0x00A4
+	.2byte 0x00CB
+	.2byte 0x00F5
+	.2byte 0x0124
+	.2byte 0x0157
+	.2byte 0x018E
+	.2byte 0x01C9
+	.2byte 0x0208
+	.2byte 0x024B
+	.2byte 0x0292
+	.2byte 0x02DD
+	.2byte 0x032C
+	.2byte 0x037F
+	.2byte 0x03D7
+	.2byte 0x0432
+	.2byte 0x0492
+	.2byte 0x04F5
+	.2byte 0x055D
+	.2byte 0x05C9
+	.2byte 0x0638
+	.2byte 0x06AC
+	.2byte 0x0724
+	.2byte 0x07A0
+	.2byte 0x0820
+	.2byte 0x08A4
+	.2byte 0x092C
+	.2byte 0x09B8
+	.2byte 0x0A48
+	.2byte 0x0ADD
+	.2byte 0x0B75
+	.2byte 0x0C12
+	.2byte 0x0CB2
+	.2byte 0x0D57
+	.2byte 0x0DFF
+	.2byte 0x0EAC
+	.2byte 0x0F5D
+	.2byte 0x1012
+	.2byte 0x10CA
+	.2byte 0x1187
+	.2byte 0x1248
+	.2byte 0x130D
+	.2byte 0x13D7
+	.2byte 0x14A4
+	.2byte 0x1575
+	.2byte 0x164A
+	.2byte 0x1724
+	.2byte 0x1801
+	.2byte 0x18E3
+	.2byte 0x19C8
+	.2byte 0x1AB2
+	.2byte 0x1BA0
+	.2byte 0x1C91
+	.2byte 0x1D87
+	.2byte 0x1E81
+	.2byte 0x1F7F
+	.2byte 0x2081
+	.2byte 0x2187
+	.2byte 0x2291
+	.2byte 0x239F
+	.2byte 0x24B2
+	.2byte 0x25C8
+	.2byte 0x26E2
+	.2byte 0x2801
+	.2byte 0x2923
+	.2byte 0x2A4A
+	.2byte 0x2B75
+	.2byte 0x2CA3
+	.2byte 0x2DD6
+	.2byte 0x2F0D
+	.2byte 0x3048
+	.2byte 0x3187
+	.2byte 0x32CA
+	.2byte 0x3411
+	.2byte 0x355C
+	.2byte 0x36AB
+	.2byte 0x37FF
+	.2byte 0x3956
+	.2byte 0x3AB1
+	.2byte 0x3C11
+	.2byte 0x3D74
+	.2byte 0x3EDC
+	.2byte 0x4048
+	.2byte 0x41B7
+	.2byte 0x432B
+	.2byte 0x44A3
+	.2byte 0x461F
+	.2byte 0x479F
+	.2byte 0x4923
+	.2byte 0x4AAB
+	.2byte 0x4C37
+	.2byte 0x4DC7
+	.2byte 0x4F5C
+	.2byte 0x50F4
+	.2byte 0x5290
+	.2byte 0x5431
+	.2byte 0x55D6
+	.2byte 0x577E
+	.2byte 0x592B
+	.2byte 0x5ADC
+	.2byte 0x5C90
+	.2byte 0x5E49
+	.2byte 0x6006
+	.2byte 0x61C7
+	.2byte 0x638C
+	.2byte 0x6555
+	.2byte 0x6722
+	.2byte 0x68F4
+	.2byte 0x6AC9
+	.2byte 0x6CA2
+	.2byte 0x6E80
+	.2byte 0x7061
+	.2byte 0x7247
+	.2byte 0x7430
+	.2byte 0x761E
+	.2byte 0x7810
+	.2byte 0x7A06
+	.2byte 0x7C00
+	.2byte 0x7DFE
+	.2byte 0x8000
+.endobj VolumeTable
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .lcomm WorkBuffer, 0x40, 32
@@ -110,37 +180,47 @@ VolumeTable:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-Initialized:
+.obj Initialized, local
 	.skip 0x4
-PrepareReadyMessage:
+.endobj Initialized
+.obj PrepareReadyMessage, local
 	.skip 0x4
-OldVIPostCallback:
+.endobj PrepareReadyMessage
+.obj OldVIPostCallback, local
 	.skip 0x4
-SoundBufferIndex:
+.endobj OldVIPostCallback
+.obj SoundBufferIndex, local
 	.skip 0x4
-LastAudioBuffer:
+.endobj SoundBufferIndex
+.obj LastAudioBuffer, local
 	.skip 0x4
-CurAudioBuffer:
+.endobj LastAudioBuffer
+.obj CurAudioBuffer, local
 	.skip 0x4
+.endobj CurAudioBuffer
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520AF8:
+.obj lbl_80520AF8, local
 	.asciz "THP"
+.endobj lbl_80520AF8
 .balign 4
-lbl_80520AFC:
+.obj lbl_80520AFC, local
 	.float 127.0
-lbl_80520B00:
+.endobj lbl_80520AFC
+.obj lbl_80520B00, local
 	.float 100.0
-lbl_80520B04:
+.endobj lbl_80520B00
+.obj lbl_80520B04, local
 	.float 32768.0
+.endobj lbl_80520B04
 .balign 8
-lbl_80520B08:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80520B08, local
+	.8byte 0x4330000080000000
+.endobj lbl_80520B08
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-audioCallbackWithMSound__Fl:
+.fn audioCallbackWithMSound__Fl, local
 /* 8044DE38 0044AD78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044DE3C 0044AD7C  7C 08 02 A6 */	mflr r0
 /* 8044DE40 0044AD80  3C 80 80 51 */	lis r4, ActivePlayer@ha
@@ -186,9 +266,9 @@ audioCallbackWithMSound__Fl:
 /* 8044DED4 0044AE14  7C 08 03 A6 */	mtlr r0
 /* 8044DED8 0044AE18  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044DEDC 0044AE1C  4E 80 00 20 */	blr 
+.endfn audioCallbackWithMSound__Fl
 
-.global THPPlayerInit
-THPPlayerInit:
+.fn THPPlayerInit, global
 /* 8044DEE0 0044AE20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044DEE4 0044AE24  7C 08 02 A6 */	mflr r0
 /* 8044DEE8 0044AE28  3C 60 80 50 */	lis r3, WorkBuffer@ha
@@ -246,9 +326,9 @@ THPPlayerInit:
 /* 8044DFAC 0044AEEC  7C 08 03 A6 */	mtlr r0
 /* 8044DFB0 0044AEF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044DFB4 0044AEF4  4E 80 00 20 */	blr 
+.endfn THPPlayerInit
 
-.global THPPlayerQuit
-THPPlayerQuit:
+.fn THPPlayerQuit, global
 /* 8044DFB8 0044AEF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044DFBC 0044AEFC  7C 08 02 A6 */	mflr r0
 /* 8044DFC0 0044AF00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -262,9 +342,9 @@ THPPlayerQuit:
 /* 8044DFE0 0044AF20  7C 08 03 A6 */	mtlr r0
 /* 8044DFE4 0044AF24  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044DFE8 0044AF28  4E 80 00 20 */	blr 
+.endfn THPPlayerQuit
 
-.global THPPlayerOpen
-THPPlayerOpen:
+.fn THPPlayerOpen, global
 /* 8044DFEC 0044AF2C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044DFF0 0044AF30  7C 08 02 A6 */	mflr r0
 /* 8044DFF4 0044AF34  90 01 00 34 */	stw r0, 0x34(r1)
@@ -486,9 +566,9 @@ THPPlayerOpen:
 /* 8044E314 0044B254  7C 08 03 A6 */	mtlr r0
 /* 8044E318 0044B258  38 21 00 30 */	addi r1, r1, 0x30
 /* 8044E31C 0044B25C  4E 80 00 20 */	blr 
+.endfn THPPlayerOpen
 
-.global THPPlayerClose
-THPPlayerClose:
+.fn THPPlayerClose, global
 /* 8044E320 0044B260  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044E324 0044B264  7C 08 02 A6 */	mflr r0
 /* 8044E328 0044B268  3C 60 80 51 */	lis r3, ActivePlayer@ha
@@ -512,9 +592,9 @@ THPPlayerClose:
 /* 8044E368 0044B2A8  7C 08 03 A6 */	mtlr r0
 /* 8044E36C 0044B2AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044E370 0044B2B0  4E 80 00 20 */	blr 
+.endfn THPPlayerClose
 
-.global THPPlayerCalcNeedMemory
-THPPlayerCalcNeedMemory:
+.fn THPPlayerCalcNeedMemory, global
 /* 8044E374 0044B2B4  3C 60 80 51 */	lis r3, ActivePlayer@ha
 /* 8044E378 0044B2B8  38 63 44 90 */	addi r3, r3, ActivePlayer@l
 /* 8044E37C 0044B2BC  80 03 00 A0 */	lwz r0, 0xa0(r3)
@@ -563,9 +643,9 @@ THPPlayerCalcNeedMemory:
 .L_8044E41C:
 /* 8044E41C 0044B35C  38 60 00 00 */	li r3, 0
 /* 8044E420 0044B360  4E 80 00 20 */	blr 
+.endfn THPPlayerCalcNeedMemory
 
-.global THPPlayerSetBuffer
-THPPlayerSetBuffer:
+.fn THPPlayerSetBuffer, global
 /* 8044E424 0044B364  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044E428 0044B368  7C 08 02 A6 */	mflr r0
 /* 8044E42C 0044B36C  3C 80 80 51 */	lis r4, ActivePlayer@ha
@@ -704,9 +784,9 @@ THPPlayerSetBuffer:
 /* 8044E628 0044B568  7C 08 03 A6 */	mtlr r0
 /* 8044E62C 0044B56C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044E630 0044B570  4E 80 00 20 */	blr 
+.endfn THPPlayerSetBuffer
 
-.global PrepareReady__Fi
-PrepareReady__Fi:
+.fn PrepareReady__Fi, global
 /* 8044E634 0044B574  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044E638 0044B578  7C 08 02 A6 */	mflr r0
 /* 8044E63C 0044B57C  3C A0 80 50 */	lis r5, PrepareReadyQueue@ha
@@ -719,9 +799,9 @@ PrepareReady__Fi:
 /* 8044E658 0044B598  7C 08 03 A6 */	mtlr r0
 /* 8044E65C 0044B59C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044E660 0044B5A0  4E 80 00 20 */	blr 
+.endfn PrepareReady__Fi
 
-.global THPPlayerPrepare
-THPPlayerPrepare:
+.fn THPPlayerPrepare, global
 /* 8044E664 0044B5A4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044E668 0044B5A8  7C 08 02 A6 */	mflr r0
 /* 8044E66C 0044B5AC  3C C0 80 51 */	lis r6, ActivePlayer@ha
@@ -974,9 +1054,9 @@ THPPlayerPrepare:
 /* 8044E9EC 0044B92C  7C 08 03 A6 */	mtlr r0
 /* 8044E9F0 0044B930  38 21 00 30 */	addi r1, r1, 0x30
 /* 8044E9F4 0044B934  4E 80 00 20 */	blr 
+.endfn THPPlayerPrepare
 
-.global THPPlayerPlay
-THPPlayerPlay:
+.fn THPPlayerPlay, global
 /* 8044E9F8 0044B938  3C 60 80 51 */	lis r3, ActivePlayer@ha
 /* 8044E9FC 0044B93C  38 E3 44 90 */	addi r7, r3, ActivePlayer@l
 /* 8044EA00 0044B940  80 07 00 A0 */	lwz r0, 0xa0(r7)
@@ -1003,9 +1083,9 @@ THPPlayerPlay:
 .L_8044EA50:
 /* 8044EA50 0044B990  38 60 00 00 */	li r3, 0
 /* 8044EA54 0044B994  4E 80 00 20 */	blr 
+.endfn THPPlayerPlay
 
-.global THPPlayerStop
-THPPlayerStop:
+.fn THPPlayerStop, global
 /* 8044EA58 0044B998  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044EA5C 0044B99C  7C 08 02 A6 */	mflr r0
 /* 8044EA60 0044B9A0  3C 60 80 51 */	lis r3, ActivePlayer@ha
@@ -1061,9 +1141,9 @@ THPPlayerStop:
 /* 8044EB1C 0044BA5C  7C 08 03 A6 */	mtlr r0
 /* 8044EB20 0044BA60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044EB24 0044BA64  4E 80 00 20 */	blr 
+.endfn THPPlayerStop
 
-.global THPPlayerPause
-THPPlayerPause:
+.fn THPPlayerPause, global
 /* 8044EB28 0044BA68  3C 60 80 51 */	lis r3, ActivePlayer@ha
 /* 8044EB2C 0044BA6C  38 83 44 90 */	addi r4, r3, ActivePlayer@l
 /* 8044EB30 0044BA70  80 04 00 A0 */	lwz r0, 0xa0(r4)
@@ -1080,8 +1160,9 @@ THPPlayerPause:
 .L_8044EB5C:
 /* 8044EB5C 0044BA9C  38 60 00 00 */	li r3, 0
 /* 8044EB60 0044BAA0  4E 80 00 20 */	blr 
+.endfn THPPlayerPause
 
-PlayControl__FUl:
+.fn PlayControl__FUl, local
 /* 8044EB64 0044BAA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044EB68 0044BAA8  7C 08 02 A6 */	mflr r0
 /* 8044EB6C 0044BAAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1272,8 +1353,9 @@ PlayControl__FUl:
 /* 8044EE10 0044BD50  7C 08 03 A6 */	mtlr r0
 /* 8044EE14 0044BD54  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044EE18 0044BD58  4E 80 00 20 */	blr 
+.endfn PlayControl__FUl
 
-ProperTimingForStart__Fv:
+.fn ProperTimingForStart__Fv, local
 /* 8044EE1C 0044BD5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044EE20 0044BD60  7C 08 02 A6 */	mflr r0
 /* 8044EE24 0044BD64  3C 60 80 51 */	lis r3, ActivePlayer@ha
@@ -1305,8 +1387,9 @@ ProperTimingForStart__Fv:
 /* 8044EE7C 0044BDBC  7C 08 03 A6 */	mtlr r0
 /* 8044EE80 0044BDC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044EE84 0044BDC4  4E 80 00 20 */	blr 
+.endfn ProperTimingForStart__Fv
 
-ProperTimingForGettingNextFrame__Fv:
+.fn ProperTimingForGettingNextFrame__Fv, local
 /* 8044EE88 0044BDC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044EE8C 0044BDCC  7C 08 02 A6 */	mflr r0
 /* 8044EE90 0044BDD0  3C 60 80 51 */	lis r3, ActivePlayer@ha
@@ -1393,9 +1476,9 @@ ProperTimingForGettingNextFrame__Fv:
 /* 8044EFBC 0044BEFC  7C 08 03 A6 */	mtlr r0
 /* 8044EFC0 0044BF00  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044EFC4 0044BF04  4E 80 00 20 */	blr 
+.endfn ProperTimingForGettingNextFrame__Fv
 
-.global THPPlayerDrawCurrentFrame
-THPPlayerDrawCurrentFrame:
+.fn THPPlayerDrawCurrentFrame, global
 /* 8044EFC8 0044BF08  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044EFCC 0044BF0C  7C 08 02 A6 */	mflr r0
 /* 8044EFD0 0044BF10  3D 00 80 51 */	lis r8, ActivePlayer@ha
@@ -1452,9 +1535,9 @@ THPPlayerDrawCurrentFrame:
 /* 8044F094 0044BFD4  7C 08 03 A6 */	mtlr r0
 /* 8044F098 0044BFD8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8044F09C 0044BFDC  4E 80 00 20 */	blr 
+.endfn THPPlayerDrawCurrentFrame
 
-.global THPPlayerGetVideoInfo
-THPPlayerGetVideoInfo:
+.fn THPPlayerGetVideoInfo, global
 /* 8044F0A0 0044BFE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F0A4 0044BFE4  7C 08 02 A6 */	mflr r0
 /* 8044F0A8 0044BFE8  3C 80 80 51 */	lis r4, ActivePlayer@ha
@@ -1475,9 +1558,9 @@ THPPlayerGetVideoInfo:
 /* 8044F0DC 0044C01C  7C 08 03 A6 */	mtlr r0
 /* 8044F0E0 0044C020  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F0E4 0044C024  4E 80 00 20 */	blr 
+.endfn THPPlayerGetVideoInfo
 
-.global THPPlayerGetAudioInfo
-THPPlayerGetAudioInfo:
+.fn THPPlayerGetAudioInfo, global
 /* 8044F0E8 0044C028  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F0EC 0044C02C  7C 08 02 A6 */	mflr r0
 /* 8044F0F0 0044C030  3C 80 80 51 */	lis r4, ActivePlayer@ha
@@ -1498,8 +1581,9 @@ THPPlayerGetAudioInfo:
 /* 8044F124 0044C064  7C 08 03 A6 */	mtlr r0
 /* 8044F128 0044C068  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F12C 0044C06C  4E 80 00 20 */	blr 
+.endfn THPPlayerGetAudioInfo
 
-PushUsedTextureSet__FPv:
+.fn PushUsedTextureSet__FPv, local
 /* 8044F130 0044C070  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F134 0044C074  7C 08 02 A6 */	mflr r0
 /* 8044F138 0044C078  3C A0 80 50 */	lis r5, UsedTextureSetQueue@ha
@@ -1512,8 +1596,9 @@ PushUsedTextureSet__FPv:
 /* 8044F154 0044C094  7C 08 03 A6 */	mtlr r0
 /* 8044F158 0044C098  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F15C 0044C09C  4E 80 00 20 */	blr 
+.endfn PushUsedTextureSet__FPv
 
-PopUsedTextureSet__Fv:
+.fn PopUsedTextureSet__Fv, local
 /* 8044F160 0044C0A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F164 0044C0A4  7C 08 02 A6 */	mflr r0
 /* 8044F168 0044C0A8  3C 60 80 50 */	lis r3, UsedTextureSetQueue@ha
@@ -1533,9 +1618,9 @@ PopUsedTextureSet__Fv:
 /* 8044F198 0044C0D8  7C 08 03 A6 */	mtlr r0
 /* 8044F19C 0044C0DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F1A0 0044C0E0  4E 80 00 20 */	blr 
+.endfn PopUsedTextureSet__Fv
 
-.global THPPlayerDrawDone
-THPPlayerDrawDone:
+.fn THPPlayerDrawDone, global
 /* 8044F1A4 0044C0E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044F1A8 0044C0E8  7C 08 02 A6 */	mflr r0
 /* 8044F1AC 0044C0EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1568,8 +1653,9 @@ THPPlayerDrawDone:
 /* 8044F208 0044C148  7C 08 03 A6 */	mtlr r0
 /* 8044F20C 0044C14C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044F210 0044C150  4E 80 00 20 */	blr 
+.endfn THPPlayerDrawDone
 
-MixAudio__FPsPsUl:
+.fn MixAudio__FPsPsUl, local
 /* 8044F214 0044C154  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8044F218 0044C158  7C 08 02 A6 */	mflr r0
 /* 8044F21C 0044C15C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1733,9 +1819,9 @@ MixAudio__FPsPsUl:
 /* 8044F458 0044C398  7C 08 03 A6 */	mtlr r0
 /* 8044F45C 0044C39C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8044F460 0044C3A0  4E 80 00 20 */	blr 
+.endfn MixAudio__FPsPsUl
 
-.global THPPlayerSetVolume
-THPPlayerSetVolume:
+.fn THPPlayerSetVolume, global
 /* 8044F464 0044C3A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044F468 0044C3A8  7C 08 02 A6 */	mflr r0
 /* 8044F46C 0044C3AC  3C A0 80 51 */	lis r5, ActivePlayer@ha
@@ -1819,3 +1905,4 @@ THPPlayerSetVolume:
 /* 8044F580 0044C4C0  7C 08 03 A6 */	mtlr r0
 /* 8044F584 0044C4C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044F588 0044C4C8  4E 80 00 20 */	blr 
+.endfn THPPlayerSetVolume

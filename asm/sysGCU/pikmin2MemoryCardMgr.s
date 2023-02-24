@@ -1,42 +1,53 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049ADB8:
+.obj lbl_8049ADB8, local
 	.asciz "Pikmin2_SaveData"
+.endobj lbl_8049ADB8
 .balign 4
-lbl_8049ADCC:
+.obj lbl_8049ADCC, local
 	.asciz "pikmin2MemoryCardMgr.cpp"
+.endobj lbl_8049ADCC
 .balign 4
-lbl_8049ADE8:
+.obj lbl_8049ADE8, local
 	.asciz "P2Assert"
+.endobj lbl_8049ADE8
 .balign 4
-lbl_8049ADF4:
+.obj lbl_8049ADF4, local
 	.asciz "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
+.endobj lbl_8049ADF4
 .balign 4
-lbl_8049AE28:
+.obj lbl_8049AE28, local
 	.asciz "/memoryCard/memoryCardHeader.szs"
+.endobj lbl_8049AE28
 .balign 4
-lbl_8049AE4C:
+.obj lbl_8049AE4C, local
 	.asciz "banner.dat"
+.endobj lbl_8049AE4C
 .balign 4
-lbl_8049AE58:
+.obj lbl_8049AE58, local
 	.asciz "icon.dat"
+.endobj lbl_8049AE58
 .balign 4
-lbl_8049AE64:
+.obj lbl_8049AE64, local
 	.asciz "MemoryCardModify Error"
+.endobj lbl_8049AE64
 .balign 4
-lbl_8049AE7C:
+.obj lbl_8049AE7C, local
 	.asciz "card [%d] memory[%d]\n"
+.endobj lbl_8049AE7C
 .balign 4
-lbl_8049AE94:
+.obj lbl_8049AE94, local
 	.asciz "PIKMIN 2"
+.endobj lbl_8049AE94
 .balign 4
-lbl_8049AEA0:
+.obj lbl_8049AEA0, local
 	.asciz "%02d/%02d/%04d %02d:%02d:%02d"
+.endobj lbl_8049AEA0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804ECF58:
+.obj lbl_804ECF58, local
 	.4byte .L_80443790
 	.4byte .L_804437EC
 	.4byte .L_80443768
@@ -49,23 +60,23 @@ lbl_804ECF58:
 	.4byte .L_804439A8
 	.4byte .L_804439B8
 	.4byte .L_804439C8
-.global __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader
-__vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader:
+.endobj lbl_804ECF58
+.obj __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader, weak
 	.4byte 0
 	.4byte 0
 	.4byte getClassSize__Q34Game10MemoryCard25MgrCommandGetPlayerHeaderFv
-.global __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer
-__vt__Q34Game10MemoryCard20MgrCommandCopyPlayer:
+.endobj __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader
+.obj __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer, weak
 	.4byte 0
 	.4byte 0
 	.4byte getClassSize__Q34Game10MemoryCard20MgrCommandCopyPlayerFv
-.global __vt__Q34Game10MemoryCard18MgrCommandPlayerNo
-__vt__Q34Game10MemoryCard18MgrCommandPlayerNo:
+.endobj __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer
+.obj __vt__Q34Game10MemoryCard18MgrCommandPlayerNo, weak
 	.4byte 0
 	.4byte 0
 	.4byte getClassSize__Q34Game10MemoryCard18MgrCommandPlayerNoFv
-.global __vt__Q34Game10MemoryCard3Mgr
-__vt__Q34Game10MemoryCard3Mgr:
+.endobj __vt__Q34Game10MemoryCard18MgrCommandPlayerNo
+.obj __vt__Q34Game10MemoryCard3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game10MemoryCard3MgrFv
@@ -77,26 +88,27 @@ __vt__Q34Game10MemoryCard3Mgr:
 	.4byte doSetCardStat__Q34Game10MemoryCard3MgrFP8CARDStat
 	.4byte doCheckCardStat__Q34Game10MemoryCard3MgrFP8CARDStat
 	.4byte isErrorOccured__Q34Game10MemoryCard3MgrFv
-.global __vt__Q34Game10MemoryCard8Resource
-__vt__Q34Game10MemoryCard8Resource:
+.endobj __vt__Q34Game10MemoryCard3Mgr
+.obj __vt__Q34Game10MemoryCard8Resource, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game10MemoryCard8ResourceFv
+.endobj __vt__Q34Game10MemoryCard8Resource
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global cFileName__Q24Game10MemoryCard
-cFileName__Q24Game10MemoryCard:
+.obj cFileName__Q24Game10MemoryCard, global
 	.4byte lbl_8049ADB8
+.endobj cFileName__Q24Game10MemoryCard
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520978:
+.obj lbl_80520978, local
 	.asciz "dameck\n"
+.endobj lbl_80520978
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game10MemoryCard6PlayerFv
-__ct__Q34Game10MemoryCard6PlayerFv:
+.fn __ct__Q34Game10MemoryCard6PlayerFv, global
 /* 804428AC 0043F7EC  38 00 00 00 */	li r0, 0
 /* 804428B0 0043F7F0  98 03 00 00 */	stb r0, 0(r3)
 /* 804428B4 0043F7F4  90 03 00 04 */	stw r0, 4(r3)
@@ -112,6 +124,7 @@ __ct__Q34Game10MemoryCard6PlayerFv:
 /* 804428DC 0043F81C  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 804428E0 0043F820  90 03 00 30 */	stw r0, 0x30(r3)
 /* 804428E4 0043F824  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game10MemoryCard6PlayerFv
 
 .global __ct__Q34Game10MemoryCard14PlayerFileInfoFv
 __ct__Q34Game10MemoryCard14PlayerFileInfoFv:

@@ -136,49 +136,68 @@ gfNAN___Q24Game5P2JST:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520920:
+.obj lbl_80520920, local
 	.asciz ""
+.endobj lbl_80520920
 .balign 4
-lbl_80520924:
+.obj lbl_80520924, local
 	.float 0.0
-lbl_80520928:
+.endobj lbl_80520924
+.obj lbl_80520928, local
 	.float 0.5
-lbl_8052092C:
+.endobj lbl_80520928
+.obj lbl_8052092C, local
 	.float 30.0
-lbl_80520930: # half-pi
+.endobj lbl_8052092C
+.obj lbl_80520930, local # half-pi
 	.float 1.5707964
-lbl_80520934:
+.endobj lbl_80520930
+.obj lbl_80520934, local
 	.float 255.0
-lbl_80520938:
+.endobj lbl_80520934
+.obj lbl_80520938, local
 	.float 10.0
-lbl_8052093C:
+.endobj lbl_80520938
+.obj lbl_8052093C, local
 	.float 5.0
+.endobj lbl_8052093C
 .balign 8
-lbl_80520940:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80520948:
+.obj lbl_80520940, local
+	.8byte 0x4330000000000000
+.endobj lbl_80520940
+.obj lbl_80520948, local
 	.float 12.566371
-lbl_8052094C:
+.endobj lbl_80520948
+.obj lbl_8052094C, local
 	.float 325.9493
-lbl_80520950:
+.endobj lbl_8052094C
+.obj lbl_80520950, local
 	.float 1.0
-lbl_80520954:
+.endobj lbl_80520950
+.obj lbl_80520954, local
 	.float 0.8
-lbl_80520958:
+.endobj lbl_80520954
+.obj lbl_80520958, local
 	.float 2.0
-lbl_8052095C: # tau
+.endobj lbl_80520958
+.obj lbl_8052095C, local # tau
 	.float 6.2831855
-lbl_80520960:
+.endobj lbl_8052095C
+.obj lbl_80520960, local
 	.float 4.0
-lbl_80520964:
+.endobj lbl_80520960
+.obj lbl_80520964, local
 	.float 15.0
-lbl_80520968: # pi
+.endobj lbl_80520964
+.obj lbl_80520968, local # pi
 	.float 3.1415927
-lbl_8052096C:
+.endobj lbl_80520968
+.obj lbl_8052096C, local
 	.float 50.0
-lbl_80520970:
+.endobj lbl_8052096C
+.obj lbl_80520970, local
 	.float 232.0
+.endobj lbl_80520970
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q35P2JME6Window8DrawInfoFv

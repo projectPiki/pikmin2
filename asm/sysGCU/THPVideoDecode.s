@@ -9,14 +9,15 @@
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-VideoDecodeThreadCreated:
+.obj VideoDecodeThreadCreated, local
 	.skip 0x4
-First:
+.endobj VideoDecodeThreadCreated
+.obj First, local
 	.skip 0x4
+.endobj First
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global CreateVideoDecodeThread
-CreateVideoDecodeThread:
+.fn CreateVideoDecodeThread, global
 /* 8044F8B4 0044C7F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F8B8 0044C7F8  7C 08 02 A6 */	mflr r0
 /* 8044F8BC 0044C7FC  28 04 00 00 */	cmplwi r4, 0
@@ -74,9 +75,9 @@ CreateVideoDecodeThread:
 /* 8044F980 0044C8C0  7C 08 03 A6 */	mtlr r0
 /* 8044F984 0044C8C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F988 0044C8C8  4E 80 00 20 */	blr 
+.endfn CreateVideoDecodeThread
 
-.global VideoDecodeThreadStart
-VideoDecodeThreadStart:
+.fn VideoDecodeThreadStart, global
 /* 8044F98C 0044C8CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F990 0044C8D0  7C 08 02 A6 */	mflr r0
 /* 8044F994 0044C8D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -91,9 +92,9 @@ VideoDecodeThreadStart:
 /* 8044F9B4 0044C8F4  7C 08 03 A6 */	mtlr r0
 /* 8044F9B8 0044C8F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F9BC 0044C8FC  4E 80 00 20 */	blr 
+.endfn VideoDecodeThreadStart
 
-.global VideoDecodeThreadCancel
-VideoDecodeThreadCancel:
+.fn VideoDecodeThreadCancel, global
 /* 8044F9C0 0044C900  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F9C4 0044C904  7C 08 02 A6 */	mflr r0
 /* 8044F9C8 0044C908  90 01 00 14 */	stw r0, 0x14(r1)
@@ -110,8 +111,9 @@ VideoDecodeThreadCancel:
 /* 8044F9F0 0044C930  7C 08 03 A6 */	mtlr r0
 /* 8044F9F4 0044C934  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F9F8 0044C938  4E 80 00 20 */	blr 
+.endfn VideoDecodeThreadCancel
 
-VideoDecoder__FPv:
+.fn VideoDecoder__FPv, local
 /* 8044F9FC 0044C93C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044FA00 0044C940  7C 08 02 A6 */	mflr r0
 /* 8044FA04 0044C944  3C 60 80 51 */	lis r3, ActivePlayer@ha
@@ -169,8 +171,9 @@ VideoDecoder__FPv:
 /* 8044FAB8 0044C9F8  7F C3 F3 78 */	mr r3, r30
 /* 8044FABC 0044C9FC  4B FF FD 65 */	bl PushFreeReadBuffer
 /* 8044FAC0 0044CA00  4B FF FF 58 */	b .L_8044FA18
+.endfn VideoDecoder__FPv
 
-VideoDecoderForOnMemory__FPv:
+.fn VideoDecoderForOnMemory__FPv, local
 /* 8044FAC4 0044CA04  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044FAC8 0044CA08  7C 08 02 A6 */	mflr r0
 /* 8044FACC 0044CA0C  3C 80 80 51 */	lis r4, ActivePlayer@ha
@@ -257,8 +260,9 @@ VideoDecoderForOnMemory__FPv:
 .L_8044FBF0:
 /* 8044FBF0 0044CB30  3B BD 00 01 */	addi r29, r29, 1
 /* 8044FBF4 0044CB34  4B FF FE FC */	b .L_8044FAF0
+.endfn VideoDecoderForOnMemory__FPv
 
-VideoDecode__FP13THPReadBuffer:
+.fn VideoDecode__FP13THPReadBuffer, local
 /* 8044FBF8 0044CB38  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044FBFC 0044CB3C  7C 08 02 A6 */	mflr r0
 /* 8044FC00 0044CB40  3C 80 80 51 */	lis r4, ActivePlayer@ha
@@ -338,9 +342,9 @@ VideoDecode__FP13THPReadBuffer:
 /* 8044FD0C 0044CC4C  7C 08 03 A6 */	mtlr r0
 /* 8044FD10 0044CC50  38 21 00 30 */	addi r1, r1, 0x30
 /* 8044FD14 0044CC54  4E 80 00 20 */	blr 
+.endfn VideoDecode__FP13THPReadBuffer
 
-.global PopFreeTextureSet
-PopFreeTextureSet:
+.fn PopFreeTextureSet, global
 /* 8044FD18 0044CC58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044FD1C 0044CC5C  7C 08 02 A6 */	mflr r0
 /* 8044FD20 0044CC60  3C 60 80 50 */	lis r3, FreeTextureSetQueue@ha
@@ -354,9 +358,9 @@ PopFreeTextureSet:
 /* 8044FD40 0044CC80  7C 08 03 A6 */	mtlr r0
 /* 8044FD44 0044CC84  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044FD48 0044CC88  4E 80 00 20 */	blr 
+.endfn PopFreeTextureSet
 
-.global PushFreeTextureSet
-PushFreeTextureSet:
+.fn PushFreeTextureSet, global
 /* 8044FD4C 0044CC8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044FD50 0044CC90  7C 08 02 A6 */	mflr r0
 /* 8044FD54 0044CC94  3C A0 80 50 */	lis r5, FreeTextureSetQueue@ha
@@ -369,9 +373,9 @@ PushFreeTextureSet:
 /* 8044FD70 0044CCB0  7C 08 03 A6 */	mtlr r0
 /* 8044FD74 0044CCB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044FD78 0044CCB8  4E 80 00 20 */	blr 
+.endfn PushFreeTextureSet
 
-.global PopDecodedTextureSet
-PopDecodedTextureSet:
+.fn PopDecodedTextureSet, global
 /* 8044FD7C 0044CCBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044FD80 0044CCC0  7C 08 02 A6 */	mflr r0
 /* 8044FD84 0044CCC4  3C 80 80 50 */	lis r4, DecodedTextureSetQueue@ha
@@ -391,9 +395,9 @@ PopDecodedTextureSet:
 /* 8044FDB4 0044CCF4  7C 08 03 A6 */	mtlr r0
 /* 8044FDB8 0044CCF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044FDBC 0044CCFC  4E 80 00 20 */	blr 
+.endfn PopDecodedTextureSet
 
-.global PushDecodedTextureSet
-PushDecodedTextureSet:
+.fn PushDecodedTextureSet, global
 /* 8044FDC0 0044CD00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044FDC4 0044CD04  7C 08 02 A6 */	mflr r0
 /* 8044FDC8 0044CD08  3C A0 80 50 */	lis r5, DecodedTextureSetQueue@ha
@@ -406,3 +410,4 @@ PushDecodedTextureSet:
 /* 8044FDE4 0044CD24  7C 08 03 A6 */	mtlr r0
 /* 8044FDE8 0044CD28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044FDEC 0044CD2C  4E 80 00 20 */	blr 
+.endfn PushDecodedTextureSet

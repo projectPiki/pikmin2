@@ -1,16 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049BA58:
+.obj lbl_8049BA58, local
 	.asciz "screenObj.cpp"
+.endobj lbl_8049BA58
 .balign 4
-lbl_8049BA68:
+.obj lbl_8049BA68, local
 	.asciz "P2Assert"
+.endobj lbl_8049BA68
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q26Screen7ObjBase
-__vt__Q26Screen7ObjBase:
+.obj __vt__Q26Screen7ObjBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q26Screen7ObjBaseFv
@@ -41,16 +42,20 @@ __vt__Q26Screen7ObjBase:
 	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+.endobj __vt__Q26Screen7ObjBase
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520B88:
+.obj lbl_80520B88, local
 	.asciz "No Name"
+.endobj lbl_80520B88
 .balign 4
-lbl_80520B90:
+.obj lbl_80520B90, local
 	.float 0.0
-lbl_80520B94:
+.endobj lbl_80520B90
+.obj lbl_80520B94, local
 	.float 100.0
+.endobj lbl_80520B94
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26Screen7ObjBaseFv

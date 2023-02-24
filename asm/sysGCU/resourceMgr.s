@@ -1,13 +1,15 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049A640:
+.obj lbl_8049A640, local
 	.asciz "resourceMgr.cpp"
+.endobj lbl_8049A640
 .balign 4
-lbl_8049A650:
+.obj lbl_8049A650, local
 	.asciz "P2Assert"
+.endobj lbl_8049A650
 .balign 4
-lbl_8049A65C: #Shift-JIS
+.obj lbl_8049A65C, local # Shift-JIS
 	.4byte 0x974C82E8
 	.4byte 0x82A682C8
 	.4byte 0x82A28FF3
@@ -16,6 +18,7 @@ lbl_8049A65C: #Shift-JIS
 	.4byte 0x82A282DC
 	.4byte 0x82B7200A
 	.byte 0x00
+.endobj lbl_8049A65C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

@@ -1,36 +1,43 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049AD08:
+.obj lbl_8049AD08, local
 	.asciz "memoryCard.cpp"
+.endobj lbl_8049AD08
 .balign 4
-lbl_8049AD18:
+.obj lbl_8049AD18, local
 	.asciz "command queue is broken.flag:%d num:%d"
+.endobj lbl_8049AD18
 .balign 4
-lbl_8049AD40:
+.obj lbl_8049AD40, local
 	.asciz "P2Assert"
+.endobj lbl_8049AD40
 .balign 4
-lbl_8049AD4C:
+.obj lbl_8049AD4C, local
 	.asciz "command Queue is full."
+.endobj lbl_8049AD4C
 .balign 4
-lbl_8049AD64:
+.obj lbl_8049AD64, local
 	.asciz "impossible case\n"
+.endobj lbl_8049AD64
 .balign 4
-lbl_8049AD78: # Shift-JIS
+.obj lbl_8049AD78, local # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x82518140
 	.4byte 0x835A815B
 	.4byte 0x83758366
 	.4byte 0x815B835E
-	.4byte 0x20000000
+	.2byte 0x2000
+.endobj lbl_8049AD78
 .balign 4
-lbl_8049AD94:
+.obj lbl_8049AD94, local
 	.asciz "%04d/%02d/%02d %02d:%02d:%02d"
+.endobj lbl_8049AD94
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804ECDC0:
+.obj lbl_804ECDC0, local
 	.4byte .L_80441028
 	.4byte .L_80441020
 	.4byte .L_80441020
@@ -43,7 +50,8 @@ lbl_804ECDC0:
 	.4byte .L_80441058
 	.4byte .L_80441060
 	.4byte .L_80441068
-lbl_804ECDF0:
+.endobj lbl_804ECDC0
+.obj lbl_804ECDF0, local
 	.4byte .L_80441384
 	.4byte .L_8044137C
 	.4byte .L_8044137C
@@ -56,7 +64,8 @@ lbl_804ECDF0:
 	.4byte .L_804413B4
 	.4byte .L_804413BC
 	.4byte .L_804413C4
-lbl_804ECE20:
+.endobj lbl_804ECDF0
+.obj lbl_804ECE20, local
 	.4byte .L_804414D8
 	.4byte .L_804414D0
 	.4byte .L_804414D0
@@ -69,7 +78,8 @@ lbl_804ECE20:
 	.4byte .L_80441508
 	.4byte .L_80441510
 	.4byte .L_80441518
-lbl_804ECE50:
+.endobj lbl_804ECE20
+.obj lbl_804ECE50, local
 	.4byte .L_80441678
 	.4byte .L_80441670
 	.4byte .L_80441670
@@ -82,7 +92,8 @@ lbl_804ECE50:
 	.4byte .L_804416A8
 	.4byte .L_804416B0
 	.4byte .L_804416B8
-lbl_804ECE80:
+.endobj lbl_804ECE50
+.obj lbl_804ECE80, local
 	.4byte .L_804418F8
 	.4byte .L_804418F0
 	.4byte .L_804418F0
@@ -95,7 +106,8 @@ lbl_804ECE80:
 	.4byte .L_80441928
 	.4byte .L_80441930
 	.4byte .L_80441938
-lbl_804ECEB0:
+.endobj lbl_804ECE80
+.obj lbl_804ECEB0, local
 	.4byte .L_80441B58
 	.4byte .L_80441B50
 	.4byte .L_80441B50
@@ -108,7 +120,8 @@ lbl_804ECEB0:
 	.4byte .L_80441B88
 	.4byte .L_80441B90
 	.4byte .L_80441B98
-lbl_804ECEE0:
+.endobj lbl_804ECEB0
+.obj lbl_804ECEE0, local
 	.4byte .L_80441E20
 	.4byte .L_80441E18
 	.4byte .L_80441E18
@@ -121,8 +134,8 @@ lbl_804ECEE0:
 	.4byte .L_80441E50
 	.4byte .L_80441E58
 	.4byte .L_80441E60
-.global __vt__13MemoryCardMgr
-__vt__13MemoryCardMgr:
+.endobj lbl_804ECEE0
+.obj __vt__13MemoryCardMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13MemoryCardMgrFv
@@ -134,23 +147,23 @@ __vt__13MemoryCardMgr:
 	.4byte doSetCardStat__13MemoryCardMgrFP8CARDStat
 	.4byte doCheckCardStat__13MemoryCardMgrFP8CARDStat
 	.4byte isErrorOccured__13MemoryCardMgrFv
-.global __vt__20MemoryCardMgrCommand
-__vt__20MemoryCardMgrCommand:
+.endobj __vt__13MemoryCardMgr
+.obj __vt__20MemoryCardMgrCommand, weak
 	.4byte 0
 	.4byte 0
 	.4byte getClassSize__20MemoryCardMgrCommandFv
-.global __vt__24MemoryCardMgrCommandBase
-__vt__24MemoryCardMgrCommandBase:
+.endobj __vt__20MemoryCardMgrCommand
+.obj __vt__24MemoryCardMgrCommandBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj __vt__24MemoryCardMgrCommandBase
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .lcomm sCardWorkArea, 0xA000, 32
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__13MemoryCardMgrFv
-__ct__13MemoryCardMgrFv:
+.fn __ct__13MemoryCardMgrFv, global
 /* 804405F0 0043D530  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804405F4 0043D534  7C 08 02 A6 */	mflr r0
 /* 804405F8 0043D538  3C 80 80 4F */	lis r4, __vt__13MemoryCardMgr@ha
@@ -182,9 +195,9 @@ __ct__13MemoryCardMgrFv:
 /* 80440660 0043D5A0  7C 08 03 A6 */	mtlr r0
 /* 80440664 0043D5A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80440668 0043D5A8  4E 80 00 20 */	blr 
+.endfn __ct__13MemoryCardMgrFv
 
-.global __defctor__20MemoryCardMgrCommandFv
-__defctor__20MemoryCardMgrCommandFv:
+.fn __defctor__20MemoryCardMgrCommandFv, weak
 /* 8044066C 0043D5AC  3C A0 80 4F */	lis r5, __vt__24MemoryCardMgrCommandBase@ha
 /* 80440670 0043D5B0  3C 80 80 4F */	lis r4, __vt__20MemoryCardMgrCommand@ha
 /* 80440674 0043D5B4  38 05 CF 48 */	addi r0, r5, __vt__24MemoryCardMgrCommandBase@l
@@ -194,9 +207,9 @@ __defctor__20MemoryCardMgrCommandFv:
 /* 80440684 0043D5C4  90 A3 00 00 */	stw r5, 0(r3)
 /* 80440688 0043D5C8  90 03 00 04 */	stw r0, 4(r3)
 /* 8044068C 0043D5CC  4E 80 00 20 */	blr 
+.endfn __defctor__20MemoryCardMgrCommandFv
 
-.global resetCommandFlagQueue__13MemoryCardMgrFv
-resetCommandFlagQueue__13MemoryCardMgrFv:
+.fn resetCommandFlagQueue__13MemoryCardMgrFv, global
 /* 80440690 0043D5D0  38 00 00 00 */	li r0, 0
 /* 80440694 0043D5D4  90 03 00 04 */	stw r0, 4(r3)
 /* 80440698 0043D5D8  90 03 00 24 */	stw r0, 0x24(r3)
@@ -206,9 +219,9 @@ resetCommandFlagQueue__13MemoryCardMgrFv:
 /* 804406A8 0043D5E8  90 03 00 A4 */	stw r0, 0xa4(r3)
 /* 804406AC 0043D5EC  90 03 00 A8 */	stw r0, 0xa8(r3)
 /* 804406B0 0043D5F0  4E 80 00 20 */	blr 
+.endfn resetCommandFlagQueue__13MemoryCardMgrFv
 
-.global setCommand__13MemoryCardMgrFi
-setCommand__13MemoryCardMgrFi:
+.fn setCommand__13MemoryCardMgrFi, global
 /* 804406B4 0043D5F4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804406B8 0043D5F8  7C 08 02 A6 */	mflr r0
 /* 804406BC 0043D5FC  3C C0 80 4F */	lis r6, __vt__24MemoryCardMgrCommandBase@ha
@@ -225,9 +238,9 @@ setCommand__13MemoryCardMgrFi:
 /* 804406E8 0043D628  7C 08 03 A6 */	mtlr r0
 /* 804406EC 0043D62C  38 21 00 30 */	addi r1, r1, 0x30
 /* 804406F0 0043D630  4E 80 00 20 */	blr 
+.endfn setCommand__13MemoryCardMgrFi
 
-.global setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
-setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase:
+.fn setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase, global
 /* 804406F4 0043D634  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804406F8 0043D638  7C 08 02 A6 */	mflr r0
 /* 804406FC 0043D63C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -312,9 +325,9 @@ setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase:
 /* 80440820 0043D760  7C 08 03 A6 */	mtlr r0
 /* 80440824 0043D764  38 21 00 20 */	addi r1, r1, 0x20
 /* 80440828 0043D768  4E 80 00 20 */	blr 
+.endfn setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
 
-.global cardFormat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-cardFormat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
+.fn cardFormat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot, global
 /* 8044082C 0043D76C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80440830 0043D770  7C 08 02 A6 */	mflr r0
 /* 80440834 0043D774  90 01 00 64 */	stw r0, 0x64(r1)
@@ -498,9 +511,9 @@ cardFormat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
 /* 80440AC0 0043DA00  7C 08 03 A6 */	mtlr r0
 /* 80440AC4 0043DA04  38 21 00 60 */	addi r1, r1, 0x60
 /* 80440AC8 0043DA08  4E 80 00 20 */	blr 
+.endfn cardFormat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
 
-.global init__13MemoryCardMgrFv
-init__13MemoryCardMgrFv:
+.fn init__13MemoryCardMgrFv, global
 /* 80440ACC 0043DA0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80440AD0 0043DA10  7C 08 02 A6 */	mflr r0
 /* 80440AD4 0043DA14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -532,13 +545,13 @@ init__13MemoryCardMgrFv:
 /* 80440B3C 0043DA7C  7C 08 03 A6 */	mtlr r0
 /* 80440B40 0043DA80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80440B44 0043DA84  4E 80 00 20 */	blr 
+.endfn init__13MemoryCardMgrFv
 
-.global doInit__13MemoryCardMgrFv
-doInit__13MemoryCardMgrFv:
+.fn doInit__13MemoryCardMgrFv, weak
 /* 80440B48 0043DA88  4E 80 00 20 */	blr 
+.endfn doInit__13MemoryCardMgrFv
 
-.global update__13MemoryCardMgrFv
-update__13MemoryCardMgrFv:
+.fn update__13MemoryCardMgrFv, global
 /* 80440B4C 0043DA8C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80440B50 0043DA90  7C 08 02 A6 */	mflr r0
 /* 80440B54 0043DA94  3C 80 80 4A */	lis r4, lbl_8049AD08@ha
@@ -755,9 +768,9 @@ update__13MemoryCardMgrFv:
 /* 80440E60 0043DDA0  7C 08 03 A6 */	mtlr r0
 /* 80440E64 0043DDA4  38 21 00 60 */	addi r1, r1, 0x60
 /* 80440E68 0043DDA8  4E 80 00 20 */	blr 
+.endfn update__13MemoryCardMgrFv
 
-.global cardMount__13MemoryCardMgrFv
-cardMount__13MemoryCardMgrFv:
+.fn cardMount__13MemoryCardMgrFv, global
 /* 80440E6C 0043DDAC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80440E70 0043DDB0  7C 08 02 A6 */	mflr r0
 /* 80440E74 0043DDB4  3C A0 80 4F */	lis r5, __vt__24MemoryCardMgrCommandBase@ha
@@ -848,9 +861,9 @@ cardMount__13MemoryCardMgrFv:
 /* 80440FB0 0043DEF0  7C 08 03 A6 */	mtlr r0
 /* 80440FB4 0043DEF4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80440FB8 0043DEF8  4E 80 00 20 */	blr 
+.endfn cardMount__13MemoryCardMgrFv
 
-.global checkStatus__13MemoryCardMgrFv
-checkStatus__13MemoryCardMgrFv:
+.fn checkStatus__13MemoryCardMgrFv, global
 /* 80440FBC 0043DEFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80440FC0 0043DF00  7C 08 02 A6 */	mflr r0
 /* 80440FC4 0043DF04  90 01 00 24 */	stw r0, 0x24(r1)
@@ -930,9 +943,9 @@ checkStatus__13MemoryCardMgrFv:
 /* 804410B4 0043DFF4  7C 08 03 A6 */	mtlr r0
 /* 804410B8 0043DFF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 804410BC 0043DFFC  4E 80 00 20 */	blr 
+.endfn checkStatus__13MemoryCardMgrFv
 
-.global cardProc__13MemoryCardMgrFPv
-cardProc__13MemoryCardMgrFPv:
+.fn cardProc__13MemoryCardMgrFPv, global
 /* 804410C0 0043E000  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804410C4 0043E004  7C 08 02 A6 */	mflr r0
 /* 804410C8 0043E008  3C A0 80 4A */	lis r5, lbl_8049AD08@ha
@@ -1100,14 +1113,14 @@ cardProc__13MemoryCardMgrFPv:
 /* 80441304 0043E244  38 7D 00 AC */	addi r3, r29, 0xac
 /* 80441308 0043E248  4B CA E9 3D */	bl OSUnlockMutex
 /* 8044130C 0043E24C  4B FF FD E0 */	b .L_804410EC
+.endfn cardProc__13MemoryCardMgrFPv
 
-.global doCardProc__13MemoryCardMgrFPvP20MemoryCardMgrCommand
-doCardProc__13MemoryCardMgrFPvP20MemoryCardMgrCommand:
+.fn doCardProc__13MemoryCardMgrFPvP20MemoryCardMgrCommand, weak
 /* 80441310 0043E250  38 60 00 01 */	li r3, 1
 /* 80441314 0043E254  4E 80 00 20 */	blr 
+.endfn doCardProc__13MemoryCardMgrFPvP20MemoryCardMgrCommand
 
-.global isErrorOccured__13MemoryCardMgrFv
-isErrorOccured__13MemoryCardMgrFv:
+.fn isErrorOccured__13MemoryCardMgrFv, global
 /* 80441318 0043E258  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044131C 0043E25C  7C 08 02 A6 */	mflr r0
 /* 80441320 0043E260  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1190,9 +1203,9 @@ isErrorOccured__13MemoryCardMgrFv:
 /* 8044141C 0043E35C  7C 08 03 A6 */	mtlr r0
 /* 80441420 0043E360  38 21 00 20 */	addi r1, r1, 0x20
 /* 80441424 0043E364  4E 80 00 20 */	blr 
+.endfn isErrorOccured__13MemoryCardMgrFv
 
-.global fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
-fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc:
+.fn fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc, global
 /* 80441428 0043E368  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044142C 0043E36C  7C 08 02 A6 */	mflr r0
 /* 80441430 0043E370  39 00 00 01 */	li r8, 1
@@ -1317,9 +1330,9 @@ fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc:
 /* 804415BC 0043E4FC  7C 08 03 A6 */	mtlr r0
 /* 804415C0 0043E500  38 21 00 30 */	addi r1, r1, 0x30
 /* 804415C4 0043E504  4E 80 00 20 */	blr 
+.endfn fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
 
-.global writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
-writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc:
+.fn writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc, global
 /* 804415C8 0043E508  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 804415CC 0043E50C  7C 08 02 A6 */	mflr r0
 /* 804415D0 0043E510  38 E0 00 01 */	li r7, 1
@@ -1502,14 +1515,14 @@ writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc:
 /* 80441834 0043E774  7C 08 03 A6 */	mtlr r0
 /* 80441838 0043E778  38 21 00 40 */	addi r1, r1, 0x40
 /* 8044183C 0043E77C  4E 80 00 20 */	blr 
+.endfn writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
 
-.global getHeaderSize__13MemoryCardMgrFv
-getHeaderSize__13MemoryCardMgrFv:
+.fn getHeaderSize__13MemoryCardMgrFv, weak
 /* 80441840 0043E780  38 60 20 00 */	li r3, 0x2000
 /* 80441844 0043E784  4E 80 00 20 */	blr 
+.endfn getHeaderSize__13MemoryCardMgrFv
 
-.global writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
-writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc:
+.fn writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc, global
 /* 80441848 0043E788  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 8044184C 0043E78C  7C 08 02 A6 */	mflr r0
 /* 80441850 0043E790  38 E0 00 01 */	li r7, 1
@@ -1682,9 +1695,9 @@ writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc:
 /* 80441A90 0043E9D0  7C 08 03 A6 */	mtlr r0
 /* 80441A94 0043E9D4  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80441A98 0043E9D8  4E 80 00 20 */	blr 
+.endfn writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
 
-.global write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll:
+.fn write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll, global
 /* 80441A9C 0043E9DC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80441AA0 0043E9E0  7C 08 02 A6 */	mflr r0
 /* 80441AA4 0043E9E4  39 40 00 01 */	li r10, 1
@@ -1837,9 +1850,9 @@ write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll:
 /* 80441C94 0043EBD4  7C 08 03 A6 */	mtlr r0
 /* 80441C98 0043EBD8  38 21 00 50 */	addi r1, r1, 0x50
 /* 80441C9C 0043EBDC  4E 80 00 20 */	blr 
+.endfn write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
 
-.global checkCardStat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotP12CARDFileInfo
-checkCardStat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotP12CARDFileInfo:
+.fn checkCardStat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotP12CARDFileInfo, global
 /* 80441CA0 0043EBE0  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80441CA4 0043EBE4  7C 08 02 A6 */	mflr r0
 /* 80441CA8 0043EBE8  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1892,9 +1905,9 @@ checkCardStat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotP12CARDFileInfo:
 /* 80441D58 0043EC98  7C 08 03 A6 */	mtlr r0
 /* 80441D5C 0043EC9C  38 21 00 90 */	addi r1, r1, 0x90
 /* 80441D60 0043ECA0  4E 80 00 20 */	blr 
+.endfn checkCardStat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotP12CARDFileInfo
 
-.global read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll:
+.fn read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll, global
 /* 80441D64 0043ECA4  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80441D68 0043ECA8  7C 08 02 A6 */	mflr r0
 /* 80441D6C 0043ECAC  39 40 00 01 */	li r10, 1
@@ -2081,9 +2094,9 @@ read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll:
 /* 80441FD8 0043EF18  7C 08 03 A6 */	mtlr r0
 /* 80441FDC 0043EF1C  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80441FE0 0043EF20  4E 80 00 20 */	blr 
+.endfn read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
 
-.global format__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-format__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
+.fn format__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot, global
 /* 80441FE4 0043EF24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80441FE8 0043EF28  7C 08 02 A6 */	mflr r0
 /* 80441FEC 0043EF2C  3C A0 80 4F */	lis r5, sCardWorkArea@ha
@@ -2121,9 +2134,9 @@ format__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
 /* 80442060 0043EFA0  7C 08 03 A6 */	mtlr r0
 /* 80442064 0043EFA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80442068 0043EFA8  4E 80 00 20 */	blr 
+.endfn format__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
 
-.global attach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-attach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
+.fn attach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot, global
 /* 8044206C 0043EFAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80442070 0043EFB0  7C 08 02 A6 */	mflr r0
 /* 80442074 0043EFB4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2165,9 +2178,9 @@ attach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
 /* 804420F8 0043F038  7C 08 03 A6 */	mtlr r0
 /* 804420FC 0043F03C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80442100 0043F040  4E 80 00 20 */	blr 
+.endfn attach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
 
-.global detach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-detach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
+.fn detach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot, global
 /* 80442104 0043F044  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80442108 0043F048  7C 08 02 A6 */	mflr r0
 /* 8044210C 0043F04C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2183,9 +2196,9 @@ detach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
 /* 80442134 0043F074  7C 08 03 A6 */	mtlr r0
 /* 80442138 0043F078  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044213C 0043F07C  4E 80 00 20 */	blr 
+.endfn detach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
 
-.global mount__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-mount__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
+.fn mount__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot, global
 /* 80442140 0043F080  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80442144 0043F084  7C 08 02 A6 */	mflr r0
 /* 80442148 0043F088  3C A0 80 4F */	lis r5, sCardWorkArea@ha
@@ -2289,9 +2302,9 @@ mount__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot:
 /* 8044229C 0043F1DC  7C 08 03 A6 */	mtlr r0
 /* 804422A0 0043F1E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 804422A4 0043F1E4  4E 80 00 20 */	blr 
+.endfn mount__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
 
-.global checkSpace__13MemoryCardMgrFQ213MemoryCardMgr9ECardSloti
-checkSpace__13MemoryCardMgrFQ213MemoryCardMgr9ECardSloti:
+.fn checkSpace__13MemoryCardMgrFQ213MemoryCardMgr9ECardSloti, global
 /* 804422A8 0043F1E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804422AC 0043F1EC  7C 08 02 A6 */	mflr r0
 /* 804422B0 0043F1F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2363,9 +2376,9 @@ checkSpace__13MemoryCardMgrFQ213MemoryCardMgr9ECardSloti:
 /* 80442398 0043F2D8  7C 08 03 A6 */	mtlr r0
 /* 8044239C 0043F2DC  38 21 00 20 */	addi r1, r1, 0x20
 /* 804423A0 0043F2E0  4E 80 00 20 */	blr 
+.endfn checkSpace__13MemoryCardMgrFQ213MemoryCardMgr9ECardSloti
 
-.global doMakeHeader__13MemoryCardMgrFPUc
-doMakeHeader__13MemoryCardMgrFPUc:
+.fn doMakeHeader__13MemoryCardMgrFPUc, global
 /* 804423A4 0043F2E4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 804423A8 0043F2E8  7C 08 02 A6 */	mflr r0
 /* 804423AC 0043F2EC  3C 60 80 4A */	lis r3, lbl_8049AD78@ha
@@ -2432,9 +2445,9 @@ doMakeHeader__13MemoryCardMgrFPUc:
 /* 8044249C 0043F3DC  7C 08 03 A6 */	mtlr r0
 /* 804424A0 0043F3E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 804424A4 0043F3E4  4E 80 00 20 */	blr 
+.endfn doMakeHeader__13MemoryCardMgrFPUc
 
-.global doCheckCardStat__13MemoryCardMgrFP8CARDStat
-doCheckCardStat__13MemoryCardMgrFP8CARDStat:
+.fn doCheckCardStat__13MemoryCardMgrFP8CARDStat, global
 /* 804424A8 0043F3E8  80 04 00 30 */	lwz r0, 0x30(r4)
 /* 804424AC 0043F3EC  28 00 00 00 */	cmplwi r0, 0
 /* 804424B0 0043F3F0  40 82 00 C8 */	bne .L_80442578
@@ -2493,9 +2506,9 @@ doCheckCardStat__13MemoryCardMgrFP8CARDStat:
 .L_80442580:
 /* 80442580 0043F4C0  38 60 00 01 */	li r3, 1
 /* 80442584 0043F4C4  4E 80 00 20 */	blr 
+.endfn doCheckCardStat__13MemoryCardMgrFP8CARDStat
 
-.global doSetCardStat__13MemoryCardMgrFP8CARDStat
-doSetCardStat__13MemoryCardMgrFP8CARDStat:
+.fn doSetCardStat__13MemoryCardMgrFP8CARDStat, global
 /* 80442588 0043F4C8  38 60 00 00 */	li r3, 0
 /* 8044258C 0043F4CC  38 00 1C 00 */	li r0, 0x1c00
 /* 80442590 0043F4D0  90 64 00 30 */	stw r3, 0x30(r4)
@@ -2562,9 +2575,9 @@ doSetCardStat__13MemoryCardMgrFP8CARDStat:
 /* 80442684 0043F5C4  54 00 04 BE */	clrlwi r0, r0, 0x12
 /* 80442688 0043F5C8  B0 04 00 36 */	sth r0, 0x36(r4)
 /* 8044268C 0043F5CC  4E 80 00 20 */	blr 
+.endfn doSetCardStat__13MemoryCardMgrFP8CARDStat
 
-.global calcCheckSum__13MemoryCardMgrFPvUl
-calcCheckSum__13MemoryCardMgrFPvUl:
+.fn calcCheckSum__13MemoryCardMgrFPvUl, global
 /* 80442690 0043F5D0  54 A5 F8 7E */	srwi r5, r5, 1
 /* 80442694 0043F5D4  38 60 00 00 */	li r3, 0
 /* 80442698 0043F5D8  28 05 00 00 */	cmplwi r5, 0
@@ -2631,9 +2644,9 @@ calcCheckSum__13MemoryCardMgrFPvUl:
 .L_80442780:
 /* 80442780 0043F6C0  50 E3 80 1E */	rlwimi r3, r7, 0x10, 0, 0xf
 /* 80442784 0043F6C4  4E 80 00 20 */	blr 
+.endfn calcCheckSum__13MemoryCardMgrFPvUl
 
-.global readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot
-readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot:
+.fn readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot, global
 /* 80442788 0043F6C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044278C 0043F6CC  7C 08 02 A6 */	mflr r0
 /* 80442790 0043F6D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2686,22 +2699,22 @@ readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot:
 /* 80442834 0043F774  7C 08 03 A6 */	mtlr r0
 /* 80442838 0043F778  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044283C 0043F77C  4E 80 00 20 */	blr 
+.endfn readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot
 
-.global setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag:
+.fn setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag, global
 /* 80442840 0043F780  80 03 00 D4 */	lwz r0, 0xd4(r3)
 /* 80442844 0043F784  2C 00 00 0A */	cmpwi r0, 0xa
 /* 80442848 0043F788  4D 82 00 20 */	beqlr 
 /* 8044284C 0043F78C  90 83 00 D4 */	stw r4, 0xd4(r3)
 /* 80442850 0043F790  4E 80 00 20 */	blr 
+.endfn setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
 
-.global resetInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-resetInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag:
+.fn resetInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag, global
 /* 80442854 0043F794  90 83 00 D4 */	stw r4, 0xd4(r3)
 /* 80442858 0043F798  4E 80 00 20 */	blr 
+.endfn resetInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
 
-.global __dt__13MemoryCardMgrFv
-__dt__13MemoryCardMgrFv:
+.fn __dt__13MemoryCardMgrFv, weak
 /* 8044285C 0043F79C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80442860 0043F7A0  7C 08 02 A6 */	mflr r0
 /* 80442864 0043F7A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2721,8 +2734,9 @@ __dt__13MemoryCardMgrFv:
 /* 80442898 0043F7D8  7C 08 03 A6 */	mtlr r0
 /* 8044289C 0043F7DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804428A0 0043F7E0  4E 80 00 20 */	blr 
+.endfn __dt__13MemoryCardMgrFv
 
-.global getClassSize__20MemoryCardMgrCommandFv
-getClassSize__20MemoryCardMgrCommandFv:
+.fn getClassSize__20MemoryCardMgrCommandFv, weak
 /* 804428A4 0043F7E4  38 60 00 20 */	li r3, 0x20
 /* 804428A8 0043F7E8  4E 80 00 20 */	blr 
+.endfn getClassSize__20MemoryCardMgrCommandFv

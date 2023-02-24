@@ -1212,122 +1212,179 @@ mDebugHeap__Q28Morimura10TZukanBase:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051EB20:
+.obj lbl_8051EB20, local
 	.4byte 0x00000000
-lbl_8051EB24:
+.endobj lbl_8051EB20
+.obj lbl_8051EB24, local
 	.float 1.0
-lbl_8051EB28:
+.endobj lbl_8051EB24
+.obj lbl_8051EB28, local
 	.4byte 0x3CA3D70A
-lbl_8051EB2C:
+.endobj lbl_8051EB28
+.obj lbl_8051EB2C, local
 	.float 0.5
-lbl_8051EB30:
+.endobj lbl_8051EB2C
+.obj lbl_8051EB30, local
 	.float 0.25
-lbl_8051EB34:
+.endobj lbl_8051EB30
+.obj lbl_8051EB34, local
 	.4byte 0xC3960000
-lbl_8051EB38:
+.endobj lbl_8051EB34
+.obj lbl_8051EB38, local
 	.float 0.1
-lbl_8051EB3C:
+.endobj lbl_8051EB38
+.obj lbl_8051EB3C, local
 	.float 0.7
-lbl_8051EB40:
+.endobj lbl_8051EB3C
+.obj lbl_8051EB40, local
 	.float 0.3
-lbl_8051EB44:
+.endobj lbl_8051EB40
+.obj lbl_8051EB44, local
 	.4byte 0x40A00000
-lbl_8051EB48:
+.endobj lbl_8051EB44
+.obj lbl_8051EB48, local
 	.4byte 0x40200000
-lbl_8051EB4C:
+.endobj lbl_8051EB48
+.obj lbl_8051EB4C, local
 	.float 2.0
-lbl_8051EB50:
+.endobj lbl_8051EB4C
+.obj lbl_8051EB50, local
 	.4byte 0x3F99999A
-lbl_8051EB54:
+.endobj lbl_8051EB50
+.obj lbl_8051EB54, local
 	.4byte 0x3E4CCCCD
-lbl_8051EB58:
+.endobj lbl_8051EB54
+.obj lbl_8051EB58, local
 	.4byte 0x41C80000
-lbl_8051EB5C:
+.endobj lbl_8051EB58
+.obj lbl_8051EB5C, local
 	.4byte 0x3F666666
-lbl_8051EB60:
+.endobj lbl_8051EB5C
+.obj lbl_8051EB60, local
 	.4byte 0x40400000
-lbl_8051EB64:
+.endobj lbl_8051EB60
+.obj lbl_8051EB64, local
 	.float -0.5
-lbl_8051EB68:
+.endobj lbl_8051EB64
+.obj lbl_8051EB68, local
 	.float -1.0
-lbl_8051EB6C:
+.endobj lbl_8051EB68
+.obj lbl_8051EB6C, local
 	.4byte 0x3EB33333
-lbl_8051EB70:
+.endobj lbl_8051EB6C
+.obj lbl_8051EB70, local
 	.4byte 0x437F0000
-lbl_8051EB74:
+.endobj lbl_8051EB70
+.obj lbl_8051EB74, local
 	.4byte 0x3F19999A
-lbl_8051EB78:
+.endobj lbl_8051EB74
+.obj lbl_8051EB78, local
 	.float 0.05
+.endobj lbl_8051EB78
 .balign 8
-lbl_8051EB80:
+.obj lbl_8051EB80, local
 	.8byte 0x4330000080000000
-lbl_8051EB88:
+.endobj lbl_8051EB80
+.obj lbl_8051EB88, local
 	.4byte 0x42F00000
+.endobj lbl_8051EB88
 .balign 8
-lbl_8051EB90:
+.obj lbl_8051EB90, local
 	.8byte 0x4330000000000000
-lbl_8051EB98:
+.endobj lbl_8051EB90
+.obj lbl_8051EB98, local
 	.4byte 0x41200000
-lbl_8051EB9C:
+.endobj lbl_8051EB98
+.obj lbl_8051EB9C, local
 	.4byte 0x41A00000
-lbl_8051EBA0:
+.endobj lbl_8051EB9C
+.obj lbl_8051EBA0, local
 	.4byte 0x40C90FDB
-lbl_8051EBA4:
+.endobj lbl_8051EBA0
+.obj lbl_8051EBA4, local
 	.4byte 0x3F59999A
-lbl_8051EBA8:
+.endobj lbl_8051EBA4
+.obj lbl_8051EBA8, local
 	.4byte 0xC3A2F983
-lbl_8051EBAC:
+.endobj lbl_8051EBA8
+.obj lbl_8051EBAC, local
 	.4byte 0x43A2F983
-lbl_8051EBB0:
+.endobj lbl_8051EBAC
+.obj lbl_8051EBB0, local
 	.4byte 0x42780000
-lbl_8051EBB4:
+.endobj lbl_8051EBB0
+.obj lbl_8051EBB4, local
 	.4byte 0x47000000
-lbl_8051EBB8:
+.endobj lbl_8051EBB4
+.obj lbl_8051EBB8, local
 	.4byte 0x3F8CCCCD
-lbl_8051EBBC:
+.endobj lbl_8051EBB8
+.obj lbl_8051EBBC, local
 	.4byte 0x3F7D70A4
-lbl_8051EBC0:
+.endobj lbl_8051EBBC
+.obj lbl_8051EBC0, local
 	.4byte 0x3FC00000
-lbl_8051EBC4:
+.endobj lbl_8051EBC0
+.obj lbl_8051EBC4, local
 	.4byte 0x42480000
-lbl_8051EBC8:
+.endobj lbl_8051EBC4
+.obj lbl_8051EBC8, local
 	.4byte 0x447A0000
-lbl_8051EBCC:
+.endobj lbl_8051EBC8
+.obj lbl_8051EBCC, local
 	.4byte 0x47C35000
-lbl_8051EBD0:
+.endobj lbl_8051EBCC
+.obj lbl_8051EBD0, local
 	.4byte 0x41F00000
-lbl_8051EBD4:
+.endobj lbl_8051EBD0
+.obj lbl_8051EBD4, local
 	.4byte 0x3FA00000
-lbl_8051EBD8:
+.endobj lbl_8051EBD4
+.obj lbl_8051EBD8, local
 	.4byte 0x43160000
-lbl_8051EBDC:
+.endobj lbl_8051EBD8
+.obj lbl_8051EBDC, local
 	.4byte 0x41000000
-lbl_8051EBE0:
+.endobj lbl_8051EBDC
+.obj lbl_8051EBE0, local
 	.4byte 0x42400000
-lbl_8051EBE4:
+.endobj lbl_8051EBE0
+.obj lbl_8051EBE4, local
 	.4byte 0x41700000
-lbl_8051EBE8:
+.endobj lbl_8051EBE4
+.obj lbl_8051EBE8, local
 	.4byte 0x44200000
-lbl_8051EBEC:
+.endobj lbl_8051EBE8
+.obj lbl_8051EBEC, local
 	.4byte 0x43F00000
-lbl_8051EBF0:
+.endobj lbl_8051EBEC
+.obj lbl_8051EBF0, local
 	.4byte 0x41400000
-lbl_8051EBF4:
+.endobj lbl_8051EBF0
+.obj lbl_8051EBF4, local
 	.4byte 0x42C80000
-lbl_8051EBF8:
+.endobj lbl_8051EBF4
+.obj lbl_8051EBF8, local
 	.4byte 0x42AC0000
-lbl_8051EBFC:
+.endobj lbl_8051EBF8
+.obj lbl_8051EBFC, local
 	.4byte 0x41500000
-lbl_8051EC00:
+.endobj lbl_8051EBFC
+.obj lbl_8051EC00, local
 	.float 0.15
-lbl_8051EC04:
+.endobj lbl_8051EC00
+.obj lbl_8051EC04, local
 	.4byte 0xC1480000
-lbl_8051EC08:
+.endobj lbl_8051EC04
+.obj lbl_8051EC08, local
 	.4byte 0xC1F00000
-lbl_8051EC0C:
+.endobj lbl_8051EC08
+.obj lbl_8051EC0C, local
 	.4byte 0x3FA66666
-lbl_8051EC10:
+.endobj lbl_8051EC0C
+.obj lbl_8051EC10, local
 	.4byte 0x3F933333
+.endobj lbl_8051EC10
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28Morimura10TZukanBaseFPc

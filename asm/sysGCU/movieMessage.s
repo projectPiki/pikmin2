@@ -186,92 +186,127 @@ __vt__Q35P2JME5Movie10WindowPane:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805207B8:
+.obj lbl_805207B8, local
 	.float 0.0
-lbl_805207BC:
+.endobj lbl_805207B8
+.obj lbl_805207BC, local
 	.float 10.0
-lbl_805207C0:
+.endobj lbl_805207BC
+.obj lbl_805207C0, local
 	.float 90.0
-lbl_805207C4:
+.endobj lbl_805207C0
+.obj lbl_805207C4, local
 	.float 180.0
-lbl_805207C8:
+.endobj lbl_805207C4
+.obj lbl_805207C8, local
 	.float 1.0
-lbl_805207CC:
+.endobj lbl_805207C8
+.obj lbl_805207CC, local
 	.float 500.0
-lbl_805207D0: # pi
+.endobj lbl_805207CC
+.obj lbl_805207D0, local # pi
 	.float 3.1415927
-lbl_805207D4:
+.endobj lbl_805207D0
+.obj lbl_805207D4, local
 	.float 0.0055555557
-lbl_805207D8:
+.endobj lbl_805207D4
+.obj lbl_805207D8, local
 	.float 325.9493
-lbl_805207DC:
+.endobj lbl_805207D8
+.obj lbl_805207DC, local
 	.float -325.9493
-lbl_805207E0:
+.endobj lbl_805207DC
+.obj lbl_805207E0, local
 	.float 0.2
-lbl_805207E4:
+.endobj lbl_805207E0
+.obj lbl_805207E4, local
 	.float 0.72
-lbl_805207E8:
+.endobj lbl_805207E4
+.obj lbl_805207E8, local
 	.float 270.0
-lbl_805207EC:
+.endobj lbl_805207E8
+.obj lbl_805207EC, local
 	.float 57.295776
-lbl_805207F0:
+.endobj lbl_805207EC
+.obj lbl_805207F0, local
 	.float 255.0
+.endobj lbl_805207F0
 .balign 8
-lbl_805207F8:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_805207F8, local
+	.8byte 0x4330000000000000
+.endobj lbl_805207F8
 .balign 4
-lbl_80520800: # tau
+.obj lbl_80520800, local # tau
 	.float 6.2831855
-lbl_80520804:
+.endobj lbl_80520800
+.obj lbl_80520804, local
 	.float 0.5
-lbl_80520808:
+.endobj lbl_80520804
+.obj lbl_80520808, local
 	.float 2.0
-lbl_8052080C:
+.endobj lbl_80520808
+.obj lbl_8052080C, local
 	.float 0.75
-lbl_80520810:
+.endobj lbl_8052080C
+.obj lbl_80520810, local
 	.float 100.0
-lbl_80520814:
+.endobj lbl_80520810
+.obj lbl_80520814, local
 	.float 25.0
-lbl_80520818:
+.endobj lbl_80520814
+.obj lbl_80520818, local
 	.float 250.0
-lbl_8052081C:
+.endobj lbl_80520818
+.obj lbl_8052081C, local
 	.float 32768.0
+.endobj lbl_8052081C
 .balign 8
-lbl_80520820:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80520828:
+.obj lbl_80520820, local
+	.8byte 0x4330000080000000
+.endobj lbl_80520820
+.obj lbl_80520828, local
 	.float 0.3
-lbl_8052082C:
+.endobj lbl_80520828
+.obj lbl_8052082C, local
 	.float 1.25
-lbl_80520830:
+.endobj lbl_8052082C
+.obj lbl_80520830, local
 	.float 0.65
+.endobj lbl_80520830
 .balign 4
-lbl_80520834:
+.obj lbl_80520834, local
 	.asciz "pod.blo"
+.endobj lbl_80520834
 .balign 4
-lbl_8052083C:
+.obj lbl_8052083C, local
 	.float 0.0001
-lbl_80520840:
+.endobj lbl_8052083C
+.obj lbl_80520840, local
 	.float 0.35
-lbl_80520844:
+.endobj lbl_80520840
+.obj lbl_80520844, local
 	.float 20.0
-lbl_80520848:
+.endobj lbl_80520844
+.obj lbl_80520848, local
 	.float -0.0
+.endobj lbl_80520848
 .balign 4
-lbl_8052084C:
+.obj lbl_8052084C, local
 	.asciz "podIcon"
+.endobj lbl_8052084C
 .balign 4
-lbl_80520854:
+.obj lbl_80520854, local
 	.asciz "message"
+.endobj lbl_80520854
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doInit__Q35P2JME5Movie10WindowPaneFv

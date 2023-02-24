@@ -67,15 +67,18 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804B04EC:
+.endobj govNAN___Q24Game5P2JST
+.balign 4
+.obj lbl_804B04EC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte applyDopeSmoke__Q24Game4NaviFPQ24Game10CellObject
-lbl_804B04F8:
+.endobj lbl_804B04EC
+.obj lbl_804B04F8, local
 	.4byte .L_801425F8
 	.4byte .L_8014280C
 	.4byte .L_80142618
@@ -84,21 +87,22 @@ lbl_804B04F8:
 	.4byte .L_801426F8
 	.4byte .L_8014279C
 	.4byte .L_801426E8
-.global __vt__Q26PikiAI10ActFreeArg
-__vt__Q26PikiAI10ActFreeArg:
+.endobj lbl_804B04F8
+.obj __vt__Q26PikiAI10ActFreeArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI10ActFreeArgFv
-.global __vt__Q26PikiAI17CreatureActionArg
-__vt__Q26PikiAI17CreatureActionArg:
+.endobj __vt__Q26PikiAI10ActFreeArg
+.obj __vt__Q26PikiAI17CreatureActionArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI17CreatureActionArgFv
-.global __vt__Q26PikiAI9ActionArg
-__vt__Q26PikiAI9ActionArg:
+.endobj __vt__Q26PikiAI17CreatureActionArg
+.obj __vt__Q26PikiAI9ActionArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI9ActionArgFv
+.endobj __vt__Q26PikiAI9ActionArg
 .global __vt__Q24Game13NaviDamageArg
 __vt__Q24Game13NaviDamageArg:
 	.4byte 0
@@ -428,102 +432,148 @@ __vt__Q23efx7TFueact:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518348:
+.obj lbl_80518348, local
 	.float 0.5
-lbl_8051834C:
+.endobj lbl_80518348
+.obj lbl_8051834C, local
 	.float 10.0
-lbl_80518350:
+.endobj lbl_8051834C
+.obj lbl_80518350, local
 	.float 4.0
-lbl_80518354:
+.endobj lbl_80518350
+.obj lbl_80518354, local
 	.float 0.0
-lbl_80518358:
+.endobj lbl_80518354
+.obj lbl_80518358, local
 	.float 1.0
-lbl_8051835C:
+.endobj lbl_80518358
+.obj lbl_8051835C, local
 	.float 24.0
+.endobj lbl_8051835C
 .balign 4
-lbl_80518360:
+.obj lbl_80518360, local
 	.asciz "headjnt"
+.endobj lbl_80518360
 .balign 4
-lbl_80518368:
+.obj lbl_80518368, local
 	.float 1.3
-lbl_8051836C:
+.endobj lbl_80518368
+.obj lbl_8051836C, local
 	.float 1.5
-lbl_80518370:
+.endobj lbl_8051836C
+.obj lbl_80518370, local
 	.float 25.0
-lbl_80518374:
+.endobj lbl_80518370
+.obj lbl_80518374, local
 	.float 3.0003002
-lbl_80518378:
+.endobj lbl_80518374
+.obj lbl_80518378, local
 	.float 15.0
-lbl_8051837C:
+.endobj lbl_80518378
+.obj lbl_8051837C, local
 	.float 140.0
-lbl_80518380:
+.endobj lbl_8051837C
+.obj lbl_80518380, local
 	.float 50.0
-lbl_80518384:
+.endobj lbl_80518380
+.obj lbl_80518384, local
 	.float -1.0
-lbl_80518388:
+.endobj lbl_80518384
+.obj lbl_80518388, local
 	.float 200.0
-lbl_8051838C:
+.endobj lbl_80518388
+.obj lbl_8051838C, local
 	.float 150.0
-lbl_80518390:
+.endobj lbl_8051838C
+.obj lbl_80518390, local
 	.float 0.02
-lbl_80518394:
+.endobj lbl_80518390
+.obj lbl_80518394, local
 	.float 0.015
-lbl_80518398:
+.endobj lbl_80518394
+.obj lbl_80518398, local
 	.float 30.0
-lbl_8051839C:
+.endobj lbl_80518398
+.obj lbl_8051839C, local
 	.float 5.0
-lbl_805183A0:
+.endobj lbl_8051839C
+.obj lbl_805183A0, local
 	.float 400.0
-lbl_805183A4:
+.endobj lbl_805183A0
+.obj lbl_805183A4, local
 	.float -170.0
-lbl_805183A8:
+.endobj lbl_805183A4
+.obj lbl_805183A8, local
 	.float 40.0
-lbl_805183AC:
+.endobj lbl_805183A8
+.obj lbl_805183AC, local
 	.float -190.0
-lbl_805183B0:
+.endobj lbl_805183AC
+.obj lbl_805183B0, local
 	.float 3600.0
-lbl_805183B4:
+.endobj lbl_805183B0
+.obj lbl_805183B4, local
 	.float 6400.0
-lbl_805183B8:
+.endobj lbl_805183B4
+.obj lbl_805183B8, local
 	.float 8.5
-lbl_805183BC:
+.endobj lbl_805183B8
+.obj lbl_805183BC, local
 	.float 0.2
-lbl_805183C0: # pi
+.endobj lbl_805183BC
+.obj lbl_805183C0, local # pi
 	.float 3.1415927
-lbl_805183C4:
+.endobj lbl_805183C0
+.obj lbl_805183C4, local
 	.float 0.0055555557
-lbl_805183C8:
+.endobj lbl_805183C4
+.obj lbl_805183C8, local
 	.float 0.7853982
+.endobj lbl_805183C8
 .balign 8
-lbl_805183D0:
+.obj lbl_805183D0, local
 	.8byte 0x4330000080000000
-lbl_805183D8:
+.endobj lbl_805183D0
+.obj lbl_805183D8, local
 	.float 20.0
-lbl_805183DC:
+.endobj lbl_805183D8
+.obj lbl_805183DC, local
 	.float 6.25
-lbl_805183E0:
+.endobj lbl_805183DC
+.obj lbl_805183E0, local
 	.float 0.05
-lbl_805183E4:
+.endobj lbl_805183E0
+.obj lbl_805183E4, local
 	.float 0.4
-lbl_805183E8:
+.endobj lbl_805183E4
+.obj lbl_805183E8, local
 	.float 2.0943952
-lbl_805183EC:
+.endobj lbl_805183E8
+.obj lbl_805183EC, local
 	.float 0.95
-lbl_805183F0:
+.endobj lbl_805183EC
+.obj lbl_805183F0, local
 	.float 0.6
-lbl_805183F4:
+.endobj lbl_805183F0
+.obj lbl_805183F4, local
 	.float 0.9
-lbl_805183F8:
+.endobj lbl_805183F4
+.obj lbl_805183F8, local
 	.float 3.0
-lbl_805183FC:
+.endobj lbl_805183F8
+.obj lbl_805183FC, local
 	.float 12800.0
-lbl_80518400:
+.endobj lbl_805183FC
+.obj lbl_80518400, local
 	.float -15.0
-lbl_80518404:
+.endobj lbl_80518400
+.obj lbl_80518404, local
 	.float 2.0
+.endobj lbl_80518404
 .balign 4
-lbl_80518408:
+.obj lbl_80518408, local
 	.asciz "orima"
+.endobj lbl_80518408
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam

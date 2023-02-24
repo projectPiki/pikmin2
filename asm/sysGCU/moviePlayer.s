@@ -68,7 +68,7 @@ lbl_8049A020:
 lbl_8049A02C: # Shift-JIS
 	.4byte 0x82DC82C0
 	.4byte 0x82A98297
-	.4byte 0x0A000000
+	.2byte 0x0A00
 .balign 4
 lbl_8049A038: # Shift-JIS
 	.4byte 0x64656D6F
@@ -78,7 +78,7 @@ lbl_8049A038: # Shift-JIS
 	.4byte 0xC682BE82
 	.4byte 0xDF82BE82
 	.4byte 0xE682970A
-	.4byte 0x00000000
+	.byte 0
 .balign 4
 lbl_8049A058:
 	.asciz "resource open failed!\n"
@@ -93,7 +93,7 @@ lbl_8049A080: # Shift-JIS
 	.4byte 0x82C582AB
 	.4byte 0x82DC82B5
 	.4byte 0x82A582F1
-	.4byte 0x0A000000
+	.2byte 0x0A00
 .balign 4
 lbl_8049A09C:
 	.asciz "moviePl:loaddone"
@@ -168,68 +168,88 @@ __vt__Q24Game11MoviePlayer:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global mArchive__Q24Game11MoviePlayer
-mArchive__Q24Game11MoviePlayer:
+.endobj gfNAN___Q24Game5P2JST
+.obj mArchive__Q24Game11MoviePlayer, global
 	.skip 0x4
-.global moviePlayer__4Game
-moviePlayer__4Game:
+.endobj mArchive__Q24Game11MoviePlayer
+.obj moviePlayer__4Game, global
 	.skip 0x4
+.endobj moviePlayer__4Game
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80520610:
+.obj lbl_80520610, local
 	.float 0.0
-lbl_80520614:
+.endobj lbl_80520610
+.obj lbl_80520614, local
 	.float 57.295776
-lbl_80520618:
+.endobj lbl_80520614
+.obj lbl_80520618, local
 	.float 250.0
-lbl_8052061C:
+.endobj lbl_80520618
+.obj lbl_8052061C, local
 	.float 0.43633235
-lbl_80520620:
+.endobj lbl_8052061C
+.obj lbl_80520620, local
 	.float 0.5
+.endobj lbl_80520620
 .balign 8
-lbl_80520628:
+.obj lbl_80520628, local
 	.double 0.03333333507180214
+.endobj lbl_80520628
 .balign 4
-lbl_80520630:
+.obj lbl_80520630, local
 	.asciz "arc"
+.endobj lbl_80520630
 .balign 4
-lbl_80520634:
+.obj lbl_80520634, local
 	.asciz "message"
+.endobj lbl_80520634
 .balign 4
-lbl_8052063C:
+.obj lbl_8052063C, local
 	.asciz "efx.jpc"
+.endobj lbl_8052063C
 .balign 4
-lbl_80520644:
+.obj lbl_80520644, local
 	.asciz "stb"
+.endobj lbl_80520644
 .balign 4
-lbl_80520648:
+.obj lbl_80520648, local
 	.float 1.1
-lbl_8052064C:
+.endobj lbl_80520648
+.obj lbl_8052064C, local
 	.float 1.0
-lbl_80520650:
+.endobj lbl_8052064C
+.obj lbl_80520650, local
 	.float 10.0
-lbl_80520654:
+.endobj lbl_80520650
+.obj lbl_80520654, local
 	.float 2.0
+.endobj lbl_80520654
 .balign 4
-lbl_80520658:
+.obj lbl_80520658, local
 	.asciz "camera"
+.endobj lbl_80520658
 .balign 4
-lbl_80520660:
+.obj lbl_80520660, local
 	.asciz "viewmat"
+.endobj lbl_80520660
 .balign 4
-lbl_80520668: # pi
+.obj lbl_80520668, local # pi
 	.float 3.1415927
-lbl_8052066C:
+.endobj lbl_80520668
+.obj lbl_8052066C, local
 	.float 0.0055555557
+.endobj lbl_8052066C
 .balign 8
-lbl_80520670:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80520670, local
+	.8byte 0x4330000000000000
+.endobj lbl_80520670
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game11MoviePlayerFv

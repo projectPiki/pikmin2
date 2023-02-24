@@ -1,14 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049ABE8:
+.obj lbl_8049ABE8, local
 	.asciz "messageRendering.cpp"
+.endobj lbl_8049ABE8
 .balign 4
-lbl_8049AC00:
+.obj lbl_8049AC00, local
 	.asciz "P2Assert"
+.endobj lbl_8049AC00
 .balign 4
-lbl_8049AC0C:
+.obj lbl_8049AC0C, local
 	.asciz "messageRendering.h"
+.endobj lbl_8049AC0C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -115,31 +118,38 @@ __vt__Q25P2JME23TRenderingProcessorBase:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global cPageInfoBufferNum__Q25P2JME19TRenderingProcessor
-cPageInfoBufferNum__Q25P2JME19TRenderingProcessor:
+.obj cPageInfoBufferNum__Q25P2JME19TRenderingProcessor, global
 	.4byte 10
-lbl_805208BC:
+.endobj cPageInfoBufferNum__Q25P2JME19TRenderingProcessor
+.obj lbl_805208BC, local
 	.float 100.0
-lbl_805208C0:
+.endobj lbl_805208BC
+.obj lbl_805208C0, local
 	.float 0.0
-lbl_805208C4:
+.endobj lbl_805208C0
+.obj lbl_805208C4, local
 	.float 1.0
-lbl_805208C8:
+.endobj lbl_805208C4
+.obj lbl_805208C8, local
 	.float 42.0
-lbl_805208CC:
+.endobj lbl_805208C8
+.obj lbl_805208CC, local
 	.float 0.5
+.endobj lbl_805208CC
 .balign 8
-lbl_805208D0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_805208D0, local
+	.8byte 0x4330000080000000
+.endobj lbl_805208D0
 .balign 8
-lbl_805208D8:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_805208E0:
+.obj lbl_805208D8, local
+	.8byte 0x4330000000000000
+.endobj lbl_805208D8
+.obj lbl_805208E0, local
 	.float 32.0
-lbl_805208E4:
+.endobj lbl_805208E0
+.obj lbl_805208E4, local
 	.float 255.0
+.endobj lbl_805208E4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference
