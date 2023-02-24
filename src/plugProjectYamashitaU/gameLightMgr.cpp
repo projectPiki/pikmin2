@@ -66,7 +66,7 @@ GameLightMgrSetting::GameLightMgrSetting()
     : CNode("設定") // 'setting'
     , mIsCave(false)
     , mSunLight(GameLightMgrSettingLabel)
-    , mStellarSpotLight("懐中電灯アリ") // 'flashlight ants' (??)
+    , mStellarSpotLight("懐中電灯アリ") // 'yes flashlight'
     , mRegularSpotLight("懐中電灯ナシ") // 'no flashlight'
 {
 	updateNode();
