@@ -117,6 +117,8 @@ struct J3DModelData {
 	void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
 	void* getVtxNrmArray() const { return mVertexData.getVtxNrmArray(); }
 	GXColor* getVtxColorArray(u8 idx) const { return mVertexData.getVtxColorArray(idx); }
+	u32 getVertexNum() const { return mVertexData.getVtxNum(); }
+	u32 getVertexColorNum() const { return mVertexData.getColNum(); }
 
 	bool checkFlag(u32 flag) const { return (mModelLoaderFlags & flag) ? true : false; }
 	u32 getFlag() const { return mModelLoaderFlags; }

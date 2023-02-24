@@ -1,121 +1,40 @@
 #include "Game/FieldVtxColorMgr.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047B420
-    lbl_8047B420:
-        .4byte 0x4669656C
-        .4byte 0x64567478
-        .4byte 0x436F6C6F
-        .4byte 0x724D6772
-        .4byte 0x00000000
-    .global lbl_8047B434
-    lbl_8047B434:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game16FieldVtxColorMgr
-    __vt__Q24Game16FieldVtxColorMgr:
-        .4byte 0
-        .4byte 0
-        .4byte calc__Q24Game16FieldVtxColorMgrFP15J3DVertexBuffer
-        .4byte __dt__Q24Game16FieldVtxColorMgrFv
-        .4byte 0
-        .4byte 0
-        .4byte "@12@__dt__Q24Game16FieldVtxColorMgrFv"
-        .4byte getChildCount__5CNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80517CC0
-    lbl_80517CC0:
-        .4byte 0x41200000
-    .global lbl_80517CC4
-    lbl_80517CC4:
-        .4byte 0x00000000
-    .global lbl_80517CC8
-    lbl_80517CC8:
-        .float 1.0
-    .global lbl_80517CCC
-    lbl_80517CCC:
-        .4byte 0x3C23D70A
-    .global lbl_80517CD0
-    lbl_80517CD0:
-        .4byte 0x437F0000
-    .global lbl_80517CD4
-    lbl_80517CD4:
-        .float 0.5
-    .global lbl_80517CD8
-    lbl_80517CD8:
-        .4byte 0x401C0000
-        .4byte 0x00000000
-    .global lbl_80517CE0
-    lbl_80517CE0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
 
 namespace Game {
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000044
+ */
+FieldVtxColorControl::FieldVtxColorControl()
+{
+	mNext     = nullptr;
+	mPosition = Vector3f::zero;
+	_10       = 10.0f;
+	mPower    = 0.0f;
+	_18       = 1.0f;
+	_1C       = 0;
+}
 
 /*
  * --INFO--
  * Address:	80122450
  * Size:	0000B0
  */
-FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData*)
+FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData* modelData)
+    : CNode("FieldVtxColorMgr")
+    , mModelData(nullptr)
+    , mInfo(nullptr)
+    , mControl(nullptr)
+    , _34(0.01f)
+    , _38(0)
+    , _39(0)
+    , _3A(0)
+    , _3B(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r7, __vt__5CNode@ha
-	lis      r6, lbl_8047B420@ha
-	stw      r0, 0x14(r1)
-	lis      r5, __vt__15J3DVtxColorCalc@ha
-	addi     r0, r5, __vt__15J3DVtxColorCalc@l
-	li       r8, 0
-	stw      r31, 0xc(r1)
-	lis      r5, __vt__Q24Game16FieldVtxColorMgr@ha
-	addi     r7, r7, __vt__5CNode@l
-	addi     r6, r6, lbl_8047B420@l
-	stw      r0, 0(r3)
-	li       r0, 1
-	addi     r5, r5, __vt__Q24Game16FieldVtxColorMgr@l
-	lfs      f0, lbl_80517CCC@sda21(r2)
-	stw      r0, 4(r3)
-	addi     r0, r5, 0x10
-	mr       r31, r3
-	stw      r8, 8(r3)
-	stw      r7, 0xc(r3)
-	stw      r8, 0x1c(r3)
-	stw      r8, 0x18(r3)
-	stw      r8, 0x14(r3)
-	stw      r8, 0x10(r3)
-	stw      r6, 0x20(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	stw      r8, 0x24(r3)
-	stw      r8, 0x28(r3)
-	stw      r8, 0x30(r3)
-	stfs     f0, 0x34(r3)
-	stb      r8, 0x38(r3)
-	stb      r8, 0x39(r3)
-	stb      r8, 0x3a(r3)
-	stb      r8, 0x3b(r3)
-	stw      r4, 0x24(r3)
-	bl       createFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mModelData = modelData;
+	createFieldVtxColorInfo();
 }
 
 /*
@@ -125,6 +44,46 @@ FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData*)
  */
 void FieldVtxColorMgr::createFieldVtxColorInfo()
 {
+	GXColor* color = mModelData->getVtxColorArray(0);
+	_2C            = 0;
+	u32 vtxNum     = mModelData->getVertexNum();
+
+	mInfo = new (-4) FieldVtxColorInfo[vtxNum];
+
+	for (u16 i = 0; i < mModelData->getVertexNum(); i++) {
+		getColorInfo(i)._02 = i;
+	}
+
+	u16 shapeCount = mModelData->getShapeNum();
+
+	for (u16 i = 0; i < shapeCount; i++) {
+		setupFieldVtxColorInfo(mModelData->getShapeNodePointer(i));
+	}
+
+	for (u16 i = 0; i < mModelData->getVertexNum(); i++) {
+		GXColor& thisColor = color[getColorInfo(i)._00];
+		if (thisColor.a) {
+			_2C++;
+		}
+
+		thisColor.b = 255;
+		thisColor.g = 255;
+		thisColor.r = 255;
+	}
+
+	FieldVtxColorInfo* newInfos = new FieldVtxColorInfo[_2C];
+
+	int infoCount = 0;
+	for (u16 i = 0; i < mModelData->getVertexNum(); i++) {
+		FieldVtxColorInfo& oldInfo = getColorInfo(i);
+		if (color[oldInfo._00].a) {
+			newInfos[infoCount++] = oldInfo;
+		}
+	}
+
+	delete[] mInfo;
+
+	mInfo = newInfos;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -279,29 +238,45 @@ lbl_801226D4:
 
 /*
  * --INFO--
- * Address:	801226F8
- * Size:	00001C
- */
-FieldVtxColorInfo::FieldVtxColorInfo()
-{
-	/*
-	lis      r4, 0x0000FFFF@ha
-	li       r0, 0
-	addi     r4, r4, 0x0000FFFF@l
-	sth      r4, 0(r3)
-	sth      r4, 2(r3)
-	stb      r0, 4(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	80122714
  * Size:	0001C8
  */
 void FieldVtxColorMgr::initVtxColor()
 {
+	f32 oldFloat = _34;
+
+	_34 = 1.0f;
+	for (int i = 0; i < _2C; i++) {
+		mInfo[i]._04 = 0;
+	}
+
+	FOREACH_NODE(FieldVtxColorControl, mControl, currControl)
+	{
+		if (FABS(currControl->_18 - currControl->mPower) < _34) {
+			currControl->_18 = currControl->mPower;
+		} else {
+			currControl->_18 += (currControl->_18 < currControl->mPower) ? _34 : -_34;
+		}
+
+		// some nonsense
+	}
+
+	GXColor newColor;
+	newColor.b     = 255;
+	newColor.g     = 255;
+	newColor.r     = 255;
+	GXColor* color = mModelData->getVtxColorArray(0);
+
+	for (int i = 0; i < _2C; i++) {
+		FieldVtxColorInfo& info = mInfo[i];
+		newColor.a              = info._04;
+		int idx                 = info._00;
+		*((u32*)&color[idx])    = *(u32*)(&newColor);
+	}
+
+	DCStoreRange(color, mModelData->getVertexColorNum() << 2);
+
+	_34 = oldFloat;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -987,8 +962,38 @@ lbl_80122EB0:
  * Address:	80122EC4
  * Size:	000128
  */
-FieldVtxColorControl* FieldVtxColorMgr::createNewControl(Vector3f&, float, float)
+FieldVtxColorControl* FieldVtxColorMgr::createNewControl(Vector3f& position, f32 p1, f32 p2)
 {
+	FieldVtxColorControl* newControl = new FieldVtxColorControl;
+
+	if (newControl) {
+		setupFieldVtxColorControl(newControl, position, p1, p2);
+
+		FieldVtxColorControl* oldControl = mControl;
+		if (!oldControl) {
+			mControl = newControl;
+		} else {
+			newControl->mNext = nullptr;
+
+			FieldVtxColorControl* nextControl = oldControl->mNext;
+			if (!nextControl) {
+				oldControl->mNext = newControl;
+			} else {
+				while (nextControl) {
+					if (!nextControl->mNext) {
+						break;
+					}
+
+					nextControl = nextControl->mNext;
+				}
+
+				nextControl->mNext = newControl;
+			}
+		}
+	}
+
+end:
+	return newControl;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1250,64 +1255,4 @@ void FieldVtxColorMgr::setupFieldVtxColorControl(Game::FieldVtxColorControl*, Ve
 	  blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	801231F0
- * Size:	000080
- */
-FieldVtxColorMgr::~FieldVtxColorMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80123254
-	lis      r4, __vt__Q24Game16FieldVtxColorMgr@ha
-	addi     r3, r30, 0xc
-	addi     r5, r4, __vt__Q24Game16FieldVtxColorMgr@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x10
-	stw      r0, 0xc(r30)
-	bl       __dt__5CNodeFv
-	cmplwi   r30, 0
-	beq      lbl_80123244
-	lis      r3, __vt__15J3DVtxColorCalc@ha
-	addi     r0, r3, __vt__15J3DVtxColorCalc@l
-	stw      r0, 0(r30)
-
-lbl_80123244:
-	extsh.   r0, r31
-	ble      lbl_80123254
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80123254:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80123270
- * Size:	000008
- */
-// FieldVtxColorMgr::@12 @~FieldVtxColorMgr()
-// {
-// 	/*
-// 	addi     r3, r3, -12
-// 	b        __dt__Q24Game16FieldVtxColorMgrFv
-// 	*/
-// }
 } // namespace Game

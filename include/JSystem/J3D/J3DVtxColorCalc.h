@@ -5,6 +5,12 @@
 #include "JSystem/J3D/J3DAnmVtxColor.h"
 
 struct J3DVtxColorCalc {
+	J3DVtxColorCalc()
+	    : mFlag(1)
+	    , mAnmVtxColor(nullptr)
+	{
+	}
+
 	virtual void calc(struct J3DVertexBuffer*); // _08
 	virtual ~J3DVtxColorCalc() { }              // _0C (weak)
 
