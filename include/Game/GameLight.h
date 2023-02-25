@@ -15,6 +15,25 @@ struct TimeMgr;
 struct PlayCamera;
 
 struct GameLightEventArg {
+	inline GameLightEventArg()
+	    : _00(0)
+	    , _01(0)
+	{
+		_00 |= 0x3;
+		_01 = 0;
+		_01 |= 0x1;
+		_00 |= (0x1);
+		_10 = 0.5f;
+		_04 = 1.5f;
+		_08 = 1.5f;
+		_0C = 1.5f;
+		_14 = 2.0f;
+		_18 = 0.0f;
+		_1C = 1024.0f;
+		_20 = nullptr;
+		_24 = 500.0f;
+	}
+
 	u8 _00;        // _00
 	u8 _01;        // _01
 	f32 _04;       // _04

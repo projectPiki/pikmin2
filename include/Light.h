@@ -36,6 +36,8 @@ struct LightObj : public CNode {
 	virtual void drawPos(Graphics&, Matrixf&); // _1C
 	virtual void drawPos(Graphics&, Camera&);  // _20
 
+	inline void setColor(Color4& color) { mColor.set(color); }
+
 	// _00 VTBL
 	u8 mLightID;         // _18, GXLightID
 	u8 mTypeFlag;        // _19

@@ -31,6 +31,14 @@ struct GameLightSettingBase {
 	{
 		mSettings.read(stream);
 	}
+
+	inline void getColor(Color4& color)
+	{
+		color.r = *mSettings.mRed();
+		color.g = *mSettings.mGreen();
+		color.b = *mSettings.mBlue();
+		color.a = *mSettings.mAlpha();
+	}
 };
 
 struct GameDiffuseLightSetting : public GameLightSettingBase {
