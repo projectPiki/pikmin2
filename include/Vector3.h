@@ -66,7 +66,7 @@ struct Vector3 {
 	/**
 	 * @fabricated
 	 */
-	inline f32 magnitude() { return x + y + z; }
+	inline f32 magnitude() { return x * x + y * y + z * z; }
 
 	/**
 	 * @fabricated
@@ -422,6 +422,14 @@ inline Vector3f cross(Vector3f& vec1, Vector3f& vec2)
 	outVec.y = vec1.z * vec2.x - vec1.x * vec2.z;
 	outVec.z = vec1.x * vec2.y - vec1.y * vec2.x;
 	return outVec;
+}
+
+inline f32 sqrDistance(Vector3f& vec1, Vector3f& vec2)
+{
+	f32 x = vec1.x - vec2.x;
+	f32 y = vec1.y - vec2.y;
+	f32 z = vec1.z - vec2.z;
+	return x * x + y * y + z * z;
 }
 
 #endif

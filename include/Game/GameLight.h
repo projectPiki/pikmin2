@@ -15,17 +15,17 @@ struct TimeMgr;
 struct PlayCamera;
 
 struct GameLightEventArg {
-	u8 _00;  // _00
-	u8 _01;  // _01
-	f32 _04; // _04
-	f32 _08; // _08
-	f32 _0C; // _0C
-	f32 _10; // _10, start time?
-	f32 _14; // _14, end time?
-	f32 _18; // _18, start Z?
-	f32 _1C; // _1C, end Z?
-	u32 _20; // _20, unknown
-	f32 _24; // _24, distance?
+	u8 _00;        // _00
+	u8 _01;        // _01
+	f32 _04;       // _04
+	f32 _08;       // _08
+	f32 _0C;       // _0C
+	f32 _10;       // _10, start time?
+	f32 _14;       // _14, end time?
+	f32 _18;       // _18, start Z?
+	f32 _1C;       // _1C, end Z?
+	Vector3f* _20; // _20, unknown
+	f32 _24;       // _24, distance?
 };
 
 struct GameLightEventNode : public CNode {
@@ -45,7 +45,7 @@ struct GameLightEventNode : public CNode {
 		_2C = 2.0f;
 		_30 = 0.0f;
 		_34 = 1024.0f;
-		_38 = 0;
+		_38 = nullptr;
 		_3C = 500.0f;
 	}
 
@@ -57,21 +57,21 @@ struct GameLightEventNode : public CNode {
 
 	// _00      = VTBL
 	// _00-_18  = CNode
-	u8 _18;  // _18
-	u8 _19;  // _19
-	f32 _1C; // _1C, color 1 scale?
-	f32 _20; // _20, color 2 scale?
-	f32 _24; // _24, color 3 scale?
-	f32 _28; // _28
-	f32 _2C; // _2C
-	f32 _30; // _30, nearZ?
-	f32 _34; // _34, farZ?
-	u32 _38; // _38, unknown
-	f32 _3C; // _3C
-	f32 _40; // _40, timer?
-	f32 _44; // _44, angle?
-	f32 _48; // _48
-	int _4C; // _4C
+	u8 _18;        // _18
+	u8 _19;        // _19
+	f32 _1C;       // _1C, color 1 scale?
+	f32 _20;       // _20, color 2 scale?
+	f32 _24;       // _24, color 3 scale?
+	f32 _28;       // _28
+	f32 _2C;       // _2C
+	f32 _30;       // _30, nearZ?
+	f32 _34;       // _34, farZ?
+	Vector3f* _38; // _38
+	f32 _3C;       // _3C
+	f32 _40;       // _40, timer?
+	f32 _44;       // _44, angle?
+	f32 _48;       // _48
+	int _4C;       // _4C
 };
 
 struct GameLightSpotSetting : public CNode {
@@ -178,6 +178,8 @@ struct GameLightMgr : public LightMgr {
 	void updateSpotType();
 	void updateEventLight();
 	void updatePosition(Viewport*);
+
+	inline void getViewportPos(Vector3f& pos, int i) { pos = _238C[i]; }
 
 	// _00      = VTBL
 	// _00-_50  = LightMgr

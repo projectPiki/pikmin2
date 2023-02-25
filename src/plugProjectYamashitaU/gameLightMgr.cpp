@@ -1,6 +1,8 @@
 #include "Game/GameLight.h"
 #include "Game/shadowMgr.h"
 #include "Game/CameraMgr.h"
+#include "Game/TimeMgr.h"
+#include "Game/GameSystem.h"
 #include "Viewport.h"
 #include "nans.h"
 
@@ -17,13 +19,47 @@ static const char unusedGameLightName[] = "gameLightMgr";
  * Address:	........
  * Size:	0001FC
  */
-void calcLightColor(Color4* lightColor, Color4& color1, Color4& color2, f32 p1)
+void calcLightColor(Color4* lightColor, Color4& color1, Color4& color2, f32 scale)
 {
-	// inlined in calcColor and updateSpotType probably
+	f32 tempRed = scale * ((f32)color1.r - (f32)color2.r) + (f32)color2.r;
+	f32 tempRed2;
+	if (tempRed >= 0.0f) {
+		tempRed2 = tempRed + 0.5f;
+	} else {
+		tempRed2 = tempRed - 0.5f;
+	}
+	lightColor->r = tempRed2;
+
+	f32 tempGreen = scale * ((f32)color1.g - (f32)color2.g) + (f32)color2.g;
+	f32 tempGreen2;
+	if (tempGreen >= 0.0f) {
+		tempGreen2 = tempGreen + 0.5f;
+	} else {
+		tempGreen2 = tempGreen - 0.5f;
+	}
+	lightColor->g = tempGreen2;
+
+	f32 tempBlue = scale * ((f32)color1.b - (f32)color2.b) + (f32)color2.b;
+	f32 tempBlue2;
+	if (tempBlue >= 0.0f) {
+		tempBlue2 = tempBlue + 0.5f;
+	} else {
+		tempBlue2 = tempBlue - 0.5f;
+	}
+	lightColor->b = tempBlue2;
+
+	f32 tempAlpha = scale * ((f32)(u8)(&color2) - (f32)color2.a) + (f32)color2.a;
+	f32 tempAlpha2;
+	if (tempAlpha >= 0.0f) {
+		tempAlpha2 = tempAlpha + 0.5f;
+	} else {
+		tempAlpha2 = tempAlpha - 0.5f;
+	}
+	lightColor->a = tempAlpha2;
 }
 
 namespace {
-const char* GameLightMgrSettingLabel[5] = {
+const char* GameLightMgrSettinglabel[5] = {
 	"–é",     // 'night'
 	"’©",     // 'morning'
 	"’‹",     // 'noon'
@@ -66,7 +102,7 @@ GameLightSunSetting::GameLightSunSetting(char* name)
     : CNode(name)
 {
 	for (int i = 0; i < 5; i++) {
-		mLightTimes[i].mName = GameLightMgrSettingLabel[i];
+		mLightTimes[i].mName = GameLightMgrSettinglabel[i];
 		add(&mLightTimes[i]);
 	}
 }
@@ -262,251 +298,72 @@ bool GameLightEventNode::update(GameLightMgr* lightMgr)
  * Address:	8011E75C
  * Size:	00037C
  */
-void GameLightEventNode::updateCommon(GameLightMgr* lightMgr, bool)
+void GameLightEventNode::updateCommon(GameLightMgr* lightMgr, bool check)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	clrlwi.  r0, r5, 0x18
-	lfs      f31, lbl_80517C7C@sda21(r2)
-	mr       r30, r3
-	mr       r31, r4
-	beq      lbl_8011E880
-	lbz      r0, 0x18(r30)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	beq      lbl_8011E82C
-	lwz      r0, 0x38(r30)
-	cmplwi   r0, 0
-	beq      lbl_8011E82C
-	lfs      f1, 0x3c(r30)
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8011E82C
-	lwz      r4, 0x233c(r31)
-	cmplwi   r4, 0
-	beq      lbl_8011E82C
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0xc
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x38(r30)
-	lfs      f0, 0x10(r1)
-	lfs      f1, 4(r3)
-	lfs      f3, 0(r3)
-	fsubs    f4, f1, f0
-	lfs      f0, 0xc(r1)
-	lfs      f2, 8(r3)
-	lfs      f1, 0x14(r1)
-	fsubs    f3, f3, f0
-	fmuls    f0, f4, f4
-	fsubs    f1, f2, f1
-	fmadds   f0, f3, f3, f0
-	fmadds   f1, f1, f1, f0
-	bl       pikmin2_sqrtf__Ff
-	lfs      f0, 0x3c(r30)
-	lfs      f2, lbl_80517C64@sda21(r2)
-	fdivs    f1, f1, f0
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	fsubs    f31, f2, f1
-	fcmpo    cr0, f31, f0
-	bge      lbl_8011E82C
-	fmr      f31, f0
+	f32 val = -1.0f;
+	if (check) {
+		if (_18 & 0x8 && _38 && _3C > 0.0f) {
+			PlayCamera* camera = lightMgr->mCamera;
+			if (camera) {
+				Vector3f cameraPos = camera->getPosition();
+				val                = 1.0f - (pikmin2_sqrtf(sqrDistance(*_38, cameraPos)) / _3C);
+				if (val < 0.0f) {
+					val = 0.0f;
+				}
+			}
+		}
 
-lbl_8011E82C:
-	lfs      f1, lbl_80517C80@sda21(r2)
-	lfs      f0, 0x44(r30)
-	fmuls    f1, f1, f0
-	bl       pikmin2_cosf__Ff
-	lfs      f2, lbl_80517C64@sda21(r2)
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	fsubs    f2, f2, f1
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fcmpo    cr0, f31, f0
-	fmuls    f1, f1, f2
-	stfs     f1, 0x44(r30)
-	cror     2, 1, 2
-	bne      lbl_8011E880
-	fcmpo    cr0, f31, f0
-	fmr      f1, f0
-	cror     2, 1, 2
-	bne      lbl_8011E874
-	fmr      f1, f31
+		_44 = 0.5f * (1.0f - pikmin2_cosf(PI * _44));
 
-lbl_8011E874:
-	lfs      f0, 0x44(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x44(r30)
+		if (val >= 0.0f) {
+			f32 val2 = 0.0f;
+			if (val >= 0.0f) {
+				val2 = val;
+			}
+			_44 *= val2;
+		}
+	}
 
-lbl_8011E880:
-	lbz      r0, 0x19(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8011E8E0
-	lwz      r5, 0x50(r31)
-	mr       r3, r30
-	addi     r4, r1, 8
-	lbz      r0, 0x34(r5)
-	stb      r0, 8(r1)
-	lbz      r0, 0x35(r5)
-	stb      r0, 9(r1)
-	lbz      r0, 0x36(r5)
-	stb      r0, 0xa(r1)
-	lbz      r0, 0x37(r5)
-	stb      r0, 0xb(r1)
-	bl       calcColor__Q24Game18GameLightEventNodeFP6Color4
-	lwz      r3, 0x50(r31)
-	lbz      r6, 0xb(r1)
-	lbz      r5, 0xa(r1)
-	lbz      r4, 9(r1)
-	lbz      r0, 8(r1)
-	stb      r0, 0x34(r3)
-	stb      r4, 0x35(r3)
-	stb      r5, 0x36(r3)
-	stb      r6, 0x37(r3)
+	Color4 color;
 
-lbl_8011E8E0:
-	lbz      r0, 0x19(r30)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8011E940
-	lwz      r5, 0x54(r31)
-	mr       r3, r30
-	addi     r4, r1, 8
-	lbz      r0, 0x34(r5)
-	stb      r0, 8(r1)
-	lbz      r0, 0x35(r5)
-	stb      r0, 9(r1)
-	lbz      r0, 0x36(r5)
-	stb      r0, 0xa(r1)
-	lbz      r0, 0x37(r5)
-	stb      r0, 0xb(r1)
-	bl       calcColor__Q24Game18GameLightEventNodeFP6Color4
-	lwz      r3, 0x54(r31)
-	lbz      r6, 0xb(r1)
-	lbz      r5, 0xa(r1)
-	lbz      r4, 9(r1)
-	lbz      r0, 8(r1)
-	stb      r0, 0x34(r3)
-	stb      r4, 0x35(r3)
-	stb      r5, 0x36(r3)
-	stb      r6, 0x37(r3)
+	if (_19 & 0x1) {
+		color = lightMgr->mMainLight->mColor;
+		calcColor(&color);
+		lightMgr->mMainLight->mColor.set(color);
+	}
 
-lbl_8011E940:
-	lbz      r0, 0x19(r30)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_8011E9A0
-	lwz      r5, 0x58(r31)
-	mr       r3, r30
-	addi     r4, r1, 8
-	lbz      r0, 0x34(r5)
-	stb      r0, 8(r1)
-	lbz      r0, 0x35(r5)
-	stb      r0, 9(r1)
-	lbz      r0, 0x36(r5)
-	stb      r0, 0xa(r1)
-	lbz      r0, 0x37(r5)
-	stb      r0, 0xb(r1)
-	bl       calcColor__Q24Game18GameLightEventNodeFP6Color4
-	lwz      r3, 0x58(r31)
-	lbz      r6, 0xb(r1)
-	lbz      r5, 0xa(r1)
-	lbz      r4, 9(r1)
-	lbz      r0, 8(r1)
-	stb      r0, 0x34(r3)
-	stb      r4, 0x35(r3)
-	stb      r5, 0x36(r3)
-	stb      r6, 0x37(r3)
+	if (_19 & 0x2) {
+		color = lightMgr->mSubLight->mColor;
+		calcColor(&color);
+		lightMgr->mSubLight->mColor.set(color);
+	}
 
-lbl_8011E9A0:
-	lbz      r0, 0x19(r30)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	beq      lbl_8011E9F8
-	lbz      r0, 0x30(r31)
-	mr       r3, r30
-	addi     r4, r1, 8
-	stb      r0, 8(r1)
-	lbz      r0, 0x31(r31)
-	stb      r0, 9(r1)
-	lbz      r0, 0x32(r31)
-	stb      r0, 0xa(r1)
-	lbz      r0, 0x33(r31)
-	stb      r0, 0xb(r1)
-	bl       calcColor__Q24Game18GameLightEventNodeFP6Color4
-	lbz      r0, 8(r1)
-	stb      r0, 0x30(r31)
-	lbz      r0, 9(r1)
-	stb      r0, 0x31(r31)
-	lbz      r0, 0xa(r1)
-	stb      r0, 0x32(r31)
-	lbz      r0, 0xb(r1)
-	stb      r0, 0x33(r31)
+	if (_19 & 0x4) {
+		color = lightMgr->mSpecLight->mColor;
+		calcColor(&color);
+		lightMgr->mSpecLight->mColor.set(color);
+	}
 
-lbl_8011E9F8:
-	lbz      r0, 0x19(r30)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	beq      lbl_8011EA60
-	lwz      r3, 0x2344(r31)
-	addi     r4, r1, 8
-	bl       getColor__6FogMgrFR6Color4
-	mr       r3, r30
-	addi     r4, r1, 8
-	bl       calcColor__Q24Game18GameLightEventNodeFP6Color4
-	lwz      r3, 0x2344(r31)
-	addi     r4, r1, 8
-	bl       setColor__6FogMgrFR6Color4
-	lwz      r3, 0x2344(r31)
-	lfs      f2, 0x30(r30)
-	lfs      f1, 0x1c(r3)
-	lfs      f3, 0x44(r30)
-	bl       "complement<f>__4GameFfff"
-	lwz      r3, 0x2344(r31)
-	stfs     f1, 0x1c(r3)
-	lwz      r3, 0x2344(r31)
-	lfs      f2, 0x34(r30)
-	lfs      f1, 0x20(r3)
-	lfs      f3, 0x44(r30)
-	bl       "complement<f>__4GameFfff"
-	lwz      r3, 0x2344(r31)
-	stfs     f1, 0x20(r3)
+	if (_19 & 0x8) {
+		color = lightMgr->mAmbientLight.mColor;
+		calcColor(&color);
+		lightMgr->mAmbientLight.mColor = color;
+	}
 
-lbl_8011EA60:
-	lbz      r0, 0x19(r30)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_8011EAB8
-	lbz      r0, 0x2348(r31)
-	mr       r3, r30
-	addi     r4, r1, 8
-	stb      r0, 8(r1)
-	lbz      r0, 0x2349(r31)
-	stb      r0, 9(r1)
-	lbz      r0, 0x234a(r31)
-	stb      r0, 0xa(r1)
-	lbz      r0, 0x234b(r31)
-	stb      r0, 0xb(r1)
-	bl       calcColor__Q24Game18GameLightEventNodeFP6Color4
-	lbz      r0, 8(r1)
-	stb      r0, 0x2348(r31)
-	lbz      r0, 9(r1)
-	stb      r0, 0x2349(r31)
-	lbz      r0, 0xa(r1)
-	stb      r0, 0x234a(r31)
-	lbz      r0, 0xb(r1)
-	stb      r0, 0x234b(r31)
+	if (_19 & 0x10) {
+		lightMgr->mFogMgr->getColor(color);
+		calcColor(&color);
+		lightMgr->mFogMgr->setColor(color);
 
-lbl_8011EAB8:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		lightMgr->mFogMgr->mNearZ = complement<f32>(lightMgr->mFogMgr->mNearZ, _30, _44);
+		lightMgr->mFogMgr->mFarZ  = complement<f32>(lightMgr->mFogMgr->mFarZ, _34, _44);
+	}
+
+	if (_19 & 0x20) {
+		color = lightMgr->mShadowColor;
+		calcColor(&color);
+		lightMgr->mShadowColor = color;
+	}
 }
 
 /*
@@ -514,371 +371,53 @@ lbl_8011EAB8:
  * Address:	8011EAD8
  * Size:	000464
  */
-void GameLightEventNode::calcColor(Color4*)
+void GameLightEventNode::calcColor(Color4* color)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	lbz      r0, 0x18(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8011EC98
-	lbz      r0, 0(r4)
-	lis      r6, 0x4330
-	lbz      r5, 1(r4)
-	stw      r0, 0xc(r1)
-	lbz      r0, 2(r4)
-	stw      r6, 8(r1)
-	lfd      f4, lbl_80517BF8@sda21(r2)
-	lfd      f0, 8(r1)
-	stw      r5, 0x14(r1)
-	fsubs    f1, f0, f4
-	lfs      f2, 0x1c(r3)
-	stw      r6, 0x10(r1)
-	lfs      f3, 0x20(r3)
-	lfd      f0, 0x10(r1)
-	fmuls    f5, f2, f1
-	lfs      f1, lbl_80517C84@sda21(r2)
-	fsubs    f0, f0, f4
-	stw      r0, 0x1c(r1)
-	lfs      f2, 0x24(r3)
-	fcmpo    cr0, f5, f1
-	stw      r6, 0x18(r1)
-	fmuls    f3, f3, f0
-	lfd      f0, 0x18(r1)
-	fsubs    f0, f0, f4
-	fmuls    f2, f2, f0
-	ble      lbl_8011EB54
-	b        lbl_8011EB58
+	Color4 tempColor;
+	if (_18 & 0x2) {
+		f32 redF   = _1C * color->r;
+		f32 greenF = _20 * color->g;
+		f32 blueF  = _24 * color->b;
 
-lbl_8011EB54:
-	fmr      f1, f5
+		f32 limitR = (redF > 255.0f) ? 255.0f : redF;
+		f32 limitR2;
+		if (limitR >= 0.0f) {
+			limitR2 = ((redF > 255.0f) ? 255.0f : redF) + 0.5f;
+		} else {
+			limitR2 = ((redF > 255.0f) ? 255.0f : redF) - 0.5f;
+		}
+		tempColor.r = (int)limitR2;
 
-lbl_8011EB58:
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8011EB88
-	lfs      f0, lbl_80517C84@sda21(r2)
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fcmpo    cr0, f5, f0
-	ble      lbl_8011EB7C
-	b        lbl_8011EB80
+		f32 limitG = (greenF > 255.0f) ? 255.0f : greenF;
+		f32 limitG2;
+		if (limitG >= 0.0f) {
+			limitG2 = ((greenF > 255.0f) ? 255.0f : greenF) + 0.5f;
+		} else {
+			limitG2 = ((greenF > 255.0f) ? 255.0f : greenF) - 0.5f;
+		}
+		tempColor.g = (int)limitG2;
 
-lbl_8011EB7C:
-	fmr      f0, f5
+		f32 limitB = (blueF > 255.0f) ? 255.0f : blueF;
+		f32 limitB2;
+		if (limitB >= 0.0f) {
+			limitB2 = ((blueF > 255.0f) ? 255.0f : blueF) + 0.5f;
+		} else {
+			limitB2 = ((blueF > 255.0f) ? 255.0f : blueF) - 0.5f;
+		}
+		tempColor.b = (int)limitB2;
 
-lbl_8011EB80:
-	fadds    f0, f1, f0
-	b        lbl_8011EBA4
+	} else {
+		f32 limitR  = (_1C >= 0.0f) ? _1C + 0.5f : _1C - 0.5f;
+		tempColor.r = (int)limitR;
 
-lbl_8011EB88:
-	lfs      f1, lbl_80517C84@sda21(r2)
-	fcmpo    cr0, f5, f1
-	ble      lbl_8011EB98
-	b        lbl_8011EB9C
+		f32 limitG  = (_20 >= 0.0f) ? _20 + 0.5f : _20 - 0.5f;
+		tempColor.g = (int)limitG;
 
-lbl_8011EB98:
-	fmr      f1, f5
+		f32 limitB  = (_24 >= 0.0f) ? _24 + 0.5f : _24 - 0.5f;
+		tempColor.b = (int)limitB;
+	}
 
-lbl_8011EB9C:
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_8011EBA4:
-	fctiwz   f0, f0
-	lfs      f1, lbl_80517C84@sda21(r2)
-	fcmpo    cr0, f3, f1
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	clrlwi   r5, r0, 0x18
-	ble      lbl_8011EBC4
-	b        lbl_8011EBC8
-
-lbl_8011EBC4:
-	fmr      f1, f3
-
-lbl_8011EBC8:
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8011EBF8
-	lfs      f0, lbl_80517C84@sda21(r2)
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fcmpo    cr0, f3, f0
-	ble      lbl_8011EBEC
-	b        lbl_8011EBF0
-
-lbl_8011EBEC:
-	fmr      f0, f3
-
-lbl_8011EBF0:
-	fadds    f0, f1, f0
-	b        lbl_8011EC14
-
-lbl_8011EBF8:
-	lfs      f1, lbl_80517C84@sda21(r2)
-	fcmpo    cr0, f3, f1
-	ble      lbl_8011EC08
-	b        lbl_8011EC0C
-
-lbl_8011EC08:
-	fmr      f1, f3
-
-lbl_8011EC0C:
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_8011EC14:
-	fctiwz   f0, f0
-	lfs      f1, lbl_80517C84@sda21(r2)
-	fcmpo    cr0, f2, f1
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	clrlwi   r6, r0, 0x18
-	ble      lbl_8011EC34
-	b        lbl_8011EC38
-
-lbl_8011EC34:
-	fmr      f1, f2
-
-lbl_8011EC38:
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8011EC68
-	lfs      f0, lbl_80517C84@sda21(r2)
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_8011EC5C
-	b        lbl_8011EC60
-
-lbl_8011EC5C:
-	fmr      f0, f2
-
-lbl_8011EC60:
-	fadds    f0, f1, f0
-	b        lbl_8011EC84
-
-lbl_8011EC68:
-	lfs      f1, lbl_80517C84@sda21(r2)
-	fcmpo    cr0, f2, f1
-	ble      lbl_8011EC78
-	b        lbl_8011EC7C
-
-lbl_8011EC78:
-	fmr      f1, f2
-
-lbl_8011EC7C:
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_8011EC84:
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	clrlwi   r7, r0, 0x18
-	b        lbl_8011ED40
-
-lbl_8011EC98:
-	lfs      f1, 0x1c(r3)
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8011ECB8
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fadds    f0, f0, f1
-	b        lbl_8011ECC0
-
-lbl_8011ECB8:
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_8011ECC0:
-	fctiwz   f1, f0
-	lfs      f2, 0x20(r3)
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	stfd     f1, 0x30(r1)
-	fcmpo    cr0, f2, f0
-	lwz      r0, 0x34(r1)
-	clrlwi   r5, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8011ECF0
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fadds    f0, f0, f2
-	b        lbl_8011ECF8
-
-lbl_8011ECF0:
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fsubs    f0, f2, f0
-
-lbl_8011ECF8:
-	fctiwz   f1, f0
-	lfs      f2, 0x24(r3)
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	stfd     f1, 0x28(r1)
-	fcmpo    cr0, f2, f0
-	lwz      r0, 0x2c(r1)
-	clrlwi   r6, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8011ED28
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fadds    f0, f0, f2
-	b        lbl_8011ED30
-
-lbl_8011ED28:
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fsubs    f0, f2, f0
-
-lbl_8011ED30:
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	clrlwi   r7, r0, 0x18
-
-lbl_8011ED40:
-	lbz      r8, 0(r4)
-	lis      r0, 0x4330
-	clrlwi   r5, r5, 0x18
-	stw      r0, 0x30(r1)
-	lfd      f5, lbl_80517BF8@sda21(r2)
-	stw      r5, 0x34(r1)
-	lfs      f0, 0x44(r3)
-	lfd      f1, 0x30(r1)
-	stw      r8, 0x2c(r1)
-	fsubs    f4, f1, f5
-	lfs      f1, lbl_80517BF4@sda21(r2)
-	stw      r0, 0x28(r1)
-	lfd      f2, 0x28(r1)
-	stw      r8, 0x24(r1)
-	fsubs    f3, f2, f5
-	stw      r0, 0x20(r1)
-	lfd      f2, 0x20(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f5
-	fmadds   f2, f0, f3, f2
-	fcmpo    cr0, f2, f1
-	cror     2, 1, 2
-	bne      lbl_8011EDA8
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fadds    f1, f1, f2
-	b        lbl_8011EDB0
-
-lbl_8011EDA8:
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fsubs    f1, f2, f1
-
-lbl_8011EDB0:
-	fctiwz   f1, f1
-	lis      r0, 0x4330
-	clrlwi   r3, r6, 0x18
-	stw      r0, 0x10(r1)
-	lfd      f5, lbl_80517BF8@sda21(r2)
-	stfd     f1, 0x18(r1)
-	lfs      f1, lbl_80517BF4@sda21(r2)
-	lwz      r5, 0x1c(r1)
-	stw      r3, 0x14(r1)
-	stb      r5, 0(r4)
-	lfd      f2, 0x10(r1)
-	lbz      r3, 1(r4)
-	stw      r0, 8(r1)
-	fsubs    f4, f2, f5
-	stw      r3, 0xc(r1)
-	lfd      f2, 8(r1)
-	stw      r3, 0x3c(r1)
-	fsubs    f3, f2, f5
-	stw      r0, 0x38(r1)
-	lfd      f2, 0x38(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f5
-	fmadds   f2, f0, f3, f2
-	fcmpo    cr0, f2, f1
-	cror     2, 1, 2
-	bne      lbl_8011EE24
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fadds    f1, f1, f2
-	b        lbl_8011EE2C
-
-lbl_8011EE24:
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fsubs    f1, f2, f1
-
-lbl_8011EE2C:
-	fctiwz   f1, f1
-	lis      r0, 0x4330
-	clrlwi   r3, r7, 0x18
-	stw      r0, 0x48(r1)
-	lfd      f5, lbl_80517BF8@sda21(r2)
-	stfd     f1, 0x40(r1)
-	lfs      f1, lbl_80517BF4@sda21(r2)
-	lwz      r5, 0x44(r1)
-	stw      r3, 0x4c(r1)
-	stb      r5, 1(r4)
-	lfd      f2, 0x48(r1)
-	lbz      r3, 2(r4)
-	stw      r0, 0x50(r1)
-	fsubs    f4, f2, f5
-	stw      r3, 0x54(r1)
-	lfd      f2, 0x50(r1)
-	stw      r3, 0x5c(r1)
-	fsubs    f3, f2, f5
-	stw      r0, 0x58(r1)
-	lfd      f2, 0x58(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f5
-	fmadds   f2, f0, f3, f2
-	fcmpo    cr0, f2, f1
-	cror     2, 1, 2
-	bne      lbl_8011EEA0
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fadds    f1, f1, f2
-	b        lbl_8011EEA8
-
-lbl_8011EEA0:
-	lfs      f1, lbl_80517BF0@sda21(r2)
-	fsubs    f1, f2, f1
-
-lbl_8011EEA8:
-	fctiwz   f1, f1
-	lis      r0, 0x4330
-	clrlwi   r3, r4, 0x18
-	stw      r0, 0x68(r1)
-	lfd      f5, lbl_80517BF8@sda21(r2)
-	stfd     f1, 0x60(r1)
-	lfs      f1, lbl_80517BF4@sda21(r2)
-	lwz      r5, 0x64(r1)
-	stw      r3, 0x6c(r1)
-	stb      r5, 2(r4)
-	lfd      f2, 0x68(r1)
-	lbz      r3, 3(r4)
-	stw      r0, 0x70(r1)
-	fsubs    f4, f2, f5
-	stw      r3, 0x74(r1)
-	lfd      f2, 0x70(r1)
-	stw      r3, 0x7c(r1)
-	fsubs    f3, f2, f5
-	stw      r0, 0x78(r1)
-	lfd      f2, 0x78(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f5
-	fmadds   f2, f0, f3, f2
-	fcmpo    cr0, f2, f1
-	cror     2, 1, 2
-	bne      lbl_8011EF1C
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fadds    f0, f0, f2
-	b        lbl_8011EF24
-
-lbl_8011EF1C:
-	lfs      f0, lbl_80517BF0@sda21(r2)
-	fsubs    f0, f2, f0
-
-lbl_8011EF24:
-	fctiwz   f0, f0
-	stfd     f0, 0x80(r1)
-	lwz      r0, 0x84(r1)
-	stb      r0, 3(r4)
-	addi     r1, r1, 0x90
-	blr
-	*/
+	calcLightColor(color, tempColor, *color, _44);
 }
 
 /*
@@ -4045,9 +3584,31 @@ void GameLightMgr::set(Graphics& gfx)
  */
 void GameLightMgr::updatePosition(Viewport* viewport)
 {
+	Vector3f lightPos;
 	if (!mSettings.mIsCave) {
 		mMainLight->mSpotFn = GX_SP_OFF;
 		mSubLight->mSpotFn  = GX_SP_OFF;
+
+		f32 maxAngle = *mSettings.mSunLight.mMoveParms.mSunsetAngle() - *mSettings.mSunLight.mMoveParms.mSunriseAngle();
+		f32 angle    = (180.0f - (maxAngle * mTimeMgr->getSunGaugeRatio() + *mSettings.mSunLight.mMoveParms.mSunriseAngle()));
+		angle        = PI * (DEG2RAD * angle);
+
+		lightPos.x = pikmin2_cosf(angle) * *mSettings.mSunLight.mMoveParms.mDistance();
+		lightPos.y = pikmin2_sinf(angle) * *mSettings.mSunLight.mMoveParms.mDistance();
+		lightPos.z = 0.0f;
+
+		if (gameSystem->mMode == GSM_PIKLOPEDIA) {
+			Mtx mtx;
+			PSMTXRotRad(mtx, 'x', 50 * DEG2RAD);
+			PSMTXMultVec(mtx, (Vec*)&lightPos, (Vec*)&lightPos);
+		}
+
+		mMainLight->mPosition = lightPos;
+		mSpecLight->mPosition = lightPos;
+		lightPos.x *= -1.0f;
+		lightPos.y *= -1.0f;
+		lightPos.z *= -1.0f;
+		mSubLight->mPosition = lightPos;
 
 	} else {
 		mMainLight->mSpotFn      = GX_SP_COS2;
@@ -4062,196 +3623,20 @@ void GameLightMgr::updatePosition(Viewport* viewport)
 			JUT_PANICLINE(1287, "illegal vp-id (%d)\n", viewportID);
 		}
 
-		_238C[0] = mCamera->getLookAtPosition();
+		f32 val = complement<f32>(mSettings.mRegularSpotLight.mMoveParms.mDistance.mValue,
+		                          mSettings.mStellarSpotLight.mMoveParms.mDistance.mValue, _2354);
+
+		getViewportPos(lightPos, viewportID);
+		lightPos.y += val;
+
+		mMainLight->mPosition = lightPos;
+		mSpecLight->mPosition = lightPos;
+
+		lightPos.y -= 2.0f * val;
+		mSubLight->mPosition = lightPos;
+
+		_238C[viewportID] = viewport->mCamera->getLookAtPosition();
 	}
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lbz      r0, 0x74(r3)
-	cmplwi   r0, 0
-	bne      lbl_80122104
-	lwz      r3, 0x50(r30)
-	li       r0, 0
-	stb      r0, 0x49(r3)
-	lwz      r3, 0x54(r30)
-	stb      r0, 0x49(r3)
-	lfs      f0, 0x104(r30)
-	lfs      f31, 0xdc(r30)
-	lwz      r3, 0x2338(r30)
-	fsubs    f30, f0, f31
-	bl       getSunGaugeRatio__Q24Game7TimeMgrFv
-	fmadds   f3, f30, f1, f31
-	lfs      f2, lbl_80517CB4@sda21(r2)
-	lfs      f0, lbl_80517CB8@sda21(r2)
-	lfs      f1, lbl_80517C80@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f0, f0, f2
-	fmuls    f31, f1, f0
-	fmr      f1, f31
-	bl       pikmin2_cosf__Ff
-	lfs      f0, 0xb4(r30)
-	fmuls    f0, f1, f0
-	fmr      f1, f31
-	stfs     f0, 0x14(r1)
-	bl       pikmin2_sinf__Ff
-	lfs      f2, 0xb4(r30)
-	lfs      f0, lbl_80517BF4@sda21(r2)
-	fmuls    f1, f1, f2
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stfs     f0, 0x1c(r1)
-	stfs     f1, 0x18(r1)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_80122088
-	lfs      f1, lbl_80517CBC@sda21(r2)
-	addi     r3, r1, 0x20
-	li       r4, 0x78
-	bl       PSMTXRotRad
-	addi     r4, r1, 0x14
-	addi     r3, r1, 0x20
-	mr       r5, r4
-	bl       PSMTXMultVec
-
-lbl_80122088:
-	lwz      r3, 0x50(r30)
-	lfs      f0, 0x14(r1)
-	lfs      f3, lbl_80517C7C@sda21(r2)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x20(r3)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x24(r3)
-	lwz      r3, 0x58(r30)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x20(r3)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x24(r3)
-	lfs      f2, 0x14(r1)
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 0x54(r30)
-	stfs     f2, 0x1c(r3)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x20(r3)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x24(r3)
-	b        lbl_8012223C
-
-lbl_80122104:
-	lwz      r3, 0x50(r30)
-	li       r0, 3
-	stb      r0, 0x49(r3)
-	lfs      f1, 0x1f08(r30)
-	lfs      f2, 0x19b0(r30)
-	lfs      f3, 0x2354(r30)
-	bl       "complement<f>__4GameFfff"
-	lwz      r3, 0x50(r30)
-	li       r0, 3
-	stfs     f1, 0x44(r3)
-	lwz      r3, 0x54(r30)
-	stb      r0, 0x49(r3)
-	lfs      f1, 0x1ff4(r30)
-	lfs      f2, 0x1a9c(r30)
-	lfs      f3, 0x2354(r30)
-	bl       "complement<f>__4GameFfff"
-	lwz      r3, 0x54(r30)
-	stfs     f1, 0x44(r3)
-	lhz      r29, 0x18(r31)
-	cmpwi    r29, 0
-	blt      lbl_80122160
-	cmpwi    r29, 1
-	ble      lbl_80122180
-
-lbl_80122160:
-	lis      r3, lbl_8047B380@ha
-	lis      r4, lbl_8047B40C@ha
-	addi     r5, r4, lbl_8047B40C@l
-	mr       r6, r29
-	addi     r3, r3, lbl_8047B380@l
-	li       r4, 0x507
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80122180:
-	lfs      f1, 0x1e1c(r30)
-	lfs      f2, 0x18c4(r30)
-	lfs      f3, 0x2354(r30)
-	bl       "complement<f>__4GameFfff"
-	mulli    r0, r29, 0xc
-	lfs      f3, lbl_80517C98@sda21(r2)
-	addi     r3, r1, 8
-	add      r29, r30, r0
-	lfs      f4, 0x238c(r29)
-	stfs     f4, 0x14(r1)
-	lfs      f0, 0x2390(r29)
-	stfs     f0, 0x18(r1)
-	fadds    f0, f0, f1
-	lfs      f2, 0x2394(r29)
-	stfs     f2, 0x1c(r1)
-	stfs     f0, 0x18(r1)
-	lwz      r4, 0x50(r30)
-	stfs     f4, 0x1c(r4)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x20(r4)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x24(r4)
-	lwz      r4, 0x58(r30)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0x1c(r4)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x20(r4)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x24(r4)
-	lfs      f2, 0x18(r1)
-	lfs      f0, 0x14(r1)
-	fnmsubs  f1, f3, f1, f2
-	stfs     f1, 0x18(r1)
-	lwz      r4, 0x54(r30)
-	stfs     f0, 0x1c(r4)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x20(r4)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x24(r4)
-	lwz      r4, 0x44(r31)
-	bl       getLookAtPosition__6CameraFv
-	lfs      f0, 8(r1)
-	stfs     f0, 0x238c(r29)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x2390(r29)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x2394(r29)
-
-lbl_8012223C:
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /*
